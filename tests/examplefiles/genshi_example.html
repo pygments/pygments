@@ -1,0 +1,132 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:py="http://genshi.edgewall.org/"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="layout.html" />
+  <xi:include href="macros.html" />
+  <head>
+    <title>$path</title>
+  </head>
+
+  <body>
+    <div id="ctxtnav" class="nav">
+      <ul>
+        <li class="first"><a href="${href.changeset(rev, created_path)}">Last Change</a></li>
+        <li class="last"><a href="${href.log(path, rev=rev)}">Revision Log</a></li>
+      </ul>
+    </div>
+
+    <div id="searchable">
+      <div id="content" class="browser">
+
+        <h1>${browser_path_links(path_links)}</h1>
+
+        <div id="jumprev">
+          <form action="" method="get">
+            <div>
+              <label for="rev">View revision:</label>
+              <input type="text" id="rev" name="rev" value="$rev" size="6" />
+            </div>
+          </form>
+        </div>
+
+        <py:if test="dir">
+          <table class="listing" id="dirlist">
+            <thead>
+              <tr>
+                <py:def function="sortable_th(order, desc, class_, title)">
+                  <th class="$class_${order == class_ and (desc and ' desc' or ' asc') or ''}">
+                    <a title="Sort by $class_${order == class_ and not desc and
+                                               ' (descending)' or ''}"
+                      href="${href.browser(path, rev=rev, order=class_,
+                      desc=(class_ == order and not desc and 1 or None))}">$title</a>
+                  </th>
+                </py:def>
+                ${sortable_th(dir.order, dir.desc, 'name', 'Name')}
+                ${sortable_th(dir.order, dir.desc, 'size', 'Size')}
+                <th class="rev">Rev</th>
+                ${sortable_th(dir.order, dir.desc, 'date', 'Age')}
+                <th class="change">Last Change</th>
+              </tr>
+            </thead>
+            <tbody>
+              <py:if test="chrome.links.up">
+                <tr class="even">
+                  <td class="name" colspan="5">
+                    <a class="parent" title="Parent Directory" href="${chrome.links.up[0].href}">../</a>
+                  </td>
+                </tr>
+              </py:if>
+              <py:for each="idx, entry in enumerate(dir.entries)">
+                <py:with vars="change = dir.changes[entry.rev]">
+                  <tr class="${idx % 2 and 'even' or 'odd'}">
+                    <td class="name">
+                      <a class="${entry.kind}"
+                        title="${entry.kind == 'dir' and 'Browse Directory' or 'View File'}"
+                        href="${href.browser(entry.path, rev=rev)}">$entry.name</a>
+                    </td>
+                    <td class="size">${sizeinfo(entry.size)}</td>
+                    <td class="rev">
+                      <a title="View Revision Log"
+                        href="${href.log(entry.path, rev=rev)}">$entry.rev</a>
+                    </td>
+                    <td class="age">${dateinfo(change.date_seconds)}</td>
+                    <!--! FIXME: use 'date' and therefore replace 'date' by 'date_seconds'
+                                 in trac.versioncontrol.web_ui.util.get_changes -->
+                    <td class="change">
+                      <span class="author">$change.author:</span>
+                      <span class="change">$change.message</span>
+                    </td>
+                  </tr>
+                </py:with>
+              </py:for>
+            </tbody>
+          </table>
+        </py:if>
+
+        <table py:if="props or file" id="info" summary="Revision info">
+          <tr py:if="file">
+            <th scope="col">
+              Revision <a href="${href.changeset(rev)}">$rev</a>, ${sizeinfo(file.size)}
+              (checked in by $file.author, ${dateinfo(file.date)} ago)
+            </th>
+          </tr>
+          <tr py:if="file">
+            <td class="message">$file.message</td>
+          </tr>
+          <tr py:if="props">
+            <td colspan="2">
+              <ul class="props">
+                <li py:for="prop in props">
+                  Property <strong>$prop.name</strong> set to <em><code>$prop.value</code></em>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        ${preview_file(file.preview)} <!--! a <div id="preview"> containing the rendered file preview -->
+
+        <div id="help">
+          <strong>Note:</strong> See <a href="${href.wiki('TracBrowser')}">TracBrowser</a>
+          for help on using the browser.
+        </div>
+
+        <div id="anydiff">
+          <form action="${href.diff_form()}" method="get">
+            <div class="buttons">
+              <input type="hidden" name="new_path" value="$path" />
+              <input type="hidden" name="old_path" value="$path" />
+              <input type="hidden" name="new_rev" value="$rev" />
+              <input type="hidden" name="old_rev" value="$rev" />
+              <input type="submit" value="View changes..." title="Select paths and revs for Diff" />
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

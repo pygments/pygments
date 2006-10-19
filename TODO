@@ -1,0 +1,43 @@
+Todo
+====
+
+- allow multiple token types per regex (done, but awkwardly)
+- allow "overlay" token types (e.g. Diff + X) 
+  - highlight specials: nth line, a word etc.
+  - dhtml: overlays toggleable by javascript
+
+- unit tests
+
+- docstrings?
+
+- lexers:
+    * HTML with special formatting
+    * ocaml
+    * nemerle
+    * scheme/lisp
+    * windows batch files
+    * assembler
+    * objective c
+    * bash
+    * mysql/postgresql/sqlite
+    * tcl
+    * (la)tex
+    * django templates 
+
+- goto label HL support for languages that use it
+
+- add a `Punctuation` token type for symbols that are not text
+  but also not a symbol (blocks in ruby etc)
+
+- add support for function name highlighting to c++ lexer
+
+- styles should be able to define the overall background color
+
+- tell the DelphiLexer how to differ between Operators and
+  text.
+
+- review perl lexer (numerous bugs)
+
+- moin parser
+
+- add folding? would require more language-aware parsers...

@@ -1,0 +1,249 @@
+.. -*- mode: rst -*-
+
+====================
+Available formatters
+====================
+
+This page lists all builtin formatters.
+
+Common options
+==============
+
+The `HtmlFormatter` and `LatexFormatter` classes support these options:
+
+`style`
+    The style to use, can be a string or a Style subclass (default:
+    ``'default'``).
+
+`full`
+    Tells the formatter to output a "full" document, i.e. a complete
+    self-contained document (default: ``False``).
+
+`title`
+    If `full` is true, the title that should be used to caption the
+    document (default: ``''``).
+
+`linenos`
+    If set to ``True``, output line numbers (default: ``False``).
+
+`linenostart`
+    The line number for the first line (default: ``1``).
+
+`linenostep`
+    If set to a number n > 1, only every nth line number is printed.
+
+
+Formatter classes
+=================
+
+All these classes are importable from `pygments.formatters`.
+
+
+`HtmlFormatter`
+---------------
+
+    Formats tokens as HTML 4 ``<span>`` tags within a ``<pre>`` tag, wrapped
+    in a ``<div>`` tag. The ``<div>``'s CSS class can be set by the `cssclass`
+    option.
+
+    If the `linenos` option is given and true, the ``<pre>`` is additionally
+    wrapped inside a ``<table>`` which has one row and two cells: one
+    containing the line numbers and one containing the code. Example:
+
+    .. sourcecode:: html
+
+        <div class="highlight" >
+        <table><tr>
+          <td class="linenos" title="click to toggle"
+            onclick="with (this.firstChild.style)
+                     { display = (display == '') ? 'none' : '' }">
+            <pre>1
+            2</pre>
+          </td>
+          <td class="code">
+            <pre><span class="Ke">def </span><span class="NaFu">foo</span>(bar):
+              <span class="Ke">pass</span>
+            </pre>
+          </td>
+        </tr></table></div>
+
+    (whitespace added to improve clarity). Wrapping can be disabled using the
+    `nowrap` option.
+
+    With the `full` option, a complete HTML 4 document is output, including
+    the style definitions inside a ``<style>`` tag.
+
+    The `get_style_defs(arg='')` method of a `HtmlFormatter` returns a string
+    containing CSS rules for the CSS classes used by the formatter. The
+    argument `arg` can be used to specify additional CSS selectors that
+    are prepended to the classes. A call `fmter.get_style_defs('td .code')`
+    would result in the following CSS classes:
+
+    .. sourcecode:: css
+
+        td .code .kw { font-weight: bold; color: #00FF00 }
+        td .code .cm { color: #999999 }
+        ...
+
+    Additional options accepted by the `HtmlFormatter`:
+
+    `nowrap`
+        If set to ``True``, don't wrap the tokens at all, not even in a ``<pre>``
+        tag. This disables all other options (default: ``False``).
+
+    `noclasses`
+        If set to true, token ``<span>`` tags will not use CSS classes, but
+        inline styles. This is not recommended for larger pieces of code since
+        it increases output size by quite a bit (default: ``False``).
+
+    `classprefix`
+        Since the token types use relatively short class names, they may clash
+        with some of your own class names. In this case you can use the
+        `classprefix` option to give a string to prepend to all Pygments-generated
+        CSS class names for token types.
+        Note that this option also affects the output of `get_style_defs()`.
+
+    `cssclass`
+        CSS class for the wrapping ``<div>`` tag (default: ``'highlight'``).
+
+    `cssstyles`
+        Inline CSS styles for the wrapping ``<div>`` tag (default: ``''``).
+
+    `linenospecial`
+        If set to a number n > 0, every nth line number is given the CSS
+        class ``"special"`` (default: ``0``).
+    
+    :Aliases: ``html``
+    :Filename patterns: ``*.html``, ``*.htm``
+    
+
+`LatexFormatter`
+----------------
+
+    Formats tokens as LaTeX code. This needs the `fancyvrb` and `color`
+    standard packages.
+
+    Without the `full` option, code is formatted as one ``Verbatim``
+    environment, like this:
+
+    .. sourcecode:: latex
+
+        \begin{Verbatim}[commandchars=@\[\]]
+        @Can[def ]@Cax[foo](bar):
+            @Can[pass]
+        \end{Verbatim}
+
+    The command sequences used here (``@Can`` etc.) are generated from the given
+    `style` and can be retrieved using the `get_style_defs` method.
+
+    With the `full` option, a complete LaTeX document is output, including
+    the command definitions in the preamble.
+
+    The `get_style_defs(arg='')` method of a `LatexFormatter` returns a string
+    containing ``\newcommand`` commands defining the commands used inside the
+    ``Verbatim`` environments. If the argument `arg` is true,
+    ``\renewcommand`` is used instead.
+    
+    Additional options accepted by the `LatexFormatter`:
+
+    `docclass`
+        If the `full` option is enabled, this is the document class to use
+        (default: ``'article'``).
+
+    `preamble`
+        If the `full` option is enabled, this can be further preamble commands,
+        e.g. ``\usepackage`` (default: ``''``).
+
+    `verboptions`
+        Additional options given to the Verbatim environment (see the *fancyvrb*
+        docs for possible values) (default: ``''``).
+    
+    :Aliases: ``latex``, ``tex``
+    :Filename pattern: ``*.tex``
+    
+
+`BBCodeFormatter`
+-----------------
+    
+    Formats tokens with BBcodes. These formatting codes are used by many
+    bulletin boards, so you can highlight your sourcecode with pygments before
+    posting it there.
+
+    This formatter has no support for background colors and borders, as there
+    are no common BBcode tags for that.
+
+    Some board systems (e.g. phpBB) don't support colors in their [code] tag,
+    so you can't use the highlighting together with that tag.
+    Text in a [code] tag usually is shown with a monospace font (which this
+    formatter can do with the ``monofont`` option) and no spaces (which you
+    need for indentation) are removed.
+
+    The `BBCodeFormatter` accepts two additional option:
+
+    `codetag`
+        If set to true, put the output into ``[code]`` tags (default:
+        ``false``)
+
+    `monofont`
+        If set to true, add a tag to show the code with a monospace font
+        (default: ``false``).
+
+    :Aliases: ``bbcode``, ``bb``
+    :Filename pattern: None
+
+
+`TerminalFormatter`
+-------------------
+    
+    Formats tokens with ANSI color sequences, for output in a text console.
+    Color sequences are terminated at newlines, so that paging the output
+    works correctly.
+
+    The `get_style_defs()` method doesn't do anything special since there is
+    no support for common styles.
+
+    The TerminalFormatter class supports only these options:
+
+    `bg`
+        Set to ``"light"`` or ``"dark"`` depending on the terminal's background
+        (default: ``"light"``).
+
+    `colorscheme`
+        A dictionary mapping token types to (lightbg, darkbg) color names or
+        ``None`` (default: ``None`` = use builtin colorscheme).
+
+    `debug`
+        If this option is true, output the string "<<ERROR>>" after each error
+        token. This is meant as a help for debugging Pygments (default: ``False``).
+
+    :Aliases: ``terminal``, ``console``
+    :Filename pattern: None
+
+
+`RawTokenFormatter`
+-------------------
+
+    Formats tokens as a raw representation for storing token streams.
+
+    The format is ``tokentype<TAB>repr(tokenstring)\n``. The output can later
+    be converted to a token stream with the `RawTokenLexer`, described in the
+    `lexer list <lexers.txt>`_.
+
+    One option is accepted:
+
+    `compress`
+        If set to ``'gz'`` or ``'bz2'``, compress the output with the given
+        compression algorithm after encoding (default: ``''``).
+
+    :Aliases: ``raw``, ``tokens``
+    :Filename pattern: ``*.raw``
+
+
+`NullFormatter`
+---------------
+
+    Just output all tokens, don't format in any way.
+
+    :Aliases: ``text``, ``null``
+    :Filename pattern: ``*.txt``
+
