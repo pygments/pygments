@@ -1,0 +1,521 @@
+.. -*- mode: rst -*-
+
+================
+Available lexers
+================
+
+This page lists all available builtin lexers and the options they take.
+
+Currently, **all lexers** support these options:
+
+`stripnl`
+    Strip leading and trailing newlines from the input (default: ``True``)
+
+`stripall`
+    Strip all leading and trailing whitespace from the input (default:
+    ``False``).
+
+`tabsize`
+    If given and greater than 0, expand tabs in the input (default: ``0``).
+
+
+These lexers are builtin and can be imported from
+`pygments.lexers`:
+
+
+Special lexers
+==============
+
+`TextLexer`
+
+    "Null" lexer, doesn't highlight anything.
+
+    :Aliases: ``text``
+    :Filename patterns: ``*.txt``
+
+
+`RawTokenLexer`
+
+    Recreates a token stream formatted with the `RawTokenFormatter`.
+
+    Additional option:
+
+    `compress`
+         If set to ``'gz'`` or ``'bz2'``, decompress the token stream with
+         the given compression algorithm before lexing (default: '').
+
+    :Aliases: ``raw``
+    :Filename patterns: ``*.raw``
+
+
+Agile languages
+===============
+
+`PythonLexer`
+
+    For `Python <http://www.python.org>`_ source code.
+
+    :Aliases: ``python``, ``py``
+    :Filename patterns: ``*.py``, ``*.pyw``
+
+
+`PythonConsoleLexer`
+
+    For Python console output or doctests, such as:
+
+    .. sourcecode:: pycon
+
+        >>> a = 'foo'
+        >>> print a
+        'foo'
+        >>> 1/0
+        Traceback (most recent call last):
+        ...
+
+    :Aliases: ``pycon``
+    :Filename patterns: None
+
+
+`RubyLexer`
+
+    For `Ruby <http://www.ruby-lang.org>`_ source code.
+
+    :Aliases: ``ruby``, ``rb``
+    :Filename patterns: ``*.rb``
+
+
+`RubyConsoleLexer`
+
+    For Ruby interactive console (**irb**) output like:
+
+    .. sourcecode:: rbcon
+
+        irb(main):001:0> a = 1
+        => 1
+        irb(main):002:0> puts a
+        1
+        => nil
+
+    :Aliases: ``rbcon``, ``irb``
+    :Filename patterns: None
+
+
+`PerlLexer`
+
+    For `Perl <http://www.perl.org>`_ source code.
+
+    :Aliases: ``perl``, ``pl``
+    :Filename patterns: ``*.pl``, ``*.pm``
+
+
+`LuaLexer`
+
+    For `Lua <http://www.lua.org>`_ source code.
+
+    Additional options:
+
+    `func_name_highlighting`
+        If given and ``True``, highlight builtin function names
+        (default: ``True``).
+    `disabled_modules`
+        If given, must be a list of module names whose function names
+        should not be highlighted. By default all modules are highlighted.
+
+        To get a list of allowed modules have a look into the
+        `_luabuiltins` module:
+
+        .. sourcecode:: pycon
+
+            >>> from pygments.lexers._luabuiltins import MODULES
+            >>> MODULES.keys()
+            ['string', 'coroutine', 'modules', 'io', 'basic', ...]
+
+    :Aliases: ``lua``
+    :Filename patterns: ``*.lua``
+
+
+Compiled languages
+==================
+
+`CLexer`
+
+    For C source code with preprocessor directives.
+
+    :Aliases: ``c``
+    :Filename patterns: ``*.c``, ``*.h``
+
+
+`CppLexer`
+
+    For C++ source code with preprocessor directives.
+
+    :Aliases: ``cpp``, ``c++``
+    :Filename patterns: ``*.cpp``, ``*.hpp``, ``*.c++``, ``*.h++``
+
+
+`DelphiLexer`
+
+    For `Delphi <http://www.borland.com/delphi/>`_
+    (Borland Object Pascal) source code.
+
+    :Aliases: ``delphi``, ``pas``, ``pascal``, ``objectpascal``
+    :Filename patterns: ``*.pas``
+
+
+`JavaLexer`
+
+    For `Java <http://www.sun.com/java/>`_ source code.
+
+    :Aliases: ``java``
+    :Filename patterns: ``*.java``
+
+
+.NET languages
+==============
+
+`CSharpLexer`
+
+    For `C# <http://msdn2.microsoft.com/en-us/vcsharp/default.aspx>`_
+    source code.
+
+    :Aliases: ``c#``, ``csharp``
+    :Filename patterns: ``*.cs``
+
+`BooLexer`
+
+    For `Boo <http://boo.codehaus.org/>`_ source code.
+
+    :Aliases: ``boo``
+    :Filename patterns: ``*.boo``
+
+`VbNetLexer`
+
+    For
+    `Visual Basic.NET <http://msdn2.microsoft.com/en-us/vbasic/default.aspx>`_
+    source code.
+
+    :Aliases: ``vbnet``, ``vb.net``
+    :Filename patterns: ``*.vb``, ``*.bas``
+
+
+Web-related languages
+=====================
+
+`JavascriptLexer`
+
+    For JavaScript source code.
+
+    :Aliases: ``js``, ``javascript``
+    :Filename patterns: ``*.js``
+
+
+`CssLexer`
+
+    For CSS (Cascading Style Sheets).
+
+    :Aliases: ``css``
+    :Filename patterns: ``*.css``
+
+
+`HtmlLexer`
+
+    For HTML 4 and XHTML 1 markup. Nested JavaScript and CSS is highlighted
+    by the appropriate lexer.
+
+    :Aliases: ``html``
+    :Filename patterns: ``*.html``, ``*.htm``, ``*.xhtml``
+
+
+`PhpLexer`
+
+    For `PHP <http://www.php.net/>`_ source code.
+    For PHP embedded in HTML, use the `HtmlPhpLexer`.
+
+    Additional options:
+
+    `startinline`
+        If given and ``True`` the lexer starts highlighting with
+        php code. (i.e.: no starting ``<?php`` required)
+    `funcnamehighlighting`
+        If given and ``True``, highlight builtin function names
+        (default: ``True``).
+    `disabledmodules`
+        If given, must be a list of module names whose function names
+        should not be highlighted. By default all modules are highlighted
+        except the special ``'unknown'`` module that includes functions
+        that are known to php but are undocumented.
+
+        To get a list of allowed modules have a look into the
+        `_phpbuiltins` module:
+
+        .. sourcecode:: pycon
+
+            >>> from pygments.lexers._phpbuiltins import MODULES
+            >>> MODULES.keys()
+            ['PHP Options/Info', 'Zip', 'dba', ...]
+
+        In fact the names of those modules match the module names from
+        the php documentation.
+
+    :Aliases: ``php``, ``php3``, ``php4``, ``php5``
+    :Filename patterns: ``*.php``, ``*.php[345]``
+
+
+`XmlLexer`
+
+    Generic lexer for XML (extensible markup language).
+
+    :Aliases: ``xml``
+    :Filename patterns: ``*.xml``
+
+
+Template languages
+==================
+
+`ErbLexer`
+
+    Generic `ERB <http://ruby-doc.org/core/classes/ERB.html>`_ (Ruby Templating)
+    lexer.
+
+    Just highlights ruby code between the preprocessor directives, other data
+    is left untouched by the lexer.
+
+    All options are also forwarded to the `RubyLexer`.
+
+    :Aliases:   ``erb``
+    :Filename patterns: None
+
+
+`RhtmlLexer`
+
+    Subclass of the ERB lexer that highlights the unlexed data with the
+    html lexer.
+
+    Nested Javascript and CSS is highlighted too.
+
+    :Aliases:   ``rhtml``, ``html+erb``, ``html+ruby``
+    :Filename patterns: ``*.rhtml``
+
+
+`XmlErbLexer`
+
+    Subclass of `ErbLexer` which highlights data outside preprocessor
+    directives with the `XmlLexer`.
+
+    :Aliases:   ``xml+erb``, ``xml+ruby``
+    :Filename patterns: None
+
+
+`CssErbLexer`
+
+    Subclass of `ErbLexer` which highlights unlexed data with the `CssLexer`.
+
+    :Aliases:   ``css+erb``, ``css+ruby``
+    :Filename patterns: None
+
+
+`JavascriptErbLexer`
+
+    Subclass of `ErbLexer` which highlights unlexed data with the
+    `JavascriptLexer`.
+
+    :Aliases:   ``js+erb``, ``javascript+erb``, ``js+ruby``, ``javascript+ruby``
+    :Filename patterns: None
+
+
+`HtmlPhpLexer`
+
+    Subclass of `PhpLexer` that highlights unhandled data with the `HtmlLexer`.
+
+    Nested Javascript and CSS is highlighted too.
+
+    :Aliases:   ``html+php``
+    :Filename patterns:  ``*.phtml``
+
+
+`XmlPhpLexer`
+
+    Subclass of `PhpLexer` that higlights unhandled data with the `XmlLexer`.
+
+    :Aliases:   ``xml+php``
+    :Filename patterns: None
+
+
+`CssPhpLexer`
+
+    Subclass of `PhpLexer` which highlights unmatched data with the `CssLexer`.
+
+    :Aliases:   ``css+php``
+    :Filename patterns: None
+
+
+`JavascriptPhpLexer`
+
+    Subclass of `PhpLexer` which highlights unmatched data with the
+    `JavascriptLexer`.
+
+    :Aliases:   ``js+php``, ``javascript+php``
+    :Filename patterns: None
+
+
+`DjangoLexer`
+
+    Generic `django <http://www.djangoproject.com/documentation/templates/>`_
+    template lexer.
+
+    It just highlights django code between the preprocessor directives, other
+    data is left untouched by the lexer.
+
+    :Aliases:   ``django``
+    :Filename patterns: None
+
+
+`HtmlDjangoLexer`
+
+    Subclass of the `DjangoLexer` that highighlights unlexed data with the
+    `HtmlLexer`.
+
+    Nested Javascript and CSS is highlighted too.
+
+    :Aliases:   ``html+django``
+    :Filename patterns: None
+
+
+`XmlDjangoLexer`
+
+    Subclass of the `DjangoLexer` that highlights unlexed data with the
+    `XmlLexer`.
+
+    :Aliases:   ``xml+django``
+    :Filename patterns: None
+
+
+`CssDjangoLexer`
+
+    Subclass of the `DjangoLexer` that highlights unlexed data with the
+    `CssLexer`.
+
+    :Aliases:   ``css+django``
+    :Filename patterns: None
+
+
+`JavascriptDjangoLexer`
+
+    Subclass of the `DjangoLexer` that highlights unlexed data with the
+    `JavascriptLexer`.
+
+    :Aliases:   ``javascript+django``
+    :Filename patterns: None
+
+
+`SmartyLexer`
+
+    Generic `Smarty <http://smarty.php.net/>`_ template lexer.
+
+    Just highlights smarty code between the preprocessor directives, other
+    data is left untouched by the lexer.
+
+    :Aliases:   ``smarty``
+    :Filename patterns: None
+
+
+`HtmlSmartyLexer`
+
+    Subclass of the `SmartyLexer` that highighlights unlexed data with the
+    `HtmlLexer`.
+
+    Nested Javascript and CSS is highlighted too.
+
+    :Aliases:   ``html+smarty``
+    :Filename patterns: None
+
+
+`XmlSmartyLexer`
+
+    Subclass of the `SmartyLexer` that highlights unlexed data with the
+    `XmlLexer`.
+
+    :Aliases:   ``xml+smarty``
+    :Filename patterns: None
+
+
+`CssSmartyLexer`
+
+    Subclass of the `SmartyLexer` that highlights unlexed data with the
+    `CssLexer`.
+
+    :Aliases:   ``css+smarty``
+    :Filename patterns: None
+
+
+`JavascriptSmartyLexer`
+
+    Subclass of the `SmartyLexer` that highlights unlexed data with the
+    `JavascriptLexer`.
+
+    :Aliases:   ``javascript+smarty``
+    :Filename patterns: None
+
+
+Other languages
+===============
+
+`SqlLexer`
+
+    Lexer for Structured Query Language. Currently, this lexer does
+    not recognize any special syntax except ANSI SQL.
+
+    :Aliases: ``sql``
+    :Filename patterns: ``*.sql``
+
+
+`BrainfuckLexer`
+
+    Lexer for the esoteric `BrainFuck <http://www.muppetlabs.com/~breadbox/bf/>`_
+    language.
+
+    :Aliases: ``brainfuck``
+    :Filename patterns: ``*.bf``, ``*.b``
+
+
+Text lexers
+===========
+
+`IniLexer`
+
+    Lexer for configuration files in INI style.
+
+    :Aliases: ``ini``, ``cfg``
+    :Filename patterns: ``*.ini``, ``*.cfg``
+
+
+`MakefileLexer`
+
+    Lexer for Makefiles.
+
+    :Aliases: ``make``, ``makefile``, ``mf``
+    :Filename patterns: ``*.mak``, ``Makefile``, ``makefile``
+
+
+`DiffLexer`
+
+    Lexer for unified or context-style diffs.
+
+    :Aliases: ``diff``
+    :Filename patterns: ``*.diff``, ``*.patch``
+
+
+`IrcLogsLexer`
+
+    Lexer for IRC logs in **irssi** or **xchat** style.
+
+    :Aliases: ``irc``
+    :Filename patterns: None
+
+
+`TexLexer`
+
+    Lexer for the TeX and LaTeX typesetting languages.
+
+    :Aliases: ``tex``, ``latex``
+    :Filename patterns: ``*.tex``, ``*.aux``, ``*.toc``

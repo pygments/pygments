@@ -1,0 +1,42 @@
+===============================
+Using Pygments in ReST documents
+===============================
+
+Many Python people use `ReST`_ for documentation their sourcecode, programs etc.
+This also means that documentation often includes sourcecode samples etc.
+
+You can easily enable Pygments support for your rst texts as long as you
+use your own build script.
+
+Just add this code to it:
+
+.. sourcecode:: python
+
+    from docutils import nodes
+    from docutils.parsers.rst import directives
+    from pygments import highlight
+    from pygments.lexers import get_lexer_by_name
+    from pygments.formatters import HtmlFormatter
+
+    PYGMENTS_FORMATTER = HtmlFormatter()
+
+    def pygments_directive(name, arguments, options, content, lineno,
+                          content_offset, block_text, state, state_machine):
+        try:
+            lexer = get_lexer_by_name(arguments[0])
+        except ValueError:
+            # no lexer found
+            lexer = get_lexer_by_name('text')
+        parsed = highlight(u'\n'.join(content), lexer, PYGMENTS_FORMATTER)
+        return [nodes.raw('', parsed, format='html')]
+    pygments_directive.arguments = (1, 0, 1)
+    pygments_directive.content = 1
+    directives.register_directive('sourcecode', pygments_directive)
+
+Now you should be able to use Pygments in your rst files using this syntax::
+
+    .. sourcecode:: language
+
+        your code here
+
+.. _ReST: http://docutils.sf.net/rst.html
