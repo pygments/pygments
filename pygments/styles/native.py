@@ -26,6 +26,7 @@ class NativeStyle(Style):
 
         Keyword:            'bold #6ab825',
         Keyword.Pseudo:     'nobold',
+        Operator.Word:      'bold #6ab825',
 
         String:             '#ed9d13',
         String.Other:       '#ffa500',
