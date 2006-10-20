@@ -17,6 +17,8 @@ from pygments.formatters.other import NullFormatter, RawTokenFormatter
 
 
 def _doc_desc(obj):
+    if not obj.__doc__:
+        return ''
     res = ''
     for line in obj.__doc__.strip().splitlines():
         if line.strip(): res += line.strip() + " "
