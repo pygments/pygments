@@ -52,7 +52,7 @@ class PythonLexer(RegexLexer):
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(from)(\s+)', bygroups(Keyword, Text), 'fromimport'),
             (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
-            (r'@[a-zA-Z0-9.]+', Name.Decorator),
+            (r'@[a-zA-Z0-9_]+', Name.Decorator),
             (r'(?<!\.)(__import__|abs|apply|basestring|bool|buffer|callable|'
              r'chr|classmethod|cmp|coerce|compile|complex|delattr|dict|dir|'
              r'divmod|enumerate|eval|execfile|exit|file|filter|float|getattr|'
