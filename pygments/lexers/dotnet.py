@@ -49,7 +49,8 @@ class CSharpLexer(RegexLexer):
             (r'\n', Text),
             (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Text),
             (r'[{}]', Keyword),
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'@"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\"|[^\n"])*"', String),
             (r"'\\.'|'[^\\]'", String.Char),
             (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?"
              r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
