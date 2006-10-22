@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.styles.manni
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     A colorful style, inspired by the terminal highlighting style.
 
@@ -12,7 +12,7 @@
     license but because it uses code from the pygments library it must
     be LGPL compatible sooner or later. ;-)
 
-    .. _php_port:: http://svn.fnord.name/manni/fnord.bb/lib/Highlighter/
+    .. _php port:: http://svn.fnord.name/manni/fnord.bb/lib/Highlighter/
 
     :copyright: 2006 by Armin Ronacher, Manni <manni@fnord.name>.
     :license: GNU LGPL, see LICENSE for more details.

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.formatters.latex
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Formatter for LaTeX fancyvrb output.
 

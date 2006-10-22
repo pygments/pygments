@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers._luabuiltins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This file contains the names and modules of lua functions
     It is able to re-generate itself, but for adding new functions you
     probably have to add some callbacks (see function module_callbacks).
 
-    Do not edit the list by hand.
+    Do not edit the MODULES dict by hand.
 
     :copyright: 2006 by Lukas Meuser.
     :license: GNU LGPL, see LICENSE for more details.

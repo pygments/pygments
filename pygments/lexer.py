@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexer
-    ~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~
 
     Base lexer classes.
 

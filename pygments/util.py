@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
     pygments.util
-    ~~~~~~~~~~~~
+    ~~~~~~~~~~~~~
 
-    Utility functions.
+    Utility functions, currently only for parsing lexer
+    and formatter options.
 
     :copyright: 2006 by Georg Brandl.
     :license: GNU LGPL, see LICENSE for more details.

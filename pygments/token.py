@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.token
-    ~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~
 
     Basic token types and the standard tokens.
 

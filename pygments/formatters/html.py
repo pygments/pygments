@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.formatters.html
-    ~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Formatter for HTML output.
 

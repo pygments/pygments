@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.console
-    ~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~
 
     Format colored console output.
 

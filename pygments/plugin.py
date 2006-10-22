@@ -27,8 +27,8 @@
         yourstyle = yourstyle:YourStyle
 
 
-    :coypright: 2006 by Armin Ronacher.
-    :license: GNU LGPG; see LICENSE for more details.
+    :copyright: 2006 by Armin Ronacher.
+    :license: GNU LGPL, see LICENSE for more details.
 """
 try:
     import pkg_resources
