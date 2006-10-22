@@ -54,8 +54,8 @@ class CSharpLexer(RegexLexer):
             (r"'\\.'|'[^\\]'", String.Char),
             (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?"
              r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
-            (r'#\s*(if|endif|else|elif|define|undef|'
-             r'line|error|warning|region|endregion)', Comment.Preproc),
+            (r'#[ \t]*(if|endif|else|elif|define|undef|'
+             r'line|error|warning|endregion)\b.*?\n', Comment.Preproc),
             (r'(abstract|case|as|base|break|case|catch|'
              r'checked|const|continue|default|delegate|'
              r'do|else|enum|event|explicit|extern|false|finally|'
