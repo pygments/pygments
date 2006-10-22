@@ -275,7 +275,7 @@ There are a few more things you can do with states:
   `PythonLexer`'s string literal processing.
 
 - If you want your lexer to start lexing in a different state you can modify
-  the stack by overloading the `get_tokens_unprocessed` method:
+  the stack by overloading the `get_tokens_unprocessed()` method:
 
   .. sourcecode:: python
 
