@@ -24,23 +24,14 @@ class CSharpLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
-
     tokens = {
         'root': [
             # method names
             (r'^([ \t]*(?:[a-zA-Z_][a-zA-Z0-9_\.]*\s+)+?)' # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'                   # method name
              r'(\s*\([^;]*?\))'                            # signature
-             r'(?=' + _ws + '\{)',                         # lookahead for {
+             r'(?=(?:\s|//.*?\n|/[*].*?[*]/)+\{)',         # lookahead for {
              bygroups(using(this), Name.Function, using(this))),
-            # properties
-            #(r'^([ \t]*(?:[a-zA-Z_][a-zA-Z0-9_\.]*\s+)+?)' # return arguments
-            # r'([a-zA-Z_][a-zA-Z0-9_]*)'                   # property name
-            # r'(?=' + _ws + r'\{' + _ws +                  # lookahead for
-            # r'(?:get|set)' + _ws + r'\{)',                # get/set
-            # bygroups(using(this), Name.Function)),
             (r'^\s*\[.*?\]', Name.Attribute),
             (r'[^\S\n]+', Text),
             (r'\\\n', Text), # line continuation
@@ -50,7 +41,7 @@ class CSharpLexer(RegexLexer):
             (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Text),
             (r'[{}]', Keyword),
             (r'@"(\\\\|\\"|[^"])*"', String),
-            (r'"(\\\\|\\"|[^\n"])*"', String),
+            (r'"(\\\\|\\"|[^"\n])*["\n]', String),
             (r"'\\.'|'[^\\]'", String.Char),
             (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?"
              r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
