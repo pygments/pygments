@@ -249,7 +249,9 @@ class PhpLexer(RegexLexer):
              r'echo|else|TRUE|elseif|var|empty|if|xor|enddeclare|include|'
              r'virtual|endfor|include_once|while|endforeach|global|__FILE__|'
              r'endif|list|__LINE__|endswitch|new|__sleep|endwhile|not|'
-             r'array|__wakeup|E_ALL|NULL)\b', Keyword),
+             r'array|__wakeup|E_ALL|NULL|final|php_user_filter|interface|'
+             r'implements|public|private|protected|abstract|clone|try|'
+             r'catch|throw|this)\b', Keyword),
             ('(true|false|null)\b', Keyword.Constant),
             (r'\$[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
