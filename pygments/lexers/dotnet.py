@@ -36,11 +36,11 @@ class CSharpLexer(RegexLexer):
              r'(?=' + _ws + '\{)',                         # lookahead for {
              bygroups(using(this), Name.Function, using(this))),
             # properties
-            (r'^([ \t]*(?:[a-zA-Z_][a-zA-Z0-9_\.]*\s+)+?)' # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'                   # property name
-             r'(?=' + _ws + r'\{' + _ws +                  # lookahead for
-             r'(?:get|set)' + _ws + r'\{)',                # get/set
-             bygroups(using(this), Name.Function)),
+            #(r'^([ \t]*(?:[a-zA-Z_][a-zA-Z0-9_\.]*\s+)+?)' # return arguments
+            # r'([a-zA-Z_][a-zA-Z0-9_]*)'                   # property name
+            # r'(?=' + _ws + r'\{' + _ws +                  # lookahead for
+            # r'(?:get|set)' + _ws + r'\{)',                # get/set
+            # bygroups(using(this), Name.Function)),
             (r'^\s*\[.*?\]', Name.Attribute),
             (r'[^\S\n]+', Text),
             (r'\\\n', Text), # line continuation
