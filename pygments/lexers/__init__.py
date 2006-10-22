@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers
-    ~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~
 
     Pygments lexers.
 
@@ -13,6 +13,7 @@ import types
 from os.path import basename
 
 from pygments.lexers._mapping import LEXERS
+from pygments.plugin import find_plugin_lexers
 
 
 __all__ = ['get_lexer_by_name', 'get_lexer_for_filename'] + LEXERS.keys()
@@ -34,11 +35,16 @@ def get_lexer_by_name(alias, **options):
     """
     Get a lexer by an alias
     """
+    # lookup builtin lexers
     for module_name, name, aliases, _ in LEXERS.itervalues():
         if alias in aliases:
             if name not in _lexer_cache:
                 _load_lexers(module_name)
             return _lexer_cache[name](**options)
+    # continue with lexers from setuptools entrypoints
+    for cls in find_plugin_lexers():
+        if alias in cls.aliases:
+            return cls(**options)
     raise ValueError('no lexer for alias %r found' % alias)
 
 
@@ -47,12 +53,18 @@ def get_lexer_for_filename(fn, **options):
     Guess a lexer by a filename
     """
     fn = basename(fn)
+    # lookup builtin lexers
     for module_name, name, _, filenames in LEXERS.itervalues():
         for filename in filenames:
             if fnmatch.fnmatch(fn, filename):
                 if name not in _lexer_cache:
                     _load_lexers(module_name)
                 return _lexer_cache[name](**options)
+    # continue with lexers from setuptools entrypoints
+    for cls in find_plugin_lexers():
+        for filename in cls.filenames:
+            if fnmatch.fnmatch(fn, filename):
+                return cls(**options)
     raise ValueError('no lexer for filename %r found' % fn)
 
 
