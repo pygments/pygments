@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.styles.colorful
-    ~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~
 
     A colorful style, inspired by CodeRay.
 

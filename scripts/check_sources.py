@@ -29,7 +29,9 @@ def checker(*suffixes, **kwds):
     return deco
 
 
-copyright_re = re.compile(r'^    :copyright: 200\d(-200\d)? by (\w| )+(, (\w| )+)*\.$')
+name_mail_re = r'[\w ]+(<.*?>)?'
+copyright_re = re.compile(r'^    :copyright: 200\d(-200\d)? by %s(, %s)*\.$' %
+                          (name_mail_re, name_mail_re))
 coding_re    = re.compile(r'coding[:=]\s*([-\w.]+)')
 not_ix_re    = re.compile(r'\bnot\s+\S+?\s+i[sn]\s\S+')
 is_const_re  = re.compile(r'if.*?==\s+(None|False|True)\b')

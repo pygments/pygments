@@ -183,27 +183,27 @@
 
 {if $footer_info}
     <div class="serendipity_pageFooter">
-	{if $footer_info}
-		{if $footer_prev_page}
-		<span class="previous"><a href="{$footer_prev_page}">&laquo; {$CONST.PREVIOUS_PAGE}</a></span>
-		{else}
-		<span class="previous">&#160;</span>
-		{/if}
-	{else}
-	{/if}
+    {if $footer_info}
+        {if $footer_prev_page}
+        <span class="previous"><a href="{$footer_prev_page}">&laquo; {$CONST.PREVIOUS_PAGE}</a></span>
+        {else}
+        <span class="previous">&#160;</span>
+        {/if}
+    {else}
+    {/if}
 
-	{if $footer_info}
-		<span class="entries_info">({$footer_info})</span>
-	{/if}
+    {if $footer_info}
+        <span class="entries_info">({$footer_info})</span>
+    {/if}
 
-	{if $footer_info}
-		{if $footer_next_page}
-		<span class="next"><a href="{$footer_next_page}">{$CONST.NEXT_PAGE} &raquo;</a></span>
-		{else}
-		<span class="next">&#160;</span>
-		{/if}
-	{else}
-	{/if}
+    {if $footer_info}
+        {if $footer_next_page}
+        <span class="next"><a href="{$footer_next_page}">{$CONST.NEXT_PAGE} &raquo;</a></span>
+        {else}
+        <span class="next">&#160;</span>
+        {/if}
+    {else}
+    {/if}
     </div>{/if}
     {serendipity_hookPlugin hook="entries_footer"}
 <!-- ENTRIES END -->

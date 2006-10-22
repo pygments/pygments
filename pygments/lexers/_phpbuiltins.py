@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers._phpbuiltins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This file loads the function names and their modules from the
     php webpage and generates itself.
 
-    Do not alter this file by hand!
+    Do not alter the MODULES dict by hand!
 
     WARNING: the generation transfers quite much data over your
              internet connection. don't run that at home, use

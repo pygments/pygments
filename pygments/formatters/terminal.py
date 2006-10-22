@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.formatters.terminal
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Formatter for terminal output with ANSI sequences.
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.formatter
-    ~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~
 
     Base formatter class.
 

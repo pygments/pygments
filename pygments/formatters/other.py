@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
     pygments.formatters.other
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Other formatters.
+    Other formatters: NullFormatter, RawTokenFormatter.
 
     :copyright: 2006 by Georg Brandl, Armin Ronacher.
     :license: GNU LGPL, see LICENSE for more details.

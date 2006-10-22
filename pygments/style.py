@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.style
-    ~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~
 
     Basic style object.
 
@@ -17,7 +17,7 @@ class StyleMeta(type):
     def __new__(mcs, name, bases, dct):
         obj = type.__new__(mcs, name, bases, dct)
         for token in STANDARD_TYPES:
-            if not token in obj.styles:
+            if token not in obj.styles:
                 obj.styles[token] = ''
 
         def colorformat(text):

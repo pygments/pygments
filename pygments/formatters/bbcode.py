@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.formatters.bbcode
-    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     BBcode formatter.
 
@@ -22,8 +22,8 @@ class BBCodeFormatter(Formatter):
 
     This formatter doesn't support background colors and borders, as there are
     no common BBcodes for that.
-    
-    Some board systems (e.g. phpBB) don't support colors in their [code] tag,
+
+    Some board systems (e.g. phpBB) don't support markup in their [code] tag,
     so you can't use the highlighting together with that tag.
     Text in a [code] tag usually is shown with a monospace font (which this
     formatter can do with the ``monofont`` option) and no spaces (which you

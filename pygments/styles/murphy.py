@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.styles.murphy
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Murphy's style from CodeRay.
 

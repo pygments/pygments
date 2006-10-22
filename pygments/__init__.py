@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     Pygments
-    ~~~~~~~
+    ~~~~~~~~
 
     Pygments is a syntax highlighting package written in Python.
 

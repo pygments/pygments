@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.styles.autumn
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     A colorful style, inspired by the terminal highlighting style.
 
