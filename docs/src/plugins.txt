@@ -1,0 +1,72 @@
+================
+Register Plugins
+================
+
+If you want to extend pygments without hacking in the sources but want to
+use the lexer/formatter/style resolve functions you can use setuptools
+entrypoints to add new lexers, formatters or styles to the pygments core.
+
+That means you can use your highlighter also with the ``pygmentize`` script.
+
+
+Entrypoints
+===========
+
+Here a list of setuptools entrypoints pygments understands:
+
+`pygments.lexers`
+
+    This entrypoint is used for adding new lexers to the pygments core.
+    The name of entrypoint values doesn't really matter, pygements extract
+    required informations from the class definition:
+
+    .. sourcecode:: ini
+
+        [pygments.lexers]
+        yourlexer = yourmodule:YourLexer
+
+    Note that you have to
+    defined a ``name``, ``aliases`` and ``filename`` patterns so that you
+    can use the highlighter from the command line:
+
+    .. sourcecode:: python
+
+        class YourLexer(...):
+            name = 'Name Of Your Lexer'
+            aliases = ['alias']
+            filenames = ['*.ext']
+
+
+`pygments.formatters`
+
+    You can use this entrypoint to add new formatters to pygments. The
+    name of an entrypoint item is the name of the formatter. If you
+    prefix the name with a slash it's used for the filename pattern:
+
+    .. sourcecode:: ini
+
+        [pygments.formatters]
+        yourformatter = yourmodule:YourFormatter
+        /.ext = yourmodule:YourFormatter
+
+
+`pygments.styles`
+
+    To add a new style you can use this entrypoint. The name of the entrypoint
+    is the name of the style:
+
+    .. sourcecode:: ini
+
+        [pygments.styles]
+        yourstyle = yourmodule:YourStyle
+
+
+How To Use Entrypoints
+======================
+
+This documentation doesn't explain how to use those entrypoints because this is
+covered in the `setuptools documentation`_. That page should cover everything
+you need to write a plugin. Also `this blog entry`_ might be interesting.
+
+.. _setuptools documentation: http://peak.telecommunity.com/DevCenter/setuptools
+.. _this blog entry: http://lucumr.pocoo.org/entry/setuptools-plugins/

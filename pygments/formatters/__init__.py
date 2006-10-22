@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.formatters
-    ~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
     Pygments formatters.
 
@@ -14,6 +14,7 @@ from pygments.formatters.terminal import TerminalFormatter
 from pygments.formatters.latex import LatexFormatter
 from pygments.formatters.bbcode import BBCodeFormatter
 from pygments.formatters.other import NullFormatter, RawTokenFormatter
+from pygments.plugin import find_plugin_formatters
 
 
 def _doc_desc(obj):
@@ -46,12 +47,15 @@ FORMATTERS = {
 _formatter_cache = {}
 
 def _init_formatter_cache():
-    if _formatter_cache: return
+    if _formatter_cache:
+        return
     for cls, info in FORMATTERS.iteritems():
         for alias in info[1]:
             _formatter_cache[alias] = cls
         for ext in info[2]:
             _formatter_cache["/"+ext] = cls
+    for name, cls in find_plugin_formatters():
+        _formatter_cache[name] = cls
 
 
 def get_formatter_by_name(name, **options):
