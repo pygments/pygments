@@ -76,6 +76,7 @@ class CSharpLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
         ],
         'namespace': [
+            (r'(?=\()', Text, '#pop'), # using (resource)
             (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace, '#pop')
         ]
     }
