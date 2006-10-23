@@ -386,9 +386,7 @@ class LexerContext(object):
 
 class ExtendedRegexLexer(RegexLexer):
     """
-    A RegexLexer which additionally allows functions to be
-    specified as "token types", in which case the function will
-    be called.
+    A RegexLexer that uses a context object to store its state.
     """
 
     def get_tokens_unprocessed(self, text=None, context=None):
