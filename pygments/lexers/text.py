@@ -47,7 +47,7 @@ class MakefileLexer(RegexLexer):
             (r'#.*?\n', Comment),
             (r'(cmdswitches|error|message|include|if|ifdef|ifndef|else|'
              r'else\s*if|else\s*ifdef|else\s*ifndef|endif|undef)\b', Keyword),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(=)(\s*)',
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)([?:+]?=)(\s*)',
              bygroups(Name.Variable, Text, Operator, Text), 'var'),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
