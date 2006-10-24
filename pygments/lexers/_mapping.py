@@ -15,7 +15,7 @@
 
 LEXERS = {
     'BooLexer': ('pygments.lexers.dotnet', 'Boo', ('boo',), ('*.boo',)),
-    'BrainfuckLexer': ('pygments.lexers.other', 'Brainfuck', ('brainfuck',), ('*.bf', '*.b')),
+    'BrainfuckLexer': ('pygments.lexers.other', 'Brainfuck', ('brainfuck', 'bf'), ('*.bf', '*.b')),
     'CLexer': ('pygments.lexers.compiled', 'C', ('c',), ('*.c', '*.h')),
     'CSharpLexer': ('pygments.lexers.dotnet', 'C#', ('csharp', 'c#'), ('*.cs',)),
     'CppLexer': ('pygments.lexers.compiled', 'C++', ('cpp', 'c++'), ('*.cpp', '*.hpp', '*.c++', '*.h++')),
