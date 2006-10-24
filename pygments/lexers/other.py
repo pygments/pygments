@@ -126,7 +126,7 @@ class SqlLexer(RegexLexer):
 
 class BrainfuckLexer(RegexLexer):
     name = 'Brainfuck'
-    aliases = ['brainfuck']
+    aliases = ['brainfuck', 'bf']
     filenames = ['*.bf', '*.b']
 
     tokens = {
