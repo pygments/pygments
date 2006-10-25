@@ -48,10 +48,10 @@ class CLexer(RegexLexer):
             (r'\d+', Number.Integer),
             (r'[~!%^&*()+=|\[\]:,.<>/?-]', Text),
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
-             r'for|goto|if|register|return|sizeof|static|struct|switch|typedef|'
-             r'union|volatile|virtual|while)\b', Keyword),
-            (r'(int|long|float|short|double|char|unsigned|signed|void)\b',
-             Keyword.Type),
+             r'for|goto|if|register|restricted|return|sizeof|static|struct|'
+             r'switch|typedef|union|volatile|virtual|while)\b', Keyword),
+            (r'(int|long|float|short|double|char|unsigned|signed|void|'
+             r'_Complex|_Imaginary|_Bool)\b', Keyword.Type),
             (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
             (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
              r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
