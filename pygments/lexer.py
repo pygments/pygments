@@ -1,21 +1,37 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexer
-    ~~~~~~~~~~~~~~
+pygments.lexer
+~~~~~~~~~~~~~~
 
-    Base lexer classes.
+Base lexer classes.
 
-    :copyright: 2006 by Georg Brandl.
-    :license: GNU LGPL, see LICENSE for more details.
+:copyright: 2006 by Georg Brandl.
+:license: GNU LGPL, see LICENSE for more details.
 """
 import re
 
+from types import FunctionType
 from pygments.token import Error, Text, Other, _TokenType
-from pygments.util import get_bool_opt, get_int_opt
+from pygments.util import get_bool_opt, get_int_opt, make_analysator
 
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
            'LexerContext', 'include', 'flags', 'bygroups', 'using', 'this']
+
+
+_default_analyse = staticmethod(lambda x: 0.0)
+
+
+class LexerMeta(type):
+    """
+    This metaclass automagically converts ``analyse_text`` methods into
+    static methods which always return float values.
+    """
+
+    def __new__(cls, name, bases, d):
+        if 'analyse_text' in d:
+            d['analyse_text'] = make_analysator(d['analyse_text'])
+        return type.__new__(cls, name, bases, d)
 
 
 class Lexer(object):
@@ -41,11 +57,27 @@ class Lexer(object):
     #: fn match rules
     filenames = []
 
+    __metaclass__ = LexerMeta
+
     def __init__(self, **options):
         self.options = options
         self.stripnl = get_bool_opt(options, 'stripnl', True)
         self.stripall = get_bool_opt(options, 'stripall', False)
         self.tabsize = get_int_opt(options, 'tabsize', 0)
+
+    def analyse_text(text):
+        """
+        Has to return an float between ``0`` and ``1`` that indicates
+        if a lexer wants to highighlight that. used by ``guess_lexer``.
+        If this method returns ``0`` it won't highlight it at all, if
+        it returns ``1`` highlighting with this lexer is guaranteed.
+
+        The `LexerMeta` metaclass automatically wraps this function so
+        that it works like a static method (no ``self`` or ``cls``
+        parameter) and the return value is automatically converted to
+        `float`. If the return value is an object that is boolean `False`
+        it's the same as if the return values was ``0.0``.
+        """
 
     def get_tokens(self, text):
         """
@@ -216,7 +248,7 @@ def using(_other, **kwargs):
     return callback
 
 
-class RegexLexerMeta(type):
+class RegexLexerMeta(LexerMeta):
     """
     Metaclass for RegexLexer, creates the self._tokens attribute from
     self.tokens on the first instantiation.

@@ -21,6 +21,7 @@ from pygments.lexer import \
      Lexer, DelegatingLexer, RegexLexer, do_insertions, bygroups, include, using
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Other
+from pygments.util import html_doctype_matches, looks_like_xml
 
 __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'JavascriptPhpLexer', 'ErbLexer', 'RhtmlLexer',
@@ -110,6 +111,10 @@ class ErbLexer(Lexer):
         except IndexError:
             return
 
+    def analyse_text(text):
+        if '<%' in text and '%>' in text:
+            return 0.4
+
 
 class SmartyLexer(RegexLexer):
     name = 'Smarty'
@@ -118,7 +123,7 @@ class SmartyLexer(RegexLexer):
     flags = re.MULTILINE | re.DOTALL
 
     tokens = {
-        # XXX: make marty delimiters customizable somehow
+        # XXX: make smarty delimiters customizable somehow
         'root': [
             (r'[^{]+', Other),
             (r'(\{)(\*.*?\*)(\})',
@@ -144,6 +149,18 @@ class SmartyLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute)
         ]
     }
+
+    def analyse_text(text):
+        rv = 0.0
+        if re.search('\{if\s+.*?\}.*?\{/if\}', text):
+            rv += 0.15
+        if re.search('\{include\s+file=.*?\}', text):
+            rv += 0.15
+        if re.search('\{foreach\s+.*?\}.*?\{/foreach\}', text):
+            rv += 0.15
+        if re.search('\{\$.*?\}', text):
+            rv += 0.01
+        return rv
 
 
 class DjangoLexer(RegexLexer):
@@ -188,6 +205,16 @@ class DjangoLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        rv = 0.0
+        if re.search(r'\{\%\s*(block|extends)', text) is not None:
+            rv += 0.4
+        if re.search(r'\{\%\s*if\s*.*?\%\}', text) is not None:
+            rv += 0.1
+        if re.search(r'\{\{.*?\}\}', text) is not None:
+            rv += 0.1
+        return rv
+
 
 class RhtmlLexer(DelegatingLexer):
     name = 'RHTML'
@@ -197,6 +224,13 @@ class RhtmlLexer(DelegatingLexer):
     def __init__(self, **options):
         super(RhtmlLexer, self).__init__(HtmlLexer, ErbLexer, **options)
 
+    def analyse_text(text):
+        rv = ErbLexer.analyse_text(text) - 0.01
+        if html_doctype_matches(text):
+            # one more than the XmlErbLexer returns
+            rv += 0.5
+        return rv
+
 
 class XmlErbLexer(DelegatingLexer):
     name = 'XML+Ruby'
@@ -204,6 +238,12 @@ class XmlErbLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(XmlErbLexer, self).__init__(XmlLexer, ErbLexer, **options)
+
+    def analyse_text(text):
+        rv = ErbLexer.analyse_text(text) - 0.01
+        if looks_like_xml(text):
+            rv += 0.4
+        return rv
 
 
 class CssErbLexer(DelegatingLexer):
@@ -231,6 +271,12 @@ class HtmlPhpLexer(DelegatingLexer):
     def __init__(self, **options):
         super(HtmlPhpLexer, self).__init__(HtmlLexer, PhpLexer, **options)
 
+    def analyse_text(text):
+        rv = PhpLexer.analyse_text(text) - 0.01
+        if html_doctype_matches(text):
+            rv += 0.5
+        return rv
+
 
 class XmlPhpLexer(DelegatingLexer):
     name = 'XML+PHP'
@@ -238,6 +284,12 @@ class XmlPhpLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(XmlPhpLexer, self).__init__(XmlLexer, PhpLexer, **options)
+
+    def analyse_text(text):
+        rv = PhpLexer.analyse_text(text) - 0.01
+        if looks_like_xml(text):
+            rv += 0.4
+        return rv
 
 
 class CssPhpLexer(DelegatingLexer):
@@ -264,6 +316,12 @@ class HtmlSmartyLexer(DelegatingLexer):
     def __init__(self, **options):
         super(HtmlSmartyLexer, self).__init__(HtmlLexer, SmartyLexer, **options)
 
+    def analyse_text(text):
+        rv = SmartyLexer.analyse_text(text) - 0.01
+        if html_doctype_matches(text):
+            rv += 0.5
+        return rv
+
 
 class XmlSmartyLexer(DelegatingLexer):
     name = 'XML+Smarty'
@@ -271,6 +329,12 @@ class XmlSmartyLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(XmlSmartyLexer, self).__init__(XmlLexer, SmartyLexer, **options)
+
+    def analyse_text(text):
+        rv = SmartyLexer.analyse_text(text) - 0.01
+        if looks_like_xml(text):
+            rv += 0.4
+        return rv
 
 
 class CssSmartyLexer(DelegatingLexer):
@@ -297,6 +361,12 @@ class HtmlDjangoLexer(DelegatingLexer):
     def __init__(self, **options):
         super(HtmlDjangoLexer, self).__init__(HtmlLexer, DjangoLexer, **options)
 
+    def analyse_text(text):
+        rv = DjangoLexer.analyse_text(text) - 0.01
+        if html_doctype_matches(text):
+            rv += 0.5
+        return rv
+
 
 class XmlDjangoLexer(DelegatingLexer):
     name = 'XML+Django'
@@ -304,6 +374,12 @@ class XmlDjangoLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(XmlDjangoLexer, self).__init__(XmlLexer, DjangoLexer, **options)
+
+    def analyse_text(text):
+        rv = DjangoLexer.analyse_text(text) - 0.01
+        if looks_like_xml(text):
+            rv += 0.4
+        return rv
 
 
 class CssDjangoLexer(DelegatingLexer):

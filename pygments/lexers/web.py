@@ -18,7 +18,8 @@ except NameError:
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, using
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Other
-from pygments.util import get_bool_opt, get_list_opt
+from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
+                          html_doctype_matches
 
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
@@ -217,6 +218,10 @@ class HtmlLexer(RegexLexer):
         ],
     }
 
+    def analyse_text(text):
+        if html_doctype_matches(text):
+            return 0.5
+
 
 class PhpLexer(RegexLexer):
     name = 'PHP'
@@ -296,6 +301,13 @@ class PhpLexer(RegexLexer):
                     continue
             yield index, token, value
 
+    def analyse_text(text):
+        rv = 0.0
+        for tag in '<?php', '?>':
+            if tag in text:
+                rv += 0.2
+        return rv
+
 
 class XmlLexer(RegexLexer):
     flags = re.MULTILINE | re.DOTALL
@@ -332,3 +344,7 @@ class XmlLexer(RegexLexer):
             (r'[^\s>]+', String, '#pop'),
         ],
     }
+
+    def analyse_text(text):
+        if looks_like_xml(text):
+            return 0.5
