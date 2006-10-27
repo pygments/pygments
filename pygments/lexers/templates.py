@@ -289,7 +289,7 @@ class GenshiLexer(DelegatingLexer):
     filenames = ['*.kid']
 
     def __init__(self, **options):
-        super(GenshiLexer, self).__init__(HtmlLexer, GenshiMarkupLexer,
+        super(GenshiLexer, self).__init__(XmlLexer, GenshiMarkupLexer,
                                           **options)
 
 
