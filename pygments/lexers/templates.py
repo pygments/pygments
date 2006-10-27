@@ -286,6 +286,7 @@ class HtmlGenshiLexer(DelegatingLexer):
 class GenshiLexer(DelegatingLexer):
     name = 'Genshi'
     aliases = ['genshi', 'kid', 'xml+genshi', 'xml+kid']
+    filenames = ['*.kid']
 
     def __init__(self, **options):
         super(GenshiLexer, self).__init__(HtmlLexer, GenshiMarkupLexer,
