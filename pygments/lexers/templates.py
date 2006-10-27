@@ -5,7 +5,7 @@
 
     Lexers for various template engines.
 
-    :copyright: 2006 by Armin Ronacher, Georg Brandl.
+    :copyright: 2006 by Armin Ronacher, Georg Brandl, Matt Good.
     :license: GNU LGPL, see LICENSE for more details.
 """
 
@@ -17,6 +17,7 @@ except NameError:
 
 from pygments.lexers.web import \
      PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
+from pygments.lexers.agile import PythonLexer
 from pygments.lexer import \
      Lexer, DelegatingLexer, RegexLexer, do_insertions, bygroups, include, using
 from pygments.token import \
@@ -29,7 +30,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'SmartyLexer', 'HtmlSmartyLexer', 'XmlSmartyLexer',
            'CssSmartyLexer', 'JavascriptSmartyLexer', 'DjangoLexer',
            'HtmlDjangoLexer', 'CssDjangoLexer', 'XmlDjangoLexer',
-           'JavascriptDjangoLexer']
+           'JavascriptDjangoLexer', 'GenshiLexer', 'HtmlGenshiLexer']
 
 
 class ErbLexer(Lexer):
@@ -214,6 +215,81 @@ class DjangoLexer(RegexLexer):
         if re.search(r'\{\{.*?\}\}', text) is not None:
             rv += 0.1
         return rv
+
+
+class GenshiMarkupLexer(RegexLexer):
+    flags = re.DOTALL
+
+    tokens = {
+        'root': [
+            (r'[^<\$]+', Other),
+            (r'(<\?python)(.*?)(\?>)',
+             bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
+            (r'<\s*py:[a-zA-Z0-9]+', Name.Tag, 'pytag'),
+            (r'<\s*[a-zA-Z0-9:]+', Name.Tag, 'tag'),
+            include('variable'),
+            (r'[<\$]', Other),
+        ],
+        'pytag': [
+            (r'\s+', Text),
+            (r'[a-zA-Z0-9_:-]+\s*=', Name.Attribute, 'pyattr'),
+            (r'/?\s*>', Name.Tag, '#pop'),
+        ],
+        'pyattr': [
+            ('(")(.*?)(")', bygroups(String, using(PythonLexer), String), '#pop'),
+            ("(')(.*?)(')", bygroups(String, using(PythonLexer), String), '#pop'),
+            (r'[^\s>]+', String, '#pop'),
+        ],
+        'tag': [
+            (r'\s+', Text),
+            (r'py:[a-zA-Z0-9_-]+\s*=', Name.Attribute, 'pyattr'),
+            (r'[a-zA-Z0-9_:-]+\s*=', Name.Attribute, 'attr'),
+            (r'/?\s*>', Name.Tag, '#pop'),
+        ],
+        'attr': [
+            ('"', String, 'attr-dstring'),
+            ("'", String, 'attr-sstring'),
+            (r'[^\s>]*', String, '#pop')
+        ],
+        'attr-dstring': [
+            ('"', String, '#pop'),
+            include('strings'),
+            ("'", String)
+        ],
+        'attr-sstring': [
+            ("'", String, '#pop'),
+            include('strings'),
+            ("'", String)
+        ],
+        'strings': [
+            ('[^"\'$]+', String),
+            include('variable')
+        ],
+        'variable': [
+            (r'(?<!\$)(\$\{)(.+?)(\})',
+             bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
+            (r'(?<!\$)(\$)([a-zA-Z_][a-zA-Z0-9_\.]*)',
+             Name.Variable),
+        ]
+    }
+
+
+class HtmlGenshiLexer(DelegatingLexer):
+    name = 'HTML+Genshi'
+    aliases = ['html+genshi', 'html+kid']
+
+    def __init__(self, **options):
+        super(HtmlGenshiLexer, self).__init__(HtmlLexer, GenshiMarkupLexer,
+                                              **options)
+
+
+class GenshiLexer(DelegatingLexer):
+    name = 'Genshi'
+    aliases = ['genshi', 'kid', 'xml+genshi', 'xml+kid']
+
+    def __init__(self, **options):
+        super(GenshiLexer, self).__init__(HtmlLexer, GenshiMarkupLexer,
+                                          **options)
 
 
 class RhtmlLexer(DelegatingLexer):
