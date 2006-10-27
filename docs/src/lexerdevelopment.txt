@@ -480,3 +480,34 @@ This might sound confusing (and it can really be). But it is needed, and for an
 example look at the Ruby lexer in `agile.py`_.
 
 .. _agile.py: http://trac.pocoo.org/repos/pygments/trunk/pygments/lexers/agile.py
+
+
+Filtering Token Streams
+=======================
+
+Some languages ship a lot of builtin functions (for example PHP). The total
+amount of those functions differs from system to system because not everybody
+has every extension installed. In the case of PHP there are over 3000 builtin
+functions. That's an incredible huge amount of functions, much more than you
+can put into a regular expression.
+
+But because only `Name` tokens can be function names it's solvable by overriding
+the ``get_tokens_unprocessed`` method. The following lexer subclasses the
+`PythonLexer` so that it highlights some additional names as pseudo keywords:
+
+.. sourcecode:: python
+
+    from pykleur.lexers.agile import PythonLexer
+    from pykleur.token import Name, Keyword
+
+    class MyPythonLexer(PythonLexer):
+        EXTRA_KEYWORDS = ['foo', 'bar', 'foobar', 'barfoo', 'spam', 'eggs']
+
+        def get_tokens_unprocessed(self, text):
+            for index, token, value in PythonLexer.get_tokens_unprocessed(self, text):
+                if token is Name and value in self.EXTRA_KEYWORDS:
+                    yield index, Keyword.Pseudo, value
+                else:
+                    yield index, token, value
+
+The `PhpLexer` and `LuaLexer` use this method to resolve builtin functions.

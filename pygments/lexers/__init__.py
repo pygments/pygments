@@ -16,7 +16,8 @@ from pygments.lexers._mapping import LEXERS
 from pygments.plugin import find_plugin_lexers
 
 
-__all__ = ['get_lexer_by_name', 'get_lexer_for_filename'] + LEXERS.keys()
+__all__ = ['get_lexer_by_name', 'get_lexer_for_filename',
+           'guess_lexer'] + LEXERS.keys()
 
 _lexer_cache = {}
 
@@ -66,6 +67,34 @@ def get_lexer_for_filename(fn, **options):
             if fnmatch.fnmatch(fn, filename):
                 return cls(**options)
     raise ValueError('no lexer for filename %r found' % fn)
+
+
+def guess_lexer(text, **options):
+    """
+    Guess a lexer by strong distinctions in the text (eg, shebang).
+    """
+    best_lexer = [0.0, None]
+    # builtin lexers
+    for module_name, name, _, _ in LEXERS.itervalues():
+        if name not in _lexer_cache:
+            _load_lexers(module_name)
+        lexer = _lexer_cache[name]
+        rv = lexer.analyse_text(text)
+        if rv == 1.0:
+            return lexer(**options)
+        if rv > best_lexer[0]:
+            best_lexer[:] = (rv, lexer)
+    # plugin lexers
+    for lexer in find_plugin_lexers():
+        rv = lexer.analyse_text(text)
+        if rv == 1.0:
+            return lexer(**options)
+        if rv > best_lexer[0]:
+            best_lexer[:] = (rv, lexer)
+    if best_lexer[0] == 0.0 or best_lexer[1] is None:
+        from pygments.lexers.special import TextLexer
+        return TextLexer(**options)
+    return best_lexer[1](**options)
 
 
 class _automodule(types.ModuleType):

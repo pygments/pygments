@@ -19,7 +19,7 @@ from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, \
      LexerContext, include, combined, do_insertions, bygroups
 from pygments.token import Error, Text, \
      Comment, Operator, Keyword, Name, String, Number, Generic
-from pygments.util import get_bool_opt, get_list_opt
+from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'RubyLexer',
@@ -144,6 +144,9 @@ class PythonLexer(RegexLexer):
             include('nl')
         ],
     }
+
+    def analyse_text(text):
+        return shebang_matches(text, r'pythonw?(2\.\d)?')
 
 
 class PythonConsoleLexer(Lexer):
@@ -504,6 +507,9 @@ class RubyLexer(ExtendedRegexLexer):
     }
     tokens.update(gen_rubystrings_rules())
 
+    def analyse_text(text):
+        return shebang_matches(text, r'ruby(1\.\d)?')
+
 
 class RubyConsoleLexer(Lexer):
     """
@@ -674,6 +680,9 @@ class PerlLexer(RegexLexer):
             (r'.+', Comment.Preproc, '#pop')
         ]
     }
+
+    def analyse_text(text):
+        return shebang_matches(text, r'perl(\d\.\d\.\d)?')
 
 
 class LuaLexer(RegexLexer):
