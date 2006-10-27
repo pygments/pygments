@@ -225,6 +225,8 @@ class GenshiMarkupLexer(RegexLexer):
             (r'[^<\$]+', Other),
             (r'(<\?python)(.*?)(\?>)',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
+            # yield style and script blocks as Other
+            (r'<\s*(script|style)\s*.*?>.*?<\s*/\1\s*>', Other),
             (r'<\s*py:[a-zA-Z0-9]+', Name.Tag, 'pytag'),
             (r'<\s*[a-zA-Z0-9:]+', Name.Tag, 'tag'),
             include('variable'),
@@ -282,6 +284,14 @@ class HtmlGenshiLexer(DelegatingLexer):
         super(HtmlGenshiLexer, self).__init__(HtmlLexer, GenshiMarkupLexer,
                                               **options)
 
+    def analyse_text(text):
+        rv = 0.0
+        if re.search('\$\{.*?\}', text) is not None:
+            rv += 0.2
+        if re.search('py:(.*?)=["\']', text) is not None:
+            rv += 0.2
+        return rv + HtmlLexer.analyse_text(text) - 0.01
+
 
 class GenshiLexer(DelegatingLexer):
     name = 'Genshi'
@@ -291,6 +301,14 @@ class GenshiLexer(DelegatingLexer):
     def __init__(self, **options):
         super(GenshiLexer, self).__init__(XmlLexer, GenshiMarkupLexer,
                                           **options)
+
+    def analyse_text(text):
+        rv = 0.0
+        if re.search('\$\{.*?\}', text) is not None:
+            rv += 0.2
+        if re.search('py:(.*?)=["\']', text) is not None:
+            rv += 0.2
+        return rv + XmlLexer.analyse_text(text) - 0.01
 
 
 class RhtmlLexer(DelegatingLexer):
