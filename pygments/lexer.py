@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 """
-pygments.lexer
-~~~~~~~~~~~~~~
+    pygments.lexer
+    ~~~~~~~~~~~~~~
 
-Base lexer classes.
+    Base lexer classes.
 
-:copyright: 2006 by Georg Brandl.
-:license: GNU LGPL, see LICENSE for more details.
+    :copyright: 2006 by Georg Brandl.
+    :license: GNU LGPL, see LICENSE for more details.
 """
 import re
+
+try:
+    set
+except NameError:
+    from sets import Set as set
 
 from types import FunctionType
 from pygments.token import Error, Text, Other, _TokenType
@@ -31,6 +36,9 @@ class LexerMeta(type):
     def __new__(cls, name, bases, d):
         if 'analyse_text' in d:
             d['analyse_text'] = make_analysator(d['analyse_text'])
+        for key in 'aliases', 'filenames', 'alias_filenames':
+            if key in d:
+                d[key] = set(d[key])
         return type.__new__(cls, name, bases, d)
 
 
@@ -56,6 +64,9 @@ class Lexer(object):
 
     #: fn match rules
     filenames = []
+
+    #: fn alias filenames
+    alias_filenames = []
 
     __metaclass__ = LexerMeta
 
@@ -203,7 +214,7 @@ def bygroups(*args):
                     yield match.start(i + 1), action, data
             else:
                 if ctx:
-                    ctx.pos = match.start(i+1)
+                    ctx.pos = match.start(i + 1)
                 for item in action(lexer, _PseudoMatch(match.start(i + 1),
                                    match.group(i + 1)), ctx):
                     if item:

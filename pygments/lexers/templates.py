@@ -19,7 +19,8 @@ from pygments.lexers.web import \
      PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
 from pygments.lexers.agile import PythonLexer
 from pygments.lexer import \
-     Lexer, DelegatingLexer, RegexLexer, do_insertions, bygroups, include, using
+     Lexer, DelegatingLexer, RegexLexer, do_insertions, bygroups, \
+     include, using
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Other
 from pygments.util import html_doctype_matches, looks_like_xml
@@ -121,11 +122,11 @@ class ErbLexer(Lexer):
 class SmartyLexer(RegexLexer):
     name = 'Smarty'
     aliases = ['smarty']
+    filenames = ['*.tpl']
 
     flags = re.MULTILINE | re.DOTALL
 
     tokens = {
-        # XXX: make smarty delimiters customizable somehow
         'root': [
             (r'[^{]+', Other),
             (r'(\{)(\*.*?\*)(\})',
@@ -314,6 +315,7 @@ class GenshiMarkupLexer(RegexLexer):
 class HtmlGenshiLexer(DelegatingLexer):
     name = 'HTML+Genshi'
     aliases = ['html+genshi', 'html+kid']
+    alias_filenames = ['*.html', '*.htm', '*.xhtml']
 
     def __init__(self, **options):
         super(HtmlGenshiLexer, self).__init__(HtmlLexer, GenshiMarkupLexer,
@@ -332,6 +334,7 @@ class GenshiLexer(DelegatingLexer):
     name = 'Genshi'
     aliases = ['genshi', 'kid', 'xml+genshi', 'xml+kid']
     filenames = ['*.kid']
+    alias_filenames = ['*.xml']
 
     def __init__(self, **options):
         super(GenshiLexer, self).__init__(XmlLexer, GenshiMarkupLexer,
@@ -350,26 +353,35 @@ class JavascriptGenshiLexer(DelegatingLexer):
     name = 'JavaScript+Genshi Text'
     aliases = ['js+genshitext', 'js+genshi', 'javascript+genshitext',
                'javascript+genshi']
+    alias_filenames = ['*.js']
 
     def __init__(self, **options):
         super(JavascriptGenshiLexer, self).__init__(JavascriptLexer,
                                                     GenshiTextLexer,
                                                     **options)
 
+    def analyse_text(text):
+        return GenshiLexer.analyse_text(text) - 0.05
+
 
 class CssGenshiLexer(DelegatingLexer):
     name = 'CSS+Genshi Text'
     aliases = ['css+genshitext', 'css+genshi']
+    alias_filenames = ['*.css']
 
     def __init__(self, **options):
         super(CssGenshiLexer, self).__init__(CssLexer, GenshiTextLexer,
                                              **options)
+
+    def analyse_text(text):
+        return GenshiLexer.analyse_text(text) - 0.05
 
 
 class RhtmlLexer(DelegatingLexer):
     name = 'RHTML'
     aliases = ['rhtml', 'html+erb', 'html+ruby']
     filenames = ['*.rhtml']
+    alias_filenames = ['*.html', '*.htm', '*.xhtml']
 
     def __init__(self, **options):
         super(RhtmlLexer, self).__init__(HtmlLexer, ErbLexer, **options)
@@ -385,6 +397,7 @@ class RhtmlLexer(DelegatingLexer):
 class XmlErbLexer(DelegatingLexer):
     name = 'XML+Ruby'
     aliases = ['xml+erb', 'xml+ruby']
+    alias_filenames = ['*.xml']
 
     def __init__(self, **options):
         super(XmlErbLexer, self).__init__(XmlLexer, ErbLexer, **options)
@@ -399,24 +412,34 @@ class XmlErbLexer(DelegatingLexer):
 class CssErbLexer(DelegatingLexer):
     name = 'CSS+Ruby'
     aliases = ['css+erb', 'css+ruby']
+    alias_filenames = ['*.xml']
 
     def __init__(self, **options):
         super(CssErbLexer, self).__init__(CssLexer, ErbLexer, **options)
+
+    def analyse_text(text):
+        return ErbLexer.analyse_text(text) - 0.05
 
 
 class JavascriptErbLexer(DelegatingLexer):
     name = 'JavaScript+Ruby'
     aliases = ['js+erb', 'javascript+erb', 'js+ruby', 'javascript+ruby']
+    alias_filenames = ['*.js']
 
     def __init__(self, **options):
         super(JavascriptErbLexer, self).__init__(JavascriptLexer, ErbLexer,
                                                  **options)
+
+    def analyse_text(text):
+        return ErbLexer.analyse_text(text) - 0.05
 
 
 class HtmlPhpLexer(DelegatingLexer):
     name = 'HTML+PHP'
     aliases = ['html+php']
     filenames = ['*.phtml']
+    alias_filenames = ['*.php', '*.html', '*.htm', '*.xhtml',
+                       '*.php[345]']
 
     def __init__(self, **options):
         super(HtmlPhpLexer, self).__init__(HtmlLexer, PhpLexer, **options)
@@ -431,6 +454,7 @@ class HtmlPhpLexer(DelegatingLexer):
 class XmlPhpLexer(DelegatingLexer):
     name = 'XML+PHP'
     aliases = ['xml+php']
+    alias_filenames = ['*.xml', '*.php', '*.php[345]']
 
     def __init__(self, **options):
         super(XmlPhpLexer, self).__init__(XmlLexer, PhpLexer, **options)
@@ -445,23 +469,32 @@ class XmlPhpLexer(DelegatingLexer):
 class CssPhpLexer(DelegatingLexer):
     name = 'CSS+PHP'
     aliases = ['css+php']
+    alias_filenames = ['*.css']
 
     def __init__(self, **options):
         super(CssPhpLexer, self).__init__(CssLexer, PhpLexer, **options)
+
+    def analyse_text(text):
+        return PhpLexer.analyse_text(text) - 0.05
 
 
 class JavascriptPhpLexer(DelegatingLexer):
     name = 'JavaScript+PHP'
     aliases = ['js+php', 'javascript+php']
+    alias_filenames = ['*.js']
 
     def __init__(self, **options):
         super(JavascriptPhpLexer, self).__init__(JavascriptLexer, PhpLexer,
                                                  **options)
 
+    def analyse_text(text):
+        return PhpLexer.analyse_text(text)
+
 
 class HtmlSmartyLexer(DelegatingLexer):
     name = 'HTML+Smarty'
     aliases = ['html+smarty']
+    alias_filenames = ['*.html', '*.htm', '*.xhtml', '*.tpl']
 
     def __init__(self, **options):
         super(HtmlSmartyLexer, self).__init__(HtmlLexer, SmartyLexer, **options)
@@ -476,6 +509,7 @@ class HtmlSmartyLexer(DelegatingLexer):
 class XmlSmartyLexer(DelegatingLexer):
     name = 'XML+Smarty'
     aliases = ['xml+smarty']
+    alias_filenames = ['*.xml', '*.tpl']
 
     def __init__(self, **options):
         super(XmlSmartyLexer, self).__init__(XmlLexer, SmartyLexer, **options)
@@ -490,23 +524,32 @@ class XmlSmartyLexer(DelegatingLexer):
 class CssSmartyLexer(DelegatingLexer):
     name = 'CSS+Smarty'
     aliases = ['css+smarty']
+    alias_filenames = ['*.css', '*.tpl']
 
     def __init__(self, **options):
         super(CssSmartyLexer, self).__init__(CssLexer, SmartyLexer, **options)
+
+    def analyse_text(text):
+        return SmartyLexer.analyse_text(text) - 0.05
 
 
 class JavascriptSmartyLexer(DelegatingLexer):
     name = 'JavaScript+Smarty'
     aliases = ['js+smarty', 'javascript+smarty']
+    alias_filenames = ['*.js', '*.tpl']
 
     def __init__(self, **options):
         super(JavascriptSmartyLexer, self).__init__(JavascriptLexer, SmartyLexer,
                                                     **options)
 
+    def analyse_text(text):
+        return SmartyLexer.analyse_text(text) - 0.05
+
 
 class HtmlDjangoLexer(DelegatingLexer):
     name = 'HTML+Django/Jinja'
     aliases = ['html+django', 'html+jinja']
+    alias_filenames = ['*.html', '*.htm', '*.xhtml']
 
     def __init__(self, **options):
         super(HtmlDjangoLexer, self).__init__(HtmlLexer, DjangoLexer, **options)
@@ -521,6 +564,7 @@ class HtmlDjangoLexer(DelegatingLexer):
 class XmlDjangoLexer(DelegatingLexer):
     name = 'XML+Django/Jinja'
     aliases = ['xml+django', 'xml+jinja']
+    alias_filenames = ['*.xml']
 
     def __init__(self, **options):
         super(XmlDjangoLexer, self).__init__(XmlLexer, DjangoLexer, **options)
@@ -535,16 +579,24 @@ class XmlDjangoLexer(DelegatingLexer):
 class CssDjangoLexer(DelegatingLexer):
     name = 'CSS+Django/Jinja'
     aliases = ['css+django', 'css+jinja']
+    alias_filenames = ['*.css']
 
     def __init__(self, **options):
         super(CssDjangoLexer, self).__init__(CssLexer, DjangoLexer, **options)
+
+    def analyse_text(text):
+        return DjangoLexer.analyse_text(text) - 0.05
 
 
 class JavascriptDjangoLexer(DelegatingLexer):
     name = 'JavaScript+Django/Jinja'
     aliases = ['js+django', 'javascript+django',
                'js+jinja', 'javascript+jinja']
+    alias_filenames = ['*.js']
 
     def __init__(self, **options):
         super(JavascriptDjangoLexer, self).__init__(JavascriptLexer, DjangoLexer,
                                                     **options)
+
+    def analyse_text(text):
+        return DjangoLexer.analyse_text(text) - 0.05
