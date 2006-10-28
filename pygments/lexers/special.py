@@ -62,6 +62,7 @@ class RawTokenLexer(Lexer):
         return Lexer.get_tokens(self, text)
 
     def get_tokens_unprocessed(self, text):
+        length = 0
         for match in line_re.finditer(text):
             ttypestr, val = match.group().split('\t', 1)
             ttype = _ttype_cache.get(ttypestr)
@@ -72,4 +73,5 @@ class RawTokenLexer(Lexer):
                     ttype = getattr(ttype, ttype_)
                 _ttype_cache[ttypestr] = ttype
             val = val[1:-2].decode('string-escape')
-            yield 0, ttype, val
+            yield length, ttype, val
+            length += len(val)
