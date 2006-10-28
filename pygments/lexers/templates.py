@@ -221,6 +221,8 @@ class DjangoLexer(RegexLexer):
         return rv
 
 
+# Genshi lexers courtesy of Matt Good.
+
 class GenshiTextLexer(RegexLexer):
     name = 'Genshi Text'
     aliases = ['genshitext']
