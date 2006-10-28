@@ -31,7 +31,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'CssSmartyLexer', 'JavascriptSmartyLexer', 'DjangoLexer',
            'HtmlDjangoLexer', 'CssDjangoLexer', 'XmlDjangoLexer',
            'JavascriptDjangoLexer', 'GenshiLexer', 'HtmlGenshiLexer',
-           'GenshiTextLexer']
+           'GenshiTextLexer', 'CssGenshiLexer', 'JavascriptGenshiLexer']
 
 
 class ErbLexer(Lexer):
@@ -220,6 +220,10 @@ class DjangoLexer(RegexLexer):
 class GenshiTextLexer(RegexLexer):
     aliases = ['genshitext']
 
+class GenshiTextLexer(RegexLexer):
+    name = 'Genshi Text'
+    aliases = ['genshitext']
+
     tokens = {
         'root': [
             (r'[^#\$\s]+', Text),
@@ -243,6 +247,7 @@ class GenshiTextLexer(RegexLexer):
              Name.Variable),
         ]
     }
+
 
 class GenshiMarkupLexer(RegexLexer):
     flags = re.DOTALL
@@ -336,6 +341,26 @@ class GenshiLexer(DelegatingLexer):
         if re.search('py:(.*?)=["\']', text) is not None:
             rv += 0.2
         return rv + XmlLexer.analyse_text(text) - 0.01
+
+
+class JavascriptGenshiLexer(DelegatingLexer):
+    name = 'JavaScript+Genshi Text'
+    aliases = ['js+genshitext', 'js+genshi', 'javascript+genshitext',
+               'javascript+genshi']
+
+    def __init__(self, **options):
+        super(JavascriptGenshiLexer, self).__init__(JavascriptLexer,
+                                                    GenshiTextLexer,
+                                                    **options)
+
+
+class CssGenshiLexer(DelegatingLexer):
+    name = 'CSS+Genshi Text'
+    aliases = ['css+genshitext', 'css+genshi']
+
+    def __init__(self, **options):
+        super(CssGenshiLexer, self).__init__(CssLexer, GenshiTextLexer,
+                                             **options)
 
 
 class RhtmlLexer(DelegatingLexer):
