@@ -67,9 +67,9 @@ class Lexer(object):
 
     def analyse_text(text):
         """
-        Has to return an float between ``0`` and ``1`` that indicates
-        if a lexer wants to highighlight that. used by ``guess_lexer``.
-        If this method returns ``0`` it won't highlight it at all, if
+        Has to return a float between ``0`` and ``1`` that indicates
+        if a lexer wants to highlight this text. Used by ``guess_lexer``.
+        If this method returns ``0`` it won't highlight it in any case, if
         it returns ``1`` highlighting with this lexer is guaranteed.
 
         The `LexerMeta` metaclass automatically wraps this function so

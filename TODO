@@ -1,17 +1,37 @@
 Todo
 ====
 
+before 0.5
+----------
+
+- add mimetype attributes
+- improve guess_lexer heuristics (esp. for template langs)
+
+- more unit tests
+
+- docstrings?
+
+- goto label HL support for languages that use it
+
+- tell the PHP and DelphiLexer how to differ between Operators and
+  text.
+
+for 0.6
+-------
+
 - allow multiple token types per regex (done, but awkwardly)
 - allow "overlay" token types (e.g. Diff + X) 
   - highlight specials: nth line, a word etc.
   - dhtml: overlays toggleable by javascript
 
-- unit tests
-
-- docstrings?
-
 - lexers:
-    * HTML with special formatting
+    * BASIC
+    * apacheconf
+    * python TBs
+    * haskell
+    * ls -alG
+    * python help() ?
+    * HTML with special formatting?
     * ocaml
     * nemerle
     * scheme/lisp
@@ -22,21 +42,18 @@ Todo
     * mysql/postgresql/sqlite
     * tcl
     * (la)tex
-    * django templates 
-
-- goto label HL support for languages that use it
 
 - add a `Punctuation` token type for symbols that are not text
   but also not a symbol (blocks in ruby etc)
 
 - add support for function name highlighting to c++ lexer
 
-- styles should be able to define the overall background color
-
-- tell the DelphiLexer how to differ between Operators and
-  text.
+- readd property support for C# lexer
 
 - review perl lexer (numerous bugs)
+
+for 0.7
+-------
 
 - moin parser
 
