@@ -166,13 +166,16 @@ class SmartyLexer(RegexLexer):
 
 
 class DjangoLexer(RegexLexer):
-    name = 'django template'
-    aliases = ['django']
+    name = 'Django/Jinja'
+    aliases = ['django', 'jinja']
 
     tokens = {
         'root': [
             (r'[^\{]+', Other),
             (r'\{\{', Comment.Preproc, 'var'),
+            # jinja comments
+            (r'\{\*.*?\*\}', Comment),
+            # django comments
             (r'(\{\%)(\s*)(comment)(\s*)(\%\})(.*?)'
              r'(\{\%)(\s*)(endcomment)(\s*)(\%\})',
              bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
@@ -183,13 +186,14 @@ class DjangoLexer(RegexLexer):
             (r'\{', Other)
         ],
         'varnames': [
-            (r'[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)*', Name.Variable),
-            (r"(\|)([a-zA-Z_][a-zA-Z0-9_]*)(:'(\\\\|\\'|[^'])*')",
-             bygroups(Operator, Name.Function, String.Single)),
-            (r'(\|)([a-zA-Z_][a-zA-Z0-9_]*)(:"(\\\\|\\"|[^"])*")',
-             bygroups(Operator, Name.Function, String.Double)),
-            (r'(\|)([a-zA-Z_][a-zA-Z0-9_]*)',
-             bygroups(Operator, Name.Function))
+            (r'[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)*',
+             Name.Variable),
+            (r'(\|)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
+             bygroups(Operator, Text, Name.Function)),
+            (r':?"(\\\\|\\"|[^"])*"', String.Double),
+            (r":?'(\\\\|\\'|[^'])*'", String.Single),
+            (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
+             r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ],
         'var': [
             (r'\s+', Text),
@@ -198,9 +202,8 @@ class DjangoLexer(RegexLexer):
         ],
         'block': [
             (r'\s+', Text),
-            (r'(in|as|reversed|not|count|and|or|with)\b', Keyword),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'(in|as|reversed|not|count|and|or|with|equals|accepting)\b',
+             Keyword),
             include('varnames'),
             (r'\%\}', Comment.Preproc, '#pop'),
             (r'.', Text)
@@ -217,8 +220,6 @@ class DjangoLexer(RegexLexer):
             rv += 0.1
         return rv
 
-class GenshiTextLexer(RegexLexer):
-    aliases = ['genshitext']
 
 class GenshiTextLexer(RegexLexer):
     name = 'Genshi Text'
@@ -502,8 +503,8 @@ class JavascriptSmartyLexer(DelegatingLexer):
 
 
 class HtmlDjangoLexer(DelegatingLexer):
-    name = 'HTML+Django'
-    aliases = ['html+django']
+    name = 'HTML+Django/Jinja'
+    aliases = ['html+django', 'html+jinja']
 
     def __init__(self, **options):
         super(HtmlDjangoLexer, self).__init__(HtmlLexer, DjangoLexer, **options)
@@ -516,8 +517,8 @@ class HtmlDjangoLexer(DelegatingLexer):
 
 
 class XmlDjangoLexer(DelegatingLexer):
-    name = 'XML+Django'
-    aliases = ['xml+django']
+    name = 'XML+Django/Jinja'
+    aliases = ['xml+django', 'xml+jinja']
 
     def __init__(self, **options):
         super(XmlDjangoLexer, self).__init__(XmlLexer, DjangoLexer, **options)
@@ -530,16 +531,17 @@ class XmlDjangoLexer(DelegatingLexer):
 
 
 class CssDjangoLexer(DelegatingLexer):
-    name = 'CSS+Django'
-    aliases = ['css+django']
+    name = 'CSS+Django/Jinja'
+    aliases = ['css+django', 'css+jinja']
 
     def __init__(self, **options):
         super(CssDjangoLexer, self).__init__(CssLexer, DjangoLexer, **options)
 
 
 class JavascriptDjangoLexer(DelegatingLexer):
-    name = 'JavaScript+Django'
-    aliases = ['js+django', 'javascript+django']
+    name = 'JavaScript+Django/Jinja'
+    aliases = ['js+django', 'javascript+django',
+               'js+jinja', 'javascript+jinja']
 
     def __init__(self, **options):
         super(JavascriptDjangoLexer, self).__init__(JavascriptLexer, DjangoLexer,
