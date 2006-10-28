@@ -11,8 +11,8 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer
-from pygments.token import Token, \
+from pygments.lexer import Lexer, RegexLexer, include
+from pygments.token import Token, Error, \
      Text, Comment, Operator, Keyword, Name, String, Number
 
 
@@ -131,8 +131,21 @@ class BrainfuckLexer(RegexLexer):
     filenames = ['*.bf', '*.b']
 
     tokens = {
+        'common': [
+            # use different colors for different instruction types
+            (r'[.,]+', Name.Tag),
+            (r'[+-]+', Name.Builtin),
+            (r'[<>]+', Name.Variable),
+            (r'[^.,+\-<>\[\]]+', Comment),
+        ],
         'root': [
-            (r'[.,+\-<>\[\]]+', Keyword),
-            (r'[^.,+\-<>\[\]]+', Comment)
+            (r'\[', Keyword, 'loop'),
+            (r'\]', Error),
+            include('common'),
+        ],
+        'loop': [
+            (r'\[', Keyword, '#push'),
+            (r'\]', Keyword, '#pop'),
+            include('common'),
         ]
     }
