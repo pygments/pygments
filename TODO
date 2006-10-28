@@ -4,22 +4,15 @@ Todo
 before 0.5
 ----------
 
-- add mimetype attributes
 - improve guess_lexer heuristics (esp. for template langs)
 
 - more unit tests
 
-- documentation for new features (guessing)
-
 - goto label HL support for languages that use it
-
-- tell the PHP and DelphiLexer how to differ between Operators and
-  text.
 
 for 0.6
 -------
 
-- allow multiple token types per regex (done, but awkwardly)
 - allow "overlay" token types (e.g. Diff + X) 
   - highlight specials: nth line, a word etc.
   - dhtml: overlays toggleable by javascript
@@ -43,6 +36,9 @@ for 0.6
     * tcl
     * (la)tex
 
+- tell the PHP and DelphiLexer how to differ between Operators and
+  text.
+
 - add a `Punctuation` token type for symbols that are not text
   but also not a symbol (blocks in ruby etc)
 
@@ -54,8 +50,8 @@ for 0.6
 
 - docstrings?
 
-for 0.7
--------
+for 0.7 / later
+---------------
 
 - moin parser
 

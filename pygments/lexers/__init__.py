@@ -37,18 +37,6 @@ def _load_lexers(module_name):
         _lexer_cache[cls.name] = cls
 
 
-def _iter_lexers():
-    """
-    Returns an iterator over all lexer classes.
-    """
-    for module_name, name, _, _ in LEXERS.itervalues():
-        if name not in _lexer_cache:
-            _load_lexers(module_name)
-        yield _lexer_cache[name]
-    for lexer in find_plugin_lexers():
-        yield lexer
-
-
 def get_lexer_by_name(_alias, **options):
     """
     Get a lexer by an alias.
@@ -99,6 +87,18 @@ def get_lexer_for_mimetype(_mime, **options):
     raise ValueError('no lexer for mimetype %r found' % _mime)
 
 
+def _iter_lexerclasses():
+    """
+    Returns an iterator over all lexer classes.
+    """
+    for module_name, name, _, _ in LEXERS.itervalues():
+        if name not in _lexer_cache:
+            _load_lexers(module_name)
+        yield _lexer_cache[name]
+    for lexer in find_plugin_lexers():
+        yield lexer
+
+
 def guess_lexer_for_filename(_fn, _text, **options):
     """
     Lookup all lexers that handle those filenames primary (``filenames``)
@@ -118,7 +118,7 @@ def guess_lexer_for_filename(_fn, _text, **options):
     fn = basename(_fn)
     primary = None
     matching_lexers = set()
-    for lexer in _iter_lexers():
+    for lexer in _iter_lexerclasses():
         for filename in lexer.filenames:
             if fnmatch.fnmatch(fn, filename):
                 matching_lexers.add(lexer)
@@ -129,7 +129,7 @@ def guess_lexer_for_filename(_fn, _text, **options):
     if not matching_lexers:
         raise ValueError('no lexer for filename %r found' % fn)
     if len(matching_lexers) == 1:
-        return iter(matching_lexers).next()
+        return matching_lexers.pop()(**options)
     result = []
     for lexer in matching_lexers:
         rv = lexer.analyse_text(_text)
@@ -149,7 +149,7 @@ def guess_lexer(_text, **options):
     #XXX: i (mitsuhiko) would like to drop this function in favor of the
     #     better guess_lexer_for_filename function.
     best_lexer = [0.0, None]
-    for lexer in _iter_lexers():
+    for lexer in _iter_lexerclasses():
         rv = lexer.analyse_text(text)
         if rv == 1.0:
             return lexer(**options)

@@ -43,6 +43,25 @@ def `get_lexer_for_filename(fn, **options):`
 
     Will raise `ValueError` if no lexer for that filename is found.
 
+def `get_lexer_for_mimetype(mime, **options):`
+    Return a `Lexer` subclass instance that has `mime` in its mimetype
+    list. The lexer is given the `options` at its instantiation.
+
+    Will raise `ValueError` if not lexer for that mimetype is found.
+
+def `guess_lexer(text, **options):`
+    Return a `Lexer` subclass instance that's guessed from the text
+    in `text`. For that, the `analyze_text()` method of every known
+    lexer class is called with the text as argument, and the lexer
+    which returned the highest value will be instantiated and returned.
+
+    `ValueError` is raised if no lexer thinks it can handle the content.
+
+def `guess_lexer_for_filename(text, filename, **options):`
+    As `guess_lexer()`, but only lexers which have a pattern in `filenames`
+    or `alias_filenames` that matches `filename` are taken into consideration.
+    
+    `ValueError` is raised if no lexer thinks it can handle the content.
 
 Functions from `pygments.formatters`:
 
@@ -101,6 +120,12 @@ def `get_tokens_unprocessed(self, text):`
 
     This method must be overridden by subclasses.
 
+def `analyze_text(text):`
+    A static method which is called for lexer guessing. It should analyze
+    the text and return a float in the range from ``0.0`` to ``1.0``.
+    If it returns ``0.0``, the lexer will not be selected as the most
+    probable one, if it returns ``1.0``, it will be selected immediately.
+
 For a list of known tokens have a look at the `Tokens`_ page.
 
 The lexer also recognizes the following attributes that are used by the
@@ -114,8 +139,21 @@ builtin lookup mechanism.
     the lexer from a list.
 
 `filenames`
-    A list of `fnmatch` patterns that can be used to find a lexer for
-    a given filename.
+    A list of `fnmatch` patterns that match filenames which contain
+    content for this lexer. The patterns in this list should be unique among
+    all lexers.
+
+`alias_filenames`
+    A list of `fnmatch` patterns that match filenames which may or may not
+    contain content for this lexer. This list is used by the
+    `guess_lexer_for_filename()` function, to determine which lexers are
+    then included in guessing the correct one. That means that e.g. every
+    lexer for HTML and a template language should include ``\*.html`` in
+    this list.
+
+`mimetypes`
+    A list of MIME types for content that can be lexed with this
+    lexer.
 
 
 .. _Tokens: tokens.txt
