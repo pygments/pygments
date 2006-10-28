@@ -23,6 +23,7 @@ class SqlLexer(RegexLexer):
     name = 'SQL'
     aliases = ['sql']
     filenames = ['*.sql']
+    mimetypes = ['text/x-sql']
 
     flags = re.IGNORECASE
     tokens = {

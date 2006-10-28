@@ -23,6 +23,7 @@ class CLexer(RegexLexer):
     name = 'C'
     aliases = ['c']
     filenames = ['*.c', '*.h']
+    mimetypes = ['text/x-chdr', 'text/x-csrc']
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
@@ -115,6 +116,7 @@ class CppLexer(RegexLexer):
     name = 'C++'
     aliases = ['cpp', 'c++']
     filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++']
+    mimetypes = ['text/x-c++hdr', 'text/x-c++src']
 
     tokens = {
         'root': [
@@ -184,6 +186,7 @@ class DelphiLexer(RegexLexer):
     name = 'Delphi'
     aliases = ['delphi', 'pas', 'pascal', 'objectpascal']
     filenames = ['*.pas']
+    mimetypes = ['text/x-pascal']
 
     flags = re.IGNORECASE | re.MULTILINE | re.DOTALL
     tokens = {
@@ -269,6 +272,7 @@ class JavaLexer(RegexLexer):
     name = 'Java'
     aliases = ['java']
     filenames = ['*.java']
+    mimetypes = ['text/x-java']
 
     flags = re.MULTILINE | re.DOTALL
 

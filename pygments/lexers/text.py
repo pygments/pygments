@@ -40,6 +40,7 @@ class MakefileLexer(RegexLexer):
     name = 'Makefile'
     aliases = ['make', 'makefile', 'mf']
     filenames = ['*.mak', 'Makefile', 'makefile']
+    mimetypes = ['text/x-makefile']
 
     tokens = {
         'root': [
@@ -82,6 +83,7 @@ class DiffLexer(RegexLexer):
     name = 'Diff'
     aliases = ['diff']
     filenames = ['*.diff', '*.patch']
+    mimetypes = ['text/x-diff']
 
     tokens = {
         'root': [
@@ -141,6 +143,7 @@ class TexLexer(RegexLexer):
     name = 'TeX'
     aliases = ['tex', 'latex']
     filenames = ['*.tex', '*.aux', '*.toc']
+    mimetypes = ['text/x-tex', 'text/x-latex']
 
     tokens = {
         'general': [

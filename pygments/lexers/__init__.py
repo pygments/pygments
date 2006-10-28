@@ -39,7 +39,7 @@ def _load_lexers(module_name):
 
 def _iter_lexers():
     """
-    Returns a generator for all lexer classes
+    Returns an iterator over all lexer classes.
     """
     for module_name, name, _, _ in LEXERS.itervalues():
         if name not in _lexer_cache:
@@ -51,10 +51,10 @@ def _iter_lexers():
 
 def get_lexer_by_name(_alias, **options):
     """
-    Get a lexer by an alias
+    Get a lexer by an alias.
     """
     # lookup builtin lexers
-    for module_name, name, aliases, _ in LEXERS.itervalues():
+    for module_name, name, aliases, _, _ in LEXERS.itervalues():
         if _alias in aliases:
             if name not in _lexer_cache:
                 _load_lexers(module_name)
@@ -63,19 +63,40 @@ def get_lexer_by_name(_alias, **options):
     for cls in find_plugin_lexers():
         if _alias in cls.aliases:
             return cls(**options)
-    raise ValueError('no lexer for alias %r found' % alias)
+    raise ValueError('no lexer for alias %r found' % _alias)
 
 
 def get_lexer_for_filename(_fn, **options):
     """
-    Guess a lexer by a filename
+    Get a lexer for a filename.
     """
     fn = basename(_fn)
-    for lexer in _iter_lexers():
-        for filename in lexer.filenames:
+    for modname, name, _, filenames, _ in LEXERS.itervalues():
+        for filename in filenames:
+            if fnmatch.fnmatch(_fn, filename):
+                if name not in _lexer_cache:
+                    _load_lexers(modname)
+                return _lexer_cache[name](**options)
+    for cls in find_plugin_lexers():
+        for filename in cls.filenames:
             if fnmatch.fnmatch(_fn, filename):
                 return lexer(**options)
-    raise ValueError('no lexer for filename %r found' % fn)
+    raise ValueError('no lexer for filename %r found' % _fn)
+
+
+def get_lexer_for_mimetype(_mime, **options):
+    """
+    Get a lexer for a mimetype.
+    """
+    for modname, name, _, _, mimetypes in LEXERS.itervalues():
+        if _mime in mimetypes:
+            if name not in _lexer_cache:
+                _load_lexers(modname)
+            return _lexer_cache[name](**options)
+    for cls in find_plugin_lexers():
+        if _mime in cls.mimetypes:
+            return lexer(**options)
+    raise ValueError('no lexer for mimetype %r found' % _mime)
 
 
 def guess_lexer_for_filename(_fn, _text, **options):
