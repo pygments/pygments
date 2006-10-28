@@ -98,9 +98,9 @@ def guess_lexer(text, **options):
 
 
 class _automodule(types.ModuleType):
+    """Automatically import lexers."""
 
     def __getattr__(self, name):
-        """Automatically import lexers."""
         info = LEXERS.get(name)
         if info:
             _load_lexers(info[0])
