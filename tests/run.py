@@ -90,9 +90,10 @@ def run_tests():
             for name, thing in globs.iteritems():
                 if name.endswith('Test'):
                     tests.append((name, unittest.makeSuite(thing)))
-            tests.sort(key=lambda x: x[0])
+            # PY24: use key keyword arg
+            tests.sort(lambda x, y: cmp(x[0], y[0]))
             suite = unittest.TestSuite()
-            suite.addTests(x[1] for x in tests)
+            suite.addTests([x[1] for x in tests])
             runner.run(suite)
         except Exception, exc:
             err(testfile, 'running test', exc)
