@@ -68,6 +68,9 @@ class Lexer(object):
     #: fn alias filenames
     alias_filenames = []
 
+    #: mime types
+    mimetypes = []
+
     __metaclass__ = LexerMeta
 
     def __init__(self, **options):

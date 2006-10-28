@@ -440,6 +440,9 @@ class HtmlPhpLexer(DelegatingLexer):
     filenames = ['*.phtml']
     alias_filenames = ['*.php', '*.html', '*.htm', '*.xhtml',
                        '*.php[345]']
+    mimetypes = ['text/x-php', 'application/x-php',
+                 'application/x-httpd-php', 'application/x-httpd-php3',
+                 'application/x-httpd-php4', 'application/x-httpd-php5']
 
     def __init__(self, **options):
         super(HtmlPhpLexer, self).__init__(HtmlLexer, PhpLexer, **options)

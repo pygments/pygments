@@ -21,6 +21,7 @@ class CSharpLexer(RegexLexer):
     name = 'C#'
     aliases = ['csharp', 'c#']
     filenames = ['*.cs']
+    mimetypes = ['text/x-csharp'] # inferred
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -77,6 +78,7 @@ class BooLexer(RegexLexer):
     name = 'Boo'
     aliases = ['boo']
     filenames = ['*.boo']
+    mimetypes = ['text/x-boo']
 
     tokens = {
         'root': [
@@ -139,6 +141,7 @@ class VbNetLexer(RegexLexer):
     name = 'VB.net'
     aliases = ['vb.net', 'vbnet']
     filenames = ['*.vb', '*.bas']
+    mimetypes = ['text/x-vbnet', 'text/x-vba'] # (?)
 
     flags = re.MULTILINE | re.IGNORECASE
     tokens = {

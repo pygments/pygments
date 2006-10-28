@@ -30,6 +30,7 @@ class JavascriptLexer(RegexLexer):
     name = 'JavaScript'
     aliases = ['js', 'javascript']
     filenames = ['*.js']
+    mimetypes = ['application/x-javascript', 'text/x-javascript']
 
     flags = re.DOTALL
     tokens = {
@@ -60,6 +61,7 @@ class CssLexer(RegexLexer):
     name = 'CSS'
     aliases = ['css']
     filenames = ['*.css']
+    mimetypes = ['text/css']
 
     tokens = {
         'root': [
@@ -178,6 +180,7 @@ class HtmlLexer(RegexLexer):
     name = 'HTML'
     aliases = ['html']
     filenames = ['*.html', '*.htm', '*.xhtml']
+    mimetypes = ['text/html', 'application/xhtml+xml']
 
     flags = re.IGNORECASE | re.DOTALL
     tokens = {
@@ -315,6 +318,7 @@ class XmlLexer(RegexLexer):
     name = 'XML'
     aliases = ['xml']
     filenames = ['*.xml']
+    mimetypes = ['text/xml', 'application/xml', 'image/svg+xml']
 
     tokens = {
         'root': [

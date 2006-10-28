@@ -32,6 +32,7 @@ class PythonLexer(RegexLexer):
     name = 'Python'
     aliases = ['python', 'py']
     filenames = ['*.py', '*.pyw']
+    mimetypes = ['text/x-python', 'application/x-python']
 
     tokens = {
         'root': [
@@ -199,6 +200,7 @@ class RubyLexer(ExtendedRegexLexer):
     name = 'Ruby'
     aliases = ['rb', 'ruby']
     filenames = ['*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec', '*.rbx']
+    mimetypes = ['text/x-ruby', 'application/x-ruby']
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -557,6 +559,7 @@ class PerlLexer(RegexLexer):
     name = 'Perl'
     aliases = ['perl', 'pl']
     filenames = ['*.pl', '*.pm']
+    mimetypes = ['text/x-perl', 'application/x-perl']
 
     flags = re.DOTALL | re.MULTILINE
     # TODO: give this a perl guy who knows how to parse perl...
@@ -689,6 +692,7 @@ class LuaLexer(RegexLexer):
     name = 'Lua'
     aliases = ['lua']
     filenames = ['*.lua']
+    mimetypes = ['text/x-lua', 'application/x-lua']
 
     tokens = {
         'root': [

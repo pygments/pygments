@@ -24,6 +24,7 @@ class TextLexer(Lexer):
     name = 'Text only'
     aliases = ['text']
     filenames = ['*.txt']
+    mimetypes = ['text/plain']
 
     def get_tokens_unprocessed(self, text):
         yield 0, Text, text
@@ -46,6 +47,7 @@ class RawTokenLexer(Lexer):
     name = 'Raw token data'
     aliases = ['raw']
     filenames = ['*.raw']
+    mimetypes = ['application/x-pygments-tokens']
 
     def __init__(self, **options):
         self.compress = options.get('compress', '')
