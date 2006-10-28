@@ -29,6 +29,7 @@ LEXERS = {
     'DjangoLexer': ('pygments.lexers.templates', 'django template', ('django',), ()),
     'ErbLexer': ('pygments.lexers.templates', 'ERB', ('erb',), ()),
     'GenshiLexer': ('pygments.lexers.templates', 'Genshi', ('genshi', 'kid', 'xml+genshi', 'xml+kid'), ('*.kid',)),
+    'GenshiTextLexer': ('pygments.lexers.templates', None, ('genshitext',), ()),
     'HtmlDjangoLexer': ('pygments.lexers.templates', 'HTML+Django', ('html+django',), ()),
     'HtmlGenshiLexer': ('pygments.lexers.templates', 'HTML+Genshi', ('html+genshi', 'html+kid'), ()),
     'HtmlLexer': ('pygments.lexers.web', 'HTML', ('html',), ('*.html', '*.htm', '*.xhtml')),

@@ -492,7 +492,7 @@ functions. That's an incredible huge amount of functions, much more than you
 can put into a regular expression.
 
 But because only `Name` tokens can be function names it's solvable by overriding
-the ``get_tokens_unprocessed`` method. The following lexer subclasses the
+the ``get_tokens_unprocessed()`` method. The following lexer subclasses the
 `PythonLexer` so that it highlights some additional names as pseudo keywords:
 
 .. sourcecode:: python
