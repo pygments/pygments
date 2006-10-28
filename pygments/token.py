@@ -57,6 +57,15 @@ Comment   = Token.Comment
 Generic   = Token.Generic
 
 
+def is_token_subtype(ttype, other):
+    """Return True if ``ttype`` is a subtype of ``other``."""
+    while ttype is not None:
+        if ttype == other:
+            return True
+        ttype = ttype.parent
+    return False
+
+
 # Map standard token types to short names, used in CSS class naming.
 # If you add a new item, please be sure to run this file to perform
 # a consistency check for duplicate values.

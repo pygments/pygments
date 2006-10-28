@@ -87,15 +87,56 @@ one of the following methods:
 
 .. sourcecode:: pycon
 
-    >>> from pygments.lexers import get_lexer_by_name, get_lexer_for_filename
-    >>> get_lexer_by_name('python')
-    <pygments.lexers.agile.PythonLexer object at 0xb7bd6d0c>
-    >>> get_lexer_for_filename('spam.py')
-    <pygments.lexers.agile.PythonLexer object at 0xb7bd6b2c>
+    >>> from pygments.lexers import (get_lexer_by_name,
+    ...     get_lexer_for_filename, get_lexer_for_mimetype)
 
-The same API is available for formatters: use `get_formatter_by_name` and
-`get_formatter_for_filename` from the `pygments.formatters` module
+    >>> get_lexer_by_name('python')
+    <pygments.lexers.PythonLexer>
+
+    >>> get_lexer_for_filename('spam.rb')
+    <pygments.lexers.RubyLexer>
+
+    >>> get_lexer_for_mimetype('text/x-perl')
+    <pygments.lexers.PerlLexer>
+
+All these functions accept keyword arguments; they will be passed to the lexer
+as options.
+
+A similar API is available for formatters: use `get_formatter_by_name()` and
+`get_formatter_for_filename()` from the `pygments.formatters` module
 for this purpose.
+
+
+Guessing lexers
+===============
+
+If you don't know the content of the file, or you want to highlight a file
+whose extension is ambiguous, such as ``.html`` (which could contain plain HTML
+or some template tags), use these functions:
+
+.. sourcecode:: pycon
+
+    >>> from pygments.lexers import guess_lexer, guess_lexer_for_filename
+
+    >>> guess_lexer('#!/usr/bin/python\nprint "Hello World!"')
+    <pygments.lexers.PythonLexer>
+
+    >>> guess_lexer_for_filename('test.py', 'print "Hello World!"')
+    <pygments.lexers.PythonLexer>
+
+`guess_lexer()` passes the given content to the lexer classes' `analyze_text()`
+method and returns the one for which it returns the highest number.
+
+All lexers have two different filename pattern lists: the primary and the
+secondary one. The `get_lexer_for_filename()` function only uses the primary
+list, whose entries are supposed to be unique among all lexers.
+`guess_lexer_for_filename()`, however, will first loop through all lexers and
+look at the primary and secondary filename patterns if the filename matches.
+If only one lexer matches, it is returned, else the guessing mechanism of
+`guess_lexer()` is used with the matching lexers.
+
+As usual, keyword arguments to these functions are given to the created lexer
+as options.    
 
 
 Command line usage

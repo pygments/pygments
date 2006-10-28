@@ -79,6 +79,13 @@ class Lexer(object):
         self.stripall = get_bool_opt(options, 'stripall', False)
         self.tabsize = get_int_opt(options, 'tabsize', 0)
 
+    def __repr__(self):
+        if self.options:
+            return '<pygments.lexers.%s with %r>' % (self.__class__.__name__,
+                                                     self.options)
+        else:
+            return '<pygments.lexers.%s>' % self.__class__.__name__
+
     def analyse_text(text):
         """
         Has to return a float between ``0`` and ``1`` that indicates

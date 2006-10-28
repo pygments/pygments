@@ -56,6 +56,9 @@ Normally you just create token types using the already defined aliases. For each
 of those token aliases, a number of subtypes exists (excluding the special tokens
 `Token.Text`, `Token.Error` and `Token.Other`)
 
+The `is_token_subtype()` function in the `pygments.token` module can be used to
+test if a token type is a subtype of another (such as `Name.Tag` and `Name`).
+
 
 Keyword Tokens
 ==============
