@@ -30,7 +30,8 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'SmartyLexer', 'HtmlSmartyLexer', 'XmlSmartyLexer',
            'CssSmartyLexer', 'JavascriptSmartyLexer', 'DjangoLexer',
            'HtmlDjangoLexer', 'CssDjangoLexer', 'XmlDjangoLexer',
-           'JavascriptDjangoLexer', 'GenshiLexer', 'HtmlGenshiLexer']
+           'JavascriptDjangoLexer', 'GenshiLexer', 'HtmlGenshiLexer',
+           'GenshiTextLexer']
 
 
 class ErbLexer(Lexer):
@@ -216,6 +217,32 @@ class DjangoLexer(RegexLexer):
             rv += 0.1
         return rv
 
+class GenshiTextLexer(RegexLexer):
+    aliases = ['genshitext']
+
+    tokens = {
+        'root': [
+            (r'[^#\$\s]+', Text),
+            (r'^(\s*)(##.*)$', bygroups(Text, Comment)),
+            (r'^(\s*)(#)', bygroups(Text, Comment.Preproc), 'directive'),
+            include('variable'),
+            (r'[#\$\s]', Text),
+        ],
+        'directive': [
+            (r'\n', Text, '#pop'),
+            (r'(?:def|for|if)\s+.*', using(PythonLexer), '#pop'),
+            (r'(choose|when|with)([^\S\n]+)(.*)',
+             bygroups(Keyword, Text, using(PythonLexer)), '#pop'),
+            (r'(choose|otherwise)\b', Keyword, '#pop'),
+            (r'(end\w*)([^\S\n]*)(.*)', bygroups(Keyword, Text, Comment), '#pop'),
+        ],
+        'variable': [
+            (r'(?<!\$)(\$\{)(.+?)(\})',
+             bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
+            (r'(?<!\$)(\$)([a-zA-Z_][a-zA-Z0-9_\.]*)',
+             Name.Variable),
+        ]
+    }
 
 class GenshiMarkupLexer(RegexLexer):
     flags = re.DOTALL
