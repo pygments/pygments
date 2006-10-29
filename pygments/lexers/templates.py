@@ -21,7 +21,7 @@ from pygments.lexers.agile import PythonLexer
 from pygments.lexer import \
      Lexer, DelegatingLexer, RegexLexer, do_insertions, bygroups, \
      include, using
-from pygments.token import \
+from pygments.token import Error, \
      Text, Comment, Operator, Keyword, Name, String, Number, Other
 from pygments.util import html_doctype_matches, looks_like_xml
 
