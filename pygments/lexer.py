@@ -36,9 +36,6 @@ class LexerMeta(type):
     def __new__(cls, name, bases, d):
         if 'analyse_text' in d:
             d['analyse_text'] = make_analysator(d['analyse_text'])
-        for key in 'aliases', 'filenames', 'alias_filenames':
-            if key in d:
-                d[key] = set(d[key])
         return type.__new__(cls, name, bases, d)
 
 
