@@ -371,9 +371,6 @@ class RegexLexer(Lexer):
     #: current one.
     tokens = {}
 
-    #: Processed tokens dict. This is filled by the metaclass.
-    _tokens = {}
-
     def get_tokens_unprocessed(self, text, stack=['root']):
         """
         Split ``text`` into (tokentype, text) pairs.
