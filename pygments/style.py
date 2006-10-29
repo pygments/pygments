@@ -82,7 +82,7 @@ class StyleMeta(type):
         }
 
     def list_styles(cls):
-        return list(self)
+        return list(cls)
 
     def __iter__(cls):
         for token in cls._styles:

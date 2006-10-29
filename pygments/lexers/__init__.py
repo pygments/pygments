@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
++# -*- coding: utf-8 -*-
 """
     pygments.lexers
     ~~~~~~~~~~~~~~~
@@ -68,7 +68,7 @@ def get_lexer_for_filename(_fn, **options):
     for cls in find_plugin_lexers():
         for filename in cls.filenames:
             if fnmatch.fnmatch(_fn, filename):
-                return lexer(**options)
+                return cls(**options)
     raise ValueError('no lexer for filename %r found' % _fn)
 
 
@@ -83,7 +83,7 @@ def get_lexer_for_mimetype(_mime, **options):
             return _lexer_cache[name](**options)
     for cls in find_plugin_lexers():
         if _mime in cls.mimetypes:
-            return lexer(**options)
+            return cls(**options)
     raise ValueError('no lexer for mimetype %r found' % _mime)
 
 
@@ -150,7 +150,7 @@ def guess_lexer(_text, **options):
     #     better guess_lexer_for_filename function.
     best_lexer = [0.0, None]
     for lexer in _iter_lexerclasses():
-        rv = lexer.analyse_text(text)
+        rv = lexer.analyse_text(_text)
         if rv == 1.0:
             return lexer(**options)
         if rv > best_lexer[0]:
