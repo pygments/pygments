@@ -147,7 +147,7 @@ class LatexFormatter(Formatter):
                           if cmndef != '#1'])
 
     def format(self, tokensource, outfile):
-        #XXX: add support for background colors!!!!!!!111!1
+        # TODO: add support for background colors
 
         if self.full:
             realoutfile = outfile

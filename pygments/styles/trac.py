@@ -22,6 +22,8 @@ class TracStyle(Style):
         Comment:                'italic #999988',
         Comment.Preproc:        'bold noitalic #999999',
 
+        Operator:               'bold',
+
         String:                 '#bb8844',
         String.Regex:           '#808000',
 

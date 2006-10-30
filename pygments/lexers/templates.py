@@ -18,8 +18,7 @@ except NameError:
 from pygments.lexers.web import \
      PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
 from pygments.lexers.agile import PythonLexer
-from pygments.lexer import \
-     Lexer, DelegatingLexer, RegexLexer, do_insertions, bygroups, \
+from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
      include, using
 from pygments.token import Error, \
      Text, Comment, Operator, Keyword, Name, String, Number, Other

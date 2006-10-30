@@ -106,8 +106,9 @@ def shebang_matches(text, regex):
     Note that this method automatically searches the whole string (eg:
     the regular expression is wrapped in ``'^$'``)
     """
-    if '\n' in text:
-        first_line = text[:text.index('\n')].lower()
+    index = text.find('\n')
+    if index >= 0:
+        first_line = text[:index].lower()
     else:
         first_line = text.lower()
     if first_line.startswith('#!'):

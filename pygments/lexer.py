@@ -15,7 +15,6 @@ try:
 except NameError:
     from sets import Set as set
 
-from types import FunctionType
 from pygments.token import Error, Text, Other, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, make_analysator
 
@@ -372,14 +371,14 @@ class RegexLexer(Lexer):
     #: current one.
     tokens = {}
 
-    def get_tokens_unprocessed(self, text, stack=['root']):
+    def get_tokens_unprocessed(self, text, stack=('root',)):
         """
         Split ``text`` into (tokentype, text) pairs.
 
         ``stack`` is the inital stack (default: ``['root']``)
         """
         pos = 0
-        statestack = stack[:]
+        statestack = list(stack)
         statetokens = self._tokens[statestack[-1]]
         while 1:
             for rex, action, new_state in statetokens:

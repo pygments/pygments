@@ -61,13 +61,13 @@ def get_lexer_for_filename(_fn, **options):
     fn = basename(_fn)
     for modname, name, _, filenames, _ in LEXERS.itervalues():
         for filename in filenames:
-            if fnmatch.fnmatch(_fn, filename):
+            if fnmatch.fnmatch(fn, filename):
                 if name not in _lexer_cache:
                     _load_lexers(modname)
                 return _lexer_cache[name](**options)
     for cls in find_plugin_lexers():
         for filename in cls.filenames:
-            if fnmatch.fnmatch(_fn, filename):
+            if fnmatch.fnmatch(fn, filename):
                 return cls(**options)
     raise ValueError('no lexer for filename %r found' % _fn)
 
