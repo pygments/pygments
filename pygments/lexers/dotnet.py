@@ -5,7 +5,7 @@
 
     .net languages
 
-    :copyright: 2006 by Armin Ronacher.
+    :copyright: 2006 by Georg Brandl, Armin Ronacher.
     :license: GNU LGPL, see LICENSE for more details.
 """
 import re

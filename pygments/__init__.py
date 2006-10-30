@@ -21,11 +21,13 @@
     :license: GNU LGPL, see LICENSE for more details.
 """
 
-__version__ = '0.1'
+__version__ = '0.5'
 __docformat__ = 'restructuredtext'
 __license__ = 'GNU Lesser General Public License (LGPL)'
 __author__ = 'Georg Brandl <g.brandl@gmx.net>'
 __url__ = 'http://pygments.pocoo.org/'
+
+__all__ = ['lex', 'format', 'highlight']
 
 
 import sys, os
