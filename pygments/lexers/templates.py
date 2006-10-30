@@ -230,11 +230,11 @@ class GenshiTextLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[^#\$\s]+', Text),
+            (r'[^#\$\s]+', Other),
             (r'^(\s*)(##.*)$', bygroups(Text, Comment)),
             (r'^(\s*)(#)', bygroups(Text, Comment.Preproc), 'directive'),
             include('variable'),
-            (r'[#\$\s]', Text),
+            (r'[#\$\s]', Other),
         ],
         'directive': [
             (r'\n', Text, '#pop'),

@@ -153,7 +153,8 @@ class DelegatingLexer(Lexer):
                 buffered += v
             else:
                 lng_buffer.append((i, t, v))
-        # the last "\n" should always be lexed by the root lexer
+        if lng_buffer:
+            insertions.append((len(buffered), lng_buffer))
         return do_insertions(insertions,
                              self.root_lexer.get_tokens_unprocessed(buffered))
 
