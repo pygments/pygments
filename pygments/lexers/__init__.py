@@ -91,7 +91,7 @@ def _iter_lexerclasses():
     """
     Returns an iterator over all lexer classes.
     """
-    for module_name, name, _, _ in LEXERS.itervalues():
+    for module_name, name, _, _, _ in LEXERS.itervalues():
         if name not in _lexer_cache:
             _load_lexers(module_name)
         yield _lexer_cache[name]
