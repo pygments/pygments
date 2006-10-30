@@ -23,7 +23,7 @@
     :license: GNU LGPL, see LICENSE for more details.
 """
 
-__version__ = '0.5.1'
+__version__ = '0.6'
 __docformat__ = 'restructuredtext'
 __license__ = 'GNU Lesser General Public License (LGPL)'
 __author__ = 'Georg Brandl <g.brandl@gmx.net>'
