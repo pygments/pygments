@@ -35,8 +35,8 @@ class CLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
-            (r'//.*?\n', Comment),
-            (r'/[*](.|\n)*?[*]/', Comment),
+            (r'//.*?(?!\\)\n', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
         ],
         'statements': [
             (r'L?"', String, 'string'),
@@ -126,8 +126,8 @@ class CppLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
-            (r'//.*?\n', Comment),
-            (r'/[*](.|\n)*?[*]/', Comment),
+            (r'//.*?(?!\\)\n', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
             (r'[{}]', Keyword),
             (r'L?"', String, 'string'),
             (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
