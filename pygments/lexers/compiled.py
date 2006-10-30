@@ -35,7 +35,7 @@ class CLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
-            (r'//.*?(?!\\)\n', Comment),
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
         ],
         'statements': [
@@ -126,7 +126,7 @@ class CppLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
-            (r'//.*?(?!\\)\n', Comment),
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
             (r'[{}]', Keyword),
             (r'L?"', String, 'string'),
