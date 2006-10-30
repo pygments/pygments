@@ -13,7 +13,7 @@ import re
 import cStringIO
 
 from pygments.lexer import Lexer, RegexLexer
-from pygments.token import Token, \
+from pygments.token import Token, Error, \
      Text, Comment, Operator, Keyword, Name, String, Number
 
 
@@ -66,14 +66,19 @@ class RawTokenLexer(Lexer):
     def get_tokens_unprocessed(self, text):
         length = 0
         for match in line_re.finditer(text):
-            ttypestr, val = match.group().split('\t', 1)
-            ttype = _ttype_cache.get(ttypestr)
-            if not ttype:
-                ttype = Token
-                ttypes = ttypestr.split('.')[1:]
-                for ttype_ in ttypes:
-                    ttype = getattr(ttype, ttype_)
-                _ttype_cache[ttypestr] = ttype
-            val = val[1:-2].decode('string-escape')
+            try:
+                ttypestr, val = match.group().split('\t', 1)
+            except ValueError:
+                val = match.group()
+                ttype = Error 
+            else:
+                ttype = _ttype_cache.get(ttypestr)
+                if not ttype:
+                    ttype = Token
+                    ttypes = ttypestr.split('.')[1:]
+                    for ttype_ in ttypes:
+                        ttype = getattr(ttype, ttype_)
+                    _ttype_cache[ttypestr] = ttype
+                val = val[1:-2].decode('string-escape')
             yield length, ttype, val
             length += len(val)

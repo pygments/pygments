@@ -32,4 +32,4 @@ class CLexerTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main(CLexerTest)
+    unittest.main()
