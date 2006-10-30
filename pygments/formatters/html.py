@@ -260,10 +260,8 @@ class HtmlFormatter(Formatter):
                                 for i in range(fl, fl + lncount)])
 
             ret = div + ('<table><tr>'
-                   '<td class="linenos" title="click to toggle" '
-                   'onclick="with (this.firstChild.style) { display = '
-                   '''(display == '') ? 'none' : '' }"><pre>'''
-                   + ls + '</pre></td><td class="code">')
+                         '<td class="linenos"><pre>' +
+                         ls + '</pre></td><td class="code">')
             ret += outfile.getvalue()
             ret += '</td></tr></table>'
 
