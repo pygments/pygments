@@ -57,6 +57,7 @@ class CLexer(RegexLexer):
             (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
              r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
             (r'(true|false|NULL)\b', Keyword.Constant),
+            ('[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'root': [
@@ -154,6 +155,7 @@ class CppLexer(RegexLexer):
              r'multiple_inheritance|m128i|m128d|m128|m64|interface|'
              r'identifier|forceinline|event|assume)\b', Keyword.Reserved),
             (r'(true|false|NULL)\b', Keyword.Constant),
+            ('[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'classname': [
@@ -218,7 +220,8 @@ class DelphiLexer(RegexLexer):
             (r'\#\$?[0-9]{1,3}', Number),
             (r'[0-9]', Number),
             (r'[@~!%^&*()+=|\[\]:;,.<>/?-]', Text),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name)
+            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'uses': [
             (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace),
@@ -305,6 +308,7 @@ class JavaLexer(RegexLexer):
             (r'(class)(\s+)', bygroups(Keyword, Text), 'class'),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
             (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
             (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?-]', Operator),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number),
