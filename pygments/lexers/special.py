@@ -70,7 +70,7 @@ class RawTokenLexer(Lexer):
                 ttypestr, val = match.group().split('\t', 1)
             except ValueError:
                 val = match.group()
-                ttype = Error 
+                ttype = Error
             else:
                 ttype = _ttype_cache.get(ttypestr)
                 if not ttype:
