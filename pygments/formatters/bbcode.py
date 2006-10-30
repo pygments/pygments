@@ -64,7 +64,7 @@ class BBCodeFormatter(Formatter):
                 end = '[/u]' + end
             # there are no common BBcodes for background-color and border
 
-            self.styles[token] = start, end
+            self.styles[ttype] = start, end
 
     def format(self, tokensource, outfile):
         if self._code:
