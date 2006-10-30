@@ -11,8 +11,8 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, include
-from pygments.token import Token, Error, \
+from pygments.lexer import RegexLexer, include
+from pygments.token import Error, \
      Text, Comment, Operator, Keyword, Name, String, Number
 
 

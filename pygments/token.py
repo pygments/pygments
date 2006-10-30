@@ -13,13 +13,13 @@ class _TokenType(tuple):
     parent = None
 
     def split(self):
-        buffer = []
+        buf = []
         node = self
         while node is not None:
-            buffer.append(node)
+            buf.append(node)
             node = node.parent
-        buffer.reverse()
-        return buffer
+        buf.reverse()
+        return buf
 
     def __getattr__(self, val):
         if not val or not val[0].isupper():

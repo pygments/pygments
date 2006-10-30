@@ -3327,16 +3327,14 @@ MODULES = {'.NET': ['dotnet_load'],
 
 if __name__ == '__main__':
     import pprint
-    import sys
-    import os
     import re
     import urllib
     _function_re = re.compile('<B\s+CLASS="function"\s*>(.*?)\(\)</B\s*>(?uism)')
 
     def get_php_functions():
-        f = urllib.urlopen('http://de.php.net/manual/en/index.functions.php')
-        data = f.read()
-        f.close()
+        uf = urllib.urlopen('http://de.php.net/manual/en/index.functions.php')
+        data = uf.read()
+        uf.close()
         results = set()
         for match in _function_re.finditer(data):
             fn = match.group(1)
@@ -3347,15 +3345,15 @@ if __name__ == '__main__':
         results.sort()
         return results
 
-    def get_function_module(function_name):
-        fn = function_name.replace('_', '-')
-        f = urllib.urlopen('http://de.php.net/manual/en/function.%s.php' % fn)
+    def get_function_module(func_name):
+        fn = func_name.replace('_', '-')
+        uf = urllib.urlopen('http://de.php.net/manual/en/function.%s.php' % fn)
         regex = re.compile('<li class="header up">'
                            '<a href="ref\..*?\.php">([a-zA-Z0-9\s]+)</a></li>')
-        for line in f:
-            m = regex.search(line)
-            if m is not None:
-                return m.group(1)
+        for line in uf:
+            match = regex.search(line)
+            if match:
+                return match.group(1)
 
     print '>> Downloading Function Index'
     functions = get_php_functions()

@@ -140,7 +140,7 @@ The -V option prints the package version.
 
         info = []
         maxlen = 0
-        for mod, fullname, names, exts in LEXERS.itervalues():
+        for _, fullname, names, exts in LEXERS.itervalues():
             tup = (', '.join(names)+':', fullname,
                    exts and '(extensions ' + ', '.join(exts) + ')' or '')
             info.append(tup)
@@ -260,7 +260,6 @@ The -V option prints the package version.
     try:
         highlight(code, lexer, fmter, outfile)
     except Exception, err:
-        raise
         print >>sys.stderr, 'Error while highlighting:', err
         return 1
     return 0

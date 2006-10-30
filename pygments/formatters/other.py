@@ -10,7 +10,7 @@
 """
 
 from pygments.formatter import Formatter
-import StringIO
+
 
 __all__ = ['NullFormatter', 'RawTokenFormatter']
 

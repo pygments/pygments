@@ -15,7 +15,7 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, using
+from pygments.lexer import Lexer, RegexLexer, bygroups, using
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Other
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
@@ -290,7 +290,7 @@ class PhpLexer(RegexLexer):
             for key, value in MODULES.iteritems():
                 if key not in self.disabledmodules:
                     self._functions.update(value)
-        Lexer.__init__(self, **options)
+        RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
         stack = ['root']

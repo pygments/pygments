@@ -12,9 +12,8 @@
 import re
 import cStringIO
 
-from pygments.lexer import Lexer, RegexLexer
-from pygments.token import Token, Error, \
-     Text, Comment, Operator, Keyword, Name, String, Number
+from pygments.lexer import Lexer
+from pygments.token import Token, Error, Text
 
 
 __all__ = ['TextLexer', 'RawTokenLexer']

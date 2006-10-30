@@ -41,25 +41,25 @@ class BBCodeFormatter(Formatter):
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
-        self._make_styles()
         self._code = get_bool_opt(options, 'codetag', False)
         self._mono = get_bool_opt(options, 'monofont', False)
 
+        self.styles = {} 
+        self._make_styles()
+
     def _make_styles(self):
-        self.styles = {}
-        for token, style in self.style._styles.iteritems():
+        for ttype, ndef in self.style:
             start = end = ''
-            color, bold, italic, underline, bg, border = style
-            if color:
-                start += '[color=#%s]' % color
+            if ndef['color']:
+                start += '[color=#%s]' % ndef['color']
                 end = '[/color]' + end
-            if bold:
+            if ndef['bold']:
                 start += '[b]'
                 end = '[/b]' + end
-            if italic:
+            if ndef['italic']:
                 start += '[i]'
                 end = '[/i]' + end
-            if underline:
+            if ndef['underline']:
                 start += '[u]'
                 end = '[/u]' + end
             # there are no common BBcodes for background-color and border
