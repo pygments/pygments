@@ -144,7 +144,7 @@ The -V option prints the package version.
 
         info = []
         maxlen = 0
-        for _, fullname, names, exts in LEXERS.itervalues():
+        for _, fullname, names, exts, mimetypes in LEXERS.itervalues():
             tup = (', '.join(names)+':', fullname,
                    exts and '(extensions ' + ', '.join(exts) + ')' or '')
             info.append(tup)
