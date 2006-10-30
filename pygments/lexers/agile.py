@@ -392,7 +392,7 @@ class RubyLexer(ExtendedRegexLexer):
              r'warn)\b', Name.Builtin),
             (r'__(FILE|LINE)__\b', Name.Builtin.Pseudo),
             # normal heredocs
-            (r'(<<-?)(["`\']?)([a-zA-Z_]\w*)(\2)(.*?\n)', heredoc_callback),
+            (r'(?<!\w)(<<-?)(["`\']?)([a-zA-Z_]\w*)(\2)(.*?\n)', heredoc_callback),
             # empty string heredocs
             (r'(<<-?)("|\')()(\2)(.*?\n)', heredoc_callback),
             (r'__END__', Comment.Preproc, 'end-part'),
