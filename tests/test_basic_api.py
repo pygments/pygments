@@ -20,6 +20,11 @@ test_content = ''.join(test_content) + '\n'
 
 class LexersTest(unittest.TestCase):
 
+    def test_import_all(self):
+        # instantiate every lexer, to see if the token type defs are correct
+        for x in pygments.lexers.LEXERS.keys():
+            c = getattr(pygments.lexers, x)()
+
     def test_lexer_classes(self):
         a = self.assert_
         ae = self.assertEquals
