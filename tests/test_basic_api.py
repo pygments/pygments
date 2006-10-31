@@ -22,8 +22,8 @@ class LexersTest(unittest.TestCase):
 
     def test_import_all(self):
         # instantiate every lexer, to see if the token type defs are correct
-        for x in pygments.lexers.LEXERS.keys():
-            c = getattr(pygments.lexers, x)()
+        for x in lexers.LEXERS.keys():
+            c = getattr(lexers, x)()
 
     def test_lexer_classes(self):
         a = self.assert_
@@ -41,7 +41,9 @@ class LexersTest(unittest.TestCase):
             for token in tokens:
                 a(isinstance(token, tuple))
                 a(isinstance(token[0], _TokenType))
-                a(isinstance(token[1], str))
+                if isinstance(token[1], str):
+                    print repr(token[1])
+                a(isinstance(token[1], unicode))
                 txt += token[1]
             ae(txt, test_content, "%s lexer roundtrip failed: %r != %r" %
                     (lexer.name, test_content, txt))

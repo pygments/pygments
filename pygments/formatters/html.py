@@ -8,7 +8,7 @@
     :copyright: 2006 by Georg Brandl, Armin Ronacher.
     :license: GNU LGPL, see LICENSE for more details.
 """
-import StringIO
+import cStringIO
 
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
@@ -57,6 +57,7 @@ DOC_TEMPLATE = '''\
 <html>
 <head>
   <title>%(title)s</title>
+  <meta http-equiv="content-type" content="text/html; charset=%(encoding)s">
   <style type="text/css">
 td.linenos { background-color: #f0f0f0; padding-right: 10px; }
 %(styledefs)s
@@ -191,7 +192,7 @@ class HtmlFormatter(Formatter):
         write = outfile.write
         lspan = ''
         for ttype, value in tokensource:
-            htmlvalue = escape_html(value)
+            htmlvalue = escape_html(value.encode(self.encoding))
             if lnos:
                 lncount += value.count("\n")
 
@@ -235,7 +236,7 @@ class HtmlFormatter(Formatter):
         div = ('<div' + (self.cssclass and ' class="%s" ' % self.cssclass)
                + (self.cssstyles and ' style="%s"' % self.cssstyles) + '>')
         if full or lnos:
-            outfile = StringIO.StringIO()
+            outfile = cStringIO.StringIO()
         else:
             outfile.write(div)
 
@@ -271,6 +272,7 @@ class HtmlFormatter(Formatter):
             realoutfile.write(DOC_TEMPLATE %
                 dict(title     = self.title,
                      styledefs = self.get_style_defs('body'),
+                     encoding  = self.encoding,
                      code      = ret))
         elif lnos:
             realoutfile.write(ret + '</div>\n')

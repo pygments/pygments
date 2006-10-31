@@ -50,6 +50,10 @@ class Lexer(object):
         (default: False).
     ``tabsize``
         If given and greater than 0, expand tabs in the input (default: 0).
+    ``encoding``
+        If given, must be an encoding name. This encoding will be used to
+        convert the input string to Unicode, if it is not already a Unicode
+        string. The default is to use latin1 (default: 'latin1'). 
     """
 
     #: Name of the lexer
@@ -74,7 +78,7 @@ class Lexer(object):
         self.stripnl = get_bool_opt(options, 'stripnl', True)
         self.stripall = get_bool_opt(options, 'stripall', False)
         self.tabsize = get_int_opt(options, 'tabsize', 0)
-        self.encoding = options.get('encoding', '')
+        self.encoding = options.get('encoding', 'latin1')
 
     def __repr__(self):
         if self.options:
@@ -103,7 +107,10 @@ class Lexer(object):
 
         Also preprocess the text, i.e. expand tabs and strip it if wanted.
         """
-        text = type(text)('\n').join(text.splitlines())
+        if isinstance(text, unicode):
+            text = u'\n'.join(text.splitlines())
+        else:
+            text = '\n'.join(text.splitlines()).decode(self.encoding)
         if self.stripall:
             text = text.strip()
         elif self.stripnl:
@@ -411,7 +418,7 @@ class RegexLexer(Lexer):
                         pos += 1
                         statestack = ['root']
                         statetokens = self._tokens['root']
-                        yield pos, Text, '\n'
+                        yield pos, Text, u'\n'
                         continue
                     yield pos, Error, text[pos]
                     pos += 1
@@ -488,7 +495,7 @@ class ExtendedRegexLexer(RegexLexer):
                         ctx.pos += 1
                         ctx.stack = ['root']
                         statetokens = self._tokens['root']
-                        yield ctx.pos, Text, '\n'
+                        yield ctx.pos, Text, u'\n'
                         continue
                     yield ctx.pos, Error, text[ctx.pos]
                     ctx.pos += 1

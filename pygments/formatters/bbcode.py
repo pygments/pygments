@@ -76,6 +76,7 @@ class BBCodeFormatter(Formatter):
         lasttype = None
 
         for ttype, value in tokensource:
+            value = value.encode(self.encoding)
             while ttype not in self.styles:
                 ttype = ttype.parent
             if ttype == lasttype:

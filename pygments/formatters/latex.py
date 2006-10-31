@@ -8,7 +8,7 @@
     :copyright: 2006 by Georg Brandl.
     :license: GNU LGPL, see LICENSE for more details.
 """
-import StringIO
+import cStringIO
 
 from pygments.formatter import Formatter
 from pygments.token import Token
@@ -31,6 +31,7 @@ DOC_TEMPLATE = r'''
 \documentclass{%(docclass)s}
 \usepackage{fancyvrb}
 \usepackage{color}
+\usepackage[%(encoding)s]{inputenc}
 %(preamble)s
 
 %(styledefs)s
@@ -151,7 +152,7 @@ class LatexFormatter(Formatter):
 
         if self.full:
             realoutfile = outfile
-            outfile = StringIO.StringIO()
+            outfile = cStringIO.StringIO()
 
         outfile.write(r'\begin{Verbatim}[commandchars=@\[\]')
         if self.linenos:
@@ -164,7 +165,7 @@ class LatexFormatter(Formatter):
         outfile.write(']\n')
 
         for ttype, value in tokensource:
-            value = escape_tex(value)
+            value = escape_tex(value.encode(self.encoding))
             cmd = self.ttype2cmd.get(ttype)
             while cmd is None:
                 ttype = ttype.parent
@@ -187,5 +188,6 @@ class LatexFormatter(Formatter):
                 dict(docclass  = self.docclass,
                      preamble  = self.preamble,
                      title     = self.title,
+                     encoding  = self.encoding,
                      styledefs = self.get_style_defs(),
                      code      = outfile.getvalue()))
