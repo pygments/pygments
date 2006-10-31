@@ -74,6 +74,7 @@ class Lexer(object):
         self.stripnl = get_bool_opt(options, 'stripnl', True)
         self.stripall = get_bool_opt(options, 'stripall', False)
         self.tabsize = get_int_opt(options, 'tabsize', 0)
+        self.encoding = options.get('encoding', '')
 
     def __repr__(self):
         if self.options:
