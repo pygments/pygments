@@ -4,7 +4,7 @@
     ~~~~~~~~~~~~~~~~~
 
     :copyright: 2006 by Armin Ronacher.
-    :license: GNU GPL, see LICENSE for more details.
+    :license: GNU LGPL, see LICENSE for more details.
 """
 
 import unittest

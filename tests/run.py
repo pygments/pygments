@@ -77,6 +77,7 @@ def run_tests():
     for testfile in files:
         globs = {}
         try:
+            __builtin__.testfile = testfile
             execfile(join(testdir, testfile), globs)
         except Exception, exc:
             raise
