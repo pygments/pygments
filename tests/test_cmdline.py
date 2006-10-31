@@ -17,7 +17,7 @@ from pygments import cmdline_main, highlight
 
 def run_cmdline(*args):
     saved_stdout = sys.stdout
-    saved_stderr = sys.stderr 
+    saved_stderr = sys.stderr
     new_stdout = sys.stdout = StringIO.StringIO()
     new_stderr = sys.stderr = StringIO.StringIO()
     try:
@@ -45,7 +45,7 @@ class CmdLineTest(unittest.TestCase):
         from pygments.lexers import PythonLexer
         from pygments.formatters import HtmlFormatter
         filename = os.path.join(testdir, testfile)
-        code = file(filename).read() 
+        code = file(filename).read()
 
         output = highlight(code, PythonLexer(), HtmlFormatter())
 

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """
     Pygments tests with example files
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     :copyright: 2006 by Georg Brandl.
-    :license: GNU GPL, see LICENSE for more details.
+    :license: GNU LGPL, see LICENSE for more details.
 """
 
 import unittest

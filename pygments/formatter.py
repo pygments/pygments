@@ -48,7 +48,7 @@ class Formatter(object):
         self.style = _lookup_style(options.get('style', 'default'))
         self.full  = get_bool_opt(options, 'full', False)
         self.title = options.get('title', '')
-        self.encoding = options.get('encoding', 'latin1') 
+        self.encoding = options.get('encoding', 'latin1')
         self.options = options
 
     def get_style_defs(self, arg=''):
