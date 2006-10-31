@@ -21,7 +21,7 @@ class NullFormatter(Formatter):
     """
     def format(self, tokensource, outfile):
         for ttype, value in tokensource:
-            outfile.write(value)
+            outfile.write(value.encode(self.encoding))
 
 
 class RawTokenFormatter(Formatter):
@@ -60,8 +60,9 @@ class RawTokenFormatter(Formatter):
             flush = outfile.flush
 
         lasttype = None
-        lastval = ''
+        lastval = u''
         for ttype, value in tokensource:
+            value = value.encode(self.encoding)
             if ttype is lasttype:
                 lastval += value
             else:

@@ -38,12 +38,17 @@ class Formatter(object):
     ``title``
         If ``full`` is true, the title that should be used to
         caption the document (default: '').
+    ``encoding``
+        If given, must be an encoding name. This will be used to
+        convert the Unicode token strings to byte strings in the
+        output (default: 'latin1').
     """
 
     def __init__(self, **options):
         self.style = _lookup_style(options.get('style', 'default'))
         self.full  = get_bool_opt(options, 'full', False)
         self.title = options.get('title', '')
+        self.encoding = options.get('encoding', 'latin1') 
         self.options = options
 
     def get_style_defs(self, arg=''):

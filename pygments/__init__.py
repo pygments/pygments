@@ -33,8 +33,7 @@ __all__ = ['lex', 'format', 'highlight']
 
 
 import sys, os
-# using StringIO because it can handle Unicode strings
-from StringIO import StringIO
+from cStringIO import StringIO
 
 from pygments.util import OptionError
 from pygments.lexers import LEXERS, get_lexer_by_name, get_lexer_for_filename

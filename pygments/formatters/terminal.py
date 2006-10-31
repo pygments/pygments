@@ -79,6 +79,7 @@ class TerminalFormatter(Formatter):
     def format(self, tokensource, outfile):
         dbg = self.debug
         for ttype, value in tokensource:
+            value = value.encode(self.encoding)
             color = self.colorscheme.get(ttype)
             while color is None:
                 ttype = ttype[:-1]

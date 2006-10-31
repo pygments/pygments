@@ -780,7 +780,7 @@ class LuaLexer(RegexLexer):
                 elif '.' in value:
                     a, b = value.split('.')
                     yield index, Name, a
-                    yield index + len(a), Text, '.'
+                    yield index + len(a), Text, u'.'
                     yield index + len(a) + 1, Name, b
                     continue
             yield index, token, value

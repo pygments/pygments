@@ -38,11 +38,12 @@ for fn in os.listdir(os.path.join(testdir, 'examplefiles')):
     def test(self, lx=lx, absfn=absfn):
         text = file(absfn, 'U').read()
         text = text.strip('\n') + '\n'
-        ntext = ''
+        text = text.decode('latin1')
+        ntext = []
         for type, val in lx.get_tokens(text):
-            ntext += val
+            ntext.append(val)
             self.failIf(type == Error, 'lexer generated error token for '+absfn)
-        if ntext != text:
+        if u''.join(ntext) != text:
             self.fail('round trip failed for '+absfn)
 
     setattr(ExampleFileTest, 'test_%i' % lfd, test)
