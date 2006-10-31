@@ -5,6 +5,9 @@ Version 0.6
 -----------
 (released Nov XX, 2006)
 
+- Encoding support added: all processing is now done with Unicode
+  strings, input and output are converted from and to byte strings.
+
 - Some improvements in the C(++) lexers handling comments and line
   continuations.
 
