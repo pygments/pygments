@@ -44,7 +44,7 @@ class BBCodeFormatter(Formatter):
         self._code = get_bool_opt(options, 'codetag', False)
         self._mono = get_bool_opt(options, 'monofont', False)
 
-        self.styles = {} 
+        self.styles = {}
         self._make_styles()
 
     def _make_styles(self):

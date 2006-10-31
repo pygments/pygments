@@ -53,7 +53,7 @@ class Lexer(object):
     ``encoding``
         If given, must be an encoding name. This encoding will be used to
         convert the input string to Unicode, if it is not already a Unicode
-        string. The default is to use latin1 (default: 'latin1'). 
+        string. The default is to use latin1 (default: 'latin1').
     """
 
     #: Name of the lexer
