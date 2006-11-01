@@ -54,6 +54,8 @@ class Lexer(object):
         If given, must be an encoding name. This encoding will be used to
         convert the input string to Unicode, if it is not already a Unicode
         string. The default is to use latin1 (default: 'latin1').
+        Can also be 'guess' to use a simple UTF-8 / Latin1 detection, or
+        'chardet' to use the chardet library, if it is installed.
     """
 
     #: Name of the lexer
@@ -110,7 +112,23 @@ class Lexer(object):
         if isinstance(text, unicode):
             text = u'\n'.join(text.splitlines())
         else:
-            text = '\n'.join(text.splitlines()).decode(self.encoding)
+            text = '\n'.join(text.splitlines())
+            if self.encoding == 'guess':
+                try:
+                    text = text.decode('utf-8-sig')
+                except UnicodeDecodeError:
+                    text = text.decode('latin1')
+            elif self.encoding == 'chardet':
+                try:
+                    import chardet
+                except ImportError:
+                    raise ImportError('To enable chardet encoding guessing, please '
+                                      'install the chardet library from '
+                                      'http://chardet.feedparser.org/')
+                enc = chardet.detect(text)
+                text = text.decode(enc['encoding'])
+            else:
+                text = text.decode(self.encoding)
         if self.stripall:
             text = text.strip()
         elif self.stripnl:

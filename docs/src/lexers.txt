@@ -18,6 +18,16 @@ Currently, **all lexers** support these options:
 `tabsize`
     If given and greater than 0, expand tabs in the input (default: ``0``).
 
+`encoding`
+    If given, must be an encoding name (such as ``"utf-8"``). This encoding
+    will be used to convert the input string to Unicode (if it is not already
+    a Unicode string). The default is ``"latin1"``.
+
+    If this option is set to ``"guess"``, a simple UTF-8 vs. Latin-1
+    detection is used, if it is set to ``"chardet"``, the
+    `chardet library <http://chardet.feedparser.org/>`__ is used to
+    guess the encoding of the input.
+
 
 These lexers are builtin and can be imported from
 `pygments.lexers`:
