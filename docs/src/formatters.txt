@@ -9,6 +9,17 @@ This page lists all builtin formatters.
 Common options
 ==============
 
+All formatters support this option:
+
+`encoding`
+    If given, must be an encoding name (such as ``"utf-8"``). This will
+    be used to convert the token strings (which are Unicode strings)
+    to byte strings in the output (default: ``"latin1"``).
+    It will also be written in an encoding declaration suitable for the
+    document format if the `full` option is given (e.g. a ``meta
+    content-type`` directive in HTML or an invocation of the `inputenc`
+    package in LaTeX).
+
 The `HtmlFormatter` and `LatexFormatter` classes support these options:
 
 `style`
