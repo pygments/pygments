@@ -174,8 +174,12 @@ The -V option prints the package version.
         try:
             o_args = o_str.split(',')
             for o_arg in o_args:
-                o_key, o_val = o_arg.split('=')
-                O_opts[o_key] = o_val
+                try:
+                    o_key, o_val = o_arg.split('=')
+                except ValueError:
+                    O_opts[o_arg] = True
+                else:
+                    O_opts[o_key] = o_val
         except ValueError:
             print >>sys.stderr, 'Error in -O specification.'
             return 2
