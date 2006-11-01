@@ -328,8 +328,8 @@ class XmlLexer(RegexLexer):
             ('<!--', Comment, 'comment'),
             (r'<\?.*?\?>', Comment.Preproc),
             ('<![^>]*>', Comment.Preproc),
-            (r'<\s*[a-zA-Z0-9:-]+', Name.Tag, 'tag'),
-            (r'<\s*/\s*[a-zA-Z0-9:-]+\s*>', Name.Tag),
+            (r'<\s*[a-zA-Z0-9:.-]+', Name.Tag, 'tag'),
+            (r'<\s*/\s*[a-zA-Z0-9:.-]+\s*>', Name.Tag),
         ],
         'comment': [
             ('[^-]+', Comment),
@@ -338,7 +338,7 @@ class XmlLexer(RegexLexer):
         ],
         'tag': [
             (r'\s+', Text),
-            (r'[a-zA-Z0-9_:-]+\s*=', Name.Attribute, 'attr'),
+            (r'[a-zA-Z0-9_.:-]+\s*=', Name.Attribute, 'attr'),
             (r'/?\s*>', Name.Tag, '#pop'),
         ],
         'attr': [
