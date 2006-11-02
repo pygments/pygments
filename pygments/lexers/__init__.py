@@ -37,6 +37,17 @@ def _load_lexers(module_name):
         _lexer_cache[cls.name] = cls
 
 
+def get_all_lexers():
+    """
+    Return a generator of tuples in the form ``(name, aliases,
+    filenames, mimetypes)`` of all know lexers.
+    """
+    for item in LEXERS.itervalues():
+        yield item[1:]
+    for lexer in find_plugin_lexers():
+        yield lexer.name, lexer.aliases, lexer.filenames, lexer.mimetypes
+
+
 def get_lexer_by_name(_alias, **options):
     """
     Get a lexer by an alias.
