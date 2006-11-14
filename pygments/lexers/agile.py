@@ -118,7 +118,7 @@ class PythonLexer(RegexLexer):
              '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
             (r'[^\\\'"%\n]+', String),
             # quotes, percents and backslashes must be parsed one at a time
-            ('[\'"\\\\]', String),
+            ('[\'"\\\\][\'"]?', String),
             # unhandled string formatting sign
             (r'%', String)
             # newlines are an error (use "nl" state)
