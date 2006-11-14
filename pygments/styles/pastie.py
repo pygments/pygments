@@ -50,6 +50,7 @@ class PastieStyle(Style):
         Name.Tag:               'bold #bb0066',
         Name.Attribute:         '#336699',
         Name.Decorator:         '#555555',
+        Name.Label:             'italic #336699',
 
         Number:                 'bold #0000DD',
 

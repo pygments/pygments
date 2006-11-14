@@ -203,7 +203,7 @@ class DelphiLexer(RegexLexer):
              r'finally|for|goto|if|implementation|in|inherited|out|'
              r'initialization|inline|interface|is|label|mod|near|nil|not|'
              r'object|of|on|or|overload|override|package|packed|pascal|'
-             r'private|program|property|protected|public|'
+             r'private|program|protected|public|'
              r'published|raise|record|register|repeat|requires|resourcestring|'
              r'safecall|self|set|shl|shr|stdcall|then|threadvar|to|try|'
              r'type|unit|until|uses|var|varargs|virtual|while|with|xor|'
@@ -211,7 +211,8 @@ class DelphiLexer(RegexLexer):
             (r'(AnsiString|Boolean|Byte|ByteBool|Cardinal|Char|Comp|'
              r'Currency|Double|Extended|Int64|Integer|LongBool|LongInt|Real|'
              r'Real48|ShortInt|ShortString|Single|SmallInt|String|WideChar|'
-             r'WideString|Word|WordBool)\b', Keyword.Type),
+             r'WideString|Word|WordBool|Boolean)\b', Keyword.Type),
+            (r'property\b', Keyword, 'property'),
             (r'(true|false|inc|dec)\b', Name.Builtin),
             include('comments'),
             (r"'(''|[^']*)'", String),
@@ -219,7 +220,8 @@ class DelphiLexer(RegexLexer):
             (r'\#\$?[0-9]{1,3}', Number),
             (r'[0-9]', Number),
             (r'[@~!%^&*()+=|\[\]:;,.<>/?-]', Text),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
+            (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*)(:)',
+             bygroups(Text, Name.Label, Text)),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'comments': [
@@ -233,6 +235,11 @@ class DelphiLexer(RegexLexer):
             (r'[\s,]', Text),
             include('comments'),
             (r';', Text, '#pop')
+        ],
+        'property': [
+            (r';', Text, '#pop'),
+            (r'(read|write)\b', Keyword),
+            include('root')
         ],
         'funcname': [
             (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Function, '#pop')
@@ -267,10 +274,18 @@ class DelphiLexer(RegexLexer):
              r'setcxz|sete|setg|setge|setl|setle|setna|setnae|setnb|setnbe|'
              r'setnc|setne|setng|setnge|setnl|setnle|setno|setnp|setns|setnz|'
              r'seto|setp|setpe|setpo|sets|setz)\b', Keyword),
-            ('[a-zA-Z_@][a-zA-Z0-9_]*', Name),
+            (r'(byte|dmtindex|dword|large|offset|ptr|qword|small|tbyte|'
+             r'type|vmtoffset|word)\b', Keyword.Pseudo),
+            (r'(ah|al|ax|bh|bl|bp|bx|ch|cl|cr0|cr1|cr2|cr3|cr4|cs|cx|dh|di|'
+             r'dl|dr0|dr1|dr2|dr3|dr4|dr5|dr6|dr7|ds|dx|eax|ebp|ebx|ecx|edi|'
+             r'edx|es|esi|esp|fs|gs|mm0|mm1|mm2|mm3|mm4|mm5|mm6|mm7|si|sp|'
+             r'ss|st0|st1|st2|st3|st4|st5|st6|st7|xmm0|xmm1|xmm2|xmm3|xmm4|'
+             r'xmm5|xmm6|xmm7)\b', Name.Builtin),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'(@@[a-zA-Z0-9_]+)(:)?', bygroups(Name.Label, Text)),
             (r'\$[0-9]+', Number),
             (r"'(''|[^']+)'", String),
-            (r'.', Text)
+            (r'[\[\]&()*+,./;-]', Text)
         ]
     }
 
