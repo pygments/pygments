@@ -858,7 +858,7 @@ def find_colors(code):
             for token in tokens:
                 color_map[token] = ' '.join(tmp)
 
-    default_token = color_map.pop('', '')
+    default_token = color_map.pop('')
     return default_token, color_map
 
 
@@ -867,7 +867,6 @@ class StyleWriter(object):
     def __init__(self, code, name):
         self.code = code
         self.name = name.lower()
-        self.styles = {}
 
     def write_header(self, out):
         out.write('# -*- coding: utf-8 -*-\n"""\n')
