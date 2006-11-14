@@ -200,7 +200,7 @@ class DelphiLexer(RegexLexer):
             (r'(abstract|and|array|as|assembler|at|begin|case|cdecl|'
              r'class|const|constructor|contains|destructor|dispinterface|'
              r'div|do|downto|else|end|except|far|file|finalization|'
-             r'finally|for|goto|if|implementation|in|inherited|'
+             r'finally|for|goto|if|implementation|in|inherited|out|'
              r'initialization|inline|interface|is|label|mod|near|nil|not|'
              r'object|of|on|or|overload|override|package|packed|pascal|'
              r'private|program|property|protected|public|'
