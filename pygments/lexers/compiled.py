@@ -214,6 +214,7 @@ class DelphiLexer(RegexLexer):
              r'WideString|Word|WordBool|Boolean)\b', Keyword.Type),
             (r'property\b', Keyword, 'property'),
             (r'(true|false|inc|dec)\b', Name.Builtin),
+            (r'(result)\b', Keyword.Pseudo),
             include('comments'),
             (r"'(''|[^']*)'", String),
             (r'\$[0-9a-fA-F]+', Number),
