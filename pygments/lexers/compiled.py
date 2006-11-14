@@ -213,6 +213,7 @@ class DelphiLexer(RegexLexer):
              r'Real48|ShortInt|ShortString|Single|SmallInt|String|WideChar|'
              r'WideString|Word|WordBool)\b', Keyword.Type),
             (r'(true|false|inc|dec)\b', Name.Builtin),
+            include('comments'),
             (r"'(''|[^']*)'", String),
             (r'\$[0-9a-fA-F]+', Number),
             (r'\#\$?[0-9]{1,3}', Number),
@@ -220,7 +221,6 @@ class DelphiLexer(RegexLexer):
             (r'[@~!%^&*()+=|\[\]:;,.<>/?-]', Text),
             (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
-            include('comments')
         ],
         'comments': [
             (r'\{.*?\}', Comment),
