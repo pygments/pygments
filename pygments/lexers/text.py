@@ -83,7 +83,7 @@ class DiffLexer(RegexLexer):
     name = 'Diff'
     aliases = ['diff']
     filenames = ['*.diff', '*.patch']
-    mimetypes = ['text/x-diff']
+    mimetypes = ['text/x-diff', 'text/x-patch']
 
     tokens = {
         'root': [
