@@ -199,22 +199,20 @@ class DelphiLexer(RegexLexer):
             (r'(procedure|function)(\s+)', bygroups(Keyword, Text), 'funcname'),
             (r'(abstract|and|array|as|assembler|at|begin|case|cdecl|'
              r'class|const|constructor|contains|destructor|dispinterface|'
-             r'div|do|downto|else|end|except|false|far|file|finalization|'
+             r'div|do|downto|else|end|except|far|file|finalization|'
              r'finally|for|goto|if|implementation|in|inherited|'
              r'initialization|inline|interface|is|label|mod|near|nil|not|'
              r'object|of|on|or|overload|override|package|packed|pascal|'
              r'private|program|property|protected|public|'
              r'published|raise|record|register|repeat|requires|resourcestring|'
-             r'safecall|self|set|shl|shr|stdcall|then|threadvar|to|true|try|'
+             r'safecall|self|set|shl|shr|stdcall|then|threadvar|to|try|'
              r'type|unit|until|uses|var|varargs|virtual|while|with|xor|'
-             r'break|assert|dec|inc)\b', Keyword),
+             r'break|assert)\b', Keyword),
             (r'(AnsiString|Boolean|Byte|ByteBool|Cardinal|Char|Comp|'
              r'Currency|Double|Extended|Int64|Integer|LongBool|LongInt|Real|'
              r'Real48|ShortInt|ShortString|Single|SmallInt|String|WideChar|'
              r'WideString|Word|WordBool)\b', Keyword.Type),
-            (r'\{.*?\}', Comment),
-            (r'\(\*.*?\*\)', Comment),
-            (r'//.*?\n', Comment),
+            (r'(true|false|inc|dec)\b', Name.Builtin),
             (r"'(''|[^']*)'", String),
             (r'\$[0-9a-fA-F]+', Number),
             (r'\#\$?[0-9]{1,3}', Number),
@@ -222,10 +220,18 @@ class DelphiLexer(RegexLexer):
             (r'[@~!%^&*()+=|\[\]:;,.<>/?-]', Text),
             (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            include('comments')
+        ],
+        'comments': [
+            (r'\{.*?\}', Comment),
+            (r'\(\*.*?\*\)', Comment),
+            (r'//.*?\n', Comment)
         ],
         'uses': [
+            (r'(in)(\s+)(\'.*?\')', bygroups(Keyword, Text, String)),
             (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace),
-            (r'\s*,\s*', Text),
+            (r'[\s,]', Text),
+            include('comments'),
             (r';', Text, '#pop')
         ],
         'funcname': [
@@ -234,9 +240,7 @@ class DelphiLexer(RegexLexer):
         'asm': [
             (r'end', Keyword, '#pop'),
             (r'\s+', Text),
-            (r'\{.*?\}', Comment),
-            (r'\(\*.*?\*\)', Comment),
-            (r'//.*?\n', Comment),
+            include('comments'),
             (r'(AAA|AAD|AAM|AAS|ADC|ADD|AND|ARPL|BOUND|BSF|BSR|BSWAP|BT|'
              r'BTC|BTR|BTS|CALL|CBW|CDQ|CLC|CLD|CLI|CLTS|CMC|CMP|CMPSB|'
              r'CMPSD|CMPSW|CMPXCHG|CMPXCHG486|CMPXCHG8B|CPUID|CWD|CWDE|'
