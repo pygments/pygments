@@ -284,7 +284,7 @@ class DelphiLexer(RegexLexer):
              r'xmm5|xmm6|xmm7)\b', Name.Builtin),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'(@@[a-zA-Z0-9_]+)(:)?', bygroups(Name.Label, Text)),
-            (r'\$[0-9]+', Number),
+            (r'\$[0-9a-zA-Z]+', Number),
             (r"'(''|[^']+)'", String),
             (r'[\[\]&()*+,./;-]', Text)
         ]
