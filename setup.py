@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import ez_setup
 ez_setup.use_setuptools()

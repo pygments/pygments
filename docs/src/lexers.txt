@@ -371,12 +371,12 @@ Template languages
 `DjangoLexer`
 
     Generic `django <http://www.djangoproject.com/documentation/templates/>`_
-    template lexer.
+    and `jinja <http://wsgiarea.pocoo.org/jinja/>`_ template lexer.
 
-    It just highlights django code between the preprocessor directives, other
-    data is left untouched by the lexer.
+    It just highlights django/jinja code between the preprocessor directives,
+    other data is left untouched by the lexer.
 
-    :Aliases:   ``django``
+    :Aliases:   ``django``, ``jinja``
     :Filename patterns: None
 
 
@@ -387,7 +387,7 @@ Template languages
 
     Nested Javascript and CSS is highlighted too.
 
-    :Aliases:   ``html+django``
+    :Aliases:   ``html+django``, ``html+jinja``
     :Filename patterns: None
 
 
@@ -396,7 +396,7 @@ Template languages
     Subclass of the `DjangoLexer` that highlights unlexed data with the
     `XmlLexer`.
 
-    :Aliases:   ``xml+django``
+    :Aliases:   ``xml+django``, ``xml+jinja``
     :Filename patterns: None
 
 
@@ -405,7 +405,7 @@ Template languages
     Subclass of the `DjangoLexer` that highlights unlexed data with the
     `CssLexer`.
 
-    :Aliases:   ``css+django``
+    :Aliases:   ``css+django``, ``css+jinja``
     :Filename patterns: None
 
 
@@ -414,7 +414,8 @@ Template languages
     Subclass of the `DjangoLexer` that highlights unlexed data with the
     `JavascriptLexer`.
 
-    :Aliases:   ``javascript+django``
+    :Aliases:   ``javascript+django``, ``js+django``,
+                ``javascript+jinja``, ``js+jinja``
     :Filename patterns: None
 
 
@@ -464,6 +465,50 @@ Template languages
     `JavascriptLexer`.
 
     :Aliases:   ``javascript+smarty``
+    :Filename patterns: None
+
+
+`GenshiTextLexer`
+
+    A lexer that highlights `genshi <http://genshi.edgewall.org/>`_ text
+    templates.
+
+    :Aliases:   ``genshitext``
+    :Filename patterns: None
+
+
+`HtmlGenshiLexer`
+
+    A lexer that highlights `genshi <http://genshi.edgewall.org/>`_ and
+    `kid <http://kid-templating.org/>`_ kid HTML templates.
+
+    :Aliases:   ``html+genshi``, ``html+kid``
+    :Filename patterns: None
+
+
+`GenshiLexer`
+
+    A lexer that highlights `genshi <http://genshi.edgewall.org/>`_ and
+    `kid <http://kid-templating.org/>`_ kid XML templates.
+
+    :Aliases:   ``genshi``, ``kid``, ``xml+genshi``, ``xml.kid``
+    :Filename patterns: ``*.kid``
+
+
+`JavascriptGenshiLexer`
+
+    A lexer that highlights javascript code in genshi text templates.
+
+    :Aliases:   ``js+genshitext``, ``js+genshi``, ``javascript+genshitext``,
+                ``javascript+genshi``
+    :Filename patterns: None
+
+
+`CssGenshiLexer`
+
+    A lexer that highlights CSS definitions in genshi text templates.
+
+    :Aliases:   ``css+genshitext``, ``css+genshi``
     :Filename patterns: None
 
 
