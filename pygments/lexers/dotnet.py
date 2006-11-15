@@ -151,11 +151,11 @@ class VbNetLexer(RegexLexer):
             (r'\n', Text),
             (r'rem\b.*?\n', Comment),
             (r"'.*?\n", Comment),
-            (r'[\(\){}!#,.:]', Text),
             (r'#If\s.*?\sThen|#ElseIf\s.*?\sThen|#End\s+If|#Const|'
              r'#ExternalSource.*?\n|#End\s+ExternalSource|'
              r'#Region.*?\n|#End\s+Region|#ExternalChecksum',
              Comment.Preproc),
+            (r'[\(\){}!#,.:]', Text),
             (r'Option\s+(Strict|Explicit|Compare)\s+'
              r'(On|Off|Binary|Text)', Keyword.Declaration),
             (r'(?<!\.)(AddHandler|Alias|'
