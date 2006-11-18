@@ -543,11 +543,10 @@ class DelphiLexer(Lexer):
                     elif in_function_block and \
                          lowercase_name in self.FUNCTION_MODIFIERS:
                         token = Keyword.Pseudo
-                        next_token_is_function
                     # if we are in a property highlight some more
                     # modifiers
                     elif in_property_block and \
-                         lowercase_name in ('read, write'):
+                         lowercase_name in ('read', 'write'):
                         token = Keyword.Pseudo
                         next_token_is_function = True
                     # if the last iteration set next_token_is_function
