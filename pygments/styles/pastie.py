@@ -40,6 +40,7 @@ class PastieStyle(Style):
         Name.Class:             'bold #bb0066',
         Name.Exception:         'bold #bb0066',
         Name.Function:          'bold #0066bb',
+        Name.Property:          'bold #336699',
         Name.Module:            'bold #bb0066',
         Name.Builtin:           '#003388',
         Name.Variable:          '#336699',

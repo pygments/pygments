@@ -36,25 +36,26 @@ class _TokenType(tuple):
         return 'Token' + (self and '.' or '') + '.'.join(self)
 
 
-Token     = _TokenType()
+Token       = _TokenType()
 
 # Special token types
-Text      = Token.Text
-Error     = Token.Error
+Text        = Token.Text
+Error       = Token.Error
 # Text that doesn't belong to this lexer (e.g. HTML in PHP)
-Other     = Token.Other
+Other       = Token.Other
 
 # Common token types for source code
-Keyword   = Token.Keyword
-Name      = Token.Name
-Literal   = Token.Literal
-String    = Literal.String
-Number    = Literal.Number
-Operator  = Token.Operator
-Comment   = Token.Comment
+Keyword     = Token.Keyword
+Name        = Token.Name
+Literal     = Token.Literal
+String      = Literal.String
+Number      = Literal.Number
+Punctuation = Literal.Punctuation
+Operator    = Token.Operator
+Comment     = Token.Comment
 
 # Generic types for non-source code
-Generic   = Token.Generic
+Generic     = Token.Generic
 
 
 def is_token_subtype(ttype, other):
@@ -93,6 +94,7 @@ STANDARD_TYPES = {
     Name.Entity:                   'ni',
     Name.Exception:                'ne',
     Name.Function:                 'nf',
+    Name.Property:                 'py',
     Name.Label:                    'nl',
     Name.Namespace:                'nn',
     Name.Other:                    'nx',
@@ -127,6 +129,8 @@ STANDARD_TYPES = {
 
     Operator:                      'o',
     Operator.Word:                 'ow',
+
+    Punctuation:                   'p',
 
     Comment:                       'c',
     Comment.Multiline:             'cm',
