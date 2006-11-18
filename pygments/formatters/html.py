@@ -41,12 +41,13 @@ def get_random_id():
 
 def _get_ttype_class(ttype):
     fname = STANDARD_TYPES.get(ttype)
-    if fname: return fname
+    if fname:
+        return fname
     aname = ''
     while fname is None:
         aname = '-' + ttype[-1] + aname
         ttype = ttype.parent
-        fname = STANDARD_TYPES.get(ttype)
+        fname = STANDARD_TYPES.get(ttype, '')
     return fname + aname
 
 
@@ -131,8 +132,7 @@ class HtmlFormatter(Formatter):
         the classprefix option."""
         if ttype in self._class_cache:
             return self._class_cache[ttype]
-
-        return self.classprefix + STANDARD_TYPES.get(ttype) or _get_ttype_class(ttype)
+        return self.classprefix + _get_ttype_class(ttype)
 
     def _create_stylesheet(self):
         t2c = self.ttype2class = {Token: ''}
