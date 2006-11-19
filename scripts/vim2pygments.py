@@ -787,7 +787,7 @@ def find_colors(code):
     colors = {'Normal': {}}
     bg_color = None
     def set(attrib, value):
-        if not token in colors:
+        if token not in colors:
             colors[token] = {}
         if key.startswith('gui') or attrib not in colors[token]:
             colors[token][attrib] = value

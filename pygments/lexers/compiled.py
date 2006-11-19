@@ -461,7 +461,7 @@ class DelphiLexer(Lexer):
         self.builtins = set()
         for unit in get_list_opt(options, 'units', self.BUILTIN_UNITS.keys()):
             self.builtins.update(self.BUILTIN_UNITS[unit])
-    
+
     def get_tokens_unprocessed(self, text):
         scanner = Scanner(text, re.DOTALL | re.MULTILINE | re.IGNORECASE)
         stack = ['initial']
