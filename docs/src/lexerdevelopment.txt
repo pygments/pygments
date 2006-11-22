@@ -497,8 +497,8 @@ the ``get_tokens_unprocessed()`` method. The following lexer subclasses the
 
 .. sourcecode:: python
 
-    from pykleur.lexers.agile import PythonLexer
-    from pykleur.token import Name, Keyword
+    from pygments.lexers.agile import PythonLexer
+    from pygments.token import Name, Keyword
 
     class MyPythonLexer(PythonLexer):
         EXTRA_KEYWORDS = ['foo', 'bar', 'foobar', 'barfoo', 'spam', 'eggs']
