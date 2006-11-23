@@ -38,3 +38,12 @@ def get_style_by_name(name):
     mod, cls = STYLE_MAP[name].split('::')
     mod = __import__('pygments.styles.' + mod, None, None, [cls])
     return getattr(mod, cls)
+
+
+def get_all_styles():
+    """Return an generator for all styles by name.
+    Both builtin and plugin."""
+    for name in STYLE_MAP:
+        yield name
+    for name, _ in find_plugin_styles():
+        yield name

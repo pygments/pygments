@@ -117,3 +117,17 @@ To get a list of known styles you can use this snippet:
     >>> from pygments.styles import STYLE_MAP
     >>> STYLE_MAP.keys()
     ['default', 'emacs', 'friendly', 'colorful']
+
+
+Getting a list of available Styles
+==================================
+
+*requires pygments > 0.5.1*
+
+Because it could be that a plugin registered a style there is
+a way to iterate over all styles:
+
+.. sourcecode:: pycon
+
+    >>> from pygments.styles import get_all_styles
+    >>> styles = list(get_all_styles())

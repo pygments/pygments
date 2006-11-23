@@ -48,7 +48,7 @@ class PythonLexer(RegexLexer):
             (r'!=|==|<<|>>|[-+/*%=<>&^|]', Operator),
             (r'(assert|break|continue|del|elif|else|except|exec|'
              r'finally|for|global|if|lambda|pass|print|raise|'
-             r'return|try|while|yield)\b', Keyword),
+             r'return|try|while|yield|as|with)\b', Keyword),
             (r'(def)(\s+)', bygroups(Keyword, Text), 'funcname'),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(from)(\s+)', bygroups(Keyword, Text), 'fromimport'),

@@ -77,3 +77,11 @@ def get_formatter_for_filename(fn, **options):
     if not cls:
         raise ValueError("No formatter found for file name %r" % fn)
     return cls(**options)
+
+
+def get_all_formatters():
+    """Return a generator for all formatters."""
+    for formatter in FORMATTERS:
+        yield formatter
+    for _, formatter in find_plugin_formatters():
+        yield formatter
