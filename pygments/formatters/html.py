@@ -165,13 +165,22 @@ class HtmlFormatter(Formatter):
         current highlighting style. ``arg`` can be a string of selectors
         to insert before the token type classes.
         """
-        if arg:
-            arg += ' '
+        if isinstance(arg, basestring):
+            args = [arg]
+        else:
+            args = list(arg)
+        
+        def prefix(cls):
+            tmp = []
+            for arg in args:
+                tmp.append((arg and arg + ' ' or '') + '.' + cls)
+            return ', '.join(tmp)
+        
         styles = [(level, ttype, cls, style)
                   for cls, (style, ttype, level) in self.class2style.iteritems()
                   if cls and style]
         styles.sort()
-        lines = ['%s.%s { %s } /* %s */' % (arg, cls, style, repr(ttype)[6:])
+        lines = ['%s { %s } /* %s */' % (prefix(cls), style, repr(ttype)[6:])
                  for level, ttype, cls, style in styles]
         if arg and not self.nobackground and \
            self.style.background_color is not None:

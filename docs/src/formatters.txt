@@ -96,6 +96,23 @@ All these classes are importable from `pygments.formatters`.
         td .code .cm { color: #999999 }
         ...
 
+    If you have pygments > 0.5.1 you can also pass a list of tuple to the
+    `get_style_defs` method to request multiple prefixes for the tokens:
+
+    .. sourcecode:: python
+
+        formatter.get_style_defs(['div.syntax pre', 'pre.syntax'])
+
+    The output would then look like this:
+
+    .. sourcecode:: css
+
+        div.syntax pre .kw,
+        pre.syntax .kw { font-weight: bold; color: #00FF00 }
+        div.syntax pre .cm,
+        pre.syntax .cm { color: #999999 }
+        ...
+
     Additional options accepted by the `HtmlFormatter`:
 
     `nowrap`
@@ -257,4 +274,3 @@ All these classes are importable from `pygments.formatters`.
 
     :Aliases: ``text``, ``null``
     :Filename pattern: ``*.txt``
-

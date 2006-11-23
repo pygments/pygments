@@ -56,7 +56,8 @@ class Formatter(object):
         Return the style definitions for the current style as a string.
 
         ``arg`` is an additional argument whose meaning depends on the
-        formatter used.
+        formatter used. Note that ``arg`` can also be a list or tuple
+        for some formatters like the html formatter.
         """
         return ''
 

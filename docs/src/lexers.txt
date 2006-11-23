@@ -574,3 +574,27 @@ Text lexers
 
     :Aliases: ``tex``, ``latex``
     :Filename patterns: ``*.tex``, ``*.aux``, ``*.toc``
+
+
+Iterating over all Lexers
+=========================
+
+*requires pygments > 0.5.1*
+
+To get all lexers (both the builtin and the plugin ones) you can
+use the `get_all_lexers` function from the `pygments.lexers`
+module:
+
+.. sourcecode:: pycon
+
+    >>> from pygments.lexers import get_all_lexers
+    >>> i = get_all_lexers()
+    >>> i.next()
+    ('Diff', ('diff',), ('*.diff', '*.patch'), ('text/x-diff', 'text/x-patch'))
+    >>> i.next()
+    ('Delphi', ('delphi', 'objectpascal', 'pas', 'pascal'), ('*.pas',), ('text/x-pascal',))
+    >>> i.next()
+    ('XML+Ruby', ('xml+erb', 'xml+ruby'), (), ())
+
+As you can see the return value is an iterator which yields tuples
+in the form ``(name, aliases, filetypes, mimetypes)``
