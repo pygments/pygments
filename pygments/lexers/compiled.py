@@ -167,7 +167,9 @@ class CppLexer(RegexLexer):
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'classname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            # template specification
+            (r'\s*(?=>)', Text, '#pop'),
         ],
         'string': [
             (r'"', String, '#pop'),
