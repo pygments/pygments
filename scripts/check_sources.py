@@ -186,6 +186,9 @@ def main(argv):
     num = 0
     out = cStringIO.StringIO()
 
+    # TODO: replace os.walk run with iteration over output of
+    #       `svn list -R`.
+
     for root, dirs, files in os.walk(path):
         if '.svn' in dirs:
             dirs.remove('.svn')

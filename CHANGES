@@ -3,7 +3,15 @@ Pygments changelog
 
 Version 0.6
 -----------
-(released Nov XX, 2006)
+(released Dec XX, 2006)
+
+- Added a Scheme lexer (thanks to Marek Kubica).
+
+- Added some functions to iterate over existing lexers, formatters
+  and lexers.
+
+- The HtmlFormatter's `get_style_defs()` can now take a list as an
+  argument to generate CSS with multiple prefixes.
 
 - Support for guessing input encoding added.
 
@@ -19,7 +27,7 @@ Version 0.5.1
 -------------
 (released Oct 30, 2006)
 
-- Fix traceback in ``pygmentize -L`` (thanks to Piotr Ozarowski).
+- Fixed traceback in ``pygmentize -L`` (thanks to Piotr Ozarowski).
 
 
 Version 0.5
