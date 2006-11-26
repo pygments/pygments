@@ -169,13 +169,13 @@ class HtmlFormatter(Formatter):
             args = [arg]
         else:
             args = list(arg)
-        
+
         def prefix(cls):
             tmp = []
             for arg in args:
                 tmp.append((arg and arg + ' ' or '') + '.' + cls)
             return ', '.join(tmp)
-        
+
         styles = [(level, ttype, cls, style)
                   for cls, (style, ttype, level) in self.class2style.iteritems()
                   if cls and style]
