@@ -576,13 +576,13 @@ Text lexers
     :Filename patterns: ``*.tex``, ``*.aux``, ``*.toc``
 
 
-Iterating over all Lexers
+Iterating over all lexers
 =========================
 
-*requires pygments > 0.5.1*
+*requires Pygments > 0.5.1*
 
-To get all lexers (both the builtin and the plugin ones) you can
-use the `get_all_lexers` function from the `pygments.lexers`
+To get all lexers (both the builtin and the plugin ones), you can
+use the `get_all_lexers()` function from the `pygments.lexers`
 module:
 
 .. sourcecode:: pycon
@@ -596,5 +596,5 @@ module:
     >>> i.next()
     ('XML+Ruby', ('xml+erb', 'xml+ruby'), (), ())
 
-As you can see the return value is an iterator which yields tuples
-in the form ``(name, aliases, filetypes, mimetypes)``
+As you can see, the return value is an iterator which yields tuples
+in the form ``(name, aliases, filetypes, mimetypes)``.
