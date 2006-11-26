@@ -876,7 +876,7 @@ class SchemeLexer(RegexLexer):
             # strings, symbols and characters
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'[a-zA-Z0-9]+", String.Symbol),
-            (r"#\\([()/'\".'_!§$%&?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
+            (r"#\\([()/'\".'_!§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
 
             # constants
             (r'(#t|#f)', Name.Constant),
