@@ -52,8 +52,7 @@ functions.
 .. sourcecode:: python
 
     from pygments.lexer import RegexLexer
-    from pygments.token import \
-         Text, Comment, Keyword, Name, String, Generic
+    from pygments.token import *
 
     class DiffLexer(RegexLexer):
         name = 'Diff'
@@ -104,6 +103,7 @@ sections, comments and key = value pairs:
 .. sourcecode:: python
 
     from pygments.lexer import RegexLexer, bygroups
+    from pygments.token import *
 
     class IniLexer(RegexLexer):
         name = 'INI'
@@ -124,7 +124,7 @@ The lexer first looks for whitespace, comments and section names. And later it
 looks for a line that looks like a key, value pair, seperated by an ``'='``
 sign, and optional whitespace.
 
-The `bygroups` helper makes sure that aach group is yielded with a different
+The `bygroups` helper makes sure that each group is yielded with a different
 token type. First the `Name.Attribute` token, then a `Text` token for the
 optional whitespace, after that a `Operator` token for the equals sign. Then a
 `Text` token for the whitespace again. The rest of the line is returned as
@@ -146,6 +146,9 @@ pattern it's impossible to lex just using regular expressions.
 Here is the solution:
 
 .. sourcecode:: python
+
+    from pygments.lexer import RegexLexer
+    from pygments.token import *
 
     class ExampleLexer(RegexLexer):
         name = 'Example Lexer with states'
@@ -234,7 +237,8 @@ There are a few more things you can do with states:
 
   .. sourcecode:: python
 
-      from pygments.lexer import RegexLexer, include
+      from pygments.lexer import RegexLexer, bygroups, include
+      from pygments.token import *
 
       class ExampleLexer(RegexLexer):
           tokens = {
@@ -245,7 +249,7 @@ There are a few more things you can do with states:
               'root': [
                   include('comments'),
                   (r'(function )(\w+)( {)',
-                   (Keyword, Name, Keyword), 'function'),
+                   bygroups(Keyword, Name, Keyword), 'function'),
                   (r'.', Text),
               ],
               'function': [
@@ -279,6 +283,8 @@ There are a few more things you can do with states:
 
   .. sourcecode:: python
 
+      from pygments.lexer import RegexLexer
+
       class MyLexer(RegexLexer):
           tokens = {...}
 
@@ -306,6 +312,8 @@ For example, look at this stripped-down HTML lexer:
 .. sourcecode:: python
 
     from pygments.lexer import RegexLexer, bygroups, using
+    from pygments.token import *
+    from pygments.lexers.web import JavascriptLexer
 
     class HtmlLexer(RegexLexer):
         name = 'HTML'
@@ -406,9 +414,14 @@ You can see an example here:
 
 .. sourcecode:: python
 
+    from pygments.lexer import RegexLexer
+    from pygments.token import Generic
+
     class HypotheticLexer(RegexLexer):
 
         def headline_callback(lexer, match):
+            equal_signs = match.group(1)
+            text = match.group(2)
             yield match.start(), Generic.Headline, equal_signs + text + equal_signs
 
         tokens = {
@@ -464,9 +477,14 @@ For example, this is how the hypothetical lexer above would be written with the
 
 .. sourcecode:: python
 
+    from pygments.lexer import ExtendedRegexLexer
+    from pygments.token import Generic
+
     class ExHypotheticLexer(ExtendedRegexLexer):
 
         def headline_callback(lexer, match, ctx):
+            equal_signs = match.group(1)
+            text = match.group(2)
             yield match.start(), Generic.Headline, equal_signs + text + equal_signs
             ctx.pos = match.end()
 
