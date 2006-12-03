@@ -8,7 +8,7 @@ Pygments requires at least Python 2.3 to work correctly. Just to clarify:
 there *won't* ever be support for Python versions below 2.3.
 
 
-Install the Release Version
+Install the release version
 ===========================
 
 1.  download the recent tarball from the `download page`_
@@ -33,10 +33,10 @@ This will install a Pygments egg in your Python installation's site-packages
 directory.
 
 
-Installing the development Version
+Installing the development version
 ==================================
 
-1.  Install `subversion`_
+1.  Install `Subversion`_
 2.  ``svn co http://trac.pocoo.org/repos/pygments/trunk pygments``
 3.  ``ln -s `pwd`/pygments/pygments /usr/lib/python2.X/site-packages``
 4.  ``ln -s `pwd`/pygments/pygmentize /usr/local/bin``
@@ -45,4 +45,4 @@ Installing the development Version
 .. _download page: http://pygments.pocoo.org/download/
 .. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
 .. _easy_install: http://peak.telecommunity.com/DevCenter/EasyInstall
-.. _subversion: http://subversion.tigris.org/
+.. _Subversion: http://subversion.tigris.org/
