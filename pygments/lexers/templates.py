@@ -250,11 +250,11 @@ class MyghtyLexer(RegexLexer):
             (r'''(?sx)
                 (.+?)               # anything, followed by:
                 (?:
-                 (?<=\n)(?=[%#]) |  # an eval or comment line 
+                 (?<=\n)(?=[%#]) |  # an eval or comment line
                  (?=</?[%&]) |      # a substitution or block or
                                     # call start or end
                                     # - don't consume
-                 (\\\n) |           # an escaped newline  
+                 (\\\n) |           # an escaped newline
                  \Z                 # end of string
                 )
             ''', bygroups(Other, Operator)),
