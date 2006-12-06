@@ -241,7 +241,9 @@ def bygroups(*args):
     """
     def callback(lexer, match, ctx=None):
         for i, action in enumerate(args):
-            if type(action) is _TokenType:
+            if action is None:
+                continue
+            elif type(action) is _TokenType:
                 data = match.group(i + 1)
                 if data:
                     yield match.start(i + 1), action, data
