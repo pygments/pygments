@@ -135,10 +135,11 @@ group (a ``(...)``), and there must not be any nested capturing groups.  If you
 nevertheless need a group, use a non-capturing group defined using this syntax:
 ``r'(?:some|words|here)'`` (note the ``?:`` after the beginning parenthesis).
 
-Sometimes it could be that you need a position group inside the regex which
+If you find yourself needing a capturing group inside the regex which
 shouldn't be part of the output but is used in the regular expressions for
-matching the group twice (eg: ``r'(<(foo|bar)>)(.*?)(</\2>)'``). In such a
-case you can pass `None` to the bygroups function and it will skip that match.
+backreferencing (eg: ``r'(<(foo|bar)>)(.*?)(</\2>)'``), you can pass `None`
+to the bygroups function and it will skip that group will be skipped in the
+output.
 
 
 Changing states
