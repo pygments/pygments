@@ -29,8 +29,7 @@ Currently, **all lexers** support these options:
     guess the encoding of the input.
 
 
-These lexers are builtin and can be imported from
-`pygments.lexers`:
+These lexers are builtin and can be imported from `pygments.lexers`:
 
 
 Special lexers
@@ -516,6 +515,53 @@ Template languages
     A lexer that highlights CSS definitions in genshi text templates.
 
     :Aliases:   ``css+genshitext``, ``css+genshi``
+    :Filename patterns: None
+
+
+`MyghtyLexer`
+
+    Generic `myghty templates`_ lexer. Code that isn't Myghty
+    markup is yielded as `Token.Other`.
+
+    .. _mygthy templates: http://www.myghty.org/
+
+    :Aliases:   ``myghty``
+    :Filename patterns: ``*.myt``, ``autodelegate``
+
+
+`MyghtyHtmlLexer`
+
+    Subclass of the `MyghtyLexer` that highlights unlexer data
+    with the `HtmlLexer`.
+
+    :Aliases:   ``html+myghty``
+    :Filename patterns: None
+
+
+`MyghtyXmlLexer`
+
+    Subclass of the `MyghtyLexer` that highlights unlexer data
+    with the `XmlLexer`.
+
+    :Aliases:   ``xml+myghty``
+    :Filename patterns: None
+
+
+`MyghtyJavascriptLexer`
+
+    Subclass of the `MyghtyLexer` that highlights unlexer data
+    with the `JavascriptLexer`.
+
+    :Aliases:   ``js+myghty``, ``javascript+myghty``
+    :Filename patterns: None
+
+
+`MyghtyCssLexer`
+
+    Subclass of the `MyghtyLexer` that highlights unlexer data
+    with the `CssLexer`.
+
+    :Aliases:   ``css+myghty``
     :Filename patterns: None
 
 
