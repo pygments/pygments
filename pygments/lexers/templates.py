@@ -19,7 +19,7 @@ from pygments.lexers.web import \
      PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
 from pygments.lexers.agile import PythonLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
-     include, using
+     include, using, this
 from pygments.token import Error, \
      Text, Comment, Operator, Keyword, Name, String, Number, Other
 from pygments.util import html_doctype_matches, looks_like_xml
@@ -31,7 +31,9 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'CssSmartyLexer', 'JavascriptSmartyLexer', 'DjangoLexer',
            'HtmlDjangoLexer', 'CssDjangoLexer', 'XmlDjangoLexer',
            'JavascriptDjangoLexer', 'GenshiLexer', 'HtmlGenshiLexer',
-           'GenshiTextLexer', 'CssGenshiLexer', 'JavascriptGenshiLexer']
+           'GenshiTextLexer', 'CssGenshiLexer', 'JavascriptGenshiLexer',
+           'MyghtyLexer', 'MyghtyHtmlLexer', 'MyghtyXmlLexer',
+           'MyghtyCssLexer', 'MyghtyJavascriptLexer']
 
 
 class ErbLexer(Lexer):
@@ -219,6 +221,81 @@ class DjangoLexer(RegexLexer):
         if re.search(r'\{\{.*?\}\}', text) is not None:
             rv += 0.1
         return rv
+
+
+class MyghtyLexer(RegexLexer):
+    name = 'Myghty'
+    aliases = ['myghty']
+    filenames = ['*.myt', 'autodelegate']
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'(<%(def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, None, Text, Name.Function, Name.Tag,
+                      using(this), Name.Tag)),
+            (r'(<%(\w+))(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, None, Name.Function, Name.Tag,
+                      using(PythonLexer), Name.Tag)),
+            (r'(<&[^|])(.*?)(,.*?)?(&>)',
+             bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
+            (r'(<&\|)(.*?)(,.*?)?(&>)(?s)',
+             bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
+            (r'</&>', Name.Tag),
+            (r'(<%)(.*?)(%>)',
+             bygroups(Name.Tag, using(PythonLexer), Name.Tag)),
+            (r'(?<=^)\#[^\n]*(\n|\Z)', Comment),
+            (r'(?<=^)(\%)([^\n]*)(\n|\Z)',
+             bygroups(Name.Tag, using(PythonLexer), Other)),
+            (r'''(?sx)
+                (.+?)               # anything, followed by:
+                (?:
+                 (?<=\n)(?=[%#]) |  # an eval or comment line 
+                 (?=</?[%&]) |      # a substitution or block or
+                                    # call start or end
+                                    # - don't consume
+                 (\\\n) |           # an escaped newline  
+                 \Z                 # end of string
+                )
+            ''', bygroups(Other, Operator)),
+        ]
+    }
+
+
+class MyghtyHtmlLexer(DelegatingLexer):
+    name = 'HTML+Myghty'
+    aliases = ['html+myghty']
+
+    def __init__(self, **options):
+        super(MyghtyHtmlLexer, self).__init__(HtmlLexer, MyghtyLexer,
+                                              **options)
+
+
+class MyghtyXmlLexer(DelegatingLexer):
+    name = 'XML+Myghty'
+    aliases = ['xml+myghty']
+
+    def __init__(self, **options):
+        super(MyghtyXmlLexer, self).__init__(XmlLexer, MyghtyLexer,
+                                             **options)
+
+
+class MyghtyJavascriptLexer(DelegatingLexer):
+    name = 'JavaScript+Myghty'
+    aliases = ['js+myghty', 'javascript+myghty']
+
+    def __init__(self, **options):
+        super(MyghtyJavascriptLexer, self).__init__(JavascriptLexer,
+                                                    MyghtyLexer, **options)
+
+
+class MyghtyCssLexer(DelegatingLexer):
+    name = 'CSS+Myghty'
+    aliases = ['css+myghty']
+
+    def __init__(self, **options):
+        super(MyghtyCssLexer, self).__init__(CssLexer, MyghtyLexer,
+                                             **options)
 
 
 # Genshi lexers courtesy of Matt Good.
