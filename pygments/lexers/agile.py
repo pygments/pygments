@@ -885,8 +885,8 @@ class SchemeLexer(RegexLexer):
             (r"('|#|`|,@|,|\.)", Operator),
 
             # highlight the keywords
-            ('(%s)' % '|'.join(
-                re.escape(entry) + ' ' for entry in keywords),
+            ('(%s)' % '|'.join([
+                re.escape(entry) + ' ' for entry in keywords]),
                 Keyword
             ),
 
@@ -896,8 +896,8 @@ class SchemeLexer(RegexLexer):
             (r"(?<=#\()" + valid_name, Name.Variable),
 
             # highlight the builtins
-            ("(?<=\()(%s)" % '|'.join(
-                re.escape(entry) + ' ' for entry in builtins),
+            ("(?<=\()(%s)" % '|'.join([
+                re.escape(entry) + ' ' for entry in builtins]),
                 Name.Builtin
             ),
 
