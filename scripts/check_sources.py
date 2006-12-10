@@ -126,7 +126,7 @@ def check_fileheader(fn, lines):
 
     # check for copyright and license fields
     license = llist[-2:-1]
-    if license != ["    :license: GNU LGPL, see LICENSE for more details.\n"]:
+    if license != ["    :license: BSD, see LICENSE for more details.\n"]:
         yield 0, "no correct license info"
 
     ci = -3

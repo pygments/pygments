@@ -27,7 +27,7 @@ setup(
     zip_safe = False,
     include_package_data = True,
     classifiers = [
-        'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
+        'License :: OSI Approved :: BSD License',
         'Intended Audience :: Developers',
         'Intended Audience :: End Users/Desktop',
         'Intended Audience :: System Administrators',

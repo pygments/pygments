@@ -10,7 +10,7 @@
     Do not alter the LEXERS dictionary by hand.
 
     :copyright: 2006 by Armin Ronacher, Georg Brandl.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 LEXERS = {

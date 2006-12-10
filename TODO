@@ -9,7 +9,7 @@ for 0.6
 
 - pygmentize presets?
 
-- short cmdline options for common -O options
+- short cmdline options for common ``-O`` options
 
 - html formatter: full document, external css file?
 
@@ -17,30 +17,30 @@ for 0.6
 
 - more unit tests (pygmentize, all formatters)
 
-- help for -O and -a cmdline options
+- help for ``-O`` and ``-a`` cmdline options
 
 - allow "overlay" token types (e.g. Diff + X) 
   - highlight specials: nth line, a word etc.
   - dhtml: overlays toggleable by javascript
 
 - lexers:
+    * bash
+    * haskell
     * (Q)BASIC
+    * lisp
     * apacheconf
     * python TBs
-    * haskell
     * ls -alG
-    * python help() ?
     * HTML with special formatting?
+    * latex special formatting?
     * ocaml
     * nemerle
-    * lisp
     * windows batch files
     * assembler
     * objective c
-    * bash
     * mysql/postgresql/sqlite
     * tcl
-    * latex special formatting?
+    * python help() ?
 
 - tell the PHP and DelphiLexer how to differ between Operators and
   text.

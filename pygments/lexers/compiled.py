@@ -6,7 +6,7 @@
     Lexers for compiled languages: C/C++, Delphi, Java.
 
     :copyright: 2006 by Georg Brandl, Armin Ronacher, Christoph Hack.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 import re

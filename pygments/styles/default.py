@@ -6,7 +6,7 @@
     The default highlighting style for Pygments.
 
     :copyright: 2006 by Georg Brandl.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 from pygments.style import Style

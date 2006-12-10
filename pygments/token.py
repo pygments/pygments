@@ -6,7 +6,7 @@
     Basic token types and the standard tokens.
 
     :copyright: 2006 by Georg Brandl.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 class _TokenType(tuple):

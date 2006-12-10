@@ -6,7 +6,7 @@
     Formatter for terminal output with ANSI sequences.
 
     :copyright: 2006 by Georg Brandl.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 from pygments.formatter import Formatter
