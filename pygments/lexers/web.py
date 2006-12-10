@@ -5,7 +5,8 @@
 
     Lexers for web-related languages: JavaScript, CSS, HTML, XML, PHP.
 
-    :copyright: 2006 by Georg Brandl, Armin Ronacher.
+    :copyright: 2006 by Georg Brandl, Armin Ronacher,
+                Tim Hatch <tim@timhatch.com>.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -15,7 +16,7 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, using
+from pygments.lexer import Lexer, RegexLexer, bygroups, using, include
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Other
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
@@ -65,6 +66,11 @@ class CssLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'(@media)(\s+)(\w+)(\s*)({)', bygroups(Keyword, Text, String,
+             Text, Operator), 'media'),
+            include('basics'),
+        ],
+        'basics': [
             (r'\s+', Text),
             (r'/\*(?:.|\n)*?\*/', Comment),
             (r'{', Operator, 'content'),
@@ -75,6 +81,10 @@ class CssLexer(RegexLexer):
             (r'[~\^\*!%&\[\]\(\)<>\|+=@:;,./?-]', Operator),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single)
+        ],
+        'media': [
+            include('basics'),
+            (r'}', Operator, '#pop')
         ],
         'content': [
             (r'\s+', Text),
