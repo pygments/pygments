@@ -5,7 +5,8 @@
 
     Lexers for non-source code file types: Diff, Makefiles, Ini configs etc.
 
-    :copyright: 2006 by Armin Ronacher, Georg Brandl.
+    :copyright: 2006 by Armin Ronacher, Georg Brandl,
+                Tim Hatch <tim@timhatch.com>.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -17,7 +18,7 @@ from pygments.token import \
 
 
 __all__ = ['IniLexer', 'MakefileLexer', 'DiffLexer', 'IrcLogsLexer',
-           'TexLexer']
+           'TexLexer', 'GroffLexer']
 
 
 class IniLexer(RegexLexer):
@@ -34,6 +35,12 @@ class IniLexer(RegexLexer):
              bygroups(Name.Attribute, Text, Operator, Text, String))
         ]
     }
+
+    def analyse_text(text):
+        npos = text.find('\n')
+        if npos < 3:
+            return False
+        return text[0] == '[' and text[npos-1] == ']'
 
 
 class MakefileLexer(RegexLexer):
@@ -97,6 +104,14 @@ class DiffLexer(RegexLexer):
             (r'.*\n', Text),
         ]
     }
+
+    def analyse_text(text):
+        if text[:7] == 'Index: ':
+            return True
+        if text[:5] == 'diff ':
+            return True
+        if text[:4] == '--- ':
+            return 0.9
 
 
 class IrcLogsLexer(RegexLexer):
@@ -184,3 +199,61 @@ class TexLexer(RegexLexer):
             (r'', Text, '#pop'),
         ],
     }
+
+    def analyse_text(text):
+        for start in ("\\documentclass", "\\input", "\\documentstyle",
+                      "\\relax"):
+            if text[:len(start)] == start:
+                return True
+
+
+class GroffLexer(RegexLexer):
+    """
+    Lexer for the roff format, supporting groff extensions.  Mainly useful
+    for highlighting manpages.
+    """
+    name = 'Groff'
+    aliases = ['groff', 'nroff', 'man']
+    filenames = ['*.[1234567]', '*.man']
+    mimetypes = ['application/x-troff', 'text/troff']
+
+    tokens = {
+        'root': [
+            (r'(?i)(\.)(\w+)', bygroups(Text, Keyword), 'request'),
+            (r'\.', Text, 'request'),
+            # Regular characters, slurp till we find a backslash or newline
+            (r'[^\\\n]*', Text, 'textline'),
+        ],
+        'textline': [
+            include('escapes'),
+            (r'[^\\\n]+', Text),
+            (r'\n', Text, '#pop'),
+        ],
+        'escapes': [
+            # groff has many ways to write escapes.
+            (r'\\"[^\n]*', Comment),
+            (r'\\[fn]\w', String.Escape),
+            (r'\\\(..', String.Escape),
+            (r'\\.\[.*\]', String.Escape),
+            (r'\\.', String.Escape),
+            (r'\\\n', Text, 'request'),
+        ],
+        'request': [
+            (r'\n', Text, '#pop'),
+            include('escapes'),
+            (r'"[^\n"]+"', String.Double),
+            (r'\d+', Number),
+            (r'\S+', String),
+            (r'\s+', Text),
+        ],
+    }
+
+    def analyse_text(text):
+        if text[0] != '.':
+            return False
+        if text[:3] == '.\\"':
+            return True
+        if text[:4] == '.TH ':
+            return True
+        if text[1:3].isalnum() and text[3].isspace():
+            return 0.9

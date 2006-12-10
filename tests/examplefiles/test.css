@@ -1,0 +1,30 @@
+body {
+    font-size: 12pt;
+    background: #fff url(temp.png) top left no-repeat;
+}
+
+* html body {
+    font-size: 14pt;
+}
+
+#nav .new {
+    display: block;
+}
+
+ul#nav li.new {
+    font-weight: bold;
+}
+
+:link {
+    color: #f00;
+}
+
+:link:hover {
+    color: #0f0;
+}
+
+@media screen {
+  body {
+    background: #ccc;
+  }
+}
