@@ -10,7 +10,7 @@
     Do not edit the MODULES dict by hand.
 
     :copyright: 2006 by Lukas Meuser.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 MODULES = {'basic': ['_G',

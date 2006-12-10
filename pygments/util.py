@@ -6,7 +6,7 @@
     Utility functions.
 
     :copyright: 2006 by Georg Brandl.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 import re
 

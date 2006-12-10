@@ -6,7 +6,7 @@
     Lexers for non-source code file types: Diff, Makefiles, Ini configs etc.
 
     :copyright: 2006 by Armin Ronacher, Georg Brandl.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 import re

@@ -7,7 +7,7 @@
 
     :copyright: 2006 by Georg Brandl, Armin Ronacher,
                 Lukas Meuser, Marek Kubica.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 import re
@@ -906,7 +906,7 @@ class SchemeLexer(RegexLexer):
             # find the remaining variables
             (valid_name, Name.Variable),
 
-            # the famous parantheses!
+            # the famous parentheses!
             (r'(\(|\))', Punctuation),
         ],
     }

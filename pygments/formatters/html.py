@@ -6,7 +6,7 @@
     Formatter for HTML output.
 
     :copyright: 2006 by Georg Brandl, Armin Ronacher.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 import cStringIO
 

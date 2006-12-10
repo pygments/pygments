@@ -8,14 +8,8 @@
     This is a port of the style used in the `php port`_ of pygments
     by Manni. The style is called 'default' there.
 
-    By now Mannis php highlighter isn't licensed under a open source
-    license but because it uses code from the pygments library it must
-    be LGPL compatible sooner or later. ;-)
-
-    .. _php port:: http://svn.fnord.name/manni/fnord.bb/lib/Highlighter/
-
     :copyright: 2006 by Armin Ronacher, Manni <manni@fnord.name>.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 from pygments.style import Style

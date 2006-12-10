@@ -20,12 +20,12 @@
     is installable via *easy_install* with ``easy_install Pygments==dev``.
 
     :copyright: 2006 by Georg Brandl, Armin Ronacher, Lukas Meuser and others.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 __version__ = '0.6'
 __docformat__ = 'restructuredtext'
-__license__ = 'GNU Lesser General Public License (LGPL)'
+__license__ = 'BSD License'
 __author__ = 'Georg Brandl <g.brandl@gmx.net>'
 __url__ = 'http://pygments.pocoo.org/'
 

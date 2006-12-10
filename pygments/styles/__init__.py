@@ -6,7 +6,7 @@
     Contains built-in styles.
 
     :copyright: 2006 by Georg Brandl.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 from pygments.plugin import find_plugin_styles
 

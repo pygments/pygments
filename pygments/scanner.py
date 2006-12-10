@@ -13,7 +13,7 @@
     this scanner.
 
     :copyright: 2006 by Armin Ronacher.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 import re
 

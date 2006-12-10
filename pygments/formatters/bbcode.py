@@ -6,7 +6,7 @@
     BBcode formatter.
 
     :copyright: 2006 by Lukas Meuser.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 

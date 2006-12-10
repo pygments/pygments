@@ -6,7 +6,7 @@
     Pygments formatters.
 
     :copyright: 2006 by Georg Brandl, Armin Ronacher.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 import os.path
 from pygments.formatters.html import HtmlFormatter

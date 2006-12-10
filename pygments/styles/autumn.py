@@ -6,7 +6,7 @@
     A colorful style, inspired by the terminal highlighting style.
 
     :copyright: 2006 by Armin Ronacher.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 from pygments.style import Style

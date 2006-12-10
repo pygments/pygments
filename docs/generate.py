@@ -7,7 +7,7 @@
     Generates a bunch of html files containing the documentation.
 
     :copyright: 2006 by Armin Ronacher, Georg Brandl.
-    :license: GNU LGPL, see LICENSE for more details.
+    :license: BSD, see LICENSE for more details.
 """
 
 import os
