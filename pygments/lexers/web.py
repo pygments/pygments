@@ -327,8 +327,10 @@ class XmlLexer(RegexLexer):
 
     name = 'XML'
     aliases = ['xml']
-    filenames = ['*.xml']
-    mimetypes = ['text/xml', 'application/xml', 'image/svg+xml']
+    filenames = ['*.xml', '*.xsl', '*.rss']
+    mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
+                 'application/rss+xml', 'application/atom+xml',
+                 'application/xsl+xml', 'application/xslt+xml']
 
     tokens = {
         'root': [
