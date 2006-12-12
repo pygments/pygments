@@ -188,7 +188,7 @@ class DjangoLexer(RegexLexer):
             (r'\{', Other)
         ],
         'varnames': [
-            (r'[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)*',
+            (r'[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*',
              Name.Variable),
             (r'(\|)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Operator, Text, Name.Function)),
