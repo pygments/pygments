@@ -264,7 +264,7 @@ class ApacheConfLexer(RegexLexer):
     """
     name = 'ApacheConf'
     aliases = ['apacheconf', 'aconf']
-    filenames = []
+    filenames = ['.htaccess', 'apache.conf']
 
     tokens = {
         'root': [

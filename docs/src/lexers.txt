@@ -586,6 +586,15 @@ Other languages
     :Filename patterns: ``*.bf``, ``*.b``
 
 
+`BashLexer`
+
+    Lexer for (ba)sh shell scripts.
+
+    :Aliases: ``bash``, ``sh``
+    :Filename patterns: ``*.sh``
+    :Mimetypes: ``application/x-sh``, ``application/x-shellscript`` 
+
+
 Text lexers
 ===========
 
@@ -644,7 +653,7 @@ Text lexers
     format.
 
     :Aliases: ``apacheconf``, ``aconf``
-    :Filename patterns: None
+    :Filename patterns: ``.htaccess``, ``apache.conf``
 
 
 Iterating over all lexers
