@@ -5,18 +5,19 @@
 
     Lexers for other languages: SQL, BrainFuck.
 
-    :copyright: 2006 by Georg Brandl.
+    :copyright: 2006 by Georg Brandl, Tim Hatch <tim@timhatch.com>. 
     :license: BSD, see LICENSE for more details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer, include
+from pygments.lexer import RegexLexer, include, bygroups, using
 from pygments.token import Error, \
      Text, Comment, Operator, Keyword, Name, String, Number
+from pygments.util import shebang_matches
 
 
-__all__ = ['SqlLexer', 'BrainfuckLexer']
+__all__ = ['SqlLexer', 'BrainfuckLexer', 'BashLexer']
 
 
 class SqlLexer(RegexLexer):
@@ -149,3 +150,56 @@ class BrainfuckLexer(RegexLexer):
             include('common'),
         ]
     }
+
+
+class BashLexer(RegexLexer):
+    """
+    Lex (ba)sh source files.
+    """
+    name = 'Bash'
+    aliases = ['bash', 'sh']
+    filenames = ['*.sh']
+    mimetypes = ['application/x-sh', 'application/x-shellscript']
+
+    # TODO: heredocs and perhaps some other niceties
+
+    tokens = {
+        'root': [
+            (r'\b(if|fi|while|do|done|for|then|return|function|case|'
+             r'select|continue|until)\s*\b',
+             Keyword),
+            (r'\b(alias|bg|bind|break|builtin|caller|cd|command|compgen|'
+             r'complete|declare|dirs|disown|echo|enable|eval|exec|exit|'
+             r'export|false|fc|fg|getopts|hash|help|history|jobs|kill|let|'
+             r'local|logout|popd|printf|pushd|pwd|read|readonly|set|shift|'
+             r'shopt|source|suspend|test|time|times|trap|true|type|typeset|'
+             r'ulimit|umask|unalias|unset|wait)\s*\b',
+             Name.Builtin),
+            (r'#.*\n', Comment),
+            (r'(\b\w+\s*)(=)', bygroups(Name.Variable, Operator)),
+            (r'[\[\]{}\(\)=]+', Operator),
+            (r'\$\(', Keyword, 'paren'),
+            (r'\${', Keyword, 'curly'),
+            (r'`.+`', String),
+            (r'\d+(?= |\Z)', Number),
+            (r'\$#?(\w+|.)', Name.Variable),
+            (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
+            (r"'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
+            (r'\s+', Text),
+            (r'[^=\s\n]+', Text),
+        ],
+        'curly': [
+            (r'}', Keyword, '#pop'),
+            (r':-', Keyword),
+            (r'[^}:]+', Text),
+            (r':', Text),
+        ],
+        'paren': [
+            (r'\)', Keyword, '#pop'),
+            (r'[^)]*', Text),
+        ],
+    }
+
+    def analyse_text(text):
+        return shebang_matches(text, r'(ba|z|)sh')
+        
