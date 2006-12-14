@@ -43,11 +43,11 @@ class PythonLexer(RegexLexer):
             (r"^\s*'''(.|\n)*?'''", String.Doc),
             (r'[^\S\n]+', Text),
             (r'#.*$', Comment),
-            (r'[]{}:(),.;[]', Text),
+            (r'[]{}:(),;[]', Punctuation),
             (r'\\\n', Text),
             (r'\\', Text),
             (r'(in|is|and|or|not)\b', Operator.Word),
-            (r'!=|==|<<|>>|[-+/*%=<>&^|]', Operator),
+            (r'!=|==|<<|>>|[-+/*%=<>&^|.]', Operator),
             (r'(assert|break|continue|del|elif|else|except|exec|'
              r'finally|for|global|if|lambda|pass|print|raise|'
              r'return|try|while|yield|as|with)\b', Keyword),
@@ -337,17 +337,12 @@ class RubyLexer(ExtendedRegexLexer):
             (r'(%[QWx](.))(.*?)(\2)', intp_string_callback),
             # special forms of fancy strings after operators or
             # in method calls with braces
-            # we need to regexes here for " " and "\t" because of bygroups()
-            (r'(?<=[-+/*%=<>&!^|~,(])(\s*)(% .*? )',
-             bygroups(Text, String.Other)),
-            (r'(?<=[-+/*%=<>&!^|~,(])(\s*)(%\t.*?\t)',
-             bygroups(Text, String.Other)),
+            (r'(?<=[-+/*%=<>&!^|~,(])(\s*)(%([\t ]).*?\3)',
+             bygroups(Text, String.Other, None)),
             # and because of fixed with lookbehinds the whole thing a
             # second time for line startings...
-            (r'^(\s*)(% .*? )',
-             bygroups(Text, String.Other)),
-            (r'^(\s*)(%\t.*?\t)',
-             bygroups(Text, String.Other)),
+            (r'^(\s*)(%([\t ]).*?\3)',
+             bygroups(Text, String.Other, None)),
             # all regular fancy strings
             (r'(%([^a-zA-Z0-9\s]))(.*?)(\2)', intp_string_callback),
         ]
@@ -448,7 +443,8 @@ class RubyLexer(ExtendedRegexLexer):
             include('strings'),
             # chars
             (r'\?(\\[MC]-)*' # modifiers
-             r'(\\([\\abefnrstv#"\']|x[a-fA-F0-9]{1,2}|[0-7]{1,3})|\S)',
+             r'(\\([\\abefnrstv#"\']|x[a-fA-F0-9]{1,2}|[0-7]{1,3})|\S)'
+             r'(?!\w)',
              String.Char),
             (r'[A-Z][a-zA-Z0-9_]+', Name.Constant),
             # this is needed because ruby attributes can look
@@ -461,10 +457,10 @@ class RubyLexer(ExtendedRegexLexer):
             (r'def(?=[*%&^`~+-/\[<>=])', Keyword, 'funcname'),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'[a-zA-Z_][\w_]*[\!\?]?', Name),
-            (r'(\[\]|\*\*|<<|>>|>=|<=|<=>|=~|={3}|'
+            (r'(\[\]|\*\*|<<?|>>?|>=|<=|<=>|=~|={3}|'
              r'!~|&&?|\|\||\.{1,3})', Operator),
             (r'[-+/*%=<>&!^|~]=?', Operator),
-            (r'[\[\](){}:;,<>/?\\]', Text),
+            (r'[\[\](){};,/?:\\]', Punctuation),
             (r'\s+', Text)
         ],
         'funcname': [
