@@ -629,6 +629,24 @@ Text lexers
     :Filename patterns: ``*.tex``, ``*.aux``, ``*.toc``
 
 
+`GroffLexer`
+
+    Lexer for the (g)roff typesetting language, supporting groff
+    extensions. Mainly useful for highlighting manpage sources.
+
+    :Aliases: ``groff``, ``nroff``, ``man``
+    :Filename patterns: ``*.[1234567]``, ``*.man``
+
+
+`ApacheConfLexer`
+
+    Lexer for configuration files following the Apache config file
+    format.
+
+    :Aliases: ``apacheconf``, ``aconf``
+    :Filename patterns: None
+
+
 Iterating over all lexers
 =========================
 

@@ -18,7 +18,7 @@ from pygments.token import \
 
 
 __all__ = ['IniLexer', 'MakefileLexer', 'DiffLexer', 'IrcLogsLexer',
-           'TexLexer', 'GroffLexer']
+           'TexLexer', 'GroffLexer', 'ApacheConfLexer']
 
 
 class IniLexer(RegexLexer):
@@ -29,7 +29,7 @@ class IniLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r';.*?$', Comment),
+            (r'[;#].*?$', Comment),
             (r'\[.*?\]$', Keyword),
             (r'(.*?)(\s*)(=)(\s*)(.*?)$',
              bygroups(Name.Attribute, Text, Operator, Text, String))
@@ -257,3 +257,39 @@ class GroffLexer(RegexLexer):
             return True
         if text[1:3].isalnum() and text[3].isspace():
             return 0.9
+
+class ApacheConfLexer(RegexLexer):
+    """
+    Lex Apache configuration like files.
+    """
+    name = 'ApacheConf'
+    aliases = ['apacheconf', 'aconf']
+    filenames = []
+
+    tokens = {
+        'root': [
+            (r'(\s*)(#.*)',
+             bygroups(Text, Comment)),
+            (r'^(\s*)(</?\w+)',
+             bygroups(Text, Name.Tag), 'section'),
+            (r'^(\s*)(\w+)(\s+)',
+             bygroups(Text, Name.Attribute, Text),
+             'value'),
+            (r'[^<\n]+', Text),
+        ],
+        'datatypes': [
+            (r'\d+\b', Number),
+            (r'"(\\\\|\\"|[^"\n])*"', String.Double),
+            (r'\S+\b', String.Symbol),
+            (r'[ \t]+', Text),
+            (r'[^\n]+', String),
+        ],
+        'section': [
+            (r'>', Name.Tag, '#pop'),
+            include('datatypes'),
+        ],
+        'value': [
+            include('datatypes'),
+            (r'\n', Text, '#pop'),
+        ],
+    }
