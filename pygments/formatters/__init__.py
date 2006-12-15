@@ -12,6 +12,7 @@ import os.path
 from pygments.formatters.html import HtmlFormatter
 from pygments.formatters.terminal import TerminalFormatter
 from pygments.formatters.latex import LatexFormatter
+from pygments.formatters.rtf import RtfFormatter
 from pygments.formatters.bbcode import BBCodeFormatter
 from pygments.formatters.other import NullFormatter, RawTokenFormatter
 from pygments.plugin import find_plugin_formatters
@@ -20,11 +21,13 @@ from pygments.plugin import find_plugin_formatters
 def _doc_desc(obj):
     if not obj.__doc__:
         return ''
-    res = ''
+    res = []
     for line in obj.__doc__.strip().splitlines():
-        if line.strip(): res += line.strip() + " "
-        else: break
-    return res
+        if line.strip():
+            res.append(line.strip())
+        else:
+            break
+    return ''.join(res)
 
 
 #: Map formatter classes to ``(longname, names, file extensions, descr)``.
@@ -35,6 +38,8 @@ FORMATTERS = {
                            _doc_desc(TerminalFormatter)),
     LatexFormatter:       ('LaTeX', ('latex', 'tex'), ('.tex',),
                            _doc_desc(LatexFormatter)),
+    RtfFormatter:         ('RTF', ('rtf',), ('.rtf',),
+                           _doc_desc(RtfFormatter)),
     RawTokenFormatter:    ('Raw tokens', ('raw', 'tokens'), ('.raw',),
                            _doc_desc(RawTokenFormatter)),
     NullFormatter:        ('Text only', ('text', 'null'), ('.txt',),
