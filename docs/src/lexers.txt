@@ -41,6 +41,7 @@ Special lexers
 
     :Aliases: ``text``
     :Filename patterns: ``*.txt``
+    :Mimetypes: ``text/plain``
 
 
 `RawTokenLexer`
@@ -55,6 +56,7 @@ Special lexers
 
     :Aliases: ``raw``
     :Filename patterns: ``*.raw``
+    :Mimetypes: ``application/x-pygments/tokens``
 
 
 Agile languages
@@ -66,6 +68,7 @@ Agile languages
 
     :Aliases: ``python``, ``py``
     :Filename patterns: ``*.py``, ``*.pyw``
+    :Mimetypes: ``text/x-python``, ``application/x-python``
 
 
 `PythonConsoleLexer`
@@ -83,6 +86,7 @@ Agile languages
 
     :Aliases: ``pycon``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `RubyLexer`
@@ -91,6 +95,7 @@ Agile languages
 
     :Aliases: ``ruby``, ``rb``
     :Filename patterns: ``*.rb``
+    :Mimetypes: ``text/x-ruby``, ``application/x-ruby``
 
 
 `RubyConsoleLexer`
@@ -107,6 +112,7 @@ Agile languages
 
     :Aliases: ``rbcon``, ``irb``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `PerlLexer`
@@ -115,6 +121,7 @@ Agile languages
 
     :Aliases: ``perl``, ``pl``
     :Filename patterns: ``*.pl``, ``*.pm``
+    :Mimetypes: ``text/x-perl``, ``application/x-perl``
 
 
 `LuaLexer`
@@ -141,6 +148,8 @@ Agile languages
 
     :Aliases: ``lua``
     :Filename patterns: ``*.lua``
+    :Mimetypes: ``text/x-lua``, ``application/x-lua``
+
 
 `SchemeLexer`
 
@@ -150,6 +159,7 @@ Agile languages
 
     :Aliases: ``scheme``
     :Filename patterns: ``*.scm``
+    :Mimetypes: ``text/x-scheme``, ``application/x-scheme``
 
 
 Compiled languages
@@ -161,6 +171,7 @@ Compiled languages
 
     :Aliases: ``c``
     :Filename patterns: ``*.c``, ``*.h``
+    :Mimetypes: ``text/x-chdr``, ``text/x-csrc``
 
 
 `CppLexer`
@@ -169,6 +180,7 @@ Compiled languages
 
     :Aliases: ``cpp``, ``c++``
     :Filename patterns: ``*.cpp``, ``*.hpp``, ``*.c++``, ``*.h++``
+    :Mimetypes: ``text/x-c++hdr``, ``text/x-c++src``
 
 
 `DelphiLexer`
@@ -178,6 +190,7 @@ Compiled languages
 
     :Aliases: ``delphi``, ``pas``, ``pascal``, ``objectpascal``
     :Filename patterns: ``*.pas``
+    :Mimetypes: ``text/x-pascal``
 
 
 `JavaLexer`
@@ -186,6 +199,7 @@ Compiled languages
 
     :Aliases: ``java``
     :Filename patterns: ``*.java``
+    :Mimetypes: ``text/x-java``
 
 
 .NET languages
@@ -198,6 +212,8 @@ Compiled languages
 
     :Aliases: ``c#``, ``csharp``
     :Filename patterns: ``*.cs``
+    :Mimetypes: ``text/x-csharp``
+
 
 `BooLexer`
 
@@ -205,6 +221,8 @@ Compiled languages
 
     :Aliases: ``boo``
     :Filename patterns: ``*.boo``
+    :Mimetypes: ``text/x-boo``
+
 
 `VbNetLexer`
 
@@ -214,6 +232,7 @@ Compiled languages
 
     :Aliases: ``vbnet``, ``vb.net``
     :Filename patterns: ``*.vb``, ``*.bas``
+    :Mimetypes: ``text/x-vbnet``, ``text/x-vba``
 
 
 Web-related languages
@@ -225,6 +244,7 @@ Web-related languages
 
     :Aliases: ``js``, ``javascript``
     :Filename patterns: ``*.js``
+    :Mimetypes: ``text/x-javascript``, ``application/x-javascript``, ``text/javascript``
 
 
 `CssLexer`
@@ -233,6 +253,7 @@ Web-related languages
 
     :Aliases: ``css``
     :Filename patterns: ``*.css``
+    :Mimetypes: ``text/css``
 
 
 `HtmlLexer`
@@ -242,6 +263,7 @@ Web-related languages
 
     :Aliases: ``html``
     :Filename patterns: ``*.html``, ``*.htm``, ``*.xhtml``
+    :Mimetypes: ``text/html``, ``application/xhtml+xml``
 
 
 `PhpLexer`
@@ -277,6 +299,7 @@ Web-related languages
 
     :Aliases: ``php``, ``php3``, ``php4``, ``php5``
     :Filename patterns: ``*.php``, ``*.php[345]``
+    :Mimetypes: None
 
 
 `XmlLexer`
@@ -285,6 +308,9 @@ Web-related languages
 
     :Aliases: ``xml``
     :Filename patterns: ``*.xml``
+    :Mimetypes: ``text/xml``, ``application/xml``, ``image/svg+xml``,
+                 ``application/rss+xml``, ``application/atom+xml``,
+                 ``application/xsl+xml``, ``application/xslt+xml``
 
 
 Template languages
@@ -349,6 +375,9 @@ Template languages
 
     :Aliases:   ``html+php``
     :Filename patterns:  ``*.phtml``
+    :Mimetypes: ``text/x-php``, ``application/x-php``,
+                ``application/x-httpd-php``, ``application/x-httpd-php3``,
+                ``application/x-httpd-php4``, ``application/x-httpd-php5``
 
 
 `XmlPhpLexer`
@@ -587,6 +616,7 @@ Other languages
 
     :Aliases: ``sql``
     :Filename patterns: ``*.sql``
+    :Mimetypes: ``text/x-sql``
 
 
 `BrainfuckLexer`
@@ -596,6 +626,7 @@ Other languages
 
     :Aliases: ``brainfuck``
     :Filename patterns: ``*.bf``, ``*.b``
+    :Mimetypes: None
 
 
 `BashLexer`
@@ -618,6 +649,7 @@ Text lexers
 
     :Aliases: ``ini``, ``cfg``
     :Filename patterns: ``*.ini``, ``*.cfg``
+    :Mimetypes: None
 
 
 `MakefileLexer`
@@ -626,6 +658,7 @@ Text lexers
 
     :Aliases: ``make``, ``makefile``, ``mf``
     :Filename patterns: ``*.mak``, ``Makefile``, ``makefile``
+    :Mimetypes: ``text/x-makefile``
 
 
 `DiffLexer`
@@ -634,6 +667,7 @@ Text lexers
 
     :Aliases: ``diff``
     :Filename patterns: ``*.diff``, ``*.patch``
+    :Mimetypes: ``text/x-diff``, ``text/x-patch``
 
 
 `IrcLogsLexer`
@@ -642,6 +676,7 @@ Text lexers
 
     :Aliases: ``irc``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `TexLexer`
@@ -650,6 +685,7 @@ Text lexers
 
     :Aliases: ``tex``, ``latex``
     :Filename patterns: ``*.tex``, ``*.aux``, ``*.toc``
+    :Mimetypes: ``text/x-tex``, ``text/x-latex``
 
 
 `GroffLexer`
@@ -661,6 +697,7 @@ Text lexers
 
     :Aliases: ``groff``, ``nroff``, ``man``
     :Filename patterns: ``*.[1234567]``, ``*.man``
+    :Mimetypes: ``text/troff``, ``application/x-troff``
 
 
 `ApacheConfLexer`
@@ -672,6 +709,7 @@ Text lexers
 
     :Aliases: ``apacheconf``, ``aconf``
     :Filename patterns: ``.htaccess``, ``apache.conf``
+    :Mimetypes: None
 
 
 Iterating over all lexers
