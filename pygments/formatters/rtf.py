@@ -30,8 +30,6 @@ class RtfFormatter(Formatter):
             specification claims that ``\fmodern`` are "Fixed-pitch serif
             and sans serif fonts". Hope every RTF implementation thinks
             the same about modern...
-
-
         """
         Formatter.__init__(self, **options)
         self.fontface = options.get('fontface') or ''
@@ -53,7 +51,7 @@ class RtfFormatter(Formatter):
         if isinstance(text, str):
             for c in xrange(128, 256):
                 text = text.replace(chr(c), '\\\'%x' % c)
-        
+
         # unicode strings
         elif isinstance(text, unicode):
             buf = []
@@ -74,7 +72,7 @@ class RtfFormatter(Formatter):
         outfile.write(r'{\rtf1\ansi\deff0'
                       r'{\fonttbl{\f0\fmodern\fprq1\fcharset0%s;}}{\colortbl;' %
                       (self.fontface and ' ' + self._escape(self.fontface) or ''))
-        
+
         # convert colors and save them in a mapping to access them later.
         color_mapping = {}
         offset = 1
