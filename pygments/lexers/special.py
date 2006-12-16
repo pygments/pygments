@@ -78,6 +78,6 @@ class RawTokenLexer(Lexer):
                     for ttype_ in ttypes:
                         ttype = getattr(ttype, ttype_)
                     _ttype_cache[ttypestr] = ttype
-                val = val[1:-2].decode('string-escape')
+                val = val[2:-2].decode('unicode-escape')
             yield length, ttype, val
             length += len(val)
