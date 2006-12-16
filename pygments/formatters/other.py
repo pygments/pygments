@@ -62,7 +62,7 @@ class RawTokenFormatter(Formatter):
         lasttype = None
         lastval = u''
         for ttype, value in tokensource:
-            value = value.encode(self.encoding)
+            value = repr(value)
             if ttype is lasttype:
                 lastval += value
             else:
