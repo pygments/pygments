@@ -798,6 +798,7 @@ class SchemeLexer(RegexLexer):
     name = 'Scheme'
     aliases = ['scheme']
     filenames = ['*.scm']
+    mimetypes = ['text/x-scheme', 'application/x-scheme']
 
     # list of known keywords and builtins taken form vim 6.4 scheme.vim
     # syntax file.
