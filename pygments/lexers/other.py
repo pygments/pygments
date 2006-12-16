@@ -5,7 +5,7 @@
 
     Lexers for other languages: SQL, BrainFuck.
 
-    :copyright: 2006 by Georg Brandl, Tim Hatch <tim@timhatch.com>. 
+    :copyright: 2006 by Georg Brandl, Tim Hatch <tim@timhatch.com>.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -202,4 +202,3 @@ class BashLexer(RegexLexer):
 
     def analyse_text(text):
         return shebang_matches(text, r'(ba|z|)sh')
-        
