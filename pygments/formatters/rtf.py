@@ -19,6 +19,7 @@ __all__ = ['RtfFormatter']
 
 
 class RtfFormatter(Formatter):
+    """Output RTF (Rich Text Format)."""
 
     def __init__(self, **options):
         """

@@ -74,9 +74,9 @@ class FormattersTest(unittest.TestCase):
         # test that every formatter class has the correct public API
         for formatter, info in formatters.FORMATTERS.iteritems():
             a(len(info) == 4)
-            a(info[0]) # name
-            a(info[1]) # aliases
-            a(info[3]) # doc
+            a(info[0], "missing formatter name") # name
+            a(info[1], "missing formatter aliases") # aliases
+            a(info[3], "missing formatter docstring") # doc
 
             inst = formatter(opt1="val1")
             inst.get_style_defs()
