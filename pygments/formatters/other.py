@@ -67,8 +67,8 @@ class RawTokenFormatter(Formatter):
                 lastval += value
             else:
                 if lasttype:
-                    write("%s\t%r\n" % (lasttype, lastval))
+                    write("%s\t%s\n" % (lasttype, lastval))
                 lastval = value
                 lasttype = ttype
-        write("%s\t%r\n" % (lasttype, lastval))
+        write("%s\t%s\n" % (lasttype, lastval))
         flush()
