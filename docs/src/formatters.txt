@@ -188,7 +188,25 @@ All these classes are importable from `pygments.formatters`.
     
     :Aliases: ``latex``, ``tex``
     :Filename pattern: ``*.tex``
+
+
+`RtfFormatter`
+--------------
+
+    Formats tokens as RTF markup. This formatter automatically outputs full rst
+    documents with color information and other useful stuff. Perfect for Copy and
+    Paste into Microsoft® Word® documents.
     
+    *required Pygments > 0.5.1*
+
+    Additional options accepted by the `RtfFormatter`:
+
+    `fontface`
+        The used font famliy. For example ``Bitstream Vera Sans``. Defaults to
+        some generic font which is supposted to be fixed width.
+
+    :Aliases: ``rtf``
+    :Filename pattern: ``*.rtf``
 
 `BBCodeFormatter`
 -----------------
