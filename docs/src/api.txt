@@ -63,6 +63,15 @@ def `guess_lexer_for_filename(text, filename, **options):`
     
     `ValueError` is raised if no lexer thinks it can handle the content.
 
+def `get_all_lexers():`
+    Return an iterable over all registered lexers, yielding tuples in the
+    format::
+
+    	(longname, tuple of aliases, tuple of filename patterns, tuple of mimetypes)
+
+    *New in Pygments 0.6.*
+
+
 Functions from `pygments.formatters`:
 
 def `get_formatter_by_name(alias, **options):`
@@ -78,6 +87,20 @@ def `get_formatter_for_filename(fn, **options):`
     instantiation.
 
     Will raise `ValueError` if no formatter for that filename is found.
+
+
+Functions from `pygments.styles`:
+
+def `get_style_by_name(name):`
+    Return a style class by its short name. The names of the builtin styles
+    are listed in `pygments.styles.STYLE_MAP`.
+
+    Will raise `ValueError` if no style of that name is found.
+
+def `get_all_styles():`
+    Return an iterable over all registered styles, yielding their names.
+
+    *New in Pygments 0.6.*
 
 
 Lexers

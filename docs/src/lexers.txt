@@ -146,6 +146,8 @@ Agile languages
 
     For Scheme source code. It supports the whole R5RS specification.
 
+    *New in Pygments 0.6.*
+
     :Aliases: ``scheme``
     :Filename patterns: ``*.scm``
 
@@ -523,6 +525,8 @@ Template languages
     Generic `myghty templates`_ lexer. Code that isn't Myghty
     markup is yielded as `Token.Other`.
 
+    *New in Pygments 0.6.*
+
     .. _myghty templates: http://www.myghty.org/
 
     :Aliases:   ``myghty``
@@ -534,6 +538,8 @@ Template languages
     Subclass of the `MyghtyLexer` that highlights unlexer data
     with the `HtmlLexer`.
 
+    *New in Pygments 0.6.*
+
     :Aliases:   ``html+myghty``
     :Filename patterns: None
 
@@ -542,6 +548,8 @@ Template languages
 
     Subclass of the `MyghtyLexer` that highlights unlexer data
     with the `XmlLexer`.
+
+    *New in Pygments 0.6.*
 
     :Aliases:   ``xml+myghty``
     :Filename patterns: None
@@ -552,6 +560,8 @@ Template languages
     Subclass of the `MyghtyLexer` that highlights unlexer data
     with the `JavascriptLexer`.
 
+    *New in Pygments 0.6.*
+
     :Aliases:   ``js+myghty``, ``javascript+myghty``
     :Filename patterns: None
 
@@ -560,6 +570,8 @@ Template languages
 
     Subclass of the `MyghtyLexer` that highlights unlexer data
     with the `CssLexer`.
+
+    *New in Pygments 0.6.*
 
     :Aliases:   ``css+myghty``
     :Filename patterns: None
@@ -589,6 +601,8 @@ Other languages
 `BashLexer`
 
     Lexer for (ba)sh shell scripts.
+
+    *New in Pygments 0.6.*
 
     :Aliases: ``bash``, ``sh``
     :Filename patterns: ``*.sh``
@@ -643,6 +657,8 @@ Text lexers
     Lexer for the (g)roff typesetting language, supporting groff
     extensions. Mainly useful for highlighting manpage sources.
 
+    *New in Pygments 0.6.*
+
     :Aliases: ``groff``, ``nroff``, ``man``
     :Filename patterns: ``*.[1234567]``, ``*.man``
 
@@ -652,6 +668,8 @@ Text lexers
     Lexer for configuration files following the Apache config file
     format.
 
+    *New in Pygments 0.6.*
+
     :Aliases: ``apacheconf``, ``aconf``
     :Filename patterns: ``.htaccess``, ``apache.conf``
 
@@ -659,7 +677,7 @@ Text lexers
 Iterating over all lexers
 =========================
 
-*requires Pygments > 0.5.1*
+*New in Pygments 0.6.*
 
 To get all lexers (both the builtin and the plugin ones), you can
 use the `get_all_lexers()` function from the `pygments.lexers`

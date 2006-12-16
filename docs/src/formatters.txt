@@ -96,7 +96,7 @@ All these classes are importable from `pygments.formatters`.
         td .code .cm { color: #999999 }
         ...
 
-    If you have pygments > 0.5.1 you can also pass a list of tuple to the
+    If you have pygments 0.6 or higher you can also pass a list of tuple to the
     `get_style_defs` method to request multiple prefixes for the tokens:
 
     .. sourcecode:: python
@@ -193,20 +193,21 @@ All these classes are importable from `pygments.formatters`.
 `RtfFormatter`
 --------------
 
-    Formats tokens as RTF markup. This formatter automatically outputs full rst
+    Formats tokens as RTF markup. This formatter automatically outputs full RTF
     documents with color information and other useful stuff. Perfect for Copy and
     Paste into Microsoft® Word® documents.
     
-    *available in Pygments > 0.5.1*
+    *New in Pygments 0.6.*
 
     Additional options accepted by the `RtfFormatter`:
 
     `fontface`
-        The used font famliy. For example ``Bitstream Vera Sans``. Defaults to
-        some generic font which is supposted to be fixed width.
+        The used font famliy, for example ``Bitstream Vera Sans``. Defaults to
+        some generic font which is supposed to have fixed width.
 
     :Aliases: ``rtf``
     :Filename pattern: ``*.rtf``
+
 
 `BBCodeFormatter`
 -----------------
