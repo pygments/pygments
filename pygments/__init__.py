@@ -267,6 +267,7 @@ The -V option prints the package version.
     try:
         highlight(code, lexer, fmter, outfile)
     except Exception, err:
+        raise
         print >>sys.stderr, 'Error while highlighting:', err
         return 1
     return 0

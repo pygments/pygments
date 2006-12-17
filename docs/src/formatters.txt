@@ -82,7 +82,8 @@ All these classes are importable from `pygments.formatters`.
     `nowrap` option.
 
     With the `full` option, a complete HTML 4 document is output, including
-    the style definitions inside a ``<style>`` tag.
+    the style definitions inside a ``<style>`` tag, or in a separate file if
+    the `cssfile` option is given.
 
     The `get_style_defs(arg='')` method of a `HtmlFormatter` returns a string
     containing CSS rules for the CSS classes used by the formatter. The
@@ -137,9 +138,21 @@ All these classes are importable from `pygments.formatters`.
     `cssstyles`
         Inline CSS styles for the wrapping ``<div>`` tag (default: ``''``).
 
+    `cssfile`
+        If the `full` option is true and this option is given, it must be the
+        name of an external file. The stylesheet is then written to this file
+        instead of the HTML file. *New in Pygments 0.6.*
+
     `linenospecial`
         If set to a number n > 0, every nth line number is given the CSS
         class ``"special"`` (default: ``0``).
+
+    `nobackground`
+        If set to ``True``, the formatter won't output the background color
+        for the wrapping element (this automatically defaults to ``False``
+        when there is no wrapping element [eg: no argument for the
+        `get_syntax_defs` method given]) (default: ``False``). *New in
+        Pygments 0.6.*
     
     :Aliases: ``html``
     :Filename patterns: ``*.html``, ``*.htm``
