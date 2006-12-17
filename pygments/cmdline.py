@@ -8,7 +8,15 @@
     :copyright: 2006 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
+import sys
 import getopt
+
+from pygments import __version__, __author__, highlight
+from pygments.lexers import LEXERS, get_lexer_by_name, get_lexer_for_filename
+from pygments.util import OptionError
+from pygments.formatters import FORMATTERS, get_formatter_by_name, \
+     get_formatter_for_filename, TerminalFormatter
+
 
 def main(args):
     """
@@ -70,7 +78,7 @@ The -V option prints the package version.
             return 2
 
         # print version
-        cmdline_main(['', '-V'])
+        main(['', '-V'])
         print
         print "Lexers:"
         print "~~~~~~~"

@@ -599,7 +599,7 @@ class PerlLexer(RegexLexer):
              r'sysseek|system|syswrite|tell|telldir|tie|tied|time|times|tr|'
              r'truncate|uc|ucfirst|umask|undef|unlink|unpack|unshift|untie|'
              r'utime|values|vec|wait|waitpid|wantarray|warn|write'
-             r'|y)\b', Name.Builtin),
+             r')\b', Name.Builtin),
             (r'((__(DATA|DIE|WARN)__)|(STD(IN|OUT|ERR)))\b', Name.Builtin.Pseudo),
             (r'<<([a-zA-Z_][a-zA-Z0-9_]*)\n.*?\n\1\n', String),
             (r'__END__', Comment.Preproc, 'end-part'),
