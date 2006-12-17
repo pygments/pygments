@@ -4,16 +4,11 @@ Todo
 for 0.6
 -------
 
-- more setuptools entrypoints (html formatter etc.)
-  see paste script's Commands
-
 - pygmentize presets?
 
 - short cmdline options for common ``-O`` options
 
 - improve guess_lexer heuristics (esp. for template langs)
-
-- more unit tests (pygmentize, all formatters)
 
 - help for ``-O`` and ``-a`` cmdline options
 
@@ -48,9 +43,6 @@ for 0.6
 
 - readd property support for C# lexer
 
-- review perl lexer (numerous bugs)
-
-- docstrings?
 
 for 0.7 / later
 ---------------
@@ -58,3 +50,14 @@ for 0.7 / later
 - moin parser
 
 - add folding? would require more language-aware parsers...
+
+- more setuptools entrypoints (html formatter etc.)
+  see paste script's Commands
+
+- docstrings?
+
+- more unit tests (pygmentize, all formatters)
+
+- review perl lexer (numerous bugs, but so far no one had complaints ;)
+
+
