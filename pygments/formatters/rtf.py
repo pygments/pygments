@@ -92,25 +92,23 @@ class RtfFormatter(Formatter):
 
         # highlight stream
         for ttype, value in tokensource:
-            try:
-                style = self.style.style_for_token(ttype)
-            except KeyError:
-                start = ''
-            else:
-                buf = []
-                if style['bgcolor']:
-                    buf.append(r'\cb%d' % color_mapping[style['bgcolor']])
-                if style['color']:
-                    buf.append(r'\cf%d' % color_mapping[style['color']])
-                if style['bold']:
-                    buf.append(r'\b')
-                if style['italic']:
-                    buf.append(r'\i')
-                if style['underline']:
-                    buf.append(r'\ul')
-                if style['border']:
-                    buf.append(r'\chbrdr\chcfpat%d' % color_mapping[style['border']])
-                start = ''.join(buf)
+            while ttype not in self.style and ttype.parent:
+                ttype = ttype.parent
+            style = self.style.style_for_token(ttype)
+            buf = []
+            if style['bgcolor']:
+                buf.append(r'\cb%d' % color_mapping[style['bgcolor']])
+            if style['color']:
+                buf.append(r'\cf%d' % color_mapping[style['color']])
+            if style['bold']:
+                buf.append(r'\b')
+            if style['italic']:
+                buf.append(r'\i')
+            if style['underline']:
+                buf.append(r'\ul')
+            if style['border']:
+                buf.append(r'\chbrdr\chcfpat%d' % color_mapping[style['border']])
+            start = ''.join(buf)
             if start:
                 outfile.write('{%s ' % start)
             outfile.write(self._escape_text(value))
