@@ -35,12 +35,6 @@ __all__ = ['lex', 'format', 'highlight']
 import sys, os
 from cStringIO import StringIO
 
-from pygments.util import OptionError
-from pygments.lexers import LEXERS, get_lexer_by_name, get_lexer_for_filename
-
-from pygments.formatters import FORMATTERS, get_formatter_by_name, \
-     get_formatter_for_filename, TerminalFormatter
-
 
 def lex(code, lexer):
     """

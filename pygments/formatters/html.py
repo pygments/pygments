@@ -269,7 +269,7 @@ class HtmlFormatter(Formatter):
         if self.nowrap:
             self._format_nowrap(tokensource, outfile)
             return
-        
+
         realoutfile = outfile
         lnos = self.linenos
         full = self.full
@@ -325,7 +325,8 @@ class HtmlFormatter(Formatter):
                                        code      = ret))
                 try:
                     cf = open(cssfilename, "w")
-                    cf.write(CSSFILE_TEMPLATE % dict(styledefs=self.get_style_defs('body')))
+                    cf.write(CSSFILE_TEMPLATE % {'styledefs':
+                                                 self.get_style_defs('body')})
                     cf.close()
                 except IOError, err:
                     err.strerror = 'Error writing CSS file: ' + err.strerror

@@ -12,6 +12,7 @@
 import sys, os
 import unittest
 import StringIO
+
 from pygments import cmdline_main, highlight
 
 
