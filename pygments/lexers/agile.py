@@ -39,8 +39,8 @@ class PythonLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\n', Text),
-            (r'^\s*"""(.|\n)*?"""', String.Doc),
-            (r"^\s*'''(.|\n)*?'''", String.Doc),
+            (r'^(\s*)("""(?:.|\n)*?""")', bygroups(Text, String.Doc)),
+            (r"^(\s*)('''(?:.|\n)*?''')", bygroups(Text, String.Doc)),
             (r'[^\S\n]+', Text),
             (r'#.*$', Comment),
             (r'[]{}:(),;[]', Punctuation),
