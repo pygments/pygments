@@ -276,7 +276,8 @@ class PhpLexer(RegexLexer):
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single)
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'`(\\\\|\\`|[^`])*`', String.Backtick)
         ],
         'classname': [
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
