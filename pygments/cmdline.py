@@ -18,12 +18,7 @@ from pygments.formatters import FORMATTERS, get_formatter_by_name, \
      get_formatter_for_filename, TerminalFormatter
 
 
-def main(args):
-    """
-    Main command line entry point.
-    """
-
-    USAGE = """\
+USAGE = """\
 Usage: %s [-l <lexer>] [-f <formatter>] [-O <options>] [-o <outfile>] [<infile>]
        %s -S <style> -f <formatter> [-a <arg>] [-O <options>]
        %s -L | -h | -V
@@ -50,91 +45,110 @@ dependent.
 The -L option lists all available lexers and formatters.
 The -h option prints this help.
 The -V option prints the package version.
-""" % ((args[0],)*3)
+"""
+
+
+def _parse_options(o_str):
+    opts = {}
+    if not o_str:
+        return opts
+    o_args = o_str.split(',')
+    for o_arg in o_args:
+        o_arg = o_arg.strip()
+        try:
+            o_key, o_val = o_arg.split('=')
+            o_key = o_key.strip()
+            o_val = o_val.strip()
+        except ValueError:
+            O_opts[o_arg] = True
+        else:
+            O_opts[o_key] = o_val
+    return opts
+
+
+def _print_lflist():
+    # print version
+    main(['', '-V'])
+
+    print
+    print "Lexers:"
+    print "~~~~~~~"
+
+    info = []
+    maxlen = 0
+    for _, fullname, names, exts, _ in LEXERS.itervalues():
+        tup = (', '.join(names)+':', fullname,
+               exts and '(extensions ' + ', '.join(exts) + ')' or '')
+        info.append(tup)
+        if len(tup[0]) > maxlen: maxlen = len(tup[0])
+    info.sort()
+    for i in info:
+        print ('%-'+str(maxlen)+'s %s %s') % i
+
+    print
+    print "Formatters:"
+    print "~~~~~~~~~~~"
+
+    info = []
+    maxlen = 0
+    for fullname, names, exts, doc in FORMATTERS.itervalues():
+        tup = (', '.join(names)+':', doc,
+               exts and '(extensions ' + ', '.join(exts) + ')' or '')
+        info.append(tup)
+        if len(tup[0]) > maxlen: maxlen = len(tup[0])
+    info.sort()
+    for i in info:
+        print ('%-'+str(maxlen)+'s %s %s') % i
+
+
+def main(args):
+    """
+    Main command line entry point.
+    """
+    usage = USAGE % ((args[0],) * 3)
 
     try:
         opts, args = getopt.getopt(args[1:], "l:f:o:O:LhVS:a:")
     except getopt.GetoptError:
-        print >>sys.stderr, USAGE
+        print >>sys.stderr, usage
         return 2
     opts = dict(opts)
 
     if not opts and not args:
-        print USAGE
+        print usage
         return 0
 
     if opts.pop('-h', None) is not None:
-        print USAGE
+        print usage
         return 0
 
     if opts.pop('-V', None) is not None:
         print 'Pygments version %s, (c) 2006 by %s.' % (__version__, __author__)
         return 0
 
+    # handle ``pygmentize -L``
     L_opt = opts.pop('-L', None)
     if L_opt is not None:
         if opts or args:
-            print >>sys.stderr, USAGE
+            print >>sys.stderr, usage
             return 2
 
-        # print version
-        main(['', '-V'])
-        print
-        print "Lexers:"
-        print "~~~~~~~"
-
-        info = []
-        maxlen = 0
-        for _, fullname, names, exts, _ in LEXERS.itervalues():
-            tup = (', '.join(names)+':', fullname,
-                   exts and '(extensions ' + ', '.join(exts) + ')' or '')
-            info.append(tup)
-            if len(tup[0]) > maxlen: maxlen = len(tup[0])
-        info.sort()
-        for i in info:
-            print ('%-'+str(maxlen)+'s %s %s') % i
-
-        print
-        print "Formatters:"
-        print "~~~~~~~~~~~"
-
-        info = []
-        maxlen = 0
-        for fullname, names, exts, doc in FORMATTERS.itervalues():
-            tup = (', '.join(names)+':', doc,
-                   exts and '(extensions ' + ', '.join(exts) + ')' or '')
-            info.append(tup)
-            if len(tup[0]) > maxlen: maxlen = len(tup[0])
-        info.sort()
-        for i in info:
-            print ('%-'+str(maxlen)+'s %s %s') % i
+        _print_lflist()
         return 0
 
-    O_opts = {}
-    o_str = opts.pop('-O', None)
-    if o_str:
-        try:
-            o_args = o_str.split(',')
-            for o_arg in o_args:
-                try:
-                    o_key, o_val = o_arg.split('=')
-                except ValueError:
-                    O_opts[o_arg] = True
-                else:
-                    O_opts[o_key] = o_val
-        except ValueError:
-            print >>sys.stderr, 'Error in -O specification.'
-            return 2
+    # parse -O options
+    O_opts = _parse_options(opts.pop('-O', None))
 
+    # handle ``pygmentize -S``
     S_opt = opts.pop('-S', None)
     a_opt = opts.pop('-a', None)
     if S_opt is not None:
         f_opt = opts.pop('-f', None)
         if not f_opt:
-            print >>sys.stderr, USAGE
+            print >>sys.stderr, usage
             return 2
         if opts or args:
-            print >>sys.stderr, USAGE
+            print >>sys.stderr, usage
             return 2
 
         try:
@@ -148,10 +162,12 @@ The -V option prints the package version.
         print fmter.get_style_defs(arg)
         return 0
 
+    # if no -S is given, -a is not allowed
     if a_opt is not None:
-        print >>sys.stderr, USAGE
+        print >>sys.stderr, usage
         return 2
 
+    # select formatter
     outfn = opts.pop('-o', None)
     fmter = opts.pop('-f', None)
     if fmter:
@@ -178,6 +194,7 @@ The -V option prints the package version.
             fmter = TerminalFormatter(**O_opts)
         outfile = sys.stdout
 
+    # select lexer
     lexer = opts.pop('-l', None)
     if lexer:
         try:
@@ -187,6 +204,10 @@ The -V option prints the package version.
             return 1
 
     if args:
+        if len(args) > 1:
+            print >>sys.stderr, usage
+            return 2
+
         infn = args[0]
         if not lexer:
             try:
@@ -206,6 +227,7 @@ The -V option prints the package version.
             return 2
         code = sys.stdin.read()
 
+    # ... and do it!
     try:
         highlight(code, lexer, fmter, outfile)
     except Exception, err:
@@ -213,4 +235,5 @@ The -V option prints the package version.
         print >>sys.stderr, 'Error while highlighting:'
         print >>sys.stderr, traceback.format_exc(0).splitlines()[-1]
         return 1
+
     return 0

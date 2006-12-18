@@ -20,7 +20,7 @@ from pygments.lexers.web import \
 from pygments.lexers.agile import PythonLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
      include, using, this
-from pygments.token import Error, \
+from pygments.token import Error, Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Other
 from pygments.util import html_doctype_matches, looks_like_xml
 
@@ -208,7 +208,7 @@ class DjangoLexer(RegexLexer):
              Keyword),
             include('varnames'),
             (r'\%\}', Comment.Preproc, '#pop'),
-            (r'.', Text)
+            (r'.', Punctuation)
         ]
     }
 
