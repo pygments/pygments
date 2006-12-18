@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using
-from pygments.token import Error, \
+from pygments.token import Error, Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number
 from pygments.util import shebang_matches
 
@@ -115,7 +115,7 @@ class SqlLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r"'(''|[^'])*'", String),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
-            (r'[;:()\[\],\.]', Text)
+            (r'[;:()\[\],\.]', Punctuation)
         ],
         'multiline-comments': [
             (r'/\*', Comment.Multiline, 'multiline-comments'),
@@ -191,12 +191,12 @@ class BashLexer(RegexLexer):
         'curly': [
             (r'}', Keyword, '#pop'),
             (r':-', Keyword),
-            (r'[^}:]+', Text),
-            (r':', Text),
+            (r'[^}:]+', Punctuation),
+            (r':', Punctuation),
         ],
         'paren': [
             (r'\)', Keyword, '#pop'),
-            (r'[^)]*', Text),
+            (r'[^)]*', Punctuation),
         ],
     }
 

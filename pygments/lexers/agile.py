@@ -623,13 +623,14 @@ class PerlLexer(RegexLexer):
             (r'(\[\]|\*\*|::|<<|>>|>=|<=|<=>|={3}|!=|=~|'
              r'!~|&&?|\|\||\.{1,3})', Operator),
             (r'[-+/*%=<>&^|!\\~]=?', Operator),
-            (r'[\(\)\[\]:;,<>/\?\{\}]', Text),
+            (r'[\(\)\[\]:;,<>/\?\{\}]', Punctuation), # yes, there's no shortage
+                                                      # of punctuation in Perl!
             (r'(?=\w)', Name, 'name'),
         ],
         'varname': [
             (r'\s+', Text),
-            (r'\{', Text, '#pop'), # hash syntax?
-            (r'\)|,', Text, '#pop'), # argument specifier
+            (r'\{', Punctuation, '#pop'), # hash syntax?
+            (r'\)|,', Punctuation, '#pop'), # argument specifier
             (r'[a-zA-Z0-9_]+::', Name.Namespace),
             (r'[a-zA-Z0-9_:]+', Name.Variable, '#pop'),
         ],
@@ -646,8 +647,8 @@ class PerlLexer(RegexLexer):
             (r'[a-zA-Z_][\w_]*[\!\?]?', Name.Function),
             (r'\s+', Text),
             # argument declaration
-            (r'\([$@%]*\)\s*', Text),
-            (r'.*?{', Text, '#pop'),
+            (r'(\([$@%]*\))(\s*)', bygroups(Punctuation, Text)),
+            (r'.*?{', Punctuation, '#pop'),
         ],
         'cb-string': [
             (r'\\[\{\}\\]', String.Other),
@@ -703,7 +704,7 @@ class LuaLexer(RegexLexer):
 
             (r'\n', Text),
             (r'[^\S\n]', Text),
-            (r'[\[\]\{\}\(\)\.,:;]', Text),
+            (r'[\[\]\{\}\(\)\.,:;]', Punctuation),
 
             (r'(==|~=|<=|>=|\.\.|\.\.\.|[=+\-*/%^<>#])', Operator),
             (r'(and|or|not)\b', Operator.Word),
@@ -727,7 +728,7 @@ class LuaLexer(RegexLexer):
         'funcname': [
             ('[A-Za-z_][A-Za-z0-9_]*', Name.Function, '#pop'),
             # inline function
-            ('\(', Text, '#pop'),
+            ('\(', Punctuation, '#pop'),
         ],
 
         'classname': [
@@ -778,10 +779,11 @@ class LuaLexer(RegexLexer):
                 elif '.' in value:
                     a, b = value.split('.')
                     yield index, Name, a
-                    yield index + len(a), Text, u'.'
+                    yield index + len(a), Punctuation, u'.'
                     yield index + len(a) + 1, Name, b
                     continue
             yield index, token, value
+
 
 class SchemeLexer(RegexLexer):
     """

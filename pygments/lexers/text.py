@@ -13,7 +13,7 @@
 import re
 
 from pygments.lexer import RegexLexer, bygroups, include
-from pygments.token import \
+from pygments.token import Punctuation, \
     Text, Comment, Keyword, Name, String, Generic, Operator, Number
 
 
@@ -70,7 +70,7 @@ class MakefileLexer(RegexLexer):
         ],
         'block-header': [
             (r'[^,\n]', String),
-            (r',', Text),
+            (r',', Punctuation),
             (r'\n[\t ]+', Text, 'block'),
             (r'\n', Text, '#pop')
         ],
@@ -220,7 +220,7 @@ class GroffLexer(RegexLexer):
     tokens = {
         'root': [
             (r'(?i)(\.)(\w+)', bygroups(Text, Keyword), 'request'),
-            (r'\.', Text, 'request'),
+            (r'\.', Punctuation, 'request'),
             # Regular characters, slurp till we find a backslash or newline
             (r'[^\\\n]*', Text, 'textline'),
         ],
