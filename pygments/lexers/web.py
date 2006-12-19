@@ -259,7 +259,8 @@ class PhpLexer(RegexLexer):
              bygroups(Operator, Text, Name.Attribute)),
             (r'[~!%^&*()+=|\[\]:;,.<>/?{}@-]', Text),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (r'(function)(\s+)', bygroups(Keyword, Text), 'functionname'),
+            (r'(function)(\s+)(&?)(\s*)',
+              bygroups(Keyword, Text, Operator, Text), 'functionname'),
             (r'(and|E_PARSE|old_function|E_ERROR|or|as|E_WARNING|parent|'
              r'eval|PHP_OS|break|exit|case|extends|PHP_VERSION|cfunction|'
              r'FALSE|print|for|require|continue|foreach|require_once|'

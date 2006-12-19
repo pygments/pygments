@@ -490,4 +490,9 @@ class Zip extends Archive {
     return true;
   }
 }
+
+function &byref() {
+    $x = array();
+    return $x;
+}
 ?>

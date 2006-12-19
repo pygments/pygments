@@ -4,14 +4,6 @@ Todo
 for 0.6
 -------
 
-- pygmentize presets?
-
-- short cmdline options for common ``-O`` options
-
-- improve guess_lexer heuristics (esp. for template langs)
-
-- help for ``-O`` and ``-a`` cmdline options
-
 - allow "overlay" token types (e.g. Diff + X) 
   - highlight specials: nth line, a word etc.
   - dhtml: overlays toggleable by javascript
@@ -32,30 +24,32 @@ for 0.6
     * objective c
     * mysql/postgresql/sqlite
     * tcl
-    * python help() ?
 
-- tell the PHP and DelphiLexer how to differ between Operators and
-  text.
+- tell the C(++) and PHP lexers how to differ between Operators and text.
 
 - add support for function name highlighting to c++ lexer
 
 - readd property support for C# lexer
 
 
-for 0.7 / later
----------------
+for 0.7
+-------
+
+- automatically get help for lexers/formatters/options from docstrings
 
 - moin parser
 
-- add folding? would require more language-aware parsers...
+- pygmentize presets?
 
-- more setuptools entrypoints (html formatter etc.)
-  see paste script's Commands
-
-- docstrings?
-
-- more unit tests (pygmentize, all formatters)
+- more unit tests (pygmentize, all formatters comprehensively)
 
 - review perl lexer (numerous bugs, but so far no one had complaints ;)
 
 
+for 0.8 -- 1.0
+--------------
+
+- more setuptools entrypoints (html formatter etc.)
+  see paste script's Commands
+
+- add folding? would require more language-aware parsers...
