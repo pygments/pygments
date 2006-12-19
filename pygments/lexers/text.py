@@ -6,7 +6,8 @@
     Lexers for non-source code file types: Diff, Makefiles, Ini configs etc.
 
     :copyright: 2006 by Armin Ronacher, Georg Brandl,
-                Tim Hatch <tim@timhatch.com>.
+                Tim Hatch <tim@timhatch.com>,
+                Ronny Pfannschmidt.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -18,7 +19,7 @@ from pygments.token import Punctuation, \
 
 
 __all__ = ['IniLexer', 'MakefileLexer', 'DiffLexer', 'IrcLogsLexer',
-           'TexLexer', 'GroffLexer', 'ApacheConfLexer']
+           'TexLexer', 'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer']
 
 
 class IniLexer(RegexLexer):
@@ -150,6 +151,21 @@ class IrcLogsLexer(RegexLexer):
         'msg': [
             (r"[^\s]+:", Name.Attribute),  # Prefix
             (r".*?\n", Text, '#pop'),
+        ],
+    }
+
+
+class BBCodeLexer(RegexLexer):
+    name = 'BBCode'
+    aliases = ['bbcode']
+    
+    tokens = {
+        'root' : [
+            (r'[\s\w]+', Text),
+            (r'(\[)(/?[^\]\n\r=]+)(\])',
+             bygroups(Keyword, Keyword.Pseudo, Keyword)),
+            (r'(\[)([^\]\n\r=]+)(=)([^\]\n\r]+)(\])',
+             bygroups(Keyword, Keyword.Pseudo, Operator, String, Keyword)),
         ],
     }
 
