@@ -275,8 +275,16 @@ def using(_other, **kwargs):
     """
     if _other is this:
         def callback(lexer, match, ctx=None):
+            # if keyword arguments are given the callback
+            # function has to create a new lexer instance
+            if kwargs:
+                # XXX: cache that somehow
+                kwargs.update(lexer.options)
+                lx = lexer.__class__(**kwargs)
+            else:
+                lx = lexer
             s = match.start()
-            for i, t, v in lexer.get_tokens_unprocessed(match.group()):
+            for i, t, v in lx.get_tokens_unprocessed(match.group()):
                 yield i + s, t, v
             if ctx:
                 ctx.pos = match.end()
