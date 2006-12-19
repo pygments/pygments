@@ -15,6 +15,7 @@
 
 LEXERS = {
     'ApacheConfLexer': ('pygments.lexers.text', 'ApacheConf', ('apacheconf', 'aconf'), ('.htaccess', 'apache.conf'), ()),
+    'BBCodeLexer': ('pygments.lexers.text', 'BBCode', ('bbcode',), (), ()),
     'BashLexer': ('pygments.lexers.other', 'Bash', ('bash', 'sh'), ('*.sh',), ('application/x-sh', 'application/x-shellscript')),
     'BooLexer': ('pygments.lexers.dotnet', 'Boo', ('boo',), ('*.boo',), ('text/x-boo',)),
     'BrainfuckLexer': ('pygments.lexers.other', 'Brainfuck', ('brainfuck', 'bf'), ('*.bf', '*.b'), ()),
