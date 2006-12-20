@@ -36,6 +36,13 @@ class CmdLineTest(unittest.TestCase):
         self.assert_(c == 0)
         self.assert_(o.find("Lexers") and o.find("Formatters"))
 
+    def test_O_opt(self):
+        filename = os.path.join(testdir, testfile)
+        c, o, e = run_cmdline("-Ofull=1,linenos=true", "-fhtml", filename)
+        self.assertEquals(c, 0)
+        self.assert_("<html" in o)
+        self.assert_('class="linenos"' in o)
+
     def test_invalid_opts(self):
         for opts in [("-L", "-lpy"), ("-L", "-fhtml"), ("-L", "-Ox"),
                      ("-a",), ("-Sst", "-lpy")]:
