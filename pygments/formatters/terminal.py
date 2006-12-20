@@ -13,7 +13,6 @@ from pygments.formatter import Formatter
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Token
 from pygments.console import ansiformat
-from pygments.util import get_bool_opt
 
 
 __all__ = ['TerminalFormatter']
