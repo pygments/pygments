@@ -295,7 +295,7 @@ class ApacheConfLexer(RegexLexer):
         ],
         'value': [
             (r'$', Text, '#pop'),
-            (r'\s', Text), # XXX: \s+ does not work with examplefile
+            (r'[^\S\n]+', Text),
             (r'\d+', Number),
             (r'/([a-zA-Z0-9][a-zA-Z0-9_./-]+)', String.Other),
             (r'(on|off|none|any|all|double|email|dns|min|minimal|'
