@@ -60,9 +60,9 @@ def _parse_options(o_str):
             o_key = o_key.strip()
             o_val = o_val.strip()
         except ValueError:
-            O_opts[o_arg] = True
+            opts[o_arg] = True
         else:
-            O_opts[o_key] = o_val
+            opts[o_key] = o_val
     return opts
 
 
