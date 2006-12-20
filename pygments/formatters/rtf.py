@@ -33,6 +33,8 @@ class RtfFormatter(Formatter):
         """
         Formatter.__init__(self, **options)
         self.fontface = options.get('fontface') or ''
+        if self.encoding in ('utf-8', 'utf-16', 'utf-32'):
+            self.encoding = None
 
     def _escape(self, text):
         return text.replace('\\', '\\\\') \
@@ -46,32 +48,27 @@ class RtfFormatter(Formatter):
 
         # escape text
         text = self._escape(text)
+        encoding = self.encoding or 'iso-8859-15'
 
-        # byte strings
-        if isinstance(text, str):
-            for c in xrange(128, 256):
-                text = text.replace(chr(c), '\\\'%x' % c)
+        buf = []
+        for c in text:
+            if ord(c) > 128:
+                ansic = c.encode(encoding, 'ignore') or '?'
+                if ord(ansic) > 128:
+                    ansic = '\\\'%x' % ord(ansic)
+                buf.append(r'\ud{\u%d%s}' % (ord(c), ansic))
+            else:
+                buf.append(str(c))
 
-        # unicode strings
-        elif isinstance(text, unicode):
-            buf = []
-            for c in text:
-                o = ord(c)
-                if o > 128:
-                    ansic = c.encode('iso-8859-1', 'ignore') or '?'
-                    if ord(ansic) > 128:
-                        ansic = '\\\'%x' % ord(ansic)
-                    buf.append(r'\ud{\u%d%s}' % (o, ansic))
-                else:
-                    buf.append(str(c))
-            text = ''.join(buf)
-
-        return text.replace('\n', '\\par\n')
+        return ''.join(buf).replace('\n', '\\par\n')
 
     def format(self, tokensource, outfile):
+        # rtf 1.8 header
         outfile.write(r'{\rtf1\ansi\deff0'
-                      r'{\fonttbl{\f0\fmodern\fprq1\fcharset0%s;}}{\colortbl;' %
-                      (self.fontface and ' ' + self._escape(self.fontface) or ''))
+                      r'{\fonttbl{\f0\fmodern\fprq1\fcharset0%s;}}'
+                      r'{\colortbl;' % (self.fontface and
+                                        ' ' + self._escape(self.fontface) or
+                                        ''))
 
         # convert colors and save them in a mapping to access them later.
         color_mapping = {}
@@ -106,7 +103,8 @@ class RtfFormatter(Formatter):
             if style['underline']:
                 buf.append(r'\ul')
             if style['border']:
-                buf.append(r'\chbrdr\chcfpat%d' % color_mapping[style['border']])
+                buf.append(r'\chbrdr\chcfpat%d' %
+                           color_mapping[style['border']])
             start = ''.join(buf)
             if start:
                 outfile.write('{%s ' % start)
