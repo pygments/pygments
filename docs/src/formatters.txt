@@ -24,6 +24,11 @@ All formatters support this option:
 
     If this is ``""`` or ``None``, Unicode strings will be written
     to the output file, which most file-like objects do not support.
+    For example, `pygments.highlight()` will return a Unicode string if
+    called with no `outfile` argument and a formatter that has `encoding`
+    set to ``None`` because it uses a `StringIO.StringIO` object that
+    supports Unicode arguments to `write()`. Using a regular file object
+    wouldn't work.
 
 The `HtmlFormatter` and `LatexFormatter` classes support these options:
 
