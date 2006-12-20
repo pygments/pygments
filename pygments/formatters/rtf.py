@@ -8,11 +8,8 @@
     :copyright: 2006 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
 """
-import cStringIO
 
 from pygments.formatter import Formatter
-from pygments.token import Token
-from pygments.util import get_bool_opt, get_int_opt
 
 
 __all__ = ['RtfFormatter']

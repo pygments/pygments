@@ -93,7 +93,7 @@ class Scanner(object):
         return True
 
     def get_char(self):
-        """Scan exactly one char"""
+        """Scan exactly one char."""
         self.scan('.')
 
     def __repr__(self):

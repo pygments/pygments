@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using
+from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Error, Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number
 from pygments.util import shebang_matches

@@ -16,7 +16,7 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, using, include, this
+from pygments.lexer import RegexLexer, bygroups, using, include, this
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Other, Punctuation
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
@@ -313,7 +313,7 @@ class PhpLexer(RegexLexer):
         self.disabledmodules = get_list_opt(
             options, 'disabledmodules', ['unknown'])
         self.startinline = get_bool_opt(options, 'startinline', False)
-        
+
         # private option argument for the lexer itself
         if '_startinline' in options:
             self.startinline = options.pop('_startinline')

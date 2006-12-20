@@ -237,7 +237,7 @@ class DelphiLexer(Lexer):
         'override', 'assembler'
     ])
 
-    # XXX: those arn't global. but currently we know no way for defining
+    # XXX: those aren't global. but currently we know no way for defining
     #      them just for the type context.
     DIRECTIVES = set([
         'absolute', 'abstract', 'assembler', 'cppdecl', 'default', 'far',

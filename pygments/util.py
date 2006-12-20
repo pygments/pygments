@@ -138,14 +138,14 @@ def doctype_matches(text, regex):
 
 def html_doctype_matches(text):
     """
-    Check if the file looks like it has a html doctype
+    Check if the file looks like it has a html doctype.
     """
     return doctype_matches(text, r'html\s+PUBLIC\s+"-//W3C//DTD X?HTML.*')
 
 
 def looks_like_xml(text):
     """
-    Check if a doctype exists or if we have some tags
+    Check if a doctype exists or if we have some tags.
     """
     m = doctype_lookup_re.match(text)
     if m is not None:

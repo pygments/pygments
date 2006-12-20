@@ -1,46 +1,40 @@
 Todo
 ====
 
-for 0.6
--------
-
-- allow "overlay" token types (e.g. Diff + X) 
-  - highlight specials: nth line, a word etc.
-  - dhtml: overlays toggleable by javascript
-
-- lexers:
-    * haskell
-    * (Q)BASIC
-    * lisp
-    * python TBs
-    * IPython sessions
-    * ls -alG
-    * HTML with special formatting?
-    * latex special formatting?
-    * ocaml
-    * nemerle
-    * windows batch files
-    * assembler
-    * objective c
-    * mysql/postgresql/sqlite
-    * tcl
-
-
 for 0.7
 -------
 
+- lexers:
+  * Haskell
+  * (Q)BASIC
+  * Lisp
+  * Python TBs
+  * IPython sessions
+  * ls -alG
+  * HTML with special formatting?
+  * LaTeX special formatting?
+  * OCaml
+  * Nemerle
+  * Windows batch files
+  * Assembler
+  * Objective C
+  * MySQL/PostgreSQL/SQLite
+  * Tcl
+
 - automatically get help for lexers/formatters/options from docstrings
 
-- moin parser
+- a MoinMoin parser
+
+- allow "overlay" token types to highlight specials: nth line, a word etc.
 
 - readd property support for C# lexer? that is, find a regex that doesn't
   backtrack to death...
 
 - add support for function name highlighting to c++ lexer
 
-- pygmentize presets?
+- pygmentize option presets?
 
-- more unit tests (pygmentize, all formatters comprehensively)
+- more unit tests (test pygmentize, test all formatters comprehensively)
 
 - review perl lexer (numerous bugs, but so far no one had complaints ;)
 
