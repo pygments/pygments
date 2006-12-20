@@ -274,38 +274,35 @@ class GroffLexer(RegexLexer):
         if text[1:3].isalnum() and text[3].isspace():
             return 0.9
 
+
 class ApacheConfLexer(RegexLexer):
     """
     Lex Apache configuration like files.
     """
     name = 'ApacheConf'
-    aliases = ['apacheconf', 'aconf']
-    filenames = ['.htaccess', 'apache.conf']
+    aliases = ['apacheconf', 'aconf', 'apache']
+    filenames = ['.htaccess', 'apache.conf', 'apache2.conf']
+    flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {
         'root': [
-            (r'(\s*)(#.*)',
-             bygroups(Text, Comment)),
-            (r'^(\s*)(</?\w+)',
-             bygroups(Text, Name.Tag), 'section'),
-            (r'^(\s*)(\w+)(\s+)',
-             bygroups(Text, Name.Attribute, Text),
-             'value'),
-            (r'[^<\n]+', Text),
-        ],
-        'datatypes': [
-            (r'\d+\b', Number),
-            (r'"(\\\\|\\"|[^"\n])*"', String.Double),
-            (r'\S+\b', String.Symbol),
-            (r'[ \t]+', Text),
-            (r'[^\n]+', String),
-        ],
-        'section': [
-            (r'>', Name.Tag, '#pop'),
-            include('datatypes'),
+            (r'^(\s*)(#.*?)$', bygroups(Text, Comment)),
+            (r'\s+', Text),
+            (r'(<[^\s>]+)(?:(\s+)(.*?))?(>)',
+             bygroups(Name.Tag, Text, String, Name.Tag)),
+            (r'([a-zA-Z][a-zA-Z0-9]*)(\s+)',
+             bygroups(Name.Builtin, Text), 'value')
         ],
         'value': [
-            include('datatypes'),
-            (r'\n', Text, '#pop'),
-        ],
+            (r'$', Text, '#pop'),
+            (r'\s', Text), # XXX: \s+ does not work with examplefile
+            (r'\d+', Number),
+            (r'/([a-zA-Z0-9][a-zA-Z0-9_./-]+)', String.Other),
+            (r'(on|off|none|any|all|double|email|dns|min|minimal|'
+             r'os|productonly|full|emerg|alert|crit|error|warn|'
+             r'notice|info|debug|registry|script|inetd|standalone|'
+             r'user|group)\b', Keyword),
+            (r'"([^"\\]*(?:\\.[^"\\]*)*)"', String.Double),
+            (r'[^\s"]+', Text)
+        ]
     }
