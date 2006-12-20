@@ -75,30 +75,26 @@ def _print_lflist():
     print "~~~~~~~"
 
     info = []
-    maxlen = 0
     for _, fullname, names, exts, _ in LEXERS.itervalues():
         tup = (', '.join(names)+':', fullname,
                exts and '(extensions ' + ', '.join(exts) + ')' or '')
         info.append(tup)
-        if len(tup[0]) > maxlen: maxlen = len(tup[0])
     info.sort()
     for i in info:
-        print ('%-'+str(maxlen)+'s %s %s') % i
+        print ('%s\n    %s %s') % i
 
     print
     print "Formatters:"
     print "~~~~~~~~~~~"
 
     info = []
-    maxlen = 0
     for fullname, names, exts, doc in FORMATTERS.itervalues():
         tup = (', '.join(names)+':', doc,
                exts and '(extensions ' + ', '.join(exts) + ')' or '')
         info.append(tup)
-        if len(tup[0]) > maxlen: maxlen = len(tup[0])
     info.sort()
     for i in info:
-        print ('%-'+str(maxlen)+'s %s %s') % i
+        print ('%s\n    %s %s') % i
 
 
 def main(args):
