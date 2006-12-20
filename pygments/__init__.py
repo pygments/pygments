@@ -33,7 +33,8 @@ __all__ = ['lex', 'format', 'highlight']
 
 
 import sys, os
-from cStringIO import StringIO
+from StringIO import StringIO
+from cStringIO import StringIO as CStringIO
 
 
 def lex(code, lexer):
@@ -51,10 +52,13 @@ def format(tokens, formatter, outfile=None):
     with a ``write`` method), the result will be written to it, otherwise
     it is returned as a string.
     """
-    realoutfile = outfile or StringIO()
-    formatter.format(tokens, realoutfile)
     if not outfile:
+        # if we want Unicode output, we have to use Python StringIO
+        realoutfile = formatter.encoding and CStringIO() or StringIO()
+        formatter.format(tokens, realoutfile)
         return realoutfile.getvalue()
+    else:
+        formatter.format(tokens, outfile)
 
 
 def highlight(code, lexer, formatter, outfile=None):

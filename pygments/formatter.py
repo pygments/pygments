@@ -41,14 +41,20 @@ class Formatter(object):
     ``encoding``
         If given, must be an encoding name. This will be used to
         convert the Unicode token strings to byte strings in the
-        output (default: 'latin1').
+        output. If it is "" or None, Unicode strings will be written
+        to the output file, which most file-like objects do not
+        support (default: None).
     """
+
+    #: If True, this formatter outputs Unicode strings when no encoding
+    #: option is given.
+    unicodeoutput = True
 
     def __init__(self, **options):
         self.style = _lookup_style(options.get('style', 'default'))
         self.full  = get_bool_opt(options, 'full', False)
         self.title = options.get('title', '')
-        self.encoding = options.get('encoding', 'latin1')
+        self.encoding = options.get('encoding', None) or None
         self.options = options
 
     def get_style_defs(self, arg=''):

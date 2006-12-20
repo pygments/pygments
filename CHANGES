@@ -3,7 +3,7 @@ Pygments changelog
 
 Version 0.6
 -----------
-(released Dec XX, 2006)
+(codename Zimtstern, released Dec XX, 2006)
 
 - Added option for the HTML formatter to write the CSS to an external file
   in "full document" mode.
@@ -33,8 +33,8 @@ Version 0.6
 - Support for guessing input encoding added.
 
 - Encoding support added: all processing is now done with Unicode
-  strings, input and output are converted from and to byte strings
-  (see the ``encoding`` option of lexers and formatters).
+  strings, input and output are converted from and optionally to
+  byte strings (see the ``encoding`` option of lexers and formatters).
 
 - Some improvements in the C(++) lexers handling comments and line
   continuations.
@@ -49,6 +49,6 @@ Version 0.5.1
 
 Version 0.5
 -----------
-(released Oct 30, 2006)
+(codename PyKleur, released Oct 30, 2006)
 
 - Initial public release.

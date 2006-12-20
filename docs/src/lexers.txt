@@ -19,6 +19,8 @@ Currently, **all lexers** support these options:
     If given and greater than 0, expand tabs in the input (default: ``0``).
 
 `encoding`
+    *New in Pygments 0.6.*
+
     If given, must be an encoding name (such as ``"utf-8"``). This encoding
     will be used to convert the input string to Unicode (if it is not already
     a Unicode string). The default is ``"latin1"``.

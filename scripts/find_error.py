@@ -12,7 +12,13 @@
     :license: BSD, see LICENSE for more details.
 """
 
-import sys
+import sys, os
+
+try:
+    import pygments
+except ImportError:
+    # try parent path
+    sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 from pygments import highlight
 from pygments.lexers import get_lexer_for_filename, get_lexer_by_name

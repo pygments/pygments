@@ -18,6 +18,8 @@ __all__ = ['RtfFormatter']
 class RtfFormatter(Formatter):
     """Output RTF (Rich Text Format)."""
 
+    unicodeoutput = False
+
     def __init__(self, **options):
         """
         Additional options accepted:
@@ -67,6 +69,9 @@ class RtfFormatter(Formatter):
         return text.replace('\n', '\\par\n')
 
     def format(self, tokensource, outfile):
+        if not self.encoding:
+            outfile.write(u'')
+
         outfile.write(r'{\rtf1\ansi\deff0'
                       r'{\fonttbl{\f0\fmodern\fprq1\fcharset0%s;}}{\colortbl;' %
                       (self.fontface and ' ' + self._escape(self.fontface) or ''))
