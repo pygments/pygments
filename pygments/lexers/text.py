@@ -158,7 +158,7 @@ class IrcLogsLexer(RegexLexer):
 class BBCodeLexer(RegexLexer):
     name = 'BBCode'
     aliases = ['bbcode']
-    
+
     tokens = {
         'root' : [
             (r'[\s\w]+', Text),

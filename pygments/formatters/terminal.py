@@ -67,17 +67,12 @@ class TerminalFormatter(Formatter):
         ``colorscheme``
             ``None`` or a dictionary mapping token types to
             ``(lightbg, darkbg)`` color names.
-
-        ``debug``
-            If true, output "<<ERROR>>" after each error token.
         """
         Formatter.__init__(self, **options)
         self.darkbg = options.get('bg', 'light') == 'dark'
         self.colorscheme = options.get('colorscheme', None) or TERMINAL_COLORS
-        self.debug = get_bool_opt(options, 'debug', False)
 
     def format(self, tokensource, outfile):
-        dbg = self.debug
         for ttype, value in tokensource:
             value = value.encode(self.encoding)
             color = self.colorscheme.get(ttype)
@@ -95,5 +90,3 @@ class TerminalFormatter(Formatter):
                     outfile.write(ansiformat(color, spl[-1]))
             else:
                 outfile.write(value)
-            if dbg and ttype is Error:
-                outfile.write('<<ERROR>>')

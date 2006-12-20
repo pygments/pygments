@@ -8,7 +8,7 @@
     :copyright: 2006 by Georg Brandl, Armin Ronacher.
     :license: BSD, see LICENSE for more details.
 """
-import os
+import sys, os
 import cStringIO
 
 from pygments.formatter import Formatter
