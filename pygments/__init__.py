@@ -12,7 +12,7 @@
     * a wide range of common languages and markup formats is supported
     * special attention is paid to details, increasing quality by a fair amount
     * support for new languages and formats are added easily
-    * a number of output formats, presently HTML, LaTeX and ANSI sequences
+    * a number of output formats, presently HTML, LaTeX, RTF and ANSI sequences
     * it is usable as a command-line tool and as a library
     * ... and it highlights even Brainfuck!
 
@@ -23,7 +23,7 @@
     :license: BSD, see LICENSE for more details.
 """
 
-__version__ = '0.6'
+__version__ = '0.7'
 __docformat__ = 'restructuredtext'
 __license__ = 'BSD License'
 __author__ = 'Georg Brandl <g.brandl@gmx.net>'
@@ -76,6 +76,7 @@ def highlight(code, lexer, formatter, outfile=None):
 def cmdline_main(args):
     """
     Make pygments usable as a command line utility.
+    XXX: To be removed.
     """
     from pygments.cmdline import main
     return main(args)
