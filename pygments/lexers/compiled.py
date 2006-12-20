@@ -55,7 +55,8 @@ class CLexer(RegexLexer):
             (r'0[0-7]+[Ll]?', Number.Oct),
             (r'(\d+\.\d*|\.\d+)', Number.Float),
             (r'\d+', Number.Integer),
-            (r'[~!%^&*()+=|\[\]:,.<>/?-]', Punctuation), # missing: Operators
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'[()\[\],.]', Punctuation),
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
              r'for|goto|if|register|restricted|return|sizeof|static|struct|'
              r'switch|typedef|union|volatile|virtual|while)\b', Keyword),
@@ -145,7 +146,8 @@ class CppLexer(RegexLexer):
             (r'0[0-7]+[Ll]?', Number.Oct),
             (r'(\d+\.\d*|\.\d+)', Number.Float),
             (r'\d+', Number.Integer),
-            (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'[()\[\],.]', Punctuation),
             (r'(asm|auto|break|case|catch|const|const_cast|continue|'
              r'default|delete|do|dynamic_cast|else|enum|explicit|export|'
              r'extern|for|friend|goto|if|mutable|namespace|new|operator|'

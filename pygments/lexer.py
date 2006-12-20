@@ -543,7 +543,7 @@ def do_insertions(insertions, tokens):
 
     The result is a combined token stream.
 
-    XXX: The indices yielded by this function are not correct!
+    FIXME: The indices yielded by this function are not correct!
     """
     insertions = iter(insertions)
     try:

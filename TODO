@@ -25,12 +25,6 @@ for 0.6
     * mysql/postgresql/sqlite
     * tcl
 
-- tell the C(++) and PHP lexers how to differ between Operators and text.
-
-- add support for function name highlighting to c++ lexer
-
-- readd property support for C# lexer
-
 
 for 0.7
 -------
@@ -38,6 +32,11 @@ for 0.7
 - automatically get help for lexers/formatters/options from docstrings
 
 - moin parser
+
+- readd property support for C# lexer? that is, find a regex that doesn't
+  backtrack to death...
+
+- add support for function name highlighting to c++ lexer
 
 - pygmentize presets?
 
