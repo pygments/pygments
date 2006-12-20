@@ -147,7 +147,7 @@ class CppLexer(RegexLexer):
             (r'(\d+\.\d*|\.\d+)', Number.Float),
             (r'\d+', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r'[()\[\],.]', Punctuation),
+            (r'[()\[\],.;]', Punctuation),
             (r'(asm|auto|break|case|catch|const|const_cast|continue|'
              r'default|delete|do|dynamic_cast|else|enum|explicit|export|'
              r'extern|for|friend|goto|if|mutable|namespace|new|operator|'

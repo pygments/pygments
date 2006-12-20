@@ -226,6 +226,7 @@ class HtmlFormatter(Formatter):
     def _format_nowrap(self, tokensource, outfile, lnos=False):
         lncount = 0
         nocls = self.noclasses
+        enc = self.encoding
         # for <span style=""> lookup only
         getcls = self.ttype2class.get
         c2s = self.class2style
@@ -233,7 +234,9 @@ class HtmlFormatter(Formatter):
         write = outfile.write
         lspan = ''
         for ttype, value in tokensource:
-            htmlvalue = escape_html(value.encode(self.encoding))
+            if enc:
+                value = value.encode(enc)
+            htmlvalue = escape_html(value)
             if lnos:
                 lncount += value.count("\n")
 

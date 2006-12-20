@@ -149,6 +149,7 @@ class LatexFormatter(Formatter):
 
     def format(self, tokensource, outfile):
         # TODO: add support for background colors
+        enc = self.encoding
 
         if self.full:
             realoutfile = outfile
@@ -165,7 +166,9 @@ class LatexFormatter(Formatter):
         outfile.write(']\n')
 
         for ttype, value in tokensource:
-            value = escape_tex(value.encode(self.encoding))
+            if enc:
+                value = value.encode(enc)
+            value = escape_tex(value)
             cmd = self.ttype2cmd.get(ttype)
             while cmd is None:
                 ttype = ttype.parent

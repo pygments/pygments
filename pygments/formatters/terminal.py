@@ -73,8 +73,10 @@ class TerminalFormatter(Formatter):
         self.colorscheme = options.get('colorscheme', None) or TERMINAL_COLORS
 
     def format(self, tokensource, outfile):
+        enc = self.encoding
         for ttype, value in tokensource:
-            value = value.encode(self.encoding)
+            if enc:
+                value = value.encode(enc)
             color = self.colorscheme.get(ttype)
             while color is None:
                 ttype = ttype[:-1]

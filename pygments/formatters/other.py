@@ -20,8 +20,12 @@ class NullFormatter(Formatter):
     Output the text unchanged without any formatting.
     """
     def format(self, tokensource, outfile):
+        enc = self.encoding
         for ttype, value in tokensource:
-            outfile.write(value.encode(self.encoding))
+            if enc:
+                outfile.write(value.encode(enc))
+            else:
+                outfile.write(value)
 
 
 class RawTokenFormatter(Formatter):
@@ -36,6 +40,8 @@ class RawTokenFormatter(Formatter):
         If set to "gz" or "bz2", compress the token stream with
         the given compression algorithm (default: '').
     """
+
+    unicodeoutput = False
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

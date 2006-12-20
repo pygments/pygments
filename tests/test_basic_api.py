@@ -11,7 +11,7 @@ import unittest
 import StringIO
 import random
 
-from pygments import lexers, formatters
+from pygments import lexers, formatters, format
 from pygments.token import _TokenType
 
 test_content = [chr(i) for i in xrange(33, 128)] * 5
@@ -81,6 +81,21 @@ class FormattersTest(unittest.TestCase):
             inst = formatter(opt1="val1")
             inst.get_style_defs()
             inst.format(ts, out)
+
+    def test_unicode_handling(self):
+        # test that the formatter supports encoding and Unicode
+        tokens = list(lexers.PythonLexer(encoding='utf-8').get_tokens("def f(): 'ä'"))
+        for formatter, info in formatters.FORMATTERS.iteritems():
+            inst = formatter(encoding=None)
+            out = format(tokens, inst)
+            if formatter.unicodeoutput:
+                self.assert_(type(out) is unicode)
+
+            inst = formatter(encoding='utf-8')
+            out = format(tokens, inst)
+            self.assert_(type(out) is str)
+            # Cannot test for encoding, since formatters may have to escape
+            # non-ASCII characters.
 
     def test_get_formatters(self):
         a = self.assert_
