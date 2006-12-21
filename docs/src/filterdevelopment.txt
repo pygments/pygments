@@ -32,8 +32,8 @@ to normal `Name` tokens to make the output less colorful.
 
         def filter(self, lexer, stream):
             for ttype, value in stream:
-                if ttype == Name.Function or (self.class_too and
-                                              ttype == Name.Class):
+                if ttype is Name.Function or (self.class_too and
+                                              ttype is Name.Class):
                     ttype = Name
                 yield ttype, value
 
@@ -62,7 +62,7 @@ module:
     def uncolor(lexer, stream, options):
         class_too = get_bool_opt(options, 'classtoo')
         for ttype, value in stream:
-            if ttype == Name.Function or (class_too and
-                                          ttype == Name.Class):
+            if ttype is Name.Function or (class_too and
+                                          ttype is Name.Class):
                 ttype = Name
             yield ttype, value
