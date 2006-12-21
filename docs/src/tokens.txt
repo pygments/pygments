@@ -20,6 +20,19 @@ You can create a new token type by accessing an attribute of `Token`:
 Note that tokens are singletons so you can use the ``is`` operator for comparing
 token types.
 
+As of Pygments 0.7 you can also use the ``in`` operator to perform set tests:
+
+.. sourcecode:: pycon
+
+    >>> from pygments.token import Comment
+    >>> Comment.Single in Comment
+    True
+    >>> Comment in Comment.Multi
+    False
+
+This can be useful in `filters`_ and if you write lexers on your own without
+using the base lexers.
+
 In principle, you can create an unlimited number of token types but nobody can
 guarantee that a style would define style rules for a token type. Because of
 that, Pygments proposes some global token types defined in the
