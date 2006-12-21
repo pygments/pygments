@@ -18,7 +18,7 @@ Subclassing Filters
 As an example we write a filter that converts all `Name.Function` tokens
 to normal `Name` tokens to make the output less colorful.
 
-.. sourcecode:: pycon
+.. sourcecode:: python
 
     from pygments.util import get_bool_opt
     from pygments.token import Name
@@ -51,7 +51,7 @@ Using a Decorator
 You can also use the `simplefilter` decorator from the `pygments.filter`
 module:
 
-.. sourcecode:: pycon
+.. sourcecode:: python
 
     from pygments.util import get_bool_opt
     from pygments.token import Name
