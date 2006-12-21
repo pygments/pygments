@@ -33,8 +33,11 @@ def simplefilter(f):
             for ttype, value in stream:
                 yield ttype, value.lower()
     """
-    return type('%sFilter' % f.__name__.title().replace('_', ''),
-                (FunctionFilter,), {'function': f})
+    return type(f.__name__, (FunctionFilter,), {
+                'function':     f,
+                '__module__':   getattr(f, '__module__'),
+                '__doc__':      f.__doc__
+            })
 
 
 class Filter(object):
