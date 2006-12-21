@@ -21,6 +21,7 @@ class BorlandStyle(Style):
     styles = {
         Comment:                'italic #008800',
         Comment.Preproc:        'noitalic',
+        Comment.Special:        'noitalic bold',
 
         String:                 '#0000FF',
         Number:                 '#0000FF',

@@ -37,8 +37,8 @@ def get_bool_opt(options, optname, default=None):
         return False
     else:
         raise OptionError('Invalid value %r for option %s; use '
-                          '1/0, yes/no, true/false, on/off' %
-                          string, optname)
+                          '1/0, yes/no, true/false, on/off' % (
+                          string, optname))
 
 
 def get_int_opt(options, optname, default=None):
@@ -47,8 +47,8 @@ def get_int_opt(options, optname, default=None):
         return int(string)
     except ValueError:
         raise OptionError('Invalid value %r for option %s; you '
-                          'must give an integer value' %
-                          string, optname)
+                          'must give an integer value' % (
+                          string, optname))
 
 
 def get_list_opt(options, optname, default=None):
@@ -59,8 +59,8 @@ def get_list_opt(options, optname, default=None):
         return list(val)
     else:
         raise OptionError('Invalid value %r for option %s; you '
-                          'must give a list value' %
-                          val, optname)
+                          'must give a list value' % (
+                          val, optname))
 
 
 def make_analysator(f):

@@ -22,6 +22,7 @@ class FriendlyStyle(Style):
     styles = {
         Comment:                   "italic #60a0b0",
         Comment.Preproc:           "noitalic #007020",
+        Comment.Special:           "noitalic bg:#fff0f0",
 
         Keyword:                   "bold #007020",
         Keyword.Pseudo:            "nobold",

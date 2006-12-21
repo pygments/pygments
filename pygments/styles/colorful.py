@@ -21,6 +21,7 @@ class ColorfulStyle(Style):
     styles = {
         Comment:                   "#888",
         Comment.Preproc:           "#579",
+        Comment.Special:           "bold #cc0000",
 
         Keyword:                   "bold #080",
         Keyword.Pseudo:            "#038",

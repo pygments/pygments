@@ -15,8 +15,11 @@ try:
 except NameError:
     from sets import Set as set
 
+from pygments.filter import apply_filters, Filter
+from pygments.filters import find_filter
 from pygments.token import Error, Text, Other, _TokenType
-from pygments.util import get_bool_opt, get_int_opt, make_analysator
+from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
+     make_analysator
 
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
@@ -81,6 +84,9 @@ class Lexer(object):
         self.stripall = get_bool_opt(options, 'stripall', False)
         self.tabsize = get_int_opt(options, 'tabsize', 0)
         self.encoding = options.get('encoding', 'latin1')
+        self.filters = []
+        for filter in get_list_opt(options, 'filters', ()):
+            self.add_filter(filter)
 
     def __repr__(self):
         if self.options:
@@ -88,6 +94,14 @@ class Lexer(object):
                                                      self.options)
         else:
             return '<pygments.lexers.%s>' % self.__class__.__name__
+
+    def add_filter(self, filter, **options):
+        """
+        Add a new stream filter to this lexer.
+        """
+        if not isinstance(filter, Filter):
+            filter = find_filter(filter, **options)
+        self.filters.append(filter)
 
     def analyse_text(text):
         """
@@ -103,11 +117,14 @@ class Lexer(object):
         it's the same as if the return values was ``0.0``.
         """
 
-    def get_tokens(self, text):
+    def get_tokens(self, text, unfiltered=False):
         """
-        Return an iterable of (tokentype, value) pairs generated from ``text``.
+        Return an iterable of (tokentype, value) pairs generated from
+        `text`. If `unfiltered` is set to `True` the filtering mechanism
+        is bypassed, even if filters are defined.
 
-        Also preprocess the text, i.e. expand tabs and strip it if wanted.
+        Also preprocess the text, i.e. expand tabs and strip it if
+        wanted and applies registered filters.
         """
         if isinstance(text, unicode):
             text = u'\n'.join(text.splitlines())
@@ -122,9 +139,9 @@ class Lexer(object):
                 try:
                     import chardet
                 except ImportError:
-                    raise ImportError('To enable chardet encoding guessing, please '
-                                      'install the chardet library from '
-                                      'http://chardet.feedparser.org/')
+                    raise ImportError('To enable chardet encoding guessing, '
+                                      'please install the chardet library '
+                                      'from http://chardet.feedparser.org/')
                 enc = chardet.detect(text)
                 text = text.decode(enc['encoding'])
             else:
@@ -138,8 +155,13 @@ class Lexer(object):
         if not text.endswith('\n'):
             text += '\n'
 
-        for i, t, v in self.get_tokens_unprocessed(text):
-            yield t, v
+        def streamer():
+            for i, t, v in self.get_tokens_unprocessed(text):
+                yield t, v
+        stream = streamer()
+        if not unfiltered:
+            stream = apply_filters(stream, self.filters, self)
+        return stream
 
     def get_tokens_unprocessed(self, text):
         """

@@ -23,6 +23,7 @@ class NativeStyle(Style):
 
         Comment:            'italic #999999',
         Comment.Preproc:    'noitalic bold #cd2828',
+        Comment.Special:    'noitalic bold #e50808 bg:#520000',
 
         Keyword:            'bold #6ab825',
         Keyword.Pseudo:     'nobold',

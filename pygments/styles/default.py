@@ -25,6 +25,7 @@ class DefaultStyle(Style):
     styles = {
         Comment:                   "italic #008800",
         Comment.Preproc:           "noitalic",
+        Comment.Special:           "noitalic bold",
 
         Keyword:                   "bold #AA22FF",
         Keyword.Pseudo:            "nobold",

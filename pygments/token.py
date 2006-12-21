@@ -21,6 +21,12 @@ class _TokenType(tuple):
         buf.reverse()
         return buf
 
+    def __contains__(self, val):
+        return self is val or (
+            type(val) is self.__class__ and
+            val[:len(self)] == self
+        )
+
     def __getattr__(self, val):
         if not val or not val[0].isupper():
             return tuple.__getattr__(self, val)
