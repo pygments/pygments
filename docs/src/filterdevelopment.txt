@@ -66,3 +66,6 @@ module:
                                           ttype is Name.Class):
                 ttype = Name
             yield ttype, value
+
+The decorator automatically subclasses an internal filter class and uses
+the decorated function for filtering.
