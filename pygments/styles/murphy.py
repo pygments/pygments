@@ -21,6 +21,7 @@ class MurphyStyle(Style):
     styles = {
         Comment:                   "#666 italic",
         Comment.Preproc:           "#579 noitalic",
+        Comment.Special:           "#c00 bold",
 
         Keyword:                   "bold #289",
         Keyword.Pseudo:            "#08f",

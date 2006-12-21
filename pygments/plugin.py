@@ -26,6 +26,11 @@
         [pygments.styles]
         yourstyle = yourstyle:YourStyle
 
+    filter plugin::
+
+        [pygments.filter]
+        yourfilter = yourfilter:YourFilter
+
 
     :copyright: 2006 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
@@ -38,6 +43,7 @@ except ImportError:
 LEXER_ENTRY_POINT = 'pygments.lexers'
 FORMATTER_ENTRY_POINT = 'pygments.formatters'
 STYLE_ENTRY_POINT = 'pygments.styles'
+FILTER_ENTRY_POINT = 'pygments.filters'
 
 
 def find_plugin_lexers():
@@ -58,4 +64,11 @@ def find_plugin_styles():
     if pkg_resources is None:
         return
     for entrypoint in pkg_resources.iter_entry_points(STYLE_ENTRY_POINT):
+        yield entrypoint.name, entrypoint.load()
+
+
+def find_plugin_filters():
+    if pkg_recources is None:
+        return
+    for entrypoint in pkg_resources.iter_entry_points(FILTER_ENTRY_POINT):
         yield entrypoint.name, entrypoint.load()

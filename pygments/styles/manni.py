@@ -24,6 +24,7 @@ class ManniStyle(Style):
     styles = {
         Comment:            'italic #0099FF',
         Comment.Preproc:    'noitalic #009999',
+        Comment.Special:    'bold',
 
         Keyword:            'bold #006699',
         Keyword.Pseudo:     'nobold',

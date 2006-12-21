@@ -24,6 +24,7 @@ class PerldocStyle(Style):
     styles = {
         Comment:                '#228B22',
         Comment.Preproc:        '#1e889b',
+        Comment.Special:        '#8B008B bold',
 
         String:                 '#CD5555',
         String.Heredoc:         '#1c7e71 italic',

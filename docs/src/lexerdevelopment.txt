@@ -535,3 +535,7 @@ the ``get_tokens_unprocessed()`` method. The following lexer subclasses the
                     yield index, token, value
 
 The `PhpLexer` and `LuaLexer` use this method to resolve builtin functions.
+
+**Note** Do not confuse this with the `filter`_ system.
+
+.. _filter: filters.txt

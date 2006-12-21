@@ -61,6 +61,17 @@ Here a list of setuptools entrypoints pygments understands:
         yourstyle = yourmodule:YourStyle
 
 
+`pygments.filters`
+
+    Use this entrypoint to register a new filter. The name of the
+    entrypoint is the name of the filter:
+
+    .. sourcecode:: ini
+
+        [pygments.filters]
+        yourfilter = yourmodule:YourFilter
+
+
 How To Use Entrypoints
 ======================
 

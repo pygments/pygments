@@ -21,6 +21,7 @@ class AutumnStyle(Style):
     styles = {
         Comment:                    "italic #aaaaaa",
         Comment.Preproc:            "noitalic #4c8317",
+        Comment.Special:            "italic #0000aa",
 
         Keyword:                    "#0000aa",
         Keyword.Type:               "#00aaaa",
