@@ -37,6 +37,7 @@ class JavascriptLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
+            (r'<!--', Comment),
             (r'//.*?\n', Comment),
             (r'/\*.*?\*/', Comment),
             (r'/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex),

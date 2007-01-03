@@ -12,14 +12,19 @@
 """
 
 import re
+try:
+    set
+except NameError:
+    from sets import Set as set
 
-from pygments.lexer import RegexLexer, bygroups, include
+from pygments.lexer import Lexer, RegexLexer, bygroups, include
 from pygments.token import Punctuation, \
     Text, Comment, Keyword, Name, String, Generic, Operator, Number
 
 
 __all__ = ['IniLexer', 'MakefileLexer', 'DiffLexer', 'IrcLogsLexer',
-           'TexLexer', 'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer']
+           'TexLexer', 'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer',
+           'RstLexer']
 
 
 class IniLexer(RegexLexer):
@@ -306,3 +311,9 @@ class ApacheConfLexer(RegexLexer):
             (r'[^\s"]+', Text)
         ]
     }
+
+
+class RstLexer(RegexLexer):
+    name = 'reStructuredText'
+    aliases = ['rst', 'restructuredtext']
+    filenames = ['*.rst']
