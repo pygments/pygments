@@ -142,6 +142,7 @@ STANDARD_TYPES = {
     Comment.Multiline:             'cm',
     Comment.Preproc:               'cp',
     Comment.Single:                'c1',
+    Comment.Special:               'cs',
 
     Generic:                       'g',
     Generic.Deleted:               'gd',

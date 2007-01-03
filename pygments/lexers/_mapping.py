@@ -62,6 +62,7 @@ LEXERS = {
     'PythonLexer': ('pygments.lexers.agile', 'Python', ('python', 'py'), ('*.py', '*.pyw'), ('text/x-python', 'application/x-python')),
     'RawTokenLexer': ('pygments.lexers.special', 'Raw token data', ('raw',), ('*.raw',), ('application/x-pygments-tokens',)),
     'RhtmlLexer': ('pygments.lexers.templates', 'RHTML', ('rhtml', 'html+erb', 'html+ruby'), ('*.rhtml',), ()),
+    'RstLexer': ('pygments.lexers.text', 'reStructuredText', ('rst', 'restructuredtext'), ('*.rst',), ()),
     'RubyConsoleLexer': ('pygments.lexers.agile', 'Ruby irb session', ('rbcon', 'irb'), (), ()),
     'RubyLexer': ('pygments.lexers.agile', 'Ruby', ('rb', 'ruby'), ('*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec', '*.rbx'), ('text/x-ruby', 'application/x-ruby')),
     'SchemeLexer': ('pygments.lexers.agile', 'Scheme', ('scheme',), ('*.scm',), ('text/x-scheme', 'application/x-scheme')),
