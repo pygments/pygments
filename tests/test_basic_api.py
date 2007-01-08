@@ -13,6 +13,7 @@ import random
 
 from pygments import lexers, formatters, format
 from pygments.token import _TokenType
+from pygments.lexer import RegexLexer
 
 test_content = [chr(i) for i in xrange(33, 128)] * 5
 random.shuffle(test_content)
@@ -34,6 +35,9 @@ class LexersTest(unittest.TestCase):
                 a(hasattr(lexer, attr))
             result = lexer.analyse_text("abc")
             a(isinstance(result, float) and 0.0 <= result <= 1.0)
+
+            if issubclass(lexer, RegexLexer):
+                a('root' in lexer._tokens, '%s has no root state' % lexer)
 
             inst = lexer(opt1="val1", opt2="val2")
             tokens = list(inst.get_tokens(test_content))
