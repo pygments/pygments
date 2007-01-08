@@ -49,12 +49,11 @@ class CLexer(RegexLexer):
         'statements': [
             (r'L?"', String, 'string'),
             (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
-            (r'(0x[0-9a-fA-F]|0[0-7]+|(\d+\.\d*|\.\d+)|\d+)'
-             r'e[+-]\d+[lL]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
             (r'0[0-7]+[Ll]?', Number.Oct),
-            (r'(\d+\.\d*|\.\d+)', Number.Float),
-            (r'\d+', Number.Integer),
+            (r'\d+[Ll]?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
@@ -140,21 +139,20 @@ class CppLexer(RegexLexer):
             (r'[{}]', Keyword),
             (r'L?"', String, 'string'),
             (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
-            (r'(0x[0-9a-fA-F]|0[0-7]+|(\d+\.\d*|\.\d+)|\d+)'
-             r'e[+-]\d+[lL]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
             (r'0[0-7]+[Ll]?', Number.Oct),
-            (r'(\d+\.\d*|\.\d+)', Number.Float),
-            (r'\d+', Number.Integer),
+            (r'\d+[Ll]?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.;]', Punctuation),
             (r'(asm|auto|break|case|catch|const|const_cast|continue|'
              r'default|delete|do|dynamic_cast|else|enum|explicit|export|'
              r'extern|for|friend|goto|if|mutable|namespace|new|operator|'
              r'private|protected|public|register|reinterpret_cast|return|'
-             r'sizeof|static|static_cast|struct|switch|template|this|throw|'
-             r'throws|try|typedef|typeid|typename|union|using|volatile|'
-             r'virtual|while)\b', Keyword),
+             r'restrict|sizeof|static|static_cast|struct|switch|template|'
+             r'this|throw|throws|try|typedef|typeid|typename|union|using|'
+             r'volatile|virtual|while)\b', Keyword),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(bool|int|long|float|short|double|char|unsigned|signed|'
              r'void|wchar_t)\b', Keyword.Type),
