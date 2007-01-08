@@ -23,8 +23,7 @@ from pygments.token import Punctuation, \
 
 
 __all__ = ['IniLexer', 'MakefileLexer', 'DiffLexer', 'IrcLogsLexer',
-           'TexLexer', 'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer',
-           'RstLexer']
+           'TexLexer', 'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer']
 
 
 class IniLexer(RegexLexer):
@@ -313,7 +312,7 @@ class ApacheConfLexer(RegexLexer):
     }
 
 
-class RstLexer(RegexLexer):
-    name = 'reStructuredText'
-    aliases = ['rst', 'restructuredtext']
-    filenames = ['*.rst']
+#class RstLexer(RegexLexer):
+#    name = 'reStructuredText'
+#    aliases = ['rst', 'restructuredtext']
+#    filenames = ['*.rst']
