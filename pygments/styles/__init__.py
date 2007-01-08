@@ -24,7 +24,8 @@ STYLE_MAP = {
     'pastie':   'pastie::PastieStyle',
     'borland':  'borland::BorlandStyle',
     'trac':     'trac::TracStyle',
-    'native':   'native::NativeStyle'
+    'native':   'native::NativeStyle',
+    'fruity':   'fruity::FruityStyle'
 }
 
 
