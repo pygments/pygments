@@ -590,3 +590,8 @@ def do_insertions(insertions, tokens):
                 insleft = False
                 break  # not strictly necessary
         yield i, t, v[oldi:]
+    # leftover tokens
+    if insleft:
+        for item in itokens:
+            yield item
+        
