@@ -64,8 +64,8 @@ class CLexer(RegexLexer):
             (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
             (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
              r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
-            (r'(true|false|NULL)\b', Keyword.Constant),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
+            (r'(true|false|NULL)\b', Name.Builtin),
+            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'root': [
@@ -75,7 +75,7 @@ class CLexer(RegexLexer):
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')({)',
-             bygroups(using(this), Name.Function, using(this), Text, Keyword),
+             bygroups(using(this), Name.Function, using(this), Text, Punctuation),
              'function'),
             # function declarations
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
@@ -88,15 +88,15 @@ class CLexer(RegexLexer):
         'statement' : [
             include('whitespace'),
             include('statements'),
-            ('[{}]', Keyword),
+            ('[{}]', Punctuation),
             (';', Punctuation, '#pop'),
         ],
         'function': [
             include('whitespace'),
             include('statements'),
             (';', Punctuation),
-            ('{', Keyword, '#push'),
-            ('}', Keyword, '#pop'),
+            ('{', Punctuation, '#push'),
+            ('}', Punctuation, '#pop'),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -136,7 +136,7 @@ class CppLexer(RegexLexer):
             (r'\\\n', Text), # line continuation
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
-            (r'[{}]', Keyword),
+            (r'[{}]', Punctuation),
             (r'L?"', String, 'string'),
             (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
@@ -162,8 +162,9 @@ class CppLexer(RegexLexer):
              r'uuidof|unaligned|super|single_inheritance|raise|noop|'
              r'multiple_inheritance|m128i|m128d|m128|m64|interface|'
              r'identifier|forceinline|event|assume)\b', Keyword.Reserved),
-            (r'(true|false|NULL)\b', Keyword.Constant),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
+            (r'(true|false)\b', Keyword.Constant),
+            (r'NULL\b', Name.Builtin),
+            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'classname': [
