@@ -242,7 +242,7 @@ class MyghtyLexer(RegexLexer):
             (r'(<&\|)(.*?)(,.*?)?(&>)(?s)',
              bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
             (r'</&>', Name.Tag),
-            (r'(<%)(.*?)(%>)',
+            (r'(<%!?)(.*?)(%>)(?s)',
              bygroups(Name.Tag, using(PythonLexer), Name.Tag)),
             (r'(?<=^)\#[^\n]*(\n|\Z)', Comment),
             (r'(?<=^)(\%)([^\n]*)(\n|\Z)',
