@@ -22,8 +22,9 @@ from pygments.token import Punctuation, \
     Text, Comment, Keyword, Name, String, Generic, Operator, Number
 
 
-__all__ = ['IniLexer', 'MakefileLexer', 'DiffLexer', 'IrcLogsLexer',
-           'TexLexer', 'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer']
+__all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
+           'IrcLogsLexer', 'TexLexer', 'GroffLexer', 'ApacheConfLexer',
+           'BBCodeLexer']
 
 
 class IniLexer(RegexLexer):
@@ -46,6 +47,31 @@ class IniLexer(RegexLexer):
         if npos < 3:
             return False
         return text[0] == '[' and text[npos-1] == ']'
+
+
+class SourcesListLexer(RegexLexer):
+    """
+    Lex debian sources.list files
+    """
+    name= 'Debian Sourcelist'
+    aliases = ('sourceslist', 'sources.list')
+    filenames = ('sources.list',)
+
+    tokens = {
+        'root': [
+            (r'#.*?$', Comment),
+            (r'(deb(?:-src)?)(\s+)(\S+)(\s+)(\S+)([^#\n]*)',
+             bygroups(Name.Builtin, Text, Name.Class, Text, String, Text))
+        ]
+    }
+
+    def analyse_text(text):
+        for line in text.split('\n'):
+            line = line.strip()
+            if not (line.startswith('#') or line.startswith('deb ') or
+                    line.startswith('deb-src ') or not line):
+                return False
+        return True
 
 
 class MakefileLexer(RegexLexer):
