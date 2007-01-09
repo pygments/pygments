@@ -7,7 +7,8 @@
 
     :copyright: 2006 by Armin Ronacher, Georg Brandl,
                 Tim Hatch <tim@timhatch.com>,
-                Ronny Pfannschmidt.
+                Ronny Pfannschmidt,
+                Dennis Kaarsemaker.
     :license: BSD, see LICENSE for more details.
 """
 
