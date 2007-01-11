@@ -4,11 +4,13 @@
 Filters
 =======
 
-Since Pygments 0.7 you can filter token streams to improve the output. For
-example you can highlight special words in comments, convert keywords
-to upper or lowercase to enforce an styleguide etc.
+*New in Pygments 0.7.*
 
-To apply an filter you can use the `add_filter` method of a lexer:
+You can filter token streams coming from lexers to improve or annotate the
+output. For example, you can highlight special words in comments, convert
+keywords to upper or lowercase to enforce a style guide etc.
+
+To apply a filter, you can use the `add_filter()` method of a lexer:
 
 .. sourcecode:: pycon
 
@@ -22,14 +24,14 @@ To apply an filter you can use the `add_filter` method of a lexer:
     >>> # or class
     >>> l.add_filter(KeywordRewriteFilter(keywordcase='lower'))
 
-The `add_filter` method also takes keyword arguments which are forwarded
-to the constructor of the filter.
+The `add_filter()` method also takes keyword arguments which are forwarded to
+the constructor of the filter.
 
-To get a list of all registered filters by name you can use the
-`get_all_filters` function from the `pygments.filters` module that returns
-an iterable for all known filters.
+To get a list of all registered filters by name, you can use the
+`get_all_filters()` function from the `pygments.filters` module that returns an
+iterable for all known filters.
 
-If you want to write your own lexer have a look at `Write your own filter`_.
+If you want to write your own filter, have a look at `Write your own filter`_.
 
 .. _Write your own filter: filterdevelopment.txt
 
@@ -39,19 +41,20 @@ Builtin Filters
 
 `CodeTagFilter`
 
-    Highlights special code tags in comments and docstrings. Per
-    default the list of highlighted tags is ``XXX``, ``TODO``,
-    ``BUG`` and ``NOTE``. You can override this list by specifying
-    a ``codetags`` parameter that takes a list of words.
+    Highlights special code tags in comments and docstrings. Per default, the
+    list of highlighted tags is ``XXX``, ``TODO``, ``BUG`` and ``NOTE``. You can
+    override this list by specifying a `codetags` parameter that takes a list of
+    words.
 
     :Name:  ``codetagify``
 
+
 `KeywordCaseFilter`
 
-    Converts keywords to ``lower``, ``upper`` or ``capitalize`` which
-    means first letter uppercase, rest lowercase. This can be useful
-    if you highlight pascal code and want to adapt the code to your
-    styleguide. The default is ``lower``, override that by providing
-    the `keywordcase` parameter.
+    Converts keywords to ``lower``, ``upper`` or ``capitalize`` which means
+    first letter uppercase, rest lowercase. This can be useful e.g. if you
+    highlight Pascal code and want to adapt the code to your styleguide. The
+    default is ``lower``, override that by providing the `keywordcase`
+    parameter.
 
     :Name:  ``keywordcase``
