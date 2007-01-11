@@ -4,7 +4,7 @@
 Write your own filter
 =====================
 
-*New in Pygments 0.7*
+*New in Pygments 0.7.*
 
 Writing own filters is very easy. All you have to do is to subclass
 the `Filter` class and override the `filter` method. Additionally a
@@ -37,19 +37,18 @@ to normal `Name` tokens to make the output less colorful.
                     ttype = Name
                 yield ttype, value
 
-Some words on the `lexer` argument. That can be quite confusing since it
-must not be a lexer instance. If a filter was added by using the `add_filter`
-function of lexers that lexer is registered for the filter. In that case
-`lexer` will be point to the lexer that has registered the filter. It can
-be used (but must not) to access options passed to a lexer. Because it
-could be `None` you always have to check for that case if you access it.
+Some notes on the `lexer` argument: that can be quite confusing since it doesn't
+need to be a lexer instance. If a filter was added by using the `add_filter()`
+function of lexers, that lexer is registered for the filter. In that case
+`lexer` will refer to the lexer that has registered the filter. It *can* be used
+to access options passed to a lexer. Because it could be `None` you always have
+to check for that case if you access it.
 
 
-Using a Decorator
+Using a decorator
 =================
 
-You can also use the `simplefilter` decorator from the `pygments.filter`
-module:
+You can also use the `simplefilter` decorator from the `pygments.filter` module:
 
 .. sourcecode:: python
 
@@ -67,5 +66,5 @@ module:
                 ttype = Name
             yield ttype, value
 
-The decorator automatically subclasses an internal filter class and uses
-the decorated function for filtering.
+The decorator automatically subclasses an internal filter class and uses the
+decorated function for filtering.
