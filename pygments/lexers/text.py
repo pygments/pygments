@@ -18,7 +18,7 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, include
+from pygments.lexer import Lexer, RegexLexer, bygroups, include, using, this
 from pygments.token import Punctuation, \
     Text, Comment, Keyword, Name, String, Generic, Operator, Number
 
@@ -351,7 +351,8 @@ class MoinWikiLexer(RegexLexer):
             (r'^#.*$', Comment),
             (r'(!)(\S+)', bygroups(Keyword, Text)), # Ignore-next
             # Titles
-            (r'^(=+[^=]+=+)(\s*#.+)?$', bygroups(Generic.Heading, String)),
+            (r'^(=+)([^=]+)(=+)(\s*#.+)?$',
+             bygroups(Generic.Heading, using(this), Generic.Heading, String)),
             # Literal code blocks, with optional shebang
             (r'({{{)(\n#!.+)?', bygroups(Name.Builtin, Name.Namespace), 'codeblock'),
             (r'(\'\'\'?|\|\||`|__|~~|\^|,,|::)', Comment), # Formatting
