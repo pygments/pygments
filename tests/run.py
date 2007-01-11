@@ -71,9 +71,11 @@ def run_tests():
                  if (entry.startswith('test_') and entry.endswith('.py'))]
         files.sort()
 
-    print >>sys.stderr, '    Pygments Test Suite running, stand by...   '
-    print >>sys.stderr, '             (using Python %s)' % sys.version.split()[0]
-    print >>sys.stderr, '==============================================='
+    WIDTH = 60
+
+    print >>sys.stderr, 'Pygments Test Suite running, stand by...'.center(WIDTH)
+    print >>sys.stderr, ('(using Python %s)' % sys.version.split()[0]).center(WIDTH)
+    print >>sys.stderr, '='*WIDTH
 
     for testfile in files:
         globs = {}
@@ -100,7 +102,7 @@ def run_tests():
         except Exception, exc:
             err(testfile, 'running test', exc)
 
-    print >>sys.stderr, '==============================================='
+    print >>sys.stderr, '='*WIDTH
     if failed:
         print >>sys.stderr, '%d of %d tests failed.' % \
               (error_test_count, total_test_count)
