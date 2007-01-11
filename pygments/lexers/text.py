@@ -25,7 +25,7 @@ from pygments.token import Punctuation, \
 
 __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
            'IrcLogsLexer', 'TexLexer', 'GroffLexer', 'ApacheConfLexer',
-           'BBCodeLexer']
+           'BBCodeLexer', 'TracWikiLexer']
 
 
 class IniLexer(RegexLexer):
@@ -336,6 +336,38 @@ class ApacheConfLexer(RegexLexer):
             (r'"([^"\\]*(?:\\.[^"\\]*)*)"', String.Double),
             (r'[^\s"]+', Text)
         ]
+    }
+
+
+class TracWikiLexer(RegexLexer):
+    name = 'TracWiki'
+    aliases = ['trac-wiki']
+    filenames = []
+    mimetypes = ['text/x-trac-wiki']
+    flags = re.MULTILINE | re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'(!)(\S+)', bygroups(Keyword, Text)), # Ignore-next
+            # Titles
+            (r'^=+[^=]+=+$', Generic.Heading),
+            # Literal code blocks, with optional shebang
+            (r'({{{)(\n#!.+)?', bygroups(Name.Builtin, Name.Namespace), 'codeblock'),
+            (r'(\'\'\'?|\|\||`|__|~~|\^|,,)', Comment), # Formatting
+            (r'\[\[\w+\s*\]\]', Keyword), # Macro
+            (r'(\[[^\s\]]+)(\s+[^\]]+?)?(\])',
+             bygroups(Keyword, String, Keyword)), # Link
+            (r'[^\n\'\[{!_~^,|]+', Text),
+            (r'\n', Text),
+            (r'.', Text),
+        ],
+        'codeblock': [
+            (r'}}}', Name.Builtin, '#pop'),
+            # these blocks are allowed to be nested
+            (r'{{{', Text, '#push'),
+            (r'[^{}]+', Comment.Preproc), # slurp boring text
+            (r'.', Comment.Preproc), # allow loose { or }
+        ],
     }
 
 
