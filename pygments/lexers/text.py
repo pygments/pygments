@@ -25,7 +25,7 @@ from pygments.token import Punctuation, \
 
 __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
            'IrcLogsLexer', 'TexLexer', 'GroffLexer', 'ApacheConfLexer',
-           'BBCodeLexer', 'TracWikiLexer']
+           'BBCodeLexer', 'MoinWikiLexer']
 
 
 class IniLexer(RegexLexer):
@@ -339,31 +339,37 @@ class ApacheConfLexer(RegexLexer):
     }
 
 
-class TracWikiLexer(RegexLexer):
-    name = 'TracWiki'
-    aliases = ['trac-wiki']
+class MoinWikiLexer(RegexLexer):
+    name = 'MoinMoin/Trac Wiki markup'
+    aliases = ['trac-wiki', 'moin']
     filenames = []
     mimetypes = ['text/x-trac-wiki']
     flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {
         'root': [
+            (r'^#.*$', Comment),
             (r'(!)(\S+)', bygroups(Keyword, Text)), # Ignore-next
             # Titles
-            (r'^=+[^=]+=+$', Generic.Heading),
+            (r'^(=+[^=]+=+)(\s*#.+)?$', bygroups(Generic.Heading, String)),
             # Literal code blocks, with optional shebang
             (r'({{{)(\n#!.+)?', bygroups(Name.Builtin, Name.Namespace), 'codeblock'),
-            (r'(\'\'\'?|\|\||`|__|~~|\^|,,)', Comment), # Formatting
-            (r'\[\[\w+\s*\]\]', Keyword), # Macro
+            (r'(\'\'\'?|\|\||`|__|~~|\^|,,|::)', Comment), # Formatting
+            # Lists
+            (r'^( +)([.*-])( )', bygroups(Text, Name.Builtin, Text)),
+            (r'^( +)([a-zivx]{1,5}\.)( )', bygroups(Text, Name.Builtin, Text)),
+            # Other Formatting
+            (r'\[\[\w+.*?\]\]', Keyword), # Macro
             (r'(\[[^\s\]]+)(\s+[^\]]+?)?(\])',
              bygroups(Keyword, String, Keyword)), # Link
+            (r'^----+$', Keyword), # Horizontal rules
             (r'[^\n\'\[{!_~^,|]+', Text),
             (r'\n', Text),
             (r'.', Text),
         ],
         'codeblock': [
             (r'}}}', Name.Builtin, '#pop'),
-            # these blocks are allowed to be nested
+            # these blocks are allowed to be nested in Trac, but not MoinMoin
             (r'{{{', Text, '#push'),
             (r'[^{}]+', Comment.Preproc), # slurp boring text
             (r'.', Comment.Preproc), # allow loose { or }
