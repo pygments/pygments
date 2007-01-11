@@ -6,7 +6,7 @@
     Lexers for agile languages: Python, Ruby, Perl, Scheme.
 
     :copyright: 2006 by Georg Brandl, Armin Ronacher,
-                Lukas Meuser, Marek Kubica.
+                Lukas Meuser, Marek Kubica, Tim Hatch.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -17,14 +17,14 @@ except NameError:
     from sets import Set as set
 
 from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, \
-     LexerContext, include, combined, do_insertions, bygroups
+     LexerContext, include, combined, do_insertions, bygroups, using
 from pygments.token import Error, Text, \
      Comment, Operator, Keyword, Name, String, Number, Generic, Punctuation
 from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 
 
-__all__ = ['PythonLexer', 'PythonConsoleLexer', 'RubyLexer',
-           'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
+__all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
+           'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
            'SchemeLexer']
 
 line_re  = re.compile('.*?\n')
@@ -167,9 +167,12 @@ class PythonConsoleLexer(Lexer):
 
     def get_tokens_unprocessed(self, text):
         pylexer = PythonLexer(**self.options)
+        tblexer = PythonTracebackLexer(**self.options)
 
         curcode = ''
         insertions = []
+        curtb = ''
+        tbindex = 0
         tb = 0
         for match in line_re.finditer(text):
             line = match.group()
@@ -187,17 +190,41 @@ class PythonConsoleLexer(Lexer):
                     insertions = []
                 if line.startswith('Traceback (most recent call last):'):
                     tb = 1
-                    yield match.start(), Generic.Traceback, line
+                    curtb = line
+                    tbindex = match.start()
                 elif tb:
+                    curtb += line
                     if not line.startswith(' '):
                         tb = 0
-                    yield match.start(), Generic.Traceback, line
+                        for i, t, v in tblexer.get_tokens_unprocessed(curtb):
+                            yield tbindex+i, t, v
                 else:
                     yield match.start(), Generic.Output, line
         if curcode:
             for item in do_insertions(insertions,
                                       pylexer.get_tokens_unprocessed(curcode)):
                 yield item
+
+
+class PythonTracebackLexer(RegexLexer):
+    name = 'PythonTraceback',
+    aliases = ['pytb']
+    filenames = ['*.pytb']
+    mimetypes = ['text/x-python-traceback']
+
+    tokens = {
+        'root': [
+            (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
+        ],
+        'intb': [
+            (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
+             bygroups(Text, Name.Builtin, Text, Number, Text, Name.Identifier, Text)),
+            (r'^(    )(.+)(\n)',
+             bygroups(Text, using(PythonLexer), Text)),
+            (r'^(.+)(: )(.+)(\n)',
+             bygroups(Name.Class, Text, Name.Identifier, Text), '#pop'),
+        ],
+    }
 
 
 class RubyLexer(ExtendedRegexLexer):
