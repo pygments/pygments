@@ -45,7 +45,7 @@ def generate_lexer_docs():
     moduledocstrings = {}
     for classname, data in sorted(LEXERS.iteritems(), key=lambda x: x[0]):
         module = data[0]
-        mod = __import__(module, fromlist=[classname])
+        mod = __import__(module, None, None, [classname])
         cls = getattr(mod, classname)
         if not cls.__doc__:
             print "Warning: %s does not have a docstring." % classname
