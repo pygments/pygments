@@ -594,4 +594,3 @@ def do_insertions(insertions, tokens):
     if insleft:
         for item in itokens:
             yield item
-        

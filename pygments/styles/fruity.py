@@ -10,7 +10,8 @@
 """
 
 from pygments.style import Style
-from pygments.token import Token, Comment, Name, Keyword, Generic, Number, Operator, String
+from pygments.token import Token, Comment, Name, Keyword, \
+    Generic, Number, Operator, String
 
 class FruityStyle(Style):
 

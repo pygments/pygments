@@ -113,9 +113,9 @@ class SqlLexer(RegexLexer):
              Name.Builtin),
             (r'[+*/<>=~!@#%^&|`?^-]', Operator),
             (r'[0-9]+', Number.Integer),
-            # TODO: Backslash escapes? 
+            # TODO: Backslash escapes?
             (r"'(''|[^'])*'", String.Single),
-            (r'"(""|[^"])*"', String.Symbol), # not a real string literal in ANSI SQL 
+            (r'"(""|[^"])*"', String.Symbol), # not a real string literal in ANSI SQL
             (r"`(``|[^`])*`", String.Backtick),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'[;:()\[\],\.]', Punctuation)
