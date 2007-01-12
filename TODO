@@ -4,7 +4,7 @@ Todo
 for 0.7
 -------
 
-- lexers:
+- new lexers:
   * Haskell
   * JSP
   * (Q)BASIC
@@ -21,27 +21,22 @@ for 0.7
   * Tcl
   * reStructuredText
 
+- lexers that need review:
+  * review perl lexer (numerous bugs, but so far no one had complaints ;)
+  * readd property support for C# lexer? that is, find a regex that doesn't
+    backtrack to death...
+  * add support for function name highlighting to C++ lexer
+
+
 - automatically get help for lexers/formatters/options from docstrings
 
 - a MoinMoin parser
 
 - allow "overlay" token types to highlight specials: nth line, a word etc.
 
-- readd property support for C# lexer? that is, find a regex that doesn't
-  backtrack to death...
-
-- add support for function name highlighting to c++ lexer
-
 - pygmentize option presets?
 
 - more unit tests (test pygmentize, test all formatters comprehensively)
-
-- review perl lexer (numerous bugs, but so far no one had complaints ;)
-
-- add `Mako lexers`_ written by Ben Bangert.
-
-
-.. _Mako lexers: http://pygments.pocoo.org/demo/174/
 
 
 for 0.8 -- 1.0
