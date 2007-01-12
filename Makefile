@@ -10,7 +10,7 @@
 
 PYTHON ?= python
 
-export PYTHONPATH = $(shell python -c 'print ":".join(line.strip() for line in file("PYTHONPATH"))' 2>/dev/null)
+export PYTHONPATH ?= $(shell python -c 'print ":".join(line.strip() for line in file("PYTHONPATH"))' 2>/dev/null)
 
 .PHONY: apidocs check clean clean-pyc codetags docs epydoc lexermap \
 	pylint reindent test

@@ -34,18 +34,18 @@ def _doc_desc(obj):
 FORMATTERS = {
     HtmlFormatter:        ('HTML', ('html',), ('.htm', '.html'),
                            _doc_desc(HtmlFormatter)),
-    TerminalFormatter:    ('Terminal', ('terminal', 'console'), (),
-                           _doc_desc(TerminalFormatter)),
     LatexFormatter:       ('LaTeX', ('latex', 'tex'), ('.tex',),
                            _doc_desc(LatexFormatter)),
     RtfFormatter:         ('RTF', ('rtf',), ('.rtf',),
                            _doc_desc(RtfFormatter)),
+    TerminalFormatter:    ('Terminal', ('terminal', 'console'), (),
+                           _doc_desc(TerminalFormatter)),
+    BBCodeFormatter:      ('BBcode', ('bbcode', 'bb'), (),
+                           _doc_desc(BBCodeFormatter)),
     RawTokenFormatter:    ('Raw tokens', ('raw', 'tokens'), ('.raw',),
                            _doc_desc(RawTokenFormatter)),
     NullFormatter:        ('Text only', ('text', 'null'), ('.txt',),
                            _doc_desc(NullFormatter)),
-    BBCodeFormatter:      ('BBcode', ('bbcode', 'bb'), (),
-                           _doc_desc(BBCodeFormatter))
 }
 
 

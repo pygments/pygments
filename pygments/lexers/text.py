@@ -3,7 +3,7 @@
     pygments.lexers.text
     ~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for non-source code file types: Diff, Makefiles, Ini configs etc.
+    Lexers for non-source code file types.
 
     :copyright: 2006 by Armin Ronacher, Georg Brandl,
                 Tim Hatch <tim@timhatch.com>,
@@ -29,6 +29,10 @@ __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
 
 
 class IniLexer(RegexLexer):
+    """
+    Lexer for configuration files in INI style.
+    """
+
     name = 'INI'
     aliases = ['ini', 'cfg']
     filenames = ['*.ini', '*.cfg']
@@ -52,8 +56,11 @@ class IniLexer(RegexLexer):
 
 class SourcesListLexer(RegexLexer):
     """
-    Lex debian sources.list files
+    Lexer that highlights debian sources.list files.
+
+    *New in Pygments 0.7.*
     """
+    
     name= 'Debian Sourcelist'
     aliases = ['sourceslist', 'sources.list']
     filenames = ['sources.list']
@@ -97,6 +104,10 @@ class SourcesListLexer(RegexLexer):
 
 
 class MakefileLexer(RegexLexer):
+    """
+    Lexer for Makefiles.
+    """
+    
     name = 'Makefile'
     aliases = ['make', 'makefile', 'mf']
     filenames = ['*.mak', 'Makefile', 'makefile']
@@ -140,6 +151,10 @@ class MakefileLexer(RegexLexer):
 
 
 class DiffLexer(RegexLexer):
+    """
+    Lexer for unified or context-style diffs or patches.
+    """
+    
     name = 'Diff'
     aliases = ['diff']
     filenames = ['*.diff', '*.patch']
@@ -168,6 +183,10 @@ class DiffLexer(RegexLexer):
 
 
 class IrcLogsLexer(RegexLexer):
+    """
+    Lexer for IRC logs in **irssi** or **xchat** style.
+    """
+    
     name = 'IRC logs'
     aliases = ['irc']
 
@@ -208,6 +227,12 @@ class IrcLogsLexer(RegexLexer):
 
 
 class BBCodeLexer(RegexLexer):
+    """
+    A lexer that highlights BBCode(-like) syntax.
+
+    *New in Pygments 0.6.*
+    """
+    
     name = 'BBCode'
     aliases = ['bbcode']
 
@@ -223,6 +248,10 @@ class BBCodeLexer(RegexLexer):
 
 
 class TexLexer(RegexLexer):
+    """
+    Lexer for the TeX and LaTeX typesetting languages.
+    """
+    
     name = 'TeX'
     aliases = ['tex', 'latex']
     filenames = ['*.tex', '*.aux', '*.toc']
@@ -277,9 +306,12 @@ class TexLexer(RegexLexer):
 
 class GroffLexer(RegexLexer):
     """
-    Lexer for the roff format, supporting groff extensions.  Mainly useful
-    for highlighting manpages.
+    Lexer for the (g)roff typesetting language, supporting groff
+    extensions. Mainly useful for highlighting manpage sources.
+
+    *New in Pygments 0.6.*
     """
+
     name = 'Groff'
     aliases = ['groff', 'nroff', 'man']
     filenames = ['*.[1234567]', '*.man']
@@ -329,8 +361,12 @@ class GroffLexer(RegexLexer):
 
 class ApacheConfLexer(RegexLexer):
     """
-    Lex Apache configuration like files.
+    Lexer for configuration files following the Apache config file
+    format.
+
+    *New in Pygments 0.6.*
     """
+    
     name = 'ApacheConf'
     aliases = ['apacheconf', 'aconf', 'apache']
     filenames = ['.htaccess', 'apache.conf', 'apache2.conf']
@@ -361,6 +397,12 @@ class ApacheConfLexer(RegexLexer):
 
 
 class MoinWikiLexer(RegexLexer):
+    """
+    For MoinMoin (and Trac) Wiki markup.
+
+    *New in Pygments 0.7.*
+    """
+
     name = 'MoinMoin/Trac Wiki markup'
     aliases = ['trac-wiki', 'moin']
     filenames = []

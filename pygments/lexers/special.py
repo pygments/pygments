@@ -20,6 +20,9 @@ __all__ = ['TextLexer', 'RawTokenLexer']
 
 
 class TextLexer(Lexer):
+    """
+    "Null" lexer, doesn't highlight anything.
+    """
     name = 'Text only'
     aliases = ['text']
     filenames = ['*.txt']
@@ -35,13 +38,13 @@ line_re = re.compile('.*?\n')
 
 class RawTokenLexer(Lexer):
     """
-    Recreate a token stream formatted with the RawTokenFormatter.
+    Recreate a token stream formatted with the `RawTokenFormatter`.
 
     Additional options accepted:
 
-    ``compress``
-        If set to "gz" or "bz2", decompress the token stream with
-        the given compression algorithm (default: '').
+    `compress`
+        If set to ``"gz"`` or ``"bz2"``, decompress the token stream with
+        the given compression algorithm before lexing (default: ``''``).
     """
     name = 'Raw token data'
     aliases = ['raw']

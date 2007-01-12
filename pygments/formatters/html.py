@@ -103,43 +103,106 @@ td.linenos { background-color: #f0f0f0; padding-right: 10px; }
 
 class HtmlFormatter(Formatter):
     """
-    Output HTML <span> tags with appropriate classes.
+    Format tokens as HTML 4 ``<span>`` tags within a ``<pre>`` tag, wrapped
+    in a ``<div>`` tag. The ``<div>``'s CSS class can be set by the `cssclass`
+    option.
+
+    If the `linenos` option is given and true, the ``<pre>`` is additionally
+    wrapped inside a ``<table>`` which has one row and two cells: one
+    containing the line numbers and one containing the code. Example:
+
+    .. sourcecode:: html
+
+        <div class="highlight" >
+        <table><tr>
+          <td class="linenos" title="click to toggle"
+            onclick="with (this.firstChild.style)
+                     { display = (display == '') ? 'none' : '' }">
+            <pre>1
+            2</pre>
+          </td>
+          <td class="code">
+            <pre><span class="Ke">def </span><span class="NaFu">foo</span>(bar):
+              <span class="Ke">pass</span>
+            </pre>
+          </td>
+        </tr></table></div>
+
+    (whitespace added to improve clarity). Wrapping can be disabled using the
+    `nowrap` option.
+
+    With the `full` option, a complete HTML 4 document is output, including
+    the style definitions inside a ``<style>`` tag, or in a separate file if
+    the `cssfile` option is given.
+
+    The `get_style_defs(arg='')` method of a `HtmlFormatter` returns a string
+    containing CSS rules for the CSS classes used by the formatter. The
+    argument `arg` can be used to specify additional CSS selectors that
+    are prepended to the classes. A call `fmter.get_style_defs('td .code')`
+    would result in the following CSS classes:
+
+    .. sourcecode:: css
+
+        td .code .kw { font-weight: bold; color: #00FF00 }
+        td .code .cm { color: #999999 }
+        ...
+
+    If you have pygments 0.6 or higher you can also pass a list of tuple to the
+    `get_style_defs` method to request multiple prefixes for the tokens:
+
+    .. sourcecode:: python
+
+        formatter.get_style_defs(['div.syntax pre', 'pre.syntax'])
+
+    The output would then look like this:
+
+    .. sourcecode:: css
+
+        div.syntax pre .kw,
+        pre.syntax .kw { font-weight: bold; color: #00FF00 }
+        div.syntax pre .cm,
+        pre.syntax .cm { color: #999999 }
+        ...
 
     Additional options accepted:
 
-    ``nowrap``
-        If set to true, don't wrap the tokens at all. This disables
-        all other options (default: False).
-    ``noclasses``
-        If set to true, token <span>s will not use CSS classes, but
-        inline styles.
-    ``classprefix``
-        Prefix for token CSS classes, is prepended to all token style
-        classes (e.g. class="o" -> class="_o" if classprefix == '_')
-        (default: '').
-    ``cssclass``
-        CSS class for the wrapping <div> (default: 'highlight').
-    ``cssstyles``
-        Inline CSS styles for the wrapping <div>. (default: '').
-    ``cssfile``
-        If the ``full`` option is ``True`` and this is not ``''``,
-        put the CSS in a separate file whose name is given by this option
-        (default: ''). New in 0.6.
-    ``linenos``
-        If set to ``True``, output line numbers (default: False).
-    ``linenostart``
-        The line number for the first line (default: 1).
-    ``linenostep``
-        If set to a number n > 1, only every nth line number is printed
-        (default: 1).
-    ``linenospecial``
-        If set to a number n > 0, every nth line number is given a special
-        CSS class ``special`` (default: 0).
-    ``nobackground``
-        If set to ``True`` the formatter won't output the background color
-        for the overall element (this automatically defaults to ``False``
-        when there is no overall element [eg: no argument for the
-        `get_syntax_defs` method given]) (default: ``False``). New in 0.6.
+    `nowrap`
+        If set to ``True``, don't wrap the tokens at all, not even in a ``<pre>``
+        tag. This disables all other options (default: ``False``).
+
+    `noclasses`
+        If set to true, token ``<span>`` tags will not use CSS classes, but
+        inline styles. This is not recommended for larger pieces of code since
+        it increases output size by quite a bit (default: ``False``).
+
+    `classprefix`
+        Since the token types use relatively short class names, they may clash
+        with some of your own class names. In this case you can use the
+        `classprefix` option to give a string to prepend to all Pygments-generated
+        CSS class names for token types.
+        Note that this option also affects the output of `get_style_defs()`.
+
+    `cssclass`
+        CSS class for the wrapping ``<div>`` tag (default: ``'highlight'``).
+
+    `cssstyles`
+        Inline CSS styles for the wrapping ``<div>`` tag (default: ``''``).
+
+    `cssfile`
+        If the `full` option is true and this option is given, it must be the
+        name of an external file. The stylesheet is then written to this file
+        instead of the HTML file. *New in Pygments 0.6.*
+
+    `linenospecial`
+        If set to a number n > 0, every nth line number is given the CSS
+        class ``"special"`` (default: ``0``).
+
+    `nobackground`
+        If set to ``True``, the formatter won't output the background color
+        for the wrapping element (this automatically defaults to ``False``
+        when there is no wrapping element [eg: no argument for the
+        `get_syntax_defs` method given]) (default: ``False``). *New in
+        Pygments 0.6.*
     """
 
     def __init__(self, **options):

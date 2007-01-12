@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
     Generate Pygments Documentation
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Generates a bunch of html files containing the documentation.
 
@@ -25,6 +25,77 @@ from jinja import Template, Context, StringLoader
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
+
+
+LEXERDOC = '''
+`%s`
+%s
+    :Aliases: %s
+    :Filename patterns: %s
+    :Mimetypes: %s
+
+'''
+
+def generate_lexer_docs():
+    from pygments.lexers import LEXERS
+
+    out = []
+
+    modules = {}
+    moduledocstrings = {}
+    for classname, data in sorted(LEXERS.iteritems(), key=lambda x: x[0]):
+        module = data[0]
+        mod = __import__(module, fromlist=[classname])
+        cls = getattr(mod, classname)
+        if not cls.__doc__:
+            print "Warning: %s does not have a docstring." % classname
+        modules.setdefault(module, []).append((
+            classname,
+            cls.__doc__,
+            ', '.join(data[2]) or 'None',
+            ', '.join(data[3]).replace('*', '\\*') or 'None',
+            ', '.join(data[4]) or 'None'))
+        if module not in moduledocstrings:
+            moduledocstrings[module] = mod.__doc__
+
+    for module, lexers in sorted(modules.iteritems(), key=lambda x: x[0]):
+        heading = moduledocstrings[module].splitlines()[4].strip().rstrip('.')
+        out.append('\n' + heading + '\n' + '-'*len(heading) + '\n')
+        for data in lexers:
+            out.append(LEXERDOC % data)
+    return ''.join(out)
+
+def generate_formatter_docs():
+    from pygments.formatters import FORMATTERS
+
+    out = []
+    for cls, data in FORMATTERS.iteritems():
+        heading = cls.__name__
+        out.append('`' + heading + '`\n' + '-'*(2+len(heading)) + '\n')
+        out.append(cls.__doc__)
+        out.append('''
+    :Aliases: %s
+    :Filename patterns: %s
+
+
+''' % (', '.join(data[1]) or 'None', ', '.join(data[2]).replace('*', '\\*') or 'None'))
+    return ''.join(out)
+
+def generate_filter_docs():
+    from pygments.filters import FILTERS
+
+    out = []
+    for name, cls in FILTERS.iteritems():
+        out.append('''
+`%s`
+%s
+    :Name: %s
+''' % (cls.__name__, cls.__doc__, name))
+    return ''.join(out)
+
+LEXERDOCS = generate_lexer_docs()
+FORMATTERDOCS = generate_formatter_docs()
+FILTERDOCS = generate_filter_docs()
 
 
 PYGMENTS_FORMATTER = HtmlFormatter(style='pastie', cssclass='syntax')
@@ -207,24 +278,7 @@ div.toc {
 div.toc h2 {
     font-size: 20px;
 }
-'''
-
-
-def generate_documentation(data, link_style):
-    writer = DocumentationWriter(link_style)
-    parts = publish_parts(
-        data,
-        writer=writer,
-        settings_overrides={
-            'initial_header_level': 3,
-            'field_name_limit': 50,
-        }
-    )
-    return {
-        'title':        parts['title'].encode('utf-8'),
-        'body':         parts['body'].encode('utf-8'),
-        'toc':          parts['toc']
-    }
+''' #'
 
 
 def pygments_directive(name, arguments, options, content, lineno,
@@ -239,6 +293,16 @@ def pygments_directive(name, arguments, options, content, lineno,
 pygments_directive.arguments = (1, 0, 1)
 pygments_directive.content = 1
 directives.register_directive('sourcecode', pygments_directive)
+
+
+def create_translator(link_style):
+    class Translator(html4css1.HTMLTranslator):
+        def visit_reference(self, node):
+            refuri = node.get('refuri')
+            if refuri is not None and '/' not in refuri and refuri.endswith('.txt'):
+                node['refuri'] = link_style(refuri[:-4])
+            html4css1.HTMLTranslator.visit_reference(self, node)
+    return Translator
 
 
 class DocumentationWriter(html4css1.Writer):
@@ -279,14 +343,24 @@ class DocumentationWriter(html4css1.Writer):
         return []
 
 
-def create_translator(link_style):
-    class Translator(html4css1.HTMLTranslator):
-        def visit_reference(self, node):
-            refuri = node.get('refuri')
-            if refuri is not None and '/' not in refuri and refuri.endswith('.txt'):
-                node['refuri'] = link_style(refuri[:-4])
-            html4css1.HTMLTranslator.visit_reference(self, node)
-    return Translator
+def generate_documentation(data, link_style):
+    writer = DocumentationWriter(link_style)
+    data = data.replace('[builtin_lexer_docs]', LEXERDOCS).\
+                replace('[builtin_formatter_docs]', FORMATTERDOCS).\
+                replace('[builtin_filter_docs]', FILTERDOCS)
+    parts = publish_parts(
+        data,
+        writer=writer,
+        settings_overrides={
+            'initial_header_level': 3,
+            'field_name_limit': 50,
+        }
+    )
+    return {
+        'title':        parts['title'].encode('utf-8'),
+        'body':         parts['body'].encode('utf-8'),
+        'toc':          parts['toc']
+    }
 
 
 def handle_python(filename, fp, dst):
