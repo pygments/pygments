@@ -81,10 +81,11 @@ Agile languages
 
         >>> a = 'foo'
         >>> print a
-        'foo'
-        >>> 1/0
+        foo
+        >>> 1 / 0
         Traceback (most recent call last):
-        ...
+          File "<stdin>", line 1, in <module>
+        ZeroDivisionError: integer division or modulo by zero
 
     :Aliases: ``pycon``
     :Filename patterns: None
@@ -341,6 +342,7 @@ Template languages
 
     :Aliases:   ``erb``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `RhtmlLexer`
@@ -352,6 +354,7 @@ Template languages
 
     :Aliases:   ``rhtml``, ``html+erb``, ``html+ruby``
     :Filename patterns: ``*.rhtml``
+    :Mimetypes: None
 
 
 `XmlErbLexer`
@@ -361,6 +364,7 @@ Template languages
 
     :Aliases:   ``xml+erb``, ``xml+ruby``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `CssErbLexer`
@@ -369,6 +373,7 @@ Template languages
 
     :Aliases:   ``css+erb``, ``css+ruby``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `JavascriptErbLexer`
@@ -378,6 +383,7 @@ Template languages
 
     :Aliases:   ``js+erb``, ``javascript+erb``, ``js+ruby``, ``javascript+ruby``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `HtmlPhpLexer`
@@ -399,6 +405,7 @@ Template languages
 
     :Aliases:   ``xml+php``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `CssPhpLexer`
@@ -407,6 +414,7 @@ Template languages
 
     :Aliases:   ``css+php``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `JavascriptPhpLexer`
@@ -416,6 +424,7 @@ Template languages
 
     :Aliases:   ``js+php``, ``javascript+php``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `DjangoLexer`
@@ -428,6 +437,7 @@ Template languages
 
     :Aliases:   ``django``, ``jinja``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `HtmlDjangoLexer`
@@ -439,6 +449,7 @@ Template languages
 
     :Aliases:   ``html+django``, ``html+jinja``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `XmlDjangoLexer`
@@ -448,6 +459,7 @@ Template languages
 
     :Aliases:   ``xml+django``, ``xml+jinja``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `CssDjangoLexer`
@@ -457,6 +469,7 @@ Template languages
 
     :Aliases:   ``css+django``, ``css+jinja``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `JavascriptDjangoLexer`
@@ -467,6 +480,7 @@ Template languages
     :Aliases:   ``javascript+django``, ``js+django``,
                 ``javascript+jinja``, ``js+jinja``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `SmartyLexer`
@@ -478,6 +492,7 @@ Template languages
 
     :Aliases:   ``smarty``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `HtmlSmartyLexer`
@@ -489,6 +504,7 @@ Template languages
 
     :Aliases:   ``html+smarty``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `XmlSmartyLexer`
@@ -498,6 +514,7 @@ Template languages
 
     :Aliases:   ``xml+smarty``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `CssSmartyLexer`
@@ -507,6 +524,7 @@ Template languages
 
     :Aliases:   ``css+smarty``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `JavascriptSmartyLexer`
@@ -516,6 +534,7 @@ Template languages
 
     :Aliases:   ``javascript+smarty``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `GenshiTextLexer`
@@ -525,6 +544,7 @@ Template languages
 
     :Aliases:   ``genshitext``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `HtmlGenshiLexer`
@@ -534,6 +554,7 @@ Template languages
 
     :Aliases:   ``html+genshi``, ``html+kid``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `GenshiLexer`
@@ -543,6 +564,7 @@ Template languages
 
     :Aliases:   ``genshi``, ``kid``, ``xml+genshi``, ``xml.kid``
     :Filename patterns: ``*.kid``
+    :Mimetypes: None
 
 
 `JavascriptGenshiLexer`
@@ -552,6 +574,7 @@ Template languages
     :Aliases:   ``js+genshitext``, ``js+genshi``, ``javascript+genshitext``,
                 ``javascript+genshi``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `CssGenshiLexer`
@@ -560,6 +583,7 @@ Template languages
 
     :Aliases:   ``css+genshitext``, ``css+genshi``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `MyghtyLexer`
@@ -573,6 +597,7 @@ Template languages
 
     :Aliases:   ``myghty``
     :Filename patterns: ``*.myt``, ``autodelegate``
+    :Mimetypes: None
 
 
 `MyghtyHtmlLexer`
@@ -584,6 +609,7 @@ Template languages
 
     :Aliases:   ``html+myghty``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `MyghtyXmlLexer`
@@ -595,6 +621,7 @@ Template languages
 
     :Aliases:   ``xml+myghty``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `MyghtyJavascriptLexer`
@@ -606,6 +633,7 @@ Template languages
 
     :Aliases:   ``js+myghty``, ``javascript+myghty``
     :Filename patterns: None
+    :Mimetypes: None
 
 
 `MyghtyCssLexer`
@@ -617,6 +645,69 @@ Template languages
 
     :Aliases:   ``css+myghty``
     :Filename patterns: None
+    :Mimetypes: None
+
+
+`MakoLexer`
+
+    Generic `mako templates`_ lexer. Code that isn't Mako
+    markup is yielded as `Token.Other`.
+
+    *New in Pygments 0.7.*
+
+    .. _mako templates: http://www.makotemplates.org/
+
+    :Aliases:   ``mako``
+    :Filename patterns: ``*.mao``
+    :Mimetypes: None
+
+
+`MakoHtmlLexer`
+
+    Subclass of the `MakoLexer` that highlights unlexer data
+    with the `HtmlLexer`.
+
+    *New in Pygments 0.7.*
+
+    :Aliases:   ``html+mako``
+    :Filename patterns: None
+    :Mimetypes: None
+
+
+`MakoXmlLexer`
+
+    Subclass of the `MakoLexer` that highlights unlexer data
+    with the `XmlLexer`.
+
+    *New in Pygments 0.7.*
+
+    :Aliases:   ``xml+mako``
+    :Filename patterns: None
+    :Mimetypes: None
+
+
+`MakoJavascriptLexer`
+
+    Subclass of the `MakoLexer` that highlights unlexer data
+    with the `JavascriptLexer`.
+
+    *New in Pygments 0.7.*
+
+    :Aliases:   ``js+mako``, ``javascript+mako``
+    :Filename patterns: None
+    :Mimetypes: None
+
+
+`MakoCssLexer`
+
+    Subclass of the `MakoLexer` that highlights unlexer data
+    with the `CssLexer`.
+
+    *New in Pygments 0.7.*
+
+    :Aliases:   ``css+mako``
+    :Filename patterns: None
+    :Mimetypes: None
 
 
 Other languages
@@ -722,6 +813,17 @@ Text lexers
 
     :Aliases: ``apacheconf``, ``aconf``, ``apache``
     :Filename patterns: ``.htaccess``, ``apache.conf``, ``apache2.conf``
+    :Mimetypes: None
+
+
+`SourcesListLexer`
+
+    Lexer that highlights debian sources.list files.
+
+    *New in Pygments 0.7.*
+
+    :Aliases: ``sources.list``, ``sourceslist``
+    :Filename patterns: ``sources.list``
     :Mimetypes: None
 
 

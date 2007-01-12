@@ -207,7 +207,7 @@ class PythonConsoleLexer(Lexer):
 
 
 class PythonTracebackLexer(RegexLexer):
-    name = 'PythonTraceback',
+    name = 'PythonTraceback'
     aliases = ['pytb']
     filenames = ['*.pytb']
     mimetypes = ['text/x-python-traceback']

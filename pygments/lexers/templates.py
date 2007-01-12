@@ -5,7 +5,8 @@
 
     Lexers for various template engines.
 
-    :copyright: 2006 by Armin Ronacher, Georg Brandl, Matt Good.
+    :copyright: 2006 by Armin Ronacher, Georg Brandl, Matt Good,
+                Ben Bangert.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -33,7 +34,9 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'JavascriptDjangoLexer', 'GenshiLexer', 'HtmlGenshiLexer',
            'GenshiTextLexer', 'CssGenshiLexer', 'JavascriptGenshiLexer',
            'MyghtyLexer', 'MyghtyHtmlLexer', 'MyghtyXmlLexer',
-           'MyghtyCssLexer', 'MyghtyJavascriptLexer']
+           'MyghtyCssLexer', 'MyghtyJavascriptLexer', 'MakoLexer',
+           'MakoHtmlLexer', 'MakoXmlLexer', 'MakoJavascriptLexer',
+           'MakoCssLexer']
 
 
 class ErbLexer(Lexer):
@@ -295,6 +298,92 @@ class MyghtyCssLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(MyghtyCssLexer, self).__init__(CssLexer, MyghtyLexer,
+                                             **options)
+
+
+class MakoLexer(RegexLexer):
+    name = 'Mako'
+    aliases = ['mako']
+    filenames = ['*.mao']
+
+    tokens = {
+        'root': [
+            (r'(\s*)(\%)(\s*end(?:\w+))(\n|\Z)',
+             bygroups(Text, Comment.Preproc, Keyword, Other)),
+            (r'(\s*)(\%)([^\n]*)(\n|\Z)',
+             bygroups(Text, Comment.Preproc, using(PythonLexer), Other)),
+             (r'(\s*)(#[^\n]*)(\n|\Z)',
+              bygroups(Text, Comment.Preproc, Other)),
+            (r'(<%)(def|call|namespace|text)', bygroups(Comment.Preproc, Name.Builtin), 'tag'),
+            (r'(</%)(def|call|namespace|text)(>)', bygroups(Comment.Preproc, Name.Builtin, Comment.Preproc)),
+            (r'<%(?=(include|inherit|namespace|page))', Comment.Preproc, 'ondeftags'),
+            (r'(<%(?:!?))(.*?)(%>)(?s)', bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
+            (r'(\$\{)(.*?)(\})',
+             bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
+            (r'''(?sx)
+                (.+?)               # anything, followed by:
+                (?:
+                 (?<=\n)(?=[%#]) |  # an eval or comment line
+                 (?=</?%) |         # a python block
+                                    # call start or end
+                 (?=\$\{) |         # a substitution
+                 (?<=\n)(?=\s*%) |
+                                    # - don't consume
+                 (\\\n) |           # an escaped newline
+                 \Z                 # end of string
+                )
+            ''', bygroups(Other, Operator)),
+            (r'\s+', Text),
+        ],
+        'ondeftags': [
+            (r'<%', Comment.Preproc),
+            (r'(?<=<%)(include|inherit|namespace|page)', Name.Builtin),
+            include('tag'),
+        ],
+        'tag': [
+            (r'((?:\w+)\s*=)\s*(".*?")',
+             bygroups(Name.Attribute, String)),
+            (r'/?\s*>', Comment.Preproc, '#pop'),
+            (r'\s+', Text),
+        ],
+        'attr': [
+            ('".*?"', String, '#pop'),
+            ("'.*?'", String, '#pop'),
+            (r'[^\s>]+', String, '#pop'),
+        ],
+    }
+
+
+class MakoHtmlLexer(DelegatingLexer):
+    name = 'HTML+Mako'
+    aliases = ['html+mako']
+
+    def __init__(self, **options):
+        super(MakoHtmlLexer, self).__init__(HtmlLexer, MakoLexer,
+                                              **options)
+
+class MakoXmlLexer(DelegatingLexer):
+    name = 'XML+Mako'
+    aliases = ['xml+mako']
+
+    def __init__(self, **options):
+        super(MakoXmlLexer, self).__init__(XmlLexer, MakoLexer,
+                                             **options)
+
+class MakoJavascriptLexer(DelegatingLexer):
+    name = 'JavaScript+Mako'
+    aliases = ['js+mako', 'javascript+mako']
+
+    def __init__(self, **options):
+        super(MakoJavascriptLexer, self).__init__(JavascriptLexer,
+                                                    MakoLexer, **options)
+
+class MakoCssLexer(DelegatingLexer):
+    name = 'CSS+Mako'
+    aliases = ['css+mako']
+
+    def __init__(self, **options):
+        super(MakoCssLexer, self).__init__(CssLexer, MakoLexer,
                                              **options)
 
 
