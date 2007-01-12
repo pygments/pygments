@@ -55,8 +55,8 @@ class SourcesListLexer(RegexLexer):
     Lex debian sources.list files
     """
     name= 'Debian Sourcelist'
-    aliases = ('sourceslist', 'sources.list')
-    filenames = ('sources.list',)
+    aliases = ['sourceslist', 'sources.list']
+    filenames = ['sources.list']
 
     tokens = {
         'root': [
