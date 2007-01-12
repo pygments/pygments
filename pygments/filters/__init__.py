@@ -41,7 +41,10 @@ def get_all_filters():
 
 class CodeTagFilter(Filter):
     """
-    Highlights codetags in comments and docstrings.
+    Highlights special code tags in comments and docstrings. Per default, the
+    list of highlighted tags is ``XXX``, ``TODO``, ``BUG`` and ``NOTE``. You can
+    override this list by specifying a `codetags` parameter that takes a list of
+    words.
     """
     def __init__(self, **options):
         Filter.__init__(self)
@@ -72,8 +75,11 @@ class CodeTagFilter(Filter):
 
 class KeywordCaseFilter(Filter):
     """
-    Changes the case of keywords. (To ``lower``, ``upper`` or
-    ``capitalize`` case)
+    Converts keywords to ``lower``, ``upper`` or ``capitalize`` which means
+    first letter uppercase, rest lowercase. This can be useful e.g. if you
+    highlight Pascal code and want to adapt the code to your styleguide. The
+    default is ``lower``, override that by providing the `keywordcase`
+    parameter.
     """
 
     def __init__(self, **options):

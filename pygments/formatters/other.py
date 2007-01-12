@@ -29,16 +29,18 @@ class NullFormatter(Formatter):
 
 
 class RawTokenFormatter(Formatter):
-    """
-    Output a raw token representation for storing token streams.
+    r"""
+    Formats tokens as a raw representation for storing token streams.
 
-    The format is ``tokentype<TAB>repr(tokenstring)``
+    The format is ``tokentype<TAB>repr(tokenstring)\n``. The output can later
+    be converted to a token stream with the `RawTokenLexer`, described in the
+    `lexer list <lexers.txt>`_.
 
-    Additional options accepted:
+    Only one option is accepted:
 
-    ``compress``
-        If set to "gz" or "bz2", compress the token stream with
-        the given compression algorithm (default: '').
+    `compress`
+        If set to ``'gz'`` or ``'bz2'``, compress the output with the given
+        compression algorithm after encoding (default: ``''``).
     """
 
     unicodeoutput = False

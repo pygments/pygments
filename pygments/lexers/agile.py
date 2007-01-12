@@ -3,7 +3,7 @@
     pygments.lexers.agile
     ~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for agile languages: Python, Ruby, Perl, Scheme.
+    Lexers for agile languages.
 
     :copyright: 2006 by Georg Brandl, Armin Ronacher,
                 Lukas Meuser, Marek Kubica, Tim Hatch.
@@ -31,6 +31,10 @@ line_re  = re.compile('.*?\n')
 
 
 class PythonLexer(RegexLexer):
+    """
+    For `Python <http://www.python.org>`_ source code.
+    """
+    
     name = 'Python'
     aliases = ['python', 'py']
     filenames = ['*.py', '*.pyw']
@@ -156,11 +160,17 @@ class PythonLexer(RegexLexer):
 
 class PythonConsoleLexer(Lexer):
     """
-    Parses Python console output or doctests, like::
+    For Python console output or doctests, such as:
 
-        >>> a = 1
+    .. sourcecode:: pycon
+
+        >>> a = 'foo'
         >>> print a
-        1
+        foo
+        >>> 1 / 0
+        Traceback (most recent call last):
+          File "<stdin>", line 1, in <module>
+        ZeroDivisionError: integer division or modulo by zero
     """
     name = 'Python console session'
     aliases = ['pycon']
@@ -207,6 +217,12 @@ class PythonConsoleLexer(Lexer):
 
 
 class PythonTracebackLexer(RegexLexer):
+    """
+    For Python tracebacks.
+
+    *New in Pygments 0.7.*
+    """
+    
     name = 'PythonTraceback'
     aliases = ['pytb']
     filenames = ['*.pytb']
@@ -228,6 +244,10 @@ class PythonTracebackLexer(RegexLexer):
 
 
 class RubyLexer(ExtendedRegexLexer):
+    """
+    For `Ruby <http://www.ruby-lang.org>`_ source code.
+    """
+
     name = 'Ruby'
     aliases = ['rb', 'ruby']
     filenames = ['*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec', '*.rbx']
@@ -542,7 +562,9 @@ class RubyLexer(ExtendedRegexLexer):
 
 class RubyConsoleLexer(Lexer):
     """
-    Parses Ruby console output like::
+    For Ruby interactive console (**irb**) output like:
+
+    .. sourcecode:: rbcon
 
         irb(main):001:0> a = 1
         => 1
@@ -583,6 +605,10 @@ class RubyConsoleLexer(Lexer):
 
 
 class PerlLexer(RegexLexer):
+    """
+    For `Perl <http://www.perl.org>`_ source code.
+    """
+    
     name = 'Perl'
     aliases = ['perl', 'pl']
     filenames = ['*.pl', '*.pm']
@@ -717,6 +743,28 @@ class PerlLexer(RegexLexer):
 
 
 class LuaLexer(RegexLexer):
+    """
+    For `Lua <http://www.lua.org>`_ source code.
+
+    Additional options accepted:
+
+    `func_name_highlighting`
+        If given and ``True``, highlight builtin function names
+        (default: ``True``).
+    `disabled_modules`
+        If given, must be a list of module names whose function names
+        should not be highlighted. By default all modules are highlighted.
+
+        To get a list of allowed modules have a look into the
+        `_luabuiltins` module:
+
+        .. sourcecode:: pycon
+
+            >>> from pygments.lexers._luabuiltins import MODULES
+            >>> MODULES.keys()
+            ['string', 'coroutine', 'modules', 'io', 'basic', ...]
+    """
+
     name = 'Lua'
     aliases = ['lua']
     filenames = ['*.lua']
@@ -824,7 +872,9 @@ class SchemeLexer(RegexLexer):
     This parser is checked with pastes from the LISP pastebin
     at http://paste.lisp.org/ to cover as much syntax as possible.
 
-    It should support the full Scheme syntax as defined in R5RS.
+    It supports the full Scheme syntax as defined in R5RS.
+
+    *New in Pygments 0.6.*
     """
     name = 'Scheme'
     aliases = ['scheme']

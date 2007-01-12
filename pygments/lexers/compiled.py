@@ -3,7 +3,7 @@
     pygments.lexers.compiled
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for compiled languages: C/C++, Delphi, Java.
+    Lexers for compiled languages.
 
     :copyright: 2006 by Georg Brandl, Armin Ronacher, Christoph Hack.
     :license: BSD, see LICENSE for more details.
@@ -28,6 +28,9 @@ __all__ = ['CLexer', 'CppLexer', 'DelphiLexer', 'JavaLexer']
 
 
 class CLexer(RegexLexer):
+    """
+    For C source code with preprocessor directives.
+    """
     name = 'C'
     aliases = ['c']
     filenames = ['*.c', '*.h']
@@ -122,6 +125,9 @@ class CLexer(RegexLexer):
 
 
 class CppLexer(RegexLexer):
+    """
+    For C++ source code with preprocessor directives.
+    """
     name = 'C++'
     aliases = ['cpp', 'c++']
     filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++']
@@ -196,6 +202,23 @@ class CppLexer(RegexLexer):
 
 
 class DelphiLexer(Lexer):
+    """
+    For `Delphi <http://www.borland.com/delphi/>`_ (Borland Object Pascal),
+    Turbo Pascal and Free Pascal source code.
+
+    Additional options accepted:
+
+    `turbopascal`
+        Highlight Turbo Pascal specific keywords (default: ``True``).
+    `delphi`
+        Highlight Borland Delphi specific keywords (default: ``True``).
+    `freepascal`
+        Highlight Free Pascal specific keywords (default: ``True``).
+    `units`
+        A list of units that should be considered builtin, supported are
+        ``System``, ``SysUtils``, ``Classes`` and ``Math``.
+        Default is to consider all of them builtin.
+    """
     name = 'Delphi'
     aliases = ['delphi', 'pas', 'pascal', 'objectpascal']
     filenames = ['*.pas']
@@ -663,6 +686,10 @@ class DelphiLexer(Lexer):
 
 
 class JavaLexer(RegexLexer):
+    """
+    For `Java <http://www.sun.com/java/>`_ source code.
+    """
+    
     name = 'Java'
     aliases = ['java']
     filenames = ['*.java']

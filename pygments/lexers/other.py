@@ -3,7 +3,7 @@
     pygments.lexers.other
     ~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for other languages: SQL, BrainFuck.
+    Lexers for other languages.
 
     :copyright: 2006 by Georg Brandl, Tim Hatch <tim@timhatch.com>.
     :license: BSD, see LICENSE for more details.
@@ -21,6 +21,11 @@ __all__ = ['SqlLexer', 'BrainfuckLexer', 'BashLexer']
 
 
 class SqlLexer(RegexLexer):
+    """
+    Lexer for Structured Query Language. Currently, this lexer does
+    not recognize any special syntax except ANSI SQL.
+    """
+
     name = 'SQL'
     aliases = ['sql']
     filenames = ['*.sql']
@@ -130,6 +135,11 @@ class SqlLexer(RegexLexer):
 
 
 class BrainfuckLexer(RegexLexer):
+    """
+    Lexer for the esoteric `BrainFuck <http://www.muppetlabs.com/~breadbox/bf/>`_
+    language.
+    """
+
     name = 'Brainfuck'
     aliases = ['brainfuck', 'bf']
     filenames = ['*.bf', '*.b']
@@ -157,8 +167,11 @@ class BrainfuckLexer(RegexLexer):
 
 class BashLexer(RegexLexer):
     """
-    Lex (ba)sh source files.
+    Lexer for (ba)sh shell scripts.
+
+    *New in Pygments 0.6.*
     """
+    
     name = 'Bash'
     aliases = ['bash', 'sh']
     filenames = ['*.sh']

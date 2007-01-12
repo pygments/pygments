@@ -3,7 +3,7 @@
     pygments.lexers.web
     ~~~~~~~~~~~~~~~~~~~
 
-    Lexers for web-related languages: JavaScript, CSS, HTML, XML, PHP.
+    Lexers for web-related languages and markup.
 
     :copyright: 2006 by Georg Brandl, Armin Ronacher,
                 Tim Hatch <tim@timhatch.com>.
@@ -28,6 +28,10 @@ __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
 
 
 class JavascriptLexer(RegexLexer):
+    """
+    For JavaScript source code.
+    """
+    
     name = 'JavaScript'
     aliases = ['js', 'javascript']
     filenames = ['*.js']
@@ -61,6 +65,10 @@ class JavascriptLexer(RegexLexer):
 
 
 class CssLexer(RegexLexer):
+    """
+    For CSS (Cascading Style Sheets).
+    """
+    
     name = 'CSS'
     aliases = ['css']
     filenames = ['*.css']
@@ -190,6 +198,11 @@ class CssLexer(RegexLexer):
 
 
 class HtmlLexer(RegexLexer):
+    """
+    For HTML 4 and XHTML 1 markup. Nested JavaScript and CSS is highlighted
+    by the appropriate lexer.
+    """
+    
     name = 'HTML'
     aliases = ['html']
     filenames = ['*.html', '*.htm', '*.xhtml']
@@ -240,6 +253,37 @@ class HtmlLexer(RegexLexer):
 
 
 class PhpLexer(RegexLexer):
+    """
+    For `PHP <http://www.php.net/>`_ source code.
+    For PHP embedded in HTML, use the `HtmlPhpLexer`.
+
+    Additional options accepted:
+
+    `startinline`
+        If given and ``True`` the lexer starts highlighting with
+        php code. (i.e.: no starting ``<?php`` required)
+    `funcnamehighlighting`
+        If given and ``True``, highlight builtin function names
+        (default: ``True``).
+    `disabledmodules`
+        If given, must be a list of module names whose function names
+        should not be highlighted. By default all modules are highlighted
+        except the special ``'unknown'`` module that includes functions
+        that are known to php but are undocumented.
+
+        To get a list of allowed modules have a look into the
+        `_phpbuiltins` module:
+
+        .. sourcecode:: pycon
+
+            >>> from pygments.lexers._phpbuiltins import MODULES
+            >>> MODULES.keys()
+            ['PHP Options/Info', 'Zip', 'dba', ...]
+
+        In fact the names of those modules match the module names from
+        the php documentation.
+    """
+
     name = 'PHP'
     aliases = ['php', 'php3', 'php4', 'php5']
     filenames = ['*.php', '*.php[345]']
@@ -349,6 +393,10 @@ class PhpLexer(RegexLexer):
 
 
 class XmlLexer(RegexLexer):
+    """
+    Generic lexer for XML (eXtensible Markup Language).
+    """
+    
     flags = re.MULTILINE | re.DOTALL
 
     name = 'XML'

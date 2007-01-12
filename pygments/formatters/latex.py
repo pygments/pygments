@@ -46,32 +46,48 @@ DOC_TEMPLATE = r'''
 
 
 class LatexFormatter(Formatter):
-    """
-    Output LaTeX "color" and "fancyvrb" control sequences.
+    r"""
+    Format tokens as LaTeX code. This needs the `fancyvrb` and `color`
+    standard packages.
+
+    Without the `full` option, code is formatted as one ``Verbatim``
+    environment, like this:
+
+    .. sourcecode:: latex
+
+        \begin{Verbatim}[commandchars=@\[\]]
+        @Can[def ]@Cax[foo](bar):
+            @Can[pass]
+        \end{Verbatim}
+
+    The command sequences used here (``@Can`` etc.) are generated from the given
+    `style` and can be retrieved using the `get_style_defs` method.
+
+    With the `full` option, a complete LaTeX document is output, including
+    the command definitions in the preamble.
+
+    The `get_style_defs(arg='')` method of a `LatexFormatter` returns a string
+    containing ``\newcommand`` commands defining the commands used inside the
+    ``Verbatim`` environments. If the argument `arg` is true,
+    ``\renewcommand`` is used instead.
+    
+    Additional options accepted:
+
+    `docclass`
+        If the `full` option is enabled, this is the document class to use
+        (default: ``'article'``).
+
+    `preamble`
+        If the `full` option is enabled, this can be further preamble commands,
+        e.g. ``\usepackage`` (default: ``''``).
+
+    `verboptions`
+        Additional options given to the Verbatim environment (see the *fancyvrb*
+        docs for possible values) (default: ``''``).
+    
     """
 
     def __init__(self, **options):
-        """
-        Additional options accepted:
-
-        ``docclass``
-            If ``full`` is true, this is the document class to use (default: 'article').
-        ``preamble``
-            If ``full`` is true, this can be further preamble commands (default: '').
-        ``linenos``
-            If true, output line numbers (default: False).
-        ``linenostart``
-            The line number for the first line (default: 1).
-        ``linenostep``
-            If set to a number n > 1, only every nth line number is printed (default: 1).
-        ``verboptions``
-            Additional options given to the Verbatim environment (default: '').
-        ``nobackground``
-            If set to ``True`` the formatter won't output the background color
-            for the overall element (default: ``False``)
-            Note that light colors on dark background with this option disabled
-            won't be readable very good.
-        """
         Formatter.__init__(self, **options)
         self.docclass = options.get('docclass', 'article')
         self.preamble = options.get('preamble', '')

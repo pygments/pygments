@@ -51,22 +51,26 @@ TERMINAL_COLORS = {
 
 
 class TerminalFormatter(Formatter):
-    """
-    Output plain text with coloring ANSI sequences.
+    r"""
+    Formats tokens with ANSI color sequences, for output in a text console.
+    Color sequences are terminated at newlines, so that paging the output
+    works correctly.
+
+    The `get_style_defs()` method doesn't do anything special since there is
+    no support for common styles.
+
+    Options accepted:
+
+    `bg`
+        Set to ``"light"`` or ``"dark"`` depending on the terminal's background
+        (default: ``"light"``).
+
+    `colorscheme`
+        A dictionary mapping token types to (lightbg, darkbg) color names or
+        ``None`` (default: ``None`` = use builtin colorscheme).
     """
 
     def __init__(self, **options):
-        """
-        Accepted options:
-
-        ``bg``
-            Set to ``'light'`` or ``'dark'`` depending on the
-            terminal's background.
-
-        ``colorscheme``
-            ``None`` or a dictionary mapping token types to
-            ``(lightbg, darkbg)`` color names.
-        """
         Formatter.__init__(self, **options)
         self.darkbg = options.get('bg', 'light') == 'dark'
         self.colorscheme = options.get('colorscheme', None) or TERMINAL_COLORS

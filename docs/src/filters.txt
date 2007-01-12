@@ -39,22 +39,4 @@ If you want to write your own filter, have a look at `Write your own filter`_.
 Builtin Filters
 ===============
 
-`CodeTagFilter`
-
-    Highlights special code tags in comments and docstrings. Per default, the
-    list of highlighted tags is ``XXX``, ``TODO``, ``BUG`` and ``NOTE``. You can
-    override this list by specifying a `codetags` parameter that takes a list of
-    words.
-
-    :Name:  ``codetagify``
-
-
-`KeywordCaseFilter`
-
-    Converts keywords to ``lower``, ``upper`` or ``capitalize`` which means
-    first letter uppercase, rest lowercase. This can be useful e.g. if you
-    highlight Pascal code and want to adapt the code to your styleguide. The
-    default is ``lower``, override that by providing the `keywordcase`
-    parameter.
-
-    :Name:  ``keywordcase``
+[builtin_filter_docs]

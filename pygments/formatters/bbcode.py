@@ -18,12 +18,14 @@ __all__ = ['BBCodeFormatter']
 
 class BBCodeFormatter(Formatter):
     """
-    Output BBCode tags with appropiate colors and formatting.
+    Formats tokens with BBcodes. These formatting codes are used by many
+    bulletin boards, so you can highlight your sourcecode with pygments before
+    posting it there.
 
-    This formatter doesn't support background colors and borders, as there are
-    no common BBcodes for that.
+    This formatter has no support for background colors and borders, as there
+    are no common BBcode tags for that.
 
-    Some board systems (e.g. phpBB) don't support markup in their [code] tag,
+    Some board systems (e.g. phpBB) don't support colors in their [code] tag,
     so you can't use the highlighting together with that tag.
     Text in a [code] tag usually is shown with a monospace font (which this
     formatter can do with the ``monofont`` option) and no spaces (which you
@@ -31,12 +33,13 @@ class BBCodeFormatter(Formatter):
 
     Additional options accepted:
 
-    ``codetag``
-        If set to true, put the output into [code] tags (default: false).
+    `codetag`
+        If set to true, put the output into ``[code]`` tags (default:
+        ``false``)
 
-    ``monofont``
+    `monofont`
         If set to true, add a tag to show the code with a monospace font
-        (default: false).
+        (default: ``false``).
     """
 
     def __init__(self, **options):

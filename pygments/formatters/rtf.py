@@ -16,7 +16,19 @@ __all__ = ['RtfFormatter']
 
 
 class RtfFormatter(Formatter):
-    """Output RTF (Rich Text Format)."""
+    """
+    Formats tokens as RTF markup. This formatter automatically outputs full RTF
+    documents with color information and other useful stuff. Perfect for Copy and
+    Paste into Microsoft® Word® documents.
+    
+    *New in Pygments 0.6.*
+
+    Additional options accepted:
+
+    `fontface`
+        The used font famliy, for example ``Bitstream Vera Sans``. Defaults to
+        some generic font which is supposed to have fixed width.
+    """
 
     unicodeoutput = False
 
