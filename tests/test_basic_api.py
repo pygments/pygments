@@ -31,8 +31,11 @@ class LexersTest(unittest.TestCase):
         ae = self.assertEquals
         # test that every lexer class has the correct public API
         for lexer in lexers._iter_lexerclasses():
-            for attr in 'name', 'aliases', 'filenames', 'alias_filenames', 'mimetypes':
+            a(type(lexer.name) is str)
+            for attr in 'aliases', 'filenames', 'alias_filenames', 'mimetypes':
                 a(hasattr(lexer, attr))
+                a(type(getattr(lexer, attr)) is list, "%s: %s attribute wrong" %
+                                                      (lexer, attr))
             result = lexer.analyse_text("abc")
             a(isinstance(result, float) and 0.0 <= result <= 1.0)
 
