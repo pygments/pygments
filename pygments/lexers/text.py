@@ -60,9 +60,30 @@ class SourcesListLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'\s+', Text),
             (r'#.*?$', Comment),
-            (r'(deb(?:-src)?)(\s+)(\S+)(\s+)(\S+)([^#\n]*)',
-             bygroups(Name.Builtin, Text, Name.Class, Text, String, Text))
+            (r'^(deb(?:-src)?)(\s+)',
+             bygroups(Keyword, Text), 'distribution')
+        ],
+        'distribution': [
+            (r'#.*?$', Comment, '#pop'),
+            (r'\$\(ARCH\)', Name.Variable),
+            (r'[^\s$[]+', String),
+            (r'\[', String.Other, 'escaped-distribution'),
+            (r'\$', String),
+            (r'\s+', Text, 'components')
+        ],
+        'escaped-distribution': [
+            (r'\]', String.Other, '#pop'),
+            (r'\$\(ARCH\)', Name.Variable),
+            (r'[^\]$]+', String.Other),
+            (r'\$', String.Other)
+        ],
+        'components': [
+            (r'#.*?$', Comment, '#pop:2'),
+            (r'$', Text, '#pop:2'),
+            (r'\s+', Text),
+            (r'\S+', Keyword.Pseudo),
         ]
     }
 
