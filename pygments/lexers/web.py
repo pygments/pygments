@@ -31,7 +31,7 @@ class JavascriptLexer(RegexLexer):
     """
     For JavaScript source code.
     """
-    
+
     name = 'JavaScript'
     aliases = ['js', 'javascript']
     filenames = ['*.js']
@@ -68,7 +68,7 @@ class CssLexer(RegexLexer):
     """
     For CSS (Cascading Style Sheets).
     """
-    
+
     name = 'CSS'
     aliases = ['css']
     filenames = ['*.css']
@@ -202,7 +202,7 @@ class HtmlLexer(RegexLexer):
     For HTML 4 and XHTML 1 markup. Nested JavaScript and CSS is highlighted
     by the appropriate lexer.
     """
-    
+
     name = 'HTML'
     aliases = ['html']
     filenames = ['*.html', '*.htm', '*.xhtml']
@@ -397,7 +397,7 @@ class XmlLexer(RegexLexer):
     """
     Generic lexer for XML (eXtensible Markup Language).
     """
-    
+
     flags = re.MULTILINE | re.DOTALL
 
     name = 'XML'

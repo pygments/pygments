@@ -17,7 +17,7 @@ from pygments.token import Error, Punctuation, \
 from pygments.util import shebang_matches
 
 
-__all__ = ['SqlLexer', 'BrainfuckLexer', 'BashLexer']
+__all__ = ['SqlLexer', 'BrainfuckLexer', 'BashLexer', 'BatchLexer']
 
 
 class SqlLexer(RegexLexer):
@@ -171,7 +171,7 @@ class BashLexer(RegexLexer):
 
     *New in Pygments 0.6.*
     """
-    
+
     name = 'Bash'
     aliases = ['bash', 'sh']
     filenames = ['*.sh']
@@ -218,3 +218,58 @@ class BashLexer(RegexLexer):
 
     def analyse_text(text):
         return shebang_matches(text, r'(ba|z|)sh')
+
+
+class BatchLexer(RegexLexer):
+    """
+    Lexer for the DOS/Windows Batch file format.
+
+    *New in Pygments 0.7.*
+    """
+    name = 'Batchfile'
+    aliases = ['bat']
+    filenames = ['*.bat', '*.cmd']
+    mimetypes = ['application/x-dos-batch']
+
+    flags = re.MULTILINE | re.IGNORECASE
+
+    tokens = {
+        'root': [
+            # Lines can start with @ to prevent echo
+            (r'^\s*@', Punctuation),
+            (r'".*?"', String.Double),
+            (r"'.*?'", String.Single),
+            # If made more specific, make sure you still allow expansions
+            # like %~$VAR:zlt
+            (r'%%?[~$:\w]+%?', Name.Variable),
+            (r'(::|rem).*', Comment), # Technically :: only works at BOL
+            (r'(set)(\s+)(\w+)', bygroups(Keyword, Text, Name.Variable)),
+            (r'(call)(\s+)(:\w+)', bygroups(Keyword, Text, Name.Label)),
+            (r'(goto)(\s+)(\w+)', bygroups(Keyword, Text, Name.Label)),
+            (r'\b(set|call|echo|on|off|endlocal|for|do|goto|if|pause|rem|'
+             r'setlocal|shift|errorlevel|exist|defined|cmdextversion|'
+             r'errorlevel|else|cd|md|del|deltree|cls|choice)\b', Keyword),
+            (r'equ|neq|lss|leq|gtr|geq', Operator),
+            include('basic'),
+            (r'.', Text),
+        ],
+        'echo': [
+            # Escapes only valid within echo args?
+            (r'\^\^|\^<|\^>|\^\|', String.Escape),
+            (r'\n', Text, '#pop'),
+            include('basic'),
+            (r'[^\'"^]+', Text),
+        ],
+        'basic': [
+            (r'".*?"', String.Double),
+            (r"'.*?'", String.Single),
+            (r'`.*?`', String.Backtick),
+            (r'-?\d+', Number),
+            (r',', Punctuation),
+            (r'=', Operator),
+            (r'/\S+', Name),
+            (r':\w+', Name.Label),
+            (r'\w:\w+', Text),
+            (r'([<>|])(\s*)(\w+)', bygroups(Punctuation, Text, Name)),
+        ],
+    }

@@ -19,6 +19,7 @@ except NameError:
 from pygments.lexers.web import \
      PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
 from pygments.lexers.agile import PythonLexer
+from pygments.lexers.compiled import JavaLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
      include, using, this
 from pygments.token import Error, Punctuation, \
@@ -36,7 +37,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'MyghtyLexer', 'MyghtyHtmlLexer', 'MyghtyXmlLexer',
            'MyghtyCssLexer', 'MyghtyJavascriptLexer', 'MakoLexer',
            'MakoHtmlLexer', 'MakoXmlLexer', 'MakoJavascriptLexer',
-           'MakoCssLexer']
+           'MakoCssLexer', 'JspLexer']
 
 
 class ErbLexer(Lexer):
@@ -464,7 +465,7 @@ class MakoJavascriptLexer(DelegatingLexer):
 
     *New in Pygments 0.7.*
     """
-    
+
     name = 'JavaScript+Mako'
     aliases = ['js+mako', 'javascript+mako']
 
@@ -529,7 +530,7 @@ class GenshiMarkupLexer(RegexLexer):
     Base lexer for Genshi markup, used by `HtmlGenshiLexer` and
     `GenshiLexer`.
     """
-    
+
     flags = re.DOTALL
 
     tokens = {
@@ -678,7 +679,7 @@ class RhtmlLexer(DelegatingLexer):
 
     Nested Javascript and CSS is highlighted too.
     """
-    
+
     name = 'RHTML'
     aliases = ['rhtml', 'html+erb', 'html+ruby']
     filenames = ['*.rhtml']
@@ -700,7 +701,7 @@ class XmlErbLexer(DelegatingLexer):
     Subclass of `ErbLexer` which highlights data outside preprocessor
     directives with the `XmlLexer`.
     """
-    
+
     name = 'XML+Ruby'
     aliases = ['xml+erb', 'xml+ruby']
     alias_filenames = ['*.xml']
@@ -719,7 +720,7 @@ class CssErbLexer(DelegatingLexer):
     """
     Subclass of `ErbLexer` which highlights unlexed data with the `CssLexer`.
     """
-    
+
     name = 'CSS+Ruby'
     aliases = ['css+erb', 'css+ruby']
     alias_filenames = ['*.xml']
@@ -755,7 +756,7 @@ class HtmlPhpLexer(DelegatingLexer):
 
     Nested Javascript and CSS is highlighted too.
     """
-    
+
     name = 'HTML+PHP'
     aliases = ['html+php']
     filenames = ['*.phtml']
@@ -779,7 +780,7 @@ class XmlPhpLexer(DelegatingLexer):
     """
     Subclass of `PhpLexer` that higlights unhandled data with the `XmlLexer`.
     """
-    
+
     name = 'XML+PHP'
     aliases = ['xml+php']
     alias_filenames = ['*.xml', '*.php', '*.php[345]']
@@ -798,7 +799,7 @@ class CssPhpLexer(DelegatingLexer):
     """
     Subclass of `PhpLexer` which highlights unmatched data with the `CssLexer`.
     """
-    
+
     name = 'CSS+PHP'
     aliases = ['css+php']
     alias_filenames = ['*.css']
@@ -855,7 +856,7 @@ class XmlSmartyLexer(DelegatingLexer):
     Subclass of the `SmartyLexer` that highlights unlexed data with the
     `XmlLexer`.
     """
-    
+
     name = 'XML+Smarty'
     aliases = ['xml+smarty']
     alias_filenames = ['*.xml', '*.tpl']
@@ -952,7 +953,7 @@ class CssDjangoLexer(DelegatingLexer):
     Subclass of the `DjangoLexer` that highlights unlexed data with the
     `CssLexer`.
     """
-    
+
     name = 'CSS+Django/Jinja'
     aliases = ['css+django', 'css+jinja']
     alias_filenames = ['*.css']
@@ -981,3 +982,47 @@ class JavascriptDjangoLexer(DelegatingLexer):
 
     def analyse_text(text):
         return DjangoLexer.analyse_text(text) - 0.05
+
+class JspRootLexer(RegexLexer):
+    """
+    Base for the `JspLexer`. Yields `Token.Other` for area outside of
+    JSP tags.
+
+    *New in Pygments 0.7.*
+    """
+
+    tokens = {
+        'root': [
+            (r'<%\S?', Keyword, 'sec'),
+            # FIXME: I want to make these keywords but still parse attributes.
+            (r'</?jsp:(forward|getProperty|include|plugin|setProperty|useBean).*?>',
+             Keyword),
+            (r'[^<]+', Other),
+            (r'<', Other),
+        ],
+        'sec': [
+            (r'%>', Keyword, '#pop'),
+            (r'[\w\W]+?(?=%>|\Z)', using(JavaLexer)),
+        ],
+    }
+
+class JspLexer(DelegatingLexer):
+    """
+    Lexer for Java Server Pages.
+
+    *New in Pygments 0.7.*
+    """
+    name = 'Java Server Page'
+    aliases = ['jsp']
+    filenames = ['*.jsp']
+
+    def __init__(self, **options):
+        super(JspLexer, self).__init__(XmlLexer, JspRootLexer, **options)
+
+    def analyse_text(text):
+        rv = JavaLexer.analyse_text(text) - 0.01
+        if looks_like_xml(text):
+            rv += 0.4
+        if '<%' in text and '%>' in text:
+            rv += 0.1
+        return rv

@@ -60,7 +60,7 @@ class SourcesListLexer(RegexLexer):
 
     *New in Pygments 0.7.*
     """
-    
+
     name= 'Debian Sourcelist'
     aliases = ['sourceslist', 'sources.list']
     filenames = ['sources.list']
@@ -107,7 +107,7 @@ class MakefileLexer(RegexLexer):
     """
     Lexer for Makefiles.
     """
-    
+
     name = 'Makefile'
     aliases = ['make', 'makefile', 'mf']
     filenames = ['*.mak', 'Makefile', 'makefile']
@@ -154,7 +154,7 @@ class DiffLexer(RegexLexer):
     """
     Lexer for unified or context-style diffs or patches.
     """
-    
+
     name = 'Diff'
     aliases = ['diff']
     filenames = ['*.diff', '*.patch']
@@ -186,7 +186,7 @@ class IrcLogsLexer(RegexLexer):
     """
     Lexer for IRC logs in **irssi** or **xchat** style.
     """
-    
+
     name = 'IRC logs'
     aliases = ['irc']
 
@@ -232,7 +232,7 @@ class BBCodeLexer(RegexLexer):
 
     *New in Pygments 0.6.*
     """
-    
+
     name = 'BBCode'
     aliases = ['bbcode']
 
@@ -251,7 +251,7 @@ class TexLexer(RegexLexer):
     """
     Lexer for the TeX and LaTeX typesetting languages.
     """
-    
+
     name = 'TeX'
     aliases = ['tex', 'latex']
     filenames = ['*.tex', '*.aux', '*.toc']
@@ -366,7 +366,7 @@ class ApacheConfLexer(RegexLexer):
 
     *New in Pygments 0.6.*
     """
-    
+
     name = 'ApacheConf'
     aliases = ['apacheconf', 'aconf', 'apache']
     filenames = ['.htaccess', 'apache.conf', 'apache2.conf']

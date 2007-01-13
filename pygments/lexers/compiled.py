@@ -689,7 +689,7 @@ class JavaLexer(RegexLexer):
     """
     For `Java <http://www.sun.com/java/>`_ source code.
     """
-    
+
     name = 'Java'
     aliases = ['java']
     filenames = ['*.java']

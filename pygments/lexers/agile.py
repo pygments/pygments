@@ -34,7 +34,7 @@ class PythonLexer(RegexLexer):
     """
     For `Python <http://www.python.org>`_ source code.
     """
-    
+
     name = 'Python'
     aliases = ['python', 'py']
     filenames = ['*.py', '*.pyw']
@@ -222,7 +222,7 @@ class PythonTracebackLexer(RegexLexer):
 
     *New in Pygments 0.7.*
     """
-    
+
     name = 'PythonTraceback'
     aliases = ['pytb']
     filenames = ['*.pytb']
@@ -618,7 +618,7 @@ class PerlLexer(RegexLexer):
     """
     For `Perl <http://www.perl.org>`_ source code.
     """
-    
+
     name = 'Perl'
     aliases = ['perl', 'pl']
     filenames = ['*.pl', '*.pm']
