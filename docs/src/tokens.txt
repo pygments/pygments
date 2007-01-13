@@ -59,8 +59,8 @@ Inside the `pygments.token` module the following aliases are defined:
 `Literal`     `Token.Literal`              Any literals
 `String`      `Token.Literal.String`       string literals
 `Number`      `Token.Literal.Number`       number literals
-`Operator`    `Token.Operator`             operators (``+``, ``not`` etc)
-`Punctuation` `Token.Punctuation`
+`Operator`    `Token.Operator`             operators (``+``, ``not``...)
+`Punctuation` `Token.Punctuation`          punctuation (``[``, ``(``...)
 `Comment`     `Token.Comment`              any kind of comments
 `Generic`     `Token.Generic`              generic tokens (have a look at
                                            the explanation below)
