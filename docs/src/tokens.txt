@@ -48,22 +48,23 @@ For some tokens aliases are already defined:
 
 Inside the `pygments.token` module the following aliases are defined:
 
-=========== =============================== ==================================
-`Text`      `Token.Text`                    for any type of text data
-`Error`     `Token.Error`                   represents lexer errors
-`Other`     `Token.Other`                   special token for data not
-                                            matched by a parser (e.g. HTML
-                                            markup in PHP code)
-`Keyword`   `Token.Keyword`                 any kind of keywords
-`Name`      `Token.Name`                    variable/function names
-`Literal`   `Token.Literal`                 Any literals
-`String`    `Token.Literal.String`          string literals
-`Number`    `Token.Literal.Number`          number literals
-`Operator`  `Token.Operator`                operators (``+``, ``not`` etc)
-`Comment`   `Token.Comment`                 any kind of comments
-`Generic`   `Token.Generic`                 generic tokens (have a look at
-                                            the explanation below)
-=========== =============================== ==================================
+============= ============================ ==================================
+`Text`        `Token.Text`                 for any type of text data
+`Error`       `Token.Error`                represents lexer errors
+`Other`       `Token.Other`                special token for data not
+                                           matched by a parser (e.g. HTML
+                                           markup in PHP code)
+`Keyword`     `Token.Keyword`              any kind of keywords
+`Name`        `Token.Name`                 variable/function names
+`Literal`     `Token.Literal`              Any literals
+`String`      `Token.Literal.String`       string literals
+`Number`      `Token.Literal.Number`       number literals
+`Operator`    `Token.Operator`             operators (``+``, ``not`` etc)
+`Punctuation` `Token.Punctuation`
+`Comment`     `Token.Comment`              any kind of comments
+`Generic`     `Token.Generic`              generic tokens (have a look at
+                                           the explanation below)
+============= ============================ ==================================
 
 Normally you just create token types using the already defined aliases. For each
 of those token aliases, a number of subtypes exists (excluding the special tokens
@@ -241,6 +242,15 @@ Operators
 
 `Operator.Word`
     For any operator that is a word (e.g. ``not``).
+
+
+Punctuation
+===========
+
+*New in Pygments 0.7.*
+
+`Punctuation`
+    For any punctuation which is not an operator (e.g. ``[``, ``(``...)
 
 
 Comments
