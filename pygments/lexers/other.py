@@ -17,7 +17,8 @@ from pygments.token import Error, Punctuation, \
 from pygments.util import shebang_matches
 
 
-__all__ = ['SqlLexer', 'BrainfuckLexer', 'BashLexer', 'BatchLexer']
+__all__ = ['SqlLexer', 'BrainfuckLexer', 'BashLexer', 'BatchLexer',
+           'BefungeLexer']
 
 
 class SqlLexer(RegexLexer):
