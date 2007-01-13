@@ -33,6 +33,15 @@ As of Pygments 0.7 you can also use the ``in`` operator to perform set tests:
 This can be useful in `filters`_ and if you write lexers on your own without
 using the base lexers.
 
+You can also split tokens and get the parent of it:
+
+.. sourcecode:: pycon
+
+    >>> String.parent
+    Token.Literal
+    >>> String.split()
+    [Token, Token.Literal, Token.Literal.String]
+
 In principle, you can create an unlimited number of token types but nobody can
 guarantee that a style would define style rules for a token type. Because of
 that, Pygments proposes some global token types defined in the
