@@ -93,9 +93,37 @@ def generate_filter_docs():
 ''' % (cls.__name__, cls.__doc__, name))
     return ''.join(out)
 
+def generate_changelog():
+    fn = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
+                         'CHANGES'))
+    f = file(fn)
+    result = []
+    in_header = False
+    header = True
+    for line in f:
+        if header:
+            if not in_header and line.strip():
+                in_header = True
+            elif in_header and not line.strip():
+                header = False
+        else:
+            result.append(line.rstrip())
+    f.close()
+    return '\n'.join(result)
+
+def generate_authors():
+    fn = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
+                         'AUTHORS'))
+    f = file(fn)
+    r = f.read().rstrip()
+    f.close()
+    return r
+
 LEXERDOCS = generate_lexer_docs()
 FORMATTERDOCS = generate_formatter_docs()
 FILTERDOCS = generate_filter_docs()
+CHANGELOG = generate_changelog()
+AUTHORS = generate_authors()
 
 
 PYGMENTS_FORMATTER = HtmlFormatter(style='pastie', cssclass='syntax')
@@ -347,7 +375,9 @@ def generate_documentation(data, link_style):
     writer = DocumentationWriter(link_style)
     data = data.replace('[builtin_lexer_docs]', LEXERDOCS).\
                 replace('[builtin_formatter_docs]', FORMATTERDOCS).\
-                replace('[builtin_filter_docs]', FILTERDOCS)
+                replace('[builtin_filter_docs]', FILTERDOCS).\
+                replace('[changelog]', CHANGELOG).\
+                replace('[authors]', AUTHORS)
     parts = publish_parts(
         data,
         writer=writer,
