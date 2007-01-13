@@ -70,7 +70,7 @@ class LatexFormatter(Formatter):
     containing ``\newcommand`` commands defining the commands used inside the
     ``Verbatim`` environments. If the argument `arg` is true,
     ``\renewcommand`` is used instead.
-    
+
     Additional options accepted:
 
     `docclass`
@@ -84,7 +84,7 @@ class LatexFormatter(Formatter):
     `verboptions`
         Additional options given to the Verbatim environment (see the *fancyvrb*
         docs for possible values) (default: ``''``).
-    
+
     """
 
     def __init__(self, **options):

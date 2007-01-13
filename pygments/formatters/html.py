@@ -167,7 +167,7 @@ class HtmlFormatter(Formatter):
     Additional options accepted:
 
     `nowrap`
-        If set to ``True``, don't wrap the tokens at all, not even in a ``<pre>``
+        If set to ``True``, don't wrap the tokens at all, not even inside a ``<pre>``
         tag. This disables all other options (default: ``False``).
 
     `noclasses`
