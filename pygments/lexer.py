@@ -132,7 +132,9 @@ class Lexer(object):
             text = '\n'.join(text.splitlines())
             if self.encoding == 'guess':
                 try:
-                    text = text.decode('utf-8-sig')
+                    text = text.decode('utf-8')
+                    if text.startswith(u'\ufeff'):
+                        text = text[len(u'\ufeff'):]
                 except UnicodeDecodeError:
                     text = text.decode('latin1')
             elif self.encoding == 'chardet':
