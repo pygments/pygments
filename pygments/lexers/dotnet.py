@@ -60,7 +60,7 @@ class CSharpLexer(RegexLexer):
              r'internal|is|lock|nwe|null|operator|'
              r'out|override|params|private|protected|public|readonly|'
              r'ref|return|sealed|sizeof|stackalloc|static|'
-             r'switch|this|throw|true|try|typeof|'
+             r'switch|this|throw|true|try|typeof|partial|'
              r'unchecked|unsafe|virtual|void|while|'
              r'get|set|new)\b', Keyword),
             (r'(bool|byte|char|decimal|double|float|int|long|object|sbyte|'
