@@ -983,6 +983,7 @@ class JavascriptDjangoLexer(DelegatingLexer):
     def analyse_text(text):
         return DjangoLexer.analyse_text(text) - 0.05
 
+
 class JspRootLexer(RegexLexer):
     """
     Base for the `JspLexer`. Yields `Token.Other` for area outside of
@@ -1005,6 +1006,7 @@ class JspRootLexer(RegexLexer):
             (r'.+?(?=%>|\Z)', using(JavaLexer)),
         ],
     }
+
 
 class JspLexer(DelegatingLexer):
     """

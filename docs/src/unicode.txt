@@ -9,13 +9,13 @@ wrong encoding.
 Per default all lexers have `encoding` set to `latin1`. If you pass a lexer a
 string object (not unicode) it tries to decode the data using this encoding.
 You can override the encoding using the `encoding` lexer option. If you have the
-`chardet`_ library installed and set the encoding to ``guess`` if will ananlyse
+`chardet`_ library installed and set the encoding to ``chardet`` if will ananlyse
 the text and fetch the best encoding automatically:
 
 .. sourcecode:: python
 
     from pygments.lexers import PythonLexer
-    lexer = PythonLexer(encoding='guess')
+    lexer = PythonLexer(encoding='chardet')
 
 The best way is to pass Pygments unicode objects. In that case you can't get
 unexpected output.
