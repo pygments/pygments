@@ -1,6 +1,6 @@
 a.each{|el|anz[el]=anz[el]?anz[el]+1:1}
 while x<10000
-#a bis f dienen dazu die Nachbarschaft festzulegen. Man stelle sich die #Zahl von 1 bis 64 im Binärcode vor 1 bedeutet an 0 aus
+#a bis f dienen dazu die Nachbarschaft festzulegen. Man stelle sich die #Zahl von 1 bis 64 im BinÃ¤rcode vor 1 bedeutet an 0 aus
   b=(p[x]%32)/16<1 ? 0 : 1
 
   (x-102>=0? n[x-102].to_i : 0)*a+(x-101>=0?n[x-101].to_i : 0)*e+n[x-100].to_i+(x-99>=0? n[x-99].to_i : 0)*f+(x-98>=0? n[x-98].to_i : 0)*a+
@@ -20,6 +20,22 @@ sleep(10)
 
 1E1E1
 puts 30.send(:/, 5) # prints 6
+
+# fun with class attributes
+class Foo
+  def self.blub x
+    if not x.nil?
+      self.new
+    end
+  end
+  def another_way_to_get_class
+    self.class
+  end
+end
+
+# ruby 1.9 "call operator"
+a = Proc.new { 42 }
+a.()
 
 "instance variables can be #@included, #@@class_variables\n and #$globals as well."
 `instance variables can be #@included, #@@class_variables\n and #$globals as well.`

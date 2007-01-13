@@ -402,10 +402,18 @@ class RubyLexer(ExtendedRegexLexer):
         'root': [
             (r'#.*?$', Comment.Single),
             (r'=begin\n.*?\n=end', Comment.Multiline),
+            # keywords
             (r'(BEGIN|END|alias|begin|break|case|defined\?|'
              r'do|else|elsif|end|ensure|for|if|in|next|redo|'
              r'rescue|raise|retry|return|super|then|undef|unless|until|when|'
              r'while|yield)\b', Keyword),
+            # start of function, class and module names
+            (r'(module)(\s+)([a-zA-Z_][a-zA-Z0-9_]*(::[a-zA-Z_][a-zA-Z0-9_]*)*)',
+             bygroups(Keyword, Text, Name.Namespace)),
+            (r'(def)(\s+)', bygroups(Keyword, Text), 'funcname'),
+            (r'def(?=[*%&^`~+-/\[<>=])', Keyword, 'funcname'),
+            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            # special methods
             (r'(initialize|new|loop|include|extend|raise|attr_reader|'
              r'attr_writer|attr_accessor|attr|catch|throw|private|'
              r'module_function|public|protected|true|false|nil)\b', Keyword.Pseudo),
@@ -474,13 +482,18 @@ class RubyLexer(ExtendedRegexLexer):
             # lex numbers and ignore following regular expressions which
             # are division operators in fact (grrrr. i hate that. any
             # better ideas?)
-            (r'(0_?[0-7]+(?:_[0-7]+)*)(\s*)(/)?',
+            # since pygments 0.7 we also eat a "?" operator after numbers
+            # so that the char operator does not work. Chars are not allowed
+            # there so that you can use the terner operator.
+            # stupid example:
+            #   x>=0?n[x]:""
+            (r'(0_?[0-7]+(?:_[0-7]+)*)(\s*)([/?])?',
              bygroups(Number.Oct, Text, Operator)),
-            (r'(0x[0-9A-Fa-f]+(?:_[0-9A-Fa-f]+)*)(\s*)(/)?',
+            (r'(0x[0-9A-Fa-f]+(?:_[0-9A-Fa-f]+)*)(\s*)([/?])?',
              bygroups(Number.Hex, Text, Operator)),
-            (r'(0b[01]+(?:_[01]+)*)(\s*)(/)?',
+            (r'(0b[01]+(?:_[01]+)*)(\s*)([/?])?',
              bygroups(Number.Bin, Text, Operator)),
-            (r'([\d]+(?:_\d+)*)(\s*)(/)?',
+            (r'([\d]+(?:_\d+)*)(\s*)([/?])?',
              bygroups(Number.Integer, Text, Operator)),
             # Names
             (r'@@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Class),
@@ -498,23 +511,20 @@ class RubyLexer(ExtendedRegexLexer):
             (r'[A-Z][a-zA-Z0-9_]+', Name.Constant),
             # this is needed because ruby attributes can look
             # like keywords (class) or like this: ` ?!?
-            (r'(?<=\.)([a-zA-Z_]\w*[\!\?]?|[*%&^`~+-/\[<>=])', Name),
-            # module name
-            (r'(module)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword, Text, Name.Namespace)),
-            # start of function name, a bit tricky
-            (r'(def)(\s+)', bygroups(Keyword, Text), 'funcname'),
-            (r'def(?=[*%&^`~+-/\[<>=])', Keyword, 'funcname'),
-            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(\.|::)([a-zA-Z_]\w*[\!\?]?|[*%&^`~+-/\[<>=])',
+             bygroups(Operator, Name)),
             (r'[a-zA-Z_][\w_]*[\!\?]?', Name),
-            (r'(\[\]|\*\*|<<?|>>?|>=|<=|<=>|=~|={3}|'
+            (r'(\[|\]|\*\*|<<?|>>?|>=|<=|<=>|=~|={3}|'
              r'!~|&&?|\|\||\.{1,3})', Operator),
             (r'[-+/*%=<>&!^|~]=?', Operator),
-            (r'[\[\](){};,/?:\\]', Punctuation),
+            (r'[(){};,/?:\\]', Punctuation),
             (r'\s+', Text)
         ],
         'funcname': [
-            (r'([a-zA-Z_][\w_]*[\!\?]?|\*\*?|[-+]@?|'
-             r'[/%&|^`~]|\[\]=?|<<|>>|<=?>|>=?|===?)', Name.Function, '#pop')
+            (r'(?:([a-zA-Z_][a-zA-Z0-9_]*)(\.))?'
+             r'([a-zA-Z_][\w_]*[\!\?]?|\*\*?|[-+]@?|'
+             r'[/%&|^`~]|\[\]=?|<<|>>|<=?>|>=?|===?)',
+             bygroups(Name.Class, Operator, Name.Function), '#pop')
         ],
         'classname': [
             (r'<<', Operator, '#pop'),
