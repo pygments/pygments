@@ -230,6 +230,7 @@ class HtmlLexer(RegexLexer):
         'tag': [
             (r'\s+', Text),
             (r'[a-zA-Z0-9_:-]+\s*=', Name.Attribute, 'attr'),
+            (r'[a-zA-Z0-9_:-]+', Name.Attribute),
             (r'/?\s*>', Name.Tag, '#pop'),
         ],
         'script-content': [
