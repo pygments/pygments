@@ -165,6 +165,35 @@ class BrainfuckLexer(RegexLexer):
     }
 
 
+class BefungeLexer(RegexLexer):
+    """
+    Lexer for the esoteric `Befunge <http://en.wikipedia.org/wiki/Befunge>`_
+    language.
+
+    *New in Pygments 0.7.*
+    """
+    name = 'Befunge'
+    aliases = ['befunge']
+    filenames = ['*.befunge']
+
+    tokens = {
+        'root': [
+            (r'[0-9a-f]', Number),
+            (r'[\+\*/%!`-]', Operator), # Traditional math
+            (r'[<>^v?\[\]rxjk]', Name.Variable), # Move, imperatives
+            (r'[:\\$.,n]', Name.Builtin), # Stack ops, imperatives
+            (r'[|_mw]', Keyword),
+            (r'[{}]', Name.Tag), # Befunge-98 stack ops
+            (r'".*?"', String.Double), # Strings don't appear to allow escapes
+            (r'\'.', String.Single), # Single character
+            (r'[#;]', Comment), # Trampoline... depends on direction hit
+            (r'[pg&~=@iotsy]', Keyword), # Misc
+            (r'[()A-Z]', Comment), # Fingerprints
+            (r'\s+', Text), # Whitespace doesn't matter
+        ],
+    }
+
+
 class BashLexer(RegexLexer):
     """
     Lexer for (ba)sh shell scripts.
