@@ -2,13 +2,13 @@
 Unicode Support
 ===============
 
-Since Pygments 0.6 the lexers use unicode strings internally. Because of that
-you might discover some `UnicodeDecodeErrors` if you pass it strings with the
+Since Pygments 0.6, the lexers use unicode strings internally. Because of that
+you might discover the occasional `UnicodeDecodeError` if you pass strings with the
 wrong encoding.
 
 Per default all lexers have `encoding` set to `latin1`. If you pass a lexer a
 string object (not unicode) it tries to decode the data using this encoding.
-You can override the encoding using the `encoding` parameter. If you have the
+You can override the encoding using the `encoding` lexer option. If you have the
 `chardet`_ library installed and set the encoding to ``guess`` if will ananlyse
 the text and fetch the best encoding automatically:
 
@@ -17,11 +17,11 @@ the text and fetch the best encoding automatically:
     from pygments.lexers import PythonLexer
     lexer = PythonLexer(encoding='guess')
 
-The best way is to pass pygments unicode objects. In that case you don't get
+The best way is to pass Pygments unicode objects. In that case you can't get
 unexpected output.
 
 The formatters now send unicode objects to the stream if you don't set the
-encoding. You can do so by passing the formatters an `encoding` parameter:
+encoding. You can do so by passing the formatters an `encoding` option:
 
 .. sourcecode:: python
 
