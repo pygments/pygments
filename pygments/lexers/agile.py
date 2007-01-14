@@ -223,7 +223,7 @@ class PythonTracebackLexer(RegexLexer):
     *New in Pygments 0.7.*
     """
 
-    name = 'PythonTraceback'
+    name = 'Python Traceback'
     aliases = ['pytb']
     filenames = ['*.pytb']
     mimetypes = ['text/x-python-traceback']

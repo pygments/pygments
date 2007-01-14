@@ -24,10 +24,10 @@
 """
 
 __version__ = '0.7'
-__docformat__ = 'restructuredtext'
-__license__ = 'BSD License'
 __author__ = 'Georg Brandl <g.brandl@gmx.net>'
 __url__ = 'http://pygments.pocoo.org/'
+__license__ = 'BSD License'
+__docformat__ = 'restructuredtext'
 
 __all__ = ['lex', 'format', 'highlight']
 
@@ -41,7 +41,14 @@ def lex(code, lexer):
     """
     Lex ``code`` with ``lexer`` and return an iterable of tokens.
     """
-    return lexer.get_tokens(code)
+    try:
+        return lexer.get_tokens(code)
+    except TypeError, err:
+        if isinstance(err.args[0], str) and \
+           'unbound method get_tokens' in err.args[0]:
+            raise TypeError('lex() argument must be a lexer instance, '
+                            'not a class')
+        raise
 
 
 def format(tokens, formatter, outfile=None):
@@ -52,14 +59,21 @@ def format(tokens, formatter, outfile=None):
     with a ``write`` method), the result will be written to it, otherwise
     it is returned as a string.
     """
-    if not outfile:
-        # if we want Unicode output, we have to use Python StringIO
-        realoutfile = formatter.encoding and CStringIO() or StringIO()
-        formatter.format(tokens, realoutfile)
-        return realoutfile.getvalue()
-    else:
-        formatter.format(tokens, outfile)
-
+    try:
+        if not outfile:
+            # if we want Unicode output, we have to use Python StringIO
+            realoutfile = formatter.encoding and CStringIO() or StringIO()
+            formatter.format(tokens, realoutfile)
+            return realoutfile.getvalue()
+        else:
+            formatter.format(tokens, outfile)
+    except TypeError, err:
+        if isinstance(err.args[0], str) and \
+           'unbound method format' in err.args[0]:
+            raise TypeError('format() argument must be a formatter instance, '
+                            'not a class')
+        raise
+        
 
 def highlight(code, lexer, formatter, outfile=None):
     """
