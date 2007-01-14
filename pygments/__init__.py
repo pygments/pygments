@@ -5,9 +5,9 @@
 
     Pygments is a syntax highlighting package written in Python.
 
-    It aims to be a generic syntax highlighter for general use in all
-    kinds of software such as forum systems, wikis or other applications
-    that need to prettify source code. Highlights are:
+    It is a generic syntax highlighter for general use in all kinds of software
+    such as forum systems, wikis or other applications that need to prettify
+    source code. Highlights are:
 
     * a wide range of common languages and markup formats is supported
     * special attention is paid to details, increasing quality by a fair amount
@@ -19,7 +19,7 @@
     The `Pygments trunk <http://trac.pocoo.org/repos/pygments/trunk#egg=Pygments-dev>`__
     is installable via *easy_install* with ``easy_install Pygments==dev``.
 
-    :copyright: 2006 by Georg Brandl, Armin Ronacher, Lukas Meuser and others.
+    :copyright: 2006 by Georg Brandl, Armin Ronacher and others.
     :license: BSD, see LICENSE for more details.
 """
 
