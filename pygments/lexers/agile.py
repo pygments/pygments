@@ -134,12 +134,12 @@ class PythonLexer(RegexLexer):
         ],
         'dqs': [
             (r'"', String, '#pop'),
-            (r'\\"', String.Escape), # included here again for raw strings
+            (r'\\\\|\\"', String.Escape), # included here again for raw strings
             include('strings')
         ],
         'sqs': [
             (r"'", String, '#pop'),
-            (r"\\'", String.Escape), # included here again for raw strings
+            (r"\\\\|\\'", String.Escape), # included here again for raw strings
             include('strings')
         ],
         'tdqs': [
