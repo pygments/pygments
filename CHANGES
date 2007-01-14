@@ -5,7 +5,11 @@ Version 0.7
 -----------
 (codename to be selected, released Feb XX, 2007)
 
+- Added a `commandprefix` option to the `LatexFormatter` which allows to
+  control how the command names are constructed.
+
 - Added quite a few new lexers, thanks to Tim Hatch:
+
   * Java Server Pages
   * Windows batch files
   * Trac Wiki markup
@@ -18,11 +22,11 @@ Version 0.7
 
 - Added sources.list lexer by Dennis Kaarsemaker.
 
-- Fixed tickets #167, #178, #179, #180.
-
 - Added token stream filters.
 
-- Changed behavior of `in` Operator for tokens.
+- Changed behavior of `in` Operator for tokens. 
+
+- Fixed tickets: #167, #178, #179, #180, #185.
 
 
 Version 0.6

@@ -85,6 +85,10 @@ class LatexFormatter(Formatter):
         Additional options given to the Verbatim environment (see the *fancyvrb*
         docs for possible values) (default: ``''``).
 
+    `commandprefix`
+        The LaTeX commands used to produce colored output are constructed
+        using this prefix and some letters (default: ``'C'``).
+        *New in Pygments 0.7.*
     """
 
     def __init__(self, **options):
@@ -96,6 +100,7 @@ class LatexFormatter(Formatter):
         self.linenostep = abs(get_int_opt(options, 'linenostep', 1))
         self.verboptions = options.get('verboptions', '')
         self.nobackground = get_bool_opt(options, 'nobackground', False)
+        self.commandprefix = options.get('commandprefix', 'C')
 
         self._create_stylecmds()
 
@@ -103,6 +108,7 @@ class LatexFormatter(Formatter):
     def _create_stylecmds(self):
         t2c = self.ttype2cmd = {Token: ''}
         c2d = self.cmd2def = {}
+        cp = self.commandprefix
 
         letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         first = iter(letters)
@@ -143,11 +149,11 @@ class LatexFormatter(Formatter):
             if cmndef == '#1':
                 continue
             try:
-                alias = 'C' + firstl + second.next()
+                alias = cp + firstl + second.next()
             except StopIteration:
                 firstl = first.next()
                 second = iter(letters)
-                alias = 'C' + firstl + second.next()
+                alias = cp + firstl + second.next()
             t2c[ttype] = alias
             c2d[alias] = cmndef
 

@@ -1003,7 +1003,8 @@ class JspRootLexer(RegexLexer):
         ],
         'sec': [
             (r'%>', Keyword, '#pop'),
-            (r'.+?(?=%>|\Z)', using(JavaLexer)),
+            # note: '\w\W' != '.' without DOTALL.
+            (r'[\w\W]+?(?=%>|\Z)', using(JavaLexer)),
         ],
     }
 
