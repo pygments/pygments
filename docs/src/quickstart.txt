@@ -7,8 +7,8 @@ Quickstart
 
 Pygments comes with a wide range of lexers for modern languages which are all
 accessible through the pygments.lexers package. A lexer enables Pygments to
-parse the source code into tokens which are passed to a formatter. Currently
-formatters exist for HTML, LaTeX and ANSI sequences.
+parse the source code into tokens which then are passed to a formatter. Currently
+formatters exist for HTML, LaTeX, RTF and ANSI sequences.
 
 
 Example
@@ -33,15 +33,17 @@ which prints something like this:
     <pre><span class="k">print</span> <span class="s">&quot;Hello World&quot;</span></pre>
     </div>
 
-
-A CSS stylesheet which contains all CSS classes possibly used in the output can be
-produced by:
+As you can see, Pygments uses CSS classes (by default, but you can change that)
+instead of inline styles in order to avoid outputting redundant style information over
+and over. A CSS stylesheet that contains all CSS classes possibly used in the output
+can be produced by:
 
 .. sourcecode:: python
 
     print HtmlFormatter().get_style_defs('.highlight')
 
-The argument is used as an additional CSS selector: the output may look like
+The argument to `get_style_defs` is used as an additional CSS selector: the output
+may look like this:
 
 .. sourcecode:: css
 
