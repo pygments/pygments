@@ -81,6 +81,21 @@ of those token aliases, a number of subtypes exists (excluding the special token
 
 The `is_token_subtype()` function in the `pygments.token` module can be used to
 test if a token type is a subtype of another (such as `Name.Tag` and `Name`).
+(This is the same as ``Name.Tag in Name``. The in operator was newly introduced
+in pygments 0.7, the function still exists for backwards compatiblity)
+
+With pygments 0.7 it's also possible to convert token from strings (for example
+if you want to supply a token from the command line):
+
+.. sourcecode:: pycon
+
+    >>> from pygments.token import String, string_to_token
+    >>> string_to_token("String")
+    Token.Literal.String
+    >>> string_to_token("Token.Literal.String")
+    Token.Literal.String
+    >>> string_to_token(String)
+    Token.Literal.String
 
 
 Keyword Tokens

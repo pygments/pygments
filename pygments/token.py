@@ -8,6 +8,11 @@
     :copyright: 2006 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
+try:
+    set
+except NameError:
+    from sets import Set as set
+
 
 class _TokenType(tuple):
     parent = None
@@ -21,6 +26,10 @@ class _TokenType(tuple):
         buf.reverse()
         return buf
 
+    def __init__(self, *args, **kwargs):
+        super(_TokenType, self).__init__(*args, **kwargs)
+        self.subtokens = set()
+
     def __contains__(self, val):
         return self is val or (
             type(val) is self.__class__ and
@@ -29,9 +38,10 @@ class _TokenType(tuple):
 
     def __getattr__(self, val):
         if not val or not val[0].isupper():
-            return tuple.__getattr__(self, val)
+            return tuple.__getattribute__(self, val)
         new = _TokenType(self + (val,))
         setattr(self, val, new)
+        self.subtokens.add(new)
         new.parent = self
         return new
 
@@ -63,14 +73,47 @@ Comment     = Token.Comment
 # Generic types for non-source code
 Generic     = Token.Generic
 
+# String and some others are not direct childs of Token.
+# alias them:
+Token.Token = Token
+Token.String = String
+Token.Number = Number
+Token.Punctuation = Punctuation
+
 
 def is_token_subtype(ttype, other):
-    """Return True if ``ttype`` is a subtype of ``other``."""
-    while ttype is not None:
-        if ttype == other:
-            return True
-        ttype = ttype.parent
-    return False
+    """
+    Return True if ``ttype`` is a subtype of ``other``.
+
+    exists for backwards compatibility. use ``ttype in other`` now.
+    """
+    return ttype in other
+
+
+def string_to_token(s):
+    """
+    Convert a string into a token::
+
+        >>> string_to_token('String.Double')
+        Token.Literal.String.Double
+        >>> string_to_token('Token.Literal.Number')
+        Token.Literal.Number
+        >>> string_to_token('')
+        Token
+
+    Tokens that are already tokens are returned unchanged:
+
+        >>> string_to_token(String)
+        Token.Literal.String
+    """
+    if isinstance(s, _TokenType):
+        return s
+    if not s:
+        return Token
+    node = Token
+    for item in s.split('.'):
+        node = getattr(node, item)
+    return node
 
 
 # Map standard token types to short names, used in CSS class naming.

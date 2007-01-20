@@ -9,8 +9,13 @@
     :copyright: 2006 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
 """
+try:
+    set
+except NameError:
+    from sets import Set as set
+
 import re
-from pygments.token import String, Comment
+from pygments.token import String, Comment, Keyword, Name, string_to_token
 from pygments.filter import Filter
 from pygments.util import get_list_opt
 from pygments.plugin import find_plugin_filters
@@ -86,7 +91,7 @@ class KeywordCaseFilter(Filter):
         Filter.__init__(self, **options)
         case = options.get('keywordcase', 'lower')
         if case not in ('lower', 'upper', 'capitalize'):
-            raise TypeError
+            raise TypeError('unknown conversion method %r' % case)
         self.convert = getattr(unicode, case)
 
     def filter(self, lexer, stream):
@@ -97,7 +102,37 @@ class KeywordCaseFilter(Filter):
                 yield ttype, value
 
 
+class NameHighlightFilter(Filter):
+    """
+    Highlight normal name token with a different one::
+
+        filter = NameHighlightFilter(
+            highlight=['foo', 'bar', 'baz'],
+            highlight_token=Name.Function
+        )
+
+    This would highlight the names "foo", "bar" and "baz"
+    as functions. `Name.Function` is the token default.
+    """
+
+    def __init__(self, **options):
+        self.words = set(get_list_opt(options, 'highlight', []))
+        highlight_token = options.get('highlight_token')
+        if highlight_token:
+            self.highlight_token = string_to_token(highlight_token)
+        else:
+            self.highlight_token = Name.Function
+
+    def filter(self, lexer, stream):
+        for ttype, value in stream:
+            if ttype is Name and value in self.words:
+                yield self.highlight_token, value
+            else:
+                yield ttype, value
+
+
 FILTERS = {
     'codetagify':           CodeTagFilter,
-    'keywordcase':          KeywordCaseFilter
+    'keywordcase':          KeywordCaseFilter,
+    'highlight':            NameHighlightFilter
 }

@@ -36,6 +36,7 @@ class IniLexer(RegexLexer):
     name = 'INI'
     aliases = ['ini', 'cfg']
     filenames = ['*.ini', '*.cfg']
+    mimetypes = ['text/x-ini']
 
     tokens = {
         'root': [
@@ -64,6 +65,7 @@ class SourcesListLexer(RegexLexer):
     name= 'Debian Sourcelist'
     aliases = ['sourceslist', 'sources.list']
     filenames = ['sources.list']
+    mimetype = ['application/x-debian-sourceslist']
 
     tokens = {
         'root': [
@@ -189,6 +191,7 @@ class IrcLogsLexer(RegexLexer):
 
     name = 'IRC logs'
     aliases = ['irc']
+    mimetypes = ['text/x-irclog']
 
     flags = re.VERBOSE | re.MULTILINE
     timestamp = r"""
@@ -235,6 +238,7 @@ class BBCodeLexer(RegexLexer):
 
     name = 'BBCode'
     aliases = ['bbcode']
+    mimetypes = ['text/x-bbcode']
 
     tokens = {
         'root' : [
@@ -370,6 +374,7 @@ class ApacheConfLexer(RegexLexer):
     name = 'ApacheConf'
     aliases = ['apacheconf', 'aconf', 'apache']
     filenames = ['.htaccess', 'apache.conf', 'apache2.conf']
+    mimetypes = ['text/x-apacheconf']
     flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {
@@ -439,9 +444,3 @@ class MoinWikiLexer(RegexLexer):
             (r'.', Comment.Preproc), # allow loose { or }
         ],
     }
-
-
-#class RstLexer(RegexLexer):
-#    name = 'reStructuredText'
-#    aliases = ['rst', 'restructuredtext']
-#    filenames = ['*.rst']
