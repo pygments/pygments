@@ -66,7 +66,7 @@ Name        = Token.Name
 Literal     = Token.Literal
 String      = Literal.String
 Number      = Literal.Number
-Punctuation = Literal.Punctuation
+Punctuation = Token.Punctuation
 Operator    = Token.Operator
 Comment     = Token.Comment
 
@@ -78,7 +78,6 @@ Generic     = Token.Generic
 Token.Token = Token
 Token.String = String
 Token.Number = Number
-Token.Punctuation = Punctuation
 
 
 def is_token_subtype(ttype, other):
@@ -90,9 +89,9 @@ def is_token_subtype(ttype, other):
     return ttype in other
 
 
-def string_to_token(s):
+def string_to_tokentype(s):
     """
-    Convert a string into a token::
+    Convert a string into a token type::
 
         >>> string_to_token('String.Double')
         Token.Literal.String.Double
