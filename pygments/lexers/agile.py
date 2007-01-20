@@ -174,6 +174,7 @@ class PythonConsoleLexer(Lexer):
     """
     name = 'Python console session'
     aliases = ['pycon']
+    mimetypes = ['text/x-python-doctest']
 
     def get_tokens_unprocessed(self, text):
         pylexer = PythonLexer(**self.options)
@@ -584,6 +585,7 @@ class RubyConsoleLexer(Lexer):
     """
     name = 'Ruby irb session'
     aliases = ['rbcon', 'irb']
+    mimetypes = ['text/x-ruby-shellsession']
 
     _prompt_re = re.compile('irb\([a-zA-Z_][a-zA-Z0-9_]*\):\d{3}:\d+[>*] ')
 

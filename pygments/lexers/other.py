@@ -144,6 +144,7 @@ class BrainfuckLexer(RegexLexer):
     name = 'Brainfuck'
     aliases = ['brainfuck', 'bf']
     filenames = ['*.bf', '*.b']
+    mimetypes = ['application/x-brainfuck']
 
     tokens = {
         'common': [
@@ -176,6 +177,7 @@ class BefungeLexer(RegexLexer):
     name = 'Befunge'
     aliases = ['befunge']
     filenames = ['*.befunge']
+    mimetypes = ['application/x-befunge']
 
     tokens = {
         'root': [

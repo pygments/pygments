@@ -288,6 +288,7 @@ class PhpLexer(RegexLexer):
     name = 'PHP'
     aliases = ['php', 'php3', 'php4', 'php5']
     filenames = ['*.php', '*.php[345]']
+    mimetypes = ['text/x-php']
 
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
     tokens = {
@@ -310,6 +311,8 @@ class PhpLexer(RegexLexer):
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(function)(\s+)(&?)(\s*)',
               bygroups(Keyword, Text, Operator, Text), 'functionname'),
+            (r'(const)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+              bygroups(Keyword, Text, Name.Constant)),
             (r'(and|E_PARSE|old_function|E_ERROR|or|as|E_WARNING|parent|'
              r'eval|PHP_OS|break|exit|case|extends|PHP_VERSION|cfunction|'
              r'FALSE|print|for|require|continue|foreach|require_once|'

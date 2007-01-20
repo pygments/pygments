@@ -53,6 +53,7 @@ class ErbLexer(Lexer):
 
     name = 'ERB'
     aliases = ['erb']
+    mimetypes = ['application/x-ruby-templating']
 
     _block_re = re.compile(r'(<%%|%%>|<%=|<%#|<%-|<%|-%>|%>|^%[^%].*?$)', re.M)
 
@@ -145,6 +146,7 @@ class SmartyLexer(RegexLexer):
     name = 'Smarty'
     aliases = ['smarty']
     filenames = ['*.tpl']
+    mimetypes = ['application/x-smarty']
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -199,6 +201,7 @@ class DjangoLexer(RegexLexer):
 
     name = 'Django/Jinja'
     aliases = ['django', 'jinja']
+    mimetypes = ['application/x-django-templating', 'application/x-jinja']
 
     tokens = {
         'root': [
@@ -265,6 +268,7 @@ class MyghtyLexer(RegexLexer):
     name = 'Myghty'
     aliases = ['myghty']
     filenames = ['*.myt', 'autodelegate']
+    mimetypes = ['application/x-myghty']
 
     tokens = {
         'root': [
@@ -309,6 +313,7 @@ class MyghtyHtmlLexer(DelegatingLexer):
 
     name = 'HTML+Myghty'
     aliases = ['html+myghty']
+    mimetypes = ['text/html+myghty']
 
     def __init__(self, **options):
         super(MyghtyHtmlLexer, self).__init__(HtmlLexer, MyghtyLexer,
@@ -325,6 +330,7 @@ class MyghtyXmlLexer(DelegatingLexer):
 
     name = 'XML+Myghty'
     aliases = ['xml+myghty']
+    mimetypes = ['application/xml+myghty']
 
     def __init__(self, **options):
         super(MyghtyXmlLexer, self).__init__(XmlLexer, MyghtyLexer,
@@ -341,6 +347,9 @@ class MyghtyJavascriptLexer(DelegatingLexer):
 
     name = 'JavaScript+Myghty'
     aliases = ['js+myghty', 'javascript+myghty']
+    mimetypes = ['application/x-javascript+myghty',
+                 'text/x-javascript+myghty',
+                 'text/javascript+mygthy']
 
     def __init__(self, **options):
         super(MyghtyJavascriptLexer, self).__init__(JavascriptLexer,
@@ -357,6 +366,7 @@ class MyghtyCssLexer(DelegatingLexer):
 
     name = 'CSS+Myghty'
     aliases = ['css+myghty']
+    mimetypes = ['text/css+myghty']
 
     def __init__(self, **options):
         super(MyghtyCssLexer, self).__init__(CssLexer, MyghtyLexer,
@@ -376,6 +386,7 @@ class MakoLexer(RegexLexer):
     name = 'Mako'
     aliases = ['mako']
     filenames = ['*.mao']
+    mimetypes = ['application/x-mako']
 
     tokens = {
         'root': [
@@ -438,6 +449,7 @@ class MakoHtmlLexer(DelegatingLexer):
 
     name = 'HTML+Mako'
     aliases = ['html+mako']
+    mimetypes = ['text/html+mako']
 
     def __init__(self, **options):
         super(MakoHtmlLexer, self).__init__(HtmlLexer, MakoLexer,
@@ -453,6 +465,7 @@ class MakoXmlLexer(DelegatingLexer):
 
     name = 'XML+Mako'
     aliases = ['xml+mako']
+    mimetypes = ['application/xml+mako']
 
     def __init__(self, **options):
         super(MakoXmlLexer, self).__init__(XmlLexer, MakoLexer,
@@ -468,6 +481,9 @@ class MakoJavascriptLexer(DelegatingLexer):
 
     name = 'JavaScript+Mako'
     aliases = ['js+mako', 'javascript+mako']
+    mimetypes = ['application/x-javascript+mako',
+                 'text/x-javascript+mako',
+                 'text/javascript+mako']
 
     def __init__(self, **options):
         super(MakoJavascriptLexer, self).__init__(JavascriptLexer,
@@ -483,6 +499,7 @@ class MakoCssLexer(DelegatingLexer):
 
     name = 'CSS+Mako'
     aliases = ['css+mako']
+    mimetypes = ['text/css+mako']
 
     def __init__(self, **options):
         super(MakoCssLexer, self).__init__(CssLexer, MakoLexer,
@@ -499,6 +516,7 @@ class GenshiTextLexer(RegexLexer):
 
     name = 'Genshi Text'
     aliases = ['genshitext']
+    mimetypes = ['application/x-genshi-text', 'text/x-genshi']
 
     tokens = {
         'root': [
@@ -598,6 +616,7 @@ class HtmlGenshiLexer(DelegatingLexer):
     name = 'HTML+Genshi'
     aliases = ['html+genshi', 'html+kid']
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
+    mimetypes = ['text/html+genshi']
 
     def __init__(self, **options):
         super(HtmlGenshiLexer, self).__init__(HtmlLexer, GenshiMarkupLexer,
@@ -622,6 +641,7 @@ class GenshiLexer(DelegatingLexer):
     aliases = ['genshi', 'kid', 'xml+genshi', 'xml+kid']
     filenames = ['*.kid']
     alias_filenames = ['*.xml']
+    mimetypes = ['application/x-genshi', 'application/x-kid']
 
     def __init__(self, **options):
         super(GenshiLexer, self).__init__(XmlLexer, GenshiMarkupLexer,
@@ -645,6 +665,9 @@ class JavascriptGenshiLexer(DelegatingLexer):
     aliases = ['js+genshitext', 'js+genshi', 'javascript+genshitext',
                'javascript+genshi']
     alias_filenames = ['*.js']
+    mimetypes = ['application/x-javascript+genshi',
+                 'text/x-javascript+genshi',
+                 'text/javascript+genshi']
 
     def __init__(self, **options):
         super(JavascriptGenshiLexer, self).__init__(JavascriptLexer,
@@ -663,6 +686,7 @@ class CssGenshiLexer(DelegatingLexer):
     name = 'CSS+Genshi Text'
     aliases = ['css+genshitext', 'css+genshi']
     alias_filenames = ['*.css']
+    mimetypes = ['text/css+genshi']
 
     def __init__(self, **options):
         super(CssGenshiLexer, self).__init__(CssLexer, GenshiTextLexer,
@@ -684,6 +708,7 @@ class RhtmlLexer(DelegatingLexer):
     aliases = ['rhtml', 'html+erb', 'html+ruby']
     filenames = ['*.rhtml']
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
+    mimetypes = ['text/html+ruby']
 
     def __init__(self, **options):
         super(RhtmlLexer, self).__init__(HtmlLexer, ErbLexer, **options)
@@ -705,6 +730,7 @@ class XmlErbLexer(DelegatingLexer):
     name = 'XML+Ruby'
     aliases = ['xml+erb', 'xml+ruby']
     alias_filenames = ['*.xml']
+    mimetypes = ['application/xml+ruby']
 
     def __init__(self, **options):
         super(XmlErbLexer, self).__init__(XmlLexer, ErbLexer, **options)
@@ -723,7 +749,8 @@ class CssErbLexer(DelegatingLexer):
 
     name = 'CSS+Ruby'
     aliases = ['css+erb', 'css+ruby']
-    alias_filenames = ['*.xml']
+    alias_filenames = ['*.css']
+    mimetypes = ['text/css+ruby']
 
     def __init__(self, **options):
         super(CssErbLexer, self).__init__(CssLexer, ErbLexer, **options)
@@ -741,6 +768,9 @@ class JavascriptErbLexer(DelegatingLexer):
     name = 'JavaScript+Ruby'
     aliases = ['js+erb', 'javascript+erb', 'js+ruby', 'javascript+ruby']
     alias_filenames = ['*.js']
+    mimetypes = ['application/x-javascript+ruby',
+                 'text/x-javascript+ruby',
+                 'text/javascript+ruby']
 
     def __init__(self, **options):
         super(JavascriptErbLexer, self).__init__(JavascriptLexer, ErbLexer,
@@ -762,7 +792,7 @@ class HtmlPhpLexer(DelegatingLexer):
     filenames = ['*.phtml']
     alias_filenames = ['*.php', '*.html', '*.htm', '*.xhtml',
                        '*.php[345]']
-    mimetypes = ['text/x-php', 'application/x-php',
+    mimetypes = ['application/x-php',
                  'application/x-httpd-php', 'application/x-httpd-php3',
                  'application/x-httpd-php4', 'application/x-httpd-php5']
 
@@ -784,6 +814,7 @@ class XmlPhpLexer(DelegatingLexer):
     name = 'XML+PHP'
     aliases = ['xml+php']
     alias_filenames = ['*.xml', '*.php', '*.php[345]']
+    mimetypes = ['application/xml+php']
 
     def __init__(self, **options):
         super(XmlPhpLexer, self).__init__(XmlLexer, PhpLexer, **options)
@@ -803,6 +834,7 @@ class CssPhpLexer(DelegatingLexer):
     name = 'CSS+PHP'
     aliases = ['css+php']
     alias_filenames = ['*.css']
+    mimetypes = ['text/css+php']
 
     def __init__(self, **options):
         super(CssPhpLexer, self).__init__(CssLexer, PhpLexer, **options)
@@ -820,6 +852,9 @@ class JavascriptPhpLexer(DelegatingLexer):
     name = 'JavaScript+PHP'
     aliases = ['js+php', 'javascript+php']
     alias_filenames = ['*.js']
+    mimetypes = ['application/x-javascript+php',
+                 'text/x-javascript+php',
+                 'text/javascript+php']
 
     def __init__(self, **options):
         super(JavascriptPhpLexer, self).__init__(JavascriptLexer, PhpLexer,
@@ -840,6 +875,7 @@ class HtmlSmartyLexer(DelegatingLexer):
     name = 'HTML+Smarty'
     aliases = ['html+smarty']
     alias_filenames = ['*.html', '*.htm', '*.xhtml', '*.tpl']
+    mimetypes = ['text/html+smarty']
 
     def __init__(self, **options):
         super(HtmlSmartyLexer, self).__init__(HtmlLexer, SmartyLexer, **options)
@@ -860,6 +896,7 @@ class XmlSmartyLexer(DelegatingLexer):
     name = 'XML+Smarty'
     aliases = ['xml+smarty']
     alias_filenames = ['*.xml', '*.tpl']
+    mimetypes = ['application/xml+smarty']
 
     def __init__(self, **options):
         super(XmlSmartyLexer, self).__init__(XmlLexer, SmartyLexer, **options)
@@ -880,6 +917,7 @@ class CssSmartyLexer(DelegatingLexer):
     name = 'CSS+Smarty'
     aliases = ['css+smarty']
     alias_filenames = ['*.css', '*.tpl']
+    mimetypes = ['text/css+smarty']
 
     def __init__(self, **options):
         super(CssSmartyLexer, self).__init__(CssLexer, SmartyLexer, **options)
@@ -897,6 +935,9 @@ class JavascriptSmartyLexer(DelegatingLexer):
     name = 'JavaScript+Smarty'
     aliases = ['js+smarty', 'javascript+smarty']
     alias_filenames = ['*.js', '*.tpl']
+    mimetypes = ['application/x-javascript+smarty',
+                 'text/x-javascript+smarty',
+                 'text/javascript+smarty']
 
     def __init__(self, **options):
         super(JavascriptSmartyLexer, self).__init__(JavascriptLexer, SmartyLexer,
@@ -917,6 +958,7 @@ class HtmlDjangoLexer(DelegatingLexer):
     name = 'HTML+Django/Jinja'
     aliases = ['html+django', 'html+jinja']
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
+    mimetypes = ['text/html+django', 'text/html+jinja']
 
     def __init__(self, **options):
         super(HtmlDjangoLexer, self).__init__(HtmlLexer, DjangoLexer, **options)
@@ -937,6 +979,7 @@ class XmlDjangoLexer(DelegatingLexer):
     name = 'XML+Django/Jinja'
     aliases = ['xml+django', 'xml+jinja']
     alias_filenames = ['*.xml']
+    mimetypes = ['application/xml+django', 'application/xml+jinja']
 
     def __init__(self, **options):
         super(XmlDjangoLexer, self).__init__(XmlLexer, DjangoLexer, **options)
@@ -957,6 +1000,7 @@ class CssDjangoLexer(DelegatingLexer):
     name = 'CSS+Django/Jinja'
     aliases = ['css+django', 'css+jinja']
     alias_filenames = ['*.css']
+    mimetypes = ['text/css+django', 'text/css+jinja']
 
     def __init__(self, **options):
         super(CssDjangoLexer, self).__init__(CssLexer, DjangoLexer, **options)
@@ -975,6 +1019,12 @@ class JavascriptDjangoLexer(DelegatingLexer):
     aliases = ['js+django', 'javascript+django',
                'js+jinja', 'javascript+jinja']
     alias_filenames = ['*.js']
+    mimetypes = ['application/x-javascript+django',
+                 'application/x-javascript+jinja',
+                 'text/x-javascript+django',
+                 'text/x-javascript+jinja',
+                 'text/javascript+django',
+                 'text/javascript+jinja']
 
     def __init__(self, **options):
         super(JavascriptDjangoLexer, self).__init__(JavascriptLexer, DjangoLexer,
@@ -1018,6 +1068,7 @@ class JspLexer(DelegatingLexer):
     name = 'Java Server Page'
     aliases = ['jsp']
     filenames = ['*.jsp']
+    mimetypes = ['application/x-jsp']
 
     def __init__(self, **options):
         super(JspLexer, self).__init__(XmlLexer, JspRootLexer, **options)
