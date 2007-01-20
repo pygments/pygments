@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 """
     pygments.token
     ~~~~~~~~~~~~~~
@@ -28,7 +28,7 @@ class _TokenType(tuple):
 
     def __init__(self, *args, **kwargs):
         super(_TokenType, self).__init__(*args, **kwargs)
-        self.subtokens = set()
+        self.subtypes = set()
 
     def __contains__(self, val):
         return self is val or (
@@ -41,7 +41,7 @@ class _TokenType(tuple):
             return tuple.__getattribute__(self, val)
         new = _TokenType(self + (val,))
         setattr(self, val, new)
-        self.subtokens.add(new)
+        self.subtypes.add(new)
         new.parent = self
         return new
 
