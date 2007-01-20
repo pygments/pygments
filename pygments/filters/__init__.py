@@ -15,7 +15,7 @@ except NameError:
     from sets import Set as set
 
 import re
-from pygments.token import String, Comment, Keyword, Name, string_to_token
+from pygments.token import String, Comment, Keyword, Name, string_to_tokentype
 from pygments.filter import Filter
 from pygments.util import get_list_opt
 from pygments.plugin import find_plugin_filters
@@ -119,7 +119,7 @@ class NameHighlightFilter(Filter):
         self.words = set(get_list_opt(options, 'highlight', []))
         highlight_token = options.get('highlight_token')
         if highlight_token:
-            self.highlight_token = string_to_token(highlight_token)
+            self.highlight_token = string_to_tokentype(highlight_token)
         else:
             self.highlight_token = Name.Function
 
