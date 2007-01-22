@@ -116,7 +116,7 @@ class PythonLexer(RegexLexer):
             (r'[a-zA-Z_.][a-zA-Z0-9_.]*', Name.Namespace),
         ],
         'stringescape': [
-            (r'\\([\\abfnrtv"\']|N{.*?}|u[a-fA-F0-9]{4}|'
+            (r'\\([\\abfnrtv"\']|\n|N{.*?}|u[a-fA-F0-9]{4}|'
              r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
         'strings': [
@@ -134,12 +134,12 @@ class PythonLexer(RegexLexer):
         ],
         'dqs': [
             (r'"', String, '#pop'),
-            (r'\\\\|\\"', String.Escape), # included here again for raw strings
+            (r'\\\\|\\"|\\\n', String.Escape), # included here again for raw strings
             include('strings')
         ],
         'sqs': [
             (r"'", String, '#pop'),
-            (r"\\\\|\\'", String.Escape), # included here again for raw strings
+            (r"\\\\|\\'|\\\n", String.Escape), # included here again for raw strings
             include('strings')
         ],
         'tdqs': [
