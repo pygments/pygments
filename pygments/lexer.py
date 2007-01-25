@@ -84,6 +84,7 @@ class Lexer(object):
         self.stripall = get_bool_opt(options, 'stripall', False)
         self.tabsize = get_int_opt(options, 'tabsize', 0)
         self.encoding = options.get('encoding', 'latin1')
+        # self.encoding = options.get('inencoding', None) or self.encoding
         self.filters = []
         for filter in get_list_opt(options, 'filters', ()):
             self.add_filter(filter)

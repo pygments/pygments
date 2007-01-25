@@ -12,7 +12,7 @@ import StringIO
 import random
 
 from pygments import lexers, formatters, format
-from pygments.token import _TokenType
+from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 
 test_content = [chr(i) for i in xrange(33, 128)] * 5
@@ -88,6 +88,26 @@ class FormattersTest(unittest.TestCase):
             inst = formatter(opt1="val1")
             inst.get_style_defs()
             inst.format(ts, out)
+
+    def test_encodings(self):
+        from pygments.formatters import HtmlFormatter
+
+        # unicode output
+        fmt = HtmlFormatter()
+        tokens = [(Text, u"ä")]
+        out = format(tokens, fmt)
+        self.assert_(type(out) is unicode)
+        self.assert_(u"ä" in out)
+
+        # encoding option
+        fmt = HtmlFormatter(encoding="latin1")
+        tokens = [(Text, u"ä")]
+        self.assert_(u"ä".encode("latin1") in format(tokens, fmt))
+
+        # encoding and outencoding option
+        fmt = HtmlFormatter(encoding="latin1", outencoding="utf8")
+        tokens = [(Text, u"ä")]
+        self.assert_(u"ä".encode("utf8") in format(tokens, fmt))
 
     def test_styles(self):
         from pygments.formatters import HtmlFormatter
