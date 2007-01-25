@@ -751,9 +751,9 @@ class DylanLexer(RegexLexer):
     aliases = ['dylan']
     filenames = ['*.dylan']
     mimetypes = ['text/x-dylan']
-    
+
     flags = re.DOTALL
-    
+
     tokens = {
         'root': [
             (r'\b(subclass|abstract|block|c(on(crete|stant)|lass)|domain'
@@ -768,7 +768,8 @@ class DylanLexer(RegexLexer):
             (r'\'.*?\'', String.Single),
             (r'=>|\b(a(bove|fterwards)|b(e(gin|low)|y)|c(ase|leanup|reate)'
              r'|define|else(|if)|end|f(inally|or|rom)|i[fn]|l(et|ocal)|otherwise'
-             r'|rename|s(elect|ignal)|t(hen|o)|u(n(less|til)|se)|wh(en|ile))\b', Keyword),
+             r'|rename|s(elect|ignal)|t(hen|o)|u(n(less|til)|se)|wh(en|ile))\b',
+             Keyword),
             (r'([ \t])([!\$%&\*\/:<=>\?~_^a-zA-Z0-9.+\-]*:)',
              bygroups(Text, Name.Variable)),
             (r'([ \t]*)(\S+[^:])([ \t]*)(\()([ \t]*)',
