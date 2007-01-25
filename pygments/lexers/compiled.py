@@ -24,7 +24,7 @@ from pygments.token import \
      Error
 
 
-__all__ = ['CLexer', 'CppLexer', 'DelphiLexer', 'JavaLexer']
+__all__ = ['CLexer', 'CppLexer', 'DelphiLexer', 'JavaLexer', 'DylanLexer']
 
 
 class CLexer(RegexLexer):
@@ -737,4 +737,48 @@ class JavaLexer(RegexLexer):
         'class': [
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
         ]
+    }
+
+
+class DylanLexer(RegexLexer):
+    """
+    For the `Dylan <http://www.opendylan.org/>` language.
+
+    *New in Pygments 0.7.*
+    """
+
+    name = 'DylanLexer'
+    aliases = ['dylan']
+    filenames = ['*.dylan']
+    mimetypes = ['text/x-dylan']
+    
+    flags = re.DOTALL
+    
+    tokens = {
+        'root': [
+            (r'\b(subclass|abstract|block|c(on(crete|stant)|lass)|domain'
+             r'|ex(c(eption|lude)|port)|f(unction(|al))|generic|handler'
+             r'|i(n(herited|line|stance|terface)|mport)|library|m(acro|ethod)'
+             r'|open|primary|sealed|si(deways|ngleton)|slot'
+             r'|v(ariable|irtual))\b', Name.Builtin),
+            (r'<\w+>', Keyword.Type),
+            (r'#?"(?:\\.|[^"])+?"', String.Double),
+            (r'//.*?\n', Comment),
+            (r'/\*[\w\W]*?\*/', Comment.Multiline),
+            (r'\'.*?\'', String.Single),
+            (r'=>|\b(a(bove|fterwards)|b(e(gin|low)|y)|c(ase|leanup|reate)'
+             r'|define|else(|if)|end|f(inally|or|rom)|i[fn]|l(et|ocal)|otherwise'
+             r'|rename|s(elect|ignal)|t(hen|o)|u(n(less|til)|se)|wh(en|ile))\b', Keyword),
+            (r'([ \t])([!\$%&\*\/:<=>\?~_^a-zA-Z0-9.+\-]*:)',
+             bygroups(Text, Name.Variable)),
+            (r'([ \t]*)(\S+[^:])([ \t]*)(\()([ \t]*)',
+             bygroups(Text, Name.Function, Text, Punctuation, Text)),
+            (r'-?[0-9.]+', Number),
+            (r'[(),;]', Punctuation),
+            (r'\$[a-zA-Z0-9-]+', Name.Constant),
+            (r'[!$%&*/:<>=?~^.+\[\]{}-]+', Operator),
+            (r'\s+', Text),
+            (r'#[a-zA-Z0-9-]+', Keyword),
+            (r'[a-zA-Z0-9-]+', Name.Variable),
+        ],
     }
