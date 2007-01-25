@@ -16,7 +16,6 @@ for 0.7
   * Objective C
   * MySQL/PostgreSQL/SQLite
   * Tcl
-  * reStructuredText
 
 - lexers that need review:
   * review perl lexer (numerous bugs, but so far no one had complaints ;)
@@ -24,13 +23,15 @@ for 0.7
     backtrack to death...
   * add support for function name highlighting to C++ lexer
 
+- make it possible to use filters from the command line
+
 - automatically get help for lexers/formatters/options from docstrings
 
 - a MoinMoin parser
 
 - allow "overlay" token types to highlight specials: nth line, a word etc.
 
-- pygmentize option presets?
+- pygmentize option presets, more sophisticated method to output styles?
 
 - more unit tests (test pygmentize, test all formatters comprehensively)
 

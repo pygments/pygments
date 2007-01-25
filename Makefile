@@ -15,7 +15,7 @@ export PYTHONPATH = $(shell echo "$$PYTHONPATH"):$(shell python -c 'print ":".jo
 .PHONY: all apidocs check clean clean-pyc codetags docs epydoc lexermap \
 	pylint reindent test
 
-all: test
+all: clean-pyc check test
 
 apidocs: epydoc
 
