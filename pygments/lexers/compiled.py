@@ -729,9 +729,9 @@ class JavaLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
             (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
             (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?-]', Operator),
-            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number),
-            (r'[0-9]+L?', Number),
-            (r'0x[0-9a-f]+', Number),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-f]+', Number.Hex),
+            (r'[0-9]+L?', Number.Integer),
             (r'\n', Text)
         ],
         'class': [

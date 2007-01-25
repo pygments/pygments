@@ -45,7 +45,7 @@ class JavascriptLexer(RegexLexer):
             (r'//.*?\n', Comment),
             (r'/\*.*?\*/', Comment),
             (r'/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex),
-            (r'[~\^\*!%&<>\|+=:;,/?-\\]+', Operator),
+            (r'[~\^\*!%&<>\|+=:;,/?\\-]+', Operator),
             (r'[{}\[\]();.]+', Punctuation),
             (r'(for|in|while|do|break|return|continue|if|else|throw|try|'
              r'catch|var|with|const|label|function|new|typeof|'
@@ -57,7 +57,9 @@ class JavascriptLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
             (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
-            (r'[0-9]+', Number),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-f]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
         ]
