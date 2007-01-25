@@ -91,7 +91,7 @@ def highlight(code, lexer, formatter, outfile=None):
 def cmdline_main(args):
     """
     Make pygments usable as a command line utility.
-    XXX: To be removed.
+    TODO: To be removed in Pygments 0.8.
     """
     from pygments.cmdline import main
     return main(args)

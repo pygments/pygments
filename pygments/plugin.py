@@ -68,7 +68,7 @@ def find_plugin_styles():
 
 
 def find_plugin_filters():
-    if pkg_recources is None:
+    if pkg_resources is None:
         return
     for entrypoint in pkg_resources.iter_entry_points(FILTER_ENTRY_POINT):
         yield entrypoint.name, entrypoint.load()

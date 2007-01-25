@@ -60,6 +60,7 @@ class FunctionFilter(Filter):
     automatically creates subclasses of this class for
     functions passed to it.
     """
+    function = None
 
     def __init__(self, **options):
         if not hasattr(self, 'function'):

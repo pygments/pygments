@@ -52,7 +52,7 @@ class CodeTagFilter(Filter):
     words.
     """
     def __init__(self, **options):
-        Filter.__init__(self)
+        Filter.__init__(self, **options)
         tags = get_list_opt(options, 'codetags',
                             ['XXX', 'TODO', 'BUG', 'NOTE'])
         self.tag_re = re.compile(r'(%s)' % '|'.join([
@@ -116,6 +116,7 @@ class NameHighlightFilter(Filter):
     """
 
     def __init__(self, **options):
+        Filter.__init__(self, **options)
         self.words = set(get_list_opt(options, 'highlight', []))
         highlight_token = options.get('highlight_token')
         if highlight_token:

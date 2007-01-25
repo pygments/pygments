@@ -18,7 +18,7 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, include, using, this
+from pygments.lexer import RegexLexer, bygroups, include, using, this
 from pygments.token import Punctuation, \
     Text, Comment, Keyword, Name, String, Generic, Operator, Number
 
@@ -62,7 +62,7 @@ class SourcesListLexer(RegexLexer):
     *New in Pygments 0.7.*
     """
 
-    name= 'Debian Sourcelist'
+    name = 'Debian Sourcelist'
     aliases = ['sourceslist', 'sources.list']
     filenames = ['sources.list']
     mimetype = ['application/x-debian-sourceslist']
