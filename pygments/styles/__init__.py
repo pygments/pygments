@@ -45,12 +45,12 @@ def get_style_by_name(name):
     try:
         mod = __import__('pygments.styles.' + mod, None, None, [cls])
     except ImportError:
-        raise ValueError("Style module %r not found" % mod +
+        raise ValueError("Could not find style module %r" % mod +
                          (builtin and ", though it should be builtin") + ".")
     try:
         return getattr(mod, cls)
     except AttributeError:
-        raise ValueError("Style class %r not found in style module." % cls)
+        raise ValueError("Could not find style class %r in style module." % cls)
 
 
 def get_all_styles():

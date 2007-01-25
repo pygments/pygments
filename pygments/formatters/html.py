@@ -5,6 +5,8 @@
 
     Formatter for HTML output.
 
+    TODO: this is a bit of a mess and not subclassable ATM.
+
     :copyright: 2006 by Georg Brandl, Armin Ronacher.
     :license: BSD, see LICENSE for more details.
 """
