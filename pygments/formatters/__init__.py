@@ -24,7 +24,7 @@ def _doc_desc(obj):
     res = []
     for line in obj.__doc__.strip().splitlines():
         if line.strip():
-            res.append(line.strip())
+            res.append(" " + line.strip())
         else:
             break
     return ''.join(res)

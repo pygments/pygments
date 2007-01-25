@@ -73,7 +73,7 @@ def format(tokens, formatter, outfile=None):
             raise TypeError('format() argument must be a formatter instance, '
                             'not a class')
         raise
-        
+
 
 def highlight(code, lexer, formatter, outfile=None):
     """
