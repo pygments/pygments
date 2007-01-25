@@ -360,8 +360,12 @@ Here, two states are pushed onto the state stack, ``'script-content'`` and
 attributes and the closing ``>``, then the ``'tag'`` state is popped and the
 next state on top of the stack will be ``'script-content'``.
 
-Any keywords arguments passed to ``using()`` are added to the keyword arguments
-used to create the lexer.
+The `using()` helper has a special keyword argument, `state`, which works as
+follows: if given, the lexer to use initially is not in the ``"root"`` state,
+but in the state given by this argument. This *only* works with a `RegexLexer`.
+
+Any other keywords arguments passed to `using()` are added to the keyword
+arguments used to create the lexer.
 
 
 Delegating Lexer

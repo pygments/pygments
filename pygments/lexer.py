@@ -295,8 +295,23 @@ def using(_other, **kwargs):
     """
     Callback that processes the match with a different lexer.
 
-    The keyword arguments are forwarded to the lexer.
+    The keyword arguments are forwarded to the lexer, except `state` which
+    is handled separately.
+
+    `state` specifies the state that the new lexer will start in, and can
+    be an enumerable such as ('root', 'inline', 'string') or a simple
+    string which is assumed to be on top of the root state.
+
+    Note: For that to work, `_other` must not be an `ExtendedRegexLexer`.
     """
+    gt_kwargs = {}
+    if 'state' in kwargs:
+        s = kwargs.pop('state')
+        if isinstance(s, (list, tuple)):
+            gt_kwargs['stack'] = s
+        else:
+            gt_kwargs['stack'] = ('root', s)
+
     if _other is this:
         def callback(lexer, match, ctx=None):
             # if keyword arguments are given the callback
@@ -308,7 +323,7 @@ def using(_other, **kwargs):
             else:
                 lx = lexer
             s = match.start()
-            for i, t, v in lx.get_tokens_unprocessed(match.group()):
+            for i, t, v in lx.get_tokens_unprocessed(match.group(), **gt_kwargs):
                 yield i + s, t, v
             if ctx:
                 ctx.pos = match.end()
@@ -319,7 +334,7 @@ def using(_other, **kwargs):
             lx = _other(**kwargs)
 
             s = match.start()
-            for i, t, v in lx.get_tokens_unprocessed(match.group()):
+            for i, t, v in lx.get_tokens_unprocessed(match.group(), **gt_kwargs):
                 yield i + s, t, v
             if ctx:
                 ctx.pos = match.end()
@@ -444,6 +459,7 @@ class RegexLexer(Lexer):
             for rex, action, new_state in statetokens:
                 m = rex.match(text, pos)
                 if m:
+                    # print rex.pattern
                     if type(action) is _TokenType:
                         yield pos, action, m.group()
                     else:

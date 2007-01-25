@@ -25,7 +25,7 @@ from pygments.token import Punctuation, \
 
 __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
            'IrcLogsLexer', 'TexLexer', 'GroffLexer', 'ApacheConfLexer',
-           'BBCodeLexer', 'MoinWikiLexer']
+           'BBCodeLexer', 'MoinWikiLexer', 'RstLexer']
 
 
 class IniLexer(RegexLexer):
@@ -442,5 +442,74 @@ class MoinWikiLexer(RegexLexer):
             (r'{{{', Text, '#push'),
             (r'[^{}]+', Comment.Preproc), # slurp boring text
             (r'.', Comment.Preproc), # allow loose { or }
+        ],
+    }
+
+
+class RstLexer(RegexLexer):
+    """
+    For MoinMoin (and Trac) Wiki markup.
+
+    *New in Pygments 0.7.*
+    """
+    name = 'reStructuredText'
+    aliases = ['rst', 'restructuredtext']
+    filenames = ['*.rst', '*.rest']
+    mimetypes = ["text/x-rst"]
+    flags = re.MULTILINE
+
+    tokens = {
+        'root': [
+            # Heading with overline
+            (r'^(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)(\n)(.+)(\n)(\1)(\n)',
+             bygroups(Generic.Heading, Text, using(this, state='inline'), Text, Generic.Heading, Text)),
+            # Plain heading
+            (r'^(\S.*)(\n)(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)(\n)',
+             bygroups(Generic.Heading, Text, Generic.Heading, Text)),
+
+            # Bulleted lists
+            (r'^(\s*)([-*+])( .+\n(?:\1  .+\n)*)',
+             bygroups(Text, Keyword, using(this, state='inline'))),
+            # Numbered lists
+            (r'^(\s*)([0-9#ivxlcmIVXLCM]+\.)( .+\n(?:\1  .+\n)*)',
+             bygroups(Text, Keyword, using(this, state='inline'))),
+            (r'^(\s*)(\(?[0-9#ivxlcmIVXLCM]+\))( .+\n(?:\1  .+\n)*)',
+             bygroups(Text, Keyword, using(this, state='inline'))),
+            # Numbered, but keep words at BOL from becoming lists
+            (r'^(\s*)([A-Z]+\.)( .+\n(?:\1  .+\n)+)',
+             bygroups(Text, Keyword, using(this, state='inline'))),
+            (r'^(\s*)(\(?[A-Za-z]+\))( .+\n(?:\1  .+\n)+)',
+             bygroups(Text, Keyword, using(this, state='inline'))),
+            # Introducing a section
+            (r'^( *\.\.)(\s*)(\w+)(::)(?:(\s*)(.+))?(\n(?:(?: +.*|)\n)+)$',
+             bygroups(Punctuation, Text, Number, Punctuation, Text, Number, Text)),
+            # A reference target
+            (r'^( *\.\.)(\s*)(\w+:)(.*?)$',
+             bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
+            # A footnote target
+            (r'^( *\.\.)(\s*)(\[.+\])(.*?)$',
+             bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
+            # Comments
+            (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment.Preproc),
+            # Definition list
+            (r'^([^ ].*(?<!::)\n)((?:(?: +.*)\n)+)',
+             bygroups(using(this, state='inline'), using(this, state='inline'))),
+            # Code blocks
+            (r'(::)(\n)((?:(?: +.*|)\n)+)',
+             bygroups(String.Escape, Text, String)),
+            include('inline'),
+        ],
+        'inline': [
+            (r'``.+?``', String), # code
+            # Phrase reference
+            (r'(``?)(.+?)(\1__?)',
+             bygroups(Punctuation, using(this), Punctuation)),
+            (r'`.+?`', Name),
+            (r'\*\*.+?\*\*', String), # Strong emphasis
+            (r'\*.+?\*', Number), # Emphasis
+            (r'\[.*?\]_', String), # Footnote or citation
+            (r'<.+?>', Name.Tag),
+            (r'[^\n\[*`:]+', Text),
+            (r'.', Text),
         ],
     }
