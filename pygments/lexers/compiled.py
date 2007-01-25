@@ -742,7 +742,7 @@ class JavaLexer(RegexLexer):
 
 class DylanLexer(RegexLexer):
     """
-    For the `Dylan <http://www.opendylan.org/>` language.
+    For the `Dylan <http://www.opendylan.org/>`_ language.
 
     *New in Pygments 0.7.*
     """

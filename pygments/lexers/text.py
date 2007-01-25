@@ -448,7 +448,7 @@ class MoinWikiLexer(RegexLexer):
 
 class RstLexer(RegexLexer):
     """
-    For MoinMoin (and Trac) Wiki markup.
+    For `reStructuredText <http://docutils.sf.net/rst.html>`_ markup.
 
     *New in Pygments 0.7.*
     """
