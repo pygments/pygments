@@ -66,11 +66,21 @@ they can be used for a variety of formatters.)
 
 `default_style` is the style inherited by all token types.
 
+To make the style usable for Pygments, you must
+
+* either register it as a plugin (see `the plugin docs <plugins.txt>`)
+* or drop it into the `styles` subpackage of your Pygments distribution one style
+  class per style, where the file name is the style name and the class name is
+  `StylenameClass`. For example, if your style should be called
+  ``"mondrian"``, name the class `MondrianStyle`, put it into the file
+  ``mondrian.py`` and this file into the ``pygments.styles`` subpackage
+  directory.
+
 
 Style Rules
 ===========
 
-Here a small overview over all allowed styles:
+Here a small overview of all allowed styles:
 
 ``bold``
     render text as bold

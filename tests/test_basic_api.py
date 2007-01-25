@@ -89,6 +89,10 @@ class FormattersTest(unittest.TestCase):
             inst.get_style_defs()
             inst.format(ts, out)
 
+    def test_styles(self):
+        from pygments.formatters import HtmlFormatter
+        fmt = HtmlFormatter(style="pastie")
+
     def test_unicode_handling(self):
         # test that the formatter supports encoding and Unicode
         tokens = list(lexers.PythonLexer(encoding='utf-8').get_tokens("def f(): 'ä'"))

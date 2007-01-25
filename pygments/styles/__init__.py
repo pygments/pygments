@@ -30,20 +30,32 @@ STYLE_MAP = {
 
 
 def get_style_by_name(name):
-    if name not in STYLE_MAP:
+    if name in STYLE_MAP:
+        mod, cls = STYLE_MAP[name].split('::')
+        builtin = "yes"
+    else:
         for found_name, style in find_plugin_styles():
             if name == found_name:
                 return style
-        raise ValueError("Style %r not found" % name)
+        # perhaps it got dropped into our styles package
+        builtin = ""
+        mod = name
+        cls = name.title() + "Style"
 
-    mod, cls = STYLE_MAP[name].split('::')
-    mod = __import__('pygments.styles.' + mod, None, None, [cls])
-    return getattr(mod, cls)
+    try:
+        mod = __import__('pygments.styles.' + mod, None, None, [cls])
+    except ImportError:
+        raise ValueError("Style module %r not found" % mod +
+                         (builtin and ", though it should be builtin") + ".")
+    try:
+        return getattr(mod, cls)
+    except AttributeError:
+        raise ValueError("Style class %r not found in style module." % cls)
 
 
 def get_all_styles():
-    """Return an generator for all styles by name.
-    Both builtin and plugin."""
+    """Return an generator for all styles by name,
+    both builtin and plugin."""
     for name in STYLE_MAP:
         yield name
     for name, _ in find_plugin_styles():
