@@ -9,6 +9,8 @@
     :license: BSD, see LICENSE for more details.
 """
 
+import os
+
 from pygments.formatter import Formatter
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Token
@@ -77,6 +79,11 @@ class TerminalFormatter(Formatter):
 
     def format(self, tokensource, outfile):
         enc = self.encoding
+        # hack: if the output is a terminal and has an encoding set,
+        # use that to avoid unicode encode problems
+        if not enc and hasattr(outfile, "encoding") and \
+           hasattr(outfile, "isatty") and outfile.isatty():
+            enc = outfile.encoding
         for ttype, value in tokensource:
             if enc:
                 value = value.encode(enc)

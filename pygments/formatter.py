@@ -44,6 +44,8 @@ class Formatter(object):
         output. If it is "" or None, Unicode strings will be written
         to the output file, which most file-like objects do not
         support (default: None).
+    ``outencoding``
+        Overrides ``encoding`` if given.
     """
 
     #: If True, this formatter outputs Unicode strings when no encoding
@@ -55,6 +57,7 @@ class Formatter(object):
         self.full  = get_bool_opt(options, 'full', False)
         self.title = options.get('title', '')
         self.encoding = options.get('encoding', None) or None
+        self.encoding = options.get('outencoding', None) or self.encoding
         self.options = options
 
     def get_style_defs(self, arg=''):

@@ -228,8 +228,14 @@ def main(args):
         highlight(code, lexer, fmter, outfile)
     except Exception, err:
         import traceback
-        print >>sys.stderr, 'Error while highlighting:'
-        print >>sys.stderr, traceback.format_exc(0).splitlines()[-1]
+        info = traceback.format_exception(*sys.exc_info())
+        msg = info[-1].strip()
+        if len(info) >= 3:
+            # extract relevant file and position info
+            msg += '\n   (f%s)' % info[-2].split('\n')[0].strip()[1:]
+        print >>sys.stderr
+        print >>sys.stderr, '*** Error while highlighting:'
+        print >>sys.stderr, msg
         return 1
 
     return 0

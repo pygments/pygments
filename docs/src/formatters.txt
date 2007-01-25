@@ -30,6 +30,16 @@ All formatters support this option:
     supports Unicode arguments to `write()`. Using a regular file object
     wouldn't work.
 
+`outencoding`
+    *New in Pygments 0.7.*
+
+    When using Pygments from the command line, any `encoding` option given is
+    passed to the lexer and the formatter. This is sometimes not desirable,
+    for example if you want to set the input encoding to ``"guess"``.
+    Therefore, `outencoding` has been introduced which overrides `encoding`
+    for the formatter if given.
+
+
 The `HtmlFormatter` and `LatexFormatter` classes support these options:
 
 `style`
