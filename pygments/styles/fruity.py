@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Token, Comment, Name, Keyword, \
-    Generic, Number, Operator, String
+    Generic, Number, String
 
 class FruityStyle(Style):
 

@@ -204,12 +204,12 @@ STANDARD_TYPES = {
 if __name__ == '__main__':
     import sys
     # sanity check for token name dict: no duplicate entries!
-    s = STANDARD_TYPES.copy()
-    s[Token] = '---' # Token and Text do conflict, that is okay
+    stp = STANDARD_TYPES.copy()
+    stp[Token] = '---' # Token and Text do conflict, that is okay
     t = {}
-    for k, v in s.iteritems():
+    for k, v in stp.iteritems():
         t.setdefault(v, []).append(k)
-    if len(t) == len(s):
+    if len(t) == len(stp):
         print 'Okay!'
         sys.exit()
 

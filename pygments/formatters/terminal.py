@@ -9,8 +9,6 @@
     :license: BSD, see LICENSE for more details.
 """
 
-import os
-
 from pygments.formatter import Formatter
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Token
