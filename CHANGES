@@ -5,6 +5,10 @@ Version 0.7 (in development)
 ----------------------------
 (codename to be selected, released Feb XX, 2007)
 
+- Made the HTML formatter more flexible, and easily subclassable in order
+  to make it easy to implement custom wrappers, e.g. alternate line
+  number markup.  
+
 - Added an `outencoding` option to all formatters, making it possible
   to override the `encoding` (which is used by lexers and formatters) when
   using the command line interface. Also, if using the terminal formatter
