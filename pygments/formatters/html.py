@@ -5,13 +5,11 @@
 
     Formatter for HTML output.
 
-    TODO: this is a bit of a mess and not subclassable ATM.
-
     :copyright: 2006 by Georg Brandl, Armin Ronacher.
     :license: BSD, see LICENSE for more details.
 """
 import sys, os
-import cStringIO
+import StringIO
 
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
@@ -54,7 +52,7 @@ def _get_ttype_class(ttype):
     return fname + aname
 
 
-DOC_TEMPLATE = '''\
+DOC_HEADER = '''\
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -70,14 +68,10 @@ td.linenos { background-color: #f0f0f0; padding-right: 10px; }
 <body>
 <h2>%(title)s</h2>
 
-%(code)s
-
-</body>
-</html>
 '''
 
 
-DOC_TEMPLATE_EXTERNALCSS = '''\
+DOC_HEADER_EXTERNALCSS = '''\
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -90,8 +84,9 @@ DOC_TEMPLATE_EXTERNALCSS = '''\
 <body>
 <h2>%(title)s</h2>
 
-%(code)s
+'''
 
+DOC_FOOTER = '''\
 </body>
 </html>
 '''
@@ -288,23 +283,93 @@ class HtmlFormatter(Formatter):
                          (arg, self.style.background_color, text_style))
         return '\n'.join(lines)
 
-    def _format_nowrap(self, tokensource, outfile, lnos=False):
+    def _wrap_full(self, inner, outfile):
+        if self.cssfile:
+            try:
+                filename = outfile.name
+                cssfilename = os.path.join(os.path.dirname(filename), self.cssfile)
+            except AttributeError:
+                print >>sys.stderr, 'Note: Cannot determine output file name, ' \
+                      'using current directory as base for the CSS file name'
+                cssfilename = self.cssfile
+            # write CSS file 
+            try:
+                cf = open(cssfilename, "w")
+                cf.write(CSSFILE_TEMPLATE %
+                         {'styledefs': self.get_style_defs('body')})
+                cf.close()
+            except IOError, err:
+                err.strerror = 'Error writing CSS file: ' + err.strerror
+                raise
+
+            yield 0, (DOC_HEADER_EXTERNALCSS %
+                      dict(title     = self.title,
+                           cssfile   = self.cssfile,
+                           encoding  = self.encoding))
+        else:
+            yield 0, (DOC_HEADER %
+                      dict(title     = self.title,
+                           styledefs = self.get_style_defs('body'),
+                           encoding  = self.encoding))
+
+        for t, line in inner:
+            yield t, line
+        yield 0, DOC_FOOTER
+
+    def _wrap_linenos(self, inner):
+        dummyoutfile = StringIO.StringIO()
         lncount = 0
+        for t, line in inner:
+            if t:
+                lncount += 1
+            dummyoutfile.write(line)
+        
+        fl = self.linenostart
+        mw = len(str(lncount + fl - 1))
+        sp = self.linenospecial
+        st = self.linenostep
+        if sp:
+            ls = '\n'.join([(i%st == 0 and
+                             (i%sp == 0 and '<span class="special">%*d</span>'
+                              or '%*d') % (mw, i)
+                             or '')
+                            for i in range(fl, fl + lncount)])
+        else:
+            ls = '\n'.join([(i%st == 0 and ('%*d' % (mw, i)) or '')
+                            for i in range(fl, fl + lncount)])
+
+        yield 0, ('<table><tr><td class="linenos"><pre>' +
+                  ls + '</pre></td><td class="code">')
+        yield 0, dummyoutfile.getvalue()
+        yield 0, '</td></tr></table>'
+
+    def _wrap_div(self, inner):
+        yield 0, ('<div' + (self.cssclass and ' class="%s" ' % self.cssclass)
+                  + (self.cssstyles and ' style="%s"' % self.cssstyles) + '>')
+        for tup in inner:
+            yield tup
+        yield 0, '</div>\n'
+
+    def _wrap_pre(self, inner):
+        yield 0, '<pre>'
+        for tup in inner:
+            yield tup
+        yield 0, '</pre>'
+
+    def _format_lines(self, tokensource):
+        """
+        Just format the tokens, without any wrapping tags.
+        Yield individual lines.
+        """
         nocls = self.noclasses
         enc = self.encoding
         # for <span style=""> lookup only
         getcls = self.ttype2class.get
         c2s = self.class2style
 
-        write = outfile.write
         lspan = ''
+        line = ''
         for ttype, value in tokensource:
-            if enc:
-                value = value.encode(enc)
-            htmlvalue = escape_html(value)
-            if lnos:
-                lncount += value.count("\n")
-
             if nocls:
                 cclass = getcls(ttype)
                 while cclass is None:
@@ -315,97 +380,56 @@ class HtmlFormatter(Formatter):
                 cls = self._get_css_class(ttype)
                 cspan = cls and '<span class="%s">' % cls
 
-            if cspan == lspan:
-                if not cspan:
-                    write(htmlvalue)
+            if enc:
+                value = value.encode(enc)
+
+            parts = escape_html(value).split('\n')
+
+            # for all but the last line
+            for part in parts[:-1]:
+                if line:
+                    if lspan != cspan:
+                        line += '</span>' + cspan + part + (cspan and '</span>') + '\n'
+                    else: # both are the same
+                        line += part + (lspan and '</span>') + '\n'
+                    yield 1, line
+                    line = ''
                 else:
-                    write(htmlvalue.replace('\n', '</span>\n' + cspan))
-            elif htmlvalue: # if no value, leave old span open
-                if lspan:
-                    write('</span>')
-                lspan = cspan
-                if cspan:
-                    htmlvalue = htmlvalue.replace('\n', '</span>\n' + cspan)
-                    write(cspan + htmlvalue)
+                    yield 1, cspan + part + (cspan and '</span>') + '\n'
+            # for the last line
+            if line:
+                if lspan != cspan:
+                    line += '</span>' + cspan + parts[-1]
+                    lspan = cspan
                 else:
-                    write(htmlvalue)
-        if lspan:
-            write('</span>')
-        return lncount
+                    line += parts[-1]
+            else:
+                line = cspan + parts[-1]
+                
+        if line:
+            yield 1, line + (lspan and '</span>') + '\n'
 
     def format(self, tokensource, outfile):
-        if self.nowrap:
-            self._format_nowrap(tokensource, outfile)
-            return
+        """
+        The formatting process uses several nested generators; which of
+        them are used is determined by the user's options.
 
-        realoutfile = outfile
-        lnos = self.linenos
-        full = self.full
+        Each generator should take at least one argument, ``inner``,
+        and wrap the pieces of text generated by this.
 
-        div = ('<div' + (self.cssclass and ' class="%s" ' % self.cssclass)
-               + (self.cssstyles and ' style="%s"' % self.cssstyles) + '>')
-        if full or lnos:
-            outfile = cStringIO.StringIO()
-        else:
-            outfile.write(div)
+        Always yield 2-tuples: (core, text). If "core" is 1, the text
+        is part of the original tokensource being highlighted, if it's
+        0, the text is some piece of wrapping. This makes it possible to
+        use several different wrappers that process the original source
+        linewise, e.g. line number generators.
+        """
+        source = self._format_lines(tokensource)
+        if not self.nowrap:
+            source = self._wrap_div(self._wrap_pre(source))
+            if self.linenos:
+                source = self._wrap_linenos(source)
+            if self.full:
+                source = self._wrap_full(source, outfile)
 
-        outfile.write('<pre>')
-        lncount = self._format_nowrap(tokensource, outfile, lnos)
-        outfile.write('</pre>')
-
-        ret = ''
-        if lnos:
-            fl = self.linenostart
-            mw = len(str(lncount + fl - 1))
-            sp = self.linenospecial
-            st = self.linenostep
-            if sp:
-                ls = '\n'.join([(i%st == 0 and
-                                 (i%sp == 0 and '<span class="special">%*d</span>'
-                                  or '%*d') % (mw, i)
-                                 or '')
-                                for i in range(fl, fl + lncount)])
-            else:
-                ls = '\n'.join([(i%st == 0 and ('%*d' % (mw, i)) or '')
-                                for i in range(fl, fl + lncount)])
-
-            ret = div + ('<table><tr>'
-                         '<td class="linenos"><pre>' +
-                         ls + '</pre></td><td class="code">')
-            ret += outfile.getvalue()
-            ret += '</td></tr></table>'
-
-        if full:
-            if not ret:
-                ret = div + outfile.getvalue() + '</div>\n'
-            if self.cssfile:
-                try:
-                    filename = realoutfile.name
-                    cssfilename = os.path.join(os.path.dirname(filename), self.cssfile)
-                except AttributeError:
-                    print >>sys.stderr, 'Note: Cannot determine output file name, ' \
-                          'using current directory as base for the CSS file name'
-                    cssfilename = self.cssfile
-                realoutfile.write(DOC_TEMPLATE_EXTERNALCSS %
-                                  dict(title     = self.title,
-                                       cssfile   = self.cssfile,
-                                       encoding  = self.encoding,
-                                       code      = ret))
-                try:
-                    cf = open(cssfilename, "w")
-                    cf.write(CSSFILE_TEMPLATE % {'styledefs':
-                                                 self.get_style_defs('body')})
-                    cf.close()
-                except IOError, err:
-                    err.strerror = 'Error writing CSS file: ' + err.strerror
-                    raise
-            else:
-                realoutfile.write(DOC_TEMPLATE %
-                                  dict(title     = self.title,
-                                       styledefs = self.get_style_defs('body'),
-                                       encoding  = self.encoding,
-                                       code      = ret))
-        elif lnos:
-            realoutfile.write(ret + '</div>\n')
-        else:
-            realoutfile.write('</div>\n')
+        for t, piece in source:
+            outfile.write(piece)
