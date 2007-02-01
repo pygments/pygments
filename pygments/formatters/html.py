@@ -389,7 +389,8 @@ class HtmlFormatter(Formatter):
             for part in parts[:-1]:
                 if line:
                     if lspan != cspan:
-                        line += '</span>' + cspan + part + (cspan and '</span>') + '\n'
+                        line += (lspan and '</span>') + cspan + part + \
+                                (cspan and '</span>') + '\n'
                     else: # both are the same
                         line += part + (lspan and '</span>') + '\n'
                     yield 1, line
@@ -399,12 +400,13 @@ class HtmlFormatter(Formatter):
             # for the last line
             if line:
                 if lspan != cspan:
-                    line += '</span>' + cspan + parts[-1]
+                    line += (lspan and '</span>') + cspan + parts[-1]
                     lspan = cspan
                 else:
                     line += parts[-1]
             else:
                 line = cspan + parts[-1]
+                lspan = cspan
                 
         if line:
             yield 1, line + (lspan and '</span>') + '\n'
