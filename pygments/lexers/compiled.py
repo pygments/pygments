@@ -24,7 +24,8 @@ from pygments.token import \
      Error
 
 
-__all__ = ['CLexer', 'CppLexer', 'DelphiLexer', 'JavaLexer', 'DylanLexer']
+__all__ = ['CLexer', 'CppLexer', 'DelphiLexer', 'JavaLexer', 'DylanLexer',
+           'OcamlLexer']
 
 
 class CLexer(RegexLexer):
@@ -782,4 +783,84 @@ class DylanLexer(RegexLexer):
             (r'#[a-zA-Z0-9-]+', Keyword),
             (r'[a-zA-Z0-9-]+', Name.Variable),
         ],
+    }
+
+
+class OcamlLexer(RegexLexer):
+    """
+    For the OCaml language.
+
+    *New in Pygments 0.7.*
+    """
+    
+    name = 'OCaml'
+    aliases = ['ocaml']
+    filenames = ['*.ml', '*.mli']
+    mimetypes = ['text/x-ocaml']
+
+    keywords = [
+      'and', 'as', 'assert', 'asr', 'begin', 'class',
+      'constraint', 'do', 'done', 'downto', 'else', 'end',
+      'exception', 'external', 'false', 'for', 'fun', 'function',
+      'functor', 'if', 'in', 'include', 'inherit', 'initializer',
+      'land', 'lazy', 'let', 'lor', 'lsl', 'lsr',
+      'lxor', 'match', 'method', 'mod', 'module', 'mutable',
+      'new', 'object', 'of', 'open', 'or', 'private',
+      'rec', 'sig', 'struct', 'then', 'to', 'true',
+      'try', 'type', 'val', 'virtual', 'when', 'while', 'with'
+    ]
+    keyopts = [
+      '!=','#','&','&&','\(','\)','\*','\+',',','-',
+      '-\.','->','\.','\.\.',':','::',':=',':>',';',';;','<',
+      '<-','=','>','>]','>}','\?','\?\?','\[','\[<','\[>','\[\|',
+      ']','_','`','{','{<','\|','\|]','}','~'
+    ]
+
+    operators = r'[!$%&*+\./:<=>?@^|~-]'
+    prefix_syms = r'[!?~]'
+    infix_syms = r'[=<>@^|&+\*/$%-]'
+
+    tokens = {
+        'escape-sequence': [
+            (r'\\[\"\'ntbr]', String.Escape),
+            (r'\\[0-9]{3}', String.Escape),
+            (r'\\x[0-9a-fA-F]{2}', String.Escape),
+        ],
+        'root': [
+            (r'\s+', Text),
+            (r'\(\*', Comment, 'comment'),
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword.Reserved),
+            (r'(%s)' % '|'.join(keyopts), Keyword),
+            (r'false|true|\(\)|\[\]', Name.Constant),
+            (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
+
+            (r"[^\W\d][\w']*", Name),
+            
+            (r'\d[\d_]*', Number.Integer),
+            (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
+            (r'0[oO][0-7][0-7_]*', Number.Oct),
+            (r'0[bB][01][01_]*', Number),
+            (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
+            
+            (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
+             String.Char),
+            (r"'.'", String.Char),
+            (r"'", Keyword), # a stray quote is another syntax element
+            
+            (r'"', String.Double, 'string'),
+
+            (r'[~?][a-z][\w\']*:', Name.Variable),
+        ],
+        'comment': [
+            (r'[^(*)]', Comment),
+            (r'\(\*', Comment, '#push'),
+            (r'\*\)', Comment, '#pop'),
+            (r'[(*)]', Comment),
+        ],
+        'string': [
+            (r'[^\\"]', String.Double),
+            include('escape-sequence'),
+            (r'\\\n', String.Double),
+            (r'"', String.Double, '#pop'),
+        ]
     }
