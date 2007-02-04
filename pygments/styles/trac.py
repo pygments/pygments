@@ -5,7 +5,7 @@
 
     Port of the default trac highlighter design.
 
-    :copyright: 2006 by Edgewall, Armin Ronacher.
+    :copyright: 2006-2007 by Edgewall, Armin Ronacher.
     :license: BSD, see LICENSE for more details.
 """
 

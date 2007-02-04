@@ -5,7 +5,7 @@
 
     Lexers for compiled languages.
 
-    :copyright: 2006 by Georg Brandl, Armin Ronacher, Christoph Hack.
+    :copyright: 2006-2007 by Georg Brandl, Armin Ronacher, Christoph Hack.
     :license: BSD, see LICENSE for more details.
 """
 

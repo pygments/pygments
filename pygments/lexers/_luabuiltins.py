@@ -9,7 +9,7 @@
 
     Do not edit the MODULES dict by hand.
 
-    :copyright: 2006 by Lukas Meuser.
+    :copyright: 2006-2007 by Lukas Meuser.
     :license: BSD, see LICENSE for more details.
 """
 

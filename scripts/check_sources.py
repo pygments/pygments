@@ -7,7 +7,7 @@
     Make sure each Python file has a correct file header
     including copyright and license information.
 
-    :copyright: 2006 by Georg Brandl.
+    :copyright: 2006-2007 by Georg Brandl.
     :license: GNU GPL, see LICENSE for more details.
 """
 

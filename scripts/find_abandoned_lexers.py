@@ -8,7 +8,7 @@
     in the documentation right now. Maybe it would be a good idea
     to check the mimetypes, filename patterns and aliases too.
 
-    :copyright: 2006 by Armin Ronacher.
+    :copyright: 2006-2007 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
 """
 import re

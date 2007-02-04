@@ -8,7 +8,7 @@
     This is a port of the style used in the `php port`_ of pygments
     by Manni. The style is called 'default' there.
 
-    :copyright: 2006 by Armin Ronacher, Manni <manni@fnord.name>.
+    :copyright: 2006-2007 by Armin Ronacher, Manni <manni@fnord.name>.
     :license: BSD, see LICENSE for more details.
 """
 

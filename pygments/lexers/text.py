@@ -5,7 +5,7 @@
 
     Lexers for non-source code file types.
 
-    :copyright: 2006 by Armin Ronacher, Georg Brandl,
+    :copyright: 2006-2007 by Armin Ronacher, Georg Brandl,
                 Tim Hatch <tim@timhatch.com>,
                 Ronny Pfannschmidt,
                 Dennis Kaarsemaker.

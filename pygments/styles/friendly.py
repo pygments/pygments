@@ -5,7 +5,7 @@
 
     A modern style based on the VIM pyte theme.
 
-    :copyright: 2006 by Georg Brandl, Armin Ronacher.
+    :copyright: 2006-2007 by Georg Brandl, Armin Ronacher.
     :license: BSD, see LICENSE for more details.
 """
 

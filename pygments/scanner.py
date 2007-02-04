@@ -12,7 +12,7 @@
     Have a look at the `DelphiLexer` to get an idea of how to use
     this scanner.
 
-    :copyright: 2006 by Armin Ronacher.
+    :copyright: 2006-2007 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
 """
 import re

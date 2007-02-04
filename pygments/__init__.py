@@ -19,7 +19,7 @@
     The `Pygments trunk <http://trac.pocoo.org/repos/pygments/trunk#egg=Pygments-dev>`__
     is installable via *easy_install* with ``easy_install Pygments==dev``.
 
-    :copyright: 2006 by Georg Brandl, Armin Ronacher and others.
+    :copyright: 2006-2007 by Georg Brandl, Armin Ronacher and others.
     :license: BSD, see LICENSE for more details.
 """
 

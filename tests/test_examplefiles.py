@@ -3,7 +3,7 @@
     Pygments tests with example files
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: 2006 by Georg Brandl.
+    :copyright: 2006-2007 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 

@@ -5,7 +5,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: 2006 by Armin Ronacher, Georg Brandl, Matt Good,
+    :copyright: 2006-2007 by Armin Ronacher, Georg Brandl, Matt Good,
                 Ben Bangert.
     :license: BSD, see LICENSE for more details.
 """

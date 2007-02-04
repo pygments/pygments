@@ -6,7 +6,7 @@
     Module containing filter lookup functions and default
     filters.
 
-    :copyright: 2006 by Armin Ronacher.
+    :copyright: 2006-2007 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
 """
 try:
