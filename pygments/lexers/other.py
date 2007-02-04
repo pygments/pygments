@@ -5,7 +5,7 @@
 
     Lexers for other languages.
 
-    :copyright: 2006 by Georg Brandl, Tim Hatch <tim@timhatch.com>.
+    :copyright: 2006-2007 by Georg Brandl, Tim Hatch <tim@timhatch.com>.
     :license: BSD, see LICENSE for more details.
 """
 

@@ -8,7 +8,7 @@
     the text where Error tokens are being generated, along
     with some context.
 
-    :copyright: 2006 by Tim Hatch <tim@timhatch.com>.
+    :copyright: 2006-2007 by Tim Hatch <tim@timhatch.com>.
     :license: BSD, see LICENSE for more details.
 """
 

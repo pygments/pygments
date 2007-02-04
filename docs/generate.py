@@ -6,7 +6,7 @@
 
     Generates a bunch of html files containing the documentation.
 
-    :copyright: 2006 by Armin Ronacher, Georg Brandl.
+    :copyright: 2006-2007 by Armin Ronacher, Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 

@@ -5,7 +5,7 @@
 
     Lexers for web-related languages and markup.
 
-    :copyright: 2006 by Georg Brandl, Armin Ronacher,
+    :copyright: 2006-2007 by Georg Brandl, Armin Ronacher,
                 Tim Hatch <tim@timhatch.com>.
     :license: BSD, see LICENSE for more details.
 """

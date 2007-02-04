@@ -7,7 +7,7 @@
     Count the lines of code in pocoo, colubrid and jinja.
     Requires an svn checkout.
 
-    :copyright: 2006 by Armin Ronacher.
+    :copyright: 2006-2007 by Armin Ronacher.
     :license: GNU GPL, see LICENSE for more details.
 """
 from pocoo.utils.path import Path

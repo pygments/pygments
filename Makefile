@@ -4,7 +4,7 @@
 #
 # Combines scripts for common tasks.
 #
-# :copyright: 2006 by Georg Brandl.
+# :copyright: 2006-2007 by Georg Brandl.
 # :license: GNU GPL, see LICENSE for more details.
 #
 
