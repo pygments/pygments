@@ -200,6 +200,12 @@ class HtmlFormatter(Formatter):
         when there is no wrapping element [eg: no argument for the
         `get_syntax_defs` method given]) (default: ``False``). *New in
         Pygments 0.6.*
+
+    `lineseparator`
+        This string is output between lines of code. It defaults to ``"\n"``,
+        which is enough to break a line inside ``<pre>`` tags, but you can
+        e.g. set it to ``"<br>"`` to get HTML line breaks. *New in Pygments
+        0.7.*
     """
 
     def __init__(self, **options):
@@ -215,6 +221,7 @@ class HtmlFormatter(Formatter):
         self.linenostep = abs(get_int_opt(options, 'linenostep', 1))
         self.linenospecial = abs(get_int_opt(options, 'linenospecial', 0))
         self.nobackground = get_bool_opt(options, 'nobackground', False)
+        self.lineseparator = options.get('lineseparator', '\n')
 
         self._class_cache = {}
         self._create_stylesheet()
@@ -363,6 +370,7 @@ class HtmlFormatter(Formatter):
         """
         nocls = self.noclasses
         enc = self.encoding
+        lsep = self.lineseparator
         # for <span style=""> lookup only
         getcls = self.ttype2class.get
         c2s = self.class2style
@@ -390,13 +398,13 @@ class HtmlFormatter(Formatter):
                 if line:
                     if lspan != cspan:
                         line += (lspan and '</span>') + cspan + part + \
-                                (cspan and '</span>') + '\n'
+                                (cspan and '</span>') + lsep
                     else: # both are the same
-                        line += part + (lspan and '</span>') + '\n'
+                        line += part + (lspan and '</span>') + lsep
                     yield 1, line
                     line = ''
                 else:
-                    yield 1, cspan + part + (cspan and '</span>') + '\n'
+                    yield 1, cspan + part + (cspan and '</span>') + lsep
             # for the last line
             if line:
                 if lspan != cspan:
@@ -409,7 +417,7 @@ class HtmlFormatter(Formatter):
                 lspan = cspan
                 
         if line:
-            yield 1, line + (lspan and '</span>') + '\n'
+            yield 1, line + (lspan and '</span>') + lsep
 
     def format(self, tokensource, outfile):
         """
