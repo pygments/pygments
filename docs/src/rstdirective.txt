@@ -2,13 +2,14 @@
 Using Pygments in ReST documents
 ================================
 
-Many Python people use `ReST`_ for documentation their sourcecode, programs etc.
-This also means that documentation often includes sourcecode samples etc.
+Many Python people use `ReST`_ for documentation their sourcecode, programs,
+scripts et cetera. This also means that documentation often includes sourcecode
+samples or snippets.
 
-You can easily enable Pygments support for your rst texts as long as you
-use your own build script.
+You can easily enable Pygments support for your ReST texts using a custom
+directive -- this is also how this documentation displays source code.
 
-Just add this code to it:
+Add this code to the script you use for building the HTML documentation:
 
 .. sourcecode:: python
 
@@ -18,22 +19,23 @@ Just add this code to it:
     from pygments.lexers import get_lexer_by_name
     from pygments.formatters import HtmlFormatter
 
-    PYGMENTS_FORMATTER = HtmlFormatter()
+    pygments_formatter = HtmlFormatter()
 
     def pygments_directive(name, arguments, options, content, lineno,
-                          content_offset, block_text, state, state_machine):
+                           content_offset, block_text, state, state_machine):
         try:
             lexer = get_lexer_by_name(arguments[0])
         except ValueError:
-            # no lexer found
+            # no lexer found - use the text one instead of an exception
             lexer = get_lexer_by_name('text')
-        parsed = highlight(u'\n'.join(content), lexer, PYGMENTS_FORMATTER)
+        parsed = highlight(u'\n'.join(content), lexer, pygments_formatter)
         return [nodes.raw('', parsed, format='html')]
     pygments_directive.arguments = (1, 0, 1)
     pygments_directive.content = 1
     directives.register_directive('sourcecode', pygments_directive)
 
-Now you should be able to use Pygments in your rst files using this syntax::
+Now you should be able to use Pygments to highlight source code in your ReST
+files using this syntax::
 
     .. sourcecode:: language
 
