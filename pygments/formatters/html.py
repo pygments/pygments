@@ -207,8 +207,8 @@ class HtmlFormatter(Formatter):
         e.g. set it to ``"<br>"`` to get HTML line breaks. *New in Pygments
         0.7.*
 
-    Subclassing the HTML formatter
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    **Subclassing the HTML formatter**
 
     *New in Pygments 0.7.* 
 
