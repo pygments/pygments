@@ -48,6 +48,15 @@ class Formatter(object):
         Overrides ``encoding`` if given.
     """
 
+    #: Name of the formatter
+    name = None
+
+    #: Shortcuts for the formatter
+    aliases = []
+
+    #: fn match rules
+    filenames = []
+
     #: If True, this formatter outputs Unicode strings when no encoding
     #: option is given.
     unicodeoutput = True

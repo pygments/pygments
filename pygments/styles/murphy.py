@@ -15,6 +15,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class MurphyStyle(Style):
+    """
+    Murphy's style from CodeRay.
+    """
 
     default_style = ""
 

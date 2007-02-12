@@ -8,7 +8,9 @@
     :copyright: 2006-2007 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
+
 from pygments.plugin import find_plugin_styles
+from pygments.util import ClassNotFound
 
 
 #: Maps style names to 'submodule::classname'.
@@ -45,12 +47,12 @@ def get_style_by_name(name):
     try:
         mod = __import__('pygments.styles.' + mod, None, None, [cls])
     except ImportError:
-        raise ValueError("Could not find style module %r" % mod +
+        raise ClassNotFound("Could not find style module %r" % mod +
                          (builtin and ", though it should be builtin") + ".")
     try:
         return getattr(mod, cls)
     except AttributeError:
-        raise ValueError("Could not find style class %r in style module." % cls)
+        raise ClassNotFound("Could not find style class %r in style module." % cls)
 
 
 def get_all_styles():

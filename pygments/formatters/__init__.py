@@ -9,79 +9,54 @@
     :license: BSD, see LICENSE for more details.
 """
 import os.path
-from pygments.formatters.html import HtmlFormatter
-from pygments.formatters.terminal import TerminalFormatter
-from pygments.formatters.latex import LatexFormatter
-from pygments.formatters.rtf import RtfFormatter
-from pygments.formatters.bbcode import BBCodeFormatter
-from pygments.formatters.other import NullFormatter, RawTokenFormatter
+import fnmatch
+
+from pygments.formatters._mapping import FORMATTERS
 from pygments.plugin import find_plugin_formatters
+from pygments.util import docstring_headline, ClassNotFound
 
+ns = globals()
+for cls in FORMATTERS:
+    ns[cls.__name__] = cls
 
-def _doc_desc(obj):
-    if not obj.__doc__:
-        return ''
-    res = []
-    for line in obj.__doc__.strip().splitlines():
-        if line.strip():
-            res.append(" " + line.strip())
-        else:
-            break
-    return ''.join(res)
+__all__ = ['get_formatter_by_name', 'get_formatter_for_filename',
+           'get_all_formatters'] + [cls.__name__ for cls in FORMATTERS]
+           
 
-
-#: Map formatter classes to ``(longname, names, file extensions, descr)``.
-FORMATTERS = {
-    HtmlFormatter:        ('HTML', ('html',), ('.htm', '.html'),
-                           _doc_desc(HtmlFormatter)),
-    LatexFormatter:       ('LaTeX', ('latex', 'tex'), ('.tex',),
-                           _doc_desc(LatexFormatter)),
-    RtfFormatter:         ('RTF', ('rtf',), ('.rtf',),
-                           _doc_desc(RtfFormatter)),
-    TerminalFormatter:    ('Terminal', ('terminal', 'console'), (),
-                           _doc_desc(TerminalFormatter)),
-    BBCodeFormatter:      ('BBcode', ('bbcode', 'bb'), (),
-                           _doc_desc(BBCodeFormatter)),
-    RawTokenFormatter:    ('Raw tokens', ('raw', 'tokens'), ('.raw',),
-                           _doc_desc(RawTokenFormatter)),
-    NullFormatter:        ('Text only', ('text', 'null'), ('.txt',),
-                           _doc_desc(NullFormatter)),
-}
-
-
-_formatter_cache = {}
+_formatter_alias_cache = {}
+_formatter_filename_cache = []
 
 def _init_formatter_cache():
-    if _formatter_cache:
+    if _formatter_alias_cache:
         return
-    for cls, info in FORMATTERS.iteritems():
-        for alias in info[1]:
-            _formatter_cache[alias] = cls
-        for ext in info[2]:
-            _formatter_cache["/"+ext] = cls
-    for name, cls in find_plugin_formatters():
-        _formatter_cache[name] = cls
+    for cls in get_all_formatters():
+        for alias in cls.aliases:
+            _formatter_alias_cache[alias] = cls
+        for fn in cls.filenames:
+            _formatter_filename_cache.append((fn, cls))
+
+
+def find_formatter_class(name):
+    _init_formatter_cache()
+    cls = _formatter_alias_cache.get(name, None)
+    return cls
 
 
 def get_formatter_by_name(name, **options):
     _init_formatter_cache()
-    cls = _formatter_cache.get(name, None)
+    cls = _formatter_alias_cache.get(name, None)
     if not cls:
-        raise ValueError("No formatter found for name %r" % name)
+        raise ClassNotFound("No formatter found for name %r" % name)
     return cls(**options)
 
 
 def get_formatter_for_filename(fn, **options):
     _init_formatter_cache()
-    # try by filename extension
-    cls = _formatter_cache.get("/"+os.path.splitext(fn)[1], None)
-    if cls:
-        return cls(**options)
-    # try by whole file name
-    cls = _formatter_cache.get("/"+os.path.basename(fn), None)
-    if not cls:
-        raise ValueError("No formatter found for file name %r" % fn)
-    return cls(**options)
+    fn = os.path.basename(fn)
+    for pattern, cls in _formatter_filename_cache:
+        if fnmatch.fnmatch(fn, pattern):
+            return cls(**options)
+    raise ClassNotFound("No formatter found for file name %r" % fn)
 
 
 def get_all_formatters():

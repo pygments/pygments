@@ -18,7 +18,7 @@ __all__ = ['BBCodeFormatter']
 
 class BBCodeFormatter(Formatter):
     """
-    Formats tokens with BBcodes. These formatting codes are used by many
+    Format tokens with BBcodes. These formatting codes are used by many
     bulletin boards, so you can highlight your sourcecode with pygments before
     posting it there.
 
@@ -41,6 +41,9 @@ class BBCodeFormatter(Formatter):
         If set to true, add a tag to show the code with a monospace font
         (default: ``false``).
     """
+    name = 'BBCode'
+    aliases = ['bbcode', 'bb']
+    filenames = []
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

@@ -17,7 +17,7 @@ __all__ = ['RtfFormatter']
 
 class RtfFormatter(Formatter):
     """
-    Formats tokens as RTF markup. This formatter automatically outputs full RTF
+    Format tokens as RTF markup. This formatter automatically outputs full RTF
     documents with color information and other useful stuff. Perfect for Copy and
     Paste into Microsoft® Word® documents.
 
@@ -29,6 +29,9 @@ class RtfFormatter(Formatter):
         The used font famliy, for example ``Bitstream Vera Sans``. Defaults to
         some generic font which is supposed to have fixed width.
     """
+    name = 'RTF'
+    aliases = ['rtf']
+    filenames = ['*.rtf']
 
     unicodeoutput = False
 

@@ -4,38 +4,37 @@ Todo
 for 0.7
 -------
 
-- new lexers:
-  * Haskell
-  * Lisp
-  * IPython sessions
-  * HTML with special formatting?
-  * LaTeX special formatting?
-  * Nemerle
-  * Assembler
-  * Objective C
-  * MySQL/PostgreSQL/SQLite
-  * Tcl
-
-- lexers that need review:
-  * review perl lexer (numerous bugs, but so far no one had complaints ;)
-  * readd property support for C# lexer? that is, find a regex that doesn't
-    backtrack to death...
-  * add support for function name highlighting to C++ lexer
-
-- make it possible to use filters from the command line
-
-- automatically get help for lexers/formatters/options from docstrings
-
 - a MoinMoin parser
 
-- allow "overlay" token types to highlight specials: nth line, a word etc.
-
-- pygmentize option presets, more sophisticated method to output styles?
-
 - more unit tests (test pygmentize, test all formatters comprehensively)
+
+
+new lexers
+----------
+
+* Haskell
+* Lisp
+* IPython sessions
+* HTML with special formatting?
+* LaTeX special formatting?
+* Nemerle
+* Assembler
+* Objective C
+* MySQL/PostgreSQL/SQLite
+* Tcl
 
 
 for 0.8 -- 1.0
 --------------
 
+- lexers that need work:
+  * review perl lexer (numerous bugs, but so far no one had complaints ;)
+  * readd property support for C# lexer? that is, find a regex that doesn't
+    backtrack to death...
+  * add support for function name highlighting to C++ lexer
+
 - add folding? would require more language-aware parsers...
+
+- allow "overlay" token types to highlight specials: nth line, a word etc.
+
+- pygmentize option presets, more sophisticated method to output styles?

@@ -15,6 +15,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class AutumnStyle(Style):
+    """
+    A colorful style, inspired by the terminal highlighting style.
+    """
 
     default_style = ""
 

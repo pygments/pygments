@@ -37,8 +37,18 @@ Lexer and formatter options can be given using the ``-O`` option::
 
     $ pygmentize -f html -O style=colorful,linenos=1 -l python test.py
 
-Be sure to enclose the option string in quotes if it contains any special
-shell characters, such as spaces or expansion wildcards like ``*``.
+Be sure to enclose the option string in quotes if it contains any special shell
+characters, such as spaces or expansion wildcards like ``*``. If an option
+expects a list value, separate the list entries with spaces (you'll have to
+quote the option value in this case too, so that the shell doesn't split it).
+
+Filters are added to the token stream using the ``-F`` option::
+
+    $ pygmentize -f html -l pascal -F keywordcase:case=upper main.pas
+
+As you see, options for the filter are given after a colon. As for ``-O``, the
+filter name and options must be one shell word, so there may not be any spaces
+around the colon.
 
 There's a special ``-S`` option for generating style definitions. Usage is
 as follows::
@@ -51,8 +61,24 @@ the "colorful" style prepending a ".syntax" selector to all style rules.
 For an explanation what ``-a`` means for `a particular formatter`_, look for
 the `arg` argument for the formatter's `get_style_defs()` method.
 
-The ``-L`` option lists all lexers and formatters, along with their short
-names and supported file name extensions.
+The ``-L`` option lists lexers, formatters, along with their short
+names and supported file name extensions, styles and filters. If you want to see
+only one category, give it as an argument::
+
+    $ pygmentize -L filters
+
+will list only all installed filters.
+
+The ``-H`` option will give you detailed information (the same that can be found
+in this documentation) about a lexer, formatter or filter. Usage is as follows::
+
+    $ pygmentize -H formatter html
+
+will print the help for the HTML formatter, while::
+
+    $ pygmentize -H lexer python
+
+will print the help for the Python lexer, etc.
 
 
 .. _a particular formatter: formatters.txt

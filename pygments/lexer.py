@@ -16,7 +16,7 @@ except NameError:
     from sets import Set as set
 
 from pygments.filter import apply_filters, Filter
-from pygments.filters import find_filter
+from pygments.filters import get_filter_by_name
 from pygments.token import Error, Text, Other, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
      make_analysator
@@ -101,7 +101,7 @@ class Lexer(object):
         Add a new stream filter to this lexer.
         """
         if not isinstance(filter, Filter):
-            filter = find_filter(filter, **options)
+            filter = get_filter_by_name(filter, **options)
         self.filters.append(filter)
 
     def analyse_text(text):
@@ -121,8 +121,8 @@ class Lexer(object):
     def get_tokens(self, text, unfiltered=False):
         """
         Return an iterable of (tokentype, value) pairs generated from
-        `text`. If `unfiltered` is set to `True` the filtering mechanism
-        is bypassed, even if filters are defined.
+        `text`. If `unfiltered` is set to `True`, the filtering mechanism
+        is bypassed even if filters are defined.
 
         Also preprocess the text, i.e. expand tabs and strip it if
         wanted and applies registered filters.

@@ -15,6 +15,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class ColorfulStyle(Style):
+    """
+    A colorful style, inspired by CodeRay.
+    """
 
     default_style = ""
 

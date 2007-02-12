@@ -18,6 +18,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class ManniStyle(Style):
+    """
+    A colorful style, inspired by the terminal highlighting style.
+    """
 
     background_color = '#f0f3f3'
 

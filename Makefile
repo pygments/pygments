@@ -12,7 +12,7 @@ PYTHON ?= python
 
 export PYTHONPATH = $(shell echo "$$PYTHONPATH"):$(shell python -c 'print ":".join(line.strip() for line in file("PYTHONPATH"))' 2>/dev/null)
 
-.PHONY: all apidocs check clean clean-pyc codetags docs epydoc lexermap \
+.PHONY: all apidocs check clean clean-pyc codetags docs epydoc mapfiles \
 	pylint reindent test
 
 all: clean-pyc check test
@@ -56,8 +56,9 @@ epydoc:
 			apidocs/*.html
 	@$(PYTHON) scripts/fix_epydoc_markup.py apidocs
 
-lexermap:
-	cd pygments/lexers; $(PYTHON) _mapping.py
+mapfiles:
+	(cd pygments/lexers; $(PYTHON) _mapping.py)
+	(cd pygments/formatters; $(PYTHON) _mapping.py)
 
 pylint:
 	@pylint --rcfile scripts/pylintrc pygments

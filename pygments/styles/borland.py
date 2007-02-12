@@ -15,6 +15,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class BorlandStyle(Style):
+    """
+    Style similar to the style used in the borland IDEs.
+    """
 
     default_style = ''
 

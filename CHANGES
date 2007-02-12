@@ -5,11 +5,22 @@ Version 0.7 (in development)
 ----------------------------
 (codename to be selected, released Feb XX, 2007)
 
+- Changed the exception raised if no suitable lexer, formatter etc. is
+  found in one of the `get_*_by_*` functions to a custom exception,
+  `pygments.util.ClassNotFound`. It is, however, a subclass of `ValueError`
+  in order to retain backwards compatibility.
+
+- Added a `-H` command line option which can be used to get the docstring
+  of a lexer, formatter or filter.
+
+- Made the handling of lexers and formatters more consistent. The aliases
+  and filename patterns of formatters are now attributes on them. 
+
 - Added an OCaml lexer, thanks to Adam Blinkinsop.
 
 - Made the HTML formatter more flexible, and easily subclassable in order
   to make it easy to implement custom wrappers, e.g. alternate line
-  number markup.  
+  number markup. See the documentation.
 
 - Added an `outencoding` option to all formatters, making it possible
   to override the `encoding` (which is used by lexers and formatters) when
@@ -41,7 +52,7 @@ Version 0.7 (in development)
 
 - Added sources.list lexer by Dennis Kaarsemaker.
 
-- Added token stream filters.
+- Added token stream filters, and a pygmentize option to use them.
 
 - Changed behavior of `in` Operator for tokens. 
 

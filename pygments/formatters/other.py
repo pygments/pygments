@@ -19,6 +19,10 @@ class NullFormatter(Formatter):
     """
     Output the text unchanged without any formatting.
     """
+    name = 'Text only'
+    aliases = ['text', 'null']
+    filenames = ['*.txt']
+    
     def format(self, tokensource, outfile):
         enc = self.encoding
         for ttype, value in tokensource:
@@ -30,7 +34,7 @@ class NullFormatter(Formatter):
 
 class RawTokenFormatter(Formatter):
     r"""
-    Formats tokens as a raw representation for storing token streams.
+    Format tokens as a raw representation for storing token streams.
 
     The format is ``tokentype<TAB>repr(tokenstring)\n``. The output can later
     be converted to a token stream with the `RawTokenLexer`, described in the
@@ -42,6 +46,9 @@ class RawTokenFormatter(Formatter):
         If set to ``'gz'`` or ``'bz2'``, compress the output with the given
         compression algorithm after encoding (default: ``''``).
     """
+    name = 'Raw tokens'
+    aliases = ['raw', 'tokens']
+    filenames = ['*.raw']
 
     unicodeoutput = False
 

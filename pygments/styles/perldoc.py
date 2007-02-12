@@ -17,6 +17,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class PerldocStyle(Style):
+    """
+    Style similar to the style used in the perldoc code blocks.
+    """
 
     background_color = '#eeeedd'
     default_style = ''

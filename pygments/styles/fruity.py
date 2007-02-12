@@ -14,6 +14,9 @@ from pygments.token import Token, Comment, Name, Keyword, \
     Generic, Number, String
 
 class FruityStyle(Style):
+    """
+    Pygments version of the "native" vim theme.
+    """
 
     background_color = '#111111'
 

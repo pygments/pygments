@@ -6,7 +6,7 @@
     Module containing filter lookup functions and default
     filters.
 
-    :copyright: 2006-2007 by Armin Ronacher.
+    :copyright: 2006-2007 by Armin Ronacher, Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 try:
@@ -17,26 +17,37 @@ except NameError:
 import re
 from pygments.token import String, Comment, Keyword, Name, string_to_tokentype
 from pygments.filter import Filter
-from pygments.util import get_list_opt
+from pygments.util import get_list_opt, ClassNotFound
 from pygments.plugin import find_plugin_filters
 
 
-def find_filter(filter, **options):
+def find_filter_class(filter):
     """
-    Lookup a builtin filter. Options are passed to the
-    filter initialization if wanted.
+    Lookup a filter by name. Return None if not found.
     """
     if filter in FILTERS:
-        return FILTERS[filter](**options)
+        return FILTERS[filter]
     for name, cls in find_plugin_filters():
         if name == filter:
-            return cls(**options)
-    raise ValueError('filter %r not found' % filter)
+            return cls
+    return None
+
+
+def get_filter_by_name(filter, **options):
+    """
+    Return an instantiated filter. Options are passed to the filter
+    initializer if wanted. Raise a ClassNotFound if not found.
+    """
+    cls = find_filter_class(filter)
+    if cls:
+        return cls(**options)
+    else:
+        raise ClassNotFound('filter %r not found' % filter)
 
 
 def get_all_filters():
     """
-    Return a generator for all filters by name.
+    Return a generator of all filter names.
     """
     for name in FILTERS:
         yield name
@@ -46,10 +57,11 @@ def get_all_filters():
 
 class CodeTagFilter(Filter):
     """
-    Highlights special code tags in comments and docstrings. Per default, the
-    list of highlighted tags is ``XXX``, ``TODO``, ``BUG`` and ``NOTE``. You can
-    override this list by specifying a `codetags` parameter that takes a list of
-    words.
+    Highlight special code tags in comments and docstrings.
+
+    Per default, the list of highlighted tags is ``XXX``, ``TODO``, ``BUG`` and
+    ``NOTE``. You can override this list by specifying a `codetags` parameter
+    that takes a list of words.
     """
     def __init__(self, **options):
         Filter.__init__(self, **options)
@@ -80,16 +92,17 @@ class CodeTagFilter(Filter):
 
 class KeywordCaseFilter(Filter):
     """
-    Converts keywords to ``lower``, ``upper`` or ``capitalize`` which means
-    first letter uppercase, rest lowercase. This can be useful e.g. if you
-    highlight Pascal code and want to adapt the code to your styleguide. The
-    default is ``lower``, override that by providing the `keywordcase`
-    parameter.
+    Convert keywords to ``lower``, ``upper`` or ``capitalize`` which means
+    first letter uppercase, rest lowercase.
+
+    This can be useful e.g. if you highlight Pascal code and want to adapt the
+    code to your styleguide. The default is ``lower``, override that by
+    providing the `case` parameter.
     """
 
     def __init__(self, **options):
         Filter.__init__(self, **options)
-        case = options.get('keywordcase', 'lower')
+        case = options.get('case', 'lower')
         if case not in ('lower', 'upper', 'capitalize'):
             raise TypeError('unknown conversion method %r' % case)
         self.convert = getattr(unicode, case)
@@ -104,11 +117,13 @@ class KeywordCaseFilter(Filter):
 
 class NameHighlightFilter(Filter):
     """
-    Highlight normal name token with a different one::
+    Highlight a normal Name token with a different token type.
+
+    Example::
 
         filter = NameHighlightFilter(
-            highlight=['foo', 'bar', 'baz'],
-            highlight_token=Name.Function
+            names=['foo', 'bar', 'baz'],
+            tokentype=Name.Function,
         )
 
     This would highlight the names "foo", "bar" and "baz"
@@ -117,23 +132,23 @@ class NameHighlightFilter(Filter):
 
     def __init__(self, **options):
         Filter.__init__(self, **options)
-        self.words = set(get_list_opt(options, 'highlight', []))
-        highlight_token = options.get('highlight_token')
-        if highlight_token:
-            self.highlight_token = string_to_tokentype(highlight_token)
+        self.names = set(get_list_opt(options, 'names', []))
+        tokentype = options.get('tokentype')
+        if tokentype:
+            self.tokentype = string_to_tokentype(tokentype)
         else:
-            self.highlight_token = Name.Function
+            self.tokentype = Name.Function
 
     def filter(self, lexer, stream):
         for ttype, value in stream:
-            if ttype is Name and value in self.words:
-                yield self.highlight_token, value
+            if ttype is Name and value in self.names:
+                yield self.tokentype, value
             else:
                 yield ttype, value
 
 
 FILTERS = {
-    'codetagify':           CodeTagFilter,
-    'keywordcase':          KeywordCaseFilter,
-    'highlight':            NameHighlightFilter
+    'codetagify':     CodeTagFilter,
+    'keywordcase':    KeywordCaseFilter,
+    'highlight':      NameHighlightFilter,
 }

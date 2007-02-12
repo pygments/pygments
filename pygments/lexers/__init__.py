@@ -19,9 +19,10 @@ except NameError:
 
 from pygments.lexers._mapping import LEXERS
 from pygments.plugin import find_plugin_lexers
+from pygments.util import ClassNotFound
 
 
-__all__ = ['get_lexer_by_name', 'get_lexer_for_filename',
+__all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
            'guess_lexer'] + LEXERS.keys()
 
 _lexer_cache = {}
@@ -48,6 +49,23 @@ def get_all_lexers():
         yield lexer.name, lexer.aliases, lexer.filenames, lexer.mimetypes
 
 
+def find_lexer_class(name):
+    """
+    Lookup a lexer class by name. Return None if not found.
+    """
+    if name in _lexer_cache:
+        return _lexer_cache[name]
+    # lookup builtin lexers
+    for module_name, lname, aliases, _, _ in LEXERS.itervalues():
+        if name == lname:
+            _load_lexers(module_name)
+            return _lexer_cache[name]
+    # continue with lexers from setuptools entrypoints
+    for cls in find_plugin_lexers():
+        if cls.name == name:
+            return cls
+
+
 def get_lexer_by_name(_alias, **options):
     """
     Get a lexer by an alias.
@@ -62,7 +80,7 @@ def get_lexer_by_name(_alias, **options):
     for cls in find_plugin_lexers():
         if _alias in cls.aliases:
             return cls(**options)
-    raise ValueError('no lexer for alias %r found' % _alias)
+    raise ClassNotFound('no lexer for alias %r found' % _alias)
 
 
 def get_lexer_for_filename(_fn, **options):
@@ -80,7 +98,7 @@ def get_lexer_for_filename(_fn, **options):
         for filename in cls.filenames:
             if fnmatch.fnmatch(fn, filename):
                 return cls(**options)
-    raise ValueError('no lexer for filename %r found' % _fn)
+    raise ClassNotFound('no lexer for filename %r found' % _fn)
 
 
 def get_lexer_for_mimetype(_mime, **options):
@@ -95,7 +113,7 @@ def get_lexer_for_mimetype(_mime, **options):
     for cls in find_plugin_lexers():
         if _mime in cls.mimetypes:
             return cls(**options)
-    raise ValueError('no lexer for mimetype %r found' % _mime)
+    raise ClassNotFound('no lexer for mimetype %r found' % _mime)
 
 
 def _iter_lexerclasses():
@@ -138,7 +156,7 @@ def guess_lexer_for_filename(_fn, _text, **options):
             if fnmatch.fnmatch(fn, filename):
                 matching_lexers.add(lexer)
     if not matching_lexers:
-        raise ValueError('no lexer for filename %r found' % fn)
+        raise ClassNotFound('no lexer for filename %r found' % fn)
     if len(matching_lexers) == 1:
         return matching_lexers.pop()(**options)
     result = []
@@ -165,7 +183,7 @@ def guess_lexer(_text, **options):
         if rv > best_lexer[0]:
             best_lexer[:] = (rv, lexer)
     if not best_lexer[0] or best_lexer[1] is None:
-        raise ValueError('no lexer matching the text found')
+        raise ClassNotFound('no lexer matching the text found')
     return best_lexer[1](**options)
 
 

@@ -15,6 +15,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class TracStyle(Style):
+    """
+    Port of the default trac highlighter design.
+    """
 
     default_style = ''
 

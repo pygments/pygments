@@ -15,6 +15,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class FriendlyStyle(Style):
+    """
+    A modern style based on the VIM pyte theme.
+    """
 
     background_color = "#f0f0f0"
     default_style = ""

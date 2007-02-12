@@ -17,6 +17,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class PastieStyle(Style):
+    """
+    Style similar to the pastie default style.
+    """
 
     default_style = ''
 
