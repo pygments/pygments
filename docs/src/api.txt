@@ -34,20 +34,23 @@ def `get_lexer_by_name(alias, **options):`
     aliases list. The lexer is given the `options` at its
     instantiation.
 
-    Will raise `ValueError` if no lexer with that alias is found.
+    Will raise `pygments.util.ClassNotFound` if no lexer with that alias is
+    found.
 
 def `get_lexer_for_filename(fn, **options):`
     Return a `Lexer` subclass instance that has a filename pattern
     matching `fn`. The lexer is given the `options` at its
     instantiation.
 
-    Will raise `ValueError` if no lexer for that filename is found.
+    Will raise `pygments.util.ClassNotFound` if no lexer for that filename is
+    found.
 
 def `get_lexer_for_mimetype(mime, **options):`
     Return a `Lexer` subclass instance that has `mime` in its mimetype
     list. The lexer is given the `options` at its instantiation.
 
-    Will raise `ValueError` if not lexer for that mimetype is found.
+    Will raise `pygments.util.ClassNotFound` if not lexer for that mimetype is
+    found.
 
 def `guess_lexer(text, **options):`
     Return a `Lexer` subclass instance that's guessed from the text
@@ -55,13 +58,15 @@ def `guess_lexer(text, **options):`
     lexer class is called with the text as argument, and the lexer
     which returned the highest value will be instantiated and returned.
 
-    `ValueError` is raised if no lexer thinks it can handle the content.
+    `pygments.util.ClassNotFound` is raised if no lexer thinks it can handle the
+    content.
 
 def `guess_lexer_for_filename(text, filename, **options):`
     As `guess_lexer()`, but only lexers which have a pattern in `filenames`
     or `alias_filenames` that matches `filename` are taken into consideration.
     
-    `ValueError` is raised if no lexer thinks it can handle the content.
+    `pygments.util.ClassNotFound` is raised if no lexer thinks it can handle the
+    content.
 
 def `get_all_lexers():`
     Return an iterable over all registered lexers, yielding tuples in the
@@ -79,14 +84,16 @@ def `get_formatter_by_name(alias, **options):`
     aliases list. The formatter is given the `options` at its
     instantiation.
 
-    Will raise `ValueError` if no formatter with that alias is found.
+    Will raise `pygments.util.ClassNotFound` if no formatter with that alias is
+    found.
 
 def `get_formatter_for_filename(fn, **options):`
     Return a `Formatter` subclass instance that has a filename pattern
     matching `fn`. The formatter is given the `options` at its
     instantiation.
 
-    Will raise `ValueError` if no formatter for that filename is found.
+    Will raise `pygments.util.ClassNotFound` if no formatter for that filename
+    is found.
 
 
 Functions from `pygments.styles`:
@@ -95,7 +102,7 @@ def `get_style_by_name(name):`
     Return a style class by its short name. The names of the builtin styles
     are listed in `pygments.styles.STYLE_MAP`.
 
-    Will raise `ValueError` if no style of that name is found.
+    Will raise `pygments.util.ClassNotFound` if no style of that name is found.
 
 def `get_all_styles():`
     Return an iterable over all registered styles, yielding their names.

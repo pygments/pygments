@@ -10,18 +10,26 @@
 """
 import sys
 import getopt
+from textwrap import dedent
 
 from pygments import __version__, __author__, highlight
-from pygments.lexers import LEXERS, get_lexer_by_name, get_lexer_for_filename
-from pygments.util import OptionError
-from pygments.formatters import FORMATTERS, get_formatter_by_name, \
-     get_formatter_for_filename, TerminalFormatter
+from pygments.util import ClassNotFound, OptionError, docstring_headline
+from pygments.lexers import get_all_lexers, get_lexer_by_name, get_lexer_for_filename, \
+     find_lexer_class
+from pygments.formatters import get_all_formatters, get_formatter_by_name, \
+     get_formatter_for_filename, TerminalFormatter, find_formatter_class
+from pygments.filters import get_all_filters, find_filter_class
+from pygments.styles import get_all_styles, get_style_by_name
 
 
 USAGE = """\
-Usage: %s [-l <lexer>] [-f <formatter>] [-O <options>] [-o <outfile>] [<infile>]
+Usage: %s [-l <lexer>] [-F <filter>[:<options]] [-f <formatter>]
+          [-O <options>] [-o <outfile>] [<infile>]
+
        %s -S <style> -f <formatter> [-a <arg>] [-O <options>]
-       %s -L | -h | -V
+       %s -L [<which> ...]
+       %s -H <type> <name>
+       %s -h | -V
 
 Highlight the input file and write the result to <outfile>.
 
@@ -38,77 +46,151 @@ the terminal formatter will be used by default.
 With the -O option, you can give the lexer and formatter a comma-
 separated list of options, e.g. ``-O bg=light,python=cool``.
 
+With the -F option, you can add filters to the token stream, you can
+give options in the same way as for -O after a colon (note: there must
+not be spaces around the colon).
+
+The -O and -F options can be given multiple times.
+
 With the -S option, print out style definitions for style <style>
 for formatter <formatter>. The argument given by -a is formatter
 dependent.
 
-The -L option lists all available lexers and formatters.
+The -L option lists lexers, formatters, styles or filters -- set
+`which` to the thing you want to list (e.g. "styles"), or omit it to
+list everything.
+
+The -H option prints detailed help for the object <name> of type <type>,
+where <type> is one of "lexer", "formatter" or "filter".
+
 The -h option prints this help.
 The -V option prints the package version.
 """
 
 
-def _parse_options(o_str):
+def _parse_options(o_strs):
     opts = {}
-    if not o_str:
+    if not o_strs:
         return opts
-    o_args = o_str.split(',')
-    for o_arg in o_args:
-        o_arg = o_arg.strip()
-        try:
-            o_key, o_val = o_arg.split('=')
-            o_key = o_key.strip()
-            o_val = o_val.strip()
-        except ValueError:
-            opts[o_arg] = True
-        else:
-            opts[o_key] = o_val
+    for o_str in o_strs:
+        if not o_str:
+            continue
+        o_args = o_str.split(',')
+        for o_arg in o_args:
+            o_arg = o_arg.strip()
+            try:
+                o_key, o_val = o_arg.split('=')
+                o_key = o_key.strip()
+                o_val = o_val.strip()
+            except ValueError:
+                opts[o_arg] = True
+            else:
+                opts[o_key] = o_val
     return opts
 
 
-def _print_lflist():
-    # print version
-    main(['', '-V'])
+def _parse_filters(f_strs):
+    filters = []
+    if not f_strs:
+        return filters
+    for f_str in f_strs:
+        if ':' in f_str:
+            fname, fopts = f_str.split(':', 1)
+            filters.append((fname, _parse_options([fopts])))
+        else:
+            filters.append((f_str, {}))
+    return filters
 
-    print
-    print "Lexers:"
-    print "~~~~~~~"
 
-    info = []
-    for _, fullname, names, exts, _ in LEXERS.itervalues():
-        tup = (', '.join(names)+':', fullname,
-               exts and '(extensions ' + ', '.join(exts) + ')' or '')
-        info.append(tup)
-    info.sort()
-    for i in info:
-        print ('%s\n    %s %s') % i
+def _print_help(type, name):
+    try:
+        if type == 'lexer':
+            cls = find_lexer_class(name)
+            print "Help on the %s lexer:" % cls.name
+            print dedent(cls.__doc__)
+        elif type == 'formatter':
+            cls = find_formatter_class(name)
+            print "Help on the %s formatter:" % cls.name
+            print dedent(cls.__doc__)
+        elif type == 'filter':
+            cls = find_filter_class(name)
+            print "Help on the %s filter:" % name
+            print dedent(cls.__doc__)
+    except ClassNotFound:
+        print >>sys.stderr, "%s not found!" % type
 
-    print
-    print "Formatters:"
-    print "~~~~~~~~~~~"
 
-    info = []
-    for fullname, names, exts, doc in FORMATTERS.itervalues():
-        tup = (', '.join(names)+':', doc,
-               exts and '(extensions ' + ', '.join(exts) + ')' or '')
-        info.append(tup)
-    info.sort()
-    for i in info:
-        print ('%s\n    %s %s') % i
+def _print_list(what):
+    if what == 'lexer':
+        print
+        print "Lexers:"
+        print "~~~~~~~"
+
+        info = []
+        for fullname, names, exts, _ in get_all_lexers():
+            tup = (', '.join(names)+':', fullname,
+                   exts and '(filenames ' + ', '.join(exts) + ')' or '')
+            info.append(tup)
+        info.sort()
+        for i in info:
+            print ('* %s\n    %s %s') % i
+
+    elif what == 'formatter':
+        print
+        print "Formatters:"
+        print "~~~~~~~~~~~"
+
+        info = []
+        for cls in get_all_formatters():
+            doc = docstring_headline(cls)
+            tup = (', '.join(cls.aliases) + ':', doc,
+                   cls.filenames and '(filenames ' + ', '.join(cls.filenames) + ')' or '')
+            info.append(tup)
+        info.sort()
+        for i in info:
+            print ('* %s\n    %s %s') % i
+
+    elif what == 'filter':
+        print
+        print "Filters:"
+        print "~~~~~~~~"
+
+        for name in get_all_filters():
+            cls = find_filter_class(name)
+            print "* " + name + ':'
+            print "    %s" % docstring_headline(cls)
+
+    elif what == 'style':
+        print
+        print "Styles:"
+        print "~~~~~~~"
+        
+        for name in get_all_styles():
+            cls = get_style_by_name(name)
+            print "* " + name + ':'
+            print "    %s" % docstring_headline(cls) 
 
 
 def main(args):
     """
     Main command line entry point.
     """
-    usage = USAGE % ((args[0],) * 3)
+    usage = USAGE % ((args[0],) * 5)
 
     try:
-        opts, args = getopt.getopt(args[1:], "l:f:o:O:LhVS:a:")
-    except getopt.GetoptError:
+        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:LS:a:hVH")
+    except getopt.GetoptError, err:
         print >>sys.stderr, usage
         return 2
-    opts = dict(opts)
+    opts = {}
+    O_opts = []
+    F_opts = []
+    for opt, arg in popts:
+        if opt == '-O':
+            O_opts.append(arg)
+        elif opt == '-F':
+            F_opts.append(arg)
+        opts[opt] = arg
 
     if not opts and not args:
         print usage
@@ -125,15 +207,37 @@ def main(args):
     # handle ``pygmentize -L``
     L_opt = opts.pop('-L', None)
     if L_opt is not None:
-        if opts or args:
+        if opts:
             print >>sys.stderr, usage
             return 2
 
-        _print_lflist()
+        # print version
+        main(['', '-V'])
+        if not args:
+            args = ['lexer', 'formatter', 'filter', 'style']
+        for arg in args:
+            _print_list(arg.rstrip('s'))
+        return 0
+
+    # handle ``pygmentize -H``
+    H_opt = opts.pop('-H', None)
+    if H_opt is not None:
+        if opts or len(args) != 2:
+            print >>sys.stderr, usage
+            return 2
+
+        type, name = args
+        if type not in ('lexer', 'formatter', 'filter'):
+            print >>sys.stderr, usage
+            return 2
+
+        _print_help(type, name)
         return 0
 
     # parse -O options
-    O_opts = _parse_options(opts.pop('-O', None))
+    O_opts = _parse_options(O_opts)
+    # parse -F options
+    F_opts = _parse_filters(F_opts)
 
     # handle ``pygmentize -S``
     S_opt = opts.pop('-S', None)
@@ -150,7 +254,7 @@ def main(args):
         try:
             O_opts['style'] = S_opt
             fmter = get_formatter_by_name(f_opt, **O_opts)
-        except ValueError, err:
+        except ClassNotFound, err:
             print >>sys.stderr, err
             return 1
 
@@ -169,7 +273,7 @@ def main(args):
     if fmter:
         try:
             fmter = get_formatter_by_name(fmter, **O_opts)
-        except (OptionError, ValueError), err:
+        except (OptionError, ClassNotFound), err:
             print >>sys.stderr, 'Error:', err
             return 1
 
@@ -177,7 +281,7 @@ def main(args):
         if not fmter:
             try:
                 fmter = get_formatter_for_filename(outfn, **O_opts)
-            except (OptionError, ValueError), err:
+            except (OptionError, ClassNotFound), err:
                 print >>sys.stderr, 'Error:', err
                 return 1
         try:
@@ -195,7 +299,7 @@ def main(args):
     if lexer:
         try:
             lexer = get_lexer_by_name(lexer, **O_opts)
-        except (OptionError, ValueError), err:
+        except (OptionError, ClassNotFound), err:
             print >>sys.stderr, 'Error:', err
             return 1
 
@@ -208,7 +312,7 @@ def main(args):
         if not lexer:
             try:
                 lexer = get_lexer_for_filename(infn, **O_opts)
-            except (OptionError, ValueError), err:
+            except (OptionError, ClassNotFound), err:
                 print >>sys.stderr, 'Error:', err
                 return 1
 
@@ -225,6 +329,9 @@ def main(args):
 
     # ... and do it!
     try:
+        # process filters
+        for fname, fopts in F_opts:
+            lexer.add_filter(fname, **fopts)
         highlight(code, lexer, fmter, outfile)
     except Exception, err:
         import traceback

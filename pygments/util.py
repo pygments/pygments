@@ -23,6 +23,12 @@ doctype_lookup_re = re.compile(r'''(?smx)
 tag_re = re.compile(r'<(.+?)(\s.*?)?>.*?</\1>(?uism)')
 
 
+class ClassNotFound(ValueError):
+    """
+    If one of the get_*_by_* functions didn't find a matching class.
+    """
+
+
 class OptionError(Exception):
     pass
 
@@ -61,6 +67,18 @@ def get_list_opt(options, optname, default=None):
         raise OptionError('Invalid value %r for option %s; you '
                           'must give a list value' % (
                           val, optname))
+
+
+def docstring_headline(obj):
+    if not obj.__doc__:
+        return ''
+    res = []
+    for line in obj.__doc__.strip().splitlines():
+        if line.strip():
+            res.append(" " + line.strip())
+        else:
+            break
+    return ''.join(res).lstrip()
 
 
 def make_analysator(f):

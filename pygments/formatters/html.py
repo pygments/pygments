@@ -99,7 +99,7 @@ td.linenos { background-color: #f0f0f0; padding-right: 10px; }
 
 
 class HtmlFormatter(Formatter):
-    """
+    r"""
     Format tokens as HTML 4 ``<span>`` tags within a ``<pre>`` tag, wrapped
     in a ``<div>`` tag. The ``<div>``'s CSS class can be set by the `cssclass`
     option.
@@ -253,6 +253,10 @@ class HtmlFormatter(Formatter):
     After calling `wrap()`, the `format()` method also adds the "line numbers"
     and/or "full document" wrappers if the respective options are set.
     """
+
+    name = 'HTML'
+    aliases = ['html']
+    filenames = ['*.html', '*.htm']
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

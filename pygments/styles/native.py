@@ -15,6 +15,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class NativeStyle(Style):
+    """
+    Pygments version of the "native" vim theme.
+    """
 
     background_color = '#202020'
 

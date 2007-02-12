@@ -52,7 +52,7 @@ TERMINAL_COLORS = {
 
 class TerminalFormatter(Formatter):
     r"""
-    Formats tokens with ANSI color sequences, for output in a text console.
+    Format tokens with ANSI color sequences, for output in a text console.
     Color sequences are terminated at newlines, so that paging the output
     works correctly.
 
@@ -69,6 +69,9 @@ class TerminalFormatter(Formatter):
         A dictionary mapping token types to (lightbg, darkbg) color names or
         ``None`` (default: ``None`` = use builtin colorscheme).
     """
+    name = 'Terminal'
+    aliases = ['terminal', 'console']
+    filenames = []
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

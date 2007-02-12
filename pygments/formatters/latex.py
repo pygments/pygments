@@ -90,6 +90,9 @@ class LatexFormatter(Formatter):
         using this prefix and some letters (default: ``'C'``).
         *New in Pygments 0.7.*
     """
+    name = 'LaTeX'
+    aliases = ['latex', 'tex']
+    filenames = ['*.tex']
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
