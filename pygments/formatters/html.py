@@ -465,12 +465,10 @@ class HtmlFormatter(Formatter):
                     lspan = cspan
                 else:
                     line += parts[-1]
-            elif line:
-                # we neither have to open a new span nor set lspan
-                pass
-            else:
+            elif parts[-1]:
                 line = cspan + parts[-1]
                 lspan = cspan
+            # else we neither have to open a new span nor set lspan
                 
         if line:
             yield 1, line + (lspan and '</span>') + lsep

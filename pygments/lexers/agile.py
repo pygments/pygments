@@ -205,7 +205,7 @@ class PythonConsoleLexer(Lexer):
                     tbindex = match.start()
                 elif tb:
                     curtb += line
-                    if not line.startswith(' '):
+                    if not (line.startswith(' ') or line.strip() == '...'):
                         tb = 0
                         for i, t, v in tblexer.get_tokens_unprocessed(curtb):
                             yield tbindex+i, t, v
