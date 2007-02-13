@@ -459,12 +459,15 @@ class HtmlFormatter(Formatter):
                 else:
                     yield 1, cspan + part + (cspan and '</span>') + lsep
             # for the last line
-            if line:
+            if line and parts[-1]:
                 if lspan != cspan:
                     line += (lspan and '</span>') + cspan + parts[-1]
                     lspan = cspan
                 else:
                     line += parts[-1]
+            elif line:
+                # we neither have to open a new span nor set lspan
+                pass
             else:
                 line = cspan + parts[-1]
                 lspan = cspan
