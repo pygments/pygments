@@ -238,6 +238,8 @@ class PythonTracebackLexer(RegexLexer):
              bygroups(Text, Name.Builtin, Text, Number, Text, Name.Identifier, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(PythonLexer), Text)),
+            (r'^(...)(\n)',
+             bygroups(Comment, Text), '#pop'), # for doctests...
             (r'^(.+)(: )(.+)(\n)',
              bygroups(Name.Class, Text, Name.Identifier, Text), '#pop'),
         ],
