@@ -25,7 +25,7 @@
 
 __version__ = '0.7'
 __author__ = 'Georg Brandl <g.brandl@gmx.net>'
-__url__ = 'http://pygments.pocoo.org/'
+__url__ = 'http://pygments.org/'
 __license__ = 'BSD License'
 __docformat__ = 'restructuredtext'
 
