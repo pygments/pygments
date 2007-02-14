@@ -3,32 +3,33 @@
     The Pygments MoinMoin Parser
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    This is a MoinMoin parser plugin that renders source code
-    to HTML via Pygments.
+    This is a MoinMoin parser plugin that renders source code to HTML via
+    Pygments; you need Pygments 0.7 or newer for this parser to work.
 
-    To use it, put it in the data/plugin/parser subdirectory of
-    your Moin instance, and give it the name that the parser directive
-    should have. For example, if you name the file ``code.py``, you
-    can get a highlighted Python code sample with this Wiki markup::
+    To use it, set the options below to match your setup and put this file in
+    the data/plugin/parser subdirectory of your Moin instance, and give it the
+    name that the parser directive should have. For example, if you name the
+    file ``code.py``, you can get a highlighted Python code sample with this
+    Wiki markup::
 
         {{{
         #!code python
         [...]
         }}}
 
-    Additionally, if you set ATTACHMENTS below to True, Pygments will
-    also be called for all attachments for whose filenames there is no other
-    parser registered.
+    Additionally, if you set ATTACHMENTS below to True, Pygments will also be
+    called for all attachments for whose filenames there is no other parser
+    registered.
 
-    You are responsible for including CSS rules that will map the Pygments
-    CSS classes to colors. You can output a stylesheet file with `pygmentize`,
-    put it into the `htdocs` directory of your Moin instance and then include
-    it in the `stylesheets` configuration option in the Moin config, e.g.::
+    You are responsible for including CSS rules that will map the Pygments CSS
+    classes to colors. You can output a stylesheet file with `pygmentize`, put
+    it into the `htdocs` directory of your Moin instance and then include it in
+    the `stylesheets` configuration option in the Moin config, e.g.::
 
         stylesheets = [('screen', '/htdocs/pygments.css')]
 
-    If you do not want to do that and are willing to accept slightly larger
-    HTML output, you can set the INLINESTYLES option below to True.
+    If you do not want to do that and are willing to accept larger HTML
+    output, you can set the INLINESTYLES option below to True.
 
     :copyright: 2007 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
@@ -41,9 +42,6 @@
 # {{{ }}} blocks.
 ATTACHMENTS = True
 
-# Set to False if you don't want to have line numbers in the output. 
-LINENOS = True
-
 # Set to True if you want inline CSS styles instead of classes
 INLINESTYLES = False
 
@@ -51,12 +49,20 @@ INLINESTYLES = False
 import sys
 
 from pygments import highlight
-from pygments.util import ObjectNotFound
 from pygments.lexers import get_lexer_by_name, get_lexer_for_filename, TextLexer
 from pygments.formatters import HtmlFormatter
+from pygments.util import ObjectNotFound
 
-formatter = HtmlFormatter(linenos=LINENOS, noclasses=INLINESTYLES)
+
+# wrap lines in <span>s so that the Moin-generated line numbers work
+class MoinHtmlFormatter(HtmlFormatter):
+    def wrap(self, source, outfile):
+        for line in source:
+            yield 1, '<span class="line">' + line[1] + '</span>'
+
+htmlformatter = MoinHtmlFormatter(noclasses=INLINESTYLES)
 textlexer = TextLexer()
+codeid = [0]
 
 
 class Parser:
@@ -98,5 +104,9 @@ class Parser:
             self.lexer = textlexer
 
     def format(self, formatter):
-        self.req.write(
-            formatter.rawHTML(highlight(self.raw, self.lexer, formatter)))
+        codeid[0] += 1
+        id = "pygments_%s" % codeid[0]
+        w = self.req.write
+        w(formatter.code_area(1, id, start=1, step=1))
+        w(formatter.rawHTML(highlight(self.raw, self.lexer, htmlformatter)))
+        w(formatter.code_area(0, id))
