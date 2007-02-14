@@ -7,11 +7,12 @@
     :license: BSD, see LICENSE for more details.
 """
 
+import os
 import unittest
 import StringIO
 import random
 
-from pygments import lexers, formatters, format
+from pygments import lexers, formatters, filters, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 
@@ -69,6 +70,16 @@ class LexersTest(unittest.TestCase):
             x = func(opt="val", *args)
             a(isinstance(x, lexers.PythonLexer))
             ae(x.options["opt"], "val")
+
+    def test_filters(self):
+        for x in filters.FILTERS.keys():
+            lx = lexers.PythonLexer()
+            lx.add_filter(x)
+            text = file(os.path.join(testdir, testfile)).read().decode('utf-8')
+            tokens = list(lx.get_tokens(text))
+            roundtext = ''.join([t[1] for t in tokens])
+            self.assertEquals(roundtext, text,
+                              "lexer roundtrip with %s filter failed" % x) 
 
 
 class FormattersTest(unittest.TestCase):

@@ -33,8 +33,14 @@ class CmdLineTest(unittest.TestCase):
 
     def test_L_opt(self):
         c, o, e = run_cmdline("-L")
-        self.assert_(c == 0)
-        self.assert_(o.find("Lexers") and o.find("Formatters"))
+        self.assertEquals(c, 0)
+        self.assert_("Lexers" in o and "Formatters" in o and
+                     "Filters" in o and "Styles" in o) 
+        c, o, e = run_cmdline("-L", "lexer")
+        self.assertEquals(c, 0)
+        self.assert_("Lexers" in o and not "Formatters" in o)
+        c, o, e = run_cmdline("-L", "lexers")
+        self.assertEquals(c, 0)
 
     def test_O_opt(self):
         filename = os.path.join(testdir, testfile)
@@ -42,6 +48,13 @@ class CmdLineTest(unittest.TestCase):
         self.assertEquals(c, 0)
         self.assert_("<html" in o)
         self.assert_('class="linenos"' in o)
+
+    def test_F_opt(self):
+        filename = os.path.join(testdir, testfile)
+        c, o, e = run_cmdline("-Fhighlight:tokentype=Name.Blubb,names=testfile testdir",
+                              "-fhtml", filename)
+        self.assertEquals(c, 0)
+        self.assert_('<span class="n-Blubb' in o)
 
     def test_invalid_opts(self):
         for opts in [("-L", "-lpy"), ("-L", "-fhtml"), ("-L", "-Ox"),
