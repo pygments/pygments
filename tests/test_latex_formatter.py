@@ -9,11 +9,8 @@
 
 import os
 import unittest
-import StringIO
 import tempfile
 
-from pygments import lexers, formatters
-from pygments.token import _TokenType
 from pygments.formatters import LatexFormatter
 from pygments.lexers import PythonLexer
 
