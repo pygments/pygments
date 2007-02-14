@@ -18,7 +18,8 @@ from pygments.lexers import PythonLexer
 class LatexFormatterTest(unittest.TestCase):
 
     def test_valid_output(self):
-        tokensource = list(PythonLexer().get_tokens(file(os.path.join(testdir, testfile)).read()))
+        tokensource = list(PythonLexer().get_tokens(file(
+            os.path.join(testdir, testfile)).read()))
         fmt = LatexFormatter(full=True)
 
         handle, pathname = tempfile.mkstemp('.tex')

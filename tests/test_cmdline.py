@@ -35,10 +35,10 @@ class CmdLineTest(unittest.TestCase):
         c, o, e = run_cmdline("-L")
         self.assertEquals(c, 0)
         self.assert_("Lexers" in o and "Formatters" in o and
-                     "Filters" in o and "Styles" in o) 
+                     "Filters" in o and "Styles" in o)
         c, o, e = run_cmdline("-L", "lexer")
         self.assertEquals(c, 0)
-        self.assert_("Lexers" in o and not "Formatters" in o)
+        self.assert_("Lexers" in o and "Formatters" not in o)
         c, o, e = run_cmdline("-L", "lexers")
         self.assertEquals(c, 0)
 

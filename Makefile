@@ -21,7 +21,7 @@ apidocs: epydoc
 
 check:
 	@$(PYTHON) scripts/check_sources.py -i apidocs -i pygments/lexers/_mapping.py \
-		   -i docs/build
+		   -i docs/build -i pygments/formatters/_mapping.py
 
 clean: clean-pyc
 	rm -f codetags.html

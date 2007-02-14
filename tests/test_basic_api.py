@@ -79,7 +79,7 @@ class LexersTest(unittest.TestCase):
             tokens = list(lx.get_tokens(text))
             roundtext = ''.join([t[1] for t in tokens])
             self.assertEquals(roundtext, text,
-                              "lexer roundtrip with %s filter failed" % x) 
+                              "lexer roundtrip with %s filter failed" % x)
 
 
 class FormattersTest(unittest.TestCase):

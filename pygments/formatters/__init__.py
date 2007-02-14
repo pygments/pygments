@@ -22,7 +22,7 @@ del fcls
 
 __all__ = ['get_formatter_by_name', 'get_formatter_for_filename',
            'get_all_formatters'] + [cls.__name__ for cls in FORMATTERS]
-           
+
 
 _formatter_alias_cache = {}
 _formatter_filename_cache = []

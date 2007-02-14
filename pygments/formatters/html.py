@@ -212,7 +212,7 @@ class HtmlFormatter(Formatter):
 
     **Subclassing the HTML formatter**
 
-    *New in Pygments 0.7.* 
+    *New in Pygments 0.7.*
 
     The HTML formatter is now built in a way that allows easy subclassing, thus
     customizing the output HTML code. The `format()` method calls
@@ -361,7 +361,7 @@ class HtmlFormatter(Formatter):
                     print >>sys.stderr, 'Note: Cannot determine output file name, ' \
                           'using current directory as base for the CSS file name'
                     cssfilename = self.cssfile
-            # write CSS file 
+            # write CSS file
             try:
                 cf = open(cssfilename, "w")
                 cf.write(CSSFILE_TEMPLATE %
@@ -392,7 +392,7 @@ class HtmlFormatter(Formatter):
             if t:
                 lncount += 1
             dummyoutfile.write(line)
-        
+
         fl = self.linenostart
         mw = len(str(lncount + fl - 1))
         sp = self.linenospecial
@@ -480,7 +480,7 @@ class HtmlFormatter(Formatter):
                 line = cspan + parts[-1]
                 lspan = cspan
             # else we neither have to open a new span nor set lspan
-                
+
         if line:
             yield 1, line + (lspan and '</span>') + lsep
 
