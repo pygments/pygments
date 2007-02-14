@@ -16,11 +16,11 @@ def apply_filters(stream, filters, lexer=None):
     a stream. If lexer is given it's forwarded to the
     filter, otherwise the filter receives `None`.
     """
-    def _apply(filter, stream):
-        for token in filter.filter(lexer, stream):
+    def _apply(filter_, stream):
+        for token in filter_.filter(lexer, stream):
             yield token
-    for filter in filters:
-        stream = _apply(filter, stream)
+    for filter_ in filters:
+        stream = _apply(filter_, stream)
     return stream
 
 
@@ -69,5 +69,6 @@ class FunctionFilter(Filter):
         Filter.__init__(self, **options)
 
     def filter(self, lexer, stream):
+        # pylint: disable-msg=E1102
         for ttype, value in self.function(lexer, stream, self.options):
             yield ttype, value

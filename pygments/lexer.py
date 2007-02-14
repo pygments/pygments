@@ -86,8 +86,8 @@ class Lexer(object):
         self.encoding = options.get('encoding', 'latin1')
         # self.encoding = options.get('inencoding', None) or self.encoding
         self.filters = []
-        for filter in get_list_opt(options, 'filters', ()):
-            self.add_filter(filter)
+        for filter_ in get_list_opt(options, 'filters', ()):
+            self.add_filter(filter_)
 
     def __repr__(self):
         if self.options:
@@ -96,13 +96,13 @@ class Lexer(object):
         else:
             return '<pygments.lexers.%s>' % self.__class__.__name__
 
-    def add_filter(self, filter, **options):
+    def add_filter(self, filter_, **options):
         """
         Add a new stream filter to this lexer.
         """
-        if not isinstance(filter, Filter):
-            filter = get_filter_by_name(filter, **options)
-        self.filters.append(filter)
+        if not isinstance(filter_, Filter):
+            filter = get_filter_by_name(filter_, **options)
+        self.filters.append(filter_)
 
     def analyse_text(text):
         """
