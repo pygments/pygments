@@ -445,10 +445,10 @@ class HtmlFormatter(Formatter):
                 while cclass is None:
                     ttype = ttype.parent
                     cclass = getcls(ttype)
-                cspan = cclass and '<span style="%s">' % c2s[cclass][0]
+                cspan = cclass and '<span style="%s">' % c2s[cclass][0] or ''
             else:
                 cls = self._get_css_class(ttype)
-                cspan = cls and '<span class="%s">' % cls
+                cspan = cls and '<span class="%s">' % cls or ''
 
             if enc:
                 value = value.encode(enc)
