@@ -12,21 +12,42 @@ import unittest
 import StringIO
 import random
 import tempfile
+from os.path import join, dirname, isfile
 
 from pygments import lexers, formatters
 from pygments.token import _TokenType
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import PythonLexer
 
+tokensource = list(PythonLexer().get_tokens(file(os.path.join(testdir, testfile)).read()))
+
 class HtmlFormatterTest(unittest.TestCase):
 
-# TODO: write this test.
-#    def test_external_css(self):
-#        pass
+    def test_external_css(self):
+        # test correct behavior
+        # CSS should be in /tmp directory
+        fmt1 = HtmlFormatter(full=True, cssfile='fmt1.css')
+        # CSS should be in testdir (testdir is absolute)
+        fmt2 = HtmlFormatter(full=True, cssfile=join(testdir, 'fmt2.css'))
+        tfile = tempfile.NamedTemporaryFile(suffix='.html')
+        fmt1.format(tokensource, tfile)
+        try:
+            fmt2.format(tokensource, tfile)
+        except IOError:
+            # test directory not writable
+            pass
+        tfile.close()
+
+        self.assert_(isfile(join(dirname(tfile.name), 'my.css')))
+
+        os.unlink(join(dirname(tfile.name), 'fmt1.css'))
+        try:
+            os.unlink(join(testdir, 'fmt2.css'))
+        except OSError:
+            pass
+
 
     def test_all_options(self):
-        tokensource = list(PythonLexer().get_tokens(file(os.path.join(testdir, testfile)).read()))
-        
         for optdict in [dict(nowrap=True),
                         dict(linenos=True),
                         dict(linenos=True, full=True),
@@ -37,13 +58,10 @@ class HtmlFormatterTest(unittest.TestCase):
             fmt.format(tokensource, outfile)
 
     def test_valid_output(self):
-        tokensource = list(PythonLexer().get_tokens(file(os.path.join(testdir, testfile)).read()))
+        # test all available wrappers
         fmt = HtmlFormatter(full=True, linenos=True, noclasses=True)
 
         handle, pathname = tempfile.mkstemp('.html')
-        # place all output files in /tmp too
-        old_wd = os.getcwd()
-        os.chdir(os.path.dirname(pathname))
         tfile = os.fdopen(handle, 'w+b')
         fmt.format(tokensource, tfile)
         tfile.close()
@@ -64,4 +82,3 @@ class HtmlFormatterTest(unittest.TestCase):
             self.failIf(ret, 'nsgmls run reported errors')
 
         os.unlink(pathname)
-        os.chdir(old_wd)
