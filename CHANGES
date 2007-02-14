@@ -1,9 +1,18 @@
 Pygments changelog
 ==================
 
+Version 0.8 (in development)
+----------------------------
+(codename to be selected, released Apr XX, 2007)
+
+
+
 Version 0.7
 -----------
 (codename Faschingskrapfn, released Feb 14, 2007)
+
+- Added a MoinMoin parser that uses Pygments. With it, you get Pygments
+  highlighting in Moin Wiki pages.
 
 - Changed the exception raised if no suitable lexer, formatter etc. is
   found in one of the `get_*_by_*` functions to a custom exception,
