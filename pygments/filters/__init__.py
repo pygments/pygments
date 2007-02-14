@@ -133,7 +133,6 @@ class NameHighlightFilter(Filter):
     def __init__(self, **options):
         Filter.__init__(self, **options)
         self.names = set(get_list_opt(options, 'names', []))
-        print "!!!!!!", self.names
         tokentype = options.get('tokentype')
         if tokentype:
             self.tokentype = string_to_tokentype(tokentype)
