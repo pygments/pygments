@@ -8,20 +8,31 @@
 """
 
 import os
+import re
 import unittest
 import StringIO
-import random
 import tempfile
 from os.path import join, dirname, isfile
 
-from pygments import lexers, formatters
-from pygments.token import _TokenType
-from pygments.formatters import HtmlFormatter
 from pygments.lexers import PythonLexer
+from pygments.formatters import HtmlFormatter, NullFormatter
+from pygments.formatters.html import escape_html
 
 tokensource = list(PythonLexer().get_tokens(file(os.path.join(testdir, testfile)).read()))
 
 class HtmlFormatterTest(unittest.TestCase):
+    def test_correct_output(self):
+        hfmt = HtmlFormatter(nowrap=True)
+        houtfile = StringIO.StringIO()
+        hfmt.format(tokensource, houtfile)
+
+        nfmt = NullFormatter()
+        noutfile = StringIO.StringIO()
+        nfmt.format(tokensource, noutfile)
+
+        stripped_html = re.sub('<.*?>', '', houtfile.getvalue())
+        escaped_text = escape_html(noutfile.getvalue())
+        self.assertEquals(stripped_html, escaped_text)
 
     def test_external_css(self):
         # test correct behavior
@@ -45,7 +56,6 @@ class HtmlFormatterTest(unittest.TestCase):
             os.unlink(join(testdir, 'fmt2.css'))
         except OSError:
             pass
-
 
     def test_all_options(self):
         for optdict in [dict(nowrap=True),

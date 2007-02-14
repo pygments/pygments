@@ -79,7 +79,7 @@ DOC_HEADER_EXTERNALCSS = '''\
 <head>
   <title>%(title)s</title>
   <meta http-equiv="content-type" content="text/html; charset=%(encoding)s">
-  <link rel="stylesheet" href="%(cssfile)s">
+  <link rel="stylesheet" href="%(cssfile)s" type="text/css">
 </head>
 <body>
 <h2>%(title)s</h2>
@@ -465,8 +465,10 @@ class HtmlFormatter(Formatter):
                         line += part + (lspan and '</span>') + lsep
                     yield 1, line
                     line = ''
-                else:
+                elif part:
                     yield 1, cspan + part + (cspan and '</span>') + lsep
+                else:
+                    yield 1, lsep
             # for the last line
             if line and parts[-1]:
                 if lspan != cspan:
