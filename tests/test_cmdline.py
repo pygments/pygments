@@ -44,7 +44,7 @@ class CmdLineTest(unittest.TestCase):
 
     def test_O_opt(self):
         filename = os.path.join(testdir, testfile)
-        c, o, e = run_cmdline("-Ofull=1,linenos=true", "-fhtml", filename)
+        c, o, e = run_cmdline("-Ofull=1,linenos=true,foo=bar", "-fhtml", filename)
         self.assertEquals(c, 0)
         self.assert_("<html" in o)
         self.assert_('class="linenos"' in o)
@@ -56,9 +56,15 @@ class CmdLineTest(unittest.TestCase):
         self.assertEquals(c, 0)
         self.assert_('<span class="n-Blubb' in o)
 
+    def test_H_opt(self):
+        c, o, e = run_cmdline("-H", "formatter", "html")
+        self.assertEquals(c, 0)
+        self.assert_('HTML' in o)
+
     def test_invalid_opts(self):
         for opts in [("-L", "-lpy"), ("-L", "-fhtml"), ("-L", "-Ox"),
-                     ("-a",), ("-Sst", "-lpy")]:
+                     ("-a",), ("-Sst", "-lpy"), ("-H",),
+                     ("-H", "formatter"),]:
             self.assert_(run_cmdline(*opts)[0] == 2)
 
     def test_normal(self):

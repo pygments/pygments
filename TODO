@@ -1,16 +1,8 @@
 Todo
 ====
 
-for 0.7
--------
-
-- a MoinMoin parser
-
-- more unit tests (test pygmentize, test all formatters comprehensively)
-
-
-new lexers
-----------
+suggested new lexers
+--------------------
 
 * Haskell
 * Lisp
@@ -33,8 +25,8 @@ for 0.8 -- 1.0
     backtrack to death...
   * add support for function name highlighting to C++ lexer
 
-- add folding? would require more language-aware parsers...
-
 - allow "overlay" token types to highlight specials: nth line, a word etc.
 
 - pygmentize option presets, more sophisticated method to output styles?
+
+- add folding? would require more language-aware parsers...
