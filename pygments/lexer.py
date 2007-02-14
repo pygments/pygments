@@ -101,7 +101,7 @@ class Lexer(object):
         Add a new stream filter to this lexer.
         """
         if not isinstance(filter_, Filter):
-            filter = get_filter_by_name(filter_, **options)
+            filter_ = get_filter_by_name(filter_, **options)
         self.filters.append(filter_)
 
     def analyse_text(text):
