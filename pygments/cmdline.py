@@ -17,7 +17,8 @@ from pygments.util import ClassNotFound, OptionError, docstring_headline
 from pygments.lexers import get_all_lexers, get_lexer_by_name, get_lexer_for_filename, \
      find_lexer_class
 from pygments.formatters import get_all_formatters, get_formatter_by_name, \
-     get_formatter_for_filename, TerminalFormatter, find_formatter_class
+     get_formatter_for_filename, find_formatter_class, \
+     TerminalFormatter  # pylint:disable-msg=E0611
 from pygments.filters import get_all_filters, find_filter_class
 from pygments.styles import get_all_styles, get_style_by_name
 
@@ -102,22 +103,22 @@ def _parse_filters(f_strs):
     return filters
 
 
-def _print_help(type, name):
+def _print_help(what, name):
     try:
-        if type == 'lexer':
+        if what == 'lexer':
             cls = find_lexer_class(name)
             print "Help on the %s lexer:" % cls.name
             print dedent(cls.__doc__)
-        elif type == 'formatter':
+        elif what == 'formatter':
             cls = find_formatter_class(name)
             print "Help on the %s formatter:" % cls.name
             print dedent(cls.__doc__)
-        elif type == 'filter':
+        elif what == 'filter':
             cls = find_filter_class(name)
             print "Help on the %s filter:" % name
             print dedent(cls.__doc__)
     except ClassNotFound:
-        print >>sys.stderr, "%s not found!" % type
+        print >>sys.stderr, "%s not found!" % what
 
 
 def _print_list(what):
@@ -175,6 +176,8 @@ def main(args):
     """
     Main command line entry point.
     """
+    # pylint: disable-msg=R0911,R0912,R0915
+    
     usage = USAGE % ((args[0],) * 5)
 
     try:
@@ -226,12 +229,12 @@ def main(args):
             print >>sys.stderr, usage
             return 2
 
-        type, name = args
-        if type not in ('lexer', 'formatter', 'filter'):
+        what, name = args
+        if what not in ('lexer', 'formatter', 'filter'):
             print >>sys.stderr, usage
             return 2
 
-        _print_help(type, name)
+        _print_help(what, name)
         return 0
 
     # parse -O options

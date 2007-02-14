@@ -21,28 +21,28 @@ from pygments.util import get_list_opt, ClassNotFound
 from pygments.plugin import find_plugin_filters
 
 
-def find_filter_class(filter):
+def find_filter_class(filtername):
     """
     Lookup a filter by name. Return None if not found.
     """
-    if filter in FILTERS:
-        return FILTERS[filter]
+    if filtername in FILTERS:
+        return FILTERS[filtername]
     for name, cls in find_plugin_filters():
-        if name == filter:
+        if name == filtername:
             return cls
     return None
 
 
-def get_filter_by_name(filter, **options):
+def get_filter_by_name(filtername, **options):
     """
     Return an instantiated filter. Options are passed to the filter
     initializer if wanted. Raise a ClassNotFound if not found.
     """
-    cls = find_filter_class(filter)
+    cls = find_filter_class(filtername)
     if cls:
         return cls(**options)
     else:
-        raise ClassNotFound('filter %r not found' % filter)
+        raise ClassNotFound('filter %r not found' % filtername)
 
 
 def get_all_filters():

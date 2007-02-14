@@ -16,8 +16,9 @@ from pygments.plugin import find_plugin_formatters
 from pygments.util import docstring_headline, ClassNotFound
 
 ns = globals()
-for cls in FORMATTERS:
-    ns[cls.__name__] = cls
+for fcls in FORMATTERS:
+    ns[fcls.__name__] = fcls
+del fcls
 
 __all__ = ['get_formatter_by_name', 'get_formatter_for_filename',
            'get_all_formatters'] + [cls.__name__ for cls in FORMATTERS]
