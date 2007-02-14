@@ -793,7 +793,7 @@ class OcamlLexer(RegexLexer):
 
     *New in Pygments 0.7.*
     """
-    
+
     name = 'OCaml'
     aliases = ['ocaml']
     filenames = ['*.ml', '*.mli']
@@ -836,18 +836,18 @@ class OcamlLexer(RegexLexer):
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
 
             (r"[^\W\d][\w']*", Name),
-            
+
             (r'\d[\d_]*', Number.Integer),
             (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
             (r'0[oO][0-7][0-7_]*', Number.Oct),
             (r'0[bB][01][01_]*', Number),
             (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
-            
+
             (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
              String.Char),
             (r"'.'", String.Char),
             (r"'", Keyword), # a stray quote is another syntax element
-            
+
             (r'"', String.Double, 'string'),
 
             (r'[~?][a-z][\w\']*:', Name.Variable),

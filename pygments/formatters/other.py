@@ -22,7 +22,7 @@ class NullFormatter(Formatter):
     name = 'Text only'
     aliases = ['text', 'null']
     filenames = ['*.txt']
-    
+
     def format(self, tokensource, outfile):
         enc = self.encoding
         for ttype, value in tokensource:

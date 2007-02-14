@@ -144,8 +144,8 @@ def _print_list(what):
         info = []
         for cls in get_all_formatters():
             doc = docstring_headline(cls)
-            tup = (', '.join(cls.aliases) + ':', doc,
-                   cls.filenames and '(filenames ' + ', '.join(cls.filenames) + ')' or '')
+            tup = (', '.join(cls.aliases) + ':', doc, cls.filenames and
+                   '(filenames ' + ', '.join(cls.filenames) + ')' or '')
             info.append(tup)
         info.sort()
         for i in info:
@@ -165,11 +165,11 @@ def _print_list(what):
         print
         print "Styles:"
         print "~~~~~~~"
-        
+
         for name in get_all_styles():
             cls = get_style_by_name(name)
             print "* " + name + ':'
-            print "    %s" % docstring_headline(cls) 
+            print "    %s" % docstring_headline(cls)
 
 
 def main(args):
@@ -177,7 +177,7 @@ def main(args):
     Main command line entry point.
     """
     # pylint: disable-msg=R0911,R0912,R0915
-    
+
     usage = USAGE % ((args[0],) * 5)
 
     try:

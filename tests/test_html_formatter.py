@@ -18,7 +18,8 @@ from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.formatters.html import escape_html
 
-tokensource = list(PythonLexer().get_tokens(file(os.path.join(testdir, testfile)).read()))
+tokensource = list(PythonLexer().get_tokens(file(
+    os.path.join(testdir, testfile)).read()))
 
 class HtmlFormatterTest(unittest.TestCase):
     def test_correct_output(self):
@@ -62,7 +63,7 @@ class HtmlFormatterTest(unittest.TestCase):
                         dict(linenos=True),
                         dict(linenos=True, full=True),
                         dict(linenos=True, full=True, noclasses=True)]:
-        
+
             outfile = StringIO.StringIO()
             fmt = HtmlFormatter(**optdict)
             fmt.format(tokensource, outfile)
