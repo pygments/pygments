@@ -187,8 +187,10 @@ class HtmlFormatter(Formatter):
 
     `cssfile`
         If the `full` option is true and this option is given, it must be the
-        name of an external file. The stylesheet is then written to this file
-        instead of the HTML file. *New in Pygments 0.6.*
+        name of an external file. If the filename does not include an absolute
+        path, the file's path will be assumed to be relative to the main output
+        file's path, if the latter can be found. The stylesheet is then written
+        to this file instead of the HTML file. *New in Pygments 0.6.*
 
     `linenospecial`
         If set to a number n > 0, every nth line number is given the CSS
@@ -345,13 +347,20 @@ class HtmlFormatter(Formatter):
 
     def _wrap_full(self, inner, outfile):
         if self.cssfile:
-            try:
-                filename = outfile.name
-                cssfilename = os.path.join(os.path.dirname(filename), self.cssfile)
-            except AttributeError:
-                print >>sys.stderr, 'Note: Cannot determine output file name, ' \
-                      'using current directory as base for the CSS file name'
+            if os.path.isabs(self.cssfile):
+                # it's an absolute filename
                 cssfilename = self.cssfile
+            else:
+                try:
+                    filename = outfile.name
+                    if not filename or filename[0] == '<':
+                        # pseudo files, e.g. name == '<fdopen>'
+                        raise AttributeError
+                    cssfilename = os.path.join(os.path.dirname(filename), self.cssfile)
+                except AttributeError:
+                    print >>sys.stderr, 'Note: Cannot determine output file name, ' \
+                          'using current directory as base for the CSS file name'
+                    cssfilename = self.cssfile
             # write CSS file 
             try:
                 cf = open(cssfilename, "w")
