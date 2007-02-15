@@ -51,7 +51,7 @@ class PythonLexer(RegexLexer):
             (r'\\\n', Text),
             (r'\\', Text),
             (r'(in|is|and|or|not)\b', Operator.Word),
-            (r'!=|==|<<|>>|[-+/*%=<>&^|.]', Operator),
+            (r'!=|==|<<|>>|[-~+/*%=<>&^|.]', Operator),
             (r'(assert|break|continue|del|elif|else|except|exec|'
              r'finally|for|global|if|lambda|pass|print|raise|'
              r'return|try|while|yield|as|with)\b', Keyword),
