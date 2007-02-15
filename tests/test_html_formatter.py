@@ -45,13 +45,13 @@ class HtmlFormatterTest(unittest.TestCase):
         fmt1.format(tokensource, tfile)
         try:
             fmt2.format(tokensource, tfile)
+            self.assert_(isfile(join(testdir, 'fmt2.css')))
         except IOError:
             # test directory not writable
             pass
         tfile.close()
 
-        self.assert_(isfile(join(dirname(tfile.name), 'my.css')))
-
+        self.assert_(isfile(join(dirname(tfile.name), 'fmt1.css')))
         os.unlink(join(dirname(tfile.name), 'fmt1.css'))
         try:
             os.unlink(join(testdir, 'fmt2.css'))
