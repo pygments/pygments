@@ -727,6 +727,7 @@ class JavaLexer(RegexLexer):
             (r'(class)(\s+)', bygroups(Keyword, Text), 'class'),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
+            (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
             (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
             (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
             (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?-]', Operator),
@@ -736,8 +737,7 @@ class JavaLexer(RegexLexer):
             (r'\n', Text)
         ],
         'class': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
-            (r'', Text, '#pop'), # not really a class definition
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
         ]
     }
 
