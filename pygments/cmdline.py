@@ -24,7 +24,7 @@ from pygments.styles import get_all_styles, get_style_by_name
 
 
 USAGE = """\
-Usage: %s [-l <lexer>] [-F <filter>[:<options]] [-f <formatter>]
+Usage: %s [-l <lexer>] [-F <filter>[:<options>]] [-f <formatter>]
           [-O <options>] [-o <outfile>] [<infile>]
 
        %s -S <style> -f <formatter> [-a <arg>] [-O <options>]
