@@ -379,8 +379,8 @@ class ApacheConfLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^(\s*)(#.*?)$', bygroups(Text, Comment)),
             (r'\s+', Text),
+            (r'(#.*?)$', Comment),
             (r'(<[^\s>]+)(?:(\s+)(.*?))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
             (r'([a-zA-Z][a-zA-Z0-9]*)(\s+)',
