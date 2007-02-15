@@ -19,7 +19,7 @@ class DefaultStyle(Style):
     The default style (inspired by Emacs 22).
     """
 
-    background_color = "#f2f2f2"
+    background_color = "#f8f8f8"
     default_style = ""
 
     styles = {
