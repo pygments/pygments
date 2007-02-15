@@ -181,6 +181,8 @@ class HtmlFormatter(Formatter):
 
     `cssclass`
         CSS class for the wrapping ``<div>`` tag (default: ``'highlight'``).
+        If you set this option, the default selector for `get_style_defs()`
+        will be this class.
 
     `cssstyles`
         Inline CSS styles for the wrapping ``<div>`` tag (default: ``''``).
@@ -313,21 +315,25 @@ class HtmlFormatter(Formatter):
                 # hierarchy (necessary for CSS cascading rules!)
                 c2s[name] = (style[:-2], ttype, len(ttype))
 
-    def get_style_defs(self, arg=''):
+    def get_style_defs(self, arg=None):
         """
-        Return CSS style definitions for the classes produced by the
-        current highlighting style. ``arg`` can be a string of selectors
-        to insert before the token type classes.
+        Return CSS style definitions for the classes produced by the current
+        highlighting style. ``arg`` can be a string or list of selectors to
+        insert before the token type classes.
         """
+        if arg is None:
+            arg = ('cssclass' in self.options and '.'+self.cssclass or '')
         if isinstance(arg, basestring):
             args = [arg]
         else:
             args = list(arg)
 
         def prefix(cls):
+            if cls:
+                cls = '.' + cls
             tmp = []
             for arg in args:
-                tmp.append((arg and arg + ' ' or '') + '.' + cls)
+                tmp.append((arg and arg + ' ' or '') + cls)
             return ', '.join(tmp)
 
         styles = [(level, ttype, cls, style)
@@ -342,7 +348,7 @@ class HtmlFormatter(Formatter):
             if Text in self.ttype2class:
                 text_style = ' ' + self.class2style[self.ttype2class[Text]][0]
             lines.insert(0, '%s { background: %s;%s }' %
-                         (arg, self.style.background_color, text_style))
+                         (prefix(''), self.style.background_color, text_style))
         return '\n'.join(lines)
 
     def _wrap_full(self, inner, outfile):

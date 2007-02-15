@@ -93,3 +93,17 @@ class HtmlFormatterTest(unittest.TestCase):
             self.failIf(ret, 'nsgmls run reported errors')
 
         os.unlink(pathname)
+
+    def test_get_style_defs(self):
+        fmt = HtmlFormatter()
+        sd = fmt.get_style_defs()
+        self.assert_(sd.startswith('.'))
+        
+        fmt = HtmlFormatter(cssclass='foo')
+        sd = fmt.get_style_defs()
+        self.assert_(sd.startswith('.foo'))
+        sd = fmt.get_style_defs('.bar')
+        self.assert_(sd.startswith('.bar'))
+        sd = fmt.get_style_defs(['.bar', '.baz'])
+        fl = sd.splitlines()[0]
+        self.assert_('.bar' in fl and '.baz' in fl)
