@@ -13,7 +13,8 @@ import sys, os
 import unittest
 import StringIO
 
-from pygments import cmdline_main, highlight
+from pygments import highlight
+from pygments.cmdline import main as cmdline_main
 
 
 def run_cmdline(*args):
