@@ -737,7 +737,7 @@ class JavaLexer(RegexLexer):
         ],
         'class': [
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
-            (r'', Text, '#pop'),
+            (r'', Text, '#pop'), # not really a class definition
         ]
     }
 
