@@ -8,10 +8,11 @@ From Pygments 0.7, the source distribution ships a `Moin`_ parser plugin that
 can be used to get Pygments highlighting in Moin wiki pages.
 
 To use it, copy the file `external/moin-parser.py` from the Pygments
-distribution to the `data/plugin/parser` subdirectory of your Moin instance,
-edit the options at the top of the file and give the file the name that the
-parser directive should have. For example, if you name the file ``code.py``, you
-can get a highlighted Python code sample with this Wiki markup::
+distribution to the `data/plugin/parser` subdirectory of your Moin instance.
+Edit the options at the top of the file (currently ``ATTACHMENTS`` and
+``INLINESTYLES``) and rename the file to the name that the parser directive
+should have. For example, if you name the file ``code.py``, you can get a
+highlighted Python code sample with this Wiki markup::
 
     {{{
     #!code python
