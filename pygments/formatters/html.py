@@ -144,8 +144,8 @@ class HtmlFormatter(Formatter):
         td .code .cm { color: #999999 }
         ...
 
-    If you have pygments 0.6 or higher you can also pass a list of tuple to the
-    `get_style_defs` method to request multiple prefixes for the tokens:
+    If you have Pygments 0.6 or higher, you can also pass a list or tuple to the
+    `get_style_defs()` method to request multiple prefixes for the tokens:
 
     .. sourcecode:: python
 
@@ -166,6 +166,18 @@ class HtmlFormatter(Formatter):
     `nowrap`
         If set to ``True``, don't wrap the tokens at all, not even inside a ``<pre>``
         tag. This disables all other options (default: ``False``).
+
+    `full`
+        Tells the formatter to output a "full" document, i.e. a complete
+        self-contained document (default: ``False``).
+
+    `title`
+        If `full` is true, the title that should be used to caption the
+        document (default: ``''``).
+
+    `style`
+        The style to use, can be a string or a Style subclass (default:
+        ``'default'``).
 
     `noclasses`
         If set to true, token ``<span>`` tags will not use CSS classes, but
@@ -193,6 +205,15 @@ class HtmlFormatter(Formatter):
         path, the file's path will be assumed to be relative to the main output
         file's path, if the latter can be found. The stylesheet is then written
         to this file instead of the HTML file. *New in Pygments 0.6.*
+
+    `linenos`
+        If set to ``True``, output line numbers (default: ``False``).
+
+    `linenostart`
+        The line number for the first line (default: ``1``).
+
+    `linenostep`
+        If set to a number n > 1, only every nth line number is printed.
 
     `linenospecial`
         If set to a number n > 0, every nth line number is given the CSS
