@@ -25,6 +25,10 @@ class RtfFormatter(Formatter):
 
     Additional options accepted:
 
+    `style`
+        The style to use, can be a string or a Style subclass (default:
+        ``'default'``).
+
     `fontface`
         The used font famliy, for example ``Bitstream Vera Sans``. Defaults to
         some generic font which is supposed to have fixed width.
