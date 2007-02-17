@@ -36,6 +36,9 @@ directory.
 Installing the development version
 ==================================
 
+If you want to play around with the code
+----------------------------------------
+
 1.  Install `Subversion`_
 2.  ``svn co http://trac.pocoo.org/repos/pygments/trunk pygments``
 3.  ``cd pygments``
@@ -44,6 +47,17 @@ Installing the development version
 
 As an alternative to steps 4 and 5 you can also do ``python setup.py develop``
 which will install the package via setuptools in development mode.
+
+If you just want the latest features and use them
+-------------------------------------------------
+
+::
+    
+    sudo easy_install Pygments==dev
+
+This will install a Pygments egg containing the latest Subversion trunk code
+in your Python installation's site-packages directory.
+
 
 .. _download page: http://pygments.org/download/
 .. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
