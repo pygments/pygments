@@ -66,8 +66,6 @@ def run_tests(with_coverage=False):
     # needed to avoid confusion involving atexit handlers
     import logging
 
-    #orig_modules = sys.modules.keys()
-
     if sys.argv[1:]:
         # test only files given on cmdline
         files = [entry + '.py' for entry in sys.argv[1:] if entry.startswith('test_')]
@@ -104,8 +102,7 @@ def run_tests(with_coverage=False):
             for name, thing in globs.iteritems():
                 if name.endswith('Test'):
                     tests.append((name, unittest.makeSuite(thing)))
-            # PY24: use key keyword arg
-            tests.sort(lambda x, y: cmp(x[0], y[0]))
+            tests.sort()
             suite = unittest.TestSuite()
             suite.addTests([x[1] for x in tests])
             runner.run(suite)
