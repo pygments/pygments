@@ -13,7 +13,7 @@ PYTHON ?= python
 export PYTHONPATH = $(shell echo "$$PYTHONPATH"):$(shell python -c 'import os; print ":".join(os.path.abspath(line.strip()) for line in file("PYTHONPATH"))' 2>/dev/null)
 
 .PHONY: all apidocs check clean clean-pyc codetags docs epydoc mapfiles \
-	pylint reindent test
+	pylint reindent test test-coverage
 
 all: clean-pyc check test
 
@@ -68,3 +68,6 @@ reindent:
 
 test:
 	@$(PYTHON) tests/run.py $(TESTS)
+
+test-coverage:
+	@$(PYTHON) tests/run.py -C $(TESTS)

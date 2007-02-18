@@ -18,7 +18,7 @@ doctype_lookup_re = re.compile(r'''(?smx)
      [a-zA-Z_][a-zA-Z0-9]*\s+
      [a-zA-Z_][a-zA-Z0-9]*\s+
      "[^"]*")
-     [^>]+>
+     [^>]*>
 ''')
 tag_re = re.compile(r'<(.+?)(\s.*?)?>.*?</\1>(?uism)')
 
@@ -37,6 +37,12 @@ def get_bool_opt(options, optname, default=None):
     string = options.get(optname, default)
     if isinstance(string, bool):
         return string
+    elif isinstance(string, int):
+        return bool(string)
+    elif not isinstance(string, basestring):
+        raise OptionError('Invalid type %r for option %s; use '
+                          '1/0, yes/no, true/false, on/off' % (
+                          string, optname))
     elif string.lower() in ('1', 'yes', 'true', 'on'):
         return True
     elif string.lower() in ('0', 'no', 'false', 'off'):
@@ -51,6 +57,10 @@ def get_int_opt(options, optname, default=None):
     string = options.get(optname, default)
     try:
         return int(string)
+    except TypeError:
+        raise OptionError('Invalid type %r for option %s; you '
+                          'must give an integer value' % (
+                          string, optname))        
     except ValueError:
         raise OptionError('Invalid value %r for option %s; you '
                           'must give an integer value' % (
@@ -64,7 +74,7 @@ def get_list_opt(options, optname, default=None):
     elif isinstance(val, (list, tuple)):
         return list(val)
     else:
-        raise OptionError('Invalid value %r for option %s; you '
+        raise OptionError('Invalid type %r for option %s; you '
                           'must give a list value' % (
                           val, optname))
 
