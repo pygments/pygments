@@ -364,7 +364,7 @@ class RegexLexerMeta(LexerMeta):
 
             assert type(tdef) is tuple, "wrong rule def %r" % tdef
 
-            rex = re.compile(tdef[0], rflags)
+            rex = re.compile(tdef[0], rflags).match
 
             assert type(tdef[1]) is _TokenType or callable(tdef[1]), \
                    'token type must be simple type or callable, not %r' % tdef[1]
@@ -457,8 +457,8 @@ class RegexLexer(Lexer):
         statestack = list(stack)
         statetokens = self._tokens[statestack[-1]]
         while 1:
-            for rex, action, new_state in statetokens:
-                m = rex.match(text, pos)
+            for rexmatch, action, new_state in statetokens:
+                m = rexmatch(text, pos)
                 if m:
                     # print rex.pattern
                     if type(action) is _TokenType:
@@ -529,8 +529,8 @@ class ExtendedRegexLexer(RegexLexer):
             statetokens = self._tokens[ctx.stack[-1]]
             text = ctx.text
         while 1:
-            for rex, action, new_state in statetokens:
-                m = rex.match(text, ctx.pos, ctx.end)
+            for rexmatch, action, new_state in statetokens:
+                m = rexmatch(text, ctx.pos, ctx.end)
                 if m:
                     if type(action) is _TokenType:
                         yield ctx.pos, action, m.group()

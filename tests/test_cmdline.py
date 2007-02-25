@@ -62,6 +62,10 @@ class CmdLineTest(unittest.TestCase):
         self.assertEquals(c, 0)
         self.assert_('HTML' in o)
 
+    def test_S_opt(self):
+        c, o, e = run_cmdline("-S", "default", "-f", "html", "-O", "linenos=1")
+        self.assertEquals(c, 0)
+
     def test_invalid_opts(self):
         for opts in [("-L", "-lpy"), ("-L", "-fhtml"), ("-L", "-Ox"),
                      ("-a",), ("-Sst", "-lpy"), ("-H",),

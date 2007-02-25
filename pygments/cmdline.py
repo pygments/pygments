@@ -239,8 +239,7 @@ def main(args):
 
     # parse -O options
     O_opts = _parse_options(O_opts)
-    # parse -F options
-    F_opts = _parse_filters(F_opts)
+    opts.pop('-O', None)
 
     # handle ``pygmentize -S``
     S_opt = opts.pop('-S', None)
@@ -269,6 +268,10 @@ def main(args):
     if a_opt is not None:
         print >>sys.stderr, usage
         return 2
+
+    # parse -F options
+    F_opts = _parse_filters(F_opts)
+    opts.pop('-F', None)
 
     # select formatter
     outfn = opts.pop('-o', None)
