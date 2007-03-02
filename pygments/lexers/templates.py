@@ -220,26 +220,27 @@ class DjangoLexer(RegexLexer):
             (r'\{', Other)
         ],
         'varnames': [
-            (r'[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*',
-             Name.Variable),
+            (r'[a-zA-Z][a-zA-Z0-9_]*', Name.Variable),
+            (r'\.[a-zA-Z0-9_]+', Name.Variable),
             (r'(\|)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Operator, Text, Name.Function)),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
+            (r'([{}()\[\]+\-*/,:]|[><=]=?)', Operator),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ],
         'var': [
             (r'\s+', Text),
-            include('varnames'),
-            (r'\}\}', Comment.Preproc, '#pop')
+            (r'\}\}', Comment.Preproc, '#pop'),
+            include('varnames')
         ],
         'block': [
             (r'\s+', Text),
-            (r'(in|as|reversed|not|count|and|or|with|equals|accepting)\b',
+            (r'(in|as|reversed|not|count|and|or|with|equals|is|accepting)\b',
              Keyword),
-            include('varnames'),
             (r'\%\}', Comment.Preproc, '#pop'),
+            include('varnames'),
             (r'.', Punctuation)
         ]
     }
