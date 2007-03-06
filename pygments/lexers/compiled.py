@@ -5,7 +5,8 @@
 
     Lexers for compiled languages.
 
-    :copyright: 2006-2007 by Georg Brandl, Armin Ronacher, Christoph Hack.
+    :copyright: 2006-2007 by Georg Brandl, Armin Ronacher, Christoph Hack,
+                Whitney Young.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -25,7 +26,7 @@ from pygments.token import \
 
 
 __all__ = ['CLexer', 'CppLexer', 'DelphiLexer', 'JavaLexer', 'DylanLexer',
-           'OcamlLexer']
+           'OcamlLexer', 'ObjectiveCLexer']
 
 
 class CLexer(RegexLexer):
@@ -863,5 +864,121 @@ class OcamlLexer(RegexLexer):
             include('escape-sequence'),
             (r'\\\n', String.Double),
             (r'"', String.Double, '#pop'),
+        ]
+    }
+
+
+class ObjectiveCLexer(RegexLexer):
+    """
+    For Objective-C source code with preprocessor directives.
+    """
+
+    name = 'Objective-C'
+    aliases = ['objective-c', 'objectivec', 'obj-c', 'objc']
+    #XXX: objc has .h files too :-/
+    filenames = ['*.m']
+    mimetypes = ['text/x-objective-c']
+
+    #: optional Comment or Whitespace
+    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+
+    tokens = {
+        'whitespace': [
+            (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
+            (r'^\s*#', Comment.Preproc, 'macro'),
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuation
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+        ],
+        'statements': [
+            (r'(L|@)?"', String, 'string'),
+            (r"(L|@)?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
+            (r'0[0-7]+[Ll]?', Number.Oct),
+            (r'\d+[Ll]?', Number.Integer),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'[()\[\],.]', Punctuation),
+            (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
+             r'for|goto|if|register|restricted|return|sizeof|static|struct|'
+             r'switch|typedef|union|volatile|virtual|while|@selector|'
+             r'@private|@protected|@public|@encode|'
+             r'@synchronized|@try|@throw|@catch|@finally|@end)\b', Keyword),
+            (r'(int|long|float|short|double|char|unsigned|signed|void|'
+             r'id|BOOL|IBOutlet|IBAction|SEL)\b', Keyword.Type),
+            (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
+            (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
+             r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
+            (r'(TRUE|FALSE|nil|NULL)\b', Name.Builtin),
+            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+        ],
+        'root': [
+            include('whitespace'),
+            # functions
+            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
+             r'(\s*\([^;]*?\))'                      # signature
+             r'(' + _ws + r')({)',
+             bygroups(using(this), Name.Function, using(this), Text, Punctuation),
+             'function'),
+            # function declarations
+            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
+             r'(\s*\([^;]*?\))'                      # signature
+             r'(' + _ws + r')(;)',
+             bygroups(using(this), Name.Function, using(this), Text, Punctuation)),           
+            (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text), 'forward_classname'),
+            (r'(\s*)(@end)(\s*)', bygroups(Text, Keyword, Text)),
+            ('', Text, 'statement'),
+        ],
+        'classname' : [
+            # interface definition that inherits
+            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*:\s*)([a-zA-Z_][a-zA-Z0-9_]*)?', bygroups(Name.Class, Text, Name.Class), '#pop'),
+            # interface definition for a category
+            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\([a-zA-Z_][a-zA-Z0-9_]\)*)', bygroups(Name.Class, Text, Name.Label), '#pop'),
+            # simple interface / implementation
+            ('([a-zA-Z_][a-zA-Z0-9_]*)', Name.Class, '#pop')
+        ],
+        'forward_classname' : [
+          ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*,\s*)', bygroups(Name.Class, Text), 'forward_classname'),
+          ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*;?)', bygroups(Name.Class, Text), '#pop')
+        ],
+        'statement' : [
+            include('whitespace'),
+            include('statements'),
+            ('[{}]', Punctuation),
+            (';', Punctuation, '#pop'),
+        ],
+        'function': [
+            include('whitespace'),
+            include('statements'),
+            (';', Punctuation),
+            ('{', Punctuation, '#push'),
+            ('}', Punctuation, '#pop'),
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'[^\\"\n]+', String), # all other characters
+            (r'\\\n', String), # line continuation
+            (r'\\', String), # stray backslash
+        ],
+        'macro': [
+            (r'[^/\n]+', Comment.Preproc),
+            (r'/[*](.|\n)*?[*]/', Comment),
+            (r'//.*?\n', Comment, '#pop'),
+            (r'/', Comment.Preproc),
+            (r'(?<=\\)\n', Comment.Preproc),
+            (r'\n', Comment.Preproc, '#pop'),
+        ],
+        'if0': [
+            (r'^\s*#if.*?(?<!\\)\n', Comment, '#push'),
+            (r'^\s*#endif.*?(?<!\\)\n', Comment, '#pop'),
+            (r'.*?\n', Comment),
         ]
     }
