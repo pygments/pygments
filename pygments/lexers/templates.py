@@ -220,6 +220,7 @@ class DjangoLexer(RegexLexer):
             (r'\{', Other)
         ],
         'varnames': [
+            (r'_', Name.Builting),
             (r'[a-zA-Z][a-zA-Z0-9_]*', Name.Variable),
             (r'\.[a-zA-Z0-9_]+', Name.Variable),
             (r'(\|)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
