@@ -203,6 +203,8 @@ class DjangoLexer(RegexLexer):
     aliases = ['django', 'jinja']
     mimetypes = ['application/x-django-templating', 'application/x-jinja']
 
+    flags = re.M | re.S
+
     tokens = {
         'root': [
             (r'[^\{]+', Other),
@@ -215,16 +217,26 @@ class DjangoLexer(RegexLexer):
              bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
                       Comment, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
+            # raw jinja blocks
+            (r'(\{\%)(\s*)(raw)(\s*)(\%\})(.*?)'
+             r'(\{\%)(\s*)(endraw)(\s*)(\%\})',
+             bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
+                      Text, Comment.Preproc, Text, Keyword, Text,
+                      Comment.Preproc)),
             (r'(\{\%)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Comment.Preproc, Text, Keyword), 'block'),
             (r'\{', Other)
         ],
         'varnames': [
-            (r'_', Name.Builting),
-            (r'[a-zA-Z][a-zA-Z0-9_]*', Name.Variable),
-            (r'\.[a-zA-Z0-9_]+', Name.Variable),
             (r'(\|)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Operator, Text, Name.Function)),
+            (r'(is)(\s+)(not)?(\s+)?([a-zA-Z_][a-zA-Z0-9_]*)',
+             bygroups(Keyword, Text, Keyword, Text, Name.Function)),
+            (r'(_|(?:true|false|undefined|null))\b', Keyword.Pseudo),
+            (r'(in|as|reversed|recursive|not|and|or|with|is|accepting)\b', Keyword),
+            (r'(loop|block|forloop)\b', Name.Builtin),
+            (r'[a-zA-Z][a-zA-Z0-9_]*', Name.Variable),
+            (r'\.[a-zA-Z0-9_]+', Name.Variable),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
             (r'([{}()\[\]+\-*/,:]|[><=]=?)', Operator),
@@ -238,8 +250,6 @@ class DjangoLexer(RegexLexer):
         ],
         'block': [
             (r'\s+', Text),
-            (r'(in|as|reversed|not|count|and|or|with|equals|is|accepting)\b',
-             Keyword),
             (r'\%\}', Comment.Preproc, '#pop'),
             include('varnames'),
             (r'.', Punctuation)
