@@ -364,7 +364,11 @@ class RegexLexerMeta(LexerMeta):
 
             assert type(tdef) is tuple, "wrong rule def %r" % tdef
 
-            rex = re.compile(tdef[0], rflags).match
+            try:
+                rex = re.compile(tdef[0], rflags).match
+            except Exception, err:
+                raise ValueError("uncompilable regex %r in state %r of %r: %s" %
+                                 (tdef[0], state, cls, err))
 
             assert type(tdef[1]) is _TokenType or callable(tdef[1]), \
                    'token type must be simple type or callable, not %r' % tdef[1]
