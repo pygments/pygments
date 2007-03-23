@@ -16,7 +16,7 @@ from pygments.util import ClassNotFound
 #: Maps style names to 'submodule::classname'.
 STYLE_MAP = {
     'default':  'default::DefaultStyle',
-    'emacs':    'default::DefaultStyle',
+    'emacs':    'emacs::EmacsStyle',
     'friendly': 'friendly::FriendlyStyle',
     'colorful': 'colorful::ColorfulStyle',
     'autumn':   'autumn::AutumnStyle',
