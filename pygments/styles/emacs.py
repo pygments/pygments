@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.styles.default
-    ~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.styles.emacs
+    ~~~~~~~~~~~~~~~~~~~~~
 
-    The default highlighting style.
+    A highlighting style for Pygments, inspired by Emacs.
 
-    :copyright: 2007 by Tiberius Teng.
-    :copyright: 2006 by Georg Brandl.
+    :copyright: 2006-2007 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -15,52 +14,45 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic
 
 
-class DefaultStyle(Style):
+class EmacsStyle(Style):
     """
     The default style (inspired by Emacs 22).
     """
 
-    background_color = "#f2f2f2"
+    background_color = "#f8f8f8"
     default_style = ""
 
     styles = {
-        Comment:                   "italic #408080",
+        Comment:                   "italic #008800",
         Comment.Preproc:           "noitalic",
+        Comment.Special:           "noitalic bold",
 
-        #Keyword:                   "bold #AA22FF",
-        Keyword:                   "bold #008000",
+        Keyword:                   "bold #AA22FF",
         Keyword.Pseudo:            "nobold",
         Keyword.Type:              "",
 
         Operator:                  "#666666",
         Operator.Word:             "bold #AA22FF",
 
-        #Name.Builtin:              "#AA22FF",
-        Name.Builtin:              "#008000",
-        #Name.Function:             "#00A000",
-        Name.Function:             "#BC7A00",
+        Name.Builtin:              "#AA22FF",
+        Name.Function:             "#00A000",
         Name.Class:                "#0000FF",
         Name.Namespace:            "bold #0000FF",
         Name.Exception:            "bold #D2413A",
-        #Name.Variable:             "#B8860B",
-        Name.Variable:             "#19177C",
+        Name.Variable:             "#B8860B",
         Name.Constant:             "#880000",
         Name.Label:                "#A0A000",
         Name.Entity:               "bold #999999",
-        #Name.Attribute:            "#BB4444",
-        #Name.Attribute:            "#705406",
-        Name.Attribute:            "#7D6029",
+        Name.Attribute:            "#BB4444",
         Name.Tag:                  "bold #008000",
         Name.Decorator:            "#AA22FF",
 
-        #String:                    "#BB4444",
-        String:                    "#BA2121",
+        String:                    "#BB4444",
         String.Doc:                "italic",
         String.Interpol:           "bold #BB6688",
         String.Escape:             "bold #BB6622",
         String.Regex:              "#BB6688",
-        #String.Symbol:             "#B8860B",
-        String.Symbol:             "#19177C",
+        String.Symbol:             "#B8860B",
         String.Other:              "#008000",
         Number:                    "#666666",
 
