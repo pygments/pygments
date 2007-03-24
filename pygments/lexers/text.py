@@ -463,8 +463,8 @@ class RstLexer(RegexLexer):
         'root': [
             # Heading with overline
             (r'^(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)([ \t]*\n)(.+)(\n)(\1)(\n)',
-             bygroups(Generic.Heading, Text, using(this, state='inline'),
-             Text, Generic.Heading, Text)),
+             bygroups(Generic.Heading, Text, Generic.Heading,
+                      Text, Generic.Heading, Text)),
             # Plain heading
             (r'^(\S.*)(\n)(={3,}|-{3,}|`{3,}|:{3,}|\.{3,}|\'{3,}|"{3,}|'
              r'~{3,}|\^{3,}|_{3,}|\*{3,}|\+{3,}|#{3,})(\n)',
@@ -509,7 +509,7 @@ class RstLexer(RegexLexer):
             (r'``', String, 'literal'), # code
             (r'(`)(.+?)(`__?)',
              bygroups(Punctuation, using(this), Punctuation)), # reference
-            (r'`.+?`(:[a-zA-Z0-9-]+?:)?',
+            (r'(`.+?`)(:[a-zA-Z0-9-]+?:)?',
              bygroups(Name.Variable, Name.Attribute)), # role
             (r'(:[a-zA-Z0-9-]+?:)(`.+?`)',
              bygroups(Name.Attribute, Name.Variable)), # user-defined role
