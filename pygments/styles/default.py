@@ -25,7 +25,7 @@ class DefaultStyle(Style):
 
     styles = {
         Comment:                   "italic #408080",
-        Comment.Preproc:           "noitalic",
+        Comment.Preproc:           "noitalic #BC7A00",
 
         #Keyword:                   "bold #AA22FF",
         Keyword:                   "bold #008000",
@@ -38,8 +38,8 @@ class DefaultStyle(Style):
         #Name.Builtin:              "#AA22FF",
         Name.Builtin:              "#008000",
         #Name.Function:             "#00A000",
-        Name.Function:             "#BC7A00",
-        Name.Class:                "#0000FF",
+        Name.Function:             "#0000FF",
+        Name.Class:                "bold #0000FF",
         Name.Namespace:            "bold #0000FF",
         Name.Exception:            "bold #D2413A",
         #Name.Variable:             "#B8860B",
@@ -49,7 +49,7 @@ class DefaultStyle(Style):
         Name.Entity:               "bold #999999",
         #Name.Attribute:            "#BB4444",
         #Name.Attribute:            "#705406",
-        Name.Attribute:            "#7D6029",
+        Name.Attribute:            "#7D9029",
         Name.Tag:                  "bold #008000",
         Name.Decorator:            "#AA22FF",
 
