@@ -513,13 +513,14 @@ class RstLexer(RegexLexer):
             (r'\*\*.+?\*\*', Generic.Strong), # Strong emphasis
             (r'\*.+?\*', Generic.Emph), # Emphasis
             (r'\[.*?\]_', String), # Footnote or citation
-            (r'<.+?>', Name.Tag),
+            (r'<.+?>', Name.Tag), # Hyperlink
             (r'[^\\\n\[*`:]+', Text),
             (r'.', Text),
         ],
         'literal': [
-            (r'[^`]+', String),
+            (r'[^`\\]+', String),
+            (r'\\`', String),
             (r'``', String, '#pop'),
-            (r'`', String),
+            (r'[`\\]', String),
         ]
     }
