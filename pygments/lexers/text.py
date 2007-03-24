@@ -503,7 +503,8 @@ class RstLexer(RegexLexer):
             include('inline'),
         ],
         'inline': [
-            (r'``.+?``', String), # code
+            (r'\\.', Text), # escape
+            (r'``', String, 'literal'), # code
             # Phrase reference
             (r'(`)(.+?)(`__?)',
              bygroups(Punctuation, using(this), Punctuation)),
@@ -513,7 +514,12 @@ class RstLexer(RegexLexer):
             (r'\*.+?\*', Generic.Emph), # Emphasis
             (r'\[.*?\]_', String), # Footnote or citation
             (r'<.+?>', Name.Tag),
-            (r'[^\n\[*`:]+', Text),
+            (r'[^\\\n\[*`:]+', Text),
             (r'.', Text),
         ],
+        'literal': [
+            (r'[^`]+', String),
+            (r'``', String, '#pop'),
+            (r'`', String),
+        ]
     }
