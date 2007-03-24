@@ -213,7 +213,7 @@ class BashLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\b(if|fi|while|do|done|for|then|return|function|case|'
+            (r'\b(if|fi|else|while|do|done|for|then|return|function|case|'
              r'select|continue|until)\s*\b',
              Keyword),
             (r'\b(alias|bg|bind|break|builtin|caller|cd|command|compgen|'
