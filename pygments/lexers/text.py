@@ -498,8 +498,8 @@ class RstLexer(RegexLexer):
             (r'^([^ ].*(?<!::)\n)((?:(?: +.*)\n)+)',
              bygroups(using(this, state='inline'), using(this, state='inline'))),
             # Code blocks
-            (r'(::)(\n)((?:(?: +.*|)\n)+)',
-             bygroups(String.Escape, Text, String)),
+            (r'(::)(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\3.*|)\n)+)',
+             bygroups(String.Escape, Text, Text, String, Text, String)),
             include('inline'),
         ],
         'inline': [
