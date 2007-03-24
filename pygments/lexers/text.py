@@ -453,7 +453,7 @@ class RstLexer(RegexLexer):
     *New in Pygments 0.7.*
     """
     name = 'reStructuredText'
-    aliases = ['rst', 'restructuredtext']
+    aliases = ['rst', 'rest', 'restructuredtext']
     filenames = ['*.rst', '*.rest']
     mimetypes = ["text/x-rst"]
     flags = re.MULTILINE
@@ -470,20 +470,20 @@ class RstLexer(RegexLexer):
 
             # Bulleted lists
             (r'^(\s*)([-*+])( .+\n(?:\1  .+\n)*)',
-             bygroups(Text, Keyword, using(this, state='inline'))),
+             bygroups(Text, Number, using(this, state='inline'))),
             # Numbered lists
             (r'^(\s*)([0-9#ivxlcmIVXLCM]+\.)( .+\n(?:\1  .+\n)*)',
-             bygroups(Text, Keyword, using(this, state='inline'))),
+             bygroups(Text, Number, using(this, state='inline'))),
             (r'^(\s*)(\(?[0-9#ivxlcmIVXLCM]+\))( .+\n(?:\1  .+\n)*)',
-             bygroups(Text, Keyword, using(this, state='inline'))),
+             bygroups(Text, Number, using(this, state='inline'))),
             # Numbered, but keep words at BOL from becoming lists
             (r'^(\s*)([A-Z]+\.)( .+\n(?:\1  .+\n)+)',
-             bygroups(Text, Keyword, using(this, state='inline'))),
+             bygroups(Text, Number, using(this, state='inline'))),
             (r'^(\s*)(\(?[A-Za-z]+\))( .+\n(?:\1  .+\n)+)',
-             bygroups(Text, Keyword, using(this, state='inline'))),
+             bygroups(Text, Number, using(this, state='inline'))),
             # Introducing a section
-            (r'^( *\.\.)(\s*)(\w+)(::)(?:(\s*)(.+))?(\n(?:(?: +.*|)\n)+)$',
-             bygroups(Punctuation, Text, Number, Punctuation, Text, Number, Text)),
+            (r'^( *\.\.)(\s*)(\w+)(::)(?:([ \t]*)(.+))?',
+             bygroups(Punctuation, Text, Operator.Word, Punctuation, Text, Keyword)),
             # A reference target
             (r'^( *\.\.)(\s*)(\w+:)(.*?)$',
              bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
@@ -492,6 +492,8 @@ class RstLexer(RegexLexer):
              bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
             # Comments
             (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment.Preproc),
+            # Field list
+            (r'^( *)(:.*?:[ \t]+)(.*?)$', bygroups(Text, Name.Class, Name.Function)),
             # Definition list
             (r'^([^ ].*(?<!::)\n)((?:(?: +.*)\n)+)',
              bygroups(using(this, state='inline'), using(this, state='inline'))),
@@ -503,11 +505,12 @@ class RstLexer(RegexLexer):
         'inline': [
             (r'``.+?``', String), # code
             # Phrase reference
-            (r'(``?)(.+?)(\1__?)',
+            (r'(`)(.+?)(`__?)',
              bygroups(Punctuation, using(this), Punctuation)),
-            (r'`.+?`', Name),
-            (r'\*\*.+?\*\*', String), # Strong emphasis
-            (r'\*.+?\*', Number), # Emphasis
+            (r'`.+?`', Name.Variable),
+            (r'(:.*?:)(`.+?`)', bygroups(Name.Attribute, Name.Variable)), # user-defined role
+            (r'\*\*.+?\*\*', Generic.Strong), # Strong emphasis
+            (r'\*.+?\*', Generic.Emph), # Emphasis
             (r'\[.*?\]_', String), # Footnote or citation
             (r'<.+?>', Name.Tag),
             (r'[^\n\[*`:]+', Text),
