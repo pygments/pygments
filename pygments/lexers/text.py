@@ -461,7 +461,7 @@ class RstLexer(RegexLexer):
     tokens = {
         'root': [
             # Heading with overline
-            (r'^(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)(\n)(.+)(\n)(\1)(\n)',
+            (r'^(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)([ \t]*\n)(.+)(\n)(\1)(\n)',
              bygroups(Generic.Heading, Text, using(this, state='inline'),
              Text, Generic.Heading, Text)),
             # Plain heading
@@ -501,17 +501,18 @@ class RstLexer(RegexLexer):
              bygroups(using(this, state='inline'), using(this, state='inline'))),
             # Code blocks
             (r'(::)(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\3.*|)\n)+)',
-             bygroups(String.Escape, Text, Text, String, Text, String)),
+             bygroups(String.Escape, Text, String, String, Text, String)),
             include('inline'),
         ],
         'inline': [
             (r'\\.', Text), # escape
             (r'``', String, 'literal'), # code
-            # Phrase reference
             (r'(`)(.+?)(`__?)',
-             bygroups(Punctuation, using(this), Punctuation)),
-            (r'`.+?`', Name.Variable),
-            (r'(:.*?:)(`.+?`)', bygroups(Name.Attribute, Name.Variable)), # user-defined role
+             bygroups(Punctuation, using(this), Punctuation)), # reference
+            (r'`.+?`(:[a-zA-Z0-9-]+?:)?',
+             bygroups(Name.Variable, Name.Attribute)), # role
+            (r'(:[a-zA-Z0-9-]+?:)(`.+?`)',
+             bygroups(Name.Attribute, Name.Variable)), # user-defined role
             (r'\*\*.+?\*\*', Generic.Strong), # Strong emphasis
             (r'\*.+?\*', Generic.Emph), # Emphasis
             (r'\[.*?\]_', String), # Footnote or citation
