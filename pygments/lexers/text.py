@@ -465,7 +465,8 @@ class RstLexer(RegexLexer):
              bygroups(Generic.Heading, Text, using(this, state='inline'),
              Text, Generic.Heading, Text)),
             # Plain heading
-            (r'^(\S.*)(\n)(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)(\n)',
+            (r'^(\S.*)(\n)(={3,}|-{3,}|`{3,}|:{3,}|\.{3,}|\'{3,}|"{3,}|'
+             r'~{3,}|\^{3,}|_{3,}|\*{3,}|\+{3,}|#{3,})(\n)',
              bygroups(Generic.Heading, Text, Generic.Heading, Text)),
 
             # Bulleted lists
@@ -493,7 +494,8 @@ class RstLexer(RegexLexer):
             # Comments
             (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment.Preproc),
             # Field list
-            (r'^( *)(:.*?:[ \t]+)(.*?)$', bygroups(Text, Name.Class, Name.Function)),
+            (r'^( *)(:.*?:)([ \t]+)(.*?)$', bygroups(Text, Name.Class, Text,
+                                                     Name.Function)),
             # Definition list
             (r'^([^ ].*(?<!::)\n)((?:(?: +.*)\n)+)',
              bygroups(using(this, state='inline'), using(this, state='inline'))),
