@@ -21,6 +21,7 @@ except NameError:
 from pygments.lexer import RegexLexer, bygroups, include, using, this
 from pygments.token import Punctuation, \
     Text, Comment, Keyword, Name, String, Generic, Operator, Number
+from pygments.util import ClassNotFound
 
 
 __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
@@ -462,13 +463,12 @@ class RstLexer(RegexLexer):
         'root': [
             # Heading with overline
             (r'^(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)([ \t]*\n)(.+)(\n)(\1)(\n)',
-             bygroups(Generic.Heading, Text, using(this, state='inline'),
+             bygroups(Generic.Heading, Text, Generic.Heading,
              Text, Generic.Heading, Text)),
             # Plain heading
             (r'^(\S.*)(\n)(={3,}|-{3,}|`{3,}|:{3,}|\.{3,}|\'{3,}|"{3,}|'
              r'~{3,}|\^{3,}|_{3,}|\*{3,}|\+{3,}|#{3,})(\n)',
              bygroups(Generic.Heading, Text, Generic.Heading, Text)),
-
             # Bulleted lists
             (r'^(\s*)([-*+])( .+\n(?:\1  .+\n)*)',
              bygroups(Text, Number, using(this, state='inline'))),
@@ -486,7 +486,7 @@ class RstLexer(RegexLexer):
             (r'^( *\.\.)(\s*)(\w+)(::)(?:([ \t]*)(.+))?',
              bygroups(Punctuation, Text, Operator.Word, Punctuation, Text, Keyword)),
             # A reference target
-            (r'^( *\.\.)(\s*)(\w+:)(.*?)$',
+            (r'^( *\.\.)(\s*)([\w\t ]+:)(.*?)$',
              bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
             # A footnote target
             (r'^( *\.\.)(\s*)(\[.+\])(.*?)$',
