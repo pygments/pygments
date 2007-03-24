@@ -463,7 +463,7 @@ class RstLexer(RegexLexer):
         'root': [
             # Heading with overline
             (r'^(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)([ \t]*\n)(.+)(\n)(\1)(\n)',
-             bygroups(Generic.Heading, Text, Generic.Heading,
+             bygroups(Generic.Heading, Text, using(this, state='inline'),
              Text, Generic.Heading, Text)),
             # Plain heading
             (r'^(\S.*)(\n)(={3,}|-{3,}|`{3,}|:{3,}|\.{3,}|\'{3,}|"{3,}|'
