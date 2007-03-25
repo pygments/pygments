@@ -18,10 +18,11 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import RegexLexer, bygroups, include, using, this
+from pygments.lexer import RegexLexer, bygroups, include, using, this, \
+     do_insertions
 from pygments.token import Punctuation, \
     Text, Comment, Keyword, Name, String, Generic, Operator, Number
-from pygments.util import ClassNotFound
+from pygments.util import get_bool_opt
 
 
 __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
@@ -459,6 +460,48 @@ class RstLexer(RegexLexer):
     mimetypes = ["text/x-rst"]
     flags = re.MULTILINE
 
+    def _handle_sourcecode(self, match):
+        from pygments.lexers import get_lexer_by_name
+        from pygments.util import ClassNotFound
+
+        # section header
+        yield match.start(1), Punctuation, match.group(1)
+        yield match.start(2), Text, match.group(2)
+        yield match.start(3), Operator.Word, match.group(3)
+        yield match.start(4), Punctuation, match.group(4)
+        yield match.start(5), Text, match.group(5)
+        yield match.start(6), Keyword, match.group(6)
+        yield match.start(7), Text, match.group(7)
+
+        # lookup lexer if wanted and existing
+        lexer = None
+        if self.handlecodeblocks:
+            try:
+                lexer = get_lexer_by_name(match.group(6).strip())
+            except ClassNotFound:
+                pass
+        indention = match.group(8)
+        indention_size = len(indention)
+        code = (indention + match.group(9) + match.group(10) + match.group(11))
+
+        # no lexer for this language. handle it like it was a code block
+        if lexer is None:
+            yield match.start(8), String, code
+            return
+
+        # highlight the lines with the lexer.
+        ins = []
+        codelines = code.splitlines(True)
+        code = ''
+        for line in codelines:
+            if len(line) > indention_size:
+                ins.append((len(code), [(0, Text, line[:indention_size])]))
+                code += line[indention_size:]
+            else:
+                code += line
+        for item in do_insertions(ins, lexer.get_tokens_unprocessed(code)):
+            yield item
+
     tokens = {
         'root': [
             # Heading with overline
@@ -482,6 +525,10 @@ class RstLexer(RegexLexer):
              bygroups(Text, Number, using(this, state='inline'))),
             (r'^(\s*)(\(?[A-Za-z]+\))( .+\n(?:\1  .+\n)+)',
              bygroups(Text, Number, using(this, state='inline'))),
+            # sourcecode sections
+            (r'^( *\.\.)(\s*)((?:source)?code)(::)([ \t]*)([^\n]+)'
+             r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*|)\n)+)',
+             _handle_sourcecode),
             # Introducing a section
             (r'^( *\.\.)(\s*)(\w+)(::)(?:([ \t]*)(.+))?',
              bygroups(Punctuation, Text, Operator.Word, Punctuation, Text, Keyword)),
@@ -527,3 +574,7 @@ class RstLexer(RegexLexer):
             (r'[`\\]', String),
         ]
     }
+
+    def __init__(self, **options):
+        self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
+        RegexLexer.__init__(self, **options)
