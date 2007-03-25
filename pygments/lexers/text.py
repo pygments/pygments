@@ -525,11 +525,11 @@ class RstLexer(RegexLexer):
              bygroups(Text, Number, using(this, state='inline'))),
             (r'^(\s*)(\(?[A-Za-z]+\))( .+\n(?:\1  .+\n)+)',
              bygroups(Text, Number, using(this, state='inline'))),
-            # sourcecode sections
+            # Sourcecode directives
             (r'^( *\.\.)(\s*)((?:source)?code)(::)([ \t]*)([^\n]+)'
              r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*|)\n)+)',
              _handle_sourcecode),
-            # Introducing a section
+            # A directive
             (r'^( *\.\.)(\s*)(\w+)(::)(?:([ \t]*)(.+))?',
              bygroups(Punctuation, Text, Operator.Word, Punctuation, Text, Keyword)),
             # A reference target
