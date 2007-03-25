@@ -182,7 +182,7 @@ class HaskellLexer(RegexLexer):
             ('[_a-z][\\w\']*', Name.Variable),
             ('[A-Z][\\w\']*', Name),
             #  Operators
-            (r'[:!#$%&*+.\/<=>?@^|~-]+', Operator),
+            (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
             (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
