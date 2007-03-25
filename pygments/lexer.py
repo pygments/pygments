@@ -627,6 +627,8 @@ def do_insertions(insertions, tokens):
 
     # leftover tokens
     if insleft:
+        # no normal tokens, set realpos to zero
+        realpos = realpos or 0
         for p, t, v in itokens:
             yield realpos, t, v
             realpos += len(v)
