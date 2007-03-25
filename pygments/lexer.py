@@ -588,7 +588,7 @@ def do_insertions(insertions, tokens):
 
     The result is a combined token stream.
 
-    FIXME: The indices yielded by this function are not correct!
+    TODO: clean up the code here.
     """
     insertions = iter(insertions)
     try:
@@ -599,21 +599,34 @@ def do_insertions(insertions, tokens):
             yield item
         return
 
+    realpos = None
     insleft = True
+
+    # iterate over the token stream where we want to insert
+    # the tokens from the insertion list.
     for i, t, v in tokens:
+        # first iteration. store the postition of first item
+        if realpos is None:
+            realpos = i
         oldi = 0
         while insleft and i + len(v) >= index:
-            yield i, t, v[oldi:index-i]
-            for item in itokens:
-                yield item
-            oldi = index-i
+            tmpval = v[oldi:index - i]
+            yield realpos, t, tmpval
+            realpos += len(tmpval)
+            for it_index, it_token, it_value in itokens:
+                yield realpos, it_token, it_value
+                realpos += len(it_value)
+            oldi = index - i
             try:
                 index, itokens = insertions.next()
             except StopIteration:
                 insleft = False
                 break  # not strictly necessary
-        yield i, t, v[oldi:]
+        yield realpos, t, v[oldi:]
+        realpos += len(v) - oldi
+
     # leftover tokens
     if insleft:
-        for item in itokens:
-            yield item
+        for p, t, v in itokens:
+            yield realpos, t, v
+            realpos += len(v)
