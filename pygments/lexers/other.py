@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups
+from pygments.lexer import RegexLexer, include, bygroups, using, this
 from pygments.token import Error, Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number
 from pygments.util import shebang_matches
@@ -224,27 +224,24 @@ class BashLexer(RegexLexer):
              r'ulimit|umask|unalias|unset|wait)\s*\b',
              Name.Builtin),
             (r'#.*\n', Comment),
-            (r'(\b\w+\s*)(=)', bygroups(Name.Variable, Operator)),
-            (r'[\[\]{}\(\)=]+', Operator),
-            (r'\$\(', Keyword, 'paren'),
-            (r'\${', Keyword, 'curly'),
+            (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
+            (r'[\[\]{}()=]+', Operator),
+            (r'(\$\()(.*?)(\))', bygroups(Keyword, using(this), Keyword)),
+            (r'\${#?', Keyword, 'curly'),
             (r'`.+`', String),
             (r'\d+(?= |\Z)', Number),
             (r'\$#?(\w+|.)', Name.Variable),
             (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
             (r"'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
             (r'\s+', Text),
-            (r'[^=\s\n]+', Text),
+            (r'[^=\s\n\[\]{}()$]+', Text),
         ],
         'curly': [
             (r'}', Keyword, '#pop'),
             (r':-', Keyword),
+            (r'[a-zA-Z0-9]+', Name.Variable),
             (r'[^}:]+', Punctuation),
             (r':', Punctuation),
-        ],
-        'paren': [
-            (r'\)', Keyword, '#pop'),
-            (r'[^)]*', Punctuation),
         ],
     }
 
