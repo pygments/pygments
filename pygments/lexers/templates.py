@@ -209,21 +209,21 @@ class DjangoLexer(RegexLexer):
         'root': [
             (r'[^\{]+', Other),
             (r'\{\{', Comment.Preproc, 'var'),
-            # jinja comments
-            (r'\{\*.*?\*\}', Comment),
+            # jinja/django comments
+            (r'\{[*#].*?[*#]\}', Comment),
             # django comments
-            (r'(\{\%)(\s*)(comment)(\s*)(\%\})(.*?)'
-             r'(\{\%)(\s*)(endcomment)(\s*)(\%\})',
+            (r'(\{\%)(\-?\s*)(comment)(\s*\-?)(\%\})(.*?)'
+             r'(\{\%)(\-?\s*)(endcomment)(\s*\-?)(\%\})',
              bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
                       Comment, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
             # raw jinja blocks
-            (r'(\{\%)(\s*)(raw)(\s*)(\%\})(.*?)'
-             r'(\{\%)(\s*)(endraw)(\s*)(\%\})',
+            (r'(\{\%)(\-?\s*)(raw)(\s*\-?)(\%\})(.*?)'
+             r'(\{\%)(\-?\s*)(endraw)(\s*\-?)(\%\})',
              bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
                       Text, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
-            (r'(\{\%)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\{\%)(\-?\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Comment.Preproc, Text, Keyword), 'block'),
             (r'\{', Other)
         ],
@@ -245,12 +245,12 @@ class DjangoLexer(RegexLexer):
         ],
         'var': [
             (r'\s+', Text),
-            (r'\}\}', Comment.Preproc, '#pop'),
+            (r'(\-?)(\}\})', bygroups(Text, Comment.Preproc), '#pop'),
             include('varnames')
         ],
         'block': [
             (r'\s+', Text),
-            (r'\%\}', Comment.Preproc, '#pop'),
+            (r'(\-?)(\%\})', bygroups(Text, Comment.Preproc), '#pop'),
             include('varnames'),
             (r'.', Punctuation)
         ]
