@@ -371,7 +371,7 @@ class RegexLexerMeta(LexerMeta):
                                  (tdef[0], state, cls, err))
 
             assert type(tdef[1]) is _TokenType or callable(tdef[1]), \
-                   'token type must be simple type or callable, not %r' % tdef[1]
+                   'token type must be simple type or callable, not %r' % (tdef[1],)
 
             if len(tdef) == 2:
                 new_state = None
