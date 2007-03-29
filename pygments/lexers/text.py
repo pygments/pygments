@@ -453,6 +453,13 @@ class RstLexer(RegexLexer):
     For `reStructuredText <http://docutils.sf.net/rst.html>`_ markup.
 
     *New in Pygments 0.7.*
+
+    Additional options accepted:
+
+    `handlecodeblocks`
+        Highlight the contents of ``.. sourcecode:: langauge`` and
+        ``.. code:: language`` directives with a lexer for the given
+        language (default: ``True``). *New in Pygments 0.8.*
     """
     name = 'reStructuredText'
     aliases = ['rst', 'rest', 'restructuredtext']

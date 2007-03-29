@@ -41,4 +41,8 @@ files using this syntax::
 
         your code here
 
+*Loosely related note:* The ReST lexer now recognizes ``.. sourcecode::`` and
+``.. code::`` directives and highlights the contents in the specified language
+if the `handlecodeblocks` option is true.
+
 .. _ReST: http://docutils.sf.net/rst.html
