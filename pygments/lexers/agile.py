@@ -244,6 +244,8 @@ class PythonTracebackLexer(RegexLexer):
              bygroups(Comment, Text)), # for doctests...
             (r'^(.+)(: )(.+)(\n)',
              bygroups(Name.Class, Text, Name.Identifier, Text), '#pop'),
+            (r'^([a-zA-Z_][a-zA-Z0-9_]*)(\n)',
+             bygroups(Name.Class, Text), '#pop')
         ],
     }
 
