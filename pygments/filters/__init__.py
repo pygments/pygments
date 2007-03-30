@@ -15,7 +15,8 @@ except NameError:
     from sets import Set as set
 
 import re
-from pygments.token import String, Comment, Keyword, Name, string_to_tokentype
+from pygments.token import String, Comment, Keyword, Name, Error, \
+    string_to_tokentype
 from pygments.filter import Filter
 from pygments.util import get_list_opt, ClassNotFound
 from pygments.plugin import find_plugin_filters
@@ -147,8 +148,27 @@ class NameHighlightFilter(Filter):
                 yield ttype, value
 
 
+class ErrorToken(Exception):
+    pass
+
+class RaiseOnErrorTokenFilter(Filter):
+    """
+    Raise an ``pygments.filters.ErrorToken`` exception when the lexer
+    generates an error token.
+
+    *New in Pygments 0.8.*
+    """
+
+    def filter(self, lexer, stream):
+        for ttype, value in stream:
+            if ttype is Error:
+                raise ErrorToken(value)
+            yield ttype, value
+
+
 FILTERS = {
     'codetagify':     CodeTagFilter,
     'keywordcase':    KeywordCaseFilter,
     'highlight':      NameHighlightFilter,
+    'raiseonerror':   RaiseOnErrorTokenFilter,
 }
