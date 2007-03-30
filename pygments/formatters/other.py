@@ -77,13 +77,5 @@ class RawTokenFormatter(Formatter):
         lasttype = None
         lastval = u''
         for ttype, value in tokensource:
-            value = repr(value)
-            if ttype is lasttype:
-                lastval += value
-            else:
-                if lasttype:
-                    write("%s\t%s\n" % (lasttype, lastval))
-                lastval = value
-                lasttype = ttype
-        write("%s\t%s\n" % (lasttype, lastval))
+            write("%s\t%r\n" % (ttype, value))
         flush()
