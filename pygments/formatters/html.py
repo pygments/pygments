@@ -165,7 +165,7 @@ class HtmlFormatter(Formatter):
 
     `nowrap`
         If set to ``True``, don't wrap the tokens at all, not even inside a ``<pre>``
-        tag. This disables all other options (default: ``False``).
+        tag. This disables most other options (default: ``False``).
 
     `full`
         Tells the formatter to output a "full" document, i.e. a complete
