@@ -5,6 +5,8 @@ Version 0.8 (in development)
 ----------------------------
 (codename to be selected, released Apr XX, 2007)
 
+- Fixed the `do_insertions()` helper function to yield correct indices.
+
 - The ReST lexer now automatically highlights source code blocks in
   ".. sourcecode:: language" and ".. code:: language" directive blocks.
 
@@ -17,6 +19,8 @@ Version 0.8 (in development)
 
 - Fixed a bug in the command line code that disallowed ``-O`` options
   when using the ``-S`` option.
+
+- Fixed a bug in the `RawTokenFormatter`.
 
 - The `get_style_defs` method of HTML formatters now uses the `cssclass`
   option as the default selector if it was given.
