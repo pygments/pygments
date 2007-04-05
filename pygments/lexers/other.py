@@ -18,7 +18,7 @@ from pygments.util import shebang_matches
 
 
 __all__ = ['SqlLexer', 'BrainfuckLexer', 'BashLexer', 'BatchLexer',
-           'BefungeLexer']
+           'BefungeLexer', 'RedcodeLexer']
 
 
 class SqlLexer(RegexLexer):
@@ -302,3 +302,38 @@ class BatchLexer(RegexLexer):
             (r'([<>|])(\s*)(\w+)', bygroups(Punctuation, Text, Name)),
         ],
     }
+
+
+class RedcodeLexer(RegexLexer):
+    """
+    A simple Redcode lexer based on ICWS'94.
+    Adam Blinkinsop <blinks@acm.org>
+    """
+    name = 'Redcode'
+    aliases = ['redcode']
+    filenames = ['*.cw']
+
+    opcodes = ['DAT','MOV','ADD','SUB','MUL','DIV','MOD',
+               'JMP','JMZ','JMN','DJN','CMP','SLT','SPL',
+               'ORG','EQU','END']
+    modifiers = ['A','B','AB','BA','F','X','I']
+
+    tokens = {
+        'root': [
+            # Whitespace:
+            (r'\s+', Text),
+            (r';.*$', Comment.Single),
+            # Lexemes:
+            #  Identifiers
+            (r'\b(%s)\b' % '|'.join(opcodes), Name.Function),
+            (r'\b(%s)\b' % '|'.join(modifiers), Name.Decorator),
+            (r'[A-Za-z_][A-Za-z_0-9]+', Name),
+            #  Operators
+            (r'[-+*/%]', Operator),
+            (r'[#$@<>]', Operator), # mode
+            (r'[.,]', Punctuation), # mode
+            #  Numbers
+            (r'[-+]?\d+', Number.Integer),
+        ],
+    }
+
