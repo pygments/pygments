@@ -307,7 +307,9 @@ class BatchLexer(RegexLexer):
 class RedcodeLexer(RegexLexer):
     """
     A simple Redcode lexer based on ICWS'94.
-    Adam Blinkinsop <blinks@acm.org>
+    Contributed by Adam Blinkinsop <blinks@acm.org>.
+
+    *New in Pygments 0.8.*
     """
     name = 'Redcode'
     aliases = ['redcode']
