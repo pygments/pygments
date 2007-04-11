@@ -59,8 +59,8 @@ class PastieStyle(Style):
 
         Number:                 'bold #0000DD',
 
-        Generic.Heading:        '#999999',
-        Generic.Subheading:     '#aaaaaa',
+        Generic.Heading:        '#333',
+        Generic.Subheading:     '#666',
         Generic.Deleted:        'bg:#ffdddd #000000',
         Generic.Inserted:       'bg:#ddffdd #000000',
         Generic.Error:          '#aa0000',
