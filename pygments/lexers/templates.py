@@ -223,6 +223,10 @@ class DjangoLexer(RegexLexer):
              bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
                       Text, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
+            # filter blocks
+            (r'(\{\%)(\-?\s*)(filter)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+             bygroups(Comment.Preproc, Text, Keyword, Text, Name.Function),
+             'block'),
             (r'(\{\%)(\-?\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Comment.Preproc, Text, Keyword), 'block'),
             (r'\{', Other)
