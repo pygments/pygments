@@ -46,6 +46,6 @@ class TokenTest(unittest.TestCase):
         except SystemExit:
             pass
 
-        
+
 if __name__ == '__main__':
     unittest.main()

@@ -98,7 +98,7 @@ class HtmlFormatterTest(unittest.TestCase):
         fmt = HtmlFormatter()
         sd = fmt.get_style_defs()
         self.assert_(sd.startswith('.'))
-        
+
         fmt = HtmlFormatter(cssclass='foo')
         sd = fmt.get_style_defs()
         self.assert_(sd.startswith('.foo'))

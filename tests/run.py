@@ -76,8 +76,9 @@ def run_tests(with_coverage=False):
 
     WIDTH = 70
 
-    print >>sys.stderr, ('Pygments Test Suite running %s, stand by...' %
-                         (with_coverage and "with coverage analysis" or "")).center(WIDTH)
+    print >>sys.stderr, \
+        ('Pygments Test Suite running %s, stand by...' %
+         (with_coverage and "with coverage analysis" or "")).center(WIDTH)
     print >>sys.stderr, ('(using Python %s)' % sys.version.split()[0]).center(WIDTH)
     print >>sys.stderr, '='*WIDTH
 
