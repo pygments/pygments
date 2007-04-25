@@ -6,8 +6,9 @@
     Lexers for compiled languages.
 
     :copyright: 2006-2007 by Georg Brandl, Armin Ronacher, Christoph Hack,
-                Whitney Young.
-    :license: BSD, see LICENSE for more details.
+                Whitney Young, Kirk McDonald.
+    :license: BSD, see LICENSE for more details, the D lexer is licensed
+              under the MIT license and was contributed by Kirk McDonald.
 """
 
 import re
@@ -25,8 +26,8 @@ from pygments.token import \
      Error
 
 
-__all__ = ['CLexer', 'CppLexer', 'DelphiLexer', 'JavaLexer', 'DylanLexer',
-           'OcamlLexer', 'ObjectiveCLexer']
+__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer',
+           'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer']
 
 
 class CLexer(RegexLexer):
@@ -200,6 +201,90 @@ class CppLexer(RegexLexer):
             (r'^\s*#endif.*?(?<!\\)\n', Comment, '#pop'),
             (r'.*?\n', Comment),
         ]
+    }
+
+
+class DLexer(RegexLexer):
+    """
+    For D source.
+    """
+    name = 'D'
+    filenames = ['*.d', '*.di']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            #(r'\\\n', Text), # line continuations
+            # Comments
+            (r'//(.*?)\n', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'/\+', Comment, 'nestedcomment'),
+            # Keywords
+            (r'(abstract|alias|align|asm|assert|auto|body|break|case|cast'
+             r'|catch|class|const|continue|debug|default|delegate|delete'
+             r'|deprecated|do|else|enum|export|extern|finally|final'
+             r'|foreach_reverse|foreach|for|function|goto|if|import|inout'
+             r'|interface|invariant|in|is|lazy|mixin|module|new|out|override'
+             r'|package|pragma|private|protected|public|ref|return|scope'
+             r'|static|struct|super|switch|synchronized|template|this|throw'
+             r'|try|typedef|typeid|typeof|union|unittest|version|volatile'
+             r'|while|with)', Keyword
+            ),
+            (r'(bool|cdouble|cent|cfloat|char|creal|dchar|double|float|idouble'
+             r'|ifloat|int|ireal|long|real|short|ubyte|ucent|uint|ulong|ushort'
+             r'|ushort|void|wchar)', Keyword.Type
+            ),
+            (r'(false|true|null)', Keyword.Constant),
+            (r'(macro)', Keyword.Reserved),
+            # FloatLiteral
+            # -- HexFloat
+            (r'0[xX]([0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)[pP][+\-]?[0-9_]+[fFL]?[i]?', Number.Float),
+            # -- DecimalFloat
+            (r'[0-9_]+(\.[0-9_]+[eE][+\-]?[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+)[fFL]?[i]?', Number.Float),
+            (r'\.(0|[1-9][0-9_]*)([eE][+\-]?[0-9_]+)?[fFL]?[i]?', Number.Float),
+            # IntegerLiteral
+            # -- Binary
+            (r'0[Bb][01_]+', Number),
+            # -- Octal
+            (r'0[0-7_]+', Number.Oct),
+            # -- Hexadecimal
+            (r'0[xX][0-9a-fA-F_]+', Number.Hex),
+            # -- Decimal
+            (r'(0|[1-9][0-9_]*)([LUu]|Lu|LU|uL|UL)?', Number.Integer),
+            # CharacterLiteral
+            (r"""'(\\['"?\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
+             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|\\&\w+;|.)'""",
+             String.Char
+            ),
+            # StringLiteral
+            # -- WysiwygString
+            (r'(?s)r"[^"]*"[cwd]?', String),
+            # -- AlternateWysiwygString
+            (r'(?s)`[^`]*`[cwd]?', String),
+            # -- DoubleQuotedString
+            (r'(?s)"(\\"|[^"])*"[cwd]?', String),
+            # -- EscapeSequence
+            (r"""\\(['"?\\abfnrtv]|x[0-9a-fA-F]{2}|[0-7]{1,3}"""
+             r"""|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|&\w+;)""",
+             String
+            ),
+            # -- HexString
+            (r'(?s)x"[0-9a-fA-F_\s]*"[cwd]?', String),
+            # Tokens
+            (r'(~=|\^=|%=|\*=|==|!>=|!<=|!<>=|!<>|!<|!>|!=|>>>=|>>>|>>=|>>|>='
+             r'|<>=|<>|<<=|<<|<=|\+\+|\+=|--|-=|\|\||\|=|&&|&=|\.\.\.|\.\.|/=)'
+             r'|[/.&|\-+<>!()\[\]{}?,;:$=*%^~]', Text #Punctuation
+            ),
+            # Identifier
+            (r'[a-zA-Z_]\w*', Name),
+        ],
+        'nestedcomment': [
+            (r'[^+/]', Comment),
+            (r'/\+', Comment, '#push'),
+            (r'\+/', Comment, '#pop'),
+            (r'[+/]', Comment),
+        ],
     }
 
 
