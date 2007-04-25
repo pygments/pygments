@@ -7,8 +7,7 @@
 
     :copyright: 2006-2007 by Georg Brandl, Armin Ronacher, Christoph Hack,
                 Whitney Young, Kirk McDonald.
-    :license: BSD, see LICENSE for more details, the D lexer is licensed
-              under the MIT license and was contributed by Kirk McDonald.
+    :license: BSD, see LICENSE for more details.
 """
 
 import re
@@ -239,9 +238,11 @@ class DLexer(RegexLexer):
             (r'(macro)', Keyword.Reserved),
             # FloatLiteral
             # -- HexFloat
-            (r'0[xX]([0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)[pP][+\-]?[0-9_]+[fFL]?[i]?', Number.Float),
+            (r'0[xX]([0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)'
+             r'[pP][+\-]?[0-9_]+[fFL]?[i]?', Number.Float),
             # -- DecimalFloat
-            (r'[0-9_]+(\.[0-9_]+[eE][+\-]?[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+)[fFL]?[i]?', Number.Float),
+            (r'[0-9_]+(\.[0-9_]+[eE][+\-]?[0-9_]+|'
+             r'\.[0-9_]*|[eE][+\-]?[0-9_]+)[fFL]?[i]?', Number.Float),
             (r'\.(0|[1-9][0-9_]*)([eE][+\-]?[0-9_]+)?[fFL]?[i]?', Number.Float),
             # IntegerLiteral
             # -- Binary
@@ -1015,7 +1016,7 @@ class ObjectiveCLexer(RegexLexer):
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')(;)',
-             bygroups(using(this), Name.Function, using(this), Text, Punctuation)),           
+             bygroups(using(this), Name.Function, using(this), Text, Punctuation)),
             (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text), 'forward_classname'),
             (r'(\s*)(@end)(\s*)', bygroups(Text, Keyword, Text)),
@@ -1023,15 +1024,19 @@ class ObjectiveCLexer(RegexLexer):
         ],
         'classname' : [
             # interface definition that inherits
-            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*:\s*)([a-zA-Z_][a-zA-Z0-9_]*)?', bygroups(Name.Class, Text, Name.Class), '#pop'),
+            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*:\s*)([a-zA-Z_][a-zA-Z0-9_]*)?',
+             bygroups(Name.Class, Text, Name.Class), '#pop'),
             # interface definition for a category
-            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\([a-zA-Z_][a-zA-Z0-9_]\)*)', bygroups(Name.Class, Text, Name.Label), '#pop'),
+            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\([a-zA-Z_][a-zA-Z0-9_]\)*)',
+             bygroups(Name.Class, Text, Name.Label), '#pop'),
             # simple interface / implementation
             ('([a-zA-Z_][a-zA-Z0-9_]*)', Name.Class, '#pop')
         ],
         'forward_classname' : [
-          ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*,\s*)', bygroups(Name.Class, Text), 'forward_classname'),
-          ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*;?)', bygroups(Name.Class, Text), '#pop')
+          ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*,\s*)',
+           bygroups(Name.Class, Text), 'forward_classname'),
+          ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*;?)',
+           bygroups(Name.Class, Text), '#pop')
         ],
         'statement' : [
             include('whitespace'),

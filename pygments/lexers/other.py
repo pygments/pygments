@@ -338,4 +338,3 @@ class RedcodeLexer(RegexLexer):
             (r'[-+]?\d+', Number.Integer),
         ],
     }
-

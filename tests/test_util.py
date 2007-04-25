@@ -18,7 +18,7 @@ class UtilTest(unittest.TestCase):
     def test_getoptions(self):
         raises = self.assertRaises
         equals = self.assertEquals
-        
+
         equals(util.get_bool_opt({}, 'a', True), True)
         equals(util.get_bool_opt({}, 'a', 1), True)
         equals(util.get_bool_opt({}, 'a', 'true'), True)
@@ -39,14 +39,14 @@ class UtilTest(unittest.TestCase):
         def f1():
             """
             docstring headline
-            
+
             other text
             """
         def f2():
             """
             docstring
             headline
-        
+
             other text
             """
 
@@ -58,14 +58,15 @@ class UtilTest(unittest.TestCase):
             def analyse(text):
                 return 0.5
             analyse = util.make_analysator(analyse)
-        self.assertEquals(X.analyse(''), 0.5)        
+        self.assertEquals(X.analyse(''), 0.5)
 
     def test_shebang_matches(self):
         self.assert_(util.shebang_matches('#!/usr/bin/env python', r'python(2\.\d)?'))
         self.assert_(util.shebang_matches('#!/usr/bin/python2.4', r'python(2\.\d)?'))
         self.assert_(util.shebang_matches('#!/usr/bin/startsomethingwith python',
                                           r'python(2\.\d)?'))
-        self.assert_(util.shebang_matches('#!C:\\Python2.4\\Python.exe', r'python(2\.\d)?'))
+        self.assert_(util.shebang_matches('#!C:\\Python2.4\\Python.exe',
+                                          r'python(2\.\d)?'))
 
         self.failIf(util.shebang_matches('#!/usr/bin/python-ruby', r'python(2\.\d)?'))
         self.failIf(util.shebang_matches('#!/usr/bin/python/ruby', r'python(2\.\d)?'))
@@ -84,6 +85,6 @@ class UtilTest(unittest.TestCase):
             '<?xml ?><!DOCTYPE html PUBLIC  "-//W3C//DTD XHTML 1.0 Strict//EN">'))
         self.assert_(util.looks_like_xml('<html xmlns>abc</html>'))
         self.failIf(util.looks_like_xml('<html>'))
-        
+
 if __name__ == '__main__':
     unittest.main()

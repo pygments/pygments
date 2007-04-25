@@ -36,7 +36,7 @@ class BBCodeFormatter(Formatter):
     `style`
         The style to use, can be a string or a Style subclass (default:
         ``'default'``).
-    
+
     `codetag`
         If set to true, put the output into ``[code]`` tags (default:
         ``false``)

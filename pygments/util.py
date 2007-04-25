@@ -60,7 +60,7 @@ def get_int_opt(options, optname, default=None):
     except TypeError:
         raise OptionError('Invalid type %r for option %s; you '
                           'must give an integer value' % (
-                          string, optname))        
+                          string, optname))
     except ValueError:
         raise OptionError('Invalid value %r for option %s; you '
                           'must give an integer value' % (
