@@ -210,6 +210,7 @@ class DLexer(RegexLexer):
     name = 'D'
     filenames = ['*.d', '*.di']
     aliases = ['d']
+    mimetypes = ['text/x-dsrc']
 
     tokens = {
         'root': [
