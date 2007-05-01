@@ -209,6 +209,7 @@ class DLexer(RegexLexer):
     """
     name = 'D'
     filenames = ['*.d', '*.di']
+    aliases = ['d']
 
     tokens = {
         'root': [
