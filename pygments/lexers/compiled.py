@@ -283,7 +283,7 @@ class DLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name),
         ],
         'nestedcomment': [
-            (r'[^+/]', Comment),
+            (r'[^+/]+', Comment),
             (r'/\+', Comment, '#push'),
             (r'\+/', Comment, '#pop'),
             (r'[+/]', Comment),
