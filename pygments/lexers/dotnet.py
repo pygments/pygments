@@ -120,7 +120,7 @@ class CSharpLexer(RegexLexer):
         }
 
     def __init__(self, **options):
-        level = get_flag_opt(options, 'unicodelevel', self.tokens.keys(), 'none')
+        level = get_flag_opt(options, 'unicodelevel', self.tokens.keys(), 'basic')
         if level not in self._all_tokens:
             # compile the regexes now
             self._tokens = self.__class__.process_tokendef(level)
