@@ -16,15 +16,15 @@ To apply a filter, you can use the `add_filter()` method of a lexer:
 
     >>> from pygments.lexers import PythonLexer
     >>> l = PythonLexer()
-    >>> # as string
-    >>> l.add_filter("codetagify")
+    >>> # add a filter given by a string and options
+    >>> l.add_filter('codetagify', case='lower')
     >>> l.filters
     [<pygments.filters.CodeTagFilter object at 0xb785decc>]
-    >>> from pygments.filters import KeywordRewriteFilter
-    >>> # or class
-    >>> l.add_filter(KeywordRewriteFilter(keywordcase='lower'))
+    >>> from pygments.filters import KeywordCaseFilter
+    >>> # or give an instance
+    >>> l.add_filter(KeywordCaseFilter(case='lower'))
 
-The `add_filter()` method also takes keyword arguments which are forwarded to
+The `add_filter()` method takes keyword arguments which are forwarded to
 the constructor of the filter.
 
 To get a list of all registered filters by name, you can use the
