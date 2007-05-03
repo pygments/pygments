@@ -33,6 +33,14 @@ class OptionError(Exception):
     pass
 
 
+def get_flag_opt(options, optname, allowed, default=None):
+    string = options.get(optname, default)
+    if string not in allowed:
+        raise OptionError('Value for option %s must be one of %s' %
+                          (optname, ', '.join(map(str, allowed))))
+    return string
+
+
 def get_bool_opt(options, optname, default=None):
     string = options.get(optname, default)
     if isinstance(string, bool):

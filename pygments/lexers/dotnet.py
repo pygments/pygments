@@ -13,14 +13,38 @@ import re
 from pygments.lexer import RegexLexer, bygroups, using, this
 from pygments.token import Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Literal
+from pygments.util import get_flag_opt
+from pygments import unistring as uni
 
 __all__ = ['CSharpLexer', 'BooLexer', 'VbNetLexer']
 
+
+def _escape(st):
+    return st.replace(u'\\', ur'\\').replace(u'-', ur'\-').\
+           replace(u'[', ur'\[').replace(u']', ur'\]')
 
 class CSharpLexer(RegexLexer):
     """
     For `C# <http://msdn2.microsoft.com/en-us/vcsharp/default.aspx>`_
     source code.
+
+    Additional options accepted:
+
+    `unicodelevel`
+      Determines which Unicode characters this lexer allows for identifiers.
+      The possible values are:
+
+      * ``none`` -- only the ASCII letters and numbers are allowed. This
+        is the fastest selection.
+      * ``basic`` -- all Unicode characters from the specification except
+        category ``Lo`` are allowed.
+      * ``full`` -- all Unicode characters as specified in the C# specs
+        are allowed.  Note that this means a considerable slowdown since the
+        ``Lo`` category has more than 40,000 characters in it!
+
+      The default value is ``basic``.
+
+      *New in Pygments 0.8.*
     """
 
     name = 'C#'
@@ -28,55 +52,82 @@ class CSharpLexer(RegexLexer):
     filenames = ['*.cs']
     mimetypes = ['text/x-csharp'] # inferred
 
-    flags = re.MULTILINE | re.DOTALL
+    flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    tokens = {
-        'root': [
-            # method names
-            (r'^([ \t]*(?:[a-zA-Z_][a-zA-Z0-9_\.]*\s+)+?)' # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'                   # method name
-             r'(\s*\([^;]*?\))'                            # signature
-             r'(?=(?:\s|//.*?\n|/[*].*?[*]/)+\{)',         # lookahead for {
-             bygroups(using(this), Name.Function, using(this))),
-            (r'^\s*\[.*?\]', Name.Attribute),
-            (r'[^\S\n]+', Text),
-            (r'\\\n', Text), # line continuation
-            (r'//.*?\n', Comment),
-            (r'/[*](.|\n)*?[*]/', Comment),
-            (r'\n', Text),
-            (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
-            (r'[{}]', Keyword),
-            (r'@"(\\\\|\\"|[^"])*"', String),
-            (r'"(\\\\|\\"|[^"\n])*["\n]', String),
-            (r"'\\.'|'[^\\]'", String.Char),
-            (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?"
-             r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
-            (r'#[ \t]*(if|endif|else|elif|define|undef|'
-             r'line|error|warning|region|endregion)\b.*?\n', Comment.Preproc),
-            (r'(abstract|case|as|base|break|case|catch|'
-             r'checked|const|continue|default|delegate|'
-             r'do|else|enum|event|explicit|extern|false|finally|'
-             r'fixed|for|foreach|goto|if|implicit|in|interface|'
-             r'internal|is|lock|nwe|null|operator|'
-             r'out|override|params|private|protected|public|readonly|'
-             r'ref|return|sealed|sizeof|stackalloc|static|'
-             r'switch|this|throw|true|try|typeof|partial|'
-             r'unchecked|unsafe|virtual|void|while|'
-             r'get|set|new)\b', Keyword),
-            (r'(bool|byte|char|decimal|double|float|int|long|object|sbyte|'
-             r'short|string|uint|ulong|ushort)\b', Keyword.Type),
-            (r'(class|struct)(\s+)', bygroups(Keyword, Text), 'class'),
-            (r'(namespace|using)(\s+)', bygroups(Keyword, Text), 'namespace'),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
-        ],
-        'class': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
-        ],
-        'namespace': [
-            (r'(?=\()', Text, '#pop'), # using (resource)
-            (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace, '#pop')
-        ]
+    # for the range of allowed unicode characters in identifiers,
+    # see http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
+
+    levels = {
+        'none': '@?[_a-zA-Z][a-zA-Z0-9_]*',
+        'basic': ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
+                  '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
+                  uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
+        'full': ('@?(?:_|[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl')) + '])'
+                 + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
+                                                'Nl', 'Nd', 'Pc', 'Cf', 'Mn', 'Mc')) + ']*'),
     }
+
+    tokens = {}
+    token_variants = True
+
+    for levelname, cs_ident in levels.items():
+        tokens[levelname] = {
+            'root': [
+                # method names
+                (r'^([ \t]*(?:' + cs_ident + r'\s+)+?)'   # return arguments
+                 r'(' + cs_ident + ')'                    # method name
+                 r'(\s*\([^;]*?\))'                       # signature
+                 r'(?=(?:\s|//.*?\n|/[*].*?[*]/)+\{)',    # lookahead for {
+                 bygroups(using(this), Name.Function, using(this))),
+                (r'^\s*\[.*?\]', Name.Attribute),
+                (r'[^\S\n]+', Text),
+                (r'\\\n', Text), # line continuation
+                (r'//.*?\n', Comment),
+                (r'/[*](.|\n)*?[*]/', Comment),
+                (r'\n', Text),
+                (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
+                (r'[{}]', Keyword),
+                (r'@"(\\\\|\\"|[^"])*"', String),
+                (r'"(\\\\|\\"|[^"\n])*["\n]', String),
+                (r"'\\.'|'[^\\]'", String.Char),
+                (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?"
+                 r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
+                (r'#[ \t]*(if|endif|else|elif|define|undef|'
+                 r'line|error|warning|region|endregion)\b.*?\n', Comment.Preproc),
+                (r'(abstract|as|base|break|case|catch|'
+                 r'checked|const|continue|default|delegate|'
+                 r'do|else|enum|event|explicit|extern|false|finally|'
+                 r'fixed|for|foreach|goto|if|implicit|in|interface|'
+                 r'internal|is|lock|new|null|operator|'
+                 r'out|override|params|private|protected|public|readonly|'
+                 r'ref|return|sealed|sizeof|stackalloc|static|'
+                 r'switch|this|throw|true|try|typeof|'
+                 r'unchecked|unsafe|virtual|void|while|'
+                 r'get|set|new)\b', Keyword),
+                (r'(bool|byte|char|decimal|double|float|int|long|object|sbyte|'
+                 r'short|string|uint|ulong|ushort)\b', Keyword.Type),
+                (r'(class|struct)(\s+)', bygroups(Keyword, Text), 'class'),
+                (r'(namespace|using)(\s+)', bygroups(Keyword, Text), 'namespace'),
+                (cs_ident, Name),
+            ],
+            'class': [
+                (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            ],
+            'namespace': [
+                (r'(?=\()', Text, '#pop'), # using (resource)
+                (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace, '#pop')
+            ]
+        }
+
+    def __init__(self, **options):
+        level = get_flag_opt(options, 'unicodelevel', self.tokens.keys(), 'none')
+        if level not in self._all_tokens:
+            # compile the regexes now
+            self._tokens = self.__class__.process_tokendef(level)
+        else:
+            self._tokens = self._all_tokens[level]
+
+        RegexLexer.__init__(self, **options)
 
 
 class BooLexer(RegexLexer):

@@ -41,7 +41,14 @@ class LexersTest(unittest.TestCase):
             a(isinstance(result, float) and 0.0 <= result <= 1.0)
 
             if issubclass(lexer, RegexLexer):
-                a('root' in lexer._tokens, '%s has no root state' % lexer)
+                if not hasattr(lexer, '_tokens'):
+                    # if there's no "_tokens", the lexer has to be one with
+                    # multiple tokendef variants
+                    a(lexer.token_variants)
+                    for variant in lexer.tokens:
+                        a('root' in lexer.tokens[variant])
+                else:
+                    a('root' in lexer._tokens, '%s has no root state' % lexer)
 
             inst = lexer(opt1="val1", opt2="val2")
             tokens = list(inst.get_tokens(test_content))
