@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+     Number, Operator, Generic, Whitespace
 
 
 class AutumnStyle(Style):
@@ -22,42 +22,44 @@ class AutumnStyle(Style):
     default_style = ""
 
     styles = {
-        Comment:                    "italic #aaaaaa",
-        Comment.Preproc:            "noitalic #4c8317",
-        Comment.Special:            "italic #0000aa",
+        Whitespace:                 '#bbbbbb',
 
-        Keyword:                    "#0000aa",
-        Keyword.Type:               "#00aaaa",
+        Comment:                    'italic #aaaaaa',
+        Comment.Preproc:            'noitalic #4c8317',
+        Comment.Special:            'italic #0000aa',
 
-        Operator.Word:              "#0000aa",
+        Keyword:                    '#0000aa',
+        Keyword.Type:               '#00aaaa',
 
-        Name.Builtin:               "#00aaaa",
-        Name.Function:              "#00aa00",
-        Name.Class:                 "underline #00aa00",
-        Name.Namespace:             "underline #00aaaa",
-        Name.Variable:              "#aa0000",
-        Name.Constant:              "#aa0000",
-        Name.Entity:                "bold #800",
-        Name.Attribute:             "#1e90ff",
-        Name.Tag:                   "bold #1e90ff",
-        Name.Decorator:             "#888888",
+        Operator.Word:              '#0000aa',
 
-        String:                     "#aa5500",
-        String.Symbol:              "#0000aa",
-        String.Regex:               "#009999",
+        Name.Builtin:               '#00aaaa',
+        Name.Function:              '#00aa00',
+        Name.Class:                 'underline #00aa00',
+        Name.Namespace:             'underline #00aaaa',
+        Name.Variable:              '#aa0000',
+        Name.Constant:              '#aa0000',
+        Name.Entity:                'bold #800',
+        Name.Attribute:             '#1e90ff',
+        Name.Tag:                   'bold #1e90ff',
+        Name.Decorator:             '#888888',
 
-        Number:                     "#009999",
+        String:                     '#aa5500',
+        String.Symbol:              '#0000aa',
+        String.Regex:               '#009999',
 
-        Generic.Heading:            "bold #000080",
-        Generic.Subheading:         "bold #800080",
-        Generic.Deleted:            "#aa0000",
-        Generic.Inserted:           "#00aa00",
-        Generic.Error:              "#aa0000",
-        Generic.Emph:               "italic",
-        Generic.Strong:             "bold",
-        Generic.Prompt:             "#555555",
-        Generic.Output:             "#888888",
-        Generic.Traceback:          "#aa0000",
+        Number:                     '#009999',
 
-        Error:                      "#F00 bg:#FAA"
+        Generic.Heading:            'bold #000080',
+        Generic.Subheading:         'bold #800080',
+        Generic.Deleted:            '#aa0000',
+        Generic.Inserted:           '#00aa00',
+        Generic.Error:              '#aa0000',
+        Generic.Emph:               'italic',
+        Generic.Strong:             'bold',
+        Generic.Prompt:             '#555555',
+        Generic.Output:             '#888888',
+        Generic.Traceback:          '#aa0000',
+
+        Error:                      '#F00 bg:#FAA'
     }

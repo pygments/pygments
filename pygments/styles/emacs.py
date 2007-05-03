@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+     Number, Operator, Generic, Whitespace
 
 
 class EmacsStyle(Style):
@@ -23,6 +23,7 @@ class EmacsStyle(Style):
     default_style = ""
 
     styles = {
+        Whitespace:                "#bbbbbb",
         Comment:                   "italic #008800",
         Comment.Preproc:           "noitalic",
         Comment.Special:           "noitalic bold",

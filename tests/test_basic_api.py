@@ -71,15 +71,43 @@ class LexersTest(unittest.TestCase):
             a(isinstance(x, lexers.PythonLexer))
             ae(x.options["opt"], "val")
 
-    def test_filters(self):
+
+class FiltersTest(unittest.TestCase):
+
+    def test_basic(self):
+        filter_args = {
+            'whitespace': {'spaces': True, 'tabs': True, 'newlines': True},
+            'highlight': {'names': ['isinstance', 'lexers', 'x']},
+        }
         for x in filters.FILTERS.keys():
             lx = lexers.PythonLexer()
-            lx.add_filter(x)
+            lx.add_filter(x, **filter_args.get(x, {}))
             text = file(os.path.join(testdir, testfile)).read().decode('utf-8')
             tokens = list(lx.get_tokens(text))
             roundtext = ''.join([t[1] for t in tokens])
-            self.assertEquals(roundtext, text,
-                              "lexer roundtrip with %s filter failed" % x)
+            if x not in ('whitespace', 'keywordcase'):
+                # these filters change the text
+                self.assertEquals(roundtext, text,
+                                  "lexer roundtrip with %s filter failed" % x)
+
+    def test_raiseonerror(self):
+        lx = lexers.PythonLexer()
+        lx.add_filter('raiseonerror', excclass=RuntimeError)
+        self.assertRaises(RuntimeError, list, lx.get_tokens('$'))
+
+    def test_whitespace(self):
+        lx = lexers.PythonLexer()
+        lx.add_filter('whitespace', spaces='%')
+        text = file(os.path.join(testdir, testfile)).read().decode('utf-8')
+        lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
+        self.failIf(' ' in lxtext)
+
+    def test_keywordcase(self):
+        lx = lexers.PythonLexer()
+        lx.add_filter('keywordcase', case='capitalize')
+        text = file(os.path.join(testdir, testfile)).read().decode('utf-8')
+        lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
+        self.assert_('Def' in lxtext and 'Class' in lxtext)
 
 
 class FormattersTest(unittest.TestCase):

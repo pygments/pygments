@@ -11,7 +11,7 @@
 
 from pygments.formatter import Formatter
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic, Token
+     Number, Operator, Generic, Token, Whitespace
 from pygments.console import ansiformat
 
 
@@ -23,6 +23,7 @@ __all__ = ['TerminalFormatter']
 TERMINAL_COLORS = {
     Token:              ('',            ''),
 
+    Whitespace:         ('lightgray',   'darkgray'),
     Comment:            ('lightgray',   'darkgray'),
     Keyword:            ('darkblue',    'blue'),
     Keyword.Type:       ('teal',        'turquoise'),

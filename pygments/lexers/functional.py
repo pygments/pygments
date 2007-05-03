@@ -16,9 +16,9 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import Lexer, RegexLexer
-from pygments.token import Error, Text, \
-     Comment, Operator, Keyword, Name, String, Number, Generic, Punctuation
+from pygments.lexer import RegexLexer
+from pygments.token import Text, Comment, Operator, Keyword, Name, \
+     String, Number, Punctuation
 
 
 __all__ = ['SchemeLexer', 'HaskellLexer']

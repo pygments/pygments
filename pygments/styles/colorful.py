@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+     Number, Operator, Generic, Whitespace
 
 
 class ColorfulStyle(Style):
@@ -22,6 +22,8 @@ class ColorfulStyle(Style):
     default_style = ""
 
     styles = {
+        Whitespace:                "#bbbbbb",
+
         Comment:                   "#888",
         Comment.Preproc:           "#579",
         Comment.Special:           "bold #cc0000",

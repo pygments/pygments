@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+     Number, Operator, Generic, Whitespace
 
 
 class FriendlyStyle(Style):
@@ -23,6 +23,7 @@ class FriendlyStyle(Style):
     default_style = ""
 
     styles = {
+        Whitespace:                "#bbbbbb",
         Comment:                   "italic #60a0b0",
         Comment.Preproc:           "noitalic #007020",
         Comment.Special:           "noitalic bg:#fff0f0",

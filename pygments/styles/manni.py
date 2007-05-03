@@ -14,7 +14,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+     Number, Operator, Generic, Whitespace
 
 
 class ManniStyle(Style):
@@ -25,6 +25,7 @@ class ManniStyle(Style):
     background_color = '#f0f3f3'
 
     styles = {
+        Whitespace:         '#bbbbbb',
         Comment:            'italic #0099FF',
         Comment.Preproc:    'noitalic #009999',
         Comment.Special:    'bold',

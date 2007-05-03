@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Token, Comment, Name, Keyword, \
-    Generic, Number, String
+    Generic, Number, String, Whitespace
 
 class FruityStyle(Style):
     """
@@ -21,6 +21,7 @@ class FruityStyle(Style):
     background_color = '#111111'
 
     styles = {
+        Whitespace:         '#888888',
         Token:              '#ffffff',
         Generic.Output:     '#444444 bg:#222222',
         Keyword:            '#fb660a bold',

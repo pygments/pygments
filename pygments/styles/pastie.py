@@ -13,7 +13,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+     Number, Operator, Generic, Whitespace
 
 
 class PastieStyle(Style):
@@ -24,6 +24,7 @@ class PastieStyle(Style):
     default_style = ''
 
     styles = {
+        Whitespace:             '#bbbbbb',
         Comment:                '#888888',
         Comment.Preproc:        'bold #cc0000',
         Comment.Special:        'bg:#fff0f0 bold #cc0000',
