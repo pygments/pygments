@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+     Number, Operator, Generic, Whitespace
 
 
 class TracStyle(Style):
@@ -22,6 +22,7 @@ class TracStyle(Style):
     default_style = ''
 
     styles = {
+        Whitespace:             '#bbbbbb',
         Comment:                'italic #999988',
         Comment.Preproc:        'bold noitalic #999999',
         Comment.Special:        'bold #999999',

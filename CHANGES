@@ -5,6 +5,10 @@ Version 0.8 (in development)
 ----------------------------
 (codename to be selected, released May XX, 2007)
 
+- Added a `RaiseOnErrorTokenFilter` that raises an exception when the
+  lexer generates an error token, and a `VisibleWhitespaceFilter` that
+  converts whitespace (spaces, tabs, newlines) into visible characters.
+
 - Fixed the `do_insertions()` helper function to yield correct indices.
 
 - The ReST lexer now automatically highlights source code blocks in

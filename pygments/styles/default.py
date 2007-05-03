@@ -12,7 +12,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+     Number, Operator, Generic, Whitespace
 
 
 class DefaultStyle(Style):
@@ -24,6 +24,7 @@ class DefaultStyle(Style):
     default_style = ""
 
     styles = {
+        Whitespace:                "#bbbbbb",
         Comment:                   "italic #408080",
         Comment.Preproc:           "noitalic #BC7A00",
 

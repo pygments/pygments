@@ -57,8 +57,9 @@ For some tokens aliases are already defined:
 
 Inside the `pygments.token` module the following aliases are defined:
 
-============= ============================ ==================================
+============= ============================ ====================================
 `Text`        `Token.Text`                 for any type of text data
+`Whitespace`  `Token.Text.Whitespace`      for specially highlighted whitespace
 `Error`       `Token.Error`                represents lexer errors
 `Other`       `Token.Other`                special token for data not
                                            matched by a parser (e.g. HTML
@@ -73,7 +74,10 @@ Inside the `pygments.token` module the following aliases are defined:
 `Comment`     `Token.Comment`              any kind of comments
 `Generic`     `Token.Generic`              generic tokens (have a look at
                                            the explanation below)
-============= ============================ ==================================
+============= ============================ ====================================
+
+The `Whitespace` token type is new in Pygments 0.8. It is used only by the
+`VisibleWhitespaceFilter` currently.
 
 Normally you just create token types using the already defined aliases. For each
 of those token aliases, a number of subtypes exists (excluding the special tokens

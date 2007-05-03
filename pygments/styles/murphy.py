@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+     Number, Operator, Generic, Whitespace
 
 
 class MurphyStyle(Style):
@@ -22,6 +22,7 @@ class MurphyStyle(Style):
     default_style = ""
 
     styles = {
+        Whitespace:                "#bbbbbb",
         Comment:                   "#666 italic",
         Comment.Preproc:           "#579 noitalic",
         Comment.Special:           "#c00 bold",

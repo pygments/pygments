@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic, Token
+     Number, Operator, Generic, Token, Whitespace
 
 
 class NativeStyle(Style):
@@ -23,6 +23,7 @@ class NativeStyle(Style):
 
     styles = {
         Token:              '#d0d0d0',
+        Whitespace:         '#666666',
 
         Comment:            'italic #999999',
         Comment.Preproc:    'noitalic bold #cd2828',
