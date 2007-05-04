@@ -3,7 +3,7 @@
     pygments.unistring
     ~~~~~~~~~~~~~~~~~~
 
-    Strings of all Unicode characters of a certain type.
+    Strings of all Unicode characters of a certain category.
     Used for matching in Unicode-aware languages. Run to regenerate.
 
     Inspired by chartypes_create.py from the MoinMoin project.
