@@ -232,7 +232,7 @@ class VisibleWhitespaceFilter(Filter):
     `wstokentype` : bool
       If true, give whitespace the special `Whitespace` token type.  This allows
       styling the visible whitespace differently (e.g. greyed out), but it can
-      disrupt background colors.  The default is ``True``
+      disrupt background colors.  The default is ``True``.
 
     *New in Pygments 0.8.*
     """
