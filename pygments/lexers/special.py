@@ -14,6 +14,7 @@ import cStringIO
 
 from pygments.lexer import Lexer
 from pygments.token import Token, Error, Text
+from pygments.util import get_choice_opt
 
 
 __all__ = ['TextLexer', 'RawTokenLexer']
@@ -44,7 +45,7 @@ class RawTokenLexer(Lexer):
 
     `compress`
         If set to ``"gz"`` or ``"bz2"``, decompress the token stream with
-        the given compression algorithm before lexing (default: ``''``).
+        the given compression algorithm before lexing (default: ``""``).
     """
     name = 'Raw token data'
     aliases = ['raw']
@@ -52,7 +53,8 @@ class RawTokenLexer(Lexer):
     mimetypes = ['application/x-pygments-tokens']
 
     def __init__(self, **options):
-        self.compress = options.get('compress', '')
+        self.compress = get_choice_opt(options, 'compress',
+                                       ['', 'none', 'gz', 'bz2'], '')
         Lexer.__init__(self, **options)
 
     def get_tokens(self, text):

@@ -158,15 +158,15 @@ def `analyze_text(text):`
 
 For a list of known tokens have a look at the `Tokens`_ page.
 
-The lexer also recognizes the following attributes that are used by the
-builtin lookup mechanism.
+A lexer also can have the following attributes (in fact, they are mandatory
+except `alias_filenames`) that are used by the builtin lookup mechanism.
 
 `name`
     Full name for the lexer, in human-readable form.
 
 `aliases`
     A list of short, unique identifiers that can be used to lookup
-    the lexer from a list.
+    the lexer from a list, e.g. using `get_lexer_by_name()`.
 
 `filenames`
     A list of `fnmatch` patterns that match filenames which contain
@@ -222,6 +222,21 @@ def `format(self, tokensource, outfile):`
 
 .. _command-line option: cmdline.txt
 
+A formatter must have the following attributes that are used by the
+builtin lookup mechanism. (*New in Pygments 0.7.*)
+
+`name`
+    Full name for the formatter, in human-readable form.
+
+`aliases`
+    A list of short, unique identifiers that can be used to lookup
+    the formatter from a list, e.g. using `get_formatter_by_name()`.
+
+`filenames`
+    A list of `fnmatch` patterns that match filenames for which this formatter
+    can produce output. The patterns in this list should be unique among
+    all formatters.
+
 
 Option processing
 =================
@@ -231,7 +246,7 @@ processing:
 
 class `OptionError`
     This exception will be raised by all option processing functions if
-    the type of the argument is not correct.
+    the type or value of the argument is not correct.
 
 def `get_bool_opt(options, optname, default=None):`
     Interpret the key `optname` from the dictionary `options`
@@ -249,3 +264,7 @@ def `get_list_opt(options, optname, default=None):`
     If the key `optname` from the dictionary `options` is a string,
     split it at whitespace and return it. If it is already a list
     or a tuple, it is returned as a list.
+
+def `get_choice_opt(options, optname, allowed, default=None):`
+    If the key `optname` from the dictionary is not in the sequence
+    `allowed`, raise an error, otherwise return it. *New in Pygments 0.8.*

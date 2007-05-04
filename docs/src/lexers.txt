@@ -31,12 +31,15 @@ Currently, **all lexers** support these options:
     guess the encoding of the input.
 
 
+The "Short Names" field lists the identifiers that can be used with the
+`get_lexer_by_name()` function.
+
 These lexers are builtin and can be imported from `pygments.lexers`:
 
 [builtin_lexer_docs]
 
 Iterating over all lexers
-=========================
+-------------------------
 
 *New in Pygments 0.6.*
 

@@ -854,7 +854,7 @@ class LuaLexer(RegexLexer):
     def __init__(self, **options):
         self.func_name_highlighting = get_bool_opt(
             options, 'func_name_highlighting', True)
-        self.disabled_modules = get_list_opt(options, 'disabled_module', [])
+        self.disabled_modules = get_list_opt(options, 'disabled_modules', [])
 
         self._functions = set()
         if self.func_name_highlighting:
