@@ -13,7 +13,7 @@ import re
 from pygments.lexer import RegexLexer, bygroups, using, this
 from pygments.token import Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Literal
-from pygments.util import get_flag_opt
+from pygments.util import get_choice_opt
 from pygments import unistring as uni
 
 __all__ = ['CSharpLexer', 'BooLexer', 'VbNetLexer']
@@ -120,7 +120,7 @@ class CSharpLexer(RegexLexer):
         }
 
     def __init__(self, **options):
-        level = get_flag_opt(options, 'unicodelevel', self.tokens.keys(), 'basic')
+        level = get_choice_opt(options, 'unicodelevel', self.tokens.keys(), 'basic')
         if level not in self._all_tokens:
             # compile the regexes now
             self._tokens = self.__class__.process_tokendef(level)

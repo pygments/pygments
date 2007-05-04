@@ -2,32 +2,35 @@
 Register Plugins
 ================
 
-If you want to extend pygments without hacking in the sources but want to
-use the lexer/formatter/style resolve functions you can use setuptools
-entrypoints to add new lexers, formatters or styles to the pygments core.
+If you want to extend Pygments without hacking the sources, but want to
+use the lexer/formatter/style/filter lookup functions (`lexers.get_lexer_by_name`
+et al.), you can use `setuptools`_ entrypoints to add new lexers, formatters
+or styles as if they were in the Pygments core.
 
-That means you can use your highlighter also with the ``pygmentize`` script.
+.. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
+
+That means you can use your highlighter modules with the `pygmentize` script,
+which relies on the mentioned functions.
 
 
 Entrypoints
 ===========
 
-Here a list of setuptools entrypoints pygments understands:
+Here is a list of setuptools entrypoints that Pygments understands:
 
 `pygments.lexers`
 
-    This entrypoint is used for adding new lexers to the pygments core.
-    The name of entrypoint values doesn't really matter, pygements extract
-    required informations from the class definition:
+    This entrypoint is used for adding new lexers to the Pygments core.
+    The name of the entrypoint values doesn't really matter, Pygments extracts
+    required metadata from the class definition:
 
     .. sourcecode:: ini
 
         [pygments.lexers]
         yourlexer = yourmodule:YourLexer
 
-    Note that you have to
-    defined a ``name``, ``aliases`` and ``filename`` patterns so that you
-    can use the highlighter from the command line:
+    Note that you have to define ``name``, ``aliases`` and ``filename``
+    attributes so that you can use the highlighter from the command line:
 
     .. sourcecode:: python
 
@@ -39,9 +42,9 @@ Here a list of setuptools entrypoints pygments understands:
 
 `pygments.formatters`
 
-    You can use this entrypoint to add new formatters to pygments. The
+    You can use this entrypoint to add new formatters to Pygments. The
     name of an entrypoint item is the name of the formatter. If you
-    prefix the name with a slash it's used for the filename pattern:
+    prefix the name with a slash it's used as a filename pattern:
 
     .. sourcecode:: ini
 
@@ -86,5 +89,6 @@ you need to write a plugin. Also `this blog entry`_ might be interesting.
 Extending The Core
 ==================
 
-If you have written a pygments plugin which is open source, please inform us
-about that. There is a high chance that we'll add it to the pygments core :-)
+If you have written a Pygments plugin that is open source, please inform us
+about that. There is a high chance that we'll add it to the Pygments
+distribution.

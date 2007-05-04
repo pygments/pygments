@@ -264,7 +264,8 @@ class PhpLexer(RegexLexer):
 
     `startinline`
         If given and ``True`` the lexer starts highlighting with
-        php code. (i.e.: no starting ``<?php`` required)
+        php code (i.e.: no starting ``<?php`` required).  The default
+        is ``False``.
     `funcnamehighlighting`
         If given and ``True``, highlight builtin function names
         (default: ``True``).

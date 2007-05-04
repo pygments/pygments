@@ -18,7 +18,7 @@ import re
 from pygments.token import String, Comment, Keyword, Name, Error, Whitespace, \
     string_to_tokentype
 from pygments.filter import Filter
-from pygments.util import get_list_opt, get_int_opt, get_bool_opt, \
+from pygments.util import get_list_opt, get_int_opt, get_bool_opt, get_choice_opt, \
      ClassNotFound, OptionError
 from pygments.plugin import find_plugin_filters
 
@@ -119,9 +119,7 @@ class KeywordCaseFilter(Filter):
 
     def __init__(self, **options):
         Filter.__init__(self, **options)
-        case = options.get('case', 'lower')
-        if case not in ('lower', 'upper', 'capitalize'):
-            raise OptionError('unknown conversion method %r' % case)
+        case = get_choice_opt(options, 'case', ['lower', 'upper', 'capitalize'], 'lower')
         self.convert = getattr(unicode, case)
 
     def filter(self, lexer, stream):

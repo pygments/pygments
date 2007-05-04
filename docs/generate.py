@@ -30,7 +30,7 @@ from pygments.formatters import HtmlFormatter
 LEXERDOC = '''
 `%s`
 %s
-    :Aliases: %s
+    :Short names: %s
     :Filename patterns: %s
     :Mimetypes: %s
 
@@ -74,7 +74,7 @@ def generate_formatter_docs():
         out.append('`' + heading + '`\n' + '-'*(2+len(heading)) + '\n')
         out.append(cls.__doc__)
         out.append('''
-    :Aliases: %s
+    :Short names: %s
     :Filename patterns: %s
 
 
