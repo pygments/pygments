@@ -62,9 +62,11 @@ class CSharpLexer(RegexLexer):
         'basic': ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
                   '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
                   uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
-        'full': ('@?(?:_|[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl')) + '])'
+        'full': ('@?(?:_|[^' +
+                 _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl')) + '])'
                  + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
-                                                'Nl', 'Nd', 'Pc', 'Cf', 'Mn', 'Mc')) + ']*'),
+                                                'Nl', 'Nd', 'Pc', 'Cf', 'Mn',
+                                                'Mc')) + ']*'),
     }
 
     tokens = {}
