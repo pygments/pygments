@@ -396,7 +396,8 @@ class RegexLexerMeta(LexerMeta):
                     itokens = []
                     for istate in tdef2:
                         assert istate != state, 'circular state ref %r' % istate
-                        itokens.extend(cls._process_state(unprocessed, processed, istate))
+                        itokens.extend(cls._process_state(unprocessed,
+                                                          processed, istate))
                     processed[new_state] = itokens
                     new_state = (new_state,)
                 elif isinstance(tdef2, tuple):

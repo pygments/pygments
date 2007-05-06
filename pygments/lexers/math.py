@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.math
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for math languages.
 
@@ -16,10 +16,10 @@ __all__ = ['MuPADLexer']
 
 class MuPADLexer(RegexLexer):
     """
-    A MuPAD lexer.
+    A `MuPAD <http://www.mupad.com>`_ lexer.
     Contributed by Christopher Creutzig <christopher@creutzig.de>.
 
-    *New in Pygments 0.8*
+    *New in Pygments 0.8.*
     """
     name = 'MuPAD'
     aliases = ['mupad']
