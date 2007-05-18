@@ -11,7 +11,7 @@ If you pass a lexer a string object (not unicode), it tries to decode the data
 using this encoding.
 You can override the encoding using the `encoding` lexer option. If you have the
 `chardet`_ library installed and set the encoding to ``chardet`` if will ananlyse
-the text and fetch the best encoding automatically:
+the text and use the encoding it thinks is the right one automatically:
 
 .. sourcecode:: python
 
@@ -34,7 +34,8 @@ source and the output stream does not accept Unicode written to it!**
 This is the case for all regular files and for terminals.
 
 Note: The Terminal formatter tries to be smart: if its output stream has an
-`encoding` attribute, it will encode any Unicode string with this encoding
+`encoding` attribute, and you haven't set the option,
+it will encode any Unicode string with this encoding
 before writing it. This is the case for `sys.stdout`, for example. The other
 formatters don't have that behavior.
 
