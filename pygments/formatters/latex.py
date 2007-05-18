@@ -8,7 +8,7 @@
     :copyright: 2006-2007 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
-import cStringIO
+import StringIO
 
 from pygments.formatter import Formatter
 from pygments.token import Token
@@ -200,7 +200,7 @@ class LatexFormatter(Formatter):
 
         if self.full:
             realoutfile = outfile
-            outfile = cStringIO.StringIO()
+            outfile = StringIO.StringIO()
 
         outfile.write(r'\begin{Verbatim}[commandchars=@\[\]')
         if self.linenos:
