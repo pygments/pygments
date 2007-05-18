@@ -1,14 +1,30 @@
 .. -*- mode: rst -*-
 
-==========
-Quickstart
-==========
+===========================
+Introduction and Quickstart
+===========================
 
 
-Pygments comes with a wide range of lexers for modern languages which are all
-accessible through the `pygments.lexers` package. A lexer enables Pygments to
-split the source code into tokens which then are passed to a formatter.
-The most useful formatters include HTML, LaTeX, RTF and ANSI sequence output.
+Welcome to Pygments! This document explains the basic concepts and terms and
+gives a few examples of how to use the library.
+
+
+Architecture
+============
+
+There are four types of components that work together highlighting a piece of
+code:
+
+* A **lexer** splits the source into tokens, fragments of the source that
+  have a token type that determines what the text represents semantically
+  (e.g., keyword, string, or comment). There is a lexer for every language
+  or markup format that Pygments supports.
+* The token stream can be piped through **filters**, which usually modify
+  the token types or text fragments, e.g. uppercasing all keywords.
+* A **formatter** then takes the token stream and writes it to an output
+  file, in a format such as HTML, LaTeX or RTF.
+* While writing the output, a **style** determines how to highlight all the
+  different token types. It maps them to attributes like "red and bold".
 
 
 Example
@@ -77,8 +93,19 @@ This makes the lexer strip all leading and trailing whitespace from the input
 and sets the wrapping ``<div>``'s class to ``source`` (instead of
 ``highlight``).
 
+Important options include:
+
+`encoding` : for lexers and formatters
+   Since Pygments uses Unicode strings internally, this determines which
+   encoding will be used to convert to or from byte strings.
+`style` : for formatters
+   The name of the style to use when writing the output.
+
+
 For an overview of builtin lexers and formatters and their options, visit the
 `lexer <lexers.txt>`_ and `formatters <formatters.txt>`_ lists.
+
+For a documentation on filters, see `this page <filters.txt>`_.
 
 
 Lexer and formatter lookup
