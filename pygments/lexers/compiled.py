@@ -806,7 +806,7 @@ class JavaLexer(RegexLexer):
             (r'@[a-zA-Z_][a-zA-Z0-9_\.]*', Name.Decorator),
             (r'(abstract|assert|break|case|catch|'
              r'const|continue|default|do|else|enum|extends|final|'
-             r'finally|for|if|goto|implements|import|instanceof|'
+             r'finally|for|if|goto|implements|instanceof|'
              r'interface|native|new|package|private|protected|public|'
              r'return|static|strictfp|super|switch|synchronized|this|'
              r'throw|throws|transient|try|volatile|while)\b', Keyword),
@@ -814,6 +814,7 @@ class JavaLexer(RegexLexer):
              Keyword.Type),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'class'),
+            (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
             (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
@@ -827,7 +828,10 @@ class JavaLexer(RegexLexer):
         ],
         'class': [
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
-        ]
+        ],
+        'import': [
+            (r'[a-zA-Z0-9_.]+\*?', Name.Namespace, '#pop')
+        ],
     }
 
 
