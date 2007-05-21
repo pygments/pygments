@@ -121,12 +121,14 @@ class MakefileLexer(RegexLexer):
         'root': [
             (r'\s+', Text),
             (r'#.*?\n', Comment),
-            (r'(cmdswitches|error|message|include|if|ifdef|ifndef|else|'
+            (r'(cmdswitches|error|export|message|include|if|ifdef|ifndef|else|'
              r'else\s*if|else\s*ifdef|else\s*ifndef|endif|undef)\b', Keyword),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)([?:+]?=)(\s*)',
+            # assignment
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)([?:+]?=)([ \t]*)',
              bygroups(Name.Variable, Text, Operator, Text), 'var'),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
+            # targets
             (r'([^\n:]+)(:)([ \t]*)', bygroups(Name.Function, Operator, Text),
              'block-header')
         ],
@@ -137,8 +139,9 @@ class MakefileLexer(RegexLexer):
             (r'[^\\\n]+', String),
         ],
         'block-header': [
-            (r'[^,\n]', String),
+            (r'[^,\n#]+', Number),
             (r',', Punctuation),
+            (r'#.*?\n', Comment),
             (r'\n[\t ]+', Text, 'block'),
             (r'\n', Text, '#pop')
         ],
