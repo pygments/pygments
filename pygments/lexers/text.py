@@ -579,7 +579,7 @@ class RstLexer(RegexLexer):
         ],
         'literal': [
             (r'[^`\\]+', String),
-            (r'\\', String),
+            (r'\\.', String),
             (r'``', String, '#pop'),
             (r'[`\\]', String),
         ]
