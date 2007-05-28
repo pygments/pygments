@@ -10,7 +10,8 @@
 """
 
 from pygments.lexer import RegexLexer, bygroups
-from pygments.token import *
+from pygments.token import Comment, String, Punctuation, Keyword, Name, \
+    Operator, Number, Text
 
 __all__ = ['MuPADLexer']
 
