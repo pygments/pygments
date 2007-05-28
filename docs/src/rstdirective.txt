@@ -41,8 +41,42 @@ files using this syntax::
 
         your code here
 
+If you want to have two or more variants of the directive, you can utilize
+ReST *directive options*, like so:
+
+.. sourcecode:: python
+
+    normal_fmter = HtmlFormatter()
+    lineno_fmter = HtmlFormatter(linenos=True)
+
+    def pygments_directive(name, arguments, options, content, lineno,
+                           content_offset, block_text, state, state_machine):
+        try:
+            lexer = get_lexer_by_name(arguments[0])
+        except ValueError:
+            # no lexer found - use the text one instead of an exception
+            lexer = get_lexer_by_name('text')
+	formatter = ('linenos' in options) and lineno_fmter ornormal_fmter
+        parsed = highlight(u'\n'.join(content), lexer, formatter)
+        return [nodes.raw('', parsed, format='html')]
+    pygments_directive.arguments = (1, 0, 1)
+    pygments_directive.content = 1
+    pygments_directive.options = {'linenos': directives.flag}
+    directives.register_directive('sourcecode', pygments_directive)
+
+And use it like so::
+
+    .. sourcecode:: language
+       :linenos:
+
+       the code starts here...
+
+Look at the `directive documentation`_ to get all the gory details.
+
+
 *Loosely related note:* The ReST lexer now recognizes ``.. sourcecode::`` and
 ``.. code::`` directives and highlights the contents in the specified language
 if the `handlecodeblocks` option is true.
 
 .. _ReST: http://docutils.sf.net/rst.html
+.. _directive documentation: http://docutils.sourceforge.net/docs/howto/rst-directives.html
