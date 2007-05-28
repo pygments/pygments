@@ -94,20 +94,19 @@ class RtfFormatter(Formatter):
         offset = 1
         for _, style in self.style:
             for color in style['color'], style['bgcolor'], style['border']:
-                if not color or color in color_mapping:
-                    continue
-                color_mapping[color] = offset
-                outfile.write(r'\red%d\green%d\blue%d;' % (
-                    int(color[0:2], 16),
-                    int(color[2:4], 16),
-                    int(color[4:6], 16)
-                ))
-                offset += 1
+                if color and color not in color_mapping:
+                    color_mapping[color] = offset
+                    outfile.write(r'\red%d\green%d\blue%d;' % (
+                        int(color[0:2], 16),
+                        int(color[2:4], 16),
+                        int(color[4:6], 16)
+                    ))
+                    offset += 1
         outfile.write(r'}\f0')
 
         # highlight stream
         for ttype, value in tokensource:
-            while ttype not in self.style and ttype.parent:
+            while self.style.styles_token(ttype) and ttype.parent:
                 ttype = ttype.parent
             style = self.style.style_for_token(ttype)
             buf = []
