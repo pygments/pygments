@@ -20,7 +20,7 @@ from docutils.parsers.rst import directives
 from docutils.core import publish_parts
 from docutils.writers import html4css1
 
-from jinja import Template, Context, StringLoader
+from jinja import from_string
 
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
@@ -151,15 +151,15 @@ TEMPLATE = '''\
   <div id="content">
     <h1 class="heading">Pygments</h1>
     <h2 class="subheading">{{ title }}</h2>
-    {% if not file_id equals "index" %}
+    {% if file_id != "index" %}
       <a id="backlink" href="index.html">&laquo; Back To Index</a>
     {% endif %}
     {% if toc %}
       <div class="toc">
         <h2>Contents</h2>
         <ul class="contents">
-        {% for item in toc %}
-          <li><a href="{{ item.0 }}">{{ item.1 }}</a></li>
+        {% for key, value in toc %}
+          <li><a href="{{ key }}">{{ value }}</a></li>
         {% endfor %}
         </ul>
       </div>
@@ -421,13 +421,12 @@ def handle_html(filename, fp, dst):
     now = datetime.now()
     title = os.path.basename(filename)[:-4]
     content = fp.read()
-    parts = generate_documentation(content, (lambda x: './%s.html' % x))
+    c = generate_documentation(content, (lambda x: './%s.html' % x))
     result = file(os.path.join(dst, title + '.html'), 'w')
-    c = Context(parts)
     c['style'] = STYLESHEET + PYGMENTS_FORMATTER.get_style_defs('.syntax')
     c['generation_date'] = now
     c['file_id'] = title
-    t = Template(TEMPLATE, StringLoader())
+    t = from_string(TEMPLATE)
     result.write(t.render(c).encode('utf-8'))
     result.close()
 
