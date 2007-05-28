@@ -5,6 +5,14 @@ Version 0.8 (in development)
 ----------------------------
 (codename Maikäfer, released May XX, 2007)
 
+- Lexers added:
+
+  * Haskell, thanks to Adam Blinkinsop
+  * Redcode, thanks to Adam Blinkinsop
+  * D, thanks to Kirk McDonald
+  * MuPad, thanks to Christopher Creutzig
+  * MiniD, thanks to Jarrett Billingsley
+
 - The `CSharpLexer` now is Unicode-aware, which means that it has an
   option that can be set so that it correctly lexes Unicode identifiers
   allowed by the C# specs.
@@ -18,28 +26,20 @@ Version 0.8 (in development)
 - The ReST lexer now automatically highlights source code blocks in
   ".. sourcecode:: language" and ".. code:: language" directive blocks.
 
-- Added a Haskell lexer, thanks to Adam Blinkinsop.
+- Improved the default style (thanks to Tiberius Teng). The old default
+  is still available as the "emacs" style (which was an alias before).
+
+- The `get_style_defs` method of HTML formatters now uses the `cssclass`
+  option as the default selector if it was given.
 
 - Improved the ReST and Bash lexers a bit.
 
-- Improved the default style (thanks to Tiberius Teng). The old default
-  is still available as the "emacs" style (which was an alias before).
+- Fixed a few bugs in the Makefile and Bash lexers, thanks to Tim Hatch.
 
 - Fixed a bug in the command line code that disallowed ``-O`` options
   when using the ``-S`` option.
 
 - Fixed a bug in the `RawTokenFormatter`.
-
-- The `get_style_defs` method of HTML formatters now uses the `cssclass`
-  option as the default selector if it was given.
-
-- Added a Redcode lexer, thanks to Adam Blinkinsop.
-
-- Added a D lexer, thanks to Kirk McDonald.
-
-- Added a MuPad lexer, thanks to Christopher Creutzig.
-
-- Fixed a few bugs in the Makefile lexer, thanks to Tim Hatch.
 
 
 Version 0.7.1
