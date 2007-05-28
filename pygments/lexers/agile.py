@@ -24,7 +24,8 @@ from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
-           'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer']
+           'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
+           'MiniDLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -878,3 +879,69 @@ class LuaLexer(RegexLexer):
                     yield index + len(a) + 1, Name, b
                     continue
             yield index, token, value
+
+
+class MiniDLexer(RegexLexer):
+    """
+    For `MiniD <http://www.dsource.org/projects/minid>`_ (a D-like scripting
+    language) source.
+    """
+    name = 'MiniD'
+    filenames = ['*.md']
+    aliases = ['minid']
+    mimetypes = ['text/x-minidsrc']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            # Comments
+            (r'//(.*?)\n', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'/\+', Comment, 'nestedcomment'),
+            # Keywords
+            (r'(as|break|case|class|catch|continue|coroutine|default'
+             r'|do|else|finally|for|foreach|function|global'
+             r'|if|import|in|is|local|module|return|super|switch'
+             r'|this|throw|try|vararg|while|with|yield)', Keyword
+            ),
+            (r'(false|true|null)', Keyword.Constant),
+            # FloatLiteral
+            (r'([0-9][0-9_]*)?\.[0-9_]+([eE][+\-]?[0-9_]+)?', Number.Float),
+            # IntegerLiteral
+            # -- Binary
+            (r'0[Bb][01_]+', Number),
+            # -- Octal
+            (r'0[Cc][0-7_]+', Number.Oct),
+            # -- Hexadecimal
+            (r'0[xX][0-9a-fA-F_]+', Number.Hex),
+            # -- Decimal
+            (r'(0|[1-9][0-9_]*)', Number.Integer),
+            # CharacterLiteral
+            (r"""'(\\['"?\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-9]{1,3}"""
+             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
+             String.Char
+            ),
+            # StringLiteral
+            # -- WysiwygString
+            (r'(?s)@"[^"]*"', String),
+            # -- AlternateWysiwygString
+            (r'(?s)`[^`]*`', String),
+            # -- DoubleQuotedString
+            (r'(?s)"(\\"|[^"])*"', String),
+            # Tokens
+            (
+             r'(~=|\^=|%=|\*=|==|!=|>>>=|>>>|>>=|>>|>=|<=>|\?='
+             r'|<<=|<<|<=|\+\+|\+=|--|-=|\|\||\|=|&&|&=|\.\.|/=)'
+             r'|[-/.&|\+<>!()\[\]{}?,;:=*%^~#]', Text #Punctuation
+            ),
+            # Identifier
+            (r'[a-zA-Z_]\w*', Name),
+        ],
+        'nestedcomment': [
+            (r'[^+/]+', Comment),
+            (r'/\+', Comment, '#push'),
+            (r'\+/', Comment, '#pop'),
+            (r'[+/]', Comment),
+        ],
+    }

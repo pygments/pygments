@@ -139,9 +139,12 @@ class MakefileLexer(RegexLexer):
             (r'[^\\\n]+', String),
         ],
         'block-header': [
-            (r'[^,\n#]+', Number),
+            (r'[^,\\\n#]+', Number),
             (r',', Punctuation),
             (r'#.*?\n', Comment),
+            # line continuation
+            (r'\\\n', Text),
+            (r'\\', Text),
             (r'\n[\t ]+', Text, 'block'),
             (r'\n', Text, '#pop')
         ],

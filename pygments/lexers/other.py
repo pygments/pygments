@@ -234,7 +234,7 @@ class BashLexer(RegexLexer):
             (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
             (r"'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
             (r'\s+', Text),
-            (r'[^=\s\n\[\]{}()$]+', Text),
+            (r'[^=\s\n\[\]{}()$"\']+', Text),
         ],
         'curly': [
             (r'}', Keyword, '#pop'),

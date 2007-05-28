@@ -11,9 +11,8 @@ suggested new lexers
 * MySQL/PostgreSQL/SQLite
 * Tcl
 
-
-for 0.8 -- 1.0
---------------
+for 1.0
+-------
 
 - lexers that need work:
   * review perl lexer (numerous bugs, but so far no one had complaints ;)
@@ -24,5 +23,3 @@ for 0.8 -- 1.0
 - allow "overlay" token types to highlight specials: nth line, a word etc.
 
 - pygmentize option presets, more sophisticated method to output styles?
-
-- add folding? would require more language-aware parsers...
