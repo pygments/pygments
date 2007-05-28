@@ -84,6 +84,9 @@ class StyleMeta(type):
     def list_styles(cls):
         return list(cls)
 
+    def styles_token(cls, ttype):
+        return ttype in cls._styles
+
     def __iter__(cls):
         for token in cls._styles:
             yield token, cls.style_for_token(token)
