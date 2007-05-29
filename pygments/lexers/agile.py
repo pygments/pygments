@@ -6,7 +6,7 @@
     Lexers for agile languages.
 
     :copyright: 2006-2007 by Georg Brandl, Armin Ronacher,
-                Lukas Meuser, Tim Hatch.
+                Lukas Meuser, Tim Hatch, Jarrett Billingsley.
     :license: BSD, see LICENSE for more details.
 """
 
