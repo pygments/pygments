@@ -1,7 +1,8 @@
 import re
 from pprint import pprint
 
-r_line = re.compile(r"^(syn keyword vimCommand contained|syn keyword vimOption contained|syn keyword vimAutoEvent contained)\s+(.*)")
+r_line = re.compile(r"^(syn keyword vimCommand contained|syn keyword vimOption "
+                    r"contained|syn keyword vimAutoEvent contained)\s+(.*)")
 r_item = re.compile(r"(\w+)(?:\[(\w+)\])?")
 
 def getkw(input, output):
