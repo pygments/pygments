@@ -62,6 +62,7 @@ DOC_HEADER = '''\
   <meta http-equiv="content-type" content="text/html; charset=%(encoding)s">
   <style type="text/css">
 td.linenos { background-color: #f0f0f0; padding-right: 10px; }
+span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
 %(styledefs)s
   </style>
 </head>
@@ -207,7 +208,18 @@ class HtmlFormatter(Formatter):
         to this file instead of the HTML file. *New in Pygments 0.6.*
 
     `linenos`
-        If set to ``True``, output line numbers (default: ``False``).
+        If set to ``'table'``, output line numbers as a table with two cells,
+        one containing the line numbers, the other the whole code.  This is
+        copy-and-paste-friendly, but may cause alignment problems with some
+        browsers or fonts.  If set to ``'inline'``, the line numbers will be
+        integrated in the ``<pre>`` tag that contains the code (that setting
+        is *new in Pygments 0.8*).
+
+        For compatibility with Pygments 0.7 and earlier, every true value
+        except ``'inline'`` means the same as ``'table'`` (in particular, that
+        means also ``True``).
+
+        The default value is ``False``, which means no line numbers at all.
 
     `linenostart`
         The line number for the first line (default: ``1``).
@@ -294,7 +306,14 @@ class HtmlFormatter(Formatter):
         self.cssclass = options.get('cssclass', 'highlight')
         self.cssstyles = options.get('cssstyles', '')
         self.cssfile = options.get('cssfile', '')
-        self.linenos = get_bool_opt(options, 'linenos', False)
+        linenos = options.get('linenos', False)
+        if linenos == 'inline':
+            self.linenos = 2
+        elif linenos:
+            # compatibility with <= 0.7
+            self.linenos = 1
+        else:
+            self.linenos = 0
         self.linenostart = abs(get_int_opt(options, 'linenostart', 1))
         self.linenostep = abs(get_int_opt(options, 'linenostep', 1))
         self.linenospecial = abs(get_int_opt(options, 'linenospecial', 0))
@@ -412,7 +431,7 @@ class HtmlFormatter(Formatter):
             yield t, line
         yield 0, DOC_FOOTER
 
-    def _wrap_linenos(self, inner):
+    def _wrap_tablelinenos(self, inner):
         dummyoutfile = StringIO.StringIO()
         lncount = 0
         for t, line in inner:
@@ -438,6 +457,24 @@ class HtmlFormatter(Formatter):
                   ls + '</pre></td><td class="code">')
         yield 0, dummyoutfile.getvalue()
         yield 0, '</td></tr></table>'
+
+    def _wrap_inlinelinenos(self, inner):
+        # need a list of lines since we need the width of a single number :(
+        lines = list(inner)
+        sp = self.linenospecial
+        st = self.linenostep
+        num = self.linenostart
+        mw = len(str(len(lines) + num - 1))
+
+        if sp:
+            for t, line in lines:
+                yield 1, '<span class="lineno%s">%*s</span> ' % (
+                    num%sp == 0 and ' special' or '', mw, (num%st and ' ' or num)) + line
+                num += 1
+        else:
+            for t, line in lines:
+                yield 1, '<span class="lineno">%*s</span> ' % (mw, (num%st and ' ' or num)) + line
+                num += 1
 
     def _wrap_div(self, inner):
         yield 0, ('<div' + (self.cssclass and ' class="%s"' % self.cssclass)
@@ -535,9 +572,11 @@ class HtmlFormatter(Formatter):
         """
         source = self._format_lines(tokensource)
         if not self.nowrap:
+            if self.linenos == 2:
+                source = self._wrap_inlinelinenos(source)
             source = self.wrap(source, outfile)
-            if self.linenos:
-                source = self._wrap_linenos(source)
+            if self.linenos == 1:
+                source = self._wrap_tablelinenos(source)
             if self.full:
                 source = self._wrap_full(source, outfile)
 
