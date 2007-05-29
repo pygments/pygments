@@ -14,6 +14,9 @@ Version 0.8 (in development)
   * MiniD, thanks to Jarrett Billingsley
   * Vim Script, by Tim Hatch
 
+- The HTML formatter now has a second line-numbers mode in which it will
+  just integrate the numbers in the same ``<pre>`` tag as the code.
+
 - The `CSharpLexer` now is Unicode-aware, which means that it has an
   option that can be set so that it correctly lexes Unicode identifiers
   allowed by the C# specs.
