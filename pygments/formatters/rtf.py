@@ -106,7 +106,7 @@ class RtfFormatter(Formatter):
 
         # highlight stream
         for ttype, value in tokensource:
-            while self.style.styles_token(ttype) and ttype.parent:
+            while not self.style.styles_token(ttype) and ttype.parent:
                 ttype = ttype.parent
             style = self.style.style_for_token(ttype)
             buf = []
