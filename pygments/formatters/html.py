@@ -105,9 +105,10 @@ class HtmlFormatter(Formatter):
     in a ``<div>`` tag. The ``<div>``'s CSS class can be set by the `cssclass`
     option.
 
-    If the `linenos` option is given and true, the ``<pre>`` is additionally
-    wrapped inside a ``<table>`` which has one row and two cells: one
-    containing the line numbers and one containing the code. Example:
+    If the `linenos` option is set to ``"table"``, the ``<pre>`` is
+    additionally wrapped inside a ``<table>`` which has one row and two
+    cells: one containing the line numbers and one containing the code.
+    Example:
 
     .. sourcecode:: html
 
@@ -126,8 +127,9 @@ class HtmlFormatter(Formatter):
           </td>
         </tr></table></div>
 
-    (whitespace added to improve clarity). Wrapping can be disabled using the
-    `nowrap` option.
+    (whitespace added to improve clarity).
+
+    Wrapping can be disabled using the `nowrap` option.
 
     With the `full` option, a complete HTML 4 document is output, including
     the style definitions inside a ``<style>`` tag, or in a separate file if
