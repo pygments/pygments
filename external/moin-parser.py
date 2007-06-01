@@ -51,7 +51,7 @@ import sys
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name, get_lexer_for_filename, TextLexer
 from pygments.formatters import HtmlFormatter
-from pygments.util import ObjectNotFound
+from pygments.util import ClassNotFound
 
 
 # wrap lines in <span>s so that the Moin-generated line numbers work
@@ -83,7 +83,7 @@ class Parser:
             # called from a {{{ }}} block
             try:
                 self.lexer = get_lexer_by_name(kw['format_args'].strip())
-            except ObjectNotFound:
+            except ClassNotFound:
                 self.lexer = textlexer
             return
         if "filename" in kw:
@@ -100,7 +100,7 @@ class Parser:
                 filename = 'x.txt'
         try:
             self.lexer = get_lexer_for_filename(filename)
-        except ObjectNotFound:
+        except ClassNotFound:
             self.lexer = textlexer
 
     def format(self, formatter):
