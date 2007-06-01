@@ -56,7 +56,7 @@ ReST *directive options*, like so:
         except ValueError:
             # no lexer found - use the text one instead of an exception
             lexer = get_lexer_by_name('text')
-	formatter = ('linenos' in options) and lineno_fmter ornormal_fmter
+	formatter = ('linenos' in options) and lineno_fmter or normal_fmter
         parsed = highlight(u'\n'.join(content), lexer, formatter)
         return [nodes.raw('', parsed, format='html')]
     pygments_directive.arguments = (1, 0, 1)
