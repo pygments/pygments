@@ -230,14 +230,14 @@ class DLexer(RegexLexer):
              r'|package|pragma|private|protected|public|ref|return|scope'
              r'|static|struct|super|switch|synchronized|template|this|throw'
              r'|try|typedef|typeid|typeof|union|unittest|version|volatile'
-             r'|while|with)', Keyword
+             r'|while|with)\b', Keyword
             ),
             (r'(bool|cdouble|cent|cfloat|char|creal|dchar|double|float|idouble'
              r'|ifloat|int|ireal|long|real|short|ubyte|ucent|uint|ulong|ushort'
-             r'|ushort|void|wchar)', Keyword.Type
+             r'|ushort|void|wchar)\b', Keyword.Type
             ),
-            (r'(false|true|null)', Keyword.Constant),
-            (r'(macro)', Keyword.Reserved),
+            (r'(false|true|null)\b', Keyword.Constant),
+            (r'macro\b', Keyword.Reserved),
             # FloatLiteral
             # -- HexFloat
             (r'0[xX]([0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)'
