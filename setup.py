@@ -6,10 +6,7 @@ from setuptools import setup, find_packages
 
 import pygments
 
-# PY24: use .rsplit
-index = pygments.__author__.rindex(' ')
-author, email = pygments.__author__[:index], pygments.__author__[index+1:]
-email = email[1:-1]
+author, email = pygments.__author__[:-1].split(' <')
 
 setup(
     name = 'Pygments',
