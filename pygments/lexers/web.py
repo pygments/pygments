@@ -24,7 +24,7 @@ from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
 
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
-           'PhpLexer']
+           'PhpLexer','ActionScriptLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -56,6 +56,57 @@ class JavascriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
+            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-f]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
+        ]
+    }
+
+
+class ActionScriptLexer(RegexLexer):
+    """
+    For ActionScript source code.
+
+    *New in Pygments 0.9.*
+    """
+
+    name = 'ActionScript'
+    aliases = ['as', 'actionscript']
+    filenames = ['*.as']
+    mimetypes = ['application/x-actionscript', 'text/x-actionscript',
+                 'text/actionscript']
+
+    flags = re.DOTALL
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'//.*?\n', Comment),
+            (r'/\*.*?\*/', Comment),
+            (r'/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex),
+            (r'[~\^\*!%&<>\|+=:;,/?\\-]+', Operator),
+            (r'[{}\[\]();.]+', Punctuation),
+            (r'(for|in|while|do|break|return|continue|if|else|throw|try|'
+             r'catch|var|with|new|typeof|arguments|instanceof|this)\b', Keyword),
+            (r'(class|public|private|static|import|extends|implements|interface|'
+             r'intrinsic|return|super|dynamic|function)\b', Keyword.Declaration),
+            (r'(true|false|null|NaN|Infinity|undefined|Void)\b', Keyword.Constant),
+            (r'(Accessibility|AsBroadcaster|Array|Boolean|Date|Error|Function|Math|'
+             r'Number|Object|String|MovieClip|BevelFilter|BitmapData|BitmapFilter|'
+             r'BlurFilter|Camera|Color|ColorMatrixFilter|ColorTransform|ContextMenu|'
+             r'ContextMenuItem|MovieClipLoader|NetConnection|NetStream|Point|PrintJob|'
+             r'ConvolutionFilter|DisplacmentMapFilter|DropShadowFilter|'
+             r'ExternalInterface|FileReference|FileReferenceList|GlowFilter|'
+             r'GradientBevelFilter|GradientGlowFilter|IME|Key|LoadVars|LocalConnection|'
+             r'Locale|Matrix|Microphone|Mouse|Rectangle|Selection|SharedObject|Sound|'
+             r'Stage|StyleSheet|System|TextField|TextFormat|TextRenderer|TextSnapshot|'
+             r'Transform|Video|XML|XMLNode|XMLSocket|XMLUI)\b',
+             Name.Builtin),
+            (r'(eval|isNaN|clearInterval|escape|fscommand|getTimer|getURL|getVersion|'
+             r'isFinite|parseFloat|parseInt|setInterval|trace|updateAfterEvent|escape|'
+             r'unescape)\b',Name.Function),
             (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-f]+', Number.Hex),
@@ -408,7 +459,7 @@ class XmlLexer(RegexLexer):
 
     name = 'XML'
     aliases = ['xml']
-    filenames = ['*.xml', '*.xsl', '*.rss']
+    filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt']
     mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
                  'application/rss+xml', 'application/atom+xml',
                  'application/xsl+xml', 'application/xslt+xml']

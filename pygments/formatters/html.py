@@ -475,7 +475,8 @@ class HtmlFormatter(Formatter):
                 num += 1
         else:
             for t, line in lines:
-                yield 1, '<span class="lineno">%*s</span> ' % (mw, (num%st and ' ' or num)) + line
+                yield 1, '<span class="lineno">%*s</span> ' % (
+                    mw, (num%st and ' ' or num)) + line
                 num += 1
 
     def _wrap_div(self, inner):
