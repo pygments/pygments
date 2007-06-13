@@ -409,7 +409,7 @@ class RubyLexer(ExtendedRegexLexer):
     tokens = {
         'root': [
             (r'#.*?$', Comment.Single),
-            (r'=begin\n.*?\n=end', Comment.Multiline),
+            (r'=begin\s.*?\n=end', Comment.Multiline),
             # keywords
             (r'(BEGIN|END|alias|begin|break|case|defined\?|'
              r'do|else|elsif|end|ensure|for|if|in|next|redo|'
