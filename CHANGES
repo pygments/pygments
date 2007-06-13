@@ -5,6 +5,10 @@ Version 0.9
 -----------
 (codename not selected, released Jul XX, 2007)
 
+- The encoding handling of the command line mode (pygmentize) was
+  enhanced. You shouldn't get UnicodeErrors from it anymore if you
+  don't give an encoding option.
+
 - Fixed Unicode class and namespace name highlighting in the C# lexer.
 
 - Fixed Unicode string prefix highlighting in the Python lexer.
