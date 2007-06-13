@@ -333,6 +333,18 @@ def main(args):
             return 2
         code = sys.stdin.read()
 
+    # No encoding given? Use latin1 if output file given,
+    # stdin/stdout encoding otherwise.
+    # (This is a compromise, I'm not too happy with it...)
+    if 'encoding' not in O_opts and 'outencoding' not in O_opts:
+        if outfn:
+            # encoding pass-through
+            fmter.encoding = 'latin1'
+        else:
+            # use terminal encoding
+            lexer.encoding = sys.stdin.encoding
+            fmter.encoding = sys.stdout.encoding
+
     # ... and do it!
     try:
         # process filters

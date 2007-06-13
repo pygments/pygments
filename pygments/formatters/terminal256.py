@@ -187,13 +187,10 @@ class Terminal256Formatter(Formatter):
         if not enc and hasattr(outfile, "encoding") and \
            hasattr(outfile, "isatty") and outfile.isatty():
             enc = outfile.encoding
-        if enc:
-            encode = lambda value: value.encode(enc)
-        else:
-            encode = lambda value: value
 
         for ttype, value in tokensource:
-            value = encode(value)
+            if enc:
+                value = value.encode(enc)
 
             not_found = True
             while ttype and not_found:
