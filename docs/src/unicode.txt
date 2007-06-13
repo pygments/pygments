@@ -34,10 +34,12 @@ source and the output stream does not accept Unicode written to it!**
 This is the case for all regular files and for terminals.
 
 Note: The Terminal formatter tries to be smart: if its output stream has an
-`encoding` attribute, and you haven't set the option,
-it will encode any Unicode string with this encoding
-before writing it. This is the case for `sys.stdout`, for example. The other
-formatters don't have that behavior.
+`encoding` attribute, and you haven't set the option, it will encode any
+Unicode string with this encoding before writing it. This is the case for
+`sys.stdout`, for example. The other formatters don't have that behavior.
+
+Another note: If you call Pygments via the command line (`pygmentize`),
+encoding is handled differently, see `the command line docs <cmdline.txt>`_.
 
 *New in Pygments 0.7*: the formatters now also accept an `outencoding` option
 which will override the `encoding` option if given. This makes it possible to

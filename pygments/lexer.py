@@ -56,9 +56,9 @@ class Lexer(object):
     ``encoding``
         If given, must be an encoding name. This encoding will be used to
         convert the input string to Unicode, if it is not already a Unicode
-        string. The default is to use latin1 (default: 'latin1').
-        Can also be 'guess' to use a simple UTF-8 / Latin1 detection, or
-        'chardet' to use the chardet library, if it is installed.
+        string (default: ``'latin1'``).
+        Can also be ``'guess'`` to use a simple UTF-8 / Latin1 detection, or
+        ``'chardet'`` to use the chardet library, if it is installed.
     """
 
     #: Name of the lexer
