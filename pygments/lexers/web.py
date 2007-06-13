@@ -24,7 +24,7 @@ from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
 
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
-           'PhpLexer','ActionScriptLexer']
+           'PhpLexer', 'ActionScriptLexer']
 
 
 class JavascriptLexer(RegexLexer):
