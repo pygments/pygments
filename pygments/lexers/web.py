@@ -207,7 +207,7 @@ class HtmlLexer(RegexLexer):
 
     name = 'HTML'
     aliases = ['html']
-    filenames = ['*.html', '*.htm', '*.xhtml']
+    filenames = ['*.html', '*.htm', '*.xhtml', '*.xslt']
     mimetypes = ['text/html', 'application/xhtml+xml']
 
     flags = re.IGNORECASE | re.DOTALL
