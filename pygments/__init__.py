@@ -23,7 +23,7 @@
     :license: BSD, see LICENSE for more details.
 """
 
-__version__ = '0.8'
+__version__ = '0.9'
 __author__ = 'Georg Brandl <g.brandl@gmx.net>'
 __url__ = 'http://pygments.org/'
 __license__ = 'BSD License'
