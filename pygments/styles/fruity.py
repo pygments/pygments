@@ -3,7 +3,7 @@
     pygments.styles.fruity
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    pygments version of my "native" vim theme.
+    pygments version of my "fruity" vim theme.
 
     :copyright: 2007 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
