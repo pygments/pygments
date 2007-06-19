@@ -109,7 +109,7 @@ class PythonLexer(RegexLexer):
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
         ],
         'import': [
-            (r'(\s*)(as)(\s*)', bygroups(Text, Keyword, Text)),
+            (r'(\s+)(as)(\s+)', bygroups(Text, Keyword, Text)),
             (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace),
             (r'(\s*)(,)(\s*)', bygroups(Text, Operator, Text)),
             (r'', Text, '#pop') # all else: go back
