@@ -342,8 +342,8 @@ def main(args):
             fmter.encoding = 'latin1'
         else:
             # use terminal encoding
-            lexer.encoding = sys.stdin.encoding or 'ascii'
-            fmter.encoding = sys.stdout.encoding or 'ascii'
+            lexer.encoding = getattr(sys.stdin, 'encoding', None) or 'ascii'
+            fmter.encoding = getattr(sys.stdout, 'encoding', None) or 'ascii'
 
     # ... and do it!
     try:
