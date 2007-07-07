@@ -28,7 +28,8 @@ from pygments.util import get_bool_opt
 
 __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
            'IrcLogsLexer', 'TexLexer', 'GroffLexer', 'ApacheConfLexer',
-           'BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'VimLexer']
+           'BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'VimLexer',
+           'GettextLexer']
 
 
 class IniLexer(RegexLexer):
@@ -596,7 +597,9 @@ class RstLexer(RegexLexer):
 
 class VimLexer(RegexLexer):
     """
-    Lexer for VimL script files
+    Lexer for VimL script files.
+
+    *New in Pygments 0.8.*
     """
     name = 'VimL'
     aliases = ['vim']
@@ -670,3 +673,31 @@ class VimLexer(RegexLexer):
                     yield index, Text, value
             else:
                 yield index, token, value
+
+
+class GettextLexer(RegexLexer):
+    """
+    Lexer for Gettext catalog files.
+
+    *New in Pygments 0.9.*
+    """
+    name = 'Gettext Catalog'
+    aliases = ['pot', 'po']
+    filenames = ['*.pot', '*.po']
+    mimetypes = ['application/x-gettext', 'text/x-gettext', 'text/gettext']
+
+    tokens = {
+        'root': [
+            (r'^#,\s.*?$', Keyword.Type),
+            (r'^#:\s.*?$', Keyword.Declaration),
+            #(r'^#$', Comment),
+            (r'^(#|#\.\s|#\|\s|#~\s|#\s).*$', Comment.Single),
+            (r'^(")([\w-]*:)(.*")$',
+             bygroups(String, Name.Property, String)),
+            (r'^".*"$', String),
+            (r'^(msgid|msgid_plural|msgstr)(\s+)(".*")$',
+             bygroups(Name.Variable, Text, String)),
+            (r'^(msgstr\[)(\d)(\])(\s+)(".*")$',
+             bygroups(Name.Variable, Number.Integer, Name.Variable, Text, String)),
+        ]
+    }

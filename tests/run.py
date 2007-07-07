@@ -18,6 +18,8 @@ import __builtin__
 
 from os.path import dirname, basename, join, abspath
 
+import pygments
+
 try:
     import coverage
 except ImportError:
@@ -77,8 +79,9 @@ def run_tests(with_coverage=False):
     WIDTH = 80
 
     print >>sys.stderr, \
-        ('Pygments Test Suite running%s, stand by...' %
-         (with_coverage and " with coverage analysis" or "")).center(WIDTH)
+        ('Pygments %s Test Suite running%s, stand by...' %
+         (pygments.__version__,
+          with_coverage and " with coverage analysis" or "")).center(WIDTH)
     print >>sys.stderr, ('(using Python %s)' % sys.version.split()[0]).center(WIDTH)
     print >>sys.stderr, '='*WIDTH
 
