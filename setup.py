@@ -20,6 +20,11 @@ setup(
     keywords = 'syntax highlighting',
     packages = find_packages(),
     scripts = ['pygmentize'],
+    entry_points = {
+        'console_scripts': [
+            'pygmentize = pygments.cmdline:main',
+        ],
+    },
     platforms = 'any',
     zip_safe = False,
     include_package_data = True,
