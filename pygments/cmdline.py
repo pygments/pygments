@@ -172,7 +172,7 @@ def _print_list(what):
             print "    %s" % docstring_headline(cls)
 
 
-def main(args):
+def main(args=sys.argv):
     """
     Main command line entry point.
     """
