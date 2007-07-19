@@ -923,16 +923,16 @@ class MiniDLexer(RegexLexer):
             ),
             # StringLiteral
             # -- WysiwygString
-            (r'(?s)@"[^"]*"', String),
+            (r'@"[^"]*"', String),
             # -- AlternateWysiwygString
-            (r'(?s)`[^`]*`', String),
+            (r'`[^`]*`', String),
             # -- DoubleQuotedString
-            (r'(?s)"(\\"|[^"])*"', String),
+            (r'"(\\\\|\\"|[^"])*"', String),
             # Tokens
             (
              r'(~=|\^=|%=|\*=|==|!=|>>>=|>>>|>>=|>>|>=|<=>|\?='
              r'|<<=|<<|<=|\+\+|\+=|--|-=|\|\||\|=|&&|&=|\.\.|/=)'
-             r'|[-/.&|\+<>!()\[\]{}?,;:=*%^~#]', Text #Punctuation
+             r'|[-/.&|\+<>!()\[\]{}?,;:=*%^~#]', Punctuation
             ),
             # Identifier
             (r'[a-zA-Z_]\w*', Name),
