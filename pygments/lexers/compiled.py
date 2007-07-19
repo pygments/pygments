@@ -262,18 +262,18 @@ class DLexer(RegexLexer):
             ),
             # StringLiteral
             # -- WysiwygString
-            (r'(?s)r"[^"]*"[cwd]?', String),
+            (r'r"[^"]*"[cwd]?', String),
             # -- AlternateWysiwygString
-            (r'(?s)`[^`]*`[cwd]?', String),
+            (r'`[^`]*`[cwd]?', String),
             # -- DoubleQuotedString
-            (r'(?s)"(\\"|[^"])*"[cwd]?', String),
+            (r'"(\\\\|\\"|[^"])*"[cwd]?', String),
             # -- EscapeSequence
             (r"""\\(['"?\\abfnrtv]|x[0-9a-fA-F]{2}|[0-7]{1,3}"""
              r"""|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|&\w+;)""",
              String
             ),
             # -- HexString
-            (r'(?s)x"[0-9a-fA-F_\s]*"[cwd]?', String),
+            (r'x"[0-9a-fA-F_\s]*"[cwd]?', String),
             # Tokens
             (r'(~=|\^=|%=|\*=|==|!>=|!<=|!<>=|!<>|!<|!>|!=|>>>=|>>>|>>=|>>|>='
              r'|<>=|<>|<<=|<<|<=|\+\+|\+=|--|-=|\|\||\|=|&&|&=|\.\.\.|\.\.|/=)'
