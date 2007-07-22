@@ -9,11 +9,16 @@ Version 0.9
   enhanced. You shouldn't get UnicodeErrors from it anymore if you
   don't give an encoding option.
 
+- Added the ``lineanchors`` option to the HTML formatter, thanks to
+  Ian Charnas for the idea.
+
 - Added 256-color terminal formatter.
 
 - Added ActionScript lexer.
 
 - Added Gettext catalog lexer.
+
+- Fixed bugs in the D and MiniD lexer.
 
 
 Version 0.8.1
