@@ -199,6 +199,10 @@ class HtmlFormatter(Formatter):
         If you set this option, the default selector for `get_style_defs()`
         will be this class.
 
+        *New in Pygments 0.9:* If you select the ``'table'`` line numbers, the
+        wrapping table will have a CSS class of this string plus ``'table'``,
+        the default is accordingly ``'highlighttable'``.
+
     `cssstyles`
         Inline CSS styles for the wrapping ``<div>`` tag (default: ``''``).
 
@@ -461,7 +465,8 @@ class HtmlFormatter(Formatter):
             ls = '\n'.join([(i%st == 0 and ('%*d' % (mw, i)) or '')
                             for i in range(fl, fl + lncount)])
 
-        yield 0, ('<table><tr><td class="linenos"><pre>' +
+        yield 0, ('<table class="%stable">' % self.cssclass +
+                  '<tr><td class="linenos"><pre>' +
                   ls + '</pre></td><td class="code">')
         yield 0, dummyoutfile.getvalue()
         yield 0, '</td></tr></table>'
