@@ -230,7 +230,7 @@ class DLexer(RegexLexer):
              r'|package|pragma|private|protected|public|ref|return|scope'
              r'|static|struct|super|switch|synchronized|template|this|throw'
              r'|try|typedef|typeid|typeof|union|unittest|version|volatile'
-             r'|while|with)\b', Keyword
+             r'|while|with|__traits)\b', Keyword
             ),
             (r'(bool|cdouble|cent|cfloat|char|creal|dchar|double|float|idouble'
              r'|ifloat|int|ireal|long|real|short|ubyte|ucent|uint|ulong|ushort'
