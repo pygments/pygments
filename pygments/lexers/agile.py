@@ -901,7 +901,7 @@ class MiniDLexer(RegexLexer):
             (r'/\+', Comment, 'nestedcomment'),
             # Keywords
             (r'(as|break|case|class|catch|continue|coroutine|default'
-             r'|do|else|finally|for|foreach|function|global'
+             r'|do|else|finally|for|foreach|function|global|namespace'
              r'|if|import|in|is|local|module|return|super|switch'
              r'|this|throw|try|vararg|while|with|yield)\b', Keyword),
             (r'(false|true|null)\b', Keyword.Constant),
