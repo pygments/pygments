@@ -238,6 +238,7 @@ class DLexer(RegexLexer):
             ),
             (r'(false|true|null)\b', Keyword.Constant),
             (r'macro\b', Keyword.Reserved),
+            (r'(string|wstring|dstring)\b', Name.Builtin),
             # FloatLiteral
             # -- HexFloat
             (r'0[xX]([0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)'
