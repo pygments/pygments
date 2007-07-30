@@ -681,9 +681,9 @@ class PerlLexer(RegexLexer):
             (r"\$[\\\"\[\]'&`+*.,;=%~?@$!<>(^|/-](?!\w)", Name.Variable.Global),
             (r'[$@%#]+', Name.Variable, 'varname'),
             (r'0_?[0-7]+(_[0-7]+)*', Number.Oct),
-            (r'\d+', Number.Integer),
             (r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex),
             (r'0b[01]+(_[01]+)*', Number.Bin),
+            (r'\d+', Number.Integer),
             (r"'(\\\\|\\'|[^'])*'", String),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r'`(\\\\|\\`|[^`])*`', String.Backtick),
@@ -723,6 +723,7 @@ class PerlLexer(RegexLexer):
             # argument declaration
             (r'(\([$@%]*\))(\s*)', bygroups(Punctuation, Text)),
             (r'.*?{', Punctuation, '#pop'),
+            (r';', Punctuation, '#pop'),
         ],
         'cb-string': [
             (r'\\[\{\}\\]', String.Other),
