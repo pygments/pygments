@@ -99,17 +99,17 @@ style this formatter isn't in the standard library ;-)
                 # a style item is a tuple in the following form:
                 # colors are readily specified in hex: 'RRGGBB'
                 if style['color']:
-                    start += '<font color="#%s">' % color
-                    end += '</font>'
+                    start += '<font color="#%s">' % style['color']
+                    end = '</font>' + end
                 if style['bold']:
                     start += '<b>'
-                    end += '</b>'
+                    end = '</b>' + end
                 if style['italic']:
                     start += '<i>'
-                    end += '</i>'
+                    end = '</i>' + end
                 if style['underline']:
                     start += '<u>'
-                    end += '</u>'
+                    end = '</u>' + end
                 self.styles[token] = (start, end)
 
         def format(self, tokensource, outfile):
