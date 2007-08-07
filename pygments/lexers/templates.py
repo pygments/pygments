@@ -419,7 +419,7 @@ class MakoLexer(RegexLexer):
             (r'<%(?=(include|inherit|namespace|page))', Comment.Preproc, 'ondeftags'),
             (r'(<%(?:!?))(.*?)(%>)(?s)',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
-            (r'(\$\{)(.*?)(\})',
+            (r'(\$\{!?)(.*?)(\})(?s)',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
             (r'''(?sx)
                 (.+?)               # anything, followed by:
