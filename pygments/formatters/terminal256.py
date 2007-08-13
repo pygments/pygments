@@ -122,7 +122,7 @@ class Terminal256Formatter(Formatter):
 
         valuerange = (0x00, 0x5f, 0x87, 0xaf, 0xd7, 0xff)
 
-        for i in range(16, 233):
+        for i in range(217):
             r = valuerange[(i / 36) % 6]
             g = valuerange[(i / 6) % 6]
             b = valuerange[i % 6]
