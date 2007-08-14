@@ -246,7 +246,7 @@ class HaskellLexer(RegexLexer):
             ("'", String.Char, '#pop'),
         ],
         'string': [
-            (r'[^\"]', String),
+            (r'[^\\"]', String),
             (r"\\", String.Escape, 'escape'),
             ('"', String, '#pop'),
         ],
