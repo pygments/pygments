@@ -210,6 +210,9 @@ class HaskellLexer(RegexLexer):
             # import X as Y
             (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(as)(\s+)([A-Z][a-zA-Z0-9_.]*)',
              bygroups(Name.Namespace, Text, Keyword, Text, Name), '#pop'),
+            # import X hiding (functions)
+            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(hiding)(\s+)(\()',
+             bygroups(Name.Namespace, Text, Keyword, Text, Punctuation), 'funclist'),
             # import X (functions)
             (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
              bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
