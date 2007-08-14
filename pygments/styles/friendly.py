@@ -30,7 +30,7 @@ class FriendlyStyle(Style):
 
         Keyword:                   "bold #007020",
         Keyword.Pseudo:            "nobold",
-        Keyword.Type:              "",
+        Keyword.Type:              "nobold #902000",
 
         Operator:                  "#666666",
         Operator.Word:             "bold #007020",

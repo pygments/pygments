@@ -16,7 +16,7 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import RegexLexer
+from pygments.lexer import RegexLexer, bygroups, using, this
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation
 
@@ -163,8 +163,8 @@ class HaskellLexer(RegexLexer):
     filenames = ['*.hs']
 
     reserved = ['case','class','data','default','deriving','do','else',
-                'if','import','in','infix[lr]?','instance',
-                'let','module','newtype','of','then','type','where','_']
+                'if','in','infix[lr]?','instance',
+                'let','newtype','of','then','type','where','_']
     ascii = ['NUL','SOH','[SE]TX','EOT','ENQ','ACK',
              'BEL','BS','HT','LF','VT','FF','CR','S[OI]','DLE',
              'DC[1-4]','NAK','SYN','ETB','CAN',
@@ -178,10 +178,15 @@ class HaskellLexer(RegexLexer):
             (r'{-', Comment.Multiline, 'comment'),
             # Lexemes:
             #  Identifiers
+            (r'\bimport\b', Keyword.Reserved, 'import'),
+            (r'\bmodule\b', Keyword.Reserved, 'module'),
+            (r'\berror\b', Name.Exception),
             (r'\b(%s)\b' % '|'.join(reserved), Keyword.Reserved),
-            ('[_a-z][\\w\']*', Name.Variable),
-            ('[A-Z][\\w\']*', Name),
+            (r'^[_a-z][\w\']*', Name.Function),
+            (r'[_a-z][\w\']*', Name),
+            (r'[A-Z][\w\']*', Keyword.Type),
             #  Operators
+            (r'\\(?![:!#$%&*+.\\/<=>?@^|~-]+)', Name.Function), # lambda operator
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
@@ -193,7 +198,39 @@ class HaskellLexer(RegexLexer):
             (r"'", String.Char, 'character'),
             (r'"', String, 'string'),
             #  Special
+            (r'\[\]', Keyword.Type),
             (r'[][(),;`{}]', Punctuation),
+        ],
+        'import': [
+            # Import statements
+            (r'\s+', Text),
+            # after "funclist" state
+            (r'\)', Punctuation, '#pop'),
+            (r'qualified\b', Keyword),
+            # import X as Y
+            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(as)(\s+)([A-Z][a-zA-Z0-9_.]*)',
+             bygroups(Name.Namespace, Text, Keyword, Text, Name), '#pop'),
+            # import X (functions)
+            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+             bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
+            # import X
+            (r'[a-zA-Z0-9_.]+', Name.Namespace, '#pop'),
+        ],
+        'module': [
+            (r'\s+', Text),
+            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+             bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
+            (r'[A-Z][a-zA-Z0-9_.]*', Name.Namespace, '#pop'),
+        ],
+        'funclist': [
+            (r'\s+', Text),
+            (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
+            (r'[a-zA-Z0-9_]+', Name.Function),
+            (r',', Punctuation),
+            (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
+            # (HACK, but it makes sense to push two instances, believe me)
+            (r'\(', Punctuation, ('funclist', 'funclist')),
+            (r'\)', Punctuation, '#pop:2'),
         ],
         'comment': [
             # Multiline Comments
