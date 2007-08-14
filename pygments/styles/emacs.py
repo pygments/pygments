@@ -30,7 +30,7 @@ class EmacsStyle(Style):
 
         Keyword:                   "bold #AA22FF",
         Keyword.Pseudo:            "nobold",
-        Keyword.Type:              "",
+        Keyword.Type:              "bold #00BB00",
 
         Operator:                  "#666666",
         Operator.Word:             "bold #AA22FF",
