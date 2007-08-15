@@ -21,7 +21,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation
 
 
-__all__ = ['SchemeLexer', 'HaskellLexer', 'OCamlLexer']
+__all__ = ['SchemeLexer', 'HaskellLexer', 'OcamlLexer']
 
 
 class SchemeLexer(RegexLexer):
