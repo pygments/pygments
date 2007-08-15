@@ -16,8 +16,6 @@
 """
 
 # TODO:
-#  - 'nobold', 'nounderline' options to suppress bold and underline
-#    attributes respectively.
 #  - Options to map style's bold/underline/italic/border attributes
 #    to some ANSI attrbutes (something like 'italic=underline')
 #  - An option to output "style RGB to xterm RGB/index" conversion table
@@ -94,6 +92,9 @@ class Terminal256Formatter(Formatter):
         self.xterm_colors = []
         self.best_match = {}
         self.style_string = {}
+
+        self.usebold = 'nobold' not in options
+        self.useunderline = 'nounderline' not in options
 
         self._build_color_table() # build an RGB-to-256 color conversion table
         self._setup_styles() # convert selected style's colors to term. colors
@@ -173,9 +174,9 @@ class Terminal256Formatter(Formatter):
                 escape.fg = self._color_index(ndef['color'])
             if ndef['bgcolor']:
                 escape.bg = self._color_index(ndef['bgcolor'])
-            if ndef['bold']:
+            if self.usebold and ndef['bold']:
                 escape.bold = True
-            if ndef['underline']:
+            if self.useunderline and ndef['underline']:
                 escape.underline = True
             self.style_string[str(ttype)] = (escape.color_string(),
                                              escape.reset_string())
