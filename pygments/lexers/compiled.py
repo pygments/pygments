@@ -24,6 +24,8 @@ from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Punctuation, \
      Error
 
+# backwards compatibility
+from pygments.lexers.functional import OcamlLexer
 
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer',
            'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer']
@@ -890,19 +892,17 @@ class OcamlLexer(RegexLexer):
 
     name = 'OCaml'
     aliases = ['ocaml']
-    filenames = ['*.ml', '*.mli']
+    filenames = ['*.ml', '*.mli', '*.mll', '*.mly']
     mimetypes = ['text/x-ocaml']
 
     keywords = [
-      'and', 'as', 'assert', 'asr', 'begin', 'class',
-      'constraint', 'do', 'done', 'downto', 'else', 'end',
-      'exception', 'external', 'false', 'for', 'fun', 'function',
-      'functor', 'if', 'in', 'include', 'inherit', 'initializer',
-      'land', 'lazy', 'let', 'lor', 'lsl', 'lsr',
-      'lxor', 'match', 'method', 'mod', 'module', 'mutable',
-      'new', 'object', 'of', 'open', 'or', 'private',
-      'rec', 'sig', 'struct', 'then', 'to', 'true',
-      'try', 'type', 'val', 'virtual', 'when', 'while', 'with'
+      'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done',
+      'downto', 'else', 'end', 'exception', 'external', 'false',
+      'for', 'fun', 'function', 'functor', 'if', 'in', 'include',
+      'inherit', 'initializer', 'lazy', 'let', 'match', 'method',
+      'module', 'mutable', 'new', 'object', 'of', 'open', 'private',
+      'raise', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
+      'type', 'val', 'virtual', 'when', 'while', 'with'
     ]
     keyopts = [
       '!=','#','&','&&','\(','\)','\*','\+',',','-',
@@ -912,8 +912,10 @@ class OcamlLexer(RegexLexer):
     ]
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
+    word_operators = ['and', 'asr', 'land', 'lor', 'lsl', 'lxor', 'mod', 'or']
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
+    primitives = ['unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array']
 
     tokens = {
         'escape-sequence': [
@@ -923,18 +925,23 @@ class OcamlLexer(RegexLexer):
         ],
         'root': [
             (r'\s+', Text),
+            (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
+            (r'\b([A-Z][A-Za-z0-9_\']*)(?=\s*\.)',
+             Name.Namespace, 'dotted'),
+            (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
             (r'\(\*', Comment, 'comment'),
-            (r'\b(%s)\b' % '|'.join(keywords), Keyword.Reserved),
-            (r'(%s)' % '|'.join(keyopts), Keyword),
-            (r'false|true|\(\)|\[\]', Name.Constant),
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
+            (r'(%s)' % '|'.join(keyopts), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
+            (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
+            (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
 
             (r"[^\W\d][\w']*", Name),
 
             (r'\d[\d_]*', Number.Integer),
             (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
             (r'0[oO][0-7][0-7_]*', Number.Oct),
-            (r'0[bB][01][01_]*', Number),
+            (r'0[bB][01][01_]*', Number.Binary),
             (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
 
             (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
@@ -957,7 +964,14 @@ class OcamlLexer(RegexLexer):
             include('escape-sequence'),
             (r'\\\n', String.Double),
             (r'"', String.Double, '#pop'),
-        ]
+        ],
+        'dotted': [
+            (r'\s+', Text),
+            (r'\.', Punctuation),
+            (r'[A-Z][A-Za-z0-9_\']*(?=\s*\.)', Name.Namespace),
+            (r'[A-Z][A-Za-z0-9_\']*', Name.Class, '#pop'),
+            (r'[a-z][a-z0-9_\']*', Name, '#pop'),
+        ],
     }
 
 

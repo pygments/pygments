@@ -209,12 +209,17 @@ class BashLexer(RegexLexer):
     filenames = ['*.sh']
     mimetypes = ['application/x-sh', 'application/x-shellscript']
 
-    # TODO: heredocs and perhaps some other niceties
-
     tokens = {
         'root': [
+            include('basic'),
+            (r'\$\(', Keyword, 'paren'),
+            (r'\${#?', Keyword, 'curly'),
+            (r'`', String.Backtick, 'backticks'),
+            include('data'),
+        ],
+        'basic': [
             (r'\b(if|fi|else|while|do|done|for|then|return|function|case|'
-             r'select|continue|until)\s*\b',
+             r'select|continue|until|esac|elif)\s*\b',
              Keyword),
             (r'\b(alias|bg|bind|break|builtin|caller|cd|command|compgen|'
              r'complete|declare|dirs|disown|echo|enable|eval|exec|exit|'
@@ -224,24 +229,34 @@ class BashLexer(RegexLexer):
              r'ulimit|umask|unalias|unset|wait)\s*\b',
              Name.Builtin),
             (r'#.*\n', Comment),
+            (r'\\[\w\W]', String.Escape),
             (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
             (r'[\[\]{}()=]+', Operator),
-            (r'(\$\()(.*?)(\))', bygroups(Keyword, using(this), Keyword)),
-            (r'\${#?', Keyword, 'curly'),
-            (r'`.+`', String),
-            (r'\d+(?= |\Z)', Number),
-            (r'\$#?(\w+|.)', Name.Variable),
+            (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
+        ],
+        'data': [
             (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
             (r"'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
             (r'\s+', Text),
-            (r'[^=\s\n\[\]{}()$"\']+', Text),
+            (r'[^=\s\n\[\]{}()$"\'`\\]+', Text),
+            (r'\d+(?= |\Z)', Number),
+            (r'\$#?(\w+|.)', Name.Variable),
         ],
         'curly': [
             (r'}', Keyword, '#pop'),
             (r':-', Keyword),
-            (r'[a-zA-Z0-9]+', Name.Variable),
-            (r'[^}:]+', Punctuation),
+            (r'[a-zA-Z0-9_]+', Name.Variable),
+            (r'[^}:"\'`$]+', Punctuation),
             (r':', Punctuation),
+            include('root'),
+        ],
+        'paren': [
+            (r'\)', Keyword, '#pop'),
+            include('root'),
+        ],
+        'backticks': [
+            (r'`', String.Backtick, '#pop'),
+            include('root'),
         ],
     }
 
