@@ -230,7 +230,8 @@ class combined(tuple):
         return tuple.__new__(cls, args)
 
     def __init__(self, *args):
-        tuple.__init__(self, args)
+        # tuple.__init__ doesn't do anything
+        pass
 
 
 class _PseudoMatch(object):
