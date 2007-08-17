@@ -26,8 +26,8 @@ class _TokenType(tuple):
         buf.reverse()
         return buf
 
-    def __init__(self, *args, **kwargs):
-        super(_TokenType, self).__init__(*args, **kwargs)
+    def __init__(self, *args):
+        # no need to call super.__init__
         self.subtypes = set()
 
     def __contains__(self, val):

@@ -195,6 +195,11 @@ class PythonConsoleLexer(Lexer):
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:4])]))
                 curcode += line[4:]
+            elif line.rstrip() == '...':
+                tb = 0
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, '...')]))
+                curcode += line[3:]
             else:
                 if curcode:
                     for item in do_insertions(insertions,
