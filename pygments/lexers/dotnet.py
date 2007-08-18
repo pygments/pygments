@@ -78,9 +78,8 @@ class CSharpLexer(RegexLexer):
                 # method names
                 (r'^([ \t]*(?:' + cs_ident + r'\s+)+?)'   # return arguments
                  r'(' + cs_ident + ')'                    # method name
-                 r'(\s*\([^;]*?\))'                       # signature
-                 r'(?=(?:\s|//.*?\n|/[*].*?[*]/)+\{)',    # lookahead for {
-                 bygroups(using(this), Name.Function, using(this))),
+                 r'(\s*)(\()',                            # signature start
+                 bygroups(using(this), Name.Function, Text, Punctuation)),
                 (r'^\s*\[.*?\]', Name.Attribute),
                 (r'[^\S\n]+', Text),
                 (r'\\\n', Text), # line continuation

@@ -798,11 +798,8 @@ class JavaLexer(RegexLexer):
             # method names
             (r'^(\s*(?:[a-zA-Z_][a-zA-Z0-9_\.]*\s+)+?)'  # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'                 # method name
-             r'(\s*\([^;]*?\))'                          # signature
-             r'(?=' + _ws +                              # exception declaration
-             r'(?:throws\s+(?:[a-zA-Z_][a-zA-Z0-9_]*,?\s*)+)?' +
-             _ws + r'\{)',
-             bygroups(using(this), Name.Function, using(this))),
+             r'(\s*)(\()',                               # signature start
+             bygroups(using(this), Name.Function, Text, Operator)),
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment),
             (r'/\*.*?\*/', Comment),
