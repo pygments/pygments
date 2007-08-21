@@ -360,7 +360,7 @@ class MOOCodeLexer(RegexLexer):
     For `MOOCode <http://www.moo.mud.org/>`_ (the MOO scripting
     language).
 
-    *New in Pygments 0.9*
+    *New in Pygments 0.9.*
     """
     name = 'MOOCode'
     filenames = ['*.moo']
