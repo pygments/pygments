@@ -26,7 +26,7 @@ from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
-           'MiniDLexer', 'MOOCodeLexer']
+           'MiniDLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -950,45 +950,4 @@ class MiniDLexer(RegexLexer):
             (r'\+/', Comment, '#pop'),
             (r'[+/]', Comment),
         ],
-    }
-
-
-class MOOCodeLexer(RegexLexer):
-    """
-    For `MOOCode <http://www.moo.mud.org/>`_ (the MOO scripting
-    language).
-    """
-    name = 'MOOCode'
-    filenames = ['*.moo']
-    aliases = ['moocode']
-    mimetypes = ['text/x-moocode']
-
-    tokens = {
-        'root' : [
-            # Numbers
-            (r'(0|[1-9][0-9_]*)', Number.Integer),
-            # Strings
-            (r'"(\\\\|\\"|[^"])*"', String),
-            # exceptions
-            (r'(E_PERM|E_DIV)', Name.Exception),
-            # db-refs
-            (r'((#[-0-9]+)|(\$[a-z_A-Z0-9]+))', Name.Entity),
-            # Keywords
-            (r'\b(if|else|elseif|endif|for|endfor|fork|endfork|while'
-             r'|endwhile|break|continue|return|try'
-             r'|except|endtry|finally|in)\b', Keyword),
-            # builtins
-            (r'(random|length)', Name.Builtin),
-            # special variables
-            (r'(player|caller|this|args)', Name.Variable.Instance),
-            # skip whitespace
-            (r'\s+', Text),
-            (r'\n', Text),
-            # other operators
-            (r'([!;=,{}&\|:\.\[\]@\(\)\<\>\?]+)', Operator),
-            # function call
-            (r'([a-z_A-Z0-9]+)(\()', bygroups(Name.Function, Operator)),
-            # variables
-            (r'([a-zA-Z_0-9]+)', Text),
-        ]
     }
