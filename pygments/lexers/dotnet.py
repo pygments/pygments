@@ -104,7 +104,7 @@ class CSharpLexer(RegexLexer):
                  r'ref|return|sealed|sizeof|stackalloc|static|'
                  r'switch|this|throw|true|try|typeof|'
                  r'unchecked|unsafe|virtual|void|while|'
-                 r'get|set|new)\b', Keyword),
+                 r'get|set|new|partial)\b', Keyword),
                 (r'(bool|byte|char|decimal|double|float|int|long|object|sbyte|'
                  r'short|string|uint|ulong|ushort)\b', Keyword.Type),
                 (r'(class|struct)(\s+)', bygroups(Keyword, Text), 'class'),
