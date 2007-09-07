@@ -222,7 +222,7 @@ class DLexer(RegexLexer):
             # Comments
             (r'//(.*?)\n', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
-            (r'/\+', Comment, 'nestedcomment'),
+            (r'/\+', Comment, 'nested_comment'),
             # Keywords
             (r'(abstract|alias|align|asm|assert|auto|body|break|case|cast'
              r'|catch|class|const|continue|debug|default|delegate|delete'
@@ -277,6 +277,15 @@ class DLexer(RegexLexer):
             ),
             # -- HexString
             (r'x"[0-9a-fA-F_\s]*"[cwd]?', String),
+            # -- DelimitedString
+            (r'q"\[', String, 'delimited_bracket'),
+            (r'q"\(', String, 'delimited_parenthesis'),
+            (r'q"<', String, 'delimited_angle'),
+            (r'q"{', String, 'delimited_curly'),
+            (r'q"([a-zA-Z_]\w*)\n.*?\n\1"', String),
+            (r'q"(.)[^\1]*\1"', String),
+            # -- TokenString
+            (r'q{', String, 'token_string'),
             # Tokens
             (r'(~=|\^=|%=|\*=|==|!>=|!<=|!<>=|!<>|!<|!>|!=|>>>=|>>>|>>=|>>|>='
              r'|<>=|<>|<<=|<<|<=|\+\+|\+=|--|-=|\|\||\|=|&&|&=|\.\.\.|\.\.|/=)'
@@ -285,11 +294,61 @@ class DLexer(RegexLexer):
             # Identifier
             (r'[a-zA-Z_]\w*', Name),
         ],
-        'nestedcomment': [
+        'nested_comment': [
             (r'[^+/]+', Comment),
             (r'/\+', Comment, '#push'),
             (r'\+/', Comment, '#pop'),
             (r'[+/]', Comment),
+        ],
+        'token_string': [
+            (r'{', Punctuation, 'token_string_nest'),
+            (r'}', String, '#pop'),
+            include('root'),
+        ],
+        'token_string_nest': [
+            (r'{', Punctuation, '#push'),
+            (r'}', Punctuation, '#pop'),
+            include('root'),
+        ],
+        'delimited_bracket': [
+            (r'[^\[\]]+', String),
+            (r'\[', String, 'delimited_inside_bracket'),
+            (r'\]"', String, '#pop'),
+        ],
+        'delimited_inside_bracket': [
+            (r'[^\[\]]+', String),
+            (r'\[', String, '#push'),
+            (r'\]', String, '#pop'),
+        ],
+        'delimited_parenthesis': [
+            (r'[^\(\)]+', String),
+            (r'\(', String, 'delimited_inside_parenthesis'),
+            (r'\)"', String, '#pop'),
+        ],
+        'delimited_inside_parenthesis': [
+            (r'[^\(\)]+', String),
+            (r'\(', String, '#push'),
+            (r'\)', String, '#pop'),
+        ],
+        'delimited_angle': [
+            (r'[^<>]+', String),
+            (r'<', String, 'delimited_inside_angle'),
+            (r'>"', String, '#pop'),
+        ],
+        'delimited_inside_angle': [
+            (r'[^<>]+', String),
+            (r'<', String, '#push'),
+            (r'>', String, '#pop'),
+        ],
+        'delimited_curly': [
+            (r'[^{}]+', String),
+            (r'{', String, 'delimited_inside_curly'),
+            (r'}"', String, '#pop'),
+        ],
+        'delimited_inside_curly': [
+            (r'[^{}]+', String),
+            (r'{', String, '#push'),
+            (r'}', String, '#pop'),
         ],
     }
 
