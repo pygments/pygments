@@ -40,6 +40,7 @@ class LexersTest(unittest.TestCase):
             result = lexer.analyse_text("abc")
             a(isinstance(result, float) and 0.0 <= result <= 1.0)
 
+            inst = lexer(opt1="val1", opt2="val2")
             if issubclass(lexer, RegexLexer):
                 if not hasattr(lexer, '_tokens'):
                     # if there's no "_tokens", the lexer has to be one with
@@ -50,7 +51,6 @@ class LexersTest(unittest.TestCase):
                 else:
                     a('root' in lexer._tokens, '%s has no root state' % lexer)
 
-            inst = lexer(opt1="val1", opt2="val2")
             tokens = list(inst.get_tokens(test_content))
             txt = ""
             for token in tokens:
