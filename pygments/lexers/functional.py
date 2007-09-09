@@ -21,7 +21,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation
 
 
-__all__ = ['SchemeLexer', 'HaskellLexer', 'OcamlLexer']
+__all__ = ['SchemeLexer', 'HaskellLexer', 'OcamlLexer', 'ErlangLexer']
 
 
 class SchemeLexer(RegexLexer):
@@ -355,3 +355,77 @@ class OcamlLexer(RegexLexer):
             (r'[a-z][a-z0-9_\']*', Name, '#pop'),
         ],
     }
+
+
+class ErlangLexer(RegexLexer):
+    """
+    For the Erlang functional programming language.
+
+    Blame Jeremy Thurgood (http://jerith.za.net/).
+
+    *New in Pygments 0.9.*
+    """
+
+    name = 'Erlang'
+    aliases = ['erlang']
+    filenames = ['*.erl', '*.hrl']
+    mimetypes = ['text/x-erlang']
+
+    keywords = [
+        'after', 'begin', 'case', 'catch', 'cond', 'end', 'fun', 'if',
+        'let', 'of', 'query', 'receive', 'try', 'when',
+        ]
+
+    operators = r'(\+|-|\*|/|<|>|=|==|/=|=:=|=/=|=<|>=|\+\+|--|<-|!)'
+    word_operators = [
+        'and', 'andalso', 'band', 'bnot', 'bor', 'bsl', 'bsr', 'bxor',
+        'div', 'not', 'or', 'orelse', 'rem', 'xor'
+        ]
+
+    atom_re = r"(?:[a-z][a-zA-Z0-9_]*|'[^\n']*[^\\]')"
+
+    variable_re = r'(?:[A-Z_][a-zA-Z0-9_]*)'
+
+    escape_re = r'(?:\\(?:[bdefnrstv\'"\\]|[0-7][0-7]?[0-7]?|\^[a-zA-Z]))'
+
+    macro_re = r'(?:'+variable_re+r'|'+atom_re+r')'
+
+    base_re = r'(?:[2-9]|[12][0-9]|3[0-6])'
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'%.*\n', Comment),
+            ('|'.join(keywords), Name.Keyword),
+            (r'\b(?:'+'|'.join(word_operators)+r')\b', Operator.Word),
+            (r'^-', Punctuation, 'directive'),
+            (operators, Operator),
+            (r'"', String, 'string'),
+            (r'<<', Name.Label),
+            (r'>>', Name.Label),
+            (r'('+atom_re+')(:)', bygroups(Name.Namespace, Punctuation)),
+            (r'^('+atom_re+r')(\s*)(\()', bygroups(Name.Function, Text, Punctuation)),
+            (r'[+-]?'+base_re+r'#[0-9a-zA-Z]+', Number.Integer),
+            (r'[+-]?\d+', Number.Integer),
+            (r'[+-]?\d+.\d+', Number.Float),
+            (r'[][:_@\".{}()|;,]', Punctuation),
+            (variable_re, Name.Variable),
+            (atom_re, Name),
+            (r'\?'+macro_re, Name.Constant),
+            (r'\$(?:'+escape_re+r'|\\[ %]|[^\\])', String.Char),
+            (r'#'+atom_re+r'(:?\.'+atom_re+r')?', Name.Label),
+            ],
+        'string': [
+            (escape_re, String.Escape),
+            (r'"', String, '#pop'),
+            (r'~[0-9.*]*[~#+bBcefginpPswWxX]', String.Interpol),
+            (r'[^"\~]+', String),
+            ],
+        'directive': [
+            (r'(define)(\s*)(\()('+macro_re+r')',
+             bygroups(Name.Entity, Text, Punctuation, Name.Constant), '#pop'),
+            (r'(record)(\s*)(\()('+macro_re+r')',
+             bygroups(Name.Entity, Text, Punctuation, Name.Label), '#pop'),
+            (atom_re, Name.Entity, '#pop'),
+            ],
+        }
