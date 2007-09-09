@@ -718,12 +718,14 @@ class WeechatLogLexer(RegexLexer):
 	tokens = {
 		'root' : [
 			# date
-			(r'(\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2})(\s+)', bygroups(Comment.Preproc, Whitespace)),
+			(r'(\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2})(\s+)',
+				bygroups(Comment.Preproc, Whitespace)),
 			# operators
 			(r'(-=-|<--|-->|-@-|-P-)(.*)', bygroups(Operator, Text)),
 			# messages
 			(r'(<)(\w+)(>)(.*)', bygroups(Operator, Name, Operator, Text)),
 			# log start/end
-			(r'(\*\*\*\*[\w\s]+)(\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2}\s+)(\*\*\*\*)', Comment)
+			(r'(\*\*\*\*[\w\s]+)(\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2}\s+)(\*\*\*\*)',
+				Comment)
 		]
 	}
