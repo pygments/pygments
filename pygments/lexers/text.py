@@ -22,7 +22,8 @@ from bisect import bisect
 from pygments.lexer import RegexLexer, bygroups, include, using, this, \
      do_insertions
 from pygments.token import Punctuation, \
-    Text, Comment, Keyword, Name, String, Generic, Operator, Number
+    Text, Comment, Keyword, Name, String, Generic, Operator, Number, \
+    Whitespace
 from pygments.util import get_bool_opt
 
 
@@ -717,7 +718,7 @@ class WeechatLogLexer(RegexLexer):
 	tokens = {
 		'root' : [
 			# date
-			(r'(\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2})(\s+)', bygroups(Comment.Preproc, Text)),
+			(r'(\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2})(\s+)', bygroups(Comment.Preproc, Whitespace)),
 			# operators
 			(r'(-=-|<--|-->|-@-|-P-)(.*)', bygroups(Operator, Text)),
 			# messages
