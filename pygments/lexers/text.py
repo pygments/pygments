@@ -29,7 +29,7 @@ from pygments.util import get_bool_opt
 __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
            'IrcLogsLexer', 'TexLexer', 'GroffLexer', 'ApacheConfLexer',
            'BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'VimLexer',
-           'GettextLexer']
+           'GettextLexer', 'WeechatLogLexer']
 
 
 class IniLexer(RegexLexer):
@@ -701,3 +701,28 @@ class GettextLexer(RegexLexer):
              bygroups(Name.Variable, Number.Integer, Name.Variable, Text, String)),
         ]
     }
+
+
+class WeechatLogLexer(RegexLexer):
+	"""
+	Lexer for weechat log files.
+	
+	*New in Pygments 0.9.*
+	"""
+	name = 'Weechat Log'
+	aliases = ['weechatlog']
+	filenames = ['*.weechatlog']
+	mimetypes = ['text/x-weechatlog']
+	
+	tokens = {
+		'root' : [
+			# date
+			(r'(\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2})(\s+)', bygroups(Comment.Preproc, Text)),
+			# operators
+			(r'(-=-|<--|-->|-@-|-P-)(.*)', bygroups(Operator, Text)),
+			# messages
+			(r'(<)(\w+)(>)(.*)', bygroups(Operator, Name, Operator, Text)),
+			# log start/end
+			(r'(\*\*\*\*[\w\s]+)(\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2}\s+)(\*\*\*\*)', Comment)
+		]
+	}
