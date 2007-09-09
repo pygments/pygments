@@ -30,7 +30,7 @@ from pygments.util import get_bool_opt
 __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
            'IrcLogsLexer', 'TexLexer', 'GroffLexer', 'ApacheConfLexer',
            'BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'VimLexer',
-           'GettextLexer', 'WeechatLogLexer']
+           'GettextLexer']
 
 
 class IniLexer(RegexLexer):
@@ -202,17 +202,25 @@ class IrcLogsLexer(RegexLexer):
 
     name = 'IRC logs'
     aliases = ['irc']
+    filenames = ['*.weechatlog']
     mimetypes = ['text/x-irclog']
 
     flags = re.VERBOSE | re.MULTILINE
     timestamp = r"""
-        ( (?: \[|\()?                  # Opening bracket or paren for the timestamp
+        (
+          # irssi / xchat and others
+          (?: \[|\()?                  # Opening bracket or paren for the timestamp
             (?:                        # Timestamp
                 (?: (?:\d{1,4} [-/]?)+ # Date as - or /-separated groups of digits
                  [T ])?                # Date/time separator: T or space
                 (?: \d?\d [:.]?)+      # Time as :/.-separated groups of 1 or 2 digits
             )
-          (?: \]|\))?\s+ )?            # Closing bracket or paren for the timestamp
+          (?: \]|\))?\s+               # Closing bracket or paren for the timestamp
+        |
+          # weechat
+          \d{4}\s\w{3}\s\d{2}\s        # Date
+          \d{2}:\d{2}:\d{2}\s+         # Time + Whitespace
+        )?
     """
     tokens = {
         'root': [
@@ -227,9 +235,9 @@ class IrcLogsLexer(RegexLexer):
              bygroups(Comment.Preproc, Keyword, Generic.Inserted)),
             # join/part msgs
             ("^" + timestamp + r"""
-                (\s*(?:[*]{3}|-!-)\s*) # Star(s)
-                ([^\s]+\s+)            # Nick + Space
-                (.*?\n)                # Rest of message """,
+                (\s*(?:\*{3}|<?-[!@=P]?->?)\s*)  # Star(s) or symbols
+                ([^\s]+\s+)                     # Nick + Space
+                (.*?\n)                         # Rest of message """,
              bygroups(Comment.Preproc, Keyword, String, Comment)),
             (r"^.*?\n", Text),
         ],
@@ -702,30 +710,3 @@ class GettextLexer(RegexLexer):
              bygroups(Name.Variable, Number.Integer, Name.Variable, Text, String)),
         ]
     }
-
-
-class WeechatLogLexer(RegexLexer):
-	"""
-	Lexer for weechat log files.
-	
-	*New in Pygments 0.9.*
-	"""
-	name = 'Weechat Log'
-	aliases = ['weechatlog']
-	filenames = ['*.weechatlog']
-	mimetypes = ['text/x-weechatlog']
-	
-	tokens = {
-		'root' : [
-			# date
-			(r'(\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2})(\s+)',
-				bygroups(Comment.Preproc, Whitespace)),
-			# operators
-			(r'(-=-|<--|-->|-@-|-P-)(.*)', bygroups(Operator, Text)),
-			# messages
-			(r'(<)(\w+)(>)(.*)', bygroups(Operator, Name, Operator, Text)),
-			# log start/end
-			(r'(\*\*\*\*[\w\s]+)(\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2}\s+)(\*\*\*\*)',
-				Comment)
-		]
-	}
