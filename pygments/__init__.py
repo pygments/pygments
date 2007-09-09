@@ -16,9 +16,6 @@
     * it is usable as a command-line tool and as a library
     * ... and it highlights even Brainfuck!
 
-    The `Pygments trunk <http://trac.pocoo.org/repos/pygments/trunk#egg=Pygments-dev>`__
-    is installable via *easy_install* with ``easy_install Pygments==dev``.
-
     :copyright: 2006-2007 by Georg Brandl, Armin Ronacher and others.
     :license: BSD, see LICENSE for more details.
 """
