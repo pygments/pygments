@@ -224,9 +224,11 @@ class IrcLogsLexer(RegexLexer):
     """
     tokens = {
         'root': [
+        	# log start/end
+            (r'^\*\*\*\*(.*)\*\*\*\*$', Comment),
             # normal msgs
             ("^" + timestamp + r"""
-                (\s*<.*?>\s+)          # Nick """,
+                (\s*<.*?>\s*)          # Nick """,
              bygroups(Comment.Preproc, Name.Tag), 'msg'),
             # /me msgs
             ("^" + timestamp + r"""
