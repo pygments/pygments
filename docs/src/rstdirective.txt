@@ -1,3 +1,5 @@
+.. -*- mode: rst -*-
+
 ================================
 Using Pygments in ReST documents
 ================================
@@ -9,72 +11,8 @@ samples or snippets.
 You can easily enable Pygments support for your ReST texts using a custom
 directive -- this is also how this documentation displays source code.
 
-Add this code to the script you use for building the HTML documentation:
-
-.. sourcecode:: python
-
-    from docutils import nodes
-    from docutils.parsers.rst import directives
-    from pygments import highlight
-    from pygments.lexers import get_lexer_by_name
-    from pygments.formatters import HtmlFormatter
-
-    pygments_formatter = HtmlFormatter()
-
-    def pygments_directive(name, arguments, options, content, lineno,
-                           content_offset, block_text, state, state_machine):
-        try:
-            lexer = get_lexer_by_name(arguments[0])
-        except ValueError:
-            # no lexer found - use the text one instead of an exception
-            lexer = get_lexer_by_name('text')
-        parsed = highlight(u'\n'.join(content), lexer, pygments_formatter)
-        return [nodes.raw('', parsed, format='html')]
-    pygments_directive.arguments = (1, 0, 1)
-    pygments_directive.content = 1
-    directives.register_directive('sourcecode', pygments_directive)
-
-Now you should be able to use Pygments to highlight source code in your ReST
-files using this syntax::
-
-    .. sourcecode:: language
-
-        your code here
-
-If you want to have two or more variants of the directive, you can utilize
-ReST *directive options*, like so:
-
-.. sourcecode:: python
-
-    normal_fmter = HtmlFormatter()
-    lineno_fmter = HtmlFormatter(linenos=True)
-
-    def pygments_directive(name, arguments, options, content, lineno,
-                           content_offset, block_text, state, state_machine):
-        try:
-            lexer = get_lexer_by_name(arguments[0])
-        except ValueError:
-            # no lexer found - use the text one instead of an exception
-            lexer = get_lexer_by_name('text')
-	formatter = ('linenos' in options) and lineno_fmter or normal_fmter
-        parsed = highlight(u'\n'.join(content), lexer, formatter)
-        return [nodes.raw('', parsed, format='html')]
-    pygments_directive.arguments = (1, 0, 1)
-    pygments_directive.content = 1
-    pygments_directive.options = {'linenos': directives.flag}
-    directives.register_directive('sourcecode', pygments_directive)
-
-And use it like so::
-
-    .. sourcecode:: language
-       :linenos:
-
-       the code starts here...
-
-to get line numbers (to use the normal formatter, just leave out the option
-like above).
-
-Look at the `directive documentation`_ to get all the gory details.
+From Pygments 0.9, the directive is shipped in the distribution as
+`external/rst-directive.py`.  You can copy and adapt this code to your liking.
 
 
 *Loosely related note:* The ReST lexer now recognizes ``.. sourcecode::`` and
@@ -82,4 +20,3 @@ Look at the `directive documentation`_ to get all the gory details.
 if the `handlecodeblocks` option is true.
 
 .. _ReST: http://docutils.sf.net/rst.html
-.. _directive documentation: http://docutils.sourceforge.net/docs/howto/rst-directives.html
