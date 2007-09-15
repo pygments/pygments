@@ -65,4 +65,3 @@ class CodeBlockPreprocessor(Preprocessor):
             return '\n\n<div class="code">%s</div>\n\n' % code
         return self.pattern.sub(
             repl, '\n'.join(lines)).split('\n')
-
