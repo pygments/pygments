@@ -28,7 +28,8 @@
     Look at the `directive documentation`_ to get all the gory details.
 
     .. _Docutils: http://docutils.sf.net/
-    .. _directive documentation: http://docutils.sourceforge.net/docs/howto/rst-directives.html
+    .. _directive documentation:
+       http://docutils.sourceforge.net/docs/howto/rst-directives.html
 
     :copyright: 2007 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
