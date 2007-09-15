@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.styles.vim
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
     A highlighting style for Pygments, inspired by vim.
 

@@ -797,7 +797,7 @@ class SquidConfLexer(RegexLexer):
                  "uri_whitespace", "useragent_log", "visible_hostname",
                  "wais_relay", "wais_relay_host", "wais_relay_port",
                  ]
-    
+
     opts = [ "proxy-only", "weight", "ttl", "no-query", "default",
              "round-robin", "multicast-responder", "on", "off", "all",
              "deny", "allow", "via", "parent", "no-digest", "heap", "lru",
@@ -823,7 +823,7 @@ class SquidConfLexer(RegexLexer):
              ]
 
     ip_re = r'\b(?:\d{1,3}\.){3}\d{1,3}\b'
-    
+
     def makelistre(list):
         return r'\b(?:'+'|'.join(list)+r')\b'
 
