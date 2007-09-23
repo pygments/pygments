@@ -540,13 +540,13 @@ class RubyLexer(ExtendedRegexLexer):
              r'([a-zA-Z_][\w_]*[\!\?]?|\*\*?|[-+]@?|'
              r'[/%&|^`~]|\[\]=?|<<|>>|<=?>|>=?|===?)',
              bygroups(Name.Class, Operator, Name.Function), '#pop'),
-            (r'(?:)', Text, '#pop')
+            (r'', Text, '#pop')
         ],
         'classname': [
             (r'\(', Punctuation, 'defexpr'),
             (r'<<', Operator, '#pop'),
             (r'[A-Z_][\w_]*', Name.Class, '#pop'),
-            (r'(?:)', Text, '#pop')
+            (r'', Text, '#pop')
         ],
         'defexpr': [
             (r'(\))(\.|::)?', bygroups(Punctuation, Operator), '#pop'),
