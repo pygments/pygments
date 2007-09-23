@@ -535,14 +535,23 @@ class RubyLexer(ExtendedRegexLexer):
             (r'\s+', Text)
         ],
         'funcname': [
+            (r'\(', Punctuation, 'defexpr'),
             (r'(?:([a-zA-Z_][a-zA-Z0-9_]*)(\.))?'
              r'([a-zA-Z_][\w_]*[\!\?]?|\*\*?|[-+]@?|'
              r'[/%&|^`~]|\[\]=?|<<|>>|<=?>|>=?|===?)',
-             bygroups(Name.Class, Operator, Name.Function), '#pop')
+             bygroups(Name.Class, Operator, Name.Function), '#pop'),
+            (r'(?:)', Text, '#pop')
         ],
         'classname': [
+            (r'\(', Punctuation, 'defexpr'),
             (r'<<', Operator, '#pop'),
-            (r'[a-zA-Z_][\w_]*', Name.Class, '#pop')
+            (r'[A-Z_][\w_]*', Name.Class, '#pop'),
+            (r'(?:)', Text, '#pop')
+        ],
+        'defexpr': [
+            (r'(\))(\.|::)?', bygroups(Punctuation, Operator), '#pop'),
+            (r'\(', Operator, '#push'),
+            include('root')
         ],
         'in-intp': [
             ('}', String.Interpol, '#pop'),
