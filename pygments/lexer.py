@@ -403,10 +403,15 @@ class RegexLexerMeta(LexerMeta):
                     new_state = (new_state,)
                 elif isinstance(tdef2, tuple):
                     # push more than one state
+                    new_state = []
                     for state in tdef2:
-                        assert state in unprocessed, \
-                               'unknown new state ' + state
-                    new_state = tdef2
+                        if state == '#pop':
+                            new_state.append(-1)
+                        else:
+                            assert state in unprocessed, \
+                                   'unknown new state ' + state
+                            new_state.append(state)
+                    new_state = tuple(new_state)
                 else:
                     assert False, 'unknown new state def %r' % tdef2
             tokens.append((rex, tdef[1], new_state))
