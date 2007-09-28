@@ -403,15 +403,11 @@ class RegexLexerMeta(LexerMeta):
                     new_state = (new_state,)
                 elif isinstance(tdef2, tuple):
                     # push more than one state
-                    new_state = []
                     for state in tdef2:
-                        if state == '#pop':
-                            new_state.append(-1)
-                        else:
-                            assert state in unprocessed, \
-                                   'unknown new state ' + state
-                            new_state.append(state)
-                    new_state = tuple(new_state)
+                        assert (state in unprocessed or
+                                state in ('#pop', '#push')), \
+                               'unknown new state ' + state
+                    new_state = tdef2
                 else:
                     assert False, 'unknown new state def %r' % tdef2
             tokens.append((rex, tdef[1], new_state))
@@ -492,7 +488,13 @@ class RegexLexer(Lexer):
                     if new_state is not None:
                         # state transition
                         if isinstance(new_state, tuple):
-                            statestack.extend(new_state)
+                            for state in new_state:
+                                if state == '#pop':
+                                    statestack.pop()
+                                elif state == '#push':
+                                    statestack.append(statestack[-1])
+                                else:
+                                    statestack.append(state)
                         elif isinstance(new_state, int):
                             # pop
                             del statestack[new_state:]
