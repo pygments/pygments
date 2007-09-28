@@ -237,6 +237,9 @@ There are a few more things you can do with states:
   the closing ``*/``. Then, both states are popped from the stack again and
   lexing continues in the root state.
 
+  *New in Pygments 0.9:* The tuple can contain the special ``'#push'`` and
+  ``'#pop'`` (but not ``'#pop:n'``) directives.
+
 
 - You can include the rules of a state in the definition of another.  This is
   done by using `include` from `pygments.lexer`:
