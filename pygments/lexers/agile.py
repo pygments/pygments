@@ -807,6 +807,7 @@ class LuaLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'(?s)--\[(=*)\[.*?\]\1\]', Comment.Multiline),
             ('--.*$', Comment.Single),
 
             (r'(?i)(\d*\.\d+|\d+\.\d*)(e[+-]?\d+)?', Number.Float),
