@@ -161,7 +161,7 @@ class HaskellLexer(RegexLexer):
     name = 'Haskell'
     aliases = ['haskell', 'hs']
     filenames = ['*.hs']
-    mimetypes ['text/x-haskell']
+    mimetypes = ['text/x-haskell']
 
     reserved = ['case','class','data','default','deriving','do','else',
                 'if','in','infix[lr]?','instance',
