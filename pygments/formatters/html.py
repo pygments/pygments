@@ -48,9 +48,16 @@ def _get_ttype_class(ttype):
     while fname is None:
         aname = '-' + ttype[-1] + aname
         ttype = ttype.parent
-        fname = STANDARD_TYPES.get(ttype, '')
+        fname = STANDARD_TYPES.get(ttype)
     return fname + aname
 
+
+CSSFILE_TEMPLATE = '''\
+td.linenos { background-color: #f0f0f0; padding-right: 10px; }
+span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
+pre { line-height: 125%; }
+%(styledefs)s
+'''
 
 DOC_HEADER = '''\
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -61,16 +68,13 @@ DOC_HEADER = '''\
   <title>%(title)s</title>
   <meta http-equiv="content-type" content="text/html; charset=%(encoding)s">
   <style type="text/css">
-td.linenos { background-color: #f0f0f0; padding-right: 10px; }
-span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
-%(styledefs)s
+''' + CSSFILE_TEMPLATE + '''
   </style>
 </head>
 <body>
 <h2>%(title)s</h2>
 
 '''
-
 
 DOC_HEADER_EXTERNALCSS = '''\
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -90,12 +94,6 @@ DOC_HEADER_EXTERNALCSS = '''\
 DOC_FOOTER = '''\
 </body>
 </html>
-'''
-
-
-CSSFILE_TEMPLATE = '''\
-td.linenos { background-color: #f0f0f0; padding-right: 10px; }
-%(styledefs)s
 '''
 
 
@@ -226,6 +224,12 @@ class HtmlFormatter(Formatter):
         means also ``True``).
 
         The default value is ``False``, which means no line numbers at all.
+
+        **Note:** with the default ("table") line number mechanism, the line
+        numbers and code will have different line heights in Internet Explorer
+        unless you give the enclosing ``<pre>`` tags an explicit ``line-height``
+        CSS property (you get the default line spacing with ``line-height:
+        125%``).
 
     `linenostart`
         The line number for the first line (default: ``1``).
@@ -393,7 +397,7 @@ class HtmlFormatter(Formatter):
                   if cls and style]
         styles.sort()
         lines = ['%s { %s } /* %s */' % (prefix(cls), style, repr(ttype)[6:])
-                 for level, ttype, cls, style in styles]
+                 for (level, ttype, cls, style) in styles]
         if arg and not self.nobackground and \
            self.style.background_color is not None:
             text_style = ''

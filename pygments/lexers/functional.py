@@ -239,29 +239,30 @@ class HaskellLexer(RegexLexer):
         ],
         'comment': [
             # Multiline Comments
-            (r'[^-{}]', Comment.Multiline),
+            (r'[^-{}]+', Comment.Multiline),
             (r'{-', Comment.Multiline, '#push'),
             (r'-}', Comment.Multiline, '#pop'),
             (r'[-{}]', Comment.Multiline),
         ],
         'character': [
             # Allows multi-chars, incorrectly.
-            (r"[^\']", String.Char),
+            (r"[^\\']", String.Char),
             (r"\\", String.Escape, 'escape'),
             ("'", String.Char, '#pop'),
         ],
         'string': [
-            (r'[^\\"]', String),
+            (r'[^\\"]+', String),
             (r"\\", String.Escape, 'escape'),
             ('"', String, '#pop'),
         ],
         'escape': [
-            ('[abfnrtv\\"\'&]', String.Escape, '#pop'),
-            ('\\^[][A-Z@\\^_]', String.Escape, '#pop'),
+            (r'[abfnrtv"\'&\\]', String.Escape, '#pop'),
+            (r'\^[][A-Z@\^_]', String.Escape, '#pop'),
             ('|'.join(ascii), String.Escape, '#pop'),
             (r'o[0-7]+', String.Escape, '#pop'),
             (r'x[\da-fA-F]+', String.Escape, '#pop'),
             (r'\d+', String.Escape, '#pop'),
+            (r'\n\s+\\', String.Escape, '#pop'),
         ],
     }
 
