@@ -22,6 +22,7 @@ from pygments.formatters.latex import LatexFormatter
 from pygments.formatters.other import NullFormatter
 from pygments.formatters.other import RawTokenFormatter
 from pygments.formatters.rtf import RtfFormatter
+from pygments.formatters.svg import SvgFormatter
 from pygments.formatters.terminal import TerminalFormatter
 from pygments.formatters.terminal256 import Terminal256Formatter
 
@@ -32,6 +33,7 @@ FORMATTERS = {
     NullFormatter: ('Text only', ('text', 'null'), ('*.txt',), 'Output the text unchanged without any formatting.'),
     RawTokenFormatter: ('Raw tokens', ('raw', 'tokens'), ('*.raw',), 'Format tokens as a raw representation for storing token streams.'),
     RtfFormatter: ('RTF', ('rtf',), ('*.rtf',), 'Format tokens as RTF markup. This formatter automatically outputs full RTF documents with color information and other useful stuff. Perfect for Copy and Paste into Microsoft\xc2\xae Word\xc2\xae documents.'),
+    SvgFormatter: ('SVG', ('svg',), ('*.svg',), 'Format tokens as an SVG graphics file.  This formatter is still experimental.'),
     Terminal256Formatter: ('Terminal256', ('terminal256', 'console256', '256'), (), 'Format tokens with ANSI color sequences, for output in a 256-color terminal or console. Like in `TerminalFormatter` color sequences are terminated at newlines, so that paging the output works correctly.'),
     TerminalFormatter: ('Terminal', ('terminal', 'console'), (), 'Format tokens with ANSI color sequences, for output in a text console. Color sequences are terminated at newlines, so that paging the output works correctly.')
 }
