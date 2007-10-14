@@ -76,7 +76,7 @@ def run_tests(with_coverage=False):
                  if (entry.startswith('test_') and entry.endswith('.py'))]
         files.sort()
 
-    WIDTH = 80
+    WIDTH = 85
 
     print >>sys.stderr, \
         ('Pygments %s Test Suite running%s, stand by...' %

@@ -97,7 +97,7 @@ class PythonLexer(RegexLexer):
             ('[uU]?"', String, combined('stringescape', 'dqs')),
             ("[uU]?'", String, combined('stringescape', 'sqs')),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'0\d+', Number.Oct),
             (r'0x[a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),

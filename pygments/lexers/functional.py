@@ -16,12 +16,14 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import RegexLexer, bygroups, using, this, include
+from pygments.lexer import Lexer, RegexLexer, bygroups, using, this, include, \
+     do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation
 
 
-__all__ = ['SchemeLexer', 'HaskellLexer', 'OcamlLexer', 'ErlangLexer']
+__all__ = ['SchemeLexer', 'HaskellLexer', 'LiterateHaskellLexer',
+           'OcamlLexer', 'ErlangLexer']
 
 
 class SchemeLexer(RegexLexer):
@@ -188,7 +190,9 @@ class HaskellLexer(RegexLexer):
             (r'[A-Z][\w\']*', Keyword.Type),
             #  Operators
             (r'\\(?![:!#$%&*+.\\/<=>?@^|~-]+)', Name.Function), # lambda operator
-            (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
+            (r'(<-|::|->|=>|=)(?![:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
+            (r':[:!#$%&*+.\\/<=>?@^|~-]*', Keyword.Type), # Constructor operators
+            (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator), # Other operators
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
             (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
@@ -265,6 +269,75 @@ class HaskellLexer(RegexLexer):
             (r'\n\s+\\', String.Escape, '#pop'),
         ],
     }
+
+
+line_re = re.compile('.*?\n')
+bird_re = re.compile(r'(>[ \t]*)(.*\n)')
+
+class LiterateHaskellLexer(Lexer):
+    """
+    For Literate Haskell (Bird-style or LaTeX) source.
+
+    Additional options accepted:
+
+    `litstyle`
+        If given, must be ``"bird"`` or ``"latex"``.  If not given, the style
+        is autodetected: if the first non-whitespace character in the source
+        is a backslash or percent character, LaTeX is assumed, else Bird.
+
+    *New in Pygments 0.9.*
+    """
+    name = 'Literate Haskell'
+    aliases = ['lhs', 'literate-haskell']
+    filenames = ['*.lhs']
+    mimetypes = ['text/x-literate-haskell']
+
+    def get_tokens_unprocessed(self, text):
+        hslexer = HaskellLexer(**self.options)
+
+        style = self.options.get('litstyle')
+        if style is None:
+            style = (text.lstrip()[0] in '%\\') and 'latex' or 'bird'
+
+        code = ''
+        insertions = []
+        if style == 'bird':
+            # bird-style
+            for match in line_re.finditer(text):
+                line = match.group()
+                m = bird_re.match(line)
+                if m:
+                    insertions.append((len(code), [(0, Comment.Special, m.group(1))]))
+                    code += m.group(2)
+                else:
+                    insertions.append((len(code), [(0, Text, line)]))
+        else:
+            # latex-style
+            from pygments.lexers.text import TexLexer
+            lxlexer = TexLexer(**self.options)
+
+            codelines = 0
+            latex = ''
+            for match in line_re.finditer(text):
+                line = match.group()
+                if codelines:
+                    if line.lstrip().startswith('\\end{code}'):
+                        codelines = 0
+                        latex += line
+                    else:
+                        code += line
+                elif line.lstrip().startswith('\\begin{code}'):
+                    codelines = 1
+                    latex += line
+                    insertions.append((len(code),
+                                       list(lxlexer.get_tokens_unprocessed(latex))))
+                    latex = ''
+                else:
+                    latex += line
+            insertions.append((len(code),
+                               list(lxlexer.get_tokens_unprocessed(latex))))
+        for item in do_insertions(insertions, hslexer.get_tokens_unprocessed(code)):
+            yield item
 
 
 class OcamlLexer(RegexLexer):
