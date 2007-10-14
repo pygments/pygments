@@ -50,6 +50,12 @@ class CmdLineTest(unittest.TestCase):
         self.assert_("<html" in o)
         self.assert_('class="linenos"' in o)
 
+    def test_P_opt(self):
+        filename = os.path.join(testdir, testfile)
+        c, o, e = run_cmdline("-Pfull", "-Ptitle=foo, bar=baz=,", "-fhtml", filename)
+        self.assertEquals(c, 0)
+        self.assert_("<title>foo, bar=baz=,</title>" in o)
+
     def test_F_opt(self):
         filename = os.path.join(testdir, testfile)
         c, o, e = run_cmdline("-Fhighlight:tokentype=Name.Blubb,names=testfile testdir",

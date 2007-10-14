@@ -6,10 +6,10 @@ pygmentize \- highlights the input file
 .SH SYNOPSIS
 .B \fBpygmentize\fP
 .RI  [-l\ \fI<lexer>\fP]\ [-F\ \fI<filter>\fP[:\fI<options>\fP]]\ [-f\ \fI<formatter>\fP]
-.RI  [-O\ \fI<options>\fP]\ [-o\ \fI<outfile>\fP]\ [\fI<infile>\fP]
+.RI  [-O\ \fI<options>\fP]\ [-P\ \fI<option=value>\fP]\ [-o\ \fI<outfile>\fP]\ [\fI<infile>\fP]
 .br
 .B \fBpygmentize\fP
-.RI -S\ \fI<style>\fP\ -f\ \fI<formatter>\fP\ [-a\ \fI<arg>\fP]\ [-O\ \fI<options>\fP]
+.RI -S\ \fI<style>\fP\ -f\ \fI<formatter>\fP\ [-a\ \fI<arg>\fP]\ [-O\ \fI<options>\fP]\ [-P\ \fI<option=value>\fP]
 .br
 .B \fBpygmentize\fP
 .RI -L\ [\fI<which>\fP\ ...]
@@ -60,6 +60,11 @@ With this option, you can give the lexer and formatter a comma-separated list of
 options, e.g. "-O bg=light,python=cool". Which options are valid for which
 lexers and formatters can be found in the documentation.
 This option can be given multiple times.
+.TP
+.B \-P \fI<option=value>\fP
+This option adds lexer and formatter options like the -O option, but
+you can only give one option per -P. That way, the option value may contain
+commas and equals signs, which it can't with -O.
 .TP
 .B \-S \fI<style>\fP
 Print out style definitions for style \fI<style>\fP and for formatter \fI<formatter>\fP.
