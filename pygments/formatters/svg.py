@@ -5,7 +5,7 @@
 
     Formatter for SVG output.
 
-    :copyright: 2007 by Georg Brandl.
+    :copyright: 2007 by Matthew Harrison, Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 import StringIO
