@@ -5,7 +5,7 @@
 
     Formatter for SVG output.
 
-    :copyright: 2007 by an unknown contributor.
+    :copyright: 2007 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 import StringIO
@@ -33,6 +33,9 @@ class SvgFormatter(Formatter):
     Each line of code is a ``<text>`` element with explicit ``x`` and ``y``
     coordinates containing ``<tspan>`` elements with the individual token styles.
 
+    By default, this formatter outputs a full SVG document including doctype
+    declaration and the ``<svg>`` root element.
+
     *New in Pygments 0.9.*
 
     Additional options accepted:
@@ -43,12 +46,12 @@ class SvgFormatter(Formatter):
         and `fontsize` options are ignored.  Defaults to ``False``.
 
     `fontfamily`
-        The value to give the ``<text>`` elements' ``font-family`` attribute,
-        defaults to ``"monospace"``.
+        The value to give the wrapping ``<g>`` element's ``font-family``
+        attribute, defaults to ``"monospace"``.
 
     `fontsize`
-        The value to give the ``<text>`` elements' ``font-size`` attribute,
-        defaults to ``"14px"``.
+        The value to give the wrapping ``<g>`` element's ``font-size``
+        attribute, defaults to ``"14px"``.
 
     `xoffset`
         Starting offset in X direction, defaults to ``0``.
