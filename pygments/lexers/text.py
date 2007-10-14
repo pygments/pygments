@@ -8,7 +8,9 @@
     :copyright: 2006-2007 by Armin Ronacher, Georg Brandl,
                 Tim Hatch <tim@timhatch.com>,
                 Ronny Pfannschmidt,
-                Dennis Kaarsemaker.
+                Dennis Kaarsemaker,
+                Kumar Appaiah <akumar@ee.iitm.ac.in>,
+                Varun Hiremath <varunhiremath@gmail.com>.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -30,7 +32,7 @@ from pygments.util import get_bool_opt
 __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
            'IrcLogsLexer', 'TexLexer', 'GroffLexer', 'ApacheConfLexer',
            'BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'VimLexer',
-           'GettextLexer', 'SquidConfLexer']
+           'GettextLexer', 'SquidConfLexer', 'DebianControlLexer']
 
 
 class IniLexer(RegexLexer):
@@ -846,4 +848,60 @@ class SquidConfLexer(RegexLexer):
             (r'\s*TAG:.*', String.Escape, '#pop'),
             (r'.*', Comment, '#pop'),
         ],
+    }
+
+
+class DebianControlLexer(RegexLexer):
+    """
+    Lexer for Debian ``control`` files and ``apt-cache show <pkg>`` outputs.
+
+    *New in Pygments 0.9.*
+    """
+    name = 'Debian Control file'
+    aliases = ['control']
+    filenames = ['control']
+
+    tokens = {
+        'root': [
+            (r'^(Description)', Keyword, 'description'),
+            (r'^(Maintainer)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
+            (r'^((Build-)?Depends)', Keyword, 'depends'),
+            (r'^((?:Python-)?Version)(:\s*)([^\s]+)$',
+             bygroups(Keyword, Text, Number)),
+            (r'^((?:Installed-)?Size)(:\s*)([^\s]+)$',
+             bygroups(Keyword, Text, Number)),
+            (r'^(MD5Sum|SHA1|SHA256)(:\s*)([^\s]+)$',
+             bygroups(Keyword, Text, Number)),
+            (r'^([a-zA-Z\-0-9\.]*?)(:\s*)(.*?)$',
+             bygroups(Keyword, Whitespace, String)),
+        ],
+        'maintainer': [
+            (r'<[^>]+>', Generic.Strong),
+            (r'<[^>]+>$', Generic.Strong, '#pop'),
+            (r',\n?', Text),
+            (r'.', Text),
+        ],
+        'description': [
+            (r'(.*)(Homepage)(: )([^\s]+)', bygroups(Text, String, Name, Name.Class)),
+            (r':.*\n', Generic.Strong),
+            (r' .*\n', Text),
+            ('', Text, '#pop'),
+        ],
+        'depends': [
+            (r':\s*', Text),
+            (r'(\$)(\{)(\w+\s*:\s*\w+)', bygroups(Operator, Text, Name.Entity)),
+            (r'\(', Text, 'depend_vers'),
+            (r',', Text),
+            (r'\|', Operator),
+            (r'[\s]+', Text),
+            (r'[}\)]\s*$', Text, '#pop'),
+            (r'[}]', Text),
+            (r'[^,]$', Name.Function, '#pop'),
+            (r'([\+\.a-zA-Z0-9-][\s\n]*)', Name.Function),
+        ],
+        'depend_vers': [
+            (r'\),', Text, '#pop'),
+            (r'\)[^,]', Text, '#pop:2'),
+            (r'([><=]+)(\s*)([^\)]+)', bygroups(Operator, Text, Number))
+        ]
     }
