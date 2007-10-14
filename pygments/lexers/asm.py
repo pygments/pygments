@@ -5,7 +5,7 @@
 
     Lexers for assembly languages.
 
-    :copyright: 2007 by Frits van Bommel
+    :copyright: 2007 by Frits van Bommel.
     :license: BSD, see LICENSE for more details.
 """
 

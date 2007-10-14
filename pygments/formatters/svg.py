@@ -112,7 +112,8 @@ class SvgFormatter(Formatter):
             else:
                 outfile.write('<?xml version="1.0"?>\n')
             outfile.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" '
-                          '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
+                          '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/'
+                          'svg10.dtd">\n')
             outfile.write('<svg xmlns="http://www.w3.org/2000/svg">\n')
             outfile.write('<g font-family="%s" font-size="%s">\n' % (self.fontfamily,
                                                                      self.fontsize))

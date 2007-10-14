@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers._clbuiltins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ANSI Common Lisp builtins.
 
