@@ -10,7 +10,8 @@
                 Ronny Pfannschmidt,
                 Dennis Kaarsemaker,
                 Kumar Appaiah <akumar@ee.iitm.ac.in>,
-                Varun Hiremath <varunhiremath@gmail.com>.
+                Varun Hiremath <varunhiremath@gmail.com>,
+                Jeremy Thurgood.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -719,9 +720,7 @@ class GettextLexer(RegexLexer):
 
 class SquidConfLexer(RegexLexer):
     """
-    Lexer for squid configuration files.
-
-    Blame Jeremy Thurgood (http://jerith.za.net/)
+    Lexer for `squid <http://www.squid-cache.org/>`_ configuration files.
 
     *New in Pygments 0.9.*
     """
