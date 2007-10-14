@@ -5,6 +5,26 @@ Version 0.9
 -----------
 (codename Herbstzeitlose, released Oct 14, 2007)
 
+- Lexers added:
+
+  * Erlang
+  * ActionScript
+  * Literate Haskell
+  * Various assembly languages
+  * Gettext catalogs
+  * Squid configuration
+  * MOOCode
+
+- Lexers improved:
+
+  * Greatly improved the Haskell and OCaml lexers.
+  * Improved the Bash lexer's handling of nested constructs.
+  * The C# and Java lexers exhibited abysmal performance with some
+    input code; this should now be fixed.
+  * The IRC logs lexer is now able to colorize weechat logs too.
+  * The Lua lexer now recognizes multi-line comments.
+  * Fixed bugs in the D and MiniD lexer.
+
 - The encoding handling of the command line mode (pygmentize) was
   enhanced. You shouldn't get UnicodeErrors from it anymore if you
   don't give an encoding option.
@@ -16,34 +36,7 @@ Version 0.9
 
 - Added 256-color terminal formatter.
 
-- Added Erlang lexer.
-
-- Added ActionScript lexer.
-
-- Added Gettext catalog lexer.
-
-- Added Squid configuration lexer.
-
-- Greatly improved the Haskell and OCaml lexers.
-
-- Added a lexer for Literate Haskell.
-
-- The C# and Java lexers exhibited abysmal performance with some
-  input code; this should now be fixed.
-
-- Improved the Bash lexer.
-
 - Added a Vim 7-like style.
-
-- Fixed bugs in the D and MiniD lexer.
-
-- Added a MOOCode lexer.
-
-- The IRC logs lexer is now able to colorize weechat logs too.
-
-- Added various assembler language lexers.
-
-- The Lua lexer now recognizes multi-line comments.
 
 
 Version 0.8.1
