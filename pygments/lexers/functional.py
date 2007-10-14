@@ -6,7 +6,7 @@
     Lexers for functional languages.
 
     :copyright: 2006-2007 by Georg Brandl, Marek Kubica,
-                Adam Blinkinsop <blinks@acm.org>.
+                Adam Blinkinsop <blinks@acm.org>, Matteo Sasso.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -19,10 +19,10 @@ except NameError:
 from pygments.lexer import Lexer, RegexLexer, bygroups, using, this, include, \
      do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
-     String, Number, Punctuation
+     String, Number, Punctuation, Literal
 
 
-__all__ = ['SchemeLexer', 'HaskellLexer', 'LiterateHaskellLexer',
+__all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer', 'LiterateHaskellLexer',
            'OcamlLexer', 'ErlangLexer']
 
 
@@ -150,6 +150,182 @@ class SchemeLexer(RegexLexer):
 
             # the famous parentheses!
             (r'(\(|\))', Punctuation),
+        ],
+    }
+
+
+class CommonLispLexer(RegexLexer):
+    """
+    A Common Lisp lexer.
+
+    *New in Pygments 0.9.*
+    """
+    name = 'Common Lisp'
+    aliases = ['common-lisp', 'cl']
+    filenames = ['*.cl', '*.lisp', '*.el']  # use for Elisp too
+    mimetypes = ['text/x-common-lisp']
+
+    flags = re.IGNORECASE | re.MULTILINE
+
+    ### couple of useful regexes
+
+    # characters that are not macro-characters and can be used to begin a symbol
+    nonmacro = r'\\.|[a-zA-Z0-9!$%&*+-/<=>?@\[\]^_{}~]'
+    constituent = nonmacro + '|[#.:]'
+    terminated = r'(?=[ "()\'\n,;`])' # whitespace or terminating macro characters
+
+    ### symbol token, reverse-engineered from hyperspec
+    # Take a deep breath...
+    symbol = r'(\|[^|]+\||(?:%s)(?:%s)*)' % (nonmacro, constituent)
+
+    def __init__(self, **options):
+        from pygments.lexers._clbuiltins import BUILTIN_FUNCTIONS, \
+            SPECIAL_FORMS, MACROS, LAMBDA_LIST_KEYWORDS, DECLARATIONS, \
+            BUILTIN_TYPES, BUILTIN_CLASSES
+        self.builtin_function = BUILTIN_FUNCTIONS
+        self.special_forms = SPECIAL_FORMS
+        self.macros = MACROS
+        self.lambda_list_keywords = LAMBDA_LIST_KEYWORDS
+        self.declarations = DECLARATIONS
+        self.builtin_types = BUILTIN_TYPES
+        self.builtin_classes = BUILTIN_CLASSES
+        RegexLexer.__init__(self, **options)
+
+    def get_tokens_unprocessed(self, text):
+        stack = ['root']
+        for index, token, value in RegexLexer.get_tokens_unprocessed(self, text, stack):
+            if token is Name.Variable:
+                if value in self.builtin_function:
+                    yield index, Name.Builtin, value
+                    continue
+                if value in self.special_forms:
+                    yield index, Keyword, value
+                    continue
+                if value in self.macros:
+                    yield index, Name.Builtin, value
+                    continue
+                if value in self.lambda_list_keywords:
+                    yield index, Keyword, value
+                    continue
+                if value in self.declarations:
+                    yield index, Keyword, value
+                    continue
+                if value in self.builtin_types:
+                    yield index, Keyword.Type, value
+                    continue
+                if value in self.builtin_classes:
+                    yield index, Name.Class, value
+                    continue
+            yield index, token, value
+
+    tokens = {
+        'root' : [
+            ('', Text, 'body'),
+        ],
+        'multiline-comment' : [
+            (r'#\|', Comment.Multiline, '#push'), # (cf. Hyperspec 2.4.8.19)
+            (r'\|#', Comment.Multiline, '#pop'),
+            (r'[^|#]+', Comment.Multiline),
+            (r'[|#]', Comment.Multiline),
+        ],
+        'commented-form' : [
+            (r'\(', Comment.Preproc, '#push'),
+            (r'\)', Comment.Preproc, '#pop'),
+            (r'[^()]+', Comment.Preproc),
+        ],
+        'body' : [
+            # whitespace
+            (r'\s+', Text),
+
+            # single-line comment
+            (r';.*$', Comment.Single),
+
+            # multi-line comment
+            (r'#\|', Comment.Multiline, 'multiline-comment'),
+
+            # encoding comment (?)
+            (r'#\d*Y.*$', Comment.Special),
+
+            # strings and characters
+            (r'"(\\.|[^"])*"', String),
+            # quoting
+            (r":" + symbol, String.Symbol),
+            (r"'" + symbol, String.Symbol),
+            (r"'", Operator),
+            (r"`", Operator),
+
+            # decimal numbers
+            (r'[-+]?\d+\.?' + terminated, Number.Integer),
+            (r'[-+]?\d+/\d+' + terminated, Number),
+            (r'[-+]?(\d*\.\d+([defls][-+]?\d+)?|\d+(\.\d*)?[defls][-+]?\d+)' \
+                + terminated, Number.Float),
+
+            # sharpsign strings and characters
+            (r"#\\." + terminated, String.Char),
+            (r"#\\" + symbol, String.Char),
+
+            # vector
+            (r'#\(', Operator, 'body'),
+
+            # bitstring
+            (r'#\d*\*[01]*', Literal.Other),
+
+            # uninterned symbol
+            (r'#:' + symbol, String.Symbol),
+
+            # read-time and load-time evaluation
+            (r'#[.,]', Operator),
+
+            # function shorthand
+            (r'#\'', Name.Function),
+
+            # binary rational
+            (r'#[bB][+-]?[01]+(/[01]+)?', Number),
+
+            # octal rational
+            (r'#[oO][+-]?[0-7]+(/[0-7]+)?', Number.Oct),
+
+            # hex rational
+            (r'#[xX][+-]?[0-9a-fA-F]+(/[0-9a-fA-F]+)?', Number.Hex),
+
+            # radix rational
+            (r'#\d+[rR][+-]?[0-9a-zA-Z]+(/[0-9a-zA-Z]+)?', Number),
+
+            # complex
+            (r'(#[cC])(\()', bygroups(Number, Punctuation), 'body'),
+
+            # array
+            (r'(#\d+[aA])(\()', bygroups(Literal.Other, Punctuation), 'body'),
+
+            # structure
+            (r'(#[sS])(\()', bygroups(Literal.Other, Punctuation), 'body'),
+
+            # path
+            (r'#[pP]?"(\\.|[^"])*"', Literal.Other),
+
+            # reference
+            (r'#\d+=', Operator),
+            (r'#\d+#', Operator),
+
+            # read-time comment
+            (r'#+nil' + terminated + '\s*\(', Comment.Preproc, 'commented-form'),
+
+            # read-time conditional
+            (r'#[+-]', Operator),
+
+            # special operators that should have been parsed already
+            (r'(,@|,|\.)', Operator),
+
+            # special constants
+            (r'(t|nil)' + terminated, Name.Constant),
+
+            # functions and variables
+            (r'\*' + symbol + '\*', Name.Variable.Global),
+            (symbol, Name.Variable),
+
+            # parentheses
+            (r'\(', Punctuation, 'body'),
+            (r'\)', Punctuation, '#pop'),
         ],
     }
 
