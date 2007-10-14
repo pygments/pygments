@@ -25,9 +25,9 @@ from pygments.styles import get_all_styles, get_style_by_name
 
 USAGE = """\
 Usage: %s [-l <lexer>] [-F <filter>[:<options>]] [-f <formatter>]
-          [-O <options>] [-o <outfile>] [<infile>]
+          [-O <options>] [-P <option=value>] [-o <outfile>] [<infile>]
 
-       %s -S <style> -f <formatter> [-a <arg>] [-O <options>]
+       %s -S <style> -f <formatter> [-a <arg>] [-O <options>] [-P <option=value>]
        %s -L [<which> ...]
        %s -H <type> <name>
        %s -h | -V
@@ -47,11 +47,16 @@ the terminal formatter will be used by default.
 With the -O option, you can give the lexer and formatter a comma-
 separated list of options, e.g. ``-O bg=light,python=cool``.
 
+The -P option adds lexer and formatter options like the -O option, but
+you can only give one option per -P. That way, the option value may
+contain commas and equals signs, which it can't with -O, e.g.
+``-P "heading=Pygments, the Python highlighter".
+
 With the -F option, you can add filters to the token stream, you can
 give options in the same way as for -O after a colon (note: there must
 not be spaces around the colon).
 
-The -O and -F options can be given multiple times.
+The -O, -P and -F options can be given multiple times.
 
 With the -S option, print out style definitions for style <style>
 for formatter <formatter>. The argument given by -a is formatter
@@ -181,16 +186,19 @@ def main(args=sys.argv):
     usage = USAGE % ((args[0],) * 5)
 
     try:
-        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:LS:a:hVH")
+        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:hVH")
     except getopt.GetoptError, err:
         print >>sys.stderr, usage
         return 2
     opts = {}
     O_opts = []
+    P_opts = []
     F_opts = []
     for opt, arg in popts:
         if opt == '-O':
             O_opts.append(arg)
+        elif opt == '-P':
+            P_opts.append(arg)
         elif opt == '-F':
             F_opts.append(arg)
         opts[opt] = arg
@@ -238,8 +246,18 @@ def main(args=sys.argv):
         return 0
 
     # parse -O options
-    O_opts = _parse_options(O_opts)
+    parsed_opts = _parse_options(O_opts)
     opts.pop('-O', None)
+
+    # parse -P options
+    for p_opt in P_opts:
+        try:
+            name, value = p_opt.split('=', 1)
+        except:
+            parsed_opts[p_opt] = True
+        else:
+            parsed_opts[name] = value
+    opts.pop('-P', None)
 
     # handle ``pygmentize -S``
     S_opt = opts.pop('-S', None)
@@ -254,8 +272,8 @@ def main(args=sys.argv):
             return 2
 
         try:
-            O_opts['style'] = S_opt
-            fmter = get_formatter_by_name(f_opt, **O_opts)
+            parsed_opts['style'] = S_opt
+            fmter = get_formatter_by_name(f_opt, **parsed_opts)
         except ClassNotFound, err:
             print >>sys.stderr, err
             return 1
@@ -278,7 +296,7 @@ def main(args=sys.argv):
     fmter = opts.pop('-f', None)
     if fmter:
         try:
-            fmter = get_formatter_by_name(fmter, **O_opts)
+            fmter = get_formatter_by_name(fmter, **parsed_opts)
         except (OptionError, ClassNotFound), err:
             print >>sys.stderr, 'Error:', err
             return 1
@@ -286,7 +304,7 @@ def main(args=sys.argv):
     if outfn:
         if not fmter:
             try:
-                fmter = get_formatter_for_filename(outfn, **O_opts)
+                fmter = get_formatter_for_filename(outfn, **parsed_opts)
             except (OptionError, ClassNotFound), err:
                 print >>sys.stderr, 'Error:', err
                 return 1
@@ -297,14 +315,14 @@ def main(args=sys.argv):
             return 1
     else:
         if not fmter:
-            fmter = TerminalFormatter(**O_opts)
+            fmter = TerminalFormatter(**parsed_opts)
         outfile = sys.stdout
 
     # select lexer
     lexer = opts.pop('-l', None)
     if lexer:
         try:
-            lexer = get_lexer_by_name(lexer, **O_opts)
+            lexer = get_lexer_by_name(lexer, **parsed_opts)
         except (OptionError, ClassNotFound), err:
             print >>sys.stderr, 'Error:', err
             return 1
@@ -317,7 +335,7 @@ def main(args=sys.argv):
         infn = args[0]
         if not lexer:
             try:
-                lexer = get_lexer_for_filename(infn, **O_opts)
+                lexer = get_lexer_for_filename(infn, **parsed_opts)
             except (OptionError, ClassNotFound), err:
                 print >>sys.stderr, 'Error:', err
                 return 1
@@ -336,7 +354,7 @@ def main(args=sys.argv):
     # No encoding given? Use latin1 if output file given,
     # stdin/stdout encoding otherwise.
     # (This is a compromise, I'm not too happy with it...)
-    if 'encoding' not in O_opts and 'outencoding' not in O_opts:
+    if 'encoding' not in parsed_opts and 'outencoding' not in parsed_opts:
         if outfn:
             # encoding pass-through
             fmter.encoding = 'latin1'

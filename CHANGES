@@ -29,12 +29,15 @@ Version 0.9
   enhanced. You shouldn't get UnicodeErrors from it anymore if you
   don't give an encoding option.
 
+- Added a ``-P`` option to the command line mode which can be used
+  to give options whose values contain commas or equals signs.
+
+- Added 256-color terminal formatter.
+
 - Added the ``lineanchors`` option to the HTML formatter, thanks to
   Ian Charnas for the idea.
 
 - Gave the line numbers table a CSS class in the HTML formatter.
-
-- Added 256-color terminal formatter.
 
 - Added a Vim 7-like style.
 

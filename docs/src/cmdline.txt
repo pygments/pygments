@@ -42,6 +42,14 @@ characters, such as spaces or expansion wildcards like ``*``. If an option
 expects a list value, separate the list entries with spaces (you'll have to
 quote the option value in this case too, so that the shell doesn't split it).
 
+Since the ``-O`` option argument is split at commas and expects the split values
+to be of the form ``name=value``, you can't give an option value that contains
+commas or equals signs.  Therefore, an option ``-P`` is provided that works like
+``-O`` but can only pass one option per ``-P``. Its value can then contain all
+characters::
+
+    $ pygmentize -P "heading=Pygments, the Python highlighter" ...
+
 Filters are added to the token stream using the ``-F`` option::
 
     $ pygmentize -f html -l pascal -F keywordcase:case=upper main.pas
