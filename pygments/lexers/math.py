@@ -30,7 +30,7 @@ class MuPADLexer(RegexLexer):
       'root' : [
         (r'//.*?$', Comment.Single),
         (r'/\*', Comment.Multiline, 'comment'),
-        (r'"(?:[^"\\]+|\\.)*"', String),
+        (r'"(?:[^"\\]|\\.)*"', String),
         (r'\(|\)|\[|\]|\{|\}', Punctuation),
         (r'''(?x)\b(?:
             next|break|end|

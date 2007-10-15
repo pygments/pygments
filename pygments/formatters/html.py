@@ -226,7 +226,7 @@ class HtmlFormatter(Formatter):
         The default value is ``False``, which means no line numbers at all.
 
         **Note:** with the default ("table") line number mechanism, the line
-        numbers and code will have different line heights in Internet Explorer
+        numbers and code can have different line heights in Internet Explorer
         unless you give the enclosing ``<pre>`` tags an explicit ``line-height``
         CSS property (you get the default line spacing with ``line-height:
         125%``).
