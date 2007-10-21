@@ -249,7 +249,7 @@ class IrcLogsLexer(RegexLexer):
             (r"^.*?\n", Text),
         ],
         'msg': [
-            (r"[^\s]+:", Name.Attribute),  # Prefix
+            (r"[^\s]+:(?!//)", Name.Attribute),  # Prefix
             (r".*\n", Text, '#pop'),
         ],
     }
