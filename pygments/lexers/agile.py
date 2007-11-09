@@ -653,7 +653,7 @@ class PerlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\#.*?$', Comment.Single),
-            (r'=[a-zA-Z0-9]+\s+.*\n[.\n]*?\n\s*=cut', Comment.Multiline),
+            (r'=[a-zA-Z0-9]+\s+.*?\n[.\n]*?\n\s*=cut', Comment.Multiline),
             (r'(case|continue|do|else|elsif|for|foreach|if|last|my|'
              r'next|our|redo|reset|then|unless|until|while|use|'
              r'print|new|BEGIN|END|return)\b', Keyword),
@@ -952,7 +952,7 @@ class MiniDLexer(RegexLexer):
              r'|[-/.&|\+<>!()\[\]{}?,;:=*%^~#]', Punctuation
             ),
             # Identifier
-            (r'[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_](\w|::)*', Name),
         ],
         'nestedcomment': [
             (r'[^+/]+', Comment),
