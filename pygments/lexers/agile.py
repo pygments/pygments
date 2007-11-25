@@ -26,7 +26,7 @@ from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
-           'MiniDLexer']
+           'MiniDLexer', 'IoLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -960,4 +960,43 @@ class MiniDLexer(RegexLexer):
             (r'\+/', Comment, '#pop'),
             (r'[+/]', Comment),
         ],
+    }
+
+
+class IoLexer(RegexLexer):
+    """
+    For `Io <http://iolanguage.com/>`_ (a small, prototype-based
+    programming language) source.
+    """
+    name = 'Io'
+    filenames = ['*.io']
+    aliases = ['io']
+    mimetypes = ['text/x-iosrc']
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            # Comments
+            (r'//(.*?)\n', Comment),
+            (r'#(.*?)\n', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'/\+', Comment, 'nestedcomment'),
+            # DoubleQuotedString
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # Operators
+            (r':=|=|\(|\)|;|,|\*|-|\+|>|<|@|!|/|\||\^|\.|%|&|\[|\]|\{|\}', Operator),
+            # keywords
+            (r'(clone|do|doFile|doString|method|for|if)', Keyword),
+            # names
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            # numbers
+            (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+', Number.Integer)
+        ],
+        'nestedcomment': [
+            (r'[^+/]+', Comment),
+            (r'/\+', Comment, '#push'),
+            (r'\+/', Comment, '#pop'),
+            (r'[+/]', Comment),
+        ]
     }
