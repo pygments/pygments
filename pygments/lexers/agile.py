@@ -986,8 +986,11 @@ class IoLexer(RegexLexer):
             # Operators
             (r':=|=|\(|\)|;|,|\*|-|\+|>|<|@|!|/|\||\^|\.|%|&|\[|\]|\{|\}', Operator),
             # keywords
-            (r'(clone|do|doFile|doString|method|for|if)', Keyword),
+            (r'(clone|do|doFile|doString|method|for|if|else|elseif|then)', Keyword),
+            # constants
+            (r'nil|false|true', Name.Constant),
             # names
+            ('Object|list|List|Map|args|Sequence|Coroutine|File', Name.Builtin),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             # numbers
             (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
