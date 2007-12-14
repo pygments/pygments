@@ -231,7 +231,7 @@ class LatexFormatter(Formatter):
             else:
                 outfile.write(value)
 
-        outfile.write('\n\\end{Verbatim}\n')
+        outfile.write('\\end{Verbatim}\n')
 
         if self.full:
             realoutfile.write(DOC_TEMPLATE %
