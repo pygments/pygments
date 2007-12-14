@@ -43,7 +43,7 @@ class IniLexer(RegexLexer):
 
     name = 'INI'
     aliases = ['ini', 'cfg']
-    filenames = ['*.ini', '*.cfg']
+    filenames = ['*.ini', '*.cfg', '*.properties']
     mimetypes = ['text/x-ini']
 
     tokens = {
