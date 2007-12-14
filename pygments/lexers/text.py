@@ -233,7 +233,7 @@ class IrcLogsLexer(RegexLexer):
             ("^" + timestamp + r'(\s*<.*>\s*)$', bygroups(Comment.Preproc, Name.Tag)),
             # normal msgs
             ("^" + timestamp + r"""
-                (\s*<.*>\s*)          # Nick """,
+                (\s*<.*?>\s*)          # Nick """,
              bygroups(Comment.Preproc, Name.Tag), 'msg'),
             # /me msgs
             ("^" + timestamp + r"""
