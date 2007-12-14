@@ -459,7 +459,7 @@ class XmlLexer(RegexLexer):
 
     name = 'XML'
     aliases = ['xml']
-    filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt']
+    filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd', '*.wsdl']
     mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
                  'application/rss+xml', 'application/atom+xml',
                  'application/xsl+xml', 'application/xslt+xml']
