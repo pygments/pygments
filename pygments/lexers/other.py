@@ -18,7 +18,8 @@ from pygments.util import shebang_matches
 
 
 __all__ = ['SqlLexer', 'MySqlLexer', 'BrainfuckLexer', 'BashLexer',
-           'BatchLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer']
+           'BatchLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
+           'SmalltalkLexer']
 
 
 class SqlLexer(RegexLexer):
@@ -468,4 +469,75 @@ class MOOCodeLexer(RegexLexer):
             # variables
             (r'([a-zA-Z_0-9]+)', Text),
         ]
+    }
+
+class SmalltalkLexer(RegexLexer):
+    """
+    For `Smalltalk <http://www.smalltalk.org/>`_ syntax.
+    Contributed by Stefan Matthias Aust.
+
+    *New in Pygments 1.0.*
+    """
+    name = 'Smalltalk'
+    filenames = ['*.st']
+    aliases = ['smalltalk', 'squeak']
+    mimetypes = ['text/x-smalltalk']
+
+    tokens = {
+        'root' : [
+            # Squeak fileout format (optional)
+            (r'^"[^"]*"!', Keyword),
+            (r"^'[^']*'!", Keyword),
+            (r'^(!)(\w+)( commentStamp: )(.*?)( prior: .*?!\n)(.*?)(!)',
+                bygroups(Keyword, Name.Class, Keyword, String, Keyword, Text, Keyword)),
+            (r'^(!)(\w+(?: class)?)( methodsFor: )(\'[^\']*\')(.*?!)',
+                bygroups(Keyword, Name.Class, Keyword, String, Keyword)),
+            (r'^(\w+)( subclass: )(#\w+)'
+             r'(\s+instanceVariableNames: )(.*?)'
+             r'(\s+classVariableNames: )(.*?)'
+             r'(\s+poolDictionaries: )(.*?)'
+             r'(\s+category: )(.*?)(!)',
+                bygroups(Name.Class, Keyword, String.Symbol, Keyword, String, Keyword,
+                         String, Keyword, String, Keyword, String, Keyword)),
+            (r'^(\w+(?: class)?)(\s+instanceVariableNames: )(.*?)(!)',
+                bygroups(Name.Class, Keyword, String, Keyword)),
+            (r'(!\n)(\].*)(! !)$', bygroups(Keyword, Text, Keyword)),
+            (r'! !$', Keyword),
+            # skip whitespace and comments
+            (r'\s+', Text),
+            (r'"[^"]*"', Comment),
+            # method patterns
+            (r'^(\w+)(\s*:\s*)(\w+\s*)', bygroups(Name.Function, Punctuation,
+                                                  Name.Variable), 'pattern'),
+            (r'^([-+*/\\~<>=|&!?,@%]+\s*)(\w+)', bygroups(Name.Function, Name.Variable)),
+            (r'^(\w+)', Name.Function),
+            # literals
+            (r'\'[^\']*\'', String),
+            (r'\$.', String.Char),
+            (r'#\(', String.Symbol, 'parenth'),
+            (r'(\d+r)?-?\d+(\.\d+)?(e-?\d+)?', Number),
+            (r'#("[^"]*"|[-+*/\\~<>=|&!?,@%]+|[\w:]+)', String.Symbol),
+            # blocks variables
+            (r'(\[\s*)((?::\w+\s*)+)(\|)', bygroups(Text, Name.Variable, Text)),
+            # temporaries
+            (r'(\|)([\w\s]*)(\|)', bygroups(Operator, Name.Variable, Operator)),
+            # names
+            (r'\b(ifTrue:|ifFalse:|whileTrue:|whileFalse:|timesRepeat:)', Name.Builtin),
+            (r'\b(self|super)\b', Name.Builtin.Pseudo),
+            (r'\b[A-Z]\w*:', Name),
+            (r'\b[A-Z]\w*\b', Name), #Name.Class),
+            (r'\w+:?|[-+*/\\~<>=|&!?,@%]+', Name), #Name.Function),
+            # syntax
+            (r'\^|:=', Operator),
+            (r'[\[\](){}.;]', Text),
+        ],
+        'parenth' : [
+            (r'\)', String.Symbol, '#pop'),
+            include('root'),
+        ],
+        'pattern' : [
+            (r'(\w+)(\s*:\s*)(\w+\s*)', bygroups(Name.Function, Punctuation,
+                                                 Name.Variable)),
+            (r'', Text, '#pop'),
+        ],
     }

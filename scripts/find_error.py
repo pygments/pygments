@@ -40,12 +40,17 @@ def main(fn):
     for type, val in lx.get_tokens(text):
         if type == Error:
             print "Error parsing", fn
-            print "\n".join(['   ' + repr(x) for x in ntext[-5:]])
+            print "\n".join(['   ' + repr(x) for x in ntext[-num:]])
             print `val` + "<<<"
             return
         ntext.append((type,val))
 
 
+num = 10
+
 if __name__ == "__main__":
+    if sys.argv[1][:2] == '-n':
+        num = int(sys.argv[1][2:])
+        del sys.argv[1]
     for f in sys.argv[1:]:
         main(f)
