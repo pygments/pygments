@@ -657,6 +657,8 @@ class PerlLexer(RegexLexer):
             (r'(case|continue|do|else|elsif|for|foreach|if|last|my|'
              r'next|our|redo|reset|then|unless|until|while|use|'
              r'print|new|BEGIN|END|return)\b', Keyword),
+            (r'(format)(\s+)([a-zA-Z0-9_]+)(\s*)(=)(\s*\n)',
+             bygroups(Keyword, Text, Name, Text, Punctuation, Text), 'format'),
             (r'(eq|lt|gt|le|ge|ne|not|and|or|cmp)\b', Operator.Word),
             (r's/(\\\\|\\/|[^/])*/(\\\\|\\/|[^/])*/[egimosx]*', String.Regex),
             (r'm?/(\\\\|\\/|[^/\n])*/[gcimosx]*', String.Regex),
@@ -715,6 +717,10 @@ class PerlLexer(RegexLexer):
             (r'[\(\)\[\]:;,<>/\?\{\}]', Punctuation), # yes, there's no shortage
                                                       # of punctuation in Perl!
             (r'(?=\w)', Name, 'name'),
+        ],
+        'format': [
+            (r'\.\n', String.Interpol, '#pop'),
+            (r'[^\n]*\n', String.Interpol),
         ],
         'varname': [
             (r'\s+', Text),
