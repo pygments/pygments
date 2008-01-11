@@ -3,11 +3,18 @@ Pygments changelog
 
 Version 1.0
 -----------
-(codename not selected, released XXX YY, 2007)
+(codename not selected, released XXX YY, 2008)
 
 - Lexers added:
 
   * Io
+  * Smalltalk
+
+- Add more file name extensions for the C++, INI and XML lexers.
+
+- Fixes in the IRC and MuPad lexers.
+
+- Handle KeyboardInterrupts gracefully in pygmentize.
 
 
 Version 0.9
