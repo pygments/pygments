@@ -122,7 +122,7 @@ def _print_help(what, name):
             cls = find_filter_class(name)
             print "Help on the %s filter:" % name
             print dedent(cls.__doc__)
-    except ClassNotFound:
+    except AttributeError:
         print >>sys.stderr, "%s not found!" % what
 
 
@@ -253,7 +253,7 @@ def main(args=sys.argv):
     for p_opt in P_opts:
         try:
             name, value = p_opt.split('=', 1)
-        except:
+        except ValueError:
             parsed_opts[p_opt] = True
         else:
             parsed_opts[name] = value
