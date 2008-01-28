@@ -438,7 +438,7 @@ class PhpLexer(RegexLexer):
             RegexLexer.get_tokens_unprocessed(self, text, stack):
             if token is Name.Other:
                 if value in self._functions:
-                    yield index, Name.Function, value
+                    yield index, Name.Builtin, value
                     continue
             yield index, token, value
 
