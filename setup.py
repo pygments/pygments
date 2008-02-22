@@ -19,7 +19,6 @@ setup(
     long_description = pygments.__doc__,
     keywords = 'syntax highlighting',
     packages = find_packages(),
-    scripts = ['pygmentize'],
     entry_points = {
         'console_scripts': [
             'pygmentize = pygments.cmdline:main',
