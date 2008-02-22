@@ -973,6 +973,8 @@ class IoLexer(RegexLexer):
     """
     For `Io <http://iolanguage.com/>`_ (a small, prototype-based
     programming language) source.
+
+    *New in Pygments 1.0.*
     """
     name = 'Io'
     filenames = ['*.io']
