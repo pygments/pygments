@@ -134,7 +134,7 @@ class CppLexer(RegexLexer):
     """
     name = 'C++'
     aliases = ['cpp', 'c++']
-    filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++']
+    filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++', '*.cc', '*.hh', '*.cxx', '*.hxx']
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
 
     tokens = {

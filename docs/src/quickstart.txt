@@ -183,9 +183,20 @@ To output HTML, use the ``-f`` option::
     $ pygmentize -f html -o test.html test.py
 
 to write an HTML-highlighted version of test.py to the file test.html.
+Note that it will only be a snippet of HTML, if you want a full HTML document,
+use the "full" option::
 
-The stylesheet can be created with::
+    $ pygmentize -f html -O full -o test.html test.py
+
+This will produce a full HTML document with included stylesheet.
+
+A style can be selected with ``-O style=<name>``.
+
+If you need a stylesheet for an existing HTML file using Pygments CSS classes,
+it can be created with::
 
     $ pygmentize -S default -f html > style.css
+
+where ``default`` is the style name.
 
 More options and tricks and be found in the `command line referene <cmdline.txt>`_.

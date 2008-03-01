@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    The Pygments MoinMoin Parser
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    The Pygments reStructuredText directive
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This fragment is a Docutils_ 0.4 directive that renders source code
     (to HTML only, currently) via Pygments.

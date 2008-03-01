@@ -26,7 +26,7 @@ from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
-           'MiniDLexer', 'TclLexer']
+           'MiniDLexer', 'IoLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -653,10 +653,12 @@ class PerlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\#.*?$', Comment.Single),
-            (r'=[a-zA-Z0-9]+\s+.*\n[.\n]*?\n\s*=cut', Comment.Multiline),
+            (r'=[a-zA-Z0-9]+\s+.*?\n[.\n]*?\n\s*=cut', Comment.Multiline),
             (r'(case|continue|do|else|elsif|for|foreach|if|last|my|'
              r'next|our|redo|reset|then|unless|until|while|use|'
              r'print|new|BEGIN|END|return)\b', Keyword),
+            (r'(format)(\s+)([a-zA-Z0-9_]+)(\s*)(=)(\s*\n)',
+             bygroups(Keyword, Text, Name, Text, Punctuation, Text), 'format'),
             (r'(eq|lt|gt|le|ge|ne|not|and|or|cmp)\b', Operator.Word),
             (r's/(\\\\|\\/|[^/])*/(\\\\|\\/|[^/])*/[egimosx]*', String.Regex),
             (r'm?/(\\\\|\\/|[^/\n])*/[gcimosx]*', String.Regex),
@@ -715,6 +717,10 @@ class PerlLexer(RegexLexer):
             (r'[\(\)\[\]:;,<>/\?\{\}]', Punctuation), # yes, there's no shortage
                                                       # of punctuation in Perl!
             (r'(?=\w)', Name, 'name'),
+        ],
+        'format': [
+            (r'\.\n', String.Interpol, '#pop'),
+            (r'[^\n]*\n', String.Interpol),
         ],
         'varname': [
             (r'\s+', Text),
@@ -952,7 +958,7 @@ class MiniDLexer(RegexLexer):
              r'|[-/.&|\+<>!()\[\]{}?,;:=*%^~#]', Punctuation
             ),
             # Identifier
-            (r'[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_](\w|::)*', Name),
         ],
         'nestedcomment': [
             (r'[^+/]+', Comment),
@@ -960,6 +966,50 @@ class MiniDLexer(RegexLexer):
             (r'\+/', Comment, '#pop'),
             (r'[+/]', Comment),
         ],
+    }
+
+
+class IoLexer(RegexLexer):
+    """
+    For `Io <http://iolanguage.com/>`_ (a small, prototype-based
+    programming language) source.
+
+    *New in Pygments 1.0.*
+    """
+    name = 'Io'
+    filenames = ['*.io']
+    aliases = ['io']
+    mimetypes = ['text/x-iosrc']
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            # Comments
+            (r'//(.*?)\n', Comment),
+            (r'#(.*?)\n', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'/\+', Comment, 'nestedcomment'),
+            # DoubleQuotedString
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # Operators
+            (r':=|=|\(|\)|;|,|\*|-|\+|>|<|@|!|/|\||\^|\.|%|&|\[|\]|\{|\}', Operator),
+            # keywords
+            (r'(clone|do|doFile|doString|method|for|if|else|elseif|then)', Keyword),
+            # constants
+            (r'nil|false|true', Name.Constant),
+            # names
+            ('Object|list|List|Map|args|Sequence|Coroutine|File', Name.Builtin),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            # numbers
+            (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+', Number.Integer)
+        ],
+        'nestedcomment': [
+            (r'[^+/]+', Comment),
+            (r'/\+', Comment, '#push'),
+            (r'\+/', Comment, '#pop'),
+            (r'[+/]', Comment),
+        ]
     }
 
 
