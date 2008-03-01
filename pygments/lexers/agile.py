@@ -26,7 +26,7 @@ from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
-           'MiniDLexer', 'IoLexer']
+           'MiniDLexer', 'IoLexer', 'TclLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -1016,6 +1016,8 @@ class IoLexer(RegexLexer):
 class TclLexer(RegexLexer):
     """
     For Tcl source code.
+
+    *New in Pygments 1.0.*
     """
 
     keyword_cmds_re = (
