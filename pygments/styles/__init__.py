@@ -27,7 +27,8 @@ STYLE_MAP = {
     'borland':  'borland::BorlandStyle',
     'trac':     'trac::TracStyle',
     'native':   'native::NativeStyle',
-    'fruity':   'fruity::FruityStyle'
+    'fruity':   'fruity::FruityStyle',
+    'bw':       'bw::BlackWhiteStyle',
 }
 
 
