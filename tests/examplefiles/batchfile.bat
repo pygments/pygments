@@ -22,6 +22,9 @@ setlocal
 x = new text
 endlocal
 
+echo testrem x
+echo test rem x
+
 for %%var in (*.jpg) do echo %%var
 for /D %%var in (a b c) do echo %%var
 for /R C:\temp %%var in (*.jpg) do iexplore.exe %%var

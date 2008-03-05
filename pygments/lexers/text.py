@@ -11,7 +11,8 @@
                 Dennis Kaarsemaker,
                 Kumar Appaiah <akumar@ee.iitm.ac.in>,
                 Varun Hiremath <varunhiremath@gmail.com>,
-                Jeremy Thurgood.
+                Jeremy Thurgood,
+                Max Battcher.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -26,14 +27,15 @@ from pygments.lexer import RegexLexer, bygroups, include, using, this, \
      do_insertions
 from pygments.token import Punctuation, \
     Text, Comment, Keyword, Name, String, Generic, Operator, Number, \
-    Whitespace
+    Whitespace, Literal
 from pygments.util import get_bool_opt
 
 
 __all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
            'IrcLogsLexer', 'TexLexer', 'GroffLexer', 'ApacheConfLexer',
            'BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'VimLexer',
-           'GettextLexer', 'SquidConfLexer', 'DebianControlLexer']
+           'GettextLexer', 'SquidConfLexer', 'DebianControlLexer',
+           'DarcsPatchLexer']
 
 
 class IniLexer(RegexLexer):
@@ -43,7 +45,7 @@ class IniLexer(RegexLexer):
 
     name = 'INI'
     aliases = ['ini', 'cfg']
-    filenames = ['*.ini', '*.cfg']
+    filenames = ['*.ini', '*.cfg', '*.properties']
     mimetypes = ['text/x-ini']
 
     tokens = {
@@ -198,6 +200,44 @@ class DiffLexer(RegexLexer):
             return 0.9
 
 
+class DarcsPatchLexer(RegexLexer):
+    """
+    DarcsPatchLexer is a lexer for the various versions of the darcs patch
+    format.  Examples of this format are derived by commands such as
+    ``darcs annotate --patch`` and ``darcs send``.
+
+    *New in Pygments 1.0.*
+    """
+    name = 'Darcs Patch'
+    aliases = ['dpatch']
+    filenames = ['*.dpatch', '*.darcspatch']
+
+    tokens = {
+        'root': [
+            (r'<', Operator),
+            (r'>', Operator),
+            (r'{', Operator, 'patch'),
+            (r'(\[)((?:TAG )?)(.*)(\n)(.*)(\*\*)(\d+)(\s?)', bygroups(Operator, Keyword, Name, Text,
+                Name, Operator, Literal.Date, Text), 'comment'),
+            (r'New patches:', Generic.Heading),
+            (r'Context:', Generic.Heading),
+            (r'Patch bundle hash:', Generic.Heading),
+            (r'\s+|\w+', Text),
+        ],
+        'comment': [
+            (r' .*\n', Comment),
+            (r'\]', Operator, "#pop"),
+        ],
+        'patch': [
+            (r'}', Operator, "#pop"),
+            (r'(\w+)(.*\n)', bygroups(Keyword, Text)),
+            (r'\+.*\n', Generic.Inserted),
+            (r'-.*\n', Generic.Deleted),
+            (r'.*\n', Text),
+        ],
+    }
+
+
 class IrcLogsLexer(RegexLexer):
     """
     Lexer for IRC logs in *irssi*, *xchat* or *weechat* style.
@@ -233,7 +273,7 @@ class IrcLogsLexer(RegexLexer):
             ("^" + timestamp + r'(\s*<.*>\s*)$', bygroups(Comment.Preproc, Name.Tag)),
             # normal msgs
             ("^" + timestamp + r"""
-                (\s*<.*>\s*)          # Nick """,
+                (\s*<.*?>\s*)          # Nick """,
              bygroups(Comment.Preproc, Name.Tag), 'msg'),
             # /me msgs
             ("^" + timestamp + r"""
