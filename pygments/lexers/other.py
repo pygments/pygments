@@ -355,19 +355,20 @@ class BatchLexer(RegexLexer):
         'root': [
             # Lines can start with @ to prevent echo
             (r'^\s*@', Punctuation),
+            (r'^(\s*)(rem\s.*)$', bygroups(Text, Comment)),
             (r'".*?"', String.Double),
             (r"'.*?'", String.Single),
             # If made more specific, make sure you still allow expansions
             # like %~$VAR:zlt
             (r'%%?[~$:\w]+%?', Name.Variable),
-            (r'(::|rem).*', Comment), # Technically :: only works at BOL
+            (r'::.*', Comment), # Technically :: only works at BOL
             (r'(set)(\s+)(\w+)', bygroups(Keyword, Text, Name.Variable)),
             (r'(call)(\s+)(:\w+)', bygroups(Keyword, Text, Name.Label)),
             (r'(goto)(\s+)(\w+)', bygroups(Keyword, Text, Name.Label)),
-            (r'\b(set|call|echo|on|off|endlocal|for|do|goto|if|pause|rem|'
+            (r'\b(set|call|echo|on|off|endlocal|for|do|goto|if|pause|'
              r'setlocal|shift|errorlevel|exist|defined|cmdextversion|'
              r'errorlevel|else|cd|md|del|deltree|cls|choice)\b', Keyword),
-            (r'equ|neq|lss|leq|gtr|geq', Operator),
+            (r'\b(equ|neq|lss|leq|gtr|geq)\b', Operator),
             include('basic'),
             (r'.', Text),
         ],
