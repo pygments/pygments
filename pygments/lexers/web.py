@@ -357,6 +357,7 @@ class PhpLexer(RegexLexer):
             (r'\s+', Text),
             (r'#.*?\n', Comment),
             (r'//.*?\n', Comment),
+            (r'/\*\*.*?\*/', String.Doc),
             (r'/\*.*?\*/', Comment),
             (r'(->|::)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Operator, Text, Name.Attribute)),
@@ -407,7 +408,7 @@ class PhpLexer(RegexLexer):
             (r'(\$\{)(\S+)(\})',
              bygroups(String.Interpol, Name.Variable, String.Interpol)),
             (r'[${\\]+', String.Double)
-        ]
+        ],
     }
 
     def __init__(self, **options):
