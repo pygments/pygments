@@ -14,9 +14,9 @@ directive -- this is also how this documentation displays source code.
 From Pygments 0.9, the directive is shipped in the distribution as
 `external/rst-directive.py`.  You can copy and adapt this code to your liking.
 
-
-*Loosely related note:* The ReST lexer now recognizes ``.. sourcecode::`` and
-``.. code::`` directives and highlights the contents in the specified language
-if the `handlecodeblocks` option is true.
+.. removed -- too confusing
+   *Loosely related note:* The ReST lexer now recognizes ``.. sourcecode::`` and
+   ``.. code::`` directives and highlights the contents in the specified language
+   if the `handlecodeblocks` option is true.
 
 .. _ReST: http://docutils.sf.net/rst.html
