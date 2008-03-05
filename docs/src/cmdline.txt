@@ -4,7 +4,8 @@
 Command Line Interface
 ======================
 
-You can use Pygments from the shell, provided you installed the `pygmentize` script::
+You can use Pygments from the shell, provided you installed the `pygmentize`
+script::
 
     $ pygmentize test.py
     print "Hello World"
@@ -33,6 +34,9 @@ The above command could therefore also be given as::
 
     $ pygmentize -o test.html test.py
 
+Options and filters
+-------------------
+
 Lexer and formatter options can be given using the ``-O`` option::
 
     $ pygmentize -f html -O style=colorful,linenos=1 -l python test.py
@@ -58,8 +62,14 @@ As you see, options for the filter are given after a colon. As for ``-O``, the
 filter name and options must be one shell word, so there may not be any spaces
 around the colon.
 
-There's a special ``-S`` option for generating style definitions. Usage is
-as follows::
+
+Generating styles
+-----------------
+
+Formatters normally don't output full style information.  For example, the HTML
+formatter by default only outputs ``<span>`` tags with ``class`` attributes.
+Therefore, there's a special ``-S`` option for generating style definitions.
+Usage is as follows::
 
     $ pygmentize -f html -S colorful -a .syntax
 
@@ -68,6 +78,10 @@ the "colorful" style prepending a ".syntax" selector to all style rules.
 
 For an explanation what ``-a`` means for `a particular formatter`_, look for
 the `arg` argument for the formatter's `get_style_defs()` method.
+
+
+Getting help
+------------
 
 The ``-L`` option lists lexers, formatters, along with their short
 names and supported file name extensions, styles and filters. If you want to see
@@ -87,6 +101,15 @@ will print the help for the HTML formatter, while ::
     $ pygmentize -H lexer python
 
 will print the help for the Python lexer, etc.
+
+
+Examples
+--------
+
+Create a full HTML document, including line numbers and stylesheet (using the
+"emacs" style), highlighting the Python file ``setup.py`` to ``setup.html``::
+
+    $ pygmentize -O full,style=emacs -o setup.html setup.py
 
 
 A note on encodings
