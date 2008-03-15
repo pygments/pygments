@@ -601,7 +601,7 @@ class RstLexer(RegexLexer):
              r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*|)\n)+)',
              _handle_sourcecode),
             # A directive
-            (r'^( *\.\.)(\s*)(\w+)(::)(?:([ \t]*)(.+))?',
+            (r'^( *\.\.)(\s*)([\w-]+)(::)(?:([ \t]*)(.+))?',
              bygroups(Punctuation, Text, Operator.Word, Punctuation, Text, Keyword)),
             # A reference target
             (r'^( *\.\.)(\s*)([\w\t ]+:)(.*?)$',
