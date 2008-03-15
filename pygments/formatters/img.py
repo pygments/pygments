@@ -5,7 +5,7 @@
 
     Formatter for Pixmap output.
 
-    :copyright: 2007 by Ali Afshar
+    :copyright: 2007 by Ali Afshar.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -18,7 +18,7 @@ from pygments.util import get_bool_opt, get_int_opt, get_choice_opt
 try:
     import Image, ImageDraw, ImageFont
     pil_available = True
-except:
+except ImportError:
     pil_available = False
 
 __all__ = ['ImageFormatter']
@@ -54,7 +54,7 @@ class FontManager(object):
         self.font_size = font_size
         self.fonts = {}
         self._create_nix()
-    
+
     def _get_nix_font_path(self, name, style):
         exit, out = getstatusoutput('fc-list "%s:style=%s" file' %
                                     (name, style))
@@ -81,7 +81,7 @@ class FontManager(object):
                 self.fonts[style] = ImageFont.truetype(path, self.font_size)
             else:
                 self.fonts[style] = self.fonts[FONT_NORMAL]
-                
+
     def _create_nix(self):
         self._create_normal_font_nix()
         self._create_extra_fonts_nix()
@@ -111,23 +111,26 @@ class ImageFormatter(Formatter):
     Create an image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
+    *New in Pygments 1.0.*
+
     Additional options accepted:
 
     `image_format`
         An image format to output to that is recognised by PIL, these include:
-            * "PNG" (default)
-            * "JPEG"
-            * "BMP"
-            * "GIF"
+
+        * "PNG" (default)
+        * "JPEG"
+        * "BMP"
+        * "GIF"
 
     `line_pad`
         The extra spacing (in pixels) between each line of text.
-        
+
         Default: 2
 
     `font_name`
         The font name to be used as the base font from which others, such as
-        bold and italic fonts will be generated. This really should be a
+        bold and italic fonts will be generated.  This really should be a
         monospace font to look sane.
 
         Default: "Bitstream Vera Sans Mono"
@@ -161,7 +164,7 @@ class ImageFormatter(Formatter):
     `line_number_fg`
         The text color of the line numbers (in "#123456"-like format).
 
-        Default: '#886'
+        Default: "#886"
 
     `line_number_chars`
         The number of columns of line numbers allowable in the line number
@@ -203,7 +206,7 @@ class ImageFormatter(Formatter):
         """
         if not pil_available:
             raise PilNotAvailable(
-                'Python Imaging Library Is required for this formatter')
+                'Python Imaging Library is required for this formatter')
         Formatter.__init__(self, **options)
         # Read the style
         self.styles = dict(self.style)
@@ -316,7 +319,7 @@ class ImageFormatter(Formatter):
         Remember a single drawable tuple to paint later.
         """
         self.drawables.append((pos, text, font, kw))
-        
+
     def _create_drawables(self, tokensource):
         """
         Create drawables for the token content.
@@ -324,7 +327,7 @@ class ImageFormatter(Formatter):
         lineno = charno = maxcharno = 0
         for ttype, value in tokensource:
             while ttype not in self.styles:
-		        ttype = ttype.parent
+                ttype = ttype.parent
             style = self.styles[ttype]
             value = value.expandtabs(4)
             lines = value.splitlines()
@@ -340,7 +343,7 @@ class ImageFormatter(Formatter):
                         charno = 0
                     self._draw_text(
                         self._get_text_pos(charno, lineno),
-                        line, 
+                        line,
                         font = self._get_style_font(style),
                         fill = self._get_text_color(style)
                     )
@@ -370,7 +373,7 @@ class ImageFormatter(Formatter):
         draw = ImageDraw.Draw(im)
         recth = im.size[-1]
         rectw = self.image_pad + self.line_number_width - self.line_number_pad
-        draw.rectangle([(0, 0), 
+        draw.rectangle([(0, 0),
                         (rectw, recth)],
              fill=self.line_number_bg)
         draw.line([(rectw, 0), (rectw, recth)], fill=self.line_number_fg)
