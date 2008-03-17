@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for more details.
 """
 
+import sys
 from commands import getstatusoutput
 
 from pygments.formatter import Formatter
@@ -21,19 +22,25 @@ try:
 except ImportError:
     pil_available = False
 
+try:
+    import _winreg
+except ImportError:
+    _winreg = None
+
 __all__ = ['ImageFormatter']
 
 
-# Set of font types
-FONT_NORMAL = 'Roman'
-FONT_BOLD = 'Bold'
-FONT_OBLIQUE = 'Oblique'
-FONT_BOLDOBLIQUE = 'Bold Oblique'
-
 # For some unknown reason every font calls it something different
-NIX_FONT_NORMAL_SEARCH = [FONT_NORMAL, 'Book', 'Normal', 'Regular', 'Medium']
+STYLES = {
+    'NORMAL':     ['', 'Roman', 'Book', 'Normal', 'Regular', 'Medium'],
+    'ITALIC':     ['Oblique', 'Italic'],
+    'BOLD':       ['Bold'],
+    'BOLDITALIC': ['Bold Oblique', 'Bold Italic'],
+}
+
 # A sane default for modern systems
-DEFAULT_FONT_NAME = 'Bitstream Vera Sans Mono'
+DEFAULT_FONT_NAME_NIX = 'Bitstream Vera Sans Mono'
+DEFAULT_FONT_NAME_WIN = 'Courier New'
 
 
 class PilNotAvailable(Exception):
@@ -53,7 +60,14 @@ class FontManager(object):
         self.font_name = font_name
         self.font_size = font_size
         self.fonts = {}
-        self._create_nix()
+        if sys.platform.startswith('win'):
+            if not font_name:
+                self.font_name = DEFAULT_FONT_NAME_WIN
+            self._create_win()
+        else:
+            if not font_name:
+                self.font_name = DEFAULT_FONT_NAME_NIX
+            self._create_nix()
 
     def _get_nix_font_path(self, name, style):
         exit, out = getstatusoutput('fc-list "%s:style=%s" file' %
@@ -64,46 +78,87 @@ class FontManager(object):
                 path = lines[0].strip().strip(':')
                 return path
 
-    def _create_normal_font_nix(self):
-        for name in NIX_FONT_NORMAL_SEARCH:
+    def _create_nix(self):
+        for name in STYLES['NORMAL']:
             path = self._get_nix_font_path(self.font_name, name)
             if path is not None:
+                self.fonts['NORMAL'] = ImageFont.truetype(path, self.font_size)
                 break
-        if path is None:
+        else:
             raise FontNotFound('No usable fonts named: "%s"' %
-                                self.font_name)
-        self.fonts[FONT_NORMAL] = ImageFont.truetype(path, self.font_size)
-
-    def _create_extra_fonts_nix(self):
-        for style in [FONT_BOLD, FONT_OBLIQUE, FONT_BOLDOBLIQUE]:
-            path = self._get_nix_font_path(self.font_name, style)
-            if path is not None:
-                self.fonts[style] = ImageFont.truetype(path, self.font_size)
+                               self.font_name)
+        for style in ('ITALIC', 'BOLD', 'BOLDITALIC'):
+            for stylename in STYLES[style]:
+                path = self._get_nix_font_path(self.font_name, stylename)
+                if path is not None:
+                    self.fonts[style] = ImageFont.truetype(path, self.font_size)
+                    break
             else:
-                self.fonts[style] = self.fonts[FONT_NORMAL]
+                if style == 'BOLDITALIC':
+                    self.fonts[style] = self.fonts['BOLD']
+                else:
+                    self.fonts[style] = self.fonts['NORMAL']
 
-    def _create_nix(self):
-        self._create_normal_font_nix()
-        self._create_extra_fonts_nix()
+    def _lookup_win(self, key, basename, styles, fail=False):
+        for suffix in ('', ' (TrueType)'):
+            for style in styles:
+                try:
+                    valname = '%s%s%s' % (basename, style and ' '+style, suffix)
+                    val, _ = _winreg.QueryValueEx(key, valname)
+                    return val
+                except EnvironmentError:
+                    continue
+        else:
+            if fail:
+                raise FontNotFound('Font %s (%s) not found in registry' %
+                                   (basename, styles[0]))
+            return None
+
+    def _create_win(self):
+        try:
+            key = _winreg.OpenKey(
+                _winreg.HKEY_LOCAL_MACHINE,
+                r'Software\Microsoft\Windows NT\CurrentVersion\Fonts')
+        except EnvironmentError:
+            try:
+                key = _winreg.OpenKey(
+                    _winreg.HKEY_LOCAL_MACHINE,
+                    r'Software\Microsoft\Windows\CurrentVersion\Fonts')
+            except EnvironmentError:
+                raise FontNotFound('Can\'t open Windows font registry key')
+        try:
+            path = self._lookup_win(key, self.font_name, STYLES['NORMAL'], True)
+            self.fonts['NORMAL'] = ImageFont.truetype(path, self.font_size)
+            for style in ('ITALIC', 'BOLD', 'BOLDITALIC'):
+                path = self._lookup_win(key, self.font_name, STYLES[style])
+                if path:
+                    self.fonts[style] = ImageFont.truetype(path, self.font_size)
+                else:
+                    if style == 'BOLDITALIC':
+                        self.fonts[style] = self.fonts['BOLD']
+                    else:
+                        self.fonts[style] = self.fonts['NORMAL']
+        finally:
+            _winreg.CloseKey(key)
 
     def get_char_size(self):
         """
         Get the character size.
         """
-        return self.fonts[FONT_NORMAL].getsize('M')
+        return self.fonts['NORMAL'].getsize('M')
 
     def get_font(self, bold, oblique):
         """
         Get the font based on bold and italic flags.
         """
         if bold and oblique:
-            return self.fonts[FONT_BOLDOBLIQUE]
+            return self.fonts['BOLDITALIC']
         elif bold:
-            return self.fonts[FONT_BOLD]
+            return self.fonts['BOLD']
         elif oblique:
-            return self.fonts[FONT_OBLIQUE]
+            return self.fonts['ITALIC']
         else:
-            return self.fonts[FONT_NORMAL]
+            return self.fonts['NORMAL']
 
 
 class ImageFormatter(Formatter):
@@ -197,8 +252,8 @@ class ImageFormatter(Formatter):
 
     # Required by the pygments mapper
     name = 'img'
-    aliases = ['img', 'IMG', 'png', 'jpg', 'gif']
-    filenames = ['*.png', '*.jpg', '*.gif']
+    aliases = ['img', 'IMG', 'png', 'jpg', 'gif', 'bmp']
+    filenames = ['*.png', '*.jpg', '*.gif', '*.bmp']
 
     def __init__(self, **options):
         """
@@ -220,7 +275,7 @@ class ImageFormatter(Formatter):
         self.image_pad = get_int_opt(options, 'image_pad', 10)
         self.line_pad = get_int_opt(options, 'line_pad', 2)
         # The fonts
-        self.fonts = FontManager(options.get('font_name', DEFAULT_FONT_NAME))
+        self.fonts = FontManager(options.get('font_name', ''))
         self.fontw, self.fonth = self.fonts.get_char_size()
         # Line number options
         self.line_number_fg = options.get('line_number_fg', '#886')
