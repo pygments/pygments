@@ -255,6 +255,8 @@ class ImageFormatter(Formatter):
     aliases = ['img', 'IMG', 'png', 'jpg', 'gif', 'bmp']
     filenames = ['*.png', '*.jpg', '*.gif', '*.bmp']
 
+    unicodeoutput = False
+
     def __init__(self, **options):
         """
         See the class docstring for explanation of options.

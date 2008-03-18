@@ -5,8 +5,8 @@
 
     Lexers for compiled languages.
 
-    :copyright: 2006-2007 by Georg Brandl, Armin Ronacher, Christoph Hack,
-                Whitney Young, Kirk McDonald.
+    :copyright: 2006-2008 by Georg Brandl, Armin Ronacher, Christoph Hack,
+                Whitney Young, Kirk McDonald, Stou Sandalski.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -28,7 +28,7 @@ from pygments.token import \
 from pygments.lexers.functional import OcamlLexer
 
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer',
-           'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer']
+           'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer', 'FortranLexer']
 
 
 class CLexer(RegexLexer):
@@ -1056,4 +1056,105 @@ class ObjectiveCLexer(RegexLexer):
             (r'^\s*#endif.*?(?<!\\)\n', Comment, '#pop'),
             (r'.*?\n', Comment),
         ]
+    }
+
+
+class FortranLexer(RegexLexer):
+    '''
+    Lexer for FORTRAN 90 code.
+
+    *New in Pygments 1.0.*
+    '''
+    name = 'Fortran'
+    aliases = ['fortran']
+    filenames = ['*.f', '*.f90']
+    mimetypes = ['text/x-fortran']
+    flags = re.IGNORECASE
+
+    # Data Types: INTEGER, REAL, COMPLEX, LOGICAL, CHARACTER and DOUBLE PRECISION
+    # Operators: **, *, +, -, /, <, >, <=, >=, ==, /=
+    # Logical (?): NOT, AND, OR, EQV, NEQV
+
+    # Builtins:
+    # http://gcc.gnu.org/onlinedocs/gcc-3.4.6/g77/Table-of-Intrinsic-Functions.html
+
+    tokens = {
+        'root': [
+            (r'!.*\n', Comment),
+            include('strings'),
+            include('core'),
+            (r'[a-z][a-z0-9_]*', Name.Variable),
+            include('nums'),
+            (r'[\s]+', Text),
+        ],
+        'core': [
+            # Statements
+            (r'\b(ACCEPT|ALLOCATABLE|ALLOCATE|ARRAY|ASSIGN|BACKSPACE|BLOCK DATA|'
+             r'BYTE|CALL|CASE|CLOSE|COMMON|CONTAINS|CONTINUE|CYCLE|DATA|'
+             r'DEALLOCATE|DECODE|DIMENSION|DO|ENCODE|END FILE|ENDIF|END|ENTRY|'
+             r'EQUIVALENCE|EXIT|EXTERNAL|EXTRINSIC|FORALL|FORMAT|FUNCTION|GOTO|'
+             r'IF|IMPLICIT|INCLUDE|INQUIRE|INTENT|INTERFACE|INTRINSIC|MODULE|'
+             r'NAMELIST|NULLIFY|NONE|OPEN|OPTIONAL|OPTIONS|PARAMETER|PAUSE|'
+             r'POINTER|PRINT|PRIVATE|PROGRAM|PUBLIC|PURE|READ|RECURSIVE|RETURN|'
+             r'REWIND|SAVE|SELECT|SEQUENCE|STOP|SUBROUTINE|TARGET|TYPE|USE|'
+             r'VOLATILE|WHERE|WRITE|WHILE|THEN|ELSE|ENDIF)\s*\b',
+             Keyword),
+
+            # Data Types
+            (r'\b(CHARACTER|COMPLEX|DOUBLE PRECISION|DOUBLE COMPLEX|INTEGER|'
+             r'LOGICAL|REAL)\s*\b',
+             Keyword.Type),
+
+            # Operators
+            (r'(\*\*|\*|\+|-|\/|<|>|<=|>=|==|\/=|=)', Operator),
+
+            (r'(::)', Keyword.Declaration),
+
+            (r'[(),:&%]', Punctuation),
+
+            # Intrinsics
+            (r'\b(Abort|Abs|Access|AChar|ACos|AdjustL|AdjustR|AImag|AInt|Alarm|'
+             r'All|Allocated|ALog|AMax|AMin|AMod|And|ANInt|Any|'
+             r'ASin|Associated|ATan|BesJ|BesJN|BesY|BesYN|'
+             r'Bit_Size|BTest|CAbs|CCos|Ceiling|CExp|Char|ChDir|ChMod|CLog|'
+             r'Cmplx|Complex|Conjg|Cos|CosH|Count|CPU_Time|CShift|CSin|CSqRt|'
+             r'CTime|DAbs|DACos|DASin|DATan|Date_and_Time|DbesJ|'
+             r'DbesJ|DbesJN|DbesY|DbesY|DbesYN|Dble|DCos|DCosH|DDiM|DErF|DErFC|'
+             r'DExp|Digits|DiM|DInt|DLog|DLog|DMax|DMin|DMod|DNInt|Dot_Product|'
+             r'DProd|DSign|DSinH|DSin|DSqRt|DTanH|DTan|DTime|EOShift|Epsilon|'
+             r'ErF|ErFC|ETime|Exit|Exp|Exponent|FDate|FGet|FGetC|Float|'
+             r'Floor|Flush|FNum|FPutC|FPut|Fraction|FSeek|FStat|FTell|'
+             r'GError|GetArg|GetCWD|GetEnv|GetGId|GetLog|GetPId|GetUId|'
+             r'GMTime|HostNm|Huge|IAbs|IAChar|IAnd|IArgC|IBClr|IBits|'
+             r'IBSet|IChar|IDate|IDiM|IDInt|IDNInt|IEOr|IErrNo|IFix|Imag|'
+             r'ImagPart|Index|Int|IOr|IRand|IsaTty|IShft|IShftC|ISign|'
+             r'ITime|Kill|Kind|LBound|Len|Len_Trim|LGe|LGt|Link|LLe|LLt|LnBlnk|'
+             r'Loc|Log|Log|Logical|Long|LShift|LStat|LTime|MatMul|Max|'
+             r'MaxExponent|MaxLoc|MaxVal|MClock|Merge|Min|MinExponent|MinLoc|'
+             r'MinVal|Mod|Modulo|MvBits|Nearest|NInt|Not|Or|Pack|PError|'
+             r'Precision|Present|Product|Radix|Rand|Random_Number|Random_Seed|'
+             r'Range|Real|RealPart|Rename|Repeat|Reshape|RRSpacing|RShift|Scale|'
+             r'Scan|Second|Selected_Int_Kind|Selected_Real_Kind|Set_Exponent|'
+             r'Shape|Short|Sign|Signal|SinH|Sin|Sleep|Sngl|Spacing|Spread|SqRt|'
+             r'SRand|Stat|Sum|SymLnk|System|System_Clock|Tan|TanH|Time|'
+             r'Tiny|Transfer|Transpose|Trim|TtyNam|UBound|UMask|Unlink|Unpack|'
+             r'Verify|XOr|ZAbs|ZCos|ZExp|ZLog|ZSin|ZSqRt)\s*\b',
+             Name.Builtin),
+
+            # Booleans
+            (r'\.(true|false)\.', Name.Builtin),
+            # Comparing Operators
+            (r'\.(eq|ne|lt|le|gt|ge|not|and|or|eqv|neqv)\.', Operator.Word),
+        ],
+
+        'strings': [
+            (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
+            (r"'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
+        ],
+
+        'nums': [
+            (r'\d+(?![.Ee])', Number.Integer),
+            (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
+            (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
+        ],
     }

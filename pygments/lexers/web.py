@@ -5,8 +5,8 @@
 
     Lexers for web-related languages and markup.
 
-    :copyright: 2006-2007 by Georg Brandl, Armin Ronacher,
-                Tim Hatch <tim@timhatch.com>.
+    :copyright: 2006-2008 by Georg Brandl, Armin Ronacher,
+                Tim Hatch <tim@timhatch.com>, Stou Sandalski.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -24,7 +24,7 @@ from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
 
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
-           'PhpLexer', 'ActionScriptLexer']
+           'PhpLexer', 'ActionScriptLexer', 'XsltLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -497,3 +497,35 @@ class XmlLexer(RegexLexer):
     def analyse_text(text):
         if looks_like_xml(text):
             return 0.5
+
+
+class XsltLexer(XmlLexer):
+    '''
+    A lexer for XSLT.
+
+    *New in Pygments 1.0.*
+    '''
+
+    name = 'XSLT'
+    aliases = ['xslt']
+    filenames = ['*.xsl', '*.xslt']
+
+    EXTRA_KEYWORDS = set([
+        'apply-imports', 'apply-templates', 'attribute',
+        'attribute-set', 'call-template', 'choose', 'comment',
+        'copy', 'copy-of', 'decimal-format', 'element', 'fallback',
+        'for-each', 'if', 'import', 'include', 'key', 'message',
+        'namespace-alias', 'number', 'otherwise', 'output', 'param',
+        'preserve-space', 'processing-instruction', 'sort',
+        'strip-space', 'stylesheet', 'template', 'text', 'transform',
+        'value-of', 'variable', 'when', 'with-param'
+    ])
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in XmlLexer.get_tokens_unprocessed(self, text):
+            m = re.match('</?xsl:([^>]*)/?>?', value)
+
+            if token is Name.Tag and m and m.group(1) in self.EXTRA_KEYWORDS:
+                yield index, Keyword, value
+            else:
+                yield index, token, value

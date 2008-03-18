@@ -5,7 +5,8 @@
 
     Lexers for other languages.
 
-    :copyright: 2006-2007 by Georg Brandl, Tim Hatch <tim@timhatch.com>.
+    :copyright: 2006-2008 by Georg Brandl, Tim Hatch <tim@timhatch.com>,
+                Stou Sandalski.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -19,7 +20,7 @@ from pygments.util import shebang_matches
 
 __all__ = ['SqlLexer', 'MySqlLexer', 'BrainfuckLexer', 'BashLexer',
            'BatchLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
-           'SmalltalkLexer']
+           'SmalltalkLexer', 'TcshLexer']
 
 
 class SqlLexer(RegexLexer):
@@ -542,3 +543,71 @@ class SmalltalkLexer(RegexLexer):
             (r'', Text, '#pop'),
         ],
     }
+
+
+class TcshLexer(RegexLexer):
+    """
+    Lexer for tcsh scripts.
+
+    *New in Pygments 1.0.*
+    """
+
+    name = 'Tcsh'
+    aliases = ['tcsh', 'csh']
+    filenames = ['*.tcsh', '*.csh']
+    mimetypes = ['application/x-csh']
+
+    tokens = {
+        'root': [
+            include('basic'),
+            (r'\$\(', Keyword, 'paren'),
+            (r'\${#?', Keyword, 'curly'),
+            (r'`', String.Backtick, 'backticks'),
+            include('data'),
+        ],
+        'basic': [
+            (r'\b(if|endif|else|while|then|foreach|case|default|'
+             r'continue|goto|breaksw|end|switch|endsw)\s*\b',
+             Keyword),
+            (r'\b(alias|alloc|bg|bindkey|break|builtins|bye|caller|cd|chdir|'
+             r'complete|dirs|echo|echotc|eval|exec|exit|'
+             r'fg|filetest|getxvers|glob|getspath|hashstat|history|hup|inlib|jobs|kill|'
+             r'limit|log|login|logout|ls-F|migrate|newgrp|nice|nohup|notify|'
+             r'onintr|popd|printenv|pushd|rehash|repeat|rootnode|popd|pushd|set|shift|'
+             r'sched|setenv|setpath|settc|setty|setxvers|shift|source|stop|suspend|'
+             r'source|suspend|telltc|time|'
+             r'umask|unalias|uncomplete|unhash|universe|unlimit|unset|unsetenv|'
+             r'ver|wait|warp|watchlog|where|which)\s*\b',
+             Name.Builtin),
+            (r'#.*\n', Comment),
+            (r'\\[\w\W]', String.Escape),
+            (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
+            (r'[\[\]{}()=]+', Operator),
+            (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
+        ],
+        'data': [
+            (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
+            (r"'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
+            (r'\s+', Text),
+            (r'[^=\s\n\[\]{}()$"\'`\\]+', Text),
+            (r'\d+(?= |\Z)', Number),
+            (r'\$#?(\w+|.)', Name.Variable),
+        ],
+        'curly': [
+            (r'}', Keyword, '#pop'),
+            (r':-', Keyword),
+            (r'[a-zA-Z0-9_]+', Name.Variable),
+            (r'[^}:"\'`$]+', Punctuation),
+            (r':', Punctuation),
+            include('root'),
+        ],
+        'paren': [
+            (r'\)', Keyword, '#pop'),
+            include('root'),
+        ],
+        'backticks': [
+            (r'`', String.Backtick, '#pop'),
+            include('root'),
+        ],
+    }
+
