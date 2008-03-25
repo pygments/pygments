@@ -88,24 +88,56 @@ class ActionScriptLexer(RegexLexer):
             (r'/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex),
             (r'[~\^\*!%&<>\|+=:;,/?\\-]+', Operator),
             (r'[{}\[\]();.]+', Punctuation),
-            (r'(for|in|while|do|break|return|continue|if|else|throw|try|'
-             r'catch|var|with|new|typeof|arguments|instanceof|this)\b', Keyword),
-            (r'(class|public|private|static|import|extends|implements|interface|'
-             r'intrinsic|return|super|dynamic|function)\b', Keyword.Declaration),
-            (r'(true|false|null|NaN|Infinity|undefined|Void)\b', Keyword.Constant),
-            (r'(Accessibility|AsBroadcaster|Array|Boolean|Date|Error|Function|Math|'
-             r'Number|Object|String|MovieClip|BevelFilter|BitmapData|BitmapFilter|'
-             r'BlurFilter|Camera|Color|ColorMatrixFilter|ColorTransform|ContextMenu|'
-             r'ContextMenuItem|MovieClipLoader|NetConnection|NetStream|Point|PrintJob|'
-             r'ConvolutionFilter|DisplacmentMapFilter|DropShadowFilter|'
-             r'ExternalInterface|FileReference|FileReferenceList|GlowFilter|'
-             r'GradientBevelFilter|GradientGlowFilter|IME|Key|LoadVars|LocalConnection|'
-             r'Locale|Matrix|Microphone|Mouse|Rectangle|Selection|SharedObject|Sound|'
-             r'Stage|StyleSheet|System|TextField|TextFormat|TextRenderer|TextSnapshot|'
-             r'Transform|Video|XML|XMLNode|XMLSocket|XMLUI)\b',
+            (r'(case|default|for|each|in|while|do|break|return|continue|if|else|'
+             r'throw|try|catch|var|with|new|typeof|arguments|instanceof|this|'
+             r'switch)\b', Keyword),
+            (r'(class|public|final|internal|native|override|private|protected|'
+             r'static|import|extends|implements|interface|intrinsic|return|super|'
+             r'dynamic|function|const|get|namespace|package|set)\b', Keyword.Declaration),
+            (r'(true|false|null|NaN|Infinity|-Infinity|undefined|Void)\b',
+             Keyword.Constant),
+            (r'(Accessibility|AccessibilityProperties|ActionScriptVersion|'
+             r'ActivityEvent|AntiAliasType|ApplicationDomain|AsBroadcaster|Array|'
+             r'AsyncErrorEvent|AVM1Movie|BevelFilter|Bitmap|BitmapData|'
+             r'BitmapDataChannel|BitmapFilter|BitmapFilterQuality|BitmapFilterType|'
+             r'BlendMode|BlurFilter|Boolean|ByteArray|Camera|Capabilities|CapsStyle|'
+             r'Class|Color|ColorMatrixFilter|ColorTransform|ContextMenu|'
+             r'ContextMenuBuiltInItems|ContextMenuEvent|ContextMenuItem|'
+             r'ConvultionFilter|CSMSettings|DataEvent|Date|DefinitionError|'
+             r'DeleteObjectSample|Dictionary|DisplacmentMapFilter|DisplayObject|'
+             r'DisplacmentMapFilterMode|DisplayObjectContainer|DropShadowFilter|'
+             r'Endian|EOFError|Error|ErrorEvent|EvalError|Event|EventDispatcher|'
+             r'EventPhase|ExternalInterface|FileFilter|FileReference|'
+             r'FileReferenceList|FocusDirection|FocusEvent|Font|FontStyle|FontType|'
+             r'FrameLabel|FullScreenEvent|Function|GlowFilter|GradientBevelFilter|'
+             r'GradientGlowFilter|GradientType|Graphics|GridFitType|HTTPStatusEvent|'
+             r'IBitmapDrawable|ID3Info|IDataInput|IDataOutput|IDynamicPropertyOutput'
+             r'IDynamicPropertyWriter|IEventDispatcher|IExternalizable|'
+             r'IllegalOperationError|IME|IMEConversionMode|IMEEvent|int|'
+             r'InteractiveObject|InterpolationMethod|InvalidSWFError|InvokeEvent|'
+             r'IOError|IOErrorEvent|JointStyle|Key|Keyboard|KeyboardEvent|KeyLocation|'
+             r'LineScaleMode|Loader|LoaderContext|LoaderInfo|LoadVars|LocalConnection|'
+             r'Locale|Math|Matrix|MemoryError|Microphone|MorphShape|Mouse|MouseEvent|'
+             r'MovieClip|MovieClipLoader|Namespace|NetConnection|NetStatusEvent|'
+             r'NetStream|NewObjectSample|Number|Object|ObjectEncoding|PixelSnapping|'
+             r'Point|PrintJob|PrintJobOptions|PrintJobOrientation|ProgressEvent|Proxy|'
+             r'QName|RangeError|Rectangle|ReferenceError|RegExp|Responder|Sample|Scene|'
+             r'ScriptTimeoutError|Security|SecurityDomain|SecurityError|'
+             r'SecurityErrorEvent|SecurityPanel|Selection|Shape|SharedObject|'
+             r'SharedObjectFlushStatus|SimpleButton|Socket|Sound|SoundChannel|'
+             r'SoundLoaderContext|SoundMixer|SoundTransform|SpreadMethod|Sprite|'
+             r'StackFrame|StackOverflowError|Stage|StageAlign|StageDisplayState|'
+             r'StageQuality|StageScaleMode|StaticText|StatusEvent|String|StyleSheet|'
+             r'SWFVersion|SyncEvent|SyntaxError|System|TextColorType|TextField|'
+             r'TextFieldAutoSize|TextFieldType|TextFormat|TextFormatAlign|'
+             r'TextLineMetrics|TextRenderer|TextSnapshot|Timer|TimerEvent|Transform|'
+             r'TypeError|uint|URIError|URLLoader|URLLoaderDataFormat|URLRequest|'
+             r'URLRequestHeader|URLRequestMethod|URLStream|URLVariabeles|VerifyError|'
+             r'Video|XML|XMLDocument|XMLList|XMLNode|XMLNodeType|XMLSocket|XMLUI)\b',
              Name.Builtin),
-            (r'(eval|isNaN|clearInterval|escape|fscommand|getTimer|getURL|getVersion|'
-             r'isFinite|parseFloat|parseInt|setInterval|trace|updateAfterEvent|escape|'
+            (r'(decodeURI|decodeURIComponent|encodeURI|escape|eval|isFinite|isNaN|'
+             r'isXMLName|clearInterval|fscommand|getTimer|getURL|getVersion|'
+             r'isFinite|parseFloat|parseInt|setInterval|trace|updateAfterEvent|'
              r'unescape)\b',Name.Function),
             (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
