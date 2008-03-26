@@ -26,6 +26,7 @@ TERMINAL_COLORS = {
 
     Whitespace:         ('lightgray',   'darkgray'),
     Comment:            ('lightgray',   'darkgray'),
+    Comment.Preproc:    ('teal',        'turquoise'),
     Keyword:            ('darkblue',    'blue'),
     Keyword.Type:       ('teal',        'turquoise'),
     Operator.Word:      ('purple',      'fuchsia'),
