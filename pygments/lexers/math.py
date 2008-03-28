@@ -5,7 +5,8 @@
 
     Lexers for math languages.
 
-    :copyright: 2007-2008 by Christopher Creutzig, Ken Schutte, Stou Sandalski.
+    :copyright: 2007-2008 by Christopher Creutzig, Ken Schutte, Stou Sandalski,
+                Laurent Gautier <lgautier@gmail.com>.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -15,13 +16,14 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import Lexer, RegexLexer, bygroups
+from pygments.lexer import Lexer, RegexLexer, bygroups, include
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
     Operator, Number, Text, Generic
 
 from pygments.lexers.agile import PythonLexer
 
-__all__ = ['MuPADLexer', 'MatlabLexer', 'MatlabSessionLexer', 'NumPyLexer']
+__all__ = ['MuPADLexer', 'MatlabLexer', 'MatlabSessionLexer', 'NumPyLexer',
+           'SLexer']
 
 
 class MuPADLexer(RegexLexer):
@@ -324,3 +326,72 @@ class NumPyLexer(PythonLexer):
                 yield index, Keyword.Pseudo, value
             else:
                 yield index, token, value
+
+
+class SLexer(RegexLexer):
+    """
+    For S, S-plus, and R source code.
+
+    *New in Pygments 1.0.*
+    """
+
+    name = 'S'
+    aliases = ['splus', 's', 'r']
+    filenames = ['*.S', '*.R']
+    mimetypes = ['text/S-plus', 'text/S', 'text/R']
+
+    tokens = {
+        'comments': [
+            (r'#.*$', Comment.Single),
+        ],
+        'valid_name': [
+            (r'[a-zA-Z][0-9a-zA-Z\._]+', Text),
+            (r'`.+`', String.Backtick),
+        ],
+        'punctuation': [
+            (r'\[|\]|\[\[|\]\]|\$|\(|\)|@|:::?|;|,', Punctuation),
+        ],
+        'keywords': [
+            (r'for(?=\s*\()|while(?=\s*\()|if(?=\s*\()|(?<=\s)else|(?<=\s)break(?=;|$)',
+             Keyword.Reserved)
+        ],
+        'operators': [
+            (r'<-|-|==|<=|>=|<|>|&&|&|!=', Operator),
+            (r'\*|\+|\^|/|%%|%/%|=', Operator),
+            (r'%in%|%*%', Operator)
+        ],
+        'builtin_symbols': [
+            (r'NULL|NA|TRUE|FALSE', Keyword.Constant),
+        ],
+        'numbers': [
+            (r'(?<![0-9a-zA-Z\)\}\]`\"])(?=\s*)[-\+]?[0-9]+'
+             r'(\.[0-9]*)?(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
+        ],
+        'statements': [
+            include('comments'),
+            # whitespaces
+            (r'\s+', Text),
+            (r'\"', String, 'string_dquote'),
+            include('builtin_symbols'),
+            include('numbers'),
+            include('keywords'),
+            include('punctuation'),
+            include('operators'),
+            include('valid_name'),
+        ],
+        'root': [
+            include('statements'),
+            # blocks:
+            (r'\{|\}', Punctuation),
+            #(r'\{', Punctuation, 'block'),
+            (r'.', Text),
+        ],
+        #'block': [
+        #    include('statements'),
+        #    ('\{', Punctuation, '#push'),
+        #    ('\}', Punctuation, '#pop')
+        #],
+        'string_dquote': [
+            (r'[^\"]*\"', String, '#pop'),
+        ],
+    }
