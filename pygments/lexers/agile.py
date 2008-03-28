@@ -7,7 +7,7 @@
 
     :copyright: 2006-2008 by Georg Brandl, Armin Ronacher,
                 Lukas Meuser, Tim Hatch, Jarrett Billingsley,
-                Tassilo Schweyer, Steven Hazel.
+                Tassilo Schweyer, Steven Hazel, Nick Efford.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -56,14 +56,31 @@ class PythonLexer(RegexLexer):
             (r'\\', Text),
             (r'(in|is|and|or|not)\b', Operator.Word),
             (r'!=|==|<<|>>|[-~+/*%=<>&^|.]', Operator),
-            (r'(assert|break|continue|del|elif|else|except|exec|'
-             r'finally|for|global|if|lambda|pass|print|raise|'
-             r'return|try|while|yield|as|with)\b', Keyword),
+            include('keywords'),
             (r'(def)(\s+)', bygroups(Keyword, Text), 'funcname'),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(from)(\s+)', bygroups(Keyword, Text), 'fromimport'),
             (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
             (r'@[a-zA-Z0-9_]+', Name.Decorator),
+            include('builtins'),
+            include('backtick'),
+            ('(?:[rR]|[uU][rR]|[rR][uU])"""', String, 'tdqs'),
+            ("(?:[rR]|[uU][rR]|[rR][uU])'''", String, 'tsqs'),
+            ('(?:[rR]|[uU][rR]|[rR][uU])"', String, 'dqs'),
+            ("(?:[rR]|[uU][rR]|[rR][uU])'", String, 'sqs'),
+            ('[uU]?"""', String, combined('stringescape', 'tdqs')),
+            ("[uU]?'''", String, combined('stringescape', 'tsqs')),
+            ('[uU]?"', String, combined('stringescape', 'dqs')),
+            ("[uU]?'", String, combined('stringescape', 'sqs')),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            include('numbers'),
+        ],
+        'keywords': [
+            (r'(assert|break|continue|del|elif|else|except|exec|'
+             r'finally|for|global|if|lambda|pass|print|raise|'
+             r'return|try|while|yield|as|with)\b', Keyword),
+        ],
+        'builtins': [
             (r'(?<!\.)(__import__|abs|apply|basestring|bool|buffer|callable|'
              r'chr|classmethod|cmp|coerce|compile|complex|delattr|dict|dir|'
              r'divmod|enumerate|eval|execfile|exit|file|filter|float|getattr|'
@@ -75,9 +92,9 @@ class PythonLexer(RegexLexer):
             (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True'
              r')\b', Name.Builtin.Pseudo),
             (r'(?<!\.)(ArithmeticError|AssertionError|AttributeError|'
-             r'DeprecationWarning|EOFError|EnvironmentError|'
-             r'Exception|FloatingPointError|FutureWarning|IOError|'
-             r'ImportError|IndentationError|IndexError|KeyError|'
+             r'BaseException|DeprecationWarning|EOFError|EnvironmentError|'
+             r'Exception|FloatingPointError|FutureWarning|GeneratorExit|IOError|'
+             r'ImportError|ImportWarning|IndentationError|IndexError|KeyError|'
              r'KeyboardInterrupt|LookupError|MemoryError|NameError|'
              r'NotImplemented|NotImplementedError|OSError|OverflowError|'
              r'OverflowWarning|PendingDeprecationWarning|ReferenceError|'
@@ -85,23 +102,18 @@ class PythonLexer(RegexLexer):
              r'SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|'
              r'TypeError|UnboundLocalError|UnicodeDecodeError|'
              r'UnicodeEncodeError|UnicodeError|UnicodeTranslateError|'
-             r'UserWarning|ValueError|Warning|ZeroDivisionError'
+             r'UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError'
              r')\b', Name.Exception),
-            ('`.*?`', String.Backtick),
-            ('(?:[rR]|[uU][rR]|[rR][uU])"""', String, 'tdqs'),
-            ("(?:[rR]|[uU][rR]|[rR][uU])'''", String, 'tsqs'),
-            ('(?:[rR]|[uU][rR]|[rR][uU])"', String, 'dqs'),
-            ("(?:[rR]|[uU][rR]|[rR][uU])'", String, 'sqs'),
-            ('[uU]?"""', String, combined('stringescape', 'tdqs')),
-            ("[uU]?'''", String, combined('stringescape', 'tsqs')),
-            ('[uU]?"', String, combined('stringescape', 'dqs')),
-            ("[uU]?'", String, combined('stringescape', 'sqs')),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+        ],
+        'numbers': [
             (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'0\d+', Number.Oct),
-            (r'0x[a-fA-F0-9]+', Number.Hex),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),
             (r'\d+', Number.Integer)
+        ],
+        'backtick': [
+            ('`.*?`', String.Backtick),
         ],
         'funcname': [
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop')
@@ -160,6 +172,62 @@ class PythonLexer(RegexLexer):
 
     def analyse_text(text):
         return shebang_matches(text, r'pythonw?(2\.\d)?')
+
+
+class Python3Lexer(RegexLexer):
+    """
+    For `Python <http://www.python.org>`_ source code (version 3.0).
+
+    *New in Pygments 1.0.*
+    """
+
+    name = 'Python3'
+    aliases = ['python3', 'py3']
+    filenames = []  # Nothing until Python 3 gets widespread
+    mimetypes = ['text/x-python3', 'application/x-python3']
+
+    tokens = PythonLexer.tokens.copy()
+    tokens['keywords'] = [
+            (r'(assert|break|continue|del|elif|else|except|'
+             r'finally|for|global|if|lambda|pass|raise|'
+             r'return|try|while|yield|as|with|True|False|None)\b', Keyword),
+    ]
+    tokens['builtins'] = [
+            (r'(?<!\.)(__import__|abs|all|any|bin|bool|bytearray|bytes|'
+             r'chr|classmethod|cmp|compile|complex|delattr|dict|dir|'
+             r'divmod|enumerate|eval|filter|float|format|frozenset|getattr|'
+             r'globals|hasattr|hash|hex|id|input|int|isinstance|issubclass|'
+             r'iter|len|list|locals|map|max|memoryview|min|next|object|oct|'
+             r'open|ord|pow|print|property|range|repr|reversed|round|'
+             r'set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|'
+             r'vars|zip)\b', Name.Builtin),
+            (r'(?<!\.)(self|Ellipsis|NotImplemented)\b', Name.Builtin.Pseudo),
+            (r'(?<!\.)(ArithmeticError|AssertionError|AttributeError|'
+             r'BaseException|BufferError|BytesWarning|DeprecationWarning|'
+             r'EOFError|EnvironmentError|Exception|FloatingPointError|'
+             r'FutureWarning|GeneratorExit|IOError|ImportError|'
+             r'ImportWarning|IndentationError|IndexError|KeyError|'
+             r'KeyboardInterrupt|LookupError|MemoryError|NameError|'
+             r'NotImplementedError|OSError|OverflowError|'
+             r'PendingDeprecationWarning|ReferenceError|'
+             r'RuntimeError|RuntimeWarning|StopIteration|'
+             r'SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|'
+             r'TypeError|UnboundLocalError|UnicodeDecodeError|'
+             r'UnicodeEncodeError|UnicodeError|UnicodeTranslateError|'
+             r'UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError'
+             r')\b', Name.Exception),
+    ]
+    tokens['numbers'] = [
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'0[oO][0-7]+', Number.Oct),
+            (r'0[bB][01]+', Number.Bin),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'\d+', Number.Integer)
+    ]
+    tokens['backtick'] = []
+
+    def analyse_text(text):
+        return shebang_matches(text, r'pythonw?(3\.\d)?')
 
 
 class PythonConsoleLexer(Lexer):
