@@ -82,3 +82,38 @@ list( logemlik=loglik,  ### logemlikv2=loglik2,
       nits=temp2$nf, message=temp2$message )
 }
 
+library("graphics")
+
+par(mfrow = c(1, 2))
+# plot histogram
+x <- rnorm(100)
+if (max(x) > 100)
+  stop("Quite unexpected.")
+else
+  hist(x, plot=TRUE, col="ivory")
+
+# from doc: lowess
+plot(cars, main = "lowess(cars)")
+     lines(lowess(cars), col = 2)
+     lines(lowess(cars, f=.2), col = 3)
+     legend(5, 120, c(paste("f = ", c("2/3", ".2"))), lty = 1, col = 2:3)
+
+# from doc: is.na
+is.na(c(1, NA))
+
+# from doc: Extract
+y <- list(1,2,a=4,5)
+y[c(3,4)]             # a list containing elements 3 and 4 of y
+y$a                   # the element of y named a
+
+# from doc: for
+for(n in c(2,5,10,20,50)) {
+  x <- stats::rnorm(n)
+  cat(n,":", sum(x2),"\n")
+}
+
+class(fo <- y ~ x1*x2) # "formula"
+
+
+
+
