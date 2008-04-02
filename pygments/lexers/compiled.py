@@ -901,7 +901,7 @@ class DylanLexer(RegexLexer):
     *New in Pygments 0.7.*
     """
 
-    name = 'DylanLexer'
+    name = 'Dylan'
     aliases = ['dylan']
     filenames = ['*.dylan']
     mimetypes = ['text/x-dylan']
