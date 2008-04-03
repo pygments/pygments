@@ -32,7 +32,7 @@ from pygments.util import get_bool_opt
 from pygments.lexers.other import BashLexer
 
 __all__ = ['IniLexer', 'SourcesListLexer', 'BaseMakefileLexer',
-           'GenericMakefileLexer', 'DiffLexer', 'IrcLogsLexer', 'TexLexer',
+           'MakefileLexer', 'DiffLexer', 'IrcLogsLexer', 'TexLexer',
            'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer', 'MoinWikiLexer',
            'RstLexer', 'VimLexer', 'GettextLexer', 'SquidConfLexer',
            'DebianControlLexer', 'DarcsPatchLexer']
@@ -115,15 +115,15 @@ class SourcesListLexer(RegexLexer):
         return True
 
 
-class GenericMakefileLexer(Lexer):
+class MakefileLexer(Lexer):
     """
     Lexer for BSD and GNU make extensions (lenient enough to handle both in
     the same file even).
 
-    *New in Pygments 1.0*
+    *Rewritten in Pygments 1.0*
     """
 
-    name = 'GenericMakefile'
+    name = 'Makefile'
     aliases = ['make', 'makefile', 'mf', 'bsdmake']
     filenames = ['*.mak', 'Makefile', 'makefile', 'Makefile.*']
     mimetypes = ['text/x-makefile']
