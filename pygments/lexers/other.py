@@ -287,6 +287,7 @@ class BashLexer(RegexLexer):
     tokens = {
         'root': [
             include('basic'),
+            (r'\$\(\(', Keyword, 'math'),
             (r'\$\(', Keyword, 'paren'),
             (r'\${#?', Keyword, 'curly'),
             (r'`', String.Backtick, 'backticks'),
@@ -308,6 +309,7 @@ class BashLexer(RegexLexer):
             (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
             (r'[\[\]{}()=]+', Operator),
             (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
+            (r'&&|\|\|', Operator),
         ],
         'data': [
             (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
@@ -327,6 +329,12 @@ class BashLexer(RegexLexer):
         ],
         'paren': [
             (r'\)', Keyword, '#pop'),
+            include('root'),
+        ],
+        'math': [
+            (r'\)\)', Keyword, '#pop'),
+            (r'[-+*/%^|&]|\*\*|\|\|', Operator),
+            (r'\d+', Number),
             include('root'),
         ],
         'backticks': [
