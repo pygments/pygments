@@ -30,7 +30,7 @@ from pygments.formatters.terminal256 import Terminal256Formatter
 FORMATTERS = {
     BBCodeFormatter: ('BBCode', ('bbcode', 'bb'), (), 'Format tokens with BBcodes. These formatting codes are used by many bulletin boards, so you can highlight your sourcecode with pygments before posting it there.'),
     HtmlFormatter: ('HTML', ('html',), ('*.html', '*.htm'), "Format tokens as HTML 4 ``<span>`` tags within a ``<pre>`` tag, wrapped in a ``<div>`` tag. The ``<div>``'s CSS class can be set by the `cssclass` option."),
-    ImageFormatter: ('img', ('img', 'IMG', 'png', 'jpg', 'gif'), ('*.png', '*.jpg', '*.gif'), 'Create an image from source code. This uses the Python Imaging Library to generate a pixmap from the source code.'),
+    ImageFormatter: ('img', ('img', 'IMG', 'png', 'jpg', 'gif', 'bmp'), ('*.png', '*.jpg', '*.gif', '*.bmp'), 'Create an image from source code. This uses the Python Imaging Library to generate a pixmap from the source code.'),
     LatexFormatter: ('LaTeX', ('latex', 'tex'), ('*.tex',), 'Format tokens as LaTeX code. This needs the `fancyvrb` and `color` standard packages.'),
     NullFormatter: ('Text only', ('text', 'null'), ('*.txt',), 'Output the text unchanged without any formatting.'),
     RawTokenFormatter: ('Raw tokens', ('raw', 'tokens'), ('*.raw',), 'Format tokens as a raw representation for storing token streams.'),

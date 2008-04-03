@@ -23,19 +23,19 @@ except NameError:
     from sets import Set as set
 from bisect import bisect
 
-from pygments.lexer import RegexLexer, bygroups, include, using, this, \
+from pygments.lexer import Lexer, RegexLexer, bygroups, include, using, this, \
      do_insertions
 from pygments.token import Punctuation, \
     Text, Comment, Keyword, Name, String, Generic, Operator, Number, \
     Whitespace, Literal
 from pygments.util import get_bool_opt
+from pygments.lexers.other import BashLexer
 
-
-__all__ = ['IniLexer', 'SourcesListLexer', 'MakefileLexer', 'DiffLexer',
-           'IrcLogsLexer', 'TexLexer', 'GroffLexer', 'ApacheConfLexer',
-           'BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'VimLexer',
-           'GettextLexer', 'SquidConfLexer', 'DebianControlLexer',
-           'DarcsPatchLexer']
+__all__ = ['IniLexer', 'SourcesListLexer', 'BaseMakefileLexer',
+           'GenericMakefileLexer', 'DiffLexer', 'IrcLogsLexer', 'TexLexer',
+           'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer', 'MoinWikiLexer',
+           'RstLexer', 'VimLexer', 'GettextLexer', 'SquidConfLexer',
+           'DebianControlLexer', 'DarcsPatchLexer']
 
 
 class IniLexer(RegexLexer):
@@ -115,56 +115,93 @@ class SourcesListLexer(RegexLexer):
         return True
 
 
-class MakefileLexer(RegexLexer):
+class GenericMakefileLexer(Lexer):
     """
-    Lexer for Makefiles.
+    Lexer for BSD and GNU make extensions (lenient enough to handle both in
+    the same file even).
+
+    *New in Pygments 1.0*
+    """
+
+    name = 'GenericMakefile'
+    aliases = ['make', 'makefile', 'mf', 'bsdmake']
+    filenames = ['*.mak', 'Makefile', 'makefile', 'Makefile.*']
+    mimetypes = ['text/x-makefile']
+
+    r_special = re.compile(r'^(?:'
+        # BSD Make
+        r'\.\s*(include|undef|error|warning|if|else|elif|endif|for|endfor)|'
+        # GNU Make
+        r'\s*(ifeq|ifneq|ifdef|ifndef|else|endif|-?include|define|endef|:))(?=\s)')
+    r_comment = re.compile(r'^\s*@?#')
+
+    def get_tokens_unprocessed(self, text):
+        ins = []
+        lines = text.splitlines(True)
+        done = ''
+        lex = BaseMakefileLexer(**self.options)
+        backslashflag = False
+        for line in lines:
+            if self.r_special.match(line) or backslashflag:
+                ins.append((len(done), [(0, Comment.Preproc, line)]))
+                backslashflag = line.strip().endswith('\\')
+            elif self.r_comment.match(line):
+                ins.append((len(done), [(0, Comment, line)]))
+            else:
+                done += line
+        for item in do_insertions(ins, lex.get_tokens_unprocessed(done)):
+            yield item
+
+
+class BaseMakefileLexer(RegexLexer):
+    """
+    Lexer for simple Makefiles (no preprocessing).
+
+    *New in Pygments 1.0*
     """
 
     name = 'Makefile'
-    aliases = ['make', 'makefile', 'mf']
-    filenames = ['*.mak', 'Makefile', 'makefile']
-    mimetypes = ['text/x-makefile']
+    aliases = ['basemake']
+    filenames = []
+    mimetypes = []
 
     tokens = {
         'root': [
             (r'\s+', Text),
             (r'#.*?\n', Comment),
-            (r'(cmdswitches|error|export|message|include|if|ifdef|ifndef|else|'
-             r'else\s*if|else\s*ifdef|else\s*ifndef|endif|undef)\b', Keyword),
+            (r'(export)(\s+)(?=[a-zA-Z0-9_${}\t -]+\n)',
+             bygroups(Keyword, Text), 'export'),
+            (r'export\s+', Keyword),
             # assignment
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)([?:+]?=)([ \t]*)',
+            (r'([a-zA-Z0-9_${}-]+)(\s*)([!?:+]?=)([ \t]*)',
              bygroups(Name.Variable, Text, Operator, Text), 'var'),
+            # strings
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             # targets
-            (r'([^\n:]+)(:)([ \t]*)', bygroups(Name.Function, Operator, Text),
-             'block-header')
+            (r'([^\n:]+)(:+)([ \t]*)', bygroups(Name.Function, Operator, Text),
+             'block-header'),
+            #TODO: add paren handling (grr)
+        ],
+        'export': [
+            (r'[a-zA-Z0-9_${}-]+', Name.Variable),
+            (r'\n', Text, '#pop'),
+            (r'\s+', Text),
         ],
         'var': [
             (r'\\\n', String),
-            (r'\n', Text, '#pop'),
             (r'\\', String),
+            (r'\n', Text, '#pop'),
             (r'[^\\\n]+', String),
         ],
         'block-header': [
             (r'[^,\\\n#]+', Number),
             (r',', Punctuation),
             (r'#.*?\n', Comment),
-            # line continuation
-            (r'\\\n', Text),
-            (r'\\', Text),
-            (r'\n[\t ]+', Text, 'block'),
-            (r'\n', Text, '#pop')
+            (r'\\\n', Text), # line continuation
+            (r'\\.', Text),
+            (r'(?:[\t ]+.*\n|\n)+', using(BashLexer), '#pop'),
         ],
-        'block': [
-            (r'#.*?(?=\n)', Comment),
-            (r'\n[\t ]+', Text),
-            (r'[^\n$]+', String),
-            (r'\$[A-Za-z0-9_]+', String.Interpol),
-            (r'\$\(.*?\)', String.Interpol),
-            (r'\$', String),
-            (r'\n', Text, '#pop:2'),
-        ]
     }
 
 
