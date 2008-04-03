@@ -314,6 +314,7 @@ class BashLexer(RegexLexer):
         'data': [
             (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
             (r"'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
+            (r';', Text),
             (r'\s+', Text),
             (r'[^=\s\n\[\]{}()$"\'`\\]+', Text),
             (r'\d+(?= |\Z)', Number),
