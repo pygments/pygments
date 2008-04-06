@@ -493,6 +493,7 @@ class ApacheConfLexer(RegexLexer):
         'value': [
             (r'$', Text, '#pop'),
             (r'[^\S\n]+', Text),
+            (r'\d+\.\d+\.\d+\.\d+(?:/\d+)?', Number),
             (r'\d+', Number),
             (r'/([a-zA-Z0-9][a-zA-Z0-9_./-]+)', String.Other),
             (r'(on|off|none|any|all|double|email|dns|min|minimal|'
