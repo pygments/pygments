@@ -487,7 +487,8 @@ class ApacheConfLexer(RegexLexer):
             (r'(<[^\s>]+)(?:(\s+)(.*?))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
             (r'([a-zA-Z][a-zA-Z0-9]*)(\s+)',
-             bygroups(Name.Builtin, Text), 'value')
+             bygroups(Name.Builtin, Text), 'value'),
+            (r'\.+', Text),
         ],
         'value': [
             (r'$', Text, '#pop'),
