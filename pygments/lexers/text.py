@@ -120,7 +120,7 @@ class MakefileLexer(Lexer):
     Lexer for BSD and GNU make extensions (lenient enough to handle both in
     the same file even).
 
-    *Rewritten in Pygments 1.0*
+    *Rewritten in Pygments 1.0.*
     """
 
     name = 'Makefile'
@@ -157,7 +157,7 @@ class BaseMakefileLexer(RegexLexer):
     """
     Lexer for simple Makefiles (no preprocessing).
 
-    *New in Pygments 1.0*
+    *New in Pygments 1.0.*
     """
 
     name = 'Makefile'
