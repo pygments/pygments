@@ -20,6 +20,11 @@ Version 1.0
   * Python 3
   * S, S-plus, R statistics languages
 
+- In the LatexFormatter, the *commandprefix* option is now by default
+  'PY' instead of 'C', since the latter resulted in several collisions
+  with other packages.  Also, the special meaning of the *arg* argument
+  to ``get_style_defs()`` was removed.
+
 - Added ImageFormatter, to format code as PNG, JPG, GIF or BMP.
   (Needs the Python Imaging Library.)
 
