@@ -56,23 +56,21 @@ class LatexFormatter(Formatter):
     .. sourcecode:: latex
 
         \begin{Verbatim}[commandchars=@\[\]]
-        @Can[def ]@Cax[foo](bar):
-            @Can[pass]
+        @PYan[def ]@PYax[foo](bar):
+            @PYan[pass]
         \end{Verbatim}
 
-    The command sequences used here (``@Can`` etc.) are generated from the given
+    The command sequences used here (``@PYan`` etc.) are generated from the given
     `style` and can be retrieved using the `get_style_defs` method.
 
     With the `full` option, a complete LaTeX document is output, including
     the command definitions in the preamble.
 
-    The `get_style_defs(arg='')` method of a `LatexFormatter` returns a string
+    The `get_style_defs()` method of a `LatexFormatter` returns a string
     containing ``\newcommand`` commands defining the commands used inside the
-    ``Verbatim`` environments. If the argument `arg` is true,
-    ``\renewcommand`` is used instead.
+    ``Verbatim`` environments.
 
     Additional options accepted:
-
 
     `style`
         The style to use, can be a string or a Style subclass (default:
@@ -109,8 +107,9 @@ class LatexFormatter(Formatter):
 
     `commandprefix`
         The LaTeX commands used to produce colored output are constructed
-        using this prefix and some letters (default: ``'C'``).
+        using this prefix and some letters (default: ``'PY'``).
         *New in Pygments 0.7.*
+        *New in Pygments 1.0:* the default is now ``'PY'`` instead of ``'C'``.
     """
     name = 'LaTeX'
     aliases = ['latex', 'tex']
@@ -125,7 +124,7 @@ class LatexFormatter(Formatter):
         self.linenostep = abs(get_int_opt(options, 'linenostep', 1))
         self.verboptions = options.get('verboptions', '')
         self.nobackground = get_bool_opt(options, 'nobackground', False)
-        self.commandprefix = options.get('commandprefix', 'C')
+        self.commandprefix = options.get('commandprefix', 'PY')
 
         self._create_stylecmds()
 
@@ -185,12 +184,10 @@ class LatexFormatter(Formatter):
     def get_style_defs(self, arg=''):
         """
         Return the \\newcommand sequences needed to define the commands
-        used to format text in the verbatim environment. If ``arg`` is
-        given and true, use \\renewcommand instead.
+        used to format text in the verbatim environment. ``arg`` is ignored.
         """
-        nc = (arg and r'\renewcommand' or r'\newcommand')
         return '%s\\at{@}\n%s\\lb{[}\n%s\\rb{]}\n' % (nc, nc, nc) + \
-               '\n'.join(['%s\\%s[1]{%s}' % (nc, alias, cmndef)
+               '\n'.join(['\\newcommand\\%s[1]{%s}' % (alias, cmndef)
                           for alias, cmndef in self.cmd2def.iteritems()
                           if cmndef != '#1'])
 
