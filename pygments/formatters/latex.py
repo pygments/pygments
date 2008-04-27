@@ -186,6 +186,7 @@ class LatexFormatter(Formatter):
         Return the \\newcommand sequences needed to define the commands
         used to format text in the verbatim environment. ``arg`` is ignored.
         """
+        nc = '\\newcommand'
         return '%s\\at{@}\n%s\\lb{[}\n%s\\rb{]}\n' % (nc, nc, nc) + \
                '\n'.join(['\\newcommand\\%s[1]{%s}' % (alias, cmndef)
                           for alias, cmndef in self.cmd2def.iteritems()
