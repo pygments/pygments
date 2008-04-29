@@ -1000,7 +1000,7 @@ class LuaLexer(RegexLexer):
             RegexLexer.get_tokens_unprocessed(self, text):
             if token is Name:
                 if value in self._functions:
-                    yield index, Name.Function, value
+                    yield index, Name.Builtin, value
                     continue
                 elif '.' in value:
                     a, b = value.split('.')
