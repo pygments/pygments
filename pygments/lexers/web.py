@@ -301,7 +301,7 @@ class HtmlLexer(RegexLexer):
     tokens = {
         'root': [
             ('[^<&]+', Text),
-            ('&.*?;', Name.Entity),
+            (r'&\S*?;', Name.Entity),
             (r'\<\!\[CDATA\[.*?\]\]\>', Comment.Preproc),
             ('<!--', Comment, 'comment'),
             (r'<\?.*?\?>', Comment.Preproc),
@@ -504,7 +504,7 @@ class XmlLexer(RegexLexer):
     tokens = {
         'root': [
             ('[^<&]+', Text),
-            ('&.*?;', Name.Entity),
+            (r'&\S*?;', Name.Entity),
             (r'\<\!\[CDATA\[.*?\]\]\>', Comment.Preproc),
             ('<!--', Comment, 'comment'),
             (r'<\?.*?\?>', Comment.Preproc),
