@@ -1131,7 +1131,7 @@ class TclLexer(RegexLexer):
         r'\b(after|apply|array|break|catch|continue|else|elseif|error|'
         r'eval|expr|for|foreach|global|if|namespace|proc|rename|return|'
         r'set|switch|then|trace|unset|update|uplevel|upvar|variable|'
-        r'vwait|while)'
+        r'vwait|while)\b'
         )
 
     builtin_cmds_re = (
@@ -1143,7 +1143,7 @@ class TclLexer(RegexLexer):
         r'mathop|memory|msgcat|open|package|pid|pkg::create|pkg_mkIndex|'
         r'platform|platform::shell|puts|pwd|re_syntax|read|refchan|'
         r'regexp|registry|regsub|scan|seek|socket|source|split|string|'
-        r'subst|tell|time|tm|unknown|unload)'
+        r'subst|tell|time|tm|unknown|unload)\b'
         )
 
     name = 'Tcl'
