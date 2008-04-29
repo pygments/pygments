@@ -120,7 +120,7 @@ class MakefileLexer(Lexer):
     Lexer for BSD and GNU make extensions (lenient enough to handle both in
     the same file even).
 
-    *Rewritten in Pygments 1.0*
+    *Rewritten in Pygments 1.0.*
     """
 
     name = 'Makefile'
@@ -157,7 +157,7 @@ class BaseMakefileLexer(RegexLexer):
     """
     Lexer for simple Makefiles (no preprocessing).
 
-    *New in Pygments 1.0*
+    *New in Pygments 1.0.*
     """
 
     name = 'Makefile'
@@ -487,11 +487,13 @@ class ApacheConfLexer(RegexLexer):
             (r'(<[^\s>]+)(?:(\s+)(.*?))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
             (r'([a-zA-Z][a-zA-Z0-9]*)(\s+)',
-             bygroups(Name.Builtin, Text), 'value')
+             bygroups(Name.Builtin, Text), 'value'),
+            (r'\.+', Text),
         ],
         'value': [
             (r'$', Text, '#pop'),
             (r'[^\S\n]+', Text),
+            (r'\d+\.\d+\.\d+\.\d+(?:/\d+)?', Number),
             (r'\d+', Number),
             (r'/([a-zA-Z0-9][a-zA-Z0-9_./-]+)', String.Other),
             (r'(on|off|none|any|all|double|email|dns|min|minimal|'

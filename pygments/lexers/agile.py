@@ -22,11 +22,12 @@ from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, \
 from pygments.token import Error, Text, \
      Comment, Operator, Keyword, Name, String, Number, Generic, Punctuation
 from pygments.util import get_bool_opt, get_list_opt, shebang_matches
+from pygments import unistring as uni
 
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
-           'MiniDLexer', 'IoLexer', 'TclLexer']
+           'MiniDLexer', 'IoLexer', 'TclLexer', 'Python3Lexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -61,7 +62,6 @@ class PythonLexer(RegexLexer):
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(from)(\s+)', bygroups(Keyword, Text), 'fromimport'),
             (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
-            (r'@[a-zA-Z0-9_]+', Name.Decorator),
             include('builtins'),
             include('backtick'),
             ('(?:[rR]|[uU][rR]|[rR][uU])"""', String, 'tdqs'),
@@ -72,7 +72,7 @@ class PythonLexer(RegexLexer):
             ("[uU]?'''", String, combined('stringescape', 'tsqs')),
             ('[uU]?"', String, combined('stringescape', 'dqs')),
             ("[uU]?'", String, combined('stringescape', 'sqs')),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            include('name'),
             include('numbers'),
         ],
         'keywords': [
@@ -114,6 +114,10 @@ class PythonLexer(RegexLexer):
         ],
         'backtick': [
             ('`.*?`', String.Backtick),
+        ],
+        'name': [
+            (r'@[a-zA-Z0-9_]+', Name.Decorator),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'funcname': [
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop')
@@ -181,50 +185,85 @@ class Python3Lexer(RegexLexer):
     *New in Pygments 1.0.*
     """
 
-    name = 'Python3'
+    name = 'Python 3'
     aliases = ['python3', 'py3']
     filenames = []  # Nothing until Python 3 gets widespread
     mimetypes = ['text/x-python3', 'application/x-python3']
 
+    flags = re.MULTILINE | re.UNICODE
+
+    uni_name = "[%s][%s]*" % (uni.xid_start, uni.xid_continue)
+
     tokens = PythonLexer.tokens.copy()
     tokens['keywords'] = [
-            (r'(assert|break|continue|del|elif|else|except|'
-             r'finally|for|global|if|lambda|pass|raise|'
-             r'return|try|while|yield|as|with|True|False|None)\b', Keyword),
+        (r'(assert|break|continue|del|elif|else|except|'
+         r'finally|for|global|if|lambda|pass|raise|'
+         r'return|try|while|yield|as|with|True|False|None)\b', Keyword),
     ]
     tokens['builtins'] = [
-            (r'(?<!\.)(__import__|abs|all|any|bin|bool|bytearray|bytes|'
-             r'chr|classmethod|cmp|compile|complex|delattr|dict|dir|'
-             r'divmod|enumerate|eval|filter|float|format|frozenset|getattr|'
-             r'globals|hasattr|hash|hex|id|input|int|isinstance|issubclass|'
-             r'iter|len|list|locals|map|max|memoryview|min|next|object|oct|'
-             r'open|ord|pow|print|property|range|repr|reversed|round|'
-             r'set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|'
-             r'vars|zip)\b', Name.Builtin),
-            (r'(?<!\.)(self|Ellipsis|NotImplemented)\b', Name.Builtin.Pseudo),
-            (r'(?<!\.)(ArithmeticError|AssertionError|AttributeError|'
-             r'BaseException|BufferError|BytesWarning|DeprecationWarning|'
-             r'EOFError|EnvironmentError|Exception|FloatingPointError|'
-             r'FutureWarning|GeneratorExit|IOError|ImportError|'
-             r'ImportWarning|IndentationError|IndexError|KeyError|'
-             r'KeyboardInterrupt|LookupError|MemoryError|NameError|'
-             r'NotImplementedError|OSError|OverflowError|'
-             r'PendingDeprecationWarning|ReferenceError|'
-             r'RuntimeError|RuntimeWarning|StopIteration|'
-             r'SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|'
-             r'TypeError|UnboundLocalError|UnicodeDecodeError|'
-             r'UnicodeEncodeError|UnicodeError|UnicodeTranslateError|'
-             r'UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError'
-             r')\b', Name.Exception),
+        (r'(?<!\.)(__import__|abs|all|any|bin|bool|bytearray|bytes|'
+         r'chr|classmethod|cmp|compile|complex|delattr|dict|dir|'
+         r'divmod|enumerate|eval|filter|float|format|frozenset|getattr|'
+         r'globals|hasattr|hash|hex|id|input|int|isinstance|issubclass|'
+         r'iter|len|list|locals|map|max|memoryview|min|next|object|oct|'
+         r'open|ord|pow|print|property|range|repr|reversed|round|'
+         r'set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|'
+         r'vars|zip)\b', Name.Builtin),
+        (r'(?<!\.)(self|Ellipsis|NotImplemented)\b', Name.Builtin.Pseudo),
+        (r'(?<!\.)(ArithmeticError|AssertionError|AttributeError|'
+         r'BaseException|BufferError|BytesWarning|DeprecationWarning|'
+         r'EOFError|EnvironmentError|Exception|FloatingPointError|'
+         r'FutureWarning|GeneratorExit|IOError|ImportError|'
+         r'ImportWarning|IndentationError|IndexError|KeyError|'
+         r'KeyboardInterrupt|LookupError|MemoryError|NameError|'
+         r'NotImplementedError|OSError|OverflowError|'
+         r'PendingDeprecationWarning|ReferenceError|'
+         r'RuntimeError|RuntimeWarning|StopIteration|'
+         r'SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|'
+         r'TypeError|UnboundLocalError|UnicodeDecodeError|'
+         r'UnicodeEncodeError|UnicodeError|UnicodeTranslateError|'
+         r'UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError'
+         r')\b', Name.Exception),
     ]
     tokens['numbers'] = [
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-            (r'0[oO][0-7]+', Number.Oct),
-            (r'0[bB][01]+', Number.Bin),
-            (r'0[xX][a-fA-F0-9]+', Number.Hex),
-            (r'\d+', Number.Integer)
+        (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+        (r'0[oO][0-7]+', Number.Oct),
+        (r'0[bB][01]+', Number.Bin),
+        (r'0[xX][a-fA-F0-9]+', Number.Hex),
+        (r'\d+', Number.Integer)
     ]
     tokens['backtick'] = []
+    tokens['name'] = [
+        (r'@[a-zA-Z0-9_]+', Name.Decorator),
+        (uni_name, Name),
+    ]
+    tokens['funcname'] = [
+        (uni_name, Name.Function, '#pop')
+    ]
+    tokens['classname'] = [
+        (uni_name, Name.Class, '#pop')
+    ]
+    tokens['import'] = [
+        (r'(\s+)(as)(\s+)', bygroups(Text, Keyword, Text)),
+        (r'\.', Name.Namespace),
+        (uni_name, Name.Namespace),
+        (r'(\s*)(,)(\s*)', bygroups(Text, Operator, Text)),
+        (r'', Text, '#pop') # all else: go back
+    ]
+    tokens['fromimport'] = [
+        (r'(\s+)(import)\b', bygroups(Text, Keyword), '#pop'),
+        (r'\.', Name.Namespace),
+        (uni_name, Name.Namespace),
+    ]
+    # don't highlight "%s" substitutions
+    tokens['strings'] = [
+        (r'[^\\\'"%\n]+', String),
+        # quotes, percents and backslashes must be parsed one at a time
+        (r'[\'"\\]', String),
+        # unhandled string formatting sign
+        (r'%', String)
+        # newlines are an error (use "nl" state)
+    ]
 
     def analyse_text(text):
         return shebang_matches(text, r'pythonw?(3\.\d)?')
@@ -961,7 +1000,7 @@ class LuaLexer(RegexLexer):
             RegexLexer.get_tokens_unprocessed(self, text):
             if token is Name:
                 if value in self._functions:
-                    yield index, Name.Function, value
+                    yield index, Name.Builtin, value
                     continue
                 elif '.' in value:
                     a, b = value.split('.')

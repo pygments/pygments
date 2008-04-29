@@ -161,8 +161,6 @@ class CssLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(@media)(\s+)(\w+)(\s*)({)', bygroups(Keyword, Text, String,
-             Text, Punctuation), 'media'),
             include('basics'),
         ],
         'basics': [
@@ -172,14 +170,20 @@ class CssLexer(RegexLexer):
             (r'\:[a-zA-Z0-9_-]+', Name.Decorator),
             (r'\.[a-zA-Z0-9_-]+', Name.Class),
             (r'\#[a-zA-Z0-9_-]+', Name.Function),
+            (r'@[a-zA-Z0-9_-]+', Keyword, 'atrule'),
             (r'[a-zA-Z0-9_-]+', Name.Tag),
             (r'[~\^\*!%&\[\]\(\)<>\|+=@:;,./?-]', Operator),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single)
         ],
-        'media': [
+        'atrule': [
+            (r'{', Punctuation, 'atcontent'),
+            (r';', Punctuation, '#pop'),
             include('basics'),
-            (r'}', Punctuation, '#pop')
+        ],
+        'atcontent': [
+            include('basics'),
+            (r'}', Punctuation, '#pop:2'),
         ],
         'content': [
             (r'\s+', Text),
@@ -297,7 +301,7 @@ class HtmlLexer(RegexLexer):
     tokens = {
         'root': [
             ('[^<&]+', Text),
-            ('&.*?;', Name.Entity),
+            (r'&\S*?;', Name.Entity),
             (r'\<\!\[CDATA\[.*?\]\]\>', Comment.Preproc),
             ('<!--', Comment, 'comment'),
             (r'<\?.*?\?>', Comment.Preproc),
@@ -500,7 +504,7 @@ class XmlLexer(RegexLexer):
     tokens = {
         'root': [
             ('[^<&]+', Text),
-            ('&.*?;', Name.Entity),
+            (r'&\S*?;', Name.Entity),
             (r'\<\!\[CDATA\[.*?\]\]\>', Comment.Preproc),
             ('<!--', Comment, 'comment'),
             (r'<\?.*?\?>', Comment.Preproc),

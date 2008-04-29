@@ -63,6 +63,7 @@ class CLexer(RegexLexer):
             (r'\d+[Ll]?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
+            (r'\b(case)(.+?)(:)', bygroups(Keyword, using(this), Text)),
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
              r'for|goto|if|register|restricted|return|sizeof|static|struct|'
              r'switch|typedef|union|volatile|virtual|while)\b', Keyword),
