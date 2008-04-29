@@ -20,6 +20,11 @@ Version 1.0
   * Python 3
   * S, S-plus, R statistics languages
 
+- In the LatexFormatter, the *commandprefix* option is now by default
+  'PY' instead of 'C', since the latter resulted in several collisions
+  with other packages.  Also, the special meaning of the *arg* argument
+  to ``get_style_defs()`` was removed.
+
 - Added ImageFormatter, to format code as PNG, JPG, GIF or BMP.
   (Needs the Python Imaging Library.)
 
@@ -33,6 +38,8 @@ Version 1.0
 
 - Fixes in the IRC and MuPad lexers.
 
+- Fix at-rule handling in the CSS lexer.
+
 - Handle KeyboardInterrupts gracefully in pygmentize.
 
 - Added BlackWhiteStyle.
@@ -40,7 +47,7 @@ Version 1.0
 - Bash lexer now correctly highlights math, does not require whitespace
   after semicolons, and correctly highlights boolean operators.
 
-- Makefile lexer is now capable of handling BSD and GNU make syntax
+- Makefile lexer is now capable of handling BSD and GNU make syntax.
 
 
 Version 0.9

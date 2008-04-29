@@ -307,6 +307,9 @@ There are a few more things you can do with states:
   by putting values into the stack that don't exist in the token map. Also
   removing ``'root'`` from the stack can result in strange errors!
 
+- An empty regex at the end of a state list, combined with ``'#pop'``, can
+  act as a return point from a state that doesn't have a clear end marker.
+
 
 Using multiple lexers
 =====================
