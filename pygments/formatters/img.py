@@ -166,7 +166,7 @@ class ImageFormatter(Formatter):
     Create an image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
 
     Additional options accepted:
 

@@ -487,7 +487,7 @@ class SmalltalkLexer(RegexLexer):
     For `Smalltalk <http://www.smalltalk.org/>`_ syntax.
     Contributed by Stefan Matthias Aust.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
     name = 'Smalltalk'
     filenames = ['*.st']
@@ -558,7 +558,7 @@ class TcshLexer(RegexLexer):
     """
     Lexer for tcsh scripts.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
 
     name = 'Tcsh'
@@ -625,7 +625,7 @@ class LogtalkLexer(RegexLexer):
     """
     For `Logtalk <http://logtalk.org/>`_ source code.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
 
     name = 'Logtalk'

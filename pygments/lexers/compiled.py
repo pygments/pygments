@@ -1064,7 +1064,7 @@ class FortranLexer(RegexLexer):
     '''
     Lexer for FORTRAN 90 code.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     '''
     name = 'Fortran'
     aliases = ['fortran']

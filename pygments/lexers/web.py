@@ -539,7 +539,7 @@ class XsltLexer(XmlLexer):
     '''
     A lexer for XSLT.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     '''
 
     name = 'XSLT'
