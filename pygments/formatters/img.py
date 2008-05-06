@@ -43,7 +43,7 @@ DEFAULT_FONT_NAME_NIX = 'Bitstream Vera Sans Mono'
 DEFAULT_FONT_NAME_WIN = 'Courier New'
 
 
-class PilNotAvailable(Exception):
+class PilNotAvailable(ImportError):
     """When Python imaging library is not available"""
 
 
