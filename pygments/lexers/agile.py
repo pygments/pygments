@@ -182,7 +182,7 @@ class Python3Lexer(RegexLexer):
     """
     For `Python <http://www.python.org>`_ source code (version 3.0).
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
 
     name = 'Python 3'
@@ -1081,7 +1081,7 @@ class IoLexer(RegexLexer):
     For `Io <http://iolanguage.com/>`_ (a small, prototype-based
     programming language) source.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
     name = 'Io'
     filenames = ['*.io']
@@ -1124,7 +1124,7 @@ class TclLexer(RegexLexer):
     """
     For Tcl source code.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
 
     keyword_cmds_re = (
