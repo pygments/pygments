@@ -352,7 +352,8 @@ class SLexer(RegexLexer):
             (r'\[|\]|\[\[|\]\]|\$|\(|\)|@|:::?|;|,', Punctuation),
         ],
         'keywords': [
-            (r'for(?=\s*\()|while(?=\s*\()|if(?=\s*\()|(?<=\s)else|(?<=\s)break(?=;|$)',
+            (r'for(?=\s*\()|while(?=\s*\()|if(?=\s*\()|(?<=\s)else|'
+             r'(?<=\s)break(?=;|$)|return(?=\s*\()|function(?=\s*\()',
              Keyword.Reserved)
         ],
         'operators': [
