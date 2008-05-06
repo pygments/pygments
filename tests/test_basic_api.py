@@ -131,7 +131,10 @@ class FormattersTest(unittest.TestCase):
             a(info[1], "missing formatter aliases") # aliases
             a(info[3], "missing formatter docstring") # doc
 
-            inst = formatter(opt1="val1")
+            try:
+                inst = formatter(opt1="val1")
+            except ImportError:
+                continue
             inst.get_style_defs()
             inst.format(ts, out)
 
@@ -163,7 +166,11 @@ class FormattersTest(unittest.TestCase):
         # test that the formatter supports encoding and Unicode
         tokens = list(lexers.PythonLexer(encoding='utf-8').get_tokens("def f(): 'ä'"))
         for formatter, info in formatters.FORMATTERS.iteritems():
-            inst = formatter(encoding=None)
+            try:
+                inst = formatter(encoding=None)
+            except ImportError:
+                # some dependency not installed
+                continue
             out = format(tokens, inst)
             if formatter.unicodeoutput:
                 self.assert_(type(out) is unicode)
