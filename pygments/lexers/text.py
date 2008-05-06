@@ -120,7 +120,7 @@ class MakefileLexer(Lexer):
     Lexer for BSD and GNU make extensions (lenient enough to handle both in
     the same file even).
 
-    *Rewritten in Pygments 1.0.*
+    *Rewritten in Pygments 0.10.*
     """
 
     name = 'Makefile'
@@ -157,7 +157,7 @@ class BaseMakefileLexer(RegexLexer):
     """
     Lexer for simple Makefiles (no preprocessing).
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
 
     name = 'Makefile'
@@ -167,14 +167,16 @@ class BaseMakefileLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'^(?:[\t ]+.*\n|\n)+', using(BashLexer)),
+            (r'\$\((?:.*\\\n|.*\n)+', using(BashLexer)),
             (r'\s+', Text),
             (r'#.*?\n', Comment),
             (r'(export)(\s+)(?=[a-zA-Z0-9_${}\t -]+\n)',
              bygroups(Keyword, Text), 'export'),
             (r'export\s+', Keyword),
             # assignment
-            (r'([a-zA-Z0-9_${}-]+)(\s*)([!?:+]?=)([ \t]*)',
-             bygroups(Name.Variable, Text, Operator, Text), 'var'),
+            (r'([a-zA-Z0-9_${}.-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n|.*\n)+)',
+             bygroups(Name.Variable, Text, Operator, Text, using(BashLexer))),
             # strings
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
@@ -187,12 +189,6 @@ class BaseMakefileLexer(RegexLexer):
             (r'[a-zA-Z0-9_${}-]+', Name.Variable),
             (r'\n', Text, '#pop'),
             (r'\s+', Text),
-        ],
-        'var': [
-            (r'\\\n', String),
-            (r'\\', String),
-            (r'\n', Text, '#pop'),
-            (r'[^\\\n]+', String),
         ],
         'block-header': [
             (r'[^,\\\n#]+', Number),
@@ -243,7 +239,7 @@ class DarcsPatchLexer(RegexLexer):
     format.  Examples of this format are derived by commands such as
     ``darcs annotate --patch`` and ``darcs send``.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
     name = 'Darcs Patch'
     aliases = ['dpatch']
