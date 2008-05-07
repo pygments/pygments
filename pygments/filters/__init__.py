@@ -222,8 +222,9 @@ class VisibleWhitespaceFilter(Filter):
       is ``False``.  Note: this will not work if the `tabsize` option for the
       lexer is nonzero, as tabs will already have been expanded then.
     `tabsize` : int
-      If tabs are to be replaced by this filter, this is the total number of
-      characters that a tab should be expanded to.  The default is ``8``.
+      If tabs are to be replaced by this filter (see the `tabs` option), this
+      is the total number of characters that a tab should be expanded to.
+      The default is ``8``.
     `newlines` : string or bool
       The same as for `spaces`, but the default replacement character is ``¶``
       (unicode PILCROW SIGN).  The default value is ``False``.

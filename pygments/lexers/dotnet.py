@@ -76,9 +76,9 @@ class CSharpLexer(RegexLexer):
         tokens[levelname] = {
             'root': [
                 # method names
-                (r'^([ \t]*(?:' + cs_ident + r'\s+)+?)'   # return arguments
-                 r'(' + cs_ident + ')'                    # method name
-                 r'(\s*)(\()',                            # signature start
+                (r'^([ \t]*(?:' + cs_ident + r'(?:\[\])?\s+)+?)' # return type
+                 r'(' + cs_ident + ')'                           # method name
+                 r'(\s*)(\()',                               # signature start
                  bygroups(using(this), Name.Function, Text, Punctuation)),
                 (r'^\s*\[.*?\]', Name.Attribute),
                 (r'[^\S\n]+', Text),

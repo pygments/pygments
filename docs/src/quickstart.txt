@@ -153,7 +153,7 @@ or some template tags), use these functions:
     >>> guess_lexer_for_filename('test.py', 'print "Hello World!"')
     <pygments.lexers.PythonLexer>
 
-`guess_lexer()` passes the given content to the lexer classes' `analyze_text()`
+`guess_lexer()` passes the given content to the lexer classes' `analyse_text()`
 method and returns the one for which it returns the highest number.
 
 All lexers have two different filename pattern lists: the primary and the
