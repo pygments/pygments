@@ -54,7 +54,7 @@ def `get_lexer_for_mimetype(mime, **options):`
 
 def `guess_lexer(text, **options):`
     Return a `Lexer` subclass instance that's guessed from the text
-    in `text`. For that, the `analyze_text()` method of every known
+    in `text`. For that, the `analyse_text()` method of every known
     lexer class is called with the text as argument, and the lexer
     which returned the highest value will be instantiated and returned.
 
@@ -150,8 +150,8 @@ def `get_tokens_unprocessed(self, text):`
 
     This method must be overridden by subclasses.
 
-def `analyze_text(text):`
-    A static method which is called for lexer guessing. It should analyze
+def `analyse_text(text):`
+    A static method which is called for lexer guessing. It should analyse
     the text and return a float in the range from ``0.0`` to ``1.0``.
     If it returns ``0.0``, the lexer will not be selected as the most
     probable one, if it returns ``1.0``, it will be selected immediately.

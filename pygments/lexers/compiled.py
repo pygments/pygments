@@ -856,9 +856,9 @@ class JavaLexer(RegexLexer):
     tokens = {
         'root': [
             # method names
-            (r'^(\s*(?:[a-zA-Z_][a-zA-Z0-9_\.]*\s+)+?)'  # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'                 # method name
-             r'(\s*)(\()',                               # signature start
+            (r'^(\s*(?:[a-zA-Z_][a-zA-Z0-9_\.\[\]]*\s+)+?)' # return arguments
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'                    # method name
+             r'(\s*)(\()',                                  # signature start
              bygroups(using(this), Name.Function, Text, Operator)),
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment),
@@ -867,13 +867,13 @@ class JavaLexer(RegexLexer):
             (r'(abstract|assert|break|case|catch|'
              r'const|continue|default|do|else|enum|extends|final|'
              r'finally|for|if|goto|implements|instanceof|'
-             r'interface|native|new|package|private|protected|public|'
+             r'native|new|package|private|protected|public|'
              r'return|static|strictfp|super|switch|synchronized|this|'
              r'throw|throws|transient|try|volatile|while)\b', Keyword),
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(class)(\s+)', bygroups(Keyword, Text), 'class'),
+            (r'(class|interface)(\s+)', bygroups(Keyword, Text), 'class'),
             (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
@@ -1064,7 +1064,7 @@ class FortranLexer(RegexLexer):
     '''
     Lexer for FORTRAN 90 code.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     '''
     name = 'Fortran'
     aliases = ['fortran']

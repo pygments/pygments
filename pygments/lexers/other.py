@@ -6,7 +6,7 @@
     Lexers for other languages.
 
     :copyright: 2006-2008 by Georg Brandl, Tim Hatch <tim@timhatch.com>,
-                Stou Sandalski.
+                Stou Sandalski, Paulo Moura, Clara Dimene.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -20,7 +20,7 @@ from pygments.util import shebang_matches
 
 __all__ = ['SqlLexer', 'MySqlLexer', 'BrainfuckLexer', 'BashLexer',
            'BatchLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
-           'SmalltalkLexer', 'TcshLexer']
+           'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer']
 
 
 class SqlLexer(RegexLexer):
@@ -487,7 +487,7 @@ class SmalltalkLexer(RegexLexer):
     For `Smalltalk <http://www.smalltalk.org/>`_ syntax.
     Contributed by Stefan Matthias Aust.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
     name = 'Smalltalk'
     filenames = ['*.st']
@@ -558,7 +558,7 @@ class TcshLexer(RegexLexer):
     """
     Lexer for tcsh scripts.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
 
     name = 'Tcsh'
@@ -620,3 +620,190 @@ class TcshLexer(RegexLexer):
         ],
     }
 
+
+class LogtalkLexer(RegexLexer):
+    """
+    For `Logtalk <http://logtalk.org/>`_ source code.
+
+    *New in Pygments 0.10.*
+    """
+
+    name = 'Logtalk'
+    aliases = ['logtalk']
+    filenames = ['*.lgt']
+    mimetypes = ['text/x-logtalk']
+
+    tokens = {
+        'root': [
+            # Directives
+            (r'^\s*:-\s',Punctuation,'directive'),
+            # Comments
+            (r'%.*?\n', Comment),
+            (r'/\*(.|\n)*?\*/',Comment),
+            # Whitespace
+            (r'\n', Text),
+            (r'\s+', Text),
+            # Numbers
+            (r"0'.", Number),
+            (r'0b[01]+', Number),
+            (r'0o[0-7]+', Number),
+            (r'0x[0-9a-fA-F]+', Number),
+            (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
+            # Variables
+            (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
+            # Event handlers
+            (r'(after|before)(?=[(])', Keyword),
+            # Execution-context methods
+            (r'(parameter|this|se(lf|nder))(?=[(])', Keyword),
+            # Reflection
+            (r'(current_predicate|predicate_property)(?=[(])', Keyword),
+            # DCGs and term expansion
+            (r'(expand_term|(goal|term)_expansion|phrase)(?=[(])', Keyword),
+            # Entity
+            (r'(abolish|c(reate|urrent))_(object|protocol|category)(?=[(])', Keyword),
+            (r'(object|protocol|category)_property(?=[(])', Keyword),
+            # Entity relations
+            (r'complements_object(?=[(])', Keyword),
+            (r'extends_(object|protocol|category)(?=[(])', Keyword),
+            (r'imp(lements_protocol|orts_category)(?=[(])', Keyword),
+            (r'(instantiat|specializ)es_class(?=[(])', Keyword),
+            # Events
+            (r'(current_event|(abolish|define)_events)(?=[(])', Keyword),
+            # Flags
+            (r'(current|set)_logtalk_flag(?=[(])', Keyword),
+            # Compiling, loading, and library paths
+            (r'logtalk_(compile|l(ibrary_path|oad))(?=[(])', Keyword),
+            # Database
+            (r'(clause|retract(all)?)(?=[(])', Keyword),
+            (r'a(bolish|ssert(a|z))(?=[(])', Keyword),
+            # Control
+            (r'(ca(ll|tch)|throw)(?=[(])', Keyword),
+            (r'(fail|true)\b', Keyword),
+            # All solutions
+            (r'((bag|set)of|f(ind|or)all)(?=[(])', Keyword),
+            # Multi-threading meta-predicates
+            (r'threaded(_(call|once|ignore|exit|peek|wait|notify))?(?=[(])', Keyword),
+            # Term unification
+            (r'unify_with_occurs_check(?=[(])', Keyword),
+            # Term creation and decomposition
+            (r'(functor|arg|copy_term)(?=[(])', Keyword),
+            # Evaluable functors
+            (r'(rem|mod|abs|sign)(?=[(])', Keyword),
+            (r'float(_(integer|fractional)_part)?(?=[(])', Keyword),
+            (r'(floor|truncate|round|ceiling)(?=[(])', Keyword),
+            # Other arithmetic functors
+            (r'(cos|atan|exp|log|s(in|qrt))(?=[(])', Keyword),
+            # Term testing
+            (r'(var|atom(ic)?|integer|float|compound|n(onvar|umber))(?=[(])', Keyword),
+            # Stream selection and control
+            (r'(curren|se)t_(in|out)put(?=[(])', Keyword),
+            (r'(open|close)(?=[(])', Keyword),
+            (r'flush_output(?=[(])', Keyword),
+            (r'(at_end_of_stream|flush_output)\b', Keyword),
+            (r'(stream_property|at_end_of_stream|set_stream_position)(?=[(])', Keyword),
+            # Character and byte input/output
+            (r'(nl|(get|peek|put)_(byte|c(har|ode)))(?=[(])', Keyword),
+            (r'\bnl\b', Keyword),
+            # Term input/output
+            (r'read(_term)?(?=[(])', Keyword),
+            (r'write(q|_(canonical|term))?(?=[(])', Keyword),
+            (r'(current_)?op(?=[(])', Keyword),
+            (r'(current_)?char_conversion(?=[(])', Keyword),
+            # Atomic term processing
+            (r'atom_(length|c(hars|o(ncat|des)))(?=[(])', Keyword),
+            (r'(char_code|sub_atom)(?=[(])', Keyword),
+            (r'number_c(har|ode)s(?=[(])', Keyword),
+            # Implementation defined hooks functions
+            (r'(se|curren)t_prolog_flag(?=[(])', Keyword),
+            (r'\bhalt\b', Keyword),
+            (r'halt(?=[(])', Keyword),
+            # Message sending operators
+            (r'(::|:|\^\^)', Operator),
+            # External call
+            (r'[{}]', Keyword),
+            # Logic and control
+            (r'\bonce(?=[(])', Keyword),
+            (r'\brepeat\b', Keyword),
+            # Bitwise functors
+            (r'(>>|<<|/\\|\\\\|\\)', Operator),
+            # Arithemtic evaluation
+            (r'\bis\b', Keyword),
+            # Arithemtic comparison
+            (r'(=:=|=\\=|<|=<|>=|>)', Operator),
+            # Term creation and decomposition
+            (r'=\.\.', Operator),
+            # Term unification
+            (r'(=|\\=)', Operator),
+            # Term comparison
+            (r'(==|\\==|@=<|@<|@>=|@>)', Operator),
+            # Evaluable functors
+            (r'(//|[-+*/])', Operator),
+            (r'\b(mod|rem)\b', Operator),
+            # Other arithemtic functors
+            (r'\b\*\*\b', Operator),
+            # DCG rules
+            (r'-->', Operator),
+            # Control constructs
+            (r'([!;]|->)', Operator),
+            # Logic and control
+            (r'\\+', Operator),
+            # Mode operators
+            (r'[?@]', Operator),
+            # Strings
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # Ponctuation
+            (r'[()\[\],.|]', Text),
+            # Atoms
+            (r"[a-z][a-zA-Z0-9_]*", Text),
+            (r"[']", String, 'quoted_atom'),
+        ],
+
+        'quoted_atom': [
+            (r"['][']", String),
+            (r"[']", String, '#pop'),
+            (r'\\([\\abfnrtv"\']|(x[a-fA-F0-9]+|[0-7]+)\\)', String.Escape),
+            (r"[^\\'\n]+", String),
+            (r'\\', String),
+        ],
+
+        'directive': [
+            # Entity directives
+            (r'(category|object|protocol)(?=[(])', Keyword, 'entityrelations'),		
+            (r'(end_(category|object|protocol))[.]',Keyword, 'root'),
+            # Predicate scope directives
+            (r'(public|protected|private)(?=[(])', Keyword, 'root'),
+            # Other directives
+            (r'\be(ncoding|xport)(?=[(])', Keyword, 'root'),
+            (r'\bin(fo|itialization)(?=[(])', Keyword, 'root'),
+            (r'\b(dynamic|synchronized|threaded)[.]', Keyword, 'root'),
+            (r'\b(alias|d(ynamic|iscontiguous)|m(eta_predicate|ode|ultifile)|synchronized)(?=[(])', Keyword, 'root'),
+            (r'\bop(?=[(])', Keyword, 'root'),
+            (r'\b(calls|use(s|_module))(?=[(])', Keyword, 'root'),
+        ],
+
+        'entityrelations': [
+            (r'(extends|i(nstantiates|mp(lements|orts))|specializes)(?=[(])', Keyword),
+            # Numbers
+            (r"0'.", Number),
+            (r'0b[01]+', Number),
+            (r'0o[0-7]+', Number),
+            (r'0x[0-9a-fA-F]+', Number),
+            (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
+            # Variables
+            (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
+            # Atoms
+            (r"[a-z][a-zA-Z0-9_]*", Text),
+            (r"[']", String, 'quoted_atom'),
+            # Strings
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # End of entity-opening directive
+            (r'([)]\.\n)', Text, 'root'),
+            # Scope operator
+            (r'(::)', Operator),
+            # Ponctuation
+            (r'[()\[\],.|]', Text),
+            # Whitespace
+            (r'\n', Text),
+            (r'\s+', Text),
+        ]
+    }

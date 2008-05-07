@@ -102,7 +102,7 @@ class MatlabLexer(RegexLexer):
     For Matlab (or GNU Octave) source code.
     Contributed by Ken Schutte <kschutte@csail.mit.edu>.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
     name = 'Matlab'
     aliases = ['matlab', 'octave']
@@ -198,7 +198,7 @@ class MatlabSessionLexer(Lexer):
     For Matlab (or GNU Octave) sessions.  Modeled after PythonConsoleLexer.
     Contributed by Ken Schutte <kschutte@csail.mit.edu>.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
     name = 'Matlab session'
     aliases = ['matlabsession']
@@ -246,7 +246,7 @@ class NumPyLexer(PythonLexer):
     '''
     A Python lexer recognizing Numerical Python builtins.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     '''
 
     name = 'NumPy'
@@ -332,7 +332,7 @@ class SLexer(RegexLexer):
     """
     For S, S-plus, and R source code.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
     """
 
     name = 'S'
@@ -352,7 +352,8 @@ class SLexer(RegexLexer):
             (r'\[|\]|\[\[|\]\]|\$|\(|\)|@|:::?|;|,', Punctuation),
         ],
         'keywords': [
-            (r'for(?=\s*\()|while(?=\s*\()|if(?=\s*\()|(?<=\s)else|(?<=\s)break(?=;|$)',
+            (r'for(?=\s*\()|while(?=\s*\()|if(?=\s*\()|(?<=\s)else|'
+             r'(?<=\s)break(?=;|$)|return(?=\s*\()|function(?=\s*\()',
              Keyword.Reserved)
         ],
         'operators': [

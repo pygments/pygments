@@ -43,7 +43,7 @@ DEFAULT_FONT_NAME_NIX = 'Bitstream Vera Sans Mono'
 DEFAULT_FONT_NAME_WIN = 'Courier New'
 
 
-class PilNotAvailable(Exception):
+class PilNotAvailable(ImportError):
     """When Python imaging library is not available"""
 
 
@@ -166,7 +166,7 @@ class ImageFormatter(Formatter):
     Create an image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 1.0.*
+    *New in Pygments 0.10.*
 
     Additional options accepted:
 
