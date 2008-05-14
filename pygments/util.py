@@ -20,7 +20,7 @@ doctype_lookup_re = re.compile(r'''(?smx)
      "[^"]*")
      [^>]*>
 ''')
-tag_re = re.compile(r'<(.+?)(\s.*?)?>.*?</\1>(?uism)')
+tag_re = re.compile(r'<(.+?)(\s.*?)?>.*?</.+?>(?uism)')
 
 
 class ClassNotFound(ValueError):
