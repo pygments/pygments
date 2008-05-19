@@ -415,7 +415,8 @@ class PhpLexer(RegexLexer):
              r'implements|public|private|protected|abstract|clone|try|'
              r'catch|throw|this)\b', Keyword),
             ('(true|false|null)\b', Keyword.Constant),
-            (r'\$[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            (r'\$\{\$+[a-zA-Z_][a-zA-Z0-9_]*\}', Name.Variable),
+            (r'\$+[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
