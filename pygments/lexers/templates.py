@@ -5,7 +5,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: 2006-2007 by Armin Ronacher, Georg Brandl, Matt Good,
+    :copyright: 2006-2008 by Armin Ronacher, Georg Brandl, Matt Good,
                 Ben Bangert.
     :license: BSD, see LICENSE for more details.
 """
@@ -207,27 +207,27 @@ class DjangoLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[^\{]+', Other),
+            (r'[^{]+', Other),
             (r'\{\{', Comment.Preproc, 'var'),
             # jinja/django comments
             (r'\{[*#].*?[*#]\}', Comment),
             # django comments
-            (r'(\{\%)(\-?\s*)(comment)(\s*\-?)(\%\})(.*?)'
-             r'(\{\%)(\-?\s*)(endcomment)(\s*\-?)(\%\})',
+            (r'(\{%)(-?\s*)(comment)(\s*-?)(%\})(.*?)'
+             r'(\{%)(-?\s*)(endcomment)(\s*-?)(%\})',
              bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
                       Comment, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
             # raw jinja blocks
-            (r'(\{\%)(\-?\s*)(raw)(\s*\-?)(\%\})(.*?)'
-             r'(\{\%)(\-?\s*)(endraw)(\s*\-?)(\%\})',
+            (r'(\{%)(-?\s*)(raw)(\s*-?)(%\})(.*?)'
+             r'(\{%)(-?\s*)(endraw)(\s*-?)(%\})',
              bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
                       Text, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
             # filter blocks
-            (r'(\{\%)(\-?\s*)(filter)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\{%)(-?\s*)(filter)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Comment.Preproc, Text, Keyword, Text, Name.Function),
              'block'),
-            (r'(\{\%)(\-?\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\{%)(-?\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Comment.Preproc, Text, Keyword), 'block'),
             (r'\{', Other)
         ],
@@ -236,10 +236,10 @@ class DjangoLexer(RegexLexer):
              bygroups(Operator, Text, Name.Function)),
             (r'(is)(\s+)(not)?(\s+)?([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Keyword, Text, Keyword, Text, Name.Function)),
-            (r'(_|(?:true|false|undefined|null))\b', Keyword.Pseudo),
+            (r'(_|true|false|undefined|null)\b', Keyword.Pseudo),
             (r'(in|as|reversed|recursive|not|and|or|is|if|else|import|'
              r'with(?:(?:out)?\s*context)?)\b', Keyword),
-            (r'(loop|block|forloop)\b', Name.Builtin),
+            (r'(loop|block|super|forloop)\b', Name.Builtin),
             (r'[a-zA-Z][a-zA-Z0-9_]*', Name.Variable),
             (r'\.[a-zA-Z0-9_]+', Name.Variable),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
@@ -250,12 +250,12 @@ class DjangoLexer(RegexLexer):
         ],
         'var': [
             (r'\s+', Text),
-            (r'(\-?)(\}\})', bygroups(Text, Comment.Preproc), '#pop'),
+            (r'(-?)(\}\})', bygroups(Text, Comment.Preproc), '#pop'),
             include('varnames')
         ],
         'block': [
             (r'\s+', Text),
-            (r'(\-?)(\%\})', bygroups(Text, Comment.Preproc), '#pop'),
+            (r'(-?)(%\})', bygroups(Text, Comment.Preproc), '#pop'),
             include('varnames'),
             (r'.', Punctuation)
         ]
@@ -263,9 +263,9 @@ class DjangoLexer(RegexLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search(r'\{\%\s*(block|extends)', text) is not None:
+        if re.search(r'\{%\s*(block|extends)', text) is not None:
             rv += 0.4
-        if re.search(r'\{\%\s*if\s*.*?\%\}', text) is not None:
+        if re.search(r'\{%\s*if\s*.*?%\}', text) is not None:
             rv += 0.1
         if re.search(r'\{\{.*?\}\}', text) is not None:
             rv += 0.1
@@ -303,8 +303,8 @@ class MyghtyLexer(RegexLexer):
             (r'</&>', Name.Tag),
             (r'(<%!?)(.*?)(%>)(?s)',
              bygroups(Name.Tag, using(PythonLexer), Name.Tag)),
-            (r'(?<=^)\#[^\n]*(\n|\Z)', Comment),
-            (r'(?<=^)(\%)([^\n]*)(\n|\Z)',
+            (r'(?<=^)#[^\n]*(\n|\Z)', Comment),
+            (r'(?<=^)(%)([^\n]*)(\n|\Z)',
              bygroups(Name.Tag, using(PythonLexer), Other)),
             (r"""(?sx)
                  (.+?)               # anything, followed by:
@@ -407,9 +407,9 @@ class MakoLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(\s*)(\%)(\s*end(?:\w+))(\n|\Z)',
+            (r'(\s*)(%)(\s*end(?:\w+))(\n|\Z)',
              bygroups(Text, Comment.Preproc, Keyword, Other)),
-            (r'(\s*)(\%)([^\n]*)(\n|\Z)',
+            (r'(\s*)(%)([^\n]*)(\n|\Z)',
              bygroups(Text, Comment.Preproc, using(PythonLexer), Other)),
              (r'(\s*)(#[^\n]*)(\n|\Z)',
               bygroups(Text, Comment.Preproc, Other)),
