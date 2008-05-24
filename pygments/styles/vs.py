@@ -26,7 +26,6 @@ class VisualStudioStyle(Style):
         Operator.Word:             "#0000ff",
         Keyword.Type:              "#2b91af",
         Name.Class:                "#2b91af",
-        Name.Type:                 "#2b91af",
         String:                    "#a31515",
 
         Generic.Heading:           "bold",
