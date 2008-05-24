@@ -229,14 +229,14 @@ class DLexer(RegexLexer):
              r'|catch|class|const|continue|debug|default|delegate|delete'
              r'|deprecated|do|else|enum|export|extern|finally|final'
              r'|foreach_reverse|foreach|for|function|goto|if|import|inout'
-             r'|interface|invariant|in|is|lazy|mixin|module|new|out|override'
-             r'|package|pragma|private|protected|public|ref|return|scope'
-             r'|static|struct|super|switch|synchronized|template|this|throw'
-             r'|try|typedef|typeid|typeof|union|unittest|version|volatile'
+             r'|interface|invariant|in|is|lazy|mixin|module|new|nothrow|out'
+             r'|override|package|pragma|private|protected|public|pure|ref|return'
+             r'|scope|static|struct|super|switch|synchronized|template|this'
+             r'|throw|try|typedef|typeid|typeof|union|unittest|version|volatile'
              r'|while|with|__traits)\b', Keyword
             ),
-            (r'(bool|cdouble|cent|cfloat|char|creal|dchar|double|float|idouble'
-             r'|ifloat|int|ireal|long|real|short|ubyte|ucent|uint|ulong|ushort'
+            (r'(bool|byte|cdouble|cent|cfloat|char|creal|dchar|double|float'
+             r'|idouble|ifloat|int|ireal|long|real|short|ubyte|ucent|uint|ulong'
              r'|ushort|void|wchar)\b', Keyword.Type
             ),
             (r'(false|true|null)\b', Keyword.Constant),
