@@ -27,7 +27,7 @@ from pygments.token import \
 # backwards compatibility
 from pygments.lexers.functional import OcamlLexer
 
-__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer',
+__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer', 'ScalaLexer',
            'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer', 'FortranLexer']
 
 
@@ -879,6 +879,59 @@ class JavaLexer(RegexLexer):
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
             (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
             (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
+            (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
+            (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?-]', Operator),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-f]+', Number.Hex),
+            (r'[0-9]+L?', Number.Integer),
+            (r'\n', Text)
+        ],
+        'class': [
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+        ],
+        'import': [
+            (r'[a-zA-Z0-9_.]+\*?', Name.Namespace, '#pop')
+        ],
+    }
+
+class ScalaLexer(RegexLexer):
+    """
+    For `Scala <http://www.scala-lang.org>`_ source code.
+    """
+
+    name = 'Scala'
+    aliases = ['scala']
+    filenames = ['*.scala']
+    mimetypes = ['text/x-scala']
+
+    flags = re.MULTILINE | re.DOTALL
+
+    #: optional Comment or Whitespace
+    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+
+    tokens = {
+        'root': [
+            # method names
+            (r'^(\s*(?:[a-zA-Z_][a-zA-Z0-9_\.\[\]]*\s+)+?)' # return arguments
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'                    # method name
+             r'(\s*)(\()',                                  # signature start
+             bygroups(using(this), Name.Function, Text, Operator)),
+            (r'[^\S\n]+', Text),
+            (r'//.*?\n', Comment),
+            (r'/\*.*?\*/', Comment),
+            (r'@[a-zA-Z_][a-zA-Z0-9_\.]*', Name.Decorator),
+            (r'(abstract|case|catch|do|else|extends|final|finally|for|forSome'
+             r'|if|implicit|lazy|match|new|null|override|private|protected'
+             r'|requires|return|sealed|super|this|throw|try|type|while|with'
+             r'|yield|let|def|var|=>|<-|_)\b', Keyword),
+            (r'(boolean|byte|char|double|float|int|long|short|void)\b',
+             Keyword.Type),
+            (r'(true|false|null)\b', Keyword.Constant),
+            (r'(class|interface|trait)(\s+)', bygroups(Keyword, Text), 'class'),
+            (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
+            (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
             (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
             (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?-]', Operator),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
