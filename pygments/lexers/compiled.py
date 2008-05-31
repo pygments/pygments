@@ -912,7 +912,8 @@ class ScalaLexer(RegexLexer):
     tokens = {
         'root': [
             # method names
-            (r'^(\s*(?:[a-zA-Z_][a-zA-Z0-9_\.\[\]]*\s+)+?)' # return arguments
+            (r'(class|interface|trait|object)(\s+)', bygroups(Keyword, Text), 'class'),
+            (r'^(\s*def)'
              r'([a-zA-Z_][a-zA-Z0-9_]*)'                    # method name
              r'(\s*)(\()',                                  # signature start
              bygroups(using(this), Name.Function, Text, Operator)),
@@ -928,7 +929,6 @@ class ScalaLexer(RegexLexer):
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(class|interface|trait|object)(\s+)', bygroups(Keyword, Text), 'class'),
             (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
@@ -941,7 +941,8 @@ class ScalaLexer(RegexLexer):
             (r'\n', Text)
         ],
         'class': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\()', bygroups(Name.Class, Text, Operator), '#pop'),
         ],
         'import': [
             (r'[a-zA-Z0-9_.]+\*?', Name.Namespace, '#pop')
