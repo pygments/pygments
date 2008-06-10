@@ -67,8 +67,8 @@ class CLexer(RegexLexer):
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
              r'for|goto|if|register|restricted|return|sizeof|static|struct|'
              r'switch|typedef|union|volatile|virtual|while)\b', Keyword),
-            (r'(int|long|float|short|double|char|unsigned|signed|void|'
-             r'_Complex|_Imaginary|_Bool)\b', Keyword.Type),
+            (r'(int|long|float|short|double|char|unsigned|signed|void)\b',
+             Keyword.Type),
             (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
             (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
              r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
@@ -128,6 +128,34 @@ class CLexer(RegexLexer):
         ]
     }
 
+    stdlib_types = ['size_t', 'ssize_t', 'off_t', 'wchar_t', 'ptrdiff_t',
+            'sig_atomic_t', 'fpos_t', 'clock_t', 'time_t', 'va_list', 
+            'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t', 'mbstate_t',
+            'wctrans_t', 'wint_t', 'wctype_t']
+    c99_types = ['_Bool', '_Complex', 'int8_t', 'int16_t', 'int32_t', 'int64_t',
+            'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t',
+            'int_least16_t', 'int_least32_t', 'int_least64_t',
+            'uint_least8_t', 'uint_least16_t', 'uint_least32_t',
+            'uint_least64_t', 'int_fast8_t', 'int_fast16_t', 'int_fast32_t',
+            'int_fast64_t', 'uint_fast8_t', 'uint_fast16_t', 'uint_fast32_t',
+            'uint_fast64_t', 'intptr_t', 'uintptr_t', 'intmax_t', 'uintmax_t']
+
+    def __init__(self, **options):
+        self.stdlibhighlighting = get_bool_opt(options,
+                'stdlibhighlighting', True)
+        self.c99highlighting = get_bool_opt(options,
+                'c99highlighting', True)
+        RegexLexer.__init__(self, **options)
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in \
+            RegexLexer.get_tokens_unprocessed(self, text):
+            if token is Name:
+                if self.stdlibhighlighting and value in self.stdlib_types:
+                    token = Keyword.Type
+                elif self.c99highlighting and value in self.c99_types:
+                    token = Keyword.Type
+            yield index, token, value
 
 class CppLexer(RegexLexer):
     """
