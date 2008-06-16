@@ -97,7 +97,7 @@ class SchemeLexer(RegexLexer):
     # valid names for identifiers
     # well, names can only not consist fully of numbers
     # but this should be good enough for now
-    valid_name = r'[a-zA-Z0-9!$%&*+,/:<=>?@^_~-|]+'
+    valid_name = r'[a-zA-Z0-9!$%&*+,/:<=>?@^_~|-]+'
 
     tokens = {
         'root' : [
