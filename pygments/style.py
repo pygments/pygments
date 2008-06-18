@@ -40,7 +40,7 @@ class StyleMeta(type):
                 ndef = _styles.get(token.parent, None)
                 styledefs = obj.styles.get(token, '').split()
                 if  not ndef or token is None:
-                    ndef = ['', 0, 0, 0, '', '']
+                    ndef = ['', 0, 0, 0, '', '', 0, 0, 0]
                 elif 'noinherit' in styledefs and token is not Token:
                     ndef = _styles[Token][:]
                 else:
@@ -65,6 +65,12 @@ class StyleMeta(type):
                         ndef[4] = colorformat(styledef[3:])
                     elif styledef[:7] == 'border:':
                         ndef[5] = colorformat(styledef[7:])
+                    elif styledef == 'roman':
+                        ndef[6] = 1
+                    elif styledef == 'sans':
+                        ndef[7] = 1
+                    elif styledef == 'mono':
+                        ndef[8] = 1
                     else:
                         ndef[0] = colorformat(styledef)
 
@@ -78,7 +84,10 @@ class StyleMeta(type):
             'italic':       bool(t[2]),
             'underline':    bool(t[3]),
             'bgcolor':      t[4] or None,
-            'border':       t[5] or None
+            'border':       t[5] or None,
+            'roman':        bool(t[6]) or None,
+            'sans':         bool(t[7]) or None,
+            'mono':         bool(t[8]) or None,
         }
 
     def list_styles(cls):

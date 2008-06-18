@@ -154,6 +154,12 @@ class LatexFormatter(Formatter):
                 cmndef = r'\textit{' + cmndef + '}'
             if ndef['underline']:
                 cmndef = r'\underline{' + cmndef + '}'
+            if ndef['roman']:
+                cmndef = r'\textrm{' + cmndef + '}'
+            if ndef['sans']:
+                cmndef = r'\textsf{' + cmndef + '}'
+            if ndef['mono']:
+                cmndef = r'\texttt{' + cmndef + '}'
             if ndef['color']:
                 cmndef = r'\textcolor[rgb]{%s}{%s}' % (
                     rgbcolor(ndef['color']),
