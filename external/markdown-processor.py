@@ -9,8 +9,8 @@
         from markdown import Markdown
 
         md = Markdown()
-        md.preprocessors.insert(0, CodeBlockPreprocessor())
-        markdown = md.__str__
+        md.textPreprocessors.insert(0, CodeBlockPreprocessor())
+        html = md.convert(someText)
 
     markdown is then a callable that can be passed to the context of
     a template and used in that template, for example.
@@ -40,14 +40,14 @@ INLINESTYLES = False
 
 import re
 
-from markdown import Preprocessor
+from markdown import TextPreprocessor
 
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name, TextLexer
 
 
-class CodeBlockPreprocessor(Preprocessor):
+class CodeBlockPreprocessor(TextPreprocessor):
 
     pattern = re.compile(
         r'\[sourcecode:(.+?)\](.+?)\[/sourcecode\]', re.S)
@@ -60,8 +60,8 @@ class CodeBlockPreprocessor(Preprocessor):
                 lexer = get_lexer_by_name(m.group(1))
             except ValueError:
                 lexer = TextLexer()
-            code = highlight(m.group(2), lexer, formatter)
-            code = code.replace('\n\n', '\n&nbsp;\n')
+            code = highlight(m.group(2), lexer, self.formatter)
+            code = code.replace('\n\n', '\n&nbsp;\n').replace('\n', '<br />')
             return '\n\n<div class="code">%s</div>\n\n' % code
         return self.pattern.sub(
-            repl, '\n'.join(lines)).split('\n')
+            repl, lines)
