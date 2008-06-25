@@ -92,7 +92,7 @@ LEXERS = {
     'MyghtyLexer': ('pygments.lexers.templates', 'Myghty', ('myghty',), ('*.myt', 'autodelegate'), ('application/x-myghty',)),
     'MyghtyXmlLexer': ('pygments.lexers.templates', 'XML+Myghty', ('xml+myghty',), (), ('application/xml+myghty',)),
     'NasmLexer': ('pygments.lexers.asm', 'NASM', ('nasm',), ('*.asm',), ('text/x-nasm',)),
-    'NumPyLexer': ('pygments.lexers.math', 'NumPy', ('numpy',), ('*.py', '*.pyw', '*.sc', 'SConstruct', 'SConscript'), ('text/x-python', 'application/x-python')),
+    'NumPyLexer': ('pygments.lexers.math', 'NumPy', ('numpy',), ('*.py', '*.pyw', '*.sc', 'SConstruct', 'SConscript'), ()),
     'ObjdumpLexer': ('pygments.lexers.asm', 'objdump', ('objdump',), ('*.objdump',), ('text/x-objdump',)),
     'ObjectiveCLexer': ('pygments.lexers.compiled', 'Objective-C', ('objective-c', 'objectivec', 'obj-c', 'objc'), ('*.m',), ('text/x-objective-c',)),
     'OcamlLexer': ('pygments.lexers.compiled', 'OCaml', ('ocaml',), ('*.ml', '*.mli', '*.mll', '*.mly'), ('text/x-ocaml',)),
