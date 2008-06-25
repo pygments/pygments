@@ -252,6 +252,9 @@ class NumPyLexer(PythonLexer):
     name = 'NumPy'
     aliases = ['numpy']
 
+    # override the mimetypes to not inherit them from python
+    mimetypes = []
+
     EXTRA_KEYWORDS = set([
         'abs', 'absolute', 'accumulate', 'add', 'alen', 'all', 'allclose',
         'alltrue', 'alterdot', 'amax', 'amin', 'angle', 'any', 'append',
