@@ -3,7 +3,7 @@
     Pygments tests with example files
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: 2006-2007 by Georg Brandl.
+    :copyright: 2006-2008 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -13,6 +13,7 @@ import unittest
 from pygments import highlight
 from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
 from pygments.token import Error
+from pygments.util import ClassNotFound
 
 
 class ExampleFileTest(unittest.TestCase):
@@ -28,11 +29,11 @@ for fn in os.listdir(os.path.join(testdir, 'examplefiles')):
 
     try:
         lx = get_lexer_for_filename(absfn)
-    except ValueError:
+    except ClassNotFound:
         try:
             name, rest = fn.split("_", 1)
             lx = get_lexer_by_name(name)
-        except ValueError:
+        except ClassNotFound:
             raise AssertionError('no lexer found for file %r' % fn)
 
     def test(self, lx=lx, absfn=absfn):
