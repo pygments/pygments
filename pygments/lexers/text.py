@@ -35,7 +35,8 @@ __all__ = ['IniLexer', 'SourcesListLexer', 'BaseMakefileLexer',
            'MakefileLexer', 'DiffLexer', 'IrcLogsLexer', 'TexLexer',
            'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer', 'MoinWikiLexer',
            'RstLexer', 'VimLexer', 'GettextLexer', 'SquidConfLexer',
-           'DebianControlLexer', 'DarcsPatchLexer', 'YamlLexer']
+           'DebianControlLexer', 'DarcsPatchLexer', 'YamlLexer',
+           'LighttpdConfLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1390,3 +1391,29 @@ class YamlLexer(ExtendedRegexLexer):
         if context is None:
             context = YamlLexerContext(text, 0)
         return super(YamlLexer, self).get_tokens_unprocessed(text, context)
+
+class LighttpdConfLexer(RegexLexer):
+    """
+    Lexer for Lighttpd configuration files.
+
+    *New in Pygments 0.11*
+    """
+    name = 'Lighttpd configuration file'
+    aliases = ['lighty', 'lighttpd']
+    filenames = []
+
+    tokens = {
+        'root': [
+            (r'#.*\n', Comment),
+            (r'/\S+', Name), # pathname
+            (r'[a-zA-Z._-]+', Keyword),
+            (r'\d+\.\d+\.\d+\.\d+(?:/\d+)?', Number),
+            (r'[0-9]+', Number),
+            (r'=>|=~|\+=|==|=|\+', Operator),
+            (r'\$[A-Z]+', Name.Builtin),
+            (r'[(){}\[\],]', Punctuation),
+            (r'"([^"\\]*(?:\\.[^"\\]*)*)"', String.Double),
+            (r'\s+', Text),
+        ],
+
+    }
