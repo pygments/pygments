@@ -15,6 +15,7 @@ import random
 from pygments import lexers, formatters, filters, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
+from pygments.formatters.img import FontNotFound
 
 test_content = [chr(i) for i in xrange(33, 128)] * 5
 random.shuffle(test_content)
@@ -133,7 +134,7 @@ class FormattersTest(unittest.TestCase):
 
             try:
                 inst = formatter(opt1="val1")
-            except ImportError:
+            except (ImportError, FontNotFound):
                 continue
             inst.get_style_defs()
             inst.format(ts, out)
@@ -168,8 +169,8 @@ class FormattersTest(unittest.TestCase):
         for formatter, info in formatters.FORMATTERS.iteritems():
             try:
                 inst = formatter(encoding=None)
-            except ImportError:
-                # some dependency not installed
+            except (ImportError, FontNotFound):
+                # some dependency or font not installed
                 continue
             out = format(tokens, inst)
             if formatter.unicodeoutput:
