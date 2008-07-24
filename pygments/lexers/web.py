@@ -550,9 +550,10 @@ class PhpLexer(RegexLexer):
 
     def analyse_text(text):
         rv = 0.0
-        for tag in '<?php', '?>':
-            if tag in text:
-                rv += 0.2
+        if re.search(r'<\?(?!xml)', text):
+            rv += 0.3
+        if '?>' in text:
+            rv += 0.1
         return rv
 
 
@@ -634,3 +635,7 @@ class XsltLexer(XmlLexer):
                 yield index, Keyword, value
             else:
                 yield index, token, value
+
+    def analyse_text(text):
+        if looks_like_xml(text) and '<xsl' in text:
+            return 0.8
