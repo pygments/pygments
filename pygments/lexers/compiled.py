@@ -129,7 +129,7 @@ class CLexer(RegexLexer):
     }
 
     stdlib_types = ['size_t', 'ssize_t', 'off_t', 'wchar_t', 'ptrdiff_t',
-            'sig_atomic_t', 'fpos_t', 'clock_t', 'time_t', 'va_list', 
+            'sig_atomic_t', 'fpos_t', 'clock_t', 'time_t', 'va_list',
             'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t', 'mbstate_t',
             'wctrans_t', 'wint_t', 'wctype_t']
     c99_types = ['_Bool', '_Complex', 'int8_t', 'int16_t', 'int32_t', 'int64_t',
@@ -892,17 +892,18 @@ class JavaLexer(RegexLexer):
             (r'//.*?\n', Comment),
             (r'/\*.*?\*/', Comment),
             (r'@[a-zA-Z_][a-zA-Z0-9_\.]*', Name.Decorator),
-            (r'(abstract|assert|break|case|catch|'
-             r'const|continue|default|do|else|enum|extends|final|'
-             r'finally|for|if|goto|implements|instanceof|'
-             r'native|new|package|private|protected|public|'
-             r'return|static|strictfp|super|switch|synchronized|this|'
-             r'throw|throws|transient|try|volatile|while)\b', Keyword),
+            (r'(assert|break|case|catch|continue|default|do|else|finally|for|'
+             r'if|goto|instanceof|new|return|switch|this|throw|try|while)\b',
+             Keyword),
+            (r'(abstract|const|enum|extends|final|implements|native|private|'
+             r'protected|public|static|strictfp|super|synchronized|throws|'
+             r'transient|volatile)\b', Keyword.Declaration),
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
+            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text)),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(class|interface)(\s+)', bygroups(Keyword, Text), 'class'),
-            (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
+            (r'(class|interface)(\s+)', bygroups(Keyword.Declaration, Text), 'class'),
+            (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
             (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
