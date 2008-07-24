@@ -60,8 +60,8 @@ class PythonLexer(RegexLexer):
             include('keywords'),
             (r'(def)(\s+)', bygroups(Keyword, Text), 'funcname'),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (r'(from)(\s+)', bygroups(Keyword, Text), 'fromimport'),
-            (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
+            (r'(from)(\s+)', bygroups(Keyword.Namespace, Text), 'fromimport'),
+            (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
             include('builtins'),
             include('backtick'),
             ('(?:[rR]|[uU][rR]|[rR][uU])"""', String, 'tdqs'),
@@ -126,13 +126,13 @@ class PythonLexer(RegexLexer):
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
         ],
         'import': [
-            (r'(\s+)(as)(\s+)', bygroups(Text, Keyword, Text)),
+            (r'(\s+)(as)(\s+)', bygroups(Text, Keyword.Namespace, Text)),
             (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace),
             (r'(\s*)(,)(\s*)', bygroups(Text, Operator, Text)),
             (r'', Text, '#pop') # all else: go back
         ],
         'fromimport': [
-            (r'(\s+)(import)\b', bygroups(Text, Keyword), '#pop'),
+            (r'(\s+)(import)\b', bygroups(Text, Keyword.Namespace), '#pop'),
             (r'[a-zA-Z_.][a-zA-Z0-9_.]*', Name.Namespace),
         ],
         'stringescape': [
