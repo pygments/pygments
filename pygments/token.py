@@ -130,6 +130,7 @@ STANDARD_TYPES = {
     Keyword:                       'k',
     Keyword.Constant:              'kc',
     Keyword.Declaration:           'kd',
+    Keyword.Namespace:             'kn',
     Keyword.Pseudo:                'kp',
     Keyword.Reserved:              'kr',
     Keyword.Type:                  'kt',
