@@ -21,11 +21,20 @@ Version 0.11
 - Support roman/sans/mono style defs and use them in the LaTeX
   formatter.
 
-- the raw token formatter is no longer registered to ``*.raw``
+- The raw token formatter is no longer registered to ``*.raw``
   and it's documented that tokenization with this lexer may
   raise exceptions.
 
-- Added Lighttpd conf lexer
+- Added Lighttpd and Nginx conf lexers
+
+- New option *-g* to pygmentize, to allow lexer guessing based
+  on filetext (can be slowish, so file extensions are still checked
+  first).
+
+- ``guess_lexer()`` now makes its decision much faster due to a
+  cache of whether data is xml-like (a check which is used in several
+  versions of ``analyse_text()``.  Several lexers also have more
+  accurate ``analyse_text()`` now.
 
 
 Version 0.10
