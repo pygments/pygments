@@ -267,7 +267,7 @@ class NasmLexer(RegexLexer):
     """
     name = 'NASM'
     aliases = ['nasm']
-    filenames = ['*.asm']
+    filenames = ['*.asm', '*.ASM']
     mimetypes = ['text/x-nasm']
 
     identifier = r'[a-zA-Z$._?][a-zA-Z0-9$._?#@~]*'
@@ -285,7 +285,7 @@ class NasmLexer(RegexLexer):
     directives = (r'BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'
                   r'COMMON|CPU|GROUP|UPPERCASE|IMPORT|EXPORT|LIBRARY|MODULE')
 
-    flags = re.IGNORECASE
+    flags = re.IGNORECASE | re.MULTILINE
     tokens = {
         'root': [
             include('whitespace'),
@@ -319,8 +319,8 @@ class NasmLexer(RegexLexer):
         ],
         'whitespace': [
             (r'\n', Text),
-            (r'\s+', Text),
-            (r';.*?\n', Comment.Single)
+            (r'[ \t]+', Text),
+            (r';.*', Comment.Single)
         ],
         'punctuation': [
             (r'[,():\[\]]+', Punctuation),
