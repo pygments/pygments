@@ -123,6 +123,7 @@ class CLexer(RegexLexer):
         ],
         'if0': [
             (r'^\s*#if.*?(?<!\\)\n', Comment, '#push'),
+            (r'^\s*#el(?:se|if).*\n', Comment.Preproc, '#pop'),
             (r'^\s*#endif.*?(?<!\\)\n', Comment, '#pop'),
             (r'.*?\n', Comment),
         ]
