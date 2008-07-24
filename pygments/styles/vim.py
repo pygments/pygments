@@ -25,11 +25,13 @@ class VimStyle(Style):
     styles = {
         Token:                     "#cccccc",
         Whitespace:                "",
-        Comment:                   "#00cdcd",
+        Comment:                   "#000080",
         Comment.Preproc:           "",
         Comment.Special:           "bold #cd0000",
 
         Keyword:                   "#cdcd00",
+        Keyword.Declaration:       "#00cd00",
+        Keyword.Namespace:         "#cd00cd",
         Keyword.Pseudo:            "",
         Keyword.Type:              "#00cd00",
 
@@ -37,9 +39,8 @@ class VimStyle(Style):
         Operator.Word:             "#cdcd00",
 
         Name:                      "",
-        Name.Class:                "#cd00cd",
+        Name.Class:                "#00cdcd",
         Name.Builtin:              "#cd00cd",
-        Name.Namespace:            "bold #5c5cff",
         Name.Exception:            "bold #666699",
         Name.Variable:             "#00cdcd",
 
@@ -48,8 +49,8 @@ class VimStyle(Style):
 
         Generic.Heading:           "bold #000080",
         Generic.Subheading:        "bold #800080",
-        Generic.Deleted:           "#A00000",
-        Generic.Inserted:          "#00A000",
+        Generic.Deleted:           "#cd0000",
+        Generic.Inserted:          "#00cd00",
         Generic.Error:             "#FF0000",
         Generic.Emph:              "italic",
         Generic.Strong:            "bold",
