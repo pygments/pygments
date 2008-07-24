@@ -996,7 +996,8 @@ class YamlLexerContext(LexerContext):
 
 class YamlLexer(ExtendedRegexLexer):
     """
-    Lexer for YAML, a human-friendly data serialization language (http://yaml.org/).
+    Lexer for `YAML <http://yaml.org/>`_, a human-friendly data serialization
+    language.
 
     *New in Pygments 0.11.*
     """
@@ -1395,18 +1396,19 @@ class YamlLexer(ExtendedRegexLexer):
 
 class LighttpdConfLexer(RegexLexer):
     """
-    Lexer for Lighttpd configuration files.
+    Lexer for `Lighttpd <http://lighttpd.net/>`_ configuration files.
 
     *New in Pygments 0.11*
     """
     name = 'Lighttpd configuration file'
     aliases = ['lighty', 'lighttpd']
     filenames = []
+    mimetypes = ['text/x-lighttpd-conf']
 
     tokens = {
         'root': [
-            (r'#.*\n', Comment),
-            (r'/\S+', Name), # pathname
+            (r'#.*\n', Comment.Single),
+            (r'/\S*', Name), # pathname
             (r'[a-zA-Z._-]+', Keyword),
             (r'\d+\.\d+\.\d+\.\d+(?:/\d+)?', Number),
             (r'[0-9]+', Number),
