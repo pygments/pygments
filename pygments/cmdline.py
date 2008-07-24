@@ -15,7 +15,7 @@ from textwrap import dedent
 from pygments import __version__, __author__, highlight
 from pygments.util import ClassNotFound, OptionError, docstring_headline
 from pygments.lexers import get_all_lexers, get_lexer_by_name, get_lexer_for_filename, \
-     find_lexer_class
+     find_lexer_class, guess_lexer, TextLexer
 from pygments.formatters import get_all_formatters, get_formatter_by_name, \
      get_formatter_for_filename, find_formatter_class, \
      TerminalFormatter  # pylint:disable-msg=E0611
@@ -24,7 +24,7 @@ from pygments.styles import get_all_styles, get_style_by_name
 
 
 USAGE = """\
-Usage: %s [-l <lexer>] [-F <filter>[:<options>]] [-f <formatter>]
+Usage: %s [-l <lexer> | -g] [-F <filter>[:<options>]] [-f <formatter>]
           [-O <options>] [-P <option=value>] [-o <outfile>] [<infile>]
 
        %s -S <style> -f <formatter> [-a <arg>] [-O <options>] [-P <option=value>]
@@ -38,7 +38,9 @@ If no input file is given, use stdin, if -o is not given, use stdout.
 
 <lexer> is a lexer name (query all lexer names with -L). If -l is not
 given, the lexer is guessed from the extension of the input file name
-(this obviously doesn't work if the input is stdin).
+(this obviously doesn't work if the input is stdin).  If -g is passed,
+attempt to guess the lexer from the file contents, or pass through as
+plain text if this fails (this can work for stdin).
 
 Likewise, <formatter> is a formatter name, and will be guessed from
 the extension of the output file name. If no output file is given,
@@ -186,7 +188,7 @@ def main(args=sys.argv):
     usage = USAGE % ((args[0],) * 5)
 
     try:
-        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:hVH")
+        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:hVHg")
     except getopt.GetoptError, err:
         print >>sys.stderr, usage
         return 2
@@ -333,23 +335,41 @@ def main(args=sys.argv):
             return 2
 
         infn = args[0]
-        if not lexer:
-            try:
-                lexer = get_lexer_for_filename(infn, **parsed_opts)
-            except (OptionError, ClassNotFound), err:
-                print >>sys.stderr, 'Error:', err
-                return 1
-
         try:
             code = file(infn).read()
         except Exception, err:
             print >>sys.stderr, 'Error: cannot read infile:', err
             return 1
-    else:
+
         if not lexer:
-            print >>sys.stderr, 'Error: no lexer name given and reading from stdin'
+            try:
+                lexer = get_lexer_for_filename(infn, **parsed_opts)
+            except ClassNotFound, err:
+                if '-g' in opts:
+                    try:
+                        lexer = guess_lexer(code)
+                    except ClassNotFound:
+                        lexer = TextLexer()
+                else:
+                    print >>sys.stderr, 'Error:', err
+                    return 1
+            except OptionError, err:
+                print >>sys.stderr, 'Error:', err
+                return 1
+
+    else:
+        if '-g' in opts:
+            code = sys.stdin.read()
+            try:
+                lexer = guess_lexer(code)
+            except ClassNotFound:
+                lexer = TextLexer()
+        elif not lexer:
+            print >>sys.stderr, 'Error: no lexer name given and reading ' + \
+                                'from stdin (try using -g or -l <lexer>)'
             return 2
-        code = sys.stdin.read()
+        else:
+            code = sys.stdin.read()
 
     # No encoding given? Use latin1 if output file given,
     # stdin/stdout encoding otherwise.
