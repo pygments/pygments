@@ -23,7 +23,7 @@ from pygments.lexers.compiled import JavaLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
      include, using, this
 from pygments.token import Error, Punctuation, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Other
+     Text, Comment, Operator, Keyword, Name, String, Number, Other, Token
 from pygments.util import html_doctype_matches, looks_like_xml
 
 __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
@@ -37,7 +37,8 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'MyghtyLexer', 'MyghtyHtmlLexer', 'MyghtyXmlLexer',
            'MyghtyCssLexer', 'MyghtyJavascriptLexer', 'MakoLexer',
            'MakoHtmlLexer', 'MakoXmlLexer', 'MakoJavascriptLexer',
-           'MakoCssLexer', 'JspLexer']
+           'MakoCssLexer', 'JspLexer', 'CheetahLexer', 'CheetahHtmlLexer',
+           'CheetahXmlLexer', 'CheetahJavascriptLexer']
 
 
 class ErbLexer(Lexer):
@@ -523,7 +524,115 @@ class MakoCssLexer(DelegatingLexer):
                                              **options)
 
 
-# Genshi lexers courtesy of Matt Good.
+# Genshi and Cheetah lexers courtesy of Matt Good.
+
+class CheetahPythonLexer(Lexer):
+    """
+    Lexer for handling Cheetah's special $ tokens in Python syntax.
+    """
+
+    def get_tokens_unprocessed(self, text):
+        pylexer = PythonLexer(**self.options)
+        for pos, type_, value in pylexer.get_tokens_unprocessed(text):
+            if type_ == Token.Error and value == '$':
+                type_ = Comment.Preproc
+            yield pos, type_, value
+
+
+class CheetahLexer(RegexLexer):
+    """
+    Generic `cheetah templates`_ lexer. Code that isn't Cheetah
+    markup is yielded as `Token.Other`.  This also works for
+    `spitfire templates`_ which use the same syntax.
+
+    .. _cheetah templates: http://www.cheetahtemplate.org/
+    .. _spitfire templates: http://code.google.com/p/spitfire/
+    """
+
+    name = 'Cheetah'
+    aliases = ['cheetah', 'spitfire']
+    filenames = ['*.tmpl', '*.spt']
+    mimetypes = ['application/x-cheetah', 'application/x-spitfire']
+
+    tokens = {
+        'root': [
+            (r'(##[^\n]*)$',
+             (bygroups(Comment))),
+            (r'#[*](.|\n)*?[*]#', Comment),
+            (r'#end[^#\n]*(?:#|$)', Comment.Preproc),
+            (r'#slurp$', Comment.Preproc),
+            (r'(#[a-zA-Z]+)([^#\n]*)(#|$)',
+             (bygroups(Comment.Preproc, using(CheetahPythonLexer),
+                       Comment.Preproc))),
+            # TODO support other Python syntax like $foo['bar']
+            (r'(\$)([a-zA-Z_][a-zA-Z0-9_\.]*[a-zA-Z0-9_])',
+             bygroups(Comment.Preproc, using(CheetahPythonLexer))),
+            (r'(\$\{!?)(.*?)(\})(?s)',
+             bygroups(Comment.Preproc, using(CheetahPythonLexer),
+                      Comment.Preproc)),
+            (r'''(?sx)
+                (.+?)               # anything, followed by:
+                (?:
+                 (?=[#][#a-zA-Z]*) |   # an eval comment
+                 (?=\$[a-zA-Z_{]) | # a substitution
+                 \Z                 # end of string
+                )
+            ''', Other),
+            (r'\s+', Text),
+        ],
+    }
+
+
+class CheetahHtmlLexer(DelegatingLexer):
+    """
+    Subclass of the `CheetahLexer` that highlights unlexer data
+    with the `HtmlLexer`.
+    """
+
+    name = 'HTML+Cheetah'
+    aliases = ['html+cheetah', 'html+spitfire']
+    mimetypes = ['text/html+myghty', 'text/html+spitfire']
+
+    def __init__(self, **options):
+        super(CheetahHtmlLexer, self).__init__(HtmlLexer, CheetahLexer,
+                                               **options)
+
+
+class CheetahXmlLexer(DelegatingLexer):
+    """
+    Subclass of the `CheetahLexer` that highlights unlexer data
+    with the `XmlLexer`.
+    """
+
+    name = 'XML+Cheetah'
+    aliases = ['xml+cheetah', 'xml+spitfire']
+    mimetypes = ['application/xml+cheetah', 'application/xml+spitfire']
+
+    def __init__(self, **options):
+        super(CheetahXmlLexer, self).__init__(XmlLexer, CheetahLexer,
+                                              **options)
+
+
+class CheetahJavascriptLexer(DelegatingLexer):
+    """
+    Subclass of the `CheetahLexer` that highlights unlexer data
+    with the `JavascriptLexer`.
+    """
+
+    name = 'JavaScript+Cheetah'
+    aliases = ['js+cheetah', 'javascript+cheetah',
+               'js+spitfire', 'javascript+spitfire']
+    mimetypes = ['application/x-javascript+cheetah',
+                 'text/x-javascript+cheetah',
+                 'text/javascript+cheetah',
+                 'application/x-javascript+spitfire',
+                 'text/x-javascript+spitfire',
+                 'text/javascript+spitfire']
+
+    def __init__(self, **options):
+        super(CheetahJavascriptLexer, self).__init__(JavascriptLexer,
+                                                     CheetahLexer, **options)
+
 
 class GenshiTextLexer(RegexLexer):
     """
