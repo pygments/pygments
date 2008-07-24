@@ -179,11 +179,18 @@ def html_doctype_matches(text):
     return doctype_matches(text, r'html\s+PUBLIC\s+"-//W3C//DTD X?HTML.*')
 
 
+_looks_like_xml_cache = {}
 def looks_like_xml(text):
     """
     Check if a doctype exists or if we have some tags.
     """
-    m = doctype_lookup_re.match(text)
-    if m is not None:
-        return True
-    return tag_re.search(text) is not None
+    key = hash(text)
+    try:
+        return _looks_like_xml_cache[key]
+    except KeyError:
+        m = doctype_lookup_re.match(text)
+        if m is not None:
+            return True
+        rv = tag_re.search(text[:1000]) is not None
+        _looks_like_xml_cache[key] = rv
+        return rv
