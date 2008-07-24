@@ -1131,7 +1131,7 @@ class TclLexer(RegexLexer):
     """
 
     keyword_cmds_re = (
-        r'\b(after|apply|array|break|catch|continue|else|elseif|error|'
+        r'\b(after|apply|array|break|catch|continue|elseif|else|error|'
         r'eval|expr|for|foreach|global|if|namespace|proc|rename|return|'
         r'set|switch|then|trace|unset|update|uplevel|upvar|variable|'
         r'vwait|while)\b'
