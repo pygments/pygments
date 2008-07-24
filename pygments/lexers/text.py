@@ -687,6 +687,16 @@ class RstLexer(RegexLexer):
         self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
         RegexLexer.__init__(self, **options)
 
+    def analyse_text(text):
+        if text[:2] == '..' and text[2:3] != '.':
+            return 0.3
+        p1 = text.find("\n")
+        p2 = text.find("\n", p1 + 1)
+        if (p2 > -1 and              # has two lines
+            p1 * 2 + 1 == p2 and     # they are the same length
+            text[p1+1] in '-=' and   # the next line both starts and ends with
+            text[p1+1] == text[p2-1]): # ...a sufficiently high header
+            return 0.5
 
 class VimLexer(RegexLexer):
     """
