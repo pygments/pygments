@@ -36,7 +36,7 @@ __all__ = ['IniLexer', 'SourcesListLexer', 'BaseMakefileLexer',
            'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer', 'MoinWikiLexer',
            'RstLexer', 'VimLexer', 'GettextLexer', 'SquidConfLexer',
            'DebianControlLexer', 'DarcsPatchLexer', 'YamlLexer',
-           'LighttpdConfLexer']
+           'LighttpdConfLexer', 'NginxConfLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1417,4 +1417,48 @@ class LighttpdConfLexer(RegexLexer):
             (r'\s+', Text),
         ],
 
+    }
+
+class NginxConfLexer(RegexLexer):
+    """
+    Lexer for `Nginx <http://nginx.net/>`_ configuration files.
+
+    *New in Pygments 0.11*
+    """
+    name = 'Nginx configuration file'
+    aliases = ['nginx']
+    filenames = []
+    mimetypes = ['text/x-nginx-conf']
+
+    tokens = {
+        'root': [
+            (r'(include)(\s+)([^\s;]+)', bygroups(Keyword, Text, Name)),
+            (r'[^\s;#]+', Keyword, 'stmt'),
+            include('base'),
+        ],
+        'block': [
+            (r'}', Punctuation, '#pop:2'),
+            (r'[^\s;#]+', Keyword.Namespace, 'stmt'),
+            include('base'),
+        ],
+        'stmt': [
+            (r'{', Punctuation, 'block'),
+            (r';', Punctuation, '#pop'),
+            include('base'),
+        ],
+        'base': [
+            (r'#.*\n', Comment.Single),
+            (r'on|off', Name.Constant),
+            (r'\$[^\s;#]+', Name.Variable),
+            (r'([a-z0-9.-]+)(:)([0-9]+)',
+             bygroups(Name, Punctuation, Number.Integer)),
+            (r'[a-z-]+/[a-z-]+', Name), # mimetype
+            #(r'[a-zA-Z._-]+', Keyword),
+            (r'[0-9]+[km]?\b', Number.Integer),
+            (r'(~)(\s*)([^\s{]+)', bygroups(Punctuation, Text, String.Regex)),
+            (r'[:=~]', Punctuation),
+            (r'[^\s;#{}$]+', String), # catch all
+            (r'/[^\s;#]*', Name), # pathname
+            (r'\s+', Text),
+        ],
     }
