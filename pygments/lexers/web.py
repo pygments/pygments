@@ -48,8 +48,8 @@ class JavascriptLexer(RegexLexer):
             (r'[~\^\*!%&<>\|+=:;,/?\\-]+', Operator),
             (r'[{}\[\]();.]+', Punctuation),
             (r'(for|in|while|do|break|return|continue|if|else|throw|try|'
-             r'catch|var|with|const|label|function|new|typeof|'
-             r'instanceof|this)\b', Keyword),
+             r'catch|new|typeof|instanceof|this)\b', Keyword),
+            (r'(var|with|const|label|function)\b', Keyword.Declaration),
             (r'(true|false|null|NaN|Infinity|undefined)\b', Keyword.Constant),
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
              r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
@@ -93,7 +93,8 @@ class ActionScriptLexer(RegexLexer):
              r'switch)\b', Keyword),
             (r'(class|public|final|internal|native|override|private|protected|'
              r'static|import|extends|implements|interface|intrinsic|return|super|'
-             r'dynamic|function|const|get|namespace|package|set)\b', Keyword.Declaration),
+             r'dynamic|function|const|get|namespace|package|set)\b',
+             Keyword.Declaration),
             (r'(true|false|null|NaN|Infinity|-Infinity|undefined|Void)\b',
              Keyword.Constant),
             (r'(Accessibility|AccessibilityProperties|ActionScriptVersion|'
