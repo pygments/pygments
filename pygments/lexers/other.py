@@ -20,7 +20,7 @@ from pygments.util import shebang_matches
 
 __all__ = ['SqlLexer', 'MySqlLexer', 'BrainfuckLexer', 'BashLexer',
            'BatchLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
-           'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer']
+           'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer', 'GnuplotLexer']
 
 
 class SqlLexer(RegexLexer):
@@ -809,4 +809,170 @@ class LogtalkLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
         ]
+    }
+
+
+def _shortened(word):
+    dpos = word.find('$')
+    return '|'.join(word[:dpos] + word[dpos+1:i] + r'\b'
+                    for i in range(len(word), dpos, -1))
+def _shortened_many(*words):
+    return '|'.join(map(_shortened, words))
+
+class GnuplotLexer(RegexLexer):
+    """
+    For `Gnuplot <http://gnuplot.info/>`_ plotting scripts.
+
+    *New in Pygments 0.11.*
+    """
+
+    name = 'Gnuplot'
+    aliases = ['gnuplot']
+    filenames = ['*.plot', '*.plt']
+    mimetypes = ['text/x-gnuplot']
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            (_shortened('bi$nd'), Keyword, 'bind'),
+            (_shortened_many('ex$it', 'q$uit'), Keyword, 'quit'),
+            (_shortened('f$it'), Keyword, 'fit'),
+            (r'(if)(\s*)(\()', bygroups(Keyword, Text, Punctuation), 'if'),
+            (r'else\b', Keyword),
+            (_shortened('pa$use'), Keyword, 'pause'),
+            (_shortened_many('p$lot', 'rep$lot'), Keyword, 'plot'),
+            (_shortened('sa$ve'), Keyword, 'save'),
+            (_shortened('se$t'), Keyword, ('genericargs', 'optionarg')),
+            (_shortened_many('sh$ow', 'uns$et'),
+             Keyword, ('noargs', 'optionarg')),
+            (_shortened_many('low$er', 'ra$ise', 'ca$ll', 'cd$', 'cl$ear',
+                             'h$elp', '\\?$', 'hi$story', 'l$oad', 'pr$int',
+                             'pwd$', 're$read', 'res$et', 'scr$eendump',
+                             'she$ll', 'sy$stem', 'up$date'),
+             Keyword, 'genericargs'),
+            (_shortened_many('pwd$', 're$read', 'res$et', 'scr$eendump',
+                             'she$ll', 'test$'),
+             Keyword, 'noargs'),
+            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(=)',
+             bygroups(Name.Variable, Text, Operator), 'genericargs'),
+            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*\(.*?\)\s*)(=)',
+             bygroups(Name.Function, Text, Operator), 'genericargs'),
+            (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant), # macros
+            (r';', Keyword),
+        ],
+        'comment': [
+            (r'[^\\\n]', Comment),
+            (r'\\\n', Comment),
+            (r'\\', Comment),
+            # don't add the newline to the Comment token
+            ('', Comment, '#pop'),
+        ],
+        'whitespace': [
+            ('#', Comment, 'comment'),
+            (r'[ \t\v\f]+', Text),
+        ],
+        'noargs': [
+            include('whitespace'),
+            # semicolon and newline end the argument list
+            (r';', Punctuation, '#pop'),
+            (r'\n', Text, '#pop'),
+        ],
+        'dqstring': [
+            (r'"', String, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'[^\\"\n]+', String), # all other characters
+            (r'\\\n', String), # line continuation
+            (r'\\', String), # stray backslash
+            (r'\n', String, '#pop'), # newline ends the string too
+        ],
+        'sqstring': [
+            (r"''", String), # escaped single quote
+            (r"'", String, '#pop'),
+            (r"[^\\'\n]+", String), # all other characters
+            (r'\\\n', String), # line continuation
+            (r'\\', String), # normal backslash
+            (r'\n', String, '#pop'), # newline ends the string too
+        ],
+        'genericargs': [
+            include('noargs'),
+            (r'"', String, 'dqstring'),
+            (r"'", String, 'sqstring'),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+', Number.Float),
+            (r'(\d+\.\d*|\.\d+)', Number.Float),
+            (r'-?\d+', Number.Integer),
+            ('[,.~!%^&*+=|?:<>/-]', Operator),
+            ('[{}()\[\]]', Punctuation),
+            (r'(eq|ne)\b', Operator.Word),
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\()',
+             bygroups(Name.Function, Text, Punctuation)),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant), # macros
+            (r'\\\n', Text),
+        ],
+        'optionarg': [
+            include('whitespace'),
+            (_shortened_many(
+                "a$ll","an$gles","ar$row","au$toscale","b$ars","bor$der",
+                "box$width","cl$abel","c$lip","cn$trparam","co$ntour","da$ta",
+                "data$file","dg$rid3d","du$mmy","enc$oding","dec$imalsign",
+                "fit$","font$path","fo$rmat","fu$nction","fu$nctions","g$rid",
+                "hid$den3d","his$torysize","is$osamples","k$ey","keyt$itle",
+                "la$bel","li$nestyle","ls$","loa$dpath","loc$ale","log$scale",
+                "mac$ros","map$ping","map$ping3d","mar$gin","lmar$gin",
+                "rmar$gin","tmar$gin","bmar$gin","mo$use","multi$plot",
+                "mxt$ics","nomxt$ics","mx2t$ics","nomx2t$ics","myt$ics",
+                "nomyt$ics","my2t$ics","nomy2t$ics","mzt$ics","nomzt$ics",
+                "mcbt$ics","nomcbt$ics","of$fsets","or$igin","o$utput",
+                "pa$rametric","pm$3d","pal$ette","colorb$ox","p$lot",
+                "poi$ntsize","pol$ar","pr$int","obj$ect","sa$mples","si$ze",
+                "st$yle","su$rface","table$","t$erminal","termo$ptions","ti$cs",
+                "ticsc$ale","ticsl$evel","timef$mt","tim$estamp","tit$le",
+                "v$ariables","ve$rsion","vi$ew","xyp$lane","xda$ta","x2da$ta",
+                "yda$ta","y2da$ta","zda$ta","cbda$ta","xl$abel","x2l$abel",
+                "yl$abel","y2l$abel","zl$abel","cbl$abel","xti$cs","noxti$cs",
+                "x2ti$cs","nox2ti$cs","yti$cs","noyti$cs","y2ti$cs","noy2ti$cs",
+                "zti$cs","nozti$cs","cbti$cs","nocbti$cs","xdti$cs","noxdti$cs",
+                "x2dti$cs","nox2dti$cs","ydti$cs","noydti$cs","y2dti$cs",
+                "noy2dti$cs","zdti$cs","nozdti$cs","cbdti$cs","nocbdti$cs",
+                "xmti$cs","noxmti$cs","x2mti$cs","nox2mti$cs","ymti$cs",
+                "noymti$cs","y2mti$cs","noy2mti$cs","zmti$cs","nozmti$cs",
+                "cbmti$cs","nocbmti$cs","xr$ange","x2r$ange","yr$ange",
+                "y2r$ange","zr$ange","cbr$ange","rr$ange","tr$ange","ur$ange",
+                "vr$ange","xzeroa$xis","x2zeroa$xis","yzeroa$xis","y2zeroa$xis",
+                "zzeroa$xis","zeroa$xis","z$ero"), Name.Builtin, '#pop'),
+        ],
+        'bind': [
+            ('!', Keyword, '#pop'),
+            (_shortened('all$windows'), Name.Builtin),
+            include('genericargs'),
+        ],
+        'quit': [
+            (r'gnuplot\b', Keyword),
+            include('noargs'),
+        ],
+        'fit': [
+            (r'via\b', Name.Builtin),
+            include('plot'),
+        ],
+        'if': [
+            (r'\)', Punctuation, '#pop'),
+            include('genericargs'),
+        ],
+        'pause': [
+            (r'(mouse|any|button1|button2|button3)\b', Name.Builtin),
+            (_shortened('key$press'), Name.Builtin),
+            include('genericargs'),
+        ],
+        'plot': [
+            (_shortened_many('ax$es', 'axi$s', 'bin$ary', 'ev$ery', 'i$ndex',
+                             'mat$rix', 's$mooth', 'thru$', 't$itle',
+                             'not$itle', 'u$sing', 'w$ith'),
+             Name.Builtin),
+            include('genericargs'),
+        ],
+        'save': [
+            (_shortened_many('f$unctions', 's$et', 't$erminal', 'v$ariables'),
+             Name.Builtin),
+            include('genericargs'),
+        ],
     }
