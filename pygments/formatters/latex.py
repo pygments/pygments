@@ -109,6 +109,7 @@ class LatexFormatter(Formatter):
         The LaTeX commands used to produce colored output are constructed
         using this prefix and some letters (default: ``'PY'``).
         *New in Pygments 0.7.*
+
         *New in Pygments 0.10:* the default is now ``'PY'`` instead of ``'C'``.
     """
     name = 'LaTeX'
