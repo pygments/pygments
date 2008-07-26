@@ -69,7 +69,8 @@ def generate_formatter_docs():
     from pygments.formatters import FORMATTERS
 
     out = []
-    for cls, data in FORMATTERS.iteritems():
+    for cls, data in sorted(FORMATTERS.iteritems(),
+                            key=lambda x: x[0].__name__):
         heading = cls.__name__
         out.append('`' + heading + '`\n' + '-'*(2+len(heading)) + '\n')
         out.append(cls.__doc__)
