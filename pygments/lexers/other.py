@@ -848,7 +848,7 @@ class GnuplotLexer(RegexLexer):
             (r'(if)(\s*)(\()', bygroups(Keyword, Text, Punctuation), 'if'),
             (r'else\b', Keyword),
             (_shortened('pa$use'), Keyword, 'pause'),
-            (_shortened_many('p$lot', 'rep$lot'), Keyword, 'plot'),
+            (_shortened_many('p$lot', 'rep$lot', 'sp$lot'), Keyword, 'plot'),
             (_shortened('sa$ve'), Keyword, 'save'),
             (_shortened('se$t'), Keyword, ('genericargs', 'optionarg')),
             (_shortened_many('sh$ow', 'uns$et'),
