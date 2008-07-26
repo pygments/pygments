@@ -1408,7 +1408,7 @@ class LighttpdConfLexer(RegexLexer):
     """
     Lexer for `Lighttpd <http://lighttpd.net/>`_ configuration files.
 
-    *New in Pygments 0.11*
+    *New in Pygments 0.11.*
     """
     name = 'Lighttpd configuration file'
     aliases = ['lighty', 'lighttpd']
@@ -1435,7 +1435,7 @@ class NginxConfLexer(RegexLexer):
     """
     Lexer for `Nginx <http://nginx.net/>`_ configuration files.
 
-    *New in Pygments 0.11*
+    *New in Pygments 0.11.*
     """
     name = 'Nginx configuration file'
     aliases = ['nginx']
