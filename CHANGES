@@ -13,6 +13,7 @@ Version 0.11
   * Cheetah/Spitfire templates, thanks to Matt Good
   * Lighttpd config files
   * Nginix config files
+  * Gnuplot plotting scripts
 
 - Added "Visual Studio" style.
 
@@ -24,7 +25,7 @@ Version 0.11
 - Support roman/sans/mono style defs and use them in the LaTeX
   formatter.
 
-- The raw token formatter is no longer registered to ``*.raw``
+- The RawTokenFormatter is no longer registered to ``*.raw``
   and it's documented that tokenization with this lexer may
   raise exceptions.
 
