@@ -660,7 +660,8 @@ class LogtalkLexer(RegexLexer):
             # DCGs and term expansion
             (r'(expand_term|(goal|term)_expansion|phrase)(?=[(])', Keyword),
             # Entity
-            (r'(abolish|c(reate|urrent))_(object|protocol|category)(?=[(])', Keyword),
+            (r'(abolish|c(reate|urrent))_(object|protocol|category)(?=[(])',
+             Keyword),
             (r'(object|protocol|category)_property(?=[(])', Keyword),
             # Entity relations
             (r'complements_object(?=[(])', Keyword),
@@ -682,7 +683,8 @@ class LogtalkLexer(RegexLexer):
             # All solutions
             (r'((bag|set)of|f(ind|or)all)(?=[(])', Keyword),
             # Multi-threading meta-predicates
-            (r'threaded(_(call|once|ignore|exit|peek|wait|notify))?(?=[(])', Keyword),
+            (r'threaded(_(call|once|ignore|exit|peek|wait|notify))?(?=[(])',
+             Keyword),
             # Term unification
             (r'unify_with_occurs_check(?=[(])', Keyword),
             # Term creation and decomposition
@@ -694,13 +696,15 @@ class LogtalkLexer(RegexLexer):
             # Other arithmetic functors
             (r'(cos|atan|exp|log|s(in|qrt))(?=[(])', Keyword),
             # Term testing
-            (r'(var|atom(ic)?|integer|float|compound|n(onvar|umber))(?=[(])', Keyword),
+            (r'(var|atom(ic)?|integer|float|compound|n(onvar|umber))(?=[(])',
+             Keyword),
             # Stream selection and control
             (r'(curren|se)t_(in|out)put(?=[(])', Keyword),
             (r'(open|close)(?=[(])', Keyword),
             (r'flush_output(?=[(])', Keyword),
             (r'(at_end_of_stream|flush_output)\b', Keyword),
-            (r'(stream_property|at_end_of_stream|set_stream_position)(?=[(])', Keyword),
+            (r'(stream_property|at_end_of_stream|set_stream_position)(?=[(])',
+             Keyword),
             # Character and byte input/output
             (r'(nl|(get|peek|put)_(byte|c(har|ode)))(?=[(])', Keyword),
             (r'\bnl\b', Keyword),
@@ -776,8 +780,8 @@ class LogtalkLexer(RegexLexer):
             (r'e(ncoding|xport)(?=[(])', Keyword, 'root'),
             (r'in(fo|itialization)(?=[(])', Keyword, 'root'),
             (r'(dynamic|synchronized|threaded)[.]', Keyword, 'root'),
-            (r'(alias|d(ynamic|iscontiguous)|m(eta_predicate|ode|ultifile)|'
-             r'synchronized)(?=[(])', Keyword, 'root'),
+            (r'(alias|d(ynamic|iscontiguous)|m(eta_predicate|ode|ultifile)'
+             r'|synchronized)(?=[(])', Keyword, 'root'),
             (r'op(?=[(])', Keyword, 'root'),
             (r'(calls|use(s|_module))(?=[(])', Keyword, 'root'),
             (r'[a-z][a-zA-Z0-9_]*(?=[(])', Text, 'root'),
@@ -785,7 +789,8 @@ class LogtalkLexer(RegexLexer):
         ],
 
         'entityrelations': [
-            (r'(extends|i(nstantiates|mp(lements|orts))|specializes)(?=[(])', Keyword),
+            (r'(extends|i(nstantiates|mp(lements|orts))|specializes)(?=[(])',
+             Keyword),
             # Numbers
             (r"0'.", Number),
             (r'0b[01]+', Number),
@@ -800,11 +805,14 @@ class LogtalkLexer(RegexLexer):
             # Strings
             (r'"(\\\\|\\"|[^"])*"', String),
             # End of entity-opening directive
-            (r'([)]\.\n)', Text, 'root'),
+            (r'([)]\.)', Text, 'root'),
             # Scope operator
             (r'(::)', Operator),
             # Ponctuation
             (r'[()\[\],.|]', Text),
+            # Comments
+            (r'%.*?\n', Comment),
+            (r'/\*(.|\n)*?\*/',Comment),
             # Whitespace
             (r'\n', Text),
             (r'\s+', Text),
