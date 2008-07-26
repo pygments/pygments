@@ -5,6 +5,8 @@ Version 0.11
 ------------
 (codename not selected, release XXX XX, 2008)
 
+- Added Gnuplot lexer.
+
 - Added "Visual Studio" style.
 
 - Added ActionScript 3 lexer, thanks to Pierre Bourdon.
@@ -21,7 +23,7 @@ Version 0.11
 - Support roman/sans/mono style defs and use them in the LaTeX
   formatter.
 
-- the raw token formatter is no longer registered to ``*.raw``
+- The RawTokenFormatter is no longer registered to ``*.raw``
   and it's documented that tokenization with this lexer may
   raise exceptions.
 
