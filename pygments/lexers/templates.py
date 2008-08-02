@@ -591,7 +591,7 @@ class CheetahHtmlLexer(DelegatingLexer):
 
     name = 'HTML+Cheetah'
     aliases = ['html+cheetah', 'html+spitfire']
-    mimetypes = ['text/html+myghty', 'text/html+spitfire']
+    mimetypes = ['text/html+cheetah', 'text/html+spitfire']
 
     def __init__(self, **options):
         super(CheetahHtmlLexer, self).__init__(HtmlLexer, CheetahLexer,
