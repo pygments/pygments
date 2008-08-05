@@ -587,13 +587,13 @@ class OcamlLexer(RegexLexer):
             (r'[~?][a-z][\w\']*:', Name.Variable),
         ],
         'comment': [
-            (r'[^(*)]', Comment),
+            (r'[^(*)]+', Comment),
             (r'\(\*', Comment, '#push'),
             (r'\*\)', Comment, '#pop'),
             (r'[(*)]', Comment),
         ],
         'string': [
-            (r'[^\\"]', String.Double),
+            (r'[^\\"]+', String.Double),
             include('escape-sequence'),
             (r'\\\n', String.Double),
             (r'"', String.Double, '#pop'),
