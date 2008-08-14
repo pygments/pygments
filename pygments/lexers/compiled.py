@@ -986,8 +986,8 @@ class ObjectiveCLexer(RegexLexer):
 
     tokens = {
         'whitespace': [
-            (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
-            (r'^\s*#', Comment.Preproc, 'macro'),
+            (r'^(\s*)(#if\s+0)', bygroups(Text, Comment.Preproc), 'if0'),
+            (r'^(\s*)(#)', bygroups(Text, Comment.Preproc), 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
