@@ -1006,9 +1006,10 @@ class ObjectiveCLexer(RegexLexer):
             (r'[()\[\],.]', Punctuation),
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
              r'for|goto|if|register|restricted|return|sizeof|static|struct|'
-             r'switch|typedef|union|volatile|virtual|while|@selector|'
+             r'switch|typedef|union|volatile|virtual|while|in|@selector|'
              r'@private|@protected|@public|@encode|'
-             r'@synchronized|@try|@throw|@catch|@finally|@end)\b', Keyword),
+             r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
+             r'@synthesize|@dynamic)\b', Keyword),
             (r'(int|long|float|short|double|char|unsigned|signed|void|'
              r'id|BOOL|IBOutlet|IBAction|SEL)\b', Keyword.Type),
             (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
