@@ -42,6 +42,9 @@ Version 0.11
   and it's documented that tokenization with this lexer may
   raise exceptions.
 
+- New option ``hl_lines`` to HTML formatter, to highlight certain
+  lines.
+
 - New option ``prestyles`` to HTML formatter.
 
 - New option *-g* to pygmentize, to allow lexer guessing based

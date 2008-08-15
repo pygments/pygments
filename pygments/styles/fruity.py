@@ -19,6 +19,7 @@ class FruityStyle(Style):
     """
 
     background_color = '#111111'
+    highlight_color = '#333333'
 
     styles = {
         Whitespace:         '#888888',
