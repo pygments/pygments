@@ -722,10 +722,12 @@ class VimLexer(RegexLexer):
             (r'"(\\\\|\\"|[^\n"])*"', String.Double),
             (r"'(\\\\|\\'|[^\n'])*'", String.Single),
             (r'-?\d+', Number),
+            (r'#[0-9a-f]{6}', Number.Hex),
             (r'^:', Punctuation),
             (r'[()<>+=!|,~-]', Punctuation), # Inexact list.  Looks decent.
             (r'\b(let|if|else|endif|elseif|fun|function|endfunction)\b',
              Keyword),
+            (r'\b(NONE|bold|italic|underline|dark|light)\b', Name.Builtin),
             (r'\b\w+\b', Name.Other), # These are postprocessed below
             (r'.', Text),
         ],
