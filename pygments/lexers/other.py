@@ -316,9 +316,10 @@ class BashLexer(RegexLexer):
             (r"\$?'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
             (r';', Text),
             (r'\s+', Text),
-            (r'[^=\s\n\[\]{}()$"\'`\\]+', Text),
+            (r'[^=\s\n\[\]{}()$"\'`\\<]+', Text),
             (r'\d+(?= |\Z)', Number),
             (r'\$#?(\w+|.)', Name.Variable),
+            (r'<', Text),
         ],
         'curly': [
             (r'}', Keyword, '#pop'),
