@@ -110,5 +110,8 @@ class Style(object):
     #: overall background color (``None`` means transparent)
     background_color = '#ffffff'
 
+    #: highlight background color
+    highlight_color = '#ffffcc'
+
     #: Style definitions for individual token types.
     styles = {}
