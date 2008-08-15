@@ -17,10 +17,13 @@ Version 0.11
   * Clojure
   * POV-Ray scene files
 
-- Added "Visual Studio" style.
+- Lexers improved:
+  * C lexer highlights standard library functions now and supports
+    C99 types.
+  * Bash lexer now correctly highlights heredocs without preceeding
+    whitespace.
 
-- C lexer highlights standard library functions now and supports
-  C99 types.
+- Added "Visual Studio" style.
 
 - Updated markdown processor to Markdown 1.7.
 
