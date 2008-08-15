@@ -115,7 +115,8 @@ class MatlabLexer(RegexLexer):
     #
     # for f in elfun specfun elmat; do
     #   echo -n "$f = "
-    #   matlab -nojvm -r "help $f;exit;"|perl -ne 'push(@c,$1) if /^    (\w+)\s+-/; END {print q{["}.join(q{","},@c).qq{"]\n};}'
+    #   matlab -nojvm -r "help $f;exit;" | perl -ne \
+    #   'push(@c,$1) if /^    (\w+)\s+-/; END {print q{["}.join(q{","},@c).qq{"]\n};}'
     # done
     #
     # elfun: Elementary math functions
