@@ -217,6 +217,8 @@ class MySqlLexer(RegexLexer):
 class SqliteConsoleLexer(Lexer):
     """
     Lexer for example sessions using sqlite3.
+
+    *New in Pygments 0.11.*
     """
 
     name = 'sqlite3con'
