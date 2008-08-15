@@ -204,6 +204,10 @@ class HtmlFormatter(Formatter):
     `cssstyles`
         Inline CSS styles for the wrapping ``<div>`` tag (default: ``''``).
 
+    `prestyles`
+        Inline CSS styles for the ``<pre>`` tag (default: ``''``).  *New in
+        Pygments 0.11.*
+
     `cssfile`
         If the `full` option is true and this option is given, it must be the
         name of an external file. If the filename does not include an absolute
@@ -320,6 +324,7 @@ class HtmlFormatter(Formatter):
         self.classprefix = options.get('classprefix', '')
         self.cssclass = options.get('cssclass', 'highlight')
         self.cssstyles = options.get('cssstyles', '')
+        self.prestyles = options.get('prestyles', '')
         self.cssfile = options.get('cssfile', '')
         linenos = options.get('linenos', False)
         if linenos == 'inline':
@@ -512,7 +517,8 @@ class HtmlFormatter(Formatter):
         yield 0, '</div>\n'
 
     def _wrap_pre(self, inner):
-        yield 0, '<pre>'
+        yield 0, ('<pre'
+                  + (self.prestyles and ' style="%s"' % self.prestyles) + '>')
         for tup in inner:
             yield tup
         yield 0, '</pre>'
