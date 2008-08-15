@@ -298,6 +298,10 @@ class IrcLogsLexer(RegexLexer):
           # weechat
           \d{4}\s\w{3}\s\d{2}\s        # Date
           \d{2}:\d{2}:\d{2}\s+         # Time + Whitespace
+        |
+          # xchat
+          \w{3}\s\d{2}\s               # Date
+          \d{2}:\d{2}:\d{2}\s+         # Time + Whitespace
         )?
     """
     tokens = {
@@ -305,7 +309,7 @@ class IrcLogsLexer(RegexLexer):
                 # log start/end
             (r'^\*\*\*\*(.*)\*\*\*\*$', Comment),
             # hack
-            ("^" + timestamp + r'(\s*<.*>\s*)$', bygroups(Comment.Preproc, Name.Tag)),
+            ("^" + timestamp + r'(\s*<[^>]*>\s*)$', bygroups(Comment.Preproc, Name.Tag)),
             # normal msgs
             ("^" + timestamp + r"""
                 (\s*<.*?>\s*)          # Nick """,
