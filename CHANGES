@@ -42,6 +42,8 @@ Version 0.11
   and it's documented that tokenization with this lexer may
   raise exceptions.
 
+- New option ``prestyles`` to HTML formatter.
+
 - New option *-g* to pygmentize, to allow lexer guessing based
   on filetext (can be slowish, so file extensions are still checked
   first).
