@@ -867,8 +867,8 @@ class LogtalkLexer(RegexLexer):
 
 def _shortened(word):
     dpos = word.find('$')
-    return '|'.join(word[:dpos] + word[dpos+1:i] + r'\b'
-                    for i in range(len(word), dpos, -1))
+    return '|'.join([word[:dpos] + word[dpos+1:i] + r'\b'
+                     for i in range(len(word), dpos, -1)])
 def _shortened_many(*words):
     return '|'.join(map(_shortened, words))
 
