@@ -21,7 +21,7 @@ from pygments.lexers.compiled import DLexer, CppLexer, CLexer
 from pygments.token import *
 
 __all__ = ['GasLexer', 'ObjdumpLexer','DObjdumpLexer', 'CppObjdumpLexer',
-           'CObjdumpLexer', 'LlvmLexer']
+           'CObjdumpLexer', 'LlvmLexer', 'NasmLexer']
 
 
 class GasLexer(RegexLexer):
@@ -62,7 +62,7 @@ class GasLexer(RegexLexer):
         ],
         'instruction-args': [
             # For objdump-disassembled code, shouldn't occur in
-            # actual assember input
+            # actual assembler input
             ('([a-z0-9]+)( )(<)('+identifier+')(>)',
                 bygroups(Number.Hex, Text, Punctuation, Name.Constant,
                          Punctuation)),
@@ -258,4 +258,75 @@ class LlvmLexer(RegexLexer):
             # Integer types
             (r'i[1-9]\d*', Keyword)
         ]
+    }
+
+
+class NasmLexer(RegexLexer):
+    """
+    For Nasm (Intel) assembly code.
+    """
+    name = 'NASM'
+    aliases = ['nasm']
+    filenames = ['*.asm', '*.ASM']
+    mimetypes = ['text/x-nasm']
+
+    identifier = r'[a-zA-Z$._?][a-zA-Z0-9$._?#@~]*'
+    hexn = r'(?:0[xX][0-9a-fA-F]+|$0[0-9a-fA-F]*|[0-9a-fA-F]+h)'
+    octn = r'[0-7]+q'
+    binn = r'[01]+b'
+    decn = r'[0-9]+'
+    floatn = decn + r'\.e?' + decn
+    string = r'"(\\"|[^"])*"|' + r"'(\\'|[^'])*'"
+    declkw = r'(?:res|d)[bwdqt]|times'
+    register = (r'[a-d][lh]|e?[a-d]x|e?[sb]p|e?[sd]i|[c-gs]s|st[0-7]|'
+                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]')
+    wordop = r'seg|wrt|strict'
+    type = r'byte|[dq]?word'
+    directives = (r'BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'
+                  r'COMMON|CPU|GROUP|UPPERCASE|IMPORT|EXPORT|LIBRARY|MODULE')
+
+    flags = re.IGNORECASE | re.MULTILINE
+    tokens = {
+        'root': [
+            include('whitespace'),
+            (r'^\s*%', Comment.Preproc, 'preproc'),
+            (identifier + ':', Name.Label),
+            (directives, Keyword, 'instruction-args'),
+            (r'(%s)\s+(equ)' % identifier,
+                bygroups(Name.Constant, Keyword.Declaration),
+                'instruction-args'),
+            (declkw, Keyword.Declaration, 'instruction-args'),
+            (identifier, Name.Function, 'instruction-args'),
+            (r'[\r\n]+', Text)
+        ],
+        'instruction-args': [
+            (string, String),
+            (hexn, Number.Hex),
+            (octn, Number.Oct),
+            (binn, Number),
+            (floatn, Number.Float),
+            (decn, Number.Integer),
+            include('punctuation'),
+            (register, Name.Builtin),
+            (identifier, Name.Variable),
+            (r'[\r\n]+', Text, '#pop'),
+            include('whitespace')
+        ],
+        'preproc': [
+            (r'[^;\n]+', Comment.Preproc),
+            (r';.*?\n', Comment.Single, '#pop'),
+            (r'\n', Comment.Preproc, '#pop'),
+        ],
+        'whitespace': [
+            (r'\n', Text),
+            (r'[ \t]+', Text),
+            (r';.*', Comment.Single)
+        ],
+        'punctuation': [
+            (r'[,():\[\]]+', Punctuation),
+            (r'[&|^<>+*/%~-]+', Operator),
+            (r'[$]+', Keyword.Constant),
+            (wordop, Operator.Word),
+            (type, Keyword.Type)
+        ],
     }

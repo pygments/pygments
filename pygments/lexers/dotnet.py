@@ -94,7 +94,10 @@ class CSharpLexer(RegexLexer):
                 (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?"
                  r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
                 (r'#[ \t]*(if|endif|else|elif|define|undef|'
-                 r'line|error|warning|region|endregion)\b.*?\n', Comment.Preproc),
+                 r'line|error|warning|region|endregion|pragma)\b.*?\n',
+                 Comment.Preproc),
+                (r'\b(extern)(\s+)(alias)\b', bygroups(Keyword, Text,
+                 Keyword)),
                 (r'(abstract|as|base|break|case|catch|'
                  r'checked|const|continue|default|delegate|'
                  r'do|else|enum|event|explicit|extern|false|finally|'
@@ -104,9 +107,10 @@ class CSharpLexer(RegexLexer):
                  r'ref|return|sealed|sizeof|stackalloc|static|'
                  r'switch|this|throw|true|try|typeof|'
                  r'unchecked|unsafe|virtual|void|while|'
-                 r'get|set|new|partial)\b', Keyword),
+                 r'get|set|new|partial|yield|add|remove|value)\b', Keyword),
+                (r'(global)(::)', bygroups(Keyword, Punctuation)),
                 (r'(bool|byte|char|decimal|double|float|int|long|object|sbyte|'
-                 r'short|string|uint|ulong|ushort)\b', Keyword.Type),
+                 r'short|string|uint|ulong|ushort)\b\??', Keyword.Type),
                 (r'(class|struct)(\s+)', bygroups(Keyword, Text), 'class'),
                 (r'(namespace|using)(\s+)', bygroups(Keyword, Text), 'namespace'),
                 (cs_ident, Name),

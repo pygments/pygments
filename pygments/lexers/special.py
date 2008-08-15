@@ -39,7 +39,9 @@ line_re = re.compile('.*?\n')
 
 class RawTokenLexer(Lexer):
     """
-    Recreate a token stream formatted with the `RawTokenFormatter`.
+    Recreate a token stream formatted with the `RawTokenFormatter`.  This
+    lexer raises exceptions during parsing if the token stream in the
+    file is malformed.
 
     Additional options accepted:
 
@@ -49,7 +51,7 @@ class RawTokenLexer(Lexer):
     """
     name = 'Raw token data'
     aliases = ['raw']
-    filenames = ['*.raw']
+    filenames = []
     mimetypes = ['application/x-pygments-tokens']
 
     def __init__(self, **options):
@@ -86,6 +88,8 @@ class RawTokenLexer(Lexer):
                     ttype = Token
                     ttypes = ttypestr.split('.')[1:]
                     for ttype_ in ttypes:
+                        if not ttype_ or not ttype_[0].isupper():
+                            raise ValueError('malformed token name')
                         ttype = getattr(ttype, ttype_)
                     _ttype_cache[ttypestr] = ttype
                 val = val[2:-2].decode('unicode-escape')
