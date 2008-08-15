@@ -11,7 +11,8 @@
 
 from pygments.formatter import Formatter
 from pygments.util import get_choice_opt
-
+from pygments.token import Token
+from pygments.console import colorize
 
 __all__ = ['NullFormatter', 'RawTokenFormatter']
 
@@ -46,6 +47,11 @@ class RawTokenFormatter(Formatter):
     `compress`
         If set to ``'gz'`` or ``'bz2'``, compress the output with the given
         compression algorithm after encoding (default: ``''``).
+    `error_color`
+        If set to a color name, highlight error tokens using that color.  If
+        set but with no value, defaults to ``'red'``.
+        *New in Pygments 0.11.*
+
     """
     name = 'Raw tokens'
     aliases = ['raw', 'tokens']
@@ -57,6 +63,15 @@ class RawTokenFormatter(Formatter):
         Formatter.__init__(self, **options)
         self.compress = get_choice_opt(options, 'compress',
                                        ['', 'none', 'gz', 'bz2'], '')
+        self.error_color = options.get('error_color', None)
+        if self.error_color is True:
+            self.error_color = 'red'
+        if self.error_color is not None:
+            try:
+                colorize(self.error_color, '')
+            except KeyError:
+                raise ValueError("Invalid color %r specified" %
+                                 self.error_color)
 
     def format(self, tokensource, outfile):
         if self.compress == 'gz':
@@ -78,6 +93,14 @@ class RawTokenFormatter(Formatter):
 
         lasttype = None
         lastval = u''
-        for ttype, value in tokensource:
-            write("%s\t%r\n" % (ttype, value))
+        if self.error_color:
+            for ttype, value in tokensource:
+                line = "%s\t%r\n" % (ttype, value)
+                if ttype is Token.Error:
+                    write(colorize(self.error_color, line))
+                else:
+                    write(line)
+        else:
+            for ttype, value in tokensource:
+                write("%s\t%r\n" % (ttype, value))
         flush()

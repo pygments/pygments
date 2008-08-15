@@ -67,8 +67,8 @@ class CLexer(RegexLexer):
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
              r'for|goto|if|register|restricted|return|sizeof|static|struct|'
              r'switch|typedef|union|volatile|virtual|while)\b', Keyword),
-            (r'(int|long|float|short|double|char|unsigned|signed|void|'
-             r'_Complex|_Imaginary|_Bool)\b', Keyword.Type),
+            (r'(int|long|float|short|double|char|unsigned|signed|void)\b',
+             Keyword.Type),
             (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
             (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
              r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
@@ -83,14 +83,14 @@ class CLexer(RegexLexer):
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')({)',
-             bygroups(using(this), Name.Function, using(this), Text, Punctuation),
+             bygroups(using(this), Name.Function, using(this), using(this), Punctuation),
              'function'),
             # function declarations
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')(;)',
-             bygroups(using(this), Name.Function, using(this), Text, Punctuation)),
+             bygroups(using(this), Name.Function, using(this), using(this), Punctuation)),
             ('', Text, 'statement'),
         ],
         'statement' : [
@@ -123,11 +123,40 @@ class CLexer(RegexLexer):
         ],
         'if0': [
             (r'^\s*#if.*?(?<!\\)\n', Comment, '#push'),
+            (r'^\s*#el(?:se|if).*\n', Comment.Preproc, '#pop'),
             (r'^\s*#endif.*?(?<!\\)\n', Comment, '#pop'),
             (r'.*?\n', Comment),
         ]
     }
 
+    stdlib_types = ['size_t', 'ssize_t', 'off_t', 'wchar_t', 'ptrdiff_t',
+            'sig_atomic_t', 'fpos_t', 'clock_t', 'time_t', 'va_list',
+            'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t', 'mbstate_t',
+            'wctrans_t', 'wint_t', 'wctype_t']
+    c99_types = ['_Bool', '_Complex', 'int8_t', 'int16_t', 'int32_t', 'int64_t',
+            'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t',
+            'int_least16_t', 'int_least32_t', 'int_least64_t',
+            'uint_least8_t', 'uint_least16_t', 'uint_least32_t',
+            'uint_least64_t', 'int_fast8_t', 'int_fast16_t', 'int_fast32_t',
+            'int_fast64_t', 'uint_fast8_t', 'uint_fast16_t', 'uint_fast32_t',
+            'uint_fast64_t', 'intptr_t', 'uintptr_t', 'intmax_t', 'uintmax_t']
+
+    def __init__(self, **options):
+        self.stdlibhighlighting = get_bool_opt(options,
+                'stdlibhighlighting', True)
+        self.c99highlighting = get_bool_opt(options,
+                'c99highlighting', True)
+        RegexLexer.__init__(self, **options)
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in \
+            RegexLexer.get_tokens_unprocessed(self, text):
+            if token is Name:
+                if self.stdlibhighlighting and value in self.stdlib_types:
+                    token = Keyword.Type
+                elif self.c99highlighting and value in self.c99_types:
+                    token = Keyword.Type
+            yield index, token, value
 
 class CppLexer(RegexLexer):
     """
@@ -864,17 +893,18 @@ class JavaLexer(RegexLexer):
             (r'//.*?\n', Comment),
             (r'/\*.*?\*/', Comment),
             (r'@[a-zA-Z_][a-zA-Z0-9_\.]*', Name.Decorator),
-            (r'(abstract|assert|break|case|catch|'
-             r'const|continue|default|do|else|enum|extends|final|'
-             r'finally|for|if|goto|implements|instanceof|'
-             r'native|new|package|private|protected|public|'
-             r'return|static|strictfp|super|switch|synchronized|this|'
-             r'throw|throws|transient|try|volatile|while)\b', Keyword),
+            (r'(assert|break|case|catch|continue|default|do|else|finally|for|'
+             r'if|goto|instanceof|new|return|switch|this|throw|try|while)\b',
+             Keyword),
+            (r'(abstract|const|enum|extends|final|implements|native|private|'
+             r'protected|public|static|strictfp|super|synchronized|throws|'
+             r'transient|volatile)\b', Keyword.Declaration),
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
+            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text)),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(class|interface)(\s+)', bygroups(Keyword, Text), 'class'),
-            (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
+            (r'(class|interface)(\s+)', bygroups(Keyword.Declaration, Text), 'class'),
+            (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
             (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
@@ -1011,8 +1041,8 @@ class ObjectiveCLexer(RegexLexer):
 
     tokens = {
         'whitespace': [
-            (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
-            (r'^\s*#', Comment.Preproc, 'macro'),
+            (r'^(\s*)(#if\s+0)', bygroups(Text, Comment.Preproc), 'if0'),
+            (r'^(\s*)(#)', bygroups(Text, Comment.Preproc), 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
@@ -1031,9 +1061,10 @@ class ObjectiveCLexer(RegexLexer):
             (r'[()\[\],.]', Punctuation),
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
              r'for|goto|if|register|restricted|return|sizeof|static|struct|'
-             r'switch|typedef|union|volatile|virtual|while|@selector|'
+             r'switch|typedef|union|volatile|virtual|while|in|@selector|'
              r'@private|@protected|@public|@encode|'
-             r'@synchronized|@try|@throw|@catch|@finally|@end)\b', Keyword),
+             r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
+             r'@synthesize|@dynamic)\b', Keyword),
             (r'(int|long|float|short|double|char|unsigned|signed|void|'
              r'id|BOOL|IBOutlet|IBAction|SEL)\b', Keyword.Type),
             (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
@@ -1068,7 +1099,7 @@ class ObjectiveCLexer(RegexLexer):
             ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*:\s*)([a-zA-Z_][a-zA-Z0-9_]*)?',
              bygroups(Name.Class, Text, Name.Class), '#pop'),
             # interface definition for a category
-            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\([a-zA-Z_][a-zA-Z0-9_]\)*)',
+            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\([a-zA-Z_][a-zA-Z0-9_]*\))',
              bygroups(Name.Class, Text, Name.Label), '#pop'),
             # simple interface / implementation
             ('([a-zA-Z_][a-zA-Z0-9_]*)', Name.Class, '#pop')

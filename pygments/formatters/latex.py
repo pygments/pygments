@@ -109,6 +109,7 @@ class LatexFormatter(Formatter):
         The LaTeX commands used to produce colored output are constructed
         using this prefix and some letters (default: ``'PY'``).
         *New in Pygments 0.7.*
+
         *New in Pygments 0.10:* the default is now ``'PY'`` instead of ``'C'``.
     """
     name = 'LaTeX'
@@ -154,6 +155,12 @@ class LatexFormatter(Formatter):
                 cmndef = r'\textit{' + cmndef + '}'
             if ndef['underline']:
                 cmndef = r'\underline{' + cmndef + '}'
+            if ndef['roman']:
+                cmndef = r'\textrm{' + cmndef + '}'
+            if ndef['sans']:
+                cmndef = r'\textsf{' + cmndef + '}'
+            if ndef['mono']:
+                cmndef = r'\texttt{' + cmndef + '}'
             if ndef['color']:
                 cmndef = r'\textcolor[rgb]{%s}{%s}' % (
                     rgbcolor(ndef['color']),
