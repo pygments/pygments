@@ -12,16 +12,19 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using, this
+from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, this, \
+                           do_insertions
 from pygments.token import Error, Punctuation, \
-     Text, Comment, Operator, Keyword, Name, String, Number
+     Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.util import shebang_matches
 
 
-__all__ = ['SqlLexer', 'MySqlLexer', 'BrainfuckLexer', 'BashLexer',
-           'BatchLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
-           'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer', 'GnuplotLexer',
-           'PovrayLexer']
+__all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
+           'BashLexer', 'BatchLexer', 'BefungeLexer', 'RedcodeLexer',
+           'MOOCodeLexer', 'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer',
+           'GnuplotLexer', 'PovrayLexer']
+
+line_re  = re.compile('.*?\n')
 
 
 class SqlLexer(RegexLexer):
@@ -209,6 +212,44 @@ class MySqlLexer(RegexLexer):
             (r'[/*]', Comment.Multiline)
         ]
     }
+
+
+class SqliteConsoleLexer(Lexer):
+    """
+    Lexer for example sessions using sqlite3.
+    """
+
+    name = 'sqlite3con'
+    aliases = []
+    filenames = ['*.sqlite3-console']
+    mimetypes = ['text/x-sqlite3-console']
+
+    def get_tokens_unprocessed(self, data):
+        sql = SqlLexer(**self.options)
+
+        curcode = ''
+        insertions = []
+        for match in line_re.finditer(data):
+            line = match.group()
+            if line.startswith('sqlite> ') or line.startswith('   ...> '):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, line[:8])]))
+                curcode += line[8:]
+            else:
+                if curcode:
+                    for item in do_insertions(insertions,
+                                              sql.get_tokens_unprocessed(curcode)):
+                        yield item
+                    curcode = ''
+                    insertions = []
+                if line.startswith('SQL error: '):
+                    yield (match.start(), Generic.Traceback, line)
+                else:
+                    yield (match.start(), Generic.Output, line)
+        if curcode:
+            for item in do_insertions(insertions,
+                                      sql.get_tokens_unprocessed(curcode)):
+                yield item
 
 
 class BrainfuckLexer(RegexLexer):
