@@ -6,7 +6,7 @@
     Lexers for compiled languages.
 
     :copyright: 2006-2008 by Georg Brandl, Armin Ronacher, Christoph Hack,
-                Whitney Young, Kirk McDonald, Stou Sandalski.
+                Whitney Young, Kirk McDonald, Stou Sandalski, Krzysiek Goj.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -955,9 +955,10 @@ class ScalaLexer(RegexLexer):
             (r'(abstract|case|catch|do|else|extends|final|finally|for|forSome'
              r'|if|implicit|lazy|match|new|null|override|private|protected'
              r'|requires|return|sealed|super|this|throw|try|type|while|with'
-             r'|yield|let|def|var|=>|<-|_)\b', Keyword),
+             r'|yield|let|def|var|println|=>|<-|_)\b', Keyword),
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
+            (r'(String|Int|Array|HashMap)\b', Keyword.Type),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(import)(\s+)', bygroups(Keyword, Text), 'import'),
             (r'"(\\\\|\\"|[^"])*"', String),
