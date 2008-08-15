@@ -23,8 +23,11 @@ Version 0.11
     C99 types.
   * Bash lexer now correctly highlights heredocs without preceeding
     whitespace.
-  * Vim lexer now highlights hex colors properly and knows a couple more
-    keywords.
+  * Vim lexer now highlights hex colors properly and knows a couple
+    more keywords.
+  * Irc logs lexer now handles xchat's default time format (#340)
+    and correctly highlights lines ending in ``>``
+
 - Added "Visual Studio" style.
 
 - Updated markdown processor to Markdown 1.7.
