@@ -759,6 +759,19 @@ class PerlLexer(RegexLexer):
     flags = re.DOTALL | re.MULTILINE
     # TODO: give this a perl guy who knows how to parse perl...
     tokens = {
+        'balanced-regex': [
+            (r'/(\\\\|\\/|[^/])*/[egimosx]*', String.Regex, '#pop'),
+            (r'!(\\\\|\\!|[^!])*![egimosx]*', String.Regex, '#pop'),
+            (r'\\(\\\\|[^\\])*\\[egimosx]*', String.Regex, '#pop'),
+            (r'{(\\\\|\\}|[^}])*}[egimosx]*', String.Regex, '#pop'),
+            (r'<(\\\\|\\>|[^>])*>[egimosx]*', String.Regex, '#pop'),
+            (r'\[(\\\\|\\\]|[^\]])*\][egimosx]*', String.Regex, '#pop'),
+            (r'\((\\\\|\\\)|[^\)])*\)[egimosx]*', String.Regex, '#pop'),
+            (r'@(\\\\|\\\@|[^\@])*@[egimosx]*', String.Regex, '#pop'),
+            (r'%(\\\\|\\\%|[^\%])*%[egimosx]*', String.Regex, '#pop'),
+            (r'\$(\\\\|\\\$|[^\$])*\$[egimosx]*', String.Regex, '#pop'),
+            (r'!(\\\\|\\!|[^!])*![egimosx]*', String.Regex, '#pop'),
+        ],
         'root': [
             (r'\#.*?$', Comment.Single),
             (r'=[a-zA-Z0-9]+\s+.*?\n[.\n]*?\n\s*=cut', Comment.Multiline),
@@ -768,7 +781,18 @@ class PerlLexer(RegexLexer):
             (r'(format)(\s+)([a-zA-Z0-9_]+)(\s*)(=)(\s*\n)',
              bygroups(Keyword, Text, Name, Text, Punctuation, Text), 'format'),
             (r'(eq|lt|gt|le|ge|ne|not|and|or|cmp)\b', Operator.Word),
+            # common delimiters
             (r's/(\\\\|\\/|[^/])*/(\\\\|\\/|[^/])*/[egimosx]*', String.Regex),
+            (r's!(\\\\|\\!|[^!])*!(\\\\|\\!|[^!])*![egimosx]*', String.Regex),
+            (r's\\(\\\\|[^\\])*\\(\\\\|[^\\])*\\[egimosx]*', String.Regex),
+            (r's@(\\\\|\\@|[^@])*@(\\\\|\\@|[^@])*@[egimosx]*', String.Regex),
+            (r's%(\\\\|\\%|[^%])*%(\\\\|\\%|[^%])*%[egimosx]*', String.Regex),
+            # balanced delimiters
+            (r's{(\\\\|\\}|[^}])*}\s*', String.Regex, 'balanced-regex'),
+            (r's<(\\\\|\\>|[^>])*>\s*', String.Regex, 'balanced-regex'),
+            (r's\[(\\\\|\\\]|[^\]])*\]\s*', String.Regex, 'balanced-regex'),
+            (r's\((\\\\|\\\)|[^\)])*\)\s*', String.Regex, 'balanced-regex'),
+
             (r'm?/(\\\\|\\/|[^/\n])*/[gcimosx]*', String.Regex),
             (r'((?<==~)|(?<=\())\s*/(\\\\|\\/|[^/])*/[gcimosx]*', String.Regex),
             (r'\s+', Text),
