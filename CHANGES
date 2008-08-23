@@ -3,7 +3,10 @@ Pygments changelog
 
 Version 0.11
 ------------
-(codename not selected, release XXX XX, 2008)
+(codename Straußenei, released Aug 23, 2008)
+
+Many thanks go to Tim Hatch for writing or integrating most of the bug
+fixes and new features.
 
 - Lexers added:
 
@@ -20,14 +23,14 @@ Version 0.11
   * Scala source files, thanks to Krzysiek Goj
 
 - Lexers improved:
-  * C lexer highlights standard library functions now and supports
-    C99 types.
-  * Bash lexer now correctly highlights heredocs without preceeding
+  * C lexer highlights standard library functions now and supports C99
+    types.
+  * Bash lexer now correctly highlights heredocs without preceding
     whitespace.
   * Vim lexer now highlights hex colors properly and knows a couple
     more keywords.
-  * Irc logs lexer now handles xchat's default time format (#340)
-    and correctly highlights lines ending in ``>``.
+  * Irc logs lexer now handles xchat's default time format (#340) and
+    correctly highlights lines ending in ``>``.
   * Support more delimiters for perl regular expressions (#258).
   * ObjectiveC lexer now supports 2.0 features.
 
@@ -38,21 +41,20 @@ Version 0.11
 - Support roman/sans/mono style defs and use them in the LaTeX
   formatter.
 
-- The RawTokenFormatter is no longer registered to ``*.raw``
-  and it's documented that tokenization with this lexer may
-  raise exceptions.
+- The RawTokenFormatter is no longer registered to ``*.raw`` and it's
+  documented that tokenization with this lexer may raise exceptions.
 
 - New option ``hl_lines`` to HTML formatter, to highlight certain
   lines.
 
 - New option ``prestyles`` to HTML formatter.
 
-- New option *-g* to pygmentize, to allow lexer guessing based
-  on filetext (can be slowish, so file extensions are still checked
+- New option *-g* to pygmentize, to allow lexer guessing based on
+  filetext (can be slowish, so file extensions are still checked
   first).
 
-- ``guess_lexer()`` now makes its decision much faster due to a
-  cache of whether data is xml-like (a check which is used in several
+- ``guess_lexer()`` now makes its decision much faster due to a cache
+  of whether data is xml-like (a check which is used in several
   versions of ``analyse_text()``.  Several lexers also have more
   accurate ``analyse_text()`` now.
 
@@ -79,8 +81,8 @@ Version 0.10
 
 - In the LatexFormatter, the *commandprefix* option is now by default
   'PY' instead of 'C', since the latter resulted in several collisions
-  with other packages.  Also, the special meaning of the *arg* argument
-  to ``get_style_defs()`` was removed.
+  with other packages.  Also, the special meaning of the *arg*
+  argument to ``get_style_defs()`` was removed.
 
 - Added ImageFormatter, to format code as PNG, JPG, GIF or BMP.
   (Needs the Python Imaging Library.)
@@ -103,8 +105,9 @@ Version 0.10
 
 - Added BlackWhiteStyle.
 
-- Bash lexer now correctly highlights math, does not require whitespace
-  after semicolons, and correctly highlights boolean operators.
+- Bash lexer now correctly highlights math, does not require
+  whitespace after semicolons, and correctly highlights boolean
+  operators.
 
 - Makefile lexer is now capable of handling BSD and GNU make syntax.
 
@@ -140,8 +143,8 @@ Version 0.9
   enhanced. You shouldn't get UnicodeErrors from it anymore if you
   don't give an encoding option.
 
-- Added a ``-P`` option to the command line mode which can be used
-  to give options whose values contain commas or equals signs.
+- Added a ``-P`` option to the command line mode which can be used to
+  give options whose values contain commas or equals signs.
 
 - Added 256-color terminal formatter.
 
@@ -183,31 +186,37 @@ Version 0.8
   * MiniD, thanks to Jarrett Billingsley
   * Vim Script, by Tim Hatch
 
-- The HTML formatter now has a second line-numbers mode in which it will
-  just integrate the numbers in the same ``<pre>`` tag as the code.
+- The HTML formatter now has a second line-numbers mode in which it
+  will just integrate the numbers in the same ``<pre>`` tag as the
+  code.
 
 - The `CSharpLexer` now is Unicode-aware, which means that it has an
-  option that can be set so that it correctly lexes Unicode identifiers
-  allowed by the C# specs.
+  option that can be set so that it correctly lexes Unicode
+  identifiers allowed by the C# specs.
 
 - Added a `RaiseOnErrorTokenFilter` that raises an exception when the
   lexer generates an error token, and a `VisibleWhitespaceFilter` that
-  converts whitespace (spaces, tabs, newlines) into visible characters.
+  converts whitespace (spaces, tabs, newlines) into visible
+  characters.
 
-- Fixed the `do_insertions()` helper function to yield correct indices.
+- Fixed the `do_insertions()` helper function to yield correct
+  indices.
 
 - The ReST lexer now automatically highlights source code blocks in
-  ".. sourcecode:: language" and ".. code:: language" directive blocks.
+  ".. sourcecode:: language" and ".. code:: language" directive
+  blocks.
 
-- Improved the default style (thanks to Tiberius Teng). The old default
-  is still available as the "emacs" style (which was an alias before).
+- Improved the default style (thanks to Tiberius Teng). The old
+  default is still available as the "emacs" style (which was an alias
+  before).
 
-- The `get_style_defs` method of HTML formatters now uses the `cssclass`
-  option as the default selector if it was given.
+- The `get_style_defs` method of HTML formatters now uses the
+  `cssclass` option as the default selector if it was given.
 
 - Improved the ReST and Bash lexers a bit.
 
-- Fixed a few bugs in the Makefile and Bash lexers, thanks to Tim Hatch.
+- Fixed a few bugs in the Makefile and Bash lexers, thanks to Tim
+  Hatch.
 
 - Fixed a bug in the command line code that disallowed ``-O`` options
   when using the ``-S`` option.
@@ -219,8 +228,8 @@ Version 0.7.1
 -------------
 (released Feb 15, 2007)
 
-- Fixed little highlighting bugs in the Python, Java, Scheme and Apache
-  Config lexers.
+- Fixed little highlighting bugs in the Python, Java, Scheme and
+  Apache Config lexers.
 
 - Updated the included manpage.
 
@@ -231,39 +240,40 @@ Version 0.7
 -----------
 (codename Faschingskrapfn, released Feb 14, 2007)
 
-- Added a MoinMoin parser that uses Pygments. With it, you get Pygments
-  highlighting in Moin Wiki pages.
+- Added a MoinMoin parser that uses Pygments. With it, you get
+  Pygments highlighting in Moin Wiki pages.
 
 - Changed the exception raised if no suitable lexer, formatter etc. is
   found in one of the `get_*_by_*` functions to a custom exception,
-  `pygments.util.ClassNotFound`. It is, however, a subclass of `ValueError`
-  in order to retain backwards compatibility.
+  `pygments.util.ClassNotFound`. It is, however, a subclass of
+  `ValueError` in order to retain backwards compatibility.
 
-- Added a `-H` command line option which can be used to get the docstring
-  of a lexer, formatter or filter.
+- Added a `-H` command line option which can be used to get the
+  docstring of a lexer, formatter or filter.
 
-- Made the handling of lexers and formatters more consistent. The aliases
-  and filename patterns of formatters are now attributes on them. 
+- Made the handling of lexers and formatters more consistent. The
+  aliases and filename patterns of formatters are now attributes on
+  them.
 
 - Added an OCaml lexer, thanks to Adam Blinkinsop.
 
-- Made the HTML formatter more flexible, and easily subclassable in order
-  to make it easy to implement custom wrappers, e.g. alternate line
-  number markup. See the documentation.
+- Made the HTML formatter more flexible, and easily subclassable in
+  order to make it easy to implement custom wrappers, e.g. alternate
+  line number markup. See the documentation.
 
 - Added an `outencoding` option to all formatters, making it possible
-  to override the `encoding` (which is used by lexers and formatters) when
-  using the command line interface. Also, if using the terminal formatter
-  and the output file is a terminal and has an encoding attribute, use it
-  if no encoding is given.
+  to override the `encoding` (which is used by lexers and formatters)
+  when using the command line interface. Also, if using the terminal
+  formatter and the output file is a terminal and has an encoding
+  attribute, use it if no encoding is given.
 
-- Made it possible to just drop style modules into the `styles` subpackage
-  of the Pygments installation.
+- Made it possible to just drop style modules into the `styles`
+  subpackage of the Pygments installation.
 
 - Added a "state" keyword argument to the `using` helper.
 
-- Added a `commandprefix` option to the `LatexFormatter` which allows to
-  control how the command names are constructed.
+- Added a `commandprefix` option to the `LatexFormatter` which allows
+  to control how the command names are constructed.
 
 - Added quite a few new lexers, thanks to Tim Hatch:
 
@@ -277,7 +287,8 @@ Version 0.7
 
 - Added Mako lexers by Ben Bangert.
 
-- Added "fruity" style, another dark background originally vim-based theme.
+- Added "fruity" style, another dark background originally vim-based
+  theme.
 
 - Added sources.list lexer by Dennis Kaarsemaker.
 
@@ -296,8 +307,8 @@ Version 0.6
 -----------
 (codename Zimtstern, released Dec 20, 2006)
 
-- Added option for the HTML formatter to write the CSS to an external file
-  in "full document" mode.
+- Added option for the HTML formatter to write the CSS to an external
+  file in "full document" mode.
 
 - Added RTF formatter.
 
@@ -315,8 +326,8 @@ Version 0.6
 
 - Added a Scheme lexer (thanks to Marek Kubica).
 
-- Added some functions to iterate over existing lexers, formatters
-  and lexers.
+- Added some functions to iterate over existing lexers, formatters and
+  lexers.
 
 - The HtmlFormatter's `get_style_defs()` can now take a list as an
   argument to generate CSS with multiple prefixes.
@@ -324,8 +335,8 @@ Version 0.6
 - Support for guessing input encoding added.
 
 - Encoding support added: all processing is now done with Unicode
-  strings, input and output are converted from and optionally to
-  byte strings (see the ``encoding`` option of lexers and formatters).
+  strings, input and output are converted from and optionally to byte
+  strings (see the ``encoding`` option of lexers and formatters).
 
 - Some improvements in the C(++) lexers handling comments and line
   continuations.
