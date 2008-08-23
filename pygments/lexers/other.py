@@ -222,7 +222,7 @@ class SqliteConsoleLexer(Lexer):
     """
 
     name = 'sqlite3con'
-    aliases = []
+    aliases = ['sqlite3']
     filenames = ['*.sqlite3-console']
     mimetypes = ['text/x-sqlite3-console']
 
