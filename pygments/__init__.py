@@ -20,7 +20,7 @@
 
     .. _Pygments tip: http://dev.pocoo.org/hg/pygments-main/archive/tip.tar.gz#egg=Pygments-dev
 
-    :copyright: 2006-2007 by Georg Brandl, Armin Ronacher and others.
+    :copyright: 2006-2008 by Georg Brandl, Armin Ronacher and others.
     :license: BSD, see LICENSE for more details.
 """
 
