@@ -126,7 +126,7 @@ class MakefileLexer(Lexer):
 
     name = 'Makefile'
     aliases = ['make', 'makefile', 'mf', 'bsdmake']
-    filenames = ['*.mak', 'Makefile', 'makefile', 'Makefile.*']
+    filenames = ['*.mak', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile']
     mimetypes = ['text/x-makefile']
 
     r_special = re.compile(r'^(?:'
