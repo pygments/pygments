@@ -281,7 +281,11 @@ def main(args=sys.argv):
             return 1
 
         arg = a_opt or ''
-        print fmter.get_style_defs(arg)
+        try:
+            print fmter.get_style_defs(arg)
+        except Exception, err:
+            print >>sys.stderr, 'Error:', err
+            return 1
         return 0
 
     # if no -S is given, -a is not allowed
