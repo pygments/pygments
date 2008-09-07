@@ -305,6 +305,10 @@ class ImageFormatter(Formatter):
             self.line_number_width = 0
         self.drawables = []
 
+    def get_style_defs(self, arg=''):
+        raise NotImplementedError('The -S option is meaningless for the image '
+                                  'formatter. Use -O style=<stylename> instead.')
+
     def _get_line_height(self):
         """
         Get the height of a line.
