@@ -277,7 +277,8 @@ class ImageFormatter(Formatter):
         self.image_pad = get_int_opt(options, 'image_pad', 10)
         self.line_pad = get_int_opt(options, 'line_pad', 2)
         # The fonts
-        self.fonts = FontManager(options.get('font_name', ''))
+        fontsize = get_int_opt(options, 'font_size', 14)
+        self.fonts = FontManager(options.get('font_name', ''), fontsize)
         self.fontw, self.fonth = self.fonts.get_char_size()
         # Line number options
         self.line_number_fg = options.get('line_number_fg', '#886')
