@@ -5,6 +5,9 @@ Version 0.12
 ------------
 (released XXX XX, 2008)
 
+- Add Python3TracebackLexer and ``python3`` option to 
+  PythonConsoleLexer.
+
 - Provide one formatter class per image format, so that surprises like
     pygmentize -f gif -o foo.gif foo.py
   creating a PNG file are avoided.
