@@ -30,6 +30,7 @@ STYLE_MAP = {
     'fruity':   'fruity::FruityStyle',
     'bw':       'bw::BlackWhiteStyle',
     'vs':       'vs::VisualStudioStyle',
+    'tango':    'tango::TangoStyle',
 }
 
 
