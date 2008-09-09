@@ -28,7 +28,8 @@ from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
-           'MiniDLexer', 'IoLexer', 'TclLexer', 'Python3Lexer', 'ClojureLexer']
+           'MiniDLexer', 'IoLexer', 'TclLexer', 'ClojureLexer',
+           'Python3Lexer', 'Python3TracebackLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -283,14 +284,28 @@ class PythonConsoleLexer(Lexer):
         Traceback (most recent call last):
           File "<stdin>", line 1, in <module>
         ZeroDivisionError: integer division or modulo by zero
+
+    Additional options:
+
+    `python3`
+        Use Python 3 lexer for code.  Default is ``False``.
+        *New in Pygments 0.12.*
     """
     name = 'Python console session'
     aliases = ['pycon']
     mimetypes = ['text/x-python-doctest']
 
+    def __init__(self, **options):
+        self.python3 = get_bool_opt(options, 'python3', False)
+        Lexer.__init__(self, **options)
+
     def get_tokens_unprocessed(self, text):
-        pylexer = PythonLexer(**self.options)
-        tblexer = PythonTracebackLexer(**self.options)
+        if self.python3:
+            pylexer = Python3Lexer(**self.options)
+            tblexer = Python3TracebackLexer(**self.options)
+        else:
+            pylexer = PythonLexer(**self.options)
+            tblexer = PythonTracebackLexer(**self.options)
 
         curcode = ''
         insertions = []
@@ -355,6 +370,42 @@ class PythonTracebackLexer(RegexLexer):
              bygroups(Text, Name.Builtin, Text, Number, Text, Name.Identifier, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(PythonLexer), Text)),
+            (r'^([ \t]*)(...)(\n)',
+             bygroups(Text, Comment, Text)), # for doctests...
+            (r'^(.+)(: )(.+)(\n)',
+             bygroups(Name.Class, Text, Name.Identifier, Text), '#pop'),
+            (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
+             bygroups(Name.Class, Text), '#pop')
+        ],
+    }
+
+
+class Python3TracebackLexer(RegexLexer):
+    """
+    For Python 3.0 tracebacks, with support for chained exceptions.
+
+    *New in Pygments 0.12.*
+    """
+
+    name = 'Python Traceback'
+    aliases = ['py3tb']
+    filenames = ['*.py3tb']
+    mimetypes = ['text/x-python3-traceback']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
+            (r'^During handling of the above exception, another '
+             r'exception occurred:\n\n', Generic.Traceback),
+            (r'^The above exception was the direct cause of the '
+             r'following exception:\n\n', Generic.Traceback),
+        ],
+        'intb': [
+            (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
+             bygroups(Text, Name.Builtin, Text, Number, Text, Name.Identifier, Text)),
+            (r'^(    )(.+)(\n)',
+             bygroups(Text, using(Python3Lexer), Text)),
             (r'^([ \t]*)(...)(\n)',
              bygroups(Text, Comment, Text)), # for doctests...
             (r'^(.+)(: )(.+)(\n)',
