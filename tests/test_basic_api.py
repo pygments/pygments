@@ -3,7 +3,7 @@
     Pygments basic API tests
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: 2006-2007 by Georg Brandl.
+    :copyright: 2006-2008 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -136,7 +136,11 @@ class FormattersTest(unittest.TestCase):
                 inst = formatter(opt1="val1")
             except (ImportError, FontNotFound):
                 continue
-            inst.get_style_defs()
+            try:
+                inst.get_style_defs()
+            except NotImplementedError:
+                # may be raised by formatters for which it doesn't make sense
+                pass
             inst.format(ts, out)
 
     def test_encodings(self):
