@@ -5,7 +5,7 @@
 
     Lexers for functional languages.
 
-    :copyright: 2006-2007 by Georg Brandl, Marek Kubica,
+    :copyright: 2006-2008 by Georg Brandl, Marek Kubica,
                 Adam Blinkinsop <blinks@acm.org>, Matteo Sasso.
     :license: BSD, see LICENSE for more details.
 """
@@ -353,6 +353,7 @@ class HaskellLexer(RegexLexer):
         'root': [
             # Whitespace:
             (r'\s+', Text),
+            #(r'--\s*|.*$', Comment.Doc),
             (r'--.*$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
             # Lexemes:
@@ -360,7 +361,7 @@ class HaskellLexer(RegexLexer):
             (r'\bimport\b', Keyword.Reserved, 'import'),
             (r'\bmodule\b', Keyword.Reserved, 'module'),
             (r'\berror\b', Name.Exception),
-            (r'\b(%s)\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'^[_a-z][\w\']*', Name.Function),
             (r'[_a-z][\w\']*', Name),
             (r'[A-Z][\w\']*', Keyword.Type),
@@ -410,7 +411,9 @@ class HaskellLexer(RegexLexer):
         'funclist': [
             (r'\s+', Text),
             (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
-            (r'[a-zA-Z0-9_]+', Name.Function),
+            (r'[_a-z][\w\']+', Name.Function),
+            (r'--.*$', Comment.Single),
+            (r'{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
             # (HACK, but it makes sense to push two instances, believe me)
