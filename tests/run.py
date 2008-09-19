@@ -14,7 +14,6 @@
 
 import sys, os, new
 import unittest
-import __builtin__
 
 from os.path import dirname, basename, join, abspath
 
@@ -26,9 +25,6 @@ except ImportError:
     coverage = None
 
 testdir = abspath(dirname(__file__))
-
-# useful for all tests
-__builtin__.testdir = testdir
 
 failed = []
 total_test_count = 0
@@ -92,7 +88,6 @@ def run_tests(with_coverage=False):
     for testfile in files:
         globs = {}
         try:
-            __builtin__.testfile = testfile
             execfile(join(testdir, testfile), globs)
         except Exception, exc:
             raise

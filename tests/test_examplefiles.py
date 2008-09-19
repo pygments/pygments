@@ -22,6 +22,7 @@ class ExampleFileTest(unittest.TestCase):
 lfd = 0
 
 # generate methods
+testdir = os.path.dirname(__file__)
 for fn in os.listdir(os.path.join(testdir, 'examplefiles')):
     absfn = os.path.join(testdir, 'examplefiles', fn)
     if not os.path.isfile(absfn):
