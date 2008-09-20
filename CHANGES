@@ -5,10 +5,16 @@ Version 0.12
 ------------
 (codename not selected, release XXX XX, 2008)
 
+- Don't use join(splitlines()) when converting newlines to ``\n``,
+  because that doesn't keep all newlines at the end when the
+  ``stripnl`` lexer option is False.
+
 - Add Tango style, written by Andre Roberge for the Crunchy project.
 
 - Add Python3TracebackLexer and ``python3`` option to 
   PythonConsoleLexer.
+
+- Fix a few bugs in the Haskell lexer.
 
 - Fix PythonTracebackLexer to be able to recognize SyntaxError and
   KeyboardInterrupt (#360).

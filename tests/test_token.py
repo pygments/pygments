@@ -36,15 +36,17 @@ class TokenTest(unittest.TestCase):
         self.assert_(token.string_to_tokentype('String') is token.String)
 
     def test_sanity_check(self):
-        try:
-            try:
-                old_stdout = sys.stdout
-                sys.stdout = StringIO.StringIO()
-                execfile(token.__file__.rstrip('c'), {'__name__': '__main__'})
-            finally:
-                sys.stdout = old_stdout
-        except SystemExit:
-            pass
+        stp = token.STANDARD_TYPES.copy()
+        stp[token.Token] = '---' # Token and Text do conflict, that is okay
+        t = {}
+        for k, v in stp.iteritems():
+            t.setdefault(v, []).append(k)
+        if len(t) == len(stp):
+            return # Okay
+
+        for k, v in t.iteritems():
+            if len(v) > 1:
+                self.fail("%r has more than one key: %r" % (k, v))
 
 
 if __name__ == '__main__':
