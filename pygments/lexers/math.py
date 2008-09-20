@@ -255,6 +255,7 @@ class NumPyLexer(PythonLexer):
 
     # override the mimetypes to not inherit them from python
     mimetypes = []
+    filenames = []
 
     EXTRA_KEYWORDS = set([
         'abs', 'absolute', 'accumulate', 'add', 'alen', 'all', 'allclose',
