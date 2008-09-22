@@ -168,7 +168,7 @@ if __name__ == '__main__':
     found_lexers.sort()
 
     # extract useful sourcecode from this file
-    f = file(__file__)
+    f = open(__file__)
     try:
         content = f.read()
     finally:
@@ -177,7 +177,7 @@ if __name__ == '__main__':
     footer = content[content.find("if __name__ == '__main__':"):]
 
     # write new file
-    f = file(__file__, 'w')
+    f = open(__file__, 'w')
     f.write(header)
     f.write('LEXERS = {\n    %s\n}\n\n' % ',\n    '.join(found_lexers))
     f.write(footer)
