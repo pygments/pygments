@@ -18,11 +18,11 @@ from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.formatters.html import escape_html
 
-from support import test_file
+import support
 
-TEST_DIR = abspath(dirname(__file__))
+TESTFILE, TESTDIR = support.location(__file__)
 
-tokensource = list(PythonLexer().get_tokens(file(test_file()).read()))
+tokensource = list(PythonLexer().get_tokens(file(TESTFILE).read()))
 
 class HtmlFormatterTest(unittest.TestCase):
     def test_correct_output(self):
@@ -42,13 +42,13 @@ class HtmlFormatterTest(unittest.TestCase):
         # test correct behavior
         # CSS should be in /tmp directory
         fmt1 = HtmlFormatter(full=True, cssfile='fmt1.css')
-        # CSS should be in TEST_DIR (TEST_DIR is absolute)
-        fmt2 = HtmlFormatter(full=True, cssfile=join(TEST_DIR, 'fmt2.css'))
+        # CSS should be in TESTDIR (TESTDIR is absolute)
+        fmt2 = HtmlFormatter(full=True, cssfile=join(TESTDIR, 'fmt2.css'))
         tfile = tempfile.NamedTemporaryFile(suffix='.html')
         fmt1.format(tokensource, tfile)
         try:
             fmt2.format(tokensource, tfile)
-            self.assert_(isfile(join(TEST_DIR, 'fmt2.css')))
+            self.assert_(isfile(join(TESTDIR, 'fmt2.css')))
         except IOError:
             # test directory not writable
             pass
@@ -57,7 +57,7 @@ class HtmlFormatterTest(unittest.TestCase):
         self.assert_(isfile(join(dirname(tfile.name), 'fmt1.css')))
         os.unlink(join(dirname(tfile.name), 'fmt1.css'))
         try:
-            os.unlink(join(TEST_DIR, 'fmt2.css'))
+            os.unlink(join(TESTDIR, 'fmt2.css'))
         except OSError:
             pass
 
@@ -79,7 +79,7 @@ class HtmlFormatterTest(unittest.TestCase):
         tfile = os.fdopen(handle, 'w+b')
         fmt.format(tokensource, tfile)
         tfile.close()
-        catname = os.path.join(TEST_DIR, 'dtds', 'HTML4.soc')
+        catname = os.path.join(TESTDIR, 'dtds', 'HTML4.soc')
         try:
             try:
                 import subprocess
