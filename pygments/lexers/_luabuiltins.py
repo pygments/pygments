@@ -222,7 +222,7 @@ if __name__ == '__main__':
             return 'basic'
 
     def regenerate(filename, modules):
-        f = file(filename)
+        f = open(filename)
         try:
             content = f.read()
         finally:
@@ -232,7 +232,7 @@ if __name__ == '__main__':
         footer = content[content.find("if __name__ == '__main__':"):]
 
 
-        f = file(filename, 'w')
+        f = open(filename, 'w')
         f.write(header)
         f.write('MODULES = %s\n\n' % pprint.pformat(modules))
         f.write(footer)

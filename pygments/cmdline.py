@@ -315,7 +315,7 @@ def main(args=sys.argv):
                 print >>sys.stderr, 'Error:', err
                 return 1
         try:
-            outfile = file(outfn, 'wb')
+            outfile = open(outfn, 'wb')
         except Exception, err:
             print >>sys.stderr, 'Error: cannot open outfile:', err
             return 1
@@ -340,7 +340,7 @@ def main(args=sys.argv):
 
         infn = args[0]
         try:
-            code = file(infn).read()
+            code = open(infn).read()
         except Exception, err:
             print >>sys.stderr, 'Error: cannot read infile:', err
             return 1
