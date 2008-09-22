@@ -17,7 +17,9 @@ from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatters.img import FontNotFound
 
-from support import test_file
+import support
+
+TESTFILE, TESTDIR = support.location(__file__)
 
 test_content = [chr(i) for i in xrange(33, 128)] * 5
 random.shuffle(test_content)
@@ -92,7 +94,7 @@ class FiltersTest(unittest.TestCase):
         for x in filters.FILTERS.keys():
             lx = lexers.PythonLexer()
             lx.add_filter(x, **filter_args.get(x, {}))
-            text = file(test_file()).read().decode('utf-8')
+            text = file(TESTFILE).read().decode('utf-8')
             tokens = list(lx.get_tokens(text))
             roundtext = ''.join([t[1] for t in tokens])
             if x not in ('whitespace', 'keywordcase'):
@@ -108,14 +110,14 @@ class FiltersTest(unittest.TestCase):
     def test_whitespace(self):
         lx = lexers.PythonLexer()
         lx.add_filter('whitespace', spaces='%')
-        text = file(test_file()).read().decode('utf-8')
+        text = file(TESTFILE).read().decode('utf-8')
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
         self.failIf(' ' in lxtext)
 
     def test_keywordcase(self):
         lx = lexers.PythonLexer()
         lx.add_filter('keywordcase', case='capitalize')
-        text = file(test_file()).read().decode('utf-8')
+        text = file(TESTFILE).read().decode('utf-8')
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
         self.assert_('Def' in lxtext and 'Class' in lxtext)
 

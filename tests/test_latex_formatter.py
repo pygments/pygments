@@ -14,13 +14,15 @@ import tempfile
 from pygments.formatters import LatexFormatter
 from pygments.lexers import PythonLexer
 
-from support import test_file
+import support
+
+TESTFILE, TESTDIR = support.location(__file__)
 
 
 class LatexFormatterTest(unittest.TestCase):
 
     def test_valid_output(self):
-        tokensource = list(PythonLexer().get_tokens(file(test_file()).read()))
+        tokensource = list(PythonLexer().get_tokens(file(TESTFILE).read()))
         fmt = LatexFormatter(full=True)
 
         handle, pathname = tempfile.mkstemp('.tex')

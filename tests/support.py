@@ -4,22 +4,12 @@ Support for Pygments tests
 """
 
 import os
-import random
 
 
-def _get_all_test_files():
-    tests = []
-    here = os.path.abspath(os.path.dirname(__file__))
-    for dirpath, dirs, files in os.walk(here):
-        tests.extend(os.path.join(dirpath, fn) for fn in files
-                     if fn.startswith("test_") and fn.endswith(".py"))
-        dirs[:] = [d for d in dirs if d.startswith("test_")]
-    return tests
-
-_testfiles = _get_all_test_files()
-
-def test_file():
+def location(mod_name):
     """
-    Randomly choose a file to test.
+    Return the file and directory that the code for *mod_name* is in.
     """
-    return random.choice(_testfiles)
+    source = mod_name[:-1] if mod_name.endswith("pyc") else mod_name
+    source = os.path.abspath(source)
+    return source, os.path.dirname(source)
