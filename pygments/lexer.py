@@ -127,10 +127,9 @@ class Lexer(object):
         Also preprocess the text, i.e. expand tabs and strip it if
         wanted and applies registered filters.
         """
-        if isinstance(text, unicode):
-            text = u'\n'.join(text.splitlines())
-        else:
-            text = '\n'.join(text.splitlines())
+        text = text.replace('\r\n', '\n')
+        text = text.replace('\r', '\n')
+        if not isinstance(text, unicode):
             if self.encoding == 'guess':
                 try:
                     text = text.decode('utf-8')
