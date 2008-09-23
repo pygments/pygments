@@ -16,6 +16,10 @@ import StringIO
 from pygments import highlight
 from pygments.cmdline import main as cmdline_main
 
+import support
+
+TESTFILE, TESTDIR = support.location(__file__)
+
 
 def run_cmdline(*args):
     saved_stdout = sys.stdout
@@ -44,21 +48,21 @@ class CmdLineTest(unittest.TestCase):
         self.assertEquals(c, 0)
 
     def test_O_opt(self):
-        filename = os.path.join(testdir, testfile)
+        filename = TESTFILE
         c, o, e = run_cmdline("-Ofull=1,linenos=true,foo=bar", "-fhtml", filename)
         self.assertEquals(c, 0)
         self.assert_("<html" in o)
         self.assert_('class="linenos"' in o)
 
     def test_P_opt(self):
-        filename = os.path.join(testdir, testfile)
+        filename = TESTFILE
         c, o, e = run_cmdline("-Pfull", "-Ptitle=foo, bar=baz=,", "-fhtml", filename)
         self.assertEquals(c, 0)
         self.assert_("<title>foo, bar=baz=,</title>" in o)
 
     def test_F_opt(self):
-        filename = os.path.join(testdir, testfile)
-        c, o, e = run_cmdline("-Fhighlight:tokentype=Name.Blubb,names=testfile testdir",
+        filename = TESTFILE
+        c, o, e = run_cmdline("-Fhighlight:tokentype=Name.Blubb,names=TESTFILE filename",
                               "-fhtml", filename)
         self.assertEquals(c, 0)
         self.assert_('<span class="n-Blubb' in o)
@@ -82,7 +86,7 @@ class CmdLineTest(unittest.TestCase):
         # test that cmdline gives the same output as library api
         from pygments.lexers import PythonLexer
         from pygments.formatters import HtmlFormatter
-        filename = os.path.join(testdir, testfile)
+        filename = TESTFILE
         code = file(filename).read()
 
         output = highlight(code, PythonLexer(), HtmlFormatter())
