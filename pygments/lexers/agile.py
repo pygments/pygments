@@ -453,7 +453,7 @@ class RubyLexer(ExtendedRegexLexer):
         ctx.end = match.end(5)
         # this may find other heredocs
         for i, t, v in self.get_tokens_unprocessed(context=ctx):
-            yield i+start, t, v
+            yield i, t, v
         ctx.pos = match.end()
 
         if outermost:
