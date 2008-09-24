@@ -95,7 +95,7 @@ if __name__ == '__main__':
 
     categories = {}
 
-    f = file(__file__)
+    f = open(__file__)
     try:
         content = f.read()
     finally:
@@ -109,7 +109,7 @@ if __name__ == '__main__':
         cat = unicodedata.category(c)
         categories.setdefault(cat, []).append(c)
 
-    f = file(__file__, 'w')
+    f = open(__file__, 'w')
     f.write(header)
 
     for cat in sorted(categories):
