@@ -19,13 +19,15 @@ Version 0.12
 - Fix PythonTracebackLexer to be able to recognize SyntaxError and
   KeyboardInterrupt (#360).
 
-- Provide one formatter class per image format, so that surprises like
+- Provide one formatter class per image format, so that surprises like::
+
     pygmentize -f gif -o foo.gif foo.py
+
   creating a PNG file are avoided.
 
 - Actually use the `font_size` option of the image formatter.
 
-- Fixed numpy lexer that it doesn't listen for "*.py" any longer.
+- Fixed numpy lexer that it doesn't listen for `*.py` any longer.
 
 - Unified Diff lexer supports the "udiff" alias now.
 
@@ -63,6 +65,7 @@ fixes and new features.
   * Scala source files, thanks to Krzysiek Goj
 
 - Lexers improved:
+
   * C lexer highlights standard library functions now and supports C99
     types.
   * Bash lexer now correctly highlights heredocs without preceding
