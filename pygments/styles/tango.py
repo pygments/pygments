@@ -3,9 +3,6 @@
     pygments.styles.tango
     ~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: 2008 by André Roberge.
-    :license: BSD
-
     The Crunchy default Style inspired from the color palette from
     the Tango Icon Theme Guidelines.
 
@@ -35,6 +32,9 @@
     Taking Python for example, comments (Comment.*) and docstrings (String.Doc)
     have been chosen to have the same style.  Similarly, keywords (Keyword.*),
     and Operator.Word (and, or, in) have been assigned the same style.
+
+    :copyright: 2008 by André Roberge.
+    :license: BSD, see LICENSE for more details.
 """
 
 from pygments.style import Style
