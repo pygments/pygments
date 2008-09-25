@@ -394,7 +394,7 @@ class Python3TracebackLexer(RegexLexer):
     *New in Pygments 0.12.*
     """
 
-    name = 'Python Traceback'
+    name = 'Python 3.0 Traceback'
     aliases = ['py3tb']
     filenames = ['*.py3tb']
     mimetypes = ['text/x-python3-traceback']
