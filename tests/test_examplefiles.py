@@ -27,6 +27,11 @@ def test_example_files():
         try:
             lx = get_lexer_for_filename(absfn)
         except ClassNotFound:
+            if "_" not in fn:
+                raise AssertionError('file %r has no registered extension, '
+                                     'nor is of the form <lexer>_filename '
+                                     'for overriding, thus no lexer found.'
+                                    % fn)
             try:
                 name, rest = fn.split("_", 1)
                 lx = get_lexer_by_name(name)
