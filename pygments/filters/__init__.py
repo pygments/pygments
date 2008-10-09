@@ -85,7 +85,7 @@ class CodeTagFilter(Filter):
         Filter.__init__(self, **options)
         tags = get_list_opt(options, 'codetags',
                             ['XXX', 'TODO', 'BUG', 'NOTE'])
-        self.tag_re = re.compile(r'(%s)' % '|'.join([
+        self.tag_re = re.compile(r'\b(%s)\b' % '|'.join([
             re.escape(tag) for tag in tags if tag
         ]))
 

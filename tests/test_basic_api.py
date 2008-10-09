@@ -121,6 +121,22 @@ class FiltersTest(unittest.TestCase):
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
         self.assert_('Def' in lxtext and 'Class' in lxtext)
 
+    def test_codetag(self):
+        lx = lexers.PythonLexer()
+        lx.add_filter('codetagify')
+        text = u'# BUG: text'
+        tokens = list(lx.get_tokens(text))
+        self.assertEquals('# ', tokens[0][1])
+        self.assertEquals('BUG', tokens[1][1])
+
+    def test_codetag_boundary(self):
+        # http://dev.pocoo.org/projects/pygments/ticket/368
+        lx = lexers.PythonLexer()
+        lx.add_filter('codetagify')
+        text = u'# DEBUG: text'
+        tokens = list(lx.get_tokens(text))
+        self.assertEquals('# DEBUG: text', tokens[0][1])
+
 
 class FormattersTest(unittest.TestCase):
 
