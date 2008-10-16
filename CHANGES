@@ -31,11 +31,16 @@ Version 0.12
 
 - Unified Diff lexer supports the "udiff" alias now.
 
-- RubyConsoleLexer now supports simple prompt mode (#363)
+- RubyConsoleLexer now supports simple prompt mode (#363).
 
-- JavascriptLexer is smarter about what constitutes a regex (#356)
+- JavascriptLexer is smarter about what constitutes a regex (#356).
 
-- Add Applescript lexer, thanks to Andreas Amann (#330)
+- Add Applescript lexer, thanks to Andreas Amann (#330).
+
+- Make the codetags more strict about matching words (#368).
+
+- NginxConfLexer is a little more accurate on mimetypes and
+  variables (#370).
 
 
 Version 0.11.1
