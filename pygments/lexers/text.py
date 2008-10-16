@@ -1467,10 +1467,10 @@ class NginxConfLexer(RegexLexer):
         'base': [
             (r'#.*\n', Comment.Single),
             (r'on|off', Name.Constant),
-            (r'\$[^\s;#]+', Name.Variable),
+            (r'\$[^\s;#()]+', Name.Variable),
             (r'([a-z0-9.-]+)(:)([0-9]+)',
              bygroups(Name, Punctuation, Number.Integer)),
-            (r'[a-z-]+/[a-z-]+', Name), # mimetype
+            (r'[a-z-]+/[a-z-+]+', String), # mimetype
             #(r'[a-zA-Z._-]+', Keyword),
             (r'[0-9]+[km]?\b', Number.Integer),
             (r'(~)(\s*)([^\s{]+)', bygroups(Punctuation, Text, String.Regex)),
