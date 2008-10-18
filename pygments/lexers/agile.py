@@ -1115,9 +1115,9 @@ class MiniDLexer(RegexLexer):
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
             (r'/\+', Comment, 'nestedcomment'),
             # Keywords
-            (r'(as|break|case|class|catch|continue|coroutine|default'
+            (r'(as|assert|break|case|catch|continue|coroutine|default'
              r'|do|else|finally|for|foreach|function|global|namespace'
-             r'|if|import|in|is|local|module|return|super|switch'
+             r'|if|import|in|is|local|module|object|return|super|switch'
              r'|this|throw|try|vararg|while|with|yield)\b', Keyword),
             (r'(false|true|null)\b', Keyword.Constant),
             # FloatLiteral
@@ -1138,19 +1138,19 @@ class MiniDLexer(RegexLexer):
             ),
             # StringLiteral
             # -- WysiwygString
-            (r'@"[^"]*"', String),
+            (r'@"(""|.)*"', String),
             # -- AlternateWysiwygString
-            (r'`[^`]*`', String),
+            (r'`(``|.)*`', String),
             # -- DoubleQuotedString
             (r'"(\\\\|\\"|[^"])*"', String),
             # Tokens
             (
-             r'(~=|\^=|%=|\*=|==|!=|>>>=|>>>|>>=|>>|>=|<=>|\?='
+             r'(~=|\^=|%=|\*=|==|!=|>>>=|>>>|>>=|>>|>=|<=>|\?=|-\>'
              r'|<<=|<<|<=|\+\+|\+=|--|-=|\|\||\|=|&&|&=|\.\.|/=)'
-             r'|[-/.&|\+<>!()\[\]{}?,;:=*%^~#]', Punctuation
+             r'|[-/.&$@|\+<>!()\[\]{}?,;:=*%^~#\\]', Punctuation
             ),
             # Identifier
-            (r'[a-zA-Z_](\w|::)*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'nestedcomment': [
             (r'[^+/]+', Comment),
