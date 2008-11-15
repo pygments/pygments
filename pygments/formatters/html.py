@@ -330,13 +330,14 @@ class HtmlFormatter(Formatter):
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
+        self.title = self._encodeifneeded(self.title)
         self.nowrap = get_bool_opt(options, 'nowrap', False)
         self.noclasses = get_bool_opt(options, 'noclasses', False)
         self.classprefix = options.get('classprefix', '')
-        self.cssclass = options.get('cssclass', 'highlight')
-        self.cssstyles = options.get('cssstyles', '')
-        self.prestyles = options.get('prestyles', '')
-        self.cssfile = options.get('cssfile', '')
+        self.cssclass = self._encodeifneeded(options.get('cssclass', 'highlight'))
+        self.cssstyles = self._encodeifneeded(options.get('cssstyles', ''))
+        self.prestyles = self._encodeifneeded(options.get('prestyles', ''))
+        self.cssfile = self._encodeifneeded(options.get('cssfile', ''))
         linenos = options.get('linenos', False)
         if linenos == 'inline':
             self.linenos = 2
@@ -431,6 +432,11 @@ class HtmlFormatter(Formatter):
             lines.insert(0, '%s.hll { background-color: %s }' %
                          (prefix(''), self.style.highlight_color))
         return '\n'.join(lines)
+
+    def _encodeifneeded(self, value):
+        if not self.encoding or isinstance(value, str):
+            return value
+        return value.encode(self.encoding)
 
     def _wrap_full(self, inner, outfile):
         if self.cssfile:
