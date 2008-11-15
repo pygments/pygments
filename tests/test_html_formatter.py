@@ -3,7 +3,7 @@
     Pygments HTML formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: 2006-2007 by Georg Brandl.
+    :copyright: 2006-2008 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -22,7 +22,7 @@ import support
 
 TESTFILE, TESTDIR = support.location(__file__)
 
-tokensource = list(PythonLexer().get_tokens(file(TESTFILE).read()))
+tokensource = list(PythonLexer(encoding='utf-8').get_tokens(file(TESTFILE).read()))
 
 class HtmlFormatterTest(unittest.TestCase):
     def test_correct_output(self):
@@ -41,9 +41,10 @@ class HtmlFormatterTest(unittest.TestCase):
     def test_external_css(self):
         # test correct behavior
         # CSS should be in /tmp directory
-        fmt1 = HtmlFormatter(full=True, cssfile='fmt1.css')
+        fmt1 = HtmlFormatter(full=True, cssfile='fmt1.css', outencoding='utf-8')
         # CSS should be in TESTDIR (TESTDIR is absolute)
-        fmt2 = HtmlFormatter(full=True, cssfile=join(TESTDIR, 'fmt2.css'))
+        fmt2 = HtmlFormatter(full=True, cssfile=join(TESTDIR, 'fmt2.css'),
+                             outencoding='utf-8')
         tfile = tempfile.NamedTemporaryFile(suffix='.html')
         fmt1.format(tokensource, tfile)
         try:
@@ -73,7 +74,8 @@ class HtmlFormatterTest(unittest.TestCase):
 
     def test_valid_output(self):
         # test all available wrappers
-        fmt = HtmlFormatter(full=True, linenos=True, noclasses=True)
+        fmt = HtmlFormatter(full=True, linenos=True, noclasses=True,
+                            outencoding='utf-8')
 
         handle, pathname = tempfile.mkstemp('.html')
         tfile = os.fdopen(handle, 'w+b')
@@ -90,7 +92,7 @@ class HtmlFormatterTest(unittest.TestCase):
                 ret = os.popen('nsgmls -s -c "%s" "%s"' % (catname, pathname)).close()
                 if ret == 32512: raise OSError  # not found
         except OSError:
-            # latex not available
+            # nsgmls not available
             pass
         else:
             self.failIf(ret, 'nsgmls run reported errors')
@@ -110,3 +112,13 @@ class HtmlFormatterTest(unittest.TestCase):
         sd = fmt.get_style_defs(['.bar', '.baz'])
         fl = sd.splitlines()[0]
         self.assert_('.bar' in fl and '.baz' in fl)
+
+    def test_unicode_options(self):
+        fmt = HtmlFormatter(title=u'Föö',
+                            cssclass=u'bär',
+                            cssstyles=u'div:before { content: \'bäz\' }',
+                            encoding='utf-8')
+        handle, pathname = tempfile.mkstemp('.html')
+        tfile = os.fdopen(handle, 'w+b')
+        fmt.format(tokensource, tfile)
+        tfile.close()

@@ -32,6 +32,9 @@ Version 1.0
 
 - Fixed numpy lexer that it doesn't listen for `*.py` any longer.
 
+- Fixed HTML formatter so that text options can be Unicode
+  strings (#371).
+
 - Unified Diff lexer supports the "udiff" alias now.
 
 - Fix a few issues in Scala lexer (#367).
