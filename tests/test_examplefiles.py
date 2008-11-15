@@ -42,7 +42,10 @@ def test_example_files():
 def check_lexer(lx, absfn):
     text = file(absfn, 'U').read()
     text = text.strip('\n') + '\n'
-    text = text.decode('latin1')
+    try:
+        text = text.decode('utf-8')
+    except UnicodeError:
+        text = text.decode('latin1')
     ntext = []
     for type, val in lx.get_tokens(text):
         ntext.append(val)
