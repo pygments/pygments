@@ -289,7 +289,7 @@ class PythonConsoleLexer(Lexer):
 
     `python3`
         Use Python 3 lexer for code.  Default is ``False``.
-        *New in Pygments 0.12.*
+        *New in Pygments 1.0.*
     """
     name = 'Python console session'
     aliases = ['pycon']
@@ -391,7 +391,7 @@ class Python3TracebackLexer(RegexLexer):
     """
     For Python 3.0 tracebacks, with support for chained exceptions.
 
-    *New in Pygments 0.12.*
+    *New in Pygments 1.0.*
     """
 
     name = 'Python 3.0 Traceback'
