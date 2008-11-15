@@ -34,6 +34,7 @@ The above command could therefore also be given as::
 
     $ pygmentize -o test.html test.py
 
+
 Options and filters
 -------------------
 
@@ -78,6 +79,19 @@ the "colorful" style prepending a ".syntax" selector to all style rules.
 
 For an explanation what ``-a`` means for `a particular formatter`_, look for
 the `arg` argument for the formatter's `get_style_defs()` method.
+
+
+Getting lexer names
+-------------------
+
+*New in Pygments 1.0.*
+
+The ``-N`` option guesses a lexer name for a given filename, so that ::
+
+    $ pygmentize -N setup.py
+
+will print out ``python``.  It won't highlight anything yet.  If no specific
+lexer is known for that filename, ``text`` is printed.
 
 
 Getting help
