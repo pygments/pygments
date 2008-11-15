@@ -475,7 +475,7 @@ class GifImageFormatter(ImageFormatter):
     Create a GIF image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 0.12.* (You could create GIF images before by passing a
+    *New in Pygments 1.0.* (You could create GIF images before by passing a
     suitable `image_format` option to the `ImageFormatter`.)
     """
 
@@ -490,7 +490,7 @@ class JpgImageFormatter(ImageFormatter):
     Create a JPEG image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 0.12.* (You could create JPEG images before by passing a
+    *New in Pygments 1.0.* (You could create JPEG images before by passing a
     suitable `image_format` option to the `ImageFormatter`.)
     """
 
@@ -505,7 +505,7 @@ class BmpImageFormatter(ImageFormatter):
     Create a bitmap image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 0.12.* (You could create bitmap images before by passing a
+    *New in Pygments 1.0.* (You could create bitmap images before by passing a
     suitable `image_format` option to the `ImageFormatter`.)
     """
 
