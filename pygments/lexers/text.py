@@ -584,7 +584,7 @@ class RstLexer(RegexLexer):
     name = 'reStructuredText'
     aliases = ['rst', 'rest', 'restructuredtext']
     filenames = ['*.rst', '*.rest']
-    mimetypes = ["text/x-rst"]
+    mimetypes = ["text/x-rst", "text/prs.fallenstein.rst"]
     flags = re.MULTILINE
 
     def _handle_sourcecode(self, match):
