@@ -78,9 +78,7 @@ def format(tokens, formatter, outfile=None):
 
 def highlight(code, lexer, formatter, outfile=None):
     """
-    Lex ``code`` with ``lexer`` and format it with the formatter
-    ``formatter``. If ``filters`` are given they will be applied
-    on the token stream.
+    Lex ``code`` with ``lexer`` and format it with the formatter ``formatter``.
 
     If ``outfile`` is given and a valid file object (an object
     with a ``write`` method), the result will be written to it, otherwise
