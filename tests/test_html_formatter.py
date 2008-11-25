@@ -22,7 +22,7 @@ import support
 
 TESTFILE, TESTDIR = support.location(__file__)
 
-tokensource = list(PythonLexer(encoding='utf-8').get_tokens(file(TESTFILE).read()))
+tokensource = list(PythonLexer(encoding='utf-8').get_tokens(open(TESTFILE).read()))
 
 class HtmlFormatterTest(unittest.TestCase):
     def test_correct_output(self):

@@ -3,7 +3,7 @@
     Command line test
     ~~~~~~~~~~~~~~~~~
 
-    :copyright: 2006-2007 by Georg Brandl.
+    :copyright: 2006-2008 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -87,7 +87,7 @@ class CmdLineTest(unittest.TestCase):
         from pygments.lexers import PythonLexer
         from pygments.formatters import HtmlFormatter
         filename = TESTFILE
-        code = file(filename).read()
+        code = open(filename).read()
 
         output = highlight(code, PythonLexer(), HtmlFormatter())
 
