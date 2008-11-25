@@ -40,7 +40,7 @@ def test_example_files():
         yield check_lexer, lx, absfn
 
 def check_lexer(lx, absfn):
-    text = file(absfn, 'U').read()
+    text = open(absfn, 'U').read()
     text = text.strip('\n') + '\n'
     try:
         text = text.decode('utf-8')
