@@ -5,7 +5,7 @@
 
     Special lexers.
 
-    :copyright: 2006-2007 by Georg Brandl.
+    :copyright: 2006-2008 by Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -60,6 +60,9 @@ class RawTokenLexer(Lexer):
         Lexer.__init__(self, **options)
 
     def get_tokens(self, text):
+        if isinstance(text, unicode):
+            # raw token stream never has any non-ASCII characters
+            text = text.encode('ascii')
         if self.compress == 'gz':
             import gzip
             gzipfile = gzip.GzipFile('', 'rb', 9, cStringIO.StringIO(text))
