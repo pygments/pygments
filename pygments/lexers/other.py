@@ -13,8 +13,7 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, this, \
-                           do_insertions
+from pygments.lexer import Lexer, RegexLexer, include, bygroups, do_insertions
 from pygments.token import Error, Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.util import shebang_matches

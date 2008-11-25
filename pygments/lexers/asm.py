@@ -15,8 +15,7 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import RegexLexer, include, bygroups, using, \
-                           this, DelegatingLexer
+from pygments.lexer import RegexLexer, include, bygroups, using, DelegatingLexer
 from pygments.lexers.compiled import DLexer, CppLexer, CLexer
 from pygments.token import *
 
