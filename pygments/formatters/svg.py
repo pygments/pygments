@@ -8,7 +8,6 @@
     :copyright: 2007 by Matthew Harrison, Georg Brandl.
     :license: BSD, see LICENSE for more details.
 """
-import StringIO
 
 from pygments.formatter import Formatter
 from pygments.util import get_bool_opt, get_int_opt
