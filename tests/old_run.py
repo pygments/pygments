@@ -12,7 +12,7 @@
     :license: GNU GPL, see LICENSE for more details.
 """
 
-import sys, os, new
+import sys, os
 import unittest
 
 from os.path import dirname, basename, join, abspath
