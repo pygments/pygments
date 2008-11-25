@@ -94,7 +94,7 @@ class FiltersTest(unittest.TestCase):
         for x in filters.FILTERS.keys():
             lx = lexers.PythonLexer()
             lx.add_filter(x, **filter_args.get(x, {}))
-            text = open(TESTFILE).read().decode('utf-8')
+            text = open(TESTFILE, 'rb').read().decode('utf-8')
             tokens = list(lx.get_tokens(text))
             roundtext = ''.join([t[1] for t in tokens])
             if x not in ('whitespace', 'keywordcase'):
@@ -110,14 +110,14 @@ class FiltersTest(unittest.TestCase):
     def test_whitespace(self):
         lx = lexers.PythonLexer()
         lx.add_filter('whitespace', spaces='%')
-        text = open(TESTFILE).read().decode('utf-8')
+        text = open(TESTFILE, 'rb').read().decode('utf-8')
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
         self.failIf(' ' in lxtext)
 
     def test_keywordcase(self):
         lx = lexers.PythonLexer()
         lx.add_filter('keywordcase', case='capitalize')
-        text = open(TESTFILE).read().decode('utf-8')
+        text = open(TESTFILE, 'rb').read().decode('utf-8')
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
         self.assert_('Def' in lxtext and 'Class' in lxtext)
 
