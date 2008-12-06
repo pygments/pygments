@@ -159,11 +159,11 @@ class MatlabLexer(RegexLexer):
             (r'^\s*function', Keyword, 'deffunc'),
 
             # from 'iskeyword' on version 7.4.0.336 (R2007a):
-            (r'break|case|catch|classdef|continue|else|elseif|end|for|function|'
-             r'global|if|otherwise|parfor|persistent|return|switch|try|while',
+            (r'(break|case|catch|classdef|continue|else|elseif|end|for|function|'
+             r'global|if|otherwise|parfor|persistent|return|switch|try|while)\b',
              Keyword),
 
-            ("|".join(elfun+specfun+elmat), Name.Builtin),
+            ("(" + "|".join(elfun+specfun+elmat) + r')\b',  Name.Builtin),
 
             # operators:
             (r'-|==|~=|<|>|<=|>=|&&|&|~', Operator),
@@ -175,9 +175,11 @@ class MatlabLexer(RegexLexer):
             (r'=|:|;', Punctuation),
 
             # quote can be transpose, instead of string:
-            (r'(\w+)(\')', bygroups(Text, Operator)),
+            # (not great, but handles common cases...)
+            (r'([\w\)\]]+)(\')', bygroups(Text, Operator)),
 
             (r'\'', String, 'string'),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
         ],
         'string': [
