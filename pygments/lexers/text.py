@@ -219,7 +219,7 @@ class DiffLexer(RegexLexer):
             (r'-.*\n', Generic.Deleted),
             (r'!.*\n', Generic.Strong),
             (r'@.*\n', Generic.Subheading),
-            (r'(Index|diff).*\n', Generic.Heading),
+            (r'([Ii]ndex|diff).*\n', Generic.Heading),
             (r'=.*\n', Generic.Heading),
             (r'.*\n', Text),
         ]
