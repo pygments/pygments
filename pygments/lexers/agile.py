@@ -142,7 +142,7 @@ class PythonLexer(RegexLexer):
              r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
         'strings': [
-            (r'%(\([a-zA-Z0-9]+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
+            (r'%(\([a-zA-Z0-9_]+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
              '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
             (r'[^\\\'"%\n]+', String),
             # quotes, percents and backslashes must be parsed one at a time
