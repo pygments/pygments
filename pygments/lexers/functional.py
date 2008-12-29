@@ -18,11 +18,11 @@ except NameError:
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
-     String, Number, Punctuation, Literal
+     String, Number, Punctuation, Literal, Generic
 
 
 __all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer', 'LiterateHaskellLexer',
-           'OcamlLexer', 'ErlangLexer']
+           'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer']
 
 
 class SchemeLexer(RegexLexer):
@@ -713,3 +713,46 @@ class ErlangLexer(RegexLexer):
             (atom_re, Name.Entity, '#pop'),
             ],
         }
+
+class ErlangShellLexer(Lexer):
+    """
+    Shell sessions in erl (for Erlang code).
+
+    *New in Pygments 1.1*
+    """
+    name = 'Erlang erl session'
+    aliases = ['erl']
+    filenames = ['*.erl-sh']
+    mimetypes = ['text/x-erl-shellsession']
+
+    _prompt_re = re.compile(r'\d+>(?=\s|\Z)')
+
+    def get_tokens_unprocessed(self, text):
+        erlexer = ErlangLexer(**self.options)
+
+        curcode = ''
+        insertions = []
+        for match in line_re.finditer(text):
+            line = match.group()
+            m = self._prompt_re.match(line)
+            if m is not None:
+                end = m.end()
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, line[:end])]))
+                curcode += line[end:]
+            else:
+                if curcode:
+                    for item in do_insertions(insertions,
+                                    erlexer.get_tokens_unprocessed(curcode)):
+                        yield item
+                    curcode = ''
+                    insertions = []
+                if line.startswith('*'):
+                    yield match.start(), Generic.Traceback, line
+                else:
+                    yield match.start(), Generic.Output, line
+        if curcode:
+            for item in do_insertions(insertions,
+                                      erlexer.get_tokens_unprocessed(curcode)):
+                yield item
+
