@@ -28,7 +28,8 @@ from pygments.token import \
 from pygments.lexers.functional import OcamlLexer
 
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer', 'ScalaLexer',
-           'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer', 'FortranLexer']
+           'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer', 'FortranLexer',
+           'GLShaderLexer']
 
 
 class CLexer(RegexLexer):
@@ -1283,5 +1284,49 @@ class FortranLexer(RegexLexer):
             (r'\d+(?![.Ee])', Number.Integer),
             (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
             (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
+        ],
+    }
+
+class GLShaderLexer(RegexLexer):
+    """
+    GLSL (OpenGL Shader) lexer.
+
+    *New in Pygments 1.1*
+    """
+    name = 'GLSL'
+    aliases = ['glsl']
+    filenames = ['*.vert', '*.frag', '*.geo']
+    mimetypes = ['text/x-glslsrc']
+
+    tokens = {
+        'root': [
+            (r'^#.*', Comment.Preproc),
+            (r'//.*', Comment.Single),
+            (r'/\*[\w\W]*\*/', Comment.Multiline),
+            (r'\+|-|~|!=?|\*|/|%|<<|>>|<=?|>=?|==?|&&?|\^|\|\|?',
+             Operator),
+            (r'[?:]', Operator), # quick hack for ternary
+            (r'\bdefined\b', Operator),
+            (r'[;{}(),\[\]]', Punctuation),
+            #FIXME when e is present, no decimal point needed
+            (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
+            (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
+            (r'0[xX][0-9a-fA-F]*', Number.Hex),
+            (r'0[0-7]*', Number.Octal),
+            (r'[1-9][0-9]*', Number.Integer),
+            (r'\b(attribute|const|uniform|varying|centroid|break|continue|'
+             r'do|for|while|if|else|in|out|inout|float|int|void|bool|true|'
+             r'false|invariant|discard|return|mat[234]|mat[234]x[234]|'
+             r'vec[234]|[ib]vec[234]|sampler[123]D|samplerCube|'
+             r'sampler[12]DShadow|struct)\b', Keyword),
+            (r'\b(asm|class|union|enum|typedef|template|this|packed|goto|'
+             r'switch|default|inline|noinline|volatile|public|static|extern|'
+             r'external|interface|long|short|double|half|fixed|unsigned|'
+             r'lowp|mediump|highp|precision|input|output|hvec[234]|'
+             r'[df]vec[234]|sampler[23]DRect|sampler2DRectShadow|sizeof|'
+             r'cast|namespace|using)\b', Keyword), #future use
+            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name.Variable),
+            (r'\.', Punctuation),
+            (r'\s+', Text),
         ],
     }
