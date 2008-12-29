@@ -563,7 +563,8 @@ class RubyLexer(ExtendedRegexLexer):
              intp_regex_callback),
             # regular fancy strings with qsw
             (r'%[qsw]([^a-zA-Z0-9])([^\1\\]*(?:\\.[^\1\\]*)*)\1', String.Other),
-            (r'(%[QWx]([^a-zA-Z0-9]))([^\2\\]*(?:\\.[^\2\\]*)*)(\2)', intp_string_callback),
+            (r'(%[QWx]([^a-zA-Z0-9]))([^\2\\]*(?:\\.[^\2\\]*)*)(\2)',
+             intp_string_callback),
             # special forms of fancy strings after operators or
             # in method calls with braces
             (r'(?<=[-+/*%=<>&!^|~,(])(\s*)(%([\t ])(?:[^\3\\]*(?:\\.[^\3\\]*)*)\3)',
@@ -573,7 +574,8 @@ class RubyLexer(ExtendedRegexLexer):
             (r'^(\s*)(%([\t ])(?:[^\3\\]*(?:\\.[^\3\\]*)*)\3)',
              bygroups(Text, String.Other, None)),
             # all regular fancy strings without qsw
-            (r'(%([^a-zA-Z0-9\s]))([^\2\\]*(?:\\.[^\2\\]*)*)(\2)', intp_string_callback),
+            (r'(%([^a-zA-Z0-9\s]))([^\2\\]*(?:\\.[^\2\\]*)*)(\2)',
+             intp_string_callback),
         ]
 
         return states
