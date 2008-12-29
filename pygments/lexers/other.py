@@ -13,7 +13,8 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, include, bygroups, do_insertions
+from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
+     this, do_insertions
 from pygments.token import Error, Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.util import shebang_matches
@@ -22,7 +23,8 @@ from pygments.util import shebang_matches
 __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'BashLexer', 'BatchLexer', 'BefungeLexer', 'RedcodeLexer',
            'MOOCodeLexer', 'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer',
-           'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer']
+           'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer',
+           'BashSessionLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -316,6 +318,7 @@ class BefungeLexer(RegexLexer):
     }
 
 
+
 class BashLexer(RegexLexer):
     """
     Lexer for (ba)sh shell scripts.
@@ -391,6 +394,56 @@ class BashLexer(RegexLexer):
 
     def analyse_text(text):
         return shebang_matches(text, r'(ba|z|)sh')
+
+
+class BashSessionLexer(Lexer):
+    """
+    Lexer for simplistic shell sessions.
+
+    *New in Pygments 1.1*
+    """
+
+    name = 'Bash Session'
+    aliases = ['console']
+    filenames = ['*.sh-session']
+    mimetypes = ['application/x-shell-session']
+
+    def get_tokens_unprocessed(self, text):
+        bashlexer = BashLexer(**self.options)
+
+        pos = 0
+        curcode = ''
+        insertions = []
+
+        for match in line_re.finditer(text):
+            line = match.group()
+            m = re.match(r'^((?:|sh\S*?|\w+\S+[@:]\S+(?:\s+\S+)?|\[\S+[@:][^\n]+\].+)[$#%])(.*\n?)', line)
+            if m:
+                # To support output lexers (say diff output), the output
+                # needs to be broken by prompts whenever the output lexer
+                # changes.
+                if not insertions:
+                    pos = match.start()
+
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, m.group(1))]))
+                curcode += m.group(2)
+            elif line.startswith('>'):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, line[:1])]))
+                curcode += line[1:]
+            else:
+                if insertions:
+                    for i, t, v in do_insertions(insertions,
+                                                 bashlexer.get_tokens_unprocessed(curcode)):
+                        yield pos+i, t, v
+                yield match.start(), Generic.Output, line
+                insertions = []
+                curcode = ''
+        if insertions:
+            for i, t, v in do_insertions(insertions,
+                                         bashlexer.get_tokens_unprocessed(curcode)):
+                yield pos+i, t, v
 
 
 class BatchLexer(RegexLexer):
