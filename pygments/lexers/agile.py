@@ -883,7 +883,7 @@ class PerlLexer(RegexLexer):
              r'utime|values|vec|wait|waitpid|wantarray|warn|write'
              r')\b', Name.Builtin),
             (r'((__(DATA|DIE|WARN)__)|(STD(IN|OUT|ERR)))\b', Name.Builtin.Pseudo),
-            (r'<<([a-zA-Z_][a-zA-Z0-9_]*)\n.*?\n\1\n', String),
+            (r'<<([a-zA-Z_][a-zA-Z0-9_]*);?\n.*?\n\1\n', String),
             (r'__END__', Comment.Preproc, 'end-part'),
             (r'\$\^[ADEFHILMOPSTWX]', Name.Variable.Global),
             (r"\$[\\\"\[\]'&`+*.,;=%~?@$!<>(^|/-](?!\w)", Name.Variable.Global),
