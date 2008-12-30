@@ -417,7 +417,8 @@ class BashSessionLexer(Lexer):
 
         for match in line_re.finditer(text):
             line = match.group()
-            m = re.match(r'^((?:|sh\S*?|\w+\S+[@:]\S+(?:\s+\S+)?|\[\S+[@:][^\n]+\].+)[$#%])(.*\n?)', line)
+            m = re.match(r'^((?:|sh\S*?|\w+\S+[@:]\S+(?:\s+\S+)?|\[\S+[@:]'
+                         r'[^\n]+\].+)[$#%])(.*\n?)', line)
             if m:
                 # To support output lexers (say diff output), the output
                 # needs to be broken by prompts whenever the output lexer
@@ -434,8 +435,8 @@ class BashSessionLexer(Lexer):
                 curcode += line[1:]
             else:
                 if insertions:
-                    for i, t, v in do_insertions(insertions,
-                                                 bashlexer.get_tokens_unprocessed(curcode)):
+                    toks = bashlexer.get_tokens_unprocessed(curcode)
+                    for i, t, v in do_insertions(insertions, toks):
                         yield pos+i, t, v
                 yield match.start(), Generic.Output, line
                 insertions = []
@@ -604,18 +605,21 @@ class SmalltalkLexer(RegexLexer):
             (r'\^|\:=|\_', Operator),
             # temporaries
             (r'[\]({}.;!]', Text),
-            
+
         ],
         'method definition' : [
             # Not perfect can't allow whitespaces at the beginning and the
             # without breaking everything
-            (r'([a-zA-Z]+\w*:)(\s*)(\w+)', bygroups(Name.Function, Text, Name.Variable)),
+            (r'([a-zA-Z]+\w*:)(\s*)(\w+)',
+             bygroups(Name.Function, Text, Name.Variable)),
             (r'^(\b[a-zA-Z]+\w*\b)(\s*)$', bygroups(Name.Function, Text)),
-            (r'^([-+*/\\~<>=|&!?,@%]+)(\s*)(\w+)(\s*)$', bygroups(Name.Function, Text, Name.Variable, Text)),
+            (r'^([-+*/\\~<>=|&!?,@%]+)(\s*)(\w+)(\s*)$',
+             bygroups(Name.Function, Text, Name.Variable, Text)),
         ],
         'blockvariables' : [
             include('whitespaces'),
-            (r'(:)(\s*)([A-Za-z\w]+)', bygroups(Operator, Text, Name.Variable)),
+            (r'(:)(\s*)([A-Za-z\w]+)',
+             bygroups(Operator, Text, Name.Variable)),
             (r'\|', Operator, '#pop'),
             (r'', Text, '#pop'), # else pop
         ],
@@ -636,7 +640,7 @@ class SmalltalkLexer(RegexLexer):
             (r'#*\(', String.Symbol, 'inner_parenth'),
         ],
         'parenth' : [
-            # This state is a bit tricky since 
+            # This state is a bit tricky since
             # we can't just pop this state
             (r'\)', String.Symbol, ('root','afterobject')),
             include('_parenth_helper'),
@@ -653,16 +657,19 @@ class SmalltalkLexer(RegexLexer):
         'objects' : [
             (r'\[', Text, 'blockvariables'),
             (r'\]', Text, 'afterobject'),
-            (r'\b(self|super|true|false|nil|thisContext)\b', Name.Builtin.Pseudo, 'afterobject'),
+            (r'\b(self|super|true|false|nil|thisContext)\b',
+             Name.Builtin.Pseudo, 'afterobject'),
             (r'\b[A-Z]\w*(?!:)\b', Name.Class, 'afterobject'),
             (r'\b[a-z]\w*(?!:)\b', Name.Variable, 'afterobject'),
-            (r'#("[^"]*"|[-+*/\\~<>=|&!?,@%]+|[\w:]+)', String.Symbol, 'afterobject'),
+            (r'#("[^"]*"|[-+*/\\~<>=|&!?,@%]+|[\w:]+)',
+             String.Symbol, 'afterobject'),
             include('literals'),
         ],
         'afterobject' : [
             (r'! !$', Keyword , '#pop'), # squeak chunk delimeter
             include('whitespaces'),
-            (r'\b(ifTrue:|ifFalse:|whileTrue:|whileFalse:|timesRepeat:)', Name.Builtin, '#pop'),
+            (r'\b(ifTrue:|ifFalse:|whileTrue:|whileFalse:|timesRepeat:)',
+             Name.Builtin, '#pop'),
             (r'\b(new\b(?!:))', Name.Builtin),
             (r'\:=|\_', Operator, '#pop'),
             (r'\b[a-zA-Z]+\w*:', Name.Function, '#pop'),
