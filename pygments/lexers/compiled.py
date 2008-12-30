@@ -29,7 +29,7 @@ from pygments.lexers.functional import OcamlLexer
 
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer', 'ScalaLexer',
            'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer', 'FortranLexer',
-           'GLShaderLexer']
+           'GLShaderLexer', 'PrologLexer']
 
 
 class CLexer(RegexLexer):
@@ -1328,5 +1328,55 @@ class GLShaderLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z_0-9]*', Name.Variable),
             (r'\.', Punctuation),
             (r'\s+', Text),
+        ],
+    }
+
+class PrologLexer(RegexLexer):
+    name = 'prolog'
+    aliases = ['plog']
+    filenames = ['*.prolog', '*.pro']
+    mimetypes = ['text/x-prolog']
+
+    flags = re.UNICODE
+
+    tokens = {
+        'root': [
+            (r'^#.*', Comment),
+            (r'/\*', Comment, 'nested-comment'),
+            (r'%.*', Comment),
+            (r'[0-9]+', Number),
+            (r'[\[\](){}|.,;!]', Punctuation),
+            (r':-|-->', Punctuation),
+            (r'"(?:\\x[0-9a-fA-F]+\\|\\u[0-9a-fA-F]{4}|\U[0-9a-fA-F]{8}|'
+             r'\\[0-7]+\\|\\[\w\W]|[^"]+)*"', String.Double),
+            (r"'(?:''|[^']+)*'", String.Atom), # quoted atom
+            # Needs to not be followed by an atom.
+            #(r'=(?=\s|[a-zA-Z\[])', Operator),
+            (r'(is|<|>|=<|>=|==|=:=|=|/|//|\*|\+|-)(?=\s|[a-zA-Z0-9\[])', Operator),
+            (r'(mod|div|not)\b', Operator),
+            (r'_', Keyword), # The don't-care variable
+            (r'([a-z]+)(:)', bygroups(Name.Namespace, Punctuation)),
+            (ur'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
+             ur'[a-zA-Z0-9_$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
+             ur'(\s*)(:-|-->)',
+             bygroups(Name.Function, Text, Operator)), # function defn
+            (ur'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
+             ur'[a-zA-Z0-9_$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
+             ur'(\s*)(\()',
+             bygroups(Name.Function, Text, Punctuation)),
+            (ur'[a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
+             ur'[a-zA-Z0-9_$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*',
+             String.Atom), # atom, characters
+            # This one includes !
+            (ur'[#&*+\-./:<=>?@\\^~\u00a1-\u00bf\u2010-\u303f]+',
+             String.Atom), # atom, graphics
+            (r'[A-Z_][A-Za-z0-9]*', Name.Variable),
+            (u'\s+|[\u2000-\u200f\ufff0-\ufffe\uffef]', Text),
+        ],
+        'nested-comment': [
+            (r'\*/', Comment, '#pop'),
+            (r'/\*', Comment, '#push'),
+            (r'[^*/]+', Comment),
+            (r'[*/]', Comment),
         ],
     }
