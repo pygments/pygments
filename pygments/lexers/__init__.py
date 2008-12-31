@@ -83,21 +83,39 @@ def get_lexer_by_name(_alias, **options):
     raise ClassNotFound('no lexer for alias %r found' % _alias)
 
 
-def get_lexer_for_filename(_fn, **options):
+def get_lexer_for_filename(_fn, code=None, **options):
     """
-    Get a lexer for a filename.
+    Get a lexer for a filename.  If multiple lexers match the filename
+    pattern, use ``analyze_text()`` to figure out which one is more
+    appropriate.
     """
+    matches = []
     fn = basename(_fn)
     for modname, name, _, filenames, _ in LEXERS.itervalues():
         for filename in filenames:
             if fnmatch.fnmatch(fn, filename):
                 if name not in _lexer_cache:
                     _load_lexers(modname)
-                return _lexer_cache[name](**options)
+                matches.append(_lexer_cache[name])
     for cls in find_plugin_lexers():
         for filename in cls.filenames:
             if fnmatch.fnmatch(fn, filename):
-                return cls(**options)
+                matches.append(cls)
+
+    def get_rating(cls):
+        # The class _always_ defines analyse_text because it's included in
+        # the Lexer class.  The default implementation returns None which
+        # gets turned into 0.0.  Run scripts/detect_missing_analyse_text.py
+        # to find lexers which need it overridden.
+        d = cls.analyse_text(code)
+        #print "Got %r from %r" % (d, cls)
+        return d
+
+    if code:
+        matches.sort(key=get_rating)
+    if matches:
+        #print "Possible lexers, after sort:", matches
+        return matches[-1](**options)
     raise ClassNotFound('no lexer for filename %r found' % _fn)
 
 
