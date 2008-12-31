@@ -669,7 +669,7 @@ class ErlangLexer(RegexLexer):
 
     variable_re = r'(?:[A-Z_][a-zA-Z0-9_]*)'
 
-    escape_re = r'(?:\\(?:[bdefnrstv\'"\\]|[0-7][0-7]?[0-7]?|\^[a-zA-Z]))'
+    escape_re = r'(?:\\(?:[bdefnrstv\'"\\/]|[0-7][0-7]?[0-7]?|\^[a-zA-Z]))'
 
     macro_re = r'(?:'+variable_re+r'|'+atom_re+r')'
 
@@ -702,8 +702,9 @@ class ErlangLexer(RegexLexer):
         'string': [
             (escape_re, String.Escape),
             (r'"', String, '#pop'),
-            (r'~[0-9.*]*[~#+bBcefginpPswWxX]', String.Interpol),
-            (r'[^"\~]+', String),
+            (r'~[0-9.*]*[~#+bBcdefginpPswWxX]', String.Interpol),
+            (r'[^"\\~]+', String),
+            (r'~', String),
             ],
         'directive': [
             (r'(define)(\s*)(\()('+macro_re+r')',
