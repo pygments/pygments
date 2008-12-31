@@ -409,3 +409,6 @@ class SLexer(RegexLexer):
             (r'[^\"]*\"', String, '#pop'),
         ],
     }
+
+    def analyse_text(text):
+        return '<-' in text
