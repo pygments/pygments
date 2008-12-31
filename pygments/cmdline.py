@@ -366,7 +366,7 @@ def main(args=sys.argv):
 
         if not lexer:
             try:
-                lexer = get_lexer_for_filename(infn, **parsed_opts)
+                lexer = get_lexer_for_filename(infn, code, **parsed_opts)
             except ClassNotFound, err:
                 if '-g' in opts:
                     try:
