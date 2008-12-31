@@ -1021,6 +1021,7 @@ class LuaLexer(RegexLexer):
 
             (r'\n', Text),
             (r'[^\S\n]', Text),
+            (r'(?s)\[(=*)\[.*?\]\1\]', String.Multiline),
             (r'[\[\]\{\}\(\)\.,:;]', Punctuation),
 
             (r'(==|~=|<=|>=|\.\.|\.\.\.|[=+\-*/%^<>#])', Operator),
