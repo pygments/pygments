@@ -1188,7 +1188,7 @@ class ObjectiveCLexer(RegexLexer):
         ]
     }
 
-    def analyze_text(text):
+    def analyse_text(text):
         if '@"' in text: # strings
             return True
         if re.match(r'\[[a-zA-Z0-9.]:', text): # message
