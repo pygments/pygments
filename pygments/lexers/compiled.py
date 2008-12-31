@@ -1188,6 +1188,12 @@ class ObjectiveCLexer(RegexLexer):
         ]
     }
 
+    def analyze_text(text):
+        if '@"' in text: # strings
+            return True
+        if re.match(r'\[[a-zA-Z0-9.]:', text): # message
+            return True
+        return False
 
 class FortranLexer(RegexLexer):
     '''
@@ -1336,7 +1342,7 @@ class GLShaderLexer(RegexLexer):
 class PrologLexer(RegexLexer):
     name = 'prolog'
     aliases = ['plog']
-    filenames = ['*.prolog', '*.pro']
+    filenames = ['*.prolog', '*.pro', '*.pl']
     mimetypes = ['text/x-prolog']
 
     flags = re.UNICODE
@@ -1382,3 +1388,6 @@ class PrologLexer(RegexLexer):
             (r'[*/]', Comment),
         ],
     }
+
+    def analyse_text(text):
+        return ':-' in text

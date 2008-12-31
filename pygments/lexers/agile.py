@@ -974,7 +974,11 @@ class PerlLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return shebang_matches(text, r'perl(\d\.\d\.\d)?')
+        if shebang_matches(text, r'perl(\d\.\d\.\d)?'):
+            return True
+        if 'my $' in text:
+            return 0.9
+        return 0.1 # who knows, might still be perl!
 
 
 class LuaLexer(RegexLexer):
