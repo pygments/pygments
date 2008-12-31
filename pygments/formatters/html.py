@@ -500,9 +500,12 @@ class HtmlFormatter(Formatter):
             ls = '\n'.join([(i%st == 0 and ('%*d' % (mw, i)) or '')
                             for i in range(fl, fl + lncount)])
 
+        # in case you wonder about the seemingly redundant <div> here: since the
+        # content in the other cell also is wrapped in a div, some browsers in
+        # some configurations seem to mess up the formatting...
         yield 0, ('<table class="%stable">' % self.cssclass +
-                  '<tr><td class="linenos"><pre>' +
-                  ls + '</pre></td><td class="code">')
+                  '<tr><td class="linenos"><div class="linenodiv"><pre>' +
+                  ls + '</pre></div></td><td class="code">')
         yield 0, dummyoutfile.getvalue()
         yield 0, '</td></tr></table>'
 
