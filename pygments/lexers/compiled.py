@@ -1340,8 +1340,8 @@ class GLShaderLexer(RegexLexer):
     }
 
 class PrologLexer(RegexLexer):
-    name = 'prolog'
-    aliases = ['plog']
+    name = 'Prolog'
+    aliases = ['prolog']
     filenames = ['*.prolog', '*.pro', '*.pl']
     mimetypes = ['text/x-prolog']
 
