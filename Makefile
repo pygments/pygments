@@ -20,6 +20,7 @@ all: clean-pyc check test
 apidocs: epydoc
 
 check:
+	@$(PYTHON) scripts/detect_missing_analyse_text.py
 	@$(PYTHON) scripts/check_sources.py -i apidocs -i pygments/lexers/_mapping.py \
 		   -i docs/build -i pygments/formatters/_mapping.py -i pygments/unistring.py \
 		   -i pygments/lexers/_vimbuiltins.py
