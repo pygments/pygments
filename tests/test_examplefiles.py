@@ -49,6 +49,7 @@ def check_lexer(lx, absfn):
     ntext = []
     for type, val in lx.get_tokens(text):
         ntext.append(val)
-        assert type != Error, 'lexer generated error token for ' + absfn
+        assert type != Error, 'lexer %s generated error token for %s' % \
+                (lx, absfn)
     if u''.join(ntext) != text:
         raise AssertionError('round trip failed for ' + absfn)
