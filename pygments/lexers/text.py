@@ -475,7 +475,7 @@ class GroffLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if text[0] != '.':
+        if text[:1] != '.':
             return False
         if text[:3] == '.\\"':
             return True
