@@ -151,6 +151,9 @@ class ActionScriptLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        return 0.05
+
 
 class ActionScript3Lexer(RegexLexer):
     """
@@ -218,6 +221,9 @@ class ActionScript3Lexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        if re.match(r'\w+\s*:\s*\w', text): return 0.3
+        return 0.1
 
 class CssLexer(RegexLexer):
     """
