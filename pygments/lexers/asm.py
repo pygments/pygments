@@ -91,6 +91,8 @@ class GasLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        return re.match(r'^\.\w+', text, re.M)
 
 class ObjdumpLexer(RegexLexer):
     """
