@@ -1378,7 +1378,7 @@ class PrologLexer(RegexLexer):
             # This one includes !
             (ur'[#&*+\-./:<=>?@\\^~\u00a1-\u00bf\u2010-\u303f]+',
              String.Atom), # atom, graphics
-            (r'[A-Z_][A-Za-z0-9]*', Name.Variable),
+            (r'[A-Z_][A-Za-z0-9_]*', Name.Variable),
             (u'\s+|[\u2000-\u200f\ufff0-\ufffe\uffef]', Text),
         ],
         'nested-comment': [
