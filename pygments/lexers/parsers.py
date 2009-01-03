@@ -191,7 +191,10 @@ class RagelEmbeddedLexer(RegexLexer):
 
             (r'}%%', Punctuation, '#pop'),
         ]
-     }
+    }
+
+    def analyse_text(text):
+        return '@LANG: indep' in text
 
 class RagelRubyLexer(DelegatingLexer):
      """
@@ -203,7 +206,11 @@ class RagelRubyLexer(DelegatingLexer):
      filenames = ['*.rl']
 
      def __init__(self, **options):
-         super(RagelRubyLexer, self).__init__(RubyLexer, RagelEmbeddedLexer, **options)
+         super(RagelRubyLexer, self).__init__(RubyLexer, RagelEmbeddedLexer,
+                                              **options)
+
+     def analyse_text(text):
+         return '@LANG: ruby' in text
 
 class RagelCLexer(DelegatingLexer):
     """
@@ -215,7 +222,11 @@ class RagelCLexer(DelegatingLexer):
     filenames = ['*.rl']
 
     def __init__(self, **options):
-        super(RagelCLexer, self).__init__(CLexer, RagelEmbeddedLexer, **options)
+        super(RagelCLexer, self).__init__(CLexer, RagelEmbeddedLexer,
+                                          **options)
+
+    def analyse_text(text):
+        return '@LANG: c' in text
 
 class RagelDLexer(DelegatingLexer):
     """
@@ -229,6 +240,9 @@ class RagelDLexer(DelegatingLexer):
     def __init__(self, **options):
         super(RagelDLexer, self).__init__(DLexer, RagelEmbeddedLexer, **options)
 
+    def analyse_text(text):
+        return '@LANG: d' in text
+
 class RagelCppLexer(DelegatingLexer):
     """
     A lexer for Ragel in a CPP host file
@@ -240,6 +254,9 @@ class RagelCppLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(RagelCppLexer, self).__init__(CppLexer, RagelEmbeddedLexer, **options)
+
+    def analyse_text(text):
+        return '@LANG: c++' in text
 
 class RagelObjectiveCLexer(DelegatingLexer):
     """
@@ -254,6 +271,9 @@ class RagelObjectiveCLexer(DelegatingLexer):
         super(RagelObjectiveCLexer, self).__init__(ObjectiveCLexer, \
         RagelEmbeddedLexer, **options)
 
+    def analyse_text(text):
+        return '@LANG: objc' in text
+
 class RagelJavaLexer(DelegatingLexer):
     """
     A lexer for Ragel in a Java host file
@@ -265,6 +285,9 @@ class RagelJavaLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(RagelJavaLexer, self).__init__(JavaLexer, RagelEmbeddedLexer, **options)
+
+    def analyse_text(text):
+        return '@LANG: java' in text
 
 class AntlrLexer(RegexLexer):
     """
@@ -335,7 +358,7 @@ class AntlrLexer(RegexLexer):
             # throwsSpec
             (r'(throws)(\s+)(' + _id + ')', bygroups(Keyword, Whitespace, \
             Name.Label)),
-            (r'((,)(\s*)(' + _id + '))+', bygroups(Punctuation, Whitespace, \
+            (r'(?:(,)(\s*)(' + _id + '))+', bygroups(Punctuation, Whitespace, \
             Name.Label)), # Additional throws
             # optionsSpec
             (r'options\b', Keyword, 'options'),
