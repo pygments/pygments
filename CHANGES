@@ -5,6 +5,13 @@ Version 1.1
 -----------
 (codename not selected, released XXX YY, 2009)
 
+- Lexers added:
+
+  * GLSL (#369)
+  * Erlang shell
+  * (Ba)sh shell (#349)
+  * Prolog (#373)
+
 - Fix a bug lexing extended Ruby strings.
 
 - Fix a bug when lexing git diffs.
@@ -13,20 +20,13 @@ Version 1.1
 
 - Support multiline strings in Lua lexer.
 
-- Fix a Perl heredoc bug (#729)
+- Fix a Perl heredoc bug (#729).
 
-- Fix a bug in the image formatter which misdetected lines (#380)
+- Fix a bug in the image formatter which misdetected lines (#380).
 
 - When pygmentize is asked to highlight a file for which multiple lexers
   match the filename, use the analyse_text guessing engine to determine the
-  winner. (#355)
-
-- Lexers added:
-
-  * GLSL (#369)
-  * Erlang shell
-  * (Ba)sh shell (#349)
-  * Prolog (#373)
+  winner (#355).
 
 
 Version 1.0

@@ -5,7 +5,7 @@
 
     Lexers for functional languages.
 
-    :copyright: 2006-2008 by Georg Brandl, Marek Kubica,
+    :copyright: 2006-2009 by Georg Brandl, Marek Kubica,
                 Adam Blinkinsop <blinks@acm.org>, Matteo Sasso.
     :license: BSD, see LICENSE for more details.
 """
@@ -719,7 +719,7 @@ class ErlangShellLexer(Lexer):
     """
     Shell sessions in erl (for Erlang code).
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
     name = 'Erlang erl session'
     aliases = ['erl']

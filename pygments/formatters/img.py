@@ -395,9 +395,9 @@ class ImageFormatter(Formatter):
             while ttype not in self.styles:
                 ttype = ttype.parent
             style = self.styles[ttype]
-            #TODO make sure tab expansion happens earlier in the chain.  It
-            #really ought to be done on the input, as to do it right here is
-            #quite complex.
+            # TODO: make sure tab expansion happens earlier in the chain.  It
+            # really ought to be done on the input, as to do it right here is
+            # quite complex.
             value = value.expandtabs(4)
             lines = value.splitlines(True)
             #print lines

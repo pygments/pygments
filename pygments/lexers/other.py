@@ -5,7 +5,7 @@
 
     Lexers for other languages.
 
-    :copyright: 2006-2008 by Georg Brandl, Tim Hatch <tim@timhatch.com>,
+    :copyright: 2006-2009 by Georg Brandl, Tim Hatch <tim@timhatch.com>,
                 Stou Sandalski, Paulo Moura, Clara Dimene,
                 Andreas Amann <aamann@mac.com>.
     :license: BSD, see LICENSE for more details.
@@ -400,7 +400,7 @@ class BashSessionLexer(Lexer):
     """
     Lexer for simplistic shell sessions.
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'Bash Session'
@@ -1207,7 +1207,7 @@ class PovrayLexer(RegexLexer):
              r'light_source|merge|mesh|object|plane|poly|polygon|prism|'
              r'quadric|quartic|smooth_triangle|sor|sphere|superellipsoid|'
              r'text|torus|triangle|union', Name.Builtin),
-            #TODO: <=, etc
+            # TODO: <=, etc
             (r'[\[\](){}<>;,]', Punctuation),
             (r'[-+*/=]', Operator),
             (r'\b(x|y|z|u|v)\b', Name.Builtin.Pseudo),
