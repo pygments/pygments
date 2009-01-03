@@ -5,7 +5,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: 2006-2008 by Armin Ronacher, Georg Brandl, Matt Good,
+    :copyright: 2006-2009 by Armin Ronacher, Georg Brandl, Matt Good,
                 Ben Bangert.
     :license: BSD, see LICENSE for more details.
 """
@@ -412,21 +412,23 @@ class MakoLexer(RegexLexer):
              bygroups(Text, Comment.Preproc, Keyword, Other)),
             (r'(\s*)(%)([^\n]*)(\n|\Z)',
              bygroups(Text, Comment.Preproc, using(PythonLexer), Other)),
-             (r'(\s*)(#[^\n]*)(\n|\Z)',
-              bygroups(Text, Comment.Preproc, Other)),
-            (r'(<%)(def|call|namespace|text)',
+            (r'(\s*)(##[^\n]*)(\n|\Z)',
+             bygroups(Text, Comment.Preproc, Other)),
+            (r'(?s)<%doc>.*?</%doc>', Comment.Preproc),
+            (r'(<%)([\w\.\:]+)',
              bygroups(Comment.Preproc, Name.Builtin), 'tag'),
-            (r'(</%)(def|call|namespace|text)(>)',
+            (r'(</%)([\w\.\:]+)(>)',
              bygroups(Comment.Preproc, Name.Builtin, Comment.Preproc)),
-            (r'<%(?=(include|inherit|namespace|page))', Comment.Preproc, 'ondeftags'),
+            (r'<%(?=([\w\.\:]+))', Comment.Preproc, 'ondeftags'),
             (r'(<%(?:!?))(.*?)(%>)(?s)',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
-            (r'(\$\{!?)(.*?)(\})(?s)',
+            (r'(\$\{)(.*?)(\})',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
             (r'''(?sx)
                 (.+?)               # anything, followed by:
                 (?:
-                 (?<=\n)(?=[%#]) |  # an eval or comment line
+                 (?<=\n)(?=%|##) |  # an eval or comment line
+                 (?=#\*) |          # multiline comment
                  (?=</?%) |         # a python block
                                     # call start or end
                  (?=\$\{) |         # a substitution
