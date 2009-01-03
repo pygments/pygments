@@ -5,7 +5,7 @@
 
     Lexers for compiled languages.
 
-    :copyright: 2006-2008 by Georg Brandl, Armin Ronacher, Christoph Hack,
+    :copyright: 2006-2009 by Georg Brandl, Armin Ronacher, Christoph Hack,
                 Whitney Young, Kirk McDonald, Stou Sandalski, Krzysiek Goj.
     :license: BSD, see LICENSE for more details.
 """
@@ -1299,7 +1299,7 @@ class GLShaderLexer(RegexLexer):
     """
     GLSL (OpenGL Shader) lexer.
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
     name = 'GLSL'
     aliases = ['glsl']

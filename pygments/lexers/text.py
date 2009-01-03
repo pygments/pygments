@@ -5,7 +5,7 @@
 
     Lexers for non-source code file types.
 
-    :copyright: 2006-2008 by Armin Ronacher, Georg Brandl,
+    :copyright: 2006-2009 by Armin Ronacher, Georg Brandl,
                 Tim Hatch <tim@timhatch.com>,
                 Ronny Pfannschmidt,
                 Dennis Kaarsemaker,
@@ -184,7 +184,7 @@ class BaseMakefileLexer(RegexLexer):
             # targets
             (r'([^\n:]+)(:+)([ \t]*)', bygroups(Name.Function, Operator, Text),
              'block-header'),
-            #TODO: add paren handling (grr)
+            # TODO: add paren handling (grr)
         ],
         'export': [
             (r'[a-zA-Z0-9_${}-]+', Name.Variable),
