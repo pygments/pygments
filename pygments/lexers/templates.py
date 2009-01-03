@@ -427,8 +427,8 @@ class MakoLexer(RegexLexer):
             (r'''(?sx)
                 (.+?)               # anything, followed by:
                 (?:
-                 (?<=\n)(?=%|##) |  # an eval or comment line
-                 (?=#\*) |          # multiline comment
+                 (?<=\n)(?=%|\#\#) |# an eval or comment line
+                 (?=\#\*) |         # multiline comment
                  (?=</?%) |         # a python block
                                     # call start or end
                  (?=\$\{) |         # a substitution
