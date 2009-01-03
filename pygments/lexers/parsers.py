@@ -29,7 +29,8 @@ __all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
            'RagelCppLexer', 'RagelObjectiveCLexer', 'RagelRubyLexer',
            'RagelJavaLexer', 'AntlrLexer', 'AntlrPythonLexer',
            'AntlrPerlLexer', 'AntlrRubyLexer', 'AntlrCppLexer',
-           'AntlrCLexer', 'AntlrCSharpLexer', 'AntlrObjectiveCLexer',
+           #'AntlrCLexer',
+           'AntlrCSharpLexer', 'AntlrObjectiveCLexer',
            'AntlrJavaLexer', "AntlrActionScriptLexer"]
 
 class RagelLexer(RegexLexer):
@@ -324,7 +325,7 @@ class AntlrLexer(RegexLexer):
 
     name = 'ANTLR'
     aliases = ['antlr']
-    filenames = ['*.G', '*.g']
+    filenames = []
 
     _id =          r'[A-Za-z][A-Za-z_0-9]*'
     _TOKEN_REF =   r'[A-Z][A-Za-z_0-9]*'
@@ -501,19 +502,27 @@ class AntlrLexer(RegexLexer):
 
 # http://www.antlr.org/wiki/display/ANTLR3/Code+Generation+Targets
 
-class AntlrCLexer(DelegatingLexer):
-    """
-    ANTLR with C Target
+# TH: I'm not aware of any language features of C++ that will cause
+# incorrect lexing of C files.  Antlr doesn't appear to make a distinction,
+# so just assume they're C++.  No idea how to make Objective C work in the
+# future.
 
-    *New in Pygments 1.1*
-    """
-
-    name = 'ANTLR With C Target'
-    aliases = ['antlr-c']
-    filenames = ['*.G', '*.g']
-
-    def __init__(self, **options):
-        super(AntlrCLexer, self).__init__(CLexer, AntlrLexer, **options)
+#class AntlrCLexer(DelegatingLexer):
+#    """
+#    ANTLR with C Target
+#
+#    *New in Pygments 1.1*
+#    """
+#
+#    name = 'ANTLR With C Target'
+#    aliases = ['antlr-c']
+#    filenames = ['*.G', '*.g']
+#
+#    def __init__(self, **options):
+#        super(AntlrCLexer, self).__init__(CLexer, AntlrLexer, **options)
+#
+#    def analyse_text(text):
+#        return re.match(r'^\s*language\s*=\s*C\s*;', text)
 
 class AntlrCppLexer(DelegatingLexer):
     """
@@ -528,6 +537,9 @@ class AntlrCppLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(AntlrCppLexer, self).__init__(CppLexer, AntlrLexer, **options)
+
+    def analyse_text(text):
+        return re.match(r'^\s*language\s*=\s*C\s*;', text, re.M)
 
 class AntlrObjectiveCLexer(DelegatingLexer):
     """
@@ -544,6 +556,9 @@ class AntlrObjectiveCLexer(DelegatingLexer):
         super(AntlrObjectiveCLexer, self).__init__(ObjectiveCLexer,
                                                    AntlrLexer, **options)
 
+    def analyse_text(text):
+        return re.match(r'^\s*language\s*=\s*C\s*;', text)
+
 class AntlrCSharpLexer(DelegatingLexer):
     """
     ANTLR with C# Target
@@ -559,6 +574,9 @@ class AntlrCSharpLexer(DelegatingLexer):
         super(AntlrCSharpLexer, self).__init__(CSharpLexer, AntlrLexer,
                                                **options)
 
+    def analyse_text(text):
+        return re.match(r'^\s*language\s*=\s*CSharp2\s*;', text, re.M)
+
 class AntlrPythonLexer(DelegatingLexer):
     """
     ANTLR with Python Target
@@ -573,6 +591,9 @@ class AntlrPythonLexer(DelegatingLexer):
     def __init__(self, **options):
         super(AntlrPythonLexer, self).__init__(PythonLexer, AntlrLexer,
                                                **options)
+
+    def analyse_text(text):
+        return re.match(r'^\s*language\s*=\s*Python\s*;', text, re.M)
 
 
 class AntlrJavaLexer(DelegatingLexer):
@@ -590,6 +611,9 @@ class AntlrJavaLexer(DelegatingLexer):
         super(AntlrJavaLexer, self).__init__(JavaLexer, AntlrLexer,
                                              **options)
 
+    def analyse_text(text):
+        return 0.5 # Antlr is Java if not specified
+
 
 class AntlrRubyLexer(DelegatingLexer):
     """
@@ -606,6 +630,9 @@ class AntlrRubyLexer(DelegatingLexer):
         super(AntlrRubyLexer, self).__init__(RubyLexer, AntlrLexer,
                                              **options)
 
+    def analyse_text(text):
+        return re.match(r'^\s*language\s*=\s*Ruby\s*;', text, re.M)
+
 class AntlrPerlLexer(DelegatingLexer):
     """
     ANTLR with Perl Target
@@ -621,6 +648,9 @@ class AntlrPerlLexer(DelegatingLexer):
         super(AntlrPerlLexer, self).__init__(PerlLexer, AntlrLexer,
                                              **options)
 
+    def analyse_text(text):
+        return re.match(r'^\s*language\s*=\s*Perl5\s*;', text, re.M)
+
 class AntlrActionScriptLexer(DelegatingLexer):
     """
     ANTLR with ActionScript Target
@@ -635,3 +665,6 @@ class AntlrActionScriptLexer(DelegatingLexer):
     def __init__(self, **options):
         super(AntlrActionScriptLexer, self).__init__(ActionScriptLexer,
                                                      AntlrLexer, **options)
+
+    def analyse_text(text):
+        return re.match(r'^\s*language\s*=\s*ActionScript\s*;', text, re.M)
