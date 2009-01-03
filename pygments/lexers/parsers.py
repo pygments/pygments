@@ -5,7 +5,8 @@
 
     Lexers for parser generators.
 
-    :copyright: 2008 by Ana Nelson <ana@ananelson.com>.
+    :copyright: 2008-2009 by Ana Nelson <ana@ananelson.com>, Tim Hatch.
+    
     :license: BSD, see LICENSE for more details.
 """
 
@@ -20,14 +21,16 @@ from pygments.lexers.compiled import JavaLexer, CLexer, CppLexer, \
 from pygments.lexers.dotnet import CSharpLexer
 from pygments.lexers.agile import RubyLexer, PythonLexer, PerlLexer
 from pygments.lexers.web import ActionScriptLexer
-# Use TextLexer during development to just focus on one part of a delegating lexer.
+# Use TextLexer during development to just focus on one part of a delegating
+# lexer.
 from pygments.lexers.special import TextLexer
 
-__all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer', \
-    'RagelCppLexer', 'RagelObjectiveCLexer', 'RagelRubyLexer', 'RagelJavaLexer', \
-    'AntlrLexer', 'AntlrPythonLexer', 'AntlrPerlLexer', 'AntlrRubyLexer', \
-    'AntlrCppLexer', 'AntlrCLexer', 'AntlrCSharpLexer', 'AntlrObjectiveCLexer', \
-    'AntlrJavaLexer', "AntlrActionScriptLexer"]
+__all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
+           'RagelCppLexer', 'RagelObjectiveCLexer', 'RagelRubyLexer',
+           'RagelJavaLexer', 'AntlrLexer', 'AntlrPythonLexer',
+           'AntlrPerlLexer', 'AntlrRubyLexer', 'AntlrCppLexer',
+           'AntlrCLexer', 'AntlrCSharpLexer', 'AntlrObjectiveCLexer',
+           'AntlrJavaLexer', "AntlrActionScriptLexer"]
 
 class RagelLexer(RegexLexer):
     """
