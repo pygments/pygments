@@ -6,7 +6,7 @@
     Lexers for parser generators.
 
     :copyright: 2008-2009 by Ana Nelson <ana@ananelson.com>, Tim Hatch.
-    
+
     :license: BSD, see LICENSE for more details.
 """
 
@@ -34,9 +34,11 @@ __all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
 
 class RagelLexer(RegexLexer):
     """
-    A pure Ragel lexer.
-    Only call this for ragel fragments.
-    An .rl file needs the RagelEmbeddedLexer.
+    A pure `Ragel <http://www.complang.org/ragel/>`_ lexer.  Use this for
+    fragments of Ragel.  For ``.rl`` files, use RagelEmbeddedLexer instead
+    (or one of the language-specific subclasses).
+
+    *New in Pygments 1.1*
     """
 
     name = 'Ragel'
@@ -124,9 +126,12 @@ class RagelLexer(RegexLexer):
 
 class RagelEmbeddedLexer(RegexLexer):
     """
-    A lexer for Ragel embedded in a host language file.
-    This will only highlight Ragel statements, if you want host
-    language highlighting then call the language-specific ragel lexer.
+    A lexer for `Ragel`_ embedded in a host language file.
+
+    This will only highlight Ragel statements. If you want host language
+    highlighting then call the language-specific Ragel lexer.
+
+    *New in Pygments 1.1*
     """
 
     name = 'Embedded Ragel'
@@ -202,24 +207,28 @@ class RagelEmbeddedLexer(RegexLexer):
         return '@LANG: indep' in text or 0.1
 
 class RagelRubyLexer(DelegatingLexer):
-     """
-     A lexer for Ragel in a Ruby host file
-     """
+    """
+    A lexer for `Ragel`_ in a Ruby host file.
 
-     name = 'Ragel in Ruby Host'
-     aliases = ['ragel-ruby', 'ragel-rb']
-     filenames = ['*.rl']
+    *New in Pygments 1.1*
+    """
 
-     def __init__(self, **options):
-         super(RagelRubyLexer, self).__init__(RubyLexer, RagelEmbeddedLexer,
+    name = 'Ragel in Ruby Host'
+    aliases = ['ragel-ruby', 'ragel-rb']
+    filenames = ['*.rl']
+
+    def __init__(self, **options):
+        super(RagelRubyLexer, self).__init__(RubyLexer, RagelEmbeddedLexer,
                                               **options)
 
-     def analyse_text(text):
-         return '@LANG: ruby' in text
+    def analyse_text(text):
+        return '@LANG: ruby' in text
 
 class RagelCLexer(DelegatingLexer):
     """
-    A lexer for Ragel in a C host file
+    A lexer for `Ragel`_ in a C host file.
+
+    *New in Pygments 1.1*
     """
 
     name = 'Ragel in C Host'
@@ -235,7 +244,9 @@ class RagelCLexer(DelegatingLexer):
 
 class RagelDLexer(DelegatingLexer):
     """
-    A lexer for Ragel in a D host file
+    A lexer for `Ragel`_ in a D host file.
+
+    *New in Pygments 1.1*
     """
 
     name = 'Ragel in D Host'
@@ -250,7 +261,9 @@ class RagelDLexer(DelegatingLexer):
 
 class RagelCppLexer(DelegatingLexer):
     """
-    A lexer for Ragel in a CPP host file
+    A lexer for `Ragel`_ in a CPP host file.
+
+    *New in Pygments 1.1*
     """
 
     name = 'Ragel in CPP Host'
@@ -265,7 +278,9 @@ class RagelCppLexer(DelegatingLexer):
 
 class RagelObjectiveCLexer(DelegatingLexer):
     """
-    A lexer for Ragel in an Objective C host file
+    A lexer for `Ragel`_ in an Objective C host file.
+
+    *New in Pygments 1.1*
     """
 
     name = 'Ragel in Objective C Host'
@@ -273,15 +288,18 @@ class RagelObjectiveCLexer(DelegatingLexer):
     filenames = ['*.rl']
 
     def __init__(self, **options):
-        super(RagelObjectiveCLexer, self).__init__(ObjectiveCLexer, \
-        RagelEmbeddedLexer, **options)
+        super(RagelObjectiveCLexer, self).__init__(ObjectiveCLexer,
+                                                   RagelEmbeddedLexer,
+                                                   **options)
 
     def analyse_text(text):
         return '@LANG: objc' in text
 
 class RagelJavaLexer(DelegatingLexer):
     """
-    A lexer for Ragel in a Java host file
+    A lexer for `Ragel`_ in a Java host file.
+
+    *New in Pygments 1.1*
     """
 
     name = 'Ragel in Java Host'
@@ -289,7 +307,8 @@ class RagelJavaLexer(DelegatingLexer):
     filenames = ['*.rl']
 
     def __init__(self, **options):
-        super(RagelJavaLexer, self).__init__(JavaLexer, RagelEmbeddedLexer, **options)
+        super(RagelJavaLexer, self).__init__(JavaLexer, RagelEmbeddedLexer,
+                                             **options)
 
     def analyse_text(text):
         return '@LANG: java' in text
@@ -299,6 +318,8 @@ class AntlrLexer(RegexLexer):
     Generic ANTLR Lexer.
     Should not be called directly, instead
     use DelegatingLexer for your target language.
+
+    *New in Pygments 1.1*
     """
 
     name = 'ANTLR'
@@ -323,27 +344,27 @@ class AntlrLexer(RegexLexer):
             include('whitespace'),
             include('comments'),
 
-            (r'(lexer|parser|tree)?(\s*)(grammar\b)(\s*)(' + _id + ')(;)', \
-                bygroups(Keyword, Whitespace, Keyword, Whitespace, Name.Class, \
-                Punctuation)),
+            (r'(lexer|parser|tree)?(\s*)(grammar\b)(\s*)(' + _id + ')(;)',
+             bygroups(Keyword, Whitespace, Keyword, Whitespace, Name.Class,
+                      Punctuation)),
             # optionsSpec
             (r'options\b', Keyword, 'options'),
             # tokensSpec
             (r'tokens\b', Keyword, 'tokens'),
             # attrScope
-            (r'(scope)(\s*)(' + _id + ')(\s*)({)', \
-                bygroups(Keyword, Whitespace, Name.Variable, Whitespace, \
-                Punctuation), 'action'),
+            (r'(scope)(\s*)(' + _id + ')(\s*)({)',
+             bygroups(Keyword, Whitespace, Name.Variable, Whitespace,
+                      Punctuation), 'action'),
             # exception
             (r'(catch|finally)\b', Keyword, 'exception'),
             # action
-            (r'(@' + _id + ')(\s*)(::)?(\s*)(' + _id + ')(\s*)({)', \
-                bygroups(Name.Label, Whitespace, Punctuation, Whitespace, \
-                Name.Label, Whitespace, Punctuation), 'action'),
+            (r'(@' + _id + ')(\s*)(::)?(\s*)(' + _id + ')(\s*)({)',
+             bygroups(Name.Label, Whitespace, Punctuation, Whitespace,
+                      Name.Label, Whitespace, Punctuation), 'action'),
             # rule
             (r'((?:protected|private|public|fragment)\b)?(\s*)(' + _id + ')(!)?', \
-                bygroups(Keyword, Whitespace, Name.Label, Punctuation),
-                ('rule-alts', 'rule-prelims')),
+             bygroups(Keyword, Whitespace, Name.Label, Punctuation),
+             ('rule-alts', 'rule-prelims')),
         ],
         'exception': [
             (r'\n', Whitespace, '#pop'),
@@ -361,22 +382,22 @@ class AntlrLexer(RegexLexer):
             (r'\[', Punctuation, 'nested-arg-action'),
             (r'\{', Punctuation, 'action'),
             # throwsSpec
-            (r'(throws)(\s+)(' + _id + ')', bygroups(Keyword, Whitespace, \
-            Name.Label)),
-            (r'(?:(,)(\s*)(' + _id + '))+', bygroups(Punctuation, Whitespace, \
-            Name.Label)), # Additional throws
+            (r'(throws)(\s+)(' + _id + ')',
+             bygroups(Keyword, Whitespace, Name.Label)),
+            (r'(?:(,)(\s*)(' + _id + '))+',
+             bygroups(Punctuation, Whitespace, Name.Label)), # Additional throws
             # optionsSpec
             (r'options\b', Keyword, 'options'),
             # ruleScopeSpec - scope followed by target language code or name of action
             # TODO finish implementing other possibilities for scope
             # L173 ANTLRv3.g from ANTLR book
-            (r'(scope)(\s+)({)', bygroups(Keyword, Whitespace, Punctuation), \
+            (r'(scope)(\s+)({)', bygroups(Keyword, Whitespace, Punctuation),
             'action'),
-            (r'(scope)(\s+)(' + _id + ')(\s*)(;)', bygroups(Keyword, Whitespace, \
-            Name.Label, Whitespace, Punctuation)),
+            (r'(scope)(\s+)(' + _id + ')(\s*)(;)',
+             bygroups(Keyword, Whitespace, Name.Label, Whitespace, Punctuation)),
             # ruleAction
-            (r'(@' + _id + ')(\s*)({)', \
-                bygroups(Name.Label, Whitespace, Punctuation), 'action'),
+            (r'(@' + _id + ')(\s*)({)',
+             bygroups(Name.Label, Whitespace, Punctuation), 'action'),
             # finished prelims, go to rule alts!
             (r':', Punctuation, '#pop')
         ],
@@ -395,7 +416,7 @@ class AntlrLexer(RegexLexer):
             # identifiers
             # Tokens start with capital letter.
             (r'\$?[A-Z_][A-Za-z_0-9]*', Name.Constant),
-             # Rules start with small letter.
+            # Rules start with small letter.
             (r'\$?[a-z_][A-Za-z_0-9]*', Name.Variable),
             # operators
             (r'(\+|\||->|=>|=|\(|\)|\.\.|\.|\?|\*|\^|!|\#|~)', Operator),
@@ -408,19 +429,19 @@ class AntlrLexer(RegexLexer):
             include('whitespace'),
             include('comments'),
             (r'{', Punctuation),
-            (r'(' + _TOKEN_REF + r')(\s*)(=)?(\s*)(' + _STRING_LITERAL + ')?(\s*)(;)', \
-                bygroups(Name.Label, Whitespace, Punctuation, Whitespace, \
-                String, Whitespace, Punctuation)),
+            (r'(' + _TOKEN_REF + r')(\s*)(=)?(\s*)(' + _STRING_LITERAL + ')?(\s*)(;)',
+             bygroups(Name.Label, Whitespace, Punctuation, Whitespace,
+                      String, Whitespace, Punctuation)),
             (r'}', Punctuation, '#pop'),
         ],
         'options': [
             include('whitespace'),
             include('comments'),
             (r'{', Punctuation),
-            (r'(' + _id + r')(\s*)(=)(\s*)(' + \
-            '|'.join((_id, _STRING_LITERAL, _INT, '\*'))+ ')(\s*)(;)',\
-            bygroups(Name.Variable, Whitespace, Punctuation, \
-            Whitespace, Text, Whitespace, Punctuation)),
+            (r'(' + _id + r')(\s*)(=)(\s*)(' +
+             '|'.join((_id, _STRING_LITERAL, _INT, '\*'))+ ')(\s*)(;)',
+             bygroups(Name.Variable, Whitespace, Punctuation, Whitespace,
+                      Text, Whitespace, Punctuation)),
             (r'}', Punctuation, '#pop'),
         ],
         'action': [
@@ -445,8 +466,8 @@ class AntlrLexer(RegexLexer):
                 r'/',
             )) + r')+', Other),
             (r'(\\)(%)', bygroups(Punctuation, Other)),
-            (r'(\$[a-zA-Z]+)(\.?)(text|value)?', \
-            bygroups(Name.Variable, Punctuation, Name.Property)),
+            (r'(\$[a-zA-Z]+)(\.?)(text|value)?',
+             bygroups(Name.Variable, Punctuation, Name.Property)),
             (r'{', Punctuation, '#push'),
             (r'}', Punctuation, '#pop'),
         ],
@@ -472,8 +493,8 @@ class AntlrLexer(RegexLexer):
 
             (r'\[', Punctuation, '#push'),
             (r'\]', Punctuation, '#pop'),
-            (r'(\$[a-zA-Z]+)(\.?)(text|value)?', \
-            bygroups(Name.Variable, Punctuation, Name.Property)),
+            (r'(\$[a-zA-Z]+)(\.?)(text|value)?',
+             bygroups(Name.Variable, Punctuation, Name.Property)),
             (r'(\\\\|\\\]|\\\[|[^\[\]])+', Other),
         ]
     }
@@ -483,6 +504,8 @@ class AntlrLexer(RegexLexer):
 class AntlrCLexer(DelegatingLexer):
     """
     ANTLR with C Target
+
+    *New in Pygments 1.1*
     """
 
     name = 'ANTLR With C Target'
@@ -495,6 +518,8 @@ class AntlrCLexer(DelegatingLexer):
 class AntlrCppLexer(DelegatingLexer):
     """
     ANTLR with CPP Target
+
+    *New in Pygments 1.1*
     """
 
     name = 'ANTLR With CPP Target'
@@ -507,6 +532,8 @@ class AntlrCppLexer(DelegatingLexer):
 class AntlrObjectiveCLexer(DelegatingLexer):
     """
     ANTLR with ObjectiveC Target
+
+    *New in Pygments 1.1*
     """
 
     name = 'ANTLR With ObjectiveC Target'
@@ -514,12 +541,14 @@ class AntlrObjectiveCLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrObjectiveCLexer, self).__init__(ObjectiveCLexer,\
-        AntlrLexer, **options)
+        super(AntlrObjectiveCLexer, self).__init__(ObjectiveCLexer,
+                                                   AntlrLexer, **options)
 
 class AntlrCSharpLexer(DelegatingLexer):
     """
     ANTLR with C# Target
+
+    *New in Pygments 1.1*
     """
 
     name = 'ANTLR With C# Target'
@@ -527,11 +556,14 @@ class AntlrCSharpLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrCSharpLexer, self).__init__(CSharpLexer, AntlrLexer, **options)
+        super(AntlrCSharpLexer, self).__init__(CSharpLexer, AntlrLexer,
+                                               **options)
 
 class AntlrPythonLexer(DelegatingLexer):
     """
     ANTLR with Python Target
+
+    *New in Pygments 1.1*
     """
 
     name = 'ANTLR With Python Target'
@@ -539,12 +571,15 @@ class AntlrPythonLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrPythonLexer, self).__init__(PythonLexer, AntlrLexer, **options)
+        super(AntlrPythonLexer, self).__init__(PythonLexer, AntlrLexer,
+                                               **options)
 
 
 class AntlrJavaLexer(DelegatingLexer):
     """
     ANTLR with Java Target
+
+    *New in Pygments 1.1*
     """
 
     name = 'ANTLR With Java Target'
@@ -552,12 +587,15 @@ class AntlrJavaLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrJavaLexer, self).__init__(JavaLexer, AntlrLexer, **options)
+        super(AntlrJavaLexer, self).__init__(JavaLexer, AntlrLexer,
+                                             **options)
 
 
 class AntlrRubyLexer(DelegatingLexer):
     """
     ANTLR with Ruby Target
+
+    *New in Pygments 1.1*
     """
 
     name = 'ANTLR With Ruby Target'
@@ -565,11 +603,14 @@ class AntlrRubyLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrRubyLexer, self).__init__(RubyLexer, AntlrLexer, **options)
+        super(AntlrRubyLexer, self).__init__(RubyLexer, AntlrLexer,
+                                             **options)
 
 class AntlrPerlLexer(DelegatingLexer):
     """
     ANTLR with Perl Target
+
+    *New in Pygments 1.1*
     """
 
     name = 'ANTLR With Perl Target'
@@ -577,11 +618,14 @@ class AntlrPerlLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrPerlLexer, self).__init__(PerlLexer, AntlrLexer, **options)
+        super(AntlrPerlLexer, self).__init__(PerlLexer, AntlrLexer,
+                                             **options)
 
 class AntlrActionScriptLexer(DelegatingLexer):
     """
     ANTLR with ActionScript Target
+
+    *New in Pygments 1.1*
     """
 
     name = 'ANTLR With ActionScript Target'
@@ -589,5 +633,5 @@ class AntlrActionScriptLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrActionScriptLexer, self).__init__(ActionScriptLexer,\
-        AntlrLexer, **options)
+        super(AntlrActionScriptLexer, self).__init__(ActionScriptLexer,
+                                                     AntlrLexer, **options)
