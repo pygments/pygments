@@ -151,7 +151,9 @@ class RagelEmbeddedLexer(RegexLexer):
             # Single Line FSM.
             # Please don't put a quoted newline in a single line FSM.
             # That's just mean. It will break this.
-            (r'(%%)(?![{%])(.*)($|;)\n?', bygroups(Punctuation, using(RagelLexer))),
+            (r'(%%)(?![{%])(.*)($|;)(\n?)', bygroups(Punctuation,
+                                                     using(RagelLexer),
+                                                     Punctuation, Text)),
 
             # Multi Line FSM.
             (r'(%%%%|%%){', Punctuation, 'multi-line-fsm'),
@@ -194,7 +196,7 @@ class RagelEmbeddedLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return '@LANG: indep' in text
+        return '@LANG: indep' in text or 0.1
 
 class RagelRubyLexer(DelegatingLexer):
      """
