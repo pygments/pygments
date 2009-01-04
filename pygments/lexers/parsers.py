@@ -559,7 +559,7 @@ class AntlrObjectiveCLexer(DelegatingLexer):
                                                    AntlrLexer, **options)
 
     def analyse_text(text):
-        return re.match(r'^\s*language\s*=\s*C\s*;', text)
+        return re.match(r'^\s*language\s*=\s*ObjC\s*;', text)
 
 class AntlrCSharpLexer(DelegatingLexer):
     """
