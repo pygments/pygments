@@ -424,17 +424,17 @@ class MakoLexer(RegexLexer):
             (r'(\$\{)(.*?)(\})',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
             (r'''(?sx)
-                (.+?)               # anything, followed by:
+                (.+?)                # anything, followed by:
                 (?:
-                 (?<=\n)(?=%|##) |  # an eval or comment line
-                 (?=#\*) |          # multiline comment
-                 (?=</?%) |         # a python block
-                                    # call start or end
-                 (?=\$\{) |         # a substitution
+                 (?<=\n)(?=%|\#\#) | # an eval or comment line
+                 (?=\#\*) |          # multiline comment
+                 (?=</?%) |          # a python block
+                                     # call start or end
+                 (?=\$\{) |          # a substitution
                  (?<=\n)(?=\s*%) |
-                                    # - don't consume
-                 (\\\n) |           # an escaped newline
-                 \Z                 # end of string
+                                     # - don't consume
+                 (\\\n) |            # an escaped newline
+                 \Z                  # end of string
                 )
             ''', bygroups(Other, Operator)),
             (r'\s+', Text),
