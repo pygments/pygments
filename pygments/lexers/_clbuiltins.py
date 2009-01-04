@@ -5,8 +5,8 @@
 
     ANSI Common Lisp builtins.
 
-    :copyright: 2006-2007 by Matteo Sasso.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 BUILTIN_FUNCTIONS = [ # 638 functions

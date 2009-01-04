@@ -5,11 +5,8 @@
 
     Lexers for agile languages.
 
-    :copyright: 2006-2008 by Georg Brandl, Armin Ronacher,
-                Lukas Meuser, Tim Hatch, Jarrett Billingsley,
-                Tassilo Schweyer, Steven Hazel, Nick Efford,
-                Davy Wybiral.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re

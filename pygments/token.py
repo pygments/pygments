@@ -5,8 +5,8 @@
 
     Basic token types and the standard tokens.
 
-    :copyright: 2006-2007 by Georg Brandl.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 try:
     set

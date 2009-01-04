@@ -12,8 +12,8 @@
     Have a look at the `DelphiLexer` to get an idea of how to use
     this scanner.
 
-    :copyright: 2006-2007 by Armin Ronacher.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 import re
 

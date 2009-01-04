@@ -6,8 +6,8 @@
 
     Generates a bunch of html files containing the documentation.
 
-    :copyright: 2006-2007 by Armin Ronacher, Georg Brandl.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import os

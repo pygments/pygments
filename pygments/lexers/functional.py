@@ -5,9 +5,8 @@
 
     Lexers for functional languages.
 
-    :copyright: 2006-2009 by Georg Brandl, Marek Kubica,
-                Adam Blinkinsop <blinks@acm.org>, Matteo Sasso.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
@@ -714,6 +713,7 @@ class ErlangLexer(RegexLexer):
             (atom_re, Name.Entity, '#pop'),
             ],
         }
+
 
 class ErlangShellLexer(Lexer):
     """

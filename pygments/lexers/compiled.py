@@ -5,9 +5,8 @@
 
     Lexers for compiled languages.
 
-    :copyright: 2006-2009 by Georg Brandl, Armin Ronacher, Christoph Hack,
-                Whitney Young, Kirk McDonald, Stou Sandalski, Krzysiek Goj.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
@@ -1294,6 +1293,7 @@ class FortranLexer(RegexLexer):
             (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
         ],
     }
+
 
 class GLShaderLexer(RegexLexer):
     """

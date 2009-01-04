@@ -5,8 +5,8 @@
 
     pygments version of my "fruity" vim theme.
 
-    :copyright: 2007 by Armin Ronacher.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style

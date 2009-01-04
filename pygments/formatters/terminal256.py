@@ -11,8 +11,8 @@
 
     Formatter version 1.
 
-    :copyright: 2007 by Artem Egorkine.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 # TODO:

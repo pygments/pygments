@@ -5,9 +5,8 @@
 
     The default highlighting style.
 
-    :copyright: 2007 by Tiberius Teng.
-    :copyright: 2006 by Georg Brandl.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style

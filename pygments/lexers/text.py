@@ -5,16 +5,8 @@
 
     Lexers for non-source code file types.
 
-    :copyright: 2006-2009 by Armin Ronacher, Georg Brandl,
-                Tim Hatch <tim@timhatch.com>,
-                Ronny Pfannschmidt,
-                Dennis Kaarsemaker,
-                Kumar Appaiah <akumar@ee.iitm.ac.in>,
-                Varun Hiremath <varunhiremath@gmail.com>,
-                Jeremy Thurgood,
-                Max Battcher <me@worldmaker.net>,
-                Kirill Simonov <xi@resolvent.net>.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
@@ -232,6 +224,7 @@ class DiffLexer(RegexLexer):
             return True
         if text[:4] == '--- ':
             return 0.9
+
 
 DPATCH_KEYWORDS = ['hunk', 'addfile', 'adddir', 'rmfile', 'rmdir', 'move',
     'replace']
@@ -719,6 +712,7 @@ class RstLexer(RegexLexer):
             text[p1+1] == text[p2-1]): # ...a sufficiently high header
             return 0.5
 
+
 class VimLexer(RegexLexer):
     """
     Lexer for VimL script files.
@@ -827,6 +821,7 @@ class GettextLexer(RegexLexer):
              bygroups(Name.Variable, Number.Integer, Name.Variable, Text, String)),
         ]
     }
+
 
 class SquidConfLexer(RegexLexer):
     """
@@ -1427,6 +1422,7 @@ class YamlLexer(ExtendedRegexLexer):
             context = YamlLexerContext(text, 0)
         return super(YamlLexer, self).get_tokens_unprocessed(text, context)
 
+
 class LighttpdConfLexer(RegexLexer):
     """
     Lexer for `Lighttpd <http://lighttpd.net/>`_ configuration files.
@@ -1453,6 +1449,7 @@ class LighttpdConfLexer(RegexLexer):
         ],
 
     }
+
 
 class NginxConfLexer(RegexLexer):
     """

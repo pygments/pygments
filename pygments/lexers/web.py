@@ -5,9 +5,8 @@
 
     Lexers for web-related languages and markup.
 
-    :copyright: 2006-2008 by Georg Brandl, Armin Ronacher,
-                Tim Hatch <tim@timhatch.com>, Stou Sandalski.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
@@ -224,6 +223,7 @@ class ActionScript3Lexer(RegexLexer):
     def analyse_text(text):
         if re.match(r'\w+\s*:\s*\w', text): return 0.3
         return 0.1
+
 
 class CssLexer(RegexLexer):
     """

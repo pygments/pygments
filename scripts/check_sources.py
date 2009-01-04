@@ -7,8 +7,8 @@
     Make sure each Python file has a correct file header
     including copyright and license information.
 
-    :copyright: 2006-2007 by Georg Brandl.
-    :license: GNU GPL, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import sys, os, re
@@ -30,8 +30,8 @@ def checker(*suffixes, **kwds):
 
 
 name_mail_re = r'[\w ]+(<.*?>)?'
-copyright_re = re.compile(r'^    :copyright: 200\d(-200\d)? by %s(, %s)*[,.]$' %
-                          (name_mail_re, name_mail_re), re.UNICODE)
+copyright_re = re.compile(r'^    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+                          r'see AUTHORS\.$', re.UNICODE)
 copyright_2_re = re.compile(r'^                %s(, %s)*[,.]$' %
                             (name_mail_re, name_mail_re), re.UNICODE)
 coding_re    = re.compile(r'coding[:=]\s*([-\w.]+)')
@@ -126,7 +126,7 @@ def check_fileheader(fn, lines):
 
     # check for copyright and license fields
     license = llist[-2:-1]
-    if license != ["    :license: BSD, see LICENSE for more details.\n"]:
+    if license != ["    :license: BSD, see LICENSE for details.\n"]:
         yield 0, "no correct license info"
 
     ci = -3
