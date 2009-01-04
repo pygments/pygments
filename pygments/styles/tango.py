@@ -85,10 +85,10 @@ class TangoStyle(Style):
         Name:                          "#000000",      # class: 'n'
         Name.Attribute:                "#c4a000",      # class: 'na', - to be revised
         Name.Builtin:                  "#204a87",      # class: 'nb'
-        Name.Builtin.Pseudo:           "#3465a4", # class: 'bp'
-        Name.Class:                    "#000000", # class: 'nc' - to be revised
+        Name.Builtin.Pseudo:           "#3465a4",      # class: 'bp'
+        Name.Class:                    "#000000",      # class: 'nc' - to be revised
         Name.Constant:                 "#000000",      # class: 'no', - to be revised
-        Name.Decorator:                "bold #5c35cc",      # class: 'nd', - to be revised
+        Name.Decorator:                "bold #5c35cc", # class: 'nd', - to be revised
         Name.Entity:                   "#ce5c00",      # class: 'ni',
         Name.Exception:                "bold #cc0000", # class: 'ne',
         Name.Function:                 "#000000",      # class: 'nf'

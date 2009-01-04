@@ -5,9 +5,8 @@
 
     Lexers for parser generators.
 
-    :copyright: 2008-2009 by Ana Nelson <ana@ananelson.com>, Tim Hatch.
-
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
