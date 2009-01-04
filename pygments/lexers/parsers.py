@@ -316,11 +316,13 @@ class RagelJavaLexer(DelegatingLexer):
 
 class AntlrLexer(RegexLexer):
     """
-    Generic ANTLR Lexer.
+    Generic `ANTLR`_ Lexer.
     Should not be called directly, instead
     use DelegatingLexer for your target language.
 
     *New in Pygments 1.1*
+
+    .. _ANTLR: http://www.antlr.org/
     """
 
     name = 'ANTLR'
@@ -526,7 +528,7 @@ class AntlrLexer(RegexLexer):
 
 class AntlrCppLexer(DelegatingLexer):
     """
-    ANTLR with CPP Target
+    `ANTLR`_ with CPP Target
 
     *New in Pygments 1.1*
     """
@@ -543,7 +545,7 @@ class AntlrCppLexer(DelegatingLexer):
 
 class AntlrObjectiveCLexer(DelegatingLexer):
     """
-    ANTLR with ObjectiveC Target
+    `ANTLR`_ with Objective-C Target
 
     *New in Pygments 1.1*
     """
@@ -561,7 +563,7 @@ class AntlrObjectiveCLexer(DelegatingLexer):
 
 class AntlrCSharpLexer(DelegatingLexer):
     """
-    ANTLR with C# Target
+    `ANTLR`_ with C# Target
 
     *New in Pygments 1.1*
     """
@@ -579,7 +581,7 @@ class AntlrCSharpLexer(DelegatingLexer):
 
 class AntlrPythonLexer(DelegatingLexer):
     """
-    ANTLR with Python Target
+    `ANTLR`_ with Python Target
 
     *New in Pygments 1.1*
     """
@@ -598,7 +600,7 @@ class AntlrPythonLexer(DelegatingLexer):
 
 class AntlrJavaLexer(DelegatingLexer):
     """
-    ANTLR with Java Target
+    `ANTLR`_ with Java Target
 
     *New in Pygments 1.1*
     """
@@ -617,7 +619,7 @@ class AntlrJavaLexer(DelegatingLexer):
 
 class AntlrRubyLexer(DelegatingLexer):
     """
-    ANTLR with Ruby Target
+    `ANTLR`_ with Ruby Target
 
     *New in Pygments 1.1*
     """
@@ -635,7 +637,7 @@ class AntlrRubyLexer(DelegatingLexer):
 
 class AntlrPerlLexer(DelegatingLexer):
     """
-    ANTLR with Perl Target
+    `ANTLR`_ with Perl Target
 
     *New in Pygments 1.1*
     """
@@ -653,7 +655,7 @@ class AntlrPerlLexer(DelegatingLexer):
 
 class AntlrActionScriptLexer(DelegatingLexer):
     """
-    ANTLR with ActionScript Target
+    `ANTLR`_ with ActionScript Target
 
     *New in Pygments 1.1*
     """
