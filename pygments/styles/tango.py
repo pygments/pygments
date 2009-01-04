@@ -33,8 +33,8 @@
     have been chosen to have the same style.  Similarly, keywords (Keyword.*),
     and Operator.Word (and, or, in) have been assigned the same style.
 
-    :copyright: 2008 by André Roberge.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style

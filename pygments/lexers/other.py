@@ -5,10 +5,8 @@
 
     Lexers for other languages.
 
-    :copyright: 2006-2009 by Georg Brandl, Tim Hatch <tim@timhatch.com>,
-                Stou Sandalski, Paulo Moura, Clara Dimene,
-                Andreas Amann <aamann@mac.com>.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
@@ -581,6 +579,7 @@ class MOOCodeLexer(RegexLexer):
         ]
     }
 
+
 class SmalltalkLexer(RegexLexer):
     """
     For `Smalltalk <http://www.smalltalk.org/>`_ syntax.
@@ -701,6 +700,7 @@ class SmalltalkLexer(RegexLexer):
             (r'! !$', Keyword),
         ],
     }
+
 
 class TcshLexer(RegexLexer):
     """

@@ -5,8 +5,8 @@
 
     Formatter for Pixmap output.
 
-    :copyright: 2007 by Ali Afshar.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import sys

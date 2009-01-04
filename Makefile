@@ -4,20 +4,18 @@
 #
 # Combines scripts for common tasks.
 #
-# :copyright: 2006-2007 by Georg Brandl.
-# :license: GNU GPL, see LICENSE for more details.
+# :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+# :license: BSD, see LICENSE for details.
 #
 
 PYTHON ?= python
 
 export PYTHONPATH = $(shell echo "$$PYTHONPATH"):$(shell python -c 'import os; print ":".join(os.path.abspath(line.strip()) for line in file("PYTHONPATH"))' 2>/dev/null)
 
-.PHONY: all apidocs check clean clean-pyc codetags docs epydoc mapfiles \
+.PHONY: all check clean clean-pyc codetags docs mapfiles \
 	pylint reindent test test-coverage
 
 all: clean-pyc check test
-
-apidocs: epydoc
 
 check:
 	@$(PYTHON) scripts/detect_missing_analyse_text.py
@@ -43,20 +41,6 @@ docs: docs/build
 docs/build: docs/src/*.txt
 	$(PYTHON) docs/generate.py html docs/build $?
 	touch docs/build
-
-epydoc:
-	@rm -rf apidocs
-	@$(PYTHON) -Wi:default_transform `which epydoc` -o apidocs --css scripts/epydoc.css \
-		   --url http://trac.pocoo.org/pygments --no-frames --docformat restructuredtext \
-		   -v pygments
-	@sed -i -e 's|^<br />||' \
-			-e 's|\s\+$$||' \
-			-e 's|^\s\+</pre>|</pre>|' \
-			-e 's|\(<table class="[^"]*"\) border="1"|\1|' \
-			-e 's|\(<table class="navbar" .*\) width="100%"|\1|' \
-			-e 's|<td width="15%"|<td class="spacer"|' \
-			apidocs/*.html
-	@$(PYTHON) scripts/fix_epydoc_markup.py apidocs
 
 mapfiles:
 	(cd pygments/lexers; $(PYTHON) _mapping.py)

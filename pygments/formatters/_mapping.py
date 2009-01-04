@@ -9,8 +9,8 @@
 
     Do not alter the FORMATTERS dictionary by hand.
 
-    :copyright: 2006-2007 by Armin Ronacher, Georg Brandl.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.util import docstring_headline

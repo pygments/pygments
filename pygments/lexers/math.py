@@ -5,9 +5,8 @@
 
     Lexers for math languages.
 
-    :copyright: 2007-2008 by Christopher Creutzig, Ken Schutte, Stou Sandalski,
-                Laurent Gautier <lgautier@gmail.com>.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re

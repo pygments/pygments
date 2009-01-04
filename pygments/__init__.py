@@ -20,8 +20,8 @@
 
     .. _Pygments tip: http://dev.pocoo.org/hg/pygments-main/archive/tip.tar.gz#egg=Pygments-dev
 
-    :copyright: 2006-2008 by Georg Brandl, Armin Ronacher and others.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 __version__ = '1.0'

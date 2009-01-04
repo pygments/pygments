@@ -8,8 +8,8 @@
     This is a port of the style used in the `php port`_ of pygments
     by Manni. The style is called 'default' there.
 
-    :copyright: 2006-2007 by Armin Ronacher, Manni <manni@fnord.name>.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style

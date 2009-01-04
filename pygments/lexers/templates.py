@@ -5,9 +5,8 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: 2006-2009 by Armin Ronacher, Georg Brandl, Matt Good,
-                Ben Bangert.
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
