@@ -44,7 +44,7 @@ class JavascriptLexer(RegexLexer):
             (r'//.*?\n', Comment),
             (r'/\*.*?\*/', Comment),
             (r'/(\\\\|\\/|[^/\n])*/[gim]+\b', String.Regex),
-            (r'/(\\\\|\\/|[^/\n])*/(?=\s*[,);])', String.Regex),
+            (r'/(\\\\|\\/|[^/\n])*/(?=\s*[,);\n])', String.Regex),
             (r'/(\\\\|\\/|[^/\n])*/(?=\s*\.[a-z])', String.Regex),
             (r'[~\^\*!%&<>\|+=:;,/?\\-]+', Operator),
             (r'[{}\[\]();.]+', Punctuation),
