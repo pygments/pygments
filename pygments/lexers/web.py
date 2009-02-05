@@ -195,7 +195,7 @@ class ActionScript3Lexer(RegexLexer):
              r'static|import|extends|implements|interface|intrinsic|return|super|'
              r'dynamic|function|const|get|namespace|package|set)\b',
              Keyword.Declaration),
-            (r'(true|false|null|NaN|Infinity|-Infinity|undefined|Void)\b',
+            (r'(true|false|null|NaN|Infinity|-Infinity|undefined|void)\b',
              Keyword.Constant),
             (r'(decodeURI|decodeURIComponent|encodeURI|escape|eval|isFinite|isNaN|'
              r'isXMLName|clearInterval|fscommand|getTimer|getURL|getVersion|'
@@ -210,13 +210,19 @@ class ActionScript3Lexer(RegexLexer):
             (r'[~\^\*!%&<>\|+=:;,/?\\{}\[\]();.-]+', Operator),
         ],
         'funcparams': [
-            (r'(' + identifier + r')(\s*)(:)(\s*)(' + identifier + r'|\*)(\s*)(,?)',
-             bygroups(Name, Text, Operator, Text, Keyword.Type, Text, Operator)),
+            (r'(\s*)(' + identifier + r')(\s*)(:)(\s*)(' + identifier + r'|\*)(\s*)',
+             bygroups(Text, Name, Text, Operator, Text, Keyword.Type, Text), 'defval'),
             (r'\)', Operator, 'type')
         ],
         'type': [
-            (r'(\s*)(:)(' + identifier + r'|\*)',
-             bygroups(Text, Operator, Keyword.Type), '#pop:2')
+            (r'(\s*)(:)(\s*)(' + identifier + r'|\*)',
+             bygroups(Text, Operator, Text, Keyword.Type), '#pop:2'),
+            (r'\s*', Text, '#pop:2')
+        ],
+        'defval': [
+            (r'(=)(\s*)([^(),]+)(\s*)(,?)', 
+             bygroups(Operator, Text, using(this), Text, Operator), '#pop'),
+            (r',?', Operator, '#pop')
         ]
     }
 
