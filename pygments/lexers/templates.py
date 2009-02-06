@@ -37,7 +37,8 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'MyghtyCssLexer', 'MyghtyJavascriptLexer', 'MakoLexer',
            'MakoHtmlLexer', 'MakoXmlLexer', 'MakoJavascriptLexer',
            'MakoCssLexer', 'JspLexer', 'CheetahLexer', 'CheetahHtmlLexer',
-           'CheetahXmlLexer', 'CheetahJavascriptLexer']
+           'CheetahXmlLexer', 'CheetahJavascriptLexer',
+           'EvoqueLexer', 'EvoqueHtmlLexer', 'EvoqueXmlLexer']
 
 
 class ErbLexer(Lexer):
@@ -1215,3 +1216,88 @@ class JspLexer(DelegatingLexer):
         if '<%' in text and '%>' in text:
             rv += 0.1
         return rv
+
+
+class EvoqueLexer(RegexLexer):
+    """
+    For files using the Evoque templating system.
+
+    *New in Pygments 1.1.*
+    """
+    name = 'Evoque'
+    aliases = ['evoque']
+    filenames = ['*.evoque']
+    mimetypes = ['application/x-evoque']
+
+    flags = re.DOTALL
+
+    tokens = {
+        'root': [
+            (r'[^#$]+', Other),
+            (r'#\[', Comment.Multiline, 'comment'),
+            (r'\$\$', Other),
+            # svn keywords
+            (r'\$\w+:[^$\n]*\$', Comment.Multiline),
+            # directives: begin, end
+            (r'(\$)(begin|end)(\{(%)?)(.*?)((?(4)%)\})',
+             bygroups(Punctuation, Name.Builtin, Punctuation, None,
+                      String, Punctuation, None)),
+            # directives: evoque, overlay
+            # see doc for handling first name arg: /directives/evoque/
+            #+ minor inconsistency: the "name" in e.g. $overlay{name=site_base}
+            # should be using(PythonLexer), not passed out as String
+            (r'(\$)(evoque|overlay)(\{(%)?)(\s*[#\w\-"\'.]+[^=,%}]+?)?'
+             r'(.*?)((?(4)%)\})',
+             bygroups(Punctuation, Name.Builtin, Punctuation, None,
+                      String, using(PythonLexer), Punctuation, None)),
+            # directives: if, for, prefer, test
+            (r'(\$)(\w+)(\{(%)?)(.*?)((?(4)%)\})',
+             bygroups(Punctuation, Name.Builtin, Punctuation, None,
+                      using(PythonLexer), Punctuation, None)),
+            # directive clauses (no {} expression)
+            (r'(\$)(else|rof|fi)', bygroups(Punctuation, Name.Builtin)),
+            # expressions
+            (r'(\$\{(%)?)(.*?)((!)(.*?))?((?(2)%)\})',
+             bygroups(Punctuation, None, using(PythonLexer),
+                      Name.Builtin, None, None, Punctuation, None)),
+            (r'#', Other),
+        ],
+        'comment': [
+            (r'[^\]#]', Comment.Multiline),
+            (r'#\[', Comment.Multiline, '#push'),
+            (r'\]#', Comment.Multiline, '#pop'),
+            (r'[\]#]', Comment.Multiline)
+        ],
+    }
+
+class EvoqueHtmlLexer(DelegatingLexer):
+    """
+    Subclass of the `EvoqueLexer` that highlights unlexed data with the
+    `HtmlLexer`.
+
+    *New in Pygments 1.1.*
+    """
+    name = 'HTML+Evoque'
+    aliases = ['html+evoque']
+    filenames = ['*.html']
+    mimetypes = ['text/html+evoque']
+
+    def __init__(self, **options):
+        super(EvoqueHtmlLexer, self).__init__(HtmlLexer, EvoqueLexer,
+                                              **options)
+
+class EvoqueXmlLexer(DelegatingLexer):
+    """
+    Subclass of the `EvoqueLexer` that highlights unlexed data with the
+    `XmlLexer`.
+
+    *New in Pygments 1.1.*
+    """
+    name = 'XML+Evoque'
+    aliases = ['xml+evoque']
+    filenames = ['*.xml']
+    mimetypes = ['application/xml+evoque']
+
+    def __init__(self, **options):
+        super(EvoqueXmlLexer, self).__init__(XmlLexer, EvoqueLexer,
+                                             **options)
