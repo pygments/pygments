@@ -16,13 +16,14 @@ from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
 from pygments.token import Error, Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.util import shebang_matches
+from pygments.lexers.web import HtmlLexer
 
 
 __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'BashLexer', 'BatchLexer', 'BefungeLexer', 'RedcodeLexer',
            'MOOCodeLexer', 'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer',
            'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer',
-           'BashSessionLexer']
+           'BashSessionLexer', 'ModelicaLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -1537,4 +1538,86 @@ class AppleScriptLexer(RegexLexer):
             ('[^*(]+', Comment.Multiline),
             ('[*(]', Comment.Multiline),
         ],
+    }
+
+
+class ModelicaLexer(RegexLexer):
+    """
+    For `Modelica <http://www.modelica.org/>`_ source code.
+
+    *New in Pygments 1.1.*
+    """
+    name = 'Modelica'
+    aliases = ['modelica']
+    filenames = ['*.mo']
+    mimetypes = ['text/x-modelica']
+
+    flags = re.IGNORECASE | re.DOTALL
+
+    tokens = {
+        'whitespace': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuation
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+        ],
+        'statements': [
+            (r'L?"', String, 'string'),
+            (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
+             String.Char),
+            (r'(\d+\.\d*|\.\d+|\d+|\d.)[eE][+-]?\d+[lL]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+)', Number.Float),
+            (r'\d+[Ll]?', Number.Integer),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'[()\[\]{},.;]', Punctuation),
+            (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
+            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
+            ('\w+(\.\w+)+', Name.Class),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name)
+        ],
+        'root': [
+            include('whitespace'),
+            include('keywords'),
+            include('functions'),
+            include('operators'),
+            include('classes'),
+            (r'("<html>|<html>)', Name.Tag, 'html-content'),
+            include('statements')
+        ],
+        'keywords': [
+            (r'(algorithm|annotation|break|connect|constant|constrainedby|'
+            r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
+            r'end|equation|exit|expandable|extends|'
+            r'external|false|final|flow|for|if|import|in|inner|input|'
+            r'loop|nondiscrete|outer|output|parameter|partial|'
+            r'protected|public|redeclare|replaceable|time|then|true|'
+            r'when|while|within)\b', Keyword)
+        ],
+        'functions': [
+            (r'(abs|acos|acosh|asin|asinh|atan|atan2|atan3|ceil|cos|cosh|'
+             r'cross|div|exp|floor|log|log10|mod|rem|sign|sin|sinh|size|'
+             r'sqrt|tan|tanh|zeros)\b', Name.Function)
+        ],
+        'operators': [
+            (r'(and|assert|cardinality|change|delay|der|edge|initial|'
+             r'noEvent|not|or|pre|reinit|return|sample|smooth|'
+             r'terminal|terminate)\b', Name.Builtin)
+        ],
+        'classes': [
+            (r'(block|class|connector|function|model|package|'
+             r'record|type)\b', Name.Class)
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})',
+             String.Escape),
+            (r'[^\\"\n]+', String), # all other characters
+            (r'\\\n', String), # line continuation
+            (r'\\', String) # stray backslash
+        ],
+        'html-content': [
+            (r'<\s*/\s*html\s*>', Name.Tag, '#pop'),
+            (r'.+?(?=<\s*/\s*html\s*>)', using(HtmlLexer)),
+        ]
     }
