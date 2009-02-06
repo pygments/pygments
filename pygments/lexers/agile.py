@@ -1434,7 +1434,7 @@ class ClojureLexer(RegexLexer):
             # strings, symbols and characters
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'" + valid_name, String.Symbol),
-            (r"\\([()/'\".'_!Â§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
+            (r"\\([()/'\".'_!Â§$%& ?;=+-]{1}|[a-zA-Z0-9]+)", String.Char),
 
             # constants
             (r'(#t|#f)', Name.Constant),
