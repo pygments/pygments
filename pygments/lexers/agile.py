@@ -80,14 +80,15 @@ class PythonLexer(RegexLexer):
              r'return|try|while|yield|as|with)\b', Keyword),
         ],
         'builtins': [
-            (r'(?<!\.)(__import__|abs|apply|basestring|bool|buffer|callable|'
-             r'chr|classmethod|cmp|coerce|compile|complex|delattr|dict|dir|'
-             r'divmod|enumerate|eval|execfile|exit|file|filter|float|getattr|'
-             r'globals|hasattr|hash|hex|id|input|int|intern|isinstance|'
-             r'issubclass|iter|len|list|locals|long|map|max|min|object|oct|'
-             r'open|ord|pow|property|range|raw_input|reduce|reload|repr|'
-             r'round|setattr|slice|staticmethod|str|sum|super|tuple|type|'
-             r'unichr|unicode|vars|xrange|zip)\b', Name.Builtin),
+            (r'(?<!\.)(__import__|abs|all|any|apply|basestring|bin|bool|buffer|'
+             r'bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|'
+             r'complex|delattr|dict|dir|divmod|enumerate|eval|execfile|exit|'
+             r'file|filter|float|frozenset|getattr|globals|hasattr|hash|hex|id|'
+             r'input|int|intern|isinstance|issubclass|iter|len|list|locals|'
+             r'long|map|max|min|next|object|oct|open|ord|pow|property|range|'
+             r'raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|'
+             r'sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|'
+             r'vars|xrange|zip)\b', Name.Builtin),
             (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True'
              r')\b', Name.Builtin.Pseudo),
             (r'(?<!\.)(ArithmeticError|AssertionError|AttributeError|'
