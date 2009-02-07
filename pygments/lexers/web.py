@@ -23,7 +23,8 @@ from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
 
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
-           'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer']
+           'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
+           'MxmlLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -653,3 +654,46 @@ class XsltLexer(XmlLexer):
     def analyse_text(text):
         if looks_like_xml(text) and '<xsl' in text:
             return 0.8
+
+
+
+class MxmlLexer(RegexLexer):
+    """
+    For MXML markup.
+    Nested AS3 in <script> tags is highlighted by the appropriate lexer.
+    """
+    flags = re.MULTILINE | re.DOTALL
+    name = 'MXML'
+    aliases = ['mxml']
+    filenames = ['*.mxml']
+    mimetimes = ['text/xml', 'application/xml']
+
+    tokens = {
+            'root': [
+                ('[^<&]+', Text),
+                (r'&\S*?;', Name.Entity),
+                (r'(\<\!\[CDATA\[)(.*?)(\]\]\>)',
+                 bygroups(String, using(ActionScript3Lexer), String)),
+                ('<!--', Comment, 'comment'),
+                (r'<\?.*?\?>', Comment.Preproc),
+                ('<![^>]*>', Comment.Preproc),
+                (r'<\s*[a-zA-Z0-9:._-]+', Name.Tag, 'tag'),
+                (r'<\s*/\s*[a-zA-Z0-9:._-]+\s*>', Name.Tag),
+            ],
+            'comment': [
+                ('[^-]+', Comment),
+                ('-->', Comment, '#pop'),
+                ('-', Comment),
+            ],
+            'tag': [
+                (r'\s+', Text),
+                (r'[a-zA-Z0-9_.:-]+\s*=', Name.Attribute, 'attr'),
+                (r'/?\s*>', Name.Tag, '#pop'),
+            ],
+            'attr': [
+                ('\s+', Text),
+                ('".*?"', String, '#pop'),
+                ("'.*?'", String, '#pop'),
+                (r'[^\s>]+', String, '#pop'),
+            ],
+        }
