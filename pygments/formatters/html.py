@@ -274,6 +274,10 @@ class HtmlFormatter(Formatter):
         output line in an anchor tag with a ``name`` of ``foo-linenumber``.
         This allows easy linking to certain lines. *New in Pygments 0.9.*
 
+    `anchorlinenos`
+        If set to `True`, will wrap line numbers in <a> tags. Used in
+        combination with `linenos` and `lineanchors`.
+
 
     **Subclassing the HTML formatter**
 
@@ -352,6 +356,7 @@ class HtmlFormatter(Formatter):
         self.nobackground = get_bool_opt(options, 'nobackground', False)
         self.lineseparator = options.get('lineseparator', '\n')
         self.lineanchors = options.get('lineanchors', '')
+        self.anchorlinenos = options.get('anchorlinenos', False)
         self.hl_lines = set()
         for lineno in get_list_opt(options, 'hl_lines', []):
             try:
@@ -490,16 +495,45 @@ class HtmlFormatter(Formatter):
         mw = len(str(lncount + fl - 1))
         sp = self.linenospecial
         st = self.linenostep
+        la = self.lineanchors
+        aln = self.anchorlinenos
         if sp:
-            ls = '\n'.join([(i%st == 0 and
-                             (i%sp == 0 and '<span class="special">%*d</span>'
-                              or '%*d') % (mw, i)
-                             or '')
-                            for i in range(fl, fl + lncount)])
+            lines = [ ]
+            
+            for i in range(fl, fl+lncount):
+                if i % st == 0:
+                    if i % sp == 0:
+                        if aln:
+                            lines.append('<a href="#%s-%d"' + \
+                                ' class="special">%*d</a>' % (la, i, mw, i))
+                        else:                            
+                            lines.append('<span class="special">%*d</span>' \
+                                            % (mw, i))
+                    else:
+                        if aln:
+                            lines.append('<a href="#%s-%d">%*d</a>' \
+                                            % (la, i, mw, i))
+                        else:
+                            lines.append('%*d' % (mw, i))
+                else:
+                    lines.append('')
+                    
+            ls = '\n'.join(lines)
+                
         else:
-            ls = '\n'.join([(i%st == 0 and ('%*d' % (mw, i)) or '')
-                            for i in range(fl, fl + lncount)])
-
+            lines = [ ]
+            for i in range(fl, fl+lncount):
+                if i % st == 0:
+                    if aln:
+                        lines.append('<a href="#%s-%d">%*d</a>' \
+                                        % (la, i, mw, i))
+                    else:
+                        lines.append('%*d' % (mw, i))
+                else:
+                    lines.append('')
+            
+            ls = '\n'.join(lines)
+            
         # in case you wonder about the seemingly redundant <div> here: since the
         # content in the other cell also is wrapped in a div, some browsers in
         # some configurations seem to mess up the formatting...
