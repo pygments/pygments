@@ -18,6 +18,8 @@ Version 1.1
   * MXML
   * Cython
 
+- Added "anchorlinenos" option to HTML formatter.
+
 - Fix a bug lexing extended Ruby strings.
 
 - Fix a bug when lexing git diffs.
@@ -36,7 +38,7 @@ Version 1.1
   match the filename, use the analyse_text guessing engine to determine the
   winner (#355).
 
-- Fix minor bugs in Clojure lexer (#387) and AS3 lexer (#389)
+- Fix minor bugs in Clojure lexer (#387) and AS3 lexer (#389).
 
 
 Version 1.0
