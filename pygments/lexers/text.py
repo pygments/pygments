@@ -46,7 +46,7 @@ class IniLexer(RegexLexer):
             (r'\s+', Text),
             (r'[;#].*?$', Comment),
             (r'\[.*?\]$', Keyword),
-            (r'(.*?)(\s*)(=)(\s*)(.*?)$',
+            (r'(.*?)([ \t]*)(=)([ \t]*)(.*?)$',
              bygroups(Name.Attribute, Text, Operator, Text, String))
         ]
     }
