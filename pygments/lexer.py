@@ -477,7 +477,6 @@ class RegexLexer(Lexer):
             for rexmatch, action, new_state in statetokens:
                 m = rexmatch(text, pos)
                 if m:
-                    # print rex.pattern
                     if type(action) is _TokenType:
                         yield pos, action, m.group()
                     else:
