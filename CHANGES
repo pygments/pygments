@@ -18,27 +18,25 @@ Version 1.1
   * MXML
   * Cython
 
-- Added "anchorlinenos" option to HTML formatter.
-
-- Fix a bug lexing extended Ruby strings.
-
-- Fix a bug when lexing git diffs.
-
-- Fix a bug in the JavaScript lexer (#383).
-
-- Fix a few problems in Matlab lexer (#378).
+- Add "anchorlinenos" option to HTML formatter.
 
 - Support multiline strings in Lua lexer.
-
-- Fix a Perl heredoc bug (#729).
-
-- Fix a bug in the image formatter which misdetected lines (#380).
 
 - When pygmentize is asked to highlight a file for which multiple lexers
   match the filename, use the analyse_text guessing engine to determine the
   winner (#355).
 
-- Fix minor bugs in Clojure lexer (#387), AS3 lexer (#389), INI lexer (#391)
+- Fix minor bugs in the JavaScript lexer (#383), the Matlab lexer (#378),
+  the Scala lexer (#392), the INI lexer (#391), the Clojure lexer (#387)
+  and the AS3 lexer (#389).
+
+- Fix a Perl heredoc bug (#729).
+
+- Fix a bug in the image formatter which misdetected lines (#380).
+
+- Fix a bug lexing extended Ruby strings.
+
+- Fix a bug when lexing git diffs.
 
 
 Version 1.0
