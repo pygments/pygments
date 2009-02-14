@@ -992,23 +992,22 @@ class ScalaLexer(RegexLexer):
             (ur'%s|%s|`[^`]+`' % (idrest, op), Name.Class, '#pop'),
         ],
         'type': [
-            (r'(?<=\])(\s*$)', Text, '#pop'),
-            (r'[\s\n]+', Text),
-            (ur'<[%:]|=>|>:|[#_\u21D2]|forSome|type', Keyword),
-            (r'([,\);}]|=(?!>))([\s\n]*)', bygroups(Operator, Text), '#pop'),
+            (r'\s+', Text),
+            (ur'<[%:]|>:|[#_\u21D2]|forSome|type', Keyword),
+            (r'([,\);}]|=>|=)([\s\n]*)', bygroups(Operator, Text), '#pop'),
             (r'[\(\{]', Operator, '#push'),
-            (ur'((?:\.|%s|%s|`[^`]+`)+)([\s]*)(\[)' % (idrest, op),
-             bygroups(Keyword.Type, Text, Operator), 'typeparam'),
-            (ur'((?:\.|%s|%s|`[^`]+`)+)(\s*)$' % (idrest, op),
+            (ur'((?:%s|%s|`[^`]+`)(?:\.(?:%s|%s|`[^`]+`))*)(\s*)(\[)' % (idrest, op, idrest, op),
+             bygroups(Keyword.Type, Text, Operator), ('#pop', 'typeparam')),
+            (ur'((?:%s|%s|`[^`]+`)(?:\.(?:%s|%s|`[^`]+`))*)(\s*)$' % (idrest, op, idrest, op),
              bygroups(Keyword.Type, Text), '#pop'),
-            (ur'(\.|%s|%s|`[^`]+`)+' % (idrest, op), Keyword.Type)
+            (ur'\.|%s|%s|`[^`]+`' % (idrest, op), Keyword.Type)
         ],
         'typeparam': [
             (r'[\s\n,]+', Text),
             (ur'<[%:]|=>|>:|[#_\u21D2]|forSome|type', Keyword),
             (r'([\]\)\}])', Operator, '#pop'),
             (r'[\(\[\{]', Operator, '#push'),
-            (ur'(\.|%s|%s|`[^`]+`)+' % (idrest, op), Keyword.Type)
+            (ur'\.|%s|%s|`[^`]+`' % (idrest, op), Keyword.Type)
         ],
         'comment': [
             (r'[^/\*]+', Comment.Multiline),
