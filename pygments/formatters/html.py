@@ -454,7 +454,8 @@ class HtmlFormatter(Formatter):
                     if not filename or filename[0] == '<':
                         # pseudo files, e.g. name == '<fdopen>'
                         raise AttributeError
-                    cssfilename = os.path.join(os.path.dirname(filename), self.cssfile)
+                    cssfilename = os.path.join(os.path.dirname(filename),
+                                               self.cssfile)
                 except AttributeError:
                     print >>sys.stderr, 'Note: Cannot determine output file name, ' \
                           'using current directory as base for the CSS file name'
@@ -498,42 +499,36 @@ class HtmlFormatter(Formatter):
         la = self.lineanchors
         aln = self.anchorlinenos
         if sp:
-            lines = [ ]
-            
+            lines = []
+
             for i in range(fl, fl+lncount):
                 if i % st == 0:
                     if i % sp == 0:
                         if aln:
-                            lines.append('<a href="#%s-%d"' + \
-                                ' class="special">%*d</a>' % (la, i, mw, i))
-                        else:                            
-                            lines.append('<span class="special">%*d</span>' \
-                                            % (mw, i))
+                            lines.append('<a href="#%s-%d" class="special">%*d</a>' %
+                                         (la, i, mw, i))
+                        else:
+                            lines.append('<span class="special">%*d</span>' % (mw, i))
                     else:
                         if aln:
-                            lines.append('<a href="#%s-%d">%*d</a>' \
-                                            % (la, i, mw, i))
+                            lines.append('<a href="#%s-%d">%*d</a>' % (la, i, mw, i))
                         else:
                             lines.append('%*d' % (mw, i))
                 else:
                     lines.append('')
-                    
             ls = '\n'.join(lines)
-                
         else:
-            lines = [ ]
+            lines = []
             for i in range(fl, fl+lncount):
                 if i % st == 0:
                     if aln:
-                        lines.append('<a href="#%s-%d">%*d</a>' \
-                                        % (la, i, mw, i))
+                        lines.append('<a href="#%s-%d">%*d</a>' % (la, i, mw, i))
                     else:
                         lines.append('%*d' % (mw, i))
                 else:
                     lines.append('')
-            
             ls = '\n'.join(lines)
-            
+
         # in case you wonder about the seemingly redundant <div> here: since the
         # content in the other cell also is wrapped in a div, some browsers in
         # some configurations seem to mess up the formatting...
@@ -554,7 +549,8 @@ class HtmlFormatter(Formatter):
         if sp:
             for t, line in lines:
                 yield 1, '<span class="lineno%s">%*s</span> ' % (
-                    num%sp == 0 and ' special' or '', mw, (num%st and ' ' or num)) + line
+                    num%sp == 0 and ' special' or '', mw,
+                    (num%st and ' ' or num)) + line
                 num += 1
         else:
             for t, line in lines:
