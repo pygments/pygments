@@ -22,7 +22,8 @@ Version 1.1
 - Fix the LaTeX formatter's output so that output generated for one style
   can be used with the style definitions of another (#384).
 
-- Add "anchorlinenos" option to HTML formatter.
+- Add "anchorlinenos" and "noclobber_cssfile" (#396) options to HTML
+  formatter.
 
 - Support multiline strings in Lua lexer.
 
