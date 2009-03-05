@@ -23,7 +23,7 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'BashLexer', 'BatchLexer', 'BefungeLexer', 'RedcodeLexer',
            'MOOCodeLexer', 'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer',
            'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer',
-           'BashSessionLexer', 'ModelicaLexer', 'RebolLexer']
+           'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -1835,3 +1835,192 @@ class RebolLexer(RegexLexer):
         ],
     }
 
+
+class ABAPLexer(RegexLexer):
+    """
+    Lexer for ABAP, SAP's integrated language.
+
+    *New in Pygments 1.1.*
+    """
+    name = 'ABAP'
+    aliases = ['abap']
+    filenames = ['*.abap']
+    mimetypes = ['text/x-abap']
+
+    flags = re.IGNORECASE | re.MULTILINE
+
+    tokens = {
+        'common': [
+            (r'\s+', Text),
+            (r'^\*.*$', Comment.Single),
+            (r'\".*?\n', Comment.Single),
+            ],
+        'variable-names': [
+            (r'<[\S_]+>', Name.Variable),
+            (r'[\w][\w_~]*(?:(\[\])|->\*)?', Name.Variable),
+            ],
+        'root': [
+            include('common'),
+            #function calls
+            (r'(CALL\s+(?:BADI|CUSTOMER-FUNCTION|FUNCTION))(\s+)(\'?\S+\'?)',
+                bygroups(Keyword, Text, Name.Function)),
+            (r'(CALL\s+(?:DIALOG|SCREEN|SUBSCREEN|SELECTION-SCREEN|'
+             r'TRANSACTION|TRANSFORMATION))\b',
+                Keyword),
+            (r'(FORM|PERFORM)(\s+)([\w_]+)',
+                bygroups(Keyword, Text, Name.Function)),
+            (r'(PERFORM)(\s+)(\()([\w_]+)(\))',
+                bygroups(Keyword, Text, Punctuation, Name.Variable, Punctuation )),
+            (r'(MODULE)(\s+)(\S+)(\s+)(INPUT|OUTPUT)',
+                bygroups(Keyword, Text, Name.Function, Text, Keyword)),
+
+            # method implementation
+            (r'(METHOD)(\s+)([\w_~]+)',
+                bygroups(Keyword, Text, Name.Function)),
+            # method calls
+            (r'(\s+)([\w_\-]+)([=\-]>)([\w_\-~]+)',
+                bygroups(Text, Name.Variable, Operator, Name.Function)),
+            # call methodnames returning style
+            (r'(?<=(=|-)>)([\w_\-~]+)(?=\()', Name.Function),
+
+            # keywords with dashes in them.
+            # these need to be first, because for instance the -ID part
+            # of MESSAGE-ID wouldn't get highlighted if MESSAGE was
+            # first in the list of keywords.
+            (r'(ADD-CORRESPONDING|AUTHORITY-CHECK|'
+             r'CLASS-DATA|CLASS-EVENTS|CLASS-METHODS|CLASS-POOL|'
+             r'DELETE-ADJACENT|DIVIDE-CORRESPONDING|'
+             r'EDITOR-CALL|ENHANCEMENT-POINT|ENHANCEMENT-SECTION|EXIT-COMMAND|'
+             r'FIELD-GROUPS|FIELD-SYMBOLS|FUNCTION-POOL|'
+             r'INTERFACE-POOL|INVERTED-DATE|'
+             r'LOAD-OF-PROGRAM|LOG-POINT|'
+             r'MESSAGE-ID|MOVE-CORRESPONDING|MULTIPLY-CORRESPONDING|'
+             r'NEW-LINE|NEW-PAGE|NEW-SECTION|NO-EXTENSION|'
+             r'OUTPUT-LENGTH|PRINT-CONTROL|'
+             r'SELECT-OPTIONS|START-OF-SELECTION|SUBTRACT-CORRESPONDING|'
+             r'SYNTAX-CHECK|SYSTEM-EXCEPTIONS|'
+             r'TYPE-POOL|TYPE-POOLS'
+             r')\b', Keyword),
+
+             # keyword kombinations
+            (r'CREATE\s+(PUBLIC|PRIVATE|DATA|OBJECT)|'
+             r'((PUBLIC|PRIVATE|PROTECTED)\s+SECTION|'
+             r'(TYPE|LIKE)(\s+(LINE\s+OF|REF\s+TO|'
+             r'(SORTED|STANDARD|HASHED)\s+TABLE\s+OF))?|'
+             r'FROM\s+(DATABASE|MEMORY)|CALL\s+METHOD|'
+             r'(GROUP|ORDER) BY|HAVING|SEPARATED BY|'
+             r'GET\s+(BADI|BIT|CURSOR|DATASET|LOCALE|PARAMETER|'
+                      r'PF-STATUS|(PROPERTY|REFERENCE)\s+OF|'
+                      r'RUN\s+TIME|TIME\s+(STAMP)?)?|'
+             r'SET\s+(BIT|BLANK\s+LINES|COUNTRY|CURSOR|DATASET|EXTENDED\s+CHECK|'
+                      r'HANDLER|HOLD\s+DATA|LANGUAGE|LEFT\s+SCROLL-BOUNDARY|'
+                      r'LOCALE|MARGIN|PARAMETER|PF-STATUS|PROPERTY\s+OF|'
+                      r'RUN\s+TIME\s+(ANALYZER|CLOCK\s+RESOLUTION)|SCREEN|'
+                      r'TITLEBAR|UPADTE\s+TASK\s+LOCAL|USER-COMMAND)|'
+             r'CONVERT\s+((INVERTED-)?DATE|TIME|TIME\s+STAMP|TEXT)|'
+             r'(CLOSE|OPEN)\s+(DATASET|CURSOR)|'
+             r'(TO|FROM)\s+(DATA BUFFER|INTERNAL TABLE|MEMORY ID|'
+                            r'DATABASE|SHARED\s+(MEMORY|BUFFER))|'
+             r'DESCRIBE\s+(DISTANCE\s+BETWEEN|FIELD|LIST|TABLE)|'
+             r'FREE\s(MEMORY|OBJECT)?|'
+             r'PROCESS\s+(BEFORE\s+OUTPUT|AFTER\s+INPUT|'
+                          r'ON\s+(VALUE-REQUEST|HELP-REQUEST))|'
+             r'AT\s+(LINE-SELECTION|USER-COMMAND|END\s+OF|NEW)|'
+             r'AT\s+SELECTION-SCREEN(\s+(ON(\s+(BLOCK|(HELP|VALUE)-REQUEST\s+FOR|'
+                                     r'END\s+OF|RADIOBUTTON\s+GROUP))?|OUTPUT))?|'
+             r'SELECTION-SCREEN:?\s+((BEGIN|END)\s+OF\s+((TABBED\s+)?BLOCK|LINE|'
+                                     r'SCREEN)|COMMENT|FUNCTION\s+KEY|'
+                                     r'INCLUDE\s+BLOCKS|POSITION|PUSHBUTTON|'
+                                     r'SKIP|ULINE)|'
+             r'LEAVE\s+(LIST-PROCESSING|PROGRAM|SCREEN|'
+                        r'TO LIST-PROCESSING|TO TRANSACTION)'
+             r'(ENDING|STARTING)\s+AT|'
+             r'FORMAT\s+(COLOR|INTENSIFIED|INVERSE|HOTSPOT|INPUT|FRAMES|RESET)|'
+             r'AS\s+(CHECKBOX|SUBSCREEN|WINDOW)|'
+             r'WITH\s+(((NON-)?UNIQUE)?\s+KEY|FRAME)|'
+             r'(BEGIN|END)\s+OF|'
+             r'DELETE(\s+ADJACENT\s+DUPLICATES\sFROM)?|'
+             r'COMPARING(\s+ALL\s+FIELDS)?|'
+             r'INSERT(\s+INITIAL\s+LINE\s+INTO|\s+LINES\s+OF)?|'
+             r'IN\s+((BYTE|CHARACTER)\s+MODE|PROGRAM)|'
+             r'END-OF-(DEFINITION|PAGE|SELECTION)|'
+             r'WITH\s+FRAME(\s+TITLE)|'
+
+             # simple kombinations
+             r'AND\s+(MARK|RETURN)|CLIENT\s+SPECIFIED|CORRESPONDING\s+FIELDS\s+OF|'
+             r'IF\s+FOUND|FOR\s+EVENT|INHERITING\s+FROM|LEAVE\s+TO\s+SCREEN|'
+             r'LOOP\s+AT\s+(SCREEN)?|LOWER\s+CASE|MATCHCODE\s+OBJECT|MODIF\s+ID|'
+             r'MODIFY\s+SCREEN|NESTING\s+LEVEL|NO\s+INTERVALS|OF\s+STRUCTURE|'
+             r'RADIOBUTTON\s+GROUP|RANGE\s+OF|REF\s+TO|SUPPRESS DIALOG|'
+             r'TABLE\s+OF|UPPER\s+CASE|TRANSPORTING\s+NO\s+FIELDS|'
+             r'VALUE\s+CHECK|VISIBLE\s+LENGTH|HEADER\s+LINE)\b', Keyword),
+
+            # single word keywords.
+            (r'(^|(?<=(\s|\.)))(ABBREVIATED|ADD|ALIASES|APPEND|ASSERT|'
+             r'ASSIGN(ING)?|AT(\s+FIRST)?|'
+             r'BACK|BLOCK|BREAK-POINT|'
+             r'CASE|CATCH|CHANGING|CHECK|CLASS|CLEAR|COLLECT|COLOR|COMMIT|'
+             r'CREATE|COMMUNICATION|COMPONENTS?|COMPUTE|CONCATENATE|CONDENSE|'
+             r'CONSTANTS|CONTEXTS|CONTINUE|CONTROLS|'
+             r'DATA|DECIMALS|DEFAULT|DEFINE|DEFINITION|DEFERRED|DEMAND|'
+             r'DETAIL|DIRECTORY|DIVIDE|DO|'
+             r'ELSE(IF)?|ENDAT|ENDCASE|ENDCLASS|ENDDO|ENDFORM|ENDFUNCTION|'
+             r'ENDIF|ENDLOOP|ENDMETHOD|ENDMODULE|ENDSELECT|ENDTRY|'
+             r'ENHANCEMENT|EVENTS|EXCEPTIONS|EXIT|EXPORT|EXPORTING|EXTRACT|'
+             r'FETCH|FIELDS?|FIND|FOR|FORM|FORMAT|FREE|FROM|'
+             r'HIDE|'
+             r'ID|IF|IMPORT|IMPLEMENTATION|IMPORTING|IN|INCLUDE|INCLUDING|'
+             r'INDEX|INFOTYPES|INITIALIZATION|INTERFACE|INTERFACES|INTO|'
+             r'LENGTH|LINES|LOAD|LOCAL|'
+             r'JOIN|'
+             r'KEY|'
+             r'MAXIMUM|MESSAGE|METHOD[S]?|MINIMUM|MODULE|MODIFY|MOVE|MULTIPLY|'
+             r'NODES|'
+             r'OBLIGATORY|OF|OFF|ON|OVERLAY|'
+             r'PACK|PARAMETERS|PERCENTAGE|POSITION|PROGRAM|PROVIDE|PUBLIC|PUT|'
+             r'RAISE|RAISING|RANGES|READ|RECEIVE|REFRESH|REJECT|REPORT|RESERVE|'
+             r'RESUME|RETRY|RETURN|RETURNING|RIGHT|ROLLBACK|'
+             r'SCROLL|SEARCH|SELECT|SHIFT|SINGLE|SKIP|SORT|SPLIT|STATICS|STOP|'
+             r'SUBMIT|SUBTRACT|SUM|SUMMARY|SUMMING|SUPPLY|'
+             r'TABLE|TABLES|TIMES|TITLE|TO|TOP-OF-PAGE|TRANSFER|TRANSLATE|TRY|TYPES|'
+             r'ULINE|UNDER|UNPACK|UPDATE|USING|'
+             r'VALUE|VALUES|VIA|'
+             r'WAIT|WHEN|WHERE|WHILE|WITH|WINDOW|WRITE)\b', Keyword),
+
+             # builtins
+            (r'(abs|acos|asin|atan|'
+             r'boolc|boolx|bit_set|'
+             r'char_off|charlen|ceil|cmax|cmin|condense|contains|'
+             r'contains_any_of|contains_any_not_of|concat_lines_of|cos|cosh|'
+             r'count|count_any_of|count_any_not_of|'
+             r'dbmaxlen|distance|'
+             r'escape|exp|'
+             r'find|find_end|find_any_of|find_any_not_of|floor|frac|from_mixed|'
+             r'insert|'
+             r'lines|log|log10|'
+             r'match|matches|'
+             r'nmax|nmin|numofchar|'
+             r'repeat|replace|rescale|reverse|round|'
+             r'segment|shift_left|shift_right|sign|sin|sinh|sqrt|strlen|'
+             r'substring|substring_after|substring_from|substring_before|substring_to|'
+             r'tan|tanh|to_upper|to_lower|to_mixed|translate|trunc|'
+             r'xstrlen)(\()\b', bygroups(Name.Builtin, Punctuation)),
+
+            (r'&[0-9]', Name),
+            (r'[0-9]+', Number.Integer),
+
+            # operators which look like variable names before
+            # parsing variable names.
+            (r'(?<=(\s|.))(AND|EQ|NE|GT|LT|GE|LE|CO|CN|CA|NA|CS|NOT|NS|CP|NP|'
+             r'BYTE-CO|BYTE-CN|BYTE-CA|BYTE-NA|BYTE-CS|BYTE-NS|'
+             r'IS\s+(NOT\s+)?(INITIAL|ASSIGNED|REQUESTED|BOUND))\b', Operator),
+
+            include('variable-names'),
+
+            # standard oparators after variable names,
+            # because < and > are part of field symbols.
+            (r'[?*<>=\-+]', Operator),
+            (r"'(''|[^'])*'", String.Single),
+            (r'[/;:()\[\],\.]', Punctuation)
+        ],
+    }
