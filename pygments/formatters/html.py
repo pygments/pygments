@@ -186,7 +186,9 @@ class HtmlFormatter(Formatter):
 
     `style`
         The style to use, can be a string or a Style subclass (default:
-        ``'default'``).
+        ``'default'``). This option has no effect if the `cssfile`
+        and `noclobber_cssfile` option are given and the file specified in
+        `cssfile` exists.
 
     `noclasses`
         If set to true, token ``<span>`` tags will not use CSS classes, but
@@ -222,6 +224,12 @@ class HtmlFormatter(Formatter):
         path, the file's path will be assumed to be relative to the main output
         file's path, if the latter can be found. The stylesheet is then written
         to this file instead of the HTML file. *New in Pygments 0.6.*
+
+    `noclobber_cssfile'
+        If `cssfile` is given and the specified file exists, the css file will
+        not be overwritten. This allows the use of the `full` option in
+        combination with a user specified css file. Default is ``False``.
+        *New in Pygments 1.1.*
 
     `linenos`
         If set to ``'table'``, output line numbers as a table with two cells,
@@ -342,6 +350,8 @@ class HtmlFormatter(Formatter):
         self.cssstyles = self._encodeifneeded(options.get('cssstyles', ''))
         self.prestyles = self._encodeifneeded(options.get('prestyles', ''))
         self.cssfile = self._encodeifneeded(options.get('cssfile', ''))
+        self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
+
         linenos = options.get('linenos', False)
         if linenos == 'inline':
             self.linenos = 2
@@ -460,12 +470,13 @@ class HtmlFormatter(Formatter):
                     print >>sys.stderr, 'Note: Cannot determine output file name, ' \
                           'using current directory as base for the CSS file name'
                     cssfilename = self.cssfile
-            # write CSS file
+            # write CSS file only if noclobber_cssfile isn't given as an option.
             try:
-                cf = open(cssfilename, "w")
-                cf.write(CSSFILE_TEMPLATE %
-                         {'styledefs': self.get_style_defs('body')})
-                cf.close()
+                if not os.path.exists(cssfilename) or not self.noclobber_cssfile:
+                    cf = open(cssfilename, "w")
+                    cf.write(CSSFILE_TEMPLATE %
+                            {'styledefs': self.get_style_defs('body')})
+                    cf.close()
             except IOError, err:
                 err.strerror = 'Error writing CSS file: ' + err.strerror
                 raise
