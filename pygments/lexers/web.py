@@ -211,8 +211,10 @@ class ActionScript3Lexer(RegexLexer):
             (r'[~\^\*!%&<>\|+=:;,/?\\{}\[\]();.-]+', Operator),
         ],
         'funcparams': [
-            (r'(\s*)(\.\.\.)?(' + identifier + r')(\s*)(:)(\s*)(' + identifier + r'|\*)(\s*)',
-             bygroups(Text, Punctuation, Name, Text, Operator, Text, Keyword.Type, Text), 'defval'),
+            (r'(\s*)(\.\.\.)?(' + identifier + r')(\s*)(:)(\s*)(' +
+             identifier + r'|\*)(\s*)',
+             bygroups(Text, Punctuation, Name, Text, Operator, Text,
+                      Keyword.Type, Text), 'defval'),
             (r'\)', Operator, 'type')
         ],
         'type': [
@@ -221,7 +223,7 @@ class ActionScript3Lexer(RegexLexer):
             (r'\s*', Text, '#pop:2')
         ],
         'defval': [
-            (r'(=)(\s*)([^(),]+)(\s*)(,?)', 
+            (r'(=)(\s*)([^(),]+)(\s*)(,?)',
              bygroups(Operator, Text, using(this), Text, Operator), '#pop'),
             (r',?', Operator, '#pop')
         ]
