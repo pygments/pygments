@@ -11,7 +11,7 @@
 import StringIO
 
 from pygments.formatter import Formatter
-from pygments.token import Token
+from pygments.token import Token, STANDARD_TYPES
 from pygments.util import get_bool_opt, get_int_opt
 
 
@@ -44,6 +44,73 @@ DOC_TEMPLATE = r'''
 \end{document}
 '''
 
+## Small explanation of the mess below :)
+#
+# The previous version of the LaTeX formatter just assigned a command to
+# each token type defined in the current style.  That obviously is
+# problematic if the highlighted code is produced for a different style
+# than the style commands themselves.
+#
+# This version works much like the HTML formatter which assigns multiple
+# CSS classes to each <span> tag, from the most specific to the least
+# specific token type, thus falling back to the parent token type if one
+# is not defined.  Here, the classes are there too and use the same short
+# forms given in token.STANDARD_TYPES.
+#
+# Highlighted code now only uses one custom command, which by default is
+# \PY and selectable by the commandprefix option (and in addition the
+# escapes \PYZat, \PYZlb and \PYZrb which haven't been renamed for
+# backwards compatibility purposes).
+#
+# \PY has two arguments: the classes, separated by +, and the text to
+# render in that style.  The classes are resolved into the respective
+# style commands by magic, which serves to ignore unknown classes.
+#
+# The magic macros are:
+# * \PY@it, \PY@bf, etc. are unconditionally wrapped around the text
+#   to render in \PY@do.  Their definition determines the style.
+# * \PY@reset resets \PY@it etc. to do nothing.
+# * \PY@toks parses the list of classes, using magic inspired by the
+#   keyval package (but modified to use plusses instead of commas
+#   because fancyvrb redefines commas inside its environments).
+# * \PY@tok processes one class, calling the \PY@tok@classname command
+#   if it exists.
+# * \PY@tok@classname sets the \PY@it etc. to reflect the chosen style
+#   for its class.
+# * \PY resets the style, parses the classnames and then calls \PY@do.
+
+STYLE_TEMPLATE = r'''
+\makeatletter
+\def\%(cp)s@reset{\let\%(cp)s@it=\relax \let\%(cp)s@bf=\relax%%
+    \let\%(cp)s@ul=\relax \let\%(cp)s@tc=\relax%%
+    \let\%(cp)s@bc=\relax \let\%(cp)s@ff=\relax}
+\def\%(cp)s@tok#1{\csname %(cp)s@tok@#1\endcsname}
+\def\%(cp)s@toks#1+{\ifx\relax#1\empty\else%%
+    \%(cp)s@tok{#1}\expandafter\%(cp)s@toks\fi}
+\def\%(cp)s@do#1{\%(cp)s@bc{\%(cp)s@tc{\%(cp)s@ul{%%
+    \%(cp)s@it{\%(cp)s@bf{\%(cp)s@ff{#1}}}}}}}
+\def\%(cp)s#1#2{\%(cp)s@reset\%(cp)s@toks#1+\relax+\%(cp)s@do{#2}}
+
+%(styles)s
+
+\def\%(cp)sZat{@}
+\def\%(cp)sZlb{[}
+\def\%(cp)sZrb{]}
+\makeatother
+'''
+
+
+def _get_ttype_name(ttype):
+    fname = STANDARD_TYPES.get(ttype)
+    if fname:
+        return fname
+    aname = ''
+    while fname is None:
+        aname = ttype[-1] + aname
+        ttype = ttype.parent
+        fname = STANDARD_TYPES.get(ttype)
+    return fname + aname
+
 
 class LatexFormatter(Formatter):
     r"""
@@ -56,18 +123,18 @@ class LatexFormatter(Formatter):
     .. sourcecode:: latex
 
         \begin{Verbatim}[commandchars=@\[\]]
-        @PYan[def ]@PYax[foo](bar):
-            @PYan[pass]
+        @PY[k][def ]@PY[n+nf][foo](@PY[n][bar]):
+            @PY[k][pass]
         \end{Verbatim}
 
-    The command sequences used here (``@PYan`` etc.) are generated from the given
-    `style` and can be retrieved using the `get_style_defs` method.
+    The special command used here (``@PY``) and all the other macros it needs
+    are output by the `get_style_defs` method.
 
     With the `full` option, a complete LaTeX document is output, including
     the command definitions in the preamble.
 
     The `get_style_defs()` method of a `LatexFormatter` returns a string
-    containing ``\newcommand`` commands defining the commands used inside the
+    containing ``\def`` commands defining the macros needed inside the
     ``Verbatim`` environments.
 
     Additional options accepted:
@@ -127,18 +194,13 @@ class LatexFormatter(Formatter):
         self.nobackground = get_bool_opt(options, 'nobackground', False)
         self.commandprefix = options.get('commandprefix', 'PY')
 
-        self._create_stylecmds()
+        self._create_stylesheet()
 
 
-    def _create_stylecmds(self):
-        t2c = self.ttype2cmd = {Token: ''}
+    def _create_stylesheet(self):
+        t2n = self.ttype2name = {Token: ''}
         c2d = self.cmd2def = {}
         cp = self.commandprefix
-
-        letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        first = iter(letters)
-        second = iter(letters)
-        firstl = first.next()
 
         def rgbcolor(col):
             if col:
@@ -148,62 +210,53 @@ class LatexFormatter(Formatter):
                 return '1,1,1'
 
         for ttype, ndef in self.style:
-            cmndef = '#1'
+            name = _get_ttype_name(ttype)
+            cmndef = ''
             if ndef['bold']:
-                cmndef = r'\textbf{' + cmndef + '}'
+                cmndef += r'\let\$$@bf=\textbf'
             if ndef['italic']:
-                cmndef = r'\textit{' + cmndef + '}'
+                cmndef += r'\let\$$@it=\textit'
             if ndef['underline']:
-                cmndef = r'\underline{' + cmndef + '}'
+                cmndef += r'\let\$$@ul=\underline'
             if ndef['roman']:
-                cmndef = r'\textrm{' + cmndef + '}'
+                cmndef += r'\let\$$@ff=\textrm'
             if ndef['sans']:
-                cmndef = r'\textsf{' + cmndef + '}'
+                cmndef += r'\let\$$@ff=\textsf'
             if ndef['mono']:
-                cmndef = r'\texttt{' + cmndef + '}'
+                cmndef += r'\let\$$@ff=\textsf'
             if ndef['color']:
-                cmndef = r'\textcolor[rgb]{%s}{%s}' % (
-                    rgbcolor(ndef['color']),
-                    cmndef
-                )
+                cmndef += (r'\def\$$@tc##1{\textcolor[rgb]{%s}{##1}}' %
+                           rgbcolor(ndef['color']))
             if ndef['border']:
-                cmndef = r'\fcolorbox[rgb]{%s}{%s}{%s}' % (
-                    rgbcolor(ndef['border']),
-                    rgbcolor(ndef['bgcolor']),
-                    cmndef
-                )
+                cmndef += (r'\def\$$@bc##1{\fcolorbox[rgb]{%s}{%s}{##1}}' %
+                           (rgbcolor(ndef['border']),
+                            rgbcolor(ndef['bgcolor'])))
             elif ndef['bgcolor']:
-                cmndef = r'\colorbox[rgb]{%s}{%s}' % (
-                    rgbcolor(ndef['bgcolor']),
-                    cmndef
-                )
-            if cmndef == '#1':
+                cmndef += (r'\def\$$@bc##1{\colorbox[rgb]{%s}{##1}}' %
+                           rgbcolor(ndef['bgcolor']))
+            if cmndef == '':
                 continue
-            try:
-                alias = cp + firstl + second.next()
-            except StopIteration:
-                firstl = first.next()
-                second = iter(letters)
-                alias = cp + firstl + second.next()
-            t2c[ttype] = alias
-            c2d[alias] = cmndef
+            cmndef = cmndef.replace('$$', cp)
+            t2n[ttype] = name
+            c2d[name] = cmndef
 
     def get_style_defs(self, arg=''):
         """
-        Return the \\newcommand sequences needed to define the commands
+        Return the command sequences needed to define the commands
         used to format text in the verbatim environment. ``arg`` is ignored.
         """
-        nc = '\\newcommand'
         cp = self.commandprefix
-        return (
-            '%s\\%sZat{@}\n%s\\%sZlb{[}\n%s\\%sZrb{]}\n' % (nc, cp, nc, cp, nc, cp) +
-            '\n'.join(['\\newcommand\\%s[1]{%s}' % (alias, cmndef)
-                       for alias, cmndef in self.cmd2def.iteritems()
-                       if cmndef != '#1']))
+        styles = []
+        for name, definition in self.cmd2def.iteritems():
+            styles.append(r'\def\%s@tok@%s{%s}' % (cp, name, definition))
+        return STYLE_TEMPLATE % {'cp': self.commandprefix,
+                                 'styles': '\n'.join(styles)}
 
     def format(self, tokensource, outfile):
         # TODO: add support for background colors
         enc = self.encoding
+        t2n = self.ttype2name
+        cp = self.commandprefix
 
         if self.full:
             realoutfile = outfile
@@ -223,18 +276,23 @@ class LatexFormatter(Formatter):
             if enc:
                 value = value.encode(enc)
             value = escape_tex(value, self.commandprefix)
-            cmd = self.ttype2cmd.get(ttype)
-            while cmd is None:
+            styles = []
+            while ttype is not Token:
+                try:
+                    styles.append(t2n[ttype])
+                except KeyError:
+                    # not in current style
+                    styles.append(_get_ttype_name(ttype))
                 ttype = ttype.parent
-                cmd = self.ttype2cmd.get(ttype)
-            if cmd:
+            styleval = '+'.join(reversed(styles))
+            if styleval:
                 spl = value.split('\n')
                 for line in spl[:-1]:
                     if line:
-                        outfile.write("@%s[%s]" % (cmd, line))
+                        outfile.write("@%s[%s][%s]" % (cp, styleval, line))
                     outfile.write('\n')
                 if spl[-1]:
-                    outfile.write("@%s[%s]" % (cmd, spl[-1]))
+                    outfile.write("@%s[%s][%s]" % (cp, styleval, spl[-1]))
             else:
                 outfile.write(value)
 
