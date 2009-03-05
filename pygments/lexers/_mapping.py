@@ -14,6 +14,7 @@
 """
 
 LEXERS = {
+    'ABAPLexer': ('pygments.lexers.other', 'ABAP', ('abap',), ('*.abap',), ('text/x-abap',)),
     'ActionScript3Lexer': ('pygments.lexers.web', 'ActionScript 3', ('as3', 'actionscript3'), ('*.as',), ('application/x-actionscript', 'text/x-actionscript', 'text/actionscript')),
     'ActionScriptLexer': ('pygments.lexers.web', 'ActionScript', ('as', 'actionscript'), ('*.as',), ('application/x-actionscript', 'text/x-actionscript', 'text/actionscript')),
     'AntlrActionScriptLexer': ('pygments.lexers.parsers', 'ANTLR With ActionScript Target', ('antlr-as', 'antlr-actionscript'), ('*.G', '*.g'), ()),
