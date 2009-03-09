@@ -1563,18 +1563,17 @@ class ModelicaLexer(RegexLexer):
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
         ],
         'statements': [
-            (r'L?"', String, 'string'),
-            (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
-             String.Char),
+            (r'"', String, 'string'),
             (r'(\d+\.\d*|\.\d+|\d+|\d.)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+)', Number.Float),
             (r'\d+[Ll]?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\]{},.;]', Punctuation),
             (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
-            ('\w+(\.\w+)+', Name.Class),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name)
+            (r"('([~!%^&*+=|?:<>/-]+|[a-zA-Z_][\w]*)'|[a-zA-Z_][\w]*)+"
+             r"(\.('([~!%^&*+=|?:<>/-]|[a-zA-Z_][\w]*)'|[a-zA-Z_][\w]*)+)+",
+             Name.Class),
+            (r"('([~!%^&*+=|?:<>/-]+|[a-zA-Z_][\w]*)'|[a-zA-Z_][\w]*)", Name)
         ],
         'root': [
             include('whitespace'),
