@@ -1570,11 +1570,9 @@ class ModelicaLexer(RegexLexer):
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\]{},.;]', Punctuation),
             (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
-            (r"('([~!%^&*+=|?:<>/-]+|[a-zA-Z_][\w]*)'|[a-zA-Z_][\w]*)+"
-             r"(\.('([~!%^&*+=|?:<>/-]|[a-zA-Z_][\w]*)'|[a-zA-Z_][\w]*)+)+",
-             Name.Class),
-            (r"('([~!%^&*+=|?:<>/-]+|[a-zA-Z_][\w]*)'|[a-zA-Z_][\w]*)", Name)
-        ],
+            (r"([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*')"
+             r"(\.([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*'))+", Name.Class),
+            (r"('[\w\+\-\*\/\^]+'|\w+)", Name)        ],
         'root': [
             include('whitespace'),
             include('keywords'),
