@@ -116,7 +116,7 @@ class PythonLexer(RegexLexer):
             ('`.*?`', String.Backtick),
         ],
         'name': [
-            (r'@[a-zA-Z0-9_]+', Name.Decorator),
+            (r'@[a-zA-Z0-9_.]+', Name.Decorator),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'funcname': [
