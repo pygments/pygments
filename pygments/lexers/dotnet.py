@@ -10,13 +10,16 @@
 """
 import re
 
-from pygments.lexer import RegexLexer, bygroups, using, this
+from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, using, this
 from pygments.token import Punctuation, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Literal
+     Text, Comment, Operator, Keyword, Name, String, Number, Literal, Other
 from pygments.util import get_choice_opt
 from pygments import unistring as uni
 
-__all__ = ['CSharpLexer', 'BooLexer', 'VbNetLexer']
+from pygments.lexers.web import XmlLexer
+
+__all__ = ['CSharpLexer', 'BooLexer', 'VbNetLexer', 'CSharpAspxLexer',
+           'VbNetAspxLexer']
 
 
 def _escape(st):
@@ -286,3 +289,67 @@ class VbNetLexer(RegexLexer):
             (r'[a-z_][a-z0-9_.]*', Name.Namespace, '#pop')
         ],
     }
+
+class GenericAspxLexer(RegexLexer):
+    """
+    Lexer for ASP.NET pages.
+    """
+
+    name = 'aspx-gen'
+    filenames = []
+    mimetypes = []
+
+    flags = re.DOTALL
+
+    tokens = {
+        'root': [
+            (r'(<%[@=#]?)(.*?)(%>)', bygroups(Name.Tag, Other, Name.Tag)),
+            (r'(<script.*?>)(.*?)(</script>)', bygroups(using(XmlLexer),
+                                                        Other,
+                                                        using(XmlLexer))),
+            (r'(.+?)(?=<)', using(XmlLexer)),
+            (r'.+', using(XmlLexer)),
+        ],
+    }
+
+#TODO support multiple languages within the same source file
+class CSharpAspxLexer(DelegatingLexer):
+    """
+    Lexer for highligting C# within ASP.NET pages.
+    """
+
+    name = 'aspx-cs'
+    aliases = ['aspx-cs']
+    filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
+    mimetypes = []
+
+    def __init__(self, **options):
+        super(CSharpAspxLexer, self).__init__(CSharpLexer,GenericAspxLexer,
+                                              **options)
+
+    def analyse_text(text):
+        if re.search(r'Page\s*Language="C#"', text, re.I) is not None:
+            return 0.2
+        elif re.search(r'script[^>]+language=["\']C#', text, re.I) is not None:
+            return 0.15
+        return 0.001 # TODO really only for when filename matched...
+
+class VbNetAspxLexer(DelegatingLexer):
+    """
+    Lexer for highligting Visual Basic.net within ASP.NET pages.
+    """
+
+    name = 'aspx-vb'
+    aliases = ['aspx-vb']
+    filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
+    mimetypes = []
+
+    def __init__(self, **options):
+        super(VbNetAspxLexer, self).__init__(VbNetLexer,GenericAspxLexer,
+                                              **options)
+
+    def analyse_text(text):
+        if re.search(r'Page\s*Language="Vb"', text, re.I) is not None:
+            return 0.2
+        elif re.search(r'script[^>]+language=["\']vb', text, re.I) is not None:
+            return 0.15
