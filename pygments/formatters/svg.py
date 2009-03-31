@@ -95,7 +95,7 @@ class SvgFormatter(Formatter):
         self.spacehack = get_bool_opt(options, 'spacehack', True)
         self._stylecache = {}
 
-    def format(self, tokensource, outfile):
+    def format_unencoded(self, tokensource, outfile):
         """
         Format ``tokensource``, an iterable of ``(tokentype, tokenstring)``
         tuples and write it into ``outfile``.
@@ -104,22 +104,20 @@ class SvgFormatter(Formatter):
         """
         x = self.xoffset
         y = self.yoffset
-        enc = self.encoding
         if not self.nowrap:
-            if enc:
-                outfile.write('<?xml version="1.0" encoding="%s"?>\n' % self.encoding)
+            if self.encoding:
+                outfile.write('<?xml version="1.0" encoding="%s"?>\n' %
+                              self.encoding)
             else:
                 outfile.write('<?xml version="1.0"?>\n')
             outfile.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" '
                           '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/'
                           'svg10.dtd">\n')
             outfile.write('<svg xmlns="http://www.w3.org/2000/svg">\n')
-            outfile.write('<g font-family="%s" font-size="%s">\n' % (self.fontfamily,
-                                                                     self.fontsize))
+            outfile.write('<g font-family="%s" font-size="%s">\n' %
+                          (self.fontfamily, self.fontsize))
         outfile.write('<text x="%s" y="%s" xml:space="preserve">' % (x, y))
         for ttype, value in tokensource:
-            if enc:
-                value = value.encode(enc)
             style = self._get_style(ttype)
             tspan = style and '<tspan' + style + '>' or ''
             tspanend = tspan and '</tspan>' or ''

@@ -76,19 +76,16 @@ class BBCodeFormatter(Formatter):
 
             self.styles[ttype] = start, end
 
-    def format(self, tokensource, outfile):
+    def format_unencoded(self, tokensource, outfile):
         if self._code:
             outfile.write('[code]')
         if self._mono:
             outfile.write('[font=monospace]')
 
-        enc = self.encoding
         lastval = ''
         lasttype = None
 
         for ttype, value in tokensource:
-            if enc:
-                value = value.encode(enc)
             while ttype not in self.styles:
                 ttype = ttype.parent
             if ttype == lasttype:

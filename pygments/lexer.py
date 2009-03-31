@@ -127,8 +127,6 @@ class Lexer(object):
         Also preprocess the text, i.e. expand tabs and strip it if
         wanted and applies registered filters.
         """
-        text = text.replace('\r\n', '\n')
-        text = text.replace('\r', '\n')
         if not isinstance(text, unicode):
             if self.encoding == 'guess':
                 try:
@@ -148,6 +146,9 @@ class Lexer(object):
                 text = text.decode(enc['encoding'])
             else:
                 text = text.decode(self.encoding)
+        # text now *is* a unicode string
+        text = text.replace('\r\n', '\n')
+        text = text.replace('\r', '\n')
         if self.stripall:
             text = text.strip()
         elif self.stripnl:

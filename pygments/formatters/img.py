@@ -61,6 +61,7 @@ class FontManager(object):
         self.font_name = font_name
         self.font_size = font_size
         self.fonts = {}
+        self.encoding = None
         if sys.platform.startswith('win'):
             if not font_name:
                 self.font_name = DEFAULT_FONT_NAME_WIN

@@ -8,6 +8,7 @@
     :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+import sys
 import fnmatch
 import types
 from os.path import basename
@@ -19,7 +20,7 @@ except NameError:
 
 from pygments.lexers._mapping import LEXERS
 from pygments.plugin import find_plugin_lexers
-from pygments.util import ClassNotFound
+from pygments.util import ClassNotFound, bytes
 
 
 __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
@@ -101,6 +102,10 @@ def get_lexer_for_filename(_fn, code=None, **options):
         for filename in cls.filenames:
             if fnmatch.fnmatch(fn, filename):
                 matches.append(cls)
+
+    if sys.version_info > (3,) and isinstance(code, bytes):
+        # decode it, since all analyse_text functions expect unicode
+        code = code.decode('latin1')
 
     def get_rating(cls):
         # The class _always_ defines analyse_text because it's included in

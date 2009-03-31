@@ -52,8 +52,6 @@ class RtfFormatter(Formatter):
         """
         Formatter.__init__(self, **options)
         self.fontface = options.get('fontface') or ''
-        if self.encoding in ('utf-8', 'utf-16', 'utf-32'):
-            self.encoding = None
 
     def _escape(self, text):
         return text.replace('\\', '\\\\') \
@@ -67,7 +65,10 @@ class RtfFormatter(Formatter):
 
         # escape text
         text = self._escape(text)
-        encoding = self.encoding or 'iso-8859-15'
+        if self.encoding in ('utf-8', 'utf-16', 'utf-32'):
+            encoding = 'iso-8859-15'
+        else:
+            encoding = self.encoding or 'iso-8859-15'
 
         buf = []
         for c in text:
@@ -75,13 +76,15 @@ class RtfFormatter(Formatter):
                 ansic = c.encode(encoding, 'ignore') or '?'
                 if ord(ansic) > 128:
                     ansic = '\\\'%x' % ord(ansic)
+                else:
+                    ansic = c
                 buf.append(r'\ud{\u%d%s}' % (ord(c), ansic))
             else:
                 buf.append(str(c))
 
         return ''.join(buf).replace('\n', '\\par\n')
 
-    def format(self, tokensource, outfile):
+    def format_unencoded(self, tokensource, outfile):
         # rtf 1.8 header
         outfile.write(r'{\rtf1\ansi\deff0'
                       r'{\fonttbl{\f0\fmodern\fprq1\fcharset0%s;}}'

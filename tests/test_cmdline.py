@@ -49,20 +49,23 @@ class CmdLineTest(unittest.TestCase):
 
     def test_O_opt(self):
         filename = TESTFILE
-        c, o, e = run_cmdline("-Ofull=1,linenos=true,foo=bar", "-fhtml", filename)
+        c, o, e = run_cmdline("-Ofull=1,linenos=true,foo=bar",
+                              "-fhtml", filename)
         self.assertEquals(c, 0)
         self.assert_("<html" in o)
         self.assert_('class="linenos"' in o)
 
     def test_P_opt(self):
         filename = TESTFILE
-        c, o, e = run_cmdline("-Pfull", "-Ptitle=foo, bar=baz=,", "-fhtml", filename)
+        c, o, e = run_cmdline("-Pfull", "-Ptitle=foo, bar=baz=,",
+                              "-fhtml", filename)
         self.assertEquals(c, 0)
         self.assert_("<title>foo, bar=baz=,</title>" in o)
 
     def test_F_opt(self):
         filename = TESTFILE
-        c, o, e = run_cmdline("-Fhighlight:tokentype=Name.Blubb,names=TESTFILE filename",
+        c, o, e = run_cmdline("-Fhighlight:tokentype=Name.Blubb,"
+                              "names=TESTFILE filename",
                               "-fhtml", filename)
         self.assertEquals(c, 0)
         self.assert_('<span class="n-Blubb' in o)
@@ -87,7 +90,7 @@ class CmdLineTest(unittest.TestCase):
         from pygments.lexers import PythonLexer
         from pygments.formatters import HtmlFormatter
         filename = TESTFILE
-        code = open(filename).read()
+        code = open(filename, 'rb').read()
 
         output = highlight(code, PythonLexer(), HtmlFormatter())
 
