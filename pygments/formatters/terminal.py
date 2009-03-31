@@ -78,19 +78,20 @@ class TerminalFormatter(Formatter):
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
-        self.darkbg = get_choice_opt(options, 'bg', ['light', 'dark'], 'light') == 'dark'
+        self.darkbg = get_choice_opt(options, 'bg',
+                                     ['light', 'dark'], 'light') == 'dark'
         self.colorscheme = options.get('colorscheme', None) or TERMINAL_COLORS
 
     def format(self, tokensource, outfile):
-        enc = self.encoding
         # hack: if the output is a terminal and has an encoding set,
         # use that to avoid unicode encode problems
-        if not enc and hasattr(outfile, "encoding") and \
+        if not self.encoding and hasattr(outfile, "encoding") and \
            hasattr(outfile, "isatty") and outfile.isatty():
-            enc = outfile.encoding
+            self.encoding = outfile.encoding
+        return Formatter.format(self, tokensource, outfile)
+
+    def format_unencoded(self, tokensource, outfile):
         for ttype, value in tokensource:
-            if enc:
-                value = value.encode(enc)
             color = self.colorscheme.get(ttype)
             while color is None:
                 ttype = ttype[:-1]

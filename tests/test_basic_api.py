@@ -9,13 +9,13 @@
 
 import os
 import unittest
-import StringIO
 import random
 
 from pygments import lexers, formatters, filters, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatters.img import FontNotFound
+from pygments.util import BytesIO, StringIO, bytes, b
 
 import support
 
@@ -144,13 +144,17 @@ class FormattersTest(unittest.TestCase):
         a = self.assert_
         ae = self.assertEquals
         ts = list(lexers.PythonLexer().get_tokens("def f(): pass"))
-        out = StringIO.StringIO()
+        out = StringIO()
         # test that every formatter class has the correct public API
         for formatter, info in formatters.FORMATTERS.iteritems():
             a(len(info) == 4)
             a(info[0], "missing formatter name") # name
             a(info[1], "missing formatter aliases") # aliases
             a(info[3], "missing formatter docstring") # doc
+
+            if formatter.name == 'Raw tokens':
+                # will not work with Unicode output file
+                continue
 
             try:
                 inst = formatter(opt1="val1")
@@ -189,22 +193,29 @@ class FormattersTest(unittest.TestCase):
 
     def test_unicode_handling(self):
         # test that the formatter supports encoding and Unicode
-        tokens = list(lexers.PythonLexer(encoding='utf-8').get_tokens("def f(): 'ä'"))
+        tokens = list(lexers.PythonLexer(encoding='utf-8').
+                      get_tokens("def f(): 'ä'"))
         for formatter, info in formatters.FORMATTERS.iteritems():
             try:
                 inst = formatter(encoding=None)
             except (ImportError, FontNotFound):
                 # some dependency or font not installed
                 continue
-            out = format(tokens, inst)
-            if formatter.unicodeoutput:
-                self.assert_(type(out) is unicode)
 
-            inst = formatter(encoding='utf-8')
-            out = format(tokens, inst)
-            self.assert_(type(out) is str)
-            # Cannot test for encoding, since formatters may have to escape
-            # non-ASCII characters.
+            if formatter.name != 'Raw tokens':
+                out = format(tokens, inst)
+                if formatter.unicodeoutput:
+                    self.assert_(type(out) is unicode)
+
+                inst = formatter(encoding='utf-8')
+                out = format(tokens, inst)
+                self.assert_(type(out) is bytes, '%s: %r' % (formatter, out))
+                # Cannot test for encoding, since formatters may have to escape
+                # non-ASCII characters.
+            else:
+                inst = formatter()
+                out = format(tokens, inst)
+                self.assert_(type(out) is bytes, '%s: %r' % (formatter, out))
 
     def test_get_formatters(self):
         a = self.assert_

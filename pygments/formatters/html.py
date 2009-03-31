@@ -18,7 +18,7 @@ except NameError:
 
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
-from pygments.util import get_bool_opt, get_int_opt, get_list_opt
+from pygments.util import get_bool_opt, get_int_opt, get_list_opt, bytes
 
 
 __all__ = ['HtmlFormatter']
@@ -342,14 +342,14 @@ class HtmlFormatter(Formatter):
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
-        self.title = self._encodeifneeded(self.title)
+        self.title = self._decodeifneeded(self.title)
         self.nowrap = get_bool_opt(options, 'nowrap', False)
         self.noclasses = get_bool_opt(options, 'noclasses', False)
         self.classprefix = options.get('classprefix', '')
-        self.cssclass = self._encodeifneeded(options.get('cssclass', 'highlight'))
-        self.cssstyles = self._encodeifneeded(options.get('cssstyles', ''))
-        self.prestyles = self._encodeifneeded(options.get('prestyles', ''))
-        self.cssfile = self._encodeifneeded(options.get('cssfile', ''))
+        self.cssclass = self._decodeifneeded(options.get('cssclass', 'highlight'))
+        self.cssstyles = self._decodeifneeded(options.get('cssstyles', ''))
+        self.prestyles = self._decodeifneeded(options.get('prestyles', ''))
+        self.cssfile = self._decodeifneeded(options.get('cssfile', ''))
         self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
 
         linenos = options.get('linenos', False)
@@ -448,10 +448,12 @@ class HtmlFormatter(Formatter):
                          (prefix(''), self.style.highlight_color))
         return '\n'.join(lines)
 
-    def _encodeifneeded(self, value):
-        if not self.encoding or isinstance(value, str):
-            return value
-        return value.encode(self.encoding)
+    def _decodeifneeded(self, value):
+        if isinstance(value, bytes):
+            if self.encoding:
+                return value.decode(self.encoding)
+            return value.decode()
+        return value
 
     def _wrap_full(self, inner, outfile):
         if self.cssfile:
@@ -599,7 +601,6 @@ class HtmlFormatter(Formatter):
         Yield individual lines.
         """
         nocls = self.noclasses
-        enc = self.encoding
         lsep = self.lineseparator
         # for <span style=""> lookup only
         getcls = self.ttype2class.get
@@ -617,9 +618,6 @@ class HtmlFormatter(Formatter):
             else:
                 cls = self._get_css_class(ttype)
                 cspan = cls and '<span class="%s">' % cls or ''
-
-            if enc:
-                value = value.encode(enc)
 
             parts = escape_html(value).split('\n')
 
@@ -675,7 +673,7 @@ class HtmlFormatter(Formatter):
         """
         return self._wrap_div(self._wrap_pre(source))
 
-    def format(self, tokensource, outfile):
+    def format_unencoded(self, tokensource, outfile):
         """
         The formatting process uses several nested generators; which of
         them are used is determined by the user's options.

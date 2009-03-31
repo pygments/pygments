@@ -13,7 +13,7 @@ import unittest
 from pygments import highlight
 from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
 from pygments.token import Error
-from pygments.util import ClassNotFound
+from pygments.util import ClassNotFound, b
 
 
 # generate methods
@@ -40,8 +40,8 @@ def test_example_files():
         yield check_lexer, lx, absfn
 
 def check_lexer(lx, absfn):
-    text = open(absfn, 'U').read()
-    text = text.strip('\n') + '\n'
+    text = open(absfn, 'rb').read()
+    text = text.strip(b('\n')) + b('\n')
     try:
         text = text.decode('utf-8')
     except UnicodeError:

@@ -14,7 +14,7 @@ import cStringIO
 
 from pygments.lexer import Lexer
 from pygments.token import Token, Error, Text
-from pygments.util import get_choice_opt
+from pygments.util import get_choice_opt, b
 
 
 __all__ = ['TextLexer', 'RawTokenLexer']
@@ -35,7 +35,7 @@ class TextLexer(Lexer):
 
 _ttype_cache = {}
 
-line_re = re.compile('.*?\n')
+line_re = re.compile(b('.*?\n'))
 
 class RawTokenLexer(Lexer):
     """
@@ -73,7 +73,7 @@ class RawTokenLexer(Lexer):
 
         # do not call Lexer.get_tokens() because we do not want Unicode
         # decoding to occur, and stripping is not optional.
-        text = text.strip('\n') + '\n'
+        text = text.strip(b('\n')) + b('\n')
         for i, t, v in self.get_tokens_unprocessed(text):
             yield t, v
 
@@ -81,7 +81,7 @@ class RawTokenLexer(Lexer):
         length = 0
         for match in line_re.finditer(text):
             try:
-                ttypestr, val = match.group().split('\t', 1)
+                ttypestr, val = match.group().split(b('\t'), 1)
             except ValueError:
                 val = match.group().decode(self.encoding)
                 ttype = Error

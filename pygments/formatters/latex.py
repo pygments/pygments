@@ -8,11 +8,10 @@
     :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import StringIO
 
 from pygments.formatter import Formatter
 from pygments.token import Token, STANDARD_TYPES
-from pygments.util import get_bool_opt, get_int_opt
+from pygments.util import get_bool_opt, get_int_opt, StringIO
 
 
 __all__ = ['LatexFormatter']
@@ -252,15 +251,14 @@ class LatexFormatter(Formatter):
         return STYLE_TEMPLATE % {'cp': self.commandprefix,
                                  'styles': '\n'.join(styles)}
 
-    def format(self, tokensource, outfile):
+    def format_unencoded(self, tokensource, outfile):
         # TODO: add support for background colors
-        enc = self.encoding
         t2n = self.ttype2name
         cp = self.commandprefix
 
         if self.full:
             realoutfile = outfile
-            outfile = StringIO.StringIO()
+            outfile = StringIO()
 
         outfile.write(r'\begin{Verbatim}[commandchars=@\[\]')
         if self.linenos:
@@ -273,8 +271,6 @@ class LatexFormatter(Formatter):
         outfile.write(']\n')
 
         for ttype, value in tokensource:
-            if enc:
-                value = value.encode(enc)
             value = escape_tex(value, self.commandprefix)
             styles = []
             while ttype is not Token:

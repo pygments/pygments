@@ -12,7 +12,7 @@ import sys
 import getopt
 from textwrap import dedent
 
-from pygments import __version__, __author__, highlight
+from pygments import __version__, highlight
 from pygments.util import ClassNotFound, OptionError, docstring_headline
 from pygments.lexers import get_all_lexers, get_lexer_by_name, get_lexer_for_filename, \
      find_lexer_class, guess_lexer, TextLexer
@@ -219,7 +219,7 @@ def main(args=sys.argv):
         return 0
 
     if opts.pop('-V', None) is not None:
-        print 'Pygments version %s, (c) 2006-2008 by %s.' % (__version__, __author__)
+        print 'Pygments version %s, (c) 2006-2008 by Georg Brandl.' % __version__
         return 0
 
     # handle ``pygmentize -L``
@@ -359,7 +359,7 @@ def main(args=sys.argv):
 
         infn = args[0]
         try:
-            code = open(infn).read()
+            code = open(infn, 'rb').read()
         except Exception, err:
             print >>sys.stderr, 'Error: cannot read infile:', err
             return 1
@@ -402,9 +402,12 @@ def main(args=sys.argv):
             # encoding pass-through
             fmter.encoding = 'latin1'
         else:
-            # use terminal encoding
-            lexer.encoding = getattr(sys.stdin, 'encoding', None) or 'ascii'
-            fmter.encoding = getattr(sys.stdout, 'encoding', None) or 'ascii'
+            if sys.version_info < (3,):
+                # use terminal encoding; Python 3's terminals already do that
+                lexer.encoding = getattr(sys.stdin, 'encoding',
+                                         None) or 'ascii'
+                fmter.encoding = getattr(sys.stdout, 'encoding',
+                                         None) or 'ascii'
 
     # ... and do it!
     try:

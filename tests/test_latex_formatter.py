@@ -22,24 +22,26 @@ TESTFILE, TESTDIR = support.location(__file__)
 class LatexFormatterTest(unittest.TestCase):
 
     def test_valid_output(self):
-        tokensource = list(PythonLexer().get_tokens(file(TESTFILE).read()))
-        fmt = LatexFormatter(full=True)
+        tokensource = list(PythonLexer().get_tokens(open(TESTFILE).read()))
+        fmt = LatexFormatter(full=True, encoding='latin1')
 
         handle, pathname = tempfile.mkstemp('.tex')
         # place all output files in /tmp too
         old_wd = os.getcwd()
         os.chdir(os.path.dirname(pathname))
-        tfile = os.fdopen(handle, 'w+b')
+        tfile = os.fdopen(handle, 'wb')
         fmt.format(tokensource, tfile)
         tfile.close()
         try:
             try:
                 import subprocess
-                ret = subprocess.Popen(['latex', '-interaction=nonstopmode', pathname],
+                ret = subprocess.Popen(['latex', '-interaction=nonstopmode',
+                                        pathname],
                                        stdout=subprocess.PIPE).wait()
             except ImportError:
                 # Python 2.3 - no subprocess module
-                ret = os.popen('latex -interaction=nonstopmode "%s"' % pathname).close()
+                ret = os.popen('latex -interaction=nonstopmode "%s"'
+                               % pathname).close()
                 if ret == 32512: raise OSError  # not found
         except OSError:
             # latex not available
