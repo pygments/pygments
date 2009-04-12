@@ -478,6 +478,8 @@ class PhpLexer(RegexLexer):
             (r'\s+', Text),
             (r'#.*?\n', Comment),
             (r'//.*?\n', Comment),
+            (r'/\*\*/', Comment), # put the empty comment here, it is otherwise
+                                  # seen as the start of a docstring
             (r'/\*\*.*?\*/', String.Doc),
             (r'/\*.*?\*/', Comment),
             (r'(->|::)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
