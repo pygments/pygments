@@ -5,6 +5,10 @@ Version 1.1
 -----------
 (codename not selected, released XXX YY, 2009)
 
+- Ported Pygments to Python 3.  This needed a few changes in the way
+  encodings are handled; they may affect corner cases when used with
+  Python 2 as well.
+
 - Lexers added:
 
   * Antlr/Ragel, thanks to Ana Nelson
