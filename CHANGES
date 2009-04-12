@@ -22,6 +22,7 @@ Version 1.1
   * MXML
   * Cython
   * ABAP
+  * ASP.net (VB/C#)
 
 - Fix the LaTeX formatter's output so that output generated for one style
   can be used with the style definitions of another (#384).
@@ -39,7 +40,7 @@ Version 1.1
   the Scala lexer (#392), the INI lexer (#391), the Clojure lexer (#387)
   and the AS3 lexer (#389).
 
-- Fix a Perl heredoc bug (#729).
+- Fix two Perl heredoc lexing bugs (#729, #400).
 
 - Fix a bug in the image formatter which misdetected lines (#380).
 
@@ -48,6 +49,8 @@ Version 1.1
 - Fix a bug when lexing git diffs.
 
 - Fix a bug lexing the empty commit in the PHP lexer (#405).
+
+- Fix a bug causing Python numbers to be mishighlighted as floats (#397).
 
 
 Version 1.0
