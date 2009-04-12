@@ -973,13 +973,15 @@ class ScalaLexer(RegexLexer):
             (r'"""(?:.|\n)*?"""', String),
             (r'"(\\\\|\\"|[^"])*"', String),
             (ur"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
-#            (ur'(\.)(%s|%s|`[^`]+`)' % (idrest, op), bygroups(Operator, Name.Attribute)),
+#            (ur'(\.)(%s|%s|`[^`]+`)' % (idrest, op), bygroups(Operator,
+#             Name.Attribute)),
             (idrest, Name),
             (r'`[^`]+`', Name),
             (r'\[', Operator, 'typeparam'),
             (r'[\(\)\{\};,.]', Operator),
             (op, Operator),
-            (ur'([0-9][0-9]*\.[0-9]*|\.[0-9]+)([eE][+-]?[0-9]+)?[fFdD]?', Number.Float),
+            (ur'([0-9][0-9]*\.[0-9]*|\.[0-9]+)([eE][+-]?[0-9]+)?[fFdD]?',
+             Number.Float),
             (r'0x[0-9a-f]+', Number.Hex),
             (r'[0-9]+L?', Number.Integer),
             (r'\n', Text)
@@ -997,9 +999,11 @@ class ScalaLexer(RegexLexer):
             (u'<[%:]|>:|[#_\u21D2]|forSome|type', Keyword),
             (r'([,\);}]|=>|=)([\s\n]*)', bygroups(Operator, Text), '#pop'),
             (r'[\(\{]', Operator, '#push'),
-            (ur'((?:%s|%s|`[^`]+`)(?:\.(?:%s|%s|`[^`]+`))*)(\s*)(\[)' % (idrest, op, idrest, op),
+            (ur'((?:%s|%s|`[^`]+`)(?:\.(?:%s|%s|`[^`]+`))*)(\s*)(\[)' %
+             (idrest, op, idrest, op),
              bygroups(Keyword.Type, Text, Operator), ('#pop', 'typeparam')),
-            (ur'((?:%s|%s|`[^`]+`)(?:\.(?:%s|%s|`[^`]+`))*)(\s*)$' % (idrest, op, idrest, op),
+            (ur'((?:%s|%s|`[^`]+`)(?:\.(?:%s|%s|`[^`]+`))*)(\s*)$' %
+             (idrest, op, idrest, op),
              bygroups(Keyword.Type, Text), '#pop'),
             (ur'\.|%s|%s|`[^`]+`' % (idrest, op), Keyword.Type)
         ],
@@ -1093,7 +1097,8 @@ class ObjectiveCLexer(RegexLexer):
         ],
         'statements': [
             (r'(L|@)?"', String, 'string'),
-            (r"(L|@)?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
+            (r"(L|@)?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
+             String.Char),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
@@ -1109,7 +1114,8 @@ class ObjectiveCLexer(RegexLexer):
              r'@synthesize|@dynamic)\b', Keyword),
             (r'(int|long|float|short|double|char|unsigned|signed|void|'
              r'id|BOOL|IBOutlet|IBAction|SEL)\b', Keyword.Type),
-            (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
+            (r'(_{0,2}inline|naked|restrict|thread|typename)\b',
+             Keyword.Reserved),
             (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
              r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
             (r'(TRUE|FALSE|nil|NULL)\b', Name.Builtin),
@@ -1123,16 +1129,20 @@ class ObjectiveCLexer(RegexLexer):
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')({)',
-             bygroups(using(this), Name.Function, using(this), Text, Punctuation),
+             bygroups(using(this), Name.Function,
+                      using(this), Text, Punctuation),
              'function'),
             # function declarations
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')(;)',
-             bygroups(using(this), Name.Function, using(this), Text, Punctuation)),
-            (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text), 'forward_classname'),
+             bygroups(using(this), Name.Function,
+                      using(this), Text, Punctuation)),
+            (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
+             'classname'),
+            (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
+             'forward_classname'),
             (r'(\s*)(@end)(\s*)', bygroups(Text, Keyword, Text)),
             ('', Text, 'statement'),
         ],
@@ -1363,7 +1373,8 @@ class PrologLexer(RegexLexer):
             (r"'(?:''|[^'])*'", String.Atom), # quoted atom
             # Needs to not be followed by an atom.
             #(r'=(?=\s|[a-zA-Z\[])', Operator),
-            (r'(is|<|>|=<|>=|==|=:=|=|/|//|\*|\+|-)(?=\s|[a-zA-Z0-9\[])', Operator),
+            (r'(is|<|>|=<|>=|==|=:=|=|/|//|\*|\+|-)(?=\s|[a-zA-Z0-9\[])',
+             Operator),
             (r'(mod|div|not)\b', Operator),
             (r'_', Keyword), # The don't-care variable
             (r'([a-z]+)(:)', bygroups(Name.Namespace, Punctuation)),
