@@ -106,7 +106,8 @@ class PythonLexer(RegexLexer):
              r')\b', Name.Exception),
         ],
         'numbers': [
-            (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+', Number.Float),
             (r'0\d+', Number.Oct),
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),
@@ -833,7 +834,7 @@ class PerlLexer(RegexLexer):
         ],
         'root': [
             (r'\#.*?$', Comment.Single),
-            (r'=[a-zA-Z0-9]+\s+.*?\n=cut', Comment.Multiline),
+            (r'^=[a-zA-Z0-9]+\s+.*?\n=cut', Comment.Multiline),
             (r'(case|continue|do|else|elsif|for|foreach|if|last|my|'
              r'next|our|redo|reset|then|unless|until|while|use|'
              r'print|new|BEGIN|END|return)\b', Keyword),
