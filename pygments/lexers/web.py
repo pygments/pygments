@@ -211,6 +211,7 @@ class ActionScript3Lexer(RegexLexer):
             (r'[~\^\*!%&<>\|+=:;,/?\\{}\[\]();.-]+', Operator),
         ],
         'funcparams': [
+            (r'\s+', Text),
             (r'(\s*)(\.\.\.)?(' + identifier + r')(\s*)(:)(\s*)(' +
              identifier + r'|\*)(\s*)',
              bygroups(Text, Punctuation, Name, Text, Operator, Text,
