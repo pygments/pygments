@@ -28,7 +28,7 @@ from pygments.lexers.functional import OcamlLexer
 
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer', 'ScalaLexer',
            'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer', 'FortranLexer',
-           'GLShaderLexer', 'PrologLexer', 'CythonLexer']
+           'GLShaderLexer', 'PrologLexer', 'CythonLexer', 'ValaLexer']
 
 
 class CLexer(RegexLexer):
@@ -1569,5 +1569,94 @@ class CythonLexer(RegexLexer):
             (r"'''", String, '#pop'),
             include('strings'),
             include('nl')
+        ],
+    }
+
+
+class ValaLexer(RegexLexer):
+    """
+    For Vala source code with preprocessor directives.
+
+    *New in Pygments 1.1.*
+    """
+    name = 'Vala'
+    aliases = ['vala', 'vapi']
+    filenames = ['*.vala', '*.vapi']
+    mimetypes = ['text/x-vala']
+
+    tokens = {
+        'whitespace': [
+            (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuation
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+        ],
+        'statements': [
+            (r'L?"', String, 'string'),
+            (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
+             String.Char),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
+            (r'0[0-7]+[Ll]?', Number.Oct),
+            (r'\d+[Ll]?', Number.Integer),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'(\[)(Compact|Immutable|(?:Boolean|Simple)Type)(\])',
+             bygroups(Punctuation, Name.Decorator, Punctuation)),
+            # TODO: "correctly" parse complex code attributes
+            (r'(\[)(CCode|(?:Integer|Floating)Type)',
+             bygroups(Punctuation, Name.Decorator)),
+            (r'[()\[\],.]', Punctuation),
+            (r'(as|base|break|case|catch|construct|continue|default|delete|do|'
+             r'else|enum|finally|for|foreach|get|if|in|is|lock|new|out|params|'
+             r'return|set|sizeof|switch|this|throw|try|typeof|while|yield)\b',
+             Keyword),
+            (r'(abstract|const|delegate|dynamic|ensures|extern|inline|internal|'
+             r'override|owned|private|protected|public|ref|requires|signal|'
+             r'static|throws|unowned|var|virtual|volatile|weak|yields)\b',
+             Keyword.Declaration),
+            (r'(namespace|using)(\s+)', bygroups(Keyword.Namespace, Text),
+             'namespace'),
+            (r'(class|errordomain|interface|struct)(\s+)',
+             bygroups(Keyword.Declaration, Text), 'class'),
+            (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)',
+             bygroups(Operator, Name.Attribute)),
+            # void is an actual keyword, others are in glib-2.0.vapi
+            (r'(void|bool|char|double|float|int|int8|int16|int32|int64|long|'
+             r'short|size_t|ssize_t|string|time_t|uchar|uint|uint8|uint16|'
+             r'uint32|uint64|ulong|unichar|ushort)\b', Keyword.Type),
+            (r'(true|false|null)\b', Name.Builtin),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+        ],
+        'root': [
+            include('whitespace'),
+            ('', Text, 'statement'),
+        ],
+        'statement' : [
+            include('whitespace'),
+            include('statements'),
+            ('[{}]', Punctuation),
+            (';', Punctuation, '#pop'),
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'[^\\"\n]+', String), # all other characters
+            (r'\\\n', String), # line continuation
+            (r'\\', String), # stray backslash
+        ],
+        'if0': [
+            (r'^\s*#if.*?(?<!\\)\n', Comment, '#push'),
+            (r'^\s*#el(?:se|if).*\n', Comment.Preproc, '#pop'),
+            (r'^\s*#endif.*?(?<!\\)\n', Comment, '#pop'),
+            (r'.*?\n', Comment),
+        ],
+        'class': [
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+        ],
+        'namespace': [
+            (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace, '#pop')
         ],
     }
