@@ -267,7 +267,7 @@ class Python3Lexer(RegexLexer):
     ]
 
     def analyse_text(text):
-        return shebang_matches(text, r'pythonw?(3\.\d)?')
+        return shebang_matches(text, r'pythonw?3(\.\d)?')
 
 
 class PythonConsoleLexer(Lexer):
