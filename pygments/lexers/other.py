@@ -23,7 +23,8 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'BashLexer', 'BatchLexer', 'BefungeLexer', 'RedcodeLexer',
            'MOOCodeLexer', 'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer',
            'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer',
-           'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer']
+           'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer',
+           'NewspeakLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -2021,3 +2022,61 @@ class ABAPLexer(RegexLexer):
             (r'[/;:()\[\],\.]', Punctuation)
         ],
     }
+
+
+class NewspeakLexer(RegexLexer):
+    """
+    For `Newspeak <http://newspeaklanguage.org/>` syntax.
+    """
+    name = 'Newspeak'
+    filenames = ['*.ns2']
+    aliases = ['newspeak', ]
+    mimetypes = ['text/x-newspeak']
+
+    tokens = {
+       'root' : [
+           (r'\b(Newsqueak2)\b',Keyword.Declaration),
+           (r"'[^']*'",String),
+           (r'\b(class)(\s+)([a-zA-Z0-9_]+)(\s*)',
+            bygroups(Keyword.Declaration,Text,Name.Class,Text)),
+           (r'\b(mixin|self|super|private|public|protected|nil|true|false)\b',
+            Keyword),
+           (r'([a-zA-Z0-9_]+\:)(\s*)([a-zA-Z_]\w+)',
+            bygroups(Name.Function,Text,Name.Variable)),
+           (r'([a-zA-Z0-9_]+)(\s*)(=)',
+            bygroups(Name.Attribute,Text,Operator)),
+           (r'<[a-zA-Z0-9_]+>', Comment.Special),
+           include('expressionstat'),
+           include('whitespace')
+        ],
+
+       'expressionstat': [
+          (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+          (r'\d+', Number.Integer),
+          (r':\w+',Name.Variable),
+          (r'(\w+)(::)', bygroups(Name.Variable, Operator)),
+          (r'\w+:', Name.Function),
+          (r'\w+', Name.Variable),
+          (r'\(|\)', Punctuation),
+          (r'\[|\]', Punctuation),
+          (r'\{|\}', Punctuation),
+
+          (r'(\^|\+|\/|~|\*|<|>|=|@|%|\||&|\?|!|,|-|:)', Operator),
+          (r'\.|;', Punctuation),
+          include('whitespace'),
+          include('literals'),
+       ],
+       'literals': [
+         (r'\$.', String),
+         (r"'[^']*'", String),
+         (r"#'[^']*'", String.Symbol),
+         (r"#\w+:?", String.Symbol),
+         (r"#(\+|\/|~|\*|<|>|=|@|%|\||&|\?|!|,|-)+", String.Symbol)
+
+       ],
+       'whitespace' : [
+         (r'\s+', Text),
+         (r'"[^"]*"', Comment)
+       ]
+    }
+
