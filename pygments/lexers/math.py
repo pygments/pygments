@@ -175,9 +175,9 @@ class MatlabLexer(RegexLexer):
 
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
-            (r'([\w\)\]]+)(\')', bygroups(Text, Operator)),
+            (r'(?<=[\w\)\]])\'', Operator),
 
-            (r'\'', String, 'string'),
+            (r'(?<![\w\)\]])\'', String, 'string'),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
         ],
