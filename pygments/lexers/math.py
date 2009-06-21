@@ -380,6 +380,7 @@ class SLexer(RegexLexer):
         'numbers': [
             (r'(?<![0-9a-zA-Z\)\}\]`\"])(?=\s*)[-\+]?[0-9]+'
              r'(\.[0-9]*)?(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
+            (r'\.[0-9]*(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
         ],
         'statements': [
             include('comments'),
