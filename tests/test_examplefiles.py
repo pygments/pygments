@@ -41,6 +41,7 @@ def test_example_files():
 
 def check_lexer(lx, absfn):
     text = open(absfn, 'rb').read()
+    text = text.replace(b('\r\n'), b('\n'))
     text = text.strip(b('\n')) + b('\n')
     try:
         text = text.decode('utf-8')
