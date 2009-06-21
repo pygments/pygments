@@ -24,6 +24,7 @@ Version 1.1
   * ABAP
   * ASP.net (VB/C#)
   * Vala
+  * Newspeak
 
 - Fix the LaTeX formatter's output so that output generated for one style
   can be used with the style definitions of another (#384).
@@ -32,6 +33,9 @@ Version 1.1
   formatter.
 
 - Support multiline strings in Lua lexer.
+
+- Rewrite of the JavaScript lexer by Pumbaa80 to better support regular
+  expression literals (#403)
 
 - When pygmentize is asked to highlight a file for which multiple lexers
   match the filename, use the analyse_text guessing engine to determine the
@@ -52,6 +56,11 @@ Version 1.1
 - Fix a bug lexing the empty commit in the PHP lexer (#405).
 
 - Fix a bug causing Python numbers to be mishighlighted as floats (#397).
+
+- Fix a bug when backslashes are used in odd locations in Python (#395)
+
+- Fix various bugs in Matlab and S-Plus lexers, thanks to Winston Chang (#411,
+  #413, #414)
 
 
 Version 1.0
