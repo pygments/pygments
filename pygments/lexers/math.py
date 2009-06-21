@@ -369,12 +369,13 @@ class SLexer(RegexLexer):
              Keyword.Reserved)
         ],
         'operators': [
-            (r'<-|-|==|<=|>=|<|>|&&|&|!=', Operator),
+            (r'<-|-|==|<=|>=|<|>|&&|&|!=|\|\|?', Operator),
             (r'\*|\+|\^|/|%%|%/%|=', Operator),
             (r'%in%|%*%', Operator)
         ],
         'builtin_symbols': [
-            (r'NULL|NA|TRUE|FALSE', Keyword.Constant),
+            (r'(NULL|NA|TRUE|FALSE|NaN)\b', Keyword.Constant),
+            (r'(T|F)\b', Keyword.Variable),
         ],
         'numbers': [
             (r'(?<![0-9a-zA-Z\)\}\]`\"])(?=\s*)[-\+]?[0-9]+'
@@ -384,6 +385,7 @@ class SLexer(RegexLexer):
             include('comments'),
             # whitespaces
             (r'\s+', Text),
+            (r'\'', String, 'string_squote'),
             (r'\"', String, 'string_dquote'),
             include('builtin_symbols'),
             include('numbers'),
@@ -404,6 +406,9 @@ class SLexer(RegexLexer):
         #    ('\{', Punctuation, '#push'),
         #    ('\}', Punctuation, '#pop')
         #],
+        'string_squote': [
+            (r'[^\']*\'', String, '#pop'),
+        ],
         'string_dquote': [
             (r'[^\"]*\"', String, '#pop'),
         ],
