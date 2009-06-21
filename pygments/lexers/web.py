@@ -39,19 +39,37 @@ class JavascriptLexer(RegexLexer):
 
     flags = re.DOTALL
     tokens = {
-        'root': [
+        'commentsandwhitespace': [
             (r'\s+', Text),
             (r'<!--', Comment),
             (r'//.*?\n', Comment),
-            (r'/\*.*?\*/', Comment),
-            (r'/(\\\\|\\/|[^/\n])*/[gim]+\b', String.Regex),
-            (r'/(\\\\|\\/|[^/\n])*/(?=\s*[,);\n])', String.Regex),
-            (r'/(\\\\|\\/|[^/\n])*/(?=\s*\.[a-z])', String.Regex),
-            (r'[~\^\*!%&<>\|+=:;,/?\\-]+', Operator),
-            (r'[{}\[\]();.]+', Punctuation),
-            (r'(for|in|while|do|break|return|continue|if|else|throw|try|'
-             r'catch|new|typeof|instanceof|this)\b', Keyword),
-            (r'(var|with|const|label|function)\b', Keyword.Declaration),
+            (r'/\*.*?\*/', Comment)
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'(?=/)', Text, ('#pop', 'badregex')),
+            (r'', Text, '#pop')
+        ],
+        'badregex': [
+            ('\n', Text, '#pop')
+        ],
+        'root': [
+            (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            include('commentsandwhitespace'),
+            (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
+             r'(<<|>>>?|==?|!=?|[-<>+*%&\|\^/])=?', Operator, 'slashstartsregex'),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+            (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
+             r'throw|try|catch|finally|new|delete|typeof|instanceof|void|'
+             r'this)\b', Keyword, 'slashstartsregex'),
+            (r'(var|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(abstract|boolean|byte|char|class|const|debugger|double|enum|export|'
+             r'extends|final|float|goto|implements|import|int|interface|long|native|'
+             r'package|private|protected|public|short|static|super|synchronized|throws|'
+             r'transient|volatile)\b', Keyword.Reserved),
             (r'(true|false|null|NaN|Infinity|undefined)\b', Keyword.Constant),
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
              r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
