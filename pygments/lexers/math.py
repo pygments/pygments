@@ -165,7 +165,7 @@ class MatlabLexer(RegexLexer):
             ("(" + "|".join(elfun+specfun+elmat) + r')\b',  Name.Builtin),
 
             # operators:
-            (r'-|==|~=|<|>|<=|>=|&&|&|~', Operator),
+            (r'-|==|~=|<|>|<=|>=|&&|&|~|\|\|?', Operator),
             # operators requiring escape for re:
             (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
 
