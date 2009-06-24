@@ -745,6 +745,7 @@ class RubyLexer(ExtendedRegexLexer):
         ],
         'multiline-regex': [
             include('string-intp'),
+            (r'\\\\', String.Regex),
             (r'\\/', String.Regex),
             (r'[\\#]', String.Regex),
             (r'[^\\/#]+', String.Regex),
