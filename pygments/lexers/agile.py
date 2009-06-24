@@ -568,7 +568,7 @@ class RubyLexer(ExtendedRegexLexer):
             # in method calls with braces
             (r'(?<=[-+/*%=<>&!^|~,(])(\s*)(%([\t ])(?:[^\3\\]*(?:\\.[^\3\\]*)*)\3)',
              bygroups(Text, String.Other, None)),
-            # and because of fixed with lookbehinds the whole thing a
+            # and because of fixed width lookbehinds the whole thing a
             # second time for line startings...
             (r'^(\s*)(%([\t ])(?:[^\3\\]*(?:\\.[^\3\\]*)*)\3)',
              bygroups(Text, String.Other, None)),
@@ -631,7 +631,7 @@ class RubyLexer(ExtendedRegexLexer):
             # empty string heredocs
             (r'(<<-?)("|\')()(\2)(.*?\n)', heredoc_callback),
             (r'__END__', Comment.Preproc, 'end-part'),
-            # multiline regex (after keywords or assignemnts)
+            # multiline regex (after keywords or assignments)
             (r'(?:^|(?<=[=<>~!])|'
                  r'(?<=(?:\s|;)when\s)|'
                  r'(?<=(?:\s|;)or\s)|'
@@ -665,7 +665,7 @@ class RubyLexer(ExtendedRegexLexer):
             # better ideas?)
             # since pygments 0.7 we also eat a "?" operator after numbers
             # so that the char operator does not work. Chars are not allowed
-            # there so that you can use the terner operator.
+            # there so that you can use the ternary operator.
             # stupid example:
             #   x>=0?n[x]:""
             (r'(0_?[0-7]+(?:_[0-7]+)*)(\s*)([/?])?',
@@ -745,6 +745,7 @@ class RubyLexer(ExtendedRegexLexer):
         ],
         'multiline-regex': [
             include('string-intp'),
+            (r'\\\\', String.Regex),
             (r'\\/', String.Regex),
             (r'[\\#]', String.Regex),
             (r'[^\\/#]+', String.Regex),
