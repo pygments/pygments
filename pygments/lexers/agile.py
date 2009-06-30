@@ -102,8 +102,8 @@ class PythonLexer(RegexLexer):
              r'SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|'
              r'TypeError|UnboundLocalError|UnicodeDecodeError|'
              r'UnicodeEncodeError|UnicodeError|UnicodeTranslateError|'
-             r'UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError'
-             r')\b', Name.Exception),
+             r'UnicodeWarning|UserWarning|ValueError|VMSError|Warning|'
+             r'WindowsError|ZeroDivisionError)\b', Name.Exception),
         ],
         'numbers': [
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
@@ -223,8 +223,8 @@ class Python3Lexer(RegexLexer):
          r'SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|'
          r'TypeError|UnboundLocalError|UnicodeDecodeError|'
          r'UnicodeEncodeError|UnicodeError|UnicodeTranslateError|'
-         r'UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError'
-         r')\b', Name.Exception),
+         r'UnicodeWarning|UserWarning|ValueError|VMSError|Warning|'
+         r'WindowsError|ZeroDivisionError)\b', Name.Exception),
     ]
     tokens['numbers'] = [
         (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
