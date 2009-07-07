@@ -185,7 +185,7 @@ class MatlabLexer(RegexLexer):
             (r'[^\']*\'', String, '#pop')
         ],
         'deffunc': [
-            (r'(\s*)(.+)(\s*)(=)(\s*)(.+)(\()(.*)(\))(\s*)',
+            (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
              bygroups(Text.Whitespace, Text, Text.Whitespace, Punctuation,
                       Text.Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Text.Whitespace), '#pop'),
