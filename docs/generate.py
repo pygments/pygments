@@ -20,7 +20,7 @@ from docutils.parsers.rst import directives
 from docutils.core import publish_parts
 from docutils.writers import html4css1
 
-from jinja import from_string
+from jinja2 import Template
 
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
@@ -63,7 +63,7 @@ def generate_lexer_docs():
         out.append('\n' + heading + '\n' + '-'*len(heading) + '\n')
         for data in lexers:
             out.append(LEXERDOC % data)
-    return ''.join(out)
+    return ''.join(out).decode('utf-8')
 
 def generate_formatter_docs():
     from pygments.formatters import FORMATTERS
@@ -80,7 +80,7 @@ def generate_formatter_docs():
 
 
 ''' % (', '.join(data[1]) or 'None', ', '.join(data[2]).replace('*', '\\*') or 'None'))
-    return ''.join(out)
+    return ''.join(out).decode('utf-8')
 
 def generate_filter_docs():
     from pygments.filters import FILTERS
@@ -92,7 +92,7 @@ def generate_filter_docs():
 %s
     :Name: %s
 ''' % (cls.__name__, cls.__doc__, name))
-    return ''.join(out)
+    return ''.join(out).decode('utf-8')
 
 def generate_changelog():
     fn = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
@@ -110,7 +110,7 @@ def generate_changelog():
         else:
             result.append(line.rstrip())
     f.close()
-    return '\n'.join(result)
+    return '\n'.join(result).decode('utf-8')
 
 def generate_authors():
     fn = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
@@ -364,7 +364,7 @@ class DocumentationWriter(html4css1.Writer):
             except IndexError:
                 continue
             ref_id = reference['refid']
-            text = escape(reference.astext().encode('utf-8'))
+            text = escape(reference.astext())
             toc.append((ref_id, text))
 
         self._generated_toc = [('#%s' % href, caption) for href, caption in toc]
@@ -388,8 +388,8 @@ def generate_documentation(data, link_style):
         }
     )
     return {
-        'title':        parts['title'].encode('utf-8'),
-        'body':         parts['body'].encode('utf-8'),
+        'title':        parts['title'],
+        'body':         parts['body'],
         'toc':          parts['toc']
     }
 
@@ -421,13 +421,13 @@ def handle_python(filename, fp, dst):
 def handle_html(filename, fp, dst):
     now = datetime.now()
     title = os.path.basename(filename)[:-4]
-    content = fp.read()
+    content = fp.read().decode('utf-8')
     c = generate_documentation(content, (lambda x: './%s.html' % x))
     result = file(os.path.join(dst, title + '.html'), 'w')
     c['style'] = STYLESHEET + PYGMENTS_FORMATTER.get_style_defs('.syntax')
     c['generation_date'] = now
     c['file_id'] = title
-    t = from_string(TEMPLATE)
+    t = Template(TEMPLATE)
     result.write(t.render(c).encode('utf-8'))
     result.close()
 
