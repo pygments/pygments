@@ -86,8 +86,8 @@ class CSharpLexer(RegexLexer):
                 (r'^\s*\[.*?\]', Name.Attribute),
                 (r'[^\S\n]+', Text),
                 (r'\\\n', Text), # line continuation
-                (r'//.*?\n', Comment),
-                (r'/[*](.|\n)*?[*]/', Comment),
+                (r'//.*?\n', Comment.Single),
+                (r'/[*](.|\n)*?[*]/', Comment.Multiline),
                 (r'\n', Text),
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
@@ -151,8 +151,8 @@ class BooLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(#|//).*$', Comment),
-            (r'/[*]', Comment, 'comment'),
+            (r'(#|//).*$', Comment.Single),
+            (r'/[*]', Comment.Multiline, 'comment'),
             (r'[]{}:(),.;[]', Punctuation),
             (r'\\\n', Text),
             (r'\\', Text),

@@ -1118,9 +1118,9 @@ class MiniDLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             # Comments
-            (r'//(.*?)\n', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
-            (r'/\+', Comment, 'nestedcomment'),
+            (r'//(.*?)\n', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/\+', Comment.Multiline, 'nestedcomment'),
             # Keywords
             (r'(as|assert|break|case|catch|class|continue|coroutine|default'
              r'|do|else|finally|for|foreach|function|global|namespace'
@@ -1160,10 +1160,10 @@ class MiniDLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name),
         ],
         'nestedcomment': [
-            (r'[^+/]+', Comment),
-            (r'/\+', Comment, '#push'),
-            (r'\+/', Comment, '#pop'),
-            (r'[+/]', Comment),
+            (r'[^+/]+', Comment.Multiline),
+            (r'/\+', Comment.Multiline, '#push'),
+            (r'\+/', Comment.Multiline, '#pop'),
+            (r'[+/]', Comment.Multiline),
         ],
     }
 
@@ -1184,10 +1184,10 @@ class IoLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             # Comments
-            (r'//(.*?)\n', Comment),
-            (r'#(.*?)\n', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
-            (r'/\+', Comment, 'nestedcomment'),
+            (r'//(.*?)\n', Comment.Single),
+            (r'#(.*?)\n', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/\+', Comment.Multiline, 'nestedcomment'),
             # DoubleQuotedString
             (r'"(\\\\|\\"|[^"])*"', String),
             # Operators
@@ -1207,10 +1207,10 @@ class IoLexer(RegexLexer):
             (r'\d+', Number.Integer)
         ],
         'nestedcomment': [
-            (r'[^+/]+', Comment),
-            (r'/\+', Comment, '#push'),
-            (r'\+/', Comment, '#pop'),
-            (r'[+/]', Comment),
+            (r'[^+/]+', Comment.Multiline),
+            (r'/\+', Comment.Multiline, '#push'),
+            (r'\+/', Comment.Multiline, '#pop'),
+            (r'[+/]', Comment.Multiline),
         ]
     }
 

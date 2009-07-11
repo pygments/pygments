@@ -484,7 +484,8 @@ class LiterateHaskellLexer(Lexer):
                 line = match.group()
                 m = bird_re.match(line)
                 if m:
-                    insertions.append((len(code), [(0, Comment.Special, m.group(1))]))
+                    insertions.append((len(code),
+                                       [(0, Comment.Special, m.group(1))]))
                     code += m.group(2)
                 else:
                     insertions.append((len(code), [(0, Text, line)]))

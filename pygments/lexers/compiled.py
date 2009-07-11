@@ -51,8 +51,8 @@ class CLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
             (r'L?"', String, 'string'),
@@ -118,16 +118,16 @@ class CLexer(RegexLexer):
         ],
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
-            (r'/[*](.|\n)*?[*]/', Comment),
-            (r'//.*?\n', Comment, '#pop'),
+            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'//.*?\n', Comment.Single, '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Comment.Preproc),
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'if0': [
-            (r'^\s*#if.*?(?<!\\)\n', Comment, '#push'),
+            (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
             (r'^\s*#el(?:se|if).*\n', Comment.Preproc, '#pop'),
-            (r'^\s*#endif.*?(?<!\\)\n', Comment, '#pop'),
+            (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
             (r'.*?\n', Comment),
         ]
     }
@@ -177,8 +177,8 @@ class CppLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
-            (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'[{}]', Punctuation),
             (r'L?"', String, 'string'),
             (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
@@ -224,15 +224,15 @@ class CppLexer(RegexLexer):
         ],
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
-            (r'/[*](.|\n)*?[*]/', Comment),
-            (r'//.*?\n', Comment, '#pop'),
+            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'//.*?\n', Comment.Single, '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Comment.Preproc),
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'if0': [
-            (r'^\s*#if.*?(?<!\\)\n', Comment, '#push'),
-            (r'^\s*#endif.*?(?<!\\)\n', Comment, '#pop'),
+            (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
+            (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
             (r'.*?\n', Comment),
         ]
     }
@@ -253,9 +253,9 @@ class DLexer(RegexLexer):
             (r'\s+', Text),
             #(r'\\\n', Text), # line continuations
             # Comments
-            (r'//(.*?)\n', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
-            (r'/\+', Comment, 'nested_comment'),
+            (r'//(.*?)\n', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/\+', Comment.Multiline, 'nested_comment'),
             # Keywords
             (r'(abstract|alias|align|asm|assert|auto|body|break|case|cast'
              r'|catch|class|const|continue|debug|default|delegate|delete'
@@ -328,10 +328,10 @@ class DLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name),
         ],
         'nested_comment': [
-            (r'[^+/]+', Comment),
-            (r'/\+', Comment, '#push'),
-            (r'\+/', Comment, '#pop'),
-            (r'[+/]', Comment),
+            (r'[^+/]+', Comment.Multiline),
+            (r'/\+', Comment.Multiline, '#push'),
+            (r'\+/', Comment.Multiline, '#pop'),
+            (r'[+/]', Comment.Multiline),
         ],
         'token_string': [
             (r'{', Punctuation, 'token_string_nest'),
@@ -893,8 +893,8 @@ class JavaLexer(RegexLexer):
              r'(\s*)(\()',                                  # signature start
              bygroups(using(this), Name.Function, Text, Operator)),
             (r'[^\S\n]+', Text),
-            (r'//.*?\n', Comment),
-            (r'/\*.*?\*/', Comment),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
             (r'@[a-zA-Z_][a-zA-Z0-9_\.]*', Name.Decorator),
             (r'(assert|break|case|catch|continue|default|do|else|finally|for|'
              r'if|goto|instanceof|new|return|switch|this|throw|try|while)\b',
@@ -957,7 +957,7 @@ class ScalaLexer(RegexLexer):
             (r'(class|trait|object)(\s+)', bygroups(Keyword, Text), 'class'),
             (ur"'%s" % idrest, Text.Symbol),
             (r'[^\S\n]+', Text),
-            (r'//.*?\n', Comment),
+            (r'//.*?\n', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
             (ur'@%s' % idrest, Name.Decorator),
             (ur'(abstract|ca(?:se|tch)|d(?:ef|o)|e(?:lse|xtends)|'
@@ -1050,7 +1050,7 @@ class DylanLexer(RegexLexer):
              r'|v(ariable|irtual))\b', Name.Builtin),
             (r'<\w+>', Keyword.Type),
             (r'#?"(?:\\.|[^"])+?"', String.Double),
-            (r'//.*?\n', Comment),
+            (r'//.*?\n', Comment.Single),
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
             (r'\'.*?\'', String.Single),
             (r'=>|\b(a(bove|fterwards)|b(e(gin|low)|y)|c(ase|leanup|reate)'
@@ -1093,8 +1093,8 @@ class ObjectiveCLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
             (r'(L|@)?"', String, 'string'),
@@ -1185,15 +1185,15 @@ class ObjectiveCLexer(RegexLexer):
         ],
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
-            (r'/[*](.|\n)*?[*]/', Comment),
-            (r'//.*?\n', Comment, '#pop'),
+            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'//.*?\n', Comment.Single, '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Comment.Preproc),
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'if0': [
-            (r'^\s*#if.*?(?<!\\)\n', Comment, '#push'),
-            (r'^\s*#endif.*?(?<!\\)\n', Comment, '#pop'),
+            (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
+            (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
             (r'.*?\n', Comment),
         ]
     }
@@ -1363,9 +1363,9 @@ class PrologLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^#.*', Comment),
-            (r'/\*', Comment, 'nested-comment'),
-            (r'%.*', Comment),
+            (r'^#.*', Comment.Single),
+            (r'/\*', Comment.Multiline, 'nested-comment'),
+            (r'%.*', Comment.Single),
             (r'[0-9]+', Number),
             (r'[\[\](){}|.,;!]', Punctuation),
             (r':-|-->', Punctuation),
@@ -1397,10 +1397,10 @@ class PrologLexer(RegexLexer):
             (u'\\s+|[\u2000-\u200f\ufff0-\ufffe\uffef]', Text),
         ],
         'nested-comment': [
-            (r'\*/', Comment, '#pop'),
-            (r'/\*', Comment, '#push'),
-            (r'[^*/]+', Comment),
-            (r'[*/]', Comment),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'[^*/]+', Comment.Multiline),
+            (r'[*/]', Comment.Multiline),
         ],
     }
 
@@ -1591,8 +1591,8 @@ class ValaLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
             (r'L?"', String, 'string'),
@@ -1649,9 +1649,9 @@ class ValaLexer(RegexLexer):
             (r'\\', String), # stray backslash
         ],
         'if0': [
-            (r'^\s*#if.*?(?<!\\)\n', Comment, '#push'),
+            (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
             (r'^\s*#el(?:se|if).*\n', Comment.Preproc, '#pop'),
-            (r'^\s*#endif.*?(?<!\\)\n', Comment, '#pop'),
+            (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
             (r'.*?\n', Comment),
         ],
         'class': [

@@ -42,8 +42,8 @@ class JavascriptLexer(RegexLexer):
         'commentsandwhitespace': [
             (r'\s+', Text),
             (r'<!--', Comment),
-            (r'//.*?\n', Comment),
-            (r'/\*.*?\*/', Comment)
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline)
         ],
         'slashstartsregex': [
             include('commentsandwhitespace'),
@@ -103,8 +103,8 @@ class ActionScriptLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'//.*?\n', Comment),
-            (r'/\*.*?\*/', Comment),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
             (r'/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex),
             (r'[~\^\*!%&<>\|+=:;,/?\\-]+', Operator),
             (r'[{}\[\]();.]+', Punctuation),
@@ -495,12 +495,13 @@ class PhpLexer(RegexLexer):
             (r'\?>', Comment.Preproc, '#pop'),
             (r'<<<([a-zA-Z_][a-zA-Z0-9_]*)\n.*?\n\1\;?\n', String),
             (r'\s+', Text),
-            (r'#.*?\n', Comment),
-            (r'//.*?\n', Comment),
-            (r'/\*\*/', Comment), # put the empty comment here, it is otherwise
-                                  # seen as the start of a docstring
+            (r'#.*?\n', Comment.Single),
+            (r'//.*?\n', Comment.Single),
+            # put the empty comment here, it is otherwise seen as
+            # the start of a docstring
+            (r'/\*\*/', Comment.Multiline),
             (r'/\*\*.*?\*/', String.Doc),
-            (r'/\*.*?\*/', Comment),
+            (r'/\*.*?\*/', Comment.Multiline),
             (r'(->|::)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
              bygroups(Operator, Text, Name.Attribute)),
             (r'[~!%^&*+=|:.<>/?@-]+', Operator),
