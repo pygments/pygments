@@ -427,19 +427,11 @@ class MakoLexer(RegexLexer):
             (r'''(?sx)
                 (.+?)                # anything, followed by:
                 (?:
-<<<<<<< local
-                 (?<=\n)(?=%|\#\#) |# an eval or comment line
-                 (?=\#\*) |         # multiline comment
-                 (?=</?%) |         # a python block
-                                    # call start or end
-                 (?=\$\{) |         # a substitution
-=======
                  (?<=\n)(?=%|\#\#) | # an eval or comment line
                  (?=\#\*) |          # multiline comment
                  (?=</?%) |          # a python block
                                      # call start or end
                  (?=\$\{) |          # a substitution
->>>>>>> other
                  (?<=\n)(?=\s*%) |
                                      # - don't consume
                  (\\\n) |            # an escaped newline
