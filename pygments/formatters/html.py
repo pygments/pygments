@@ -225,7 +225,7 @@ class HtmlFormatter(Formatter):
         file's path, if the latter can be found. The stylesheet is then written
         to this file instead of the HTML file. *New in Pygments 0.6.*
 
-    `noclobber_cssfile'
+    `noclobber_cssfile`
         If `cssfile` is given and the specified file exists, the css file will
         not be overwritten. This allows the use of the `full` option in
         combination with a user specified css file. Default is ``False``.
