@@ -66,7 +66,7 @@ class SvgFormatter(Formatter):
         size is given in pixels, or ``25`` else.
 
     `spacehack`
-        Convert spaces in the source to ``&160;``, which are non-breaking
+        Convert spaces in the source to ``&#160;``, which are non-breaking
         spaces.  SVG provides the ``xml:space`` attribute to control how
         whitespace inside tags is handled, in theory, the ``preserve`` value
         could be used to keep all whitespace as-is.  However, many current SVG
