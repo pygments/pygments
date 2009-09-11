@@ -511,6 +511,9 @@ class AntlrLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        return re.search(r'^\s*grammar\s+[a-zA-Z0-9]+\s*;', text, re.M)
+
 # http://www.antlr.org/wiki/display/ANTLR3/Code+Generation+Targets
 
 # TH: I'm not aware of any language features of C++ that will cause
@@ -550,7 +553,8 @@ class AntlrCppLexer(DelegatingLexer):
         super(AntlrCppLexer, self).__init__(CppLexer, AntlrLexer, **options)
 
     def analyse_text(text):
-        return re.match(r'^\s*language\s*=\s*C\s*;', text, re.M)
+        return AntlrLexer.analyse_text(text) and \
+               re.search(r'^\s*language\s*=\s*C\s*;', text, re.M)
 
 
 class AntlrObjectiveCLexer(DelegatingLexer):
@@ -569,7 +573,8 @@ class AntlrObjectiveCLexer(DelegatingLexer):
                                                    AntlrLexer, **options)
 
     def analyse_text(text):
-        return re.match(r'^\s*language\s*=\s*ObjC\s*;', text)
+        return AntlrLexer.analyse_text(text) and \
+               re.search(r'^\s*language\s*=\s*ObjC\s*;', text)
 
 
 class AntlrCSharpLexer(DelegatingLexer):
@@ -588,7 +593,8 @@ class AntlrCSharpLexer(DelegatingLexer):
                                                **options)
 
     def analyse_text(text):
-        return re.match(r'^\s*language\s*=\s*CSharp2\s*;', text, re.M)
+        return AntlrLexer.analyse_text(text) and \
+               re.search(r'^\s*language\s*=\s*CSharp2\s*;', text, re.M)
 
 
 class AntlrPythonLexer(DelegatingLexer):
@@ -607,7 +613,8 @@ class AntlrPythonLexer(DelegatingLexer):
                                                **options)
 
     def analyse_text(text):
-        return re.match(r'^\s*language\s*=\s*Python\s*;', text, re.M)
+        return AntlrLexer.analyse_text(text) and \
+               re.search(r'^\s*language\s*=\s*Python\s*;', text, re.M)
 
 
 class AntlrJavaLexer(DelegatingLexer):
@@ -626,7 +633,8 @@ class AntlrJavaLexer(DelegatingLexer):
                                              **options)
 
     def analyse_text(text):
-        return 0.5 # Antlr is Java if not specified
+        # Antlr language is Java by default
+        return AntlrLexer.analyse_text(text) and 0.9
 
 
 class AntlrRubyLexer(DelegatingLexer):
@@ -645,7 +653,8 @@ class AntlrRubyLexer(DelegatingLexer):
                                              **options)
 
     def analyse_text(text):
-        return re.match(r'^\s*language\s*=\s*Ruby\s*;', text, re.M)
+        return AntlrLexer.analyse_text(text) and \
+               re.search(r'^\s*language\s*=\s*Ruby\s*;', text, re.M)
 
 
 class AntlrPerlLexer(DelegatingLexer):
@@ -664,7 +673,8 @@ class AntlrPerlLexer(DelegatingLexer):
                                              **options)
 
     def analyse_text(text):
-        return re.match(r'^\s*language\s*=\s*Perl5\s*;', text, re.M)
+        return AntlrLexer.analyse_text(text) and \
+               re.search(r'^\s*language\s*=\s*Perl5\s*;', text, re.M)
 
 
 class AntlrActionScriptLexer(DelegatingLexer):
@@ -683,4 +693,5 @@ class AntlrActionScriptLexer(DelegatingLexer):
                                                      AntlrLexer, **options)
 
     def analyse_text(text):
-        return re.match(r'^\s*language\s*=\s*ActionScript\s*;', text, re.M)
+        return AntlrLexer.analyse_text(text) and \
+               re.search(r'^\s*language\s*=\s*ActionScript\s*;', text, re.M)
