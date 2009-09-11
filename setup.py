@@ -66,6 +66,8 @@ setup(
         'Intended Audience :: System Administrators',
         'Development Status :: 5 - Production/Stable',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
         'Operating System :: OS Independent',
     ],
     cmdclass = {'build_py': build_py},
