@@ -440,7 +440,8 @@ class AntlrLexer(RegexLexer):
             include('whitespace'),
             include('comments'),
             (r'{', Punctuation),
-            (r'(' + _TOKEN_REF + r')(\s*)(=)?(\s*)(' + _STRING_LITERAL + ')?(\s*)(;)',
+            (r'(' + _TOKEN_REF + r')(\s*)(=)?(\s*)(' + _STRING_LITERAL
+             + ')?(\s*)(;)',
              bygroups(Name.Label, Whitespace, Punctuation, Whitespace,
                       String, Whitespace, Punctuation)),
             (r'}', Punctuation, '#pop'),
