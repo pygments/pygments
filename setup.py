@@ -19,7 +19,8 @@
 
     The `Pygments tip`_ is installable with ``easy_install Pygments==dev``.
 
-    .. _Pygments tip: http://dev.pocoo.org/hg/pygments-main/archive/tip.tar.gz#egg=Pygments-dev
+    .. _Pygments tip:
+       http://dev.pocoo.org/hg/pygments-main/archive/tip.tar.gz#egg=Pygments-dev
 
     :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
