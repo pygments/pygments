@@ -32,13 +32,14 @@ __all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
            'AntlrCSharpLexer', 'AntlrObjectiveCLexer',
            'AntlrJavaLexer', "AntlrActionScriptLexer"]
 
+
 class RagelLexer(RegexLexer):
     """
     A pure `Ragel <http://www.complang.org/ragel/>`_ lexer.  Use this for
     fragments of Ragel.  For ``.rl`` files, use RagelEmbeddedLexer instead
     (or one of the language-specific subclasses).
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'Ragel'
@@ -124,6 +125,7 @@ class RagelLexer(RegexLexer):
         ],
     }
 
+
 class RagelEmbeddedLexer(RegexLexer):
     """
     A lexer for `Ragel`_ embedded in a host language file.
@@ -131,7 +133,7 @@ class RagelEmbeddedLexer(RegexLexer):
     This will only highlight Ragel statements. If you want host language
     highlighting then call the language-specific Ragel lexer.
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'Embedded Ragel'
@@ -206,11 +208,12 @@ class RagelEmbeddedLexer(RegexLexer):
     def analyse_text(text):
         return '@LANG: indep' in text or 0.1
 
+
 class RagelRubyLexer(DelegatingLexer):
     """
     A lexer for `Ragel`_ in a Ruby host file.
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'Ragel in Ruby Host'
@@ -224,11 +227,12 @@ class RagelRubyLexer(DelegatingLexer):
     def analyse_text(text):
         return '@LANG: ruby' in text
 
+
 class RagelCLexer(DelegatingLexer):
     """
     A lexer for `Ragel`_ in a C host file.
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'Ragel in C Host'
@@ -242,11 +246,12 @@ class RagelCLexer(DelegatingLexer):
     def analyse_text(text):
         return '@LANG: c' in text
 
+
 class RagelDLexer(DelegatingLexer):
     """
     A lexer for `Ragel`_ in a D host file.
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'Ragel in D Host'
@@ -259,11 +264,12 @@ class RagelDLexer(DelegatingLexer):
     def analyse_text(text):
         return '@LANG: d' in text
 
+
 class RagelCppLexer(DelegatingLexer):
     """
     A lexer for `Ragel`_ in a CPP host file.
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'Ragel in CPP Host'
@@ -276,11 +282,12 @@ class RagelCppLexer(DelegatingLexer):
     def analyse_text(text):
         return '@LANG: c++' in text
 
+
 class RagelObjectiveCLexer(DelegatingLexer):
     """
     A lexer for `Ragel`_ in an Objective C host file.
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'Ragel in Objective C Host'
@@ -295,11 +302,12 @@ class RagelObjectiveCLexer(DelegatingLexer):
     def analyse_text(text):
         return '@LANG: objc' in text
 
+
 class RagelJavaLexer(DelegatingLexer):
     """
     A lexer for `Ragel`_ in a Java host file.
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'Ragel in Java Host'
@@ -313,13 +321,14 @@ class RagelJavaLexer(DelegatingLexer):
     def analyse_text(text):
         return '@LANG: java' in text
 
+
 class AntlrLexer(RegexLexer):
     """
     Generic `ANTLR`_ Lexer.
     Should not be called directly, instead
     use DelegatingLexer for your target language.
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
 
     .. _ANTLR: http://www.antlr.org/
     """
@@ -529,7 +538,7 @@ class AntlrCppLexer(DelegatingLexer):
     """
     `ANTLR`_ with CPP Target
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'ANTLR With CPP Target'
@@ -542,11 +551,12 @@ class AntlrCppLexer(DelegatingLexer):
     def analyse_text(text):
         return re.match(r'^\s*language\s*=\s*C\s*;', text, re.M)
 
+
 class AntlrObjectiveCLexer(DelegatingLexer):
     """
     `ANTLR`_ with Objective-C Target
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'ANTLR With ObjectiveC Target'
@@ -560,11 +570,12 @@ class AntlrObjectiveCLexer(DelegatingLexer):
     def analyse_text(text):
         return re.match(r'^\s*language\s*=\s*ObjC\s*;', text)
 
+
 class AntlrCSharpLexer(DelegatingLexer):
     """
     `ANTLR`_ with C# Target
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'ANTLR With C# Target'
@@ -578,11 +589,12 @@ class AntlrCSharpLexer(DelegatingLexer):
     def analyse_text(text):
         return re.match(r'^\s*language\s*=\s*CSharp2\s*;', text, re.M)
 
+
 class AntlrPythonLexer(DelegatingLexer):
     """
     `ANTLR`_ with Python Target
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'ANTLR With Python Target'
@@ -620,7 +632,7 @@ class AntlrRubyLexer(DelegatingLexer):
     """
     `ANTLR`_ with Ruby Target
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'ANTLR With Ruby Target'
@@ -634,11 +646,12 @@ class AntlrRubyLexer(DelegatingLexer):
     def analyse_text(text):
         return re.match(r'^\s*language\s*=\s*Ruby\s*;', text, re.M)
 
+
 class AntlrPerlLexer(DelegatingLexer):
     """
     `ANTLR`_ with Perl Target
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'ANTLR With Perl Target'
@@ -652,11 +665,12 @@ class AntlrPerlLexer(DelegatingLexer):
     def analyse_text(text):
         return re.match(r'^\s*language\s*=\s*Perl5\s*;', text, re.M)
 
+
 class AntlrActionScriptLexer(DelegatingLexer):
     """
     `ANTLR`_ with ActionScript Target
 
-    *New in Pygments 1.1*
+    *New in Pygments 1.1.*
     """
 
     name = 'ANTLR With ActionScript Target'
