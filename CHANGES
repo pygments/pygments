@@ -28,10 +28,10 @@ Version 1.1
   * Vala
   * Newspeak
 
-- Fix the LaTeX formatter's output so that output generated for one style
+- Fixed the LaTeX formatter's output so that output generated for one style
   can be used with the style definitions of another (#384).
 
-- Add "anchorlinenos" and "noclobber_cssfile" (#396) options to HTML
+- Added "anchorlinenos" and "noclobber_cssfile" (#396) options to HTML
   formatter.
 
 - Support multiline strings in Lua lexer.
@@ -43,26 +43,28 @@ Version 1.1
   match the filename, use the analyse_text guessing engine to determine the
   winner (#355).
 
-- Fix minor bugs in the JavaScript lexer (#383), the Matlab lexer (#378),
+- Fixed minor bugs in the JavaScript lexer (#383), the Matlab lexer (#378),
   the Scala lexer (#392), the INI lexer (#391), the Clojure lexer (#387)
   and the AS3 lexer (#389).
 
-- Fix three Perl heredoc lexing bugs (#379, #400, #422).
+- Fixed three Perl heredoc lexing bugs (#379, #400, #422).
 
-- Fix a bug in the image formatter which misdetected lines (#380).
+- Fixed a bug in the image formatter which misdetected lines (#380).
 
-- Fix bugs lexing extended Ruby strings and regexes.
+- Fixed bugs lexing extended Ruby strings and regexes.
 
-- Fix a bug when lexing git diffs.
+- Fixed a bug when lexing git diffs.
 
-- Fix a bug lexing the empty commit in the PHP lexer (#405).
+- Fixed a bug lexing the empty commit in the PHP lexer (#405).
 
-- Fix a bug causing Python numbers to be mishighlighted as floats (#397).
+- Fixed a bug causing Python numbers to be mishighlighted as floats (#397).
 
-- Fix a bug when backslashes are used in odd locations in Python (#395)
+- Fixed a bug when backslashes are used in odd locations in Python (#395).
 
-- Fix various bugs in Matlab and S-Plus lexers, thanks to Winston Chang (#410,
+- Fixed various bugs in Matlab and S-Plus lexers, thanks to Winston Chang (#410,
   #411, #413, #414) and fmarc (#419).
+
+- Added new-style reStructuredText directive for docutils 0.5+ (#428).
 
 
 Version 1.0
