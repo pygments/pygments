@@ -239,7 +239,8 @@ class DjangoLexer(RegexLexer):
              bygroups(Keyword, Text, Keyword, Text, Name.Function)),
             (r'(_|true|false|none|True|False|None)\b', Keyword.Pseudo),
             (r'(in|as|reversed|recursive|not|and|or|is|if|else|import|'
-             r'with(?:(?:out)?\s*context)?)\b', Keyword),
+             r'with(?:(?:out)?\s*context)?|scoped|ignore\s+missing)\b',
+             Keyword),
             (r'(loop|block|super|forloop)\b', Name.Builtin),
             (r'[a-zA-Z][a-zA-Z0-9_]*', Name.Variable),
             (r'\.[a-zA-Z0-9_]+', Name.Variable),
