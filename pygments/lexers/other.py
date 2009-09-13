@@ -1589,7 +1589,7 @@ class ModelicaLexer(RegexLexer):
             r'end|equation|exit|expandable|extends|'
             r'external|false|final|flow|for|if|import|in|inner|input|'
             r'loop|nondiscrete|outer|output|parameter|partial|'
-            r'protected|public|redeclare|replaceable|time|then|true|'
+            r'protected|public|redeclare|replaceable|stream|time|then|true|'
             r'when|while|within)\b', Keyword)
         ],
         'functions': [
