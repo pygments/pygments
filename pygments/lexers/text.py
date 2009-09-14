@@ -356,12 +356,23 @@ class BBCodeLexer(RegexLexer):
     mimetypes = ['text/x-bbcode']
 
     tokens = {
-        'root' : [
-            (r'[\s\w]+', Text),
-            (r'(\[)(/?[^\]\n\r=]+)(\])',
-             bygroups(Keyword, Keyword.Pseudo, Keyword)),
-            (r'(\[)([^\]\n\r=]+)(=)([^\]\n\r]+)(\])',
-             bygroups(Keyword, Keyword.Pseudo, Operator, String, Keyword)),
+        'root': [
+            (r'[^[]+', Text),
+            # tag/end tag begin
+            (r'\[/?\w+', Keyword, 'tag'),
+            # stray bracket
+            (r'\[', Text),
+        ],
+        'tag': [
+            (r'\s+', Text),
+            # attribute with value
+            (r'(\w+)(=)("?[^\s"\]]+"?)',
+             bygroups(Name.Attribute, Operator, String)),
+            # tag argument (a la [color=green])
+            (r'(=)("?[^\s"\]]+"?)',
+             bygroups(Operator, String)),
+            # tag end
+            (r'\]', Keyword, '#pop'),
         ],
     }
 
