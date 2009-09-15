@@ -26,7 +26,18 @@ if sys.version_info >= (3,):
 try:
     import nose
 except ImportError:
-    print ("nose is required to run the test suites")
+    print ('nose is required to run the Pygments test suite')
     sys.exit(1)
+
+try:
+    # make sure the current source is first on sys.path
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+    import pygments
+except ImportError, err:
+    print ('Cannot find Pygments to test: %s' % err)
+    sys.exit(1)
+else:
+    print ('Pygments %s test suite running (Python %s)...' %
+           (pygments.__version__, sys.version.split()[0]))
 
 nose.main()
