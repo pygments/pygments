@@ -22,7 +22,10 @@ from docutils.writers import html4css1
 
 from jinja2 import Template
 
-from pygments import highlight
+# try to use the right Pygments to build the docs
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+from pygments import highlight, __version__
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
 
@@ -436,6 +439,9 @@ def run(handle_file, dst, sources=()):
     path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'src'))
     if not sources:
         sources = [os.path.join(path, fn) for fn in os.listdir(path)]
+    if not os.path.isdir(dst):
+        os.makedirs(dst)
+    print 'Making docs for Pygments %s in %s' % (__version__, dst)
     for fn in sources:
         if not os.path.isfile(fn):
             continue
