@@ -24,6 +24,7 @@ check:
 		   -i pygments/lexers/_vimbuiltins.py
 
 clean: clean-pyc
+	rm -r build
 	rm -f codetags.html
 
 clean-pyc:
