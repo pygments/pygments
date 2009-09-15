@@ -23,7 +23,10 @@ if sys.version_info >= (3,):
     copydir_run_2to3(testroot, newroot)
     # make nose believe that we run from the converted dir
     os.chdir(newroot)
-    __file__ = os.path.join('run.py')
+else:
+    # only find tests in this directory
+    os.chdir(os.path.dirname(__file__))
+
 
 try:
     import nose
@@ -33,7 +36,7 @@ except ImportError:
 
 try:
     # make sure the current source is first on sys.path
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+    sys.path.insert(0, '..')
     import pygments
 except ImportError:
     print ('Cannot find Pygments to test: %s' % sys.exc_info()[1])
