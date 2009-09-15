@@ -12,6 +12,7 @@ import unittest
 from pygments.token import Text
 from pygments.lexer import RegexLexer
 
+
 class TestLexer(RegexLexer):
     """Test tuple state transitions including #pop."""
     tokens = {
@@ -27,6 +28,7 @@ class TestLexer(RegexLexer):
             ('c', Text.Rag, ('#pop', 'beer')),
         ],
     }
+
 
 class TupleTransTest(unittest.TestCase):
     def test(self):

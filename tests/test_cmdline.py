@@ -99,7 +99,3 @@ class CmdLineTest(unittest.TestCase):
         self.assertEquals(o, output)
         self.assertEquals(e, "")
         self.assertEquals(c, 0)
-
-
-if __name__ == '__main__':
-    unittest.main()

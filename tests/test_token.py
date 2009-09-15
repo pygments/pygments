@@ -47,7 +47,3 @@ class TokenTest(unittest.TestCase):
         for k, v in t.iteritems():
             if len(v) > 1:
                 self.fail("%r has more than one key: %r" % (k, v))
-
-
-if __name__ == '__main__':
-    unittest.main()
