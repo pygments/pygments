@@ -21,7 +21,9 @@ if sys.version_info >= (3,):
     testroot = os.path.dirname(__file__)
     newroot = os.path.join(testroot, '..', 'build/lib/test')
     copydir_run_2to3(testroot, newroot)
-    os.chdir(os.path.join(newroot, '..'))
+    # make nose believe that we run from the converted dir
+    os.chdir(newroot)
+    __file__ = os.path.join('run.py')
 
 try:
     import nose
@@ -33,8 +35,8 @@ try:
     # make sure the current source is first on sys.path
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
     import pygments
-except ImportError, err:
-    print ('Cannot find Pygments to test: %s' % err)
+except ImportError:
+    print ('Cannot find Pygments to test: %s' % sys.exc_info()[1])
     sys.exit(1)
 else:
     print ('Pygments %s test suite running (Python %s)...' %
