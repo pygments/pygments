@@ -29,7 +29,3 @@ class CLexerTest(unittest.TestCase):
             wanted.append((Text, ' '))
         wanted = [(Text, '')] + wanted[:-1] + [(Text, '\n')]
         self.assertEqual(list(self.lexer.get_tokens(code)), wanted)
-
-
-if __name__ == '__main__':
-    unittest.main()

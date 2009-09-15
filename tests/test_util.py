@@ -85,6 +85,3 @@ class UtilTest(unittest.TestCase):
             '<?xml ?><!DOCTYPE html PUBLIC  "-//W3C//DTD XHTML 1.0 Strict//EN">'))
         self.assert_(util.looks_like_xml('<html xmlns>abc</html>'))
         self.failIf(util.looks_like_xml('<html>'))
-
-if __name__ == '__main__':
-    unittest.main()

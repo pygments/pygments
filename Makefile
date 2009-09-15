@@ -19,13 +19,12 @@ all: clean-pyc check test
 
 check:
 	@$(PYTHON) scripts/detect_missing_analyse_text.py || true
-	@$(PYTHON) scripts/check_sources.py -i apidocs -i pygments/lexers/_mapping.py \
+	@$(PYTHON) scripts/check_sources.py -i pygments/lexers/_mapping.py \
 		   -i docs/build -i pygments/formatters/_mapping.py -i pygments/unistring.py \
 		   -i pygments/lexers/_vimbuiltins.py
 
 clean: clean-pyc
 	rm -f codetags.html
-	rm -rf apidocs
 
 clean-pyc:
 	find . -name '*.pyc' -exec rm -f {} +
@@ -33,7 +32,7 @@ clean-pyc:
 	find . -name '*~' -exec rm -f {} +
 
 codetags:
-	@$(PYTHON) scripts/find_codetags.py -i apidocs -i scripts/pylintrc \
+	@$(PYTHON) scripts/find_codetags.py -i tests/examplefiles -i scripts/pylintrc \
 		   -i scripts/find_codetags.py -o codetags.html .
 
 docs: docs/build
