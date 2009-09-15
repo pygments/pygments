@@ -46,7 +46,7 @@ except ImportError:
 
 setup(
     name = 'Pygments',
-    version = '1.2',
+    version = '1.1.1',
     url = 'http://pygments.org/',
     license = 'BSD License',
     author = 'Georg Brandl',
