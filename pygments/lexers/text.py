@@ -28,7 +28,7 @@ __all__ = ['IniLexer', 'SourcesListLexer', 'BaseMakefileLexer',
            'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer', 'MoinWikiLexer',
            'RstLexer', 'VimLexer', 'GettextLexer', 'SquidConfLexer',
            'DebianControlLexer', 'DarcsPatchLexer', 'YamlLexer',
-           'LighttpdConfLexer', 'NginxConfLexer']
+           'LighttpdConfLexer', 'NginxConfLexer', 'CMakeLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1505,3 +1505,73 @@ class NginxConfLexer(RegexLexer):
             (r'\s+', Text),
         ],
     }
+
+class CMakeLexer(RegexLexer):
+    """
+    Lexer for `CMake <http://cmake.org/Wiki/CMake>`_ files.
+
+    *New in Pygments 1.2.*
+    """
+    name = 'CMake'
+    aliases = ['cmake']
+    filenames = ['*.cmake']
+    mimetypes = ['text/x-cmake']
+
+    tokens = {
+        'root': [
+            #(r'(ADD_CUSTOM_COMMAND|ADD_CUSTOM_TARGET|ADD_DEFINITIONS|'
+            # r'ADD_DEPENDENCIES|ADD_EXECUTABLE|ADD_LIBRARY|ADD_SUBDIRECTORY|'
+            # r'ADD_TEST|AUX_SOURCE_DIRECTORY|BUILD_COMMAND|BUILD_NAME|'
+            # r'CMAKE_MINIMUM_REQUIRED|CONFIGURE_FILE|CREATE_TEST_SOURCELIST|'
+            # r'ELSE|ELSEIF|ENABLE_LANGUAGE|ENABLE_TESTING|ENDFOREACH|'
+            # r'ENDFUNCTION|ENDIF|ENDMACRO|ENDWHILE|EXEC_PROGRAM|'
+            # r'EXECUTE_PROCESS|EXPORT_LIBRARY_DEPENDENCIES|FILE|FIND_FILE|'
+            # r'FIND_LIBRARY|FIND_PACKAGE|FIND_PATH|FIND_PROGRAM|FLTK_WRAP_UI|'
+            # r'FOREACH|FUNCTION|GET_CMAKE_PROPERTY|GET_DIRECTORY_PROPERTY|'
+            # r'GET_FILENAME_COMPONENT|GET_SOURCE_FILE_PROPERTY|'
+            # r'GET_TARGET_PROPERTY|GET_TEST_PROPERTY|IF|INCLUDE|'
+            # r'INCLUDE_DIRECTORIES|INCLUDE_EXTERNAL_MSPROJECT|'
+            # r'INCLUDE_REGULAR_EXPRESSION|INSTALL|INSTALL_FILES|'
+            # r'INSTALL_PROGRAMS|INSTALL_TARGETS|LINK_DIRECTORIES|'
+            # r'LINK_LIBRARIES|LIST|LOAD_CACHE|LOAD_COMMAND|MACRO|'
+            # r'MAKE_DIRECTORY|MARK_AS_ADVANCED|MATH|MESSAGE|OPTION|'
+            # r'OUTPUT_REQUIRED_FILES|PROJECT|QT_WRAP_CPP|QT_WRAP_UI|REMOVE|'
+            # r'REMOVE_DEFINITIONS|SEPARATE_ARGUMENTS|SET|'
+            # r'SET_DIRECTORY_PROPERTIES|SET_SOURCE_FILES_PROPERTIES|'
+            # r'SET_TARGET_PROPERTIES|SET_TESTS_PROPERTIES|SITE_NAME|'
+            # r'SOURCE_GROUP|STRING|SUBDIR_DEPENDS|SUBDIRS|'
+            # r'TARGET_LINK_LIBRARIES|TRY_COMPILE|TRY_RUN|UNSET|'
+            # r'USE_MANGLED_MESA|UTILITY_SOURCE|VARIABLE_REQUIRES|'
+            # r'VTK_MAKE_INSTANTIATOR|VTK_WRAP_JAVA|VTK_WRAP_PYTHON|'
+            # r'VTK_WRAP_TCL|WHILE|WRITE_FILE|'
+            # r'COUNTARGS)\b', Name.Builtin, 'args'),
+            (r'\b([A-Za-z_]+)([ \t]*)(\()', bygroups(Name.Builtin, Text,
+                                                     Punctuation), 'args'),
+            include('keywords'),
+            include('ws')
+        ],
+        'args': [
+            (r'\(', Punctuation, '#push'),
+            (r'\)', Punctuation, '#pop'),
+            (r'(\${)(.+?)(})', bygroups(Operator, Name.Variable, Operator)),
+            (r'$\w+', Name.Variable),
+            (r'(?s)".*?"', String.Double),
+            (r'\\\S+', String),
+            (r'[^\)$"# \t\n]+', String),
+            (r'\n', Text), # explicitly legal
+            include('keywords'),
+            include('ws')
+        ],
+        'string': [
+
+        ],
+        'keywords': [
+            (r'\b(WIN32|UNIX|APPLE|CYGWIN|BORLAND|MINGW|MSVC|MSVC_IDE|MSVC60|'
+             r'MSVC70|MSVC71|MSVC80|MSVC90)\b', Keyword),
+        ],
+        'ws': [
+            (r'[ \t]+', Text),
+            (r'#.+\n', Comment),
+        ]
+    }
+
