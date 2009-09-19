@@ -5,7 +5,7 @@ Issue numbers refer to the tracker at http://dev.pocoo.org/projects/pygments/.
 
 Version 1.2
 -----------
-(codename ???, released ???)
+(codename not selected, to be released in 2009)
 
 - Lexers added:
 
@@ -13,12 +13,12 @@ Version 1.2
   * OOC
 
 - Fixed the HtmlFormatter's handling of noclasses=True to not output any
-  classes.
+  classes (#427).
 
 - Fixed the PythonTracebackLexer to handle non-traceback data in header or
-  trailer, and support more partial tracebacks that start on line 2.
+  trailer, and support more partial tracebacks that start on line 2 (#437).
 
-- Fixed the CLexer to not highlight ternary statements as labels
+- Fixed the CLexer to not highlight ternary statements as labels.
 
 
 Version 1.1.1

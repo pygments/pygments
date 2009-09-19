@@ -1662,11 +1662,12 @@ class ValaLexer(RegexLexer):
         ],
     }
 
+
 class OocLexer(RegexLexer):
     """
     For `Ooc`<http://ooc-lang.org/>_ source code
 
-    *New in Pygments 1.1.2.*
+    *New in Pygments 1.2.*
     """
     name = 'Ooc'
     aliases = ['ooc']
