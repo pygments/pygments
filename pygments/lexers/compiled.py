@@ -29,7 +29,7 @@ from pygments.lexers.functional import OcamlLexer
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer',
            'ScalaLexer', 'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer',
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
-           'ValaLexer']
+           'ValaLexer', 'OocLexer']
 
 
 class CLexer(RegexLexer):
@@ -1659,5 +1659,70 @@ class ValaLexer(RegexLexer):
         ],
         'namespace': [
             (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace, '#pop')
+        ],
+    }
+
+class OocLexer(RegexLexer):
+    """
+    For `Ooc`<http://ooc-lang.org/>_ source code
+
+    *New in Pygments 1.1.2.*
+    """
+    name = 'Ooc'
+    aliases = ['ooc']
+    filenames = ['*.ooc']
+    mimetypes = ['text/x-ooc']
+
+    tokens = {
+        'root': [
+            (r'\b(class|interface|implement|abstract|extends|from|'
+             r'this|super|new|const|final|static|import|use|extern|'
+             r'inline|proto|break|continue|fallthrough|operator|if|else|for|'
+             r'while|do|switch|case|as|in|version|return|true|false|null)\b',
+             Keyword),
+            (r'include\b', Keyword, 'include'),
+            (r'(cover)([ \t]+)(from)([ \t]+)([a-zA-Z0-9_]+[*@]?)',
+             bygroups(Keyword, Text, Keyword, Text, Name.Class)),
+            (r'(func)((?:[ \t]|\\\n)+)(~[a-z_][a-zA-Z0-9_]*)',
+             bygroups(Keyword, Text, Name.Function)),
+            (r'\bfunc\b', Keyword),
+            # Note: %= and ^= not listed on http://ooc-lang.org/syntax
+            (r'//.*', Comment),
+            (r'(?s)/\*.*?\*/', Comment.Multiline),
+            (r'(==?|\+=?|-[=>]?|\*=?|/=?|:=|!=?|%=?|\?|>{1,3}=?|<{1,3}=?|\.\.|'
+             r'&&?|\|\|?|\^=?)', Operator),
+            (r'(\.)([ \t]*)([a-z]\w*)', bygroups(Operator, Text,
+                                                 Name.Function)),
+            (r'[A-Z][A-Z0-9_]+', Name.Constant),
+            (r'[A-Z][a-zA-Z0-9_]*([@*]|\[[ \t]*\])?', Name.Class),
+
+            (r'([a-z][a-zA-Z0-9_]*(?:~[a-z][a-zA-Z0-9_]*)?)((?:[ \t]|\\\n)*)(?=\()',
+             bygroups(Name.Function, Text)),
+            (r'[a-z][a-zA-Z0-9_]*', Name.Variable),
+
+            # : introduces types
+            (r'[:(){}\[\];,]', Punctuation),
+
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'0c[0-9]+', Number.Octal),
+            (r'0b[01]+', Number.Binary),
+            (r'[0-9_]\.[0-9_]*(?!\.)', Number.Float),
+            (r'[0-9_]+', Number.Decimal),
+
+            (r'"(?:\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\"])*"',
+             String.Double),
+            (r"'(?:\\.|\\[0-9]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
+             String.Char),
+            (r'@', Punctuation), # pointer dereference
+            (r'\.', Punctuation), # imports or chain operator
+
+            (r'\\[ \t\n]', Text),
+            (r'[ \t]+', Text),
+        ],
+        'include': [
+            (r'[\w/]+', Name),
+            (r',', Punctuation),
+            (r'[ \t]', Text),
+            (r'[;\n]', Text, '#pop'),
         ],
     }
