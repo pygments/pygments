@@ -368,7 +368,8 @@ class PythonTracebackLexer(RegexLexer):
         'root': [
             (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
             # SyntaxError starts with this.
-            (r'^(?=  File "[^"]+", line \d+\n)', Generic.Traceback, 'intb'),
+            (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
+            (r'^.*\n', Text),
         ],
         'intb': [
             (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',

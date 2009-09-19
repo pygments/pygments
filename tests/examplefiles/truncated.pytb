@@ -1,6 +1,3 @@
-Text before
-
-Traceback (most recent call last):
   File "/usr/lib/python2.3/site-packages/trac/web/main.py", line 314, in dispatch_request
     dispatcher.dispatch(req)
   File "/usr/lib/python2.3/site-packages/trac/web/main.py", line 186, in dispatch
@@ -16,5 +13,3 @@ Traceback (most recent call last):
   File "/usr/lib/python2.3/site-packages/trac/db/sqlite_backend.py", line 36, in _rollback_on_error
     return function(self, *args, **kwargs)
 OperationalError: database is locked
-
-Text after
