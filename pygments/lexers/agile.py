@@ -17,7 +17,7 @@ except NameError:
 
 from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, \
      LexerContext, include, combined, do_insertions, bygroups, using
-from pygments.token import Error, Text, \
+from pygments.token import Error, Text, Other, \
      Comment, Operator, Keyword, Name, String, Number, Generic, Punctuation
 from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 from pygments import unistring as uni
@@ -369,7 +369,7 @@ class PythonTracebackLexer(RegexLexer):
             (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
             # SyntaxError starts with this.
             (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
-            (r'^.*\n', Text),
+            (r'^.*\n', Other),
         ],
         'intb': [
             (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
