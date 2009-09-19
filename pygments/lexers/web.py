@@ -312,7 +312,7 @@ class CssLexer(RegexLexer):
              r'list-style|margin-bottom|margin-left|margin-right|'
              r'margin-top|margin|marker-offset|marks|max-height|max-width|'
              r'min-height|min-width|opacity|orphans|outline|outline-color|'
-             r'outline-style|outline-width|overflow|padding-bottom|'
+             r'outline-style|outline-width|overflow(?:-x|-y|)|padding-bottom|'
              r'padding-left|padding-right|padding-top|padding|page|'
              r'page-break-after|page-break-before|page-break-inside|'
              r'pause-after|pause-before|pause|pitch|pitch-range|'
