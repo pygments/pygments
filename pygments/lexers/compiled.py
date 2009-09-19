@@ -48,6 +48,7 @@ class CLexer(RegexLexer):
         'whitespace': [
             (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
             (r'^\s*#', Comment.Preproc, 'macro'),
+            (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*:(?!:))', bygroups(Text, Name.Label)),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
@@ -74,7 +75,6 @@ class CLexer(RegexLexer):
             (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
              r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'root': [
