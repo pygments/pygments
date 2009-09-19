@@ -1506,6 +1506,7 @@ class NginxConfLexer(RegexLexer):
         ],
     }
 
+
 class CMakeLexer(RegexLexer):
     """
     Lexer for `CMake <http://cmake.org/Wiki/CMake>`_ files.
