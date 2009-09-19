@@ -582,15 +582,29 @@ class HtmlFormatter(Formatter):
                 yield 0, line
 
     def _wrap_div(self, inner):
+        style = []
+        if (self.noclasses and not self.nobackground and
+            self.style.background_color is not None):
+            style.append('background: %s' % (self.style.background_color,))
+        if self.cssstyles:
+            style.append(self.cssstyles)
+        style = '; '.join(style)
+
         yield 0, ('<div' + (self.cssclass and ' class="%s"' % self.cssclass)
-                  + (self.cssstyles and ' style="%s"' % self.cssstyles) + '>')
+                  + (style and (' style="%s"' % style)) + '>')
         for tup in inner:
             yield tup
         yield 0, '</div>\n'
 
     def _wrap_pre(self, inner):
-        yield 0, ('<pre'
-                  + (self.prestyles and ' style="%s"' % self.prestyles) + '>')
+        style = []
+        if self.prestyles:
+            style.append(self.prestyles)
+        if self.noclasses:
+            style.append('line-height: 125%')
+        style = '; '.join(style)
+
+        yield 0, ('<pre' + (style and ' style="%s"' % style) + '>')
         for tup in inner:
             yield tup
         yield 0, '</pre>'
@@ -661,7 +675,14 @@ class HtmlFormatter(Formatter):
             if t != 1:
                 yield t, value
             if i + 1 in hls: # i + 1 because Python indexes start at 0
-                yield 1, '<span class="hll">%s</span>' % value
+                if self.noclasses:
+                    style = ''
+                    if self.style.highlight_color is not None:
+                        style = (' style="background-color: %s"' %
+                                 (self.style.highlight_color,))
+                    yield 1, '<span%s>%s</span>' % (style, value)
+                else:
+                    yield 1, '<span class="hll">%s</span>' % value
             else:
                 yield 1, value
 
