@@ -24,7 +24,7 @@ from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
-           'MxmlLexer']
+           'MxmlLexer', 'HaxeLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -721,3 +721,229 @@ class MxmlLexer(RegexLexer):
                 (r'[^\s>]+', String, '#pop'),
             ],
         }
+
+
+class HaxeLexer(RegexLexer):
+    """
+    For haXe source code (http://haxe.org/).
+    """
+
+    name = 'haXe'
+    aliases = ['hx', 'haXe']
+    filenames = ['*.hx']
+    mimetypes = ['text/haxe']
+
+    ident = r'(?:[a-zA-Z_][a-zA-Z0-9_]*)'
+    typeid = r'(?:(?:[a-z0-9_\.])*[A-Z_][A-Za-z0-9_]*)'
+    key_prop = r'(?:default|null|never)'
+    key_decl_mod = r'(?:public|private|override|static|inline|extern|dynamic)'
+
+    flags = re.DOTALL | re.MULTILINE
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            include('comments'),
+            (key_decl_mod, Keyword.Declaration),
+            include('enumdef'),
+            include('typedef'),
+            include('classdef'),
+            include('imports'),
+        ],
+
+        # General constructs
+        'comments': [
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'#[^\n]*', Comment.Preproc),
+        ],
+        'whitespace': [
+            include('comments'),
+            (r'\s+', Text),
+        ],
+        'codekeywords': [
+            (r'\b(if|else|while|do|for|in|break|continue|'
+             r'return|switch|case|try|catch|throw|null|trace|'
+             r'new|this|super|untyped|cast|callback|here)\b',
+             Keyword.Reserved),
+        ],
+        'literals': [
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r'~/([^\n])*?/[gisx]*', String.Regex),
+            (r'\b(true|false|null)\b', Keyword.Constant),
+        ],
+        'codeblock': [
+          include('whitespace'),
+          include('new'),
+          include('case'),
+          include('anonfundef'),
+          include('literals'),
+          include('vardef'),
+          include('codekeywords'),
+          (r'[();,\[\]]', Punctuation),
+          (r'(?:=|\+=|-=|\*=|/=|%=|&=|\|=|\^=|<<=|>>=|>>>=|\|\||&&|'
+           r'\.\.\.|==|!=|>|<|>=|<=|\||&|\^|<<|>>|>>>|\+|\-|\*|/|%|'
+           r'!|\+\+|\-\-|~|\.|\?|\:)',
+           Operator),
+          (ident, Name),
+
+          (r'}', Punctuation,'#pop'),
+          (r'{', Punctuation,'#push'),
+        ],
+
+        # Instance/Block level constructs
+        'propertydef': [
+            (r'(\()(' + key_prop + ')(,)(' + key_prop + ')(\))',
+             bygroups(Punctuation, Keyword.Reserved, Punctuation,
+                      Keyword.Reserved, Punctuation)),
+        ],
+        'new': [
+            (r'\bnew\b', Keyword, 'typedecl'),
+        ],
+        'case': [
+            (r'\b(case)(\s+)(' + ident + ')(\s*)(\()',
+             bygroups(Keyword.Reserved, Text, Name, Text, Punctuation),
+             'funargdecl'),
+        ],
+        'vardef': [
+            (r'\b(var)(\s+)(' + ident + ')',
+             bygroups(Keyword.Declaration, Text, Name.Variable), 'vardecl'),
+        ],
+        'vardecl': [
+            include('whitespace'),
+            include('typelabel'),
+            (r'=', Operator,'#pop'),
+            (r';', Punctuation,'#pop'),
+        ],
+        'instancevardef': [
+            (key_decl_mod,Keyword.Declaration),
+            (r'\b(var)(\s+)(' + ident + ')',
+             bygroups(Keyword.Declaration, Text, Name.Variable.Instance),
+             'instancevardecl'),
+        ],
+        'instancevardecl': [
+            include('vardecl'),
+            include('propertydef'),
+        ],
+
+        'anonfundef': [
+            (r'\bfunction\b', Keyword.Declaration, 'fundecl'),
+        ],
+        'instancefundef': [
+            (key_decl_mod, Keyword.Declaration),
+            (r'\b(function)(\s+)(' + ident + ')',
+             bygroups(Keyword.Declaration, Text, Name.Function), 'fundecl'),
+        ],
+        'fundecl': [
+            include('whitespace'),
+            include('typelabel'),
+            include('generictypedecl'),
+            (r'\(',Punctuation,'funargdecl'),
+            (r'(?=[a-zA-Z0-9_])',Text,'#pop'),
+            (r'{',Punctuation,('#pop','codeblock')),
+            (r';',Punctuation,'#pop'),
+        ],
+        'funargdecl': [
+            include('whitespace'),
+            (ident, Name.Variable),
+            include('typelabel'),
+            include('literals'),
+            (r'=', Operator),
+            (r',', Punctuation),
+            (r'\?', Punctuation),
+            (r'\)', Punctuation, '#pop'),
+        ],
+
+        'typelabel': [
+            (r':', Punctuation, 'type'),
+        ],
+        'typedecl': [
+            include('whitespace'),
+            (typeid, Name.Class),
+            (r'<', Punctuation, 'generictypedecl'),
+            (r'(?=[{}()=,a-z])', Text,'#pop'),
+        ],
+        'type': [
+            include('whitespace'),
+            (typeid, Name.Class),
+            (r'<', Punctuation, 'generictypedecl'),
+            (r'->', Keyword.Type),
+            (r'(?=[{}(),;=])', Text, '#pop'),
+        ],
+        'generictypedecl': [
+            include('whitespace'),
+            (typeid, Name.Class),
+            (r'<', Punctuation, '#push'),
+            (r'>', Punctuation, '#pop'),
+            (r',', Punctuation),
+        ],
+
+        # Top level constructs
+        'imports': [
+            (r'(package|import|using)(\s+)([^;]+)(;)',
+             bygroups(Keyword.Namespace, Text, Name.Namespace,Punctuation)),
+        ],
+        'typedef': [
+            (r'typedef', Keyword.Declaration, ('typedefprebody', 'typedecl')),
+        ],
+        'typedefprebody': [
+            include('whitespace'),
+            (r'(=)(\s*)({)', bygroups(Punctuation, Text, Punctuation),
+             ('#pop', 'typedefbody')),
+        ],
+        'enumdef': [
+            (r'enum', Keyword.Declaration, ('enumdefprebody', 'typedecl')),
+        ],
+        'enumdefprebody': [
+            include('whitespace'),
+            (r'{', Punctuation, ('#pop','enumdefbody')),
+        ],
+        'classdef': [
+            (r'class', Keyword.Declaration, ('classdefprebody', 'typedecl')),
+        ],
+        'classdefprebody': [
+            include('whitespace'),
+            (r'(extends|implements)', Keyword.Declaration,'typedecl'),
+            (r'{', Punctuation, ('#pop', 'classdefbody')),
+        ],
+        'interfacedef': [
+            (r'interface', Keyword.Declaration,
+             ('interfacedefprebody', 'typedecl')),
+        ],
+        'interfacedefprebody': [
+            include('whitespace'),
+            (r'(extends)', Keyword.Declaration, 'typedecl'),
+            (r'{', Punctuation, ('#pop', 'classdefbody')),
+        ],
+
+        'typedefbody': [
+          include('whitespace'),
+          include('instancevardef'),
+          include('instancefundef'),
+          (r'>', Punctuation, 'typedecl'),
+          (r',', Punctuation),
+          (r'}', Punctuation, '#pop'),
+        ],
+        'enumdefbody': [
+          include('whitespace'),
+          (ident, Name.Variable.Instance),
+          (r'\(', Punctuation, 'funargdecl'),
+          (r';', Punctuation),
+          (r'}', Punctuation, '#pop'),
+        ],
+        'classdefbody': [
+          include('whitespace'),
+          include('instancevardef'),
+          include('instancefundef'),
+          (r'}', Punctuation, '#pop'),
+          include('codeblock'),
+        ],
+    }
+
+    def analyse_text(text):
+        if re.match(r'\w+\s*:\s*\w', text): return 0.3
+
