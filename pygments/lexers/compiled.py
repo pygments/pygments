@@ -1665,7 +1665,7 @@ class ValaLexer(RegexLexer):
 
 class OocLexer(RegexLexer):
     """
-    For `Ooc`<http://ooc-lang.org/>_ source code
+    For `Ooc <http://ooc-lang.org/>`_ source code
 
     *New in Pygments 1.2.*
     """
