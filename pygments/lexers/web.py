@@ -1212,6 +1212,10 @@ class HamlLexer(ExtendedRegexLexer):
     mimetypes = ['text/x-haml']
 
     flags = re.IGNORECASE
+    # Haml can include " |\n" anywhere,
+    # which is ignored and used to wrap long lines.
+    # To accomodate this, use this custom faux dot instead.
+    _dot = r'(?: \|\n(?=.* \|)|.)'
     tokens = {
         'root': [
             (r'[ \t]*\n', Text),
@@ -1225,7 +1229,7 @@ class HamlLexer(ExtendedRegexLexer):
 
         'eval-or-plain': [
             (r'[&!]?==', Punctuation, 'plain'),
-            (r'([&!]?[=~])(.*\n)',
+            (r'([&!]?[=~])(' + _dot + '*\n)',
              bygroups(Punctuation, using(RubyLexer)),
              'root'),
             (r'', Text, 'plain'),
@@ -1234,23 +1238,23 @@ class HamlLexer(ExtendedRegexLexer):
         'content': [
             include('css'),
             (r'%[a-z0-9_:-]+', Name.Tag, 'tag'),
-            (r'!!!.*\n', Name.Namespace, '#pop'),
-            (r'(/)(\[.*?\])(.*\n)',
+            (r'!!!' + _dot + '*\n', Name.Namespace, '#pop'),
+            (r'(/)(\[' + _dot + '*?\])(' + _dot + '*\n)',
              bygroups(Comment, Comment.Special, Comment),
              '#pop'),
-            (r'/.*\n', _starts_block(Comment, 'html-comment-block'), '#pop'),
-            (r'-#.*\n', _starts_block(Comment.Preproc, 'haml-comment-block'), '#pop'),
-            (r'(-)(.*\n)',
+            (r'/' + _dot + '*\n', _starts_block(Comment, 'html-comment-block'), '#pop'),
+            (r'-#' + _dot + '*\n', _starts_block(Comment.Preproc, 'haml-comment-block'), '#pop'),
+            (r'(-)(' + _dot + '*\n)',
              bygroups(Punctuation, using(RubyLexer)),
              '#pop'),
-            (r':.*\n', _starts_block(Name.Decorator, 'filter-block'), '#pop'),
+            (r':' + _dot + '*\n', _starts_block(Name.Decorator, 'filter-block'), '#pop'),
             include('eval-or-plain'),
         ],
 
         'tag': [
             include('css'),
-            (r'\{(.|,\n)*?\}', using(RubyLexer)),
-            (r'\[.*?\]', using(RubyLexer)),
+            (r'\{(,\n|' + _dot + ')*?\}', using(RubyLexer)),
+            (r'\[' + _dot + '*?\]', using(RubyLexer)),
             (r'\(', Text, 'html-attributes'),
             (r'/[ \t]*\n', Punctuation, '#pop:2'),
             (r'[<>]{1,2}(?=[ \t=])', Punctuation),
@@ -1259,7 +1263,7 @@ class HamlLexer(ExtendedRegexLexer):
 
         'plain': [
             (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Text),
-            (r'(#\{)(.*?)(\})',
+            (r'(#\{)(' + _dot + '*?)(\})',
              bygroups(String.Interpol, using(RubyLexer), String.Interpol)),
             (r'\n', Text, 'root'),
         ],
@@ -1281,18 +1285,18 @@ class HamlLexer(ExtendedRegexLexer):
         ],
 
         'html-comment-block': [
-            (r'.+', Comment),
+            (_dot + '+', Comment),
             (r'\n', Text, 'root'),
         ],
 
         'haml-comment-block': [
-            (r'.+', Comment.Preproc),
+            (_dot + '+', Comment.Preproc),
             (r'\n', Text, 'root'),
         ],
 
         'filter-block': [
             (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Name.Decorator),
-            (r'(#\{)(.*?)(\})',
+            (r'(#\{)(' + _dot + '*?)(\})',
              bygroups(String.Interpol, using(RubyLexer), String.Interpol)),
             (r'\n', Text, 'root'),
         ],
