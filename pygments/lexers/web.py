@@ -15,7 +15,7 @@ try:
 except NameError:
     from sets import Set as set
 
-from pygments.lexer import RegexLexer, bygroups, using, include, this
+from pygments.lexer import RegexLexer, ExtendedRegexLexer, bygroups, using, include, this
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Other, Punctuation
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
@@ -1171,7 +1171,7 @@ class HaxeLexer(RegexLexer):
         if re.match(r'\w+\s*:\s*\w', text): return 0.3
 
 
-class HamlLexer(RegexLexer):
+class HamlLexer(ExtendedRegexLexer):
     """
     For Haml markup.
     """
@@ -1182,10 +1182,40 @@ class HamlLexer(RegexLexer):
     mimetypes = ['text/x-haml']
 
     flags = re.IGNORECASE
+
+    def indentation(lexer, match, ctx):
+        indentation = match.group(0)
+        yield match.start(), Text, indentation
+        ctx.last_indentation = indentation
+        ctx.pos = match.end()
+
+        if hasattr(ctx, 'block_state') and ctx.block_state and \
+                indentation.startswith(ctx.block_indentation) and \
+                indentation != ctx.block_indentation:
+            ctx.stack.append(ctx.block_state)
+        else:
+            ctx.block_state = None
+            ctx.block_indentation = None
+            ctx.stack.append('content')
+
+    def starts_block(token, state):
+        def callback(lexer, match, ctx):
+            yield match.start(), token, match.group(0)
+
+            if hasattr(ctx, 'last_indentation'):
+                ctx.block_indentation = ctx.last_indentation
+            else:
+                ctx.block_indentation = ''
+
+            ctx.block_state = state
+            ctx.pos = match.end()
+
+        return callback
+
     tokens = {
         'root': [
             (r'[ \t]*\n', Text),
-            (r'[ \t]*', Text, 'content'),
+            (r'[ \t]*', indentation),
         ],
 
         'css': [
@@ -1208,12 +1238,12 @@ class HamlLexer(RegexLexer):
             (r'(/)(\[.*?\])(.*\n)',
              bygroups(Comment, Comment.Special, Comment),
              '#pop'),
-            (r'/.*\n', Comment, '#pop'),
-            (r'-#.*\n', Comment.Preproc, '#pop'),
+            (r'/.*\n', starts_block(Comment, 'html-comment-block'), '#pop'),
+            (r'-#.*\n', starts_block(Comment.Preproc, 'haml-comment-block'), '#pop'),
             (r'(-)(.*\n)',
              bygroups(Punctuation, using(RubyLexer)),
              '#pop'),
-            (r':.*\n', Name.Decorator, '#pop'),
+            (r':.*\n', starts_block(Name.Decorator, 'filter-block'), '#pop'),
             include('eval-or-plain'),
         ],
 
@@ -1248,6 +1278,23 @@ class HamlLexer(RegexLexer):
             (r'\$[a-z0-9_]+', Name.Variable.Global, '#pop'),
             (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
             (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
+        ],
+
+        'html-comment-block': [
+            (r'.+', Comment),
+            (r'\n', Text, 'root'),
+        ],
+
+        'haml-comment-block': [
+            (r'.+', Comment.Preproc),
+            (r'\n', Text, 'root'),
+        ],
+
+        'filter-block': [
+            (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Name.Decorator),
+            (r'(#\{)(.*?)(\})',
+             bygroups(String.Interpol, using(RubyLexer), String.Interpol)),
+            (r'\n', Text, 'root'),
         ],
     }
 
