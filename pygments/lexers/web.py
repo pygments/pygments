@@ -1171,6 +1171,36 @@ class HaxeLexer(RegexLexer):
         if re.match(r'\w+\s*:\s*\w', text): return 0.3
 
 
+def _indentation(lexer, match, ctx):
+    indentation = match.group(0)
+    yield match.start(), Text, indentation
+    ctx.last_indentation = indentation
+    ctx.pos = match.end()
+
+    if hasattr(ctx, 'block_state') and ctx.block_state and \
+            indentation.startswith(ctx.block_indentation) and \
+            indentation != ctx.block_indentation:
+        ctx.stack.append(ctx.block_state)
+    else:
+        ctx.block_state = None
+        ctx.block_indentation = None
+        ctx.stack.append('content')
+
+def _starts_block(token, state):
+    def callback(lexer, match, ctx):
+        yield match.start(), token, match.group(0)
+
+        if hasattr(ctx, 'last_indentation'):
+            ctx.block_indentation = ctx.last_indentation
+        else:
+            ctx.block_indentation = ''
+
+        ctx.block_state = state
+        ctx.pos = match.end()
+
+    return callback
+
+
 class HamlLexer(ExtendedRegexLexer):
     """
     For Haml markup.
@@ -1182,40 +1212,10 @@ class HamlLexer(ExtendedRegexLexer):
     mimetypes = ['text/x-haml']
 
     flags = re.IGNORECASE
-
-    def indentation(lexer, match, ctx):
-        indentation = match.group(0)
-        yield match.start(), Text, indentation
-        ctx.last_indentation = indentation
-        ctx.pos = match.end()
-
-        if hasattr(ctx, 'block_state') and ctx.block_state and \
-                indentation.startswith(ctx.block_indentation) and \
-                indentation != ctx.block_indentation:
-            ctx.stack.append(ctx.block_state)
-        else:
-            ctx.block_state = None
-            ctx.block_indentation = None
-            ctx.stack.append('content')
-
-    def starts_block(token, state):
-        def callback(lexer, match, ctx):
-            yield match.start(), token, match.group(0)
-
-            if hasattr(ctx, 'last_indentation'):
-                ctx.block_indentation = ctx.last_indentation
-            else:
-                ctx.block_indentation = ''
-
-            ctx.block_state = state
-            ctx.pos = match.end()
-
-        return callback
-
     tokens = {
         'root': [
             (r'[ \t]*\n', Text),
-            (r'[ \t]*', indentation),
+            (r'[ \t]*', _indentation),
         ],
 
         'css': [
@@ -1238,12 +1238,12 @@ class HamlLexer(ExtendedRegexLexer):
             (r'(/)(\[.*?\])(.*\n)',
              bygroups(Comment, Comment.Special, Comment),
              '#pop'),
-            (r'/.*\n', starts_block(Comment, 'html-comment-block'), '#pop'),
-            (r'-#.*\n', starts_block(Comment.Preproc, 'haml-comment-block'), '#pop'),
+            (r'/.*\n', _starts_block(Comment, 'html-comment-block'), '#pop'),
+            (r'-#.*\n', _starts_block(Comment.Preproc, 'haml-comment-block'), '#pop'),
             (r'(-)(.*\n)',
              bygroups(Punctuation, using(RubyLexer)),
              '#pop'),
-            (r':.*\n', starts_block(Name.Decorator, 'filter-block'), '#pop'),
+            (r':.*\n', _starts_block(Name.Decorator, 'filter-block'), '#pop'),
             include('eval-or-plain'),
         ],
 
@@ -1299,7 +1299,7 @@ class HamlLexer(ExtendedRegexLexer):
     }
 
 
-class SassLexer(RegexLexer):
+class SassLexer(ExtendedRegexLexer):
     """
     For Sass stylesheets.
     """
@@ -1313,12 +1313,12 @@ class SassLexer(RegexLexer):
     tokens = {
         'root': [
             (r'[ \t]*\n', Text),
-            (r'[ \t]*', Text, 'content'),
+            (r'[ \t]*', _indentation),
         ],
 
         'content': [
-            (r'//[^\n]*', Comment.Single, 'root'),
-            (r'/\*[^\n]*', Comment.Multiline, 'root'),
+            (r'//[^\n]*', _starts_block(Comment.Single, 'single-comment'), 'root'),
+            (r'/\*[^\n]*', _starts_block(Comment.Multiline, 'multi-comment'), 'root'),
             (r'@import', Keyword, 'import'),
             (r'@for', Keyword, 'for'),
             (r'@(debug|if|while)', Keyword, 'script'),
@@ -1330,6 +1330,16 @@ class SassLexer(RegexLexer):
             (r':', Name.Attribute, 'old-style-attr'),
             (r'(?=[^\s:"\[]+\s*[=:]([ \t]|$))', Name.Attribute, 'new-style-attr'),
             (r'', Text, 'selector'),
+        ],
+
+        'single-comment': [
+            (r'.+', Comment.Single),
+            (r'\n', Text, 'root'),
+        ],
+
+        'multi-comment': [
+            (r'.+', Comment.Multiline),
+            (r'\n', Text, 'root'),
         ],
 
         'import': [
