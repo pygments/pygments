@@ -250,6 +250,9 @@ class LlvmLexer(RegexLexer):
              r'|malloc|free|alloca|load|store'
              r'|phi|call|va_arg|va_list'
 
+             # new float ops
+             r'|fadd|fsub|fmul'
+
              # Comparison condition codes for icmp
              r'|eq|ne|ugt|uge|ult|ule|sgt|sge|slt|sle'
              # Ditto for fcmp: (minus keywords mentioned in other contexts)
