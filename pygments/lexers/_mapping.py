@@ -84,6 +84,7 @@ LEXERS = {
     'GnuplotLexer': ('pygments.lexers.other', 'Gnuplot', ('gnuplot',), ('*.plot', '*.plt'), ('text/x-gnuplot',)),
     'GoLexer': ('pygments.lexers.compiled', 'Go', ('go',), ('*.go',), ('text/x-gosrc',)),
     'GroffLexer': ('pygments.lexers.text', 'Groff', ('groff', 'nroff', 'man'), ('*.[1234567]', '*.man'), ('application/x-troff', 'text/troff')),
+    'HamlLexer': ('pygments.lexers.web', 'Haml', ('haml', 'HAML'), ('*.haml',), ('text/x-haml',)),
     'HaskellLexer': ('pygments.lexers.functional', 'Haskell', ('haskell', 'hs'), ('*.hs',), ('text/x-haskell',)),
     'HaxeLexer': ('pygments.lexers.web', 'haXe', ('hx', 'haXe'), ('*.hx',), ('text/haxe',)),
     'HtmlDjangoLexer': ('pygments.lexers.templates', 'HTML+Django/Jinja', ('html+django', 'html+jinja'), (), ('text/html+django', 'text/html+jinja')),

@@ -20,11 +20,12 @@ from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Other, Punctuation
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
                           html_doctype_matches
+from pygments.lexers.agile import RubyLexer
 
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
-           'MxmlLexer', 'HaxeLexer', 'ObjectiveJLexer']
+           'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'ObjectiveJLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -1169,3 +1170,83 @@ class HaxeLexer(RegexLexer):
     def analyse_text(text):
         if re.match(r'\w+\s*:\s*\w', text): return 0.3
 
+
+class HamlLexer(RegexLexer):
+    """
+    For Haml markup.
+    """
+
+    name = 'Haml'
+    aliases = ['haml', 'HAML']
+    filenames = ['*.haml']
+    mimetypes = ['text/x-haml']
+
+    flags = re.IGNORECASE
+    tokens = {
+        'root': [
+            (r'[ \t]*\n', Text),
+            (r'[ \t]*', Text, 'content'),
+        ],
+
+        'css': [
+            (r'\.[a-z0-9_:-]+', Name.Class, 'tag'),
+            (r'\#[a-z0-9_:-]+', Name.Function, 'tag'),
+        ],
+
+        'eval-or-plain': [
+            (r'[&!]?==', Punctuation, 'plain'),
+            (r'([&!]?[=~])(.*\n)',
+             bygroups(Punctuation, using(RubyLexer)),
+             'root'),
+            (r'', Text, 'plain'),
+        ],
+
+        'content': [
+            include('css'),
+            (r'%[a-z0-9_:-]+', Name.Tag, 'tag'),
+            (r'!!!.*\n', Name.Namespace, '#pop'),
+            (r'(/)(\[.*?\])(.*\n)',
+             bygroups(Comment, Comment.Special, Comment),
+             '#pop'),
+            (r'/.*\n', Comment, '#pop'),
+            (r'-#.*\n', Comment.Preproc, '#pop'),
+            (r'(-)(.*\n)',
+             bygroups(Punctuation, using(RubyLexer)),
+             '#pop'),
+            (r':.*\n', Name.Decorator, '#pop'),
+            include('eval-or-plain'),
+        ],
+
+        'tag': [
+            include('css'),
+            (r'\{(.|,\n)*?\}', using(RubyLexer)),
+            (r'\[.*?\]', using(RubyLexer)),
+            (r'\(', Text, 'html-attributes'),
+            (r'/[ \t]*\n', Punctuation, '#pop:2'),
+            (r'[<>]{1,2}(?=[ \t=])', Punctuation),
+            include('eval-or-plain'),
+        ],
+
+        'plain': [
+            (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Text),
+            (r'(#\{)(.*?)(\})',
+             bygroups(String.Interpol, using(RubyLexer), String.Interpol)),
+            (r'\n', Text, 'root'),
+        ],
+
+        'html-attributes': [
+            (r'\s+', Text),
+            (r'[a-z0-9_:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
+            (r'[a-z0-9_:-]+', Name.Attribute),
+            (r'\)', Text, '#pop'),
+        ],
+
+        'html-attribute-value': [
+            (r'[ \t]+', Text),
+            (r'[a-z0-9_]+', Name.Variable, '#pop'),
+            (r'@[a-z0-9_]+', Name.Variable.Instance, '#pop'),
+            (r'\$[a-z0-9_]+', Name.Variable.Global, '#pop'),
+            (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
+            (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
+        ],
+    }
