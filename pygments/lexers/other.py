@@ -808,7 +808,8 @@ class LogtalkLexer(RegexLexer):
             # Reflection
             (r'(current_predicate|predicate_property)(?=[(])', Keyword),
             # DCGs and term expansion
-            (r'(expand_term|(goal|term)_expansion|phrase)(?=[(])', Keyword),
+            (r'(expand_(goal|term)|(goal|term)_expansion|phrase)(?=[(])',
+             Keyword),
             # Entity
             (r'(abolish|c(reate|urrent))_(object|protocol|category)(?=[(])',
              Keyword),
@@ -921,19 +922,22 @@ class LogtalkLexer(RegexLexer):
         ],
 
         'directive': [
+            # Conditional compilation directives
+            (r'(el)?if(?=[(])', Keyword, 'root'),		
+            (r'(e(lse|ndif))[.]', Keyword, 'root'),
             # Entity directives
             (r'(category|object|protocol)(?=[(])', Keyword, 'entityrelations'),
             (r'(end_(category|object|protocol))[.]',Keyword, 'root'),
             # Predicate scope directives
             (r'(public|protected|private)(?=[(])', Keyword, 'root'),
             # Other directives
-            (r'e(ncoding|xport)(?=[(])', Keyword, 'root'),
+            (r'e(n(coding|sure_loaded)|xport)(?=[(])', Keyword, 'root'),
             (r'in(fo|itialization)(?=[(])', Keyword, 'root'),
             (r'(dynamic|synchronized|threaded)[.]', Keyword, 'root'),
-            (r'(alias|d(ynamic|iscontiguous)|m(eta_predicate|ode|ultifile)'
-             r'|synchronized)(?=[(])', Keyword, 'root'),
+            (r'(alias|d(ynamic|iscontiguous)|m(eta_predicate|ode|ultifile)|'
+             r's(et_(logtalk|prolog)_flag|ynchronized))(?=[(])', Keyword, 'root'),
             (r'op(?=[(])', Keyword, 'root'),
-            (r'(calls|use(s|_module))(?=[(])', Keyword, 'root'),
+            (r'(calls|reexport|use(s|_module))(?=[(])', Keyword, 'root'),
             (r'[a-z][a-zA-Z0-9_]*(?=[(])', Text, 'root'),
             (r'[a-z][a-zA-Z0-9_]*[.]', Text, 'root'),
         ],
@@ -968,6 +972,15 @@ class LogtalkLexer(RegexLexer):
             (r'\s+', Text),
         ]
     }
+
+    def analyse_text(text):
+        if ':- object(' in text:
+            return True
+        if ':- protocol(' in text:
+            return True
+        if ':- category(' in text:
+            return True
+        return False
 
 
 def _shortened(word):
