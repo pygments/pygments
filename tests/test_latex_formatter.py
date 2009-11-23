@@ -33,16 +33,10 @@ class LatexFormatterTest(unittest.TestCase):
         fmt.format(tokensource, tfile)
         tfile.close()
         try:
-            try:
-                import subprocess
-                ret = subprocess.Popen(['latex', '-interaction=nonstopmode',
-                                        pathname],
-                                       stdout=subprocess.PIPE).wait()
-            except ImportError:
-                # Python 2.3 - no subprocess module
-                ret = os.popen('latex -interaction=nonstopmode "%s"'
-                               % pathname).close()
-                if ret == 32512: raise OSError  # not found
+            import subprocess
+            ret = subprocess.Popen(['latex', '-interaction=nonstopmode',
+                                    pathname],
+                                   stdout=subprocess.PIPE).wait()
         except OSError:
             # latex not available
             pass
