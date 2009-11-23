@@ -275,7 +275,7 @@ class NasmLexer(RegexLexer):
     mimetypes = ['text/x-nasm']
 
     identifier = r'[a-zA-Z$._?][a-zA-Z0-9$._?#@~]*'
-    hexn = r'(?:0[xX][0-9a-fA-F]+|$0[0-9a-fA-F]*|[0-9a-fA-F]+h)'
+    hexn = r'(?:0[xX][0-9a-fA-F]+|$0[0-9a-fA-F]*|[0-9]+[0-9a-fA-F]*h)'
     octn = r'[0-7]+q'
     binn = r'[01]+b'
     decn = r'[0-9]+'
@@ -287,7 +287,8 @@ class NasmLexer(RegexLexer):
     wordop = r'seg|wrt|strict'
     type = r'byte|[dq]?word'
     directives = (r'BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'
-                  r'COMMON|CPU|GROUP|UPPERCASE|IMPORT|EXPORT|LIBRARY|MODULE')
+                  r'ORG|ALIGN|STRUC|ENDSTRUC|COMMON|CPU|GROUP|UPPERCASE|IMPORT|'
+                  r'EXPORT|LIBRARY|MODULE')
 
     flags = re.IGNORECASE | re.MULTILINE
     tokens = {
@@ -295,10 +296,10 @@ class NasmLexer(RegexLexer):
             include('whitespace'),
             (r'^\s*%', Comment.Preproc, 'preproc'),
             (identifier + ':', Name.Label),
-            (directives, Keyword, 'instruction-args'),
-            (r'(%s)\s+(equ)' % identifier,
-                bygroups(Name.Constant, Keyword.Declaration),
+            (r'(%s)(\s+)(equ)' % identifier,
+                bygroups(Name.Constant, Keyword.Declaration, Keyword.Declaration),
                 'instruction-args'),
+            (directives, Keyword, 'instruction-args'),
             (declkw, Keyword.Declaration, 'instruction-args'),
             (identifier, Name.Function, 'instruction-args'),
             (r'[\r\n]+', Text)
