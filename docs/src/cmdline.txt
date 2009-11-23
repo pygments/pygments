@@ -34,6 +34,11 @@ The above command could therefore also be given as::
 
     $ pygmentize -o test.html test.py
 
+To create a full HTML document, including line numbers and stylesheet (using the
+"emacs" style), highlighting the Python file ``test.py`` to ``test.html``::
+
+    $ pygmentize -O full,style=emacs -o test.html test.py
+
 
 Options and filters
 -------------------
@@ -115,15 +120,6 @@ will print the help for the HTML formatter, while ::
     $ pygmentize -H lexer python
 
 will print the help for the Python lexer, etc.
-
-
-Examples
---------
-
-Create a full HTML document, including line numbers and stylesheet (using the
-"emacs" style), highlighting the Python file ``setup.py`` to ``setup.html``::
-
-    $ pygmentize -O full,style=emacs -o setup.html setup.py
 
 
 A note on encodings
