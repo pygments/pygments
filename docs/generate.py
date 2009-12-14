@@ -119,7 +119,7 @@ def generate_authors():
     fn = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
                          'AUTHORS'))
     f = file(fn)
-    r = f.read().rstrip()
+    r = f.read().rstrip().decode('utf-8')
     f.close()
     return r
 
