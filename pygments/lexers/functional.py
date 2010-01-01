@@ -443,7 +443,7 @@ class HaskellLexer(RegexLexer):
             (r'o[0-7]+', String.Escape, '#pop'),
             (r'x[\da-fA-F]+', String.Escape, '#pop'),
             (r'\d+', String.Escape, '#pop'),
-            (r'\n\s+\\', String.Escape, '#pop'),
+            (r'\s+\\', String.Escape, '#pop'),
         ],
     }
 
