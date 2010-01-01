@@ -13,7 +13,8 @@ import sys
 from commands import getstatusoutput
 
 from pygments.formatter import Formatter
-from pygments.util import get_bool_opt, get_int_opt, get_choice_opt
+from pygments.util import get_bool_opt, get_int_opt, \
+     get_list_opt, get_choice_opt
 
 # Import this carefully
 try:
@@ -255,6 +256,16 @@ class ImageFormatter(Formatter):
         the source code area.
 
         Default: 6
+
+    `hl_lines`
+        Specify a list of lines to be highlighted.  *New in Pygments 1.2.*
+
+        Default: empty list
+
+    `hl_color`
+        Specify the color for highlighting lines.  *New in Pygments 1.2.*
+
+        Default: highlight color of the selected style
     """
 
     # Required by the pygments mapper
@@ -310,6 +321,15 @@ class ImageFormatter(Formatter):
                                    self.line_number_pad * 2)
         else:
             self.line_number_width = 0
+        self.hl_lines = []
+        hl_lines_str = get_list_opt(options, 'hl_lines', [])
+        for line in hl_lines_str:
+            try:
+                self.hl_lines.append(int(line))
+            except ValueError:
+                pass
+        self.hl_color = options.get('hl_color',
+                                    self.style.highlight_color) or '#f90'
         self.drawables = []
 
     def get_style_defs(self, arg=''):
@@ -471,6 +491,15 @@ class ImageFormatter(Formatter):
         )
         self._paint_line_number_bg(im)
         draw = ImageDraw.Draw(im)
+        # Highlight
+        if self.hl_lines:
+            x = self.image_pad + self.line_number_width - self.line_number_pad + 1
+            recth = self._get_line_height()
+            rectw = im.size[0] - x
+            for linenumber in self.hl_lines:
+                y = self._get_line_y(linenumber - 1)
+                draw.rectangle([(x, y), (x + rectw, y + recth)],
+                               fill=self.hl_color)
         for pos, value, font, kw in self.drawables:
             draw.text(pos, value, font=font, **kw)
         im.save(outfile, self.image_format.upper())
