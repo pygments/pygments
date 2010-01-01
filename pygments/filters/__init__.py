@@ -283,10 +283,78 @@ class VisibleWhitespaceFilter(Filter):
                 yield ttype, value
 
 
+class GobbleFilter(Filter):
+    """
+    Gobbles source code lines (eats initial characters).
+
+    This filter drops the first ``n`` characters off every line of code.  This
+    may be useful when the source code fed to the lexer is indented by a fixed
+    amount of space that isn't desired in the output.
+
+    Options accepted:
+
+    `n` : int
+       The number of characters to gobble.
+
+    *New in Pygments 1.2.*
+    """
+    def __init__(self, **options):
+        Filter.__init__(self, **options)
+        self.n = get_int_opt(options, 'n', 0)
+
+    def gobble(self, value, left):
+        if left < len(value):
+            return value[left:], 0
+        else:
+            return '', left - len(value)
+
+    def filter(self, lexer, stream):
+        n = self.n
+        left = n # How many characters left to gobble.
+        for ttype, value in stream:
+            # Remove ``left`` tokens from first line, ``n`` from all others.
+            parts = value.split('\n')
+            (parts[0], left) = self.gobble(parts[0], left)
+            for i in range(1, len(parts)):
+                (parts[i], left) = self.gobble(parts[i], n)
+            value = '\n'.join(parts)
+
+            if value != '':
+                yield ttype, value
+
+
+class TokenMergeFilter(Filter):
+    """
+    Merges consecutive tokens with the same token type in the output stream of a
+    lexer.
+
+    *New in Pygments 1.2.*
+    """
+    def __init__(self, **options):
+        Filter.__init__(self, **options)
+
+    def filter(self, lexer, stream):
+        output = []
+        current_type = None
+        current_value = None
+        for ttype, value in stream:
+            if ttype is current_type:
+                current_value += value
+            else:
+                if not current_type is None:
+                    yield current_type, current_value
+                current_type = ttype
+                current_value = value
+        if not current_type is None:
+            yield current_type, current_value
+
+
 FILTERS = {
     'codetagify':     CodeTagFilter,
     'keywordcase':    KeywordCaseFilter,
     'highlight':      NameHighlightFilter,
     'raiseonerror':   RaiseOnErrorTokenFilter,
     'whitespace':     VisibleWhitespaceFilter,
+    'gobble':         GobbleFilter,
+    'tokenmerge':     TokenMergeFilter,
 }

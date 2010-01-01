@@ -18,12 +18,16 @@ __all__ = ['LatexFormatter']
 
 
 def escape_tex(text, commandprefix):
-    return text.replace('@', '\x00').    \
-                replace('[', '\x01').    \
-                replace(']', '\x02').    \
-                replace('\x00', '@%sZat[]' % commandprefix).\
-                replace('\x01', '@%sZlb[]' % commandprefix).\
-                replace('\x02', '@%sZrb[]' % commandprefix)
+    return text.replace('\\', '\x00'). \
+                replace('{', '\x01'). \
+                replace('}', '\x02'). \
+                replace('^', '\x03'). \
+                replace('_', '\x04'). \
+                replace('\x00', r'\%sZbs{}' % commandprefix). \
+                replace('\x01', r'\%sZob{}' % commandprefix). \
+                replace('\x02', r'\%sZcb{}' % commandprefix). \
+                replace('\x03', r'\%sZca{}' % commandprefix). \
+                replace('\x04', r'\%sZus{}' % commandprefix)
 
 
 DOC_TEMPLATE = r'''
@@ -92,9 +96,11 @@ STYLE_TEMPLATE = r'''
 
 %(styles)s
 
-\def\%(cp)sZat{@}
-\def\%(cp)sZlb{[}
-\def\%(cp)sZrb{]}
+\def\%(cp)sZbs{\char`\\}
+\def\%(cp)sZus{\char`\_}
+\def\%(cp)sZob{\char`\{}
+\def\%(cp)sZcb{\char`\}}
+\def\%(cp)sZca{\char`\^}
 \makeatother
 '''
 
@@ -177,6 +183,16 @@ class LatexFormatter(Formatter):
         *New in Pygments 0.7.*
 
         *New in Pygments 0.10:* the default is now ``'PY'`` instead of ``'C'``.
+
+    `texcomments`
+        If set to ``True``, enables LaTeX comment lines.  That is, LaTex markup
+        in comment tokens is not escaped so that LaTeX can render it (default:
+        ``False``).  *New in Pygments 1.2.*
+
+    `mathescape`
+        If set to ``True``, enables LaTeX math mode escape in comments. That
+        is, ``'$...$'`` inside a comment will trigger math mode (default:
+        ``False``).  *New in Pygments 1.2.*
     """
     name = 'LaTeX'
     aliases = ['latex', 'tex']
@@ -192,6 +208,8 @@ class LatexFormatter(Formatter):
         self.verboptions = options.get('verboptions', '')
         self.nobackground = get_bool_opt(options, 'nobackground', False)
         self.commandprefix = options.get('commandprefix', 'PY')
+        self.texcomments = get_bool_opt(options, 'texcomments', False)
+        self.mathescape = get_bool_opt(options, 'mathescape', False)
 
         self._create_stylesheet()
 
@@ -260,18 +278,46 @@ class LatexFormatter(Formatter):
             realoutfile = outfile
             outfile = StringIO()
 
-        outfile.write(r'\begin{Verbatim}[commandchars=@\[\]')
+        outfile.write(r'\begin{Verbatim}[commandchars=\\\{\}')
         if self.linenos:
             start, step = self.linenostart, self.linenostep
             outfile.write(',numbers=left' +
                           (start and ',firstnumber=%d' % start or '') +
                           (step and ',stepnumber=%d' % step or ''))
+        if self.mathescape or self.texcomments:
+            outfile.write(r',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
         if self.verboptions:
             outfile.write(',' + self.verboptions)
         outfile.write(']\n')
 
         for ttype, value in tokensource:
-            value = escape_tex(value, self.commandprefix)
+            if ttype in Token.Comment:
+                if self.texcomments:
+                    # Try to guess comment starting lexeme and escape it ...
+                    start = value[0:1]
+                    for i in xrange(1, len(value)):
+                        if start[0] != value[i]:
+                            break
+                        start += value[i]
+
+                    value = value[len(start):]
+                    start = escape_tex(start, self.commandprefix)
+
+                    # ... but do not escape inside comment.
+                    value = start + value
+                elif self.mathescape:
+                    # Only escape parts not inside a math environment.
+                    parts = value.split('$')
+                    in_math = False
+                    for i, part in enumerate(parts):
+                        if not in_math:
+                            parts[i] = escape_tex(part, self.commandprefix)
+                        in_math = not in_math
+                    value = '$'.join(parts)
+                else:
+                    value = escape_tex(value, self.commandprefix)
+            else:
+                value = escape_tex(value, self.commandprefix)
             styles = []
             while ttype is not Token:
                 try:
@@ -285,10 +331,10 @@ class LatexFormatter(Formatter):
                 spl = value.split('\n')
                 for line in spl[:-1]:
                     if line:
-                        outfile.write("@%s[%s][%s]" % (cp, styleval, line))
+                        outfile.write("\\%s{%s}{%s}" % (cp, styleval, line))
                     outfile.write('\n')
                 if spl[-1]:
-                    outfile.write("@%s[%s][%s]" % (cp, styleval, spl[-1]))
+                    outfile.write("\\%s{%s}{%s}" % (cp, styleval, spl[-1]))
             else:
                 outfile.write(value)
 
