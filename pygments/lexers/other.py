@@ -24,7 +24,7 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'MOOCodeLexer', 'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer',
            'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer',
            'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer',
-           'NewspeakLexer', 'GherkinLexer']
+           'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -2176,3 +2176,120 @@ class GherkinLexer(RegexLexer):
             (r'(\s|.)', Text),
         ]
     }
+
+
+class AsymptoteLexer(RegexLexer):
+    """
+    For `Asymptote <http://asymptote.sf.net/>`_ source code.
+
+    *New in Pygments 1.2.*
+    """
+    name = 'Asymptote'
+    aliases = ['asy', 'asymptote']
+    filenames = ['*.asy']
+    mimetypes = ['text/x-asymptote']
+
+    #: optional Comment or Whitespace
+    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+
+    tokens = {
+        'whitespace': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuation
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+        ],
+        'statements': [
+            # simple string (TeX friendly)
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # C style string (with character escapes)
+            (r"'", String, 'string'),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
+            (r'0[0-7]+[Ll]?', Number.Oct),
+            (r'\d+[Ll]?', Number.Integer),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'[()\[\],.]', Punctuation),
+            (r'\b(case)(.+?)(:)', bygroups(Keyword, using(this), Text)),
+            (r'(and|controls|tension|atleast|curl|if|else|while|for|do|'
+             r'return|break|continue|struct|typedef|new|access|import|'
+             r'unravel|from|include|quote|static|public|private|restricted|'
+             r'this|explicit|true|false|null|cycle|newframe|operator)\b', Keyword),
+            # Since an asy-type-name can be also an asy-function-name,
+            # in the following we test if the string "  [a-zA-Z]" follows
+            # the Keyword.Type.
+            # Of course it is not perfect !
+            (r'(Braid|FitResult|Label|Legend|TreeNode|abscissa|arc|arrowhead|'
+             r'binarytree|binarytreeNode|block|bool|bool3|bounds|bqe|circle|'
+             r'conic|coord|coordsys|cputime|ellipse|file|filltype|frame|grid3|'
+             r'guide|horner|hsv|hyperbola|indexedTransform|int|inversion|key|'
+             r'light|line|linefit|marginT|marker|mass|object|pair|parabola|path|'
+             r'path3|pen|picture|point|position|projection|real|revolution|'
+             r'scaleT|scientific|segment|side|slice|splitface|string|surface|'
+             r'tensionSpecifier|ticklocate|ticksgridT|tickvalues|transform|'
+             r'transformation|tree|triangle|trilinear|triple|vector|'
+             r'vertex|void)(?=([ ]{1,}[a-zA-Z]))', Keyword.Type),
+            # Now the asy-type-name which are not asy-function-name
+            # except yours !
+            # Perhaps useless
+            (r'(Braid|FitResult|TreeNode|abscissa|arrowhead|block|bool|bool3|'
+             r'bounds|coord|frame|guide|horner|int|linefit|marginT|pair|pen|'
+             r'picture|position|real|revolution|slice|splitface|ticksgridT|'
+             r'tickvalues|tree|triple|vertex|void)\b', Keyword.Type),
+            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ],
+        'root': [
+            include('whitespace'),
+            # functions
+            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
+             r'(\s*\([^;]*?\))'                      # signature
+             r'(' + _ws + r')({)',
+             bygroups(using(this), Name.Function, using(this), using(this),
+                      Punctuation),
+             'function'),
+            # function declarations
+            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
+             r'(\s*\([^;]*?\))'                      # signature
+             r'(' + _ws + r')(;)',
+             bygroups(using(this), Name.Function, using(this), using(this),
+                      Punctuation)),
+            ('', Text, 'statement'),
+        ],
+        'statement' : [
+            include('whitespace'),
+            include('statements'),
+            ('[{}]', Punctuation),
+            (';', Punctuation, '#pop'),
+        ],
+        'function': [
+            include('whitespace'),
+            include('statements'),
+            (';', Punctuation),
+            ('{', Punctuation, '#push'),
+            ('}', Punctuation, '#pop'),
+        ],
+        'string': [
+            (r"'", String, '#pop'),
+            (r'\\([\\abfnrtv"\'?]|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'\n', String),
+            (r"[^\\'\n]+", String), # all other characters
+            (r'\\\n', String),
+            (r'\\n', String), # line continuation
+            (r'\\', String), # stray backslash
+            ]
+        }
+
+    def get_tokens_unprocessed(self, text):
+        from pygments.lexers._asybuiltins import ASYFUNCNAME, ASYVARNAME
+        for index, token, value in \
+               RegexLexer.get_tokens_unprocessed(self, text):
+           if token is Name and value in ASYFUNCNAME:
+               token = Name.Function
+           elif token is Name and value in ASYVARNAME:
+               token = Name.Variable
+           yield index, token, value
