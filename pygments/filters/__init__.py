@@ -341,11 +341,11 @@ class TokenMergeFilter(Filter):
             if ttype is current_type:
                 current_value += value
             else:
-                if not current_type is None:
+                if current_type is not None:
                     yield current_type, current_value
                 current_type = ttype
                 current_value = value
-        if not current_type is None:
+        if current_type is not None:
             yield current_type, current_value
 
 

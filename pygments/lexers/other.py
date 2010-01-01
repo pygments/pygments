@@ -923,7 +923,7 @@ class LogtalkLexer(RegexLexer):
 
         'directive': [
             # Conditional compilation directives
-            (r'(el)?if(?=[(])', Keyword, 'root'),		
+            (r'(el)?if(?=[(])', Keyword, 'root'),
             (r'(e(lse|ndif))[.]', Keyword, 'root'),
             # Entity directives
             (r'(category|object|protocol)(?=[(])', Keyword, 'entityrelations'),
@@ -2136,7 +2136,9 @@ class GherkinLexer(RegexLexer):
             (r"[^\|]", Name.Variable),
           ],
         'scenario_sections_on_stack': [
-            (scenario_keywords_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions_on_stack"),
+            (scenario_keywords_regexp,
+             bygroups(Text, Name.Class, Name.Class, Name.Constant),
+             "multiline_descriptions_on_stack"),
             ],
         'narrative': [
             include('scenario_sections_on_stack'),
@@ -2170,9 +2172,14 @@ class GherkinLexer(RegexLexer):
             include('table_vars'),
             (r'@[^@\s]+', Name.Namespace),
             (step_keywords_regexp, bygroups(Text, Keyword)),
-            (feature_keywords_regexp, bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
-            (scenario_keywords_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),
-            (examples_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "scenario_table_description"),
+            (feature_keywords_regexp,
+             bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
+            (scenario_keywords_regexp,
+             bygroups(Text, Name.Class, Name.Class, Name.Constant),
+             "multiline_descriptions"),
+            (examples_regexp,
+             bygroups(Text, Name.Class, Name.Class, Name.Constant),
+             "scenario_table_description"),
             (r'(\s|.)', Text),
         ]
     }

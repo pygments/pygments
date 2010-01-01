@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers._asylist
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers._asybuiltins
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    This file contains the asy-function names and asy-variable names of Asymptote
+    This file contains the asy-function names and asy-variable names of
+    Asymptote.
 
-    Do not edit the ASYFUNCNAME and ASYVARNAME dict by hand.
-    TODO : perl/python script in Asymptote SVN similar to asy-list.pl but only
+    Do not edit the ASYFUNCNAME and ASYVARNAME sets by hand.
+    TODO: perl/python script in Asymptote SVN similar to asy-list.pl but only
     for function and variable names.
 
-
-    :copyright: 2009 by Olivier Guibé
-    :license: BSD, see LICENSE for more details.
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 ASYFUNCNAME = set([
