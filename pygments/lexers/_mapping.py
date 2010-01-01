@@ -28,6 +28,7 @@ LEXERS = {
     'AntlrRubyLexer': ('pygments.lexers.parsers', 'ANTLR With Ruby Target', ('antlr-ruby', 'antlr-rb'), ('*.G', '*.g'), ()),
     'ApacheConfLexer': ('pygments.lexers.text', 'ApacheConf', ('apacheconf', 'aconf', 'apache'), ('.htaccess', 'apache.conf', 'apache2.conf'), ('text/x-apacheconf',)),
     'AppleScriptLexer': ('pygments.lexers.other', 'AppleScript', ('applescript',), ('*.applescript',), ()),
+    'AsymptoteLexer': ('pygments.lexers.other', 'Asymptote', ('asy',), ('*.asy',), ('text/x-asymptote',)),
     'BBCodeLexer': ('pygments.lexers.text', 'BBCode', ('bbcode',), (), ('text/x-bbcode',)),
     'BaseMakefileLexer': ('pygments.lexers.text', 'Makefile', ('basemake',), (), ()),
     'BashLexer': ('pygments.lexers.other', 'Bash', ('bash', 'sh'), ('*.sh', '*.ebuild', '*.eclass'), ('application/x-sh', 'application/x-shellscript')),
