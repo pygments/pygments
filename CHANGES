@@ -3,9 +3,12 @@ Pygments changelog
 
 Issue numbers refer to the tracker at http://dev.pocoo.org/projects/pygments/.
 
-Version 1.3
------------
-(in development)
+Version 1.2.2
+-------------
+(bugfix release, released Jan 02, 2010)
+
+* Removed a backwards incompatibility in the LaTeX formatter that caused
+  Sphinx to produce invalid commands when writing LaTeX output.
 
 
 Version 1.2.1

@@ -101,6 +101,10 @@ STYLE_TEMPLATE = r'''
 \def\%(cp)sZob{\char`\{}
 \def\%(cp)sZcb{\char`\}}
 \def\%(cp)sZca{\char`\^}
+%% for compatibility with earlier versions
+\def\%(cp)sZat{@}
+\def\%(cp)sZlb{[}
+\def\%(cp)sZrb{]}
 \makeatother
 '''
 
