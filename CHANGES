@@ -12,7 +12,7 @@ Version 1.2.1
 -------------
 (bugfix release, released Jan 02, 2010)
 
-* Fix mishandling of an ellipsis in place of the frames in a Python
+* Fixed mishandling of an ellipsis in place of the frames in a Python
   console traceback, resulting in clobbered output.
 
 
@@ -143,17 +143,17 @@ Version 1.0
   because that doesn't keep all newlines at the end when the
   ``stripnl`` lexer option is False.
 
-- Add ``-N`` option to command-line interface to get a lexer name
+- Added ``-N`` option to command-line interface to get a lexer name
   for a given filename.
 
-- Add Tango style, written by Andre Roberge for the Crunchy project.
+- Added Tango style, written by Andre Roberge for the Crunchy project.
 
-- Add Python3TracebackLexer and ``python3`` option to 
+- Added Python3TracebackLexer and ``python3`` option to 
   PythonConsoleLexer.
 
-- Fix a few bugs in the Haskell lexer.
+- Fixed a few bugs in the Haskell lexer.
 
-- Fix PythonTracebackLexer to be able to recognize SyntaxError and
+- Fixed PythonTracebackLexer to be able to recognize SyntaxError and
   KeyboardInterrupt (#360).
 
 - Provide one formatter class per image format, so that surprises like::
@@ -171,7 +171,7 @@ Version 1.0
 
 - Unified Diff lexer supports the "udiff" alias now.
 
-- Fix a few issues in Scala lexer (#367).
+- Fixed a few issues in Scala lexer (#367).
 
 - RubyConsoleLexer now supports simple prompt mode (#363).
 
@@ -189,7 +189,7 @@ Version 0.11.1
 --------------
 (released Aug 24, 2008)
 
-- Fix a Jython compatibility issue in pygments.unistring (#358).
+- Fixed a Jython compatibility issue in pygments.unistring (#358).
 
 
 Version 0.11
