@@ -245,7 +245,7 @@ class CommonLispLexer(RegexLexer):
             (r'#\d*Y.*$', Comment.Special),
 
             # strings and characters
-            (r'"(\\.|[^"])*"', String),
+            (r'"(\\.|[^"\\])*"', String),
             # quoting
             (r":" + symbol, String.Symbol),
             (r"'" + symbol, String.Symbol),
