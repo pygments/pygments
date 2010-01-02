@@ -319,8 +319,10 @@ class PythonConsoleLexer(Lexer):
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:4])]))
                 curcode += line[4:]
-            elif line.rstrip() == '...':
-                tb = 0
+            elif line.rstrip() == '...' and not tb:
+                # only a new >>> prompt can end an exception block
+                # otherwise an ellipsis in place of the traceback frames
+                # will be mishandled
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, '...')]))
                 curcode += line[3:]
