@@ -171,8 +171,8 @@ class BaseMakefileLexer(RegexLexer):
             (r'([a-zA-Z0-9_${}.-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n|.*\n)+)',
              bygroups(Name.Variable, Text, Operator, Text, using(BashLexer))),
             # strings
-            (r'"(\\\\|\\.|[^"\\])*"', String.Double),
-            (r"'(\\\\|\\.|[^'\\])*'", String.Single),
+            (r'(?s)"(\\\\|\\.|[^"\\])*"', String.Double),
+            (r"(?s)'(\\\\|\\.|[^'\\])*'", String.Single),
             # targets
             (r'([^\n:]+)(:+)([ \t]*)', bygroups(Name.Function, Operator, Text),
              'block-header'),
