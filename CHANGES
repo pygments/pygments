@@ -10,6 +10,8 @@ Version 1.2.2
 * Removed a backwards incompatibility in the LaTeX formatter that caused
   Sphinx to produce invalid commands when writing LaTeX output (#463).
 
+* Fixed a forever-backtracking regex in the BashLexer (#462).
+
 
 Version 1.2.1
 -------------
