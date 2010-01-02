@@ -745,8 +745,8 @@ class TcshLexer(RegexLexer):
             (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
         ],
         'data': [
-            (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
-            (r"'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
+            (r'"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
             (r'\s+', Text),
             (r'[^=\s\n\[\]{}()$"\'`\\]+', Text),
             (r'\d+(?= |\Z)', Number),
@@ -1164,7 +1164,7 @@ class PovrayLexer(RegexLexer):
         'root': [
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
             (r'//.*\n', Comment.Single),
-            (r'"(?:\\.|[^"])+"', String.Double),
+            (r'"(?:\\.|[^"\\])+"', String.Double),
             (r'#(debug|default|else|end|error|fclose|fopen|if|ifdef|ifndef|'
              r'include|range|read|render|statistics|switch|undef|version|'
              r'warning|while|write|define|macro|local|declare)',

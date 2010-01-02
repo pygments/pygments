@@ -1312,12 +1312,12 @@ class TclLexer(RegexLexer):
         ],
         'string': [
             (r'\[', String.Double, 'string-square'),
-            (r'(\\\\|\\[0-7]+|\\.|[^"])', String.Double),
+            (r'(\\\\|\\[0-7]+|\\.|[^"\\])', String.Double),
             (r'"', String.Double, '#pop')
         ],
         'string-square': [
             (r'\[', String.Double, 'string-square'),
-            (r'(\\\\|\\[0-7]+|\\.|[^\]])', String.Double),
+            (r'(\\\\|\\[0-7]+|\\.|[^\]\\])', String.Double),
             (r'\]', String.Double, '#pop')
         ],
         'brace': [
