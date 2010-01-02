@@ -1296,8 +1296,8 @@ class FortranLexer(RegexLexer):
         ],
 
         'strings': [
-            (r'"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
-            (r"'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
+            (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
+            (r"(?s)'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
         ],
 
         'nums': [
