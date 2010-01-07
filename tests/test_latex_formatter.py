@@ -3,7 +3,7 @@
     Pygments LaTeX formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -33,16 +33,10 @@ class LatexFormatterTest(unittest.TestCase):
         fmt.format(tokensource, tfile)
         tfile.close()
         try:
-            try:
-                import subprocess
-                ret = subprocess.Popen(['latex', '-interaction=nonstopmode',
-                                        pathname],
-                                       stdout=subprocess.PIPE).wait()
-            except ImportError:
-                # Python 2.3 - no subprocess module
-                ret = os.popen('latex -interaction=nonstopmode "%s"'
-                               % pathname).close()
-                if ret == 32512: raise OSError  # not found
+            import subprocess
+            ret = subprocess.Popen(['latex', '-interaction=nonstopmode',
+                                    pathname],
+                                   stdout=subprocess.PIPE).wait()
         except OSError:
             # latex not available
             pass

@@ -5,7 +5,7 @@
 
     Lexers for functional languages.
 
-    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -245,7 +245,7 @@ class CommonLispLexer(RegexLexer):
             (r'#\d*Y.*$', Comment.Special),
 
             # strings and characters
-            (r'"(\\.|[^"])*"', String),
+            (r'"(\\.|[^"\\])*"', String),
             # quoting
             (r":" + symbol, String.Symbol),
             (r"'" + symbol, String.Symbol),
@@ -443,7 +443,7 @@ class HaskellLexer(RegexLexer):
             (r'o[0-7]+', String.Escape, '#pop'),
             (r'x[\da-fA-F]+', String.Escape, '#pop'),
             (r'\d+', String.Escape, '#pop'),
-            (r'\n\s+\\', String.Escape, '#pop'),
+            (r'\s+\\', String.Escape, '#pop'),
         ],
     }
 

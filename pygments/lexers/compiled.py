@@ -5,7 +5,7 @@
 
     Lexers for compiled languages.
 
-    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -29,7 +29,7 @@ from pygments.lexers.functional import OcamlLexer
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer',
            'ScalaLexer', 'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer',
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
-           'ValaLexer', 'OocLexer', 'FelixLexer']
+           'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer']
 
 
 class CLexer(RegexLexer):
@@ -241,6 +241,8 @@ class CppLexer(RegexLexer):
 class DLexer(RegexLexer):
     """
     For D source.
+
+    *New in Pygments 1.2.*
     """
     name = 'D'
     filenames = ['*.d', '*.di']
@@ -304,8 +306,8 @@ class DLexer(RegexLexer):
             # -- DoubleQuotedString
             (r'"(\\\\|\\"|[^"])*"[cwd]?', String),
             # -- EscapeSequence
-            (r"""\\(['"?\\abfnrtv]|x[0-9a-fA-F]{2}|[0-7]{1,3}"""
-             r"""|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|&\w+;)""",
+            (r"\\(['\"?\\abfnrtv]|x[0-9a-fA-F]{2}|[0-7]{1,3}"
+             r"|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|&\w+;)",
              String
             ),
             # -- HexString
@@ -1294,8 +1296,8 @@ class FortranLexer(RegexLexer):
         ],
 
         'strings': [
-            (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
-            (r"'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
+            (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
+            (r"(?s)'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
         ],
 
         'nums': [
@@ -1665,7 +1667,7 @@ class ValaLexer(RegexLexer):
 
 class OocLexer(RegexLexer):
     """
-    For `Ooc`<http://ooc-lang.org/>_ source code
+    For `Ooc <http://ooc-lang.org/>`_ source code
 
     *New in Pygments 1.2.*
     """
@@ -1726,6 +1728,67 @@ class OocLexer(RegexLexer):
             (r'[ \t]', Text),
             (r'[;\n]', Text, '#pop'),
         ],
+    }
+
+
+class GoLexer(RegexLexer):
+    """
+    For `Go <http://golang.org>`_ source.
+    """
+    name = 'Go'
+    filenames = ['*.go']
+    aliases = ['go']
+    mimetypes = ['text/x-gosrc']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuations
+            (r'//(.*?)\n', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'(break|default|func|interface|select'
+             r'|case|defer|go|map|struct'
+             r'|chan|else|goto|package|switch'
+             r'|const|fallthrough|if|range|type'
+             r'|continue|for|import|return|var)\b', Keyword
+            ),
+            # It seems the builtin types aren't actually keywords.
+            (r'(uint8|uint16|uint32|uint64'
+             r'|int8|int16|int32|int64'
+             r'|float32|float64|byte'
+             r'|uint|int|float|uintptr'
+             r'|string|close|closed|len|cap|new|make)\b', Name.Builtin
+            ),
+            # float_lit
+            (r'\d+(\.\d+[eE][+\-]?\d+|'
+             r'\.\d*|[eE][+\-]?\d+)', Number.Float),
+            (r'\.\d+([eE][+\-]?\d+)?', Number.Float),
+            # int_lit
+            # -- octal_lit
+            (r'0[0-7]+', Number.Oct),
+            # -- hex_lit
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            # -- decimal_lit
+            (r'(0|[1-9][0-9]*)', Number.Integer),
+            # char_lit
+            (r"""'(\\['"\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
+             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|[^\\])'""",
+             String.Char
+            ),
+            # StringLiteral
+            # -- raw_string_lit
+            (r'`[^`]*`', String),
+            # -- interpreted_string_lit
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # Tokens
+            (r'(<<=|>>=|<<|>>|<=|>=|&\^=|&\^|\+=|-=|\*=|/=|%=|&=|\|=|&&|\|\|'
+             r'|<-|\+\+|--|==|!=|:=|\.\.\.)|[+\-*/%&|^<>=!()\[\]{}.,;:]',
+             Punctuation
+            ),
+            # identifier
+            (r'[a-zA-Z_]\w*', Name),
+        ]
     }
 
 
@@ -1980,4 +2043,4 @@ class FelixLexer(RegexLexer):
             include('strings'),
             include('nl')
         ],
-    }
+     }

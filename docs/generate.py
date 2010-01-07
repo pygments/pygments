@@ -6,7 +6,7 @@
 
     Generates a bunch of html files containing the documentation.
 
-    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -119,7 +119,7 @@ def generate_authors():
     fn = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
                          'AUTHORS'))
     f = file(fn)
-    r = f.read().rstrip()
+    r = f.read().rstrip().decode('utf-8')
     f.close()
     return r
 

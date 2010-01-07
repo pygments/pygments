@@ -5,7 +5,7 @@
 
     Lexers for other languages.
 
-    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -24,7 +24,7 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'MOOCodeLexer', 'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer',
            'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer',
            'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer',
-           'NewspeakLexer']
+           'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -359,8 +359,8 @@ class BashLexer(RegexLexer):
             (r'&&|\|\|', Operator),
         ],
         'data': [
-            (r'\$?"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
-            (r"\$?'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
+            (r'(?s)\$?"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
+            (r"(?s)\$?'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
             (r';', Text),
             (r'\s+', Text),
             (r'[^=\s\n\[\]{}()$"\'`\\<]+', Text),
@@ -745,8 +745,8 @@ class TcshLexer(RegexLexer):
             (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
         ],
         'data': [
-            (r'"(\\\\|\\[0-7]+|\\.|[^"])*"', String.Double),
-            (r"'(\\\\|\\[0-7]+|\\.|[^'])*'", String.Single),
+            (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
+            (r"(?s)'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
             (r'\s+', Text),
             (r'[^=\s\n\[\]{}()$"\'`\\]+', Text),
             (r'\d+(?= |\Z)', Number),
@@ -808,7 +808,8 @@ class LogtalkLexer(RegexLexer):
             # Reflection
             (r'(current_predicate|predicate_property)(?=[(])', Keyword),
             # DCGs and term expansion
-            (r'(expand_term|(goal|term)_expansion|phrase)(?=[(])', Keyword),
+            (r'(expand_(goal|term)|(goal|term)_expansion|phrase)(?=[(])',
+             Keyword),
             # Entity
             (r'(abolish|c(reate|urrent))_(object|protocol|category)(?=[(])',
              Keyword),
@@ -921,19 +922,22 @@ class LogtalkLexer(RegexLexer):
         ],
 
         'directive': [
+            # Conditional compilation directives
+            (r'(el)?if(?=[(])', Keyword, 'root'),
+            (r'(e(lse|ndif))[.]', Keyword, 'root'),
             # Entity directives
             (r'(category|object|protocol)(?=[(])', Keyword, 'entityrelations'),
             (r'(end_(category|object|protocol))[.]',Keyword, 'root'),
             # Predicate scope directives
             (r'(public|protected|private)(?=[(])', Keyword, 'root'),
             # Other directives
-            (r'e(ncoding|xport)(?=[(])', Keyword, 'root'),
+            (r'e(n(coding|sure_loaded)|xport)(?=[(])', Keyword, 'root'),
             (r'in(fo|itialization)(?=[(])', Keyword, 'root'),
             (r'(dynamic|synchronized|threaded)[.]', Keyword, 'root'),
-            (r'(alias|d(ynamic|iscontiguous)|m(eta_predicate|ode|ultifile)'
-             r'|synchronized)(?=[(])', Keyword, 'root'),
+            (r'(alias|d(ynamic|iscontiguous)|m(eta_predicate|ode|ultifile)|'
+             r's(et_(logtalk|prolog)_flag|ynchronized))(?=[(])', Keyword, 'root'),
             (r'op(?=[(])', Keyword, 'root'),
-            (r'(calls|use(s|_module))(?=[(])', Keyword, 'root'),
+            (r'(calls|reexport|use(s|_module))(?=[(])', Keyword, 'root'),
             (r'[a-z][a-zA-Z0-9_]*(?=[(])', Text, 'root'),
             (r'[a-z][a-zA-Z0-9_]*[.]', Text, 'root'),
         ],
@@ -968,6 +972,15 @@ class LogtalkLexer(RegexLexer):
             (r'\s+', Text),
         ]
     }
+
+    def analyse_text(text):
+        if ':- object(' in text:
+            return True
+        if ':- protocol(' in text:
+            return True
+        if ':- category(' in text:
+            return True
+        return False
 
 
 def _shortened(word):
@@ -1151,7 +1164,7 @@ class PovrayLexer(RegexLexer):
         'root': [
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
             (r'//.*\n', Comment.Single),
-            (r'"(?:\\.|[^"])+"', String.Double),
+            (r'(?s)"(?:\\.|[^"\\])+"', String.Double),
             (r'#(debug|default|else|end|error|fclose|fopen|if|ifdef|ifndef|'
              r'include|range|read|render|statistics|switch|undef|version|'
              r'warning|while|write|define|macro|local|declare)',
@@ -2080,3 +2093,210 @@ class NewspeakLexer(RegexLexer):
        ]
     }
 
+class GherkinLexer(RegexLexer):
+    """
+    For `Gherkin <http://cukes.info/>` syntax.
+
+    *New in Pygments 1.2.*
+    """
+    name = 'Gherkin'
+    aliases = ['Cucumber', 'cucumber', 'Gherkin', 'gherkin']
+    filenames = ['*.feature']
+    mimetypes = ['text/x-gherkin']
+
+    feature_keywords_regexp  = ur'^(기능|機能|功能|フィーチャ|خاصية|תכונה|Функционалност|Функционал|Особина|Могућност|Özellik|Właściwość|Tính năng|Savybė|Požiadavka|Požadavek|Osobina|Ominaisuus|Omadus|OH HAI|Mogućnost|Mogucnost|Jellemző|Fīča|Funzionalità|Funktionalität|Funkcionalnost|Funkcionalitāte|Funcționalitate|Functionaliteit|Functionalitate|Funcionalidade|Fonctionnalité|Fitur|Feature|Egenskap|Egenskab|Crikey|Característica|Arwedd)(:)(.*)$'
+    scenario_keywords_regexp = ur'^(\s*)(시나리오 개요|시나리오|배경|背景|場景大綱|場景|场景大纲|场景|劇本大綱|劇本|テンプレ|シナリオテンプレート|シナリオテンプレ|シナリオアウトライン|シナリオ|سيناريو مخطط|سيناريو|الخلفية|תרחיש|תבנית תרחיש|רקע|Тарих|Сценарио|Сценарий структураси|Сценарий|Структура сценарија|Структура сценария|Скица|Рамка на сценарий|Пример|Предыстория|Предистория|Позадина|Основа|Концепт|Контекст|Założenia|Tình huống|Tausta|Taust|Tapausaihio|Tapaus|Szenariogrundriss|Szenario|Szablon scenariusza|Stsenaarium|Struktura scenarija|Skica|Skenario konsep|Skenario|Situācija|Senaryo taslağı|Senaryo|Scénář|Scénario|Schema dello scenario|Scenārijs pēc parauga|Scenārijs|Scenár|Scenariusz|Scenariul de şablon|Scenariul de sablon|Scenariu|Scenario Outline|Scenario Amlinellol|Scenario|Scenarijus|Scenarijaus šablonas|Scenarij|Scenarie|Rerefons|Raamstsenaarium|Primer|Pozadí|Pozadina|Pozadie|Plan du scénario|Plan du Scénario|Osnova scénáře|Osnova|Náčrt Scénáře|Náčrt Scenáru|Mate|MISHUN SRSLY|MISHUN|Kịch bản|Kontext|Konteksts|Kontekstas|Kontekst|Koncept|Khung tình huống|Khung kịch bản|Háttér|Grundlage|Geçmiş|Forgatókönyv vázlat|Forgatókönyv|Esquema do Cenário|Esquema do Cenario|Esquema del escenario|Esquema de l\'escenari|Escenario|Escenari|Dasar|Contexto|Contexte|Contesto|Condiţii|Conditii|Cenário|Cenario|Cefndir|Bối cảnh|Blokes|Bakgrunn|Bakgrund|Baggrund|Background|B4|Antecedents|Antecedentes|All y\'all|Achtergrond|Abstrakt Scenario|Abstract Scenario)(:)(.*)$'
+    examples_regexp          = ur'^(\s*)(예|例子|例|サンプル|امثلة|דוגמאות|Сценарији|Примери|Мисоллар|Значения|Örnekler|Voorbeelden|Variantai|Tapaukset|Scenarios|Scenariji|Scenarijai|Příklady|Példák|Príklady|Przykłady|Primjeri|Primeri|Piemēri|Pavyzdžiai|Paraugs|Juhtumid|Exemplos|Exemples|Exemplele|Exempel|Examples|Esempi|Enghreifftiau|Eksempler|Ejemplos|EXAMPLZ|Dữ liệu|Contoh|Cobber|Beispiele)(:)(.*)$'
+    step_keywords_regexp     = ur'^(\s*)(하지만|조건|만일|그리고|그러면|那麼|那么|而且|當|当|前提|假設|假如|但是|但し|並且|もし|ならば|ただし|しかし|かつ|و |متى |لكن |عندما |ثم |بفرض |اذاً |כאשר |וגם |בהינתן |אזי |אז |אבל |Унда |То |Онда |Но |Лекин |Когато |Када |Кад |К тому же |И |Задато |Задати |Задате |Если |Допустим |Дадено |Ва |Бирок |Аммо |Али |Агар |А |Și |És |anrhegedig a |Zatati |Zakładając |Zadato |Zadate |Zadano |Zadani |Zadan |Yna |Ya know how |Ya gotta |Y |Wtedy |When y\'all |When |Wenn |WEN |Và |Ve |Und |Un |Thì |Then y\'all |Then |Tapi |Tak |Tada |Tad |Så |Soit |Siis |Si |Quando |Quand |Quan |Pryd |Pokud |Pokiaľ |Però |Pero |Pak |Oraz |Onda |Ond |Oletetaan |Og |Och |O zaman |Når |När |Niin |Nhưng |N |Mutta |Men |Mas |Maka |Majd |Mais |Maar |Ma |Lorsque |Lorsqu\'|Kun |Kuid |Kui |Khi |Keď |Ketika |Když |Kai |Kada |Kad |Jeżeli |Ja |Ir |I CAN HAZ |I |Ha |Givet |Given y\'all |Given |Gitt |Gegeven |Gegeben sei |Fakat |Eğer ki |Etant donné |Et |Então |Entonces |Entao |En |Eeldades |E |Duota |Donat |Donada |Diyelim ki |Dengan |De |Dato |Dar |Dann |Dan |Dado |Dacă |Daca |DEN |Când |Cuando |Cho |Cept |Cand |But y\'all |But |Biết |Bet |BUT |Atunci |And y\'all |And |Ama |Als |Alors |Allora |Ali |Aleshores |Ale |Akkor |Aber |AN |A také |A )'
+
+    tokens = {
+        'comments': [
+            (r'#.*$', Comment),
+          ],
+        'multiline_descriptions' : [
+            (step_keywords_regexp, Keyword, "#pop"),
+            include('comments'),
+            (r"(\s|.)", Name.Constant),
+          ],
+        'multiline_descriptions_on_stack' : [
+            (step_keywords_regexp, Keyword, "#pop:2"),
+            include('comments'),
+            (r"(\s|.)", Name.Constant),
+          ],
+        'scenario_table_description': [
+            (r"\s+\|", Text, 'scenario_table_header'),
+            include('comments'),
+            (r"(\s|.)", Name.Constant),
+          ],
+        'scenario_table_header': [
+            (r"\s+\|\s*$", Text, "#pop:2"),
+            (r"(\s+\|\s*)(#.*)$", bygroups(Text, Comment), "#pop:2"),
+            include('comments'),
+            (r"\s+\|", Text),
+            (r"[^\|]", Name.Variable),
+          ],
+        'scenario_sections_on_stack': [
+            (scenario_keywords_regexp,
+             bygroups(Text, Name.Class, Name.Class, Name.Constant),
+             "multiline_descriptions_on_stack"),
+            ],
+        'narrative': [
+            include('scenario_sections_on_stack'),
+            (r"(\s|.)", Name.Builtin),
+          ],
+        'table_vars': [
+            (r'(<[^>]*>)', bygroups(Name.Variable)),
+          ],
+        'string': [
+            include('table_vars'),
+            (r'(\s|.)', String),
+          ],
+        'py_string': [
+            (r'"""', String, "#pop"),
+            include('string'),
+          ],
+        'double_string': [
+            (r'"', String, "#pop"),
+            include('string'),
+          ],
+        'single_string': [
+            (r"'", String, "#pop"),
+            include('string'),
+          ],
+        'root': [
+            (r'\n', Text),
+            include('comments'),
+            (r'"""', String, "py_string"),
+            (r'"', String, "double_string"),
+            (r"'", String, "single_string"),
+            include('table_vars'),
+            (r'@[^@\s]+', Name.Namespace),
+            (step_keywords_regexp, bygroups(Text, Keyword)),
+            (feature_keywords_regexp,
+             bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
+            (scenario_keywords_regexp,
+             bygroups(Text, Name.Class, Name.Class, Name.Constant),
+             "multiline_descriptions"),
+            (examples_regexp,
+             bygroups(Text, Name.Class, Name.Class, Name.Constant),
+             "scenario_table_description"),
+            (r'(\s|.)', Text),
+        ]
+    }
+
+
+class AsymptoteLexer(RegexLexer):
+    """
+    For `Asymptote <http://asymptote.sf.net/>`_ source code.
+
+    *New in Pygments 1.2.*
+    """
+    name = 'Asymptote'
+    aliases = ['asy', 'asymptote']
+    filenames = ['*.asy']
+    mimetypes = ['text/x-asymptote']
+
+    #: optional Comment or Whitespace
+    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+
+    tokens = {
+        'whitespace': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuation
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+        ],
+        'statements': [
+            # simple string (TeX friendly)
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # C style string (with character escapes)
+            (r"'", String, 'string'),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
+            (r'0[0-7]+[Ll]?', Number.Oct),
+            (r'\d+[Ll]?', Number.Integer),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'[()\[\],.]', Punctuation),
+            (r'\b(case)(.+?)(:)', bygroups(Keyword, using(this), Text)),
+            (r'(and|controls|tension|atleast|curl|if|else|while|for|do|'
+             r'return|break|continue|struct|typedef|new|access|import|'
+             r'unravel|from|include|quote|static|public|private|restricted|'
+             r'this|explicit|true|false|null|cycle|newframe|operator)\b', Keyword),
+            # Since an asy-type-name can be also an asy-function-name,
+            # in the following we test if the string "  [a-zA-Z]" follows
+            # the Keyword.Type.
+            # Of course it is not perfect !
+            (r'(Braid|FitResult|Label|Legend|TreeNode|abscissa|arc|arrowhead|'
+             r'binarytree|binarytreeNode|block|bool|bool3|bounds|bqe|circle|'
+             r'conic|coord|coordsys|cputime|ellipse|file|filltype|frame|grid3|'
+             r'guide|horner|hsv|hyperbola|indexedTransform|int|inversion|key|'
+             r'light|line|linefit|marginT|marker|mass|object|pair|parabola|path|'
+             r'path3|pen|picture|point|position|projection|real|revolution|'
+             r'scaleT|scientific|segment|side|slice|splitface|string|surface|'
+             r'tensionSpecifier|ticklocate|ticksgridT|tickvalues|transform|'
+             r'transformation|tree|triangle|trilinear|triple|vector|'
+             r'vertex|void)(?=([ ]{1,}[a-zA-Z]))', Keyword.Type),
+            # Now the asy-type-name which are not asy-function-name
+            # except yours !
+            # Perhaps useless
+            (r'(Braid|FitResult|TreeNode|abscissa|arrowhead|block|bool|bool3|'
+             r'bounds|coord|frame|guide|horner|int|linefit|marginT|pair|pen|'
+             r'picture|position|real|revolution|slice|splitface|ticksgridT|'
+             r'tickvalues|tree|triple|vertex|void)\b', Keyword.Type),
+            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ],
+        'root': [
+            include('whitespace'),
+            # functions
+            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
+             r'(\s*\([^;]*?\))'                      # signature
+             r'(' + _ws + r')({)',
+             bygroups(using(this), Name.Function, using(this), using(this),
+                      Punctuation),
+             'function'),
+            # function declarations
+            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
+             r'(\s*\([^;]*?\))'                      # signature
+             r'(' + _ws + r')(;)',
+             bygroups(using(this), Name.Function, using(this), using(this),
+                      Punctuation)),
+            ('', Text, 'statement'),
+        ],
+        'statement' : [
+            include('whitespace'),
+            include('statements'),
+            ('[{}]', Punctuation),
+            (';', Punctuation, '#pop'),
+        ],
+        'function': [
+            include('whitespace'),
+            include('statements'),
+            (';', Punctuation),
+            ('{', Punctuation, '#push'),
+            ('}', Punctuation, '#pop'),
+        ],
+        'string': [
+            (r"'", String, '#pop'),
+            (r'\\([\\abfnrtv"\'?]|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'\n', String),
+            (r"[^\\'\n]+", String), # all other characters
+            (r'\\\n', String),
+            (r'\\n', String), # line continuation
+            (r'\\', String), # stray backslash
+            ]
+        }
+
+    def get_tokens_unprocessed(self, text):
+        from pygments.lexers._asybuiltins import ASYFUNCNAME, ASYVARNAME
+        for index, token, value in \
+               RegexLexer.get_tokens_unprocessed(self, text):
+           if token is Name and value in ASYFUNCNAME:
+               token = Name.Function
+           elif token is Name and value in ASYVARNAME:
+               token = Name.Variable
+           yield index, token, value
