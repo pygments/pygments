@@ -4,7 +4,7 @@
 #
 # Combines scripts for common tasks.
 #
-# :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+# :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
 # :license: BSD, see LICENSE for details.
 #
 
@@ -19,13 +19,13 @@ all: clean-pyc check test
 
 check:
 	@$(PYTHON) scripts/detect_missing_analyse_text.py || true
-	@$(PYTHON) scripts/check_sources.py -i pygments/lexers/_mapping.py \
+	@$(PYTHON) scripts/check_sources.py -i build -i dist -i pygments/lexers/_mapping.py \
 		   -i docs/build -i pygments/formatters/_mapping.py -i pygments/unistring.py \
 		   -i pygments/lexers/_vimbuiltins.py
 
 clean: clean-pyc
-	rm -r build
-	rm -f codetags.html
+	-rm -rf build
+	-rm -f codetags.html
 
 clean-pyc:
 	find . -name '*.pyc' -exec rm -f {} +

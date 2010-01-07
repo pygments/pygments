@@ -5,7 +5,7 @@
 
     Contains built-in styles.
 
-    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,6 +22,7 @@ STYLE_MAP = {
     'autumn':   'autumn::AutumnStyle',
     'murphy':   'murphy::MurphyStyle',
     'manni':    'manni::ManniStyle',
+    'monokai':  'monokai::MonokaiStyle',
     'perldoc':  'perldoc::PerldocStyle',
     'pastie':   'pastie::PastieStyle',
     'borland':  'borland::BorlandStyle',

@@ -12,7 +12,8 @@
     * a wide range of common languages and markup formats is supported
     * special attention is paid to details, increasing quality by a fair amount
     * support for new languages and formats are added easily
-    * a number of output formats, presently HTML, LaTeX, RTF, SVG and ANSI sequences
+    * a number of output formats, presently HTML, LaTeX, RTF, SVG, all image
+      formats that PIL supports, and ANSI sequences
     * it is usable as a command-line tool and as a library
     * ... and it highlights even Brainfuck!
 
@@ -21,11 +22,11 @@
     .. _Pygments tip:
        http://dev.pocoo.org/hg/pygments-main/archive/tip.tar.gz#egg=Pygments-dev
 
-    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-__version__ = '1.1.1'
+__version__ = '1.2.2'
 __docformat__ = 'restructuredtext'
 
 __all__ = ['lex', 'format', 'highlight']

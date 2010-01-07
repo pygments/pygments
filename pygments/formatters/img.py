@@ -5,7 +5,7 @@
 
     Formatter for Pixmap output.
 
-    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,7 +13,8 @@ import sys
 from commands import getstatusoutput
 
 from pygments.formatter import Formatter
-from pygments.util import get_bool_opt, get_int_opt, get_choice_opt
+from pygments.util import get_bool_opt, get_int_opt, \
+     get_list_opt, get_choice_opt
 
 # Import this carefully
 try:
@@ -207,6 +208,11 @@ class ImageFormatter(Formatter):
 
         Default: True
 
+    `line_number_start`
+        The line number of the first line.
+
+        Default: 1
+
     `line_number_step`
         The step used when printing line numbers.
 
@@ -250,6 +256,16 @@ class ImageFormatter(Formatter):
         the source code area.
 
         Default: 6
+
+    `hl_lines`
+        Specify a list of lines to be highlighted.  *New in Pygments 1.2.*
+
+        Default: empty list
+
+    `hl_color`
+        Specify the color for highlighting lines.  *New in Pygments 1.2.*
+
+        Default: highlight color of the selected style
     """
 
     # Required by the pygments mapper
@@ -299,11 +315,21 @@ class ImageFormatter(Formatter):
         self.line_number_separator = get_bool_opt(options,
                                         'line_number_separator', True)
         self.line_number_step = get_int_opt(options, 'line_number_step', 1)
+        self.line_number_start = get_int_opt(options, 'line_number_start', 1)
         if self.line_numbers:
             self.line_number_width = (self.fontw * self.line_number_chars +
                                    self.line_number_pad * 2)
         else:
             self.line_number_width = 0
+        self.hl_lines = []
+        hl_lines_str = get_list_opt(options, 'hl_lines', [])
+        for line in hl_lines_str:
+            try:
+                self.hl_lines.append(int(line))
+            except ValueError:
+                pass
+        self.hl_color = options.get('hl_color',
+                                    self.style.highlight_color) or '#f90'
         self.drawables = []
 
     def get_style_defs(self, arg=''):
@@ -369,13 +395,13 @@ class ImageFormatter(Formatter):
         return (self._get_char_x(maxcharno) + self.image_pad,
                 self._get_line_y(maxlineno + 0) + self.image_pad)
 
-    def _draw_linenumber(self, lineno):
+    def _draw_linenumber(self, posno, lineno):
         """
         Remember a line number drawable to paint later.
         """
         self._draw_text(
-            self._get_linenumber_pos(lineno),
-            str(lineno + 1).rjust(self.line_number_chars),
+            self._get_linenumber_pos(posno),
+            str(lineno).rjust(self.line_number_chars),
             font=self.fonts.get_font(self.line_number_bold,
                                      self.line_number_italic),
             fill=self.line_number_fg,
@@ -426,9 +452,10 @@ class ImageFormatter(Formatter):
         """
         if not self.line_numbers:
             return
-        for i in xrange(self.maxlineno):
-            if ((i + 1) % self.line_number_step) == 0:
-                self._draw_linenumber(i)
+        for p in xrange(self.maxlineno):
+            n = p + self.line_number_start
+            if (n % self.line_number_step) == 0:
+                self._draw_linenumber(p, n)
 
     def _paint_line_number_bg(self, im):
         """
@@ -464,6 +491,15 @@ class ImageFormatter(Formatter):
         )
         self._paint_line_number_bg(im)
         draw = ImageDraw.Draw(im)
+        # Highlight
+        if self.hl_lines:
+            x = self.image_pad + self.line_number_width - self.line_number_pad + 1
+            recth = self._get_line_height()
+            rectw = im.size[0] - x
+            for linenumber in self.hl_lines:
+                y = self._get_line_y(linenumber - 1)
+                draw.rectangle([(x, y), (x + rectw, y + recth)],
+                               fill=self.hl_color)
         for pos, value, font, kw in self.drawables:
             draw.text(pos, value, font=font, **kw)
         im.save(outfile, self.image_format.upper())

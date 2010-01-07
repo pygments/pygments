@@ -3,25 +3,76 @@ Pygments changelog
 
 Issue numbers refer to the tracker at http://dev.pocoo.org/projects/pygments/.
 
-Version 1.2
+Version 1.3
 -----------
-(codename not selected, to be released in 2009)
+(in development)
 
 - Lexers added:
 
+  * Coldfusion
+  * haXe
+  * R console
+
+
+Version 1.2.2
+-------------
+(bugfix release, released Jan 02, 2010)
+
+* Removed a backwards incompatibility in the LaTeX formatter that caused
+  Sphinx to produce invalid commands when writing LaTeX output (#463).
+
+* Fixed a forever-backtracking regex in the BashLexer (#462).
+
+
+Version 1.2.1
+-------------
+(bugfix release, released Jan 02, 2010)
+
+* Fixed mishandling of an ellipsis in place of the frames in a Python
+  console traceback, resulting in clobbered output.
+
+
+Version 1.2
+-----------
+(codename Neujahr, released Jan 01, 2010)
+
+- Dropped Python 2.3 compatibility.
+
+- Lexers added:
+
+  * Asymptote
+  * Go
+  * Gherkin (Cucumber)
   * CMake
   * Ooc
   * Coldfusion
   * haXe
   * R console
 
+- Added options for rendering LaTeX in source code comments in the
+  LaTeX formatter (#461).
+
+- Updated the Logtalk lexer.
+
+- Added `line_number_start` option to image formatter (#456).
+
+- Added `hl_lines` and `hl_color` options to image formatter (#457).
+
 - Fixed the HtmlFormatter's handling of noclasses=True to not output any
   classes (#427).
+
+- Added the Monokai style (#453).
+
+- Fixed LLVM lexer identifier syntax and added new keywords (#442).
 
 - Fixed the PythonTracebackLexer to handle non-traceback data in header or
   trailer, and support more partial tracebacks that start on line 2 (#437).
 
 - Fixed the CLexer to not highlight ternary statements as labels.
+
+- Fixed lexing of some Ruby quoting peculiarities (#460).
+
+- A few ASM lexer fixes (#450).
 
 
 Version 1.1.1
@@ -111,17 +162,17 @@ Version 1.0
   because that doesn't keep all newlines at the end when the
   ``stripnl`` lexer option is False.
 
-- Add ``-N`` option to command-line interface to get a lexer name
+- Added ``-N`` option to command-line interface to get a lexer name
   for a given filename.
 
-- Add Tango style, written by Andre Roberge for the Crunchy project.
+- Added Tango style, written by Andre Roberge for the Crunchy project.
 
-- Add Python3TracebackLexer and ``python3`` option to 
+- Added Python3TracebackLexer and ``python3`` option to 
   PythonConsoleLexer.
 
-- Fix a few bugs in the Haskell lexer.
+- Fixed a few bugs in the Haskell lexer.
 
-- Fix PythonTracebackLexer to be able to recognize SyntaxError and
+- Fixed PythonTracebackLexer to be able to recognize SyntaxError and
   KeyboardInterrupt (#360).
 
 - Provide one formatter class per image format, so that surprises like::
@@ -139,7 +190,7 @@ Version 1.0
 
 - Unified Diff lexer supports the "udiff" alias now.
 
-- Fix a few issues in Scala lexer (#367).
+- Fixed a few issues in Scala lexer (#367).
 
 - RubyConsoleLexer now supports simple prompt mode (#363).
 
@@ -157,7 +208,7 @@ Version 0.11.1
 --------------
 (released Aug 24, 2008)
 
-- Fix a Jython compatibility issue in pygments.unistring (#358).
+- Fixed a Jython compatibility issue in pygments.unistring (#358).
 
 
 Version 0.11

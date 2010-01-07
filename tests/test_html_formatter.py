@@ -3,7 +3,7 @@
     Pygments HTML formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2009 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -84,14 +84,9 @@ class HtmlFormatterTest(unittest.TestCase):
         tfile.close()
         catname = os.path.join(TESTDIR, 'dtds', 'HTML4.soc')
         try:
-            try:
-                import subprocess
-                ret = subprocess.Popen(['nsgmls', '-s', '-c', catname, pathname],
-                                       stdout=subprocess.PIPE).wait()
-            except ImportError:
-                # Python 2.3 - no subprocess module
-                ret = os.popen('nsgmls -s -c "%s" "%s"' % (catname, pathname)).close()
-                if ret == 32512: raise OSError  # not found
+            import subprocess
+            ret = subprocess.Popen(['nsgmls', '-s', '-c', catname, pathname],
+                                   stdout=subprocess.PIPE).wait()
         except OSError:
             # nsgmls not available
             pass
