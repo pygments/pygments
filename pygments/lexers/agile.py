@@ -41,7 +41,7 @@ class PythonLexer(RegexLexer):
 
     name = 'Python'
     aliases = ['python', 'py']
-    filenames = ['*.py', '*.pyw', '*.sc', 'SConstruct', 'SConscript']
+    filenames = ['*.py', '*.pyw', '*.sc', 'SConstruct', 'SConscript', '*.tac']
     mimetypes = ['text/x-python', 'application/x-python']
 
     tokens = {
