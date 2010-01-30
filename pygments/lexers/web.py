@@ -1204,6 +1204,8 @@ def _starts_block(token, state):
 class HamlLexer(ExtendedRegexLexer):
     """
     For Haml markup.
+
+    *New in Pygments 1.3.*
     """
 
     name = 'Haml'
@@ -1242,12 +1244,15 @@ class HamlLexer(ExtendedRegexLexer):
             (r'(/)(\[' + _dot + '*?\])(' + _dot + '*\n)',
              bygroups(Comment, Comment.Special, Comment),
              '#pop'),
-            (r'/' + _dot + '*\n', _starts_block(Comment, 'html-comment-block'), '#pop'),
-            (r'-#' + _dot + '*\n', _starts_block(Comment.Preproc, 'haml-comment-block'), '#pop'),
+            (r'/' + _dot + '*\n', _starts_block(Comment, 'html-comment-block'),
+             '#pop'),
+            (r'-#' + _dot + '*\n', _starts_block(Comment.Preproc,
+                                                 'haml-comment-block'), '#pop'),
             (r'(-)(' + _dot + '*\n)',
              bygroups(Punctuation, using(RubyLexer)),
              '#pop'),
-            (r':' + _dot + '*\n', _starts_block(Name.Decorator, 'filter-block'), '#pop'),
+            (r':' + _dot + '*\n', _starts_block(Name.Decorator, 'filter-block'),
+             '#pop'),
             include('eval-or-plain'),
         ],
 
@@ -1306,6 +1311,8 @@ class HamlLexer(ExtendedRegexLexer):
 class SassLexer(ExtendedRegexLexer):
     """
     For Sass stylesheets.
+
+    *New in Pygments 1.3.*
     """
 
     name = 'Sass'
@@ -1321,8 +1328,10 @@ class SassLexer(ExtendedRegexLexer):
         ],
 
         'content': [
-            (r'//[^\n]*', _starts_block(Comment.Single, 'single-comment'), 'root'),
-            (r'/\*[^\n]*', _starts_block(Comment.Multiline, 'multi-comment'), 'root'),
+            (r'//[^\n]*', _starts_block(Comment.Single, 'single-comment'),
+             'root'),
+            (r'/\*[^\n]*', _starts_block(Comment.Multiline, 'multi-comment'),
+             'root'),
             (r'@import', Keyword, 'import'),
             (r'@for', Keyword, 'for'),
             (r'@(debug|if|while)', Keyword, 'script'),
