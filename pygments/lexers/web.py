@@ -24,7 +24,7 @@ from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
-           'MxmlLexer', 'HaxeLexer']
+           'MxmlLexer', 'HaxeLexer', 'ObjectiveJLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -393,6 +393,8 @@ class CssLexer(RegexLexer):
 class ObjectiveJLexer(RegexLexer):
     """
     For Objective-J source code with preprocessor directives.
+
+    *New in Pygments 1.3.*
     """
 
     name = 'Objective-J'
@@ -406,13 +408,13 @@ class ObjectiveJLexer(RegexLexer):
     flags = re.DOTALL | re.MULTILINE
 
     tokens = {
-        'root': [                       
+        'root': [
             include('whitespace'),
 
             # function definition
             (r'^(' + _ws + r'[\+-]' + _ws + r')([\(a-zA-Z_].*?[^\(])(' + _ws + '{)',
-             bygroups(using(this), using(this, state='function_signature'), using(this))),
-
+             bygroups(using(this), using(this, state='function_signature'),
+                      using(this))),
 
             # class definition
             (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
@@ -423,14 +425,18 @@ class ObjectiveJLexer(RegexLexer):
 
             include('statements'),
             ('[{\(\)}]', Punctuation),
-            (';', Punctuation)
+            (';', Punctuation),
         ],
         'whitespace': [
-            (r'(@import)(\s+)("(\\\\|\\"|[^"])*")', bygroups(Comment.Preproc, Text, String.Double)),
-            (r'(@import)(\s+)(<(\\\\|\\>|[^>])*>)', bygroups(Comment.Preproc, Text, String.Double)),
-            (r'(#(?:include|import))(\s+)("(\\\\|\\"|[^"])*")', bygroups(Comment.Preproc, Text, String.Double)),
-            (r'(#(?:include|import))(\s+)(<(\\\\|\\>|[^>])*>)', bygroups(Comment.Preproc, Text, String.Double)),
-            
+            (r'(@import)(\s+)("(\\\\|\\"|[^"])*")',
+             bygroups(Comment.Preproc, Text, String.Double)),
+            (r'(@import)(\s+)(<(\\\\|\\>|[^>])*>)',
+             bygroups(Comment.Preproc, Text, String.Double)),
+            (r'(#(?:include|import))(\s+)("(\\\\|\\"|[^"])*")',
+             bygroups(Comment.Preproc, Text, String.Double)),
+            (r'(#(?:include|import))(\s+)(<(\\\\|\\>|[^>])*>)',
+             bygroups(Comment.Preproc, Text, String.Double)),
+
             (r'#if\s+0', Comment.Preproc, 'if0'),
             (r'#', Comment.Preproc, 'macro'),
 
@@ -446,14 +452,15 @@ class ObjectiveJLexer(RegexLexer):
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
-            (r'', Text, '#pop')
+            (r'', Text, '#pop'),
         ],
         'badregex': [
-            ('\n', Text, '#pop')
+            ('\n', Text, '#pop'),
         ],
         'statements': [
             (r'(L|@)?"', String, 'string'),
-            (r"(L|@)?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
+            (r"(L|@)?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
+             String.Char),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
@@ -465,29 +472,32 @@ class ObjectiveJLexer(RegexLexer):
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
 
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
-             r'(<<|>>>?|==?|!=?|[-<>+*%&\|\^/])=?', Operator, 'slashstartsregex'),
+             r'(<<|>>>?|==?|!=?|[-<>+*%&\|\^/])=?',
+             Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
 
-            (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
-             r'throw|try|catch|finally|new|delete|typeof|instanceof|void'
-             r'|prototype|__proto__)\b', Keyword, 'slashstartsregex'),
+            (r'(for|in|while|do|break|return|continue|switch|case|default|if|'
+             r'else|throw|try|catch|finally|new|delete|typeof|instanceof|void|'
+             r'prototype|__proto__)\b', Keyword, 'slashstartsregex'),
 
             (r'(var|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
-          
+
             (r'(@selector|@private|@protected|@public|@encode|'
              r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
              r'@synthesize|@dynamic|@for|@accessors|new)\b', Keyword),
 
             (r'(int|long|float|short|double|char|unsigned|signed|void|'
-             r'id|BOOL|bool|boolean|IBOutlet|IBAction|SEL|@outlet|@action)\b', Keyword.Type),
+             r'id|BOOL|bool|boolean|IBOutlet|IBAction|SEL|@outlet|@action)\b',
+             Keyword.Type),
 
             (r'(self|super)\b', Name.Builtin),
 
             (r'(TRUE|YES|FALSE|NO|Nil|nil|NULL)\b', Keyword.Constant),
             (r'(true|false|null|NaN|Infinity|undefined)\b', Keyword.Constant),
-            (r'(ABS|ASIN|ACOS|ATAN|ATAN2|SIN|COS|TAN|EXP|POW|CEIL|FLOOR|ROUND|MIN|MAX'
-             r'RAND|SQRT|E|LN2|LN10|LOG2E|LOG10E|PI|PI2|PI_2|SQRT1_2|SQRT2)\b', Keyword.Constant),
+            (r'(ABS|ASIN|ACOS|ATAN|ATAN2|SIN|COS|TAN|EXP|POW|CEIL|FLOOR|ROUND|'
+             r'MIN|MAX|RAND|SQRT|E|LN2|LN10|LOG2E|LOG10E|PI|PI2|PI_2|SQRT1_2|'
+             r'SQRT2)\b', Keyword.Constant),
 
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
              r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
@@ -495,25 +505,27 @@ class ObjectiveJLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
 
-            (r'([$a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r')(?=\()', bygroups(Name.Function, using(this))),
+            (r'([$a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r')(?=\()',
+             bygroups(Name.Function, using(this))),
 
             (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'classname' : [
             # interface definition that inherits
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r':' + _ws + r')([a-zA-Z_][a-zA-Z0-9_]*)?',
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r':' + _ws +
+             r')([a-zA-Z_][a-zA-Z0-9_]*)?',
              bygroups(Name.Class, using(this), Name.Class), '#pop'),
             # interface definition for a category
             (r'([a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r'\()([a-zA-Z_][a-zA-Z0-9_]*)(\))',
              bygroups(Name.Class, using(this), Name.Label, Text), '#pop'),
             # simple interface / implementation
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)', Name.Class, '#pop')
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)', Name.Class, '#pop'),
         ],
         'forward_classname' : [
             (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*,\s*)',
              bygroups(Name.Class, Text), '#push'),
             (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*;?)',
-             bygroups(Name.Class, Text), '#pop')
+             bygroups(Name.Class, Text), '#pop'),
         ],
         'function_signature': [
             include('whitespace'),
@@ -533,7 +545,7 @@ class ObjectiveJLexer(RegexLexer):
              r'([$a-zA-Z_][a-zA-Z0-9_]+)',      # function name
              bygroups(using(this), Keyword.Type, using(this),
                  Name.Function), "#pop"),
- 
+
             # no return type given, start of a selector w/ parameters
             (r'([$a-zA-Z_][a-zA-Z0-9_]+' + _ws + r':)', # function name
              bygroups (Name.Function), 'function_parameters'),
@@ -541,7 +553,6 @@ class ObjectiveJLexer(RegexLexer):
             # no return type given, no-param function
             (r'([$a-zA-Z_][a-zA-Z0-9_]+)',      # function name
              bygroups(Name.Function), "#pop"),
-
 
             ('', Text, '#pop'),
         ],
@@ -565,11 +576,13 @@ class ObjectiveJLexer(RegexLexer):
             # var args
             (r'(,' + _ws + r'...)', using(this)),
 
-            (r'([$a-zA-Z_][a-zA-Z0-9_]+)', Text)# param name
+            # param name
+            (r'([$a-zA-Z_][a-zA-Z0-9_]+)', Text),
         ],
         'expression' : [
-            (r'([$a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function, Punctuation)),
-            (r'(\))', Punctuation, "#pop")
+            (r'([$a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function,
+                                                        Punctuation)),
+            (r'(\))', Punctuation, "#pop"),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -594,7 +607,8 @@ class ObjectiveJLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.match('^\s*@import\s+[<"]', text, re.MULTILINE): # special directive found in most Objective-J files
+        if re.search('^\s*@import\s+[<"]', text, re.MULTILINE):
+            # special directive found in most Objective-J files
             return True
         return False
 
@@ -887,7 +901,6 @@ class XsltLexer(XmlLexer):
     def analyse_text(text):
         if looks_like_xml(text) and '<xsl' in text:
             return 0.8
-
 
 
 class MxmlLexer(RegexLexer):
