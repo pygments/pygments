@@ -12,17 +12,19 @@ import re
 import unittest
 import StringIO
 import tempfile
-from os.path import join, dirname, isfile, abspath
+from os.path import join, dirname, isfile
 
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.formatters.html import escape_html
+from pygments.util import uni_open
 
 import support
 
 TESTFILE, TESTDIR = support.location(__file__)
 
-tokensource = list(PythonLexer(encoding='utf-8').get_tokens(open(TESTFILE).read()))
+tokensource = list(PythonLexer().get_tokens(
+    uni_open(TESTFILE, encoding='utf-8').read()))
 
 
 class HtmlFormatterTest(unittest.TestCase):
