@@ -8,8 +8,10 @@
     :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 import re
 import sys
+import codecs
 
 
 split_path_re = re.compile(r'[/\\ ]')
@@ -206,6 +208,7 @@ if sys.version_info < (3,0):
     import StringIO, cStringIO
     BytesIO = cStringIO.StringIO
     StringIO = StringIO.StringIO
+    uni_open = codecs.open
 else:
     import builtins
     bytes = builtins.bytes
@@ -220,3 +223,4 @@ else:
     import io
     BytesIO = io.BytesIO
     StringIO = io.StringIO
+    uni_open = builtins.open
