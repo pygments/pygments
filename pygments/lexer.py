@@ -23,7 +23,7 @@ from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
 
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
-           'LexerContext', 'include', 'flags', 'bygroups', 'using', 'this']
+           'LexerContext', 'include', 'bygroups', 'using', 'this']
 
 
 _default_analyse = staticmethod(lambda x: 0.0)
