@@ -8,11 +8,6 @@
     :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-try:
-    set
-except NameError:
-    from sets import Set as set
-
 
 class _TokenType(tuple):
     parent = None

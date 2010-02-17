@@ -10,12 +10,9 @@
 """
 
 import re
-try:
-    set
-except NameError:
-    from sets import Set as set
 
-from pygments.lexer import RegexLexer, ExtendedRegexLexer, bygroups, using, include, this
+from pygments.lexer import RegexLexer, ExtendedRegexLexer, bygroups, using, \
+     include, this
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Other, Punctuation
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
