@@ -10,10 +10,6 @@
 """
 
 import re
-try:
-    set
-except NameError:
-    from sets import Set as set
 
 from pygments.lexers.web import \
      PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer

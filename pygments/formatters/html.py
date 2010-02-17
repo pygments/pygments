@@ -8,13 +8,10 @@
     :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import sys, os
-import StringIO
 
-try:
-    set
-except NameError:
-    from sets import Set as set
+import os
+import sys
+import StringIO
 
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES

@@ -12,17 +12,15 @@
 import re
 
 from pygments.lexer import RegexLexer, DelegatingLexer, \
-    include, bygroups, using, this
-from pygments.token import Error, Punctuation, Generic, Other, \
-    Text, Comment, Operator, Keyword, Name, String, Number, Whitespace
+    include, bygroups, using
+from pygments.token import Punctuation, Other, Text, Comment, Operator, \
+     Keyword, Name, String, Number, Whitespace
 from pygments.lexers.compiled import JavaLexer, CLexer, CppLexer, \
     ObjectiveCLexer, DLexer
 from pygments.lexers.dotnet import CSharpLexer
 from pygments.lexers.agile import RubyLexer, PythonLexer, PerlLexer
 from pygments.lexers.web import ActionScriptLexer
-# Use TextLexer during development to just focus on one part of a delegating
-# lexer.
-from pygments.lexers.special import TextLexer
+
 
 __all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
            'RagelCppLexer', 'RagelObjectiveCLexer', 'RagelRubyLexer',

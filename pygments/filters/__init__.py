@@ -9,17 +9,14 @@
     :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-try:
-    set
-except NameError:
-    from sets import Set as set
 
 import re
+
 from pygments.token import String, Comment, Keyword, Name, Error, Whitespace, \
     string_to_tokentype
 from pygments.filter import Filter
-from pygments.util import get_list_opt, get_int_opt, get_bool_opt, get_choice_opt, \
-     ClassNotFound, OptionError
+from pygments.util import get_list_opt, get_int_opt, get_bool_opt, \
+     get_choice_opt, ClassNotFound, OptionError
 from pygments.plugin import find_plugin_filters
 
 

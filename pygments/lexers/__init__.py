@@ -8,15 +8,11 @@
     :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import sys
-import fnmatch
-import types
-from os.path import basename
 
-try:
-    set
-except NameError:
-    from sets import Set as set
+import sys
+import types
+import fnmatch
+from os.path import basename
 
 from pygments.lexers._mapping import LEXERS
 from pygments.plugin import find_plugin_lexers
@@ -223,7 +219,6 @@ class _automodule(types.ModuleType):
         raise AttributeError(name)
 
 
-import sys
 oldmod = sys.modules['pygments.lexers']
 newmod = _automodule('pygments.lexers')
 newmod.__dict__.update(oldmod.__dict__)

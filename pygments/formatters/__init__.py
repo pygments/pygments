@@ -13,7 +13,7 @@ import fnmatch
 
 from pygments.formatters._mapping import FORMATTERS
 from pygments.plugin import find_plugin_formatters
-from pygments.util import docstring_headline, ClassNotFound
+from pygments.util import ClassNotFound
 
 ns = globals()
 for fcls in FORMATTERS:

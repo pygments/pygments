@@ -10,10 +10,6 @@
 """
 
 import re
-try:
-    set
-except NameError:
-    from sets import Set as set
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \

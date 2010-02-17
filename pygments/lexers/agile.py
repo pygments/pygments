@@ -10,10 +10,6 @@
 """
 
 import re
-try:
-    set
-except NameError:
-    from sets import Set as set
 
 from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, \
      LexerContext, include, combined, do_insertions, bygroups, using

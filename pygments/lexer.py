@@ -10,11 +10,6 @@
 """
 import re
 
-try:
-    set
-except NameError:
-    from sets import Set as set
-
 from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
 from pygments.token import Error, Text, Other, _TokenType
