@@ -8,9 +8,7 @@
 """
 
 import os
-import unittest
 
-from pygments import highlight
 from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
 from pygments.token import Error
 from pygments.util import ClassNotFound, b
