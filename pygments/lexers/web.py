@@ -22,7 +22,8 @@ from pygments.lexers.agile import RubyLexer
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
-           'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ObjectiveJLexer']
+           'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer',
+           'ObjectiveJLexer', 'CoffeeScriptLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -1554,4 +1555,64 @@ class SassLexer(ExtendedRegexLexer):
             (r'#\{', String.Interpol, 'interpolation'),
             (r'', Text, '#pop'),
         ],
+    }
+
+
+class CoffeeScriptLexer(RegexLexer):
+    """
+    For `CoffeeScript`_ source code.
+
+    .. _CoffeeScript: http://jashkenas.github.com/coffee-script/
+
+    *New in Pygments 1.3.*
+    """
+
+    name = 'CoffeeScript'
+    aliases = ['coffee-script', 'coffeescript']
+    filenames = ['*.coffee']
+    mimetypes = ['text/coffeescript']
+
+    flags = re.DOTALL
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'#.*?\n', Comment.Single),
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'(?=/)', Text, ('#pop', 'badregex')),
+            (r'', Text, '#pop'),
+        ],
+        'badregex': [
+            ('\n', Text, '#pop'),
+        ],
+        'root': [
+            (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            include('commentsandwhitespace'),
+            (r'\+\+|--|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
+             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|[-<>+*`%&\|\^/])=?',
+             Operator, 'slashstartsregex'),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+            (r'(for|in|of|while|break|return|continue|switch|when|then|if|else|'
+             r'throw|try|catch|finally|new|delete|typeof|instanceof|super|'
+             r'extends|this)\b', Keyword, 'slashstartsregex'),
+            (r'(true|false|yes|no|on|off|null|NaN|Infinity|undefined)\b',
+             Keyword.Constant),
+            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
+             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+             r'decodeURIComponent|encodeURI|encodeURIComponent|'
+             r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
+             r'window)\b', Name.Builtin),
+            (r'[$a-zA-Z_][a-zA-Z0-9_\.:]*:\s', Name.Variable,
+             'slashstartsregex'),
+            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
+        ]
     }
