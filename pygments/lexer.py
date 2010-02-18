@@ -46,6 +46,10 @@ class Lexer(object):
     ``stripall``
         Strip all leading and trailing whitespace from the input
         (default: False).
+    ``ensurenl``
+        Make sure that the input ends with a newline (default: True).  This
+        is required for some lexers that consume input linewise.
+        *New in Pygments 1.3.*
     ``tabsize``
         If given and greater than 0, expand tabs in the input (default: 0).
     ``encoding``
@@ -77,6 +81,7 @@ class Lexer(object):
         self.options = options
         self.stripnl = get_bool_opt(options, 'stripnl', True)
         self.stripall = get_bool_opt(options, 'stripall', False)
+        self.ensurenl = get_bool_opt(options, 'ensurenl', True)
         self.tabsize = get_int_opt(options, 'tabsize', 0)
         self.encoding = options.get('encoding', 'latin1')
         # self.encoding = options.get('inencoding', None) or self.encoding
@@ -150,7 +155,7 @@ class Lexer(object):
             text = text.strip('\n')
         if self.tabsize > 0:
             text = text.expandtabs(self.tabsize)
-        if not text.endswith('\n'):
+        if self.ensurenl and not text.endswith('\n'):
             text += '\n'
 
         def streamer():
@@ -641,9 +646,15 @@ def do_insertions(insertions, tokens):
         realpos += len(v) - oldi
 
     # leftover tokens
-    if insleft:
+    while insleft:
         # no normal tokens, set realpos to zero
         realpos = realpos or 0
         for p, t, v in itokens:
             yield realpos, t, v
             realpos += len(v)
+        try:
+            index, itokens = insertions.next()
+        except StopIteration:
+            insleft = False
+            break  # not strictly necessary
+
