@@ -470,7 +470,7 @@ class LiterateHaskellLexer(Lexer):
 
         style = self.options.get('litstyle')
         if style is None:
-            style = (text.lstrip()[0] in '%\\') and 'latex' or 'bird'
+            style = (text.lstrip()[0:1] in '%\\') and 'latex' or 'bird'
 
         code = ''
         insertions = []

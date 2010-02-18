@@ -68,6 +68,31 @@ class LexersTest(unittest.TestCase):
             ae(txt, test_content, "%s lexer roundtrip failed: %r != %r" %
                     (lexer.name, test_content, txt))
 
+    def test_lexer_options(self):
+        # test that the basic options work
+        def ensure(tokens, output):
+            concatenated = ''.join(token[1] for token in tokens)
+            self.assertEquals(concatenated, output,
+                              '%s: %r != %r' % (lexer, concatenated, output))
+        for lexer in lexers._iter_lexerclasses():
+            if lexer.__name__ == 'RawTokenLexer':
+                # this one is special
+                continue
+            inst = lexer(stripnl=False)
+            ensure(inst.get_tokens('a\nb'), 'a\nb\n')
+            ensure(inst.get_tokens('\n\n\n'), '\n\n\n')
+            inst = lexer(stripall=True)
+            ensure(inst.get_tokens('   \n  b\n\n\n'), 'b\n')
+            # some lexers require full lines in input
+            if lexer.__name__ not in (
+                'PythonConsoleLexer', 'RConsoleLexer', 'RubyConsoleLexer',
+                'SqliteConsoleLexer', 'MatlabSessionLexer', 'ErlangShellLexer',
+                'BashSessionLexer', 'LiterateHaskellLexer'):
+                inst = lexer(ensurenl=False)
+                ensure(inst.get_tokens('a\nb'), 'a\nb')
+                inst = lexer(ensurenl=False, stripall=True)
+                ensure(inst.get_tokens('a\nb\n\n'), 'a\nb')
+
     def test_get_lexers(self):
         a = self.assert_
         ae = self.assertEquals
