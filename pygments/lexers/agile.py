@@ -655,7 +655,7 @@ class RubyLexer(ExtendedRegexLexer):
                  r'(?<=^match\s)|'
                  r'(?<=^if\s)|'
                  r'(?<=^elsif\s)'
-             r')(\s*)(/)(?!=)', bygroups(Text, String.Regex), 'multiline-regex'),
+             r')(\s*)(/)', bygroups(Text, String.Regex), 'multiline-regex'),
             # multiline regex (in method calls)
             (r'(?<=\(|,)/', String.Regex, 'multiline-regex'),
             # multiline regex (this time the funny no whitespace rule)
