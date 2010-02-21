@@ -21,10 +21,9 @@ except ImportError:
     sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 
-from pygments import highlight
 from pygments.lexer import RegexLexer
 from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
-from pygments.token import Error, _TokenType
+from pygments.token import Error, Text, _TokenType
 
 
 class DebuggingRegexLexer(RegexLexer):
@@ -104,17 +103,21 @@ def main(fn):
     text = text.decode('latin1')
     ntext = []
     states = []
+
+    def show_token(tok):
+        reprs = map(repr, tok)
+        print '   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0],
+        if debug_lexer:
+            print ' ' + ' ' * (29-len(reprs[0])) + repr(states[i]),
+        print
+
     for type, val in lx.get_tokens(text):
         lno += val.count('\n')
         if type == Error:
             print 'Error parsing', fn, 'on line', lno
             print 'Previous tokens' + (debug_lexer and ' and states' or '') + ':'
             for i in range(len(ntext) - num, len(ntext)):
-                reprs = map(repr, ntext[i])
-                print '   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0],
-                if debug_lexer:
-                    print ' ' + ' ' * (29-len(reprs[0])) + repr(states[i]),
-                print
+                show_token(ntext[i])
             print 'Error token:'
             l = len(repr(val))
             print '   ' + repr(val),
@@ -126,16 +129,24 @@ def main(fn):
         ntext.append((type,val))
         if debug_lexer:
             states.append(lx.statestack[:])
+    if showall:
+        for tok in ntext:
+            show_token(tok)
     return 0
 
 
 num = 10
+showall = False
 
 if __name__ == '__main__':
-    if sys.argv[1][:2] == '-n':
-        num = int(sys.argv[1][2:])
-        del sys.argv[1]
+    import getopt
+    opts, args = getopt.getopt(sys.argv[1:], 'n:a')
+    for opt, val in opts:
+        if opt == '-n':
+            num = int(val)
+        elif opt == '-a':
+            showall = True
     ret = 0
-    for f in sys.argv[1:]:
+    for f in args:
         ret += main(f)
     sys.exit(bool(ret))
