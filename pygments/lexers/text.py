@@ -660,13 +660,18 @@ class RstLexer(RegexLexer):
              _handle_sourcecode),
             # A directive
             (r'^( *\.\.)(\s*)([\w-]+)(::)(?:([ \t]*)(.+))?',
-             bygroups(Punctuation, Text, Operator.Word, Punctuation, Text, Keyword)),
+             bygroups(Punctuation, Text, Operator.Word, Punctuation, Text,
+                      using(this, state='inline'))),
             # A reference target
             (r'^( *\.\.)(\s*)([\w\t ]+:)(.*?)$',
              bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
             # A footnote target
             (r'^( *\.\.)(\s*)(\[.+\])(.*?)$',
              bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
+            # A substitution def
+            (r'^( *\.\.)(\s*)(\|.+\|)(\s*)([\w-]+)(::)(?:([ \t]*)(.+))$',
+             bygroups(Punctuation, Text, Name.Tag, Text, Operator.Word,
+                      Punctuation, Text, using(this, state='inline'))),
             # Comments
             (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment.Preproc),
             # Field list
