@@ -663,7 +663,7 @@ class RstLexer(RegexLexer):
              r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*|)\n)+)',
              _handle_sourcecode),
             # A directive
-            (r'^( *\.\.)(\s*)([\w-]+)(::)(?:([ \t]*)(.+))?',
+            (r'^( *\.\.)(\s*)([\w-]+)(::)(?:([ \t]*)(.*))',
              bygroups(Punctuation, Text, Operator.Word, Punctuation, Text,
                       using(this, state='inline'))),
             # A reference target
@@ -673,7 +673,7 @@ class RstLexer(RegexLexer):
             (r'^( *\.\.)(\s*)(\[.+\])(.*?)$',
              bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
             # A substitution def
-            (r'^( *\.\.)(\s*)(\|.+\|)(\s*)([\w-]+)(::)(?:([ \t]*)(.+))$',
+            (r'^( *\.\.)(\s*)(\|.+\|)(\s*)([\w-]+)(::)(?:([ \t]*)(.*))',
              bygroups(Punctuation, Text, Name.Tag, Text, Operator.Word,
                       Punctuation, Text, using(this, state='inline'))),
             # Comments
