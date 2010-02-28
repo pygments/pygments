@@ -41,14 +41,14 @@ class DebuggingRegexLexer(RegexLexer):
         statetokens = tokendefs[self.statestack[-1]]
         while 1:
             for rexmatch, action, new_state in statetokens:
-                self.m = rexmatch(text, self.pos)
-                if self.m:
+                self.m = m = rexmatch(text, self.pos)
+                if m:
                     if type(action) is _TokenType:
-                        yield self.pos, action, self.m.group()
+                        yield self.pos, action, m.group()
                     else:
-                        for item in action(self, self.m):
+                        for item in action(self, m):
                             yield item
-                    self.pos = self.m.end()
+                    self.pos = m.end()
                     if new_state is not None:
                         # state transition
                         if isinstance(new_state, tuple):
