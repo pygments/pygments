@@ -59,6 +59,7 @@ class CLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
             (r'0[0-7]+[Ll]?', Number.Oct),
             (r'\d+[Ll]?', Number.Integer),
+            (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
             (r'\b(case)(.+?)(:)', bygroups(Keyword, using(this), Text)),
@@ -183,6 +184,7 @@ class CppLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
             (r'0[0-7]+[Ll]?', Number.Oct),
             (r'\d+[Ll]?', Number.Integer),
+            (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.;]', Punctuation),
             (r'(asm|auto|break|case|catch|const|const_cast|continue|'
@@ -924,6 +926,7 @@ class JavaLexer(RegexLexer):
             (r'[a-zA-Z0-9_.]+\*?', Name.Namespace, '#pop')
         ],
     }
+
 
 class ScalaLexer(RegexLexer):
     """
