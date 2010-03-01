@@ -83,15 +83,18 @@ class DebuggingRegexLexer(RegexLexer):
                     break
 
 
-def main(fn):
-    try:
-        lx = get_lexer_for_filename(os.path.basename(fn))
-    except ValueError:
+def main(fn, lexer=None):
+    if lexer is not None:
+        lx = get_lexer_by_name(lexer)
+    else:
         try:
-            name, rest = fn.split('_', 1)
-            lx = get_lexer_by_name(name)
+            lx = get_lexer_for_filename(os.path.basename(fn))
         except ValueError:
-            raise AssertionError('no lexer found for file %r' % fn)
+            try:
+                name, rest = fn.split('_', 1)
+                lx = get_lexer_by_name(name)
+            except ValueError:
+                raise AssertionError('no lexer found for file %r' % fn)
     debug_lexer = False
     # does not work for e.g. ExtendedRegexLexers
     if lx.__class__.__bases__ == (RegexLexer,):
@@ -137,16 +140,19 @@ def main(fn):
 
 num = 10
 showall = False
+lexer = None
 
 if __name__ == '__main__':
     import getopt
-    opts, args = getopt.getopt(sys.argv[1:], 'n:a')
+    opts, args = getopt.getopt(sys.argv[1:], 'n:l:a')
     for opt, val in opts:
         if opt == '-n':
             num = int(val)
         elif opt == '-a':
             showall = True
+        elif opt == '-l':
+            lexer = val
     ret = 0
     for f in args:
-        ret += main(f)
+        ret += main(f, lexer)
     sys.exit(bool(ret))
