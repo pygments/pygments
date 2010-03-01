@@ -104,14 +104,14 @@ def main(fn, lexer=None):
     text = file(fn, 'U').read()
     text = text.strip('\n') + '\n'
     text = text.decode('latin1')
-    ntext = []
+    tokens = []
     states = []
 
-    def show_token(tok):
+    def show_token(tok, state):
         reprs = map(repr, tok)
         print '   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0],
         if debug_lexer:
-            print ' ' + ' ' * (29-len(reprs[0])) + repr(states[i]),
+            print ' ' + ' ' * (29-len(reprs[0])) + repr(state),
         print
 
     for type, val in lx.get_tokens(text):
@@ -119,22 +119,29 @@ def main(fn, lexer=None):
         if type == Error:
             print 'Error parsing', fn, 'on line', lno
             print 'Previous tokens' + (debug_lexer and ' and states' or '') + ':'
-            for i in range(len(ntext) - num, len(ntext)):
-                show_token(ntext[i])
+            if showall:
+                for tok, state in zip(tokens, states):
+                    show_token(tok, state)
+            else:
+                for i in range(len(tokens) - num, len(tokens)):
+                    show_token(tokens[i], states[i])
             print 'Error token:'
             l = len(repr(val))
             print '   ' + repr(val),
-            if debug_lexer:
+            if debug_lexer and hasattr(lx, 'statestack'):
                 print ' ' * (60-l) + repr(lx.statestack),
             print
             print
             return 1
-        ntext.append((type,val))
+        tokens.append((type,val))
         if debug_lexer:
-            states.append(lx.statestack[:])
+            if hasattr(lx, 'statestack'):
+                states.append(lx.statestack[:])
+            else:
+                states.append(None)
     if showall:
-        for tok in ntext:
-            show_token(tok)
+        for tok, state in zip(tokens, states):
+            show_token(tok, state)
     return 0
 
 
