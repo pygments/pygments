@@ -1510,6 +1510,7 @@ class NginxConfLexer(RegexLexer):
             (r'[^\s;#{}$]+', String), # catch all
             (r'/[^\s;#]*', Name), # pathname
             (r'\s+', Text),
+            (r'[$;]', Text),  # leftover characters
         ],
     }
 
