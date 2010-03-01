@@ -715,7 +715,7 @@ class PhpLexer(RegexLexer):
         ],
         'php': [
             (r'\?>', Comment.Preproc, '#pop'),
-            (r'<<<([a-zA-Z_][a-zA-Z0-9_]*)\n.*?\n\1\;?\n', String),
+            (r'<<<(\'?)([a-zA-Z_][a-zA-Z0-9_]*)\1\n.*?\n\2\;?\n', String),
             (r'\s+', Text),
             (r'#.*?\n', Comment.Single),
             (r'//.*?\n', Comment.Single),
@@ -729,6 +729,7 @@ class PhpLexer(RegexLexer):
             (r'[~!%^&*+=|:.<>/?@-]+', Operator),
             (r'[\[\]{}();,]+', Punctuation),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(function)(\s*)(?=\()', bygroups(Keyword, Text)),
             (r'(function)(\s+)(&?)(\s*)',
               bygroups(Keyword, Text, Operator, Text), 'functionname'),
             (r'(const)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
@@ -742,11 +743,11 @@ class PhpLexer(RegexLexer):
              r'endif|list|__LINE__|endswitch|new|__sleep|endwhile|not|'
              r'array|__wakeup|E_ALL|NULL|final|php_user_filter|interface|'
              r'implements|public|private|protected|abstract|clone|try|'
-             r'catch|throw|this)\b', Keyword),
+             r'catch|throw|this|use|namespace)\b', Keyword),
             ('(true|false|null)\b', Keyword.Constant),
             (r'\$\{\$+[a-zA-Z_][a-zA-Z0-9_]*\}', Name.Variable),
             (r'\$+[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[\\a-zA-Z_][\\a-zA-Z0-9_]*', Name.Other),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
             (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
@@ -754,7 +755,7 @@ class PhpLexer(RegexLexer):
             (r'"', String.Double, 'string'),
         ],
         'classname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            (r'[a-zA-Z_][\\a-zA-Z0-9_]*', Name.Class, '#pop')
         ],
         'functionname': [
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop')
