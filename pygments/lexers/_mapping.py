@@ -32,7 +32,7 @@ LEXERS = {
     'AsymptoteLexer': ('pygments.lexers.other', 'Asymptote', ('asy', 'asymptote'), ('*.asy',), ('text/x-asymptote',)),
     'BBCodeLexer': ('pygments.lexers.text', 'BBCode', ('bbcode',), (), ('text/x-bbcode',)),
     'BaseMakefileLexer': ('pygments.lexers.text', 'Makefile', ('basemake',), (), ()),
-    'BashLexer': ('pygments.lexers.other', 'Bash', ('bash', 'sh'), ('*.sh', '*.ebuild', '*.eclass'), ('application/x-sh', 'application/x-shellscript')),
+    'BashLexer': ('pygments.lexers.other', 'Bash', ('bash', 'sh', 'ksh'), ('*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass'), ('application/x-sh', 'application/x-shellscript')),
     'BashSessionLexer': ('pygments.lexers.other', 'Bash Session', ('console',), ('*.sh-session',), ('application/x-shell-session',)),
     'BatchLexer': ('pygments.lexers.other', 'Batchfile', ('bat',), ('*.bat', '*.cmd'), ('application/x-dos-batch',)),
     'BefungeLexer': ('pygments.lexers.other', 'Befunge', ('befunge',), ('*.befunge',), ('application/x-befunge',)),

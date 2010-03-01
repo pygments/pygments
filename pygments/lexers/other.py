@@ -321,14 +321,14 @@ class BefungeLexer(RegexLexer):
 
 class BashLexer(RegexLexer):
     """
-    Lexer for (ba)sh shell scripts.
+    Lexer for (ba|k|)sh shell scripts.
 
     *New in Pygments 0.6.*
     """
 
     name = 'Bash'
-    aliases = ['bash', 'sh']
-    filenames = ['*.sh', '*.ebuild', '*.eclass']
+    aliases = ['bash', 'sh', 'ksh']
+    filenames = ['*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass']
     mimetypes = ['application/x-sh', 'application/x-shellscript']
 
     tokens = {
