@@ -2196,8 +2196,6 @@ class Modula2Lexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
-
     tokens = {
         'whitespace': [
             (r'\n+', Text), # blank lines
