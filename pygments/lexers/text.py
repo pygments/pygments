@@ -679,8 +679,9 @@ class RstLexer(RegexLexer):
             # Comments
             (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment.Preproc),
             # Field list
-            (r'^( *)(:.*?:)([ \t]+)(.*?)$', bygroups(Text, Name.Class, Text,
-                                                     Name.Function)),
+            (r'^( *)(:[a-zA-Z-]+:)(\s*)$', bygroups(Text, Name.Class, Text)),
+            (r'^( *)(:.*?:)([ \t]+)(.*?)$',
+             bygroups(Text, Name.Class, Text, Name.Function)),
             # Definition list
             (r'^([^ ].*(?<!::)\n)((?:(?: +.*)\n)+)',
              bygroups(using(this, state='inline'), using(this, state='inline'))),
