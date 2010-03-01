@@ -1,4 +1,7 @@
 <?php
+
+$test = function($a) { $lambda = 1; }
+
 /**
  *  Zip class file
  *
@@ -12,7 +15,11 @@ if(!defined('UNLOCK') || !UNLOCK)
   
 // Load the parent archive class
 require_once(ROOT_PATH.'/classes/archive.class.php');
-  
+
+class Zip\Zipp {
+
+}
+
 /**
  *  Zip class
  *
