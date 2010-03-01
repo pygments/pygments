@@ -1011,6 +1011,11 @@ class LuaLexer(RegexLexer):
 
     tokens = {
         'root': [
+            # lua allows a file to start with a shebang
+            (r'#!(.*?)$', Comment.Preproc),
+            (r'', Text, 'base'),
+        ],
+        'base': [
             (r'(?s)--\[(=*)\[.*?\]\1\]', Comment.Multiline),
             ('--.*$', Comment.Single),
 
