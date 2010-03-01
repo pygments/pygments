@@ -633,11 +633,11 @@ class SmalltalkLexer(RegexLexer):
         ],
         '_parenth_helper' : [
             include('whitespaces'),
+            (r'(\d+r)?-?\d+(\.\d+)?(e-?\d+)?', Number),
             (r'[-+*/\\~<>=|&#!?,@%\w+:]+', String.Symbol),
             # literals
             (r'\'[^\']*\'', String),
             (r'\$.', String.Char),
-            (r'(\d+r)?-?\d+(\.\d+)?(e-?\d+)?', Number),
             (r'#*\(', String.Symbol, 'inner_parenth'),
         ],
         'parenth' : [
