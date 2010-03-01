@@ -26,7 +26,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-__version__ = '1.2.2'
+__version__ = '1.3'
 __docformat__ = 'restructuredtext'
 
 __all__ = ['lex', 'format', 'highlight']
