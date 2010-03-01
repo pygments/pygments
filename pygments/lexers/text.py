@@ -1020,6 +1020,7 @@ class DebianControlLexer(RegexLexer):
             (r'[}]', Text),
             (r'[^,]$', Name.Function, '#pop'),
             (r'([\+\.a-zA-Z0-9-][\s\n]*)', Name.Function),
+            (r'\[.*?\]', Name.Entity),
         ],
         'depend_vers': [
             (r'\),', Text, '#pop'),
