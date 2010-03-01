@@ -1259,6 +1259,7 @@ class TclLexer(RegexLexer):
             include('command'),
             include('basic'),
             include('data'),
+            (r'}', Keyword),  # HACK: somehow we miscounted our braces
         ],
         'command': _gen_command_rules(keyword_cmds_re, builtin_cmds_re),
         'command-in-brace': _gen_command_rules(keyword_cmds_re,
