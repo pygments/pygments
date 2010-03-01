@@ -902,7 +902,7 @@ class PerlLexer(RegexLexer):
             (r'(q|qq|qw|qr|qx)\(', String.Other, 'rb-string'),
             (r'(q|qq|qw|qr|qx)\[', String.Other, 'sb-string'),
             (r'(q|qq|qw|qr|qx)\<', String.Other, 'lt-string'),
-            (r'(q|qq|qw|qr|qx)(.)[.\n]*?\1', String.Other),
+            (r'(q|qq|qw|qr|qx)([^a-zA-Z0-9])(.|\n)*?\2', String.Other),
             (r'package\s+', Keyword, 'modulename'),
             (r'sub\s+', Keyword, 'funcname'),
             (r'(\[\]|\*\*|::|<<|>>|>=|<=|<=>|={3}|!=|=~|'
@@ -966,7 +966,7 @@ class PerlLexer(RegexLexer):
             (r'\\', String.Other),
             (r'\<', String.Other, 'lt-string'),
             (r'\>', String.Other, '#pop'),
-            (r'[^\<\>]]+', String.Other)
+            (r'[^\<\>]+', String.Other)
         ],
         'end-part': [
             (r'.+', Comment.Preproc, '#pop')
