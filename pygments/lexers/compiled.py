@@ -1121,14 +1121,14 @@ class ObjectiveCLexer(RegexLexer):
             (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
              r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
             (r'(TRUE|FALSE|nil|NULL)\b', Name.Builtin),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z$_][a-zA-Z0-9$_]*:(?!:)', Name.Label),
+            ('[a-zA-Z$_][a-zA-Z0-9$_]*', Name),
         ],
         'root': [
             include('whitespace'),
             # functions
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
+             r'([a-zA-Z$_][a-zA-Z0-9$_]*)'           # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')({)',
              bygroups(using(this), Name.Function,
@@ -1136,7 +1136,7 @@ class ObjectiveCLexer(RegexLexer):
              'function'),
             # function declarations
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
+             r'([a-zA-Z$_][a-zA-Z0-9$_]*)'           # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')(;)',
              bygroups(using(this), Name.Function,
@@ -1150,18 +1150,18 @@ class ObjectiveCLexer(RegexLexer):
         ],
         'classname' : [
             # interface definition that inherits
-            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*:\s*)([a-zA-Z_][a-zA-Z0-9_]*)?',
+            ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*:\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)?',
              bygroups(Name.Class, Text, Name.Class), '#pop'),
             # interface definition for a category
-            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\([a-zA-Z_][a-zA-Z0-9_]*\))',
+            ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(\([a-zA-Z$_][a-zA-Z0-9$_]*\))',
              bygroups(Name.Class, Text, Name.Label), '#pop'),
             # simple interface / implementation
-            ('([a-zA-Z_][a-zA-Z0-9_]*)', Name.Class, '#pop')
+            ('([a-zA-Z$_][a-zA-Z0-9$_]*)', Name.Class, '#pop')
         ],
         'forward_classname' : [
-          ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*,\s*)',
+          ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*,\s*)',
            bygroups(Name.Class, Text), 'forward_classname'),
-          ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*;?)',
+          ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*;?)',
            bygroups(Name.Class, Text), '#pop')
         ],
         'statement' : [
