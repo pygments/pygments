@@ -831,7 +831,6 @@ class PerlLexer(RegexLexer):
             (r'@(\\\\|\\\@|[^\@])*@[egimosx]*', String.Regex, '#pop'),
             (r'%(\\\\|\\\%|[^\%])*%[egimosx]*', String.Regex, '#pop'),
             (r'\$(\\\\|\\\$|[^\$])*\$[egimosx]*', String.Regex, '#pop'),
-            (r'!(\\\\|\\!|[^!])*![egimosx]*', String.Regex, '#pop'),
         ],
         'root': [
             (r'\#.*?$', Comment.Single),
@@ -855,6 +854,7 @@ class PerlLexer(RegexLexer):
             (r's\((\\\\|\\\)|[^\)])*\)\s*', String.Regex, 'balanced-regex'),
 
             (r'm?/(\\\\|\\/|[^/\n])*/[gcimosx]*', String.Regex),
+            (r'm(?=[/!\\{<\[\(@%\$])', String.Regex, 'balanced-regex'),
             (r'((?<==~)|(?<=\())\s*/(\\\\|\\/|[^/])*/[gcimosx]*', String.Regex),
             (r'\s+', Text),
             (r'(abs|accept|alarm|atan2|bind|binmode|bless|caller|chdir|'
