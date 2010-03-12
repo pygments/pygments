@@ -1006,7 +1006,7 @@ class LuaLexer(RegexLexer):
 
     name = 'Lua'
     aliases = ['lua']
-    filenames = ['*.lua']
+    filenames = ['*.lua', '*.wlua']
     mimetypes = ['text/x-lua', 'application/x-lua']
 
     tokens = {
@@ -1026,7 +1026,8 @@ class LuaLexer(RegexLexer):
 
             (r'\n', Text),
             (r'[^\S\n]', Text),
-            (r'(?s)\[(=*)\[.*?\]\1\]', String.Multiline),
+            # multiline strings
+            (r'(?s)\[(=*)\[.*?\]\1\]', String),
             (r'[\[\]\{\}\(\)\.,:;]', Punctuation),
 
             (r'(==|~=|<=|>=|\.\.|\.\.\.|[=+\-*/%^<>#])', Operator),
@@ -1042,8 +1043,6 @@ class LuaLexer(RegexLexer):
 
             (r'[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)?', Name),
 
-            # multiline strings
-            (r'(?s)\[(=*)\[(.*?)\]\1\]', String),
             ("'", String.Single, combined('stringescape', 'sqs')),
             ('"', String.Double, combined('stringescape', 'dqs'))
         ],
