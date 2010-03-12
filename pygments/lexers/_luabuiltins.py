@@ -60,14 +60,7 @@ MODULES = {'basic': ['_G',
            'debug.setmetatable',
            'debug.setupvalue',
            'debug.traceback'],
- 'io': ['file:close',
-        'file:flush',
-        'file:lines',
-        'file:read',
-        'file:seek',
-        'file:setvbuf',
-        'file:write',
-        'io.close',
+ 'io': ['io.close',
         'io.flush',
         'io.input',
         'io.lines',
@@ -175,7 +168,7 @@ if __name__ == '__main__':
             return name.startswith('math')
 
         def is_in_io_module(name):
-            return name.startswith('io.') or name.startswith('file:')
+            return name.startswith('io.')
 
         def is_in_os_module(name):
             return name.startswith('os.')
