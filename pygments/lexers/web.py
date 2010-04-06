@@ -1563,7 +1563,7 @@ class CoffeeScriptLexer(RegexLexer):
     """
     For `CoffeeScript`_ source code.
 
-    .. _CoffeeScript: http://jashkenas.github.com/coffee-script/
+    .. _CoffeeScript: http://coffeescript.org
 
     *New in Pygments 1.3.*
     """
@@ -1607,9 +1607,11 @@ class CoffeeScriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_\.:]*:\s', Name.Variable,
-             'slashstartsregex'),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*:\s', Name.Variable,
+              'slashstartsregex'),
+            (r'@[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*:\s', Name.Variable.Instance,
+              'slashstartsregex'),
+            (r'@?[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other, 'slashstartsregex'),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
