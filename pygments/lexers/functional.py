@@ -550,7 +550,7 @@ class OcamlLexer(RegexLexer):
 
     tokens = {
         'escape-sequence': [
-            (r'\\[\"\'ntbr]', String.Escape),
+            (r'\\[\\\"\'ntbr]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),
             (r'\\x[0-9a-fA-F]{2}', String.Escape),
         ],
