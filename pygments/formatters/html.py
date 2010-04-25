@@ -508,6 +508,7 @@ class HtmlFormatter(Formatter):
         st = self.linenostep
         la = self.lineanchors
         aln = self.anchorlinenos
+        nocls = self.noclasses
         if sp:
             lines = []
 
@@ -542,9 +543,16 @@ class HtmlFormatter(Formatter):
         # in case you wonder about the seemingly redundant <div> here: since the
         # content in the other cell also is wrapped in a div, some browsers in
         # some configurations seem to mess up the formatting...
-        yield 0, ('<table class="%stable">' % self.cssclass +
-                  '<tr><td class="linenos"><div class="linenodiv"><pre>' +
-                  ls + '</pre></div></td><td class="code">')
+        if nocls:
+            yield 0, ('<table class="%stable">' % self.cssclass +
+                      '<tr><td><div class="linenodiv" '
+                      'style="background-color: #f0f0f0; padding-right: 10px">'
+                      '<pre style="line-height: 125%">' +
+                      ls + '</pre></div></td><td class="code">')
+        else:
+            yield 0, ('<table class="%stable">' % self.cssclass +
+                      '<tr><td class="linenos"><div class="linenodiv"><pre>' +
+                      ls + '</pre></div></td><td class="code">')
         yield 0, dummyoutfile.getvalue()
         yield 0, '</td></tr></table>'
 
@@ -556,7 +564,23 @@ class HtmlFormatter(Formatter):
         num = self.linenostart
         mw = len(str(len(lines) + num - 1))
 
-        if sp:
+        if self.noclasses:
+            if sp:
+                for t, line in lines:
+                    if num%sp == 0:
+                        style = 'background-color: #ffffc0; padding: 0 5px 0 5px'
+                    else:
+                        style = 'background-color: #f0f0f0; padding: 0 5px 0 5px'
+                    yield 1, '<span style="%s">%*s</span> ' % (
+                        style, mw, (num%st and ' ' or num)) + line
+                    num += 1
+            else:
+                for t, line in lines:
+                    yield 1, ('<span style="background-color: #f0f0f0; '
+                              'padding: 0 5px 0 5px">%*s</span> ' % (
+                              mw, (num%st and ' ' or num)) + line)
+                    num += 1
+        elif sp:
             for t, line in lines:
                 yield 1, '<span class="lineno%s">%*s</span> ' % (
                     num%sp == 0 and ' special' or '', mw,
