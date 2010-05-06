@@ -34,7 +34,8 @@ class JavascriptLexer(RegexLexer):
     name = 'JavaScript'
     aliases = ['js', 'javascript']
     filenames = ['*.js']
-    mimetypes = ['application/x-javascript', 'text/x-javascript', 'text/javascript']
+    mimetypes = ['application/javascript', 'application/x-javascript',
+                 'text/x-javascript', 'text/javascript']
 
     flags = re.DOTALL
     tokens = {
@@ -378,7 +379,7 @@ class CssLexer(RegexLexer):
             (r'\!important', Comment.Preproc),
             (r'/\*(?:.|\n)*?\*/', Comment),
             (r'\#[a-zA-Z0-9]{1,6}', Number),
-            (r'[\.-]?[0-9]*[\.]?[0-9]+(em|px|\%|pt|pc|in|mm|cm|ex)', Number),
+            (r'[\.-]?[0-9]*[\.]?[0-9]+(em|px|\%|pt|pc|in|mm|cm|ex|s)\b', Number),
             (r'-?[0-9]+', Number),
             (r'[~\^\*!%&<>\|+=@:,./?-]+', Operator),
             (r'[\[\]();]+', Punctuation),

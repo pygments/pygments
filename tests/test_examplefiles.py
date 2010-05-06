@@ -18,6 +18,9 @@ from pygments.util import ClassNotFound, b
 def test_example_files():
     testdir = os.path.dirname(__file__)
     for fn in os.listdir(os.path.join(testdir, 'examplefiles')):
+        if fn.startswith('.') or fn.endswith('#'):
+            continue
+
         absfn = os.path.join(testdir, 'examplefiles', fn)
         if not os.path.isfile(absfn):
             continue
