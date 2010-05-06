@@ -26,7 +26,7 @@ from pygments import unistring as uni
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
            'MiniDLexer', 'IoLexer', 'TclLexer', 'ClojureLexer',
-           'Python3Lexer', 'Python3TracebackLexer']
+           'Python3Lexer', 'Python3TracebackLexer', 'IokeLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -1480,4 +1480,194 @@ class ClojureLexer(RegexLexer):
             # the famous parentheses!
             (r'(\(|\))', Punctuation),
         ],
+    }
+
+
+class IokeLexer(RegexLexer):
+    """
+    For `Ioke <http://ioke.org/>`_ (a strongly typed, dynamic,
+    prototype based programming language) source.
+
+    *New in Pygments 1.4.*
+    """
+    name = 'Ioke'
+    filenames = ['*.ik']
+    aliases = ['ioke', 'ik']
+    mimetypes = ['text/x-iokesrc']
+    tokens = {
+        'interpolatableText': [
+            (r'(\\b|\\e|\\t|\\n|\\f|\\r|\\"|\\\\|\\#|\\\Z|\\u[0-9a-fA-F]{1,4}'
+             r'|\\[0-3]?[0-7]?[0-7])', String.Escape),
+            (r'#{', Punctuation, 'textInterpolationRoot')
+            ],
+
+        'text': [
+            (r'(?<!\\)"', String, '#pop'),
+            include('interpolatableText'),
+            (r'[^"]', String)
+            ],
+
+        'documentation': [
+            (r'(?<!\\)"', String.Doc, '#pop'),
+            include('interpolatableText'),
+            (r'[^"]', String.Doc)
+            ],
+
+        'textInterpolationRoot': [
+            (r'}', Punctuation, '#pop'),
+            include('root')
+            ],
+
+        'slashRegexp': [
+            (r'(?<!\\)/[oxpniums]*', String.Regex, '#pop'),
+            include('interpolatableText'),
+            (r'\\/', String.Regex),
+            (r'[^/]', String.Regex)
+            ],
+
+        'squareRegexp': [
+            (r'(?<!\\)][oxpniums]*', String.Regex, '#pop'),
+            include('interpolatableText'),
+            (r'\\]', String.Regex),
+            (r'[^\]]', String.Regex)
+            ],
+
+        'squareText': [
+            (r'(?<!\\)]', String, '#pop'),
+            include('interpolatableText'),
+            (r'[^\]]', String)
+            ],
+
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+
+            # Comments
+            (r';(.*?)\n', Comment),
+            (r'\A#!(.*?)\n', Comment),
+
+            #Regexps
+            (r'#/', String.Regex, 'slashRegexp'),
+            (r'#r\[', String.Regex, 'squareRegexp'),
+
+            #Symbols
+            (r':[a-zA-Z0-9_!:?]+', String.Symbol),
+            (r'[a-zA-Z0-9_!:?]+:(?![a-zA-Z0-9_!?])', String.Other),
+            (r':"(\\\\|\\"|[^"])*"', String.Symbol),
+
+            #Documentation
+            (r'((?<=fn\()|(?<=fnx\()|(?<=method\()|(?<=macro\()|(?<=lecro\()'
+             r'|(?<=syntax\()|(?<=dmacro\()|(?<=dlecro\()|(?<=dlecrox\()'
+             r'|(?<=dsyntax\())[\s\n\r]*"', String.Doc, 'documentation'),
+
+            #Text
+            (r'"', String, 'text'),
+            (r'#\[', String, 'squareText'),
+
+            #Mimic
+            (r'[a-zA-Z0-9_][a-zA-Z0-9!?_:]+(?=\s*=.*mimic\s)', Name.Entity),
+
+            #Assignment
+            (r'[a-zA-Z_][a-zA-Z0-9_!:?]*(?=[\s]*[+*/-]?=[^=].*($|\.))', Name.Variable),
+
+            # keywords
+            (r'(break|cond|continue|do|ensure|for|for:dict|for:set|if|let|'
+             r'loop|p:for|p:for:dict|p:for:set|return|unless|until|while|'
+             r'with)(?![a-zA-Z0-9!:_?])', Keyword.Reserved),
+
+            # Origin
+            (r'(eval|mimic|print|println)(?![a-zA-Z0-9!:_?])', Keyword),
+
+            # Base
+            (r'(cell\?|cellNames|cellOwner\?|cellOwner|cells|cell|'
+             r'documentation|hash|identity|mimic|removeCell\!|undefineCell\!)'
+             r'(?![a-zA-Z0-9!:_?])', Keyword),
+
+            # Ground
+            (r'(stackTraceAsText)(?![a-zA-Z0-9!:_?])', Keyword),
+
+            #DefaultBehaviour Literals
+            (r'(dict|list|message|set)(?![a-zA-Z0-9!:_?])', Keyword.Reserved),
+
+            #DefaultBehaviour Case
+            (r'(case|case:and|case:else|case:nand|case:nor|case:not|case:or|'
+             r'case:otherwise|case:xor)(?![a-zA-Z0-9!:_?])', Keyword.Reserved),
+
+            #DefaultBehaviour Reflection
+            (r'(asText|become\!|derive|freeze\!|frozen\?|in\?|is\?|kind\?|'
+             r'mimic\!|mimics|mimics\?|prependMimic\!|removeAllMimics\!|'
+             r'removeMimic\!|same\?|send|thaw\!|uniqueHexId)'
+             r'(?![a-zA-Z0-9!:_?])', Keyword),
+
+            #DefaultBehaviour Aspects
+            (r'(after|around|before)(?![a-zA-Z0-9!:_?])', Keyword.Reserved),
+
+            # DefaultBehaviour
+            (r'(kind|cellDescriptionDict|cellSummary|genSym|inspect|notice)'
+             r'(?![a-zA-Z0-9!:_?])', Keyword),
+            (r'(use|destructuring)', Keyword.Reserved),
+
+            #DefaultBehavior BaseBehavior
+            (r'(cell\?|cellOwner\?|cellOwner|cellNames|cells|cell|'
+             r'documentation|identity|removeCell!|undefineCell)'
+             r'(?![a-zA-Z0-9!:_?])', Keyword),
+
+            #DefaultBehavior Internal
+            (r'(internal:compositeRegexp|internal:concatenateText|'
+             r'internal:createDecimal|internal:createNumber|'
+             r'internal:createRegexp|internal:createText)'
+             r'(?![a-zA-Z0-9!:_?])', Keyword.Reserved),
+
+            #DefaultBehaviour Conditions
+            (r'(availableRestarts|bind|error\!|findRestart|handle|'
+             r'invokeRestart|rescue|restart|signal\!|warn\!)'
+             r'(?![a-zA-Z0-9!:_?])', Keyword.Reserved),
+
+            # constants
+            (r'(nil|false|true)(?![a-zA-Z0-9!:_?])', Name.Constant),
+
+            # names
+            (r'(Arity|Base|Call|Condition|DateTime|Aspects|Pointcut|'
+             r'Assignment|BaseBehavior|Boolean|Case|AndCombiner|Else|'
+             r'NAndCombiner|NOrCombiner|NotCombiner|OrCombiner|XOrCombiner|'
+             r'Conditions|Definitions|FlowControl|Internal|Literals|'
+             r'Reflection|DefaultMacro|DefaultMethod|DefaultSyntax|Dict|'
+             r'FileSystem|Ground|Handler|Hook|IO|IokeGround|Struct|'
+             r'LexicalBlock|LexicalMacro|List|Message|Method|Mixins|'
+             r'NativeMethod|Number|Origin|Pair|Range|Reflector|Regexp Match|'
+             r'Regexp|Rescue|Restart|Runtime|Sequence|Set|Symbol|'
+             r'System|Text|Tuple)(?![a-zA-Z0-9!:_?])', Name.Builtin),
+
+            # functions
+            (ur'(generateMatchMethod|aliasMethod|\u03bb|\u028E|fnx|fn|method|'
+             ur'dmacro|dlecro|syntax|macro|dlecrox|lecrox|lecro|syntax)'
+             ur'(?![a-zA-Z0-9!:_?])', Name.Function),
+
+            # Numbers
+            (r'-?0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'-?(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'-?\d+', Number.Integer),
+
+            (r'#\(', Punctuation),
+
+             # Operators
+            (ur'(&&>>|\|\|>>|\*\*>>|:::|::|\.\.\.|===|\*\*>|\*\*=|&&>|&&=|'
+             ur'\|\|>|\|\|=|\->>|\+>>|!>>|<>>>|<>>|&>>|%>>|#>>|@>>|/>>|\*>>|'
+             ur'\?>>|\|>>|\^>>|~>>|\$>>|=>>|<<=|>>=|<=>|<\->|=~|!~|=>|\+\+|'
+             ur'\-\-|<=|>=|==|!=|&&|\.\.|\+=|\-=|\*=|\/=|%=|&=|\^=|\|=|<\-|'
+             ur'\+>|!>|<>|&>|%>|#>|\@>|\/>|\*>|\?>|\|>|\^>|~>|\$>|<\->|\->|'
+             ur'<<|>>|\*\*|\?\||\?&|\|\||>|<|\*|\/|%|\+|\-|&|\^|\||=|\$|!|~|'
+             ur'\?|#|\u2260|\u2218|\u2208|\u2209)', Operator),
+            (r'(and|nand|or|xor|nor|return|import)(?![a-zA-Z0-9_!?])',
+             Operator),
+
+            # Punctuation
+            (r'(\`\`|\`|\'\'|\'|\.|\,|@|@@|\[|\]|\(|\)|{|})', Punctuation),
+
+            #kinds
+            (r'[A-Z][a-zA-Z0-9_!:?]*', Name.Class),
+
+            #default cellnames
+            (r'[a-z_][a-zA-Z0-9_!:?]*', Name)
+        ]
     }
