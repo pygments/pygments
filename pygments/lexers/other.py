@@ -2142,7 +2142,7 @@ class GherkinLexer(RegexLexer):
             (r"(\s|.)", Name.Function),
           ],
         'table_vars': [
-            (r'(<[^>]*>)', Name.Variable),
+            (r'(<[^>]+>)', Name.Variable),
           ],
         'numbers': [
             (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', String),
@@ -2187,6 +2187,7 @@ class GherkinLexer(RegexLexer):
             (r'\s+\|', Keyword, 'table_content'),
             (r'"', Name.Function, "double_string"),
             include('table_vars'),
+            include('numbers'),
             (r'(\s*)(@[^@\r\n\t ]+)', bygroups(Name.Function, Name.Tag)),
             (step_keywords, bygroups(Name.Function, Keyword), "step_content_root"),
             (feature_keywords, bygroups(Keyword, Keyword, Name.Function), 'narrative'),
