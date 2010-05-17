@@ -1217,6 +1217,10 @@ class HamlLexer(ExtendedRegexLexer):
     # which is ignored and used to wrap long lines.
     # To accomodate this, use this custom faux dot instead.
     _dot = r'(?: \|\n(?=.* \|)|.)'
+
+    # In certain places, a comma at the end of the line
+    # allows line wrapping as well.
+    _comma_dot = r'(?:,\s*\n|' + _dot + ')'
     tokens = {
         'root': [
             (r'[ \t]*\n', Text),
@@ -1230,7 +1234,7 @@ class HamlLexer(ExtendedRegexLexer):
 
         'eval-or-plain': [
             (r'[&!]?==', Punctuation, 'plain'),
-            (r'([&!]?[=~])(' + _dot + '*\n)',
+            (r'([&!]?[=~])(' + _comma_dot + '*\n)',
              bygroups(Punctuation, using(RubyLexer)),
              'root'),
             (r'', Text, 'plain'),
@@ -1247,7 +1251,7 @@ class HamlLexer(ExtendedRegexLexer):
              '#pop'),
             (r'-#' + _dot + '*\n', _starts_block(Comment.Preproc,
                                                  'haml-comment-block'), '#pop'),
-            (r'(-)(' + _dot + '*\n)',
+            (r'(-)(' + _comma_dot + '*\n)',
              bygroups(Punctuation, using(RubyLexer)),
              '#pop'),
             (r':' + _dot + '*\n', _starts_block(Name.Decorator, 'filter-block'),
