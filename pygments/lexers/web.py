@@ -1337,12 +1337,15 @@ class SassLexer(ExtendedRegexLexer):
              'root'),
             (r'@import', Keyword, 'import'),
             (r'@for', Keyword, 'for'),
-            (r'@(debug|if|while)', Keyword, 'script'),
+            (r'@(debug|warn|if|while)', Keyword, 'value'),
+            (r'(@mixin)( [\w-]+)', bygroups(Keyword, Name.Function), 'value'),
+            (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
+            (r'@extend', Keyword, 'selector'),
             (r'@[a-z0-9_-]+', Keyword, 'selector'),
-            (r'=[\w-]+', Name.Function, 'script'),
-            (r'\+[\w-]+', Name.Decorator, 'script'),
-            (r'(![a-z_]\w*)([ \t]*(?:\|\|)?=)',
-             bygroups(Name.Variable, Operator), 'script'),
+            (r'=[\w-]+', Name.Function, 'value'),
+            (r'\+[\w-]+', Name.Decorator, 'value'),
+            (r'([!$][\w-]\w*)([ \t]*(?:(?:\|\|)?=|:))',
+             bygroups(Name.Variable, Operator), 'value'),
             (r':', Name.Attribute, 'old-style-attr'),
             (r'(?=[^\s:"\[]+\s*[=:]([ \t]|$))', Name.Attribute, 'new-style-attr'),
             (r'', Text, 'selector'),
@@ -1366,26 +1369,27 @@ class SassLexer(ExtendedRegexLexer):
 
         'for': [
             (r'(from|to|through)', Operator.Word),
-            include('script'),
+            include('value'),
         ],
 
         'old-style-attr': [
             (r'[^\s:="\[]+', Name.Attribute),
             (r'#{', String.Interpol, 'interpolation'),
-            (r'[ \t]*=', Operator, 'script'),
+            (r'[ \t]*=', Operator, 'value'),
             (r'', Text, 'value'),
         ],
 
         'new-style-attr': [
             (r'[^\s:="\[]+', Name.Attribute),
             (r'#{', String.Interpol, 'interpolation'),
-            (r'[ \t]*=', Operator, 'script'),
-            (r':', Name.Attribute, 'value'),
+            (r'[ \t]*[=:]', Operator, 'value'),
         ],
 
         'value': [
             (r'[ \t]+', Text),
+            (r'[!$][\w-]+', Name.Variable),
             (r'url\(', String.Other, 'string-url'),
+            (r'[a-z_-][\w-]*(?=\()', Name.Function),
             (r'(azimuth|background-attachment|background-color|'
              r'background-image|background-position|background-repeat|'
              r'background|border-bottom-color|border-bottom-style|'
@@ -1443,33 +1447,38 @@ class SassLexer(ExtendedRegexLexer):
              r'upper-alpha|upper-latin|upper-roman|uppercase|url|'
              r'visible|w-resize|wait|wider|x-fast|x-high|x-large|x-loud|'
              r'x-low|x-small|x-soft|xx-large|xx-small|yes)\b', Name.Constant),
-            (r'(indigo|gold|firebrick|indianred|yellow|darkolivegreen|'
+            (r'(indigo|gold|firebrick|indianred|darkolivegreen|'
              r'darkseagreen|mediumvioletred|mediumorchid|chartreuse|'
-             r'mediumslateblue|black|springgreen|crimson|lightsalmon|brown|'
-             r'turquoise|olivedrab|cyan|silver|skyblue|gray|darkturquoise|'
-             r'goldenrod|darkgreen|darkviolet|darkgray|lightpink|teal|'
+             r'mediumslateblue|springgreen|crimson|lightsalmon|brown|'
+             r'turquoise|olivedrab|cyan|skyblue|darkturquoise|'
+             r'goldenrod|darkgreen|darkviolet|darkgray|lightpink|'
              r'darkmagenta|lightgoldenrodyellow|lavender|yellowgreen|thistle|'
-             r'violet|navy|orchid|blue|ghostwhite|honeydew|cornflowerblue|'
-             r'darkblue|darkkhaki|mediumpurple|cornsilk|red|bisque|slategray|'
+             r'violet|orchid|ghostwhite|honeydew|cornflowerblue|'
+             r'darkblue|darkkhaki|mediumpurple|cornsilk|bisque|slategray|'
              r'darkcyan|khaki|wheat|deepskyblue|darkred|steelblue|aliceblue|'
-             r'gainsboro|mediumturquoise|floralwhite|coral|purple|lightgrey|'
+             r'gainsboro|mediumturquoise|floralwhite|coral|lightgrey|'
              r'lightcyan|darksalmon|beige|azure|lightsteelblue|oldlace|'
              r'greenyellow|royalblue|lightseagreen|mistyrose|sienna|'
-             r'lightcoral|orangered|navajowhite|lime|palegreen|burlywood|'
-             r'seashell|mediumspringgreen|fuchsia|papayawhip|blanchedalmond|'
-             r'peru|aquamarine|white|darkslategray|ivory|dodgerblue|'
-             r'lemonchiffon|chocolate|orange|forestgreen|slateblue|olive|'
+             r'lightcoral|orangered|navajowhite|palegreen|burlywood|'
+             r'seashell|mediumspringgreen|papayawhip|blanchedalmond|'
+             r'peru|aquamarine|darkslategray|ivory|dodgerblue|'
+             r'lemonchiffon|chocolate|orange|forestgreen|slateblue|'
              r'mintcream|antiquewhite|darkorange|cadetblue|moccasin|'
              r'limegreen|saddlebrown|darkslateblue|lightskyblue|deeppink|'
-             r'plum|aqua|darkgoldenrod|maroon|sandybrown|magenta|tan|'
+             r'plum|darkgoldenrod|sandybrown|magenta|tan|'
              r'rosybrown|pink|lightblue|palevioletred|mediumseagreen|'
              r'dimgray|powderblue|seagreen|snow|mediumblue|midnightblue|'
              r'paleturquoise|palegoldenrod|whitesmoke|darkorchid|salmon|'
              r'lightslategray|lawngreen|lightgreen|tomato|hotpink|'
-             r'lightyellow|lavenderblush|linen|mediumaquamarine|green|'
+             r'lightyellow|lavenderblush|linen|mediumaquamarine|'
              r'blueviolet|peachpuff)\b', Name.Entity),
-            (r'\!important', Name.Exception),
-            (r'/\*', Comment, 'inline-comment'),
+            (r'(black|silver|gray|white|maroon|red|purple|fuchsia|green|'
+             r'lime|olive|yellow|navy|blue|teal|aqua)\b', Name.Builtin),
+            (r'\!(important|default)', Name.Exception),
+            (r'(true|false)', Name.Pseudo),
+            (r'(and|or|not)', Operator.Word),
+            (r'/\*', Comment.Multiline, 'inline-comment'),
+            (r'//[^\n]*', Comment.Single),
             (r'\#[a-z0-9]{1,6}', Number.Hex),
             (r'(-?\d+)(\%|[a-z]+)?', bygroups(Number.Integer, Keyword.Type)),
             (r'(-?\d*\.\d+)(\%|[a-z]+)?', bygroups(Number.Float, Keyword.Type)),
@@ -1478,31 +1487,13 @@ class SassLexer(ExtendedRegexLexer):
             (r'[\[\]();]+', Punctuation),
             (r'"', String.Double, 'string-double'),
             (r"'", String.Single, 'string-single'),
-            (r'[a-z][\w-]*', Name),
-            (r'\n', Text, 'root'),
-        ],
-
-        'script': [
-            (r'[ \t]+', Text),
-            (r'![\w_]+', Name.Variable),
-            (r'[+\-*/%=(),!><]', Operator),
-            (r'"', String.Double, 'string-double'),
-            (r"'", String.Single, 'string-single'),
-            (r'\#[a-z0-9]{1,6}', Number.Hex),
-            (r'(-?\d+)(\%|[a-z]+)?', bygroups(Number.Integer, Keyword.Type)),
-            (r'(-?\d*\.\d+)(\%|[a-z]+)?', bygroups(Number.Float, Keyword.Type)),
-            (r'(black|silver|gray|white|maroon|red|purple|fuchsia|green|'
-             r'lime|olive|yellow|navy|blue|teal|aqua)\b', Name.Builtin),
-            (r'(true|false)', Name.Pseudo),
-            (r'(and|or|not)', Operator.Word),
-            (r'(\\.|[^\s\\+*\/%(),=!])+(?=[ \t]*\()', Name.Function),
-            (r'(\\.|[^\s\\+*\/%(),=!])+', Name),
+            (r'[a-z_-][\w-]*', Name),
             (r'\n', Text, 'root'),
         ],
 
         'interpolation': [
             (r'\}', String.Interpol, '#pop'),
-            include('script'),
+            include('value'),
         ],
 
         'selector': [
@@ -1538,7 +1529,7 @@ class SassLexer(ExtendedRegexLexer):
         ],
 
         'inline-comment': [
-            (r"(\\#|#(?=[^\n{])|\*(?=[^\n/])|[^\n#*])+", Comment),
+            (r"(\\#|#(?=[^\n{])|\*(?=[^\n/])|[^\n#*])+", Comment.Multiline),
             (r'#\{', String.Interpol, 'interpolation'),
             (r"\*/", Comment, '#pop'),
         ],
