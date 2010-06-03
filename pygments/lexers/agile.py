@@ -428,8 +428,9 @@ class RubyLexer(ExtendedRegexLexer):
     """
 
     name = 'Ruby'
-    aliases = ['rb', 'ruby']
-    filenames = ['*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec', '*.rbx']
+    aliases = ['rb', 'ruby', 'duby']
+    filenames = ['*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec',
+                 '*.rbx', '*.duby']
     mimetypes = ['text/x-ruby', 'application/x-ruby']
 
     flags = re.DOTALL | re.MULTILINE
