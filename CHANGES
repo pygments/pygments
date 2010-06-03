@@ -14,6 +14,22 @@ Version 1.4
 
 - More context-sensitive Gherkin lexer with support for more i18n translations.
 
+- A bugfix for backslashes in ocaml strings (#499)
+
+- Fix unicode/raw docstrings in the Python lexer (#489)
+
+- Allow PIL to work without PIL.pth (#502)
+
+- Allow seconds as a unit in css (#496)
+
+- Support ``application/javascript`` as a JavaScript mime type (#504)
+
+- Lexers added:
+
+  * Ioke
+
+
+
 Version 1.3.1
 -------------
 (bugfix release, released Mar 05, 2010)
