@@ -2396,7 +2396,8 @@ class BlitzMaxLexer(RegexLexer):
             # Data types
             ('"', String.Double, 'string'),
             # Numbers
-            (r'[0-9]\.[0-9]*(?!\.)', Number.Float),
+            (r'[0-9]+\.[0-9]*(?!\.)', Number.Float),
+            (r'\.[0-9]*(?!\.)', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'\$[0-9a-f]+', Number.Hex),
             (r'\%[10]+', Number), # Binary
