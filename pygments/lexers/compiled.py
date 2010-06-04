@@ -2402,22 +2402,33 @@ class BlitzMaxLexer(RegexLexer):
             (r'\$[0-9a-f]+', Number.Hex),
             (r'\%[10]+', Number), # Binary
             # Other
-            (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/&|~]))|Or|And|Not|[=<>^]))' % (bmax_vopwords), Operator),
+            (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/&|~]))|Or|And|Not|[=<>^]))' %
+             (bmax_vopwords), Operator),
             (r'[(),.:\[\]]', Punctuation),
             (r'(?:#[\w \t]*)', Name.Label),
             (r'(?:\?[\w \t]*)', Comment.Preproc),
             # Identifiers
             (r'\b(New)\b([ \t]?)([(]?)(%s)' % (bmax_name),
              bygroups(Keyword.Reserved, Text, Punctuation, Name.Class)),
-            (r'\b(Import|Framework|Module)([ \t]+)(%s\.%s)' % (bmax_name, bmax_name), bygroups(Keyword.Reserved, Text, Keyword.Namespace)),
-            (bmax_func, bygroups(Name.Function, Text, Keyword.Type, Operator, Text, Punctuation, Text, Keyword.Type, Name.Class, Text, Keyword.Type, Text, Punctuation)),
-            (bmax_var, bygroups(Name.Variable, Text, Keyword.Type, Operator, Text, Punctuation, Text, Keyword.Type, Name.Class, Text, Keyword.Type)),
-            (r'\b(Type|Extends)([ \t]+)(%s)' % (bmax_name), bygroups(Keyword.Reserved, Text, Name.Class)),
+            (r'\b(Import|Framework|Module)([ \t]+)(%s\.%s)' %
+             (bmax_name, bmax_name),
+             bygroups(Keyword.Reserved, Text, Keyword.Namespace)),
+            (bmax_func, bygroups(Name.Function, Text, Keyword.Type,
+                                 Operator, Text, Punctuation, Text,
+                                 Keyword.Type, Name.Class, Text,
+                                 Keyword.Type, Text, Punctuation)),
+            (bmax_var, bygroups(Name.Variable, Text, Keyword.Type, Operator,
+                                Text, Punctuation, Text, Keyword.Type,
+                                Name.Class, Text, Keyword.Type)),
+            (r'\b(Type|Extends)([ \t]+)(%s)' % (bmax_name),
+             bygroups(Keyword.Reserved, Text, Name.Class)),
             # Keywords
             (r'\b(Ptr)\b', Keyword.Type),
             (r'\b(Pi|True|False|Null|Self|Super)\b', Keyword.Constant),
             (r'\b(Local|Global|Const|Field)\b', Keyword.Declaration),
-            (r'\b(TNullMethodException|TNullFunctionException|TNullObjectException|TArrayBoundsException|TRuntimeException)\b', Name.Exception),
+            (r'\b(TNullMethodException|TNullFunctionException|'
+             r'TNullObjectException|TArrayBoundsException|'
+             r'TRuntimeException)\b', Name.Exception),
             (r'\b(Strict|SuperStrict|Module|ModuleInfo|'
              r'End|Return|Continue|Exit|Public|Private|'
              r'Var|VarPtr|Chr|Len|Asc|SizeOf|Sgn|Abs|Min|Max|'
