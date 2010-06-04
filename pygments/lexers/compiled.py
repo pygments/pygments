@@ -26,7 +26,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer',
            'ScalaLexer', 'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer',
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
            'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
-           'Modula2Lexer']
+           'Modula2Lexer', 'BlitzMaxLexer']
 
 
 class CLexer(RegexLexer):
@@ -2363,3 +2363,83 @@ class Modula2Lexer(RegexLexer):
                     token = Keyword.Pervasive
             # return result
             yield index, token, value
+
+
+class BlitzMaxLexer(RegexLexer):
+    """
+    For `BlitzMax <http://blitzbasic.com>`_ source code.
+
+    *New in Pygments 1.4.*
+    """
+
+    name = 'BlitzMax'
+    aliases = ['blitzmax', 'bmax']
+    filenames = ['*.bmx']
+    mimetypes = ['text/x-bmx']
+
+    bmax_vopwords = r'\b(Shl|Shr|Sar|Mod)\b'
+    bmax_sktypes = r'@{1,2}|[!#$%]'
+    bmax_lktypes = r'\b(Int|Byte|Short|Float|Double|Long)\b'
+    bmax_name = r'[a-z_][a-z0-9_]*'
+    bmax_var = r'(%s)(?:(?:([ \t]*)(%s)|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)|([ \t]*)([:])([ \t]*)(?:%s|(%s)))(?:([ \t]*)(Ptr))?)' % (bmax_name, bmax_sktypes, bmax_lktypes, bmax_name)
+    bmax_func = bmax_var + r'?((?:[ \t]|\.\.\n)*)([(])'
+
+    flags = re.MULTILINE | re.IGNORECASE
+    tokens = {
+        'root': [
+            # Text
+            (r'[ \t]+', Text),
+            (r'\.\.\n', Text), # Line continuation
+            # Comments
+            (r"'.*?\n", Comment.Single),
+            (r'([ \t]*)\bRem\n(\n|.)*?\s*\bEnd([ \t]*)Rem', Comment.Multiline),
+            # Data types
+            ('"', String.Double, 'string'),
+            # Numbers
+            (r'[0-9]\.[0-9]*(?!\.)', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r'\$[0-9a-f]+', Number.Hex),
+            (r'\%[10]+', Number), # Binary
+            # Other
+            (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/&|~]))|Or|And|Not|[=<>^]))' % (bmax_vopwords), Operator),
+            (r'[(),.:\[\]]', Punctuation),
+            (r'(?:#[\w \t]*)', Name.Label),
+            (r'(?:\?[\w \t]*)', Comment.Preproc),
+            # Identifiers
+            (r'\b(New)\b([ \t]?)([(]?)(%s)' % (bmax_name),
+             bygroups(Keyword.Reserved, Text, Punctuation, Name.Class)),
+            (r'\b(Import|Framework|Module)([ \t]+)(%s\.%s)' % (bmax_name, bmax_name), bygroups(Keyword.Reserved, Text, Keyword.Namespace)),
+            (bmax_func, bygroups(Name.Function, Text, Keyword.Type, Operator, Text, Punctuation, Text, Keyword.Type, Name.Class, Text, Keyword.Type, Text, Punctuation)),
+            (bmax_var, bygroups(Name.Variable, Text, Keyword.Type, Operator, Text, Punctuation, Text, Keyword.Type, Name.Class, Text, Keyword.Type)),
+            (r'\b(Type|Extends)([ \t]+)(%s)' % (bmax_name), bygroups(Keyword.Reserved, Text, Name.Class)),
+            # Keywords
+            (r'\b(Ptr)\b', Keyword.Type),
+            (r'\b(Pi|True|False|Null|Self|Super)\b', Keyword.Constant),
+            (r'\b(Local|Global|Const|Field)\b', Keyword.Declaration),
+            (r'\b(TNullMethodException|TNullFunctionException|TNullObjectException|TArrayBoundsException|TRuntimeException)\b', Name.Exception),
+            (r'\b(Strict|SuperStrict|Module|ModuleInfo|'
+             r'End|Return|Continue|Exit|Public|Private|'
+             r'Var|VarPtr|Chr|Len|Asc|SizeOf|Sgn|Abs|Min|Max|'
+             r'New|Release|Delete|'
+             r'Incbin|IncbinPtr|IncbinLen|'
+             r'Framework|Include|Import|Extern|EndExtern|'
+             r'Function|EndFunction|'
+             r'Type|EndType|Extends|'
+             r'Method|EndMethod|'
+             r'Abstract|Final|'
+             r'If|Then|Else|ElseIf|EndIf|'
+             r'For|To|Next|Step|EachIn|'
+             r'While|Wend|EndWhile|'
+             r'Repeat|Until|Forever|'
+             r'Select|Case|Default|EndSelect|'
+             r'Try|Catch|EndTry|Throw|Assert|'
+             r'Goto|DefData|ReadData|RestoreData)\b', Keyword.Reserved),
+            # Final resolve (for variable names and such)
+            (r'(%s)' % (bmax_name), Name.Variable),
+        ],
+        'string': [
+            (r'""', String.Double),
+            (r'"C?', String.Double, '#pop'),
+            (r'[^"]+', String.Double),
+        ],
+    }
