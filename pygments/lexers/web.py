@@ -23,7 +23,7 @@ from pygments.lexers.agile import RubyLexer
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
-           'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer',
+           'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer']
 
 
@@ -1556,6 +1556,51 @@ class SassLexer(ExtendedRegexLexer):
     tokens.update(copy.deepcopy(common_sass_tokens))
     tokens['value'].append((r'\n', Text, 'root'))
     tokens['selector'].append((r'\n', Text, 'root'))
+
+
+class ScssLexer(RegexLexer):
+    """
+    For SCSS stylesheets.
+    """
+
+    name = 'SCSS'
+    aliases = ['scss']
+    filenames = ['*.scss']
+    mimetypes = ['text/x-scss']
+
+    flags = re.IGNORECASE | re.DOTALL
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'@import', Keyword, 'value'),
+            (r'@for', Keyword, 'for'),
+            (r'@(debug|warn|if|while)', Keyword, 'value'),
+            (r'(@mixin)( [\w-]+)', bygroups(Keyword, Name.Function), 'value'),
+            (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
+            (r'@extend', Keyword, 'selector'),
+            (r'@[a-z0-9_-]+', Keyword, 'selector'),
+            (r'(\$[\w-]\w*)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
+            (r'(?=[^\s:"\[]+\s*:([ \t]|$))', Name.Attribute, 'attr'),
+            (r'', Text, 'selector'),
+        ],
+
+        'attr': [
+            (r'[^\s:="\[]+', Name.Attribute),
+            (r'#{', String.Interpol, 'interpolation'),
+            (r'[ \t]*:', Operator, 'value'),
+        ],
+
+        'inline-comment': [
+            (r"(\\#|#(?=[^{])|\*(?=[^/])|[^#*])+", Comment.Multiline),
+            (r'#\{', String.Interpol, 'interpolation'),
+            (r"\*/", Comment, '#pop'),
+        ],
+    }
+    tokens.update(copy.deepcopy(common_sass_tokens))
+    tokens['value'].extend([(r'\n', Text), (r'[;{}]', Punctuation, 'root')])
+    tokens['selector'].extend([(r'\n', Text), (r'[;{}]', Punctuation, 'root')])
 
 
 class CoffeeScriptLexer(RegexLexer):
