@@ -1514,7 +1514,7 @@ class SassLexer(ExtendedRegexLexer):
             (r'([!$][\w-]\w*)([ \t]*(?:(?:\|\|)?=|:))',
              bygroups(Name.Variable, Operator), 'value'),
             (r':', Name.Attribute, 'old-style-attr'),
-            (r'(?=[^\s:"\[]+\s*[=:]([ \t]|$))', Name.Attribute, 'new-style-attr'),
+            (r'(?=.+?[=:]([^a-z]|$))', Name.Attribute, 'new-style-attr'),
             (r'', Text, 'selector'),
         ],
 
@@ -1582,7 +1582,8 @@ class ScssLexer(RegexLexer):
             (r'@extend', Keyword, 'selector'),
             (r'@[a-z0-9_-]+', Keyword, 'selector'),
             (r'(\$[\w-]\w*)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
-            (r'(?=[^\s:"\[]+\s*:([ \t]|$))', Name.Attribute, 'attr'),
+            (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
+            (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
             (r'', Text, 'selector'),
         ],
 
