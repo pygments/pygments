@@ -10,6 +10,7 @@
 """
 
 import re
+import copy
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, bygroups, using, \
      include, this
@@ -1311,6 +1312,172 @@ class HamlLexer(ExtendedRegexLexer):
     }
 
 
+common_sass_tokens = {
+    'value': [
+        (r'[ \t]+', Text),
+        (r'[!$][\w-]+', Name.Variable),
+        (r'url\(', String.Other, 'string-url'),
+        (r'[a-z_-][\w-]*(?=\()', Name.Function),
+        (r'(azimuth|background-attachment|background-color|'
+         r'background-image|background-position|background-repeat|'
+         r'background|border-bottom-color|border-bottom-style|'
+         r'border-bottom-width|border-left-color|border-left-style|'
+         r'border-left-width|border-right|border-right-color|'
+         r'border-right-style|border-right-width|border-top-color|'
+         r'border-top-style|border-top-width|border-bottom|'
+         r'border-collapse|border-left|border-width|border-color|'
+         r'border-spacing|border-style|border-top|border|caption-side|'
+         r'clear|clip|color|content|counter-increment|counter-reset|'
+         r'cue-after|cue-before|cue|cursor|direction|display|'
+         r'elevation|empty-cells|float|font-family|font-size|'
+         r'font-size-adjust|font-stretch|font-style|font-variant|'
+         r'font-weight|font|height|letter-spacing|line-height|'
+         r'list-style-type|list-style-image|list-style-position|'
+         r'list-style|margin-bottom|margin-left|margin-right|'
+         r'margin-top|margin|marker-offset|marks|max-height|max-width|'
+         r'min-height|min-width|opacity|orphans|outline|outline-color|'
+         r'outline-style|outline-width|overflow|padding-bottom|'
+         r'padding-left|padding-right|padding-top|padding|page|'
+         r'page-break-after|page-break-before|page-break-inside|'
+         r'pause-after|pause-before|pause|pitch|pitch-range|'
+         r'play-during|position|quotes|richness|right|size|'
+         r'speak-header|speak-numeral|speak-punctuation|speak|'
+         r'speech-rate|stress|table-layout|text-align|text-decoration|'
+         r'text-indent|text-shadow|text-transform|top|unicode-bidi|'
+         r'vertical-align|visibility|voice-family|volume|white-space|'
+         r'widows|width|word-spacing|z-index|bottom|left|'
+         r'above|absolute|always|armenian|aural|auto|avoid|baseline|'
+         r'behind|below|bidi-override|blink|block|bold|bolder|both|'
+         r'capitalize|center-left|center-right|center|circle|'
+         r'cjk-ideographic|close-quote|collapse|condensed|continuous|'
+         r'crop|crosshair|cross|cursive|dashed|decimal-leading-zero|'
+         r'decimal|default|digits|disc|dotted|double|e-resize|embed|'
+         r'extra-condensed|extra-expanded|expanded|fantasy|far-left|'
+         r'far-right|faster|fast|fixed|georgian|groove|hebrew|help|'
+         r'hidden|hide|higher|high|hiragana-iroha|hiragana|icon|'
+         r'inherit|inline-table|inline|inset|inside|invert|italic|'
+         r'justify|katakana-iroha|katakana|landscape|larger|large|'
+         r'left-side|leftwards|level|lighter|line-through|list-item|'
+         r'loud|lower-alpha|lower-greek|lower-roman|lowercase|ltr|'
+         r'lower|low|medium|message-box|middle|mix|monospace|'
+         r'n-resize|narrower|ne-resize|no-close-quote|no-open-quote|'
+         r'no-repeat|none|normal|nowrap|nw-resize|oblique|once|'
+         r'open-quote|outset|outside|overline|pointer|portrait|px|'
+         r'relative|repeat-x|repeat-y|repeat|rgb|ridge|right-side|'
+         r'rightwards|s-resize|sans-serif|scroll|se-resize|'
+         r'semi-condensed|semi-expanded|separate|serif|show|silent|'
+         r'slow|slower|small-caps|small-caption|smaller|soft|solid|'
+         r'spell-out|square|static|status-bar|super|sw-resize|'
+         r'table-caption|table-cell|table-column|table-column-group|'
+         r'table-footer-group|table-header-group|table-row|'
+         r'table-row-group|text|text-bottom|text-top|thick|thin|'
+         r'transparent|ultra-condensed|ultra-expanded|underline|'
+         r'upper-alpha|upper-latin|upper-roman|uppercase|url|'
+         r'visible|w-resize|wait|wider|x-fast|x-high|x-large|x-loud|'
+         r'x-low|x-small|x-soft|xx-large|xx-small|yes)\b', Name.Constant),
+        (r'(indigo|gold|firebrick|indianred|darkolivegreen|'
+         r'darkseagreen|mediumvioletred|mediumorchid|chartreuse|'
+         r'mediumslateblue|springgreen|crimson|lightsalmon|brown|'
+         r'turquoise|olivedrab|cyan|skyblue|darkturquoise|'
+         r'goldenrod|darkgreen|darkviolet|darkgray|lightpink|'
+         r'darkmagenta|lightgoldenrodyellow|lavender|yellowgreen|thistle|'
+         r'violet|orchid|ghostwhite|honeydew|cornflowerblue|'
+         r'darkblue|darkkhaki|mediumpurple|cornsilk|bisque|slategray|'
+         r'darkcyan|khaki|wheat|deepskyblue|darkred|steelblue|aliceblue|'
+         r'gainsboro|mediumturquoise|floralwhite|coral|lightgrey|'
+         r'lightcyan|darksalmon|beige|azure|lightsteelblue|oldlace|'
+         r'greenyellow|royalblue|lightseagreen|mistyrose|sienna|'
+         r'lightcoral|orangered|navajowhite|palegreen|burlywood|'
+         r'seashell|mediumspringgreen|papayawhip|blanchedalmond|'
+         r'peru|aquamarine|darkslategray|ivory|dodgerblue|'
+         r'lemonchiffon|chocolate|orange|forestgreen|slateblue|'
+         r'mintcream|antiquewhite|darkorange|cadetblue|moccasin|'
+         r'limegreen|saddlebrown|darkslateblue|lightskyblue|deeppink|'
+         r'plum|darkgoldenrod|sandybrown|magenta|tan|'
+         r'rosybrown|pink|lightblue|palevioletred|mediumseagreen|'
+         r'dimgray|powderblue|seagreen|snow|mediumblue|midnightblue|'
+         r'paleturquoise|palegoldenrod|whitesmoke|darkorchid|salmon|'
+         r'lightslategray|lawngreen|lightgreen|tomato|hotpink|'
+         r'lightyellow|lavenderblush|linen|mediumaquamarine|'
+         r'blueviolet|peachpuff)\b', Name.Entity),
+        (r'(black|silver|gray|white|maroon|red|purple|fuchsia|green|'
+         r'lime|olive|yellow|navy|blue|teal|aqua)\b', Name.Builtin),
+        (r'\!(important|default)', Name.Exception),
+        (r'(true|false)', Name.Pseudo),
+        (r'(and|or|not)', Operator.Word),
+        (r'/\*', Comment.Multiline, 'inline-comment'),
+        (r'//[^\n]*', Comment.Single),
+        (r'\#[a-z0-9]{1,6}', Number.Hex),
+        (r'(-?\d+)(\%|[a-z]+)?', bygroups(Number.Integer, Keyword.Type)),
+        (r'(-?\d*\.\d+)(\%|[a-z]+)?', bygroups(Number.Float, Keyword.Type)),
+        (r'#{', String.Interpol, 'interpolation'),
+        (r'[~\^\*!&%<>\|+=@:,./?-]+', Operator),
+        (r'[\[\]()]+', Punctuation),
+        (r'"', String.Double, 'string-double'),
+        (r"'", String.Single, 'string-single'),
+        (r'[a-z_-][\w-]*', Name),
+    ],
+
+    'interpolation': [
+        (r'\}', String.Interpol, '#pop'),
+        include('value'),
+    ],
+
+    'selector': [
+        (r'[ \t]+', Text),
+        (r'\:', Name.Decorator, 'pseudo-class'),
+        (r'\.', Name.Class, 'class'),
+        (r'\#', Name.Namespace, 'id'),
+        (r'[a-zA-Z0-9_-]+', Name.Tag),
+        (r'#\{', String.Interpol, 'interpolation'),
+        (r'&', Keyword),
+        (r'[~\^\*!&\[\]\(\)<>\|+=@:;,./?-]', Operator),
+        (r'"', String.Double, 'string-double'),
+        (r"'", String.Single, 'string-single'),
+    ],
+
+    'string-double': [
+        (r'(\\.|#(?=[^\n{])|[^\n"#])+', String.Double),
+        (r'#\{', String.Interpol, 'interpolation'),
+        (r'"', String.Double, '#pop'),
+    ],
+
+    'string-single': [
+        (r"(\\.|#(?=[^\n{])|[^\n'#])+", String.Double),
+        (r'#\{', String.Interpol, 'interpolation'),
+        (r"'", String.Double, '#pop'),
+    ],
+
+    'string-url': [
+        (r'(\\#|#(?=[^\n{])|[^\n#)])+', String.Other),
+        (r'#\{', String.Interpol, 'interpolation'),
+        (r'\)', String.Other, '#pop'),
+    ],
+
+    'pseudo-class': [
+        (r'[\w-]+', Name.Decorator),
+        (r'#\{', String.Interpol, 'interpolation'),
+        (r'', Text, '#pop'),
+    ],
+
+    'class': [
+        (r'[\w-]+', Name.Class),
+        (r'#\{', String.Interpol, 'interpolation'),
+        (r'', Text, '#pop'),
+    ],
+
+    'id': [
+        (r'[\w-]+', Name.Namespace),
+        (r'#\{', String.Interpol, 'interpolation'),
+        (r'', Text, '#pop'),
+    ],
+
+    'for': [
+        (r'(from|to|through)', Operator.Word),
+        include('value'),
+    ],
+}
+
 class SassLexer(ExtendedRegexLexer):
     """
     For Sass stylesheets.
@@ -1367,11 +1534,6 @@ class SassLexer(ExtendedRegexLexer):
             (r'\n', Text, 'root'),
         ],
 
-        'for': [
-            (r'(from|to|through)', Operator.Word),
-            include('value'),
-        ],
-
         'old-style-attr': [
             (r'[^\s:="\[]+', Name.Attribute),
             (r'#{', String.Interpol, 'interpolation'),
@@ -1385,173 +1547,15 @@ class SassLexer(ExtendedRegexLexer):
             (r'[ \t]*[=:]', Operator, 'value'),
         ],
 
-        'value': [
-            (r'[ \t]+', Text),
-            (r'[!$][\w-]+', Name.Variable),
-            (r'url\(', String.Other, 'string-url'),
-            (r'[a-z_-][\w-]*(?=\()', Name.Function),
-            (r'(azimuth|background-attachment|background-color|'
-             r'background-image|background-position|background-repeat|'
-             r'background|border-bottom-color|border-bottom-style|'
-             r'border-bottom-width|border-left-color|border-left-style|'
-             r'border-left-width|border-right|border-right-color|'
-             r'border-right-style|border-right-width|border-top-color|'
-             r'border-top-style|border-top-width|border-bottom|'
-             r'border-collapse|border-left|border-width|border-color|'
-             r'border-spacing|border-style|border-top|border|caption-side|'
-             r'clear|clip|color|content|counter-increment|counter-reset|'
-             r'cue-after|cue-before|cue|cursor|direction|display|'
-             r'elevation|empty-cells|float|font-family|font-size|'
-             r'font-size-adjust|font-stretch|font-style|font-variant|'
-             r'font-weight|font|height|letter-spacing|line-height|'
-             r'list-style-type|list-style-image|list-style-position|'
-             r'list-style|margin-bottom|margin-left|margin-right|'
-             r'margin-top|margin|marker-offset|marks|max-height|max-width|'
-             r'min-height|min-width|opacity|orphans|outline|outline-color|'
-             r'outline-style|outline-width|overflow|padding-bottom|'
-             r'padding-left|padding-right|padding-top|padding|page|'
-             r'page-break-after|page-break-before|page-break-inside|'
-             r'pause-after|pause-before|pause|pitch|pitch-range|'
-             r'play-during|position|quotes|richness|right|size|'
-             r'speak-header|speak-numeral|speak-punctuation|speak|'
-             r'speech-rate|stress|table-layout|text-align|text-decoration|'
-             r'text-indent|text-shadow|text-transform|top|unicode-bidi|'
-             r'vertical-align|visibility|voice-family|volume|white-space|'
-             r'widows|width|word-spacing|z-index|bottom|left|'
-             r'above|absolute|always|armenian|aural|auto|avoid|baseline|'
-             r'behind|below|bidi-override|blink|block|bold|bolder|both|'
-             r'capitalize|center-left|center-right|center|circle|'
-             r'cjk-ideographic|close-quote|collapse|condensed|continuous|'
-             r'crop|crosshair|cross|cursive|dashed|decimal-leading-zero|'
-             r'decimal|default|digits|disc|dotted|double|e-resize|embed|'
-             r'extra-condensed|extra-expanded|expanded|fantasy|far-left|'
-             r'far-right|faster|fast|fixed|georgian|groove|hebrew|help|'
-             r'hidden|hide|higher|high|hiragana-iroha|hiragana|icon|'
-             r'inherit|inline-table|inline|inset|inside|invert|italic|'
-             r'justify|katakana-iroha|katakana|landscape|larger|large|'
-             r'left-side|leftwards|level|lighter|line-through|list-item|'
-             r'loud|lower-alpha|lower-greek|lower-roman|lowercase|ltr|'
-             r'lower|low|medium|message-box|middle|mix|monospace|'
-             r'n-resize|narrower|ne-resize|no-close-quote|no-open-quote|'
-             r'no-repeat|none|normal|nowrap|nw-resize|oblique|once|'
-             r'open-quote|outset|outside|overline|pointer|portrait|px|'
-             r'relative|repeat-x|repeat-y|repeat|rgb|ridge|right-side|'
-             r'rightwards|s-resize|sans-serif|scroll|se-resize|'
-             r'semi-condensed|semi-expanded|separate|serif|show|silent|'
-             r'slow|slower|small-caps|small-caption|smaller|soft|solid|'
-             r'spell-out|square|static|status-bar|super|sw-resize|'
-             r'table-caption|table-cell|table-column|table-column-group|'
-             r'table-footer-group|table-header-group|table-row|'
-             r'table-row-group|text|text-bottom|text-top|thick|thin|'
-             r'transparent|ultra-condensed|ultra-expanded|underline|'
-             r'upper-alpha|upper-latin|upper-roman|uppercase|url|'
-             r'visible|w-resize|wait|wider|x-fast|x-high|x-large|x-loud|'
-             r'x-low|x-small|x-soft|xx-large|xx-small|yes)\b', Name.Constant),
-            (r'(indigo|gold|firebrick|indianred|darkolivegreen|'
-             r'darkseagreen|mediumvioletred|mediumorchid|chartreuse|'
-             r'mediumslateblue|springgreen|crimson|lightsalmon|brown|'
-             r'turquoise|olivedrab|cyan|skyblue|darkturquoise|'
-             r'goldenrod|darkgreen|darkviolet|darkgray|lightpink|'
-             r'darkmagenta|lightgoldenrodyellow|lavender|yellowgreen|thistle|'
-             r'violet|orchid|ghostwhite|honeydew|cornflowerblue|'
-             r'darkblue|darkkhaki|mediumpurple|cornsilk|bisque|slategray|'
-             r'darkcyan|khaki|wheat|deepskyblue|darkred|steelblue|aliceblue|'
-             r'gainsboro|mediumturquoise|floralwhite|coral|lightgrey|'
-             r'lightcyan|darksalmon|beige|azure|lightsteelblue|oldlace|'
-             r'greenyellow|royalblue|lightseagreen|mistyrose|sienna|'
-             r'lightcoral|orangered|navajowhite|palegreen|burlywood|'
-             r'seashell|mediumspringgreen|papayawhip|blanchedalmond|'
-             r'peru|aquamarine|darkslategray|ivory|dodgerblue|'
-             r'lemonchiffon|chocolate|orange|forestgreen|slateblue|'
-             r'mintcream|antiquewhite|darkorange|cadetblue|moccasin|'
-             r'limegreen|saddlebrown|darkslateblue|lightskyblue|deeppink|'
-             r'plum|darkgoldenrod|sandybrown|magenta|tan|'
-             r'rosybrown|pink|lightblue|palevioletred|mediumseagreen|'
-             r'dimgray|powderblue|seagreen|snow|mediumblue|midnightblue|'
-             r'paleturquoise|palegoldenrod|whitesmoke|darkorchid|salmon|'
-             r'lightslategray|lawngreen|lightgreen|tomato|hotpink|'
-             r'lightyellow|lavenderblush|linen|mediumaquamarine|'
-             r'blueviolet|peachpuff)\b', Name.Entity),
-            (r'(black|silver|gray|white|maroon|red|purple|fuchsia|green|'
-             r'lime|olive|yellow|navy|blue|teal|aqua)\b', Name.Builtin),
-            (r'\!(important|default)', Name.Exception),
-            (r'(true|false)', Name.Pseudo),
-            (r'(and|or|not)', Operator.Word),
-            (r'/\*', Comment.Multiline, 'inline-comment'),
-            (r'//[^\n]*', Comment.Single),
-            (r'\#[a-z0-9]{1,6}', Number.Hex),
-            (r'(-?\d+)(\%|[a-z]+)?', bygroups(Number.Integer, Keyword.Type)),
-            (r'(-?\d*\.\d+)(\%|[a-z]+)?', bygroups(Number.Float, Keyword.Type)),
-            (r'#{', String.Interpol, 'interpolation'),
-            (r'[~\^\*!&%<>\|+=@:,./?-]+', Operator),
-            (r'[\[\]();]+', Punctuation),
-            (r'"', String.Double, 'string-double'),
-            (r"'", String.Single, 'string-single'),
-            (r'[a-z_-][\w-]*', Name),
-            (r'\n', Text, 'root'),
-        ],
-
-        'interpolation': [
-            (r'\}', String.Interpol, '#pop'),
-            include('value'),
-        ],
-
-        'selector': [
-            (r'[ \t]+', Text),
-            (r'\:', Name.Decorator, 'pseudo-class'),
-            (r'\.', Name.Class, 'class'),
-            (r'\#', Name.Namespace, 'id'),
-            (r'[a-zA-Z0-9_-]+', Name.Tag),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r'&', Keyword),
-            (r'[~\^\*!&\[\]\(\)<>\|+=@:;,./?-]', Operator),
-            (r'"', String.Double, 'string-double'),
-            (r"'", String.Single, 'string-single'),
-            (r'\n', Text, 'root'),
-        ],
-
-        'string-double': [
-            (r'(\\.|#(?=[^\n{])|[^\n"#])+', String.Double),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r'"', String.Double, '#pop'),
-        ],
-
-        'string-single': [
-            (r"(\\.|#(?=[^\n{])|[^\n'#])+", String.Double),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r"'", String.Double, '#pop'),
-        ],
-
-        'string-url': [
-            (r'(\\#|#(?=[^\n{])|[^\n#)])+', String.Other),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r'\)', String.Other, '#pop'),
-        ],
-
         'inline-comment': [
             (r"(\\#|#(?=[^\n{])|\*(?=[^\n/])|[^\n#*])+", Comment.Multiline),
             (r'#\{', String.Interpol, 'interpolation'),
             (r"\*/", Comment, '#pop'),
         ],
-
-        'pseudo-class': [
-            (r'[\w-]+', Name.Decorator),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r'', Text, '#pop'),
-        ],
-
-        'class': [
-            (r'[\w-]+', Name.Class),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r'', Text, '#pop'),
-        ],
-
-        'id': [
-            (r'[\w-]+', Name.Namespace),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r'', Text, '#pop'),
-        ],
     }
+    tokens.update(copy.deepcopy(common_sass_tokens))
+    tokens['value'].append((r'\n', Text, 'root'))
+    tokens['selector'].append((r'\n', Text, 'root'))
 
 
 class CoffeeScriptLexer(RegexLexer):
