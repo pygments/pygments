@@ -19,7 +19,7 @@ from pygments.token import Punctuation, Text, Comment, Keyword, Name, String, \
 from pygments.util import get_bool_opt
 from pygments.lexers.other import BashLexer
 
-__all__ = ['IniLexer', 'SourcesListLexer', 'BaseMakefileLexer',
+__all__ = ['IniLexer', 'PropertiesLexer', 'SourcesListLexer', 'BaseMakefileLexer',
            'MakefileLexer', 'DiffLexer', 'IrcLogsLexer', 'TexLexer',
            'GroffLexer', 'ApacheConfLexer', 'BBCodeLexer', 'MoinWikiLexer',
            'RstLexer', 'VimLexer', 'GettextLexer', 'SquidConfLexer',
@@ -34,7 +34,7 @@ class IniLexer(RegexLexer):
 
     name = 'INI'
     aliases = ['ini', 'cfg']
-    filenames = ['*.ini', '*.cfg', '*.properties']
+    filenames = ['*.ini', '*.cfg']
     mimetypes = ['text/x-ini']
 
     tokens = {
@@ -52,6 +52,28 @@ class IniLexer(RegexLexer):
         if npos < 3:
             return False
         return text[0] == '[' and text[npos-1] == ']'
+
+class PropertiesLexer(RegexLexer):
+    """
+    Lexer for configuration files in Java's properties format.
+
+    *New in Pygments 1.4*
+    """
+
+    name = 'Properties'
+    aliases = ['properties']
+    filenames = ['*.properties']
+    mimetypes = ['text/x-java-properties']
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'(?:[;#]|//).*$', Comment),
+            (r'(.*?)([ \t]*)([=:])([ \t]*)(.*(?:(?<=\\)\n.*)*)',
+             bygroups(Name.Attribute, Text, Operator, Text, String)),
+        ],
+    }
+
 
 
 class SourcesListLexer(RegexLexer):
