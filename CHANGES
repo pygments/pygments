@@ -10,7 +10,7 @@ Version 1.4
 - With the ``noclasses`` option in the HTML formatter, some styles
   present in the stylesheet were not added as inline styles.
 
-- Three fixes to the Lua lexer (#480, #481, #482).
+- Three fixes to the Lua lexer (#480, #481, #482, #497).
 
 - More context-sensitive Gherkin lexer with support for more i18n translations.
 
@@ -24,11 +24,15 @@ Version 1.4
 
 - Support ``application/javascript`` as a JavaScript mime type (#504)
 
+- Support `Offload <http://offload.codeplay.com>`_ C++ Extensions as
+  keywords in the C++ lexer (#484)
+
 - Lexers added:
 
   * BlitzMax Basic
   * Ioke
   * Verilog
+  * Java properties (split out of the ini lexer)
 
 
 
