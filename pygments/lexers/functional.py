@@ -688,7 +688,7 @@ class ErlangLexer(RegexLexer):
             (r'[+-]?'+base_re+r'#[0-9a-zA-Z]+', Number.Integer),
             (r'[+-]?\d+', Number.Integer),
             (r'[+-]?\d+.\d+', Number.Float),
-            (r'[][:_@\".{}()|;,]', Punctuation),
+            (r'[]\[:_@\".{}()|;,]', Punctuation),
             (variable_re, Name.Variable),
             (atom_re, Name),
             (r'\?'+macro_re, Name.Constant),
