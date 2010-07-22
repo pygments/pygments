@@ -830,7 +830,7 @@ class GettextLexer(RegexLexer):
             (r'^#:\s.*?$', Keyword.Declaration),
             #(r'^#$', Comment),
             (r'^(#|#\.\s|#\|\s|#~\s|#\s).*$', Comment.Single),
-            (r'^(")([\w-]*:)(.*")$',
+            (r'^(")([A-Za-z-]+:)(.*")$',
              bygroups(String, Name.Property, String)),
             (r'^".*"$', String),
             (r'^(msgid|msgid_plural|msgstr)(\s+)(".*")$',
