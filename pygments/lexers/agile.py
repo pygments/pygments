@@ -837,7 +837,7 @@ class PerlLexer(RegexLexer):
             (r'^=[a-zA-Z0-9]+\s+.*?\n=cut', Comment.Multiline),
             (r'(case|continue|do|else|elsif|for|foreach|if|last|my|'
              r'next|our|redo|reset|then|unless|until|while|use|'
-             r'print|new|BEGIN|END|return)\b', Keyword),
+             r'print|new|BEGIN|CHECK|INIT|END|return)\b', Keyword),
             (r'(format)(\s+)([a-zA-Z0-9_]+)(\s*)(=)(\s*\n)',
              bygroups(Keyword, Text, Name, Text, Punctuation, Text), 'format'),
             (r'(eq|lt|gt|le|ge|ne|not|and|or|cmp)\b', Operator.Word),
