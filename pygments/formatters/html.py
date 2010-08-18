@@ -21,14 +21,17 @@ from pygments.util import get_bool_opt, get_int_opt, get_list_opt, bytes
 __all__ = ['HtmlFormatter']
 
 
-def escape_html(text):
-    """Escape &, <, > as well as single and double quotes for HTML."""
-    return text.replace('&', '&amp;').  \
-                replace('<', '&lt;').   \
-                replace('>', '&gt;').   \
-                replace('"', '&quot;'). \
-                replace("'", '&#39;')
+_escape_html_table = {
+    ord('&'): u'&amp;',
+    ord('<'): u'&lt;',
+    ord('>'): u'&gt;',
+    ord('"'): u'&quot;',
+    ord("'"): u'&#39;',
+}
 
+def escape_html(text, table=_escape_html_table):
+    """Escape &, <, > as well as single and double quotes for HTML."""
+    return text.translate(table)
 
 def get_random_id():
     """Return a random id for javascript fields."""
@@ -371,14 +374,11 @@ class HtmlFormatter(Formatter):
             except ValueError:
                 pass
 
-        self._class_cache = {}
         self._create_stylesheet()
 
     def _get_css_class(self, ttype):
         """Return the css class of this token type prefixed with
         the classprefix option."""
-        if ttype in self._class_cache:
-            return self._class_cache[ttype]
         return self.classprefix + _get_ttype_class(ttype)
 
     def _create_stylesheet(self):
@@ -640,6 +640,7 @@ class HtmlFormatter(Formatter):
         # for <span style=""> lookup only
         getcls = self.ttype2class.get
         c2s = self.class2style
+        escape_table = _escape_html_table
 
         lspan = ''
         line = ''
@@ -654,7 +655,7 @@ class HtmlFormatter(Formatter):
                 cls = self._get_css_class(ttype)
                 cspan = cls and '<span class="%s">' % cls or ''
 
-            parts = escape_html(value).split('\n')
+            parts = value.translate(escape_table).split('\n')
 
             # for all but the last line
             for part in parts[:-1]:
