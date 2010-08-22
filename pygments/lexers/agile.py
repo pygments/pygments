@@ -624,7 +624,7 @@ class RubyLexer(ExtendedRegexLexer):
              r'putc|puts|raise|rand|readline|readlines|require|'
              r'scan|select|self|send|set_trace_func|singleton_methods|sleep|'
              r'split|sprintf|srand|sub|syscall|system|taint|'
-             r'test|throw|to_a|to_s|trace_var|trap|type|untaint|untrace_var|'
+             r'test|throw|to_a|to_s|trace_var|trap|untaint|untrace_var|'
              r'warn)\b', Name.Builtin),
             (r'__(FILE|LINE)__\b', Name.Builtin.Pseudo),
             # normal heredocs
