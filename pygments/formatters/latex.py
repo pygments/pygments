@@ -140,12 +140,12 @@ class LatexFormatter(Formatter):
 
     .. sourcecode:: latex
 
-        \begin{Verbatim}[commandchars=@\[\]]
-        @PY[k][def ]@PY[n+nf][foo](@PY[n][bar]):
-            @PY[k][pass]
+        \begin{Verbatim}[commandchars=\\{\}]
+        \PY{k}{def }\PY{n+nf}{foo}(\PY{n}{bar}):
+            \PY{k}{pass}
         \end{Verbatim}
 
-    The special command used here (``@PY``) and all the other macros it needs
+    The special command used here (``\PY``) and all the other macros it needs
     are output by the `get_style_defs` method.
 
     With the `full` option, a complete LaTeX document is output, including
