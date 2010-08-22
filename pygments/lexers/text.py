@@ -1546,7 +1546,7 @@ class CMakeLexer(RegexLexer):
     """
     name = 'CMake'
     aliases = ['cmake']
-    filenames = ['*.cmake']
+    filenames = ['*.cmake', 'CMakeLists.txt']
     mimetypes = ['text/x-cmake']
 
     tokens = {
