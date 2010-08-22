@@ -1554,7 +1554,8 @@ class SassLexer(ExtendedRegexLexer):
             (r"\*/", Comment, '#pop'),
         ],
     }
-    tokens.update(copy.deepcopy(common_sass_tokens))
+    for group, common in common_sass_tokens.iteritems():
+        tokens[group] = copy.copy(common)
     tokens['value'].append((r'\n', Text, 'root'))
     tokens['selector'].append((r'\n', Text, 'root'))
 
@@ -1600,7 +1601,8 @@ class ScssLexer(RegexLexer):
             (r"\*/", Comment, '#pop'),
         ],
     }
-    tokens.update(copy.deepcopy(common_sass_tokens))
+    for group, common in common_sass_tokens.iteritems():
+        tokens[group] = copy.copy(common)
     tokens['value'].extend([(r'\n', Text), (r'[;{}]', Punctuation, 'root')])
     tokens['selector'].extend([(r'\n', Text), (r'[;{}]', Punctuation, 'root')])
 
