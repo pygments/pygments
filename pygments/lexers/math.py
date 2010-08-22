@@ -154,9 +154,9 @@ class MatlabLexer(RegexLexer):
             (r'^\s*function', Keyword, 'deffunc'),
 
             # from 'iskeyword' on version 7.4.0.336 (R2007a):
-            (r'(break|case|catch|classdef|continue|else|elseif|end|for|function|'
-             r'global|if|otherwise|parfor|persistent|return|switch|try|while)\b',
-             Keyword),
+            (r'(break|case|catch|classdef|continue|else|elseif|end|enumerated|'
+             r'events|for|function|global|if|methods|otherwise|parfor|'
+             r'persistent|properties|return|switch|try|while)\b', Keyword),
 
             ("(" + "|".join(elfun+specfun+elmat) + r')\b',  Name.Builtin),
 
