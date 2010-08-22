@@ -765,7 +765,7 @@ class PhpLexer(RegexLexer):
         'string': [
             (r'"', String.Double, '#pop'),
             (r'[^{$"\\]+', String.Double),
-            (r'\\([nrt\"$]|[0-7]{1,3}|x[0-9A-Fa-f]{1,2})', String.Escape),
+            (r'\\([nrt\"$\\]|[0-7]{1,3}|x[0-9A-Fa-f]{1,2})', String.Escape),
             (r'\$[a-zA-Z_][a-zA-Z0-9_]*(\[\S+\]|->[a-zA-Z_][a-zA-Z0-9_]*)?',
              String.Interpol),
             (r'(\{\$\{)(.*?)(\}\})',
