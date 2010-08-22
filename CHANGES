@@ -7,33 +7,39 @@ Version 1.4
 -----------
 (in development)
 
-- With the ``noclasses`` option in the HTML formatter, some styles
-  present in the stylesheet were not added as inline styles.
-
-- Three fixes to the Lua lexer (#480, #481, #482, #497).
-
-- More context-sensitive Gherkin lexer with support for more i18n translations.
-
-- A bugfix for backslashes in ocaml strings (#499)
-
-- Fix unicode/raw docstrings in the Python lexer (#489)
-
-- Allow PIL to work without PIL.pth (#502)
-
-- Allow seconds as a unit in css (#496)
-
-- Support ``application/javascript`` as a JavaScript mime type (#504)
-
-- Support `Offload <http://offload.codeplay.com>`_ C++ Extensions as
-  keywords in the C++ lexer (#484)
-
 - Lexers added:
 
   * BlitzMax Basic
   * Ioke
   * Verilog
   * Java properties (split out of the ini lexer)
+  * Factor (#520)
 
+- Performance improvements in the HTML formatter (#523).
+
+- With the ``noclasses`` option in the HTML formatter, some styles
+  present in the stylesheet were not added as inline styles.
+
+- Four fixes to the Lua lexer (#480, #481, #482, #497).
+
+- More context-sensitive Gherkin lexer with support for more i18n translations.
+
+- Support new OO keywords in Matlab lexer (#521).
+
+- Small fix in the CoffeeScript lexer (#519).
+
+- A bugfix for backslashes in ocaml strings (#499).
+
+- Fix unicode/raw docstrings in the Python lexer (#489).
+
+- Allow PIL to work without PIL.pth (#502).
+
+- Allow seconds as a unit in css (#496).
+
+- Support ``application/javascript`` as a JavaScript mime type (#504).
+
+- Support `Offload <http://offload.codeplay.com>`_ C++ Extensions as
+  keywords in the C++ lexer (#484).
 
 
 Version 1.3.1
