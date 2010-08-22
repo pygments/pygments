@@ -1599,14 +1599,14 @@ class CoffeeScriptLexer(RegexLexer):
             (r'[})\].]', Punctuation),
             (r'(for|in|of|while|break|return|continue|switch|when|then|if|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|super|'
-             r'extends|this)\b', Keyword, 'slashstartsregex'),
+             r'extends|this|class|by)\b', Keyword, 'slashstartsregex'),
             (r'(true|false|yes|no|on|off|null|NaN|Infinity|undefined)\b',
              Keyword.Constant),
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
              r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
-             r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
-             r'window)\b', Name.Builtin),
+             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window)\b',
+             Name.Builtin),
             (r'[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*:\s', Name.Variable,
               'slashstartsregex'),
             (r'@[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*:\s', Name.Variable.Instance,
