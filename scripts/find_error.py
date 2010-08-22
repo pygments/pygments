@@ -133,7 +133,7 @@ def main(fn, lexer=None):
             print
             print
             return 1
-        tokens.append((type,val))
+        tokens.append((type, val))
         if debug_lexer:
             if hasattr(lx, 'statestack'):
                 states.append(lx.statestack[:])
