@@ -2381,7 +2381,7 @@ class PostScriptLexer(RegexLexer):
              'fill|findfont|floor|get|getinterval|grestore|gsave|gt|'
              'identmatrix|idiv|idtransform|index|invertmatrix|itransform|'
              'length|lineto|ln|load|log|loop|matrix|mod|moveto|mul|neg|newpath|'
-             'pathforall|pathbbox||pop|print|pstack|put|quit|rand|rangecheck|'
+             'pathforall|pathbbox|pop|print|pstack|put|quit|rand|rangecheck|'
              'rcurveto|repeat|restore|rlineto|rmoveto|roll|rotate|round|run|'
              'save|scale|scalefont|setdash|setfont|setgray|setlinecap|'
              'setlinejoin|setlinewidth|setmatrix|setrgbcolor|shfill|show|'
