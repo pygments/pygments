@@ -28,7 +28,8 @@ def escape_tex(text, commandprefix):
                 replace('_', r'\%sZus{}' % commandprefix). \
                 replace('#', r'\%sZsh{}' % commandprefix). \
                 replace('%', r'\%sZpc{}' % commandprefix). \
-                replace('$', r'\%sZdl{}' % commandprefix)
+                replace('$', r'\%sZdl{}' % commandprefix). \
+                replace('~', r'\%sZti{}' % commandprefix)
 
 
 DOC_TEMPLATE = r'''
@@ -108,6 +109,7 @@ STYLE_TEMPLATE = r'''
 \def\%(cp)sZsh{\char`\#}
 \def\%(cp)sZpc{\char`\%%}
 \def\%(cp)sZdl{\char`\$}
+\def\%(cp)sZti{\char`\~}
 %% for compatibility with earlier versions
 \def\%(cp)sZat{@}
 \def\%(cp)sZlb{[}
