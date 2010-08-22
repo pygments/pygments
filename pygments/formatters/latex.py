@@ -21,13 +21,14 @@ def escape_tex(text, commandprefix):
     return text.replace('\\', '\x00'). \
                 replace('{', '\x01'). \
                 replace('}', '\x02'). \
-                replace('^', '\x03'). \
-                replace('_', '\x04'). \
                 replace('\x00', r'\%sZbs{}' % commandprefix). \
                 replace('\x01', r'\%sZob{}' % commandprefix). \
                 replace('\x02', r'\%sZcb{}' % commandprefix). \
-                replace('\x03', r'\%sZca{}' % commandprefix). \
-                replace('\x04', r'\%sZus{}' % commandprefix)
+                replace('^', r'\%sZca{}' % commandprefix). \
+                replace('_', r'\%sZus{}' % commandprefix). \
+                replace('#', r'\%sZsh{}' % commandprefix). \
+                replace('%', r'\%sZpc{}' % commandprefix). \
+                replace('$', r'\%sZdl{}' % commandprefix)
 
 
 DOC_TEMPLATE = r'''
@@ -81,6 +82,9 @@ DOC_TEMPLATE = r'''
 # * \PY@tok@classname sets the \PY@it etc. to reflect the chosen style
 #   for its class.
 # * \PY resets the style, parses the classnames and then calls \PY@do.
+#
+# Tip: to read this code, print it out in substituted form using e.g.
+# >>> print STYLE_TEMPLATE % {'cp': 'PY'}
 
 STYLE_TEMPLATE = r'''
 \makeatletter
@@ -101,6 +105,9 @@ STYLE_TEMPLATE = r'''
 \def\%(cp)sZob{\char`\{}
 \def\%(cp)sZcb{\char`\}}
 \def\%(cp)sZca{\char`\^}
+\def\%(cp)sZsh{\char`\#}
+\def\%(cp)sZpc{\char`\%%}
+\def\%(cp)sZdl{\char`\$}
 %% for compatibility with earlier versions
 \def\%(cp)sZat{@}
 \def\%(cp)sZlb{[}
