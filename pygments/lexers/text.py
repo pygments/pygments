@@ -53,11 +53,12 @@ class IniLexer(RegexLexer):
             return False
         return text[0] == '[' and text[npos-1] == ']'
 
+
 class PropertiesLexer(RegexLexer):
     """
     Lexer for configuration files in Java's properties format.
 
-    *New in Pygments 1.4*
+    *New in Pygments 1.4.*
     """
 
     name = 'Properties'
@@ -73,7 +74,6 @@ class PropertiesLexer(RegexLexer):
              bygroups(Name.Attribute, Text, Operator, Text, String)),
         ],
     }
-
 
 
 class SourcesListLexer(RegexLexer):
@@ -852,7 +852,7 @@ class GettextLexer(RegexLexer):
             (r'^#:\s.*?$', Keyword.Declaration),
             #(r'^#$', Comment),
             (r'^(#|#\.\s|#\|\s|#~\s|#\s).*$', Comment.Single),
-            (r'^(")([\w-]*:)(.*")$',
+            (r'^(")([A-Za-z-]+:)(.*")$',
              bygroups(String, Name.Property, String)),
             (r'^".*"$', String),
             (r'^(msgid|msgid_plural|msgstr)(\s+)(".*")$',

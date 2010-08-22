@@ -22,7 +22,7 @@ from pygments import unistring as uni
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
            'MiniDLexer', 'IoLexer', 'TclLexer', 'ClojureLexer',
-           'Python3Lexer', 'Python3TracebackLexer', 'IokeLexer']
+           'Python3Lexer', 'Python3TracebackLexer', 'FactorLexer', 'IokeLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -838,7 +838,7 @@ class PerlLexer(RegexLexer):
             (r'^=[a-zA-Z0-9]+\s+.*?\n=cut', Comment.Multiline),
             (r'(case|continue|do|else|elsif|for|foreach|if|last|my|'
              r'next|our|redo|reset|then|unless|until|while|use|'
-             r'print|new|BEGIN|END|return)\b', Keyword),
+             r'print|new|BEGIN|CHECK|INIT|END|return)\b', Keyword),
             (r'(format)(\s+)([a-zA-Z0-9_]+)(\s*)(=)(\s*\n)',
              bygroups(Keyword, Text, Name, Text, Punctuation, Text), 'format'),
             (r'(eq|lt|gt|le|ge|ne|not|and|or|cmp)\b', Operator.Word),
@@ -894,7 +894,10 @@ class PerlLexer(RegexLexer):
             (r'0_?[0-7]+(_[0-7]+)*', Number.Oct),
             (r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex),
             (r'0b[01]+(_[01]+)*', Number.Bin),
-            (r'\d+', Number.Integer),
+            (r'(?i)(\d*(_\d*)*\.\d+(_\d*)*|\d+(_\d*)*\.\d+(_\d*)*)(e[+-]?\d+)?',
+             Number.Float),
+            (r'(?i)\d+(_\d*)*e[+-]?\d+(_\d*)*', Number.Float),
+            (r'\d+(_\d+)*', Number.Integer),
             (r"'(\\\\|\\'|[^'])*'", String),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r'`(\\\\|\\`|[^`])*`', String.Backtick),
@@ -975,7 +978,7 @@ class PerlLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if shebang_matches(text, r'perl(\d\.\d\.\d)?'):
+        if shebang_matches(text, r'perl'):
             return True
         if 'my $' in text:
             return 0.9
@@ -1482,6 +1485,286 @@ class ClojureLexer(RegexLexer):
 
             # the famous parentheses!
             (r'(\(|\))', Punctuation),
+        ],
+    }
+
+
+class FactorLexer(RegexLexer):
+    """
+    Lexer for the `Factor <http://factorcode.org>`_ language.
+
+    *New in Pygments 1.4.*
+    """
+    name = 'Factor'
+    aliases = ['factor']
+    filenames = ['*.factor']
+    mimetypes = ['text/x-factor']
+
+    flags = re.MULTILINE | re.UNICODE
+
+    builtin_kernel = (
+        r'(?:or|2bi|2tri|while|wrapper|nip|4dip|wrapper\\?|bi\\*|'
+        r'callstack>array|both\\?|hashcode|die|dupd|callstack|'
+        r'callstack\\?|3dup|tri@|pick|curry|build|\\?execute|3bi|'
+        r'prepose|>boolean|\\?if|clone|eq\\?|tri\\*|\\?|=|swapd|'
+        r'2over|2keep|3keep|clear|2dup|when|not|tuple\\?|dup|2bi\\*|'
+        r'2tri\\*|call|tri-curry|object|bi@|do|unless\\*|if\\*|loop|'
+        r'bi-curry\\*|drop|when\\*|assert=|retainstack|assert\\?|-rot|'
+        r'execute|2bi@|2tri@|boa|with|either\\?|3drop|bi|curry\\?|'
+        r'datastack|until|3dip|over|3curry|tri-curry\\*|tri-curry@|swap|'
+        r'and|2nip|throw|bi-curry|\\(clone\\)|hashcode\\*|compose|2dip|if|3tri|'
+        r'unless|compose\\?|tuple|keep|2curry|equal\\?|assert|tri|2drop|'
+        r'most|<wrapper>|boolean\\?|identity-hashcode|identity-tuple\\?|'
+        r'null|new|dip|bi-curry@|rot|xor|identity-tuple|boolean)\s'
+        )
+
+    builtin_assocs = (
+        r'(?:\\?at|assoc\\?|assoc-clone-like|assoc=|delete-at\\*|'
+        r'assoc-partition|extract-keys|new-assoc|value\\?|assoc-size|'
+        r'map>assoc|push-at|assoc-like|key\\?|assoc-intersect|'
+        r'assoc-refine|update|assoc-union|assoc-combine|at\\*|'
+        r'assoc-empty\\?|at\\+|set-at|assoc-all\\?|assoc-subset\\?|'
+        r'assoc-hashcode|change-at|assoc-each|assoc-diff|zip|values|'
+        r'value-at|rename-at|inc-at|enum\\?|at|cache|assoc>map|<enum>|'
+        r'assoc|assoc-map|enum|value-at\\*|assoc-map-as|>alist|'
+        r'assoc-filter-as|clear-assoc|assoc-stack|maybe-set-at|'
+        r'substitute|assoc-filter|2cache|delete-at|assoc-find|keys|'
+        r'assoc-any\\?|unzip)\s'
+        )
+
+    builtin_combinators = (
+        r'(?:case|execute-effect|no-cond|no-case\\?|3cleave>quot|2cleave|'
+        r'cond>quot|wrong-values\\?|no-cond\\?|cleave>quot|no-case|'
+        r'case>quot|3cleave|wrong-values|to-fixed-point|alist>quot|'
+        r'case-find|cond|cleave|call-effect|2cleave>quot|recursive-hashcode|'
+        r'linear-case-quot|spread|spread>quot)\s'
+        )
+
+    builtin_math = (
+        r'(?:number=|if-zero|next-power-of-2|each-integer|\\?1\\+|'
+        r'fp-special\\?|imaginary-part|unless-zero|float>bits|number\\?|'
+        r'fp-infinity\\?|bignum\\?|fp-snan\\?|denominator|fp-bitwise=|\\*|'
+        r'\\+|power-of-2\\?|-|u>=|/|>=|bitand|log2-expects-positive|<|'
+        r'log2|>|integer\\?|number|bits>double|2/|zero\\?|(find-integer)|'
+        r'bits>float|float\\?|shift|ratio\\?|even\\?|ratio|fp-sign|bitnot|'
+        r'>fixnum|complex\\?|/i|/f|byte-array>bignum|when-zero|sgn|>bignum|'
+        r'next-float|u<|u>|mod|recip|rational|find-last-integer|>float|'
+        r'(all-integers\\?)|2^|times|integer|fixnum\\?|neg|fixnum|sq|'
+        r'bignum|(each-integer)|bit\\?|fp-qnan\\?|find-integer|complex|'
+        r'<fp-nan>|real|double>bits|bitor|rem|fp-nan-payload|all-integers\\?|'
+        r'real-part|log2-expects-positive\\?|prev-float|align|unordered\\?|'
+        r'float|fp-nan\\?|abs|bitxor|u<=|odd\\?|<=|/mod|rational\\?|>integer|'
+        r'real\\?|numerator)\s'
+        )
+
+    builtin_sequences = (
+        r'(?:member-eq\\?|append|assert-sequence=|find-last-from|trim-head-slice|'
+        r'clone-like|3sequence|assert-sequence\\?|map-as|last-index-from|'
+        r'reversed|index-from|cut\\*|pad-tail|remove-eq!|concat-as|'
+        r'but-last|snip|trim-tail|nths|nth|2selector|sequence|slice\\?|'
+        r'<slice>|partition|remove-nth|tail-slice|empty\\?|tail\\*|'
+        r'if-empty|find-from|virtual-sequence\\?|member\\?|set-length|'
+        r'drop-prefix|unclip|unclip-last-slice|iota|map-sum|'
+        r'bounds-error\\?|sequence-hashcode-step|selector-for|'
+        r'accumulate-as|map|start|midpoint@|\\(accumulate\\)|rest-slice|'
+        r'prepend|fourth|sift|accumulate!|new-sequence|follow|map!|'
+        r'like|first4|1sequence|reverse|slice|unless-empty|padding|'
+        r'virtual@|repetition\\?|set-last|index|4sequence|max-length|'
+        r'set-second|immutable-sequence|first2|first3|replicate-as|'
+        r'reduce-index|unclip-slice|supremum|suffix!|insert-nth|'
+        r'trim-tail-slice|tail|3append|short|count|suffix|concat|'
+        r'flip|filter|sum|immutable\\?|reverse!|2sequence|map-integers|'
+        r'delete-all|start\\*|indices|snip-slice|check-slice|sequence\\?|'
+        r'head|map-find|filter!|append-as|reduce|sequence=|halves|'
+        r'collapse-slice|interleave|2map|filter-as|binary-reduce|'
+        r'slice-error\\?|product|bounds-check\\?|bounds-check|harvest|'
+        r'immutable|virtual-exemplar|find|produce|remove|pad-head|last|'
+        r'replicate|set-fourth|remove-eq|shorten|reversed\\?|'
+        r'map-find-last|3map-as|2unclip-slice|shorter\\?|3map|find-last|'
+        r'head-slice|pop\\*|2map-as|tail-slice\\*|but-last-slice|'
+        r'2map-reduce|iota\\?|collector-for|accumulate|each|selector|'
+        r'append!|new-resizable|cut-slice|each-index|head-slice\\*|'
+        r'2reverse-each|sequence-hashcode|pop|set-nth|\\?nth|'
+        r'<flat-slice>|second|join|when-empty|collector|'
+        r'immutable-sequence\\?|<reversed>|all\\?|3append-as|'
+        r'virtual-sequence|subseq\\?|remove-nth!|push-either|new-like|'
+        r'length|last-index|push-if|2all\\?|lengthen|assert-sequence|'
+        r'copy|map-reduce|move|third|first|3each|tail\\?|set-first|'
+        r'prefix|bounds-error|any\\?|<repetition>|trim-slice|exchange|'
+        r'surround|2reduce|cut|change-nth|min-length|set-third|produce-as|'
+        r'push-all|head\\?|delete-slice|rest|sum-lengths|2each|head\\*|'
+        r'infimum|remove!|glue|slice-error|subseq|trim|replace-slice|'
+        r'push|repetition|map-index|trim-head|unclip-last|mismatch)\s'
+        )
+
+    builtin_namespaces = (
+        r'(?:global|\\+@|change|set-namestack|change-global|init-namespaces|'
+        r'on|off|set-global|namespace|set|with-scope|bind|with-variable|'
+        r'inc|dec|counter|initialize|namestack|get|get-global|make-assoc)\s'
+        )
+
+    builtin_arrays = (
+        r'(?:<array>|2array|3array|pair|>array|1array|4array|pair\\?|'
+        r'array|resize-array|array\\?)\s'
+        )
+
+    builtin_io = (
+        r'(?:\\+character\\+|bad-seek-type\\?|readln|each-morsel|stream-seek|'
+        r'read|print|with-output-stream|contents|write1|stream-write1|'
+        r'stream-copy|stream-element-type|with-input-stream|'
+        r'stream-print|stream-read|stream-contents|stream-tell|'
+        r'tell-output|bl|seek-output|bad-seek-type|nl|stream-nl|write|'
+        r'flush|stream-lines|\\+byte\\+|stream-flush|read1|'
+        r'seek-absolute\\?|stream-read1|lines|stream-readln|'
+        r'stream-read-until|each-line|seek-end|with-output-stream\\*|'
+        r'seek-absolute|with-streams|seek-input|seek-relative\\?|'
+        r'input-stream|stream-write|read-partial|seek-end\\?|'
+        r'seek-relative|error-stream|read-until|with-input-stream\\*|'
+        r'with-streams\\*|tell-input|each-block|output-stream|'
+        r'stream-read-partial|each-stream-block|each-stream-line)\s'
+        )
+
+    builtin_strings = (
+        r'(?:resize-string|>string|<string>|1string|string|string\\?)\s'
+        )
+
+    builtin_vectors = (
+        r'(?:vector\\?|<vector>|\\?push|vector|>vector|1vector)\s'
+        )
+
+    builtin_continuations = (
+        r'(?:with-return|restarts|return-continuation|with-datastack|'
+        r'recover|rethrow-restarts|<restart>|ifcc|set-catchstack|'
+        r'>continuation<|cleanup|ignore-errors|restart\\?|'
+        r'compute-restarts|attempt-all-error|error-thread|continue|'
+        r'<continuation>|attempt-all-error\\?|condition\\?|'
+        r'<condition>|throw-restarts|error|catchstack|continue-with|'
+        r'thread-error-hook|continuation|rethrow|callcc1|'
+        r'error-continuation|callcc0|attempt-all|condition|'
+        r'continuation\\?|restart|return)\s'
+        )
+
+    tokens = {
+        'root': [
+            # TODO: (( inputs -- outputs ))
+            # TODO: << ... >>
+
+            # defining words
+            (r'(\s*)(:|::|MACRO:|MEMO:)(\s+)(\S+)',
+                bygroups(Text, Keyword, Text, Name.Function)),
+            (r'(\s*)(M:)(\s+)(\S+)(\s+)(\S+)',
+                bygroups(Text, Keyword, Text, Name.Class, Text, Name.Function)),
+            (r'(\s*)(GENERIC:)(\s+)(\S+)',
+                bygroups(Text, Keyword, Text, Name.Function)),
+            (r'(\s*)(HOOK:|GENERIC#)(\s+)(\S+)(\s+)(\S+)',
+                bygroups(Text, Keyword, Text, Name.Function, Text, Name.Function)),
+            (r'(\()(\s+)', bygroups(Name.Function, Text), 'stackeffect'),
+            (r'\;\s', Keyword),
+
+            # imports and namespaces
+            (r'(USING:)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Text), 'import'),
+            (r'(USE:)(\s+)(\S+)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(UNUSE:)(\s+)(\S+)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(QUALIFIED:)(\s+)(\S+)',
+                bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(QUALIFIED-WITH:)(\s+)(\S+)',
+                bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(FROM:|EXCLUDE:)(\s+)(\S+)(\s+)(=>)',
+                bygroups(Keyword.Namespace, Text, Name.Namespace, Text, Text)),
+            (r'(IN:)(\s+)(\S+)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(?:ALIAS|DEFER|FORGET|POSTPONE):', Keyword.Namespace),
+
+            # tuples and classes
+            (r'(TUPLE:)(\s+)(\S+)(\s+<\s+)(\S+)',
+                bygroups(Keyword, Text, Name.Class, Text, Name.Class), 'slots'),
+            (r'(TUPLE:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class), 'slots'),
+            (r'(UNION:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class)),
+            (r'(INTERSECTION:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class)),
+            (r'(PREDICATE:)(\s+)(\S+)(\s+<\s+)(\S+)',
+                bygroups(Keyword, Text, Name.Class, Text, Name.Class)),
+            (r'(C:)(\s+)(\S+)(\s+)(\S+)',
+                bygroups(Keyword, Text, Name.Function, Text, Name.Class)),
+            (r'INSTANCE:', Keyword),
+            (r'SLOT:', Keyword),
+            (r'MIXIN:', Keyword),
+            (r'(?:SINGLETON|SINGLETONS):', Keyword),
+
+            # other syntax
+            (r'CONSTANT:', Keyword),
+            (r'(?:SYMBOL|SYMBOLS):', Keyword),
+            (r'ERROR:', Keyword),
+            (r'SYNTAX:', Keyword),
+            (r'(HELP:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Function)),
+            (r'(MAIN:)(\s+)(\S+)', bygroups(Keyword.Namespace, Text, Name.Function)),
+            (r'(?:ALIEN|TYPEDEF|FUNCTION|STRUCT):', Keyword),
+
+            # vocab.private
+            # TODO: words inside vocab.private should have red names?
+            (r'(?:<PRIVATE|PRIVATE>)', Keyword.Namespace),
+
+            # strings
+            (r'"""\s+(?:.|\n)*?\s+"""', String),
+            (r'"(?:\\\\|\\"|[^"])*"', String),
+            (r'CHAR:\s+(\\[\\abfnrstv]*|\S)\s', String.Char),
+
+            # comments
+            (r'\!\s+.*$', Comment),
+            (r'#\!\s+.*$', Comment),
+
+            # boolean constants
+            (r'(t|f)\s', Name.Constant),
+
+            # numbers
+            (r'-?\d+\.\d+\s', Number.Float),
+            (r'-?\d+\s', Number.Integer),
+            (r'HEX:\s+[a-fA-F\d]+\s', Number.Hex),
+            (r'BIN:\s+[01]+\s', Number.Integer),
+            (r'OCT:\s+[0-7]+\s', Number.Oct),
+
+            # operators
+            (r'[-+/*=<>^]\s', Operator),
+
+            # keywords
+            (r'(?:deprecated|final|foldable|flushable|inline|recursive)\s', Keyword),
+
+            # builtins
+            (builtin_kernel, Name.Builtin),
+            (builtin_assocs, Name.Builtin),
+            (builtin_combinators, Name.Builtin),
+            (builtin_math, Name.Builtin),
+            (builtin_sequences, Name.Builtin),
+            (builtin_namespaces, Name.Builtin),
+            (builtin_arrays, Name.Builtin),
+            (builtin_io, Name.Builtin),
+            (builtin_strings, Name.Builtin),
+            (builtin_vectors, Name.Builtin),
+            (builtin_continuations, Name.Builtin),
+
+            # whitespaces - usually not relevant
+            (r'\s+', Text),
+
+            # everything else is text
+            (r'\S+', Text),
+        ],
+
+        'stackeffect': [
+            (r'\s*\(', Name.Function, 'stackeffect'),
+            (r'\)', Name.Function, '#pop'),
+            (r'\-\-', Name.Function),
+            (r'\s+', Text),
+            (r'\S+', Name.Variable),
+        ],
+
+        'slots': [
+            (r'\s+', Text),
+            (r';\s', Keyword, '#pop'),
+            (r'\S+', Name.Variable),
+        ],
+
+        'import': [
+            (r';', Keyword, '#pop'),
+            (r'\S+', Name.Namespace),
+            (r'\s+', Text),
         ],
     }
 

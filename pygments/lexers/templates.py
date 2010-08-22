@@ -1376,7 +1376,7 @@ class ColdfusionHtmlLexer(DelegatingLexer):
     """
     Coldfusion markup in html
     """
-    name = 'Coldufsion HTML'
+    name = 'Coldfusion HTML'
     aliases = ['cfm']
     filenames = ['*.cfm', '*.cfml', '*.cfc']
     mimetypes = ['application/x-coldfusion']
