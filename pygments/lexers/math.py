@@ -153,10 +153,10 @@ class MatlabLexer(RegexLexer):
             (r'%.*$', Comment),
             (r'^\s*function', Keyword, 'deffunc'),
 
-            # from 'iskeyword' on version 7.4.0.336 (R2007a):
+            # from 'iskeyword' on version 7.11 (R2010):
             (r'(break|case|catch|classdef|continue|else|elseif|end|enumerated|'
              r'events|for|function|global|if|methods|otherwise|parfor|'
-             r'persistent|properties|return|switch|try|while)\b', Keyword),
+             r'persistent|properties|return|spmd|switch|try|while)\b', Keyword),
 
             ("(" + "|".join(elfun+specfun+elmat) + r')\b',  Name.Builtin),
 
