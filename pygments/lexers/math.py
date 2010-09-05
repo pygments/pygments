@@ -228,7 +228,7 @@ class MatlabSessionLexer(Lexer):
                 # without is showing error on same line as before...?
                 line = "\n" + line
                 token = (0, Generic.Traceback, line)
-                insertions.append(  (idx, [token,]) )
+                insertions.append((idx, [token]))
 
             else:
                 if curcode:

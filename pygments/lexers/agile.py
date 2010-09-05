@@ -310,17 +310,17 @@ class PythonConsoleLexer(Lexer):
         tb = 0
         for match in line_re.finditer(text):
             line = match.group()
-            if line.startswith('>>> ') or line.startswith('... '):
+            if line.startswith(u'>>> ') or line.startswith(u'... '):
                 tb = 0
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:4])]))
                 curcode += line[4:]
-            elif line.rstrip() == '...' and not tb:
+            elif line.rstrip() == u'...' and not tb:
                 # only a new >>> prompt can end an exception block
                 # otherwise an ellipsis in place of the traceback frames
                 # will be mishandled
                 insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, '...')]))
+                                   [(0, Generic.Prompt, u'...')]))
                 curcode += line[3:]
             else:
                 if curcode:
@@ -329,8 +329,8 @@ class PythonConsoleLexer(Lexer):
                         yield item
                     curcode = ''
                     insertions = []
-                if (line.startswith('Traceback (most recent call last):') or
-                    re.match(r'  File "[^"]+", line \d+\n$', line)):
+                if (line.startswith(u'Traceback (most recent call last):') or
+                    re.match(ur'  File "[^"]+", line \d+\n$', line)):
                     tb = 1
                     curtb = line
                     tbindex = match.start()
@@ -338,7 +338,7 @@ class PythonConsoleLexer(Lexer):
                     yield match.start(), Name.Class, line
                 elif tb:
                     curtb += line
-                    if not (line.startswith(' ') or line.strip() == '...'):
+                    if not (line.startswith(' ') or line.strip() == u'...'):
                         tb = 0
                         for i, t, v in tblexer.get_tokens_unprocessed(curtb):
                             yield tbindex+i, t, v
