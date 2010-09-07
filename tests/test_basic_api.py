@@ -259,7 +259,7 @@ class FiltersTest(unittest.TestCase):
         self.assertEquals('BUG', tokens[1][1])
 
     def test_codetag_boundary(self):
-        # http://dev.pocoo.org/projects/pygments/ticket/368
+        # ticket #368
         lx = lexers.PythonLexer()
         lx.add_filter('codetagify')
         text = u'# DEBUG: text'
