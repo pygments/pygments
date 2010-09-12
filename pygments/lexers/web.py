@@ -1685,12 +1685,15 @@ class JbstLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(<%[@=#!:]?)(.*?)(%>)', bygroups(Name.Tag, JavascriptLexer, Name.Tag)),
-            (r'(<%\$)(.*?)(:)(.*?)(%>)', bygroups(Name.Tag, Name.Function, Punctuation, String, Name.Tag)),
-            (r'(<%--)(.*?)(--%>)', bygroups(Name.Tag, Comment.Multiline, Name.Tag)),
-            (r'(<script.*?>)(.*?)(</script>)', bygroups(using(HtmlLexer),
-                                                        JavascriptLexer,
-                                                        using(HtmlLexer))),
+            (r'(<%[@=#!:]?)(.*?)(%>)',
+             bygroups(Name.Tag, using(JavascriptLexer), Name.Tag)),
+            (r'(<%\$)(.*?)(:)(.*?)(%>)',
+             bygroups(Name.Tag, Name.Function, Punctuation, String, Name.Tag)),
+            (r'(<%--)(.*?)(--%>)',
+             bygroups(Name.Tag, Comment.Multiline, Name.Tag)),
+            (r'(<script.*?>)(.*?)(</script>)',
+             bygroups(using(HtmlLexer),
+                      using(JavascriptLexer), using(HtmlLexer))),
             (r'(.+?)(?=<)', using(HtmlLexer)),
             (r'.+', using(HtmlLexer)),
         ],
