@@ -24,7 +24,7 @@ from pygments.lexers.agile import RubyLexer
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
-           'ObjectiveJLexer', 'CoffeeScriptLexer']
+           'ObjectiveJLexer', 'CoffeeScriptLexer', 'JbstLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -1666,4 +1666,30 @@ class CoffeeScriptLexer(RegexLexer):
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
         ]
+    }
+
+class JbstLexer(RegexLexer):
+    """
+    Lexer for JsonML+Browser-Side Template (JSBT) markup with JavaScript code blocks.
+    http://jsonml.org/jbst/
+    """
+
+    name = 'JBST'
+    aliases = ['jbst', 'JsonML+BST']
+    filenames = ['*.jbst']
+    mimetypes = ['text/x-jbst']
+
+    flags = re.DOTALL
+
+    tokens = {
+        'root': [
+            (r'(<%[@=#!:]?)(.*?)(%>)', bygroups(Name.Tag, JavascriptLexer, Name.Tag)),
+            (r'(<%\$)(.*?)(:)(.*?)(%>)', bygroups(Name.Tag, Name.Function, Punctuation, String, Name.Tag)),
+            (r'(<%--)(.*?)(--%>)', bygroups(Name.Tag, Comment.Multiline, Name.Tag)),
+            (r'(<script.*?>)(.*?)(</script>)', bygroups(using(HtmlLexer),
+                                                        JavascriptLexer,
+                                                        using(HtmlLexer))),
+            (r'(.+?)(?=<)', using(HtmlLexer)),
+            (r'.+', using(HtmlLexer)),
+        ],
     }
