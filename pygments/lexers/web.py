@@ -1670,8 +1670,10 @@ class CoffeeScriptLexer(RegexLexer):
 
 class JbstLexer(RegexLexer):
     """
-    Lexer for JsonML+Browser-Side Template (JSBT) markup with JavaScript code blocks.
-    http://jsonml.org/jbst/
+    Lexer for JsonML+Browser-Side Template (JBST) markup with JavaScript code blocks.
+    See http://jsonml.org/jbst/.
+
+    *New in Pygments 1.4.*
     """
 
     name = 'JBST'
