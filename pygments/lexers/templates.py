@@ -35,7 +35,8 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'MakoCssLexer', 'JspLexer', 'CheetahLexer', 'CheetahHtmlLexer',
            'CheetahXmlLexer', 'CheetahJavascriptLexer',
            'EvoqueLexer', 'EvoqueHtmlLexer', 'EvoqueXmlLexer',
-           'ColdfusionLexer', 'ColdfusionHtmlLexer']
+           'ColdfusionLexer', 'ColdfusionHtmlLexer',
+           'VelocityLexer','VelocityHtmlLexer','VelocityXmlLexer']
 
 
 class ErbLexer(Lexer):
@@ -185,6 +186,121 @@ class SmartyLexer(RegexLexer):
             rv += 0.15
         if re.search('\{\$.*?\}', text):
             rv += 0.01
+        return rv
+
+
+class VelocityLexer(RegexLexer):
+    """
+    Generic `Velocity <http://velocity.apache.org/>`_ template lexer.
+
+    Just highlights velocity directives and variable references, other
+    data is left untouched by the lexer.
+    """
+
+    name = 'Velocity'
+    aliases = ['velocity']
+    filenames = ['*.vm','*.fhtml']
+
+    flags = re.MULTILINE | re.DOTALL
+
+    identifier = r'[a-zA-Z_][a-zA-Z0-9_]*'
+    
+    tokens = {
+        'root': [
+            (r'[^{#$]+', Other),
+            (r'(#)(\*.*?\*)(#)',
+             bygroups(Comment.Preproc, Comment, Comment.Preproc)),
+            (r'(##)(.*?$)',
+             bygroups(Comment.Preproc, Comment)),
+            (r'(#\{?)(' + identifier + r')(\}?)(\s?\()',
+             bygroups(Comment.Preproc, Name.Function, Comment.Preproc, Punctuation),
+             'directiveparams'),
+            (r'(#\{?)(' + identifier + r')(\}|\b)',
+             bygroups(Comment.Preproc, Name.Function, Comment.Preproc)),
+            (r'\$\{?', Punctuation, 'variable')
+        ],
+        'variable': [
+            (identifier, Name.Variable),
+            (r'\(', Punctuation, 'funcparams'),
+            (r'(\.)(' + identifier + r')', bygroups(Punctuation, Name.Variable), '#push'),
+            (r'\}', Punctuation, '#pop'),
+            (r'', Other, '#pop')
+        ],
+        'directiveparams': [
+            (r'(&&|\|\||==?|!=?|[-<>+*%&\|\^/])|\b(eq|ne|gt|lt|ge|le|not|in)\b', Operator),
+            (r'\[', Operator, 'rangeoperator'),
+            (r'\b' + identifier + r'\b', Name.Function),
+            include('funcparams')
+        ],
+        'rangeoperator': [
+            (r'\.\.', Operator),
+            include('funcparams'),
+            (r'\]', Operator, '#pop')
+        ],
+        'funcparams': [
+            (r'\$\{?', Punctuation, 'variable'),
+            (r'\s+', Text),
+            (r',', Punctuation),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r"0[xX][0-9a-fA-F]+[Ll]?", Number),
+            (r"\b[0-9]+\b", Number),
+            (r'(true|false|null)\b', Keyword.Constant),
+            (r'\(', Punctuation, '#push'),
+            (r'\)', Punctuation, '#pop')
+        ]
+    }
+
+    def analyse_text(text):
+        rv = 0.0
+        if re.search(r'#\{?macro\}?\(.*?\).*?#\{?end\}?', text):
+            rv += 0.25
+        if re.search(r'#\{?if\}?\(.+?\).*?#\{?end\}?', text):
+            rv += 0.15
+        if re.search(r'#\{?foreach\}?\(.+?\).*?#\{?end\}?', text):
+            rv += 0.15
+        if re.search(r'\$\{?[a-zA-Z_][a-zA-Z0-9_]*(\([^)]*\))?(\.[a-zA-Z0-9_]+(\([^)]*\))?)*\}?', text):
+            rv += 0.01
+        return rv
+
+
+class VelocityHtmlLexer(DelegatingLexer):
+    """
+    Subclass of the `VelocityLexer` that highlights unlexer data
+    with the `HtmlLexer`.
+
+    """
+
+    name = 'HTML+Velocity'
+    aliases = ['html+velocity']
+    alias_filenames = ['*.html','*.fhtml']
+    mimetypes = ['text/html+velocity']
+
+    def __init__(self, **options):
+        super(VelocityHtmlLexer, self).__init__(HtmlLexer, VelocityLexer,
+                                              **options)
+
+
+class VelocityXmlLexer(DelegatingLexer):
+    """
+    Subclass of the `VelocityLexer` that highlights unlexer data
+    with the `XmlLexer`.
+
+    """
+
+    name = 'XML+Velocity'
+    aliases = ['xml+velocity']
+    alias_filenames = ['*.xml','*.vm']
+    mimetypes = ['application/xml+velocity']
+
+    def __init__(self, **options):
+        super(VelocityXmlLexer, self).__init__(XmlLexer, VelocityLexer,
+                                             **options)
+    
+    def analyse_text(text):
+        rv = VelocityLexer.analyse_text(text) - 0.01
+        if looks_like_xml(text):
+            rv += 0.5
         return rv
 
 
