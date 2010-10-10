@@ -24,7 +24,7 @@ from pygments.lexers.agile import RubyLexer
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
-           'ObjectiveJLexer', 'CoffeeScriptLexer', 'JbstLexer']
+           'ObjectiveJLexer', 'CoffeeScriptLexer', 'DuelLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -1668,18 +1668,19 @@ class CoffeeScriptLexer(RegexLexer):
         ]
     }
 
-class JbstLexer(RegexLexer):
+class DuelLexer(RegexLexer):
     """
-    Lexer for JsonML+Browser-Side Template (JBST) markup with JavaScript code blocks.
+    Lexer for Duel Views Engine (formerly JBST) markup with JavaScript code blocks.
+    See http://duelengine.org/.
     See http://jsonml.org/jbst/.
 
     *New in Pygments 1.4.*
     """
 
-    name = 'JBST'
-    aliases = ['jbst', 'JsonML+BST']
-    filenames = ['*.jbst']
-    mimetypes = ['text/x-jbst']
+    name = 'Duel'
+    aliases = ['duel', 'Duel Engine', 'Duel View', 'JBST', 'jbst', 'JsonML+BST']
+    filenames = ['*.duel','*.jbst']
+    mimetypes = ['text/x-duel','text/x-jbst']
 
     flags = re.DOTALL
 
