@@ -19,12 +19,14 @@ from pygments.token import \
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
                           html_doctype_matches
 from pygments.lexers.agile import RubyLexer
+from pygments.lexers.compiled import ScalaLexer
 
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
-           'ObjectiveJLexer', 'CoffeeScriptLexer', 'DuelLexer']
+           'ObjectiveJLexer', 'CoffeeScriptLexer', 'DuelLexer', 'ScamlLexer',
+           'JadeLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -1697,5 +1699,228 @@ class DuelLexer(RegexLexer):
                       using(JavascriptLexer), using(HtmlLexer))),
             (r'(.+?)(?=<)', using(HtmlLexer)),
             (r'.+', using(HtmlLexer)),
+        ],
+    }
+
+
+class ScamlLexer(ExtendedRegexLexer):
+    """
+    For Scaml markup.
+    Scaml is Haml for Scala, see:
+    http://scalate.fusesource.org/documentation/scaml-reference.html#features
+
+    *New in Pygments 1.4.*
+    """
+
+    name = 'Scaml'
+    aliases = ['scaml', 'SCAML']
+    filenames = ['*.scaml']
+    mimetypes = ['text/x-scaml']
+
+    flags = re.IGNORECASE
+    # Scaml does not yet support the " |\n" notation to
+    # wrap long lines.  Once it does, use the custom faux
+    # dot instead.
+    # _dot = r'(?: \|\n(?=.* \|)|.)'
+    _dot = r'.'
+
+    tokens = {
+        'root': [
+            (r'[ \t]*\n', Text),
+            (r'[ \t]*', _indentation),
+        ],
+
+        'css': [
+            (r'\.[a-z0-9_:-]+', Name.Class, 'tag'),
+            (r'\#[a-z0-9_:-]+', Name.Function, 'tag'),
+        ],
+
+        'eval-or-plain': [
+            (r'[&!]?==', Punctuation, 'plain'),
+            (r'([&!]?[=~])(' + _dot + '*\n)',
+             bygroups(Punctuation, using(ScalaLexer)),
+             'root'),
+            (r'', Text, 'plain'),
+        ],
+
+        'content': [
+            include('css'),
+            (r'%[a-z0-9_:-]+', Name.Tag, 'tag'),
+            (r'!!!' + _dot + '*\n', Name.Namespace, '#pop'),
+            (r'(/)(\[' + _dot + '*?\])(' + _dot + '*\n)',
+             bygroups(Comment, Comment.Special, Comment),
+             '#pop'),
+            (r'/' + _dot + '*\n', _starts_block(Comment, 'html-comment-block'),
+             '#pop'),
+            (r'-#' + _dot + '*\n', _starts_block(Comment.Preproc,
+                                                 'scaml-comment-block'), '#pop'),
+            (r'(-@\s*)(import)?(' + _dot + '*\n)',
+             bygroups(Punctuation, Keyword, using(ScalaLexer)),
+             '#pop'),
+            (r'(-)(' + _dot + '*\n)',
+             bygroups(Punctuation, using(ScalaLexer)),
+             '#pop'),
+            (r':' + _dot + '*\n', _starts_block(Name.Decorator, 'filter-block'),
+             '#pop'),
+            include('eval-or-plain'),
+        ],
+
+        'tag': [
+            include('css'),
+            (r'\{(,\n|' + _dot + ')*?\}', using(ScalaLexer)),
+            (r'\[' + _dot + '*?\]', using(ScalaLexer)),
+            (r'\(', Text, 'html-attributes'),
+            (r'/[ \t]*\n', Punctuation, '#pop:2'),
+            (r'[<>]{1,2}(?=[ \t=])', Punctuation),
+            include('eval-or-plain'),
+        ],
+
+        'plain': [
+            (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Text),
+            (r'(#\{)(' + _dot + '*?)(\})',
+             bygroups(String.Interpol, using(ScalaLexer), String.Interpol)),
+            (r'\n', Text, 'root'),
+        ],
+
+        'html-attributes': [
+            (r'\s+', Text),
+            (r'[a-z0-9_:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
+            (r'[a-z0-9_:-]+', Name.Attribute),
+            (r'\)', Text, '#pop'),
+        ],
+
+        'html-attribute-value': [
+            (r'[ \t]+', Text),
+            (r'[a-z0-9_]+', Name.Variable, '#pop'),
+            (r'@[a-z0-9_]+', Name.Variable.Instance, '#pop'),
+            (r'\$[a-z0-9_]+', Name.Variable.Global, '#pop'),
+            (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
+            (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
+        ],
+
+        'html-comment-block': [
+            (_dot + '+', Comment),
+            (r'\n', Text, 'root'),
+        ],
+
+        'scaml-comment-block': [
+            (_dot + '+', Comment.Preproc),
+            (r'\n', Text, 'root'),
+        ],
+
+        'filter-block': [
+            (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Name.Decorator),
+            (r'(#\{)(' + _dot + '*?)(\})',
+             bygroups(String.Interpol, using(ScalaLexer), String.Interpol)),
+            (r'\n', Text, 'root'),
+        ],
+    }
+
+
+class JadeLexer(ExtendedRegexLexer):
+    """
+    For Jade markup.
+    Jade is a variant of Scaml, see:
+    http://scalate.fusesource.org/documentation/scaml-reference.html
+
+    *New in Pygments 1.4.*
+    """
+
+    name = 'Jade'
+    aliases = ['jade', 'JADE']
+    filenames = ['*.jade']
+    mimetypes = ['text/x-jade']
+
+    flags = re.IGNORECASE
+    _dot = r'.'
+
+    tokens = {
+        'root': [
+            (r'[ \t]*\n', Text),
+            (r'[ \t]*', _indentation),
+        ],
+
+        'css': [
+            (r'\.[a-z0-9_:-]+', Name.Class, 'tag'),
+            (r'\#[a-z0-9_:-]+', Name.Function, 'tag'),
+        ],
+
+        'eval-or-plain': [
+            (r'[&!]?==', Punctuation, 'plain'),
+            (r'([&!]?[=~])(' + _dot + '*\n)',
+             bygroups(Punctuation, using(ScalaLexer)),  'root'),
+            (r'', Text, 'plain'),
+        ],
+
+        'content': [
+            include('css'),
+            (r'!!!' + _dot + '*\n', Name.Namespace, '#pop'),
+            (r'(/)(\[' + _dot + '*?\])(' + _dot + '*\n)',
+             bygroups(Comment, Comment.Special, Comment),
+             '#pop'),
+            (r'/' + _dot + '*\n', _starts_block(Comment, 'html-comment-block'),
+             '#pop'),
+            (r'-#' + _dot + '*\n', _starts_block(Comment.Preproc,
+                                                 'scaml-comment-block'), '#pop'),
+            (r'(-@\s*)(import)?(' + _dot + '*\n)',
+             bygroups(Punctuation, Keyword, using(ScalaLexer)),
+             '#pop'),
+            (r'(-)(' + _dot + '*\n)',
+             bygroups(Punctuation, using(ScalaLexer)),
+             '#pop'),
+            (r':' + _dot + '*\n', _starts_block(Name.Decorator, 'filter-block'),
+             '#pop'),
+            (r'[a-z0-9_:-]+', Name.Tag, 'tag'),
+            (r'|', Text, 'eval-or-plain'),
+        ],
+
+        'tag': [
+            include('css'),
+            (r'\{(,\n|' + _dot + ')*?\}', using(ScalaLexer)),
+            (r'\[' + _dot + '*?\]', using(ScalaLexer)),
+            (r'\(', Text, 'html-attributes'),
+            (r'/[ \t]*\n', Punctuation, '#pop:2'),
+            (r'[<>]{1,2}(?=[ \t=])', Punctuation),
+            include('eval-or-plain'),
+        ],
+
+        'plain': [
+            (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Text),
+            (r'(#\{)(' + _dot + '*?)(\})',
+             bygroups(String.Interpol, using(ScalaLexer), String.Interpol)),
+            (r'\n', Text, 'root'),
+        ],
+
+        'html-attributes': [
+            (r'\s+', Text),
+            (r'[a-z0-9_:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
+            (r'[a-z0-9_:-]+', Name.Attribute),
+            (r'\)', Text, '#pop'),
+        ],
+
+        'html-attribute-value': [
+            (r'[ \t]+', Text),
+            (r'[a-z0-9_]+', Name.Variable, '#pop'),
+            (r'@[a-z0-9_]+', Name.Variable.Instance, '#pop'),
+            (r'\$[a-z0-9_]+', Name.Variable.Global, '#pop'),
+            (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
+            (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
+        ],
+
+        'html-comment-block': [
+            (_dot + '+', Comment),
+            (r'\n', Text, 'root'),
+        ],
+
+        'scaml-comment-block': [
+            (_dot + '+', Comment.Preproc),
+            (r'\n', Text, 'root'),
+        ],
+
+        'filter-block': [
+            (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Name.Decorator),
+            (r'(#\{)(' + _dot + '*?)(\})',
+             bygroups(String.Interpol, using(ScalaLexer), String.Interpol)),
+            (r'\n', Text, 'root'),
         ],
     }
