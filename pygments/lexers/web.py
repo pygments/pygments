@@ -1642,9 +1642,10 @@ class CoffeeScriptLexer(RegexLexer):
         'root': [
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'\+\+|--|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
+            (r'\+\+|--|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|=|'
              r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|[-<>+*`%&\|\^/])=?',
              Operator, 'slashstartsregex'),
+            (r'\([^()]*\)\s*->', Name.Function),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|in|of|while|break|return|continue|switch|when|then|if|else|'
@@ -1657,9 +1658,9 @@ class CoffeeScriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'eval|isFinite|isNaN|parseFloat|parseInt|document|window)\b',
              Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*:\s', Name.Variable,
+            (r'[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*[:=]\s', Name.Variable,
               'slashstartsregex'),
-            (r'@[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*:\s', Name.Variable.Instance,
+            (r'@[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*[:=]\s', Name.Variable.Instance,
               'slashstartsregex'),
             (r'@?[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other, 'slashstartsregex'),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
