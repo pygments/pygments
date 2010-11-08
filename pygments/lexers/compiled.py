@@ -1348,6 +1348,7 @@ class GLShaderLexer(RegexLexer):
              r'lowp|mediump|highp|precision|input|output|hvec[234]|'
              r'[df]vec[234]|sampler[23]DRect|sampler2DRectShadow|sizeof|'
              r'cast|namespace|using)\b', Keyword), #future use
+            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name),
             (r'\.', Punctuation),
             (r'\s+', Text),
         ],
