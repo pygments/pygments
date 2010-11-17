@@ -13,7 +13,7 @@ import re
 
 from pygments.lexers.web import \
      PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
-from pygments.lexers.agile import PythonLexer
+from pygments.lexers.agile import PythonLexer, PerlLexer
 from pygments.lexers.compiled import JavaLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
      include, using, this
@@ -30,7 +30,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'JavascriptDjangoLexer', 'GenshiLexer', 'HtmlGenshiLexer',
            'GenshiTextLexer', 'CssGenshiLexer', 'JavascriptGenshiLexer',
            'MyghtyLexer', 'MyghtyHtmlLexer', 'MyghtyXmlLexer',
-           'MyghtyCssLexer', 'MyghtyJavascriptLexer', 'MakoLexer',
+           'MyghtyCssLexer', 'MyghtyJavascriptLexer', 'MasonLexer', 'MakoLexer',
            'MakoHtmlLexer', 'MakoXmlLexer', 'MakoJavascriptLexer',
            'MakoCssLexer', 'JspLexer', 'CheetahLexer', 'CheetahHtmlLexer',
            'CheetahXmlLexer', 'CheetahJavascriptLexer',
@@ -504,6 +504,57 @@ class MyghtyCssLexer(DelegatingLexer):
         super(MyghtyCssLexer, self).__init__(CssLexer, MyghtyLexer,
                                              **options)
 
+class MasonLexer(RegexLexer):
+    """
+    Generic `mason templates`_ lexer. Stolen from Myghty lexer. Code that isn't Mason
+    markup is HTML.
+
+    .. _mason templates: http://www.masonhq.com/
+    """
+    name = 'Mason'
+    aliases = ['mason']
+    filenames = ['*.m', '*.mhtml', '*.mc', '*.mi', 'autohandler', 'dhandler']
+    mimetypes = ['application/x-mason']
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'(<%doc>)(.*?)(</%doc>)(?s)',
+             bygroups(Name.Tag, Comment.Multiline, Name.Tag)),
+            (r'(<%(def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, None, Text, Name.Function, Name.Tag,
+                      using(this), Name.Tag)),
+            (r'(<%(\w+))(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, None, Name.Function, Name.Tag,
+                      using(PerlLexer), Name.Tag)),
+            (r'(<&[^|])(.*?)(,.*?)?(&>)(?s)',
+             bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
+            (r'(<&\|)(.*?)(,.*?)?(&>)(?s)',
+             bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
+            (r'</&>', Name.Tag),
+            (r'(<%!?)(.*?)(%>)(?s)',
+             bygroups(Name.Tag, using(PerlLexer), Name.Tag)),
+            (r'(?<=^)#[^\n]*(\n|\Z)', Comment),
+            (r'(?<=^)(%)([^\n]*)(\n|\Z)',
+             bygroups(Name.Tag, using(PerlLexer), Other)),
+            (r"""(?sx)
+                 (.+?)               # anything, followed by:
+                 (?:
+                  (?<=\n)(?=[%#]) |  # an eval or comment line
+                  (?=</?[%&]) |      # a substitution or block or
+                                     # call start or end
+                                     # - don't consume
+                  (\\\n) |           # an escaped newline
+                  \Z                 # end of string
+                 )""", bygroups(using(HtmlLexer), Operator)),
+        ]
+    }
+
+    def analyse_text(text):
+        rv = 0.0
+        if re.search('<&', text) is not None:
+            rv = 1.0
+        return rv
 
 class MakoLexer(RegexLexer):
     """
