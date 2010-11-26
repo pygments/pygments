@@ -43,8 +43,12 @@ class CLexer(RegexLexer):
 
     tokens = {
         'whitespace': [
-            (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
-            (r'^\s*#', Comment.Preproc, 'macro'),
+            # preprocessor directives: without whitespace
+            ('^#if\s+0', Comment.Preproc, 'if0'),
+            ('^#', Comment.Preproc, 'macro'),
+            # or with whitespace
+            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
+            ('^' + _ws + '#', Comment.Preproc, 'macro'),
             (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*:(?!:))', bygroups(Text, Name.Label)),
             (r'\n', Text),
             (r'\s+', Text),
@@ -168,10 +172,17 @@ class CppLexer(RegexLexer):
     filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++', '*.cc', '*.hh', '*.cxx', '*.hxx']
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
 
+    #: optional Comment or Whitespace
+    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+
     tokens = {
         'root': [
-            (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
-            (r'^\s*#', Comment.Preproc, 'macro'),
+            # preprocessor directives: without whitespace
+            ('^#if\s+0', Comment.Preproc, 'if0'),
+            ('^#', Comment.Preproc, 'macro'),
+            # or with whitespace
+            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
+            ('^' + _ws + '#', Comment.Preproc, 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
@@ -1092,8 +1103,12 @@ class ObjectiveCLexer(RegexLexer):
 
     tokens = {
         'whitespace': [
-            (r'^(\s*)(#if\s+0)', bygroups(Text, Comment.Preproc), 'if0'),
-            (r'^(\s*)(#)', bygroups(Text, Comment.Preproc), 'macro'),
+            # preprocessor directives: without whitespace
+            ('^#if\s+0', Comment.Preproc, 'if0'),
+            ('^#', Comment.Preproc, 'macro'),
+            # or with whitespace
+            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
+            ('^' + _ws + '#', Comment.Preproc, 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
