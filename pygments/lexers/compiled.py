@@ -1335,7 +1335,7 @@ class GLShaderLexer(RegexLexer):
             (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
             (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
             (r'0[xX][0-9a-fA-F]*', Number.Hex),
-            (r'0[0-7]*', Number.Octal),
+            (r'0[0-7]*', Number.Oct),
             (r'[1-9][0-9]*', Number.Integer),
             (r'\b(attribute|const|uniform|varying|centroid|break|continue|'
              r'do|for|while|if|else|in|out|inout|float|int|void|bool|true|'
@@ -1348,11 +1348,12 @@ class GLShaderLexer(RegexLexer):
              r'lowp|mediump|highp|precision|input|output|hvec[234]|'
              r'[df]vec[234]|sampler[23]DRect|sampler2DRectShadow|sizeof|'
              r'cast|namespace|using)\b', Keyword), #future use
-            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name.Variable),
+            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name),
             (r'\.', Punctuation),
             (r'\s+', Text),
         ],
     }
+
 
 class PrologLexer(RegexLexer):
     """
@@ -1709,7 +1710,7 @@ class OocLexer(RegexLexer):
             (r'[:(){}\[\];,]', Punctuation),
 
             (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'0c[0-9]+', Number.Octal),
+            (r'0c[0-9]+', Number.Oct),
             (r'0b[01]+', Number.Binary),
             (r'[0-9_]\.[0-9_]*(?!\.)', Number.Float),
             (r'[0-9_]+', Number.Decimal),
