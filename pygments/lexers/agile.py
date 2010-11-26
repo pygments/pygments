@@ -371,7 +371,7 @@ class PythonTracebackLexer(RegexLexer):
         ],
         'intb': [
             (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
-             bygroups(Text, Name.Builtin, Text, Number, Text, Name.Identifier, Text)),
+             bygroups(Text, Name.Builtin, Text, Number, Text, Name, Text)),
             (r'^(  File )("[^"]+")(, line )(\d+)(\n)',
              bygroups(Text, Name.Builtin, Text, Number, Text)),
             (r'^(    )(.+)(\n)',
@@ -379,9 +379,9 @@ class PythonTracebackLexer(RegexLexer):
             (r'^([ \t]*)(...)(\n)',
              bygroups(Text, Comment, Text)), # for doctests...
             (r'^(.+)(: )(.+)(\n)',
-             bygroups(Name.Class, Text, Name.Identifier, Text), '#pop'),
+             bygroups(Generic.Error, Text, Name, Text), '#pop'),
             (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
-             bygroups(Name.Class, Text), '#pop')
+             bygroups(Generic.Error, Text), '#pop')
         ],
     }
 
@@ -409,15 +409,15 @@ class Python3TracebackLexer(RegexLexer):
         ],
         'intb': [
             (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
-             bygroups(Text, Name.Builtin, Text, Number, Text, Name.Identifier, Text)),
+             bygroups(Text, Name.Builtin, Text, Number, Text, Name, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(Python3Lexer), Text)),
             (r'^([ \t]*)(...)(\n)',
              bygroups(Text, Comment, Text)), # for doctests...
             (r'^(.+)(: )(.+)(\n)',
-             bygroups(Name.Class, Text, Name.Identifier, Text), '#pop'),
+             bygroups(Generic.Error, Text, Name, Text), '#pop'),
             (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
-             bygroups(Name.Class, Text), '#pop')
+             bygroups(Generic.Error, Text), '#pop')
         ],
     }
 
