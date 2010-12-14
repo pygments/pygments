@@ -24,7 +24,8 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'MOOCodeLexer', 'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer',
            'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer',
            'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer',
-           'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer', 'PostScriptLexer']
+           'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer', 'PostScriptLexer',
+           'ProtoBufLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -2402,5 +2403,56 @@ class PostScriptLexer(RegexLexer):
 
         'escape': [
             (r'([0-8]{3}|n|r|t|b|f|\\|\(|\)|)', String.Escape, '#pop'),
+        ],
+    }
+
+
+class ProtoBufLexer(RegexLexer):
+    """
+    Lexer for `Protocol Buffer <http://code.google.com/p/protobuf/>`_
+    definition files.
+    """
+
+    name = 'Protocol Buffer'
+    aliases = ['protobuf']
+    filenames = ['*.proto']
+
+    tokens = {
+        'root': [
+            (r'[ \t]+', Text),
+            (r'[,;{}\[\]\(\)]', Punctuation),
+            (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'\b(import|option|optional|required|repeated|default|packed|'
+             r'ctype|extensions|to|max|rpc|returns)\b', Keyword),
+            (r'(int32|int64|uint32|uint64|sint32|sint64|'
+             r'fixed32|fixed64|sfixed32|sfixed64|'
+             r'float|double|bool|string|bytes)\b', Keyword.Type),
+            (r'(true|false)\b', Keyword.Constant),
+            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text), 'package'),
+            (r'(message|extend)(\s+)',
+             bygroups(Keyword.Declaration, Text), 'message'),
+            (r'(enum|group|service)(\s+)',
+             bygroups(Keyword.Declaration, Text), 'type'),
+            (r'\".*\"', String),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'(\-?(inf|nan))', Number.Float),
+            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'0[0-7]+[LlUu]*', Number.Oct),
+            (r'\d+[LlUu]*', Number.Integer),
+            (r'[+-=]', Operator),
+            (r'([a-zA-Z_][a-zA-Z0-9_\.]*)([ \t]*)(=)',
+             bygroups(Name.Attribute, Text, Operator)),
+            ('[a-zA-Z_][a-zA-Z0-9_\.]*', Name),
+        ],
+        'package': [
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Namespace, '#pop')
+        ],
+        'message': [
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+        ],
+        'type': [
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name, '#pop')
         ],
     }
