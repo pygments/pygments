@@ -356,7 +356,7 @@ class BashLexer(RegexLexer):
             (r'\\[\w\W]', String.Escape),
             (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
             (r'[\[\]{}()=]', Operator),
-            (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
+            (r'<<-?\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
             (r'&&|\|\|', Operator),
         ],
         'data': [
