@@ -30,6 +30,7 @@ STYLE_MAP = {
     'native':   'native::NativeStyle',
     'fruity':   'fruity::FruityStyle',
     'bw':       'bw::BlackWhiteStyle',
+    'vim':      'vim::VimStyle',
     'vs':       'vs::VisualStudioStyle',
     'tango':    'tango::TangoStyle',
 }
