@@ -885,10 +885,10 @@ class StyleWriter(object):
         if bg_color:
             out.write('    background_color = %r\n' % bg_color[0])
         out.write('    styles = {\n')
-        out.write('        %-20s%r\n' % ('Token:', default_token))
+        out.write('        %-20s%r,\n' % ('Token:', default_token))
         for token, definition in tokens:
             if definition:
-                out.write('        %-20s%r\n' % (token + ':', definition))
+                out.write('        %-20s%r,\n' % (token + ':', definition))
         out.write('    }')
 
     def __repr__(self):
