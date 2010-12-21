@@ -24,7 +24,8 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'MOOCodeLexer', 'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer',
            'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer',
            'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer',
-           'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer', 'PostScriptLexer']
+           'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer',
+           'PostScriptLexer', 'AutohotkeyLexer']
 
 line_re  = re.compile('.*?\n')
 
