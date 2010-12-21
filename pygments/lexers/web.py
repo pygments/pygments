@@ -752,8 +752,11 @@ class PhpLexer(RegexLexer):
             (r'\$\{\$+[a-zA-Z_][a-zA-Z0-9_]*\}', Name.Variable),
             (r'\$+[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
             (r'[\\a-zA-Z_][\\a-zA-Z0-9_]*', Name.Other),
-            (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
-             r"0[xX][0-9a-fA-F]+[Ll]?", Number),
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+', Number.Float),
+            (r'0[0-7]+', Number.Oct),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'\d+', Number.Integer),
             (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
             (r'`([^`\\]*(?:\\.[^`\\]*)*)`', String.Backtick),
             (r'"', String.Double, 'string'),
