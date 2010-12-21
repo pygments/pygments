@@ -381,6 +381,7 @@ class HaskellLexer(RegexLexer):
         'import': [
             # Import statements
             (r'\s+', Text),
+            (r'"', String, 'string'),
             # after "funclist" state
             (r'\)', Punctuation, '#pop'),
             (r'qualified\b', Keyword),
