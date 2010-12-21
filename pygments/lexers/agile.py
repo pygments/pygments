@@ -104,7 +104,7 @@ class PythonLexer(RegexLexer):
         'numbers': [
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+', Number.Float),
-            (r'0\d+', Number.Oct),
+            (r'0[0-7]+', Number.Oct),
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),
             (r'\d+', Number.Integer)
