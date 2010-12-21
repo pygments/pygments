@@ -901,7 +901,7 @@ class PerlLexer(RegexLexer):
             (r"'(\\\\|\\'|[^'])*'", String),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r'`(\\\\|\\`|[^`])*`', String.Backtick),
-            (r'<([^\s>]+)>', String.Regexp),
+            (r'<([^\s>]+)>', String.Regex),
             (r'(q|qq|qw|qr|qx)\{', String.Other, 'cb-string'),
             (r'(q|qq|qw|qr|qx)\(', String.Other, 'rb-string'),
             (r'(q|qq|qw|qr|qx)\[', String.Other, 'sb-string'),
