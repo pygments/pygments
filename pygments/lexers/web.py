@@ -1709,9 +1709,7 @@ class DuelLexer(RegexLexer):
 
 class ScamlLexer(ExtendedRegexLexer):
     """
-    For Scaml markup.
-    Scaml is Haml for Scala, see:
-    http://scalate.fusesource.org/documentation/scaml-reference.html#features
+    For `Scaml markup <http://scalate.fusesource.org/>`_.  Scaml is Haml for Scala.
 
     *New in Pygments 1.4.*
     """
@@ -2548,3 +2546,4 @@ class XQueryLexer(ExtendedRegexLexer):
             (qname, Name.Variable, 'operator'),
         ]
     }
+
