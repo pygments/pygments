@@ -2626,8 +2626,6 @@ class MaqlLexer(RegexLexer):
         'root': [
             # IDENTITY
             (r'IDENTIFIER\b', Name.Builtin),
-            # FUNCNAME
-            (r'[[:alpha:]]\w*\b', Name.Function),
             # IDENTIFIER
             (r'\{[^}]+\}', Name.Variable),
             # NUMBER
@@ -2652,17 +2650,19 @@ class MaqlLexer(RegexLexer):
              r'DATATYPE|INT|BIGINT|DOUBLE|DATE|VARCHAR|DECIMAL|'
              r'SYNCHRONIZE|TYPE|DEFAULT|ORDER|ASC|DESC|HYPERLINK|'
              r'INCLUDE|TEMPLATE|MODIFY)\b', Keyword),
+            # FUNCNAME
+            (r'[a-zA-Z]\w*\b', Name.Function),
             # Comments
             (r'#.*', Comment.Single),
             # Punctuation
             (r'[,;\(\)]', Token.Punctuation),
             # Space is not significant
-            (r'\s', Text)
+            (r'\s+', Text)
         ],
         'string-literal': [
             (r'\\[tnrfbae"\\]', String.Escape),
             (r'"', Literal.String, '#pop'),
-            (r'.', Literal.String)
+            (r'[^\\"]+', Literal.String)
         ]
     }
 
@@ -2685,18 +2685,18 @@ class GoodDataCLLexer(RegexLexer):
             # Comments
             (r'#.*', Comment.Single),
             # Function call
-            (r'[a-zA-Z0-9]+', Name.Function),
+            (r'[a-zA-Z]\w*', Name.Function),
             # Argument list
             (r'\(', Token.Punctuation, 'args-list'),
             # Punctuation
             (r';', Token.Punctuation),
             # Space is not significant
-            (r'\s', Text)
+            (r'\s+', Text)
         ],
         'args-list': [
             (r'\)', Token.Punctuation, '#pop'),
             (r',', Token.Punctuation),
-            (r'[a-zA-Z0-9]+', Name.Variable),
+            (r'[a-zA-Z]\w*', Name.Variable),
             (r'=', Operator),
             (r'"', Literal.String, 'string-literal'),
             (r'[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]{1,3})?', Literal.Number),
@@ -2706,6 +2706,6 @@ class GoodDataCLLexer(RegexLexer):
         'string-literal': [
             (r'\\[tnrfbae"\\]', String.Escape),
             (r'"', Literal.String, '#pop'),
-            (r'.', Literal.String)
+            (r'[^\\"]+', Literal.String)
         ]
     }
