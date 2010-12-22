@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
      this, do_insertions
-from pygments.token import Error, Punctuation, \
+from pygments.token import Error, Punctuation, Literal, Token, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.util import shebang_matches
 from pygments.lexers.web import HtmlLexer
@@ -25,7 +25,8 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer',
            'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer',
            'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer',
-           'PostScriptLexer', 'AutohotkeyLexer']
+           'PostScriptLexer', 'AutohotkeyLexer', 'GoodDataCLLexer',
+           'MaqlLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -2607,3 +2608,104 @@ class AutohotkeyLexer(RegexLexer):
 
         }
 
+class MaqlLexer(RegexLexer):
+    """
+    Lexer for `GoodData MAQL <https://secure.gooddata.com/docs/html/advanced.metric.tutorial.html>`_
+    scripts.
+
+    *New in Pygments 1.4.*
+    """
+
+    name = 'MAQL'
+    aliases = ['maql']
+    filenames = ['*.maql']
+    mimetypes = ['text/x-gooddata-maql','application/x-gooddata-maql']
+
+    flags = re.IGNORECASE
+    tokens = {
+        'root': [
+            # IDENTITY
+            (r'IDENTIFIER\b', Name.Builtin),
+            # FUNCNAME
+            (r'[[:alpha:]]\w*\b', Name.Function),
+            # IDENTIFIER
+            (r'\{[^}]+\}', Name.Variable),
+            # NUMBER
+            (r'[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]{1,3})?', Literal.Number),
+            # STRING
+            (r'"', Literal.String, 'string-literal'),
+            #  RELATION
+            (r'\<\>|\!\=', Operator),
+            (r'\=|\>\=|\>|\<\=|\<', Operator),
+            # :=
+            (r'\:\=', Operator),
+            # OBJECT
+            (r'\[[^]]+\]', Name.Variable.Class),
+            # keywords
+            (r'(DIMENSIONS?|BOTTOM|METRIC|COUNT|OTHER|FACT|WITH|TOP|OR|'
+             r'ATTRIBUTE|CREATE|PARENT|FALSE|ROWS?|FROM|ALL|AS|PF|'
+             r'COLUMNS?|DEFINE|REPORT|LIMIT|TABLE|LIKE|AND|BY|'
+             r'BETWEEN|EXCEPT|SELECT|MATCH|WHERE|TRUE|FOR|IN|'
+             r'WITHOUT|FILTER|ALIAS|ORDER|FACT|WHEN|NOT|ON|'
+             r'KEYS|KEY|FULLSET|PRIMARY|LABELS|LABEL|VISUAL|'
+             r'TITLE|DESCRIPTION|FOLDER|ALTER|DROP|ADD|DATASET|'
+             r'DATATYPE|INT|BIGINT|DOUBLE|DATE|VARCHAR|DECIMAL|'
+             r'SYNCHRONIZE|TYPE|DEFAULT|ORDER|ASC|DESC|HYPERLINK|'
+             r'INCLUDE|TEMPLATE|MODIFY)\b', Keyword),
+            # Comments
+            (r'#.*', Comment.Single),
+            # Punctuation
+            (r'[,;\(\)]', Token.Punctuation),
+            # Space is not significant
+            (r'\s', Text)
+        ],
+        'string-literal': [
+            (r'\\[tnrfbae"\\]', String.Escape),
+            (r'"', Literal.String, '#pop'),
+            (r'.', Literal.String)
+        ]
+    }
+
+class GoodDataCLLexer(RegexLexer):
+    """
+    Lexer for `GoodData-CL <http://github.com/gooddata/GoodData-CL/raw/master/cli/src/main/resources/com/gooddata/processor/COMMANDS.txt>`_
+    script files.
+
+    *New in Pygments 1.4.*
+    """
+
+    name = 'GoodData-CL'
+    aliases = ['gooddata-cl']
+    filenames = ['*.gdc']
+    mimetypes = ['text/x-gooddata-cl']
+
+    flags = re.IGNORECASE
+    tokens = {
+        'root': [
+            # Comments
+            (r'#.*', Comment.Single),
+            # Function call
+            (r'[a-zA-Z0-9]+', Name.Function),
+            # Argument list
+            (r'\(', Token.Punctuation, 'args-list'),
+            # Punctuation
+            (r';', Token.Punctuation),
+            # Space is not significant
+            (r'\s', Text)
+        ],
+        'args-list': [
+            (r'\)', Token.Punctuation, '#pop'),
+            (r',', Token.Punctuation),
+            (r'[a-zA-Z0-9]+', Name.Variable),
+            (r'=', Operator),
+            (r'"', Literal.String, 'string-literal'),
+            (r'[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]{1,3})?', Literal.Number),
+            # Space is not significant
+            (r'\s', Text)
+        ],
+        'string-literal': [
+            (r'\\[tnrfbae"\\]', String.Escape),
+            (r'"', Literal.String, '#pop'),
+            (r'.', Literal.String)
+        ]
+    }
