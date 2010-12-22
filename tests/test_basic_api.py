@@ -191,7 +191,7 @@ def test_formatter_unicode_handling():
             inst = formatter()
             out = format(tokens, inst)
             assert type(out) is bytes, '%s: %r' % (formatter, out)
-    
+
     for formatter, info in formatters.FORMATTERS.iteritems():
         yield verify, formatter
 

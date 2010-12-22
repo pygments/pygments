@@ -205,7 +205,7 @@ class VelocityLexer(RegexLexer):
     flags = re.MULTILINE | re.DOTALL
 
     identifier = r'[a-zA-Z_][a-zA-Z0-9_]*'
-    
+
     tokens = {
         'root': [
             (r'[^{#$]+', Other),
@@ -296,8 +296,8 @@ class VelocityXmlLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(VelocityXmlLexer, self).__init__(XmlLexer, VelocityLexer,
-                                             **options)
-    
+                                               **options)
+
     def analyse_text(text):
         rv = VelocityLexer.analyse_text(text) - 0.01
         if looks_like_xml(text):
