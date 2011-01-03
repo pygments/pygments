@@ -379,14 +379,16 @@ class HtmlFormatter(Formatter):
     def _get_css_class(self, ttype):
         """Return the css class of this token type prefixed with
         the classprefix option."""
-        return self.classprefix + _get_ttype_class(ttype)
+        ttypeclass = _get_ttype_class(ttype)
+        if ttypeclass:
+            return self.classprefix + ttypeclass
+        return ''
 
     def _create_stylesheet(self):
         t2c = self.ttype2class = {Token: ''}
         c2s = self.class2style = {}
-        cp = self.classprefix
         for ttype, ndef in self.style:
-            name = cp + _get_ttype_class(ttype)
+            name = self._get_css_class(ttype)
             style = ''
             if ndef['color']:
                 style += 'color: #%s; ' % ndef['color']
