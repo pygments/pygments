@@ -2015,7 +2015,7 @@ class XQueryLexer(ExtendedRegexLexer):
                 ctx.pos = match.end(1)
         else:
             ctx.stack.append(next_state)
-            ctx.pos = match.end()
+            ctx.pos = match.end(1)
 
     def popstate_callback(lexer, match, ctx):
         yield match.start(), Punctuation, match.group(1)
