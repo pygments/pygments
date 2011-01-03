@@ -1051,7 +1051,7 @@ class DylanLexer(RegexLexer):
 
     name = 'Dylan'
     aliases = ['dylan']
-    filenames = ['*.dylan']
+    filenames = ['*.dylan', '*.dyl']
     mimetypes = ['text/x-dylan']
 
     flags = re.DOTALL
@@ -1064,10 +1064,10 @@ class DylanLexer(RegexLexer):
              r'|open|primary|sealed|si(deways|ngleton)|slot'
              r'|v(ariable|irtual))\b', Name.Builtin),
             (r'<\w+>', Keyword.Type),
-            (r'#?"(?:\\.|[^"])+?"', String.Double),
             (r'//.*?\n', Comment.Single),
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
-            (r'\'.*?\'', String.Single),
+            (r'"', String, 'string'),
+            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
             (r'=>|\b(a(bove|fterwards)|b(e(gin|low)|y)|c(ase|leanup|reate)'
              r'|define|else(|if)|end|f(inally|or|rom)|i[fn]|l(et|ocal)|otherwise'
              r'|rename|s(elect|ignal)|t(hen|o)|u(n(less|til)|se)|wh(en|ile))\b',
@@ -1083,6 +1083,13 @@ class DylanLexer(RegexLexer):
             (r'\s+', Text),
             (r'#[a-zA-Z0-9-]+', Keyword),
             (r'[a-zA-Z0-9-]+', Name.Variable),
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'[^\\"\n]+', String), # all other characters
+            (r'\\\n', String), # line continuation
+            (r'\\', String), # stray backslash
         ],
     }
 

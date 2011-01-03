@@ -7,6 +7,10 @@ define class <car> (<object>)
     init-value: #f;
 end class <car>;
 
+define constant $empty-string = "";
+define constant $escaped-backslash = '\\';
+define constant $escaped-single-quote = '\'';
+
 define variable *unique-serial-number* = 0;
 
 define function unique-serial-number() => (usn :: <integer>)
