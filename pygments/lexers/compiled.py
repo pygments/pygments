@@ -1340,7 +1340,7 @@ class GLShaderLexer(RegexLexer):
         'root': [
             (r'^#.*', Comment.Preproc),
             (r'//.*', Comment.Single),
-            (r'/\*[\w\W]*\*/', Comment.Multiline),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'\+|-|~|!=?|\*|/|%|<<|>>|<=?|>=?|==?|&&?|\^|\|\|?',
              Operator),
             (r'[?:]', Operator), # quick hack for ternary
