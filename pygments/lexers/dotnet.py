@@ -234,28 +234,30 @@ class VbNetLexer(RegexLexer):
              r'(On|Off|Binary|Text)', Keyword.Declaration),
             (r'(?<!\.)(AddHandler|Alias|'
              r'ByRef|ByVal|Call|Case|Catch|CBool|CByte|CChar|CDate|'
-             r'CDec|CDbl|CInt|CLng|CObj|Const|Continue|CSByte|CShort|'
+             r'CDec|CDbl|CInt|CLng|CObj|Continue|CSByte|CShort|'
              r'CSng|CStr|CType|CUInt|CULng|CUShort|Declare|'
-             r'Default|Delegate|Dim|DirectCast|Do|Each|Else|ElseIf|'
-             r'End|EndIf|Enum|Erase|Error|Event|Exit|False|Finally|For|'
-             r'Friend|Function|Get|Global|GoSub|GoTo|Handles|If|'
-             r'Implements|Imports|Inherits|Interface|'
-             r'Let|Lib|Loop|Me|Module|MustInherit|'
-             r'MustOverride|MyBase|MyClass|Namespace|Narrowing|New|Next|'
+             r'Default|Delegate|DirectCast|Do|Each|Else|ElseIf|'
+             r'EndIf|Erase|Error|Event|Exit|False|Finally|For|'
+             r'Friend|Get|Global|GoSub|GoTo|Handles|If|'
+             r'Implements|Inherits|Interface|'
+             r'Let|Lib|Loop|Me|MustInherit|'
+             r'MustOverride|MyBase|MyClass|Narrowing|New|Next|'
              r'Not|Nothing|NotInheritable|NotOverridable|Of|On|'
              r'Operator|Option|Optional|Overloads|Overridable|'
-             r'Overrides|ParamArray|Partial|Private|Property|Protected|'
+             r'Overrides|ParamArray|Partial|Private|Protected|'
              r'Public|RaiseEvent|ReadOnly|ReDim|RemoveHandler|Resume|'
              r'Return|Select|Set|Shadows|Shared|Single|'
-             r'Static|Step|Stop|Structure|Sub|SyncLock|Then|'
+             r'Static|Step|Stop|SyncLock|Then|'
              r'Throw|To|True|Try|TryCast|Wend|'
              r'Using|When|While|Widening|With|WithEvents|'
              r'WriteOnly)\b', Keyword),
+            (r'(?<!\.)End\b', Keyword, 'end'),
+            (r'(?<!\.)(Dim|Const)\b', Keyword, 'dim'),
             (r'(?<!\.)(Function|Sub|Property)(\s+)',
              bygroups(Keyword, Text), 'funcname'),
             (r'(?<!\.)(Class|Structure|Enum)(\s+)',
              bygroups(Keyword, Text), 'classname'),
-            (r'(?<!\.)(Namespace|Imports)(\s+)',
+            (r'(?<!\.)(Module|Namespace|Imports)(\s+)',
              bygroups(Keyword, Text), 'namespace'),
             (r'(?<!\.)(Boolean|Byte|Char|Date|Decimal|Double|Integer|Long|'
              r'Object|SByte|Short|Single|String|Variant|UInteger|ULong|'
@@ -279,15 +281,25 @@ class VbNetLexer(RegexLexer):
             (r'"C?', String, '#pop'),
             (r'[^"]+', String),
         ],
+        'dim': [
+            (r'[a-z_][a-z0-9_]*', Name.Variable, '#pop'),
+            (r'', Text, '#pop'),  # any other syntax
+        ],
         'funcname': [
-            (r'[a-z_][a-z0-9_]*', Name.Function, '#pop')
+            (r'[a-z_][a-z0-9_]*', Name.Function, '#pop'),
         ],
         'classname': [
-            (r'[a-z_][a-z0-9_]*', Name.Class, '#pop')
+            (r'[a-z_][a-z0-9_]*', Name.Class, '#pop'),
         ],
         'namespace': [
-            (r'[a-z_][a-z0-9_.]*', Name.Namespace, '#pop')
+            (r'[a-z_][a-z0-9_.]*', Name.Namespace, '#pop'),
         ],
+        'end': [
+            (r'\s+', Text),
+            (r'(Function|Sub|Property|Class|Structure|Enum|Module|Namespace)\b',
+             Keyword, '#pop'),
+            (r'', Text, '#pop'),
+        ]
     }
 
 class GenericAspxLexer(RegexLexer):
