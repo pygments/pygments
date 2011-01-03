@@ -602,7 +602,7 @@ class OcamlLexer(RegexLexer):
             (r'\.', Punctuation),
             (r'[A-Z][A-Za-z0-9_\']*(?=\s*\.)', Name.Namespace),
             (r'[A-Z][A-Za-z0-9_\']*', Name.Class, '#pop'),
-            (r'[a-z][a-z0-9_\']*', Name, '#pop'),
+            (r'[a-z_][A-Za-z0-9_\']*', Name, '#pop'),
         ],
     }
 
