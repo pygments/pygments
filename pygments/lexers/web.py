@@ -1962,7 +1962,7 @@ class XQueryLexer(ExtendedRegexLexer):
     unprefixedname = ncname
     qname = "((%s)|(%s))" %(prefixedname, unprefixedname)
 
-    entityref = r'&(lt|gt|amp|quot|apos);'
+    entityref = r'&(lt|gt|amp|quot|apos|nbsp);'
     charref = r'&#[0-9]+;|&#x[0-9a-fA-F]+;'
 
     stringdouble = r'("((' + entityref + r')|(' + charref + r')|("")|([^&"]))*")'
@@ -1994,6 +1994,11 @@ class XQueryLexer(ExtendedRegexLexer):
 
     def popstate_tag_callback(lexer, match, ctx):
         yield match.start(), Name.Tag, match.group(1)
+        ctx.stack.append(lexer.xquery_parse_state.pop())
+        ctx.pos = match.end()
+
+    def popstate_xmlcomment_callback(lexer, match, ctx):
+        yield match.start(), String.Doc, match.group(1)
         ctx.stack.append(lexer.xquery_parse_state.pop())
         ctx.pos = match.end()
 
@@ -2073,10 +2078,28 @@ class XQueryLexer(ExtendedRegexLexer):
         lexer.xquery_parse_state.append('operator')
         ctx.pos = match.end()
 
+    def pushstate_element_content_processing_instruction_callback(lexer, match, ctx):
+        yield match.start(), String.Doc, match.group(1)
+        ctx.stack.append('processing_instruction')
+        lexer.xquery_parse_state.append('element_content')
+        ctx.pos = match.end()
+
+    def pushstate_element_content_cdata_section_callback(lexer, match, ctx):
+        yield match.start(), String.Doc, match.group(1)
+        ctx.stack.append('cdata_section')
+        lexer.xquery_parse_state.append('element_content')
+        ctx.pos = match.end()
+
     def pushstate_operator_cdata_section_callback(lexer, match, ctx):
         yield match.start(), String.Doc, match.group(1)
         ctx.stack.append('cdata_section')
         lexer.xquery_parse_state.append('operator')
+        ctx.pos = match.end()
+
+    def pushstate_element_content_xmlcomment_callback(lexer, match, ctx):
+        yield match.start(), String.Doc, match.group(1)
+        ctx.stack.append('xml_comment')
+        lexer.xquery_parse_state.append('element_content')
         ctx.pos = match.end()
 
     def pushstate_operator_xmlcomment_callback(lexer, match, ctx):
@@ -2297,7 +2320,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'\?', Punctuation),
         ],
         'xml_comment': [
-            (r'-->', String.Doc, '#pop'),
+            (r'(-->)', popstate_xmlcomment_callback),
             (r'[^-]{1,2}', Literal),
             (r'\u009|\u00A|\u00D|[\u0020-\u00D7FF]|[\u00E000-\u00FFFD]|'
              r'[\u0010000-\u0010FFFF]', Literal),
@@ -2347,9 +2370,9 @@ class XQueryLexer(ExtendedRegexLexer):
         'element_content': [
             (r'</', Name.Tag, 'end_tag'),
             (r'(\{)', pushstate_root_callback),
-            (r'(<!--)', pushstate_operator_xmlcomment_callback),
-            (r'(<\?)', pushstate_operator_processing_instruction_callback),
-            (r'(<!\[CDATA\[)', pushstate_operator_cdata_section_callback),
+            (r'(<!--)', pushstate_element_content_xmlcomment_callback),
+            (r'(<\?)', pushstate_element_content_processing_instruction_callback),
+            (r'(<!\[CDATA\[)', pushstate_element_content_cdata_section_callback),
             (r'(<)', pushstate_element_content_starttag_callback),
             (elementcontentchar, Literal),
             (entityref, Literal),

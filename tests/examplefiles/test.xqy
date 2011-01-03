@@ -14,7 +14,7 @@ declare variable $SESSIONS as element(sess:session)* := c:sessions();
 
 declare option sess:clear "false";
 
-define function whatsit($param xs:string) as xs:string {
+define function whatsit($param as xs:string) as xs:string {
 	let $var1 := 1
 	let $var2 := 2
 	return (1 + 2 div ($var1 + $var2))
@@ -132,4 +132,5 @@ return
 	</form>
 	</outer>
 }
+  <tr><td><!-- some commented things-->&nbsp;</td></tr>
 </html>
