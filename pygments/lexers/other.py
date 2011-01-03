@@ -26,7 +26,7 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer',
            'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer',
            'PostScriptLexer', 'AutohotkeyLexer', 'GoodDataCLLexer',
-           'MaqlLexer', 'ProtoBufLexer']
+           'MaqlLexer', 'ProtoBufLexer', 'HybrisLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -2761,5 +2761,83 @@ class ProtoBufLexer(RegexLexer):
         ],
         'type': [
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name, '#pop')
+        ],
+    }
+
+
+class HybrisLexer(RegexLexer):
+    """
+    For `Hybris <http://www.hybris-lang.org>`_ source code.
+
+    *New in Pygments 1.4.*
+    """
+
+    name = 'Hybris'
+    aliases = ['hybris', 'hy']
+    filenames = ['*.hy', '*.hyb']
+    mimetypes = ['text/x-hybris', 'application/x-hybris']
+
+    flags = re.MULTILINE | re.DOTALL
+
+    tokens = {
+        'root': [
+            # method names
+            (r'^(\s*(?:function|method|operator\s+)+?)'
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'
+             r'(\s*)(\()', bygroups(Name.Function, Text, Operator)),
+            (r'[^\S\n]+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'@[a-zA-Z_][a-zA-Z0-9_\.]*', Name.Decorator),
+            (r'(break|case|catch|next|default|do|else|finally|for|foreach|of|'
+             r'unless|if|new|return|switch|me|throw|try|while)\b', Keyword),
+            (r'(extends|private|protected|public|static|throws|function|method|'
+             r'operator)\b', Keyword.Declaration),
+            (r'(true|false|null|__FILE__|__LINE__|__VERSION__|__LIB_PATH__|'
+             r'__INC_PATH__)\b', Keyword.Constant),
+            (r'(class|struct)(\s+)',
+             bygroups(Keyword.Declaration, Text), 'class'),
+            (r'(import|include)(\s+)',
+             bygroups(Keyword.Namespace, Text), 'import'),
+            (r'(gc_collect|gc_mm_items|gc_mm_usage|gc_collect_threshold|'
+             r'urlencode|urldecode|base64encode|base64decode|sha1|crc32|sha2|'
+             r'md5|md5_file|acos|asin|atan|atan2|ceil|cos|cosh|exp|fabs|floor|'
+             r'fmod|log|log10|pow|sin|sinh|sqrt|tan|tanh|isint|isfloat|ischar|'
+             r'isstring|isarray|ismap|isalias|typeof|sizeof|toint|tostring|'
+             r'fromxml|toxml|binary|pack|load|eval|var_names|var_values|'
+             r'user_functions|dyn_functions|methods|call|call_method|mknod|'
+             r'mkfifo|mount|umount2|umount|ticks|usleep|sleep|time|strtime|'
+             r'strdate|dllopen|dlllink|dllcall|dllcall_argv|dllclose|env|exec|'
+             r'fork|getpid|wait|popen|pclose|exit|kill|pthread_create|'
+             r'pthread_create_argv|pthread_exit|pthread_join|pthread_kill|'
+             r'smtp_send|http_get|http_post|http_download|socket|bind|listen|'
+             r'accept|getsockname|getpeername|settimeout|connect|server|recv|'
+             r'send|close|print|println|printf|input|readline|serial_open|'
+             r'serial_fcntl|serial_get_attr|serial_get_ispeed|serial_get_ospeed|'
+             r'serial_set_attr|serial_set_ispeed|serial_set_ospeed|serial_write|'
+             r'serial_read|serial_close|xml_load|xml_parse|fopen|fseek|ftell|'
+             r'fsize|fread|fwrite|fgets|fclose|file|readdir|pcre_replace|size|'
+             r'pop|unmap|has|keys|values|length|find|substr|replace|split|trim|'
+             r'remove|contains|join)\b', Name.Builtin),
+            (r'(MethodReference|Runner|Dll|Thread|Pipe|Process|Runnable|'
+             r'CGI|ClientSocket|Socket|ServerSocket|File|Console|Directory|'
+             r'Exception)\b', Keyword.Type),
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
+            (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)',
+             bygroups(Operator, Name.Attribute)),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
+            (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
+            (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?\-@]+', Operator),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-f]+', Number.Hex),
+            (r'[0-9]+L?', Number.Integer),
+            (r'\n', Text),
+        ],
+        'class': [
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+        ],
+        'import': [
+            (r'[a-zA-Z0-9_.]+\*?', Name.Namespace, '#pop')
         ],
     }
