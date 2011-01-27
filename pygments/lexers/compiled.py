@@ -23,10 +23,11 @@ from pygments.token import \
 from pygments.lexers.functional import OcamlLexer
 
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'JavaLexer',
-           'ScalaLexer', 'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer',
-           'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
-           'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
-           'Modula2Lexer', 'BlitzMaxLexer']
+           'ScalaLexer', 'DylanLexer', 'NimrodLexer', 'OcamlLexer',
+           'ObjectiveCLexer', 'FortranLexer', 'GLShaderLexer',
+           'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer',
+           'GoLexer', 'FelixLexer', 'AdaLexer', 'Modula2Lexer',
+           'BlitzMaxLexer']
 
 
 class CLexer(RegexLexer):
@@ -1090,6 +1091,93 @@ class DylanLexer(RegexLexer):
             (r'[^\\"\n]+', String), # all other characters
             (r'\\\n', String), # line continuation
             (r'\\', String), # stray backslash
+        ],
+    }
+
+
+class NimrodLexer(RegexLexer):
+    """
+    For `Nimrod <http://force7.de/nimrod/>`_ source code.
+    """
+    name = 'Nimrod'
+    aliases = ['nimrod', 'nim']
+    filenames = ['*.nim']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r"##.*$", bygroups(String.Doc)),
+            (r'[^\S\n]+', Text),
+            (r'#.*$', Comment),
+            (r'[]{}:(),;[]', Punctuation),
+            (r'[~!%$@&*+=|?:<>/-]|\.', Operator),
+            (r'\\\n', Text),
+            (r'\\', Text),
+            include('keywords'),
+            (r'(proc|method|template|macro|iterator)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'funcname'),
+            (r'(from)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Text), 'fromimport'),
+            (r'(import)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Text), 'import'),
+            include('builtins'),
+            include('backtick'),
+            include('name'),
+            include('numbers'),
+            ('"', String, combined('stringescape', 'dqs')),
+            ("'", String, combined('stringescape', 'sqs')),
+        ],
+        'builtins': [
+            (r'(int|int8|int16|int32|int64|float|float32|float64|bool|char|string|cstring|pointer|Ordinal|expr|stmt|typeDesc|range|array|openarray|seq|set|Byte|Natural|Positive|TObject|PObjectTResult|TEndian|TAddress|BiggestInt|BiggestFloat|cchar|cschar|cshort|cint|clong|clonglong|cfloat|cdouble|clongdouble|cstringArray|PFloat32|PFloat64|PInt64|PInt32|TGC_Strategy|TFile|TFileMode|TFileHandle|isMainModule|CompileDate|CompileTime|NimrodVersion|NimrodMajor|NimrodMinor|NimrodPatch|cpuEndian|hostOS|hostCPU|appType|inf|neginf|nan|QuitSuccess|QuitFailure|dbgLineHook|stdin|stdout|stderr|defined|definedInScope|high|low|sizeof|succ|pred|inc|dec|newSeq|len|incl|excl|card|ord|chr|ze|ze64|toU8|toU16|toU32|abs|min|max|contains|cmp|setLen|newString|compileOption|add|del|delete|insert|repr|toFloat|toBiggestFloat|toInt|toBiggestInt|addQuitProc|copy|zeroMem|copyMem|moveMem|equalMem|alloc|alloc0|realloc|dealloc|assert|swap|getRefcount|getOccupiedMem|getFreeMem|getTotalMem|min|max|isNil|find|contains|pop|each|GC_disable|GC_enable|GC_fullCollect|GC_setStrategy|GC_enableMarkAndSweep|GC_disableMarkAndSweep|GC_getStatistics|GC_ref|GC_unref|add|echo|quit|atomicInc|atomicDec|Open|reopen|Close|EndOfFile|readChar|FlushFile|readFile|write|readLine|writeln|getFileSize|ReadBytes|ReadChars|readBuffer|writeBytes|writeChars|writeBuffer|setFilePos|getFilePos|fileHandle|cstringArrayToSeq|cstringArrayToSeq|getCurrentException|getCurrentExceptionMsg|likely|unlikely)\b', Name.Builtin),
+            (r'(false|true)', Name.Builtin.Pseudo),
+            (r'(E_Base|EAsynch|ESynch|ESystem|EIO|EOS|EInvalidLibrary|EResourceExhausted|EArithmetic|EDivByZero|EOverflow|EAccessViolation|EAssertionFailed|EControlC|EInvalidValue|EOutOfMemory|EInvalidIndex|EInvalidField|EOutOfRange|EStackOverflow|ENoExceptionToReraise|EInvalidObjectAssignment|EInvalidObjectConversion|EFloatingPoint|EFloatInvalidOp|EFloatDivByZero|EFloatOverflow|EFloatUnderflow|EFloatInexact)\b', Name.Exception),
+        ],
+        'backtick': [
+            ('`.*?`', String.Backtick),
+        ],
+        'keywords': [
+            (r'(addr|and|as|asm|atomic|bind|block|break|case|cast|const|continue|converter|discard|distinct|div|elif|else|end|enum|except|finally|for|generic|if|implies|in|include|is|isnot|lambda|let|mod|nil|not|notin|object|of|or|out|ptr|raise|ref|return|shl|shr|try|tuple|type|var|when|while|with|without|xor|yield)\b', Keyword),
+        ],
+        'name': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+        ],
+        'funcname': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop')
+        ],
+        'import': [
+            (r'((?:\s|\\\s)+)',
+             bygroups(Text)),
+            (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace),
+            (r'(\s*)(,)(\s*)', bygroups(Text, Operator, Text)),
+            (r'', Text, '#pop') # all else: go back
+        ],
+        'fromimport': [
+            (r'((?:\s|\\\s)+)(import)\b', bygroups(Text, Keyword.Namespace), '#pop'),
+            (r'[a-zA-Z_.][a-zA-Z0-9_.]*', Name.Namespace),
+        ],
+        'numbers': [
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?\'?(f32|f64)?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+\'?(f32|f64)?', Number.Float),
+            (r'0o[0-7]+', Number.Oct),
+            (r'0x[a-fA-F0-9]+', Number.Hex),
+            (r'\d+\'?(i8|i16|i32|i64)?', Number.Integer)
+        ],
+        'stringescape': [
+            (r'\\([\\abfnrtv"\']|\n|N{.*?}|u[a-fA-F0-9]{4}|'
+             r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
+        ],
+        'strings': [
+            (r'[^\\\'"%\n]+', String),
+            (r'[\'"\\]', String),
+            (r'%', String)
+        ],
+        'nl': [
+            (r'\n', String)
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            include('strings')
+        ],
+        'sqs': [
+            (r"'", String, '#pop'),
+            include('strings')
         ],
     }
 
