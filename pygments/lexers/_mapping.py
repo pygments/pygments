@@ -90,6 +90,8 @@ LEXERS = {
     'GnuplotLexer': ('pygments.lexers.other', 'Gnuplot', ('gnuplot',), ('*.plot', '*.plt'), ('text/x-gnuplot',)),
     'GoLexer': ('pygments.lexers.compiled', 'Go', ('go',), ('*.go',), ('text/x-gosrc',)),
     'GoodDataCLLexer': ('pygments.lexers.other', 'GoodData-CL', ('gooddata-cl',), ('*.gdc',), ('text/x-gooddata-cl',)),
+    'GosuLexer': ('pygments.lexers.compiled', 'Gosu', ('gosu',), ('*.gs', '*.gsx', '*.gsp'), ('text/x-gosu',)),
+    'GosuTemplateLexer': ('pygments.lexers.compiled', 'Gosu Template', ('gst',), ('*.gst',), ('text/x-gosu',)),
     'GroffLexer': ('pygments.lexers.text', 'Groff', ('groff', 'nroff', 'man'), ('*.[1234567]', '*.man'), ('application/x-troff', 'text/troff')),
     'HamlLexer': ('pygments.lexers.web', 'Haml', ('haml', 'HAML'), ('*.haml',), ('text/x-haml',)),
     'HaskellLexer': ('pygments.lexers.functional', 'Haskell', ('haskell', 'hs'), ('*.hs',), ('text/x-haskell',)),
