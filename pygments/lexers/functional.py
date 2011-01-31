@@ -406,7 +406,7 @@ class HaskellLexer(RegexLexer):
         'funclist': [
             (r'\s+', Text),
             (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
-            (r'[_a-z][\w\']+', Name.Function),
+            (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
             (r'--.*$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
