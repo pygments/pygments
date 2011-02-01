@@ -269,7 +269,7 @@ class OctaveLexer(RegexLexer):
 
     # for i in \
     #     "Built-in Function" "Command" "Function File" \
-    #     "Loadable Function" "Mapping Function" "Method";
+    #     "Loadable Function" "Mapping Function";
     # do
     #     perl -e '@name = qw('"$i"');
     #              print lc($name[0]),"_kw = [\n"';
@@ -280,7 +280,7 @@ class OctaveLexer(RegexLexer):
     #     echo;
     # done
 
-    # taken from Octave Mercurial changeset 8cc154f45e37
+    # taken from Octave Mercurial changeset 8cc154f45e37 (30-jan-2011)
 
     builtin_kw = [ "addlistener", "addpath", "addproperty", "all",
                    "and", "any", "argnames", "argv", "assignin",
@@ -368,7 +368,8 @@ class OctaveLexer(RegexLexer):
                    "uname", "undo_string_escapes", "unlink", "uplus",
                    "upper", "usage", "usleep", "vec", "vectorize",
                    "vertcat", "waitpid", "warning", "warranty",
-                   "whos_line_format", "yes_or_no", "zeros", ]
+                   "whos_line_format", "yes_or_no", "zeros",
+                   "inf", "Inf", "nan", "NaN"]
 
     command_kw = [ "close", "load", "who", "whos", ]
 
@@ -568,9 +569,14 @@ class OctaveLexer(RegexLexer):
                   "sqrt", "tan", "tanh", "toascii", "tolower", "xor",
                   ]
 
-    method_kw = [ "byte_size", "dims", "elem", "fortran_vec", "nelem", "operator", 
-                 "resize", ]
-
+    builtin_consts = [ "EDITOR", "EXEC_PATH", "I", "IMAGE_PATH", "NA",
+                   "OCTAVE_HOME", "OCTAVE_VERSION", "PAGER",
+                   "PAGER_FLAGS", "SEEK_CUR", "SEEK_END", "SEEK_SET",
+                   "SIG", "S_ISBLK", "S_ISCHR", "S_ISDIR", "S_ISFIFO",
+                   "S_ISLNK", "S_ISREG", "S_ISSOCK", "WCONTINUE",
+                   "WCOREDUMP", "WEXITSTATUS", "WIFCONTINUED",
+                   "WIFEXITED", "WIFSIGNALED", "WIFSTOPPED", "WNOHANG",
+                   "WSTOPSIG", "WTERMSIG", "WUNTRACED", ]
 
     tokens = {
         'root': [
@@ -588,7 +594,9 @@ class OctaveLexer(RegexLexer):
 
             ("(" + "|".join(  builtin_kw + command_kw
                             + function_kw + loadable_kw
-                            + mapping_kw + method_kw) + r')\b',  Name.Builtin),
+                            + mapping_kw) + r')\b',  Name.Builtin),
+
+            ("(" + "|".join(builtin_consts) + r')\b', Name.Constant),
 
             # operators in Octave but not Matlab:
             (r'-=|!=|!|/=|--', Operator),
