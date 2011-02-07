@@ -612,18 +612,18 @@ class OctaveLexer(RegexLexer):
             (r'\[|\]|\(|\)|\{|\}|:|@|\.|,', Punctuation),
             (r'=|:|;', Punctuation),
 
+            (r'"[^"]*"', String),
+
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
-            
             (r'(?<![\w\)\]])\'', String, 'string'),
-            (r'"', String, 'string'),
+
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
         ],
         'string': [
-            (r'[^\']*\'', String, '#pop'),
-            (r'[^"]*"', String, '#pop'),
+            (r"[^']*'", String, '#pop'),
         ],
         'deffunc': [
             (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
