@@ -22,7 +22,7 @@ from pygments import unistring as uni
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
            'MiniDLexer', 'IoLexer', 'TclLexer', 'ClojureLexer',
-           'Python3Lexer', 'Python3TracebackLexer', 'FactorLexer', 'IokeLexer']
+           'Python3Lexer', 'Python3TracebackLexer', 'FactorLexer', 'IokeLexer', 'ChaiscriptLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -1957,3 +1957,59 @@ class IokeLexer(RegexLexer):
             (r'[a-z_][a-zA-Z0-9_!:?]*', Name)
         ]
     }
+
+
+
+class ChaiscriptLexer(RegexLexer):
+    """
+    For ChaiScript source code.
+    """
+
+    name = 'ChaiScript'
+    aliases = ['chai', 'chaiscript']
+    filenames = ['*.chai']
+    mimetypes = ['text/x-chaiscript', 'application/x-chaiscript']
+
+    flags = re.DOTALL
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'^\#.*?\n', Comment.Single)
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'(?=/)', Text, ('#pop', 'badregex')),
+            (r'', Text, '#pop')
+        ],
+        'badregex': [
+            ('\n', Text, '#pop')
+        ],
+        'root': [
+            include('commentsandwhitespace'),
+            (r'\n', Text),
+            (r'[^\S\n]+', Text),
+            (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|\.\.'
+             r'(<<|>>>?|==?|!=?|[-<>+*%&\|\^/])=?', Operator, 'slashstartsregex'),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+            (r'(for|in|while|do|break|return|continue|if|else|'
+             r'throw|try|catch'
+             r')\b', Keyword, 'slashstartsregex'),
+            (r'(var)\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(attr|def|fun)\b', Keyword.Reserved),
+            (r'(true|false)\b', Keyword.Constant),
+            (r'(eval|throw)\b', Name.Builtin),
+            (r'`\S+`', Name.Builtin),
+            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
+        ]
+    }
+
