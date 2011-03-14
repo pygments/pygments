@@ -22,7 +22,8 @@ from pygments import unistring as uni
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
            'MiniDLexer', 'IoLexer', 'TclLexer', 'ClojureLexer',
-           'Python3Lexer', 'Python3TracebackLexer', 'FactorLexer', 'IokeLexer']
+           'Python3Lexer', 'Python3TracebackLexer', 'FactorLexer',
+           'IokeLexer', 'FancyLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -1955,5 +1956,87 @@ class IokeLexer(RegexLexer):
 
             #default cellnames
             (r'[a-z_][a-zA-Z0-9_!:?]*', Name)
+        ]
+    }
+
+class FancyLexer(RegexLexer):
+    """
+    Pygments Lexer For `Fancy <http://www.fancy-lang.org/>`_.
+
+    Fancy is a self-hosted, pure object-oriented, dynamic,
+    class-based, concurrent general-purpose programming language
+    running on Rubinius, the Ruby VM.
+
+    **New in Pygments 1.5**
+    """
+    name = 'Fancy'
+    filenames = ['*.fy', '*.fancypack']
+    aliases = ['fancy', 'fy']
+    mimetypes = ['text/x-fancysrc']
+
+    tokens = {
+        # copied from PerlLexer:
+        'balanced-regex': [
+            (r'/(\\\\|\\/|[^/])*/[egimosx]*', String.Regex, '#pop'),
+            (r'!(\\\\|\\!|[^!])*![egimosx]*', String.Regex, '#pop'),
+            (r'\\(\\\\|[^\\])*\\[egimosx]*', String.Regex, '#pop'),
+            (r'{(\\\\|\\}|[^}])*}[egimosx]*', String.Regex, '#pop'),
+            (r'<(\\\\|\\>|[^>])*>[egimosx]*', String.Regex, '#pop'),
+            (r'\[(\\\\|\\\]|[^\]])*\][egimosx]*', String.Regex, '#pop'),
+            (r'\((\\\\|\\\)|[^\)])*\)[egimosx]*', String.Regex, '#pop'),
+            (r'@(\\\\|\\\@|[^\@])*@[egimosx]*', String.Regex, '#pop'),
+            (r'%(\\\\|\\\%|[^\%])*%[egimosx]*', String.Regex, '#pop'),
+            (r'\$(\\\\|\\\$|[^\$])*\$[egimosx]*', String.Regex, '#pop'),
+        ],
+        'root': [
+            (r'\s+', Text),
+
+            # balanced delimiters (copied from PerlLexer):
+            (r's{(\\\\|\\}|[^}])*}\s*', String.Regex, 'balanced-regex'),
+            (r's<(\\\\|\\>|[^>])*>\s*', String.Regex, 'balanced-regex'),
+            (r's\[(\\\\|\\\]|[^\]])*\]\s*', String.Regex, 'balanced-regex'),
+            (r's\((\\\\|\\\)|[^\)])*\)\s*', String.Regex, 'balanced-regex'),
+            (r'm?/(\\\\|\\/|[^/\n])*/[gcimosx]*', String.Regex),
+            (r'm(?=[/!\\{<\[\(@%\$])', String.Regex, 'balanced-regex'),
+
+            # Comments
+            (r'#(.*?)\n', Comment.Single),
+            # Symbols
+            (r'\'[^\'\s]+', String.Symbol),
+            # Multi-line DoubleQuotedString
+            (r'"""(\\\\|\\"|[^"])*"""', String),
+            # DoubleQuotedString
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # keywords
+            (r'(def|class|try|catch|finally|retry|return|return_local|match|'
+             r'case|->|=>)\b', Keyword),
+            # constants
+            (r'(self|super|nil|false|true)\b', Name.Constant),
+            (r'[(){};,/?\|:\\]', Punctuation),
+            # names
+            (r'(Object|Array|Hash|Directory|File|Class|String|Number|'
+             r'Enumerable|FancyEnumerable|Block|TrueClass|NilClass|'
+             r'FalseClass|Tuple|Symbol|Stack|Set|FancySpec|Method|Package|'
+             r'Range)\b', Name.Builtin),
+            # functions
+            (r'[a-zA-Z]([a-zA-Z0-9_]|[-+?!=*/^><%])*:', Name.Function),
+            # operators, must be below functions
+            (r'[-+*/~,<>=&!?%^\[\]\.$]+', Operator),
+            ('[A-Z][a-zA-Z0-9_]*', Name.Constant),
+            ('@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Instance),
+            ('@@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Class),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            # numbers - / checks are necessary to avoid mismarking regexes,
+            # see comment in RubyLexer
+            (r'(0[oO]?[0-7]+(?:_[0-7]+)*)(\s*)([/?])?',
+             bygroups(Number.Oct, Text, Operator)),
+            (r'(0[xX][0-9A-Fa-f]+(?:_[0-9A-Fa-f]+)*)(\s*)([/?])?',
+             bygroups(Number.Hex, Text, Operator)),
+            (r'(0[bB][01]+(?:_[01]+)*)(\s*)([/?])?',
+             bygroups(Number.Bin, Text, Operator)),
+            (r'([\d]+(?:_\d+)*)(\s*)([/?])?',
+             bygroups(Number.Integer, Text, Operator)),
+            (r'\d+([eE][+-]?[0-9]+)|\d+\.\d+([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+', Number.Integer)
         ]
     }
