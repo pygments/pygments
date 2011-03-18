@@ -2519,8 +2519,8 @@ class GosuLexer(RegexLexer):
              Keyword.Type),
             (r'(package)(\s+)', bygroups(Keyword.Namespace, Text)),
             (r'(true|false|null|NaN|Infinity)\b', Keyword.Constant),
-            (r'(class|interface|enhancement|enum)(\s+)', bygroups(Keyword.Declaration, Text), 'class'),
-            (r'(uses)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+            (r'(class|interface|enhancement|enum)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword.Declaration, Text, Name.Class)),
+            (r'(uses)(\s+)([a-zA-Z0-9_.]+\*?)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
             (r'"', String, 'string'),
             (r'(\??[\.#])([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
             (r'(:)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
@@ -2533,9 +2533,10 @@ class GosuLexer(RegexLexer):
         'templateText': [
           (r'(\\<)|(\\\$)', String),
           (r'(<%@\s+)(extends|params)', bygroups(Operator, Name.Decorator), 'stringTemplate'),
+          (r'<%!--.*?--%>', Comment.Multiline),
           (r'(<%)|(<%=)', Operator, 'stringTemplate'),
           (r'\$\{', Operator, 'stringTemplateShorthand'),
-          (r'.+?', String)
+          (r'.', String)
         ],
         'string': [
           (r'"', String, '#pop'),
@@ -2552,24 +2553,20 @@ class GosuLexer(RegexLexer):
           (r'\}', Operator, '#pop'),
           include('root')
         ],
-        'class': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
-        ],
-        'import': [
-            (r'[a-zA-Z0-9_.]+\*?', Name.Namespace, '#pop')
-        ],
     }
 
-class GosuTemplateLexer(GosuLexer):
+class GosuTemplateLexer(Lexer):
     """
-    For `Gosu <http://gosu-lang.org/>`_ source code.
+    For `Gosu <http://gosu-lang.org/>`_ templates.
     """
 
     name = 'Gosu Template'
     aliases = ['gst']
     filenames = ['*.gst']
+    mimetypes = ['text/x-gosu-template']
+    lexer = GosuLexer()
 
     def get_tokens_unprocessed(self, text):
         stack = ['templateText']
-        for item in GosuLexer.get_tokens_unprocessed(self, text, stack):
+        for item in self.lexer.get_tokens_unprocessed(text, stack):
             yield item
