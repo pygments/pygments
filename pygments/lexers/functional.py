@@ -563,7 +563,7 @@ class OcamlLexer(RegexLexer):
             (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
             (r'\(\*', Comment, 'comment'),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
-            (r'(%s)' % '|'.join(keyopts), Operator),
+            (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
@@ -656,7 +656,7 @@ class ErlangLexer(RegexLexer):
         'universaltime_to_localtime', 'unlink', 'unregister', 'whereis'
         ]
 
-    operators = r'(\+|-|\*|/|<|>|=|==|/=|=:=|=/=|=<|>=|\+\+|--|<-|!)'
+    operators = r'(\+\+?|--?|\*|/|<|>|/=|=:=|=/=|=<|>=|==?|<-|!)'
     word_operators = [
         'and', 'andalso', 'band', 'bnot', 'bor', 'bsl', 'bsr', 'bxor',
         'div', 'not', 'or', 'orelse', 'rem', 'xor'

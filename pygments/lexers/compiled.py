@@ -1059,7 +1059,7 @@ class DylanLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\b(subclass|abstract|block|c(on(crete|stant)|lass)|domain'
-             r'|ex(c(eption|lude)|port)|f(unction(|al))|generic|handler'
+             r'|ex(c(eption|lude)|port)|f(unction(al)?)|generic|handler'
              r'|i(n(herited|line|stance|terface)|mport)|library|m(acro|ethod)'
              r'|open|primary|sealed|si(deways|ngleton)|slot'
              r'|v(ariable|irtual))\b', Name.Builtin),
@@ -1069,7 +1069,7 @@ class DylanLexer(RegexLexer):
             (r'"', String, 'string'),
             (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
             (r'=>|\b(a(bove|fterwards)|b(e(gin|low)|y)|c(ase|leanup|reate)'
-             r'|define|else(|if)|end|f(inally|or|rom)|i[fn]|l(et|ocal)|otherwise'
+             r'|define|else(if)?|end|f(inally|or|rom)|i[fn]|l(et|ocal)|otherwise'
              r'|rename|s(elect|ignal)|t(hen|o)|u(n(less|til)|se)|wh(en|ile))\b',
              Keyword),
             (r'([ \t])([!\$%&\*\/:<=>\?~_^a-zA-Z0-9.+\-]*:)',
@@ -2151,7 +2151,7 @@ class AdaLexer(RegexLexer):
         'end' : [
             ('(if|case|record|loop|select)', Keyword.Reserved),
             ('"[^"]+"|[a-zA-Z0-9_]+', Name.Function),
-            ('[\n\s]+', Text),
+            ('\s+', Text),
             (';', Punctuation, '#pop'),
         ],
         'type_def': [

@@ -130,17 +130,17 @@ class ObjdumpLexer(RegexLexer):
             ('( *)('+hex+r'+:)(\t)((?:'+hex+hex+' )+)$',
                 bygroups(Text, Name.Label, Text, Number.Hex)),
             # Skipped a few bytes
-            ('\t\.\.\.$', Text),
+            (r'\t\.\.\.$', Text),
             # Relocation line
             # (With offset)
-            ('(\t\t\t)('+hex+'+:)( )([^\t]+)(\t)(.*?)([-+])(0x' + hex + '+)$',
+            (r'(\t\t\t)('+hex+r'+:)( )([^\t]+)(\t)(.*?)([-+])(0x' + hex + '+)$',
                 bygroups(Text, Name.Label, Text, Name.Property, Text,
                          Name.Constant, Punctuation, Number.Hex)),
             # (Without offset)
-            ('(\t\t\t)('+hex+'+:)( )([^\t]+)(\t)(.*?)$',
+            (r'(\t\t\t)('+hex+r'+:)( )([^\t]+)(\t)(.*?)$',
                 bygroups(Text, Name.Label, Text, Name.Property, Text,
                          Name.Constant)),
-            ('[^\n]+\n', Other)
+            (r'[^\n]+\n', Other)
         ]
     }
 

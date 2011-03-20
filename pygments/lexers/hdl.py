@@ -76,21 +76,21 @@ class VerilogLexer(RegexLexer):
              r'unsigned|var|vectored|void|wait|weak0|weak1|while|'
              r'xnor|xor)\b', Keyword),
 
-            (r'(`accelerate|`autoexpand_vectornets|`celldefine|`default_nettype|'
-             r'`else|`elsif|`endcelldefine|`endif|`endprotect|`endprotected|'
-             r'`expand_vectornets|`ifdef|`ifndef|`include|`noaccelerate|`noexpand_vectornets|'
-             r'`noremove_gatenames|`noremove_netnames|`nounconnected_drive|'
-             r'`protect|`protected|`remove_gatenames|`remove_netnames|`resetall|'
-             r'`timescale|`unconnected_drive|`undef)\b', Comment.Preproc),
+            (r'`(accelerate|autoexpand_vectornets|celldefine|default_nettype|'
+             r'else|elsif|endcelldefine|endif|endprotect|endprotected|'
+             r'expand_vectornets|ifdef|ifndef|include|noaccelerate|noexpand_vectornets|'
+             r'noremove_gatenames|noremove_netnames|nounconnected_drive|'
+             r'protect|protected|remove_gatenames|remove_netnames|resetall|'
+             r'timescale|unconnected_drive|undef)\b', Comment.Preproc),
 
-            (r'(\$bits|\$bitstoreal|\$bitstoshortreal|\$countdrivers|\$display|\$fclose|'
-             r'\$fdisplay|\$finish|\$floor|\$fmonitor|\$fopen|\$fstrobe|\$fwrite|'
-             r'\$getpattern|\$history|\$incsave|\$input|\$itor|\$key|\$list|\$log|'
-             r'\$monitor|\$monitoroff|\$monitoron|\$nokey|\$nolog|\$printtimescale|'
-             r'\$random|\$readmemb|\$readmemh|\$realtime|\$realtobits|\$reset|\$reset_count|'
-             r'\$reset_value|\$restart|\$rtoi|\$save|\$scale|\$scope|\$shortrealtobits|'
-             r'\$showscopes|\$showvariables|\$showvars|\$sreadmemb|\$sreadmemh|'
-             r'\$stime|\$stop|\$strobe|\$time|\$timeformat|\$write)\b', Name.Builtin),
+            (r'\$(bits|bitstoreal|bitstoshortreal|countdrivers|display|fclose|'
+             r'fdisplay|finish|floor|fmonitor|fopen|fstrobe|fwrite|'
+             r'getpattern|history|incsave|input|itor|key|list|log|'
+             r'monitor|monitoroff|monitoron|nokey|nolog|printtimescale|'
+             r'random|readmemb|readmemh|realtime|realtobits|reset|reset_count|'
+             r'reset_value|restart|rtoi|save|scale|scope|shortrealtobits|'
+             r'showscopes|showvariables|showvars|sreadmemb|sreadmemh|'
+             r'stime|stop|strobe|time|timeformat|write)\b', Name.Builtin),
 
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(byte|shortint|int|longint|interger|time|'
