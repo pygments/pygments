@@ -2842,9 +2842,12 @@ class HybrisLexer(RegexLexer):
         ],
     }
 
+
 class AwkLexer(RegexLexer):
     """
     For Awk scripts.
+
+    *New in Pygments 1.5.*
     """
 
     name = 'Awk'

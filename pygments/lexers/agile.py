@@ -1959,6 +1959,7 @@ class IokeLexer(RegexLexer):
         ]
     }
 
+
 class FancyLexer(RegexLexer):
     """
     Pygments Lexer For `Fancy <http://www.fancy-lang.org/>`_.
@@ -1967,7 +1968,7 @@ class FancyLexer(RegexLexer):
     class-based, concurrent general-purpose programming language
     running on Rubinius, the Ruby VM.
 
-    **New in Pygments 1.5**
+    *New in Pygments 1.5.*
     """
     name = 'Fancy'
     filenames = ['*.fy', '*.fancypack']
