@@ -910,7 +910,7 @@ class PerlLexer(RegexLexer):
             (r'(q|qq|qw|qr|qx)([^a-zA-Z0-9])(.|\n)*?\2', String.Other),
             (r'package\s+', Keyword, 'modulename'),
             (r'sub\s+', Keyword, 'funcname'),
-            (r'(\[\]|\*\*|::|<<|>>|>=|<=|<=>|={3}|!=|=~|'
+            (r'(\[\]|\*\*|::|<<|>>|>=|<=>|<=|={3}|!=|=~|'
              r'!~|&&?|\|\||\.{1,3})', Operator),
             (r'[-+/*%=<>&^|!\\~]=?', Operator),
             (r'[\(\)\[\]:;,<>/\?\{\}]', Punctuation), # yes, there's no shortage
@@ -1034,7 +1034,7 @@ class LuaLexer(RegexLexer):
             # multiline strings
             (r'(?s)\[(=*)\[.*?\]\1\]', String),
 
-            (r'(==|~=|<=|>=|\.\.|\.\.\.|[=+\-*/%^<>#])', Operator),
+            (r'(==|~=|<=|>=|\.\.\.|\.\.|[=+\-*/%^<>#])', Operator),
             (r'[\[\]\{\}\(\)\.,:;]', Punctuation),
             (r'(and|or|not)\b', Operator.Word),
 
@@ -1301,7 +1301,7 @@ class TclLexer(RegexLexer):
         'params': [
             (r';', Keyword, '#pop'),
             (r'\n', Text, '#pop'),
-            (r'(else|elseif|then)', Keyword),
+            (r'(else|elseif|then)\b', Keyword),
             include('basic'),
             include('data'),
         ],
@@ -1949,7 +1949,7 @@ class IokeLexer(RegexLexer):
              Operator),
 
             # Punctuation
-            (r'(\`\`|\`|\'\'|\'|\.|\,|@|@@|\[|\]|\(|\)|{|})', Punctuation),
+            (r'''(``?|''?|\.|,|@@?|[\[\](){}])''', Punctuation),
 
             #kinds
             (r'[A-Z][a-zA-Z0-9_!:?]*', Name.Class),

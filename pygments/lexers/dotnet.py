@@ -181,7 +181,7 @@ class BooLexer(RegexLexer):
             ("'(\\\\|\\'|[^']*?)'", String.Single),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
-            (r'[0-9][0-9\.]*(m|ms|d|h|s)', Number),
+            (r'[0-9][0-9\.]*(ms?|d|h|s)', Number),
             (r'0\d+', Number.Oct),
             (r'0x[a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),

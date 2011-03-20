@@ -1167,9 +1167,9 @@ class PovrayLexer(RegexLexer):
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
             (r'//.*\n', Comment.Single),
             (r'(?s)"(?:\\.|[^"\\])+"', String.Double),
-            (r'#(debug|default|else|end|error|fclose|fopen|if|ifdef|ifndef|'
+            (r'#(debug|default|else|end|error|fclose|fopen|ifdef|ifndef|'
              r'include|range|read|render|statistics|switch|undef|version|'
-             r'warning|while|write|define|macro|local|declare)',
+             r'warning|while|write|define|macro|local|declare)\b',
              Comment.Preproc),
             (r'\b(aa_level|aa_threshold|abs|acos|acosh|adaptive|adc_bailout|'
              r'agate|agate_turb|all|alpha|ambient|ambient_light|angle|'
@@ -1219,11 +1219,11 @@ class PovrayLexer(RegexLexer):
              r'vnormalize|volume_object|volume_rendered|vol_with_light|'
              r'vrotate|v_steps|warning|warp|water_level|waves|while|width|'
              r'wood|wrinkles|yes)\b', Keyword),
-            (r'bicubic_patch|blob|box|camera|cone|cubic|cylinder|difference|'
+            (r'(bicubic_patch|blob|box|camera|cone|cubic|cylinder|difference|'
              r'disc|height_field|intersection|julia_fractal|lathe|'
              r'light_source|merge|mesh|object|plane|poly|polygon|prism|'
              r'quadric|quartic|smooth_triangle|sor|sphere|superellipsoid|'
-             r'text|torus|triangle|union', Name.Builtin),
+             r'text|torus|triangle|union)\b', Name.Builtin),
             # TODO: <=, etc
             (r'[\[\](){}<>;,]', Punctuation),
             (r'[-+*/=]', Operator),
@@ -1261,7 +1261,7 @@ class AppleScriptLexer(RegexLexer):
     Classes = ['alias ', 'application ', 'boolean ', 'class ', 'constant ',
                'date ', 'file ', 'integer ', 'list ', 'number ', 'POSIX file ',
                'real ', 'record ', 'reference ', 'RGB color ', 'script ',
-               'text ', 'unit types', '(Unicode )?text', 'string']
+               'text ', 'unit types', '(?:Unicode )?text', 'string']
     BuiltIn = ['attachment', 'attribute run', 'character', 'day', 'month',
                'paragraph', 'word', 'year']
     HandlerParams = ['about', 'above', 'against', 'apart from', 'around',
@@ -1527,7 +1527,7 @@ class AppleScriptLexer(RegexLexer):
             (ur'(-|\*|\+|&|≠|>=?|<=?|=|≥|≤|/|÷|\^)', Operator),
             (r"\b(%s)\b" % '|'.join(Operators), Operator.Word),
             (r'^(\s*(?:on|end)\s+)'
-             r'(%s)' % '|'.join(StudioEvents),
+             r'(%s)' % '|'.join(StudioEvents[::-1]),
              bygroups(Keyword, Name.Function)),
             (r'^(\s*)(in|on|script|to)(\s+)', bygroups(Text, Keyword, Text)),
             (r'\b(as )(%s)\b' % '|'.join(Classes),
@@ -2403,7 +2403,7 @@ class PostScriptLexer(RegexLexer):
         ],
 
         'escape': [
-            (r'([0-8]{3}|n|r|t|b|f|\\|\(|\)|)', String.Escape, '#pop'),
+            (r'([0-8]{3}|n|r|t|b|f|\\|\(|\))?', String.Escape, '#pop'),
         ],
     }
 
@@ -2784,7 +2784,7 @@ class HybrisLexer(RegexLexer):
             # method names
             (r'^(\s*(?:function|method|operator\s+)+?)'
              r'([a-zA-Z_][a-zA-Z0-9_]*)'
-             r'(\s*)(\()', bygroups(Name.Function, Text, Operator)),
+             r'(\s*)(\()', bygroups(Keyword, Name.Function, Text, Operator)),
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
