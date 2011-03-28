@@ -83,6 +83,7 @@ LEXERS = {
     'FancyLexer': ('pygments.lexers.agile', 'Fancy', ('fancy', 'fy'), ('*.fy', '*.fancypack'), ('text/x-fancysrc',)),
     'FelixLexer': ('pygments.lexers.compiled', 'Felix', ('felix', 'flx'), ('*.flx', '*.flxh'), ('text/x-felix',)),
     'FortranLexer': ('pygments.lexers.compiled', 'Fortran', ('fortran',), ('*.f', '*.f90'), ('text/x-fortran',)),
+    'FSharpLexer': ('pygments.lexers.dotnet', 'FSharp', ('fsharp',), ('*.fs', '*.fsi'), ('text/x-fsharp',)),
     'GLShaderLexer': ('pygments.lexers.compiled', 'GLSL', ('glsl',), ('*.vert', '*.frag', '*.geo'), ('text/x-glslsrc',)),
     'GasLexer': ('pygments.lexers.asm', 'GAS', ('gas',), ('*.s', '*.S'), ('text/x-gas',)),
     'GenshiLexer': ('pygments.lexers.templates', 'Genshi', ('genshi', 'kid', 'xml+genshi', 'xml+kid'), ('*.kid',), ('application/x-genshi', 'application/x-kid')),
