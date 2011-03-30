@@ -26,7 +26,7 @@ __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'DuelLexer', 'ScamlLexer',
-           'JadeLexer', 'XQueryLexer']
+           'JadeLexer', 'XQueryLexer', 'DtdLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -825,6 +825,90 @@ class PhpLexer(RegexLexer):
             rv += 0.1
         return rv
 
+
+class DtdLexer(RegexLexer):
+    """
+    a lexer for DTD (Document Type Definition).
+    """
+
+    flags = re.MULTILINE | re.DOTALL
+
+    name = 'DTD'
+    aliases = ['dtd']
+    filenames = ['*.dtd']
+    mimetypes = ['application/xml-dtd']
+
+    tokens = {
+        'root': [
+            include('common'),
+
+            (r'(<!ELEMENT)(\s+)([^\s]+)', 
+                bygroups(Keyword, Text, Name.Tag), 'element'),
+            (r'(<!ATTLIST)(\s+)([^\s]+)', 
+                bygroups(Keyword, Text, Name.Tag), 'attlist'),
+            (r'(<!ENTITY)(\s+)([^\s]+)', 
+                bygroups(Keyword, Text, Name.Entity), 'entity'),
+            (r'(<!NOTATION)(\s+)([^\s]+)', 
+                bygroups(Keyword, Text, Name.Tag), 'notation'),
+            (r'(<!\[)([^\[\s]+)(\s*)(\[)', # conditional sections
+                bygroups(Keyword, Name.Entity, Text, Keyword)),
+
+            (r'(<!DOCTYPE)(\s+)([^>\s]+)', 
+                bygroups(Keyword, Text, Name.Tag)),
+            (r'PUBLIC|SYSTEM', Keyword.Constant),
+            (r'[\[\]>]', Keyword),
+        ],
+
+        'common': [
+            (r'\s+', Text),
+            (r'(%|&)[^;]*;', Name.Entity),
+            ('<!--', Comment, 'comment'),
+            (r'[(|)*,?+]', Operator),
+            (r'"[^"]*"', String.Double),
+            (r'\'[^\']*\'', String.Single),
+        ],
+        
+        'comment': [
+            ('[^-]+', Comment),
+            ('-->', Comment, '#pop'),
+            ('-', Comment),
+        ],
+
+        'element': [
+            include('common'),
+            (r'EMPTY|ANY|#PCDATA', Keyword.Constant),
+            (r'[^>\s\|()?+*,]+', Name.Tag),
+            (r'>', Keyword, '#pop'),
+        ],
+
+        'attlist': [
+            include('common'),
+            (r'CDATA|IDREFS|IDREF|ID|NMTOKENS|NMTOKEN|ENTITIES|ENTITY|NOTATION', Keyword.Constant),
+            (r'#REQUIRED|#IMPLIED|#FIXED', Keyword.Constant),
+            (r'xml:space|xml:lang', Keyword.Reserved),
+            (r'[^>\s\|()?+*,]+', Name.Attribute),
+            (r'>', Keyword, '#pop'),
+        ],
+
+        'entity': [
+            include('common'),
+            (r'SYSTEM|PUBLIC|NDATA', Keyword.Constant),
+            (r'[^>\s\|()?+*,]+', Name.Entity),
+            (r'>', Keyword, '#pop'),
+        ],
+        
+        'notation': [
+            include('common'),
+            (r'SYSTEM|PUBLIC', Keyword.Constant),
+            (r'[^>\s\|()?+*,]+', Name.Attribute),
+            (r'>', Keyword, '#pop'),
+        ],
+    }
+
+    def analyse_text(text):
+        if not looks_like_xml(text) and \
+            ('<!ELEMENT' in text or '<!ATTLIST' in text or '<!ENTITY' in text):
+            return 0.8
 
 class XmlLexer(RegexLexer):
     """
