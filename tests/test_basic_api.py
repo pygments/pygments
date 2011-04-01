@@ -87,7 +87,7 @@ def test_lexer_options():
         if cls.__name__ not in (
             'PythonConsoleLexer', 'RConsoleLexer', 'RubyConsoleLexer',
             'SqliteConsoleLexer', 'MatlabSessionLexer', 'ErlangShellLexer',
-            'BashSessionLexer', 'LiterateHaskellLexer'):
+            'BashSessionLexer', 'LiterateHaskellLexer', 'PostgresConsoleLexer'):
             inst = cls(ensurenl=False)
             ensure(inst.get_tokens('a\nb'), 'a\nb')
             inst = cls(ensurenl=False, stripall=True)
