@@ -39,9 +39,9 @@ class PostgresLexer(RegexLexer):
             (r'\s+', Text),
             (r'--.*?\n', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'(' + '|'.join(KEYWORDS) + r')\b', Keyword),
             (r'(' + '|'.join([s.replace(" ", "\s+") for s in DATATYPES])
                   + r')\b', Name.Builtin),
+            (r'(' + '|'.join(KEYWORDS) + r')\b', Keyword),
             (r'[+*/<>=~!@#%^&|`?^-]', Operator),
             (r'::', Operator),  # cast
             (r'([0-9]*\.[0-9]*|[0-9]+)(e[+-]?[0-9]+)?', Number.Float),
