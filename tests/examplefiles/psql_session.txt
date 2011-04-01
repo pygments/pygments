@@ -1,0 +1,68 @@
+regression=# select foo;
+ERROR:  column "foo" does not exist
+LINE 1: select foo;
+               ^
+regression=# \q
+
+regression=# select '\x';
+WARNING:  nonstandard use of escape in a string literal
+LINE 1: select '\x';
+               ^
+HINT:  Use the escape string syntax for escapes, e.g., E'\r\n'.
+ ?column? 
+----------
+ x
+(1 row)
+
+regression=# select (
+regression(# 1);
+ ?column? 
+----------
+        1
+(1 row)
+
+-- Table output
+=# SELECT '0x10'::mpz AS "hex", '10'::mpz AS "dec",
+-#        '010'::mpz AS oct, '0b10'::mpz AS bin;
+ hex | dec | oct | bin
+-----+-----+-----+-----
+ 16  | 10  | 8   | 2
+(1 row)
+
+
+-- One field output
+regression=# select schemaname from  pg_tables limit 3;
+ schemaname 
+------------
+ pg_catalog
+ pg_catalog
+ pg_catalog
+(3 rows)
+
+/* Decimal literals.
+ * ha ha, multiline
+ select foo from bar;
+=#  ... just joking.  */
+
+=# select 10.0, 1e-6, 1E+6;
+ ?column? | ?column? | ?column? 
+----------+----------+----------
+     10.0 | 0.000001 |  1000000
+(1 row)
+
+regression=# begin;
+BEGIN
+regression=# create table asdf (foo serial primary key);
+NOTICE:  CREATE TABLE will create implicit sequence "asdf_foo_seq" for serial column "asdf.foo"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "asdf_pkey" for table "asdf"
+CREATE TABLE
+regression=# insert into asdf values (10) returning foo;
+ foo 
+-----
+  10
+(1 row)
+
+INSERT 0 1
+regression=# ROLLBACK ;
+ROLLBACK
+
