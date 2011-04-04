@@ -70,7 +70,7 @@ class PostgresLexer(RegexLexer):
 re_prompt = re.compile(r'^([a-zA-Z_][a-zA-Z0-9_]+)?[=\-\(][#>]')
 re_psql_command = re.compile(r'(\s*)(\\.+?)(\s+)$')
 re_error = re.compile(r'ERROR:')
-re_message = re.compile(r'(DEBUG|INFO|WARNING|ERROR|HINT|LINE [0-9]+:?)(.*?\n)')
+re_message = re.compile(r'((?:DEBUG|INFO|WARNING|ERROR|HINT|LINE [0-9]+):)(.*?\n)')
 re_charhint = re.compile(r'\s*\^\s*\n')
 
 class PostgresConsoleLexer(Lexer):
