@@ -50,11 +50,14 @@ class PostgresLexer(RegexLexer):
             (r"'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Name), # quoted identifier
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
-            (r'[;:()\[\],\.]', Punctuation),
-            # psql backslash command.
-            # This actually belongs to the console lexer,
+
+            # psql backslash command and variable
+            # These actually belongs to the console lexer,
             # but putting it here makes things easier.
             (r'\\.*?\n', Name),             # TODO: what is a good token?
+            (r':[a-z][a-z0-9_]*\b', Name.Variable),
+
+            (r'[;:()\[\],\.]', Punctuation),
         ],
         'multiline-comments': [
             (r'/\*', Comment.Multiline, 'multiline-comments'),
