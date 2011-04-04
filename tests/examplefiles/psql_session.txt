@@ -22,6 +22,11 @@ piro=> select * from test where foo <= :foo;
   20 | 
 (2 rows)
 
+testdb=> \set foo 'my_table'
+testdb=> SELECT * FROM :"foo";
+
+testdb=> \set content `cat my_file.txt`
+testdb=> INSERT INTO my_table VALUES (:'content');
 
 regression=# select (
 regression(# 1);

@@ -51,11 +51,10 @@ class PostgresLexer(RegexLexer):
             (r'"(""|[^"])*"', String.Name), # quoted identifier
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
-            # psql backslash command and variable
-            # These actually belongs to the console lexer,
-            # but putting it here makes things easier.
-            (r'\\.*?\n', Name),             # TODO: what is a good token?
-            (r':[a-z][a-z0-9_]*\b', Name.Variable),
+            # TODO: consider splitting the regex parser
+            (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'),
+            # psql variable in SQL
+            (r""":(['"]?)[a-z][a-z0-9_]*\b\1""", Name.Variable),
 
             (r'[;:()\[\],\.]', Punctuation),
         ],
@@ -64,6 +63,14 @@ class PostgresLexer(RegexLexer):
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[^/\*]+', Comment.Multiline),
             (r'[/*]', Comment.Multiline)
+        ],
+        'psql-command': [
+            (r'\n', Text, 'root'),
+            (r'\s+', Text),
+            (r""":(['"]?)[a-z][a-z0-9_]*\b\1""", Name.Variable),
+            (r"'(''|[^'])*'", String.Single),
+            (r"`([^`])*`", String.Backtick),
+            (r"[^\s]+", String.Symbol),
         ]
     }
 
