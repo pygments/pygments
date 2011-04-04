@@ -42,7 +42,7 @@ class PostgresLexer(RegexLexer):
             (r'(' + '|'.join([s.replace(" ", "\s+") for s in DATATYPES])
                   + r')\b', Name.Builtin),
             (r'(' + '|'.join(KEYWORDS) + r')\b', Keyword),
-            (r'[+*/<>=~!@#%^&|`?^-]', Operator),
+            (r'[+*/<>=~!@#%^&|`?^-]+', Operator),
             (r'::', Operator),  # cast
             (r'([0-9]*\.[0-9]*|[0-9]+)(e[+-]?[0-9]+)?', Number.Float),
             (r'[0-9]+', Number.Integer),

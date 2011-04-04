@@ -15,7 +15,7 @@ HINT:  Use the escape string syntax for escapes, e.g., E'\r\n'.
 (1 row)
 
 piro=> \set foo 30;
-piro=> select * from test where foo < :foo;
+piro=> select * from test where foo <= :foo;
  foo | bar 
 -----+-----
   10 | 
