@@ -1,0 +1,23 @@
+CREATE OR REPLACE FUNCTION something() RETURNS int4 AS
+$x$
+BEGIN
+    RETURN 42;
+END
+$x$
+LANGUAGE plpgsql;
+
+CREATE FUNCTION pymax (a integer, b integer)
+  RETURNS integer
+AS $$
+  if a > b:
+    return a
+  return b
+$$ LANGUAGE plpythonu;
+
+CREATE FUNCTION nested_lexers (a integer, b integer)
+$function$
+BEGIN
+    RETURN ($1 ~ $q$[\t\r\n\v\\]$q$);
+END;
+$function$
+LANGUAGE sql;

@@ -9,12 +9,13 @@
 """
 
 import re
-import urllib2
+import sys
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
      this, do_insertions
 from pygments.token import Error, Punctuation, Literal, Token, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
+from pygments.lexers import get_lexer_by_name, ClassNotFound
 
 from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES
 
@@ -23,6 +24,7 @@ __all__ = [ 'PostgresLexer', 'PostgresConsoleLexer' ]
 
 line_re  = re.compile('.*?\n')
 
+language_re = re.compile(r'\s+LANGUAGE\s+(\w+)')
 
 class PostgresLexer(RegexLexer):
     """
@@ -32,6 +34,50 @@ class PostgresLexer(RegexLexer):
     name = 'PostgreSQL SQL dialect'
     aliases = ['postgresql', 'postgres']
     mimetypes = ['text/x-postgresql']
+
+    def get_tokens_unprocessed(self, text, *args):
+        # Have a copy of the entire text to be used by `language_callback`.
+        self.text = text
+        for x in RegexLexer.get_tokens_unprocessed(self, text, *args):
+            yield x
+
+    def language_callback(self, match):
+        lexer = None
+        # TODO: the language can also be before the string
+        m = language_re.match(self.text[match.end():])
+        if m is not None:
+            lexer = self._get_lexer(m.group(1))
+
+        if lexer:
+            yield (match.start(1), String, match.group(1))
+            for x in lexer.get_tokens_unprocessed(match.group(2)):
+                yield x
+            yield (match.start(3), String, match.group(3))
+
+        else:
+            yield (match.start(), String, match.group())
+
+    def _get_lexer(self, lang):
+        if lang == 'sql':
+            return get_lexer_by_name('postgresql', **self.options)
+
+        tries = [ lang ]
+        if lang.startswith('pl'):
+            tries.append(lang[2:])
+        if lang.endswith('u'):
+            tries.append(lang[:-1])
+        if lang.startswith('pl') and lang.endswith('u'):
+            tries.append(lang[2:-1])
+
+        for l in tries:
+            try:
+                return get_lexer_by_name(l, **self.options)
+            except ClassNotFound:
+                pass
+        else:
+            # TODO: better logging
+            print >>sys.stderr, "language not found:", lang
+            return None
 
     flags = re.IGNORECASE
     tokens = {
@@ -50,6 +96,7 @@ class PostgresLexer(RegexLexer):
             # TODO: Backslash escapes?
             (r"E?'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Name), # quoted identifier
+            (r'(?ms)(\$[^\$]*\$)(.*?)(\1)', language_callback),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
             # TODO: consider splitting the regex parser
