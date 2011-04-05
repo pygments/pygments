@@ -47,7 +47,7 @@ class PostgresLexer(RegexLexer):
             (r'([0-9]*\.[0-9]*|[0-9]+)(e[+-]?[0-9]+)?', Number.Float),
             (r'[0-9]+', Number.Integer),
             # TODO: Backslash escapes?
-            (r"'(''|[^'])*'", String.Single),
+            (r"E?'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Name), # quoted identifier
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 

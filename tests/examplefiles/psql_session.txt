@@ -14,6 +14,8 @@ HINT:  Use the escape string syntax for escapes, e.g., E'\r\n'.
  x
 (1 row)
 
+regression=# select E'\x';
+
 piro=> \set foo 30;
 piro=> select * from test where foo <= :foo;
  foo | bar 
