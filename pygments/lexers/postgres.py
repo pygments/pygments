@@ -44,6 +44,7 @@ class PostgresLexer(RegexLexer):
             (r'(' + '|'.join(KEYWORDS) + r')\b', Keyword),
             (r'[+*/<>=~!@#%^&|`?^-]+', Operator),
             (r'::', Operator),  # cast
+            (r'\$\d+', Name.Variable),
             (r'([0-9]*\.[0-9]*|[0-9]+)(e[+-]?[0-9]+)?', Number.Float),
             (r'[0-9]+', Number.Integer),
             # TODO: Backslash escapes?
