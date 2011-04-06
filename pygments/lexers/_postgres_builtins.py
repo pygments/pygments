@@ -24,13 +24,13 @@ def update_myself():
 
 def parse_keywords(f):
     kw = []
-    re_entry = re.compile('\s*<entry><token>([^<]+)</token></entry>')
-    for line in f:
-        m = re_entry.match(line)
-        if m is None:
-            continue
-
+    for m in re.finditer(
+            r'\s*<entry><token>([^<]+)</token></entry>\s*'
+            r'<entry>([^<]+)</entry>', f.read()):
         kw.append(m.group(1))
+
+    if not kw:
+        raise ValueError('no keyword found')
 
     kw.sort()
     return kw
