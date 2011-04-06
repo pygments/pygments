@@ -12,7 +12,7 @@ import re
 import urllib2
 
 # One man's constant is another man's variable.
-SOURCE_URL = 'https://github.com/postgres/postgres/raw/REL9_0_STABLE'
+SOURCE_URL = 'https://github.com/postgres/postgres/raw/master'
 KEYWORDS_URL = SOURCE_URL + '/doc/src/sgml/keywords.sgml'
 DATATYPES_URL = SOURCE_URL + '/doc/src/sgml/datatype.sgml'
 
