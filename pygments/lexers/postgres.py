@@ -122,7 +122,8 @@ class PostgresLexer(RegexLexer):
         ]
     }
 
-re_prompt = re.compile(r'^([a-zA-Z_][a-zA-Z0-9_]+)?[=\-\(][#>]')
+re_prompt = re.compile(r'^.*?[=\-\(][#>]')
+
 re_psql_command = re.compile(r'(\s*)(\\.+?)(\s+)$')
 re_error = re.compile(r'ERROR:')
 re_message = re.compile(r'((?:DEBUG|INFO|NOTICE|WARNING|ERROR|HINT|LINE [0-9]+):)(.*?\n)')
