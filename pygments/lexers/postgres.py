@@ -125,8 +125,10 @@ class PostgresLexer(RegexLexer):
 re_prompt = re.compile(r'^.*?[=\-\(][#>]')
 
 re_psql_command = re.compile(r'(\s*)(\\.+?)(\s+)$')
-re_error = re.compile(r'ERROR:')
-re_message = re.compile(r'((?:DEBUG|INFO|NOTICE|WARNING|ERROR|HINT|LINE [0-9]+):)(.*?\n)')
+re_error = re.compile(r'(ERROR|FATAL):')
+re_message = re.compile(
+    r'((?:DEBUG|INFO|NOTICE|WARNING|ERROR|'
+    r'FATAL|HINT|DETAIL|LINE [0-9]+):)(.*?\n)')
 re_charhint = re.compile(r'\s*\^\s*\n')
 
 class PostgresConsoleLexer(Lexer):
@@ -163,7 +165,8 @@ class PostgresConsoleLexer(Lexer):
                     insertions = []
                 mmsg = re_message.match(line)
                 if mmsg is not None:
-                    if mmsg.group(1).startswith("ERROR"):
+                    if mmsg.group(1).startswith("ERROR") \
+                    or mmsg.group(1).startswith("FATAL"):
                         out_token = Generic.Error
                     yield (mmsg.start(1), Generic.Strong, mmsg.group(1))
                     yield (mmsg.start(2), out_token, mmsg.group(2))
