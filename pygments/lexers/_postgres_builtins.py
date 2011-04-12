@@ -217,6 +217,9 @@ PSEUDO_TYPES = [
     'void', 'opaque',
     ]
 
+# Remove 'trigger' from types
+PSEUDO_TYPES = sorted(set(PSEUDO_TYPES) - set(map(str.lower, KEYWORDS)))
+
 PLPGSQL_KEYWORDS = [
     'ALIAS', 'CONSTANT', 'DIAGNOSTICS', 'ELSIF', 'EXCEPTION', 'EXIT',
     'FOREACH', 'GET', 'LOOP', 'NOTICE', 'OPEN', 'PERFORM', 'QUERY', 'RAISE',
