@@ -17,9 +17,13 @@ KEYWORDS_URL = SOURCE_URL + '/doc/src/sgml/keywords.sgml'
 DATATYPES_URL = SOURCE_URL + '/doc/src/sgml/datatype.sgml'
 
 def update_myself():
-    datatypes = parse_datatypes(fetch(DATATYPES_URL))
+    data_file = list(fetch(DATATYPES_URL))
+    datatypes = parse_datatypes(data_file)
+    pseudos = parse_pseudos(data_file)
+
     keywords = parse_keywords(fetch(KEYWORDS_URL))
     update_consts(__file__, 'DATATYPES', datatypes)
+    update_consts(__file__, 'PSEUDO_TYPES', pseudos)
     update_consts(__file__, 'KEYWORDS', keywords)
 
 def parse_keywords(f):
@@ -61,6 +65,34 @@ def parse_datatypes(f):
 
     dt = list(dt)
     dt.sort()
+    return dt
+
+def parse_pseudos(f):
+    dt = []
+    re_start = re.compile(r'\s*<table id="datatype-pseudotypes-table">')
+    re_entry = re.compile(r'\s*<entry><type>([^<]+)</></entry>')
+    re_end = re.compile(r'\s*</table>')
+
+    f = iter(f)
+    for line in f:
+        if re_start.match(line) is not None:
+            break
+    else:
+        raise ValueError('pseudo datatypes table not found')
+
+    for line in f:
+        m = re_entry.match(line)
+        if m is not None:
+            dt.append(m.group(1))
+
+        if re_end.match(line) is not None:
+            break
+    else:
+        raise ValueError('end of pseudo datatypes table not found')
+
+    if not dt:
+        raise ValueError('pseudo datatypes not found')
+
     return dt
 
 def fetch(url):
@@ -179,6 +211,11 @@ DATATYPES = [
     'varbit', 'varchar', 'with time zone', 'without time zone', 'xml',
     ]
 
+PSEUDO_TYPES = [
+    'any', 'anyarray', 'anyelement', 'anyenum', 'anynonarray', 'cstring',
+    'internal', 'language_handler', 'fdw_handler', 'record', 'trigger',
+    'void', 'opaque',
+    ]
 
 if __name__ == '__main__':
     update_myself()
