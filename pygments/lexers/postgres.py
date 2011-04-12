@@ -10,6 +10,7 @@
 
 import re
 import sys
+from copy import deepcopy
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
      this, do_insertions
@@ -99,8 +100,6 @@ class PostgresLexer(RegexLexer):
             (r'(?ms)(\$[^\$]*\$)(.*?)(\1)', language_callback),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
-            # TODO: consider splitting the psql parser
-            (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'),
             # psql variable in SQL
             (r""":(['"]?)[a-z][a-z0-9_]*\b\1""", Name.Variable),
 
@@ -112,16 +111,31 @@ class PostgresLexer(RegexLexer):
             (r'[^/\*]+', Comment.Multiline),
             (r'[/*]', Comment.Multiline)
         ],
-        'psql-command': [
-            (r'\n', Text, 'root'),
-            (r'\s+', Text),
-            (r'\\[^\s]+', Keyword.Pseudo),
-            (r""":(['"]?)[a-z][a-z0-9_]*\b\1""", Name.Variable),
-            (r"'(''|[^'])*'", String.Single),
-            (r"`([^`])*`", String.Backtick),
-            (r"[^\s]+", String.Symbol),
-        ]
     }
+
+
+class PsqlRegexLexer(PostgresLexer):
+    """
+    Extend the PostgresLexer adding support specific for psql commands.
+
+    This is not a complete psql lexer yet as it lacks prompt support
+    and output rendering.
+    """
+    name = 'PostgreSQL console - regexp based lexer'
+    aliases = []    # not public
+    tokens = deepcopy(PostgresLexer.tokens)
+    tokens['root'].append(
+        (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
+    tokens['psql-command'] = [
+        (r'\n', Text, 'root'),
+        (r'\s+', Text),
+        (r'\\[^\s]+', Keyword.Pseudo),
+        (r""":(['"]?)[a-z][a-z0-9_]*\b\1""", Name.Variable),
+        (r"'(''|[^'])*'", String.Single),
+        (r"`([^`])*`", String.Backtick),
+        (r"[^\s]+", String.Symbol),
+    ]
+
 
 re_prompt = re.compile(r'^.*?[=\-\(][#>]')
 
@@ -144,7 +158,7 @@ class PostgresConsoleLexer(Lexer):
     mimetypes = ['text/x-postgresql-psql']
 
     def get_tokens_unprocessed(self, data):
-        sql = PostgresLexer(**self.options)
+        sql = PsqlRegexLexer(**self.options)
 
         curcode = ''
         insertions = []
