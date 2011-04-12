@@ -18,7 +18,8 @@ from pygments.token import Error, Punctuation, Literal, Token, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.lexers import get_lexer_by_name, ClassNotFound
 
-from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES
+from pygments.lexers._postgres_builtins import (
+    KEYWORDS, DATATYPES, PSEUDO_TYPES)
 
 
 __all__ = [ 'PostgresLexer', 'PostgresConsoleLexer' ]
@@ -86,7 +87,8 @@ class PostgresLexer(RegexLexer):
             (r'\s+', Text),
             (r'--.*?\n', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'(' + '|'.join([s.replace(" ", "\s+") for s in DATATYPES])
+            (r'(' + '|'.join([s.replace(" ", "\s+")
+                for s in DATATYPES + PSEUDO_TYPES])
                   + r')\b', Name.Builtin),
             (r'(' + '|'.join(KEYWORDS) + r')\b', Keyword),
             (r'[+*/<>=~!@#%^&|`?^-]+', Operator),
