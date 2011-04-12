@@ -105,7 +105,7 @@ class PostgresLexer(RegexLexer):
             # psql variable in SQL
             (r""":(['"]?)[a-z][a-z0-9_]*\b\1""", Name.Variable),
 
-            (r'[;:()\[\],\.]', Punctuation),
+            (r'[;:()\[\]\{\},\.]', Punctuation),
         ],
         'multiline-comments': [
             (r'/\*', Comment.Multiline, 'multiline-comments'),
