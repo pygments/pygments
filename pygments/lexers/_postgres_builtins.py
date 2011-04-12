@@ -217,6 +217,12 @@ PSEUDO_TYPES = [
     'void', 'opaque',
     ]
 
+PLPGSQL_KEYWORDS = [
+    'ALIAS', 'CONSTANT', 'DIAGNOSTICS', 'ELSIF', 'EXCEPTION', 'EXIT',
+    'FOREACH', 'GET', 'LOOP', 'NOTICE', 'OPEN', 'PERFORM', 'QUERY', 'RAISE',
+    'RETURN', 'REVERSE', 'SQLSTATE', 'WHILE',
+    ]
+
 if __name__ == '__main__':
     update_myself()
 
