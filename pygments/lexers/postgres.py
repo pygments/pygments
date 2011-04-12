@@ -138,7 +138,8 @@ class PsqlRegexLexer(PostgresLexer):
 
 
 re_prompt = re.compile(r'^.*?[=\-\(][#>]')
-
+re_psql_command = re.compile(r'\s*\\')
+re_end_command = re.compile(r';\s*(--.*?)?$')
 re_psql_command = re.compile(r'(\s*)(\\.+?)(\s+)$')
 re_error = re.compile(r'(ERROR|FATAL):')
 re_message = re.compile(
@@ -146,11 +147,19 @@ re_message = re.compile(
     r'FATAL|HINT|DETAIL|LINE [0-9]+):)(.*?\n)')
 re_charhint = re.compile(r'\s*\^\s*\n')
 
+def lookahead(x):
+    """Wrap an iterator and allow pushing back an item."""
+    for i in x:
+        while 1:
+            i = yield i
+            if i is None:
+                break
+            yield i
+
+
 class PostgresConsoleLexer(Lexer):
     """
     Lexer for psql sessions.
-
-    TODO: multiline comments are broken.
     """
 
     name = 'PostgreSQL console (psql)'
@@ -160,24 +169,53 @@ class PostgresConsoleLexer(Lexer):
     def get_tokens_unprocessed(self, data):
         sql = PsqlRegexLexer(**self.options)
 
-        curcode = ''
-        insertions = []
-        out_token = Generic.Output
-        for match in line_re.finditer(data):
-            line = match.group()
-            mprompt = re_prompt.match(line)
-            if mprompt is not None:
-                out_token = Generic.Output
-                insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, mprompt.group())]))
-                curcode += line[len(mprompt.group()):]
-            else:
-                if curcode:
-                    for item in do_insertions(insertions,
-                                              sql.get_tokens_unprocessed(curcode)):
-                        yield item
-                    curcode = ''
-                    insertions = []
+        lines = lookahead(line_re.findall(data))
+
+        # prompt-output cycle
+        while 1:
+
+            # consume the lines of the command: start with an optional prompt
+            # and continue until the end of command is detected
+            curcode = ''
+            insertions = []
+            while 1:
+                try:
+                    line = lines.next()
+                except StopIteration:
+                    # allow the emission of partially collected items
+                    # the repl loop will be broken below
+                    break
+
+                mprompt = re_prompt.match(line)
+                if mprompt is not None:
+                    insertions.append((len(curcode),
+                                       [(0, Generic.Prompt, mprompt.group())]))
+                    curcode += line[len(mprompt.group()):]
+                else:
+                    curcode += line
+
+                # Check if this is the end of the command
+                # TODO: better handle multiline comments at the end with
+                # a lexer with an external state?
+                if re_psql_command.match(curcode) \
+                or re_end_command.search(curcode):
+                    break
+
+            # Emit the combined stream of command and prompt(s)
+            for item in do_insertions(insertions,
+                    sql.get_tokens_unprocessed(curcode)):
+                yield item
+
+            # Emit the output lines
+            out_token = Generic.Output
+            while 1:
+                line = lines.next()
+                mprompt = re_prompt.match(line)
+                if mprompt is not None:
+                    # push the line back to have it processed by the prompt
+                    lines.send(line)
+                    break
+
                 mmsg = re_message.match(line)
                 if mmsg is not None:
                     if mmsg.group(1).startswith("ERROR") \
@@ -186,13 +224,8 @@ class PostgresConsoleLexer(Lexer):
                     yield (mmsg.start(1), Generic.Strong, mmsg.group(1))
                     yield (mmsg.start(2), out_token, mmsg.group(2))
                 elif re_charhint.match(line):
-                    yield (match.start(), out_token, line)
+                    yield (0, out_token, line)
                 else:
-                    yield (match.start(), Generic.Output, line)
-
-        if curcode:
-            for item in do_insertions(insertions,
-                                      sql.get_tokens_unprocessed(curcode)):
-                yield item
+                    yield (0, Generic.Output, line)
 
 
