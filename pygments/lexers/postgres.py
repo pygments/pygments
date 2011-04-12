@@ -99,7 +99,7 @@ class PostgresLexer(RegexLexer):
             (r'(?ms)(\$[^\$]*\$)(.*?)(\1)', language_callback),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
-            # TODO: consider splitting the regex parser
+            # TODO: consider splitting the psql parser
             (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'),
             # psql variable in SQL
             (r""":(['"]?)[a-z][a-z0-9_]*\b\1""", Name.Variable),
@@ -115,6 +115,7 @@ class PostgresLexer(RegexLexer):
         'psql-command': [
             (r'\n', Text, 'root'),
             (r'\s+', Text),
+            (r'\\[^\s]+', Keyword.Pseudo),
             (r""":(['"]?)[a-z][a-z0-9_]*\b\1""", Name.Variable),
             (r"'(''|[^'])*'", String.Single),
             (r"`([^`])*`", String.Backtick),

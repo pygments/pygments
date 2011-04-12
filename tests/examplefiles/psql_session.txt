@@ -4,6 +4,11 @@ LINE 1: select foo;
                ^
 regression=# \q
 
+peter@localhost testdb=> \a \t \x
+Output format is aligned.
+Tuples only is off.
+Expanded display is on.
+
 regression=# select '\x';
 WARNING:  nonstandard use of escape in a string literal
 LINE 1: select '\x';
