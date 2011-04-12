@@ -19,10 +19,10 @@ from pygments.token import Error, Punctuation, Literal, Token, \
 from pygments.lexers import get_lexer_by_name, ClassNotFound
 
 from pygments.lexers._postgres_builtins import (
-    KEYWORDS, DATATYPES, PSEUDO_TYPES)
+    KEYWORDS, DATATYPES, PSEUDO_TYPES, PLPGSQL_KEYWORDS)
 
 
-__all__ = [ 'PostgresLexer', 'PostgresConsoleLexer' ]
+__all__ = [ 'PostgresLexer', 'PlPgsqlLexer', 'PostgresConsoleLexer' ]
 
 line_re  = re.compile('.*?\n')
 
@@ -116,6 +116,34 @@ class PostgresLexer(RegexLexer):
     }
 
 
+class PlPgsqlLexer(PostgresLexer):
+    """
+    Handle the extra syntax in Pl/pgSQL language.
+    """
+    name = 'PL/pgSQL'
+    aliases = ['plpgsql']
+    mimetypes = ['text/x-plpgsql']
+    tokens = deepcopy(PostgresLexer.tokens)
+
+    # extend the keywords list
+    for i, pattern in enumerate(tokens['root']):
+        if pattern[1] == Keyword:
+            tokens['root'][i] = (
+                r'(' + '|'.join(KEYWORDS + PLPGSQL_KEYWORDS) + r')\b',
+                Keyword)
+            del i
+            break
+    else:
+        assert 0, "SQL keywords not found"
+
+    tokens['root'][:0] = [
+        (r'\%[a-z][a-z0-9_]*\b', Name.Builtin),     # actually, a datatype
+        (r':=', Operator),
+        (r'\<\<[a-z][a-z0-9_]*\>\>', Name.Label),
+        (r'\#[a-z][a-z0-9_]*\b', Keyword.Pseudo),   # #variable_conflict
+    ]
+
+
 class PsqlRegexLexer(PostgresLexer):
     """
     Extend the PostgresLexer adding support specific for psql commands.
@@ -137,7 +165,6 @@ class PsqlRegexLexer(PostgresLexer):
         (r"`([^`])*`", String.Backtick),
         (r"[^\s]+", String.Symbol),
     ]
-
 
 re_prompt = re.compile(r'^.*?[=\-\(][#>]')
 re_psql_command = re.compile(r'\s*\\')
