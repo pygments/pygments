@@ -166,7 +166,7 @@ class PsqlRegexLexer(PostgresLexer):
         (r"[^\s]+", String.Symbol),
     ]
 
-re_prompt = re.compile(r'^.*?[=\-\(][#>]')
+re_prompt = re.compile(r'^(\S.*?)??[=\-\(][#>]')
 re_psql_command = re.compile(r'\s*\\')
 re_end_command = re.compile(r';\s*(--.*?)?$')
 re_psql_command = re.compile(r'(\s*)(\\.+?)(\s+)$')
