@@ -174,7 +174,6 @@ re_error = re.compile(r'(ERROR|FATAL):')
 re_message = re.compile(
     r'((?:DEBUG|INFO|NOTICE|WARNING|ERROR|'
     r'FATAL|HINT|DETAIL|LINE [0-9]+):)(.*?\n)')
-re_charhint = re.compile(r'\s*\^\s*\n')
 
 def lookahead(x):
     """Wrap an iterator and allow pushing back an item."""
