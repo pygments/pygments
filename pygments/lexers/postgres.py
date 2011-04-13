@@ -166,7 +166,7 @@ class PsqlRegexLexer(PostgresLexer):
         (r"[^\s]+", String.Symbol),
     ]
 
-re_prompt = re.compile(r'^(\S.*?)??[=\-\(][#>]')
+re_prompt = re.compile(r'^(\S.*?)??[=\-\(\$\'\"][#>]')
 re_psql_command = re.compile(r'\s*\\')
 re_end_command = re.compile(r';\s*(--.*?)?$')
 re_psql_command = re.compile(r'(\s*)(\\.+?)(\s+)$')
@@ -260,9 +260,7 @@ class PostgresConsoleLexer(Lexer):
                         out_token = Generic.Error
                     yield (mmsg.start(1), Generic.Strong, mmsg.group(1))
                     yield (mmsg.start(2), out_token, mmsg.group(2))
-                elif re_charhint.match(line):
-                    yield (0, out_token, line)
                 else:
-                    yield (0, Generic.Output, line)
+                    yield (0, out_token, line)
 
 
