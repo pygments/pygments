@@ -94,6 +94,17 @@ INSERT 0 1
 regression=# ROLLBACK ;
 ROLLBACK
 
+=> EXPLAIN SELECT * FROM tenk1
+-> WHERE unique1 < 100;   -- Don't take -> in the plan as a prompt
+
+                                  QUERY PLAN
+------------------------------------------------------------------------------
+ Bitmap Heap Scan on tenk1  (cost=2.37..232.35 rows=106 width=244)
+   Recheck Cond: (unique1 < 100)
+   ->  Bitmap Index Scan on tenk1_unique1  (cost=0.00..2.37 rows=106 width=0)
+         Index Cond: (unique1 < 100)
+
+
 -- don't swallow the end of a malformed line
 test=> select 1,
 'this line must be emitted'
