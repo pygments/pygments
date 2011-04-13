@@ -42,6 +42,17 @@ regression(# 1);
         1
 (1 row)
 
+piro=> select (
+piro(> '
+piro'> ' || $$
+piro$> $$)
+piro-> from "
+piro"> foo";
+ERROR:  relation "
+foo" does not exist
+LINE 5: from "
+             ^
+
 testdb=> CREATE TABLE my_table (
 first integer not null default 0,
 second text) ; -- end of command
