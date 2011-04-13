@@ -60,7 +60,7 @@ class PostgresLexer(RegexLexer):
             yield (match.start(), String, match.group())
 
     def _get_lexer(self, lang):
-        if lang == 'sql':
+        if lang.lower() == 'sql':
             return get_lexer_by_name('postgresql', **self.options)
 
         tries = [ lang ]
