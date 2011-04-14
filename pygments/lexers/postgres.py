@@ -215,7 +215,7 @@ class PostgresConsoleLexer(Lexer):
                     break
 
                 # Identify a shell prompt in case of psql commandline example
-                if line.startswith('$'):
+                if line.startswith('$') and not curcode:
                     lexer = get_lexer_by_name('console', **self.options)
                     for x in lexer.get_tokens_unprocessed(line):
                         yield x
