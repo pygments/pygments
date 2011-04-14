@@ -28,36 +28,46 @@ line_re  = re.compile('.*?\n')
 
 language_re = re.compile(r"\s+LANGUAGE\s+'?(\w+)'?", re.IGNORECASE)
 
-class PostgresLexer(RegexLexer):
-    """
-    Lexer for the PostgreSQL dialect of SQL.
-    """
+def language_callback(lexer, match):
+    """Parse the content of a $-string using a lexer
 
-    name = 'PostgreSQL SQL dialect'
-    aliases = ['postgresql', 'postgres']
-    mimetypes = ['text/x-postgresql']
+    The lexer is chosen looking for a nearby LANGUAGE.
 
+    Note: this function should have been a `PostgresBase` method, but the
+    rules deepcopy fails in this case.
+    """
+    l = None
+    # TODO: the language can also be before the string
+    m = language_re.match(lexer.text[match.end():])
+    if m is not None:
+        l = lexer._get_lexer(m.group(1))
+
+    if l:
+        yield (match.start(1), String, match.group(1))
+        for x in l.get_tokens_unprocessed(match.group(2)):
+            yield x
+        yield (match.start(3), String, match.group(3))
+
+    else:
+        yield (match.start(), String, match.group())
+
+class PostgresBase(object):
+    """Base class for Postgres-related lexers.
+
+    This is implemented as a mixin to avoid the Lexer metaclass kicking in.
+    this way the different lexer don't have a common Lexer ancestor. If they
+    had, _tokens could be created on this ancestor and not updated for the
+    other classes, resulting e.g. in PL/pgSQL parsed as SQL. This shortcoming
+    seem to suggest that regexp lexers are not really subclassable.
+
+    `language_callback` should really be our method, but this breaks deepcopy.
+    """
     def get_tokens_unprocessed(self, text, *args):
         # Have a copy of the entire text to be used by `language_callback`.
         self.text = text
-        for x in RegexLexer.get_tokens_unprocessed(self, text, *args):
+        for x in super(PostgresBase, self).get_tokens_unprocessed(
+                text, *args):
             yield x
-
-    def language_callback(self, match):
-        lexer = None
-        # TODO: the language can also be before the string
-        m = language_re.match(self.text[match.end():])
-        if m is not None:
-            lexer = self._get_lexer(m.group(1))
-
-        if lexer:
-            yield (match.start(1), String, match.group(1))
-            for x in lexer.get_tokens_unprocessed(match.group(2)):
-                yield x
-            yield (match.start(3), String, match.group(3))
-
-        else:
-            yield (match.start(), String, match.group())
 
     def _get_lexer(self, lang):
         if lang.lower() == 'sql':
@@ -78,8 +88,17 @@ class PostgresLexer(RegexLexer):
                 pass
         else:
             # TODO: better logging
-            print >>sys.stderr, "language not found:", lang
+            # print >>sys.stderr, "language not found:", lang
             return None
+
+class PostgresLexer(PostgresBase, RegexLexer):
+    """
+    Lexer for the PostgreSQL dialect of SQL.
+    """
+
+    name = 'PostgreSQL SQL dialect'
+    aliases = ['postgresql', 'postgres']
+    mimetypes = ['text/x-postgresql']
 
     flags = re.IGNORECASE
     tokens = {
@@ -116,13 +135,15 @@ class PostgresLexer(RegexLexer):
     }
 
 
-class PlPgsqlLexer(PostgresLexer):
+class PlPgsqlLexer(PostgresBase, RegexLexer):
     """
     Handle the extra syntax in Pl/pgSQL language.
     """
     name = 'PL/pgSQL'
     aliases = ['plpgsql']
     mimetypes = ['text/x-plpgsql']
+
+    flags = re.IGNORECASE
     tokens = deepcopy(PostgresLexer.tokens)
 
     # extend the keywords list
@@ -136,6 +157,7 @@ class PlPgsqlLexer(PostgresLexer):
     else:
         assert 0, "SQL keywords not found"
 
+    # Add specific PL/pgSQL rules (before the SQL ones)
     tokens['root'][:0] = [
         (r'\%[a-z][a-z0-9_]*\b', Name.Builtin),     # actually, a datatype
         (r':=', Operator),
@@ -144,7 +166,7 @@ class PlPgsqlLexer(PostgresLexer):
     ]
 
 
-class PsqlRegexLexer(PostgresLexer):
+class PsqlRegexLexer(PostgresBase, RegexLexer):
     """
     Extend the PostgresLexer adding support specific for psql commands.
 
@@ -153,7 +175,10 @@ class PsqlRegexLexer(PostgresLexer):
     """
     name = 'PostgreSQL console - regexp based lexer'
     aliases = []    # not public
+
+    flags = re.IGNORECASE
     tokens = deepcopy(PostgresLexer.tokens)
+
     tokens['root'].append(
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
     tokens['psql-command'] = [

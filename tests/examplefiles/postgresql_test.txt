@@ -17,7 +17,18 @@ $$ language plpythonu;
 CREATE FUNCTION nested_lexers (a integer, b integer)
 $function$
 BEGIN
-    RETURN ($1 ~ $q$[\t\r\n\v\\]$q$);
+    SELECT ($1 ~ $q$[\t\r\n\v\\]$q$);
 END;
 $function$
 LANGUAGE sql;
+
+CREATE OR REPLACE FUNCTION measurement_insert_trigger()
+RETURNS TRIGGER AS $$
+BEGIN
+    <<test>>
+    INSERT INTO measurement_y2008m01 VALUES (NEW.*);
+    RETURN NULL;
+END;
+$$
+LANGUAGE plpgsql;
+
