@@ -6,6 +6,36 @@
 
     :copyright: Copyright 2011 by Daniele Varrazzo.
     :license: BSD, see LICENSE for details.
+
+    The module contains lexers related to PostgreSQL languages.
+
+    `PostgresLexer`
+        A SQL lexer for the PostgreSQL dialect. Differences w.r.t. the SQL
+        lexer are:
+
+        - keywords and data types list parsed from the PG docs (run the
+          `_postgres_builtins` module to update them);
+        - Content of $-strings parsed using a specific lexer, e.g. the content
+          of a PL/Python function is parsed using the Python lexer;
+        - parse PG specific constructs: E-strings, $-strings, different
+          operators and punctuation.
+
+    `PlPgsqlLexer`
+        A lexer for the PL/pgSQL language. Adds a few specific construct on
+        top of the PG SQL lexer (such as <<label>>).
+
+    `PostgresConsoleLexer`
+        A lexer to highlight an interactive psql session:
+
+        - identifies the prompt and does its best to detect the end of command
+          in multiline statement where not all the lines are prefixed by a
+          prompt, telling them apart from the output;
+        - highlights errors in the output and notification levels;
+        - handles psql backslash commands.
+
+    The ``tests/examplefiles`` contains a few test files with data to be
+    parsed by these lexers.
+
 """
 
 import re
