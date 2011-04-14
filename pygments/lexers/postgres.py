@@ -26,7 +26,7 @@ __all__ = [ 'PostgresLexer', 'PlPgsqlLexer', 'PostgresConsoleLexer' ]
 
 line_re  = re.compile('.*?\n')
 
-language_re = re.compile(r"\s+LANGUAGE\s+'?(\w+)'?")
+language_re = re.compile(r"\s+LANGUAGE\s+'?(\w+)'?", re.IGNORECASE)
 
 class PostgresLexer(RegexLexer):
     """
