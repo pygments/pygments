@@ -12,7 +12,7 @@ AS $$
   if a > b:
     return a
   return b
-$$ LANGUAGE plpythonu;
+$$ language plpythonu;
 
 CREATE FUNCTION nested_lexers (a integer, b integer)
 $function$
