@@ -41,4 +41,7 @@ begin
 end
 $$;
 
+-- Unicode names and strings
+SELECT U&'\0441\043B\043E\043D'
+FROM U&"\0441\043B\043E\043D";
 

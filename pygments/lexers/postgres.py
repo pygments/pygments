@@ -17,8 +17,8 @@
           `_postgres_builtins` module to update them);
         - Content of $-strings parsed using a specific lexer, e.g. the content
           of a PL/Python function is parsed using the Python lexer;
-        - parse PG specific constructs: E-strings, $-strings, different
-          operators and punctuation.
+        - parse PG specific constructs: E-strings, $-strings, U&-strings,
+          different operators and punctuation.
 
     `PlPgsqlLexer`
         A lexer for the PL/pgSQL language. Adds a few specific construct on
@@ -149,9 +149,8 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r'\$\d+', Name.Variable),
             (r'([0-9]*\.[0-9]*|[0-9]+)(e[+-]?[0-9]+)?', Number.Float),
             (r'[0-9]+', Number.Integer),
-            # TODO: Backslash escapes?
-            (r"E?'(''|[^'])*'", String.Single),
-            (r'"(""|[^"])*"', String.Name), # quoted identifier
+            (r"(E|U&)?'(''|[^'])*'", String.Single),
+            (r'(U&)?"(""|[^"])*"', String.Name), # quoted identifier
             (r'(?ms)(\$[^\$]*\$)(.*?)(\1)', language_callback),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
