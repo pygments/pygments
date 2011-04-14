@@ -67,10 +67,14 @@ def language_callback(lexer, match):
     rules deepcopy fails in this case.
     """
     l = None
-    # TODO: the language can also be before the string
-    m = language_re.match(lexer.text[match.end():])
+    m = language_re.match(lexer.text[match.end():match.end()+100])
     if m is not None:
         l = lexer._get_lexer(m.group(1))
+    else:
+        m = list(language_re.finditer(
+            lexer.text[max(0, match.start()-100):match.start()]))
+        if m:
+            l = lexer._get_lexer(m[-1].group(1))
 
     if l:
         yield (match.start(1), String, match.group(1))

@@ -32,3 +32,13 @@ END;
 $$
 LANGUAGE plpgsql;
 
+-- As returned by pg_dump
+CREATE FUNCTION test_function() RETURNS integer
+    LANGUAGE plpgsql STABLE STRICT
+    AS $$
+begin
+    return 42;
+end
+$$;
+
+
