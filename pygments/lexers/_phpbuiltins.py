@@ -3739,7 +3739,7 @@ if __name__ == '__main__':
                         if '-&gt;' not in fn and '::' not in fn:
                             modules[module].append(fn)
 
-                    # These are dummy manual pages, not actually functions
+                    # These are dummy manual pages, not actual functions
                     if module == 'PHP Options/Info':
                         modules[module].remove('main')
                     elif module == 'Filesystem':
