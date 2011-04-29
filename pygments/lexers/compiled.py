@@ -1239,7 +1239,7 @@ class FortranLexer(RegexLexer):
     '''
     name = 'Fortran'
     aliases = ['fortran']
-    filenames = ['*.f', '*.f90']
+    filenames = ['*.f', '*.f90', '*.F', '*.F90']
     mimetypes = ['text/x-fortran']
     flags = re.IGNORECASE
 
