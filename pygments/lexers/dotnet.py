@@ -202,7 +202,7 @@ class NemerleLexer(RegexLexer):
                 (r'\n', Text),
                 (r'\$\s*"', String, 'splice-string'),
                 (r'\$\s*<#', String, 'splice-string2'),
-                (r'<#(?:[^#>])*#>', String),
+                (r'<#', String, 'recursive-string'),
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
                 (r'@"(\\\\|\\"|[^"])*"', String),
@@ -248,9 +248,15 @@ class NemerleLexer(RegexLexer):
                 (r'"',  String, '#pop')
             ],
             'splice-string2': [
-                (r'[^#>$]',  String), 
+                (r'[^#<>$]',  String), 
                 (r'\$\(', Name, 'splice-string-content'),
                 (r'\$', Name, 'splice-string-ident'),
+                (r'<#',  String, '#push'),
+                (r'#>',  String, '#pop')
+            ],
+            'recursive-string': [
+                (r'[^#<>]',  String), 
+                (r'<#',  String, '#push'),
                 (r'#>',  String, '#pop')
             ],
             'splice-string-content': [
