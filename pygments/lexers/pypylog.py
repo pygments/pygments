@@ -11,6 +11,7 @@ class PyPyLogLexer(RegexLexer):
     name = "PyPy Log"
     aliases = ["pypylog", "pypy"]
     filenames = ["*.pypylog"]
+    mimetypes = ['application/x-pypylog']
 
     tokens = {
         "root": [
