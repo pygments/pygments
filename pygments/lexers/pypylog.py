@@ -8,6 +8,11 @@ __all__ = [
 ]
 
 class PyPyLogLexer(RegexLexer):
+    """
+    Lexer for PyPy log files.
+
+    *New in Pygments 1.5.*
+    """
     name = "PyPy Log"
     aliases = ["pypylog", "pypy"]
     filenames = ["*.pypylog"]
