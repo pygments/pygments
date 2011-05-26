@@ -42,6 +42,8 @@ def test_lexer_classes():
                    "%s: %s attribute wrong" % (cls, attr)
         result = cls.analyse_text("abc")
         assert isinstance(result, float) and 0.0 <= result <= 1.0
+        result = cls.analyse_text(".abc")
+        assert isinstance(result, float) and 0.0 <= result <= 1.0
 
         inst = cls(opt1="val1", opt2="val2")
         if issubclass(cls, RegexLexer):
