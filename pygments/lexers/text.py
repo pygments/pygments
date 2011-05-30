@@ -761,7 +761,8 @@ class VimLexer(RegexLexer):
     """
     name = 'VimL'
     aliases = ['vim']
-    filenames = ['*.vim', '.vimrc']
+    filenames = ['*.vim', '.vimrc', '.exrc', '.gvimrc',
+                 '_vimrc', '_exrc', '_gvimrc']
     mimetypes = ['text/x-vim']
     flags = re.MULTILINE
 
