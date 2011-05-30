@@ -257,7 +257,7 @@ class eCLexer(RegexLexer):
     name = 'eC'
     aliases = ['ec']
     filenames = ['*.ec', '*.eh']
-    mimetypes = ['text/x-eChdr', 'text/x-eCsrc']
+    mimetypes = ['text/x-echdr', 'text/x-ecsrc']
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
