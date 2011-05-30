@@ -22,7 +22,7 @@ from pygments.token import \
 # backwards compatibility
 from pygments.lexers.functional import OcamlLexer
 
-__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'eCLexer', 'JavaLexer',
+__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'JavaLexer',
            'ScalaLexer', 'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer',
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
            'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
@@ -250,9 +250,11 @@ class CppLexer(RegexLexer):
     }
 
 
-class eCLexer(RegexLexer):
+class ECLexer(RegexLexer):
     """
     For eC source code with preprocessor directives.
+
+    *New in Pygments 1.5.*
     """
     name = 'eC'
     aliases = ['ec']
@@ -396,6 +398,7 @@ class eCLexer(RegexLexer):
                 elif self.c99highlighting and value in self.c99_types:
                     token = Keyword.Type
             yield index, token, value
+
 
 class DLexer(RegexLexer):
     """
