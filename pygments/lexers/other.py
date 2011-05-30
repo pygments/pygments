@@ -2853,7 +2853,7 @@ class AwkLexer(RegexLexer):
     name = 'Awk'
     aliases = ['awk', 'gawk', 'mawk', 'nawk']
     filenames = ['*.awk']
-    mimetype = ['application/x-awk']
+    mimetypes = ['application/x-awk']
 
     tokens = {
         'commentsandwhitespace': [
