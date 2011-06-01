@@ -26,7 +26,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'JavaLexer'
            'ScalaLexer', 'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer',
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
            'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
-           'Modula2Lexer', 'BlitzMaxLexer']
+           'Modula2Lexer', 'BlitzMaxLexer', 'NimrodLexer']
 
 
 class CLexer(RegexLexer):
@@ -2628,5 +2628,140 @@ class BlitzMaxLexer(RegexLexer):
             (r'""', String.Double),
             (r'"C?', String.Double, '#pop'),
             (r'[^"]+', String.Double),
+        ],
+    }
+
+class NimrodLexer(RegexLexer):
+    """
+    For `Nimrod <http://nimrod-code.org/>`_ source code
+    """
+
+    def underscorize(words):
+        newWords = []
+        new = ""
+        for word in words:
+            for ch in word:
+                new += (ch + "_?")
+            newWords.append(new)
+            new = ""
+        return "|".join(newWords)
+    
+    name = 'Nimrod'
+    aliases = ['nimrod', 'nim']
+    filenames = ['*.nim', '*.nimrod']
+    mimetypes = ['text/x-nimrod']
+
+    flags = re.MULTILINE | re.IGNORECASE | re.UNICODE
+
+    keywords = [
+        'addr', 'and', 'as', 'asm', 'atomic', 'bind', 'block', 'break', 
+        'case', 'cast', 'const', 'continue', 'converter', 'discard', 
+        'distinct', 'div', 'elif', 'else', 'end', 'enum', 'except', 'finally', 
+        'for', 'generic', 'if', 'implies', 'in', 'yield',
+        'is', 'isnot', 'iterator', 'lambda', 'let', 'macro', 'method', 
+        'mod', 'not', 'notin', 'object', 'of', 'or', 'out', 'proc',
+        'ptr', 'raise', 'ref', 'return', 'shl', 'shr', 'template', 'try', 
+        'tuple', 'type' , 'when', 'while', 'with', 'without', 'xor'
+    ]
+    
+    keywordsPseudo = [
+        'nil', 'true', 'false'
+    ]
+
+    opWords = [
+        'and', 'or', 'not', 'xor', 'shl', 'shr', 'div', 'mod', 'in', 
+        'notin', 'is', 'isnot'
+    ]
+
+    types = [
+        'int', 'int8', 'int16', 'int32', 'int64', 'float', 'float32', 'float64', 
+        'bool', 'char', 'range', 'array', 'seq', 'set', 'string'
+    ]
+
+    tokens = {
+        'root': [
+            (r'##.*$', String.Doc),
+            (r'#.*$', Comment),
+            (r'\*|=|>|<|\+|-|/|@|\$|~|&|%|\!|\?|\||\\|\[|\]', Operator),
+            (r'\.\.|\.|,|[\.|\.]|{\.|\.}|\(\.|\.\)|{|}|\(|\)|:|\^|`|;', Punctuation),
+
+            # Strings
+            (r'(?:[\w]+)"', String, 'rdqs'),
+            (r'"""', String, 'tdqs'),
+            ('"', String, 'dqs'),
+
+            # Char
+            ("'", String.Char, 'chars'),
+
+            # Keywords
+            (r'(%s)\b' % underscorize(opWords), Operator.Word),
+            (r'(p_?r_?o_?c_?\s)(?![\(\[\]])', Keyword, 'funcname'),
+            (r'(%s)\b' % underscorize(keywords), Keyword),
+            (r'(%s)\b' % underscorize(['from', 'import', 'include']), Keyword.Namespace),
+            (r'(v_?a_?r)\b', Keyword.Declaration),
+            (r'(%s)\b' % underscorize(types), Keyword.Type),
+            (r'(%s)\b' % underscorize(keywordsPseudo), Keyword.Pseudo),
+            # Identifiers
+            (r'\b((?![_\d])\w)(((?!_)\w)|(_(?!_)\w))*', Name),
+            # Numbers
+            (r'[0-9][0-9_]*(?=([eE.]|\'[fF](32|64)))',
+              Number.Float, ('float-suffix', 'float-number')),
+            (r'0[xX][a-fA-F0-9][a-fA-F0-9_]*', Number.Hex, 'int-suffix'),
+            (r'0[bB][01][01_]*', Number, 'int-suffix'),
+            (r'0o[0-7][0-7_]*', Number.Oct, 'int-suffix'),
+            (r'[0-9][0-9_]*', Number.Integer, 'int-suffix'),
+            # Whitespace
+            (r'\s+', Text),
+            (r'.+$', Error),
+        ],
+        'chars': [
+          (r'\\([\\abcefnrtvl"\']|x[a-fA-F0-9]{2}|[0-9]{1,3})', String.Escape),
+          (r"'", String.Char, '#pop'),
+          (r".", String.Char)
+        ],
+        'strings': [
+            (r'(?<!\$)\$(\d+|#|\w+)+', String.Interpol),
+            (r'[^\\\'"\$\n]+', String),
+            # quotes, dollars and backslashes must be parsed one at a time
+            (r'[\'"\\]', String),
+            # unhandled string formatting sign
+            (r'\$', String)
+            # newlines are an error (use "nl" state)
+        ],
+        'dqs': [
+            (r'\\([\\abcefnrtvl"\']|\n|x[a-fA-F0-9]{2}|[0-9]{1,3})', String.Escape),
+            (r'"', String, '#pop'),
+            include('strings')
+        ],
+        'rdqs': [
+            (r'"(?!")', String, '#pop'),
+            (r'""', String.Escape),
+            include('strings')
+        ],
+        'tdqs': [
+            (r'"""(?!")', String, '#pop'),
+            include('strings'),
+            include('nl')
+        ],
+        'funcname': [
+            (r'((?![\d_])\w)(((?!_)\w)|(_(?!_)\w))*', Name.Function, '#pop'),
+            (r'`.+`', Name.Function, '#pop')
+        ],
+        'nl': [
+            (r'\n', String)
+        ],
+        'float-number': [
+          (r'\.(?!\.)[0-9_]*', Number.Float),
+          (r'[eE][+-]?[0-9][0-9_]*', Number.Float),
+          (r'', Text, '#pop')
+        ],
+        'float-suffix': [
+          (r'\'[fF](32|64)', Number.Float),
+          (r'', Text, '#pop')
+        ],
+        'int-suffix': [
+          (r'\'[iI](32|64)', Number.Integer.Long),
+          (r'\'[iI](8|16)', Number.Integer),
+          (r'', Text, '#pop')
         ],
     }
