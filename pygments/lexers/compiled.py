@@ -2631,10 +2631,20 @@ class BlitzMaxLexer(RegexLexer):
         ],
     }
 
+
 class NimrodLexer(RegexLexer):
     """
-    For `Nimrod <http://nimrod-code.org/>`_ source code
+    For `Nimrod <http://nimrod-code.org/>`_ source code.
+
+    *New in Pygments 1.5.*
     """
+
+    name = 'Nimrod'
+    aliases = ['nimrod', 'nim']
+    filenames = ['*.nim', '*.nimrod']
+    mimetypes = ['text/x-nimrod']
+
+    flags = re.MULTILINE | re.IGNORECASE | re.UNICODE
 
     def underscorize(words):
         newWords = []
@@ -2645,36 +2655,29 @@ class NimrodLexer(RegexLexer):
             newWords.append(new)
             new = ""
         return "|".join(newWords)
-    
-    name = 'Nimrod'
-    aliases = ['nimrod', 'nim']
-    filenames = ['*.nim', '*.nimrod']
-    mimetypes = ['text/x-nimrod']
-
-    flags = re.MULTILINE | re.IGNORECASE | re.UNICODE
 
     keywords = [
-        'addr', 'and', 'as', 'asm', 'atomic', 'bind', 'block', 'break', 
-        'case', 'cast', 'const', 'continue', 'converter', 'discard', 
-        'distinct', 'div', 'elif', 'else', 'end', 'enum', 'except', 'finally', 
+        'addr', 'and', 'as', 'asm', 'atomic', 'bind', 'block', 'break',
+        'case', 'cast', 'const', 'continue', 'converter', 'discard',
+        'distinct', 'div', 'elif', 'else', 'end', 'enum', 'except', 'finally',
         'for', 'generic', 'if', 'implies', 'in', 'yield',
-        'is', 'isnot', 'iterator', 'lambda', 'let', 'macro', 'method', 
+        'is', 'isnot', 'iterator', 'lambda', 'let', 'macro', 'method',
         'mod', 'not', 'notin', 'object', 'of', 'or', 'out', 'proc',
-        'ptr', 'raise', 'ref', 'return', 'shl', 'shr', 'template', 'try', 
+        'ptr', 'raise', 'ref', 'return', 'shl', 'shr', 'template', 'try',
         'tuple', 'type' , 'when', 'while', 'with', 'without', 'xor'
     ]
-    
+
     keywordsPseudo = [
         'nil', 'true', 'false'
     ]
 
     opWords = [
-        'and', 'or', 'not', 'xor', 'shl', 'shr', 'div', 'mod', 'in', 
+        'and', 'or', 'not', 'xor', 'shl', 'shr', 'div', 'mod', 'in',
         'notin', 'is', 'isnot'
     ]
 
     types = [
-        'int', 'int8', 'int16', 'int32', 'int64', 'float', 'float32', 'float64', 
+        'int', 'int8', 'int16', 'int32', 'int64', 'float', 'float32', 'float64',
         'bool', 'char', 'range', 'array', 'seq', 'set', 'string'
     ]
 
@@ -2683,7 +2686,8 @@ class NimrodLexer(RegexLexer):
             (r'##.*$', String.Doc),
             (r'#.*$', Comment),
             (r'\*|=|>|<|\+|-|/|@|\$|~|&|%|\!|\?|\||\\|\[|\]', Operator),
-            (r'\.\.|\.|,|[\.|\.]|{\.|\.}|\(\.|\.\)|{|}|\(|\)|:|\^|`|;', Punctuation),
+            (r'\.\.|\.|,|[\.|\.]|{\.|\.}|\(\.|\.\)|{|}|\(|\)|:|\^|`|;',
+             Punctuation),
 
             # Strings
             (r'(?:[\w]+)"', String, 'rdqs'),
@@ -2697,7 +2701,8 @@ class NimrodLexer(RegexLexer):
             (r'(%s)\b' % underscorize(opWords), Operator.Word),
             (r'(p_?r_?o_?c_?\s)(?![\(\[\]])', Keyword, 'funcname'),
             (r'(%s)\b' % underscorize(keywords), Keyword),
-            (r'(%s)\b' % underscorize(['from', 'import', 'include']), Keyword.Namespace),
+            (r'(%s)\b' % underscorize(['from', 'import', 'include']),
+             Keyword.Namespace),
             (r'(v_?a_?r)\b', Keyword.Declaration),
             (r'(%s)\b' % underscorize(types), Keyword.Type),
             (r'(%s)\b' % underscorize(keywordsPseudo), Keyword.Pseudo),
@@ -2729,7 +2734,8 @@ class NimrodLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ],
         'dqs': [
-            (r'\\([\\abcefnrtvl"\']|\n|x[a-fA-F0-9]{2}|[0-9]{1,3})', String.Escape),
+            (r'\\([\\abcefnrtvl"\']|\n|x[a-fA-F0-9]{2}|[0-9]{1,3})',
+             String.Escape),
             (r'"', String, '#pop'),
             include('strings')
         ],
