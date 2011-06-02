@@ -36,7 +36,7 @@ class SchemeLexer(RegexLexer):
     """
     name = 'Scheme'
     aliases = ['scheme', 'scm']
-    filenames = ['*.scm', '*.rkt']
+    filenames = ['*.scm', '*.ss', '*.rkt']
     mimetypes = ['text/x-scheme', 'application/x-scheme']
 
     # list of known keywords and builtins taken form vim 6.4 scheme.vim
