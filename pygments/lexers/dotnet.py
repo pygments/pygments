@@ -18,8 +18,8 @@ from pygments import unistring as uni
 
 from pygments.lexers.web import XmlLexer
 
-__all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer', 'CSharpAspxLexer',
-           'VbNetAspxLexer']
+__all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
+           'CSharpAspxLexer', 'VbNetAspxLexer']
 
 
 def _escape(st):
@@ -137,10 +137,10 @@ class CSharpLexer(RegexLexer):
 
         RegexLexer.__init__(self, **options)
 
+
 class NemerleLexer(RegexLexer):
     """
-    For `Nemerle <http://nemerle.org>`_
-    source code.
+    For `Nemerle <http://nemerle.org>`_ source code.
 
     Additional options accepted:
 
@@ -158,7 +158,7 @@ class NemerleLexer(RegexLexer):
 
       The default value is ``basic``.
 
-      *New in Pygments 1.4.*
+    *New in Pygments 1.5.*
     """
 
     name = 'Nemerle'
@@ -216,21 +216,24 @@ class NemerleLexer(RegexLexer):
                 (r'\b(extern)(\s+)(alias)\b', bygroups(Keyword, Text,
                  Keyword)),
                 (r'(abstract|and|as|base|catch|def|delegate|'
-                r'enum|event|extern|false|finally|'
-                r'fun|implements|interface|internal|'
-                r'is|macro|match|matches|module|mutable|new|'
-                r'null|out|override|params|partial|private|'
-                r'protected|public|ref|sealed|static|'
-                r'syntax|this|throw|true|try|type|typeof|'
-                r'virtual|volatile|when|where|with|'
-                r'assert|assert2|async|break|checked|continue|do|else|'
-                r'ensures|for|foreach|if|late|lock|new|nolate|'
-                r'otherwise|regexp|repeat|requires|return|surroundwith|unchecked|unless|using|while|yield)\b', Keyword),
+                 r'enum|event|extern|false|finally|'
+                 r'fun|implements|interface|internal|'
+                 r'is|macro|match|matches|module|mutable|new|'
+                 r'null|out|override|params|partial|private|'
+                 r'protected|public|ref|sealed|static|'
+                 r'syntax|this|throw|true|try|type|typeof|'
+                 r'virtual|volatile|when|where|with|'
+                 r'assert|assert2|async|break|checked|continue|do|else|'
+                 r'ensures|for|foreach|if|late|lock|new|nolate|'
+                 r'otherwise|regexp|repeat|requires|return|surroundwith|'
+                 r'unchecked|unless|using|while|yield)\b', Keyword),
                 (r'(global)(::)', bygroups(Keyword, Punctuation)),
                 (r'(bool|byte|char|decimal|double|float|int|long|object|sbyte|'
                  r'short|string|uint|ulong|ushort)\b\??', Keyword.Type),
-                (r'(class|struct|variant|module)(\s+)', bygroups(Keyword, Text), 'class'),
-                (r'(namespace|using)(\s+)', bygroups(Keyword, Text), 'namespace'),
+                (r'(class|struct|variant|module)(\s+)', bygroups(Keyword, Text),
+                 'class'),
+                (r'(namespace|using)(\s+)', bygroups(Keyword, Text),
+                 'namespace'),
                 (cs_ident, Name),
             ],
             'class': [
@@ -241,39 +244,40 @@ class NemerleLexer(RegexLexer):
                 ('(' + cs_ident + r'|\.)+', Name.Namespace, '#pop')
             ],
             'splice-string': [
-                (r'[^"$]',  String), 
+                (r'[^"$]',  String),
                 (r'\$\(', Name, 'splice-string-content'),
                 (r'\$', Name, 'splice-string-ident'),
                 (r'\\"',  String),
                 (r'"',  String, '#pop')
             ],
             'splice-string2': [
-                (r'[^#<>$]',  String), 
+                (r'[^#<>$]',  String),
                 (r'\$\(', Name, 'splice-string-content'),
                 (r'\$', Name, 'splice-string-ident'),
                 (r'<#',  String, '#push'),
                 (r'#>',  String, '#pop')
             ],
             'recursive-string': [
-                (r'[^#<>]',  String), 
+                (r'[^#<>]',  String),
                 (r'<#',  String, '#push'),
                 (r'#>',  String, '#pop')
             ],
             'splice-string-content': [
-                (r'if|match', Keyword), 
+                (r'if|match', Keyword),
                 (r'[~!%^&*+=|\[\]:;,.<>/?-]', Punctuation),
-                (cs_ident, Name), 
+                (cs_ident, Name),
                 (r'\(', Name, '#push'),
                 (r'\)', Name, '#pop')
             ],
             'splice-string-ident': [
-                (cs_ident,  Name, '#pop'), 
+                (cs_ident,  Name, '#pop'),
                 (r'.',  String, '#pop')
             ],
         }
 
     def __init__(self, **options):
-        level = get_choice_opt(options, 'unicodelevel', self.tokens.keys(), 'basic')
+        level = get_choice_opt(options, 'unicodelevel', self.tokens.keys(),
+                               'basic')
         if level not in self._all_tokens:
             # compile the regexes now
             self._tokens = self.__class__.process_tokendef(level)
