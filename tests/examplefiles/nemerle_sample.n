@@ -13,7 +13,7 @@ namespace Demo.Ns
     public virtual someMethod(str : string) : list[double]
     {
       def x = "simple string";
-      def x = $"simple $splice string";
+      def x = $"simple $splice string $(spliceMethod())";
       def x = <#
         recursive <# string #> sample
       #>;
