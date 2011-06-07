@@ -45,7 +45,7 @@ class PyPyLogLexer(RegexLexer):
              r"ptr_eq|"
              r"force_token|"
              r"call_may_force|call_assembler|call|"
-             r"new_with_vtable|new_array|"
+             r"new_with_vtable|new_array|new|"
              r"arraylen_gc|"
              r"getarrayitem_gc_pure|getarrayitem_gc|setarrayitem_gc|getarrayitem_raw|setarrayitem_raw|"
              r"getfield_gc_pure|getfield_gc|getfield_raw|setfield_gc|setfield_raw|"
