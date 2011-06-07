@@ -38,17 +38,18 @@ class PyPyLogLexer(RegexLexer):
             (r"<.*?>", Name.Builtin),
             (r"(debug_merge_point|jump|finish)", Name.Class),
             (r"(int_add_ovf|int_add|int_sub_ovf|int_sub|int_mul_ovf|int_mul|int_or|"
-             r"int_ge|int_gt|int_lt|int_is_zero|int_is_true|"
+             r"int_eq|int_ne|int_ge|int_gt|int_lt|int_is_zero|int_is_true|"
              r"uint_floordiv|"
              r"float_add|float_sub|float_mul|float_truediv|"
              r"float_eq|float_ne|float_gt|"
              r"ptr_eq|"
              r"force_token|"
              r"call_may_force|call_assembler|call|"
-             r"new_with_vtable|new_array|new|"
+             r"new_with_vtable|new_array|newstr|new|"
              r"arraylen_gc|"
              r"getarrayitem_gc_pure|getarrayitem_gc|setarrayitem_gc|getarrayitem_raw|setarrayitem_raw|"
              r"getfield_gc_pure|getfield_gc|getfield_raw|setfield_gc|setfield_raw|"
+             r"strlen|copystrcontents|"
              r"guard_true|guard_false|guard_value|guard_isnull|guard_nonnull_class|guard_nonnull|guard_class|guard_no_overflow|guard_not_forced|guard_no_exception|guard_not_invalidated)", Name.Builtin),
             include("extra-stuff"),
         ],
