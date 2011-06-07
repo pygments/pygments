@@ -47,7 +47,7 @@ class PyPyLogLexer(RegexLexer):
              r"call_may_force|call_assembler|call|"
              r"new_with_vtable|new_array|"
              r"arraylen_gc|"
-             r"getarrayitem_gc|setarrayitem_gc|getarrayitem_raw|setarrayitem_raw|"
+             r"getarrayitem_gc_pure|getarrayitem_gc|setarrayitem_gc|getarrayitem_raw|setarrayitem_raw|"
              r"getfield_gc_pure|getfield_gc|getfield_raw|setfield_gc|setfield_raw|"
              r"guard_true|guard_false|guard_value|guard_isnull|guard_nonnull_class|guard_class|guard_no_overflow|guard_not_forced|guard_no_exception)", Name.Builtin),
             include("extra-stuff"),
