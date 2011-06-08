@@ -118,6 +118,12 @@ def test_get_lexers():
                        ]:
         yield verify, func, args
 
+    for cls, (_, lname, aliases, _, mimetypes) in lexers.LEXERS.iteritems():
+        assert cls == lexers.find_lexer_class(lname).__name__
+
+        for alias in aliases:
+            assert cls == lexers.get_lexer_by_name(alias).__class__.__name__
+
 
 def test_formatter_public_api():
     ts = list(lexers.PythonLexer().get_tokens("def f(): pass"))
