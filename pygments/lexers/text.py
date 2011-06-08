@@ -171,7 +171,7 @@ class BaseMakefileLexer(RegexLexer):
     *New in Pygments 0.10.*
     """
 
-    name = 'Makefile'
+    name = 'Base Makefile'
     aliases = ['basemake']
     filenames = []
     mimetypes = []
