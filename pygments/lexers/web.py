@@ -99,8 +99,8 @@ class ActionScriptLexer(RegexLexer):
     name = 'ActionScript'
     aliases = ['as', 'actionscript']
     filenames = ['*.as']
-    mimetypes = ['application/x-actionscript', 'text/x-actionscript',
-                 'text/actionscript']
+    mimetypes = ['application/x-actionscript3', 'text/x-actionscript3',
+                 'text/actionscript3']
 
     flags = re.DOTALL
     tokens = {
