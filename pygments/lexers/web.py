@@ -837,8 +837,7 @@ class XmlLexer(RegexLexer):
     aliases = ['xml']
     filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd', '*.wsdl']
     mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
-                 'application/rss+xml', 'application/atom+xml',
-                 'application/xsl+xml', 'application/xslt+xml']
+                 'application/rss+xml', 'application/atom+xml']
 
     tokens = {
         'root': [
@@ -884,6 +883,7 @@ class XsltLexer(XmlLexer):
     name = 'XSLT'
     aliases = ['xslt']
     filenames = ['*.xsl', '*.xslt']
+    mimetypes = ['application/xsl+xml', 'application/xslt+xml']
 
     EXTRA_KEYWORDS = set([
         'apply-imports', 'apply-templates', 'attribute',
