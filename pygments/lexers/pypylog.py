@@ -51,7 +51,7 @@ class PyPyLogLexer(RegexLexer):
              r"getarrayitem_gc_pure|getarrayitem_gc|setarrayitem_gc|getarrayitem_raw|setarrayitem_raw|"
              r"getfield_gc_pure|getfield_gc|getfield_raw|setfield_gc|setfield_raw|"
              r"strgetitem|strsetitem|strlen|copystrcontent|"
-             r"unicodegetitem|unicodesetitem|unicodelen"
+             r"unicodegetitem|unicodesetitem|unicodelen|"
              r"guard_true|guard_false|guard_value|guard_isnull|guard_nonnull_class|guard_nonnull|guard_class|guard_no_overflow|guard_not_forced|guard_no_exception|guard_not_invalidated)", Name.Builtin),
             include("extra-stuff"),
         ],
