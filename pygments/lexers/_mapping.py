@@ -145,6 +145,7 @@ LEXERS = {
     'MyghtyLexer': ('pygments.lexers.templates', 'Myghty', ('myghty',), ('*.myt', 'autodelegate'), ('application/x-myghty',)),
     'MyghtyXmlLexer': ('pygments.lexers.templates', 'XML+Myghty', ('xml+myghty',), (), ('application/xml+myghty',)),
     'NasmLexer': ('pygments.lexers.asm', 'NASM', ('nasm',), ('*.asm', '*.ASM'), ('text/x-nasm',)),
+    'NemerleLexer': ('pygments.lexers.dotnet', 'Nemerle', ('nemerle',), ('*.n',), ('text/x-nemerle',)),
     'NewspeakLexer': ('pygments.lexers.other', 'Newspeak', ('newspeak',), ('*.ns2',), ('text/x-newspeak',)),
     'NginxConfLexer': ('pygments.lexers.text', 'Nginx configuration file', ('nginx',), (), ('text/x-nginx-conf',)),
     'NimrodLexer': ('pygments.lexers.compiled', 'Nimrod', ('nimrod', 'nim'), ('*.nim', '*.nimrod'), ('text/x-nimrod',)),
