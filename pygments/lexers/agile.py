@@ -1044,7 +1044,6 @@ class LuaLexer(RegexLexer):
             (r'(true|false|nil)\b', Keyword.Constant),
 
             (r'(function)(\s+)', bygroups(Keyword, Text), 'funcname'),
-            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
 
             (r'[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)?', Name),
 
@@ -1057,10 +1056,6 @@ class LuaLexer(RegexLexer):
              bygroups(Name.Class, Punctuation, Name.Function), '#pop'),
             # inline function
             ('\(', Punctuation, '#pop'),
-        ],
-
-        'classname': [
-            ('[A-Za-z_][A-Za-z0-9_]*', Name.Class, '#pop')
         ],
 
         # if I understand correctly, every character is valid in a lua string,
