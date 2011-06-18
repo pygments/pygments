@@ -653,6 +653,13 @@ class RstLexer(RegexLexer):
         for item in do_insertions(ins, lexer.get_tokens_unprocessed(code)):
             yield item
 
+    # from docutils.parsers.rst.states
+    closers = u'\'")]}>\u2019\u201d\xbb!?'
+    unicode_delimiters = u'\u2010\u2011\u2012\u2013\u2014\u00a0'
+    end_string_suffix = (r'((?=$)|(?=[-/:.,; \n\x00%s%s]))'
+                         % (re.escape(unicode_delimiters),
+                            re.escape(closers)))
+
     tokens = {
         'root': [
             # Heading with overline
@@ -689,9 +696,9 @@ class RstLexer(RegexLexer):
              bygroups(Punctuation, Text, Operator.Word, Punctuation, Text,
                       using(this, state='inline'))),
             # A reference target
-            (r'^( *\.\.)(\s*)([\w\t ]+:)(.*?)$',
+            (r'^( *\.\.)(\s*)(_(?:[^:\\]|\\.)+:)(.*?)$',
              bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
-            # A footnote target
+            # A footnote/citation target
             (r'^( *\.\.)(\s*)(\[.+\])(.*?)$',
              bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
             # A substitution def
@@ -730,10 +737,9 @@ class RstLexer(RegexLexer):
             (r'.', Text),
         ],
         'literal': [
-            (r'[^`\\]+', String),
-            (r'\\.', String),
-            (r'``', String, '#pop'),
-            (r'[`\\]', String),
+            (r'[^`]+', String),
+            (r'``' + end_string_suffix, String, '#pop'),
+            (r'`', String),
         ]
     }
 
