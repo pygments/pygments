@@ -172,9 +172,6 @@ class ActionScriptLexer(RegexLexer):
         ]
     }
 
-    def analyse_text(text):
-        return 0.05
-
 
 class ActionScript3Lexer(RegexLexer):
     """
@@ -190,6 +187,7 @@ class ActionScript3Lexer(RegexLexer):
                  'text/actionscript']
 
     identifier = r'[$a-zA-Z_][a-zA-Z0-9_]*'
+    typeidentifier = identifier + '(?:\.<\w+>)?'
 
     flags = re.DOTALL | re.MULTILINE
     tokens = {
@@ -198,12 +196,13 @@ class ActionScript3Lexer(RegexLexer):
             (r'(function\s+)(' + identifier + r')(\s*)(\()',
              bygroups(Keyword.Declaration, Name.Function, Text, Operator),
              'funcparams'),
-            (r'(var|const)(\s+)(' + identifier + r')(\s*)(:)(\s*)(' + identifier + r')',
+            (r'(var|const)(\s+)(' + identifier + r')(\s*)(:)(\s*)(' +
+             typeidentifier + r')',
              bygroups(Keyword.Declaration, Text, Name, Text, Punctuation, Text,
                       Keyword.Type)),
             (r'(import|package)(\s+)((?:' + identifier + r'|\.)+)(\s*)',
              bygroups(Keyword, Text, Name.Namespace, Text)),
-            (r'(new)(\s+)(' + identifier + r')(\s*)(\()',
+            (r'(new)(\s+)(' + typeidentifier + r')(\s*)(\()',
              bygroups(Keyword, Text, Keyword.Type, Text, Operator)),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
@@ -234,13 +233,13 @@ class ActionScript3Lexer(RegexLexer):
         'funcparams': [
             (r'\s+', Text),
             (r'(\s*)(\.\.\.)?(' + identifier + r')(\s*)(:)(\s*)(' +
-             identifier + r'|\*)(\s*)',
+             typeidentifier + r'|\*)(\s*)',
              bygroups(Text, Punctuation, Name, Text, Operator, Text,
                       Keyword.Type, Text), 'defval'),
             (r'\)', Operator, 'type')
         ],
         'type': [
-            (r'(\s*)(:)(\s*)(' + identifier + r'|\*)',
+            (r'(\s*)(:)(\s*)(' + typeidentifier + r'|\*)',
              bygroups(Text, Operator, Text, Keyword.Type), '#pop:2'),
             (r'\s*', Text, '#pop:2')
         ],
@@ -252,8 +251,9 @@ class ActionScript3Lexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.match(r'\w+\s*:\s*\w', text): return 0.3
-        return 0.1
+        if re.match(r'\w+\s*:\s*\w', text):
+            return 0.3
+        return 0
 
 
 class CssLexer(RegexLexer):
