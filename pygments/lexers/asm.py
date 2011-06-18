@@ -88,7 +88,11 @@ class GasLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return bool(re.match(r'^\.\w+', text, re.M))
+        if re.match(r'^\.(text|data|section)', text, re.M):
+            return True
+        elif re.match(r'^\.\w+', text, re.M):
+            return 0.1
+
 
 class ObjdumpLexer(RegexLexer):
     """
