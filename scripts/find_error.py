@@ -24,6 +24,7 @@ except ImportError:
 from pygments.lexer import RegexLexer
 from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
 from pygments.token import Error, Text, _TokenType
+from pygments.cmdline import _parse_options
 
 
 class DebuggingRegexLexer(RegexLexer):
@@ -83,16 +84,16 @@ class DebuggingRegexLexer(RegexLexer):
                     break
 
 
-def main(fn, lexer=None):
+def main(fn, lexer=None, options={}):
     if lexer is not None:
         lx = get_lexer_by_name(lexer)
     else:
         try:
-            lx = get_lexer_for_filename(os.path.basename(fn))
+            lx = get_lexer_for_filename(os.path.basename(fn), **options)
         except ValueError:
             try:
                 name, rest = fn.split('_', 1)
-                lx = get_lexer_by_name(name)
+                lx = get_lexer_by_name(name, **options)
             except ValueError:
                 raise AssertionError('no lexer found for file %r' % fn)
     debug_lexer = False
@@ -103,7 +104,6 @@ def main(fn, lexer=None):
     lno = 1
     text = file(fn, 'U').read()
     text = text.strip('\n') + '\n'
-    text = text.decode('latin1')
     tokens = []
     states = []
 
@@ -148,10 +148,11 @@ def main(fn, lexer=None):
 num = 10
 showall = False
 lexer = None
+options = {}
 
 if __name__ == '__main__':
     import getopt
-    opts, args = getopt.getopt(sys.argv[1:], 'n:l:a')
+    opts, args = getopt.getopt(sys.argv[1:], 'n:l:aO:')
     for opt, val in opts:
         if opt == '-n':
             num = int(val)
@@ -159,7 +160,9 @@ if __name__ == '__main__':
             showall = True
         elif opt == '-l':
             lexer = val
+        elif opt == '-O':
+            options = _parse_options([val])
     ret = 0
     for f in args:
-        ret += main(f, lexer)
+        ret += main(f, lexer, options)
     sys.exit(bool(ret))
