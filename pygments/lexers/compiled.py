@@ -1144,7 +1144,7 @@ class ScalaLexer(RegexLexer):
             (idrest, Name),
             (r'`[^`]+`', Name),
             (r'\[', Operator, 'typeparam'),
-            (r'[\(\)\{\};,.]', Operator),
+            (r'[\(\)\{\};,.#]', Operator),
             (op, Operator),
             (ur'([0-9][0-9]*\.[0-9]*|\.[0-9]+)([eE][+-]?[0-9]+)?[fFdD]?',
              Number.Float),
