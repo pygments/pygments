@@ -35,7 +35,7 @@ class CLexer(RegexLexer):
     """
     name = 'C'
     aliases = ['c']
-    filenames = ['*.c', '*.h']
+    filenames = ['*.c', '*.h', '*.idc']
     mimetypes = ['text/x-chdr', 'text/x-csrc']
 
     #: optional Comment or Whitespace
