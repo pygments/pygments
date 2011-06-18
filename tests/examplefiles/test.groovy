@@ -1,4 +1,4 @@
-// This source code comes form http://www.odelia-technologies.com/node/200
+// This source code comes from http://www.odelia-technologies.com/node/200
 
 package com.odelia.groovy.simpleworkflow
 
