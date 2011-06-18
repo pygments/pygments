@@ -13,47 +13,47 @@ class SimpleWorkflowEngine {
         this.context = context
         parseWorkflow(workflow)
     }
-    
+
     def parseWorkflow(workflow) {
         workflowMap = new WorkflowParser().parse(workflow)
     }
-    
+
     def getActivityValue(activity) {
-        assert activity instanceof String                
+        assert activity instanceof String
         if (!workflowMap[activity])
             throw new RuntimeException("$activity activity doesn't exist")
         workflowMap[activity]
     }
-    
-    def execute(activity, pause) {               
+
+    def execute(activity, pause) {
         if (workflowMap[beforeActivityName]) {
             getActivityValue(beforeActivityName)(context, activity)
         }
 
         def activityValue = getActivityValue(activity)
-        
+
         // Determine the next activity to execute
         def nextActivity
         switch (activityValue) {
             case String: nextActivity = activityValue; break
             case Closure: nextActivity = activityValue(context); break
             case Class: nextActivity = activityValue.newInstance()(context)
-        }    
-            
+        }
+
         if (workflowMap[afterActivityName]) {
             getActivityValue(afterActivityName)(context, activity, nextActivity)
-        }            
-            
+        }
+
         if (!pause && nextActivity)
             call(nextActivity)
         else
-            nextActivity    
+            nextActivity
     }
-    
+
     def call(activity) {
         execute(activity, false)
-    }   
-    
+    }
+
     def nextActivity(activity) {
         execute(activity, true)
     }
