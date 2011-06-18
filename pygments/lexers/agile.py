@@ -484,11 +484,11 @@ class RubyLexer(ExtendedRegexLexer):
 
     def gen_rubystrings_rules():
         def intp_regex_callback(self, match, ctx):
-            yield match.start(1), String.Regex, match.group(1)    # begin
+            yield match.start(1), String.Regex, match.group(1)  # begin
             nctx = LexerContext(match.group(3), 0, ['interpolated-regex'])
             for i, t, v in self.get_tokens_unprocessed(context=nctx):
                 yield match.start(3)+i, t, v
-            yield match.start(4), String.Regex, match.group(4)    # end[mixounse]*
+            yield match.start(4), String.Regex, match.group(4)  # end[mixounse]*
             ctx.pos = match.end()
 
         def intp_string_callback(self, match, ctx):
@@ -496,7 +496,7 @@ class RubyLexer(ExtendedRegexLexer):
             nctx = LexerContext(match.group(3), 0, ['interpolated-string'])
             for i, t, v in self.get_tokens_unprocessed(context=nctx):
                 yield match.start(3)+i, t, v
-            yield match.start(4), String.Other, match.group(4)    # end
+            yield match.start(4), String.Other, match.group(4)  # end
             ctx.pos = match.end()
 
         states = {}
@@ -661,7 +661,8 @@ class RubyLexer(ExtendedRegexLexer):
             # multiline regex (in method calls)
             (r'(?<=\(|,)/', String.Regex, 'multiline-regex'),
             # multiline regex (this time the funny no whitespace rule)
-            (r'(\s+)(/[^\s=])', String.Regex, 'multiline-regex'),
+            (r'(\s+)(/)(?![\s=])', bygroups(Text, String.Regex),
+             'multiline-regex'),
             # lex numbers and ignore following regular expressions which
             # are division operators in fact (grrrr. i hate that. any
             # better ideas?)
