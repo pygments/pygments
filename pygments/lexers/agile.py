@@ -1150,7 +1150,7 @@ class MiniDLexer(RegexLexer):
             ),
             # StringLiteral
             # -- WysiwygString
-            (r'@"(""|.)*"', String),
+            (r'@"(""|[^"])*"', String),
             # -- AlternateWysiwygString
             (r'`(``|.)*`', String),
             # -- DoubleQuotedString
