@@ -955,7 +955,7 @@ class LogtalkLexer(RegexLexer):
 
         'entityrelations': [
             (r'(complements|extends|i(nstantiates|mp(lements|orts))|specializes)'
-             b'(?=[(])', Keyword),
+             r'(?=[(])', Keyword),
             # Numbers
             (r"0'.", Number),
             (r'0b[01]+', Number),
