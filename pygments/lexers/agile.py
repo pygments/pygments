@@ -23,7 +23,7 @@ __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
            'MiniDLexer', 'IoLexer', 'TclLexer', 'ClojureLexer',
            'Python3Lexer', 'Python3TracebackLexer', 'FactorLexer',
-           'IokeLexer', 'FancyLexer']
+           'IokeLexer', 'FancyLexer', 'GroovyLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
