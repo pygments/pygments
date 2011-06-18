@@ -35,7 +35,7 @@ class CLexer(RegexLexer):
     """
     name = 'C'
     aliases = ['c']
-    filenames = ['*.c', '*.h']
+    filenames = ['*.c', '*.h', '*.idc']
     mimetypes = ['text/x-chdr', 'text/x-csrc']
 
     #: optional Comment or Whitespace
@@ -1136,7 +1136,7 @@ class ScalaLexer(RegexLexer):
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(import|package)(\s+)', bygroups(Keyword, Text), 'import'),
             (r'(type)(\s+)', bygroups(Keyword, Text), 'type'),
-            (r'"""(?:.|\n)*?"""', String),
+            (r'""".*?"""', String),
             (r'"(\\\\|\\"|[^"])*"', String),
             (ur"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
 #            (ur'(\.)(%s|%s|`[^`]+`)' % (idrest, op), bygroups(Operator,
@@ -1144,7 +1144,7 @@ class ScalaLexer(RegexLexer):
             (idrest, Name),
             (r'`[^`]+`', Name),
             (r'\[', Operator, 'typeparam'),
-            (r'[\(\)\{\};,.]', Operator),
+            (r'[\(\)\{\};,.#]', Operator),
             (op, Operator),
             (ur'([0-9][0-9]*\.[0-9]*|\.[0-9]+)([eE][+-]?[0-9]+)?[fFdD]?',
              Number.Float),
@@ -1309,6 +1309,13 @@ class ObjectiveCLexer(RegexLexer):
              bygroups(using(this), Name.Function,
                       using(this), Text, Punctuation),
              'function'),
+            # methods
+            (r'^([-+])(\s*)'                         # method marker
+             r'(\(.*?\))?(\s*)'                      # return type
+             r'([a-zA-Z$_][a-zA-Z0-9$_]*:?)',        # begin of method name
+             bygroups(Keyword, Text, using(this),
+                      Text, Name.Function),
+             'method'),
             # function declarations
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
              r'([a-zA-Z$_][a-zA-Z0-9$_]*)'           # method name
@@ -1351,6 +1358,15 @@ class ObjectiveCLexer(RegexLexer):
             (';', Punctuation),
             ('{', Punctuation, '#push'),
             ('}', Punctuation, '#pop'),
+        ],
+        'method': [
+            include('whitespace'),
+            (r'(\(.*?\))([a-zA-Z$_][a-zA-Z0-9$_]*)', bygroups(using(this),
+                                                              Name.Variable)),
+            (r'[a-zA-Z$_][a-zA-Z0-9$_]*:', Name.Function),
+            (';', Punctuation, '#pop'),
+            ('{', Punctuation, 'function'),
+            ('', Text, '#pop'),
         ],
         'string': [
             (r'"', String, '#pop'),

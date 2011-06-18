@@ -29,7 +29,7 @@ class PyPyLogLexer(RegexLexer):
 
             (r"[ifp]\d+", Name),
             (r"ptr\d+", Name),
-            (r"(\()([\w_]+(:\.[\w_]+)?)(\))", bygroups(Punctuation, Name.Builtin, Punctuation)),
+            (r"(\()([\w_]+(?:\.[\w_]+)?)(\))", bygroups(Punctuation, Name.Builtin, Punctuation)),
             (r"[\[\]=,()]", Punctuation),
             (r"(\d+\.\d+|inf|-inf)", Number.Float),
             (r"-?\d+", Number.Integer),
