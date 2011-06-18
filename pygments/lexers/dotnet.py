@@ -521,6 +521,8 @@ class VbNetAspxLexer(DelegatingLexer):
 class FSharpLexer(RegexLexer):
     """
     For the F# language.
+
+    *New in Pygments 1.5.*
     """
 
     name = 'FSharp'
