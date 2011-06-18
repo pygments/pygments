@@ -1309,6 +1309,13 @@ class ObjectiveCLexer(RegexLexer):
              bygroups(using(this), Name.Function,
                       using(this), Text, Punctuation),
              'function'),
+            # methods
+            (r'^([-+])(\s*)'                         # method marker
+             r'(\(.*?\))?(\s*)'                      # return type
+             r'([a-zA-Z$_][a-zA-Z0-9$_]*:?)',        # begin of method name
+             bygroups(Keyword, Text, using(this),
+                      Text, Name.Function),
+             'method'),
             # function declarations
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
              r'([a-zA-Z$_][a-zA-Z0-9$_]*)'           # method name
@@ -1351,6 +1358,15 @@ class ObjectiveCLexer(RegexLexer):
             (';', Punctuation),
             ('{', Punctuation, '#push'),
             ('}', Punctuation, '#pop'),
+        ],
+        'method': [
+            include('whitespace'),
+            (r'(\(.*?\))([a-zA-Z$_][a-zA-Z0-9$_]*)', bygroups(using(this),
+                                                              Name.Variable)),
+            (r'[a-zA-Z$_][a-zA-Z0-9$_]*:', Name.Function),
+            (';', Punctuation, '#pop'),
+            ('{', Punctuation, 'function'),
+            ('', Text, '#pop'),
         ],
         'string': [
             (r'"', String, '#pop'),
