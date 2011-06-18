@@ -120,7 +120,7 @@ def main(fn, lexer=None, options={}):
             print 'Error parsing', fn, 'on line', lno
             print 'Previous tokens' + (debug_lexer and ' and states' or '') + ':'
             if showall:
-                for tok, state in zip(tokens, states):
+                for tok, state in map(None, tokens, states):
                     show_token(tok, state)
             else:
                 for i in range(len(tokens) - num, len(tokens)):
@@ -140,7 +140,7 @@ def main(fn, lexer=None, options={}):
             else:
                 states.append(None)
     if showall:
-        for tok, state in zip(tokens, states):
+        for tok, state in map(None, tokens, states):
             show_token(tok, state)
     return 0
 
