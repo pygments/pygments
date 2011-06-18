@@ -1999,7 +1999,7 @@ class FancyLexer(RegexLexer):
             # Comments
             (r'#(.*?)\n', Comment.Single),
             # Symbols
-            (r'\'[^\'\s]+', String.Symbol),
+            (r'\'([^\'\s\[\]\(\)\{\}]+|\[\])', String.Symbol),
             # Multi-line DoubleQuotedString
             (r'"""(\\\\|\\"|[^"])*"""', String),
             # DoubleQuotedString
@@ -2022,6 +2022,7 @@ class FancyLexer(RegexLexer):
             ('[A-Z][a-zA-Z0-9_]*', Name.Constant),
             ('@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Instance),
             ('@@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Class),
+            ('(@|@@)', Operator),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             # numbers - / checks are necessary to avoid mismarking regexes,
             # see comment in RubyLexer
