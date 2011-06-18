@@ -1986,6 +1986,12 @@ class XQueryLexer(ExtendedRegexLexer):
 
     flags = re.DOTALL | re.MULTILINE | re.UNICODE
 
+    def punctuation_root_callback(lexer, match, ctx):
+        yield match.start(), Punctuation, match.group(1)
+        # transition to root always - don't pop off stack
+        ctx.stack = ['root']
+        ctx.pos = match.end()
+
     def operator_root_callback(lexer, match, ctx):
         yield match.start(), Operator, match.group(1)
         # transition to root always - don't pop off stack
@@ -2167,6 +2173,11 @@ class XQueryLexer(ExtendedRegexLexer):
         ctx.stack = ['root']#.append('root')
         ctx.pos = match.end()
 
+    def pushstate_operator_attribute_callback(lexer, match, ctx):
+        yield match.start(), Name.Attribute, match.group(1)
+        ctx.stack.append('operator')
+        ctx.pos = match.end()
+
     def pushstate_operator_callback(lexer, match, ctx):
         yield match.start(), Keyword, match.group(1)
         yield match.start(), Text, match.group(2)
@@ -2192,19 +2203,22 @@ class XQueryLexer(ExtendedRegexLexer):
 
             (r'(\{)', pushstate_root_callback),
             (r'then|else|external|at|div|except', Keyword, 'root'),
+            (r'order by', Keyword, 'root'),
             (r'is|mod|order\s+by|stable\s+order\s+by', Keyword, 'root'),
             (r'and|or', Operator.Word, 'root'),
             (r'(eq|ge|gt|le|lt|ne|idiv|intersect|in)(?=\b)',
              Operator.Word, 'root'),
             (r'return|satisfies|to|union|where|preserve\s+strip',
              Keyword, 'root'),
-            (r'(::|;|>=|>>|>|\[|<=|<<|<|-|\*|!=|\+|//|/|\||:=|,|=)',
+            (r'(>=|>>|>|<=|<<|<|-|\*|!=|\+|\||:=|=)',
              operator_root_callback),
+            (r'(::|;|\[|//|/|,)',
+             punctuation_root_callback),
             (r'(castable|cast)(\s+)(as)',
              bygroups(Keyword, Text, Keyword), 'singletype'),
-            (r'(instance)(\s+)(of)|(treat)(\s+)(as)',
-             bygroups(Keyword, Text, Keyword), 'itemtype'),
-            (r'(case)|(as)', Keyword, 'itemtype'),
+            (r'(instance)(\s+)(of)', bygroups(Keyword, Text, Keyword), 'itemtype'),
+            (r'(treat)(\s+)(as)', bygroups(Keyword, Text, Keyword), 'itemtype'),
+            (r'case|as', Keyword, 'itemtype'),
             (r'(\))(\s*)(as)',
              bygroups(Punctuation, Text, Keyword), 'itemtype'),
             (r'\$', Name.Variable, 'varname'),
@@ -2290,8 +2304,8 @@ class XQueryLexer(ExtendedRegexLexer):
              bygroups(Keyword, Text, Keyword, Text, Keyword), 'root'),
             (r'(castable|cast)(\s+)(as)',
              bygroups(Keyword, Text, Keyword), 'singletype'),
-            (r'(instance)(\s+)(of)|(treat)(\s+)(as)',
-             bygroups(Keyword, Text, Keyword)),
+            (r'(treat)(\s+)(as)', bygroups(Keyword, Text, Keyword)),
+            (r'(instance)(\s+)(of)', bygroups(Keyword, Text, Keyword)),
             (r'case|as', Keyword, 'itemtype'),
             (r'(\))(\s*)(as)', bygroups(Operator, Text, Keyword), 'itemtype'),
             (ncname + r'(:\*)', Keyword.Type, 'operator'),
@@ -2557,9 +2571,9 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(catch)(\s*)(\()(\$)',
              bygroups(Keyword, Text, Punctuation, Name.Variable), 'varname'),
 
-            (r'@' + qname, Name.Attribute),
-            (r'@\*', Name.Attribute),
-            (r'@' + ncname, Name.Attribute),
+            (r'(@' + qname + ')', pushstate_operator_attribute_callback),
+            (r'(@\*)', pushstate_operator_attribute_callback),
+            (r'(@' + ncname + ')', pushstate_operator_attribute_callback),
 
             (r'//|/|\+|-|;|,|\(|\)', Punctuation),
 
