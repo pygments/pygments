@@ -36,7 +36,7 @@ class SchemeLexer(RegexLexer):
     """
     name = 'Scheme'
     aliases = ['scheme', 'scm']
-    filenames = ['*.scm']
+    filenames = ['*.scm', '*.ss', '*.rkt']
     mimetypes = ['text/x-scheme', 'application/x-scheme']
 
     # list of known keywords and builtins taken form vim 6.4 scheme.vim
@@ -656,7 +656,7 @@ class ErlangLexer(RegexLexer):
         'universaltime_to_localtime', 'unlink', 'unregister', 'whereis'
         ]
 
-    operators = r'(\+|-|\*|/|<|>|=|==|/=|=:=|=/=|=<|>=|\+\+|--|<-|!)'
+    operators = r'(\+|-|\*|/|<|>|=|==|/=|=:=|=/=|=<|>=|\+\+|--|<-|!|\?)'
     word_operators = [
         'and', 'andalso', 'band', 'bnot', 'bor', 'bsl', 'bsr', 'bxor',
         'div', 'not', 'or', 'orelse', 'rem', 'xor'
