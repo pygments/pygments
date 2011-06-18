@@ -95,6 +95,7 @@ LEXERS = {
     'GoLexer': ('pygments.lexers.compiled', 'Go', ('go',), ('*.go',), ('text/x-gosrc',)),
     'GoodDataCLLexer': ('pygments.lexers.other', 'GoodData-CL', ('gooddata-cl',), ('*.gdc',), ('text/x-gooddata-cl',)),
     'GroffLexer': ('pygments.lexers.text', 'Groff', ('groff', 'nroff', 'man'), ('*.[1234567]', '*.man'), ('application/x-troff', 'text/troff')),
+    'GroovyLexer': ('pygments.lexers.agile', 'Groovy', ('groovy',), ('*.groovy',), ('text/x-groovy',)),
     'HamlLexer': ('pygments.lexers.web', 'Haml', ('haml', 'HAML'), ('*.haml',), ('text/x-haml',)),
     'HaskellLexer': ('pygments.lexers.functional', 'Haskell', ('haskell', 'hs'), ('*.hs',), ('text/x-haskell',)),
     'HaxeLexer': ('pygments.lexers.web', 'haXe', ('hx', 'haXe'), ('*.hx',), ('text/haxe',)),
