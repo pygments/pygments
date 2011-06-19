@@ -171,7 +171,7 @@ class BaseMakefileLexer(RegexLexer):
     *New in Pygments 0.10.*
     """
 
-    name = 'Makefile'
+    name = 'Base Makefile'
     aliases = ['basemake']
     filenames = []
     mimetypes = []
@@ -653,6 +653,13 @@ class RstLexer(RegexLexer):
         for item in do_insertions(ins, lexer.get_tokens_unprocessed(code)):
             yield item
 
+    # from docutils.parsers.rst.states
+    closers = u'\'")]}>\u2019\u201d\xbb!?'
+    unicode_delimiters = u'\u2010\u2011\u2012\u2013\u2014\u00a0'
+    end_string_suffix = (r'((?=$)|(?=[-/:.,; \n\x00%s%s]))'
+                         % (re.escape(unicode_delimiters),
+                            re.escape(closers)))
+
     tokens = {
         'root': [
             # Heading with overline
@@ -689,9 +696,9 @@ class RstLexer(RegexLexer):
              bygroups(Punctuation, Text, Operator.Word, Punctuation, Text,
                       using(this, state='inline'))),
             # A reference target
-            (r'^( *\.\.)(\s*)([\w\t ]+:)(.*?)$',
+            (r'^( *\.\.)(\s*)(_(?:[^:\\]|\\.)+:)(.*?)$',
              bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
-            # A footnote target
+            # A footnote/citation target
             (r'^( *\.\.)(\s*)(\[.+\])(.*?)$',
              bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),
             # A substitution def
@@ -730,10 +737,9 @@ class RstLexer(RegexLexer):
             (r'.', Text),
         ],
         'literal': [
-            (r'[^`\\]+', String),
-            (r'\\.', String),
-            (r'``', String, '#pop'),
-            (r'[`\\]', String),
+            (r'[^`]+', String),
+            (r'``' + end_string_suffix, String, '#pop'),
+            (r'`', String),
         ]
     }
 
@@ -761,7 +767,8 @@ class VimLexer(RegexLexer):
     """
     name = 'VimL'
     aliases = ['vim']
-    filenames = ['*.vim', '.vimrc']
+    filenames = ['*.vim', '.vimrc', '.exrc', '.gvimrc',
+                 '_vimrc', '_exrc', '_gvimrc']
     mimetypes = ['text/x-vim']
     flags = re.MULTILINE
 
@@ -876,7 +883,7 @@ class SquidConfLexer(RegexLexer):
     mimetypes = ['text/x-squidconf']
     flags = re.IGNORECASE
 
-    keywords = [ "acl", "always_direct", "announce_host",
+    keywords = [ "access_log", "acl", "always_direct", "announce_host",
                  "announce_period", "announce_port", "announce_to",
                  "anonymize_headers", "append_domain", "as_whois_server",
                  "auth_param_basic", "authenticate_children",
@@ -901,7 +908,7 @@ class SquidConfLexer(RegexLexer):
                  "ftpget_options", "ftpget_program", "ftp_list_width",
                  "ftp_passive", "ftp_user", "half_closed_clients",
                  "header_access", "header_replace", "hierarchy_stoplist",
-                 "high_response_time_warning", "high_page_fault_warning",
+                 "high_response_time_warning", "high_page_fault_warning", "hosts_file",
                  "htcp_port", "http_access", "http_anonymizer", "httpd_accel",
                  "httpd_accel_host", "httpd_accel_port",
                  "httpd_accel_uses_host_header", "httpd_accel_with_proxy",
@@ -968,14 +975,14 @@ class SquidConfLexer(RegexLexer):
              "snmp_community",
              ]
 
-    ip_re = r'\b(?:\d{1,3}\.){3}\d{1,3}\b'
+    ip_re = r'(?:(?:(?:[3-9]\d?|2(?:5[0-5]|[0-4]?\d)?|1\d{0,2}|0x0*[0-9a-f]{1,2}|0+[1-3]?[0-7]{0,2})(?:\.(?:[3-9]\d?|2(?:5[0-5]|[0-4]?\d)?|1\d{0,2}|0x0*[0-9a-f]{1,2}|0+[1-3]?[0-7]{0,2})){3})|(?!.*::.*::)(?:(?!:)|:(?=:))(?:[0-9a-f]{0,4}(?:(?<=::)|(?<!::):)){6}(?:[0-9a-f]{0,4}(?:(?<=::)|(?<!::):)[0-9a-f]{0,4}(?:(?<=::)|(?<!:)|(?<=:)(?<!::):)|(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))'
 
     def makelistre(list):
-        return r'\b(?:'+'|'.join(list)+r')\b'
+        return r'\b(?:' + '|'.join(list) + r')\b'
 
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'#', Comment, 'comment'),
             (makelistre(keywords), Keyword),
             (makelistre(opts), Name.Constant),
@@ -984,8 +991,8 @@ class SquidConfLexer(RegexLexer):
             (r'stats/'+makelistre(actions), String),
             (r'log/'+makelistre(actions)+r'=', String),
             (makelistre(acls), Keyword),
-            (ip_re+r'(?:/(?:'+ip_re+r')|\d+)?', Number),
-            (r'\b\d+\b', Number),
+            (ip_re + r'(?:/(?:' + ip_re + r'|\b\d+\b))?', Number.Float),
+            (r'(?:\b\d+\b(?:-\b\d+|%)?)', Number),
             (r'\S+', Text),
         ],
         'comment': [
