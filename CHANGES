@@ -10,8 +10,34 @@ Version 1.5
 
 - Lexers added:
 
-  * Awk
+  * Awk (#630)
   * Fancy (#633)
+  * PyPy Log
+  * eC
+  * Nimrod
+  * Nemerle (#667)
+  * F# (#353)
+  * Groovy (#501)
+  * PostgreSQL (#660)
+
+- In the LaTeX formatter, escape special &, < and > chars (#648).
+
+- In the LaTeX formatter, fix display problems for styles with token
+  background colors (#670).
+
+- Enhancements to the Squid conf lexer (#664).
+
+- Several fixes to the reStructuredText lexer (#636).
+
+- Recognize methods in the ObjC lexer (#638).
+
+- Fix Lua "class" highlighting: it does not have classes (#665).
+
+- Fix degenerate regex in Scala lexer (#671).
+
+- Fix number pattern order in Ocaml lexer (#647).
+
+- Fix generic type highlighting in ActionScript 3 (#666).
 
 
 Version 1.4

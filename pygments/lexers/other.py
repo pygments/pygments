@@ -817,7 +817,7 @@ class LogtalkLexer(RegexLexer):
              Keyword),
             (r'(object|protocol|category)_property(?=[(])', Keyword),
             # Entity relations
-            (r'complements_object(?=[(])', Keyword),
+            (r'co(mplements_object|nforms_to_protocol)(?=[(])', Keyword),
             (r'extends_(object|protocol|category)(?=[(])', Keyword),
             (r'imp(lements_protocol|orts_category)(?=[(])', Keyword),
             (r'(instantiat|specializ)es_class(?=[(])', Keyword),
@@ -826,11 +826,12 @@ class LogtalkLexer(RegexLexer):
             # Flags
             (r'(current|set)_logtalk_flag(?=[(])', Keyword),
             # Compiling, loading, and library paths
-            (r'logtalk_(compile|l(ibrary_path|oad))(?=[(])', Keyword),
+            (r'logtalk_(compile|l(ibrary_path|oad_context|oad))(?=[(])',
+             Keyword),
             # Database
             (r'(clause|retract(all)?)(?=[(])', Keyword),
             (r'a(bolish|ssert(a|z))(?=[(])', Keyword),
-            # Control
+            # Control constructs
             (r'(ca(ll|tch)|throw)(?=[(])', Keyword),
             (r'(fail|true)\b', Keyword),
             # All solutions
@@ -841,7 +842,7 @@ class LogtalkLexer(RegexLexer):
             # Term unification
             (r'unify_with_occurs_check(?=[(])', Keyword),
             # Term creation and decomposition
-            (r'(functor|arg|copy_term)(?=[(])', Keyword),
+            (r'(functor|arg|copy_term|numbervars)(?=[(])', Keyword),
             # Evaluable functors
             (r'(rem|mod|abs|sign)(?=[(])', Keyword),
             (r'float(_(integer|fractional)_part)?(?=[(])', Keyword),
@@ -849,8 +850,10 @@ class LogtalkLexer(RegexLexer):
             # Other arithmetic functors
             (r'(cos|atan|exp|log|s(in|qrt))(?=[(])', Keyword),
             # Term testing
-            (r'(var|atom(ic)?|integer|float|compound|n(onvar|umber))(?=[(])',
-             Keyword),
+            (r'(var|atom(ic)?|integer|float|c(allable|ompound)|n(onvar|umber))'
+             r'(?=[(])', Keyword),
+            # Term comparison
+            (r'compare(?=[(])', Keyword),
             # Stream selection and control
             (r'(curren|se)t_(in|out)put(?=[(])', Keyword),
             (r'(open|close)(?=[(])', Keyword),
@@ -879,8 +882,10 @@ class LogtalkLexer(RegexLexer):
             # External call
             (r'[{}]', Keyword),
             # Logic and control
-            (r'\bonce(?=[(])', Keyword),
+            (r'\b(ignore|once)(?=[(])', Keyword),
             (r'\brepeat\b', Keyword),
+            # Sorting
+            (r'(key)?sort(?=[(])', Keyword),
             # Bitwise functors
             (r'(>>|<<|/\\|\\\\|\\)', Operator),
             # Arithemtic evaluation
@@ -895,7 +900,7 @@ class LogtalkLexer(RegexLexer):
             (r'(==|\\==|@=<|@<|@>=|@>)', Operator),
             # Evaluable functors
             (r'(//|[-+*/])', Operator),
-            (r'\b(mod|rem)\b', Operator),
+            (r'\b(e|pi|mod|rem)\b', Operator),
             # Other arithemtic functors
             (r'\b\*\*\b', Operator),
             # DCG rules
@@ -906,6 +911,8 @@ class LogtalkLexer(RegexLexer):
             (r'\\+', Operator),
             # Mode operators
             (r'[?@]', Operator),
+            # Existential quantifier
+            (r'\^', Operator),
             # Strings
             (r'"(\\\\|\\"|[^"])*"', String),
             # Ponctuation
@@ -937,16 +944,18 @@ class LogtalkLexer(RegexLexer):
             (r'in(fo|itialization)(?=[(])', Keyword, 'root'),
             (r'(dynamic|synchronized|threaded)[.]', Keyword, 'root'),
             (r'(alias|d(ynamic|iscontiguous)|m(eta_predicate|ode|ultifile)|'
-             r's(et_(logtalk|prolog)_flag|ynchronized))(?=[(])', Keyword, 'root'),
+             r's(et_(logtalk|prolog)_flag|ynchronized))(?=[(])',
+             Keyword, 'root'),
             (r'op(?=[(])', Keyword, 'root'),
-            (r'(calls|reexport|use(s|_module))(?=[(])', Keyword, 'root'),
+            (r'(c(alls|oinductive)|reexport|use(s|_module))(?=[(])',
+             Keyword, 'root'),
             (r'[a-z][a-zA-Z0-9_]*(?=[(])', Text, 'root'),
             (r'[a-z][a-zA-Z0-9_]*[.]', Text, 'root'),
         ],
 
         'entityrelations': [
-            (r'(extends|i(nstantiates|mp(lements|orts))|specializes)(?=[(])',
-             Keyword),
+            (r'(complements|extends|i(nstantiates|mp(lements|orts))|specializes)'
+             r'(?=[(])', Keyword),
             # Numbers
             (r"0'.", Number),
             (r'0b[01]+', Number),
@@ -2853,7 +2862,7 @@ class AwkLexer(RegexLexer):
     name = 'Awk'
     aliases = ['awk', 'gawk', 'mawk', 'nawk']
     filenames = ['*.awk']
-    mimetype = ['application/x-awk']
+    mimetypes = ['application/x-awk']
 
     tokens = {
         'commentsandwhitespace': [
