@@ -26,6 +26,9 @@ def escape_tex(text, commandprefix):
                 replace('\x02', r'\%sZcb{}' % commandprefix). \
                 replace('^', r'\%sZca{}' % commandprefix). \
                 replace('_', r'\%sZus{}' % commandprefix). \
+                replace('&', r'\%sZam{}' % commandprefix). \
+                replace('<', r'\%sZlt{}' % commandprefix). \
+                replace('>', r'\%sZgt{}' % commandprefix). \
                 replace('#', r'\%sZsh{}' % commandprefix). \
                 replace('%', r'\%sZpc{}' % commandprefix). \
                 replace('$', r'\%sZdl{}' % commandprefix). \
@@ -106,6 +109,9 @@ STYLE_TEMPLATE = r'''
 \def\%(cp)sZob{\char`\{}
 \def\%(cp)sZcb{\char`\}}
 \def\%(cp)sZca{\char`\^}
+\def\%(cp)sZam{\char`\&}
+\def\%(cp)sZlt{\char`\<}
+\def\%(cp)sZgt{\char`\>}
 \def\%(cp)sZsh{\char`\#}
 \def\%(cp)sZpc{\char`\%%}
 \def\%(cp)sZdl{\char`\$}
@@ -258,11 +264,13 @@ class LatexFormatter(Formatter):
                 cmndef += (r'\def\$$@tc##1{\textcolor[rgb]{%s}{##1}}' %
                            rgbcolor(ndef['color']))
             if ndef['border']:
-                cmndef += (r'\def\$$@bc##1{\fcolorbox[rgb]{%s}{%s}{##1}}' %
+                cmndef += (r'\def\$$@bc##1{\setlength{\fboxsep}{0pt}'
+                           r'\fcolorbox[rgb]{%s}{%s}{\strut ##1}}' %
                            (rgbcolor(ndef['border']),
                             rgbcolor(ndef['bgcolor'])))
             elif ndef['bgcolor']:
-                cmndef += (r'\def\$$@bc##1{\colorbox[rgb]{%s}{##1}}' %
+                cmndef += (r'\def\$$@bc##1{\setlength{\fboxsep}{0pt}'
+                           r'\colorbox[rgb]{%s}{\strut ##1}}' %
                            rgbcolor(ndef['bgcolor']))
             if cmndef == '':
                 continue
