@@ -2279,7 +2279,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'void\s*\(\s*\)',
              bygroups(Keyword, Text, Punctuation, Text, Punctuation), 'operator'),
             (r'(element|attribute|schema-element|schema-attribute|comment|text|'
-             r'node|binary|document-node)(\s*)(\()',
+             r'node|binary|document-node|empty-sequence)(\s*)(\()',
              pushstate_occurrenceindicator_kindtest_callback),
             # Marklogic specific type?
             (r'(processing-instruction)(\s*)(\()',
