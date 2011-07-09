@@ -1,11 +1,21 @@
+# -*- coding: utf-8 -*-
+"""
+    pygments.lexers.pypylog
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexer for pypy log files.
+
+    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 from pygments.lexer import RegexLexer, bygroups, include
-from pygments.token import (Text, Keyword, Number, Comment, Punctuation, Name,
-    String, Literal)
+from pygments.token import Text, Keyword, Number, Comment, Punctuation, Name, \
+    String
 
 
-__all__ = [
-    "PyPyLogLexer",
-]
+__all__ = ["PyPyLogLexer"]
+
 
 class PyPyLogLexer(RegexLexer):
     """
@@ -29,7 +39,8 @@ class PyPyLogLexer(RegexLexer):
 
             (r"[ifp]\d+", Name),
             (r"ptr\d+", Name),
-            (r"(\()([\w_]+(?:\.[\w_]+)?)(\))", bygroups(Punctuation, Name.Builtin, Punctuation)),
+            (r"(\()([\w_]+(?:\.[\w_]+)?)(\))",
+             bygroups(Punctuation, Name.Builtin, Punctuation)),
             (r"[\[\]=,()]", Punctuation),
             (r"(\d+\.\d+|inf|-inf)", Number.Float),
             (r"-?\d+", Number.Integer),
@@ -37,10 +48,10 @@ class PyPyLogLexer(RegexLexer):
             (r"(None|descr|ConstClass|ConstPtr)", Name),
             (r"<.*?>", Name.Builtin),
             (r"(debug_merge_point|jump|finish)", Name.Class),
-            (r"(int_add_ovf|int_add|int_sub_ovf|int_sub|int_mul_ovf|int_mul|int_rshift|int_and|int_or|int_xor|"
-             r"int_eq|int_ne|int_ge|int_gt|int_le|int_lt|int_is_zero|int_is_true|"
-             r"uint_floordiv|"
-             r"uint_ge|uint_lt|"
+            (r"(int_add_ovf|int_add|int_sub_ovf|int_sub|int_mul_ovf|int_mul|"
+             r"int_rshift|int_and|int_or|int_xor|int_eq|int_ne|int_ge|int_gt|"
+             r"int_le|int_lt|int_is_zero|int_is_true|"
+             r"uint_floordiv|uint_ge|uint_lt|"
              r"float_add|float_sub|float_mul|float_truediv|"
              r"float_eq|float_ne|float_gt|"
              r"ptr_eq|"
@@ -48,11 +59,15 @@ class PyPyLogLexer(RegexLexer):
              r"call_may_force|call_assembler|call|"
              r"new_with_vtable|new_array|newstr|newunicode|new|"
              r"arraylen_gc|"
-             r"getarrayitem_gc_pure|getarrayitem_gc|setarrayitem_gc|getarrayitem_raw|setarrayitem_raw|"
-             r"getfield_gc_pure|getfield_gc|getfield_raw|setfield_gc|setfield_raw|"
+             r"getarrayitem_gc_pure|getarrayitem_gc|setarrayitem_gc|"
+             r"getarrayitem_raw|setarrayitem_raw|getfield_gc_pure|getfield_gc|"
+             r"getfield_raw|setfield_gc|setfield_raw|"
              r"strgetitem|strsetitem|strlen|copystrcontent|"
              r"unicodegetitem|unicodesetitem|unicodelen|"
-             r"guard_true|guard_false|guard_value|guard_isnull|guard_nonnull_class|guard_nonnull|guard_class|guard_no_overflow|guard_not_forced|guard_no_exception|guard_not_invalidated)", Name.Builtin),
+             r"guard_true|guard_false|guard_value|guard_isnull|"
+             r"guard_nonnull_class|guard_nonnull|guard_class|guard_no_overflow|"
+             r"guard_not_forced|guard_no_exception|guard_not_invalidated)",
+             Name.Builtin),
             include("extra-stuff"),
         ],
         "jit-backend-counts": [
