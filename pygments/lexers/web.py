@@ -36,9 +36,9 @@ class JavascriptLexer(RegexLexer):
 
     name = 'JavaScript'
     aliases = ['js', 'javascript']
-    filenames = ['*.js']
+    filenames = ['*.js', '*.json']
     mimetypes = ['application/javascript', 'application/x-javascript',
-                 'text/x-javascript', 'text/javascript']
+                 'text/x-javascript', 'text/javascript', 'application/json']
 
     flags = re.DOTALL
     tokens = {
