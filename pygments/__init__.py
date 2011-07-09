@@ -22,7 +22,7 @@
     .. _Pygments tip:
        http://bitbucket.org/birkenfeld/pygments-main/get/tip.zip#egg=Pygments-dev
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
