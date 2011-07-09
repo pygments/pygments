@@ -5,7 +5,7 @@
 
     Lexers for agile languages.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
