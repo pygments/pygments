@@ -828,7 +828,9 @@ class PhpLexer(RegexLexer):
 
 class DtdLexer(RegexLexer):
     """
-    a lexer for DTD (Document Type Definition).
+    A lexer for DTDs (Document Type Definitions).
+
+    *New in Pygments 1.5.*
     """
 
     flags = re.MULTILINE | re.DOTALL
