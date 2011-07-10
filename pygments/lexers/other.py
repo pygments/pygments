@@ -850,8 +850,8 @@ class LogtalkLexer(RegexLexer):
             # Other arithmetic functors
             (r'(cos|atan|exp|log|s(in|qrt))(?=[(])', Keyword),
             # Term testing
-            (r'(var|atom(ic)?|integer|float|c(allable|ompound)|n(onvar|umber))'
-             r'(?=[(])', Keyword),
+            (r'(var|atom(ic)?|integer|float|c(allable|ompound)|n(onvar|umber)|'
+             r'ground)(?=[(])', Keyword),
             # Term comparison
             (r'compare(?=[(])', Keyword),
             # Stream selection and control
