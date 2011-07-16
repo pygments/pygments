@@ -1426,7 +1426,7 @@ class ClojureLexer(RegexLexer):
     # valid names for identifiers
     # well, names can only not consist fully of numbers
     # but this should be good enough for now
-    valid_name = r'[a-zA-Z0-9!$%&*+,/:<=>?@^_~-]+'
+    valid_name = r'[\w!$%*+,<=>?@~-]+'
 
     tokens = {
         'root' : [
@@ -1440,9 +1440,6 @@ class ClojureLexer(RegexLexer):
             # numbers
             (r'-?\d+\.\d+', Number.Float),
             (r'-?\d+', Number.Integer),
-            # support for uncommon kinds of numbers -
-            # have to figure out what the characters mean
-            #(r'(#e|#i|#b|#o|#d|#x)[\d.]+', Number),
 
             # strings, symbols and characters
             (r'"(\\\\|\\"|[^"])*"', String),
@@ -1450,21 +1447,15 @@ class ClojureLexer(RegexLexer):
             (r"\\([()/'\".'_!Â§$%& ?;=#+-]{1}|[a-zA-Z0-9]+)", String.Char),
 
             # constants
-            (r'(#t|#f)', Name.Constant),
 
             # special operators
-            (r"('|#|`|,@|,|\.)", Operator),
+            (r"('|#|`)", Operator),
 
             # highlight the keywords
             ('(%s)' % '|'.join([
                 re.escape(entry) + ' ' for entry in keywords]),
                 Keyword
             ),
-
-            # first variable in a quoted string like
-            # '(this is syntactic sugar)
-            (r"(?<='\()" + valid_name, Name.Variable),
-            (r"(?<=#\()" + valid_name, Name.Variable),
 
             # highlight the builtins
             ("(?<=\()(%s)" % '|'.join([
