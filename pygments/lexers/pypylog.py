@@ -53,7 +53,7 @@ class PyPyLogLexer(RegexLexer):
              r"int_le|int_lt|int_is_zero|int_is_true|"
              r"uint_floordiv|uint_ge|uint_lt|"
              r"float_add|float_sub|float_mul|float_truediv|"
-             r"float_eq|float_ne|float_gt|"
+             r"float_eq|float_ne|float_ge|float_gt|float_le|float_lt|"
              r"ptr_eq|"
              r"force_token|"
              r"call_may_force|call_assembler|call|"
