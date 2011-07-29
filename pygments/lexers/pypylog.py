@@ -49,8 +49,8 @@ class PyPyLogLexer(RegexLexer):
             (r"<.*?>", Name.Builtin),
             (r"(debug_merge_point|jump|finish)", Name.Class),
             (r"(int_add_ovf|int_add|int_sub_ovf|int_sub|int_mul_ovf|int_mul|"
-             r"int_rshift|int_and|int_or|int_xor|int_eq|int_ne|int_ge|int_gt|"
-             r"int_le|int_lt|int_is_zero|int_is_true|"
+             r"ind_mod|int_rshift|int_and|int_or|int_xor|int_eq|int_ne|int_ge|"
+             r"int_gt|int_le|int_lt|int_is_zero|int_is_true|"
              r"uint_floordiv|uint_ge|uint_lt|"
              r"float_add|float_sub|float_mul|float_truediv|"
              r"float_eq|float_ne|float_ge|float_gt|float_le|float_lt|"
