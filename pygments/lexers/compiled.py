@@ -2488,7 +2488,7 @@ class GosuLexer(RegexLexer):
 
     name = 'Gosu'
     aliases = ['gosu']
-    filenames = ['*.gs', '*.gsx', '*.gsp']
+    filenames = ['*.gs', '*.gsx', '*.gsp', '*.vark']
     mimetypes = ['text/x-gosu']
 
     flags = re.MULTILINE | re.DOTALL
