@@ -2362,7 +2362,7 @@ class XQueryLexer(ExtendedRegexLexer):
             include('whitespace'),
             (r'\(:', Comment, 'comment'),
             (r'\$', Punctuation, 'varname'),
-            (r'void\s*\(\s*\)',
+            (r'(void)(\s*)(\()(\s*)(\))',
              bygroups(Keyword, Text, Punctuation, Text, Punctuation), 'operator'),
             (r'(element|attribute|schema-element|schema-attribute|comment|text|'
              r'node|binary|document-node|empty-sequence)(\s*)(\()',
@@ -2580,7 +2580,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(\))(\s+)(as)', bygroups(Operator, Text, Keyword), 'itemtype'),
 
             (r'(element|attribute|schema-element|schema-attribute|comment|'
-             r'text|node|document-node)(\s+)(\()',
+             r'text|node|document-node|empty-sequence)(\s+)(\()',
              pushstate_operator_kindtest_callback),
 
             (r'(processing-instruction)(\s+)(\()',
