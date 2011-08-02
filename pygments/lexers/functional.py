@@ -5,7 +5,7 @@
 
     Lexers for functional languages.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -36,7 +36,7 @@ class SchemeLexer(RegexLexer):
     """
     name = 'Scheme'
     aliases = ['scheme', 'scm']
-    filenames = ['*.scm']
+    filenames = ['*.scm', '*.ss', '*.rkt']
     mimetypes = ['text/x-scheme', 'application/x-scheme']
 
     # list of known keywords and builtins taken form vim 6.4 scheme.vim
@@ -406,7 +406,7 @@ class HaskellLexer(RegexLexer):
         'funclist': [
             (r'\s+', Text),
             (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
-            (r'[_a-z][\w\']+', Name.Function),
+            (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
             (r'--.*$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
@@ -570,11 +570,11 @@ class OcamlLexer(RegexLexer):
 
             (r"[^\W\d][\w']*", Name),
 
-            (r'\d[\d_]*', Number.Integer),
+            (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
             (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
             (r'0[oO][0-7][0-7_]*', Number.Oct),
             (r'0[bB][01][01_]*', Number.Binary),
-            (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
+            (r'\d[\d_]*', Number.Integer),
 
             (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
              String.Char),
@@ -656,7 +656,7 @@ class ErlangLexer(RegexLexer):
         'universaltime_to_localtime', 'unlink', 'unregister', 'whereis'
         ]
 
-    operators = r'(\+|-|\*|/|<|>|=|==|/=|=:=|=/=|=<|>=|\+\+|--|<-|!)'
+    operators = r'(\+|-|\*|/|<|>|=|==|/=|=:=|=/=|=<|>=|\+\+|--|<-|!|\?)'
     word_operators = [
         'and', 'andalso', 'band', 'bnot', 'bor', 'bsl', 'bsr', 'bxor',
         'div', 'not', 'or', 'orelse', 'rem', 'xor'

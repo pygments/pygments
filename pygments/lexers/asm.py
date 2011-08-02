@@ -5,7 +5,7 @@
 
     Lexers for assembly languages.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -88,7 +88,11 @@ class GasLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return re.match(r'^\.\w+', text, re.M)
+        if re.match(r'^\.(text|data|section)', text, re.M):
+            return True
+        elif re.match(r'^\.\w+', text, re.M):
+            return 0.1
+
 
 class ObjdumpLexer(RegexLexer):
     """

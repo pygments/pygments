@@ -5,7 +5,7 @@
 
     Lexers for web-related languages and markup.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -26,7 +26,7 @@ __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'DuelLexer', 'ScamlLexer',
-           'JadeLexer', 'XQueryLexer']
+           'JadeLexer', 'XQueryLexer', 'DtdLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -36,9 +36,9 @@ class JavascriptLexer(RegexLexer):
 
     name = 'JavaScript'
     aliases = ['js', 'javascript']
-    filenames = ['*.js']
+    filenames = ['*.js', '*.json']
     mimetypes = ['application/javascript', 'application/x-javascript',
-                 'text/x-javascript', 'text/javascript']
+                 'text/x-javascript', 'text/javascript', 'application/json']
 
     flags = re.DOTALL
     tokens = {
@@ -99,8 +99,8 @@ class ActionScriptLexer(RegexLexer):
     name = 'ActionScript'
     aliases = ['as', 'actionscript']
     filenames = ['*.as']
-    mimetypes = ['application/x-actionscript', 'text/x-actionscript',
-                 'text/actionscript']
+    mimetypes = ['application/x-actionscript3', 'text/x-actionscript3',
+                 'text/actionscript3']
 
     flags = re.DOTALL
     tokens = {
@@ -172,9 +172,6 @@ class ActionScriptLexer(RegexLexer):
         ]
     }
 
-    def analyse_text(text):
-        return 0.05
-
 
 class ActionScript3Lexer(RegexLexer):
     """
@@ -190,6 +187,7 @@ class ActionScript3Lexer(RegexLexer):
                  'text/actionscript']
 
     identifier = r'[$a-zA-Z_][a-zA-Z0-9_]*'
+    typeidentifier = identifier + '(?:\.<\w+>)?'
 
     flags = re.DOTALL | re.MULTILINE
     tokens = {
@@ -198,12 +196,13 @@ class ActionScript3Lexer(RegexLexer):
             (r'(function\s+)(' + identifier + r')(\s*)(\()',
              bygroups(Keyword.Declaration, Name.Function, Text, Operator),
              'funcparams'),
-            (r'(var|const)(\s+)(' + identifier + r')(\s*)(:)(\s*)(' + identifier + r')',
+            (r'(var|const)(\s+)(' + identifier + r')(\s*)(:)(\s*)(' +
+             typeidentifier + r')',
              bygroups(Keyword.Declaration, Text, Name, Text, Punctuation, Text,
                       Keyword.Type)),
             (r'(import|package)(\s+)((?:' + identifier + r'|\.)+)(\s*)',
              bygroups(Keyword, Text, Name.Namespace, Text)),
-            (r'(new)(\s+)(' + identifier + r')(\s*)(\()',
+            (r'(new)(\s+)(' + typeidentifier + r')(\s*)(\()',
              bygroups(Keyword, Text, Keyword.Type, Text, Operator)),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
@@ -234,13 +233,13 @@ class ActionScript3Lexer(RegexLexer):
         'funcparams': [
             (r'\s+', Text),
             (r'(\s*)(\.\.\.)?(' + identifier + r')(\s*)(:)(\s*)(' +
-             identifier + r'|\*)(\s*)',
+             typeidentifier + r'|\*)(\s*)',
              bygroups(Text, Punctuation, Name, Text, Operator, Text,
                       Keyword.Type, Text), 'defval'),
             (r'\)', Operator, 'type')
         ],
         'type': [
-            (r'(\s*)(:)(\s*)(' + identifier + r'|\*)',
+            (r'(\s*)(:)(\s*)(' + typeidentifier + r'|\*)',
              bygroups(Text, Operator, Text, Keyword.Type), '#pop:2'),
             (r'\s*', Text, '#pop:2')
         ],
@@ -252,8 +251,9 @@ class ActionScript3Lexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.match(r'\w+\s*:\s*\w', text): return 0.3
-        return 0.1
+        if re.match(r'\w+\s*:\s*\w', text):
+            return 0.3
+        return 0
 
 
 class CssLexer(RegexLexer):
@@ -826,6 +826,92 @@ class PhpLexer(RegexLexer):
         return rv
 
 
+class DtdLexer(RegexLexer):
+    """
+    A lexer for DTDs (Document Type Definitions).
+
+    *New in Pygments 1.5.*
+    """
+
+    flags = re.MULTILINE | re.DOTALL
+
+    name = 'DTD'
+    aliases = ['dtd']
+    filenames = ['*.dtd']
+    mimetypes = ['application/xml-dtd']
+
+    tokens = {
+        'root': [
+            include('common'),
+
+            (r'(<!ELEMENT)(\s+)([^\s]+)', 
+                bygroups(Keyword, Text, Name.Tag), 'element'),
+            (r'(<!ATTLIST)(\s+)([^\s]+)', 
+                bygroups(Keyword, Text, Name.Tag), 'attlist'),
+            (r'(<!ENTITY)(\s+)([^\s]+)', 
+                bygroups(Keyword, Text, Name.Entity), 'entity'),
+            (r'(<!NOTATION)(\s+)([^\s]+)', 
+                bygroups(Keyword, Text, Name.Tag), 'notation'),
+            (r'(<!\[)([^\[\s]+)(\s*)(\[)', # conditional sections
+                bygroups(Keyword, Name.Entity, Text, Keyword)),
+
+            (r'(<!DOCTYPE)(\s+)([^>\s]+)', 
+                bygroups(Keyword, Text, Name.Tag)),
+            (r'PUBLIC|SYSTEM', Keyword.Constant),
+            (r'[\[\]>]', Keyword),
+        ],
+
+        'common': [
+            (r'\s+', Text),
+            (r'(%|&)[^;]*;', Name.Entity),
+            ('<!--', Comment, 'comment'),
+            (r'[(|)*,?+]', Operator),
+            (r'"[^"]*"', String.Double),
+            (r'\'[^\']*\'', String.Single),
+        ],
+        
+        'comment': [
+            ('[^-]+', Comment),
+            ('-->', Comment, '#pop'),
+            ('-', Comment),
+        ],
+
+        'element': [
+            include('common'),
+            (r'EMPTY|ANY|#PCDATA', Keyword.Constant),
+            (r'[^>\s\|()?+*,]+', Name.Tag),
+            (r'>', Keyword, '#pop'),
+        ],
+
+        'attlist': [
+            include('common'),
+            (r'CDATA|IDREFS|IDREF|ID|NMTOKENS|NMTOKEN|ENTITIES|ENTITY|NOTATION', Keyword.Constant),
+            (r'#REQUIRED|#IMPLIED|#FIXED', Keyword.Constant),
+            (r'xml:space|xml:lang', Keyword.Reserved),
+            (r'[^>\s\|()?+*,]+', Name.Attribute),
+            (r'>', Keyword, '#pop'),
+        ],
+
+        'entity': [
+            include('common'),
+            (r'SYSTEM|PUBLIC|NDATA', Keyword.Constant),
+            (r'[^>\s\|()?+*,]+', Name.Entity),
+            (r'>', Keyword, '#pop'),
+        ],
+        
+        'notation': [
+            include('common'),
+            (r'SYSTEM|PUBLIC', Keyword.Constant),
+            (r'[^>\s\|()?+*,]+', Name.Attribute),
+            (r'>', Keyword, '#pop'),
+        ],
+    }
+
+    def analyse_text(text):
+        if not looks_like_xml(text) and \
+            ('<!ELEMENT' in text or '<!ATTLIST' in text or '<!ENTITY' in text):
+            return 0.8
+
 class XmlLexer(RegexLexer):
     """
     Generic lexer for XML (eXtensible Markup Language).
@@ -837,8 +923,7 @@ class XmlLexer(RegexLexer):
     aliases = ['xml']
     filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd', '*.wsdl']
     mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
-                 'application/rss+xml', 'application/atom+xml',
-                 'application/xsl+xml', 'application/xslt+xml']
+                 'application/rss+xml', 'application/atom+xml']
 
     tokens = {
         'root': [
@@ -884,6 +969,7 @@ class XsltLexer(XmlLexer):
     name = 'XSLT'
     aliases = ['xslt']
     filenames = ['*.xsl', '*.xslt']
+    mimetypes = ['application/xsl+xml', 'application/xslt+xml']
 
     EXTRA_KEYWORDS = set([
         'apply-imports', 'apply-templates', 'attribute',
@@ -1986,6 +2072,12 @@ class XQueryLexer(ExtendedRegexLexer):
 
     flags = re.DOTALL | re.MULTILINE | re.UNICODE
 
+    def punctuation_root_callback(lexer, match, ctx):
+        yield match.start(), Punctuation, match.group(1)
+        # transition to root always - don't pop off stack
+        ctx.stack = ['root']
+        ctx.pos = match.end()
+
     def operator_root_callback(lexer, match, ctx):
         yield match.start(), Operator, match.group(1)
         # transition to root always - don't pop off stack
@@ -2167,6 +2259,11 @@ class XQueryLexer(ExtendedRegexLexer):
         ctx.stack = ['root']#.append('root')
         ctx.pos = match.end()
 
+    def pushstate_operator_attribute_callback(lexer, match, ctx):
+        yield match.start(), Name.Attribute, match.group(1)
+        ctx.stack.append('operator')
+        ctx.pos = match.end()
+
     def pushstate_operator_callback(lexer, match, ctx):
         yield match.start(), Keyword, match.group(1)
         yield match.start(), Text, match.group(2)
@@ -2192,19 +2289,22 @@ class XQueryLexer(ExtendedRegexLexer):
 
             (r'(\{)', pushstate_root_callback),
             (r'then|else|external|at|div|except', Keyword, 'root'),
+            (r'order by', Keyword, 'root'),
             (r'is|mod|order\s+by|stable\s+order\s+by', Keyword, 'root'),
             (r'and|or', Operator.Word, 'root'),
             (r'(eq|ge|gt|le|lt|ne|idiv|intersect|in)(?=\b)',
              Operator.Word, 'root'),
             (r'return|satisfies|to|union|where|preserve\s+strip',
              Keyword, 'root'),
-            (r'(::|;|>=|>>|>|\[|<=|<<|<|-|\*|!=|\+|//|/|\||:=|,|=)',
+            (r'(>=|>>|>|<=|<<|<|-|\*|!=|\+|\||:=|=)',
              operator_root_callback),
+            (r'(::|;|\[|//|/|,)',
+             punctuation_root_callback),
             (r'(castable|cast)(\s+)(as)',
              bygroups(Keyword, Text, Keyword), 'singletype'),
-            (r'(instance)(\s+)(of)|(treat)(\s+)(as)',
-             bygroups(Keyword, Text, Keyword), 'itemtype'),
-            (r'(case)|(as)', Keyword, 'itemtype'),
+            (r'(instance)(\s+)(of)', bygroups(Keyword, Text, Keyword), 'itemtype'),
+            (r'(treat)(\s+)(as)', bygroups(Keyword, Text, Keyword), 'itemtype'),
+            (r'case|as', Keyword, 'itemtype'),
             (r'(\))(\s*)(as)',
              bygroups(Punctuation, Text, Keyword), 'itemtype'),
             (r'\$', Name.Variable, 'varname'),
@@ -2262,10 +2362,10 @@ class XQueryLexer(ExtendedRegexLexer):
             include('whitespace'),
             (r'\(:', Comment, 'comment'),
             (r'\$', Punctuation, 'varname'),
-            (r'void\s*\(\s*\)',
+            (r'(void)(\s*)(\()(\s*)(\))',
              bygroups(Keyword, Text, Punctuation, Text, Punctuation), 'operator'),
             (r'(element|attribute|schema-element|schema-attribute|comment|text|'
-             r'node|binary|document-node)(\s*)(\()',
+             r'node|binary|document-node|empty-sequence)(\s*)(\()',
              pushstate_occurrenceindicator_kindtest_callback),
             # Marklogic specific type?
             (r'(processing-instruction)(\s*)(\()',
@@ -2290,8 +2390,8 @@ class XQueryLexer(ExtendedRegexLexer):
              bygroups(Keyword, Text, Keyword, Text, Keyword), 'root'),
             (r'(castable|cast)(\s+)(as)',
              bygroups(Keyword, Text, Keyword), 'singletype'),
-            (r'(instance)(\s+)(of)|(treat)(\s+)(as)',
-             bygroups(Keyword, Text, Keyword)),
+            (r'(treat)(\s+)(as)', bygroups(Keyword, Text, Keyword)),
+            (r'(instance)(\s+)(of)', bygroups(Keyword, Text, Keyword)),
             (r'case|as', Keyword, 'itemtype'),
             (r'(\))(\s*)(as)', bygroups(Operator, Text, Keyword), 'itemtype'),
             (ncname + r'(:\*)', Keyword.Type, 'operator'),
@@ -2480,7 +2580,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(\))(\s+)(as)', bygroups(Operator, Text, Keyword), 'itemtype'),
 
             (r'(element|attribute|schema-element|schema-attribute|comment|'
-             r'text|node|document-node)(\s+)(\()',
+             r'text|node|document-node|empty-sequence)(\s+)(\()',
              pushstate_operator_kindtest_callback),
 
             (r'(processing-instruction)(\s+)(\()',
@@ -2557,9 +2657,9 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(catch)(\s*)(\()(\$)',
              bygroups(Keyword, Text, Punctuation, Name.Variable), 'varname'),
 
-            (r'@' + qname, Name.Attribute),
-            (r'@\*', Name.Attribute),
-            (r'@' + ncname, Name.Attribute),
+            (r'(@' + qname + ')', pushstate_operator_attribute_callback),
+            (r'(@\*)', pushstate_operator_attribute_callback),
+            (r'(@' + ncname + ')', pushstate_operator_attribute_callback),
 
             (r'//|/|\+|-|;|,|\(|\)', Punctuation),
 
