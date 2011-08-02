@@ -26,11 +26,8 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'JavaLexer'
            'ScalaLexer', 'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer',
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
            'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
-<<<<<<< local
-           'Modula2Lexer', 'BlitzMaxLexer', 'GosuLexer', 'GosuTemplateLexer']
-=======
-           'Modula2Lexer', 'BlitzMaxLexer', 'NimrodLexer']
->>>>>>> other
+           'Modula2Lexer', 'BlitzMaxLexer', 'NimrodLexer', 'GosuLexer',
+           'GosuTemplateLexer']
 
 
 class CLexer(RegexLexer):
@@ -2653,7 +2650,7 @@ class BlitzMaxLexer(RegexLexer):
 
 class NimrodLexer(RegexLexer):
     """
-    For `Nimrod `_ source code.
+    For `Nimrod <http://nimrod-code.org/>`_ source code.
 
     *New in Pygments 1.5.*
     """
@@ -2744,7 +2741,8 @@ class NimrodLexer(RegexLexer):
           (r".", String.Char)
         ],
         'strings': [
-            (r'(?            (r'[^\\\'"\$\n]+', String),
+            (r'(?<!\$)\$(\d+|#|\w+)+', String.Interpol),
+            (r'[^\\\'"\$\n]+', String),
             # quotes, dollars and backslashes must be parsed one at a time
             (r'[\'"\\]', String),
             # unhandled string formatting sign
