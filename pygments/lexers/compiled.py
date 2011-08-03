@@ -26,7 +26,8 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'JavaLexer'
            'ScalaLexer', 'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer',
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
            'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
-           'Modula2Lexer', 'BlitzMaxLexer', 'NimrodLexer']
+           'Modula2Lexer', 'BlitzMaxLexer', 'NimrodLexer', 'GosuLexer',
+           'GosuTemplateLexer']
 
 
 class CLexer(RegexLexer):
@@ -2787,3 +2788,100 @@ class NimrodLexer(RegexLexer):
           (r'', Text, '#pop')
         ],
     }
+
+
+class GosuLexer(RegexLexer):
+    """
+    For Gosu source code.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Gosu'
+    aliases = ['gosu']
+    filenames = ['*.gs', '*.gsx', '*.gsp', '*.vark']
+    mimetypes = ['text/x-gosu']
+
+    flags = re.MULTILINE | re.DOTALL
+
+    #: optional Comment or Whitespace
+    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+
+    tokens = {
+        'root': [
+            # method names
+            (r'^(\s*(?:[a-zA-Z_][a-zA-Z0-9_\.\[\]]*\s+)+?)' # modifiers etc.
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'                    # method name
+             r'(\s*)(\()',                                  # signature start
+             bygroups(using(this), Name.Function, Text, Operator)),
+            (r'[^\S\n]+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'@[a-zA-Z_][a-zA-Z0-9_\.]*', Name.Decorator),
+            (r'(in|as|typeof|statictypeof|typeis|typeas|if|else|foreach|'
+             r'for|index|while|do|continue|break|return|try|catch|finally|this|throw|'
+             r'new|switch|case|default|eval|super|outer|classpath|using)\b',
+             Keyword),
+            (r'(var|delegate|construct|function|private|internal|protected|public|'
+             r'abstract|override|final|static|extends|transient|implements|represents|'
+             r'readonly)\b', Keyword.Declaration),
+            (r'(property\s+)(get|set|)', Keyword.Declaration),
+            (r'(boolean|byte|char|double|float|int|long|short|void|block)\b',
+             Keyword.Type),
+            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text)),
+            (r'(true|false|null|NaN|Infinity)\b', Keyword.Constant),
+            (r'(class|interface|enhancement|enum)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword.Declaration, Text, Name.Class)),
+            (r'(uses)(\s+)([a-zA-Z0-9_.]+\*?)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'"', String, 'string'),
+            (r'(\??[\.#])([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
+            (r'(:)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
+            (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
+            (r'and|or|not|[\\~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?-]', Operator),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r'\n', Text)
+        ],
+        'templateText': [
+          (r'(\\<)|(\\\$)', String),
+          (r'(<%@\s+)(extends|params)', bygroups(Operator, Name.Decorator), 'stringTemplate'),
+          (r'<%!--.*?--%>', Comment.Multiline),
+          (r'(<%)|(<%=)', Operator, 'stringTemplate'),
+          (r'\$\{', Operator, 'stringTemplateShorthand'),
+          (r'.', String)
+        ],
+        'string': [
+          (r'"', String, '#pop'),
+          include('templateText')
+        ],
+        'stringTemplate': [
+          (r'"', String, 'string'),
+          (r'%>', Operator, '#pop'),
+          include('root')
+        ],
+        'stringTemplateShorthand': [
+          (r'"', String, 'string'),
+          (r'\{', Operator, 'stringTemplateShorthand'),
+          (r'\}', Operator, '#pop'),
+          include('root')
+        ],
+    }
+
+
+class GosuTemplateLexer(Lexer):
+    """
+    For Gosu templates.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Gosu Template'
+    aliases = ['gst']
+    filenames = ['*.gst']
+    mimetypes = ['text/x-gosu-template']
+    lexer = GosuLexer()
+
+    def get_tokens_unprocessed(self, text):
+        stack = ['templateText']
+        for item in self.lexer.get_tokens_unprocessed(text, stack):
+            yield item
+
