@@ -2648,6 +2648,7 @@ class BlitzMaxLexer(RegexLexer):
         ],
     }
 
+
 class NimrodLexer(RegexLexer):
     """
     For `Nimrod <http://nimrod-code.org/>`_ source code.
@@ -2787,10 +2788,13 @@ class NimrodLexer(RegexLexer):
           (r'', Text, '#pop')
         ],
     }
-    
+
+
 class GosuLexer(RegexLexer):
     """
-    For `Gosu `_ source code.
+    For Gosu source code.
+
+    *New in Pygments 1.5.*
     """
 
     name = 'Gosu'
@@ -2852,7 +2856,7 @@ class GosuLexer(RegexLexer):
         'stringTemplate': [
           (r'"', String, 'string'),
           (r'%>', Operator, '#pop'),
-          include('root')          
+          include('root')
         ],
         'stringTemplateShorthand': [
           (r'"', String, 'string'),
@@ -2862,9 +2866,12 @@ class GosuLexer(RegexLexer):
         ],
     }
 
+
 class GosuTemplateLexer(Lexer):
     """
-    For `Gosu `_ templates.
+    For Gosu templates.
+
+    *New in Pygments 1.5.*
     """
 
     name = 'Gosu Template'
@@ -2877,3 +2884,4 @@ class GosuTemplateLexer(Lexer):
         stack = ['templateText']
         for item in self.lexer.get_tokens_unprocessed(text, stack):
             yield item
+
