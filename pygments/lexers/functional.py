@@ -525,16 +525,23 @@ class SMLLexer(RegexLexer):
     filenames = ['*.sml', '*.sig', '*.fun',]
     mimetypes = ['text/x-standard-ml']
 
+    # From the core language
     corekeywords = [
-      'abstype', 'and', 'andalso', 'as', 'case', 'datatype', 'do', 'else',
-      'end', 'exception', 'fn', 'fun', 'handle', 'if', 'in', 'infix', 
-      'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'open', 'orelse',
-      'raise', 'rec', 'then', 'type', 'val', 'with', 'withtype', 'while'
+      'abstype', 'and', 'andalso', 'as', 'case', 'do', 'else',
+      'end', 'fn', 'handle', 'if', 'in', 'infix', 
+      'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'orelse',
+      'rec', 'then', 'val', 'with', 'withtype', 'while'
     ]
-    sigkeywords = [
-      'eqtype', 'functor', 'include', 'sharing', 'sig', 'signature', 
-      'struct', 'structure', 'where'
-    ]
+
+    # From the module system
+    sigkeywords = [ 'eqtype', 'include', 'sharing', 'sig', 'struct', 'where' ]
+
+    # Reserved keywords that change the state
+    datatype_kw = [ 'datatype', 'type' ]
+    exn_kw = [ 'exception', 'raise' ]
+    fun_kw = [ 'fun' ]
+    val_kw = [ 'val' ]
+    struct_kw = [ 'functor', 'open', 'signature', 'structure' ]
 
     # It doesn't work to have keyopts overlap with symbolic identifiers
     keyopts = [
@@ -566,6 +573,10 @@ class SMLLexer(RegexLexer):
             (r'false|true|\(\)|\[\]', Keyword.Pseudo),
             (r'\b(%s)\b' % '|'.join(corekeywords), Keyword.Reserved),
             (r'\b(%s)\b' % '|'.join(sigkeywords), Keyword.Reserved),
+            (r'\b(%s)\b' % '|'.join(struct_kw), Keyword.Reserved, 'sdecs'),
+            (r'\b(%s)\b' % '|'.join(datatype_kw), Keyword.Reserved, 'tname'),
+            (r'\b(%s)\b' % '|'.join(fun_kw), Keyword.Reserved, 'fname'),
+            (r'\b(%s)\b' % '|'.join(exn_kw), Keyword.Reserved, 'ename'),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'%s' % '|'.join(keyopts), Operator),
@@ -595,6 +606,28 @@ class SMLLexer(RegexLexer):
             
             # or symbolic: any non-empty sequence of the following symbols
             (r'(%s)' % symbols, Name), 
+        ],
+        'fname': [
+            (r'\s', Text),
+            (r'(%s)' % alphanums, Name.Function, '#pop'),
+            (r'', Text, '#pop'),
+        ],
+        'ename': [
+            (r'\s', Text),
+            (r'(%s)' % alphanums, Name.Exception, '#pop'),
+            (r'', Text, '#pop'),
+        ],
+        'tname': [
+            (r'\s', Text),
+            (r'(\(|,|\))', Operator),
+            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r'(%s)' % alphanums, Keyword.Type, '#pop'),
+            (r'', Text, '#pop'),
+        ],
+        'sdecs': [
+            (r'\s', Text),
+            (r'(%s)' % alphanums, Name.Namespace),
+            (r'', Text, '#pop'),
         ],
         'comment': [
             (r'[^(*)]', Comment.Multiline),
