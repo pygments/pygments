@@ -65,6 +65,13 @@ fun q 0 = 4
   | q 2 = (while !x handle Match => !x | Fail _ => !x do () ; 2)
   | q x = (raise Match) handle Domain => 9 | Match => 3
 
+fun p 0 = 12
+  | p 1 = 8
+  | p 2 = r false
+  | p x = r true
+and r true = 19
+  | r false = 12
+
 val _ = 123
 val _ = 0001
 val _ = ~123
