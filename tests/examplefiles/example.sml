@@ -53,7 +53,7 @@ fun q x = raise Foo x
 and h x = raise Foo (~x)
 
 val x = 4
-and y = 5 (* Currently wrong, but weird enough that maybe I don't care *)
+and y = 5
 
 fun q 0 = 4
   | q 1 = (case 1 of 1 => 2 | 3 => 4 | x => y)
