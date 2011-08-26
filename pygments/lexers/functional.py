@@ -697,6 +697,7 @@ class SMLLexer(RegexLexer):
             (r'(?=\b(%s)\b)' % '|'.join(all_kw), Text, '#pop'), # Done
 
             (r'\|', Operator, 'datcon'),
+            (r'%s' % '|'.join(keyopts), Operator),
 
             include('identifier'),
         ],
