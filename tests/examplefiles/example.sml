@@ -1,15 +1,24 @@
 (*(*(*(*(* This file is all pretty strange Standard ML *)*)*)*) (**)*)
 (* Robert J. Simmons *)
 
-signature BA_Z = sig end 
+signature BA_Z = sig 
+   val s: int
+end 
 
-structure **$*#$ = struct (* What (* A * strange * name *) for ) a ( struct *)
+structure b______ = struct (* What (* A * strange * name *) for ) a ( struct *)
 
-structure Bar :> BA_Z = struct end
-structure !%&$#+-/:<=>?@\~`^|* :> BA_Z = struct end
+val !%&$#+-/:<=>?@\~`^|* = 3
+
+structure baz = struct
+  structure Bar = struct 
+    val foo = !%&$#+-/:<=>?@\~`^|*
+  end  
+end
+
+open baz
 
 val$$$ = fn x => fn y => fn z => fn w => w
-val (foo, ++, bar, ||) = (4, 4, 5, 5)
+val (foo, ++, bar, ||) = (4, baz.Bar.foo, !%&$#+-/:<=>?@\~`^|*, Bar.foo)
 val _ = $$$foo++bar||
 
 val x : ' list = []
