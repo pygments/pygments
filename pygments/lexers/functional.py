@@ -565,7 +565,7 @@ class SMLLexer(RegexLexer):
             (r'\s', Text),
             (r'false|true|\(\)|\[\]', Keyword.Pseudo),
             (r'\b(%s)\b' % '|'.join(corekeywords), Keyword.Reserved),
-            (r'\b(%s)\b' % '|'.join(sigkeywords), Keyword.Namespace),
+            (r'\b(%s)\b' % '|'.join(sigkeywords), Keyword.Reserved),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'%s' % '|'.join(keyopts), Operator),
@@ -585,7 +585,7 @@ class SMLLexer(RegexLexer):
             # i.e. any numeral not starting with 0
             (r'#\s*[1-9][0-9]*', Name.Label),
             (r'#\s*(%s)' % alphanums, Name.Label),
-            (r'#\s*(%s)' % symbols, Name),
+            (r'#\s+(%s)' % symbols, Name.Label),
 
             # An identifier is either alphanumeric: any sequence of letters,
             # digits, primes, and underbars starting with a letter or prime...
