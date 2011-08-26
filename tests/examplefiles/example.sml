@@ -24,9 +24,9 @@ val$$$ = fn x => fn y => fn z => fn w => w
 val (foo, ++, bar, ||) = (4, baz.Bar.foo, !%&$#+-/:<=>?@\~`^|*, Bar.foo)
 val _ = $$$foo++bar||
 
-val x : ' list = []
-val x : (' -> ') = fn x => x
-val x : ('a -> 'a) = fn x => x
+val val'ue : ' list = []
+val struct3 : (' -> ') = fn x => x
+val end_struct_' : ('a -> 'a) = fn x => x
 val x : (''a -> ''a) = fn x => x
 val x : ('''' -> '''') = fn x => x
 val x : unit = print "Weird, huh?\n"
