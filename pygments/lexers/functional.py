@@ -16,7 +16,9 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic
 
 
-__all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer', 'LiterateHaskellLexer',
+__all__ = ['SchemeLexer', 'CommonLispLexer', 
+           'HaskellLexer', 'LiterateHaskellLexer',
+           'SMLLexer', 
            'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer']
 
 
@@ -513,6 +515,88 @@ class LiterateHaskellLexer(Lexer):
                                list(lxlexer.get_tokens_unprocessed(latex))))
         for item in do_insertions(insertions, hslexer.get_tokens_unprocessed(code)):
             yield item
+
+class SMLLexer(RegexLexer):
+    """
+    For the Standard ML language.
+    """
+
+    name = 'Standard ML'
+    aliases = ['sml']
+    filenames = ['*.sml', '*.sig', '*.fun',]
+    mimetypes = ['text/x-standard-ml']
+
+    corekeywords = [
+      'abstype', 'and', 'andalso', 'as', 'case', 'datatype', 'do', 'else',
+      'end', 'exception', 'fn', 'fun', 'handle', 'if', 'in', 'infix', 
+      'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'open', 'orelse',
+      'raise', 'rec', 'then', 'type', 'val', 'with', 'withtype', 'while'
+    ]
+    sigkeywords = [
+      'eqtype', 'functor', 'include', 'sharing', 'sig', 'signature', 
+      'struct', 'structure', 'where'
+    ]
+
+    # It doesn't work to have keyopts overlap with symbolic identifiers
+    keyopts = [
+      '\(', '\)', '\[', '\]', '{', '}', ',', 
+      # ':',
+      ';', '\.\.\.', '_', 
+      # '\|', '=', '=>', '->', '#', ':>'
+    ]
+    symbols = r'[!%&$#+-/:<=>?@\~`^|*]'
+    primitives = [
+      'bool', 'int', 'real', 'string', 'char', 'word', 'list', 'ref', 'exn'
+    ]
+
+    def stringy (whatkind):
+        return [
+            (r'[^"\\]', whatkind),
+            (r'\\[\\\"abtnvfr]', String.Escape),
+            (r'\\\^[@-^]', String.Escape),
+            (r'\\[0-9]{3}', String.Escape),
+            (r'\\u[0-9a-fA-F]{4}', String.Escape),
+            (r'\\\s*\\', String.Interpol),
+            (r'"', whatkind, '#pop'),
+        ]
+
+    tokens = {
+        'root': [
+            (r'\s', Text),
+            (r'false|true|\(\)|\[\]', Keyword.Pseudo),
+            (r'\b(%s)\b' % '|'.join(corekeywords), Keyword.Reserved),
+            (r'\b(%s)\b' % '|'.join(sigkeywords), Keyword.Namespace),
+            (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
+            (r'%s' % '|'.join(keyopts), Operator),
+            
+            # Special constants: floats, numbers in decimal and hexadecimal
+            (r'~?\d+(\.\d+|[eE]\d+|.\d+[eE]\d+)', Number.Float),
+            (r'~?\d+', Number.Integer),
+            (r'~?0x[\da-fA-F]+', Number.Hex),
+            (r'0w\d+', Number.Integer),
+            (r'0wx[\da-fA-F]+', Number.Hex),
+            
+            # An identifier is either alphanumeric: any sequence of letters,
+            # digits, primes, and underbars starting with a letter or prime...
+            (r'\'[a-zA-Z_\']*', Name.Decorator),
+            (r'[a-zA-Z][a-zA-Z\'_]*\s*\.', Name.Namespace),
+            (r'[a-zA-Z][a-zA-Z\'_]*', Name),
+            
+            # or symbolic: any non-empty sequence of the following symbols
+            (r'(%s)+\s*\.' % symbols, Name.Namespace),
+            (r'(%s)+' % symbols, Name), 
+            
+            # The class Lab is extended to include the numeric labels 1 2 3,
+            # i.e. any numeral not starting with 0
+            (r'#[1-9][0-9]*', Name.Label),
+            (r'#[a-zA-Z][a-zA-Z_\']*', Name.Label),
+            
+            (r'#"', String.Char, 'char'),
+            (r'"', String.Double, 'string'),
+        ],
+        'char': stringy(String.Char),
+        'string': stringy(String.Double),
+    }
 
 
 class OcamlLexer(RegexLexer):
