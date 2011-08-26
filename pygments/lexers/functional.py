@@ -526,22 +526,47 @@ class SMLLexer(RegexLexer):
     mimetypes = ['text/x-standard-ml']
 
     # From the core language
-    corekeywords = [
-      'abstype', 'and', 'andalso', 'as', 'case', 'do', 'else',
+    core_kw = [
+      'abstype', 'andalso', 'as', 'case', 'do', 'else',
       'end', 'fn', 'handle', 'if', 'in', 'infix', 
       'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'orelse',
-      'rec', 'then', 'val', 'with', 'withtype', 'while'
+      'raise', 'rec', 'then', 'val', 'with', 'withtype', 'while',
     ]
 
     # From the module system
-    sigkeywords = [ 'eqtype', 'include', 'sharing', 'sig', 'struct', 'where' ]
+    sig_kw = [ 
+      'include', 'sharing', 'sig', 'struct', 'where',
+    ]
 
     # Reserved keywords that change the state
-    datatype_kw = [ 'datatype', 'type' ]
-    exn_kw = [ 'exception', 'raise' ]
-    fun_kw = [ 'fun' ]
-    val_kw = [ 'val' ]
-    struct_kw = [ 'functor', 'open', 'signature', 'structure' ]
+    datatype_kw = [
+      'datatype', 'exception'
+    ]
+    type_kw = [ 
+      'type', 'eqtype',
+    ]
+    fun_kw = [ # Note, this isn't strictly correct
+      'fun', 'and',
+    ] 
+    val_kw = [ 
+      'val',
+    ]
+    struct_kw = [ 
+      'functor', 'open', 'signature', 'structure', 
+    ]
+
+    all_kw = [
+      'abstype', 'andalso', 'as', 'case', 'do', 'else',
+      'end', 'fn', 'handle', 'if', 'in', 'infix', 
+      'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'orelse',
+      'raise', 'rec', 'then', 'val', 'with', 'withtype', 'while',
+      'include', 'sharing', 'sig', 'struct', 'where',
+      'datatype', 'exception', 
+      'type', 'eqtype',
+      'fun', 'and',
+      'val',
+      'functor', 'open', 'signature', 'structure', 
+    ]
 
     # It doesn't work to have keyopts overlap with symbolic identifiers
     keyopts = [
@@ -550,7 +575,7 @@ class SMLLexer(RegexLexer):
       ';', '\.\.\.', '_', 
       # '\|', '=', '=>', '->', '#', ':>'
     ]
-    alphanums = r'[a-zA-Z][0-9a-zA-Z_\']*'
+    alphanums = r"[a-zA-Z][0-9a-zA-Z_\']*"
     symbols = r'[!%&$#+-/:<=>?@\\~`^|*]+'
     primitives = [
       'bool', 'int', 'real', 'string', 'char', 'word', 'list', 'ref', 'exn'
@@ -571,12 +596,12 @@ class SMLLexer(RegexLexer):
         'root': [
             (r'\s', Text),
             (r'false|true|\(\)|\[\]', Keyword.Pseudo),
-            (r'\b(%s)\b' % '|'.join(corekeywords), Keyword.Reserved),
-            (r'\b(%s)\b' % '|'.join(sigkeywords), Keyword.Reserved),
+            (r'\b(%s)\b' % '|'.join(core_kw), Keyword.Reserved),
+            (r'\b(%s)\b' % '|'.join(sig_kw), Keyword.Reserved),
             (r'\b(%s)\b' % '|'.join(struct_kw), Keyword.Reserved, 'sdecs'),
-            (r'\b(%s)\b' % '|'.join(datatype_kw), Keyword.Reserved, 'tname'),
+            (r'\b(%s)\b' % '|'.join(datatype_kw), Keyword.Reserved, 'dname'),
+            (r'\b(%s)\b' % '|'.join(type_kw), Keyword.Reserved),
             (r'\b(%s)\b' % '|'.join(fun_kw), Keyword.Reserved, 'fname'),
-            (r'\b(%s)\b' % '|'.join(exn_kw), Keyword.Reserved, 'ename'),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'%s' % '|'.join(keyopts), Operator),
@@ -607,28 +632,85 @@ class SMLLexer(RegexLexer):
             # or symbolic: any non-empty sequence of the following symbols
             (r'(%s)' % symbols, Name), 
         ],
+
+        # Dealing with what comes after the 'fun' (or 'and') keyword
         'fname': [
             (r'\s', Text),
             (r'(%s)' % alphanums, Name.Function, '#pop'),
             (r'', Text, '#pop'),
         ],
+
+        # Dealing with what comes after the 'exception' keyword
         'ename': [
             (r'\s', Text),
             (r'(%s)' % alphanums, Name.Exception, '#pop'),
             (r'', Text, '#pop'),
         ],
-        'tname': [
-            (r'\s', Text),
-            (r'(\(|,|\))', Operator),
-            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
-            (r'(%s)' % alphanums, Keyword.Type, '#pop'),
-            (r'', Text, '#pop'),
-        ],
+
+        # Dealing with what comes after most of the module system keywords
         'sdecs': [
             (r'\s', Text),
             (r'(%s)' % alphanums, Name.Namespace),
             (r'', Text, '#pop'),
         ],
+
+        # Dealing with what comes after the 'datatype' (or 'and') keyword
+        'dname': [
+            (r'\s', Text),
+            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r'\(', Operator, 'tyvarseq'),
+
+            # Distingish between replication and declaration
+            (r'=(?=\s*datatype)', Operator, ('#pop', 'dat_replication')), 
+            (r'=', Operator, ('#pop', 'datbind', 'datcon')),
+
+            # Notice that we're in a specification, leave
+            (r'(%s)(?=\s*=)' % alphanums, Keyword.Type), 
+            (r'(%s)(?=\s+=)' % symbols, Keyword.Type), 
+            (r'(%s)' % alphanums, Keyword.Type, '#pop'),
+            (r'(%s)' % symbols, Keyword.Type, '#pop'),
+        ],
+
+        # datatype tycon = datatype longtycon
+        'dat_replication': [
+            (r'\s', Text),
+            (r'datatype', Keyword.Reserved), 
+            (r'(%s)\.' % alphanums, Name.Namespace),
+            (r'(%s)' % alphanums, Name, '#pop'),
+        ],
+
+        # common case - A | B | C of int 
+        'datbind': [
+            (r'\s', Text),
+            (r'\band\b', Keyword.Reserved, ('#pop', 'dname')), # start again
+            (r'\bof\b', Keyword.Reserved), # Only reserved word here?
+            (r'(?=\b(%s)\b)' % '|'.join(all_kw), Text, '#pop'), # Done
+
+            (r'\|', Operator, 'datcon'),
+            (r'%s' % '|'.join(keyopts), Operator),
+            (r'(%s)' % alphanums, Keyword.Type),
+
+            # All identifiers in this scope are going to be types
+            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r'(%s)\.' % alphanums, Name.Namespace),
+            (r'(%s)' % alphanums, Keyword.Type),
+            (r'(%s)' % symbols, Keyword.Type), 
+        ],
+
+        'datcon': [
+            (r'\s', Text),
+            (r'(%s)' % alphanums, Name.Class, '#pop'),
+            (r'(%s)' % symbols, Name.Class, '#pop'), 
+        ],
+
+        # Series of type variables
+        'tyvarseq': [
+            (r'\s', Text),
+            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r',', Operator),
+            (r'\)', Operator, '#pop'),
+        ],
+
         'comment': [
             (r'[^(*)]', Comment.Multiline),
             (r'\(\*', Comment.Multiline, '#push'),
