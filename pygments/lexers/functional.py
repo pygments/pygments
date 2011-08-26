@@ -634,6 +634,8 @@ class SMLLexer(RegexLexer):
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'%s' % '|'.join(keyopts), Operator),
             
+            include('specialconstant'),
+
             # The class Lab is extended to include the numeric labels 1 2 3,
             # i.e. any numeral not starting with 0
             (r'#\s*[1-9][0-9]*', Name.Label),

@@ -49,7 +49,7 @@ fun q x = raise Foo x
 and h x = raise Foo (~x)
 
 val x = 4
-and y = 5
+and y = 5 (* Currently wrong, but weird enough that maybe I don't care *)
 
 
 val _ = 123
