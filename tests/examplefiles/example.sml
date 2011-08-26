@@ -55,6 +55,15 @@ and h x = raise Foo (~x)
 val x = 4
 and y = 5 (* Currently wrong, but weird enough that maybe I don't care *)
 
+fun q 0 = 4
+  | q 1 = (case 1 of 1 => 2 | 3 => 4 | x => y)
+  | q y = case y of 1 => 2 | 3 => 4 | x => y
+
+val x = ref true
+fun q 0 = 4
+  | q 1 = if false then case 1 of 1 => 2 | 3 => 4 | x => y else 19
+  | q 2 = (while !x handle Match => !x | Fail _ => !x do () ; 2)
+  | q x = (raise Match) handle Domain => 9 | Match => 3
 
 val _ = 123
 val _ = 0001
