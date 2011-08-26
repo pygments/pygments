@@ -54,6 +54,7 @@ val _ = 1.4E~2
 val _ = 1.4e2
 val _ = 1.4E2
 
+val c = #"\000"
 val st = "foo \
  	 \ bar" ^ "baz \        
   	 \ and \ 

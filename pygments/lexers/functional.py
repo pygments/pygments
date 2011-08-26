@@ -570,6 +570,17 @@ class SMLLexer(RegexLexer):
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'%s' % '|'.join(keyopts), Operator),
             
+            # Special constants: strings, floats, numbers in decimal and hex
+            (r'#"', String.Char, 'char'),
+            (r'"', String.Double, 'string'),
+            (r'~?0x[0-9a-fA-F]+', Number.Hex),
+            (r'0wx[0-9a-fA-F]+', Number.Hex),
+            (r'0w\d+', Number.Integer),
+            (r'~?\d+\.\d+[eE]~?\d+', Number.Float),
+            (r'~?\d+\.\d+', Number.Float),
+            (r'~?\d+[eE]~?\d+', Number.Float),
+            (r'~?\d+', Number.Integer),                        
+
             # The class Lab is extended to include the numeric labels 1 2 3,
             # i.e. any numeral not starting with 0
             (r'#\s*[1-9][0-9]*', Name.Label),
@@ -584,18 +595,6 @@ class SMLLexer(RegexLexer):
             
             # or symbolic: any non-empty sequence of the following symbols
             (r'(%s)' % symbols, Name), 
-            
-            # Special constants: floats, numbers in decimal and hexadecimal
-            (r'~?0x[0-9a-fA-F]+', Number.Hex),
-            (r'0wx[0-9a-fA-F]+', Number.Hex),
-            (r'0w\d+', Number.Integer),
-            (r'~?\d+\.\d+[eE]~?\d+', Number.Float),
-            (r'~?\d+\.\d+', Number.Float),
-            (r'~?\d+[eE]~?\d+', Number.Float),
-            (r'~?\d+', Number.Integer),
-                        
-            (r'#"', String.Char, 'char'),
-            (r'"', String.Double, 'string'),
         ],
         'comment': [
             (r'[^(*)]', Comment.Multiline),
