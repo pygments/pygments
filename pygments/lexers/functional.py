@@ -540,7 +540,10 @@ class SMLLexer(RegexLexer):
 
     # Reserved keywords that change the state
     datatype_kw = [
-      'datatype', 'exception'
+      'datatype',
+    ]
+    exn_kw = [
+      'exception'
     ]
     type_kw = [ 
       'type', 'eqtype',
@@ -577,9 +580,6 @@ class SMLLexer(RegexLexer):
     ]
     alphanums = r"[a-zA-Z][0-9a-zA-Z_\']*"
     symbols = r'[!%&$#+-/:<=>?@\\~`^|*]+'
-    primitives = [
-      'bool', 'int', 'real', 'string', 'char', 'word', 'list', 'ref', 'exn'
-    ]
 
     def stringy (whatkind):
         return [
@@ -628,9 +628,10 @@ class SMLLexer(RegexLexer):
              'sdecs'),
             (r'\b(%s)\b(?!\')' % '|'.join(datatype_kw), Keyword.Reserved, 
              'dname'),
-            (r'\b(%s)\b(?!\')' % '|'.join(type_kw), Keyword.Reserved),
+            (r'\b(%s)\b(?!\')' % '|'.join(exn_kw), Keyword.Reserved, 
+             ('datbind', 'datcon')),
+            (r'\b(%s)\b(?!\')' % '|'.join(type_kw), Keyword.Reserved, 'tname'),
             (r'\b(%s)\b(?!\')' % '|'.join(fun_kw), Keyword.Reserved, 'fname'),
-            (r'\b(%s)\b(?!\')' % '|'.join(primitives), Keyword.Type),
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'%s' % '|'.join(keyopts), Operator),
             
@@ -659,6 +660,32 @@ class SMLLexer(RegexLexer):
             (r'\s', Text),
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'(%s)' % alphanums, Name.Namespace, '#pop'),
+        ],
+
+        # Dealing with what comes after the 'type' (or 'and') keyword
+        'tname': [
+            (r'\s', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
+            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r'\(', Operator, 'tyvarseq'),
+
+            # Distingish between replication and declaration
+            (r'=', Operator, ('#pop', 'typbind')),
+
+            # Notice that we're in a specification, leave
+            (r'(%s)(?=\s*=)' % alphanums, Keyword.Type), 
+            (r'(%s)(?=\s+=)' % symbols, Keyword.Type), 
+            (r'(%s)' % alphanums, Keyword.Type, '#pop'),
+            (r'(%s)' % symbols, Keyword.Type, '#pop'),
+        ],
+
+        'typbind': [
+            (r'\s', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
+            (r'\band\b', Keyword.Reserved, ('#pop', 'tname')), # start again
+            (r'(?=\b(%s)\b)' % '|'.join(all_kw), Text, '#pop'), # Done
+            (r'%s' % '|'.join(keyopts), Operator),
+            include('identifier'),
         ],
 
         # Dealing with what comes after the 'datatype' (or 'and') keyword
