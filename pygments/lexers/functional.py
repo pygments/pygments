@@ -618,8 +618,8 @@ class SMLLexer(RegexLexer):
             (r'~?\d+', Number.Integer),                        
         ],
 
-        # The class Lab is extended to include the numeric labels 1 2 3,
-        # i.e. any numeral not starting with 0
+        # "The class Lab is extended to include the numeric labels 1 2 3,
+        # i.e. any numeral not starting with 0"
         'labels': [
             (r'#\s*[1-9][0-9]*', Name.Label),
             (r'#\s*(%s)' % alphanums, Name.Label),
@@ -642,8 +642,11 @@ class SMLLexer(RegexLexer):
             (r'%s' % '|'.join(keyopts), Operator),
         ],
 
+        # Delimiters define scopes, and the scope is how the meaning of 
+        # the `|' is resolved - is it a case/handle expression, or function
+        # definition by cases?
         'delimiters': [
-            (r'\(|\[|{', Operator, '#push'),
+            (r'\(|\[|{', Operator, 'main'),
             (r'\)|\]|}', Operator, '#pop'),
             (r'\b(let|if|local)\b(?!\')', Operator, ('main', 'main')),
             (r'\b(while)\b(?!\')', Operator, 'main'),
@@ -651,9 +654,12 @@ class SMLLexer(RegexLexer):
         ],
 
         # Main parser
-        'root': [ (r'', Text, 'main') ], # Always ping-pong up to main
+        # Always ping-pong up to main - in a syntactically valid program, this
+        # rule should be called precisely once. This desing should prevent
+        # errors from being raised in files that have scoping errors.
+        'root': [ (r'', Text, 'main') ], 
 
-        # In this scope, I expect "|" to be followed by a function name
+        # In this scope, I expect "|" to not be followed by a function name
         'main': [            
             (r'\s', Text),
             (r'\(\*', Comment.Multiline, 'comment'),
@@ -668,7 +674,7 @@ class SMLLexer(RegexLexer):
             include('identifier'),
         ],
 
-        # In this scope, I expect "|" to not be followed by a function name
+        # In this scope, I expect "|" to be followed by a function name
         'main-fun': [
             (r'\s', Text),
             (r'\(\*', Comment.Multiline, 'comment'),
@@ -690,7 +696,10 @@ class SMLLexer(RegexLexer):
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'(%s)' % alphanums, Name.Function, '#pop'),
             (r'(%s)' % symbols, Name.Function, '#pop'), 
-            (r'', Text, '#pop'), # Funky fun declaration? Just give up.
+
+            # Funky fun declaration? Just give up.
+            # This handles infix cases like "fun (x + y) = ..."
+            (r'', Text, '#pop'), 
         ],
 
         # Dealing with what comes after most of the module system keywords
@@ -757,19 +766,20 @@ class SMLLexer(RegexLexer):
         'datbind': [
             (r'\s', Text),
             (r'\(\*', Comment.Multiline, 'comment'),
+
             (r'\band\b', Keyword.Reserved, ('#pop', 'dname')), # start again
             (r'\bof\b', Keyword.Reserved), # Only reserved word here?
             (r'(?=\b(%s)\b)' % '|'.join(all_kw), Text, '#pop'), # Done
 
             (r'\|', Operator, 'datcon'),
             (r'%s' % '|'.join(keyopts), Operator),
-
             include('identifier'),
         ],
 
         'datcon': [
             (r'\s', Text),
             (r'\(\*', Comment.Multiline, 'comment'),
+
             (r'(%s)' % alphanums, Name.Class, '#pop'),
             (r'(%s)' % symbols, Name.Class, '#pop'), 
         ],
@@ -778,6 +788,7 @@ class SMLLexer(RegexLexer):
         'tyvarseq': [
             (r'\s', Text),
             (r'\(\*', Comment.Multiline, 'comment'),
+
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
             (r',', Operator),
             (r'\)', Operator, '#pop'),
@@ -789,6 +800,7 @@ class SMLLexer(RegexLexer):
             (r'\*\)', Comment.Multiline, '#pop'),
             (r'[(*)]', Comment.Multiline),
         ],
+
         'char': stringy(String.Char),
         'string': stringy(String.Double),
     }
