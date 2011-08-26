@@ -639,9 +639,9 @@ class SMLLexer(RegexLexer):
         'delimiters': [
             (r'\(|\[|{', Operator, 'main'),
             (r'\)|\]|}', Operator, '#pop'),
-            (r'\b(let|if|local)\b(?!\')', Operator, ('main', 'main')),
-            (r'\b(while)\b(?!\')', Operator, 'main'),
-            (r'\b(do|else|end|in|then)\b(?!\')', Operator, '#pop'),
+            (r'\b(let|if|local)\b(?!\')', Keyword.Reserved, ('main', 'main')),
+            (r'\b(struct|sig|while)\b(?!\')', Keyword.Reserved, 'main'),
+            (r'\b(do|else|end|in|then)\b(?!\')', Keyword.Reserved, '#pop'),
         ],
 
         # Main parser
