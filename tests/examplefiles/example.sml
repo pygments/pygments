@@ -15,6 +15,9 @@ structure baz = struct
   end  
 end
 
+infixr +!+ 
+fun (a +!+ b) = (op +) (a, b)
+
 open baz
 
 val$$$ = fn x => fn y => fn z => fn w => w
@@ -32,7 +35,14 @@ val {##=, x, 4=a,...} = w
 val z = #4 w
 val z = # ##= w
 
+fun f x y 0 = 4
+  | f x y z = 4 
+
+exception Foo of int
 datatype ('0, 'b, '_, ') fo'o = Bar | baZ12' | dsfa_fad | #@$
+   | and bar = Bee
+
+fun q x = raise Foo x
 
 val _ = 123
 val _ = 0001
