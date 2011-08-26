@@ -16,8 +16,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic
 
 
-__all__ = ['SchemeLexer', 'CommonLispLexer', 
-           'HaskellLexer', 'LiterateHaskellLexer',
+__all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer', 'LiterateHaskellLexer',
            'SMLLexer', 
            'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer']
 
