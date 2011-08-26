@@ -9,6 +9,10 @@ structure b______ = struct (* What (* A * strange * name *) for ) a ( struct *)
 
 val !%&$#+-/:<=>?@\~`^|* = 3
 
+type struct' = int list
+and 'a sig' = 'a list
+and ('a, 'b) end' = 'b option * 'a list
+
 structure baz = struct
   structure Bar = struct 
     val foo = !%&$#+-/:<=>?@\~`^|*
