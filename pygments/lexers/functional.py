@@ -579,11 +579,10 @@ class SMLLexer(RegexLexer):
             # An identifier is either alphanumeric: any sequence of letters,
             # digits, primes, and underbars starting with a letter or prime...
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
-            (r'(%s)\s*\.' % alphanums, Name.Namespace),
+            (r'(%s)\.' % alphanums, Name.Namespace),
             (r'(%s)' % alphanums, Name),
             
             # or symbolic: any non-empty sequence of the following symbols
-            (r'(%s)\s*\.' % symbols, Name.Namespace),
             (r'(%s)' % symbols, Name), 
             
             # Special constants: floats, numbers in decimal and hexadecimal
