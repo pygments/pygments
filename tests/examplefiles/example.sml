@@ -39,10 +39,18 @@ fun f x y 0 = 4
   | f x y z = 4 
 
 exception Foo of int
-datatype ('0, 'b, '_, ') fo'o = Bar | baZ12' | dsfa_fad | #@$
-   | and bar = Bee
+datatype ('0, 'b, '_, ') f'o'o = Bar | baZ12' | dsfa_fad | #@$ | Bug
+and (', ''', '''', ''''') bar = 
+   Bee of unit
+ | Ben of (', ''', '''', ''''') f'o'o * string * int 
+ | X of ''' list
 
 fun q x = raise Foo x
+and h x = raise Foo (~x)
+
+val x = 4
+and y = 5
+
 
 val _ = 123
 val _ = 0001
