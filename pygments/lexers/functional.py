@@ -593,6 +593,32 @@ class SMLLexer(RegexLexer):
         ]
 
     tokens = {
+        # Regular identifiers, long and otherwise
+        'identifier': [
+            # An identifier is either alphanumeric: any sequence of letters,
+            # digits, primes, and underbars starting with a letter or prime...
+            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r'(%s)\.' % alphanums, Name.Namespace),
+            (r'(%s)' % alphanums, Name),
+            
+            # or symbolic: any non-empty sequence of the following symbols
+            (r'(%s)' % symbols, Name), 
+        ],
+
+        # Special constants: strings, floats, numbers in decimal and hex
+        'specialconstant': [
+            (r'#"', String.Char, 'char'),
+            (r'"', String.Double, 'string'),
+            (r'~?0x[0-9a-fA-F]+', Number.Hex),
+            (r'0wx[0-9a-fA-F]+', Number.Hex),
+            (r'0w\d+', Number.Integer),
+            (r'~?\d+\.\d+[eE]~?\d+', Number.Float),
+            (r'~?\d+\.\d+', Number.Float),
+            (r'~?\d+[eE]~?\d+', Number.Float),
+            (r'~?\d+', Number.Integer),                        
+        ],
+
+        # Main parser
         'root': [
             (r'\s', Text),
             (r'false|true|\(\)|\[\]', Keyword.Pseudo),
@@ -606,57 +632,35 @@ class SMLLexer(RegexLexer):
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'%s' % '|'.join(keyopts), Operator),
             
-            # Special constants: strings, floats, numbers in decimal and hex
-            (r'#"', String.Char, 'char'),
-            (r'"', String.Double, 'string'),
-            (r'~?0x[0-9a-fA-F]+', Number.Hex),
-            (r'0wx[0-9a-fA-F]+', Number.Hex),
-            (r'0w\d+', Number.Integer),
-            (r'~?\d+\.\d+[eE]~?\d+', Number.Float),
-            (r'~?\d+\.\d+', Number.Float),
-            (r'~?\d+[eE]~?\d+', Number.Float),
-            (r'~?\d+', Number.Integer),                        
-
             # The class Lab is extended to include the numeric labels 1 2 3,
             # i.e. any numeral not starting with 0
             (r'#\s*[1-9][0-9]*', Name.Label),
             (r'#\s*(%s)' % alphanums, Name.Label),
             (r'#\s+(%s)' % symbols, Name.Label),
 
-            # An identifier is either alphanumeric: any sequence of letters,
-            # digits, primes, and underbars starting with a letter or prime...
-            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
-            (r'(%s)\.' % alphanums, Name.Namespace),
-            (r'(%s)' % alphanums, Name),
-            
-            # or symbolic: any non-empty sequence of the following symbols
-            (r'(%s)' % symbols, Name), 
+            include('identifier'),
         ],
 
         # Dealing with what comes after the 'fun' (or 'and') keyword
         'fname': [
             (r'\s', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
             (r'(%s)' % alphanums, Name.Function, '#pop'),
-            (r'', Text, '#pop'),
-        ],
-
-        # Dealing with what comes after the 'exception' keyword
-        'ename': [
-            (r'\s', Text),
-            (r'(%s)' % alphanums, Name.Exception, '#pop'),
-            (r'', Text, '#pop'),
+            (r'(%s)' % symbols, Name.Function, '#pop'), 
+            (r'', Text, '#pop'), # Funky fun declaration? Just give up.
         ],
 
         # Dealing with what comes after most of the module system keywords
         'sdecs': [
             (r'\s', Text),
-            (r'(%s)' % alphanums, Name.Namespace),
-            (r'', Text, '#pop'),
+            (r'\(\*', Comment.Multiline, 'comment'),
+            (r'(%s)' % alphanums, Name.Namespace, '#pop'),
         ],
 
         # Dealing with what comes after the 'datatype' (or 'and') keyword
         'dname': [
             (r'\s', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
             (r'\(', Operator, 'tyvarseq'),
 
@@ -674,6 +678,7 @@ class SMLLexer(RegexLexer):
         # datatype tycon = datatype longtycon
         'dat_replication': [
             (r'\s', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
             (r'datatype', Keyword.Reserved), 
             (r'(%s)\.' % alphanums, Name.Namespace),
             (r'(%s)' % alphanums, Name, '#pop'),
@@ -682,23 +687,19 @@ class SMLLexer(RegexLexer):
         # common case - A | B | C of int 
         'datbind': [
             (r'\s', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
             (r'\band\b', Keyword.Reserved, ('#pop', 'dname')), # start again
             (r'\bof\b', Keyword.Reserved), # Only reserved word here?
             (r'(?=\b(%s)\b)' % '|'.join(all_kw), Text, '#pop'), # Done
 
             (r'\|', Operator, 'datcon'),
-            (r'%s' % '|'.join(keyopts), Operator),
-            (r'(%s)' % alphanums, Keyword.Type),
 
-            # All identifiers in this scope are going to be types
-            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
-            (r'(%s)\.' % alphanums, Name.Namespace),
-            (r'(%s)' % alphanums, Keyword.Type),
-            (r'(%s)' % symbols, Keyword.Type), 
+            include('identifier'),
         ],
 
         'datcon': [
             (r'\s', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
             (r'(%s)' % alphanums, Name.Class, '#pop'),
             (r'(%s)' % symbols, Name.Class, '#pop'), 
         ],
@@ -706,6 +707,7 @@ class SMLLexer(RegexLexer):
         # Series of type variables
         'tyvarseq': [
             (r'\s', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
             (r',', Operator),
             (r'\)', Operator, '#pop'),
