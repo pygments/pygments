@@ -527,8 +527,8 @@ class SMLLexer(RegexLexer):
 
     # From the core language
     core_kw = [
-      'abstype', 'andalso', 'as', 'case', 'do', 'else',
-      'end', 'fn', 'handle', 'if', 'in', 'infix', 
+      'abstype', 'and', 'andalso', 'as', 'case', 'do', 'else',
+      'end', 'fn', 'fun', 'handle', 'if', 'in', 'infix', 
       'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'orelse',
       'raise', 'rec', 'then', 'val', 'with', 'withtype', 'while',
     ]
@@ -548,26 +548,18 @@ class SMLLexer(RegexLexer):
     type_kw = [ 
       'type', 'eqtype',
     ]
-    fun_kw = [ # Note, this isn't strictly correct
-      'fun', 'and',
-    ] 
-    val_kw = [ 
-      'val',
-    ]
     struct_kw = [ 
       'functor', 'open', 'signature', 'structure', 
     ]
 
     all_kw = [
-      'abstype', 'andalso', 'as', 'case', 'do', 'else',
-      'end', 'fn', 'handle', 'if', 'in', 'infix', 
+      'abstype', 'and', 'andalso', 'as', 'case', 'do', 'else',
+      'end', 'fn', 'fun', 'handle', 'if', 'in', 'infix', 
       'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'orelse',
       'raise', 'rec', 'then', 'val', 'with', 'withtype', 'while',
       'include', 'sharing', 'sig', 'struct', 'where',
       'datatype', 'exception', 
       'type', 'eqtype',
-      'fun', 'and',
-      'val',
       'functor', 'open', 'signature', 'structure', 
     ]
 
@@ -638,7 +630,6 @@ class SMLLexer(RegexLexer):
             (r'\b(%s)\b(?!\')' % '|'.join(exn_kw), Keyword.Reserved, 
              ('datbind', 'datcon')),
             (r'\b(%s)\b(?!\')' % '|'.join(type_kw), Keyword.Reserved, 'tname'),
-            (r'\b(%s)\b(?!\')' % '|'.join(fun_kw), Keyword.Reserved, 'fname'),
             (r'%s' % '|'.join(keyopts), Operator),
         ],
 
@@ -666,7 +657,7 @@ class SMLLexer(RegexLexer):
 
             (r'\bfun\b(?!\')', Keyword.Reserved, 
              ('#pop', 'main-fun', 'fname')),
-            (r'\band\b(?!\')', Keyword.Reserved),
+
             include('delimiters'),
             include('keywords'),
             include('specialconstant'),
@@ -678,7 +669,14 @@ class SMLLexer(RegexLexer):
         'main-fun': [
             (r'\s', Text),
             (r'\(\*', Comment.Multiline, 'comment'),
-            
+
+            # I also expect 'and' to precede a mutually inductive function
+            (r'\b(fun|and)\b(?!\')', Keyword.Reserved, 'fname'),
+
+            # The introduction of case, handle, or val means that 'and' and
+            # '|' will no longer be connected to a function in this scope.
+            # This is not how the Definition sets things up, but it's how
+            # MLton behaves, see http://mlton.org/SMLNJDeviations
             (r'\b(case|handle|val)\b(?!\')', Keyword.Reserved,
              ('#pop', 'main')),
             (r'\|', Operator, 'fname'),
