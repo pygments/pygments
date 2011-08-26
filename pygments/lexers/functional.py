@@ -618,9 +618,16 @@ class SMLLexer(RegexLexer):
             (r'~?\d+', Number.Integer),                        
         ],
 
-        # Main parser
-        'root': [
-            (r'\s', Text),
+        # The class Lab is extended to include the numeric labels 1 2 3,
+        # i.e. any numeral not starting with 0
+        'labels': [
+            (r'#\s*[1-9][0-9]*', Name.Label),
+            (r'#\s*(%s)' % alphanums, Name.Label),
+            (r'#\s+(%s)' % symbols, Name.Label),
+        ],
+
+        # Keywords, reservedwords
+        'keywords': [
             (r'false|true|\(\)|\[\]', Keyword.Pseudo),
             (r'\b(%s)\b(?!\')' % '|'.join(core_kw), Keyword.Reserved),
             (r'\b(%s)\b(?!\')' % '|'.join(sig_kw), Keyword.Reserved),
@@ -632,17 +639,48 @@ class SMLLexer(RegexLexer):
              ('datbind', 'datcon')),
             (r'\b(%s)\b(?!\')' % '|'.join(type_kw), Keyword.Reserved, 'tname'),
             (r'\b(%s)\b(?!\')' % '|'.join(fun_kw), Keyword.Reserved, 'fname'),
-            (r'\(\*', Comment.Multiline, 'comment'),
             (r'%s' % '|'.join(keyopts), Operator),
-            
+        ],
+
+        'delimiters': [
+            (r'\(|\[|{', Operator, '#push'),
+            (r'\)|\]|}', Operator, '#pop'),
+            (r'\b(let|if|local)\b(?!\')', Operator, ('main', 'main')),
+            (r'\b(while)\b(?!\')', Operator, 'main'),
+            (r'\b(do|else|end|in|then)\b(?!\')', Operator, '#pop'),
+        ],
+
+        # Main parser
+        'root': [ (r'', Text, 'main') ], # Always ping-pong up to main
+
+        # In this scope, I expect "|" to be followed by a function name
+        'main': [            
+            (r'\s', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
+
+            (r'\bfun\b(?!\')', Keyword.Reserved, 
+             ('#pop', 'main-fun', 'fname')),
+            (r'\band\b(?!\')', Keyword.Reserved),
+            include('delimiters'),
+            include('keywords'),
             include('specialconstant'),
+            include('labels'),
+            include('identifier'),
+        ],
 
-            # The class Lab is extended to include the numeric labels 1 2 3,
-            # i.e. any numeral not starting with 0
-            (r'#\s*[1-9][0-9]*', Name.Label),
-            (r'#\s*(%s)' % alphanums, Name.Label),
-            (r'#\s+(%s)' % symbols, Name.Label),
+        # In this scope, I expect "|" to not be followed by a function name
+        'main-fun': [
+            (r'\s', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
+            
+            (r'\b(case|handle|val)\b(?!\')', Keyword.Reserved,
+             ('#pop', 'main')),
+            (r'\|', Operator, 'fname'),
 
+            include('delimiters'),
+            include('keywords'),
+            include('specialconstant'),
+            include('labels'),
             include('identifier'),
         ],
 
