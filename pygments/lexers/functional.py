@@ -544,7 +544,8 @@ class SMLLexer(RegexLexer):
       ';', '\.\.\.', '_', 
       # '\|', '=', '=>', '->', '#', ':>'
     ]
-    symbols = r'[!%&$#+-/:<=>?@\~`^|*]'
+    alphanums = r'[a-zA-Z][0-9a-zA-Z_\']*'
+    symbols = r'[!%&$#+-/:<=>?@\\~`^|*]+'
     primitives = [
       'bool', 'int', 'real', 'string', 'char', 'word', 'list', 'ref', 'exn'
     ]
@@ -567,32 +568,42 @@ class SMLLexer(RegexLexer):
             (r'\b(%s)\b' % '|'.join(corekeywords), Keyword.Reserved),
             (r'\b(%s)\b' % '|'.join(sigkeywords), Keyword.Namespace),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
+            (r'\(\*', Comment.Multiline, 'comment'),
             (r'%s' % '|'.join(keyopts), Operator),
-            
-            # Special constants: floats, numbers in decimal and hexadecimal
-            (r'~?\d+(\.\d+|[eE]\d+|.\d+[eE]\d+)', Number.Float),
-            (r'~?\d+', Number.Integer),
-            (r'~?0x[\da-fA-F]+', Number.Hex),
-            (r'0w\d+', Number.Integer),
-            (r'0wx[\da-fA-F]+', Number.Hex),
-            
-            # An identifier is either alphanumeric: any sequence of letters,
-            # digits, primes, and underbars starting with a letter or prime...
-            (r'\'[a-zA-Z_\']*', Name.Decorator),
-            (r'[a-zA-Z][a-zA-Z\'_]*\s*\.', Name.Namespace),
-            (r'[a-zA-Z][a-zA-Z\'_]*', Name),
-            
-            # or symbolic: any non-empty sequence of the following symbols
-            (r'(%s)+\s*\.' % symbols, Name.Namespace),
-            (r'(%s)+' % symbols, Name), 
             
             # The class Lab is extended to include the numeric labels 1 2 3,
             # i.e. any numeral not starting with 0
-            (r'#[1-9][0-9]*', Name.Label),
-            (r'#[a-zA-Z][a-zA-Z_\']*', Name.Label),
+            (r'#\s*[1-9][0-9]*', Name.Label),
+            (r'#\s*(%s)' % alphanums, Name.Label),
+            (r'#\s*(%s)' % symbols, Name),
+
+            # An identifier is either alphanumeric: any sequence of letters,
+            # digits, primes, and underbars starting with a letter or prime...
+            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r'(%s)\s*\.' % alphanums, Name.Namespace),
+            (r'(%s)' % alphanums, Name),
             
+            # or symbolic: any non-empty sequence of the following symbols
+            (r'(%s)\s*\.' % symbols, Name.Namespace),
+            (r'(%s)' % symbols, Name), 
+            
+            # Special constants: floats, numbers in decimal and hexadecimal
+            (r'~?0x[0-9a-fA-F]+', Number.Hex),
+            (r'0wx[0-9a-fA-F]+', Number.Hex),
+            (r'0w\d+', Number.Integer),
+            (r'~?\d+\.\d+[eE]~?\d+', Number.Float),
+            (r'~?\d+\.\d+', Number.Float),
+            (r'~?\d+[eE]~?\d+', Number.Float),
+            (r'~?\d+', Number.Integer),
+                        
             (r'#"', String.Char, 'char'),
             (r'"', String.Double, 'string'),
+        ],
+        'comment': [
+            (r'[^(*)]', Comment.Multiline),
+            (r'\(\*', Comment.Multiline, '#push'),
+            (r'\*\)', Comment.Multiline, '#pop'),
+            (r'[(*)]', Comment.Multiline),
         ],
         'char': stringy(String.Char),
         'string': stringy(String.Double),
