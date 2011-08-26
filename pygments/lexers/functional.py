@@ -646,7 +646,7 @@ class SMLLexer(RegexLexer):
 
         # Main parser
         # Always ping-pong up to main - in a syntactically valid program, this
-        # rule should be called precisely once. This desing should prevent
+        # rule should be called precisely once. This design should prevent
         # errors from being raised in files that have scoping errors.
         'root': [ (r'', Text, 'main') ], 
 
