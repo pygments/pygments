@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
-     String, Number, Punctuation, Literal, Generic
+     String, Number, Punctuation, Literal, Generic, Error
 
 
 __all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer', 'LiterateHaskellLexer',
@@ -515,6 +515,7 @@ class LiterateHaskellLexer(Lexer):
         for item in do_insertions(insertions, hslexer.get_tokens_unprocessed(code)):
             yield item
 
+
 class SMLLexer(RegexLexer):
     """
     For the Standard ML language.
@@ -523,56 +524,36 @@ class SMLLexer(RegexLexer):
     name = 'Standard ML'
     aliases = ['sml']
     filenames = ['*.sml', '*.sig', '*.fun',]
-    mimetypes = ['text/x-standard-ml']
+    mimetypes = ['text/x-standardml', 'application/x-standardml']
 
-    # From the core language
-    core_kw = [
-      'abstype', 'and', 'andalso', 'as', 'case', 'do', 'else',
-      'end', 'fn', 'fun', 'handle', 'if', 'in', 'infix', 
-      'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'orelse',
-      'raise', 'rec', 'then', 'val', 'with', 'withtype', 'while',
-    ]
-
-    # From the module system
-    sig_kw = [ 
-      'include', 'sharing', 'sig', 'struct', 'where',
+    alphanumid_reserved = [
+      # Core 
+      'abstype', 'and', 'andalso', 'as', 'case', 'datatype', 'do', 'else',
+      'end', 'exception', 'fn', 'fun', 'handle', 'if', 'in', 'infix', 
+      'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'open', 'orelse',
+      'raise', 'rec', 'then', 'type', 'val', 'with', 'withtype', 'while',
+      # Modules
+      'eqtype', 'functor', 'include', 'sharing', 'sig', 'signature',
+      'struct', 'structure', 'where',
     ]
 
-    # Reserved keywords that change the state
-    datatype_kw = [
-      'datatype',
-    ]
-    exn_kw = [
-      'exception'
-    ]
-    type_kw = [ 
-      'type', 'eqtype',
-    ]
-    struct_kw = [ 
-      'functor', 'open', 'signature', 'structure', 
+    symbolicid_reserved = [
+      # Core 
+      ':', '\|', '=', '=>', '->', '#',
+      # Modules
+      ':>',
     ]
 
-    all_kw = [
-      'abstype', 'and', 'andalso', 'as', 'case', 'do', 'else',
-      'end', 'fn', 'fun', 'handle', 'if', 'in', 'infix', 
-      'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'orelse',
-      'raise', 'rec', 'then', 'val', 'with', 'withtype', 'while',
-      'include', 'sharing', 'sig', 'struct', 'where',
-      'datatype', 'exception', 
-      'type', 'eqtype',
-      'functor', 'open', 'signature', 'structure', 
-    ]
+    nonid_reserved = [ '(', ')', '[', ']', '{', '}', ',', ';', '...', '_' ]
 
-    # It doesn't work to have keyopts overlap with symbolic identifiers
-    keyopts = [
-      '\(', '\)', '\[', '\]', '{', '}', ',', 
-      # ':',
-      ';', '\.\.\.', '_', 
-      # '\|', '=', '=>', '->', '#', ':>'
-    ]
-    alphanums = r"[a-zA-Z][0-9a-zA-Z_\']*"
-    symbols = r'[!%&$#+-/:<=>?@\\~`^|*]+'
+    alphanumid_re = r"[a-zA-Z][a-zA-Z0-9_']*"
+    symbolicid_re = r"[!%&$#+\-/:<=>?@\\~`^|*]+"
 
+    # A character constant is a sequence of the form #s, where s is a string
+    # constant denoting a string of size one character. This setup just parses
+    # the entire string as either a String.Double or a String.Char (depending 
+    # on the argument), even if the String.Char is an erronous 
+    # multiple-character string. 
     def stringy (whatkind):
         return [
             (r'[^"\\]', whatkind),
@@ -580,25 +561,57 @@ class SMLLexer(RegexLexer):
             (r'\\\^[@-^]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),
             (r'\\u[0-9a-fA-F]{4}', String.Escape),
-            (r'\\\s*\\', String.Interpol),
+            (r'\\\s+\\', String.Interpol),
             (r'"', whatkind, '#pop'),
         ]
 
+    # Callbacks for distinguishing tokens and reserved words
+    def long_id_callback(self, match):
+        if match.group(1) in self.alphanumid_reserved: token = Error
+        elif match.group(1) in self.symbolicid_reserved: token = Error
+        else: token = Name.Namespace
+        yield match.start(1), token, match.group(1)
+        yield match.start(2), Punctuation, match.group(2) 
+
+    def end_id_callback(self, match):
+        if match.group(1) in self.alphanumid_reserved: token = Error
+        elif match.group(1) in self.symbolicid_reserved: token = Error
+        else: token = Name
+        yield match.start(1), token, match.group(1)
+        
+    def id_callback(self, match):
+        str = match.group(1)
+        if str in self.alphanumid_reserved: token = Keyword.Reserved
+        elif str in self.symbolicid_reserved: token = Punctuation
+        else: token = Name
+        yield match.start(1), token, str
+
     tokens = {
-        # Regular identifiers, long and otherwise
-        'identifier': [
-            # An identifier is either alphanumeric: any sequence of letters,
-            # digits, primes, and underbars starting with a letter or prime...
-            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
-            (r'(%s)\.' % alphanums, Name.Namespace),
-            (r'(%s)' % alphanums, Name),
-            
-            # or symbolic: any non-empty sequence of the following symbols
-            (r'(%s)' % symbols, Name), 
+        # Whitespace and comments are (almost) everywhere
+        'whitespace': [
+            (r'\s+', Text),
+            (r'\(\*', Comment.Multiline, 'comment'),
         ],
 
-        # Special constants: strings, floats, numbers in decimal and hex
-        'specialconstant': [
+        'delimiters': [
+            # This lexer treats these delimiters specially:
+            # Delimiters define scopes, and the scope is how the meaning of 
+            # the `|' is resolved - is it a case/handle expression, or function
+            # definition by cases? (This is not how the Definition works, but
+            # it's how MLton behaves, see http://mlton.org/SMLNJDeviations)
+            (r'\(|\[|{', Punctuation, 'main'),
+            (r'\)|\]|}', Punctuation, '#pop'),
+            (r'\b(let|if|local)\b(?!\')', Keyword.Reserved, ('main', 'main')),
+            (r'\b(struct|sig|while)\b(?!\')', Keyword.Reserved, 'main'),
+            (r'\b(do|else|end|in|then)\b(?!\')', Keyword.Reserved, '#pop'),
+        ],
+
+        'core': [
+            # Punctuation that doesn't overlap symbolic identifiers
+            (r'(%s)' % '|'.join([re.escape(z) for z in nonid_reserved]), 
+             Punctuation),
+
+            # Special constants: strings, floats, numbers in decimal and hex
             (r'#"', String.Char, 'char'),
             (r'"', String.Double, 'string'),
             (r'~?0x[0-9a-fA-F]+', Number.Hex),
@@ -608,178 +621,199 @@ class SMLLexer(RegexLexer):
             (r'~?\d+\.\d+', Number.Float),
             (r'~?\d+[eE]~?\d+', Number.Float),
             (r'~?\d+', Number.Integer),                        
-        ],
 
-        # "The class Lab is extended to include the numeric labels 1 2 3,
-        # i.e. any numeral not starting with 0"
-        'labels': [
+            # Labels
             (r'#\s*[1-9][0-9]*', Name.Label),
-            (r'#\s*(%s)' % alphanums, Name.Label),
-            (r'#\s+(%s)' % symbols, Name.Label),
+            (r'#\s*(%s)' % alphanumid_re, Name.Label),
+            (r'#\s+(%s)' % symbolicid_re, Name.Label),
+            # Some reserved words trigger a special, local lexer state change
+            (r'\b(datatype|abstype)\b(?!\')', Keyword.Reserved, 'dname'),
+            (r'(?=\b(exception)\b(?!\'))', Text, ('ename')),
+            (r'\b(functor|include|open|signature|structure)\b(?!\')',
+             Keyword.Reserved, 'sname'),
+            (r'\b(type|eqtype)\b(?!\')', Keyword.Reserved, 'tname'),
+
+            # Regular identifiers, long and otherwise
+            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r'(%s)(\.)' % alphanumid_re, long_id_callback, "dotted"),
+            (r'(%s)' % alphanumid_re, id_callback),
+            (r'(%s)' % symbolicid_re, id_callback),
+        ],
+        'dotted': [
+            (r'(%s)(\.)' % alphanumid_re, long_id_callback),
+            (r'(%s)' % alphanumid_re, end_id_callback, "#pop"),
+            (r'\s+', Error),
+            (r'\S+', Error),
         ],
 
-        # Keywords, reservedwords
-        'keywords': [
-            (r'false|true|\(\)|\[\]', Keyword.Pseudo),
-            (r'\b(%s)\b(?!\')' % '|'.join(core_kw), Keyword.Reserved),
-            (r'\b(%s)\b(?!\')' % '|'.join(sig_kw), Keyword.Reserved),
-            (r'\b(%s)\b(?!\')' % '|'.join(struct_kw), Keyword.Reserved, 
-             'sdecs'),
-            (r'\b(%s)\b(?!\')' % '|'.join(datatype_kw), Keyword.Reserved, 
-             'dname'),
-            (r'\b(%s)\b(?!\')' % '|'.join(exn_kw), Keyword.Reserved, 
-             ('datbind', 'datcon')),
-            (r'\b(%s)\b(?!\')' % '|'.join(type_kw), Keyword.Reserved, 'tname'),
-            (r'%s' % '|'.join(keyopts), Operator),
-        ],
 
-        # Delimiters define scopes, and the scope is how the meaning of 
-        # the `|' is resolved - is it a case/handle expression, or function
-        # definition by cases?
-        'delimiters': [
-            (r'\(|\[|{', Operator, 'main'),
-            (r'\)|\]|}', Operator, '#pop'),
-            (r'\b(let|if|local)\b(?!\')', Keyword.Reserved, ('main', 'main')),
-            (r'\b(struct|sig|while)\b(?!\')', Keyword.Reserved, 'main'),
-            (r'\b(do|else|end|in|then)\b(?!\')', Keyword.Reserved, '#pop'),
-        ],
-
-        # Main parser
-        # Always ping-pong up to main - in a syntactically valid program, this
-        # rule should be called precisely once. This design should prevent
-        # errors from being raised in files that have scoping errors.
+        # Main parser (prevents errors in files that have scoping errors)
         'root': [ (r'', Text, 'main') ], 
 
-        # In this scope, I expect "|" to not be followed by a function name
+        # In this scope, I expect '|' to not be followed by a function name, 
+        # and I expect 'and' to be followed by a binding site
         'main': [            
-            (r'\s', Text),
-            (r'\(\*', Comment.Multiline, 'comment'),
+            include('whitespace'),
 
-            (r'\bfun\b(?!\')', Keyword.Reserved, 
+            # Special behavior of val/and/fun
+            (r'\b(val|and)\b(?!\')', Keyword.Reserved, 'vname'),
+            (r'\b(fun)\b(?!\')', Keyword.Reserved, 
              ('#pop', 'main-fun', 'fname')),
 
             include('delimiters'),
-            include('keywords'),
-            include('specialconstant'),
-            include('labels'),
-            include('identifier'),
+            include('core'),
+            (r'\S+', Error),            
         ],
 
-        # In this scope, I expect "|" to be followed by a function name
+        # In this scope, I expect '|' and 'and' to be followed by a function
         'main-fun': [
+            include('whitespace'),
+
             (r'\s', Text),
             (r'\(\*', Comment.Multiline, 'comment'),
 
-            # I also expect 'and' to precede a mutually inductive function
+            # Special behavior of val/and/fun
             (r'\b(fun|and)\b(?!\')', Keyword.Reserved, 'fname'),
+            (r'\b(val)\b(?!\')', Keyword.Reserved, 
+             ('#pop', 'main', 'vname')),
 
-            # The introduction of case, handle, or val means that 'and' and
-            # '|' will no longer be connected to a function in this scope.
-            # This is not how the Definition sets things up, but it's how
-            # MLton behaves, see http://mlton.org/SMLNJDeviations
-            (r'\b(case|handle|val)\b(?!\')', Keyword.Reserved,
+            # Special behavior of '|' and '|'-manipulating keywords
+            (r'\|', Punctuation, 'fname'),
+            (r'\b(case|handle)\b(?!\')', Keyword.Reserved,
              ('#pop', 'main')),
-            (r'\|', Operator, 'fname'),
 
             include('delimiters'),
-            include('keywords'),
-            include('specialconstant'),
-            include('labels'),
-            include('identifier'),
+            include('core'),
+            (r'\S+', Error),            
         ],
 
-        # Dealing with what comes after the 'fun' (or 'and') keyword
-        'fname': [
-            (r'\s', Text),
-            (r'\(\*', Comment.Multiline, 'comment'),
-            (r'(%s)' % alphanums, Name.Function, '#pop'),
-            (r'(%s)' % symbols, Name.Function, '#pop'), 
+        # Character and string parsers
+        'char': stringy(String.Char),
+        'string': stringy(String.Double),
 
-            # Funky fun declaration? Just give up.
-            # This handles infix cases like "fun (x + y) = ..."
+        'breakout': [
+            (r'(?=\b(%s)\b(?!\'))' % '|'.join(alphanumid_reserved), Text, '#pop'),
+        ],
+
+        # Dealing with what comes after module system keywords
+        'sname': [
+            include('whitespace'),
+            include('breakout'),
+
+            (r'(%s)' % alphanumid_re, Name.Namespace),
+            (r'\S+', Error, '#pop'),            
+        ],
+
+        # Dealing with what comes after the 'fun' (or 'and' or '|') keyword
+        'fname': [
+            include('whitespace'),
+            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r'\(', Punctuation, 'tyvarseq'),
+
+            (r'(%s)' % alphanumid_re, Name.Function, '#pop'),
+            (r'(%s)' % symbolicid_re, Name.Function, '#pop'), 
+
+            # Ignore interesting function declarations like "fun (x + y) = ..."
             (r'', Text, '#pop'), 
         ],
 
-        # Dealing with what comes after most of the module system keywords
-        'sdecs': [
-            (r'\s', Text),
-            (r'\(\*', Comment.Multiline, 'comment'),
-            (r'(%s)' % alphanums, Name.Namespace, '#pop'),
+        # Dealing with what comes after the 'val' (or 'and') keyword
+        'vname': [
+            include('whitespace'),
+            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r'\(', Punctuation, 'tyvarseq'),
+
+            (r'(%s)(\s*)(=(?!%s))' % (alphanumid_re, symbolicid_re), 
+             bygroups(Name.Variable, Text, Punctuation), '#pop'),
+            (r'(%s)(\s*)(=(?!%s))' % (symbolicid_re, symbolicid_re), 
+             bygroups(Name.Variable, Text, Punctuation), '#pop'), 
+            (r'(%s)' % alphanumid_re, Name.Variable, '#pop'),
+            (r'(%s)' % symbolicid_re, Name.Variable, '#pop'),
+
+            # Ignore interesting patterns like 'val (x, y)'
+            (r'', Text, '#pop'), 
         ],
 
         # Dealing with what comes after the 'type' (or 'and') keyword
         'tname': [
-            (r'\s', Text),
-            (r'\(\*', Comment.Multiline, 'comment'),
+            include('whitespace'),
+            include('breakout'),
+
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
-            (r'\(', Operator, 'tyvarseq'),
+            (r'\(', Punctuation, 'tyvarseq'),
+            (r'=(?!%s)' % symbolicid_re, Punctuation, ('#pop', 'typbind')),
 
-            # Distingish between replication and declaration
-            (r'=', Operator, ('#pop', 'typbind')),
-
-            # Notice that we're in a specification, leave
-            (r'(%s)(?=\s*=)' % alphanums, Keyword.Type), 
-            (r'(%s)(?=\s+=)' % symbols, Keyword.Type), 
-            (r'(%s)' % alphanums, Keyword.Type, '#pop'),
-            (r'(%s)' % symbols, Keyword.Type, '#pop'),
+            (r'(%s)' % alphanumid_re, Keyword.Type),
+            (r'(%s)' % symbolicid_re, Keyword.Type),
+            (r'\S+', Error, '#pop'),            
         ],
 
+        # A type binding includes most identifiers
         'typbind': [
-            (r'\s', Text),
-            (r'\(\*', Comment.Multiline, 'comment'),
-            (r'\band\b', Keyword.Reserved, ('#pop', 'tname')), # start again
-            (r'(?=\b(%s)\b)' % '|'.join(all_kw), Text, '#pop'), # Done
-            (r'%s' % '|'.join(keyopts), Operator),
-            include('identifier'),
+            include('whitespace'),
+
+            (r'\b(and)\b(?!\')', Keyword.Reserved, ('#pop', 'tname')),
+
+            include('breakout'),
+            include('core'),
+            (r'\S+', Error, '#pop'),            
         ],
 
         # Dealing with what comes after the 'datatype' (or 'and') keyword
         'dname': [
-            (r'\s', Text),
-            (r'\(\*', Comment.Multiline, 'comment'),
+            include('whitespace'),
+            include('breakout'),
+
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
-            (r'\(', Operator, 'tyvarseq'),
+            (r'\(', Punctuation, 'tyvarseq'),
+            (r'(=)(\s*)(datatype)', 
+             bygroups(Punctuation, Text, Keyword.Reserved), '#pop'), 
+            (r'=(?!%s)' % symbolicid_re, Punctuation, 
+             ('#pop', 'datbind', 'datcon')),
 
-            # Distingish between replication and declaration
-            (r'=(?=\s*datatype)', Operator, ('#pop', 'dat_replication')), 
-            (r'=', Operator, ('#pop', 'datbind', 'datcon')),
-
-            # Notice that we're in a specification, leave
-            (r'(%s)(?=\s*=)' % alphanums, Keyword.Type), 
-            (r'(%s)(?=\s+=)' % symbols, Keyword.Type), 
-            (r'(%s)' % alphanums, Keyword.Type, '#pop'),
-            (r'(%s)' % symbols, Keyword.Type, '#pop'),
-        ],
-
-        # datatype tycon = datatype longtycon
-        'dat_replication': [
-            (r'\s', Text),
-            (r'\(\*', Comment.Multiline, 'comment'),
-            (r'datatype', Keyword.Reserved), 
-            (r'(%s)\.' % alphanums, Name.Namespace),
-            (r'(%s)' % alphanums, Name, '#pop'),
+            (r'(%s)' % alphanumid_re, Keyword.Type),
+            (r'(%s)' % symbolicid_re, Keyword.Type),
+            (r'\S+', Error, '#pop'),            
         ],
 
         # common case - A | B | C of int 
         'datbind': [
-            (r'\s', Text),
-            (r'\(\*', Comment.Multiline, 'comment'),
+            include('whitespace'),
 
-            (r'\band\b', Keyword.Reserved, ('#pop', 'dname')), # start again
-            (r'\bof\b', Keyword.Reserved), # Only reserved word here?
-            (r'(?=\b(%s)\b)' % '|'.join(all_kw), Text, '#pop'), # Done
+            (r'\b(and)\b(?!\')', Keyword.Reserved, ('#pop', 'dname')),
+            (r'\b(withtype)\b(?!\')', Keyword.Reserved, ('#pop', 'tname')),
+            (r'\b(of)\b(?!\')', Keyword.Reserved),
 
-            (r'\|', Operator, 'datcon'),
-            (r'%s' % '|'.join(keyopts), Operator),
-            include('identifier'),
+            (r'(\|)(\s*)(%s)' % alphanumid_re,
+             bygroups(Punctuation, Text, Name.Class)),
+            (r'(\|)(\s+)(%s)' % symbolicid_re,
+             bygroups(Punctuation, Text, Name.Class)),
+
+            include('breakout'),
+            include('core'),
+            (r'\S+', Error),            
+        ],
+
+        # Dealing with what comes after an exception
+        'ename': [
+            include('whitespace'),
+
+            (r'(exception|and)\b(\s+)(%s)' % alphanumid_re,
+             bygroups(Keyword.Reserved, Text, Name.Class)),
+            (r'(exception|and)\b(\s*)(%s)' % symbolicid_re,
+             bygroups(Keyword.Reserved, Text, Name.Class)),
+            (r'\b(of)\b(?!\')', Keyword.Reserved),
+
+            include('breakout'),
+            include('core'),
+            (r'\S+', Error),            
         ],
 
         'datcon': [
-            (r'\s', Text),
-            (r'\(\*', Comment.Multiline, 'comment'),
-
-            (r'(%s)' % alphanums, Name.Class, '#pop'),
-            (r'(%s)' % symbols, Name.Class, '#pop'), 
+            include('whitespace'),
+            (r'(%s)' % alphanumid_re, Name.Class, '#pop'),
+            (r'(%s)' % symbolicid_re, Name.Class, '#pop'), 
+            (r'\S+', Error, '#pop'),            
         ],
 
         # Series of type variables
@@ -788,8 +822,9 @@ class SMLLexer(RegexLexer):
             (r'\(\*', Comment.Multiline, 'comment'),
 
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
-            (r',', Operator),
-            (r'\)', Operator, '#pop'),
+            (r',', Punctuation),
+            (r'\)', Punctuation, '#pop'),
+            (r'', Error, '#pop'),            
         ],
 
         'comment': [
@@ -798,9 +833,6 @@ class SMLLexer(RegexLexer):
             (r'\*\)', Comment.Multiline, '#pop'),
             (r'[(*)]', Comment.Multiline),
         ],
-
-        'char': stringy(String.Char),
-        'string': stringy(String.Double),
     }
 
 

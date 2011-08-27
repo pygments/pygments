@@ -1,8 +1,52 @@
 (*(*(*(*(* This file is all pretty strange Standard ML *)*)*)*) (**)*)
 (* Robert J. Simmons *)
 
+(* Comments (* can be nested *) *)
+structure S = struct
+  val x = (1, 2, "three")
+end
+
+structure S = struct
+  (* These look good *)
+  val x = (1, 2, "three")
+  val z = #2 x
+
+  (* Although these look bad (not all the numbers are constants),       *
+   * they never occur in practice, as they are equivalent to the above. *)
+  val x = {1 = 1, 3 = "three", 2 = 2}
+  val z = #
+            2 x
+end
+
+signature S = sig end
+
+structure S = struct
+  val x = (1, 2, "three")
+  datatype 'a t = T of 'a
+       and u = U of v * v
+  withtype v = {left: int t, right: int t}
+  exception E1 of int and E2
+  fun 'a id (x: 'a) : 'a = x
+
+  val 
+      'a id = fn (x : 'a) => x
+end
+
+signature R = sig
+  type t
+  val x : t
+  val f : t * int -> int
+end
+structure R : R = struct
+  datatype t = T of int
+  val x : t = T 0
+  fun f (T x, i : int) : int = x + i
+  fun 'a id (x: 'a) : 'a = x
+end
+
 signature BA_Z = sig 
    val s: int
+   include S R
 end 
 
 structure b______ = struct (* What (* A * strange * name *) for ) a ( struct *)
@@ -22,7 +66,7 @@ end
 infixr +!+ 
 fun (a +!+ b) = (op +) (a, b)
 
-open baz
+open baz S R
 
 val$$$ = fn x => fn y => fn z => fn w => w
 val (foo, ++, bar, ||) = (4, baz.Bar.foo, !%&$#+-/:<=>?@\~`^|*, Bar.foo)
@@ -39,14 +83,14 @@ val {##=, x, 4=a,...} = w
 val z = #4 w
 val z = # ##= w
 
-fun f x y 0 = 4
+fun f x y 0 = 4 
   | f x y z = 4 
 
 exception Foo of int
 datatype ('0, 'b, '_, ') f'o'o = Bar | baZ12' | dsfa_fad | #@$ | Bug
 and (', ''', '''', ''''') bar = 
    Bee of unit
- | Ben of (', ''', '''', ''''') f'o'o * string * int 
+ | Ben of (', ''', '''', ''''') f'o'o * int
  | X of ''' list
 
 fun q x = raise Foo x
