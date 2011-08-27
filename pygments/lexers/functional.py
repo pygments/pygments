@@ -568,7 +568,6 @@ class SMLLexer(RegexLexer):
     # Callbacks for distinguishing tokens and reserved words
     def long_id_callback(self, match):
         if match.group(1) in self.alphanumid_reserved: token = Error
-        elif match.group(1) in self.symbolicid_reserved: token = Error
         else: token = Name.Namespace
         yield match.start(1), token, match.group(1)
         yield match.start(2), Punctuation, match.group(2) 
