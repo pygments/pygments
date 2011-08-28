@@ -701,7 +701,7 @@ class SMLLexer(RegexLexer):
             include('breakout'),
 
             (r'(%s)' % alphanumid_re, Name.Namespace),
-            (r'\S+', Error, '#pop'),            
+            (r'', Text, '#pop'),            
         ],
 
         # Dealing with what comes after the 'fun' (or 'and' or '|') keyword
