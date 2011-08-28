@@ -1,3 +1,8 @@
+structure C = struct
+   val a = 12
+   fun f x = x + 5
+end
+
 (*(*(*(*(* This file is all pretty strange Standard ML *)*)*)*) (**)*)
 (* Robert J. Simmons *)
 
@@ -6,7 +11,7 @@ structure S = struct
   val x = (1, 2, "three")
 end
 
-structure S = struct
+structure Sv = struct
   (* These look good *)
   val x = (1, 2, "three")
   val z = #2 x
@@ -16,6 +21,8 @@ structure S = struct
   val x = {1 = 1, 3 = "three", 2 = 2}
   val z = #
             2 x
+
+  val || = 12
 end
 
 signature S = sig end
@@ -84,7 +91,7 @@ val z = #4 w
 val z = # ##= w
 
 fun f x y 0 = 4 
-  | f x y z = 4 
+  | f x y z = 4 + Sv.||
 
 exception Foo of int
 datatype ('0, 'b, '_, ') f'o'o = Bar | baZ12' | dsfa_fad | #@$ | Bug
