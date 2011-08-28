@@ -641,6 +641,7 @@ class SMLLexer(RegexLexer):
         'dotted': [
             (r'(%s)(\.)' % alphanumid_re, long_id_callback),
             (r'(%s)' % alphanumid_re, end_id_callback, "#pop"),
+            (r'(%s)' % symbolicid_re, end_id_callback, "#pop"),
             (r'\s+', Error),
             (r'\S+', Error),
         ],
