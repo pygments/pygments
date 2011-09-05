@@ -1716,17 +1716,21 @@ class CoffeeScriptLexer(RegexLexer):
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Text),
+            (r'###.*?###', Comment.Multiline),
             (r'#.*?\n', Comment.Single),
+        ],
+        'multilineregex': [
+            include('commentsandwhitespace'),
+            (r'///([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'/', String.Regex),
+            (r'[^/#]+', String.Regex)
         ],
         'slashstartsregex': [
             include('commentsandwhitespace'),
+            (r'///', String.Regex, ('#pop', 'multilineregex')),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
-            (r'(?=/)', Text, ('#pop', 'badregex')),
             (r'', Text, '#pop'),
-        ],
-        'badregex': [
-            ('\n', Text, '#pop'),
         ],
         'root': [
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
@@ -1751,6 +1755,7 @@ class CoffeeScriptLexer(RegexLexer):
               'slashstartsregex'),
             (r'@[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*[:=]\s', Name.Variable.Instance,
               'slashstartsregex'),
+            (r'@', Name.Other, 'slashstartsregex'),
             (r'@?[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other, 'slashstartsregex'),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
