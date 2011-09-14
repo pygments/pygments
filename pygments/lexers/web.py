@@ -1760,9 +1760,33 @@ class CoffeeScriptLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
-        ]
+            ('"""', String, 'tdqs'),
+            ("'''", String, 'tsqs'),
+            ('"', String, 'dqs'),
+            ("'", String, 'sqs'),
+        ],
+        'strings': [
+            (r'[^\\\'"]+', String), # note that all coffee script strings are multi-line.
+            (r'[\'"\\]', String),   # quotes and backslashes must be parsed one at a time
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            (r'\\\\|\\"', String), # double-quoted string has " escapes
+            include('strings')
+        ],
+        'sqs': [
+            (r"'", String, '#pop'),
+            (r"\\\\|\\'", String), # single quoted string has ' escapses
+            include('strings')
+        ],
+        'tdqs': [
+            (r'"""', String, '#pop'),
+            include('strings')
+        ],
+        'tsqs': [
+            (r"'''", String, '#pop'),
+            include('strings')
+        ],
     }
 
 class DuelLexer(RegexLexer):
