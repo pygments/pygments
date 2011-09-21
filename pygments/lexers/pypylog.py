@@ -56,7 +56,7 @@ class PyPyLogLexer(RegexLexer):
              r"float_add|float_sub|float_mul|float_truediv|"
              r"float_eq|float_ne|float_ge|float_gt|float_le|float_lt|float_abs|"
              r"ptr_eq|"
-             r"cast_int_to_float|cast_float_to_int|"
+             r"cast_int_to_float|cast_float_to_int|cast_opaque_ptr|"
              r"force_token|quasiimmut_field|same_as|virtual_ref_finish|virtual_ref|"
              r"call_may_force|call_assembler|call_loopinvariant|call_release_gil|call_pure|call|"
              r"new_with_vtable|new_array|newstr|newunicode|new|"
