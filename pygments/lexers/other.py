@@ -2885,15 +2885,17 @@ class AwkLexer(RegexLexer):
         ]
     }
 
+
 class Cfengine3Lexer(RegexLexer):
     """
     Lexer for `CFEngine3 <http://cfengine.org>`_ policy files.
 
+    *New in Pygments 1.5.*
     """
 
     name = 'CFEngine3'
     aliases = ['cfengine3', 'cf3']
-    filenames = [ '*.cf' ]
+    filenames = ['*.cf']
     mimetypes = []
 
     tokens = {
@@ -2902,7 +2904,8 @@ class Cfengine3Lexer(RegexLexer):
             (r'(body)(\s+)(\S+)(\s+)(control)',
              bygroups(Keyword, Text, Keyword, Text, Keyword)),
             (r'(body|bundle)(\s+)(\S+)(\s+)(\w+)(\()',
-             bygroups(Keyword, Text, Keyword, Text, Name.Function, Punctuation), 'arglist'),
+             bygroups(Keyword, Text, Keyword, Text, Name.Function, Punctuation),
+             'arglist'),
             (r'(body|bundle)(\s+)(\S+)(\s+)(\w+)',
              bygroups(Keyword, Text, Keyword, Text, Name.Function)),
             (r'(")([^"]+)(")(\s+)(string|slist|int|real)(\s*)(=>)(\s*)',
