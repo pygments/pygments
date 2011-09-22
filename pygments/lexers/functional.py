@@ -824,9 +824,10 @@ class SMLLexer(RegexLexer):
             (r'\(\*', Comment.Multiline, 'comment'),
 
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (alphanumid_re, Name),
             (r',', Punctuation),
             (r'\)', Punctuation, '#pop'),
-            (r'', Error, '#pop'),
+            (symbolicid_re, Name),
         ],
 
         'comment': [
