@@ -10,6 +10,9 @@ while x<10000
 g=%w{}
 x=0
 
+#leere regex
+test //, 123
+
 while x<100
  puts"#{g[x]}"
  x+=1
