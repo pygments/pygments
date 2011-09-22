@@ -16,9 +16,9 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic, Error
 
 
-__all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer', 'LiterateHaskellLexer',
-           'SMLLexer', 
-           'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer']
+__all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
+           'LiterateHaskellLexer', 'SMLLexer', 'OcamlLexer', 'ErlangLexer',
+           'ErlangShellLexer']
 
 
 class SchemeLexer(RegexLexer):
@@ -519,6 +519,8 @@ class LiterateHaskellLexer(Lexer):
 class SMLLexer(RegexLexer):
     """
     For the Standard ML language.
+
+    *New in Pygments 1.5.*
     """
 
     name = 'Standard ML'
@@ -527,21 +529,21 @@ class SMLLexer(RegexLexer):
     mimetypes = ['text/x-standardml', 'application/x-standardml']
 
     alphanumid_reserved = [
-      # Core 
-      'abstype', 'and', 'andalso', 'as', 'case', 'datatype', 'do', 'else',
-      'end', 'exception', 'fn', 'fun', 'handle', 'if', 'in', 'infix', 
-      'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'open', 'orelse',
-      'raise', 'rec', 'then', 'type', 'val', 'with', 'withtype', 'while',
-      # Modules
-      'eqtype', 'functor', 'include', 'sharing', 'sig', 'signature',
-      'struct', 'structure', 'where',
+        # Core
+        'abstype', 'and', 'andalso', 'as', 'case', 'datatype', 'do', 'else',
+        'end', 'exception', 'fn', 'fun', 'handle', 'if', 'in', 'infix',
+        'infixr', 'let', 'local', 'nonfix', 'of', 'op', 'open', 'orelse',
+        'raise', 'rec', 'then', 'type', 'val', 'with', 'withtype', 'while',
+        # Modules
+        'eqtype', 'functor', 'include', 'sharing', 'sig', 'signature',
+        'struct', 'structure', 'where',
     ]
 
     symbolicid_reserved = [
-      # Core 
-      ':', '\|', '=', '=>', '->', '#',
-      # Modules
-      ':>',
+        # Core
+        ':', '\|', '=', '=>', '->', '#',
+        # Modules
+        ':>',
     ]
 
     nonid_reserved = [ '(', ')', '[', ']', '{', '}', ',', ';', '...', '_' ]
@@ -551,9 +553,9 @@ class SMLLexer(RegexLexer):
 
     # A character constant is a sequence of the form #s, where s is a string
     # constant denoting a string of size one character. This setup just parses
-    # the entire string as either a String.Double or a String.Char (depending 
-    # on the argument), even if the String.Char is an erronous 
-    # multiple-character string. 
+    # the entire string as either a String.Double or a String.Char (depending
+    # on the argument), even if the String.Char is an erronous
+    # multiple-character string.
     def stringy (whatkind):
         return [
             (r'[^"\\]', whatkind),
@@ -570,14 +572,14 @@ class SMLLexer(RegexLexer):
         if match.group(1) in self.alphanumid_reserved: token = Error
         else: token = Name.Namespace
         yield match.start(1), token, match.group(1)
-        yield match.start(2), Punctuation, match.group(2) 
+        yield match.start(2), Punctuation, match.group(2)
 
     def end_id_callback(self, match):
         if match.group(1) in self.alphanumid_reserved: token = Error
         elif match.group(1) in self.symbolicid_reserved: token = Error
         else: token = Name
         yield match.start(1), token, match.group(1)
-        
+
     def id_callback(self, match):
         str = match.group(1)
         if str in self.alphanumid_reserved: token = Keyword.Reserved
@@ -594,7 +596,7 @@ class SMLLexer(RegexLexer):
 
         'delimiters': [
             # This lexer treats these delimiters specially:
-            # Delimiters define scopes, and the scope is how the meaning of 
+            # Delimiters define scopes, and the scope is how the meaning of
             # the `|' is resolved - is it a case/handle expression, or function
             # definition by cases? (This is not how the Definition works, but
             # it's how MLton behaves, see http://mlton.org/SMLNJDeviations)
@@ -607,7 +609,7 @@ class SMLLexer(RegexLexer):
 
         'core': [
             # Punctuation that doesn't overlap symbolic identifiers
-            (r'(%s)' % '|'.join([re.escape(z) for z in nonid_reserved]), 
+            (r'(%s)' % '|'.join([re.escape(z) for z in nonid_reserved]),
              Punctuation),
 
             # Special constants: strings, floats, numbers in decimal and hex
@@ -619,7 +621,7 @@ class SMLLexer(RegexLexer):
             (r'~?\d+\.\d+[eE]~?\d+', Number.Float),
             (r'~?\d+\.\d+', Number.Float),
             (r'~?\d+[eE]~?\d+', Number.Float),
-            (r'~?\d+', Number.Integer),                        
+            (r'~?\d+', Number.Integer),
 
             # Labels
             (r'#\s*[1-9][0-9]*', Name.Label),
@@ -648,21 +650,21 @@ class SMLLexer(RegexLexer):
 
 
         # Main parser (prevents errors in files that have scoping errors)
-        'root': [ (r'', Text, 'main') ], 
+        'root': [ (r'', Text, 'main') ],
 
-        # In this scope, I expect '|' to not be followed by a function name, 
+        # In this scope, I expect '|' to not be followed by a function name,
         # and I expect 'and' to be followed by a binding site
-        'main': [            
+        'main': [
             include('whitespace'),
 
             # Special behavior of val/and/fun
             (r'\b(val|and)\b(?!\')', Keyword.Reserved, 'vname'),
-            (r'\b(fun)\b(?!\')', Keyword.Reserved, 
+            (r'\b(fun)\b(?!\')', Keyword.Reserved,
              ('#pop', 'main-fun', 'fname')),
 
             include('delimiters'),
             include('core'),
-            (r'\S+', Error),            
+            (r'\S+', Error),
         ],
 
         # In this scope, I expect '|' and 'and' to be followed by a function
@@ -674,7 +676,7 @@ class SMLLexer(RegexLexer):
 
             # Special behavior of val/and/fun
             (r'\b(fun|and)\b(?!\')', Keyword.Reserved, 'fname'),
-            (r'\b(val)\b(?!\')', Keyword.Reserved, 
+            (r'\b(val)\b(?!\')', Keyword.Reserved,
              ('#pop', 'main', 'vname')),
 
             # Special behavior of '|' and '|'-manipulating keywords
@@ -684,7 +686,7 @@ class SMLLexer(RegexLexer):
 
             include('delimiters'),
             include('core'),
-            (r'\S+', Error),            
+            (r'\S+', Error),
         ],
 
         # Character and string parsers
@@ -701,7 +703,7 @@ class SMLLexer(RegexLexer):
             include('breakout'),
 
             (r'(%s)' % alphanumid_re, Name.Namespace),
-            (r'', Text, '#pop'),            
+            (r'', Text, '#pop'),
         ],
 
         # Dealing with what comes after the 'fun' (or 'and' or '|') keyword
@@ -711,10 +713,10 @@ class SMLLexer(RegexLexer):
             (r'\(', Punctuation, 'tyvarseq'),
 
             (r'(%s)' % alphanumid_re, Name.Function, '#pop'),
-            (r'(%s)' % symbolicid_re, Name.Function, '#pop'), 
+            (r'(%s)' % symbolicid_re, Name.Function, '#pop'),
 
             # Ignore interesting function declarations like "fun (x + y) = ..."
-            (r'', Text, '#pop'), 
+            (r'', Text, '#pop'),
         ],
 
         # Dealing with what comes after the 'val' (or 'and') keyword
@@ -723,15 +725,15 @@ class SMLLexer(RegexLexer):
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
             (r'\(', Punctuation, 'tyvarseq'),
 
-            (r'(%s)(\s*)(=(?!%s))' % (alphanumid_re, symbolicid_re), 
+            (r'(%s)(\s*)(=(?!%s))' % (alphanumid_re, symbolicid_re),
              bygroups(Name.Variable, Text, Punctuation), '#pop'),
-            (r'(%s)(\s*)(=(?!%s))' % (symbolicid_re, symbolicid_re), 
-             bygroups(Name.Variable, Text, Punctuation), '#pop'), 
+            (r'(%s)(\s*)(=(?!%s))' % (symbolicid_re, symbolicid_re),
+             bygroups(Name.Variable, Text, Punctuation), '#pop'),
             (r'(%s)' % alphanumid_re, Name.Variable, '#pop'),
             (r'(%s)' % symbolicid_re, Name.Variable, '#pop'),
 
             # Ignore interesting patterns like 'val (x, y)'
-            (r'', Text, '#pop'), 
+            (r'', Text, '#pop'),
         ],
 
         # Dealing with what comes after the 'type' (or 'and') keyword
@@ -745,7 +747,7 @@ class SMLLexer(RegexLexer):
 
             (r'(%s)' % alphanumid_re, Keyword.Type),
             (r'(%s)' % symbolicid_re, Keyword.Type),
-            (r'\S+', Error, '#pop'),            
+            (r'\S+', Error, '#pop'),
         ],
 
         # A type binding includes most identifiers
@@ -756,7 +758,7 @@ class SMLLexer(RegexLexer):
 
             include('breakout'),
             include('core'),
-            (r'\S+', Error, '#pop'),            
+            (r'\S+', Error, '#pop'),
         ],
 
         # Dealing with what comes after the 'datatype' (or 'and') keyword
@@ -766,17 +768,17 @@ class SMLLexer(RegexLexer):
 
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
             (r'\(', Punctuation, 'tyvarseq'),
-            (r'(=)(\s*)(datatype)', 
-             bygroups(Punctuation, Text, Keyword.Reserved), '#pop'), 
-            (r'=(?!%s)' % symbolicid_re, Punctuation, 
+            (r'(=)(\s*)(datatype)',
+             bygroups(Punctuation, Text, Keyword.Reserved), '#pop'),
+            (r'=(?!%s)' % symbolicid_re, Punctuation,
              ('#pop', 'datbind', 'datcon')),
 
             (r'(%s)' % alphanumid_re, Keyword.Type),
             (r'(%s)' % symbolicid_re, Keyword.Type),
-            (r'\S+', Error, '#pop'),            
+            (r'\S+', Error, '#pop'),
         ],
 
-        # common case - A | B | C of int 
+        # common case - A | B | C of int
         'datbind': [
             include('whitespace'),
 
@@ -791,7 +793,7 @@ class SMLLexer(RegexLexer):
 
             include('breakout'),
             include('core'),
-            (r'\S+', Error),            
+            (r'\S+', Error),
         ],
 
         # Dealing with what comes after an exception
@@ -806,14 +808,14 @@ class SMLLexer(RegexLexer):
 
             include('breakout'),
             include('core'),
-            (r'\S+', Error),            
+            (r'\S+', Error),
         ],
 
         'datcon': [
             include('whitespace'),
             (r'(%s)' % alphanumid_re, Name.Class, '#pop'),
-            (r'(%s)' % symbolicid_re, Name.Class, '#pop'), 
-            (r'\S+', Error, '#pop'),            
+            (r'(%s)' % symbolicid_re, Name.Class, '#pop'),
+            (r'\S+', Error, '#pop'),
         ],
 
         # Series of type variables
@@ -824,7 +826,7 @@ class SMLLexer(RegexLexer):
             (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
             (r',', Punctuation),
             (r'\)', Punctuation, '#pop'),
-            (r'', Error, '#pop'),            
+            (r'', Error, '#pop'),
         ],
 
         'comment': [

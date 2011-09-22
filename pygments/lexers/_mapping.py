@@ -195,7 +195,7 @@ LEXERS = {
     'RubyConsoleLexer': ('pygments.lexers.agile', 'Ruby irb session', ('rbcon', 'irb'), (), ('text/x-ruby-shellsession',)),
     'RubyLexer': ('pygments.lexers.agile', 'Ruby', ('rb', 'ruby', 'duby'), ('*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec', '*.rbx', '*.duby'), ('text/x-ruby', 'application/x-ruby')),
     'SLexer': ('pygments.lexers.math', 'S', ('splus', 's', 'r'), ('*.S', '*.R'), ('text/S-plus', 'text/S', 'text/R')),
-    'SMLLexer': ('pygments.lexers.functional', 'Standard ML', ('sml',), ('*.sml', '*.sig', '*.fun'), ('text/x-standard-ml',)),
+    'SMLLexer': ('pygments.lexers.functional', 'Standard ML', ('sml',), ('*.sml', '*.sig', '*.fun'), ('text/x-standardml', 'application/x-standardml')),
     'SassLexer': ('pygments.lexers.web', 'Sass', ('sass', 'SASS'), ('*.sass',), ('text/x-sass',)),
     'ScalaLexer': ('pygments.lexers.compiled', 'Scala', ('scala',), ('*.scala',), ('text/x-scala',)),
     'ScamlLexer': ('pygments.lexers.web', 'Scaml', ('scaml', 'SCAML'), ('*.scaml',), ('text/x-scaml',)),
