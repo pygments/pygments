@@ -1431,7 +1431,7 @@ class ClojureLexer(RegexLexer):
 
     def _multi_escape(entries):
         return '|'.join([re.escape(entry) + '(?![\\w-!$%*+,<=>?/.-])'
-                         for entry in entries]))
+                         for entry in entries])
 
     tokens = {
         'root' : [
