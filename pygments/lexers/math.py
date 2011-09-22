@@ -195,6 +195,7 @@ class MatlabLexer(RegexLexer):
             return 0.9
         return 0.1
 
+
 line_re  = re.compile('.*?\n')
 
 class MatlabSessionLexer(Lexer):
@@ -245,13 +246,12 @@ class MatlabSessionLexer(Lexer):
                 insertions, mlexer.get_tokens_unprocessed(curcode)):
                 yield item
 
+
 class OctaveLexer(RegexLexer):
     """
     For GNU Octave source code.
-    Contributed by Jordi Gutiérrez Hermoso <jordigh@gmail.com>.
-    Modeled on MatlabLexer
 
-    .. versionadded:: 1.5
+    *New in Pygments 1.5.*
     """
     name = 'Octave'
     aliases = ['octave']
@@ -640,11 +640,11 @@ class OctaveLexer(RegexLexer):
 
 
 class NumPyLexer(PythonLexer):
-    '''
+    """
     A Python lexer recognizing Numerical Python builtins.
 
     *New in Pygments 0.10.*
-    '''
+    """
 
     name = 'NumPy'
     aliases = ['numpy']
