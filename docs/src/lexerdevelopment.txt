@@ -121,7 +121,7 @@ sections, comments and key = value pairs:
         }
 
 The lexer first looks for whitespace, comments and section names. And later it
-looks for a line that looks like a key, value pair, seperated by an ``'='``
+looks for a line that looks like a key, value pair, separated by an ``'='``
 sign, and optional whitespace.
 
 The `bygroups` helper makes sure that each group is yielded with a different
