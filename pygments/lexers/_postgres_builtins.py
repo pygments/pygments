@@ -9,7 +9,7 @@
 """
 
 import re
-import urllib2
+import urllib
 
 # One man's constant is another man's variable.
 SOURCE_URL = 'https://github.com/postgres/postgres/raw/master'
@@ -96,7 +96,7 @@ def parse_pseudos(f):
     return dt
 
 def fetch(url):
-    return urllib2.urlopen(url)
+    return urllib.urlopen(url)
 
 def update_consts(filename, constname, content):
     f = open(filename)
