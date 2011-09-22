@@ -234,7 +234,7 @@ re_psql_command = re.compile(r'(\s*)(\\.+?)(\s+)$')
 re_error = re.compile(r'(ERROR|FATAL):')
 re_message = re.compile(
     r'((?:DEBUG|INFO|NOTICE|WARNING|ERROR|'
-    r'FATAL|HINT|DETAIL|LINE [0-9]+):)(.*?\n)')
+    r'FATAL|HINT|DETAIL|CONTEXT|LINE [0-9]+):)(.*?\n)')
 
 def lookahead(x):
     """Wrap an iterator and allow pushing back an item."""

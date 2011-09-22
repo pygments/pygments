@@ -68,7 +68,7 @@ class JavascriptLexer(RegexLexer):
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|void|'
              r'this)\b', Keyword, 'slashstartsregex'),
-            (r'(var|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(var|let|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
             (r'(abstract|boolean|byte|char|class|const|debugger|double|enum|export|'
              r'extends|final|float|goto|implements|import|int|interface|long|native|'
              r'package|private|protected|public|short|static|super|synchronized|throws|'
@@ -1716,17 +1716,21 @@ class CoffeeScriptLexer(RegexLexer):
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Text),
+            (r'###.*?###', Comment.Multiline),
             (r'#.*?\n', Comment.Single),
+        ],
+        'multilineregex': [
+            include('commentsandwhitespace'),
+            (r'///([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'/', String.Regex),
+            (r'[^/#]+', String.Regex)
         ],
         'slashstartsregex': [
             include('commentsandwhitespace'),
+            (r'///', String.Regex, ('#pop', 'multilineregex')),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
-            (r'(?=/)', Text, ('#pop', 'badregex')),
             (r'', Text, '#pop'),
-        ],
-        'badregex': [
-            ('\n', Text, '#pop'),
         ],
         'root': [
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
@@ -1751,13 +1755,46 @@ class CoffeeScriptLexer(RegexLexer):
               'slashstartsregex'),
             (r'@[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*[:=]\s', Name.Variable.Instance,
               'slashstartsregex'),
+            (r'@', Name.Other, 'slashstartsregex'),
             (r'@?[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other, 'slashstartsregex'),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
-        ]
+            ('"""', String, 'tdqs'),
+            ("'''", String, 'tsqs'),
+            ('"', String, 'dqs'),
+            ("'", String, 'sqs'),
+        ],
+        'strings': [
+            (r'[^#\\\'"]+', String)  # note that all coffee script strings are multi-line.
+                                     # hashmarks, quotes and backslashes must be parsed one at a time
+        ],
+        'interpoling_string' : [
+            (r'}', String.Interpol, "#pop"),
+            include('root')
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            (r'\\.|\'', String), # double-quoted string don't need ' escapes
+            (r'#{', String.Interpol, "interpoling_string"),
+            include('strings')
+        ],
+        'sqs': [
+            (r"'", String, '#pop'),
+            (r'#|\\.|"', String), # single quoted strings don't need " escapses
+            include('strings')
+        ],
+        'tdqs': [
+            (r'"""', String, '#pop'),
+            (r'\\.|\'|"', String), # no need to escape quotes in triple-string
+            (r'#{', String.Interpol, "interpoling_string"),
+            include('strings'),
+        ],
+        'tsqs': [
+            (r"'''", String, '#pop'),
+            (r'#|\\.|\'|"', String), # no need to escape quotes in triple-strings
+            include('strings')
+        ],
     }
 
 class DuelLexer(RegexLexer):
