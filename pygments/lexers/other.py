@@ -5,14 +5,14 @@
 
     Lexers for other languages.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-     this, do_insertions
+     this, do_insertions, combined
 from pygments.token import Error, Punctuation, Literal, Token, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.util import shebang_matches
@@ -26,7 +26,8 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer',
            'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer',
            'PostScriptLexer', 'AutohotkeyLexer', 'GoodDataCLLexer',
-           'MaqlLexer', 'ProtoBufLexer', 'HybrisLexer']
+           'MaqlLexer', 'ProtoBufLexer', 'HybrisLexer', 'AwkLexer',
+           'Cfengine3Lexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -817,7 +818,7 @@ class LogtalkLexer(RegexLexer):
              Keyword),
             (r'(object|protocol|category)_property(?=[(])', Keyword),
             # Entity relations
-            (r'complements_object(?=[(])', Keyword),
+            (r'co(mplements_object|nforms_to_protocol)(?=[(])', Keyword),
             (r'extends_(object|protocol|category)(?=[(])', Keyword),
             (r'imp(lements_protocol|orts_category)(?=[(])', Keyword),
             (r'(instantiat|specializ)es_class(?=[(])', Keyword),
@@ -826,11 +827,12 @@ class LogtalkLexer(RegexLexer):
             # Flags
             (r'(current|set)_logtalk_flag(?=[(])', Keyword),
             # Compiling, loading, and library paths
-            (r'logtalk_(compile|l(ibrary_path|oad))(?=[(])', Keyword),
+            (r'logtalk_(compile|l(ibrary_path|oad_context|oad))(?=[(])',
+             Keyword),
             # Database
             (r'(clause|retract(all)?)(?=[(])', Keyword),
             (r'a(bolish|ssert(a|z))(?=[(])', Keyword),
-            # Control
+            # Control constructs
             (r'(ca(ll|tch)|throw)(?=[(])', Keyword),
             (r'(fail|true)\b', Keyword),
             # All solutions
@@ -841,7 +843,7 @@ class LogtalkLexer(RegexLexer):
             # Term unification
             (r'unify_with_occurs_check(?=[(])', Keyword),
             # Term creation and decomposition
-            (r'(functor|arg|copy_term)(?=[(])', Keyword),
+            (r'(functor|arg|copy_term|numbervars)(?=[(])', Keyword),
             # Evaluable functors
             (r'(rem|mod|abs|sign)(?=[(])', Keyword),
             (r'float(_(integer|fractional)_part)?(?=[(])', Keyword),
@@ -849,8 +851,10 @@ class LogtalkLexer(RegexLexer):
             # Other arithmetic functors
             (r'(cos|atan|exp|log|s(in|qrt))(?=[(])', Keyword),
             # Term testing
-            (r'(var|atom(ic)?|integer|float|compound|n(onvar|umber))(?=[(])',
-             Keyword),
+            (r'(var|atom(ic)?|integer|float|c(allable|ompound)|n(onvar|umber)|'
+             r'ground)(?=[(])', Keyword),
+            # Term comparison
+            (r'compare(?=[(])', Keyword),
             # Stream selection and control
             (r'(curren|se)t_(in|out)put(?=[(])', Keyword),
             (r'(open|close)(?=[(])', Keyword),
@@ -879,8 +883,10 @@ class LogtalkLexer(RegexLexer):
             # External call
             (r'[{}]', Keyword),
             # Logic and control
-            (r'\bonce(?=[(])', Keyword),
+            (r'\b(ignore|once)(?=[(])', Keyword),
             (r'\brepeat\b', Keyword),
+            # Sorting
+            (r'(key)?sort(?=[(])', Keyword),
             # Bitwise functors
             (r'(>>|<<|/\\|\\\\|\\)', Operator),
             # Arithemtic evaluation
@@ -895,7 +901,7 @@ class LogtalkLexer(RegexLexer):
             (r'(==|\\==|@=<|@<|@>=|@>)', Operator),
             # Evaluable functors
             (r'(//|[-+*/])', Operator),
-            (r'\b(mod|rem)\b', Operator),
+            (r'\b(e|pi|mod|rem)\b', Operator),
             # Other arithemtic functors
             (r'\b\*\*\b', Operator),
             # DCG rules
@@ -906,6 +912,8 @@ class LogtalkLexer(RegexLexer):
             (r'\\+', Operator),
             # Mode operators
             (r'[?@]', Operator),
+            # Existential quantifier
+            (r'\^', Operator),
             # Strings
             (r'"(\\\\|\\"|[^"])*"', String),
             # Ponctuation
@@ -937,16 +945,18 @@ class LogtalkLexer(RegexLexer):
             (r'in(fo|itialization)(?=[(])', Keyword, 'root'),
             (r'(dynamic|synchronized|threaded)[.]', Keyword, 'root'),
             (r'(alias|d(ynamic|iscontiguous)|m(eta_predicate|ode|ultifile)|'
-             r's(et_(logtalk|prolog)_flag|ynchronized))(?=[(])', Keyword, 'root'),
+             r's(et_(logtalk|prolog)_flag|ynchronized))(?=[(])',
+             Keyword, 'root'),
             (r'op(?=[(])', Keyword, 'root'),
-            (r'(calls|reexport|use(s|_module))(?=[(])', Keyword, 'root'),
+            (r'(c(alls|oinductive)|reexport|use(s|_module))(?=[(])',
+             Keyword, 'root'),
             (r'[a-z][a-zA-Z0-9_]*(?=[(])', Text, 'root'),
             (r'[a-z][a-zA-Z0-9_]*[.]', Text, 'root'),
         ],
 
         'entityrelations': [
-            (r'(extends|i(nstantiates|mp(lements|orts))|specializes)(?=[(])',
-             Keyword),
+            (r'(complements|extends|i(nstantiates|mp(lements|orts))|specializes)'
+             r'(?=[(])', Keyword),
             # Numbers
             (r"0'.", Number),
             (r'0b[01]+', Number),
@@ -2419,198 +2429,177 @@ class AutohotkeyLexer(RegexLexer):
     filenames = ['*.ahk', '*.ahkl']
     mimetypes = ['text/x-autohotkey']
 
-    flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
-
     tokens = {
         'root': [
-            include('whitespace'),
-            (r'^\(', String, 'continuation'),
-            include('comments'),
-            (r'(^\s*)(\w+)(\s*)(=)',
-             bygroups(Text.Whitespace, Name, Text.Whitespace, Operator),
-             'command'),
-            (r'([\w#@$?\[\]]+)(\s*)(\()',
-             bygroups(Name.Function, Text.Whitespace, Punctuation),
-             'parameters'),
-            include('directives'),
-            include('labels'),
+            (r'^(\s*)(/\*)', bygroups(Text, Comment.Multiline),
+                             'incomment'),
+            (r'^(\s*)(\()', bygroups(Text, Generic), 'incontinuation'),
+            (r'\s+;.*?$', Comment.Singleline),
+            (r'^;.*?$', Comment.Singleline),
+            (r'[]{}(),;[]', Punctuation),
+            (r'(in|is|and|or|not)\b', Operator.Word),
+            (r'\%[a-zA-Z_#@$][a-zA-Z0-9_#@$]*\%', Name.Variable),
+            (r'!=|==|:=|\.=|<<|>>|[-~+/*%=<>&^|?:!.]', Operator),
             include('commands'),
-            include('expressions'),
+            include('labels'),
+            include('builtInFunctions'),
+            include('builtInVariables'),
+            (r'"', String, combined('stringescape', 'dqs')),
             include('numbers'),
-            include('literals'),
-            include('keynames'),
-            include('keywords'),
+            (r'[a-zA-Z_#@$][a-zA-Z0-9_#@$]*', Name),
+            (r'\\|\'', Text),
+            (r'\`([\,\%\`abfnrtv\-\+;])', String.Escape),
+            include('garbage'),
         ],
-        'command': [
-            include('comments'),
-            include('whitespace'),
-            (r'^\(', String, 'continuation'),
-            (r'[^\n]*?(?=;*|$)', String, '#pop'),
-            include('numbers'),
-            include('literals'),
+        'incomment': [
+            (r'^\s*\*/', Comment.Multiline, '#pop'),
+            (r'[^*/]', Comment.Multiline),
+            (r'[*/]', Comment.Multiline)
         ],
-
-        'expressions': [
-            include('comments'),
-            include('whitespace'),
-            include('numbers'),
-            include('literals'),
-            (r'([]\w#@$?[]+)(\s*)(\()',
-             bygroups(Name.Function, Text.Whitespace, Punctuation),
-             'parameters'),
-            (r'A_\w+', Name.Builtin),
-            (r'%[]\w#@$?[]+?%', Name.Variable),
-            # blocks: if, else, function definitions
-            (r'{', Punctuation, 'block'),
-            # parameters in function calls
-            ],
-        'literals': [
-            (r'"', String, 'string'),
-            (r'A_\w+', Name.Builtin),
-            (r'%[]\w#@$?[]+?%', Name.Variable),
-            (r'[-~!%^&*+|?:<>/=]=?', Operator, 'expressions'),
-            (r'==', Operator, 'expressions'),
-            ('[{()},.%#`;]', Punctuation),
-            (r'\\', Punctuation),
-            include('keywords'),
-            (r'\w+', Text),
-            ],
-        'string': [
-            (r'"', String, '#pop'),
-            (r'""|`.', String.Escape),
-            (r'[^\`"\n]+', String), # all other characters
+        'incontinuation': [
+            (r'^\s*\)', Generic, '#pop'),
+            (r'[^)]', Generic),
+            (r'[)]', Generic),
         ],
-        'block': [
-            include('root'),
-            ('{', Punctuation, '#push'),
-            ('}', Punctuation, '#pop'),
+        'commands': [
+            (r'(?i)^(\s*)(global|local|static|'
+             r'#AllowSameLineComments|#ClipboardTimeout|#CommentFlag|'
+             r'#ErrorStdOut|#EscapeChar|#HotkeyInterval|#HotkeyModifierTimeout|'
+             r'#Hotstring|#IfWinActive|#IfWinExist|#IfWinNotActive|'
+             r'#IfWinNotExist|#IncludeAgain|#Include|#InstallKeybdHook|'
+             r'#InstallMouseHook|#KeyHistory|#LTrim|#MaxHotkeysPerInterval|'
+             r'#MaxMem|#MaxThreads|#MaxThreadsBuffer|#MaxThreadsPerHotkey|'
+             r'#NoEnv|#NoTrayIcon|#Persistent|#SingleInstance|#UseHook|'
+             r'#WinActivateForce|AutoTrim|BlockInput|Break|Click|ClipWait|'
+             r'Continue|Control|ControlClick|ControlFocus|ControlGetFocus|'
+             r'ControlGetPos|ControlGetText|ControlGet|ControlMove|ControlSend|'
+             r'ControlSendRaw|ControlSetText|CoordMode|Critical|'
+             r'DetectHiddenText|DetectHiddenWindows|Drive|DriveGet|'
+             r'DriveSpaceFree|Edit|Else|EnvAdd|EnvDiv|EnvGet|EnvMult|EnvSet|'
+             r'EnvSub|EnvUpdate|Exit|ExitApp|FileAppend|'
+             r'FileCopy|FileCopyDir|FileCreateDir|FileCreateShortcut|'
+             r'FileDelete|FileGetAttrib|FileGetShortcut|FileGetSize|'
+             r'FileGetTime|FileGetVersion|FileInstall|FileMove|FileMoveDir|'
+             r'FileRead|FileReadLine|FileRecycle|FileRecycleEmpty|'
+             r'FileRemoveDir|FileSelectFile|FileSelectFolder|FileSetAttrib|'
+             r'FileSetTime|FormatTime|GetKeyState|Gosub|Goto|GroupActivate|'
+             r'GroupAdd|GroupClose|GroupDeactivate|Gui|GuiControl|'
+             r'GuiControlGet|Hotkey|IfEqual|IfExist|IfGreaterOrEqual|IfGreater|'
+             r'IfInString|IfLess|IfLessOrEqual|IfMsgBox|IfNotEqual|IfNotExist|'
+             r'IfNotInString|IfWinActive|IfWinExist|IfWinNotActive|'
+             r'IfWinNotExist|If |ImageSearch|IniDelete|IniRead|IniWrite|'
+             r'InputBox|Input|KeyHistory|KeyWait|ListHotkeys|ListLines|'
+             r'ListVars|Loop|Menu|MouseClickDrag|MouseClick|MouseGetPos|'
+             r'MouseMove|MsgBox|OnExit|OutputDebug|Pause|PixelGetColor|'
+             r'PixelSearch|PostMessage|Process|Progress|Random|RegDelete|'
+             r'RegRead|RegWrite|Reload|Repeat|Return|RunAs|RunWait|Run|'
+             r'SendEvent|SendInput|SendMessage|SendMode|SendPlay|SendRaw|Send|'
+             r'SetBatchLines|SetCapslockState|SetControlDelay|'
+             r'SetDefaultMouseSpeed|SetEnv|SetFormat|SetKeyDelay|'
+             r'SetMouseDelay|SetNumlockState|SetScrollLockState|'
+             r'SetStoreCapslockMode|SetTimer|SetTitleMatchMode|'
+             r'SetWinDelay|SetWorkingDir|Shutdown|Sleep|Sort|SoundBeep|'
+             r'SoundGet|SoundGetWaveVolume|SoundPlay|SoundSet|'
+             r'SoundSetWaveVolume|SplashImage|SplashTextOff|SplashTextOn|'
+             r'SplitPath|StatusBarGetText|StatusBarWait|StringCaseSense|'
+             r'StringGetPos|StringLeft|StringLen|StringLower|StringMid|'
+             r'StringReplace|StringRight|StringSplit|StringTrimLeft|'
+             r'StringTrimRight|StringUpper|Suspend|SysGet|Thread|ToolTip|'
+             r'Transform|TrayTip|URLDownloadToFile|While|WinActivate|'
+             r'WinActivateBottom|WinClose|WinGetActiveStats|WinGetActiveTitle|'
+             r'WinGetClass|WinGetPos|WinGetText|WinGetTitle|WinGet|WinHide|'
+             r'WinKill|WinMaximize|WinMenuSelectItem|WinMinimizeAllUndo|'
+             r'WinMinimizeAll|WinMinimize|WinMove|WinRestore|WinSetTitle|'
+             r'WinSet|WinShow|WinWaitActive|WinWaitClose|WinWaitNotActive|'
+             r'WinWait)\b', bygroups(Text, Name.Builtin)),
         ],
-        'parameters': [
-            (r'\)', Punctuation, '#pop'),
-            (r'\(', Punctuation, '#push'),
-            include('numbers'),
-            include('literals'),
-            include('whitespace'),
+        'builtInFunctions': [
+            (r'(?i)(Abs|ACos|Asc|ASin|ATan|Ceil|Chr|Cos|DllCall|Exp|FileExist|'
+             r'Floor|GetKeyState|IL_Add|IL_Create|IL_Destroy|InStr|IsFunc|'
+             r'IsLabel|Ln|Log|LV_Add|LV_Delete|LV_DeleteCol|LV_GetCount|'
+             r'LV_GetNext|LV_GetText|LV_Insert|LV_InsertCol|LV_Modify|'
+             r'LV_ModifyCol|LV_SetImageList|Mod|NumGet|NumPut|OnMessage|'
+             r'RegExMatch|RegExReplace|RegisterCallback|Round|SB_SetIcon|'
+             r'SB_SetParts|SB_SetText|Sin|Sqrt|StrLen|SubStr|Tan|TV_Add|'
+             r'TV_Delete|TV_GetChild|TV_GetCount|TV_GetNext|TV_Get|'
+             r'TV_GetParent|TV_GetPrev|TV_GetSelection|TV_GetText|TV_Modify|'
+             r'VarSetCapacity|WinActive|WinExist|Object|ComObjActive|'
+             r'ComObjArray|ComObjEnwrap|ComObjUnwrap|ComObjParameter|'
+             r'ComObjType|ComObjConnect|ComObjCreate|ComObjGet|ComObjError|'
+             r'ComObjValue|Insert|MinIndex|MaxIndex|Remove|SetCapacity|'
+             r'GetCapacity|GetAddress|_NewEnum|FileOpen|Read|Write|ReadLine|'
+             r'WriteLine|ReadNumType|WriteNumType|RawRead|RawWrite|Seek|Tell|'
+             r'Close|Next|IsObject|StrPut|StrGet|Trim|LTrim|RTrim)\b',
+             Name.Function),
         ],
-        'keywords': [
-            (r'(static|global|local)\b', Keyword.Type),
-            (r'(if|else|and|or)\b', Keyword.Reserved),
-            ],
-        'directives': [
-            (r'#\w+?\s', Keyword),
-            ],
+        'builtInVariables': [
+            (r'(?i)(A_AhkPath|A_AhkVersion|A_AppData|A_AppDataCommon|'
+             r'A_AutoTrim|A_BatchLines|A_CaretX|A_CaretY|A_ComputerName|'
+             r'A_ControlDelay|A_Cursor|A_DDDD|A_DDD|A_DD|A_DefaultMouseSpeed|'
+             r'A_Desktop|A_DesktopCommon|A_DetectHiddenText|'
+             r'A_DetectHiddenWindows|A_EndChar|A_EventInfo|A_ExitReason|'
+             r'A_FormatFloat|A_FormatInteger|A_Gui|A_GuiEvent|A_GuiControl|'
+             r'A_GuiControlEvent|A_GuiHeight|A_GuiWidth|A_GuiX|A_GuiY|A_Hour|'
+             r'A_IconFile|A_IconHidden|A_IconNumber|A_IconTip|A_Index|'
+             r'A_IPAddress1|A_IPAddress2|A_IPAddress3|A_IPAddress4|A_ISAdmin|'
+             r'A_IsCompiled|A_IsCritical|A_IsPaused|A_IsSuspended|A_KeyDelay|'
+             r'A_Language|A_LastError|A_LineFile|A_LineNumber|A_LoopField|'
+             r'A_LoopFileAttrib|A_LoopFileDir|A_LoopFileExt|A_LoopFileFullPath|'
+             r'A_LoopFileLongPath|A_LoopFileName|A_LoopFileShortName|'
+             r'A_LoopFileShortPath|A_LoopFileSize|A_LoopFileSizeKB|'
+             r'A_LoopFileSizeMB|A_LoopFileTimeAccessed|A_LoopFileTimeCreated|'
+             r'A_LoopFileTimeModified|A_LoopReadLine|A_LoopRegKey|'
+             r'A_LoopRegName|A_LoopRegSubkey|A_LoopRegTimeModified|'
+             r'A_LoopRegType|A_MDAY|A_Min|A_MM|A_MMM|A_MMMM|A_Mon|A_MouseDelay|'
+             r'A_MSec|A_MyDocuments|A_Now|A_NowUTC|A_NumBatchLines|A_OSType|'
+             r'A_OSVersion|A_PriorHotkey|A_ProgramFiles|A_Programs|'
+             r'A_ProgramsCommon|A_ScreenHeight|A_ScreenWidth|A_ScriptDir|'
+             r'A_ScriptFullPath|A_ScriptName|A_Sec|A_Space|A_StartMenu|'
+             r'A_StartMenuCommon|A_Startup|A_StartupCommon|A_StringCaseSense|'
+             r'A_Tab|A_Temp|A_ThisFunc|A_ThisHotkey|A_ThisLabel|A_ThisMenu|'
+             r'A_ThisMenuItem|A_ThisMenuItemPos|A_TickCount|A_TimeIdle|'
+             r'A_TimeIdlePhysical|A_TimeSincePriorHotkey|A_TimeSinceThisHotkey|'
+             r'A_TitleMatchMode|A_TitleMatchModeSpeed|A_UserName|A_WDay|'
+             r'A_WinDelay|A_WinDir|A_WorkingDir|A_YDay|A_YEAR|A_YWeek|A_YYYY|'
+             r'Clipboard|ClipboardAll|ComSpec|ErrorLevel|ProgramFiles|True|'
+             r'False|A_IsUnicode|A_FileEncoding|A_OSVersion|A_PtrSize)\b',
+             Name.Variable),
+        ],
         'labels': [
             # hotkeys and labels
             # technically, hotkey names are limited to named keys and buttons
-            (r'(^\s*)([^:\s]+?:{1,2})', bygroups(Text.Whitespace, Name.Label)),
-             # hotstrings
-            (r'(^\s*)(::[]\w#@$?[]+?::)', bygroups(Text.Whitespace, Name.Label)),
-            ],
-        'comments': [
-            (r'^;+.*?$', Comment.Single),  # beginning of line comments
-            (r'(?<=\s);+.*?$', Comment.Single),    # end of line comments
-            (r'^/\*.*?\n\*/', Comment.Multiline),
-            (r'(?<!\n)/\*.*?\n\*/', Error),  # must be at start of line
-            ],
-        'whitespace': [
-            (r'[ \t]+', Text.Whitespace),
-            ],
+            (r'(^\s*)([^:\s\(\"]+?:{1,2})', bygroups(Text, Name.Label)),
+            (r'(^\s*)(::[^:\s]+?::)', bygroups(Text, Name.Label)),
+        ],
         'numbers': [
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+', Number.Float),
-            (r'0[0-7]+', Number.Oct),
+            (r'0\d+', Number.Oct),
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),
             (r'\d+', Number.Integer)
         ],
-        'continuation': [
-            (r'\n\)', Punctuation, '#pop'),
-            (r'\s[^\n\)]+', String),
+        'stringescape': [
+            (r'\"\"|\`([\,\%\`abfnrtv])', String.Escape),
         ],
-        'keynames': [
-            (r'\[[^\]]+\]', Keyword, 'keynames')
+        'strings': [
+            (r'[^"\n]+', String),
         ],
-        'commands': [
-            (r'(autotrim|blockinput|break|click|'
-             r'clipwait|continue|control|'
-             r'controlclick|controlfocus|controlget|'
-             r'controlgetfocus|controlgetpos|controlgettext|'
-             r'controlmove|controlsend|controlsendraw|'
-             r'controlsettext|coordmode|critical|'
-             r'detecthiddentext|detecthiddenwindows|'
-             r'dllcall|drive|'
-             r'driveget|drivespacefree|'
-             r'else|envadd|envdiv|'
-             r'envget|envmult|envset|'
-             r'envsub|envupdate|exit|'
-             r'exitapp|fileappend|filecopy|'
-             r'filecopydir|filecreatedir|filecreateshortcut|'
-             r'filedelete|filegetattrib|filegetshortcut|'
-             r'filegetsize|filegettime|filegetversion|'
-             r'fileinstall|filemove|filemovedir|'
-             r'fileread|filereadline|filerecycle|'
-             r'filerecycleempty|fileremovedir|fileselectfile|'
-             r'fileselectfolder|filesetattrib|filesettime|'
-             r'formattime|gosub|'
-             r'goto|groupactivate|groupadd|'
-             r'groupclose|groupdeactivate|gui|'
-             r'guicontrol|guicontrolget|hotkey|'
-             r'ifexist|ifgreater|ifgreaterorequal|'
-             r'ifinstring|ifless|iflessorequal|'
-             r'ifmsgbox|ifnotequal|ifnotexist|'
-             r'ifnotinstring|ifwinactive|ifwinexist|'
-             r'ifwinnotactive|ifwinnotexist|imagesearch|'
-             r'inidelete|iniread|iniwrite|'
-             r'input|inputbox|keyhistory|'
-             r'keywait|listhotkeys|listlines|'
-             r'listvars|loop|'
-             r'menu|mouseclick|mouseclickdrag|'
-             r'mousegetpos|mousemove|msgbox|'
-             r'onmessage|onexit|outputdebug|'
-             r'pixelgetcolor|pixelsearch|postmessage|'
-             r'process|progress|random|'
-             r'regexmatch|regexreplace|registercallback|'
-             r'regdelete|regread|regwrite|'
-             r'reload|repeat|return|'
-             r'run|runas|runwait|'
-             r'send|sendevent|sendinput|'
-             r'sendmessage|sendmode|sendplay|'
-             r'sendraw|setbatchlines|setcapslockstate|'
-             r'setcontroldelay|setdefaultmousespeed|setenv|'
-             r'setformat|setkeydelay|setmousedelay|'
-             r'setnumlockstate|setscrolllockstate|'
-             r'setstorecapslockmode|'
-             r'settimer|settitlematchmode|setwindelay|'
-             r'setworkingdir|shutdown|sleep|'
-             r'sort|soundbeep|soundget|'
-             r'soundgetwavevolume|soundplay|soundset|'
-             r'soundsetwavevolume|splashimage|splashtextoff|'
-             r'splashtexton|splitpath|statusbargettext|'
-             r'statusbarwait|stringcasesense|stringgetpos|'
-             r'stringleft|stringlen|stringlower|'
-             r'stringmid|stringreplace|stringright|'
-             r'stringsplit|stringtrimleft|stringtrimright|'
-             r'stringupper|suspend|sysget|'
-             r'thread|tooltip|transform|'
-             r'traytip|urldownloadtofile|while|'
-             r'varsetcapacity|'
-             r'winactivate|winactivatebottom|winclose|'
-             r'winget|wingetactivestats|wingetactivetitle|'
-             r'wingetclass|wingetpos|wingettext|'
-             r'wingettitle|winhide|winkill|'
-             r'winmaximize|winmenuselectitem|winminimize|'
-             r'winminimizeall|winminimizeallundo|winmove|'
-             r'winrestore|winset|winsettitle|'
-             r'winshow|winwait|winwaitactive|'
-             r'winwaitclose|winwaitnotactive'
-             r'true|false|NULL)\b', Keyword, 'command'),
-            ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            include('strings')
+        ],
+        'garbage': [
+            (r'[^\S\n]', Text),
+            # (r'.', Text),      # no cheating
+        ],
+    }
 
-        }
 
 class MaqlLexer(RegexLexer):
     """
-    Lexer for `GoodData MAQL <https://secure.gooddata.com/docs/html/advanced.metric.tutorial.html>`_
+    Lexer for `GoodData MAQL
+    <https://secure.gooddata.com/docs/html/advanced.metric.tutorial.html>`_
     scripts.
 
     *New in Pygments 1.4.*
@@ -2839,5 +2828,119 @@ class HybrisLexer(RegexLexer):
         ],
         'import': [
             (r'[a-zA-Z0-9_.]+\*?', Name.Namespace, '#pop')
+        ],
+    }
+
+
+class AwkLexer(RegexLexer):
+    """
+    For Awk scripts.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Awk'
+    aliases = ['awk', 'gawk', 'mawk', 'nawk']
+    filenames = ['*.awk']
+    mimetypes = ['application/x-awk']
+
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'#.*$', Comment.Single)
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'\B', String.Regex, '#pop'),
+            (r'(?=/)', Text, ('#pop', 'badregex')),
+            (r'', Text, '#pop')
+        ],
+        'badregex': [
+            ('\n', Text, '#pop')
+        ],
+        'root': [
+            (r'^(?=\s|/)', Text, 'slashstartsregex'),
+            include('commentsandwhitespace'),
+            (r'\+\+|--|\|\||&&|in|\$|!?~|'
+             r'(\*\*|[-<>+*%\^/!=])=?', Operator, 'slashstartsregex'),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+            (r'(break|continue|do|while|exit|for|if|'
+             r'return)\b', Keyword, 'slashstartsregex'),
+            (r'function\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(atan2|cos|exp|int|log|rand|sin|sqrt|srand|gensub|gsub|index|'
+             r'length|match|split|sprintf|sub|substr|tolower|toupper|close|'
+             r'fflush|getline|next|nextfile|print|printf|strftime|systime|'
+             r'delete|system)\b', Keyword.Reserved),
+            (r'(ARGC|ARGIND|ARGV|CONVFMT|ENVIRON|ERRNO|FIELDWIDTHS|FILENAME|FNR|FS|'
+             r'IGNORECASE|NF|NR|OFMT|OFS|ORFS|RLENGTH|RS|RSTART|RT|'
+             r'SUBSEP)\b', Name.Builtin),
+            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
+        ]
+    }
+
+
+class Cfengine3Lexer(RegexLexer):
+    """
+    Lexer for `CFEngine3 <http://cfengine.org>`_ policy files.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'CFEngine3'
+    aliases = ['cfengine3', 'cf3']
+    filenames = ['*.cf']
+    mimetypes = []
+
+    tokens = {
+        'root': [
+            (r'#.*?\n', Comment),
+            (r'(body)(\s+)(\S+)(\s+)(control)',
+             bygroups(Keyword, Text, Keyword, Text, Keyword)),
+            (r'(body|bundle)(\s+)(\S+)(\s+)(\w+)(\()',
+             bygroups(Keyword, Text, Keyword, Text, Name.Function, Punctuation),
+             'arglist'),
+            (r'(body|bundle)(\s+)(\S+)(\s+)(\w+)',
+             bygroups(Keyword, Text, Keyword, Text, Name.Function)),
+            (r'(")([^"]+)(")(\s+)(string|slist|int|real)(\s*)(=>)(\s*)',
+             bygroups(Punctuation,Name.Variable,Punctuation,
+                      Text,Keyword.Type,Text,Operator,Text)),
+            (r'(\S+)(\s*)(=>)(\s*)',
+             bygroups(Keyword.Reserved,Text,Operator,Text)),
+            (r'"', String, 'string'),
+            (r'(\w+)(\()', bygroups(Name.Function, Punctuation)),
+            (r'([\w.!&|]+)(::)', bygroups(Name.Class, Punctuation)),
+            (r'(\w+)(:)', bygroups(Keyword.Declaration,Punctuation)),
+            (r'@[\{\(][^\)\}]+[\}\)]', Name.Variable),
+            (r'[(){},;]', Punctuation),
+            (r'=>', Operator),
+            (r'\d+\.\d+', Number.Float),
+            (r'\d+', Number.Integer),
+            (r'\w+', Name.Function),
+            (r'\s+', Text),
+        ],
+        'string': [
+            (r'\$[\{\(]', String.Interpol, 'interpol'),
+            (r'\\.', String.Escape),
+            (r'"', String, '#pop'),
+            (r'\n', String),
+            (r'.', String),
+        ],
+        'interpol': [
+            (r'\$[\{\(]', String.Interpol, '#push'),
+            (r'[\}\)]', String.Interpol, '#pop'),
+            (r'[^\$\{\(\)\}]+', String.Interpol),
+        ],
+        'arglist': [
+            (r'\)', Punctuation, '#pop'),
+            (r',', Punctuation),
+            (r'\w+', Name.Variable),
+            (r'\s+', Text),
         ],
     }
