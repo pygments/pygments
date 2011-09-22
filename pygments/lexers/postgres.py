@@ -1,13 +1,9 @@
+# -*- coding: utf-8 -*-
 """
     pygments.lexers.postgres
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for PostgreSQL-specific SQL and psql interactive session.
-
-    :copyright: Copyright 2011 by Daniele Varrazzo.
-    :license: BSD, see LICENSE for details.
-
-    The module contains lexers related to PostgreSQL languages.
 
     `PostgresLexer`
         A SQL lexer for the PostgreSQL dialect. Differences w.r.t. the SQL
@@ -36,23 +32,23 @@
     The ``tests/examplefiles`` contains a few test files with data to be
     parsed by these lexers.
 
+    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
-import sys
 from copy import deepcopy
 
-from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-     this, do_insertions
-from pygments.token import Error, Punctuation, Literal, Token, \
+from pygments.lexer import Lexer, RegexLexer, do_insertions
+from pygments.token import Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.lexers import get_lexer_by_name, ClassNotFound
 
-from pygments.lexers._postgres_builtins import (
-    KEYWORDS, DATATYPES, PSEUDO_TYPES, PLPGSQL_KEYWORDS)
+from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
+     PSEUDO_TYPES, PLPGSQL_KEYWORDS
 
 
-__all__ = [ 'PostgresLexer', 'PlPgsqlLexer', 'PostgresConsoleLexer' ]
+__all__ = ['PostgresLexer', 'PlPgsqlLexer', 'PostgresConsoleLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -84,6 +80,7 @@ def language_callback(lexer, match):
 
     else:
         yield (match.start(), String, match.group())
+
 
 class PostgresBase(object):
     """Base class for Postgres-related lexers.
@@ -125,9 +122,12 @@ class PostgresBase(object):
             # print >>sys.stderr, "language not found:", lang
             return None
 
+
 class PostgresLexer(PostgresBase, RegexLexer):
     """
     Lexer for the PostgreSQL dialect of SQL.
+
+    *New in Pygments 1.5.*
     """
 
     name = 'PostgreSQL SQL dialect'
@@ -171,6 +171,8 @@ class PostgresLexer(PostgresBase, RegexLexer):
 class PlPgsqlLexer(PostgresBase, RegexLexer):
     """
     Handle the extra syntax in Pl/pgSQL language.
+
+    *New in Pygments 1.5.*
     """
     name = 'PL/pgSQL'
     aliases = ['plpgsql']
@@ -206,6 +208,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     This is not a complete psql lexer yet as it lacks prompt support
     and output rendering.
     """
+
     name = 'PostgreSQL console - regexp based lexer'
     aliases = []    # not public
 
@@ -246,6 +249,8 @@ def lookahead(x):
 class PostgresConsoleLexer(Lexer):
     """
     Lexer for psql sessions.
+
+    *New in Pygments 1.5.*
     """
 
     name = 'PostgreSQL console (psql)'
@@ -319,5 +324,3 @@ class PostgresConsoleLexer(Lexer):
                     yield (mmsg.start(2), out_token, mmsg.group(2))
                 else:
                     yield (0, out_token, line)
-
-

@@ -3,7 +3,7 @@
     Pygments tests with example files
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -64,6 +64,8 @@ def check_lexer(lx, absfn, outfn):
                 (lx, absfn)
         tokens.append((type, val))
     if u''.join(ntext) != text:
+        print '\n'.join(difflib.unified_diff(u''.join(ntext).splitlines(),
+                                             text.splitlines()))
         raise AssertionError('round trip failed for ' + absfn)
 
     # check output against previous run if enabled
