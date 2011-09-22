@@ -1,5 +1,6 @@
 regression=# select foo;
 ERROR:  column "foo" does not exist
+CONTEXT:  PL/pgSQL function "test1" while casting return value to function's return type
 LINE 1: select foo;
                ^
 regression=# \q
