@@ -27,7 +27,7 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer',
            'PostScriptLexer', 'AutohotkeyLexer', 'GoodDataCLLexer',
            'MaqlLexer', 'ProtoBufLexer', 'HybrisLexer', 'AwkLexer',
-           'Cfengine3Lexer']
+           'Cfengine3Lexer', 'ECLLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -217,6 +217,62 @@ class MySqlLexer(RegexLexer):
             (r'[/*]', Comment.Multiline)
         ]
     }
+
+
+class ECLLexer(RegexLexer):
+    """
+    Lexer for the declarative big-data `ECL <http://hpccsystems.com/community/docs/ecl-language-reference/html>`_
+    language.
+
+    *New in Pygments 0.7.*
+    """
+    name = 'ECL'
+    aliases = ['ecl']
+    filenames = ['*.ecl']
+    mimetypes = ['application/x-ecl']
+
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            include('statements'),
+        ],
+        'whitespace': [
+            (r'\s+', Text),
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+        ],
+        'statements': [
+            include('types'),
+            include('keywords'),
+            (r'"', String, 'string'),
+            (r'\'', String, 'string'),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'0[0-7]+[LlUu]*', Number.Oct),
+            (r'\d+[LlUu]*', Number.Integer),
+            (r'\*/', Error),
+            (r'[~!%^&*+=|?:<>/-]+', Operator),
+            (r'[{}()\[\],.;]', Punctuation),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+        ],
+        'types': [
+            (r'(STRING|INTEGER|UNSIGNED)\d+', Keyword.Type),
+            (r'(REAL)', Keyword.Type),
+        ],
+        'keywords': [
+            (r'(DATASET|OUTPUT|INDEX|BUILD|SEQUENTIAL|TABLE)', Keyword.Reserved),
+            (r'(OVERRITE|FLAT)', Keyword.Reserved),
+            (r'(RECORD|END)', Keyword.Declaration),
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\'', String, '#pop'),
+        ],
+    }
+
 
 
 class SqliteConsoleLexer(Lexer):
