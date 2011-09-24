@@ -18,7 +18,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
 
 __all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'LiterateHaskellLexer', 'SMLLexer', 'OcamlLexer', 'ErlangLexer',
-           'ErlangShellLexer']
+           'ErlangShellLexer', 'NewLispLexer']
 
 
 class SchemeLexer(RegexLexer):
@@ -1079,3 +1079,77 @@ class ErlangShellLexer(Lexer):
                                       erlexer.get_tokens_unprocessed(curcode)):
                 yield item
 
+
+class NewLispLexer(RegexLexer):
+    """
+    For `newLISP. <www.newlisp.org>`_ source code (version 10.3.0).
+
+    """
+    
+    name = 'NewLisp'
+    aliases = ['newLISP', 'newlisp']
+    filenames = ['*.lsp', '*.nl']
+    mimetypes = ['text/x-newlisp', 'application/x-newlisp']
+    
+    flags = re.IGNORECASE | re.MULTILINE | re.UNICODE
+
+    # list of built-in functions for newLISP version 10.3
+    builtins = [
+    '^', '--', '-', ':', '!', '!=', '?', '@', '*', '/', '&', '%', '+', '++', '<', '<<', '<=', '=', '>', '>=', '>>', '|', '~', '$', '$0', '$1', '$10', '$11', '$12', '$13', '$14', '$15', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9', '$args', '$idx', '$it', '$main-args', 'abort', 'abs', 'acos', 'acosh', 'add', 'address', 'amb', 'and',  'and', 'append-file', 'append', 'apply', 'args', 'array-list', 'array?', 'array', 'asin', 'asinh', 'assoc', 'atan', 'atan2', 'atanh', 'atom?', 'base64-dec', 'base64-enc', 'bayes-query', 'bayes-train', 'begin', 'begin', 'begin', 'beta', 'betai', 'bind', 'binomial', 'bits', 'callback', 'case', 'case', 'case', 'catch', 'ceil', 'change-dir', 'char', 'chop', 'Class', 'clean', 'close', 'command-event', 'cond', 'cond', 'cond', 'cons', 'constant', 'context?', 'context', 'copy-file', 'copy', 'cos', 'cosh', 'count', 'cpymem', 'crc32', 'crit-chi2', 'crit-z', 'current-line', 'curry', 'date-list', 'date-parse', 'date-value', 'date', 'debug', 'dec', 'def-new', 'default', 'define-macro', 'define-macro', 'define', 'delete-file', 'delete-url', 'delete', 'destroy', 'det', 'device', 'difference', 'directory?', 'directory', 'div', 'do-until', 'do-while', 'doargs',  'dolist',  'dostring', 'dotimes',  'dotree', 'dump', 'dup', 'empty?', 'encrypt', 'ends-with', 'env', 'erf', 'error-event', 'eval-string', 'eval', 'exec', 'exists', 'exit', 'exp', 'expand', 'explode', 'extend', 'factor', 'fft', 'file-info', 'file?', 'filter', 'find-all', 'find', 'first', 'flat', 'float?', 'float', 'floor', 'flt', 'fn', 'for-all', 'for', 'fork', 'format', 'fv', 'gammai', 'gammaln', 'gcd', 'get-char', 'get-float', 'get-int', 'get-long', 'get-string', 'get-url', 'global?', 'global', 'if-not', 'if', 'ifft', 'import', 'inc', 'index', 'inf?', 'int', 'integer?', 'integer', 'intersect', 'invert', 'irr', 'join', 'lambda-macro', 'lambda?', 'lambda', 'last-error', 'last', 'legal?', 'length', 'let', 'let', 'let', 'letex', 'letn', 'letn', 'letn', 'list?', 'list', 'load', 'local', 'log', 'lookup', 'lower-case', 'macro?', 'main-args', 'MAIN', 'make-dir', 'map', 'mat', 'match', 'max', 'member', 'min', 'mod', 'module', 'mul', 'multiply', 'NaN?', 'net-accept', 'net-close', 'net-connect', 'net-error', 'net-eval', 'net-interface', 'net-ipv', 'net-listen', 'net-local', 'net-lookup', 'net-packet', 'net-peek', 'net-peer', 'net-ping', 'net-receive-from', 'net-receive-udp', 'net-receive', 'net-select', 'net-send-to', 'net-send-udp', 'net-send', 'net-service', 'net-sessions', 'new', 'nil?', 'nil', 'normal', 'not', 'now', 'nper', 'npv', 'nth', 'null?', 'number?', 'open', 'or', 'ostype', 'pack', 'parse-date', 'parse', 'peek', 'pipe', 'pmt', 'pop-assoc', 'pop', 'post-url', 'pow', 'prefix', 'pretty-print', 'primitive?', 'print', 'println', 'prob-chi2', 'prob-z', 'process', 'prompt-event', 'protected?', 'push', 'put-url', 'pv', 'quote?', 'quote', 'rand', 'random', 'randomize', 'read', 'read-char', 'read-expr', 'read-file', 'read-key', 'read-line', 'read-utf8', 'read', 'reader-event', 'real-path', 'receive', 'ref-all', 'ref', 'regex-comp', 'regex', 'remove-dir', 'rename-file', 'replace', 'reset', 'rest', 'reverse', 'rotate', 'round', 'save', 'search', 'seed', 'seek', 'select', 'self', 'semaphore', 'send', 'sequence', 'series', 'set-locale', 'set-ref-all', 'set-ref', 'set', 'setf',  'setq', 'sgn', 'share', 'signal', 'silent', 'sin', 'sinh', 'sleep', 'slice', 'sort', 'source', 'spawn', 'sqrt', 'starts-with', 'string?', 'string', 'sub', 'swap', 'sym', 'symbol?', 'symbols', 'sync', 'sys-error', 'sys-info', 'tan', 'tanh', 'term', 'throw-error', 'throw', 'time-of-day', 'time', 'timer', 'title-case', 'trace-highlight', 'trace', 'transpose', 'Tree', 'trim', 'true?', 'true', 'unicode', 'unify', 'unique', 'unless', 'unpack', 'until', 'upper-case', 'utf8', 'utf8len', 'uuid', 'wait-pid', 'when', 'while', 'write', 'write-char', 'write-file', 'write-line', 'write', 'xfer-event', 'xml-error', 'xml-parse', 'xml-type-tags', 'zero?', "unless"
+    ]
+
+    # valid names
+    valid_name = r'([a-zA-Z0-9!$%&*+.,/<=>?@^_~|-])+|(\[.*?\])+'
+    
+    tokens = {
+        'root': [
+            # shebang
+            (r'#!(.*?)$', Comment.Preproc),
+            # comments starting with semicolon
+            (r';.*$', Comment.Single),
+            # comments starting with #
+            (r'#.*$', Comment.Single),
+
+            # whitespace
+            (r'\s+', Text),
+
+            # strings, symbols and characters
+            (r'"(\\\\|\\"|[^"])*"', String),
+            
+            # braces
+            (r"{", String, "bracestring"),
+            
+            # [text] ... [/text] delimited strings
+            (r'\[text\]*', String, "tagstring"),
+     
+            # 'special' operators...
+            (r"('|:)", Operator),
+            
+            # highlight the builtins
+            ('(%s)' % '|'.join([
+                re.escape(entry) + ' ' for entry in builtins]),
+                Keyword
+            ),
+            
+            # the remaining functions
+            (r'(?<=\()' + valid_name, Name.Variable),
+
+            # the remaining variables
+            (valid_name, String.Symbol),
+            
+            # parentheses
+            (r'(\(|\))', Punctuation),
+        ],
+        
+        # braced strings...
+        'bracestring': [
+             ("{", String, "#push"),
+             ("}", String, "#pop"),
+             ("[^{}]+", String),
+        ],
+        
+        # tagged [text]...[/text] delimited strings...
+        'tagstring': [
+            (r'(?s)(.*?)(\[/text\])', String, '#pop'),
+        ],
+    }
