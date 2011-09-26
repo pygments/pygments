@@ -231,6 +231,17 @@ class ECLLexer(RegexLexer):
     filenames = ['*.ecl']
     mimetypes = ['application/x-ecl']
 
+    # Declared variables get into the set, so they can be coloured
+    # correctly later on
+    declared = set()
+    def declare_callback(lexer, match):
+        lexer.declared.add(match.group(0))
+        yield match.start(), Name.Variable, match.group(0)
+
+    def check_declared_callback(lexer, match):
+        type = Name.Variable if match.group(0) in lexer.declared else Name
+        yield match.start(), type, match.group(0)
+
     flags = re.IGNORECASE
 
     tokens = {
@@ -240,12 +251,14 @@ class ECLLexer(RegexLexer):
         ],
         'whitespace': [
             (r'\s+', Text),
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'\/\/.*', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
             include('types'),
             include('keywords'),
+            include('functions'),
+            include('hash'),
             (r'"', String, 'string'),
             (r'\'', String, 'string'),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
@@ -256,20 +269,65 @@ class ECLLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]+', Operator),
             (r'[{}()\[\],.;]', Punctuation),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            include('name'),
+        ],
+        'hash': [
+            (r'^#.*$', Comment.Preproc),
         ],
         'types': [
-            (r'(STRING|INTEGER|UNSIGNED)\d+', Keyword.Type),
-            (r'(REAL)', Keyword.Type),
+            (r'(RECORD|END)[^\d]', Keyword.Declaration),
+            (r'(ASCII|BIG_ENDIAN|BOOLEAN|DATA|DECIMAL|EBCDIC|INTEGER|PATTERN|'
+             r'QSTRING|REAL|RECORD|RULE|SET OF|STRING|TOKEN|UDECIMAL|UNICODE|'
+             r'UNSIGNED|VARSTRING|VARUNICODE)\d*\s+', Keyword.Type, 'variable'),
         ],
         'keywords': [
-            (r'(DATASET|OUTPUT|INDEX|BUILD|SEQUENTIAL|TABLE)', Keyword.Reserved),
-            (r'(OVERRITE|FLAT)', Keyword.Reserved),
-            (r'(RECORD|END)', Keyword.Declaration),
+            (r'(APPLY|ASSERT|BUILD|BUILDINDEX|EVALUATE|FAIL|KEYDIFF|KEYPATCH|'
+             r'LOADXML|NOTHOR|NOTIFY|OUTPUT|PARALLEL|SEQUENTIAL|SOAPCALL|WAIT'
+             r'CHECKPOINT|DEPRECATED|FAILCODE|FAILMESSAGE|FAILURE|GLOBAL|'
+             r'INDEPENDENT|ONWARNING|PERSIST|PRIORITY|RECOVERY|STORED|SUCCESS|'
+             r'WAIT|WHEN)\W', Keyword.Reserved),
+            # These are classed differently, check later
+            (r'(ALL|AND|ANY|AS|ATMOST|BEFORE|BEGINC\+\+|BEST|BETWEEN|CASE|CONST|'
+             r'COUNTER|CSV|DESCEND|ENCRYPT|ENDC\+\+|ENDMACRO|EXCEPT|EXCLUSIVE|'
+             r'EXPIRE|EXPORT|EXTEND|FALSE|FEW|FIRST|FLAT|FULL|FUNCTION|GROUP|'
+             r'HEADER|HEADING|HOLE|IFBLOCK|IMPORT|IN|JOINED|KEEP|KEYED|LAST|'
+             r'LEFT|LIMIT|LOAD|LOCAL|LOCALE|LOOKUP|MACRO|MANY|MAXCOUNT|'
+             r'MAXLENGTH|MIN SKEW|MODULE|INTERFACE|NAMED|NOCASE|NOROOT|NOSCAN|'
+             r'NOSORT|NOT|OF|ONLY|OPT|OR|OUTER|OVERWRITE|PACKED|PARTITION|'
+             r'PENALTY|PHYSICALLENGTH|PIPE|QUOTE|RELATIONSHIP|REPEAT|RETURN|'
+             r'RIGHT|SCAN|SELF|SEPARATOR|SERVICE|SHARED|SKEW|SKIP|SQL|STORE|'
+             r'TERMINATOR|THOR|THRESHOLD|TOKEN|TRANSFORM|TRIM|TRUE|TYPE|'
+             r'UNICODEORDER|UNSORTED|VALIDATE|VIRTUAL|WHOLE|WILD|WITHIN|XML|'
+             r'XPATH|__COMPRESSED__)\W', Keyword.Reserved),
+        ],
+        'functions': [
+            (r'(ABS|ACOS|ALLNODES|ASCII|ASIN|ASSTRING|ATAN|ATAN2|AVE|CASE|'
+             r'CHOOSE|CHOOSEN|CHOOSESETS|CLUSTERSIZE|COMBINE|CORRELATION|COS|'
+             r'COSH|COUNT|COVARIANCE|CRON|DATASET|DEDUP|DEFINE|DENORMALIZE|'
+             r'DISTRIBUTE|DISTRIBUTED|DISTRIBUTION|EBCDIC|ENTH|ERROR|EVALUATE|'
+             r'EVENT|EVENTEXTRA|EVENTNAME|EXISTS|EXP|FAILCODE|FAILMESSAGE|'
+             r'FETCH|FROMUNICODE|GETISVALID|GLOBAL|GRAPH|GROUP|HASH|HASH32|'
+             r'HASH64|HASHCRC|HASHMD5|HAVING|IF|INDEX|INTFORMAT|ISVALID|'
+             r'ITERATE|JOIN|KEYUNICODE|LENGTH|LIBRARY|LIMIT|LN|LOCAL|LOG|LOOP|'
+             r'MAP|MATCHED|MATCHLENGTH|MATCHPOSITION|MATCHTEXT|MATCHUNICODE|'
+             r'MAX|MERGE|MERGEJOIN|MIN|NOLOCAL|NONEMPTY|NORMALIZE|PARSE|PIPE|'
+             r'POWER|PRELOAD|PROCESS|PROJECT|PULL|RANDOM|RANGE|RANK|RANKED|'
+             r'REALFORMAT|RECORDOF|REGEXFIND|REGEXREPLACE|REGROUP|REJECTED|'
+             r'ROLLUP|ROUND|ROUNDUP|ROW|ROWDIFF|SAMPLE|SET|SIN|SINH|SIZEOF|'
+             r'SOAPCALL|SORT|SORTED|SQRT|STEPPED|STORED|SUM|TABLE|TAN|TANH|'
+             r'THISNODE|TOPN|TOUNICODE|TRANSFER|TRIM|TRUNCATE|TYPEOF|UNGROUP|'
+             r'UNICODEORDER|VARIANCE|WHICH|WORKUNIT|XMLDECODE|XMLENCODE|'
+             r'XMLTEXT|XMLUNICODE)\W', Name.Function),
+        ],
+        'name': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', check_declared_callback),
         ],
         'string': [
             (r'"', String, '#pop'),
             (r'\'', String, '#pop'),
+        ],
+        'variable': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', declare_callback, '#pop'),
         ],
     }
 
