@@ -231,17 +231,6 @@ class ECLLexer(RegexLexer):
     filenames = ['*.ecl']
     mimetypes = ['application/x-ecl']
 
-    # Declared variables get into the set, so they can be coloured
-    # correctly later on
-    declared = set()
-    def declare_callback(lexer, match):
-        lexer.declared.add(match.group(0))
-        yield match.start(), Name.Variable, match.group(0)
-
-    def check_declared_callback(lexer, match):
-        type = Name.Variable if match.group(0) in lexer.declared else Name
-        yield match.start(), type, match.group(0)
-
     flags = re.IGNORECASE
 
     tokens = {
@@ -269,7 +258,7 @@ class ECLLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]+', Operator),
             (r'[{}()\[\],.;]', Punctuation),
-            include('name'),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'hash': [
             (r'^#.*$', Comment.Preproc),
@@ -278,7 +267,7 @@ class ECLLexer(RegexLexer):
             (r'(RECORD|END)[^\d]', Keyword.Declaration),
             (r'(ASCII|BIG_ENDIAN|BOOLEAN|DATA|DECIMAL|EBCDIC|INTEGER|PATTERN|'
              r'QSTRING|REAL|RECORD|RULE|SET OF|STRING|TOKEN|UDECIMAL|UNICODE|'
-             r'UNSIGNED|VARSTRING|VARUNICODE)\d*\s+', Keyword.Type, 'variable'),
+             r'UNSIGNED|VARSTRING|VARUNICODE)\d*\s+', Keyword.Type),
         ],
         'keywords': [
             (r'(APPLY|ASSERT|BUILD|BUILDINDEX|EVALUATE|FAIL|KEYDIFF|KEYPATCH|'
@@ -319,15 +308,9 @@ class ECLLexer(RegexLexer):
              r'UNICODEORDER|VARIANCE|WHICH|WORKUNIT|XMLDECODE|XMLENCODE|'
              r'XMLTEXT|XMLUNICODE)\W', Name.Function),
         ],
-        'name': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', check_declared_callback),
-        ],
         'string': [
             (r'"', String, '#pop'),
             (r'\'', String, '#pop'),
-        ],
-        'variable': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', declare_callback, '#pop'),
         ],
     }
 
