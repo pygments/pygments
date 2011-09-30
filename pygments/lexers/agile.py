@@ -824,19 +824,19 @@ class PerlLexer(RegexLexer):
     mimetypes = ['text/x-perl', 'application/x-perl']
 
     flags = re.DOTALL | re.MULTILINE
-    # TODO: give this a perl guy who knows how to parse perl...
+    # TODO: give this to a perl guy who knows how to parse perl...
     tokens = {
         'balanced-regex': [
-            (r'/(\\\\|\\/|[^/])*/[egimosx]*', String.Regex, '#pop'),
-            (r'!(\\\\|\\!|[^!])*![egimosx]*', String.Regex, '#pop'),
+            (r'/(\\\\|\\[^\\]|[^\\/])*/[egimosx]*', String.Regex, '#pop'),
+            (r'!(\\\\|\\[^\\]|[^\\!])*![egimosx]*', String.Regex, '#pop'),
             (r'\\(\\\\|[^\\])*\\[egimosx]*', String.Regex, '#pop'),
-            (r'{(\\\\|\\}|[^}])*}[egimosx]*', String.Regex, '#pop'),
-            (r'<(\\\\|\\>|[^>])*>[egimosx]*', String.Regex, '#pop'),
-            (r'\[(\\\\|\\\]|[^\]])*\][egimosx]*', String.Regex, '#pop'),
-            (r'\((\\\\|\\\)|[^\)])*\)[egimosx]*', String.Regex, '#pop'),
-            (r'@(\\\\|\\\@|[^\@])*@[egimosx]*', String.Regex, '#pop'),
-            (r'%(\\\\|\\\%|[^\%])*%[egimosx]*', String.Regex, '#pop'),
-            (r'\$(\\\\|\\\$|[^\$])*\$[egimosx]*', String.Regex, '#pop'),
+            (r'{(\\\\|\\[^\\]|[^\\}])*}[egimosx]*', String.Regex, '#pop'),
+            (r'<(\\\\|\\[^\\]|[^\\>])*>[egimosx]*', String.Regex, '#pop'),
+            (r'\[(\\\\|\\[^\\]|[^\\\]])*\][egimosx]*', String.Regex, '#pop'),
+            (r'\((\\\\|\\[^\\]|[^\\\)])*\)[egimosx]*', String.Regex, '#pop'),
+            (r'@(\\\\|\\[^\\]|[^\\\@])*@[egimosx]*', String.Regex, '#pop'),
+            (r'%(\\\\|\\[^\\]|[^\\\%])*%[egimosx]*', String.Regex, '#pop'),
+            (r'\$(\\\\|\\[^\\]|[^\\\$])*\$[egimosx]*', String.Regex, '#pop'),
         ],
         'root': [
             (r'\#.*?$', Comment.Single),
@@ -848,20 +848,26 @@ class PerlLexer(RegexLexer):
              bygroups(Keyword, Text, Name, Text, Punctuation, Text), 'format'),
             (r'(eq|lt|gt|le|ge|ne|not|and|or|cmp)\b', Operator.Word),
             # common delimiters
-            (r's/(\\\\|\\/|[^/])*/(\\\\|\\/|[^/])*/[egimosx]*', String.Regex),
+            (r's/(\\\\|\\[^\\]|[^\\/])*/(\\\\|\\[^\\]|[^\\/])*/[egimosx]*',
+                String.Regex),
             (r's!(\\\\|\\!|[^!])*!(\\\\|\\!|[^!])*![egimosx]*', String.Regex),
             (r's\\(\\\\|[^\\])*\\(\\\\|[^\\])*\\[egimosx]*', String.Regex),
-            (r's@(\\\\|\\@|[^@])*@(\\\\|\\@|[^@])*@[egimosx]*', String.Regex),
-            (r's%(\\\\|\\%|[^%])*%(\\\\|\\%|[^%])*%[egimosx]*', String.Regex),
+            (r's@(\\\\|\\[^\\]|[^\\@])*@(\\\\|\\[^\\]|[^\\@])*@[egimosx]*',
+                String.Regex),
+            (r's%(\\\\|\\[^\\]|[^\\%])*%(\\\\|\\[^\\]|[^\\%])*%[egimosx]*',
+                String.Regex),
             # balanced delimiters
-            (r's{(\\\\|\\}|[^}])*}\s*', String.Regex, 'balanced-regex'),
-            (r's<(\\\\|\\>|[^>])*>\s*', String.Regex, 'balanced-regex'),
-            (r's\[(\\\\|\\\]|[^\]])*\]\s*', String.Regex, 'balanced-regex'),
-            (r's\((\\\\|\\\)|[^\)])*\)\s*', String.Regex, 'balanced-regex'),
+            (r's{(\\\\|\\[^\\]|[^\\}])*}\s*', String.Regex, 'balanced-regex'),
+            (r's<(\\\\|\\[^\\]|[^\\>])*>\s*', String.Regex, 'balanced-regex'),
+            (r's\[(\\\\|\\[^\\]|[^\\\]])*\]\s*', String.Regex,
+                'balanced-regex'),
+            (r's\((\\\\|\\[^\\]|[^\\\)])*\)\s*', String.Regex,
+                'balanced-regex'),
 
-            (r'm?/(\\\\|\\/|[^/\n])*/[gcimosx]*', String.Regex),
+            (r'm?/(\\\\|\\[^\\]|[^\\/\n])*/[gcimosx]*', String.Regex),
             (r'm(?=[/!\\{<\[\(@%\$])', String.Regex, 'balanced-regex'),
-            (r'((?<==~)|(?<=\())\s*/(\\\\|\\/|[^/])*/[gcimosx]*', String.Regex),
+            (r'((?<==~)|(?<=\())\s*/(\\\\|\\[^\\]|[^\\/])*/[gcimosx]*',
+                String.Regex),
             (r'\s+', Text),
             (r'(abs|accept|alarm|atan2|bind|binmode|bless|caller|chdir|'
              r'chmod|chomp|chop|chown|chr|chroot|close|closedir|connect|'
@@ -903,9 +909,9 @@ class PerlLexer(RegexLexer):
              Number.Float),
             (r'(?i)\d+(_\d*)*e[+-]?\d+(_\d*)*', Number.Float),
             (r'\d+(_\d+)*', Number.Integer),
-            (r"'(\\\\|\\'|[^'])*'", String),
-            (r'"(\\\\|\\"|[^"])*"', String),
-            (r'`(\\\\|\\`|[^`])*`', String.Backtick),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
+            (r'`(\\\\|\\[^\\]|[^`\\])*`', String.Backtick),
             (r'<([^\s>]+)>', String.Regex),
             (r'(q|qq|qw|qr|qx)\{', String.Other, 'cb-string'),
             (r'(q|qq|qw|qr|qx)\(', String.Other, 'rb-string'),
