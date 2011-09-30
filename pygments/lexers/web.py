@@ -22,7 +22,7 @@ from pygments.lexers.agile import RubyLexer
 from pygments.lexers.compiled import ScalaLexer
 
 
-__all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'CssLexer',
+__all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JSONLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'DuelLexer', 'ScamlLexer',
@@ -36,9 +36,9 @@ class JavascriptLexer(RegexLexer):
 
     name = 'JavaScript'
     aliases = ['js', 'javascript']
-    filenames = ['*.js', '*.json']
+    filenames = ['*.js', ]
     mimetypes = ['application/javascript', 'application/x-javascript',
-                 'text/x-javascript', 'text/javascript', 'application/json']
+                 'text/x-javascript', 'text/javascript', ]
 
     flags = re.DOTALL
     tokens = {
@@ -86,6 +86,71 @@ class JavascriptLexer(RegexLexer):
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
         ]
+    }
+
+class JSONLexer(RegexLexer):
+    """
+    For JSON data structures
+    """
+
+    name = 'JSON'
+    aliases = ['json']
+    filenames = ['*.json']
+    mimetypes = [ 'application/json', ]
+
+    flags = re.DOTALL
+    tokens = {
+        'whitespace': [
+            (r'\s+', Text),
+        ],
+
+        # represents a simple terminal value
+        'simplevalue':[
+            (r'(true|false|null)\b', Keyword.Constant),
+            (r'-?[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+        ],
+
+
+        # the right hand side of an object, after the attribute name
+        'objectattribute': [
+            include('value'),
+            (r':', Punctuation),
+            # comma terminates the attribute but expects more
+            (r',', Punctuation, '#pop'),
+            # a closing bracket terminates the entire object, so pop twice
+            (r'}', Punctuation, ('#pop', '#pop')),
+        ],
+
+        # a json object - { attr, attr, ... }
+        'objectvalue': [
+            include('whitespace'),
+            (r'"(\\\\|\\"|[^"])*"', Name.Tag, 'objectattribute'),
+            (r'}', Punctuation, '#pop'),
+        ],
+
+        # json array - [ value, value, ... }
+        'arrayvalue': [
+            include('whitespace'),
+            include('value'),
+            (r',', Punctuation),
+            (r']', Punctuation, '#pop'),
+        ],
+
+        # a json value - either a simple value or a complex value (object or array)
+        'value': [
+            include('whitespace'),
+            include('simplevalue'),
+            (r'{', Punctuation, 'objectvalue'),
+            (r'\[', Punctuation, 'arrayvalue'),
+        ],
+
+
+        # the root of a json document whould be a value
+        'root': [
+            include('value'),
+        ],
+
     }
 
 
