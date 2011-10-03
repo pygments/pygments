@@ -78,7 +78,7 @@ class UtilTest(unittest.TestCase):
             def analyse(text):
                 raise RuntimeError('something bad happened')
             analyse = util.make_analysator(analyse)
-        self.assertEquals(FakeLexer.analyse(''), 0.0)
+        self.assertEquals(ErrorLexer.analyse(''), 0.0)
 
     def test_analysator_value_error(self):
         # When converting the analysator's return value to a float a
@@ -88,11 +88,7 @@ class UtilTest(unittest.TestCase):
     def test_analysator_type_error(self):
         # When converting the analysator's return value to a float a
         # TypeError may occur.  If that happens 0.0 is returned instead.
-        class X(object):
-            def analyse(text):
-                return float(text)
-            analyse = util.make_analysator(analyse)
-        self.assertEquals(X.analyse(None), 0.0)
+        self.assertEquals(FakeLexer.analyse(None), 0.0)
 
     def test_shebang_matches(self):
         self.assert_(util.shebang_matches('#!/usr/bin/env python', r'python(2\.\d)?'))
