@@ -16,7 +16,7 @@ from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Punctuation, \
      Error
 
-__all__ = ['VerilogLexer']
+__all__ = ['VerilogLexer', 'SystemVerilogLexer']
 
 
 class VerilogLexer(RegexLexer):
@@ -27,7 +27,7 @@ class VerilogLexer(RegexLexer):
     """
     name = 'verilog'
     aliases = ['v']
-    filenames = ['*.v', '*.sv']
+    filenames = ['*.v']
     mimetypes = ['text/x-verilog']
 
     #: optional Comment or Whitespace
@@ -92,8 +92,140 @@ class VerilogLexer(RegexLexer):
              r'\$showscopes|\$showvariables|\$showvars|\$sreadmemb|\$sreadmemh|'
              r'\$stime|\$stop|\$strobe|\$time|\$timeformat|\$write)\b', Name.Builtin),
 
+            (r'(byte|shortint|int|longint|integer|time|'
+             r'bit|logic|reg|'
+             r'supply0|supply1|tri|triand|trior|tri0|tri1|trireg|uwire|wire|wand|wor'
+             r'shortreal|real|realtime)\b', Keyword.Type),
+            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'[^\\"\n]+', String), # all other characters
+            (r'\\\n', String), # line continuation
+            (r'\\', String), # stray backslash
+        ],
+        'macro': [
+            (r'[^/\n]+', Comment.Preproc),
+            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'//.*?\n', Comment.Single, '#pop'),
+            (r'/', Comment.Preproc),
+            (r'(?<=\\)\n', Comment.Preproc),
+            (r'\n', Comment.Preproc, '#pop'),
+        ],
+        'import': [
+            (r'[a-zA-Z0-9_:]+\*?', Name.Namespace, '#pop')
+        ]
+    }
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in \
+            RegexLexer.get_tokens_unprocessed(self, text):
+            # Convention: mark all upper case names as constants
+            if token is Name:
+                if value.isupper():
+                    token = Name.Constant
+            yield index, token, value
+
+class SystemVerilogLexer(RegexLexer):
+    """
+    Extends verilog lexer to recognise all SystemVerilog keywords from IEEE 1800-2009 standard.
+    Contributed by Gordon McGregor (gordon.mcgregor@verilab.com)
+    """
+    name = 'systemverilog'
+    aliases = ['sv']
+    filenames = ['*.sv', '*.svh']
+    mimetypes = ['text/x-systemverilog']
+    
+    #: optional Comment or Whitespace
+    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+
+    tokens = {
+        'root': [
+            (r'^\s*`define', Comment.Preproc, 'macro'),
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuation
+            (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'[{}#@]', Punctuation),
+            (r'L?"', String, 'string'),
+            (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'([0-9]+)|(\'h)[0-9a-fA-F]+', Number.Hex),
+            (r'([0-9]+)|(\'b)[0-1]+', Number.Hex),   # should be binary
+            (r'([0-9]+)|(\'d)[0-9]+', Number.Integer),
+            (r'([0-9]+)|(\'o)[0-7]+', Number.Oct),
+            (r'\'[01xz]', Number),
+            (r'\d+[Ll]?', Number.Integer),
+            (r'\*/', Error),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'[()\[\],.;\']', Punctuation),
+            (r'`[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant),
+
+            (r'^\s*(package)(\s+)', bygroups(Keyword.Namespace, Text)),
+            (r'^\s*(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+
+
+
+            (r'(accept_on|alias|always|always_comb|always_ff|always_latch|'
+             r'and|assert|assign|assume|automatic|before|begin|bind|bins|'
+             r'binsof|bit|break|buf|bufif0|bufif1|byte|case|casex|casez|'
+             r'cell|chandle|checker|class|clocking|cmos|config|const|constraint|'
+             r'context|continue|cover|covergroup|coverpoint|cross|deassign|'
+             r'default|defparam|design|disable|dist|do|edge|else|end|endcase|'
+             r'endchecker|endclass|endclocking|endconfig|endfunction|endgenerate|'
+             r'endgroup|endinterface|endmodule|endpackage|endprimitive|'
+             r'endprogram|endproperty|endsequence|endspecify|endtable|'
+             r'endtask|enum|event|eventually|expect|export|extends|extern|'
+             r'final|first_match|for|force|foreach|forever|fork|forkjoin|'
+             r'function|generate|genvar|global|highz0|highz1|if|iff|ifnone|'
+             r'ignore_bins|illegal_bins|implies|import|incdir|include|'
+             r'initial|inout|input|inside|instance|int|integer|interface|'
+             r'intersect|join|join_any|join_none|large|let|liblist|library|'
+             r'local|localparam|logic|longint|macromodule|matches|medium|'
+             r'modport|module|nand|negedge|new|nexttime|nmos|nor|noshowcancelled|'
+             r'not|notif0|notif1|null|or|output|package|packed|parameter|'
+             r'pmos|posedge|primitive|priority|program|property|protected|'
+             r'pull0|pull1|pulldown|pullup|pulsestyle_ondetect|pulsestyle_onevent|'
+             r'pure|rand|randc|randcase|randsequence|rcmos|real|realtime|'
+             r'ref|reg|reject_on|release|repeat|restrict|return|rnmos|'
+             r'rpmos|rtran|rtranif0|rtranif1|s_always|s_eventually|s_nexttime|'
+             r's_until|s_until_with|scalared|sequence|shortint|shortreal|'
+             r'showcancelled|signed|small|solve|specify|specparam|static|'
+             r'string|strong|strong0|strong1|struct|super|supply0|supply1|'
+             r'sync_accept_on|sync_reject_on|table|tagged|task|this|throughout|'
+             r'time|timeprecision|timeunit|tran|tranif0|tranif1|tri|tri0|'
+             r'tri1|triand|trior|trireg|type|typedef|union|unique|unique0|'
+             r'unsigned|until|until_with|untyped|use|uwire|var|vectored|'
+             r'virtual|void|wait|wait_order|wand|weak|weak0|weak1|while|'
+             r'wildcard|wire|with|within|wor|xnor|xor)\b', Keyword ),
+
+            (r'(`__FILE__|`__LINE__|`begin_keywords|`celldefine|`default_nettype|'
+             r'`define|`else|`elsif|`end_keywords|`endcelldefine|`endif|'
+             r'`ifdef|`ifndef|`include|`line|`nounconnected_drive|`pragma|'
+             r'`resetall|`timescale|`unconnected_drive|`undef|`undefineall)\b',
+             Comment.Preproc ),
+
+            (r'(\$display|\$displayb|\$displayh|\$displayo|\$dumpall|\$dumpfile|'
+             r'\$dumpflush|\$dumplimit|\$dumpoff|\$dumpon|\$dumpports|'
+             r'\$dumpportsall|\$dumpportsflush|\$dumpportslimit|\$dumpportsoff|'
+             r'\$dumpportson|\$dumpvars|\$fclose|\$fdisplay|\$fdisplayb|'
+             r'\$fdisplayh|\$fdisplayo|\$feof|\$ferror|\$fflush|\$fgetc|'
+             r'\$fgets|\$fmonitor|\$fmonitorb|\$fmonitorh|\$fmonitoro|'
+             r'\$fopen|\$fread|\$fscanf|\$fseek|\$fstrobe|\$fstrobeb|\$fstrobeh|'
+             r'\$fstrobeo|\$ftell|\$fwrite|\$fwriteb|\$fwriteh|\$fwriteo|'
+             r'\$monitor|\$monitorb|\$monitorh|\$monitoro|\$monitoroff|'
+             r'\$monitoron|\$plusargs|\$readmemb|\$readmemh|\$rewind|\$sformat|'
+             r'\$sformatf|\$sscanf|\$strobe|\$strobeb|\$strobeh|\$strobeo|'
+             r'\$swrite|\$swriteb|\$swriteh|\$swriteo|\$test|\$ungetc|'
+             r'\$value\$plusargs|\$write|\$writeb|\$writeh|\$writememb|'
+             r'\$writememh|\$writeo)\b' , Name.Builtin ),
+
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (r'(byte|shortint|int|longint|interger|time|'
+            (r'(byte|shortint|int|longint|integer|time|'
              r'bit|logic|reg|'
              r'supply0|supply1|tri|triand|trior|tri0|tri1|trireg|uwire|wire|wand|wor'
              r'shortreal|real|realtime)\b', Keyword.Type),
