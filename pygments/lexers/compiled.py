@@ -17,7 +17,8 @@ from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
 from pygments.util import get_bool_opt, get_list_opt
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Punctuation, \
-     Error
+     Error, Literal
+from string import Template
 
 # backwards compatibility
 from pygments.lexers.functional import OcamlLexer
@@ -27,7 +28,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'JavaLexer'
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
            'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
            'Modula2Lexer', 'BlitzMaxLexer', 'NimrodLexer', 'GosuLexer',
-           'GosuTemplateLexer']
+           'GosuTemplateLexer', 'FantomLexer']
 
 
 class CLexer(RegexLexer):
@@ -2885,3 +2886,207 @@ class GosuTemplateLexer(Lexer):
         for item in self.lexer.get_tokens_unprocessed(text, stack):
             yield item
 
+class FantomLexer(RegexLexer):
+    name = 'Fantom'
+    aliases = ['fan']
+    filenames = ['*.fan']
+    
+    # often used regexes
+    def s(str):
+        return Template(str).substitute(
+            dict (
+                pod = r'[\"\"\w\.]+',
+                eos = r'\n|;',
+                id = r'[a-zA-Z_][a-zA-Z0-9_]*',
+                type = r'(?:\[|[a-zA-Z_]|\|)[:\w_\[\]\|\->\?]*?' # all chars which can be part of type definition. Starts with either letter, or [ (maps), or | (funcs)
+                )
+            )
+
+
+    tokens = {
+        'comments' : [
+            (r'(?s)/\*.*?\*/', Comment.Multiline),               #Multiline
+            (r'//.*?\n', Comment),                               #Single line
+            #todo: highlight references in fandocs
+            (r'\*\*.*?\n', Comment.Special)                      #Fandoc
+        ],
+        'literals' : [
+            (r'-?[\d_]+(ns|ms|sec|min|hr|day)', Number),         #Duration
+            (r'-?[\d_]*\.[\d_]+(ns|ms|sec|min|hr|day)', Number), #Duration with dot
+            (r'-?(\d+)?\.\d+(f|F|d|D)?', Number.Float),          #Float/Decimal
+            (r'-?0x[0-9a-fA-F_]+', Number.Hex),                  #Hex
+            (r'-?[\d_]+', Number.Integer),                       #Int
+            (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),    #Char
+            (r'"', Punctuation, 'insideStr'),                    #Opening quote
+            (r'`', Punctuation, 'insideUri'),                    #Opening accent
+            (r'true|false|null', Keyword.Constant),              #Bool & null
+            (r'(?:(\w+)(::))?(\w+)(<\|)(.*?)(\|>)',              #DSL
+             bygroups(Name.Namespace, Punctuation, Name.Class, 
+                      Punctuation, String, Punctuation)),
+            (r'(\w+)?(::)?(\w+)?(#)(\w+)?',                      #Type/slot literal
+             bygroups(Name.Namespace, Punctuation, Name.Class,
+                      Punctuation, Name.Function)),
+            (r'\[,\]', Literal),                                 # Empty list
+            (s(r'($type)(\[,\])'),                               # Typed empty list
+             bygroups(using(this, state = 'inType'), Literal)),
+            (r'\[:\]', Literal),                                 # Empty Map
+            (r'($type)(\[:\])', 
+             bygroups(using(this, state = 'inType'), Literal)),
+        ],
+        'insideStr' : [
+            (r'\\\\', String.Escape),                            #Escaped backslash
+            (r'\\"', String.Escape),                             #Escaped "
+            (r'\\`', String.Escape),                             #Escaped `
+            (r'\$\w+', String.Interpol),                         #Subst var
+            (r'\${.*?}', String.Interpol),                       #Subst expr
+            (r'"', Punctuation, '#pop'),                         #Closing quot
+            (r'.', String)                                       #String content
+        ],
+        'insideUri' : [  #TODO: remove copy/paste str/uri
+            (r'\\\\', String.Escape),                            #Escaped backslash
+            (r'\\"', String.Escape),                             #Escaped "
+            (r'\\`', String.Escape),                             #Escaped `
+            (r'\$\w+', String.Interpol),                         #Subst var
+            (r'\${.*?}', String.Interpol),                       #Subst expr
+            (r'`', Punctuation, '#pop'),                         #Closing tick
+            (r'.', String.Backtick)                              #URI content
+        ],
+        'protectionKeywords' : [
+            (r'(public|protected|private|internal)\b', Keyword),
+        ],
+        'typeKeywords' : [
+            (r'(abstract|final|const|native|facet|enum)\b', Keyword),
+        ],
+        'methodKeywords' : [
+            (r'(abstract|native|once|override|static|virtual|final)\b', Keyword),
+        ],
+        'fieldKeywords' : [
+            (r'(abstract|const|final|native|override|static|virtual|readonly)\b', 
+             Keyword)
+        ],
+        'otherKeywords' : [
+            (r'(try|catch|throw|finally|for|if|else|while|as|is|isnot|'
+             r'switch|case|default|continue|break|do|return|get|set)\b', Keyword), 
+            (r'\b(it|this|super)\b', Name.Builtin.Pseudo)
+            
+        ],
+        'operators' : [
+            (r'\+\+|--|\+|-|\*|/|\|\||&&|<=>|<=|<|>=|>|=|!', Operator)
+        ],
+        'inType' : [
+#            include('types'),
+            (r'[\[\]\|\->:\?]', Punctuation),
+            (s(r'$id'), Name.Class),
+            (r'', Text, '#pop'),
+
+        ],
+        'root': [
+            include('comments'),
+            include('protectionKeywords'),
+            include('typeKeywords'),
+            include('methodKeywords'),
+            include('fieldKeywords'),
+            include('literals'),
+            include('otherKeywords'),
+            include('operators'),
+#            include('types'),
+            (r'using\b', Keyword.Namespace, 'using'),          #Using stmt
+            (r'@\w+', Name.Decorator, 'facet'),                  #Symbol
+            (r'(class|mixin)(\s+)(\w+)',                         
+             bygroups(Keyword, Text, Name.Class), 'inheritance'),#Inheritance list
+
+
+            #Type var := val
+            (s(r'($type)([ \t]+)($id)(\s*)(:=)'),
+             bygroups(using(this, state = 'inType'), Text, 
+                      Name.Variable, Text, Operator)),           
+
+            ### var := val
+            (s(r'($id)(\s*)(:=)'),
+             bygroups(Name.Variable, Text, Operator)),
+
+            ### .someId( or ->someId( ###
+            (s(r'(\.|(?:->))($id)(\s*)(\()'),
+             bygroups(Operator, Name.Function, Text, Punctuation),
+             'insideParen'),
+            
+            ### .someId  or ->someId 
+            (s(r'(\.|(?:->))($id)'),
+             bygroups(Operator, Name.Function)),
+             
+            ### new makeXXX ( ####
+            (r'(new)(\s+)(make\w*)(\s*)(\()', 
+             bygroups(Keyword, Text, Name.Function, Text, Punctuation), 
+             'insideMethodDeclArgs'),
+
+            ### Type name (  ####
+            (s(r'($type)([ \t]+)' #Return type and whitespace
+               r'($id)(\s*)(\()'), #method name + open brace
+             bygroups(using(this, state = 'inType'), Text,
+                      Name.Function, Text, Punctuation), 'insideMethodDeclArgs'),
+
+            #### ArgType argName, #####
+            (s(r'($type)(\s+)($id)(\s*)(,)'),
+             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+                      Text, Punctuation)),
+
+            #### ArgType argName) ####
+            ## Covered in 'insideParen' state
+
+            (r'\(', Punctuation, 'insideParen'),
+            (r'\{', Punctuation, 'insideBrace'),
+            (r'.', Text)
+        ],
+        'insideParen': [
+            (r'\)', Punctuation, '#pop'),
+            include('root'),
+        ],
+        'insideMethodDeclArgs': [
+            (r'\)', Punctuation, '#pop'),
+            (s(r'($type)(\s+)($id)(\s*)(\))'),
+             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+                      Text, Punctuation), '#pop'),
+            include('root'),
+        ],
+        'insideBrace': [
+            (r'\}', Punctuation, '#pop'),
+            include('root'),
+        ],
+        'inheritance': [
+            (r'\s+', Text),                                      #Whitespace
+            (r':|,', Punctuation),
+            (r'(?:(\w+)(::))?(\w+)', 
+             bygroups(Name.Namespace, Punctuation, Name.Class)),
+            (r'{', Punctuation, '#pop')
+        ],
+        'using': [
+            (r'[ \t]+', Text), # consume whitespaces
+            (r'(\[)(\w+)(\])', 
+             bygroups(Punctuation, Comment.Special, Punctuation)), #ffi
+            (r'(\")?([\w\.]+)(\")?', 
+             bygroups(Punctuation, Name.Namespace, Punctuation)), #podname
+            (r'::', Punctuation, 'usingClass'),
+            (r'', Text, '#pop')
+        ],
+        'usingClass': [
+            (r'[ \t]+', Text), # consume whitespaces
+            (r'(as)(\s+)(\w+)', 
+             bygroups(Keyword.Declaration, Text, Name.Class), '#pop:2'),
+            (r'[\w\$]+', Name.Class), 
+            (r'', Text, '#pop:2') # jump out to root state
+        ],
+        'facet': [
+            (r'\s+', Text),
+            (r'{', Punctuation, 'facetFields'),
+            (r'', Text, '#pop')
+        ],
+        'facetFields': [
+            include('comments'),
+            include('literals'),
+            (r'\s+', Text),
+            (r'(\s*)(\w+)(\s*)(=)', bygroups(Text, Name, Text, Operator)),
+            (r'}', Punctuation, '#pop')
+        ],
+        
+            
+    }
