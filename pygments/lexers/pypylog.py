@@ -62,7 +62,7 @@ class PyPyLogLexer(RegexLexer):
              r"new_with_vtable|new_array|newstr|newunicode|new|"
              r"arraylen_gc|"
              r"getarrayitem_gc_pure|getarrayitem_gc|setarrayitem_gc|"
-             r"getarrayitem_raw|setarrayitem_raw|getfield_gc_pure|getfield_gc|"
+             r"getarrayitem_raw|setarrayitem_raw|getfield_gc_pure|getfield_gc|getinteriorfield_gc|"
              r"getfield_raw|setfield_gc|setfield_raw|"
              r"strgetitem|strsetitem|strlen|copystrcontent|"
              r"unicodegetitem|unicodesetitem|unicodelen|"
