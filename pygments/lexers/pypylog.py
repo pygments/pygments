@@ -37,6 +37,7 @@ class PyPyLogLexer(RegexLexer):
         "jit-log": [
             (r"\[\w+\] jit-log-.*?}$", Keyword, "#pop"),
 
+            (r"^\+\d+: ", Comment),
             (r"[ifp]\d+", Name),
             (r"ptr\d+", Name),
             (r"(\()([\w_]+(?:\.[\w_]+)?)(\))",
@@ -45,9 +46,9 @@ class PyPyLogLexer(RegexLexer):
             (r"(\d+\.\d+|inf|-inf)", Number.Float),
             (r"-?\d+", Number.Integer),
             (r"'.*'", String),
-            (r"(None|descr|ConstClass|ConstPtr)", Name),
+            (r"(None|descr|ConstClass|ConstPtr|TargetToken)", Name),
             (r"<.*?>", Name.Builtin),
-            (r"(debug_merge_point|jump|finish)", Name.Class),
+            (r"(label|debug_merge_point|jump|finish)", Name.Class),
             (r"(int_add_ovf|int_add|int_sub_ovf|int_sub|int_mul_ovf|int_mul|"
              r"int_floordiv|int_mod|int_lshift|int_rshift|int_and|int_or|"
              r"int_xor|int_eq|int_ne|int_ge|int_gt|int_le|int_lt|int_is_zero|"
@@ -55,7 +56,7 @@ class PyPyLogLexer(RegexLexer):
              r"uint_floordiv|uint_ge|uint_lt|"
              r"float_add|float_sub|float_mul|float_truediv|"
              r"float_eq|float_ne|float_ge|float_gt|float_le|float_lt|float_abs|"
-             r"ptr_eq|ptr_ne|"
+             r"ptr_eq|ptr_ne|instance_ptr_eq|instance_ptr_ne|"
              r"cast_int_to_float|cast_float_to_int|"
              r"force_token|quasiimmut_field|same_as|virtual_ref_finish|virtual_ref|mark_opaque_ptr|"
              r"call_may_force|call_assembler|call_loopinvariant|call_release_gil|call_pure|call|"
