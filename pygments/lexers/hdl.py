@@ -11,12 +11,12 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups
+from pygments.lexer import RegexLexer, include, bygroups, using, this
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Punctuation, \
      Error
 
-__all__ = ['VerilogLexer']
+__all__ = ['VerilogLexer', 'VhdlLexer']
 
 
 class VerilogLexer(RegexLexer):
@@ -131,5 +131,82 @@ class VerilogLexer(RegexLexer):
                 if value.isupper():
                     token = Name.Constant
             yield index, token, value
+
+
+class VhdlLexer(RegexLexer):
+    """
+    For vhdl source code.
+    """
+    name = 'vhdl'
+    aliases = ['vhdl']
+    filenames = ['*.vhdl', '*.vhd']
+    mimetypes = ['text/x-vhdl']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuation
+            (r'--(?![!#$%&*+./<=>?@\^|_~]).*?$', Comment.Single),
+            (r"'(U|X|0|1|Z|W|L|H|-)'", String.Char),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r"'[a-zA-Z_][a-zA-Z0-9_]*", Name.Attribute),
+            (r'[()\[\],.;\']', Punctuation),
+            (r'"[^\n\\]*"', String),
+
+            (r'(library)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Text, Name.Namespace)),
+            (r'(use)(\s+)([a-zA-Z_][\.a-zA-Z0-9_]*)', bygroups(Keyword, Text, Name.Namespace)),
+            (r'(entity|component)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Text, Name.Class)),
+            (r'(architecture|configuration)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)(of)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)(is)',
+                bygroups(Keyword, Text, Name.Class, Text, Keyword, Text, Name.Class, Text, Keyword)),
+
+            (r'(end)(\s+)', bygroups(using(this), Text), 'endblock'),
+
+            include('types'),
+            include('keywords'),
+            include('numbers'),
+
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+        ],
+        'endblock': [
+            (r'\s+$', Text),
+            (r'[()\[\],.;\']', Punctuation),
+
+            include('keywords'),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class),
+        ],
+        'types': [
+            (r'(boolean|bit|character|severity_level|integer|time|delay_length|'
+             r'natural|positive|string|bit_vector|file_open_kind|file_open_status|'
+             r'std_ulogic|std_ulogic_vector|std_logic|std_logic_vector)\b', Keyword.Type),
+        ],
+        'keywords': [
+            (r'(abs|access|after|alias|all|and|'
+             r'architecture|array|assert|attribute|begin|block|'
+             r'body|buffer|bus|case|component|configuration|'
+             r'constant|disconnect|downto|else|elsif|end|'
+             r'entity|exit|file|for|function|generate|'
+             r'generic|group|guarded|if|impure|in|'
+             r'inertial|inout|is|label|library|linkage|'
+             r'literal|loop|map|mod|nand|new|'
+             r'next|nor|not|null|of|on|'
+             r'open|or|others|out|package|port|'
+             r'postponed|procedure|process|pure|range|record|'
+             r'register|reject|return|rol|ror|select|'
+             r'severity|signal|shared|sla|sli|sra|'
+             r'srl|subtype|then|to|transport|type|'
+             r'units|until|use|variable|wait|when|'
+             r'while|with|xnor|xor)\b', Keyword),
+        ],
+        'numbers': [
+            (r'\d{1,2}#[0-9a-fA-F_]+#?', Number.Integer),
+            (r'[0-1_]+(\.[0-1_])', Number.Integer),
+            (r'\d+', Number.Integer),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+', Number.Float),
+            (r'H"[0-9a-fA-F_]+"', Number.Oct),
+            (r'O"[0-7_]+"', Number.Oct),
+            (r'B"[0-1_]+"', Number.Oct),
+        ],
+    }
 
 
