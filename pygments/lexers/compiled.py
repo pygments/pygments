@@ -2919,7 +2919,7 @@ class FantomLexer(RegexLexer):
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),    #Char
             (r'"', Punctuation, 'insideStr'),                    #Opening quote
             (r'`', Punctuation, 'insideUri'),                    #Opening accent
-            (r'true|false|null', Keyword.Constant),              #Bool & null
+            (r'\b(true|false|null)\b', Keyword.Constant),              #Bool & null
             (r'(?:(\w+)(::))?(\w+)(<\|)(.*?)(\|>)',              #DSL
              bygroups(Name.Namespace, Punctuation, Name.Class, 
                       Punctuation, String, Punctuation)),
@@ -2952,20 +2952,20 @@ class FantomLexer(RegexLexer):
             (r'.', String.Backtick)                              #URI content
         ],
         'protectionKeywords' : [
-            (r'(public|protected|private|internal)\b', Keyword),
+            (r'\b(public|protected|private|internal)\b', Keyword),
         ],
         'typeKeywords' : [
-            (r'(abstract|final|const|native|facet|enum)\b', Keyword),
+            (r'\b(abstract|final|const|native|facet|enum)\b', Keyword),
         ],
         'methodKeywords' : [
-            (r'(abstract|native|once|override|static|virtual|final)\b', Keyword),
+            (r'\b(abstract|native|once|override|static|virtual|final)\b', Keyword),
         ],
         'fieldKeywords' : [
-            (r'(abstract|const|final|native|override|static|virtual|readonly)\b', 
+            (r'\b(abstract|const|final|native|override|static|virtual|readonly)\b', 
              Keyword)
         ],
         'otherKeywords' : [
-            (r'(try|catch|throw|finally|for|if|else|while|as|is|isnot|'
+            (r'\b(try|catch|throw|finally|for|if|else|while|as|is|isnot|'
              r'switch|case|default|continue|break|do|return|get|set)\b', Keyword), 
             (r'\b(it|this|super)\b', Name.Builtin.Pseudo)
             
