@@ -2950,6 +2950,8 @@ class Cfengine3Lexer(RegexLexer):
 class HttpLexer(RegexLexer):
     """
     Lexer for HTTP sessions.
+
+    *New in Pygments 1.5.*
     """
 
     name = 'HTTP'
