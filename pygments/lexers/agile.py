@@ -199,7 +199,7 @@ class Python3Lexer(RegexLexer):
     tokens = PythonLexer.tokens.copy()
     tokens['keywords'] = [
         (r'(assert|break|continue|del|elif|else|except|'
-         r'finally|for|global|if|lambda|pass|raise|'
+         r'finally|for|global|if|lambda|pass|raise|nonlocal|'
          r'return|try|while|yield|as|with|True|False|None)\b', Keyword),
     ]
     tokens['builtins'] = [
