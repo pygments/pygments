@@ -88,9 +88,12 @@ class JavascriptLexer(RegexLexer):
         ]
     }
 
+
 class JSONLexer(RegexLexer):
     """
-    For JSON data structures
+    For JSON data structures.
+
+    *New in Pygments 1.5.*
     """
 
     name = 'JSON'
