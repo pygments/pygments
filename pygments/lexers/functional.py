@@ -1081,7 +1081,9 @@ class ErlangShellLexer(Lexer):
 
 class OpaLexer(RegexLexer):
     """
-      Lexer for the Opa language (http://opalang.org)
+    Lexer for the Opa language (http://opalang.org).
+
+    *New in Pygments 1.5.*
     """
 
     name = 'Opa'
