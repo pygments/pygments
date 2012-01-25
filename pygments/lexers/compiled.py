@@ -1232,8 +1232,10 @@ class DylanLexer(RegexLexer):
             (r'\$[a-zA-Z0-9-]+', Name.Constant),
             (r'[!$%&*/:<>=?~^.+\[\]{}-]+', Operator),
             (r'\s+', Text),
+            (r'#"[a-zA-Z0-9-]+"', Keyword),
             (r'#[a-zA-Z0-9-]+', Keyword),
-            (r'[a-zA-Z0-9-]+', Name.Variable),
+            (r'#(\(|\[)', Punctuation),
+            (r'[a-zA-Z0-9-_]+', Name.Variable),
         ],
         'string': [
             (r'"', String, '#pop'),
