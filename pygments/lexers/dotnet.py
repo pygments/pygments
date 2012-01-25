@@ -214,7 +214,7 @@ class NemerleLexer(RegexLexer):
 
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
-                (r'@"(\\\\|\\"|[^"])*"', String),
+                (r'@"(""|[^"])*"', String),
                 (r'"(\\\\|\\"|[^"\n])*["\n]', String),
                 (r"'\\.'|'[^\\]'", String.Char),
 		(r"0[xX][0-9a-fA-F]+[Ll]?", Number),
@@ -278,8 +278,9 @@ class NemerleLexer(RegexLexer):
             ],
             'splice-string-content': [
                 (r'if|match', Keyword),
-                (r'[~!%^&*+=|\[\]:;,.<>/?-]', Punctuation),
+                (r'[~!%^&*+=|\[\]:;,.<>/?-\\"$ ]', Punctuation),
                 (cs_ident, Name), 
+                (r'\d+', Number), 
                 (r'\(', Punctuation, '#push'),
                 (r'\)', Punctuation, '#pop')
             ]
