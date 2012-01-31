@@ -1425,7 +1425,7 @@ class ClojureLexer(RegexLexer):
         'val', 'vals', 'var-get', 'var-set', 'var?', 'vector', 'vector-zip',
         'vector?', 'when', 'when-first', 'when-let', 'when-not',
         'with-local-vars', 'with-meta', 'with-open', 'with-out-str',
-        'xml-seq', 'xml-zip', 'zero?', 'zipmap', 'zipper']
+        'xml-seq', 'xml-zip', 'zero?', 'zipmap', 'zipper', 'ns']
 
     # valid names for identifiers
     # well, names can only not consist fully of numbers
