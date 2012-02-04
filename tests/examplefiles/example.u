@@ -107,13 +107,13 @@ pi == 200grad;
 0xFFFFFFFF == 4294967295;
        
  
-123foo; 
+//123foo; 
 //[00005658:error] !!! syntax error: invalid token: '123foo' 
-12.3foo; 
+//12.3foo; 
 //[00018827:error] !!! syntax error: invalid token: '12.3foo' 
 0xabcdef; 
 //[00060432] 11259375 
-0xabcdefg; 
+//0xabcdefg; 
 //[00061848:error] !!! syntax error: invalid token: '0xabcdefg'
        
  
