@@ -21,9 +21,9 @@ from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
-           'MiniDLexer', 'IoLexer', 'TclLexer', 'ClojureLexer',
-           'Python3Lexer', 'Python3TracebackLexer', 'FactorLexer',
-           'IokeLexer', 'FancyLexer', 'GroovyLexer']
+           'MoonScriptLexer', 'MiniDLexer', 'IoLexer', 'TclLexer',
+           'ClojureLexer', 'Python3Lexer', 'Python3TracebackLexer',
+           'FactorLexer', 'IokeLexer', 'FancyLexer', 'GroovyLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -105,12 +105,12 @@ class PythonLexer(RegexLexer):
              r'WindowsError|ZeroDivisionError)\b', Name.Exception),
         ],
         'numbers': [
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-            (r'\d+[eE][+-]?[0-9]+', Number.Float),
-            (r'0[0-7]+', Number.Oct),
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
+            (r'0[0-7]+j?', Number.Oct),
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),
-            (r'\d+', Number.Integer)
+            (r'\d+j?', Number.Integer)
         ],
         'backtick': [
             ('`.*?`', String.Backtick),
@@ -199,7 +199,7 @@ class Python3Lexer(RegexLexer):
     tokens = PythonLexer.tokens.copy()
     tokens['keywords'] = [
         (r'(assert|break|continue|del|elif|else|except|'
-         r'finally|for|global|if|lambda|pass|raise|'
+         r'finally|for|global|if|lambda|pass|raise|nonlocal|'
          r'return|try|while|yield|as|with|True|False|None)\b', Keyword),
     ]
     tokens['builtins'] = [
@@ -1053,7 +1053,7 @@ class LuaLexer(RegexLexer):
             (r'(local)\b', Keyword.Declaration),
             (r'(true|false|nil)\b', Keyword.Constant),
 
-            (r'(function)(\s+)', bygroups(Keyword, Text), 'funcname'),
+            (r'(function)\b', Keyword, 'funcname'),
 
             (r'[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)?', Name),
 
@@ -1062,6 +1062,7 @@ class LuaLexer(RegexLexer):
         ],
 
         'funcname': [
+            (r'\s+', Text),
             ('(?:([A-Za-z_][A-Za-z0-9_]*)(\.))?([A-Za-z_][A-Za-z0-9_]*)',
              bygroups(Name.Class, Punctuation, Name.Function), '#pop'),
             # inline function
@@ -1116,6 +1117,73 @@ class LuaLexer(RegexLexer):
                     yield index + len(a) + 1, Name, b
                     continue
             yield index, token, value
+
+
+class MoonScriptLexer(LuaLexer):
+    """
+    For `MoonScript <http://moonscript.org.org>`_ source code.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = "MoonScript"
+    aliases = ["moon", "moonscript"]
+    filenames = ["*.moon"]
+    mimetypes = ['text/x-moonscript', 'application/x-moonscript']
+
+    tokens = {
+        'root': [
+            (r'#!(.*?)$', Comment.Preproc),
+            (r'', Text, 'base'),
+        ],
+        'base': [
+            ('--.*$', Comment.Single),
+            (r'(?i)(\d*\.\d+|\d+\.\d*)(e[+-]?\d+)?', Number.Float),
+            (r'(?i)\d+e[+-]?\d+', Number.Float),
+            (r'(?i)0x[0-9a-f]*', Number.Hex),
+            (r'\d+', Number.Integer),
+            (r'\n', Text),
+            (r'[^\S\n]+', Text),
+            (r'(?s)\[(=*)\[.*?\]\1\]', String),
+            (r'(->|=>)', Name.Function),
+            (r':[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            (r'(==|!=|~=|<=|>=|\.\.|\.\.\.|[=+\-*/%^<>#!.\\:])', Operator),
+            (r'[;,]', Punctuation),
+            (r'[\[\]\{\}\(\)]', Keyword.Type),
+            (r"(class|extends|if|then|super|do|with|import|export|"
+            r"while|elseif|return|for|in|from|when|using|else|"
+            r"and|or|not|switch|break)\b", Keyword),
+            (r'(true|false|nil)\b', Keyword.Constant),
+            (r'(and|or|not)\b', Operator.Word),
+            (r'(self)\b', Name.Builtin.Pseudo),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Variable),
+            (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Class),
+            (r'[A-Z]\w+', Name.Class), # proper name
+            (r'[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)?', Name),
+            ("'", String.Single, combined('stringescape', 'sqs')),
+            ('"', String.Double, combined('stringescape', 'dqs'))
+        ],
+        'stringescape': [
+            (r'''\\([abfnrtv\\"']|\d{1,3})''', String.Escape)
+        ],
+        'sqs': [
+            ("'", String.Single, '#pop'),
+            (".", String)
+        ],
+        'dqs': [
+            ('"', String.Double, '#pop'),
+            (".", String)
+        ]
+    }
+
+    def get_tokens_unprocessed(self, text):
+        # set . as Operator instead of Punctuation
+        for index, token, value in \
+            LuaLexer.get_tokens_unprocessed(self, text):
+            if token == Punctuation and value == ".":
+                token = Operator
+            yield index, token, value
+
 
 
 class MiniDLexer(RegexLexer):

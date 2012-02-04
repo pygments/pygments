@@ -12,10 +12,10 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-     this, do_insertions, combined
+     this, do_insertions, combined, ExtendedRegexLexer
 from pygments.token import Error, Punctuation, Literal, Token, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
-from pygments.util import shebang_matches
+from pygments.util import ClassNotFound, shebang_matches
 from pygments.lexers.web import HtmlLexer
 
 
@@ -27,7 +27,8 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer',
            'PostScriptLexer', 'AutohotkeyLexer', 'GoodDataCLLexer',
            'MaqlLexer', 'ProtoBufLexer', 'HybrisLexer', 'AwkLexer',
-           'Cfengine3Lexer']
+           'Cfengine3Lexer', 'HttpLexer', 'SnobolLexer', 'ECLLexer',
+           'UrbiscriptLexer', 'OpenEdgeLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -217,6 +218,107 @@ class MySqlLexer(RegexLexer):
             (r'[/*]', Comment.Multiline)
         ]
     }
+
+
+class ECLLexer(RegexLexer):
+    """
+    Lexer for the declarative big-data `ECL
+    <http://hpccsystems.com/community/docs/ecl-language-reference/html>`_
+    language.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'ECL'
+    aliases = ['ecl']
+    filenames = ['*.ecl']
+    mimetypes = ['application/x-ecl']
+
+    flags = re.IGNORECASE | re.MULTILINE
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            include('statements'),
+        ],
+        'whitespace': [
+            (r'\s+', Text),
+            (r'\/\/.*', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+        ],
+        'statements': [
+            include('types'),
+            include('keywords'),
+            include('functions'),
+            include('hash'),
+            (r'"', String, 'string'),
+            (r'\'', String, 'string'),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'0[0-7]+[LlUu]*', Number.Oct),
+            (r'\d+[LlUu]*', Number.Integer),
+            (r'\*/', Error),
+            (r'[~!%^&*+=|?:<>/-]+', Operator),
+            (r'[{}()\[\],.;]', Punctuation),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+        ],
+        'hash': [
+            (r'^#.*$', Comment.Preproc),
+        ],
+        'types': [
+            (r'(RECORD|END)[^\d]', Keyword.Declaration),
+            (r'((?:ASCII|BIG_ENDIAN|BOOLEAN|DATA|DECIMAL|EBCDIC|INTEGER|PATTERN|'
+             r'QSTRING|REAL|RECORD|RULE|SET OF|STRING|TOKEN|UDECIMAL|UNICODE|'
+             r'UNSIGNED|VARSTRING|VARUNICODE)\d*)(\s+)',
+             bygroups(Keyword.Type, Text)),
+        ],
+        'keywords': [
+            (r'(APPLY|ASSERT|BUILD|BUILDINDEX|EVALUATE|FAIL|KEYDIFF|KEYPATCH|'
+             r'LOADXML|NOTHOR|NOTIFY|OUTPUT|PARALLEL|SEQUENTIAL|SOAPCALL|WAIT'
+             r'CHECKPOINT|DEPRECATED|FAILCODE|FAILMESSAGE|FAILURE|GLOBAL|'
+             r'INDEPENDENT|ONWARNING|PERSIST|PRIORITY|RECOVERY|STORED|SUCCESS|'
+             r'WAIT|WHEN)\b', Keyword.Reserved),
+            # These are classed differently, check later
+            (r'(ALL|AND|ANY|AS|ATMOST|BEFORE|BEGINC\+\+|BEST|BETWEEN|CASE|CONST|'
+             r'COUNTER|CSV|DESCEND|ENCRYPT|ENDC\+\+|ENDMACRO|EXCEPT|EXCLUSIVE|'
+             r'EXPIRE|EXPORT|EXTEND|FALSE|FEW|FIRST|FLAT|FULL|FUNCTION|GROUP|'
+             r'HEADER|HEADING|HOLE|IFBLOCK|IMPORT|IN|JOINED|KEEP|KEYED|LAST|'
+             r'LEFT|LIMIT|LOAD|LOCAL|LOCALE|LOOKUP|MACRO|MANY|MAXCOUNT|'
+             r'MAXLENGTH|MIN SKEW|MODULE|INTERFACE|NAMED|NOCASE|NOROOT|NOSCAN|'
+             r'NOSORT|NOT|OF|ONLY|OPT|OR|OUTER|OVERWRITE|PACKED|PARTITION|'
+             r'PENALTY|PHYSICALLENGTH|PIPE|QUOTE|RELATIONSHIP|REPEAT|RETURN|'
+             r'RIGHT|SCAN|SELF|SEPARATOR|SERVICE|SHARED|SKEW|SKIP|SQL|STORE|'
+             r'TERMINATOR|THOR|THRESHOLD|TOKEN|TRANSFORM|TRIM|TRUE|TYPE|'
+             r'UNICODEORDER|UNSORTED|VALIDATE|VIRTUAL|WHOLE|WILD|WITHIN|XML|'
+             r'XPATH|__COMPRESSED__)\b', Keyword.Reserved),
+        ],
+        'functions': [
+            (r'(ABS|ACOS|ALLNODES|ASCII|ASIN|ASSTRING|ATAN|ATAN2|AVE|CASE|'
+             r'CHOOSE|CHOOSEN|CHOOSESETS|CLUSTERSIZE|COMBINE|CORRELATION|COS|'
+             r'COSH|COUNT|COVARIANCE|CRON|DATASET|DEDUP|DEFINE|DENORMALIZE|'
+             r'DISTRIBUTE|DISTRIBUTED|DISTRIBUTION|EBCDIC|ENTH|ERROR|EVALUATE|'
+             r'EVENT|EVENTEXTRA|EVENTNAME|EXISTS|EXP|FAILCODE|FAILMESSAGE|'
+             r'FETCH|FROMUNICODE|GETISVALID|GLOBAL|GRAPH|GROUP|HASH|HASH32|'
+             r'HASH64|HASHCRC|HASHMD5|HAVING|IF|INDEX|INTFORMAT|ISVALID|'
+             r'ITERATE|JOIN|KEYUNICODE|LENGTH|LIBRARY|LIMIT|LN|LOCAL|LOG|LOOP|'
+             r'MAP|MATCHED|MATCHLENGTH|MATCHPOSITION|MATCHTEXT|MATCHUNICODE|'
+             r'MAX|MERGE|MERGEJOIN|MIN|NOLOCAL|NONEMPTY|NORMALIZE|PARSE|PIPE|'
+             r'POWER|PRELOAD|PROCESS|PROJECT|PULL|RANDOM|RANGE|RANK|RANKED|'
+             r'REALFORMAT|RECORDOF|REGEXFIND|REGEXREPLACE|REGROUP|REJECTED|'
+             r'ROLLUP|ROUND|ROUNDUP|ROW|ROWDIFF|SAMPLE|SET|SIN|SINH|SIZEOF|'
+             r'SOAPCALL|SORT|SORTED|SQRT|STEPPED|STORED|SUM|TABLE|TAN|TANH|'
+             r'THISNODE|TOPN|TOUNICODE|TRANSFER|TRIM|TRUNCATE|TYPEOF|UNGROUP|'
+             r'UNICODEORDER|VARIANCE|WHICH|WORKUNIT|XMLDECODE|XMLENCODE|'
+             r'XMLTEXT|XMLUNICODE)\b', Name.Function),
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\'', String, '#pop'),
+            (r'[^"\']+', String),
+        ],
+    }
+
 
 
 class SqliteConsoleLexer(Lexer):
@@ -2915,11 +3017,12 @@ class Cfengine3Lexer(RegexLexer):
              bygroups(Keyword.Reserved,Text,Operator,Text)),
             (r'"', String, 'string'),
             (r'(\w+)(\()', bygroups(Name.Function, Punctuation)),
-            (r'([\w.!&|]+)(::)', bygroups(Name.Class, Punctuation)),
+            (r'([\w.!&|\(\)]+)(::)', bygroups(Name.Class, Punctuation)),
             (r'(\w+)(:)', bygroups(Keyword.Declaration,Punctuation)),
             (r'@[\{\(][^\)\}]+[\}\)]', Name.Variable),
             (r'[(){},;]', Punctuation),
             (r'=>', Operator),
+            (r'->', Operator),
             (r'\d+\.\d+', Number.Float),
             (r'\d+', Number.Integer),
             (r'\w+', Name.Function),
@@ -2942,5 +3045,762 @@ class Cfengine3Lexer(RegexLexer):
             (r',', Punctuation),
             (r'\w+', Name.Variable),
             (r'\s+', Text),
+        ],
+    }
+
+
+class HttpLexer(RegexLexer):
+    """
+    Lexer for HTTP sessions.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'HTTP'
+    aliases = ['http']
+
+    flags = re.DOTALL
+
+    def header_callback(self, match):
+        if match.group(1).lower() == 'content-type':
+            content_type = match.group(5).strip()
+            if ';' in content_type:
+                content_type = content_type[:content_type.find(';')].strip()
+            self.content_type = content_type
+        yield match.start(1), Name.Attribute, match.group(1)
+        yield match.start(2), Text, match.group(2)
+        yield match.start(3), Operator, match.group(3)
+        yield match.start(4), Text, match.group(4)
+        yield match.start(5), Literal, match.group(5)
+        yield match.start(6), Text, match.group(6)
+
+    def content_callback(self, match):
+        content_type = getattr(self, 'content_type', None)
+        content = match.group()
+        offset = match.start()
+        if content_type:
+            from pygments.lexers import get_lexer_for_mimetype
+            try:
+                lexer = get_lexer_for_mimetype(content_type)
+            except ClassNotFound:
+                pass
+            else:
+                for idx, token, value in lexer.get_tokens_unprocessed(content):
+                    yield offset + idx, token, value
+                return
+        yield offset, Text, content
+
+    tokens = {
+        'root': [
+            (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE)( +)([^ ]+)( +)'
+             r'(HTTPS?)(/)(1\.[01])(\r?\n|$)',
+             bygroups(Name.Function, Text, Name.Namespace, Text,
+                      Keyword.Reserved, Operator, Number, Text),
+             'headers'),
+            (r'(HTTPS?)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|$)',
+             bygroups(Keyword.Reserved, Operator, Number, Text, Number,
+                      Text, Name.Exception, Text),
+             'headers'),
+        ],
+        'headers': [
+            (r'([^\s:]+)( *)(:)( *)([^\r\n]+)(\r?\n|$)', header_callback),
+            (r'\r?\n', Text, 'content')
+        ],
+        'content': [
+            (r'.+', content_callback)
+        ]
+    }
+
+
+class SnobolLexer(RegexLexer):
+    """
+    Lexer for the SNOBOL4 programming language.
+
+    Recognizes the common ASCII equivalents of the original SNOBOL4 operators.
+    Does not require spaces around binary operators.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = "Snobol"
+    aliases = ["snobol"]
+    filenames = ['*.snobol']
+    mimetypes = ['text/x-snobol']
+
+    tokens = {
+        # root state, start of line
+        # comments, continuation lines, and directives start in column 1
+        # as do labels
+        'root': [
+            (r'\*.*\n', Comment),
+            (r'[\+\.] ', Punctuation, 'statement'),
+            (r'-.*\n', Comment),
+            (r'END\s*\n', Name.Label, 'heredoc'),
+            (r'[A-Za-z\$][\w$]*', Name.Label, 'statement'),
+            (r'\s+', Text, 'statement'),
+        ],
+        # statement state, line after continuation or label
+        'statement': [
+            (r'\s*\n', Text, '#pop'),
+            (r'\s+', Text),
+            (r'(?<=[^\w.])(LT|LE|EQ|NE|GE|GT|INTEGER|IDENT|DIFFER|LGT|SIZE|'
+             r'REPLACE|TRIM|DUPL|REMDR|DATE|TIME|EVAL|APPLY|OPSYN|LOAD|UNLOAD|'
+             r'LEN|SPAN|BREAK|ANY|NOTANY|TAB|RTAB|REM|POS|RPOS|FAIL|FENCE|'
+             r'ABORT|ARB|ARBNO|BAL|SUCCEED|INPUT|OUTPUT|TERMINAL)(?=[^\w.])',
+             Name.Builtin),
+            (r'[A-Za-z][\w\.]*', Name),
+            # ASCII equivalents of original operators
+            # | for the EBCDIC equivalent, ! likewise
+            # \ for EBCDIC negation
+            (r'\*\*|[\?\$\.!%\*/#+\-@\|&\\!=]', Operator),
+            (r'"[^"]*"', String),
+            (r"'[^']*'", String),
+            # Accept SPITBOL syntax for real numbers
+            # as well as Macro SNOBOL4
+            (r'[0-9]+(?=[^\.EeDd])', Number.Integer),
+            (r'[0-9]+(\.[0-9]*)?([EDed][-+]?[0-9]+)?', Number.Float),
+            # Goto
+            (r':', Punctuation, 'goto'),
+            (r'[\(\)<>,;]', Punctuation),
+        ],
+        # Goto block
+        'goto': [
+            (r'\s*\n', Text, "#pop:2"),
+            (r'\s+', Text),
+            (r'F|S', Keyword),
+            (r'(\()([A-Za-z][\w.]*)(\))',
+             bygroups(Punctuation, Name.Label, Punctuation))
+        ],
+        # everything after the END statement is basically one
+        # big heredoc.
+        'heredoc': [
+            (r'.*\n', String.Heredoc)
+        ]
+    }
+
+
+class UrbiscriptLexer(ExtendedRegexLexer):
+    """
+    For UrbiScript source code.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'UrbiScript'
+    aliases = ['urbiscript']
+    filenames = ['*.u']
+    mimetypes = ['application/x-urbiscript']
+
+    flags = re.DOTALL
+
+    ## TODO
+    # - handle Experimental and deprecated tags with specific tokens
+    # - handle Angles and Durations with specific tokens
+
+    def blob_callback(lexer, match, ctx):
+        text_before_blob = match.group(1)
+        blob_start = match.group(2)
+        blob_size_str = match.group(3)
+        blob_size = int(blob_size_str)
+        yield match.start(), String, text_before_blob
+        ctx.pos += len(text_before_blob)
+
+        # if blob size doesn't match blob format (example : "\B(2)(aaa)")
+        # yield blob as a string
+        if ctx.text[match.end() + blob_size] != ")":
+            result = "\\B(" + blob_size_str + ")("
+            yield match.start(), String, result
+            ctx.pos += len(result)
+            return
+
+        # if blob is well formated, yield as Escape
+        blob_text = blob_start + ctx.text[match.end():match.end()+blob_size] + ")"
+        yield match.start(), String.Escape, blob_text
+        ctx.pos = match.end() + blob_size + 1 # +1 is the ending ")"
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            # comments
+            (r'//.*?\n', Comment),
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'(?:every|for|loop|while)(?:;|&|\||,)',Keyword),
+            (r'(?:assert|at|break|case|catch|closure|compl|continue|'
+             r'default|else|enum|every|external|finally|for|freezeif|if|new|'
+             r'onleave|return|stopif|switch|this|throw|timeout|try|'
+             r'waituntil|whenever|while)\b', Keyword),
+            (r'(?:asm|auto|bool|char|const_cast|delete|double|dynamic_cast|'
+             r'explicit|export|extern|float|friend|goto|inline|int|'
+             r'long|mutable|namespace|register|reinterpret_cast|short|'
+             r'signed|sizeof|static_cast|struct|template|typedef|typeid|'
+             r'typename|union|unsigned|using|virtual|volatile|'
+             r'wchar_t)\b', Keyword.Reserved),
+            # deprecated keywords, use a meaningfull token when available
+            (r'(?:emit|foreach|internal|loopn|static)\b', Keyword),
+            # ignored keywords, use a meaningfull token when available
+            (r'(?:private|protected|public)\b', Keyword),
+            (r'(?:var|do|const|function|class)\b', Keyword.Declaration),
+            (r'(?:true|false|nil|void)\b', Keyword.Constant),
+            (r'(?:Barrier|Binary|Boolean|CallMessage|Channel|Code|'
+             r'Comparable|Container|Control|Date|Dictionary|Directory|'
+             r'Duration|Enumeration|Event|Exception|Executable|File|Finalizable|'
+             r'Float|FormatInfo|Formatter|Global|Group|Hash|InputStream|'
+             r'IoService|Job|Kernel|Lazy|List|Loadable|Lobby|Location|Logger|Math|'
+             r'Mutex|nil|Object|Orderable|OutputStream|Pair|Path|Pattern|Position|'
+             r'Primitive|Process|Profile|PseudoLazy|PubSub|RangeIterable|Regexp|'
+             r'Semaphore|Server|Singleton|Socket|StackFrame|Stream|String|System|'
+             r'Tag|Timeout|Traceable|TrajectoryGenerator|Triplet|Tuple'
+             r'|UObject|UValue|UVar)\b', Name.Builtin),
+            (r'(?:this)\b', Name.Builtin.Pseudo),
+            # don't match single | and &
+            (r'(?:[-=+*%/<>~^:]+|\.&?|\|\||&&)', Operator),
+            (r'(?:and_eq|and|bitand|bitor|in|not|not_eq|or_eq|or|xor_eq|xor)\b',
+             Operator.Word),
+            (r'[{}\[\]()]+', Punctuation),
+            (r'(?:;|\||,|&|\?|!)+', Punctuation),
+            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            # Float, Integer, Angle and Duration
+            (r'(?:[0-9]+(?:(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)?'
+             r'((?:rad|deg|grad)|(?:ms|s|min|h|d))?)\b', Number.Float),
+            # handle binary blob in strings
+            (r'"', String.Double, "string.double"),
+            (r"'", String.Single, "string.single"),
+        ],
+        'string.double': [
+            (r'((?:\\\\|\\"|[^"])*?)(\\B\((\d+)\)\()', blob_callback),
+            (r'(\\\\|\\"|[^"])*?"', String.Double, '#pop'),
+        ],
+        'string.single': [
+            (r"((?:\\\\|\\'|[^'])*?)(\\B\((\d+)\)\()", blob_callback),
+            (r"(\\\\|\\'|[^'])*?'", String.Single, '#pop'),
+        ],
+        # from http://pygments.org/docs/lexerdevelopment/#changing-states
+        'comment': [
+            (r'[^*/]', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
+        ]
+    }
+
+
+class OpenEdgeLexer(RegexLexer):
+    """
+    Lexer for `OpenEdge ABL (formerly Progress)
+    <http://web.progress.com/en/openedge/abl.html>`_ source code.
+
+    *New in Pygments 1.5.*
+    """
+    name = 'OpenEdge ABL'
+    aliases = ['openedge', 'abl', 'progress']
+    filenames = ['*.p', '*.cls']
+    mimetypes = ['text/x-openedge', 'application/x-openedge']
+
+    types = (r'(?i)(^|(?<=[^0-9a-z_\-]))(CHARACTER|CHAR|CHARA|CHARAC|CHARACT|CHARACTE|'
+             r'COM-HANDLE|DATE|DATETIME|DATETIME-TZ|'
+             r'DECIMAL|DEC|DECI|DECIM|DECIMA|HANDLE|'
+             r'INT64|INTEGER|INT|INTE|INTEG|INTEGE|'
+             r'LOGICAL|LONGCHAR|MEMPTR|RAW|RECID|ROWID)\s*($|(?=[^0-9a-z_\-]))')
+
+    keywords = (r'(?i)(^|(?<=[^0-9a-z_\-]))(ABSOLUTE|ABS|ABSO|ABSOL|ABSOLU|ABSOLUT|ACCELERATOR|'
+                r'ACCUM|ACCUMULATE|ACCUM|ACCUMU|ACCUMUL|ACCUMULA|ACCUMULAT|'
+                r'ACTIVE-FORM|ACTIVE-WINDOW|ADD|ADD-BUFFER|'
+                r'ADD-CALC-COLUMN|ADD-COLUMNS-FROM|ADD-EVENTS-PROCEDURE|'
+                r'ADD-FIELDS-FROM|ADD-FIRST|ADD-INDEX-FIELD|ADD-LAST|'
+                r'ADD-LIKE-COLUMN|ADD-LIKE-FIELD|ADD-LIKE-INDEX|'
+                r'ADD-NEW-FIELD|ADD-NEW-INDEX|ADD-SCHEMA-LOCATION|ADD-SUPER-PROCEDURE|'
+                r'ADM-DATA|ADVISE|ALERT-BOX|ALIAS|ALL|ALLOW-COLUMN-SEARCHING|'
+                r'ALLOW-REPLICATION|ALTER|ALWAYS-ON-TOP|AMBIGUOUS|AMBIG|AMBIGU|AMBIGUO|AMBIGUOU|'
+                r'ANALYZE|ANALYZ|AND|ANSI-ONLY|ANY|ANYWHERE|APPEND|APPL-ALERT-BOXES|'
+                r'APPL-ALERT|APPL-ALERT-|APPL-ALERT-B|APPL-ALERT-BO|APPL-ALERT-BOX|APPL-ALERT-BOXE|'
+                r'APPL-CONTEXT-ID|APPLICATION|APPLY|APPSERVER-INFO|APPSERVER-PASSWORD|'
+                r'APPSERVER-USERID|ARRAY-MESSAGE|AS|ASC|ASCENDING|ASCE|ASCEN|'
+                r'ASCEND|ASCENDI|ASCENDIN|ASK-OVERWRITE|ASSEMBLY|ASSIGN|'
+                r'ASYNCHRONOUS|ASYNC-REQUEST-COUNT|ASYNC-REQUEST-HANDLE|AT|'
+                r'ATTACHED-PAIRLIST|ATTR-SPACE|ATTR|ATTRI|ATTRIB|ATTRIBU|ATTRIBUT|'
+                r'AUDIT-CONTROL|AUDIT-ENABLED|AUDIT-EVENT-CONTEXT|AUDIT-POLICY|'
+                r'AUTHENTICATION-FAILED|AUTHORIZATION|AUTO-COMPLETION|AUTO-COMP|'
+                r'AUTO-COMPL|AUTO-COMPLE|AUTO-COMPLET|AUTO-COMPLETI|AUTO-COMPLETIO|'
+                r'AUTO-ENDKEY|AUTO-END-KEY|AUTO-GO|AUTO-INDENT|AUTO-IND|'
+                r'AUTO-INDE|AUTO-INDEN|AUTOMATIC|AUTO-RESIZE|AUTO-RETURN|AUTO-RET|'
+                r'AUTO-RETU|AUTO-RETUR|AUTO-SYNCHRONIZE|AUTO-ZAP|AUTO-Z|AUTO-ZA|'
+                r'AVAILABLE|AVAIL|AVAILA|AVAILAB|AVAILABL|AVAILABLE-FORMATS|'
+                r'AVERAGE|AVE|AVER|AVERA|AVERAG|AVG|BACKGROUND|BACK|BACKG|'
+                r'BACKGR|BACKGRO|BACKGROU|BACKGROUN|BACKWARDS|BACKWARD|'
+                r'BASE64-DECODE|BASE64-ENCODE|BASE-ADE|BASE-KEY|BATCH-MODE|BATCH|'
+                r'BATCH-|BATCH-M|BATCH-MO|BATCH-MOD|BATCH-SIZE|BEFORE-HIDE|BEFORE-H|'
+                r'BEFORE-HI|BEFORE-HID|BEGIN-EVENT-GROUP|BEGINS|BELL|BETWEEN|'
+                r'BGCOLOR|BGC|BGCO|BGCOL|BGCOLO|BIG-ENDIAN|BINARY|BIND|BIND-WHERE|'
+                r'BLANK|BLOCK-ITERATION-DISPLAY|BORDER-BOTTOM-CHARS|BORDER-B|'
+                r'BORDER-BO|BORDER-BOT|BORDER-BOTT|BORDER-BOTTO|BORDER-BOTTOM-PIXELS|'
+                r'BORDER-BOTTOM-P|BORDER-BOTTOM-PI|BORDER-BOTTOM-PIX|'
+                r'BORDER-BOTTOM-PIXE|BORDER-BOTTOM-PIXEL|BORDER-LEFT-CHARS|BORDER-L|'
+                r'BORDER-LE|BORDER-LEF|BORDER-LEFT|BORDER-LEFT-|BORDER-LEFT-C|'
+                r'BORDER-LEFT-CH|BORDER-LEFT-CHA|BORDER-LEFT-CHAR|BORDER-LEFT-PIXELS|'
+                r'BORDER-LEFT-P|BORDER-LEFT-PI|BORDER-LEFT-PIX|BORDER-LEFT-PIXE|'
+                r'BORDER-LEFT-PIXEL|BORDER-RIGHT-CHARS|BORDER-R|BORDER-RI|BORDER-RIG|'
+                r'BORDER-RIGH|BORDER-RIGHT|BORDER-RIGHT-|BORDER-RIGHT-C|BORDER-RIGHT-CH|'
+                r'BORDER-RIGHT-CHA|BORDER-RIGHT-CHAR|BORDER-RIGHT-PIXELS|BORDER-RIGHT-P|'
+                r'BORDER-RIGHT-PI|BORDER-RIGHT-PIX|BORDER-RIGHT-PIXE|BORDER-RIGHT-PIXEL|'
+                r'BORDER-TOP-CHARS|BORDER-T|BORDER-TO|BORDER-TOP|BORDER-TOP-|BORDER-TOP-C|'
+                r'BORDER-TOP-CH|BORDER-TOP-CHA|BORDER-TOP-CHAR|BORDER-TOP-PIXELS|'
+                r'BORDER-TOP-P|BORDER-TOP-PI|BORDER-TOP-PIX|BORDER-TOP-PIXE|BORDER-TOP-PIXEL|'
+                r'BOX|BOX-SELECTABLE|BOX-SELECT|BOX-SELECTA|BOX-SELECTAB|BOX-SELECTABL|'
+                r'BREAK|BROWSE|BUFFER|BUFFER-CHARS|BUFFER-COMPARE|BUFFER-COPY|BUFFER-CREATE|'
+                r'BUFFER-DELETE|BUFFER-FIELD|BUFFER-HANDLE|BUFFER-LINES|BUFFER-NAME|'
+                r'BUFFER-RELEASE|BUFFER-VALUE|BUTTON|BUTTONS|BUTTON|BY|BY-POINTER|'
+                r'BY-VARIANT-POINTER|CACHE|CACHE-SIZE|CALL|CALL-NAME|CALL-TYPE|CANCEL-BREAK|'
+                r'CANCEL-BUTTON|CAN-CREATE|CAN-DELETE|CAN-DO|CAN-FIND|CAN-QUERY|CAN-READ|'
+                r'CAN-SET|CAN-WRITE|CAPS|CAREFUL-PAINT|CASE|CASE-SENSITIVE|CASE-SEN|'
+                r'CASE-SENS|CASE-SENSI|CASE-SENSIT|CASE-SENSITI|CASE-SENSITIV|'
+                r'CAST|CATCH|CDECL|CENTERED|CENTER|CENTERE|CHAINED|CHARACTER_LENGTH|'
+                r'CHARSET|CHECK|CHECKED|CHOOSE|CHR|CLASS|CLASS-TYPE|CLEAR|'
+                r'CLEAR-APPL-CONTEXT|CLEAR-LOG|CLEAR-SELECTION|CLEAR-SELECT|'
+                r'CLEAR-SELECTI|CLEAR-SELECTIO|CLEAR-SORT-ARROWS|CLEAR-SORT-ARROW|'
+                r'CLIENT-CONNECTION-ID|CLIENT-PRINCIPAL|CLIENT-TTY|CLIENT-TYPE|'
+                r'CLIENT-WORKSTATION|CLIPBOARD|CLOSE|CLOSE-LOG|CODE|CODEBASE-LOCATOR|'
+                r'CODEPAGE|CODEPAGE-CONVERT|COLLATE|COL-OF|COLON|COLON-ALIGNED|'
+                r'COLON-ALIGN|COLON-ALIGNE|COLOR|COLOR-TABLE|COLUMN|COL|COLU|COLUM|'
+                r'COLUMN-BGCOLOR|COLUMN-DCOLOR|COLUMN-FGCOLOR|COLUMN-FONT|COLUMN-LABEL|'
+                r'COLUMN-LAB|COLUMN-LABE|COLUMN-MOVABLE|COLUMN-OF|COLUMN-PFCOLOR|'
+                r'COLUMN-READ-ONLY|COLUMN-RESIZABLE|COLUMNS|COLUMN-SCROLLING|'
+                r'COMBO-BOX|COMMAND|COMPARES|COMPILE|COMPILER|COMPLETE|COM-SELF|'
+                r'CONFIG-NAME|CONNECT|CONNECTED|CONSTRUCTOR|CONTAINS|CONTENTS|CONTEXT|'
+                r'CONTEXT-HELP|CONTEXT-HELP-FILE|CONTEXT-HELP-ID|CONTEXT-POPUP|'
+                r'CONTROL|CONTROL-BOX|CONTROL-FRAME|CONVERT|CONVERT-3D-COLORS|'
+                r'CONVERT-TO-OFFSET|CONVERT-TO-OFFS|CONVERT-TO-OFFSE|COPY-DATASET|'
+                r'COPY-LOB|COPY-SAX-ATTRIBUTES|COPY-TEMP-TABLE|COUNT|COUNT-OF|'
+                r'CPCASE|CPCOLL|CPINTERNAL|CPLOG|CPPRINT|CPRCODEIN|CPRCODEOUT|'
+                r'CPSTREAM|CPTERM|CRC-VALUE|CREATE|CREATE-LIKE|CREATE-LIKE-SEQUENTIAL|'
+                r'CREATE-NODE-NAMESPACE|CREATE-RESULT-LIST-ENTRY|CREATE-TEST-FILE|'
+                r'CURRENT|CURRENT_DATE|CURRENT_DATE|CURRENT-CHANGED|CURRENT-COLUMN|'
+                r'CURRENT-ENVIRONMENT|CURRENT-ENV|CURRENT-ENVI|CURRENT-ENVIR|'
+                r'CURRENT-ENVIRO|CURRENT-ENVIRON|CURRENT-ENVIRONM|CURRENT-ENVIRONME|'
+                r'CURRENT-ENVIRONMEN|CURRENT-ITERATION|CURRENT-LANGUAGE|CURRENT-LANG|'
+                r'CURRENT-LANGU|CURRENT-LANGUA|CURRENT-LANGUAG|CURRENT-QUERY|'
+                r'CURRENT-RESULT-ROW|CURRENT-ROW-MODIFIED|CURRENT-VALUE|CURRENT-WINDOW|'
+                r'CURSOR|CURS|CURSO|CURSOR-CHAR|CURSOR-LINE|CURSOR-OFFSET|DATABASE|'
+                r'DATA-BIND|DATA-ENTRY-RETURN|DATA-ENTRY-RET|DATA-ENTRY-RETU|'
+                r'DATA-ENTRY-RETUR|DATA-RELATION|DATA-REL|DATA-RELA|DATA-RELAT|'
+                r'DATA-RELATI|DATA-RELATIO|DATASERVERS|DATASET|DATASET-HANDLE|DATA-SOURCE|'
+                r'DATA-SOURCE-COMPLETE-MAP|DATA-SOURCE-MODIFIED|DATA-SOURCE-ROWID|'
+                r'DATA-TYPE|DATA-T|DATA-TY|DATA-TYP|DATE-FORMAT|DATE-F|DATE-FO|'
+                r'DATE-FOR|DATE-FORM|DATE-FORMA|DAY|DBCODEPAGE|DBCOLLATION|DBNAME|'
+                r'DBPARAM|DB-REFERENCES|DBRESTRICTIONS|DBREST|DBRESTR|DBRESTRI|'
+                r'DBRESTRIC|DBRESTRICT|DBRESTRICTI|DBRESTRICTIO|DBRESTRICTION|'
+                r'DBTASKID|DBTYPE|DBVERSION|DBVERS|DBVERSI|DBVERSIO|DCOLOR|'
+                r'DDE|DDE-ERROR|DDE-ID|DDE-I|DDE-ITEM|DDE-NAME|DDE-TOPIC|DEBLANK|'
+                r'DEBUG|DEBU|DEBUG-ALERT|DEBUGGER|DEBUG-LIST|DECIMALS|DECLARE|'
+                r'DECLARE-NAMESPACE|DECRYPT|DEFAULT|DEFAULT-BUFFER-HANDLE|'
+                r'DEFAULT-BUTTON|DEFAUT-B|DEFAUT-BU|DEFAUT-BUT|DEFAUT-BUTT|DEFAUT-BUTTO|'
+                r'DEFAULT-COMMIT|DEFAULT-EXTENSION|DEFAULT-EX|DEFAULT-EXT|DEFAULT-EXTE|'
+                r'DEFAULT-EXTEN|DEFAULT-EXTENS|DEFAULT-EXTENSI|DEFAULT-EXTENSIO|'
+                r'DEFAULT-NOXLATE|DEFAULT-NOXL|DEFAULT-NOXLA|DEFAULT-NOXLAT|'
+                r'DEFAULT-VALUE|DEFAULT-WINDOW|DEFINED|'
+                r'DEFINE-USER-EVENT-MANAGER|DELETE|DEL|DELE|DELET|DELETE-CHARACTER|'
+                r'DELETE-CHAR|DELETE-CHARA|DELETE-CHARAC|DELETE-CHARACT|DELETE-CHARACTE|'
+                r'DELETE-CURRENT-ROW|DELETE-LINE|DELETE-RESULT-LIST-ENTRY|DELETE-SELECTED-ROW|'
+                r'DELETE-SELECTED-ROWS|DELIMITER|DESC|DESCENDING|DESC|DESCE|DESCEN|'
+                r'DESCEND|DESCENDI|DESCENDIN|DESELECT-FOCUSED-ROW|DESELECTION|'
+                r'DESELECT-ROWS|DESELECT-SELECTED-ROW|DESTRUCTOR|DIALOG-BOX|'
+                r'DICTIONARY|DICT|DICTI|DICTIO|DICTION|DICTIONA|DICTIONAR|'
+                r'DIR|DISABLE|DISABLE-AUTO-ZAP|DISABLED|DISABLE-DUMP-TRIGGERS|'
+                r'DISABLE-LOAD-TRIGGERS|DISCONNECT|DISCON|DISCONN|DISCONNE|DISCONNEC|'
+                r'DISP|DISPLAY|DISP|DISPL|DISPLA|DISPLAY-MESSAGE|DISPLAY-TYPE|'
+                r'DISPLAY-T|DISPLAY-TY|DISPLAY-TYP|DISTINCT|DO|DOMAIN-DESCRIPTION|'
+                r'DOMAIN-NAME|DOMAIN-TYPE|DOS|DOUBLE|DOWN|DRAG-ENABLED|DROP|DROP-DOWN|'
+                r'DROP-DOWN-LIST|DROP-FILE-NOTIFY|DROP-TARGET|DUMP|DYNAMIC|'
+                r'DYNAMIC-FUNCTION|EACH|ECHO|EDGE-CHARS|EDGE|EDGE-|EDGE-C|'
+                r'EDGE-CH|EDGE-CHA|EDGE-CHAR|EDGE-PIXELS|EDGE-P|EDGE-PI|EDGE-PIX|'
+                r'EDGE-PIXE|EDGE-PIXEL|EDIT-CAN-PASTE|EDIT-CAN-UNDO|EDIT-CLEAR|'
+                r'EDIT-COPY|EDIT-CUT|EDITING|EDITOR|EDIT-PASTE|EDIT-UNDO|ELSE|'
+                r'EMPTY|EMPTY-TEMP-TABLE|ENABLE|ENABLED-FIELDS|ENCODE|ENCRYPT|'
+                r'ENCRYPT-AUDIT-MAC-KEY|ENCRYPTION-SALT|END|END-DOCUMENT|'
+                r'END-ELEMENT|END-EVENT-GROUP|END-FILE-DROP|ENDKEY|END-KEY|'
+                r'END-MOVE|END-RESIZE|END-ROW-RESIZE|END-USER-PROMPT|ENTERED|'
+                r'ENTRY|EQ|ERROR|ERROR-COLUMN|ERROR-COL|ERROR-COLU|ERROR-COLUM|'
+                r'ERROR-ROW|ERROR-STACK-TRACE|ERROR-STATUS|ERROR-STAT|ERROR-STATU|'
+                r'ESCAPE|ETIME|EVENT-GROUP-ID|EVENT-PROCEDURE|EVENT-PROCEDURE-CONTEXT|'
+                r'EVENTS|EVENT|EVENT-TYPE|EVENT-T|EVENT-TY|EVENT-TYP|EXCEPT|'
+                r'EXCLUSIVE-ID|EXCLUSIVE-LOCK|EXCLUSIVE|EXCLUSIVE-|EXCLUSIVE-L|'
+                r'EXCLUSIVE-LO|EXCLUSIVE-LOC|EXCLUSIVE-WEB-USER|EXECUTE|EXISTS|'
+                r'EXP|EXPAND|EXPANDABLE|EXPLICIT|EXPORT|EXPORT-PRINCIPAL|EXTENDED|'
+                r'EXTENT|EXTERNAL|FALSE|FETCH|FETCH-SELECTED-ROW|FGCOLOR|FGC|FGCO|'
+                r'FGCOL|FGCOLO|FIELD|FIELDS|FIELD|FILE|FILE-CREATE-DATE|'
+                r'FILE-CREATE-TIME|FILE-INFORMATION|FILE-INFO|FILE-INFOR|FILE-INFORM|'
+                r'FILE-INFORMA|FILE-INFORMAT|FILE-INFORMATI|FILE-INFORMATIO|FILE-MOD-DATE|'
+                r'FILE-MOD-TIME|FILENAME|FILE-NAME|FILE-OFFSET|FILE-OFF|FILE-OFFS|FILE-OFFSE|'
+                r'FILE-SIZE|FILE-TYPE|FILL|FILLED|FILL-IN|FILTERS|FINAL|FINALLY|FIND|'
+                r'FIND-BY-ROWID|FIND-CASE-SENSITIVE|FIND-CURRENT|FINDER|FIND-FIRST|'
+                r'FIND-GLOBAL|FIND-LAST|FIND-NEXT-OCCURRENCE|FIND-PREV-OCCURRENCE|'
+                r'FIND-SELECT|FIND-UNIQUE|FIND-WRAP-AROUND|FIRST|FIRST-ASYNCH-REQUEST|'
+                r'FIRST-CHILD|FIRST-COLUMN|FIRST-FORM|FIRST-OBJECT|FIRST-OF|'
+                r'FIRST-PROCEDURE|FIRST-PROC|FIRST-PROCE|FIRST-PROCED|FIRST-PROCEDU|FIRST-PROCEDUR|'
+                r'FIRST-SERVER|FIRST-TAB-ITEM|FIRST-TAB-I|FIRST-TAB-IT|FIRST-TAB-ITE|'
+                r'FIT-LAST-COLUMN|FIXED-ONLY|FLAT-BUTTON|FLOAT|FOCUS|FOCUSED-ROW|'
+                r'FOCUSED-ROW-SELECTED|FONT|FONT-TABLE|FOR|FORCE-FILE|'
+                r'FOREGROUND|FORE|FOREG|FOREGR|FOREGRO|FOREGROU|FOREGROUN|'
+                r'FORM|FORMAT|FORM|FORMA|FORMATTED|FORMATTE|FORM-LONG-INPUT|'
+                r'FORWARD|FORWARDS|FORWARD|FRAGMENT|FRAGMEN|FRAME|FRAM|'
+                r'FRAME-COL|FRAME-DB|FRAME-DOWN|FRAME-FIELD|FRAME-FILE|'
+                r'FRAME-INDEX|FRAME-INDE|FRAME-LINE|FRAME-NAME|FRAME-ROW|'
+                r'FRAME-SPACING|FRAME-SPA|FRAME-SPAC|FRAME-SPACI|FRAME-SPACIN|'
+                r'FRAME-VALUE|FRAME-VAL|FRAME-VALU|FRAME-X|FRAME-Y|FREQUENCY|FROM|'
+                r'FROM-CHARS|FROM-C|FROM-CH|FROM-CHA|FROM-CHAR|'
+                r'FROM-CURRENT|FROM-CUR|FROM-CURR|FROM-CURRE|FROM-CURREN|'
+                r'FROM-PIXELS|FROM-P|FROM-PI|FROM-PIX|FROM-PIXE|FROM-PIXEL|'
+                r'FULL-HEIGHT-CHARS|FULL-HEIGHT|FULL-HEIGHT-|FULL-HEIGHT-C|FULL-HEIGHT-CH|FULL-HEIGHT-CHA|FULL-HEIGHT-CHAR|'
+                r'FULL-HEIGHT-PIXELS|FULL-HEIGHT-P|FULL-HEIGHT-PI|FULL-HEIGHT-PIX|FULL-HEIGHT-PIXE|FULL-HEIGHT-PIXEL|'
+                r'FULL-PATHNAME|FULL-PATHN|FULL-PATHNA|FULL-PATHNAM|'
+                r'FULL-WIDTH-CHARS|FULL-WIDTH|FULL-WIDTH-|FULL-WIDTH-C|FULL-WIDTH-CH|FULL-WIDTH-CHA|FULL-WIDTH-CHAR|'
+                r'FULL-WIDTH-PIXELS|FULL-WIDTH-P|FULL-WIDTH-PI|FULL-WIDTH-PIX|FULL-WIDTH-PIXE|FULL-WIDTH-PIXEL|'
+                r'FUNCTION|FUNCTION-CALL-TYPE|GATEWAYS|GATEWAY|GE|GENERATE-MD5|'
+                r'GENERATE-PBE-KEY|GENERATE-PBE-SALT|GENERATE-RANDOM-KEY|GENERATE-UUID|GET|'
+                r'GET-ATTR-CALL-TYPE|GET-ATTRIBUTE-NODE|GET-BINARY-DATA|'
+                r'GET-BLUE-VALUE|GET-BLUE|GET-BLUE-|GET-BLUE-V|GET-BLUE-VA|GET-BLUE-VAL|GET-BLUE-VALU|'
+                r'GET-BROWSE-COLUMN|GET-BUFFER-HANDLEGETBYTE|GET-BYTE|GET-CALLBACK-PROC-CONTEXT|'
+                r'GET-CALLBACK-PROC-NAME|GET-CGI-LIST|GET-CGI-LONG-VALUE|GET-CGI-VALUE|'
+                r'GET-CODEPAGES|GET-COLLATIONS|GET-CONFIG-VALUE|GET-CURRENT|GET-DOUBLE|'
+                r'GET-DROPPED-FILE|GET-DYNAMIC|GET-ERROR-COLUMN|GET-ERROR-ROW|GET-FILE|'
+                r'GET-FILE-NAME|GET-FILE-OFFSET|GET-FILE-OFFSE|GET-FIRST|GET-FLOAT|'
+                r'GET-GREEN-VALUE|GET-GREEN|GET-GREEN-|GET-GREEN-V|GET-GREEN-VA|GET-GREEN-VAL|GET-GREEN-VALU|'
+                r'GET-INDEX-BY-NAMESPACE-NAME|GET-INDEX-BY-QNAME|GET-INT64|GET-ITERATION|'
+                r'GET-KEY-VALUE|GET-KEY-VAL|GET-KEY-VALU|GET-LAST|GET-LOCALNAME-BY-INDEX|'
+                r'GET-LONG|GET-MESSAGE|GET-NEXT|GET-NUMBER|GET-POINTER-VALUE|'
+                r'GET-PREV|GET-PRINTERS|GET-PROPERTY|GET-QNAME-BY-INDEX|'
+                r'GET-RED-VALUE|GET-RED|GET-RED-|GET-RED-V|GET-RED-VA|GET-RED-VAL|GET-RED-VALU|'
+                r'GET-REPOSITIONED-ROW|GET-RGB-VALUE|'
+                r'GET-SELECTED-WIDGET|GET-SELECTED|GET-SELECTED-|GET-SELECTED-W|GET-SELECTED-WI|GET-SELECTED-WID|GET-SELECTED-WIDG|GET-SELECTED-WIDGE|'
+                r'GET-SHORT|GET-SIGNATURE|GET-SIZE|GET-STRING|GET-TAB-ITEM|'
+                r'GET-TEXT-HEIGHT-CHARS|GET-TEXT-HEIGHT|GET-TEXT-HEIGHT-|GET-TEXT-HEIGHT-C|GET-TEXT-HEIGHT-CH|GET-TEXT-HEIGHT-CHA|GET-TEXT-HEIGHT-CHAR|'
+                r'GET-TEXT-HEIGHT-PIXELS|GET-TEXT-HEIGHT-P|GET-TEXT-HEIGHT-PI|GET-TEXT-HEIGHT-PIX|GET-TEXT-HEIGHT-PIXE|GET-TEXT-HEIGHT-PIXEL|'
+                r'GET-TEXT-WIDTH-CHARS|GET-TEXT-WIDTH|GET-TEXT-WIDTH-|GET-TEXT-WIDTH-C|GET-TEXT-WIDTH-CH|GET-TEXT-WIDTH-CHA|GET-TEXT-WIDTH-CHAR|'
+                r'GET-TEXT-WIDTH-PIXELS|GET-TEXT-WIDTH-P|GET-TEXT-WIDTH-PI|GET-TEXT-WIDTH-PIX|GET-TEXT-WIDTH-PIXE|GET-TEXT-WIDTH-PIXEL|'
+                r'GET-TYPE-BY-INDEX|GET-TYPE-BY-NAMESPACE-NAME|GET-TYPE-BY-QNAME|GET-UNSIGNED-LONG|'
+                r'GET-UNSIGNED-SHORT|GET-URI-BY-INDEX|GET-VALUE-BY-INDEX|GET-VALUE-BY-NAMESPACE-NAME|'
+                r'GET-VALUE-BY-QNAME|GET-WAIT-STATE|GLOBAL|GO-ON|'
+                r'GO-PENDING|GO-PEND|GO-PENDI|GO-PENDIN|GRANT|'
+                r'GRAPHIC-EDGE|GRAPHIC-E|GRAPHIC-ED|GRAPHIC-EDG|'
+                r'GRID-FACTOR-HORIZONTAL|GRID-FACTOR-H|GRID-FACTOR-HO|GRID-FACTOR-HOR|GRID-FACTOR-HORI|GRID-FACTOR-HORIZ|GRID-FACTOR-HORIZO|GRID-FACTOR-HORIZON|GRID-FACTOR-HORIZONT|GRID-FACTOR-HORIZONTA|'
+                r'GRID-FACTOR-VERTICAL|GRID-FACTOR-V|GRID-FACTOR-VE|GRID-FACTOR-VER|GRID-FACTOR-VERT|GRID-FACTOR-VERT|GRID-FACTOR-VERTI|GRID-FACTOR-VERTIC|GRID-FACTOR-VERTICA|'
+                r'GRID-SNAP|'
+                r'GRID-UNIT-HEIGHT-CHARS|GRID-UNIT-HEIGHT|GRID-UNIT-HEIGHT-|GRID-UNIT-HEIGHT-C|GRID-UNIT-HEIGHT-CH|GRID-UNIT-HEIGHT-CHA|'
+                r'GRID-UNIT-HEIGHT-PIXELS|GRID-UNIT-HEIGHT-P|GRID-UNIT-HEIGHT-PI|GRID-UNIT-HEIGHT-PIX|GRID-UNIT-HEIGHT-PIXE|GRID-UNIT-HEIGHT-PIXEL|'
+                r'GRID-UNIT-WIDTH-CHARS|GRID-UNIT-WIDTH|GRID-UNIT-WIDTH-|GRID-UNIT-WIDTH-C|GRID-UNIT-WIDTH-CH|GRID-UNIT-WIDTH-CHA|GRID-UNIT-WIDTH-CHAR|'
+                r'GRID-UNIT-WIDTH-PIXELS|GRID-UNIT-WIDTH-P|GRID-UNIT-WIDTH-PI|GRID-UNIT-WIDTH-PIX|GRID-UNIT-WIDTH-PIXE|GRID-UNIT-WIDTH-PIXEL|'
+                r'GRID-VISIBLE|GROUP|GT|GUID|HANDLER|HAS-RECORDS|HAVING|HEADER|'
+                r'HEIGHT-CHARS|HEIGHT|HEIGHT-|HEIGHT-C|HEIGHT-CH|HEIGHT-CHA|HEIGHT-CHAR|'
+                r'HEIGHT-PIXELS|HEIGHT-P|HEIGHT-PI|HEIGHT-PIX|HEIGHT-PIXE|HEIGHT-PIXEL|'
+                r'HELP|HEX-DECODE|HEX-ENCODE|HIDDEN|HIDE|'
+                r'HORIZONTAL|HORI|HORIZ|HORIZO|HORIZON|HORIZONT|HORIZONTA|'
+                r'HOST-BYTE-ORDER|HTML-CHARSET|HTML-END-OF-LINE|HTML-END-OF-PAGE|'
+                r'HTML-FRAME-BEGIN|HTML-FRAME-END|HTML-HEADER-BEGIN|HTML-HEADER-END|'
+                r'HTML-TITLE-BEGIN|HTML-TITLE-END|HWND|ICON|IF|'
+                r'IMAGE|IMAGE-DOWN|IMAGE-INSENSITIVE|IMAGE-SIZE|'
+                r'IMAGE-SIZE-CHARS|IMAGE-SIZE-C|IMAGE-SIZE-CH|IMAGE-SIZE-CHA|IMAGE-SIZE-CHAR|'
+                r'IMAGE-SIZE-PIXELS|IMAGE-SIZE-P|IMAGE-SIZE-PI|IMAGE-SIZE-PIX|IMAGE-SIZE-PIXE|IMAGE-SIZE-PIXEL|'
+                r'IMAGE-UP|IMMEDIATE-DISPLAY|IMPLEMENTS|IMPORT|IMPORT-PRINCIPAL|'
+                r'IN|INCREMENT-EXCLUSIVE-ID|INDEX|INDEXED-REPOSITION|INDEX-HINT|'
+                r'INDEX-INFORMATION|INDICATOR|'
+                r'INFORMATION|INFO|INFOR|INFORM|INFORMA|INFORMAT|INFORMATI|INFORMATIO|'
+                r'IN-HANDLE|'
+                r'INHERIT-BGCOLOR|INHERIT-BGC|INHERIT-BGCO|INHERIT-BGCOL|INHERIT-BGCOLO|'
+                r'INHERIT-FGCOLOR|INHERIT-FGC|INHERIT-FGCO|INHERIT-FGCOL|INHERIT-FGCOLO|'
+                r'INHERITS|INITIAL|INIT|INITI|INITIA|INITIAL-DIR|INITIAL-FILTER|'
+                r'INITIALIZE-DOCUMENT-TYPE|INITIATE|INNER-CHARS|INNER-LINES|INPUT|'
+                r'INPUT-OUTPUT|INPUT-O|INPUT-OU|INPUT-OUT|INPUT-OUTP|INPUT-OUTPU|'
+                r'INPUT-VALUE|INSERT|INSERT-ATTRIBUTE|'
+                r'INSERT-BACKTAB|INSERT-B|INSERT-BA|INSERT-BAC|INSERT-BACK|INSERT-BACKT|INSERT-BACKTA|'
+                r'INSERT-FILE|INSERT-ROW|INSERT-STRING|INSERT-TAB|INSERT-T|INSERT-TA|'
+                r'INTERFACE|INTERNAL-ENTRIES|INTO|INVOKE|IS|'
+                r'IS-ATTR-SPACE|IS-ATTR|IS-ATTR-|IS-ATTR-S|IS-ATTR-SP|IS-ATTR-SPA|IS-ATTR-SPAC|'
+                r'IS-CLASS|IS-CLAS|IS-LEAD-BYTE|IS-ATTR|IS-OPEN|IS-PARAMETER-SET|IS-ROW-SELECTED|'
+                r'IS-SELECTED|ITEM|ITEMS-PER-ROW|JOIN|JOIN-BY-SQLDB|KBLABEL|KEEP-CONNECTION-OPEN|'
+                r'KEEP-FRAME-Z-ORDER|KEEP-FRAME-Z|KEEP-FRAME-Z-|KEEP-FRAME-Z-O|KEEP-FRAME-Z-OR|KEEP-FRAME-Z-ORD|KEEP-FRAME-Z-ORDE|'
+                r'KEEP-MESSAGES|KEEP-SECURITY-CACHE|KEEP-TAB-ORDER|KEY|KEYCODE|KEY-CODE|'
+                r'KEYFUNCTION|KEYFUNC|KEYFUNCT|KEYFUNCTI|KEYFUNCTIO|'
+                r'KEY-FUNCTION|KEY-FUNC|KEY-FUNCT|KEY-FUNCTI|KEY-FUNCTIO|'
+                r'KEYLABEL|KEY-LABEL|KEYS|KEYWORD|KEYWORD-ALL|LABEL|'
+                r'LABEL-BGCOLOR|LABEL-BGC|LABEL-BGCO|LABEL-BGCOL|LABEL-BGCOLO|'
+                r'LABEL-DCOLOR|LABEL-DC|LABEL-DCO|LABEL-DCOL|LABEL-DCOLO|'
+                r'LABEL-FGCOLOR|LABEL-FGC|LABEL-FGCO|LABEL-FGCOL|LABEL-FGCOLO|'
+                r'LABEL-FONT|'
+                r'LABEL-PFCOLOR|LABEL-PFC|LABEL-PFCO|LABEL-PFCOL|LABEL-PFCOLO|'
+                r'LABELS|LANDSCAPE|LANGUAGES|LANGUAGE|LARGE|LARGE-TO-SMALL|LAST|'
+                r'LAST-ASYNCH-REQUEST|LAST-BATCH|LAST-CHILD|LAST-EVENT|LAST-EVEN|LAST-FORM|'
+                r'LASTKEY|LAST-KEY|LAST-OBJECT|LAST-OF|'
+                r'LAST-PROCEDURE|LAST-PROCE|LAST-PROCED|LAST-PROCEDU|LAST-PROCEDUR|'
+                r'LAST-SERVER|LAST-TAB-ITEM|LAST-TAB-I|LAST-TAB-IT|LAST-TAB-ITE|'
+                r'LC|LDBNAME|LE|LEAVE|LEFT-ALIGNED|LEFT-ALIGN|LEFT-ALIGNE|LEFT-TRIM|'
+                r'LENGTH|LIBRARY|LIKE|LIKE-SEQUENTIAL|LINE|LINE-COUNTER|LINE-COUNT|LINE-COUNTE|'
+                r'LIST-EVENTS|LISTING|LISTI|LISTIN|LIST-ITEM-PAIRS|LIST-ITEMS|'
+                r'LIST-PROPERTY-NAMES|LIST-QUERY-ATTRS|LIST-SET-ATTRS|LIST-WIDGETS|'
+                r'LITERAL-QUESTION|LITTLE-ENDIAN|LOAD|LOAD-DOMAINS|LOAD-ICON|'
+                r'LOAD-IMAGE|LOAD-IMAGE-DOWN|LOAD-IMAGE-INSENSITIVE|LOAD-IMAGE-UP|'
+                r'LOAD-MOUSE-POINTER|LOAD-MOUSE-P|LOAD-MOUSE-PO|LOAD-MOUSE-POI|LOAD-MOUSE-POIN|LOAD-MOUSE-POINT|LOAD-MOUSE-POINTE|'
+                r'LOAD-PICTURE|LOAD-SMALL-ICON|LOCAL-NAME|LOCATOR-COLUMN-NUMBER|'
+                r'LOCATOR-LINE-NUMBER|LOCATOR-PUBLIC-ID|LOCATOR-SYSTEM-ID|LOCATOR-TYPE|'
+                r'LOCKED|LOCK-REGISTRATION|LOG|LOG-AUDIT-EVENT|LOGIN-EXPIRATION-TIMESTAMP|'
+                r'LOGIN-HOST|LOGIN-STATE|LOG-MANAGER|LOGOUT|LOOKAHEAD|LOOKUP|LT|'
+                r'MACHINE-CLASS|MANDATORY|MANUAL-HIGHLIGHT|MAP|MARGIN-EXTRA|'
+                r'MARGIN-HEIGHT-CHARS|MARGIN-HEIGHT|MARGIN-HEIGHT-|MARGIN-HEIGHT-C|MARGIN-HEIGHT-CH|MARGIN-HEIGHT-CHA|MARGIN-HEIGHT-CHAR|'
+                r'MARGIN-HEIGHT-PIXELS|MARGIN-HEIGHT-P|MARGIN-HEIGHT-PI|MARGIN-HEIGHT-PIX|MARGIN-HEIGHT-PIXE|MARGIN-HEIGHT-PIXEL|'
+                r'MARGIN-WIDTH-CHARS|MARGIN-WIDTH|MARGIN-WIDTH-|MARGIN-WIDTH-C|MARGIN-WIDTH-CH|MARGIN-WIDTH-CHA|MARGIN-WIDTH-CHAR|'
+                r'MARGIN-WIDTH-PIXELS|MARGIN-WIDTH-P|MARGIN-WIDTH-PI|MARGIN-WIDTH-PIX|MARGIN-WIDTH-PIXE|MARGIN-WIDTH-PIXEL|'
+                r'MARK-NEW|MARK-ROW-STATE|MATCHES|MAX|MAX-BUTTON|'
+                r'MAX-CHARS|MAX-DATA-GUESS|MAX-HEIGHT|'
+                r'MAX-HEIGHT-CHARS|MAX-HEIGHT-C|MAX-HEIGHT-CH|MAX-HEIGHT-CHA|MAX-HEIGHT-CHAR|'
+                r'MAX-HEIGHT-PIXELS|MAX-HEIGHT-P|MAX-HEIGHT-PI|MAX-HEIGHT-PIX|MAX-HEIGHT-PIXE|MAX-HEIGHT-PIXEL|'
+                r'MAXIMIZE|MAXIMUM|MAX|MAXI|MAXIM|MAXIMU|MAXIMUM-LEVEL|MAX-ROWS|'
+                r'MAX-SIZE|MAX-VALUE|MAX-VAL|MAX-VALU|MAX-WIDTH|'
+                r'MAX-WIDTH-CHARS|MAX-WIDTH|MAX-WIDTH-|MAX-WIDTH-C|MAX-WIDTH-CH|MAX-WIDTH-CHA|MAX-WIDTH-CHAR|'
+                r'MAX-WIDTH-PIXELS|MAX-WIDTH-P|MAX-WIDTH-PI|MAX-WIDTH-PIX|MAX-WIDTH-PIXE|MAX-WIDTH-PIXEL|'
+                r'MD5-DIGEST|MEMBER|MEMPTR-TO-NODE-VALUE|MENU|MENUBAR|MENU-BAR|MENU-ITEM|'
+                r'MENU-KEY|MENU-K|MENU-KE|MENU-MOUSE|MENU-M|MENU-MO|MENU-MOU|MENU-MOUS|'
+                r'MERGE-BY-FIELD|MESSAGE|MESSAGE-AREA|MESSAGE-AREA-FONT|MESSAGE-LINES|'
+                r'METHOD|MIN|MIN-BUTTON|'
+                r'MIN-COLUMN-WIDTH-CHARS|MIN-COLUMN-WIDTH-C|MIN-COLUMN-WIDTH-CH|MIN-COLUMN-WIDTH-CHA|MIN-COLUMN-WIDTH-CHAR|'
+                r'MIN-COLUMN-WIDTH-PIXELS|MIN-COLUMN-WIDTH-P|MIN-COLUMN-WIDTH-PI|MIN-COLUMN-WIDTH-PIX|MIN-COLUMN-WIDTH-PIXE|MIN-COLUMN-WIDTH-PIXEL|'
+                r'MIN-HEIGHT-CHARS|MIN-HEIGHT|MIN-HEIGHT-|MIN-HEIGHT-C|MIN-HEIGHT-CH|MIN-HEIGHT-CHA|MIN-HEIGHT-CHAR|'
+                r'MIN-HEIGHT-PIXELS|MIN-HEIGHT-P|MIN-HEIGHT-PI|MIN-HEIGHT-PIX|MIN-HEIGHT-PIXE|MIN-HEIGHT-PIXEL|'
+                r'MINIMUM|MIN|MINI|MINIM|MINIMU|MIN-SIZE|'
+                r'MIN-VALUE|MIN-VAL|MIN-VALU|'
+                r'MIN-WIDTH-CHARS|MIN-WIDTH|MIN-WIDTH-|MIN-WIDTH-C|MIN-WIDTH-CH|MIN-WIDTH-CHA|MIN-WIDTH-CHAR|'
+                r'MIN-WIDTH-PIXELS|MIN-WIDTH-P|MIN-WIDTH-PI|MIN-WIDTH-PIX|MIN-WIDTH-PIXE|MIN-WIDTH-PIXEL|'
+                r'MODIFIED|MODULO|MOD|MODU|MODUL|MONTH|MOUSE|'
+                r'MOUSE-POINTER|MOUSE-P|MOUSE-PO|MOUSE-POI|MOUSE-POIN|MOUSE-POINT|MOUSE-POINTE|'
+                r'MOVABLE|'
+                r'MOVE-AFTER-TAB-ITEM|MOVE-AFTER|MOVE-AFTER-|MOVE-AFTER-T|MOVE-AFTER-TA|MOVE-AFTER-TAB|MOVE-AFTER-TAB-|MOVE-AFTER-TAB-I|MOVE-AFTER-TAB-IT|MOVE-AFTER-TAB-ITE|'
+                r'MOVE-BEFORE-TAB-ITEM|MOVE-BEFOR|MOVE-BEFORE|MOVE-BEFORE-|MOVE-BEFORE-T|MOVE-BEFORE-TA|MOVE-BEFORE-TAB|MOVE-BEFORE-TAB-|MOVE-BEFORE-TAB-I|MOVE-BEFORE-TAB-IT|MOVE-BEFORE-TAB-ITE|'
+                r'MOVE-COLUMN|MOVE-COL|MOVE-COLU|MOVE-COLUM|'
+                r'MOVE-TO-BOTTOM|MOVE-TO-B|MOVE-TO-BO|MOVE-TO-BOT|MOVE-TO-BOTT|MOVE-TO-BOTTO|'
+                r'MOVE-TO-EOF|MOVE-TO-TOP|MOVE-TO-T|MOVE-TO-TO|MPE|MULTI-COMPILE|MULTIPLE|'
+                r'MULTIPLE-KEY|MULTITASKING-INTERVAL|MUST-EXIST|NAME|NAMESPACE-PREFIX|'
+                r'NAMESPACE-URI|NATIVE|NE|NEEDS-APPSERVER-PROMPT|NEEDS-PROMPT|NEW|'
+                r'NEW-INSTANCE|NEW-ROW|NEXT|NEXT-COLUMN|NEXT-PROMPT|NEXT-ROWID|'
+                r'NEXT-SIBLING|NEXT-TAB-ITEM|NEXT-TAB-I|NEXT-TAB-IT|NEXT-TAB-ITE|'
+                r'NEXT-VALUE|NO|NO-APPLY|NO-ARRAY-MESSAGE|NO-ASSIGN|'
+                r'NO-ATTR-LIST|NO-ATTR|NO-ATTR-|NO-ATTR-L|NO-ATTR-LI|NO-ATTR-LIS|'
+                r'NO-ATTR-SPACE|NO-ATTR|NO-ATTR-|NO-ATTR-S|NO-ATTR-SP|NO-ATTR-SPA|NO-ATTR-SPAC|'
+                r'NO-AUTO-VALIDATE|NO-BIND-WHERE|NO-BOX|NO-CONSOLE|NO-CONVERT|'
+                r'NO-CONVERT-3D-COLORS|NO-CURRENT-VALUE|NO-DEBUG|NODE-VALUE-TO-MEMPTR|'
+                r'NO-DRAG|NO-ECHO|NO-EMPTY-SPACE|NO-ERROR|NO-FILL|NO-F|NO-FI|'
+                r'NO-FIL|NO-FOCUS|NO-HELP|NO-HIDE|NO-INDEX-HINT|'
+                r'NO-INHERIT-BGCOLOR|NO-INHERIT-BGC|NO-INHERIT-BGCO|LABEL-BGCOL|LABEL-BGCOLO|'
+                r'NO-INHERIT-FGCOLOR|NO-INHERIT-FGC|NO-INHERIT-FGCO|NO-INHERIT-FGCOL|NO-INHERIT-FGCOLO|'
+                r'NO-JOIN-BY-SQLDB|NO-LABELS|NO-LABE|NO-LOBS|NO-LOCK|'
+                r'NO-LOOKAHEAD|NO-MAP|'
+                r'NO-MESSAGE|NO-MES|NO-MESS|NO-MESSA|NO-MESSAG|'
+                r'NONAMESPACE-SCHEMA-LOCATION|NONE|NO-PAUSE|'
+                r'NO-PREFETCH|NO-PREFE|NO-PREFET|NO-PREFETC|NORMALIZE|'
+                r'NO-ROW-MARKERS|NO-SCROLLBAR-VERTICAL|NO-SEPARATE-CONNECTION|'
+                r'NO-SEPARATORS|NOT|NO-TAB-STOP|NOT-ACTIVE|'
+                r'NO-UNDERLINE|NO-UND|NO-UNDE|NO-UNDER|NO-UNDERL|NO-UNDERLI|NO-UNDERLIN|'
+                r'NO-UNDO|'
+                r'NO-VALIDATE|NO-VAL|NO-VALI|NO-VALID|NO-VALIDA|NO-VALIDAT|NOW|'
+                r'NO-WAIT|NO-WORD-WRAP|NULL|NUM-ALIASES|NUM-ALI|NUM-ALIA|NUM-ALIAS|NUM-ALIASE|'
+                r'NUM-BUFFERS|NUM-BUTTONS|NUM-BUT|NUM-BUTT|NUM-BUTTO|NUM-BUTTON|'
+                r'NUM-COLUMNS|NUM-COL|NUM-COLU|NUM-COLUM|NUM-COLUMN|NUM-COPIES|'
+                r'NUM-DBS|NUM-DROPPED-FILES|NUM-ENTRIES|NUMERIC|'
+                r'NUMERIC-FORMAT|NUMERIC-F|NUMERIC-FO|NUMERIC-FOR|NUMERIC-FORM|NUMERIC-FORMA|'
+                r'NUM-FIELDS|NUM-FORMATS|NUM-ITEMS|NUM-ITERATIONS|NUM-LINES|'
+                r'NUM-LOCKED-COLUMNS|NUM-LOCKED-COL|NUM-LOCKED-COLU|NUM-LOCKED-COLUM|NUM-LOCKED-COLUMN|'
+                r'NUM-MESSAGES|NUM-PARAMETERS|NUM-REFERENCES|NUM-REPLACED|NUM-RESULTS|NUM-SELECTED-ROWS|'
+                r'NUM-SELECTED-WIDGETS|NUM-SELECTED|NUM-SELECTED-|NUM-SELECTED-W|NUM-SELECTED-WI|NUM-SELECTED-WID|NUM-SELECTED-WIDG|NUM-SELECTED-WIDGE|NUM-SELECTED-WIDGET|'
+                r'NUM-TABS|NUM-TO-RETAIN|NUM-VISIBLE-COLUMNS|OCTET-LENGTH|OF|'
+                r'OFF|OK|OK-CANCEL|OLD|ON|'
+                r'ON-FRAME-BORDER|ON-FRAME|ON-FRAME-|ON-FRAME-B|ON-FRAME-BO|ON-FRAME-BOR|ON-FRAME-BORD|ON-FRAME-BORDE|'
+                r'OPEN|OPSYS|OPTION|OR|ORDERED-JOIN|ORDINAL|'
+                r'OS-APPEND|OS-COMMAND|OS-COPY|OS-CREATE-DIR|OS-DELETE|OS-DIR|'
+                r'OS-DRIVES|OS-DRIVE|OS-ERROR|OS-GETENV|OS-RENAME|OTHERWISE|'
+                r'OUTPUT|OVERLAY|OVERRIDE|OWNER|PAGE|'
+                r'PAGE-BOTTOM|PAGE-BOT|PAGE-BOTT|PAGE-BOTTO|PAGED|'
+                r'PAGE-NUMBER|PAGE-NUM|PAGE-NUMB|PAGE-NUMBE|PAGE-SIZE|'
+                r'PAGE-TOP|PAGE-WIDTH|PAGE-WID|PAGE-WIDT|'
+                r'PARAMETER|PARAM|PARAME|PARAMET|PARAMETE|'
+                r'PARENT|PARSE-STATUS|PARTIAL-KEY|PASCAL|PASSWORD-FIELD|PATHNAME|PAUSE|'
+                r'PBE-HASH-ALGORITHM|PBE-HASH-ALG|PBE-HASH-ALGO|PBE-HASH-ALGOR|PBE-HASH-ALGORI|PBE-HASH-ALGORIT|PBE-HASH-ALGORITH|'
+                r'PBE-KEY-ROUNDS|PDBNAME|PERSISTENT|PERSIST|PERSISTE|PERSISTEN|'
+                r'PERSISTENT-CACHE-DISABLED|PFCOLOR|PFC|PFCO|PFCOL|PFCOLO|PIXELS|'
+                r'PIXELS-PER-COLUMN|PIXELS-PER-COL|PIXELS-PER-COLU|PIXELS-PER-COLUM|'
+                r'PIXELS-PER-ROW|POPUP-MENU|POPUP-M|POPUP-ME|POPUP-MEN|'
+                r'POPUP-ONLY|POPUP-O|POPUP-ON|POPUP-ONL|PORTRAIT|POSITION|'
+                r'PRECISION|PREFER-DATASET|PREPARED|PREPARE-STRING|'
+                r'PREPROCESS|PREPROC|PREPROCE|PREPROCES|'
+                r'PRESELECT|PRESEL|PRESELE|PRESELEC|PREV|PREV-COLUMN|'
+                r'PREV-SIBLING|'
+                r'PREV-TAB-ITEM|PREV-TAB-I|PREV-TAB-IT|PREV-TAB-ITE|'
+                r'PRIMARY|PRINTER|PRINTER-CONTROL-HANDLE|PRINTER-HDC|'
+                r'PRINTER-NAME|PRINTER-PORT|PRINTER-SETUP|PRIVATE|'
+                r'PRIVATE-DATA|PRIVATE-D|PRIVATE-DA|PRIVATE-DAT|'
+                r'PRIVILEGES|'
+                r'PROCEDURE|PROCE|PROCED|PROCEDU|PROCEDUR|'
+                r'PROCEDURE-CALL-TYPE|'
+                r'PROCESS|'
+                r'PROC-HANDLE|PROC-HA|PROC-HAN|PROC-HAND|PROC-HANDL|'
+                r'PROC-STATUS|PROC-ST|PROC-STA|PROC-STAT|PROC-STATU|'
+                r'proc-text|proc-text-buffer|'
+                r'PROFILER|PROGRAM-NAME|PROGRESS|'
+                r'PROGRESS-SOURCE|PROGRESS-S|PROGRESS-SO|PROGRESS-SOU|PROGRESS-SOUR|PROGRESS-SOURC|'
+                r'PROMPT|PROMPT-FOR|PROMPT-F|PROMPT-FO|PROMSGS|PROPATH|'
+                r'PROPERTY|PROTECTED|PROVERSION|PROVERS|PROVERSI|PROVERSIO|'
+                r'PROXY|PROXY-PASSWORD|PROXY-USERID|PUBLIC|PUBLIC-ID|'
+                r'PUBLISH|PUBLISHED-EVENTS|PUT|PUTBYTE|PUT-BYTE|PUT-DOUBLE|'
+                r'PUT-FLOAT|PUT-INT64|PUT-KEY-VALUE|PUT-KEY-VAL|PUT-KEY-VALU|PUT-LONG|'
+                r'PUT-SHORT|PUT-STRING|PUT-UNSIGNED-LONG|QUERY|QUERY-CLOSE|QUERY-OFF-END|'
+                r'QUERY-OPEN|QUERY-PREPARE|QUERY-TUNING|QUESTION|QUIT|QUOTER|'
+                r'RADIO-BUTTONS|RADIO-SET|RANDOM|RAW-TRANSFER|'
+                r'RCODE-INFORMATION|RCODE-INFO|RCODE-INFOR|RCODE-INFORM|RCODE-INFORMA|RCODE-INFORMAT|RCODE-INFORMATI|RCODE-INFORMATIO|'
+                r'READ-AVAILABLE|READ-EXACT-NUM|READ-FILE|READKEY|READ-ONLY|READ-XML|READ-XMLSCHEMA|'
+                r'REAL|RECORD-LENGTH|RECTANGLE|RECT|RECTA|RECTAN|RECTANG|RECTANGL|'
+                r'RECURSIVE|REFERENCE-ONLY|REFRESH|REFRESHABLE|REFRESH-AUDIT-POLICY|'
+                r'REGISTER-DOMAIN|RELEASE|REMOTE|REMOVE-EVENTS-PROCEDURE|REMOVE-SUPER-PROCEDURE|'
+                r'REPEAT|REPLACE|REPLACE-SELECTION-TEXT|REPOSITION|REPOSITION-BACKWARD|'
+                r'REPOSITION-FORWARD|REPOSITION-MODE|REPOSITION-TO-ROW|REPOSITION-TO-ROWID|'
+                r'REQUEST|RESET|RESIZABLE|RESIZA|RESIZAB|RESIZABL|RESIZE|RESTART-ROW|'
+                r'RESTART-ROWID|RETAIN|RETAIN-SHAPE|RETRY|RETRY-CANCEL|RETURN|'
+                r'RETURN-INSERTED|RETURN-INS|RETURN-INSE|RETURN-INSER|RETURN-INSERT|RETURN-INSERTE|'
+                r'RETURNS|RETURN-TO-START-DIR|RETURN-TO-START-DI|'
+                r'RETURN-VALUE|RETURN-VAL|RETURN-VALU|'
+                r'RETURN-VALUE-DATA-TYPE|REVERSE-FROM|REVERT|'
+                r'REVOKE|RGB-VALUE|RIGHT-ALIGNED|RETURN-ALIGN|RETURN-ALIGNE|'
+                r'RIGHT-TRIM|R-INDEX|ROLES|ROUND|ROUTINE-LEVEL|ROW|'
+                r'ROW-HEIGHT-CHARS|HEIGHT|ROW-HEIGHT-PIXELS|HEIGHT-P|ROW-MARKERS|'
+                r'ROW-OF|ROW-RESIZABLE|RULE|RUN|RUN-PROCEDURE|SAVE|SAVE-AS|'
+                r'SAVE-FILE|SAX-COMPLETE|SAX-COMPLE|SAX-COMPLET|SAX-PARSE|SAX-PARSE-FIRST|'
+                r'SAX-PARSE-NEXT|SAX-PARSER-ERROR|SAX-RUNNING|SAX-UNINITIALIZED|'
+                r'SAX-WRITE-BEGIN|SAX-WRITE-COMPLETE|SAX-WRITE-CONTENT|SAX-WRITE-ELEMENT|'
+                r'SAX-WRITE-ERROR|SAX-WRITE-IDLE|SAX-WRITER|SAX-WRITE-TAG|SCHEMA|'
+                r'SCHEMA-LOCATION|SCHEMA-MARSHAL|SCHEMA-PATH|SCREEN|SCREEN-IO|'
+                r'SCREEN-LINES|SCREEN-VALUE|SCREEN-VAL|SCREEN-VALU|SCROLL|SCROLLABLE|'
+                r'SCROLLBAR-HORIZONTAL|SCROLLBAR-H|SCROLLBAR-HO|SCROLLBAR-HOR|SCROLLBAR-HORI|SCROLLBAR-HORIZ|SCROLLBAR-HORIZO|SCROLLBAR-HORIZON|SCROLLBAR-HORIZONT|SCROLLBAR-HORIZONTA|'
+                r'SCROLL-BARS|'
+                r'SCROLLBAR-VERTICAL|SCROLLBAR-V|SCROLLBAR-VE|SCROLLBAR-VER|SCROLLBAR-VERT|SCROLLBAR-VERTI|SCROLLBAR-VERTIC|SCROLLBAR-VERTICA|'
+                r'SCROLL-DELTA|'
+                r'SCROLLED-ROW-POSITION|SCROLLED-ROW-POS|SCROLLED-ROW-POSI|SCROLLED-ROW-POSIT|SCROLLED-ROW-POSITI|SCROLLED-ROW-POSITIO|'
+                r'SCROLLING|SCROLL-OFFSET|SCROLL-TO-CURRENT-ROW|SCROLL-TO-ITEM|SCROLL-TO-I|SCROLL-TO-IT|SCROLL-TO-ITE|'
+                r'SCROLL-TO-SELECTED-ROW|SDBNAME|SEAL|SEAL-TIMESTAMP|SEARCH|SEARCH-SELF|SEARCH-TARGET|'
+                r'SECTION|SECURITY-POLICY|SEEK|SELECT|SELECTABLE|SELECT-ALL|'
+                r'SELECTED|SELECT-FOCUSED-ROW|SELECTION|SELECTION-END|SELECTION-LIST|'
+                r'SELECTION-START|SELECTION-TEXT|SELECT-NEXT-ROW|SELECT-PREV-ROW|'
+                r'SELECT-ROW|SELF|SEND|send-sql-statement|send-sql|SENSITIVE|'
+                r'SEPARATE-CONNECTION|SEPARATOR-FGCOLOR|SEPARATORS|SERVER|'
+                r'SERVER-CONNECTION-BOUND|SERVER-CONNECTION-BOUND-REQUEST|'
+                r'SERVER-CONNECTION-CONTEXT|SERVER-CONNECTION-ID|SERVER-OPERATING-MODE|'
+                r'SESSION|SESSION-ID|SET|SET-APPL-CONTEXT|SET-ATTR-CALL-TYPE|SET-ATTRIBUTE-NODE|'
+                r'SET-BLUE-VALUE|SET-BLUE|SET-BLUE-|SET-BLUE-V|SET-BLUE-VA|SET-BLUE-VAL|SET-BLUE-VALU|'
+                r'SET-BREAK|SET-BUFFERS|SET-CALLBACK|SET-CLIENT|SET-COMMIT|SET-CONTENTS|'
+                r'SET-CURRENT-VALUE|SET-DB-CLIENT|SET-DYNAMIC|SET-EVENT-MANAGER-OPTION|'
+                r'SET-GREEN-VALUE|SET-GREEN|SET-GREEN-|SET-GREEN-V|SET-GREEN-VA|SET-GREEN-VAL|SET-GREEN-VALU|'
+                r'SET-INPUT-SOURCE|SET-OPTION|SET-OUTPUT-DESTINATION|SET-PARAMETER|SET-POINTER-VALUE|'
+                r'SET-PROPERTY|SET-RED-VALUE|SET-RED|SET-RED-|SET-RED-V|SET-RED-VA|SET-RED-VAL|SET-RED-VALU|'
+                r'SET-REPOSITIONED-ROW|SET-RGB-VALUE|SET-ROLLBACK|SET-SELECTION|SET-SIZE|'
+                r'SET-SORT-ARROW|SETUSERID|SETUSER|SETUSERI|SET-WAIT-STATE|SHA1-DIGEST|SHARED|'
+                r'SHARE-LOCK|SHARE|SHARE-|SHARE-L|SHARE-LO|SHARE-LOC|SHOW-IN-TASKBAR|SHOW-STATS|SHOW-STAT|'
+                r'SIDE-LABEL-HANDLE|SIDE-LABEL-H|SIDE-LABEL-HA|SIDE-LABEL-HAN|SIDE-LABEL-HAND|SIDE-LABEL-HANDL|'
+                r'SIDE-LABELS|SIDE-LAB|SIDE-LABE|SIDE-LABEL|'
+                r'SILENT|SIMPLE|SINGLE|SIZE|'
+                r'SIZE-CHARS|SIZE-C|SIZE-CH|SIZE-CHA|SIZE-CHAR|'
+                r'SIZE-PIXELS|SIZE-P|SIZE-PI|SIZE-PIX|SIZE-PIXE|SIZE-PIXEL|SKIP|'
+                r'SKIP-DELETED-RECORD|SLIDER|SMALL-ICON|SMALLINT|SMALL-TITLE|SOME|SORT|'
+                r'SORT-ASCENDING|SORT-NUMBER|SOURCE|SOURCE-PROCEDURE|SPACE|SQL|SQRT|'
+                r'SSL-SERVER-NAME|STANDALONE|START|START-DOCUMENT|START-ELEMENT|START-MOVE|'
+                r'START-RESIZE|START-ROW-RESIZE|STATE-DETAIL|STATIC|STATUS|STATUS-AREA|STATUS-AREA-FONT|'
+                r'STDCALL|STOP|STOP-PARSING|STOPPED|STOPPE|'
+                r'STORED-PROCEDURE|STORED-PROC|STORED-PROCE|STORED-PROCED|STORED-PROCEDU|STORED-PROCEDUR|'
+                r'STREAM|STREAM-HANDLE|STREAM-IO|STRETCH-TO-FIT|STRICT|STRING|STRING-VALUE|STRING-XREF|'
+                r'SUB-AVERAGE|SUB-AVE|SUB-AVER|SUB-AVERA|SUB-AVERAG|'
+                r'SUB-COUNT|SUB-MAXIMUM|SUM-MAX|SUM-MAXI|SUM-MAXIM|SUM-MAXIMU|SUB-MENU|SUBSUB-|'
+                r'MINIMUM|SUB-MIN|SUBSCRIBE|SUBSTITUTE|SUBST|SUBSTI|SUBSTIT|SUBSTITU|SUBSTITUT|'
+                r'SUBSTRING|SUBSTR|SUBSTRI|SUBSTRIN|SUB-TOTAL|SUBTYPE|SUM|SUPER|SUPER-PROCEDURES|'
+                r'SUPPRESS-NAMESPACE-PROCESSING|'
+                r'SUPPRESS-WARNINGS|SUPPRESS-W|SUPPRESS-WA|SUPPRESS-WAR|SUPPRESS-WARN|SUPPRESS-WARNI|SUPPRESS-WARNIN|SUPPRESS-WARNING|'
+                r'SYMMETRIC-ENCRYPTION-ALGORITHM|SYMMETRIC-ENCRYPTION-IV|SYMMETRIC-ENCRYPTION-KEY|SYMMETRIC-SUPPORT|'
+                r'SYSTEM-ALERT-BOXES|SYSTEM-ALERT|SYSTEM-ALERT-|SYSTEM-ALERT-B|SYSTEM-ALERT-BO|SYSTEM-ALERT-BOX|SYSTEM-ALERT-BOXE|'
+                r'SYSTEM-DIALOG|SYSTEM-HELP|SYSTEM-ID|TABLE|TABLE-HANDLE|TABLE-NUMBER|TAB-POSITION|'
+                r'TAB-STOP|TARGET|TARGET-PROCEDURE|'
+                r'TEMP-DIRECTORY|TEMP-DIR|TEMP-DIRE|TEMP-DIREC|TEMP-DIRECT|TEMP-DIRECTO|TEMP-DIRECTOR|'
+                r'TEMP-TABLE|TEMP-TABLE-PREPARE|TERM|TERMINAL|TERM|TERMI|TERMIN|TERMINA|'
+                r'TERMINATE|TEXT|TEXT-CURSOR|TEXT-SEG-GROW|TEXT-SELECTED|THEN|'
+                r'THIS-OBJECT|THIS-PROCEDURE|THREE-D|THROW|THROUGH|THRU|TIC-MARKS|TIME|'
+                r'TIME-SOURCE|TITLE|'
+                r'TITLE-BGCOLOR|TITLE-BGC|TITLE-BGCO|TITLE-BGCOL|TITLE-BGCOLO|'
+                r'TITLE-DCOLOR|TITLE-DC|TITLE-DCO|TITLE-DCOL|TITLE-DCOLO|'
+                r'TITLE-FGCOLOR|TITLE-FGC|TITLE-FGCO|TITLE-FGCOL|TITLE-FGCOLO|'
+                r'TITLE-FONT|TITLE-FO|TITLE-FON|'
+                r'TO|TODAY|TOGGLE-BOX|TOOLTIP|TOOLTIPS|TOPIC|TOP-NAV-QUERY|TOP-ONLY|'
+                r'TO-ROWID|TOTAL|TRAILING|TRANS|TRANSACTION|TRANSACTION-MODE|'
+                r'TRANS-INIT-PROCEDURE|TRANSPARENT|TRIGGER|TRIGGERS|TRIM|'
+                r'TRUE|TRUNCATE|TRUNC|TRUNCA|TRUNCAT|TYPE|TYPE-OF|'
+                r'UNBOX|UNBUFFERED|UNBUFF|UNBUFFE|UNBUFFER|UNBUFFERE|'
+                r'UNDERLINE|UNDERL|UNDERLI|UNDERLIN|UNDO|'
+                r'UNFORMATTED|UNFORM|UNFORMA|UNFORMAT|UNFORMATT|UNFORMATTE|UNION|'
+                r'UNIQUE|UNIQUE-ID|UNIQUE-MATCH|UNIX|UNLESS-HIDDEN|UNLOAD|'
+                r'UNSIGNED-LONG|UNSUBSCRIBE|UP|UPDATE|UPDATE-ATTRIBUTE|'
+                r'URL|URL-DECODE|URL-ENCODE|URL-PASSWORD|URL-USERID|USE|'
+                r'USE-DICT-EXPS|USE-FILENAME|USE-INDEX|USER|USE-REVVIDEO|'
+                r'USERID|USER-ID|USE-TEXT|USE-UNDERLINE|USE-WIDGET-POOL|'
+                r'USING|V6DISPLAY|V6FRAME|VALIDATE|VALIDATE-EXPRESSION|'
+                r'VALIDATE-MESSAGE|VALIDATE-SEAL|VALIDATION-ENABLED|VALID-EVENT|'
+                r'VALID-HANDLE|VALID-OBJECT|VALUE|VALUE-CHANGED|VALUES|'
+                r'VARIABLE|VAR|VARI|VARIA|VARIAB|VARIABL|VERBOSE|'
+                r'VERSION|VERTICAL|VERT|VERTI|VERTIC|VERTICA|'
+                r'VIEW|VIEW-AS|VIEW-FIRST-COLUMN-ON-REOPEN|'
+                r'VIRTUAL-HEIGHT-CHARS|VIRTUAL-HEIGHT|VIRTUAL-HEIGHT-|VIRTUAL-HEIGHT-C|VIRTUAL-HEIGHT-CH|VIRTUAL-HEIGHT-CHA|VIRTUAL-HEIGHT-CHAR|'
+                r'VIRTUAL-HEIGHT-PIXELS|VIRTUAL-HEIGHT-P|VIRTUAL-HEIGHT-PI|VIRTUAL-HEIGHT-PIX|VIRTUAL-HEIGHT-PIXE|VIRTUAL-HEIGHT-PIXEL|'
+                r'VIRTUAL-WIDTH-CHARS|VIRTUAL-WIDTH|VIRTUAL-WIDTH-|VIRTUAL-WIDTH-C|VIRTUAL-WIDTH-CH|VIRTUAL-WIDTH-CHA|VIRTUAL-WIDTH-CHAR|'
+                r'VIRTUAL-WIDTH-PIXELS|VIRTUAL-WIDTH-P|VIRTUAL-WIDTH-PI|VIRTUAL-WIDTH-PIX|VIRTUAL-WIDTH-PIXE|VIRTUAL-WIDTH-PIXEL|'
+                r'VISIBLE|VOID|WAIT|WAIT-FOR|WARNING|WEB-CONTEXT|WEEKDAY|WHEN|'
+                r'WHERE|WHILE|WIDGET|'
+                r'WIDGET-ENTER|WIDGET-E|WIDGET-EN|WIDGET-ENT|WIDGET-ENTE|'
+                r'WIDGET-ID|'
+                r'WIDGET-LEAVE|WIDGET-L|WIDGET-LE|WIDGET-LEA|WIDGET-LEAV|'
+                r'WIDGET-POOL|WIDTH|'
+                r'WIDTH-CHARS|WIDTH|WIDTH-|WIDTH-C|WIDTH-CH|WIDTH-CHA|WIDTH-CHAR|'
+                r'WIDTH-PIXELS|WIDTH-P|WIDTH-PI|WIDTH-PIX|WIDTH-PIXE|WIDTH-PIXEL|'
+                r'WINDOW|'
+                r'WINDOW-MAXIMIZED|WINDOW-MAXIM|WINDOW-MAXIMI|WINDOW-MAXIMIZ|WINDOW-MAXIMIZE|'
+                r'WINDOW-MINIMIZED|WINDOW-MINIM|WINDOW-MINIMI|WINDOW-MINIMIZ|WINDOW-MINIMIZE|'
+                r'WINDOW-NAME|WINDOW-NORMAL|WINDOW-STATE|WINDOW-STA|WINDOW-STAT|'
+                r'WINDOW-SYSTEM|WITH|WORD-INDEX|WORD-WRAP|WORK-AREA-HEIGHT-PIXELS|'
+                r'WORK-AREA-WIDTH-PIXELS|WORK-AREA-X|WORK-AREA-Y|WORKFILE|'
+                r'WORK-TABLE|WORK-TAB|WORK-TABL|WRITE|WRITE-CDATA|WRITE-CHARACTERS|'
+                r'WRITE-COMMENT|WRITE-DATA-ELEMENT|WRITE-EMPTY-ELEMENT|WRITE-ENTITY-REF|'
+                r'WRITE-EXTERNAL-DTD|WRITE-FRAGMENT|WRITE-MESSAGE|'
+                r'WRITE-PROCESSING-INSTRUCTION|WRITE-STATUS|WRITE-XML|WRITE-XMLSCHEMA|'
+                r'X|XCODE|XML-DATA-TYPE|XML-NODE-TYPE|XML-SCHEMA-PATH|'
+                r'XML-SUPPRESS-NAMESPACE-PROCESSING|X-OF|XREF|'
+                r'XREF-XML|Y|YEAR|YEAR-OFFSET|YES|YES-NO|'
+                r'YES-NO-CANCEL|Y-OF)\s*($|(?=[^0-9a-z_\-]))')
+
+    tokens = {
+        'root': [
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'\{', Comment.Preproc, 'preprocessor'),
+            (r'\s*&.*', Comment.Preproc),
+            (r'0[xX][0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'(?i)(DEFINE|DEF|DEFI|DEFIN)\b', Keyword.Declaration),
+            (types, Keyword.Type),
+            (keywords, Name.Builtin),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r'\s+', Text),
+            (r'[\\+\\-\\*\\/\\=]', Operator),
+            (r'[\\.\\:\\(\\)]', Punctuation),
+            (r'.', Name.Variable), # Lazy catch-all
+        ],
+        'comment': [
+            (r'[^*/]', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline)
+        ],
+        'preprocessor': [
+            (r'[^{}]', Comment.Preproc),
+            (r'{', Comment.Preproc, '#push'),
+            (r'}', Comment.Preproc, '#pop'),
         ],
     }
