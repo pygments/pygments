@@ -1117,9 +1117,12 @@ class LuaLexer(RegexLexer):
                     continue
             yield index, token, value
 
+
 class MoonScriptLexer(LuaLexer):
     """
     For `MoonScript <http://moonscript.org.org>`_ source code.
+
+    *New in Pygments 1.5.*
     """
 
     name = "MoonScript"
