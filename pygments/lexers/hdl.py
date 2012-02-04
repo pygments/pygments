@@ -9,9 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import RegexLexer, include, bygroups
+from pygments.lexer import RegexLexer, bygroups
 from pygments.token import \
      Text, Comment, Operator, Keyword, Name, String, Number, Punctuation, \
      Error
@@ -128,16 +126,19 @@ class VerilogLexer(RegexLexer):
                     token = Name.Constant
             yield index, token, value
 
+
 class SystemVerilogLexer(RegexLexer):
     """
-    Extends verilog lexer to recognise all SystemVerilog keywords from IEEE 1800-2009 standard.
-    Contributed by Gordon McGregor (gordon.mcgregor@verilab.com)
+    Extends verilog lexer to recognise all SystemVerilog keywords from IEEE
+    1800-2009 standard.
+
+    *New in Pygments 1.5.*
     """
     name = 'systemverilog'
     aliases = ['sv']
     filenames = ['*.sv', '*.svh']
     mimetypes = ['text/x-systemverilog']
-    
+
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
 
@@ -263,5 +264,3 @@ class SystemVerilogLexer(RegexLexer):
                 if value.isupper():
                     token = Name.Constant
             yield index, token, value
-
-
