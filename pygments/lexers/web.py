@@ -1796,7 +1796,7 @@ class CoffeeScriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'///', String.Regex, ('#pop', 'multilineregex')),
-            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+            (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
             (r'', Text, '#pop'),
         ],
@@ -1834,8 +1834,9 @@ class CoffeeScriptLexer(RegexLexer):
             ("'", String, 'sqs'),
         ],
         'strings': [
-            (r'[^#\\\'"]+', String)  # note that all coffee script strings are multi-line.
-                                     # hashmarks, quotes and backslashes must be parsed one at a time
+            (r'[^#\\\'"]+', String),
+            # note that all coffee script strings are multi-line.
+            # hashmarks, quotes and backslashes must be parsed one at a time
         ],
         'interpoling_string' : [
             (r'}', String.Interpol, "#pop"),
