@@ -105,12 +105,12 @@ class PythonLexer(RegexLexer):
              r'WindowsError|ZeroDivisionError)\b', Name.Exception),
         ],
         'numbers': [
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-            (r'\d+[eE][+-]?[0-9]+', Number.Float),
-            (r'0[0-7]+', Number.Oct),
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
+            (r'0[0-7]+j?', Number.Oct),
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),
-            (r'\d+', Number.Integer)
+            (r'\d+j?', Number.Integer)
         ],
         'backtick': [
             ('`.*?`', String.Backtick),
