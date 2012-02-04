@@ -13,13 +13,15 @@ namespace Demo.Ns
     public virtual someMethod(str : string) : list[double]
     {
       def x = "simple string";
-      def x = $"simple $splice string $(spliceMethod())";
+      def x = $"simple $splice string $(spliceMethod() + 1)";
       def x = <#
         recursive <# string #> sample
       #>;
       def x = $<#
         recursive $splice <# string #> sample
+        ..$(lst; "; "; x => $"x * 2 = $(x * 2)") str
       #>;
+      def x = @"somestring \";
 
       def localFunc(arg)
       {
@@ -80,6 +82,6 @@ namespace Demo.Ns
   macro sampleMacro(expr)
   syntax ("write", expr)
   {
-    <[ WriteLine($expr) ]>
+    <[ WriteLine($(expr : dyn)) ]>
   }
 }
