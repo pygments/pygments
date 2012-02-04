@@ -123,7 +123,7 @@ def main(fn, lexer=None, options={}):
                 for tok, state in map(None, tokens, states):
                     show_token(tok, state)
             else:
-                for i in range(len(tokens) - num, len(tokens)):
+                for i in range(max(len(tokens) - num, 0), len(tokens)):
                     show_token(tokens[i], states[i])
             print 'Error token:'
             l = len(repr(val))
