@@ -15,7 +15,7 @@ from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
      this, do_insertions, combined, ExtendedRegexLexer
 from pygments.token import Error, Punctuation, Literal, Token, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
-from pygments.util import ClassNotFound, shebang_matches
+from pygments.util import shebang_matches
 from pygments.lexers.web import HtmlLexer
 
 
@@ -27,8 +27,8 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer',
            'PostScriptLexer', 'AutohotkeyLexer', 'GoodDataCLLexer',
            'MaqlLexer', 'ProtoBufLexer', 'HybrisLexer', 'AwkLexer',
-           'Cfengine3Lexer', 'HttpLexer', 'SnobolLexer', 'ECLLexer',
-           'UrbiscriptLexer', 'OpenEdgeLexer']
+           'Cfengine3Lexer', 'SnobolLexer', 'ECLLexer', 'UrbiscriptLexer',
+           'OpenEdgeLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -3046,69 +3046,6 @@ class Cfengine3Lexer(RegexLexer):
             (r'\w+', Name.Variable),
             (r'\s+', Text),
         ],
-    }
-
-
-class HttpLexer(RegexLexer):
-    """
-    Lexer for HTTP sessions.
-
-    *New in Pygments 1.5.*
-    """
-
-    name = 'HTTP'
-    aliases = ['http']
-
-    flags = re.DOTALL
-
-    def header_callback(self, match):
-        if match.group(1).lower() == 'content-type':
-            content_type = match.group(5).strip()
-            if ';' in content_type:
-                content_type = content_type[:content_type.find(';')].strip()
-            self.content_type = content_type
-        yield match.start(1), Name.Attribute, match.group(1)
-        yield match.start(2), Text, match.group(2)
-        yield match.start(3), Operator, match.group(3)
-        yield match.start(4), Text, match.group(4)
-        yield match.start(5), Literal, match.group(5)
-        yield match.start(6), Text, match.group(6)
-
-    def content_callback(self, match):
-        content_type = getattr(self, 'content_type', None)
-        content = match.group()
-        offset = match.start()
-        if content_type:
-            from pygments.lexers import get_lexer_for_mimetype
-            try:
-                lexer = get_lexer_for_mimetype(content_type)
-            except ClassNotFound:
-                pass
-            else:
-                for idx, token, value in lexer.get_tokens_unprocessed(content):
-                    yield offset + idx, token, value
-                return
-        yield offset, Text, content
-
-    tokens = {
-        'root': [
-            (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE)( +)([^ ]+)( +)'
-             r'(HTTPS?)(/)(1\.[01])(\r?\n|$)',
-             bygroups(Name.Function, Text, Name.Namespace, Text,
-                      Keyword.Reserved, Operator, Number, Text),
-             'headers'),
-            (r'(HTTPS?)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|$)',
-             bygroups(Keyword.Reserved, Operator, Number, Text, Number,
-                      Text, Name.Exception, Text),
-             'headers'),
-        ],
-        'headers': [
-            (r'([^\s:]+)( *)(:)( *)([^\r\n]+)(\r?\n|$)', header_callback),
-            (r'\r?\n', Text, 'content')
-        ],
-        'content': [
-            (r'.+', content_callback)
-        ]
     }
 
 
