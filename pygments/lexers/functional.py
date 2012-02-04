@@ -1079,6 +1079,7 @@ class ErlangShellLexer(Lexer):
                                       erlexer.get_tokens_unprocessed(curcode)):
                 yield item
 
+
 class OpaLexer(RegexLexer):
     """
     Lexer for the Opa language (http://opalang.org).
@@ -1095,21 +1096,9 @@ class OpaLexer(RegexLexer):
     # but if you color only real keywords, you might just
     # as well not color anything
     keywords = [
-        'and','as',
-        'begin',
-        'css',
-        'database','db','do',
-        'else','end','external',
-        'forall',
-        'if','import',
-        'match',
-        'package','parser',
-        'rec',
-        'server',
-        'then','type',
-        'val',
-        'with',
-        'xml_parser'
+        'and', 'as', 'begin', 'css', 'database', 'db', 'do', 'else', 'end',
+        'external', 'forall', 'if', 'import', 'match', 'package', 'parser',
+        'rec', 'server', 'then', 'type', 'val', 'with', 'xml_parser'
     ]
 
     # matches both stuff and `stuff`
@@ -1133,12 +1122,12 @@ class OpaLexer(RegexLexer):
             (r'//.*?$', Comment),
         ],
         'comments-and-spaces': [
-            pygments.lexer.include('comments'),
+            include('comments'),
             (r'\s+', Text),
         ],
 
         'root': [
-            pygments.lexer.include('comments-and-spaces'),
+            include('comments-and-spaces'),
             # keywords
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
             # directives
@@ -1161,15 +1150,16 @@ class OpaLexer(RegexLexer):
 
             # string literals
             (r'"', String.Double, 'string'),
-            # char literal, should be checked because this is the regexp from the caml lexer
+            # char literal, should be checked because this is the regexp from
+            # the caml lexer
             (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2})|.)'",
              String.Char),
 
             # this is meant to deal with embedded exprs in strings
             # every time we find a '}' we pop a state so that if we were
             # inside a string, we are back in the string state
-            # as a consequence, we must also push a state every time we find a '{'
-            # or else we will have errors when parsing {} for instance
+            # as a consequence, we must also push a state every time we find a
+            # '{' or else we will have errors when parsing {} for instance
             (r'{', Operator, '#push'),
             (r'}', Operator, '#pop'),
 
@@ -1207,8 +1197,8 @@ class OpaLexer(RegexLexer):
             # coercions
             (r':', Operator, 'type'),
             # type variables
-            # we need this rule because we don't parse specially type definitions
-            # so in "type t('a) = ...", "'a" is parsed by 'root'
+            # we need this rule because we don't parse specially type
+            # definitions so in "type t('a) = ...", "'a" is parsed by 'root'
             ("'"+ident_re, Keyword.Type),
 
             # id literal, #something, or #{expr}
@@ -1231,8 +1221,8 @@ class OpaLexer(RegexLexer):
         # * type-with-slash -> ty
         # * type-with-slash (, type-with-slash)+ -> ty
         #
-        # the code is pretty funky in here, but this code would roughly translate
-        # in caml to:
+        # the code is pretty funky in here, but this code would roughly
+        # translate in caml to:
         # let rec type stream =
         # match stream with
         # | [< "->";  stream >] -> type stream
@@ -1241,15 +1231,16 @@ class OpaLexer(RegexLexer):
         #   type_lhs_1 stream;
         # and type_1 stream = ...
         'type': [
-            pygments.lexer.include('comments-and-spaces'),
+            include('comments-and-spaces'),
             (r'->', Keyword.Type),
             (r'', Keyword.Type, ('#pop', 'type-lhs-1', 'type-with-slash')),
         ],
 
-        # parses all the atomic or closed constructions in the syntax of type expressions
-        # record types, tuple types, type constructors, basic type and type variables
+        # parses all the atomic or closed constructions in the syntax of type
+        # expressions: record types, tuple types, type constructors, basic type
+        # and type variables
         'type-1': [
-            pygments.lexer.include('comments-and-spaces'),
+            include('comments-and-spaces'),
             (r'\(', Keyword.Type, ('#pop', 'type-tuple')),
             (r'~?{', Keyword.Type, ('#pop', 'type-record')),
             (ident_re+r'\(', Keyword.Type, ('#pop', 'type-tuple')),
@@ -1266,11 +1257,11 @@ class OpaLexer(RegexLexer):
         # * type-1
         # * type-1 (/ type-1)+
         'type-with-slash': [
-            pygments.lexer.include('comments-and-spaces'),
+            include('comments-and-spaces'),
             (r'', Keyword.Type, ('#pop', 'slash-type-1', 'type-1')),
         ],
         'slash-type-1': [
-            pygments.lexer.include('comments-and-spaces'),
+            include('comments-and-spaces'),
             ('/', Keyword.Type, ('#pop', 'type-1')),
             # same remark as above
             (r'', Keyword.Type, '#pop'),
@@ -1282,14 +1273,15 @@ class OpaLexer(RegexLexer):
         # type (in which case we must continue parsing) or not (in which
         # case we stop)
         'type-lhs-1': [
-            pygments.lexer.include('comments-and-spaces'),
+            include('comments-and-spaces'),
             (r'->', Keyword.Type, ('#pop', 'type')),
             (r'(?=,)', Keyword.Type, ('#pop', 'type-arrow')),
             (r'', Keyword.Type, '#pop'),
         ],
         'type-arrow': [
-            pygments.lexer.include('comments-and-spaces'),
-            # the look ahead here allows to parse f(x : int, y : float -> truc) correctly
+            include('comments-and-spaces'),
+            # the look ahead here allows to parse f(x : int, y : float -> truc)
+            # correctly
             (r',(?=[^:]*?->)', Keyword.Type, 'type-with-slash'),
             (r'->', Keyword.Type, ('#pop', 'type')),
             # same remark as above
@@ -1303,14 +1295,14 @@ class OpaLexer(RegexLexer):
         # contained identifiers like `{)` (although it could be patched
         # to support it)
         'type-tuple': [
-            pygments.lexer.include('comments-and-spaces'),
+            include('comments-and-spaces'),
             (r'[^\(\)/*]+', Keyword.Type),
             (r'[/*]', Keyword.Type),
             (r'\(', Keyword.Type, '#push'),
             (r'\)', Keyword.Type, '#pop'),
         ],
         'type-record': [
-            pygments.lexer.include('comments-and-spaces'),
+            include('comments-and-spaces'),
             (r'[^{}/*]+', Keyword.Type),
             (r'[/*]', Keyword.Type),
             (r'{', Keyword.Type, '#push'),
@@ -1318,17 +1310,17 @@ class OpaLexer(RegexLexer):
         ],
 
 #        'type-tuple': [
-#            pygments.lexer.include('comments-and-spaces'),
+#            include('comments-and-spaces'),
 #            (r'\)', Keyword.Type, '#pop'),
 #            (r'', Keyword.Type, ('#pop', 'type-tuple-1', 'type-1')),
 #        ],
 #        'type-tuple-1': [
-#            pygments.lexer.include('comments-and-spaces'),
+#            include('comments-and-spaces'),
 #            (r',?\s*\)', Keyword.Type, '#pop'), # ,) is a valid end of tuple, in (1,)
 #            (r',', Keyword.Type, 'type-1'),
 #        ],
 #        'type-record':[
-#            pygments.lexer.include('comments-and-spaces'),
+#            include('comments-and-spaces'),
 #            (r'}', Keyword.Type, '#pop'),
 #            (r'~?(?:\w+|`[^`]*`)', Keyword.Type, 'type-record-field-expr'),
 #        ],
@@ -1349,13 +1341,13 @@ class OpaLexer(RegexLexer):
             (r'[^\\"{]+', String.Double),
             (r'"', String.Double, '#pop'),
             (r'{', Operator, 'root'),
-            pygments.lexer.include('escape-sequence'),
+            include('escape-sequence'),
         ],
         'single-string': [
             (r'[^\\\'{]+', String.Double),
             (r'\'', String.Double, '#pop'),
             (r'{', Operator, 'root'),
-            pygments.lexer.include('escape-sequence'),
+            include('escape-sequence'),
         ],
 
         # all the html stuff
