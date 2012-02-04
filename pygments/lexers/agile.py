@@ -1142,7 +1142,7 @@ class MoonScriptLexer(LuaLexer):
             (r'(?i)0x[0-9a-f]*', Number.Hex),
             (r'\d+', Number.Integer),
             (r'\n', Text),
-            (r'[^\S\n]', Text),
+            (r'[^\S\n]+', Text),
             (r'(?s)\[(=*)\[.*?\]\1\]', String),
             (r'(->|=>)', Name.Function),
             (r':[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
