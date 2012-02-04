@@ -584,7 +584,7 @@ class FSharpLexer(RegexLexer):
              Name.Namespace, 'dotted'),
             (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
             (r'//.*?\n', Comment.Single),
-            (r'\(\*', Comment, 'comment'),
+            (r'\(\*(?!\))', Comment, 'comment'),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
             (r'(%s)' % '|'.join(keyopts), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
