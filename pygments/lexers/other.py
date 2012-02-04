@@ -15,7 +15,7 @@ from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
      this, do_insertions, combined
 from pygments.token import Error, Punctuation, Literal, Token, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
-from pygments.util import shebang_matches
+from pygments.util import ClassNotFound, shebang_matches
 from pygments.lexers.web import HtmlLexer
 
 
@@ -27,7 +27,7 @@ __all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
            'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer',
            'PostScriptLexer', 'AutohotkeyLexer', 'GoodDataCLLexer',
            'MaqlLexer', 'ProtoBufLexer', 'HybrisLexer', 'AwkLexer',
-           'Cfengine3Lexer', 'ECLLexer']
+           'Cfengine3Lexer', 'HttpLexer', 'SnobolLexer', 'ECLLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -221,17 +221,19 @@ class MySqlLexer(RegexLexer):
 
 class ECLLexer(RegexLexer):
     """
-    Lexer for the declarative big-data `ECL <http://hpccsystems.com/community/docs/ecl-language-reference/html>`_
+    Lexer for the declarative big-data `ECL
+    <http://hpccsystems.com/community/docs/ecl-language-reference/html>`_
     language.
 
-    *New in Pygments 0.7.*
+    *New in Pygments 1.5.*
     """
+
     name = 'ECL'
     aliases = ['ecl']
     filenames = ['*.ecl']
     mimetypes = ['application/x-ecl']
 
-    flags = re.IGNORECASE
+    flags = re.IGNORECASE | re.MULTILINE
 
     tokens = {
         'root': [
@@ -265,16 +267,17 @@ class ECLLexer(RegexLexer):
         ],
         'types': [
             (r'(RECORD|END)[^\d]', Keyword.Declaration),
-            (r'(ASCII|BIG_ENDIAN|BOOLEAN|DATA|DECIMAL|EBCDIC|INTEGER|PATTERN|'
+            (r'((?:ASCII|BIG_ENDIAN|BOOLEAN|DATA|DECIMAL|EBCDIC|INTEGER|PATTERN|'
              r'QSTRING|REAL|RECORD|RULE|SET OF|STRING|TOKEN|UDECIMAL|UNICODE|'
-             r'UNSIGNED|VARSTRING|VARUNICODE)\d*\s+', Keyword.Type),
+             r'UNSIGNED|VARSTRING|VARUNICODE)\d*)(\s+)',
+             bygroups(Keyword.Type, Text)),
         ],
         'keywords': [
             (r'(APPLY|ASSERT|BUILD|BUILDINDEX|EVALUATE|FAIL|KEYDIFF|KEYPATCH|'
              r'LOADXML|NOTHOR|NOTIFY|OUTPUT|PARALLEL|SEQUENTIAL|SOAPCALL|WAIT'
              r'CHECKPOINT|DEPRECATED|FAILCODE|FAILMESSAGE|FAILURE|GLOBAL|'
              r'INDEPENDENT|ONWARNING|PERSIST|PRIORITY|RECOVERY|STORED|SUCCESS|'
-             r'WAIT|WHEN)\W', Keyword.Reserved),
+             r'WAIT|WHEN)\b', Keyword.Reserved),
             # These are classed differently, check later
             (r'(ALL|AND|ANY|AS|ATMOST|BEFORE|BEGINC\+\+|BEST|BETWEEN|CASE|CONST|'
              r'COUNTER|CSV|DESCEND|ENCRYPT|ENDC\+\+|ENDMACRO|EXCEPT|EXCLUSIVE|'
@@ -287,7 +290,7 @@ class ECLLexer(RegexLexer):
              r'RIGHT|SCAN|SELF|SEPARATOR|SERVICE|SHARED|SKEW|SKIP|SQL|STORE|'
              r'TERMINATOR|THOR|THRESHOLD|TOKEN|TRANSFORM|TRIM|TRUE|TYPE|'
              r'UNICODEORDER|UNSORTED|VALIDATE|VIRTUAL|WHOLE|WILD|WITHIN|XML|'
-             r'XPATH|__COMPRESSED__)\W', Keyword.Reserved),
+             r'XPATH|__COMPRESSED__)\b', Keyword.Reserved),
         ],
         'functions': [
             (r'(ABS|ACOS|ALLNODES|ASCII|ASIN|ASSTRING|ATAN|ATAN2|AVE|CASE|'
@@ -306,11 +309,12 @@ class ECLLexer(RegexLexer):
              r'SOAPCALL|SORT|SORTED|SQRT|STEPPED|STORED|SUM|TABLE|TAN|TANH|'
              r'THISNODE|TOPN|TOUNICODE|TRANSFER|TRIM|TRUNCATE|TYPEOF|UNGROUP|'
              r'UNICODEORDER|VARIANCE|WHICH|WORKUNIT|XMLDECODE|XMLENCODE|'
-             r'XMLTEXT|XMLUNICODE)\W', Name.Function),
+             r'XMLTEXT|XMLUNICODE)\b', Name.Function),
         ],
         'string': [
             (r'"', String, '#pop'),
             (r'\'', String, '#pop'),
+            (r'[^"\']+', String),
         ],
     }
 
@@ -3012,11 +3016,12 @@ class Cfengine3Lexer(RegexLexer):
              bygroups(Keyword.Reserved,Text,Operator,Text)),
             (r'"', String, 'string'),
             (r'(\w+)(\()', bygroups(Name.Function, Punctuation)),
-            (r'([\w.!&|]+)(::)', bygroups(Name.Class, Punctuation)),
+            (r'([\w.!&|\(\)]+)(::)', bygroups(Name.Class, Punctuation)),
             (r'(\w+)(:)', bygroups(Keyword.Declaration,Punctuation)),
             (r'@[\{\(][^\)\}]+[\}\)]', Name.Variable),
             (r'[(){},;]', Punctuation),
             (r'=>', Operator),
+            (r'->', Operator),
             (r'\d+\.\d+', Number.Float),
             (r'\d+', Number.Integer),
             (r'\w+', Name.Function),
@@ -3040,4 +3045,134 @@ class Cfengine3Lexer(RegexLexer):
             (r'\w+', Name.Variable),
             (r'\s+', Text),
         ],
+    }
+
+
+class HttpLexer(RegexLexer):
+    """
+    Lexer for HTTP sessions.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'HTTP'
+    aliases = ['http']
+
+    flags = re.DOTALL
+
+    def header_callback(self, match):
+        if match.group(1).lower() == 'content-type':
+            content_type = match.group(5).strip()
+            if ';' in content_type:
+                content_type = content_type[:content_type.find(';')].strip()
+            self.content_type = content_type
+        yield match.start(1), Name.Attribute, match.group(1)
+        yield match.start(2), Text, match.group(2)
+        yield match.start(3), Operator, match.group(3)
+        yield match.start(4), Text, match.group(4)
+        yield match.start(5), Literal, match.group(5)
+        yield match.start(6), Text, match.group(6)
+
+    def content_callback(self, match):
+        content_type = getattr(self, 'content_type', None)
+        content = match.group()
+        offset = match.start()
+        if content_type:
+            from pygments.lexers import get_lexer_for_mimetype
+            try:
+                lexer = get_lexer_for_mimetype(content_type)
+            except ClassNotFound:
+                pass
+            else:
+                for idx, token, value in lexer.get_tokens_unprocessed(content):
+                    yield offset + idx, token, value
+                return
+        yield offset, Text, content
+
+    tokens = {
+        'root': [
+            (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE)( +)([^ ]+)( +)'
+             r'(HTTPS?)(/)(1\.[01])(\r?\n|$)',
+             bygroups(Name.Function, Text, Name.Namespace, Text,
+                      Keyword.Reserved, Operator, Number, Text),
+             'headers'),
+            (r'(HTTPS?)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|$)',
+             bygroups(Keyword.Reserved, Operator, Number, Text, Number,
+                      Text, Name.Exception, Text),
+             'headers'),
+        ],
+        'headers': [
+            (r'([^\s:]+)( *)(:)( *)([^\r\n]+)(\r?\n|$)', header_callback),
+            (r'\r?\n', Text, 'content')
+        ],
+        'content': [
+            (r'.+', content_callback)
+        ]
+    }
+
+
+class SnobolLexer(RegexLexer):
+    """
+    Lexer for the SNOBOL4 programming language.
+
+    Recognizes the common ASCII equivalents of the original SNOBOL4 operators.
+    Does not require spaces around binary operators.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = "Snobol"
+    aliases = ["snobol"]
+    filenames = ['*.snobol']
+    mimetypes = ['text/x-snobol']
+
+    tokens = {
+        # root state, start of line
+        # comments, continuation lines, and directives start in column 1
+        # as do labels
+        'root': [
+            (r'\*.*\n', Comment),
+            (r'[\+\.] ', Punctuation, 'statement'),
+            (r'-.*\n', Comment),
+            (r'END\s*\n', Name.Label, 'heredoc'),
+            (r'[A-Za-z\$][\w$]*', Name.Label, 'statement'),
+            (r'\s+', Text, 'statement'),
+        ],
+        # statement state, line after continuation or label
+        'statement': [
+            (r'\s*\n', Text, '#pop'),
+            (r'\s+', Text),
+            (r'(?<=[^\w.])(LT|LE|EQ|NE|GE|GT|INTEGER|IDENT|DIFFER|LGT|SIZE|'
+             r'REPLACE|TRIM|DUPL|REMDR|DATE|TIME|EVAL|APPLY|OPSYN|LOAD|UNLOAD|'
+             r'LEN|SPAN|BREAK|ANY|NOTANY|TAB|RTAB|REM|POS|RPOS|FAIL|FENCE|'
+             r'ABORT|ARB|ARBNO|BAL|SUCCEED|INPUT|OUTPUT|TERMINAL)(?=[^\w.])',
+             Name.Builtin),
+            (r'[A-Za-z][\w\.]*', Name),
+            # ASCII equivalents of original operators
+            # | for the EBCDIC equivalent, ! likewise
+            # \ for EBCDIC negation
+            (r'\*\*|[\?\$\.!%\*/#+\-@\|&\\!=]', Operator),
+            (r'"[^"]*"', String),
+            (r"'[^']*'", String),
+            # Accept SPITBOL syntax for real numbers
+            # as well as Macro SNOBOL4
+            (r'[0-9]+(?=[^\.EeDd])', Number.Integer),
+            (r'[0-9]+(\.[0-9]*)?([EDed][-+]?[0-9]+)?', Number.Float),
+            # Goto
+            (r':', Punctuation, 'goto'),
+            (r'[\(\)<>,;]', Punctuation),
+        ],
+        # Goto block
+        'goto': [
+            (r'\s*\n', Text, "#pop:2"),
+            (r'\s+', Text),
+            (r'F|S', Keyword),
+            (r'(\()([A-Za-z][\w.]*)(\))',
+             bygroups(Punctuation, Name.Label, Punctuation))
+        ],
+        # everything after the END statement is basically one
+        # big heredoc.
+        'heredoc': [
+            (r'.*\n', String.Heredoc)
+        ]
     }

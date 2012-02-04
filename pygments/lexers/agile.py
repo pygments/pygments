@@ -21,9 +21,9 @@ from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'RubyLexer', 'RubyConsoleLexer', 'PerlLexer', 'LuaLexer',
-           'MiniDLexer', 'IoLexer', 'TclLexer', 'ClojureLexer',
-           'Python3Lexer', 'Python3TracebackLexer', 'FactorLexer',
-           'IokeLexer', 'FancyLexer', 'GroovyLexer']
+           'MoonScriptLexer', 'MiniDLexer', 'IoLexer', 'TclLexer',
+           'ClojureLexer', 'Python3Lexer', 'Python3TracebackLexer',
+           'FactorLexer', 'IokeLexer', 'FancyLexer', 'GroovyLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -105,12 +105,12 @@ class PythonLexer(RegexLexer):
              r'WindowsError|ZeroDivisionError)\b', Name.Exception),
         ],
         'numbers': [
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-            (r'\d+[eE][+-]?[0-9]+', Number.Float),
-            (r'0[0-7]+', Number.Oct),
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
+            (r'0[0-7]+j?', Number.Oct),
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),
-            (r'\d+', Number.Integer)
+            (r'\d+j?', Number.Integer)
         ],
         'backtick': [
             ('`.*?`', String.Backtick),
@@ -199,7 +199,7 @@ class Python3Lexer(RegexLexer):
     tokens = PythonLexer.tokens.copy()
     tokens['keywords'] = [
         (r'(assert|break|continue|del|elif|else|except|'
-         r'finally|for|global|if|lambda|pass|raise|'
+         r'finally|for|global|if|lambda|pass|raise|nonlocal|'
          r'return|try|while|yield|as|with|True|False|None)\b', Keyword),
     ]
     tokens['builtins'] = [
@@ -824,19 +824,19 @@ class PerlLexer(RegexLexer):
     mimetypes = ['text/x-perl', 'application/x-perl']
 
     flags = re.DOTALL | re.MULTILINE
-    # TODO: give this a perl guy who knows how to parse perl...
+    # TODO: give this to a perl guy who knows how to parse perl...
     tokens = {
         'balanced-regex': [
-            (r'/(\\\\|\\/|[^/])*/[egimosx]*', String.Regex, '#pop'),
-            (r'!(\\\\|\\!|[^!])*![egimosx]*', String.Regex, '#pop'),
+            (r'/(\\\\|\\[^\\]|[^\\/])*/[egimosx]*', String.Regex, '#pop'),
+            (r'!(\\\\|\\[^\\]|[^\\!])*![egimosx]*', String.Regex, '#pop'),
             (r'\\(\\\\|[^\\])*\\[egimosx]*', String.Regex, '#pop'),
-            (r'{(\\\\|\\}|[^}])*}[egimosx]*', String.Regex, '#pop'),
-            (r'<(\\\\|\\>|[^>])*>[egimosx]*', String.Regex, '#pop'),
-            (r'\[(\\\\|\\\]|[^\]])*\][egimosx]*', String.Regex, '#pop'),
-            (r'\((\\\\|\\\)|[^\)])*\)[egimosx]*', String.Regex, '#pop'),
-            (r'@(\\\\|\\\@|[^\@])*@[egimosx]*', String.Regex, '#pop'),
-            (r'%(\\\\|\\\%|[^\%])*%[egimosx]*', String.Regex, '#pop'),
-            (r'\$(\\\\|\\\$|[^\$])*\$[egimosx]*', String.Regex, '#pop'),
+            (r'{(\\\\|\\[^\\]|[^\\}])*}[egimosx]*', String.Regex, '#pop'),
+            (r'<(\\\\|\\[^\\]|[^\\>])*>[egimosx]*', String.Regex, '#pop'),
+            (r'\[(\\\\|\\[^\\]|[^\\\]])*\][egimosx]*', String.Regex, '#pop'),
+            (r'\((\\\\|\\[^\\]|[^\\\)])*\)[egimosx]*', String.Regex, '#pop'),
+            (r'@(\\\\|\\[^\\]|[^\\\@])*@[egimosx]*', String.Regex, '#pop'),
+            (r'%(\\\\|\\[^\\]|[^\\\%])*%[egimosx]*', String.Regex, '#pop'),
+            (r'\$(\\\\|\\[^\\]|[^\\\$])*\$[egimosx]*', String.Regex, '#pop'),
         ],
         'root': [
             (r'\#.*?$', Comment.Single),
@@ -848,20 +848,26 @@ class PerlLexer(RegexLexer):
              bygroups(Keyword, Text, Name, Text, Punctuation, Text), 'format'),
             (r'(eq|lt|gt|le|ge|ne|not|and|or|cmp)\b', Operator.Word),
             # common delimiters
-            (r's/(\\\\|\\/|[^/])*/(\\\\|\\/|[^/])*/[egimosx]*', String.Regex),
+            (r's/(\\\\|\\[^\\]|[^\\/])*/(\\\\|\\[^\\]|[^\\/])*/[egimosx]*',
+                String.Regex),
             (r's!(\\\\|\\!|[^!])*!(\\\\|\\!|[^!])*![egimosx]*', String.Regex),
             (r's\\(\\\\|[^\\])*\\(\\\\|[^\\])*\\[egimosx]*', String.Regex),
-            (r's@(\\\\|\\@|[^@])*@(\\\\|\\@|[^@])*@[egimosx]*', String.Regex),
-            (r's%(\\\\|\\%|[^%])*%(\\\\|\\%|[^%])*%[egimosx]*', String.Regex),
+            (r's@(\\\\|\\[^\\]|[^\\@])*@(\\\\|\\[^\\]|[^\\@])*@[egimosx]*',
+                String.Regex),
+            (r's%(\\\\|\\[^\\]|[^\\%])*%(\\\\|\\[^\\]|[^\\%])*%[egimosx]*',
+                String.Regex),
             # balanced delimiters
-            (r's{(\\\\|\\}|[^}])*}\s*', String.Regex, 'balanced-regex'),
-            (r's<(\\\\|\\>|[^>])*>\s*', String.Regex, 'balanced-regex'),
-            (r's\[(\\\\|\\\]|[^\]])*\]\s*', String.Regex, 'balanced-regex'),
-            (r's\((\\\\|\\\)|[^\)])*\)\s*', String.Regex, 'balanced-regex'),
+            (r's{(\\\\|\\[^\\]|[^\\}])*}\s*', String.Regex, 'balanced-regex'),
+            (r's<(\\\\|\\[^\\]|[^\\>])*>\s*', String.Regex, 'balanced-regex'),
+            (r's\[(\\\\|\\[^\\]|[^\\\]])*\]\s*', String.Regex,
+                'balanced-regex'),
+            (r's\((\\\\|\\[^\\]|[^\\\)])*\)\s*', String.Regex,
+                'balanced-regex'),
 
-            (r'm?/(\\\\|\\/|[^/\n])*/[gcimosx]*', String.Regex),
+            (r'm?/(\\\\|\\[^\\]|[^\\/\n])*/[gcimosx]*', String.Regex),
             (r'm(?=[/!\\{<\[\(@%\$])', String.Regex, 'balanced-regex'),
-            (r'((?<==~)|(?<=\())\s*/(\\\\|\\/|[^/])*/[gcimosx]*', String.Regex),
+            (r'((?<==~)|(?<=\())\s*/(\\\\|\\[^\\]|[^\\/])*/[gcimosx]*',
+                String.Regex),
             (r'\s+', Text),
             (r'(abs|accept|alarm|atan2|bind|binmode|bless|caller|chdir|'
              r'chmod|chomp|chop|chown|chr|chroot|close|closedir|connect|'
@@ -903,9 +909,9 @@ class PerlLexer(RegexLexer):
              Number.Float),
             (r'(?i)\d+(_\d*)*e[+-]?\d+(_\d*)*', Number.Float),
             (r'\d+(_\d+)*', Number.Integer),
-            (r"'(\\\\|\\'|[^'])*'", String),
-            (r'"(\\\\|\\"|[^"])*"', String),
-            (r'`(\\\\|\\`|[^`])*`', String.Backtick),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
+            (r'`(\\\\|\\[^\\]|[^`\\])*`', String.Backtick),
             (r'<([^\s>]+)>', String.Regex),
             (r'(q|qq|qw|qr|qx)\{', String.Other, 'cb-string'),
             (r'(q|qq|qw|qr|qx)\(', String.Other, 'rb-string'),
@@ -1110,6 +1116,73 @@ class LuaLexer(RegexLexer):
                     yield index + len(a) + 1, Name, b
                     continue
             yield index, token, value
+
+
+class MoonScriptLexer(LuaLexer):
+    """
+    For `MoonScript <http://moonscript.org.org>`_ source code.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = "MoonScript"
+    aliases = ["moon", "moonscript"]
+    filenames = ["*.moon"]
+    mimetypes = ['text/x-moonscript', 'application/x-moonscript']
+
+    tokens = {
+        'root': [
+            (r'#!(.*?)$', Comment.Preproc),
+            (r'', Text, 'base'),
+        ],
+        'base': [
+            ('--.*$', Comment.Single),
+            (r'(?i)(\d*\.\d+|\d+\.\d*)(e[+-]?\d+)?', Number.Float),
+            (r'(?i)\d+e[+-]?\d+', Number.Float),
+            (r'(?i)0x[0-9a-f]*', Number.Hex),
+            (r'\d+', Number.Integer),
+            (r'\n', Text),
+            (r'[^\S\n]+', Text),
+            (r'(?s)\[(=*)\[.*?\]\1\]', String),
+            (r'(->|=>)', Name.Function),
+            (r':[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            (r'(==|!=|~=|<=|>=|\.\.|\.\.\.|[=+\-*/%^<>#!.\\:])', Operator),
+            (r'[;,]', Punctuation),
+            (r'[\[\]\{\}\(\)]', Keyword.Type),
+            (r"(class|extends|if|then|super|do|with|import|export|"
+            r"while|elseif|return|for|in|from|when|using|else|"
+            r"and|or|not|switch|break)\b", Keyword),
+            (r'(true|false|nil)\b', Keyword.Constant),
+            (r'(and|or|not)\b', Operator.Word),
+            (r'(self)\b', Name.Builtin.Pseudo),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Variable),
+            (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Class),
+            (r'[A-Z]\w+', Name.Class), # proper name
+            (r'[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)?', Name),
+            ("'", String.Single, combined('stringescape', 'sqs')),
+            ('"', String.Double, combined('stringescape', 'dqs'))
+        ],
+        'stringescape': [
+            (r'''\\([abfnrtv\\"']|\d{1,3})''', String.Escape)
+        ],
+        'sqs': [
+            ("'", String.Single, '#pop'),
+            (".", String)
+        ],
+        'dqs': [
+            ('"', String.Double, '#pop'),
+            (".", String)
+        ]
+    }
+
+    def get_tokens_unprocessed(self, text):
+        # set . as Operator instead of Punctuation
+        for index, token, value in \
+            LuaLexer.get_tokens_unprocessed(self, text):
+            if token == Punctuation and value == ".":
+                token = Operator
+            yield index, token, value
+
 
 
 class MiniDLexer(RegexLexer):
@@ -1430,8 +1503,8 @@ class ClojureLexer(RegexLexer):
     valid_name = r'[\w!$%*+,<=>?/.-]+'
 
     def _multi_escape(entries):
-        return '|'.join([re.escape(entry) + '(?![\\w-!$%*+,<=>?/.-])'
-                         for entry in entries])
+        return '(?:' + '|'.join(map(re.escape, entries)) + \
+               ')?![\\w!$%*+,<=>?/.-]'
 
     tokens = {
         'root' : [

@@ -439,7 +439,7 @@ class RegexLexerMeta(LexerMeta):
 
     def __call__(cls, *args, **kwds):
         """Instantiate cls after preprocessing its token definitions."""
-        if not hasattr(cls, '_tokens'):
+        if '_tokens' not in cls.__dict__:
             cls._all_tokens = {}
             cls._tmpname = 0
             if hasattr(cls, 'token_variants') and cls.token_variants:
