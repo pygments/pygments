@@ -2298,7 +2298,7 @@ class AdaLexer(RegexLexer):
             include('numbers'),
             (r"'[^']'", String.Character),
             (r'([a-z0-9_]+)(\s*|[(,])', bygroups(Name, using(this))),
-            (r"(<>|=>|:=|[\(\)\|:;,.'])", Punctuation),
+            (r"(<>|=>|:=|[()|:;,.'])", Punctuation),
             (r'[*<>+=/&-]', Operator),
             (r'\n+', Text),
         ],
@@ -2319,7 +2319,7 @@ class AdaLexer(RegexLexer):
         ],
         'end' : [
             ('(if|case|record|loop|select)', Keyword.Reserved),
-            ('"[^"]+"|[a-zA-Z0-9_]+', Name.Function),
+            ('"[^"]+"|[a-zA-Z0-9_.]+', Name.Function),
             ('[\n\s]+', Text),
             (';', Punctuation, '#pop'),
         ],
@@ -2339,11 +2339,12 @@ class AdaLexer(RegexLexer):
         ],
         'import': [
             (r'[a-z0-9_.]+', Name.Namespace, '#pop'),
+            (r'', Text, '#pop'),
         ],
         'formal_part' : [
             (r'\)', Punctuation, '#pop'),
-            (r'([a-z0-9_]+)(\s*)(,|:[^=])', bygroups(Name.Variable,
-                                                     Text, Punctuation)),
+            (r'[a-z0-9_]+', Name.Variable),
+            (r',|:[^=]', Punctuation),
             (r'(in|not|null|out|access)\b', Keyword.Reserved),
             include('root'),
         ],
