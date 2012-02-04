@@ -92,7 +92,7 @@ class CSharpLexer(RegexLexer):
                 (r'\n', Text),
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
-                (r'@"(\\\\|\\"|[^"])*"', String),
+                (r'@"(""|[^"])*"', String),
                 (r'"(\\\\|\\"|[^"\n])*["\n]', String),
                 (r"'\\.'|'[^\\]'", String.Char),
                 (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?"
@@ -111,10 +111,12 @@ class CSharpLexer(RegexLexer):
                  r'ref|return|sealed|sizeof|stackalloc|static|'
                  r'switch|this|throw|true|try|typeof|'
                  r'unchecked|unsafe|virtual|void|while|'
-                 r'get|set|new|partial|yield|add|remove|value)\b', Keyword),
+                 r'get|set|new|partial|yield|add|remove|value|alias|ascending|'
+                 r'descending|from|group|into|orderby|select|where|'
+                 r'join|equals)\b', Keyword),
                 (r'(global)(::)', bygroups(Keyword, Punctuation)),
-                (r'(bool|byte|char|decimal|double|float|int|long|object|sbyte|'
-                 r'short|string|uint|ulong|ushort)\b\??', Keyword.Type),
+                (r'(bool|byte|char|decimal|double|dynamic|float|int|long|object|'
+                 r'sbyte|short|string|uint|ulong|ushort|var)\b\??', Keyword.Type),
                 (r'(class|struct)(\s+)', bygroups(Keyword, Text), 'class'),
                 (r'(namespace|using)(\s+)', bygroups(Keyword, Text), 'namespace'),
                 (cs_ident, Name),
@@ -214,7 +216,7 @@ class NemerleLexer(RegexLexer):
 
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
-                (r'@"(\\\\|\\"|[^"])*"', String),
+                (r'@"(""|[^"])*"', String),
                 (r'"(\\\\|\\"|[^"\n])*["\n]', String),
                 (r"'\\.'|'[^\\]'", String.Char),
 		(r"0[xX][0-9a-fA-F]+[Ll]?", Number),
@@ -278,8 +280,9 @@ class NemerleLexer(RegexLexer):
             ],
             'splice-string-content': [
                 (r'if|match', Keyword),
-                (r'[~!%^&*+=|\[\]:;,.<>/?-]', Punctuation),
+                (r'[~!%^&*+=|\[\]:;,.<>/?-\\"$ ]', Punctuation),
                 (cs_ident, Name), 
+                (r'\d+', Number), 
                 (r'\(', Punctuation, '#push'),
                 (r'\)', Punctuation, '#pop')
             ]
