@@ -217,7 +217,7 @@ class CppLexer(RegexLexer):
              r'multiple_inheritance|m128i|m128d|m128|m64|interface|'
              r'identifier|forceinline|event|assume)\b', Keyword.Reserved),
             # Offload C++ extensions, http://offload.codeplay.com/
-            (r'(__offload|__blockingoffload|__outer)\b', Keyword.Psuedo),
+            (r'(__offload|__blockingoffload|__outer)\b', Keyword.Pseudo),
             (r'(true|false)\b', Keyword.Constant),
             (r'NULL\b', Name.Builtin),
             ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
@@ -1159,6 +1159,7 @@ class ScalaLexer(RegexLexer):
             (r'[\s\n]+', Text),
             (r'{', Operator, '#pop'),
             (r'\(', Operator, '#pop'),
+            (r'//.*?\n', Comment.Single, '#pop'),
             (ur'%s|%s|`[^`]+`' % (idrest, op), Name.Class, '#pop'),
         ],
         'type': [
@@ -1172,6 +1173,7 @@ class ScalaLexer(RegexLexer):
             (ur'((?:%s|%s|`[^`]+`)(?:\.(?:%s|%s|`[^`]+`))*)(\s*)$' %
              (idrest, op, idrest, op),
              bygroups(Keyword.Type, Text), '#pop'),
+            (r'//.*?\n', Comment.Single, '#pop'),
             (ur'\.|%s|%s|`[^`]+`' % (idrest, op), Keyword.Type)
         ],
         'typeparam': [
@@ -1394,18 +1396,22 @@ class ObjectiveCLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if '@"' in text: # strings
+        if '@import' in text or '@interface' in text or \
+            '@implementation' in text:
             return True
-        if re.match(r'\[[a-zA-Z0-9.]:', text): # message
+        elif '@"' in text: # strings
+            return True
+        elif re.match(r'\[[a-zA-Z0-9.]:', text): # message
             return True
         return False
 
+
 class FortranLexer(RegexLexer):
-    '''
+    """
     Lexer for FORTRAN 90 code.
 
     *New in Pygments 0.10.*
-    '''
+    """
     name = 'Fortran'
     aliases = ['fortran']
     filenames = ['*.f', '*.f90', '*.F', '*.F90']
@@ -1430,20 +1436,28 @@ class FortranLexer(RegexLexer):
         ],
         'core': [
             # Statements
-            (r'\b(ACCEPT|ALLOCATABLE|ALLOCATE|ARRAY|ASSIGN|BACKSPACE|BLOCK DATA|'
-             r'BYTE|CALL|CASE|CLOSE|COMMON|CONTAINS|CONTINUE|CYCLE|DATA|'
-             r'DEALLOCATE|DECODE|DIMENSION|DO|ENCODE|END FILE|ENDIF|END|ENTRY|'
-             r'EQUIVALENCE|EXIT|EXTERNAL|EXTRINSIC|FORALL|FORMAT|FUNCTION|GOTO|'
-             r'IF|IMPLICIT|INCLUDE|INQUIRE|INTENT|INTERFACE|INTRINSIC|MODULE|'
-             r'NAMELIST|NULLIFY|NONE|OPEN|OPTIONAL|OPTIONS|PARAMETER|PAUSE|'
-             r'POINTER|PRINT|PRIVATE|PROGRAM|PUBLIC|PURE|READ|RECURSIVE|RETURN|'
-             r'REWIND|SAVE|SELECT|SEQUENCE|STOP|SUBROUTINE|TARGET|TYPE|USE|'
-             r'VOLATILE|WHERE|WRITE|WHILE|THEN|ELSE|ENDIF)\s*\b',
+            (r'\b(ACCEPT|ALLOCATABLE|ALLOCATE|ARRAY|ASSIGN|ASYNCHRONOUS|'
+             r'BACKSPACE|BIND|BLOCK DATA|BYTE|CALL|CASE|CLOSE|COMMON|CONTAINS|'
+             r'CONTINUE|CYCLE|DATA|DEALLOCATE|DECODE|DEFERRED|DIMENSION|DO|'
+             r'ELSE|ENCODE|END FILE|ENDIF|END|ENTRY|ENUMERATOR|EQUIVALENCE|'
+             r'EXIT|EXTERNAL|EXTRINSIC|FINAL|FORALL|FORMAT|FUNCTION|GENERIC|'
+             r'GOTO|IF|IMPLICIT|IMPORT|INCLUDE|INQUIRE|INTENT|INTERFACE|'
+             r'INTRINSIC|MODULE|NAMELIST|NULLIFY|NONE|NON_INTRINSIC|'
+             r'NON_OVERRIDABLE|NOPASS|OPEN|OPTIONAL|OPTIONS|PARAMETER|PASS|'
+             r'PAUSE|POINTER|PRINT|PRIVATE|PROGRAM|PROTECTED|PUBLIC|PURE|READ|'
+             r'RECURSIVE|RETURN|REWIND|SAVE|SELECT|SEQUENCE|STOP|SUBROUTINE|'
+             r'TARGET|THEN|TYPE|USE|VALUE|VOLATILE|WHERE|WRITE|WHILE)\s*\b',
              Keyword),
 
             # Data Types
             (r'\b(CHARACTER|COMPLEX|DOUBLE PRECISION|DOUBLE COMPLEX|INTEGER|'
-             r'LOGICAL|REAL)\s*\b',
+             r'LOGICAL|REAL|C_INT|C_SHORT|C_LONG|C_LONG_LONG|C_SIGNED_CHAR|'
+             r'C_SIZE_T|C_INT8_T|C_INT16_T|C_INT32_T|C_INT64_T|C_INT_LEAST8_T|'
+             r'C_INT_LEAST16_T|C_INT_LEAST32_T|C_INT_LEAST64_T|C_INT_FAST8_T|'
+             r'C_INT_FAST16_T|C_INT_FAST32_T|C_INT_FAST64_T|C_INTMAX_T|'
+             r'C_INTPTR_T|C_FLOAT|C_DOUBLE|C_LONG_DOUBLE|C_FLOAT_COMPLEX|'
+             r'C_DOUBLE_COMPLEX|C_LONG_DOUBLE_COMPLEX|C_BOOL|C_CHAR|C_PTR|'
+             r'C_FUNPTR)\s*\b',
              Keyword.Type),
 
             # Operators
@@ -1455,31 +1469,37 @@ class FortranLexer(RegexLexer):
 
             # Intrinsics
             (r'\b(Abort|Abs|Access|AChar|ACos|AdjustL|AdjustR|AImag|AInt|Alarm|'
-             r'All|Allocated|ALog|AMax|AMin|AMod|And|ANInt|Any|'
-             r'ASin|Associated|ATan|BesJ|BesJN|BesY|BesYN|'
-             r'Bit_Size|BTest|CAbs|CCos|Ceiling|CExp|Char|ChDir|ChMod|CLog|'
-             r'Cmplx|Complex|Conjg|Cos|CosH|Count|CPU_Time|CShift|CSin|CSqRt|'
-             r'CTime|DAbs|DACos|DASin|DATan|Date_and_Time|DbesJ|'
+             r'All|Allocated|ALog|AMax|AMin|AMod|And|ANInt|Any|ASin|Associated|'
+             r'ATan|BesJ|BesJN|BesY|BesYN|Bit_Size|BTest|CAbs|CCos|Ceiling|'
+             r'CExp|Char|ChDir|ChMod|CLog|Cmplx|Command_Argument_Count|Complex|'
+             r'Conjg|Cos|CosH|Count|CPU_Time|CShift|CSin|CSqRt|CTime|C_Funloc|'
+             r'C_Loc|C_Associated|C_Null_Ptr|C_Null_Funptr|C_F_Pointer|'
+             r'C_Null_Char|C_Alert|C_Backspace|C_Form_Feed|C_New_Line|'
+             r'C_Carriage_Return|C_Horizontal_Tab|C_Vertical_Tab|'
+             r'DAbs|DACos|DASin|DATan|Date_and_Time|DbesJ|'
              r'DbesJ|DbesJN|DbesY|DbesY|DbesYN|Dble|DCos|DCosH|DDiM|DErF|DErFC|'
              r'DExp|Digits|DiM|DInt|DLog|DLog|DMax|DMin|DMod|DNInt|Dot_Product|'
              r'DProd|DSign|DSinH|DSin|DSqRt|DTanH|DTan|DTime|EOShift|Epsilon|'
-             r'ErF|ErFC|ETime|Exit|Exp|Exponent|FDate|FGet|FGetC|Float|'
-             r'Floor|Flush|FNum|FPutC|FPut|Fraction|FSeek|FStat|FTell|'
-             r'GError|GetArg|GetCWD|GetEnv|GetGId|GetLog|GetPId|GetUId|'
-             r'GMTime|HostNm|Huge|IAbs|IAChar|IAnd|IArgC|IBClr|IBits|'
+             r'ErF|ErFC|ETime|Exit|Exp|Exponent|Extends_Type_Of|FDate|FGet|'
+             r'FGetC|Float|Floor|Flush|FNum|FPutC|FPut|Fraction|FSeek|FStat|'
+             r'FTell|GError|GetArg|Get_Command|Get_Command_Argument|'
+             r'Get_Environment_Variable|GetCWD|GetEnv|GetGId|GetLog|GetPId|'
+             r'GetUId|GMTime|HostNm|Huge|IAbs|IAChar|IAnd|IArgC|IBClr|IBits|'
              r'IBSet|IChar|IDate|IDiM|IDInt|IDNInt|IEOr|IErrNo|IFix|Imag|'
              r'ImagPart|Index|Int|IOr|IRand|IsaTty|IShft|IShftC|ISign|'
-             r'ITime|Kill|Kind|LBound|Len|Len_Trim|LGe|LGt|Link|LLe|LLt|LnBlnk|'
-             r'Loc|Log|Log|Logical|Long|LShift|LStat|LTime|MatMul|Max|'
-             r'MaxExponent|MaxLoc|MaxVal|MClock|Merge|Min|MinExponent|MinLoc|'
-             r'MinVal|Mod|Modulo|MvBits|Nearest|NInt|Not|Or|Pack|PError|'
+             r'Iso_C_Binding|Is_Iostat_End|Is_Iostat_Eor|ITime|Kill|Kind|'
+             r'LBound|Len|Len_Trim|LGe|LGt|Link|LLe|LLt|LnBlnk|Loc|Log|'
+             r'Logical|Long|LShift|LStat|LTime|MatMul|Max|MaxExponent|MaxLoc|'
+             r'MaxVal|MClock|Merge|Move_Alloc|Min|MinExponent|MinLoc|MinVal|'
+             r'Mod|Modulo|MvBits|Nearest|New_Line|NInt|Not|Or|Pack|PError|'
              r'Precision|Present|Product|Radix|Rand|Random_Number|Random_Seed|'
-             r'Range|Real|RealPart|Rename|Repeat|Reshape|RRSpacing|RShift|Scale|'
-             r'Scan|Second|Selected_Int_Kind|Selected_Real_Kind|Set_Exponent|'
-             r'Shape|Short|Sign|Signal|SinH|Sin|Sleep|Sngl|Spacing|Spread|SqRt|'
-             r'SRand|Stat|Sum|SymLnk|System|System_Clock|Tan|TanH|Time|'
-             r'Tiny|Transfer|Transpose|Trim|TtyNam|UBound|UMask|Unlink|Unpack|'
-             r'Verify|XOr|ZAbs|ZCos|ZExp|ZLog|ZSin|ZSqRt)\s*\b',
+             r'Range|Real|RealPart|Rename|Repeat|Reshape|RRSpacing|RShift|'
+             r'Same_Type_As|Scale|Scan|Second|Selected_Int_Kind|'
+             r'Selected_Real_Kind|Set_Exponent|Shape|Short|Sign|Signal|SinH|'
+             r'Sin|Sleep|Sngl|Spacing|Spread|SqRt|SRand|Stat|Sum|SymLnk|'
+             r'System|System_Clock|Tan|TanH|Time|Tiny|Transfer|Transpose|Trim|'
+             r'TtyNam|UBound|UMask|Unlink|Unpack|Verify|XOr|ZAbs|ZCos|ZExp|'
+             r'ZLog|ZSin|ZSqRt)\s*\b',
              Name.Builtin),
 
             # Booleans
@@ -2298,7 +2318,7 @@ class AdaLexer(RegexLexer):
             include('numbers'),
             (r"'[^']'", String.Character),
             (r'([a-z0-9_]+)(\s*|[(,])', bygroups(Name, using(this))),
-            (r"(<>|=>|:=|[\(\)\|:;,.'])", Punctuation),
+            (r"(<>|=>|:=|[()|:;,.'])", Punctuation),
             (r'[*<>+=/&-]', Operator),
             (r'\n+', Text),
         ],
@@ -2319,7 +2339,7 @@ class AdaLexer(RegexLexer):
         ],
         'end' : [
             ('(if|case|record|loop|select)', Keyword.Reserved),
-            ('"[^"]+"|[a-zA-Z0-9_]+', Name.Function),
+            ('"[^"]+"|[a-zA-Z0-9_.]+', Name.Function),
             ('[\n\s]+', Text),
             (';', Punctuation, '#pop'),
         ],
@@ -2339,11 +2359,12 @@ class AdaLexer(RegexLexer):
         ],
         'import': [
             (r'[a-z0-9_.]+', Name.Namespace, '#pop'),
+            (r'', Text, '#pop'),
         ],
         'formal_part' : [
             (r'\)', Punctuation, '#pop'),
-            (r'([a-z0-9_]+)(\s*)(,|:[^=])', bygroups(Name.Variable,
-                                                     Text, Punctuation)),
+            (r'[a-z0-9_]+', Name.Variable),
+            (r',|:[^=]', Punctuation),
             (r'(in|not|null|out|access)\b', Keyword.Reserved),
             include('root'),
         ],
@@ -2886,4 +2907,3 @@ class GosuTemplateLexer(Lexer):
         stack = ['templateText']
         for item in self.lexer.get_tokens_unprocessed(text, stack):
             yield item
-

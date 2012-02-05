@@ -33,6 +33,7 @@ STYLE_MAP = {
     'vim':      'vim::VimStyle',
     'vs':       'vs::VisualStudioStyle',
     'tango':    'tango::TangoStyle',
+    'rrt':      'rrt::RrtStyle',
 }
 
 

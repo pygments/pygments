@@ -1796,12 +1796,13 @@ class CoffeeScriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'///', String.Regex, ('#pop', 'multilineregex')),
-            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+            (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
             (r'', Text, '#pop'),
         ],
         'root': [
-            (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            # this next expr leads to infinite loops root -> slashstartsregex
+            #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|--|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|=|'
              r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|[-<>+*`%&\|\^/])=?',
@@ -1834,8 +1835,9 @@ class CoffeeScriptLexer(RegexLexer):
             ("'", String, 'sqs'),
         ],
         'strings': [
-            (r'[^#\\\'"]+', String)  # note that all coffee script strings are multi-line.
-                                     # hashmarks, quotes and backslashes must be parsed one at a time
+            (r'[^#\\\'"]+', String),
+            # note that all coffee script strings are multi-line.
+            # hashmarks, quotes and backslashes must be parsed one at a time
         ],
         'interpoling_string' : [
             (r'}', String.Interpol, "#pop"),
