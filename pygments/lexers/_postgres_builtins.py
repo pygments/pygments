@@ -4,7 +4,7 @@
 
     Self-updating data files for PostgreSQL lexer.
 
-    :copyright: Copyright 2011 by Daniele Varrazzo.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
