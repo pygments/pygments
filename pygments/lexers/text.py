@@ -774,15 +774,16 @@ class VimLexer(RegexLexer):
 
     tokens = {
         'root': [
-            # Who decided that doublequote was a good comment character??
             (r'^\s*".*', Comment),
-            (r'(?<=\s)"[^\-:.%#=*].*', Comment),
 
             (r'[ \t]+', Text),
             # TODO: regexes can have other delims
             (r'/(\\\\|\\/|[^\n/])*/', String.Regex),
             (r'"(\\\\|\\"|[^\n"])*"', String.Double),
             (r"'(\\\\|\\'|[^\n'])*'", String.Single),
+
+            # Who decided that doublequote was a good comment character??
+            (r'(?<=\s)"[^\-:.%#=*].*', Comment),
             (r'-?\d+', Number),
             (r'#[0-9a-f]{6}', Number.Hex),
             (r'^:', Punctuation),
