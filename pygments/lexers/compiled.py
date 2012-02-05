@@ -1403,12 +1403,13 @@ class ObjectiveCLexer(RegexLexer):
             return True
         return False
 
+
 class FortranLexer(RegexLexer):
-    '''
+    """
     Lexer for FORTRAN 90 code.
 
     *New in Pygments 0.10.*
-    '''
+    """
     name = 'Fortran'
     aliases = ['fortran']
     filenames = ['*.f', '*.f90', '*.F', '*.F90']
