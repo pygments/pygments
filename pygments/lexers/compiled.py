@@ -1173,6 +1173,7 @@ class ScalaLexer(RegexLexer):
             (ur'((?:%s|%s|`[^`]+`)(?:\.(?:%s|%s|`[^`]+`))*)(\s*)$' %
              (idrest, op, idrest, op),
              bygroups(Keyword.Type, Text), '#pop'),
+            (r'//.*?\n', Comment.Single, '#pop'),
             (ur'\.|%s|%s|`[^`]+`' % (idrest, op), Keyword.Type)
         ],
         'typeparam': [
