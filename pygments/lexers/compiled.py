@@ -1394,9 +1394,12 @@ class ObjectiveCLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if '@"' in text: # strings
+        if '@import' in text or '@interface' in text or \
+            '@implementation' in text:
             return True
-        if re.match(r'\[[a-zA-Z0-9.]:', text): # message
+        elif '@"' in text: # strings
+            return True
+        elif re.match(r'\[[a-zA-Z0-9.]:', text): # message
             return True
         return False
 
