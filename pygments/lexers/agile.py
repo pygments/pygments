@@ -156,12 +156,12 @@ class PythonLexer(RegexLexer):
         ],
         'dqs': [
             (r'"', String, '#pop'),
-            (r'\\\\|\\"|\\\n', String.Escape), # included here again for raw strings
+            (r'\\\\|\\"|\\\n', String.Escape), # included here for raw strings
             include('strings')
         ],
         'sqs': [
             (r"'", String, '#pop'),
-            (r"\\\\|\\'|\\\n", String.Escape), # included here again for raw strings
+            (r"\\\\|\\'|\\\n", String.Escape), # included here for raw strings
             include('strings')
         ],
         'tdqs': [
@@ -368,7 +368,8 @@ class PythonTracebackLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
+            (r'^Traceback \(most recent call last\):\n',
+             Generic.Traceback, 'intb'),
             # SyntaxError starts with this.
             (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
             (r'^.*\n', Other),
@@ -602,18 +603,19 @@ class RubyLexer(ExtendedRegexLexer):
             # special methods
             (r'(initialize|new|loop|include|extend|raise|attr_reader|'
              r'attr_writer|attr_accessor|attr|catch|throw|private|'
-             r'module_function|public|protected|true|false|nil)\b', Keyword.Pseudo),
+             r'module_function|public|protected|true|false|nil)\b',
+             Keyword.Pseudo),
             (r'(not|and|or)\b', Operator.Word),
             (r'(autoload|block_given|const_defined|eql|equal|frozen|include|'
              r'instance_of|is_a|iterator|kind_of|method_defined|nil|'
              r'private_method_defined|protected_method_defined|'
              r'public_method_defined|respond_to|tainted)\?', Name.Builtin),
             (r'(chomp|chop|exit|gsub|sub)!', Name.Builtin),
-            (r'(?<!\.)(Array|Float|Integer|String|__id__|__send__|abort|ancestors|'
-             r'at_exit|autoload|binding|callcc|caller|'
+            (r'(?<!\.)(Array|Float|Integer|String|__id__|__send__|abort|'
+             r'ancestors|at_exit|autoload|binding|callcc|caller|'
              r'catch|chomp|chop|class_eval|class_variables|'
-             r'clone|const_defined\?|const_get|const_missing|const_set|constants|'
-             r'display|dup|eval|exec|exit|extend|fail|fork|'
+             r'clone|const_defined\?|const_get|const_missing|const_set|'
+             r'constants|display|dup|eval|exec|exit|extend|fail|fork|'
              r'format|freeze|getc|gets|global_variables|gsub|'
              r'hash|id|included_modules|inspect|instance_eval|'
              r'instance_method|instance_methods|'
@@ -632,7 +634,8 @@ class RubyLexer(ExtendedRegexLexer):
              r'warn)\b', Name.Builtin),
             (r'__(FILE|LINE)__\b', Name.Builtin.Pseudo),
             # normal heredocs
-            (r'(?<!\w)(<<-?)(["`\']?)([a-zA-Z_]\w*)(\2)(.*?\n)', heredoc_callback),
+            (r'(?<!\w)(<<-?)(["`\']?)([a-zA-Z_]\w*)(\2)(.*?\n)',
+             heredoc_callback),
             # empty string heredocs
             (r'(<<-?)("|\')()(\2)(.*?\n)', heredoc_callback),
             (r'__END__', Comment.Preproc, 'end-part'),
@@ -737,7 +740,8 @@ class RubyLexer(ExtendedRegexLexer):
         ],
         'string-intp-escaped': [
             include('string-intp'),
-            (r'\\([\\abefnrstv#"\']|x[a-fA-F0-9]{1,2}|[0-7]{1,3})', String.Escape)
+            (r'\\([\\abefnrstv#"\']|x[a-fA-F0-9]{1,2}|[0-7]{1,3})',
+             String.Escape)
         ],
         'interpolated-regex': [
             include('string-intp'),
@@ -1590,33 +1594,38 @@ class FactorLexer(RegexLexer):
 
             # defining words
             (r'(\s*)(:|::|MACRO:|MEMO:)(\s+)(\S+)',
-                bygroups(Text, Keyword, Text, Name.Function)),
+             bygroups(Text, Keyword, Text, Name.Function)),
             (r'(\s*)(M:)(\s+)(\S+)(\s+)(\S+)',
-                bygroups(Text, Keyword, Text, Name.Class, Text, Name.Function)),
+             bygroups(Text, Keyword, Text, Name.Class, Text, Name.Function)),
             (r'(\s*)(GENERIC:)(\s+)(\S+)',
-                bygroups(Text, Keyword, Text, Name.Function)),
+             bygroups(Text, Keyword, Text, Name.Function)),
             (r'(\s*)(HOOK:|GENERIC#)(\s+)(\S+)(\s+)(\S+)',
-                bygroups(Text, Keyword, Text, Name.Function, Text, Name.Function)),
+             bygroups(Text, Keyword, Text, Name.Function, Text, Name.Function)),
             (r'(\()(\s+)', bygroups(Name.Function, Text), 'stackeffect'),
             (r'\;\s', Keyword),
 
             # imports and namespaces
-            (r'(USING:)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Text), 'import'),
-            (r'(USE:)(\s+)(\S+)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
-            (r'(UNUSE:)(\s+)(\S+)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(USING:)((?:\s|\\\s)+)',
+             bygroups(Keyword.Namespace, Text), 'import'),
+            (r'(USE:)(\s+)(\S+)',
+             bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(UNUSE:)(\s+)(\S+)',
+             bygroups(Keyword.Namespace, Text, Name.Namespace)),
             (r'(QUALIFIED:)(\s+)(\S+)',
-                bygroups(Keyword.Namespace, Text, Name.Namespace)),
+             bygroups(Keyword.Namespace, Text, Name.Namespace)),
             (r'(QUALIFIED-WITH:)(\s+)(\S+)',
-                bygroups(Keyword.Namespace, Text, Name.Namespace)),
+             bygroups(Keyword.Namespace, Text, Name.Namespace)),
             (r'(FROM:|EXCLUDE:)(\s+)(\S+)(\s+)(=>)',
-                bygroups(Keyword.Namespace, Text, Name.Namespace, Text, Text)),
-            (r'(IN:)(\s+)(\S+)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
+             bygroups(Keyword.Namespace, Text, Name.Namespace, Text, Text)),
+            (r'(IN:)(\s+)(\S+)',
+             bygroups(Keyword.Namespace, Text, Name.Namespace)),
             (r'(?:ALIAS|DEFER|FORGET|POSTPONE):', Keyword.Namespace),
 
             # tuples and classes
             (r'(TUPLE:)(\s+)(\S+)(\s+<\s+)(\S+)',
-                bygroups(Keyword, Text, Name.Class, Text, Name.Class), 'slots'),
-            (r'(TUPLE:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class), 'slots'),
+             bygroups(Keyword, Text, Name.Class, Text, Name.Class), 'slots'),
+            (r'(TUPLE:)(\s+)(\S+)',
+             bygroups(Keyword, Text, Name.Class), 'slots'),
             (r'(UNION:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class)),
             (r'(INTERSECTION:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class)),
             (r'(PREDICATE:)(\s+)(\S+)(\s+<\s+)(\S+)',
@@ -1634,7 +1643,8 @@ class FactorLexer(RegexLexer):
             (r'ERROR:', Keyword),
             (r'SYNTAX:', Keyword),
             (r'(HELP:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Function)),
-            (r'(MAIN:)(\s+)(\S+)', bygroups(Keyword.Namespace, Text, Name.Function)),
+            (r'(MAIN:)(\s+)(\S+)',
+             bygroups(Keyword.Namespace, Text, Name.Function)),
             (r'(?:ALIEN|TYPEDEF|FUNCTION|STRUCT):', Keyword),
 
             # vocab.private
@@ -1664,7 +1674,8 @@ class FactorLexer(RegexLexer):
             (r'[-+/*=<>^]\s', Operator),
 
             # keywords
-            (r'(?:deprecated|final|foldable|flushable|inline|recursive)\s', Keyword),
+            (r'(?:deprecated|final|foldable|flushable|inline|recursive)\s',
+             Keyword),
 
             # builtins
             (builtin_kernel, Name.Builtin),
@@ -1706,6 +1717,8 @@ class FactorLexer(RegexLexer):
             (r'\s+', Text),
         ],
     }
+
+
 class FancyLexer(RegexLexer):
     """
     Pygments Lexer For `Fancy <http://www.fancy-lang.org/>`_.
