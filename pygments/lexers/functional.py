@@ -5,7 +5,7 @@
 
     Lexers for functional languages.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -15,10 +15,9 @@ from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic, Error
 
-
 __all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'LiterateHaskellLexer', 'SMLLexer', 'OcamlLexer', 'ErlangLexer',
-           'ErlangShellLexer']
+           'ErlangShellLexer', 'OpaLexer', 'CoqLexer']
 
 
 class SchemeLexer(RegexLexer):
@@ -157,7 +156,7 @@ class CommonLispLexer(RegexLexer):
     """
     name = 'Common Lisp'
     aliases = ['common-lisp', 'cl']
-    filenames = ['*.cl', '*.lisp', '*.el']  # use for Elisp too
+    filenames = ['*.cl', '*.lisp', '*.lsp', '*.el']  # use for Elisp too
     mimetypes = ['text/x-common-lisp']
 
     flags = re.IGNORECASE | re.MULTILINE
@@ -942,7 +941,7 @@ class ErlangLexer(RegexLexer):
 
     name = 'Erlang'
     aliases = ['erlang']
-    filenames = ['*.erl', '*.hrl']
+    filenames = ['*.erl', '*.hrl', '*.es', '*.escript']
     mimetypes = ['text/x-erlang']
 
     keywords = [
@@ -1079,3 +1078,464 @@ class ErlangShellLexer(Lexer):
                                       erlexer.get_tokens_unprocessed(curcode)):
                 yield item
 
+
+class OpaLexer(RegexLexer):
+    """
+    Lexer for the Opa language (http://opalang.org).
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Opa'
+    aliases = ['opa']
+    filenames = ['*.opa']
+    mimetypes = ['text/x-opa']
+
+    # most of these aren't strictly keywords
+    # but if you color only real keywords, you might just
+    # as well not color anything
+    keywords = [
+        'and', 'as', 'begin', 'css', 'database', 'db', 'do', 'else', 'end',
+        'external', 'forall', 'if', 'import', 'match', 'package', 'parser',
+        'rec', 'server', 'then', 'type', 'val', 'with', 'xml_parser'
+    ]
+
+    # matches both stuff and `stuff`
+    ident_re = r'(([a-zA-Z_]\w*)|(`[^`]*`))'
+
+    op_re = r'[.=\-<>,@~%/+?*&^!]'
+    punc_re = r'[()\[\],;|]' # '{' and '}' are treated elsewhere
+                               # because they are also used for inserts
+
+    tokens = {
+        # copied from the caml lexer, should be adapted
+        'escape-sequence': [
+            (r'\\[\\\"\'ntr}]', String.Escape),
+            (r'\\[0-9]{3}', String.Escape),
+            (r'\\x[0-9a-fA-F]{2}', String.Escape),
+        ],
+
+        # factorizing these rules, because they are inserted many times
+        'comments': [
+            (r'/\*', Comment, 'nested-comment'),
+            (r'//.*?$', Comment),
+        ],
+        'comments-and-spaces': [
+            include('comments'),
+            (r'\s+', Text),
+        ],
+
+        'root': [
+            include('comments-and-spaces'),
+            # keywords
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
+            # directives
+            # we could parse the actual set of directives instead of anything
+            # starting with @, but this is troublesome
+            # because it needs to be adjusted all the time
+            # and assuming we parse only sources that compile, it is useless
+            (r'@'+ident_re+r'\b', Name.Builtin.Pseudo),
+
+            # number literals
+            (r'-?.[\d]+([eE][+\-]?\d+)', Number.Float),
+            (r'-?\d+.\d*([eE][+\-]?\d+)', Number.Float),
+            (r'-?\d+[eE][+\-]?\d+', Number.Float),
+            (r'0[xX][\da-fA-F]+', Number.Hex),
+            (r'0[oO][0-7]+', Number.Oct),
+            (r'0[bB][01]+', Number.Binary),
+            (r'\d+', Number.Integer),
+            # color literals
+            (r'#[\da-fA-F]{3,6}', Number.Integer),
+
+            # string literals
+            (r'"', String.Double, 'string'),
+            # char literal, should be checked because this is the regexp from
+            # the caml lexer
+            (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2})|.)'",
+             String.Char),
+
+            # this is meant to deal with embedded exprs in strings
+            # every time we find a '}' we pop a state so that if we were
+            # inside a string, we are back in the string state
+            # as a consequence, we must also push a state every time we find a
+            # '{' or else we will have errors when parsing {} for instance
+            (r'{', Operator, '#push'),
+            (r'}', Operator, '#pop'),
+
+            # html literals
+            # this is a much more strict that the actual parser,
+            # since a<b would not be parsed as html
+            # but then again, the parser is way too lax, and we can't hope
+            # to have something as tolerant
+            (r'<(?=[a-zA-Z>])', String.Single, 'html-open-tag'),
+
+            # db path
+            # matching the '[_]' in '/a[_]' because it is a part
+            # of the syntax of the db path definition
+            # unfortunately, i don't know how to match the ']' in
+            # /a[1], so this is somewhat inconsistent
+            (r'[@?!]?(/\w+)+(\[_\])?', Name.Variable),
+            # putting the same color on <- as on db path, since
+            # it can be used only to mean Db.write
+            (r'<-(?!'+op_re+r')', Name.Variable),
+
+            # 'modules'
+            # although modules are not distinguished by their names as in caml
+            # the standard library seems to follow the convention that modules
+            # only area capitalized
+            (r'\b([A-Z]\w*)(?=\.)', Name.Namespace),
+
+            # operators
+            # = has a special role because this is the only
+            # way to syntactic distinguish binding constructions
+            # unfortunately, this colors the equal in {x=2} too
+            (r'=(?!'+op_re+r')', Keyword),
+            (r'(%s)+' % op_re, Operator),
+            (r'(%s)+' % punc_re, Operator),
+
+            # coercions
+            (r':', Operator, 'type'),
+            # type variables
+            # we need this rule because we don't parse specially type
+            # definitions so in "type t('a) = ...", "'a" is parsed by 'root'
+            ("'"+ident_re, Keyword.Type),
+
+            # id literal, #something, or #{expr}
+            (r'#'+ident_re, String.Single),
+            (r'#(?={)', String.Single),
+
+            # identifiers
+            # this avoids to color '2' in 'a2' as an integer
+            (ident_re, Text),
+
+            # default, not sure if that is needed or not
+            # (r'.', Text),
+        ],
+
+        # it is quite painful to have to parse types to know where they end
+        # this is the general rule for a type
+        # a type is either:
+        # * -> ty
+        # * type-with-slash
+        # * type-with-slash -> ty
+        # * type-with-slash (, type-with-slash)+ -> ty
+        #
+        # the code is pretty funky in here, but this code would roughly
+        # translate in caml to:
+        # let rec type stream =
+        # match stream with
+        # | [< "->";  stream >] -> type stream
+        # | [< "";  stream >] ->
+        #   type_with_slash stream
+        #   type_lhs_1 stream;
+        # and type_1 stream = ...
+        'type': [
+            include('comments-and-spaces'),
+            (r'->', Keyword.Type),
+            (r'', Keyword.Type, ('#pop', 'type-lhs-1', 'type-with-slash')),
+        ],
+
+        # parses all the atomic or closed constructions in the syntax of type
+        # expressions: record types, tuple types, type constructors, basic type
+        # and type variables
+        'type-1': [
+            include('comments-and-spaces'),
+            (r'\(', Keyword.Type, ('#pop', 'type-tuple')),
+            (r'~?{', Keyword.Type, ('#pop', 'type-record')),
+            (ident_re+r'\(', Keyword.Type, ('#pop', 'type-tuple')),
+            (ident_re, Keyword.Type, '#pop'),
+            ("'"+ident_re, Keyword.Type),
+            # this case is not in the syntax but sometimes
+            # we think we are parsing types when in fact we are parsing
+            # some css, so we just pop the states until we get back into
+            # the root state
+            (r'', Keyword.Type, '#pop'),
+        ],
+
+        # type-with-slash is either:
+        # * type-1
+        # * type-1 (/ type-1)+
+        'type-with-slash': [
+            include('comments-and-spaces'),
+            (r'', Keyword.Type, ('#pop', 'slash-type-1', 'type-1')),
+        ],
+        'slash-type-1': [
+            include('comments-and-spaces'),
+            ('/', Keyword.Type, ('#pop', 'type-1')),
+            # same remark as above
+            (r'', Keyword.Type, '#pop'),
+        ],
+
+        # we go in this state after having parsed a type-with-slash
+        # while trying to parse a type
+        # and at this point we must determine if we are parsing an arrow
+        # type (in which case we must continue parsing) or not (in which
+        # case we stop)
+        'type-lhs-1': [
+            include('comments-and-spaces'),
+            (r'->', Keyword.Type, ('#pop', 'type')),
+            (r'(?=,)', Keyword.Type, ('#pop', 'type-arrow')),
+            (r'', Keyword.Type, '#pop'),
+        ],
+        'type-arrow': [
+            include('comments-and-spaces'),
+            # the look ahead here allows to parse f(x : int, y : float -> truc)
+            # correctly
+            (r',(?=[^:]*?->)', Keyword.Type, 'type-with-slash'),
+            (r'->', Keyword.Type, ('#pop', 'type')),
+            # same remark as above
+            (r'', Keyword.Type, '#pop'),
+        ],
+
+        # no need to do precise parsing for tuples and records
+        # because they are closed constructions, so we can simply
+        # find the closing delimiter
+        # note that this function would be not work if the source
+        # contained identifiers like `{)` (although it could be patched
+        # to support it)
+        'type-tuple': [
+            include('comments-and-spaces'),
+            (r'[^\(\)/*]+', Keyword.Type),
+            (r'[/*]', Keyword.Type),
+            (r'\(', Keyword.Type, '#push'),
+            (r'\)', Keyword.Type, '#pop'),
+        ],
+        'type-record': [
+            include('comments-and-spaces'),
+            (r'[^{}/*]+', Keyword.Type),
+            (r'[/*]', Keyword.Type),
+            (r'{', Keyword.Type, '#push'),
+            (r'}', Keyword.Type, '#pop'),
+        ],
+
+#        'type-tuple': [
+#            include('comments-and-spaces'),
+#            (r'\)', Keyword.Type, '#pop'),
+#            (r'', Keyword.Type, ('#pop', 'type-tuple-1', 'type-1')),
+#        ],
+#        'type-tuple-1': [
+#            include('comments-and-spaces'),
+#            (r',?\s*\)', Keyword.Type, '#pop'), # ,) is a valid end of tuple, in (1,)
+#            (r',', Keyword.Type, 'type-1'),
+#        ],
+#        'type-record':[
+#            include('comments-and-spaces'),
+#            (r'}', Keyword.Type, '#pop'),
+#            (r'~?(?:\w+|`[^`]*`)', Keyword.Type, 'type-record-field-expr'),
+#        ],
+#        'type-record-field-expr': [
+#
+#        ],
+
+        'nested-comment': [
+            (r'[^/*]+', Comment),
+            (r'/\*', Comment, '#push'),
+            (r'\*/', Comment, '#pop'),
+            (r'[/*]', Comment),
+        ],
+
+        # the coy pasting between string and single-string
+        # is kinda sad. Is there a way to avoid that??
+        'string': [
+            (r'[^\\"{]+', String.Double),
+            (r'"', String.Double, '#pop'),
+            (r'{', Operator, 'root'),
+            include('escape-sequence'),
+        ],
+        'single-string': [
+            (r'[^\\\'{]+', String.Double),
+            (r'\'', String.Double, '#pop'),
+            (r'{', Operator, 'root'),
+            include('escape-sequence'),
+        ],
+
+        # all the html stuff
+        # can't really reuse some existing html parser
+        # because we must be able to parse embedded expressions
+
+        # we are in this state after someone parsed the '<' that
+        # started the html literal
+        'html-open-tag': [
+            (r'[\w\-:]+', String.Single, ('#pop', 'html-attr')),
+            (r'>', String.Single, ('#pop', 'html-content')),
+        ],
+
+        # we are in this state after someone parsed the '</' that
+        # started the end of the closing tag
+        'html-end-tag': [
+            # this is a star, because </> is allowed
+            (r'[\w\-:]*>', String.Single, '#pop'),
+        ],
+
+        # we are in this state after having parsed '<ident(:ident)?'
+        # we thus parse a possibly empty list of attributes
+        'html-attr': [
+            (r'\s+', Text),
+            (r'[\w\-:]+=', String.Single, 'html-attr-value'),
+            (r'/>', String.Single, '#pop'),
+            (r'>', String.Single, ('#pop', 'html-content')),
+        ],
+
+        'html-attr-value': [
+            (r"'", String.Single, ('#pop', 'single-string')),
+            (r'"', String.Single, ('#pop', 'string')),
+            (r'#'+ident_re, String.Single, '#pop'),
+            (r'#(?={)', String.Single, ('#pop', 'root')),
+            (r'{', Operator, ('#pop', 'root')), # this is a tail call!
+        ],
+
+        # we should probably deal with '\' escapes here
+        'html-content': [
+            (r'<!--', Comment, 'html-comment'),
+            (r'</', String.Single, ('#pop', 'html-end-tag')),
+            (r'<', String.Single, 'html-open-tag'),
+            (r'{', Operator, 'root'),
+            (r'.|\s+', String.Single),
+        ],
+
+        'html-comment': [
+            (r'-->', Comment, '#pop'),
+            (r'[^\-]+|-', Comment),
+        ],
+    }
+
+
+class CoqLexer(RegexLexer):
+    """
+    For the `Coq <http://coq.inria.fr/>`_ theorem prover.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Coq'
+    aliases = ['coq']
+    filenames = ['*.v']
+    mimetypes = ['text/x-coq']
+
+    keywords1 = [
+        # Vernacular commands
+        'Section', 'Module', 'End', 'Require', 'Import', 'Export', 'Variable',
+        'Variables', 'Parameter', 'Parameters', 'Axiom', 'Hypothesis',
+        'Hypotheses', 'Notation', 'Local', 'Tactic', 'Reserved', 'Scope',
+        'Open', 'Close', 'Bind', 'Delimit', 'Definition', 'Let', 'Ltac',
+        'Fixpoint', 'CoFixpoint', 'Morphism', 'Relation', 'Implicit',
+        'Arguments', 'Set', 'Unset', 'Contextual', 'Strict', 'Prenex',
+        'Implicits', 'Inductive', 'CoInductive', 'Record', 'Structure',
+        'Canonical', 'Coercion', 'Theorem', 'Lemma', 'Corollary',
+        'Proposition', 'Fact', 'Remark', 'Example', 'Proof', 'Goal', 'Save',
+        'Qed', 'Defined', 'Hint', 'Resolve', 'Rewrite', 'View', 'Search',
+        'Show', 'Print', 'Printing', 'All', 'Graph', 'Projections', 'inside',
+        'outside',
+    ]
+    keywords2 = [
+        # Gallina
+        'forall', 'exists', 'exists2', 'fun', 'fix', 'cofix', 'struct',
+        'match', 'end',  'in', 'return', 'let', 'if', 'is', 'then', 'else',
+        'for', 'of', 'nosimpl', 'with', 'as',
+    ]
+    keywords3 = [
+        # Sorts
+        'Type', 'Prop',
+    ]
+    keywords4 = [
+        # Tactics
+        'pose', 'set', 'move', 'case', 'elim', 'apply', 'clear', 'hnf', 'intro',
+        'intros', 'generalize', 'rename', 'pattern', 'after', 'destruct',
+        'induction', 'using', 'refine', 'inversion', 'injection', 'rewrite',
+        'congr', 'unlock', 'compute', 'ring', 'field', 'replace', 'fold',
+        'unfold', 'change', 'cutrewrite', 'simpl', 'have', 'suff', 'wlog',
+        'suffices', 'without', 'loss', 'nat_norm', 'assert', 'cut', 'trivial',
+        'revert', 'bool_congr', 'nat_congr', 'symmetry', 'transitivity', 'auto',
+        'split', 'left', 'right', 'autorewrite',
+    ]
+    keywords5 = [
+        # Terminators
+        'by', 'done', 'exact', 'reflexivity', 'tauto', 'romega', 'omega',
+        'assumption', 'solve', 'contradiction', 'discriminate',
+    ]
+    keywords6 = [
+        # Control
+        'do', 'last', 'first', 'try', 'idtac', 'repeat',
+    ]
+      # 'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done',
+      # 'downto', 'else', 'end', 'exception', 'external', 'false',
+      # 'for', 'fun', 'function', 'functor', 'if', 'in', 'include',
+      # 'inherit', 'initializer', 'lazy', 'let', 'match', 'method',
+      # 'module', 'mutable', 'new', 'object', 'of', 'open', 'private',
+      # 'raise', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
+      # 'type', 'val', 'virtual', 'when', 'while', 'with'
+    keyopts = [
+        '!=', '#', '&', '&&', r'\(', r'\)', r'\*', r'\+', ',', '-',
+        r'-\.', '->', r'\.', r'\.\.', ':', '::', ':=', ':>', ';', ';;', '<',
+        '<-', '=', '>', '>]', '>}', r'\?', r'\?\?', r'\[', r'\[<', r'\[>',
+        r'\[\|', ']', '_', '`', '{', '{<', r'\|', r'\|]', '}', '~', '=>',
+        r'/\\', r'\\/',
+        u'Π', u'λ',
+    ]
+    operators = r'[!$%&*+\./:<=>?@^|~-]'
+    word_operators = ['and', 'asr', 'land', 'lor', 'lsl', 'lxor', 'mod', 'or']
+    prefix_syms = r'[!?~]'
+    infix_syms = r'[=<>@^|&+\*/$%-]'
+    primitives = ['unit', 'int', 'float', 'bool', 'string', 'char', 'list',
+                  'array']
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
+            (r'\(\*', Comment, 'comment'),
+            (r'\b(%s)\b' % '|'.join(keywords1), Keyword.Namespace),
+            (r'\b(%s)\b' % '|'.join(keywords2), Keyword),
+            (r'\b(%s)\b' % '|'.join(keywords3), Keyword.Type),
+            (r'\b(%s)\b' % '|'.join(keywords4), Keyword),
+            (r'\b(%s)\b' % '|'.join(keywords5), Keyword.Pseudo),
+            (r'\b(%s)\b' % '|'.join(keywords6), Keyword.Reserved),
+            (r'\b([A-Z][A-Za-z0-9_\']*)(?=\s*\.)',
+             Name.Namespace, 'dotted'),
+            (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
+            (r'(%s)' % '|'.join(keyopts), Operator),
+            (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
+            (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
+            (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
+
+            (r"[^\W\d][\w']*", Name),
+
+            (r'\d[\d_]*', Number.Integer),
+            (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
+            (r'0[oO][0-7][0-7_]*', Number.Oct),
+            (r'0[bB][01][01_]*', Number.Binary),
+            (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
+
+            (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
+             String.Char),
+            (r"'.'", String.Char),
+            (r"'", Keyword), # a stray quote is another syntax element
+
+            (r'"', String.Double, 'string'),
+
+            (r'[~?][a-z][\w\']*:', Name.Variable),
+        ],
+        'comment': [
+            (r'[^(*)]+', Comment),
+            (r'\(\*', Comment, '#push'),
+            (r'\*\)', Comment, '#pop'),
+            (r'[(*)]', Comment),
+        ],
+        'string': [
+            (r'[^"]+', String.Double),
+            (r'""', String.Double),
+            (r'"', String.Double, '#pop'),
+        ],
+        'dotted': [
+            (r'\s+', Text),
+            (r'\.', Punctuation),
+            (r'[A-Z][A-Za-z0-9_\']*(?=\s*\.)', Name.Namespace),
+            (r'[A-Z][A-Za-z0-9_\']*', Name.Class, '#pop'),
+            (r'[a-z][a-z0-9_\']*', Name, '#pop'),
+            (r'', Text, '#pop')
+        ],
+    }
+
+    def analyse_text(text):
+        if text.startswith('(*'):
+            return True

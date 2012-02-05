@@ -5,7 +5,7 @@
 
     Lexers for .net languages.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re
@@ -92,7 +92,7 @@ class CSharpLexer(RegexLexer):
                 (r'\n', Text),
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
-                (r'@"(\\\\|\\"|[^"])*"', String),
+                (r'@"(""|[^"])*"', String),
                 (r'"(\\\\|\\"|[^"\n])*["\n]', String),
                 (r"'\\.'|'[^\\]'", String.Char),
                 (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?"
@@ -111,10 +111,12 @@ class CSharpLexer(RegexLexer):
                  r'ref|return|sealed|sizeof|stackalloc|static|'
                  r'switch|this|throw|true|try|typeof|'
                  r'unchecked|unsafe|virtual|void|while|'
-                 r'get|set|new|partial|yield|add|remove|value)\b', Keyword),
+                 r'get|set|new|partial|yield|add|remove|value|alias|ascending|'
+                 r'descending|from|group|into|orderby|select|where|'
+                 r'join|equals)\b', Keyword),
                 (r'(global)(::)', bygroups(Keyword, Punctuation)),
-                (r'(bool|byte|char|decimal|double|float|int|long|object|sbyte|'
-                 r'short|string|uint|ulong|ushort)\b\??', Keyword.Type),
+                (r'(bool|byte|char|decimal|double|dynamic|float|int|long|object|'
+                 r'sbyte|short|string|uint|ulong|ushort|var)\b\??', Keyword.Type),
                 (r'(class|struct)(\s+)', bygroups(Keyword, Text), 'class'),
                 (r'(namespace|using)(\s+)', bygroups(Keyword, Text), 'namespace'),
                 (cs_ident, Name),
@@ -169,20 +171,20 @@ class NemerleLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    # for the range of allowed unicode characters in identifiers,
-    # see http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
+    # for the range of allowed unicode characters in identifiers, see
+    # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
-    levels = {
-        'none': '@?[_a-zA-Z][a-zA-Z0-9_]*',
-        'basic': ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
-                  '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
-                  uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
-        'full': ('@?(?:_|[^' +
-                 _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl')) + '])'
-                 + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
-                                                'Nl', 'Nd', 'Pc', 'Cf', 'Mn',
-                                                'Mc')) + ']*'),
-    }
+    levels = dict(
+        none = '@?[_a-zA-Z][a-zA-Z0-9_]*',
+        basic = ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
+                 '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
+                 uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
+        full = ('@?(?:_|[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm',
+                                                    'Lo', 'Nl')) + '])'
+                + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
+                                               'Nl', 'Nd', 'Pc', 'Cf', 'Mn',
+                                               'Mc')) + ']*'),
+    )
 
     tokens = {}
     token_variants = True
@@ -199,7 +201,7 @@ class NemerleLexer(RegexLexer):
                 (r'[^\S\n]+', Text),
                 (r'\\\n', Text), # line continuation
                 (r'//.*?\n', Comment.Single),
-                (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+                (r'/[*].*?[*]/', Comment.Multiline),
                 (r'\n', Text),
                 (r'\$\s*"', String, 'splice-string'),
                 (r'\$\s*<#', String, 'splice-string2'),
@@ -209,15 +211,16 @@ class NemerleLexer(RegexLexer):
                 (r'\]\>', Keyword),
 
                 # quasiquotation only
-                (r'\$' + cs_ident, Name), 
-                (r'(\$)(\()', bygroups(Name, Punctuation), 'splice-string-content'),
+                (r'\$' + cs_ident, Name),
+                (r'(\$)(\()', bygroups(Name, Punctuation),
+                 'splice-string-content'),
 
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
-                (r'@"(\\\\|\\"|[^"])*"', String),
+                (r'@"(""|[^"])*"', String),
                 (r'"(\\\\|\\"|[^"\n])*["\n]', String),
                 (r"'\\.'|'[^\\]'", String.Char),
-		(r"0[xX][0-9a-fA-F]+[Ll]?", Number),
+                (r"0[xX][0-9a-fA-F]+[Ll]?", Number),
                 (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?[flFLdD]?", Number),
                 (r'#[ \t]*(if|endif|else|elif|define|undef|'
                  r'line|error|warning|region|endregion|pragma)\b.*?\n',
@@ -256,7 +259,7 @@ class NemerleLexer(RegexLexer):
                 ('(' + cs_ident + r'|\.)+', Name.Namespace, '#pop')
             ],
             'splice-string': [
-                (r'[^"$]',  String), 
+                (r'[^"$]',  String),
                 (r'\$' + cs_ident, Name),
                 (r'(\$)(\()', bygroups(Name, Punctuation),
                  'splice-string-content'),
@@ -264,7 +267,7 @@ class NemerleLexer(RegexLexer):
                 (r'"',  String, '#pop')
             ],
             'splice-string2': [
-                (r'[^#<>$]',  String), 
+                (r'[^#<>$]',  String),
                 (r'\$' + cs_ident, Name),
                 (r'(\$)(\()', bygroups(Name, Punctuation),
                  'splice-string-content'),
@@ -278,8 +281,9 @@ class NemerleLexer(RegexLexer):
             ],
             'splice-string-content': [
                 (r'if|match', Keyword),
-                (r'[~!%^&*+=|\[\]:;,.<>/?-]', Punctuation),
-                (cs_ident, Name), 
+                (r'[~!%^&*+=|\[\]:;,.<>/?-\\"$ ]', Punctuation),
+                (cs_ident, Name),
+                (r'\d+', Number),
                 (r'\(', Punctuation, '#push'),
                 (r'\)', Punctuation, '#pop')
             ]
@@ -335,10 +339,10 @@ class BooLexer(RegexLexer):
              r'matrix|max|min|normalArrayIndexing|print|property|range|'
              r'rawArrayIndexing|required|typeof|unchecked|using|'
              r'yieldAll|zip)\b', Name.Builtin),
-            ('"""(\\\\|\\"|.*?)"""', String.Double),
-            ('"(\\\\|\\"|[^"]*?)"', String.Double),
-            ("'(\\\\|\\'|[^']*?)'", String.Single),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'"""(\\\\|\\"|.*?)"""', String.Double),
+            (r'"(\\\\|\\"|[^"]*?)"', String.Double),
+            (r"'(\\\\|\\'|[^']*?)'", String.Single),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
             (r'[0-9][0-9\.]*(m|ms|d|h|s)', Number),
             (r'0\d+', Number.Oct),
@@ -581,7 +585,7 @@ class FSharpLexer(RegexLexer):
              Name.Namespace, 'dotted'),
             (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
             (r'//.*?\n', Comment.Single),
-            (r'\(\*', Comment, 'comment'),
+            (r'\(\*(?!\))', Comment, 'comment'),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
             (r'(%s)' % '|'.join(keyopts), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
