@@ -48,9 +48,12 @@ class CLexer(RegexLexer):
             ('^#if\s+0', Comment.Preproc, 'if0'),
             ('^#', Comment.Preproc, 'macro'),
             # or with whitespace
-            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
-            ('^' + _ws + '#', Comment.Preproc, 'macro'),
-            (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*:(?!:))', bygroups(Text, Name.Label)),
+            ('^(' + _ws + r')(#if\s+0)',
+             bygroups(using(this), Comment.Preproc), 'if0'),
+            ('^(' + _ws + ')(#)',
+             bygroups(using(this), Comment.Preproc), 'macro'),
+            (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*:(?!:))',
+             bygroups(Text, Name.Label)),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
@@ -170,7 +173,8 @@ class CppLexer(RegexLexer):
     """
     name = 'C++'
     aliases = ['cpp', 'c++']
-    filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++', '*.cc', '*.hh', '*.cxx', '*.hxx']
+    filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++',
+                 '*.cc', '*.hh', '*.cxx', '*.hxx']
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
 
     #: optional Comment or Whitespace
@@ -182,8 +186,10 @@ class CppLexer(RegexLexer):
             ('^#if\s+0', Comment.Preproc, 'if0'),
             ('^#', Comment.Preproc, 'macro'),
             # or with whitespace
-            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
-            ('^' + _ws + '#', Comment.Preproc, 'macro'),
+            ('^(' + _ws + r')(#if\s+0)',
+             bygroups(using(this), Comment.Preproc), 'if0'),
+            ('^(' + _ws + ')(#)',
+             bygroups(using(this), Comment.Preproc), 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
