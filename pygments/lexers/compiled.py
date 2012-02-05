@@ -217,7 +217,7 @@ class CppLexer(RegexLexer):
              r'multiple_inheritance|m128i|m128d|m128|m64|interface|'
              r'identifier|forceinline|event|assume)\b', Keyword.Reserved),
             # Offload C++ extensions, http://offload.codeplay.com/
-            (r'(__offload|__blockingoffload|__outer)\b', Keyword.Psuedo),
+            (r'(__offload|__blockingoffload|__outer)\b', Keyword.Pseudo),
             (r'(true|false)\b', Keyword.Constant),
             (r'NULL\b', Name.Builtin),
             ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
