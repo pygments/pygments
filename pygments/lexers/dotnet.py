@@ -339,10 +339,10 @@ class BooLexer(RegexLexer):
              r'matrix|max|min|normalArrayIndexing|print|property|range|'
              r'rawArrayIndexing|required|typeof|unchecked|using|'
              r'yieldAll|zip)\b', Name.Builtin),
-            ('"""(\\\\|\\"|.*?)"""', String.Double),
-            ('"(\\\\|\\"|[^"]*?)"', String.Double),
-            ("'(\\\\|\\'|[^']*?)'", String.Single),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'"""(\\\\|\\"|.*?)"""', String.Double),
+            (r'"(\\\\|\\"|[^"]*?)"', String.Double),
+            (r"'(\\\\|\\'|[^']*?)'", String.Single),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
             (r'[0-9][0-9\.]*(m|ms|d|h|s)', Number),
             (r'0\d+', Number.Oct),
