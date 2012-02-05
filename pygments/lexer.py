@@ -274,12 +274,14 @@ def bygroups(*args):
                 if data:
                     yield match.start(i + 1), action, data
             else:
-                if ctx:
-                    ctx.pos = match.start(i + 1)
-                for item in action(lexer, _PseudoMatch(match.start(i + 1),
-                                   match.group(i + 1)), ctx):
-                    if item:
-                        yield item
+                data = match.group(i + 1)
+                if data is not None:
+                    if ctx:
+                        ctx.pos = match.start(i + 1)
+                    for item in action(lexer, _PseudoMatch(match.start(i + 1),
+                                       data), ctx):
+                        if item:
+                            yield item
         if ctx:
             ctx.pos = match.end()
     return callback
@@ -439,7 +441,7 @@ class RegexLexerMeta(LexerMeta):
 
     def __call__(cls, *args, **kwds):
         """Instantiate cls after preprocessing its token definitions."""
-        if not hasattr(cls, '_tokens'):
+        if '_tokens' not in cls.__dict__:
             cls._all_tokens = {}
             cls._tmpname = 0
             if hasattr(cls, 'token_variants') and cls.token_variants:
