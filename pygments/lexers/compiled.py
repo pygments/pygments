@@ -2895,7 +2895,7 @@ class FantomLexer(RegexLexer):
     def s(str):
         return Template(str).substitute(
             dict (
-                pod = r'[\"\"\w\.]+',
+                pod = r'[\"\w\.]+',
                 eos = r'\n|;',
                 id = r'[a-zA-Z_][a-zA-Z0-9_]*',
                 type = r'(?:\[|[a-zA-Z_]|\|)[:\w_\[\]\|\->\?]*?' # all chars which can be part of type definition. Starts with either letter, or [ (maps), or | (funcs)
@@ -2906,31 +2906,32 @@ class FantomLexer(RegexLexer):
     tokens = {
         'comments' : [
             (r'(?s)/\*.*?\*/', Comment.Multiline),               #Multiline
-            (r'//.*?\n', Comment),                               #Single line
+            (r'//.*?\n', Comment.Single),                        #Single line
             #todo: highlight references in fandocs
-            (r'\*\*.*?\n', Comment.Special)                      #Fandoc
+            (r'\*\*.*?\n', Comment.Special),                     #Fandoc
+            (r'#.*\n', Comment.Single)                           #Shell-style comment
         ],
         'literals' : [
-            (r'-?[\d_]+(ns|ms|sec|min|hr|day)', Number),         #Duration
-            (r'-?[\d_]*\.[\d_]+(ns|ms|sec|min|hr|day)', Number), #Duration with dot
-            (r'-?(\d+)?\.\d+(f|F|d|D)?', Number.Float),          #Float/Decimal
-            (r'-?0x[0-9a-fA-F_]+', Number.Hex),                  #Hex
-            (r'-?[\d_]+', Number.Integer),                       #Int
+            (r'\b-?[\d_]+(ns|ms|sec|min|hr|day)', Number),         #Duration
+            (r'\b-?[\d_]*\.[\d_]+(ns|ms|sec|min|hr|day)', Number), #Duration with dot
+            (r'\b-?(\d+)?\.\d+(f|F|d|D)?', Number.Float),          #Float/Decimal
+            (r'\b-?0x[0-9a-fA-F_]+', Number.Hex),                  #Hex
+            (r'\b-?[\d_]+', Number.Integer),                       #Int
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),    #Char
             (r'"', Punctuation, 'insideStr'),                    #Opening quote
             (r'`', Punctuation, 'insideUri'),                    #Opening accent
-            (r'\b(true|false|null)\b', Keyword.Constant),              #Bool & null
+            (r'\b(true|false|null)\b', Keyword.Constant),        #Bool & null
             (r'(?:(\w+)(::))?(\w+)(<\|)(.*?)(\|>)',              #DSL
              bygroups(Name.Namespace, Punctuation, Name.Class, 
                       Punctuation, String, Punctuation)),
-            (r'(\w+)?(::)?(\w+)?(#)(\w+)?',                      #Type/slot literal
+            (r'(?:(\w+)(::))?(\w+)?(#)(\w+)?',                      #Type/slot literal
              bygroups(Name.Namespace, Punctuation, Name.Class,
                       Punctuation, Name.Function)),
             (r'\[,\]', Literal),                                 # Empty list
             (s(r'($type)(\[,\])'),                               # Typed empty list
              bygroups(using(this, state = 'inType'), Literal)),
             (r'\[:\]', Literal),                                 # Empty Map
-            (r'($type)(\[:\])', 
+            (s(r'($type)(\[:\])'), 
              bygroups(using(this, state = 'inType'), Literal)),
         ],
         'insideStr' : [
@@ -2971,10 +2972,9 @@ class FantomLexer(RegexLexer):
             
         ],
         'operators' : [
-            (r'\+\+|--|\+|-|\*|/|\|\||&&|<=>|<=|<|>=|>|=|!', Operator)
+            (r'\+\+|\-\-|\+|\-|\*|/|\|\||&&|<=>|<=|<|>=|>|=|!|\[|\]', Operator)
         ],
         'inType' : [
-#            include('types'),
             (r'[\[\]\|\->:\?]', Punctuation),
             (s(r'$id'), Name.Class),
             (r'', Text, '#pop'),
@@ -2989,14 +2989,13 @@ class FantomLexer(RegexLexer):
             include('literals'),
             include('otherKeywords'),
             include('operators'),
-#            include('types'),
             (r'using\b', Keyword.Namespace, 'using'),          #Using stmt
             (r'@\w+', Name.Decorator, 'facet'),                  #Symbol
             (r'(class|mixin)(\s+)(\w+)',                         
              bygroups(Keyword, Text, Name.Class), 'inheritance'),#Inheritance list
 
 
-            #Type var := val
+            ### Type var := val
             (s(r'($type)([ \t]+)($id)(\s*)(:=)'),
              bygroups(using(this, state = 'inType'), Text, 
                       Name.Variable, Text, Operator)),           
@@ -3006,12 +3005,12 @@ class FantomLexer(RegexLexer):
              bygroups(Name.Variable, Text, Operator)),
 
             ### .someId( or ->someId( ###
-            (s(r'(\.|(?:->))($id)(\s*)(\()'),
+            (s(r'(\.|(?:\->))($id)(\s*)(\()'),
              bygroups(Operator, Name.Function, Text, Punctuation),
              'insideParen'),
             
             ### .someId  or ->someId 
-            (s(r'(\.|(?:->))($id)'),
+            (s(r'(\.|(?:\->))($id)'),
              bygroups(Operator, Name.Function)),
              
             ### new makeXXX ( ####
@@ -3025,13 +3024,29 @@ class FantomLexer(RegexLexer):
              bygroups(using(this, state = 'inType'), Text,
                       Name.Function, Text, Punctuation), 'insideMethodDeclArgs'),
 
-            #### ArgType argName, #####
+            ### ArgType argName, #####
             (s(r'($type)(\s+)($id)(\s*)(,)'),
              bygroups(using(this, state= 'inType'), Text, Name.Variable,
                       Text, Punctuation)),
 
             #### ArgType argName) ####
             ## Covered in 'insideParen' state
+
+            ### ArgType argName -> ArgType| ###
+            (s(r'($type)(\s+)($id)(\s*)(\->)(\s*)($type)(\|)'),
+             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+                      Text, Punctuation, Text, using(this, state = 'inType'),
+                      Punctuation)),
+
+            ### ArgType argName|  ###
+            (s(r'($type)(\s+)($id)(\s*)(\|)'),
+             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+                      Text, Punctuation)),
+
+            ### Type var
+            (s(r'($type)([ \t]+)($id)'),
+             bygroups(using(this, state='inType'), Text,
+                      Name.Variable)),
 
             (r'\(', Punctuation, 'insideParen'),
             (r'\{', Punctuation, 'insideBrace'),
@@ -3083,10 +3098,10 @@ class FantomLexer(RegexLexer):
         'facetFields': [
             include('comments'),
             include('literals'),
+            include('operators'),
             (r'\s+', Text),
             (r'(\s*)(\w+)(\s*)(=)', bygroups(Text, Name, Text, Operator)),
-            (r'}', Punctuation, '#pop')
+            (r'}', Punctuation, '#pop'),
+            (r'.', Text)
         ],
-        
-            
     }
