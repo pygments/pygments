@@ -10,13 +10,12 @@
 """
 
 from pygments.style import Style
-from pygments.token import Token, Comment, Name, Keyword, \
-    Generic, Number, String, Whitespace
+from pygments.token import Comment, Name, Keyword, String
 
 
 class RrtStyle(Style):
     """
-    pygments "rrt" theme, based on Zap and Emacs defaults.
+    Minimalistic "rrt" theme, based on Zap and Emacs defaults.
     """
 
     background_color = '#000000'
