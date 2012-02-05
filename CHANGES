@@ -55,6 +55,14 @@ Version 1.5
 
 - Fixes to the Clojure lexer (PR#9).
 
+- Fix degenerate regex in Nemerle lexer (#706).
+
+- Fix infinite looping in CoffeeScript lexer (#729).
+
+- Fix crashes and analysis with ObjectiveC lexer (#693, #696).
+
+- Add some Fortran 2003 keywords.
+
 
 Version 1.4
 -----------
