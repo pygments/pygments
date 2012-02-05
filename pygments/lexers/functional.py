@@ -942,7 +942,7 @@ class ErlangLexer(RegexLexer):
 
     name = 'Erlang'
     aliases = ['erlang']
-    filenames = ['*.erl', '*.hrl']
+    filenames = ['*.erl', '*.hrl', '*.es', '*.escript']
     mimetypes = ['text/x-erlang']
 
     keywords = [
