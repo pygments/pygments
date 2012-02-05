@@ -1159,6 +1159,7 @@ class ScalaLexer(RegexLexer):
             (r'[\s\n]+', Text),
             (r'{', Operator, '#pop'),
             (r'\(', Operator, '#pop'),
+            (r'//.*?\n', Comment.Single, '#pop'),
             (ur'%s|%s|`[^`]+`' % (idrest, op), Name.Class, '#pop'),
         ],
         'type': [
