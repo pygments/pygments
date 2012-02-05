@@ -171,20 +171,20 @@ class NemerleLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    # for the range of allowed unicode characters in identifiers,
-    # see http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
+    # for the range of allowed unicode characters in identifiers, see
+    # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
-    levels = {
-        'none': '@?[_a-zA-Z][a-zA-Z0-9_]*',
-        'basic': ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
-                  '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
-                  uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
-        'full': ('@?(?:_|[^' +
-                 _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl')) + '])'
-                 + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
-                                                'Nl', 'Nd', 'Pc', 'Cf', 'Mn',
-                                                'Mc')) + ']*'),
-    }
+    levels = dict(
+        none = '@?[_a-zA-Z][a-zA-Z0-9_]*',
+        basic = ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
+                 '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
+                 uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
+        full = ('@?(?:_|[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm',
+                                                    'Lo', 'Nl')) + '])'
+                + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
+                                               'Nl', 'Nd', 'Pc', 'Cf', 'Mn',
+                                               'Mc')) + ']*'),
+    )
 
     tokens = {}
     token_variants = True
@@ -201,7 +201,7 @@ class NemerleLexer(RegexLexer):
                 (r'[^\S\n]+', Text),
                 (r'\\\n', Text), # line continuation
                 (r'//.*?\n', Comment.Single),
-                (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+                (r'/[*].*?[*]/', Comment.Multiline),
                 (r'\n', Text),
                 (r'\$\s*"', String, 'splice-string'),
                 (r'\$\s*<#', String, 'splice-string2'),
@@ -211,15 +211,16 @@ class NemerleLexer(RegexLexer):
                 (r'\]\>', Keyword),
 
                 # quasiquotation only
-                (r'\$' + cs_ident, Name), 
-                (r'(\$)(\()', bygroups(Name, Punctuation), 'splice-string-content'),
+                (r'\$' + cs_ident, Name),
+                (r'(\$)(\()', bygroups(Name, Punctuation),
+                 'splice-string-content'),
 
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
                 (r'@"(""|[^"])*"', String),
                 (r'"(\\\\|\\"|[^"\n])*["\n]', String),
                 (r"'\\.'|'[^\\]'", String.Char),
-		(r"0[xX][0-9a-fA-F]+[Ll]?", Number),
+                (r"0[xX][0-9a-fA-F]+[Ll]?", Number),
                 (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?[flFLdD]?", Number),
                 (r'#[ \t]*(if|endif|else|elif|define|undef|'
                  r'line|error|warning|region|endregion|pragma)\b.*?\n',
@@ -258,7 +259,7 @@ class NemerleLexer(RegexLexer):
                 ('(' + cs_ident + r'|\.)+', Name.Namespace, '#pop')
             ],
             'splice-string': [
-                (r'[^"$]',  String), 
+                (r'[^"$]',  String),
                 (r'\$' + cs_ident, Name),
                 (r'(\$)(\()', bygroups(Name, Punctuation),
                  'splice-string-content'),
@@ -266,7 +267,7 @@ class NemerleLexer(RegexLexer):
                 (r'"',  String, '#pop')
             ],
             'splice-string2': [
-                (r'[^#<>$]',  String), 
+                (r'[^#<>$]',  String),
                 (r'\$' + cs_ident, Name),
                 (r'(\$)(\()', bygroups(Name, Punctuation),
                  'splice-string-content'),
@@ -281,8 +282,8 @@ class NemerleLexer(RegexLexer):
             'splice-string-content': [
                 (r'if|match', Keyword),
                 (r'[~!%^&*+=|\[\]:;,.<>/?-\\"$ ]', Punctuation),
-                (cs_ident, Name), 
-                (r'\d+', Number), 
+                (cs_ident, Name),
+                (r'\d+', Number),
                 (r'\(', Punctuation, '#push'),
                 (r'\)', Punctuation, '#pop')
             ]
