@@ -22,8 +22,8 @@ from pygments.token import \
 # backwards compatibility
 from pygments.lexers.functional import OcamlLexer
 
-__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'JavaLexer',
-           'ScalaLexer', 'DylanLexer', 'OcamlLexer', 'ObjectiveCLexer',
+__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
+           'JavaLexer', 'ScalaLexer', 'DylanLexer', 'ObjectiveCLexer',
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
            'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
            'Modula2Lexer', 'BlitzMaxLexer', 'NimrodLexer', 'GosuLexer',
