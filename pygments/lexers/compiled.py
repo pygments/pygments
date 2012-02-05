@@ -2905,4 +2905,3 @@ class GosuTemplateLexer(Lexer):
         stack = ['templateText']
         for item in self.lexer.get_tokens_unprocessed(text, stack):
             yield item
-
