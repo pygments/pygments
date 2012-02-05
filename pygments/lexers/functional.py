@@ -157,7 +157,7 @@ class CommonLispLexer(RegexLexer):
     """
     name = 'Common Lisp'
     aliases = ['common-lisp', 'cl']
-    filenames = ['*.cl', '*.lisp', '*.el']  # use for Elisp too
+    filenames = ['*.cl', '*.lisp', '*.lsp', '*.el']  # use for Elisp too
     mimetypes = ['text/x-common-lisp']
 
     flags = re.IGNORECASE | re.MULTILINE
