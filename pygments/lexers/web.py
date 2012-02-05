@@ -1801,7 +1801,8 @@ class CoffeeScriptLexer(RegexLexer):
             (r'', Text, '#pop'),
         ],
         'root': [
-            (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            # this next expr leads to infinite loops root -> slashstartsregex
+            #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|--|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|=|'
              r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|[-<>+*`%&\|\^/])=?',
