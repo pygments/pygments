@@ -264,3 +264,7 @@ class SystemVerilogLexer(RegexLexer):
                 if value.isupper():
                     token = Name.Constant
             yield index, token, value
+
+    def analyse_text(text):
+        if text.startswith('//') or text.startswith('/*'):
+            return 0.5

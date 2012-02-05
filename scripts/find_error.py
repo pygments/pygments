@@ -101,6 +101,9 @@ def main(fn, lexer=None, options={}):
     if lx.__class__.__bases__ == (RegexLexer,):
         lx.__class__.__bases__ = (DebuggingRegexLexer,)
         debug_lexer = True
+    elif lx.__class__.__bases__ == (DebuggingRegexLexer,):
+        # already debugged before
+        debug_lexer = True
     lno = 1
     text = file(fn, 'U').read()
     text = text.strip('\n') + '\n'
