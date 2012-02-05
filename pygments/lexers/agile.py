@@ -1504,8 +1504,7 @@ class ClojureLexer(RegexLexer):
     valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
 
     def _multi_escape(entries):
-        return '(%s)' % ('|'.join(
-            [re.escape(entry) + ' ' for entry in entries]))
+        return '(%s)' % ('|'.join(re.escape(entry) + ' ' for entry in entries))
 
     tokens = {
         'root': [
