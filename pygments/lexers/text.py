@@ -1033,7 +1033,8 @@ class DebianControlLexer(RegexLexer):
             (r'.', Text),
         ],
         'description': [
-            (r'(.*)(Homepage)(: )([^\s]+)', bygroups(Text, String, Name, Name.Class)),
+            (r'(.*)(Homepage)(: )([^\s]+)',
+             bygroups(Text, String, Name, Name.Class)),
             (r':.*\n', Generic.Strong),
             (r' .*\n', Text),
             ('', Text, '#pop'),
