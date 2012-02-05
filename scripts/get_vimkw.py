@@ -22,7 +22,8 @@ def getkw(input, output):
 
             # Extract all the shortened versions
             for i in r_item.finditer(m.group(2)):
-                d.append('(%r,%r)' % (i.group(1), "%s%s" % (i.group(1), i.group(2) or '')))
+                d.append('(%r,%r)' %
+                         (i.group(1), "%s%s" % (i.group(1), i.group(2) or '')))
 
     output_info['option'].append("('nnoremap','nnoremap')")
     output_info['option'].append("('inoremap','inoremap')")
