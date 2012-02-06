@@ -1048,7 +1048,7 @@ class LuaLexer(RegexLexer):
             # multiline strings
             (r'(?s)\[(=*)\[.*?\]\1\]', String),
 
-            (r'(==|~=|<=|>=|\.\.|\.\.\.|[=+\-*/%^<>#])', Operator),
+            (r'(==|~=|<=|>=|\.\.\.|\.\.|[=+\-*/%^<>#])', Operator),
             (r'[\[\]\{\}\(\)\.,:;]', Punctuation),
             (r'(and|or|not)\b', Operator.Word),
 
