@@ -3,7 +3,7 @@
     Pygments HTML formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -74,6 +74,38 @@ class HtmlFormatterTest(unittest.TestCase):
             outfile = StringIO.StringIO()
             fmt = HtmlFormatter(**optdict)
             fmt.format(tokensource, outfile)
+
+    def test_linenos(self):
+        optdict = dict(linenos=True)
+        outfile = StringIO.StringIO()
+        fmt = HtmlFormatter(**optdict)
+        fmt.format(tokensource, outfile)
+        html = outfile.getvalue()
+        self.assert_(re.search("<pre>\s+1\s+2\s+3", html))
+
+    def test_linenos_with_startnum(self):
+        optdict = dict(linenos=True, linenostart=5)
+        outfile = StringIO.StringIO()
+        fmt = HtmlFormatter(**optdict)
+        fmt.format(tokensource, outfile)
+        html = outfile.getvalue()
+        self.assert_(re.search("<pre>\s+5\s+6\s+7", html))
+
+    def test_lineanchors(self):
+        optdict = dict(lineanchors="foo")
+        outfile = StringIO.StringIO()
+        fmt = HtmlFormatter(**optdict)
+        fmt.format(tokensource, outfile)
+        html = outfile.getvalue()
+        self.assert_(re.search("<pre><a name=\"foo-1\">", html))
+
+    def test_lineanchors_with_startnum(self):
+        optdict = dict(lineanchors="foo", linenostart=5)
+        outfile = StringIO.StringIO()
+        fmt = HtmlFormatter(**optdict)
+        fmt.format(tokensource, outfile)
+        html = outfile.getvalue()
+        self.assert_(re.search("<pre><a name=\"foo-5\">", html))
 
     def test_valid_output(self):
         # test all available wrappers

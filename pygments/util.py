@@ -5,7 +5,7 @@
 
     Utility functions.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -118,7 +118,7 @@ def make_analysator(f):
             return 0.0
         try:
             return min(1.0, max(0.0, float(rv)))
-        except ValueError:
+        except (ValueError, TypeError):
             return 0.0
     text_analyse.__doc__ = f.__doc__
     return staticmethod(text_analyse)
