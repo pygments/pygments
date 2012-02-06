@@ -8,7 +8,7 @@
     the text where Error tokens are being generated, along
     with some context.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -101,6 +101,9 @@ def main(fn, lexer=None, options={}):
     if lx.__class__.__bases__ == (RegexLexer,):
         lx.__class__.__bases__ = (DebuggingRegexLexer,)
         debug_lexer = True
+    elif lx.__class__.__bases__ == (DebuggingRegexLexer,):
+        # already debugged before
+        debug_lexer = True
     lno = 1
     text = file(fn, 'U').read()
     text = text.strip('\n') + '\n'
@@ -123,7 +126,7 @@ def main(fn, lexer=None, options={}):
                 for tok, state in map(None, tokens, states):
                     show_token(tok, state)
             else:
-                for i in range(len(tokens) - num, len(tokens)):
+                for i in range(max(len(tokens) - num, 0), len(tokens)):
                     show_token(tokens[i], states[i])
             print 'Error token:'
             l = len(repr(val))

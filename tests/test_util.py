@@ -3,7 +3,7 @@
     Test suite for the util module
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -11,6 +11,12 @@ import unittest
 import os
 
 from pygments import util
+
+
+class FakeLexer(object):
+    def analyse(text):
+        return float(text)
+    analyse = util.make_analysator(analyse)
 
 
 class UtilTest(unittest.TestCase):
@@ -53,12 +59,36 @@ class UtilTest(unittest.TestCase):
         self.assertEquals(util.docstring_headline(f1), "docstring headline")
         self.assertEquals(util.docstring_headline(f2), "docstring headline")
 
-    def test_analysator(self):
-        class X(object):
+    def test_analysator_returns_float(self):
+        # If an analysator wrapped by make_analysator returns a floating point
+        # number, then that number will be returned by the wrapper.
+        self.assertEquals(FakeLexer.analyse('0.5'), 0.5)
+
+    def test_analysator_returns_boolean(self):
+        # If an analysator wrapped by make_analysator returns a boolean value,
+        # then the wrapper will return 1.0 if the boolean was True or 0.0 if
+        # it was False.
+        self.assertEquals(FakeLexer.analyse(True), 1.0)
+        self.assertEquals(FakeLexer.analyse(False), 0.0)
+
+    def test_analysator_raises_exception(self):
+        # If an analysator wrapped by make_analysator raises an exception,
+        # then the wrapper will return 0.0.
+        class ErrorLexer(object):
             def analyse(text):
-                return 0.5
+                raise RuntimeError('something bad happened')
             analyse = util.make_analysator(analyse)
-        self.assertEquals(X.analyse(''), 0.5)
+        self.assertEquals(ErrorLexer.analyse(''), 0.0)
+
+    def test_analysator_value_error(self):
+        # When converting the analysator's return value to a float a
+        # ValueError may occur.  If that happens 0.0 is returned instead.
+        self.assertEquals(FakeLexer.analyse('bad input'), 0.0)
+
+    def test_analysator_type_error(self):
+        # When converting the analysator's return value to a float a
+        # TypeError may occur.  If that happens 0.0 is returned instead.
+        self.assertEquals(FakeLexer.analyse(None), 0.0)
 
     def test_shebang_matches(self):
         self.assert_(util.shebang_matches('#!/usr/bin/env python', r'python(2\.\d)?'))
