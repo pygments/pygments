@@ -141,6 +141,7 @@ class VhdlLexer(RegexLexer):
     aliases = ['vhdl']
     filenames = ['*.vhdl', '*.vhd']
     mimetypes = ['text/x-vhdl']
+    flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {
         'root': [
@@ -155,6 +156,7 @@ class VhdlLexer(RegexLexer):
             (r'"[^\n\\]*"', String),
 
             (r'(library)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Text, Name.Namespace)),
+            (r'(use)(\s+)(entity)', bygroups(Keyword, Text, Keyword)),
             (r'(use)(\s+)([a-zA-Z_][\.a-zA-Z0-9_]*)', bygroups(Keyword, Text, Name.Namespace)),
             (r'(entity|component)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Text, Name.Class)),
             (r'(architecture|configuration)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)(of)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)(is)',
@@ -169,11 +171,10 @@ class VhdlLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'endblock': [
-            (r'\s+$', Text),
-            (r'[()\[\],.;\']', Punctuation),
-
             include('keywords'),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class),
+            (r'(\s+)', Text),
+            (r';', Punctuation, '#pop'),
         ],
         'types': [
             (r'(boolean|bit|character|severity_level|integer|time|delay_length|'
