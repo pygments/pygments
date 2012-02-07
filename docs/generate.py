@@ -6,7 +6,7 @@
 
     Generates a bunch of html files containing the documentation.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

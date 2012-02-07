@@ -5,7 +5,7 @@
 
     Command line interface.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import sys
@@ -408,6 +408,9 @@ def main(args=sys.argv):
                                          None) or 'ascii'
                 fmter.encoding = getattr(sys.stdout, 'encoding',
                                          None) or 'ascii'
+    elif not outfn and sys.version_info > (3,):
+        # output to terminal with encoding -> use .buffer
+        outfile = sys.stdout.buffer
 
     # ... and do it!
     try:
