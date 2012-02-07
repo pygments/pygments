@@ -6,7 +6,7 @@ http://bitbucket.org/birkenfeld/pygments-main/issues.
 
 Version 1.5
 -----------
-(codename not decided, released Jul xx, 2011)
+(codename not decided, released 2012)
 
 - Lexers added:
 
@@ -20,10 +20,27 @@ Version 1.5
   * Groovy (#501)
   * PostgreSQL (#660)
   * DTD
-  * Gosu
+  * Gosu (#634)
   * Octave (PR#22)
   * Standard ML (PR#14)
   * CFengine3 (#601)
+  * Opa (PR#37)
+  * HTTP sessions (PR#42)
+  * JSON (PR#31)
+  * SNOBOL (PR#30)
+  * MoonScript (PR#43)
+  * ECL (PR#29)
+  * Urbiscript (PR#17)
+  * OpenEdge ABL (PR#27)
+  * SystemVerilog (PR#35)
+  * Coq (#734)
+  * PowerShell (#654)
+  * Dart (#715)
+  * Fantom (PR#36)
+  * Bro (PR#5)
+  * NewLISP (PR#26)
+
+- Fix Python 3 terminal highlighting with pygmentize (#691).
 
 - In the LaTeX formatter, escape special &, < and > chars (#648).
 
@@ -38,7 +55,7 @@ Version 1.5
 
 - Fix Lua "class" highlighting: it does not have classes (#665).
 
-- Fix degenerate regex in Scala lexer (#671).
+- Fix degenerate regex in Scala lexer (#671) and highlighting bugs (#713, 708).
 
 - Fix number pattern order in Ocaml lexer (#647).
 
@@ -46,6 +63,17 @@ Version 1.5
 
 - Fixes to the Clojure lexer (PR#9).
 
+- Fix degenerate regex in Nemerle lexer (#706).
+
+- Fix infinite looping in CoffeeScript lexer (#729).
+
+- Fix crashes and analysis with ObjectiveC lexer (#693, #696).
+
+- Add some Fortran 2003 keywords.
+
+- Fix Boo string regexes (#679).
+
+- Add "rrt" style (#727).
 
 Version 1.4
 -----------
