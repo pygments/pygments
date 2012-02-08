@@ -273,7 +273,9 @@ class SystemVerilogLexer(RegexLexer):
 
 class VhdlLexer(RegexLexer):
     """
-    For vhdl source code.
+    For VHDL source code.
+
+    *New in Pygments 1.5.*
     """
     name = 'vhdl'
     aliases = ['vhdl']
@@ -293,12 +295,17 @@ class VhdlLexer(RegexLexer):
             (r'[()\[\],.;\']', Punctuation),
             (r'"[^\n\\]*"', String),
 
-            (r'(library)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Text, Name.Namespace)),
+            (r'(library)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+             bygroups(Keyword, Text, Name.Namespace)),
             (r'(use)(\s+)(entity)', bygroups(Keyword, Text, Keyword)),
-            (r'(use)(\s+)([a-zA-Z_][\.a-zA-Z0-9_]*)', bygroups(Keyword, Text, Name.Namespace)),
-            (r'(entity|component)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Keyword, Text, Name.Class)),
-            (r'(architecture|configuration)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)(of)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)(is)',
-                bygroups(Keyword, Text, Name.Class, Text, Keyword, Text, Name.Class, Text, Keyword)),
+            (r'(use)(\s+)([a-zA-Z_][\.a-zA-Z0-9_]*)',
+             bygroups(Keyword, Text, Name.Namespace)),
+            (r'(entity|component)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+             bygroups(Keyword, Text, Name.Class)),
+            (r'(architecture|configuration)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)'
+             r'(of)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)(is)',
+             bygroups(Keyword, Text, Name.Class, Text, Keyword, Text,
+                      Name.Class, Text, Keyword)),
 
             (r'(end)(\s+)', bygroups(using(this), Text), 'endblock'),
 
@@ -316,8 +323,9 @@ class VhdlLexer(RegexLexer):
         ],
         'types': [
             (r'(boolean|bit|character|severity_level|integer|time|delay_length|'
-             r'natural|positive|string|bit_vector|file_open_kind|file_open_status|'
-             r'std_ulogic|std_ulogic_vector|std_logic|std_logic_vector)\b', Keyword.Type),
+             r'natural|positive|string|bit_vector|file_open_kind|'
+             r'file_open_status|std_ulogic|std_ulogic_vector|std_logic|'
+             r'std_logic_vector)\b', Keyword.Type),
         ],
         'keywords': [
             (r'(abs|access|after|alias|all|and|'
