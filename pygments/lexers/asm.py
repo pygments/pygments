@@ -302,7 +302,7 @@ class NasmLexer(RegexLexer):
     binn = r'[01]+b'
     decn = r'[0-9]+'
     floatn = decn + r'\.e?' + decn
-    string = r'"(\\"|[^"])*"|' + r"'(\\'|[^'])*'"
+    string = r'"(\\"|[^"\n])*"|' + r"'(\\'|[^'\n])*'|" + r"`(\\`|[^`\n])*`"
     declkw = r'(?:res|d)[bwdqt]|times'
     register = (r'[a-d][lh]|e?[a-d]x|e?[sb]p|e?[sd]i|[c-gs]s|st[0-7]|'
                 r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]')
