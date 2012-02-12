@@ -465,6 +465,7 @@ class VbNetLexer(RegexLexer):
         ]
     }
 
+
 class GenericAspxLexer(RegexLexer):
     """
     Lexer for ASP.NET pages.
@@ -487,6 +488,7 @@ class GenericAspxLexer(RegexLexer):
         ],
     }
 
+
 #TODO support multiple languages within the same source file
 class CSharpAspxLexer(DelegatingLexer):
     """
@@ -507,7 +509,7 @@ class CSharpAspxLexer(DelegatingLexer):
             return 0.2
         elif re.search(r'script[^>]+language=["\']C#', text, re.I) is not None:
             return 0.15
-        return 0.001 # TODO really only for when filename matched...
+
 
 class VbNetAspxLexer(DelegatingLexer):
     """
