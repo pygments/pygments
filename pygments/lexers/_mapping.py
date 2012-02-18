@@ -212,6 +212,7 @@ LEXERS = {
     'ScalaLexer': ('pygments.lexers.jvm', 'Scala', ('scala',), ('*.scala',), ('text/x-scala',)),
     'ScamlLexer': ('pygments.lexers.web', 'Scaml', ('scaml', 'SCAML'), ('*.scaml',), ('text/x-scaml',)),
     'SchemeLexer': ('pygments.lexers.functional', 'Scheme', ('scheme', 'scm'), ('*.scm', '*.ss', '*.rkt'), ('text/x-scheme', 'application/x-scheme')),
+    'ScilabLexer': ('pygments.lexers.math', 'Scilab', ('scilab',), ('*.sci','*.sce','*.tst',), ('text/scilab',)),
     'ScssLexer': ('pygments.lexers.web', 'SCSS', ('scss',), ('*.scss',), ('text/x-scss',)),
     'SmalltalkLexer': ('pygments.lexers.other', 'Smalltalk', ('smalltalk', 'squeak'), ('*.st',), ('text/x-smalltalk',)),
     'SmartyLexer': ('pygments.lexers.templates', 'Smarty', ('smarty',), ('*.tpl',), ('application/x-smarty',)),
