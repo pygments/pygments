@@ -239,14 +239,23 @@ re_message = re.compile(
     r'((?:DEBUG|INFO|NOTICE|WARNING|ERROR|'
     r'FATAL|HINT|DETAIL|CONTEXT|LINE [0-9]+):)(.*?\n)')
 
-def lookahead(x):
+
+class lookahead(object):
     """Wrap an iterator and allow pushing back an item."""
-    for i in x:
-        while 1:
-            i = yield i
-            if i is None:
-                break
-            yield i
+    def __init__(self, x):
+        self.iter = iter(x)
+        self._nextitem = None
+    def __iter__(self):
+        return self
+    def send(self, i):
+        self._nextitem = i
+        return i
+    def next(self):
+        if self._nextitem is not None:
+            ni = self._nextitem
+            self._nextitem = None
+            return ni
+        return self.iter.next()
 
 
 class PostgresConsoleLexer(Lexer):
