@@ -924,7 +924,7 @@ class PerlLexer(RegexLexer):
             (r'(q|qq|qw|qr|qx)([^a-zA-Z0-9])(.|\n)*?\2', String.Other),
             (r'package\s+', Keyword, 'modulename'),
             (r'sub\s+', Keyword, 'funcname'),
-            (r'(\[\]|\*\*|::|<<|>>|>=|<=|<=>|={3}|!=|=~|'
+            (r'(\[\]|\*\*|::|<<|>>|>=|<=>|<=|={3}|!=|=~|'
              r'!~|&&?|\|\||\.{1,3})', Operator),
             (r'[-+/*%=<>&^|!\\~]=?', Operator),
             (r'[\(\)\[\]:;,<>/\?\{\}]', Punctuation), # yes, there's no shortage
@@ -1378,7 +1378,7 @@ class TclLexer(RegexLexer):
         'params': [
             (r';', Keyword, '#pop'),
             (r'\n', Text, '#pop'),
-            (r'(else|elseif|then)', Keyword),
+            (r'(else|elseif|then)\b', Keyword),
             include('basic'),
             include('data'),
         ],

@@ -72,8 +72,8 @@ class RagelLexer(RegexLexer):
         ],
         'operators': [
             (r',', Operator), # Join
-            (r'\||&|-|--', Operator), # Union, Intersection and Subtraction
-            (r'\.|<:|:>|:>>', Operator), # Concatention
+            (r'\||&|--?', Operator), # Union, Intersection and Subtraction
+            (r'\.|<:|:>>?', Operator), # Concatention
             (r':', Operator), # Label
             (r'->', Operator), # Epsilon Transition
             (r'(>|\$|%|<|@|<>)(/|eof\b)', Operator), # EOF Actions
