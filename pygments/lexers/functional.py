@@ -1672,9 +1672,12 @@ class NewLispLexer(RegexLexer):
         ],
     }
 
+
 class ElixirLexer(RegexLexer):
     """
-    For the Elixir language (http://elixir-lang.org)
+    For the `Elixir language <http://elixir-lang.org>`_.
+
+    *New in Pygments 1.5.*
     """
 
     name = 'Elixir'
@@ -1697,17 +1700,18 @@ class ElixirLexer(RegexLexer):
              r'<=>|<(?!<|=)|>(?!<|=|>)|<=|>=|===|==|=~|!=|!~|(?=[ \t])\?|'
              r'(?<=[ \t])!+|&&|\|\||\^|\*|\+|\-|/|'
              r'\||\+\+|\-\-|\*\*|\/\/|\<\-|\<\>|<<|>>|=|\.', Operator),
-            (r'(?<!:)(:)([a-zA-Z_]\w*([?!]|=(?![>=]))?|\<\>|===?|>=?|<=?|<=>|&&?|%\(\)|%\[\]|%\{\}|\+\+?|\-\-?|\|\|?|\!|//|[%&`/\|]|\*\*?|=?~|<\-)|'
-             r'([a-zA-Z_]\w*([?!])?)(:)(?!:)', String.Symbol),
+            (r'(?<!:)(:)([a-zA-Z_]\w*([?!]|=(?![>=]))?|\<\>|===?|>=?|<=?|'
+             r'<=>|&&?|%\(\)|%\[\]|%\{\}|\+\+?|\-\-?|\|\|?|\!|//|[%&`/\|]|'
+             r'\*\*?|=?~|<\-)|([a-zA-Z_]\w*([?!])?)(:)(?!:)', String.Symbol),
             (r':"', String.Symbol, 'interpoling_symbol'),
             (r'\b(nil|true|false)\b(?![?!])|\b[A-Z]\w*\b', Name.Constant),
-            (r'\b(__(FILE|LINE|MODULE|STOP_ITERATOR|EXCEPTION|OP|REF|FUNCTION|BLOCK|KVBLOCK)__)\b(?![?!])',
-                Name.Builtin.Pseudo),
+            (r'\b(__(FILE|LINE|MODULE|STOP_ITERATOR|EXCEPTION|OP|REF|FUNCTION|'
+             r'BLOCK|KVBLOCK)__)\b(?![?!])', Name.Builtin.Pseudo),
             (r'[a-zA-Z_][\w_]*[\!\?]?', Name),
             (r'[(){};,/\|:\\\[\]]', Punctuation),
             (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
-            (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^[:space:][:digit:]])(_?\d)*)?([eE][-+]?\d(_?\d)*)?|0[bB][01]+)\b',
-                Number),
+            (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^[:space:][:digit:]])'
+             r'(_?\d)*)?([eE][-+]?\d(_?\d)*)?|0[bB][01]+)\b', Number),
             include('strings'),
         ],
         'strings': [
@@ -1737,6 +1741,7 @@ class ElixirLexer(RegexLexer):
         ],
     }
 
+
 class ElixirConsoleLexer(Lexer):
     """
     For Elixir interactive console (iex) output like:
@@ -1753,7 +1758,10 @@ class ElixirConsoleLexer(Lexer):
         [1,2,3]
         iex> length [head | tail]
         3
+
+    *New in Pygments 1.5.*
     """
+
     name = 'Elixir iex session'
     aliases = ['iex']
     mimetypes = ['text/x-elixir-shellsession']
