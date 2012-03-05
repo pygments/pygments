@@ -19,7 +19,7 @@ from pygments.token import Comment, String, Punctuation, Keyword, Name, \
 from pygments.lexers.agile import PythonLexer
 from pygments.lexers import _scilab_builtins
 
-__all__ = ['JuliaLexer', 'JuliaSessionLexer', 'MuPADLexer', 'MatlabLexer',
+__all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
            'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
            'RConsoleLexer', 'SLexer']
 
@@ -126,12 +126,12 @@ class JuliaLexer(RegexLexer):
 
 line_re  = re.compile('.*?\n')
 
-class JuliaSessionLexer(Lexer):
+class JuliaConsoleLexer(Lexer):
     """
-    For Julia sessions. Modeled after MatlabSessionLexer.
+    For Julia console sessions. Modeled after MatlabSessionLexer.
     """
-    name = 'Julia session'
-    aliases = ['juliasession']
+    name = 'Julia console'
+    aliases = ['jlcon']
 
     def get_tokens_unprocessed(self, text):
         jllexer = JuliaLexer(**self.options)
