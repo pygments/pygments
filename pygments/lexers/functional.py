@@ -1707,7 +1707,7 @@ class ElixirLexer(RegexLexer):
             (r'\b(nil|true|false)\b(?![?!])|\b[A-Z]\w*\b', Name.Constant),
             (r'\b(__(FILE|LINE|MODULE|STOP_ITERATOR|EXCEPTION|OP|REF|FUNCTION|'
              r'BLOCK|KVBLOCK)__)\b(?![?!])', Name.Builtin.Pseudo),
-            (r'[a-zA-Z_][\w_]*[\!\?]?', Name),
+            (r'[a-zA-Z_!][\w_]*[!\?]?', Name),
             (r'[(){};,/\|:\\\[\]]', Punctuation),
             (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
             (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^[:space:][:digit:]])'
