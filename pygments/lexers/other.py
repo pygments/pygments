@@ -1240,11 +1240,11 @@ class ModelicaLexer(RegexLexer):
         ],
         'functions': [
             (r'(abs|acos|acosh|asin|asinh|atan|atan2|atan3|ceil|cos|cosh|'
-             r'cross|div|exp|floor|log|log10|mod|rem|sign|sin|sinh|size|'
-             r'sqrt|tan|tanh|zeros)\b', Name.Function)
+             r'cross|div|exp|floor|log|log10|mod|rem|semiLinear|sign|sin|'
+             r'sinh|size|sqrt|tan|tanh|zeros)\b', Name.Function)
         ],
         'operators': [
-            (r'(and|assert|cardinality|change|delay|der|edge|initial|'
+            (r'(and|assert|cardinality|change|delay|der|edge|homotopy|initial|'
              r'noEvent|not|or|pre|reinit|return|sample|smooth|'
              r'terminal|terminate)\b', Name.Builtin)
         ],
