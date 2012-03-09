@@ -2617,7 +2617,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'#\)', Punctuation, 'operator'),
             (ur'\t|\r|\n|[\u0020-\U0000D7FF]|[\U0000E000-\U0000FFFD]|'
              ur'[\U00010000-\U0010FFFF]', Literal),
-            (r'(\s*)', Text),
+            (r'(\s+)', Text),
         ],
         'occurrenceindicator': [
             include('whitespace'),

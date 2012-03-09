@@ -668,7 +668,7 @@ class ScilabLexer(RegexLexer):
                             _scilab_builtins.macros_kw
                             ) + r')\b',  Name.Builtin),
 
-            ("(" + "|".join(_scilab_builtins.builtin_consts) + r')\b',
+            (r'(%s)\b' % "|".join(map(re.escape, _scilab_builtins.builtin_consts)),
              Name.Constant),
 
             # operators:
