@@ -676,7 +676,6 @@ class ScilabLexer(RegexLexer):
             # operators requiring escape for re:
             (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
 
-
             # punctuation:
             (r'[\[\](){}@.,=:;]', Punctuation),
 
@@ -692,6 +691,7 @@ class ScilabLexer(RegexLexer):
         ],
         'string': [
             (r"[^']*'", String, '#pop'),
+            (r'.', String, '#pop'),
         ],
         'deffunc': [
             (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
