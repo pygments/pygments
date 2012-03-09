@@ -75,8 +75,8 @@ class MuPADLexer(RegexLexer):
         #(r'\b(?:adt|linalg|newDomain|hold)\b', Name.Builtin),
         (r'''(?x)
           ((?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
-          (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*)\s*([(])''',
-          bygroups(Name.Function, Punctuation)),
+          (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*)(\s*)([(])''',
+          bygroups(Name.Function, Text, Punctuation)),
         (r'''(?x)
           (?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
           (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*''', Name.Variable),
