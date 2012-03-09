@@ -633,7 +633,7 @@ class ObjectiveJLexer(RegexLexer):
             # parameters
             (r'(\(' + _ws + ')'                 # open paren
              r'([^\)]+)'                        # type
-             r'(' + _ws + r'\)' + _ws + r')+'   # close paren
+             r'(' + _ws + r'\)' + _ws + r')'    # close paren
              r'([$a-zA-Z_][a-zA-Z0-9_]+)',      # param name
              bygroups(using(this), Keyword.Type, using(this), Text)),
 
