@@ -912,18 +912,18 @@ class DtdLexer(RegexLexer):
         'root': [
             include('common'),
 
-            (r'(<!ELEMENT)(\s+)([^\s]+)', 
+            (r'(<!ELEMENT)(\s+)([^\s]+)',
                 bygroups(Keyword, Text, Name.Tag), 'element'),
-            (r'(<!ATTLIST)(\s+)([^\s]+)', 
+            (r'(<!ATTLIST)(\s+)([^\s]+)',
                 bygroups(Keyword, Text, Name.Tag), 'attlist'),
-            (r'(<!ENTITY)(\s+)([^\s]+)', 
+            (r'(<!ENTITY)(\s+)([^\s]+)',
                 bygroups(Keyword, Text, Name.Entity), 'entity'),
-            (r'(<!NOTATION)(\s+)([^\s]+)', 
+            (r'(<!NOTATION)(\s+)([^\s]+)',
                 bygroups(Keyword, Text, Name.Tag), 'notation'),
             (r'(<!\[)([^\[\s]+)(\s*)(\[)', # conditional sections
                 bygroups(Keyword, Name.Entity, Text, Keyword)),
 
-            (r'(<!DOCTYPE)(\s+)([^>\s]+)', 
+            (r'(<!DOCTYPE)(\s+)([^>\s]+)',
                 bygroups(Keyword, Text, Name.Tag)),
             (r'PUBLIC|SYSTEM', Keyword.Constant),
             (r'[\[\]>]', Keyword),
@@ -937,7 +937,7 @@ class DtdLexer(RegexLexer):
             (r'"[^"]*"', String.Double),
             (r'\'[^\']*\'', String.Single),
         ],
-        
+
         'comment': [
             ('[^-]+', Comment),
             ('-->', Comment, '#pop'),
@@ -966,7 +966,7 @@ class DtdLexer(RegexLexer):
             (r'[^>\s\|()?+*,]+', Name.Entity),
             (r'>', Keyword, '#pop'),
         ],
-        
+
         'notation': [
             include('common'),
             (r'SYSTEM|PUBLIC', Keyword.Constant),
