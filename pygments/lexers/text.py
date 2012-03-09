@@ -1702,7 +1702,7 @@ class PyPyLogLexer(RegexLexer):
             (r"^\+\d+: ", Comment),
             (r"[ifp]\d+", Name),
             (r"ptr\d+", Name),
-            (r"(\()([\w_]+(?:\.[\w_]+)?)(\))",
+            (r"(\()(\w+(?:\.\w+)?)(\))",
              bygroups(Punctuation, Name.Builtin, Punctuation)),
             (r"[\[\]=,()]", Punctuation),
             (r"(\d+\.\d+|inf|-inf)", Number.Float),
