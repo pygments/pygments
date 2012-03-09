@@ -2531,8 +2531,8 @@ class XQueryLexer(ExtendedRegexLexer):
         'xml_comment': [
             (r'(-->)', popstate_xmlcomment_callback),
             (r'[^-]{1,2}', Literal),
-            (r'\u009|\u00A|\u00D|[\u0020-\u00D7FF]|[\u00E000-\u00FFFD]|'
-             r'[\u0010000-\u0010FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\U0000D7FF]|[\U0000E000-\U0000FFFD]|'
+             ur'[\U00010000-\U0010FFFF]', Literal),
         ],
         'processing_instruction': [
             (r'\s+', Text, 'processing_instruction_content'),
@@ -2541,13 +2541,13 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'processing_instruction_content': [
             (r'\?>', String.Doc, '#pop'),
-            (r'\u009|\u00A|\u00D|[\u0020-\uD7FF]|[\uE000-\uFFFD]|'
-             r'[\u10000-\u10FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|'
+             ur'[\U00010000-\U0010FFFF]', Literal),
         ],
         'cdata_section': [
             (r']]>', String.Doc, '#pop'),
-            (r'\u009|\u00A|\u00D|[\u0020-\uD7FF]|[\uE000-\uFFFD]|'
-             r'[\u10000-\u10FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|'
+             ur'[\U00010000-\U0010FFFF]', Literal),
         ],
         'start_tag': [
             include('whitespace'),
@@ -2615,8 +2615,8 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'pragmacontents': [
             (r'#\)', Punctuation, 'operator'),
-            (r'\u009|\u00A|\u00D|[\u0020-\u00D7FF]|[\u00E000-\u00FFFD]|'
-             r'[\u0010000-\u0010FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\U0000D7FF]|[\U0000E000-\U0000FFFD]|'
+             ur'[\U00010000-\U0010FFFF]', Literal),
             (r'(\s*)', Text),
         ],
         'occurrenceindicator': [
