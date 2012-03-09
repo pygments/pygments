@@ -17,7 +17,8 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
 
 __all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'LiterateHaskellLexer', 'SMLLexer', 'OcamlLexer', 'ErlangLexer',
-           'ErlangShellLexer', 'OpaLexer', 'CoqLexer', 'NewLispLexer']
+           'ErlangShellLexer', 'OpaLexer', 'CoqLexer', 'NewLispLexer',
+           'ElixirLexer', 'ElixirConsoleLexer']
 
 
 class SchemeLexer(RegexLexer):
@@ -1673,3 +1674,130 @@ class NewLispLexer(RegexLexer):
             (r'(?s)(.*?)(\[/text\])', String, '#pop'),
         ],
     }
+
+
+class ElixirLexer(RegexLexer):
+    """
+    For the `Elixir language <http://elixir-lang.org>`_.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Elixir'
+    aliases = ['elixir', 'ex', 'exs']
+    filenames = ['*.ex', '*.exs']
+    mimetypes = ['text/x-elixir']
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'#.*$', Comment.Single),
+            (r'\b(case|end|bc|lc|if|unless|try|loop|receive|fn|defmodule|'
+             r'defp|def|defprotocol|defimpl|defrecord|defmacro|defdelegate|'
+             r'defexception|exit|raise|throw)\b(?![?!])|'
+             r'(?<!\.)\b(do|\-\>)\b\s*', Keyword),
+            (r'\b(import|require|use|recur|quote|unquote|super)\b(?![?!])',
+                Keyword.Namespace),
+            (r'(?<!\.)\b(and|not|or|when|xor|in)\b', Operator.Word),
+            (r'%=|\*=|\*\*=|\+=|\-=|\^=|\|\|=|'
+             r'<=>|<(?!<|=)|>(?!<|=|>)|<=|>=|===|==|=~|!=|!~|(?=[ \t])\?|'
+             r'(?<=[ \t])!+|&&|\|\||\^|\*|\+|\-|/|'
+             r'\||\+\+|\-\-|\*\*|\/\/|\<\-|\<\>|<<|>>|=|\.', Operator),
+            (r'(?<!:)(:)([a-zA-Z_]\w*([?!]|=(?![>=]))?|\<\>|===?|>=?|<=?|'
+             r'<=>|&&?|%\(\)|%\[\]|%\{\}|\+\+?|\-\-?|\|\|?|\!|//|[%&`/\|]|'
+             r'\*\*?|=?~|<\-)|([a-zA-Z_]\w*([?!])?)(:)(?!:)', String.Symbol),
+            (r':"', String.Symbol, 'interpoling_symbol'),
+            (r'\b(nil|true|false)\b(?![?!])|\b[A-Z]\w*\b', Name.Constant),
+            (r'\b(__(FILE|LINE|MODULE|STOP_ITERATOR|EXCEPTION|OP|REF|FUNCTION|'
+             r'BLOCK|KVBLOCK)__)\b(?![?!])', Name.Builtin.Pseudo),
+            (r'[a-zA-Z_!][\w_]*[!\?]?', Name),
+            (r'[(){};,/\|:\\\[\]]', Punctuation),
+            (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
+            (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^[:space:][:digit:]])'
+             r'(_?\d)*)?([eE][-+]?\d(_?\d)*)?|0[bB][01]+)\b', Number),
+            include('strings'),
+        ],
+        'strings': [
+            (r'"""(?:.|\n)*?"""', String.Doc),
+            (r"'''(?:.|\n)*?'''", String.Doc),
+            (r'"', String.Double, 'dqs'),
+            (r"'.*'", String.Single),
+            (r'(?<!\w)\?(\\(x\d{1,2}|\h{1,2}(?!\h)\b|0[0-7]{0,2}(?![0-7])\b|'
+             r'[^x0MC])|(\\[MC]-)+\w|[^\s\\])', String.Other)
+        ],
+        'dqs': [
+            (r'"', String.Double, "#pop"),
+            include('interpoling'),
+            (r'[^#"]+', String.Double),
+        ],
+        'interpoling': [
+            (r'#{', String.Interpol, 'interpoling_string'),
+        ],
+        'interpoling_string' : [
+            (r'}', String.Interpol, "#pop"),
+            include('root')
+        ],
+        'interpoling_symbol': [
+            (r'"', String.Symbol, "#pop"),
+            include('interpoling'),
+            (r'[^#"]+', String.Symbol),
+        ],
+    }
+
+
+class ElixirConsoleLexer(Lexer):
+    """
+    For Elixir interactive console (iex) output like:
+
+    .. sourcecode:: iex
+
+        iex> [head | tail] = [1,2,3]
+        [1,2,3]
+        iex> head
+        1
+        iex> tail
+        [2,3]
+        iex> [head | tail]
+        [1,2,3]
+        iex> length [head | tail]
+        3
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Elixir iex session'
+    aliases = ['iex']
+    mimetypes = ['text/x-elixir-shellsession']
+
+    _prompt_re = re.compile('(iex|\.{3})> ')
+
+    def get_tokens_unprocessed(self, text):
+        exlexer = ElixirLexer(**self.options)
+
+        curcode = ''
+        insertions = []
+        for match in line_re.finditer(text):
+            line = match.group()
+            if line.startswith(u'** '):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Error, line[:-1])]))
+                curcode += line[-1:]
+            else:
+                m = self._prompt_re.match(line)
+                if m is not None:
+                    end = m.end()
+                    insertions.append((len(curcode),
+                                       [(0, Generic.Prompt, line[:end])]))
+                    curcode += line[end:]
+                else:
+                    if curcode:
+                        for item in do_insertions(insertions,
+                                        exlexer.get_tokens_unprocessed(curcode)):
+                            yield item
+                        curcode = ''
+                        insertions = []
+                    yield match.start(), Generic.Output, line
+        if curcode:
+            for item in do_insertions(insertions,
+                                      exlexer.get_tokens_unprocessed(curcode)):
+                yield item
