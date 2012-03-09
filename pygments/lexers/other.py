@@ -1501,7 +1501,7 @@ class ABAPLexer(RegexLexer):
             ],
         'variable-names': [
             (r'<[\S_]+>', Name.Variable),
-            (r'[\w][\w_~]*(?:(\[\])|->\*)?', Name.Variable),
+            (r'\w[\w~]*(?:(\[\])|->\*)?', Name.Variable),
             ],
         'root': [
             include('common'),
@@ -1519,13 +1519,13 @@ class ABAPLexer(RegexLexer):
                 bygroups(Keyword, Text, Name.Function, Text, Keyword)),
 
             # method implementation
-            (r'(METHOD)(\s+)([\w_~]+)',
+            (r'(METHOD)(\s+)([\w~]+)',
                 bygroups(Keyword, Text, Name.Function)),
             # method calls
-            (r'(\s+)([\w_\-]+)([=\-]>)([\w_\-~]+)',
+            (r'(\s+)([\w\-]+)([=\-]>)([\w\-~]+)',
                 bygroups(Text, Name.Variable, Operator, Name.Function)),
             # call methodnames returning style
-            (r'(?<=(=|-)>)([\w_\-~]+)(?=\()', Name.Function),
+            (r'(?<=(=|-)>)([\w\-~]+)(?=\()', Name.Function),
 
             # keywords with dashes in them.
             # these need to be first, because for instance the -ID part
