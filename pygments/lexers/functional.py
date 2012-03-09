@@ -559,7 +559,10 @@ class SMLLexer(RegexLexer):
         return [
             (r'[^"\\]', whatkind),
             (r'\\[\\\"abtnvfr]', String.Escape),
-            (r'\\\^[@-^]', String.Escape),
+            # Control-character notation is used for codes < 32,
+            # where \^@ == \000
+            (r'\\\^[\x40-\x5e]', String.Escape),
+            # Docs say 'decimal digits'
             (r'\\[0-9]{3}', String.Escape),
             (r'\\u[0-9a-fA-F]{4}', String.Escape),
             (r'\\\s+\\', String.Interpol),

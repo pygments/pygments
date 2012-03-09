@@ -56,8 +56,9 @@ class VerilogLexer(RegexLexer):
             (r'[()\[\],.;\']', Punctuation),
             (r'`[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant),
 
-            (r'^\s*(package)(\s+)', bygroups(Keyword.Namespace, Text)),
-            (r'^\s*(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+            (r'^(\s*)(package)(\s+)', bygroups(Text, Keyword.Namespace, Text)),
+            (r'^(\s*)(import)(\s+)', bygroups(Text, Keyword.Namespace, Text),
+             'import'),
 
             (r'(always|always_comb|always_ff|always_latch|and|assign|automatic|'
              r'begin|break|buf|bufif0|bufif1|case|casex|casez|cmos|const|'

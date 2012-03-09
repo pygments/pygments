@@ -381,7 +381,7 @@ class PythonTracebackLexer(RegexLexer):
              bygroups(Text, Name.Builtin, Text, Number, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(PythonLexer), Text)),
-            (r'^([ \t]*)(...)(\n)',
+            (r'^([ \t]*)(\.\.\.)(\n)',
              bygroups(Text, Comment, Text)), # for doctests...
             (r'^(.+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
@@ -417,7 +417,7 @@ class Python3TracebackLexer(RegexLexer):
              bygroups(Text, Name.Builtin, Text, Number, Text, Name, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(Python3Lexer), Text)),
-            (r'^([ \t]*)(...)(\n)',
+            (r'^([ \t]*)(\.\.\.)(\n)',
              bygroups(Text, Comment, Text)), # for doctests...
             (r'^(.+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
@@ -1286,7 +1286,7 @@ class IoLexer(RegexLexer):
             # constants
             (r'(nil|false|true)\b', Name.Constant),
             # names
-            ('(Object|list|List|Map|args|Sequence|Coroutine|File)\b',
+            (r'(Object|list|List|Map|args|Sequence|Coroutine|File)\b',
              Name.Builtin),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             # numbers
@@ -1785,7 +1785,7 @@ class FancyLexer(RegexLexer):
             ('[A-Z][a-zA-Z0-9_]*', Name.Constant),
             ('@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Instance),
             ('@@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Class),
-            ('(@|@@)', Operator),
+            ('@@?', Operator),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             # numbers - / checks are necessary to avoid mismarking regexes,
             # see comment in RubyLexer

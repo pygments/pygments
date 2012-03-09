@@ -2478,7 +2478,7 @@ class AwkLexer(RegexLexer):
             (r'', Text, '#pop')
         ],
         'badregex': [
-            ('\n', Text, '#pop')
+            (r'\n', Text, '#pop')
         ],
         'root': [
             (r'^(?=\s|/)', Text, 'slashstartsregex'),
