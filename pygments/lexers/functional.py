@@ -1707,13 +1707,14 @@ class ElixirLexer(RegexLexer):
              r'<=>|&&?|%\(\)|%\[\]|%\{\}|\+\+?|\-\-?|\|\|?|\!|//|[%&`/\|]|'
              r'\*\*?|=?~|<\-)|([a-zA-Z_]\w*([?!])?)(:)(?!:)', String.Symbol),
             (r':"', String.Symbol, 'interpoling_symbol'),
-            (r'\b(nil|true|false)\b(?![?!])|\b[A-Z]\w*\b', Name.Constant),
+            (r'\b(nil|true|false)\b(?![?!])', Name.Constant),
+            (r'\b[A-Z]\w*\b', Name.Constant),
             (r'\b(__(FILE|LINE|MODULE|STOP_ITERATOR|EXCEPTION|OP|REF|FUNCTION|'
              r'BLOCK|KVBLOCK)__)\b(?![?!])', Name.Builtin.Pseudo),
-            (r'[a-zA-Z_!][\w_]*[!\?]?', Name),
+            (r'[a-zA-Z_!]\w*[!\?]?', Name),
             (r'[(){};,/\|:\\\[\]]', Punctuation),
             (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
-            (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^[:space:][:digit:]])'
+            (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^\d\s])'
              r'(_?\d)*)?([eE][-+]?\d(_?\d)*)?|0[bB][01]+)\b', Number),
             include('strings'),
         ],
