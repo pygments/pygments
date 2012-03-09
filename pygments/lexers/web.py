@@ -296,7 +296,7 @@ class ActionScript3Lexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[~\^\*!%&<>\|+=:;,/?\\{}\[\]();.-]+', Operator),
+            (r'[~\^\*!%&<>\|+=:;,/?\\{}\[\]().-]+', Operator),
         ],
         'funcparams': [
             (r'\s+', Text),
