@@ -310,7 +310,7 @@ class SmalltalkLexer(RegexLexer):
         ],
         'blockvariables' : [
             include('whitespaces'),
-            (r'(:)(\s*)([A-Za-z\w]+)',
+            (r'(:)(\s*)(\w+)',
              bygroups(Operator, Text, Name.Variable)),
             (r'\|', Operator, '#pop'),
             (r'', Text, '#pop'), # else pop
@@ -325,7 +325,7 @@ class SmalltalkLexer(RegexLexer):
         '_parenth_helper' : [
             include('whitespaces'),
             (r'(\d+r)?-?\d+(\.\d+)?(e-?\d+)?', Number),
-            (r'[-+*/\\~<>=|&#!?,@%\w+:]+', String.Symbol),
+            (r'[-+*/\\~<>=|&#!?,@%\w:]+', String.Symbol),
             # literals
             (r'\'[^\']*\'', String),
             (r'\$.', String.Char),
