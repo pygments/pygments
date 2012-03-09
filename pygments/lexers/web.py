@@ -912,13 +912,13 @@ class DtdLexer(RegexLexer):
         'root': [
             include('common'),
 
-            (r'(<!ELEMENT)(\s+)([^\s]+)',
+            (r'(<!ELEMENT)(\s+)(\S+)',
                 bygroups(Keyword, Text, Name.Tag), 'element'),
-            (r'(<!ATTLIST)(\s+)([^\s]+)',
+            (r'(<!ATTLIST)(\s+)(\S+)',
                 bygroups(Keyword, Text, Name.Tag), 'attlist'),
-            (r'(<!ENTITY)(\s+)([^\s]+)',
+            (r'(<!ENTITY)(\s+)(\S+)',
                 bygroups(Keyword, Text, Name.Entity), 'entity'),
-            (r'(<!NOTATION)(\s+)([^\s]+)',
+            (r'(<!NOTATION)(\s+)(\S+)',
                 bygroups(Keyword, Text, Name.Tag), 'notation'),
             (r'(<!\[)([^\[\s]+)(\s*)(\[)', # conditional sections
                 bygroups(Keyword, Name.Entity, Text, Keyword)),
@@ -1690,7 +1690,7 @@ class SassLexer(ExtendedRegexLexer):
 
         'import': [
             (r'[ \t]+', Text),
-            (r'[^\s]+', String),
+            (r'\S+', String),
             (r'\n', Text, 'root'),
         ],
 
@@ -2774,8 +2774,8 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'//|/|\+|-|;|,|\(|\)', Punctuation),
 
             # STANDALONE QNAMES
-            (qname + r'(?=\s*[{])', Name.Variable, 'qname_braren'),
-            (qname + r'(?=\s*[(])', Name.Function, 'qname_braren'),
+            (qname + r'(?=\s*{)', Name.Variable, 'qname_braren'),
+            (qname + r'(?=\s*\()', Name.Function, 'qname_braren'),
             (qname, Name.Variable, 'operator'),
         ]
     }

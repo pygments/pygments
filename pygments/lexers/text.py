@@ -346,7 +346,7 @@ class IrcLogsLexer(RegexLexer):
             # /me msgs
             ("^" + timestamp + r"""
                 (\s*[*]\s+)            # Star
-                ([^\s]+\s+.*?\n)       # Nick + rest of message """,
+                (\S+\s+.*?\n)          # Nick + rest of message """,
              bygroups(Comment.Preproc, Keyword, Generic.Inserted)),
             # join/part msgs
             ("^" + timestamp + r"""
@@ -1018,11 +1018,11 @@ class DebianControlLexer(RegexLexer):
             (r'^(Description)', Keyword, 'description'),
             (r'^(Maintainer)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
             (r'^((Build-)?Depends)', Keyword, 'depends'),
-            (r'^((?:Python-)?Version)(:\s*)([^\s]+)$',
+            (r'^((?:Python-)?Version)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
-            (r'^((?:Installed-)?Size)(:\s*)([^\s]+)$',
+            (r'^((?:Installed-)?Size)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
-            (r'^(MD5Sum|SHA1|SHA256)(:\s*)([^\s]+)$',
+            (r'^(MD5Sum|SHA1|SHA256)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
             (r'^([a-zA-Z\-0-9\.]*?)(:\s*)(.*?)$',
              bygroups(Keyword, Whitespace, String)),
@@ -1034,7 +1034,7 @@ class DebianControlLexer(RegexLexer):
             (r'.', Text),
         ],
         'description': [
-            (r'(.*)(Homepage)(: )([^\s]+)',
+            (r'(.*)(Homepage)(: )(\S+)',
              bygroups(Text, String, Name, Name.Class)),
             (r':.*\n', Generic.Strong),
             (r' .*\n', Text),
@@ -1048,7 +1048,7 @@ class DebianControlLexer(RegexLexer):
             (r'\|', Operator),
             (r'[\s]+', Text),
             (r'[}\)]\s*$', Text, '#pop'),
-            (r'[}]', Text),
+            (r'}', Text),
             (r'[^,]$', Name.Function, '#pop'),
             (r'([\+\.a-zA-Z0-9-])(\s*)', bygroups(Name.Function, Text)),
             (r'\[.*?\]', Name.Entity),
@@ -1387,7 +1387,8 @@ class YamlLexer(ExtendedRegexLexer):
         # ignored and regular whitespaces in quoted scalars
         'quoted-scalar-whitespaces': [
             # leading and trailing whitespaces are ignored
-            (r'^[ ]+|[ ]+$', Text),
+            (r'^[ ]+', Text),
+            (r'[ ]+$', Text),
             # line breaks are ignored
             (r'\n+', Text),
             # other whitespaces are a part of the value
@@ -1456,7 +1457,8 @@ class YamlLexer(ExtendedRegexLexer):
             # the scalar ends with a comment
             (r'[ ]+(?=#)', Text, '#pop'),
             # leading and trailing whitespaces are ignored
-            (r'^[ ]+|[ ]+$', Text),
+            (r'^[ ]+', Text),
+            (r'[ ]+$', Text),
             # line breaks are ignored
             (r'\n+', Text),
             # other whitespaces are a part of the value
@@ -1740,7 +1742,7 @@ class PyPyLogLexer(RegexLexer):
         ],
         "jit-backend-counts": [
             (r"\[\w+\] jit-backend-counts}$", Keyword, "#pop"),
-            (r"[:]", Punctuation),
+            (r":", Punctuation),
             (r"\d+", Number),
             include("extra-stuff"),
         ],
