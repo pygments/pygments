@@ -406,11 +406,11 @@ class MyghtyLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(<%(def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
-             bygroups(Name.Tag, None, Text, Name.Function, Name.Tag,
+            (r'(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(<%(\w+))(.*?)(>)(.*?)(</%\2\s*>)(?s)',
-             bygroups(Name.Tag, None, Name.Function, Name.Tag,
+            (r'(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PythonLexer), Name.Tag)),
             (r'(<&[^|])(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
@@ -525,11 +525,11 @@ class MasonLexer(RegexLexer):
             (r'\s+', Text),
             (r'(<%doc>)(.*?)(</%doc>)(?s)',
              bygroups(Name.Tag, Comment.Multiline, Name.Tag)),
-            (r'(<%(def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
-             bygroups(Name.Tag, None, Text, Name.Function, Name.Tag,
+            (r'(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(<%(\w+))(.*?)(>)(.*?)(</%\2\s*>)(?s)',
-             bygroups(Name.Tag, None, Name.Function, Name.Tag,
+            (r'(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PerlLexer), Name.Tag)),
             (r'(<&[^|])(.*?)(,.*?)?(&>)(?s)',
              bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
@@ -616,8 +616,8 @@ class MakoLexer(RegexLexer):
             include('tag'),
         ],
         'tag': [
-            (r'((?:\w+)\s*=)\s*(".*?")',
-             bygroups(Name.Attribute, String)),
+            (r'((?:\w+)\s*=)(\s*)(".*?")',
+             bygroups(Name.Attribute, Text, String)),
             (r'/?\s*>', Comment.Preproc, '#pop'),
             (r'\s+', Text),
         ],
@@ -1403,7 +1403,7 @@ class EvoqueLexer(RegexLexer):
             # directives: begin, end
             (r'(\$)(begin|end)(\{(%)?)(.*?)((?(4)%)\})',
              bygroups(Punctuation, Name.Builtin, Punctuation, None,
-                      String, Punctuation, None)),
+                      String, Punctuation)),
             # directives: evoque, overlay
             # see doc for handling first name arg: /directives/evoque/
             #+ minor inconsistency: the "name" in e.g. $overlay{name=site_base}
@@ -1411,17 +1411,17 @@ class EvoqueLexer(RegexLexer):
             (r'(\$)(evoque|overlay)(\{(%)?)(\s*[#\w\-"\'.]+[^=,%}]+?)?'
              r'(.*?)((?(4)%)\})',
              bygroups(Punctuation, Name.Builtin, Punctuation, None,
-                      String, using(PythonLexer), Punctuation, None)),
+                      String, using(PythonLexer), Punctuation)),
             # directives: if, for, prefer, test
             (r'(\$)(\w+)(\{(%)?)(.*?)((?(4)%)\})',
              bygroups(Punctuation, Name.Builtin, Punctuation, None,
-                      using(PythonLexer), Punctuation, None)),
+                      using(PythonLexer), Punctuation)),
             # directive clauses (no {} expression)
             (r'(\$)(else|rof|fi)', bygroups(Punctuation, Name.Builtin)),
             # expressions
             (r'(\$\{(%)?)(.*?)((!)(.*?))?((?(2)%)\})',
              bygroups(Punctuation, None, using(PythonLexer),
-                      Name.Builtin, None, None, Punctuation, None)),
+                      Name.Builtin, None, None, Punctuation)),
             (r'#', Other),
         ],
         'comment': [
@@ -1489,7 +1489,8 @@ class ColdfusionLexer(RegexLexer):
             (r"'.*?'", String.Single),
             (r'\d+', Number),
             (r'(if|else|len|var|case|default|break|switch)\b', Keyword),
-            (r'([A-Za-z_$][A-Za-z0-9_.]*)\s*(\()', bygroups(Name.Function, Punctuation)),
+            (r'([A-Za-z_$][A-Za-z0-9_.]*)(\s*)(\()',
+             bygroups(Name.Function, Text, Punctuation)),
             (r'[A-Za-z_$][A-Za-z0-9_.]*', Name.Variable),
             (r'[()\[\]{};:,.\\]', Punctuation),
             (r'\s+', Text),

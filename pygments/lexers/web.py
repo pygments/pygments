@@ -645,7 +645,7 @@ class ObjectiveJLexer(RegexLexer):
             (r'(:)', Name.Function),
 
             # var args
-            (r'(,' + _ws + r'...)', using(this)),
+            (r'(,' + _ws + r'\.\.\.)', using(this)),
 
             # param name
             (r'([$a-zA-Z_][a-zA-Z0-9_]+)', Text),
@@ -816,7 +816,7 @@ class PhpLexer(RegexLexer):
              r'array|__wakeup|E_ALL|NULL|final|php_user_filter|interface|'
              r'implements|public|private|protected|abstract|clone|try|'
              r'catch|throw|this|use|namespace)\b', Keyword),
-            ('(true|false|null)\b', Keyword.Constant),
+            (r'(true|false|null)\b', Keyword.Constant),
             (r'\$\{\$+[a-zA-Z_][a-zA-Z0-9_]*\}', Name.Variable),
             (r'\$+[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
             (r'[\\a-zA-Z_][\\a-zA-Z0-9_]*', Name.Other),
@@ -1169,7 +1169,7 @@ class HaxeLexer(RegexLexer):
           include('codekeywords'),
           (r'[();,\[\]]', Punctuation),
           (r'(?:=|\+=|-=|\*=|/=|%=|&=|\|=|\^=|<<=|>>=|>>>=|\|\||&&|'
-           r'\.\.\.|==|!=|>|<|>=|<=|\||&|\^|<<|>>|>>>|\+|\-|\*|/|%|'
+           r'\.\.\.|==|!=|>|<|>=|<=|\||&|\^|<<|>>>|>>|\+|\-|\*|/|%|'
            r'!|\+\+|\-\-|~|\.|\?|\:)',
            Operator),
           (ident, Name),

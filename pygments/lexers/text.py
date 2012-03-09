@@ -468,7 +468,7 @@ class GroffLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(?i)(\.)(\w+)', bygroups(Text, Keyword), 'request'),
+            (r'(\.)(\w+)', bygroups(Text, Keyword), 'request'),
             (r'\.', Punctuation, 'request'),
             # Regular characters, slurp till we find a backslash or newline
             (r'[^\\\n]*', Text, 'textline'),
@@ -482,7 +482,7 @@ class GroffLexer(RegexLexer):
             # groff has many ways to write escapes.
             (r'\\"[^\n]*', Comment),
             (r'\\[fn]\w', String.Escape),
-            (r'\\\(..', String.Escape),
+            (r'\\\(.{2}', String.Escape),
             (r'\\.\[.*\]', String.Escape),
             (r'\\.', String.Escape),
             (r'\\\n', Text, 'request'),
