@@ -1151,13 +1151,13 @@ class MoonScriptLexer(LuaLexer):
             (r'(?s)\[(=*)\[.*?\]\1\]', String),
             (r'(->|=>)', Name.Function),
             (r':[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
-            (r'(==|!=|~=|<=|>=|\.\.|\.\.\.|[=+\-*/%^<>#!.\\:])', Operator),
+            (r'(==|!=|~=|<=|>=|\.\.\.|\.\.|[=+\-*/%^<>#!.\\:])', Operator),
             (r'[;,]', Punctuation),
             (r'[\[\]\{\}\(\)]', Keyword.Type),
             (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Variable),
             (r"(class|extends|if|then|super|do|with|import|export|"
-            r"while|elseif|return|for|in|from|when|using|else|"
-            r"and|or|not|switch|break)\b", Keyword),
+             r"while|elseif|return|for|in|from|when|using|else|"
+             r"and|or|not|switch|break)\b", Keyword),
             (r'(true|false|nil)\b', Keyword.Constant),
             (r'(and|or|not)\b', Operator.Word),
             (r'(self)\b', Name.Builtin.Pseudo),

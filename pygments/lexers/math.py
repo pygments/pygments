@@ -678,7 +678,7 @@ class ScilabLexer(RegexLexer):
 
 
             # punctuation:
-            (r'[\[\](){}:@.,=:;]', Punctuation),
+            (r'[\[\](){}@.,=:;]', Punctuation),
 
             (r'"[^"]*"', String),
 

@@ -351,13 +351,13 @@ class IrcLogsLexer(RegexLexer):
             # join/part msgs
             ("^" + timestamp + r"""
                 (\s*(?:\*{3}|<?-[!@=P]?->?)\s*)  # Star(s) or symbols
-                ([^\s]+\s+)                     # Nick + Space
+                (\S+\s+)                     # Nick + Space
                 (.*?\n)                         # Rest of message """,
              bygroups(Comment.Preproc, Keyword, String, Comment)),
             (r"^.*?\n", Text),
         ],
         'msg': [
-            (r"[^\s]+:(?!//)", Name.Attribute),  # Prefix
+            (r"\S+:(?!//)", Name.Attribute),  # Prefix
             (r".*\n", Text, '#pop'),
         ],
     }
@@ -1050,7 +1050,7 @@ class DebianControlLexer(RegexLexer):
             (r'[}\)]\s*$', Text, '#pop'),
             (r'[}]', Text),
             (r'[^,]$', Name.Function, '#pop'),
-            (r'([\+\.a-zA-Z0-9-][\s\n]*)', Name.Function),
+            (r'([\+\.a-zA-Z0-9-])(\s*)', bygroups(Name.Function, Text)),
             (r'\[.*?\]', Name.Entity),
         ],
         'depend_vers': [
@@ -1728,8 +1728,7 @@ class PyPyLogLexer(RegexLexer):
              r"arraylen_gc|"
              r"getarrayitem_gc_pure|getarrayitem_gc|setarrayitem_gc|"
              r"getarrayitem_raw|setarrayitem_raw|getfield_gc_pure|"
-             r"getfield_gc|getinteriorfield_gc|"
-             r"getinteriorfield_gc|setinteriorfield_gc|"
+             r"getfield_gc|getinteriorfield_gc|setinteriorfield_gc|"
              r"getfield_raw|setfield_gc|setfield_raw|"
              r"strgetitem|strsetitem|strlen|copystrcontent|"
              r"unicodegetitem|unicodesetitem|unicodelen|"
@@ -1746,7 +1745,7 @@ class PyPyLogLexer(RegexLexer):
             include("extra-stuff"),
         ],
         "extra-stuff": [
-            (r"[\n\s]+", Text),
+            (r"\s+", Text),
             (r"#.*?$", Comment),
         ],
     }
