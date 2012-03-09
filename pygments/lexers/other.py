@@ -2608,7 +2608,7 @@ class SnobolLexer(RegexLexer):
             # ASCII equivalents of original operators
             # | for the EBCDIC equivalent, ! likewise
             # \ for EBCDIC negation
-            (r'\*\*|[\?\$\.!%\*/#+\-@\|&\\!=]', Operator),
+            (r'\*\*|[\?\$\.!%\*/#+\-@\|&\\=]', Operator),
             (r'"[^"]*"', String),
             (r"'[^']*'", String),
             # Accept SPITBOL syntax for real numbers
@@ -3244,8 +3244,8 @@ class OpenEdgeLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'\s+', Text),
-            (r'[\\+\\-\\*\\/\\=]', Operator),
-            (r'[\\.\\:\\(\\)]', Punctuation),
+            (r'[+*/=-]', Operator),
+            (r'[.:()]', Punctuation),
             (r'.', Name.Variable), # Lazy catch-all
         ],
         'comment': [
@@ -3279,7 +3279,7 @@ class BroLexer(RegexLexer):
     tokens = {
         'root': [
             # Whitespace
-            ('^@.*?\n', Comment.Preproc),
+            (r'^@.*?\n', Comment.Preproc),
             (r'#.*?\n', Comment.Single),
             (r'\n', Text),
             (r'\s+', Text),
@@ -3315,8 +3315,8 @@ class BroLexer(RegexLexer):
             (r'/', String.Regex, 'regex'),
             (r'"', String, 'string'),
             # Operators
-            (r'[!%*/+-:<=>?~|]', Operator),
-            (r'([-+=&|]{2}|[+-=!><]=)', Operator),
+            (r'[!%*/+:<=>?~|-]', Operator),
+            (r'([-+=&|]{2}|[+=!><-]=)', Operator),
             (r'(in|match)\b', Operator.Word),
             (r'[{}()\[\]$.,;]', Punctuation),
             # Identfier
