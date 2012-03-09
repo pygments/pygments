@@ -1511,9 +1511,9 @@ class ABAPLexer(RegexLexer):
             (r'(CALL\s+(?:DIALOG|SCREEN|SUBSCREEN|SELECTION-SCREEN|'
              r'TRANSACTION|TRANSFORMATION))\b',
                 Keyword),
-            (r'(FORM|PERFORM)(\s+)([\w_]+)',
+            (r'(FORM|PERFORM)(\s+)(\w+)',
                 bygroups(Keyword, Text, Name.Function)),
-            (r'(PERFORM)(\s+)(\()([\w_]+)(\))',
+            (r'(PERFORM)(\s+)(\()(\w+)(\))',
                 bygroups(Keyword, Text, Punctuation, Name.Variable, Punctuation )),
             (r'(MODULE)(\s+)(\S+)(\s+)(INPUT|OUTPUT)',
                 bygroups(Keyword, Text, Name.Function, Text, Keyword)),
