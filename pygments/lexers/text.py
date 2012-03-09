@@ -292,12 +292,12 @@ class DarcsPatchLexer(RegexLexer):
         'insert': [
             include('specialText'),
             (r'\[', Generic.Inserted),
-            (r'[^\n\[]*', Generic.Inserted),
+            (r'[^\n\[]+', Generic.Inserted),
         ],
         'delete': [
             include('specialText'),
             (r'\[', Generic.Deleted),
-            (r'[^\n\[]*', Generic.Deleted),
+            (r'[^\n\[]+', Generic.Deleted),
         ],
     }
 
