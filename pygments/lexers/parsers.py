@@ -393,7 +393,7 @@ class AntlrLexer(RegexLexer):
             # throwsSpec
             (r'(throws)(\s+)(' + _id + ')',
              bygroups(Keyword, Whitespace, Name.Label)),
-            (r'(?:(,)(\s*)(' + _id + '))+',
+            (r'(,)(\s*)(' + _id + ')',
              bygroups(Punctuation, Whitespace, Name.Label)), # Additional throws
             # optionsSpec
             (r'options\b', Keyword, 'options'),
