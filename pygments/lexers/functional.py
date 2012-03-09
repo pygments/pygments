@@ -1496,7 +1496,7 @@ class CoqLexer(RegexLexer):
             (r'\b([A-Z][A-Za-z0-9_\']*)(?=\s*\.)',
              Name.Namespace, 'dotted'),
             (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
-            (r'(%s)' % '|'.join(keyopts), Operator),
+            (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
