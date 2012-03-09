@@ -147,6 +147,9 @@ class SystemVerilogLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^\s*`define', Comment.Preproc, 'macro'),
+            (r'^(\s*)(package)(\s+)', bygroups(Text, Keyword.Namespace, Text)),
+            (r'^(\s*)(import)(\s+)', bygroups(Text, Keyword.Namespace, Text), 'import'),
+
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
@@ -167,11 +170,6 @@ class SystemVerilogLexer(RegexLexer):
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.;\']', Punctuation),
             (r'`[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant),
-
-            (r'^\s*(package)(\s+)', bygroups(Keyword.Namespace, Text)),
-            (r'^\s*(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
-
-
 
             (r'(accept_on|alias|always|always_comb|always_ff|always_latch|'
              r'and|assert|assign|assume|automatic|before|begin|bind|bins|'
