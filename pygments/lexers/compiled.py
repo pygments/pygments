@@ -2679,7 +2679,7 @@ class FantomLexer(RegexLexer):
                 id = r'[a-zA-Z_][a-zA-Z0-9_]*',
                 # all chars which can be part of type definition. Starts with
                 # either letter, or [ (maps), or | (funcs)
-                type = r'(?:\[|[a-zA-Z_]|\|)[:\w_\[\]\|\->\?]*?',
+                type = r'(?:\[|[a-zA-Z_]|\|)[:\w\[\]\|\->\?]*?',
                 )
             )
 
@@ -2810,7 +2810,7 @@ class FantomLexer(RegexLexer):
 
             ### ArgType argName, #####
             (s(r'($type)(\s+)($id)(\s*)(,)'),
-             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+             bygroups(using(this, state='inType'), Text, Name.Variable,
                       Text, Punctuation)),
 
             #### ArgType argName) ####
@@ -2818,13 +2818,13 @@ class FantomLexer(RegexLexer):
 
             ### ArgType argName -> ArgType| ###
             (s(r'($type)(\s+)($id)(\s*)(\->)(\s*)($type)(\|)'),
-             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+             bygroups(using(this, state='inType'), Text, Name.Variable,
                       Text, Punctuation, Text, using(this, state = 'inType'),
                       Punctuation)),
 
             ### ArgType argName|  ###
             (s(r'($type)(\s+)($id)(\s*)(\|)'),
-             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+             bygroups(using(this, state='inType'), Text, Name.Variable,
                       Text, Punctuation)),
 
             ### Type var
@@ -2843,7 +2843,7 @@ class FantomLexer(RegexLexer):
         'insideMethodDeclArgs': [
             (r'\)', Punctuation, '#pop'),
             (s(r'($type)(\s+)($id)(\s*)(\))'),
-             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+             bygroups(using(this, state='inType'), Text, Name.Variable,
                       Text, Punctuation), '#pop'),
             include('root'),
         ],
