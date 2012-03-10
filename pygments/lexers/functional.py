@@ -113,7 +113,7 @@ class SchemeLexer(RegexLexer):
             # strings, symbols and characters
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'" + valid_name, String.Symbol),
-            (r"#\\([()/'\".'_!§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
+            (r"#\\([()/'\"._!§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
 
             # constants
             (r'(#t|#f)', Name.Constant),
@@ -560,7 +560,10 @@ class SMLLexer(RegexLexer):
         return [
             (r'[^"\\]', whatkind),
             (r'\\[\\\"abtnvfr]', String.Escape),
-            (r'\\\^[@-^]', String.Escape),
+            # Control-character notation is used for codes < 32,
+            # where \^@ == \000
+            (r'\\\^[\x40-\x5e]', String.Escape),
+            # Docs say 'decimal digits'
             (r'\\[0-9]{3}', String.Escape),
             (r'\\u[0-9a-fA-F]{4}', String.Escape),
             (r'\\\s+\\', String.Interpol),
@@ -887,7 +890,7 @@ class OcamlLexer(RegexLexer):
             (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
             (r'\(\*', Comment, 'comment'),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
-            (r'(%s)' % '|'.join(keyopts), Operator),
+            (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
@@ -980,7 +983,7 @@ class ErlangLexer(RegexLexer):
         'universaltime_to_localtime', 'unlink', 'unregister', 'whereis'
         ]
 
-    operators = r'(\+|-|\*|/|<|>|=|==|/=|=:=|=/=|=<|>=|\+\+|--|<-|!|\?)'
+    operators = r'(\+\+?|--?|\*|/|<|>|/=|=:=|=/=|=<|>=|==?|<-|!|\?)'
     word_operators = [
         'and', 'andalso', 'band', 'bnot', 'bor', 'bsl', 'bsr', 'bxor',
         'div', 'not', 'or', 'orelse', 'rem', 'xor'
@@ -1494,7 +1497,7 @@ class CoqLexer(RegexLexer):
             (r'\b([A-Z][A-Za-z0-9_\']*)(?=\s*\.)',
              Name.Namespace, 'dotted'),
             (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
-            (r'(%s)' % '|'.join(keyopts), Operator),
+            (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
@@ -1704,13 +1707,14 @@ class ElixirLexer(RegexLexer):
              r'<=>|&&?|%\(\)|%\[\]|%\{\}|\+\+?|\-\-?|\|\|?|\!|//|[%&`/\|]|'
              r'\*\*?|=?~|<\-)|([a-zA-Z_]\w*([?!])?)(:)(?!:)', String.Symbol),
             (r':"', String.Symbol, 'interpoling_symbol'),
-            (r'\b(nil|true|false)\b(?![?!])|\b[A-Z]\w*\b', Name.Constant),
+            (r'\b(nil|true|false)\b(?![?!])', Name.Constant),
+            (r'\b[A-Z]\w*\b', Name.Constant),
             (r'\b(__(FILE|LINE|MODULE|STOP_ITERATOR|EXCEPTION|OP|REF|FUNCTION|'
              r'BLOCK|KVBLOCK)__)\b(?![?!])', Name.Builtin.Pseudo),
-            (r'[a-zA-Z_!][\w_]*[!\?]?', Name),
+            (r'[a-zA-Z_!]\w*[!\?]?', Name),
             (r'[(){};,/\|:\\\[\]]', Punctuation),
             (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
-            (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^[:space:][:digit:]])'
+            (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^\d\s])'
              r'(_?\d)*)?([eE][-+]?\d(_?\d)*)?|0[bB][01]+)\b', Number),
             include('strings'),
         ],
