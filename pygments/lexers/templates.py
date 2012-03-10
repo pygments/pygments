@@ -14,7 +14,8 @@ import re
 from pygments.lexers.web import \
      PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
 from pygments.lexers.agile import PythonLexer, PerlLexer
-from pygments.lexers.compiled import JavaLexer, TeaLangLexer
+from pygments.lexers.compiled import JavaLexer
+from pygments.lexers.jvm import TeaLangLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
      include, using, this
 from pygments.token import Error, Punctuation, \
@@ -33,11 +34,10 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'MyghtyCssLexer', 'MyghtyJavascriptLexer', 'MasonLexer', 'MakoLexer',
            'MakoHtmlLexer', 'MakoXmlLexer', 'MakoJavascriptLexer',
            'MakoCssLexer', 'JspLexer', 'CheetahLexer', 'CheetahHtmlLexer',
-           'CheetahXmlLexer', 'CheetahJavascriptLexer',
-           'EvoqueLexer', 'EvoqueHtmlLexer', 'EvoqueXmlLexer',
-           'ColdfusionLexer', 'ColdfusionHtmlLexer',
-           'VelocityLexer', 'VelocityHtmlLexer', 'VelocityXmlLexer',
-           'SspLexer', 'TeaTemplateLexer']
+           'CheetahXmlLexer', 'CheetahJavascriptLexer', 'EvoqueLexer',
+           'EvoqueHtmlLexer', 'EvoqueXmlLexer', 'ColdfusionLexer',
+           'ColdfusionHtmlLexer', 'VelocityLexer', 'VelocityHtmlLexer',
+           'VelocityXmlLexer', 'SspLexer', 'TeaTemplateLexer']
 
 
 class ErbLexer(Lexer):
@@ -1607,7 +1607,7 @@ class TeaTemplateRootLexer(RegexLexer):
 
 class TeaTemplateLexer(DelegatingLexer):
     """
-    Lexer for Tea Templates. http://teatrove.org
+    Lexer for `Tea Templates <http://teatrove.org/>`_.
 
     *New in Pygments 1.5.*
     """
@@ -1617,7 +1617,8 @@ class TeaTemplateLexer(DelegatingLexer):
     mimetypes = ['text/x-tea']
 
     def __init__(self, **options):
-        super(TeaTemplateLexer, self).__init__(XmlLexer, TeaTemplateRootLexer, **options)
+        super(TeaTemplateLexer, self).__init__(XmlLexer,
+                                               TeaTemplateRootLexer, **options)
 
     def analyse_text(text):
         rv = TeaLangLexer.analyse_text(text) - 0.01

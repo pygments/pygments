@@ -21,7 +21,7 @@ from pygments.scanner import Scanner
 
 # backwards compatibility
 from pygments.lexers.functional import OcamlLexer
-from pygments.lexers.jvm import JavaLexer, ScalaLexer, TeaLangLexer
+from pygments.lexers.jvm import JavaLexer, ScalaLexer
 
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'DylanLexer', 'ObjectiveCLexer', 'FortranLexer', 'GLShaderLexer',
