@@ -14,7 +14,7 @@ import re
 from pygments.lexers.web import \
      PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
 from pygments.lexers.agile import PythonLexer, PerlLexer
-from pygments.lexers.compiled import JavaLexer
+from pygments.lexers.compiled import JavaLexer, TeaLangLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
      include, using, this
 from pygments.token import Error, Punctuation, \
@@ -37,7 +37,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'EvoqueLexer', 'EvoqueHtmlLexer', 'EvoqueXmlLexer',
            'ColdfusionLexer', 'ColdfusionHtmlLexer',
            'VelocityLexer', 'VelocityHtmlLexer', 'VelocityXmlLexer',
-           'SspLexer']
+           'SspLexer', 'TeaTemplateLexer']
 
 
 class ErbLexer(Lexer):
@@ -1579,6 +1579,50 @@ class SspLexer(DelegatingLexer):
             rv += 0.6
         if looks_like_xml(text):
             rv += 0.2
+        if '<%' in text and '%>' in text:
+            rv += 0.1
+        return rv
+
+class TeaTemplateRootLexer(RegexLexer):
+    """
+    Base for the `TeaTemplateLexer`. Yields `Token.Other` for area outside of
+    code blocks.
+
+    *New in Pygments 1.5.*
+    """
+
+    tokens = {
+        'root': [
+            (r'<%\S?', Keyword, 'sec'),
+            (r'[^<]+', Other),
+            (r'<', Other),
+            ],
+        'sec': [
+            (r'%>', Keyword, '#pop'),
+            # note: '\w\W' != '.' without DOTALL.
+            (r'[\w\W]+?(?=%>|\Z)', using(TeaLangLexer)),
+            ],
+        }
+
+
+class TeaTemplateLexer(DelegatingLexer):
+    """
+    Lexer for Tea Templates. http://teatrove.org
+
+    *New in Pygments 1.5.*
+    """
+    name = 'Tea'
+    aliases = ['tea']
+    filenames = ['*.tea']
+    mimetypes = ['text/x-tea']
+
+    def __init__(self, **options):
+        super(TeaTemplateLexer, self).__init__(XmlLexer, TeaTemplateRootLexer, **options)
+
+    def analyse_text(text):
+        rv = TeaLangLexer.analyse_text(text) - 0.01
+        if looks_like_xml(text):
+            rv += 0.4
         if '<%' in text and '%>' in text:
             rv += 0.1
         return rv
