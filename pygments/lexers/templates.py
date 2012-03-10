@@ -1583,6 +1583,7 @@ class SspLexer(DelegatingLexer):
             rv += 0.1
         return rv
 
+
 class TeaTemplateRootLexer(RegexLexer):
     """
     Base for the `TeaTemplateLexer`. Yields `Token.Other` for area outside of
