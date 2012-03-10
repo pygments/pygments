@@ -79,7 +79,7 @@ class ECLLexer(RegexLexer):
             (r'^#.*$', Comment.Preproc),
         ],
         'types': [
-            (r'(RECORD|END)[^\d]', Keyword.Declaration),
+            (r'(RECORD|END)\D', Keyword.Declaration),
             (r'((?:ASCII|BIG_ENDIAN|BOOLEAN|DATA|DECIMAL|EBCDIC|INTEGER|PATTERN|'
              r'QSTRING|REAL|RECORD|RULE|SET OF|STRING|TOKEN|UDECIMAL|UNICODE|'
              r'UNSIGNED|VARSTRING|VARUNICODE)\d*)(\s+)',
@@ -310,7 +310,7 @@ class SmalltalkLexer(RegexLexer):
         ],
         'blockvariables' : [
             include('whitespaces'),
-            (r'(:)(\s*)([A-Za-z\w]+)',
+            (r'(:)(\s*)(\w+)',
              bygroups(Operator, Text, Name.Variable)),
             (r'\|', Operator, '#pop'),
             (r'', Text, '#pop'), # else pop
@@ -325,7 +325,7 @@ class SmalltalkLexer(RegexLexer):
         '_parenth_helper' : [
             include('whitespaces'),
             (r'(\d+r)?-?\d+(\.\d+)?(e-?\d+)?', Number),
-            (r'[-+*/\\~<>=|&#!?,@%\w+:]+', String.Symbol),
+            (r'[-+*/\\~<>=|&#!?,@%\w:]+', String.Symbol),
             # literals
             (r'\'[^\']*\'', String),
             (r'\$.', String.Char),
@@ -541,12 +541,12 @@ class LogtalkLexer(RegexLexer):
             (r'[()\[\],.|]', Text),
             # Atoms
             (r"[a-z][a-zA-Z0-9_]*", Text),
-            (r"[']", String, 'quoted_atom'),
+            (r"'", String, 'quoted_atom'),
         ],
 
         'quoted_atom': [
-            (r"['][']", String),
-            (r"[']", String, '#pop'),
+            (r"''", String),
+            (r"'", String, '#pop'),
             (r'\\([\\abfnrtv"\']|(x[a-fA-F0-9]+|[0-7]+)\\)', String.Escape),
             (r"[^\\'\n]+", String),
             (r'\\', String),
@@ -588,7 +588,7 @@ class LogtalkLexer(RegexLexer):
             (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
             # Atoms
             (r"[a-z][a-zA-Z0-9_]*", Text),
-            (r"[']", String, 'quoted_atom'),
+            (r"'", String, 'quoted_atom'),
             # Strings
             (r'"(\\\\|\\"|[^"])*"', String),
             # End of entity-opening directive
@@ -798,9 +798,9 @@ class PovrayLexer(RegexLexer):
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
             (r'//.*\n', Comment.Single),
             (r'(?s)"(?:\\.|[^"\\])+"', String.Double),
-            (r'#(debug|default|else|end|error|fclose|fopen|if|ifdef|ifndef|'
+            (r'#(debug|default|else|end|error|fclose|fopen|ifdef|ifndef|'
              r'include|range|read|render|statistics|switch|undef|version|'
-             r'warning|while|write|define|macro|local|declare)',
+             r'warning|while|write|define|macro|local|declare)\b',
              Comment.Preproc),
             (r'\b(aa_level|aa_threshold|abs|acos|acosh|adaptive|adc_bailout|'
              r'agate|agate_turb|all|alpha|ambient|ambient_light|angle|'
@@ -850,11 +850,11 @@ class PovrayLexer(RegexLexer):
              r'vnormalize|volume_object|volume_rendered|vol_with_light|'
              r'vrotate|v_steps|warning|warp|water_level|waves|while|width|'
              r'wood|wrinkles|yes)\b', Keyword),
-            (r'bicubic_patch|blob|box|camera|cone|cubic|cylinder|difference|'
+            (r'(bicubic_patch|blob|box|camera|cone|cubic|cylinder|difference|'
              r'disc|height_field|intersection|julia_fractal|lathe|'
              r'light_source|merge|mesh|object|plane|poly|polygon|prism|'
              r'quadric|quartic|smooth_triangle|sor|sphere|superellipsoid|'
-             r'text|torus|triangle|union', Name.Builtin),
+             r'text|torus|triangle|union)\b', Name.Builtin),
             # TODO: <=, etc
             (r'[\[\](){}<>;,]', Punctuation),
             (r'[-+*/=]', Operator),
@@ -892,7 +892,7 @@ class AppleScriptLexer(RegexLexer):
     Classes = ['alias ', 'application ', 'boolean ', 'class ', 'constant ',
                'date ', 'file ', 'integer ', 'list ', 'number ', 'POSIX file ',
                'real ', 'record ', 'reference ', 'RGB color ', 'script ',
-               'text ', 'unit types', '(Unicode )?text', 'string']
+               'text ', 'unit types', '(?:Unicode )?text', 'string']
     BuiltIn = ['attachment', 'attribute run', 'character', 'day', 'month',
                'paragraph', 'word', 'year']
     HandlerParams = ['about', 'above', 'against', 'apart from', 'around',
@@ -1158,7 +1158,7 @@ class AppleScriptLexer(RegexLexer):
             (ur'(-|\*|\+|&|≠|>=?|<=?|=|≥|≤|/|÷|\^)', Operator),
             (r"\b(%s)\b" % '|'.join(Operators), Operator.Word),
             (r'^(\s*(?:on|end)\s+)'
-             r'(%s)' % '|'.join(StudioEvents),
+             r'(%s)' % '|'.join(StudioEvents[::-1]),
              bygroups(Keyword, Name.Function)),
             (r'^(\s*)(in|on|script|to)(\s+)', bygroups(Text, Keyword, Text)),
             (r'\b(as )(%s)\b' % '|'.join(Classes),
@@ -1501,7 +1501,7 @@ class ABAPLexer(RegexLexer):
             ],
         'variable-names': [
             (r'<[\S_]+>', Name.Variable),
-            (r'[\w][\w_~]*(?:(\[\])|->\*)?', Name.Variable),
+            (r'\w[\w~]*(?:(\[\])|->\*)?', Name.Variable),
             ],
         'root': [
             include('common'),
@@ -1511,21 +1511,21 @@ class ABAPLexer(RegexLexer):
             (r'(CALL\s+(?:DIALOG|SCREEN|SUBSCREEN|SELECTION-SCREEN|'
              r'TRANSACTION|TRANSFORMATION))\b',
                 Keyword),
-            (r'(FORM|PERFORM)(\s+)([\w_]+)',
+            (r'(FORM|PERFORM)(\s+)(\w+)',
                 bygroups(Keyword, Text, Name.Function)),
-            (r'(PERFORM)(\s+)(\()([\w_]+)(\))',
+            (r'(PERFORM)(\s+)(\()(\w+)(\))',
                 bygroups(Keyword, Text, Punctuation, Name.Variable, Punctuation )),
             (r'(MODULE)(\s+)(\S+)(\s+)(INPUT|OUTPUT)',
                 bygroups(Keyword, Text, Name.Function, Text, Keyword)),
 
             # method implementation
-            (r'(METHOD)(\s+)([\w_~]+)',
+            (r'(METHOD)(\s+)([\w~]+)',
                 bygroups(Keyword, Text, Name.Function)),
             # method calls
-            (r'(\s+)([\w_\-]+)([=\-]>)([\w_\-~]+)',
+            (r'(\s+)([\w\-]+)([=\-]>)([\w\-~]+)',
                 bygroups(Text, Name.Variable, Operator, Name.Function)),
             # call methodnames returning style
-            (r'(?<=(=|-)>)([\w_\-~]+)(?=\()', Name.Function),
+            (r'(?<=(=|-)>)([\w\-~]+)(?=\()', Name.Function),
 
             # keywords with dashes in them.
             # these need to be first, because for instance the -ID part
@@ -2034,7 +2034,7 @@ class PostScriptLexer(RegexLexer):
         ],
 
         'escape': [
-            (r'([0-8]{3}|n|r|t|b|f|\\|\(|\)|)', String.Escape, '#pop'),
+            (r'([0-8]{3}|n|r|t|b|f|\\|\(|\))?', String.Escape, '#pop'),
         ],
     }
 
@@ -2394,7 +2394,7 @@ class HybrisLexer(RegexLexer):
             # method names
             (r'^(\s*(?:function|method|operator\s+)+?)'
              r'([a-zA-Z_][a-zA-Z0-9_]*)'
-             r'(\s*)(\()', bygroups(Name.Function, Text, Operator)),
+             r'(\s*)(\()', bygroups(Keyword, Name.Function, Text, Operator)),
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
@@ -2478,7 +2478,7 @@ class AwkLexer(RegexLexer):
             (r'', Text, '#pop')
         ],
         'badregex': [
-            ('\n', Text, '#pop')
+            (r'\n', Text, '#pop')
         ],
         'root': [
             (r'^(?=\s|/)', Text, 'slashstartsregex'),
@@ -2608,7 +2608,7 @@ class SnobolLexer(RegexLexer):
             # ASCII equivalents of original operators
             # | for the EBCDIC equivalent, ! likewise
             # \ for EBCDIC negation
-            (r'\*\*|[\?\$\.!%\*/#+\-@\|&\\!=]', Operator),
+            (r'\*\*|[\?\$\.!%\*/#+\-@\|&\\=]', Operator),
             (r'"[^"]*"', String),
             (r"'[^']*'", String),
             # Accept SPITBOL syntax for real numbers
@@ -3244,8 +3244,8 @@ class OpenEdgeLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'\s+', Text),
-            (r'[\\+\\-\\*\\/\\=]', Operator),
-            (r'[\\.\\:\\(\\)]', Punctuation),
+            (r'[+*/=-]', Operator),
+            (r'[.:()]', Punctuation),
             (r'.', Name.Variable), # Lazy catch-all
         ],
         'comment': [
@@ -3279,7 +3279,7 @@ class BroLexer(RegexLexer):
     tokens = {
         'root': [
             # Whitespace
-            ('^@.*?\n', Comment.Preproc),
+            (r'^@.*?\n', Comment.Preproc),
             (r'#.*?\n', Comment.Single),
             (r'\n', Text),
             (r'\s+', Text),
@@ -3315,8 +3315,8 @@ class BroLexer(RegexLexer):
             (r'/', String.Regex, 'regex'),
             (r'"', String, 'string'),
             # Operators
-            (r'[!%*/+-:<=>?~|]', Operator),
-            (r'([-+=&|]{2}|[+-=!><]=)', Operator),
+            (r'[!%*/+:<=>?~|-]', Operator),
+            (r'([-+=&|]{2}|[+=!><-]=)', Operator),
             (r'(in|match)\b', Operator.Word),
             (r'[{}()\[\]$.,;]', Punctuation),
             # Identfier
