@@ -1058,7 +1058,7 @@ class DylanLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\b(subclass|abstract|block|c(on(crete|stant)|lass)|domain'
-             r'|ex(c(eption|lude)|port)|f(unction(|al))|generic|handler'
+             r'|ex(c(eption|lude)|port)|f(unction(al)?)|generic|handler'
              r'|i(n(herited|line|stance|terface)|mport)|library|m(acro|ethod)'
              r'|open|primary|sealed|si(deways|ngleton)|slot'
              r'|v(ariable|irtual))\b', Name.Builtin),
@@ -1068,7 +1068,7 @@ class DylanLexer(RegexLexer):
             (r'"', String, 'string'),
             (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
             (r'=>|\b(a(bove|fterwards)|b(e(gin|low)|y)|c(ase|leanup|reate)'
-             r'|define|else(|if)|end|f(inally|or|rom)|i[fn]|l(et|ocal)|otherwise'
+             r'|define|else(if)?|end|f(inally|or|rom)|i[fn]|l(et|ocal)|otherwise'
              r'|rename|s(elect|ignal)|t(hen|o)|u(n(less|til)|se)|wh(en|ile))\b',
              Keyword),
             (r'([ \t])([!\$%&\*\/:<=>\?~_^a-zA-Z0-9.+\-]*:)',
@@ -2186,7 +2186,7 @@ class AdaLexer(RegexLexer):
         'end' : [
             ('(if|case|record|loop|select)', Keyword.Reserved),
             ('"[^"]+"|[a-zA-Z0-9_.]+', Name.Function),
-            ('[\n\s]+', Text),
+            ('\s+', Text),
             (';', Punctuation, '#pop'),
         ],
         'type_def': [
@@ -2572,7 +2572,7 @@ class NimrodLexer(RegexLexer):
             (r'##.*$', String.Doc),
             (r'#.*$', Comment),
             (r'\*|=|>|<|\+|-|/|@|\$|~|&|%|\!|\?|\||\\|\[|\]', Operator),
-            (r'\.\.|\.|,|[\.|\.]|{\.|\.}|\(\.|\.\)|{|}|\(|\)|:|\^|`|;',
+            (r'\.\.|\.|,|\[\.|\.\]|{\.|\.}|\(\.|\.\)|{|}|\(|\)|:|\^|`|;',
              Punctuation),
 
             # Strings
@@ -2679,7 +2679,7 @@ class FantomLexer(RegexLexer):
                 id = r'[a-zA-Z_][a-zA-Z0-9_]*',
                 # all chars which can be part of type definition. Starts with
                 # either letter, or [ (maps), or | (funcs)
-                type = r'(?:\[|[a-zA-Z_]|\|)[:\w_\[\]\|\->\?]*?',
+                type = r'(?:\[|[a-zA-Z_]|\|)[:\w\[\]\|\->\?]*?',
                 )
             )
 
@@ -2810,7 +2810,7 @@ class FantomLexer(RegexLexer):
 
             ### ArgType argName, #####
             (s(r'($type)(\s+)($id)(\s*)(,)'),
-             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+             bygroups(using(this, state='inType'), Text, Name.Variable,
                       Text, Punctuation)),
 
             #### ArgType argName) ####
@@ -2818,13 +2818,13 @@ class FantomLexer(RegexLexer):
 
             ### ArgType argName -> ArgType| ###
             (s(r'($type)(\s+)($id)(\s*)(\->)(\s*)($type)(\|)'),
-             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+             bygroups(using(this, state='inType'), Text, Name.Variable,
                       Text, Punctuation, Text, using(this, state = 'inType'),
                       Punctuation)),
 
             ### ArgType argName|  ###
             (s(r'($type)(\s+)($id)(\s*)(\|)'),
-             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+             bygroups(using(this, state='inType'), Text, Name.Variable,
                       Text, Punctuation)),
 
             ### Type var
@@ -2843,7 +2843,7 @@ class FantomLexer(RegexLexer):
         'insideMethodDeclArgs': [
             (r'\)', Punctuation, '#pop'),
             (s(r'($type)(\s+)($id)(\s*)(\))'),
-             bygroups(using(this, state= 'inType'), Text, Name.Variable,
+             bygroups(using(this, state='inType'), Text, Name.Variable,
                       Text, Punctuation), '#pop'),
             include('root'),
         ],
