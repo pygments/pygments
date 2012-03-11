@@ -32,7 +32,7 @@ class UsingStateTest(unittest.TestCase):
         expected = [(Text, 'a'), (String, '"'), (Keyword, 'bcd'),
                     (String, '"'), (Text, 'e\n')]
         t = list(TestLexer().get_tokens('a"bcd"e'))
-        self.assertEquals(t, expected)
+        self.assertEqual(t, expected)
 
     def test_error(self):
         def gen():

@@ -238,13 +238,17 @@ class FiltersTest(unittest.TestCase):
         for x in filters.FILTERS.keys():
             lx = lexers.PythonLexer()
             lx.add_filter(x, **filter_args.get(x, {}))
-            text = open(TESTFILE, 'rb').read().decode('utf-8')
+            fp = open(TESTFILE, 'rb')
+            try:
+                text = fp.read().decode('utf-8')
+            finally:
+                fp.close()
             tokens = list(lx.get_tokens(text))
             roundtext = ''.join([t[1] for t in tokens])
             if x not in ('whitespace', 'keywordcase'):
                 # these filters change the text
-                self.assertEquals(roundtext, text,
-                                  "lexer roundtrip with %s filter failed" % x)
+                self.assertEqual(roundtext, text,
+                                 "lexer roundtrip with %s filter failed" % x)
 
     def test_raiseonerror(self):
         lx = lexers.PythonLexer()
@@ -254,24 +258,32 @@ class FiltersTest(unittest.TestCase):
     def test_whitespace(self):
         lx = lexers.PythonLexer()
         lx.add_filter('whitespace', spaces='%')
-        text = open(TESTFILE, 'rb').read().decode('utf-8')
+        fp = open(TESTFILE, 'rb')
+        try:
+            text = fp.read().decode('utf-8')
+        finally:
+            fp.close()
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
-        self.failIf(' ' in lxtext)
+        self.assertFalse(' ' in lxtext)
 
     def test_keywordcase(self):
         lx = lexers.PythonLexer()
         lx.add_filter('keywordcase', case='capitalize')
-        text = open(TESTFILE, 'rb').read().decode('utf-8')
+        fp = open(TESTFILE, 'rb')
+        try:
+            text = fp.read().decode('utf-8')
+        finally:
+            fp.close()
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
-        self.assert_('Def' in lxtext and 'Class' in lxtext)
+        self.assertTrue('Def' in lxtext and 'Class' in lxtext)
 
     def test_codetag(self):
         lx = lexers.PythonLexer()
         lx.add_filter('codetagify')
         text = u'# BUG: text'
         tokens = list(lx.get_tokens(text))
-        self.assertEquals('# ', tokens[0][1])
-        self.assertEquals('BUG', tokens[1][1])
+        self.assertEqual('# ', tokens[0][1])
+        self.assertEqual('BUG', tokens[1][1])
 
     def test_codetag_boundary(self):
         # ticket #368
@@ -279,4 +291,4 @@ class FiltersTest(unittest.TestCase):
         lx.add_filter('codetagify')
         text = u'# DEBUG: text'
         tokens = list(lx.get_tokens(text))
-        self.assertEquals('# DEBUG: text', tokens[0][1])
+        self.assertEqual('# DEBUG: text', tokens[0][1])
