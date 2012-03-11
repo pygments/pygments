@@ -147,14 +147,14 @@ class PostgresLexer(PostgresBase, RegexLexer):
                 for s in DATATYPES + PSEUDO_TYPES])
                   + r')\b', Name.Builtin),
             (r'(' + '|'.join(KEYWORDS) + r')\b', Keyword),
-            (r'[+*/<>=~!@#%^&|`?^-]+', Operator),
+            (r'[+*/<>=~!@#%^&|`?-]+', Operator),
             (r'::', Operator),  # cast
             (r'\$\d+', Name.Variable),
             (r'([0-9]*\.[0-9]*|[0-9]+)(e[+-]?[0-9]+)?', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r"(E|U&)?'(''|[^'])*'", String.Single),
             (r'(U&)?"(""|[^"])*"', String.Name), # quoted identifier
-            (r'(?ms)(\$[^\$]*\$)(.*?)(\1)', language_callback),
+            (r'(?s)(\$[^\$]*\$)(.*?)(\1)', language_callback),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
             # psql variable in SQL
@@ -434,7 +434,7 @@ class SqlLexer(RegexLexer):
              r'DEC|DECIMAL|FLOAT|INT|INTEGER|INTERVAL|NUMBER|NUMERIC|REAL|'
              r'SERIAL|SMALLINT|VARCHAR|VARYING|INT8|SERIAL8|TEXT)\b',
              Name.Builtin),
-            (r'[+*/<>=~!@#%^&|`?^-]', Operator),
+            (r'[+*/<>=~!@#%^&|`?-]', Operator),
             (r'[0-9]+', Number.Integer),
             # TODO: Backslash escapes?
             (r"'(''|[^'])*'", String.Single),
@@ -472,7 +472,7 @@ class MySqlLexer(RegexLexer):
             (r"'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Double),
             (r"`(``|[^`])*`", String.Symbol),
-            (r'[+*/<>=~!@#%^&|`?^-]', Operator),
+            (r'[+*/<>=~!@#%^&|`?-]', Operator),
             (r'\b(tinyint|smallint|mediumint|int|integer|bigint|date|'
              r'datetime|time|bit|bool|tinytext|mediumtext|longtext|text|'
              r'tinyblob|mediumblob|longblob|blob|float|double|double\s+'

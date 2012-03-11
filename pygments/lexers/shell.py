@@ -32,7 +32,8 @@ class BashLexer(RegexLexer):
 
     name = 'Bash'
     aliases = ['bash', 'sh', 'ksh']
-    filenames = ['*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass']
+    filenames = ['*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass',
+                 '.bashrc', 'bashrc', '.bash_*', 'bash_*']
     mimetypes = ['application/x-sh', 'application/x-shellscript']
 
     tokens = {
@@ -67,7 +68,7 @@ class BashLexer(RegexLexer):
             (r"(?s)\$?'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
             (r';', Text),
             (r'\s+', Text),
-            (r'[^=\s\n\[\]{}()$"\'`\\<]+', Text),
+            (r'[^=\s\[\]{}()$"\'`\\<]+', Text),
             (r'\d+(?= |\Z)', Number),
             (r'\$#?(\w+|.)', Name.Variable),
             (r'<', Text),
@@ -121,8 +122,8 @@ class BashSessionLexer(Lexer):
 
         for match in line_re.finditer(text):
             line = match.group()
-            m = re.match(r'^((?:|sh\S*?|\w+\S+[@:]\S+(?:\s+\S+)?|\[\S+[@:]'
-                         r'[^\n]+\].+)[$#%])(.*\n?)', line)
+            m = re.match(r'^((?:\(\S+\))?(?:|sh\S*?|\w+\S+[@:]\S+(?:\s+\S+)'
+                          r'?|\[\S+[@:][^\n]+\].+)[$#%])(.*\n?)' , line)
             if m:
                 # To support output lexers (say diff output), the output
                 # needs to be broken by prompts whenever the output lexer
@@ -251,7 +252,7 @@ class TcshLexer(RegexLexer):
             (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
             (r"(?s)'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
             (r'\s+', Text),
-            (r'[^=\s\n\[\]{}()$"\'`\\]+', Text),
+            (r'[^=\s\[\]{}()$"\'`\\]+', Text),
             (r'\d+(?= |\Z)', Number),
             (r'\$#?(\w+|.)', Name.Variable),
         ],
@@ -315,7 +316,7 @@ class PowerShellLexer(RegexLexer):
 
     commenthelp = (
         'component description example externalhelp forwardhelpcategory '
-        'forwardhelptargetname forwardhelptargetname functionality inputs link '
+        'forwardhelptargetname functionality inputs link '
         'notes outputs parameter remotehelprunspace role synopsis').split()
 
     tokens = {
