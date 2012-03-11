@@ -49,7 +49,11 @@ def test_example_files():
         yield check_lexer, lx, absfn, outfn
 
 def check_lexer(lx, absfn, outfn):
-    text = open(absfn, 'rb').read()
+    fp = open(absfn, 'rb')
+    try:
+        text = fp.read()
+    finally:
+        fp.close()
     text = text.replace(b('\r\n'), b('\n'))
     text = text.strip(b('\n')) + b('\n')
     try:
