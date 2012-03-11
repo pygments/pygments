@@ -41,11 +41,14 @@ class LatexFormatterTest(unittest.TestCase):
             po = subprocess.Popen(['latex', '-interaction=nonstopmode',
                                    pathname], stdout=subprocess.PIPE)
             ret = po.wait()
+            output = po.stdout.read()
             po.stdout.close()
         except OSError:
             # latex not available
             pass
         else:
+            if ret:
+                print output
             self.assertFalse(ret, 'latex run reported errors')
 
         os.unlink(pathname)

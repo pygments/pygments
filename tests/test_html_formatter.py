@@ -125,11 +125,14 @@ class HtmlFormatterTest(unittest.TestCase):
             po = subprocess.Popen(['nsgmls', '-s', '-c', catname, pathname],
                                   stdout=subprocess.PIPE)
             ret = po.wait()
+            output = po.stdout.read()
             po.stdout.close()
         except OSError:
             # nsgmls not available
             pass
         else:
+            if ret:
+                print output
             self.assertFalse(ret, 'nsgmls run reported errors')
 
         os.unlink(pathname)
