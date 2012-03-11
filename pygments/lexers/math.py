@@ -230,8 +230,8 @@ class MuPADLexer(RegexLexer):
         #(r'\b(?:adt|linalg|newDomain|hold)\b', Name.Builtin),
         (r'''(?x)
           ((?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
-          (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*)\s*([(])''',
-          bygroups(Name.Function, Punctuation)),
+          (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*)(\s*)([(])''',
+          bygroups(Name.Function, Text, Punctuation)),
         (r'''(?x)
           (?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
           (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*''', Name.Variable),
@@ -823,7 +823,7 @@ class ScilabLexer(RegexLexer):
                             _scilab_builtins.macros_kw
                             ) + r')\b',  Name.Builtin),
 
-            ("(" + "|".join(_scilab_builtins.builtin_consts) + r')\b',
+            (r'(%s)\b' % "|".join(map(re.escape, _scilab_builtins.builtin_consts)),
              Name.Constant),
 
             # operators:
@@ -832,7 +832,7 @@ class ScilabLexer(RegexLexer):
             (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
 
             # punctuation:
-            (r'[\[\](){}:@.,=:;]', Punctuation),
+            (r'[\[\](){}@.,=:;]', Punctuation),
 
             (r'"[^"]*"', String),
 

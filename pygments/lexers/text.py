@@ -292,12 +292,12 @@ class DarcsPatchLexer(RegexLexer):
         'insert': [
             include('specialText'),
             (r'\[', Generic.Inserted),
-            (r'[^\n\[]*', Generic.Inserted),
+            (r'[^\n\[]+', Generic.Inserted),
         ],
         'delete': [
             include('specialText'),
             (r'\[', Generic.Deleted),
-            (r'[^\n\[]*', Generic.Deleted),
+            (r'[^\n\[]+', Generic.Deleted),
         ],
     }
 
@@ -346,18 +346,18 @@ class IrcLogsLexer(RegexLexer):
             # /me msgs
             ("^" + timestamp + r"""
                 (\s*[*]\s+)            # Star
-                ([^\s]+\s+.*?\n)       # Nick + rest of message """,
+                (\S+\s+.*?\n)          # Nick + rest of message """,
              bygroups(Comment.Preproc, Keyword, Generic.Inserted)),
             # join/part msgs
             ("^" + timestamp + r"""
                 (\s*(?:\*{3}|<?-[!@=P]?->?)\s*)  # Star(s) or symbols
-                ([^\s]+\s+)                     # Nick + Space
+                (\S+\s+)                     # Nick + Space
                 (.*?\n)                         # Rest of message """,
              bygroups(Comment.Preproc, Keyword, String, Comment)),
             (r"^.*?\n", Text),
         ],
         'msg': [
-            (r"[^\s]+:(?!//)", Name.Attribute),  # Prefix
+            (r"\S+:(?!//)", Name.Attribute),  # Prefix
             (r".*\n", Text, '#pop'),
         ],
     }
@@ -468,7 +468,7 @@ class GroffLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(?i)(\.)(\w+)', bygroups(Text, Keyword), 'request'),
+            (r'(\.)(\w+)', bygroups(Text, Keyword), 'request'),
             (r'\.', Punctuation, 'request'),
             # Regular characters, slurp till we find a backslash or newline
             (r'[^\\\n]*', Text, 'textline'),
@@ -482,7 +482,7 @@ class GroffLexer(RegexLexer):
             # groff has many ways to write escapes.
             (r'\\"[^\n]*', Comment),
             (r'\\[fn]\w', String.Escape),
-            (r'\\\(..', String.Escape),
+            (r'\\\(.{2}', String.Escape),
             (r'\\.\[.*\]', String.Escape),
             (r'\\.', String.Escape),
             (r'\\\n', Text, 'request'),
@@ -768,7 +768,7 @@ class VimLexer(RegexLexer):
     name = 'VimL'
     aliases = ['vim']
     filenames = ['*.vim', '.vimrc', '.exrc', '.gvimrc',
-                 '_vimrc', '_exrc', '_gvimrc']
+                 '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc']
     mimetypes = ['text/x-vim']
     flags = re.MULTILINE
 
@@ -1018,11 +1018,11 @@ class DebianControlLexer(RegexLexer):
             (r'^(Description)', Keyword, 'description'),
             (r'^(Maintainer)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
             (r'^((Build-)?Depends)', Keyword, 'depends'),
-            (r'^((?:Python-)?Version)(:\s*)([^\s]+)$',
+            (r'^((?:Python-)?Version)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
-            (r'^((?:Installed-)?Size)(:\s*)([^\s]+)$',
+            (r'^((?:Installed-)?Size)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
-            (r'^(MD5Sum|SHA1|SHA256)(:\s*)([^\s]+)$',
+            (r'^(MD5Sum|SHA1|SHA256)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
             (r'^([a-zA-Z\-0-9\.]*?)(:\s*)(.*?)$',
              bygroups(Keyword, Whitespace, String)),
@@ -1034,7 +1034,7 @@ class DebianControlLexer(RegexLexer):
             (r'.', Text),
         ],
         'description': [
-            (r'(.*)(Homepage)(: )([^\s]+)',
+            (r'(.*)(Homepage)(: )(\S+)',
              bygroups(Text, String, Name, Name.Class)),
             (r':.*\n', Generic.Strong),
             (r' .*\n', Text),
@@ -1048,9 +1048,9 @@ class DebianControlLexer(RegexLexer):
             (r'\|', Operator),
             (r'[\s]+', Text),
             (r'[}\)]\s*$', Text, '#pop'),
-            (r'[}]', Text),
+            (r'}', Text),
             (r'[^,]$', Name.Function, '#pop'),
-            (r'([\+\.a-zA-Z0-9-][\s\n]*)', Name.Function),
+            (r'([\+\.a-zA-Z0-9-])(\s*)', bygroups(Name.Function, Text)),
             (r'\[.*?\]', Name.Entity),
         ],
         'depend_vers': [
@@ -1387,7 +1387,8 @@ class YamlLexer(ExtendedRegexLexer):
         # ignored and regular whitespaces in quoted scalars
         'quoted-scalar-whitespaces': [
             # leading and trailing whitespaces are ignored
-            (r'^[ ]+|[ ]+$', Text),
+            (r'^[ ]+', Text),
+            (r'[ ]+$', Text),
             # line breaks are ignored
             (r'\n+', Text),
             # other whitespaces are a part of the value
@@ -1456,7 +1457,8 @@ class YamlLexer(ExtendedRegexLexer):
             # the scalar ends with a comment
             (r'[ ]+(?=#)', Text, '#pop'),
             # leading and trailing whitespaces are ignored
-            (r'^[ ]+|[ ]+$', Text),
+            (r'^[ ]+', Text),
+            (r'[ ]+$', Text),
             # line breaks are ignored
             (r'\n+', Text),
             # other whitespaces are a part of the value
@@ -1702,7 +1704,7 @@ class PyPyLogLexer(RegexLexer):
             (r"^\+\d+: ", Comment),
             (r"[ifp]\d+", Name),
             (r"ptr\d+", Name),
-            (r"(\()([\w_]+(?:\.[\w_]+)?)(\))",
+            (r"(\()(\w+(?:\.\w+)?)(\))",
              bygroups(Punctuation, Name.Builtin, Punctuation)),
             (r"[\[\]=,()]", Punctuation),
             (r"(\d+\.\d+|inf|-inf)", Number.Float),
@@ -1728,8 +1730,7 @@ class PyPyLogLexer(RegexLexer):
              r"arraylen_gc|"
              r"getarrayitem_gc_pure|getarrayitem_gc|setarrayitem_gc|"
              r"getarrayitem_raw|setarrayitem_raw|getfield_gc_pure|"
-             r"getfield_gc|getinteriorfield_gc|"
-             r"getinteriorfield_gc|setinteriorfield_gc|"
+             r"getfield_gc|getinteriorfield_gc|setinteriorfield_gc|"
              r"getfield_raw|setfield_gc|setfield_raw|"
              r"strgetitem|strsetitem|strlen|copystrcontent|"
              r"unicodegetitem|unicodesetitem|unicodelen|"
@@ -1741,12 +1742,12 @@ class PyPyLogLexer(RegexLexer):
         ],
         "jit-backend-counts": [
             (r"\[\w+\] jit-backend-counts}$", Keyword, "#pop"),
-            (r"[:]", Punctuation),
+            (r":", Punctuation),
             (r"\d+", Number),
             include("extra-stuff"),
         ],
         "extra-stuff": [
-            (r"[\n\s]+", Text),
+            (r"\s+", Text),
             (r"#.*?$", Comment),
         ],
     }

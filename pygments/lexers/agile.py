@@ -381,7 +381,7 @@ class PythonTracebackLexer(RegexLexer):
              bygroups(Text, Name.Builtin, Text, Number, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(PythonLexer), Text)),
-            (r'^([ \t]*)(...)(\n)',
+            (r'^([ \t]*)(\.\.\.)(\n)',
              bygroups(Text, Comment, Text)), # for doctests...
             (r'^(.+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
@@ -417,7 +417,7 @@ class Python3TracebackLexer(RegexLexer):
              bygroups(Text, Name.Builtin, Text, Number, Text, Name, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(Python3Lexer), Text)),
-            (r'^([ \t]*)(...)(\n)',
+            (r'^([ \t]*)(\.\.\.)(\n)',
              bygroups(Text, Comment, Text)), # for doctests...
             (r'^(.+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
@@ -506,7 +506,7 @@ class RubyLexer(ExtendedRegexLexer):
         states = {}
         states['strings'] = [
             # easy ones
-            (r'\:@{0,2}([a-zA-Z_][\w_]*[\!\?]?|\*\*?|[-+]@?|'
+            (r'\:@{0,2}([a-zA-Z_]\w*[\!\?]?|\*\*?|[-+]@?|'
              r'[/%&|^`~]|\[\]=?|<<|>>|<=?>|>=?|===?)', String.Symbol),
             (r":'(\\\\|\\'|[^'])*'", String.Symbol),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
@@ -703,7 +703,7 @@ class RubyLexer(ExtendedRegexLexer):
             # like keywords (class) or like this: ` ?!?
             (r'(\.|::)([a-zA-Z_]\w*[\!\?]?|[*%&^`~+-/\[<>=])',
              bygroups(Operator, Name)),
-            (r'[a-zA-Z_][\w_]*[\!\?]?', Name),
+            (r'[a-zA-Z_]\w*[\!\?]?', Name),
             (r'(\[|\]|\*\*|<<?|>>?|>=|<=|<=>|=~|={3}|'
              r'!~|&&?|\|\||\.{1,3})', Operator),
             (r'[-+/*%=<>&!^|~]=?', Operator),
@@ -713,7 +713,7 @@ class RubyLexer(ExtendedRegexLexer):
         'funcname': [
             (r'\(', Punctuation, 'defexpr'),
             (r'(?:([a-zA-Z_][a-zA-Z0-9_]*)(\.))?'
-             r'([a-zA-Z_][\w_]*[\!\?]?|\*\*?|[-+]@?|'
+             r'([a-zA-Z_]\w*[\!\?]?|\*\*?|[-+]@?|'
              r'[/%&|^`~]|\[\]=?|<<|>>|<=?>|>=?|===?)',
              bygroups(Name.Class, Operator, Name.Function), '#pop'),
             (r'', Text, '#pop')
@@ -721,7 +721,7 @@ class RubyLexer(ExtendedRegexLexer):
         'classname': [
             (r'\(', Punctuation, 'defexpr'),
             (r'<<', Operator, '#pop'),
-            (r'[A-Z_][\w_]*', Name.Class, '#pop'),
+            (r'[A-Z_]\w*', Name.Class, '#pop'),
             (r'', Text, '#pop')
         ],
         'defexpr': [
@@ -924,7 +924,7 @@ class PerlLexer(RegexLexer):
             (r'(q|qq|qw|qr|qx)([^a-zA-Z0-9])(.|\n)*?\2', String.Other),
             (r'package\s+', Keyword, 'modulename'),
             (r'sub\s+', Keyword, 'funcname'),
-            (r'(\[\]|\*\*|::|<<|>>|>=|<=|<=>|={3}|!=|=~|'
+            (r'(\[\]|\*\*|::|<<|>>|>=|<=>|<=|={3}|!=|=~|'
              r'!~|&&?|\|\||\.{1,3})', Operator),
             (r'[-+/*%=<>&^|!\\~]=?', Operator),
             (r'[\(\)\[\]:;,<>/\?\{\}]', Punctuation), # yes, there's no shortage
@@ -949,10 +949,10 @@ class PerlLexer(RegexLexer):
             (r'(?=[^a-zA-Z0-9_])', Text, '#pop'),
         ],
         'modulename': [
-            (r'[a-zA-Z_][\w_]*', Name.Namespace, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Namespace, '#pop')
         ],
         'funcname': [
-            (r'[a-zA-Z_][\w_]*[\!\?]?', Name.Function),
+            (r'[a-zA-Z_]\w*[\!\?]?', Name.Function),
             (r'\s+', Text),
             # argument declaration
             (r'(\([$@%]*\))(\s*)', bygroups(Punctuation, Text)),
@@ -1151,13 +1151,13 @@ class MoonScriptLexer(LuaLexer):
             (r'(?s)\[(=*)\[.*?\]\1\]', String),
             (r'(->|=>)', Name.Function),
             (r':[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
-            (r'(==|!=|~=|<=|>=|\.\.|\.\.\.|[=+\-*/%^<>#!.\\:])', Operator),
+            (r'(==|!=|~=|<=|>=|\.\.\.|\.\.|[=+\-*/%^<>#!.\\:])', Operator),
             (r'[;,]', Punctuation),
             (r'[\[\]\{\}\(\)]', Keyword.Type),
             (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Variable),
             (r"(class|extends|if|then|super|do|with|import|export|"
-            r"while|elseif|return|for|in|from|when|using|else|"
-            r"and|or|not|switch|break)\b", Keyword),
+             r"while|elseif|return|for|in|from|when|using|else|"
+             r"and|or|not|switch|break)\b", Keyword),
             (r'(true|false|nil)\b', Keyword.Constant),
             (r'(and|or|not)\b', Operator.Word),
             (r'(self)\b', Name.Builtin.Pseudo),
@@ -1286,7 +1286,7 @@ class IoLexer(RegexLexer):
             # constants
             (r'(nil|false|true)\b', Name.Constant),
             # names
-            ('(Object|list|List|Map|args|Sequence|Coroutine|File)\b',
+            (r'(Object|list|List|Map|args|Sequence|Coroutine|File)\b',
              Name.Builtin),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             # numbers
@@ -1378,7 +1378,7 @@ class TclLexer(RegexLexer):
         'params': [
             (r';', Keyword, '#pop'),
             (r'\n', Text, '#pop'),
-            (r'(else|elseif|then)', Keyword),
+            (r'(else|elseif|then)\b', Keyword),
             include('basic'),
             include('data'),
         ],
@@ -1785,7 +1785,7 @@ class FancyLexer(RegexLexer):
             ('[A-Z][a-zA-Z0-9_]*', Name.Constant),
             ('@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Instance),
             ('@@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Class),
-            ('(@|@@)', Operator),
+            ('@@?', Operator),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             # numbers - / checks are necessary to avoid mismarking regexes,
             # see comment in RubyLexer

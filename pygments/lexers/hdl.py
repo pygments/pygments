@@ -56,8 +56,9 @@ class VerilogLexer(RegexLexer):
             (r'[()\[\],.;\']', Punctuation),
             (r'`[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant),
 
-            (r'^\s*(package)(\s+)', bygroups(Keyword.Namespace, Text)),
-            (r'^\s*(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+            (r'^(\s*)(package)(\s+)', bygroups(Text, Keyword.Namespace, Text)),
+            (r'^(\s*)(import)(\s+)', bygroups(Text, Keyword.Namespace, Text),
+             'import'),
 
             (r'(always|always_comb|always_ff|always_latch|and|assign|automatic|'
              r'begin|break|buf|bufif0|bufif1|case|casex|casez|cmos|const|'
@@ -75,21 +76,21 @@ class VerilogLexer(RegexLexer):
              r'unsigned|var|vectored|void|wait|weak0|weak1|while|'
              r'xnor|xor)\b', Keyword),
 
-            (r'(`accelerate|`autoexpand_vectornets|`celldefine|`default_nettype|'
-             r'`else|`elsif|`endcelldefine|`endif|`endprotect|`endprotected|'
-             r'`expand_vectornets|`ifdef|`ifndef|`include|`noaccelerate|`noexpand_vectornets|'
-             r'`noremove_gatenames|`noremove_netnames|`nounconnected_drive|'
-             r'`protect|`protected|`remove_gatenames|`remove_netnames|`resetall|'
-             r'`timescale|`unconnected_drive|`undef)\b', Comment.Preproc),
+            (r'`(accelerate|autoexpand_vectornets|celldefine|default_nettype|'
+             r'else|elsif|endcelldefine|endif|endprotect|endprotected|'
+             r'expand_vectornets|ifdef|ifndef|include|noaccelerate|noexpand_vectornets|'
+             r'noremove_gatenames|noremove_netnames|nounconnected_drive|'
+             r'protect|protected|remove_gatenames|remove_netnames|resetall|'
+             r'timescale|unconnected_drive|undef)\b', Comment.Preproc),
 
-            (r'(\$bits|\$bitstoreal|\$bitstoshortreal|\$countdrivers|\$display|\$fclose|'
-             r'\$fdisplay|\$finish|\$floor|\$fmonitor|\$fopen|\$fstrobe|\$fwrite|'
-             r'\$getpattern|\$history|\$incsave|\$input|\$itor|\$key|\$list|\$log|'
-             r'\$monitor|\$monitoroff|\$monitoron|\$nokey|\$nolog|\$printtimescale|'
-             r'\$random|\$readmemb|\$readmemh|\$realtime|\$realtobits|\$reset|\$reset_count|'
-             r'\$reset_value|\$restart|\$rtoi|\$save|\$scale|\$scope|\$shortrealtobits|'
-             r'\$showscopes|\$showvariables|\$showvars|\$sreadmemb|\$sreadmemh|'
-             r'\$stime|\$stop|\$strobe|\$time|\$timeformat|\$write)\b', Name.Builtin),
+            (r'\$(bits|bitstoreal|bitstoshortreal|countdrivers|display|fclose|'
+             r'fdisplay|finish|floor|fmonitor|fopen|fstrobe|fwrite|'
+             r'getpattern|history|incsave|input|itor|key|list|log|'
+             r'monitor|monitoroff|monitoron|nokey|nolog|printtimescale|'
+             r'random|readmemb|readmemh|realtime|realtobits|reset|reset_count|'
+             r'reset_value|restart|rtoi|save|scale|scope|shortrealtobits|'
+             r'showscopes|showvariables|showvars|sreadmemb|sreadmemh|'
+             r'stime|stop|strobe|time|timeformat|write)\b', Name.Builtin),
 
             (r'(byte|shortint|int|longint|integer|time|'
              r'bit|logic|reg|'
@@ -146,6 +147,9 @@ class SystemVerilogLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^\s*`define', Comment.Preproc, 'macro'),
+            (r'^(\s*)(package)(\s+)', bygroups(Text, Keyword.Namespace, Text)),
+            (r'^(\s*)(import)(\s+)', bygroups(Text, Keyword.Namespace, Text), 'import'),
+
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
@@ -166,11 +170,6 @@ class SystemVerilogLexer(RegexLexer):
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.;\']', Punctuation),
             (r'`[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant),
-
-            (r'^\s*(package)(\s+)', bygroups(Keyword.Namespace, Text)),
-            (r'^\s*(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
-
-
 
             (r'(accept_on|alias|always|always_comb|always_ff|always_latch|'
              r'and|assert|assign|assume|automatic|before|begin|bind|bins|'

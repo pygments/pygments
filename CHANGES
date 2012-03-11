@@ -4,9 +4,13 @@ Pygments changelog
 Issue numbers refer to the tracker at
 http://bitbucket.org/birkenfeld/pygments-main/issues.
 
+Version 1.5.1
+-------------
+(in development)
+
 Version 1.5
 -----------
-(codename not decided, released 2012)
+(codename Zeitdilatation, released Mar 10, 2012)
 
 - Lexers added:
 
@@ -42,6 +46,8 @@ Version 1.5
   * VHDL (PR#45)
   * Scilab (#740)
   * Elixir (PR#57)
+  * Tea (PR#56)
+  * Kotlin (PR#58)
 
 - Fix Python 3 terminal highlighting with pygmentize (#691).
 
@@ -77,6 +83,12 @@ Version 1.5
 - Fix Boo string regexes (#679).
 
 - Add "rrt" style (#727).
+
+- Fix infinite looping in Darcs Patch lexer.
+
+- Lots of misc fixes to character-eating bugs and ordering problems in many
+  different lexers.
+
 
 Version 1.4
 -----------
@@ -343,7 +355,7 @@ Version 1.0
 
 - Added Tango style, written by Andre Roberge for the Crunchy project.
 
-- Added Python3TracebackLexer and ``python3`` option to 
+- Added Python3TracebackLexer and ``python3`` option to
   PythonConsoleLexer.
 
 - Fixed a few bugs in the Haskell lexer.
@@ -681,7 +693,7 @@ Version 0.7
 
 - Added token stream filters, and a pygmentize option to use them.
 
-- Changed behavior of `in` Operator for tokens. 
+- Changed behavior of `in` Operator for tokens.
 
 - Added mimetypes for all lexers.
 
