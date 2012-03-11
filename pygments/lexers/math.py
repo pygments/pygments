@@ -66,17 +66,20 @@ class JuliaLexer(RegexLexer):
                 bygroups(Keyword,Name.Class), 'typename'),
 
             # operators
-            (r'==|!=|<=|>=|->|&&|\|\||::|<:|[-~+/*%=<>&^|.?!]', Operator),
+            (r'==|!=|<=|>=|->|&&|\|\||::|<:|[-~+/*%=<>&^|.?!$]', Operator),
             (r'\.\*|\.\^|\.\\|\.\/|\\', Operator),
 
             # builtins
             ('(' + '|'.join(builtins) + r')\b',  Name.Builtin),
 
             # backticks
-            (r'`.*?`', String.Backtick),
+            (r'`(?s).*?`', String.Backtick),
 
             # chars
-            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
+            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
+
+            # try to match trailing transpose
+            (r'(?<=[.\w\)\]])\'', Operator),
 
             # strings
             (r'(?:[IL])"', String, 'string'),
@@ -95,7 +98,9 @@ class JuliaLexer(RegexLexer):
         ],
 
         'funcname': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop')
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop'),
+            ('\([^\s\w{]{1,2}\)', Operator, '#pop'),
+            ('[^\s\w{]{1,2}', Operator, '#pop'),
         ],
 
         'typename': [
@@ -112,7 +117,7 @@ class JuliaLexer(RegexLexer):
             (r'\\\\|\\"|\\\n', String.Escape), # included here for raw strings
             (r'\$(\([a-zA-Z0-9_]+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?',
                 String.Interpol),
-            (r'[^\\\'"$\n]+', String),
+            (r'[^\\"$]+', String),
             # quotes, dollar signs, and backslashes must be parsed one at a time
             (r'["\\]', String),
             # unhandled string formatting sign
