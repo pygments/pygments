@@ -1370,11 +1370,11 @@ class RebolLexer(RegexLexer):
             yield match.start(), Name.Variable, word
 
     tokens = {
-		'root': [
-			(r'[^R]+', Comment),
-			(r'REBOL\s+\[', Generic.Strong, 'script'),
-			(r'R', Comment)
-		],
+        'root': [
+            (r'[^R]+', Comment),
+            (r'REBOL\s+\[', Generic.Strong, 'script'),
+            (r'R', Comment)
+        ],
         'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
