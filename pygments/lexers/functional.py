@@ -358,8 +358,8 @@ class HaskellLexer(RegexLexer):
             (r'\berror\b', Name.Exception),
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'^[_a-z][\w\']*', Name.Function),
-            (r'[_a-z][\w\']*', Name),
-            (r'[A-Z][\w\']*', Keyword.Type),
+            (r"'?[_a-z][\w']*", Name),
+            (r"('')?[A-Z][\w\']*", Keyword.Type),
             #  Operators
             (r'\\(?![:!#$%&*+.\\/<=>?@^|~-]+)', Name.Function), # lambda operator
             (r'(<-|::|->|=>|=)(?![:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
