@@ -1718,7 +1718,7 @@ class PyPyLogLexer(RegexLexer):
              r"int_xor|int_eq|int_ne|int_ge|int_gt|int_le|int_lt|int_is_zero|"
              r"int_is_true|"
              r"uint_floordiv|uint_ge|uint_lt|"
-             r"float_add|float_sub|float_mul|float_truediv|"
+             r"float_add|float_sub|float_mul|float_truediv|float_neg|"
              r"float_eq|float_ne|float_ge|float_gt|float_le|float_lt|float_abs|"
              r"ptr_eq|ptr_ne|instance_ptr_eq|instance_ptr_ne|"
              r"cast_int_to_float|cast_float_to_int|"
