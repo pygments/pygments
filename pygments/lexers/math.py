@@ -11,15 +11,170 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions
+from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
+    combined, do_insertions
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
     Operator, Number, Text, Generic
 
 from pygments.lexers.agile import PythonLexer
 from pygments.lexers import _scilab_builtins
 
-__all__ = ['MuPADLexer', 'MatlabLexer', 'MatlabSessionLexer', 'OctaveLexer',
-           'ScilabLexer', 'NumPyLexer', 'RConsoleLexer', 'SLexer']
+__all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
+           'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
+           'RConsoleLexer', 'SLexer']
+
+
+class JuliaLexer(RegexLexer):
+    name = 'Julia'
+    aliases = ['julia','jl']
+    filenames = ['*.jl']
+    mimetypes = ['text/x-julia','application/x-julia']
+
+    builtins = [
+        'exit','whos','edit','load','is','isa','isequal','typeof','tuple',
+        'ntuple','uid','hash','finalizer','convert','promote','subtype',
+        'typemin','typemax','realmin','realmax','sizeof','eps','promote_type',
+        'method_exists','applicable','invoke','dlopen','dlsym','system',
+        'error','throw','assert','new','Inf','Nan','pi','im',
+    ]
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'[^\S\n]+', Text),
+            (r'#.*$', Comment),
+            (r'[]{}:(),;[@]', Punctuation),
+            (r'\\\n', Text),
+            (r'\\', Text),
+
+            # keywords
+            (r'(begin|while|for|in|return|break|continue|'
+             r'macro|quote|let|if|elseif|else|try|catch|end|'
+             r'bitstype|ccall)\b', Keyword),
+            (r'(local|global|const)\b', Keyword.Declaration),
+            (r'(module|import|export)\b', Keyword.Reserved),
+            (r'(Bool|Int|Int8|Int16|Int32|Int64|Uint|Uint8|Uint16|Uint32|Uint64'
+             r'|Float32|Float64|Complex64|Complex128|Any|Nothing|None)\b',
+                Keyword.Type),
+
+            # functions
+            (r'(function)((?:\s|\\\s)+)',
+                bygroups(Keyword,Name.Function), 'funcname'),
+
+            # types
+            (r'(type|typealias|abstract)((?:\s|\\\s)+)',
+                bygroups(Keyword,Name.Class), 'typename'),
+
+            # operators
+            (r'==|!=|<=|>=|->|&&|\|\||::|<:|[-~+/*%=<>&^|.?!$]', Operator),
+            (r'\.\*|\.\^|\.\\|\.\/|\\', Operator),
+
+            # builtins
+            ('(' + '|'.join(builtins) + r')\b',  Name.Builtin),
+
+            # backticks
+            (r'`(?s).*?`', String.Backtick),
+
+            # chars
+            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
+
+            # try to match trailing transpose
+            (r'(?<=[.\w\)\]])\'', Operator),
+
+            # strings
+            (r'(?:[IL])"', String, 'string'),
+            (r'[E]?"', String, combined('stringescape', 'string')),
+
+            # names
+            (r'@[a-zA-Z0-9_.]+', Name.Decorator),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+
+            # numbers
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+', Number.Float),
+            (r'0[0-7]+', Number.Oct),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'\d+', Number.Integer)
+        ],
+
+        'funcname': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop'),
+            ('\([^\s\w{]{1,2}\)', Operator, '#pop'),
+            ('[^\s\w{]{1,2}', Operator, '#pop'),
+        ],
+
+        'typename': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+        ],
+
+        'stringescape': [
+            (r'\\([\\abfnrtv"\']|\n|N{.*?}|u[a-fA-F0-9]{4}|'
+             r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
+        ],
+
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\\\|\\"|\\\n', String.Escape), # included here for raw strings
+            (r'\$(\([a-zA-Z0-9_]+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?',
+                String.Interpol),
+            (r'[^\\"$]+', String),
+            # quotes, dollar signs, and backslashes must be parsed one at a time
+            (r'["\\]', String),
+            # unhandled string formatting sign
+            (r'\$', String)
+        ],
+    }
+
+    def analyse_text(text):
+        return shebang_matches(text, r'julia')
+
+
+line_re  = re.compile('.*?\n')
+
+class JuliaConsoleLexer(Lexer):
+    """
+    For Julia console sessions. Modeled after MatlabSessionLexer.
+    """
+    name = 'Julia console'
+    aliases = ['jlcon']
+
+    def get_tokens_unprocessed(self, text):
+        jllexer = JuliaLexer(**self.options)
+
+        curcode = ''
+        insertions = []
+
+        for match in line_re.finditer(text):
+            line = match.group()
+
+            if line.startswith('julia>'):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, line[:3])]))
+                curcode += line[3:]
+
+            elif line.startswith('      '):
+
+                idx = len(curcode)
+
+                # without is showing error on same line as before...?
+                line = "\n" + line
+                token = (0, Generic.Traceback, line)
+                insertions.append((idx, [token]))
+
+            else:
+                if curcode:
+                    for item in do_insertions(
+                        insertions, jllexer.get_tokens_unprocessed(curcode)):
+                        yield item
+                    curcode = ''
+                    insertions = []
+
+                yield match.start(), Generic.Output, line
+
+        if curcode: # or item:
+            for item in do_insertions(
+                insertions, jllexer.get_tokens_unprocessed(curcode)):
+                yield item
 
 
 class MuPADLexer(RegexLexer):
