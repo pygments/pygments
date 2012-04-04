@@ -456,7 +456,7 @@ class CssLexer(RegexLexer):
             (r'[\[\]();]+', Punctuation),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z_]?[a-zA-Z0-9_]+', Name)
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name)
         ]
     }
 
