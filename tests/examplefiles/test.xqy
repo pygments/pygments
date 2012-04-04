@@ -25,13 +25,15 @@ define function whatsit($param as xs:string) as xs:string {
 				element test { 'a' },
 					attribute foo { "bar" },
 						fn:doc()[ foo/@bar eq $let ],
-							//x/with/another/xpath/@attr }
+                        //x/with/another/*/*:version/xpath/@attr }
 };
 
 let $bride := "Bride"
 let $test := validate lax { <some>html</some> }
 let $test := validate strict { <some>html</some> }
 let $test := validate { <some>html</some> }
+let $test := $var1/*:Article       (: comment here :) [fn:not()]
+let $test := $var1/@*:name/fn:string()
 
 let $noop := ordered { $test }
 let $noop := unordered { $test }
