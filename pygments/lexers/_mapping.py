@@ -132,6 +132,8 @@ LEXERS = {
     'JavascriptSmartyLexer': ('pygments.lexers.templates', 'JavaScript+Smarty', ('js+smarty', 'javascript+smarty'), (), ('application/x-javascript+smarty', 'text/x-javascript+smarty', 'text/javascript+smarty')),
     'JspLexer': ('pygments.lexers.templates', 'Java Server Page', ('jsp',), ('*.jsp',), ('application/x-jsp',)),
     'KotlinLexer': ('pygments.lexers.jvm', 'Kotlin', ('kotlin',), ('*.kt',), ('text/x-kotlin',)),
+    'JuliaLexer': ('pygments.lexers.math', 'Julia', ('julia','jl'), ('*.jl',), ('text/x-julia','application/x-julia')),
+    'JuliaConsoleLexer': ('pygments.lexers.math', 'Julia console', ('jlcon',), (), ()),
     'LighttpdConfLexer': ('pygments.lexers.text', 'Lighttpd configuration file', ('lighty', 'lighttpd'), (), ('text/x-lighttpd-conf',)),
     'LiterateHaskellLexer': ('pygments.lexers.functional', 'Literate Haskell', ('lhs', 'literate-haskell'), ('*.lhs',), ('text/x-literate-haskell',)),
     'LlvmLexer': ('pygments.lexers.asm', 'LLVM', ('llvm',), ('*.ll',), ('text/x-llvm',)),
@@ -290,3 +292,4 @@ if __name__ == '__main__':
     f.write('LEXERS = {\n    %s,\n}\n\n' % ',\n    '.join(found_lexers))
     f.write(footer)
     f.close()
+
