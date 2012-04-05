@@ -2651,12 +2651,14 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(\.\d+)[eE][\+\-]?\d+', Number.Double, 'operator'),
             (r'(\.\d+|\d+\.\d*)', Number, 'operator'),
             (r'(\d+)', Number.Integer, 'operator'),
-            (r'(\.\.|\.|\)|\*)', Punctuation, 'operator'),
+            (r'(\.\.|\.|\))', Punctuation, 'operator'),
             (r'(declare)(\s+)(construction)',
              bygroups(Keyword, Text, Keyword), 'operator'),
             (r'(declare)(\s+)(default)(\s+)(order)',
              bygroups(Keyword, Text, Keyword, Text, Keyword), 'operator'),
             (ncname + ':\*', Name, 'operator'),
+            ('\*:'+ncname, Name.Tag, 'operator'),
+            ('\*', Name.Tag, 'operator'),
             (stringdouble, String.Double, 'operator'),
             (stringsingle, String.Single, 'operator'),
 
@@ -2767,16 +2769,17 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(catch)(\s*)(\()(\$)',
              bygroups(Keyword, Text, Punctuation, Name.Variable), 'varname'),
 
-            (r'(@' + qname + ')', pushstate_operator_attribute_callback),
-            (r'(@\*)', pushstate_operator_attribute_callback),
-            (r'(@' + ncname + ')', pushstate_operator_attribute_callback),
+            (r'(@'+qname+')', Name.Attribute),
+            (r'(@'+ncname+')', Name.Attribute),
+            (r'@\*:'+ncname, Name.Attribute),
+            (r'(@)', Name.Attribute),
 
             (r'//|/|\+|-|;|,|\(|\)', Punctuation),
 
             # STANDALONE QNAMES
-            (qname + r'(?=\s*{)', Name.Variable, 'qname_braren'),
-            (qname + r'(?=\s*\()', Name.Function, 'qname_braren'),
-            (qname, Name.Variable, 'operator'),
+            (qname + r'(?=\s*{)', Name.Tag, 'qname_braren'),
+            (qname + r'(?=\s*\([^:])', Name.Function, 'qname_braren'),
+            (qname, Name.Tag, 'operator'),
         ]
     }
 
