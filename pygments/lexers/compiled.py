@@ -2916,15 +2916,15 @@ class RustLexer(RegexLexer):
              r'|with|syntax)', Keyword),
 
             # Character Literal
-            (r"""'(\\['"?\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
+            (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
              String.Char),
             # Binary Literal
             (r'0[Bb][01_]+([ui](8|16|32|64)?)?', Number),
             # Octal Literal
-            (r'0[0-7_]+([ui](8|16|32|64))?', Number.Oct),
+            (r'0[0-7_]+([ui](8|16|32|64)?)?', Number.Oct),
             # Hexadecimal Literal
-            (r'0[xX][0-9a-fA-F_]+([ui](8|16|32|64))?', Number.Hex),
+            (r'0[xX][0-9a-fA-F_]+([ui](8|16|32|64)?)?', Number.Hex),
             # Decimal Literal
             (r'[0-9][0-9_]*(([ui](8|16|32|64)?)|(\.[0-9_]+[eE][+\-]?'
              r'[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+))?(f(32|64)?)?', Number),
@@ -2938,8 +2938,12 @@ class RustLexer(RegexLexer):
             # Identifier
             (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
 
-            # Attributes / Preprocessor
-            (r'#\[', Comment.Preproc, 'attribute')
+			# Attributes
+			(r'#\[', Comment.Preproc, 'attribute['),
+			(r'#\(', Comment.Preproc, 'attribute('),
+			# Macros
+			(r'#[A-Za-z_][A-Za-z0-9_]*\[', Comment.Preproc, 'attribute['),
+			(r'#[A-Za-z_][A-Za-z0-9_]*\(', Comment.Preproc, 'attribute(')
         ],
         'string': {
             (r'"', String, '#pop'),
@@ -2948,10 +2952,20 @@ class RustLexer(RegexLexer):
             (r'[^\\"]+', String),
             (r'\\', String)
         },
-        'attribute': {
+		'attribute_common': {
             (r'"', String, 'string'),
-            (r'\];?', Comment.Preproc, '#pop'),
+			(r'\[', Comment.Preproc, 'attribute['),
+			(r'\(', Comment.Preproc, 'attribute('),
+		},
+        'attribute[': {
+			include('attribute_common'),
+			(r'\];?', Comment.Preproc, '#pop'),
             (r'[^"\]]+', Comment.Preproc)
-        }
+        },
+		'attribute(': {
+			include('attribute_common'),
+			(r'\);?', Comment.Preproc, '#pop'),
+			(r'[^"\)]+', Comment.Preproc)
+		}
     }
  
