@@ -27,7 +27,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'DylanLexer', 'ObjectiveCLexer', 'FortranLexer', 'GLShaderLexer',
            'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
            'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
-           'NimrodLexer', 'FantomLexer']
+           'NimrodLexer', 'FantomLexer', 'RustLexer']
 
 
 class CLexer(RegexLexer):
@@ -2889,3 +2889,69 @@ class FantomLexer(RegexLexer):
             (r'.', Text)
         ],
     }
+
+class RustLexer(RegexLexer):
+    """
+    Lexer for Mozilla's Rust programming language
+    """
+    name = 'Rust'
+    filenames = ['*.rs', '*.rc']
+    aliases = ['rust']
+    mimetypes = ['text/x-rustsrc']
+
+    tokens = {
+        'root': [
+            # Whitespace and Comments
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'//(.*?)\n', Comment.Single),
+            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+
+            # Keywords
+            (r'(alt|as|assert|be|break|check|claim|class|const'
+             r'|cont|copy|crust|do|else|enum|export|fail'
+             r'|false|fn|for|if|iface|impl|import|let|log'
+             r'|loop|mod|mut|native|pure|resource|ret|true'
+             r'|type|unsafe|use|white|note|bind|prove|unchecked'
+             r'|with|syntax)', Keyword),
+
+            # Character Literal
+            (r"""'(\\['"?\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
+             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
+             String.Char),
+            # Binary Literal
+            (r'0[Bb][01_]+([ui](8|16|32|64)?)?', Number),
+            # Octal Literal
+            (r'0[0-7_]+([ui](8|16|32|64))?', Number.Oct),
+            # Hexadecimal Literal
+            (r'0[xX][0-9a-fA-F_]+([ui](8|16|32|64))?', Number.Hex),
+            # Decimal Literal
+            (r'[0-9][0-9_]*(([ui](8|16|32|64)?)|(\.[0-9_]+[eE][+\-]?'
+             r'[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+))?(f(32|64)?)?', Number),
+            # String Literal
+            (r'"', String, 'string'),
+
+            # Operators and Punctuation
+            (r'[{}()\[\],.;]', Punctuation),
+            (r'[+\-*/%&|<>^!~@=:?]', Operator),
+
+            # Identifier
+            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+
+            # Attributes / Preprocessor
+            (r'#\[', Comment.Preproc, 'attribute')
+        ],
+        'string': {
+            (r'"', String, '#pop'),
+            (r"""\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
+             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}""", String.Escape),
+            (r'[^\\"]+', String),
+            (r'\\', String)
+        },
+        'attribute': {
+            (r'"', String, 'string'),
+            (r'\];?', Comment.Preproc, '#pop'),
+            (r'[^"\]]+', Comment.Preproc)
+        }
+    }
+ 
