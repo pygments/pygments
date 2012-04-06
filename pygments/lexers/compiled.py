@@ -2913,7 +2913,8 @@ class RustLexer(RegexLexer):
              r'|false|fn|for|if|iface|impl|import|let|log'
              r'|loop|mod|mut|native|pure|resource|ret|true'
              r'|type|unsafe|use|white|note|bind|prove|unchecked'
-             r'|with|syntax)\b', Keyword),
+             r'|with|syntax|u8|u16|u32|u64|i8|i16|i32|i64|uint'
+             r'|int|f32|f64)\b', Keyword),
 
             # Character Literal
             (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
