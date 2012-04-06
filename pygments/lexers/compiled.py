@@ -2913,21 +2913,21 @@ class RustLexer(RegexLexer):
              r'|false|fn|for|if|iface|impl|import|let|log'
              r'|loop|mod|mut|native|pure|resource|ret|true'
              r'|type|unsafe|use|white|note|bind|prove|unchecked'
-             r'|with|syntax)', Keyword),
+             r'|with|syntax)\b', Keyword),
 
             # Character Literal
             (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
              String.Char),
             # Binary Literal
-            (r'0[Bb][01_]+([ui](8|16|32|64)?)?', Number),
+            (r'0[Bb][01_]+', Number, 'number_lit'),
             # Octal Literal
-            (r'0[0-7_]+([ui](8|16|32|64)?)?', Number.Oct),
+            (r'0[0-7_]+', Number.Oct, 'number_lit'),
             # Hexadecimal Literal
-            (r'0[xX][0-9a-fA-F_]+([ui](8|16|32|64)?)?', Number.Hex),
+            (r'0[xX][0-9a-fA-F_]+', Number.Hex, 'number_lit'),
             # Decimal Literal
-            (r'[0-9][0-9_]*(([ui](8|16|32|64)?)|(\.[0-9_]+[eE][+\-]?'
-             r'[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+))?(f(32|64)?)?', Number),
+            (r'[0-9][0-9_]*(\.[0-9_]+[eE][+\-]?'
+             r'[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+)?', Number, 'number_lit'),
             # String Literal
             (r'"', String, 'string'),
 
@@ -2938,13 +2938,16 @@ class RustLexer(RegexLexer):
             # Identifier
             (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
 
-			# Attributes
-			(r'#\[', Comment.Preproc, 'attribute['),
-			(r'#\(', Comment.Preproc, 'attribute('),
-			# Macros
-			(r'#[A-Za-z_][A-Za-z0-9_]*\[', Comment.Preproc, 'attribute['),
-			(r'#[A-Za-z_][A-Za-z0-9_]*\(', Comment.Preproc, 'attribute(')
+            # Attributes
+            (r'#\[', Comment.Preproc, 'attribute['),
+            (r'#\(', Comment.Preproc, 'attribute('),
+            # Macros
+            (r'#[A-Za-z_][A-Za-z0-9_]*\[', Comment.Preproc, 'attribute['),
+            (r'#[A-Za-z_][A-Za-z0-9_]*\(', Comment.Preproc, 'attribute(')
         ],
+        'number_lit': {
+            (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop')
+        },
         'string': {
             (r'"', String, '#pop'),
             (r"""\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
@@ -2952,20 +2955,20 @@ class RustLexer(RegexLexer):
             (r'[^\\"]+', String),
             (r'\\', String)
         },
-		'attribute_common': {
+        'attribute_common': {
             (r'"', String, 'string'),
-			(r'\[', Comment.Preproc, 'attribute['),
-			(r'\(', Comment.Preproc, 'attribute('),
-		},
+            (r'\[', Comment.Preproc, 'attribute['),
+            (r'\(', Comment.Preproc, 'attribute('),
+        },
         'attribute[': {
-			include('attribute_common'),
-			(r'\];?', Comment.Preproc, '#pop'),
+            include('attribute_common'),
+            (r'\];?', Comment.Preproc, '#pop'),
             (r'[^"\]]+', Comment.Preproc)
         },
-		'attribute(': {
-			include('attribute_common'),
-			(r'\);?', Comment.Preproc, '#pop'),
-			(r'[^"\)]+', Comment.Preproc)
-		}
+        'attribute(': {
+            include('attribute_common'),
+            (r'\);?', Comment.Preproc, '#pop'),
+            (r'[^"\)]+', Comment.Preproc)
+        }
     }
  
