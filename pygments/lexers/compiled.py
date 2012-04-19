@@ -27,7 +27,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'DylanLexer', 'ObjectiveCLexer', 'FortranLexer', 'GLShaderLexer',
            'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
            'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
-           'NimrodLexer', 'FantomLexer', 'RustLexer']
+           'NimrodLexer', 'FantomLexer', 'RustLexer', 'CUDALexer']
 
 
 class CLexer(RegexLexer):
@@ -2974,4 +2974,18 @@ class RustLexer(RegexLexer):
             (r'\);?', Comment.Preproc, '#pop'),
             (r'[^"\)]+', Comment.Preproc)
         }
+    }
+
+class CUDALexer(RegexLexer):
+    """
+    For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_ source.
+    """
+    name = 'CUDA'
+    filenames = ['*.cu', '*.cuh']
+    aliases = ['cuda', 'cu']
+    mimetypes = ['text/x-cuda']
+    
+    tokens = {
+        'root': [
+        ], 
     }
