@@ -204,17 +204,18 @@ DATATYPES = [
     'bigint', 'bigserial', 'bit', 'bit varying', 'bool', 'boolean', 'box',
     'bytea', 'char', 'character', 'character varying', 'cidr', 'circle',
     'date', 'decimal', 'double precision', 'float4', 'float8', 'inet',
-    'int', 'int2', 'int4', 'int8', 'integer', 'interval', 'line', 'lseg',
-    'macaddr', 'money', 'numeric', 'path', 'point', 'polygon', 'real',
-    'serial', 'serial4', 'serial8', 'smallint', 'text', 'time', 'timestamp',
-    'timestamptz', 'timetz', 'tsquery', 'tsvector', 'txid_snapshot', 'uuid',
-    'varbit', 'varchar', 'with time zone', 'without time zone', 'xml',
+    'int', 'int2', 'int4', 'int8', 'integer', 'interval', 'json', 'line',
+    'lseg', 'macaddr', 'money', 'numeric', 'path', 'point', 'polygon',
+    'real', 'serial', 'serial2', 'serial4', 'serial8', 'smallint',
+    'smallserial', 'text', 'time', 'timestamp', 'timestamptz', 'timetz',
+    'tsquery', 'tsvector', 'txid_snapshot', 'uuid', 'varbit', 'varchar',
+    'with time zone', 'without time zone', 'xml',
     ]
 
 PSEUDO_TYPES = [
-    'any', 'anyarray', 'anyelement', 'anyenum', 'anynonarray', 'cstring',
-    'internal', 'language_handler', 'fdw_handler', 'record', 'trigger',
-    'void', 'opaque',
+    'any', 'anyelement', 'anyarray', 'anynonarray', 'anyenum', 'anyrange',
+    'cstring', 'internal', 'language_handler', 'fdw_handler', 'record',
+    'trigger', 'void', 'opaque',
     ]
 
 # Remove 'trigger' from types
