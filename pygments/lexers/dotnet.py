@@ -102,7 +102,7 @@ class CSharpLexer(RegexLexer):
                  Comment.Preproc),
                 (r'\b(extern)(\s+)(alias)\b', bygroups(Keyword, Text,
                  Keyword)),
-                (r'(abstract|as|base|break|case|catch|'
+                (r'(abstract|as|async|await|base|break|case|catch|'
                  r'checked|const|continue|default|delegate|'
                  r'do|else|enum|event|explicit|extern|false|finally|'
                  r'fixed|for|foreach|goto|if|implicit|in|interface|'
