@@ -31,7 +31,7 @@ class GasLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     string = r'"(\\"|[^"])*"'
-    char = r'[a-zA-Z$._0-9@]'
+    char = r'[a-zA-Z$._0-9@-]'
     identifier = r'(?:[a-zA-Z$_]' + char + '*|\.' + char + '+)'
     number = r'(?:0[xX][a-zA-Z0-9]+|\d+)'
 
