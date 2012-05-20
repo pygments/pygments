@@ -45,6 +45,8 @@ LEXERS = {
     'CLexer': ('pygments.lexers.compiled', 'C', ('c',), ('*.c', '*.h', '*.idc'), ('text/x-chdr', 'text/x-csrc')),
     'CMakeLexer': ('pygments.lexers.text', 'CMake', ('cmake',), ('*.cmake', 'CMakeLists.txt'), ('text/x-cmake',)),
     'CObjdumpLexer': ('pygments.lexers.asm', 'c-objdump', ('c-objdump',), ('*.c-objdump',), ('text/x-c-objdump',)),
+    'COBOLLexer': ('pygments.lexers.compiled', 'cobol', ('cob',), ('*.cob', '*.COB', '*.cpy', '*.CPY'), ('text/x-cobol',)),
+    'COBOLFreeLexer': ('pygments.lexers.compiled', 'cobolfree', ('cbl',), ('*.cbl', '*.CBL'), ('text/x-cobol',)),
     'CSharpAspxLexer': ('pygments.lexers.dotnet', 'aspx-cs', ('aspx-cs',), ('*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd'), ()),
     'CSharpLexer': ('pygments.lexers.dotnet', 'C#', ('csharp', 'c#'), ('*.cs',), ('text/x-csharp',)),
     'Cfengine3Lexer': ('pygments.lexers.other', 'CFEngine3', ('cfengine3', 'cf3'), ('*.cf',), ()),
