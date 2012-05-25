@@ -1692,9 +1692,9 @@ class ElixirLexer(RegexLexer):
         'root': [
             (r'\s+', Text),
             (r'#.*$', Comment.Single),
-            (r'\b(case|end|bc|lc|if|unless|try|loop|receive|fn|defmodule|'
-             r'defp|def|defprotocol|defimpl|defrecord|defmacro|defdelegate|'
-             r'defexception|exit|raise|throw)\b(?![?!])|'
+            (r'\b(case|cond|end|bc|lc|if|unless|try|loop|receive|fn|defmodule|'
+             r'defp?|def|defprotocol|defimpl|defrecord|defmacrop?|defdelegate|'
+             r'defexception|exit|raise|throw|unless|after|rescue|catch|else)\b(?![?!])|'
              r'(?<!\.)\b(do|\-\>)\b\s*', Keyword),
             (r'\b(import|require|use|recur|quote|unquote|super|refer)\b(?![?!])',
                 Keyword.Namespace),
