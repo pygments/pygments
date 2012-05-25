@@ -1693,7 +1693,7 @@ class ElixirLexer(RegexLexer):
             (r'\s+', Text),
             (r'#.*$', Comment.Single),
             (r'\b(case|cond|end|bc|lc|if|unless|try|loop|receive|fn|defmodule|'
-             r'defp?|def|defprotocol|defimpl|defrecord|defmacrop?|defdelegate|'
+             r'defp?|defprotocol|defimpl|defrecord|defmacrop?|defdelegate|'
              r'defexception|exit|raise|throw|unless|after|rescue|catch|else)\b(?![?!])|'
              r'(?<!\.)\b(do|\-\>)\b\s*', Keyword),
             (r'\b(import|require|use|recur|quote|unquote|super|refer)\b(?![?!])',
@@ -1708,7 +1708,7 @@ class ElixirLexer(RegexLexer):
              r'\*\*?|=?~|<\-)|([a-zA-Z_]\w*([?!])?)(:)(?!:)', String.Symbol),
             (r':"', String.Symbol, 'interpoling_symbol'),
             (r'\b(nil|true|false)\b(?![?!])|\b[A-Z]\w*\b', Name.Constant),
-            (r'\b(__(FILE|LINE|MODULE|LOCAL|MAIN|FUNCTION)__)\b(?![?!])', Name.Builtin.Pseudo),
+            (r'\b(__(FILE|LINE|MODULE|MAIN|FUNCTION)__)\b(?![?!])', Name.Builtin.Pseudo),
             (r'[a-zA-Z_!][\w_]*[!\?]?', Name),
             (r'[(){};,/\|:\\\[\]]', Punctuation),
             (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
