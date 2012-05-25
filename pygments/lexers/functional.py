@@ -1717,17 +1717,20 @@ class ElixirLexer(RegexLexer):
             include('strings'),
         ],
         'strings': [
-            (r'"""(?:.|\n)*?"""', String.Doc),
+            (r'(%[A-Ba-z])?"""(?:.|\n)*?"""', String.Doc),
             (r"'''(?:.|\n)*?'''", String.Doc),
             (r'"', String.Double, 'dqs'),
+            (r'%[a-z]\[', String.Double, 'strbracket'),
+            (r'%[a-z]\{', String.Double, 'strbraces'),
+            (r'%[a-z]\(', String.Double, 'strparens'),
+            (r'%[a-z]\<', String.Double, 'strlt'),
             (r"'.*'", String.Single),
             (r'(?<!\w)\?(\\(x\d{1,2}|\h{1,2}(?!\h)\b|0[0-7]{0,2}(?![0-7])\b|'
              r'[^x0MC])|(\\[MC]-)+\w|[^\s\\])', String.Other)
         ],
         'dqs': [
             (r'"', String.Double, "#pop"),
-            include('interpoling'),
-            (r'[^#"]+', String.Double),
+            include('enddoublestr')
         ],
         'interpoling': [
             (r'#{', String.Interpol, 'interpoling_string'),
@@ -1741,6 +1744,26 @@ class ElixirLexer(RegexLexer):
             include('interpoling'),
             (r'[^#"]+', String.Symbol),
         ],
+        'strbracket': [
+            (r'\][a-z]*', String.Double, "#pop"),
+            include('enddoublestr')
+        ],
+        'strbraces': [
+            (r'\}[a-z]*', String.Double, "#pop"),
+            include('enddoublestr')
+        ],
+        'strparens': [
+            (r'\)[a-z]*', String.Double, "#pop"),
+            include('enddoublestr')
+        ],
+        'strlt': [
+            (r'\>[a-z]*', String.Double, "#pop"),
+            include('enddoublestr')
+        ],
+        'enddoublestr' : [
+            include('interpoling'),
+            (r'[^#"]+', String.Double),
+        ]
     }
 
 
