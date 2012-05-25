@@ -1688,6 +1688,39 @@ class ElixirLexer(RegexLexer):
     filenames = ['*.ex', '*.exs']
     mimetypes = ['text/x-elixir']
 
+    def gen_elixir_sigil_rules():
+        states = {}
+
+        states['strings'] = [
+            (r'(%[A-Ba-z])?"""(?:.|\n)*?"""', String.Doc),
+            (r"'''(?:.|\n)*?'''", String.Doc),
+            (r'"', String.Double, 'dqs'),
+            (r"'.*'", String.Single),
+            (r'(?<!\w)\?(\\(x\d{1,2}|\h{1,2}(?!\h)\b|0[0-7]{0,2}(?![0-7])\b|'
+             r'[^x0MC])|(\\[MC]-)+\w|[^\s\\])', String.Other)
+        ]
+
+        for lbrace, rbrace, name, in ('\\{', '\\}', 'cb'), \
+                                     ('\\[', '\\]', 'sb'), \
+                                     ('\\(', '\\)', 'pa'), \
+                                     ('\\<', '\\>', 'lt'):
+
+            states['strings'] += [
+                (r'%[a-z]' + lbrace, String.Double, name + 'intp'),
+                (r'%[A-Z]' + lbrace, String.Double, name + 'no-intp')
+            ]
+
+            states[name +'intp'] = [
+                (r'' + rbrace + '[a-z]*', String.Double, "#pop"),
+                include('enddoublestr')
+            ]
+
+            states[name +'no-intp'] = [
+                (r'.*' + rbrace, String.Double , "#pop")
+            ]
+
+        return states
+
     tokens = {
         'root': [
             (r'\s+', Text),
@@ -1716,22 +1749,6 @@ class ElixirLexer(RegexLexer):
              r'(_?\d)*)?([eE][-+]?\d(_?\d)*)?|0[bB][01]+)\b', Number),
             include('strings'),
         ],
-        'strings': [
-            (r'(%[A-Ba-z])?"""(?:.|\n)*?"""', String.Doc),
-            (r"'''(?:.|\n)*?'''", String.Doc),
-            (r'"', String.Double, 'dqs'),
-            (r'%[a-z]\[', String.Double, 'strbracket'),
-            (r'%[a-z]\{', String.Double, 'strbraces'),
-            (r'%[a-z]\(', String.Double, 'strparens'),
-            (r'%[a-z]\<', String.Double, 'strlt'),
-            (r'%[A-Z]\[', String.Double, 'strbracketi'),
-            (r'%[A-Z]\{', String.Double, 'strbracesi'),
-            (r'%[A-Z]\(', String.Double, 'strparensi'),
-            (r'%[A-Z]\<', String.Double, 'strlti'),
-            (r"'.*'", String.Single),
-            (r'(?<!\w)\?(\\(x\d{1,2}|\h{1,2}(?!\h)\b|0[0-7]{0,2}(?![0-7])\b|'
-             r'[^x0MC])|(\\[MC]-)+\w|[^\s\\])', String.Other)
-        ],
         'dqs': [
             (r'"', String.Double, "#pop"),
             include('enddoublestr')
@@ -1748,39 +1765,12 @@ class ElixirLexer(RegexLexer):
             include('interpoling'),
             (r'[^#"]+', String.Symbol),
         ],
-        'strbracket': [
-            (r'\][a-z]*', String.Double, "#pop"),
-            include('enddoublestr')
-        ],
-        'strbraces': [
-            (r'\}[a-z]*', String.Double, "#pop"),
-            include('enddoublestr')
-        ],
-        'strparens': [
-            (r'\)[a-z]*', String.Double, "#pop"),
-            include('enddoublestr')
-        ],
-        'strlt': [
-            (r'\>[a-z]*', String.Double, "#pop"),
-            include('enddoublestr')
-        ],
         'enddoublestr' : [
             include('interpoling'),
             (r'[^#"]+', String.Double),
-        ],
-        'strbracketi': [
-            (r'.*\][a-z]*', String.Double, "#pop"),
-        ],
-        'strbracesi': [
-            (r'.*\}[a-z]*', String.Double, "#pop"),
-        ],
-        'strparensi': [
-            (r'.*\)[a-z]*', String.Double, "#pop"),
-        ],
-        'strlti': [
-            (r'.*\>[a-z]*', String.Double, "#pop"),
-        ],
+        ]
     }
+    tokens.update(gen_elixir_sigil_rules())
 
 
 class ElixirConsoleLexer(Lexer):
