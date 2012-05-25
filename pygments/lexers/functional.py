@@ -1724,6 +1724,10 @@ class ElixirLexer(RegexLexer):
             (r'%[a-z]\{', String.Double, 'strbraces'),
             (r'%[a-z]\(', String.Double, 'strparens'),
             (r'%[a-z]\<', String.Double, 'strlt'),
+            (r'%[A-Z]\[', String.Double, 'strbracketi'),
+            (r'%[A-Z]\{', String.Double, 'strbracesi'),
+            (r'%[A-Z]\(', String.Double, 'strparensi'),
+            (r'%[A-Z]\<', String.Double, 'strlti'),
             (r"'.*'", String.Single),
             (r'(?<!\w)\?(\\(x\d{1,2}|\h{1,2}(?!\h)\b|0[0-7]{0,2}(?![0-7])\b|'
              r'[^x0MC])|(\\[MC]-)+\w|[^\s\\])', String.Other)
@@ -1763,7 +1767,19 @@ class ElixirLexer(RegexLexer):
         'enddoublestr' : [
             include('interpoling'),
             (r'[^#"]+', String.Double),
-        ]
+        ],
+        'strbracketi': [
+            (r'.*\][a-z]*', String.Double, "#pop"),
+        ],
+        'strbracesi': [
+            (r'.*\}[a-z]*', String.Double, "#pop"),
+        ],
+        'strparensi': [
+            (r'.*\)[a-z]*', String.Double, "#pop"),
+        ],
+        'strlti': [
+            (r'.*\>[a-z]*', String.Double, "#pop"),
+        ],
     }
 
 
