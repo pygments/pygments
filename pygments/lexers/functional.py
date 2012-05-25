@@ -1716,7 +1716,7 @@ class ElixirLexer(RegexLexer):
             ]
 
             states[name +'no-intp'] = [
-                (r'.*' + rbrace, String.Double , "#pop")
+                (r'.*' + rbrace + '[a-z]*', String.Double , "#pop")
             ]
 
         return states
