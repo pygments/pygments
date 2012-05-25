@@ -1747,6 +1747,7 @@ class ElixirLexer(RegexLexer):
             (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
             (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^\d\s])'
              r'(_?\d)*)?([eE][-+]?\d(_?\d)*)?|0[bB][01]+)\b', Number),
+            (r'%r\/.*\/', String.Regex),
             include('strings'),
         ],
         'dqs': [
