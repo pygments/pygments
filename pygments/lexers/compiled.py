@@ -2976,7 +2976,7 @@ class RustLexer(RegexLexer):
         }
     }
 
-class CUDALexer(RegexLexer):
+class CUDALexer(CLexer):
     """
     For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_ source.
     """
@@ -2984,8 +2984,31 @@ class CUDALexer(RegexLexer):
     filenames = ['*.cu', '*.cuh']
     aliases = ['cuda', 'cu']
     mimetypes = ['text/x-cuda']
-    
     tokens = {
         'root': [
         ], 
     }
+
+    function_types = ['__device__', '__global__', '__host__', '__noinline__', '__forceinline__']
+    variable_types = ['__device__', '__constant__', '__shared__', '__restrict__',
+                      'longlong', 'dim3']
+    variables = ['gridDim', 'blockIdx', 'blockDim', 'threadIdx', 'warpSize']
+    functions = ['__threadfence_block', '__threadfence', '__threadfence_system', '__syncthreads',
+                  '__syncthreads_count', '__syncthreads_and', '__syncthreads_or']
+    execution_confs = ['<<<', '>>>']
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in \
+            CLexer.get_tokens_unprocessed(self, text):
+            if token is Name:
+                if value in self.variable_types:
+                    token = Keyword.Type
+                elif value in self.variables:
+                    token = Name.Builtin
+                elif value in self.execution_confs:
+                    token = Keyword.Pseudo
+                elif value in self.function_types:
+                    token = Keyword.Reserved
+                elif value in self.functions:
+                    token = Name.Function
+            yield index, token, value>>>>>>> other
