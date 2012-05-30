@@ -101,17 +101,15 @@ class JSONLexer(RegexLexer):
     filenames = ['*.json']
     mimetypes = [ 'application/json', ]
 
-    number_regexs = {
+    # integer part of a number
+    int_part = r'-?(0|[1-9]\d*)'
         
-        # integer part of a number
-        'int_part': r'-?(0|[1-9]\d*)',
+    # fractional part of a number
+    frac_part = r'\.\d+'
         
-        # fractional part of a number
-        'frac_part': r'\.\d+',
-        
-        # exponential part of a number
-        'exp_part': r'[eE](\+|-)?\d+'
-    }
+    # exponential part of a number
+    exp_part = r'[eE](\+|-)?\d+'
+
 
     flags = re.DOTALL
     tokens = {
@@ -122,9 +120,10 @@ class JSONLexer(RegexLexer):
         # represents a simple terminal value
         'simplevalue': [
             (r'(true|false|null)\b', Keyword.Constant),
-            ('%(int_part)s(%(frac_part)s%(exp_part)s|%(exp_part)s|%(frac_part)s)' %
-             number_regexs, Number.Float),
-            (number_regexs['int_part'], Number.Integer),
+            (('{int_part!s}({frac_part!s}{exp_part!s}|'
+              '{exp_part!s}|{frac_part!s})').format(**vars()),
+             Number.Float),
+            (int_part, Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
         ],
 
