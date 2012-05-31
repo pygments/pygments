@@ -120,8 +120,8 @@ class JSONLexer(RegexLexer):
         # represents a simple terminal value
         'simplevalue': [
             (r'(true|false|null)\b', Keyword.Constant),
-            (('{int_part!s}({frac_part!s}{exp_part!s}|'
-              '{exp_part!s}|{frac_part!s})').format(**vars()),
+            (('%(int_part)s(%(frac_part)s%(exp_part)s|'
+              '%(exp_part)s|%(frac_part)s)') % vars(),
              Number.Float),
             (int_part, Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
