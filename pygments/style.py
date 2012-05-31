@@ -26,7 +26,7 @@ class StyleMeta(type):
                 if len(col) == 6:
                     return col
                 elif len(col) == 3:
-                    return col[0]+'0'+col[1]+'0'+col[2]+'0'
+                    return col[0]*2 + col[1]*2 + col[2]*2
             elif text == '':
                 return ''
             assert False, "wrong color format %r" % text

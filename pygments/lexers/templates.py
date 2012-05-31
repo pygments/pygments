@@ -1504,6 +1504,7 @@ class ColdfusionLexer(RegexLexer):
         ],
     }
 
+
 class ColdfusionMarkupLexer(RegexLexer):
     """
     Coldfusion markup only
