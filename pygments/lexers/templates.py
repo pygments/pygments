@@ -37,7 +37,8 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'CheetahXmlLexer', 'CheetahJavascriptLexer', 'EvoqueLexer',
            'EvoqueHtmlLexer', 'EvoqueXmlLexer', 'ColdfusionLexer',
            'ColdfusionHtmlLexer', 'VelocityLexer', 'VelocityHtmlLexer',
-           'VelocityXmlLexer', 'SspLexer', 'TeaTemplateLexer']
+           'VelocityXmlLexer', 'SspLexer', 'TeaTemplateLexer', 'LassoHtmlLexer',
+           'LassoXmlLexer', 'LassoCssLexer', 'LassoJavascriptLexer']
 
 
 class ErbLexer(Lexer):
@@ -1629,3 +1630,93 @@ class TeaTemplateLexer(DelegatingLexer):
         if '<%' in text and '%>' in text:
             rv += 0.1
         return rv
+
+
+class LassoHtmlLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `HtmlLexer`.
+
+    Nested JavaScript and CSS is also highlighted.
+    """
+
+    name = 'HTML+Lasso'
+    aliases = ['html+lasso']
+    filenames = ['*.lasso', '*.lasso[89]', '*.las']
+    alias_filenames = ['*.html', '*.htm', '*.xhtml',
+                       '*.lasso', '*.lasso[89]', '*.las',
+                       '*.incl', '*.inc']
+    mimetypes = ['text/html+lasso',
+                 'application/x-httpd-lasso',
+                 'application/x-httpd-lasso[89]']
+
+    def __init__(self, **options):
+        super(LassoHtmlLexer, self).__init__(HtmlLexer, LassoLexer, **options)
+
+    def analyse_text(text):
+        rv = LassoLexer.analyse_text(text) - 0.01
+        if re.search(r'<\w+>', text, re.I):
+            rv += 0.2
+        if html_doctype_matches(text):
+            rv += 0.5
+        return rv
+
+
+class LassoXmlLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `XmlLexer`.
+    """
+
+    name = 'XML+Lasso'
+    aliases = ['xml+lasso']
+    alias_filenames = ['*.xml', '*.lasso', '*.lasso[89]']
+    mimetypes = ['application/xml+lasso']
+
+    def __init__(self, **options):
+        super(LassoXmlLexer, self).__init__(XmlLexer, LassoLexer, **options)
+
+    def analyse_text(text):
+        rv = LassoLexer.analyse_text(text) - 0.01
+        if looks_like_xml(text):
+            rv += 0.4
+        return rv
+
+
+class LassoCssLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `CssLexer`.
+    """
+
+    name = 'CSS+Lasso'
+    aliases = ['css+lasso']
+    alias_filenames = ['*.css']
+    mimetypes = ['text/css+lasso']
+
+    def __init__(self, **options):
+        super(LassoCssLexer, self).__init__(CssLexer, LassoLexer, **options)
+
+    def analyse_text(text):
+        return LassoLexer.analyse_text(text) - 0.05
+
+
+class LassoJavascriptLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `JavascriptLexer`.
+    """
+
+    name = 'JavaScript+Lasso'
+    aliases = ['js+lasso', 'javascript+lasso']
+    alias_filenames = ['*.js']
+    mimetypes = ['application/x-javascript+lasso',
+                 'text/x-javascript+lasso',
+                 'text/javascript+lasso']
+
+    def __init__(self, **options):
+        super(LassoJavascriptLexer, self).__init__(JavascriptLexer, LassoLexer,
+                                                   **options)
+
+    def analyse_text(text):
+        return LassoLexer.analyse_text(text) - 0.05
