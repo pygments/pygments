@@ -5332,6 +5332,6 @@ BUILTINS = {
         'xsd_processsimpletype',
         'xsd_ref',
         'xsd_type',
-        'year'
+        'year',
     ]
 }
