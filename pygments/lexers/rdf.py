@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+"""
+    pygments.lexers.rdf
+    ~~~~~~~~~~~~~~~~~~~
+
+    Lexers for semantic web and RDF query languages and markup.
+
+    :copyright: Copyright 2012 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
 import re
 
 from pygments.lexer import RegexLexer, include, this, bygroups, include
