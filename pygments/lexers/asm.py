@@ -17,7 +17,7 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
      Other, Keyword, Operator
 
 __all__ = ['GasLexer', 'ObjdumpLexer','DObjdumpLexer', 'CppObjdumpLexer',
-           'CObjdumpLexer', 'LlvmLexer', 'NasmLexer']
+           'CObjdumpLexer', 'LlvmLexer', 'NasmLexer', 'Ca65Lexer']
 
 
 class GasLexer(RegexLexer):
@@ -357,4 +357,34 @@ class NasmLexer(RegexLexer):
             (wordop, Operator.Word),
             (type, Keyword.Type)
         ],
+    }
+
+class Ca65Lexer(RegexLexer):
+    """
+    For ca65 assembler sources.
+    """
+    name = 'ca65'
+    aliases = ['ca65']
+    filenames = ['*.s']
+    
+    flags = re.IGNORECASE
+    
+    tokens = {
+        'root': [
+            (r';.*', Comment.Single),
+            (r'\s+', Text),
+            (r'[\w.@$][\w.@$\d]*:', Name.Label),
+            (r'((ld|st)[axy]|(in|de)[cxy]|asl|lsr|ro[lr]|adc|sbc|cmp|cp[xy]'
+             r'|cl[cvdi]|se[cdi]|jmp|jsr|bne|beq|bpl|bmi|bvc|bvs|bcc|bcs'
+             r'|p[lh][ap]|rt[is]|brk|nop|ta[xy]|t[xy]a|txs|tsx|and|ora|eor'
+             r'|bit)\b', Keyword),
+            (r'\.[a-z0-9_]+', Keyword.Pseudo),
+            (r'[-+~*/^&|!<>=]', Operator),
+            (r'"[^"\n]*.', String),
+            (r"'[^'\n]*.", String.Char),
+            (r'\$[0-9a-f]+|[0-9a-f]+h\b', Number.Hex),
+            (r'\d+|%[01]+', Number.Integer),
+            (r'[#,.:()=]', Punctuation),
+            (r'[\w.@$][\w.@$\d]*', Name),
+        ]
     }
