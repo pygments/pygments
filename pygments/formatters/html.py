@@ -285,7 +285,7 @@ class HtmlFormatter(Formatter):
     `linespans`
         If set to a nonempty string, e.g. ``foo``, the formatter will wrap each
         output line in a span tag with an ``id`` of ``foo-linenumber``.
-        This allows easy access via to lines javascript.
+        This allows easy access to lines via javascript.
 
     `anchorlinenos`
         If set to `True`, will wrap line numbers in <a> tags. Used in
