@@ -1821,7 +1821,11 @@ class CoffeeScriptLexer(RegexLexer):
             (r'\+\+|--|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|=|'
              r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|[-<>+*`%&\|\^/])=?',
              Operator, 'slashstartsregex'),
-            (r'\([^()]*\)\s*->', Name.Function),
+            (r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
+             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|'
+             r'=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?',
+             Operator, 'slashstartsregex'),
+            (r'(?:\([^()]+\))?\s*[=-]>', Name.Function),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|own|in|of|while|until|loop|break|return|continue|'
@@ -1919,10 +1923,12 @@ class LiveScriptLexer(RegexLexer):
             # this next expr leads to infinite loops root -> slashstartsregex
             #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'\+\+|--|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|=|'
-             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|[-<>+*`%&\|\^/])=?',
+            (r'\+\+|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|=|'
+             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|'
+             r'~(?!\~?[>])|-(?!\-?[>])|[<>+*`%&\|\^/])=?',
              Operator, 'slashstartsregex'),
-            (r'\([^()]*\)\s*->', Name.Function),
+            (r'(?:\([^()]+\))?\s*[~-]{1,2}>', Name.Function),
+            (r'(?:\(?[^()\n]+\)?)?[ ]*<[~-]{1,2}', Name.Function),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|own|in|of|while|until|loop|break|return|continue|'
@@ -1937,9 +1943,9 @@ class LiveScriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'eval|isFinite|isNaN|parseFloat|parseInt|document|window)\b',
               Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_\.\-:]*\s*[:=]\s', Name.Variable,
+            (r'[$a-zA-Z_][a-zA-Z0-9_\.\-:\$]*\s*[:=]\s', Name.Variable,
               'slashstartsregex'),
-            (r'@[$a-zA-Z_][a-zA-Z0-9_\.\-:]*\s*[:=]\s', Name.Variable.Instance,
+            (r'@[$a-zA-Z_][a-zA-Z0-9_\.\-:\$]*\s*[:=]\s', Name.Variable.Instance,
               'slashstartsregex'),
             (r'@', Name.Other, 'slashstartsregex'),
             (r'@?[$a-zA-Z_][a-zA-Z0-9_\-]*', Name.Other, 'slashstartsregex'),
