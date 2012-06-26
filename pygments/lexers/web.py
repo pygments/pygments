@@ -25,8 +25,9 @@ from pygments.lexers.compiled import ScalaLexer
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JSONLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
-           'ObjectiveJLexer', 'CoffeeScriptLexer', 'DuelLexer', 'ScamlLexer',
-           'JadeLexer', 'XQueryLexer', 'DtdLexer', 'DartLexer']
+           'ObjectiveJLexer', 'CoffeeScriptLexer', 'LiveScriptLexer',
+           'DuelLexer', 'ScamlLexer', 'JadeLexer', 'XQueryLexer',
+           'DtdLexer', 'DartLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -1823,7 +1824,8 @@ class CoffeeScriptLexer(RegexLexer):
             (r'\([^()]*\)\s*->', Name.Function),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
-            (r'(for|in|of|while|break|return|continue|switch|when|then|if|else|'
+            (r'(for|own|in|of|while|until|loop|break|return|continue|'
+             r'switch|when|then|if|unless|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|super|'
              r'extends|this|class|by)\b', Keyword, 'slashstartsregex'),
             (r'(true|false|yes|no|on|off|null|NaN|Infinity|undefined)\b',
@@ -1879,6 +1881,110 @@ class CoffeeScriptLexer(RegexLexer):
             include('strings')
         ],
     }
+
+
+class LiveScriptLexer(RegexLexer):
+    """
+    For `LiveScript`_ source code.
+
+    .. LiveScript: http://gkz.github.com/LiveScript/
+    """
+
+    name = 'LiveScript'
+    aliases = ['live-script', 'livescript']
+    filenames = ['*.ls']
+    mimetypes = ['text/livescript']
+
+    flags = re.DOTALL
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'#.*?\n', Comment.Single),
+        ],
+        'multilineregex': [
+            include('commentsandwhitespace'),
+            (r'//([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'/', String.Regex),
+            (r'[^/#]+', String.Regex)
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'//', String.Regex, ('#pop', 'multilineregex')),
+            (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'', Text, '#pop'),
+        ],
+        'root': [
+            # this next expr leads to infinite loops root -> slashstartsregex
+            #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            include('commentsandwhitespace'),
+            (r'\+\+|--|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|=|'
+             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|[-<>+*`%&\|\^/])=?',
+             Operator, 'slashstartsregex'),
+            (r'\([^()]*\)\s*->', Name.Function),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+            (r'(for|own|in|of|while|until|loop|break|return|continue|'
+             r'switch|when|then|if|unless|else|'
+             r'throw|try|catch|finally|new|delete|typeof|instanceof|super|'
+             r'extends|this|class|by|const|var|to|til)\b', Keyword,
+              'slashstartsregex'),
+            (r'(true|false|yes|no|on|off|null|NaN|Infinity|undefined)\b',
+              Keyword.Constant),
+            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
+             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+             r'decodeURIComponent|encodeURI|encodeURIComponent|'
+             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window)\b',
+              Name.Builtin),
+            (r'[$a-zA-Z_][a-zA-Z0-9_\.\-:]*\s*[:=]\s', Name.Variable,
+              'slashstartsregex'),
+            (r'@[$a-zA-Z_][a-zA-Z0-9_\.\-:]*\s*[:=]\s', Name.Variable.Instance,
+              'slashstartsregex'),
+            (r'@', Name.Other, 'slashstartsregex'),
+            (r'@?[$a-zA-Z_][a-zA-Z0-9_\-]*', Name.Other, 'slashstartsregex'),
+            (r'[0-9]+\.[0-9]+([eE][0-9]+)?[fd]?(?:[a-zA-Z_]+)?', Number.Float),
+            (r'0x[0-9a-fA-F]+([a-zA-Z_]+)?', Number.Hex),
+            (r'[0-9]+(?:[a-zA-Z_]+)?', Number.Integer),
+            ('"""', String, 'tdqs'),
+            ("'''", String, 'tsqs'),
+            ('"', String, 'dqs'),
+            ("'", String, 'sqs'),
+            (r'\\[\w$-]+', String),
+        ],
+        'strings': [
+            (r'[^#\\\'"]+', String),
+            # note that all coffee script strings are multi-line.
+            # hashmarks, quotes and backslashes must be parsed one at a time
+        ],
+        'interpoling_string' : [
+            (r'}', String.Interpol, "#pop"),
+            include('root')
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            (r'\\.|\'', String), # double-quoted string don't need ' escapes
+            (r'#{', String.Interpol, "interpoling_string"),
+            include('strings')
+        ],
+        'sqs': [
+            (r"'", String, '#pop'),
+            (r'#|\\.|"', String), # single quoted strings don't need " escapses
+            include('strings')
+        ],
+        'tdqs': [
+            (r'"""', String, '#pop'),
+            (r'\\.|\'|"', String), # no need to escape quotes in triple-string
+            (r'#{', String.Interpol, "interpoling_string"),
+            include('strings'),
+        ],
+        'tsqs': [
+            (r"'''", String, '#pop'),
+            (r'#|\\.|\'|"', String), # no need to escape quotes in triple-strings
+            include('strings')
+        ],
+    }
+
 
 class DuelLexer(RegexLexer):
     """
