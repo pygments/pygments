@@ -1920,12 +1920,13 @@ class LiveScriptLexer(RegexLexer):
             # this next expr leads to infinite loops root -> slashstartsregex
             #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
+            (r'(?:\([^()]+\))?[ ]*!?[~-]{1,2}>|'
+             r'(?:\(?[^()\n]+\)?)?[ ]*<[~-]{1,2}!?', Name.Function),
             (r'\+\+|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|=|'
              r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|'
-             r'~(?!\~?[>])|-(?!\-?[>])|[<>+*`%&\|\^/])=?',
+             r'~(?!\~?>)|-(?!\-?>)|<(?!\[)|(?<!\])>|'
+             r'[+*`%&\|\^/])=?',
              Operator, 'slashstartsregex'),
-            (r'(?:\([^()]+\))?\s*[~-]{1,2}>', Name.Function),
-            (r'(?:\(?[^()\n]+\)?)?[ ]*<[~-]{1,2}', Name.Function),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|own|in|of|while|until|loop|break|return|continue|'
@@ -1954,6 +1955,7 @@ class LiveScriptLexer(RegexLexer):
             ('"', String, 'dqs'),
             ("'", String, 'sqs'),
             (r'\\[\w$-]+', String),
+            (r'<\[.*\]>', String),
         ],
         'strings': [
             (r'[^#\\\'"]+', String),
