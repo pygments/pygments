@@ -22,7 +22,7 @@ from pygments import unistring as uni
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python3Lexer', 'Python3TracebackLexer', 'RubyLexer',
            'RubyConsoleLexer', 'PerlLexer', 'LuaLexer', 'MoonScriptLexer',
-           'CrocLexer', 'IoLexer', 'TclLexer', 'FactorLexer', 'FancyLexer']
+           'CrocLexer', 'MiniDLexer', 'IoLexer', 'TclLexer', 'FactorLexer', 'FancyLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -1248,6 +1248,16 @@ class CrocLexer(RegexLexer):
             (r'[*/]', Comment.Multiline),
         ],
     }
+
+
+class MiniDLexer(CrocLexer):
+    """
+    For MiniD source. MiniD is now known as Croc.
+    """
+    name = 'MiniD'
+    filenames = ['*.md']
+    aliases = ['minid']
+    mimetypes = ['text/x-minidsrc']
 
 
 class IoLexer(RegexLexer):
