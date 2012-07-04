@@ -1797,8 +1797,8 @@ class CoffeeScriptLexer(RegexLexer):
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Text),
-            (r'###.*?###', Comment.Multiline),
-            (r'#.*?\n', Comment.Single),
+            (r'###[^#].*?###', Comment.Multiline),
+            (r'#(?!##[^#]).*?\n', Comment.Single),
         ],
         'multilineregex': [
             include('commentsandwhitespace'),
