@@ -17,6 +17,10 @@ from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, bytes
 
+try:
+    from ctags import CTags, TagEntry
+except ImportError:
+    pass
 
 __all__ = ['HtmlFormatter']
 
@@ -351,6 +355,13 @@ class HtmlFormatter(Formatter):
         self.prestyles = self._decodeifneeded(options.get('prestyles', ''))
         self.cssfile = self._decodeifneeded(options.get('cssfile', ''))
         self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
+        self.tagsfile = self._decodeifneeded(options.get('tagsfile', ''))
+
+        if self.tagsfile:
+            try:
+                self.ct = CTags(self.tagsfile)
+            except NameError:
+                print >> sys.stderr, 'Hey! ctags doesn\'t seem to be installed. Try \'pip install python-ctags\'.'
 
         linenos = options.get('linenos', False)
         if linenos == 'inline':
@@ -642,6 +653,7 @@ class HtmlFormatter(Formatter):
         # for <span style=""> lookup only
         getcls = self.ttype2class.get
         c2s = self.class2style
+        tagsfile = self.tagsfile
         escape_table = _escape_html_table
 
         lspan = ''
@@ -658,6 +670,12 @@ class HtmlFormatter(Formatter):
                 cspan = cls and '<span class="%s">' % cls or ''
 
             parts = value.translate(escape_table).split('\n')
+
+            if tagsfile and ttype in Token.Name:
+                filename, lineNumber = self._lookup_ctag(value)
+                if filename:
+                    parts[0] = "<a href=\"#%s-%s\">%s" % (self.lineanchors, lineNumber, parts[0])
+                    parts[-1] = "%s</a>" % parts[-1]
 
             # for all but the last line
             for part in parts[:-1]:
@@ -687,6 +705,13 @@ class HtmlFormatter(Formatter):
 
         if line:
             yield 1, line + (lspan and '</span>') + lsep
+
+    def _lookup_ctag(self, token):
+        entry = TagEntry()
+        if self.ct.find(entry, token, 0):
+            return entry['file'], entry['lineNumber']
+        else:
+            return None, None
 
     def _highlight_lines(self, tokensource):
         """
