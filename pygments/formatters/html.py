@@ -356,6 +356,9 @@ class HtmlFormatter(Formatter):
         self.cssfile = self._decodeifneeded(options.get('cssfile', ''))
         self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
         self.tagsfile = self._decodeifneeded(options.get('tagsfile', ''))
+        self.tagurlprefix = self._decodeifneeded(options.get('tagurlprefix', ''))
+        self.linkfext = self._decodeifneeded(options.get('linkfext', '.html'))
+        self.singlepage = get_bool_opt(options, 'singlepage', True)
 
         if self.tagsfile:
             try:
@@ -653,8 +656,13 @@ class HtmlFormatter(Formatter):
         # for <span style=""> lookup only
         getcls = self.ttype2class.get
         c2s = self.class2style
-        tagsfile = self.tagsfile
         escape_table = _escape_html_table
+
+        tagsfile = self.tagsfile
+        singlepage = self.singlepage
+        if not singlepage:
+            tagurlprefix = self.tagurlprefix
+            linkfext = self.linkfext
 
         lspan = ''
         line = ''
@@ -674,7 +682,10 @@ class HtmlFormatter(Formatter):
             if tagsfile and ttype in Token.Name:
                 filename, lineNumber = self._lookup_ctag(value)
                 if filename:
-                    parts[0] = "<a href=\"#%s-%s\">%s" % (self.lineanchors, lineNumber, parts[0])
+                    if singlepage:
+                        parts[0] = "<a href=\"#%s-%s\">%s" % (self.lineanchors, lineNumber, parts[0])
+                    else:
+                        parts[0] = "<a href=\"%s%s%s#%s-%s\">%s" % (tagurlprefix, filename, linkfext, self.lineanchors, lineNumber, parts[0])
                     parts[-1] = "%s</a>" % parts[-1]
 
             # for all but the last line
