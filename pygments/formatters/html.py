@@ -145,6 +145,10 @@ class HtmlFormatter(Formatter):
     the style definitions inside a ``<style>`` tag, or in a separate file if
     the `cssfile` option is given.
 
+    When `tagsfile` is set to the path of a ctags index file, it is used to
+    generate hyperlinks from names to their definition. You must enable
+    `anchorlines` and run ctags with the `-n` option for this to work.
+
     The `get_style_defs(arg='')` method of a `HtmlFormatter` returns a string
     containing CSS rules for the CSS classes used by the formatter. The
     argument `arg` can be used to specify additional CSS selectors that
@@ -290,6 +294,22 @@ class HtmlFormatter(Formatter):
         If set to `True`, will wrap line numbers in <a> tags. Used in
         combination with `linenos` and `lineanchors`.
 
+    `tagsfile`
+        If set to the path of a ctags file, wrap names in anchor tags that
+        link to their definitions. `lineanchors` should be used, and the
+        tags file should specify line numbers(see the `-n` option to ctags)
+    
+    `singlepage`
+        Defaults to True. Determines if links to name definitions should
+        link to other files.
+
+    'tagurlprefix`
+        The URL to the root of your project, where the tag file resides.
+        This is prepended to links if `singlepage` is false.
+
+    `linkfext`
+        Similar to `tagurlprefix`, but sets the file extension used.
+        Defaults to .html
 
     **Subclassing the HTML formatter**
 
