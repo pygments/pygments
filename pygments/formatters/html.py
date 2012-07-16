@@ -300,17 +300,10 @@ class HtmlFormatter(Formatter):
         link to their definitions. `lineanchors` should be used, and the
         tags file should specify line numbers(see the `-n` option to ctags)
     
-    `singlepage`
-        Defaults to True. Determines if links to name definitions should
-        link to other files.
-
-    'urlformat`
-        The URL to the root of your project, where the tag file resides.
-        This is prepended to links if `singlepage` is false.
-
-    `linkfext`
-        Similar to `urlformat`, but sets the file extension used.
-        Defaults to .html
+    `urlformat`
+        A `String.format` pattern used to generate links to ctags definitions.
+        Avaliabe variable are `{path}`, `{fname}` and `{fext}`.
+        Defaults to an empty string, resulting in just `#prefix-number` links.
 
     **Subclassing the HTML formatter**
 
