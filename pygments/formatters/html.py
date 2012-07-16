@@ -694,7 +694,7 @@ class HtmlFormatter(Formatter):
                     base, filename = os.path.split(filename)
                     filename, extension = os.path.splitext(filename)
                     url = urlformat.format(path=base, fname=filename, fext=extension)
-                    parts[0] = "<a href=\"%s#%s-%d\">%s" % (url, self.lineanchors, linenumber, value)
+                    parts[0] = "<a href=\"%s#%s-%d\">%s" % (url, self.lineanchors, linenumber, parts[0])
                     parts[-1] = parts[-1] + "</a>"
 
             # for all but the last line
