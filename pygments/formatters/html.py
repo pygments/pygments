@@ -10,6 +10,7 @@
 """
 
 import os
+import os.path
 import sys
 import StringIO
 
@@ -303,12 +304,12 @@ class HtmlFormatter(Formatter):
         Defaults to True. Determines if links to name definitions should
         link to other files.
 
-    'tagurlprefix`
+    'urlformat`
         The URL to the root of your project, where the tag file resides.
         This is prepended to links if `singlepage` is false.
 
     `linkfext`
-        Similar to `tagurlprefix`, but sets the file extension used.
+        Similar to `urlformat`, but sets the file extension used.
         Defaults to .html
 
     **Subclassing the HTML formatter**
@@ -376,9 +377,7 @@ class HtmlFormatter(Formatter):
         self.cssfile = self._decodeifneeded(options.get('cssfile', ''))
         self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
         self.tagsfile = self._decodeifneeded(options.get('tagsfile', ''))
-        self.tagurlprefix = self._decodeifneeded(options.get('tagurlprefix', ''))
-        self.linkfext = self._decodeifneeded(options.get('linkfext', '.html'))
-        self.singlepage = get_bool_opt(options, 'singlepage', True)
+        self.urlformat = self._decodeifneeded(options.get('urlformat', ''))
 
         if self.tagsfile:
             try:
@@ -679,10 +678,7 @@ class HtmlFormatter(Formatter):
         escape_table = _escape_html_table
 
         tagsfile = self.tagsfile
-        singlepage = self.singlepage
-        if not singlepage:
-            tagurlprefix = self.tagurlprefix
-            linkfext = self.linkfext
+        urlformat = self.urlformat
 
         lspan = ''
         line = ''
@@ -700,13 +696,13 @@ class HtmlFormatter(Formatter):
             parts = value.translate(escape_table).split('\n')
 
             if tagsfile and ttype in Token.Name:
-                filename, lineNumber = self._lookup_ctag(value)
-                if filename:
-                    if singlepage:
-                        parts[0] = "<a href=\"#%s-%s\">%s" % (self.lineanchors, lineNumber, parts[0])
-                    else:
-                        parts[0] = "<a href=\"%s%s%s#%s-%s\">%s" % (tagurlprefix, filename, linkfext, self.lineanchors, lineNumber, parts[0])
-                    parts[-1] = "%s</a>" % parts[-1]
+                filename, linenumber = self._lookup_ctag(value)
+                if linenumber:
+                    base, filename = os.path.split(filename)
+                    filename, extension = os.path.splitext(filename)
+                    url = urlformat.format(path=base, fname=filename, fext=extension)
+                    parts[0] = "<a href=\"%s#%s-%d\">%s" % (url, self.lineanchors, linenumber, value)
+                    parts[-1] = parts[-1] + "</a>"
 
             # for all but the last line
             for part in parts[:-1]:
