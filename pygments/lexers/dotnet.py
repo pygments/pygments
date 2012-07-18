@@ -88,7 +88,7 @@ class CSharpLexer(RegexLexer):
                 (r'[^\S\n]+', Text),
                 (r'\\\n', Text), # line continuation
                 (r'//.*?\n', Comment.Single),
-                (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+                (r'/[*].*?[*]/', Comment.Multiline),
                 (r'\n', Text),
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
