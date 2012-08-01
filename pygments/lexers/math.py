@@ -1160,7 +1160,7 @@ class BugsLexer(RegexLexer):
 
 class JagsLexer(RegexLexer):
     """ Pygments Lexer for JAGS """
-    name = 'jags'
+    name = 'JAGS'
     aliases = ['jags']
     filenames = ['*.jags']
     
@@ -1210,7 +1210,7 @@ class JagsLexer(RegexLexer):
             # Variable declaration (TODO: improve)
             (r'var\b', Keyword.Declaration, 'var')
         ],
-        'block' : [
+        'statements': [
             include('comments'),
             include('whitespace'),
             # Reserved Words
@@ -1225,27 +1225,28 @@ class JagsLexer(RegexLexer):
             include('names'),
             # Number Literals
             (r'[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?', Number),
-            (r'(\[|\]|\(|\)|:|,|;)', Punctuation),
+            (r'(\[|\]|\(|\)|:|,)', Punctuation),
             # Assignment operators
             (r'(<-|~)', Operator),
             # # JAGS includes many more than OpenBUGS
             # |/|\|\||\&\&|>=?|<=?|[=!]?=|!|%.*?%|^)'
             (r'(\+|-|\*|\/|\|\|[&]{2}|[<>=]=?|\^|%.*?%)', Operator),
-            # Block
+            ],
+        'block' : [
+            include('statements'),
+            (r';', Punctuation),
             (r'{', Punctuation, '#push'),
             (r'}', Punctuation, '#pop'),
             ],
         'var' : [
-            include('whitespace'),
-            include('names'),
-            (r'(,|\[|\])', Punctuation),
+            include('statements'),
             (r';', Punctuation, '#pop'),
             ]
         }
 
 class StanLexer(RegexLexer):
     """ Pygments Lexer for Stan models """
-    name = 'STAN'
+    name = 'Stan'
     aliases = ['stan']
     filenames = ['*.stan']
 
