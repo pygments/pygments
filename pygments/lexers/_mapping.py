@@ -230,7 +230,7 @@ LEXERS = {
     'SqliteConsoleLexer': ('pygments.lexers.sql', 'sqlite3con', ('sqlite3',), ('*.sqlite3-console',), ('text/x-sqlite3-console',)),
     'SquidConfLexer': ('pygments.lexers.text', 'SquidConf', ('squidconf', 'squid.conf', 'squid'), ('squid.conf',), ('text/x-squidconf',)),
     'SspLexer': ('pygments.lexers.templates', 'Scalate Server Page', ('ssp',), ('*.ssp',), ('application/x-ssp',)),
-    'StanLexer': ('pygments.lexers.math', 'Stan', ('stan',), ('*.stan'), ()),
+    'StanLexer': ('pygments.lexers.math', 'Stan', ('stan',), ('*.stan',), ()),
     'SystemVerilogLexer': ('pygments.lexers.hdl', 'systemverilog', ('sv',), ('*.sv', '*.svh'), ('text/x-systemverilog',)),
     'TclLexer': ('pygments.lexers.agile', 'Tcl', ('tcl',), ('*.tcl',), ('text/x-tcl', 'text/x-script.tcl', 'application/x-tcl')),
     'TcshLexer': ('pygments.lexers.shell', 'Tcsh', ('tcsh', 'csh'), ('*.tcsh', '*.csh'), ('application/x-csh',)),
