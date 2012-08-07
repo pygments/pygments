@@ -1825,11 +1825,13 @@ class CoffeeScriptLexer(RegexLexer):
             (r'(?:\([^()]+\))?\s*[=-]>', Name.Function),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
-            (r'(for|own|in|of|while|until|loop|break|return|continue|'
+            (r'(?<![\.\$])(for|own|in|of|while|until|'
+             r'loop|break|return|continue|'
              r'switch|when|then|if|unless|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|super|'
              r'extends|this|class|by)\b', Keyword, 'slashstartsregex'),
-            (r'(true|false|yes|no|on|off|null|NaN|Infinity|undefined)\b',
+            (r'(?<![\.\$])(true|false|yes|no|on|off|null|'
+             r'NaN|Infinity|undefined)\b',
              Keyword.Constant),
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
              r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
@@ -1920,21 +1922,22 @@ class LiveScriptLexer(RegexLexer):
             # this next expr leads to infinite loops root -> slashstartsregex
             #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'(?:\([^()]+\))?[ ]*!?[~-]{1,2}>|'
-             r'(?:\(?[^()\n]+\)?)?[ ]*<[~-]{1,2}!?', Name.Function),
-            (r'\+\+|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|=|'
+            (r'(?:\([^()]+\))?[ ]*[~-]{1,2}>|'
+             r'(?:\(?[^()\n]+\)?)?[ ]*<[~-]{1,2}', Name.Function),
+            (r'\+\+|&&|(?<![\.\$])\b(?:and|x?or|is|isnt|not)\b|\?|:|=|'
              r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|'
              r'~(?!\~?>)|-(?!\-?>)|<(?!\[)|(?<!\])>|'
              r'[+*`%&\|\^/])=?',
              Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
-            (r'(for|own|in|of|while|until|loop|break|return|continue|'
-             r'switch|when|then|if|unless|else|'
+            (r'(?<![\.\$])(for|own|in|of|while|until|loop|break|'
+             r'return|continue|switch|when|then|if|unless|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|super|'
              r'extends|this|class|by|const|var|to|til)\b', Keyword,
               'slashstartsregex'),
-            (r'(true|false|yes|no|on|off|null|NaN|Infinity|undefined)\b',
+            (r'(?<![\.\$])(true|false|yes|no|on|off|'
+             r'null|NaN|Infinity|undefined|void)\b',
               Keyword.Constant),
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
              r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
@@ -1948,8 +1951,7 @@ class LiveScriptLexer(RegexLexer):
             (r'@', Name.Other, 'slashstartsregex'),
             (r'@?[$a-zA-Z_][a-zA-Z0-9_\-]*', Name.Other, 'slashstartsregex'),
             (r'[0-9]+\.[0-9]+([eE][0-9]+)?[fd]?(?:[a-zA-Z_]+)?', Number.Float),
-            (r'0x[0-9a-fA-F]+([a-zA-Z_]+)?', Number.Hex),
-            (r'[0-9]+(?:[a-zA-Z_]+)?', Number.Integer),
+            (r'[0-9]+(~[0-9a-z]+)?(?:[a-zA-Z_]+)?', Number.Integer),
             ('"""', String, 'tdqs'),
             ("'''", String, 'tsqs'),
             ('"', String, 'dqs'),
