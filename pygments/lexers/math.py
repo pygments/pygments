@@ -1013,7 +1013,6 @@ class SLexer(RegexLexer):
             (r'[a-zA-Z][0-9a-zA-Z\._]+', Text),
             # can begin with ., but not if that is followed by a digit
             (r'\.[a-zA-Z_][0-9a-zA-Z\._]+', Text),
-            (r'`.+`', String.Backtick),
         ],
         'punctuation': [
             (r'\[{1,2}|\]{1,2}|\(|\)|;|,', Punctuation),
@@ -1024,7 +1023,7 @@ class SLexer(RegexLexer):
              Keyword.Reserved)
         ],
         'operators': [
-            (r'<<?-|->>?|-|==|<=|>=|<|>|&&?|!=|\|\|?', Operator),
+            (r'<<?-|->>?|-|==|<=|>=|<|>|&&?|!=|\|\|?|\?', Operator),
             (r'\*|\+|\^|/|!|%[^%]*%|=|~|\$|@|:{1,3}', Operator)
         ],
         'builtin_symbols': [
@@ -1035,15 +1034,17 @@ class SLexer(RegexLexer):
             (r'(T|F)\b', Keyword.Variable),
         ],
         'numbers': [
-            (r'[+-]?([0-9]+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?[Li]?',
-             Number),
             # hex number
             (r'0[xX][a-fA-F0-9]+([pP][0-9]+)?[Li]?', Number.Hex),
+            # decimal number
+            (r'[+-]?([0-9]+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?[Li]?',
+             Number),
         ],
         'statements': [
             include('comments'),
             # whitespaces
             (r'\s+', Text),
+            (r'`.*?`', String.Backtick),
             (r'\'', String, 'string_squote'),
             (r'\"', String, 'string_dquote'),
             include('builtin_symbols'),
@@ -1066,10 +1067,10 @@ class SLexer(RegexLexer):
         #    ('\}', Punctuation, '#pop')
         #],
         'string_squote': [
-            (r'[^\']*\'', String, '#pop'),
+            (r'([^\'\\]|\\.)*\'', String, '#pop'),
         ],
         'string_dquote': [
-            (r'[^\"]*\"', String, '#pop'),
+            (r'([^"\\]|\\.)*"', String, '#pop'),
         ],
     }
 
