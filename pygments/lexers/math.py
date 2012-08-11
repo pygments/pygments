@@ -1023,8 +1023,7 @@ class SLexer(RegexLexer):
         ],
         'operators': [
             (r'<-|-|==|<=|>=|<|>|&&|&|!=|\|\|?', Operator),
-            (r'\*|\+|\^|/|%%|%/%|=', Operator),
-            (r'%in%|%*%', Operator)
+            (r'\*|\+|\^|/|%[^%]*%|=', Operator)
         ],
         'builtin_symbols': [
             (r'(NULL|NA(_(integer|real|complex|character)_)?|TRUE|FALSE|NaN|\.{3})\b', Keyword.Constant),
