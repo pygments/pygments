@@ -1011,6 +1011,8 @@ class SLexer(RegexLexer):
         ],
         'valid_name': [
             (r'[a-zA-Z][0-9a-zA-Z\._]+', Text),
+            # can begin with ., but not if that is followed by a digit
+            (r'\.[a-zA-Z._][0-9a-zA-Z\._]+', Text),
             (r'`.+`', String.Backtick),
         ],
         'punctuation': [
@@ -1033,9 +1035,10 @@ class SLexer(RegexLexer):
             (r'(T|F)\b', Keyword.Variable),
         ],
         'numbers': [
-            (r'(?<![0-9a-zA-Z\)\}\]`\"])(?=\s*)[-\+]?[0-9]+'
-             r'(\.[0-9]*)?(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
-            (r'\.[0-9]*(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
+            (r'[+-]?([0-9]+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?[Li]?',
+             Number),
+            # hex number
+            (r'0[xX][a-fA-F0-9]+([pP][0-9]+)?[Li]?', Number.Hex),
         ],
         'statements': [
             include('comments'),
