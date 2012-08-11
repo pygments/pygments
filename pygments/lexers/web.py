@@ -1890,7 +1890,9 @@ class LiveScriptLexer(RegexLexer):
     """
     For `LiveScript`_ source code.
 
-    .. LiveScript: http://gkz.github.com/LiveScript/
+    .. _LiveScript: http://gkz.github.com/LiveScript/
+
+    New in Pygments 1.6.
     """
 
     name = 'LiveScript'
@@ -1972,6 +1974,7 @@ class LiveScriptLexer(RegexLexer):
             (r'"', String, '#pop'),
             (r'\\.|\'', String), # double-quoted string don't need ' escapes
             (r'#{', String.Interpol, "interpoling_string"),
+            (r'#', String),
             include('strings')
         ],
         'sqs': [
@@ -1983,6 +1986,7 @@ class LiveScriptLexer(RegexLexer):
             (r'"""', String, '#pop'),
             (r'\\.|\'|"', String), # no need to escape quotes in triple-string
             (r'#{', String.Interpol, "interpoling_string"),
+            (r'#', String),
             include('strings'),
         ],
         'tsqs': [
