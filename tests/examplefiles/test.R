@@ -130,9 +130,12 @@ TRUE && FALSE
 TRUE | FALSE
 TRUE || FALSE
 foo <- 2 + 2
+foo = 2 + 2
 2 + 2 -> foo
 foo <<- 2 + 2
 2 + 2 ->> foo
+base:::sum
+base::sum
 
 ## Strings
 foo <- "hello, world!"
