@@ -1014,20 +1014,22 @@ class SLexer(RegexLexer):
             (r'`.+`', String.Backtick),
         ],
         'punctuation': [
-            (r'\[|\]|\[\[|\]\]|\$|\(|\)|@|:::?|;|,', Punctuation),
+            (r'\[{1,2}|\]{1,2}|\(|\)|;|,', Punctuation),
         ],
         'keywords': [
-            (r'for(?=\s*\()|while(?=\s*\()|if(?=\s*\()|(?<=\s)else|'
-             r'(?<=\s)break(?=;|$)|return(?=\s*\()|function(?=\s*\()',
+            (r'(if|else|for|while|repeat|in|next|break|return|switch|function)'
+             r'(?![0-9a-zA-Z\._])'
              Keyword.Reserved)
         ],
         'operators': [
-            (r'<-|-|==|<=|>=|<|>|&&|&|!=|\|\|?', Operator),
-            (r'\*|\+|\^|/|%[^%]*%|=', Operator)
+            (r'<<?-|->>?|-|==|<=|>=|<|>|&&?|!=|\|\|?', Operator),
+            (r'\*|\+|\^|/|!|%[^%]*%|=|~|\$|@|:{1,3}', Operator)
         ],
         'builtin_symbols': [
             (r'(NULL|NA(_(integer|real|complex|character)_)?|'
-             r'TRUE|FALSE|NaN|\.{3})\b', Keyword.Constant),
+             r'Inf|TRUE|FALSE|NaN|\.\.(\.|[0-9]+))'
+             r'(?![0-9a-zA-Z\._])',
+             Keyword.Constant),
             (r'(T|F)\b', Keyword.Variable),
         ],
         'numbers': [
