@@ -1027,7 +1027,7 @@ class SLexer(RegexLexer):
             (r'%in%|%*%', Operator)
         ],
         'builtin_symbols': [
-            (r'(NULL|NA|TRUE|FALSE|NaN)\b', Keyword.Constant),
+            (r'(NULL|NA(_(integer|real|complex|character)_)?|TRUE|FALSE|NaN|\.{3})\b', Keyword.Constant),
             (r'(T|F)\b', Keyword.Variable),
         ],
         'numbers': [
