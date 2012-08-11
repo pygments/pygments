@@ -50,7 +50,7 @@ class JuliaLexer(RegexLexer):
             # keywords
             (r'(begin|while|for|in|return|break|continue|'
              r'macro|quote|let|if|elseif|else|try|catch|end|'
-             r'bitstype|ccall)\b', Keyword),
+             r'bitstype|ccall|do)\b', Keyword),
             (r'(local|global|const)\b', Keyword.Declaration),
             (r'(module|import|export)\b', Keyword.Reserved),
             (r'(Bool|Int|Int8|Int16|Int32|Int64|Uint|Uint8|Uint16|Uint32|Uint64'
@@ -1011,29 +1011,34 @@ class SLexer(RegexLexer):
         ],
         'valid_name': [
             (r'[a-zA-Z][0-9a-zA-Z\._]+', Text),
+            # can begin with ., but not if that is followed by a digit
+            (r'\.[a-zA-Z_][0-9a-zA-Z\._]+', Text),
             (r'`.+`', String.Backtick),
         ],
         'punctuation': [
-            (r'\[|\]|\[\[|\]\]|\$|\(|\)|@|:::?|;|,', Punctuation),
+            (r'\[{1,2}|\]{1,2}|\(|\)|;|,', Punctuation),
         ],
         'keywords': [
-            (r'for(?=\s*\()|while(?=\s*\()|if(?=\s*\()|(?<=\s)else|'
-             r'(?<=\s)break(?=;|$)|return(?=\s*\()|function(?=\s*\()',
+            (r'(if|else|for|while|repeat|in|next|break|return|switch|function)'
+             r'(?![0-9a-zA-Z\._])',
              Keyword.Reserved)
         ],
         'operators': [
-            (r'<-|-|==|<=|>=|<|>|&&|&|!=|\|\|?', Operator),
-            (r'\*|\+|\^|/|%%|%/%|=', Operator),
-            (r'%in%|%*%', Operator)
+            (r'<<?-|->>?|-|==|<=|>=|<|>|&&?|!=|\|\|?', Operator),
+            (r'\*|\+|\^|/|!|%[^%]*%|=|~|\$|@|:{1,3}', Operator)
         ],
         'builtin_symbols': [
-            (r'(NULL|NA|TRUE|FALSE|NaN)\b', Keyword.Constant),
+            (r'(NULL|NA(_(integer|real|complex|character)_)?|'
+             r'Inf|TRUE|FALSE|NaN|\.\.(\.|[0-9]+))'
+             r'(?![0-9a-zA-Z\._])',
+             Keyword.Constant),
             (r'(T|F)\b', Keyword.Variable),
         ],
         'numbers': [
-            (r'(?<![0-9a-zA-Z\)\}\]`\"])(?=\s*)[-\+]?[0-9]+'
-             r'(\.[0-9]*)?(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
-            (r'\.[0-9]*(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
+            (r'[+-]?([0-9]+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?[Li]?',
+             Number),
+            # hex number
+            (r'0[xX][a-fA-F0-9]+([pP][0-9]+)?[Li]?', Number.Hex),
         ],
         'statements': [
             include('comments'),
