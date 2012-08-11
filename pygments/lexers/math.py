@@ -1018,7 +1018,7 @@ class SLexer(RegexLexer):
         ],
         'keywords': [
             (r'(if|else|for|while|repeat|in|next|break|return|switch|function)'
-             r'(?![0-9a-zA-Z\._])'
+             r'(?![0-9a-zA-Z\._])',
              Keyword.Reserved)
         ],
         'operators': [
