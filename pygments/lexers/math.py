@@ -1251,7 +1251,7 @@ class StanLexer(RegexLexer):
     filenames = ['*.stan']
 
     _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                'then', 'else', 'true', 'false')
+                'then', 'else', 'true', 'false', 'T')
 
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector', 'matrix',
               'corr_matrix', 'cov_matrix')
@@ -1259,8 +1259,7 @@ class StanLexer(RegexLexer):
     # STAN 1.0 Manual, Chapter 20
     _CONSTANTS = ['pi', 'e', 'sqrt2', 'log2', 'log10', 'nan', 'infinity',
                   'epsilon', 'negative_epsilon']
-    _FUNCTIONS = ['T',  # truncation
-                  'abs', 'int_step', 'min', 'max',
+    _FUNCTIONS = ['abs', 'int_step', 'min', 'max',
                   'if_else', 'step',
                   'fabs', 'fdim',
                   'fmin', 'fmax',
@@ -1347,7 +1346,7 @@ class StanLexer(RegexLexer):
             # SLexer makes these tokens Operators. 
             (r'(<-|~)', Operator),
             # Infix and prefix operators
-            (r"(\+|-|\.?\*|\.?/|//')", Operator),
+            (r"(\+|-|\.?\*|\.?/|\\|')", Operator),
             # Block
             (r'{', Punctuation, '#push'),
             (r'}', Punctuation, '#pop'),
