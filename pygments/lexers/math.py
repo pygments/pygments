@@ -1012,7 +1012,7 @@ class SLexer(RegexLexer):
         'valid_name': [
             (r'[a-zA-Z][0-9a-zA-Z\._]+', Text),
             # can begin with ., but not if that is followed by a digit
-            (r'\.[a-zA-Z._][0-9a-zA-Z\._]+', Text),
+            (r'\.[a-zA-Z_][0-9a-zA-Z\._]+', Text),
             (r'`.+`', String.Backtick),
         ],
         'punctuation': [
