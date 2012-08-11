@@ -22,7 +22,7 @@ from pygments import unistring as uni
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python3Lexer', 'Python3TracebackLexer', 'RubyLexer',
            'RubyConsoleLexer', 'PerlLexer', 'LuaLexer', 'MoonScriptLexer',
-           'MiniDLexer', 'IoLexer', 'TclLexer', 'FactorLexer', 'FancyLexer']
+           'CrocLexer', 'MiniDLexer', 'IoLexer', 'TclLexer', 'FactorLexer', 'FancyLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -1189,16 +1189,14 @@ class MoonScriptLexer(LuaLexer):
             yield index, token, value
 
 
-
-class MiniDLexer(RegexLexer):
+class CrocLexer(RegexLexer):
     """
-    For `MiniD <http://www.dsource.org/projects/minid>`_ (a D-like scripting
-    language) source.
+    For `Croc <http://jfbillingsley.com/croc>`_ source.
     """
-    name = 'MiniD'
-    filenames = ['*.md']
-    aliases = ['minid']
-    mimetypes = ['text/x-minidsrc']
+    name = 'Croc'
+    filenames = ['*.croc']
+    aliases = ['croc']
+    mimetypes = ['text/x-crocsrc']
 
     tokens = {
         'root': [
@@ -1206,35 +1204,32 @@ class MiniDLexer(RegexLexer):
             (r'\s+', Text),
             # Comments
             (r'//(.*?)\n', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            (r'/\+', Comment.Multiline, 'nestedcomment'),
+            (r'/\*', Comment.Multiline, 'nestedcomment'),
             # Keywords
-            (r'(as|assert|break|case|catch|class|continue|coroutine|default'
+            (r'(as|assert|break|case|catch|class|continue|default'
              r'|do|else|finally|for|foreach|function|global|namespace'
-             r'|if|import|in|is|local|module|return|super|switch'
+             r'|if|import|in|is|local|module|return|scope|super|switch'
              r'|this|throw|try|vararg|while|with|yield)\b', Keyword),
             (r'(false|true|null)\b', Keyword.Constant),
             # FloatLiteral
-            (r'([0-9][0-9_]*)?\.[0-9_]+([eE][+\-]?[0-9_]+)?', Number.Float),
+            (r'([0-9][0-9_]*)(?=[.eE])(\.[0-9][0-9_]*)?([eE][+\-]?[0-9_]+)?', Number.Float),
             # IntegerLiteral
             # -- Binary
-            (r'0[Bb][01_]+', Number),
-            # -- Octal
-            (r'0[Cc][0-7_]+', Number.Oct),
+            (r'0[bB][01][01_]*', Number),
             # -- Hexadecimal
-            (r'0[xX][0-9a-fA-F_]+', Number.Hex),
+            (r'0[xX][0-9a-fA-F][0-9a-fA-F_]*', Number.Hex),
             # -- Decimal
-            (r'(0|[1-9][0-9_]*)', Number.Integer),
+            (r'([0-9][0-9_]*)(?![.eE])', Number.Integer),
             # CharacterLiteral
-            (r"""'(\\['"?\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-9]{1,3}"""
+            (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-9]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
              String.Char
             ),
             # StringLiteral
             # -- WysiwygString
             (r'@"(""|[^"])*"', String),
-            # -- AlternateWysiwygString
-            (r'`(``|.)*`', String),
+            (r'@`(``|[^`])*`', String),
+            (r"@'(''|[^'])*'", String),
             # -- DoubleQuotedString
             (r'"(\\\\|\\"|[^"])*"', String),
             # Tokens
@@ -1247,12 +1242,22 @@ class MiniDLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name),
         ],
         'nestedcomment': [
-            (r'[^+/]+', Comment.Multiline),
-            (r'/\+', Comment.Multiline, '#push'),
-            (r'\+/', Comment.Multiline, '#pop'),
-            (r'[+/]', Comment.Multiline),
+            (r'[^*/]+', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
         ],
     }
+
+
+class MiniDLexer(CrocLexer):
+    """
+    For MiniD source. MiniD is now known as Croc.
+    """
+    name = 'MiniD'
+    filenames = ['*.md']
+    aliases = ['minid']
+    mimetypes = ['text/x-minidsrc']
 
 
 class IoLexer(RegexLexer):

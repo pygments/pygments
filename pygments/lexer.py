@@ -544,10 +544,10 @@ class RegexLexer(Lexer):
                 try:
                     if text[pos] == '\n':
                         # at EOL, reset state to "root"
-                        pos += 1
                         statestack = ['root']
                         statetokens = tokendefs['root']
                         yield pos, Text, u'\n'
+                        pos += 1
                         continue
                     yield pos, Error, text[pos]
                     pos += 1
