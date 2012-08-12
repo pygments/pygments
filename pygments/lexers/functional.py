@@ -15,10 +15,178 @@ from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic, Error
 
-__all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
+__all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'LiterateHaskellLexer', 'SMLLexer', 'OcamlLexer', 'ErlangLexer',
            'ErlangShellLexer', 'OpaLexer', 'CoqLexer', 'NewLispLexer',
            'ElixirLexer', 'ElixirConsoleLexer']
+
+
+class RacketLexer(RegexLexer):
+    """
+    Similar to SchemeLexer, except:
+    1. Treat square brackets like parentheses.
+    2. Expanded list of keywords.
+    3. Different file extensions, MIME types, etc.
+    4. Handle #:keyword arguments.
+    5. Handle more number literals (e.g. #xFF, #o777, 2e2, #e232, etc.).
+    6. Handle #| ... |# multiline comments (although NOT nested).
+    """
+    name = 'Racket'
+    aliases = ['racket', 'rkt']
+    filenames = ['*.rkt', '*.rktl']
+    mimetypes = ['text/x-racket', 'application/x-racket']
+
+    # list of known keywords and builtins taken form vim 6.4 scheme.vim
+    # syntax file.
+    keywords = [
+        # From quack.el
+        'and', 'begin', 'begin0', 'c-declare', 'c-lambda', 'case',
+        'case-lambda', 'class', 'class*', 'class*/names', 'class100',
+        'class100*', 'compound-unit/sig', 'cond', 'cond-expand', 'define',
+        'define-class', 'define-compound-unit', 'define-const-structure',
+        'define-constant', 'define-embedded', 'define-entry-point',
+        'define-external', 'define-for-syntax', 'define-foreign-record',
+        'define-foreign-type', 'define-foreign-variable', 'define-generic',
+        'define-generic-procedure', 'define-inline', 'define-location',
+        'define-macro', 'define-method', 'define-module', 'define-opt',
+        'define-public', 'define-reader-ctor', 'define-record',
+        'define-record-printer', 'define-record-type', 'define-signature',
+        'define-struct', 'define-structure', 'define-syntax',
+        'define-syntax-set', 'define-values', 'define-values-for-syntax',
+        'define-values/invoke-unit/infer', 'define-values/invoke-unit/sig',
+        'define/contract', 'define/override', 'define/private',
+        'define/provide', 'define/public', 'define/kw', 'delay', 'do',
+        'else', 'exit-handler', 'field', 'for', 'for/list', 'for/vector',
+        'for/hash', 'for/hasheq', 'for/hasheqv', 'for/and', 'for/or',
+        'for/lists', 'for/fold', 'for/flvector', 'if', 'import',
+        'inherit', 'inherit-field', 'init', 'init-field', 'init-rest',
+        'instantiate', 'interface', 'lambda', 'lambda/kw', 'let', 'let*',
+        'let*-values', 'let+', 'let-syntax', 'let-values', 'let/ec',
+        'letrec', 'letrec-values', 'letrec-syntax', 'match-lambda',
+        'match-lambda*', 'match-let', 'match-let*', 'match-letrec',
+        'match-define', 'mixin', 'module', 'opt-lambda', 'or', 'override',
+        'override*', 'namespace-variable-bind/invoke-unit/sig',
+        'parameterize', 'parameterize*', 'parameterize-break', 'private',
+        'private*', 'protect', 'provide', 'provide-signature-elements',
+        'provide/contract', 'public', 'public*', 'quasiquote',
+        'quasisyntax', 'quasisyntax/loc', 'quote', 'receive', 'rename',
+        'require', 'require-for-syntax', 'send', 'send*', 'set!',
+        'set!-values', 'signature->symbols', 'super-instantiate', 'syntax',
+        'syntax/loc', 'syntax-case', 'syntax-case*', 'syntax-error',
+        'syntax-rules', 'unit/sig', 'unless', 'unquote', 'unquote-splicing',
+        'when', 'with-handlers', 'with-method', 'with-syntax',
+        'define-type-alias', 'define-struct:', 'define:', 'let:', 'letrec:',
+        'let*:', 'lambda:', 'plambda:', 'case-lambda:', 'pcase-lambda:',
+        'require/typed', 'require/opaque-type', 'require-typed-struct',
+        'inst', 'ann'
+        ]
+    builtins = [
+        '*', '+', '-', '/', '<', '<=', '=', '>', '>=', 'abs', 'acos', 'angle',
+        'append', 'apply', 'asin', 'assoc', 'assq', 'assv', 'atan',
+        'boolean?', 'caaaar', 'caaadr', 'caaar', 'caadar', 'caaddr', 'caadr',
+        'caar', 'cadaar', 'cadadr', 'cadar', 'caddar', 'cadddr', 'caddr',
+        'cadr', 'call-with-current-continuation', 'call-with-input-file',
+        'call-with-output-file', 'call-with-values', 'call/cc', 'car',
+        'cdaaar', 'cdaadr', 'cdaar', 'cdadar', 'cdaddr', 'cdadr', 'cdar',
+        'cddaar', 'cddadr', 'cddar', 'cdddar', 'cddddr', 'cdddr', 'cddr',
+        'cdr', 'ceiling', 'char->integer', 'char-alphabetic?', 'char-ci<=?',
+        'char-ci<?', 'char-ci=?', 'char-ci>=?', 'char-ci>?', 'char-downcase',
+        'char-lower-case?', 'char-numeric?', 'char-ready?', 'char-upcase',
+        'char-upper-case?', 'char-whitespace?', 'char<=?', 'char<?', 'char=?',
+        'char>=?', 'char>?', 'char?', 'close-input-port', 'close-output-port',
+        'complex?', 'cons', 'cos', 'current-input-port', 'current-output-port',
+        'denominator', 'display', 'dynamic-wind', 'eof-object?', 'eq?',
+        'equal?', 'eqv?', 'eval', 'even?', 'exact->inexact', 'exact?', 'exp',
+        'expt', 'floor', 'for-each', 'force', 'gcd', 'imag-part',
+        'inexact->exact', 'inexact?', 'input-port?', 'integer->char',
+        'integer?', 'interaction-environment', 'lcm', 'length', 'list',
+        'list->string', 'list->vector', 'list-ref', 'list-tail', 'list?',
+        'load', 'log', 'magnitude', 'make-polar', 'make-rectangular',
+        'make-string', 'make-vector', 'map', 'max', 'member', 'memq', 'memv',
+        'min', 'modulo', 'negative?', 'newline', 'not', 'null-environment',
+        'null?', 'number->string', 'number?', 'numerator', 'odd?',
+        'open-input-file', 'open-output-file', 'output-port?', 'pair?',
+        'peek-char', 'port?', 'positive?', 'procedure?', 'quotient',
+        'rational?', 'rationalize', 'read', 'read-char', 'real-part', 'real?',
+        'remainder', 'reverse', 'round', 'scheme-report-environment',
+        'set-car!', 'set-cdr!', 'sin', 'sqrt', 'string', 'string->list',
+        'string->number', 'string->symbol', 'string-append', 'string-ci<=?',
+        'string-ci<?', 'string-ci=?', 'string-ci>=?', 'string-ci>?',
+        'string-copy', 'string-fill!', 'string-length', 'string-ref',
+        'string-set!', 'string<=?', 'string<?', 'string=?', 'string>=?',
+        'string>?', 'string?', 'substring', 'symbol->string', 'symbol?',
+        'tan', 'transcript-off', 'transcript-on', 'truncate', 'values',
+        'vector', 'vector->list', 'vector-fill!', 'vector-length',
+        'vector-ref', 'vector-set!', 'vector?', 'with-input-from-file',
+        'with-output-to-file', 'write', 'write-char', 'zero?'
+    ]
+
+    # valid names for identifiers
+    # well, names can only not consist fully of numbers
+    # but this should be good enough for now
+    valid_name = r'[a-zA-Z0-9!$%&*+,/:<=>?@^_~|-]+'
+
+    tokens = {
+        'root' : [
+            (r';.*$', Comment.Single),
+            (r'(?ms)#\|.+\|#', Comment.Multiline),
+
+            # whitespaces - usually not relevant
+            (r'\s+', Text),
+
+            # numbers
+            (r'(#e|#i)?-?\d+\.\d+', Number.Float),
+            (r'(#e|#i)?\d+e-?\d+', Number.Float),
+            (r'(-|\+)?\d+', Number.Integer),
+            (r'#x[0-9a-fA-F]+', Number.Hex),
+            (r'#o[0-7]+', Number.Oct),
+            (r'#b[0-1]', Number.Integer),
+
+            # strings, symbols and characters
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'" + valid_name, String.Symbol),
+            (r"#\\([()/'\"._!§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
+            (r'#rx".+"', String.Regex),
+            (r'#px".+"', String.Regex),
+
+            # constants
+            (r'(#t|#f)', Name.Constant),
+
+            # keyword argument names (e.g. #:keyword)
+            (r'#:\S+', Keyword.Declaration),
+
+            # #lang
+            (r'#lang \S+', Keyword.Namespace),
+
+            # special operators
+            (r"('|#|`|,@|,|\.)", Operator),
+
+            # highlight the keywords
+            ('(%s)' % '|'.join([
+                re.escape(entry) + ' ' for entry in keywords]),
+                Keyword
+            ),
+
+            # first variable in a quoted string like
+            # '(this is syntactic sugar)
+            (r"(?<='\()" + valid_name, Name.Variable),
+            (r"(?<=#\()" + valid_name, Name.Variable),
+
+            # highlight the builtins
+            ("(?<=\()(%s)" % '|'.join([
+                re.escape(entry) + ' ' for entry in builtins]),
+                Name.Builtin
+            ),
+
+            # the remaining functions
+            (r'(?<=\()' + valid_name, Name.Function),
+            # find the remaining variables
+            (valid_name, Name.Variable),
+
+            # the famous parentheses!
+            (r'(\(|\)|\[|\])', Punctuation),
+        ],
+    }
 
 
 class SchemeLexer(RegexLexer):
@@ -37,7 +205,7 @@ class SchemeLexer(RegexLexer):
     """
     name = 'Scheme'
     aliases = ['scheme', 'scm']
-    filenames = ['*.scm', '*.ss', '*.rkt']
+    filenames = ['*.scm', '*.ss']
     mimetypes = ['text/x-scheme', 'application/x-scheme']
 
     # list of known keywords and builtins taken form vim 6.4 scheme.vim
