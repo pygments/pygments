@@ -137,6 +137,7 @@ LEXERS = {
     'KotlinLexer': ('pygments.lexers.jvm', 'Kotlin', ('kotlin',), ('*.kt',), ('text/x-kotlin',)),
     'LighttpdConfLexer': ('pygments.lexers.text', 'Lighttpd configuration file', ('lighty', 'lighttpd'), (), ('text/x-lighttpd-conf',)),
     'LiterateHaskellLexer': ('pygments.lexers.functional', 'Literate Haskell', ('lhs', 'literate-haskell'), ('*.lhs',), ('text/x-literate-haskell',)),
+    'LiveScriptLexer': ('pygments.lexers.web', 'LiveScript', ('livescript',), ('*.ls',), ('text/livescript',)),
     'LlvmLexer': ('pygments.lexers.asm', 'LLVM', ('llvm',), ('*.ll',), ('text/x-llvm',)),
     'LogtalkLexer': ('pygments.lexers.other', 'Logtalk', ('logtalk',), ('*.lgt',), ('text/x-logtalk',)),
     'LuaLexer': ('pygments.lexers.agile', 'Lua', ('lua',), ('*.lua', '*.wlua'), ('text/x-lua', 'application/x-lua')),
