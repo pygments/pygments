@@ -25,7 +25,7 @@ class RacketLexer(RegexLexer):
     """
     Similar to SchemeLexer, except:
     1. Treat square brackets and curly braces like parentheses: () [] {}
-    2. Expanded list of keywords.
+    2. Greatly expanded list of keywords and builtins.
     3. Different file extensions, MIME types, etc.
     4. Handle #:keyword arguments.
     5. Handle more number literals (e.g. #xFF, #o777, 2e2, #e232, etc.).
@@ -490,7 +490,7 @@ class RacketLexer(RegexLexer):
 
             ## numbers: Keep in mind Racket reader hash prefixes,
             ## which can denote the base or the type. These don't map
-            ## neatly onto pygment token types; some judgment calls
+            ## neatly onto pygments token types; some judgment calls
             ## here.  Note that none of these regexps attempt to
             ## exclude identifiers that start with a number, such as a
             ## variable named "100-Continue".
