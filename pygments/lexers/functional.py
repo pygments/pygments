@@ -24,7 +24,7 @@ __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
 class RacketLexer(RegexLexer):
     """
     Similar to SchemeLexer, except:
-    1. Treat square brackets like parentheses.
+    1. Treat square brackets and curly braces like parentheses: () [] {}
     2. Expanded list of keywords.
     3. Different file extensions, MIME types, etc.
     4. Handle #:keyword arguments.
@@ -218,13 +218,13 @@ class RacketLexer(RegexLexer):
             ),
 
             # the remaining functions; handle both ( and [
-            (r'(?<=(\(|\[))' + valid_name, Name.Function),
+            (r'(?<=(\(|\[|\{))' + valid_name, Name.Function),
 
             # find the remaining variables
             (valid_name, Name.Variable),
 
             # the famous parentheses!
-            (r'(\(|\)|\[|\])', Punctuation),
+            (r'(\(|\)|\[|\]|\{|\})', Punctuation),
         ],
     }
 
