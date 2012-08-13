@@ -36,10 +36,8 @@ class RacketLexer(RegexLexer):
     filenames = ['*.rkt', '*.rktl']
     mimetypes = ['text/x-racket', 'application/x-racket']
 
-    # list of known keywords and builtins taken form vim 6.4 scheme.vim
-    # syntax file.
+    # From quack.el
     keywords = [
-        # From quack.el
         'and', 'begin', 'begin0', 'c-declare', 'c-lambda', 'case',
         'case-lambda', 'class', 'class*', 'class*/names', 'class100',
         'class100*', 'compound-unit/sig', 'cond', 'cond-expand', 'define',
@@ -80,6 +78,7 @@ class RacketLexer(RegexLexer):
         'require/typed', 'require/opaque-type', 'require-typed-struct',
         'inst', 'ann'
         ]
+    # From SchemeLexer
     builtins = [
         '*', '+', '-', '/', '<', '<=', '=', '>', '>=', 'abs', 'acos', 'angle',
         'append', 'apply', 'asin', 'assoc', 'assq', 'assv', 'atan',
@@ -121,9 +120,7 @@ class RacketLexer(RegexLexer):
         'with-output-to-file', 'write', 'write-char', 'zero?'
     ]
 
-    # valid names for identifiers
-    # well, names can only not consist fully of numbers
-    # but this should be good enough for now
+    # From SchemeLexer
     valid_name = r'[a-zA-Z0-9!$%&*+,/:<=>?@^_~|-]+'
 
     tokens = {
