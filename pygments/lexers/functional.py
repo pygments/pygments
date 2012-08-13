@@ -30,6 +30,7 @@ class RacketLexer(RegexLexer):
     4. Handle #:keyword arguments.
     5. Handle more number literals (e.g. #xFF, #o777, 2e2, #e232, etc.).
     6. Handle #| ... |# multiline comments (although NOT nested).
+    7. Handle #px and #rx strings as String.Regex
     """
     name = 'Racket'
     aliases = ['racket', 'rkt']
@@ -75,8 +76,7 @@ class RacketLexer(RegexLexer):
         'when', 'with-handlers', 'with-method', 'with-syntax',
         'define-type-alias', 'define-struct:', 'define:', 'let:', 'letrec:',
         'let*:', 'lambda:', 'plambda:', 'case-lambda:', 'pcase-lambda:',
-        'require/typed', 'require/opaque-type', 'require-typed-struct',
-        'inst', 'ann'
+        'require/typed', 'require/opaque-type', 'require-typed-struct'
         ]
     # From SchemeLexer
     builtins = [
@@ -126,18 +126,60 @@ class RacketLexer(RegexLexer):
     tokens = {
         'root' : [
             (r';.*$', Comment.Single),
-            (r'(?ms)#\|.+\|#', Comment.Multiline),
+            (r'(?ms)#\|.+\|#', Comment.Multiline), # ?s = . matches newline
 
             # whitespaces - usually not relevant
             (r'\s+', Text),
 
-            # numbers
-            (r'(#e|#i)?-?\d+\.\d+', Number.Float),
-            (r'(#e|#i)?\d+e-?\d+', Number.Float),
-            (r'(-|\+)?\d+', Number.Integer),
-            (r'#x[0-9a-fA-F]+', Number.Hex),
-            (r'#o[0-7]+', Number.Oct),
-            (r'#b[0-1]', Number.Integer),
+            ## numbers: Keep in mind Racket reader hash prefixes,
+            ## which can denote the base or the type. These don't map
+            ## neatly onto pygment token types; some udgment calls
+            ## here.  Note that none of these regexps attempt to
+            ## exclude identifiers that start with a number, such as a
+            ## variable named "100-Continue".
+
+            # #b
+            (r'#b[-+]?[01]+\.[01]+', Number.Float),
+            (r'#b[01]+e[-+]?[01]+', Number.Float),
+            (r'#b[-+]?[01]/[01]+', Number),
+            (r'#b[-+]?[01]+', Number.Integer),
+            (r'#b\S*', Error),
+
+            # #d OR no hash prefix
+            (r'(#d)?[-+]?\d+\.\d+', Number.Float),
+            (r'(#d)?\d+e[-+]?\d+', Number.Float),
+            (r'(#d)?[-+]?\d+/\d+', Number),
+            (r'(#d)?[-+]?\d+', Number.Integer),
+            (r'#d\S*', Error),
+
+            # #e
+            (r'#e[-+]?\d+\.\d+', Number.Float),
+            (r'#e\d+e[-+]?\d+', Number.Float),
+            (r'#e[-+]?\d+/\d+', Number),
+            (r'#e[-+]?\d+', Number),
+            (r'#e\S*', Error),
+
+            # #i is always inexact-real, i.e. float
+            (r'#i[-+]?\d+\.\d+', Number.Float),
+            (r'#i\d+e[-+]?\d+', Number.Float),
+            (r'#i[-+]?\d+/\d+', Number.Float),
+            (r'#i[-+]?\d+', Number.Float),
+            (r'#i\S*', Error),
+
+            # #o
+            (r'#o[-+]?[0-7]+\.[0-7]+', Number.Oct),
+            (r'#o[0-7]+e[-+]?[0-7]+', Number.Oct),
+            (r'#o[-+]?[0-7]+/[0-7]+', Number.Oct),
+            (r'#o[-+]?[0-7]+', Number.Oct),
+            (r'#o\S*', Error),
+
+            # #x
+            (r'#x[-+]?[0-9a-fA-F]+\.[0-9a-fA-F]+', Number.Hex),
+            # the exponent variation (e.g. #x1e1) is N/A
+            (r'#x[-+]?[0-9a-fA-F]+/[0-9a-fA-F]+', Number.Hex),
+            (r'#x[-+]?[0-9a-fA-F]+', Number.Hex),
+            (r'#x\S*', Error),
+            
 
             # strings, symbols and characters
             (r'"(\\\\|\\"|[^"])*"', String),
@@ -175,8 +217,9 @@ class RacketLexer(RegexLexer):
                 Name.Builtin
             ),
 
-            # the remaining functions
-            (r'(?<=\()' + valid_name, Name.Function),
+            # the remaining functions; handle both ( and [
+            (r'(?<=(\(|\[))' + valid_name, Name.Function),
+
             # find the remaining variables
             (valid_name, Name.Variable),
 
