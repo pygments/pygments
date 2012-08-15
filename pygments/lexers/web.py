@@ -2867,16 +2867,22 @@ class DartLexer(RegexLexer):
 class LassoLexer(RegexLexer):
     """
     For `Lasso <http://www.lassosoft.com/>`_ source code, covering both
-    Lasso 9 syntax and LassoScript for Lasso 8.6 and earlier.
+    Lasso 9 syntax and LassoScript for Lasso 8.6 and earlier. For Lasso 
+    embedded in HTML, use the `LassoHtmlLexer`.
+    
+    Additional options accepted:
 
-    For Lasso embedded in HTML, use the `LassoHtmlLexer`.
+    `builtinshighlighting`
+        If given and ``True``, highlight builtin tags, types, traits, and
+        methods (default: ``True``).
 
     *New in Pygments 1.6.*
     """
 
     name = 'Lasso'
     aliases = ['lasso', 'lassoscript', 'ldml']
-    alias_filenames = ['*.lasso', '*.lasso[89]', '*.las', '*.incl', '*.inc']
+    filenames = ['*.lasso', '*.lasso[89]', '*.las']
+    alias_filenames = ['*.incl', '*.inc']
     mimetypes = ['text/x-lasso']
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
 
@@ -2931,7 +2937,7 @@ class LassoLexer(RegexLexer):
             # definitions
             (r'(parent)(\s+)([a-z_][\w\.]*)',
                 bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(define)(\s+)([a-z_][\w\.]*)(\s*)(=>)(\s*)(type|trait)',
+            (r'(define)(\s+)([a-z_][\w\.]*)(\s*)(=>)(\s*)(type|trait|thread)',
                 bygroups(Keyword.Declaration, Text, Name.Class, Text, Operator,
                          Text, Keyword)),
             (r'(define)(\s+)([a-z_][\w\.]*)(->)([a-z_][\w\.]*=?)',
