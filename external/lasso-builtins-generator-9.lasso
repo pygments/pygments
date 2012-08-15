@@ -1,8 +1,29 @@
 #!/usr/bin/lasso9
-// this unneccessary bracket makes BBEdit 9 colour the file properly[
 
-output("Without this output statement, some methods will be missing.")
-local(f) = file("builtins.py")
+/*
+	Builtins Generator for Lasso 9
+
+	This is the shell script that was used to extract Lasso 9's built-in keywords
+	and generate most of the _lassobuiltins.py file. When run, it creates a file
+	named "lassobuiltins-9.py" containing the types, traits, and methods of the
+	currently-installed version of Lasso 9.
+
+	A partial list of keywords in Lasso 8 can be generated with this code:
+
+	<?LassoScript
+		local('l8tags' = list);
+		iterate(tags_list, local('i'));
+			#l8tags->insert(string_removeleading(#i, -pattern='_global_'));
+		/iterate;
+		#l8tags->sort;
+		iterate(#l8tags, local('i'));
+			string_lowercase(#i)+"<br>";
+		/iterate;
+
+*/
+
+output("This output statement is required for a complete list of methods.")
+local(f) = file("lassobuiltins-9.py")
 #f->doWithClose => {
 
 #f->openWrite
@@ -79,22 +100,19 @@ do {
     'Types': [
 ")
 with t in #typesList
-//order by #t
-do #f->writeString("        '"+#t+"',\n")
+do #f->writeString("        '"+string_lowercase(#t)+"',\n")
 
 #f->writeString("    ],
     'Traits': [
 ")
 with t in #traitsList
-//order by #t
-do #f->writeString("        '"+#t+"',\n")
+do #f->writeString("        '"+string_lowercase(#t)+"',\n")
 
 #f->writeString("    ],
     'Methods': [
 ")
 with t in #methodsList
-//order by #t
-do #f->writeString("        '"+#t+"',\n")
+do #f->writeString("        '"+string_lowercase(#t)+"',\n")
 
 #f->writeString("    ],
 }
