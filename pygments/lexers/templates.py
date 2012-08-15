@@ -1642,10 +1642,8 @@ class LassoHtmlLexer(DelegatingLexer):
 
     name = 'HTML+Lasso'
     aliases = ['html+lasso']
-    filenames = ['*.lasso', '*.lasso[89]', '*.las']
     alias_filenames = ['*.html', '*.htm', '*.xhtml',
-                       '*.lasso', '*.lasso[89]', '*.las',
-                       '*.incl', '*.inc']
+                       '*.lasso', '*.lasso[89]', '*.las', '*.incl', '*.inc']
     mimetypes = ['text/html+lasso',
                  'application/x-httpd-lasso',
                  'application/x-httpd-lasso[89]']
@@ -1670,7 +1668,7 @@ class LassoXmlLexer(DelegatingLexer):
 
     name = 'XML+Lasso'
     aliases = ['xml+lasso']
-    alias_filenames = ['*.xml', '*.lasso', '*.lasso[89]']
+    alias_filenames = ['*.xml', '*.lasso', '*.lasso[89]', '*.las']
     mimetypes = ['application/xml+lasso']
 
     def __init__(self, **options):
