@@ -29,7 +29,8 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer', 'PostScriptLexer',
            'AutohotkeyLexer', 'GoodDataCLLexer', 'MaqlLexer', 'ProtoBufLexer',
            'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
-           'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer']
+           'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
+           'CbmBasicV2Lexer']
 
 
 class ECLLexer(RegexLexer):
@@ -3335,5 +3336,34 @@ class BroLexer(RegexLexer):
             (r'[^\\/\n]+', String.Regex),
             (r'\\\n', String.Regex),
             (r'\\', String.Regex)
+        ]
+    }
+
+class CbmBasicV2Lexer(RegexLexer):
+    """
+    For CBM BASIC V2 sources.
+    """
+    name = 'CBM BASIC V2'
+    aliases = ['cbmbas']
+    filenames = ['*.bas']
+    
+    flags = re.IGNORECASE
+    
+    tokens = {
+        'root': [
+            (r'rem.*\n', Comment.Single),
+            (r'\s+', Text),
+            (r'new|run|end|for|to|next|step|go(to|sub)?|on|return|stop|cont'
+             r'|if|then|input#?|read|wait|load|save|verify|poke|sys|print#?'
+             r'|list|clr|cmd|open|close|get#?', Keyword.Reserved),
+            (r'data|restore|dim|let|def|fn', Keyword.Declaration),
+            (r'tab|spc|sgn|int|abs|usr|fre|pos|sqr|rnd|log|exp|cos|sin|tan|atn'
+             r'|peek|len|val|asc|(str|chr|left|right|mid)\$', Name.Builtin),
+            (r'[-+*/^<>=]', Operator),
+            (r'not|and|or', Operator.Word),
+            (r'"[^"\n]*.', String),
+            (r'\d+|[-+]?\d*\.\d*(e[-+]?\d+)?', Number.Float),
+            (r'[\(\),:;]', Punctuation),
+            (r'\w+[$%]?', Name),
         ]
     }
