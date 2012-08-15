@@ -21,6 +21,7 @@ class PuppetLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'#.*$', Comment),
             (r' .*\n', Text),
             (r'\+.*\n', Generic.Inserted),
             (r'-.*\n', Generic.Deleted),
