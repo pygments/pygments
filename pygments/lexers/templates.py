@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexers.web import \
-     PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
+     PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer, LassoLexer
 from pygments.lexers.agile import PythonLexer, PerlLexer
 from pygments.lexers.compiled import JavaLexer
 from pygments.lexers.jvm import TeaLangLexer
@@ -1642,13 +1642,14 @@ class LassoHtmlLexer(DelegatingLexer):
 
     name = 'HTML+Lasso'
     aliases = ['html+lasso']
-    alias_filenames = ['*.html', '*.htm', '*.xhtml',
-                       '*.lasso', '*.lasso[89]', '*.las', '*.incl', '*.inc']
+    alias_filenames = ['*.html', '*.htm', '*.xhtml', '*.lasso', '*.lasso[89]',
+                       '*.incl', '*.inc', '*.las']
     mimetypes = ['text/html+lasso',
                  'application/x-httpd-lasso',
                  'application/x-httpd-lasso[89]']
 
     def __init__(self, **options):
+        options['requiredelimiters'] = True
         super(LassoHtmlLexer, self).__init__(HtmlLexer, LassoLexer, **options)
 
     def analyse_text(text):
@@ -1668,10 +1669,12 @@ class LassoXmlLexer(DelegatingLexer):
 
     name = 'XML+Lasso'
     aliases = ['xml+lasso']
-    alias_filenames = ['*.xml', '*.lasso', '*.lasso[89]', '*.las']
+    alias_filenames = ['*.xml', '*.lasso', '*.lasso[89]',
+                       '*.incl', '*.inc', '*.las']
     mimetypes = ['application/xml+lasso']
 
     def __init__(self, **options):
+        options['requiredelimiters'] = True
         super(LassoXmlLexer, self).__init__(XmlLexer, LassoLexer, **options)
 
     def analyse_text(text):
@@ -1693,6 +1696,7 @@ class LassoCssLexer(DelegatingLexer):
     mimetypes = ['text/css+lasso']
 
     def __init__(self, **options):
+        options['requiredelimiters'] = True
         super(LassoCssLexer, self).__init__(CssLexer, LassoLexer, **options)
 
     def analyse_text(text):
@@ -1713,6 +1717,7 @@ class LassoJavascriptLexer(DelegatingLexer):
                  'text/javascript+lasso']
 
     def __init__(self, **options):
+        options['requiredelimiters'] = True
         super(LassoJavascriptLexer, self).__init__(JavascriptLexer, LassoLexer,
                                                    **options)
 

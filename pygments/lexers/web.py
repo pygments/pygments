@@ -103,10 +103,10 @@ class JSONLexer(RegexLexer):
 
     # integer part of a number
     int_part = r'-?(0|[1-9]\d*)'
-        
+
     # fractional part of a number
     frac_part = r'\.\d+'
-        
+
     # exponential part of a number
     exp_part = r'[eE](\+|-)?\d+'
 
@@ -2867,28 +2867,39 @@ class DartLexer(RegexLexer):
 class LassoLexer(RegexLexer):
     """
     For `Lasso <http://www.lassosoft.com/>`_ source code, covering both
-    Lasso 9 syntax and LassoScript for Lasso 8.6 and earlier. For Lasso 
+    Lasso 9 syntax and LassoScript for Lasso 8.6 and earlier. For Lasso
     embedded in HTML, use the `LassoHtmlLexer`.
-    
+
     Additional options accepted:
 
     `builtinshighlighting`
         If given and ``True``, highlight builtin tags, types, traits, and
         methods (default: ``True``).
+    `requiredelimiters`
+        If given and ``True``, only highlight code between delimiters as Lasso
+        (default: ``False``).
 
     *New in Pygments 1.6.*
     """
 
     name = 'Lasso'
-    aliases = ['lasso', 'lassoscript', 'ldml']
-    filenames = ['*.lasso', '*.lasso[89]', '*.las']
-    alias_filenames = ['*.incl', '*.inc']
+    aliases = ['lasso', 'lassoscript']
+    filenames = ['*.lasso', '*.lasso[89]']
+    alias_filenames = ['*.incl', '*.inc', '*.las']
     mimetypes = ['text/x-lasso']
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
 
     tokens = {
         'root': [
             (r'^#!.+lasso9\b', Comment.Preproc, 'lasso'),
+            (r'\s+', Other),
+            (r'\[noprocess\]', Comment.Preproc, ('delimiters', 'noprocess')),
+            (r'\[', Comment.Preproc, ('delimiters', 'squarebrackets')),
+            (r'<\?(LassoScript|lasso|=)', Comment.Preproc, ('delimiters', 'anglebrackets')),
+            (r'<', Other, 'delimiters'),
+            include('lasso'),
+        ],
+        'delimiters': [
             (r'\[noprocess\]', Comment.Preproc, 'noprocess'),
             (r'\[', Comment.Preproc, 'squarebrackets'),
             (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
@@ -3013,6 +3024,8 @@ class LassoLexer(RegexLexer):
     def __init__(self, **options):
         self.builtinshighlighting = get_bool_opt(
             options, 'builtinshighlighting', True)
+        self.requiredelimiters = get_bool_opt(
+            options, 'requiredelimiters', False)
 
         self._builtins = set()
         if self.builtinshighlighting:
@@ -3022,7 +3035,11 @@ class LassoLexer(RegexLexer):
         RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
-        for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):
+        stack = ['root']
+        if self.requiredelimiters:
+            stack.append('delimiters')
+        for index, token, value in \
+            RegexLexer.get_tokens_unprocessed(self, text, stack):
             if token is Name.Other:
                 if value.lower() in self._builtins:
                     yield index, Name.Builtin, value
