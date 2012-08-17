@@ -14,6 +14,7 @@ from pygments.token import *
 
 __all__ = ['PuppetLexer']
 
+
 class PuppetLexer(RegexLexer):
     name = 'Puppet'
     aliases = ['puppet']
@@ -26,10 +27,8 @@ class PuppetLexer(RegexLexer):
             (r'<|>|=|\+|-|\/|\*|~|!|\|', Operator),
             (r'(in|and|or|not)\b', Operator.Word),
             (r'[]{}:(),;[]', Punctuation),
-            (r'(if|else|elsif|case|class|true|false|define|inherits)\b',
-             Keyword),
-            (r'(notice|node|include|realize|import)\b', Keyword),
-
+            (r'(if|else|elsif|case|class|true|false|define)\b', Keyword),
+            (r'(inherits|notice|node|include|realize|import)\b', Keyword),
             (r'[^\S\n]+', Text),
             ],
-    }
+        }
