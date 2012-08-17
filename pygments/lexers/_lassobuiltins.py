@@ -269,7 +269,7 @@ BUILTINS = {
         'web_node_echo',
         'web_error_atend',
         'web_response_impl',
-        'web_router',
+        'web_router'
     ],
     'Traits': [
         'trait_asstring',
@@ -343,7 +343,7 @@ BUILTINS = {
         'web_node_postable',
         'web_node_content_html_specialized',
         'web_node_content_css_specialized',
-        'web_node_content_js_specialized',
+        'web_node_content_js_specialized'
     ],
     'Methods': [
         'fail_now',
@@ -3779,7 +3779,7 @@ BUILTINS = {
         'shouldabort',
         'gettrigger',
         'trigger',
-        'rule',
+        'rule'
     ],
     'Lasso 8 Tags': [
         '__char',
@@ -5408,6 +5408,6 @@ BUILTINS = {
         'xsd_processsimpletype',
         'xsd_ref',
         'xsd_type',
-        'year',
-    ],
+        'year'
+    ]
 }
