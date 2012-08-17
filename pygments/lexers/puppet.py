@@ -21,10 +21,11 @@ class PuppetLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'\s*#.*$', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'<|>|=|\+|-|\/|\*|~|!', Operator),
             (r'(in|and|or)\b', Operator.Word),
             (r'[]{}:(),;[]', Punctuation),
-            (r'\s*#.*$', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-        ]
+            (r'if\s*|class\s*', Keyword),
+            ],
     }
