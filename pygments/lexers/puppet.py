@@ -21,6 +21,9 @@ class PuppetLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'<|>|=|\+|-|\/|\*|~|!', Operator),
+            (r'(in|and|or)\b', Operator.Word),
+            (r'[]{}:(),;[]', Punctuation),
             (r'\s*#.*$', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ]
