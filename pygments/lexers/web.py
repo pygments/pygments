@@ -3048,7 +3048,7 @@ class LassoLexer(RegexLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search(r'^#!.+lasso9\b', text):
+        if 'bin/lasso9' in text:
             rv += 0.8
         if re.search(r'<\?(=|lasso)', text, re.I):
             rv += 0.4
