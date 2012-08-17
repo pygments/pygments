@@ -23,10 +23,13 @@ class PuppetLexer(RegexLexer):
         'root': [
             (r'\s*#.*$', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            (r'<|>|=|\+|-|\/|\*|~|!', Operator),
-            (r'(in|and|or)\b', Operator.Word),
+            (r'<|>|=|\+|-|\/|\*|~|!|\|', Operator),
+            (r'(in|and|or|not)\b', Operator.Word),
             (r'[]{}:(),;[]', Punctuation),
-            (r'if|class|true|define|inherits', Keyword),
-            (r'notice|node|include', Keyword),
+            (r'(if|else|elsif|case|class|true|false|define|inherits)\b',
+             Keyword),
+            (r'(notice|node|include|realize|import)\b', Keyword),
+
+            (r'[^\S\n]+', Text),
             ],
     }
