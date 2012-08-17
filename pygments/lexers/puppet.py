@@ -22,12 +22,6 @@ class PuppetLexer(RegexLexer):
     tokens = {
         'root': [
             (r'#.*$', Comment),
-            (r' .*\n', Text),
-            (r'\+.*\n', Generic.Inserted),
-            (r'-.*\n', Generic.Deleted),
-            (r'@.*\n', Generic.Subheading),
-            (r'Index.*\n', Generic.Heading),
-            (r'=.*\n', Generic.Heading),
-            (r'.*\n', Text),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ]
     }
