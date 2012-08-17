@@ -21,7 +21,7 @@ class PuppetLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'#.*$', Comment),
+            (r'\s*#.*$', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ]
     }
