@@ -26,6 +26,6 @@ class PuppetLexer(RegexLexer):
             (r'<|>|=|\+|-|\/|\*|~|!', Operator),
             (r'(in|and|or)\b', Operator.Word),
             (r'[]{}:(),;[]', Punctuation),
-            (r'if\s*|class\s*', Keyword),
+            (r'if|class|true|define|inherits', Keyword),
             ],
     }
