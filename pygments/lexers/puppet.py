@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer
+from pygments.lexer import RegexLexer, bygroups
 from pygments.token import *
 
 __all__ = ['PuppetLexer']
@@ -24,11 +24,20 @@ class PuppetLexer(RegexLexer):
         'root': [
             (r'\s*#.*$', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            (r'<|>|=|\+|-|\/|\*|~|!|\|', Operator),
+
+            (r'\?|<|>|=|\+|-|\/|\*|~|!|\|', Operator),
             (r'(in|and|or|not)\b', Operator.Word),
             (r'[]{}:(),;[]', Punctuation),
+
             (r'(if|else|elsif|case|class|true|false|define)\b', Keyword),
             (r'(inherits|notice|node|include|realize|import)\b', Keyword),
+
+            (r'\'(.*?)\'', String),
+            (r'"(.*?)"', String),
+
+            (r'(.*?)(\s*)(=>)(\s*)(.*?)$',
+             bygroups(Name.Attribute, Text, Operator, Text, String)),
+
             (r'[^\S\n]+', Text),
             ],
         }
