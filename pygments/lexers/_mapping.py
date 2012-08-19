@@ -220,7 +220,7 @@ LEXERS = {
     'RstLexer': ('pygments.lexers.text', 'reStructuredText', ('rst', 'rest', 'restructuredtext'), ('*.rst', '*.rest'), ('text/x-rst', 'text/prs.fallenstein.rst')),
     'RubyConsoleLexer': ('pygments.lexers.agile', 'Ruby irb session', ('rbcon', 'irb'), (), ('text/x-ruby-shellsession',)),
     'RubyLexer': ('pygments.lexers.agile', 'Ruby', ('rb', 'ruby', 'duby'), ('*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec', '*.rbx', '*.duby'), ('text/x-ruby', 'application/x-ruby')),
-    'RustLexer': ('pygments.lexers.compiled', 'Rust', ('rs', 'rc'), ('*.rs', '*.rc'), ('text/x-rustsrc')),
+    'RustLexer': ('pygments.lexers.compiled', 'Rust', ('rust',), ('*.rs', '*.rc'), ('text/x-rustsrc',)),
     'SLexer': ('pygments.lexers.math', 'S', ('splus', 's', 'r'), ('*.S', '*.R'), ('text/S-plus', 'text/S', 'text/R')),
     'SMLLexer': ('pygments.lexers.functional', 'Standard ML', ('sml',), ('*.sml', '*.sig', '*.fun'), ('text/x-standardml', 'application/x-standardml')),
     'SassLexer': ('pygments.lexers.web', 'Sass', ('sass', 'SASS'), ('*.sass',), ('text/x-sass',)),
