@@ -22,7 +22,7 @@ from pygments.lexers.agile import RubyLexer
 from pygments.lexers.compiled import ScalaLexer
 
 
-__all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JSONLexer', 'CssLexer',
+__all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JsonLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'LiveScriptLexer',
@@ -90,7 +90,7 @@ class JavascriptLexer(RegexLexer):
     }
 
 
-class JSONLexer(RegexLexer):
+class JsonLexer(RegexLexer):
     """
     For JSON data structures.
 
@@ -169,6 +169,8 @@ class JSONLexer(RegexLexer):
         ],
 
     }
+
+JSONLexer = JsonLexer  # for backwards compatibility with Pygments 1.5
 
 
 class ActionScriptLexer(RegexLexer):
