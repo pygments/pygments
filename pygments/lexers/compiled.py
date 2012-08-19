@@ -27,7 +27,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'DylanLexer', 'ObjectiveCLexer', 'FortranLexer', 'GLShaderLexer',
            'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
            'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
-           'NimrodLexer', 'FantomLexer']
+           'NimrodLexer', 'FantomLexer', 'RustLexer', 'CUDALexer']
 
 
 class CLexer(RegexLexer):
@@ -2889,3 +2889,138 @@ class FantomLexer(RegexLexer):
             (r'.', Text)
         ],
     }
+
+
+class RustLexer(RegexLexer):
+    """
+    Lexer for Mozilla's Rust programming language.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'Rust'
+    filenames = ['*.rs', '*.rc']
+    aliases = ['rust']
+    mimetypes = ['text/x-rustsrc']
+
+    tokens = {
+        'root': [
+            # Whitespace and Comments
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'//(.*?)\n', Comment.Single),
+            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+
+            # Keywords
+            (r'(alt|as|assert|be|break|check|claim|class|const'
+             r'|cont|copy|crust|do|else|enum|export|fail'
+             r'|false|fn|for|if|iface|impl|import|let|log'
+             r'|loop|mod|mut|native|pure|resource|ret|true'
+             r'|type|unsafe|use|white|note|bind|prove|unchecked'
+             r'|with|syntax|u8|u16|u32|u64|i8|i16|i32|i64|uint'
+             r'|int|f32|f64)\b', Keyword),
+
+            # Character Literal
+            (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
+             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
+             String.Char),
+            # Binary Literal
+            (r'0[Bb][01_]+', Number, 'number_lit'),
+            # Octal Literal
+            (r'0[0-7_]+', Number.Oct, 'number_lit'),
+            # Hexadecimal Literal
+            (r'0[xX][0-9a-fA-F_]+', Number.Hex, 'number_lit'),
+            # Decimal Literal
+            (r'[0-9][0-9_]*(\.[0-9_]+[eE][+\-]?'
+             r'[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+)?', Number, 'number_lit'),
+            # String Literal
+            (r'"', String, 'string'),
+
+            # Operators and Punctuation
+            (r'[{}()\[\],.;]', Punctuation),
+            (r'[+\-*/%&|<>^!~@=:?]', Operator),
+
+            # Identifier
+            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+
+            # Attributes
+            (r'#\[', Comment.Preproc, 'attribute['),
+            (r'#\(', Comment.Preproc, 'attribute('),
+            # Macros
+            (r'#[A-Za-z_][A-Za-z0-9_]*\[', Comment.Preproc, 'attribute['),
+            (r'#[A-Za-z_][A-Za-z0-9_]*\(', Comment.Preproc, 'attribute(')
+        ],
+        'number_lit': {
+            (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop')
+        },
+        'string': {
+            (r'"', String, '#pop'),
+            (r"""\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
+             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}""", String.Escape),
+            (r'[^\\"]+', String),
+            (r'\\', String)
+        },
+        'attribute_common': {
+            (r'"', String, 'string'),
+            (r'\[', Comment.Preproc, 'attribute['),
+            (r'\(', Comment.Preproc, 'attribute('),
+        },
+        'attribute[': {
+            include('attribute_common'),
+            (r'\];?', Comment.Preproc, '#pop'),
+            (r'[^"\]]+', Comment.Preproc)
+        },
+        'attribute(': {
+            include('attribute_common'),
+            (r'\);?', Comment.Preproc, '#pop'),
+            (r'[^"\)]+', Comment.Preproc)
+        }
+    }
+
+
+class CUDALexer(CLexer):
+    """
+    For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
+    source.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'CUDA'
+    filenames = ['*.cu', '*.cuh']
+    aliases = ['cuda', 'cu']
+    mimetypes = ['text/x-cuda']
+
+    function_qualifiers = ['__device__', '__global__', '__host__',
+                           '__noinline__', '__forceinline__']
+    variable_qualifiers = ['__device__', '__constant__', '__shared__',
+                           '__restrict__']
+    vector_types = ['char1', 'uchar1', 'char2', 'uchar2', 'char3', 'uchar3',
+                    'char4', 'uchar4', 'short1', 'ushort1', 'short2', 'ushort2',
+                    'short3', 'ushort3', 'short4', 'ushort4', 'int1', 'uint1',
+                    'int2', 'uint2', 'int3', 'uint3', 'int4', 'uint4', 'long1',
+                    'ulong1', 'long2', 'ulong2', 'long3', 'ulong3', 'long4',
+                    'ulong4', 'longlong1', 'ulonglong1', 'longlong2',
+                    'ulonglong2', 'float1', 'float2', 'float3', 'float4',
+                    'double1', 'double2', 'dim3']
+    variables = ['gridDim', 'blockIdx', 'blockDim', 'threadIdx', 'warpSize']
+    functions = ['__threadfence_block', '__threadfence', '__threadfence_system',
+                 '__syncthreads', '__syncthreads_count', '__syncthreads_and',
+                 '__syncthreads_or']
+    execution_confs = ['<<<', '>>>']
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in \
+            CLexer.get_tokens_unprocessed(self, text):
+            if token is Name:
+                if value in self.variable_qualifiers:
+                    token = Keyword.Type
+                elif value in self.vector_types:
+                    token = Keyword.Type
+                elif value in self.variables:
+                    token = Name.Builtin
+                elif value in self.execution_confs:
+                    token = Keyword.Pseudo
+                elif value in self.function_qualifiers:
+                    token = Keyword.Reserved
+                elif value in self.functions:
+                    token = Name.Function
+            yield index, token, value

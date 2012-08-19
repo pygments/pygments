@@ -1371,6 +1371,11 @@ class RebolLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'REBOL', Generic.Strong, 'script'),
+            (r'R', Comment),
+            (r'[^R]+', Comment),
+        ],
+        'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
             (r'#{[0-9a-fA-F]*}', Number.Hex),
