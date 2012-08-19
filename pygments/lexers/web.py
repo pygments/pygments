@@ -1084,6 +1084,8 @@ class MxmlLexer(RegexLexer):
     """
     For MXML markup.
     Nested AS3 in <script> tags is highlighted by the appropriate lexer.
+
+    *New in Pygments 1.1.*
     """
     flags = re.MULTILINE | re.DOTALL
     name = 'MXML'
@@ -1125,6 +1127,8 @@ class MxmlLexer(RegexLexer):
 class HaxeLexer(RegexLexer):
     """
     For haXe source code (http://haxe.org/).
+
+    *New in Pygments 1.3.*
     """
 
     name = 'haXe'
