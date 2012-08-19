@@ -23,6 +23,7 @@ __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
            'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
            'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer']
 
+
 class JuliaLexer(RegexLexer):
     name = 'Julia'
     aliases = ['julia','jl']
@@ -250,7 +251,6 @@ class MuPADLexer(RegexLexer):
 class MatlabLexer(RegexLexer):
     """
     For Matlab source code.
-    Contributed by Ken Schutte <kschutte@csail.mit.edu>.
 
     *New in Pygments 0.10.*
     """
@@ -305,6 +305,7 @@ class MatlabLexer(RegexLexer):
             # line starting with '!' is sent as a system command.  not sure what
             # label to use...
             (r'^!.*', String.Other),
+            (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'%.*$', Comment),
             (r'^\s*function', Keyword, 'deffunc'),
 
@@ -314,6 +315,9 @@ class MatlabLexer(RegexLexer):
              r'persistent|properties|return|spmd|switch|try|while)\b', Keyword),
 
             ("(" + "|".join(elfun+specfun+elmat) + r')\b',  Name.Builtin),
+
+            # line continuation with following comment:
+            (r'\.\.\..*$', Comment),
 
             # operators:
             (r'-|==|~=|<|>|<=|>=|&&|&|~|\|\|?', Operator),
@@ -334,6 +338,11 @@ class MatlabLexer(RegexLexer):
         ],
         'string': [
             (r'[^\']*\'', String, '#pop')
+        ],
+        'blockcomment': [
+            (r'^\s*%\}', Comment.Multiline, '#pop'),
+            (r'^.*\n', Comment.Multiline),
+            (r'.', Comment.Multiline),
         ],
         'deffunc': [
             (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
