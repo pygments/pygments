@@ -1050,7 +1050,7 @@ class XsltLexer(XmlLexer):
 
     name = 'XSLT'
     aliases = ['xslt']
-    filenames = ['*.xsl', '*.xslt']
+    filenames = ['*.xsl', '*.xslt', '*.xpl']  # xpl is XProc
     mimetypes = ['application/xsl+xml', 'application/xslt+xml']
 
     EXTRA_KEYWORDS = set([
