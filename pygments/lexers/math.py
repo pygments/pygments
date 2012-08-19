@@ -5,7 +5,7 @@
 
     Lexers for math languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHOR.
     :license: BSD, see LICENSE for details.
 """
 
@@ -1010,8 +1010,9 @@ class SLexer(RegexLexer):
 
     name = 'S'
     aliases = ['splus', 's', 'r']
-    filenames = ['*.S', '*.R']
-    mimetypes = ['text/S-plus', 'text/S', 'text/R']
+    filenames = ['*.S', '*.R', '.Rhistory', '.Rprofile']
+    mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
+                 'text/x-R', 'text/x-r-history', 'text/x-r-profile']
 
     tokens = {
         'comments': [
