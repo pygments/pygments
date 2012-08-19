@@ -145,6 +145,7 @@ class SchemeLexer(RegexLexer):
 
             # the famous parentheses!
             (r'(\(|\))', Punctuation),
+            (r'(\[|\])', Punctuation),
         ],
     }
 
