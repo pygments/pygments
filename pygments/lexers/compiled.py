@@ -41,6 +41,8 @@ class CLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    #: only one /* */ style comment
+    _ws1 = r':\s*/[*].*?[*]/\s*'
 
     tokens = {
         'whitespace': [
@@ -48,9 +50,9 @@ class CLexer(RegexLexer):
             ('^#if\s+0', Comment.Preproc, 'if0'),
             ('^#', Comment.Preproc, 'macro'),
             # or with whitespace
-            ('^(' + _ws + r')(#if\s+0)',
+            ('^(' + _ws1 + r')(#if\s+0)',
              bygroups(using(this), Comment.Preproc), 'if0'),
-            ('^(' + _ws + ')(#)',
+            ('^(' + _ws1 + ')(#)',
              bygroups(using(this), Comment.Preproc), 'macro'),
             (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*:(?!:))',
              bygroups(Text, Name.Label)),
@@ -179,6 +181,8 @@ class CppLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    #: only one /* */ style comment
+    _ws1 = r':\s*/[*].*?[*]/\s*'
 
     tokens = {
         'root': [
@@ -186,9 +190,9 @@ class CppLexer(RegexLexer):
             ('^#if\s+0', Comment.Preproc, 'if0'),
             ('^#', Comment.Preproc, 'macro'),
             # or with whitespace
-            ('^(' + _ws + r')(#if\s+0)',
+            ('^(' + _ws1 + r')(#if\s+0)',
              bygroups(using(this), Comment.Preproc), 'if0'),
-            ('^(' + _ws + ')(#)',
+            ('^(' + _ws1 + ')(#)',
              bygroups(using(this), Comment.Preproc), 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
@@ -270,6 +274,8 @@ class ECLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    #: only one /* */ style comment
+    _ws1 = r':\s*/[*].*?[*]/\s*'
 
     tokens = {
         'whitespace': [
@@ -277,8 +283,8 @@ class ECLexer(RegexLexer):
             ('^#if\s+0', Comment.Preproc, 'if0'),
             ('^#', Comment.Preproc, 'macro'),
             # or with whitespace
-            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
-            ('^' + _ws + '#', Comment.Preproc, 'macro'),
+            ('^' + _ws1 + r'#if\s+0', Comment.Preproc, 'if0'),
+            ('^' + _ws1 + '#', Comment.Preproc, 'macro'),
             (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*:(?!:))', bygroups(Text, Name.Label)),
             (r'\n', Text),
             (r'\s+', Text),
@@ -1108,6 +1114,8 @@ class ObjectiveCLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    #: only one /* */ style comment
+    _ws1 = r':\s*/[*].*?[*]/\s*'
 
     tokens = {
         'whitespace': [
@@ -1115,8 +1123,10 @@ class ObjectiveCLexer(RegexLexer):
             ('^#if\s+0', Comment.Preproc, 'if0'),
             ('^#', Comment.Preproc, 'macro'),
             # or with whitespace
-            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
-            ('^' + _ws + '#', Comment.Preproc, 'macro'),
+            ('^(' + _ws1 + r')(#if\s+0)',
+             bygroups(using(this), Comment.Preproc), 'if0'),
+            ('^(' + _ws1 + ')(#)',
+             bygroups(using(this), Comment.Preproc), 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
@@ -2119,8 +2129,6 @@ class AdaLexer(RegexLexer):
     mimetypes = ['text/x-ada']
 
     flags = re.MULTILINE | re.I  # Ignore case
-
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
 
     tokens = {
         'root': [
