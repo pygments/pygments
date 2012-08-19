@@ -1086,7 +1086,7 @@ class BugsLexer(RegexLexer):
 
     name = 'BUGS'
     aliases = ['bugs', 'winbugs', 'openbugs']
-    filenames = ['*.bug']
+    filenames = ['*.bugs']
 
     _FUNCTIONS = [
         # Scalar functions
@@ -1116,11 +1116,11 @@ class BugsLexer(RegexLexer):
     """
 
     _DISTRIBUTIONS = ['dbern', 'dbin', 'dcat', 'dnegbin', 'dpois',
-                           'dhyper', 'dbeta', 'dchisqr', 'ddexp', 'dexp',
-                           'dflat', 'dgamma', 'dgev', 'df', 'dggamma', 'dgpar',
-                           'dloglik', 'dlnorm', 'dlogis', 'dnorm', 'dpar',
-                           'dt', 'dunif', 'dweib', 'dmulti', 'ddirch', 'dmnorm',
-                           'dmt', 'dwish']
+                      'dhyper', 'dbeta', 'dchisqr', 'ddexp', 'dexp',
+                      'dflat', 'dgamma', 'dgev', 'df', 'dggamma', 'dgpar',
+                      'dloglik', 'dlnorm', 'dlogis', 'dnorm', 'dpar',
+                      'dt', 'dunif', 'dweib', 'dmulti', 'ddirch', 'dmnorm',
+                      'dmt', 'dwish']
     """ OpenBUGS built-in distributions
 
     Functions From http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAI
@@ -1166,6 +1166,8 @@ class BugsLexer(RegexLexer):
             # Block
             (r'{', Punctuation, '#push'),
             (r'}', Punctuation, '#pop'),
+            # Other
+            (r';', Punctuation),
             ]
         }
 
