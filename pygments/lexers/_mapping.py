@@ -42,7 +42,7 @@ LEXERS = {
     'BooLexer': ('pygments.lexers.dotnet', 'Boo', ('boo',), ('*.boo',), ('text/x-boo',)),
     'BrainfuckLexer': ('pygments.lexers.other', 'Brainfuck', ('brainfuck', 'bf'), ('*.bf', '*.b'), ('application/x-brainfuck',)),
     'BroLexer': ('pygments.lexers.other', 'Bro', ('bro',), ('*.bro',), ()),
-    'BugsLexer': ('pygments.lexers.math', 'BUGS', ('bugs', 'winbugs', 'openbugs'), ('*.bug',), ()),
+    'BugsLexer': ('pygments.lexers.math', 'BUGS', ('bugs', 'winbugs', 'openbugs'), ('*.bugs',), ()),
     'CLexer': ('pygments.lexers.compiled', 'C', ('c',), ('*.c', '*.h', '*.idc'), ('text/x-chdr', 'text/x-csrc')),
     'CMakeLexer': ('pygments.lexers.text', 'CMake', ('cmake',), ('*.cmake', 'CMakeLists.txt'), ('text/x-cmake',)),
     'CObjdumpLexer': ('pygments.lexers.asm', 'c-objdump', ('c-objdump',), ('*.c-objdump',), ('text/x-c-objdump',)),

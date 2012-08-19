@@ -23,9 +23,9 @@ data {
      // includes .
      real foo.;
      // beings with number
-     real 0foo;
+     //real 0foo;
      // begins with _
-     real _foo;
+     //real _foo;
 }
 transformed data {
      real xyzzy;
@@ -76,12 +76,12 @@ generated quantities {
 }
 
 ## Baddness
-foo <- 2.0;
-foo ~ normal(0, 1);
-not_a_block {
-}
+//foo <- 2.0;
+//foo ~ normal(0, 1);
+//not_a_block {
+//}
 
 /*
 what happens with this? 
 */
-*/
+// */
