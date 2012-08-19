@@ -1108,7 +1108,7 @@ class ObjectiveCLexer(RegexLexer):
 
     name = 'Objective-C'
     aliases = ['objective-c', 'objectivec', 'obj-c', 'objc']
-    #XXX: objc has .h files too :-/
+    # XXX: objc has .h files too :-/
     filenames = ['*.m']
     mimetypes = ['text/x-objective-c']
 
@@ -1149,7 +1149,7 @@ class ObjectiveCLexer(RegexLexer):
              r'switch|typedef|union|volatile|virtual|while|in|@selector|'
              r'@private|@protected|@public|@encode|'
              r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
-             r'@synthesize|@dynamic)\b', Keyword),
+             r'@synthesize|@dynamic|@optional)\b', Keyword),
             (r'(int|long|float|short|double|char|unsigned|signed|void|'
              r'id|BOOL|IBOutlet|IBAction|SEL)\b', Keyword.Type),
             (r'(_{0,2}inline|naked|restrict|thread|typename)\b',
@@ -1159,6 +1159,10 @@ class ObjectiveCLexer(RegexLexer):
             (r'(TRUE|FALSE|nil|NULL)\b', Name.Builtin),
             ('[a-zA-Z$_][a-zA-Z0-9$_]*:(?!:)', Name.Label),
             ('[a-zA-Z$_][a-zA-Z0-9$_]*', Name),
+            (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
+             ('#pop', 'classname')),
+            (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
+             ('#pop', 'forward_classname')),
         ],
         'root': [
             include('whitespace'),
