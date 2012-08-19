@@ -2890,9 +2890,12 @@ class FantomLexer(RegexLexer):
         ],
     }
 
+
 class RustLexer(RegexLexer):
     """
-    Lexer for Mozilla's Rust programming language
+    Lexer for Mozilla's Rust programming language.
+
+    *New in Pygments 1.6.*
     """
     name = 'Rust'
     filenames = ['*.rs', '*.rc']
@@ -2972,4 +2975,3 @@ class RustLexer(RegexLexer):
             (r'[^"\)]+', Comment.Preproc)
         }
     }
- 
