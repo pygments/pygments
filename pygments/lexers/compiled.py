@@ -2976,31 +2976,35 @@ class RustLexer(RegexLexer):
         }
     }
 
+
 class CUDALexer(CLexer):
     """
-    For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_ source.
+    For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
+    source.
+
+    *New in Pygments 1.6.*
     """
     name = 'CUDA'
     filenames = ['*.cu', '*.cuh']
     aliases = ['cuda', 'cu']
     mimetypes = ['text/x-cuda']
-    tokens = {
-        'root': [
-        ], 
-    }
 
-    function_qualifiers = ['__device__', '__global__', '__host__', '__noinline__', '__forceinline__']
-    variable_qualifiers = ['__device__', '__constant__', '__shared__', '__restrict__']
-    vector_types = ['char1', 'uchar1', 'char2', 'uchar2', 'char3', 'uchar3', 'char4', 'uchar4',
-                    'short1', 'ushort1', 'short2', 'ushort2', 'short3', 'ushort3', 'short4', 'ushort4',
-                    'int1', 'uint1', 'int2', 'uint2', 'int3', 'uint3', 'int4', 'uint4',
-                    'long1', 'ulong1', 'long2', 'ulong2', 'long3', 'ulong3', 'long4', 'ulong4',
-                    'longlong1', 'ulonglong1', 'longlong2', 'ulonglong2',
-                    'float1', 'float2', 'float3', 'float4',
+    function_qualifiers = ['__device__', '__global__', '__host__',
+                           '__noinline__', '__forceinline__']
+    variable_qualifiers = ['__device__', '__constant__', '__shared__',
+                           '__restrict__']
+    vector_types = ['char1', 'uchar1', 'char2', 'uchar2', 'char3', 'uchar3',
+                    'char4', 'uchar4', 'short1', 'ushort1', 'short2', 'ushort2',
+                    'short3', 'ushort3', 'short4', 'ushort4', 'int1', 'uint1',
+                    'int2', 'uint2', 'int3', 'uint3', 'int4', 'uint4', 'long1',
+                    'ulong1', 'long2', 'ulong2', 'long3', 'ulong3', 'long4',
+                    'ulong4', 'longlong1', 'ulonglong1', 'longlong2',
+                    'ulonglong2', 'float1', 'float2', 'float3', 'float4',
                     'double1', 'double2', 'dim3']
     variables = ['gridDim', 'blockIdx', 'blockDim', 'threadIdx', 'warpSize']
-    functions = ['__threadfence_block', '__threadfence', '__threadfence_system', '__syncthreads',
-                  '__syncthreads_count', '__syncthreads_and', '__syncthreads_or']
+    functions = ['__threadfence_block', '__threadfence', '__threadfence_system',
+                 '__syncthreads', '__syncthreads_count', '__syncthreads_and',
+                 '__syncthreads_or']
     execution_confs = ['<<<', '>>>']
 
     def get_tokens_unprocessed(self, text):
@@ -3019,4 +3023,4 @@ class CUDALexer(CLexer):
                     token = Keyword.Reserved
                 elif value in self.functions:
                     token = Name.Function
-            yield index, token, value>>>>>>> other
+            yield index, token, value
