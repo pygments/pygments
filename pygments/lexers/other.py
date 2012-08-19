@@ -30,7 +30,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'AutohotkeyLexer', 'GoodDataCLLexer', 'MaqlLexer', 'ProtoBufLexer',
            'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
-           'MscgenLexer' ]
+           'MscgenLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -3344,12 +3344,15 @@ class BroLexer(RegexLexer):
         ]
     }
 
+
 class MscgenLexer(RegexLexer):
     """
     For `Mscgen <http://www.mcternan.me.uk/mscgen/>`_ files.
+
+    *New in Pygments 1.6.*
     """
     name = 'Mscgen'
-    aliases = ['mscgen', 'msc' ]
+    aliases = ['mscgen', 'msc']
     filenames = ['*.msc']
 
     _var = r'([a-zA-Z0-9_]+|"(?:\\"|[^"])*")'
@@ -3389,4 +3392,3 @@ class MscgenLexer(RegexLexer):
             (r'[ \t\r\n]+', Text.Whitespace)
         ]
     }
-
