@@ -1802,10 +1802,10 @@ class CoffeeScriptLexer(RegexLexer):
             (r'#(?!##[^#]).*?\n', Comment.Single),
         ],
         'multilineregex': [
-            include('commentsandwhitespace'),
+            (r'[^/#]+', String.Regex),
             (r'///([gim]+\b|\B)', String.Regex, '#pop'),
-            (r'/', String.Regex),
-            (r'[^/#]+', String.Regex)
+            (r'#{', String.Interpol, 'interpoling_string'),
+            (r'[/#]', String.Regex),
         ],
         'slashstartsregex': [
             include('commentsandwhitespace'),
