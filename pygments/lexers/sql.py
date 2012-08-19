@@ -39,7 +39,6 @@
 """
 
 import re
-from copy import deepcopy
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups
 from pygments.token import Punctuation, \
@@ -61,9 +60,6 @@ def language_callback(lexer, match):
     """Parse the content of a $-string using a lexer
 
     The lexer is chosen looking for a nearby LANGUAGE.
-
-    Note: this function should have been a `PostgresBase` method, but the
-    rules deepcopy fails in this case.
     """
     l = None
     m = language_re.match(lexer.text[match.end():match.end()+100])
@@ -93,8 +89,6 @@ class PostgresBase(object):
     had, _tokens could be created on this ancestor and not updated for the
     other classes, resulting e.g. in PL/pgSQL parsed as SQL. This shortcoming
     seem to suggest that regexp lexers are not really subclassable.
-
-    `language_callback` should really be our method, but this breaks deepcopy.
     """
     def get_tokens_unprocessed(self, text, *args):
         # Have a copy of the entire text to be used by `language_callback`.
@@ -182,7 +176,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     mimetypes = ['text/x-plpgsql']
 
     flags = re.IGNORECASE
-    tokens = deepcopy(PostgresLexer.tokens)
+    tokens = dict((k, l[:]) for (k, l) in PostgresLexer.tokens.iteritems())
 
     # extend the keywords list
     for i, pattern in enumerate(tokens['root']):
@@ -216,7 +210,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     aliases = []    # not public
 
     flags = re.IGNORECASE
-    tokens = deepcopy(PostgresLexer.tokens)
+    tokens = dict((k, l[:]) for (k, l) in PostgresLexer.tokens.iteritems())
 
     tokens['root'].append(
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))

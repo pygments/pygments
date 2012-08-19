@@ -297,7 +297,6 @@ class SmalltalkLexer(RegexLexer):
             (r'\^|\:=|\_', Operator),
             # temporaries
             (r'[\]({}.;!]', Text),
-
         ],
         'method definition' : [
             # Not perfect can't allow whitespaces at the beginning and the
@@ -316,7 +315,7 @@ class SmalltalkLexer(RegexLexer):
             (r'', Text, '#pop'), # else pop
         ],
         'literals' : [
-            (r'\'[^\']*\'', String, 'afterobject'),
+            (r"'(''|[^'])*'", String, 'afterobject'),
             (r'\$.', String.Char, 'afterobject'),
             (r'#\(', String.Symbol, 'parenth'),
             (r'\)', Text, 'afterobject'),
@@ -327,14 +326,14 @@ class SmalltalkLexer(RegexLexer):
             (r'(\d+r)?-?\d+(\.\d+)?(e-?\d+)?', Number),
             (r'[-+*/\\~<>=|&#!?,@%\w:]+', String.Symbol),
             # literals
-            (r'\'[^\']*\'', String),
+            (r"'(''|[^'])*'", String),
             (r'\$.', String.Char),
             (r'#*\(', String.Symbol, 'inner_parenth'),
         ],
         'parenth' : [
             # This state is a bit tricky since
             # we can't just pop this state
-            (r'\)', String.Symbol, ('root','afterobject')),
+            (r'\)', String.Symbol, ('root', 'afterobject')),
             include('_parenth_helper'),
         ],
         'inner_parenth': [
@@ -344,7 +343,7 @@ class SmalltalkLexer(RegexLexer):
         'whitespaces' : [
             # skip whitespace and comments
             (r'\s+', Text),
-            (r'"[^"]*"', Comment),
+            (r'"(""|[^"])*"', Comment),
         ],
         'objects' : [
             (r'\[', Text, 'blockvariables'),
@@ -353,7 +352,7 @@ class SmalltalkLexer(RegexLexer):
              Name.Builtin.Pseudo, 'afterobject'),
             (r'\b[A-Z]\w*(?!:)\b', Name.Class, 'afterobject'),
             (r'\b[a-z]\w*(?!:)\b', Name.Variable, 'afterobject'),
-            (r'#("[^"]*"|[-+*/\\~<>=|&!?,@%]+|[\w:]+)',
+            (r'#("(""|[^"])*"|[-+*/\\~<>=|&!?,@%]+|[\w:]+)',
              String.Symbol, 'afterobject'),
             include('literals'),
         ],
@@ -374,11 +373,11 @@ class SmalltalkLexer(RegexLexer):
         ],
         'squeak fileout' : [
             # Squeak fileout format (optional)
-            (r'^"[^"]*"!', Keyword),
-            (r"^'[^']*'!", Keyword),
+            (r'^"(""|[^"])*"!', Keyword),
+            (r"^'(''|[^'])*'!", Keyword),
             (r'^(!)(\w+)( commentStamp: )(.*?)( prior: .*?!\n)(.*?)(!)',
                 bygroups(Keyword, Name.Class, Keyword, String, Keyword, Text, Keyword)),
-            (r'^(!)(\w+(?: class)?)( methodsFor: )(\'[^\']*\')(.*?!)',
+            (r"^(!)(\w+(?: class)?)( methodsFor: )('(?:''|[^'])*')(.*?!)",
                 bygroups(Keyword, Name.Class, Keyword, String, Keyword)),
             (r'^(\w+)( subclass: )(#\w+)'
              r'(\s+instanceVariableNames: )(.*?)'
@@ -1371,6 +1370,11 @@ class RebolLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'REBOL', Generic.Strong, 'script'),
+            (r'R', Comment),
+            (r'[^R]+', Comment),
+        ],
+        'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
             (r'#{[0-9a-fA-F]*}', Number.Hex),
