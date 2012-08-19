@@ -1096,7 +1096,7 @@ class BugsLexer(RegexLexer):
 
     name = 'BUGS'
     aliases = ['bugs', 'winbugs', 'openbugs']
-    filenames = ['*.bugs']
+    filenames = ['*.bug']
 
     _FUNCTIONS = [
         # Scalar functions
@@ -1181,6 +1181,11 @@ class BugsLexer(RegexLexer):
             ]
         }
 
+    def analyse_text(text):
+        if re.match(r"^\s*model\s*{", text):
+            return 0.7
+        else:
+            return 0
 
 class JagsLexer(RegexLexer):
     """
@@ -1191,7 +1196,7 @@ class JagsLexer(RegexLexer):
 
     name = 'JAGS'
     aliases = ['jags']
-    filenames = ['*.jags']
+    filenames = ['*.bug', '*.jags']
 
     ## JAGS
     _FUNCTIONS = [
@@ -1273,6 +1278,16 @@ class JagsLexer(RegexLexer):
             ]
         }
 
+    def analyse_text(text):
+        if re.search(r'^\s*model\s*\{', text, re.M):
+            if re.search(r'^\s*data\s*\{', text, re.M):
+                return 0.9
+            elif re.search(r'^\s*var', text, re.M):
+                return 0.9
+            else:
+                return 0.3
+        else:
+            return 0
 
 class StanLexer(RegexLexer):
     """
@@ -1387,3 +1402,6 @@ class StanLexer(RegexLexer):
             (r'}', Punctuation, '#pop'),
             ]
         }
+
+    def analyse_text(text):
+        return re.match('^\s*\\parameters\s*\{', text)
