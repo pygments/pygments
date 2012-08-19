@@ -25,8 +25,9 @@ from pygments.lexers.compiled import ScalaLexer
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JSONLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
-           'ObjectiveJLexer', 'CoffeeScriptLexer', 'DuelLexer', 'ScamlLexer',
-           'JadeLexer', 'XQueryLexer', 'DtdLexer', 'DartLexer']
+           'ObjectiveJLexer', 'CoffeeScriptLexer', 'LiveScriptLexer',
+           'DuelLexer', 'ScamlLexer', 'JadeLexer', 'XQueryLexer',
+           'DtdLexer', 'DartLexer', 'LassoLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -103,10 +104,10 @@ class JSONLexer(RegexLexer):
 
     # integer part of a number
     int_part = r'-?(0|[1-9]\d*)'
-        
+
     # fractional part of a number
     frac_part = r'\.\d+'
-        
+
     # exponential part of a number
     exp_part = r'[eE](\+|-)?\d+'
 
@@ -1817,28 +1818,32 @@ class CoffeeScriptLexer(RegexLexer):
             # this next expr leads to infinite loops root -> slashstartsregex
             #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'\+\+|--|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|=|'
-             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|[-<>+*`%&\|\^/])=?',
+            (r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
+             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|'
+             r'=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?',
              Operator, 'slashstartsregex'),
-            (r'\([^()]*\)\s*->', Name.Function),
+            (r'(?:\([^()]+\))?\s*[=-]>', Name.Function),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
-            (r'(for|in|of|while|break|return|continue|switch|when|then|if|else|'
+            (r'(?<![\.\$])(for|own|in|of|while|until|'
+             r'loop|break|return|continue|'
+             r'switch|when|then|if|unless|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|super|'
              r'extends|this|class|by)\b', Keyword, 'slashstartsregex'),
-            (r'(true|false|yes|no|on|off|null|NaN|Infinity|undefined)\b',
+            (r'(?<![\.\$])(true|false|yes|no|on|off|null|'
+             r'NaN|Infinity|undefined)\b',
              Keyword.Constant),
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
              r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'eval|isFinite|isNaN|parseFloat|parseInt|document|window)\b',
              Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*[:=]\s', Name.Variable,
+            (r'[$a-zA-Z_][a-zA-Z0-9_\.:\$]*\s*[:=]\s', Name.Variable,
               'slashstartsregex'),
-            (r'@[$a-zA-Z_][a-zA-Z0-9_\.:]*\s*[:=]\s', Name.Variable.Instance,
+            (r'@[$a-zA-Z_][a-zA-Z0-9_\.:\$]*\s*[:=]\s', Name.Variable.Instance,
               'slashstartsregex'),
             (r'@', Name.Other, 'slashstartsregex'),
-            (r'@?[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other, 'slashstartsregex'),
+            (r'@?[$a-zA-Z_][a-zA-Z0-9_\$]*', Name.Other, 'slashstartsregex'),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -1879,6 +1884,118 @@ class CoffeeScriptLexer(RegexLexer):
             include('strings')
         ],
     }
+
+
+class LiveScriptLexer(RegexLexer):
+    """
+    For `LiveScript`_ source code.
+
+    .. _LiveScript: http://gkz.github.com/LiveScript/
+
+    New in Pygments 1.6.
+    """
+
+    name = 'LiveScript'
+    aliases = ['live-script', 'livescript']
+    filenames = ['*.ls']
+    mimetypes = ['text/livescript']
+
+    flags = re.DOTALL
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'#.*?\n', Comment.Single),
+        ],
+        'multilineregex': [
+            include('commentsandwhitespace'),
+            (r'//([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'/', String.Regex),
+            (r'[^/#]+', String.Regex)
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'//', String.Regex, ('#pop', 'multilineregex')),
+            (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'', Text, '#pop'),
+        ],
+        'root': [
+            # this next expr leads to infinite loops root -> slashstartsregex
+            #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            include('commentsandwhitespace'),
+            (r'(?:\([^()]+\))?[ ]*[~-]{1,2}>|'
+             r'(?:\(?[^()\n]+\)?)?[ ]*<[~-]{1,2}', Name.Function),
+            (r'\+\+|&&|(?<![\.\$])\b(?:and|x?or|is|isnt|not)\b|\?|:|=|'
+             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|'
+             r'~(?!\~?>)|-(?!\-?>)|<(?!\[)|(?<!\])>|'
+             r'[+*`%&\|\^/])=?',
+             Operator, 'slashstartsregex'),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+            (r'(?<![\.\$])(for|own|in|of|while|until|loop|break|'
+             r'return|continue|switch|when|then|if|unless|else|'
+             r'throw|try|catch|finally|new|delete|typeof|instanceof|super|'
+             r'extends|this|class|by|const|var|to|til)\b', Keyword,
+              'slashstartsregex'),
+            (r'(?<![\.\$])(true|false|yes|no|on|off|'
+             r'null|NaN|Infinity|undefined|void)\b',
+              Keyword.Constant),
+            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
+             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+             r'decodeURIComponent|encodeURI|encodeURIComponent|'
+             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window)\b',
+              Name.Builtin),
+            (r'[$a-zA-Z_][a-zA-Z0-9_\.\-:\$]*\s*[:=]\s', Name.Variable,
+              'slashstartsregex'),
+            (r'@[$a-zA-Z_][a-zA-Z0-9_\.\-:\$]*\s*[:=]\s', Name.Variable.Instance,
+              'slashstartsregex'),
+            (r'@', Name.Other, 'slashstartsregex'),
+            (r'@?[$a-zA-Z_][a-zA-Z0-9_\-]*', Name.Other, 'slashstartsregex'),
+            (r'[0-9]+\.[0-9]+([eE][0-9]+)?[fd]?(?:[a-zA-Z_]+)?', Number.Float),
+            (r'[0-9]+(~[0-9a-z]+)?(?:[a-zA-Z_]+)?', Number.Integer),
+            ('"""', String, 'tdqs'),
+            ("'''", String, 'tsqs'),
+            ('"', String, 'dqs'),
+            ("'", String, 'sqs'),
+            (r'\\[\w$-]+', String),
+            (r'<\[.*\]>', String),
+        ],
+        'strings': [
+            (r'[^#\\\'"]+', String),
+            # note that all coffee script strings are multi-line.
+            # hashmarks, quotes and backslashes must be parsed one at a time
+        ],
+        'interpoling_string' : [
+            (r'}', String.Interpol, "#pop"),
+            include('root')
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            (r'\\.|\'', String), # double-quoted string don't need ' escapes
+            (r'#{', String.Interpol, "interpoling_string"),
+            (r'#', String),
+            include('strings')
+        ],
+        'sqs': [
+            (r"'", String, '#pop'),
+            (r'#|\\.|"', String), # single quoted strings don't need " escapses
+            include('strings')
+        ],
+        'tdqs': [
+            (r'"""', String, '#pop'),
+            (r'\\.|\'|"', String), # no need to escape quotes in triple-string
+            (r'#{', String.Interpol, "interpoling_string"),
+            (r'#', String),
+            include('strings'),
+        ],
+        'tsqs': [
+            (r"'''", String, '#pop'),
+            (r'#|\\.|\'|"', String), # no need to escape quotes in triple-strings
+            include('strings')
+        ],
+    }
+
 
 class DuelLexer(RegexLexer):
     """
@@ -2862,3 +2979,199 @@ class DartLexer(RegexLexer):
             (r'\$+', String.Single)
         ]
     }
+
+
+class LassoLexer(RegexLexer):
+    """
+    For `Lasso <http://www.lassosoft.com/>`_ source code, covering both
+    Lasso 9 syntax and LassoScript for Lasso 8.6 and earlier. For Lasso
+    embedded in HTML, use the `LassoHtmlLexer`.
+
+    Additional options accepted:
+
+    `builtinshighlighting`
+        If given and ``True``, highlight builtin tags, types, traits, and
+        methods (default: ``True``).
+    `requiredelimiters`
+        If given and ``True``, only highlight code between delimiters as Lasso
+        (default: ``False``).
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'Lasso'
+    aliases = ['lasso', 'lassoscript']
+    filenames = ['*.lasso', '*.lasso[89]']
+    alias_filenames = ['*.incl', '*.inc', '*.las']
+    mimetypes = ['text/x-lasso']
+    flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
+
+    tokens = {
+        'root': [
+            (r'^#!.+lasso9\b', Comment.Preproc, 'lasso'),
+            (r'\s+', Other),
+            (r'\[noprocess\]', Comment.Preproc, ('delimiters', 'noprocess')),
+            (r'\[', Comment.Preproc, ('delimiters', 'squarebrackets')),
+            (r'<\?(LassoScript|lasso|=)', Comment.Preproc,
+                ('delimiters', 'anglebrackets')),
+            (r'<', Other, 'delimiters'),
+            include('lasso'),
+        ],
+        'delimiters': [
+            (r'\[noprocess\]', Comment.Preproc, 'noprocess'),
+            (r'\[', Comment.Preproc, 'squarebrackets'),
+            (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
+            (r'<', Other),
+            (r'[^[<]+', Other),
+        ],
+        'noprocess': [
+            (r'\[/noprocess\]', Comment.Preproc, '#pop'),
+            (r'\[', Other),
+            (r'[^[]', Other),
+        ],
+        'squarebrackets': [
+            (r'\]', Comment.Preproc, '#pop'),
+            include('lasso'),
+        ],
+        'anglebrackets': [
+            (r'\?>', Comment.Preproc, '#pop'),
+            include('lasso'),
+        ],
+        'lasso': [
+            # whitespace/comments
+            (r'\s+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*\*!.*?\*/', String.Doc),
+            (r'/\*.*?\*/', Comment.Multiline),
+
+            # names
+            (r'\$[a-z_][\w\.]*', Name.Variable),
+            (r'(#[a-z_][\w\.]*|#\d+)', Name.Variable.Instance),
+            (r"\.'[a-z_][\w\.]*'", Name.Variable.Class),
+            (r"(self)(->)('[a-z_][\w\.]*')",
+                bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
+            (r'(self|void)\b', Name.Builtin.Pseudo),
+            (r'-[a-z_][\w\.]*', Name.Attribute),
+            (r'(::)([a-z_][\w\.]*)', bygroups(Punctuation, Name.Label)),
+            (r'(error_(code|msg)_\w+|Error_AddError|Error_ColumnRestriction|'
+             r'Error_DatabaseConnectionUnavailable|Error_DatabaseTimeout|'
+             r'Error_DeleteError|Error_FieldRestriction|Error_FileNotFound|'
+             r'Error_InvalidDatabase|Error_InvalidPassword|'
+             r'Error_InvalidUsername|Error_ModuleNotFound|'
+             r'Error_NoError|Error_NoPermission|Error_OutOfMemory|'
+             r'Error_ReqColumnMissing|Error_ReqFieldMissing|'
+             r'Error_RequiredColumnMissing|Error_RequiredFieldMissing|'
+             r'Error_UpdateError)\b', Name.Exception),
+
+            # definitions
+            (r'(parent)(\s+)([a-z_][\w\.]*)',
+                bygroups(Keyword.Declaration, Text, Name.Class)),
+            (r'(define)(\s+)([a-z_][\w\.]*)(\s*)(=>)(\s*)(type|trait|thread)',
+                bygroups(Keyword.Declaration, Text, Name.Class, Text, Operator,
+                         Text, Keyword)),
+            (r'(define)(\s+)([a-z_][\w\.]*)(->)([a-z_][\w\.]*=?)',
+                bygroups(Keyword.Declaration, Text, Name.Class, Operator,
+                         Name.Function)),
+            (r'(define)(\s+)([a-z_][\w\.]*=?)',
+                bygroups(Keyword.Declaration, Text, Name.Function)),
+            (r'(public|protected|private)(\s+)([a-z_][\w\.]*)(\s*)(=>)',
+                bygroups(Keyword, Text, Name.Function, Text, Operator)),
+            (r'(public|protected|private|provide)(\s+)([a-z_][\w\.]*=?)(\s*)(\()',
+                bygroups(Keyword, Text, Name.Function, Text, Punctuation)),
+
+            # keywords
+            (r'\.\.\.', Keyword.Pseudo),
+            (r'(true|false|null|[+\-]?infinity|\+?NaN)\b', Keyword.Constant),
+            (r'(local|var|variable|global|data)\b', Keyword.Declaration),
+            (r'(array|date|decimal|duration|integer|map|pair|string|tag|'
+             r'xml)\b', Keyword.Type),
+            (r'(/?)(Cache|Database_Names|Database_SchemaNames|'
+             r'Database_TableNames|Define_Tag|Define_Type|Email_Batch|'
+             r'Encode_Set|HTML_Comment|Handle|Handle_Error|Header|If|Inline|'
+             r'Iterate|LJAX_Target|Link|Link_CurrentAction|Link_CurrentGroup|'
+             r'Link_CurrentRecord|Link_Detail|Link_FirstGroup|'
+             r'Link_FirstRecord|Link_LastGroup|Link_LastRecord|Link_NextGroup|'
+             r'Link_NextRecord|Link_PrevGroup|Link_PrevRecord|Log|Loop|'
+             r'Namespace_Using|NoProcess|Output_None|Portal|Private|Protect|'
+             r'Records|Referer|Referrer|Repeating|ResultSet|Rows|Search_Args|'
+             r'Search_Arguments|Select|Sort_Args|Sort_Arguments|Thread_Atomic|'
+             r'Value_List|While|Abort|Case|Else|If_Empty|If_False|If_Null|'
+             r'If_True|Loop_Abort|Loop_Continue|Loop_Count|Params|Params_Up|'
+             r'Return|Return_Value|Run_Children|SOAP_DefineTag|'
+             r'SOAP_LastRequest|SOAP_LastResponse|Tag_Name)\b',
+                 bygroups(Punctuation, Keyword)),
+            (r'(and|ascending|average|by|case|define|descending|do|else|'
+             r'equals|frozen|group|import|in|inherited|into|join|let|match|'
+             r'max|min|not|on|or|order|params|parent|private|protected|'
+             r'provide|public|require|return|select|skip|sum|take|thread|to|'
+             r'trait|type|where|with)\b', Keyword),
+
+            # literals
+            (r'([+\-]?\d*\.\d+(e[+\-]?\d+)?)', Number.Float),
+            (r'0x[\da-f]+', Number.Hex),
+            (r'[+\-]?\d+', Number.Integer),
+            (r"'", String.Single, 'singlestring'),
+            (r'"', String.Double, 'doublestring'),
+            (r'`[^`]*`', String.Backtick),
+
+            # other
+            (r'(=)(bw|ew|cn|lte?|gte?|n?eq|ft|n?rx)\b',
+                bygroups(Operator, Operator.Word)),
+            (r'([=\+\-\*/%<>&|!\?\.\\]+|:=)', Operator),
+            (r'[{}():;,@^]', Punctuation),
+            (r'(/?)([\w\.]+)', bygroups(Punctuation, Name.Other)),
+        ],
+        'singlestring': [
+            (r"'", String.Single, '#pop'),
+            (r"[^'\\]+", String.Single),
+            include('escape'),
+            (r"\\+", String.Single),
+        ],
+        'doublestring': [
+            (r'"', String.Double, '#pop'),
+            (r'[^"\\]+', String.Double),
+            include('escape'),
+            (r'\\+', String.Double),
+        ],
+        'escape': [
+            (r'\\(U[\da-f]{8}|u[\da-f]{4}|x[\da-f]{1,2}|[0-7]{1,3}|:[^:]+:|'
+             r'[abefnrtv\"\'\?\\]|$)', String.Escape),
+        ],
+    }
+
+    def __init__(self, **options):
+        self.builtinshighlighting = get_bool_opt(
+            options, 'builtinshighlighting', True)
+        self.requiredelimiters = get_bool_opt(
+            options, 'requiredelimiters', False)
+
+        self._builtins = set()
+        if self.builtinshighlighting:
+            from pygments.lexers._lassobuiltins import BUILTINS
+            for key, value in BUILTINS.iteritems():
+                self._builtins.update(value)
+        RegexLexer.__init__(self, **options)
+
+    def get_tokens_unprocessed(self, text):
+        stack = ['root']
+        if self.requiredelimiters:
+            stack.append('delimiters')
+        for index, token, value in \
+            RegexLexer.get_tokens_unprocessed(self, text, stack):
+            if token is Name.Other:
+                if value.lower() in self._builtins:
+                    yield index, Name.Builtin, value
+                    continue
+            yield index, token, value
+
+    def analyse_text(text):
+        rv = 0.0
+        if 'bin/lasso9' in text:
+            rv += 0.8
+        if re.search(r'<\?(=|lasso)', text, re.I):
+            rv += 0.4
+        if re.search(r'local\(', text, re.I):
+            rv += 0.4
+        if re.search(r'(\[\n|\?>)', text):
+            rv += 0.4
+        return rv
