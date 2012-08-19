@@ -349,7 +349,7 @@ class HaskellLexer(RegexLexer):
             # Whitespace:
             (r'\s+', Text),
             #(r'--\s*|.*$', Comment.Doc),
-            (r'--(?![!#$%&*+./<=>?@\^|_~]).*?$', Comment.Single),
+            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
             # Lexemes:
             #  Identifiers
