@@ -13,8 +13,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.util import docstring_headline
-
 # start
 from pygments.formatters.bbcode import BBCodeFormatter
 from pygments.formatters.html import HtmlFormatter
@@ -54,6 +52,8 @@ if __name__ == '__main__':
     found_formatters = []
     imports = []
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
+    from pygments.util import docstring_headline
+
     for filename in os.listdir('.'):
         if filename.endswith('.py') and not filename.startswith('_'):
             module_name = 'pygments.formatters.%s' % filename[:-3]
