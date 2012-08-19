@@ -91,7 +91,7 @@ class CLexer(RegexLexer):
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
-             r'(' + _ws + r')({)',
+             r'(' + _ws + r')?({)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),
@@ -99,7 +99,7 @@ class CLexer(RegexLexer):
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
-             r'(' + _ws + r')(;)',
+             r'(' + _ws + r')?(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
             ('', Text, 'statement'),
@@ -329,7 +329,7 @@ class ECLexer(RegexLexer):
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
-             r'(' + _ws + r')({)',
+             r'(' + _ws + r')?({)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),
@@ -337,7 +337,7 @@ class ECLexer(RegexLexer):
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
-             r'(' + _ws + r')(;)',
+             r'(' + _ws + r')?(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
             ('', Text, 'statement'),
@@ -1170,7 +1170,7 @@ class ObjectiveCLexer(RegexLexer):
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
              r'([a-zA-Z$_][a-zA-Z0-9$_]*)'           # method name
              r'(\s*\([^;]*?\))'                      # signature
-             r'(' + _ws + r')({)',
+             r'(' + _ws + r')?({)',
              bygroups(using(this), Name.Function,
                       using(this), Text, Punctuation),
              'function'),
@@ -1185,7 +1185,7 @@ class ObjectiveCLexer(RegexLexer):
             (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
              r'([a-zA-Z$_][a-zA-Z0-9$_]*)'           # method name
              r'(\s*\([^;]*?\))'                      # signature
-             r'(' + _ws + r')(;)',
+             r'(' + _ws + r')?(;)',
              bygroups(using(this), Name.Function,
                       using(this), Text, Punctuation)),
             (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
