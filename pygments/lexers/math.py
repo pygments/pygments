@@ -21,7 +21,8 @@ from pygments.lexers import _scilab_builtins
 
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
            'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
-           'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer']
+           'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer',
+           'RdLexer']
 
 
 class JuliaLexer(RegexLexer):
@@ -1386,3 +1387,43 @@ class StanLexer(RegexLexer):
             (r'}', Punctuation, '#pop'),
             ]
         }
+
+class RdLexer(RegexLexer):
+    """ Pygments Lexer for R documentation (Rd) files
+
+    This is a very minimal implementation, highlighting little more
+    than the macros. A description of Rd syntax is found in `Writing R
+    Extensions <http://cran.r-project.org/doc/manuals/R-exts.html>`_
+    and `Parsing Rd files <developer.r-project.org/parseRd.pdf>`_.
+
+    """
+    name = 'Rd'
+    aliases = ['rd']
+    filenames = ['*.Rd']
+    mimetypes = ['text/x-r-doc']
+    
+
+    # To account for verbatim / LaTeX-like / and R-like areas
+    # would require parsing.
+    tokens = {
+        'root' : [
+            # catch escaped brackets and percent sign
+            (r'\\[\\{}%]', String.Escape),
+            # comments
+            (r'%.*$', Comment),
+            # special macros with no arguments
+            (r'\\(?:cr|l?dots|R|tab)\b', Keyword.Constant),
+            # macros
+            (r'\\[a-zA-Z]+\b', Keyword),
+            # special preprocessor macros
+            (r'^\s*#(?:ifn?def|endif).*\b', Comment.Preproc),
+            # Non escaped brackets
+            (r'[{}]', Name.Builtin),
+            # everything else
+            (r'.', Text),
+            ]
+        }
+
+    def analyse_text(text):
+        return bool(re.search("\\title{", text))
+        
