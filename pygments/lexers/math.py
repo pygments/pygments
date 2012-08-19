@@ -1196,7 +1196,7 @@ class JagsLexer(RegexLexer):
 
     name = 'JAGS'
     aliases = ['jags']
-    filenames = ['*.bug', '*.jags']
+    filenames = ['*.jag', '*.bug']
 
     ## JAGS
     _FUNCTIONS = [
