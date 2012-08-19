@@ -1404,4 +1404,8 @@ class StanLexer(RegexLexer):
         }
 
     def analyse_text(text):
-        return re.match('^\s*\\parameters\s*\{', text)
+        if re.search(r'^\s*parameters\s*\{', text, re.M):
+            return 1.0
+        else:
+            return 0.0
+        
