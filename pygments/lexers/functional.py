@@ -861,7 +861,7 @@ class OcamlLexer(RegexLexer):
       'inherit', 'initializer', 'lazy', 'let', 'match', 'method',
       'module', 'mutable', 'new', 'object', 'of', 'open', 'private',
       'raise', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
-      'type', 'val', 'virtual', 'when', 'while', 'with'
+      'type', 'value', 'val', 'virtual', 'when', 'while', 'with',
     ]
     keyopts = [
       '!=','#','&','&&','\(','\)','\*','\+',',','-',
