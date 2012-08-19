@@ -15,6 +15,7 @@ import fnmatch
 from os.path import basename
 
 from pygments.lexers._mapping import LEXERS
+from pygments.modeline import get_filetype_from_buffer
 from pygments.plugin import find_plugin_lexers
 from pygments.util import ClassNotFound, bytes
 
@@ -197,6 +198,16 @@ def guess_lexer(_text, **options):
     """
     Guess a lexer by strong distinctions in the text (eg, shebang).
     """
+
+    # try to get a vim modeline first
+    ft = get_filetype_from_buffer(_text)
+
+    if ft is not None:
+        try:
+            return get_lexer_by_name(ft, **options)
+        except ClassNotFound:
+            pass
+
     best_lexer = [0.0, None]
     for lexer in _iter_lexerclasses():
         rv = lexer.analyse_text(_text)
