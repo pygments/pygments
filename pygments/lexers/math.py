@@ -1268,12 +1268,7 @@ class JagsLexer(RegexLexer):
             return 0
 
 class StanLexer(RegexLexer):
-    """
-    Pygments Lexer for Stan models.
-
-    *New in Pygments 1.6.*
-    """
-
+    """ Pygments Lexer for Stan models """
     name = 'Stan'
     aliases = ['stan']
     filenames = ['*.stan']
@@ -1281,8 +1276,8 @@ class StanLexer(RegexLexer):
     _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
                 'then', 'else', 'true', 'false', 'T')
 
-    _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
-              'matrix', 'corr_matrix', 'cov_matrix')
+    _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector', 'matrix',
+              'corr_matrix', 'cov_matrix')
 
     # STAN 1.0 Manual, Chapter 20
     _CONSTANTS = ['pi', 'e', 'sqrt2', 'log2', 'log10', 'nan', 'infinity',
@@ -1341,11 +1336,7 @@ class StanLexer(RegexLexer):
              r'|'.join(('data', r'transformed\s+?data',
                         'parameters', r'transformed\s+parameters',
                         'model', r'generated\s+quantities')),
-             bygroups(Keyword.Namespace, Text, Punctuation), 'block')
-        ],
-        'block' : [
-            include('comments'),
-            include('whitespace'),
+             bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
             (r'(%s)\b' % r'|'.join(_RESERVED), Keyword.Reserved),
             # Data types
@@ -1355,7 +1346,7 @@ class StanLexer(RegexLexer):
             # Builtin
             (r'(%s)(?=\s*\()'
              % r'|'.join(_FUNCTIONS
-                         + _DISTRIBUTIONS
+                         + _DISTRIBUTIONS 
                          + ['%s_log' % x for x in _DISTRIBUTIONS]),
              Name.Builtin),
             (r'(%s)(?=\s*\()'
@@ -1371,13 +1362,12 @@ class StanLexer(RegexLexer):
             # Integer Literals
             (r'-?[0-9]+', Number.Integer),
             # Assignment operators
-            # SLexer makes these tokens Operators.
+            # SLexer makes these tokens Operators. 
             (r'(<-|~)', Operator),
             # Infix and prefix operators
             (r"(\+|-|\.?\*|\.?/|\\|')", Operator),
-            # Block
-            (r'{', Punctuation, '#push'),
-            (r'}', Punctuation, '#pop'),
+            # Block delimiters
+            (r'[{}]', Punctuation),
             ]
         }
 
