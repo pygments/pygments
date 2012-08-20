@@ -1019,9 +1019,9 @@ class SLexer(RegexLexer):
             (r'#.*$', Comment.Single),
         ],
         'valid_name': [
-            (r'[a-zA-Z][0-9a-zA-Z\._]+', Text),
+            (r'[a-zA-Z][0-9a-zA-Z\._]*', Text),
             # can begin with ., but not if that is followed by a digit
-            (r'\.[a-zA-Z_][0-9a-zA-Z\._]+', Text),
+            (r'\.[a-zA-Z_][0-9a-zA-Z\._]*', Text),
         ],
         'punctuation': [
             (r'\[{1,2}|\]{1,2}|\(|\)|;|,', Punctuation),
@@ -1151,13 +1151,9 @@ class BugsLexer(RegexLexer):
             include('whitespace'),
             # Block start
             (r'(?s)(model)(\s|\n)+({)',
-             bygroups(Keyword.Namespace, Text, Punctuation), 'block')
-        ],
-        'block' : [
-            include('comments'),
-            include('whitespace'),
+             bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
-            (r'(for|in)\b', Keyword.Reserved),
+            (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
             # Built-in Functions
             (r'(%s)(?=\s*\()'
              % r'|'.join(_FUNCTIONS + _DISTRIBUTIONS),
@@ -1167,25 +1163,22 @@ class BugsLexer(RegexLexer):
             # Number Literals
             (r'[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?', Number),
             # Punctuation
-            (r'(\[|\]|\(|\)|:|,)', Punctuation),
+            (r'\[|\]|\(|\)|:|,|;', Punctuation),
             # Assignment operators
             # SLexer makes these tokens Operators.
-            (r'(<-|~)', Operator),
+            (r'<-|~', Operator),
             # Infix and prefix operators
-            (r'(\+|-|\*|/)', Operator),
+            (r'\+|-|\*|/', Operator),
             # Block
-            (r'{', Punctuation, '#push'),
-            (r'}', Punctuation, '#pop'),
-            # Other
-            (r';', Punctuation),
+            (r'[{}]', Punctuation),
             ]
         }
 
     def analyse_text(text):
-        if re.match(r"^\s*model\s*{", text):
+        if re.search(r"^\s*model\s*{", text, re.M):
             return 0.7
         else:
-            return 0
+            return 0.0
 
 class JagsLexer(RegexLexer):
     """
@@ -1226,7 +1219,7 @@ class JagsLexer(RegexLexer):
             ],
         'names' : [
             # Regular variable names
-            (r'\b[A-Za-z][A-Za-z0-9_.]*\b', Name),
+            (r'[a-zA-Z][a-zA-Z0-9_.]*\b', Name),
             ],
         'comments' : [
             # do not use stateful comments
@@ -1240,15 +1233,10 @@ class JagsLexer(RegexLexer):
             include('whitespace'),
             # Block start
             (r'(?s)(model|data)(\s|\n)+({)',
-             bygroups(Keyword.Namespace, Text, Punctuation), 'block'),
-            # Variable declaration (TODO: improve)
-            (r'var\b', Keyword.Declaration, 'var')
-        ],
-        'statements': [
-            include('comments'),
-            include('whitespace'),
+             bygroups(Keyword.Namespace, Text, Punctuation)),
+            (r'var(?![0-9a-zA-Z\._])', Keyword.Declaration),
             # Reserved Words
-            (r'(for|in)\b', Keyword.Reserved),
+            (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
             # Builtins
             # Need to use lookahead because . is a valid char
             (r'(%s)(?=\s*\()' % r'|'.join(_FUNCTIONS
@@ -1259,22 +1247,12 @@ class JagsLexer(RegexLexer):
             include('names'),
             # Number Literals
             (r'[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?', Number),
-            (r'(\[|\]|\(|\)|:|,)', Punctuation),
+            (r'\[|\]|\(|\)|:|,|;', Punctuation),
             # Assignment operators
-            (r'(<-|~)', Operator),
+            (r'<-|~', Operator),
             # # JAGS includes many more than OpenBUGS
-            # |/|\|\||\&\&|>=?|<=?|[=!]?=|!|%.*?%|^)'
-            (r'(\+|-|\*|\/|\|\|[&]{2}|[<>=]=?|\^|%.*?%)', Operator),
-            ],
-        'block' : [
-            include('statements'),
-            (r';', Punctuation),
-            (r'{', Punctuation, '#push'),
-            (r'}', Punctuation, '#pop'),
-            ],
-        'var' : [
-            include('statements'),
-            (r';', Punctuation, '#pop'),
+            (r'\+|-|\*|\/|\|\|[&]{2}|[<>=]=?|\^|%.*?%', Operator),
+            (r'[{}]', Punctuation),
             ]
         }
 
