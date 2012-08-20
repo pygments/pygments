@@ -1119,7 +1119,8 @@ class BugsLexer(RegexLexer):
 
     This also includes
 
-    - T, C, I : Truncation and censoring. ``T`` and ``C`` are in OpenBUGS. ``I`` in WinBUGS.
+    - T, C, I : Truncation and censoring.
+      ``T`` and ``C`` are in OpenBUGS. ``I`` in WinBUGS.
     - D : ODE
     - F : Functional http://www.openbugs.info/Examples/Functionals.html
 
@@ -1133,7 +1134,8 @@ class BugsLexer(RegexLexer):
                       'dmt', 'dwish']
     """ OpenBUGS built-in distributions
 
-    Functions From http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAI
+    Functions from
+    http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAI
     """
 
 
@@ -1198,8 +1200,8 @@ class JagsLexer(RegexLexer):
         'equals', 'exp', 'icloglog', 'ifelse', 'ilogit', 'log', 'logfact',
         'loggam', 'logit', 'phi', 'pow', 'probit', 'round', 'sin', 'sinh',
         'sqrt', 'step', 'tan', 'tanh', 'trunc', 'inprod', 'interp.lin',
-        'logdet', 'max', 'mean', 'min', 'prod', 'sum', 'sd', 'inverse', 'rank', 'sort', 't',
-        'acos', 'acosh', 'asin', 'asinh', 'atan',
+        'logdet', 'max', 'mean', 'min', 'prod', 'sum', 'sd', 'inverse',
+        'rank', 'sort', 't', 'acos', 'acosh', 'asin', 'asinh', 'atan',
         # Truncation/Censoring (should I include)
         'T', 'I']
     # Distributions with density, probability and quartile functions
@@ -1276,8 +1278,8 @@ class StanLexer(RegexLexer):
     _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
                 'then', 'else', 'true', 'false', 'T')
 
-    _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector', 'matrix',
-              'corr_matrix', 'cov_matrix')
+    _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
+              'matrix', 'corr_matrix', 'cov_matrix')
 
     # STAN 1.0 Manual, Chapter 20
     _CONSTANTS = ['pi', 'e', 'sqrt2', 'log2', 'log10', 'nan', 'infinity',
