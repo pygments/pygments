@@ -25,12 +25,16 @@ class PuppetLexer(RegexLexer):
             (r'\s*#.*$', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
 
-            (r'\s(\?|<|>|=|\+|-|\/|\*|~|!|\|)\s', Operator),
+            (r'\s*(\?|<|>|=|\+|-|\/|\*|~|!|\|)\s*', Operator),
             (r'(in|and|or|not)\b', Operator.Word),
             (r'[]{}:(),;[]', Punctuation),
 
+            (r'(.*)(include)(\s*)(.*)$', bygroups(Text, Keyword, Text, Name.Variable)),
+
             (r'(if|else|elsif|case|class|true|false|define)\b', Keyword),
-            (r'(inherits|notice|node|include|realize|import)\b', Keyword),
+            (r'(inherits|notice|node|realize|import)\b', Keyword),
+
+            (r'\$[^ ]*', Name.Variable),
 
             (r'\'(.*?)\'', String),
             (r'"(.*?)"', String),
