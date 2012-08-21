@@ -25,8 +25,8 @@ class PuppetLexer(RegexLexer):
             (r'\s*#.*$', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
 
-            (r'\s+(\?|<|>|=|\+|-|\/|\*|~|!|\|)\s+', Operator),
-            (r'(in|and|or|not)\b', Operator.Word),
+            (r'\s+(=>|\?|<|>|=|\+|-|\/|\*|~|!|\|)\s+', Operator),
+            (r'\s+(in|and|or|not)\s+', Operator.Word),
             (r'[]{}:(),;[]', Punctuation),
 
             (r'(.*)(include)(\s*)(.*)$',
