@@ -29,7 +29,8 @@ class PuppetLexer(RegexLexer):
             (r'(in|and|or|not)\b', Operator.Word),
             (r'[]{}:(),;[]', Punctuation),
 
-            (r'(.*)(include)(\s*)(.*)$', bygroups(Text, Keyword, Text, Name.Variable)),
+            (r'(.*)(include)(\s*)(.*)$', bygroups(Text, Keyword, Text,
+                                                  Name.Variable)),
 
             (r'(if|else|elsif|case|class|true|false|define)\b', Keyword),
             (r'(inherits|notice|node|realize|import)\b', Keyword),
