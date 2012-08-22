@@ -1089,7 +1089,7 @@ class SLexer(RegexLexer):
 
 class BugsLexer(RegexLexer):
     """
-    Pygments Lexer for Stan models.
+    Pygments Lexer for OpenBugs and WinBugs models.
 
     *New in Pygments 1.6.*
     """
@@ -1307,7 +1307,7 @@ class StanLexer(RegexLexer):
                   '(log)?normal_p', 'exponential_p', 'gamma_p', 'weibull_p']
     _DISTRIBUTIONS = ['bernoulli', 'bernoulli_logit', 'binomial',
                       'beta_binomial', 'hypergeometric', 'categorical',
-                      'ordered_logistic', 'negative_binomial', 'poisson',
+                      'ordered_logistic', 'neg_binomial', 'poisson',
                       'multinomial', 'normal', 'student_t',
                       'cauchy', 'double_exponential', 'logistic',
                       'lognormal', 'chi_square', 'inv_chi_square',
@@ -1323,7 +1323,6 @@ class StanLexer(RegexLexer):
             (r"\s+", Text),
             ],
         'comments' : [
-            # do not use stateful comments
             (r'(?s)/\*.*?\*/', Comment.Multiline),
             # Comments
             (r'(//|#).*$', Comment.Single),
@@ -1344,7 +1343,7 @@ class StanLexer(RegexLexer):
             # Data types
             (r'(%s)\b' % r'|'.join(_TYPES), Keyword.Type),
             # Punctuation
-            (r"[;:,\[\]()]", Punctuation),
+            (r"[;:,\[\]()<>]", Punctuation),
             # Builtin
             (r'(%s)(?=\s*\()'
              % r'|'.join(_FUNCTIONS
@@ -1355,9 +1354,9 @@ class StanLexer(RegexLexer):
              % r'|'.join(_CONSTANTS),
              Keyword.Constant),
             # Special names ending in __, like lp__
-            (r'\b[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
+            (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
             # Regular variable names
-            (r'\b[A-Za-z][A-Za-z0-9_]*\b', Name),
+            (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
             # Real Literals
             (r'-?[0-9]+(\.[0-9]+)?[eE]-?[0-9]+', Number.Float),
             (r'-?[0-9]*\.[0-9]*', Number.Float),
@@ -1365,9 +1364,9 @@ class StanLexer(RegexLexer):
             (r'-?[0-9]+', Number.Integer),
             # Assignment operators
             # SLexer makes these tokens Operators. 
-            (r'(<-|~)', Operator),
-            # Infix and prefix operators
-            (r"(\+|-|\.?\*|\.?/|\\|')", Operator),
+            (r'<-|~', Operator),
+            # Infix and prefix operators (and = )
+            (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),
             # Block delimiters
             (r'[{}]', Punctuation),
             ]
