@@ -1,9 +1,5 @@
 #lang racket
 
-;; Note: This Racket file has some deliberate errors (such as invalid
-;; number literals) to demonstrate the lexer correctly highlighting
-;; them as errors.
-
 ; Single-line comment style.
 
 ;; Single-line comment style.
@@ -40,7 +36,6 @@ Multi-line comment style ...
  #b1/1
  #b1e-1
  #b101
- #b2     ;highlight as error
  
  ;; #d
  #d-1.23
@@ -51,7 +46,6 @@ Multi-line comment style ...
  #d-1/2
  #d1
  #d-1
- #dZ     ;highlight as error
 
  ;; No # reader prefix -- same as #d
  -1.23
@@ -72,7 +66,6 @@ Multi-line comment style ...
  #e-1
  #e1/2
  #e-1/2
- #eZ     ;highlight as error
 
  ;; #i always float
  #i-1.23
@@ -83,7 +76,6 @@ Multi-line comment style ...
  #i-1/2
  #i1
  #i-1
- #iZ     ;highlight as error
 
  ;; #o
  #o777.777
@@ -94,12 +86,10 @@ Multi-line comment style ...
  #o-3/7
  #o777
  #o-777
- #o8     ;highlight as error
 
  ;; #x
  #x-f.f
  #xf.f
  #x-f
  #xf
- #xG     ;highlight as error
  )
