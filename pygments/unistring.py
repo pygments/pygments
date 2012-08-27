@@ -129,6 +129,7 @@ except UnicodeDecodeError:
         else:
             f.write('%s = %r\n\n' % (cat, val))
     f.write('cats = %r\n\n' % sorted(categories.keys()))
+    f.write('# Generated from unidata %s\n\n' % (unicodedata.unidata_version,))
 
     f.write(footer)
     f.close()
