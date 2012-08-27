@@ -108,9 +108,12 @@ if __name__ == '__main__':
     for code in range(65535):
         c = unichr(code)
         cat = unicodedata.category(c)
-        # Hack to avoid combining this combining with the preceeding high
-        # surrogate, 0xdbff, when doing a repr.
         if ord(c) == 0xdc00:
+            # Hack to avoid combining this combining with the preceeding high
+            # surrogate, 0xdbff, when doing a repr.
+            c = u'\\' + c
+        elif ord(c) in (0x2d, 0x5c):
+            # Escape backslash itself and dash.
             c = u'\\' + c
         categories.setdefault(cat, []).append(c)
 
