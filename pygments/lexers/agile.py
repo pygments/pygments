@@ -135,7 +135,14 @@ class PythonLexer(RegexLexer):
         'fromimport': [
             (r'(?:[ \t]|\\\n)+', Text),
             (r'import\b', Keyword.Namespace, '#pop'),
+            # if None occurs here, it's "raise x from None", since None can
+            # never be a module name
+            (r'None\b', Name.Builtin.Pseudo, '#pop'),
+            # sadly, in "raise x from y" y will be highlighted as namespace too
             (r'[a-zA-Z_.][a-zA-Z0-9_.]*', Name.Namespace),
+            # anything else here also means "raise x from y" and is therefore
+            # not an error
+            (r'', Text, '#pop'),
         ],
         'stringescape': [
             (r'\\([\\abfnrtv"\']|\n|N{.*?}|u[a-fA-F0-9]{4}|'
