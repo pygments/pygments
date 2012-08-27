@@ -114,8 +114,8 @@ if __name__ == '__main__':
             # Hack to avoid combining this combining with the preceeding high
             # surrogate, 0xdbff, when doing a repr.
             c = u'\\' + c
-        elif ord(c) in (0x2d, 0x5c):
-            # Escape backslash itself and dash.
+        elif ord(c) in (0x2d, 0x5b, 0x5c, 0x5d):
+            # Escape regex metachars.
             c = u'\\' + c
         categories.setdefault(cat, []).append(c)
 
