@@ -479,7 +479,7 @@ class RacketLexer(RegexLexer):
     tokens = {
         'root' : [
             (r';.*$', Comment.Single),
-            (r'(?ms)#\|[^|]+\|#', Comment.Multiline), # ?s = . matches newline
+            (r'#\|[^|]+\|#', Comment.Multiline),
 
             # whitespaces - usually not relevant
             (r'\s+', Text),

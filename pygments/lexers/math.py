@@ -1149,7 +1149,7 @@ class BugsLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
             # Block start
-            (r'(?s)(model)(\s|\n)+({)',
+            (r'(model)(\s+)({)',
              bygroups(Keyword.Namespace, Text, Punctuation), 'block')
         ],
         'block' : [
@@ -1233,7 +1233,7 @@ class JagsLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
             # Block start
-            (r'(?s)(model|data)(\s|\n)+({)',
+            (r'(model|data)(\s+)({)',
              bygroups(Keyword.Namespace, Text, Punctuation), 'block'),
             # Variable declaration (TODO: improve)
             (r'var\b', Keyword.Declaration, 'var')
