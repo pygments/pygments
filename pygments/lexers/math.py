@@ -1152,7 +1152,7 @@ class BugsLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
             # Block start
-            (r'(?s)(model)(\s|\n)+({)',
+            (r'(?s)(model)\s+({)',
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
             (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
@@ -1234,7 +1234,7 @@ class JagsLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
             # Block start
-            (r'(?s)(model|data)(\s|\n)+({)',
+            (r'(?s)(model|data)\s+({)',
              bygroups(Keyword.Namespace, Text, Punctuation)),
             (r'var(?![0-9a-zA-Z\._])', Keyword.Declaration),
             # Reserved Words
@@ -1270,7 +1270,12 @@ class JagsLexer(RegexLexer):
             return 0
 
 class StanLexer(RegexLexer):
-    """ Pygments Lexer for Stan models """
+    """
+    Pygments Lexer for Stan models.
+
+    *New in Pygments 1.6.*
+    """
+
     name = 'Stan'
     aliases = ['stan']
     filenames = ['*.stan']
