@@ -23,10 +23,6 @@ __all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
            'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer']
 
 
-def _escape(st):
-    return st.replace(u'\\', ur'\\').replace(u'-', ur'\-').\
-           replace(u'[', ur'\[').replace(u']', ur'\]')
-
 class CSharpLexer(RegexLexer):
     """
     For `C# <http://msdn2.microsoft.com/en-us/vcsharp/default.aspx>`_
@@ -67,10 +63,9 @@ class CSharpLexer(RegexLexer):
                   '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
                   uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
         'full': ('@?(?:_|[^' +
-                 _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl')) + '])'
-                 + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
-                                                'Nl', 'Nd', 'Pc', 'Cf', 'Mn',
-                                                'Mc')) + ']*'),
+                 uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])'
+                 + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                        'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     }
 
     tokens = {}
@@ -179,11 +174,10 @@ class NemerleLexer(RegexLexer):
         basic = ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
                  '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
                  uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
-        full = ('@?(?:_|[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm',
-                                                    'Lo', 'Nl')) + '])'
-                + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
-                                               'Nl', 'Nd', 'Pc', 'Cf', 'Mn',
-                                               'Mc')) + ']*'),
+        full = ('@?(?:_|[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
+                                            'Nl') + '])'
+                + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                       'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     )
 
     tokens = {}
