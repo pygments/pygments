@@ -2959,33 +2959,33 @@ class RustLexer(RegexLexer):
             (r'#\(', Comment.Preproc, 'attribute('),
             # Macros
             (r'#[A-Za-z_][A-Za-z0-9_]*\[', Comment.Preproc, 'attribute['),
-            (r'#[A-Za-z_][A-Za-z0-9_]*\(', Comment.Preproc, 'attribute(')
+            (r'#[A-Za-z_][A-Za-z0-9_]*\(', Comment.Preproc, 'attribute('),
         ],
-        'number_lit': {
-            (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop')
-        },
-        'string': {
+        'number_lit': [
+            (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop'),
+        ],
+        'string': [
             (r'"', String, '#pop'),
             (r"""\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}""", String.Escape),
             (r'[^\\"]+', String),
-            (r'\\', String)
-        },
-        'attribute_common': {
+            (r'\\', String),
+        ],
+        'attribute_common': [
             (r'"', String, 'string'),
             (r'\[', Comment.Preproc, 'attribute['),
             (r'\(', Comment.Preproc, 'attribute('),
-        },
-        'attribute[': {
+        ],
+        'attribute[': [
             include('attribute_common'),
             (r'\];?', Comment.Preproc, '#pop'),
-            (r'[^"\]]+', Comment.Preproc)
-        },
-        'attribute(': {
+            (r'[^"\]]+', Comment.Preproc),
+        ],
+        'attribute(': [
             include('attribute_common'),
             (r'\);?', Comment.Preproc, '#pop'),
-            (r'[^"\)]+', Comment.Preproc)
-        }
+            (r'[^"\)]+', Comment.Preproc),
+        ],
     }
 
 
