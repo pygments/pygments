@@ -40,8 +40,8 @@ class PuppetLexer(RegexLexer):
             (r'\'(.*?)\'', String),
             (r'"(.*?)"', String),
 
-            (r'(.*?)(\s*)(=>)(\s*)(.*?)$',
-             bygroups(Name.Attribute, Text, Operator, Text, String)),
+#            (r'(.*?)(\s*)(=>)(\s*)(.*?)$',
+#             bygroups(Name.Attribute, Text, Operator, Text, String)),
 
             (r'[^\S\n]+', Text),
             ],
