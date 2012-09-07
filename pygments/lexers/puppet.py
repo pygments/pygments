@@ -15,11 +15,6 @@ from pygments.token import Comment, Keyword, Name, Operator, Punctuation, \
 
 __all__ = ['PuppetLexer']
 
-## TODO/FIXME
-# Multiline variable assignment
-# One liners line this don't look right
-#   class { 'python-custom': version => '2.7.3' }
-
 class PuppetLexer(RegexLexer):
     name = 'Puppet'
     aliases = ['puppet']
@@ -43,6 +38,8 @@ class PuppetLexer(RegexLexer):
             (r'\$[^ ]*', Name),
 
             # FIXME puncuation at the end (such as a comma) is the wrong color
+            # One liners such as this are wrong:
+            #  class { 'python-custom': version => '2.7.3' }
             (r'(.*?)(\s*)(=>)(\s*)(.*?)$',
              bygroups(Name.Attribute, Text, Operator, Text, String)),
 
@@ -65,8 +62,13 @@ class PuppetLexer(RegexLexer):
             ],
 
         'strings': [
+            # Normal, single line quoted strings
             (r'\'(.*?)\'', String),
             (r'"(.*?)"', String),
+
+            # Multi-line quoted strings
+            (r'\'(.*?)\n(.*?)\'', String),
+            (r'"(.*?)\n(.*?)"', String),
             ],
 
         }
