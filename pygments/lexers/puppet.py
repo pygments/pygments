@@ -10,8 +10,8 @@
 """
 
 from pygments.lexer import RegexLexer, bygroups, include
-from pygments.token import Comment, Keyword, Name, Operator, Punctuation, \
-    String, Text
+from pygments.token import Comment, Keyword, Name, Number, Operator, \
+    Punctuation, String, Text
 
 __all__ = ['PuppetLexer']
 
@@ -22,26 +22,25 @@ class PuppetLexer(RegexLexer):
 
     tokens = {
         'root': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
-
             include('comments'),
+            include('keywords'),
+            include('names'),
+            include('numbers'),
             include('operators'),
+            include('strings'),
 
             (r'[]{}:(),;[]', Punctuation),
 
-            (r'(.*)(include)(\s*)(.*)$',
-             bygroups(Text, Keyword, Text, Name.Variable)),
-
-            include('keywords'),
-            include('strings'),
-
-            (r'\$[^ ]*', Name),
+            # FIXME end of line comments don't work on this rule
+            # (r'(.*)(include)(\s*)(.*)$',
+            # bygroups(Text, Keyword, Text, Name.Variable)),
 
             # FIXME puncuation at the end (such as a comma) is the wrong color
             # One liners such as this are wrong:
             #  class { 'python-custom': version => '2.7.3' }
-            (r'(.*?)(\s*)(=>)(\s*)(.*?)$',
-             bygroups(Name.Attribute, Text, Operator, Text, String)),
+
+            # (r'(.*?)(\s*)(=>)(\s*)(.*?)$',
+            #  bygroups(Name.Attribute, Text, Operator, Text, String)),
 
             (r'[^\S\n]+', Text),
             ],
@@ -56,15 +55,34 @@ class PuppetLexer(RegexLexer):
             (r'\s+(in|and|or|not)\s+', Operator.Word),
             ],
 
+        'names': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'\$[^ ]*', Name),
+            ],
+
+        'numbers': [
+            # Stolen from the Python lexer
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
+            (r'0[0-7]+j?', Number.Oct),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'\d+L', Number.Integer.Long),
+            (r'\d+j?', Number.Integer)
+            ],
+
         'keywords': [
             (r'(if|else|elsif|case|class|true|false|define)\b', Keyword),
             (r'(inherits|notice|node|realize|import)\b', Keyword),
             ],
 
         'strings': [
+            # TODO FIXME collapse this into less rules
+
             # Normal, single line quoted strings
             (r'\'(.*?)\'', String),
             (r'"(.*?)"', String),
+
+            # TODO fixme more than one new line breaks this
 
             # Multi-line quoted strings
             (r'\'(.*?)\n(.*?)\'', String),
