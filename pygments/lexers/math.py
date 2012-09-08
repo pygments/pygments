@@ -1424,6 +1424,4 @@ class RdLexer(RegexLexer):
             ]
         }
 
-    def analyse_text(text):
-        return bool(re.search("\\title{", text))
         
