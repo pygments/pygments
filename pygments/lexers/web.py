@@ -2265,8 +2265,8 @@ class XQueryLexer(ExtendedRegexLexer):
     *New in Pygments 1.4.*
     """
     name = 'XQuery'
-    aliases = ['xquery', 'xqy']
-    filenames = ['*.xqy', '*.xquery']
+    aliases = ['xquery', 'xqy', 'xq', 'xql', 'xqm']
+    filenames = ['*.xqy', '*.xquery', '*.xq', '*.xql', '*.xqm']
     mimetypes = ['text/xquery', 'application/xquery']
 
     xquery_parse_state = []
