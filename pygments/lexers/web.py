@@ -3073,7 +3073,7 @@ class LassoLexer(RegexLexer):
                 bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
             (r"(self)(->)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
-            (r"(\.\.?)([a-z_][\w.]*)",
+            (r'(\.\.?)([a-z_][\w.]*)',
                 bygroups(Name.Builtin.Pseudo, Name.Other)),
             (r'(self|inherited|global|void)\b', Name.Builtin.Pseudo),
             (r'-[a-z_][\w.]*', Name.Attribute),
