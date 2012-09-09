@@ -159,7 +159,7 @@ class ScalaLexer(RegexLexer):
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(import|package)(\s+)', bygroups(Keyword, Text), 'import'),
             (r'(type)(\s+)', bygroups(Keyword, Text), 'type'),
-            (r'""".*?"""', String),
+            (r'""".*?"""(?!")', String),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
 #            (ur'(\.)(%s|%s|`[^`]+`)' % (idrest, op), bygroups(Operator,
@@ -789,20 +789,15 @@ class KotlinLexer(RegexLexer):
     # for the range of allowed unicode characters in identifiers,
     # see http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
-    def _escape(st):
-        return st.replace(u'\\', ur'\\').replace(u'-', ur'\-').\
-               replace(u'[', ur'\[').replace(u']', ur'\]')
-
     levels = {
         'none': '@?[_a-zA-Z][a-zA-Z0-9_]*',
         'basic': ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
                   '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
                   uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
         'full': ('@?(?:_|[^' +
-                 _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl')) + '])'
-                 + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
-                                                'Nl', 'Nd', 'Pc', 'Cf', 'Mn',
-                                                'Mc')) + ']*'),
+                 uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])'
+                 + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                        'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     }
 
     tokens = {}
