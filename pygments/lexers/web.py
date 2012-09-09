@@ -17,7 +17,7 @@ from pygments.lexer import RegexLexer, ExtendedRegexLexer, bygroups, using, \
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
      Number, Other, Punctuation, Literal
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
-                          html_doctype_matches
+                          html_doctype_matches, unirange
 from pygments.lexers.agile import RubyLexer
 from pygments.lexers.compiled import ScalaLexer
 
@@ -2667,8 +2667,8 @@ class XQueryLexer(ExtendedRegexLexer):
         'xml_comment': [
             (r'(-->)', popstate_xmlcomment_callback),
             (r'[^-]{1,2}', Literal),
-            (ur'\t|\r|\n|[\u0020-\U0000D7FF]|[\U0000E000-\U0000FFFD]|'
-             ur'[\U00010000-\U0010FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+             unirange(0x10000, 0x10ffff), Literal),
         ],
         'processing_instruction': [
             (r'\s+', Text, 'processing_instruction_content'),
@@ -2677,13 +2677,13 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'processing_instruction_content': [
             (r'\?>', String.Doc, '#pop'),
-            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|'
-             ur'[\U00010000-\U0010FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+             unirange(0x10000, 0x10ffff), Literal),
         ],
         'cdata_section': [
             (r']]>', String.Doc, '#pop'),
-            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|'
-             ur'[\U00010000-\U0010FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+             unirange(0x10000, 0x10ffff), Literal),
         ],
         'start_tag': [
             include('whitespace'),
@@ -2751,8 +2751,8 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'pragmacontents': [
             (r'#\)', Punctuation, 'operator'),
-            (ur'\t|\r|\n|[\u0020-\U0000D7FF]|[\U0000E000-\U0000FFFD]|'
-             ur'[\U00010000-\U0010FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+             unirange(0x10000, 0x10ffff), Literal),
             (r'(\s+)', Text),
         ],
         'occurrenceindicator': [

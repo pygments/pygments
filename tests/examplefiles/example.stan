@@ -19,9 +19,13 @@ data {
      corr_matrix[3] grault;
      cov_matrix[3] garply;
 
+     real<lower=-1,upper=1> foo1;
+     real<lower=0> foo2;
+     real<upper=0> foo3;
+
      // bad names
      // includes .
-     real foo.;
+     // real foo.;
      // beings with number
      //real 0foo;
      // begins with _
@@ -71,8 +75,8 @@ model {
 
 }
 generated quantities {
-   real foo1;
-   foo1 <- foo + 1;
+   real bar1;
+   bar1 <- foo + 1;
 }
 
 ## Baddness
