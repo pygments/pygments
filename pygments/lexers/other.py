@@ -1236,19 +1236,20 @@ class ModelicaLexer(RegexLexer):
             r'end|equation|exit|expandable|extends|'
             r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
             r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
-            r'protected|public|redeclare|replaceable|stream|time|then|true|'
+            r'protected|public|pure|redeclare|replaceable|stream|time|then|true|'
             r'when|while|within)\b', Keyword),
         ],
         'functions': [
             (r'(abs|acos|acosh|asin|asinh|atan|atan2|atan3|ceil|cos|cosh|'
-             r'cross|div|exp|floor|log|log10|mod|rem|semiLinear|sign|sin|'
+             r'cross|div|exp|floor|getInstanceName|log|log10|mod|rem|'
              r'semiLinear|sign|sin|sinh|size|spatialDistribution|sqrt|tan|'
              r'tanh|zeros)\b', Name.Function),
         ],
         'operators': [
             (r'(actualStream|and|assert|cardinality|change|Clock|delay|der|edge|'
              r'hold|homotopy|initial|inStream|noEvent|not|or|pre|previous|reinit|'
-             r'return|sample|smooth|subSample|terminal|terminate)\b', Name.Builtin),
+             r'return|sample|smooth|spatialDistribution|subSample|terminal|'
+             r'terminate)\b', Name.Builtin),
         ],
         'classes': [
             (r'(block|class|connector|function|model|package|'
