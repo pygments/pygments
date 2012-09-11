@@ -1219,7 +1219,8 @@ class ModelicaLexer(RegexLexer):
             (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
             (r"([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*')"
              r"(\.([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*'))+", Name.Class),
-            (r"('[\w\+\-\*\/\^]+'|\w+)", Name)        ],
+            (r"('[\w\+\-\*\/\^]+'|\w+)", Name),
+        ],
         'root': [
             include('whitespace'),
             include('keywords'),
@@ -1227,30 +1228,31 @@ class ModelicaLexer(RegexLexer):
             include('operators'),
             include('classes'),
             (r'("<html>|<html>)', Name.Tag, 'html-content'),
-            include('statements')
+            include('statements'),
         ],
         'keywords': [
             (r'(algorithm|annotation|break|connect|constant|constrainedby|'
             r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
             r'end|equation|exit|expandable|extends|'
-            r'external|false|final|flow|for|if|import|in|inner|input|'
-            r'loop|nondiscrete|outer|output|parameter|partial|'
+            r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
+            r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
             r'protected|public|redeclare|replaceable|stream|time|then|true|'
-            r'when|while|within)\b', Keyword)
+            r'when|while|within)\b', Keyword),
         ],
         'functions': [
             (r'(abs|acos|acosh|asin|asinh|atan|atan2|atan3|ceil|cos|cosh|'
              r'cross|div|exp|floor|log|log10|mod|rem|semiLinear|sign|sin|'
-             r'sinh|size|sqrt|tan|tanh|zeros)\b', Name.Function)
+             r'semiLinear|sign|sin|sinh|size|spatialDistribution|sqrt|tan|'
+             r'tanh|zeros)\b', Name.Function),
         ],
         'operators': [
-            (r'(and|assert|cardinality|change|delay|der|edge|homotopy|initial|'
-             r'noEvent|not|or|pre|reinit|return|sample|smooth|'
-             r'terminal|terminate)\b', Name.Builtin)
+            (r'(actualStream|and|assert|cardinality|change|Clock|delay|der|edge|'
+             r'hold|homotopy|initial|inStream|noEvent|not|or|pre|previous|reinit|'
+             r'return|sample|smooth|subSample|terminal|terminate)\b', Name.Builtin),
         ],
         'classes': [
             (r'(block|class|connector|function|model|package|'
-             r'record|type)\b', Name.Class)
+             r'record|type)\b', Name.Class),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -1258,7 +1260,7 @@ class ModelicaLexer(RegexLexer):
              String.Escape),
             (r'[^\\"\n]+', String), # all other characters
             (r'\\\n', String), # line continuation
-            (r'\\', String) # stray backslash
+            (r'\\', String), # stray backslash
         ],
         'html-content': [
             (r'<\s*/\s*html\s*>', Name.Tag, '#pop'),
