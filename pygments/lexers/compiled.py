@@ -1821,18 +1821,25 @@ class GoLexer(RegexLexer):
             (r'\\\n', Text), # line continuations
             (r'//(.*?)\n', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            (r'(break|default|func|interface|select'
-             r'|case|defer|go|map|struct'
-             r'|chan|else|goto|package|switch'
-             r'|const|fallthrough|if|range|type'
-             r'|continue|for|import|return|var)\b', Keyword
+            (r'(import|package)\b', Keyword.Namespace),
+            (r'(var|func|struct|type|interface|const)\b', Keyword.Declaration),
+            (r'(break|default|select|case|defer|go|map'
+             r'|chan|else|goto|switch|fallthrough|if|range'
+             r'|continue|for|return)\b', Keyword
             ),
-            # It seems the builtin types aren't actually keywords.
+            # It seems the builtin types aren't actually keywords, but
+            # can be used as functions. So we need two declarations.
             (r'(uint8|uint16|uint32|uint64'
              r'|int8|int16|int32|int64'
-             r'|float32|float64|byte'
+             r'|float32|float64|byte|error'
              r'|uint|int|float|uintptr'
-             r'|string|close|closed|len|cap|new|make)\b', Name.Builtin
+             r'|string|close|closed|len|cap|new|make)\b(\()', bygroups(Name.Builtin, Punctuation)
+            ),
+            (r'(uint8|uint16|uint32|uint64'
+             r'|int8|int16|int32|int64'
+             r'|float32|float64|byte|error'
+             r'|uint|int|float|uintptr'
+             r'|string)\b', Keyword.Type
             ),
             # float_lit
             (r'\d+(\.\d+[eE][+\-]?\d+|'
@@ -1857,11 +1864,10 @@ class GoLexer(RegexLexer):
             (r'"(\\\\|\\"|[^"])*"', String),
             # Tokens
             (r'(<<=|>>=|<<|>>|<=|>=|&\^=|&\^|\+=|-=|\*=|/=|%=|&=|\|=|&&|\|\|'
-             r'|<-|\+\+|--|==|!=|:=|\.\.\.)|[+\-*/%&|^<>=!()\[\]{}.,;:]',
-             Punctuation
-            ),
+             r'|<-|\+\+|--|==|!=|:=|\.\.\.|[+\-*/%&])', Operator),
+            (r'[|^<>=!()\[\]{}.,;:]', Punctuation),
             # identifier
-            (r'[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name.Other),
         ]
     }
 
