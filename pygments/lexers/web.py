@@ -3015,19 +3015,14 @@ class LassoLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^#!.+lasso9\b', Comment.Preproc, 'lasso'),
-            (r'\s+', Other),
             (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
             (r'\[noprocess\]', Comment.Preproc, ('delimiters', 'noprocess')),
             (r'\[', Comment.Preproc, ('delimiters', 'squarebrackets')),
             (r'<\?(LassoScript|lasso|=)', Comment.Preproc,
                 ('delimiters', 'anglebrackets')),
             (r'<', Other, 'delimiters'),
-            include('lasso'),
-        ],
-        'nosquarebrackets': [
-            (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
-            (r'<', Other),
-            (r'[^<]+', Other),
+            (r'\s+', Other),
+            (r'', Other, ('delimiters', 'lassofile')),
         ],
         'delimiters': [
             (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
@@ -3036,6 +3031,11 @@ class LassoLexer(RegexLexer):
             (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
             (r'<', Other),
             (r'[^[<]+', Other),
+        ],
+        'nosquarebrackets': [
+            (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
+            (r'<', Other),
+            (r'[^<]+', Other),
         ],
         'noprocess': [
             (r'\[/noprocess\]', Comment.Preproc, '#pop'),
@@ -3047,6 +3047,11 @@ class LassoLexer(RegexLexer):
             include('lasso'),
         ],
         'anglebrackets': [
+            (r'\?>', Comment.Preproc, '#pop'),
+            include('lasso'),
+        ],
+        'lassofile': [
+            (r'\]', Comment.Preproc, '#pop'),
             (r'\?>', Comment.Preproc, '#pop'),
             include('lasso'),
         ],
@@ -3112,6 +3117,8 @@ class LassoLexer(RegexLexer):
              r'null)\b', Keyword.Type),
             (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
             (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Text, Name)),
+            (r'(/?)(Namespace_Using)\b',
+                bygroups(Punctuation, Keyword.Namespace)),
             (r'(/?)(Cache|Database_Names|Database_SchemaNames|'
              r'Database_TableNames|Define_Tag|Define_Type|Email_Batch|'
              r'Encode_Set|HTML_Comment|Handle|Handle_Error|Header|If|Inline|'
@@ -3119,17 +3126,17 @@ class LassoLexer(RegexLexer):
              r'Link_CurrentRecord|Link_Detail|Link_FirstGroup|'
              r'Link_FirstRecord|Link_LastGroup|Link_LastRecord|Link_NextGroup|'
              r'Link_NextRecord|Link_PrevGroup|Link_PrevRecord|Log|Loop|'
-             r'Namespace_Using|NoProcess|Output_None|Portal|Private|Protect|'
-             r'Records|Referer|Referrer|Repeating|ResultSet|Rows|Search_Args|'
-             r'Search_Arguments|Select|Sort_Args|Sort_Arguments|Thread_Atomic|'
-             r'Value_List|While|Abort|Case|Else|If_Empty|If_False|If_Null|'
-             r'If_True|Loop_Abort|Loop_Continue|Loop_Count|Params|Params_Up|'
-             r'Return|Return_Value|Run_Children|SOAP_DefineTag|'
-             r'SOAP_LastRequest|SOAP_LastResponse|Tag_Name|ascending|average|'
-             r'by|define|descending|do|equals|frozen|group|handle_failure|'
-             r'import|in|into|join|let|match|max|min|on|order|parent|protected|'
-             r'provide|public|require|skip|split_thread|sum|take|thread|to|'
-             r'trait|type|where|with|yield)\b', bygroups(Punctuation, Keyword)),
+             r'NoProcess|Output_None|Portal|Private|Protect|Records|Referer|'
+             r'Referrer|Repeating|ResultSet|Rows|Search_Args|Search_Arguments|'
+             r'Select|Sort_Args|Sort_Arguments|Thread_Atomic|Value_List|While|'
+             r'Abort|Case|Else|If_Empty|If_False|If_Null|If_True|Loop_Abort|'
+             r'Loop_Continue|Loop_Count|Params|Params_Up|Return|Return_Value|'
+             r'Run_Children|SOAP_DefineTag|SOAP_LastRequest|SOAP_LastResponse|'
+             r'Tag_Name|ascending|average|by|define|descending|do|equals|'
+             r'frozen|group|handle_failure|import|in|into|join|let|match|max|'
+             r'min|on|order|parent|protected|provide|public|require|skip|'
+             r'split_thread|sum|take|thread|to|trait|type|where|with|yield)\b',
+                 bygroups(Punctuation, Keyword)),
 
             # other
             (r'(and|or|not)\b', Operator.Word),

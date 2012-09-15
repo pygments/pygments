@@ -1,7 +1,9 @@
-#!/usr/bin/env python
+#!/Users/eric/Documents/virtualenvs/pygments-lasso/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'Pygments==1.5dev-20120915','console_scripts','pygmentize'
+__requires__ = 'Pygments==1.5dev-20120915'
+import sys
+from pkg_resources import load_entry_point
 
-import sys, pygments.cmdline
-try:
-    sys.exit(pygments.cmdline.main(sys.argv))
-except KeyboardInterrupt:
-    sys.exit(1)
+sys.exit(
+   load_entry_point('Pygments==1.5dev-20120915', 'console_scripts', 'pygmentize')()
+)
