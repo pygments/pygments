@@ -3055,12 +3055,15 @@ class LassoLexer(RegexLexer):
             (r'\?>', Comment.Preproc, '#pop'),
             include('lasso'),
         ],
-        'lasso': [
-            # whitespace/comments
+        'whitespacecomments': [
             (r'\s+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*\*!.*?\*/', String.Doc),
             (r'/\*.*?\*/', Comment.Multiline),
+        ],
+        'lasso': [
+            # whitespace/comments
+            include('whitespacecomments'),
 
             # literals
             (r'\d*\.\d+(e[+-]?\d+)?', Number.Float),
@@ -3103,10 +3106,9 @@ class LassoLexer(RegexLexer):
             (r'(define)(\s+)([a-z_][\w.]*)',
                 bygroups(Keyword.Declaration, Text, Name.Function),
                 'signature'),
-            (r'(public|protected|private|provide)(\s+)([a-z_][\w.]*=?|'
-             r'[-+*/%<>]|==)(\s*)(\()',
-                bygroups(Keyword, Text, Name.Function, Text, Punctuation),
-                ('signature', 'parameter')),
+            (r'(public|protected|private|provide)(\s+)(([a-z_][\w.]*=?|'
+             r'[-+*/%<>]|==)(?=\s*\())', bygroups(Keyword, Text, Name.Function),
+                'signature'),
             (r'(public|protected|private)(\s+)([a-z_][\w.]*)',
                 bygroups(Keyword, Text, Name.Function)),
 
@@ -3117,6 +3119,7 @@ class LassoLexer(RegexLexer):
              r'null)\b', Keyword.Type),
             (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
             (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Text, Name)),
+            (r'require\b', Keyword, 'requiresection'),
             (r'(/?)(Namespace_Using)\b',
                 bygroups(Punctuation, Keyword.Namespace)),
             (r'(/?)(Cache|Database_Names|Database_SchemaNames|'
@@ -3139,6 +3142,8 @@ class LassoLexer(RegexLexer):
                  bygroups(Punctuation, Keyword)),
 
             # other
+            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=\s*\([^)]*\)\s*=>))',
+                Name.Function, 'signature'),
             (r'(and|or|not)\b', Operator.Word),
             (r'([a-z_][\w.]*)(\s*)(::\s*)([a-z_][\w.]*)(\s*)(=)',
                 bygroups(Name, Text, Punctuation, Name.Label, Text, Operator)),
@@ -3167,15 +3172,33 @@ class LassoLexer(RegexLexer):
              r'[abefnrtv?\"\'\\]|$)', String.Escape),
         ],
         'signature': [
-            (r'[(,]', Punctuation, 'parameter'),
             (r'=>', Operator, '#pop'),
+            (r'\)', Punctuation, '#pop'),
+            (r'[(,]', Punctuation, 'parameter'),
             include('lasso'),
         ],
         'parameter': [
-            (r'\.\.\.', Name.Builtin.Pseudo),
-            (r'-?[a-z_][\w.]*', Name.Attribute, '#pop'),
             (r'\)', Punctuation, '#pop'),
+            (r'-?[a-z_][\w.]*', Name.Attribute, '#pop'),
+            (r'\.\.\.', Name.Builtin.Pseudo),
             include('lasso'),
+        ],
+        'requiresection': [
+            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=\s*\())', Name, 'requiresignature'),
+            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=(\s*::\s*[\w.]+)?\s*,))', Name),
+            (r'[a-z_][\w.]*=?|[-+*/%<>]|==', Name, '#pop'),
+            (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
+            (r',', Punctuation),
+            include('whitespacecomments'),
+        ],
+        'requiresignature': [
+            (r'(\)(?=(\s*::\s*[\w.]+)?\s*,))', Punctuation, '#pop'),
+            (r'\)', Punctuation, '#pop:2'),
+            (r'-?[a-z_][\w.]*', Name.Attribute),
+            (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
+            (r'\.\.\.', Name.Builtin.Pseudo),
+            (r'[(,]', Punctuation),
+            include('whitespacecomments'),
         ],
     }
 
