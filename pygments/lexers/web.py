@@ -3216,7 +3216,7 @@ class LassoLexer(RegexLexer):
         RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
-        text = text.lstrip(u'\ufeff')
+        text = text.lstrip(u'\xef\xbb\xbf\ufeff')
         stack = ['root']
         if self.requiredelimiters:
             stack.append('delimiters')
