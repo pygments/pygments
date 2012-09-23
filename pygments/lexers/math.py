@@ -1281,19 +1281,17 @@ class StanLexer(RegexLexer):
     filenames = ['*.stan']
 
     _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                'then', 'else', 'true', 'false', 'T')
+                 'then', 'else', 'true', 'false', 'T', 
+                 'lower', 'upper', 'print')
 
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
-              'matrix', 'corr_matrix', 'cov_matrix')
+              'matrix', 'corr_matrix', 'cov_matrix', 'positive_ordered')
 
     # STAN 1.0 Manual, Chapter 20
     _CONSTANTS = ['pi', 'e', 'sqrt2', 'log2', 'log10', 'nan', 'infinity',
                   'epsilon', 'negative_epsilon']
     _FUNCTIONS = ['abs', 'int_step', 'min', 'max',
-                  'if_else', 'step',
-                  'fabs', 'fdim',
-                  'fmin', 'fmax',
-                  'fmod',
+                  'if_else', 'step', 'fabs', 'fdim', 'fmin', 'fmax', 'fmod',
                   'floor', 'ceil', 'round', 'trunc',
                   'sqrt', 'cbrt', 'square', 'exp', 'exp2', 'expm1',
                   'log', 'log2', 'log10', 'pow', 'logit', 'inv_logit',
@@ -1333,6 +1331,8 @@ class StanLexer(RegexLexer):
             (r'(//|#).*$', Comment.Single),
             ],
         'root': [
+            # Stan is more restrictive on strings than this regex
+            (r'"[^"]*"', String),
             # Comments
             include('comments'),
             # block start
@@ -1382,4 +1382,3 @@ class StanLexer(RegexLexer):
             return 1.0
         else:
             return 0.0
-        
