@@ -21,7 +21,7 @@ from pygments.util import get_bool_opt, get_int_opt, get_list_opt, bytes
 try:
     from ctags import CTags, TagEntry
 except ImportError:
-    pass
+    CTags = None
 
 __all__ = ['HtmlFormatter']
 
@@ -373,10 +373,10 @@ class HtmlFormatter(Formatter):
         self.urlformat = self._decodeifneeded(options.get('urlformat', ''))
 
         if self.tagsfile:
-            try:
+            if CTags:
                 self.ct = CTags(self.tagsfile)
-            except NameError:
-                print >> sys.stderr, 'Hey! ctags doesn\'t seem to be installed. Try \'pip install python-ctags\'.'
+            else:
+                raise NameError('Hey! ctags doesn\'t seem to be installed. Try \'pip install python-ctags\'.')
 
         linenos = options.get('linenos', False)
         if linenos == 'inline':
