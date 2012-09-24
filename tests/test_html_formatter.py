@@ -160,3 +160,9 @@ class HtmlFormatterTest(unittest.TestCase):
         tfile = os.fdopen(handle, 'w+b')
         fmt.format(tokensource, tfile)
         tfile.close()
+
+    def test_ctags(self): # make sure this is in fact line 165 and the tags file says so
+        fmt = HtmlFormatter(tagsfile='examplefiles/tags', lineanchors="L")
+        outfile = StringIO.StringIO()
+        fmt.format(tokensource, outfile)
+        self.assertTrue('<a href="#L-165">test_ctags</a>' in outfile.getvalue())
