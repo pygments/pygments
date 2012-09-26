@@ -208,7 +208,7 @@ class LlvmLexer(RegexLexer):
             include('whitespace'),
 
             # Before keywords, because keywords are valid label names :(...
-            (r'^\s*' + identifier + '\s*:', Name.Label),
+            (identifier + '\s*:', Name.Label),
 
             include('keyword'),
 

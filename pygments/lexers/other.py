@@ -29,7 +29,8 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer', 'PostScriptLexer',
            'AutohotkeyLexer', 'GoodDataCLLexer', 'MaqlLexer', 'ProtoBufLexer',
            'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
-           'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer']
+           'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
+           'MscgenLexer', 'KconfigLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -1218,7 +1219,8 @@ class ModelicaLexer(RegexLexer):
             (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
             (r"([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*')"
              r"(\.([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*'))+", Name.Class),
-            (r"('[\w\+\-\*\/\^]+'|\w+)", Name)        ],
+            (r"('[\w\+\-\*\/\^]+'|\w+)", Name),
+        ],
         'root': [
             include('whitespace'),
             include('keywords'),
@@ -1226,30 +1228,32 @@ class ModelicaLexer(RegexLexer):
             include('operators'),
             include('classes'),
             (r'("<html>|<html>)', Name.Tag, 'html-content'),
-            include('statements')
+            include('statements'),
         ],
         'keywords': [
             (r'(algorithm|annotation|break|connect|constant|constrainedby|'
             r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
             r'end|equation|exit|expandable|extends|'
-            r'external|false|final|flow|for|if|import|in|inner|input|'
-            r'loop|nondiscrete|outer|output|parameter|partial|'
-            r'protected|public|redeclare|replaceable|stream|time|then|true|'
-            r'when|while|within)\b', Keyword)
+            r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
+            r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
+            r'protected|public|pure|redeclare|replaceable|stream|time|then|true|'
+            r'when|while|within)\b', Keyword),
         ],
         'functions': [
             (r'(abs|acos|acosh|asin|asinh|atan|atan2|atan3|ceil|cos|cosh|'
-             r'cross|div|exp|floor|log|log10|mod|rem|semiLinear|sign|sin|'
-             r'sinh|size|sqrt|tan|tanh|zeros)\b', Name.Function)
+             r'cross|div|exp|floor|getInstanceName|log|log10|mod|rem|'
+             r'semiLinear|sign|sin|sinh|size|spatialDistribution|sqrt|tan|'
+             r'tanh|zeros)\b', Name.Function),
         ],
         'operators': [
-            (r'(and|assert|cardinality|change|delay|der|edge|homotopy|initial|'
-             r'noEvent|not|or|pre|reinit|return|sample|smooth|'
-             r'terminal|terminate)\b', Name.Builtin)
+            (r'(actualStream|and|assert|cardinality|change|Clock|delay|der|edge|'
+             r'hold|homotopy|initial|inStream|noEvent|not|or|pre|previous|reinit|'
+             r'return|sample|smooth|spatialDistribution|subSample|terminal|'
+             r'terminate)\b', Name.Builtin),
         ],
         'classes': [
             (r'(block|class|connector|function|model|package|'
-             r'record|type)\b', Name.Class)
+             r'record|type)\b', Name.Class),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -1257,7 +1261,7 @@ class ModelicaLexer(RegexLexer):
              String.Escape),
             (r'[^\\"\n]+', String), # all other characters
             (r'\\\n', String), # line continuation
-            (r'\\', String) # stray backslash
+            (r'\\', String), # stray backslash
         ],
         'html-content': [
             (r'<\s*/\s*html\s*>', Name.Tag, '#pop'),
@@ -1370,6 +1374,11 @@ class RebolLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'REBOL', Generic.Strong, 'script'),
+            (r'R', Comment),
+            (r'[^R]+', Comment),
+        ],
+        'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
             (r'#{[0-9a-fA-F]*}', Number.Hex),
@@ -3336,4 +3345,139 @@ class BroLexer(RegexLexer):
             (r'\\\n', String.Regex),
             (r'\\', String.Regex)
         ]
+    }
+
+
+class MscgenLexer(RegexLexer):
+    """
+    For `Mscgen <http://www.mcternan.me.uk/mscgen/>`_ files.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'Mscgen'
+    aliases = ['mscgen', 'msc']
+    filenames = ['*.msc']
+
+    _var = r'([a-zA-Z0-9_]+|"(?:\\"|[^"])*")'
+
+    tokens = {
+        'root': [
+            (r'msc\b', Keyword.Type),
+            # Options
+            (r'(hscale|HSCALE|width|WIDTH|wordwraparcs|WORDWRAPARCS'
+             r'|arcgradient|ARCGRADIENT)\b', Name.Property),
+            # Operators
+            (r'(abox|ABOX|rbox|RBOX|box|BOX|note|NOTE)\b', Operator.Word),
+            (r'(\.|-|\|){3}', Keyword),
+            (r'(?:-|=|\.|:){2}'
+             r'|<<=>>|<->|<=>|<<>>|<:>'
+             r'|->|=>>|>>|=>|:>|-x|-X'
+             r'|<-|<<=|<<|<=|<:|x-|X-|=', Operator),
+            # Names
+            (r'\*', Name.Builtin),
+            (_var, Name.Variable),
+            # Other
+            (r'\[', Punctuation, 'attrs'),
+            (r'\{|\}|,|;', Punctuation),
+            include('comments')
+        ],
+        'attrs': [
+            (r'\]', Punctuation, '#pop'),
+            (_var + r'(\s*)(=)(\s*)' + _var,
+             bygroups(Name.Attribute, Text.Whitespace, Operator, Text.Whitespace,
+                      String)),
+            (r',', Punctuation),
+            include('comments')
+        ],
+        'comments': [
+            (r'(?://|#).*?\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+            (r'[ \t\r\n]+', Text.Whitespace)
+        ]
+    }
+
+
+def _rx_indent(level):
+    # Kconfig *always* interprets a tab as 8 spaces, so this is the default.
+    # Edit this if you are in an environment where KconfigLexer gets expanded
+    # input (tabs expanded to spaces) and the expansion tab width is != 8,
+    # e.g. in connection with Trac (trac.ini, [mimeviewer], tab_width).
+    # Value range here is 2 <= {tab_width} <= 8.
+    tab_width = 8
+    # Regex matching a given indentation {level}, assuming that indentation is
+    # a multiple of {tab_width}. In other cases there might be problems.
+    return r'(?:\t| {1,%s}\t| {%s}){%s}.*\n' % (tab_width-1, tab_width, level)
+
+
+class KconfigLexer(RegexLexer):
+    """
+    For Linux-style Kconfig files.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'Kconfig'
+    aliases = ['kconfig', 'menuconfig', 'linux-config', 'kernel-config']
+    # Adjust this if new kconfig file names appear in your environment
+    filenames = ['Kconfig', '*Config.in*', 'external.in*',
+                 'standard-modules.in']
+    mimetypes = ['text/x-kconfig']
+    # No re.MULTILINE, indentation-aware help text needs line-by-line handling
+    flags = 0
+
+    def call_indent(level):
+        # If indentation >= {level} is detected, enter state 'indent{level}'
+        return (_rx_indent(level), String.Doc, 'indent%s' % level)
+
+    def do_indent(level):
+        # Print paragraphs of indentation level >= {level} as String.Doc,
+        # ignoring blank lines. Then return to 'root' state.
+        return [
+            (_rx_indent(level), String.Doc),
+            (r'\s*\n', Text),
+            (r'', Generic, '#pop:2')
+        ]
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'#.*?\n', Comment.Single),
+            (r'(mainmenu|config|menuconfig|choice|endchoice|comment|menu|'
+             r'endmenu|visible if|if|endif|source|prompt|select|depends on|'
+             r'default|range|option)\b', Keyword),
+            (r'(---help---|help)[\t ]*\n', Keyword, 'help'),
+            (r'(bool|tristate|string|hex|int|defconfig_list|modules|env)\b',
+             Name.Builtin),
+            (r'[!=&|]', Operator),
+            (r'[()]', Punctuation),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String.Single),
+            (r'"(""|[^"])*"', String.Double),
+            (r'\S+', Text),
+        ],
+        # Help text is indented, multi-line and ends when a lower indentation
+        # level is detected.
+        'help': [
+            # Skip blank lines after help token, if any
+            (r'\s*\n', Text),
+            # Determine the first help line's indentation level heuristically(!).
+            # Attention: this is not perfect, but works for 99% of "normal"
+            # indentation schemes up to a max. indentation level of 7.
+            call_indent(7),
+            call_indent(6),
+            call_indent(5),
+            call_indent(4),
+            call_indent(3),
+            call_indent(2),
+            call_indent(1),
+            ('', Text, '#pop'),  # for incomplete help sections without text
+        ],
+        # Handle text for indentation levels 7 to 1
+        'indent7': do_indent(7),
+        'indent6': do_indent(6),
+        'indent5': do_indent(5),
+        'indent4': do_indent(4),
+        'indent3': do_indent(3),
+        'indent2': do_indent(2),
+        'indent1': do_indent(1),
     }

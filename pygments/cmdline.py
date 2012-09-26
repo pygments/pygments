@@ -219,7 +219,7 @@ def main(args=sys.argv):
         return 0
 
     if opts.pop('-V', None) is not None:
-        print 'Pygments version %s, (c) 2006-2011 by Georg Brandl.' % __version__
+        print 'Pygments version %s, (c) 2006-2012 by Georg Brandl.' % __version__
         return 0
 
     # handle ``pygmentize -L``
