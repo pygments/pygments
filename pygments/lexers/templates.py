@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexers.web import \
-     PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
+     PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer, LassoLexer
 from pygments.lexers.agile import PythonLexer, PerlLexer
 from pygments.lexers.compiled import JavaLexer
 from pygments.lexers.jvm import TeaLangLexer
@@ -37,7 +37,8 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'CheetahXmlLexer', 'CheetahJavascriptLexer', 'EvoqueLexer',
            'EvoqueHtmlLexer', 'EvoqueXmlLexer', 'ColdfusionLexer',
            'ColdfusionHtmlLexer', 'VelocityLexer', 'VelocityHtmlLexer',
-           'VelocityXmlLexer', 'SspLexer', 'TeaTemplateLexer']
+           'VelocityXmlLexer', 'SspLexer', 'TeaTemplateLexer', 'LassoHtmlLexer',
+           'LassoXmlLexer', 'LassoCssLexer', 'LassoJavascriptLexer']
 
 
 class ErbLexer(Lexer):
@@ -1628,4 +1629,105 @@ class TeaTemplateLexer(DelegatingLexer):
             rv += 0.4
         if '<%' in text and '%>' in text:
             rv += 0.1
+        return rv
+
+
+class LassoHtmlLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `HtmlLexer`.
+
+    Nested JavaScript and CSS is also highlighted.
+    """
+
+    name = 'HTML+Lasso'
+    aliases = ['html+lasso']
+    alias_filenames = ['*.html', '*.htm', '*.xhtml', '*.lasso', '*.lasso[89]',
+                       '*.incl', '*.inc', '*.las']
+    mimetypes = ['text/html+lasso',
+                 'application/x-httpd-lasso',
+                 'application/x-httpd-lasso[89]']
+
+    def __init__(self, **options):
+        options['requiredelimiters'] = True
+        super(LassoHtmlLexer, self).__init__(HtmlLexer, LassoLexer, **options)
+
+    def analyse_text(text):
+        rv = LassoLexer.analyse_text(text)
+        if re.search(r'<\w+>', text, re.I):
+            rv += 0.2
+        if html_doctype_matches(text):
+            rv += 0.5
+        return rv
+
+
+class LassoXmlLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `XmlLexer`.
+    """
+
+    name = 'XML+Lasso'
+    aliases = ['xml+lasso']
+    alias_filenames = ['*.xml', '*.lasso', '*.lasso[89]',
+                       '*.incl', '*.inc', '*.las']
+    mimetypes = ['application/xml+lasso']
+
+    def __init__(self, **options):
+        options['requiredelimiters'] = True
+        super(LassoXmlLexer, self).__init__(XmlLexer, LassoLexer, **options)
+
+    def analyse_text(text):
+        rv = LassoLexer.analyse_text(text)
+        if looks_like_xml(text):
+            rv += 0.5
+        return rv
+
+
+class LassoCssLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `CssLexer`.
+    """
+
+    name = 'CSS+Lasso'
+    aliases = ['css+lasso']
+    alias_filenames = ['*.css']
+    mimetypes = ['text/css+lasso']
+
+    def __init__(self, **options):
+        options['requiredelimiters'] = True
+        super(LassoCssLexer, self).__init__(CssLexer, LassoLexer, **options)
+
+    def analyse_text(text):
+        rv = LassoLexer.analyse_text(text)
+        if re.search(r'\w+:.+;', text):
+            rv += 0.1
+        if 'padding:' in text:
+            rv += 0.1
+        return rv
+
+
+class LassoJavascriptLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `JavascriptLexer`.
+    """
+
+    name = 'JavaScript+Lasso'
+    aliases = ['js+lasso', 'javascript+lasso']
+    alias_filenames = ['*.js']
+    mimetypes = ['application/x-javascript+lasso',
+                 'text/x-javascript+lasso',
+                 'text/javascript+lasso']
+
+    def __init__(self, **options):
+        options['requiredelimiters'] = True
+        super(LassoJavascriptLexer, self).__init__(JavascriptLexer, LassoLexer,
+                                                   **options)
+
+    def analyse_text(text):
+        rv = LassoLexer.analyse_text(text)
+        if 'function' in text:
+            rv += 0.2
         return rv

@@ -187,7 +187,7 @@ class BaseMakefileLexer(RegexLexer):
              bygroups(Keyword, Text), 'export'),
             (r'export\s+', Keyword),
             # assignment
-            (r'([a-zA-Z0-9_${}.-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n|.*\n)+)',
+            (r'([a-zA-Z0-9_${}.-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n)+|.*\n)',
              bygroups(Name.Variable, Text, Operator, Text, using(BashLexer))),
             # strings
             (r'(?s)"(\\\\|\\.|[^"\\])*"', String.Double),
@@ -1643,6 +1643,11 @@ class HttpLexer(RegexLexer):
         yield match.start(5), Literal, match.group(5)
         yield match.start(6), Text, match.group(6)
 
+    def continuous_header_callback(self, match):
+        yield match.start(1), Text, match.group(1)
+        yield match.start(2), Literal, match.group(2)
+        yield match.start(3), Text, match.group(3)
+
     def content_callback(self, match):
         content_type = getattr(self, 'content_type', None)
         content = match.group()
@@ -1673,6 +1678,7 @@ class HttpLexer(RegexLexer):
         ],
         'headers': [
             (r'([^\s:]+)( *)(:)( *)([^\r\n]+)(\r?\n|$)', header_callback),
+            (r'([\t ]+)([^\r\n]+)(\r?\n|$)', continuous_header_callback),
             (r'\r?\n', Text, 'content')
         ],
         'content': [
