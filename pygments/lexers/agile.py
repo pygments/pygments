@@ -76,7 +76,7 @@ class PythonLexer(RegexLexer):
         'keywords': [
             (r'(assert|break|continue|del|elif|else|except|exec|'
              r'finally|for|global|if|lambda|pass|print|raise|'
-             r'return|try|while|yield|as|with)\b', Keyword),
+             r'return|try|while|yield(\s+from)?|as|with)\b', Keyword),
         ],
         'builtins': [
             (r'(?<!\.)(__import__|abs|all|any|apply|basestring|bin|bool|buffer|'
@@ -207,7 +207,8 @@ class Python3Lexer(RegexLexer):
     tokens['keywords'] = [
         (r'(assert|break|continue|del|elif|else|except|'
          r'finally|for|global|if|lambda|pass|raise|nonlocal|'
-         r'return|try|while|yield|as|with|True|False|None)\b', Keyword),
+         r'return|try|while|yield(\s+from)?|as|with|True|False|None)\b',
+         Keyword),
     ]
     tokens['builtins'] = [
         (r'(?<!\.)(__import__|abs|all|any|bin|bool|bytearray|bytes|'
@@ -263,6 +264,7 @@ class Python3Lexer(RegexLexer):
         (r'(\s+)(import)\b', bygroups(Text, Keyword), '#pop'),
         (r'\.', Name.Namespace),
         (uni_name, Name.Namespace),
+        (r'', Text, '#pop'),
     ]
     # don't highlight "%s" substitutions
     tokens['strings'] = [
