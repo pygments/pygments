@@ -18,6 +18,7 @@ from pygments.token import Comment, String, Punctuation, Keyword, Name, \
 
 from pygments.lexers.agile import PythonLexer
 from pygments.lexers import _scilab_builtins
+from pygments.lexers import _stan_builtins
 
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
            'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
@@ -1287,40 +1288,6 @@ class StanLexer(RegexLexer):
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
               'matrix', 'corr_matrix', 'cov_matrix', 'positive_ordered')
 
-    # STAN 1.0 Manual, Chapter 20
-    _CONSTANTS = ['pi', 'e', 'sqrt2', 'log2', 'log10', 'nan', 'infinity',
-                  'epsilon', 'negative_epsilon']
-    _FUNCTIONS = ['abs', 'int_step', 'min', 'max',
-                  'if_else', 'step', 'fabs', 'fdim', 'fmin', 'fmax', 'fmod',
-                  'floor', 'ceil', 'round', 'trunc',
-                  'sqrt', 'cbrt', 'square', 'exp', 'exp2', 'expm1',
-                  'log', 'log2', 'log10', 'pow', 'logit', 'inv_logit',
-                  'inv_cloglog', 'hypot', 'cos', 'sin', 'tan', 'acos',
-                  'asin', 'atan', 'atan2', 'cosh', 'sinh', 'tanh',
-                  'acosh', 'asinh', 'atanh', 'erf', 'erfc', 'Phi',
-                  'log_loss', 'tgamma', 'lgamma', 'lmgamma', 'lbeta',
-                  'binomial_coefficient_log',
-                  'fma', 'multiply_log', 'log1p', 'log1m', 'log1p_exp',
-                  'log_sum_exp',
-                  'rows', 'cols',
-                  'dot_product', 'prod', 'mean', 'variance', 'sd',
-                  'diagonal', 'diag_matrix', 'col', 'row',
-                  'softmax', 'trace', 'determinant', 'inverse', 'eigenvalue',
-                  'eigenvalues_sym', 'cholesky', 'singular_values',
-                  '(log)?normal_p', 'exponential_p', 'gamma_p', 'weibull_p']
-    _DISTRIBUTIONS = ['bernoulli', 'bernoulli_logit', 'binomial',
-                      'beta_binomial', 'hypergeometric', 'categorical',
-                      'ordered_logistic', 'neg_binomial', 'poisson',
-                      'multinomial', 'normal', 'student_t',
-                      'cauchy', 'double_exponential', 'logistic',
-                      'lognormal', 'chi_square', 'inv_chi_square',
-                      'scaled_inv_chi_square', 'exponential',
-                      'gamma', 'inv_gamma', 'weibull', 'pareto',
-                      'beta', 'uniform', 'dirichlet', 'multi_normal',
-                      'multi_normal_cholesky', 'multi_student_t',
-                      'wishart', 'inv_wishart', 'lkj_cov',
-                      'lkj_corr_cholesky']
-
     tokens = {
         'whitespace' : [
             (r"\s+", Text),
@@ -1351,13 +1318,11 @@ class StanLexer(RegexLexer):
             (r"[;:,\[\]()<>]", Punctuation),
             # Builtin
             (r'(%s)(?=\s*\()'
-             % r'|'.join(_FUNCTIONS
-                         + _DISTRIBUTIONS 
-                         + ['%s_log' % x for x in _DISTRIBUTIONS]),
+             % r'|'.join(_stan_builtins.FUNCTIONS
+                         + _stan_builtins.DISTRIBUTIONS),
              Name.Builtin),
             (r'(%s)(?=\s*\()'
-             % r'|'.join(_CONSTANTS),
-             Keyword.Constant),
+             % r'|'.join(_stan_builtins.CONSTANTS), Keyword.Constant),
             # Special names ending in __, like lp__
             (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
             # Regular variable names
