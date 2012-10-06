@@ -1844,6 +1844,11 @@ class GoLexer(RegexLexer):
              r'|complex64|complex128|byte|rune'
              r'|string|bool|error|uintptr)\b', Keyword.Type
             ),
+            # imaginary_lit
+            (r'\d+i', Number),
+            (r'\d+\.\d*([Ee][-+]\d+)?i', Number),
+            (r'\.\d+([Ee][-+]\d+)?i', Number),
+            (r'\d+[Ee][-+]\d+i', Number),
             # float_lit
             (r'\d+(\.\d+[eE][+\-]?\d+|'
              r'\.\d*|[eE][+\-]?\d+)', Number.Float),

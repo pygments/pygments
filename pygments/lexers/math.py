@@ -80,7 +80,7 @@ class JuliaLexer(RegexLexer):
             (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
 
             # try to match trailing transpose
-            (r'(?<=[.\w\)\]])\'', Operator),
+            (r'(?<=[.\w\)\]])\'+', Operator),
 
             # strings
             (r'(?:[IL])"', String, 'string'),
@@ -93,8 +93,8 @@ class JuliaLexer(RegexLexer):
             # numbers
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+', Number.Float),
-            (r'0[0-7]+', Number.Oct),
-            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'0b[01]+', Number.Binary),
+            (r'0x[a-fA-F0-9]+', Number.Hex),
             (r'\d+', Number.Integer)
         ],
 
