@@ -1383,23 +1383,23 @@ class StanLexer(RegexLexer):
             return 1.0
         else:
             return 0.0
-        
 
 
 class RdLexer(RegexLexer):
-    """ Pygments Lexer for R documentation (Rd) files
+    """
+    Pygments Lexer for R documentation (Rd) files
 
     This is a very minimal implementation, highlighting little more
     than the macros. A description of Rd syntax is found in `Writing R
     Extensions <http://cran.r-project.org/doc/manuals/R-exts.html>`_
     and `Parsing Rd files <developer.r-project.org/parseRd.pdf>`_.
 
+    *New in Pygments 1.6.*
     """
     name = 'Rd'
     aliases = ['rd']
     filenames = ['*.Rd']
     mimetypes = ['text/x-r-doc']
-    
 
     # To account for verbatim / LaTeX-like / and R-like areas
     # would require parsing.
@@ -1415,11 +1415,10 @@ class RdLexer(RegexLexer):
             (r'\\[a-zA-Z]+\b', Keyword),
             # special preprocessor macros
             (r'^\s*#(?:ifn?def|endif).*\b', Comment.Preproc),
-            # Non escaped brackets
+            # non-escaped brackets
             (r'[{}]', Name.Builtin),
             # everything else
+            (r'[^\\%\n{}]+', Text),
             (r'.', Text),
             ]
         }
-
-        
