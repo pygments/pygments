@@ -5,20 +5,177 @@
 
     Lexers for math languages.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions
+from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
+    combined, do_insertions
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
     Operator, Number, Text, Generic
 
 from pygments.lexers.agile import PythonLexer
+from pygments.lexers import _scilab_builtins
 
-__all__ = ['MuPADLexer', 'MatlabLexer', 'MatlabSessionLexer', 'OctaveLexer',
-           'NumPyLexer', 'RConsoleLexer', 'SLexer']
+__all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
+           'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
+           'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer',
+           'RdLexer']
+
+
+class JuliaLexer(RegexLexer):
+    name = 'Julia'
+    aliases = ['julia','jl']
+    filenames = ['*.jl']
+    mimetypes = ['text/x-julia','application/x-julia']
+
+    builtins = [
+        'exit','whos','edit','load','is','isa','isequal','typeof','tuple',
+        'ntuple','uid','hash','finalizer','convert','promote','subtype',
+        'typemin','typemax','realmin','realmax','sizeof','eps','promote_type',
+        'method_exists','applicable','invoke','dlopen','dlsym','system',
+        'error','throw','assert','new','Inf','Nan','pi','im',
+    ]
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'[^\S\n]+', Text),
+            (r'#.*$', Comment),
+            (r'[]{}:(),;[@]', Punctuation),
+            (r'\\\n', Text),
+            (r'\\', Text),
+
+            # keywords
+            (r'(begin|while|for|in|return|break|continue|'
+             r'macro|quote|let|if|elseif|else|try|catch|end|'
+             r'bitstype|ccall|do)\b', Keyword),
+            (r'(local|global|const)\b', Keyword.Declaration),
+            (r'(module|import|export)\b', Keyword.Reserved),
+            (r'(Bool|Int|Int8|Int16|Int32|Int64|Uint|Uint8|Uint16|Uint32|Uint64'
+             r'|Float32|Float64|Complex64|Complex128|Any|Nothing|None)\b',
+                Keyword.Type),
+
+            # functions
+            (r'(function)((?:\s|\\\s)+)',
+                bygroups(Keyword,Name.Function), 'funcname'),
+
+            # types
+            (r'(type|typealias|abstract)((?:\s|\\\s)+)',
+                bygroups(Keyword,Name.Class), 'typename'),
+
+            # operators
+            (r'==|!=|<=|>=|->|&&|\|\||::|<:|[-~+/*%=<>&^|.?!$]', Operator),
+            (r'\.\*|\.\^|\.\\|\.\/|\\', Operator),
+
+            # builtins
+            ('(' + '|'.join(builtins) + r')\b',  Name.Builtin),
+
+            # backticks
+            (r'`(?s).*?`', String.Backtick),
+
+            # chars
+            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
+
+            # try to match trailing transpose
+            (r'(?<=[.\w\)\]])\'+', Operator),
+
+            # strings
+            (r'(?:[IL])"', String, 'string'),
+            (r'[E]?"', String, combined('stringescape', 'string')),
+
+            # names
+            (r'@[a-zA-Z0-9_.]+', Name.Decorator),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+
+            # numbers
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+', Number.Float),
+            (r'0b[01]+', Number.Binary),
+            (r'0x[a-fA-F0-9]+', Number.Hex),
+            (r'\d+', Number.Integer)
+        ],
+
+        'funcname': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop'),
+            ('\([^\s\w{]{1,2}\)', Operator, '#pop'),
+            ('[^\s\w{]{1,2}', Operator, '#pop'),
+        ],
+
+        'typename': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+        ],
+
+        'stringescape': [
+            (r'\\([\\abfnrtv"\']|\n|N{.*?}|u[a-fA-F0-9]{4}|'
+             r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
+        ],
+
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\\\|\\"|\\\n', String.Escape), # included here for raw strings
+            (r'\$(\([a-zA-Z0-9_]+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?',
+                String.Interpol),
+            (r'[^\\"$]+', String),
+            # quotes, dollar signs, and backslashes must be parsed one at a time
+            (r'["\\]', String),
+            # unhandled string formatting sign
+            (r'\$', String)
+        ],
+    }
+
+    def analyse_text(text):
+        return shebang_matches(text, r'julia')
+
+
+line_re  = re.compile('.*?\n')
+
+class JuliaConsoleLexer(Lexer):
+    """
+    For Julia console sessions. Modeled after MatlabSessionLexer.
+    """
+    name = 'Julia console'
+    aliases = ['jlcon']
+
+    def get_tokens_unprocessed(self, text):
+        jllexer = JuliaLexer(**self.options)
+
+        curcode = ''
+        insertions = []
+
+        for match in line_re.finditer(text):
+            line = match.group()
+
+            if line.startswith('julia>'):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, line[:3])]))
+                curcode += line[3:]
+
+            elif line.startswith('      '):
+
+                idx = len(curcode)
+
+                # without is showing error on same line as before...?
+                line = "\n" + line
+                token = (0, Generic.Traceback, line)
+                insertions.append((idx, [token]))
+
+            else:
+                if curcode:
+                    for item in do_insertions(
+                        insertions, jllexer.get_tokens_unprocessed(curcode)):
+                        yield item
+                    curcode = ''
+                    insertions = []
+
+                yield match.start(), Generic.Output, line
+
+        if curcode: # or item:
+            for item in do_insertions(
+                insertions, jllexer.get_tokens_unprocessed(curcode)):
+                yield item
 
 
 class MuPADLexer(RegexLexer):
@@ -74,8 +231,8 @@ class MuPADLexer(RegexLexer):
         #(r'\b(?:adt|linalg|newDomain|hold)\b', Name.Builtin),
         (r'''(?x)
           ((?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
-          (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*)\s*([(])''',
-          bygroups(Name.Function, Punctuation)),
+          (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*)(\s*)([(])''',
+          bygroups(Name.Function, Text, Punctuation)),
         (r'''(?x)
           (?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
           (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*''', Name.Variable),
@@ -95,7 +252,6 @@ class MuPADLexer(RegexLexer):
 class MatlabLexer(RegexLexer):
     """
     For Matlab source code.
-    Contributed by Ken Schutte <kschutte@csail.mit.edu>.
 
     *New in Pygments 0.10.*
     """
@@ -150,6 +306,7 @@ class MatlabLexer(RegexLexer):
             # line starting with '!' is sent as a system command.  not sure what
             # label to use...
             (r'^!.*', String.Other),
+            (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'%.*$', Comment),
             (r'^\s*function', Keyword, 'deffunc'),
 
@@ -159,6 +316,9 @@ class MatlabLexer(RegexLexer):
              r'persistent|properties|return|spmd|switch|try|while)\b', Keyword),
 
             ("(" + "|".join(elfun+specfun+elmat) + r')\b',  Name.Builtin),
+
+            # line continuation with following comment:
+            (r'\.\.\..*$', Comment),
 
             # operators:
             (r'-|==|~=|<|>|<=|>=|&&|&|~|\|\|?', Operator),
@@ -179,6 +339,11 @@ class MatlabLexer(RegexLexer):
         ],
         'string': [
             (r'[^\']*\'', String, '#pop')
+        ],
+        'blockcomment': [
+            (r'^\s*%\}', Comment.Multiline, '#pop'),
+            (r'^.*\n', Comment.Multiline),
+            (r'.', Comment.Multiline),
         ],
         'deffunc': [
             (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
@@ -639,6 +804,68 @@ class OctaveLexer(RegexLexer):
         return 0.1
 
 
+class ScilabLexer(RegexLexer):
+    """
+    For Scilab source code.
+
+    *New in Pygments 1.5.*
+    """
+    name = 'Scilab'
+    aliases = ['scilab']
+    filenames = ['*.sci', '*.sce', '*.tst']
+    mimetypes = ['text/scilab']
+
+    tokens = {
+        'root': [
+            (r'//.*?$', Comment.Single),
+            (r'^\s*function', Keyword, 'deffunc'),
+
+            (r'(__FILE__|__LINE__|break|case|catch|classdef|continue|do|else|'
+             r'elseif|end|end_try_catch|end_unwind_protect|endclassdef|'
+             r'endevents|endfor|endfunction|endif|endmethods|endproperties|'
+             r'endswitch|endwhile|events|for|function|get|global|if|methods|'
+             r'otherwise|persistent|properties|return|set|static|switch|try|'
+             r'until|unwind_protect|unwind_protect_cleanup|while)\b', Keyword),
+
+            ("(" + "|".join(_scilab_builtins.functions_kw +
+                            _scilab_builtins.commands_kw +
+                            _scilab_builtins.macros_kw
+                            ) + r')\b',  Name.Builtin),
+
+            (r'(%s)\b' % "|".join(map(re.escape, _scilab_builtins.builtin_consts)),
+             Name.Constant),
+
+            # operators:
+            (r'-|==|~=|<|>|<=|>=|&&|&|~|\|\|?', Operator),
+            # operators requiring escape for re:
+            (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
+
+            # punctuation:
+            (r'[\[\](){}@.,=:;]', Punctuation),
+
+            (r'"[^"]*"', String),
+
+            # quote can be transpose, instead of string:
+            # (not great, but handles common cases...)
+            (r'(?<=[\w\)\]])\'', Operator),
+            (r'(?<![\w\)\]])\'', String, 'string'),
+
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'.', Text),
+        ],
+        'string': [
+            (r"[^']*'", String, '#pop'),
+            (r'.', String, '#pop'),
+        ],
+        'deffunc': [
+            (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
+             bygroups(Text.Whitespace, Text, Text.Whitespace, Punctuation,
+                      Text.Whitespace, Name.Function, Punctuation, Text,
+                      Punctuation, Text.Whitespace), '#pop'),
+        ],
+    }
+
+
 class NumPyLexer(PythonLexer):
     """
     A Python lexer recognizing Numerical Python builtins.
@@ -784,43 +1011,50 @@ class SLexer(RegexLexer):
 
     name = 'S'
     aliases = ['splus', 's', 'r']
-    filenames = ['*.S', '*.R']
-    mimetypes = ['text/S-plus', 'text/S', 'text/R']
+    filenames = ['*.S', '*.R', '.Rhistory', '.Rprofile']
+    mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
+                 'text/x-R', 'text/x-r-history', 'text/x-r-profile']
 
     tokens = {
         'comments': [
             (r'#.*$', Comment.Single),
         ],
         'valid_name': [
-            (r'[a-zA-Z][0-9a-zA-Z\._]+', Text),
-            (r'`.+`', String.Backtick),
+            (r'[a-zA-Z][0-9a-zA-Z\._]*', Text),
+            # can begin with ., but not if that is followed by a digit
+            (r'\.[a-zA-Z_][0-9a-zA-Z\._]*', Text),
         ],
         'punctuation': [
-            (r'\[|\]|\[\[|\]\]|\$|\(|\)|@|:::?|;|,', Punctuation),
+            (r'\[{1,2}|\]{1,2}|\(|\)|;|,', Punctuation),
         ],
         'keywords': [
-            (r'for(?=\s*\()|while(?=\s*\()|if(?=\s*\()|(?<=\s)else|'
-             r'(?<=\s)break(?=;|$)|return(?=\s*\()|function(?=\s*\()',
+            (r'(if|else|for|while|repeat|in|next|break|return|switch|function)'
+             r'(?![0-9a-zA-Z\._])',
              Keyword.Reserved)
         ],
         'operators': [
-            (r'<-|-|==|<=|>=|<|>|&&|&|!=|\|\|?', Operator),
-            (r'\*|\+|\^|/|%%|%/%|=', Operator),
-            (r'%in%|%*%', Operator)
+            (r'<<?-|->>?|-|==|<=|>=|<|>|&&?|!=|\|\|?|\?', Operator),
+            (r'\*|\+|\^|/|!|%[^%]*%|=|~|\$|@|:{1,3}', Operator)
         ],
         'builtin_symbols': [
-            (r'(NULL|NA|TRUE|FALSE|NaN)\b', Keyword.Constant),
+            (r'(NULL|NA(_(integer|real|complex|character)_)?|'
+             r'Inf|TRUE|FALSE|NaN|\.\.(\.|[0-9]+))'
+             r'(?![0-9a-zA-Z\._])',
+             Keyword.Constant),
             (r'(T|F)\b', Keyword.Variable),
         ],
         'numbers': [
-            (r'(?<![0-9a-zA-Z\)\}\]`\"])(?=\s*)[-\+]?[0-9]+'
-             r'(\.[0-9]*)?(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
-            (r'\.[0-9]*(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
+            # hex number
+            (r'0[xX][a-fA-F0-9]+([pP][0-9]+)?[Li]?', Number.Hex),
+            # decimal number
+            (r'[+-]?([0-9]+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?[Li]?',
+             Number),
         ],
         'statements': [
             include('comments'),
             # whitespaces
             (r'\s+', Text),
+            (r'`.*?`', String.Backtick),
             (r'\'', String, 'string_squote'),
             (r'\"', String, 'string_dquote'),
             include('builtin_symbols'),
@@ -843,12 +1077,348 @@ class SLexer(RegexLexer):
         #    ('\}', Punctuation, '#pop')
         #],
         'string_squote': [
-            (r'[^\']*\'', String, '#pop'),
+            (r'([^\'\\]|\\.)*\'', String, '#pop'),
         ],
         'string_dquote': [
-            (r'[^\"]*\"', String, '#pop'),
+            (r'([^"\\]|\\.)*"', String, '#pop'),
         ],
     }
 
     def analyse_text(text):
         return '<-' in text
+
+
+class BugsLexer(RegexLexer):
+    """
+    Pygments Lexer for OpenBugs and WinBugs models.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'BUGS'
+    aliases = ['bugs', 'winbugs', 'openbugs']
+    filenames = ['*.bug']
+
+    _FUNCTIONS = [
+        # Scalar functions
+        'abs', 'arccos', 'arccosh', 'arcsin', 'arcsinh', 'arctan', 'arctanh',
+        'cloglog', 'cos', 'cosh', 'cumulative', 'cut', 'density', 'deviance',
+        'equals', 'expr', 'gammap', 'ilogit', 'icloglog', 'integral', 'log',
+        'logfact', 'loggam', 'logit', 'max', 'min', 'phi', 'post.p.value',
+        'pow', 'prior.p.value', 'probit', 'replicate.post', 'replicate.prior',
+        'round', 'sin', 'sinh', 'solution', 'sqrt', 'step', 'tan', 'tanh',
+        'trunc',
+        # Vector functions
+        'inprod', 'interp.lin', 'inverse', 'logdet', 'mean', 'eigen.vals',
+        'ode', 'prod', 'p.valueM', 'rank', 'ranked', 'replicate.postM',
+        'sd', 'sort', 'sum',
+        ## Special
+        'D', 'I', 'F', 'T', 'C']
+    """ OpenBUGS built-in functions
+
+    From http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAII
+
+    This also includes
+
+    - T, C, I : Truncation and censoring.
+      ``T`` and ``C`` are in OpenBUGS. ``I`` in WinBUGS.
+    - D : ODE
+    - F : Functional http://www.openbugs.info/Examples/Functionals.html
+
+    """
+
+    _DISTRIBUTIONS = ['dbern', 'dbin', 'dcat', 'dnegbin', 'dpois',
+                      'dhyper', 'dbeta', 'dchisqr', 'ddexp', 'dexp',
+                      'dflat', 'dgamma', 'dgev', 'df', 'dggamma', 'dgpar',
+                      'dloglik', 'dlnorm', 'dlogis', 'dnorm', 'dpar',
+                      'dt', 'dunif', 'dweib', 'dmulti', 'ddirch', 'dmnorm',
+                      'dmt', 'dwish']
+    """ OpenBUGS built-in distributions
+
+    Functions from
+    http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAI
+    """
+
+
+    tokens = {
+        'whitespace' : [
+            (r"\s+", Text),
+            ],
+        'comments' : [
+            # Comments
+            (r'#.*$', Comment.Single),
+            ],
+        'root': [
+            # Comments
+            include('comments'),
+            include('whitespace'),
+            # Block start
+            (r'(?s)(model)(\s+)({)',
+             bygroups(Keyword.Namespace, Text, Punctuation)),
+            # Reserved Words
+            (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
+            # Built-in Functions
+            (r'(%s)(?=\s*\()'
+             % r'|'.join(_FUNCTIONS + _DISTRIBUTIONS),
+             Name.Builtin),
+            # Regular variable names
+            (r'[A-Za-z][A-Za-z0-9_.]*', Name),
+            # Number Literals
+            (r'[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?', Number),
+            # Punctuation
+            (r'\[|\]|\(|\)|:|,|;', Punctuation),
+            # Assignment operators
+            # SLexer makes these tokens Operators.
+            (r'<-|~', Operator),
+            # Infix and prefix operators
+            (r'\+|-|\*|/', Operator),
+            # Block
+            (r'[{}]', Punctuation),
+            ]
+        }
+
+    def analyse_text(text):
+        if re.search(r"^\s*model\s*{", text, re.M):
+            return 0.7
+        else:
+            return 0.0
+
+class JagsLexer(RegexLexer):
+    """
+    Pygments Lexer for JAGS.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'JAGS'
+    aliases = ['jags']
+    filenames = ['*.jag', '*.bug']
+
+    ## JAGS
+    _FUNCTIONS = [
+        'abs', 'arccos', 'arccosh', 'arcsin', 'arcsinh', 'arctan', 'arctanh',
+        'cos', 'cosh', 'cloglog',
+        'equals', 'exp', 'icloglog', 'ifelse', 'ilogit', 'log', 'logfact',
+        'loggam', 'logit', 'phi', 'pow', 'probit', 'round', 'sin', 'sinh',
+        'sqrt', 'step', 'tan', 'tanh', 'trunc', 'inprod', 'interp.lin',
+        'logdet', 'max', 'mean', 'min', 'prod', 'sum', 'sd', 'inverse',
+        'rank', 'sort', 't', 'acos', 'acosh', 'asin', 'asinh', 'atan',
+        # Truncation/Censoring (should I include)
+        'T', 'I']
+    # Distributions with density, probability and quartile functions
+    _DISTRIBUTIONS = ['[dpq]%s' % x for x in
+                           ['bern', 'beta', 'dchiqsqr', 'ddexp', 'dexp',
+                            'df', 'gamma', 'gen.gamma', 'logis', 'lnorm',
+                            'negbin', 'nchisqr', 'norm', 'par', 'pois', 'weib']]
+    # Other distributions without density and probability
+    _OTHER_DISTRIBUTIONS = [
+        'dt', 'dunif', 'dbetabin', 'dbern', 'dbin', 'dcat', 'dhyper',
+        'ddirch', 'dmnorm', 'dwish', 'dmt', 'dmulti', 'dbinom', 'dchisq',
+        'dnbinom', 'dweibull', 'ddirich']
+
+    tokens = {
+        'whitespace' : [
+            (r"\s+", Text),
+            ],
+        'names' : [
+            # Regular variable names
+            (r'[a-zA-Z][a-zA-Z0-9_.]*\b', Name),
+            ],
+        'comments' : [
+            # do not use stateful comments
+            (r'(?s)/\*.*?\*/', Comment.Multiline),
+            # Comments
+            (r'#.*$', Comment.Single),
+            ],
+        'root': [
+            # Comments
+            include('comments'),
+            include('whitespace'),
+            # Block start
+            (r'(?s)(model|data)(\s+)({)',
+             bygroups(Keyword.Namespace, Text, Punctuation)),
+            (r'var(?![0-9a-zA-Z\._])', Keyword.Declaration),
+            # Reserved Words
+            (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
+            # Builtins
+            # Need to use lookahead because . is a valid char
+            (r'(%s)(?=\s*\()' % r'|'.join(_FUNCTIONS
+                                 + _DISTRIBUTIONS
+                                 + _OTHER_DISTRIBUTIONS),
+             Name.Builtin),
+            # Names
+            include('names'),
+            # Number Literals
+            (r'[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?', Number),
+            (r'\[|\]|\(|\)|:|,|;', Punctuation),
+            # Assignment operators
+            (r'<-|~', Operator),
+            # # JAGS includes many more than OpenBUGS
+            (r'\+|-|\*|\/|\|\|[&]{2}|[<>=]=?|\^|%.*?%', Operator),
+            (r'[{}]', Punctuation),
+            ]
+        }
+
+    def analyse_text(text):
+        if re.search(r'^\s*model\s*\{', text, re.M):
+            if re.search(r'^\s*data\s*\{', text, re.M):
+                return 0.9
+            elif re.search(r'^\s*var', text, re.M):
+                return 0.9
+            else:
+                return 0.3
+        else:
+            return 0
+
+class StanLexer(RegexLexer):
+    """
+    Pygments Lexer for Stan models.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'Stan'
+    aliases = ['stan']
+    filenames = ['*.stan']
+
+    _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
+                'then', 'else', 'true', 'false', 'T')
+
+    _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
+              'matrix', 'corr_matrix', 'cov_matrix')
+
+    # STAN 1.0 Manual, Chapter 20
+    _CONSTANTS = ['pi', 'e', 'sqrt2', 'log2', 'log10', 'nan', 'infinity',
+                  'epsilon', 'negative_epsilon']
+    _FUNCTIONS = ['abs', 'int_step', 'min', 'max',
+                  'if_else', 'step',
+                  'fabs', 'fdim',
+                  'fmin', 'fmax',
+                  'fmod',
+                  'floor', 'ceil', 'round', 'trunc',
+                  'sqrt', 'cbrt', 'square', 'exp', 'exp2', 'expm1',
+                  'log', 'log2', 'log10', 'pow', 'logit', 'inv_logit',
+                  'inv_cloglog', 'hypot', 'cos', 'sin', 'tan', 'acos',
+                  'asin', 'atan', 'atan2', 'cosh', 'sinh', 'tanh',
+                  'acosh', 'asinh', 'atanh', 'erf', 'erfc', 'Phi',
+                  'log_loss', 'tgamma', 'lgamma', 'lmgamma', 'lbeta',
+                  'binomial_coefficient_log',
+                  'fma', 'multiply_log', 'log1p', 'log1m', 'log1p_exp',
+                  'log_sum_exp',
+                  'rows', 'cols',
+                  'dot_product', 'prod', 'mean', 'variance', 'sd',
+                  'diagonal', 'diag_matrix', 'col', 'row',
+                  'softmax', 'trace', 'determinant', 'inverse', 'eigenvalue',
+                  'eigenvalues_sym', 'cholesky', 'singular_values',
+                  '(log)?normal_p', 'exponential_p', 'gamma_p', 'weibull_p']
+    _DISTRIBUTIONS = ['bernoulli', 'bernoulli_logit', 'binomial',
+                      'beta_binomial', 'hypergeometric', 'categorical',
+                      'ordered_logistic', 'neg_binomial', 'poisson',
+                      'multinomial', 'normal', 'student_t',
+                      'cauchy', 'double_exponential', 'logistic',
+                      'lognormal', 'chi_square', 'inv_chi_square',
+                      'scaled_inv_chi_square', 'exponential',
+                      'gamma', 'inv_gamma', 'weibull', 'pareto',
+                      'beta', 'uniform', 'dirichlet', 'multi_normal',
+                      'multi_normal_cholesky', 'multi_student_t',
+                      'wishart', 'inv_wishart', 'lkj_cov',
+                      'lkj_corr_cholesky']
+
+    tokens = {
+        'whitespace' : [
+            (r"\s+", Text),
+            ],
+        'comments' : [
+            (r'(?s)/\*.*?\*/', Comment.Multiline),
+            # Comments
+            (r'(//|#).*$', Comment.Single),
+            ],
+        'root': [
+            # Comments
+            include('comments'),
+            # block start
+            include('whitespace'),
+            # Block start
+            (r'(?s)(%s)(\s*)({)' %
+             r'|'.join(('data', r'transformed\s+?data',
+                        'parameters', r'transformed\s+parameters',
+                        'model', r'generated\s+quantities')),
+             bygroups(Keyword.Namespace, Text, Punctuation)),
+            # Reserved Words
+            (r'(%s)\b' % r'|'.join(_RESERVED), Keyword.Reserved),
+            # Data types
+            (r'(%s)\b' % r'|'.join(_TYPES), Keyword.Type),
+            # Punctuation
+            (r"[;:,\[\]()<>]", Punctuation),
+            # Builtin
+            (r'(%s)(?=\s*\()'
+             % r'|'.join(_FUNCTIONS
+                         + _DISTRIBUTIONS 
+                         + ['%s_log' % x for x in _DISTRIBUTIONS]),
+             Name.Builtin),
+            (r'(%s)(?=\s*\()'
+             % r'|'.join(_CONSTANTS),
+             Keyword.Constant),
+            # Special names ending in __, like lp__
+            (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
+            # Regular variable names
+            (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
+            # Real Literals
+            (r'-?[0-9]+(\.[0-9]+)?[eE]-?[0-9]+', Number.Float),
+            (r'-?[0-9]*\.[0-9]*', Number.Float),
+            # Integer Literals
+            (r'-?[0-9]+', Number.Integer),
+            # Assignment operators
+            # SLexer makes these tokens Operators. 
+            (r'<-|~', Operator),
+            # Infix and prefix operators (and = )
+            (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),
+            # Block delimiters
+            (r'[{}]', Punctuation),
+            ]
+        }
+
+    def analyse_text(text):
+        if re.search(r'^\s*parameters\s*\{', text, re.M):
+            return 1.0
+        else:
+            return 0.0
+
+
+class RdLexer(RegexLexer):
+    """
+    Pygments Lexer for R documentation (Rd) files
+
+    This is a very minimal implementation, highlighting little more
+    than the macros. A description of Rd syntax is found in `Writing R
+    Extensions <http://cran.r-project.org/doc/manuals/R-exts.html>`_
+    and `Parsing Rd files <developer.r-project.org/parseRd.pdf>`_.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'Rd'
+    aliases = ['rd']
+    filenames = ['*.Rd']
+    mimetypes = ['text/x-r-doc']
+
+    # To account for verbatim / LaTeX-like / and R-like areas
+    # would require parsing.
+    tokens = {
+        'root' : [
+            # catch escaped brackets and percent sign
+            (r'\\[\\{}%]', String.Escape),
+            # comments
+            (r'%.*$', Comment),
+            # special macros with no arguments
+            (r'\\(?:cr|l?dots|R|tab)\b', Keyword.Constant),
+            # macros
+            (r'\\[a-zA-Z]+\b', Keyword),
+            # special preprocessor macros
+            (r'^\s*#(?:ifn?def|endif).*\b', Comment.Preproc),
+            # non-escaped brackets
+            (r'[{}]', Name.Builtin),
+            # everything else
+            (r'[^\\%\n{}]+', Text),
+            (r'.', Text),
+            ]
+        }

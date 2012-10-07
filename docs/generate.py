@@ -6,7 +6,7 @@
 
     Generates a bunch of html files containing the documentation.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -56,7 +56,7 @@ def generate_lexer_docs():
             classname,
             cls.__doc__,
             ', '.join(data[2]) or 'None',
-            ', '.join(data[3]).replace('*', '\\*') or 'None',
+            ', '.join(data[3]).replace('*', '\\*').replace('_', '\\') or 'None',
             ', '.join(data[4]) or 'None'))
         if module not in moduledocstrings:
             moduledocstrings[module] = mod.__doc__

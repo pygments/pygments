@@ -5,258 +5,132 @@
 
     Lexers for other languages.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-     this, do_insertions, combined
+from pygments.lexer import RegexLexer, include, bygroups, using, \
+     this, combined, ExtendedRegexLexer
 from pygments.token import Error, Punctuation, Literal, Token, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
-from pygments.util import shebang_matches
 from pygments.lexers.web import HtmlLexer
 
 
-__all__ = ['SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'BrainfuckLexer',
-           'BashLexer', 'BatchLexer', 'BefungeLexer', 'RedcodeLexer',
-           'MOOCodeLexer', 'SmalltalkLexer', 'TcshLexer', 'LogtalkLexer',
-           'GnuplotLexer', 'PovrayLexer', 'AppleScriptLexer',
-           'BashSessionLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer',
-           'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer',
-           'PostScriptLexer', 'AutohotkeyLexer', 'GoodDataCLLexer',
-           'MaqlLexer', 'ProtoBufLexer', 'HybrisLexer', 'AwkLexer',
-           'Cfengine3Lexer']
+# backwards compatibility
+from pygments.lexers.sql import SqlLexer, MySqlLexer, SqliteConsoleLexer
+from pygments.lexers.shell import BashLexer, BashSessionLexer, BatchLexer, \
+     TcshLexer
 
-line_re  = re.compile('.*?\n')
+__all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
+           'SmalltalkLexer', 'LogtalkLexer', 'GnuplotLexer', 'PovrayLexer',
+           'AppleScriptLexer', 'ModelicaLexer', 'RebolLexer', 'ABAPLexer',
+           'NewspeakLexer', 'GherkinLexer', 'AsymptoteLexer', 'PostScriptLexer',
+           'AutohotkeyLexer', 'GoodDataCLLexer', 'MaqlLexer', 'ProtoBufLexer',
+           'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
+           'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
+           'MscgenLexer', 'KconfigLexer', 'VGLLexer']
 
 
-class SqlLexer(RegexLexer):
+class ECLLexer(RegexLexer):
     """
-    Lexer for Structured Query Language. Currently, this lexer does
-    not recognize any special syntax except ANSI SQL.
+    Lexer for the declarative big-data `ECL
+    <http://hpccsystems.com/community/docs/ecl-language-reference/html>`_
+    language.
+
+    *New in Pygments 1.5.*
     """
 
-    name = 'SQL'
-    aliases = ['sql']
-    filenames = ['*.sql']
-    mimetypes = ['text/x-sql']
+    name = 'ECL'
+    aliases = ['ecl']
+    filenames = ['*.ecl']
+    mimetypes = ['application/x-ecl']
 
-    flags = re.IGNORECASE
+    flags = re.IGNORECASE | re.MULTILINE
+
     tokens = {
         'root': [
-            (r'\s+', Text),
-            (r'--.*?\n', Comment.Single),
-            (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'(ABORT|ABS|ABSOLUTE|ACCESS|ADA|ADD|ADMIN|AFTER|AGGREGATE|'
-             r'ALIAS|ALL|ALLOCATE|ALTER|ANALYSE|ANALYZE|AND|ANY|ARE|AS|'
-             r'ASC|ASENSITIVE|ASSERTION|ASSIGNMENT|ASYMMETRIC|AT|ATOMIC|'
-             r'AUTHORIZATION|AVG|BACKWARD|BEFORE|BEGIN|BETWEEN|BITVAR|'
-             r'BIT_LENGTH|BOTH|BREADTH|BY|C|CACHE|CALL|CALLED|CARDINALITY|'
-             r'CASCADE|CASCADED|CASE|CAST|CATALOG|CATALOG_NAME|CHAIN|'
-             r'CHARACTERISTICS|CHARACTER_LENGTH|CHARACTER_SET_CATALOG|'
-             r'CHARACTER_SET_NAME|CHARACTER_SET_SCHEMA|CHAR_LENGTH|CHECK|'
-             r'CHECKED|CHECKPOINT|CLASS|CLASS_ORIGIN|CLOB|CLOSE|CLUSTER|'
-             r'COALSECE|COBOL|COLLATE|COLLATION|COLLATION_CATALOG|'
-             r'COLLATION_NAME|COLLATION_SCHEMA|COLUMN|COLUMN_NAME|'
-             r'COMMAND_FUNCTION|COMMAND_FUNCTION_CODE|COMMENT|COMMIT|'
-             r'COMMITTED|COMPLETION|CONDITION_NUMBER|CONNECT|CONNECTION|'
-             r'CONNECTION_NAME|CONSTRAINT|CONSTRAINTS|CONSTRAINT_CATALOG|'
-             r'CONSTRAINT_NAME|CONSTRAINT_SCHEMA|CONSTRUCTOR|CONTAINS|'
-             r'CONTINUE|CONVERSION|CONVERT|COPY|CORRESPONTING|COUNT|'
-             r'CREATE|CREATEDB|CREATEUSER|CROSS|CUBE|CURRENT|CURRENT_DATE|'
-             r'CURRENT_PATH|CURRENT_ROLE|CURRENT_TIME|CURRENT_TIMESTAMP|'
-             r'CURRENT_USER|CURSOR|CURSOR_NAME|CYCLE|DATA|DATABASE|'
-             r'DATETIME_INTERVAL_CODE|DATETIME_INTERVAL_PRECISION|DAY|'
-             r'DEALLOCATE|DECLARE|DEFAULT|DEFAULTS|DEFERRABLE|DEFERRED|'
-             r'DEFINED|DEFINER|DELETE|DELIMITER|DELIMITERS|DEREF|DESC|'
-             r'DESCRIBE|DESCRIPTOR|DESTROY|DESTRUCTOR|DETERMINISTIC|'
-             r'DIAGNOSTICS|DICTIONARY|DISCONNECT|DISPATCH|DISTINCT|DO|'
-             r'DOMAIN|DROP|DYNAMIC|DYNAMIC_FUNCTION|DYNAMIC_FUNCTION_CODE|'
-             r'EACH|ELSE|ENCODING|ENCRYPTED|END|END-EXEC|EQUALS|ESCAPE|EVERY|'
-             r'EXCEPT|ESCEPTION|EXCLUDING|EXCLUSIVE|EXEC|EXECUTE|EXISTING|'
-             r'EXISTS|EXPLAIN|EXTERNAL|EXTRACT|FALSE|FETCH|FINAL|FIRST|FOR|'
-             r'FORCE|FOREIGN|FORTRAN|FORWARD|FOUND|FREE|FREEZE|FROM|FULL|'
-             r'FUNCTION|G|GENERAL|GENERATED|GET|GLOBAL|GO|GOTO|GRANT|GRANTED|'
-             r'GROUP|GROUPING|HANDLER|HAVING|HIERARCHY|HOLD|HOST|IDENTITY|'
-             r'IGNORE|ILIKE|IMMEDIATE|IMMUTABLE|IMPLEMENTATION|IMPLICIT|IN|'
-             r'INCLUDING|INCREMENT|INDEX|INDITCATOR|INFIX|INHERITS|INITIALIZE|'
-             r'INITIALLY|INNER|INOUT|INPUT|INSENSITIVE|INSERT|INSTANTIABLE|'
-             r'INSTEAD|INTERSECT|INTO|INVOKER|IS|ISNULL|ISOLATION|ITERATE|JOIN|'
-             r'KEY|KEY_MEMBER|KEY_TYPE|LANCOMPILER|LANGUAGE|LARGE|LAST|'
-             r'LATERAL|LEADING|LEFT|LENGTH|LESS|LEVEL|LIKE|LIMIT|LISTEN|LOAD|'
-             r'LOCAL|LOCALTIME|LOCALTIMESTAMP|LOCATION|LOCATOR|LOCK|LOWER|'
-             r'MAP|MATCH|MAX|MAXVALUE|MESSAGE_LENGTH|MESSAGE_OCTET_LENGTH|'
-             r'MESSAGE_TEXT|METHOD|MIN|MINUTE|MINVALUE|MOD|MODE|MODIFIES|'
-             r'MODIFY|MONTH|MORE|MOVE|MUMPS|NAMES|NATIONAL|NATURAL|NCHAR|'
-             r'NCLOB|NEW|NEXT|NO|NOCREATEDB|NOCREATEUSER|NONE|NOT|NOTHING|'
-             r'NOTIFY|NOTNULL|NULL|NULLABLE|NULLIF|OBJECT|OCTET_LENGTH|OF|OFF|'
-             r'OFFSET|OIDS|OLD|ON|ONLY|OPEN|OPERATION|OPERATOR|OPTION|OPTIONS|'
-             r'OR|ORDER|ORDINALITY|OUT|OUTER|OUTPUT|OVERLAPS|OVERLAY|OVERRIDING|'
-             r'OWNER|PAD|PARAMETER|PARAMETERS|PARAMETER_MODE|PARAMATER_NAME|'
-             r'PARAMATER_ORDINAL_POSITION|PARAMETER_SPECIFIC_CATALOG|'
-             r'PARAMETER_SPECIFIC_NAME|PARAMATER_SPECIFIC_SCHEMA|PARTIAL|'
-             r'PASCAL|PENDANT|PLACING|PLI|POSITION|POSTFIX|PRECISION|PREFIX|'
-             r'PREORDER|PREPARE|PRESERVE|PRIMARY|PRIOR|PRIVILEGES|PROCEDURAL|'
-             r'PROCEDURE|PUBLIC|READ|READS|RECHECK|RECURSIVE|REF|REFERENCES|'
-             r'REFERENCING|REINDEX|RELATIVE|RENAME|REPEATABLE|REPLACE|RESET|'
-             r'RESTART|RESTRICT|RESULT|RETURN|RETURNED_LENGTH|'
-             r'RETURNED_OCTET_LENGTH|RETURNED_SQLSTATE|RETURNS|REVOKE|RIGHT|'
-             r'ROLE|ROLLBACK|ROLLUP|ROUTINE|ROUTINE_CATALOG|ROUTINE_NAME|'
-             r'ROUTINE_SCHEMA|ROW|ROWS|ROW_COUNT|RULE|SAVE_POINT|SCALE|SCHEMA|'
-             r'SCHEMA_NAME|SCOPE|SCROLL|SEARCH|SECOND|SECURITY|SELECT|SELF|'
-             r'SENSITIVE|SERIALIZABLE|SERVER_NAME|SESSION|SESSION_USER|SET|'
-             r'SETOF|SETS|SHARE|SHOW|SIMILAR|SIMPLE|SIZE|SOME|SOURCE|SPACE|'
-             r'SPECIFIC|SPECIFICTYPE|SPECIFIC_NAME|SQL|SQLCODE|SQLERROR|'
-             r'SQLEXCEPTION|SQLSTATE|SQLWARNINIG|STABLE|START|STATE|STATEMENT|'
-             r'STATIC|STATISTICS|STDIN|STDOUT|STORAGE|STRICT|STRUCTURE|STYPE|'
-             r'SUBCLASS_ORIGIN|SUBLIST|SUBSTRING|SUM|SYMMETRIC|SYSID|SYSTEM|'
-             r'SYSTEM_USER|TABLE|TABLE_NAME| TEMP|TEMPLATE|TEMPORARY|TERMINATE|'
-             r'THAN|THEN|TIMESTAMP|TIMEZONE_HOUR|TIMEZONE_MINUTE|TO|TOAST|'
-             r'TRAILING|TRANSATION|TRANSACTIONS_COMMITTED|'
-             r'TRANSACTIONS_ROLLED_BACK|TRANSATION_ACTIVE|TRANSFORM|'
-             r'TRANSFORMS|TRANSLATE|TRANSLATION|TREAT|TRIGGER|TRIGGER_CATALOG|'
-             r'TRIGGER_NAME|TRIGGER_SCHEMA|TRIM|TRUE|TRUNCATE|TRUSTED|TYPE|'
-             r'UNCOMMITTED|UNDER|UNENCRYPTED|UNION|UNIQUE|UNKNOWN|UNLISTEN|'
-             r'UNNAMED|UNNEST|UNTIL|UPDATE|UPPER|USAGE|USER|'
-             r'USER_DEFINED_TYPE_CATALOG|USER_DEFINED_TYPE_NAME|'
-             r'USER_DEFINED_TYPE_SCHEMA|USING|VACUUM|VALID|VALIDATOR|VALUES|'
-             r'VARIABLE|VERBOSE|VERSION|VIEW|VOLATILE|WHEN|WHENEVER|WHERE|'
-             r'WITH|WITHOUT|WORK|WRITE|YEAR|ZONE)\b', Keyword),
-            (r'(ARRAY|BIGINT|BINARY|BIT|BLOB|BOOLEAN|CHAR|CHARACTER|DATE|'
-             r'DEC|DECIMAL|FLOAT|INT|INTEGER|INTERVAL|NUMBER|NUMERIC|REAL|'
-             r'SERIAL|SMALLINT|VARCHAR|VARYING|INT8|SERIAL8|TEXT)\b',
-             Name.Builtin),
-            (r'[+*/<>=~!@#%^&|`?^-]', Operator),
-            (r'[0-9]+', Number.Integer),
-            # TODO: Backslash escapes?
-            (r"'(''|[^'])*'", String.Single),
-            (r'"(""|[^"])*"', String.Symbol), # not a real string literal in ANSI SQL
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
-            (r'[;:()\[\],\.]', Punctuation)
+            include('whitespace'),
+            include('statements'),
         ],
-        'multiline-comments': [
-            (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'\*/', Comment.Multiline, '#pop'),
-            (r'[^/\*]+', Comment.Multiline),
-            (r'[/*]', Comment.Multiline)
-        ]
-    }
-
-
-class MySqlLexer(RegexLexer):
-    """
-    Special lexer for MySQL.
-    """
-
-    name = 'MySQL'
-    aliases = ['mysql']
-    mimetypes = ['text/x-mysql']
-
-    flags = re.IGNORECASE
-    tokens = {
-        'root': [
+        'whitespace': [
             (r'\s+', Text),
-            (r'(#|--\s+).*?\n', Comment.Single),
-            (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'[0-9]+', Number.Integer),
-            (r'[0-9]*\.[0-9]+(e[+-][0-9]+)', Number.Float),
-            # TODO: add backslash escapes
-            (r"'(''|[^'])*'", String.Single),
-            (r'"(""|[^"])*"', String.Double),
-            (r"`(``|[^`])*`", String.Symbol),
-            (r'[+*/<>=~!@#%^&|`?^-]', Operator),
-            (r'\b(tinyint|smallint|mediumint|int|integer|bigint|date|'
-             r'datetime|time|bit|bool|tinytext|mediumtext|longtext|text|'
-             r'tinyblob|mediumblob|longblob|blob|float|double|double\s+'
-             r'precision|real|numeric|dec|decimal|timestamp|year|char|'
-             r'varchar|varbinary|varcharacter|enum|set)(\b\s*)(\()?',
-             bygroups(Keyword.Type, Text, Punctuation)),
-            (r'\b(add|all|alter|analyze|and|as|asc|asensitive|before|between|'
-             r'bigint|binary|blob|both|by|call|cascade|case|change|char|'
-             r'character|check|collate|column|condition|constraint|continue|'
-             r'convert|create|cross|current_date|current_time|'
-             r'current_timestamp|current_user|cursor|database|databases|'
-             r'day_hour|day_microsecond|day_minute|day_second|dec|decimal|'
-             r'declare|default|delayed|delete|desc|describe|deterministic|'
-             r'distinct|distinctrow|div|double|drop|dual|each|else|elseif|'
-             r'enclosed|escaped|exists|exit|explain|fetch|float|float4|float8'
-             r'|for|force|foreign|from|fulltext|grant|group|having|'
-             r'high_priority|hour_microsecond|hour_minute|hour_second|if|'
-             r'ignore|in|index|infile|inner|inout|insensitive|insert|int|'
-             r'int1|int2|int3|int4|int8|integer|interval|into|is|iterate|'
-             r'join|key|keys|kill|leading|leave|left|like|limit|lines|load|'
-             r'localtime|localtimestamp|lock|long|loop|low_priority|match|'
-             r'minute_microsecond|minute_second|mod|modifies|natural|'
-             r'no_write_to_binlog|not|numeric|on|optimize|option|optionally|'
-             r'or|order|out|outer|outfile|precision|primary|procedure|purge|'
-             r'raid0|read|reads|real|references|regexp|release|rename|repeat|'
-             r'replace|require|restrict|return|revoke|right|rlike|schema|'
-             r'schemas|second_microsecond|select|sensitive|separator|set|'
-             r'show|smallint|soname|spatial|specific|sql|sql_big_result|'
-             r'sql_calc_found_rows|sql_small_result|sqlexception|sqlstate|'
-             r'sqlwarning|ssl|starting|straight_join|table|terminated|then|'
-             r'to|trailing|trigger|undo|union|unique|unlock|unsigned|update|'
-             r'usage|use|using|utc_date|utc_time|utc_timestamp|values|'
-             r'varying|when|where|while|with|write|x509|xor|year_month|'
-             r'zerofill)\b', Keyword),
-            # TODO: this list is not complete
-            (r'\b(auto_increment|engine|charset|tables)\b', Keyword.Pseudo),
-            (r'(true|false|null)', Name.Constant),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\()',
-             bygroups(Name.Function, Text, Punctuation)),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
-            (r'@[A-Za-z0-9]*[._]*[A-Za-z0-9]*', Name.Variable),
-            (r'[;:()\[\],\.]', Punctuation)
+            (r'\/\/.*', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
-        'multiline-comments': [
-            (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'\*/', Comment.Multiline, '#pop'),
-            (r'[^/\*]+', Comment.Multiline),
-            (r'[/*]', Comment.Multiline)
-        ]
+        'statements': [
+            include('types'),
+            include('keywords'),
+            include('functions'),
+            include('hash'),
+            (r'"', String, 'string'),
+            (r'\'', String, 'string'),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'0[0-7]+[LlUu]*', Number.Oct),
+            (r'\d+[LlUu]*', Number.Integer),
+            (r'\*/', Error),
+            (r'[~!%^&*+=|?:<>/-]+', Operator),
+            (r'[{}()\[\],.;]', Punctuation),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+        ],
+        'hash': [
+            (r'^#.*$', Comment.Preproc),
+        ],
+        'types': [
+            (r'(RECORD|END)\D', Keyword.Declaration),
+            (r'((?:ASCII|BIG_ENDIAN|BOOLEAN|DATA|DECIMAL|EBCDIC|INTEGER|PATTERN|'
+             r'QSTRING|REAL|RECORD|RULE|SET OF|STRING|TOKEN|UDECIMAL|UNICODE|'
+             r'UNSIGNED|VARSTRING|VARUNICODE)\d*)(\s+)',
+             bygroups(Keyword.Type, Text)),
+        ],
+        'keywords': [
+            (r'(APPLY|ASSERT|BUILD|BUILDINDEX|EVALUATE|FAIL|KEYDIFF|KEYPATCH|'
+             r'LOADXML|NOTHOR|NOTIFY|OUTPUT|PARALLEL|SEQUENTIAL|SOAPCALL|WAIT'
+             r'CHECKPOINT|DEPRECATED|FAILCODE|FAILMESSAGE|FAILURE|GLOBAL|'
+             r'INDEPENDENT|ONWARNING|PERSIST|PRIORITY|RECOVERY|STORED|SUCCESS|'
+             r'WAIT|WHEN)\b', Keyword.Reserved),
+            # These are classed differently, check later
+            (r'(ALL|AND|ANY|AS|ATMOST|BEFORE|BEGINC\+\+|BEST|BETWEEN|CASE|CONST|'
+             r'COUNTER|CSV|DESCEND|ENCRYPT|ENDC\+\+|ENDMACRO|EXCEPT|EXCLUSIVE|'
+             r'EXPIRE|EXPORT|EXTEND|FALSE|FEW|FIRST|FLAT|FULL|FUNCTION|GROUP|'
+             r'HEADER|HEADING|HOLE|IFBLOCK|IMPORT|IN|JOINED|KEEP|KEYED|LAST|'
+             r'LEFT|LIMIT|LOAD|LOCAL|LOCALE|LOOKUP|MACRO|MANY|MAXCOUNT|'
+             r'MAXLENGTH|MIN SKEW|MODULE|INTERFACE|NAMED|NOCASE|NOROOT|NOSCAN|'
+             r'NOSORT|NOT|OF|ONLY|OPT|OR|OUTER|OVERWRITE|PACKED|PARTITION|'
+             r'PENALTY|PHYSICALLENGTH|PIPE|QUOTE|RELATIONSHIP|REPEAT|RETURN|'
+             r'RIGHT|SCAN|SELF|SEPARATOR|SERVICE|SHARED|SKEW|SKIP|SQL|STORE|'
+             r'TERMINATOR|THOR|THRESHOLD|TOKEN|TRANSFORM|TRIM|TRUE|TYPE|'
+             r'UNICODEORDER|UNSORTED|VALIDATE|VIRTUAL|WHOLE|WILD|WITHIN|XML|'
+             r'XPATH|__COMPRESSED__)\b', Keyword.Reserved),
+        ],
+        'functions': [
+            (r'(ABS|ACOS|ALLNODES|ASCII|ASIN|ASSTRING|ATAN|ATAN2|AVE|CASE|'
+             r'CHOOSE|CHOOSEN|CHOOSESETS|CLUSTERSIZE|COMBINE|CORRELATION|COS|'
+             r'COSH|COUNT|COVARIANCE|CRON|DATASET|DEDUP|DEFINE|DENORMALIZE|'
+             r'DISTRIBUTE|DISTRIBUTED|DISTRIBUTION|EBCDIC|ENTH|ERROR|EVALUATE|'
+             r'EVENT|EVENTEXTRA|EVENTNAME|EXISTS|EXP|FAILCODE|FAILMESSAGE|'
+             r'FETCH|FROMUNICODE|GETISVALID|GLOBAL|GRAPH|GROUP|HASH|HASH32|'
+             r'HASH64|HASHCRC|HASHMD5|HAVING|IF|INDEX|INTFORMAT|ISVALID|'
+             r'ITERATE|JOIN|KEYUNICODE|LENGTH|LIBRARY|LIMIT|LN|LOCAL|LOG|LOOP|'
+             r'MAP|MATCHED|MATCHLENGTH|MATCHPOSITION|MATCHTEXT|MATCHUNICODE|'
+             r'MAX|MERGE|MERGEJOIN|MIN|NOLOCAL|NONEMPTY|NORMALIZE|PARSE|PIPE|'
+             r'POWER|PRELOAD|PROCESS|PROJECT|PULL|RANDOM|RANGE|RANK|RANKED|'
+             r'REALFORMAT|RECORDOF|REGEXFIND|REGEXREPLACE|REGROUP|REJECTED|'
+             r'ROLLUP|ROUND|ROUNDUP|ROW|ROWDIFF|SAMPLE|SET|SIN|SINH|SIZEOF|'
+             r'SOAPCALL|SORT|SORTED|SQRT|STEPPED|STORED|SUM|TABLE|TAN|TANH|'
+             r'THISNODE|TOPN|TOUNICODE|TRANSFER|TRIM|TRUNCATE|TYPEOF|UNGROUP|'
+             r'UNICODEORDER|VARIANCE|WHICH|WORKUNIT|XMLDECODE|XMLENCODE|'
+             r'XMLTEXT|XMLUNICODE)\b', Name.Function),
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\'', String, '#pop'),
+            (r'[^"\']+', String),
+        ],
     }
-
-
-class SqliteConsoleLexer(Lexer):
-    """
-    Lexer for example sessions using sqlite3.
-
-    *New in Pygments 0.11.*
-    """
-
-    name = 'sqlite3con'
-    aliases = ['sqlite3']
-    filenames = ['*.sqlite3-console']
-    mimetypes = ['text/x-sqlite3-console']
-
-    def get_tokens_unprocessed(self, data):
-        sql = SqlLexer(**self.options)
-
-        curcode = ''
-        insertions = []
-        for match in line_re.finditer(data):
-            line = match.group()
-            if line.startswith('sqlite> ') or line.startswith('   ...> '):
-                insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, line[:8])]))
-                curcode += line[8:]
-            else:
-                if curcode:
-                    for item in do_insertions(insertions,
-                                              sql.get_tokens_unprocessed(curcode)):
-                        yield item
-                    curcode = ''
-                    insertions = []
-                if line.startswith('SQL error: '):
-                    yield (match.start(), Generic.Traceback, line)
-                else:
-                    yield (match.start(), Generic.Output, line)
-        if curcode:
-            for item in do_insertions(insertions,
-                                      sql.get_tokens_unprocessed(curcode)):
-                yield item
 
 
 class BrainfuckLexer(RegexLexer):
@@ -317,191 +191,6 @@ class BefungeLexer(RegexLexer):
             (r'[pg&~=@iotsy]', Keyword), # Misc
             (r'[()A-Z]', Comment), # Fingerprints
             (r'\s+', Text), # Whitespace doesn't matter
-        ],
-    }
-
-
-
-class BashLexer(RegexLexer):
-    """
-    Lexer for (ba|k|)sh shell scripts.
-
-    *New in Pygments 0.6.*
-    """
-
-    name = 'Bash'
-    aliases = ['bash', 'sh', 'ksh']
-    filenames = ['*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass']
-    mimetypes = ['application/x-sh', 'application/x-shellscript']
-
-    tokens = {
-        'root': [
-            include('basic'),
-            (r'\$\(\(', Keyword, 'math'),
-            (r'\$\(', Keyword, 'paren'),
-            (r'\${#?', Keyword, 'curly'),
-            (r'`', String.Backtick, 'backticks'),
-            include('data'),
-        ],
-        'basic': [
-            (r'\b(if|fi|else|while|do|done|for|then|return|function|case|'
-             r'select|continue|until|esac|elif)\s*\b',
-             Keyword),
-            (r'\b(alias|bg|bind|break|builtin|caller|cd|command|compgen|'
-             r'complete|declare|dirs|disown|echo|enable|eval|exec|exit|'
-             r'export|false|fc|fg|getopts|hash|help|history|jobs|kill|let|'
-             r'local|logout|popd|printf|pushd|pwd|read|readonly|set|shift|'
-             r'shopt|source|suspend|test|time|times|trap|true|type|typeset|'
-             r'ulimit|umask|unalias|unset|wait)\s*\b(?!\.)',
-             Name.Builtin),
-            (r'#.*\n', Comment),
-            (r'\\[\w\W]', String.Escape),
-            (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
-            (r'[\[\]{}()=]', Operator),
-            (r'<<-?\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
-            (r'&&|\|\|', Operator),
-        ],
-        'data': [
-            (r'(?s)\$?"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
-            (r"(?s)\$?'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
-            (r';', Text),
-            (r'\s+', Text),
-            (r'[^=\s\n\[\]{}()$"\'`\\<]+', Text),
-            (r'\d+(?= |\Z)', Number),
-            (r'\$#?(\w+|.)', Name.Variable),
-            (r'<', Text),
-        ],
-        'curly': [
-            (r'}', Keyword, '#pop'),
-            (r':-', Keyword),
-            (r'[a-zA-Z0-9_]+', Name.Variable),
-            (r'[^}:"\'`$]+', Punctuation),
-            (r':', Punctuation),
-            include('root'),
-        ],
-        'paren': [
-            (r'\)', Keyword, '#pop'),
-            include('root'),
-        ],
-        'math': [
-            (r'\)\)', Keyword, '#pop'),
-            (r'[-+*/%^|&]|\*\*|\|\|', Operator),
-            (r'\d+', Number),
-            include('root'),
-        ],
-        'backticks': [
-            (r'`', String.Backtick, '#pop'),
-            include('root'),
-        ],
-    }
-
-    def analyse_text(text):
-        return shebang_matches(text, r'(ba|z|)sh')
-
-
-class BashSessionLexer(Lexer):
-    """
-    Lexer for simplistic shell sessions.
-
-    *New in Pygments 1.1.*
-    """
-
-    name = 'Bash Session'
-    aliases = ['console']
-    filenames = ['*.sh-session']
-    mimetypes = ['application/x-shell-session']
-
-    def get_tokens_unprocessed(self, text):
-        bashlexer = BashLexer(**self.options)
-
-        pos = 0
-        curcode = ''
-        insertions = []
-
-        for match in line_re.finditer(text):
-            line = match.group()
-            m = re.match(r'^((?:|sh\S*?|\w+\S+[@:]\S+(?:\s+\S+)?|\[\S+[@:]'
-                         r'[^\n]+\].+)[$#%])(.*\n?)', line)
-            if m:
-                # To support output lexers (say diff output), the output
-                # needs to be broken by prompts whenever the output lexer
-                # changes.
-                if not insertions:
-                    pos = match.start()
-
-                insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, m.group(1))]))
-                curcode += m.group(2)
-            elif line.startswith('>'):
-                insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, line[:1])]))
-                curcode += line[1:]
-            else:
-                if insertions:
-                    toks = bashlexer.get_tokens_unprocessed(curcode)
-                    for i, t, v in do_insertions(insertions, toks):
-                        yield pos+i, t, v
-                yield match.start(), Generic.Output, line
-                insertions = []
-                curcode = ''
-        if insertions:
-            for i, t, v in do_insertions(insertions,
-                                         bashlexer.get_tokens_unprocessed(curcode)):
-                yield pos+i, t, v
-
-
-class BatchLexer(RegexLexer):
-    """
-    Lexer for the DOS/Windows Batch file format.
-
-    *New in Pygments 0.7.*
-    """
-    name = 'Batchfile'
-    aliases = ['bat']
-    filenames = ['*.bat', '*.cmd']
-    mimetypes = ['application/x-dos-batch']
-
-    flags = re.MULTILINE | re.IGNORECASE
-
-    tokens = {
-        'root': [
-            # Lines can start with @ to prevent echo
-            (r'^\s*@', Punctuation),
-            (r'^(\s*)(rem\s.*)$', bygroups(Text, Comment)),
-            (r'".*?"', String.Double),
-            (r"'.*?'", String.Single),
-            # If made more specific, make sure you still allow expansions
-            # like %~$VAR:zlt
-            (r'%%?[~$:\w]+%?', Name.Variable),
-            (r'::.*', Comment), # Technically :: only works at BOL
-            (r'(set)(\s+)(\w+)', bygroups(Keyword, Text, Name.Variable)),
-            (r'(call)(\s+)(:\w+)', bygroups(Keyword, Text, Name.Label)),
-            (r'(goto)(\s+)(\w+)', bygroups(Keyword, Text, Name.Label)),
-            (r'\b(set|call|echo|on|off|endlocal|for|do|goto|if|pause|'
-             r'setlocal|shift|errorlevel|exist|defined|cmdextversion|'
-             r'errorlevel|else|cd|md|del|deltree|cls|choice)\b', Keyword),
-            (r'\b(equ|neq|lss|leq|gtr|geq)\b', Operator),
-            include('basic'),
-            (r'.', Text),
-        ],
-        'echo': [
-            # Escapes only valid within echo args?
-            (r'\^\^|\^<|\^>|\^\|', String.Escape),
-            (r'\n', Text, '#pop'),
-            include('basic'),
-            (r'[^\'"^]+', Text),
-        ],
-        'basic': [
-            (r'".*?"', String.Double),
-            (r"'.*?'", String.Single),
-            (r'`.*?`', String.Backtick),
-            (r'-?\d+', Number),
-            (r',', Punctuation),
-            (r'=', Operator),
-            (r'/\S+', Name),
-            (r':\w+', Name.Label),
-            (r'\w:\w+', Text),
-            (r'([<>|])(\s*)(\w+)', bygroups(Punctuation, Text, Name)),
         ],
     }
 
@@ -609,7 +298,6 @@ class SmalltalkLexer(RegexLexer):
             (r'\^|\:=|\_', Operator),
             # temporaries
             (r'[\]({}.;!]', Text),
-
         ],
         'method definition' : [
             # Not perfect can't allow whitespaces at the beginning and the
@@ -622,13 +310,13 @@ class SmalltalkLexer(RegexLexer):
         ],
         'blockvariables' : [
             include('whitespaces'),
-            (r'(:)(\s*)([A-Za-z\w]+)',
+            (r'(:)(\s*)(\w+)',
              bygroups(Operator, Text, Name.Variable)),
             (r'\|', Operator, '#pop'),
             (r'', Text, '#pop'), # else pop
         ],
         'literals' : [
-            (r'\'[^\']*\'', String, 'afterobject'),
+            (r"'(''|[^'])*'", String, 'afterobject'),
             (r'\$.', String.Char, 'afterobject'),
             (r'#\(', String.Symbol, 'parenth'),
             (r'\)', Text, 'afterobject'),
@@ -637,16 +325,16 @@ class SmalltalkLexer(RegexLexer):
         '_parenth_helper' : [
             include('whitespaces'),
             (r'(\d+r)?-?\d+(\.\d+)?(e-?\d+)?', Number),
-            (r'[-+*/\\~<>=|&#!?,@%\w+:]+', String.Symbol),
+            (r'[-+*/\\~<>=|&#!?,@%\w:]+', String.Symbol),
             # literals
-            (r'\'[^\']*\'', String),
+            (r"'(''|[^'])*'", String),
             (r'\$.', String.Char),
             (r'#*\(', String.Symbol, 'inner_parenth'),
         ],
         'parenth' : [
             # This state is a bit tricky since
             # we can't just pop this state
-            (r'\)', String.Symbol, ('root','afterobject')),
+            (r'\)', String.Symbol, ('root', 'afterobject')),
             include('_parenth_helper'),
         ],
         'inner_parenth': [
@@ -656,7 +344,7 @@ class SmalltalkLexer(RegexLexer):
         'whitespaces' : [
             # skip whitespace and comments
             (r'\s+', Text),
-            (r'"[^"]*"', Comment),
+            (r'"(""|[^"])*"', Comment),
         ],
         'objects' : [
             (r'\[', Text, 'blockvariables'),
@@ -665,7 +353,7 @@ class SmalltalkLexer(RegexLexer):
              Name.Builtin.Pseudo, 'afterobject'),
             (r'\b[A-Z]\w*(?!:)\b', Name.Class, 'afterobject'),
             (r'\b[a-z]\w*(?!:)\b', Name.Variable, 'afterobject'),
-            (r'#("[^"]*"|[-+*/\\~<>=|&!?,@%]+|[\w:]+)',
+            (r'#("(""|[^"])*"|[-+*/\\~<>=|&!?,@%]+|[\w:]+)',
              String.Symbol, 'afterobject'),
             include('literals'),
         ],
@@ -686,11 +374,11 @@ class SmalltalkLexer(RegexLexer):
         ],
         'squeak fileout' : [
             # Squeak fileout format (optional)
-            (r'^"[^"]*"!', Keyword),
-            (r"^'[^']*'!", Keyword),
+            (r'^"(""|[^"])*"!', Keyword),
+            (r"^'(''|[^'])*'!", Keyword),
             (r'^(!)(\w+)( commentStamp: )(.*?)( prior: .*?!\n)(.*?)(!)',
                 bygroups(Keyword, Name.Class, Keyword, String, Keyword, Text, Keyword)),
-            (r'^(!)(\w+(?: class)?)( methodsFor: )(\'[^\']*\')(.*?!)',
+            (r"^(!)(\w+(?: class)?)( methodsFor: )('(?:''|[^'])*')(.*?!)",
                 bygroups(Keyword, Name.Class, Keyword, String, Keyword)),
             (r'^(\w+)( subclass: )(#\w+)'
              r'(\s+instanceVariableNames: )(.*?)'
@@ -703,73 +391,6 @@ class SmalltalkLexer(RegexLexer):
                 bygroups(Name.Class, Keyword, String, Keyword)),
             (r'(!\n)(\].*)(! !)$', bygroups(Keyword, Text, Keyword)),
             (r'! !$', Keyword),
-        ],
-    }
-
-
-class TcshLexer(RegexLexer):
-    """
-    Lexer for tcsh scripts.
-
-    *New in Pygments 0.10.*
-    """
-
-    name = 'Tcsh'
-    aliases = ['tcsh', 'csh']
-    filenames = ['*.tcsh', '*.csh']
-    mimetypes = ['application/x-csh']
-
-    tokens = {
-        'root': [
-            include('basic'),
-            (r'\$\(', Keyword, 'paren'),
-            (r'\${#?', Keyword, 'curly'),
-            (r'`', String.Backtick, 'backticks'),
-            include('data'),
-        ],
-        'basic': [
-            (r'\b(if|endif|else|while|then|foreach|case|default|'
-             r'continue|goto|breaksw|end|switch|endsw)\s*\b',
-             Keyword),
-            (r'\b(alias|alloc|bg|bindkey|break|builtins|bye|caller|cd|chdir|'
-             r'complete|dirs|echo|echotc|eval|exec|exit|'
-             r'fg|filetest|getxvers|glob|getspath|hashstat|history|hup|inlib|jobs|kill|'
-             r'limit|log|login|logout|ls-F|migrate|newgrp|nice|nohup|notify|'
-             r'onintr|popd|printenv|pushd|rehash|repeat|rootnode|popd|pushd|set|shift|'
-             r'sched|setenv|setpath|settc|setty|setxvers|shift|source|stop|suspend|'
-             r'source|suspend|telltc|time|'
-             r'umask|unalias|uncomplete|unhash|universe|unlimit|unset|unsetenv|'
-             r'ver|wait|warp|watchlog|where|which)\s*\b',
-             Name.Builtin),
-            (r'#.*\n', Comment),
-            (r'\\[\w\W]', String.Escape),
-            (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
-            (r'[\[\]{}()=]+', Operator),
-            (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
-        ],
-        'data': [
-            (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
-            (r"(?s)'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
-            (r'\s+', Text),
-            (r'[^=\s\n\[\]{}()$"\'`\\]+', Text),
-            (r'\d+(?= |\Z)', Number),
-            (r'\$#?(\w+|.)', Name.Variable),
-        ],
-        'curly': [
-            (r'}', Keyword, '#pop'),
-            (r':-', Keyword),
-            (r'[a-zA-Z0-9_]+', Name.Variable),
-            (r'[^}:"\'`$]+', Punctuation),
-            (r':', Punctuation),
-            include('root'),
-        ],
-        'paren': [
-            (r'\)', Keyword, '#pop'),
-            include('root'),
-        ],
-        'backticks': [
-            (r'`', String.Backtick, '#pop'),
-            include('root'),
         ],
     }
 
@@ -920,12 +541,12 @@ class LogtalkLexer(RegexLexer):
             (r'[()\[\],.|]', Text),
             # Atoms
             (r"[a-z][a-zA-Z0-9_]*", Text),
-            (r"[']", String, 'quoted_atom'),
+            (r"'", String, 'quoted_atom'),
         ],
 
         'quoted_atom': [
-            (r"['][']", String),
-            (r"[']", String, '#pop'),
+            (r"''", String),
+            (r"'", String, '#pop'),
             (r'\\([\\abfnrtv"\']|(x[a-fA-F0-9]+|[0-7]+)\\)', String.Escape),
             (r"[^\\'\n]+", String),
             (r'\\', String),
@@ -967,7 +588,7 @@ class LogtalkLexer(RegexLexer):
             (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
             # Atoms
             (r"[a-z][a-zA-Z0-9_]*", Text),
-            (r"[']", String, 'quoted_atom'),
+            (r"'", String, 'quoted_atom'),
             # Strings
             (r'"(\\\\|\\"|[^"])*"', String),
             # End of entity-opening directive
@@ -1177,9 +798,9 @@ class PovrayLexer(RegexLexer):
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
             (r'//.*\n', Comment.Single),
             (r'(?s)"(?:\\.|[^"\\])+"', String.Double),
-            (r'#(debug|default|else|end|error|fclose|fopen|if|ifdef|ifndef|'
+            (r'#(debug|default|else|end|error|fclose|fopen|ifdef|ifndef|'
              r'include|range|read|render|statistics|switch|undef|version|'
-             r'warning|while|write|define|macro|local|declare)',
+             r'warning|while|write|define|macro|local|declare)\b',
              Comment.Preproc),
             (r'\b(aa_level|aa_threshold|abs|acos|acosh|adaptive|adc_bailout|'
              r'agate|agate_turb|all|alpha|ambient|ambient_light|angle|'
@@ -1229,11 +850,11 @@ class PovrayLexer(RegexLexer):
              r'vnormalize|volume_object|volume_rendered|vol_with_light|'
              r'vrotate|v_steps|warning|warp|water_level|waves|while|width|'
              r'wood|wrinkles|yes)\b', Keyword),
-            (r'bicubic_patch|blob|box|camera|cone|cubic|cylinder|difference|'
+            (r'(bicubic_patch|blob|box|camera|cone|cubic|cylinder|difference|'
              r'disc|height_field|intersection|julia_fractal|lathe|'
              r'light_source|merge|mesh|object|plane|poly|polygon|prism|'
              r'quadric|quartic|smooth_triangle|sor|sphere|superellipsoid|'
-             r'text|torus|triangle|union', Name.Builtin),
+             r'text|torus|triangle|union)\b', Name.Builtin),
             # TODO: <=, etc
             (r'[\[\](){}<>;,]', Punctuation),
             (r'[-+*/=]', Operator),
@@ -1271,7 +892,7 @@ class AppleScriptLexer(RegexLexer):
     Classes = ['alias ', 'application ', 'boolean ', 'class ', 'constant ',
                'date ', 'file ', 'integer ', 'list ', 'number ', 'POSIX file ',
                'real ', 'record ', 'reference ', 'RGB color ', 'script ',
-               'text ', 'unit types', '(Unicode )?text', 'string']
+               'text ', 'unit types', '(?:Unicode )?text', 'string']
     BuiltIn = ['attachment', 'attribute run', 'character', 'day', 'month',
                'paragraph', 'word', 'year']
     HandlerParams = ['about', 'above', 'against', 'apart from', 'around',
@@ -1537,7 +1158,7 @@ class AppleScriptLexer(RegexLexer):
             (ur'(-|\*|\+|&|≠|>=?|<=?|=|≥|≤|/|÷|\^)', Operator),
             (r"\b(%s)\b" % '|'.join(Operators), Operator.Word),
             (r'^(\s*(?:on|end)\s+)'
-             r'(%s)' % '|'.join(StudioEvents),
+             r'(%s)' % '|'.join(StudioEvents[::-1]),
              bygroups(Keyword, Name.Function)),
             (r'^(\s*)(in|on|script|to)(\s+)', bygroups(Text, Keyword, Text)),
             (r'\b(as )(%s)\b' % '|'.join(Classes),
@@ -1598,7 +1219,8 @@ class ModelicaLexer(RegexLexer):
             (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
             (r"([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*')"
              r"(\.([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*'))+", Name.Class),
-            (r"('[\w\+\-\*\/\^]+'|\w+)", Name)        ],
+            (r"('[\w\+\-\*\/\^]+'|\w+)", Name),
+        ],
         'root': [
             include('whitespace'),
             include('keywords'),
@@ -1606,30 +1228,32 @@ class ModelicaLexer(RegexLexer):
             include('operators'),
             include('classes'),
             (r'("<html>|<html>)', Name.Tag, 'html-content'),
-            include('statements')
+            include('statements'),
         ],
         'keywords': [
             (r'(algorithm|annotation|break|connect|constant|constrainedby|'
             r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
             r'end|equation|exit|expandable|extends|'
-            r'external|false|final|flow|for|if|import|in|inner|input|'
-            r'loop|nondiscrete|outer|output|parameter|partial|'
-            r'protected|public|redeclare|replaceable|stream|time|then|true|'
-            r'when|while|within)\b', Keyword)
+            r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
+            r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
+            r'protected|public|pure|redeclare|replaceable|stream|time|then|true|'
+            r'when|while|within)\b', Keyword),
         ],
         'functions': [
             (r'(abs|acos|acosh|asin|asinh|atan|atan2|atan3|ceil|cos|cosh|'
-             r'cross|div|exp|floor|log|log10|mod|rem|sign|sin|sinh|size|'
-             r'sqrt|tan|tanh|zeros)\b', Name.Function)
+             r'cross|div|exp|floor|getInstanceName|log|log10|mod|rem|'
+             r'semiLinear|sign|sin|sinh|size|spatialDistribution|sqrt|tan|'
+             r'tanh|zeros)\b', Name.Function),
         ],
         'operators': [
-            (r'(and|assert|cardinality|change|delay|der|edge|initial|'
-             r'noEvent|not|or|pre|reinit|return|sample|smooth|'
-             r'terminal|terminate)\b', Name.Builtin)
+            (r'(actualStream|and|assert|cardinality|change|Clock|delay|der|edge|'
+             r'hold|homotopy|initial|inStream|noEvent|not|or|pre|previous|reinit|'
+             r'return|sample|smooth|spatialDistribution|subSample|terminal|'
+             r'terminate)\b', Name.Builtin),
         ],
         'classes': [
             (r'(block|class|connector|function|model|package|'
-             r'record|type)\b', Name.Class)
+             r'record|type)\b', Name.Class),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -1637,7 +1261,7 @@ class ModelicaLexer(RegexLexer):
              String.Escape),
             (r'[^\\"\n]+', String), # all other characters
             (r'\\\n', String), # line continuation
-            (r'\\', String) # stray backslash
+            (r'\\', String), # stray backslash
         ],
         'html-content': [
             (r'<\s*/\s*html\s*>', Name.Tag, '#pop'),
@@ -1750,6 +1374,11 @@ class RebolLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'REBOL', Generic.Strong, 'script'),
+            (r'R', Comment),
+            (r'[^R]+', Comment),
+        ],
+        'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
             (r'#{[0-9a-fA-F]*}', Number.Hex),
@@ -1880,7 +1509,7 @@ class ABAPLexer(RegexLexer):
             ],
         'variable-names': [
             (r'<[\S_]+>', Name.Variable),
-            (r'[\w][\w_~]*(?:(\[\])|->\*)?', Name.Variable),
+            (r'\w[\w~]*(?:(\[\])|->\*)?', Name.Variable),
             ],
         'root': [
             include('common'),
@@ -1890,21 +1519,21 @@ class ABAPLexer(RegexLexer):
             (r'(CALL\s+(?:DIALOG|SCREEN|SUBSCREEN|SELECTION-SCREEN|'
              r'TRANSACTION|TRANSFORMATION))\b',
                 Keyword),
-            (r'(FORM|PERFORM)(\s+)([\w_]+)',
+            (r'(FORM|PERFORM)(\s+)(\w+)',
                 bygroups(Keyword, Text, Name.Function)),
-            (r'(PERFORM)(\s+)(\()([\w_]+)(\))',
+            (r'(PERFORM)(\s+)(\()(\w+)(\))',
                 bygroups(Keyword, Text, Punctuation, Name.Variable, Punctuation )),
             (r'(MODULE)(\s+)(\S+)(\s+)(INPUT|OUTPUT)',
                 bygroups(Keyword, Text, Name.Function, Text, Keyword)),
 
             # method implementation
-            (r'(METHOD)(\s+)([\w_~]+)',
+            (r'(METHOD)(\s+)([\w~]+)',
                 bygroups(Keyword, Text, Name.Function)),
             # method calls
-            (r'(\s+)([\w_\-]+)([=\-]>)([\w_\-~]+)',
+            (r'(\s+)([\w\-]+)([=\-]>)([\w\-~]+)',
                 bygroups(Text, Name.Variable, Operator, Name.Function)),
             # call methodnames returning style
-            (r'(?<=(=|-)>)([\w_\-~]+)(?=\()', Name.Function),
+            (r'(?<=(=|-)>)([\w\-~]+)(?=\()', Name.Function),
 
             # keywords with dashes in them.
             # these need to be first, because for instance the -ID part
@@ -2413,7 +2042,7 @@ class PostScriptLexer(RegexLexer):
         ],
 
         'escape': [
-            (r'([0-8]{3}|n|r|t|b|f|\\|\(|\)|)', String.Escape, '#pop'),
+            (r'([0-8]{3}|n|r|t|b|f|\\|\(|\))?', String.Escape, '#pop'),
         ],
     }
 
@@ -2773,7 +2402,7 @@ class HybrisLexer(RegexLexer):
             # method names
             (r'^(\s*(?:function|method|operator\s+)+?)'
              r'([a-zA-Z_][a-zA-Z0-9_]*)'
-             r'(\s*)(\()', bygroups(Name.Function, Text, Operator)),
+             r'(\s*)(\()', bygroups(Keyword, Name.Function, Text, Operator)),
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
@@ -2857,7 +2486,7 @@ class AwkLexer(RegexLexer):
             (r'', Text, '#pop')
         ],
         'badregex': [
-            ('\n', Text, '#pop')
+            (r'\n', Text, '#pop')
         ],
         'root': [
             (r'^(?=\s|/)', Text, 'slashstartsregex'),
@@ -2915,11 +2544,12 @@ class Cfengine3Lexer(RegexLexer):
              bygroups(Keyword.Reserved,Text,Operator,Text)),
             (r'"', String, 'string'),
             (r'(\w+)(\()', bygroups(Name.Function, Punctuation)),
-            (r'([\w.!&|]+)(::)', bygroups(Name.Class, Punctuation)),
+            (r'([\w.!&|\(\)]+)(::)', bygroups(Name.Class, Punctuation)),
             (r'(\w+)(:)', bygroups(Keyword.Declaration,Punctuation)),
             (r'@[\{\(][^\)\}]+[\}\)]', Name.Variable),
             (r'[(){},;]', Punctuation),
             (r'=>', Operator),
+            (r'->', Operator),
             (r'\d+\.\d+', Number.Float),
             (r'\d+', Number.Integer),
             (r'\w+', Name.Function),
@@ -2943,4 +2573,945 @@ class Cfengine3Lexer(RegexLexer):
             (r'\w+', Name.Variable),
             (r'\s+', Text),
         ],
+    }
+
+
+class SnobolLexer(RegexLexer):
+    """
+    Lexer for the SNOBOL4 programming language.
+
+    Recognizes the common ASCII equivalents of the original SNOBOL4 operators.
+    Does not require spaces around binary operators.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = "Snobol"
+    aliases = ["snobol"]
+    filenames = ['*.snobol']
+    mimetypes = ['text/x-snobol']
+
+    tokens = {
+        # root state, start of line
+        # comments, continuation lines, and directives start in column 1
+        # as do labels
+        'root': [
+            (r'\*.*\n', Comment),
+            (r'[\+\.] ', Punctuation, 'statement'),
+            (r'-.*\n', Comment),
+            (r'END\s*\n', Name.Label, 'heredoc'),
+            (r'[A-Za-z\$][\w$]*', Name.Label, 'statement'),
+            (r'\s+', Text, 'statement'),
+        ],
+        # statement state, line after continuation or label
+        'statement': [
+            (r'\s*\n', Text, '#pop'),
+            (r'\s+', Text),
+            (r'(?<=[^\w.])(LT|LE|EQ|NE|GE|GT|INTEGER|IDENT|DIFFER|LGT|SIZE|'
+             r'REPLACE|TRIM|DUPL|REMDR|DATE|TIME|EVAL|APPLY|OPSYN|LOAD|UNLOAD|'
+             r'LEN|SPAN|BREAK|ANY|NOTANY|TAB|RTAB|REM|POS|RPOS|FAIL|FENCE|'
+             r'ABORT|ARB|ARBNO|BAL|SUCCEED|INPUT|OUTPUT|TERMINAL)(?=[^\w.])',
+             Name.Builtin),
+            (r'[A-Za-z][\w\.]*', Name),
+            # ASCII equivalents of original operators
+            # | for the EBCDIC equivalent, ! likewise
+            # \ for EBCDIC negation
+            (r'\*\*|[\?\$\.!%\*/#+\-@\|&\\=]', Operator),
+            (r'"[^"]*"', String),
+            (r"'[^']*'", String),
+            # Accept SPITBOL syntax for real numbers
+            # as well as Macro SNOBOL4
+            (r'[0-9]+(?=[^\.EeDd])', Number.Integer),
+            (r'[0-9]+(\.[0-9]*)?([EDed][-+]?[0-9]+)?', Number.Float),
+            # Goto
+            (r':', Punctuation, 'goto'),
+            (r'[\(\)<>,;]', Punctuation),
+        ],
+        # Goto block
+        'goto': [
+            (r'\s*\n', Text, "#pop:2"),
+            (r'\s+', Text),
+            (r'F|S', Keyword),
+            (r'(\()([A-Za-z][\w.]*)(\))',
+             bygroups(Punctuation, Name.Label, Punctuation))
+        ],
+        # everything after the END statement is basically one
+        # big heredoc.
+        'heredoc': [
+            (r'.*\n', String.Heredoc)
+        ]
+    }
+
+
+class UrbiscriptLexer(ExtendedRegexLexer):
+    """
+    For UrbiScript source code.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'UrbiScript'
+    aliases = ['urbiscript']
+    filenames = ['*.u']
+    mimetypes = ['application/x-urbiscript']
+
+    flags = re.DOTALL
+
+    ## TODO
+    # - handle Experimental and deprecated tags with specific tokens
+    # - handle Angles and Durations with specific tokens
+
+    def blob_callback(lexer, match, ctx):
+        text_before_blob = match.group(1)
+        blob_start = match.group(2)
+        blob_size_str = match.group(3)
+        blob_size = int(blob_size_str)
+        yield match.start(), String, text_before_blob
+        ctx.pos += len(text_before_blob)
+
+        # if blob size doesn't match blob format (example : "\B(2)(aaa)")
+        # yield blob as a string
+        if ctx.text[match.end() + blob_size] != ")":
+            result = "\\B(" + blob_size_str + ")("
+            yield match.start(), String, result
+            ctx.pos += len(result)
+            return
+
+        # if blob is well formated, yield as Escape
+        blob_text = blob_start + ctx.text[match.end():match.end()+blob_size] + ")"
+        yield match.start(), String.Escape, blob_text
+        ctx.pos = match.end() + blob_size + 1 # +1 is the ending ")"
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            # comments
+            (r'//.*?\n', Comment),
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'(?:every|for|loop|while)(?:;|&|\||,)',Keyword),
+            (r'(?:assert|at|break|case|catch|closure|compl|continue|'
+             r'default|else|enum|every|external|finally|for|freezeif|if|new|'
+             r'onleave|return|stopif|switch|this|throw|timeout|try|'
+             r'waituntil|whenever|while)\b', Keyword),
+            (r'(?:asm|auto|bool|char|const_cast|delete|double|dynamic_cast|'
+             r'explicit|export|extern|float|friend|goto|inline|int|'
+             r'long|mutable|namespace|register|reinterpret_cast|short|'
+             r'signed|sizeof|static_cast|struct|template|typedef|typeid|'
+             r'typename|union|unsigned|using|virtual|volatile|'
+             r'wchar_t)\b', Keyword.Reserved),
+            # deprecated keywords, use a meaningfull token when available
+            (r'(?:emit|foreach|internal|loopn|static)\b', Keyword),
+            # ignored keywords, use a meaningfull token when available
+            (r'(?:private|protected|public)\b', Keyword),
+            (r'(?:var|do|const|function|class)\b', Keyword.Declaration),
+            (r'(?:true|false|nil|void)\b', Keyword.Constant),
+            (r'(?:Barrier|Binary|Boolean|CallMessage|Channel|Code|'
+             r'Comparable|Container|Control|Date|Dictionary|Directory|'
+             r'Duration|Enumeration|Event|Exception|Executable|File|Finalizable|'
+             r'Float|FormatInfo|Formatter|Global|Group|Hash|InputStream|'
+             r'IoService|Job|Kernel|Lazy|List|Loadable|Lobby|Location|Logger|Math|'
+             r'Mutex|nil|Object|Orderable|OutputStream|Pair|Path|Pattern|Position|'
+             r'Primitive|Process|Profile|PseudoLazy|PubSub|RangeIterable|Regexp|'
+             r'Semaphore|Server|Singleton|Socket|StackFrame|Stream|String|System|'
+             r'Tag|Timeout|Traceable|TrajectoryGenerator|Triplet|Tuple'
+             r'|UObject|UValue|UVar)\b', Name.Builtin),
+            (r'(?:this)\b', Name.Builtin.Pseudo),
+            # don't match single | and &
+            (r'(?:[-=+*%/<>~^:]+|\.&?|\|\||&&)', Operator),
+            (r'(?:and_eq|and|bitand|bitor|in|not|not_eq|or_eq|or|xor_eq|xor)\b',
+             Operator.Word),
+            (r'[{}\[\]()]+', Punctuation),
+            (r'(?:;|\||,|&|\?|!)+', Punctuation),
+            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            # Float, Integer, Angle and Duration
+            (r'(?:[0-9]+(?:(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)?'
+             r'((?:rad|deg|grad)|(?:ms|s|min|h|d))?)\b', Number.Float),
+            # handle binary blob in strings
+            (r'"', String.Double, "string.double"),
+            (r"'", String.Single, "string.single"),
+        ],
+        'string.double': [
+            (r'((?:\\\\|\\"|[^"])*?)(\\B\((\d+)\)\()', blob_callback),
+            (r'(\\\\|\\"|[^"])*?"', String.Double, '#pop'),
+        ],
+        'string.single': [
+            (r"((?:\\\\|\\'|[^'])*?)(\\B\((\d+)\)\()", blob_callback),
+            (r"(\\\\|\\'|[^'])*?'", String.Single, '#pop'),
+        ],
+        # from http://pygments.org/docs/lexerdevelopment/#changing-states
+        'comment': [
+            (r'[^*/]', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
+        ]
+    }
+
+
+class OpenEdgeLexer(RegexLexer):
+    """
+    Lexer for `OpenEdge ABL (formerly Progress)
+    <http://web.progress.com/en/openedge/abl.html>`_ source code.
+
+    *New in Pygments 1.5.*
+    """
+    name = 'OpenEdge ABL'
+    aliases = ['openedge', 'abl', 'progress']
+    filenames = ['*.p', '*.cls']
+    mimetypes = ['text/x-openedge', 'application/x-openedge']
+
+    types = (r'(?i)(^|(?<=[^0-9a-z_\-]))(CHARACTER|CHAR|CHARA|CHARAC|CHARACT|CHARACTE|'
+             r'COM-HANDLE|DATE|DATETIME|DATETIME-TZ|'
+             r'DECIMAL|DEC|DECI|DECIM|DECIMA|HANDLE|'
+             r'INT64|INTEGER|INT|INTE|INTEG|INTEGE|'
+             r'LOGICAL|LONGCHAR|MEMPTR|RAW|RECID|ROWID)\s*($|(?=[^0-9a-z_\-]))')
+
+    keywords = (r'(?i)(^|(?<=[^0-9a-z_\-]))(ABSOLUTE|ABS|ABSO|ABSOL|ABSOLU|ABSOLUT|ACCELERATOR|'
+                r'ACCUM|ACCUMULATE|ACCUM|ACCUMU|ACCUMUL|ACCUMULA|ACCUMULAT|'
+                r'ACTIVE-FORM|ACTIVE-WINDOW|ADD|ADD-BUFFER|'
+                r'ADD-CALC-COLUMN|ADD-COLUMNS-FROM|ADD-EVENTS-PROCEDURE|'
+                r'ADD-FIELDS-FROM|ADD-FIRST|ADD-INDEX-FIELD|ADD-LAST|'
+                r'ADD-LIKE-COLUMN|ADD-LIKE-FIELD|ADD-LIKE-INDEX|'
+                r'ADD-NEW-FIELD|ADD-NEW-INDEX|ADD-SCHEMA-LOCATION|ADD-SUPER-PROCEDURE|'
+                r'ADM-DATA|ADVISE|ALERT-BOX|ALIAS|ALL|ALLOW-COLUMN-SEARCHING|'
+                r'ALLOW-REPLICATION|ALTER|ALWAYS-ON-TOP|AMBIGUOUS|AMBIG|AMBIGU|AMBIGUO|AMBIGUOU|'
+                r'ANALYZE|ANALYZ|AND|ANSI-ONLY|ANY|ANYWHERE|APPEND|APPL-ALERT-BOXES|'
+                r'APPL-ALERT|APPL-ALERT-|APPL-ALERT-B|APPL-ALERT-BO|APPL-ALERT-BOX|APPL-ALERT-BOXE|'
+                r'APPL-CONTEXT-ID|APPLICATION|APPLY|APPSERVER-INFO|APPSERVER-PASSWORD|'
+                r'APPSERVER-USERID|ARRAY-MESSAGE|AS|ASC|ASCENDING|ASCE|ASCEN|'
+                r'ASCEND|ASCENDI|ASCENDIN|ASK-OVERWRITE|ASSEMBLY|ASSIGN|'
+                r'ASYNCHRONOUS|ASYNC-REQUEST-COUNT|ASYNC-REQUEST-HANDLE|AT|'
+                r'ATTACHED-PAIRLIST|ATTR-SPACE|ATTR|ATTRI|ATTRIB|ATTRIBU|ATTRIBUT|'
+                r'AUDIT-CONTROL|AUDIT-ENABLED|AUDIT-EVENT-CONTEXT|AUDIT-POLICY|'
+                r'AUTHENTICATION-FAILED|AUTHORIZATION|AUTO-COMPLETION|AUTO-COMP|'
+                r'AUTO-COMPL|AUTO-COMPLE|AUTO-COMPLET|AUTO-COMPLETI|AUTO-COMPLETIO|'
+                r'AUTO-ENDKEY|AUTO-END-KEY|AUTO-GO|AUTO-INDENT|AUTO-IND|'
+                r'AUTO-INDE|AUTO-INDEN|AUTOMATIC|AUTO-RESIZE|AUTO-RETURN|AUTO-RET|'
+                r'AUTO-RETU|AUTO-RETUR|AUTO-SYNCHRONIZE|AUTO-ZAP|AUTO-Z|AUTO-ZA|'
+                r'AVAILABLE|AVAIL|AVAILA|AVAILAB|AVAILABL|AVAILABLE-FORMATS|'
+                r'AVERAGE|AVE|AVER|AVERA|AVERAG|AVG|BACKGROUND|BACK|BACKG|'
+                r'BACKGR|BACKGRO|BACKGROU|BACKGROUN|BACKWARDS|BACKWARD|'
+                r'BASE64-DECODE|BASE64-ENCODE|BASE-ADE|BASE-KEY|BATCH-MODE|BATCH|'
+                r'BATCH-|BATCH-M|BATCH-MO|BATCH-MOD|BATCH-SIZE|BEFORE-HIDE|BEFORE-H|'
+                r'BEFORE-HI|BEFORE-HID|BEGIN-EVENT-GROUP|BEGINS|BELL|BETWEEN|'
+                r'BGCOLOR|BGC|BGCO|BGCOL|BGCOLO|BIG-ENDIAN|BINARY|BIND|BIND-WHERE|'
+                r'BLANK|BLOCK-ITERATION-DISPLAY|BORDER-BOTTOM-CHARS|BORDER-B|'
+                r'BORDER-BO|BORDER-BOT|BORDER-BOTT|BORDER-BOTTO|BORDER-BOTTOM-PIXELS|'
+                r'BORDER-BOTTOM-P|BORDER-BOTTOM-PI|BORDER-BOTTOM-PIX|'
+                r'BORDER-BOTTOM-PIXE|BORDER-BOTTOM-PIXEL|BORDER-LEFT-CHARS|BORDER-L|'
+                r'BORDER-LE|BORDER-LEF|BORDER-LEFT|BORDER-LEFT-|BORDER-LEFT-C|'
+                r'BORDER-LEFT-CH|BORDER-LEFT-CHA|BORDER-LEFT-CHAR|BORDER-LEFT-PIXELS|'
+                r'BORDER-LEFT-P|BORDER-LEFT-PI|BORDER-LEFT-PIX|BORDER-LEFT-PIXE|'
+                r'BORDER-LEFT-PIXEL|BORDER-RIGHT-CHARS|BORDER-R|BORDER-RI|BORDER-RIG|'
+                r'BORDER-RIGH|BORDER-RIGHT|BORDER-RIGHT-|BORDER-RIGHT-C|BORDER-RIGHT-CH|'
+                r'BORDER-RIGHT-CHA|BORDER-RIGHT-CHAR|BORDER-RIGHT-PIXELS|BORDER-RIGHT-P|'
+                r'BORDER-RIGHT-PI|BORDER-RIGHT-PIX|BORDER-RIGHT-PIXE|BORDER-RIGHT-PIXEL|'
+                r'BORDER-TOP-CHARS|BORDER-T|BORDER-TO|BORDER-TOP|BORDER-TOP-|BORDER-TOP-C|'
+                r'BORDER-TOP-CH|BORDER-TOP-CHA|BORDER-TOP-CHAR|BORDER-TOP-PIXELS|'
+                r'BORDER-TOP-P|BORDER-TOP-PI|BORDER-TOP-PIX|BORDER-TOP-PIXE|BORDER-TOP-PIXEL|'
+                r'BOX|BOX-SELECTABLE|BOX-SELECT|BOX-SELECTA|BOX-SELECTAB|BOX-SELECTABL|'
+                r'BREAK|BROWSE|BUFFER|BUFFER-CHARS|BUFFER-COMPARE|BUFFER-COPY|BUFFER-CREATE|'
+                r'BUFFER-DELETE|BUFFER-FIELD|BUFFER-HANDLE|BUFFER-LINES|BUFFER-NAME|'
+                r'BUFFER-RELEASE|BUFFER-VALUE|BUTTON|BUTTONS|BUTTON|BY|BY-POINTER|'
+                r'BY-VARIANT-POINTER|CACHE|CACHE-SIZE|CALL|CALL-NAME|CALL-TYPE|CANCEL-BREAK|'
+                r'CANCEL-BUTTON|CAN-CREATE|CAN-DELETE|CAN-DO|CAN-FIND|CAN-QUERY|CAN-READ|'
+                r'CAN-SET|CAN-WRITE|CAPS|CAREFUL-PAINT|CASE|CASE-SENSITIVE|CASE-SEN|'
+                r'CASE-SENS|CASE-SENSI|CASE-SENSIT|CASE-SENSITI|CASE-SENSITIV|'
+                r'CAST|CATCH|CDECL|CENTERED|CENTER|CENTERE|CHAINED|CHARACTER_LENGTH|'
+                r'CHARSET|CHECK|CHECKED|CHOOSE|CHR|CLASS|CLASS-TYPE|CLEAR|'
+                r'CLEAR-APPL-CONTEXT|CLEAR-LOG|CLEAR-SELECTION|CLEAR-SELECT|'
+                r'CLEAR-SELECTI|CLEAR-SELECTIO|CLEAR-SORT-ARROWS|CLEAR-SORT-ARROW|'
+                r'CLIENT-CONNECTION-ID|CLIENT-PRINCIPAL|CLIENT-TTY|CLIENT-TYPE|'
+                r'CLIENT-WORKSTATION|CLIPBOARD|CLOSE|CLOSE-LOG|CODE|CODEBASE-LOCATOR|'
+                r'CODEPAGE|CODEPAGE-CONVERT|COLLATE|COL-OF|COLON|COLON-ALIGNED|'
+                r'COLON-ALIGN|COLON-ALIGNE|COLOR|COLOR-TABLE|COLUMN|COL|COLU|COLUM|'
+                r'COLUMN-BGCOLOR|COLUMN-DCOLOR|COLUMN-FGCOLOR|COLUMN-FONT|COLUMN-LABEL|'
+                r'COLUMN-LAB|COLUMN-LABE|COLUMN-MOVABLE|COLUMN-OF|COLUMN-PFCOLOR|'
+                r'COLUMN-READ-ONLY|COLUMN-RESIZABLE|COLUMNS|COLUMN-SCROLLING|'
+                r'COMBO-BOX|COMMAND|COMPARES|COMPILE|COMPILER|COMPLETE|COM-SELF|'
+                r'CONFIG-NAME|CONNECT|CONNECTED|CONSTRUCTOR|CONTAINS|CONTENTS|CONTEXT|'
+                r'CONTEXT-HELP|CONTEXT-HELP-FILE|CONTEXT-HELP-ID|CONTEXT-POPUP|'
+                r'CONTROL|CONTROL-BOX|CONTROL-FRAME|CONVERT|CONVERT-3D-COLORS|'
+                r'CONVERT-TO-OFFSET|CONVERT-TO-OFFS|CONVERT-TO-OFFSE|COPY-DATASET|'
+                r'COPY-LOB|COPY-SAX-ATTRIBUTES|COPY-TEMP-TABLE|COUNT|COUNT-OF|'
+                r'CPCASE|CPCOLL|CPINTERNAL|CPLOG|CPPRINT|CPRCODEIN|CPRCODEOUT|'
+                r'CPSTREAM|CPTERM|CRC-VALUE|CREATE|CREATE-LIKE|CREATE-LIKE-SEQUENTIAL|'
+                r'CREATE-NODE-NAMESPACE|CREATE-RESULT-LIST-ENTRY|CREATE-TEST-FILE|'
+                r'CURRENT|CURRENT_DATE|CURRENT_DATE|CURRENT-CHANGED|CURRENT-COLUMN|'
+                r'CURRENT-ENVIRONMENT|CURRENT-ENV|CURRENT-ENVI|CURRENT-ENVIR|'
+                r'CURRENT-ENVIRO|CURRENT-ENVIRON|CURRENT-ENVIRONM|CURRENT-ENVIRONME|'
+                r'CURRENT-ENVIRONMEN|CURRENT-ITERATION|CURRENT-LANGUAGE|CURRENT-LANG|'
+                r'CURRENT-LANGU|CURRENT-LANGUA|CURRENT-LANGUAG|CURRENT-QUERY|'
+                r'CURRENT-RESULT-ROW|CURRENT-ROW-MODIFIED|CURRENT-VALUE|CURRENT-WINDOW|'
+                r'CURSOR|CURS|CURSO|CURSOR-CHAR|CURSOR-LINE|CURSOR-OFFSET|DATABASE|'
+                r'DATA-BIND|DATA-ENTRY-RETURN|DATA-ENTRY-RET|DATA-ENTRY-RETU|'
+                r'DATA-ENTRY-RETUR|DATA-RELATION|DATA-REL|DATA-RELA|DATA-RELAT|'
+                r'DATA-RELATI|DATA-RELATIO|DATASERVERS|DATASET|DATASET-HANDLE|DATA-SOURCE|'
+                r'DATA-SOURCE-COMPLETE-MAP|DATA-SOURCE-MODIFIED|DATA-SOURCE-ROWID|'
+                r'DATA-TYPE|DATA-T|DATA-TY|DATA-TYP|DATE-FORMAT|DATE-F|DATE-FO|'
+                r'DATE-FOR|DATE-FORM|DATE-FORMA|DAY|DBCODEPAGE|DBCOLLATION|DBNAME|'
+                r'DBPARAM|DB-REFERENCES|DBRESTRICTIONS|DBREST|DBRESTR|DBRESTRI|'
+                r'DBRESTRIC|DBRESTRICT|DBRESTRICTI|DBRESTRICTIO|DBRESTRICTION|'
+                r'DBTASKID|DBTYPE|DBVERSION|DBVERS|DBVERSI|DBVERSIO|DCOLOR|'
+                r'DDE|DDE-ERROR|DDE-ID|DDE-I|DDE-ITEM|DDE-NAME|DDE-TOPIC|DEBLANK|'
+                r'DEBUG|DEBU|DEBUG-ALERT|DEBUGGER|DEBUG-LIST|DECIMALS|DECLARE|'
+                r'DECLARE-NAMESPACE|DECRYPT|DEFAULT|DEFAULT-BUFFER-HANDLE|'
+                r'DEFAULT-BUTTON|DEFAUT-B|DEFAUT-BU|DEFAUT-BUT|DEFAUT-BUTT|DEFAUT-BUTTO|'
+                r'DEFAULT-COMMIT|DEFAULT-EXTENSION|DEFAULT-EX|DEFAULT-EXT|DEFAULT-EXTE|'
+                r'DEFAULT-EXTEN|DEFAULT-EXTENS|DEFAULT-EXTENSI|DEFAULT-EXTENSIO|'
+                r'DEFAULT-NOXLATE|DEFAULT-NOXL|DEFAULT-NOXLA|DEFAULT-NOXLAT|'
+                r'DEFAULT-VALUE|DEFAULT-WINDOW|DEFINED|'
+                r'DEFINE-USER-EVENT-MANAGER|DELETE|DEL|DELE|DELET|DELETE-CHARACTER|'
+                r'DELETE-CHAR|DELETE-CHARA|DELETE-CHARAC|DELETE-CHARACT|DELETE-CHARACTE|'
+                r'DELETE-CURRENT-ROW|DELETE-LINE|DELETE-RESULT-LIST-ENTRY|DELETE-SELECTED-ROW|'
+                r'DELETE-SELECTED-ROWS|DELIMITER|DESC|DESCENDING|DESC|DESCE|DESCEN|'
+                r'DESCEND|DESCENDI|DESCENDIN|DESELECT-FOCUSED-ROW|DESELECTION|'
+                r'DESELECT-ROWS|DESELECT-SELECTED-ROW|DESTRUCTOR|DIALOG-BOX|'
+                r'DICTIONARY|DICT|DICTI|DICTIO|DICTION|DICTIONA|DICTIONAR|'
+                r'DIR|DISABLE|DISABLE-AUTO-ZAP|DISABLED|DISABLE-DUMP-TRIGGERS|'
+                r'DISABLE-LOAD-TRIGGERS|DISCONNECT|DISCON|DISCONN|DISCONNE|DISCONNEC|'
+                r'DISP|DISPLAY|DISP|DISPL|DISPLA|DISPLAY-MESSAGE|DISPLAY-TYPE|'
+                r'DISPLAY-T|DISPLAY-TY|DISPLAY-TYP|DISTINCT|DO|DOMAIN-DESCRIPTION|'
+                r'DOMAIN-NAME|DOMAIN-TYPE|DOS|DOUBLE|DOWN|DRAG-ENABLED|DROP|DROP-DOWN|'
+                r'DROP-DOWN-LIST|DROP-FILE-NOTIFY|DROP-TARGET|DUMP|DYNAMIC|'
+                r'DYNAMIC-FUNCTION|EACH|ECHO|EDGE-CHARS|EDGE|EDGE-|EDGE-C|'
+                r'EDGE-CH|EDGE-CHA|EDGE-CHAR|EDGE-PIXELS|EDGE-P|EDGE-PI|EDGE-PIX|'
+                r'EDGE-PIXE|EDGE-PIXEL|EDIT-CAN-PASTE|EDIT-CAN-UNDO|EDIT-CLEAR|'
+                r'EDIT-COPY|EDIT-CUT|EDITING|EDITOR|EDIT-PASTE|EDIT-UNDO|ELSE|'
+                r'EMPTY|EMPTY-TEMP-TABLE|ENABLE|ENABLED-FIELDS|ENCODE|ENCRYPT|'
+                r'ENCRYPT-AUDIT-MAC-KEY|ENCRYPTION-SALT|END|END-DOCUMENT|'
+                r'END-ELEMENT|END-EVENT-GROUP|END-FILE-DROP|ENDKEY|END-KEY|'
+                r'END-MOVE|END-RESIZE|END-ROW-RESIZE|END-USER-PROMPT|ENTERED|'
+                r'ENTRY|EQ|ERROR|ERROR-COLUMN|ERROR-COL|ERROR-COLU|ERROR-COLUM|'
+                r'ERROR-ROW|ERROR-STACK-TRACE|ERROR-STATUS|ERROR-STAT|ERROR-STATU|'
+                r'ESCAPE|ETIME|EVENT-GROUP-ID|EVENT-PROCEDURE|EVENT-PROCEDURE-CONTEXT|'
+                r'EVENTS|EVENT|EVENT-TYPE|EVENT-T|EVENT-TY|EVENT-TYP|EXCEPT|'
+                r'EXCLUSIVE-ID|EXCLUSIVE-LOCK|EXCLUSIVE|EXCLUSIVE-|EXCLUSIVE-L|'
+                r'EXCLUSIVE-LO|EXCLUSIVE-LOC|EXCLUSIVE-WEB-USER|EXECUTE|EXISTS|'
+                r'EXP|EXPAND|EXPANDABLE|EXPLICIT|EXPORT|EXPORT-PRINCIPAL|EXTENDED|'
+                r'EXTENT|EXTERNAL|FALSE|FETCH|FETCH-SELECTED-ROW|FGCOLOR|FGC|FGCO|'
+                r'FGCOL|FGCOLO|FIELD|FIELDS|FIELD|FILE|FILE-CREATE-DATE|'
+                r'FILE-CREATE-TIME|FILE-INFORMATION|FILE-INFO|FILE-INFOR|FILE-INFORM|'
+                r'FILE-INFORMA|FILE-INFORMAT|FILE-INFORMATI|FILE-INFORMATIO|FILE-MOD-DATE|'
+                r'FILE-MOD-TIME|FILENAME|FILE-NAME|FILE-OFFSET|FILE-OFF|FILE-OFFS|FILE-OFFSE|'
+                r'FILE-SIZE|FILE-TYPE|FILL|FILLED|FILL-IN|FILTERS|FINAL|FINALLY|FIND|'
+                r'FIND-BY-ROWID|FIND-CASE-SENSITIVE|FIND-CURRENT|FINDER|FIND-FIRST|'
+                r'FIND-GLOBAL|FIND-LAST|FIND-NEXT-OCCURRENCE|FIND-PREV-OCCURRENCE|'
+                r'FIND-SELECT|FIND-UNIQUE|FIND-WRAP-AROUND|FIRST|FIRST-ASYNCH-REQUEST|'
+                r'FIRST-CHILD|FIRST-COLUMN|FIRST-FORM|FIRST-OBJECT|FIRST-OF|'
+                r'FIRST-PROCEDURE|FIRST-PROC|FIRST-PROCE|FIRST-PROCED|FIRST-PROCEDU|FIRST-PROCEDUR|'
+                r'FIRST-SERVER|FIRST-TAB-ITEM|FIRST-TAB-I|FIRST-TAB-IT|FIRST-TAB-ITE|'
+                r'FIT-LAST-COLUMN|FIXED-ONLY|FLAT-BUTTON|FLOAT|FOCUS|FOCUSED-ROW|'
+                r'FOCUSED-ROW-SELECTED|FONT|FONT-TABLE|FOR|FORCE-FILE|'
+                r'FOREGROUND|FORE|FOREG|FOREGR|FOREGRO|FOREGROU|FOREGROUN|'
+                r'FORM|FORMAT|FORM|FORMA|FORMATTED|FORMATTE|FORM-LONG-INPUT|'
+                r'FORWARD|FORWARDS|FORWARD|FRAGMENT|FRAGMEN|FRAME|FRAM|'
+                r'FRAME-COL|FRAME-DB|FRAME-DOWN|FRAME-FIELD|FRAME-FILE|'
+                r'FRAME-INDEX|FRAME-INDE|FRAME-LINE|FRAME-NAME|FRAME-ROW|'
+                r'FRAME-SPACING|FRAME-SPA|FRAME-SPAC|FRAME-SPACI|FRAME-SPACIN|'
+                r'FRAME-VALUE|FRAME-VAL|FRAME-VALU|FRAME-X|FRAME-Y|FREQUENCY|FROM|'
+                r'FROM-CHARS|FROM-C|FROM-CH|FROM-CHA|FROM-CHAR|'
+                r'FROM-CURRENT|FROM-CUR|FROM-CURR|FROM-CURRE|FROM-CURREN|'
+                r'FROM-PIXELS|FROM-P|FROM-PI|FROM-PIX|FROM-PIXE|FROM-PIXEL|'
+                r'FULL-HEIGHT-CHARS|FULL-HEIGHT|FULL-HEIGHT-|FULL-HEIGHT-C|FULL-HEIGHT-CH|FULL-HEIGHT-CHA|FULL-HEIGHT-CHAR|'
+                r'FULL-HEIGHT-PIXELS|FULL-HEIGHT-P|FULL-HEIGHT-PI|FULL-HEIGHT-PIX|FULL-HEIGHT-PIXE|FULL-HEIGHT-PIXEL|'
+                r'FULL-PATHNAME|FULL-PATHN|FULL-PATHNA|FULL-PATHNAM|'
+                r'FULL-WIDTH-CHARS|FULL-WIDTH|FULL-WIDTH-|FULL-WIDTH-C|FULL-WIDTH-CH|FULL-WIDTH-CHA|FULL-WIDTH-CHAR|'
+                r'FULL-WIDTH-PIXELS|FULL-WIDTH-P|FULL-WIDTH-PI|FULL-WIDTH-PIX|FULL-WIDTH-PIXE|FULL-WIDTH-PIXEL|'
+                r'FUNCTION|FUNCTION-CALL-TYPE|GATEWAYS|GATEWAY|GE|GENERATE-MD5|'
+                r'GENERATE-PBE-KEY|GENERATE-PBE-SALT|GENERATE-RANDOM-KEY|GENERATE-UUID|GET|'
+                r'GET-ATTR-CALL-TYPE|GET-ATTRIBUTE-NODE|GET-BINARY-DATA|'
+                r'GET-BLUE-VALUE|GET-BLUE|GET-BLUE-|GET-BLUE-V|GET-BLUE-VA|GET-BLUE-VAL|GET-BLUE-VALU|'
+                r'GET-BROWSE-COLUMN|GET-BUFFER-HANDLEGETBYTE|GET-BYTE|GET-CALLBACK-PROC-CONTEXT|'
+                r'GET-CALLBACK-PROC-NAME|GET-CGI-LIST|GET-CGI-LONG-VALUE|GET-CGI-VALUE|'
+                r'GET-CODEPAGES|GET-COLLATIONS|GET-CONFIG-VALUE|GET-CURRENT|GET-DOUBLE|'
+                r'GET-DROPPED-FILE|GET-DYNAMIC|GET-ERROR-COLUMN|GET-ERROR-ROW|GET-FILE|'
+                r'GET-FILE-NAME|GET-FILE-OFFSET|GET-FILE-OFFSE|GET-FIRST|GET-FLOAT|'
+                r'GET-GREEN-VALUE|GET-GREEN|GET-GREEN-|GET-GREEN-V|GET-GREEN-VA|GET-GREEN-VAL|GET-GREEN-VALU|'
+                r'GET-INDEX-BY-NAMESPACE-NAME|GET-INDEX-BY-QNAME|GET-INT64|GET-ITERATION|'
+                r'GET-KEY-VALUE|GET-KEY-VAL|GET-KEY-VALU|GET-LAST|GET-LOCALNAME-BY-INDEX|'
+                r'GET-LONG|GET-MESSAGE|GET-NEXT|GET-NUMBER|GET-POINTER-VALUE|'
+                r'GET-PREV|GET-PRINTERS|GET-PROPERTY|GET-QNAME-BY-INDEX|'
+                r'GET-RED-VALUE|GET-RED|GET-RED-|GET-RED-V|GET-RED-VA|GET-RED-VAL|GET-RED-VALU|'
+                r'GET-REPOSITIONED-ROW|GET-RGB-VALUE|'
+                r'GET-SELECTED-WIDGET|GET-SELECTED|GET-SELECTED-|GET-SELECTED-W|GET-SELECTED-WI|GET-SELECTED-WID|GET-SELECTED-WIDG|GET-SELECTED-WIDGE|'
+                r'GET-SHORT|GET-SIGNATURE|GET-SIZE|GET-STRING|GET-TAB-ITEM|'
+                r'GET-TEXT-HEIGHT-CHARS|GET-TEXT-HEIGHT|GET-TEXT-HEIGHT-|GET-TEXT-HEIGHT-C|GET-TEXT-HEIGHT-CH|GET-TEXT-HEIGHT-CHA|GET-TEXT-HEIGHT-CHAR|'
+                r'GET-TEXT-HEIGHT-PIXELS|GET-TEXT-HEIGHT-P|GET-TEXT-HEIGHT-PI|GET-TEXT-HEIGHT-PIX|GET-TEXT-HEIGHT-PIXE|GET-TEXT-HEIGHT-PIXEL|'
+                r'GET-TEXT-WIDTH-CHARS|GET-TEXT-WIDTH|GET-TEXT-WIDTH-|GET-TEXT-WIDTH-C|GET-TEXT-WIDTH-CH|GET-TEXT-WIDTH-CHA|GET-TEXT-WIDTH-CHAR|'
+                r'GET-TEXT-WIDTH-PIXELS|GET-TEXT-WIDTH-P|GET-TEXT-WIDTH-PI|GET-TEXT-WIDTH-PIX|GET-TEXT-WIDTH-PIXE|GET-TEXT-WIDTH-PIXEL|'
+                r'GET-TYPE-BY-INDEX|GET-TYPE-BY-NAMESPACE-NAME|GET-TYPE-BY-QNAME|GET-UNSIGNED-LONG|'
+                r'GET-UNSIGNED-SHORT|GET-URI-BY-INDEX|GET-VALUE-BY-INDEX|GET-VALUE-BY-NAMESPACE-NAME|'
+                r'GET-VALUE-BY-QNAME|GET-WAIT-STATE|GLOBAL|GO-ON|'
+                r'GO-PENDING|GO-PEND|GO-PENDI|GO-PENDIN|GRANT|'
+                r'GRAPHIC-EDGE|GRAPHIC-E|GRAPHIC-ED|GRAPHIC-EDG|'
+                r'GRID-FACTOR-HORIZONTAL|GRID-FACTOR-H|GRID-FACTOR-HO|GRID-FACTOR-HOR|GRID-FACTOR-HORI|GRID-FACTOR-HORIZ|GRID-FACTOR-HORIZO|GRID-FACTOR-HORIZON|GRID-FACTOR-HORIZONT|GRID-FACTOR-HORIZONTA|'
+                r'GRID-FACTOR-VERTICAL|GRID-FACTOR-V|GRID-FACTOR-VE|GRID-FACTOR-VER|GRID-FACTOR-VERT|GRID-FACTOR-VERT|GRID-FACTOR-VERTI|GRID-FACTOR-VERTIC|GRID-FACTOR-VERTICA|'
+                r'GRID-SNAP|'
+                r'GRID-UNIT-HEIGHT-CHARS|GRID-UNIT-HEIGHT|GRID-UNIT-HEIGHT-|GRID-UNIT-HEIGHT-C|GRID-UNIT-HEIGHT-CH|GRID-UNIT-HEIGHT-CHA|'
+                r'GRID-UNIT-HEIGHT-PIXELS|GRID-UNIT-HEIGHT-P|GRID-UNIT-HEIGHT-PI|GRID-UNIT-HEIGHT-PIX|GRID-UNIT-HEIGHT-PIXE|GRID-UNIT-HEIGHT-PIXEL|'
+                r'GRID-UNIT-WIDTH-CHARS|GRID-UNIT-WIDTH|GRID-UNIT-WIDTH-|GRID-UNIT-WIDTH-C|GRID-UNIT-WIDTH-CH|GRID-UNIT-WIDTH-CHA|GRID-UNIT-WIDTH-CHAR|'
+                r'GRID-UNIT-WIDTH-PIXELS|GRID-UNIT-WIDTH-P|GRID-UNIT-WIDTH-PI|GRID-UNIT-WIDTH-PIX|GRID-UNIT-WIDTH-PIXE|GRID-UNIT-WIDTH-PIXEL|'
+                r'GRID-VISIBLE|GROUP|GT|GUID|HANDLER|HAS-RECORDS|HAVING|HEADER|'
+                r'HEIGHT-CHARS|HEIGHT|HEIGHT-|HEIGHT-C|HEIGHT-CH|HEIGHT-CHA|HEIGHT-CHAR|'
+                r'HEIGHT-PIXELS|HEIGHT-P|HEIGHT-PI|HEIGHT-PIX|HEIGHT-PIXE|HEIGHT-PIXEL|'
+                r'HELP|HEX-DECODE|HEX-ENCODE|HIDDEN|HIDE|'
+                r'HORIZONTAL|HORI|HORIZ|HORIZO|HORIZON|HORIZONT|HORIZONTA|'
+                r'HOST-BYTE-ORDER|HTML-CHARSET|HTML-END-OF-LINE|HTML-END-OF-PAGE|'
+                r'HTML-FRAME-BEGIN|HTML-FRAME-END|HTML-HEADER-BEGIN|HTML-HEADER-END|'
+                r'HTML-TITLE-BEGIN|HTML-TITLE-END|HWND|ICON|IF|'
+                r'IMAGE|IMAGE-DOWN|IMAGE-INSENSITIVE|IMAGE-SIZE|'
+                r'IMAGE-SIZE-CHARS|IMAGE-SIZE-C|IMAGE-SIZE-CH|IMAGE-SIZE-CHA|IMAGE-SIZE-CHAR|'
+                r'IMAGE-SIZE-PIXELS|IMAGE-SIZE-P|IMAGE-SIZE-PI|IMAGE-SIZE-PIX|IMAGE-SIZE-PIXE|IMAGE-SIZE-PIXEL|'
+                r'IMAGE-UP|IMMEDIATE-DISPLAY|IMPLEMENTS|IMPORT|IMPORT-PRINCIPAL|'
+                r'IN|INCREMENT-EXCLUSIVE-ID|INDEX|INDEXED-REPOSITION|INDEX-HINT|'
+                r'INDEX-INFORMATION|INDICATOR|'
+                r'INFORMATION|INFO|INFOR|INFORM|INFORMA|INFORMAT|INFORMATI|INFORMATIO|'
+                r'IN-HANDLE|'
+                r'INHERIT-BGCOLOR|INHERIT-BGC|INHERIT-BGCO|INHERIT-BGCOL|INHERIT-BGCOLO|'
+                r'INHERIT-FGCOLOR|INHERIT-FGC|INHERIT-FGCO|INHERIT-FGCOL|INHERIT-FGCOLO|'
+                r'INHERITS|INITIAL|INIT|INITI|INITIA|INITIAL-DIR|INITIAL-FILTER|'
+                r'INITIALIZE-DOCUMENT-TYPE|INITIATE|INNER-CHARS|INNER-LINES|INPUT|'
+                r'INPUT-OUTPUT|INPUT-O|INPUT-OU|INPUT-OUT|INPUT-OUTP|INPUT-OUTPU|'
+                r'INPUT-VALUE|INSERT|INSERT-ATTRIBUTE|'
+                r'INSERT-BACKTAB|INSERT-B|INSERT-BA|INSERT-BAC|INSERT-BACK|INSERT-BACKT|INSERT-BACKTA|'
+                r'INSERT-FILE|INSERT-ROW|INSERT-STRING|INSERT-TAB|INSERT-T|INSERT-TA|'
+                r'INTERFACE|INTERNAL-ENTRIES|INTO|INVOKE|IS|'
+                r'IS-ATTR-SPACE|IS-ATTR|IS-ATTR-|IS-ATTR-S|IS-ATTR-SP|IS-ATTR-SPA|IS-ATTR-SPAC|'
+                r'IS-CLASS|IS-CLAS|IS-LEAD-BYTE|IS-ATTR|IS-OPEN|IS-PARAMETER-SET|IS-ROW-SELECTED|'
+                r'IS-SELECTED|ITEM|ITEMS-PER-ROW|JOIN|JOIN-BY-SQLDB|KBLABEL|KEEP-CONNECTION-OPEN|'
+                r'KEEP-FRAME-Z-ORDER|KEEP-FRAME-Z|KEEP-FRAME-Z-|KEEP-FRAME-Z-O|KEEP-FRAME-Z-OR|KEEP-FRAME-Z-ORD|KEEP-FRAME-Z-ORDE|'
+                r'KEEP-MESSAGES|KEEP-SECURITY-CACHE|KEEP-TAB-ORDER|KEY|KEYCODE|KEY-CODE|'
+                r'KEYFUNCTION|KEYFUNC|KEYFUNCT|KEYFUNCTI|KEYFUNCTIO|'
+                r'KEY-FUNCTION|KEY-FUNC|KEY-FUNCT|KEY-FUNCTI|KEY-FUNCTIO|'
+                r'KEYLABEL|KEY-LABEL|KEYS|KEYWORD|KEYWORD-ALL|LABEL|'
+                r'LABEL-BGCOLOR|LABEL-BGC|LABEL-BGCO|LABEL-BGCOL|LABEL-BGCOLO|'
+                r'LABEL-DCOLOR|LABEL-DC|LABEL-DCO|LABEL-DCOL|LABEL-DCOLO|'
+                r'LABEL-FGCOLOR|LABEL-FGC|LABEL-FGCO|LABEL-FGCOL|LABEL-FGCOLO|'
+                r'LABEL-FONT|'
+                r'LABEL-PFCOLOR|LABEL-PFC|LABEL-PFCO|LABEL-PFCOL|LABEL-PFCOLO|'
+                r'LABELS|LANDSCAPE|LANGUAGES|LANGUAGE|LARGE|LARGE-TO-SMALL|LAST|'
+                r'LAST-ASYNCH-REQUEST|LAST-BATCH|LAST-CHILD|LAST-EVENT|LAST-EVEN|LAST-FORM|'
+                r'LASTKEY|LAST-KEY|LAST-OBJECT|LAST-OF|'
+                r'LAST-PROCEDURE|LAST-PROCE|LAST-PROCED|LAST-PROCEDU|LAST-PROCEDUR|'
+                r'LAST-SERVER|LAST-TAB-ITEM|LAST-TAB-I|LAST-TAB-IT|LAST-TAB-ITE|'
+                r'LC|LDBNAME|LE|LEAVE|LEFT-ALIGNED|LEFT-ALIGN|LEFT-ALIGNE|LEFT-TRIM|'
+                r'LENGTH|LIBRARY|LIKE|LIKE-SEQUENTIAL|LINE|LINE-COUNTER|LINE-COUNT|LINE-COUNTE|'
+                r'LIST-EVENTS|LISTING|LISTI|LISTIN|LIST-ITEM-PAIRS|LIST-ITEMS|'
+                r'LIST-PROPERTY-NAMES|LIST-QUERY-ATTRS|LIST-SET-ATTRS|LIST-WIDGETS|'
+                r'LITERAL-QUESTION|LITTLE-ENDIAN|LOAD|LOAD-DOMAINS|LOAD-ICON|'
+                r'LOAD-IMAGE|LOAD-IMAGE-DOWN|LOAD-IMAGE-INSENSITIVE|LOAD-IMAGE-UP|'
+                r'LOAD-MOUSE-POINTER|LOAD-MOUSE-P|LOAD-MOUSE-PO|LOAD-MOUSE-POI|LOAD-MOUSE-POIN|LOAD-MOUSE-POINT|LOAD-MOUSE-POINTE|'
+                r'LOAD-PICTURE|LOAD-SMALL-ICON|LOCAL-NAME|LOCATOR-COLUMN-NUMBER|'
+                r'LOCATOR-LINE-NUMBER|LOCATOR-PUBLIC-ID|LOCATOR-SYSTEM-ID|LOCATOR-TYPE|'
+                r'LOCKED|LOCK-REGISTRATION|LOG|LOG-AUDIT-EVENT|LOGIN-EXPIRATION-TIMESTAMP|'
+                r'LOGIN-HOST|LOGIN-STATE|LOG-MANAGER|LOGOUT|LOOKAHEAD|LOOKUP|LT|'
+                r'MACHINE-CLASS|MANDATORY|MANUAL-HIGHLIGHT|MAP|MARGIN-EXTRA|'
+                r'MARGIN-HEIGHT-CHARS|MARGIN-HEIGHT|MARGIN-HEIGHT-|MARGIN-HEIGHT-C|MARGIN-HEIGHT-CH|MARGIN-HEIGHT-CHA|MARGIN-HEIGHT-CHAR|'
+                r'MARGIN-HEIGHT-PIXELS|MARGIN-HEIGHT-P|MARGIN-HEIGHT-PI|MARGIN-HEIGHT-PIX|MARGIN-HEIGHT-PIXE|MARGIN-HEIGHT-PIXEL|'
+                r'MARGIN-WIDTH-CHARS|MARGIN-WIDTH|MARGIN-WIDTH-|MARGIN-WIDTH-C|MARGIN-WIDTH-CH|MARGIN-WIDTH-CHA|MARGIN-WIDTH-CHAR|'
+                r'MARGIN-WIDTH-PIXELS|MARGIN-WIDTH-P|MARGIN-WIDTH-PI|MARGIN-WIDTH-PIX|MARGIN-WIDTH-PIXE|MARGIN-WIDTH-PIXEL|'
+                r'MARK-NEW|MARK-ROW-STATE|MATCHES|MAX|MAX-BUTTON|'
+                r'MAX-CHARS|MAX-DATA-GUESS|MAX-HEIGHT|'
+                r'MAX-HEIGHT-CHARS|MAX-HEIGHT-C|MAX-HEIGHT-CH|MAX-HEIGHT-CHA|MAX-HEIGHT-CHAR|'
+                r'MAX-HEIGHT-PIXELS|MAX-HEIGHT-P|MAX-HEIGHT-PI|MAX-HEIGHT-PIX|MAX-HEIGHT-PIXE|MAX-HEIGHT-PIXEL|'
+                r'MAXIMIZE|MAXIMUM|MAX|MAXI|MAXIM|MAXIMU|MAXIMUM-LEVEL|MAX-ROWS|'
+                r'MAX-SIZE|MAX-VALUE|MAX-VAL|MAX-VALU|MAX-WIDTH|'
+                r'MAX-WIDTH-CHARS|MAX-WIDTH|MAX-WIDTH-|MAX-WIDTH-C|MAX-WIDTH-CH|MAX-WIDTH-CHA|MAX-WIDTH-CHAR|'
+                r'MAX-WIDTH-PIXELS|MAX-WIDTH-P|MAX-WIDTH-PI|MAX-WIDTH-PIX|MAX-WIDTH-PIXE|MAX-WIDTH-PIXEL|'
+                r'MD5-DIGEST|MEMBER|MEMPTR-TO-NODE-VALUE|MENU|MENUBAR|MENU-BAR|MENU-ITEM|'
+                r'MENU-KEY|MENU-K|MENU-KE|MENU-MOUSE|MENU-M|MENU-MO|MENU-MOU|MENU-MOUS|'
+                r'MERGE-BY-FIELD|MESSAGE|MESSAGE-AREA|MESSAGE-AREA-FONT|MESSAGE-LINES|'
+                r'METHOD|MIN|MIN-BUTTON|'
+                r'MIN-COLUMN-WIDTH-CHARS|MIN-COLUMN-WIDTH-C|MIN-COLUMN-WIDTH-CH|MIN-COLUMN-WIDTH-CHA|MIN-COLUMN-WIDTH-CHAR|'
+                r'MIN-COLUMN-WIDTH-PIXELS|MIN-COLUMN-WIDTH-P|MIN-COLUMN-WIDTH-PI|MIN-COLUMN-WIDTH-PIX|MIN-COLUMN-WIDTH-PIXE|MIN-COLUMN-WIDTH-PIXEL|'
+                r'MIN-HEIGHT-CHARS|MIN-HEIGHT|MIN-HEIGHT-|MIN-HEIGHT-C|MIN-HEIGHT-CH|MIN-HEIGHT-CHA|MIN-HEIGHT-CHAR|'
+                r'MIN-HEIGHT-PIXELS|MIN-HEIGHT-P|MIN-HEIGHT-PI|MIN-HEIGHT-PIX|MIN-HEIGHT-PIXE|MIN-HEIGHT-PIXEL|'
+                r'MINIMUM|MIN|MINI|MINIM|MINIMU|MIN-SIZE|'
+                r'MIN-VALUE|MIN-VAL|MIN-VALU|'
+                r'MIN-WIDTH-CHARS|MIN-WIDTH|MIN-WIDTH-|MIN-WIDTH-C|MIN-WIDTH-CH|MIN-WIDTH-CHA|MIN-WIDTH-CHAR|'
+                r'MIN-WIDTH-PIXELS|MIN-WIDTH-P|MIN-WIDTH-PI|MIN-WIDTH-PIX|MIN-WIDTH-PIXE|MIN-WIDTH-PIXEL|'
+                r'MODIFIED|MODULO|MOD|MODU|MODUL|MONTH|MOUSE|'
+                r'MOUSE-POINTER|MOUSE-P|MOUSE-PO|MOUSE-POI|MOUSE-POIN|MOUSE-POINT|MOUSE-POINTE|'
+                r'MOVABLE|'
+                r'MOVE-AFTER-TAB-ITEM|MOVE-AFTER|MOVE-AFTER-|MOVE-AFTER-T|MOVE-AFTER-TA|MOVE-AFTER-TAB|MOVE-AFTER-TAB-|MOVE-AFTER-TAB-I|MOVE-AFTER-TAB-IT|MOVE-AFTER-TAB-ITE|'
+                r'MOVE-BEFORE-TAB-ITEM|MOVE-BEFOR|MOVE-BEFORE|MOVE-BEFORE-|MOVE-BEFORE-T|MOVE-BEFORE-TA|MOVE-BEFORE-TAB|MOVE-BEFORE-TAB-|MOVE-BEFORE-TAB-I|MOVE-BEFORE-TAB-IT|MOVE-BEFORE-TAB-ITE|'
+                r'MOVE-COLUMN|MOVE-COL|MOVE-COLU|MOVE-COLUM|'
+                r'MOVE-TO-BOTTOM|MOVE-TO-B|MOVE-TO-BO|MOVE-TO-BOT|MOVE-TO-BOTT|MOVE-TO-BOTTO|'
+                r'MOVE-TO-EOF|MOVE-TO-TOP|MOVE-TO-T|MOVE-TO-TO|MPE|MULTI-COMPILE|MULTIPLE|'
+                r'MULTIPLE-KEY|MULTITASKING-INTERVAL|MUST-EXIST|NAME|NAMESPACE-PREFIX|'
+                r'NAMESPACE-URI|NATIVE|NE|NEEDS-APPSERVER-PROMPT|NEEDS-PROMPT|NEW|'
+                r'NEW-INSTANCE|NEW-ROW|NEXT|NEXT-COLUMN|NEXT-PROMPT|NEXT-ROWID|'
+                r'NEXT-SIBLING|NEXT-TAB-ITEM|NEXT-TAB-I|NEXT-TAB-IT|NEXT-TAB-ITE|'
+                r'NEXT-VALUE|NO|NO-APPLY|NO-ARRAY-MESSAGE|NO-ASSIGN|'
+                r'NO-ATTR-LIST|NO-ATTR|NO-ATTR-|NO-ATTR-L|NO-ATTR-LI|NO-ATTR-LIS|'
+                r'NO-ATTR-SPACE|NO-ATTR|NO-ATTR-|NO-ATTR-S|NO-ATTR-SP|NO-ATTR-SPA|NO-ATTR-SPAC|'
+                r'NO-AUTO-VALIDATE|NO-BIND-WHERE|NO-BOX|NO-CONSOLE|NO-CONVERT|'
+                r'NO-CONVERT-3D-COLORS|NO-CURRENT-VALUE|NO-DEBUG|NODE-VALUE-TO-MEMPTR|'
+                r'NO-DRAG|NO-ECHO|NO-EMPTY-SPACE|NO-ERROR|NO-FILL|NO-F|NO-FI|'
+                r'NO-FIL|NO-FOCUS|NO-HELP|NO-HIDE|NO-INDEX-HINT|'
+                r'NO-INHERIT-BGCOLOR|NO-INHERIT-BGC|NO-INHERIT-BGCO|LABEL-BGCOL|LABEL-BGCOLO|'
+                r'NO-INHERIT-FGCOLOR|NO-INHERIT-FGC|NO-INHERIT-FGCO|NO-INHERIT-FGCOL|NO-INHERIT-FGCOLO|'
+                r'NO-JOIN-BY-SQLDB|NO-LABELS|NO-LABE|NO-LOBS|NO-LOCK|'
+                r'NO-LOOKAHEAD|NO-MAP|'
+                r'NO-MESSAGE|NO-MES|NO-MESS|NO-MESSA|NO-MESSAG|'
+                r'NONAMESPACE-SCHEMA-LOCATION|NONE|NO-PAUSE|'
+                r'NO-PREFETCH|NO-PREFE|NO-PREFET|NO-PREFETC|NORMALIZE|'
+                r'NO-ROW-MARKERS|NO-SCROLLBAR-VERTICAL|NO-SEPARATE-CONNECTION|'
+                r'NO-SEPARATORS|NOT|NO-TAB-STOP|NOT-ACTIVE|'
+                r'NO-UNDERLINE|NO-UND|NO-UNDE|NO-UNDER|NO-UNDERL|NO-UNDERLI|NO-UNDERLIN|'
+                r'NO-UNDO|'
+                r'NO-VALIDATE|NO-VAL|NO-VALI|NO-VALID|NO-VALIDA|NO-VALIDAT|NOW|'
+                r'NO-WAIT|NO-WORD-WRAP|NULL|NUM-ALIASES|NUM-ALI|NUM-ALIA|NUM-ALIAS|NUM-ALIASE|'
+                r'NUM-BUFFERS|NUM-BUTTONS|NUM-BUT|NUM-BUTT|NUM-BUTTO|NUM-BUTTON|'
+                r'NUM-COLUMNS|NUM-COL|NUM-COLU|NUM-COLUM|NUM-COLUMN|NUM-COPIES|'
+                r'NUM-DBS|NUM-DROPPED-FILES|NUM-ENTRIES|NUMERIC|'
+                r'NUMERIC-FORMAT|NUMERIC-F|NUMERIC-FO|NUMERIC-FOR|NUMERIC-FORM|NUMERIC-FORMA|'
+                r'NUM-FIELDS|NUM-FORMATS|NUM-ITEMS|NUM-ITERATIONS|NUM-LINES|'
+                r'NUM-LOCKED-COLUMNS|NUM-LOCKED-COL|NUM-LOCKED-COLU|NUM-LOCKED-COLUM|NUM-LOCKED-COLUMN|'
+                r'NUM-MESSAGES|NUM-PARAMETERS|NUM-REFERENCES|NUM-REPLACED|NUM-RESULTS|NUM-SELECTED-ROWS|'
+                r'NUM-SELECTED-WIDGETS|NUM-SELECTED|NUM-SELECTED-|NUM-SELECTED-W|NUM-SELECTED-WI|NUM-SELECTED-WID|NUM-SELECTED-WIDG|NUM-SELECTED-WIDGE|NUM-SELECTED-WIDGET|'
+                r'NUM-TABS|NUM-TO-RETAIN|NUM-VISIBLE-COLUMNS|OCTET-LENGTH|OF|'
+                r'OFF|OK|OK-CANCEL|OLD|ON|'
+                r'ON-FRAME-BORDER|ON-FRAME|ON-FRAME-|ON-FRAME-B|ON-FRAME-BO|ON-FRAME-BOR|ON-FRAME-BORD|ON-FRAME-BORDE|'
+                r'OPEN|OPSYS|OPTION|OR|ORDERED-JOIN|ORDINAL|'
+                r'OS-APPEND|OS-COMMAND|OS-COPY|OS-CREATE-DIR|OS-DELETE|OS-DIR|'
+                r'OS-DRIVES|OS-DRIVE|OS-ERROR|OS-GETENV|OS-RENAME|OTHERWISE|'
+                r'OUTPUT|OVERLAY|OVERRIDE|OWNER|PAGE|'
+                r'PAGE-BOTTOM|PAGE-BOT|PAGE-BOTT|PAGE-BOTTO|PAGED|'
+                r'PAGE-NUMBER|PAGE-NUM|PAGE-NUMB|PAGE-NUMBE|PAGE-SIZE|'
+                r'PAGE-TOP|PAGE-WIDTH|PAGE-WID|PAGE-WIDT|'
+                r'PARAMETER|PARAM|PARAME|PARAMET|PARAMETE|'
+                r'PARENT|PARSE-STATUS|PARTIAL-KEY|PASCAL|PASSWORD-FIELD|PATHNAME|PAUSE|'
+                r'PBE-HASH-ALGORITHM|PBE-HASH-ALG|PBE-HASH-ALGO|PBE-HASH-ALGOR|PBE-HASH-ALGORI|PBE-HASH-ALGORIT|PBE-HASH-ALGORITH|'
+                r'PBE-KEY-ROUNDS|PDBNAME|PERSISTENT|PERSIST|PERSISTE|PERSISTEN|'
+                r'PERSISTENT-CACHE-DISABLED|PFCOLOR|PFC|PFCO|PFCOL|PFCOLO|PIXELS|'
+                r'PIXELS-PER-COLUMN|PIXELS-PER-COL|PIXELS-PER-COLU|PIXELS-PER-COLUM|'
+                r'PIXELS-PER-ROW|POPUP-MENU|POPUP-M|POPUP-ME|POPUP-MEN|'
+                r'POPUP-ONLY|POPUP-O|POPUP-ON|POPUP-ONL|PORTRAIT|POSITION|'
+                r'PRECISION|PREFER-DATASET|PREPARED|PREPARE-STRING|'
+                r'PREPROCESS|PREPROC|PREPROCE|PREPROCES|'
+                r'PRESELECT|PRESEL|PRESELE|PRESELEC|PREV|PREV-COLUMN|'
+                r'PREV-SIBLING|'
+                r'PREV-TAB-ITEM|PREV-TAB-I|PREV-TAB-IT|PREV-TAB-ITE|'
+                r'PRIMARY|PRINTER|PRINTER-CONTROL-HANDLE|PRINTER-HDC|'
+                r'PRINTER-NAME|PRINTER-PORT|PRINTER-SETUP|PRIVATE|'
+                r'PRIVATE-DATA|PRIVATE-D|PRIVATE-DA|PRIVATE-DAT|'
+                r'PRIVILEGES|'
+                r'PROCEDURE|PROCE|PROCED|PROCEDU|PROCEDUR|'
+                r'PROCEDURE-CALL-TYPE|'
+                r'PROCESS|'
+                r'PROC-HANDLE|PROC-HA|PROC-HAN|PROC-HAND|PROC-HANDL|'
+                r'PROC-STATUS|PROC-ST|PROC-STA|PROC-STAT|PROC-STATU|'
+                r'proc-text|proc-text-buffer|'
+                r'PROFILER|PROGRAM-NAME|PROGRESS|'
+                r'PROGRESS-SOURCE|PROGRESS-S|PROGRESS-SO|PROGRESS-SOU|PROGRESS-SOUR|PROGRESS-SOURC|'
+                r'PROMPT|PROMPT-FOR|PROMPT-F|PROMPT-FO|PROMSGS|PROPATH|'
+                r'PROPERTY|PROTECTED|PROVERSION|PROVERS|PROVERSI|PROVERSIO|'
+                r'PROXY|PROXY-PASSWORD|PROXY-USERID|PUBLIC|PUBLIC-ID|'
+                r'PUBLISH|PUBLISHED-EVENTS|PUT|PUTBYTE|PUT-BYTE|PUT-DOUBLE|'
+                r'PUT-FLOAT|PUT-INT64|PUT-KEY-VALUE|PUT-KEY-VAL|PUT-KEY-VALU|PUT-LONG|'
+                r'PUT-SHORT|PUT-STRING|PUT-UNSIGNED-LONG|QUERY|QUERY-CLOSE|QUERY-OFF-END|'
+                r'QUERY-OPEN|QUERY-PREPARE|QUERY-TUNING|QUESTION|QUIT|QUOTER|'
+                r'RADIO-BUTTONS|RADIO-SET|RANDOM|RAW-TRANSFER|'
+                r'RCODE-INFORMATION|RCODE-INFO|RCODE-INFOR|RCODE-INFORM|RCODE-INFORMA|RCODE-INFORMAT|RCODE-INFORMATI|RCODE-INFORMATIO|'
+                r'READ-AVAILABLE|READ-EXACT-NUM|READ-FILE|READKEY|READ-ONLY|READ-XML|READ-XMLSCHEMA|'
+                r'REAL|RECORD-LENGTH|RECTANGLE|RECT|RECTA|RECTAN|RECTANG|RECTANGL|'
+                r'RECURSIVE|REFERENCE-ONLY|REFRESH|REFRESHABLE|REFRESH-AUDIT-POLICY|'
+                r'REGISTER-DOMAIN|RELEASE|REMOTE|REMOVE-EVENTS-PROCEDURE|REMOVE-SUPER-PROCEDURE|'
+                r'REPEAT|REPLACE|REPLACE-SELECTION-TEXT|REPOSITION|REPOSITION-BACKWARD|'
+                r'REPOSITION-FORWARD|REPOSITION-MODE|REPOSITION-TO-ROW|REPOSITION-TO-ROWID|'
+                r'REQUEST|RESET|RESIZABLE|RESIZA|RESIZAB|RESIZABL|RESIZE|RESTART-ROW|'
+                r'RESTART-ROWID|RETAIN|RETAIN-SHAPE|RETRY|RETRY-CANCEL|RETURN|'
+                r'RETURN-INSERTED|RETURN-INS|RETURN-INSE|RETURN-INSER|RETURN-INSERT|RETURN-INSERTE|'
+                r'RETURNS|RETURN-TO-START-DIR|RETURN-TO-START-DI|'
+                r'RETURN-VALUE|RETURN-VAL|RETURN-VALU|'
+                r'RETURN-VALUE-DATA-TYPE|REVERSE-FROM|REVERT|'
+                r'REVOKE|RGB-VALUE|RIGHT-ALIGNED|RETURN-ALIGN|RETURN-ALIGNE|'
+                r'RIGHT-TRIM|R-INDEX|ROLES|ROUND|ROUTINE-LEVEL|ROW|'
+                r'ROW-HEIGHT-CHARS|HEIGHT|ROW-HEIGHT-PIXELS|HEIGHT-P|ROW-MARKERS|'
+                r'ROW-OF|ROW-RESIZABLE|RULE|RUN|RUN-PROCEDURE|SAVE|SAVE-AS|'
+                r'SAVE-FILE|SAX-COMPLETE|SAX-COMPLE|SAX-COMPLET|SAX-PARSE|SAX-PARSE-FIRST|'
+                r'SAX-PARSE-NEXT|SAX-PARSER-ERROR|SAX-RUNNING|SAX-UNINITIALIZED|'
+                r'SAX-WRITE-BEGIN|SAX-WRITE-COMPLETE|SAX-WRITE-CONTENT|SAX-WRITE-ELEMENT|'
+                r'SAX-WRITE-ERROR|SAX-WRITE-IDLE|SAX-WRITER|SAX-WRITE-TAG|SCHEMA|'
+                r'SCHEMA-LOCATION|SCHEMA-MARSHAL|SCHEMA-PATH|SCREEN|SCREEN-IO|'
+                r'SCREEN-LINES|SCREEN-VALUE|SCREEN-VAL|SCREEN-VALU|SCROLL|SCROLLABLE|'
+                r'SCROLLBAR-HORIZONTAL|SCROLLBAR-H|SCROLLBAR-HO|SCROLLBAR-HOR|SCROLLBAR-HORI|SCROLLBAR-HORIZ|SCROLLBAR-HORIZO|SCROLLBAR-HORIZON|SCROLLBAR-HORIZONT|SCROLLBAR-HORIZONTA|'
+                r'SCROLL-BARS|'
+                r'SCROLLBAR-VERTICAL|SCROLLBAR-V|SCROLLBAR-VE|SCROLLBAR-VER|SCROLLBAR-VERT|SCROLLBAR-VERTI|SCROLLBAR-VERTIC|SCROLLBAR-VERTICA|'
+                r'SCROLL-DELTA|'
+                r'SCROLLED-ROW-POSITION|SCROLLED-ROW-POS|SCROLLED-ROW-POSI|SCROLLED-ROW-POSIT|SCROLLED-ROW-POSITI|SCROLLED-ROW-POSITIO|'
+                r'SCROLLING|SCROLL-OFFSET|SCROLL-TO-CURRENT-ROW|SCROLL-TO-ITEM|SCROLL-TO-I|SCROLL-TO-IT|SCROLL-TO-ITE|'
+                r'SCROLL-TO-SELECTED-ROW|SDBNAME|SEAL|SEAL-TIMESTAMP|SEARCH|SEARCH-SELF|SEARCH-TARGET|'
+                r'SECTION|SECURITY-POLICY|SEEK|SELECT|SELECTABLE|SELECT-ALL|'
+                r'SELECTED|SELECT-FOCUSED-ROW|SELECTION|SELECTION-END|SELECTION-LIST|'
+                r'SELECTION-START|SELECTION-TEXT|SELECT-NEXT-ROW|SELECT-PREV-ROW|'
+                r'SELECT-ROW|SELF|SEND|send-sql-statement|send-sql|SENSITIVE|'
+                r'SEPARATE-CONNECTION|SEPARATOR-FGCOLOR|SEPARATORS|SERVER|'
+                r'SERVER-CONNECTION-BOUND|SERVER-CONNECTION-BOUND-REQUEST|'
+                r'SERVER-CONNECTION-CONTEXT|SERVER-CONNECTION-ID|SERVER-OPERATING-MODE|'
+                r'SESSION|SESSION-ID|SET|SET-APPL-CONTEXT|SET-ATTR-CALL-TYPE|SET-ATTRIBUTE-NODE|'
+                r'SET-BLUE-VALUE|SET-BLUE|SET-BLUE-|SET-BLUE-V|SET-BLUE-VA|SET-BLUE-VAL|SET-BLUE-VALU|'
+                r'SET-BREAK|SET-BUFFERS|SET-CALLBACK|SET-CLIENT|SET-COMMIT|SET-CONTENTS|'
+                r'SET-CURRENT-VALUE|SET-DB-CLIENT|SET-DYNAMIC|SET-EVENT-MANAGER-OPTION|'
+                r'SET-GREEN-VALUE|SET-GREEN|SET-GREEN-|SET-GREEN-V|SET-GREEN-VA|SET-GREEN-VAL|SET-GREEN-VALU|'
+                r'SET-INPUT-SOURCE|SET-OPTION|SET-OUTPUT-DESTINATION|SET-PARAMETER|SET-POINTER-VALUE|'
+                r'SET-PROPERTY|SET-RED-VALUE|SET-RED|SET-RED-|SET-RED-V|SET-RED-VA|SET-RED-VAL|SET-RED-VALU|'
+                r'SET-REPOSITIONED-ROW|SET-RGB-VALUE|SET-ROLLBACK|SET-SELECTION|SET-SIZE|'
+                r'SET-SORT-ARROW|SETUSERID|SETUSER|SETUSERI|SET-WAIT-STATE|SHA1-DIGEST|SHARED|'
+                r'SHARE-LOCK|SHARE|SHARE-|SHARE-L|SHARE-LO|SHARE-LOC|SHOW-IN-TASKBAR|SHOW-STATS|SHOW-STAT|'
+                r'SIDE-LABEL-HANDLE|SIDE-LABEL-H|SIDE-LABEL-HA|SIDE-LABEL-HAN|SIDE-LABEL-HAND|SIDE-LABEL-HANDL|'
+                r'SIDE-LABELS|SIDE-LAB|SIDE-LABE|SIDE-LABEL|'
+                r'SILENT|SIMPLE|SINGLE|SIZE|'
+                r'SIZE-CHARS|SIZE-C|SIZE-CH|SIZE-CHA|SIZE-CHAR|'
+                r'SIZE-PIXELS|SIZE-P|SIZE-PI|SIZE-PIX|SIZE-PIXE|SIZE-PIXEL|SKIP|'
+                r'SKIP-DELETED-RECORD|SLIDER|SMALL-ICON|SMALLINT|SMALL-TITLE|SOME|SORT|'
+                r'SORT-ASCENDING|SORT-NUMBER|SOURCE|SOURCE-PROCEDURE|SPACE|SQL|SQRT|'
+                r'SSL-SERVER-NAME|STANDALONE|START|START-DOCUMENT|START-ELEMENT|START-MOVE|'
+                r'START-RESIZE|START-ROW-RESIZE|STATE-DETAIL|STATIC|STATUS|STATUS-AREA|STATUS-AREA-FONT|'
+                r'STDCALL|STOP|STOP-PARSING|STOPPED|STOPPE|'
+                r'STORED-PROCEDURE|STORED-PROC|STORED-PROCE|STORED-PROCED|STORED-PROCEDU|STORED-PROCEDUR|'
+                r'STREAM|STREAM-HANDLE|STREAM-IO|STRETCH-TO-FIT|STRICT|STRING|STRING-VALUE|STRING-XREF|'
+                r'SUB-AVERAGE|SUB-AVE|SUB-AVER|SUB-AVERA|SUB-AVERAG|'
+                r'SUB-COUNT|SUB-MAXIMUM|SUM-MAX|SUM-MAXI|SUM-MAXIM|SUM-MAXIMU|SUB-MENU|SUBSUB-|'
+                r'MINIMUM|SUB-MIN|SUBSCRIBE|SUBSTITUTE|SUBST|SUBSTI|SUBSTIT|SUBSTITU|SUBSTITUT|'
+                r'SUBSTRING|SUBSTR|SUBSTRI|SUBSTRIN|SUB-TOTAL|SUBTYPE|SUM|SUPER|SUPER-PROCEDURES|'
+                r'SUPPRESS-NAMESPACE-PROCESSING|'
+                r'SUPPRESS-WARNINGS|SUPPRESS-W|SUPPRESS-WA|SUPPRESS-WAR|SUPPRESS-WARN|SUPPRESS-WARNI|SUPPRESS-WARNIN|SUPPRESS-WARNING|'
+                r'SYMMETRIC-ENCRYPTION-ALGORITHM|SYMMETRIC-ENCRYPTION-IV|SYMMETRIC-ENCRYPTION-KEY|SYMMETRIC-SUPPORT|'
+                r'SYSTEM-ALERT-BOXES|SYSTEM-ALERT|SYSTEM-ALERT-|SYSTEM-ALERT-B|SYSTEM-ALERT-BO|SYSTEM-ALERT-BOX|SYSTEM-ALERT-BOXE|'
+                r'SYSTEM-DIALOG|SYSTEM-HELP|SYSTEM-ID|TABLE|TABLE-HANDLE|TABLE-NUMBER|TAB-POSITION|'
+                r'TAB-STOP|TARGET|TARGET-PROCEDURE|'
+                r'TEMP-DIRECTORY|TEMP-DIR|TEMP-DIRE|TEMP-DIREC|TEMP-DIRECT|TEMP-DIRECTO|TEMP-DIRECTOR|'
+                r'TEMP-TABLE|TEMP-TABLE-PREPARE|TERM|TERMINAL|TERM|TERMI|TERMIN|TERMINA|'
+                r'TERMINATE|TEXT|TEXT-CURSOR|TEXT-SEG-GROW|TEXT-SELECTED|THEN|'
+                r'THIS-OBJECT|THIS-PROCEDURE|THREE-D|THROW|THROUGH|THRU|TIC-MARKS|TIME|'
+                r'TIME-SOURCE|TITLE|'
+                r'TITLE-BGCOLOR|TITLE-BGC|TITLE-BGCO|TITLE-BGCOL|TITLE-BGCOLO|'
+                r'TITLE-DCOLOR|TITLE-DC|TITLE-DCO|TITLE-DCOL|TITLE-DCOLO|'
+                r'TITLE-FGCOLOR|TITLE-FGC|TITLE-FGCO|TITLE-FGCOL|TITLE-FGCOLO|'
+                r'TITLE-FONT|TITLE-FO|TITLE-FON|'
+                r'TO|TODAY|TOGGLE-BOX|TOOLTIP|TOOLTIPS|TOPIC|TOP-NAV-QUERY|TOP-ONLY|'
+                r'TO-ROWID|TOTAL|TRAILING|TRANS|TRANSACTION|TRANSACTION-MODE|'
+                r'TRANS-INIT-PROCEDURE|TRANSPARENT|TRIGGER|TRIGGERS|TRIM|'
+                r'TRUE|TRUNCATE|TRUNC|TRUNCA|TRUNCAT|TYPE|TYPE-OF|'
+                r'UNBOX|UNBUFFERED|UNBUFF|UNBUFFE|UNBUFFER|UNBUFFERE|'
+                r'UNDERLINE|UNDERL|UNDERLI|UNDERLIN|UNDO|'
+                r'UNFORMATTED|UNFORM|UNFORMA|UNFORMAT|UNFORMATT|UNFORMATTE|UNION|'
+                r'UNIQUE|UNIQUE-ID|UNIQUE-MATCH|UNIX|UNLESS-HIDDEN|UNLOAD|'
+                r'UNSIGNED-LONG|UNSUBSCRIBE|UP|UPDATE|UPDATE-ATTRIBUTE|'
+                r'URL|URL-DECODE|URL-ENCODE|URL-PASSWORD|URL-USERID|USE|'
+                r'USE-DICT-EXPS|USE-FILENAME|USE-INDEX|USER|USE-REVVIDEO|'
+                r'USERID|USER-ID|USE-TEXT|USE-UNDERLINE|USE-WIDGET-POOL|'
+                r'USING|V6DISPLAY|V6FRAME|VALIDATE|VALIDATE-EXPRESSION|'
+                r'VALIDATE-MESSAGE|VALIDATE-SEAL|VALIDATION-ENABLED|VALID-EVENT|'
+                r'VALID-HANDLE|VALID-OBJECT|VALUE|VALUE-CHANGED|VALUES|'
+                r'VARIABLE|VAR|VARI|VARIA|VARIAB|VARIABL|VERBOSE|'
+                r'VERSION|VERTICAL|VERT|VERTI|VERTIC|VERTICA|'
+                r'VIEW|VIEW-AS|VIEW-FIRST-COLUMN-ON-REOPEN|'
+                r'VIRTUAL-HEIGHT-CHARS|VIRTUAL-HEIGHT|VIRTUAL-HEIGHT-|VIRTUAL-HEIGHT-C|VIRTUAL-HEIGHT-CH|VIRTUAL-HEIGHT-CHA|VIRTUAL-HEIGHT-CHAR|'
+                r'VIRTUAL-HEIGHT-PIXELS|VIRTUAL-HEIGHT-P|VIRTUAL-HEIGHT-PI|VIRTUAL-HEIGHT-PIX|VIRTUAL-HEIGHT-PIXE|VIRTUAL-HEIGHT-PIXEL|'
+                r'VIRTUAL-WIDTH-CHARS|VIRTUAL-WIDTH|VIRTUAL-WIDTH-|VIRTUAL-WIDTH-C|VIRTUAL-WIDTH-CH|VIRTUAL-WIDTH-CHA|VIRTUAL-WIDTH-CHAR|'
+                r'VIRTUAL-WIDTH-PIXELS|VIRTUAL-WIDTH-P|VIRTUAL-WIDTH-PI|VIRTUAL-WIDTH-PIX|VIRTUAL-WIDTH-PIXE|VIRTUAL-WIDTH-PIXEL|'
+                r'VISIBLE|VOID|WAIT|WAIT-FOR|WARNING|WEB-CONTEXT|WEEKDAY|WHEN|'
+                r'WHERE|WHILE|WIDGET|'
+                r'WIDGET-ENTER|WIDGET-E|WIDGET-EN|WIDGET-ENT|WIDGET-ENTE|'
+                r'WIDGET-ID|'
+                r'WIDGET-LEAVE|WIDGET-L|WIDGET-LE|WIDGET-LEA|WIDGET-LEAV|'
+                r'WIDGET-POOL|WIDTH|'
+                r'WIDTH-CHARS|WIDTH|WIDTH-|WIDTH-C|WIDTH-CH|WIDTH-CHA|WIDTH-CHAR|'
+                r'WIDTH-PIXELS|WIDTH-P|WIDTH-PI|WIDTH-PIX|WIDTH-PIXE|WIDTH-PIXEL|'
+                r'WINDOW|'
+                r'WINDOW-MAXIMIZED|WINDOW-MAXIM|WINDOW-MAXIMI|WINDOW-MAXIMIZ|WINDOW-MAXIMIZE|'
+                r'WINDOW-MINIMIZED|WINDOW-MINIM|WINDOW-MINIMI|WINDOW-MINIMIZ|WINDOW-MINIMIZE|'
+                r'WINDOW-NAME|WINDOW-NORMAL|WINDOW-STATE|WINDOW-STA|WINDOW-STAT|'
+                r'WINDOW-SYSTEM|WITH|WORD-INDEX|WORD-WRAP|WORK-AREA-HEIGHT-PIXELS|'
+                r'WORK-AREA-WIDTH-PIXELS|WORK-AREA-X|WORK-AREA-Y|WORKFILE|'
+                r'WORK-TABLE|WORK-TAB|WORK-TABL|WRITE|WRITE-CDATA|WRITE-CHARACTERS|'
+                r'WRITE-COMMENT|WRITE-DATA-ELEMENT|WRITE-EMPTY-ELEMENT|WRITE-ENTITY-REF|'
+                r'WRITE-EXTERNAL-DTD|WRITE-FRAGMENT|WRITE-MESSAGE|'
+                r'WRITE-PROCESSING-INSTRUCTION|WRITE-STATUS|WRITE-XML|WRITE-XMLSCHEMA|'
+                r'X|XCODE|XML-DATA-TYPE|XML-NODE-TYPE|XML-SCHEMA-PATH|'
+                r'XML-SUPPRESS-NAMESPACE-PROCESSING|X-OF|XREF|'
+                r'XREF-XML|Y|YEAR|YEAR-OFFSET|YES|YES-NO|'
+                r'YES-NO-CANCEL|Y-OF)\s*($|(?=[^0-9a-z_\-]))')
+
+    tokens = {
+        'root': [
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'\{', Comment.Preproc, 'preprocessor'),
+            (r'\s*&.*', Comment.Preproc),
+            (r'0[xX][0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'(?i)(DEFINE|DEF|DEFI|DEFIN)\b', Keyword.Declaration),
+            (types, Keyword.Type),
+            (keywords, Name.Builtin),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r'\s+', Text),
+            (r'[+*/=-]', Operator),
+            (r'[.:()]', Punctuation),
+            (r'.', Name.Variable), # Lazy catch-all
+        ],
+        'comment': [
+            (r'[^*/]', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline)
+        ],
+        'preprocessor': [
+            (r'[^{}]', Comment.Preproc),
+            (r'{', Comment.Preproc, '#push'),
+            (r'}', Comment.Preproc, '#pop'),
+        ],
+    }
+
+
+class BroLexer(RegexLexer):
+    """
+    For `Bro <http://bro-ids.org/>`_ scripts.
+
+    *New in Pygments 1.5.*
+    """
+    name = 'Bro'
+    aliases = ['bro']
+    filenames = ['*.bro']
+
+    _hex = r'[0-9a-fA-F_]+'
+    _float = r'((\d*\.?\d+)|(\d+\.?\d*))([eE][-+]?\d+)?'
+    _h = r'[A-Za-z0-9][-A-Za-z0-9]*'
+
+    tokens = {
+        'root': [
+            # Whitespace
+            (r'^@.*?\n', Comment.Preproc),
+            (r'#.*?\n', Comment.Single),
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text),
+            # Keywords
+            (r'(add|alarm|break|case|const|continue|delete|do|else|enum|event'
+             r'|export|for|function|if|global|local|module|next'
+             r'|of|print|redef|return|schedule|type|when|while)\b', Keyword),
+            (r'(addr|any|bool|count|counter|double|file|int|interval|net'
+             r'|pattern|port|record|set|string|subnet|table|time|timer'
+             r'|vector)\b', Keyword.Type),
+            (r'(T|F)\b', Keyword.Constant),
+            (r'(&)((?:add|delete|expire)_func|attr|(create|read|write)_expire'
+             r'|default|disable_print_hook|raw_output|encrypt|group|log'
+             r'|mergeable|optional|persistent|priority|redef'
+             r'|rotate_(?:interval|size)|synchronized)\b', bygroups(Punctuation,
+                 Keyword)),
+            (r'\s+module\b', Keyword.Namespace),
+            # Addresses, ports and networks
+            (r'\d+/(tcp|udp|icmp|unknown)\b', Number),
+            (r'(\d+\.){3}\d+', Number),
+            (r'(' + _hex + r'){7}' + _hex, Number),
+            (r'0x' + _hex + r'(' + _hex + r'|:)*::(' + _hex + r'|:)*', Number),
+            (r'((\d+|:)(' + _hex + r'|:)*)?::(' + _hex + r'|:)*', Number),
+            (r'(\d+\.\d+\.|(\d+\.){2}\d+)', Number),
+            # Hostnames
+            (_h + r'(\.' + _h + r')+', String),
+            # Numeric
+            (_float + r'\s+(day|hr|min|sec|msec|usec)s?\b', Literal.Date),
+            (r'0[xX]' + _hex, Number.Hex),
+            (_float, Number.Float),
+            (r'\d+', Number.Integer),
+            (r'/', String.Regex, 'regex'),
+            (r'"', String, 'string'),
+            # Operators
+            (r'[!%*/+:<=>?~|-]', Operator),
+            (r'([-+=&|]{2}|[+=!><-]=)', Operator),
+            (r'(in|match)\b', Operator.Word),
+            (r'[{}()\[\]$.,;]', Punctuation),
+            # Identfier
+            (r'([_a-zA-Z]\w*)(::)', bygroups(Name, Name.Namespace)),
+            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name)
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'[^\\"\n]+', String),
+            (r'\\\n', String),
+            (r'\\', String)
+        ],
+        'regex': [
+            (r'/', String.Regex, '#pop'),
+            (r'\\[\\nt/]', String.Regex), # String.Escape is too intense here.
+            (r'[^\\/\n]+', String.Regex),
+            (r'\\\n', String.Regex),
+            (r'\\', String.Regex)
+        ]
+    }
+
+
+class MscgenLexer(RegexLexer):
+    """
+    For `Mscgen <http://www.mcternan.me.uk/mscgen/>`_ files.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'Mscgen'
+    aliases = ['mscgen', 'msc']
+    filenames = ['*.msc']
+
+    _var = r'([a-zA-Z0-9_]+|"(?:\\"|[^"])*")'
+
+    tokens = {
+        'root': [
+            (r'msc\b', Keyword.Type),
+            # Options
+            (r'(hscale|HSCALE|width|WIDTH|wordwraparcs|WORDWRAPARCS'
+             r'|arcgradient|ARCGRADIENT)\b', Name.Property),
+            # Operators
+            (r'(abox|ABOX|rbox|RBOX|box|BOX|note|NOTE)\b', Operator.Word),
+            (r'(\.|-|\|){3}', Keyword),
+            (r'(?:-|=|\.|:){2}'
+             r'|<<=>>|<->|<=>|<<>>|<:>'
+             r'|->|=>>|>>|=>|:>|-x|-X'
+             r'|<-|<<=|<<|<=|<:|x-|X-|=', Operator),
+            # Names
+            (r'\*', Name.Builtin),
+            (_var, Name.Variable),
+            # Other
+            (r'\[', Punctuation, 'attrs'),
+            (r'\{|\}|,|;', Punctuation),
+            include('comments')
+        ],
+        'attrs': [
+            (r'\]', Punctuation, '#pop'),
+            (_var + r'(\s*)(=)(\s*)' + _var,
+             bygroups(Name.Attribute, Text.Whitespace, Operator, Text.Whitespace,
+                      String)),
+            (r',', Punctuation),
+            include('comments')
+        ],
+        'comments': [
+            (r'(?://|#).*?\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+            (r'[ \t\r\n]+', Text.Whitespace)
+        ]
+    }
+
+
+def _rx_indent(level):
+    # Kconfig *always* interprets a tab as 8 spaces, so this is the default.
+    # Edit this if you are in an environment where KconfigLexer gets expanded
+    # input (tabs expanded to spaces) and the expansion tab width is != 8,
+    # e.g. in connection with Trac (trac.ini, [mimeviewer], tab_width).
+    # Value range here is 2 <= {tab_width} <= 8.
+    tab_width = 8
+    # Regex matching a given indentation {level}, assuming that indentation is
+    # a multiple of {tab_width}. In other cases there might be problems.
+    return r'(?:\t| {1,%s}\t| {%s}){%s}.*\n' % (tab_width-1, tab_width, level)
+
+
+class KconfigLexer(RegexLexer):
+    """
+    For Linux-style Kconfig files.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'Kconfig'
+    aliases = ['kconfig', 'menuconfig', 'linux-config', 'kernel-config']
+    # Adjust this if new kconfig file names appear in your environment
+    filenames = ['Kconfig', '*Config.in*', 'external.in*',
+                 'standard-modules.in']
+    mimetypes = ['text/x-kconfig']
+    # No re.MULTILINE, indentation-aware help text needs line-by-line handling
+    flags = 0
+
+    def call_indent(level):
+        # If indentation >= {level} is detected, enter state 'indent{level}'
+        return (_rx_indent(level), String.Doc, 'indent%s' % level)
+
+    def do_indent(level):
+        # Print paragraphs of indentation level >= {level} as String.Doc,
+        # ignoring blank lines. Then return to 'root' state.
+        return [
+            (_rx_indent(level), String.Doc),
+            (r'\s*\n', Text),
+            (r'', Generic, '#pop:2')
+        ]
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'#.*?\n', Comment.Single),
+            (r'(mainmenu|config|menuconfig|choice|endchoice|comment|menu|'
+             r'endmenu|visible if|if|endif|source|prompt|select|depends on|'
+             r'default|range|option)\b', Keyword),
+            (r'(---help---|help)[\t ]*\n', Keyword, 'help'),
+            (r'(bool|tristate|string|hex|int|defconfig_list|modules|env)\b',
+             Name.Builtin),
+            (r'[!=&|]', Operator),
+            (r'[()]', Punctuation),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String.Single),
+            (r'"(""|[^"])*"', String.Double),
+            (r'\S+', Text),
+        ],
+        # Help text is indented, multi-line and ends when a lower indentation
+        # level is detected.
+        'help': [
+            # Skip blank lines after help token, if any
+            (r'\s*\n', Text),
+            # Determine the first help line's indentation level heuristically(!).
+            # Attention: this is not perfect, but works for 99% of "normal"
+            # indentation schemes up to a max. indentation level of 7.
+            call_indent(7),
+            call_indent(6),
+            call_indent(5),
+            call_indent(4),
+            call_indent(3),
+            call_indent(2),
+            call_indent(1),
+            ('', Text, '#pop'),  # for incomplete help sections without text
+        ],
+        # Handle text for indentation levels 7 to 1
+        'indent7': do_indent(7),
+        'indent6': do_indent(6),
+        'indent5': do_indent(5),
+        'indent4': do_indent(4),
+        'indent3': do_indent(3),
+        'indent2': do_indent(2),
+        'indent1': do_indent(1),
+    }
+
+
+class VGLLexer(RegexLexer):
+    """
+    For `SampleManager VGL <http://www.thermoscientific.com/samplemanager>`_
+    source code.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'VGL'
+    aliases = ['vgl']
+    filenames = ['*.rpf']
+
+    flags = re.MULTILINE | re.DOTALL | re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'\{[^\}]*\}', Comment.Multiline),
+            (r'declare', Keyword.Constant),
+            (r'(if|then|else|endif|while|do|endwhile|and|or|prompt|object'
+             r'|create|on|line|with|global|routine|value|endroutine|constant'
+             r'|global|set|join|library|compile_option|file|exists|create|copy'
+             r'|delete|enable|windows|name|notprotected)(?! *[=<>.,()])',
+             Keyword),
+            (r'(true|false|null|empty|error|locked)', Keyword.Constant),
+            (r'[~\^\*\#!%&\[\]\(\)<>\|+=:;,./?-]', Operator),
+            (r'"[^"]*"', String),
+            (r'(\.)([a-z_\$][a-z0-9_\$]*)', bygroups(Operator, Name.Attribute)),
+            (r'[0-9][0-9]*(\.[0-9]+(e[+\-]?[0-9]+)?)?', Number),
+            (r'[a-z_\$][a-z0-9_\$]*', Name),
+            (r'[\r\n]+', Text),
+            (r'\s+', Text)
+        ]
     }

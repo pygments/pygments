@@ -5,7 +5,7 @@
 
     Lexers for functional languages.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -15,10 +15,571 @@ from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic, Error
 
-
-__all__ = ['SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
+__all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'LiterateHaskellLexer', 'SMLLexer', 'OcamlLexer', 'ErlangLexer',
-           'ErlangShellLexer']
+           'ErlangShellLexer', 'OpaLexer', 'CoqLexer', 'NewLispLexer',
+           'ElixirLexer', 'ElixirConsoleLexer']
+
+
+class RacketLexer(RegexLexer):
+    """
+    Lexer for Racket source code.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'Racket'
+    aliases = ['racket', 'rkt']
+    filenames = ['*.rkt', '*.rktl']
+    mimetypes = ['text/x-racket', 'application/x-racket']
+
+    # From namespace-mapped-symbols
+    keywords = [
+        '#%app', '#%datum', '#%expression', '#%module-begin',
+        '#%plain-app', '#%plain-lambda', '#%plain-module-begin',
+        '#%provide', '#%require', '#%stratified-body', '#%top',
+        '#%top-interaction', '#%variable-reference', '...', 'and', 'begin',
+        'begin-for-syntax', 'begin0', 'case', 'case-lambda', 'cond',
+        'datum->syntax-object', 'define', 'define-for-syntax',
+        'define-struct', 'define-syntax', 'define-syntax-rule',
+        'define-syntaxes', 'define-values', 'define-values-for-syntax',
+        'delay', 'do', 'expand-path', 'fluid-let', 'hash-table-copy',
+        'hash-table-count', 'hash-table-for-each', 'hash-table-get',
+        'hash-table-iterate-first', 'hash-table-iterate-key',
+        'hash-table-iterate-next', 'hash-table-iterate-value',
+        'hash-table-map', 'hash-table-put!', 'hash-table-remove!',
+        'hash-table?', 'if', 'lambda', 'let', 'let*', 'let*-values',
+        'let-struct', 'let-syntax', 'let-syntaxes', 'let-values', 'let/cc',
+        'let/ec', 'letrec', 'letrec-syntax', 'letrec-syntaxes',
+        'letrec-syntaxes+values', 'letrec-values', 'list-immutable',
+        'make-hash-table', 'make-immutable-hash-table', 'make-namespace',
+        'module', 'module-identifier=?', 'module-label-identifier=?',
+        'module-template-identifier=?', 'module-transformer-identifier=?',
+        'namespace-transformer-require', 'or', 'parameterize',
+        'parameterize*', 'parameterize-break', 'provide',
+        'provide-for-label', 'provide-for-syntax', 'quasiquote',
+        'quasisyntax', 'quasisyntax/loc', 'quote', 'quote-syntax',
+        'quote-syntax/prune', 'require', 'require-for-label',
+        'require-for-syntax', 'require-for-template', 'set!',
+        'set!-values', 'syntax', 'syntax-case', 'syntax-case*',
+        'syntax-id-rules', 'syntax-object->datum', 'syntax-rules',
+        'syntax/loc', 'time', 'transcript-off', 'transcript-on', 'unless',
+        'unquote', 'unquote-splicing', 'unsyntax', 'unsyntax-splicing',
+        'when', 'with-continuation-mark', 'with-handlers',
+        'with-handlers*', 'with-syntax', 'λ'
+    ]
+
+    # From namespace-mapped-symbols
+    builtins = [
+        '*', '+', '-', '/', '<', '<=', '=', '>', '>=',
+        'abort-current-continuation', 'abs', 'absolute-path?', 'acos',
+        'add1', 'alarm-evt', 'always-evt', 'andmap', 'angle', 'append',
+        'apply', 'arithmetic-shift', 'arity-at-least',
+        'arity-at-least-value', 'arity-at-least?', 'asin', 'assoc', 'assq',
+        'assv', 'atan', 'banner', 'bitwise-and', 'bitwise-bit-field',
+        'bitwise-bit-set?', 'bitwise-ior', 'bitwise-not', 'bitwise-xor',
+        'boolean?', 'bound-identifier=?', 'box', 'box-immutable', 'box?',
+        'break-enabled', 'break-thread', 'build-path',
+        'build-path/convention-type', 'byte-pregexp', 'byte-pregexp?',
+        'byte-ready?', 'byte-regexp', 'byte-regexp?', 'byte?', 'bytes',
+        'bytes->immutable-bytes', 'bytes->list', 'bytes->path',
+        'bytes->path-element', 'bytes->string/latin-1',
+        'bytes->string/locale', 'bytes->string/utf-8', 'bytes-append',
+        'bytes-close-converter', 'bytes-convert', 'bytes-convert-end',
+        'bytes-converter?', 'bytes-copy', 'bytes-copy!', 'bytes-fill!',
+        'bytes-length', 'bytes-open-converter', 'bytes-ref', 'bytes-set!',
+        'bytes-utf-8-index', 'bytes-utf-8-length', 'bytes-utf-8-ref',
+        'bytes<?', 'bytes=?', 'bytes>?', 'bytes?', 'caaaar', 'caaadr',
+        'caaar', 'caadar', 'caaddr', 'caadr', 'caar', 'cadaar', 'cadadr',
+        'cadar', 'caddar', 'cadddr', 'caddr', 'cadr',
+        'call-in-nested-thread', 'call-with-break-parameterization',
+        'call-with-composable-continuation',
+        'call-with-continuation-barrier', 'call-with-continuation-prompt',
+        'call-with-current-continuation', 'call-with-escape-continuation',
+        'call-with-exception-handler',
+        'call-with-immediate-continuation-mark', 'call-with-input-file',
+        'call-with-output-file', 'call-with-parameterization',
+        'call-with-semaphore', 'call-with-semaphore/enable-break',
+        'call-with-values', 'call/cc', 'call/ec', 'car', 'cdaaar',
+        'cdaadr', 'cdaar', 'cdadar', 'cdaddr', 'cdadr', 'cdar', 'cddaar',
+        'cddadr', 'cddar', 'cdddar', 'cddddr', 'cdddr', 'cddr', 'cdr',
+        'ceiling', 'channel-get', 'channel-put', 'channel-put-evt',
+        'channel-try-get', 'channel?', 'chaperone-box', 'chaperone-evt',
+        'chaperone-hash', 'chaperone-of?', 'chaperone-procedure',
+        'chaperone-struct', 'chaperone-struct-type', 'chaperone-vector',
+        'chaperone?', 'char->integer', 'char-alphabetic?', 'char-blank?',
+        'char-ci<=?', 'char-ci<?', 'char-ci=?', 'char-ci>=?', 'char-ci>?',
+        'char-downcase', 'char-foldcase', 'char-general-category',
+        'char-graphic?', 'char-iso-control?', 'char-lower-case?',
+        'char-numeric?', 'char-punctuation?', 'char-ready?',
+        'char-symbolic?', 'char-title-case?', 'char-titlecase',
+        'char-upcase', 'char-upper-case?', 'char-utf-8-length',
+        'char-whitespace?', 'char<=?', 'char<?', 'char=?', 'char>=?',
+        'char>?', 'char?', 'check-duplicate-identifier',
+        'checked-procedure-check-and-extract', 'choice-evt',
+        'cleanse-path', 'close-input-port', 'close-output-port',
+        'collect-garbage', 'collection-file-path', 'collection-path',
+        'compile', 'compile-allow-set!-undefined',
+        'compile-context-preservation-enabled',
+        'compile-enforce-module-constants', 'compile-syntax',
+        'compiled-expression?', 'compiled-module-expression?',
+        'complete-path?', 'complex?', 'cons',
+        'continuation-mark-set->context', 'continuation-mark-set->list',
+        'continuation-mark-set->list*', 'continuation-mark-set-first',
+        'continuation-mark-set?', 'continuation-marks',
+        'continuation-prompt-available?', 'continuation-prompt-tag?',
+        'continuation?', 'copy-file', 'cos',
+        'current-break-parameterization', 'current-code-inspector',
+        'current-command-line-arguments', 'current-compile',
+        'current-continuation-marks', 'current-custodian',
+        'current-directory', 'current-drive', 'current-error-port',
+        'current-eval', 'current-evt-pseudo-random-generator',
+        'current-gc-milliseconds', 'current-get-interaction-input-port',
+        'current-inexact-milliseconds', 'current-input-port',
+        'current-inspector', 'current-library-collection-paths',
+        'current-load', 'current-load-extension',
+        'current-load-relative-directory', 'current-load/use-compiled',
+        'current-locale', 'current-memory-use', 'current-milliseconds',
+        'current-module-declare-name', 'current-module-declare-source',
+        'current-module-name-resolver', 'current-namespace',
+        'current-output-port', 'current-parameterization',
+        'current-preserved-thread-cell-values', 'current-print',
+        'current-process-milliseconds', 'current-prompt-read',
+        'current-pseudo-random-generator', 'current-read-interaction',
+        'current-reader-guard', 'current-readtable', 'current-seconds',
+        'current-security-guard', 'current-subprocess-custodian-mode',
+        'current-thread', 'current-thread-group',
+        'current-thread-initial-stack-size',
+        'current-write-relative-directory', 'custodian-box-value',
+        'custodian-box?', 'custodian-limit-memory',
+        'custodian-managed-list', 'custodian-memory-accounting-available?',
+        'custodian-require-memory', 'custodian-shutdown-all', 'custodian?',
+        'custom-print-quotable-accessor', 'custom-print-quotable?',
+        'custom-write-accessor', 'custom-write?', 'date', 'date*',
+        'date*-nanosecond', 'date*-time-zone-name', 'date*?', 'date-day',
+        'date-dst?', 'date-hour', 'date-minute', 'date-month',
+        'date-second', 'date-time-zone-offset', 'date-week-day',
+        'date-year', 'date-year-day', 'date?', 'datum-intern-literal',
+        'default-continuation-prompt-tag', 'delete-directory',
+        'delete-file', 'denominator', 'directory-exists?',
+        'directory-list', 'display', 'displayln', 'dump-memory-stats',
+        'dynamic-require', 'dynamic-require-for-syntax', 'dynamic-wind',
+        'eof', 'eof-object?', 'ephemeron-value', 'ephemeron?', 'eprintf',
+        'eq-hash-code', 'eq?', 'equal-hash-code',
+        'equal-secondary-hash-code', 'equal?', 'equal?/recur',
+        'eqv-hash-code', 'eqv?', 'error', 'error-display-handler',
+        'error-escape-handler', 'error-print-context-length',
+        'error-print-source-location', 'error-print-width',
+        'error-value->string-handler', 'eval', 'eval-jit-enabled',
+        'eval-syntax', 'even?', 'evt?', 'exact->inexact', 'exact-integer?',
+        'exact-nonnegative-integer?', 'exact-positive-integer?', 'exact?',
+        'executable-yield-handler', 'exit', 'exit-handler', 'exn',
+        'exn-continuation-marks', 'exn-message', 'exn:break',
+        'exn:break-continuation', 'exn:break?', 'exn:fail',
+        'exn:fail:contract', 'exn:fail:contract:arity',
+        'exn:fail:contract:arity?', 'exn:fail:contract:continuation',
+        'exn:fail:contract:continuation?',
+        'exn:fail:contract:divide-by-zero',
+        'exn:fail:contract:divide-by-zero?',
+        'exn:fail:contract:non-fixnum-result',
+        'exn:fail:contract:non-fixnum-result?',
+        'exn:fail:contract:variable', 'exn:fail:contract:variable-id',
+        'exn:fail:contract:variable?', 'exn:fail:contract?',
+        'exn:fail:filesystem', 'exn:fail:filesystem:exists',
+        'exn:fail:filesystem:exists?', 'exn:fail:filesystem:version',
+        'exn:fail:filesystem:version?', 'exn:fail:filesystem?',
+        'exn:fail:network', 'exn:fail:network?', 'exn:fail:out-of-memory',
+        'exn:fail:out-of-memory?', 'exn:fail:read',
+        'exn:fail:read-srclocs', 'exn:fail:read:eof', 'exn:fail:read:eof?',
+        'exn:fail:read:non-char', 'exn:fail:read:non-char?',
+        'exn:fail:read?', 'exn:fail:syntax', 'exn:fail:syntax-exprs',
+        'exn:fail:syntax:unbound', 'exn:fail:syntax:unbound?',
+        'exn:fail:syntax?', 'exn:fail:unsupported',
+        'exn:fail:unsupported?', 'exn:fail:user', 'exn:fail:user?',
+        'exn:fail?', 'exn:srclocs-accessor', 'exn:srclocs?', 'exn?', 'exp',
+        'expand', 'expand-once', 'expand-syntax', 'expand-syntax-once',
+        'expand-syntax-to-top-form', 'expand-to-top-form',
+        'expand-user-path', 'expt', 'file-exists?',
+        'file-or-directory-identity', 'file-or-directory-modify-seconds',
+        'file-or-directory-permissions', 'file-position', 'file-size',
+        'file-stream-buffer-mode', 'file-stream-port?',
+        'filesystem-root-list', 'find-executable-path',
+        'find-library-collection-paths', 'find-system-path', 'fixnum?',
+        'floating-point-bytes->real', 'flonum?', 'floor', 'flush-output',
+        'for-each', 'force', 'format', 'fprintf', 'free-identifier=?',
+        'gcd', 'generate-temporaries', 'gensym', 'get-output-bytes',
+        'get-output-string', 'getenv', 'global-port-print-handler',
+        'guard-evt', 'handle-evt', 'handle-evt?', 'hash', 'hash-equal?',
+        'hash-eqv?', 'hash-has-key?', 'hash-placeholder?', 'hash-ref!',
+        'hasheq', 'hasheqv', 'identifier-binding',
+        'identifier-label-binding', 'identifier-prune-lexical-context',
+        'identifier-prune-to-source-module',
+        'identifier-remove-from-definition-context',
+        'identifier-template-binding', 'identifier-transformer-binding',
+        'identifier?', 'imag-part', 'immutable?', 'impersonate-box',
+        'impersonate-hash', 'impersonate-procedure', 'impersonate-struct',
+        'impersonate-vector', 'impersonator-of?',
+        'impersonator-prop:application-mark',
+        'impersonator-property-accessor-procedure?',
+        'impersonator-property?', 'impersonator?', 'inexact->exact',
+        'inexact-real?', 'inexact?', 'input-port?', 'inspector?',
+        'integer->char', 'integer->integer-bytes',
+        'integer-bytes->integer', 'integer-length', 'integer-sqrt',
+        'integer-sqrt/remainder', 'integer?',
+        'internal-definition-context-seal', 'internal-definition-context?',
+        'keyword->string', 'keyword<?', 'keyword?', 'kill-thread', 'lcm',
+        'length', 'liberal-define-context?', 'link-exists?', 'list',
+        'list*', 'list->bytes', 'list->string', 'list->vector', 'list-ref',
+        'list-tail', 'list?', 'load', 'load-extension',
+        'load-on-demand-enabled', 'load-relative',
+        'load-relative-extension', 'load/cd', 'load/use-compiled',
+        'local-expand', 'local-expand/capture-lifts',
+        'local-transformer-expand',
+        'local-transformer-expand/capture-lifts', 'locale-string-encoding',
+        'log', 'magnitude', 'make-arity-at-least', 'make-bytes',
+        'make-channel', 'make-continuation-prompt-tag', 'make-custodian',
+        'make-custodian-box', 'make-date', 'make-date*',
+        'make-derived-parameter', 'make-directory', 'make-ephemeron',
+        'make-exn', 'make-exn:break', 'make-exn:fail',
+        'make-exn:fail:contract', 'make-exn:fail:contract:arity',
+        'make-exn:fail:contract:continuation',
+        'make-exn:fail:contract:divide-by-zero',
+        'make-exn:fail:contract:non-fixnum-result',
+        'make-exn:fail:contract:variable', 'make-exn:fail:filesystem',
+        'make-exn:fail:filesystem:exists',
+        'make-exn:fail:filesystem:version', 'make-exn:fail:network',
+        'make-exn:fail:out-of-memory', 'make-exn:fail:read',
+        'make-exn:fail:read:eof', 'make-exn:fail:read:non-char',
+        'make-exn:fail:syntax', 'make-exn:fail:syntax:unbound',
+        'make-exn:fail:unsupported', 'make-exn:fail:user',
+        'make-file-or-directory-link', 'make-hash-placeholder',
+        'make-hasheq-placeholder', 'make-hasheqv',
+        'make-hasheqv-placeholder', 'make-immutable-hasheqv',
+        'make-impersonator-property', 'make-input-port', 'make-inspector',
+        'make-known-char-range-list', 'make-output-port', 'make-parameter',
+        'make-pipe', 'make-placeholder', 'make-polar',
+        'make-prefab-struct', 'make-pseudo-random-generator',
+        'make-reader-graph', 'make-readtable', 'make-rectangular',
+        'make-rename-transformer', 'make-resolved-module-path',
+        'make-security-guard', 'make-semaphore', 'make-set!-transformer',
+        'make-shared-bytes', 'make-sibling-inspector',
+        'make-special-comment', 'make-srcloc', 'make-string',
+        'make-struct-field-accessor', 'make-struct-field-mutator',
+        'make-struct-type', 'make-struct-type-property',
+        'make-syntax-delta-introducer', 'make-syntax-introducer',
+        'make-thread-cell', 'make-thread-group', 'make-vector',
+        'make-weak-box', 'make-weak-hasheqv', 'make-will-executor', 'map',
+        'max', 'mcar', 'mcdr', 'mcons', 'member', 'memq', 'memv', 'min',
+        'module->exports', 'module->imports', 'module->language-info',
+        'module->namespace', 'module-compiled-exports',
+        'module-compiled-imports', 'module-compiled-language-info',
+        'module-compiled-name', 'module-path-index-join',
+        'module-path-index-resolve', 'module-path-index-split',
+        'module-path-index?', 'module-path?', 'module-predefined?',
+        'module-provide-protected?', 'modulo', 'mpair?', 'nack-guard-evt',
+        'namespace-attach-module', 'namespace-attach-module-declaration',
+        'namespace-base-phase', 'namespace-mapped-symbols',
+        'namespace-module-identifier', 'namespace-module-registry',
+        'namespace-require', 'namespace-require/constant',
+        'namespace-require/copy', 'namespace-require/expansion-time',
+        'namespace-set-variable-value!', 'namespace-symbol->identifier',
+        'namespace-syntax-introduce', 'namespace-undefine-variable!',
+        'namespace-unprotect-module', 'namespace-variable-value',
+        'namespace?', 'negative?', 'never-evt', 'newline',
+        'normal-case-path', 'not', 'null', 'null?', 'number->string',
+        'number?', 'numerator', 'object-name', 'odd?', 'open-input-bytes',
+        'open-input-file', 'open-input-output-file', 'open-input-string',
+        'open-output-bytes', 'open-output-file', 'open-output-string',
+        'ormap', 'output-port?', 'pair?', 'parameter-procedure=?',
+        'parameter?', 'parameterization?', 'path->bytes',
+        'path->complete-path', 'path->directory-path', 'path->string',
+        'path-add-suffix', 'path-convention-type', 'path-element->bytes',
+        'path-element->string', 'path-for-some-system?',
+        'path-list-string->path-list', 'path-replace-suffix',
+        'path-string?', 'path?', 'peek-byte', 'peek-byte-or-special',
+        'peek-bytes', 'peek-bytes!', 'peek-bytes-avail!',
+        'peek-bytes-avail!*', 'peek-bytes-avail!/enable-break',
+        'peek-char', 'peek-char-or-special', 'peek-string', 'peek-string!',
+        'pipe-content-length', 'placeholder-get', 'placeholder-set!',
+        'placeholder?', 'poll-guard-evt', 'port-closed-evt',
+        'port-closed?', 'port-commit-peeked', 'port-count-lines!',
+        'port-count-lines-enabled', 'port-display-handler',
+        'port-file-identity', 'port-file-unlock', 'port-next-location',
+        'port-print-handler', 'port-progress-evt',
+        'port-provides-progress-evts?', 'port-read-handler',
+        'port-try-file-lock?', 'port-write-handler', 'port-writes-atomic?',
+        'port-writes-special?', 'port?', 'positive?',
+        'prefab-key->struct-type', 'prefab-struct-key', 'pregexp',
+        'pregexp?', 'primitive-closure?', 'primitive-result-arity',
+        'primitive?', 'print', 'print-as-expression',
+        'print-boolean-long-form', 'print-box', 'print-graph',
+        'print-hash-table', 'print-mpair-curly-braces',
+        'print-pair-curly-braces', 'print-reader-abbreviations',
+        'print-struct', 'print-syntax-width', 'print-unreadable',
+        'print-vector-length', 'printf', 'procedure->method',
+        'procedure-arity', 'procedure-arity-includes?', 'procedure-arity?',
+        'procedure-closure-contents-eq?', 'procedure-extract-target',
+        'procedure-reduce-arity', 'procedure-rename',
+        'procedure-struct-type?', 'procedure?', 'promise?',
+        'prop:arity-string', 'prop:checked-procedure',
+        'prop:custom-print-quotable', 'prop:custom-write',
+        'prop:equal+hash', 'prop:evt', 'prop:exn:srclocs',
+        'prop:impersonator-of', 'prop:input-port',
+        'prop:liberal-define-context', 'prop:output-port',
+        'prop:procedure', 'prop:rename-transformer',
+        'prop:set!-transformer', 'pseudo-random-generator->vector',
+        'pseudo-random-generator-vector?', 'pseudo-random-generator?',
+        'putenv', 'quotient', 'quotient/remainder', 'raise',
+        'raise-arity-error', 'raise-mismatch-error', 'raise-syntax-error',
+        'raise-type-error', 'raise-user-error', 'random', 'random-seed',
+        'rational?', 'rationalize', 'read', 'read-accept-bar-quote',
+        'read-accept-box', 'read-accept-compiled', 'read-accept-dot',
+        'read-accept-graph', 'read-accept-infix-dot', 'read-accept-lang',
+        'read-accept-quasiquote', 'read-accept-reader', 'read-byte',
+        'read-byte-or-special', 'read-bytes', 'read-bytes!',
+        'read-bytes-avail!', 'read-bytes-avail!*',
+        'read-bytes-avail!/enable-break', 'read-bytes-line',
+        'read-case-sensitive', 'read-char', 'read-char-or-special',
+        'read-curly-brace-as-paren', 'read-decimal-as-inexact',
+        'read-eval-print-loop', 'read-language', 'read-line',
+        'read-on-demand-source', 'read-square-bracket-as-paren',
+        'read-string', 'read-string!', 'read-syntax',
+        'read-syntax/recursive', 'read/recursive', 'readtable-mapping',
+        'readtable?', 'real->double-flonum', 'real->floating-point-bytes',
+        'real->single-flonum', 'real-part', 'real?', 'regexp',
+        'regexp-match', 'regexp-match-peek', 'regexp-match-peek-immediate',
+        'regexp-match-peek-positions',
+        'regexp-match-peek-positions-immediate',
+        'regexp-match-peek-positions-immediate/end',
+        'regexp-match-peek-positions/end', 'regexp-match-positions',
+        'regexp-match-positions/end', 'regexp-match/end', 'regexp-match?',
+        'regexp-max-lookbehind', 'regexp-replace', 'regexp-replace*',
+        'regexp?', 'relative-path?', 'remainder',
+        'rename-file-or-directory', 'rename-transformer-target',
+        'rename-transformer?', 'resolve-path', 'resolved-module-path-name',
+        'resolved-module-path?', 'reverse', 'round', 'seconds->date',
+        'security-guard?', 'semaphore-peek-evt', 'semaphore-post',
+        'semaphore-try-wait?', 'semaphore-wait',
+        'semaphore-wait/enable-break', 'semaphore?',
+        'set!-transformer-procedure', 'set!-transformer?', 'set-box!',
+        'set-mcar!', 'set-mcdr!', 'set-port-next-location!',
+        'shared-bytes', 'shell-execute', 'simplify-path', 'sin',
+        'single-flonum?', 'sleep', 'special-comment-value',
+        'special-comment?', 'split-path', 'sqrt', 'srcloc',
+        'srcloc-column', 'srcloc-line', 'srcloc-position', 'srcloc-source',
+        'srcloc-span', 'srcloc?', 'string', 'string->bytes/latin-1',
+        'string->bytes/locale', 'string->bytes/utf-8',
+        'string->immutable-string', 'string->keyword', 'string->list',
+        'string->number', 'string->path', 'string->path-element',
+        'string->symbol', 'string->uninterned-symbol',
+        'string->unreadable-symbol', 'string-append', 'string-ci<=?',
+        'string-ci<?', 'string-ci=?', 'string-ci>=?', 'string-ci>?',
+        'string-copy', 'string-copy!', 'string-downcase', 'string-fill!',
+        'string-foldcase', 'string-length', 'string-locale-ci<?',
+        'string-locale-ci=?', 'string-locale-ci>?',
+        'string-locale-downcase', 'string-locale-upcase',
+        'string-locale<?', 'string-locale=?', 'string-locale>?',
+        'string-normalize-nfc', 'string-normalize-nfd',
+        'string-normalize-nfkc', 'string-normalize-nfkd', 'string-ref',
+        'string-set!', 'string-titlecase', 'string-upcase',
+        'string-utf-8-length', 'string<=?', 'string<?', 'string=?',
+        'string>=?', 'string>?', 'string?', 'struct->vector',
+        'struct-accessor-procedure?', 'struct-constructor-procedure?',
+        'struct-info', 'struct-mutator-procedure?',
+        'struct-predicate-procedure?', 'struct-type-info',
+        'struct-type-make-constructor', 'struct-type-make-predicate',
+        'struct-type-property-accessor-procedure?',
+        'struct-type-property?', 'struct-type?', 'struct:arity-at-least',
+        'struct:date', 'struct:date*', 'struct:exn', 'struct:exn:break',
+        'struct:exn:fail', 'struct:exn:fail:contract',
+        'struct:exn:fail:contract:arity',
+        'struct:exn:fail:contract:continuation',
+        'struct:exn:fail:contract:divide-by-zero',
+        'struct:exn:fail:contract:non-fixnum-result',
+        'struct:exn:fail:contract:variable', 'struct:exn:fail:filesystem',
+        'struct:exn:fail:filesystem:exists',
+        'struct:exn:fail:filesystem:version', 'struct:exn:fail:network',
+        'struct:exn:fail:out-of-memory', 'struct:exn:fail:read',
+        'struct:exn:fail:read:eof', 'struct:exn:fail:read:non-char',
+        'struct:exn:fail:syntax', 'struct:exn:fail:syntax:unbound',
+        'struct:exn:fail:unsupported', 'struct:exn:fail:user',
+        'struct:srcloc', 'struct?', 'sub1', 'subbytes', 'subprocess',
+        'subprocess-group-enabled', 'subprocess-kill', 'subprocess-pid',
+        'subprocess-status', 'subprocess-wait', 'subprocess?', 'substring',
+        'symbol->string', 'symbol-interned?', 'symbol-unreadable?',
+        'symbol?', 'sync', 'sync/enable-break', 'sync/timeout',
+        'sync/timeout/enable-break', 'syntax->list', 'syntax-arm',
+        'syntax-column', 'syntax-disarm', 'syntax-e', 'syntax-line',
+        'syntax-local-bind-syntaxes', 'syntax-local-certifier',
+        'syntax-local-context', 'syntax-local-expand-expression',
+        'syntax-local-get-shadower', 'syntax-local-introduce',
+        'syntax-local-lift-context', 'syntax-local-lift-expression',
+        'syntax-local-lift-module-end-declaration',
+        'syntax-local-lift-provide', 'syntax-local-lift-require',
+        'syntax-local-lift-values-expression',
+        'syntax-local-make-definition-context',
+        'syntax-local-make-delta-introducer',
+        'syntax-local-module-defined-identifiers',
+        'syntax-local-module-exports',
+        'syntax-local-module-required-identifiers', 'syntax-local-name',
+        'syntax-local-phase-level',
+        'syntax-local-transforming-module-provides?', 'syntax-local-value',
+        'syntax-local-value/immediate', 'syntax-original?',
+        'syntax-position', 'syntax-property',
+        'syntax-property-symbol-keys', 'syntax-protect', 'syntax-rearm',
+        'syntax-recertify', 'syntax-shift-phase-level', 'syntax-source',
+        'syntax-source-module', 'syntax-span', 'syntax-taint',
+        'syntax-tainted?', 'syntax-track-origin',
+        'syntax-transforming-module-expression?', 'syntax-transforming?',
+        'syntax?', 'system-big-endian?', 'system-idle-evt',
+        'system-language+country', 'system-library-subpath',
+        'system-path-convention-type', 'system-type', 'tan',
+        'tcp-abandon-port', 'tcp-accept', 'tcp-accept-evt',
+        'tcp-accept-ready?', 'tcp-accept/enable-break', 'tcp-addresses',
+        'tcp-close', 'tcp-connect', 'tcp-connect/enable-break',
+        'tcp-listen', 'tcp-listener?', 'tcp-port?', 'terminal-port?',
+        'thread', 'thread-cell-ref', 'thread-cell-set!', 'thread-cell?',
+        'thread-dead-evt', 'thread-dead?', 'thread-group?',
+        'thread-resume', 'thread-resume-evt', 'thread-rewind-receive',
+        'thread-running?', 'thread-suspend', 'thread-suspend-evt',
+        'thread-wait', 'thread/suspend-to-kill', 'thread?', 'time-apply',
+        'truncate', 'udp-addresses', 'udp-bind!', 'udp-bound?',
+        'udp-close', 'udp-connect!', 'udp-connected?', 'udp-open-socket',
+        'udp-receive!', 'udp-receive!*', 'udp-receive!-evt',
+        'udp-receive!/enable-break', 'udp-receive-ready-evt', 'udp-send',
+        'udp-send*', 'udp-send-evt', 'udp-send-ready-evt', 'udp-send-to',
+        'udp-send-to*', 'udp-send-to-evt', 'udp-send-to/enable-break',
+        'udp-send/enable-break', 'udp?', 'unbox',
+        'uncaught-exception-handler', 'use-collection-link-paths',
+        'use-compiled-file-paths', 'use-user-specific-search-paths',
+        'values', 'variable-reference->empty-namespace',
+        'variable-reference->module-base-phase',
+        'variable-reference->module-declaration-inspector',
+        'variable-reference->module-source',
+        'variable-reference->namespace', 'variable-reference->phase',
+        'variable-reference->resolved-module-path',
+        'variable-reference-constant?', 'variable-reference?', 'vector',
+        'vector->immutable-vector', 'vector->list',
+        'vector->pseudo-random-generator',
+        'vector->pseudo-random-generator!', 'vector->values',
+        'vector-fill!', 'vector-immutable', 'vector-length', 'vector-ref',
+        'vector-set!', 'vector-set-performance-stats!', 'vector?',
+        'version', 'void', 'void?', 'weak-box-value', 'weak-box?',
+        'will-execute', 'will-executor?', 'will-register',
+        'will-try-execute', 'with-input-from-file', 'with-output-to-file',
+        'wrap-evt', 'write', 'write-byte', 'write-bytes',
+        'write-bytes-avail', 'write-bytes-avail*', 'write-bytes-avail-evt',
+        'write-bytes-avail/enable-break', 'write-char', 'write-special',
+        'write-special-avail*', 'write-special-evt', 'write-string', 'zero?'
+    ]
+
+    # From SchemeLexer
+    valid_name = r'[a-zA-Z0-9!$%&*+,/:<=>?@^_~|-]+'
+
+    tokens = {
+        'root' : [
+            (r';.*$', Comment.Single),
+            (r'#\|[^|]+\|#', Comment.Multiline),
+
+            # whitespaces - usually not relevant
+            (r'\s+', Text),
+
+            ## numbers: Keep in mind Racket reader hash prefixes,
+            ## which can denote the base or the type. These don't map
+            ## neatly onto pygments token types; some judgment calls
+            ## here.  Note that none of these regexps attempt to
+            ## exclude identifiers that start with a number, such as a
+            ## variable named "100-Continue".
+
+            # #b
+            (r'#b[-+]?[01]+\.[01]+', Number.Float),
+            (r'#b[01]+e[-+]?[01]+', Number.Float),
+            (r'#b[-+]?[01]/[01]+', Number),
+            (r'#b[-+]?[01]+', Number.Integer),
+            (r'#b\S*', Error),
+
+            # #d OR no hash prefix
+            (r'(#d)?[-+]?\d+\.\d+', Number.Float),
+            (r'(#d)?\d+e[-+]?\d+', Number.Float),
+            (r'(#d)?[-+]?\d+/\d+', Number),
+            (r'(#d)?[-+]?\d+', Number.Integer),
+            (r'#d\S*', Error),
+
+            # #e
+            (r'#e[-+]?\d+\.\d+', Number.Float),
+            (r'#e\d+e[-+]?\d+', Number.Float),
+            (r'#e[-+]?\d+/\d+', Number),
+            (r'#e[-+]?\d+', Number),
+            (r'#e\S*', Error),
+
+            # #i is always inexact-real, i.e. float
+            (r'#i[-+]?\d+\.\d+', Number.Float),
+            (r'#i\d+e[-+]?\d+', Number.Float),
+            (r'#i[-+]?\d+/\d+', Number.Float),
+            (r'#i[-+]?\d+', Number.Float),
+            (r'#i\S*', Error),
+
+            # #o
+            (r'#o[-+]?[0-7]+\.[0-7]+', Number.Oct),
+            (r'#o[0-7]+e[-+]?[0-7]+', Number.Oct),
+            (r'#o[-+]?[0-7]+/[0-7]+', Number.Oct),
+            (r'#o[-+]?[0-7]+', Number.Oct),
+            (r'#o\S*', Error),
+
+            # #x
+            (r'#x[-+]?[0-9a-fA-F]+\.[0-9a-fA-F]+', Number.Hex),
+            # the exponent variation (e.g. #x1e1) is N/A
+            (r'#x[-+]?[0-9a-fA-F]+/[0-9a-fA-F]+', Number.Hex),
+            (r'#x[-+]?[0-9a-fA-F]+', Number.Hex),
+            (r'#x\S*', Error),
+
+
+            # strings, symbols and characters
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'" + valid_name, String.Symbol),
+            (r"#\\([()/'\"._!§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
+            (r'#rx".+"', String.Regex),
+            (r'#px".+"', String.Regex),
+
+            # constants
+            (r'(#t|#f)', Name.Constant),
+
+            # keyword argument names (e.g. #:keyword)
+            (r'#:\S+', Keyword.Declaration),
+
+            # #lang
+            (r'#lang \S+', Keyword.Namespace),
+
+            # special operators
+            (r"('|#|`|,@|,|\.)", Operator),
+
+            # highlight the keywords
+            ('(%s)' % '|'.join([
+                re.escape(entry) + ' ' for entry in keywords]),
+                Keyword
+            ),
+
+            # first variable in a quoted string like
+            # '(this is syntactic sugar)
+            (r"(?<='\()" + valid_name, Name.Variable),
+            (r"(?<=#\()" + valid_name, Name.Variable),
+
+            # highlight the builtins
+            ("(?<=\()(%s)" % '|'.join([
+                re.escape(entry) + ' ' for entry in builtins]),
+                Name.Builtin
+            ),
+
+            # the remaining functions; handle both ( and [
+            (r'(?<=(\(|\[|\{))' + valid_name, Name.Function),
+
+            # find the remaining variables
+            (valid_name, Name.Variable),
+
+            # the famous parentheses!
+            (r'(\(|\)|\[|\]|\{|\})', Punctuation),
+        ],
+    }
 
 
 class SchemeLexer(RegexLexer):
@@ -37,7 +598,7 @@ class SchemeLexer(RegexLexer):
     """
     name = 'Scheme'
     aliases = ['scheme', 'scm']
-    filenames = ['*.scm', '*.ss', '*.rkt']
+    filenames = ['*.scm', '*.ss']
     mimetypes = ['text/x-scheme', 'application/x-scheme']
 
     # list of known keywords and builtins taken form vim 6.4 scheme.vim
@@ -113,7 +674,7 @@ class SchemeLexer(RegexLexer):
             # strings, symbols and characters
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'" + valid_name, String.Symbol),
-            (r"#\\([()/'\".'_!§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
+            (r"#\\([()/'\"._!§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
 
             # constants
             (r'(#t|#f)', Name.Constant),
@@ -145,6 +706,7 @@ class SchemeLexer(RegexLexer):
 
             # the famous parentheses!
             (r'(\(|\))', Punctuation),
+            (r'(\[|\])', Punctuation),
         ],
     }
 
@@ -242,7 +804,7 @@ class CommonLispLexer(RegexLexer):
             (r'#\d*Y.*$', Comment.Special),
 
             # strings and characters
-            (r'"(\\.|[^"\\])*"', String),
+            (r'"(\\.|\\\n|[^"\\])*"', String),
             # quoting
             (r":" + symbol, String.Symbol),
             (r"'" + symbol, String.Symbol),
@@ -349,7 +911,7 @@ class HaskellLexer(RegexLexer):
             # Whitespace:
             (r'\s+', Text),
             #(r'--\s*|.*$', Comment.Doc),
-            (r'--(?![!#$%&*+./<=>?@\^|_~]).*?$', Comment.Single),
+            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
             # Lexemes:
             #  Identifiers
@@ -358,8 +920,8 @@ class HaskellLexer(RegexLexer):
             (r'\berror\b', Name.Exception),
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'^[_a-z][\w\']*', Name.Function),
-            (r'[_a-z][\w\']*', Name),
-            (r'[A-Z][\w\']*', Keyword.Type),
+            (r"'?[_a-z][\w']*", Name),
+            (r"('')?[A-Z][\w\']*", Keyword.Type),
             #  Operators
             (r'\\(?![:!#$%&*+.\\/<=>?@^|~-]+)', Name.Function), # lambda operator
             (r'(<-|::|->|=>|=)(?![:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
@@ -560,7 +1122,10 @@ class SMLLexer(RegexLexer):
         return [
             (r'[^"\\]', whatkind),
             (r'\\[\\\"abtnvfr]', String.Escape),
-            (r'\\\^[@-^]', String.Escape),
+            # Control-character notation is used for codes < 32,
+            # where \^@ == \000
+            (r'\\\^[\x40-\x5e]', String.Escape),
+            # Docs say 'decimal digits'
             (r'\\[0-9]{3}', String.Escape),
             (r'\\u[0-9a-fA-F]{4}', String.Escape),
             (r'\\\s+\\', String.Interpol),
@@ -858,7 +1423,7 @@ class OcamlLexer(RegexLexer):
       'inherit', 'initializer', 'lazy', 'let', 'match', 'method',
       'module', 'mutable', 'new', 'object', 'of', 'open', 'private',
       'raise', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
-      'type', 'val', 'virtual', 'when', 'while', 'with'
+      'type', 'value', 'val', 'virtual', 'when', 'while', 'with',
     ]
     keyopts = [
       '!=','#','&','&&','\(','\)','\*','\+',',','-',
@@ -885,9 +1450,9 @@ class OcamlLexer(RegexLexer):
             (r'\b([A-Z][A-Za-z0-9_\']*)(?=\s*\.)',
              Name.Namespace, 'dotted'),
             (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
-            (r'\(\*', Comment, 'comment'),
+            (r'\(\*(?![)])', Comment, 'comment'),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
-            (r'(%s)' % '|'.join(keyopts), Operator),
+            (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
@@ -942,7 +1507,7 @@ class ErlangLexer(RegexLexer):
 
     name = 'Erlang'
     aliases = ['erlang']
-    filenames = ['*.erl', '*.hrl']
+    filenames = ['*.erl', '*.hrl', '*.es', '*.escript']
     mimetypes = ['text/x-erlang']
 
     keywords = [
@@ -980,7 +1545,7 @@ class ErlangLexer(RegexLexer):
         'universaltime_to_localtime', 'unlink', 'unregister', 'whereis'
         ]
 
-    operators = r'(\+|-|\*|/|<|>|=|==|/=|=:=|=/=|=<|>=|\+\+|--|<-|!|\?)'
+    operators = r'(\+\+?|--?|\*|/|<|>|/=|=:=|=/=|=<|>=|==?|<-|!|\?)'
     word_operators = [
         'and', 'andalso', 'band', 'bnot', 'bor', 'bsl', 'bsr', 'bxor',
         'div', 'not', 'or', 'orelse', 'rem', 'xor'
@@ -1008,8 +1573,9 @@ class ErlangLexer(RegexLexer):
             (r'"', String, 'string'),
             (r'<<', Name.Label),
             (r'>>', Name.Label),
-            (r'('+atom_re+')(:)', bygroups(Name.Namespace, Punctuation)),
-            (r'^('+atom_re+r')(\s*)(\()', bygroups(Name.Function, Text, Punctuation)),
+            ('(' + atom_re + ')(:)', bygroups(Name.Namespace, Punctuation)),
+            ('(?:^|(?<=:))(' + atom_re + r')(\s*)(\()',
+             bygroups(Name.Function, Text, Punctuation)),
             (r'[+-]?'+base_re+r'#[0-9a-zA-Z]+', Number.Integer),
             (r'[+-]?\d+', Number.Integer),
             (r'[+-]?\d+.\d+', Number.Float),
@@ -1079,3 +1645,751 @@ class ErlangShellLexer(Lexer):
                                       erlexer.get_tokens_unprocessed(curcode)):
                 yield item
 
+
+class OpaLexer(RegexLexer):
+    """
+    Lexer for the Opa language (http://opalang.org).
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Opa'
+    aliases = ['opa']
+    filenames = ['*.opa']
+    mimetypes = ['text/x-opa']
+
+    # most of these aren't strictly keywords
+    # but if you color only real keywords, you might just
+    # as well not color anything
+    keywords = [
+        'and', 'as', 'begin', 'css', 'database', 'db', 'do', 'else', 'end',
+        'external', 'forall', 'if', 'import', 'match', 'package', 'parser',
+        'rec', 'server', 'then', 'type', 'val', 'with', 'xml_parser'
+    ]
+
+    # matches both stuff and `stuff`
+    ident_re = r'(([a-zA-Z_]\w*)|(`[^`]*`))'
+
+    op_re = r'[.=\-<>,@~%/+?*&^!]'
+    punc_re = r'[()\[\],;|]' # '{' and '}' are treated elsewhere
+                               # because they are also used for inserts
+
+    tokens = {
+        # copied from the caml lexer, should be adapted
+        'escape-sequence': [
+            (r'\\[\\\"\'ntr}]', String.Escape),
+            (r'\\[0-9]{3}', String.Escape),
+            (r'\\x[0-9a-fA-F]{2}', String.Escape),
+        ],
+
+        # factorizing these rules, because they are inserted many times
+        'comments': [
+            (r'/\*', Comment, 'nested-comment'),
+            (r'//.*?$', Comment),
+        ],
+        'comments-and-spaces': [
+            include('comments'),
+            (r'\s+', Text),
+        ],
+
+        'root': [
+            include('comments-and-spaces'),
+            # keywords
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
+            # directives
+            # we could parse the actual set of directives instead of anything
+            # starting with @, but this is troublesome
+            # because it needs to be adjusted all the time
+            # and assuming we parse only sources that compile, it is useless
+            (r'@'+ident_re+r'\b', Name.Builtin.Pseudo),
+
+            # number literals
+            (r'-?.[\d]+([eE][+\-]?\d+)', Number.Float),
+            (r'-?\d+.\d*([eE][+\-]?\d+)', Number.Float),
+            (r'-?\d+[eE][+\-]?\d+', Number.Float),
+            (r'0[xX][\da-fA-F]+', Number.Hex),
+            (r'0[oO][0-7]+', Number.Oct),
+            (r'0[bB][01]+', Number.Binary),
+            (r'\d+', Number.Integer),
+            # color literals
+            (r'#[\da-fA-F]{3,6}', Number.Integer),
+
+            # string literals
+            (r'"', String.Double, 'string'),
+            # char literal, should be checked because this is the regexp from
+            # the caml lexer
+            (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2})|.)'",
+             String.Char),
+
+            # this is meant to deal with embedded exprs in strings
+            # every time we find a '}' we pop a state so that if we were
+            # inside a string, we are back in the string state
+            # as a consequence, we must also push a state every time we find a
+            # '{' or else we will have errors when parsing {} for instance
+            (r'{', Operator, '#push'),
+            (r'}', Operator, '#pop'),
+
+            # html literals
+            # this is a much more strict that the actual parser,
+            # since a<b would not be parsed as html
+            # but then again, the parser is way too lax, and we can't hope
+            # to have something as tolerant
+            (r'<(?=[a-zA-Z>])', String.Single, 'html-open-tag'),
+
+            # db path
+            # matching the '[_]' in '/a[_]' because it is a part
+            # of the syntax of the db path definition
+            # unfortunately, i don't know how to match the ']' in
+            # /a[1], so this is somewhat inconsistent
+            (r'[@?!]?(/\w+)+(\[_\])?', Name.Variable),
+            # putting the same color on <- as on db path, since
+            # it can be used only to mean Db.write
+            (r'<-(?!'+op_re+r')', Name.Variable),
+
+            # 'modules'
+            # although modules are not distinguished by their names as in caml
+            # the standard library seems to follow the convention that modules
+            # only area capitalized
+            (r'\b([A-Z]\w*)(?=\.)', Name.Namespace),
+
+            # operators
+            # = has a special role because this is the only
+            # way to syntactic distinguish binding constructions
+            # unfortunately, this colors the equal in {x=2} too
+            (r'=(?!'+op_re+r')', Keyword),
+            (r'(%s)+' % op_re, Operator),
+            (r'(%s)+' % punc_re, Operator),
+
+            # coercions
+            (r':', Operator, 'type'),
+            # type variables
+            # we need this rule because we don't parse specially type
+            # definitions so in "type t('a) = ...", "'a" is parsed by 'root'
+            ("'"+ident_re, Keyword.Type),
+
+            # id literal, #something, or #{expr}
+            (r'#'+ident_re, String.Single),
+            (r'#(?={)', String.Single),
+
+            # identifiers
+            # this avoids to color '2' in 'a2' as an integer
+            (ident_re, Text),
+
+            # default, not sure if that is needed or not
+            # (r'.', Text),
+        ],
+
+        # it is quite painful to have to parse types to know where they end
+        # this is the general rule for a type
+        # a type is either:
+        # * -> ty
+        # * type-with-slash
+        # * type-with-slash -> ty
+        # * type-with-slash (, type-with-slash)+ -> ty
+        #
+        # the code is pretty funky in here, but this code would roughly
+        # translate in caml to:
+        # let rec type stream =
+        # match stream with
+        # | [< "->";  stream >] -> type stream
+        # | [< "";  stream >] ->
+        #   type_with_slash stream
+        #   type_lhs_1 stream;
+        # and type_1 stream = ...
+        'type': [
+            include('comments-and-spaces'),
+            (r'->', Keyword.Type),
+            (r'', Keyword.Type, ('#pop', 'type-lhs-1', 'type-with-slash')),
+        ],
+
+        # parses all the atomic or closed constructions in the syntax of type
+        # expressions: record types, tuple types, type constructors, basic type
+        # and type variables
+        'type-1': [
+            include('comments-and-spaces'),
+            (r'\(', Keyword.Type, ('#pop', 'type-tuple')),
+            (r'~?{', Keyword.Type, ('#pop', 'type-record')),
+            (ident_re+r'\(', Keyword.Type, ('#pop', 'type-tuple')),
+            (ident_re, Keyword.Type, '#pop'),
+            ("'"+ident_re, Keyword.Type),
+            # this case is not in the syntax but sometimes
+            # we think we are parsing types when in fact we are parsing
+            # some css, so we just pop the states until we get back into
+            # the root state
+            (r'', Keyword.Type, '#pop'),
+        ],
+
+        # type-with-slash is either:
+        # * type-1
+        # * type-1 (/ type-1)+
+        'type-with-slash': [
+            include('comments-and-spaces'),
+            (r'', Keyword.Type, ('#pop', 'slash-type-1', 'type-1')),
+        ],
+        'slash-type-1': [
+            include('comments-and-spaces'),
+            ('/', Keyword.Type, ('#pop', 'type-1')),
+            # same remark as above
+            (r'', Keyword.Type, '#pop'),
+        ],
+
+        # we go in this state after having parsed a type-with-slash
+        # while trying to parse a type
+        # and at this point we must determine if we are parsing an arrow
+        # type (in which case we must continue parsing) or not (in which
+        # case we stop)
+        'type-lhs-1': [
+            include('comments-and-spaces'),
+            (r'->', Keyword.Type, ('#pop', 'type')),
+            (r'(?=,)', Keyword.Type, ('#pop', 'type-arrow')),
+            (r'', Keyword.Type, '#pop'),
+        ],
+        'type-arrow': [
+            include('comments-and-spaces'),
+            # the look ahead here allows to parse f(x : int, y : float -> truc)
+            # correctly
+            (r',(?=[^:]*?->)', Keyword.Type, 'type-with-slash'),
+            (r'->', Keyword.Type, ('#pop', 'type')),
+            # same remark as above
+            (r'', Keyword.Type, '#pop'),
+        ],
+
+        # no need to do precise parsing for tuples and records
+        # because they are closed constructions, so we can simply
+        # find the closing delimiter
+        # note that this function would be not work if the source
+        # contained identifiers like `{)` (although it could be patched
+        # to support it)
+        'type-tuple': [
+            include('comments-and-spaces'),
+            (r'[^\(\)/*]+', Keyword.Type),
+            (r'[/*]', Keyword.Type),
+            (r'\(', Keyword.Type, '#push'),
+            (r'\)', Keyword.Type, '#pop'),
+        ],
+        'type-record': [
+            include('comments-and-spaces'),
+            (r'[^{}/*]+', Keyword.Type),
+            (r'[/*]', Keyword.Type),
+            (r'{', Keyword.Type, '#push'),
+            (r'}', Keyword.Type, '#pop'),
+        ],
+
+#        'type-tuple': [
+#            include('comments-and-spaces'),
+#            (r'\)', Keyword.Type, '#pop'),
+#            (r'', Keyword.Type, ('#pop', 'type-tuple-1', 'type-1')),
+#        ],
+#        'type-tuple-1': [
+#            include('comments-and-spaces'),
+#            (r',?\s*\)', Keyword.Type, '#pop'), # ,) is a valid end of tuple, in (1,)
+#            (r',', Keyword.Type, 'type-1'),
+#        ],
+#        'type-record':[
+#            include('comments-and-spaces'),
+#            (r'}', Keyword.Type, '#pop'),
+#            (r'~?(?:\w+|`[^`]*`)', Keyword.Type, 'type-record-field-expr'),
+#        ],
+#        'type-record-field-expr': [
+#
+#        ],
+
+        'nested-comment': [
+            (r'[^/*]+', Comment),
+            (r'/\*', Comment, '#push'),
+            (r'\*/', Comment, '#pop'),
+            (r'[/*]', Comment),
+        ],
+
+        # the coy pasting between string and single-string
+        # is kinda sad. Is there a way to avoid that??
+        'string': [
+            (r'[^\\"{]+', String.Double),
+            (r'"', String.Double, '#pop'),
+            (r'{', Operator, 'root'),
+            include('escape-sequence'),
+        ],
+        'single-string': [
+            (r'[^\\\'{]+', String.Double),
+            (r'\'', String.Double, '#pop'),
+            (r'{', Operator, 'root'),
+            include('escape-sequence'),
+        ],
+
+        # all the html stuff
+        # can't really reuse some existing html parser
+        # because we must be able to parse embedded expressions
+
+        # we are in this state after someone parsed the '<' that
+        # started the html literal
+        'html-open-tag': [
+            (r'[\w\-:]+', String.Single, ('#pop', 'html-attr')),
+            (r'>', String.Single, ('#pop', 'html-content')),
+        ],
+
+        # we are in this state after someone parsed the '</' that
+        # started the end of the closing tag
+        'html-end-tag': [
+            # this is a star, because </> is allowed
+            (r'[\w\-:]*>', String.Single, '#pop'),
+        ],
+
+        # we are in this state after having parsed '<ident(:ident)?'
+        # we thus parse a possibly empty list of attributes
+        'html-attr': [
+            (r'\s+', Text),
+            (r'[\w\-:]+=', String.Single, 'html-attr-value'),
+            (r'/>', String.Single, '#pop'),
+            (r'>', String.Single, ('#pop', 'html-content')),
+        ],
+
+        'html-attr-value': [
+            (r"'", String.Single, ('#pop', 'single-string')),
+            (r'"', String.Single, ('#pop', 'string')),
+            (r'#'+ident_re, String.Single, '#pop'),
+            (r'#(?={)', String.Single, ('#pop', 'root')),
+            (r'{', Operator, ('#pop', 'root')), # this is a tail call!
+        ],
+
+        # we should probably deal with '\' escapes here
+        'html-content': [
+            (r'<!--', Comment, 'html-comment'),
+            (r'</', String.Single, ('#pop', 'html-end-tag')),
+            (r'<', String.Single, 'html-open-tag'),
+            (r'{', Operator, 'root'),
+            (r'.|\s+', String.Single),
+        ],
+
+        'html-comment': [
+            (r'-->', Comment, '#pop'),
+            (r'[^\-]+|-', Comment),
+        ],
+    }
+
+
+class CoqLexer(RegexLexer):
+    """
+    For the `Coq <http://coq.inria.fr/>`_ theorem prover.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Coq'
+    aliases = ['coq']
+    filenames = ['*.v']
+    mimetypes = ['text/x-coq']
+
+    keywords1 = [
+        # Vernacular commands
+        'Section', 'Module', 'End', 'Require', 'Import', 'Export', 'Variable',
+        'Variables', 'Parameter', 'Parameters', 'Axiom', 'Hypothesis',
+        'Hypotheses', 'Notation', 'Local', 'Tactic', 'Reserved', 'Scope',
+        'Open', 'Close', 'Bind', 'Delimit', 'Definition', 'Let', 'Ltac',
+        'Fixpoint', 'CoFixpoint', 'Morphism', 'Relation', 'Implicit',
+        'Arguments', 'Set', 'Unset', 'Contextual', 'Strict', 'Prenex',
+        'Implicits', 'Inductive', 'CoInductive', 'Record', 'Structure',
+        'Canonical', 'Coercion', 'Theorem', 'Lemma', 'Corollary',
+        'Proposition', 'Fact', 'Remark', 'Example', 'Proof', 'Goal', 'Save',
+        'Qed', 'Defined', 'Hint', 'Resolve', 'Rewrite', 'View', 'Search',
+        'Show', 'Print', 'Printing', 'All', 'Graph', 'Projections', 'inside',
+        'outside',
+    ]
+    keywords2 = [
+        # Gallina
+        'forall', 'exists', 'exists2', 'fun', 'fix', 'cofix', 'struct',
+        'match', 'end',  'in', 'return', 'let', 'if', 'is', 'then', 'else',
+        'for', 'of', 'nosimpl', 'with', 'as',
+    ]
+    keywords3 = [
+        # Sorts
+        'Type', 'Prop',
+    ]
+    keywords4 = [
+        # Tactics
+        'pose', 'set', 'move', 'case', 'elim', 'apply', 'clear', 'hnf', 'intro',
+        'intros', 'generalize', 'rename', 'pattern', 'after', 'destruct',
+        'induction', 'using', 'refine', 'inversion', 'injection', 'rewrite',
+        'congr', 'unlock', 'compute', 'ring', 'field', 'replace', 'fold',
+        'unfold', 'change', 'cutrewrite', 'simpl', 'have', 'suff', 'wlog',
+        'suffices', 'without', 'loss', 'nat_norm', 'assert', 'cut', 'trivial',
+        'revert', 'bool_congr', 'nat_congr', 'symmetry', 'transitivity', 'auto',
+        'split', 'left', 'right', 'autorewrite',
+    ]
+    keywords5 = [
+        # Terminators
+        'by', 'done', 'exact', 'reflexivity', 'tauto', 'romega', 'omega',
+        'assumption', 'solve', 'contradiction', 'discriminate',
+    ]
+    keywords6 = [
+        # Control
+        'do', 'last', 'first', 'try', 'idtac', 'repeat',
+    ]
+      # 'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done',
+      # 'downto', 'else', 'end', 'exception', 'external', 'false',
+      # 'for', 'fun', 'function', 'functor', 'if', 'in', 'include',
+      # 'inherit', 'initializer', 'lazy', 'let', 'match', 'method',
+      # 'module', 'mutable', 'new', 'object', 'of', 'open', 'private',
+      # 'raise', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
+      # 'type', 'val', 'virtual', 'when', 'while', 'with'
+    keyopts = [
+        '!=', '#', '&', '&&', r'\(', r'\)', r'\*', r'\+', ',', '-',
+        r'-\.', '->', r'\.', r'\.\.', ':', '::', ':=', ':>', ';', ';;', '<',
+        '<-', '=', '>', '>]', '>}', r'\?', r'\?\?', r'\[', r'\[<', r'\[>',
+        r'\[\|', ']', '_', '`', '{', '{<', r'\|', r'\|]', '}', '~', '=>',
+        r'/\\', r'\\/',
+        u'Π', u'λ',
+    ]
+    operators = r'[!$%&*+\./:<=>?@^|~-]'
+    word_operators = ['and', 'asr', 'land', 'lor', 'lsl', 'lxor', 'mod', 'or']
+    prefix_syms = r'[!?~]'
+    infix_syms = r'[=<>@^|&+\*/$%-]'
+    primitives = ['unit', 'int', 'float', 'bool', 'string', 'char', 'list',
+                  'array']
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
+            (r'\(\*', Comment, 'comment'),
+            (r'\b(%s)\b' % '|'.join(keywords1), Keyword.Namespace),
+            (r'\b(%s)\b' % '|'.join(keywords2), Keyword),
+            (r'\b(%s)\b' % '|'.join(keywords3), Keyword.Type),
+            (r'\b(%s)\b' % '|'.join(keywords4), Keyword),
+            (r'\b(%s)\b' % '|'.join(keywords5), Keyword.Pseudo),
+            (r'\b(%s)\b' % '|'.join(keywords6), Keyword.Reserved),
+            (r'\b([A-Z][A-Za-z0-9_\']*)(?=\s*\.)',
+             Name.Namespace, 'dotted'),
+            (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
+            (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
+            (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
+            (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
+            (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
+
+            (r"[^\W\d][\w']*", Name),
+
+            (r'\d[\d_]*', Number.Integer),
+            (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
+            (r'0[oO][0-7][0-7_]*', Number.Oct),
+            (r'0[bB][01][01_]*', Number.Binary),
+            (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
+
+            (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
+             String.Char),
+            (r"'.'", String.Char),
+            (r"'", Keyword), # a stray quote is another syntax element
+
+            (r'"', String.Double, 'string'),
+
+            (r'[~?][a-z][\w\']*:', Name.Variable),
+        ],
+        'comment': [
+            (r'[^(*)]+', Comment),
+            (r'\(\*', Comment, '#push'),
+            (r'\*\)', Comment, '#pop'),
+            (r'[(*)]', Comment),
+        ],
+        'string': [
+            (r'[^"]+', String.Double),
+            (r'""', String.Double),
+            (r'"', String.Double, '#pop'),
+        ],
+        'dotted': [
+            (r'\s+', Text),
+            (r'\.', Punctuation),
+            (r'[A-Z][A-Za-z0-9_\']*(?=\s*\.)', Name.Namespace),
+            (r'[A-Z][A-Za-z0-9_\']*', Name.Class, '#pop'),
+            (r'[a-z][a-z0-9_\']*', Name, '#pop'),
+            (r'', Text, '#pop')
+        ],
+    }
+
+    def analyse_text(text):
+        if text.startswith('(*'):
+            return True
+
+
+class NewLispLexer(RegexLexer):
+    """
+    For `newLISP. <www.newlisp.org>`_ source code (version 10.3.0).
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'NewLisp'
+    aliases = ['newlisp']
+    filenames = ['*.lsp', '*.nl']
+    mimetypes = ['text/x-newlisp', 'application/x-newlisp']
+
+    flags = re.IGNORECASE | re.MULTILINE | re.UNICODE
+
+    # list of built-in functions for newLISP version 10.3
+    builtins = [
+        '^', '--', '-', ':', '!', '!=', '?', '@', '*', '/', '&', '%', '+', '++',
+        '<', '<<', '<=', '=', '>', '>=', '>>', '|', '~', '$', '$0', '$1', '$10',
+        '$11', '$12', '$13', '$14', '$15', '$2', '$3', '$4', '$5', '$6', '$7',
+        '$8', '$9', '$args', '$idx', '$it', '$main-args', 'abort', 'abs',
+        'acos', 'acosh', 'add', 'address', 'amb', 'and',  'and', 'append-file',
+        'append', 'apply', 'args', 'array-list', 'array?', 'array', 'asin',
+        'asinh', 'assoc', 'atan', 'atan2', 'atanh', 'atom?', 'base64-dec',
+        'base64-enc', 'bayes-query', 'bayes-train', 'begin', 'begin', 'begin',
+        'beta', 'betai', 'bind', 'binomial', 'bits', 'callback', 'case', 'case',
+        'case', 'catch', 'ceil', 'change-dir', 'char', 'chop', 'Class', 'clean',
+        'close', 'command-event', 'cond', 'cond', 'cond', 'cons', 'constant',
+        'context?', 'context', 'copy-file', 'copy', 'cos', 'cosh', 'count',
+        'cpymem', 'crc32', 'crit-chi2', 'crit-z', 'current-line', 'curry',
+        'date-list', 'date-parse', 'date-value', 'date', 'debug', 'dec',
+        'def-new', 'default', 'define-macro', 'define-macro', 'define',
+        'delete-file', 'delete-url', 'delete', 'destroy', 'det', 'device',
+        'difference', 'directory?', 'directory', 'div', 'do-until', 'do-while',
+        'doargs',  'dolist',  'dostring', 'dotimes',  'dotree', 'dump', 'dup',
+        'empty?', 'encrypt', 'ends-with', 'env', 'erf', 'error-event',
+        'eval-string', 'eval', 'exec', 'exists', 'exit', 'exp', 'expand',
+        'explode', 'extend', 'factor', 'fft', 'file-info', 'file?', 'filter',
+        'find-all', 'find', 'first', 'flat', 'float?', 'float', 'floor', 'flt',
+        'fn', 'for-all', 'for', 'fork', 'format', 'fv', 'gammai', 'gammaln',
+        'gcd', 'get-char', 'get-float', 'get-int', 'get-long', 'get-string',
+        'get-url', 'global?', 'global', 'if-not', 'if', 'ifft', 'import', 'inc',
+        'index', 'inf?', 'int', 'integer?', 'integer', 'intersect', 'invert',
+        'irr', 'join', 'lambda-macro', 'lambda?', 'lambda', 'last-error',
+        'last', 'legal?', 'length', 'let', 'let', 'let', 'letex', 'letn',
+        'letn', 'letn', 'list?', 'list', 'load', 'local', 'log', 'lookup',
+        'lower-case', 'macro?', 'main-args', 'MAIN', 'make-dir', 'map', 'mat',
+        'match', 'max', 'member', 'min', 'mod', 'module', 'mul', 'multiply',
+        'NaN?', 'net-accept', 'net-close', 'net-connect', 'net-error',
+        'net-eval', 'net-interface', 'net-ipv', 'net-listen', 'net-local',
+        'net-lookup', 'net-packet', 'net-peek', 'net-peer', 'net-ping',
+        'net-receive-from', 'net-receive-udp', 'net-receive', 'net-select',
+        'net-send-to', 'net-send-udp', 'net-send', 'net-service',
+        'net-sessions', 'new', 'nil?', 'nil', 'normal', 'not', 'now', 'nper',
+        'npv', 'nth', 'null?', 'number?', 'open', 'or', 'ostype', 'pack',
+        'parse-date', 'parse', 'peek', 'pipe', 'pmt', 'pop-assoc', 'pop',
+        'post-url', 'pow', 'prefix', 'pretty-print', 'primitive?', 'print',
+        'println', 'prob-chi2', 'prob-z', 'process', 'prompt-event',
+        'protected?', 'push', 'put-url', 'pv', 'quote?', 'quote', 'rand',
+        'random', 'randomize', 'read', 'read-char', 'read-expr', 'read-file',
+        'read-key', 'read-line', 'read-utf8', 'read', 'reader-event',
+        'real-path', 'receive', 'ref-all', 'ref', 'regex-comp', 'regex',
+        'remove-dir', 'rename-file', 'replace', 'reset', 'rest', 'reverse',
+        'rotate', 'round', 'save', 'search', 'seed', 'seek', 'select', 'self',
+        'semaphore', 'send', 'sequence', 'series', 'set-locale', 'set-ref-all',
+        'set-ref', 'set', 'setf',  'setq', 'sgn', 'share', 'signal', 'silent',
+        'sin', 'sinh', 'sleep', 'slice', 'sort', 'source', 'spawn', 'sqrt',
+        'starts-with', 'string?', 'string', 'sub', 'swap', 'sym', 'symbol?',
+        'symbols', 'sync', 'sys-error', 'sys-info', 'tan', 'tanh', 'term',
+        'throw-error', 'throw', 'time-of-day', 'time', 'timer', 'title-case',
+        'trace-highlight', 'trace', 'transpose', 'Tree', 'trim', 'true?',
+        'true', 'unicode', 'unify', 'unique', 'unless', 'unpack', 'until',
+        'upper-case', 'utf8', 'utf8len', 'uuid', 'wait-pid', 'when', 'while',
+        'write', 'write-char', 'write-file', 'write-line', 'write',
+        'xfer-event', 'xml-error', 'xml-parse', 'xml-type-tags', 'zero?',
+    ]
+
+    # valid names
+    valid_name = r'([a-zA-Z0-9!$%&*+.,/<=>?@^_~|-])+|(\[.*?\])+'
+
+    tokens = {
+        'root': [
+            # shebang
+            (r'#!(.*?)$', Comment.Preproc),
+            # comments starting with semicolon
+            (r';.*$', Comment.Single),
+            # comments starting with #
+            (r'#.*$', Comment.Single),
+
+            # whitespace
+            (r'\s+', Text),
+
+            # strings, symbols and characters
+            (r'"(\\\\|\\"|[^"])*"', String),
+
+            # braces
+            (r"{", String, "bracestring"),
+
+            # [text] ... [/text] delimited strings
+            (r'\[text\]*', String, "tagstring"),
+
+            # 'special' operators...
+            (r"('|:)", Operator),
+
+            # highlight the builtins
+            ('(%s)' % '|'.join(re.escape(entry) + '\\b' for entry in builtins),
+             Keyword),
+
+            # the remaining functions
+            (r'(?<=\()' + valid_name, Name.Variable),
+
+            # the remaining variables
+            (valid_name, String.Symbol),
+
+            # parentheses
+            (r'(\(|\))', Punctuation),
+        ],
+
+        # braced strings...
+        'bracestring': [
+             ("{", String, "#push"),
+             ("}", String, "#pop"),
+             ("[^{}]+", String),
+        ],
+
+        # tagged [text]...[/text] delimited strings...
+        'tagstring': [
+            (r'(?s)(.*?)(\[/text\])', String, '#pop'),
+        ],
+    }
+
+
+class ElixirLexer(RegexLexer):
+    """
+    For the `Elixir language <http://elixir-lang.org>`_.
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Elixir'
+    aliases = ['elixir', 'ex', 'exs']
+    filenames = ['*.ex', '*.exs']
+    mimetypes = ['text/x-elixir']
+
+    def gen_elixir_sigil_rules():
+        states = {}
+
+        states['strings'] = [
+            (r'(%[A-Ba-z])?"""(?:.|\n)*?"""', String.Doc),
+            (r"'''(?:.|\n)*?'''", String.Doc),
+            (r'"', String.Double, 'dqs'),
+            (r"'.*'", String.Single),
+            (r'(?<!\w)\?(\\(x\d{1,2}|\h{1,2}(?!\h)\b|0[0-7]{0,2}(?![0-7])\b|'
+             r'[^x0MC])|(\\[MC]-)+\w|[^\s\\])', String.Other)
+        ]
+
+        for lbrace, rbrace, name, in ('\\{', '\\}', 'cb'), \
+                                     ('\\[', '\\]', 'sb'), \
+                                     ('\\(', '\\)', 'pa'), \
+                                     ('\\<', '\\>', 'lt'):
+
+            states['strings'] += [
+                (r'%[a-z]' + lbrace, String.Double, name + 'intp'),
+                (r'%[A-Z]' + lbrace, String.Double, name + 'no-intp')
+            ]
+
+            states[name +'intp'] = [
+                (r'' + rbrace + '[a-z]*', String.Double, "#pop"),
+                include('enddoublestr')
+            ]
+
+            states[name +'no-intp'] = [
+                (r'.*' + rbrace + '[a-z]*', String.Double , "#pop")
+            ]
+
+        return states
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'#.*$', Comment.Single),
+            (r'\b(case|cond|end|bc|lc|if|unless|try|loop|receive|fn|defmodule|'
+             r'defp?|defprotocol|defimpl|defrecord|defmacrop?|defdelegate|'
+             r'defexception|exit|raise|throw|unless|after|rescue|catch|else)\b(?![?!])|'
+             r'(?<!\.)\b(do|\-\>)\b\s*', Keyword),
+            (r'\b(import|require|use|recur|quote|unquote|super|refer)\b(?![?!])',
+                Keyword.Namespace),
+            (r'(?<!\.)\b(and|not|or|when|xor|in)\b', Operator.Word),
+            (r'%=|\*=|\*\*=|\+=|\-=|\^=|\|\|=|'
+             r'<=>|<(?!<|=)|>(?!<|=|>)|<=|>=|===|==|=~|!=|!~|(?=[ \t])\?|'
+             r'(?<=[ \t])!+|&&|\|\||\^|\*|\+|\-|/|'
+             r'\||\+\+|\-\-|\*\*|\/\/|\<\-|\<\>|<<|>>|=|\.', Operator),
+            (r'(?<!:)(:)([a-zA-Z_]\w*([?!]|=(?![>=]))?|\<\>|===?|>=?|<=?|'
+             r'<=>|&&?|%\(\)|%\[\]|%\{\}|\+\+?|\-\-?|\|\|?|\!|//|[%&`/\|]|'
+             r'\*\*?|=?~|<\-)|([a-zA-Z_]\w*([?!])?)(:)(?!:)', String.Symbol),
+            (r':"', String.Symbol, 'interpoling_symbol'),
+            (r'\b(nil|true|false)\b(?![?!])|\b[A-Z]\w*\b', Name.Constant),
+            (r'\b(__(FILE|LINE|MODULE|MAIN|FUNCTION)__)\b(?![?!])', Name.Builtin.Pseudo),
+            (r'[a-zA-Z_!][\w_]*[!\?]?', Name),
+            (r'[(){};,/\|:\\\[\]]', Punctuation),
+            (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
+            (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^\d\s])'
+             r'(_?\d)*)?([eE][-+]?\d(_?\d)*)?|0[bB][01]+)\b', Number),
+            (r'%r\/.*\/', String.Regex),
+            include('strings'),
+        ],
+        'dqs': [
+            (r'"', String.Double, "#pop"),
+            include('enddoublestr')
+        ],
+        'interpoling': [
+            (r'#{', String.Interpol, 'interpoling_string'),
+        ],
+        'interpoling_string' : [
+            (r'}', String.Interpol, "#pop"),
+            include('root')
+        ],
+        'interpoling_symbol': [
+            (r'"', String.Symbol, "#pop"),
+            include('interpoling'),
+            (r'[^#"]+', String.Symbol),
+        ],
+        'enddoublestr' : [
+            include('interpoling'),
+            (r'[^#"]+', String.Double),
+        ]
+    }
+    tokens.update(gen_elixir_sigil_rules())
+
+
+class ElixirConsoleLexer(Lexer):
+    """
+    For Elixir interactive console (iex) output like:
+
+    .. sourcecode:: iex
+
+        iex> [head | tail] = [1,2,3]
+        [1,2,3]
+        iex> head
+        1
+        iex> tail
+        [2,3]
+        iex> [head | tail]
+        [1,2,3]
+        iex> length [head | tail]
+        3
+
+    *New in Pygments 1.5.*
+    """
+
+    name = 'Elixir iex session'
+    aliases = ['iex']
+    mimetypes = ['text/x-elixir-shellsession']
+
+    _prompt_re = re.compile('(iex|\.{3})> ')
+
+    def get_tokens_unprocessed(self, text):
+        exlexer = ElixirLexer(**self.options)
+
+        curcode = ''
+        insertions = []
+        for match in line_re.finditer(text):
+            line = match.group()
+            if line.startswith(u'** '):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Error, line[:-1])]))
+                curcode += line[-1:]
+            else:
+                m = self._prompt_re.match(line)
+                if m is not None:
+                    end = m.end()
+                    insertions.append((len(curcode),
+                                       [(0, Generic.Prompt, line[:end])]))
+                    curcode += line[end:]
+                else:
+                    if curcode:
+                        for item in do_insertions(insertions,
+                                        exlexer.get_tokens_unprocessed(curcode)):
+                            yield item
+                        curcode = ''
+                        insertions = []
+                    yield match.start(), Generic.Output, line
+        if curcode:
+            for item in do_insertions(insertions,
+                                      exlexer.get_tokens_unprocessed(curcode)):
+                yield item

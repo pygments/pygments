@@ -5,7 +5,7 @@
 
     Pygments lexers.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -93,30 +93,32 @@ def get_lexer_for_filename(_fn, code=None, **options):
             if fnmatch.fnmatch(fn, filename):
                 if name not in _lexer_cache:
                     _load_lexers(modname)
-                matches.append(_lexer_cache[name])
+                matches.append((_lexer_cache[name], filename))
     for cls in find_plugin_lexers():
         for filename in cls.filenames:
             if fnmatch.fnmatch(fn, filename):
-                matches.append(cls)
+                matches.append((cls, filename))
 
     if sys.version_info > (3,) and isinstance(code, bytes):
         # decode it, since all analyse_text functions expect unicode
         code = code.decode('latin1')
 
-    def get_rating(cls):
+    def get_rating(info):
+        cls, filename = info
+        # explicit patterns get a bonus
+        bonus = '*' not in filename and 0.5 or 0
         # The class _always_ defines analyse_text because it's included in
         # the Lexer class.  The default implementation returns None which
         # gets turned into 0.0.  Run scripts/detect_missing_analyse_text.py
         # to find lexers which need it overridden.
-        d = cls.analyse_text(code)
-        #print "Got %r from %r" % (d, cls)
-        return d
+        if code:
+            return cls.analyse_text(code) + bonus
+        return bonus
 
-    if code:
-        matches.sort(key=get_rating)
     if matches:
+        matches.sort(key=get_rating)
         #print "Possible lexers, after sort:", matches
-        return matches[-1](**options)
+        return matches[-1][0](**options)
     raise ClassNotFound('no lexer for filename %r found' % _fn)
 
 
@@ -139,7 +141,8 @@ def _iter_lexerclasses():
     """
     Return an iterator over all lexer classes.
     """
-    for module_name, name, _, _, _ in LEXERS.itervalues():
+    for key in sorted(LEXERS):
+        module_name, name = LEXERS[key][:2]
         if name not in _lexer_cache:
             _load_lexers(module_name)
         yield _lexer_cache[name]

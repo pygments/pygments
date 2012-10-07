@@ -5,7 +5,7 @@
 
     Lexers for parser generators.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -72,8 +72,8 @@ class RagelLexer(RegexLexer):
         ],
         'operators': [
             (r',', Operator), # Join
-            (r'\||&|-|--', Operator), # Union, Intersection and Subtraction
-            (r'\.|<:|:>|:>>', Operator), # Concatention
+            (r'\||&|--?', Operator), # Union, Intersection and Subtraction
+            (r'\.|<:|:>>?', Operator), # Concatention
             (r':', Operator), # Label
             (r'->', Operator), # Epsilon Transition
             (r'(>|\$|%|<|@|<>)(/|eof\b)', Operator), # EOF Actions
@@ -393,7 +393,7 @@ class AntlrLexer(RegexLexer):
             # throwsSpec
             (r'(throws)(\s+)(' + _id + ')',
              bygroups(Keyword, Whitespace, Name.Label)),
-            (r'(?:(,)(\s*)(' + _id + '))+',
+            (r'(,)(\s*)(' + _id + ')',
              bygroups(Punctuation, Whitespace, Name.Label)), # Additional throws
             # optionsSpec
             (r'options\b', Keyword, 'options'),

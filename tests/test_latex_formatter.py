@@ -3,7 +3,7 @@
     Pygments LaTeX formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,7 +22,11 @@ TESTFILE, TESTDIR = support.location(__file__)
 class LatexFormatterTest(unittest.TestCase):
 
     def test_valid_output(self):
-        tokensource = list(PythonLexer().get_tokens(open(TESTFILE).read()))
+        fp = open(TESTFILE)
+        try:
+            tokensource = list(PythonLexer().get_tokens(fp.read()))
+        finally:
+            fp.close()
         fmt = LatexFormatter(full=True, encoding='latin1')
 
         handle, pathname = tempfile.mkstemp('.tex')
@@ -34,14 +38,18 @@ class LatexFormatterTest(unittest.TestCase):
         tfile.close()
         try:
             import subprocess
-            ret = subprocess.Popen(['latex', '-interaction=nonstopmode',
-                                    pathname],
-                                   stdout=subprocess.PIPE).wait()
+            po = subprocess.Popen(['latex', '-interaction=nonstopmode',
+                                   pathname], stdout=subprocess.PIPE)
+            ret = po.wait()
+            output = po.stdout.read()
+            po.stdout.close()
         except OSError:
             # latex not available
             pass
         else:
-            self.failIf(ret, 'latex run reported errors')
+            if ret:
+                print output
+            self.assertFalse(ret, 'latex run reported errors')
 
         os.unlink(pathname)
         os.chdir(old_wd)

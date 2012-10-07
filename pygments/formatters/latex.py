@@ -5,7 +5,7 @@
 
     Formatter for LaTeX fancyvrb output.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -32,6 +32,9 @@ def escape_tex(text, commandprefix):
                 replace('#', r'\%sZsh{}' % commandprefix). \
                 replace('%', r'\%sZpc{}' % commandprefix). \
                 replace('$', r'\%sZdl{}' % commandprefix). \
+                replace('-', r'\%sZhy{}' % commandprefix). \
+                replace("'", r'\%sZsq{}' % commandprefix). \
+                replace('"', r'\%sZdq{}' % commandprefix). \
                 replace('~', r'\%sZti{}' % commandprefix)
 
 
@@ -115,6 +118,9 @@ STYLE_TEMPLATE = r'''
 \def\%(cp)sZsh{\char`\#}
 \def\%(cp)sZpc{\char`\%%}
 \def\%(cp)sZdl{\char`\$}
+\def\%(cp)sZhy{\char`\-}
+\def\%(cp)sZsq{\char`\'}
+\def\%(cp)sZdq{\char`\"}
 \def\%(cp)sZti{\char`\~}
 %% for compatibility with earlier versions
 \def\%(cp)sZat{@}
@@ -286,7 +292,8 @@ class LatexFormatter(Formatter):
         cp = self.commandprefix
         styles = []
         for name, definition in self.cmd2def.iteritems():
-            styles.append(r'\expandafter\def\csname %s@tok@%s\endcsname{%s}' % (cp, name, definition))
+            styles.append(r'\expandafter\def\csname %s@tok@%s\endcsname{%s}' %
+                          (cp, name, definition))
         return STYLE_TEMPLATE % {'cp': self.commandprefix,
                                  'styles': '\n'.join(styles)}
 
@@ -299,17 +306,17 @@ class LatexFormatter(Formatter):
             realoutfile = outfile
             outfile = StringIO()
 
-        outfile.write(r'\begin{Verbatim}[commandchars=\\\{\}')
+        outfile.write(ur'\begin{Verbatim}[commandchars=\\\{\}')
         if self.linenos:
             start, step = self.linenostart, self.linenostep
-            outfile.write(',numbers=left' +
-                          (start and ',firstnumber=%d' % start or '') +
-                          (step and ',stepnumber=%d' % step or ''))
+            outfile.write(u',numbers=left' +
+                          (start and u',firstnumber=%d' % start or u'') +
+                          (step and u',stepnumber=%d' % step or u''))
         if self.mathescape or self.texcomments:
-            outfile.write(r',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
+            outfile.write(ur',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
         if self.verboptions:
-            outfile.write(',' + self.verboptions)
-        outfile.write(']\n')
+            outfile.write(u',' + self.verboptions)
+        outfile.write(u']\n')
 
         for ttype, value in tokensource:
             if ttype in Token.Comment:
@@ -359,7 +366,7 @@ class LatexFormatter(Formatter):
             else:
                 outfile.write(value)
 
-        outfile.write('\\end{Verbatim}\n')
+        outfile.write(u'\\end{Verbatim}\n')
 
         if self.full:
             realoutfile.write(DOC_TEMPLATE %
