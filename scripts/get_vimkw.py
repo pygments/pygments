@@ -22,11 +22,16 @@ def getkw(input, output):
 
             # Extract all the shortened versions
             for i in r_item.finditer(m.group(2)):
-                d.append((i.group(1), "%s%s" % (i.group(1), i.group(2) or '')))
-            d.sort()
+                d.append('(%r,%r)' %
+                         (i.group(1), "%s%s" % (i.group(1), i.group(2) or '')))
+
+    output_info['option'].append("('nnoremap','nnoremap')")
+    output_info['option'].append("('inoremap','inoremap')")
+    output_info['option'].append("('vnoremap','vnoremap')")
 
     for a, b in output_info.items():
-        print >>out, '%s=%r' % (a, b)
+        b.sort()
+        print >>out, '%s=[%s]' % (a, ','.join(b))
 
 def is_keyword(w, keywords):
     for i in range(len(w), 0, -1):
@@ -35,4 +40,4 @@ def is_keyword(w, keywords):
     return False
 
 if __name__ == "__main__":
-    getkw("/usr/share/vim/vim70/syntax/vim.vim", "temp.py")
+    getkw("/usr/share/vim/vim73/syntax/vim.vim", "temp.py")

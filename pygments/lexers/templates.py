@@ -5,16 +5,17 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2011 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexers.web import \
-     PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer
+     PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer, LassoLexer
 from pygments.lexers.agile import PythonLexer, PerlLexer
 from pygments.lexers.compiled import JavaLexer
+from pygments.lexers.jvm import TeaLangLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
      include, using, this
 from pygments.token import Error, Punctuation, \
@@ -33,11 +34,11 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'MyghtyCssLexer', 'MyghtyJavascriptLexer', 'MasonLexer', 'MakoLexer',
            'MakoHtmlLexer', 'MakoXmlLexer', 'MakoJavascriptLexer',
            'MakoCssLexer', 'JspLexer', 'CheetahLexer', 'CheetahHtmlLexer',
-           'CheetahXmlLexer', 'CheetahJavascriptLexer',
-           'EvoqueLexer', 'EvoqueHtmlLexer', 'EvoqueXmlLexer',
-           'ColdfusionLexer', 'ColdfusionHtmlLexer',
-           'VelocityLexer', 'VelocityHtmlLexer', 'VelocityXmlLexer',
-           'SspLexer']
+           'CheetahXmlLexer', 'CheetahJavascriptLexer', 'EvoqueLexer',
+           'EvoqueHtmlLexer', 'EvoqueXmlLexer', 'ColdfusionLexer',
+           'ColdfusionHtmlLexer', 'VelocityLexer', 'VelocityHtmlLexer',
+           'VelocityXmlLexer', 'SspLexer', 'TeaTemplateLexer', 'LassoHtmlLexer',
+           'LassoXmlLexer', 'LassoCssLexer', 'LassoJavascriptLexer']
 
 
 class ErbLexer(Lexer):
@@ -168,7 +169,7 @@ class SmartyLexer(RegexLexer):
             (r'#[a-zA-Z_][a-zA-Z0-9_]*#', Name.Variable),
             (r'\$[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*', Name.Variable),
             (r'[~!%^&*()+=|\[\]:;,.<>/?{}@-]', Operator),
-            ('(true|false|null)\b', Keyword.Constant),
+            (r'(true|false|null)\b', Keyword.Constant),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
@@ -406,11 +407,11 @@ class MyghtyLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(<%(def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
-             bygroups(Name.Tag, None, Text, Name.Function, Name.Tag,
+            (r'(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(<%(\w+))(.*?)(>)(.*?)(</%\2\s*>)(?s)',
-             bygroups(Name.Tag, None, Name.Function, Name.Tag,
+            (r'(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PythonLexer), Name.Tag)),
             (r'(<&[^|])(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
@@ -525,11 +526,11 @@ class MasonLexer(RegexLexer):
             (r'\s+', Text),
             (r'(<%doc>)(.*?)(</%doc>)(?s)',
              bygroups(Name.Tag, Comment.Multiline, Name.Tag)),
-            (r'(<%(def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
-             bygroups(Name.Tag, None, Text, Name.Function, Name.Tag,
+            (r'(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(<%(\w+))(.*?)(>)(.*?)(</%\2\s*>)(?s)',
-             bygroups(Name.Tag, None, Name.Function, Name.Tag,
+            (r'(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+             bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PerlLexer), Name.Tag)),
             (r'(<&[^|])(.*?)(,.*?)?(&>)(?s)',
              bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
@@ -616,8 +617,8 @@ class MakoLexer(RegexLexer):
             include('tag'),
         ],
         'tag': [
-            (r'((?:\w+)\s*=)\s*(".*?")',
-             bygroups(Name.Attribute, String)),
+            (r'((?:\w+)\s*=)(\s*)(".*?")',
+             bygroups(Name.Attribute, Text, String)),
             (r'/?\s*>', Comment.Preproc, '#pop'),
             (r'\s+', Text),
         ],
@@ -1403,7 +1404,7 @@ class EvoqueLexer(RegexLexer):
             # directives: begin, end
             (r'(\$)(begin|end)(\{(%)?)(.*?)((?(4)%)\})',
              bygroups(Punctuation, Name.Builtin, Punctuation, None,
-                      String, Punctuation, None)),
+                      String, Punctuation)),
             # directives: evoque, overlay
             # see doc for handling first name arg: /directives/evoque/
             #+ minor inconsistency: the "name" in e.g. $overlay{name=site_base}
@@ -1411,17 +1412,17 @@ class EvoqueLexer(RegexLexer):
             (r'(\$)(evoque|overlay)(\{(%)?)(\s*[#\w\-"\'.]+[^=,%}]+?)?'
              r'(.*?)((?(4)%)\})',
              bygroups(Punctuation, Name.Builtin, Punctuation, None,
-                      String, using(PythonLexer), Punctuation, None)),
+                      String, using(PythonLexer), Punctuation)),
             # directives: if, for, prefer, test
             (r'(\$)(\w+)(\{(%)?)(.*?)((?(4)%)\})',
              bygroups(Punctuation, Name.Builtin, Punctuation, None,
-                      using(PythonLexer), Punctuation, None)),
+                      using(PythonLexer), Punctuation)),
             # directive clauses (no {} expression)
             (r'(\$)(else|rof|fi)', bygroups(Punctuation, Name.Builtin)),
             # expressions
             (r'(\$\{(%)?)(.*?)((!)(.*?))?((?(2)%)\})',
              bygroups(Punctuation, None, using(PythonLexer),
-                      Name.Builtin, None, None, Punctuation, None)),
+                      Name.Builtin, None, None, Punctuation)),
             (r'#', Other),
         ],
         'comment': [
@@ -1489,7 +1490,8 @@ class ColdfusionLexer(RegexLexer):
             (r"'.*?'", String.Single),
             (r'\d+', Number),
             (r'(if|else|len|var|case|default|break|switch)\b', Keyword),
-            (r'([A-Za-z_$][A-Za-z0-9_.]*)\s*(\()', bygroups(Name.Function, Punctuation)),
+            (r'([A-Za-z_$][A-Za-z0-9_.]*)(\s*)(\()',
+             bygroups(Name.Function, Text, Punctuation)),
             (r'[A-Za-z_$][A-Za-z0-9_.]*', Name.Variable),
             (r'[()\[\]{};:,.\\]', Punctuation),
             (r'\s+', Text),
@@ -1502,6 +1504,7 @@ class ColdfusionLexer(RegexLexer):
             (r'"', String.Double, '#pop'),
         ],
     }
+
 
 class ColdfusionMarkupLexer(RegexLexer):
     """
@@ -1580,4 +1583,151 @@ class SspLexer(DelegatingLexer):
             rv += 0.2
         if '<%' in text and '%>' in text:
             rv += 0.1
+        return rv
+
+
+class TeaTemplateRootLexer(RegexLexer):
+    """
+    Base for the `TeaTemplateLexer`. Yields `Token.Other` for area outside of
+    code blocks.
+
+    *New in Pygments 1.5.*
+    """
+
+    tokens = {
+        'root': [
+            (r'<%\S?', Keyword, 'sec'),
+            (r'[^<]+', Other),
+            (r'<', Other),
+            ],
+        'sec': [
+            (r'%>', Keyword, '#pop'),
+            # note: '\w\W' != '.' without DOTALL.
+            (r'[\w\W]+?(?=%>|\Z)', using(TeaLangLexer)),
+            ],
+        }
+
+
+class TeaTemplateLexer(DelegatingLexer):
+    """
+    Lexer for `Tea Templates <http://teatrove.org/>`_.
+
+    *New in Pygments 1.5.*
+    """
+    name = 'Tea'
+    aliases = ['tea']
+    filenames = ['*.tea']
+    mimetypes = ['text/x-tea']
+
+    def __init__(self, **options):
+        super(TeaTemplateLexer, self).__init__(XmlLexer,
+                                               TeaTemplateRootLexer, **options)
+
+    def analyse_text(text):
+        rv = TeaLangLexer.analyse_text(text) - 0.01
+        if looks_like_xml(text):
+            rv += 0.4
+        if '<%' in text and '%>' in text:
+            rv += 0.1
+        return rv
+
+
+class LassoHtmlLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `HtmlLexer`.
+
+    Nested JavaScript and CSS is also highlighted.
+    """
+
+    name = 'HTML+Lasso'
+    aliases = ['html+lasso']
+    alias_filenames = ['*.html', '*.htm', '*.xhtml', '*.lasso', '*.lasso[89]',
+                       '*.incl', '*.inc', '*.las']
+    mimetypes = ['text/html+lasso',
+                 'application/x-httpd-lasso',
+                 'application/x-httpd-lasso[89]']
+
+    def __init__(self, **options):
+        options['requiredelimiters'] = True
+        super(LassoHtmlLexer, self).__init__(HtmlLexer, LassoLexer, **options)
+
+    def analyse_text(text):
+        rv = LassoLexer.analyse_text(text)
+        if re.search(r'<\w+>', text, re.I):
+            rv += 0.2
+        if html_doctype_matches(text):
+            rv += 0.5
+        return rv
+
+
+class LassoXmlLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `XmlLexer`.
+    """
+
+    name = 'XML+Lasso'
+    aliases = ['xml+lasso']
+    alias_filenames = ['*.xml', '*.lasso', '*.lasso[89]',
+                       '*.incl', '*.inc', '*.las']
+    mimetypes = ['application/xml+lasso']
+
+    def __init__(self, **options):
+        options['requiredelimiters'] = True
+        super(LassoXmlLexer, self).__init__(XmlLexer, LassoLexer, **options)
+
+    def analyse_text(text):
+        rv = LassoLexer.analyse_text(text)
+        if looks_like_xml(text):
+            rv += 0.5
+        return rv
+
+
+class LassoCssLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `CssLexer`.
+    """
+
+    name = 'CSS+Lasso'
+    aliases = ['css+lasso']
+    alias_filenames = ['*.css']
+    mimetypes = ['text/css+lasso']
+
+    def __init__(self, **options):
+        options['requiredelimiters'] = True
+        super(LassoCssLexer, self).__init__(CssLexer, LassoLexer, **options)
+
+    def analyse_text(text):
+        rv = LassoLexer.analyse_text(text)
+        if re.search(r'\w+:.+;', text):
+            rv += 0.1
+        if 'padding:' in text:
+            rv += 0.1
+        return rv
+
+
+class LassoJavascriptLexer(DelegatingLexer):
+    """
+    Subclass of the `LassoLexer` which highlights unhandled data with the
+    `JavascriptLexer`.
+    """
+
+    name = 'JavaScript+Lasso'
+    aliases = ['js+lasso', 'javascript+lasso']
+    alias_filenames = ['*.js']
+    mimetypes = ['application/x-javascript+lasso',
+                 'text/x-javascript+lasso',
+                 'text/javascript+lasso']
+
+    def __init__(self, **options):
+        options['requiredelimiters'] = True
+        super(LassoJavascriptLexer, self).__init__(JavascriptLexer, LassoLexer,
+                                                   **options)
+
+    def analyse_text(text):
+        rv = LassoLexer.analyse_text(text)
+        if 'function' in text:
+            rv += 0.2
         return rv
