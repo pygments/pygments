@@ -58,7 +58,7 @@ class ECLLexer(RegexLexer):
         'whitespace': [
             (r'\s+', Text),
             (r'\/\/.*', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
         ],
         'statements': [
             include('types'),
@@ -1208,7 +1208,7 @@ class ModelicaLexer(RegexLexer):
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
             (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment),
         ],
         'statements': [
             (r'"', String, 'string'),
@@ -1851,7 +1851,7 @@ class AsymptoteLexer(RegexLexer):
     mimetypes = ['text/x-asymptote']
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
 
     tokens = {
         'whitespace': [
@@ -1859,7 +1859,7 @@ class AsymptoteLexer(RegexLexer):
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
             (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment),
         ],
         'statements': [
             # simple string (TeX friendly)
@@ -1905,7 +1905,7 @@ class AsymptoteLexer(RegexLexer):
         'root': [
             include('whitespace'),
             # functions
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
+            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|\*))'    # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')({)',
@@ -1913,7 +1913,7 @@ class AsymptoteLexer(RegexLexer):
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
+            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|\*))'    # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')(;)',
@@ -2348,7 +2348,7 @@ class ProtoBufLexer(RegexLexer):
             (r'[ \t]+', Text),
             (r'[,;{}\[\]\(\)]', Punctuation),
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
             (r'\b(import|option|optional|required|repeated|default|packed|'
              r'ctype|extensions|to|max|rpc|returns)\b', Keyword),
             (r'(int32|int64|uint32|uint64|sint32|sint64|'
@@ -3528,7 +3528,7 @@ class SourcePawnLexer(RegexLexer):
     mimetypes = ['text/x-sourcepawn']
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
 
     tokens = {
         'root': [
@@ -3542,7 +3542,7 @@ class SourcePawnLexer(RegexLexer):
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
             (r'[{}]', Punctuation),
             (r'L?"', String, 'string'),
             (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
@@ -3570,7 +3570,7 @@ class SourcePawnLexer(RegexLexer):
         ],
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'/\*(.|\n)*?\*/', Comment.Multiline),
             (r'//.*?\n', Comment.Single, '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Comment.Preproc),
@@ -3583,33 +3583,34 @@ class SourcePawnLexer(RegexLexer):
         ]
     }
 
-    sm_types = ['Action', 'bool', 'Float', 'Plugin', 'String', 'any',
-            'AdminFlag','OverrideType','OverrideRule','ImmunityType',
-            'GroupId','AdminId','AdmAccessMode','AdminCachePart',
-            'CookieAccess','CookieMenu','CookieMenuAction','NetFlow',
-            'ConVarBounds','QueryCookie','ReplySource','ConVarQueryResult',
-            'ConVarQueryFinished','Function','Action','Identity','PluginStatus',
-            'PluginInfo','DBResult','DBBindType','DBPriority','PropType',
-            'PropFieldType', 'MoveType','RenderMode','RenderFx','EventHookMode',
-            'EventHook','FileType', 'FileTimeMode','PathType','ParamType',
-            'ExecType','DialogType','Handle', 'KvDataTypes','NominateResult',
-            'MapChange','MenuStyle','MenuAction', 'MenuSource','RegexError',
-            'SDKCallType','SDKLibrary','SDKFuncConfSource','SDKType',
-            'SDKPassMethod','RayType','TraceEntityFilter','ListenOverride',
-            'SortOrder','SortType','SortFunc2D','APLRes','FeatureType',
-            'FeatureStatus','SMCResult','SMCError','TFClassType','TFTeam',
-            'TFCond','TFResourceType','Timer','TopMenuAction','TopMenuObjectType',
-            'TopMenuPosition','TopMenuObject','UserMsg']
+    SM_TYPES = ['Action', 'bool', 'Float', 'Plugin', 'String', 'any',
+                'AdminFlag', 'OverrideType', 'OverrideRule', 'ImmunityType',
+                'GroupId', 'AdminId', 'AdmAccessMode', 'AdminCachePart',
+                'CookieAccess', 'CookieMenu', 'CookieMenuAction', 'NetFlow',
+                'ConVarBounds', 'QueryCookie', 'ReplySource',
+                'ConVarQueryResult', 'ConVarQueryFinished', 'Function',
+                'Action', 'Identity', 'PluginStatus', 'PluginInfo', 'DBResult',
+                'DBBindType', 'DBPriority', 'PropType', 'PropFieldType',
+                'MoveType', 'RenderMode', 'RenderFx', 'EventHookMode',
+                'EventHook', 'FileType', 'FileTimeMode', 'PathType',
+                'ParamType', 'ExecType', 'DialogType', 'Handle', 'KvDataTypes',
+                'NominateResult', 'MapChange', 'MenuStyle', 'MenuAction',
+                'MenuSource', 'RegexError', 'SDKCallType', 'SDKLibrary',
+                'SDKFuncConfSource', 'SDKType', 'SDKPassMethod', 'RayType',
+                'TraceEntityFilter', 'ListenOverride', 'SortOrder', 'SortType',
+                'SortFunc2D', 'APLRes', 'FeatureType', 'FeatureStatus',
+                'SMCResult', 'SMCError', 'TFClassType', 'TFTeam', 'TFCond',
+                'TFResourceType', 'Timer', 'TopMenuAction', 'TopMenuObjectType',
+                'TopMenuPosition', 'TopMenuObject', 'UserMsg']
 
     def __init__(self, **options):
         self.smhighlighting = get_bool_opt(options,
                 'sourcemod', True)
-        
-        self._functions = list()
+
+        self._functions = []
         if self.smhighlighting:
             from pygments.lexers._sourcemodbuiltins import FUNCTIONS
-            for func in FUNCTIONS:
-                self._functions.append(func)
+            self._functions.extend(FUNCTIONS)
         RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
@@ -3617,7 +3618,7 @@ class SourcePawnLexer(RegexLexer):
             RegexLexer.get_tokens_unprocessed(self, text):
             if token is Name:
                 if self.smhighlighting:
-                    if value in self.sm_types:
+                    if value in self.SM_TYPES:
                         token = Keyword.Type
                     elif value in self._functions:
                         tokens = Name.Builtin
