@@ -2265,8 +2265,8 @@ class XQueryLexer(ExtendedRegexLexer):
     *New in Pygments 1.4.*
     """
     name = 'XQuery'
-    aliases = ['xquery', 'xqy']
-    filenames = ['*.xqy', '*.xquery']
+    aliases = ['xquery', 'xqy', 'xq', 'xql', 'xqm']
+    filenames = ['*.xqy', '*.xquery', '*.xq', '*.xql', '*.xqm']
     mimetypes = ['text/xquery', 'application/xquery']
 
     xquery_parse_state = []
@@ -2989,9 +2989,9 @@ class DartLexer(RegexLexer):
 
 class LassoLexer(RegexLexer):
     """
-    For `Lasso <http://www.lassosoft.com/>`_ source code, covering both
-    Lasso 9 syntax and LassoScript for Lasso 8.6 and earlier. For Lasso
-    embedded in HTML, use the `LassoHtmlLexer`.
+    For `Lasso <http://www.lassosoft.com/>`_ source code, covering both Lasso 9
+    syntax and LassoScript for Lasso 8.6 and earlier. For Lasso embedded in
+    HTML, use the `LassoHtmlLexer`.
 
     Additional options accepted:
 
@@ -3016,6 +3016,7 @@ class LassoLexer(RegexLexer):
         'root': [
             (r'^#!.+lasso9\b', Comment.Preproc, 'lasso'),
             (r'\s+', Other),
+            (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
             (r'\[noprocess\]', Comment.Preproc, ('delimiters', 'noprocess')),
             (r'\[', Comment.Preproc, ('delimiters', 'squarebrackets')),
             (r'<\?(LassoScript|lasso|=)', Comment.Preproc,
@@ -3023,7 +3024,13 @@ class LassoLexer(RegexLexer):
             (r'<', Other, 'delimiters'),
             include('lasso'),
         ],
+        'nosquarebrackets': [
+            (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
+            (r'<', Other),
+            (r'[^<]+', Other),
+        ],
         'delimiters': [
+            (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
             (r'\[noprocess\]', Comment.Preproc, 'noprocess'),
             (r'\[', Comment.Preproc, 'squarebrackets'),
             (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
@@ -3050,15 +3057,27 @@ class LassoLexer(RegexLexer):
             (r'/\*\*!.*?\*/', String.Doc),
             (r'/\*.*?\*/', Comment.Multiline),
 
+            # literals
+            (r'\d*\.\d+(e[+-]?\d+)?', Number.Float),
+            (r'0x[\da-f]+', Number.Hex),
+            (r'\d+', Number.Integer),
+            (r'([+-]?)(infinity|NaN)\b', bygroups(Operator, Number)),
+            (r"'", String.Single, 'singlestring'),
+            (r'"', String.Double, 'doublestring'),
+            (r'`[^`]*`', String.Backtick),
+
             # names
-            (r'\$[a-z_][\w\.]*', Name.Variable),
-            (r'(#[a-z_][\w\.]*|#\d+)', Name.Variable.Instance),
-            (r"\.'[a-z_][\w\.]*'", Name.Variable.Class),
-            (r"(self)(->)('[a-z_][\w\.]*')",
+            (r'\$[a-z_][\w.]*', Name.Variable),
+            (r'#[a-z_][\w.]*|#\d+', Name.Variable.Instance),
+            (r"(\.)('[a-z_][\w.]*')",
+                bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
+            (r"(self)(->)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
-            (r'(self|void)\b', Name.Builtin.Pseudo),
-            (r'-[a-z_][\w\.]*', Name.Attribute),
-            (r'(::)([a-z_][\w\.]*)', bygroups(Punctuation, Name.Label)),
+            (r'(\.\.?)([a-z_][\w.]*)',
+                bygroups(Name.Builtin.Pseudo, Name.Other)),
+            (r'(self|inherited|global|void)\b', Name.Builtin.Pseudo),
+            (r'-[a-z_][\w.]*', Name.Attribute),
+            (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
             (r'(error_(code|msg)_\w+|Error_AddError|Error_ColumnRestriction|'
              r'Error_DatabaseConnectionUnavailable|Error_DatabaseTimeout|'
              r'Error_DeleteError|Error_FieldRestriction|Error_FileNotFound|'
@@ -3070,27 +3089,29 @@ class LassoLexer(RegexLexer):
              r'Error_UpdateError)\b', Name.Exception),
 
             # definitions
-            (r'(parent)(\s+)([a-z_][\w\.]*)',
-                bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(define)(\s+)([a-z_][\w\.]*)(\s*)(=>)(\s*)(type|trait|thread)',
+            (r'(define)(\s+)([a-z_][\w.]*)(\s*)(=>)(\s*)(type|trait|thread)\b',
                 bygroups(Keyword.Declaration, Text, Name.Class, Text, Operator,
                          Text, Keyword)),
-            (r'(define)(\s+)([a-z_][\w\.]*)(->)([a-z_][\w\.]*=?)',
+            (r'(define)(\s+)([a-z_][\w.]*)(->)([a-z_][\w.]*=?|[-+*/%<>]|==)',
                 bygroups(Keyword.Declaration, Text, Name.Class, Operator,
-                         Name.Function)),
-            (r'(define)(\s+)([a-z_][\w\.]*=?)',
-                bygroups(Keyword.Declaration, Text, Name.Function)),
-            (r'(public|protected|private)(\s+)([a-z_][\w\.]*)(\s*)(=>)',
-                bygroups(Keyword, Text, Name.Function, Text, Operator)),
-            (r'(public|protected|private|provide)(\s+)([a-z_][\w\.]*=?)(\s*)(\()',
-                bygroups(Keyword, Text, Name.Function, Text, Punctuation)),
+                         Name.Function), 'signature'),
+            (r'(define)(\s+)([a-z_][\w.]*)',
+                bygroups(Keyword.Declaration, Text, Name.Function),
+                'signature'),
+            (r'(public|protected|private|provide)(\s+)([a-z_][\w.]*=?|'
+             r'[-+*/%<>]|==)(\s*)(\()',
+                bygroups(Keyword, Text, Name.Function, Text, Punctuation),
+                ('signature', 'parameter')),
+            (r'(public|protected|private)(\s+)([a-z_][\w.]*)',
+                bygroups(Keyword, Text, Name.Function)),
 
             # keywords
-            (r'\.\.\.', Keyword.Pseudo),
-            (r'(true|false|null|[+\-]?infinity|\+?NaN)\b', Keyword.Constant),
-            (r'(local|var|variable|global|data)\b', Keyword.Declaration),
-            (r'(array|date|decimal|duration|integer|map|pair|string|tag|'
-             r'xml)\b', Keyword.Type),
+            (r'(true|false|none|minimal|full|all)\b', Keyword.Constant),
+            (r'(local|var|variable|data)\b', Keyword.Declaration),
+            (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|'
+             r'null)\b', Keyword.Type),
+            (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
+            (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Text, Name)),
             (r'(/?)(Cache|Database_Names|Database_SchemaNames|'
              r'Database_TableNames|Define_Tag|Define_Type|Email_Batch|'
              r'Encode_Set|HTML_Comment|Handle|Handle_Error|Header|If|Inline|'
@@ -3104,28 +3125,23 @@ class LassoLexer(RegexLexer):
              r'Value_List|While|Abort|Case|Else|If_Empty|If_False|If_Null|'
              r'If_True|Loop_Abort|Loop_Continue|Loop_Count|Params|Params_Up|'
              r'Return|Return_Value|Run_Children|SOAP_DefineTag|'
-             r'SOAP_LastRequest|SOAP_LastResponse|Tag_Name)\b',
-                 bygroups(Punctuation, Keyword)),
-            (r'(and|ascending|average|by|case|define|descending|do|else|'
-             r'equals|frozen|group|import|in|inherited|into|join|let|match|'
-             r'max|min|not|on|or|order|params|parent|private|protected|'
-             r'provide|public|require|return|select|skip|sum|take|thread|to|'
-             r'trait|type|where|with)\b', Keyword),
-
-            # literals
-            (r'([+\-]?\d*\.\d+(e[+\-]?\d+)?)', Number.Float),
-            (r'0x[\da-f]+', Number.Hex),
-            (r'[+\-]?\d+', Number.Integer),
-            (r"'", String.Single, 'singlestring'),
-            (r'"', String.Double, 'doublestring'),
-            (r'`[^`]*`', String.Backtick),
+             r'SOAP_LastRequest|SOAP_LastResponse|Tag_Name|ascending|average|'
+             r'by|define|descending|do|equals|frozen|group|handle_failure|'
+             r'import|in|into|join|let|match|max|min|on|order|parent|protected|'
+             r'provide|public|require|skip|split_thread|sum|take|thread|to|'
+             r'trait|type|where|with|yield)\b', bygroups(Punctuation, Keyword)),
 
             # other
+            (r'(and|or|not)\b', Operator.Word),
+            (r'([a-z_][\w.]*)(\s*)(::\s*)([a-z_][\w.]*)(\s*)(=)',
+                bygroups(Name, Text, Punctuation, Name.Label, Text, Operator)),
+            (r'((?<!->)[a-z_][\w.]*)(\s*)(=(?!=))',
+                bygroups(Name, Text, Operator)),
+            (r'(/?)([\w.]+)', bygroups(Punctuation, Name.Other)),
             (r'(=)(bw|ew|cn|lte?|gte?|n?eq|ft|n?rx)\b',
                 bygroups(Operator, Operator.Word)),
-            (r'([=\+\-\*/%<>&|!\?\.\\]+|:=)', Operator),
+            (r':=|[-+*/%=<>&|!?\\]+', Operator),
             (r'[{}():;,@^]', Punctuation),
-            (r'(/?)([\w\.]+)', bygroups(Punctuation, Name.Other)),
         ],
         'singlestring': [
             (r"'", String.Single, '#pop'),
@@ -3141,7 +3157,18 @@ class LassoLexer(RegexLexer):
         ],
         'escape': [
             (r'\\(U[\da-f]{8}|u[\da-f]{4}|x[\da-f]{1,2}|[0-7]{1,3}|:[^:]+:|'
-             r'[abefnrtv\"\'\?\\]|$)', String.Escape),
+             r'[abefnrtv?\"\'\\]|$)', String.Escape),
+        ],
+        'signature': [
+            (r'[(,]', Punctuation, 'parameter'),
+            (r'=>', Operator, '#pop'),
+            include('lasso'),
+        ],
+        'parameter': [
+            (r'\.\.\.', Name.Builtin.Pseudo),
+            (r'-?[a-z_][\w.]*', Name.Attribute, '#pop'),
+            (r'\)', Punctuation, '#pop'),
+            include('lasso'),
         ],
     }
 
@@ -3178,6 +3205,6 @@ class LassoLexer(RegexLexer):
             rv += 0.4
         if re.search(r'local\(', text, re.I):
             rv += 0.4
-        if re.search(r'(\[\n|\?>)', text):
+        if re.search(r'\[\n|\?>', text):
             rv += 0.4
         return rv

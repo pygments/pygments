@@ -1821,19 +1821,34 @@ class GoLexer(RegexLexer):
             (r'\\\n', Text), # line continuations
             (r'//(.*?)\n', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            (r'(break|default|func|interface|select'
-             r'|case|defer|go|map|struct'
-             r'|chan|else|goto|package|switch'
-             r'|const|fallthrough|if|range|type'
-             r'|continue|for|import|return|var)\b', Keyword
+            (r'(import|package)\b', Keyword.Namespace),
+            (r'(var|func|struct|map|chan|type|interface|const)\b', Keyword.Declaration),
+            (r'(break|default|select|case|defer|go'
+             r'|else|goto|switch|fallthrough|if|range'
+             r'|continue|for|return)\b', Keyword
             ),
-            # It seems the builtin types aren't actually keywords.
-            (r'(uint8|uint16|uint32|uint64'
-             r'|int8|int16|int32|int64'
-             r'|float32|float64|byte'
-             r'|uint|int|float|uintptr'
-             r'|string|close|closed|len|cap|new|make)\b', Name.Builtin
+            (r'(true|false|iota|nil)\b', Keyword.Constant),
+            # It seems the builtin types aren't actually keywords, but
+            # can be used as functions. So we need two declarations.
+            (r'(uint|uint8|uint16|uint32|uint64'
+             r'|int|int8|int16|int32|int64'
+             r'|float|float32|float64'
+             r'|complex64|complex128|byte|rune'
+             r'|string|bool|error|uintptr'
+             r'|print|println|panic|recover|close|complex|real|imag'
+             r'|len|cap|append|copy|delete|new|make)\b(\()', bygroups(Name.Builtin, Punctuation)
             ),
+            (r'(uint|uint8|uint16|uint32|uint64'
+             r'|int|int8|int16|int32|int64'
+             r'|float|float32|float64'
+             r'|complex64|complex128|byte|rune'
+             r'|string|bool|error|uintptr)\b', Keyword.Type
+            ),
+            # imaginary_lit
+            (r'\d+i', Number),
+            (r'\d+\.\d*([Ee][-+]\d+)?i', Number),
+            (r'\.\d+([Ee][-+]\d+)?i', Number),
+            (r'\d+[Ee][-+]\d+i', Number),
             # float_lit
             (r'\d+(\.\d+[eE][+\-]?\d+|'
              r'\.\d*|[eE][+\-]?\d+)', Number.Float),
@@ -1857,11 +1872,10 @@ class GoLexer(RegexLexer):
             (r'"(\\\\|\\"|[^"])*"', String),
             # Tokens
             (r'(<<=|>>=|<<|>>|<=|>=|&\^=|&\^|\+=|-=|\*=|/=|%=|&=|\|=|&&|\|\|'
-             r'|<-|\+\+|--|==|!=|:=|\.\.\.)|[+\-*/%&|^<>=!()\[\]{}.,;:]',
-             Punctuation
-            ),
+             r'|<-|\+\+|--|==|!=|:=|\.\.\.|[+\-*/%&])', Operator),
+            (r'[|^<>=!()\[\]{}.,;:]', Punctuation),
             # identifier
-            (r'[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name.Other),
         ]
     }
 

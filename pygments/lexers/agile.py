@@ -37,8 +37,8 @@ class PythonLexer(RegexLexer):
     """
 
     name = 'Python'
-    aliases = ['python', 'py']
-    filenames = ['*.py', '*.pyw', '*.sc', 'SConstruct', 'SConscript', '*.tac']
+    aliases = ['python', 'py', 'sage']
+    filenames = ['*.py', '*.pyw', '*.sc', 'SConstruct', 'SConscript', '*.tac', '*.sage']
     mimetypes = ['text/x-python', 'application/x-python']
 
     tokens = {
