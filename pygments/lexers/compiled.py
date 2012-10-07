@@ -27,8 +27,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'DylanLexer', 'ObjectiveCLexer', 'FortranLexer', 'GLShaderLexer',
            'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
            'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
-           'NimrodLexer', 'FantomLexer', 'RustLexer', 'CUDALexer',
-           'SourcePawnLexer']
+           'NimrodLexer', 'FantomLexer', 'RustLexer', 'CUDALexer']
 
 
 class CLexer(RegexLexer):
@@ -3050,110 +3049,4 @@ class CUDALexer(CLexer):
                     token = Keyword.Reserved
                 elif value in self.functions:
                     token = Name.Function
-            yield index, token, value
-
-
-class SourcePawnLexer(RegexLexer):
-    """
-    For SourcePawn source code with preprocessor directives.
-    """
-    name = 'SourcePawn'
-    aliases = ['sp']
-    filenames = ['*.sp']
-    mimetypes = ['text/x-sourcepawn']
-
-    #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
-
-    tokens = {
-        'root': [
-            # preprocessor directives: without whitespace
-            ('^#if\s+0', Comment.Preproc, 'if0'),
-            ('^#', Comment.Preproc, 'macro'),
-            # or with whitespace
-            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
-            ('^' + _ws + '#', Comment.Preproc, 'macro'),
-            (r'\n', Text),
-            (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
-            (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            (r'[{}]', Punctuation),
-            (r'L?"', String, 'string'),
-            (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
-            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
-            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
-            (r'0[0-7]+[LlUu]*', Number.Oct),
-            (r'\d+[LlUu]*', Number.Integer),
-            (r'\*/', Error),
-            (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r'[()\[\],.;]', Punctuation),
-            (r'(case|const|continue|native|'
-             r'default|else|enum|for|if|new|operator|'
-             r'public|return|sizeof|static|decl|struct|switch)\b', Keyword),
-            (r'(bool|Float)\b', Keyword.Type),
-            (r'(true|false)\b', Keyword.Constant),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
-        ],
-        'string': [
-            (r'"', String, '#pop'),
-            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"\n]+', String), # all other characters
-            (r'\\\n', String), # line continuation
-            (r'\\', String), # stray backslash
-        ],
-        'macro': [
-            (r'[^/\n]+', Comment.Preproc),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
-            (r'/', Comment.Preproc),
-            (r'(?<=\\)\n', Comment.Preproc),
-            (r'\n', Comment.Preproc, '#pop'),
-        ],
-        'if0': [
-            (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
-            (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
-            (r'.*?\n', Comment),
-        ]
-    }
-
-    sm_types = ['Action', 'bool', 'Float', 'Plugin', 'String', 'any',
-            'AdminFlag','OverrideType','OverrideRule','ImmunityType',
-            'GroupId','AdminId','AdmAccessMode','AdminCachePart',
-            'CookieAccess','CookieMenu','CookieMenuAction','NetFlow',
-            'ConVarBounds','QueryCookie','ReplySource','ConVarQueryResult',
-            'ConVarQueryFinished','Function','Action','Identity','PluginStatus',
-            'PluginInfo','DBResult','DBBindType','DBPriority','PropType',
-            'PropFieldType', 'MoveType','RenderMode','RenderFx','EventHookMode',
-            'EventHook','FileType', 'FileTimeMode','PathType','ParamType',
-            'ExecType','DialogType','Handle', 'KvDataTypes','NominateResult',
-            'MapChange','MenuStyle','MenuAction', 'MenuSource','RegexError',
-            'SDKCallType','SDKLibrary','SDKFuncConfSource','SDKType',
-            'SDKPassMethod','RayType','TraceEntityFilter','ListenOverride',
-            'SortOrder','SortType','SortFunc2D','APLRes','FeatureType',
-            'FeatureStatus','SMCResult','SMCError','TFClassType','TFTeam',
-            'TFCond','TFResourceType','Timer','TopMenuAction','TopMenuObjectType',
-            'TopMenuPosition','TopMenuObject','UserMsg']
-
-    def __init__(self, **options):
-        self.smhighlighting = get_bool_opt(options,
-                'sourcemod', True)
-        
-        self._functions = list()
-        if self.smhighlighting:
-            from pygments.lexers._sourcemodbuiltins import FUNCTIONS
-            for func in FUNCTIONS:
-                self._functions.append(func)
-        RegexLexer.__init__(self, **options)
-
-    def get_tokens_unprocessed(self, text):
-        for index, token, value in \
-            RegexLexer.get_tokens_unprocessed(self, text):
-            if token is Name:
-                if self.smhighlighting:
-                    if value in self.sm_types:
-                        token = Keyword.Type
-                    elif value in self._functions:
-                        tokens = Name.Builtin
             yield index, token, value
