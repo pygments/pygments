@@ -30,7 +30,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'AutohotkeyLexer', 'GoodDataCLLexer', 'MaqlLexer', 'ProtoBufLexer',
            'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
-           'MscgenLexer', 'KconfigLexer']
+           'MscgenLexer', 'KconfigLexer', 'VGLLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -3480,4 +3480,38 @@ class KconfigLexer(RegexLexer):
         'indent3': do_indent(3),
         'indent2': do_indent(2),
         'indent1': do_indent(1),
+    }
+
+
+class VGLLexer(RegexLexer):
+    """
+    For `SampleManager VGL <http://www.thermoscientific.com/samplemanager>`_
+    source code.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'VGL'
+    aliases = ['vgl']
+    filenames = ['*.rpf']
+
+    flags = re.MULTILINE | re.DOTALL | re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'\{[^\}]*\}', Comment.Multiline),
+            (r'declare', Keyword.Constant),
+            (r'(if|then|else|endif|while|do|endwhile|and|or|prompt|object'
+             r'|create|on|line|with|global|routine|value|endroutine|constant'
+             r'|global|set|join|library|compile_option|file|exists|create|copy'
+             r'|delete|enable|windows|name|notprotected)(?! *[=<>.,()])',
+             Keyword),
+            (r'(true|false|null|empty|error|locked)', Keyword.Constant),
+            (r'[~\^\*\#!%&\[\]\(\)<>\|+=:;,./?-]', Operator),
+            (r'"[^"]*"', String),
+            (r'(\.)([a-z_\$][a-z0-9_\$]*)', bygroups(Operator, Name.Attribute)),
+            (r'[0-9][0-9]*(\.[0-9]+(e[+\-]?[0-9]+)?)?', Number),
+            (r'[a-z_\$][a-z0-9_\$]*', Name),
+            (r'[\r\n]+', Text),
+            (r'\s+', Text)
+        ]
     }
