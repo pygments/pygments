@@ -3521,6 +3521,8 @@ class VGLLexer(RegexLexer):
 class SourcePawnLexer(RegexLexer):
     """
     For SourcePawn source code with preprocessor directives.
+
+    *New in Pygments 1.6.*
     """
     name = 'SourcePawn'
     aliases = ['sp']
