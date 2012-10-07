@@ -15,6 +15,7 @@ from pygments.lexer import RegexLexer, include, bygroups, using, \
      this, combined, ExtendedRegexLexer
 from pygments.token import Error, Punctuation, Literal, Token, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic
+from pygments.util import get_bool_opt
 from pygments.lexers.web import HtmlLexer
 
 
@@ -30,7 +31,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'AutohotkeyLexer', 'GoodDataCLLexer', 'MaqlLexer', 'ProtoBufLexer',
            'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
-           'MscgenLexer', 'KconfigLexer']
+           'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -57,7 +58,7 @@ class ECLLexer(RegexLexer):
         'whitespace': [
             (r'\s+', Text),
             (r'\/\/.*', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
         ],
         'statements': [
             include('types'),
@@ -1207,7 +1208,7 @@ class ModelicaLexer(RegexLexer):
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
             (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment),
         ],
         'statements': [
             (r'"', String, 'string'),
@@ -1850,7 +1851,7 @@ class AsymptoteLexer(RegexLexer):
     mimetypes = ['text/x-asymptote']
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
 
     tokens = {
         'whitespace': [
@@ -1858,7 +1859,7 @@ class AsymptoteLexer(RegexLexer):
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
             (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment),
+            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment),
         ],
         'statements': [
             # simple string (TeX friendly)
@@ -1904,7 +1905,7 @@ class AsymptoteLexer(RegexLexer):
         'root': [
             include('whitespace'),
             # functions
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
+            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|\*))'    # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')({)',
@@ -1912,7 +1913,7 @@ class AsymptoteLexer(RegexLexer):
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
+            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|\*))'    # return arguments
              r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
              r'(\s*\([^;]*?\))'                      # signature
              r'(' + _ws + r')(;)',
@@ -2347,7 +2348,7 @@ class ProtoBufLexer(RegexLexer):
             (r'[ \t]+', Text),
             (r'[,;{}\[\]\(\)]', Punctuation),
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
             (r'\b(import|option|optional|required|repeated|default|packed|'
              r'ctype|extensions|to|max|rpc|returns)\b', Keyword),
             (r'(int32|int64|uint32|uint64|sint32|sint64|'
@@ -3481,3 +3482,146 @@ class KconfigLexer(RegexLexer):
         'indent2': do_indent(2),
         'indent1': do_indent(1),
     }
+
+
+class VGLLexer(RegexLexer):
+    """
+    For `SampleManager VGL <http://www.thermoscientific.com/samplemanager>`_
+    source code.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'VGL'
+    aliases = ['vgl']
+    filenames = ['*.rpf']
+
+    flags = re.MULTILINE | re.DOTALL | re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'\{[^\}]*\}', Comment.Multiline),
+            (r'declare', Keyword.Constant),
+            (r'(if|then|else|endif|while|do|endwhile|and|or|prompt|object'
+             r'|create|on|line|with|global|routine|value|endroutine|constant'
+             r'|global|set|join|library|compile_option|file|exists|create|copy'
+             r'|delete|enable|windows|name|notprotected)(?! *[=<>.,()])',
+             Keyword),
+            (r'(true|false|null|empty|error|locked)', Keyword.Constant),
+            (r'[~\^\*\#!%&\[\]\(\)<>\|+=:;,./?-]', Operator),
+            (r'"[^"]*"', String),
+            (r'(\.)([a-z_\$][a-z0-9_\$]*)', bygroups(Operator, Name.Attribute)),
+            (r'[0-9][0-9]*(\.[0-9]+(e[+\-]?[0-9]+)?)?', Number),
+            (r'[a-z_\$][a-z0-9_\$]*', Name),
+            (r'[\r\n]+', Text),
+            (r'\s+', Text)
+        ]
+    }
+
+
+class SourcePawnLexer(RegexLexer):
+    """
+    For SourcePawn source code with preprocessor directives.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'SourcePawn'
+    aliases = ['sp']
+    filenames = ['*.sp']
+    mimetypes = ['text/x-sourcepawn']
+
+    #: optional Comment or Whitespace
+    _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
+
+    tokens = {
+        'root': [
+            # preprocessor directives: without whitespace
+            ('^#if\s+0', Comment.Preproc, 'if0'),
+            ('^#', Comment.Preproc, 'macro'),
+            # or with whitespace
+            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
+            ('^' + _ws + '#', Comment.Preproc, 'macro'),
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuation
+            (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
+            (r'[{}]', Punctuation),
+            (r'L?"', String, 'string'),
+            (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'0[0-7]+[LlUu]*', Number.Oct),
+            (r'\d+[LlUu]*', Number.Integer),
+            (r'\*/', Error),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'[()\[\],.;]', Punctuation),
+            (r'(case|const|continue|native|'
+             r'default|else|enum|for|if|new|operator|'
+             r'public|return|sizeof|static|decl|struct|switch)\b', Keyword),
+            (r'(bool|Float)\b', Keyword.Type),
+            (r'(true|false)\b', Keyword.Constant),
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'[^\\"\n]+', String), # all other characters
+            (r'\\\n', String), # line continuation
+            (r'\\', String), # stray backslash
+        ],
+        'macro': [
+            (r'[^/\n]+', Comment.Preproc),
+            (r'/\*(.|\n)*?\*/', Comment.Multiline),
+            (r'//.*?\n', Comment.Single, '#pop'),
+            (r'/', Comment.Preproc),
+            (r'(?<=\\)\n', Comment.Preproc),
+            (r'\n', Comment.Preproc, '#pop'),
+        ],
+        'if0': [
+            (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
+            (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
+            (r'.*?\n', Comment),
+        ]
+    }
+
+    SM_TYPES = ['Action', 'bool', 'Float', 'Plugin', 'String', 'any',
+                'AdminFlag', 'OverrideType', 'OverrideRule', 'ImmunityType',
+                'GroupId', 'AdminId', 'AdmAccessMode', 'AdminCachePart',
+                'CookieAccess', 'CookieMenu', 'CookieMenuAction', 'NetFlow',
+                'ConVarBounds', 'QueryCookie', 'ReplySource',
+                'ConVarQueryResult', 'ConVarQueryFinished', 'Function',
+                'Action', 'Identity', 'PluginStatus', 'PluginInfo', 'DBResult',
+                'DBBindType', 'DBPriority', 'PropType', 'PropFieldType',
+                'MoveType', 'RenderMode', 'RenderFx', 'EventHookMode',
+                'EventHook', 'FileType', 'FileTimeMode', 'PathType',
+                'ParamType', 'ExecType', 'DialogType', 'Handle', 'KvDataTypes',
+                'NominateResult', 'MapChange', 'MenuStyle', 'MenuAction',
+                'MenuSource', 'RegexError', 'SDKCallType', 'SDKLibrary',
+                'SDKFuncConfSource', 'SDKType', 'SDKPassMethod', 'RayType',
+                'TraceEntityFilter', 'ListenOverride', 'SortOrder', 'SortType',
+                'SortFunc2D', 'APLRes', 'FeatureType', 'FeatureStatus',
+                'SMCResult', 'SMCError', 'TFClassType', 'TFTeam', 'TFCond',
+                'TFResourceType', 'Timer', 'TopMenuAction', 'TopMenuObjectType',
+                'TopMenuPosition', 'TopMenuObject', 'UserMsg']
+
+    def __init__(self, **options):
+        self.smhighlighting = get_bool_opt(options,
+                'sourcemod', True)
+
+        self._functions = []
+        if self.smhighlighting:
+            from pygments.lexers._sourcemodbuiltins import FUNCTIONS
+            self._functions.extend(FUNCTIONS)
+        RegexLexer.__init__(self, **options)
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in \
+            RegexLexer.get_tokens_unprocessed(self, text):
+            if token is Name:
+                if self.smhighlighting:
+                    if value in self.SM_TYPES:
+                        token = Keyword.Type
+                    elif value in self._functions:
+                        tokens = Name.Builtin
+            yield index, token, value
