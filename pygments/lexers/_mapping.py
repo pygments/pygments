@@ -238,7 +238,7 @@ LEXERS = {
     'SmalltalkLexer': ('pygments.lexers.other', 'Smalltalk', ('smalltalk', 'squeak'), ('*.st',), ('text/x-smalltalk',)),
     'SmartyLexer': ('pygments.lexers.templates', 'Smarty', ('smarty',), ('*.tpl',), ('application/x-smarty',)),
     'SnobolLexer': ('pygments.lexers.other', 'Snobol', ('snobol',), ('*.snobol',), ('text/x-snobol',)),
-    'SourcePawnLexer': ('pygments.lexers.compiled', 'SourcePawn', ('sp',), ('*.sp', '*.inc'), ('text/x-sourcepawn',)),
+    'SourcePawnLexer': ('pygments.lexers.other', 'SourcePawn', ('sp',), ('*.sp',), ('text/x-sourcepawn',)),
     'SourcesListLexer': ('pygments.lexers.text', 'Debian Sourcelist', ('sourceslist', 'sources.list'), ('sources.list',), ()),
     'SqlLexer': ('pygments.lexers.sql', 'SQL', ('sql',), ('*.sql',), ('text/x-sql',)),
     'SqliteConsoleLexer': ('pygments.lexers.sql', 'sqlite3con', ('sqlite3',), ('*.sqlite3-console',), ('text/x-sqlite3-console',)),
