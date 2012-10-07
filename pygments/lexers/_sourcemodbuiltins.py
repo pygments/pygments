@@ -546,6 +546,7 @@ FUNCTIONS = ['TopMenuHandler',
  'SetMenuExitButton',
  'GetMenuExitBackButton',
  'SetMenuExitBackButton',
+ 'SetMenuNoVoteButton',
  'CancelMenu',
  'GetMenuOptionFlags',
  'SetMenuOptionFlags',
@@ -940,6 +941,7 @@ FUNCTIONS = ['TopMenuHandler',
  'IsDedicatedServer',
  'GetEngineTime',
  'GetGameTime',
+ 'GetGameTickCount',
  'GetGameDescription',
  'GetGameFolderName',
  'GetCurrentMap',
@@ -1007,9 +1009,16 @@ FUNCTIONS = ['TopMenuHandler',
  'SDKCall']
 
 if __name__ == '__main__':
-    import re
-    import urllib
     import pprint
+    import re
+    import sys
+    import urllib
+
+    # urllib ends up wanting to import a module called 'math' -- if
+    # pygments/lexers is in the path, this ends badly.
+    for i in range(len(sys.path)-1, -1, -1):
+        if sys.path[i].endswith('/lexers'):
+            del sys.path[i]
 
     def get_version():
         f = urllib.urlopen('http://docs.sourcemod.net/api/index.php')
