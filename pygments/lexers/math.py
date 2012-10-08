@@ -1392,7 +1392,7 @@ class IDLLexer(RegexLexer):
     aliases = ['idl']
     filenames = ['*.pro']
     mimetypes = ['text/idl']
-    
+
     _RESERVED = ['begin', 'break', 'case', 'catch', 'common', 'compile_opt', 
                  'continue', 'do', 'else', 'end', 'endcase', 'endelse', 
                  'endfor', 'endforeach', 'endif', 'endrep', 'endswitch', 
@@ -1401,6 +1401,8 @@ class IDLLexer(RegexLexer):
                  'inherits', 'of', 'pro', 'repeat', 'return', 'stop', 
                  'switch', 'then',
                  'until', 'while']
+    """Reserved words from: http://www.exelisvis.com/docs/reswords.html"""
+
     _BUILTIN_LIB = ['abs', 'acos', 'adapt_hist_equal', 'alog', 'alog10', 
                     'amoeba', 'annotate', 'app_user_dir', 'app_user_dir_query',
                     'arg_present', 'array_equal', 'array_indices', 'arrow',
@@ -1603,7 +1605,8 @@ class IDLLexer(RegexLexer):
                     'xregistered', 'xroi', 'xsq_test', 'xsurface', 'xvaredit',
                     'xvolume', 'xvolume_rotate', 'xvolume_write_image',
                     'xyouts', 'zoom', 'zoom_24']
-    
+    """Functions from: http://www.exelisvis.com/docs/routines-1.html"""
+
     tokens = {
         'root': [
             (r'^\s*;.*?\n', Comment.Singleline),
