@@ -17,17 +17,17 @@ from pygments.lexer import RegexLexer, ExtendedRegexLexer, bygroups, using, \
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
      Number, Other, Punctuation, Literal
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
-                          html_doctype_matches
+                          html_doctype_matches, unirange
 from pygments.lexers.agile import RubyLexer
 from pygments.lexers.compiled import ScalaLexer
 
 
-__all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JSONLexer', 'CssLexer',
+__all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JsonLexer', 'CssLexer',
            'PhpLexer', 'ActionScriptLexer', 'XsltLexer', 'ActionScript3Lexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'LiveScriptLexer',
            'DuelLexer', 'ScamlLexer', 'JadeLexer', 'XQueryLexer',
-           'DtdLexer', 'DartLexer']
+           'DtdLexer', 'DartLexer', 'LassoLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -90,7 +90,7 @@ class JavascriptLexer(RegexLexer):
     }
 
 
-class JSONLexer(RegexLexer):
+class JsonLexer(RegexLexer):
     """
     For JSON data structures.
 
@@ -104,10 +104,10 @@ class JSONLexer(RegexLexer):
 
     # integer part of a number
     int_part = r'-?(0|[1-9]\d*)'
-        
+
     # fractional part of a number
     frac_part = r'\.\d+'
-        
+
     # exponential part of a number
     exp_part = r'[eE](\+|-)?\d+'
 
@@ -169,6 +169,8 @@ class JSONLexer(RegexLexer):
         ],
 
     }
+
+JSONLexer = JsonLexer  # for backwards compatibility with Pygments 1.5
 
 
 class ActionScriptLexer(RegexLexer):
@@ -829,7 +831,7 @@ class PhpLexer(RegexLexer):
              r'endif|list|__LINE__|endswitch|new|__sleep|endwhile|not|'
              r'array|__wakeup|E_ALL|NULL|final|php_user_filter|interface|'
              r'implements|public|private|protected|abstract|clone|try|'
-             r'catch|throw|this|use|namespace)\b', Keyword),
+             r'catch|throw|this|use|namespace|trait)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'\$\{\$+[a-zA-Z_][a-zA-Z0-9_]*\}', Name.Variable),
             (r'\$+[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
@@ -999,7 +1001,7 @@ class XmlLexer(RegexLexer):
     Generic lexer for XML (eXtensible Markup Language).
     """
 
-    flags = re.MULTILINE | re.DOTALL
+    flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
     name = 'XML'
     aliases = ['xml']
@@ -1015,8 +1017,8 @@ class XmlLexer(RegexLexer):
             ('<!--', Comment, 'comment'),
             (r'<\?.*?\?>', Comment.Preproc),
             ('<![^>]*>', Comment.Preproc),
-            (r'<\s*[a-zA-Z0-9:._-]+', Name.Tag, 'tag'),
-            (r'<\s*/\s*[a-zA-Z0-9:._-]+\s*>', Name.Tag),
+            (r'<\s*[\w:.-]+', Name.Tag, 'tag'),
+            (r'<\s*/\s*[\w:.-]+\s*>', Name.Tag),
         ],
         'comment': [
             ('[^-]+', Comment),
@@ -1025,7 +1027,7 @@ class XmlLexer(RegexLexer):
         ],
         'tag': [
             (r'\s+', Text),
-            (r'[a-zA-Z0-9_.:-]+\s*=', Name.Attribute, 'attr'),
+            (r'[\w.:-]+\s*=', Name.Attribute, 'attr'),
             (r'/?\s*>', Name.Tag, '#pop'),
         ],
         'attr': [
@@ -1050,7 +1052,7 @@ class XsltLexer(XmlLexer):
 
     name = 'XSLT'
     aliases = ['xslt']
-    filenames = ['*.xsl', '*.xslt']
+    filenames = ['*.xsl', '*.xslt', '*.xpl']  # xpl is XProc
     mimetypes = ['application/xsl+xml', 'application/xslt+xml']
 
     EXTRA_KEYWORDS = set([
@@ -1082,6 +1084,8 @@ class MxmlLexer(RegexLexer):
     """
     For MXML markup.
     Nested AS3 in <script> tags is highlighted by the appropriate lexer.
+
+    *New in Pygments 1.1.*
     """
     flags = re.MULTILINE | re.DOTALL
     name = 'MXML'
@@ -1123,6 +1127,8 @@ class MxmlLexer(RegexLexer):
 class HaxeLexer(RegexLexer):
     """
     For haXe source code (http://haxe.org/).
+
+    *New in Pygments 1.3.*
     """
 
     name = 'haXe'
@@ -1802,10 +1808,10 @@ class CoffeeScriptLexer(RegexLexer):
             (r'#(?!##[^#]).*?\n', Comment.Single),
         ],
         'multilineregex': [
-            include('commentsandwhitespace'),
+            (r'[^/#]+', String.Regex),
             (r'///([gim]+\b|\B)', String.Regex, '#pop'),
-            (r'/', String.Regex),
-            (r'[^/#]+', String.Regex)
+            (r'#{', String.Interpol, 'interpoling_string'),
+            (r'[/#]', String.Regex),
         ],
         'slashstartsregex': [
             include('commentsandwhitespace'),
@@ -2259,8 +2265,8 @@ class XQueryLexer(ExtendedRegexLexer):
     *New in Pygments 1.4.*
     """
     name = 'XQuery'
-    aliases = ['xquery', 'xqy']
-    filenames = ['*.xqy', '*.xquery']
+    aliases = ['xquery', 'xqy', 'xq', 'xql', 'xqm']
+    filenames = ['*.xqy', '*.xquery', '*.xq', '*.xql', '*.xqm']
     mimetypes = ['text/xquery', 'application/xquery']
 
     xquery_parse_state = []
@@ -2661,8 +2667,8 @@ class XQueryLexer(ExtendedRegexLexer):
         'xml_comment': [
             (r'(-->)', popstate_xmlcomment_callback),
             (r'[^-]{1,2}', Literal),
-            (ur'\t|\r|\n|[\u0020-\U0000D7FF]|[\U0000E000-\U0000FFFD]|'
-             ur'[\U00010000-\U0010FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+             unirange(0x10000, 0x10ffff), Literal),
         ],
         'processing_instruction': [
             (r'\s+', Text, 'processing_instruction_content'),
@@ -2671,13 +2677,13 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'processing_instruction_content': [
             (r'\?>', String.Doc, '#pop'),
-            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|'
-             ur'[\U00010000-\U0010FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+             unirange(0x10000, 0x10ffff), Literal),
         ],
         'cdata_section': [
             (r']]>', String.Doc, '#pop'),
-            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|'
-             ur'[\U00010000-\U0010FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+             unirange(0x10000, 0x10ffff), Literal),
         ],
         'start_tag': [
             include('whitespace'),
@@ -2745,8 +2751,8 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'pragmacontents': [
             (r'#\)', Punctuation, 'operator'),
-            (ur'\t|\r|\n|[\u0020-\U0000D7FF]|[\U0000E000-\U0000FFFD]|'
-             ur'[\U00010000-\U0010FFFF]', Literal),
+            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+             unirange(0x10000, 0x10ffff), Literal),
             (r'(\s+)', Text),
         ],
         'occurrenceindicator': [
@@ -2979,3 +2985,226 @@ class DartLexer(RegexLexer):
             (r'\$+', String.Single)
         ]
     }
+
+
+class LassoLexer(RegexLexer):
+    """
+    For `Lasso <http://www.lassosoft.com/>`_ source code, covering both Lasso 9
+    syntax and LassoScript for Lasso 8.6 and earlier. For Lasso embedded in
+    HTML, use the `LassoHtmlLexer`.
+
+    Additional options accepted:
+
+    `builtinshighlighting`
+        If given and ``True``, highlight builtin tags, types, traits, and
+        methods (default: ``True``).
+    `requiredelimiters`
+        If given and ``True``, only highlight code between delimiters as Lasso
+        (default: ``False``).
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'Lasso'
+    aliases = ['lasso', 'lassoscript']
+    filenames = ['*.lasso', '*.lasso[89]']
+    alias_filenames = ['*.incl', '*.inc', '*.las']
+    mimetypes = ['text/x-lasso']
+    flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
+
+    tokens = {
+        'root': [
+            (r'^#!.+lasso9\b', Comment.Preproc, 'lasso'),
+            (r'\s+', Other),
+            (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
+            (r'\[noprocess\]', Comment.Preproc, ('delimiters', 'noprocess')),
+            (r'\[', Comment.Preproc, ('delimiters', 'squarebrackets')),
+            (r'<\?(LassoScript|lasso|=)', Comment.Preproc,
+                ('delimiters', 'anglebrackets')),
+            (r'<', Other, 'delimiters'),
+            include('lasso'),
+        ],
+        'nosquarebrackets': [
+            (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
+            (r'<', Other),
+            (r'[^<]+', Other),
+        ],
+        'delimiters': [
+            (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
+            (r'\[noprocess\]', Comment.Preproc, 'noprocess'),
+            (r'\[', Comment.Preproc, 'squarebrackets'),
+            (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
+            (r'<', Other),
+            (r'[^[<]+', Other),
+        ],
+        'noprocess': [
+            (r'\[/noprocess\]', Comment.Preproc, '#pop'),
+            (r'\[', Other),
+            (r'[^[]', Other),
+        ],
+        'squarebrackets': [
+            (r'\]', Comment.Preproc, '#pop'),
+            include('lasso'),
+        ],
+        'anglebrackets': [
+            (r'\?>', Comment.Preproc, '#pop'),
+            include('lasso'),
+        ],
+        'lasso': [
+            # whitespace/comments
+            (r'\s+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*\*!.*?\*/', String.Doc),
+            (r'/\*.*?\*/', Comment.Multiline),
+
+            # literals
+            (r'\d*\.\d+(e[+-]?\d+)?', Number.Float),
+            (r'0x[\da-f]+', Number.Hex),
+            (r'\d+', Number.Integer),
+            (r'([+-]?)(infinity|NaN)\b', bygroups(Operator, Number)),
+            (r"'", String.Single, 'singlestring'),
+            (r'"', String.Double, 'doublestring'),
+            (r'`[^`]*`', String.Backtick),
+
+            # names
+            (r'\$[a-z_][\w.]*', Name.Variable),
+            (r'#[a-z_][\w.]*|#\d+', Name.Variable.Instance),
+            (r"(\.)('[a-z_][\w.]*')",
+                bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
+            (r"(self)(->)('[a-z_][\w.]*')",
+                bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
+            (r'(\.\.?)([a-z_][\w.]*)',
+                bygroups(Name.Builtin.Pseudo, Name.Other)),
+            (r'(self|inherited|global|void)\b', Name.Builtin.Pseudo),
+            (r'-[a-z_][\w.]*', Name.Attribute),
+            (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
+            (r'(error_(code|msg)_\w+|Error_AddError|Error_ColumnRestriction|'
+             r'Error_DatabaseConnectionUnavailable|Error_DatabaseTimeout|'
+             r'Error_DeleteError|Error_FieldRestriction|Error_FileNotFound|'
+             r'Error_InvalidDatabase|Error_InvalidPassword|'
+             r'Error_InvalidUsername|Error_ModuleNotFound|'
+             r'Error_NoError|Error_NoPermission|Error_OutOfMemory|'
+             r'Error_ReqColumnMissing|Error_ReqFieldMissing|'
+             r'Error_RequiredColumnMissing|Error_RequiredFieldMissing|'
+             r'Error_UpdateError)\b', Name.Exception),
+
+            # definitions
+            (r'(define)(\s+)([a-z_][\w.]*)(\s*)(=>)(\s*)(type|trait|thread)\b',
+                bygroups(Keyword.Declaration, Text, Name.Class, Text, Operator,
+                         Text, Keyword)),
+            (r'(define)(\s+)([a-z_][\w.]*)(->)([a-z_][\w.]*=?|[-+*/%<>]|==)',
+                bygroups(Keyword.Declaration, Text, Name.Class, Operator,
+                         Name.Function), 'signature'),
+            (r'(define)(\s+)([a-z_][\w.]*)',
+                bygroups(Keyword.Declaration, Text, Name.Function),
+                'signature'),
+            (r'(public|protected|private|provide)(\s+)([a-z_][\w.]*=?|'
+             r'[-+*/%<>]|==)(\s*)(\()',
+                bygroups(Keyword, Text, Name.Function, Text, Punctuation),
+                ('signature', 'parameter')),
+            (r'(public|protected|private)(\s+)([a-z_][\w.]*)',
+                bygroups(Keyword, Text, Name.Function)),
+
+            # keywords
+            (r'(true|false|none|minimal|full|all)\b', Keyword.Constant),
+            (r'(local|var|variable|data)\b', Keyword.Declaration),
+            (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|'
+             r'null)\b', Keyword.Type),
+            (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
+            (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Text, Name)),
+            (r'(/?)(Cache|Database_Names|Database_SchemaNames|'
+             r'Database_TableNames|Define_Tag|Define_Type|Email_Batch|'
+             r'Encode_Set|HTML_Comment|Handle|Handle_Error|Header|If|Inline|'
+             r'Iterate|LJAX_Target|Link|Link_CurrentAction|Link_CurrentGroup|'
+             r'Link_CurrentRecord|Link_Detail|Link_FirstGroup|'
+             r'Link_FirstRecord|Link_LastGroup|Link_LastRecord|Link_NextGroup|'
+             r'Link_NextRecord|Link_PrevGroup|Link_PrevRecord|Log|Loop|'
+             r'Namespace_Using|NoProcess|Output_None|Portal|Private|Protect|'
+             r'Records|Referer|Referrer|Repeating|ResultSet|Rows|Search_Args|'
+             r'Search_Arguments|Select|Sort_Args|Sort_Arguments|Thread_Atomic|'
+             r'Value_List|While|Abort|Case|Else|If_Empty|If_False|If_Null|'
+             r'If_True|Loop_Abort|Loop_Continue|Loop_Count|Params|Params_Up|'
+             r'Return|Return_Value|Run_Children|SOAP_DefineTag|'
+             r'SOAP_LastRequest|SOAP_LastResponse|Tag_Name|ascending|average|'
+             r'by|define|descending|do|equals|frozen|group|handle_failure|'
+             r'import|in|into|join|let|match|max|min|on|order|parent|protected|'
+             r'provide|public|require|skip|split_thread|sum|take|thread|to|'
+             r'trait|type|where|with|yield)\b', bygroups(Punctuation, Keyword)),
+
+            # other
+            (r'(and|or|not)\b', Operator.Word),
+            (r'([a-z_][\w.]*)(\s*)(::\s*)([a-z_][\w.]*)(\s*)(=)',
+                bygroups(Name, Text, Punctuation, Name.Label, Text, Operator)),
+            (r'((?<!->)[a-z_][\w.]*)(\s*)(=(?!=))',
+                bygroups(Name, Text, Operator)),
+            (r'(/?)([\w.]+)', bygroups(Punctuation, Name.Other)),
+            (r'(=)(bw|ew|cn|lte?|gte?|n?eq|ft|n?rx)\b',
+                bygroups(Operator, Operator.Word)),
+            (r':=|[-+*/%=<>&|!?\\]+', Operator),
+            (r'[{}():;,@^]', Punctuation),
+        ],
+        'singlestring': [
+            (r"'", String.Single, '#pop'),
+            (r"[^'\\]+", String.Single),
+            include('escape'),
+            (r"\\+", String.Single),
+        ],
+        'doublestring': [
+            (r'"', String.Double, '#pop'),
+            (r'[^"\\]+', String.Double),
+            include('escape'),
+            (r'\\+', String.Double),
+        ],
+        'escape': [
+            (r'\\(U[\da-f]{8}|u[\da-f]{4}|x[\da-f]{1,2}|[0-7]{1,3}|:[^:]+:|'
+             r'[abefnrtv?\"\'\\]|$)', String.Escape),
+        ],
+        'signature': [
+            (r'[(,]', Punctuation, 'parameter'),
+            (r'=>', Operator, '#pop'),
+            include('lasso'),
+        ],
+        'parameter': [
+            (r'\.\.\.', Name.Builtin.Pseudo),
+            (r'-?[a-z_][\w.]*', Name.Attribute, '#pop'),
+            (r'\)', Punctuation, '#pop'),
+            include('lasso'),
+        ],
+    }
+
+    def __init__(self, **options):
+        self.builtinshighlighting = get_bool_opt(
+            options, 'builtinshighlighting', True)
+        self.requiredelimiters = get_bool_opt(
+            options, 'requiredelimiters', False)
+
+        self._builtins = set()
+        if self.builtinshighlighting:
+            from pygments.lexers._lassobuiltins import BUILTINS
+            for key, value in BUILTINS.iteritems():
+                self._builtins.update(value)
+        RegexLexer.__init__(self, **options)
+
+    def get_tokens_unprocessed(self, text):
+        stack = ['root']
+        if self.requiredelimiters:
+            stack.append('delimiters')
+        for index, token, value in \
+            RegexLexer.get_tokens_unprocessed(self, text, stack):
+            if token is Name.Other:
+                if value.lower() in self._builtins:
+                    yield index, Name.Builtin, value
+                    continue
+            yield index, token, value
+
+    def analyse_text(text):
+        rv = 0.0
+        if 'bin/lasso9' in text:
+            rv += 0.8
+        if re.search(r'<\?(=|lasso)', text, re.I):
+            rv += 0.4
+        if re.search(r'local\(', text, re.I):
+            rv += 0.4
+        if re.search(r'\[\n|\?>', text):
+            rv += 0.4
+        return rv

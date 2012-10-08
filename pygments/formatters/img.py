@@ -10,7 +10,6 @@
 """
 
 import sys
-from commands import getstatusoutput
 
 from pygments.formatter import Formatter
 from pygments.util import get_bool_opt, get_int_opt, \
@@ -73,6 +72,7 @@ class FontManager(object):
             self._create_nix()
 
     def _get_nix_font_path(self, name, style):
+        from commands import getstatusoutput
         exit, out = getstatusoutput('fc-list "%s:style=%s" file' %
                                     (name, style))
         if not exit:
