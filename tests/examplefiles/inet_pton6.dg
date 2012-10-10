@@ -68,4 +68,4 @@ inet6_type = q -> switch
   True = 'link-local multicast'
 
 
-print $ (x -> (inet6_type x, hex x)) $ inet_pton6 $ call sys.stdin.read!.strip
+print $ (x -> (inet6_type x, hex x)) $ inet_pton6 $ sys.stdin.read!.strip!
