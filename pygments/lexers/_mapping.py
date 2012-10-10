@@ -77,6 +77,7 @@ LEXERS = {
     'DartLexer': ('pygments.lexers.web', 'Dart', ('dart',), ('*.dart',), ('text/x-dart',)),
     'DebianControlLexer': ('pygments.lexers.text', 'Debian Control file', ('control',), ('control',), ()),
     'DelphiLexer': ('pygments.lexers.compiled', 'Delphi', ('delphi', 'pas', 'pascal', 'objectpascal'), ('*.pas',), ('text/x-pascal',)),
+    'DgLexer': ('pygments.lexers.agile', 'dg', ('dg'), ('*.dg',), ('text/x-dg',)),
     'DiffLexer': ('pygments.lexers.text', 'Diff', ('diff', 'udiff'), ('*.diff', '*.patch'), ('text/x-diff', 'text/x-patch')),
     'DjangoLexer': ('pygments.lexers.templates', 'Django/Jinja', ('django', 'jinja'), (), ('application/x-django-templating', 'application/x-jinja')),
     'DtdLexer': ('pygments.lexers.web', 'DTD', ('dtd',), ('*.dtd',), ('application/xml-dtd',)),
