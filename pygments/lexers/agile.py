@@ -1823,7 +1823,7 @@ class DgLexer(RegexLexer):
     running on the CPython 3 VM.
     """
     name = 'dg'
-    aliases = []
+    aliases = ['dg']
     filenames = ['*.dg']
     mimetypes = ['text/x-dg']
 
