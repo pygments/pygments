@@ -1837,10 +1837,9 @@ class DgLexer(RegexLexer):
             (r'0[bB][01]+', Number.Bin),
             (r'0[oO][0-7]+', Number.Oct),
             (r'0[xX][\da-fA-F]+', Number.Hex),
-            (r'[+-]?\d+', Number.Integer),
-            (r'[+-]?\d+[eE][+-]?\d+', Number.Float),
-            (r'[+-]?\d+\.\d+([eE][+-]?\d+)?', Number.Float),
-            (r'[+-]?\d+(\.\d+)?([eE][+-]?\d+)?[jJ]', Number.Complex),
+            (r'[+-]?\d+\.\d+([eE][+-]?\d+)?[jJ]?', Number.Float),
+            (r'[+-]?\d+[eE][+-]?\d+[jJ]?', Number.Float),
+            (r'[+-]?\d+[jJ]?', Number.Integer),
             #  Character/String Literals
             (r"[br]*'''", String, combined('stringescape', 'tsqs', 'string')),
             (r'[br]*"""', String, combined('stringescape', 'tdqs', 'string')),
