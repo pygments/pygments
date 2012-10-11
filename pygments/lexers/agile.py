@@ -1842,10 +1842,10 @@ class DgLexer(RegexLexer):
             (r'[+-]?\d+\.\d+([eE][+-]?\d+)?', Number.Float),
             (r'[+-]?\d+(\.\d+)?([eE][+-]?\d+)?[jJ]', Number.Complex),
             #  Character/String Literals
-            (r"[br]*'", String, combined('stringescape', 'sqs', 'string')),
-            (r'[br]*"', String, combined('stringescape', 'dqs', 'string')),
             (r"[br]*'''", String, combined('stringescape', 'tsqs', 'string')),
             (r'[br]*"""', String, combined('stringescape', 'tdqs', 'string')),
+            (r"[br]*'", String, combined('stringescape', 'sqs', 'string')),
+            (r'[br]*"', String, combined('stringescape', 'dqs', 'string')),
             #  Operators
             (r"`\w+'*`", Operator), # Infix links
             #   Reserved infix links
