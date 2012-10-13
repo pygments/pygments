@@ -34,8 +34,8 @@ class MonkeyLexer(RegexLexer):
             (r'\s+', Text),
             # Comments
             (r"'.*$", Comment),
-            (r'^#rem\s(.|\n)*?\n#end$', Comment.Multiline),
-            (r'#If\s.*?|#ElseIf\s.*?|#ElseIf\s.*?|#End|#Print\s.*?|#Error\s.*?', Comment.Preproc),
+            (r'(?i)^#rem\s(.|\n)*\n#end$', Comment.Multiline),
+            (r'#If\s.*?|#ElseIf\s.*?|#Else\s.*?|#End|#Print\s.*?|#Error\s.*?', Comment.Preproc),
             (r'\b(Int|Float|String|Bool|Object|Array|Void)\b', Keyword.Type),
             # String
             ('"', String.Double, 'string'),
@@ -51,6 +51,7 @@ class MonkeyLexer(RegexLexer):
             # Builtins
             (r'(?i)\b(Null|True|False)\b', Name.Builtin),
             (r'(?i)\b(Self|Super)\b', Name.Builtin.Pseudo),
+            (r'\b(HOST|LANG|TARGET|CONFIG)\b', Name.Constant),
             # Keywords
             (r'(?i)^(Import|Extern)\b', Keyword.Namespace),
             (r'(?i)^Strict\b', Keyword.Reserved),
