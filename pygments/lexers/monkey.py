@@ -47,10 +47,16 @@ class MonkeyLexer(RegexLexer):
             (r'&H[0-9a-f]+([SILDFR]|US|UI|UL)?', Number.Integer),
             (r'&O[0-7]+([SILDFR]|US|UI|UL)?', Number.Integer),
             (r'(Import)\s+', Keyword.Namespace),
-            (r'(Strict|Import|End|Return|If|Else)\s+', Keyword.Declaration),
+            (r'(Strict|End|Return|'
+             r'If|Else|ElseIf|EndIf|Then|'
+             r'Select|Case|Default|'
+             r'While|Wend|'
+             r'Repeat|Until|Forever|'
+             r'For|EachIn|Next)\s+', Keyword.Declaration),
             (r'(?<!\.)(Function|Method)(\s+)', bygroups(Keyword, Text), 'funcname'),
             (r'(?<!\.)(Class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'New\s+', Keyword.Declaration, 'classname'),
+            (r'Extends\s+', Keyword.Declaration, 'classname'),
             (r'(?<!\.)(Local|Field)(\s+)', Keyword, 'variables'),
             (r'[a-zA-Z_][a-zA-Z0-9_]*[%&@!#$]?', Name),
             (r'&=|[*]=|/=|\\=|\^=|\+=|-=|<<=|>>=|<<|>>|:=|'
