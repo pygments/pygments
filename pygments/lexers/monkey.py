@@ -10,17 +10,10 @@
 """
 import re
 
-from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, include, \
-     using, this
-from pygments.token import Punctuation, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Literal, Other
-from pygments.util import get_choice_opt
-from pygments import unistring as uni
-
-from pygments.lexers.web import XmlLexer
+from pygments.lexer import RegexLexer, bygroups, include
+from pygments.token import Punctuation, Text, Comment, Operator, Keyword, Name, String, Number, Literal, Other
 
 __all__ = ['MonkeyLexer']
-
 
 class MonkeyLexer(RegexLexer):
     """
@@ -36,55 +29,77 @@ class MonkeyLexer(RegexLexer):
 
     tokens = {
         'root': [
+            #Text
             (r'\n', Text), 
             (r'\s+', Text),
-            (r"[\s\t]*'.*?$", Comment),
+            # Comments
+            (r"'.*$", Comment),
             (r'^#rem\s(.|\n)*?\n#end$', Comment.Multiline),
             (r'#If\s.*?|#ElseIf\s.*?|#ElseIf\s.*?|#End|#Print\s.*?|#Error\s.*?', Comment.Preproc),
-            (r'(?<!\.)(Int|Float|String|Bool|Object|Array|Void)\b', Keyword.Type),
-            (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
-            (r'\d+([SILDFR]|US|UI|UL)?', Number.Integer),
-            (r'&H[0-9a-f]+([SILDFR]|US|UI|UL)?', Number.Integer),
-            (r'&O[0-7]+([SILDFR]|US|UI|UL)?', Number.Integer),
-            (r'(Import)\s+', Keyword.Namespace),
-            (r'(Strict|End|Return|'
-             r'If|Else|ElseIf|EndIf|Then|'
+            (r'\b(Int|Float|String|Bool|Object|Array|Void)\b', Keyword.Type),
+            # String
+            ('"', String.Double, 'string'),
+            # Numbers
+            (r'[0-9]+\.[0-9]*(?!\.)', Number.Float),
+            (r'\.[0-9]*(?!\.)', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r'\$[0-9a-f]+', Number.Hex),
+            (r'\%[10]+', Number), # Binary
+            # Exception handling
+            (r'(?i)\b(Try|Catch)\b', Keyword.Reserved),
+            (r'Throwable', Name.Exception),
+            # Builtins
+            (r'(?i)\b(Null|True|False)\b', Name.Builtin),
+            (r'(?i)\b(Self|Super)\b', Name.Builtin.Pseudo),
+            # Keywords
+            (r'(?i)^(Import|Extern)\b', Keyword.Namespace),
+            (r'(?i)^Strict\b', Keyword.Reserved),
+            (r'(?i)(Const)(\s+)', bygroups(Keyword.Declaration, Text), 'constant'),
+            (r'(?i)(Local|Global|Field)(\s+)', bygroups(Keyword.Declaration, Text), 'variables'),
+            (r'(?i)(Class|New|Extends|Implements)(\s+)', bygroups(Keyword.Reserved, Text), 'classname'),
+            (r'(?i)(Function|Method)(\s+)', bygroups(Keyword.Reserved, Text), 'funcname'),
+            (r'(?i)(End|Return|Final|Public|Private)\b', Keyword.Reserved),
+            # Flow Control stuff
+            (r'(?i)(If|Then|Else|ElseIf|EndIf|'
              r'Select|Case|Default|'
              r'While|Wend|'
              r'Repeat|Until|Forever|'
-             r'For|EachIn|Next)\s+', Keyword.Declaration),
-            (r'(?<!\.)(Function|Method)(\s+)', bygroups(Keyword, Text), 'funcname'),
-            (r'(?<!\.)(Class)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (r'New\s+', Keyword.Declaration, 'classname'),
-            (r'Extends\s+', Keyword.Declaration, 'classname'),
-            (r'(?<!\.)(Local|Field)(\s+)', Keyword, 'variables'),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*[%&@!#$]?', Name),
-            (r'&=|[*]=|/=|\\=|\^=|\+=|-=|<<=|>>=|<<|>>|:=|'
-             r'<=|>=|<>|[-&*/\\^+=<>]',
-             Operator),
-            (r'[\(\){}!#,.:]', Punctuation),
-            ('"', String, 'string'),
-            #(r'[A-Z][a-zA-Z0-9_]+(?=\()', Name.Function),
-            (r'[a-zA-Z_]\w*', Name.Other),
+             r'For|To|Until|Step|EachIn|Next|'
+             r'Exit|Continue)\s+', Keyword.Reserved),
+            # not used yet
+            (r'(?i)\b(Module|Inline)\b', Keyword.Reserved),
+            # Other
+            (r'<=|>=|<>|[*]=|/=|[+]=|-=|&=|~=|[|]=|[+-~*/&|=<>]', Operator),
+            (r'Not|Mod|Shl|Shr|And|Or', Operator.Word),
+            (r'[\(\){}!#,.:]', Punctuation)
         ],
         'funcname': [
             (r'[A-Z][a-zA-Z0-9_]*', Name.Function),
             (r':', Punctuation, 'classname'),
             (r'\(', Punctuation, 'variables'),
-            (r'\)', Punctuation, '#pop'),  
+            (r'\)', Punctuation, '#pop') 
         ],
         'classname': [
             (r'[A-Z][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            (r'', Text, '#pop')
+        ],
+        'constant': [
+            (r'[A-Z_][A-Z0-9_]*?', Name.Constant),
+            (r':(?!=)', Punctuation, 'classname'),
+            (r'', Text, '#pop')
         ],
         'variables': [
-            (r'[a-z_][a-z0-9_]*?', Name.Variable),
+            include('variable'),
             (r':', Punctuation, 'classname'),
-            (r',\s?', Punctuation, '#push'),
-            (r'', Text, '#pop'),
+            (r',\s+', Punctuation, '#push'),
+            (r'', Text, '#pop')
+        ],
+        'variable': [
+            (r'[a-z_][a-z0-9_]*?', Name.Variable),
         ],
         'string': [
-            (r'""', String),
-            (r'"C?', String, '#pop'),
-            (r'[^"]+', String),
-        ],
+            (r'""', String.Double),
+            (r'"C?', String.Double, '#pop'),
+            (r'[^"]+', String.Double)
+        ]
     }
