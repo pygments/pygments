@@ -31,6 +31,8 @@ class MonkeyLexer(RegexLexer):
     name_function = r'[A-Z][a-zA-Z0-9_]*'
     name_constant = r'[A-Z_][A-Z0-9_]*'
     name_class = r'[A-Z][a-zA-Z0-9_]*'
+    name_module = r'[a-z0-9_]*'
+
     keyword_type = r'(Int|Float|String|Bool|Object|Array|Void)'
 
     tokens = {
@@ -60,12 +62,12 @@ class MonkeyLexer(RegexLexer):
             (r'(?i)\b(Self|Super)\b', Name.Builtin.Pseudo),
             (r'\b(HOST|LANG|TARGET|CONFIG)\b', Name.Constant),
             # Keywords
-            (r'(?i)^(Import|Extern).*\n', Keyword.Namespace),
-            (r'(?i)^Strict.*\n', Keyword.Reserved),
+            (r'(?i)^(Import|Extern)\s+(.*)\n', bygroups(Keyword.Namespace, Name.Namespace)),
+            (r'(?i)^Strict\b.*\n', Keyword.Reserved),
             (r'(?i)(Const|Local|Global|Field)(\s+)', bygroups(Keyword.Declaration, Text), 'variables'),
             (r'(?i)(Class|New|Extends|Implements)(\s+)', bygroups(Keyword.Reserved, Text), 'classname'),
             (r'(?i)(Function|Method)(\s+)', bygroups(Keyword.Reserved, Text), 'funcname'),
-            (r'(?i)(End|Return|Final|Public|Private)\b', Keyword.Reserved),
+            (r'(?i)(End|Return|Public|Private|Property|Final|Abstract)\b', Keyword.Reserved),
             # Flow Control stuff
             (r'(?i)(If|Then|Else|ElseIf|EndIf|'
              r'Select|Case|Default|'
@@ -87,20 +89,26 @@ class MonkeyLexer(RegexLexer):
         'funcname': [
             (r'%s\b' % name_function, Name.Function),
             (r':', Punctuation, 'classname'),
+            (r'\s+', Text),
             (r'\(', Punctuation, 'variables'),
             (r'\)', Punctuation, '#pop') 
         ],
         'classname': [
+            (r'%s\.' % name_module, Name.Namespace), 
             (r'%s\b' % keyword_type, Keyword.Type),
             (r'%s\b' % name_class, Name.Class),
-            (r'<', Operator, '#push'),
+            (r'\s+(?!<)', Text,'#pop'),
+            (r'<', Punctuation),
+            (r'>', Punctuation),
+            (r'\n', Punctuation, '#pop'),
             (r'', Text, '#pop')
         ],
         'variables': [
             (r'%s\b' % name_constant, Name.Constant),
             (r'%s\b' % name_variable, Name.Variable),
+            (r'\s+', Text),
             (r':', Punctuation, 'classname'),
-            (r',\s*', Punctuation, '#push'),
+            (r',', Punctuation, '#push'),
             (r'', Text, '#pop')
         ],
         'string': [
