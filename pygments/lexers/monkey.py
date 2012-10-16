@@ -25,7 +25,12 @@ class MonkeyLexer(RegexLexer):
     name = 'Monkey'
     aliases = ['monkey']
     filenames = ['*.monkey']
-    mimetypes = [] # (?)
+    mimetypes = [] # TODO
+
+    name_variable = r'[a-z_][a-zA-Z0-9_]*\b'
+    name_function = r'[A-Z][a-zA-Z0-9_]*\b'
+    name_constant = r'[A-Z_][A-Z0-9_]*\b'
+    keyword_type = r'(Int|Float|String|Bool|Object|Array|Void)'
 
     tokens = {
         'root': [
@@ -34,9 +39,8 @@ class MonkeyLexer(RegexLexer):
             (r'\s+', Text),
             # Comments
             (r"'.*$", Comment),
-            (r'(?i)^#rem\s(.|\n)*\n#end$', Comment.Multiline),
-            (r'#If\s.*?|#ElseIf\s.*?|#Else\s.*?|#End|#Print\s.*?|#Error\s.*?', Comment.Preproc),
-            (r'\b(Int|Float|String|Bool|Object|Array|Void)\b', Keyword.Type),
+            (r'(?i)^#rem\b', Comment.Multiline, 'comment'),
+            (r'^(#If\|#ElseIf|#Else|#End|#Print|#Error)\s.*?$', Comment.Preproc),
             # String
             ('"', String.Double, 'string'),
             # Numbers
@@ -45,6 +49,8 @@ class MonkeyLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'\$[0-9a-f]+', Number.Hex),
             (r'\%[10]+', Number), # Binary
+            # Native data types
+            (r'\b%s\b' % keyword_type, Keyword.Type),
             # Exception handling
             (r'(?i)\b(Try|Catch)\b', Keyword.Reserved),
             (r'Throwable', Name.Exception),
@@ -53,10 +59,9 @@ class MonkeyLexer(RegexLexer):
             (r'(?i)\b(Self|Super)\b', Name.Builtin.Pseudo),
             (r'\b(HOST|LANG|TARGET|CONFIG)\b', Name.Constant),
             # Keywords
-            (r'(?i)^(Import|Extern)\b', Keyword.Namespace),
+            (r'(?i)^(Import|Extern).*$', Keyword.Namespace),
             (r'(?i)^Strict\b', Keyword.Reserved),
-            (r'(?i)(Const)(\s+)', bygroups(Keyword.Declaration, Text), 'constant'),
-            (r'(?i)(Local|Global|Field)(\s+)', bygroups(Keyword.Declaration, Text), 'variables'),
+            (r'(?i)(Const|Local|Global|Field)(\s+)', bygroups(Keyword.Declaration, Text), 'variables'),
             (r'(?i)(Class|New|Extends|Implements)(\s+)', bygroups(Keyword.Reserved, Text), 'classname'),
             (r'(?i)(Function|Method)(\s+)', bygroups(Keyword.Reserved, Text), 'funcname'),
             (r'(?i)(End|Return|Final|Public|Private)\b', Keyword.Reserved),
@@ -70,9 +75,13 @@ class MonkeyLexer(RegexLexer):
             # not used yet
             (r'(?i)\b(Module|Inline)\b', Keyword.Reserved),
             # Other
-            (r'<=|>=|<>|[*]=|/=|[+]=|-=|&=|~=|[|]=|[+-~*/&|=<>]', Operator),
+            (r'<=|>=|<>|[*]=|/=|[+]=|-=|&=|~=|[|]=|[-&*/^+=<>]', Operator),
             (r'Not|Mod|Shl|Shr|And|Or', Operator.Word),
-            (r'[\(\){}!#,.:]', Punctuation)
+            (r'[\(\){}!#,.:]', Punctuation),
+            # catch the rest
+            (r'\b%s\b' % name_constant, Name.Constant),
+            (r'\b%s\b' % name_function, Name.Function),
+            (r'\b%s\b' % name_variable, Name.Variable),
         ],
         'funcname': [
             (r'[A-Z][a-zA-Z0-9_]*', Name.Function),
@@ -81,26 +90,25 @@ class MonkeyLexer(RegexLexer):
             (r'\)', Punctuation, '#pop') 
         ],
         'classname': [
+            (r'\b%s\b' % keyword_type, Keyword.Type, '#pop'),
             (r'[A-Z][a-zA-Z0-9_]*', Name.Class, '#pop'),
             (r'', Text, '#pop')
         ],
-        'constant': [
-            (r'[A-Z_][A-Z0-9_]*?', Name.Constant),
-            (r':(?!=)', Punctuation, 'classname'),
-            (r'', Text, '#pop')
-        ],
         'variables': [
-            include('variable'),
+            (r'%s' % name_constant, Name.Constant),
+            (r'%s' % name_variable, Name.Variable),
             (r':', Punctuation, 'classname'),
             (r',\s+', Punctuation, '#push'),
             (r'', Text, '#pop')
-        ],
-        'variable': [
-            (r'[a-z_][a-z0-9_]*?', Name.Variable),
         ],
         'string': [
             (r'""', String.Double),
             (r'"C?', String.Double, '#pop'),
             (r'[^"]+', String.Double)
-        ]
+        ],
+        'comment' : [
+            (r'[^#].*\n', Comment.Multiline),
+            (r'(?i)#End.*?\n', Comment.Multiline, "#pop"),
+            (r'^#', Comment.Multiline, "#push"),
+        ],
     }
