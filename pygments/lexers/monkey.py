@@ -55,7 +55,7 @@ class MonkeyLexer(RegexLexer):
             # Native data types
             (r'\b%s\b' % keyword_type, Keyword.Type),
             # Exception handling
-            (r'(?i)\b(Try|Catch)\b', Keyword.Reserved),
+            (r'(?i)\b(Try|Catch|Throw)\b', Keyword.Reserved),
             (r'Throwable', Name.Exception),
             # Builtins
             (r'(?i)\b(Null|True|False)\b', Name.Builtin),
@@ -65,7 +65,7 @@ class MonkeyLexer(RegexLexer):
             (r'(?i)^(Import|Extern)\s+(.*)\n', bygroups(Keyword.Namespace, Name.Namespace)),
             (r'(?i)^Strict\b.*\n', Keyword.Reserved),
             (r'(?i)(Const|Local|Global|Field)(\s+)', bygroups(Keyword.Declaration, Text), 'variables'),
-            (r'(?i)(Class|New|Extends|Implements)(\s+)', bygroups(Keyword.Reserved, Text), 'classname'),
+            (r'(?i)(New|Class|Interface|Extends|Implements)(\s+)', bygroups(Keyword.Reserved, Text), 'classname'),
             (r'(?i)(Function|Method)(\s+)', bygroups(Keyword.Reserved, Text), 'funcname'),
             (r'(?i)(End|Return|Public|Private|Property|Final|Abstract)\b', Keyword.Reserved),
             # Flow Control stuff

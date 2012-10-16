@@ -70,7 +70,14 @@ End
 Class VectorNode Extends Node<Vector2D>
 End
 
+Interface Computer
+  Method Boot ()
+  Method Process ()
+  Method Display ()
+End
 
+Class PC Implements Computer
+End
 
 Function Main()
     New Game()
