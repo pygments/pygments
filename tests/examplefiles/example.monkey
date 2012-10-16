@@ -52,8 +52,25 @@ Class Game Extends App
 
 End
 
+Class Enemy
+  Method Die () Abstract
+End
+
+Class Hoodlum Extends Enemy
+    Local currentNode:list.Node<Vector2D>
+
+  ' Must implement Die method...
+
+  Method Die ()
+    Print "B'oss, he-- he killed me, b'oss!"
+  End
+
+End
+
 Class VectorNode Extends Node<Vector2D>
 End
+
+
 
 Function Main()
     New Game()
