@@ -34,16 +34,19 @@ class MonkeyLexer(RegexLexer):
     name_module = r'[a-z0-9_]*'
 
     keyword_type = r'(Int|Float|String|Bool|Object|Array|Void)'
+    # ? == Bool // % == Int // # == Float // $ == String
+    keyword_type_special = r'[?%#$]'
 
     tokens = {
         'root': [
             #Text
-            (r'\n', Text), 
+            (r'\n', Text),
+            (r'\t+', Text),  
             (r'\s+', Text),
             # Comments
             (r"'.*\n", Comment),
             (r'(?i)^#rem\b', Comment.Multiline, 'comment'),
-            (r'^(#If\|#ElseIf|#Else|#End|#Print|#Error)\s.*?$', Comment.Preproc),
+            (r'(?i)^(?:#If|#ElseIf|#Else|#End|#EndIf|#Print|#Error)\s?.*?$', Comment.Preproc),
             # String
             ('"', String.Double, 'string'),
             # Numbers
@@ -55,31 +58,32 @@ class MonkeyLexer(RegexLexer):
             # Native data types
             (r'\b%s\b' % keyword_type, Keyword.Type),
             # Exception handling
-            (r'(?i)\b(Try|Catch|Throw)\b', Keyword.Reserved),
+            (r'(?i)\b(?:Try|Catch|Throw)\b', Keyword.Reserved),
             (r'Throwable', Name.Exception),
             # Builtins
-            (r'(?i)\b(Null|True|False)\b', Name.Builtin),
-            (r'(?i)\b(Self|Super)\b', Name.Builtin.Pseudo),
-            (r'\b(HOST|LANG|TARGET|CONFIG)\b', Name.Constant),
+            (r'(?i)\b(?:Null|True|False)\b', Name.Builtin),
+            (r'(?i)\b(?:Self|Super)\b', Name.Builtin.Pseudo),
+            (r'\b(?:HOST|LANG|TARGET|CONFIG)\b', Name.Constant),
             # Keywords
-            (r'(?i)^(Import|Extern)\s+(.*)\n', bygroups(Keyword.Namespace, Name.Namespace)),
+            (r'(?i)^(Import)(\s+)(.*)(\n)', bygroups(Keyword.Namespace, Text, Name.Namespace, Text)),
             (r'(?i)^Strict\b.*\n', Keyword.Reserved),
             (r'(?i)(Const|Local|Global|Field)(\s+)', bygroups(Keyword.Declaration, Text), 'variables'),
             (r'(?i)(New|Class|Interface|Extends|Implements)(\s+)', bygroups(Keyword.Reserved, Text), 'classname'),
             (r'(?i)(Function|Method)(\s+)', bygroups(Keyword.Reserved, Text), 'funcname'),
-            (r'(?i)(End|Return|Public|Private|Property|Final|Abstract)\b', Keyword.Reserved),
+            (r'(?i)(?:End|Return|Public|Private|Extern|Property|Final|Abstract)\b', Keyword.Reserved),
             # Flow Control stuff
-            (r'(?i)(If|Then|Else|ElseIf|EndIf|'
+            (r'(?i)If|Then|Else|ElseIf|EndIf|'
              r'Select|Case|Default|'
              r'While|Wend|'
              r'Repeat|Until|Forever|'
              r'For|To|Until|Step|EachIn|Next|'
-             r'Exit|Continue)\s+', Keyword.Reserved),
+             r'Exit|Continue\s+', Keyword.Reserved),
             # not used yet
             (r'(?i)\b(Module|Inline)\b', Keyword.Reserved),
             # Other
             (r'<=|>=|<>|[*]=|/=|[+]=|-=|&=|~=|[|]=|[-&*/^+=<>]', Operator),
             (r'Not|Mod|Shl|Shr|And|Or', Operator.Word),
+            (r'[\]]', Punctuation, "array"),
             (r'[\(\){}!#,.:]', Punctuation),
             # catch the rest
             (r'%s\b' % name_constant, Name.Constant),
@@ -87,7 +91,7 @@ class MonkeyLexer(RegexLexer):
             (r'%s\b' % name_variable, Name.Variable),
         ],
         'funcname': [
-            (r'%s\b' % name_function, Name.Function),
+            (r'(?i)%s\b' % name_function, Name.Function),
             (r':', Punctuation, 'classname'),
             (r'\s+', Text),
             (r'\(', Punctuation, 'variables'),
@@ -100,12 +104,22 @@ class MonkeyLexer(RegexLexer):
             (r'\s+(?!<)', Text,'#pop'),
             (r'<', Punctuation),
             (r'>', Punctuation),
+            (r'\[', Punctuation, 'array'),
             (r'\n', Punctuation, '#pop'),
             (r'', Text, '#pop')
+        ],
+        'array' : [
+            # direct access myArray[3] and size definition myArray:String[100]
+            (r'[0-9]+', Number.Integer),
+            # slicing myArray[1..2]
+            (r'\.\.', Punctuation),
+            (r'\]', Punctuation, '#pop'),
+            (r'\[', Punctuation),
         ],
         'variables': [
             (r'%s\b' % name_constant, Name.Constant),
             (r'%s\b' % name_variable, Name.Variable),
+            (r'%s' % keyword_type_special, Keyword.Type),
             (r'\s+', Text),
             (r':', Punctuation, 'classname'),
             (r',', Punctuation, '#push'),
