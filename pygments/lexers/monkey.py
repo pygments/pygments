@@ -27,9 +27,10 @@ class MonkeyLexer(RegexLexer):
     filenames = ['*.monkey']
     mimetypes = [] # TODO
 
-    name_variable = r'[a-z_][a-zA-Z0-9_]*\b'
-    name_function = r'[A-Z][a-zA-Z0-9_]*\b'
-    name_constant = r'[A-Z_][A-Z0-9_]*\b'
+    name_variable = r'[a-z_][a-zA-Z0-9_]*'
+    name_function = r'[A-Z][a-zA-Z0-9_]*'
+    name_constant = r'[A-Z_][A-Z0-9_]*'
+    name_class = r'[A-Z][a-zA-Z0-9_]*'
     keyword_type = r'(Int|Float|String|Bool|Object|Array|Void)'
 
     tokens = {
@@ -38,14 +39,14 @@ class MonkeyLexer(RegexLexer):
             (r'\n', Text), 
             (r'\s+', Text),
             # Comments
-            (r"'.*$", Comment),
+            (r"'.*\n", Comment),
             (r'(?i)^#rem\b', Comment.Multiline, 'comment'),
             (r'^(#If\|#ElseIf|#Else|#End|#Print|#Error)\s.*?$', Comment.Preproc),
             # String
             ('"', String.Double, 'string'),
             # Numbers
             (r'[0-9]+\.[0-9]*(?!\.)', Number.Float),
-            (r'\.[0-9]*(?!\.)', Number.Float),
+            (r'\.[0-9]+(?!\.)', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'\$[0-9a-f]+', Number.Hex),
             (r'\%[10]+', Number), # Binary
@@ -59,8 +60,8 @@ class MonkeyLexer(RegexLexer):
             (r'(?i)\b(Self|Super)\b', Name.Builtin.Pseudo),
             (r'\b(HOST|LANG|TARGET|CONFIG)\b', Name.Constant),
             # Keywords
-            (r'(?i)^(Import|Extern).*$', Keyword.Namespace),
-            (r'(?i)^Strict\b', Keyword.Reserved),
+            (r'(?i)^(Import|Extern).*\n', Keyword.Namespace),
+            (r'(?i)^Strict.*\n', Keyword.Reserved),
             (r'(?i)(Const|Local|Global|Field)(\s+)', bygroups(Keyword.Declaration, Text), 'variables'),
             (r'(?i)(Class|New|Extends|Implements)(\s+)', bygroups(Keyword.Reserved, Text), 'classname'),
             (r'(?i)(Function|Method)(\s+)', bygroups(Keyword.Reserved, Text), 'funcname'),
@@ -79,26 +80,27 @@ class MonkeyLexer(RegexLexer):
             (r'Not|Mod|Shl|Shr|And|Or', Operator.Word),
             (r'[\(\){}!#,.:]', Punctuation),
             # catch the rest
-            (r'\b%s\b' % name_constant, Name.Constant),
-            (r'\b%s\b' % name_function, Name.Function),
-            (r'\b%s\b' % name_variable, Name.Variable),
+            (r'%s\b' % name_constant, Name.Constant),
+            (r'%s\b' % name_function, Name.Function),
+            (r'%s\b' % name_variable, Name.Variable),
         ],
         'funcname': [
-            (r'[A-Z][a-zA-Z0-9_]*', Name.Function),
+            (r'%s\b' % name_function, Name.Function),
             (r':', Punctuation, 'classname'),
             (r'\(', Punctuation, 'variables'),
             (r'\)', Punctuation, '#pop') 
         ],
         'classname': [
-            (r'\b%s\b' % keyword_type, Keyword.Type, '#pop'),
-            (r'[A-Z][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            (r'%s\b' % keyword_type, Keyword.Type),
+            (r'%s\b' % name_class, Name.Class),
+            (r'<', Operator, '#push'),
             (r'', Text, '#pop')
         ],
         'variables': [
-            (r'%s' % name_constant, Name.Constant),
-            (r'%s' % name_variable, Name.Variable),
+            (r'%s\b' % name_constant, Name.Constant),
+            (r'%s\b' % name_variable, Name.Variable),
             (r':', Punctuation, 'classname'),
-            (r',\s+', Punctuation, '#push'),
+            (r',\s*', Punctuation, '#push'),
             (r'', Text, '#pop')
         ],
         'string': [
