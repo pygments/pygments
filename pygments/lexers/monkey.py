@@ -33,20 +33,23 @@ class MonkeyLexer(RegexLexer):
     name_class = r'[A-Z][a-zA-Z0-9_]*'
     name_module = r'[a-z0-9_]*'
 
-    keyword_type = r'(Int|Float|String|Bool|Object|Array|Void)'
+    keyword_type = r'(?:Int|Float|String|Bool|Object|Array|Void)'
     # ? == Bool // % == Int // # == Float // $ == String
     keyword_type_special = r'[?%#$]'
+
+    flags = re.MULTILINE
 
     tokens = {
         'root': [
             #Text
             (r'\n', Text),
+            (r'\r', Text),
             (r'\t+', Text),  
             (r'\s+', Text),
             # Comments
-            (r"'.*\n", Comment),
+            (r"'.*", Comment),
             (r'(?i)^#rem\b', Comment.Multiline, 'comment'),
-            (r'(?i)^(?:#If|#ElseIf|#Else|#End|#EndIf|#Print|#Error)\s?.*?$', Comment.Preproc),
+            (r'(?i)^(?:#If|#ElseIf|#Else|#End|#EndIf|#Print|#Error)\s?.*$', Comment.Preproc),
             # String
             ('"', String.Double, 'string'),
             # Numbers
@@ -72,14 +75,14 @@ class MonkeyLexer(RegexLexer):
             (r'(?i)(Function|Method)(\s+)', bygroups(Keyword.Reserved, Text), 'funcname'),
             (r'(?i)(?:End|Return|Public|Private|Extern|Property|Final|Abstract)\b', Keyword.Reserved),
             # Flow Control stuff
-            (r'(?i)If|Then|Else|ElseIf|EndIf|'
+            (r'(?i)(?:If|Then|Else|ElseIf|EndIf|'
              r'Select|Case|Default|'
              r'While|Wend|'
              r'Repeat|Until|Forever|'
              r'For|To|Until|Step|EachIn|Next|'
-             r'Exit|Continue\s+', Keyword.Reserved),
+             r'Exit|Continue)\s+', Keyword.Reserved),
             # not used yet
-            (r'(?i)\b(Module|Inline)\b', Keyword.Reserved),
+            (r'(?i)\b(?:Module|Inline)\b', Keyword.Reserved),
             # Other
             (r'<=|>=|<>|[*]=|/=|[+]=|-=|&=|~=|[|]=|[-&*/^+=<>]', Operator),
             (r'Not|Mod|Shl|Shr|And|Or', Operator.Word),
@@ -131,8 +134,10 @@ class MonkeyLexer(RegexLexer):
             (r'[^"]+', String.Double)
         ],
         'comment' : [
-            (r'[^#].*\n', Comment.Multiline),
-            (r'(?i)#End.*?\n', Comment.Multiline, "#pop"),
-            (r'^#', Comment.Multiline, "#push"),
+            (r'\n', Comment.Multiline),
+            (r'^[^#].*', Comment.Multiline),
+            (r'(?i)^#End.*?', Comment.Multiline, "#pop"),
+            (r'^#\w+\b.*', Comment.Multiline, "#push"),
+            (r'.*', Comment.Multiline),
         ],
     }
