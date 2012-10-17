@@ -3142,10 +3142,10 @@ class MonkeyLexer(RegexLexer):
             (r'%s\.' % name_module, Name.Namespace), 
             (r'%s\b' % keyword_type, Keyword.Type),
             (r'%s\b' % name_class, Name.Class),
-            (r'\s+', Text),
             # array (of given size)
             (r'(\[)\s*(\d*)\s*(\])', bygroups(Punctuation, Number.Integer, Punctuation)),
-            # generic
+            # generics
+            (r'\s+(?!<)', Text, '#pop'),
             (r'<', Punctuation, '#push'),
             (r'>', Punctuation, '#pop'),
             (r'\n', Text, '#pop'),
