@@ -83,10 +83,11 @@ class MonkeyLexer(RegexLexer):
              r'Exit|Continue)\s+', Keyword.Reserved),
             # not used yet
             (r'(?i)\b(?:Module|Inline)\b', Keyword.Reserved),
+            # Array
+            (r'[\[\]]', Punctuation),
             # Other
             (r'<=|>=|<>|[*]=|/=|[+]=|-=|&=|~=|[|]=|[-&*/^+=<>]', Operator),
             (r'Not|Mod|Shl|Shr|And|Or', Operator.Word),
-            (r'[\]]', Punctuation, "array"),
             (r'[\(\){}!#,.:]', Punctuation),
             # catch the rest
             (r'%s\b' % name_constant, Name.Constant),
@@ -104,20 +105,14 @@ class MonkeyLexer(RegexLexer):
             (r'%s\.' % name_module, Name.Namespace), 
             (r'%s\b' % keyword_type, Keyword.Type),
             (r'%s\b' % name_class, Name.Class),
-            (r'\s+(?!<)', Text,'#pop'),
-            (r'<', Punctuation),
-            (r'>', Punctuation),
-            (r'\[', Punctuation, 'array'),
-            (r'\n', Punctuation, '#pop'),
+            (r'\s+', Text),
+            # array (of given size)
+            (r'(\[)\s*(\d*)\s*(\])', bygroups(Punctuation, Number.Integer, Punctuation)),
+            # generic
+            (r'<', Punctuation, '#push'),
+            (r'>', Punctuation, '#pop'),
+            (r'\n', Text, '#pop'),
             (r'', Text, '#pop')
-        ],
-        'array' : [
-            # direct access myArray[3] and size definition myArray:String[100]
-            (r'[0-9]+', Number.Integer),
-            # slicing myArray[1..2]
-            (r'\.\.', Punctuation),
-            (r'\]', Punctuation, '#pop'),
-            (r'\[', Punctuation),
         ],
         'variables': [
             (r'%s\b' % name_constant, Name.Constant),
@@ -129,15 +124,14 @@ class MonkeyLexer(RegexLexer):
             (r'', Text, '#pop')
         ],
         'string': [
-            (r'""', String.Double),
-            (r'"C?', String.Double, '#pop'),
-            (r'[^"]+', String.Double)
+            (r'[^"~]+', String.Double),
+            (r'~q|~n|~r|~r|~t|~z|~~', String.Escape),
+            (r'"', String.Double, '#pop'),
         ],
         'comment' : [
+            (r'(?i)^#rem.*?', Comment.Multiline, "#push"),
+            (r'(?i)^#end.*?', Comment.Multiline, "#pop"),
             (r'\n', Comment.Multiline),
-            (r'^[^#].*', Comment.Multiline),
-            (r'(?i)^#End.*?', Comment.Multiline, "#pop"),
-            (r'^#\w+\b.*', Comment.Multiline, "#push"),
             (r'.*', Comment.Multiline),
         ],
     }
