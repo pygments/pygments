@@ -25,7 +25,7 @@ class VerilogLexer(RegexLexer):
     *New in Pygments 1.4.*
     """
     name = 'verilog'
-    aliases = ['v']
+    aliases = ['v', 'verilog']
     filenames = ['*.v']
     mimetypes = ['text/x-verilog']
 

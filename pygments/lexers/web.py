@@ -1132,7 +1132,7 @@ class HaxeLexer(RegexLexer):
     """
 
     name = 'haXe'
-    aliases = ['hx', 'haXe']
+    aliases = ['hx', 'haXe', 'haxe']
     filenames = ['*.hx']
     mimetypes = ['text/haxe']
 
@@ -1796,7 +1796,7 @@ class CoffeeScriptLexer(RegexLexer):
     """
 
     name = 'CoffeeScript'
-    aliases = ['coffee-script', 'coffeescript']
+    aliases = ['coffee-script', 'coffeescript', 'coffee']
     filenames = ['*.coffee']
     mimetypes = ['text/coffeescript']
 
