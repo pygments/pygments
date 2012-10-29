@@ -3215,8 +3215,8 @@ class QmlLexer(RegexLexer):
     QMl is based on javascript, so much of this is taken from the JavascriptLexer above.
     """
     
-    name = 'Qt modeling Language'
-    aliases = ['QML', 'Qt Meta Language']
+    name = 'QML'
+    aliases = ['qml', 'Qt Meta Language', 'Qt modeling Language']
     filenames = ['*.qml',]
     mimetypes = [ 'application/x-qml',]
 
