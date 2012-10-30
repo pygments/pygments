@@ -73,13 +73,13 @@ class SmaliLexer(RegexLexer):
             (r'[0-9]+L?', Number.Integer),
         ],
         'field': [
-            (r'\$?\b([A-Za-z0-9_$]*)(:)', bygroups(Name.Variable,
-                                                   Punctuation)),
+            (r'(\$?\b)([A-Za-z0-9_$]*)(:)',
+             bygroups(Punctuation, Name.Variable, Punctuation)),
         ],
         'method': [
             (r'<(?:cl)?init>', Name.Function), # constructor
-            (r'\$?\b([A-Za-z0-9_$]*)(\()', bygroups(Name.Function,
-                                                    Punctuation)),
+            (r'(\$?\b)([A-Za-z0-9_$]*)(\()',
+             bygroups(Punctuation, Name.Function, Punctuation)),
         ],
         'label': [
             (r':[A-Za-z0-9_]+', Name.Label),
