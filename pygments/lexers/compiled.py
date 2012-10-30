@@ -1450,7 +1450,8 @@ class PrologLexer(RegexLexer):
             (r"'(?:''|[^'])*'", String.Atom), # quoted atom
             # Needs to not be followed by an atom.
             #(r'=(?=\s|[a-zA-Z\[])', Operator),
-            (r'(is|<|>|=<|>=|==|=:=|=|/|//|\*|\+|-)(?=\s|[a-zA-Z0-9\[])',
+            (r'is\b', Operator),
+            (r'(<|>|=<|>=|==|=:=|=|/|//|\*|\+|-)(?=\s|[a-zA-Z0-9\[])',
              Operator),
             (r'(mod|div|not)\b', Operator),
             (r'_', Keyword), # The don't-care variable
