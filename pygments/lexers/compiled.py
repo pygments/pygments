@@ -1227,6 +1227,10 @@ class ObjectiveCLexer(RegexLexer):
         ],
         'method': [
             include('whitespace'),
+            # TODO unsure if ellipses are allowed elsewhere, see discussion in
+            # Issue 789
+            (r',', Punctuation),
+            (r'\.\.\.', Punctuation),
             (r'(\(.*?\))([a-zA-Z$_][a-zA-Z0-9$_]*)', bygroups(using(this),
                                                               Name.Variable)),
             (r'[a-zA-Z$_][a-zA-Z0-9$_]*:', Name.Function),
