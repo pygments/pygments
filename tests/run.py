@@ -25,7 +25,8 @@ if sys.version_info >= (3,):
     os.chdir(newroot)
 else:
     # only find tests in this directory
-    os.chdir(os.path.dirname(__file__))
+    if os.path.dirname(__file__):
+        os.chdir(os.path.dirname(__file__))
 
 
 try:
