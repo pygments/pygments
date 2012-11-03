@@ -3079,21 +3079,21 @@ class MonkeyLexer(RegexLexer):
     tokens = {
         'root': [
             #Text
-            (r'\n', Text),
-            (r'\r', Text),
-            (r'\t+', Text),  
             (r'\s+', Text),
             # Comments
             (r"'.*", Comment),
             (r'(?i)^#rem\b', Comment.Multiline, 'comment'),
-            (r'(?i)^(?:#If|#ElseIf|#Else|#End|#EndIf|#Print|#Error)\s?.*$', Comment.Preproc),
+            # preprocessor directives
+            (r'(?i)^(?:#If|#ElseIf|#Else|#EndIf|#End|#Print|#Error)\b', Comment.Preproc),
+            # preprocessor variable (any line starting with '#' that is not a directive)
+            (r'^#', Comment.Preproc, 'variables'),
             # String
             ('"', String.Double, 'string'),
             # Numbers
             (r'[0-9]+\.[0-9]*(?!\.)', Number.Float),
             (r'\.[0-9]+(?!\.)', Number.Float),
             (r'[0-9]+', Number.Integer),
-            (r'\$[0-9a-f]+', Number.Hex),
+            (r'\$[0-9a-fA-Z]+', Number.Hex),
             (r'\%[10]+', Number), # Binary
             # Native data types
             (r'\b%s\b' % keyword_type, Keyword.Type),
@@ -3124,7 +3124,7 @@ class MonkeyLexer(RegexLexer):
             (r'[\[\]]', Punctuation),
             # Other
             (r'<=|>=|<>|[*]=|/=|[+]=|-=|&=|~=|[|]=|[-&*/^+=<>]', Operator),
-            (r'Not|Mod|Shl|Shr|And|Or', Operator.Word),
+            (r'(?i)(?:Not|Mod|Shl|Shr|And|Or)', Operator.Word),
             (r'[\(\){}!#,.:]', Punctuation),
             # catch the rest
             (r'%s\b' % name_constant, Name.Constant),
