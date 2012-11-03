@@ -28,6 +28,9 @@ Global someVariable:Int = 4
 ' sample class from the documentation
 Class Game Extends App
 
+    Function New()
+    End
+
     Function DrawSpiral(clock)
         Local w=DeviceWidth/2
         For Local i#=0 Until w*1.5 Step .2
@@ -101,8 +104,41 @@ Global scores:Int[]=[10,20,30]
 Global text:String[]=["Hello","There","World"]
 Global worstCase:worst.List<String[]>
 
+' string type
+Global string1:String = "Hello world"
+Global string2$ = "Hello world"
+
 ' escape characers in strings
-Global string1 := "Hello~zWorld"
-Global string2 := "~qHello World~q"
-Global string3 := "~tIndented~n"
-Global string3 := "tilda is wavey... ~~"
+Global string3 := "Hello~zWorld"
+Global string4 := "~qHello World~q"
+Global string5 := "~tIndented~n"
+Global string6 := "tilda is wavey... ~~"
+
+' string pseudofunctions
+Print "  Hello World  ~n".Trim()    ' prints "Hello World"
+Print "Hello World".ToUpper()       ' prints "HELLO WORLD"
+
+' Boolean shorttype
+Global boolVariable1:Bool = True
+Global boolVariable2? = False
+
+' number formats
+Global hexNum1:Int = $3d0dead
+Global hexNum2% = $CAFEBABE
+
+Global floatNum1:Float = 3.141516
+Global floatNum2# = 3.141516
+Global floatNum3 := .141516
+
+' preprocessor keywords
+#If TARGET = "android"
+DoStuff()
+#ElseIf TARGET = "ios"
+DoOtherStuff()
+#End
+
+' preprocessor variable
+#SOMETHING = True
+#Print SOMETHING
+#If SOMETHING
+#End
