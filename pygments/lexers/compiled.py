@@ -176,7 +176,8 @@ class CppLexer(RegexLexer):
     name = 'C++'
     aliases = ['cpp', 'c++']
     filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++',
-                 '*.cc', '*.hh', '*.cxx', '*.hxx']
+                 '*.cc', '*.hh', '*.cxx', '*.hxx',
+                 '*.C', '*.H', '*.cp', '*.CPP']
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
 
     #: optional Comment or Whitespace
@@ -1226,6 +1227,10 @@ class ObjectiveCLexer(RegexLexer):
         ],
         'method': [
             include('whitespace'),
+            # TODO unsure if ellipses are allowed elsewhere, see discussion in
+            # Issue 789
+            (r',', Punctuation),
+            (r'\.\.\.', Punctuation),
             (r'(\(.*?\))([a-zA-Z$_][a-zA-Z0-9$_]*)', bygroups(using(this),
                                                               Name.Variable)),
             (r'[a-zA-Z$_][a-zA-Z0-9$_]*:', Name.Function),
@@ -1450,7 +1455,8 @@ class PrologLexer(RegexLexer):
             (r"'(?:''|[^'])*'", String.Atom), # quoted atom
             # Needs to not be followed by an atom.
             #(r'=(?=\s|[a-zA-Z\[])', Operator),
-            (r'(is|<|>|=<|>=|==|=:=|=|/|//|\*|\+|-)(?=\s|[a-zA-Z0-9\[])',
+            (r'is\b', Operator),
+            (r'(<|>|=<|>=|==|=:=|=|/|//|\*|\+|-)(?=\s|[a-zA-Z0-9\[])',
              Operator),
             (r'(mod|div|not)\b', Operator),
             (r'_', Keyword), # The don't-care variable
