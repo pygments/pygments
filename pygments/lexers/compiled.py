@@ -3129,7 +3129,7 @@ class MonkeyLexer(RegexLexer):
             # Array
             (r'[\[\]]', Punctuation),
             # Other
-            (r'<=|>=|<>|[*]=|/=|[+]=|-=|&=|~=|[|]=|[-&*/^+=<>]', Operator),
+            (r'<=|>=|<>|[*]=|/=|[+]=|-=|&=|~=|\[|\]=|[-&*/^+=<>]', Operator),
             (r'(?i)(?:Not|Mod|Shl|Shr|And|Or)', Operator.Word),
             (r'[\(\){}!#,.:]', Punctuation),
             # catch the rest
@@ -3149,7 +3149,8 @@ class MonkeyLexer(RegexLexer):
             (r'%s\b' % keyword_type, Keyword.Type),
             (r'%s\b' % name_class, Name.Class),
             # array (of given size)
-            (r'(\[)\s*(\d*)\s*(\])', bygroups(Punctuation, Number.Integer, Punctuation)),
+            (r'(\[)(\s*)(\d*)(\s*)(\])',
+             bygroups(Punctuation, Text, Number.Integer, Text, Punctuation)),
             # generics
             (r'\s+(?!<)', Text, '#pop'),
             (r'<', Punctuation, '#push'),
@@ -3168,13 +3169,13 @@ class MonkeyLexer(RegexLexer):
         ],
         'string': [
             (r'[^"~]+', String.Double),
-            (r'~q|~n|~r|~r|~t|~z|~~', String.Escape),
+            (r'~q|~n|~r|~t|~z|~~', String.Escape),
             (r'"', String.Double, '#pop'),
         ],
         'comment' : [
             (r'(?i)^#rem.*?', Comment.Multiline, "#push"),
             (r'(?i)^#end.*?', Comment.Multiline, "#pop"),
             (r'\n', Comment.Multiline),
-            (r'.*', Comment.Multiline),
+            (r'.+', Comment.Multiline),
         ],
     }
