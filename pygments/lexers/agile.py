@@ -521,6 +521,8 @@ class RubyLexer(ExtendedRegexLexer):
             (r":'(\\\\|\\'|[^'])*'", String.Symbol),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r':"', String.Symbol, 'simple-sym'),
+            (r'([a-zA-Z_][a-zA-Z0-9]*)(:)',
+             bygroups(String.Symbol, Punctuation)),  # Since Ruby 1.9
             (r'"', String.Double, 'simple-string'),
             (r'(?<!\.)`', String.Backtick, 'simple-backtick'),
         ]
@@ -650,7 +652,7 @@ class RubyLexer(ExtendedRegexLexer):
             (r'(<<-?)("|\')()(\2)(.*?\n)', heredoc_callback),
             (r'__END__', Comment.Preproc, 'end-part'),
             # multiline regex (after keywords or assignments)
-            (r'(?:^|(?<=[=<>~!])|'
+            (r'(?:^|(?<=[=<>~!:])|'
                  r'(?<=(?:\s|;)when\s)|'
                  r'(?<=(?:\s|;)or\s)|'
                  r'(?<=(?:\s|;)and\s)|'
