@@ -142,3 +142,11 @@ DoOtherStuff()
 #Print SOMETHING
 #If SOMETHING
 #End
+
+' operators
+Global a = 32
+Global b = 32 ~ 0
+b ~= 16
+b |= 16
+b &= 16
+Global c = a | b
