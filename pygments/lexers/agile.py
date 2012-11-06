@@ -1851,7 +1851,7 @@ class DgLexer(RegexLexer):
             (r"`\w+'*`", Operator), # Infix links
             #   Reserved infix links
             (r'\b(or|and|if|unless|else|where|is|in)\b', Operator.Word),
-            (r'[!$%&*+\--/:<-@\\^|~;,]+', Operator),
+            (r'[!$%&*+\-./:<-@\\^|~;,]+', Operator),
             #  Identifiers
             #   Python 3 types
             (r"(?<!\.)(bool|bytearray|bytes|classmethod|complex|dict'?|"
