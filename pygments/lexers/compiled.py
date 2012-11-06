@@ -3129,7 +3129,7 @@ class MonkeyLexer(RegexLexer):
             # Array
             (r'[\[\]]', Punctuation),
             # Other
-            (r'<=|>=|<>|[*]=|/=|[+]=|-=|&=|~=|\[|\]=|[-&*/^+=<>]', Operator),
+            (r'<=|>=|<>|\*=|/=|\+=|-=|&=|~=|\|=|[-&*/^+=<>|~]', Operator),
             (r'(?i)(?:Not|Mod|Shl|Shr|And|Or)', Operator.Word),
             (r'[\(\){}!#,.:]', Punctuation),
             # catch the rest
