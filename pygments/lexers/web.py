@@ -1126,13 +1126,13 @@ class MxmlLexer(RegexLexer):
 
 class HaxeLexer(RegexLexer):
     """
-    For haXe source code (http://haxe.org/).
+    For Haxe source code (http://haxe.org/).
 
     *New in Pygments 1.3.*
     """
 
-    name = 'haXe'
-    aliases = ['hx', 'haXe']
+    name = 'Haxe'
+    aliases = ['hx', 'Haxe']
     filenames = ['*.hx']
     mimetypes = ['text/haxe']
 
