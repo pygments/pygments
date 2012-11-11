@@ -32,7 +32,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'AutohotkeyLexer', 'GoodDataCLLexer', 'MaqlLexer', 'ProtoBufLexer',
            'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
-           'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer']
+           'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer', 'RPMSpecLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -3158,3 +3158,60 @@ class SourcePawnLexer(RegexLexer):
                     elif value in self._functions:
                         tokens = Name.Builtin
             yield index, token, value
+
+
+class RPMSpecLexer(RegexLexer):
+    name = 'RPMSpec'
+    aliases = ['spec']
+    filenames = ['*.spec']
+    mimetypes = ['text/x-rpm-spec']
+
+    tokens = {
+        'root': [
+            (r'#.*\n', Comment),
+            include('rpm'),
+        ],
+        'header': [
+            include('rpm'),
+            (r'\n', Text, '#pop'),
+            (r'.', Text),
+        ],
+        'description': [
+            (r'^%(?:package|prep|build|install|clean|'
+             r'check|pre[a-z]*|post[a-z]*|trigger[a-z]*|files)',
+             Name.Decorator, '#pop', 'header'),
+            (r'\n', Text),
+            (r'.', Text),
+        ],
+        'changelog': [
+            (r'\*.*\n', Generic.Subheading),
+            (r'^%(?:package|prep|build|install|clean|'
+             r'check|pre[a-z]*|post[a-z]*|trigger[a-z]*|files)',
+             Name.Decorator, '#pop', 'header'),
+            (r'\n', Text),
+            (r'.', Text),
+        ],
+        'rpm': [
+            (r'%define.*\n', Comment.Preproc),
+            (r'%\{\!\?.*%define.*\}', Comment.Preproc),
+            (r'^(?:Name|Version|Release|Epoch|Summary|Group|License|Packager|Vendor|Icon|U[Rr][Ll]|'
+             r'Patch[0-9]*|Source[0-9]*|Requires\(?[a-z]*\)?|[A-Za-z]+Req|'
+             r'Obsoletes|Provides|Conflicts|Build[A-Za-z]+|[A-Za-z]+Arch|Auto[A-Za-z]+):\s*',
+             Generic.Heading, 'header'),
+            (r'^%description', Name.Decorator, 'description'),
+            (r'^%changelog', Name.Decorator, 'changelog'),
+            (r'^%(package|prep|build|install|clean|'
+             r'check|pre[a-z]*|post[a-z]*|trigger[a-z]*|files)',
+             Name.Decorator, 'header'),
+            (r'%(?:attr|defattr|dir|doc(?:dir)?|setup|config(?:ure)?|'
+             r'make(?:install)|ghost|patch[0-9]+|find_lang|exclude|verify)',
+             Keyword),
+            (r'%\{?__[a-z_]+\}?', Name.Function),
+            (r'%\{?_([a-z_]+dir|[a-z_]+path|prefix)\}?', Keyword.Pseudo),
+            (r'%\{\?[A-Za-z0-9_]+\}', Name.Variable),
+            (r'\$\{?RPM_[A-Z0-9_]+\}?', Name.Variable.Global),
+            (r'%\{[a-zA-Z][a-zA-Z0-9_]+\}', Keyword.Constant),
+            (r'%(ifarch|ifnarch|if|else|elseif|endif)', Keyword.Preproc, 'header'),
+            (r'.', Text),
+        ],
+    }
