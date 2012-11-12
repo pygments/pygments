@@ -23,7 +23,8 @@ __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
 
 class RacketLexer(RegexLexer):
     """
-    Lexer for Racket source code.
+    Lexer for `Racket <http://racket-lang.org/>`_ source code (formerly known as
+    PLT Scheme).
 
     *New in Pygments 1.6.*
     """

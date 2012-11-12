@@ -27,6 +27,11 @@ __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
 
 
 class JuliaLexer(RegexLexer):
+    """
+    For `Julia <http://julialang.org/>`_ source code.
+
+    *New in Pygments 1.6.*
+    """
     name = 'Julia'
     aliases = ['julia','jl']
     filenames = ['*.jl']
@@ -137,6 +142,8 @@ line_re  = re.compile('.*?\n')
 class JuliaConsoleLexer(Lexer):
     """
     For Julia console sessions. Modeled after MatlabSessionLexer.
+
+    *New in Pygments 1.6.*
     """
     name = 'Julia console'
     aliases = ['jlcon']
@@ -1092,7 +1099,8 @@ class SLexer(RegexLexer):
 
 class BugsLexer(RegexLexer):
     """
-    Pygments Lexer for OpenBugs and WinBugs models.
+    Pygments Lexer for `OpenBugs <http://www.openbugs.info/w/>`_ and WinBugs
+    models.
 
     *New in Pygments 1.6.*
     """

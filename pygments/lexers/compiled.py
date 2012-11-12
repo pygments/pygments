@@ -27,7 +27,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'DylanLexer', 'ObjectiveCLexer', 'FortranLexer', 'GLShaderLexer',
            'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
            'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
-           'NimrodLexer', 'FantomLexer', 'RustLexer', 'CUDALexer', 'MonkeyLexer']
+           'NimrodLexer', 'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer']
 
 
 class CLexer(RegexLexer):
@@ -3009,7 +3009,7 @@ class RustLexer(RegexLexer):
     }
 
 
-class CUDALexer(CLexer):
+class CudaLexer(CLexer):
     """
     For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
     source.
@@ -3063,6 +3063,8 @@ class MonkeyLexer(RegexLexer):
     For
     `Monkey <https://en.wikipedia.org/wiki/Monkey_(programming_language)>`_
     source code.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'Monkey'

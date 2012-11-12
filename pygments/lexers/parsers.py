@@ -699,6 +699,8 @@ class TreetopBaseLexer(RegexLexer):
     """
     A base lexer for `Treetop <http://treetop.rubyforge.org/>`_ grammars.
     Not for direct use; use TreetopLexer instead.
+
+    *New in Pygments 1.6.*
     """
 
     tokens = {
@@ -763,6 +765,8 @@ class TreetopBaseLexer(RegexLexer):
 class TreetopLexer(DelegatingLexer):
     """
     A lexer for `Treetop <http://treetop.rubyforge.org/>`_ grammars.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'Treetop'
