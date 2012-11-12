@@ -331,7 +331,6 @@ class TokenMergeFilter(Filter):
         Filter.__init__(self, **options)
 
     def filter(self, lexer, stream):
-        output = []
         current_type = None
         current_value = None
         for ttype, value in stream:
