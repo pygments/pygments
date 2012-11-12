@@ -102,8 +102,6 @@ class RawTokenFormatter(Formatter):
                 outfile.write(text.encode())
             flush = outfile.flush
 
-        lasttype = None
-        lastval = u''
         if self.error_color:
             for ttype, value in tokensource:
                 line = "%s\t%r\n" % (ttype, value)
