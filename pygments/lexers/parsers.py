@@ -744,12 +744,12 @@ class TreetopBaseLexer(RegexLexer):
         'inline_module': [
             (r'{', Other, 'ruby'),
             (r'}', Punctuation, '#pop'),
-            (r'[^{}]*', Other),
+            (r'[^{}]+', Other),
         ],
         'ruby': [
             (r'{', Other, '#push'),
             (r'}', Other, '#pop'),
-            (r'[^{}]*', Other),
+            (r'[^{}]+', Other),
         ],
         'space': [
             (r'[ \t\n\r]+', Whitespace),
