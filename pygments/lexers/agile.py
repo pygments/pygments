@@ -1825,6 +1825,8 @@ class DgLexer(RegexLexer):
     Lexer for `dg <http://pyos.github.com/dg>`_,
     a functional and object-oriented programming language
     running on the CPython 3 VM.
+
+    *New in Pygments 1.6.*
     """
     name = 'dg'
     aliases = ['dg']
