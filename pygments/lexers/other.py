@@ -3161,6 +3161,12 @@ class SourcePawnLexer(RegexLexer):
 
 
 class RPMSpecLexer(RegexLexer):
+    """
+    For RPM *.spec files
+
+    *New in Pygments 1.6.*
+    """
+
     name = 'RPMSpec'
     aliases = ['spec']
     filenames = ['*.spec']
@@ -3191,11 +3197,16 @@ class RPMSpecLexer(RegexLexer):
             (r'\n', Text),
             (r'.', Text),
         ],
+        'str_double': [
+            (r'"', String.Double, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            include('resolvable'),
+            (r'.', String.Double),
+        ],
         'rpm': [
-            (r'%define.*\n', Comment.Preproc),
-            (r'%\{\!\?.*%define.*\}', Comment.Preproc),
-            (r'^(?:Name|Version|Release|Epoch|Summary|Group|License|Packager|Vendor|Icon|U[Rr][Ll]|'
-             r'Patch[0-9]*|Source[0-9]*|Requires\(?[a-z]*\)?|[A-Za-z]+Req|'
+            include('preproc'),
+            (r'(?i)^(?:Name|Version|Release|Epoch|Summary|Group|License|Packager|Vendor|Icon|URL|'
+             r'Distribution|Prefix|Patch[0-9]*|Source[0-9]*|Requires\(?[a-z]*\)?|[A-Za-z]+Req|'
              r'Obsoletes|Provides|Conflicts|Build[A-Za-z]+|[A-Za-z]+Arch|Auto[A-Za-z]+):\s*',
              Generic.Heading, 'header'),
             (r'^%description', Name.Decorator, 'description'),
@@ -3206,12 +3217,21 @@ class RPMSpecLexer(RegexLexer):
             (r'%(?:attr|defattr|dir|doc(?:dir)?|setup|config(?:ure)?|'
              r'make(?:install)|ghost|patch[0-9]+|find_lang|exclude|verify)',
              Keyword),
+            include('resolvable'),
+            (r"'.*'", String.Single),
+            (r'"', String.Double, 'str_double'),
+            (r'.', Text),
+        ],
+        'preproc': [
+            (r'%define.*\n', Comment.Preproc),
+            (r'%\{\!\?.*%define.*\}', Comment.Preproc),
+            (r'%(if(?:n?arch)?|else(?:if)?|endif)', Comment.Preproc, 'header'),
+        ],
+        'resolvable': [
             (r'%\{?__[a-z_]+\}?', Name.Function),
             (r'%\{?_([a-z_]+dir|[a-z_]+path|prefix)\}?', Keyword.Pseudo),
             (r'%\{\?[A-Za-z0-9_]+\}', Name.Variable),
             (r'\$\{?RPM_[A-Z0-9_]+\}?', Name.Variable.Global),
             (r'%\{[a-zA-Z][a-zA-Z0-9_]+\}', Keyword.Constant),
-            (r'%(ifarch|ifnarch|if|else|elseif|endif)', Keyword.Preproc, 'header'),
-            (r'.', Text),
-        ],
+        ]
     }
