@@ -27,6 +27,11 @@ __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
 
 
 class JuliaLexer(RegexLexer):
+    """
+    For `Julia <http://julialang.org/>`_ source code.
+
+    *New in Pygments 1.6.*
+    """
     name = 'Julia'
     aliases = ['julia','jl']
     filenames = ['*.jl']
@@ -95,6 +100,7 @@ class JuliaLexer(RegexLexer):
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+', Number.Float),
             (r'0b[01]+', Number.Binary),
+            (r'0o[0-7]+', Number.Oct),
             (r'0x[a-fA-F0-9]+', Number.Hex),
             (r'\d+', Number.Integer)
         ],
@@ -136,6 +142,8 @@ line_re  = re.compile('.*?\n')
 class JuliaConsoleLexer(Lexer):
     """
     For Julia console sessions. Modeled after MatlabSessionLexer.
+
+    *New in Pygments 1.6.*
     """
     name = 'Julia console'
     aliases = ['jlcon']
@@ -1091,7 +1099,8 @@ class SLexer(RegexLexer):
 
 class BugsLexer(RegexLexer):
     """
-    Pygments Lexer for OpenBugs and WinBugs models.
+    Pygments Lexer for `OpenBugs <http://www.openbugs.info/w/>`_ and WinBugs
+    models.
 
     *New in Pygments 1.6.*
     """
@@ -1154,7 +1163,7 @@ class BugsLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
             # Block start
-            (r'(?s)(model)(\s+)({)',
+            (r'(model)(\s+)({)',
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
             (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
@@ -1236,7 +1245,7 @@ class JagsLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
             # Block start
-            (r'(?s)(model|data)(\s+)({)',
+            (r'(model|data)(\s+)({)',
              bygroups(Keyword.Namespace, Text, Punctuation)),
             (r'var(?![0-9a-zA-Z\._])', Keyword.Declaration),
             # Reserved Words
@@ -1306,7 +1315,7 @@ class StanLexer(RegexLexer):
             # block start
             include('whitespace'),
             # Block start
-            (r'(?s)(%s)(\s*)({)' %
+            (r'(%s)(\s*)({)' %
              r'|'.join(('data', r'transformed\s+?data',
                         'parameters', r'transformed\s+parameters',
                         'model', r'generated\s+quantities')),
