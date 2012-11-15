@@ -6,30 +6,39 @@ http://bitbucket.org/birkenfeld/pygments-main/issues.
 
 Version 1.6
 -----------
-(in development)
+(in development, to be released xx November 2012)
 
 - Lexers added:
 
-  * Julia (PR#61)
-  * Croc (new name for MiniD)
-  * LiveScript (PR#84)
-  * Lasso (PR#95)
-  * BUGS-like languages (PR#89)
-  * Rust (PR#67)
-  * CUDA (PR#75)
-  * Xtend (PR#68)
-  * Mscgen (PR#80)
-  * Kconfig (#711)
   * AspectJ (PR#90)
+  * BUGS-like languages (PR#89)
+  * Ceylon (PR#86)
+  * Croc (new name for MiniD)
+  * CUDA (PR#75)
+  * Dg (PR#116)
+  * Jags (PR#89)
+  * Julia (PR#61)
+  * Kconfig (#711)
+  * Lasso (PR#95)
+  * LiveScript (PR#84)
+  * Monkey (PR#117)
+  * Mscgen (PR#80)
   * Racket (PR#94)
   * Rdoc (PR#99)
-  * VGL (PR#12)
+  * Rust (PR#67)
+  * Smali (Dalvik assembly)
   * SourcePawn (PR#39)
-  * Ceylon (PR#86)
+  * Stan (PR#89)
+  * Treetop (PR#125)
+  * VGL (PR#12)
+  * Windows Registry (#819)
+  * Xtend (PR#68)
 
 - Fix Template Haskell highlighting (PR#63)
 
 - Fix some S/R lexer errors (PR#91)
+
+- Fix a bug in the Prolog lexer with names that start with 'is' (#810)
 
 
 Version 1.5
