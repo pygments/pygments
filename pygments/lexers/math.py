@@ -1281,10 +1281,14 @@ class JagsLexer(RegexLexer):
             return 0
 
 class StanLexer(RegexLexer):
-    """
-    Pygments Lexer for Stan models.
+    """Pygments Lexer for Stan models. 
+
+    The Stan modeling language is specified in the *Stan 1.0.3
+    Modeling Language Manual* `pdf
+    <http://code.google.com/p/stan/downloads/detail?name=stan-reference-1.0.3.pdf&can=1&q=>`_.
 
     *New in Pygments 1.6.*
+
     """
 
     name = 'Stan'
@@ -1292,7 +1296,7 @@ class StanLexer(RegexLexer):
     filenames = ['*.stan']
 
     _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                 'then', 'else', 'true', 'false', 'T',
+                 'then', 'else', 'true', 'false',
                  'lower', 'upper', 'print')
 
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
@@ -1321,20 +1325,25 @@ class StanLexer(RegexLexer):
                         'model', r'generated\s+quantities')),
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
-            (r'(%s)\b' % r'|'.join(_RESERVED), Keyword.Reserved),
+            (r'(%s)\b' % r'|'.join(_RESERVED), Keyword),
+            # Truncation
+            (r'T(?=\s*\[)', Keyword),
             # Data types
             (r'(%s)\b' % r'|'.join(_TYPES), Keyword.Type),
             # Punctuation
             (r"[;:,\[\]()<>]", Punctuation),
-            # Builtin
+            # functions. check that they are followed  by (
             (r'(%s)(?=\s*\()'
-             % r'|'.join(_stan_builtins.FUNCTIONS
-                         + _stan_builtins.DISTRIBUTIONS),
+             % r'|'.join(_stan_builtins.FUNCTIONS),
+             Name.Builtin),
+            (r'(%s)(?=\s*\()'
+             % r'|'.join(_stan_builtins.DISTRIBUTIONS),
              Name.Builtin),
             (r'(%s)(?=\s*\()'
              % r'|'.join(_stan_builtins.CONSTANTS), Keyword.Constant),
             # Special names ending in __, like lp__
             (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
+            # Mark Reserved C++ words as errors
             ('%s\b' % r'|'.join(_stan_builtins.CPP_RESERVED), Error),
             # Regular variable names
             (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
