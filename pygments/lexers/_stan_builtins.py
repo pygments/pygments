@@ -10,7 +10,7 @@ This file contains the names of functions for Stan used by
 :license: BSD, see LICENSE for details.
 """
 
-CONSTANTS=[   'e',
+CONSTANTS = [   'e',
     'epsilon',
     'log10',
     'log2',
@@ -21,7 +21,7 @@ CONSTANTS=[   'e',
     'positive_infinity',
     'sqrt2']
 
-FUNCTIONS=[   'Phi',
+FUNCTIONS = [   'Phi',
     'abs',
     'acos',
     'acosh',
@@ -140,7 +140,7 @@ FUNCTIONS=[   'Phi',
     'weibull_log',
     'wishart_log']
 
-DISTRIBUTIONS=[   'bernoulli',
+DISTRIBUTIONS = [   'bernoulli',
     'beta',
     'beta_binomial',
     'categorical',
