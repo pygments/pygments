@@ -1164,13 +1164,14 @@ class HaxeLexer(RegexLexer):
     tokens = {
         'root': [
             include('spaces'),
+            include('meta'),
             (r'(package|import|using)(\s*)([^;]*)(;)', bygroups(Keyword.Namespace, Text, Name.Namespace,Punctuation)),
+            (r'(?:extern|private)\b', Keyword.Declaration),
             (r'(?:class)\b', Keyword.Declaration, 'class'),
             
             # top-level expression
             # although it is not supported in haxe, but it is common to write expression in web pages
-            (r'\{', Punctuation, ('optional-semicolon', 'bracket')),
-            (r'', Text, ('semicolon', 'expr')),
+            (r'', Text, 'expr-statement'),
         ],
         
         'spaces': [
@@ -1200,12 +1201,6 @@ class HaxeLexer(RegexLexer):
             (r'', Text, '#pop'),
         ],
         
-        'class-member-access': [
-            include('spaces'),
-            (r'(?:static|public|private|override|dynamic|inline)\b', Keyword.Declaration),
-            (r'', Text, '#pop'),
-        ],
-        
         'class': [
             include('spaces'),
             (r'', Text, ('#pop', 'class-body', 'open-bracket', 'type-param-constraint', 'type-name')),
@@ -1220,12 +1215,53 @@ class HaxeLexer(RegexLexer):
             include('spaces'),
             include('meta'),
             (r'\}', Punctuation, '#pop'),
-            (r'', Text, ('class-member', 'class-member-access')),
+            (r'(?:static|public|private|override|dynamic|inline)\b', Keyword.Declaration),
+            (r'', Text, 'class-member'),
         ],
         
         'class-member': [
             include('spaces'),
-            (r'(var)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'var')), #TODO should use prop
+            (r'(var)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'prop')),
+            (r'(function)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'function')),
+        ],
+        
+        'function-local': [
+            include('spaces'),
+            (r'(' + ident + ')?', Text, ('#pop', 'expr', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
+        ],
+        
+        'function': [
+            include('spaces'),
+            (ident, Text, ('#pop', 'expr', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
+        ],
+        
+        'function-param': [
+            include('spaces'),
+            (r'\)', Keyword.Type, '#pop'),
+            (ident_no_keyword, Keyword.Type, ('#pop', 'function-param-sep', 'type', 'type-colon')),
+        ],
+        
+        'function-param-sep': [
+            include('spaces'),
+            (r'\)', Punctuation, '#pop'),
+            (r',', Text, ('#pop', 'function-param')),
+        ],
+        
+        'prop': [
+            include('spaces'),
+            (ident_no_keyword, Text, ('#pop', 'assign', 'flag', 'prop-get-set')),
+        ],
+        
+        'prop-get-set': [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'parenthesis-close', 'prop-get-set-opt', 'comma', 'prop-get-set-opt')),
+            (r'', Text, '#pop'),
+        ],
+        
+        'prop-get-set-opt': [
+            include('spaces'),
+            (r'(?:default|null|never|dynamic|get|set)\b', Keyword, '#pop'),
+            (ident_no_keyword, Text, '#pop'),
         ],
         
         'literals': [
@@ -1250,15 +1286,24 @@ class HaxeLexer(RegexLexer):
             (r'\[', Operator, ('#pop', 'array-decl')),
         ],
         
+        'expr-statement': [
+            # makes semicolon optional here, just to avoid checking the last one is bracket or not.
+            (r'', Text, ('#pop', 'optional-semicolon', 'expr')),
+        ],
+        
         'expr': [
             include('spaces'),
             include('meta'),
             (r'(?:\+\+|\-\-|~(?!/)|!|\-)', Operator),
             (r'\(', Punctuation, ('#pop', 'expr-chain', 'parenthesis')),
+            (r'(?:inline)\b', Keyword.Declaration),
+            (r'(?:function)\b', Keyword.Declaration, ('#pop', 'expr-chain', 'function-local')),
             (r'\{', Punctuation, ('#pop', 'bracket')),
-            (r'(true|false|null)\b', Keyword.Constant, ('#pop', 'expr-chain')),
-            (r'(var)\b', Keyword.Declaration, ('#pop', 'var')),
-            (r'(macro)\b', Keyword),
+            (r'(?:true|false|null)\b', Keyword.Constant, ('#pop', 'expr-chain')),
+            (r'(?:var)\b', Keyword.Declaration, ('#pop', 'var')),
+            (r'(?:new)\b', Keyword.Declaration, ('#pop', 'expr-chain', 'new')),
+            (r'(?:return)\b', Keyword),
+            (r'(?:macro)\b', Keyword),
             (ident_no_keyword, Text, ('#pop', 'expr-chain')),
             (r'', Text, ('#pop', 'expr-chain', 'literals')),
         ],
@@ -1271,6 +1316,11 @@ class HaxeLexer(RegexLexer):
             (r'\[', Operator, 'array-access'),
             (r'\(', Punctuation, 'call'),
             (r'', Text, '#pop'),
+        ],
+        
+        'new': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'call', 'parenthesis-open', 'type-name')),
         ],
         
         'array-decl': [
@@ -1293,6 +1343,11 @@ class HaxeLexer(RegexLexer):
         'array-access-close': [
             include('spaces'),
             (r'\]', Operator, '#pop'),
+        ],
+        
+        'comma': [
+            include('spaces'),
+            (r',', Punctuation, '#pop'),
         ],
         
         'colon': [
@@ -1359,7 +1414,7 @@ class HaxeLexer(RegexLexer):
         'type-struct-sep': [
             include('spaces'),
             (r'\}', Keyword.Type, '#pop'),
-            (r',', Keyword.Type, ('#pop', 'object')),
+            (r',', Keyword.Type, ('#pop', 'type-struct')),
         ],
         
         'type-param-type': [
@@ -1393,6 +1448,11 @@ class HaxeLexer(RegexLexer):
         'parenthesis': [
             include('spaces'),
             (r'', Text, ('#pop', 'parenthesis-close', 'expr')),
+        ],
+        
+        'parenthesis-open': [
+            include('spaces'),
+            (r'\(', Punctuation, '#pop'),
         ],
         
         'parenthesis-close': [
@@ -1464,8 +1524,7 @@ class HaxeLexer(RegexLexer):
         'block': [
             include('spaces'),
             (r'\}', Punctuation, '#pop'),
-            (r'\{', Punctuation, ('#pop', 'optional-semicolon', 'bracket')),
-            (r'', Text, ('semicolon', 'expr')),
+            (r'', Text, 'expr-statement'),
         ],
         
         # object in key-value pairs
