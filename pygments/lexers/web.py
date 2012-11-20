@@ -1144,14 +1144,17 @@ class HaxeLexer(RegexLexer):
                r'cast|override|dynamic|typedef|package|callback|'
                r'inline|using|null|true|false|abstract)\b')
     
-    typeid = r'_*[A-Z][_a-zA-Z0-9]*' # idtype in lexer.mll
+    # idtype in lexer.mll
+    typeid = r'_*[A-Z][_a-zA-Z0-9]*' 
     
-    ident = (r'(?!' + keyword + ')' # not one of the keywords
-             r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|_+|$[_a-zA-Z0-9]*|' + typeid + ')' #combined ident and dollar and idtype
-             r'\b')
+    # combined ident and dollar and idtype
+    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|_+|$[_a-zA-Z0-9]*|' + typeid + ')'
     
-    string1 = r"'(\\\\|\\'|[^'])*'" #single-quoted string
-    string2 = r'"(\\\\|\\"|[^"])*"' #double-quoted string
+    # ident except keywords
+    ident_no_keyword = r'(?!' + keyword + ')' + ident
+    
+    string1 = r"'(\\\\|\\'|[^'])*'" # single-quoted string
+    string2 = r'"(\\\\|\\"|[^"])*"' # double-quoted string
     
     key_prop = r'(?:default|null|never)'
     key_decl_mod = r'(?:public|private|override|static|inline|extern|dynamic)'
@@ -1186,6 +1189,23 @@ class HaxeLexer(RegexLexer):
             (r'', Text, '#pop'),
         ],
         
+        'meta': [
+            include('spaces'),
+            (r'@:?', Keyword.Declaration, ('meta-body', 'ident')),
+        ],
+        
+        'meta-body': [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'call')),
+            (r'', Text, '#pop'),
+        ],
+        
+        'class-member-access': [
+            include('spaces'),
+            (r'(?:static|public|private|override|dynamic|inline)\b', Keyword.Declaration),
+            (r'', Text, '#pop'),
+        ],
+        
         'class': [
             include('spaces'),
             (r'', Text, ('#pop', 'class-body', 'open-bracket', 'type-param-constraint', 'type-name')),
@@ -1198,8 +1218,14 @@ class HaxeLexer(RegexLexer):
         
         'class-body': [
             include('spaces'),
-            #TODO
+            include('meta'),
             (r'\}', Punctuation, '#pop'),
+            (r'', Text, ('class-member', 'class-member-access')),
+        ],
+        
+        'class-member': [
+            include('spaces'),
+            (r'(var)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'var')), #TODO should use prop
         ],
         
         'literals': [
@@ -1225,14 +1251,15 @@ class HaxeLexer(RegexLexer):
         ],
         
         'expr': [
-            include('spaces'),          
+            include('spaces'),
+            include('meta'),
             (r'(?:\+\+|\-\-|~(?!/)|!|\-)', Operator),
             (r'\(', Punctuation, ('#pop', 'expr-chain', 'parenthesis')),
             (r'\{', Punctuation, ('#pop', 'bracket')),
             (r'(true|false|null)\b', Keyword.Constant, ('#pop', 'expr-chain')),
             (r'(var)\b', Keyword.Declaration, ('#pop', 'var')),
             (r'(macro)\b', Keyword),
-            (ident, Text, ('#pop', 'expr-chain')),
+            (ident_no_keyword, Text, ('#pop', 'expr-chain')),
             (r'', Text, ('#pop', 'expr-chain', 'literals')),
         ],
         
@@ -1240,7 +1267,7 @@ class HaxeLexer(RegexLexer):
             include('spaces'),
             (r'(?:\+\+|\-\-|%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>>=|>>>=|==|!=|<=|>=|&&|\|\||<<|\.\.\.|<|>|%|&|\||\^|\+|\*|/|\-|=)', Operator, ('#pop', 'expr')),
             (r'\?', Operator, ('#pop', 'expr', 'ternary', 'expr')),
-            (r'(\.)(' + ident + ')', bygroups(Operator, Text)),
+            (r'(\.)(' + ident_no_keyword + ')', bygroups(Operator, Text)),
             (r'\[', Operator, 'array-access'),
             (r'\(', Punctuation, 'call'),
             (r'', Text, '#pop'),
@@ -1326,7 +1353,7 @@ class HaxeLexer(RegexLexer):
         'type-struct': [
             include('spaces'),
             (r'\}', Keyword.Type, '#pop'),
-            (ident, Keyword.Type, ('#pop', 'type-struct-sep', 'type', 'type-colon')),
+            (ident_no_keyword, Keyword.Type, ('#pop', 'type-struct-sep', 'type', 'type-colon')),
         ],
         
         'type-struct-sep': [
@@ -1375,7 +1402,7 @@ class HaxeLexer(RegexLexer):
         
         'var': [
             include('spaces'),
-            (ident, Text, ('#pop', 'var-sep', 'assign', 'flag')),
+            (ident_no_keyword, Text, ('#pop', 'var-sep', 'assign', 'flag')),
         ],
         
         # optional more var decl.
@@ -1421,7 +1448,7 @@ class HaxeLexer(RegexLexer):
         # bracket can be block or object
         'bracket': [
             include('spaces'),
-            (ident, Text, ('#pop', 'bracket-check')),
+            (ident_no_keyword, Text, ('#pop', 'bracket-check')),
             (string1, String.Single, ('#pop', 'bracket-check')),
             (string2, String.Double, ('#pop', 'bracket-check')),
             (r'', Text, ('#pop', 'block')),
@@ -1450,7 +1477,7 @@ class HaxeLexer(RegexLexer):
         
         'ident-or-string': [
             include('spaces'),
-            (ident, Text, '#pop'),
+            (ident_no_keyword, Text, '#pop'),
             (string1, String.Single, '#pop'),
             (string2, String.Double, '#pop'),
         ],
