@@ -1162,7 +1162,7 @@ class HaxeLexer(RegexLexer):
         'root': [
             include('spaces'),
             include('meta'),
-            (r'(package|import|using)(\s*)([^;]*)(;)', bygroups(Keyword.Namespace, Text, Name.Namespace,Punctuation)),
+            (r'(package|import|using)(\s*)([^;]*)(;)', bygroups(Keyword.Namespace, Text, Name.Namespace,Punctuation)), #TODO
             (r'(?:extern|private|abstract)\b', Keyword.Declaration),
             (r'(?:class|interface)\b', Keyword.Declaration, 'class'),
             (r'(?:enum)\b', Keyword.Declaration, 'enum'),
@@ -1232,7 +1232,14 @@ class HaxeLexer(RegexLexer):
         
         'class': [
             include('spaces'),
-            (r'', Text, ('#pop', 'class-body', 'bracket-open', 'type-param-constraint', 'type-name')),
+            (r'', Text, ('#pop', 'class-body', 'bracket-open', 'extends', 'type-param-constraint', 'type-name')),
+        ],
+        
+        'extends': [
+            include('spaces'),
+            (r'(?:extends|implements)\b', Text, ('#pop', 'type')),
+            (r',', Punctuation),
+            (r'', Text, '#pop'),
         ],
         
         'bracket-open': [
@@ -1355,7 +1362,8 @@ class HaxeLexer(RegexLexer):
         
         'expr-chain': [
             include('spaces'),
-            (r'(?:\+\+|\-\-|%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>>=|>>>=|==|!=|<=|>=|&&|\|\||<<|\.\.\.|<|>|%|&|\||\^|\+|\*|/|\-|=)', Operator, ('#pop', 'expr')),
+            (r'(?:\+\+|\-\-)', Operator),
+            (r'(?:%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>>=|>>>=|==|!=|<=|>=|&&|\|\||<<|>>>|>>|\.\.\.|<|>|%|&|\||\^|\+|\*|/|\-|=)', Operator, ('#pop', 'expr')),
             (r'(?:in)\b', Operator, ('#pop', 'expr')),
             (r'\?', Operator, ('#pop', 'expr', 'ternary', 'expr')),
             (r'(\.)(' + ident_no_keyword + ')', bygroups(Operator, Text)),
@@ -1372,7 +1380,8 @@ class HaxeLexer(RegexLexer):
         
         'cast': [
             include('spaces'),
-            (r'\(', Keyword.Declaration, ('#pop', 'parenthesis-close', 'type', 'comma', 'expr')),
+            (r'\(', Keyword, ('#pop', 'parenthesis-close', 'type', 'comma', 'expr')),
+            (r'', Text, ('#pop', 'expr')),
         ],
         
         'catch': [
@@ -1500,11 +1509,17 @@ class HaxeLexer(RegexLexer):
             (typeid, Keyword.Type, '#pop'),
         ],
         
+        'type-full-name': [
+            include('spaces'),
+            (ident + '\.', Keyword.Type),
+            include('type-name'),
+        ],
+        
         'type': [
             include('spaces'),
             (r'\{', Keyword.Type, ('#pop', 'type-check', 'type-struct')),
             (r'\(', Keyword.Type, ('#pop', 'type-check', 'type-parenthesis')),
-            (r'', Keyword.Type, ('#pop', 'type-check', 'type-name')),
+            (r'', Keyword.Type, ('#pop', 'type-check', 'type-full-name')),
         ],
         
         'type-parenthesis': [
