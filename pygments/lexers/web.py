@@ -1164,7 +1164,7 @@ class HaxeLexer(RegexLexer):
             include('meta'),
             (r'(package|import|using)(\s*)([^;]*)(;)', bygroups(Keyword.Namespace, Text, Name.Namespace,Punctuation)),
             (r'(?:extern|private|abstract)\b', Keyword.Declaration),
-            (r'(?:class)\b', Keyword.Declaration, 'class'),
+            (r'(?:class|interface)\b', Keyword.Declaration, 'class'),
             (r'(?:enum)\b', Keyword.Declaration, 'enum'),
             (r'(?:typedef)\b', Keyword.Declaration, 'typedef'),
             
@@ -1337,13 +1337,17 @@ class HaxeLexer(RegexLexer):
             (r'\{', Punctuation, ('#pop', 'bracket')),
             (r'(?:true|false|null)\b', Keyword.Constant, ('#pop', 'expr-chain')),
             (r'(?:this)\b', Keyword, ('#pop', 'expr-chain')),
+            (r'(?:cast)\b', Keyword, ('#pop', 'expr-chain', 'cast')),
+            (r'(?:try)\b', Keyword, ('#pop', 'catch', 'expr')),
             (r'(?:var)\b', Keyword.Declaration, ('#pop', 'var')),
             (r'(?:new)\b', Keyword, ('#pop', 'expr-chain', 'new')),
             (r'(?:switch)\b', Keyword, ('#pop', 'switch')),
             (r'(?:if)\b', Keyword, ('#pop', 'if')),
             (r'(?:do)\b', Keyword, ('#pop', 'do')),
             (r'(?:while)\b', Keyword, ('#pop', 'while')),
-            (r'(?:return|macro|untyped|throw)\b', Keyword),
+            (r'(?:for)\b', Keyword, ('#pop', 'for')),
+            (r'(?:return|untyped|throw)\b', Keyword),
+            (r'(?:macro)\b', Keyword, ('#pop', 'macro')),
             (r'(?:continue|break)\b', Keyword, '#pop'),
             (ident_no_keyword, Text, ('#pop', 'expr-chain')),
             (r'(?=.)', Text, ('#pop', 'expr-chain', 'literals')),
@@ -1360,6 +1364,23 @@ class HaxeLexer(RegexLexer):
             (r'', Text, '#pop'),
         ],
         
+        'macro': [
+            include('spaces'),
+            (r':', Keyword.Declaration, ('#pop', 'type')),
+            (r'', Keyword.Declaration, ('#pop', 'expr')),
+        ],
+        
+        'cast': [
+            include('spaces'),
+            (r'\(', Keyword.Declaration, ('#pop', 'parenthesis-close', 'type', 'comma', 'expr')),
+        ],
+        
+        'catch': [
+            include('spaces'),
+            (r'(?:catch)\b', Keyword, ('expr', 'function-param', 'parenthesis-open')),
+            (r'', Text, '#pop'),
+        ],
+        
         'do': [
             include('spaces'),
             (r'', Punctuation, ('#pop', 'do-while', 'expr')),
@@ -1371,6 +1392,11 @@ class HaxeLexer(RegexLexer):
         ],
         
         'while': [
+            include('spaces'),
+            (r'\(', Keyword, ('#pop', 'expr', 'parenthesis')),
+        ],
+        
+        'for': [
             include('spaces'),
             (r'\(', Keyword, ('#pop', 'expr', 'parenthesis')),
         ],
@@ -1418,7 +1444,7 @@ class HaxeLexer(RegexLexer):
         
         'new': [
             include('spaces'),
-            (r'', Text, ('#pop', 'call', 'parenthesis-open', 'type-name')),
+            (r'', Text, ('#pop', 'call', 'parenthesis-open', 'type')),
         ],
         
         'array-decl': [
