@@ -1323,7 +1323,9 @@ class HaxeLexer(RegexLexer):
             (r'\{', Punctuation, ('#pop', 'bracket')),
             (r'(?:true|false|null)\b', Keyword.Constant, ('#pop', 'expr-chain')),
             (r'(?:var)\b', Keyword.Declaration, ('#pop', 'var')),
-            (r'(?:new)\b', Keyword.Declaration, ('#pop', 'expr-chain', 'new')),
+            (r'(?:new)\b', Keyword, ('#pop', 'expr-chain', 'new')),
+            (r'(?:switch)\b', Keyword, ('#pop', 'switch')),
+            (r'(?:if)\b', Keyword, ('#pop', 'if')),
             (r'(?:return)\b', Keyword),
             (r'(?:macro)\b', Keyword),
             (ident_no_keyword, Text, ('#pop', 'expr-chain')),
@@ -1337,6 +1339,47 @@ class HaxeLexer(RegexLexer):
             (r'(\.)(' + ident_no_keyword + ')', bygroups(Operator, Text)),
             (r'\[', Operator, 'array-access'),
             (r'\(', Punctuation, 'call'),
+            (r'', Text, '#pop'),
+        ],
+        
+        'if': [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'else', 'expr', 'parenthesis')),
+        ],
+        
+        'else': [
+            include('spaces'),
+            (r'(?:else)\b', Keyword, ('#pop', 'expr')),
+            (r'', Text, '#pop'),
+        ],
+        
+        'switch': [
+            include('spaces'),
+            (r'\(', Text, ('#pop', 'switch-body', 'bracket-open', 'parenthesis')),
+        ],
+        
+        'switch-body': [
+            include('spaces'),
+            (r'(?:case)\b', Keyword, ('case-block', 'case')),
+            (r'(?:default)\b', Keyword, ('case-block', 'case')),
+            (r'\}', Punctuation, '#pop'),
+        ],
+        
+        'case': [
+            include('spaces'),
+            (r':', Punctuation, '#pop'),
+            (r'', Text, ('#pop', 'case-sep', 'expr')),
+        ],
+        
+        'case-sep': [
+            include('spaces'),
+            (r':', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'case')),
+        ],
+        
+        'case-block': [
+            include('spaces'),
+            include('expr-statement'),
             (r'', Text, '#pop'),
         ],
         
@@ -1539,7 +1582,7 @@ class HaxeLexer(RegexLexer):
         'bracket-check': [
             include('spaces'),
             (r':', Punctuation, ('#pop', 'object-sep', 'expr')), #is object
-            (r'', Text, ('#pop', 'block')), #is block
+            (r'', Text, ('#pop', 'block', 'optional-semicolon', 'expr-chain')), #is block
         ],
         
         # code block
