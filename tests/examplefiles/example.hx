@@ -7,20 +7,58 @@ import net.onthewings.*;
 using Lambda;
 using net.onthewings.Test;
 
-class Test {
-	@values(-1,100) public var readOnlyField(default,null):Int;
-	var a(get_a, set_a):String;
-	function get_a():String return a
-	function set_a(v:String):String {
-		return a = v;
-	}
-	
+#if flash8
+// Haxe code specific for flash player 8
+#elseif flash
+// Haxe code specific for flash platform (any version)
+#elseif js
+// Haxe code specific for javascript plaform
+#elseif neko
+// Haxe code specific for neko plaform
+#else 
+// do something else
+    #error  // will display an error "Not implemented on this platform"
+    #error "Custom error message" // will display an error "Custom error message"
+#end
+
+0; // Int
+-134; // Int
+0xFF00; // Int
+
+123.0; // Float
+.14179; // Float
+13e50; // Float
+-1e-99; // Float
+
+"hello"; // String
+"hello \"world\" !"; // String
+'hello "world" !'; // String
+
+true; // Bool
+false; // Bool
+
+null; // Unknown<0>
+
+~/[a-z]+/i; // EReg : regular expression
+
+var point = { "x" : 1, "y" : -5 };
+
+{
+    var x;
+    var y = 3;
+    var z : String;
+    var w : String = "";
+    var a, b : Bool, c : Int = 0;
+}
+
+
+class Test <T:Void->Void> {
 	private function new():Void {
 		inline function innerFun(a:Int, b:Int):Int {
 			return readOnlyField = a + b;
 		}
 		
-		innerFun(1, 2.3);
+		_innerFun(1, 2.3);
 	}
 	
 	static public var instance(get,null):Test;
@@ -77,34 +115,4 @@ typedef Pt2 = {
 	y:Float,
 	?z:Float, //optional z
 	add : Point -> Void,
-}
-
-var point = { "x" : 1, "y" : -5 };
-
-0; // Int
--134; // Int
-0xFF00; // Int
-
-123.0; // Float
-.14179; // Float
-13e50; // Float
--1e-99; // Float
-
-"hello"; // String
-"hello \"world\" !"; // String
-'hello "world" !'; // String
-
-true; // Bool
-false; // Bool
-
-null; // Unknown<0>
-
-~/[a-z]+/i; // EReg : regular expression
-
-{
-    var x;
-    var y = 3;
-    var z : String;
-    var w : String = "";
-    var a, b : Bool, c : Int = 0;
 }
