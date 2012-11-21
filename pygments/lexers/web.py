@@ -1166,6 +1166,7 @@ class HaxeLexer(RegexLexer):
             (r'(?:extern|private|abstract)\b', Keyword.Declaration),
             (r'(?:class)\b', Keyword.Declaration, 'class'),
             (r'(?:enum)\b', Keyword.Declaration, 'enum'),
+            (r'(?:typedef)\b', Keyword.Declaration, 'typedef'),
             
             # top-level expression
             # although it is not supported in haxe, but it is common to write expression in web pages
@@ -1198,6 +1199,16 @@ class HaxeLexer(RegexLexer):
             include('spaces'),
             (r'\(', Punctuation, ('#pop', 'call')),
             (r'', Text, '#pop'),
+        ],
+        
+        'typedef': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'typedef-body', 'type-param-constraint', 'type-name')),
+        ],
+        
+        'typedef-body': [
+            include('spaces'),
+            (r'=', Operator, ('#pop', 'optional-semicolon', 'type')),
         ],
         
         'enum': [
@@ -1248,14 +1259,15 @@ class HaxeLexer(RegexLexer):
             (r'(' + ident + ')?', Text, ('#pop', 'expr', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
         ],
         
-        'function-no-body': [
+        'optional-expr': [
             include('spaces'),
-            (ident, Text, ('#pop', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
+            (r';', Punctuation, '#pop'),
+            include('expr'),
         ],
         
         'function': [
             include('spaces'),
-            (ident, Text, ('#pop', 'expr', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
+            (ident, Text, ('#pop', 'optional-expr', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
         ],
         
         'function-param': [
@@ -1331,10 +1343,10 @@ class HaxeLexer(RegexLexer):
             (r'(?:if)\b', Keyword, ('#pop', 'if')),
             (r'(?:do)\b', Keyword, ('#pop', 'do')),
             (r'(?:while)\b', Keyword, ('#pop', 'while')),
-            (r'(?:return|macro)\b', Keyword),
+            (r'(?:return|macro|untyped|throw)\b', Keyword),
             (r'(?:continue|break)\b', Keyword, '#pop'),
             (ident_no_keyword, Text, ('#pop', 'expr-chain')),
-            (r'', Text, ('#pop', 'expr-chain', 'literals')),
+            (r'(?=.)', Text, ('#pop', 'expr-chain', 'literals')),
         ],
         
         'expr-chain': [
@@ -1494,7 +1506,9 @@ class HaxeLexer(RegexLexer):
         'type-struct': [
             include('spaces'),
             (r'\}', Keyword.Type, '#pop'),
+            (r'\?', Keyword.Type),
             (ident_no_keyword, Keyword.Type, ('#pop', 'type-struct-sep', 'type', 'type-colon')),
+            include('class-body'),
         ],
         
         'type-struct-sep': [
