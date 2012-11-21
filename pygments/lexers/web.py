@@ -1153,11 +1153,8 @@ class HaxeLexer(RegexLexer):
     # ident except keywords
     ident_no_keyword = r'(?!' + keyword + ')' + ident
     
-    string1 = r"'(\\\\|\\'|[^'])*'" # single-quoted string
+    string1 = r"'(\\\\|\\'|[^'])*'" # single-quoted string #TODO string interpolation
     string2 = r'"(\\\\|\\"|[^"])*"' # double-quoted string
-    
-    key_prop = r'(?:default|null|never)'
-    key_decl_mod = r'(?:public|private|override|static|inline|extern|dynamic)'
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -1168,6 +1165,7 @@ class HaxeLexer(RegexLexer):
             (r'(package|import|using)(\s*)([^;]*)(;)', bygroups(Keyword.Namespace, Text, Name.Namespace,Punctuation)),
             (r'(?:extern|private)\b', Keyword.Declaration),
             (r'(?:class)\b', Keyword.Declaration, 'class'),
+            (r'(?:enum)\b', Keyword.Declaration, 'enum'),
             
             # top-level expression
             # although it is not supported in haxe, but it is common to write expression in web pages
@@ -1201,12 +1199,31 @@ class HaxeLexer(RegexLexer):
             (r'', Text, '#pop'),
         ],
         
-        'class': [
+        'enum': [
             include('spaces'),
-            (r'', Text, ('#pop', 'class-body', 'open-bracket', 'type-param-constraint', 'type-name')),
+            (r'', Text, ('#pop', 'enum-body', 'bracket-open', 'type-param-constraint', 'type-name')),
         ],
         
-        'open-bracket': [
+        'enum-body': [
+            include('spaces'),
+            include('meta'),
+            (r'\}', Punctuation, '#pop'),
+            (ident_no_keyword, Text, 'enum-member'),
+            (r'', Text, 'enum-member'),
+        ],
+        
+        'enum-member': [
+            include('spaces'),
+            (r'\(', Text, ('#pop', 'semicolon', 'function-param')),
+            (r';', Text, '#pop'),
+        ],
+        
+        'class': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'class-body', 'bracket-open', 'type-param-constraint', 'type-name')),
+        ],
+        
+        'bracket-open': [
             include('spaces'),
             (r'\{', Punctuation, '#pop'),
         ],
@@ -1228,6 +1245,11 @@ class HaxeLexer(RegexLexer):
         'function-local': [
             include('spaces'),
             (r'(' + ident + ')?', Text, ('#pop', 'expr', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
+        ],
+        
+        'function-no-body': [
+            include('spaces'),
+            (ident, Text, ('#pop', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
         ],
         
         'function': [
