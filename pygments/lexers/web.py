@@ -1163,7 +1163,7 @@ class HaxeLexer(RegexLexer):
             include('spaces'),
             include('meta'),
             (r'(package|import|using)(\s*)([^;]*)(;)', bygroups(Keyword.Namespace, Text, Name.Namespace,Punctuation)),
-            (r'(?:extern|private)\b', Keyword.Declaration),
+            (r'(?:extern|private|abstract)\b', Keyword.Declaration),
             (r'(?:class)\b', Keyword.Declaration, 'class'),
             (r'(?:enum)\b', Keyword.Declaration, 'enum'),
             
@@ -1323,12 +1323,15 @@ class HaxeLexer(RegexLexer):
             (r'(?:function)\b', Keyword.Declaration, ('#pop', 'expr-chain', 'function-local')),
             (r'\{', Punctuation, ('#pop', 'bracket')),
             (r'(?:true|false|null)\b', Keyword.Constant, ('#pop', 'expr-chain')),
+            (r'(?:this)\b', Keyword, ('#pop', 'expr-chain')),
             (r'(?:var)\b', Keyword.Declaration, ('#pop', 'var')),
             (r'(?:new)\b', Keyword, ('#pop', 'expr-chain', 'new')),
             (r'(?:switch)\b', Keyword, ('#pop', 'switch')),
             (r'(?:if)\b', Keyword, ('#pop', 'if')),
-            (r'(?:return)\b', Keyword),
-            (r'(?:macro)\b', Keyword),
+            (r'(?:do)\b', Keyword, ('#pop', 'do')),
+            (r'(?:while)\b', Keyword, ('#pop', 'while')),
+            (r'(?:return|macro)\b', Keyword),
+            (r'(?:continue|break)\b', Keyword, '#pop'),
             (ident_no_keyword, Text, ('#pop', 'expr-chain')),
             (r'', Text, ('#pop', 'expr-chain', 'literals')),
         ],
@@ -1336,11 +1339,27 @@ class HaxeLexer(RegexLexer):
         'expr-chain': [
             include('spaces'),
             (r'(?:\+\+|\-\-|%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>>=|>>>=|==|!=|<=|>=|&&|\|\||<<|\.\.\.|<|>|%|&|\||\^|\+|\*|/|\-|=)', Operator, ('#pop', 'expr')),
+            (r'(?:in)\b', Operator, ('#pop', 'expr')),
             (r'\?', Operator, ('#pop', 'expr', 'ternary', 'expr')),
             (r'(\.)(' + ident_no_keyword + ')', bygroups(Operator, Text)),
             (r'\[', Operator, 'array-access'),
             (r'\(', Punctuation, 'call'),
             (r'', Text, '#pop'),
+        ],
+        
+        'do': [
+            include('spaces'),
+            (r'', Punctuation, ('#pop', 'do-while', 'expr')),
+        ],
+        
+        'do-while': [
+            include('spaces'),
+            (r'(?:while)\b', Keyword, ('#pop', 'parenthesis', 'parenthesis-open')),
+        ],
+        
+        'while': [
+            include('spaces'),
+            (r'\(', Keyword, ('#pop', 'expr', 'parenthesis')),
         ],
         
         'if': [
