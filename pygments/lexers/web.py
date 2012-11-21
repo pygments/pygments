@@ -1169,7 +1169,8 @@ class HaxeLexer(RegexLexer):
             
             # top-level expression
             # although it is not supported in haxe, but it is common to write expression in web pages
-            (r'', Text, 'expr-statement'),
+            # the positive lookahead here is to prevent an infinite loop at the EOF
+            (r'(?=.)', Text, 'expr-statement'),
         ],
         
         'spaces': [
@@ -1520,8 +1521,26 @@ class HaxeLexer(RegexLexer):
         
         'type-param-constraint': [
             include('spaces'),
-            (r'<', Keyword.Type, ('#pop', 'type-param-constraint-sep', 'flag', 'type-name')),
+            (r'<', Keyword.Type, ('#pop', 'type-param-constraint-sep', 'type-param-constraint-flag', 'type-name')),
             (r'', Text, '#pop'),
+        ],
+        
+        'type-param-constraint-flag': [
+            include('spaces'),
+            (r':', Punctuation, ('#pop', 'type-param-constraint-flag-type')),
+            (r'', Text, '#pop'),
+        ],
+        
+        'type-param-constraint-flag-type': [
+            include('spaces'),
+            (r'\(', Keyword.Type, ('#pop', 'type-param-constraint-flag-type-sep', 'type')),
+            (r'', Text, ('#pop', 'type')),
+        ],
+        
+        'type-param-constraint-flag-type-sep': [
+            include('spaces'),
+            (r'\)', Keyword.Type, '#pop'),
+            (r',', Keyword.Type, 'type'),
         ],
         
         'type-param-constraint-sep': [
