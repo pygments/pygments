@@ -1259,8 +1259,9 @@ class HaxeLexer(RegexLexer):
         
         'function-param': [
             include('spaces'),
-            (r'\)', Keyword.Type, '#pop'),
-            (ident_no_keyword, Keyword.Type, ('#pop', 'function-param-sep', 'type', 'type-colon')),
+            (r'\)', Punctuation, '#pop'),
+            (r'\?', Punctuation),
+            (ident_no_keyword, Text, ('#pop', 'function-param-sep', 'assign', 'flag')),
         ],
         
         'function-param-sep': [
