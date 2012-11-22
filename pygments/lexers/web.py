@@ -1148,7 +1148,7 @@ class HaxeLexer(RegexLexer):
     typeid = r'_*[A-Z][_a-zA-Z0-9]*' 
     
     # combined ident and dollar and idtype
-    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|_+|$[_a-zA-Z0-9]*|' + typeid + ')'
+    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|_+|\$[_a-zA-Z0-9]*|' + typeid + ')'
     
     # ident except keywords
     ident_no_keyword = r'(?!' + keyword + ')' + ident
@@ -1192,6 +1192,7 @@ class HaxeLexer(RegexLexer):
          
         'preproc-expr': [
             (r'\s+', Text),
+            (r'!', Comment.Preproc),
             (r'\(', Comment.Preproc, ('#pop', 'preproc-expr-chain', 'preproc-parenthesis')),
             (ident, Text, ('#pop', 'preproc-expr-chain')),
         ],
@@ -1323,28 +1324,6 @@ class HaxeLexer(RegexLexer):
             include('spaces'),
             (r'(?:default|null|never|dynamic|get|set)\b', Keyword, '#pop'),
             (ident_no_keyword, Text, '#pop'),
-        ],
-        
-        'literals': [
-            # Float
-            (r'\.[0-9]+', Number.Float, '#pop'),
-            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
-            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
-            (r'[0-9]+\.[0-9]+', Number.Float, '#pop'),
-            
-            # Int
-            (r'0x[0-9a-fA-F]+', Number.Hex, '#pop'),
-            (r'[0-9]+', Number.Integer, '#pop'),
-            
-            # String
-            (string1, String.Single, '#pop'),
-            (string2, String.Double, '#pop'),
-            
-            # EReg
-            (r'~/([^\n])*?/[gisx]*', String.Regex, '#pop'),
-            
-            # Array
-            (r'\[', Operator, ('#pop', 'array-decl')),
         ],
         
         'expr-statement': [
@@ -1548,15 +1527,20 @@ class HaxeLexer(RegexLexer):
         
         'type-full-name': [
             include('spaces'),
-            (ident + '\.', Keyword.Type),
-            include('type-name'),
+            (r'\.', Keyword.Type, 'type-full-name-path'),
+            (r'', Keyword.Type, '#pop'),
+        ],
+        
+        'type-full-name-path': [
+            include('spaces'),
+            (ident, Keyword.Type, '#pop'),
         ],
         
         'type': [
             include('spaces'),
+            (ident, Keyword.Type, ('#pop', 'type-check', 'type-full-name')),
             (r'\{', Keyword.Type, ('#pop', 'type-check', 'type-struct')),
             (r'\(', Keyword.Type, ('#pop', 'type-check', 'type-parenthesis')),
-            (r'', Keyword.Type, ('#pop', 'type-check', 'type-full-name')),
         ],
         
         'type-parenthesis': [
@@ -1596,7 +1580,26 @@ class HaxeLexer(RegexLexer):
         ],
         
         'type-param-type': [
-            include('literals'),
+            # Float
+            (r'\.[0-9]+', Number.Float, '#pop'),
+            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
+            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
+            (r'[0-9]+\.[0-9]+', Number.Float, '#pop'),
+            
+            # Int
+            (r'0x[0-9a-fA-F]+', Number.Hex, '#pop'),
+            (r'[0-9]+', Number.Integer, '#pop'),
+            
+            # String
+            (string1, String.Single, '#pop'),
+            (string2, String.Double, '#pop'),
+            
+            # EReg
+            (r'~/([^\n])*?/[gisx]*', String.Regex, '#pop'),
+            
+            # Array
+            (r'\[', Operator, ('#pop', 'array-decl')),
+            
             include('type'),
         ],
         
