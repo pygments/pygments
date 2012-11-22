@@ -1184,27 +1184,27 @@ class HaxeLexer(RegexLexer):
         ],
          
         'preproc-error': [
-            (r'\s+', Text),
+            (r'\s+', Comment.Preproc),
             (string1, Comment.Preproc, '#pop'),
             (string2, Comment.Preproc, '#pop'),
             (r'', Text, '#pop'),
         ],
          
         'preproc-expr': [
-            (r'\s+', Text),
+            (r'\s+', Comment.Preproc),
             (r'!', Comment.Preproc),
             (r'\(', Comment.Preproc, ('#pop', 'preproc-expr-chain', 'preproc-parenthesis')),
-            (ident, Text, ('#pop', 'preproc-expr-chain')),
+            (ident, Comment.Preproc, ('#pop', 'preproc-expr-chain')),
         ],
          
         'preproc-parenthesis': [
-            (r'\s+', Text),
+            (r'\s+', Comment.Preproc),
             (r'\)', Comment.Preproc, '#pop'),
             ('', Text, 'preproc-expr'),
         ],
          
         'preproc-expr-chain': [
-            (r'\s+', Text),
+            (r'\s+', Comment.Preproc),
             (r'(?:&&|\|\|)', Comment.Preproc, ('#pop', 'preproc-expr')),
             (r'', Text, '#pop'),
         ],
