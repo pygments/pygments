@@ -1178,15 +1178,33 @@ class HaxeLexer(RegexLexer):
             (r'\s+', Text),
             (r'//[^\n\r]*', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'#(?:if|elseif)', Comment.Preproc, 'expr'),
+            (r'#(?:if|elseif)', Comment.Preproc, 'preproc-expr'),
             (r'#(?:else|end)', Comment.Preproc),
             (r'#error', Comment.Preproc, 'preproc-error'),
         ],
          
         'preproc-error': [
             (r'\s+', Text),
-            (string1, String.Single, '#pop'),
-            (string2, String.Double, '#pop'),
+            (string1, Comment.Preproc, '#pop'),
+            (string2, Comment.Preproc, '#pop'),
+            (r'', Text, '#pop'),
+        ],
+         
+        'preproc-expr': [
+            (r'\s+', Text),
+            (r'\(', Comment.Preproc, ('#pop', 'preproc-expr-chain', 'preproc-parenthesis')),
+            (ident, Text, ('#pop', 'preproc-expr-chain')),
+        ],
+         
+        'preproc-parenthesis': [
+            (r'\s+', Text),
+            (r'\)', Comment.Preproc, '#pop'),
+            ('', Text, 'preproc-expr'),
+        ],
+         
+        'preproc-expr-chain': [
+            (r'\s+', Text),
+            (r'(?:&&|\|\|)', Comment.Preproc, ('#pop', 'preproc-expr')),
             (r'', Text, '#pop'),
         ],
         
@@ -1237,7 +1255,7 @@ class HaxeLexer(RegexLexer):
         
         'extends': [
             include('spaces'),
-            (r'(?:extends|implements)\b', Text, ('#pop', 'type')),
+            (r'(?:extends|implements)\b', Text, 'type'),
             (r',', Punctuation),
             (r'', Text, '#pop'),
         ],
@@ -1268,8 +1286,8 @@ class HaxeLexer(RegexLexer):
         
         'optional-expr': [
             include('spaces'),
-            (r';', Punctuation, '#pop'),
             include('expr'),
+            (r'', Text, '#pop'),
         ],
         
         'function': [
@@ -1341,7 +1359,7 @@ class HaxeLexer(RegexLexer):
             (r'\(', Punctuation, ('#pop', 'expr-chain', 'parenthesis')),
             (r'(?:inline)\b', Keyword.Declaration),
             (r'(?:function)\b', Keyword.Declaration, ('#pop', 'expr-chain', 'function-local')),
-            (r'\{', Punctuation, ('#pop', 'bracket')),
+            (r'\{', Punctuation, ('#pop', 'expr-chain', 'bracket')),
             (r'(?:true|false|null)\b', Keyword.Constant, ('#pop', 'expr-chain')),
             (r'(?:this)\b', Keyword, ('#pop', 'expr-chain')),
             (r'(?:cast)\b', Keyword, ('#pop', 'expr-chain', 'cast')),
@@ -1353,11 +1371,31 @@ class HaxeLexer(RegexLexer):
             (r'(?:do)\b', Keyword, ('#pop', 'do')),
             (r'(?:while)\b', Keyword, ('#pop', 'while')),
             (r'(?:for)\b', Keyword, ('#pop', 'for')),
-            (r'(?:return|untyped|throw)\b', Keyword),
+            (r'(?:untyped|throw)\b', Keyword),
+            (r'(?:return)\b', Keyword, ('#pop', 'optional-expr')),
             (r'(?:macro)\b', Keyword, ('#pop', 'macro')),
             (r'(?:continue|break)\b', Keyword, '#pop'),
             (ident_no_keyword, Text, ('#pop', 'expr-chain')),
-            (r'(?=.)', Text, ('#pop', 'expr-chain', 'literals')),
+            
+            # Float
+            (r'\.[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+\.[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            
+            # Int
+            (r'0x[0-9a-fA-F]+', Number.Hex, ('#pop', 'expr-chain')),
+            (r'[0-9]+', Number.Integer, ('#pop', 'expr-chain')),
+            
+            # String
+            (string1, String.Single, ('#pop', 'expr-chain')),
+            (string2, String.Double, ('#pop', 'expr-chain')),
+            
+            # EReg
+            (r'~/([^\n])*?/[gisx]*', String.Regex, ('#pop', 'expr-chain')),
+            
+            # Array
+            (r'\[', Operator, ('#pop', 'expr-chain', 'array-decl')),
         ],
         
         'expr-chain': [
@@ -1412,7 +1450,7 @@ class HaxeLexer(RegexLexer):
         
         'if': [
             include('spaces'),
-            (r'\(', Punctuation, ('#pop', 'else', 'expr', 'parenthesis')),
+            (r'\(', Punctuation, ('#pop', 'else', 'optional-semicolon', 'expr', 'parenthesis')),
         ],
         
         'else': [
@@ -1428,8 +1466,7 @@ class HaxeLexer(RegexLexer):
         
         'switch-body': [
             include('spaces'),
-            (r'(?:case)\b', Keyword, ('case-block', 'case')),
-            (r'(?:default)\b', Keyword, ('case-block', 'case')),
+            (r'(?:case|default)\b', Keyword, ('case-block', 'case')),
             (r'\}', Punctuation, '#pop'),
         ],
         
@@ -1447,7 +1484,7 @@ class HaxeLexer(RegexLexer):
         
         'case-block': [
             include('spaces'),
-            include('expr-statement'),
+            (r'(?!(case|default|\}))', Text, 'expr-statement'),
             (r'', Text, '#pop'),
         ],
         
