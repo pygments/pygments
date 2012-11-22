@@ -1163,7 +1163,8 @@ class HaxeLexer(RegexLexer):
             include('spaces'),
             include('meta'),
             (r'(package|import|using)(\s*)([^;]*)(;)', bygroups(Keyword.Namespace, Text, Name.Namespace,Punctuation)), #TODO
-            (r'(?:extern|private|abstract)\b', Keyword.Declaration),
+            (r'(?:extern|private)\b', Keyword.Declaration),
+            (r'(?:abstract)\b', Keyword.Declaration, 'abstract'),
             (r'(?:class|interface)\b', Keyword.Declaration, 'class'),
             (r'(?:enum)\b', Keyword.Declaration, 'enum'),
             (r'(?:typedef)\b', Keyword.Declaration, 'typedef'),
@@ -1178,8 +1179,8 @@ class HaxeLexer(RegexLexer):
             (r'\s+', Text),
             (r'//[^\n\r]*', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'#(?:if|elseif)', Comment.Preproc, 'preproc-expr'),
-            (r'#(?:else|end)', Comment.Preproc),
+            (r'#(?:if|elseif)\b', Comment.Preproc, 'preproc-expr'),
+            (r'#(?:else|end)\b', Comment.Preproc),
             (r'#error', Comment.Preproc, 'preproc-error'),
         ],
          
@@ -1206,6 +1207,23 @@ class HaxeLexer(RegexLexer):
         'preproc-expr-chain': [
             (r'\s+', Comment.Preproc),
             (r'(?:&&|\|\|)', Comment.Preproc, ('#pop', 'preproc-expr')),
+            (r'', Text, '#pop'),
+        ],
+        
+        'abstract' : [
+            include('spaces'),
+            (r'', Text, ('#pop', 'abstract-body', 'abstract-relation', 'type-param-constraint', 'type-name')),
+        ],
+        
+        'abstract-body' : [
+            include('spaces'),
+            (r'\{', Text, ('#pop', 'class-body')),
+        ],
+        
+        'abstract-relation': [
+            include('spaces'),
+            (r'(?:=>|<=)', Keyword.Declaration, 'type'),
+            (r',', Punctuation),
             (r'', Text, '#pop'),
         ],
         
@@ -1256,7 +1274,7 @@ class HaxeLexer(RegexLexer):
         
         'extends': [
             include('spaces'),
-            (r'(?:extends|implements)\b', Text, 'type'),
+            (r'(?:extends|implements)\b', Keyword.Declaration, 'type'),
             (r',', Punctuation),
             (r'', Text, '#pop'),
         ],
@@ -1556,7 +1574,7 @@ class HaxeLexer(RegexLexer):
         'type-check': [
             include('spaces'),
             (r'->', Keyword.Type, ('#pop', 'type')),
-            (r'<', Keyword.Type, ('#pop', 'type-param')),
+            (r'<(?!=)', Keyword.Type, ('#pop', 'type-param')),
             (r'', Text, '#pop'),
         ],
         
@@ -1616,7 +1634,7 @@ class HaxeLexer(RegexLexer):
         
         'type-param-constraint': [
             include('spaces'),
-            (r'<', Keyword.Type, ('#pop', 'type-param-constraint-sep', 'type-param-constraint-flag', 'type-name')),
+            (r'<(?!=)', Keyword.Type, ('#pop', 'type-param-constraint-sep', 'type-param-constraint-flag', 'type-name')),
             (r'', Text, '#pop'),
         ],
         
