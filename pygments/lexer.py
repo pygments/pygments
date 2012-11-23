@@ -606,7 +606,13 @@ class ExtendedRegexLexer(RegexLexer):
                     if new_state is not None:
                         # state transition
                         if isinstance(new_state, tuple):
-                            ctx.stack.extend(new_state)
+                            for state in new_state:
+                                if state == '#pop':
+                                    ctx.stack.pop()
+                                elif state == '#push':
+                                    ctx.stack.append(statestack[-1])
+                                else:
+                                    ctx.stack.append(state)
                         elif isinstance(new_state, int):
                             # pop
                             del ctx.stack[new_state:]
