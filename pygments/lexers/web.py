@@ -1638,6 +1638,12 @@ class HaxeLexer(RegexLexer):
             (r'', Text, '#pop'),
         ],
         
+        'type-param-constraint-sep': [
+            include('spaces'),
+            (r'>', Keyword.Type, '#pop'),
+            (r',', Keyword.Type, ('#pop', 'type-param-constraint-sep', 'type-param-constraint-flag', 'type-name')),
+        ],
+        
         'type-param-constraint-flag': [
             include('spaces'),
             (r':', Punctuation, ('#pop', 'type-param-constraint-flag-type')),
@@ -1654,12 +1660,6 @@ class HaxeLexer(RegexLexer):
             include('spaces'),
             (r'\)', Keyword.Type, '#pop'),
             (r',', Keyword.Type, 'type'),
-        ],
-        
-        'type-param-constraint-sep': [
-            include('spaces'),
-            (r'>', Keyword.Type, '#pop'),
-            (r',', Keyword.Type, ('#pop', 'type-param-constraint')),
         ],
         
         'parenthesis': [
