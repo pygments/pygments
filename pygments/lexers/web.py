@@ -1124,7 +1124,7 @@ class MxmlLexer(RegexLexer):
         }
 
 
-class HaxeLexer(RegexLexer):
+class HaxeLexer(ExtendedRegexLexer):
     """
     For Haxe source code (http://haxe.org/).
 
@@ -1148,7 +1148,7 @@ class HaxeLexer(RegexLexer):
     typeid = r'_*[A-Z][_a-zA-Z0-9]*' 
     
     # combined ident and dollar and idtype
-    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|_+|\$[_a-zA-Z0-9]*|' + typeid + ')'
+    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + '|_+|\$[_a-zA-Z0-9]*)'
     
     # ident except keywords
     ident_no_keyword = r'(?!' + keyword + ')' + ident
@@ -1157,6 +1157,27 @@ class HaxeLexer(RegexLexer):
     string2 = r'"(\\\\|\\"|[^"])*"' # double-quoted string
 
     flags = re.DOTALL | re.MULTILINE
+    
+    preproc_stack = []
+    
+    def preproc_callback(self, match, ctx):
+        proc = match.group(2)
+        
+        if proc == 'if':
+            self.preproc_stack.append(ctx.stack[:])
+        elif proc in ['else', 'elseif']:
+            ctx.stack = self.preproc_stack[-1]
+        elif proc == 'error':
+            self.preproc_stack.pop()
+        
+        if proc in ['if', 'elseif']:
+            ctx.stack.append('preproc-expr')
+        if proc in ['error']:
+            ctx.stack.append('preproc-error')
+        
+        yield match.start(), Comment.Preproc, '#' + proc
+        ctx.pos = match.end()
+        
 
     tokens = {
         'root': [
@@ -1179,9 +1200,7 @@ class HaxeLexer(RegexLexer):
             (r'\s+', Text),
             (r'//[^\n\r]*', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'#(?:if|elseif)\b', Comment.Preproc, 'preproc-expr'),
-            (r'#(?:else|end)\b', Comment.Preproc),
-            (r'#error', Comment.Preproc, 'preproc-error'),
+            (r'(#)(if|elseif|else|end|error)\b', preproc_callback),
         ],
          
         'preproc-error': [
@@ -1193,21 +1212,21 @@ class HaxeLexer(RegexLexer):
          
         'preproc-expr': [
             (r'\s+', Comment.Preproc),
-            (r'!', Comment.Preproc),
+            (r'\!', Comment.Preproc),
             (r'\(', Comment.Preproc, ('#pop', 'preproc-expr-chain', 'preproc-parenthesis')),
             (ident, Comment.Preproc, ('#pop', 'preproc-expr-chain')),
-        ],
-         
-        'preproc-parenthesis': [
-            (r'\s+', Comment.Preproc),
-            (r'\)', Comment.Preproc, '#pop'),
-            ('', Text, 'preproc-expr'),
         ],
          
         'preproc-expr-chain': [
             (r'\s+', Comment.Preproc),
             (r'(?:&&|\|\|)', Comment.Preproc, ('#pop', 'preproc-expr')),
             (r'', Text, '#pop'),
+        ],
+         
+        'preproc-parenthesis': [
+            (r'\s+', Comment.Preproc),
+            (r'\)', Comment.Preproc, '#pop'),
+            ('', Text, 'preproc-expr'),
         ],
         
         'abstract' : [
@@ -1574,7 +1593,7 @@ class HaxeLexer(RegexLexer):
         'type-check': [
             include('spaces'),
             (r'->', Keyword.Type, ('#pop', 'type')),
-            (r'<(?!=)', Keyword.Type, ('#pop', 'type-param')),
+            (r'<(?!=)', Keyword.Type, 'type-param'),
             (r'', Text, '#pop'),
         ],
         
