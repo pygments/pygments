@@ -1280,7 +1280,18 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'meta': [
             include('spaces'),
-            (r'@', Keyword.Declaration, ('meta-body', 'ident', 'optional-colon')),
+            (r'@', Name.Decorator, ('meta-body', 'meta-ident', 'meta-colon')),
+        ],
+        
+        'meta-colon': [
+            include('spaces'),
+            (r':', Name.Decorator, '#pop'),
+            (r'', Text, '#pop'),
+        ],
+        
+        'meta-ident': [
+            include('spaces'),
+            (ident, Name.Decorator, '#pop'),
         ],
         
         'meta-body': [
@@ -1571,12 +1582,6 @@ class HaxeLexer(ExtendedRegexLexer):
         'colon': [
             include('spaces'),
             (r':', Punctuation, '#pop'),
-        ],
-        
-        'optional-colon': [
-            include('spaces'),
-            (r':', Punctuation, '#pop'),
-            (r'', Text, '#pop'),
         ],
         
         'semicolon': [
