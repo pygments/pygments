@@ -3172,62 +3172,53 @@ class RPMSpecLexer(RegexLexer):
     filenames = ['*.spec']
     mimetypes = ['text/x-rpm-spec']
 
+    _directives = '(?:package|prep|build|install|clean|check|pre[a-z]*|post[a-z]*|trigger[a-z]*|files)'
+
     tokens = {
         'root': [
             (r'#.*\n', Comment),
-            include('rpm'),
-        ],
-        'header': [
-            include('rpm'),
-            (r'\n', Text, '#pop'),
-            (r'.', Text),
+            include('basic'),
         ],
         'description': [
-            (r'^%(?:package|prep|build|install|clean|'
-             r'check|pre[a-z]*|post[a-z]*|trigger[a-z]*|files)',
-             Name.Decorator, '#pop', 'header'),
+            (r'^(%' + _directives + ')(.*)$', bygroups(Name.Decorator, Text), '#pop'),
             (r'\n', Text),
             (r'.', Text),
         ],
         'changelog': [
             (r'\*.*\n', Generic.Subheading),
-            (r'^%(?:package|prep|build|install|clean|'
-             r'check|pre[a-z]*|post[a-z]*|trigger[a-z]*|files)',
-             Name.Decorator, '#pop', 'header'),
+            (r'^(%' + _directives + ')(.*)$', bygroups(Name.Decorator, Text), '#pop'),
             (r'\n', Text),
             (r'.', Text),
         ],
-        'str_double': [
+        'string': [
             (r'"', String.Double, '#pop'),
             (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
-            include('resolvable'),
+            include('interpol'),
             (r'.', String.Double),
         ],
-        'rpm': [
-            include('preproc'),
-            (r'(?i)^(?:Name|Version|Release|Epoch|Summary|Group|License|Packager|Vendor|Icon|URL|'
+        'basic': [
+            include('macro'),
+            (r'(?i)^(Name|Version|Release|Epoch|Summary|Group|License|Packager|Vendor|Icon|URL|'
              r'Distribution|Prefix|Patch[0-9]*|Source[0-9]*|Requires\(?[a-z]*\)?|[A-Za-z]+Req|'
-             r'Obsoletes|Provides|Conflicts|Build[A-Za-z]+|[A-Za-z]+Arch|Auto[A-Za-z]+):\s*',
-             Generic.Heading, 'header'),
+             r'Obsoletes|Provides|Conflicts|Build[A-Za-z]+|[A-Za-z]+Arch|Auto[A-Za-z]+)(:)(.*)$',
+             bygroups(Generic.Heading, Punctuation, using(this))),
             (r'^%description', Name.Decorator, 'description'),
             (r'^%changelog', Name.Decorator, 'changelog'),
-            (r'^%(package|prep|build|install|clean|'
-             r'check|pre[a-z]*|post[a-z]*|trigger[a-z]*|files)',
-             Name.Decorator, 'header'),
-            (r'%(?:attr|defattr|dir|doc(?:dir)?|setup|config(?:ure)?|'
+            (r'^(%' + _directives + ')(.*)$', bygroups(Name.Decorator, Text)),
+            (r'%(attr|defattr|dir|doc(?:dir)?|setup|config(?:ure)?|'
              r'make(?:install)|ghost|patch[0-9]+|find_lang|exclude|verify)',
              Keyword),
-            include('resolvable'),
+            include('interpol'),
             (r"'.*'", String.Single),
-            (r'"', String.Double, 'str_double'),
+            (r'"', String.Double, 'string'),
             (r'.', Text),
         ],
-        'preproc': [
+        'macro': [
             (r'%define.*\n', Comment.Preproc),
             (r'%\{\!\?.*%define.*\}', Comment.Preproc),
-            (r'%(if(?:n?arch)?|else(?:if)?|endif)', Comment.Preproc, 'header'),
+            (r'(%(?:if(?:n?arch)?|else(?:if)?|endif))(.*)$', bygroups(Comment.Preproc, Text)),
         ],
-        'resolvable': [
+        'interpol': [
             (r'%\{?__[a-z_]+\}?', Name.Function),
             (r'%\{?_([a-z_]+dir|[a-z_]+path|prefix)\}?', Keyword.Pseudo),
             (r'%\{\?[A-Za-z0-9_]+\}', Name.Variable),
