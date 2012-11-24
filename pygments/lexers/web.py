@@ -1695,41 +1695,41 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'type-param-sep': [
             include('spaces'),
-            (r'>', Keyword.Type, '#pop'),
-            (r',', Keyword.Type, ('#pop', 'type-param')),
+            (r'>', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'type-param')),
         ],
         
         # optional type-param that may include constraint
         # ie. <T:Constraint, T2:(ConstraintA,ConstraintB)>
         'type-param-constraint': [
             include('spaces'),
-            (r'<(?!=)', Keyword.Type, ('#pop', 'type-param-constraint-sep', 'type-param-constraint-flag', 'type-name')),
+            (r'<(?!=)', Punctuation, ('#pop', 'type-param-constraint-sep', 'type-param-constraint-flag', 'type-name')),
             (r'', Text, '#pop'),
         ],
         
         'type-param-constraint-sep': [
             include('spaces'),
-            (r'>', Keyword.Type, '#pop'),
-            (r',', Keyword.Type, ('#pop', 'type-param-constraint-sep', 'type-param-constraint-flag', 'type-name')),
+            (r'>', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'type-param-constraint-sep', 'type-param-constraint-flag', 'type-name')),
         ],
         
         # the optional constraint inside type-param
         'type-param-constraint-flag': [
             include('spaces'),
-            (r':', Keyword.Type, ('#pop', 'type-param-constraint-flag-type')),
+            (r':', Punctuation, ('#pop', 'type-param-constraint-flag-type')),
             (r'', Text, '#pop'),
         ],
         
         'type-param-constraint-flag-type': [
             include('spaces'),
-            (r'\(', Keyword.Type, ('#pop', 'type-param-constraint-flag-type-sep', 'type')),
+            (r'\(', Punctuation, ('#pop', 'type-param-constraint-flag-type-sep', 'type')),
             (r'', Text, ('#pop', 'type')),
         ],
         
         'type-param-constraint-flag-type-sep': [
             include('spaces'),
-            (r'\)', Keyword.Type, '#pop'),
-            (r',', Keyword.Type, 'type'),
+            (r'\)', Punctuation, '#pop'),
+            (r',', Punctuation, 'type'),
         ],
         
         # a parenthesis expr that contain exactly one expr
