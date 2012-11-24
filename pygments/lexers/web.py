@@ -1164,15 +1164,20 @@ class HaxeLexer(ExtendedRegexLexer):
         proc = match.group(2)
         
         if proc == 'if':
+            # store the current stack
             self.preproc_stack.append(ctx.stack[:])
         elif proc in ['else', 'elseif']:
+            # restore the stack back to right before #if
             ctx.stack = self.preproc_stack[-1]
         elif proc == 'end':
+            # remove the saved stack of previous #if
             self.preproc_stack.pop()
         
+        # #if and #elseif should follow by an expr
         if proc in ['if', 'elseif']:
             ctx.stack.append('preproc-expr')
         
+        # #error can be optionally follow by the error msg
         if proc in ['error']:
             ctx.stack.append('preproc-error')
         
@@ -1199,6 +1204,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'(?=.)', Text, 'expr-statement'),
         ],
         
+        # space/tab/comment/preproc
         'spaces': [
             (r'\s+', Text),
             (r'//[^\n\r]*', Comment.Single),
@@ -1216,7 +1222,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'import': [
             include('spaces'),
             (ident, Name.Namespace),
-            (r'\*', Keyword),
+            (r'\*', Keyword), # wildcard import
             (r'\.', Punctuation, 'import-ident'),
             (r'in', Keyword.Namespace, 'ident'),
             (r'', Text, '#pop'),
@@ -1224,7 +1230,7 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'import-ident': [
             include('spaces'),
-            (r'\*', Name.Namespace, '#pop'),
+            (r'\*', Keyword, '#pop'), # wildcard import
             (ident, Text, '#pop'),
         ],
          
@@ -1283,12 +1289,14 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'@', Name.Decorator, ('meta-body', 'meta-ident', 'meta-colon')),
         ],
         
+        # optional colon
         'meta-colon': [
             include('spaces'),
             (r':', Name.Decorator, '#pop'),
             (r'', Text, '#pop'),
         ],
         
+        # same as 'ident' but set token as Name.Decorator instead of Name
         'meta-ident': [
             include('spaces'),
             (ident, Name.Decorator, '#pop'),
@@ -1360,6 +1368,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'(function)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'function')),
         ],
         
+        # local function, anonymous or not
         'function-local': [
             include('spaces'),
             (r'(' + ident_no_keyword + ')?', Name.Function, ('#pop', 'expr', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
@@ -1376,6 +1385,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (ident, Name.Function, ('#pop', 'optional-expr', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
         ],
         
+        # function arguments
         'function-param': [
             include('spaces'),
             (r'\)', Punctuation, '#pop'),
@@ -1389,6 +1399,8 @@ class HaxeLexer(ExtendedRegexLexer):
             (r',', Punctuation, ('#pop', 'function-param')),
         ],
         
+        # class property
+        # eg. var prop(default, null):String;
         'prop': [
             include('spaces'),
             (ident_no_keyword, Name, ('#pop', 'assign', 'flag', 'prop-get-set')),
@@ -1403,7 +1415,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'prop-get-set-opt': [
             include('spaces'),
             (r'(?:default|null|never|dynamic|get|set)\b', Keyword, '#pop'),
-            (ident_no_keyword, Text, '#pop'),
+            (ident_no_keyword, Text, '#pop'), #custom getter/setter
         ],
         
         'expr-statement': [
@@ -1469,6 +1481,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'', Text, '#pop'),
         ],
         
+        # macro reification
         'macro': [
             include('spaces'),
             (r':', Punctuation, ('#pop', 'type')),
@@ -1487,11 +1500,13 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'', Text, '#pop'),
         ],
         
+        # do-while loop
         'do': [
             include('spaces'),
             (r'', Punctuation, ('#pop', 'do-while', 'expr')),
         ],
         
+        # the while after do
         'do-while': [
             include('spaces'),
             (r'(?:while)\b', Keyword, ('#pop', 'parenthesis', 'parenthesis-open')),
@@ -1541,6 +1556,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r',', Punctuation, ('#pop', 'case')),
         ],
         
+        # optional multiple expr under a case
         'case-block': [
             include('spaces'),
             (r'(?!(case|default|\}))', Keyword, 'expr-statement'),
@@ -1595,6 +1611,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'', Text, '#pop'),
         ],
         
+        # identity that CAN be a Haxe keyword
         'ident': [
             include('spaces'),
             (ident, Name, '#pop'),
@@ -1607,58 +1624,44 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'type-full-name': [
             include('spaces'),
-            (r'\.', Punctuation, 'type-full-name-path'),
+            (r'\.', Punctuation, 'ident'),
             (r'', Text, '#pop'),
-        ],
-        
-        'type-full-name-path': [
-            include('spaces'),
-            (ident, Name, '#pop'),
         ],
         
         'type': [
             include('spaces'),
             (ident, Name, ('#pop', 'type-check', 'type-full-name')),
-            (r'\{', Keyword.Type, ('#pop', 'type-check', 'type-struct')),
-            (r'\(', Keyword.Type, ('#pop', 'type-check', 'type-parenthesis')),
+            (r'\{', Punctuation, ('#pop', 'type-check', 'type-struct')),
+            (r'\(', Punctuation, ('#pop', 'type-check', 'type-parenthesis')),
         ],
         
         'type-parenthesis': [
             include('spaces'),
-            (r'', Text, ('#pop', 'type-parenthesis-close', 'type')),
-        ],
-        
-        'type-parenthesis-close': [
-            include('spaces'),
-            (r'\)', Keyword.Type, '#pop'),
+            (r'', Text, ('#pop', 'parenthesis-close', 'type')),
         ],
         
         'type-check': [
             include('spaces'),
-            (r'->', Keyword.Type, ('#pop', 'type')),
-            (r'<(?!=)', Keyword.Type, 'type-param'),
+            (r'->', Punctuation, ('#pop', 'type')),
+            (r'<(?!=)', Punctuation, 'type-param'),
             (r'', Text, '#pop'),
-        ],
-        
-        'type-colon': [
-            include('spaces'),
-            (r':', Keyword.Type, '#pop'),
         ],
         
         'type-struct': [
             include('spaces'),
-            (r'\}', Keyword.Type, '#pop'),
-            (r'\?', Keyword.Type),
-            (ident_no_keyword, Name, ('#pop', 'type-struct-sep', 'type', 'type-colon')),
+            (r'\}', Punctuation, '#pop'),
+            (r'\?', Punctuation),
+            (ident_no_keyword, Name, ('#pop', 'type-struct-sep', 'type', 'colon')),
             include('class-body'),
         ],
         
         'type-struct-sep': [
             include('spaces'),
-            (r'\}', Keyword.Type, '#pop'),
-            (r',', Keyword.Type, ('#pop', 'type-struct')),
+            (r'\}', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'type-struct')),
         ],
         
+        # type-param can be a normal type or a constant literal...
         'type-param-type': [
             # Float
             (r'\.[0-9]+', Number.Float, '#pop'),
@@ -1683,6 +1686,8 @@ class HaxeLexer(ExtendedRegexLexer):
             include('type'),
         ],
         
+        # type-param part of a type
+        # ie. the <A,B> path in Map<A,B>
         'type-param': [
             include('spaces'),
             (r'', Text, ('#pop', 'type-param-sep', 'type-param-type')),
@@ -1694,6 +1699,8 @@ class HaxeLexer(ExtendedRegexLexer):
             (r',', Keyword.Type, ('#pop', 'type-param')),
         ],
         
+        # optional type-param that may include constraint
+        # ie. <T:Constraint, T2:(ConstraintA,ConstraintB)>
         'type-param-constraint': [
             include('spaces'),
             (r'<(?!=)', Keyword.Type, ('#pop', 'type-param-constraint-sep', 'type-param-constraint-flag', 'type-name')),
@@ -1706,6 +1713,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r',', Keyword.Type, ('#pop', 'type-param-constraint-sep', 'type-param-constraint-flag', 'type-name')),
         ],
         
+        # the optional constraint inside type-param
         'type-param-constraint-flag': [
             include('spaces'),
             (r':', Keyword.Type, ('#pop', 'type-param-constraint-flag-type')),
@@ -1724,6 +1732,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r',', Keyword.Type, 'type'),
         ],
         
+        # a parenthesis expr that contain exactly one expr
         'parenthesis': [
             include('spaces'),
             (r'', Text, ('#pop', 'parenthesis-close', 'expr')),
@@ -1765,6 +1774,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'', Text, '#pop'),
         ],
         
+        # colon as part of a ternary operator (?:)
         'ternary': [
             include('spaces'),
             (r':', Operator, '#pop'),
@@ -1813,6 +1823,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'', Text, ('#pop', 'object-sep', 'expr', 'colon', 'ident-or-string'))
         ],
         
+        # a key of an object
         'ident-or-string': [
             include('spaces'),
             (ident_no_keyword, Name, '#pop'),
