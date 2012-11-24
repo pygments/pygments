@@ -1231,7 +1231,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'import-ident': [
             include('spaces'),
             (r'\*', Keyword, '#pop'), # wildcard import
-            (ident, Text, '#pop'),
+            (ident, Name.Namespace, '#pop'),
         ],
          
         'using': [
