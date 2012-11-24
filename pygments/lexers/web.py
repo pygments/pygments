@@ -1215,7 +1215,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'package': [
             include('spaces'),
             (ident, Name.Namespace),
-            (r'\.', Punctuation, 'ident'),
+            (r'\.', Punctuation, 'import-ident'),
             (r'', Text, '#pop'),
         ],
          
