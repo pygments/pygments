@@ -1,3 +1,7 @@
+/**
+ * This is not really a valid Haxe file, but just an demo...
+ */
+
 package;
 package net.onthewings;
 
