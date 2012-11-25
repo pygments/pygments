@@ -41,6 +41,9 @@ class PuppetLexer(RegexLexer):
             # And one liners such as this are wrong:
             #  class { 'python-custom': version => '2.7.3' }
 
+            # A variety of things on the right side of the => are styled wrong
+            # such as arrays
+
             (r'(.*?)(\s*)(=>)(\s*)(.*?)$',
              bygroups(Name.Attribute, Text, Operator, Text, String)),
 
@@ -60,15 +63,15 @@ class PuppetLexer(RegexLexer):
         'names': [
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
-            # Strings before ( or } not enclosed in quotes
-            (r'(?<![\S"])(.*\s*)(\()(?![\S"])',
+            # A string before ( or { not enclosed in quotes
+            (r'(?<![\S"])(\S+)(\()(?![\S"])',
              bygroups(Name.Attribute, Punctuation)),
-            (r'(?<![\S"])(.*\s*)({)(?![\S"])',
+            (r'(?<![\S"])(\S+)({)(?![\S"])',
              bygroups(Name.Attribute, Punctuation)),
         ],
 
         'numbers': [
-            # Stolen from the Python lexer
+            # Copypasta from the Python lexer
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
             (r'0[0-7]+j?', Number.Oct),
@@ -96,7 +99,7 @@ class PuppetLexer(RegexLexer):
             (r'"(.*?)\n(.*?)"', String),
 
             # Vars starting with $
-            ('\$[a-zA-Z_][a-zA-Z0-9_]*', String),
+            (r'\$\S+', String),
         ],
 
     }
