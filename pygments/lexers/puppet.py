@@ -38,12 +38,12 @@ class PuppetLexer(RegexLexer):
         'comments': [
             (r'\s*#.*$', Comment),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            ],
+        ],
 
         'operators': [
             (r'(=>|\?|<|>|=|\+|-|\/|\*|~|!|\|)', Operator),
             (r'\s+(in|and|or|not)\s+', Operator.Word),
-            ],
+        ],
 
         'names': [
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
