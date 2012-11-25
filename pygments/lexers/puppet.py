@@ -62,6 +62,9 @@ class PuppetLexer(RegexLexer):
 
         'names': [
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
+
+            # Vars starting with $
+            (r'\$\S+', Name.Variable),
         ],
 
         'numbers': [
@@ -91,9 +94,6 @@ class PuppetLexer(RegexLexer):
             # Multi-line quoted strings
             (r'\'(.*?)\n(.*?)\'', String),
             (r'"(.*?)\n(.*?)"', String),
-
-            # Vars starting with $
-            (r'\$\S+', String),
         ],
 
     }
