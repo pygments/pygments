@@ -62,7 +62,7 @@ class PuppetLexer(RegexLexer):
         ],
 
         'keywords': [
-            # Left out group and require as they're used as attributes
+            # Left out 'group' and 'require' as they are used as attributes
             (r'(?i)(absent|alert|alias|audit|augeas|before|case)\b', Keyword),
             (r'(?i)(check|class|computer|configured|contained)\b', Keyword),
             (r'(?i)(create_resources|crit|cron|debug|default)\b', Keyword),
