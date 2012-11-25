@@ -32,11 +32,6 @@ class PuppetLexer(RegexLexer):
             include('strings'),
 
             (r'[]{}:(),;[]', Punctuation),
-
-            # FIXME end of line comments don't work on this rule
-            (r'(.*)(include)(\s*)(.*)$',
-             bygroups(Text, Keyword, Text, Name.Variable)),
-
             (r'[^\S\n]+', Text),
         ],
 
