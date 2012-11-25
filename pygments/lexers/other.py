@@ -32,7 +32,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'AutohotkeyLexer', 'GoodDataCLLexer', 'MaqlLexer', 'ProtoBufLexer',
            'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
-           'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer']
+           'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer', 'NSISLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -3158,3 +3158,115 @@ class SourcePawnLexer(RegexLexer):
                     elif value in self._functions:
                         tokens = Name.Builtin
             yield index, token, value
+
+
+class NSISLexer(RegexLexer):
+    """
+    For `NSIS <http://nsis.sourceforge.net/>`_ scripts.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'NSIS'
+    aliases = ['nsis', 'nsi', 'nsh']
+    filenames = ['*.nsi', '*.nsh']
+    mimetypes = ['text/x-nsis']
+
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'[;\#].*\n', Comment),
+            (r"'.*'", String.Single),
+            (r'"', String.Double, 'str_double'),
+            (r'`', String.Backtick, 'str_backtick'),
+            include('macro'),
+            include('interpol'),
+            include('basic'),
+            (r'\$\{[a-zA-Z_\|][a-zA-Z0-9_\|]*\}', Keyword.Pseudo),
+            (r'\/[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
+            ('.', Text),
+        ],
+        'basic': [
+            (r'(\n)(Function)(\s+)([\.\_a-zA-Z][\.\_a-zA-Z0-9]*)\b',bygroups(Text, Keyword, Text, Name.Function)),
+            (r'\b([_a-zA-Z][_a-zA-Z0-9]*)(::)([a-zA-Z][a-zA-Z0-9]*)\b',
+             bygroups(Keyword.Namespace, Punctuation, Name.Function)),
+            (r'\b([_a-zA-Z][_a-zA-Z0-9]*)(:)', bygroups(Name.Label, Punctuation)),
+            (r'(\b[ULS]|\B)([\!\<\>=]?=|\<\>?|\>)\B', Operator),
+            (r'[\+\-\|]', Operator),
+            (r'[\\]', Punctuation),
+            (r'\b(Abort|Add(?:BrandingImage|Size)|Allow(?:RootDirInstall|SkipFiles)|'
+             r'AutoCloseWindow|BG(?:Font|Gradient)|BrandingText|BringToFront|'
+             r'Call(?:InstDLL)?|(?:Sub)?Caption|ChangeUI|CheckBitmap|ClearErrors|CompletedText|'
+             r'ComponentText|CopyFiles|CRCCheck|Create(?:Directory|Font|Shortcut)|'
+             r'Delete(?:INI(?:Sec|Str)|Reg(?:Key|Value))?|DetailPrint|DetailsButtonText|'
+             r'Dir(?:Show|Text|Var|Verify)|(?:Disabled|Enabled)Bitmap|EnableWindow|'
+             r'EnumReg(?:Key|Value)|Exch|Exec(?:Shell|Wait)?|ExpandEnvStrings|'
+             r'File(?:BufSize|Close|ErrorText|Open|Read(?:Byte)?|Seek|Write(?:Byte)?)?|'
+             r'Find(?:Close|First|Next|Window)|FlushINI|Function(?:End)?|'
+             r'Get(?:CurInstType|CurrentAddress|DlgItem|DLLVersion(?:Local)?|ErrorLevel|'
+             r'FileTime(?:Local)?|FullPathName|FunctionAddress|InstDirError|LabelAddress|TempFileName)|'
+             r'Goto|HideWindow|Icon|If(?:Abort|Errors|FileExists|RebootFlag|Silent)|'
+             r'InitPluginsDir|Install(?:ButtonText|Colors|Dir(?:RegKey)?)|'
+             r'Inst(?:ProgressFlags|Type(?:[GS]etText)?)|Int(?:CmpU?|Fmt|Op)|IsWindow|'
+             r'LangString(?:UP)?|License(?:BkColor|Data|ForceSelection|LangString|Text)|'
+             r'LoadLanguageFile|LockWindow|Log(?:Set|Text)|MessageBox|MiscButtonText|'
+             r'Name|Nop|OutFile|(?:Uninst)?Page(?:Ex(?:End)?)?|PluginDir|Pop|Push|Quit|'
+             r'Read(?:(?:Env|INI|Reg)Str|RegDWORD)|Reboot|(?:Un)?RegDLL|Rename|RequestExecutionLevel|'
+             r'ReserveFile|Return|RMDir|SearchPath|'
+             r'Section(?:Divider|End|(?:(?:Get|Set)(?:Flags|InstTypes|Size|Text))|Group(?:End)?|In)?|'
+             r'SendMessage|'
+             r'Set(?:AutoClose|BrandingImage|Compress(?:ionLevel|or(?:DictSize)?)?|CtlColors|'
+             r'CurInstType|DatablockOptimize|DateSave|Details(?:Print|View)|Error(?:s|Level)|'
+             r'FileAttributes|Font|OutPath|Overwrite|PluginUnload|RebootFlag|ShellVarContext|'
+             r'Silent|StaticBkColor)|'
+             r'Show(?:(?:I|Uni)nstDetails|Window)|Silent(?:Un)?Install|Sleep|SpaceTexts|'
+             r'Str(?:CmpS?|Cpy|Len)|SubSection(?:End)?|'
+             r'Uninstall(?:ButtonText|(?:Sub)?Caption|EXEName|Icon|Text)|UninstPage|'
+             r'Var|VI(?:AddVersionKey|ProductVersion)|WindowIcon|'
+             r'Write(?:INIStr|Reg(:?Bin|DWORD|(?:Expand)?Str)|Uninstaller)|XPStyle)\b',
+             Keyword),
+            (r'\b(CUR|END|(?:FILE_ATTRIBUTE_)?(?:ARCHIVE|HIDDEN|NORMAL|OFFLINE|READONLY|SYSTEM|TEMPORARY)|'
+             r'HK(CC|CR|CU|DD|LM|PD|U)|'
+             r'HKEY_(?:CLASSES_ROOT|CURRENT_(?:CONFIG|USER)|DYN_DATA|LOCAL_MACHINE|PERFORMANCE_DATA|USERS)|'
+             r'ID(?:ABORT|CANCEL|IGNORE|NO|OK|RETRY|YES)|'
+             r'MB_(?:ABORTRETRYIGNORE|DEFBUTTON[1-4]|ICON(?:EXCLAMATION|INFORMATION|QUESTION|STOP)|'
+             r'OK(?:CANCEL)?|RETRYCANCEL|RIGHT|SETFOREGROUND|TOPMOST|USERICON|YESNO(?:CANCEL)?)|'
+             r'SET|SHCTX|SW_(?:HIDE|SHOW(?:MAXIMIZED|MINIMIZED|NORMAL))|'
+             r'admin|all|auto|both|bottom|bzip2|checkbox|colored|current|false|force|'
+             r'hide|highest|if(?:diff|newer)|lastused|leave|left|listonly|lzma|nevershow|'
+             r'none|normal|off|on|pop|push|radiobuttons|right|show|silent|silentlog|'
+             r'smooth|textonly|top|true|try|user|zlib)\b',
+             Name.Constant),
+        ],
+        'macro': [
+            (r'\!(addincludedir(?:dir)?|addplugindir|appendfile|cd|define|'
+             r'delfilefile|echo(?:message)?|else|endif|error|execute|'
+             r'if(?:macro)?n?(?:def)?|include|insertmacro|macro(?:end)?|packhdr|'
+             r'search(?:parse|replace)|system|tempfilesymbol|undef|verbose|warning)\b',
+             Comment.Preproc),
+        ],
+        'interpol': [
+            (r'\$(R?[0-9])', Name.Builtin.Pseudo),    # registers
+            (r'\$(ADMINTOOLS|APPDATA|CDBURN_AREA|COOKIES|COMMONFILES(?:32|64)|'
+            r'DESKTOP|DOCUMENTS|EXE(?:DIR|FILE|PATH)|FAVORITES|FONTS|HISTORY|'
+            r'HWNDPARENT|INTERNET_CACHE|LOCALAPPDATA|MUSIC|NETHOOD|PICTURES|'
+            r'PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES(?:32|64)|QUICKLAUNCH|'
+            r'RECENT|RESOURCES(?:_LOCALIZED)?|SENDTO|SM(?:PROGRAMS|STARTUP)|'
+            r'STARTMENU|SYSDIR|TEMP(?:LATES)?|VIDEOS|WINDIR|\{NSISDIR\})',
+             Name.Builtin),
+            (r'\$(CMDLINE|INSTDIR|OUTDIR|LANGUAGE)', Name.Variable.Global),
+            (r'\$[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+        ],
+        'str_double': [
+            (r'"', String, '#pop'),
+            (r'\$(\\[nrt"]|\$)', String.Escape),
+            include('interpol'),
+            (r'.', String.Double),
+        ],
+        'str_backtick': [
+            (r'`', String, '#pop'),
+            (r'\$(\\[nrt"]|\$)', String.Escape),
+            include('interpol'),
+            (r'.', String.Double),
+        ],
+    }
