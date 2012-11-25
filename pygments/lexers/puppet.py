@@ -47,7 +47,8 @@ class PuppetLexer(RegexLexer):
 
         'names': [
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
-            # Vars starting with $
+
+            # FIXME $variable[array] doesn't look right
             (r'\$\S+', Name.Variable),
         ],
 
@@ -92,12 +93,12 @@ class PuppetLexer(RegexLexer):
         ],
 
         'strings': [
-            # Quoted strings
             (r'\'(.*?)\'', String),
             (r'"(.*?)"', String),
 
-            # TODO FIXME more than one new line breaks this
+            # FIXME more than one new line breaks this
             # Multi-line quoted strings
+            # Also collapose this into one rule
             (r'\'(.*?)\n(.*?)\'', String),
             (r'"(.*?)\n(.*?)"', String),
         ],
