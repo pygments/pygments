@@ -1453,7 +1453,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
             (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
             (r'[0-9]+\.[0-9]+', Number.Float, ('#pop', 'expr-chain')),
-            (r'[0-9]+\.(?!' + ident + ')', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+\.(?!' + ident + '|\.\.)', Number.Float, ('#pop', 'expr-chain')),
             
             # Int
             (r'0x[0-9a-fA-F]+', Number.Hex, ('#pop', 'expr-chain')),
@@ -1669,7 +1669,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
             (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
             (r'[0-9]+\.[0-9]+', Number.Float, '#pop'),
-            (r'[0-9]+\.(?!' + ident + ')', Number.Float, '#pop'),
+            (r'[0-9]+\.(?!' + ident + '|\.\.)', Number.Float, '#pop'),
             
             # Int
             (r'0x[0-9a-fA-F]+', Number.Hex, '#pop'),
