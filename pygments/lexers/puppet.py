@@ -59,6 +59,8 @@ class PuppetLexer(RegexLexer):
 
         'names': [
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'(.*\s*)({)', bygroups(Name.Attribute, Punctuation)),
+            (r'(.*\s*)(\()', bygroups(Name.Attribute, Punctuation)),
         ],
 
         'numbers': [
