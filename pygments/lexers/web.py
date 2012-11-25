@@ -1148,7 +1148,7 @@ class HaxeLexer(ExtendedRegexLexer):
     typeid = r'_*[A-Z][_a-zA-Z0-9]*' 
     
     # combined ident and dollar and idtype
-    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + '|_+|\$[_a-zA-Z0-9]*)'
+    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + '|_+|\$[_a-zA-Z0-9]*)\b'
     
     # ident except keywords
     ident_no_keyword = r'(?!' + keyword + ')' + ident
@@ -1453,6 +1453,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
             (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
             (r'[0-9]+\.[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+\.(?!' + ident + ')', Number.Float, ('#pop', 'expr-chain')),
             
             # Int
             (r'0x[0-9a-fA-F]+', Number.Hex, ('#pop', 'expr-chain')),
@@ -1668,6 +1669,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
             (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
             (r'[0-9]+\.[0-9]+', Number.Float, '#pop'),
+            (r'[0-9]+\.(?!' + ident + ')', Number.Float, '#pop'),
             
             # Int
             (r'0x[0-9a-fA-F]+', Number.Hex, '#pop'),
