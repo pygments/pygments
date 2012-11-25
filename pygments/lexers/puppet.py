@@ -35,7 +35,7 @@ class PuppetLexer(RegexLexer):
 
             # FIXME end of line comments don't work on this rule
             (r'(.*)(include)(\s*)(.*)$',
-            bygroups(Text, Keyword, Text, Name.Variable)),
+             bygroups(Text, Keyword, Text, Name.Variable)),
 
             (r'[^\S\n]+', Text),
         ],
@@ -52,7 +52,6 @@ class PuppetLexer(RegexLexer):
 
         'names': [
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
-
             # Vars starting with $
             (r'\$\S+', Name.Variable),
         ],
@@ -73,14 +72,11 @@ class PuppetLexer(RegexLexer):
         ],
 
         'strings': [
-            # TODO FIXME collapse this into less rules
-
-            # Normal, single line quoted strings
+            # Quoted strings
             (r'\'(.*?)\'', String),
             (r'"(.*?)"', String),
 
             # TODO FIXME more than one new line breaks this
-
             # Multi-line quoted strings
             (r'\'(.*?)\n(.*?)\'', String),
             (r'"(.*?)\n(.*?)"', String),
