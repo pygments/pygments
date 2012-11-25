@@ -37,16 +37,6 @@ class PuppetLexer(RegexLexer):
             (r'(.*)(include)(\s*)(.*)$',
             bygroups(Text, Keyword, Text, Name.Variable)),
 
-            # FIXME puncuation at the end (such as a comma) is the wrong color
-            # And one liners such as this are wrong:
-            #  class { 'python-custom': version => '2.7.3' }
-
-            # A variety of things on the right side of the => are styled wrong
-            # such as arrays
-
-            (r'(.*?)(\s*)(=>)(\s*)(.*?)$',
-             bygroups(Name.Attribute, Text, Operator, Text, String)),
-
             (r'[^\S\n]+', Text),
         ],
 
