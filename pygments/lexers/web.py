@@ -1132,9 +1132,9 @@ class HaxeLexer(ExtendedRegexLexer):
     """
 
     name = 'Haxe'
-    aliases = ['hx', 'Haxe', 'haxe', 'haXe'] #TODO update in other files
-    filenames = ['*.hx']
-    mimetypes = ['text/haxe', 'text/x-haxe', 'text/x-hx'] #TODO update in other files
+    aliases = ['hx', 'Haxe', 'haxe', 'haXe', 'hxsl']
+    filenames = ['*.hx', '*.hxsl']
+    mimetypes = ['text/haxe', 'text/x-haxe', 'text/x-hx']
     
     # keywords extracted from lexer.mll in the haxe compiler source
     keyword = (r'(?:function|class|static|var|if|else|while|do|for|'
