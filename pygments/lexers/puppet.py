@@ -93,14 +93,8 @@ class PuppetLexer(RegexLexer):
         ],
 
         'strings': [
-            (r'\'(.*?)\'', String),
-            (r'"(.*?)"', String),
-
-            # FIXME more than one new line breaks this
-            # Multi-line quoted strings
-            # Also collapose this into one rule
-            (r'\'(.*?)\n(.*?)\'', String),
-            (r'"(.*?)\n(.*?)"', String),
+            (r'["\'](.*?)["\']', String),
+            (r'["\'](.*\n.*)*["\']', String),
         ],
 
     }
