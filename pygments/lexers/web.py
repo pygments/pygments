@@ -1148,7 +1148,7 @@ class HaxeLexer(ExtendedRegexLexer):
     typeid = r'_*[A-Z][_a-zA-Z0-9]*' 
     
     # combined ident and dollar and idtype
-    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + '|_+|\$[_a-zA-Z0-9]*)\b'
+    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + '|_+|\$[_a-zA-Z0-9]*)'
     
     # ident except keywords
     ident_no_keyword = r'(?!' + keyword + ')' + ident
