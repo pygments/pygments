@@ -10,8 +10,8 @@
 """
 
 from pygments.lexer import RegexLexer, bygroups, include
-from pygments.token import Comment, Keyword, Name, Number, Operator, \
-    Punctuation, String, Text
+from pygments.token import Comment, Keyword, Name, Number, Operator
+from pygments.token import Punctuation, String, Text
 
 
 __all__ = ['PuppetLexer']
