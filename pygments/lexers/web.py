@@ -1464,7 +1464,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (string2, String.Double, ('#pop', 'expr-chain')),
             
             # EReg
-            (r'~/([^\n])*?/[gisx]*', String.Regex, ('#pop', 'expr-chain')),
+            (r'~/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex, ('#pop', 'expr-chain')),
             
             # Array
             (r'\[', Punctuation, ('#pop', 'expr-chain', 'array-decl')),
@@ -1680,7 +1680,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (string2, String.Double, '#pop'),
             
             # EReg
-            (r'~/([^\n])*?/[gisx]*', String.Regex, '#pop'),
+            (r'~/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex, '#pop'),
             
             # Array
             (r'\[', Operator, ('#pop', 'array-decl')),
