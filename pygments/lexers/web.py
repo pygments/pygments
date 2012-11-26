@@ -1171,7 +1171,7 @@ class HaxeLexer(ExtendedRegexLexer):
             ctx.stack = self.preproc_stack[-1]
         elif proc == 'end':
             # remove the saved stack of previous #if
-            self.preproc_stack.pop()
+            if len(self.preproc_stack): self.preproc_stack.pop()
         
         # #if and #elseif should follow by an expr
         if proc in ['if', 'elseif']:
