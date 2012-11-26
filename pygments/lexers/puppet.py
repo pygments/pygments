@@ -93,8 +93,8 @@ class PuppetLexer(RegexLexer):
         ],
 
         'strings': [
-            (r'["\'](.*?)["\']', String),
-            (r'["\'](.*\n.*)*["\']', String),
+            (r'"([^"])*"', String),
+            (r'\'([^\'])*\'', String),
         ],
 
     }
