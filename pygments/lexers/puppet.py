@@ -47,8 +47,8 @@ class PuppetLexer(RegexLexer):
 
         'names': [
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
-
-            # FIXME $variable[array] doesn't look right
+            (r'(\$\S+)(\[)(\S+)(\])', bygroups(Name.Variable, Punctuation,
+                                               String, Punctuation)),
             (r'\$\S+', Name.Variable),
         ],
 
