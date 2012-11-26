@@ -1168,7 +1168,7 @@ class HaxeLexer(ExtendedRegexLexer):
             self.preproc_stack.append(ctx.stack[:])
         elif proc in ['else', 'elseif']:
             # restore the stack back to right before #if
-            ctx.stack = self.preproc_stack[-1]
+            if len(self.preproc_stack): ctx.stack = self.preproc_stack[-1]
         elif proc == 'end':
             # remove the saved stack of previous #if
             if len(self.preproc_stack): self.preproc_stack.pop()
