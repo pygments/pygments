@@ -19,6 +19,7 @@ from pygments.util import get_bool_opt
 from pygments.lexers.web import HtmlLexer
 
 from pygments.lexers._openedgebuiltins import OPENEDGEKEYWORDS
+from pygments.lexers._robotframeworklexer import RobotFrameworkLexer
 
 # backwards compatibility
 from pygments.lexers.sql import SqlLexer, MySqlLexer, SqliteConsoleLexer
@@ -32,7 +33,8 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'AutohotkeyLexer', 'GoodDataCLLexer', 'MaqlLexer', 'ProtoBufLexer',
            'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
-           'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer']
+           'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
+           'RobotFrameworkLexer']
 
 
 class ECLLexer(RegexLexer):
