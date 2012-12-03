@@ -45,6 +45,8 @@ class RobotFrameworkLexer(Lexer):
     For `Robot Framework <http://robotframework.org>`_ test data.
 
     Supports both space and pipe separated plain text formats.
+
+    *New in Pygments 1.6.*
     """
     name = 'RobotFramework'
     aliases = ['RobotFramework', 'robotframework']
