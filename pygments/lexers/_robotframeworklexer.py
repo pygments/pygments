@@ -53,8 +53,10 @@ class RobotFrameworkLexer(Lexer):
     filenames = ['*.txt']
     mimetypes = ['text/x-robotframework']
 
-    def __init__(self):
-        Lexer.__init__(self, tabsize=2, encoding='UTF-8')
+    def __init__(self, **options):
+        options['tabsize'] = 2
+        options['encoding'] = 'UTF-8'
+        Lexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
         row_tokenizer = RowTokenizer()
