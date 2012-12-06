@@ -1327,14 +1327,13 @@ class HaxeLexer(ExtendedRegexLexer):
             include('spaces'),
             include('meta'),
             (r'\}', Punctuation, '#pop'),
-            (ident_no_keyword, Name, 'enum-member'),
-            (r'', Text, 'enum-member'),
+            (ident_no_keyword, Name, ('enum-member', 'type-param-constraint')),
         ],
         
         'enum-member': [
             include('spaces'),
-            (r'\(', Punctuation, ('#pop', 'semicolon', 'function-param')),
-            (r';', Punctuation, '#pop'),
+            (r'\(', Punctuation, ('#pop', 'semicolon', 'flag', 'function-param')),
+            (r'', Punctuation, ('#pop', 'semicolon', 'flag')),
         ],
         
         'class': [
