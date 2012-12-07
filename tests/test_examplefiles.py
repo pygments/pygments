@@ -54,6 +54,7 @@ def check_lexer(lx, absfn, outfn):
         text = fp.read()
     finally:
         fp.close()
+    text = text.lstrip(u'\xef\xbb\xbf\ufeff') #remove BOM
     text = text.replace(b('\r\n'), b('\n'))
     text = text.strip(b('\n')) + b('\n')
     try:
