@@ -163,8 +163,11 @@ class Lexer(object):
                 text = decoded
             else:
                 text = text.decode(self.encoding)
+        else:
+            if text.startswith(u'\ufeff'): 
+                text = text[len(u'\ufeff'):]
+        
         # text now *is* a unicode string
-        text = text.lstrip(u'\xef\xbb\xbf\ufeff') # remove BOM
         text = text.replace('\r\n', '\n')
         text = text.replace('\r', '\n')
         if self.stripall:
