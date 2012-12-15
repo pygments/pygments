@@ -55,6 +55,20 @@ var point = { "x" : 1, "y" : -5 };
     var a, b : Bool, c : Int = 0;
 }
 
+//haxe3 pattern matching
+switch(e.expr) {
+	case EConst(CString(s)) if (StringTools.startsWith(s, "foo")):
+		"1";
+	case EConst(CString(s)) if (StringTools.startsWith(s, "bar")):
+		"2";
+	case EConst(CInt(i)) if (switch(Std.parseInt(i) * 2) { case 4: true; case _: false; }):
+		"3";
+	case EConst(_):
+		"4";
+	case _:
+		"5";
+}
+
 
 class Test <T:Void->Void> {
 	private function new():Void {
