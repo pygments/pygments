@@ -69,6 +69,12 @@ switch(e.expr) {
 		"5";
 }
 
+switch [true, 1, "foo"] {
+	case [true, 1, "foo"]: "0";
+	case [true, 1, _]: "1";
+	case _: "_";
+}
+
 
 class Test <T:Void->Void> {
 	private function new():Void {
