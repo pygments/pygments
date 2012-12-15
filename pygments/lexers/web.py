@@ -1535,7 +1535,7 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'switch': [
             include('spaces'),
-            (r'\(', Text, ('#pop', 'switch-body', 'bracket-open', 'parenthesis')),
+            (r'\(', Text, ('#pop', 'switch-body', 'bracket-open', 'expr')),
         ],
         
         'switch-body': [
@@ -1547,13 +1547,19 @@ class HaxeLexer(ExtendedRegexLexer):
         'case': [
             include('spaces'),
             (r':', Punctuation, '#pop'),
-            (r'', Text, ('#pop', 'case-sep', 'expr')),
+            (r'', Text, ('#pop', 'case-sep', 'case-guard', 'expr')),
         ],
         
         'case-sep': [
             include('spaces'),
             (r':', Punctuation, '#pop'),
             (r',', Punctuation, ('#pop', 'case')),
+        ],
+        
+        'case-guard': [
+            include('spaces'),
+            (r'(?:if)\b', Keyword, ('#pop', 'parenthesis')),
+            (r'', Text, '#pop'),
         ],
         
         # optional multiple expr under a case
