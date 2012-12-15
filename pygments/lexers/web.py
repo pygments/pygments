@@ -1535,7 +1535,7 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'switch': [
             include('spaces'),
-            (r'\(', Text, ('#pop', 'switch-body', 'bracket-open', 'expr')),
+            (r'', Text, ('#pop', 'switch-body', 'bracket-open', 'expr')),
         ],
         
         'switch-body': [
@@ -1558,7 +1558,7 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'case-guard': [
             include('spaces'),
-            (r'(?:if)\b', Keyword, ('#pop', 'parenthesis')),
+            (r'(?:if)\b', Keyword, ('#pop', 'parenthesis', 'parenthesis-open')),
             (r'', Text, '#pop'),
         ],
         
