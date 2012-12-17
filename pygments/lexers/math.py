@@ -1282,7 +1282,7 @@ class JagsLexer(RegexLexer):
 
 class StanLexer(RegexLexer):
     """
-    Pygments Lexer for Stan models.
+    Pygments Lexer for Stan models (v. 1.1.0)
 
     *New in Pygments 1.6.*
     """
@@ -1291,10 +1291,9 @@ class StanLexer(RegexLexer):
     aliases = ['stan']
     filenames = ['*.stan']
 
-    _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                 'then', 'else', 'true', 'false', 'T',
-                 'lower', 'upper', 'print')
-
+    _KEYWORDS = ('for', 'in', 'while', 'if', 'else', 'print',
+                 'T', 'lower', 'upper')
+            
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
               'matrix', 'corr_matrix', 'cov_matrix', 'positive_ordered')
 
@@ -1321,11 +1320,11 @@ class StanLexer(RegexLexer):
                         'model', r'generated\s+quantities')),
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
-            (r'(%s)\b' % r'|'.join(_RESERVED), Keyword.Reserved),
+            (r'(%s)\b' % r'|'.join(_KEYWORDS), Keyword),
             # Data types
             (r'(%s)\b' % r'|'.join(_TYPES), Keyword.Type),
             # Punctuation
-            (r"[;:,\[\]()<>]", Punctuation),
+            (r"[;:,\[\]()]", Punctuation),
             # Builtin
             (r'(%s)(?=\s*\()'
              % r'|'.join(_stan_builtins.FUNCTIONS
@@ -1347,7 +1346,7 @@ class StanLexer(RegexLexer):
             # SLexer makes these tokens Operators.
             (r'<-|~', Operator),
             # Infix and prefix operators (and = )
-            (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),
+            (r"\+|-|\.?\*|\.?/|\\|'|==?|!=?|<=?|>=?|\|\||&&", Operator),
             # Block delimiters
             (r'[{}]', Punctuation),
             ]
