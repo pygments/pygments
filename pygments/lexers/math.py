@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.math
-    ~~~~~~~~~~~~~~~~~~~~
+pygments.lexers.math
+~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for math languages.
+Lexers for math languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
-    :license: BSD, see LICENSE for details.
+:copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+:license: BSD, see LICENSE for details.
 """
 
 import re
@@ -14,7 +14,7 @@ import re
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
     combined, do_insertions
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
-    Operator, Number, Text, Generic
+    Operator, Number, Text, Generic, Error
 
 from pygments.lexers.agile import PythonLexer
 from pygments.lexers import _scilab_builtins
@@ -1292,7 +1292,7 @@ class StanLexer(RegexLexer):
     filenames = ['*.stan']
 
     _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                 'then', 'else', 'true', 'false', 'T', 
+                 'then', 'else', 'true', 'false', 'T',
                  'lower', 'upper', 'print')
 
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
@@ -1335,6 +1335,7 @@ class StanLexer(RegexLexer):
              % r'|'.join(_stan_builtins.CONSTANTS), Keyword.Constant),
             # Special names ending in __, like lp__
             (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
+            ('%s\b' % r'|'.join(_stan_builtins.CPP_RESERVED), Error),
             # Regular variable names
             (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
             # Real Literals
@@ -1343,7 +1344,7 @@ class StanLexer(RegexLexer):
             # Integer Literals
             (r'-?[0-9]+', Number.Integer),
             # Assignment operators
-            # SLexer makes these tokens Operators. 
+            # SLexer makes these tokens Operators.
             (r'<-|~', Operator),
             # Infix and prefix operators (and = )
             (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),
