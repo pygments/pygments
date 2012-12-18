@@ -2008,7 +2008,8 @@ class Perl6Lexer(RegexLexer):
             # copied from PerlLexer
             ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
-            ( r'[$@%&][.^:*?=!~]?\w+', Name.Variable ),
+            ( r'[$@%&][*]\w+', Name.Variable.Global ),
+            ( r'[$@%&][.^:?=!~]?\w+', Name.Variable ),
             ( r'.+?', Text ),
         ],
     }
