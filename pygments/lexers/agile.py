@@ -2005,6 +2005,7 @@ class Perl6Lexer(RegexLexer):
             ( r'#.*$', Comment.Singleline ),
             ( _build_word_match(PERL6_KEYWORDS), Keyword ),
             ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES), Name.Builtin),
+            # copied from PerlLexer
             ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
             ( r'.+?', Text ),
