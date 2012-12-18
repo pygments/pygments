@@ -1937,6 +1937,43 @@ class Perl6Lexer(RegexLexer):
         'unless', 'until', 'use', 'warn', 'when', 'where', 'while', 'will',
     )
 
+    PERL6_BUILTINS = (
+        'ACCEPTS', 'HOW', 'REJECTS', 'VAR', 'WHAT' 'WHENCE', 'WHERE', 'WHICH',
+        'WHO', 'abs', 'acos', 'acosec', 'acosech', 'acosh', 'acotan', 'acotanh',
+        'all', 'any' 'approx', 'arity', 'asec', 'asech', 'asin', 'asinh'
+        'assuming', 'atan', 'atan2', 'atanh', 'attr', 'bless', 'body', 'by'
+        'bytes', 'caller' 'callsame', 'callwith', 'can', 'capitalize', 'cat',
+        'ceiling', 'chars', 'chmod' 'chomp', 'chop', 'chr', 'chroot',
+        'circumfix', 'cis', 'classify' 'clone', 'close', 'cmp_ok', 'codes',
+        'comb' 'connect', 'contains', 'context', 'cos', 'cosec', 'cosech',
+        'cosh', 'cotan', 'cotanh', 'count' 'defined', 'delete', 'diag',
+        'dies_ok', 'does', 'e', 'each', 'eager', 'elems', 'end', 'eof' 'eval',
+        'eval_dies_ok', 'eval_elsewhere', 'eval_lives_ok', 'evalfile', 'exists',
+        'exp', 'first', 'flip', 'floor' 'flunk', 'flush', 'fmt', 'force_todo',
+        'fork', 'from', 'getc', 'gethost', 'getlogin', 'getpeername', 'getpw',
+        'gmtime', 'graphs', 'grep', 'hints', 'hyper', 'im', 'index', 'infix',
+        'invert', 'is_approx', 'is_deeply', 'isa', 'isa_ok' 'isnt', 'iterator',
+        'join', 'key', 'keys', 'kill', 'kv', 'lastcall', 'lazy', 'lc' 'lcfirst',
+        'like', 'lines', 'link', 'lives_ok', 'localtime', 'log', 'log10', 'map',
+        'max', 'min', 'minmax', 'name', 'new', 'nextsame' 'nextwith', 'nfc',
+        'nfd', 'nfkc', 'nfkd', 'nok_error' 'nonce', 'none', 'normalize', 'not',
+        'nothing', 'ok' 'once', 'one', 'open', 'opendir', 'operator', 'ord',
+        'p5chomp', 'p5chop', 'pack', 'pair' 'pairs', 'pass', 'perl', 'pi',
+        'pick', 'plan', 'plan_ok', 'polar', 'pop', 'pos', 'postcircumfix',
+        'postfix', 'pred' 'prefix', 'print', 'printf', 'push', 'quasi',
+        'quotemeta', 'rand', 're', 'read', 'readdir', 'readline', 'reduce',
+        'reverse', 'rewind', 'rewinddir', 'rindex', 'roots', 'round',
+        'roundrobin', 'run', 'runinstead', 'sameaccent', 'samecase', 'say',
+        'sec', 'sech', 'sech', 'seek' 'shape', 'shift', 'sign', 'signature',
+        'sin', 'sinh', 'skip', 'skip_rest', 'sleep' 'slurp', 'sort', 'splice',
+        'split', 'sprintf', 'sqrt', 'srand', 'strand' 'subst' 'substr', 'succ',
+        'sum', 'symlink', 'tan', 'tanh', 'throws_ok', 'time', 'times', 'to',
+        'todo', 'trim', 'trim_end', 'trim_start', 'true', 'truncate', 'uc',
+        'ucfirst', 'undef', 'undefine', 'uniq', 'unlike', 'unlink', 'unpack',
+        'unpolar', 'unshift', 'unwrap', 'use_ok', 'value', 'values', 'vec',
+        'version_lt', 'void', 'wait' 'want', 'wrap', 'write', 'zip',
+    )
+
     name      = 'Perl6'
     aliases   = ['perl6', 'pl6']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6'] # ask #perl6
@@ -1946,6 +1983,7 @@ class Perl6Lexer(RegexLexer):
         'root' : [
             ( r'#.*$', Comment.Singleline ),
             ( r'(' + r'|'.join(PERL6_KEYWORDS) + r')\b', Keyword ),
+            ( r'(' + r'|'.join(PERL6_BUILTINS) + r')\b', Name.Builtin),
             ( r'.+?', Text ),
         ],
     }
