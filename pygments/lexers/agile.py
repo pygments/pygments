@@ -1919,6 +1919,9 @@ class Perl6Lexer(RegexLexer):
     For `Perl 6 <http://www.perl6.org>` source code.
     """
 
+    def _build_word_match(words):
+        return r'\b(' + r'|'.join(words) + r')\b'
+
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
         'KEEP', 'LAST', 'LEAVE', 'NEXT', 'POST', 'PRE', 'START', 'TEMP',
@@ -1982,8 +1985,8 @@ class Perl6Lexer(RegexLexer):
     tokens    = {
         'root' : [
             ( r'#.*$', Comment.Singleline ),
-            ( r'\b(' + r'|'.join(PERL6_KEYWORDS) + r')\b', Keyword ),
-            ( r'\b(' + r'|'.join(PERL6_BUILTINS) + r')\b', Name.Builtin),
+            ( _build_word_match(PERL6_KEYWORDS), Keyword ),
+            ( _build_word_match(PERL6_BUILTINS), Name.Builtin),
             ( r'.+?', Text ),
         ],
     }
