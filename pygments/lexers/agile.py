@@ -1977,6 +1977,24 @@ class Perl6Lexer(RegexLexer):
         'version_lt', 'void', 'wait' 'want', 'wrap', 'write', 'zip',
     )
 
+    PERL6_BUILTIN_CLASSES = (
+        'Abstraction', 'Any', 'AnyChar' 'Array', 'Associative', 'Bag', 'Bit',
+        'Blob', 'Block', 'Buf', 'Byte' 'Callable', 'Capture', 'Char', 'Class',
+        'Code', 'Codepoint', 'Comparator', 'Complex', 'Decreasing', 'Exception',
+        'Failure', 'False' 'Grammar', 'Grapheme', 'Hash', 'IO', 'Increasing',
+        'Int', 'Junction', 'KeyBag' 'KeyExtractor' 'KeyHash', 'KeySet',
+        'KitchenSink', 'List', 'Macro' 'Mapping', 'Match' 'Matcher', 'Method',
+        'Module', 'Num' 'Object', 'Ordered', 'Ordering', 'OrderingPair',
+        'Package', 'Pair', 'Positional', 'Proxy', 'Range', 'Rat', 'Regex',
+        'Role', 'Routine', 'Scalar', 'Seq', 'Set', 'Signature', 'Str', 'StrLen',
+        'StrPos', 'Sub', 'Submethod', 'True', 'UInt', 'Undef' 'Version', 'Void',
+        'Whatever', 'bit', 'bool', 'buf', 'buf1', 'buf16', 'buf2', 'buf32',
+        'buf4', 'buf64' 'buf8', 'complex', 'int', 'int1', 'int16', 'int2',
+        'int32', 'int4', 'int64' 'int8', 'num', 'rat', 'rat1', 'rat16', 'rat2',
+        'rat32', 'rat4', 'rat64' 'rat8', 'uint', 'uint1', 'uint16', 'uint2',
+        'uint32' 'uint4', 'uint64', 'uint8', 'utf16', 'utf32', 'utf8',
+    )
+
     name      = 'Perl6'
     aliases   = ['perl6', 'pl6']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6'] # ask #perl6
@@ -1986,7 +2004,7 @@ class Perl6Lexer(RegexLexer):
         'root' : [
             ( r'#.*$', Comment.Singleline ),
             ( _build_word_match(PERL6_KEYWORDS), Keyword ),
-            ( _build_word_match(PERL6_BUILTINS), Name.Builtin),
+            ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES), Name.Builtin),
             ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
             ( r'.+?', Text ),
