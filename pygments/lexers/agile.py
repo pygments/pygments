@@ -1979,7 +1979,7 @@ class Perl6Lexer(RegexLexer):
 
     PERL6_BUILTIN_CLASSES = (
         'Abstraction', 'Any', 'AnyChar', 'Array', 'Associative', 'Bag', 'Bit',
-        'Blob', 'Block', 'Buf', 'Byte', 'Callable', 'Capture', 'Char', 'Class',
+        'Blob', 'Block', 'Bool', 'Buf', 'Byte', 'Callable', 'Capture', 'Char', 'Class',
         'Code', 'Codepoint', 'Comparator', 'Complex', 'Decreasing', 'Exception',
         'Failure', 'False', 'Grammar', 'Grapheme', 'Hash', 'IO', 'Increasing',
         'Int', 'Junction', 'KeyBag', 'KeyExtractor', 'KeyHash', 'KeySet',
