@@ -1982,8 +1982,8 @@ class Perl6Lexer(RegexLexer):
     tokens    = {
         'root' : [
             ( r'#.*$', Comment.Singleline ),
-            ( r'(' + r'|'.join(PERL6_KEYWORDS) + r')\b', Keyword ),
-            ( r'(' + r'|'.join(PERL6_BUILTINS) + r')\b', Name.Builtin),
+            ( r'\b(' + r'|'.join(PERL6_KEYWORDS) + r')\b', Keyword ),
+            ( r'\b(' + r'|'.join(PERL6_BUILTINS) + r')\b', Name.Builtin),
             ( r'.+?', Text ),
         ],
     }
