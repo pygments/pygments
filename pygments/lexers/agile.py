@@ -1919,6 +1919,24 @@ class Perl6Lexer(RegexLexer):
     For `Perl 6 <http://www.perl6.org>` source code.
     """
 
+    PERL6_KEYWORDS = (
+        'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
+        'KEEP', 'LAST', 'LEAVE', 'NEXT', 'POST', 'PRE', 'START', 'TEMP',
+        'UNDO', 'as', 'assoc', 'async', 'augment', 'binary', 'break', 'but',
+        'cached', 'category', 'class', 'constant', 'contend', 'continue',
+        'copy', 'deep', 'default', 'defequiv', 'defer', 'die', 'do', 'else',
+        'elsif', 'enum', 'equiv', 'exit', 'export', 'fail', 'fatal', 'for',
+        'gather', 'given', 'goto', 'grammar', 'handles', 'has', 'if', 'inline',
+        'irs', 'is', 'last', 'leave', 'let', 'lift', 'loop', 'looser', 'macro',
+        'make', 'maybe', 'method', 'module', 'multi', 'my', 'next', 'of',
+        'ofs', 'only', 'oo', 'ors', 'our', 'package', 'parsed', 'prec',
+        'proto', 'readonly', 'redo', 'ref', 'regex', 'reparsed', 'repeat',
+        'require', 'required', 'return', 'returns', 'role', 'rule', 'rw',
+        'self', 'slang', 'state', 'sub', 'submethod', 'subset', 'supersede',
+        'take', 'temp', 'tighter', 'token', 'trusts', 'try', 'unary',
+        'unless', 'until', 'use', 'warn', 'when', 'where', 'while', 'will',
+    )
+
     name      = 'Perl6'
     aliases   = ['perl6', 'pl6']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6'] # ask #perl6
@@ -1927,6 +1945,7 @@ class Perl6Lexer(RegexLexer):
     tokens    = {
         'root' : [
             ( r'#.*$', Comment.Singleline ),
+            ( r'(' + r'|'.join(PERL6_KEYWORDS) + r')\b', Keyword ),
             ( r'.+?', Text ),
         ],
     }
