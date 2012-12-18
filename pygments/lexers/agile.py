@@ -1987,6 +1987,8 @@ class Perl6Lexer(RegexLexer):
             ( r'#.*$', Comment.Singleline ),
             ( _build_word_match(PERL6_KEYWORDS), Keyword ),
             ( _build_word_match(PERL6_BUILTINS), Name.Builtin),
+            ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
+            ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
             ( r'.+?', Text ),
         ],
     }
