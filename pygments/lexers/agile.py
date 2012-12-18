@@ -23,7 +23,7 @@ __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python3Lexer', 'Python3TracebackLexer', 'RubyLexer',
            'RubyConsoleLexer', 'PerlLexer', 'LuaLexer', 'MoonScriptLexer',
            'CrocLexer', 'MiniDLexer', 'IoLexer', 'TclLexer', 'FactorLexer',
-           'FancyLexer', 'DgLexer']
+           'FancyLexer', 'DgLexer', 'Perl6Lexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -1913,3 +1913,28 @@ class DgLexer(RegexLexer):
             (r"'''", String, '#pop')
         ],
     }
+
+class Perl6Lexer(RegexLexer):
+    """
+    For `Perl 6 <http://www.perl6.org>` source code.
+    """
+
+    name      = 'Perl6'
+    aliases   = ['perl6', 'pl6']
+    filenames = ['*.pl', '*.pm', '*.nqp', '*.p6'] # ask #perl6
+    mimetypes = ['text/x-perl6', 'application/x-perl6'] # ask #perl6
+    flags     = re.MULTILINE # default, but I'll probably end up overriding it
+    tokens    = {
+        'root' : [
+            ( r'[^#]+', Text ),
+            ( r'#.*$', Comment.Singleline ),
+        ],
+    }
+
+    # ↓ this can likely be improved
+    def analyse_text(text):
+        if shebang_matches(text, r'perl6|rakudo|niecza'):
+            return True
+        if 'use v6' in text:
+            return 0.91 # 0.01 greater than Perl says for 'my $'
+        return False
