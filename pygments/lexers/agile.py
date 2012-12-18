@@ -1926,7 +1926,7 @@ class Perl6Lexer(RegexLexer):
     flags     = re.MULTILINE # default, but I'll probably end up overriding it
     tokens    = {
         'root' : [
-            ( r'[^#]+', Text ),
+            ( r'[^#]+?', Text ),
             ( r'#.*$', Comment.Singleline ),
         ],
     }
