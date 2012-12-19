@@ -1995,6 +1995,19 @@ class Perl6Lexer(RegexLexer):
         'uint32', 'uint4', 'uint64', 'uint8', 'utf16', 'utf32', 'utf8',
     )
 
+    PERL6_OPERATORS = (
+        'X', 'Z', 'after', 'also', 'and', 'andthen', 'before', 'cmp', 'div',
+        'eq', 'eqv', 'extra', 'ff', 'fff', 'ge', 'gt', 'le', 'leg', 'lt', 'm',
+        'mm', 'mod', 'ne', 'or', 'orelse', 'rx', 's', 'tr', 'x', 'xor', 'xx',
+        '++', '--', '**', '!', '+', '-', '~', '?', '|', '||', '+^', '~^', '?^',
+        '^', '*', '/', '%', '%%', '+&', '+<', '+>', '~&', '~<', '~>', '?&',
+        'gcd', 'lcm', '+', '-', '+|', '+^', '~|', '~^', '?|', '?^',
+        '~', '&', '^', 'but', 'does', '<=>', '..', '..^', '^..', '^..^',
+        '!=', '==', '<', '<=', '>', '>=', '~~', '===', '!eqv',
+        '&&', '||', '^^', '//', 'min', 'max', '??', '!!', 'ff', 'fff', 'so',
+        'not', '<==', '==>', '<<==', '==>>',
+    )
+
     name      = 'Perl6'
     aliases   = ['perl6', 'pl6']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6'] # ask #perl6
@@ -2011,6 +2024,7 @@ class Perl6Lexer(RegexLexer):
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
             ( r'[$@%&][*]\w+', Name.Variable.Global ),
             ( r'[$@%&][.^:?=!~]?\w+', Name.Variable ),
+            ( _build_word_match([ re.escape(x) for x in PERL6_OPERATORS]), Operator ),
             ( r'.+?', Text ),
         ],
     }
