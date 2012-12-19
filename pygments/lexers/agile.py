@@ -1999,10 +1999,10 @@ class Perl6Lexer(RegexLexer):
     aliases   = ['perl6', 'pl6']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6'] # ask #perl6
     mimetypes = ['text/x-perl6', 'application/x-perl6'] # ask #perl6
-    flags     = re.MULTILINE # default, but I'll probably end up overriding it
+    flags     = re.MULTILINE | re.DOTALL
     tokens    = {
         'root' : [
-            ( r'#.*$', Comment.Singleline ),
+            ( r'#[^\n]*$', Comment.Singleline ),
             ( _build_word_match(PERL6_KEYWORDS), Keyword ),
             ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES), Name.Builtin),
             # copied from PerlLexer
