@@ -13,7 +13,7 @@ import re
 from string import Template
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-     this, combined
+     this, combined, inherit
 from pygments.util import get_bool_opt, get_list_opt
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
      Number, Punctuation, Error, Literal
@@ -24,20 +24,17 @@ from pygments.lexers.functional import OcamlLexer
 from pygments.lexers.jvm import JavaLexer, ScalaLexer
 
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
-           'DylanLexer', 'ObjectiveCLexer', 'FortranLexer', 'GLShaderLexer',
-           'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
-           'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
-           'NimrodLexer', 'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer']
+           'DylanLexer', 'ObjectiveCLexer', 'ObjectiveCppLexer',
+           'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
+           'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
+           'Modula2Lexer', 'BlitzMaxLexer', 'NimrodLexer', 'FantomLexer',
+           'RustLexer', 'CudaLexer', 'MonkeyLexer']
 
-
-class CLexer(RegexLexer):
+class CFamilyLexer(RegexLexer):
     """
-    For C source code with preprocessor directives.
+    For C family source code.  This is used as a base class to avoid repetitious
+    definitions.
     """
-    name = 'C'
-    aliases = ['c']
-    filenames = ['*.c', '*.h', '*.idc']
-    mimetypes = ['text/x-chdr', 'text/x-csrc']
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
@@ -76,12 +73,17 @@ class CLexer(RegexLexer):
             (r'\b(case)(.+?)(:)', bygroups(Keyword, using(this), Text)),
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
              r'for|goto|if|register|restricted|return|sizeof|static|struct|'
-             r'switch|typedef|union|volatile|virtual|while)\b', Keyword),
-            (r'(int|long|float|short|double|char|unsigned|signed|void)\b',
+             r'switch|typedef|union|volatile|while)\b', Keyword),
+            (r'(bool|int|long|float|short|double|char|unsigned|signed|void|'
+             r'[a-z_][a-z0-9_]*_t)\b',
              Keyword.Type),
             (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
+            # Vector intrinsics
+            (r'(__(m128i|m128d|m128|m64))\b', Keyword.Reserved),
+            # Microsoft-isms
             (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
-             r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
+             r'declspec|finally|int64|try|leave|wchar_t|w64|unaligned|'
+             r'raise|noop|identifier|forceinline|assume)\b', Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
@@ -119,7 +121,8 @@ class CLexer(RegexLexer):
         ],
         'string': [
             (r'"', String, '#pop'),
-            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|'
+             r'u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8}|[0-7]{1,3})', String.Escape),
             (r'[^\\"\n]+', String), # all other characters
             (r'\\\n', String), # line continuation
             (r'\\', String), # stray backslash
@@ -141,16 +144,17 @@ class CLexer(RegexLexer):
     }
 
     stdlib_types = ['size_t', 'ssize_t', 'off_t', 'wchar_t', 'ptrdiff_t',
-            'sig_atomic_t', 'fpos_t', 'clock_t', 'time_t', 'va_list',
-            'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t', 'mbstate_t',
-            'wctrans_t', 'wint_t', 'wctype_t']
+                    'sig_atomic_t', 'fpos_t', 'clock_t', 'time_t', 'va_list',
+                    'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t', 'mbstate_t',
+                    'wctrans_t', 'wint_t', 'wctype_t']
     c99_types = ['_Bool', '_Complex', 'int8_t', 'int16_t', 'int32_t', 'int64_t',
-            'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t',
-            'int_least16_t', 'int_least32_t', 'int_least64_t',
-            'uint_least8_t', 'uint_least16_t', 'uint_least32_t',
-            'uint_least64_t', 'int_fast8_t', 'int_fast16_t', 'int_fast32_t',
-            'int_fast64_t', 'uint_fast8_t', 'uint_fast16_t', 'uint_fast32_t',
-            'uint_fast64_t', 'intptr_t', 'uintptr_t', 'intmax_t', 'uintmax_t']
+                 'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t',
+                 'int_least16_t', 'int_least32_t', 'int_least64_t',
+                 'uint_least8_t', 'uint_least16_t', 'uint_least32_t',
+                 'uint_least64_t', 'int_fast8_t', 'int_fast16_t', 'int_fast32_t',
+                 'int_fast64_t', 'uint_fast8_t', 'uint_fast16_t', 'uint_fast32_t',
+                 'uint_fast64_t', 'intptr_t', 'uintptr_t', 'intmax_t',
+                 'uintmax_t']
 
     def __init__(self, **options):
         self.stdlibhighlighting = get_bool_opt(options,
@@ -169,7 +173,22 @@ class CLexer(RegexLexer):
                     token = Keyword.Type
             yield index, token, value
 
-class CppLexer(RegexLexer):
+class CLexer(CFamilyLexer):
+    """
+    For C source code with preprocessor directives.
+    """
+    name = 'C'
+    aliases = ['c']
+    filenames = ['*.c', '*.h', '*.idc']
+    mimetypes = ['text/x-chdr', 'text/x-csrc']
+    priority = 0.5
+    
+    def analyse_text(text):
+        # We return 0.5 to allow other C-family languages that use .h files
+        # to check them to see if they are, in fact, not plain C
+        return 0.5
+
+class CppLexer(CFamilyLexer):
     """
     For C++ source code with preprocessor directives.
     """
@@ -179,90 +198,39 @@ class CppLexer(RegexLexer):
                  '*.cc', '*.hh', '*.cxx', '*.hxx',
                  '*.C', '*.H', '*.cp', '*.CPP']
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
-
-    #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
-    #: only one /* */ style comment
-    _ws1 = r':\s*/[*].*?[*]/\s*'
-
+    priority = 0.5
+    
     tokens = {
-        'root': [
-            # preprocessor directives: without whitespace
-            ('^#if\s+0', Comment.Preproc, 'if0'),
-            ('^#', Comment.Preproc, 'macro'),
-            # or with whitespace
-            ('^(' + _ws1 + r')(#if\s+0)',
-             bygroups(using(this), Comment.Preproc), 'if0'),
-            ('^(' + _ws1 + ')(#)',
-             bygroups(using(this), Comment.Preproc), 'macro'),
-            (r'\n', Text),
-            (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
-            (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            (r'[{}]', Punctuation),
-            (r'L?"', String, 'string'),
-            (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
-            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
-            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
-            (r'0[0-7]+[LlUu]*', Number.Oct),
-            (r'\d+[LlUu]*', Number.Integer),
-            (r'\*/', Error),
-            (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r'[()\[\],.;]', Punctuation),
-            (r'(asm|auto|break|case|catch|const|const_cast|continue|'
-             r'default|delete|do|dynamic_cast|else|enum|explicit|export|'
-             r'extern|for|friend|goto|if|mutable|namespace|new|operator|'
-             r'private|protected|public|register|reinterpret_cast|return|'
-             r'restrict|sizeof|static|static_cast|struct|switch|template|'
-             r'this|throw|throws|try|typedef|typeid|typename|union|using|'
-             r'volatile|virtual|while)\b', Keyword),
+        'statements': [
+            (r'(asm|catch|const_cast|delete|dynamic_cast|explicit|'
+             r'export|friend|mutable|namespace|new|operator|'
+             r'private|protected|public|reinterpret_cast|'
+             r'restrict|static_cast|template|this|throw|throws|'
+             r'typeid|typename|using|virtual)\b', Keyword),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (r'(bool|int|long|float|short|double|char|unsigned|signed|'
-             r'void|wchar_t)\b', Keyword.Type),
-            (r'(_{0,2}inline|naked|thread)\b', Keyword.Reserved),
-            (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
-             r'declspec|finally|int64|try|leave|wchar_t|w64|virtual_inheritance|'
-             r'uuidof|unaligned|super|single_inheritance|raise|noop|'
-             r'multiple_inheritance|m128i|m128d|m128|m64|interface|'
-             r'identifier|forceinline|event|assume)\b', Keyword.Reserved),
+            inherit,
+         ],
+        'root': [
+            inherit,
+            # C++ Microsoft-isms
+            (r'__(virtual_inheritance|uuidof|super|single_inheritance|'
+             r'multiple_inheritance|interface|event)\b', Keyword.Reserved),
             # Offload C++ extensions, http://offload.codeplay.com/
             (r'(__offload|__blockingoffload|__outer)\b', Keyword.Pseudo),
-            (r'(true|false)\b', Keyword.Constant),
-            (r'NULL\b', Name.Builtin),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'classname': [
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
         ],
-        'string': [
-            (r'"', String, '#pop'),
-            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"\n]+', String), # all other characters
-            (r'\\\n', String), # line continuation
-            (r'\\', String), # stray backslash
-        ],
-        'macro': [
-            (r'[^/\n]+', Comment.Preproc),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
-            (r'/', Comment.Preproc),
-            (r'(?<=\\)\n', Comment.Preproc),
-            (r'\n', Comment.Preproc, '#pop'),
-        ],
-        'if0': [
-            (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
-            (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
-            (r'.*?\n', Comment),
-        ]
     }
 
+    def analyse_text(text):
+        # We return 0.5 to allow other C-family languages that use .h files
+        # to check them to see if they are, in fact, not plain C++
+        return 0.5
 
-class ECLexer(RegexLexer):
+class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
 
@@ -273,147 +241,29 @@ class ECLexer(RegexLexer):
     filenames = ['*.ec', '*.eh']
     mimetypes = ['text/x-echdr', 'text/x-ecsrc']
 
-    #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
-    #: only one /* */ style comment
-    _ws1 = r':\s*/[*].*?[*]/\s*'
-
     tokens = {
-        'whitespace': [
-            # preprocessor directives: without whitespace
-            ('^#if\s+0', Comment.Preproc, 'if0'),
-            ('^#', Comment.Preproc, 'macro'),
-            # or with whitespace
-            ('^' + _ws1 + r'#if\s+0', Comment.Preproc, 'if0'),
-            ('^' + _ws1 + '#', Comment.Preproc, 'macro'),
-            (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*:(?!:))', bygroups(Text, Name.Label)),
-            (r'\n', Text),
-            (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-        ],
         'statements': [
-            (r'L?"', String, 'string'),
-            (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
-            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
-            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
-            (r'0[0-7]+[LlUu]*', Number.Oct),
-            (r'\d+[LlUu]*', Number.Integer),
-            (r'\*/', Error),
-            (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r'[()\[\],.]', Punctuation),
-            (r'\b(case)(.+?)(:)', bygroups(Keyword, using(this), Text)),
-            (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
-             r'for|goto|if|register|restricted|return|sizeof|static|struct|'
-             r'switch|typedef|union|volatile|virtual|while|class|private|public|'
-             r'property|import|delete|new|new0|renew|renew0|define|get|set|remote|dllexport|dllimport|stdcall|'
-             r'subclass|__on_register_module|namespace|using|typed_object|any_object|incref|register|watch|'
-             r'stopwatching|firewatchers|watchable|class_designer|class_fixed|class_no_expansion|isset|'
-             r'class_default_property|property_category|class_data|class_property|virtual|thisclass|'
+            (r'(virtual|class|private|public|property|import|delete|new|new0|'
+             r'renew|renew0|define|get|set|remote|dllexport|dllimport|stdcall|'
+             r'subclass|__on_register_module|namespace|using|typed_object|'
+             r'any_object|incref|register|watch|stopwatching|firewatchers|'
+             r'watchable|class_designer|class_fixed|class_no_expansion|isset|'
+             r'class_default_property|property_category|class_data|'
+             r'class_property|virtual|thisclass|'
              r'dbtable|dbindex|database_open|dbfield)\b', Keyword),
-            (r'(int|long|float|short|double|char|unsigned|signed|void)\b',
-             Keyword.Type),
             (r'(uint|uint16|uint32|uint64|bool|byte|unichar|int64)\b',
              Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
-            (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
-             r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
-            (r'(true|false|null|value|this|NULL)\b', Name.Builtin),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
-        ],
-        'root': [
-            include('whitespace'),
-            # functions
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
-             r'(\s*\([^;]*?\))'                      # signature
-             r'(' + _ws + r')?({)',
-             bygroups(using(this), Name.Function, using(this), using(this),
-                      Punctuation),
-             'function'),
-            # function declarations
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
-             r'(\s*\([^;]*?\))'                      # signature
-             r'(' + _ws + r')?(;)',
-             bygroups(using(this), Name.Function, using(this), using(this),
-                      Punctuation)),
-            ('', Text, 'statement'),
+            (r'(null|value|this)\b', Name.Builtin),
+            inherit,
         ],
         'classname': [
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
         ],
-        'statement' : [
-            include('whitespace'),
-            include('statements'),
-            ('[{}]', Punctuation),
-            (';', Punctuation, '#pop'),
-        ],
-        'function': [
-            include('whitespace'),
-            include('statements'),
-            (';', Punctuation),
-            ('{', Punctuation, '#push'),
-            ('}', Punctuation, '#pop'),
-        ],
-        'string': [
-            (r'"', String, '#pop'),
-            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"\n]+', String), # all other characters
-            (r'\\\n', String), # line continuation
-            (r'\\', String), # stray backslash
-        ],
-        'macro': [
-            (r'[^/\n]+', Comment.Preproc),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
-            (r'/', Comment.Preproc),
-            (r'(?<=\\)\n', Comment.Preproc),
-            (r'\n', Comment.Preproc, '#pop'),
-        ],
-        'if0': [
-            (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
-            (r'^\s*#el(?:se|if).*\n', Comment.Preproc, '#pop'),
-            (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
-            (r'.*?\n', Comment),
-        ]
     }
-
-    stdlib_types = ['size_t', 'ssize_t', 'off_t', 'wchar_t', 'ptrdiff_t',
-            'sig_atomic_t', 'fpos_t', 'clock_t', 'time_t', 'va_list',
-            'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t', 'mbstate_t',
-            'wctrans_t', 'wint_t', 'wctype_t']
-    c99_types = ['_Bool', '_Complex', 'int8_t', 'int16_t', 'int32_t', 'int64_t',
-            'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t',
-            'int_least16_t', 'int_least32_t', 'int_least64_t',
-            'uint_least8_t', 'uint_least16_t', 'uint_least32_t',
-            'uint_least64_t', 'int_fast8_t', 'int_fast16_t', 'int_fast32_t',
-            'int_fast64_t', 'uint_fast8_t', 'uint_fast16_t', 'uint_fast32_t',
-            'uint_fast64_t', 'intptr_t', 'uintptr_t', 'intmax_t', 'uintmax_t']
-
-    def __init__(self, **options):
-        self.stdlibhighlighting = get_bool_opt(options,
-                'stdlibhighlighting', True)
-        self.c99highlighting = get_bool_opt(options,
-                'c99highlighting', True)
-        RegexLexer.__init__(self, **options)
-
-    def get_tokens_unprocessed(self, text):
-        for index, token, value in \
-            RegexLexer.get_tokens_unprocessed(self, text):
-            if token is Name:
-                if self.stdlibhighlighting and value in self.stdlib_types:
-                    token = Keyword.Type
-                elif self.c99highlighting and value in self.c99_types:
-                    token = Keyword.Type
-            yield index, token, value
-
-
+    
 class DLexer(RegexLexer):
     """
     For D source.
@@ -1101,176 +951,127 @@ class DylanLexer(RegexLexer):
         ],
     }
 
+def objective(baselexer):
+    """
+    Generate a subclass of baselexer that accepts the Objective-C syntax
+    extensions.
+    """
 
-class ObjectiveCLexer(RegexLexer):
+    # Have to be careful not to accidentally match JavaDoc/Doxygen syntax here,
+    # since that's quite common in ordinary C/C++ files.  It's OK to match
+    # JavaDoc/Doxygen keywords that only apply to Objective-C, mind.
+    #
+    # The upshot of this is that we CANNOT match @class or @interface
+    _oc_keywords = re.compile(r'@(?:end|implementation|protocol)')
+
+    # Matches [ <ws>? identifier <ws> ( identifier <ws>? ] |  identifier? : )
+    # (note the identifier is *optional* when there is a ':'!)
+    _oc_message = re.compile(r'\[\s*[a-zA-Z_][a-zA-Z0-9_]*\s+'
+                             r'(?:[a-zA-Z_][a-zA-Z0-9_]*\s*\]|'
+                             r'(?:[a-zA-Z_][a-zA-Z0-9_]*)?:)')
+
+    class GeneratedObjectiveCVariant(baselexer):
+        """
+        Implements Objective-C syntax on top of an existing C family lexer.
+        """
+
+        tokens = {
+            'statements': [
+                (r'@"', String, 'string'),
+                (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
+                 String.Char),
+                (r'@(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
+                (r'@(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+                (r'@0x[0-9a-fA-F]+[Ll]?', Number.Hex),
+                (r'@0[0-7]+[Ll]?', Number.Oct),
+                (r'@\d+[Ll]?', Number.Integer),
+                (r'(in|@selector|@private|@protected|@public|@encode|'
+                 r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
+                 r'@synthesize|@dynamic|@optional)\b', Keyword),
+                (r'(id|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
+                 Keyword.Type),
+                (r'@(true|false|YES|NO)\n', Name.Builtin),
+                (r'(YES|NO|nil)\b', Name.Builtin),
+                (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
+                 ('#pop', 'oc_classname')),
+                (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
+                 ('#pop', 'oc_forward_classname')),
+                inherit,
+            ],
+            'oc_classname' : [
+                # interface definition that inherits
+                ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*:\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)?',
+                 bygroups(Name.Class, Text, Name.Class), '#pop'),
+                # interface definition for a category
+                ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(\([a-zA-Z$_][a-zA-Z0-9$_]*\))',
+                 bygroups(Name.Class, Text, Name.Label), '#pop'),
+                # simple interface / implementation
+                ('([a-zA-Z$_][a-zA-Z0-9$_]*)', Name.Class, '#pop')
+            ],
+            'oc_forward_classname' : [
+              ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*,\s*)',
+               bygroups(Name.Class, Text), 'oc_forward_classname'),
+              ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*;?)',
+               bygroups(Name.Class, Text), '#pop')
+            ],
+            'root': [
+              # methods
+              (r'^([-+])(\s*)'                         # method marker
+               r'(\(.*?\))?(\s*)'                      # return type
+               r'([a-zA-Z$_][a-zA-Z0-9$_]*:?)',        # begin of method name
+               bygroups(Keyword, Text, using(this),
+                        Text, Name.Function),
+               'method'),
+              inherit,
+            ],
+            'method': [
+                include('whitespace'),
+                # TODO unsure if ellipses are allowed elsewhere, see
+                # discussion in Issue 789
+                (r',', Punctuation),
+                (r'\.\.\.', Punctuation),
+                (r'(\(.*?\))([a-zA-Z$_][a-zA-Z0-9$_]*)', bygroups(using(this),
+                                                                  Name.Variable)),
+                (r'[a-zA-Z$_][a-zA-Z0-9$_]*:', Name.Function),
+                (';', Punctuation, '#pop'),
+                ('{', Punctuation, 'function'),
+                ('', Text, '#pop'),
+            ],
+        }
+
+        def analyse_text(text):
+            if _oc_keywords.search(text):
+                return 1.0
+            elif '@"' in text: # strings
+                return 0.8
+            elif _oc_message.search(text):
+                return 0.8
+            return 0
+
+    return GeneratedObjectiveCVariant
+
+class ObjectiveCLexer(objective(CLexer)):
     """
     For Objective-C source code with preprocessor directives.
     """
 
     name = 'Objective-C'
     aliases = ['objective-c', 'objectivec', 'obj-c', 'objc']
-    # XXX: objc has .h files too :-/
-    filenames = ['*.m']
+    filenames = ['*.m', '*.h']
     mimetypes = ['text/x-objective-c']
+    priority = 0.25
+    
+class ObjectiveCppLexer(objective(CppLexer)):
+    """
+    For Objective-C++ source code with preprocessor directives.
+    """
 
-    #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
-    #: only one /* */ style comment
-    _ws1 = r':\s*/[*].*?[*]/\s*'
-
-    tokens = {
-        'whitespace': [
-            # preprocessor directives: without whitespace
-            ('^#if\s+0', Comment.Preproc, 'if0'),
-            ('^#', Comment.Preproc, 'macro'),
-            # or with whitespace
-            ('^(' + _ws1 + r')(#if\s+0)',
-             bygroups(using(this), Comment.Preproc), 'if0'),
-            ('^(' + _ws1 + ')(#)',
-             bygroups(using(this), Comment.Preproc), 'macro'),
-            (r'\n', Text),
-            (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-        ],
-        'statements': [
-            (r'(L|@)?"', String, 'string'),
-            (r"(L|@)?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
-             String.Char),
-            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
-            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
-            (r'0[0-7]+[Ll]?', Number.Oct),
-            (r'\d+[Ll]?', Number.Integer),
-            (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r'[()\[\],.]', Punctuation),
-            (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
-             r'for|goto|if|register|restricted|return|sizeof|static|struct|'
-             r'switch|typedef|union|volatile|virtual|while|in|@selector|'
-             r'@private|@protected|@public|@encode|'
-             r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
-             r'@synthesize|@dynamic|@optional)\b', Keyword),
-            (r'(int|long|float|short|double|char|unsigned|signed|void|'
-             r'id|BOOL|IBOutlet|IBAction|SEL)\b', Keyword.Type),
-            (r'(_{0,2}inline|naked|restrict|thread|typename)\b',
-             Keyword.Reserved),
-            (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
-             r'declspec|finally|int64|try|leave)\b', Keyword.Reserved),
-            (r'(TRUE|FALSE|nil|NULL)\b', Name.Builtin),
-            ('[a-zA-Z$_][a-zA-Z0-9$_]*:(?!:)', Name.Label),
-            ('[a-zA-Z$_][a-zA-Z0-9$_]*', Name),
-            (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
-             ('#pop', 'classname')),
-            (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
-             ('#pop', 'forward_classname')),
-        ],
-        'root': [
-            include('whitespace'),
-            # functions
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
-             r'([a-zA-Z$_][a-zA-Z0-9$_]*)'           # method name
-             r'(\s*\([^;]*?\))'                      # signature
-             r'(' + _ws + r')?({)',
-             bygroups(using(this), Name.Function,
-                      using(this), Text, Punctuation),
-             'function'),
-            # methods
-            (r'^([-+])(\s*)'                         # method marker
-             r'(\(.*?\))?(\s*)'                      # return type
-             r'([a-zA-Z$_][a-zA-Z0-9$_]*:?)',        # begin of method name
-             bygroups(Keyword, Text, using(this),
-                      Text, Name.Function),
-             'method'),
-            # function declarations
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
-             r'([a-zA-Z$_][a-zA-Z0-9$_]*)'           # method name
-             r'(\s*\([^;]*?\))'                      # signature
-             r'(' + _ws + r')?(;)',
-             bygroups(using(this), Name.Function,
-                      using(this), Text, Punctuation)),
-            (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
-             'classname'),
-            (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
-             'forward_classname'),
-            (r'(\s*)(@end)(\s*)', bygroups(Text, Keyword, Text)),
-            ('', Text, 'statement'),
-        ],
-        'classname' : [
-            # interface definition that inherits
-            ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*:\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)?',
-             bygroups(Name.Class, Text, Name.Class), '#pop'),
-            # interface definition for a category
-            ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(\([a-zA-Z$_][a-zA-Z0-9$_]*\))',
-             bygroups(Name.Class, Text, Name.Label), '#pop'),
-            # simple interface / implementation
-            ('([a-zA-Z$_][a-zA-Z0-9$_]*)', Name.Class, '#pop')
-        ],
-        'forward_classname' : [
-          ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*,\s*)',
-           bygroups(Name.Class, Text), 'forward_classname'),
-          ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*;?)',
-           bygroups(Name.Class, Text), '#pop')
-        ],
-        'statement' : [
-            include('whitespace'),
-            include('statements'),
-            ('[{}]', Punctuation),
-            (';', Punctuation, '#pop'),
-        ],
-        'function': [
-            include('whitespace'),
-            include('statements'),
-            (';', Punctuation),
-            ('{', Punctuation, '#push'),
-            ('}', Punctuation, '#pop'),
-        ],
-        'method': [
-            include('whitespace'),
-            # TODO unsure if ellipses are allowed elsewhere, see discussion in
-            # Issue 789
-            (r',', Punctuation),
-            (r'\.\.\.', Punctuation),
-            (r'(\(.*?\))([a-zA-Z$_][a-zA-Z0-9$_]*)', bygroups(using(this),
-                                                              Name.Variable)),
-            (r'[a-zA-Z$_][a-zA-Z0-9$_]*:', Name.Function),
-            (';', Punctuation, '#pop'),
-            ('{', Punctuation, 'function'),
-            ('', Text, '#pop'),
-        ],
-        'string': [
-            (r'"', String, '#pop'),
-            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"\n]+', String), # all other characters
-            (r'\\\n', String), # line continuation
-            (r'\\', String), # stray backslash
-        ],
-        'macro': [
-            (r'[^/\n]+', Comment.Preproc),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
-            (r'/', Comment.Preproc),
-            (r'(?<=\\)\n', Comment.Preproc),
-            (r'\n', Comment.Preproc, '#pop'),
-        ],
-        'if0': [
-            (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
-            (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
-            (r'.*?\n', Comment),
-        ]
-    }
-
-    def analyse_text(text):
-        if '@import' in text or '@interface' in text or \
-            '@implementation' in text:
-            return True
-        elif '@"' in text: # strings
-            return True
-        elif re.match(r'\[[a-zA-Z0-9.]:', text): # message
-            return True
-        return False
-
-
+    name = 'Objective-C++'
+    aliases = ['objective-c++', 'objectivec++', 'obj-c++', 'objc++']
+    filenames = ['*.mm', '*.hh']
+    mimetypes = ['text/x-objective-c++']
+    priority = 0.25
+    
 class FortranLexer(RegexLexer):
     """
     Lexer for FORTRAN 90 code.

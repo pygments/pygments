@@ -8,7 +8,7 @@
     :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import re
+import re, itertools
 
 from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
@@ -18,7 +18,7 @@ from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
 
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
-           'LexerContext', 'include', 'bygroups', 'using', 'this']
+           'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this']
 
 
 _encoding_map = [('\xef\xbb\xbf', 'utf-8'),
@@ -80,6 +80,9 @@ class Lexer(object):
 
     #: mime types
     mimetypes = []
+
+    #: Priority, should multiple lexers match and no content is provided
+    priority = 0
 
     __metaclass__ = LexerMeta
 
@@ -237,6 +240,14 @@ class include(str):
     """
     pass
 
+class _inherit(object):
+    """
+    Indicates the a state should inherit from its superclass.
+    """
+    def __repr__(self):
+        return 'inherit'
+
+inherit = _inherit()
 
 class combined(tuple):
     """
@@ -428,7 +439,10 @@ class RegexLexerMeta(LexerMeta):
                 tokens.extend(cls._process_state(unprocessed, processed,
                                                  str(tdef)))
                 continue
-
+            if isinstance(tdef, _inherit):
+                # processed already
+                continue
+            
             assert type(tdef) is tuple, "wrong rule def %r" % tdef
 
             try:
@@ -456,6 +470,54 @@ class RegexLexerMeta(LexerMeta):
             cls._process_state(tokendefs, processed, state)
         return processed
 
+    def get_tokendefs(cls):
+        """
+        Merge tokens from superclasses in MRO order, returning a single
+        tokendef dictionary.
+
+        Any state that is not defined by a subclass will be inherited
+        automatically.  States that *are* defined by subclasses will, by
+        default, override that state in the superclass.  If a subclass
+        wishes to inherit definitions from a superclass, it can use the
+        special value "inherit", which will cause the superclass' state
+        definition to be included at that point in the state.
+        """
+        tokens = {}
+        inheritable = {}
+        for c in itertools.chain((cls,), cls.__mro__):
+            toks = c.__dict__.get('tokens', {})
+
+            for state, items in toks.iteritems():
+                curitems = tokens.get(state)
+                if curitems is None:
+                    tokens[state] = items
+
+                    try:
+                        inherit_ndx = items.index(inherit)
+                    except:
+                        inherit_ndx = -1
+                        
+                    if inherit_ndx != -1:
+                        inheritable[state] = inherit_ndx
+                    continue
+                
+                inherit_ndx = inheritable.pop(state, None)
+                if inherit_ndx is None:
+                    continue
+
+                # Replace the "inherit" value with the items
+                curitems[inherit_ndx:inherit_ndx+1] = items
+                
+                try:
+                    new_inh_ndx = items.index(inherit)
+                except:
+                    new_inh_ndx = -1
+                    
+                if new_inh_ndx != -1:
+                    inheritable[state] = inherit_ndx + new_inh_ndx
+
+        return tokens
+    
     def __call__(cls, *args, **kwds):
         """Instantiate cls after preprocessing its token definitions."""
         if '_tokens' not in cls.__dict__:
@@ -465,7 +527,7 @@ class RegexLexerMeta(LexerMeta):
                 # don't process yet
                 pass
             else:
-                cls._tokens = cls.process_tokendef('', cls.tokens)
+                cls._tokens = cls.process_tokendef('', cls.get_tokendefs())
 
         return type.__call__(cls, *args, **kwds)
 

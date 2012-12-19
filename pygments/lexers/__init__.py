@@ -113,7 +113,7 @@ def get_lexer_for_filename(_fn, code=None, **options):
         # to find lexers which need it overridden.
         if code:
             return cls.analyse_text(code) + bonus
-        return bonus
+        return cls.priority + bonus
 
     if matches:
         matches.sort(key=get_rating)
