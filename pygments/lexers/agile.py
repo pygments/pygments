@@ -2003,6 +2003,7 @@ class Perl6Lexer(RegexLexer):
     tokens    = {
         'root' : [
             ( r'#[^\n]*$', Comment.Singleline ),
+            ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
             ( _build_word_match(PERL6_KEYWORDS), Keyword ),
             ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES), Name.Builtin),
             # copied from PerlLexer
