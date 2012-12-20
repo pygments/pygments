@@ -2028,8 +2028,8 @@ class Perl6Lexer(RegexLexer):
             # copied from PerlLexer
             ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
-            ( r'[$@%&][*]\w+', Name.Variable.Global ),
-            ( r'[$@%&][.^:?=!~]?\w+', Name.Variable ),
+            ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable.Global ),
+            ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable ),
             # copied from PerlLexer
             ( r'(?i)\d+(_\d*)*e[+-]?\d+(_\d*)*', Number.Float ),
             ( r'\d+(_\d+)*', Number.Integer ),
