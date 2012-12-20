@@ -1919,8 +1919,14 @@ class Perl6Lexer(RegexLexer):
     For `Perl 6 <http://www.perl6.org>` source code.
     """
 
-    def _build_word_match(words):
-        return r'\b(' + r'|'.join(words) + r')\b'
+    PERL6_IDENTIFIER_CHARS = '-a-zA-Z0-9_:'
+
+    def _build_word_match(words, boundary_chars = None):
+        if boundary_chars is None:
+            return r'\b(' + r'|'.join(words) + r')\b'
+        else:
+            return r'(?<![' + boundary_chars + '])(' + r'|'.join(words) + r')(?![' + \
+                boundary_chars + '])'
 
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
@@ -2017,8 +2023,8 @@ class Perl6Lexer(RegexLexer):
         'root' : [
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
-            ( _build_word_match(PERL6_KEYWORDS), Keyword ),
-            ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES), Name.Builtin),
+            ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
+            ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_CHARS), Name.Builtin),
             # copied from PerlLexer
             ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
