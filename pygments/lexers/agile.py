@@ -2024,6 +2024,9 @@ class Perl6Lexer(RegexLexer):
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
             ( r'[$@%&][*]\w+', Name.Variable.Global ),
             ( r'[$@%&][.^:?=!~]?\w+', Name.Variable ),
+            # copied from PerlLexer
+            ( r'(?i)\d+(_\d*)*e[+-]?\d+(_\d*)*', Number.Float ),
+            ( r'\d+(_\d+)*', Number.Integer ),
             ( _build_word_match([ re.escape(x) for x in PERL6_OPERATORS]), Operator ),
             ( r'.+?', Text ),
         ],
