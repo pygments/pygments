@@ -1919,7 +1919,7 @@ class Perl6Lexer(RegexLexer):
     For `Perl 6 <http://www.perl6.org>` source code.
     """
 
-    PERL6_IDENTIFIER_CHARS = '-a-zA-Z0-9_:'
+    PERL6_IDENTIFIER_CHARS = "-'a-zA-Z0-9_:"
 
     def _build_word_match(words, boundary_chars = None):
         if boundary_chars is None:
