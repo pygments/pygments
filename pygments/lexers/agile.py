@@ -2026,10 +2026,10 @@ class Perl6Lexer(RegexLexer):
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
             ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_CHARS), Name.Builtin),
             # copied from PerlLexer
-            ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
-            ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
             ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable.Global ),
             ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable ),
+            ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
+            ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
             # copied from PerlLexer
             ( r'(?i)\d+(_\d*)*e[+-]?\d+(_\d*)*', Number.Float ),
             ( r'\d+(_\d+)*', Number.Integer ),
