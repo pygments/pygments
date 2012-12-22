@@ -2038,6 +2038,10 @@ class Perl6Lexer(RegexLexer):
             ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable ),
             '#BRACKETED_STRINGS',
             # copied from PerlLexer
+            ( r'0_?[0-7]+(_[0-7]+)*', Number.Oct ),
+            ( r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex ),
+            ( r'0b[01]+(_[01]+)*', Number.Bin ),
+            ( r'(?i)(\d*(_\d*)*\.\d+(_\d*)*|\d+(_\d*)*\.\d+(_\d*)*)(e[+-]?\d+)?', Number.Float ),
             ( r'(?i)\d+(_\d*)*e[+-]?\d+(_\d*)*', Number.Float ),
             ( r'\d+(_\d+)*', Number.Integer ),
             ( r'[0-9a-zA-Z_][' + PERL6_IDENTIFIER_CHARS + ']*', Name ),
