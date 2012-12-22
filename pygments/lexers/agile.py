@@ -1914,7 +1914,7 @@ class DgLexer(RegexLexer):
         ],
     }
 
-class Perl6Lexer(RegexLexer):
+class Perl6Lexer(ExtendedRegexLexer):
     """
     For `Perl 6 <http://www.perl6.org>` source code.
     """
@@ -2023,12 +2023,37 @@ class Perl6Lexer(RegexLexer):
     mimetypes = ['text/x-perl6', 'application/x-perl6'] # ask #perl6
     flags     = re.MULTILINE | re.DOTALL
 
-    # You'll see a few members of this data structure that should be tuples,
-    # but are strings beginning with '#' (ex. '#MULTILINE_COMMENTS').
-    # These are expanded after the class definition below
+    def embedded_comment_callback(lexer, match, context):
+        # XXX this could be more efficient, but is fine for now
+        index        = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(match.group(1))
+        closing_char = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index]
+        pos          = match.start()
+        text         = context.text
+        text_length  = len(text)
+
+        while pos < text_length and text[pos] != closing_char:
+            pos += 1
+
+        yield match.start(), Comment.Multiline, text[match.start() : pos + 1]
+        context.pos = pos + 1
+
+    def bracketed_string_callback(lexer, match, context):
+        # XXX this could be more efficient, but is fine for now
+        index        = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(match.group(1))
+        closing_char = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index]
+        pos          = match.start()
+        text         = context.text
+        text_length  = len(text)
+
+        while pos < text_length and text[pos] != closing_char:
+            pos += 1
+
+        yield match.start(), String, text[match.start() : pos + 1]
+        context.pos = pos + 1
+
     tokens = {
         'root' : [
-            '#MULTILINE_COMMENTS',
+            ( r'#`([' + PERL6_OPEN_BRACKET_CHARS + '])', embedded_comment_callback ),
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
@@ -2036,7 +2061,7 @@ class Perl6Lexer(RegexLexer):
             # copied from PerlLexer
             ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable.Global ),
             ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable ),
-            '#BRACKETED_STRINGS',
+            ( r'(?:q|qq|Q)([' + PERL6_OPEN_BRACKET_CHARS + '])', bracketed_string_callback ),
             # copied from PerlLexer
             ( r'0_?[0-7]+(_[0-7]+)*', Number.Oct ),
             ( r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex ),
@@ -2059,29 +2084,3 @@ class Perl6Lexer(RegexLexer):
         if 'use v6' in text:
             return 0.91 # 0.01 greater than Perl says for 'my $'
         return False
-
-    for state, regexes in tokens.iteritems():
-        length = len(regexes)
-        i      = 0
-
-        while i < length:
-            value = regexes[i]
-            if type(value) is str:
-                new_value = []
-                if value == '#MULTILINE_COMMENTS':
-                    for index in xrange(0, len(PERL6_OPEN_BRACKET_CHARS)):
-                        open_char  = PERL6_OPEN_BRACKET_CHARS[index]
-                        close_char = PERL6_CLOSE_BRACKET_CHARS[index]
-
-                        new_value.append( ('#`' + re.escape(open_char) + '.*?' + re.escape(close_char), Comment.Multiline) )
-                elif value == '#BRACKETED_STRINGS':
-                    for index in xrange(0, len(PERL6_OPEN_BRACKET_CHARS)):
-                        open_char  = PERL6_OPEN_BRACKET_CHARS[index]
-                        close_char = PERL6_CLOSE_BRACKET_CHARS[index]
-
-                        new_value.append( ('(?:q|qq|Q)' + re.escape(open_char) + '.*?' + re.escape(close_char), String ) )
-
-                length             = (length - 1) + len(new_value)
-                regexes[i : i + 1] = new_value
-                i                  = (i - 1) + len(new_value)
-            i += 1
