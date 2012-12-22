@@ -2036,6 +2036,7 @@ class Perl6Lexer(RegexLexer):
             # copied from PerlLexer
             ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable.Global ),
             ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable ),
+            '#BRACKETED_STRINGS',
             ( r'[0-9a-zA-Z_][' + PERL6_IDENTIFIER_CHARS + ']*', Name ),
             ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
@@ -2069,6 +2070,12 @@ class Perl6Lexer(RegexLexer):
                         close_char = PERL6_CLOSE_BRACKET_CHARS[index]
 
                         new_value.append( ('#`' + re.escape(open_char) + '.*?' + re.escape(close_char), Comment.Multiline) )
+                elif value == '#BRACKETED_STRINGS':
+                    for index in xrange(0, len(PERL6_OPEN_BRACKET_CHARS)):
+                        open_char  = PERL6_OPEN_BRACKET_CHARS[index]
+                        close_char = PERL6_CLOSE_BRACKET_CHARS[index]
+
+                        new_value.append( ('(?:q|qq|Q)' + re.escape(open_char) + '.*?' + re.escape(close_char), String ) )
 
                 length             = (length - 1) + len(new_value)
                 regexes[i : i + 1] = new_value
