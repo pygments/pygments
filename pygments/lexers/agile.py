@@ -2025,17 +2025,20 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     def brackets_callback(token_class):
         def callback(lexer, match, context):
+            capture = match.group(1)
+            n_chars = len(capture)
+
             # XXX this could be more efficient, but is fine for now
-            index        = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(match.group(1)[0])
+            index        = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(capture[0])
             closing_char = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index]
             text         = context.text
-            end_pos      = text.find(closing_char * len(match.group(1)), match.start() + len(match.group(1)))
+            end_pos      = text.find(closing_char * n_chars, match.start() + n_chars)
 
             if end_pos == -1:
                 end_pos = len(text)
 
-            yield match.start(), token_class, text[match.start() : end_pos + len(match.group(1))]
-            context.pos = end_pos + len(match.group(1))
+            yield match.start(), token_class, text[match.start() : end_pos + n_chars]
+            context.pos = end_pos + n_chars
 
         return callback
 
