@@ -2023,35 +2023,25 @@ class Perl6Lexer(ExtendedRegexLexer):
     mimetypes = ['text/x-perl6', 'application/x-perl6'] # ask #perl6
     flags     = re.MULTILINE | re.DOTALL
 
-    def embedded_comment_callback(lexer, match, context):
-        # XXX this could be more efficient, but is fine for now
-        index        = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(match.group(1)[0])
-        closing_char = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index]
-        text         = context.text
-        end_pos      = text.find(closing_char * len(match.group(1)), match.start() + len(match.group(1)))
+    def brackets_callback(token_class):
+        def callback(lexer, match, context):
+            # XXX this could be more efficient, but is fine for now
+            index        = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(match.group(1)[0])
+            closing_char = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index]
+            text         = context.text
+            end_pos      = text.find(closing_char * len(match.group(1)), match.start() + len(match.group(1)))
 
-        if end_pos == -1:
-            end_pos = len(text)
+            if end_pos == -1:
+                end_pos = len(text)
 
-        yield match.start(), Comment.Multiline, text[match.start() : end_pos + len(match.group(1))]
-        context.pos = end_pos + len(match.group(1))
+            yield match.start(), token_class, text[match.start() : end_pos + len(match.group(1))]
+            context.pos = end_pos + len(match.group(1))
 
-    def bracketed_string_callback(lexer, match, context):
-        # XXX this could be more efficient, but is fine for now
-        index        = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(match.group(1)[0])
-        closing_char = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index]
-        text         = context.text
-        end_pos      = text.find(closing_char * len(match.group(1)), match.start() + len(match.group(1)))
-
-        if end_pos == -1:
-            end_pos = len(text)
-
-        yield match.start(), String, text[match.start() : end_pos + len(match.group(1))]
-        context.pos = end_pos + len(match.group(1))
+        return callback
 
     tokens = {
         'root' : [
-            ( r'#`([' + PERL6_OPEN_BRACKET_CHARS + ']+)', embedded_comment_callback ),
+            ( r'#`([' + PERL6_OPEN_BRACKET_CHARS + ']+)', brackets_callback(Comment.Multiline) ),
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
@@ -2059,7 +2049,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             # copied from PerlLexer
             ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable.Global ),
             ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable ),
-            ( r'(?:q|qq|Q)\s*([' + PERL6_OPEN_BRACKET_CHARS + ']+)', bracketed_string_callback ),
+            ( r'(?:q|qq|Q)\s*([' + PERL6_OPEN_BRACKET_CHARS + ']+)', brackets_callback(String) ),
             # copied from PerlLexer
             ( r'0_?[0-7]+(_[0-7]+)*', Number.Oct ),
             ( r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex ),
