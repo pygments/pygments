@@ -2027,29 +2027,27 @@ class Perl6Lexer(ExtendedRegexLexer):
         # XXX this could be more efficient, but is fine for now
         index        = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(match.group(1))
         closing_char = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index]
-        pos          = match.start()
         text         = context.text
-        text_length  = len(text)
+        end_pos      = text.find(closing_char, match.start() + len(match.group(1)))
 
-        while pos < text_length and text[pos] != closing_char:
-            pos += 1
+        if end_pos == -1:
+            end_pos = len(text)
 
-        yield match.start(), Comment.Multiline, text[match.start() : pos + 1]
-        context.pos = pos + 1
+        yield match.start(), Comment.Multiline, text[match.start() : end_pos + 1]
+        context.pos = end_pos + 1
 
     def bracketed_string_callback(lexer, match, context):
         # XXX this could be more efficient, but is fine for now
         index        = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(match.group(1))
         closing_char = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index]
-        pos          = match.start()
         text         = context.text
-        text_length  = len(text)
+        end_pos      = text.find(closing_char, match.start() + len(match.group(1)))
 
-        while pos < text_length and text[pos] != closing_char:
-            pos += 1
+        if end_pos == -1:
+            end_pos = len(text)
 
-        yield match.start(), String, text[match.start() : pos + 1]
-        context.pos = pos + 1
+        yield match.start(), String, text[match.start() : end_pos + 1]
+        context.pos = end_pos + 1
 
     tokens = {
         'root' : [
