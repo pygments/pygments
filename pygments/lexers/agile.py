@@ -2019,7 +2019,11 @@ class Perl6Lexer(RegexLexer):
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6'] # ask #perl6
     mimetypes = ['text/x-perl6', 'application/x-perl6'] # ask #perl6
     flags     = re.MULTILINE | re.DOTALL
-    tokens    = {
+
+    # You'll see a few members of this data structure that should be tuples,
+    # but are strings beginning with '#' (ex. '#MULTILINE_COMMENTS').
+    # These are expanded after the class definition below
+    tokens = {
         'root' : [
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
@@ -2046,3 +2050,16 @@ class Perl6Lexer(RegexLexer):
         if 'use v6' in text:
             return 0.91 # 0.01 greater than Perl says for 'my $'
         return False
+
+    for state, regexes in tokens.iteritems():
+        length = len(regexes)
+        i      = 0
+
+        while i < length:
+            value = regexes[i]
+            if type(value) is str:
+                new_value          = []
+                length             = (length - 1) + len(new_value)
+                regexes[i : i + 1] = new_value
+                i                  = (i - 1) + len(new_value)
+            i += 1
