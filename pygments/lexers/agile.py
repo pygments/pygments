@@ -2025,8 +2025,10 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     def brackets_callback(token_class):
         def callback(lexer, match, context):
-            opening_chars = match.group('delimiter')
+            groups        = match.groupdict()
+            opening_chars = groups['delimiter']
             n_chars       = len(opening_chars)
+            adverbs       = groups.get('adverbs')
 
             # XXX this could be more efficient, but is fine for now
             index = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.find(opening_chars[0])
@@ -2059,6 +2061,15 @@ class Perl6Lexer(ExtendedRegexLexer):
 
                 end_pos = next_close_pos
 
+            if adverbs is not None and re.search(r':to\b', adverbs):
+                heredoc_terminator = text[match.start('delimiter') + n_chars : end_pos]
+                end_heredoc = re.search(r'^\s*' + re.escape(heredoc_terminator) + r'\s*$', text[ match.end('delimiter') : ], re.MULTILINE)
+
+                if end_heredoc:
+                    end_pos = match.end('delimiter') + end_heredoc.end()
+                else:
+                    end_pos = len(text)
+
             yield match.start(), token_class, text[match.start() : end_pos + n_chars]
             context.pos = end_pos + n_chars
 
@@ -2074,7 +2085,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             # copied from PerlLexer
             ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable.Global ),
             ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable ),
-            ( r'(?:q|qq|Q)[\w\s:]*(?P<delimiter>[^0-9a-zA-Z:\s]+)', brackets_callback(String) ),
+            ( r'(?:q|qq|Q)(?P<adverbs>[\w\s:]*)(?P<delimiter>[^0-9a-zA-Z:\s]+)', brackets_callback(String) ),
             # copied from PerlLexer
             ( r'0_?[0-7]+(_[0-7]+)*', Number.Oct ),
             ( r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex ),
