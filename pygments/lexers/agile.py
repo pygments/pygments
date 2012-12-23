@@ -2025,7 +2025,7 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     def brackets_callback(token_class):
         def callback(lexer, match, context):
-            opening_chars = match.group(1)
+            opening_chars = match.group('delimiter')
             n_chars       = len(opening_chars)
 
             # XXX this could be more efficient, but is fine for now
@@ -2066,7 +2066,7 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     tokens = {
         'root' : [
-            ( r'#`([' + PERL6_OPEN_BRACKET_CHARS + ']+)', brackets_callback(Comment.Multiline) ),
+            ( r'#`(?P<delimiter>[' + PERL6_OPEN_BRACKET_CHARS + ']+)', brackets_callback(Comment.Multiline) ),
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
@@ -2074,7 +2074,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             # copied from PerlLexer
             ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable.Global ),
             ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable ),
-            ( r'(?:q|qq|Q)[\w\s:]*([^0-9a-zA-Z:\s]+)', brackets_callback(String) ),
+            ( r'(?:q|qq|Q)[\w\s:]*(?P<delimiter>[^0-9a-zA-Z:\s]+)', brackets_callback(String) ),
             # copied from PerlLexer
             ( r'0_?[0-7]+(_[0-7]+)*', Number.Oct ),
             ( r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex ),
