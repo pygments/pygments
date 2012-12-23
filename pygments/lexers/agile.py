@@ -2065,6 +2065,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             # copied from PerlLexer
             ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable.Global ),
             ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable ),
+            (  '(?:q|qq|Q)[\w\s:]*([\'"`/]).*?\\1', String ),
             ( r'(?:q|qq|Q)[\w\s:]*([' + PERL6_OPEN_BRACKET_CHARS + ']+)', brackets_callback(String) ),
             # copied from PerlLexer
             ( r'0_?[0-7]+(_[0-7]+)*', Number.Oct ),
