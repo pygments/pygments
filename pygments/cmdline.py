@@ -192,6 +192,14 @@ def main(args=sys.argv):
 
     usage = USAGE % ((args[0],) * 6)
 
+    if sys.platform in [ 'win32', 'cygwin' ] :
+      try:
+          # Provide coloring under Windows, if possible
+          import colorama
+          colorama.init()
+      except:
+          pass
+
     try:
         popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:hVHg")
     except getopt.GetoptError, err:
