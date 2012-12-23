@@ -2027,31 +2027,40 @@ class Perl6Lexer(ExtendedRegexLexer):
         def callback(lexer, match, context):
             opening_chars = match.group(1)
             n_chars       = len(opening_chars)
-            nesting_level = 1
 
             # XXX this could be more efficient, but is fine for now
-            index         = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(opening_chars[0])
-            closing_chars = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index] * n_chars
-            text          = context.text
+            index = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.find(opening_chars[0])
+            text  = context.text
 
-            search_pos = match.start(1)
+            if index == -1: # it's not a mirrored character, which means we just need to
+                            # look for the next occurrence
 
-            while nesting_level > 0:
-                next_open_pos  = text.find(opening_chars, search_pos + n_chars)
-                next_close_pos = text.find(closing_chars, search_pos + n_chars)
+                end_pos = text.find(opening_chars, match.start(1) + n_chars)
+            else: # we need to look for the corresponding closing character,
+                  # keep nesting in mind
+                closing_chars = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index] * n_chars
+                nesting_level = 1
 
-                if next_close_pos == -1:
-                    next_close_pos = len(text)
-                    nesting_level  = 0
-                elif next_open_pos != -1 and next_open_pos < next_close_pos:
-                    nesting_level += 1
-                    search_pos = next_open_pos
-                else: # next_close_pos < next_open_pos
-                    nesting_level -= 1
-                    search_pos = next_close_pos
+                search_pos = match.start(1)
 
-            yield match.start(), token_class, text[match.start() : next_close_pos + n_chars]
-            context.pos = next_close_pos + n_chars
+                while nesting_level > 0:
+                    next_open_pos  = text.find(opening_chars, search_pos + n_chars)
+                    next_close_pos = text.find(closing_chars, search_pos + n_chars)
+
+                    if next_close_pos == -1:
+                        next_close_pos = len(text)
+                        nesting_level  = 0
+                    elif next_open_pos != -1 and next_open_pos < next_close_pos:
+                        nesting_level += 1
+                        search_pos = next_open_pos
+                    else: # next_close_pos < next_open_pos
+                        nesting_level -= 1
+                        search_pos = next_close_pos
+
+                end_pos = next_close_pos
+
+            yield match.start(), token_class, text[match.start() : end_pos + n_chars]
+            context.pos = end_pos + n_chars
 
         return callback
 
@@ -2065,8 +2074,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             # copied from PerlLexer
             ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable.Global ),
             ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + ']+', Name.Variable ),
-            (  '(?:q|qq|Q)[\w\s:]*([\'"`/]).*?\\1', String ),
-            ( r'(?:q|qq|Q)[\w\s:]*([' + PERL6_OPEN_BRACKET_CHARS + ']+)', brackets_callback(String) ),
+            ( r'(?:q|qq|Q)[\w\s:]*([^0-9a-zA-Z:\s]+)', brackets_callback(String) ),
             # copied from PerlLexer
             ( r'0_?[0-7]+(_[0-7]+)*', Number.Oct ),
             ( r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex ),
