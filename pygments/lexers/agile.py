@@ -2025,20 +2025,33 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     def brackets_callback(token_class):
         def callback(lexer, match, context):
-            capture = match.group(1)
-            n_chars = len(capture)
+            opening_chars = match.group(1)
+            n_chars       = len(opening_chars)
+            nesting_level = 1
 
             # XXX this could be more efficient, but is fine for now
-            index        = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(capture[0])
-            closing_char = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index]
-            text         = context.text
-            end_pos      = text.find(closing_char * n_chars, match.start() + n_chars)
+            index         = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.index(opening_chars[0])
+            closing_chars = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index] * n_chars
+            text          = context.text
 
-            if end_pos == -1:
-                end_pos = len(text)
+            search_pos = match.start(1)
 
-            yield match.start(), token_class, text[match.start() : end_pos + n_chars]
-            context.pos = end_pos + n_chars
+            while nesting_level > 0:
+                next_open_pos  = text.find(opening_chars, search_pos + n_chars)
+                next_close_pos = text.find(closing_chars, search_pos + n_chars)
+
+                if next_close_pos == -1:
+                    next_close_pos = len(text)
+                    nesting_level  = 0
+                elif next_open_pos != -1 and next_open_pos < next_close_pos:
+                    nesting_level += 1
+                    search_pos = next_open_pos
+                else: # next_close_pos < next_open_pos
+                    nesting_level -= 1
+                    search_pos = next_close_pos
+
+            yield match.start(), token_class, text[match.start() : next_close_pos + n_chars]
+            context.pos = next_close_pos + n_chars
 
         return callback
 
