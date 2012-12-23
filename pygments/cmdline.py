@@ -192,7 +192,7 @@ def main(args=sys.argv):
 
     usage = USAGE % ((args[0],) * 6)
 
-    if sys.platform in [ 'win32', 'cygwin' ] :
+    if sys.platform in ['win32', 'cygwin']:
       try:
           # Provide coloring under Windows, if possible
           import colorama
