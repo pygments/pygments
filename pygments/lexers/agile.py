@@ -2035,13 +2035,13 @@ class Perl6Lexer(ExtendedRegexLexer):
             if index == -1: # it's not a mirrored character, which means we just need to
                             # look for the next occurrence
 
-                end_pos = text.find(opening_chars, match.start(1) + n_chars)
+                end_pos = text.find(opening_chars, match.start('delimiter') + n_chars)
             else: # we need to look for the corresponding closing character,
                   # keep nesting in mind
                 closing_chars = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index] * n_chars
                 nesting_level = 1
 
-                search_pos = match.start(1)
+                search_pos = match.start('delimiter')
 
                 while nesting_level > 0:
                     next_open_pos  = text.find(opening_chars, search_pos + n_chars)
