@@ -197,7 +197,7 @@ def main(args=sys.argv):
           # Provide coloring under Windows, if possible
           import colorama
           colorama.init()
-      except:
+      except ImportError:
           pass
 
     try:
