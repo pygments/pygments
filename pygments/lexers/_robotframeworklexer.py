@@ -150,8 +150,8 @@ class RowSplitter(object):
     _pipe_splitter = re.compile('((?:^| +)\|(?: +|$))')
 
     def split(self, row):
-        splitter = self._split_from_spaces \
-                if not row.startswith('| ') else self._split_from_pipes
+        splitter = (row.startswith('| ') and self._split_from_pipes
+                    or self._split_from_spaces)
         for value in splitter(row.rstrip()):
             yield value
         yield '\n'
@@ -300,7 +300,7 @@ class ForLoop(Tokenizer):
         self._in_arguments = False
 
     def _tokenize(self, value, index):
-        token = ARGUMENT if self._in_arguments else SYNTAX
+        token = self._in_arguments and ARGUMENT or SYNTAX
         if value.upper() in ('IN', 'IN RANGE'):
             self._in_arguments = True
         return token
