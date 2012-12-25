@@ -343,6 +343,10 @@ class MatlabLexer(RegexLexer):
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
 
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
+
             (r'(?<![\w\)\]])\'', String, 'string'),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
@@ -789,6 +793,10 @@ class OctaveLexer(RegexLexer):
 
             (r'"[^"]*"', String),
 
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
+
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
@@ -859,6 +867,10 @@ class ScilabLexer(RegexLexer):
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
             (r'(?<![\w\)\]])\'', String, 'string'),
+
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
 
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
