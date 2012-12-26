@@ -2076,20 +2076,29 @@ class Perl6Lexer(ExtendedRegexLexer):
         return callback
 
     def regex_callback(lexer, match, context):
-        text = context.text
+        text          = context.text
+        pos           = match.end()
+        nesting_level = 1
+
+        while pos < len(text) and nesting_level > 0:
+            if text[pos] == '{':
+                nesting_level += 1
+            elif text[pos] == '}':
+                nesting_level -= 1
+            pos = pos + 1
 
         yield match.start('keyword'), Keyword, text[match.start('keyword') : match.end('keyword')]
         yield match.start('filling'), Text, text[match.start('filling') : match.end('filling')]
-        yield match.start('body'), String.Regex, text[match.start('body') : match.end('body')]
+        yield match.end() - 1, String.Regex, text[match.end() - 1 : pos]
 
-        context.pos = match.end()
+        context.pos = pos
 
     tokens = {
         'root' : [
             ( r'#`(?P<delimiter>[' + PERL6_OPEN_BRACKET_CHARS + ']+)', brackets_callback(Comment.Multiline) ),
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
-            ( r'(?P<keyword>regex|token|rule)(?P<filling>.*?)(?P<body>[{].*?[}])', regex_callback ),
+            ( r'(?P<keyword>regex|token|rule)(?P<filling>.*?)[{]', regex_callback ),
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
             ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_CHARS), Name.Builtin),
             # copied from PerlLexer
