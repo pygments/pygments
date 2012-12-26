@@ -2102,6 +2102,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'[0-9a-zA-Z_][' + PERL6_IDENTIFIER_CHARS + ']*', Name ),
             ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
+            ( r'<\S.*?\S>', String ),
             ( _build_word_match([ re.escape(x) for x in PERL6_OPERATORS]), Operator ),
             ( r'.+?', Text ),
         ],
