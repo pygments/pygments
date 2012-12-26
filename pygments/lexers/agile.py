@@ -2109,7 +2109,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'(?<=~~)\s*/(?:\\\\|\\/|.)*?/', String.Regex ),
             ( r'(?<==)\s*/(?:\\\\|\\/|.)*?/', String.Regex ),
             ( r'(?<=\()\s*/(?:\\\\|\\/|.)*?/', String.Regex ),
-            ( r'(?:m|rx)[\w\s:]*/(?:\\\\|\\/|.)*?/', String.Regex ),
+            ( r'(?:m|rx)(?P<adverbs>[\w\s:]*)(?P<delimiter>[^0-9a-zA-Z:\s]+)', brackets_callback(String.Regex) ),
             ( r'(?:s|tr)[\w\s:]*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/', String.Regex ),
             ( r'[0-9a-zA-Z_][' + PERL6_IDENTIFIER_CHARS + ']*', Name ),
             ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
