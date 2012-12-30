@@ -2075,30 +2075,24 @@ class Perl6Lexer(ExtendedRegexLexer):
 
         return callback
 
-    def regex_callback(lexer, match, context):
-        text          = context.text
-        pos           = match.end()
-        nesting_level = 1
+    def closing_brace_callback(lexer, match, context):
+        stack = context.stack
 
-        while pos < len(text) and nesting_level > 0:
-            if text[pos] == '{':
-                nesting_level += 1
-            elif text[pos] == '}':
-                nesting_level -= 1
-            pos = pos + 1
+        yield match.start(), Text, context.text[match.start() : match.end()]
+        context.pos = match.end()
 
-        yield match.start('keyword'), Keyword, text[match.start('keyword') : match.end('keyword')]
-        yield match.start('filling'), Text, text[match.start('filling') : match.end('filling')]
-        yield match.end() - 1, String.Regex, text[match.end() - 1 : pos]
-
-        context.pos = pos
+        # if we encounter a free closing brace and we're one level
+        # below a token state, it means we need to return to the
+        # token state.
+        if len(stack) > 2 and stack[-2] == 'token':
+            stack.pop()
 
     tokens = {
         'root' : [
             ( r'#`(?P<delimiter>[' + PERL6_OPEN_BRACKET_CHARS + ']+)', brackets_callback(Comment.Multiline) ),
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
-            ( r'(?P<keyword>regex|token|rule)(?P<filling>.*?)[{]', regex_callback ),
+            ( r'(regex|token|rule)(.*?)([{])', bygroups(Keyword, Name, Text), 'token' ),
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
             ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_CHARS), Name.Builtin),
             # copied from PerlLexer
@@ -2126,8 +2120,11 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
             ( r'<\S.*?\S>', String ),
             ( _build_word_match([ re.escape(x) for x in PERL6_OPERATORS]), Operator ),
+            ( r'[}]', closing_brace_callback ),
             ( r'.+?', Text ),
         ],
+        # the tokens state rules are defined after the class body, for reasons
+        # explained below.
     }
 
     # ↓ this can likely be improved
@@ -2137,3 +2134,13 @@ class Perl6Lexer(ExtendedRegexLexer):
         if 'use v6' in text:
             return 0.91 # 0.01 greater than Perl says for 'my $'
         return False
+
+# we have to define these here because we have to be able to refer to
+# the Perl6Lexer class
+Perl6Lexer.tokens['token'] = [
+    ( r'}', Text, '#pop' ),
+    ( r'(?<=:)(?:my|our|state|constant|temp|let).*?;', using(Perl6Lexer) ),
+    ( r'#.*?$', Comment.Singleline ),
+    ( r'[{]', Text, 'root' ),
+    ( '.+?', String.Regex ),
+]
