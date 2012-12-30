@@ -2144,6 +2144,8 @@ class Perl6Lexer(ExtendedRegexLexer):
 Perl6Lexer.tokens['token'] = [
     ( r'}', Text, '#pop' ),
     ( r'(?<=:)(?:my|our|state|constant|temp|let).*?;', using(Perl6Lexer) ),
+    # make sure that quotes in character classes aren't treated as strings
+    ( r'<\[.*?\]>', String.Regex ),
     # make sure that '#' characters in quotes aren't treated as comments
     ( r"'(\\\\|\\[^\\]|[^'\\])*'", String.Regex ),
     ( r'"(\\\\|\\[^\\]|[^"\\])*"', String.Regex ),
