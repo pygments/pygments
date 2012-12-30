@@ -2147,8 +2147,8 @@ Perl6Lexer.tokens['token'] = [
     # make sure that quotes in character classes aren't treated as strings
     ( r'<\[.*?\]>', String.Regex ),
     # make sure that '#' characters in quotes aren't treated as comments
-    ( r"'(\\\\|\\[^\\]|[^'\\])*'", String.Regex ),
-    ( r'"(\\\\|\\[^\\]|[^"\\])*"', String.Regex ),
+    ( r"(?<!\\)'(\\\\|\\[^\\]|[^'\\])*'", String.Regex ),
+    ( r'(?<!\\)"(\\\\|\\[^\\]|[^"\\])*"', String.Regex ),
     ( r'#.*?$', Comment.Singleline ),
     ( r'[{]', Text, 'root' ),
     ( '.+?', String.Regex ),
