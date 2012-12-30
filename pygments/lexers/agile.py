@@ -2135,6 +2135,10 @@ class Perl6Lexer(ExtendedRegexLexer):
             return 0.91 # 0.01 greater than Perl says for 'my $'
         return False
 
+    def __init__(self, **options):
+        super(Perl6Lexer, self).__init__(**options)
+        self.encoding = options.get('encoding', 'utf-8')
+
 # we have to define these here because we have to be able to refer to
 # the Perl6Lexer class
 Perl6Lexer.tokens['token'] = [
