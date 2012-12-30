@@ -2075,6 +2075,19 @@ class Perl6Lexer(ExtendedRegexLexer):
 
         return callback
 
+    def opening_brace_callback(lexer, match, context):
+        stack = context.stack
+
+        yield match.start(), Text, context.text[match.start() : match.end()]
+        context.pos = match.end()
+
+        # if we encounter an opening brace and we're one level
+        # below a token state, it means we need to increment
+        # the nesting level for braces so we know later when
+        # we should return to the token rules.
+        if len(stack) > 2 and stack[-2] == 'token':
+            context.perl6_token_nesting_level += 1
+
     def closing_brace_callback(lexer, match, context):
         stack = context.stack
 
@@ -2082,11 +2095,17 @@ class Perl6Lexer(ExtendedRegexLexer):
         context.pos = match.end()
 
         # if we encounter a free closing brace and we're one level
-        # below a token state, it means we need to return to the
-        # token state.
+        # below a token state, it means we need to check the nesting
+        # level to see if we need to return to the token state.
         if len(stack) > 2 and stack[-2] == 'token':
-            stack.pop()
+            context.perl6_token_nesting_level -= 1
+            if context.perl6_token_nesting_level == 0:
+                stack.pop()
 
+    # If you're modifying these rules, be careful if you need to process '{' or '}' characters.
+    # We have special logic for processing these characters (due to the fact that you can nest
+    # Perl 6 code in regex blocks), so if you need to process one of them, make sure you also
+    # process the corresponding one!
     tokens = {
         'root' : [
             ( r'#`(?P<delimiter>[' + PERL6_OPEN_BRACKET_CHARS + ']+)', brackets_callback(Comment.Multiline) ),
@@ -2120,6 +2139,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
             ( r'<[^\s=].*?\S>', String ),
             ( _build_word_match([ re.escape(x) for x in PERL6_OPERATORS]), Operator ),
+            ( r'[{]', opening_brace_callback ),
             ( r'[}]', closing_brace_callback ),
             ( r'.+?', Text ),
         ],
@@ -2139,6 +2159,12 @@ class Perl6Lexer(ExtendedRegexLexer):
         super(Perl6Lexer, self).__init__(**options)
         self.encoding = options.get('encoding', 'utf-8')
 
+def embedded_perl6_callback(lexer, match, context):
+    context.perl6_token_nesting_level = 1
+    yield match.start(), Text, context.text[match.start() : match.end()]
+    context.pos = match.end()
+    context.stack.append('root')
+
 # we have to define these here because we have to be able to refer to
 # the Perl6Lexer class
 Perl6Lexer.tokens['token'] = [
@@ -2150,6 +2176,6 @@ Perl6Lexer.tokens['token'] = [
     ( r"(?<!\\)'(\\\\|\\[^\\]|[^'\\])*'", String.Regex ),
     ( r'(?<!\\)"(\\\\|\\[^\\]|[^"\\])*"', String.Regex ),
     ( r'#.*?$', Comment.Singleline ),
-    ( r'[{]', Text, 'root' ),
+    ( r'[{]', embedded_perl6_callback ),
     ( '.+?', String.Regex ),
 ]
