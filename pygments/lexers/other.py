@@ -1257,7 +1257,7 @@ class ModelicaLexer(RegexLexer):
         ],
         'classes': [
             (r'(block|class|connector|function|model|package|'
-             r'record|type)\b', Name.Class),
+             r'record|type)(\s+)([A-Za-z_]+)', bygroups(Keyword,Text,Name.Class))
         ],
         'string': [
             (r'"', String, '#pop'),
