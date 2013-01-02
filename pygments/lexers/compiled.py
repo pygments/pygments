@@ -2943,13 +2943,13 @@ class RustLexer(RegexLexer):
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
 
             # Keywords
-            (r'(alt|as|assert|be|break|check|claim|class|const'
-             r'|cont|copy|crust|do|else|enum|export|fail'
-             r'|false|fn|for|if|iface|impl|import|let|log'
-             r'|loop|mod|mut|native|pure|resource|ret|true'
-             r'|type|unsafe|use|white|note|bind|prove|unchecked'
-             r'|with|syntax|u8|u16|u32|u64|i8|i16|i32|i64|uint'
-             r'|int|f32|f64)\b', Keyword),
+            (r'(as|assert|break|const'
+             r'|copy|do|else|enum|extern|fail'
+             r'|false|fn|for|if|impl|let|log'
+             r'|loop|match|mod|move|mut|once|priv|pub|pure'
+             r'|ref|return|static|struct|trait|true|type|unsafe|use|while'
+             r'|u8|u16|u32|u64|i8|i16|i32|i64|uint'
+             r'|int|float|f32|f64|str)\b', Keyword),
 
             # Character Literal
             (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
@@ -2978,8 +2978,8 @@ class RustLexer(RegexLexer):
             (r'#\[', Comment.Preproc, 'attribute['),
             (r'#\(', Comment.Preproc, 'attribute('),
             # Macros
-            (r'#[A-Za-z_][A-Za-z0-9_]*\[', Comment.Preproc, 'attribute['),
-            (r'#[A-Za-z_][A-Za-z0-9_]*\(', Comment.Preproc, 'attribute('),
+            (r'[A-Za-z_][A-Za-z0-9_]*!\[', Comment.Preproc, 'attribute['),
+            (r'[A-Za-z_][A-Za-z0-9_]*!\(', Comment.Preproc, 'attribute('),
         ],
         'number_lit': [
             (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop'),
