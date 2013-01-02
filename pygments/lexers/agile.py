@@ -2129,7 +2129,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'(?i)\d+(_\d*)*e[+-]?\d+(_\d*)*', Number.Float ),
             ( r'\d+(_\d+)*', Number.Integer ),
             ( r'(?<=~~)\s*/(?:\\\\|\\/|.)*?/', String.Regex ),
-            ( r'(?<=[=(])\s*/(?:\\\\|\\/|.)*?/', String.Regex ),
+            ( r'(?<=[=(,])\s*/(?:\\\\|\\/|.)*?/', String.Regex ),
             ( r'm\w+(?=[(])', Name ),
             ( r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>[^0-9a-zA-Z:\s]+)', brackets_callback(String.Regex) ),
             ( r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/', String.Regex ),
