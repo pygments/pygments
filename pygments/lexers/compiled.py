@@ -181,12 +181,7 @@ class CLexer(CFamilyLexer):
     aliases = ['c']
     filenames = ['*.c', '*.h', '*.idc']
     mimetypes = ['text/x-chdr', 'text/x-csrc']
-    priority = 0.5
-    
-    def analyse_text(text):
-        # We return 0.5 to allow other C-family languages that use .h files
-        # to check them to see if they are, in fact, not plain C
-        return 0.5
+    priority = 0.1
 
 class CppLexer(CFamilyLexer):
     """
@@ -198,8 +193,8 @@ class CppLexer(CFamilyLexer):
                  '*.cc', '*.hh', '*.cxx', '*.hxx',
                  '*.C', '*.H', '*.cp', '*.CPP']
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
-    priority = 0.5
-    
+    priority = 0.1
+
     tokens = {
         'statements': [
             (r'(asm|catch|const_cast|delete|dynamic_cast|explicit|'
@@ -224,11 +219,6 @@ class CppLexer(CFamilyLexer):
             (r'\s*(?=>)', Text, '#pop'),
         ],
     }
-
-    def analyse_text(text):
-        # We return 0.5 to allow other C-family languages that use .h files
-        # to check them to see if they are, in fact, not plain C++
-        return 0.5
 
 class ECLexer(CLexer):
     """
@@ -263,7 +253,7 @@ class ECLexer(CLexer):
             (r'\s*(?=>)', Text, '#pop'),
         ],
     }
-    
+
 class DLexer(RegexLexer):
     """
     For D source.
@@ -1059,8 +1049,8 @@ class ObjectiveCLexer(objective(CLexer)):
     aliases = ['objective-c', 'objectivec', 'obj-c', 'objc']
     filenames = ['*.m', '*.h']
     mimetypes = ['text/x-objective-c']
-    priority = 0.25
-    
+    priority = 0.05    # Lower than C
+
 class ObjectiveCppLexer(objective(CppLexer)):
     """
     For Objective-C++ source code with preprocessor directives.
@@ -1070,8 +1060,8 @@ class ObjectiveCppLexer(objective(CppLexer)):
     aliases = ['objective-c++', 'objectivec++', 'obj-c++', 'objc++']
     filenames = ['*.mm', '*.hh']
     mimetypes = ['text/x-objective-c++']
-    priority = 0.25
-    
+    priority = 0.05    # Lower than C++
+
 class FortranLexer(RegexLexer):
     """
     Lexer for FORTRAN 90 code.

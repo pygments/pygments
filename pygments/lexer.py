@@ -442,7 +442,7 @@ class RegexLexerMeta(LexerMeta):
             if isinstance(tdef, _inherit):
                 # processed already
                 continue
-            
+
             assert type(tdef) is tuple, "wrong rule def %r" % tdef
 
             try:
@@ -494,30 +494,29 @@ class RegexLexerMeta(LexerMeta):
 
                     try:
                         inherit_ndx = items.index(inherit)
-                    except:
-                        inherit_ndx = -1
-                        
-                    if inherit_ndx != -1:
-                        inheritable[state] = inherit_ndx
+                    except ValueError:
+                        continue
+
+                    inheritable[state] = inherit_ndx
                     continue
-                
+
                 inherit_ndx = inheritable.pop(state, None)
                 if inherit_ndx is None:
                     continue
 
                 # Replace the "inherit" value with the items
                 curitems[inherit_ndx:inherit_ndx+1] = items
-                
+
                 try:
                     new_inh_ndx = items.index(inherit)
-                except:
+                except ValueError:
                     new_inh_ndx = -1
-                    
+
                 if new_inh_ndx != -1:
                     inheritable[state] = inherit_ndx + new_inh_ndx
 
         return tokens
-    
+
     def __call__(cls, *args, **kwds):
         """Instantiate cls after preprocessing its token definitions."""
         if '_tokens' not in cls.__dict__:
