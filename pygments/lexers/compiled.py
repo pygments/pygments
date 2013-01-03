@@ -183,6 +183,9 @@ class CLexer(CFamilyLexer):
     mimetypes = ['text/x-chdr', 'text/x-csrc']
     priority = 0.1
 
+    def analyse_text(text):
+        return 0.1
+
 class CppLexer(CFamilyLexer):
     """
     For C++ source code with preprocessor directives.
@@ -219,6 +222,9 @@ class CppLexer(CFamilyLexer):
             (r'\s*(?=>)', Text, '#pop'),
         ],
     }
+
+    def analyse_text(text):
+        return 0.1
 
 class ECLexer(CLexer):
     """
