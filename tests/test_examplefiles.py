@@ -58,6 +58,8 @@ def check_lexer(lx, absfn, outfn):
     text = text.strip(b('\n')) + b('\n')
     try:
         text = text.decode('utf-8')
+        if text.startswith(u'\ufeff'):
+            text = text[len(u'\ufeff'):]
     except UnicodeError:
         text = text.decode('latin1')
     ntext = []

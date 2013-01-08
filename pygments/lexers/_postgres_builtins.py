@@ -41,7 +41,6 @@ def parse_keywords(f):
 
 def parse_datatypes(f):
     dt = set()
-    re_entry = re.compile('\s*<entry><type>([^<]+)</type></entry>')
     for line in f:
         if '<sect1' in line:
             break
