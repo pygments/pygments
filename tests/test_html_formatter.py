@@ -161,8 +161,18 @@ class HtmlFormatterTest(unittest.TestCase):
         fmt.format(tokensource, tfile)
         tfile.close()
 
-    def test_ctags(self): # make sure this is in fact line 165 and the tags file says so
-        fmt = HtmlFormatter(tagsfile='examplefiles/tags', lineanchors="L")
-        outfile = StringIO.StringIO()
-        fmt.format(tokensource, outfile)
-        self.assertTrue('<a href="#L-165">test_ctags</a>' in outfile.getvalue())
+    def test_ctags(self):
+        try:
+            import ctags
+        except ImportError:
+            # we can't check without the ctags module, but at least check the exception
+            self.assertRaises(RuntimeError, HtmlFormatter, tagsfile='support/tags')
+        else:
+            # this tagfile says that test_ctags() is on line 165, even if it isn't
+            # anymore in the actual source
+            fmt = HtmlFormatter(tagsfile='support/tags', lineanchors='L',
+                                tagurlformat='%(fname)s%(fext)s')
+            outfile = StringIO.StringIO()
+            fmt.format(tokensource, outfile)
+            self.assertTrue('<a href="test_html_formatter.py#L-165">test_ctags</a>'
+                            in outfile.getvalue())
