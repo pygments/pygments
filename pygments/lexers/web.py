@@ -791,7 +791,7 @@ class PhpLexer(RegexLexer):
 
     name = 'PHP'
     aliases = ['php', 'php3', 'php4', 'php5']
-    filenames = ['*.php', '*.php[345]']
+    filenames = ['*.php', '*.php[345]', '*.inc']
     mimetypes = ['text/x-php']
 
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
