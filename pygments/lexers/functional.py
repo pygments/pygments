@@ -2437,7 +2437,7 @@ class KokaLexer(RegexLexer):
     # builtin names and special names
     builtin = [
         'for', 'while', 'repeat',
-        'foreach', 'foreach-indexed', 
+        'foreach', 'foreach-indexed',
         'error', 'catch', 'finally',
         'cs', 'js', 'file', 'ref', 'assigned',
     ]

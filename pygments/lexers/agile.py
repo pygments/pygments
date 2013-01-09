@@ -1224,7 +1224,8 @@ class CrocLexer(RegexLexer):
              r'|this|throw|try|vararg|while|with|yield)\b', Keyword),
             (r'(false|true|null)\b', Keyword.Constant),
             # FloatLiteral
-            (r'([0-9][0-9_]*)(?=[.eE])(\.[0-9][0-9_]*)?([eE][+\-]?[0-9_]+)?', Number.Float),
+            (r'([0-9][0-9_]*)(?=[.eE])(\.[0-9][0-9_]*)?([eE][+\-]?[0-9_]+)?',
+             Number.Float),
             # IntegerLiteral
             # -- Binary
             (r'0[bB][01][01_]*', Number),

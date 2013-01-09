@@ -3236,7 +3236,7 @@ class MonkeyLexer(RegexLexer):
     name = 'Monkey'
     aliases = ['monkey']
     filenames = ['*.monkey']
-    mimetypes = ['text/x-monkey'] 
+    mimetypes = ['text/x-monkey']
 
     name_variable = r'[a-z_][a-zA-Z0-9_]*'
     name_function = r'[A-Z][a-zA-Z0-9_]*'
@@ -3310,10 +3310,10 @@ class MonkeyLexer(RegexLexer):
             (r':', Punctuation, 'classname'),
             (r'\s+', Text),
             (r'\(', Punctuation, 'variables'),
-            (r'\)', Punctuation, '#pop') 
+            (r'\)', Punctuation, '#pop')
         ],
         'classname': [
-            (r'%s\.' % name_module, Name.Namespace), 
+            (r'%s\.' % name_module, Name.Namespace),
             (r'%s\b' % keyword_type, Keyword.Type),
             (r'%s\b' % name_class, Name.Class),
             # array (of given size)

@@ -969,7 +969,8 @@ class DtdLexer(RegexLexer):
 
         'attlist': [
             include('common'),
-            (r'CDATA|IDREFS|IDREF|ID|NMTOKENS|NMTOKEN|ENTITIES|ENTITY|NOTATION', Keyword.Constant),
+            (r'CDATA|IDREFS|IDREF|ID|NMTOKENS|NMTOKEN|ENTITIES|ENTITY|NOTATION',
+             Keyword.Constant),
             (r'#REQUIRED|#IMPLIED|#FIXED', Keyword.Constant),
             (r'xml:space|xml:lang', Keyword.Reserved),
             (r'[^>\s\|()?+*,]+', Name.Attribute),

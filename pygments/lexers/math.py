@@ -84,7 +84,8 @@ class JuliaLexer(RegexLexer):
             (r'`(?s).*?`', String.Backtick),
 
             # chars
-            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
+            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|"
+             r"\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
 
             # try to match trailing transpose
             (r'(?<=[.\w\)\]])\'+', Operator),
@@ -1305,7 +1306,7 @@ class StanLexer(RegexLexer):
     filenames = ['*.stan']
 
     _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                 'then', 'else', 'true', 'false', 'T', 
+                 'then', 'else', 'true', 'false', 'T',
                  'lower', 'upper', 'print')
 
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
@@ -1356,7 +1357,7 @@ class StanLexer(RegexLexer):
             # Integer Literals
             (r'-?[0-9]+', Number.Integer),
             # Assignment operators
-            # SLexer makes these tokens Operators. 
+            # SLexer makes these tokens Operators.
             (r'<-|~', Operator),
             # Infix and prefix operators (and = )
             (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),
