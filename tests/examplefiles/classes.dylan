@@ -1,5 +1,6 @@
 module: sample
 comment: for make sure that does not highlight per word.
+         and it continues on to the next line.
 
 define class <car> (<object>)
   slot serial-number :: <integer> = unique-serial-number();
