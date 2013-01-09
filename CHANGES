@@ -6,9 +6,9 @@ Issue numbers refer to the tracker at
 pull request numbers to the requests at
 <http://bitbucket.org/birkenfeld/pygments-main/pull-requests/merged>.
 
-Version 1.6
------------
-(in development, to be released xx January 2013)
+Version 1.6rc1
+--------------
+(released Jan 9, 2013)
 
 - Lexers added:
 
@@ -47,32 +47,32 @@ Version 1.6
   * Xtend (PR#68)
 
 - The HTML formatter now supports linking to tags using CTags files, when the
-  python-ctags package is installed (PR#87)
+  python-ctags package is installed (PR#87).
 
 - The HTML formatter now has a "linespans" option that wraps every line in a
-  <span> tag with a specific id (PR#82)
+  <span> tag with a specific id (PR#82).
 
 - When deriving a lexer from another lexer with token definitions, definitions
   for states not in the child lexer are now inherited.  If you override a state
   in the child lexer, an "inherit" keyword has been added to insert the base
-  state at that position (PR#141)
+  state at that position (PR#141).
 
 - The C family lexers now inherit token definitions from a common base class,
-  removing code duplication (PR#141)
+  removing code duplication (PR#141).
 
-- Use "colorama" on Windows for console color output (PR#142)
+- Use "colorama" on Windows for console color output (PR#142).
 
-- Fix Template Haskell highlighting (PR#63)
+- Fix Template Haskell highlighting (PR#63).
 
-- Fix some S/R lexer errors (PR#91)
+- Fix some S/R lexer errors (PR#91).
 
-- Fix a bug in the Prolog lexer with names that start with 'is' (#810)
+- Fix a bug in the Prolog lexer with names that start with 'is' (#810).
 
-- Rewrite Dylan lexer, add Dylan LID lexer (PR#147)
+- Rewrite Dylan lexer, add Dylan LID lexer (PR#147).
 
-- Add a Java quickstart document (PR#146)
+- Add a Java quickstart document (PR#146).
 
-- Add a "external/autopygmentize" file that can be used as .lessfilter (#802)
+- Add a "external/autopygmentize" file that can be used as .lessfilter (#802).
 
 
 Version 1.5
