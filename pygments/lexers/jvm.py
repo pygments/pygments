@@ -5,7 +5,7 @@
 
     Pygments lexers for JVM languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -675,7 +675,7 @@ class ClojureLexer(RegexLexer):
             (r'::?' + valid_name, String.Symbol),
 
             # special operators
-            (r'~@|[`\'#^~&]', Operator),
+            (r'~@|[`\'#^~&@]', Operator),
 
             # highlight the special forms
             (_multi_escape(special_forms), Keyword),

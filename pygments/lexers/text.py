@@ -5,7 +5,7 @@
 
     Lexers for non-source code file types.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -25,7 +25,7 @@ __all__ = ['IniLexer', 'PropertiesLexer', 'SourcesListLexer', 'BaseMakefileLexer
            'RstLexer', 'VimLexer', 'GettextLexer', 'SquidConfLexer',
            'DebianControlLexer', 'DarcsPatchLexer', 'YamlLexer',
            'LighttpdConfLexer', 'NginxConfLexer', 'CMakeLexer', 'HttpLexer',
-           'PyPyLogLexer', 'RegeditLexer']
+           'PyPyLogLexer', 'RegeditLexer', 'HxmlLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1749,8 +1749,8 @@ class PyPyLogLexer(RegexLexer):
         ],
         "jit-log": [
             (r"\[\w+\] jit-log-.*?}$", Keyword, "#pop"),
-
             (r"^\+\d+: ", Comment),
+            (r"--end of the loop--", Comment),
             (r"[ifp]\d+", Name),
             (r"ptr\d+", Name),
             (r"(\()(\w+(?:\.\w+)?)(\))",
@@ -1760,7 +1760,7 @@ class PyPyLogLexer(RegexLexer):
             (r"-?\d+", Number.Integer),
             (r"'.*'", String),
             (r"(None|descr|ConstClass|ConstPtr|TargetToken)", Name),
-            (r"<.*?>", Name.Builtin),
+            (r"<.*?>+", Name.Builtin),
             (r"(label|debug_merge_point|jump|finish)", Name.Class),
             (r"(int_add_ovf|int_add|int_sub_ovf|int_sub|int_mul_ovf|int_mul|"
              r"int_floordiv|int_mod|int_lshift|int_rshift|int_and|int_or|"
@@ -1799,4 +1799,45 @@ class PyPyLogLexer(RegexLexer):
             (r"\s+", Text),
             (r"#.*?$", Comment),
         ],
+    }
+
+
+class HxmlLexer(RegexLexer):
+    """
+    Lexer for `haXe build <http://haxe.org/doc/compiler>`_ files.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'Hxml'
+    aliases = ['haxeml', 'hxml']
+    filenames = ['*.hxml']
+
+    tokens = {
+        'root': [
+            # Seperator
+            (r'(--)(next)', bygroups(Punctuation, Generic.Heading)),
+            # Compiler switches with one dash
+            (r'(-)(prompt|debug|v)', bygroups(Punctuation, Keyword.Keyword)),
+            # Compilerswitches with two dashes
+            (r'(--)(neko-source|flash-strict|flash-use-stage|no-opt|no-traces|'
+             r'no-inline|times|no-output)', bygroups(Punctuation, Keyword)),
+            # Targets and other options that take an argument
+            (r'(-)(cpp|js|neko|x|as3|swf9?|swf-lib|php|xml|main|lib|D|resource|'
+             r'cp|cmd)( +)(.+)',
+             bygroups(Punctuation, Keyword, Whitespace, String)), 
+            # Options that take only numerical arguments
+            (r'(-)(swf-version)( +)(\d+)',
+             bygroups(Punctuation, Keyword, Number.Integer)),
+            # An Option that defines the size, the fps and the background 
+            # color of an flash movie
+            (r'(-)(swf-header)( +)(\d+)(:)(\d+)(:)(\d+)(:)([A-Fa-f0-9]{6})', 
+             bygroups(Punctuation, Keyword, Whitespace, Number.Integer,
+                      Punctuation, Number.Integer, Punctuation, Number.Integer,
+                      Punctuation, Number.Hex)), 
+            # options with two dashes that takes arguments
+            (r'(--)(js-namespace|php-front|php-lib|remap|gen-hx-classes)( +)'
+             r'(.+)', bygroups(Punctuation, Keyword, Whitespace, String)), 
+            # Single line comment, multiline ones are not allowed.
+            (r'#.*', Comment.Single) 
+        ]
     }
