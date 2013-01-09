@@ -3192,8 +3192,8 @@ class PuppetLexer(RegexLexer):
         ],
 
         'operators': [
-            (r'(=>|\?|<|>|=|\+|-|\/|\*|~|!|\|)', Operator),
-            (r'\s+(in|and|or|not)\s+', Operator.Word),
+            (r'(=>|\?|<|>|=|\+|-|/|\*|~|!|\|)', Operator),
+            (r'(in|and|or|not)\b', Operator.Word),
         ],
 
         'names': [
@@ -3216,34 +3216,24 @@ class PuppetLexer(RegexLexer):
         'keywords': [
             # Left out 'group' and 'require'
             # Since they're often used as attributes
-            (r'(?i)\s(absent|alert|alias|audit|augeas|before)\s', Keyword),
-            (r'(?i)\s(case|check|class|computer|configured)\s', Keyword),
-            (r'(?i)\s(contained|create_resources|crit|cron)\s', Keyword),
-            (r'(?i)\s(debug|default|define|defined|directory)\s', Keyword),
-            (r'(?i)\s(else|elsif|emerg|err|exec|extlookup)\s', Keyword),
-            (r'(?i)\s(fail|false|file|filebucket|fqdn_rand)\s', Keyword),
-            (r'(?i)\s(generate|host|if|import|include|info)\s', Keyword),
-            (r'(?i)\s(inherits|inline_template|installed)\s', Keyword),
-            (r'(?i)\s(interface|k5login|latest|link|loglevel)\s', Keyword),
-            (r'(?i)\s(macauthorization|mailalias|maillist)\s', Keyword),
-            (r'(?i)\s(mcx|md5|mount|mounted|nagios_command)\s', Keyword),
-            (r'(?i)\s(nagios_contact|nagios_contactgroup)\s', Keyword),
-            (r'(?i)\s(nagios_host|nagios_hostdependency)\s', Keyword),
-            (r'(?i)\s(nagios_hostescalation|nagios_hostextinfo)\s', Keyword),
-            (r'(?i)\s(nagios_hostgroup|nagios_service)\s', Keyword),
-            (r'(?i)\s(nagios_servicedependency)\s', Keyword),
-            (r'(?i)\s(nagios_serviceescalation)\s', Keyword),
-            (r'(?i)\s(nagios_serviceextinfo)\s', Keyword),
-            (r'(?i)\s(nagios_servicegroup|nagios_timeperiod)\s', Keyword),
-            (r'(?i)\s(node|noop|notice|notify)\s', Keyword),
-            (r'(?i)\s(package|present|purged|realize|regsubst)\s', Keyword),
-            (r'(?i)\s(resources|role|router|running)\s', Keyword),
-            (r'(?i)\s(schedule|scheduled_task|search|selboolean)\s', Keyword),
-            (r'(?i)\s(selmodule|service|sha1|shellquote|split)\s', Keyword),
-            (r'(?i)\s(sprintf|ssh_authorized_key|sshkey|stage)\s', Keyword),
-            (r'(?i)\s(stopped|subscribe|tag|tagged|template|tidy)\s', Keyword),
-            (r'(?i)\s(true|undef|unmounted|user|versioncmp|vlan)\s', Keyword),
-            (r'(?i)\s(warning|yumrepo|zfs|zone|zpool)\s', Keyword),
+            (r'(?i)(absent|alert|alias|audit|augeas|before|case|check|class|'
+             r'computer|configured|contained|create_resources|crit|cron|debug|'
+             r'default|define|defined|directory|else|elsif|emerg|err|exec|'
+             r'extlookup|fail|false|file|filebucket|fqdn_rand|generate|host|if|'
+             r'import|include|info|inherits|inline_template|installed|'
+             r'interface|k5login|latest|link|loglevel|macauthorization|'
+             r'mailalias|maillist|mcx|md5|mount|mounted|nagios_command|'
+             r'nagios_contact|nagios_contactgroup|nagios_host|'
+             r'nagios_hostdependency|nagios_hostescalation|nagios_hostextinfo|'
+             r'nagios_hostgroup|nagios_service|nagios_servicedependency|'
+             r'nagios_serviceescalation|nagios_serviceextinfo|'
+             r'nagios_servicegroup|nagios_timeperiod|node|noop|notice|notify|'
+             r'package|present|purged|realize|regsubst|resources|role|router|'
+             r'running|schedule|scheduled_task|search|selboolean|selmodule|'
+             r'service|sha1|shellquote|split|sprintf|ssh_authorized_key|sshkey|'
+             r'stage|stopped|subscribe|tag|tagged|template|tidy|true|undef|'
+             r'unmounted|user|versioncmp|vlan|warning|yumrepo|zfs|zone|'
+             r'zpool)\b', Keyword),
         ],
 
         'strings': [
