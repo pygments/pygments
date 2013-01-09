@@ -296,7 +296,7 @@ class HtmlFormatter(Formatter):
     `linespans`
         If set to a nonempty string, e.g. ``foo``, the formatter will wrap each
         output line in a span tag with an ``id`` of ``foo-linenumber``.
-        This allows easy access to lines via javascript.
+        This allows easy access to lines via javascript. *New in Pygments 1.6.*
 
     `anchorlinenos`
         If set to `True`, will wrap line numbers in <a> tags. Used in
@@ -306,11 +306,13 @@ class HtmlFormatter(Formatter):
         If set to the path of a ctags file, wrap names in anchor tags that
         link to their definitions. `lineanchors` should be used, and the
         tags file should specify line numbers (see the `-n` option to ctags).
+        *New in Pygments 1.6.*
 
     `tagurlformat`
         A string formatting pattern used to generate links to ctags definitions.
         Avaliabe variable are `%(path)s`, `%(fname)s` and `%(fext)s`.
         Defaults to an empty string, resulting in just `#prefix-number` links.
+        *New in Pygments 1.6.*
 
 
     **Subclassing the HTML formatter**

@@ -46,6 +46,9 @@ Version 1.6
 - The HTML formatter now supports linking to tags using CTags files, when the
   python-ctags package is installed (PR#87)
 
+- The HTML formatter now has a "linespans" option that wraps every line in a
+  <span> tag with a specific id (PR#82)
+
 - When deriving a lexer from another lexer with token definitions, definitions
   for states not in the child lexer are now inherited.  If you override a state
   in the child lexer, an "inherit" keyword has been added to insert the base
