@@ -1122,8 +1122,7 @@ class DylanLexer(RegexLexer):
     valid_name = '\\\\?[a-zA-Z0-9' + re.escape('!&*<>|^$%@_-+~?/=') + ']+'
 
     def get_tokens_unprocessed(self, text):
-        stack = ['root']
-        for index, token, value in RegexLexer.get_tokens_unprocessed(self, text, stack):
+        for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):
             if token is Name:
                 if value in self.builtins:
                     yield index, Name.Builtin, value
@@ -1230,6 +1229,8 @@ class DylanLexer(RegexLexer):
 class DylanLidLexer(RegexLexer):
     """
     For Dylan LID (Library Interchange Definition) files.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'DylanLID'
@@ -1249,7 +1250,7 @@ class DylanLidLexer(RegexLexer):
 
             # lid header
             (r'(.*?)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
-                bygroups(Name.Attribute, Operator, Text, String)),
+             bygroups(Name.Attribute, Operator, Text, String)),
         ]
     }
 
