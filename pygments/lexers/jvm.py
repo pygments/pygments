@@ -5,7 +5,7 @@
 
     Pygments lexers for JVM languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -21,7 +21,7 @@ from pygments import unistring as uni
 
 __all__ = ['JavaLexer', 'ScalaLexer', 'GosuLexer', 'GosuTemplateLexer',
            'GroovyLexer', 'IokeLexer', 'ClojureLexer', 'KotlinLexer',
-           'XtendLexer', 'AspectJLexer']
+           'XtendLexer', 'AspectJLexer', 'CeylonLexer']
 
 
 class JavaLexer(RegexLexer):
@@ -60,13 +60,13 @@ class JavaLexer(RegexLexer):
             (r'(class|interface)(\s+)', bygroups(Keyword.Declaration, Text), 'class'),
             (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
             (r'"(\\\\|\\"|[^"])*"', String),
-            (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
+            (r"'\\.'|'[^\\]'|'\\u[0-9a-fA-F]{4}'", String.Char),
             (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
             (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
             (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
             (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?-]', Operator),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
-            (r'0x[0-9a-f]+', Number.Hex),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+L?', Number.Integer),
             (r'\n', Text)
         ],
@@ -161,7 +161,7 @@ class ScalaLexer(RegexLexer):
             (r'(type)(\s+)', bygroups(Keyword, Text), 'type'),
             (r'""".*?"""(?!")', String),
             (r'"(\\\\|\\"|[^"])*"', String),
-            (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
+            (r"'\\.'|'[^\\]'|'\\u[0-9a-fA-F]{4}'", String.Char),
 #            (ur'(\.)(%s|%s|`[^`]+`)' % (idrest, op), bygroups(Operator,
 #             Name.Attribute)),
             (idrest, Name),
@@ -171,7 +171,7 @@ class ScalaLexer(RegexLexer):
             (op, Operator),
             (r'([0-9][0-9]*\.[0-9]*|\.[0-9]+)([eE][+-]?[0-9]+)?[fFdD]?',
              Number.Float),
-            (r'0x[0-9a-f]+', Number.Hex),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+L?', Number.Integer),
             (r'\n', Text)
         ],
@@ -357,13 +357,13 @@ class GroovyLexer(RegexLexer):
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r'\$/((?!/\$).)*/\$', String),
             (r'/(\\\\|\\"|[^/])*/', String),
-            (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
+            (r"'\\.'|'[^\\]'|'\\u[0-9a-fA-F]{4}'", String.Char),
             (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
             (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
             (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
             (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?-]', Operator),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
-            (r'0x[0-9a-f]+', Number.Hex),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+L?', Number.Integer),
             (r'\n', Text)
         ],
@@ -675,7 +675,7 @@ class ClojureLexer(RegexLexer):
             (r'::?' + valid_name, String.Symbol),
 
             # special operators
-            (r'~@|[`\'#^~&]', Operator),
+            (r'~@|[`\'#^~&@]', Operator),
 
             # highlight the special forms
             (_multi_escape(special_forms), Keyword),
@@ -742,7 +742,7 @@ class TeaLangLexer(RegexLexer):
             (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
             (r'(isa|[.]{3}|[.]{2}|[=#!<>+-/%&;,.\*\\\(\)\[\]\{\}])', Operator),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
-            (r'0x[0-9a-f]+', Number.Hex),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+L?', Number.Integer),
             (r'\n', Text)
         ],
@@ -754,6 +754,69 @@ class TeaLangLexer(RegexLexer):
         ],
     }
 
+class CeylonLexer(RegexLexer):
+    """
+    For `Ceylon <http://ceylon-lang.org/>`_ source code.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'Ceylon'
+    aliases = ['ceylon']
+    filenames = ['*.ceylon']
+    mimetypes = ['text/x-ceylon']
+
+    flags = re.MULTILINE | re.DOTALL
+
+    #: optional Comment or Whitespace
+    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+
+    tokens = {
+        'root': [
+            # method names
+            (r'^(\s*(?:[a-zA-Z_][a-zA-Z0-9_\.\[\]]*\s+)+?)' # return arguments
+             r'([a-zA-Z_][a-zA-Z0-9_]*)'                    # method name
+             r'(\s*)(\()',                                  # signature start
+             bygroups(using(this), Name.Function, Text, Operator)),
+            (r'[^\S\n]+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'(variable|shared|abstract|doc|by|formal|actual)', Name.Decorator),
+            (r'(break|case|catch|continue|default|else|finally|for|in|variable|'
+             r'if|return|switch|this|throw|try|while|is|exists|nonempty|then|outer)\b',
+             Keyword),
+            (r'(abstracts|extends|satisfies|adapts|'
+             r'super|given|of|out|assign|'
+             r'transient|volatile)\b', Keyword.Declaration),
+            (r'(function|value|void)\b',
+             Keyword.Type),
+            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text)),
+            (r'(true|false|null)\b', Keyword.Constant),
+            (r'(class|interface|object)(\s+)', bygroups(Keyword.Declaration, Text), 'class'),
+            (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'\\.'|'[^\\]'|'\\u[0-9a-fA-F]{4}'", String.Quoted),
+            (r"`\\.`|`[^\\]`|`\\u[0-9a-fA-F]{4}`", String.Char),
+            (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(Operator, Name.Attribute)),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
+            (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
+            (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?-]', Operator),
+            (r'\d{1,3}(_\d{3})+\.\d{1,3}(_\d{3})+[kMGTPmunpf]?', Number.Float),
+            (r'\d{1,3}(_\d{3})+\.[0-9]+([eE][+-]?[0-9]+)?[kMGTPmunpf]?', Number.Float),
+            (r'[0-9][0-9]*\.\d{1,3}(_\d{3})+[kMGTPmunpf]?', Number.Float),
+            (r'[0-9][0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[kMGTPmunpf]?', Number.Float),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'\d{1,3}(_\d{3})+[kMGTP]?', Number.Integer),
+            (r'[0-9]+[kMGTP]?', Number.Integer),
+            (r'\n', Text)
+        ],
+        'class': [
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+        ],
+        'import': [
+            (r'[a-zA-Z0-9_.]+\w+ \{([a-zA-Z,]+|\.\.\.)\}', Name.Namespace, '#pop')
+        ],
+    }
 
 class KotlinLexer(RegexLexer):
     """
@@ -914,7 +977,7 @@ class XtendLexer(RegexLexer):
             (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
             (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?-]', Operator),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
-            (r'0x[0-9a-f]+', Number.Hex),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+L?', Number.Integer),
             (r'\n', Text)
         ],

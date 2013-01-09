@@ -5,7 +5,7 @@
 
     Lexers for agile languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -77,7 +77,7 @@ class PythonLexer(RegexLexer):
         'keywords': [
             (r'(assert|break|continue|del|elif|else|except|exec|'
              r'finally|for|global|if|lambda|pass|print|raise|'
-             r'return|try|while|yield|as|with)\b', Keyword),
+             r'return|try|while|yield(\s+from)?|as|with)\b', Keyword),
         ],
         'builtins': [
             (r'(?<!\.)(__import__|abs|all|any|apply|basestring|bin|bool|buffer|'
@@ -208,7 +208,8 @@ class Python3Lexer(RegexLexer):
     tokens['keywords'] = [
         (r'(assert|break|continue|del|elif|else|except|'
          r'finally|for|global|if|lambda|pass|raise|nonlocal|'
-         r'return|try|while|yield|as|with|True|False|None)\b', Keyword),
+         r'return|try|while|yield(\s+from)?|as|with|True|False|None)\b',
+         Keyword),
     ]
     tokens['builtins'] = [
         (r'(?<!\.)(__import__|abs|all|any|bin|bool|bytearray|bytes|'
@@ -264,6 +265,7 @@ class Python3Lexer(RegexLexer):
         (r'(\s+)(import)\b', bygroups(Text, Keyword), '#pop'),
         (r'\.', Name.Namespace),
         (uni_name, Name.Namespace),
+        (r'', Text, '#pop'),
     ]
     # don't highlight "%s" substitutions
     tokens['strings'] = [
@@ -391,7 +393,7 @@ class PythonTracebackLexer(RegexLexer):
              bygroups(Text, using(PythonLexer), Text)),
             (r'^([ \t]*)(\.\.\.)(\n)',
              bygroups(Text, Comment, Text)), # for doctests...
-            (r'^(.+)(: )(.+)(\n)',
+            (r'^([^:]+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
             (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
              bygroups(Generic.Error, Text), '#pop')
@@ -427,7 +429,7 @@ class Python3TracebackLexer(RegexLexer):
              bygroups(Text, using(Python3Lexer), Text)),
             (r'^([ \t]*)(\.\.\.)(\n)',
              bygroups(Text, Comment, Text)), # for doctests...
-            (r'^(.+)(: )(.+)(\n)',
+            (r'^([^:]+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
             (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
              bygroups(Generic.Error, Text), '#pop')
@@ -519,6 +521,8 @@ class RubyLexer(ExtendedRegexLexer):
             (r":'(\\\\|\\'|[^'])*'", String.Symbol),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r':"', String.Symbol, 'simple-sym'),
+            (r'([a-zA-Z_][a-zA-Z0-9]*)(:)',
+             bygroups(String.Symbol, Punctuation)),  # Since Ruby 1.9
             (r'"', String.Double, 'simple-string'),
             (r'(?<!\.)`', String.Backtick, 'simple-backtick'),
         ]
@@ -648,7 +652,7 @@ class RubyLexer(ExtendedRegexLexer):
             (r'(<<-?)("|\')()(\2)(.*?\n)', heredoc_callback),
             (r'__END__', Comment.Preproc, 'end-part'),
             # multiline regex (after keywords or assignments)
-            (r'(?:^|(?<=[=<>~!])|'
+            (r'(?:^|(?<=[=<>~!:])|'
                  r'(?<=(?:\s|;)when\s)|'
                  r'(?<=(?:\s|;)or\s)|'
                  r'(?<=(?:\s|;)and\s)|'
@@ -1220,7 +1224,8 @@ class CrocLexer(RegexLexer):
              r'|this|throw|try|vararg|while|with|yield)\b', Keyword),
             (r'(false|true|null)\b', Keyword.Constant),
             # FloatLiteral
-            (r'([0-9][0-9_]*)(?=[.eE])(\.[0-9][0-9_]*)?([eE][+\-]?[0-9_]+)?', Number.Float),
+            (r'([0-9][0-9_]*)(?=[.eE])(\.[0-9][0-9_]*)?([eE][+\-]?[0-9_]+)?',
+             Number.Float),
             # IntegerLiteral
             # -- Binary
             (r'0[bB][01][01_]*', Number),
@@ -1821,6 +1826,8 @@ class DgLexer(RegexLexer):
     Lexer for `dg <http://pyos.github.com/dg>`_,
     a functional and object-oriented programming language
     running on the CPython 3 VM.
+
+    *New in Pygments 1.6.*
     """
     name = 'dg'
     aliases = ['dg']
@@ -1849,7 +1856,7 @@ class DgLexer(RegexLexer):
             (r"`\w+'*`", Operator), # Infix links
             #   Reserved infix links
             (r'\b(or|and|if|else|where|is|in)\b', Operator.Word),
-            (r'[!$%&*+\--/:<-@\\^|~;,]+', Operator),
+            (r'[!$%&*+\-./:<-@\\^|~;,]+', Operator),
             #  Identifiers
             #   Python 3 types
             (r"(?<!\.)(bool|bytearray|bytes|classmethod|complex|dict'?|"
