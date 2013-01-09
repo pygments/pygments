@@ -14,11 +14,10 @@
 
 import sys, os
 
-try:
-    import pygments
-except ImportError:
-    # try parent path
-    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+# always prefer Pygments from source if exists
+srcpath = os.path.join(os.path.dirname(__file__), '..')
+if os.path.isdir(os.path.join(srcpath, 'pygments')):
+    sys.path.insert(0, srcpath)
 
 
 from pygments.lexer import RegexLexer
