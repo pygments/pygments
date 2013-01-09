@@ -5,7 +5,7 @@
 
     Lexers for .net languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re
@@ -22,10 +22,6 @@ from pygments.lexers.web import XmlLexer
 __all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
            'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer']
 
-
-def _escape(st):
-    return st.replace(u'\\', ur'\\').replace(u'-', ur'\-').\
-           replace(u'[', ur'\[').replace(u']', ur'\]')
 
 class CSharpLexer(RegexLexer):
     """
@@ -67,10 +63,9 @@ class CSharpLexer(RegexLexer):
                   '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
                   uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
         'full': ('@?(?:_|[^' +
-                 _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl')) + '])'
-                 + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
-                                                'Nl', 'Nd', 'Pc', 'Cf', 'Mn',
-                                                'Mc')) + ']*'),
+                 uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])'
+                 + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                        'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     }
 
     tokens = {}
@@ -88,7 +83,7 @@ class CSharpLexer(RegexLexer):
                 (r'[^\S\n]+', Text),
                 (r'\\\n', Text), # line continuation
                 (r'//.*?\n', Comment.Single),
-                (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+                (r'/[*].*?[*]/', Comment.Multiline),
                 (r'\n', Text),
                 (r'[~!%^&*()+=|\[\]:;,.<>/?-]', Punctuation),
                 (r'[{}]', Punctuation),
@@ -179,11 +174,10 @@ class NemerleLexer(RegexLexer):
         basic = ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
                  '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
                  uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
-        full = ('@?(?:_|[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm',
-                                                    'Lo', 'Nl')) + '])'
-                + '[^' + _escape(uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
-                                               'Nl', 'Nd', 'Pc', 'Cf', 'Mn',
-                                               'Mc')) + ']*'),
+        full = ('@?(?:_|[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
+                                            'Nl') + '])'
+                + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                       'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     )
 
     tokens = {}
