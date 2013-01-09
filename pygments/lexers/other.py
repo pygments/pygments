@@ -3369,7 +3369,8 @@ class RPMSpecLexer(RegexLexer):
     filenames = ['*.spec']
     mimetypes = ['text/x-rpm-spec']
 
-    _directives = '(?:package|prep|build|install|clean|check|pre[a-z]*|post[a-z]*|trigger[a-z]*|files)'
+    _directives = ('(?:package|prep|build|install|clean|check|pre[a-z]*|'
+                   'post[a-z]*|trigger[a-z]*|files)')
 
     tokens = {
         'root': [
@@ -3377,13 +3378,15 @@ class RPMSpecLexer(RegexLexer):
             include('basic'),
         ],
         'description': [
-            (r'^(%' + _directives + ')(.*)$', bygroups(Name.Decorator, Text), '#pop'),
+            (r'^(%' + _directives + ')(.*)$',
+             bygroups(Name.Decorator, Text), '#pop'),
             (r'\n', Text),
             (r'.', Text),
         ],
         'changelog': [
             (r'\*.*\n', Generic.Subheading),
-            (r'^(%' + _directives + ')(.*)$', bygroups(Name.Decorator, Text), '#pop'),
+            (r'^(%' + _directives + ')(.*)$',
+             bygroups(Name.Decorator, Text), '#pop'),
             (r'\n', Text),
             (r'.', Text),
         ],
@@ -3395,9 +3398,10 @@ class RPMSpecLexer(RegexLexer):
         ],
         'basic': [
             include('macro'),
-            (r'(?i)^(Name|Version|Release|Epoch|Summary|Group|License|Packager|Vendor|Icon|URL|'
-             r'Distribution|Prefix|Patch[0-9]*|Source[0-9]*|Requires\(?[a-z]*\)?|[A-Za-z]+Req|'
-             r'Obsoletes|Provides|Conflicts|Build[A-Za-z]+|[A-Za-z]+Arch|Auto[A-Za-z]+)(:)(.*)$',
+            (r'(?i)^(Name|Version|Release|Epoch|Summary|Group|License|Packager|'
+             r'Vendor|Icon|URL|Distribution|Prefix|Patch[0-9]*|Source[0-9]*|'
+             r'Requires\(?[a-z]*\)?|[A-Za-z]+Req|Obsoletes|Provides|Conflicts|'
+             r'Build[A-Za-z]+|[A-Za-z]+Arch|Auto[A-Za-z]+)(:)(.*)$',
              bygroups(Generic.Heading, Punctuation, using(this))),
             (r'^%description', Name.Decorator, 'description'),
             (r'^%changelog', Name.Decorator, 'changelog'),
@@ -3413,7 +3417,8 @@ class RPMSpecLexer(RegexLexer):
         'macro': [
             (r'%define.*\n', Comment.Preproc),
             (r'%\{\!\?.*%define.*\}', Comment.Preproc),
-            (r'(%(?:if(?:n?arch)?|else(?:if)?|endif))(.*)$', bygroups(Comment.Preproc, Text)),
+            (r'(%(?:if(?:n?arch)?|else(?:if)?|endif))(.*)$',
+             bygroups(Comment.Preproc, Text)),
         ],
         'interpol': [
             (r'%\{?__[a-z_]+\}?', Name.Function),
