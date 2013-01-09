@@ -5,12 +5,13 @@
 
     Lexers for math languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
+from pygments.util import shebang_matches
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
     combined, do_insertions
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
@@ -27,6 +28,11 @@ __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
 
 
 class JuliaLexer(RegexLexer):
+    """
+    For `Julia <http://julialang.org/>`_ source code.
+
+    *New in Pygments 1.6.*
+    """
     name = 'Julia'
     aliases = ['julia','jl']
     filenames = ['*.jl']
@@ -78,7 +84,8 @@ class JuliaLexer(RegexLexer):
             (r'`(?s).*?`', String.Backtick),
 
             # chars
-            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
+            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|"
+             r"\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
 
             # try to match trailing transpose
             (r'(?<=[.\w\)\]])\'+', Operator),
@@ -92,8 +99,8 @@ class JuliaLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
             # numbers
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-            (r'\d+[eE][+-]?[0-9]+', Number.Float),
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'0b[01]+', Number.Binary),
             (r'0o[0-7]+', Number.Oct),
             (r'0x[a-fA-F0-9]+', Number.Hex),
@@ -137,6 +144,8 @@ line_re  = re.compile('.*?\n')
 class JuliaConsoleLexer(Lexer):
     """
     For Julia console sessions. Modeled after MatlabSessionLexer.
+
+    *New in Pygments 1.6.*
     """
     name = 'Julia console'
     aliases = ['jlcon']
@@ -334,6 +343,10 @@ class MatlabLexer(RegexLexer):
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
+
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
 
             (r'(?<![\w\)\]])\'', String, 'string'),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
@@ -781,6 +794,10 @@ class OctaveLexer(RegexLexer):
 
             (r'"[^"]*"', String),
 
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
+
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
@@ -851,6 +868,10 @@ class ScilabLexer(RegexLexer):
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
             (r'(?<![\w\)\]])\'', String, 'string'),
+
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
 
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
@@ -1092,7 +1113,8 @@ class SLexer(RegexLexer):
 
 class BugsLexer(RegexLexer):
     """
-    Pygments Lexer for OpenBugs and WinBugs models.
+    Pygments Lexer for `OpenBugs <http://www.openbugs.info/w/>`_ and WinBugs
+    models.
 
     *New in Pygments 1.6.*
     """
@@ -1155,7 +1177,7 @@ class BugsLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
             # Block start
-            (r'(?s)(model)(\s+)({)',
+            (r'(model)(\s+)({)',
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
             (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
@@ -1237,7 +1259,7 @@ class JagsLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
             # Block start
-            (r'(?s)(model|data)(\s+)({)',
+            (r'(model|data)(\s+)({)',
              bygroups(Keyword.Namespace, Text, Punctuation)),
             (r'var(?![0-9a-zA-Z\._])', Keyword.Declaration),
             # Reserved Words
@@ -1284,7 +1306,7 @@ class StanLexer(RegexLexer):
     filenames = ['*.stan']
 
     _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                 'then', 'else', 'true', 'false', 'T', 
+                 'then', 'else', 'true', 'false', 'T',
                  'lower', 'upper', 'print')
 
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
@@ -1307,7 +1329,7 @@ class StanLexer(RegexLexer):
             # block start
             include('whitespace'),
             # Block start
-            (r'(?s)(%s)(\s*)({)' %
+            (r'(%s)(\s*)({)' %
              r'|'.join(('data', r'transformed\s+?data',
                         'parameters', r'transformed\s+parameters',
                         'model', r'generated\s+quantities')),
@@ -1335,7 +1357,7 @@ class StanLexer(RegexLexer):
             # Integer Literals
             (r'-?[0-9]+', Number.Integer),
             # Assignment operators
-            # SLexer makes these tokens Operators. 
+            # SLexer makes these tokens Operators.
             (r'<-|~', Operator),
             # Infix and prefix operators (and = )
             (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),
