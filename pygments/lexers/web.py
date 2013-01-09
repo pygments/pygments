@@ -3360,11 +3360,12 @@ class QmlLexer(RegexLexer):
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
 
-            #QML insertions
-            (r'\bid\s*:\s*[A-Za-z][_A-Za-z.0-9]*',Keyword.Declaration, 'slashstartsregex'),
+            # QML insertions
+            (r'\bid\s*:\s*[A-Za-z][_A-Za-z.0-9]*',Keyword.Declaration,
+             'slashstartsregex'),
             (r'\b[A-Za-z][_A-Za-z.0-9]*\s*:',Keyword, 'slashstartsregex'),
 
-             #the rest from JavascriptLexer
+            # the rest from JavascriptLexer
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|void|'
              r'this)\b', Keyword, 'slashstartsregex'),
