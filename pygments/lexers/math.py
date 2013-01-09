@@ -5,12 +5,13 @@
 
     Lexers for math languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
+from pygments.util import shebang_matches
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
     combined, do_insertions
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
@@ -18,13 +19,20 @@ from pygments.token import Comment, String, Punctuation, Keyword, Name, \
 
 from pygments.lexers.agile import PythonLexer
 from pygments.lexers import _scilab_builtins
+from pygments.lexers import _stan_builtins
 
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
            'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
-           'RConsoleLexer', 'SLexer']
+           'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer',
+           'IDLLexer', 'RdLexer']
 
 
 class JuliaLexer(RegexLexer):
+    """
+    For `Julia <http://julialang.org/>`_ source code.
+
+    *New in Pygments 1.6.*
+    """
     name = 'Julia'
     aliases = ['julia','jl']
     filenames = ['*.jl']
@@ -76,10 +84,11 @@ class JuliaLexer(RegexLexer):
             (r'`(?s).*?`', String.Backtick),
 
             # chars
-            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
+            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|"
+             r"\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
 
             # try to match trailing transpose
-            (r'(?<=[.\w\)\]])\'', Operator),
+            (r'(?<=[.\w\)\]])\'+', Operator),
 
             # strings
             (r'(?:[IL])"', String, 'string'),
@@ -90,10 +99,11 @@ class JuliaLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
             # numbers
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-            (r'\d+[eE][+-]?[0-9]+', Number.Float),
-            (r'0[0-7]+', Number.Oct),
-            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'0b[01]+', Number.Binary),
+            (r'0o[0-7]+', Number.Oct),
+            (r'0x[a-fA-F0-9]+', Number.Hex),
             (r'\d+', Number.Integer)
         ],
 
@@ -134,6 +144,8 @@ line_re  = re.compile('.*?\n')
 class JuliaConsoleLexer(Lexer):
     """
     For Julia console sessions. Modeled after MatlabSessionLexer.
+
+    *New in Pygments 1.6.*
     """
     name = 'Julia console'
     aliases = ['jlcon']
@@ -251,7 +263,6 @@ class MuPADLexer(RegexLexer):
 class MatlabLexer(RegexLexer):
     """
     For Matlab source code.
-    Contributed by Ken Schutte <kschutte@csail.mit.edu>.
 
     *New in Pygments 0.10.*
     """
@@ -306,6 +317,7 @@ class MatlabLexer(RegexLexer):
             # line starting with '!' is sent as a system command.  not sure what
             # label to use...
             (r'^!.*', String.Other),
+            (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'%.*$', Comment),
             (r'^\s*function', Keyword, 'deffunc'),
 
@@ -315,6 +327,9 @@ class MatlabLexer(RegexLexer):
              r'persistent|properties|return|spmd|switch|try|while)\b', Keyword),
 
             ("(" + "|".join(elfun+specfun+elmat) + r')\b',  Name.Builtin),
+
+            # line continuation with following comment:
+            (r'\.\.\..*$', Comment),
 
             # operators:
             (r'-|==|~=|<|>|<=|>=|&&|&|~|\|\|?', Operator),
@@ -329,12 +344,21 @@ class MatlabLexer(RegexLexer):
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
 
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
+
             (r'(?<![\w\)\]])\'', String, 'string'),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
         ],
         'string': [
             (r'[^\']*\'', String, '#pop')
+        ],
+        'blockcomment': [
+            (r'^\s*%\}', Comment.Multiline, '#pop'),
+            (r'^.*\n', Comment.Multiline),
+            (r'.', Comment.Multiline),
         ],
         'deffunc': [
             (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
@@ -770,6 +794,10 @@ class OctaveLexer(RegexLexer):
 
             (r'"[^"]*"', String),
 
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
+
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
@@ -840,6 +868,10 @@ class ScilabLexer(RegexLexer):
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
             (r'(?<![\w\)\]])\'', String, 'string'),
+
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
 
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
@@ -1002,43 +1034,50 @@ class SLexer(RegexLexer):
 
     name = 'S'
     aliases = ['splus', 's', 'r']
-    filenames = ['*.S', '*.R']
-    mimetypes = ['text/S-plus', 'text/S', 'text/R']
+    filenames = ['*.S', '*.R', '.Rhistory', '.Rprofile']
+    mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
+                 'text/x-R', 'text/x-r-history', 'text/x-r-profile']
 
     tokens = {
         'comments': [
             (r'#.*$', Comment.Single),
         ],
         'valid_name': [
-            (r'[a-zA-Z][0-9a-zA-Z\._]+', Text),
-            (r'`.+`', String.Backtick),
+            (r'[a-zA-Z][0-9a-zA-Z\._]*', Text),
+            # can begin with ., but not if that is followed by a digit
+            (r'\.[a-zA-Z_][0-9a-zA-Z\._]*', Text),
         ],
         'punctuation': [
-            (r'\[|\]|\[\[|\]\]|\$|\(|\)|@|:::?|;|,', Punctuation),
+            (r'\[{1,2}|\]{1,2}|\(|\)|;|,', Punctuation),
         ],
         'keywords': [
-            (r'for(?=\s*\()|while(?=\s*\()|if(?=\s*\()|(?<=\s)else|'
-             r'(?<=\s)break(?=;|$)|return(?=\s*\()|function(?=\s*\()',
+            (r'(if|else|for|while|repeat|in|next|break|return|switch|function)'
+             r'(?![0-9a-zA-Z\._])',
              Keyword.Reserved)
         ],
         'operators': [
-            (r'<-|-|==|<=|>=|<|>|&&|&|!=|\|\|?', Operator),
-            (r'\*|\+|\^|/|%%|%/%|=', Operator),
-            (r'%in%|%*%', Operator)
+            (r'<<?-|->>?|-|==|<=|>=|<|>|&&?|!=|\|\|?|\?', Operator),
+            (r'\*|\+|\^|/|!|%[^%]*%|=|~|\$|@|:{1,3}', Operator)
         ],
         'builtin_symbols': [
-            (r'(NULL|NA|TRUE|FALSE|NaN)\b', Keyword.Constant),
+            (r'(NULL|NA(_(integer|real|complex|character)_)?|'
+             r'Inf|TRUE|FALSE|NaN|\.\.(\.|[0-9]+))'
+             r'(?![0-9a-zA-Z\._])',
+             Keyword.Constant),
             (r'(T|F)\b', Keyword.Variable),
         ],
         'numbers': [
-            (r'(?<![0-9a-zA-Z\)\}\]`\"])(?=\s*)[-\+]?[0-9]+'
-             r'(\.[0-9]*)?(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
-            (r'\.[0-9]*(E[0-9][-\+]?(\.[0-9]*)?)?', Number),
+            # hex number
+            (r'0[xX][a-fA-F0-9]+([pP][0-9]+)?[Li]?', Number.Hex),
+            # decimal number
+            (r'[+-]?([0-9]+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?[Li]?',
+             Number),
         ],
         'statements': [
             include('comments'),
             # whitespaces
             (r'\s+', Text),
+            (r'`.*?`', String.Backtick),
             (r'\'', String, 'string_squote'),
             (r'\"', String, 'string_dquote'),
             include('builtin_symbols'),
@@ -1061,12 +1100,554 @@ class SLexer(RegexLexer):
         #    ('\}', Punctuation, '#pop')
         #],
         'string_squote': [
-            (r'[^\']*\'', String, '#pop'),
+            (r'([^\'\\]|\\.)*\'', String, '#pop'),
         ],
         'string_dquote': [
-            (r'[^\"]*\"', String, '#pop'),
+            (r'([^"\\]|\\.)*"', String, '#pop'),
         ],
     }
 
     def analyse_text(text):
         return '<-' in text
+
+
+class BugsLexer(RegexLexer):
+    """
+    Pygments Lexer for `OpenBugs <http://www.openbugs.info/w/>`_ and WinBugs
+    models.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'BUGS'
+    aliases = ['bugs', 'winbugs', 'openbugs']
+    filenames = ['*.bug']
+
+    _FUNCTIONS = [
+        # Scalar functions
+        'abs', 'arccos', 'arccosh', 'arcsin', 'arcsinh', 'arctan', 'arctanh',
+        'cloglog', 'cos', 'cosh', 'cumulative', 'cut', 'density', 'deviance',
+        'equals', 'expr', 'gammap', 'ilogit', 'icloglog', 'integral', 'log',
+        'logfact', 'loggam', 'logit', 'max', 'min', 'phi', 'post.p.value',
+        'pow', 'prior.p.value', 'probit', 'replicate.post', 'replicate.prior',
+        'round', 'sin', 'sinh', 'solution', 'sqrt', 'step', 'tan', 'tanh',
+        'trunc',
+        # Vector functions
+        'inprod', 'interp.lin', 'inverse', 'logdet', 'mean', 'eigen.vals',
+        'ode', 'prod', 'p.valueM', 'rank', 'ranked', 'replicate.postM',
+        'sd', 'sort', 'sum',
+        ## Special
+        'D', 'I', 'F', 'T', 'C']
+    """ OpenBUGS built-in functions
+
+    From http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAII
+
+    This also includes
+
+    - T, C, I : Truncation and censoring.
+      ``T`` and ``C`` are in OpenBUGS. ``I`` in WinBUGS.
+    - D : ODE
+    - F : Functional http://www.openbugs.info/Examples/Functionals.html
+
+    """
+
+    _DISTRIBUTIONS = ['dbern', 'dbin', 'dcat', 'dnegbin', 'dpois',
+                      'dhyper', 'dbeta', 'dchisqr', 'ddexp', 'dexp',
+                      'dflat', 'dgamma', 'dgev', 'df', 'dggamma', 'dgpar',
+                      'dloglik', 'dlnorm', 'dlogis', 'dnorm', 'dpar',
+                      'dt', 'dunif', 'dweib', 'dmulti', 'ddirch', 'dmnorm',
+                      'dmt', 'dwish']
+    """ OpenBUGS built-in distributions
+
+    Functions from
+    http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAI
+    """
+
+
+    tokens = {
+        'whitespace' : [
+            (r"\s+", Text),
+            ],
+        'comments' : [
+            # Comments
+            (r'#.*$', Comment.Single),
+            ],
+        'root': [
+            # Comments
+            include('comments'),
+            include('whitespace'),
+            # Block start
+            (r'(model)(\s+)({)',
+             bygroups(Keyword.Namespace, Text, Punctuation)),
+            # Reserved Words
+            (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
+            # Built-in Functions
+            (r'(%s)(?=\s*\()'
+             % r'|'.join(_FUNCTIONS + _DISTRIBUTIONS),
+             Name.Builtin),
+            # Regular variable names
+            (r'[A-Za-z][A-Za-z0-9_.]*', Name),
+            # Number Literals
+            (r'[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?', Number),
+            # Punctuation
+            (r'\[|\]|\(|\)|:|,|;', Punctuation),
+            # Assignment operators
+            # SLexer makes these tokens Operators.
+            (r'<-|~', Operator),
+            # Infix and prefix operators
+            (r'\+|-|\*|/', Operator),
+            # Block
+            (r'[{}]', Punctuation),
+            ]
+        }
+
+    def analyse_text(text):
+        if re.search(r"^\s*model\s*{", text, re.M):
+            return 0.7
+        else:
+            return 0.0
+
+class JagsLexer(RegexLexer):
+    """
+    Pygments Lexer for JAGS.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'JAGS'
+    aliases = ['jags']
+    filenames = ['*.jag', '*.bug']
+
+    ## JAGS
+    _FUNCTIONS = [
+        'abs', 'arccos', 'arccosh', 'arcsin', 'arcsinh', 'arctan', 'arctanh',
+        'cos', 'cosh', 'cloglog',
+        'equals', 'exp', 'icloglog', 'ifelse', 'ilogit', 'log', 'logfact',
+        'loggam', 'logit', 'phi', 'pow', 'probit', 'round', 'sin', 'sinh',
+        'sqrt', 'step', 'tan', 'tanh', 'trunc', 'inprod', 'interp.lin',
+        'logdet', 'max', 'mean', 'min', 'prod', 'sum', 'sd', 'inverse',
+        'rank', 'sort', 't', 'acos', 'acosh', 'asin', 'asinh', 'atan',
+        # Truncation/Censoring (should I include)
+        'T', 'I']
+    # Distributions with density, probability and quartile functions
+    _DISTRIBUTIONS = ['[dpq]%s' % x for x in
+                           ['bern', 'beta', 'dchiqsqr', 'ddexp', 'dexp',
+                            'df', 'gamma', 'gen.gamma', 'logis', 'lnorm',
+                            'negbin', 'nchisqr', 'norm', 'par', 'pois', 'weib']]
+    # Other distributions without density and probability
+    _OTHER_DISTRIBUTIONS = [
+        'dt', 'dunif', 'dbetabin', 'dbern', 'dbin', 'dcat', 'dhyper',
+        'ddirch', 'dmnorm', 'dwish', 'dmt', 'dmulti', 'dbinom', 'dchisq',
+        'dnbinom', 'dweibull', 'ddirich']
+
+    tokens = {
+        'whitespace' : [
+            (r"\s+", Text),
+            ],
+        'names' : [
+            # Regular variable names
+            (r'[a-zA-Z][a-zA-Z0-9_.]*\b', Name),
+            ],
+        'comments' : [
+            # do not use stateful comments
+            (r'(?s)/\*.*?\*/', Comment.Multiline),
+            # Comments
+            (r'#.*$', Comment.Single),
+            ],
+        'root': [
+            # Comments
+            include('comments'),
+            include('whitespace'),
+            # Block start
+            (r'(model|data)(\s+)({)',
+             bygroups(Keyword.Namespace, Text, Punctuation)),
+            (r'var(?![0-9a-zA-Z\._])', Keyword.Declaration),
+            # Reserved Words
+            (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
+            # Builtins
+            # Need to use lookahead because . is a valid char
+            (r'(%s)(?=\s*\()' % r'|'.join(_FUNCTIONS
+                                 + _DISTRIBUTIONS
+                                 + _OTHER_DISTRIBUTIONS),
+             Name.Builtin),
+            # Names
+            include('names'),
+            # Number Literals
+            (r'[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?', Number),
+            (r'\[|\]|\(|\)|:|,|;', Punctuation),
+            # Assignment operators
+            (r'<-|~', Operator),
+            # # JAGS includes many more than OpenBUGS
+            (r'\+|-|\*|\/|\|\|[&]{2}|[<>=]=?|\^|%.*?%', Operator),
+            (r'[{}]', Punctuation),
+            ]
+        }
+
+    def analyse_text(text):
+        if re.search(r'^\s*model\s*\{', text, re.M):
+            if re.search(r'^\s*data\s*\{', text, re.M):
+                return 0.9
+            elif re.search(r'^\s*var', text, re.M):
+                return 0.9
+            else:
+                return 0.3
+        else:
+            return 0
+
+class StanLexer(RegexLexer):
+    """
+    Pygments Lexer for Stan models.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'Stan'
+    aliases = ['stan']
+    filenames = ['*.stan']
+
+    _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
+                 'then', 'else', 'true', 'false', 'T',
+                 'lower', 'upper', 'print')
+
+    _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
+              'matrix', 'corr_matrix', 'cov_matrix', 'positive_ordered')
+
+    tokens = {
+        'whitespace' : [
+            (r"\s+", Text),
+            ],
+        'comments' : [
+            (r'(?s)/\*.*?\*/', Comment.Multiline),
+            # Comments
+            (r'(//|#).*$', Comment.Single),
+            ],
+        'root': [
+            # Stan is more restrictive on strings than this regex
+            (r'"[^"]*"', String),
+            # Comments
+            include('comments'),
+            # block start
+            include('whitespace'),
+            # Block start
+            (r'(%s)(\s*)({)' %
+             r'|'.join(('data', r'transformed\s+?data',
+                        'parameters', r'transformed\s+parameters',
+                        'model', r'generated\s+quantities')),
+             bygroups(Keyword.Namespace, Text, Punctuation)),
+            # Reserved Words
+            (r'(%s)\b' % r'|'.join(_RESERVED), Keyword.Reserved),
+            # Data types
+            (r'(%s)\b' % r'|'.join(_TYPES), Keyword.Type),
+            # Punctuation
+            (r"[;:,\[\]()<>]", Punctuation),
+            # Builtin
+            (r'(%s)(?=\s*\()'
+             % r'|'.join(_stan_builtins.FUNCTIONS
+                         + _stan_builtins.DISTRIBUTIONS),
+             Name.Builtin),
+            (r'(%s)(?=\s*\()'
+             % r'|'.join(_stan_builtins.CONSTANTS), Keyword.Constant),
+            # Special names ending in __, like lp__
+            (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
+            # Regular variable names
+            (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
+            # Real Literals
+            (r'-?[0-9]+(\.[0-9]+)?[eE]-?[0-9]+', Number.Float),
+            (r'-?[0-9]*\.[0-9]*', Number.Float),
+            # Integer Literals
+            (r'-?[0-9]+', Number.Integer),
+            # Assignment operators
+            # SLexer makes these tokens Operators.
+            (r'<-|~', Operator),
+            # Infix and prefix operators (and = )
+            (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),
+            # Block delimiters
+            (r'[{}]', Punctuation),
+            ]
+        }
+
+    def analyse_text(text):
+        if re.search(r'^\s*parameters\s*\{', text, re.M):
+            return 1.0
+        else:
+            return 0.0
+
+
+class IDLLexer(RegexLexer):
+    """
+    Pygments Lexer for IDL (Interactive Data Language).
+
+    *New in Pygments 1.6.*
+    """
+    name = 'IDL'
+    aliases = ['idl']
+    filenames = ['*.pro']
+    mimetypes = ['text/idl']
+
+    _RESERVED = ['and', 'begin', 'break', 'case', 'common', 'compile_opt',
+                 'continue', 'do', 'else', 'end', 'endcase', 'elseelse',
+                 'endfor', 'endforeach', 'endif', 'endrep', 'endswitch',
+                 'endwhile', 'eq', 'for', 'foreach', 'forward_function',
+                 'function', 'ge', 'goto', 'gt', 'if', 'inherits', 'le',
+                 'lt', 'mod', 'ne', 'not', 'of', 'on_ioerror', 'or', 'pro',
+                 'repeat', 'switch', 'then', 'until', 'while', 'xor']
+    """Reserved words from: http://www.exelisvis.com/docs/reswords.html"""
+
+    _BUILTIN_LIB = ['abs', 'acos', 'adapt_hist_equal', 'alog', 'alog10',
+                    'amoeba', 'annotate', 'app_user_dir', 'app_user_dir_query',
+                    'arg_present', 'array_equal', 'array_indices', 'arrow',
+                    'ascii_template', 'asin', 'assoc', 'atan', 'axis',
+                    'a_correlate', 'bandpass_filter', 'bandreject_filter',
+                    'barplot', 'bar_plot', 'beseli', 'beselj', 'beselk',
+                    'besely', 'beta', 'bilinear', 'binary_template', 'bindgen',
+                    'binomial', 'bin_date', 'bit_ffs', 'bit_population',
+                    'blas_axpy', 'blk_con', 'box_cursor', 'breakpoint',
+                    'broyden', 'butterworth', 'bytarr', 'byte', 'byteorder',
+                    'bytscl', 'caldat', 'calendar', 'call_external',
+                    'call_function', 'call_method', 'call_procedure', 'canny',
+                    'catch', 'cd', 'cdf_[0-9a-za-z_]*', 'ceil', 'chebyshev',
+                    'check_math',
+                    'chisqr_cvf', 'chisqr_pdf', 'choldc', 'cholsol', 'cindgen',
+                    'cir_3pnt', 'close', 'cluster', 'cluster_tree', 'clust_wts',
+                    'cmyk_convert', 'colorbar', 'colorize_sample',
+                    'colormap_applicable', 'colormap_gradient',
+                    'colormap_rotation', 'colortable', 'color_convert',
+                    'color_exchange', 'color_quan', 'color_range_map', 'comfit',
+                    'command_line_args', 'complex', 'complexarr', 'complexround',
+                    'compute_mesh_normals', 'cond', 'congrid', 'conj',
+                    'constrained_min', 'contour', 'convert_coord', 'convol',
+                    'convol_fft', 'coord2to3', 'copy_lun', 'correlate', 'cos',
+                    'cosh', 'cpu', 'cramer', 'create_cursor', 'create_struct',
+                    'create_view', 'crossp', 'crvlength', 'cti_test',
+                    'ct_luminance', 'cursor', 'curvefit', 'cvttobm', 'cv_coord',
+                    'cw_animate', 'cw_animate_getp', 'cw_animate_load',
+                    'cw_animate_run', 'cw_arcball', 'cw_bgroup', 'cw_clr_index',
+                    'cw_colorsel', 'cw_defroi', 'cw_field', 'cw_filesel',
+                    'cw_form', 'cw_fslider', 'cw_light_editor',
+                    'cw_light_editor_get', 'cw_light_editor_set', 'cw_orient',
+                    'cw_palette_editor', 'cw_palette_editor_get',
+                    'cw_palette_editor_set', 'cw_pdmenu', 'cw_rgbslider',
+                    'cw_tmpl', 'cw_zoom', 'c_correlate', 'dblarr', 'db_exists',
+                    'dcindgen', 'dcomplex', 'dcomplexarr', 'define_key',
+                    'define_msgblk', 'define_msgblk_from_file', 'defroi',
+                    'defsysv', 'delvar', 'dendrogram', 'dendro_plot', 'deriv',
+                    'derivsig', 'determ', 'device', 'dfpmin', 'diag_matrix',
+                    'dialog_dbconnect', 'dialog_message', 'dialog_pickfile',
+                    'dialog_printersetup', 'dialog_printjob',
+                    'dialog_read_image', 'dialog_write_image', 'digital_filter',
+                    'dilate', 'dindgen', 'dissolve', 'dist', 'distance_measure',
+                    'dlm_load', 'dlm_register', 'doc_library', 'double',
+                    'draw_roi', 'edge_dog', 'efont', 'eigenql', 'eigenvec',
+                    'ellipse', 'elmhes', 'emboss', 'empty', 'enable_sysrtn',
+                    'eof', 'eos_[0-9a-za-z_]*', 'erase', 'erf', 'erfc', 'erfcx',
+                    'erode', 'errorplot', 'errplot', 'estimator_filter',
+                    'execute', 'exit', 'exp', 'expand', 'expand_path', 'expint',
+                    'extrac', 'extract_slice', 'factorial', 'fft', 'filepath',
+                    'file_basename', 'file_chmod', 'file_copy', 'file_delete',
+                    'file_dirname', 'file_expand_path', 'file_info',
+                    'file_lines', 'file_link', 'file_mkdir', 'file_move',
+                    'file_poll_input', 'file_readlink', 'file_same',
+                    'file_search', 'file_test', 'file_which', 'findgen',
+                    'finite', 'fix', 'flick', 'float', 'floor', 'flow3',
+                    'fltarr', 'flush', 'format_axis_values', 'free_lun',
+                    'fstat', 'fulstr', 'funct', 'fv_test', 'fx_root',
+                    'fz_roots', 'f_cvf', 'f_pdf', 'gamma', 'gamma_ct',
+                    'gauss2dfit', 'gaussfit', 'gaussian_function', 'gaussint',
+                    'gauss_cvf', 'gauss_pdf', 'gauss_smooth', 'getenv',
+                    'getwindows', 'get_drive_list', 'get_dxf_objects',
+                    'get_kbrd', 'get_login_info', 'get_lun', 'get_screen_size',
+                    'greg2jul', 'grib_[0-9a-za-z_]*', 'grid3', 'griddata',
+                    'grid_input', 'grid_tps', 'gs_iter',
+                    'h5[adfgirst]_[0-9a-za-z_]*', 'h5_browser', 'h5_close',
+                    'h5_create', 'h5_get_libversion', 'h5_open', 'h5_parse',
+                    'hanning', 'hash', 'hdf_[0-9a-za-z_]*', 'heap_free',
+                    'heap_gc', 'heap_nosave', 'heap_refcount', 'heap_save',
+                    'help', 'hilbert', 'histogram', 'hist_2d', 'hist_equal',
+                    'hls', 'hough', 'hqr', 'hsv', 'h_eq_ct', 'h_eq_int',
+                    'i18n_multibytetoutf8', 'i18n_multibytetowidechar',
+                    'i18n_utf8tomultibyte', 'i18n_widechartomultibyte',
+                    'ibeta', 'icontour', 'iconvertcoord', 'idelete', 'identity',
+                    'idlexbr_assistant', 'idlitsys_createtool', 'idl_base64',
+                    'idl_validname', 'iellipse', 'igamma', 'igetcurrent',
+                    'igetdata', 'igetid', 'igetproperty', 'iimage', 'image',
+                    'image_cont', 'image_statistics', 'imaginary', 'imap',
+                    'indgen', 'intarr', 'interpol', 'interpolate',
+                    'interval_volume', 'int_2d', 'int_3d', 'int_tabulated',
+                    'invert', 'ioctl', 'iopen', 'iplot', 'ipolygon',
+                    'ipolyline', 'iputdata', 'iregister', 'ireset', 'iresolve',
+                    'irotate', 'ir_filter', 'isa', 'isave', 'iscale',
+                    'isetcurrent', 'isetproperty', 'ishft', 'isocontour',
+                    'isosurface', 'isurface', 'itext', 'itranslate', 'ivector',
+                    'ivolume', 'izoom', 'i_beta', 'journal', 'json_parse',
+                    'json_serialize', 'jul2greg', 'julday', 'keyword_set',
+                    'krig2d', 'kurtosis', 'kw_test', 'l64indgen', 'label_date',
+                    'label_region', 'ladfit', 'laguerre', 'laplacian',
+                    'la_choldc', 'la_cholmprove', 'la_cholsol', 'la_determ',
+                    'la_eigenproblem', 'la_eigenql', 'la_eigenvec', 'la_elmhes',
+                    'la_gm_linear_model', 'la_hqr', 'la_invert',
+                    'la_least_squares', 'la_least_square_equality',
+                    'la_linear_equation', 'la_ludc', 'la_lumprove', 'la_lusol',
+                    'la_svd', 'la_tridc', 'la_trimprove', 'la_triql',
+                    'la_trired', 'la_trisol', 'least_squares_filter', 'leefilt',
+                    'legend', 'legendre', 'linbcg', 'lindgen', 'linfit',
+                    'linkimage', 'list', 'll_arc_distance', 'lmfit', 'lmgr',
+                    'lngamma', 'lnp_test', 'loadct', 'locale_get',
+                    'logical_and', 'logical_or', 'logical_true', 'lon64arr',
+                    'lonarr', 'long', 'long64', 'lsode', 'ludc', 'lumprove',
+                    'lusol', 'lu_complex', 'machar', 'make_array', 'make_dll',
+                    'make_rt', 'map', 'mapcontinents', 'mapgrid', 'map_2points',
+                    'map_continents', 'map_grid', 'map_image', 'map_patch',
+                    'map_proj_forward', 'map_proj_image', 'map_proj_info',
+                    'map_proj_init', 'map_proj_inverse', 'map_set',
+                    'matrix_multiply', 'matrix_power', 'max', 'md_test',
+                    'mean', 'meanabsdev', 'mean_filter', 'median', 'memory',
+                    'mesh_clip', 'mesh_decimate', 'mesh_issolid', 'mesh_merge',
+                    'mesh_numtriangles', 'mesh_obj', 'mesh_smooth',
+                    'mesh_surfacearea', 'mesh_validate', 'mesh_volume',
+                    'message', 'min', 'min_curve_surf', 'mk_html_help',
+                    'modifyct', 'moment', 'morph_close', 'morph_distance',
+                    'morph_gradient', 'morph_hitormiss', 'morph_open',
+                    'morph_thin', 'morph_tophat', 'multi', 'm_correlate',
+                    'ncdf_[0-9a-za-z_]*', 'newton', 'noise_hurl', 'noise_pick',
+                    'noise_scatter', 'noise_slur', 'norm', 'n_elements',
+                    'n_params', 'n_tags', 'objarr', 'obj_class', 'obj_destroy',
+                    'obj_hasmethod', 'obj_isa', 'obj_new', 'obj_valid',
+                    'online_help', 'on_error', 'open', 'oplot', 'oploterr',
+                    'parse_url', 'particle_trace', 'path_cache', 'path_sep',
+                    'pcomp', 'plot', 'plot3d', 'ploterr', 'plots', 'plot_3dbox',
+                    'plot_field', 'pnt_line', 'point_lun', 'polarplot',
+                    'polar_contour', 'polar_surface', 'poly', 'polyfill',
+                    'polyfillv', 'polygon', 'polyline', 'polyshade', 'polywarp',
+                    'poly_2d', 'poly_area', 'poly_fit', 'popd', 'powell',
+                    'pref_commit', 'pref_get', 'pref_set', 'prewitt', 'primes',
+                    'print', 'printd', 'product', 'profile', 'profiler',
+                    'profiles', 'project_vol', 'psafm', 'pseudo',
+                    'ps_show_fonts', 'ptrarr', 'ptr_free', 'ptr_new',
+                    'ptr_valid', 'pushd', 'p_correlate', 'qgrid3', 'qhull',
+                    'qromb', 'qromo', 'qsimp', 'query_ascii', 'query_bmp',
+                    'query_csv', 'query_dicom', 'query_gif', 'query_image',
+                    'query_jpeg', 'query_jpeg2000', 'query_mrsid', 'query_pict',
+                    'query_png', 'query_ppm', 'query_srf', 'query_tiff',
+                    'query_wav', 'radon', 'randomn', 'randomu', 'ranks',
+                    'rdpix', 'read', 'reads', 'readu', 'read_ascii',
+                    'read_binary', 'read_bmp', 'read_csv', 'read_dicom',
+                    'read_gif', 'read_image', 'read_interfile', 'read_jpeg',
+                    'read_jpeg2000', 'read_mrsid', 'read_pict', 'read_png',
+                    'read_ppm', 'read_spr', 'read_srf', 'read_sylk',
+                    'read_tiff', 'read_wav', 'read_wave', 'read_x11_bitmap',
+                    'read_xwd', 'real_part', 'rebin', 'recall_commands',
+                    'recon3', 'reduce_colors', 'reform', 'region_grow',
+                    'register_cursor', 'regress', 'replicate',
+                    'replicate_inplace', 'resolve_all', 'resolve_routine',
+                    'restore', 'retall', 'return', 'reverse', 'rk4', 'roberts',
+                    'rot', 'rotate', 'round', 'routine_filepath',
+                    'routine_info', 'rs_test', 'r_correlate', 'r_test',
+                    'save', 'savgol', 'scale3', 'scale3d', 'scope_level',
+                    'scope_traceback', 'scope_varfetch', 'scope_varname',
+                    'search2d', 'search3d', 'sem_create', 'sem_delete',
+                    'sem_lock', 'sem_release', 'setenv', 'set_plot',
+                    'set_shading', 'sfit', 'shade_surf', 'shade_surf_irr',
+                    'shade_volume', 'shift', 'shift_diff', 'shmdebug', 'shmmap',
+                    'shmunmap', 'shmvar', 'show3', 'showfont', 'simplex', 'sin',
+                    'sindgen', 'sinh', 'size', 'skewness', 'skip_lun',
+                    'slicer3', 'slide_image', 'smooth', 'sobel', 'socket',
+                    'sort', 'spawn', 'spher_harm', 'sph_4pnt', 'sph_scat',
+                    'spline', 'spline_p', 'spl_init', 'spl_interp', 'sprsab',
+                    'sprsax', 'sprsin', 'sprstp', 'sqrt', 'standardize',
+                    'stddev', 'stop', 'strarr', 'strcmp', 'strcompress',
+                    'streamline', 'stregex', 'stretch', 'string', 'strjoin',
+                    'strlen', 'strlowcase', 'strmatch', 'strmessage', 'strmid',
+                    'strpos', 'strput', 'strsplit', 'strtrim', 'struct_assign',
+                    'struct_hide', 'strupcase', 'surface', 'surfr', 'svdc',
+                    'svdfit', 'svsol', 'swap_endian', 'swap_endian_inplace',
+                    'symbol', 'systime', 's_test', 't3d', 'tag_names', 'tan',
+                    'tanh', 'tek_color', 'temporary', 'tetra_clip',
+                    'tetra_surface', 'tetra_volume', 'text', 'thin', 'threed',
+                    'timegen', 'time_test2', 'tm_test', 'total', 'trace',
+                    'transpose', 'triangulate', 'trigrid', 'triql', 'trired',
+                    'trisol', 'tri_surf', 'truncate_lun', 'ts_coef', 'ts_diff',
+                    'ts_fcast', 'ts_smooth', 'tv', 'tvcrs', 'tvlct', 'tvrd',
+                    'tvscl', 'typename', 't_cvt', 't_pdf', 'uindgen', 'uint',
+                    'uintarr', 'ul64indgen', 'ulindgen', 'ulon64arr', 'ulonarr',
+                    'ulong', 'ulong64', 'uniq', 'unsharp_mask', 'usersym',
+                    'value_locate', 'variance', 'vector', 'vector_field', 'vel',
+                    'velovect', 'vert_t3d', 'voigt', 'voronoi', 'voxel_proj',
+                    'wait', 'warp_tri', 'watershed', 'wdelete', 'wf_draw',
+                    'where', 'widget_base', 'widget_button', 'widget_combobox',
+                    'widget_control', 'widget_displaycontextmen', 'widget_draw',
+                    'widget_droplist', 'widget_event', 'widget_info',
+                    'widget_label', 'widget_list', 'widget_propertysheet',
+                    'widget_slider', 'widget_tab', 'widget_table',
+                    'widget_text', 'widget_tree', 'widget_tree_move',
+                    'widget_window', 'wiener_filter', 'window', 'writeu',
+                    'write_bmp', 'write_csv', 'write_gif', 'write_image',
+                    'write_jpeg', 'write_jpeg2000', 'write_nrif', 'write_pict',
+                    'write_png', 'write_ppm', 'write_spr', 'write_srf',
+                    'write_sylk', 'write_tiff', 'write_wav', 'write_wave',
+                    'wset', 'wshow', 'wtn', 'wv_applet', 'wv_cwt',
+                    'wv_cw_wavelet', 'wv_denoise', 'wv_dwt', 'wv_fn_coiflet',
+                    'wv_fn_daubechies', 'wv_fn_gaussian', 'wv_fn_haar',
+                    'wv_fn_morlet', 'wv_fn_paul', 'wv_fn_symlet',
+                    'wv_import_data', 'wv_import_wavelet', 'wv_plot3d_wps',
+                    'wv_plot_multires', 'wv_pwt', 'wv_tool_denoise',
+                    'xbm_edit', 'xdisplayfile', 'xdxf', 'xfont',
+                    'xinteranimate', 'xloadct', 'xmanager', 'xmng_tmpl',
+                    'xmtool', 'xobjview', 'xobjview_rotate',
+                    'xobjview_write_image', 'xpalette', 'xpcolor', 'xplot3d',
+                    'xregistered', 'xroi', 'xsq_test', 'xsurface', 'xvaredit',
+                    'xvolume', 'xvolume_rotate', 'xvolume_write_image',
+                    'xyouts', 'zoom', 'zoom_24']
+    """Functions from: http://www.exelisvis.com/docs/routines-1.html"""
+
+    tokens = {
+        'root': [
+            (r'^\s*;.*?\n', Comment.Singleline),
+            (r'\b(' + '|'.join(_RESERVED) + r')\b', Keyword),
+            (r'\b(' + '|'.join(_BUILTIN_LIB) + r')\b', Name.Builtin),
+            (r'\+=|-=|\^=|\*=|/=|#=|##=|<=|>=|=', Operator),
+            (r'\+\+|--|->|\+|-|##|#|\*|/|<|>|&&|\^|~|\|\|\?|:', Operator),
+            (r'\b(mod=|lt=|le=|eq=|ne=|ge=|gt=|not=|and=|or=|xor=)', Operator),
+            (r'\b(mod|lt|le|eq|ne|ge|gt|not|and|or|xor)\b', Operator),
+            (r'\b[0-9](L|B|S|UL|ULL|LL)?\b', Number),
+            (r'.', Text),
+        ]
+    }
+
+
+class RdLexer(RegexLexer):
+    """
+    Pygments Lexer for R documentation (Rd) files
+
+    This is a very minimal implementation, highlighting little more
+    than the macros. A description of Rd syntax is found in `Writing R
+    Extensions <http://cran.r-project.org/doc/manuals/R-exts.html>`_
+    and `Parsing Rd files <developer.r-project.org/parseRd.pdf>`_.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'Rd'
+    aliases = ['rd']
+    filenames = ['*.Rd']
+    mimetypes = ['text/x-r-doc']
+
+    # To account for verbatim / LaTeX-like / and R-like areas
+    # would require parsing.
+    tokens = {
+        'root' : [
+            # catch escaped brackets and percent sign
+            (r'\\[\\{}%]', String.Escape),
+            # comments
+            (r'%.*$', Comment),
+            # special macros with no arguments
+            (r'\\(?:cr|l?dots|R|tab)\b', Keyword.Constant),
+            # macros
+            (r'\\[a-zA-Z]+\b', Keyword),
+            # special preprocessor macros
+            (r'^\s*#(?:ifn?def|endif).*\b', Comment.Preproc),
+            # non-escaped brackets
+            (r'[{}]', Name.Builtin),
+            # everything else
+            (r'[^\\%\n{}]+', Text),
+            (r'.', Text),
+            ]
+        }

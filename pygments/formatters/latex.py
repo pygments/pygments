@@ -5,7 +5,7 @@
 
     Formatter for LaTeX fancyvrb output.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -306,17 +306,17 @@ class LatexFormatter(Formatter):
             realoutfile = outfile
             outfile = StringIO()
 
-        outfile.write(r'\begin{Verbatim}[commandchars=\\\{\}')
+        outfile.write(ur'\begin{Verbatim}[commandchars=\\\{\}')
         if self.linenos:
             start, step = self.linenostart, self.linenostep
-            outfile.write(',numbers=left' +
-                          (start and ',firstnumber=%d' % start or '') +
-                          (step and ',stepnumber=%d' % step or ''))
+            outfile.write(u',numbers=left' +
+                          (start and u',firstnumber=%d' % start or u'') +
+                          (step and u',stepnumber=%d' % step or u''))
         if self.mathescape or self.texcomments:
-            outfile.write(r',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
+            outfile.write(ur',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
         if self.verboptions:
-            outfile.write(',' + self.verboptions)
-        outfile.write(']\n')
+            outfile.write(u',' + self.verboptions)
+        outfile.write(u']\n')
 
         for ttype, value in tokensource:
             if ttype in Token.Comment:
@@ -366,7 +366,7 @@ class LatexFormatter(Formatter):
             else:
                 outfile.write(value)
 
-        outfile.write('\\end{Verbatim}\n')
+        outfile.write(u'\\end{Verbatim}\n')
 
         if self.full:
             realoutfile.write(DOC_TEMPLATE %

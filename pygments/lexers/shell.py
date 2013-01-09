@@ -5,7 +5,7 @@
 
     Lexers for various shells.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -60,6 +60,7 @@ class BashLexer(RegexLexer):
             (r'\\[\w\W]', String.Escape),
             (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
             (r'[\[\]{}()=]', Operator),
+            (r'<<<', Operator),  # here-string
             (r'<<-?\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
             (r'&&|\|\|', Operator),
         ],
@@ -328,6 +329,8 @@ class PowerShellLexer(RegexLexer):
             (r'(&lt;|<)#', Comment.Multiline, 'multline'),
             (r'@"\n.*?\n"@', String.Heredoc),
             (r"@'\n.*?\n'@", String.Heredoc),
+            # escaped syntax
+            (r'`[\'"$@-]', Punctuation),
             (r'"', String.Double, 'string'),
             (r"'([^']|'')*'", String.Single),
             (r'(\$|@@|@)((global|script|private|env):)?[a-z0-9_]+',
