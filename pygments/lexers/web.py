@@ -5,7 +5,7 @@
 
     Lexers for web-related languages and markup.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -969,7 +969,8 @@ class DtdLexer(RegexLexer):
 
         'attlist': [
             include('common'),
-            (r'CDATA|IDREFS|IDREF|ID|NMTOKENS|NMTOKEN|ENTITIES|ENTITY|NOTATION', Keyword.Constant),
+            (r'CDATA|IDREFS|IDREF|ID|NMTOKENS|NMTOKEN|ENTITIES|ENTITY|NOTATION',
+             Keyword.Constant),
             (r'#REQUIRED|#IMPLIED|#FIXED', Keyword.Constant),
             (r'xml:space|xml:lang', Keyword.Reserved),
             (r'[^>\s\|()?+*,]+', Name.Attribute),
@@ -1762,7 +1763,7 @@ class ScssLexer(RegexLexer):
             (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
             (r'@extend', Keyword, 'selector'),
             (r'@[a-z0-9_-]+', Keyword, 'selector'),
-            (r'(\$[\w-]\w*)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
+            (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
             (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
             (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
             (r'', Text, 'selector'),

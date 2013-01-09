@@ -5,7 +5,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -1638,6 +1638,8 @@ class LassoHtmlLexer(DelegatingLexer):
     `HtmlLexer`.
 
     Nested JavaScript and CSS is also highlighted.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'HTML+Lasso'
@@ -1665,6 +1667,8 @@ class LassoXmlLexer(DelegatingLexer):
     """
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `XmlLexer`.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'XML+Lasso'
@@ -1688,6 +1692,8 @@ class LassoCssLexer(DelegatingLexer):
     """
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `CssLexer`.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'CSS+Lasso'
@@ -1712,6 +1718,8 @@ class LassoJavascriptLexer(DelegatingLexer):
     """
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `JavascriptLexer`.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'JavaScript+Lasso'

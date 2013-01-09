@@ -5,7 +5,7 @@
 
     Base lexer classes.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re
@@ -163,6 +163,10 @@ class Lexer(object):
                 text = decoded
             else:
                 text = text.decode(self.encoding)
+        else:
+            if text.startswith(u'\ufeff'):
+                text = text[len(u'\ufeff'):]
+
         # text now *is* a unicode string
         text = text.replace('\r\n', '\n')
         text = text.replace('\r', '\n')
@@ -694,4 +698,3 @@ def do_insertions(insertions, tokens):
         except StopIteration:
             insleft = False
             break  # not strictly necessary
-
