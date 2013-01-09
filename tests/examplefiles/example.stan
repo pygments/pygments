@@ -16,6 +16,7 @@ data {
      matrix[3,3] qux;
      simplex[3] quux;
      ordered[3] corge;
+     positive_ordered[3] wibble;
      corr_matrix[3] grault;
      cov_matrix[3] garply;
 
@@ -72,6 +73,11 @@ model {
    // lp__ should be highlighted
    // normal_log as a function
    lp__ <- lp__ + normal_log(plugh, 0, 1);
+
+   // print statement and string literal
+   print("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_~@#$%^&*`'-+={}[].,;: ");
+   print("Hello, world!");
+   print("");
 
 }
 generated quantities {

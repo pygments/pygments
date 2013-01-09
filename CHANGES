@@ -6,26 +6,59 @@ http://bitbucket.org/birkenfeld/pygments-main/issues.
 
 Version 1.6
 -----------
-(in development)
+(in development, to be released xx January 2013)
 
 - Lexers added:
 
-  * Julia (PR#61)
-  * Croc (new name for MiniD)
-  * LiveScript (PR#84)
-  * Lasso (PR#95)
-  * BUGS-like languages (PR#89)
-  * Rust (PR#67)
-  * CUDA (PR#75)
-  * Xtend (PR#68)
-  * Mscgen (PR#80)
-  * Kconfig (#711)
   * AspectJ (PR#90)
+  * BUGS-like languages (PR#89)
+  * Ceylon (PR#86)
+  * Croc (new name for MiniD)
+  * CUDA (PR#75)
+  * Dg (PR#116)
+  * Jags (PR#89)
+  * Julia (PR#61)
+  * Kconfig (#711)
+  * Lasso (PR#95, PR#113)
+  * LiveScript (PR#84)
+  * Monkey (PR#117)
+  * Mscgen (PR#80)
+  * NSIS scripts (PR#136)
+  * OpenCOBOL (PR#72)
+  * QML (PR#123)
+  * Puppet (PR#133)
   * Racket (PR#94)
+  * Rdoc (PR#99)
+  * Robot Framework (PR#137)
+  * RPM spec files (PR#124)
+  * Rust (PR#67)
+  * Smali (Dalvik assembly)
+  * SourcePawn (PR#39)
+  * Stan (PR#89)
+  * Treetop (PR#125)
+  * VGL (PR#12)
+  * Windows Registry (#819)
+  * Xtend (PR#68)
+
+- When deriving a lexer from another lexer with token definitions, definitions
+  for states not in the child lexer are now inherited.  If you override a state
+  in the child lexer, an "inherit" keyword has been added to insert the base
+  state at that position (PR#141)
+
+- The C family lexers now inherit token definitions from a common base class,
+  removing code duplication (PR#141)
+
+- Use "colorama" on Windows for console color output (PR#142)
 
 - Fix Template Haskell highlighting (PR#63)
 
 - Fix some S/R lexer errors (PR#91)
+
+- Fix a bug in the Prolog lexer with names that start with 'is' (#810)
+
+- Rewrite Dylan lexer, add Dylan LID lexer (PR#147)
+
+- Add a Java quickstart document (PR#146)
 
 
 Version 1.5
