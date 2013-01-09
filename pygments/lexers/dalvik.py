@@ -5,11 +5,11 @@
 
     Pygments lexers for Dalvik VM-related languages.
 
-    :copyright: Copyright 2011-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include, bygroups, using
+from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Keyword, Text, Comment, Name, String, Number, \
                            Punctuation
 
