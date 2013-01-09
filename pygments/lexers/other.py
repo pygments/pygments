@@ -3159,5 +3159,5 @@ class SourcePawnLexer(RegexLexer):
                     if value in self.SM_TYPES:
                         token = Keyword.Type
                     elif value in self._functions:
-                        tokens = Name.Builtin
+                        token = Name.Builtin
             yield index, token, value
