@@ -293,6 +293,11 @@ class HtmlFormatter(Formatter):
         output line in an anchor tag with a ``name`` of ``foo-linenumber``.
         This allows easy linking to certain lines. *New in Pygments 0.9.*
 
+    `linespans`
+        If set to a nonempty string, e.g. ``foo``, the formatter will wrap each
+        output line in a span tag with an ``id`` of ``foo-linenumber``.
+        This allows easy access to lines via javascript.
+
     `anchorlinenos`
         If set to `True`, will wrap line numbers in <a> tags. Used in
         combination with `linenos` and `lineanchors`.
@@ -395,6 +400,7 @@ class HtmlFormatter(Formatter):
         self.nobackground = get_bool_opt(options, 'nobackground', False)
         self.lineseparator = options.get('lineseparator', '\n')
         self.lineanchors = options.get('lineanchors', '')
+        self.linespans = options.get('linespans', '')
         self.anchorlinenos = options.get('anchorlinenos', False)
         self.hl_lines = set()
         for lineno in get_list_opt(options, 'hl_lines', []):
@@ -634,6 +640,16 @@ class HtmlFormatter(Formatter):
             else:
                 yield 0, line
 
+    def _wrap_linespans(self, inner):
+        s = self.linespans
+        i = self.linenostart - 1
+        for t, line in inner:
+            if t:
+                i += 1
+                yield 1, '<span id="%s-%d">%s</span>' % (s, i, line)
+            else:
+                yield 0, line
+
     def _wrap_div(self, inner):
         style = []
         if (self.noclasses and not self.nobackground and
@@ -789,6 +805,8 @@ class HtmlFormatter(Formatter):
                 source = self._wrap_inlinelinenos(source)
             if self.lineanchors:
                 source = self._wrap_lineanchors(source)
+            if self.linespans:
+                source = self._wrap_linespans(source)
             source = self.wrap(source, outfile)
             if self.linenos == 1:
                 source = self._wrap_tablelinenos(source)
