@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+    pygments.lexers._robotframeworklexer
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexer for Robot Framework.
+
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 #  Copyright 2012 Nokia Siemens Networks Oyj
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
