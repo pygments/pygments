@@ -1061,7 +1061,7 @@ class DylanLexer(RegexLexer):
     filenames = ['*.dylan', '*.dyl', '*.intr']
     mimetypes = ['text/x-dylan']
 
-    flags = re.DOTALL | re.IGNORECASE
+    flags = re.IGNORECASE
 
     builtins = set([
         'subclass', 'abstract', 'block', 'concrete', 'constant', 'class',
@@ -1140,6 +1140,19 @@ class DylanLexer(RegexLexer):
 
     tokens = {
         'root': [
+            # Whitespace
+            (r'\s+', Text),
+
+            # single line comment
+            (r'//.*?\n', Comment.Single),
+
+            # lid header
+            (r'([A-Za-z0-9-]+)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
+                bygroups(Name.Attribute, Operator, Text, String)),
+
+            ('', Text, 'code') # no header match, switch to code
+        ],
+        'code': [
             # Whitespace
             (r'\s+', Text),
 
