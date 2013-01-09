@@ -5,12 +5,11 @@
 
     Formatter for Pixmap output.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import sys
-from commands import getstatusoutput
 
 from pygments.formatter import Formatter
 from pygments.util import get_bool_opt, get_int_opt, \
@@ -73,6 +72,7 @@ class FontManager(object):
             self._create_nix()
 
     def _get_nix_font_path(self, name, style):
+        from commands import getstatusoutput
         exit, out = getstatusoutput('fc-list "%s:style=%s" file' %
                                     (name, style))
         if not exit:
