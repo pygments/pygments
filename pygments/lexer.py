@@ -5,7 +5,7 @@
 
     Base lexer classes.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re, itertools
@@ -72,13 +72,13 @@ class Lexer(object):
     #: Shortcuts for the lexer
     aliases = []
 
-    #: fn match rules
+    #: File name globs
     filenames = []
 
-    #: fn alias filenames
+    #: Secondary file name globs
     alias_filenames = []
 
-    #: mime types
+    #: MIME types
     mimetypes = []
 
     #: Priority, should multiple lexers match and no content is provided
@@ -166,6 +166,10 @@ class Lexer(object):
                 text = decoded
             else:
                 text = text.decode(self.encoding)
+        else:
+            if text.startswith(u'\ufeff'):
+                text = text[len(u'\ufeff'):]
+
         # text now *is* a unicode string
         text = text.replace('\r\n', '\n')
         text = text.replace('\r', '\n')
@@ -240,6 +244,7 @@ class include(str):
     """
     pass
 
+
 class _inherit(object):
     """
     Indicates the a state should inherit from its superclass.
@@ -248,6 +253,7 @@ class _inherit(object):
         return 'inherit'
 
 inherit = _inherit()
+
 
 class combined(tuple):
     """
@@ -472,15 +478,15 @@ class RegexLexerMeta(LexerMeta):
 
     def get_tokendefs(cls):
         """
-        Merge tokens from superclasses in MRO order, returning a single
-        tokendef dictionary.
+        Merge tokens from superclasses in MRO order, returning a single tokendef
+        dictionary.
 
         Any state that is not defined by a subclass will be inherited
         automatically.  States that *are* defined by subclasses will, by
-        default, override that state in the superclass.  If a subclass
-        wishes to inherit definitions from a superclass, it can use the
-        special value "inherit", which will cause the superclass' state
-        definition to be included at that point in the state.
+        default, override that state in the superclass.  If a subclass wishes to
+        inherit definitions from a superclass, it can use the special value
+        "inherit", which will cause the superclass' state definition to be
+        included at that point in the state.
         """
         tokens = {}
         inheritable = {}
@@ -491,12 +497,10 @@ class RegexLexerMeta(LexerMeta):
                 curitems = tokens.get(state)
                 if curitems is None:
                     tokens[state] = items
-
                     try:
                         inherit_ndx = items.index(inherit)
                     except ValueError:
                         continue
-
                     inheritable[state] = inherit_ndx
                     continue
 
@@ -506,13 +510,11 @@ class RegexLexerMeta(LexerMeta):
 
                 # Replace the "inherit" value with the items
                 curitems[inherit_ndx:inherit_ndx+1] = items
-
                 try:
                     new_inh_ndx = items.index(inherit)
                 except ValueError:
-                    new_inh_ndx = -1
-
-                if new_inh_ndx != -1:
+                    pass
+                else:
                     inheritable[state] = inherit_ndx + new_inh_ndx
 
         return tokens
@@ -755,4 +757,3 @@ def do_insertions(insertions, tokens):
         except StopIteration:
             insleft = False
             break  # not strictly necessary
-

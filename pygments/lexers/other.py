@@ -5,7 +5,7 @@
 
     Lexers for other languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -34,7 +34,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
-           'RobotFrameworkLexer']
+           'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -1257,7 +1257,8 @@ class ModelicaLexer(RegexLexer):
         ],
         'classes': [
             (r'(block|class|connector|function|model|package|'
-             r'record|type)\b', Name.Class),
+             r'record|type)(\s+)([A-Za-z_]+)',
+             bygroups(Keyword, Text, Name.Class))
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -2773,7 +2774,7 @@ class OpenEdgeLexer(RegexLexer):
 
     keywords = (r'(?i)(^|(?<=[^0-9a-z_\-]))(' +
                 r'|'.join(OPENEDGEKEYWORDS) +
-                r')\s*($|(?=[^0-9a-z_\-]))') 
+                r')\s*($|(?=[^0-9a-z_\-]))')
     tokens = {
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
@@ -3158,5 +3159,272 @@ class SourcePawnLexer(RegexLexer):
                     if value in self.SM_TYPES:
                         token = Keyword.Type
                     elif value in self._functions:
-                        tokens = Name.Builtin
+                        token = Name.Builtin
             yield index, token, value
+
+
+class PuppetLexer(RegexLexer):
+    """
+    For `Puppet <http://puppetlabs.com/>`__ configuration DSL.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'Puppet'
+    aliases = ['puppet']
+    filenames = ['*.pp']
+
+    tokens = {
+        'root': [
+            include('comments'),
+            include('keywords'),
+            include('names'),
+            include('numbers'),
+            include('operators'),
+            include('strings'),
+
+            (r'[]{}:(),;[]', Punctuation),
+            (r'[^\S\n]+', Text),
+        ],
+
+        'comments': [
+            (r'\s*#.*$', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+        ],
+
+        'operators': [
+            (r'(=>|\?|<|>|=|\+|-|/|\*|~|!|\|)', Operator),
+            (r'(in|and|or|not)\b', Operator.Word),
+        ],
+
+        'names': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
+            (r'(\$\S+)(\[)(\S+)(\])', bygroups(Name.Variable, Punctuation,
+                                               String, Punctuation)),
+            (r'\$\S+', Name.Variable),
+        ],
+
+        'numbers': [
+            # Copypasta from the Python lexer
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
+            (r'0[0-7]+j?', Number.Oct),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'\d+L', Number.Integer.Long),
+            (r'\d+j?', Number.Integer)
+        ],
+
+        'keywords': [
+            # Left out 'group' and 'require'
+            # Since they're often used as attributes
+            (r'(?i)(absent|alert|alias|audit|augeas|before|case|check|class|'
+             r'computer|configured|contained|create_resources|crit|cron|debug|'
+             r'default|define|defined|directory|else|elsif|emerg|err|exec|'
+             r'extlookup|fail|false|file|filebucket|fqdn_rand|generate|host|if|'
+             r'import|include|info|inherits|inline_template|installed|'
+             r'interface|k5login|latest|link|loglevel|macauthorization|'
+             r'mailalias|maillist|mcx|md5|mount|mounted|nagios_command|'
+             r'nagios_contact|nagios_contactgroup|nagios_host|'
+             r'nagios_hostdependency|nagios_hostescalation|nagios_hostextinfo|'
+             r'nagios_hostgroup|nagios_service|nagios_servicedependency|'
+             r'nagios_serviceescalation|nagios_serviceextinfo|'
+             r'nagios_servicegroup|nagios_timeperiod|node|noop|notice|notify|'
+             r'package|present|purged|realize|regsubst|resources|role|router|'
+             r'running|schedule|scheduled_task|search|selboolean|selmodule|'
+             r'service|sha1|shellquote|split|sprintf|ssh_authorized_key|sshkey|'
+             r'stage|stopped|subscribe|tag|tagged|template|tidy|true|undef|'
+             r'unmounted|user|versioncmp|vlan|warning|yumrepo|zfs|zone|'
+             r'zpool)\b', Keyword),
+        ],
+
+        'strings': [
+            (r'"([^"])*"', String),
+            (r'\'([^\'])*\'', String),
+        ],
+
+    }
+
+
+class NSISLexer(RegexLexer):
+    """
+    For `NSIS <http://nsis.sourceforge.net/>`_ scripts.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'NSIS'
+    aliases = ['nsis', 'nsi', 'nsh']
+    filenames = ['*.nsi', '*.nsh']
+    mimetypes = ['text/x-nsis']
+
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'[;\#].*\n', Comment),
+            (r"'.*'", String.Single),
+            (r'"', String.Double, 'str_double'),
+            (r'`', String.Backtick, 'str_backtick'),
+            include('macro'),
+            include('interpol'),
+            include('basic'),
+            (r'\$\{[a-zA-Z_\|][a-zA-Z0-9_\|]*\}', Keyword.Pseudo),
+            (r'\/[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
+            ('.', Text),
+        ],
+        'basic': [
+            (r'(\n)(Function)(\s+)([\.\_a-zA-Z][\.\_a-zA-Z0-9]*)\b',
+             bygroups(Text, Keyword, Text, Name.Function)),
+            (r'\b([_a-zA-Z][_a-zA-Z0-9]*)(::)([a-zA-Z][a-zA-Z0-9]*)\b',
+             bygroups(Keyword.Namespace, Punctuation, Name.Function)),
+            (r'\b([_a-zA-Z][_a-zA-Z0-9]*)(:)', bygroups(Name.Label, Punctuation)),
+            (r'(\b[ULS]|\B)([\!\<\>=]?=|\<\>?|\>)\B', Operator),
+            (r'[\+\-\|]', Operator),
+            (r'[\\]', Punctuation),
+            (r'\b(Abort|Add(?:BrandingImage|Size)|Allow(?:RootDirInstall|SkipFiles)|'
+             r'AutoCloseWindow|BG(?:Font|Gradient)|BrandingText|BringToFront|'
+             r'Call(?:InstDLL)?|(?:Sub)?Caption|ChangeUI|CheckBitmap|ClearErrors|CompletedText|'
+             r'ComponentText|CopyFiles|CRCCheck|Create(?:Directory|Font|Shortcut)|'
+             r'Delete(?:INI(?:Sec|Str)|Reg(?:Key|Value))?|DetailPrint|DetailsButtonText|'
+             r'Dir(?:Show|Text|Var|Verify)|(?:Disabled|Enabled)Bitmap|EnableWindow|'
+             r'EnumReg(?:Key|Value)|Exch|Exec(?:Shell|Wait)?|ExpandEnvStrings|'
+             r'File(?:BufSize|Close|ErrorText|Open|Read(?:Byte)?|Seek|Write(?:Byte)?)?|'
+             r'Find(?:Close|First|Next|Window)|FlushINI|Function(?:End)?|'
+             r'Get(?:CurInstType|CurrentAddress|DlgItem|DLLVersion(?:Local)?|ErrorLevel|'
+             r'FileTime(?:Local)?|FullPathName|FunctionAddress|InstDirError|LabelAddress|TempFileName)|'
+             r'Goto|HideWindow|Icon|If(?:Abort|Errors|FileExists|RebootFlag|Silent)|'
+             r'InitPluginsDir|Install(?:ButtonText|Colors|Dir(?:RegKey)?)|'
+             r'Inst(?:ProgressFlags|Type(?:[GS]etText)?)|Int(?:CmpU?|Fmt|Op)|IsWindow|'
+             r'LangString(?:UP)?|License(?:BkColor|Data|ForceSelection|LangString|Text)|'
+             r'LoadLanguageFile|LockWindow|Log(?:Set|Text)|MessageBox|MiscButtonText|'
+             r'Name|Nop|OutFile|(?:Uninst)?Page(?:Ex(?:End)?)?|PluginDir|Pop|Push|Quit|'
+             r'Read(?:(?:Env|INI|Reg)Str|RegDWORD)|Reboot|(?:Un)?RegDLL|Rename|RequestExecutionLevel|'
+             r'ReserveFile|Return|RMDir|SearchPath|'
+             r'Section(?:Divider|End|(?:(?:Get|Set)(?:Flags|InstTypes|Size|Text))|Group(?:End)?|In)?|'
+             r'SendMessage|'
+             r'Set(?:AutoClose|BrandingImage|Compress(?:ionLevel|or(?:DictSize)?)?|CtlColors|'
+             r'CurInstType|DatablockOptimize|DateSave|Details(?:Print|View)|Error(?:s|Level)|'
+             r'FileAttributes|Font|OutPath|Overwrite|PluginUnload|RebootFlag|ShellVarContext|'
+             r'Silent|StaticBkColor)|'
+             r'Show(?:(?:I|Uni)nstDetails|Window)|Silent(?:Un)?Install|Sleep|SpaceTexts|'
+             r'Str(?:CmpS?|Cpy|Len)|SubSection(?:End)?|'
+             r'Uninstall(?:ButtonText|(?:Sub)?Caption|EXEName|Icon|Text)|UninstPage|'
+             r'Var|VI(?:AddVersionKey|ProductVersion)|WindowIcon|'
+             r'Write(?:INIStr|Reg(:?Bin|DWORD|(?:Expand)?Str)|Uninstaller)|XPStyle)\b',
+             Keyword),
+            (r'\b(CUR|END|(?:FILE_ATTRIBUTE_)?(?:ARCHIVE|HIDDEN|NORMAL|OFFLINE|READONLY|SYSTEM|TEMPORARY)|'
+             r'HK(CC|CR|CU|DD|LM|PD|U)|'
+             r'HKEY_(?:CLASSES_ROOT|CURRENT_(?:CONFIG|USER)|DYN_DATA|LOCAL_MACHINE|PERFORMANCE_DATA|USERS)|'
+             r'ID(?:ABORT|CANCEL|IGNORE|NO|OK|RETRY|YES)|'
+             r'MB_(?:ABORTRETRYIGNORE|DEFBUTTON[1-4]|ICON(?:EXCLAMATION|INFORMATION|QUESTION|STOP)|'
+             r'OK(?:CANCEL)?|RETRYCANCEL|RIGHT|SETFOREGROUND|TOPMOST|USERICON|YESNO(?:CANCEL)?)|'
+             r'SET|SHCTX|SW_(?:HIDE|SHOW(?:MAXIMIZED|MINIMIZED|NORMAL))|'
+             r'admin|all|auto|both|bottom|bzip2|checkbox|colored|current|false|force|'
+             r'hide|highest|if(?:diff|newer)|lastused|leave|left|listonly|lzma|nevershow|'
+             r'none|normal|off|on|pop|push|radiobuttons|right|show|silent|silentlog|'
+             r'smooth|textonly|top|true|try|user|zlib)\b',
+             Name.Constant),
+        ],
+        'macro': [
+            (r'\!(addincludedir(?:dir)?|addplugindir|appendfile|cd|define|'
+             r'delfilefile|echo(?:message)?|else|endif|error|execute|'
+             r'if(?:macro)?n?(?:def)?|include|insertmacro|macro(?:end)?|packhdr|'
+             r'search(?:parse|replace)|system|tempfilesymbol|undef|verbose|warning)\b',
+             Comment.Preproc),
+        ],
+        'interpol': [
+            (r'\$(R?[0-9])', Name.Builtin.Pseudo),    # registers
+            (r'\$(ADMINTOOLS|APPDATA|CDBURN_AREA|COOKIES|COMMONFILES(?:32|64)|'
+            r'DESKTOP|DOCUMENTS|EXE(?:DIR|FILE|PATH)|FAVORITES|FONTS|HISTORY|'
+            r'HWNDPARENT|INTERNET_CACHE|LOCALAPPDATA|MUSIC|NETHOOD|PICTURES|'
+            r'PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES(?:32|64)|QUICKLAUNCH|'
+            r'RECENT|RESOURCES(?:_LOCALIZED)?|SENDTO|SM(?:PROGRAMS|STARTUP)|'
+            r'STARTMENU|SYSDIR|TEMP(?:LATES)?|VIDEOS|WINDIR|\{NSISDIR\})',
+             Name.Builtin),
+            (r'\$(CMDLINE|INSTDIR|OUTDIR|LANGUAGE)', Name.Variable.Global),
+            (r'\$[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+        ],
+        'str_double': [
+            (r'"', String, '#pop'),
+            (r'\$(\\[nrt"]|\$)', String.Escape),
+            include('interpol'),
+            (r'.', String.Double),
+        ],
+        'str_backtick': [
+            (r'`', String, '#pop'),
+            (r'\$(\\[nrt"]|\$)', String.Escape),
+            include('interpol'),
+            (r'.', String.Double),
+        ],
+    }
+
+
+class RPMSpecLexer(RegexLexer):
+    """
+    For RPM *.spec files
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'RPMSpec'
+    aliases = ['spec']
+    filenames = ['*.spec']
+    mimetypes = ['text/x-rpm-spec']
+
+    _directives = ('(?:package|prep|build|install|clean|check|pre[a-z]*|'
+                   'post[a-z]*|trigger[a-z]*|files)')
+
+    tokens = {
+        'root': [
+            (r'#.*\n', Comment),
+            include('basic'),
+        ],
+        'description': [
+            (r'^(%' + _directives + ')(.*)$',
+             bygroups(Name.Decorator, Text), '#pop'),
+            (r'\n', Text),
+            (r'.', Text),
+        ],
+        'changelog': [
+            (r'\*.*\n', Generic.Subheading),
+            (r'^(%' + _directives + ')(.*)$',
+             bygroups(Name.Decorator, Text), '#pop'),
+            (r'\n', Text),
+            (r'.', Text),
+        ],
+        'string': [
+            (r'"', String.Double, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            include('interpol'),
+            (r'.', String.Double),
+        ],
+        'basic': [
+            include('macro'),
+            (r'(?i)^(Name|Version|Release|Epoch|Summary|Group|License|Packager|'
+             r'Vendor|Icon|URL|Distribution|Prefix|Patch[0-9]*|Source[0-9]*|'
+             r'Requires\(?[a-z]*\)?|[A-Za-z]+Req|Obsoletes|Provides|Conflicts|'
+             r'Build[A-Za-z]+|[A-Za-z]+Arch|Auto[A-Za-z]+)(:)(.*)$',
+             bygroups(Generic.Heading, Punctuation, using(this))),
+            (r'^%description', Name.Decorator, 'description'),
+            (r'^%changelog', Name.Decorator, 'changelog'),
+            (r'^(%' + _directives + ')(.*)$', bygroups(Name.Decorator, Text)),
+            (r'%(attr|defattr|dir|doc(?:dir)?|setup|config(?:ure)?|'
+             r'make(?:install)|ghost|patch[0-9]+|find_lang|exclude|verify)',
+             Keyword),
+            include('interpol'),
+            (r"'.*'", String.Single),
+            (r'"', String.Double, 'string'),
+            (r'.', Text),
+        ],
+        'macro': [
+            (r'%define.*\n', Comment.Preproc),
+            (r'%\{\!\?.*%define.*\}', Comment.Preproc),
+            (r'(%(?:if(?:n?arch)?|else(?:if)?|endif))(.*)$',
+             bygroups(Comment.Preproc, Text)),
+        ],
+        'interpol': [
+            (r'%\{?__[a-z_]+\}?', Name.Function),
+            (r'%\{?_([a-z_]+dir|[a-z_]+path|prefix)\}?', Keyword.Pseudo),
+            (r'%\{\?[A-Za-z0-9_]+\}', Name.Variable),
+            (r'\$\{?RPM_[A-Z0-9_]+\}?', Name.Variable.Global),
+            (r'%\{[a-zA-Z][a-zA-Z0-9_]+\}', Keyword.Constant),
+        ]
+    }
