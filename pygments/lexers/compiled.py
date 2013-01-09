@@ -28,7 +28,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'DylanLexer
            'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
            'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
            'NimrodLexer', 'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer',
-           'DylanLidLexer', 'CobolLexer', 'CobolFreeformatLexer']
+           'DylanLidLexer', 'CobolLexer', 'CobolFreeformatLexer', 'LogosLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -3370,3 +3370,59 @@ class CobolFreeformatLexer(CobolLexer):
             (r'(\*>.*\n|^\w*\*.*$)', Comment),
         ],
     }
+
+class LogosLexer(ObjectiveCppLexer):
+    """
+    For Logos + Objective-C source code with preprocessor directives.
+    """
+
+    name = 'Logos'
+    aliases = ['logos']
+    filenames = ['*.x', '*.xi', '*.xm', '*.xmi']
+    mimetypes = ['text/x-logos']
+    priority = 0.25
+
+    tokens = {
+        'statements': [
+			(r'(%orig|%log)\b', Keyword),
+			(r'(%c)\b(\()(\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(\))',
+			bygroups(Keyword, Punctuation, Text, Name.Class, Text, Punctuation)),
+			(r'(%init)\b(\()', bygroups(Keyword, Punctuation), 'logos_init_directive'),
+			(r'(%init)(?=\s*;)', bygroups(Keyword)),
+			(r'(%hook|%group)(\s+)([a-zA-Z$_][a-zA-Z0-9$_]+)', bygroups(Keyword, Text, Name.Class), '#pop'),
+			(r'(%subclass)(\s+)', bygroups(Keyword, Text),
+			('#pop', 'logos_classname')),
+			inherit,
+        ],
+		'logos_init_directive' : [
+			('\s+', Text),
+			(',', Punctuation, ('logos_init_directive', '#pop')),
+			('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(=)(\s*)([^);]*)', bygroups(Name.Class, Text, Punctuation, Text, Text)),
+			('([a-zA-Z$_][a-zA-Z0-9$_]*)', Name.Class),
+			('\)', Punctuation, '#pop'),
+		],
+		'logos_classname' : [
+			('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*:\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)?',
+			 bygroups(Name.Class, Text, Name.Class), '#pop'),
+			('([a-zA-Z$_][a-zA-Z0-9$_]*)', Name.Class, '#pop')
+		],
+		'root': [
+			(r'(%subclass)(\s+)', bygroups(Keyword, Text),
+			 'logos_classname'),
+			(r'(%hook|%group)(\s+)([a-zA-Z$_][a-zA-Z0-9$_]+)', bygroups(Keyword, Text, Name.Class)),
+			(r'(%config)(\s*\(\s*)(\w+)(\s*=\s*)(.*?)(\s*\)\s*)', bygroups(Keyword, Text, Name.Variable, Text, String, Text)),
+			(r'(%ctor)(\s*)({)', bygroups(Keyword, Text, Punctuation),
+			 'function'),
+			(r'(%new)(\s*)(\()(\s*.*?\s*)(\))', bygroups(Keyword, Text, Keyword, String, Keyword)),
+			(r'(\s*)(%end)(\s*)', bygroups(Text, Keyword, Text)),
+			inherit,
+		],
+    }
+
+    _logos_keywords = re.compile(r'%(?:hook|ctor|init|c\()')
+
+    def analyse_text(text):
+        if _logos_keywords.search(text):
+            return 1.0
+        return 0
+     
