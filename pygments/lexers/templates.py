@@ -5,7 +5,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -1651,7 +1651,6 @@ class LassoHtmlLexer(DelegatingLexer):
                  'application/x-httpd-lasso[89]']
 
     def __init__(self, **options):
-        options['requiredelimiters'] = True
         super(LassoHtmlLexer, self).__init__(HtmlLexer, LassoLexer, **options)
 
     def analyse_text(text):
@@ -1678,7 +1677,6 @@ class LassoXmlLexer(DelegatingLexer):
     mimetypes = ['application/xml+lasso']
 
     def __init__(self, **options):
-        options['requiredelimiters'] = True
         super(LassoXmlLexer, self).__init__(XmlLexer, LassoLexer, **options)
 
     def analyse_text(text):

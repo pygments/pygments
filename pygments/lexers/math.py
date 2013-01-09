@@ -5,12 +5,13 @@
 
     Lexers for math languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
+from pygments.util import shebang_matches
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
     combined, do_insertions
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
@@ -83,7 +84,8 @@ class JuliaLexer(RegexLexer):
             (r'`(?s).*?`', String.Backtick),
 
             # chars
-            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
+            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|"
+             r"\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
 
             # try to match trailing transpose
             (r'(?<=[.\w\)\]])\'+', Operator),
@@ -97,8 +99,8 @@ class JuliaLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
             # numbers
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-            (r'\d+[eE][+-]?[0-9]+', Number.Float),
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'0b[01]+', Number.Binary),
             (r'0o[0-7]+', Number.Oct),
             (r'0x[a-fA-F0-9]+', Number.Hex),
@@ -341,6 +343,10 @@ class MatlabLexer(RegexLexer):
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
+
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
 
             (r'(?<![\w\)\]])\'', String, 'string'),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
@@ -788,6 +794,10 @@ class OctaveLexer(RegexLexer):
 
             (r'"[^"]*"', String),
 
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
+
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
@@ -858,6 +868,10 @@ class ScilabLexer(RegexLexer):
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
             (r'(?<![\w\)\]])\'', String, 'string'),
+
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
 
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
@@ -1292,7 +1306,7 @@ class StanLexer(RegexLexer):
     filenames = ['*.stan']
 
     _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                 'then', 'else', 'true', 'false', 'T', 
+                 'then', 'else', 'true', 'false', 'T',
                  'lower', 'upper', 'print')
 
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
@@ -1343,7 +1357,7 @@ class StanLexer(RegexLexer):
             # Integer Literals
             (r'-?[0-9]+', Number.Integer),
             # Assignment operators
-            # SLexer makes these tokens Operators. 
+            # SLexer makes these tokens Operators.
             (r'<-|~', Operator),
             # Infix and prefix operators (and = )
             (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),

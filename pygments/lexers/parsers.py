@@ -5,7 +5,7 @@
 
     Lexers for parser generators.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -738,7 +738,8 @@ class TreetopBaseLexer(RegexLexer):
             (r'[()]', Punctuation),
             (r'[?+*/&!~]', Operator),
             (r'\[(?:\\.|\[:\^?[a-z]+:\]|[^\\\]])+\]', String.Regex),
-            (r'([0-9]*)(\.\.)([0-9]*)', bygroups(Number.Integer, Operator, Number.Integer)),
+            (r'([0-9]*)(\.\.)([0-9]*)',
+             bygroups(Number.Integer, Operator, Number.Integer)),
             (r'(<)([^>]+)(>)', bygroups(Punctuation, Name.Class, Punctuation)),
             (r'{', Punctuation, 'inline_module'),
             (r'\.', String.Regex),
