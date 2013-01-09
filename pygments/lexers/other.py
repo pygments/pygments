@@ -19,6 +19,7 @@ from pygments.util import get_bool_opt
 from pygments.lexers.web import HtmlLexer
 
 from pygments.lexers._openedgebuiltins import OPENEDGEKEYWORDS
+from pygments.lexers._robotframeworklexer import RobotFrameworkLexer
 
 # backwards compatibility
 from pygments.lexers.sql import SqlLexer, MySqlLexer, SqliteConsoleLexer
@@ -32,7 +33,8 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'AutohotkeyLexer', 'GoodDataCLLexer', 'MaqlLexer', 'ProtoBufLexer',
            'HybrisLexer', 'AwkLexer', 'Cfengine3Lexer', 'SnobolLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
-           'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer', 'NSISLexer']
+           'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
+           'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -1255,7 +1257,8 @@ class ModelicaLexer(RegexLexer):
         ],
         'classes': [
             (r'(block|class|connector|function|model|package|'
-             r'record|type)\b', Name.Class),
+             r'record|type)(\s+)([A-Za-z_]+)',
+             bygroups(Keyword, Text, Name.Class))
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -2771,7 +2774,7 @@ class OpenEdgeLexer(RegexLexer):
 
     keywords = (r'(?i)(^|(?<=[^0-9a-z_\-]))(' +
                 r'|'.join(OPENEDGEKEYWORDS) +
-                r')\s*($|(?=[^0-9a-z_\-]))') 
+                r')\s*($|(?=[^0-9a-z_\-]))')
     tokens = {
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
@@ -3156,8 +3159,89 @@ class SourcePawnLexer(RegexLexer):
                     if value in self.SM_TYPES:
                         token = Keyword.Type
                     elif value in self._functions:
-                        tokens = Name.Builtin
+                        token = Name.Builtin
             yield index, token, value
+
+
+class PuppetLexer(RegexLexer):
+    """
+    For `Puppet <http://puppetlabs.com/>`__ configuration DSL.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'Puppet'
+    aliases = ['puppet']
+    filenames = ['*.pp']
+
+    tokens = {
+        'root': [
+            include('comments'),
+            include('keywords'),
+            include('names'),
+            include('numbers'),
+            include('operators'),
+            include('strings'),
+
+            (r'[]{}:(),;[]', Punctuation),
+            (r'[^\S\n]+', Text),
+        ],
+
+        'comments': [
+            (r'\s*#.*$', Comment),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+        ],
+
+        'operators': [
+            (r'(=>|\?|<|>|=|\+|-|/|\*|~|!|\|)', Operator),
+            (r'(in|and|or|not)\b', Operator.Word),
+        ],
+
+        'names': [
+            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
+            (r'(\$\S+)(\[)(\S+)(\])', bygroups(Name.Variable, Punctuation,
+                                               String, Punctuation)),
+            (r'\$\S+', Name.Variable),
+        ],
+
+        'numbers': [
+            # Copypasta from the Python lexer
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
+            (r'0[0-7]+j?', Number.Oct),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'\d+L', Number.Integer.Long),
+            (r'\d+j?', Number.Integer)
+        ],
+
+        'keywords': [
+            # Left out 'group' and 'require'
+            # Since they're often used as attributes
+            (r'(?i)(absent|alert|alias|audit|augeas|before|case|check|class|'
+             r'computer|configured|contained|create_resources|crit|cron|debug|'
+             r'default|define|defined|directory|else|elsif|emerg|err|exec|'
+             r'extlookup|fail|false|file|filebucket|fqdn_rand|generate|host|if|'
+             r'import|include|info|inherits|inline_template|installed|'
+             r'interface|k5login|latest|link|loglevel|macauthorization|'
+             r'mailalias|maillist|mcx|md5|mount|mounted|nagios_command|'
+             r'nagios_contact|nagios_contactgroup|nagios_host|'
+             r'nagios_hostdependency|nagios_hostescalation|nagios_hostextinfo|'
+             r'nagios_hostgroup|nagios_service|nagios_servicedependency|'
+             r'nagios_serviceescalation|nagios_serviceextinfo|'
+             r'nagios_servicegroup|nagios_timeperiod|node|noop|notice|notify|'
+             r'package|present|purged|realize|regsubst|resources|role|router|'
+             r'running|schedule|scheduled_task|search|selboolean|selmodule|'
+             r'service|sha1|shellquote|split|sprintf|ssh_authorized_key|sshkey|'
+             r'stage|stopped|subscribe|tag|tagged|template|tidy|true|undef|'
+             r'unmounted|user|versioncmp|vlan|warning|yumrepo|zfs|zone|'
+             r'zpool)\b', Keyword),
+        ],
+
+        'strings': [
+            (r'"([^"])*"', String),
+            (r'\'([^\'])*\'', String),
+        ],
+
+    }
 
 
 class NSISLexer(RegexLexer):
@@ -3187,7 +3271,8 @@ class NSISLexer(RegexLexer):
             ('.', Text),
         ],
         'basic': [
-            (r'(\n)(Function)(\s+)([\.\_a-zA-Z][\.\_a-zA-Z0-9]*)\b',bygroups(Text, Keyword, Text, Name.Function)),
+            (r'(\n)(Function)(\s+)([\.\_a-zA-Z][\.\_a-zA-Z0-9]*)\b',
+             bygroups(Text, Keyword, Text, Name.Function)),
             (r'\b([_a-zA-Z][_a-zA-Z0-9]*)(::)([a-zA-Z][a-zA-Z0-9]*)\b',
              bygroups(Keyword.Namespace, Punctuation, Name.Function)),
             (r'\b([_a-zA-Z][_a-zA-Z0-9]*)(:)', bygroups(Name.Label, Punctuation)),

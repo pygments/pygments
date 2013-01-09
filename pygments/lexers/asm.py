@@ -240,8 +240,8 @@ class LlvmLexer(RegexLexer):
              r'|linkonce_odr|weak|weak_odr|appending|dllimport|dllexport'
              r'|common|default|hidden|protected|extern_weak|external'
              r'|thread_local|zeroinitializer|undef|null|to|tail|target|triple'
-             r'|deplibs|datalayout|volatile|nuw|nsw|exact|inbounds|align'
-             r'|addrspace|section|alias|module|asm|sideeffect|gc|dbg'
+             r'|datalayout|volatile|nuw|nsw|nnan|ninf|nsz|arcp|fast|exact|inbounds'
+             r'|align|addrspace|section|alias|module|asm|sideeffect|gc|dbg'
 
              r'|ccc|fastcc|coldcc|x86_stdcallcc|x86_fastcallcc|arm_apcscc'
              r'|arm_aapcscc|arm_aapcs_vfpcc'

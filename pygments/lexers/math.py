@@ -11,6 +11,7 @@
 
 import re
 
+from pygments.util import shebang_matches
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
     combined, do_insertions
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
@@ -97,8 +98,8 @@ class JuliaLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
             # numbers
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-            (r'\d+[eE][+-]?[0-9]+', Number.Float),
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'0b[01]+', Number.Binary),
             (r'0o[0-7]+', Number.Oct),
             (r'0x[a-fA-F0-9]+', Number.Hex),
@@ -341,6 +342,10 @@ class MatlabLexer(RegexLexer):
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
+
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
 
             (r'(?<![\w\)\]])\'', String, 'string'),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
@@ -788,6 +793,10 @@ class OctaveLexer(RegexLexer):
 
             (r'"[^"]*"', String),
 
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
+
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
@@ -858,6 +867,10 @@ class ScilabLexer(RegexLexer):
             # (not great, but handles common cases...)
             (r'(?<=[\w\)\]])\'', Operator),
             (r'(?<![\w\)\]])\'', String, 'string'),
+
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+', Number.Integer),
 
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
