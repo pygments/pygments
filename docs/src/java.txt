@@ -2,19 +2,28 @@
 Use Pygments in Java
 =====================
 
-Thanks to _Jython: http://www.jython.org it's possible to use Pygments in Java.
+Thanks to `Jython <http://www.jython.org>`__ it is possible to use Pygments in
+Java.
 
-This page is a simple tutorial to get an idea of how this is working. You can then look at _Jython documentation: http://www.jython.org/docs/ for more advanced use.
+This page is a simple tutorial to get an idea of how this is working. You can
+then look at the `Jython documentation <http://www.jython.org/docs/>`__ for more
+advanced use.
 
-Since version 1.5, Pygments is deployed on _Maven Central: http://repo1.maven.org/maven2/org/pygments/pygments/ as a JAR so is Jython which make it a lot easier to create the Java project.
+Since version 1.5, Pygments is deployed on `Maven Central
+<http://repo1.maven.org/maven2/org/pygments/pygments/>`__ as a JAR so is Jython
+which make it a lot easier to create the Java project.
 
-Here is an example of _Maven: http://www.maven.org pom.xml file for a project running Pygments:
+Here is an example of a `Maven <http://www.maven.org>`__ ``pom.xml`` file for a
+project running Pygments:
 
 .. sourcecode:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
 
-    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <project xmlns="http://maven.apache.org/POM/4.0.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                                 http://maven.apache.org/maven-v4_0_0.xsd">
       <modelVersion>4.0.0</modelVersion>
       <groupId>example</groupId>
       <artifactId>example</artifactId>
