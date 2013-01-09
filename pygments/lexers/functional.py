@@ -5,7 +5,7 @@
 
     Lexers for functional languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -23,7 +23,8 @@ __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
 
 class RacketLexer(RegexLexer):
     """
-    Lexer for Racket source code.
+    Lexer for `Racket <http://racket-lang.org/>`_ source code (formerly known as
+    PLT Scheme).
 
     *New in Pygments 1.6.*
     """
@@ -2436,7 +2437,7 @@ class KokaLexer(RegexLexer):
     # builtin names and special names
     builtin = [
         'for', 'while', 'repeat',
-        'foreach', 'foreach-indexed', 
+        'foreach', 'foreach-indexed',
         'error', 'catch', 'finally',
         'cs', 'js', 'file', 'ref', 'assigned',
     ]
