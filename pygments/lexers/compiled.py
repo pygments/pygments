@@ -1032,7 +1032,8 @@ class DylanLexer(RegexLexer):
             (r'#[xX][0-9a-fA-F]+', Number.Hex),
 
             # Macro parameters
-            (r'(\?' + valid_name + ')(:)(token|name|variable|expression|body|case-body|\*)',
+            (r'(\?' + valid_name + ')(:)'
+             r'(token|name|variable|expression|body|case-body|\*)',
                 bygroups(Name.Tag, Operator, Name.Builtin)),
             (r'(\?)(:)(token|name|variable|expression|body|case-body|\*)',
                 bygroups(Name.Tag, Operator, Name.Builtin)),
@@ -1801,8 +1802,7 @@ class GoLexer(RegexLexer):
             (r'(var|func|struct|map|chan|type|interface|const)\b', Keyword.Declaration),
             (r'(break|default|select|case|defer|go'
              r'|else|goto|switch|fallthrough|if|range'
-             r'|continue|for|return)\b', Keyword
-            ),
+             r'|continue|for|return)\b', Keyword),
             (r'(true|false|iota|nil)\b', Keyword.Constant),
             # It seems the builtin types aren't actually keywords, but
             # can be used as functions. So we need two declarations.
@@ -1812,14 +1812,13 @@ class GoLexer(RegexLexer):
              r'|complex64|complex128|byte|rune'
              r'|string|bool|error|uintptr'
              r'|print|println|panic|recover|close|complex|real|imag'
-             r'|len|cap|append|copy|delete|new|make)\b(\()', bygroups(Name.Builtin, Punctuation)
-            ),
+             r'|len|cap|append|copy|delete|new|make)\b(\()',
+             bygroups(Name.Builtin, Punctuation)),
             (r'(uint|uint8|uint16|uint32|uint64'
              r'|int|int8|int16|int32|int64'
              r'|float|float32|float64'
              r'|complex64|complex128|byte|rune'
-             r'|string|bool|error|uintptr)\b', Keyword.Type
-            ),
+             r'|string|bool|error|uintptr)\b', Keyword.Type),
             # imaginary_lit
             (r'\d+i', Number),
             (r'\d+\.\d*([Ee][-+]\d+)?i', Number),
@@ -2444,7 +2443,9 @@ class BlitzMaxLexer(RegexLexer):
     bmax_sktypes = r'@{1,2}|[!#$%]'
     bmax_lktypes = r'\b(Int|Byte|Short|Float|Double|Long)\b'
     bmax_name = r'[a-z_][a-z0-9_]*'
-    bmax_var = r'(%s)(?:(?:([ \t]*)(%s)|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)|([ \t]*)([:])([ \t]*)(?:%s|(%s)))(?:([ \t]*)(Ptr))?)' % (bmax_name, bmax_sktypes, bmax_lktypes, bmax_name)
+    bmax_var = (r'(%s)(?:(?:([ \t]*)(%s)|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)'
+                r'|([ \t]*)([:])([ \t]*)(?:%s|(%s)))(?:([ \t]*)(Ptr))?)') % \
+                (bmax_name, bmax_sktypes, bmax_lktypes, bmax_name)
     bmax_func = bmax_var + r'?((?:[ \t]|\.\.\n)*)([(])'
 
     flags = re.MULTILINE | re.IGNORECASE
@@ -3083,12 +3084,17 @@ class MonkeyLexer(RegexLexer):
             (r'(?i)\b(?:Self|Super)\b', Name.Builtin.Pseudo),
             (r'\b(?:HOST|LANG|TARGET|CONFIG)\b', Name.Constant),
             # Keywords
-            (r'(?i)^(Import)(\s+)(.*)(\n)', bygroups(Keyword.Namespace, Text, Name.Namespace, Text)),
+            (r'(?i)^(Import)(\s+)(.*)(\n)',
+             bygroups(Keyword.Namespace, Text, Name.Namespace, Text)),
             (r'(?i)^Strict\b.*\n', Keyword.Reserved),
-            (r'(?i)(Const|Local|Global|Field)(\s+)', bygroups(Keyword.Declaration, Text), 'variables'),
-            (r'(?i)(New|Class|Interface|Extends|Implements)(\s+)', bygroups(Keyword.Reserved, Text), 'classname'),
-            (r'(?i)(Function|Method)(\s+)', bygroups(Keyword.Reserved, Text), 'funcname'),
-            (r'(?i)(?:End|Return|Public|Private|Extern|Property|Final|Abstract)\b', Keyword.Reserved),
+            (r'(?i)(Const|Local|Global|Field)(\s+)',
+             bygroups(Keyword.Declaration, Text), 'variables'),
+            (r'(?i)(New|Class|Interface|Extends|Implements)(\s+)',
+             bygroups(Keyword.Reserved, Text), 'classname'),
+            (r'(?i)(Function|Method)(\s+)',
+             bygroups(Keyword.Reserved, Text), 'funcname'),
+            (r'(?i)(?:End|Return|Public|Private|Extern|Property|'
+             r'Final|Abstract)\b', Keyword.Reserved),
             # Flow Control stuff
             (r'(?i)(?:If|Then|Else|ElseIf|EndIf|'
              r'Select|Case|Default|'
@@ -3310,16 +3316,19 @@ class CobolLexer(RegexLexer):
             (r'([(),;:&%.])', Punctuation),
 
             # Intrinsics
-            (r'(^|(?<=[^0-9a-z_\-]))(ABS|ACOS|ANNUITY|ASIN|ATAN|BYTE-LENGTH|CHAR|COMBINED-DATETIME|CONCATENATE|COS|'
-             r'CURRENT-DATE|DATE-OF-INTEGER|DATE-TO-YYYYMMDD|DAY-OF-INTEGER|DAY-TO-YYYYDDD|E|'
-             r'EXCEPTION-FILE|EXCEPTION-LOCATION|EXCEPTION-STATEMENT|EXCEPTION-STATUS|EXP|'
-             r'EXP10|FACTORIAL|FRACTION-PART|INTEGER|INTEGER-OF-DATE|INTEGER-OF-DAY|'
-             r'INTEGER-PART|LENGTH|LOCALE-DATE|LOCALE-TIME|LOCALE-TIME-FROM-SECONDS|LOG|LOG10|'
-             r'LOWER-CASE|MAX|MEAN|MEDIAN|MIDRANGE|MIN|MOD|NUMVAL|NUMVAL-C|ORD|ORD-MAX|ORD-MIN|'
-             r'PI|PRESENT-VALUE|RANDOM|RANGE|REM|REVERSE|SECONDS-FROM-FORMATTED-TIME|'
-             r'SECONDS-PAST-MIDNIGHT|SIGN|SIN|SQRT|STANDARD-DEVIATION|STORED-CHAR-LENGTH|'
-             r'SUBSTITUTE|SUBSTITUTE-CASE|SUM|TAN|TEST-DATE-YYYYMMDD|TEST-DAY-YYYYDDD|TRIM|'
-             r'UPPER-CASE|VARIANCE|WHEN-COMPILED|YEAR-TO-YYYY)\s*($|(?=[^0-9a-z_\-]))', Name.Function),
+            (r'(^|(?<=[^0-9a-z_\-]))(ABS|ACOS|ANNUITY|ASIN|ATAN|BYTE-LENGTH|'
+             r'CHAR|COMBINED-DATETIME|CONCATENATE|COS|CURRENT-DATE|'
+             r'DATE-OF-INTEGER|DATE-TO-YYYYMMDD|DAY-OF-INTEGER|DAY-TO-YYYYDDD|'
+             r'EXCEPTION-(?:FILE|LOCATION|STATEMENT|STATUS)|EXP10|EXP|E|'
+             r'FACTORIAL|FRACTION-PART|INTEGER-OF-(?:DATE|DAY|PART)|INTEGER|'
+             r'LENGTH|LOCALE-(?:DATE|TIME(?:-FROM-SECONDS)?)|LOG10|LOG|'
+             r'LOWER-CASE|MAX|MEAN|MEDIAN|MIDRANGE|MIN|MOD|NUMVAL(?:-C)?|'
+             r'ORD(?:-MAX|-MIN)?|PI|PRESENT-VALUE|RANDOM|RANGE|REM|REVERSE|'
+             r'SECONDS-FROM-FORMATTED-TIME|SECONDS-PAST-MIDNIGHT|SIGN|SIN|SQRT|'
+             r'STANDARD-DEVIATION|STORED-CHAR-LENGTH|SUBSTITUTE(?:-CASE)?|'
+             r'SUM|TAN|TEST-DATE-YYYYMMDD|TEST-DAY-YYYYDDD|TRIM|'
+             r'UPPER-CASE|VARIANCE|WHEN-COMPILED|YEAR-TO-YYYY)\s*'
+             r'($|(?=[^0-9a-z_\-]))', Name.Function),
 
             # Booleans
             (r'(^|(?<=[^0-9a-z_\-]))(true|false)\s*($|(?=[^0-9a-z_\-]))', Name.Builtin),

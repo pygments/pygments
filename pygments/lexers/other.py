@@ -1740,6 +1740,7 @@ class NewspeakLexer(RegexLexer):
        ]
     }
 
+
 class GherkinLexer(RegexLexer):
     """
     For `Gherkin <http://github.com/aslakhellesoy/gherkin/>` syntax.
@@ -1836,10 +1837,16 @@ class GherkinLexer(RegexLexer):
             include('table_vars'),
             include('numbers'),
             (r'(\s*)(@[^@\r\n\t ]+)', bygroups(Name.Function, Name.Tag)),
-            (step_keywords, bygroups(Name.Function, Keyword), "step_content_root"),
-            (feature_keywords, bygroups(Keyword, Keyword, Name.Function), 'narrative'),
-            (feature_element_keywords, bygroups(Name.Function, Keyword, Keyword, Name.Function), "feature_elements"),
-            (examples_keywords, bygroups(Name.Function, Keyword, Keyword, Name.Function), "examples_table"),
+            (step_keywords, bygroups(Name.Function, Keyword),
+             'step_content_root'),
+            (feature_keywords, bygroups(Keyword, Keyword, Name.Function),
+             'narrative'),
+            (feature_element_keywords,
+             bygroups(Name.Function, Keyword, Keyword, Name.Function),
+             'feature_elements'),
+            (examples_keywords,
+             bygroups(Name.Function, Keyword, Keyword, Name.Function),
+             'examples_table'),
             (r'(\s|.)', Name.Function),
         ]
     }
@@ -3318,56 +3325,67 @@ class NSISLexer(RegexLexer):
             (r'(\b[ULS]|\B)([\!\<\>=]?=|\<\>?|\>)\B', Operator),
             (r'[\+\-\|]', Operator),
             (r'[\\]', Punctuation),
-            (r'\b(Abort|Add(?:BrandingImage|Size)|Allow(?:RootDirInstall|SkipFiles)|'
-             r'AutoCloseWindow|BG(?:Font|Gradient)|BrandingText|BringToFront|'
-             r'Call(?:InstDLL)?|(?:Sub)?Caption|ChangeUI|CheckBitmap|ClearErrors|CompletedText|'
-             r'ComponentText|CopyFiles|CRCCheck|Create(?:Directory|Font|Shortcut)|'
-             r'Delete(?:INI(?:Sec|Str)|Reg(?:Key|Value))?|DetailPrint|DetailsButtonText|'
-             r'Dir(?:Show|Text|Var|Verify)|(?:Disabled|Enabled)Bitmap|EnableWindow|'
-             r'EnumReg(?:Key|Value)|Exch|Exec(?:Shell|Wait)?|ExpandEnvStrings|'
-             r'File(?:BufSize|Close|ErrorText|Open|Read(?:Byte)?|Seek|Write(?:Byte)?)?|'
+            (r'\b(Abort|Add(?:BrandingImage|Size)|'
+             r'Allow(?:RootDirInstall|SkipFiles)|AutoCloseWindow|'
+             r'BG(?:Font|Gradient)|BrandingText|BringToFront|Call(?:InstDLL)?|'
+             r'(?:Sub)?Caption|ChangeUI|CheckBitmap|ClearErrors|CompletedText|'
+             r'ComponentText|CopyFiles|CRCCheck|'
+             r'Create(?:Directory|Font|Shortcut)|Delete(?:INI(?:Sec|Str)|'
+             r'Reg(?:Key|Value))?|DetailPrint|DetailsButtonText|'
+             r'Dir(?:Show|Text|Var|Verify)|(?:Disabled|Enabled)Bitmap|'
+             r'EnableWindow|EnumReg(?:Key|Value)|Exch|Exec(?:Shell|Wait)?|'
+             r'ExpandEnvStrings|File(?:BufSize|Close|ErrorText|Open|'
+             r'Read(?:Byte)?|Seek|Write(?:Byte)?)?|'
              r'Find(?:Close|First|Next|Window)|FlushINI|Function(?:End)?|'
-             r'Get(?:CurInstType|CurrentAddress|DlgItem|DLLVersion(?:Local)?|ErrorLevel|'
-             r'FileTime(?:Local)?|FullPathName|FunctionAddress|InstDirError|LabelAddress|TempFileName)|'
-             r'Goto|HideWindow|Icon|If(?:Abort|Errors|FileExists|RebootFlag|Silent)|'
+             r'Get(?:CurInstType|CurrentAddress|DlgItem|DLLVersion(?:Local)?|'
+             r'ErrorLevel|FileTime(?:Local)?|FullPathName|FunctionAddress|'
+             r'InstDirError|LabelAddress|TempFileName)|'
+             r'Goto|HideWindow|Icon|'
+             r'If(?:Abort|Errors|FileExists|RebootFlag|Silent)|'
              r'InitPluginsDir|Install(?:ButtonText|Colors|Dir(?:RegKey)?)|'
-             r'Inst(?:ProgressFlags|Type(?:[GS]etText)?)|Int(?:CmpU?|Fmt|Op)|IsWindow|'
-             r'LangString(?:UP)?|License(?:BkColor|Data|ForceSelection|LangString|Text)|'
-             r'LoadLanguageFile|LockWindow|Log(?:Set|Text)|MessageBox|MiscButtonText|'
-             r'Name|Nop|OutFile|(?:Uninst)?Page(?:Ex(?:End)?)?|PluginDir|Pop|Push|Quit|'
-             r'Read(?:(?:Env|INI|Reg)Str|RegDWORD)|Reboot|(?:Un)?RegDLL|Rename|RequestExecutionLevel|'
-             r'ReserveFile|Return|RMDir|SearchPath|'
-             r'Section(?:Divider|End|(?:(?:Get|Set)(?:Flags|InstTypes|Size|Text))|Group(?:End)?|In)?|'
-             r'SendMessage|'
-             r'Set(?:AutoClose|BrandingImage|Compress(?:ionLevel|or(?:DictSize)?)?|CtlColors|'
-             r'CurInstType|DatablockOptimize|DateSave|Details(?:Print|View)|Error(?:s|Level)|'
-             r'FileAttributes|Font|OutPath|Overwrite|PluginUnload|RebootFlag|ShellVarContext|'
+             r'Inst(?:ProgressFlags|Type(?:[GS]etText)?)|Int(?:CmpU?|Fmt|Op)|'
+             r'IsWindow|LangString(?:UP)?|'
+             r'License(?:BkColor|Data|ForceSelection|LangString|Text)|'
+             r'LoadLanguageFile|LockWindow|Log(?:Set|Text)|MessageBox|'
+             r'MiscButtonText|Name|Nop|OutFile|(?:Uninst)?Page(?:Ex(?:End)?)?|'
+             r'PluginDir|Pop|Push|Quit|Read(?:(?:Env|INI|Reg)Str|RegDWORD)|'
+             r'Reboot|(?:Un)?RegDLL|Rename|RequestExecutionLevel|ReserveFile|'
+             r'Return|RMDir|SearchPath|Section(?:Divider|End|'
+             r'(?:(?:Get|Set)(?:Flags|InstTypes|Size|Text))|Group(?:End)?|In)?|'
+             r'SendMessage|Set(?:AutoClose|BrandingImage|Compress(?:ionLevel|'
+             r'or(?:DictSize)?)?|CtlColors|CurInstType|DatablockOptimize|'
+             r'DateSave|Details(?:Print|View)|Error(?:s|Level)|FileAttributes|'
+             r'Font|OutPath|Overwrite|PluginUnload|RebootFlag|ShellVarContext|'
              r'Silent|StaticBkColor)|'
-             r'Show(?:(?:I|Uni)nstDetails|Window)|Silent(?:Un)?Install|Sleep|SpaceTexts|'
-             r'Str(?:CmpS?|Cpy|Len)|SubSection(?:End)?|'
-             r'Uninstall(?:ButtonText|(?:Sub)?Caption|EXEName|Icon|Text)|UninstPage|'
-             r'Var|VI(?:AddVersionKey|ProductVersion)|WindowIcon|'
-             r'Write(?:INIStr|Reg(:?Bin|DWORD|(?:Expand)?Str)|Uninstaller)|XPStyle)\b',
-             Keyword),
-            (r'\b(CUR|END|(?:FILE_ATTRIBUTE_)?(?:ARCHIVE|HIDDEN|NORMAL|OFFLINE|READONLY|SYSTEM|TEMPORARY)|'
+             r'Show(?:(?:I|Uni)nstDetails|Window)|Silent(?:Un)?Install|Sleep|'
+             r'SpaceTexts|Str(?:CmpS?|Cpy|Len)|SubSection(?:End)?|'
+             r'Uninstall(?:ButtonText|(?:Sub)?Caption|EXEName|Icon|Text)|'
+             r'UninstPage|Var|VI(?:AddVersionKey|ProductVersion)|WindowIcon|'
+             r'Write(?:INIStr|Reg(:?Bin|DWORD|(?:Expand)?Str)|Uninstaller)|'
+             r'XPStyle)\b', Keyword),
+            (r'\b(CUR|END|(?:FILE_ATTRIBUTE_)?'
+             r'(?:ARCHIVE|HIDDEN|NORMAL|OFFLINE|READONLY|SYSTEM|TEMPORARY)|'
              r'HK(CC|CR|CU|DD|LM|PD|U)|'
-             r'HKEY_(?:CLASSES_ROOT|CURRENT_(?:CONFIG|USER)|DYN_DATA|LOCAL_MACHINE|PERFORMANCE_DATA|USERS)|'
+             r'HKEY_(?:CLASSES_ROOT|CURRENT_(?:CONFIG|USER)|DYN_DATA|'
+             r'LOCAL_MACHINE|PERFORMANCE_DATA|USERS)|'
              r'ID(?:ABORT|CANCEL|IGNORE|NO|OK|RETRY|YES)|'
-             r'MB_(?:ABORTRETRYIGNORE|DEFBUTTON[1-4]|ICON(?:EXCLAMATION|INFORMATION|QUESTION|STOP)|'
-             r'OK(?:CANCEL)?|RETRYCANCEL|RIGHT|SETFOREGROUND|TOPMOST|USERICON|YESNO(?:CANCEL)?)|'
-             r'SET|SHCTX|SW_(?:HIDE|SHOW(?:MAXIMIZED|MINIMIZED|NORMAL))|'
-             r'admin|all|auto|both|bottom|bzip2|checkbox|colored|current|false|force|'
-             r'hide|highest|if(?:diff|newer)|lastused|leave|left|listonly|lzma|nevershow|'
-             r'none|normal|off|on|pop|push|radiobuttons|right|show|silent|silentlog|'
-             r'smooth|textonly|top|true|try|user|zlib)\b',
-             Name.Constant),
+             r'MB_(?:ABORTRETRYIGNORE|DEFBUTTON[1-4]|'
+             r'ICON(?:EXCLAMATION|INFORMATION|QUESTION|STOP)|'
+             r'OK(?:CANCEL)?|RETRYCANCEL|RIGHT|SETFOREGROUND|TOPMOST|USERICON|'
+             r'YESNO(?:CANCEL)?)|SET|SHCTX|'
+             r'SW_(?:HIDE|SHOW(?:MAXIMIZED|MINIMIZED|NORMAL))|'
+             r'admin|all|auto|both|bottom|bzip2|checkbox|colored|current|false|'
+             r'force|hide|highest|if(?:diff|newer)|lastused|leave|left|'
+             r'listonly|lzma|nevershow|none|normal|off|on|pop|push|'
+             r'radiobuttons|right|show|silent|silentlog|smooth|textonly|top|'
+             r'true|try|user|zlib)\b', Name.Constant),
         ],
         'macro': [
             (r'\!(addincludedir(?:dir)?|addplugindir|appendfile|cd|define|'
              r'delfilefile|echo(?:message)?|else|endif|error|execute|'
              r'if(?:macro)?n?(?:def)?|include|insertmacro|macro(?:end)?|packhdr|'
-             r'search(?:parse|replace)|system|tempfilesymbol|undef|verbose|warning)\b',
-             Comment.Preproc),
+             r'search(?:parse|replace)|system|tempfilesymbol|undef|verbose|'
+             r'warning)\b', Comment.Preproc),
         ],
         'interpol': [
             (r'\$(R?[0-9])', Name.Builtin.Pseudo),    # registers
