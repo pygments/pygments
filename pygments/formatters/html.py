@@ -10,8 +10,8 @@
 """
 
 import os
-import os.path
 import sys
+import os.path
 import StringIO
 
 from pygments.formatter import Formatter
@@ -19,9 +19,9 @@ from pygments.token import Token, Text, STANDARD_TYPES
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, bytes
 
 try:
-    from ctags import CTags, TagEntry
+    import ctags
 except ImportError:
-    CTags = None
+    ctags = None
 
 __all__ = ['HtmlFormatter']
 
@@ -147,8 +147,10 @@ class HtmlFormatter(Formatter):
     the `cssfile` option is given.
 
     When `tagsfile` is set to the path of a ctags index file, it is used to
-    generate hyperlinks from names to their definition. You must enable
-    `anchorlines` and run ctags with the `-n` option for this to work.
+    generate hyperlinks from names to their definition.  You must enable
+    `anchorlines` and run ctags with the `-n` option for this to work.  The
+    `python-ctags` module from PyPI must be installed to use this feature;
+    otherwise a `RuntimeError` will be raised.
 
     The `get_style_defs(arg='')` method of a `HtmlFormatter` returns a string
     containing CSS rules for the CSS classes used by the formatter. The
@@ -298,12 +300,13 @@ class HtmlFormatter(Formatter):
     `tagsfile`
         If set to the path of a ctags file, wrap names in anchor tags that
         link to their definitions. `lineanchors` should be used, and the
-        tags file should specify line numbers(see the `-n` option to ctags)
-    
-    `urlformat`
-        A `String.format` pattern used to generate links to ctags definitions.
-        Avaliabe variable are `{path}`, `{fname}` and `{fext}`.
+        tags file should specify line numbers (see the `-n` option to ctags).
+
+    `tagurlformat`
+        A string formatting pattern used to generate links to ctags definitions.
+        Avaliabe variable are `%(path)s`, `%(fname)s` and `%(fext)s`.
         Defaults to an empty string, resulting in just `#prefix-number` links.
+
 
     **Subclassing the HTML formatter**
 
@@ -370,13 +373,13 @@ class HtmlFormatter(Formatter):
         self.cssfile = self._decodeifneeded(options.get('cssfile', ''))
         self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
         self.tagsfile = self._decodeifneeded(options.get('tagsfile', ''))
-        self.urlformat = self._decodeifneeded(options.get('urlformat', ''))
+        self.tagurlformat = self._decodeifneeded(options.get('tagurlformat', ''))
 
         if self.tagsfile:
-            if CTags:
-                self.ct = CTags(self.tagsfile)
-            else:
-                raise NameError('Hey! ctags doesn\'t seem to be installed. Try \'pip install python-ctags\'.')
+            if not ctags:
+                raise RuntimeError('The "ctags" package must to be installed '
+                                   'to be able to use the "tagsfile" feature.')
+            self._ctags = ctags.CTags(self.tagsfile)
 
         linenos = options.get('linenos', False)
         if linenos == 'inline':
@@ -670,9 +673,7 @@ class HtmlFormatter(Formatter):
         getcls = self.ttype2class.get
         c2s = self.class2style
         escape_table = _escape_html_table
-
         tagsfile = self.tagsfile
-        urlformat = self.urlformat
 
         lspan = ''
         line = ''
@@ -694,8 +695,10 @@ class HtmlFormatter(Formatter):
                 if linenumber:
                     base, filename = os.path.split(filename)
                     filename, extension = os.path.splitext(filename)
-                    url = urlformat.format(path=base, fname=filename, fext=extension)
-                    parts[0] = "<a href=\"%s#%s-%d\">%s" % (url, self.lineanchors, linenumber, parts[0])
+                    url = self.tagurlformat % {'path': base, 'fname': filename,
+                                               'fext': extension}
+                    parts[0] = "<a href=\"%s#%s-%d\">%s" % \
+                        (url, self.lineanchors, linenumber, parts[0])
                     parts[-1] = parts[-1] + "</a>"
 
             # for all but the last line
@@ -728,8 +731,8 @@ class HtmlFormatter(Formatter):
             yield 1, line + (lspan and '</span>') + lsep
 
     def _lookup_ctag(self, token):
-        entry = TagEntry()
-        if self.ct.find(entry, token, 0):
+        entry = ctags.TagEntry()
+        if self._ctags.find(entry, token, 0):
             return entry['file'], entry['lineNumber']
         else:
             return None, None

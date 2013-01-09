@@ -43,6 +43,9 @@ Version 1.6
   * Windows Registry (#819)
   * Xtend (PR#68)
 
+- The HTML formatter now supports linking to tags using CTags files, when the
+  python-ctags package is installed (PR#87)
+
 - When deriving a lexer from another lexer with token definitions, definitions
   for states not in the child lexer are now inherited.  If you override a state
   in the child lexer, an "inherit" keyword has been added to insert the base
