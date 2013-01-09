@@ -5,7 +5,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -1638,6 +1638,8 @@ class LassoHtmlLexer(DelegatingLexer):
     `HtmlLexer`.
 
     Nested JavaScript and CSS is also highlighted.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'HTML+Lasso'
@@ -1649,7 +1651,6 @@ class LassoHtmlLexer(DelegatingLexer):
                  'application/x-httpd-lasso[89]']
 
     def __init__(self, **options):
-        options['requiredelimiters'] = True
         super(LassoHtmlLexer, self).__init__(HtmlLexer, LassoLexer, **options)
 
     def analyse_text(text):
@@ -1665,6 +1666,8 @@ class LassoXmlLexer(DelegatingLexer):
     """
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `XmlLexer`.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'XML+Lasso'
@@ -1674,7 +1677,6 @@ class LassoXmlLexer(DelegatingLexer):
     mimetypes = ['application/xml+lasso']
 
     def __init__(self, **options):
-        options['requiredelimiters'] = True
         super(LassoXmlLexer, self).__init__(XmlLexer, LassoLexer, **options)
 
     def analyse_text(text):
@@ -1688,6 +1690,8 @@ class LassoCssLexer(DelegatingLexer):
     """
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `CssLexer`.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'CSS+Lasso'
@@ -1712,6 +1716,8 @@ class LassoJavascriptLexer(DelegatingLexer):
     """
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `JavascriptLexer`.
+
+    *New in Pygments 1.6.*
     """
 
     name = 'JavaScript+Lasso'
