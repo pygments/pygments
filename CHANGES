@@ -6,7 +6,7 @@ http://bitbucket.org/birkenfeld/pygments-main/issues.
 
 Version 1.6
 -----------
-(in development, to be released xx November 2012)
+(in development, to be released xx January 2013)
 
 - Lexers added:
 
@@ -23,8 +23,10 @@ Version 1.6
   * LiveScript (PR#84)
   * Monkey (PR#117)
   * Mscgen (PR#80)
+  * Puppet (PR#133)
   * Racket (PR#94)
   * Rdoc (PR#99)
+  * Robot Framework (PR#137)
   * Rust (PR#67)
   * Smali (Dalvik assembly)
   * SourcePawn (PR#39)
@@ -34,11 +36,17 @@ Version 1.6
   * Windows Registry (#819)
   * Xtend (PR#68)
 
+- Use "colorama" on Windows for console color output (PR#142)
+
 - Fix Template Haskell highlighting (PR#63)
 
 - Fix some S/R lexer errors (PR#91)
 
 - Fix a bug in the Prolog lexer with names that start with 'is' (#810)
+
+- Rewrite Dylan lexer, add Dylan LID lexer (PR#147)
+
+- Add a Java quickstart document (PR#146)
 
 
 Version 1.5

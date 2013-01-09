@@ -1762,7 +1762,7 @@ class ScssLexer(RegexLexer):
             (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
             (r'@extend', Keyword, 'selector'),
             (r'@[a-z0-9_-]+', Keyword, 'selector'),
-            (r'(\$[\w-]\w*)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
+            (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
             (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
             (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
             (r'', Text, 'selector'),
