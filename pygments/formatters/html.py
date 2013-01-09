@@ -596,7 +596,8 @@ class HtmlFormatter(Formatter):
 
     def _wrap_lineanchors(self, inner):
         s = self.lineanchors
-        i = self.linenostart - 1 # subtract 1 since we have to increment i *before* yielding
+        i = self.linenostart - 1 # subtract 1 since we have to increment i
+                                 # *before* yielding
         for t, line in inner:
             if t:
                 i += 1
