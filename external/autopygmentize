@@ -40,7 +40,7 @@ if [ "$lexer" = "text" ]; then
       text/x-tcl) lexer=tcl;;
       text/x-tex|text/x-texinfo) lexer=latex;; # FIXME: texinfo really needs its own lexer
       
-      # Types that file outputs which pygmentize didn't support as of file 5.11, pygments 1.5
+      # Types that file outputs which pygmentize didn't support as of file 5.11, pygments 1.6rc1
       # text/calendar
       # text/PGP
       # text/rtf
