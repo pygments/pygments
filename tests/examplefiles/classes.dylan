@@ -121,3 +121,5 @@ define macro with-decoded-seconds
        }
 end macro;
 
+let x = "This size call should be seen as a builtin despite the odd case.".siZe;
+

@@ -974,16 +974,17 @@ class DylanLexer(RegexLexer):
     def get_tokens_unprocessed(self, text):
         for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):
             if token is Name:
-                if value in self.builtins:
+                lowercase_value = value.lower()
+                if lowercase_value in self.builtins:
                     yield index, Name.Builtin, value
                     continue
-                if value in self.keywords:
+                if lowercase_value in self.keywords:
                     yield index, Keyword, value
                     continue
-                if value in self.functions:
+                if lowercase_value in self.functions:
                     yield index, Name.Builtin, value
                     continue
-                if value in self.operators:
+                if lowercase_value in self.operators:
                     yield index, Operator, value
                     continue
             yield index, token, value
