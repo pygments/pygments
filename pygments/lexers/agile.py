@@ -607,7 +607,8 @@ class RubyLexer(ExtendedRegexLexer):
              r'rescue|raise|retry|return|super|then|undef|unless|until|when|'
              r'while|yield)\b', Keyword),
             # start of function, class and module names
-            (r'(module)(\s+)([a-zA-Z_][a-zA-Z0-9_]*(::[a-zA-Z_][a-zA-Z0-9_]*)*)',
+            (r'(module)(\s+)([a-zA-Z_][a-zA-Z0-9_]*'
+             r'(?:::[a-zA-Z_][a-zA-Z0-9_]*)*)',
              bygroups(Keyword, Text, Name.Namespace)),
             (r'(def)(\s+)', bygroups(Keyword, Text), 'funcname'),
             (r'def(?=[*%&^`~+-/\[<>=])', Keyword, 'funcname'),

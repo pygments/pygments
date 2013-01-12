@@ -3363,7 +3363,7 @@ class CobolLexer(RegexLexer):
             # Data Types
             (r'(^|(?<=[^0-9a-z_\-]))'
              r'(PIC\s+.+?(?=(\s|\.\s))|PICTURE\s+.+?(?=(\s|\.\s))|'
-             r'(COMPUTATIONAL)([-][1-5X])?|(COMP)([-][1-5X])?|'
+             r'(COMPUTATIONAL)(-[1-5X])?|(COMP)(-[1-5X])?|'
              r'BINARY-C-LONG|'
              r'BINARY-CHAR|BINARY-DOUBLE|BINARY-LONG|BINARY-SHORT|'
              r'BINARY)\s*($|(?=[^0-9a-z_\-]))', Keyword.Type),
