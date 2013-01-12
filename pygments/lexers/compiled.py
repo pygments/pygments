@@ -2190,10 +2190,12 @@ class AdaLexer(RegexLexer):
             (r'(pragma)(\s+)([a-zA-Z0-9_]+)', bygroups(Keyword.Reserved, Text,
                                                        Comment.Preproc)),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(Byte|Character|Float|Integer|Long_Float|Long_Integer|'
-             r'Long_Long_Float|Long_Long_Integer|Natural|Positive|Short_Float|'
-             r'Short_Integer|Short_Short_Float|Short_Short_Integer|String|'
-             r'Wide_String|Duration)\b', Keyword.Type),
+            (r'(Address|Byte|Boolean|Character|Controlled|Count|Cursor|'
+             r'Duration|File_Mode|File_Type|Float|Generator|Integer|Long_Float|'
+             r'Long_Integer|Long_Long_Float|Long_Long_Integer|Natural|Positive|'
+             r'Reference_Type|Short_Float|Short_Integer|Short_Short_Float|'
+             r'Short_Short_Integer|String|Wide_Character|Wide_String)\b', 
+             Keyword.Type),
             (r'(and(\s+then)?|in|mod|not|or(\s+else)|rem)\b', Operator.Word),
             (r'generic|private', Keyword.Declaration),
             (r'package', Keyword.Declaration, 'package'),
