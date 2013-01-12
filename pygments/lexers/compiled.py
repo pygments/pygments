@@ -2250,13 +2250,18 @@ class AdaLexer(RegexLexer):
             (r'\(', Punctuation, 'formal_part'),
             (r'with|and|use', Keyword.Reserved),
             (r'array\b', Keyword.Reserved, ('#pop', 'array_def')),
-            (r'record\b', Keyword.Reserved, ('formal_part')),
+            (r'record\b', Keyword.Reserved, ('record_def')),
+            (r'(null record)(;)', bygroups(Keyword.Reserved, Punctuation), '#pop'),
             include('root'),
         ],
         'array_def' : [
             (r';', Punctuation, '#pop'),
             (r'([a-z0-9_]+)(\s+)(range)', bygroups(Keyword.Type, Text,
                                                    Keyword.Reserved)),
+            include('root'),
+        ],
+        'record_def' : [
+            (r'end record', Keyword.Reserved, '#pop'),
             include('root'),
         ],
         'import': [
