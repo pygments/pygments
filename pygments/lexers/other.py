@@ -1487,9 +1487,9 @@ class RebolLexer(RegexLexer):
             (r'}', Comment, '#pop'),
         ],
         'commentBlock': [
-            (r'\[',Comment, '#push'),
-            (r'\]',Comment, '#pop'),
-            (r'[^(\[\])]*', Comment),
+            (r'\[', Comment, '#push'),
+            (r'\]', Comment, '#pop'),
+            (r'[^(\[\])]+', Comment),
         ],
     }
 
@@ -2845,7 +2845,7 @@ class BroLexer(RegexLexer):
              r'|pattern|port|record|set|string|subnet|table|time|timer'
              r'|vector)\b', Keyword.Type),
             (r'(T|F)\b', Keyword.Constant),
-            (r'(&)((?:add|delete|expire)_func|attr|(create|read|write)_expire'
+            (r'(&)((?:add|delete|expire)_func|attr|(?:create|read|write)_expire'
              r'|default|disable_print_hook|raw_output|encrypt|group|log'
              r'|mergeable|optional|persistent|priority|redef'
              r'|rotate_(?:interval|size)|synchronized)\b', bygroups(Punctuation,
@@ -3312,19 +3312,19 @@ class NSISLexer(RegexLexer):
             include('macro'),
             include('interpol'),
             include('basic'),
-            (r'\$\{[a-zA-Z_\|][a-zA-Z0-9_\|]*\}', Keyword.Pseudo),
-            (r'\/[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
+            (r'\$\{[a-z_|][\w|]*\}', Keyword.Pseudo),
+            (r'/[a-z_]\w*', Name.Attribute),
             ('.', Text),
         ],
         'basic': [
-            (r'(\n)(Function)(\s+)([\.\_a-zA-Z][\.\_a-zA-Z0-9]*)\b',
+            (r'(\n)(Function)(\s+)([._a-z][.\w]*)\b',
              bygroups(Text, Keyword, Text, Name.Function)),
-            (r'\b([_a-zA-Z][_a-zA-Z0-9]*)(::)([a-zA-Z][a-zA-Z0-9]*)\b',
+            (r'\b([_a-z]\w*)(::)([a-z][a-z0-9]*)\b',
              bygroups(Keyword.Namespace, Punctuation, Name.Function)),
-            (r'\b([_a-zA-Z][_a-zA-Z0-9]*)(:)', bygroups(Name.Label, Punctuation)),
+            (r'\b([_a-z]\w*)(:)', bygroups(Name.Label, Punctuation)),
             (r'(\b[ULS]|\B)([\!\<\>=]?=|\<\>?|\>)\B', Operator),
-            (r'[\+\-\|]', Operator),
-            (r'[\\]', Punctuation),
+            (r'[|+-]', Operator),
+            (r'\\', Punctuation),
             (r'\b(Abort|Add(?:BrandingImage|Size)|'
              r'Allow(?:RootDirInstall|SkipFiles)|AutoCloseWindow|'
              r'BG(?:Font|Gradient)|BrandingText|BringToFront|Call(?:InstDLL)?|'
@@ -3397,7 +3397,7 @@ class NSISLexer(RegexLexer):
             r'STARTMENU|SYSDIR|TEMP(?:LATES)?|VIDEOS|WINDIR|\{NSISDIR\})',
              Name.Builtin),
             (r'\$(CMDLINE|INSTDIR|OUTDIR|LANGUAGE)', Name.Variable.Global),
-            (r'\$[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            (r'\$[a-z_]\w*', Name.Variable),
         ],
         'str_double': [
             (r'"', String, '#pop'),
@@ -3457,8 +3457,8 @@ class RPMSpecLexer(RegexLexer):
             include('macro'),
             (r'(?i)^(Name|Version|Release|Epoch|Summary|Group|License|Packager|'
              r'Vendor|Icon|URL|Distribution|Prefix|Patch[0-9]*|Source[0-9]*|'
-             r'Requires\(?[a-z]*\)?|[A-Za-z]+Req|Obsoletes|Provides|Conflicts|'
-             r'Build[A-Za-z]+|[A-Za-z]+Arch|Auto[A-Za-z]+)(:)(.*)$',
+             r'Requires\(?[a-z]*\)?|[a-z]+Req|Obsoletes|Provides|Conflicts|'
+             r'Build[a-z]+|[a-z]+Arch|Auto[a-z]+)(:)(.*)$',
              bygroups(Generic.Heading, Punctuation, using(this))),
             (r'^%description', Name.Decorator, 'description'),
             (r'^%changelog', Name.Decorator, 'changelog'),
@@ -3641,7 +3641,7 @@ class AutoItLexer(RegexLexer):
         ],
         'labels': [
             # sendkeys
-            (r'(^\s*)({[^\s]+?})', bygroups(Text, Name.Label)),
+            (r'(^\s*)({\S+?})', bygroups(Text, Name.Label)),
         ],
         'numbers': [
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
