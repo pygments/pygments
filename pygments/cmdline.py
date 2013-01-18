@@ -378,9 +378,9 @@ def main(args=sys.argv):
             except ClassNotFound, err:
                 if '-g' in opts:
                     try:
-                        lexer = guess_lexer(code)
+                        lexer = guess_lexer(code, **parsed_opts)
                     except ClassNotFound:
-                        lexer = TextLexer()
+                        lexer = TextLexer(**parsed_opts)
                 else:
                     print >>sys.stderr, 'Error:', err
                     return 1
@@ -392,9 +392,9 @@ def main(args=sys.argv):
         if '-g' in opts:
             code = sys.stdin.read()
             try:
-                lexer = guess_lexer(code)
+                lexer = guess_lexer(code, **parsed_opts)
             except ClassNotFound:
-                lexer = TextLexer()
+                lexer = TextLexer(**parsed_opts)
         elif not lexer:
             print >>sys.stderr, 'Error: no lexer name given and reading ' + \
                                 'from stdin (try using -g or -l <lexer>)'
