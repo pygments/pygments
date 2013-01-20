@@ -242,7 +242,7 @@ LEXERS = {
     'RdLexer': ('pygments.lexers.math', 'Rd', ('rd',), ('*.Rd',), ('text/x-r-doc',)),
     'RebolLexer': ('pygments.lexers.other', 'REBOL', ('rebol',), ('*.r', '*.r3'), ('text/x-rebol',)),
     'RedcodeLexer': ('pygments.lexers.other', 'Redcode', ('redcode',), ('*.cw',), ()),
-    'RegeditLexer': ('pygments.lexers.text', 'reg', (), ('*.reg',), ('text/x-windows-registry',)),
+    'RegeditLexer': ('pygments.lexers.text', 'reg', ('registry',), ('*.reg',), ('text/x-windows-registry',)),
     'RhtmlLexer': ('pygments.lexers.templates', 'RHTML', ('rhtml', 'html+erb', 'html+ruby'), ('*.rhtml',), ('text/html+ruby',)),
     'RobotFrameworkLexer': ('pygments.lexers.other', 'RobotFramework', ('RobotFramework', 'robotframework'), ('*.txt', '*.robot'), ('text/x-robotframework',)),
     'RstLexer': ('pygments.lexers.text', 'reStructuredText', ('rst', 'rest', 'restructuredtext'), ('*.rst', '*.rest'), ('text/x-rst', 'text/prs.fallenstein.rst')),
