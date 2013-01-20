@@ -3047,7 +3047,7 @@ class TypeScriptLexer(RegexLexer):
             # Match stuff like: constructor
             (r'\b(constructor|declare|interface|as|AS)\b', Keyword.Reserved),
             # Match stuff like: super(argument, list)
-            (r'(super)(\s*)\(([a-zA-Z0-9,_?.$\s]+\s*)\)',
+            (r'(super)(\s*)(\([a-zA-Z0-9,_?.$\s]+\s*\))',
              bygroups(Keyword.Reserved, Text), 'slashstartsregex'),
             # Match stuff like: function() {...}
             (r'([a-zA-Z_?.$][\w?.$]*)\(\) \{', Name.Other, 'slashstartsregex'),

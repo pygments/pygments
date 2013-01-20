@@ -2190,10 +2190,12 @@ class AdaLexer(RegexLexer):
             (r'(pragma)(\s+)([a-zA-Z0-9_]+)', bygroups(Keyword.Reserved, Text,
                                                        Comment.Preproc)),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(Byte|Character|Float|Integer|Long_Float|Long_Integer|'
-             r'Long_Long_Float|Long_Long_Integer|Natural|Positive|Short_Float|'
-             r'Short_Integer|Short_Short_Float|Short_Short_Integer|String|'
-             r'Wide_String|Duration)\b', Keyword.Type),
+            (r'(Address|Byte|Boolean|Character|Controlled|Count|Cursor|'
+             r'Duration|File_Mode|File_Type|Float|Generator|Integer|Long_Float|'
+             r'Long_Integer|Long_Long_Float|Long_Long_Integer|Natural|Positive|'
+             r'Reference_Type|Short_Float|Short_Integer|Short_Short_Float|'
+             r'Short_Short_Integer|String|Wide_Character|Wide_String)\b',
+             Keyword.Type),
             (r'(and(\s+then)?|in|mod|not|or(\s+else)|rem)\b', Operator.Word),
             (r'generic|private', Keyword.Declaration),
             (r'package', Keyword.Declaration, 'package'),
@@ -2248,13 +2250,18 @@ class AdaLexer(RegexLexer):
             (r'\(', Punctuation, 'formal_part'),
             (r'with|and|use', Keyword.Reserved),
             (r'array\b', Keyword.Reserved, ('#pop', 'array_def')),
-            (r'record\b', Keyword.Reserved, ('formal_part')),
+            (r'record\b', Keyword.Reserved, ('record_def')),
+            (r'(null record)(;)', bygroups(Keyword.Reserved, Punctuation), '#pop'),
             include('root'),
         ],
         'array_def' : [
             (r';', Punctuation, '#pop'),
             (r'([a-z0-9_]+)(\s+)(range)', bygroups(Keyword.Type, Text,
                                                    Keyword.Reserved)),
+            include('root'),
+        ],
+        'record_def' : [
+            (r'end record', Keyword.Reserved, '#pop'),
             include('root'),
         ],
         'import': [
@@ -3356,7 +3363,7 @@ class CobolLexer(RegexLexer):
             # Data Types
             (r'(^|(?<=[^0-9a-z_\-]))'
              r'(PIC\s+.+?(?=(\s|\.\s))|PICTURE\s+.+?(?=(\s|\.\s))|'
-             r'(COMPUTATIONAL)([-][1-5X])?|(COMP)([-][1-5X])?|'
+             r'(COMPUTATIONAL)(-[1-5X])?|(COMP)(-[1-5X])?|'
              r'BINARY-C-LONG|'
              r'BINARY-CHAR|BINARY-DOUBLE|BINARY-LONG|BINARY-SHORT|'
              r'BINARY)\s*($|(?=[^0-9a-z_\-]))', Keyword.Type),
