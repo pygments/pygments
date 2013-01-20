@@ -691,10 +691,10 @@ class ExtendedRegexLexer(RegexLexer):
                         break
                     if text[ctx.pos] == '\n':
                         # at EOL, reset state to "root"
-                        ctx.pos += 1
                         ctx.stack = ['root']
                         statetokens = tokendefs['root']
                         yield ctx.pos, Text, u'\n'
+                        ctx.pos += 1
                         continue
                     yield ctx.pos, Error, text[ctx.pos]
                     ctx.pos += 1
