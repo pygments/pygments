@@ -819,8 +819,7 @@ class OctaveLexer(RegexLexer):
 
     def analyse_text(text):
         if re.match('^\s*[%#]', text, re.M): #Comment
-            return 0.9
-        return 0.1
+            return 0.1
 
 
 class ScilabLexer(RegexLexer):

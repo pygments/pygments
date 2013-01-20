@@ -376,7 +376,7 @@ class Ca65Lexer(RegexLexer):
         'root': [
             (r';.*', Comment.Single),
             (r'\s+', Text),
-            (r'[\w.@$][\w.@$\d]*:', Name.Label),
+            (r'[a-z_.@$][\w.@$]*:', Name.Label),
             (r'((ld|st)[axy]|(in|de)[cxy]|asl|lsr|ro[lr]|adc|sbc|cmp|cp[xy]'
              r'|cl[cvdi]|se[cdi]|jmp|jsr|bne|beq|bpl|bmi|bvc|bvs|bcc|bcs'
              r'|p[lh][ap]|rt[is]|brk|nop|ta[xy]|t[xy]a|txs|tsx|and|ora|eor'
@@ -388,7 +388,7 @@ class Ca65Lexer(RegexLexer):
             (r'\$[0-9a-f]+|[0-9a-f]+h\b', Number.Hex),
             (r'\d+|%[01]+', Number.Integer),
             (r'[#,.:()=]', Punctuation),
-            (r'[\w.@$][\w.@$\d]*', Name),
+            (r'[a-z_.@$][\w.@$]*', Name),
         ]
     }
 

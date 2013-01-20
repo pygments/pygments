@@ -65,7 +65,7 @@ class RegeditLexer(RegexLexer):
     """
 
     name = 'reg'
-    aliases = []
+    aliases = ['registry']
     filenames = ['*.reg']
     mimetypes = ['text/x-windows-registry']
 
@@ -616,7 +616,7 @@ class MoinWikiLexer(RegexLexer):
             (r'(\'\'\'?|\|\||`|__|~~|\^|,,|::)', Comment), # Formatting
             # Lists
             (r'^( +)([.*-])( )', bygroups(Text, Name.Builtin, Text)),
-            (r'^( +)([a-zivx]{1,5}\.)( )', bygroups(Text, Name.Builtin, Text)),
+            (r'^( +)([a-z]{1,5}\.)( )', bygroups(Text, Name.Builtin, Text)),
             # Other Formatting
             (r'\[\[\w+.*?\]\]', Keyword), # Macro
             (r'(\[[^\s\]]+)(\s+[^\]]+?)?(\])',
