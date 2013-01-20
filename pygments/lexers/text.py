@@ -65,7 +65,7 @@ class RegeditLexer(RegexLexer):
     """
 
     name = 'reg'
-    aliases = []
+    aliases = ['registry']
     filenames = ['*.reg']
     mimetypes = ['text/x-windows-registry']
 
