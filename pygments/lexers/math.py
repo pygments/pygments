@@ -58,9 +58,9 @@ class JuliaLexer(RegexLexer):
             # keywords
             (r'(begin|while|for|in|return|break|continue|'
              r'macro|quote|let|if|elseif|else|try|catch|end|'
-             r'bitstype|ccall|do)\b', Keyword),
+             r'bitstype|ccall|do|using|module|import|export|'
+             r'importall|baremodule)\b', Keyword),
             (r'(local|global|const)\b', Keyword.Declaration),
-            (r'(module|import|export)\b', Keyword.Reserved),
             (r'(Bool|Int|Int8|Int16|Int32|Int64|Uint|Uint8|Uint16|Uint32|Uint64'
              r'|Float32|Float64|Complex64|Complex128|Any|Nothing|None)\b',
                 Keyword.Type),
