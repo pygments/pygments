@@ -257,6 +257,7 @@ LEXERS = {
     'SchemeLexer': ('pygments.lexers.functional', 'Scheme', ('scheme', 'scm'), ('*.scm', '*.ss'), ('text/x-scheme', 'application/x-scheme')),
     'ScilabLexer': ('pygments.lexers.math', 'Scilab', ('scilab',), ('*.sci', '*.sce', '*.tst'), ('text/scilab',)),
     'ScssLexer': ('pygments.lexers.web', 'SCSS', ('scss',), ('*.scss',), ('text/x-scss',)),
+    'ShellSessionLexer': ('pygments.lexers.shell', 'Shell Session', ('shell-session',), ('*.shell-session',), ('application/x-sh-session',)),
     'SmaliLexer': ('pygments.lexers.dalvik', 'Smali', ('smali',), ('*.smali',), ('text/smali',)),
     'SmalltalkLexer': ('pygments.lexers.other', 'Smalltalk', ('smalltalk', 'squeak'), ('*.st',), ('text/x-smalltalk',)),
     'SmartyLexer': ('pygments.lexers.templates', 'Smarty', ('smarty',), ('*.tpl',), ('application/x-smarty',)),
