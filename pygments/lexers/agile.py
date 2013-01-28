@@ -2117,10 +2117,10 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
             ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_CHARS), Name.Builtin),
             # copied from PerlLexer
+            ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + u']+(?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable ),
             ( r'[$][!/]', Name.Variable.Global ),
             ( r'::[?]\w+', Name.Variable.Global ),
             ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + u']+(?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable.Global ),
-            ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + u']+(?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable ),
             ( r'[$](?:<.*?>)+', Name.Variable ), # XXX what about for special variables (like $/)? should I enter a variable state?
             ( r'(?:q|qq|Q)[a-zA-Z]?\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>[^0-9a-zA-Z:\s]+)', brackets_callback(String) ),
             # copied from PerlLexer
