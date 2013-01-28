@@ -5,7 +5,7 @@
 
     Lexers for functional languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -2437,7 +2437,7 @@ class KokaLexer(RegexLexer):
     # builtin names and special names
     builtin = [
         'for', 'while', 'repeat',
-        'foreach', 'foreach-indexed', 
+        'foreach', 'foreach-indexed',
         'error', 'catch', 'finally',
         'cs', 'js', 'file', 'ref', 'assigned',
     ]

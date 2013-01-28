@@ -5,7 +5,7 @@
 
     Lexers for agile languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -607,7 +607,8 @@ class RubyLexer(ExtendedRegexLexer):
              r'rescue|raise|retry|return|super|then|undef|unless|until|when|'
              r'while|yield)\b', Keyword),
             # start of function, class and module names
-            (r'(module)(\s+)([a-zA-Z_][a-zA-Z0-9_]*(::[a-zA-Z_][a-zA-Z0-9_]*)*)',
+            (r'(module)(\s+)([a-zA-Z_][a-zA-Z0-9_]*'
+             r'(?:::[a-zA-Z_][a-zA-Z0-9_]*)*)',
              bygroups(Keyword, Text, Name.Namespace)),
             (r'(def)(\s+)', bygroups(Keyword, Text), 'funcname'),
             (r'def(?=[*%&^`~+-/\[<>=])', Keyword, 'funcname'),
@@ -1224,7 +1225,8 @@ class CrocLexer(RegexLexer):
              r'|this|throw|try|vararg|while|with|yield)\b', Keyword),
             (r'(false|true|null)\b', Keyword.Constant),
             # FloatLiteral
-            (r'([0-9][0-9_]*)(?=[.eE])(\.[0-9][0-9_]*)?([eE][+\-]?[0-9_]+)?', Number.Float),
+            (r'([0-9][0-9_]*)(?=[.eE])(\.[0-9][0-9_]*)?([eE][+\-]?[0-9_]+)?',
+             Number.Float),
             # IntegerLiteral
             # -- Binary
             (r'0[bB][01][01_]*', Number),
@@ -1854,7 +1856,7 @@ class DgLexer(RegexLexer):
             #  Operators
             (r"`\w+'*`", Operator), # Infix links
             #   Reserved infix links
-            (r'\b(or|and|if|unless|else|where|is|in)\b', Operator.Word),
+            (r'\b(or|and|if|else|where|is|in)\b', Operator.Word),
             (r'[!$%&*+\-./:<-@\\^|~;,]+', Operator),
             #  Identifiers
             #   Python 3 types

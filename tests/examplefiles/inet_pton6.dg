@@ -39,7 +39,7 @@ unhex = q -> q and map p -> (int p 16) (q.split ':')
 # :return: an integer which, written in binary form, points to the same node.
 #
 inet_pton6 = address ->
-  raise $ ValueError 'not a valid IPv6 address' unless match = addrv6.match address
+  raise $ ValueError 'not a valid IPv6 address' if not (match = addrv6.match address)
   start, end, *ipv4 = match.groups!
 
   is_ipv4 = not $ None in ipv4
@@ -47,7 +47,7 @@ inet_pton6 = address ->
 
   raise $ ValueError 'not a valid IPv6 address' if (end is None and shift) or shift < 0
   hexaddr = (base_n 0x10000 (unhex start) << shift) + base_n 0x10000 (unhex $ end or '')
-  hexaddr unless is_ipv4 else (hexaddr << 32) + base_n 0x100 (map int ipv4)
+  (hexaddr << 32) + base_n 0x100 (map int ipv4) if is_ipv4 else hexaddr
 
 
 inet6_type = q -> switch
