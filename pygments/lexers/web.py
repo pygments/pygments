@@ -3114,7 +3114,7 @@ class LassoLexer(RegexLexer):
 
             # keywords
             (r'(true|false|none|minimal|full|all)\b', Keyword.Constant),
-            (r'(local|var|variable|data)\b', Keyword.Declaration),
+            (r'(local|var|variable|data(?=\s))\b', Keyword.Declaration),
             (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|'
              r'null)\b', Keyword.Type),
             (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
