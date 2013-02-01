@@ -712,6 +712,88 @@ class SchemeLexer(RegexLexer):
     }
 
 
+class CPSALexer(SchemeLexer):
+    """
+    A CPSA lexer based on the CPSA language as of version 2.2.12
+    """
+    name = 'CPSA'
+    aliases = ['cpsa']
+    filenames = ['*.cpsa']
+    mimetypes = []
+
+    # list of known keywords and builtins taken form vim 6.4 scheme.vim
+    # syntax file.
+    keywords = [
+        'herald', 'vars', 'defmacro', 'include', 'defprotocol', 'defrole',
+        'defskeleton', 'defstrand', 'deflistener', 'non-orig', 'uniq-orig',
+        'pen-non-orig', 'precedes', 'trace', 'send', 'recv', 'name', 'text',
+        'skey', 'akey', 'data', 'mesg'
+    ]
+    builtins = [
+        'cat', 'enc', 'hash', 'privk', 'pubk', 'invk', 'ltk', 'gen', 'exp'
+    ]
+
+    # valid names for identifiers
+    # well, names can only not consist fully of numbers
+    # but this should be good enough for now
+    valid_name = r'[a-zA-Z0-9!$%&*+,/:<=>?@^_~|-]+'
+
+    tokens = {
+        'root' : [
+            # the comments - always starting with semicolon
+            # and going to the end of the line
+            (r';.*$', Comment.Single),
+
+            # whitespaces - usually not relevant
+            (r'\s+', Text),
+
+            # numbers
+            (r'-?\d+\.\d+', Number.Float),
+            (r'-?\d+', Number.Integer),
+            # support for uncommon kinds of numbers -
+            # have to figure out what the characters mean
+            #(r'(#e|#i|#b|#o|#d|#x)[\d.]+', Number),
+
+            # strings, symbols and characters
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'" + valid_name, String.Symbol),
+            (r"#\\([()/'\"._!§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
+
+            # constants
+            (r'(#t|#f)', Name.Constant),
+
+            # special operators
+            (r"('|#|`|,@|,|\.)", Operator),
+
+            # highlight the keywords
+            ('(%s)' % '|'.join([
+                re.escape(entry) + ' ' for entry in keywords]),
+                Keyword
+            ),
+
+            # first variable in a quoted string like
+            # '(this is syntactic sugar)
+            (r"(?<='\()" + valid_name, Name.Variable),
+            (r"(?<=#\()" + valid_name, Name.Variable),
+
+            # highlight the builtins
+            ("(?<=\()(%s)" % '|'.join([
+                re.escape(entry) + ' ' for entry in builtins]),
+                Name.Builtin
+            ),
+
+            # the remaining functions
+            (r'(?<=\()' + valid_name, Name.Function),
+            # find the remaining variables
+            (valid_name, Name.Variable),
+
+            # the famous parentheses!
+            (r'(\(|\))', Punctuation),
+            (r'(\[|\])', Punctuation),
+        ],
+    }
+
+
 class CommonLispLexer(RegexLexer):
     """
     A Common Lisp lexer.
