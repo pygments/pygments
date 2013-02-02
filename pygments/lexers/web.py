@@ -2937,27 +2937,25 @@ class DartLexer(RegexLexer):
 
     tokens = {
         'root': [
+            include('string_literal'),
             (r'#!(.*?)$', Comment.Preproc),
-            (r'(#)(import|library|source)', bygroups(Text, Keyword)),
+            (r'\b(import|export)\b', Keyword, 'import_decl'),
+            (r'\b(library|source|part of|part)\b', Keyword),
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'(class|interface)(\s+)',
+            (r'\b(class)\b(\s+)',
              bygroups(Keyword.Declaration, Text), 'class'),
-            (r'(assert|break|case|catch|continue|default|do|else|finally|for|'
+            (r'\b(assert|break|case|catch|continue|default|do|else|finally|for|'
              r'if|in|is|new|return|super|switch|this|throw|try|while)\b',
              Keyword),
-            (r'(abstract|const|extends|factory|final|get|implements|'
+            (r'\b(abstract|const|extends|factory|final|get|implements|'
              r'native|operator|set|static|typedef|var)\b', Keyword.Declaration),
-            (r'(bool|double|Dynamic|int|num|Object|String|void)', Keyword.Type),
-            (r'(false|null|true)', Keyword.Constant),
-            (r'@"(\\\\|\\"|[^"])*"', String.Double), # raw string
-            (r"@'(\\\\|\\'|[^'])*'", String.Single), # raw string
-            (r'"', String.Double, 'string_double'),
-            (r"'", String.Single, 'string_single'),
+            (r'\b(bool|double|Dynamic|int|num|Object|String|void)\b', Keyword.Type),
+            (r'\b(false|null|true)\b', Keyword.Constant),
+            (r'[~!%^&*+=|?:<>/-]|as', Operator),
             (r'[a-zA-Z_$][a-zA-Z0-9_]*:', Name.Label),
             (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
-            (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[(){}\[\],.;]', Punctuation),
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
             # DIGIT+ (‘.’ DIGIT*)? EXPONENT?
@@ -2969,21 +2967,55 @@ class DartLexer(RegexLexer):
         'class': [
             (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name.Class, '#pop')
         ],
-        'string_double': [
-            (r'"', String.Double, '#pop'),
-            (r'[^"$]+', String.Double),
+        'import_decl': [
+            include('string_literal'),
+            (r'\s+', Text),
+            (r'\b(as|show|hide)\b', Keyword),
+            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+            (r'\,', Punctuation),
+            (r'\;', Punctuation, '#pop')
+        ],
+        'string_literal': [
+            # Raw strings.
+            (r'r"""([\s|\S]*?)"""', String.Double),
+            (r"r'''([\s|\S]*?)'''", String.Single),
+            (r'r"(.*?)"', String.Double),
+            (r"r'(.*?)'", String.Single),
+            # Normal Strings.
+            (r'"""', String.Double, 'string_double_multiline'),
+            (r"'''", String.Single, 'string_single_multiline'),
+            (r'"', String.Double, 'string_double'),
+            (r"'", String.Single, 'string_single')
+        ],
+        'string_common': [
+            (r"\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{[0-9A-Fa-f]*\}|[a-z\'\"$\\])", String.Escape),
             (r'(\$)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(String.Interpol, Name)),
             (r'(\$\{)(.*?)(\})',
-             bygroups(String.Interpol, using(this), String.Interpol)),
+             bygroups(String.Interpol, using(this), String.Interpol))
+        ],
+        'string_double': [
+            (r'"', String.Double, '#pop'),
+            (r'[^\"$\\\n]+', String.Double),
+            include('string_common'),
             (r'\$+', String.Double)
+        ],
+        'string_double_multiline': [
+            (r'"""', String.Double, '#pop'),
+            (r'[^\"$\\]+', String.Double),
+            include('string_common'),
+            (r'(\$|\")+', String.Double)
         ],
         'string_single': [
             (r"'", String.Single, '#pop'),
-            (r"[^'$]+", String.Single),
-            (r'(\$)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(String.Interpol, Name)),
-            (r'(\$\{)(.*?)(\})',
-             bygroups(String.Interpol, using(this), String.Interpol)),
+            (r"[^\'$\\\n]+", String.Single),
+            include('string_common'),
             (r'\$+', String.Single)
+        ],
+        'string_single_multiline': [
+            (r"'''", String.Single, '#pop'),
+            (r'[^\'$\\]+', String.Single),
+            include('string_common'),
+            (r'(\$|\')+', String.Single)
         ]
     }
 
