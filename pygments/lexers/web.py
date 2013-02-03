@@ -2988,7 +2988,8 @@ class DartLexer(RegexLexer):
             (r"'", String.Single, 'string_single')
         ],
         'string_common': [
-            (r"\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{[0-9A-Fa-f]*\}|[a-z\'\"$\\])", String.Escape),
+            (r"\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{[0-9A-Fa-f]*\}|[a-z\'\"$\\])",
+             String.Escape),
             (r'(\$)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(String.Interpol, Name)),
             (r'(\$\{)(.*?)(\})',
              bygroups(String.Interpol, using(this), String.Interpol))
