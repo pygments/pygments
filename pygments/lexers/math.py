@@ -97,8 +97,8 @@ class JuliaLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
             # numbers
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-            (r'\d+[eE][+-]?[0-9]+', Number.Float),
+            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'0b[01]+', Number.Binary),
             (r'0o[0-7]+', Number.Oct),
             (r'0x[a-fA-F0-9]+', Number.Hex),
@@ -1283,22 +1283,20 @@ class JagsLexer(RegexLexer):
 class StanLexer(RegexLexer):
     """Pygments Lexer for Stan models. 
 
-    The Stan modeling language is specified in the *Stan 1.0.3
+    The Stan modeling language is specified in the *Stan 1.1.1
     Modeling Language Manual* `pdf
-    <http://code.google.com/p/stan/downloads/detail?name=stan-reference-1.0.3.pdf&can=1&q=>`_.
+    <http://code.google.com/p/stan/downloads/detail?name=stan-reference-1.1.1.pdf>`_.
 
     *New in Pygments 1.6.*
-
     """
 
     name = 'Stan'
     aliases = ['stan']
     filenames = ['*.stan']
 
-    _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                 'then', 'else', 'true', 'false',
-                 'lower', 'upper', 'print')
-
+    _KEYWORDS = ('for', 'in', 'while', 'if', 'else', 'print',
+                 'T', 'lower', 'upper')
+            
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
               'matrix', 'corr_matrix', 'cov_matrix', 'positive_ordered')
 
@@ -1331,19 +1329,16 @@ class StanLexer(RegexLexer):
             # Data types
             (r'(%s)\b' % r'|'.join(_TYPES), Keyword.Type),
             # Punctuation
-            (r"[;:,\[\]()<>]", Punctuation),
-            # functions. check that they are followed  by (
+            (r"[;:,\[\]()]", Punctuation),
+            # Builtin
             (r'(%s)(?=\s*\()'
-             % r'|'.join(_stan_builtins.FUNCTIONS),
-             Name.Builtin),
-            (r'(%s)(?=\s*\()'
-             % r'|'.join(_stan_builtins.DISTRIBUTIONS),
+             % r'|'.join(_stan_builtins.FUNCTIONS
+                         + _stan_builtins.DISTRIBUTIONS),
              Name.Builtin),
             (r'(%s)(?=\s*\()'
              % r'|'.join(_stan_builtins.CONSTANTS), Keyword.Constant),
             # Special names ending in __, like lp__
             (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
-            # Mark Reserved C++ words as errors
             ('%s\b' % r'|'.join(_stan_builtins.CPP_RESERVED), Error),
             # Regular variable names
             (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
@@ -1356,7 +1351,7 @@ class StanLexer(RegexLexer):
             # SLexer makes these tokens Operators.
             (r'<-|~', Operator),
             # Infix and prefix operators (and = )
-            (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),
+            (r"\+|-|\.?\*|\.?/|\\|'|==?|!=?|<=?|>=?|\|\||&&", Operator),
             # Block delimiters
             (r'[{}]', Punctuation),
             ]

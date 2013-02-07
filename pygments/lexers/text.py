@@ -1749,8 +1749,8 @@ class PyPyLogLexer(RegexLexer):
         ],
         "jit-log": [
             (r"\[\w+\] jit-log-.*?}$", Keyword, "#pop"),
-
             (r"^\+\d+: ", Comment),
+            (r"--end of the loop--", Comment),
             (r"[ifp]\d+", Name),
             (r"ptr\d+", Name),
             (r"(\()(\w+(?:\.\w+)?)(\))",
@@ -1760,7 +1760,7 @@ class PyPyLogLexer(RegexLexer):
             (r"-?\d+", Number.Integer),
             (r"'.*'", String),
             (r"(None|descr|ConstClass|ConstPtr|TargetToken)", Name),
-            (r"<.*?>", Name.Builtin),
+            (r"<.*?>+", Name.Builtin),
             (r"(label|debug_merge_point|jump|finish)", Name.Class),
             (r"(int_add_ovf|int_add|int_sub_ovf|int_sub|int_mul_ovf|int_mul|"
              r"int_floordiv|int_mod|int_lshift|int_rshift|int_and|int_or|"
