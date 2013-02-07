@@ -1294,8 +1294,11 @@ class JagsLexer(RegexLexer):
             return 0
 
 class StanLexer(RegexLexer):
-    """
-    Pygments Lexer for Stan models.
+    """Pygments Lexer for Stan models. 
+
+    The Stan modeling language is specified in the *Stan 1.1.1
+    Modeling Language Manual* `pdf
+    <http://code.google.com/p/stan/downloads/detail?name=stan-reference-1.1.1.pdf>`_.
 
     *New in Pygments 1.6.*
     """
@@ -1304,10 +1307,9 @@ class StanLexer(RegexLexer):
     aliases = ['stan']
     filenames = ['*.stan']
 
-    _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                 'then', 'else', 'true', 'false', 'T',
-                 'lower', 'upper', 'print')
-
+    _KEYWORDS = ('for', 'in', 'while', 'if', 'else', 'print',
+                 'T', 'lower', 'upper')
+            
     _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
               'matrix', 'corr_matrix', 'cov_matrix', 'positive_ordered')
 
@@ -1334,11 +1336,13 @@ class StanLexer(RegexLexer):
                         'model', r'generated\s+quantities')),
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
-            (r'(%s)\b' % r'|'.join(_RESERVED), Keyword.Reserved),
+            (r'(%s)\b' % r'|'.join(_RESERVED), Keyword),
+            # Truncation
+            (r'T(?=\s*\[)', Keyword),
             # Data types
             (r'(%s)\b' % r'|'.join(_TYPES), Keyword.Type),
             # Punctuation
-            (r"[;:,\[\]()<>]", Punctuation),
+            (r"[;:,\[\]()]", Punctuation),
             # Builtin
             (r'(%s)(?=\s*\()'
              % r'|'.join(_stan_builtins.FUNCTIONS
@@ -1348,6 +1352,7 @@ class StanLexer(RegexLexer):
              % r'|'.join(_stan_builtins.CONSTANTS), Keyword.Constant),
             # Special names ending in __, like lp__
             (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
+            ('%s\b' % r'|'.join(_stan_builtins.CPP_RESERVED), Error),
             # Regular variable names
             (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
             # Real Literals
@@ -1359,7 +1364,7 @@ class StanLexer(RegexLexer):
             # SLexer makes these tokens Operators.
             (r'<-|~', Operator),
             # Infix and prefix operators (and = )
-            (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),
+            (r"\+|-|\.?\*|\.?/|\\|'|==?|!=?|<=?|>=?|\|\||&&", Operator),
             # Block delimiters
             (r'[{}]', Punctuation),
             ]
