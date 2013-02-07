@@ -30,7 +30,7 @@ local(f) = file("lassobuiltins-9.py")
 #f->writeString('# -*- coding: utf-8 -*-
 """
     pygments.lexers._lassobuiltins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Built-in Lasso types, traits, and methods.
 """
@@ -42,16 +42,16 @@ lcapi_loadModules
 // Load all of the libraries from builtins and lassoserver
 // This forces all possible available types and methods to be registered
 local(srcs =
-		tie(
-			dir(sys_masterHomePath + 'LassoLibraries/builtins/')->eachFilePath,
-			dir(sys_masterHomePath + 'LassoLibraries/lassoserver/')->eachFilePath
-		)
+	tie(
+		dir(sys_masterHomePath + 'LassoLibraries/builtins/')->eachFilePath,
+		dir(sys_masterHomePath + 'LassoLibraries/lassoserver/')->eachFilePath
+	)
 )
 
 with topLevelDir in #srcs
-where !#topLevelDir->lastComponent->beginsWith('.')
+where not #topLevelDir->lastComponent->beginsWith('.')
 do protect => {
-  handle_error => {
+	handle_error => {
 		stdoutnl('Unable to load: ' + #topLevelDir + ' ' + error_msg)
 	}
 	library_thread_loader->loadLibrary(#topLevelDir)
@@ -66,34 +66,40 @@ local(
 
 // unbound methods
 with method in sys_listUnboundMethods
-where !#method->methodName->asString->endsWith('=')
-where #method->methodName->asString->isalpha(1)
-where #methodsList !>> #method->methodName->asString
-do #methodsList->insert(#method->methodName->asString)
+let m_name = #method->methodName->asString
+where not #m_name->endsWith('=')		// skip setter methods
+where #m_name->isAlpha(1)		// skip unpublished methods
+where #methodsList !>> #m_name
+do #methodsList->insert(#m_name)
 
 // traits
 with trait in sys_listTraits
-where !#trait->asString->beginsWith('$')
-where #traitsList !>> #trait->asString
+let name = #trait->asString
+where not #name->beginsWith('$')		// skip combined traits
+where #traitsList !>> #name
 do {
-	#traitsList->insert(#trait->asString)
-	with tmethod in tie(#trait->getType->provides, #trait->getType->requires)
-	where !#tmethod->methodName->asString->endsWith('=')
-	where #tmethod->methodName->asString->isalpha(1)
-	where #methodsList !>> #tmethod->methodName->asString
-	do #methodsList->insert(#tmethod->methodName->asString)
+	#traitsList->insert(#name)
+	with method in tie(#trait->getType->provides, #trait->getType->requires)
+	let m_name = #method->methodName->asString
+	where not #m_name->endsWith('=')		// skip setter methods
+	where #m_name->isAlpha(1)		// skip unpublished methods
+	where #methodsList !>> #m_name
+	do #methodsList->insert(#m_name)
 }
 
 // types
 with type in sys_listTypes
-where #typesList !>> #type->asString
+let name = #type->asString
+where not #name->endsWith('$')		// skip threads
+where #typesList !>> #name
 do {
-	#typesList->insert(#type->asString)
-	with tmethod in #type->getType->listMethods
-	where !#tmethod->methodName->asString->endsWith('=')
-	where #tmethod->methodName->asString->isalpha(1)
-	where #methodsList !>> #tmethod->methodName->asString
-	do #methodsList->insert(#tmethod->methodName->asString)
+	#typesList->insert(#name)
+	with method in #type->getType->listMethods
+	let m_name = #method->methodName->asString
+	where not #m_name->endsWith('=')		// skip setter methods
+	where #m_name->isAlpha(1)		// skip unpublished methods
+	where #methodsList !>> #m_name
+	do #methodsList->insert(#m_name)
 }
 
 #f->writeString("BUILTINS = {
