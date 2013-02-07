@@ -3225,13 +3225,12 @@ class LassoLexer(RegexLexer):
             # keywords
             (r'(true|false|none|minimal|full|all)\b', Keyword.Constant),
             (r'(local|var|variable|data(?=\s))\b', Keyword.Declaration),
-            (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|'
-             r'null)\b', Keyword.Type),
+            (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|null)\b',
+                Keyword.Type),
             (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
             (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Text, Name)),
             (r'require\b', Keyword, 'requiresection'),
-            (r'(/?)(Namespace_Using)\b',
-                bygroups(Punctuation, Keyword.Namespace)),
+            (r'(/?)(Namespace_Using)\b', bygroups(Punctuation, Keyword.Namespace)),
             (r'(/?)(Cache|Database_Names|Database_SchemaNames|'
              r'Database_TableNames|Define_Tag|Define_Type|Email_Batch|'
              r'Encode_Set|HTML_Comment|Handle|Handle_Error|Header|If|Inline|'
@@ -3252,7 +3251,7 @@ class LassoLexer(RegexLexer):
                  bygroups(Punctuation, Keyword)),
 
             # other
-            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=\s*\([^)]*\)\s*=>))',
+            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=\s*\([^)]*\)\s*(::[\w.\s]+)?=>))',
                 Name.Function, 'signature'),
             (r'(and|or|not)\b', Operator.Word),
             (r'([a-z_][\w.]*)(\s*)(::\s*)([a-z_][\w.]*)(\s*)(=)',
