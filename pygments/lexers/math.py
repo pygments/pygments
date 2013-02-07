@@ -1352,7 +1352,7 @@ class StanLexer(RegexLexer):
              % r'|'.join(_stan_builtins.CONSTANTS), Keyword.Constant),
             # Special names ending in __, like lp__
             (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
-            ('%s\b' % r'|'.join(_stan_builtins.CPP_RESERVED), Error),
+            ('%s\b' % r'|'.join(_stan_builtins.CPP_RESERVED), Keyword.Reserved),
             # Regular variable names
             (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
             # Real Literals
