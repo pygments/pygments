@@ -15,7 +15,7 @@ from pygments.util import shebang_matches
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
     combined, do_insertions
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
-    Operator, Number, Text, Generic
+    Operator, Number, Text, Generic, Error
 
 from pygments.lexers.agile import PythonLexer
 from pygments.lexers import _scilab_builtins
@@ -1336,7 +1336,7 @@ class StanLexer(RegexLexer):
                         'model', r'generated\s+quantities')),
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
-            (r'(%s)\b' % r'|'.join(_RESERVED), Keyword),
+            (r'(%s)\b' % r'|'.join(_KEYWORDS), Keyword),
             # Truncation
             (r'T(?=\s*\[)', Keyword),
             # Data types
