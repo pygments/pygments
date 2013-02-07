@@ -5,7 +5,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -224,12 +224,14 @@ class VelocityLexer(RegexLexer):
         'variable': [
             (identifier, Name.Variable),
             (r'\(', Punctuation, 'funcparams'),
-            (r'(\.)(' + identifier + r')', bygroups(Punctuation, Name.Variable), '#push'),
+            (r'(\.)(' + identifier + r')',
+             bygroups(Punctuation, Name.Variable), '#push'),
             (r'\}', Punctuation, '#pop'),
             (r'', Other, '#pop')
         ],
         'directiveparams': [
-            (r'(&&|\|\||==?|!=?|[-<>+*%&\|\^/])|\b(eq|ne|gt|lt|ge|le|not|in)\b', Operator),
+            (r'(&&|\|\||==?|!=?|[-<>+*%&\|\^/])|\b(eq|ne|gt|lt|ge|le|not|in)\b',
+             Operator),
             (r'\[', Operator, 'rangeoperator'),
             (r'\b' + identifier + r'\b', Name.Function),
             include('funcparams')
@@ -261,7 +263,8 @@ class VelocityLexer(RegexLexer):
             rv += 0.15
         if re.search(r'#\{?foreach\}?\(.+?\).*?#\{?end\}?', text):
             rv += 0.15
-        if re.search(r'\$\{?[a-zA-Z_][a-zA-Z0-9_]*(\([^)]*\))?(\.[a-zA-Z0-9_]+(\([^)]*\))?)*\}?', text):
+        if re.search(r'\$\{?[a-zA-Z_][a-zA-Z0-9_]*(\([^)]*\))?'
+                     r'(\.[a-zA-Z0-9_]+(\([^)]*\))?)*\}?', text):
             rv += 0.01
         return rv
 

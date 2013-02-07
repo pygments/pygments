@@ -5,7 +5,7 @@
 
     Lexers for functional languages.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -1665,7 +1665,7 @@ class OpaLexer(RegexLexer):
     keywords = [
         'and', 'as', 'begin', 'css', 'database', 'db', 'do', 'else', 'end',
         'external', 'forall', 'if', 'import', 'match', 'package', 'parser',
-        'rec', 'server', 'then', 'type', 'val', 'with', 'xml_parser'
+        'rec', 'server', 'then', 'type', 'val', 'with', 'xml_parser',
     ]
 
     # matches both stuff and `stuff`
@@ -1902,7 +1902,7 @@ class OpaLexer(RegexLexer):
             (r'[/*]', Comment),
         ],
 
-        # the coy pasting between string and single-string
+        # the copy pasting between string and single-string
         # is kinda sad. Is there a way to avoid that??
         'string': [
             (r'[^\\"{]+', String.Double),
@@ -1949,6 +1949,7 @@ class OpaLexer(RegexLexer):
             (r'"', String.Single, ('#pop', 'string')),
             (r'#'+ident_re, String.Single, '#pop'),
             (r'#(?={)', String.Single, ('#pop', 'root')),
+            (r'[^"\'{`=<>]+', String.Single, '#pop'),
             (r'{', Operator, ('#pop', 'root')), # this is a tail call!
         ],
 
@@ -1958,7 +1959,7 @@ class OpaLexer(RegexLexer):
             (r'</', String.Single, ('#pop', 'html-end-tag')),
             (r'<', String.Single, 'html-open-tag'),
             (r'{', Operator, 'root'),
-            (r'.|\s+', String.Single),
+            (r'[^<{]+', String.Single),
         ],
 
         'html-comment': [
@@ -2437,7 +2438,7 @@ class KokaLexer(RegexLexer):
     # builtin names and special names
     builtin = [
         'for', 'while', 'repeat',
-        'foreach', 'foreach-indexed', 
+        'foreach', 'foreach-indexed',
         'error', 'catch', 'finally',
         'cs', 'js', 'file', 'ref', 'assigned',
     ]
