@@ -4,6 +4,9 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Built-in Lasso types, traits, and methods.
+
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 BUILTINS = {

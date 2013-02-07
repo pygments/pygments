@@ -5,7 +5,7 @@
 
     Lexers for web-related languages and markup.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -27,7 +27,7 @@ __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JsonLexer', 'CssLexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'LiveScriptLexer',
            'DuelLexer', 'ScamlLexer', 'JadeLexer', 'XQueryLexer',
-           'DtdLexer', 'DartLexer', 'LassoLexer']
+           'DtdLexer', 'DartLexer', 'LassoLexer', 'QmlLexer', 'TypeScriptLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -791,7 +791,7 @@ class PhpLexer(RegexLexer):
 
     name = 'PHP'
     aliases = ['php', 'php3', 'php4', 'php5']
-    filenames = ['*.php', '*.php[345]']
+    filenames = ['*.php', '*.php[345]', '*.inc']
     mimetypes = ['text/x-php']
 
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
@@ -969,7 +969,8 @@ class DtdLexer(RegexLexer):
 
         'attlist': [
             include('common'),
-            (r'CDATA|IDREFS|IDREF|ID|NMTOKENS|NMTOKEN|ENTITIES|ENTITY|NOTATION', Keyword.Constant),
+            (r'CDATA|IDREFS|IDREF|ID|NMTOKENS|NMTOKEN|ENTITIES|ENTITY|NOTATION',
+             Keyword.Constant),
             (r'#REQUIRED|#IMPLIED|#FIXED', Keyword.Constant),
             (r'xml:space|xml:lang', Keyword.Reserved),
             (r'[^>\s\|()?+*,]+', Name.Attribute),
@@ -1762,7 +1763,7 @@ class ScssLexer(RegexLexer):
             (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
             (r'@extend', Keyword, 'selector'),
             (r'@[a-z0-9_-]+', Keyword, 'selector'),
-            (r'(\$[\w-]\w*)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
+            (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
             (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
             (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
             (r'', Text, 'selector'),
@@ -2936,27 +2937,25 @@ class DartLexer(RegexLexer):
 
     tokens = {
         'root': [
+            include('string_literal'),
             (r'#!(.*?)$', Comment.Preproc),
-            (r'(#)(import|library|source)', bygroups(Text, Keyword)),
+            (r'\b(import|export)\b', Keyword, 'import_decl'),
+            (r'\b(library|source|part of|part)\b', Keyword),
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'(class|interface)(\s+)',
+            (r'\b(class)\b(\s+)',
              bygroups(Keyword.Declaration, Text), 'class'),
-            (r'(assert|break|case|catch|continue|default|do|else|finally|for|'
+            (r'\b(assert|break|case|catch|continue|default|do|else|finally|for|'
              r'if|in|is|new|return|super|switch|this|throw|try|while)\b',
              Keyword),
-            (r'(abstract|const|extends|factory|final|get|implements|'
+            (r'\b(abstract|const|extends|factory|final|get|implements|'
              r'native|operator|set|static|typedef|var)\b', Keyword.Declaration),
-            (r'(bool|double|Dynamic|int|num|Object|String|void)', Keyword.Type),
-            (r'(false|null|true)', Keyword.Constant),
-            (r'@"(\\\\|\\"|[^"])*"', String.Double), # raw string
-            (r"@'(\\\\|\\'|[^'])*'", String.Single), # raw string
-            (r'"', String.Double, 'string_double'),
-            (r"'", String.Single, 'string_single'),
+            (r'\b(bool|double|Dynamic|int|num|Object|String|void)\b', Keyword.Type),
+            (r'\b(false|null|true)\b', Keyword.Constant),
+            (r'[~!%^&*+=|?:<>/-]|as', Operator),
             (r'[a-zA-Z_$][a-zA-Z0-9_]*:', Name.Label),
             (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
-            (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[(){}\[\],.;]', Punctuation),
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
             # DIGIT+ (‘.’ DIGIT*)? EXPONENT?
@@ -2968,21 +2967,132 @@ class DartLexer(RegexLexer):
         'class': [
             (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name.Class, '#pop')
         ],
-        'string_double': [
-            (r'"', String.Double, '#pop'),
-            (r'[^"$]+', String.Double),
+        'import_decl': [
+            include('string_literal'),
+            (r'\s+', Text),
+            (r'\b(as|show|hide)\b', Keyword),
+            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+            (r'\,', Punctuation),
+            (r'\;', Punctuation, '#pop')
+        ],
+        'string_literal': [
+            # Raw strings.
+            (r'r"""([\s|\S]*?)"""', String.Double),
+            (r"r'''([\s|\S]*?)'''", String.Single),
+            (r'r"(.*?)"', String.Double),
+            (r"r'(.*?)'", String.Single),
+            # Normal Strings.
+            (r'"""', String.Double, 'string_double_multiline'),
+            (r"'''", String.Single, 'string_single_multiline'),
+            (r'"', String.Double, 'string_double'),
+            (r"'", String.Single, 'string_single')
+        ],
+        'string_common': [
+            (r"\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{[0-9A-Fa-f]*\}|[a-z\'\"$\\])",
+             String.Escape),
             (r'(\$)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(String.Interpol, Name)),
             (r'(\$\{)(.*?)(\})',
-             bygroups(String.Interpol, using(this), String.Interpol)),
+             bygroups(String.Interpol, using(this), String.Interpol))
+        ],
+        'string_double': [
+            (r'"', String.Double, '#pop'),
+            (r'[^\"$\\\n]+', String.Double),
+            include('string_common'),
             (r'\$+', String.Double)
+        ],
+        'string_double_multiline': [
+            (r'"""', String.Double, '#pop'),
+            (r'[^\"$\\]+', String.Double),
+            include('string_common'),
+            (r'(\$|\")+', String.Double)
         ],
         'string_single': [
             (r"'", String.Single, '#pop'),
-            (r"[^'$]+", String.Single),
-            (r'(\$)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(String.Interpol, Name)),
-            (r'(\$\{)(.*?)(\})',
-             bygroups(String.Interpol, using(this), String.Interpol)),
+            (r"[^\'$\\\n]+", String.Single),
+            include('string_common'),
             (r'\$+', String.Single)
+        ],
+        'string_single_multiline': [
+            (r"'''", String.Single, '#pop'),
+            (r'[^\'$\\]+', String.Single),
+            include('string_common'),
+            (r'(\$|\')+', String.Single)
+        ]
+    }
+
+
+class TypeScriptLexer(RegexLexer):
+    """
+    For `TypeScript <http://www.python.org>`_ source code.
+
+    *New in Pygments 1.6.*
+    """
+
+    name = 'TypeScript'
+    aliases = ['ts']
+    filenames = ['*.ts']
+    mimetypes = ['text/x-typescript']
+
+    flags = re.DOTALL
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'<!--', Comment),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline)
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'(?=/)', Text, ('#pop', 'badregex')),
+            (r'', Text, '#pop')
+        ],
+        'badregex': [
+            (r'\n', Text, '#pop')
+        ],
+        'root': [
+            (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            include('commentsandwhitespace'),
+            (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
+             r'(<<|>>>?|==?|!=?|[-<>+*%&\|\^/])=?', Operator, 'slashstartsregex'),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+            (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
+             r'throw|try|catch|finally|new|delete|typeof|instanceof|void|'
+             r'this)\b', Keyword, 'slashstartsregex'),
+            (r'(var|let|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(abstract|boolean|byte|char|class|const|debugger|double|enum|export|'
+             r'extends|final|float|goto|implements|import|int|interface|long|native|'
+             r'package|private|protected|public|short|static|super|synchronized|throws|'
+             r'transient|volatile)\b', Keyword.Reserved),
+            (r'(true|false|null|NaN|Infinity|undefined)\b', Keyword.Constant),
+            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
+             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+             r'decodeURIComponent|encodeURI|encodeURIComponent|'
+             r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
+             r'window)\b', Name.Builtin),
+            # Match stuff like: module name {...}
+            (r'\b(module)(\s*)(\s*[a-zA-Z0-9_?.$][\w?.$]*)(\s*)',
+             bygroups(Keyword.Reserved, Text, Name.Other, Text), 'slashstartsregex'),
+            # Match variable type keywords
+            (r'\b(string|bool|number)\b', Keyword.Type),
+            # Match stuff like: constructor
+            (r'\b(constructor|declare|interface|as|AS)\b', Keyword.Reserved),
+            # Match stuff like: super(argument, list)
+            (r'(super)(\s*)(\([a-zA-Z0-9,_?.$\s]+\s*\))',
+             bygroups(Keyword.Reserved, Text), 'slashstartsregex'),
+            # Match stuff like: function() {...}
+            (r'([a-zA-Z_?.$][\w?.$]*)\(\) \{', Name.Other, 'slashstartsregex'),
+            # Match stuff like: (function: return type)
+            (r'([a-zA-Z0-9_?.$][\w?.$]*)(\s*:\s*)([a-zA-Z0-9_?.$][\w?.$]*)',
+             bygroups(Name.Other, Text, Keyword.Type)),
+            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
         ]
     }
 
@@ -3238,3 +3348,76 @@ class LassoLexer(RegexLexer):
         if re.search(r'\[\n|\?>', text):
             rv += 0.4
         return rv
+
+
+class QmlLexer(RegexLexer):
+    """
+    For QML files. See http://doc.qt.digia.com/4.7/qdeclarativeintroduction.html.
+
+    *New in Pygments 1.6.*
+    """
+
+    # QML is based on javascript, so much of this is taken from the
+    # JavascriptLexer above.
+
+    name = 'QML'
+    aliases = ['qml', 'Qt Meta Language', 'Qt modeling Language']
+    filenames = ['*.qml',]
+    mimetypes = [ 'application/x-qml',]
+
+
+    # pasted from JavascriptLexer, with some additions
+    flags = re.DOTALL
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'<!--', Comment),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline)
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'(?=/)', Text, ('#pop', 'badregex')),
+            (r'', Text, '#pop')
+        ],
+        'badregex': [
+            (r'\n', Text, '#pop')
+        ],
+        'root' : [
+            (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            include('commentsandwhitespace'),
+            (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
+             r'(<<|>>>?|==?|!=?|[-<>+*%&\|\^/])=?', Operator, 'slashstartsregex'),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+
+            # QML insertions
+            (r'\bid\s*:\s*[A-Za-z][_A-Za-z.0-9]*',Keyword.Declaration,
+             'slashstartsregex'),
+            (r'\b[A-Za-z][_A-Za-z.0-9]*\s*:',Keyword, 'slashstartsregex'),
+
+            # the rest from JavascriptLexer
+            (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
+             r'throw|try|catch|finally|new|delete|typeof|instanceof|void|'
+             r'this)\b', Keyword, 'slashstartsregex'),
+            (r'(var|let|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(abstract|boolean|byte|char|class|const|debugger|double|enum|export|'
+             r'extends|final|float|goto|implements|import|int|interface|long|native|'
+             r'package|private|protected|public|short|static|super|synchronized|throws|'
+             r'transient|volatile)\b', Keyword.Reserved),
+            (r'(true|false|null|NaN|Infinity|undefined)\b', Keyword.Constant),
+            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
+             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+             r'decodeURIComponent|encodeURI|encodeURIComponent|'
+             r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
+             r'window)\b', Name.Builtin),
+            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single),
+        ]
+    }
