@@ -239,12 +239,13 @@ class SwigLexer(CppLexer):
     aliases = ['swig']
     filenames = ['*.swg', '*.i']
     mimetypes = []
-    priority = 0.1
+    priority = 0.04 # Lower than C/C++ and Objective C/C++
 
     tokens = {
         'statements': [
-            (r'(%[a-z_]+)\b', Name.Tag),
-            ('[$][*]*[&]?[a-zA-Z0-9_]+', Name),
+            (r'(%[a-z_][a-z0-9_]*)', Name.Tag), # SWIG directives
+            ('[$][*]*[&]?[a-zA-Z0-9_]+', Name), # Special variables
+            (r'#[a-zA-Z_][a-zA-Z0-9_]*', Comment.Preproc), # Stringification
             inherit,
          ],
     }
