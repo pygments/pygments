@@ -29,7 +29,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'DylanLexer
            'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
            'NimrodLexer', 'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
-           'CobolFreeformatLexer', 'LogosLexer']
+           'SwigLexer', 'CobolFreeformatLexer', 'LogosLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -227,6 +227,27 @@ class CppLexer(CFamilyLexer):
         ],
     }
 
+    def analyse_text(text):
+        return 0.1
+
+
+class SwigLexer(CppLexer):
+    """
+    For `SWIG <http://www.swig.org/>`_ source code.
+    """
+    name = 'SWIG'
+    aliases = ['swig']
+    filenames = ['*.swg', '*.i']
+    mimetypes = []
+    priority = 0.1
+
+    tokens = {
+        'statements': [
+            (r'(%[a-z_]+)\b', Name.Tag),
+            ('[$][*]*[&]?[a-zA-Z0-9_]+', Name),
+            inherit,
+         ],
+    }
     def analyse_text(text):
         return 0.1
 
