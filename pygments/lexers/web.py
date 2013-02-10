@@ -3186,13 +3186,14 @@ class LassoLexer(RegexLexer):
 
             # names
             (r'\$[a-z_][\w.]*', Name.Variable),
-            (r'#[a-z_][\w.]*|#\d+', Name.Variable.Instance),
+            (r'#([a-z_][\w.]*|\d+)', Name.Variable.Instance),
             (r"(\.)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
-            (r"(self)(->)('[a-z_][\w.]*')",
+            (r"(self)(\s*->\s*)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
             (r'(\.\.?)([a-z_][\w.]*)',
-                bygroups(Name.Builtin.Pseudo, Name.Other)),
+                bygroups(Name.Builtin.Pseudo, Name.Other.Method)),
+            (r'(->\s*)([a-z_][\w.]*)', bygroups(Operator, Name.Other.Method)),
             (r'(self|inherited|global|void)\b', Name.Builtin.Pseudo),
             (r'-[a-z_][\w.]*', Name.Attribute),
             (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
@@ -3207,15 +3208,13 @@ class LassoLexer(RegexLexer):
              r'Error_UpdateError)\b', Name.Exception),
 
             # definitions
-            (r'(define)(\s+)([a-z_][\w.]*)(\s*)(=>)(\s*)(type|trait|thread)\b',
-                bygroups(Keyword.Declaration, Text, Name.Class, Text, Operator,
-                         Text, Keyword)),
-            (r'(define)(\s+)([a-z_][\w.]*)(->)([a-z_][\w.]*=?|[-+*/%<>]|==)',
+            (r'(define)(\s+)([a-z_][\w.]*)(\s*=>\s*)(type|trait|thread)\b',
+                bygroups(Keyword.Declaration, Text, Name.Class, Operator, Keyword)),
+            (r'(define)(\s+)([a-z_][\w.]*)(\s*->\s*)([a-z_][\w.]*=?|[-+*/%<>]|==)',
                 bygroups(Keyword.Declaration, Text, Name.Class, Operator,
-                         Name.Function), 'signature'),
+                        Name.Function), 'signature'),
             (r'(define)(\s+)([a-z_][\w.]*)',
-                bygroups(Keyword.Declaration, Text, Name.Function),
-                'signature'),
+                bygroups(Keyword.Declaration, Text, Name.Function), 'signature'),
             (r'(public|protected|private|provide)(\s+)(([a-z_][\w.]*=?|'
              r'[-+*/%<>]|==)(?=\s*\())', bygroups(Keyword, Text, Name.Function),
                 'signature'),
@@ -3225,8 +3224,8 @@ class LassoLexer(RegexLexer):
             # keywords
             (r'(true|false|none|minimal|full|all)\b', Keyword.Constant),
             (r'(local|var|variable|data(?=\s))\b', Keyword.Declaration),
-            (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|null)\b',
-                Keyword.Type),
+            (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|'
+             r'null|list|queue|set|stack|staticarray)\b', Keyword.Type),
             (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
             (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Text, Name)),
             (r'require\b', Keyword, 'requiresection'),
@@ -3248,16 +3247,14 @@ class LassoLexer(RegexLexer):
              r'frozen|group|handle_failure|import|in|into|join|let|match|max|'
              r'min|on|order|parent|protected|provide|public|require|skip|'
              r'split_thread|sum|take|thread|to|trait|type|where|with|yield)\b',
-                 bygroups(Punctuation, Keyword)),
+                bygroups(Punctuation, Keyword)),
 
             # other
             (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=\s*\([^)]*\)\s*(::[\w.\s]+)?=>))',
                 Name.Function, 'signature'),
             (r'(and|or|not)\b', Operator.Word),
-            (r'([a-z_][\w.]*)(\s*)(::\s*)([a-z_][\w.]*)(\s*)(=)',
-                bygroups(Name, Text, Punctuation, Name.Label, Text, Operator)),
-            (r'((?<!->)[a-z_][\w.]*)(\s*)(=(?!=))',
-                bygroups(Name, Text, Operator)),
+            (r'([a-z_][\w.]*)(\s*::\s*)?([a-z_][\w.]*)?(\s*=(?!=))',
+                bygroups(Name, Punctuation, Name.Label, Operator)),
             (r'(/?)([\w.]+)', bygroups(Punctuation, Name.Other)),
             (r'(=)(bw|ew|cn|lte?|gte?|n?eq|ft|n?rx)\b',
                 bygroups(Operator, Operator.Word)),
@@ -3318,10 +3315,13 @@ class LassoLexer(RegexLexer):
             options, 'requiredelimiters', False)
 
         self._builtins = set()
+        self._methods = set()
         if self.builtinshighlighting:
-            from pygments.lexers._lassobuiltins import BUILTINS
+            from pygments.lexers._lassobuiltins import BUILTINS, METHODS
             for key, value in BUILTINS.iteritems():
                 self._builtins.update(value)
+            for key, value in METHODS.iteritems():
+                self._methods.update(value)
         RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
@@ -3330,10 +3330,10 @@ class LassoLexer(RegexLexer):
             stack.append('delimiters')
         for index, token, value in \
             RegexLexer.get_tokens_unprocessed(self, text, stack):
-            if token is Name.Other:
-                if value.lower() in self._builtins:
-                    yield index, Name.Builtin, value
-                    continue
+            if (token is Name.Other and value.lower() in self._builtins or
+                token is Name.Other.Method and value.lower() in self._methods):
+                yield index, Name.Builtin, value
+                continue
             yield index, token, value
 
     def analyse_text(text):
