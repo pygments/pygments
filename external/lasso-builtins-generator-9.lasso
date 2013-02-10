@@ -11,7 +11,13 @@
 	A partial list of keywords in Lasso 8 can be generated with this code:
 
 	<?LassoScript
-		local('l8tags' = list);
+		local('l8tags' = list,
+					'l8libs' = array('Cache','ChartFX','Client','Database','File','HTTP',
+						'iCal','Lasso','Link','List','PDF','Response','Stock','String',
+						'Thread','Valid','WAP','XML'));
+		iterate(#l8libs, local('library'));
+			local('result' = namespace_load(#library));
+		/iterate;
 		iterate(tags_list, local('i'));
 			#l8tags->insert(string_removeleading(#i, -pattern='_global_'));
 		/iterate;
@@ -33,6 +39,9 @@ local(f) = file("lassobuiltins-9.py")
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Built-in Lasso types, traits, and methods.
+
+    :copyright: Copyright 2006-'+date->year+' by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 ')
@@ -61,66 +70,74 @@ do protect => {
 local(
 	typesList = list(),
 	traitsList = list(),
+	unboundMethodsList = list(),
 	methodsList = list()
 )
 
-// unbound methods
-with method in sys_listUnboundMethods
-let m_name = #method->methodName->asString
-where not #m_name->endsWith('=')		// skip setter methods
-where #m_name->isAlpha(1)		// skip unpublished methods
-where #methodsList !>> #m_name
-do #methodsList->insert(#m_name)
+// types
+with type in sys_listTypes
+where #typesList !>> #type
+do {
+	#typesList->insert(#type)
+	with method in #type->getType->listMethods
+	let name = #method->methodName
+	where not #name->asString->endsWith('=')		// skip setter methods
+	where #name->asString->isAlpha(1)		// skip unpublished methods
+	where #methodsList !>> #name
+	do #methodsList->insert(#name)
+}
 
 // traits
 with trait in sys_listTraits
-let name = #trait->asString
-where not #name->beginsWith('$')		// skip combined traits
-where #traitsList !>> #name
+where not #trait->asString->beginsWith('$')		// skip combined traits
+where #traitsList !>> #trait
 do {
-	#traitsList->insert(#name)
+	#traitsList->insert(#trait)
 	with method in tie(#trait->getType->provides, #trait->getType->requires)
-	let m_name = #method->methodName->asString
-	where not #m_name->endsWith('=')		// skip setter methods
-	where #m_name->isAlpha(1)		// skip unpublished methods
-	where #methodsList !>> #m_name
-	do #methodsList->insert(#m_name)
+	let name = #method->methodName
+	where not #name->asString->endsWith('=')		// skip setter methods
+	where #name->asString->isAlpha(1)		// skip unpublished methods
+	where #methodsList !>> #name
+	do #methodsList->insert(#name)
 }
 
-// types
-with type in sys_listTypes
-let name = #type->asString
-where not #name->endsWith('$')		// skip threads
+// unbound methods
+with method in sys_listUnboundMethods
+let name = #method->methodName
+where not #name->asString->endsWith('=')		// skip setter methods
+where #name->asString->isAlpha(1)		// skip unpublished methods
 where #typesList !>> #name
-do {
-	#typesList->insert(#name)
-	with method in #type->getType->listMethods
-	let m_name = #method->methodName->asString
-	where not #m_name->endsWith('=')		// skip setter methods
-	where #m_name->isAlpha(1)		// skip unpublished methods
-	where #methodsList !>> #m_name
-	do #methodsList->insert(#m_name)
-}
+where #traitsList !>> #name
+where #unboundMethodsList !>> #name
+do #unboundMethodsList->insert(#name)
 
 #f->writeString("BUILTINS = {
     'Types': [
 ")
 with t in #typesList
-do #f->writeString("        '"+string_lowercase(#t)+"',\n")
+do !#t->asString->endsWith('$') ? #f->writeString("        '"+string_lowercase(#t->asString)+"',\n")
 
 #f->writeString("    ],
     'Traits': [
 ")
 with t in #traitsList
-do #f->writeString("        '"+string_lowercase(#t)+"',\n")
+do #f->writeString("        '"+string_lowercase(#t->asString)+"',\n")
 
 #f->writeString("    ],
+    'Unbound Methods': [
+")
+with t in #unboundMethodsList
+do #f->writeString("        '"+string_lowercase(#t->asString)+"',\n")
+
+#f->writeString("    ]
+}
+METHODS = {
     'Methods': [
 ")
 with t in #methodsList
-do #f->writeString("        '"+string_lowercase(#t)+"',\n")
+do #f->writeString("        '"+string_lowercase(#t->asString)+"',\n")
 
-#f->writeString("    ],
+#f->writeString("    ]
 }
 ")
 
