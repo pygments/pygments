@@ -76,6 +76,12 @@ If no specific lexer can be determined "text" is returned.
 The -H option prints detailed help for the object <name> of type <type>,
 where <type> is one of "lexer", "formatter" or "filter".
 
+The -s option processes lines one-by-one until EOF, rather than waiting
+to process the entire file.  This only works for processing stdin, and
+is intended for streaming input, such as you get from 'tail -f'.
+This is suitable for scripts to pipe lines to.
+e.g.: "tail -f sql.log | pygmentize -s -l sql"
+
 The -h option prints this help.
 The -V option prints the package version.
 """
@@ -201,7 +207,7 @@ def main(args=sys.argv):
             pass
 
     try:
-        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:hVHg")
+        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:hVHgs")
     except getopt.GetoptError, err:
         print >>sys.stderr, usage
         return 2
@@ -360,10 +366,19 @@ def main(args=sys.argv):
             print >>sys.stderr, 'Error:', err
             return 1
 
+    #read in the code block...
+    # - end result is that 'code' holds the entire code
+    code = None
+
     if args:
         if len(args) > 1:
             print >>sys.stderr, usage
             return 2
+
+        #if '-s' in opts:
+            #print >>sys.stderr, 'Error: -s option not usable when input ' + \
+            #                    'file specified'
+            #return 1
 
         infn = args[0]
         try:
@@ -388,7 +403,7 @@ def main(args=sys.argv):
                 print >>sys.stderr, 'Error:', err
                 return 1
 
-    else:
+    elif '-s' not in opts: #treat stdin as full file (-s support is later)
         if '-g' in opts:
             code = sys.stdin.read()
             try:
@@ -425,7 +440,21 @@ def main(args=sys.argv):
         # process filters
         for fname, fopts in F_opts:
             lexer.add_filter(fname, **fopts)
-        highlight(code, lexer, fmter, outfile)
+
+        if '-s' not in opts:
+            #process whole input as per normal...
+            highlight(code, lexer, fmter, outfile)
+        else:
+            # line input processing of stdout (eg: for 'tail -f')...
+            try:
+                while True:
+                    line = sys.stdin.readline()
+                    if not line:
+                        break
+                    highlight(line, lexer, fmter, outfile)
+            except KeyboardInterrupt:
+                return 0
+
     except Exception, err:
         import traceback
         info = traceback.format_exception(*sys.exc_info())
