@@ -76,11 +76,10 @@ If no specific lexer can be determined "text" is returned.
 The -H option prints detailed help for the object <name> of type <type>,
 where <type> is one of "lexer", "formatter" or "filter".
 
-The -s option processes lines one-by-one until EOF, rather than waiting
-to process the entire file.  This only works for processing stdin, and
-is intended for streaming input, such as you get from 'tail -f'.
-This is suitable for scripts to pipe lines to.
-e.g.: "tail -f sql.log | pygmentize -s -l sql"
+The -s option processes lines one at a time until EOF, rather than
+waiting to process the entire file.  This only works for stdin, and
+is intended for streaming input such as you get from 'tail -f'.
+Example usage: "tail -f sql.log | pygmentize -s -l sql"
 
 The -h option prints this help.
 The -V option prints the package version.
@@ -365,10 +364,6 @@ def main(args=sys.argv):
         except (OptionError, ClassNotFound), err:
             print >>sys.stderr, 'Error:', err
             return 1
-
-    #read in the code block...
-    # - end result is that 'code' holds the entire code
-    code = None
 
     if args:
         if len(args) > 1:
