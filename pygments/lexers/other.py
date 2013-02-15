@@ -3306,7 +3306,7 @@ class NSISLexer(RegexLexer):
     tokens = {
         'root': [
             (r'[;\#].*\n', Comment),
-            (r"'.*'", String.Single),
+            (r"'.*?'", String.Single),
             (r'"', String.Double, 'str_double'),
             (r'`', String.Backtick, 'str_backtick'),
             include('macro'),
@@ -3457,7 +3457,7 @@ class RPMSpecLexer(RegexLexer):
             include('macro'),
             (r'(?i)^(Name|Version|Release|Epoch|Summary|Group|License|Packager|'
              r'Vendor|Icon|URL|Distribution|Prefix|Patch[0-9]*|Source[0-9]*|'
-             r'Requires\(?[a-z]*\)?|[a-z]+Req|Obsoletes|Provides|Conflicts|'
+             r'Requires\(?[a-z]*\)?|[a-z]+Req|Obsoletes|Suggests|Provides|Conflicts|'
              r'Build[a-z]+|[a-z]+Arch|Auto[a-z]+)(:)(.*)$',
              bygroups(Generic.Heading, Punctuation, using(this))),
             (r'^%description', Name.Decorator, 'description'),
@@ -3467,7 +3467,7 @@ class RPMSpecLexer(RegexLexer):
              r'make(?:install)|ghost|patch[0-9]+|find_lang|exclude|verify)',
              Keyword),
             include('interpol'),
-            (r"'.*'", String.Single),
+            (r"'.*?'", String.Single),
             (r'"', String.Double, 'string'),
             (r'.', Text),
         ],
