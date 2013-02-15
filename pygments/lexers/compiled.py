@@ -243,9 +243,9 @@ class SwigLexer(CppLexer):
 
     tokens = {
         'statements': [
-            (r'(%[a-z_][a-z0-9_]*)', Name.Tag), # SWIG directives
+            (r'(%[a-z_][a-z0-9_]*)', Name.Function), # SWIG directives
             ('[$][*]*[&]?[a-zA-Z0-9_]+', Name), # Special variables
-            (r'#[a-zA-Z_][a-zA-Z0-9_]*', Comment.Preproc), # Stringification
+            (r'#[a-zA-Z_][a-zA-Z0-9_]*', Comment.Preproc), # Stringification / additional preprocessor directives
             inherit,
          ],
     }
