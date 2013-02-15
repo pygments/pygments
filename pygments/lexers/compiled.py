@@ -238,7 +238,7 @@ class SwigLexer(CppLexer):
     name = 'SWIG'
     aliases = ['swig']
     filenames = ['*.swg', '*.i']
-    mimetypes = []
+    mimetypes = ['text/swig']
     priority = 0.04 # Lower than C/C++ and Objective C/C++
 
     tokens = {
