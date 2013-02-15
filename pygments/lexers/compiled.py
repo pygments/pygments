@@ -23,10 +23,10 @@ from pygments.scanner import Scanner
 from pygments.lexers.functional import OcamlLexer
 from pygments.lexers.jvm import JavaLexer, ScalaLexer
 
-__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'DylanLexer',
-           'ObjectiveCLexer', 'ObjectiveCppLexer', 'FortranLexer', 'GLShaderLexer',
-           'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
-           'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
+__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'NesCLexer',
+           'DylanLexer', 'ObjectiveCLexer', 'ObjectiveCppLexer', 'FortranLexer',
+           'GLShaderLexer', 'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer',
+           'GoLexer', 'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
            'NimrodLexer', 'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
            'CobolFreeformatLexer', 'LogosLexer']
@@ -265,6 +265,28 @@ class ECLexer(CLexer):
         ],
     }
 
+
+class NesCLexer(CLexer):
+    """
+    For nesC source code with preprocessor directives.
+    """
+    name = 'nesC'
+    aliases = ['nesc']
+    filenames = ['*.nc']
+    mimetypes = ['text/x-nescsrc']
+
+    tokens = {
+        'statements': [
+            (r'(abstract|as|async|atomic|call|command|component|components|'
+             r'configuration|event|extends|generic|implementation|includes|'
+             r'interface|module|new|norace|post|provides|signal|task|uses)\b',
+             Keyword),
+            (r'(nx_struct|nx_union|nx_int8_t|nx_int16_t|nx_int32_t|nx_int64_t|'
+             r'nx_uint8_t|nx_uint16_t|nx_uint32_t|nx_uint64_t)\b',
+             Keyword.Type),
+            inherit,
+        ],
+    }
 
 class DLexer(RegexLexer):
     """
