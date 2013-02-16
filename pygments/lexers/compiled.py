@@ -236,7 +236,7 @@ class SwigLexer(CppLexer):
     For `SWIG <http://www.swig.org/>`_ source code.
     """
     name = 'SWIG'
-    aliases = ['swig']
+    aliases = ['Swig', 'swig']
     filenames = ['*.swg', '*.i']
     mimetypes = ['text/swig']
     priority = 0.04 # Lower than C/C++ and Objective C/C++
