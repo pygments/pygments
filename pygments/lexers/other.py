@@ -14,7 +14,8 @@ import re
 from pygments.lexer import RegexLexer, include, bygroups, using, \
      this, combined, ExtendedRegexLexer
 from pygments.token import Error, Punctuation, Literal, Token, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Generic
+     Text, Comment, Operator, Keyword, Name, String, Number, Generic, Other, \
+     Whitespace
 from pygments.util import get_bool_opt
 from pygments.lexers.web import HtmlLexer
 
@@ -35,7 +36,8 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
-           'CbmBasicV2Lexer', 'AutoItLexer']
+           'CbmBasicV2Lexer', 'AutoItLexer', 'EasyTrieveLexer', 'JclLexer',
+           'WebFocusLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -3664,4 +3666,270 @@ class AutoItLexer(RegexLexer):
         'garbage': [
             (r'[^\S\n]', Text),
         ],
+    }
+
+
+class EasyTrieveLexer(RegexLexer):
+    """
+    EasyTrieve (Classic and Plus) are programming languages tailored to
+    generating reports and are mainly used in mainframe related environments.
+
+    This lexer is designed for EasyTrieve Plus 6.4.
+    """
+    name = 'EasyTrieve'
+    aliases = ['easytrieve']
+    filenames = ['*.ezt']
+    mimetypes = ['text/x-easytrieve']
+    flags = re.IGNORECASE
+
+    # TODO: Treat only the first 72 characters as source code and the rest as comment.
+    # TODO: After some reserved words such as 'define', even keywords are names.
+    # TODO: Consider continuation characters '+' and '-'
+    # TODO: Treat the 'not' character as operator.
+
+    tokens = {
+        'root': [
+            # Note: We cannot use r'\b' at the start and end of keywords
+            # because EasyTrieve Plus delimiter characters are:
+            #
+            #   * space ( )
+            #   * apostrophe (')
+            #   * period (.)
+            #   * comma (,)
+            #   * paranthesis ( and )
+            #   * colon (:)
+            (r'(after-break|after-line|after-screen|aim|and|attr|before|'
+             r'before-break|before-line|before-screen|bushu|by|call|case|'
+             r'checkpoint|chkp|chkp-status|clear|close|col|color|commit|'
+             r'control|copy|cursor|d|declare|default|define|delete|denwa|'
+             r'display|dli|do|duplicate|e|else|else-if|end|end-case|end-do|'
+             r'end-if|end-proc|endpage|endtable|enter|eof|eq|error|exit|'
+             r'external|ezlib|f1|f10|f11|f12|f13|f14|f15|f16|f17|f18|f19|f2|'
+             r'f20|f21|f22|f23|f24|f25|f26|f27|f28|f29|f3|f30|f31|f32|f33|'
+             r'f34|f35|f36|f4|f5|f6|f7|f8|f9|fetch|file|file-status|fill|'
+             r'final|first|first-dup|for|ge|get|go|goto|gq|gr|gt|heading|'
+             r'hex|high-values|idd|idms|if|in|insert|job|justify|kanji-date|'
+             r'kanji-date-long|kanji-time|key|key-pressed|kokugo|kun|'
+             r'last-dup|le|level|like|line|line-count|line-number|link|list|'
+             r'low-values|lq|ls|lt|mask|matched|mend|message|move|mstart|ne|'
+             r'newpage|nomask|noprint|not|note|noverify|nq|null|of|or|'
+             r'otherwise|pa1|pa2|pa3|page-count|page-number|parm-register|'
+             r'path-id|pattern|perform|point|pos|primary|print|proc|'
+             r'procedure|program|put|read|record|record-count|record-length|'
+             r'refresh|release|renum|repeat|report|report-input|reshow|'
+             r'restart|retrieve|return-code|rollback|row|s|screen|search|'
+             r'secondary|select|sequence|size|skip|sokaku|sort|sql|stop|sum|'
+             r'sysdate|sysdate-long|sysin|sysipt|syslst|sysprint|syssnap|'
+             r'systime|tally|term-columns|term-name|term-rows|termination|'
+             r'title|to|transfer|trc|unique|until|update|uppercase|user|'
+             r'userid|value|verify|w|when|while|work|write|x|xdm|xrst)[ \'.,():]',
+             Keyword.Reserved),
+            # These are not actually keywords but section separators so
+            # treating them differently from names seems in order.
+            # TODO: Fix: (r'(param|report)[ \'.,():]', Keyword),
+            (r'[\[\](){}<>;,]', Punctuation),
+            (r'[-+/=&%]', Operator),
+            (r'[0-9]+\.[0-9]*', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String),
+            (r'\*.*\n', Comment.Single),
+            (r'\.', Operator),
+            (r'\s+', Whitespace),
+            (r'[^ \'.,():]+', Name) # Everything else just belongs to a name
+         ]
+    }
+
+
+class JclLexer(RegexLexer):
+    """
+    Job Control Language (JCL) is a scripting language used on IBM mainframe
+    operating systems to instruct the system on how to run a batch job or
+    start a subsystem.
+
+    For more information, refer to the
+    `MVS Job Control Language Reference <http://publibz.boulder.ibm.com/epubs/pdf/iea2b661.pdf>`_
+    """
+    name = 'JCL'
+    aliases = ['jcl']
+    filenames = ['*.jcl']
+    mimetypes = ['text/x-jcl']
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'//\*.*\n', Comment.Single),
+            (r'//', Keyword.Pseudo, 'statement'),
+            (r'/\*', Keyword.Pseudo, 'jes2_statement'),
+            # TODO: JES3 statement
+            (r'.*\n', Other) # Input text or inline code in any language.
+        ],
+        'statement': [
+            (r'\s*\n', Whitespace, 'root'),
+            (r'([a-z][a-z_0-9]*)(\s+)(exec|job)(\s*)',
+             bygroups(Name.Label, Whitespace, Keyword.Reserved, Whitespace),
+             'option'),
+            (r'[a-z][a-z_0-9]*', Name.Variable, 'statement_command'),
+            (r'\s+', Whitespace, 'statement_command'),
+        ],
+        'statement_command': [
+            (r'\s+(command|cntl|dd|endctl|endif|else|include|jcllib|'
+             r'output|pend|proc|set|then|xmit)', Keyword.Reserved, 'option'),
+            include('option')
+        ],
+        'jes2_statement': [
+            (r'\s*\n', Whitespace, 'root'),
+            (r'\$', Keyword, 'option'),
+            (r'\b(jobparam|message|netacct|notify|output|priority|route|'
+             r'setup|signoff|xeq|xmit)\b', Keyword, 'option'),
+        ],
+        'option': [
+            (r'\n', Text, 'root'),
+            (r'\*', Name.Builtin),
+            (r'[\[\](){}<>;,]', Punctuation),
+            (r'[-+*/=&%]', Operator),
+            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name),
+            (r'[0-9]+\.[0-9]*', Number.Float),
+            (r'\.[0-9]+', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'", String, 'option_string'),
+            (r'\s+', Whitespace),
+        ],
+        'option_string': [
+            (r"(\n)(//)", bygroups(Text, Keyword.Pseudo)),
+            (r"''", String),
+            (r"[^']", String),
+            (r"'", String, 'option'),
+        ]
+    }
+
+
+class WebFocusLexer(RegexLexer):
+    """
+    WebFOCUS und FOCUS are business intelligence tools mainly used in
+    mainframe related environments.
+
+    For more information, refer to the
+    `Information Builders product page <http://www.informationbuilders.com/products/webfocus/index.html>`_.
+    """
+    name = 'WebFOCUS'
+    aliases = ['webfocus', 'FOCUS', 'focus']
+    filenames = ['*.fex']
+    mimetypes = ['text/x-webfocus', 'text/x-focus']
+    flags = re.IGNORECASE
+
+    # TODO: Consolidate rules common to 'focus' and 'dialog_manager' with 'include' or something.
+    # TODO: Find out if FIDEL supports "" to escape " and if so implement it.
+    # TODO: Add support for backslash escapes in single quote strings (and maybe double quote too?).
+    # TODO: Support dialog manager FIDEL input modifiers such as '.nodisplay'.
+    # TODO: Highlight function name after DEFINE FUNCTION.
+    # TODO: Highlight field name for all field types, not only numeric ones.
+    tokens = {
+        'root': [
+            (r'-\*.*\n', Comment.Single),
+            (r'-', Punctuation, 'dialog_manager'),
+            include('focus')
+         ],
+        'focus': [
+            (r'\n', Text, 'root'),
+            (r'\s*(across|add|alloc|as|by|clear|column-total|compute|count|'
+             r'crtform|decode|define|dynam|else|end|ex|exceeds|exec|file|'
+             r'filter|footing|for|format|free|heading|highest|hold|if|'
+             r'in-groups-of|in-ranges-of|join|list|lowest|match|modify|'
+             r'multilines|newpage|nomatch|noprint|nototal|on|over|'
+             r'page-break|print|printonly|ranked|recap|recompute|redefines|'
+             r'reject|row-total|rows|savb|save|set|sub-total|subfoot|'
+             r'subhead|subtotal|sum|summarize|table|the|then|tiles|total|'
+             r'update|when|where|with|within)\b', Keyword.Reserved),
+            (r'"', String, 'focus_fidel'),
+            (r'\b(missing)\b', Name.Constant),
+            (r'\b(asq|ave|cnt|cnt|ct|dst|fst|lst|max|min|pct|rcpt|st|sum|'
+             r'tot)\.', Operator),
+            # FOCUS field declaration including display options.
+            (r'([a-z][a-z_0-9]*)([/])([adfip]*[0-9]+(\.[0-9]+)[-%bcdelmnrsty]*)',
+             bygroups(Name.Variable, Operator, Keyword.Type)),
+            # Rules common to 'focus' and 'dialog_manager'.
+            (r'\b(and|contains|div|eq|exceeds|excludes|from|ge|gt|in|'
+             r'includes|is|is-from|is-from|is-less-than|is-more-than|'
+             r'is-not-missing|le|like|lt|mod|ne|not|not-from|omits|or|to)\b',
+             Operator),
+            (r'[-+*/=|!]', Operator),
+            (r'[(){}<>;,]', Punctuation),
+            (r'[a-z_][a-z_0-9]*', Literal),
+            (r'[&]+[a-z_][a-z_0-9]*', Literal),
+            (r'[0-9]+\.[0-9]*', Number.Float),
+            (r'\.[0-9]+', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String),
+            (r'\s+', Whitespace)
+         ],
+         'dialog_manager': [
+            # Detect possible labels in first word of dialog manager line.
+            (r'\s*type\b', Keyword.Reserved, 'dialog_manager_type'),
+            (r'[:][a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
+            (r'"', String, 'dialog_manager_fidel'),
+            # TODO: Get rid of redundant dialog manager keyword rule which
+            # already could be handled by the included
+            # 'dialog_manager_others'. However, we currently need it to not
+            # recognize classic labels without ':' too soon.
+            (r'\b([?]|close|cms|crtclear|crtform|default|defaults|else|exit|'
+             r'goto|htmlform|if|include|mvs|pass|prompt|quit|read|repeat|'
+             r'run|set|then|tso|type|window|write)\b', Keyword.Reserved,
+             'dialog_manager_others'),
+            (r'[a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
+            include('dialog_manager_others'),
+         ],
+         'dialog_manager_others': [
+            (r'\n', Text, 'root'),
+            (r'\s*type\b', Keyword.Reserved, 'dialog_manager_type'),
+            (r'[:][a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
+            (r'\b([?]|close|cms|crtclear|crtform|default|defaults|else|exit|'
+             r'goto|htmlform|if|include|mvs|pass|prompt|quit|read|repeat|'
+             r'run|set|then|tso|type|window|write)\b', Keyword.Reserved),
+            # Rules common to 'focus' and 'dialog_manager'.
+            (r'\b(and|contains|div|eq|exceeds|excludes|from|ge|gt|in|'
+             r'includes|is|is-from|is-from|is-less-than|is-more-than|'
+             r'is-not-missing|le|like|lt|mod|ne|not|not-from|omits|or|to)\b',
+             Operator),
+            (r'[-+*/=|!]', Operator),
+            (r'[(){}<>;,]', Punctuation),
+            (r'[a-z_][a-z_0-9]*', Literal),
+            (r'[&]+[a-z_][a-z_0-9]*', Name.Variable),
+            (r'[0-9]+\.[0-9]*', Number.Float),
+            (r'\.[0-9]+', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String),
+            (r'\s+', Whitespace)
+         ],
+         'dialog_manager_type': [
+            # For -TYPE, render everything as ``String`` except variables.
+            (r'\n', Text, 'root'),
+            (r'[&]+[a-z_][a-z_0-9]*\.*', Name.Variable),
+            (r'[^&\n]*', String)
+         ],
+         'dialog_manager_fidel': [
+            (r'"', String, 'dialog_manager_fidel_end'),
+            (r'([<])([&][a-z][a-z_0-9]*)([/])([0-9]+)',
+             bygroups(Keyword.Reserved, Name.Variable, Operator, Number.Integer)),
+            (r'.', String)
+         ],
+         'dialog_manager_fidel_end': [
+            (r'\n', Text, 'root'),
+            (r'\s*', Whitespace)
+         ],
+         'focus_fidel': [
+            (r'"', String, 'focus_fidel_end'),
+            (r'[&]+[a-z][a-z_0-9]*', Name.Variable),
+            (r'\>', Keyword.Reserved),
+            # Line continuation.
+            (r'\<0x\s*\n', Keyword.Reserved),
+            (r'([<])([a-z][a-z_0-9]*)',
+             bygroups(Keyword.Reserved, Name.Variable)),
+            (r'([<])([+-/]?)([0-9]+)',
+             bygroups(Keyword.Reserved, Operator, Number.Integer)),
+            (r'.', String)
+         ],
+         'focus_fidel_end': [
+            (r'\n', Text, 'root'),
+            (r'\s*', Whitespace)
+         ]
     }
