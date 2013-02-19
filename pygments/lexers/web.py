@@ -1149,7 +1149,7 @@ class HaxeLexer(ExtendedRegexLexer):
     typeid = r'_*[A-Z][_a-zA-Z0-9]*' 
     
     # combined ident and dollar and idtype
-    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + '|_+|\$[_a-zA-Z0-9]*)'
+    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + '|_+|\$[_a-zA-Z0-9]+)'
     
     # ident except keywords
     ident_no_keyword = r'(?!' + keyword + ')' + ident
@@ -1169,10 +1169,10 @@ class HaxeLexer(ExtendedRegexLexer):
             self.preproc_stack.append(ctx.stack[:])
         elif proc in ['else', 'elseif']:
             # restore the stack back to right before #if
-            if len(self.preproc_stack): ctx.stack = self.preproc_stack[-1]
+            if self.preproc_stack: ctx.stack = self.preproc_stack[-1][:]
         elif proc == 'end':
             # remove the saved stack of previous #if
-            if len(self.preproc_stack): self.preproc_stack.pop()
+            if self.preproc_stack: self.preproc_stack.pop()
         
         # #if and #elseif should follow by an expr
         if proc in ['if', 'elseif']:
@@ -1238,7 +1238,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'using': [
             include('spaces'),
             (ident, Name.Namespace),
-            (r'\.', Punctuation, 'ident'),
+            (r'\.', Punctuation, 'import-ident'),
             (r'', Text, '#pop'),
         ],
          
@@ -1270,7 +1270,7 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'abstract' : [
             include('spaces'),
-            (r'', Text, ('#pop', 'abstract-body', 'abstract-relation', 'type-param-constraint', 'type-name')),
+            (r'', Text, ('#pop', 'abstract-body', 'abstract-relation', 'abstract-opaque', 'type-param-constraint', 'type-name')),
         ],
         
         'abstract-body' : [
@@ -1278,9 +1278,15 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'\{', Punctuation, ('#pop', 'class-body')),
         ],
         
+        'abstract-opaque' : [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'parenthesis-close', 'type')),
+            (r'', Text, '#pop'),
+        ],
+        
         'abstract-relation': [
             include('spaces'),
-            (r'(?:=>|<=)', Keyword.Declaration, 'type'),
+            (r'(?:to|from)', Keyword.Declaration, 'type'),
             (r',', Punctuation),
             (r'', Text, '#pop'),
         ],
@@ -1345,7 +1351,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'extends': [
             include('spaces'),
             (r'(?:extends|implements)\b', Keyword.Declaration, 'type'),
-            (r',', Punctuation),
+            (r',', Punctuation), #the comma is made optional here, since haxe2 requires the comma but haxe3 does not allow it.
             (r'', Text, '#pop'),
         ],
         
@@ -1354,18 +1360,23 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'\{', Punctuation, '#pop'),
         ],
         
+        'bracket-close': [
+            include('spaces'),
+            (r'\}', Punctuation, '#pop'),
+        ],
+        
         'class-body': [
             include('spaces'),
             include('meta'),
             (r'\}', Punctuation, '#pop'),
-            (r'(?:static|public|private|override|dynamic|inline)\b', Keyword.Declaration),
+            (r'(?:static|public|private|override|dynamic|inline|macro)\b', Keyword.Declaration),
             (r'', Text, 'class-member'),
         ],
         
         'class-member': [
             include('spaces'),
             (r'(var)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'prop')),
-            (r'(function)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'function')),
+            (r'(function)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'class-method')),
         ],
         
         # local function, anonymous or not
@@ -1380,7 +1391,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'', Text, '#pop'),
         ],
         
-        'function': [
+        'class-method': [
             include('spaces'),
             (ident, Name.Function, ('#pop', 'optional-expr', 'flag', 'function-param', 'parenthesis-open', 'type-param-constraint')),
         ],
@@ -1419,6 +1430,7 @@ class HaxeLexer(ExtendedRegexLexer):
         ],
         
         'expr-statement': [
+            include('spaces'),
             # makes semicolon optional here, just to avoid checking the last one is bracket or not.
             (r'', Text, ('#pop', 'optional-semicolon', 'expr')),
         ],
@@ -1446,6 +1458,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'(?:return)\b', Keyword, ('#pop', 'optional-expr')),
             (r'(?:macro)\b', Keyword, ('#pop', 'macro')),
             (r'(?:continue|break)\b', Keyword, '#pop'),
+            (r'(?:\$\s*[a-z]\b|\$(?!'+ident+'))', Name, ('#pop', 'dollar')),
             (ident_no_keyword, Name, ('#pop', 'expr-chain')),
             
             # Float
@@ -1473,7 +1486,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'expr-chain': [
             include('spaces'),
             (r'(?:\+\+|\-\-)', Operator),
-            (r'(?:%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>>=|>>>=|==|!=|<=|>=|&&|\|\||<<|>>>|>>|\.\.\.|<|>|%|&|\||\^|\+|\*|/|\-|=)', Operator, ('#pop', 'expr')),
+            (r'(?:%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>>=|>>>=|==|!=|<=|>=|&&|\|\||<<|>>>|>>|\.\.\.|<|>|%|&|\||\^|\+|\*|/|\-|=>|=)', Operator, ('#pop', 'expr')),
             (r'(?:in)\b', Keyword, ('#pop', 'expr')),
             (r'\?', Operator, ('#pop', 'expr', 'ternary', 'expr')),
             (r'(\.)(' + ident_no_keyword + ')', bygroups(Punctuation, Name)),
@@ -1623,6 +1636,12 @@ class HaxeLexer(ExtendedRegexLexer):
             include('spaces'),
             (ident, Name, '#pop'),
         ],
+              
+        'dollar': [
+            include('spaces'),
+            (r'\{', Keyword, ('#pop', 'bracket-close', 'expr')),
+            (r'', Text, ('#pop', 'expr-chain')),
+        ],
         
         'type-name': [
             include('spaces'),
@@ -1658,6 +1677,7 @@ class HaxeLexer(ExtendedRegexLexer):
             include('spaces'),
             (r'\}', Punctuation, '#pop'),
             (r'\?', Punctuation),
+            (r'>', Punctuation, ('comma', 'type')),
             (ident_no_keyword, Name, ('#pop', 'type-struct-sep', 'type', 'colon')),
             include('class-body'),
         ],
@@ -1805,7 +1825,7 @@ class HaxeLexer(ExtendedRegexLexer):
         # bracket can be block or object
         'bracket': [
             include('spaces'),
-            (ident_no_keyword, Name, ('#pop', 'bracket-check')),
+            (r'(?!(?:\$\s*[a-z]\b|\$(?!'+ident+')))' + ident_no_keyword, Name, ('#pop', 'bracket-check')),
             (string1, String.Single, ('#pop', 'bracket-check')),
             (string2, String.Double, ('#pop', 'bracket-check')),
             (r'', Text, ('#pop', 'block')),
