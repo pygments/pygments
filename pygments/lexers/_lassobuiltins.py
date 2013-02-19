@@ -3,7 +3,7 @@
     pygments.lexers._lassobuiltins
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Built-in Lasso types, traits, and methods.
+    Built-in Lasso types, traits, methods, and members.
 
     :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -3029,8 +3029,8 @@ BUILTINS = {
         'xsd_type'
     ]
 }
-METHODS = {
-    'Methods': [
+MEMBERS = {
+    'Member Methods': [
         'escape_member',
         'oncompare',
         'sameas',
@@ -4711,7 +4711,7 @@ METHODS = {
         'csscontent',
         'jscontent'
     ],
-    'Lasso 8 Members': [
+    'Lasso 8 Member Tags': [
         'accept',
         'add',
         'addattachment',
