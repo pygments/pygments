@@ -3106,8 +3106,8 @@ class LassoLexer(RegexLexer):
     Additional options accepted:
 
     `builtinshighlighting`
-        If given and ``True``, highlight builtin tags, types, traits, and
-        methods (default: ``True``).
+        If given and ``True``, highlight builtin types, traits, methods, and
+        members (default: ``True``).
     `requiredelimiters`
         If given and ``True``, only highlight code between delimiters as Lasso
         (default: ``False``).
@@ -3192,8 +3192,8 @@ class LassoLexer(RegexLexer):
             (r"(self)(\s*->\s*)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
             (r'(\.\.?)([a-z_][\w.]*)',
-                bygroups(Name.Builtin.Pseudo, Name.Other.Method)),
-            (r'(->\s*)([a-z_][\w.]*)', bygroups(Operator, Name.Other.Method)),
+                bygroups(Name.Builtin.Pseudo, Name.Other.Member)),
+            (r'(->\s*)([a-z_][\w.]*)', bygroups(Operator, Name.Other.Member)),
             (r'(self|inherited|global|void)\b', Name.Builtin.Pseudo),
             (r'-[a-z_][\w.]*', Name.Attribute),
             (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
@@ -3315,13 +3315,13 @@ class LassoLexer(RegexLexer):
             options, 'requiredelimiters', False)
 
         self._builtins = set()
-        self._methods = set()
+        self._members = set()
         if self.builtinshighlighting:
-            from pygments.lexers._lassobuiltins import BUILTINS, METHODS
+            from pygments.lexers._lassobuiltins import BUILTINS, MEMBERS
             for key, value in BUILTINS.iteritems():
                 self._builtins.update(value)
-            for key, value in METHODS.iteritems():
-                self._methods.update(value)
+            for key, value in MEMBERS.iteritems():
+                self._members.update(value)
         RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
@@ -3331,7 +3331,7 @@ class LassoLexer(RegexLexer):
         for index, token, value in \
             RegexLexer.get_tokens_unprocessed(self, text, stack):
             if (token is Name.Other and value.lower() in self._builtins or
-                token is Name.Other.Method and value.lower() in self._methods):
+                token is Name.Other.Member and value.lower() in self._members):
                 yield index, Name.Builtin, value
                 continue
             yield index, token, value

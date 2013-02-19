@@ -5,10 +5,10 @@
 
 	This is the shell script that was used to extract Lasso 9's built-in keywords
 	and generate most of the _lassobuiltins.py file. When run, it creates a file
-	named "lassobuiltins-9.py" containing the types, traits, and methods of the
-	currently-installed version of Lasso 9.
+	named "lassobuiltins-9.py" containing the types, traits, methods, and members
+	of the currently-installed version of Lasso 9.
 
-	A partial list of keywords in Lasso 8 can be generated with this code:
+	A list of tags in Lasso 8 can be generated with this code:
 
 	<?LassoScript
 		local('l8tags' = list,
@@ -38,7 +38,7 @@ local(f) = file("lassobuiltins-9.py")
     pygments.lexers._lassobuiltins
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Built-in Lasso types, traits, and methods.
+    Built-in Lasso types, traits, methods, and members.
 
     :copyright: Copyright 2006-'+date->year+' by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -71,7 +71,7 @@ local(
 	typesList = list(),
 	traitsList = list(),
 	unboundMethodsList = list(),
-	methodsList = list()
+	memberMethodsList = list()
 )
 
 // types
@@ -83,8 +83,8 @@ do {
 	let name = #method->methodName
 	where not #name->asString->endsWith('=')		// skip setter methods
 	where #name->asString->isAlpha(1)		// skip unpublished methods
-	where #methodsList !>> #name
-	do #methodsList->insert(#name)
+	where #memberMethodsList !>> #name
+	do #memberMethodsList->insert(#name)
 }
 
 // traits
@@ -97,8 +97,8 @@ do {
 	let name = #method->methodName
 	where not #name->asString->endsWith('=')		// skip setter methods
 	where #name->asString->isAlpha(1)		// skip unpublished methods
-	where #methodsList !>> #name
-	do #methodsList->insert(#name)
+	where #memberMethodsList !>> #name
+	do #memberMethodsList->insert(#name)
 }
 
 // unbound methods
@@ -131,10 +131,10 @@ do #f->writeString("        '"+string_lowercase(#t->asString)+"',\n")
 
 #f->writeString("    ]
 }
-METHODS = {
-    'Methods': [
+MEMBERS = {
+    'Member Methods': [
 ")
-with t in #methodsList
+with t in #memberMethodsList
 do #f->writeString("        '"+string_lowercase(#t->asString)+"',\n")
 
 #f->writeString("    ]
