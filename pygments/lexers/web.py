@@ -1153,9 +1153,6 @@ class HaxeLexer(ExtendedRegexLexer):
     
     # ident except keywords
     ident_no_keyword = r'(?!' + keyword + ')' + ident
-    
-    string1 = r"'(\\\\|\\'|[^'])*'" # single-quoted string #TODO string interpolation
-    string2 = r'"(\\\\|\\"|[^"])*"' # double-quoted string
 
     flags = re.DOTALL | re.MULTILINE
     
@@ -1212,6 +1209,29 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'/\*.*?\*/', Comment.Multiline),
             (r'(#)(if|elseif|else|end|error)\b', preproc_callback),
         ],
+        
+        'string-single-interpol': [
+            (r'\$\{', String.Interpol, ('string-interpol-close', 'expr')),
+            (r'\$', String.Interpol, 'ident'),
+            include('string-single'),
+        ],
+        
+        'string-single': [
+            (r"'", String.Single, '#pop'),
+            (r'\\.', String.Escape),
+            (r'.', String.Single),
+        ],
+        
+        'string-double': [
+            (r'"', String.Double, '#pop'),
+            (r'\\.', String.Escape),
+            (r'.', String.Double),
+        ],
+        
+        'string-interpol-close': [
+            (r'\$'+ident, String.Interpol),
+            (r'\}', String.Interpol, '#pop'),
+        ],
          
         'package': [
             include('spaces'),
@@ -1244,8 +1264,8 @@ class HaxeLexer(ExtendedRegexLexer):
          
         'preproc-error': [
             (r'\s+', Comment.Preproc),
-            (string1, Comment.Preproc, '#pop'),
-            (string2, Comment.Preproc, '#pop'),
+            (r"'", String.Single, ('#pop', 'string-single')),
+            (r'"', String.Double, ('#pop', 'string-double')),
             (r'', Text, '#pop'),
         ],
          
@@ -1473,8 +1493,8 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'[0-9]+', Number.Integer, ('#pop', 'expr-chain')),
             
             # String
-            (string1, String.Single, ('#pop', 'expr-chain')),
-            (string2, String.Double, ('#pop', 'expr-chain')),
+            (r"'", String.Single, ('#pop', 'expr-chain', 'string-single-interpol')),
+            (r'"', String.Double, ('#pop', 'expr-chain', 'string-double')),
             
             # EReg
             (r'~/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex, ('#pop', 'expr-chain')),
@@ -1702,8 +1722,8 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'[0-9]+', Number.Integer, '#pop'),
             
             # String
-            (string1, String.Single, '#pop'),
-            (string2, String.Double, '#pop'),
+            (r"'", String.Single, ('#pop', 'string-single')),
+            (r'"', String.Double, ('#pop', 'string-double')),
             
             # EReg
             (r'~/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex, '#pop'),
@@ -1826,8 +1846,8 @@ class HaxeLexer(ExtendedRegexLexer):
         'bracket': [
             include('spaces'),
             (r'(?!(?:\$\s*[a-z]\b|\$(?!'+ident+')))' + ident_no_keyword, Name, ('#pop', 'bracket-check')),
-            (string1, String.Single, ('#pop', 'bracket-check')),
-            (string2, String.Double, ('#pop', 'bracket-check')),
+            (r"'", String.Single, ('#pop', 'bracket-check', 'string-single')),
+            (r'"', String.Double, ('#pop', 'bracket-check', 'string-double')),
             (r'', Text, ('#pop', 'block')),
         ],
         
@@ -1855,8 +1875,8 @@ class HaxeLexer(ExtendedRegexLexer):
         'ident-or-string': [
             include('spaces'),
             (ident_no_keyword, Name, '#pop'),
-            (string1, String.Single, '#pop'),
-            (string2, String.Double, '#pop'),
+            (r"'", String.Single, ('#pop', 'string-single')),
+            (r'"', String.Double, ('#pop', 'string-double')),
         ],
         
         # after a key-value pair in object
