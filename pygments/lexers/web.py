@@ -1523,10 +1523,18 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'', Text, ('#pop', 'expr')),
         ],
         
+        # cast can be written as "cast expr" or "cast(expr, type)"
         'cast': [
             include('spaces'),
-            (r'\(', Punctuation, ('#pop', 'parenthesis-close', 'type', 'comma', 'expr')),
+            (r'\(', Punctuation, ('#pop', 'parenthesis-close', 'cast-type', 'expr')),
             (r'', Text, ('#pop', 'expr')),
+        ],
+        
+        # optionally give a type as the 2nd argument of cast()
+        'cast-type': [
+            include('spaces'),
+            (r',', Punctuation, ('#pop', 'type')),
+            (r'', Text, '#pop'),
         ],
         
         'catch': [
