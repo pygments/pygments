@@ -1212,7 +1212,8 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'string-single-interpol': [
             (r'\$\{', String.Interpol, ('string-interpol-close', 'expr')),
-            (r'\$', String.Interpol, 'ident'),
+            (r'\$\$', String.Escape),
+            (r'\$(?=' + ident + ')', String.Interpol, 'ident'),
             include('string-single'),
         ],
         
