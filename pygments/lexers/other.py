@@ -3918,7 +3918,7 @@ class WebFocusLexer(RegexLexer):
          ],
          'dialog_manager_fidel_end': [
             (r'\n', Text, 'root'),
-            (r'\s*', Whitespace)
+            (r'\s+', Whitespace)
          ],
          'focus_fidel': [
             (r'"', String, 'focus_fidel_end'),
@@ -3934,6 +3934,6 @@ class WebFocusLexer(RegexLexer):
          ],
          'focus_fidel_end': [
             (r'\n', Text, 'root'),
-            (r'\s*', Whitespace)
+            (r'\s+', Whitespace)
          ]
     }
