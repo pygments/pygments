@@ -1274,7 +1274,9 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'\s+', Comment.Preproc),
             (r'\!', Comment.Preproc),
             (r'\(', Comment.Preproc, ('#pop', 'preproc-expr-chain', 'preproc-parenthesis')),
-            (ident, Comment.Preproc, ('#pop', 'preproc-expr-chain')),
+            
+            # Haxe preproc name can contains '-'
+            (ident + r'(?:-' + ident + ')*', Comment.Preproc, ('#pop', 'preproc-expr-chain')),
         ],
          
         'preproc-expr-chain': [
