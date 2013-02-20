@@ -3685,7 +3685,6 @@ class EasyTrieveLexer(RegexLexer):
     # TODO: Treat only the first 72 characters as source code and the rest as comment.
     # TODO: After some reserved words such as 'define', even keywords are names.
     # TODO: Consider continuation characters '+' and '-'
-    # TODO: Treat the 'not' character as operator.
 
     tokens = {
         'root': [
@@ -3728,7 +3727,7 @@ class EasyTrieveLexer(RegexLexer):
             # treating them differently from names seems in order.
             # TODO: Fix: (r'(param|report)[ \'.,():]', Keyword),
             (r'[\[\](){}<>;,]', Punctuation),
-            (r'[-+/=&%]', Operator),
+            (ur'[-+/=&%¬]', Operator),
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r"'(''|[^'])*'", String),
