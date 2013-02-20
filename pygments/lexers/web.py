@@ -1142,7 +1142,7 @@ class HaxeLexer(ExtendedRegexLexer):
                r'break|return|continue|extends|implements|import|'
                r'switch|case|default|public|private|try|untyped|'
                r'catch|new|this|throw|extern|enum|in|interface|'
-               r'cast|override|dynamic|typedef|package|callback|'
+               r'cast|override|dynamic|typedef|package|'
                r'inline|using|null|true|false|abstract)\b')
     
     # idtype in lexer.mll
@@ -1500,7 +1500,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'"', String.Double, ('#pop', 'expr-chain', 'string-double')),
             
             # EReg
-            (r'~/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex, ('#pop', 'expr-chain')),
+            (r'~/(\\\\|\\/|[^/\n])*/[gimsu]*', String.Regex, ('#pop', 'expr-chain')),
             
             # Array
             (r'\[', Punctuation, ('#pop', 'expr-chain', 'array-decl')),
@@ -1509,7 +1509,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'expr-chain': [
             include('spaces'),
             (r'(?:\+\+|\-\-)', Operator),
-            (r'(?:%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>>=|>>>=|==|!=|<=|>=|&&|\|\||<<|>>>|>>|\.\.\.|<|>|%|&|\||\^|\+|\*|/|\-|=>|=)', Operator, ('#pop', 'expr')),
+            (r'(?:%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>\s*>\s*=|>\s*>\s*>\s*=|==|!=|<=|>\s*=|&&|\|\||<<|>>>|>\s*>|\.\.\.|<|>|%|&|\||\^|\+|\*|/|\-|=>|=)', Operator, ('#pop', 'expr')),
             (r'(?:in)\b', Keyword, ('#pop', 'expr')),
             (r'\?', Operator, ('#pop', 'expr', 'ternary', 'expr')),
             (r'(\.)(' + ident_no_keyword + ')', bygroups(Punctuation, Name)),
@@ -1610,7 +1610,7 @@ class HaxeLexer(ExtendedRegexLexer):
         # optional multiple expr under a case
         'case-block': [
             include('spaces'),
-            (r'(?!(case|default|\}))', Keyword, 'expr-statement'),
+            (r'(?!(?:case|default)\b|\})', Keyword, 'expr-statement'),
             (r'', Text, '#pop'),
         ],
         
@@ -1687,6 +1687,7 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'type': [
             include('spaces'),
+            (r'\?', Punctuation),
             (ident, Name, ('#pop', 'type-check', 'type-full-name')),
             (r'\{', Punctuation, ('#pop', 'type-check', 'type-struct')),
             (r'\(', Punctuation, ('#pop', 'type-check', 'type-parenthesis')),
