@@ -365,7 +365,7 @@ class SmalltalkLexer(RegexLexer):
             include('literals'),
         ],
         'afterobject' : [
-            (r'! !$', Keyword , '#pop'), # squeak chunk delimeter
+            (r'! !$', Keyword , '#pop'), # squeak chunk delimiter
             include('whitespaces'),
             (r'\b(ifTrue:|ifFalse:|whileTrue:|whileFalse:|timesRepeat:)',
              Name.Builtin, '#pop'),
@@ -3773,7 +3773,7 @@ class JclLexer(RegexLexer):
         ],
         'statement_command': [
             (r'\s+(command|cntl|dd|endctl|endif|else|include|jcllib|'
-             r'output|pend|proc|set|then|xmit)', Keyword.Reserved, 'option'),
+             r'output|pend|proc|set|then|xmit)\s*', Keyword.Reserved, 'option'),
             include('option')
         ],
         'jes2_statement': [
@@ -3792,13 +3792,18 @@ class JclLexer(RegexLexer):
             (r'\.[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r"'", String, 'option_string'),
-            (r'\s+', Whitespace),
+            (r'\s+', Whitespace, 'option_comment'),
+            (r'\.', Punctuation),
         ],
         'option_string': [
             (r"(\n)(//)", bygroups(Text, Keyword.Pseudo)),
             (r"''", String),
             (r"[^']", String),
             (r"'", String, 'option'),
+        ],
+        'option_comment': [
+            (r'\n', Text, 'root'),
+            (r'.*', Comment.Single),
         ]
     }
 
