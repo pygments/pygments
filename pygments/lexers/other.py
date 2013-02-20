@@ -1963,11 +1963,11 @@ class AsymptoteLexer(RegexLexer):
         from pygments.lexers._asybuiltins import ASYFUNCNAME, ASYVARNAME
         for index, token, value in \
                RegexLexer.get_tokens_unprocessed(self, text):
-           if token is Name and value in ASYFUNCNAME:
-               token = Name.Function
-           elif token is Name and value in ASYVARNAME:
-               token = Name.Variable
-           yield index, token, value
+            if token is Name and value in ASYFUNCNAME:
+                token = Name.Function
+            elif token is Name and value in ASYVARNAME:
+                token = Name.Variable
+            yield index, token, value
 
 
 class PostScriptLexer(RegexLexer):
