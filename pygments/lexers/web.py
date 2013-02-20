@@ -3251,8 +3251,7 @@ class LassoLexer(RegexLexer):
                 bygroups(Punctuation, Keyword)),
 
             # other
-            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=\s*\([^)]*\)\s*(::[\w.\s]+)?=>))',
-                Name.Function, 'signature'),
+            (r',', Punctuation, 'commamember'),
             (r'(and|or|not)\b', Operator.Word),
             (r'([a-z_][\w.]*)(\s*::\s*)?([a-z_][\w.]*)?(\s*=(?!=))',
                 bygroups(Name, Punctuation, Name.Label, Operator)),
@@ -3306,6 +3305,13 @@ class LassoLexer(RegexLexer):
             (r'\.\.\.', Name.Builtin.Pseudo),
             (r'[(,]', Punctuation),
             include('whitespacecomments'),
+        ],
+        'commamember': [
+            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)'
+             r'(?=\s*(\(([^()]*\([^()]*\))*[^)]*\)\s*)?(::[\w.\s]+)?=>))',
+                Name.Function, 'signature'),
+            include('whitespacecomments'),
+            (r'', Text, '#pop'),
         ],
     }
 
