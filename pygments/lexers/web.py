@@ -1151,6 +1151,8 @@ class HaxeLexer(ExtendedRegexLexer):
     # combined ident and dollar and idtype
     ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + '|_+|\$[_a-zA-Z0-9]+)'
     
+    binop = r'(?:%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>\s*>\s*=|>\s*>\s*>\s*=|==|!=|<=|>\s*=|&&|\|\||<<|>>>|>\s*>|\.\.\.|<|>|%|&|\||\^|\+|\*|/|\-|=>|=)'
+    
     # ident except keywords
     ident_no_keyword = r'(?!' + keyword + ')' + ident
 
@@ -1273,22 +1275,36 @@ class HaxeLexer(ExtendedRegexLexer):
         'preproc-expr': [
             (r'\s+', Comment.Preproc),
             (r'\!', Comment.Preproc),
-            (r'\(', Comment.Preproc, ('#pop', 'preproc-expr-chain', 'preproc-parenthesis')),
+            (r'\(', Comment.Preproc, ('#pop', 'preproc-parenthesis')),
             
             # Haxe preproc name can contains '-'
-            (ident + r'(?:-' + ident + ')*', Comment.Preproc, ('#pop', 'preproc-expr-chain')),
-        ],
-         
-        'preproc-expr-chain': [
-            (r'\s+', Comment.Preproc),
-            (r'(?:&&|\|\|)', Comment.Preproc, ('#pop', 'preproc-expr')),
-            (r'', Text, '#pop'),
+            (ident + r'(?:-' + ident + ')*', Comment.Preproc, '#pop'),
+            (r"'", String.Single, ('#pop', 'string-single')),
+            (r'"', String.Double, ('#pop', 'string-double')),
         ],
          
         'preproc-parenthesis': [
             (r'\s+', Comment.Preproc),
             (r'\)', Comment.Preproc, '#pop'),
-            ('', Text, 'preproc-expr'),
+            ('', Text, 'preproc-expr-in-parenthesis'),
+        ],
+         
+        'preproc-expr-chain': [
+            (r'\s+', Comment.Preproc),
+            (binop, Comment.Preproc, ('#pop', 'preproc-expr-in-parenthesis')),
+            (r'', Text, '#pop'),
+        ],
+        
+        # same as 'preproc-expr' but able to chain 'preproc-expr-chain'
+        'preproc-expr-in-parenthesis': [
+            (r'\s+', Comment.Preproc),
+            (r'\!', Comment.Preproc),
+            (r'\(', Comment.Preproc, ('#pop', 'preproc-expr-chain', 'preproc-parenthesis')),
+            
+            # Haxe preproc name can contains '-'
+            (ident + r'(?:-' + ident + ')*', Comment.Preproc, ('#pop', 'preproc-expr-chain')),
+            (r"'", String.Single, ('#pop', 'preproc-expr-chain', 'string-single')),
+            (r'"', String.Double, ('#pop', 'preproc-expr-chain', 'string-double')),
         ],
         
         'abstract' : [
@@ -1334,8 +1350,20 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'meta-body': [
             include('spaces'),
-            (r'\(', Punctuation, ('#pop', 'call')),
+            (r'\(', Name.Decorator, ('#pop', 'meta-call')),
             (r'', Text, '#pop'),
+        ],
+        
+        'meta-call': [
+            include('spaces'),
+            (r'\)', Name.Decorator, '#pop'),
+            (r'', Text, ('#pop', 'meta-call-sep', 'expr')),
+        ],
+        
+        'meta-call-sep': [
+            include('spaces'),
+            (r'\)', Name.Decorator, '#pop'),
+            (r',', Punctuation, ('#pop', 'meta-call')),
         ],
         
         'typedef': [
@@ -1460,7 +1488,7 @@ class HaxeLexer(ExtendedRegexLexer):
         
         'expr': [
             include('spaces'),
-            include('meta'),
+            (r'@', Name.Decorator, ('#pop', 'optional-expr', 'meta-body', 'meta-ident', 'meta-colon')),
             (r'(?:\+\+|\-\-|~(?!/)|!|\-)', Operator),
             (r'\(', Punctuation, ('#pop', 'expr-chain', 'parenthesis')),
             (r'(?:inline)\b', Keyword.Declaration),
@@ -1509,7 +1537,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'expr-chain': [
             include('spaces'),
             (r'(?:\+\+|\-\-)', Operator),
-            (r'(?:%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>\s*>\s*=|>\s*>\s*>\s*=|==|!=|<=|>\s*=|&&|\|\||<<|>>>|>\s*>|\.\.\.|<|>|%|&|\||\^|\+|\*|/|\-|=>|=)', Operator, ('#pop', 'expr')),
+            (binop, Operator, ('#pop', 'expr')),
             (r'(?:in)\b', Keyword, ('#pop', 'expr')),
             (r'\?', Operator, ('#pop', 'expr', 'ternary', 'expr')),
             (r'(\.)(' + ident_no_keyword + ')', bygroups(Punctuation, Name)),
