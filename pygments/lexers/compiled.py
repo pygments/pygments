@@ -1216,6 +1216,7 @@ def objective(baselexer):
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_forward_classname')),
+                (r'@[\[{(]', Punctuation),
                 inherit,
             ],
             'oc_classname' : [
