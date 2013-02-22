@@ -3734,9 +3734,69 @@ class EasyTrieveLexer(RegexLexer):
             (r'\*.*\n', Comment.Single),
             (r'\.', Operator),
             (r'\s+', Whitespace),
-            (r'[^ \'.,():]+', Name) # Everything else just belongs to a name
+            (r'[^ \'.,():]+', Name)  # Everything else just belongs to a name
          ]
     }
+
+    def analyse_text(text):
+        """
+        Perform a structural analysis for basic EasyTrieve constructs.
+        """
+        result = 0.0
+        hasEndProc = False
+        hasFile = False
+        hasJob = False
+        hasProc = False
+        hasParam = False
+        hasReport = False
+        isBroken = False
+
+        # Scan the source for lines starting with indicators.
+        for line in text.split('\n'):
+            words = line.split()
+            if (len(words) >= 2):
+                first_word = words[0]
+                if not hasReport:
+                    if not hasJob:
+                        if not hasFile:
+                            if not hasParam:
+                                if first_word == 'PARAM':
+                                    hasParam = True
+                            if first_word == 'FILE':
+                                hasFile = True
+                        if first_word == 'JOB':
+                            hasJob = True
+                    elif first_word == 'PROC':
+                        hasProc = True
+                    elif first_word == 'END-PROC':
+                        hasEndProc = True
+                    elif first_word == 'REPORT':
+                        hasReport = True
+
+        # Weight the findings.
+        if not isBroken and hasJob and (hasProc == hasEndProc):
+            if hasParam:
+                if hasProc:
+                    # Found PARAM, JOB and PROC/END-PROC:
+                    # pretty sure this is EasyTrieve.
+                    result = 0.8
+                else:
+                    # Found PARAM and  JOB: probably this is EasyTrieve
+                    result = 0.5
+            else:
+                # Found JOB and possibly other keywords: might be EasyTrieve
+                result = 0.11
+                if hasParam:
+                    # Note: PARAM is not a proper English word, so this is
+                    # regarded a much better indicator for EasyTrieve than
+                    # the other words.
+                    result += 0.2
+                if hasFile:
+                    result += 0.01
+                if hasReport:
+                    result += 0.01
+        assert 0.0 <= result <= 1.0
+        return result
 
 
 class JclLexer(RegexLexer):
@@ -3760,7 +3820,7 @@ class JclLexer(RegexLexer):
             (r'//', Keyword.Pseudo, 'statement'),
             (r'/\*', Keyword.Pseudo, 'jes2_statement'),
             # TODO: JES3 statement
-            (r'.*\n', Other) # Input text or inline code in any language.
+            (r'.*\n', Other)  # Input text or inline code in any language.
         ],
         'statement': [
             (r'\s*\n', Whitespace, 'root'),
@@ -3805,6 +3865,20 @@ class JclLexer(RegexLexer):
             (r'.*', Comment.Single),
         ]
     }
+
+    _JOB_HEADER_PATTERN = re.compile(r'^//[a-z#$@][a-z0-9#$@]{0,7}\s+job(\s+.*)?$', re.IGNORECASE)
+
+    def analyse_text(text):
+        """
+        Recognize JCL job by header.
+        """
+        result = 0.0
+        lines = text.split('\n')
+        if len(lines) > 0:
+            if JclLexer._JOB_HEADER_PATTERN.match(lines[0]):
+                result = 1.0
+        assert 0.0 <= result <= 1.0
+        return result
 
 
 class WebFocusLexer(RegexLexer):
@@ -3865,8 +3939,8 @@ class WebFocusLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r"'(''|[^'])*'", String),
             (r'\s+', Whitespace)
-         ],
-         'dialog_manager': [
+        ],
+        'dialog_manager': [
             # Detect possible labels in first word of dialog manager line.
             (r'\s*type\b', Keyword.Reserved, 'dialog_manager_type'),
             (r'[:][a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
@@ -3881,8 +3955,8 @@ class WebFocusLexer(RegexLexer):
              'dialog_manager_others'),
             (r'[a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
             include('dialog_manager_others'),
-         ],
-         'dialog_manager_others': [
+        ],
+        'dialog_manager_others': [
             (r'\n', Text, 'root'),
             (r'\s*type\b', Keyword.Reserved, 'dialog_manager_type'),
             (r'[:][a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
@@ -3903,24 +3977,24 @@ class WebFocusLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r"'(''|[^'])*'", String),
             (r'\s+', Whitespace)
-         ],
-         'dialog_manager_type': [
+        ],
+        'dialog_manager_type': [
             # For -TYPE, render everything as ``String`` except variables.
             (r'\n', Text, 'root'),
             (r'[&]+[a-z_][a-z_0-9]*\.*', Name.Variable),
             (r'[^&\n]*', String)
-         ],
-         'dialog_manager_fidel': [
+        ],
+        'dialog_manager_fidel': [
             (r'"', String, 'dialog_manager_fidel_end'),
             (r'([<])([&][a-z][a-z_0-9]*)([/])([0-9]+)',
              bygroups(Keyword.Reserved, Name.Variable, Operator, Number.Integer)),
             (r'.', String)
-         ],
-         'dialog_manager_fidel_end': [
+        ],
+        'dialog_manager_fidel_end': [
             (r'\n', Text, 'root'),
             (r'\s+', Whitespace)
-         ],
-         'focus_fidel': [
+        ],
+        'focus_fidel': [
             (r'"', String, 'focus_fidel_end'),
             (r'[&]+[a-z][a-z_0-9]*', Name.Variable),
             (r'\>', Keyword.Reserved),
@@ -3931,9 +4005,55 @@ class WebFocusLexer(RegexLexer):
             (r'([<])([+-/]?)([0-9]+)',
              bygroups(Keyword.Reserved, Operator, Number.Integer)),
             (r'.', String)
-         ],
-         'focus_fidel_end': [
+        ],
+        'focus_fidel_end': [
             (r'\n', Text, 'root'),
             (r'\s+', Whitespace)
-         ]
+       ]
     }
+
+    def analyse_text(text):
+        """
+        Perform a heuristic analysis for certain very common WebFOCUS
+        constructs.
+        """
+        result = 0.0
+        hasComment = False
+        hasExec = False
+        hasInclude = False
+        hasSet = False
+        hasTableFile = False
+
+        # Scan the source lines for indicators.
+        for line in text.lower().split('\n'):
+            if line.startswith('-'):
+                words = line[1:].split()
+                wordCount = len(words)
+                if wordCount > 0:
+                    firstWord = words[0]
+                    if firstWord.startswith('*'):
+                        hasComment = True
+                    elif wordCount > 1:
+                        if firstWord == 'include':
+                            hasInclude = True
+                        elif (firstWord == 'set') and words[1].startswith('&'):
+                            hasSet = True
+            else:
+                words = line.split()
+                wordCount = len(words)
+                if wordCount > 1:
+                    if words[0] in ('ex', 'exec'):
+                        hasExec = True
+                    elif (words[0] in ('table', 'tablef')) \
+                            and (words[1] == 'file'):
+                        hasTableFile = True
+        if hasComment:
+            result += 0.2
+        if hasExec or hasInclude:
+            result += 0.1
+        if hasTableFile:
+            result += 0.2
+        if hasSet:
+            result += 0.1
+        assert 0.0 <= result <= 1.0
+        return result
