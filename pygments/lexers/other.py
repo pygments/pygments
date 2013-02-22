@@ -3680,7 +3680,6 @@ class EasyTrieveLexer(RegexLexer):
     aliases = ['easytrieve']
     filenames = ['*.ezt']
     mimetypes = ['text/x-easytrieve']
-    flags = re.IGNORECASE
 
     # TODO: Treat only the first 72 characters as source code and the rest as comment.
     # TODO: After some reserved words such as 'define', even keywords are names.
@@ -3697,35 +3696,35 @@ class EasyTrieveLexer(RegexLexer):
             #   * comma (,)
             #   * paranthesis ( and )
             #   * colon (:)
-            (r'(after-break|after-line|after-screen|aim|and|attr|before|'
-             r'before-break|before-line|before-screen|bushu|by|call|case|'
-             r'checkpoint|chkp|chkp-status|clear|close|col|color|commit|'
-             r'control|copy|cursor|d|declare|default|define|delete|denwa|'
-             r'display|dli|do|duplicate|e|else|else-if|end|end-case|end-do|'
-             r'end-if|end-proc|endpage|endtable|enter|eof|eq|error|exit|'
-             r'external|ezlib|f1|f10|f11|f12|f13|f14|f15|f16|f17|f18|f19|f2|'
-             r'f20|f21|f22|f23|f24|f25|f26|f27|f28|f29|f3|f30|f31|f32|f33|'
-             r'f34|f35|f36|f4|f5|f6|f7|f8|f9|fetch|file|file-status|fill|'
-             r'final|first|first-dup|for|ge|get|go|goto|gq|gr|gt|heading|'
-             r'hex|high-values|idd|idms|if|in|insert|job|justify|kanji-date|'
-             r'kanji-date-long|kanji-time|key|key-pressed|kokugo|kun|'
-             r'last-dup|le|level|like|line|line-count|line-number|link|list|'
-             r'low-values|lq|ls|lt|mask|matched|mend|message|move|mstart|ne|'
-             r'newpage|nomask|noprint|not|note|noverify|nq|null|of|or|'
-             r'otherwise|pa1|pa2|pa3|page-count|page-number|parm-register|'
-             r'path-id|pattern|perform|point|pos|primary|print|proc|'
-             r'procedure|program|put|read|record|record-count|record-length|'
-             r'refresh|release|renum|repeat|report|report-input|reshow|'
-             r'restart|retrieve|return-code|rollback|row|s|screen|search|'
-             r'secondary|select|sequence|size|skip|sokaku|sort|sql|stop|sum|'
-             r'sysdate|sysdate-long|sysin|sysipt|syslst|sysprint|syssnap|'
-             r'systime|tally|term-columns|term-name|term-rows|termination|'
-             r'title|to|transfer|trc|unique|until|update|uppercase|user|'
-             r'userid|value|verify|w|when|while|work|write|x|xdm|xrst)[ \'.,():]',
+            (r'(AFTER-BREAK|AFTER-LINE|AFTER-SCREEN|AIM|AND|ATTR|BEFORE|'
+             r'BEFORE-BREAK|BEFORE-LINE|BEFORE-SCREEN|BUSHU|BY|CALL|CASE|'
+             r'CHECKPOINT|CHKP|CHKP-STATUS|CLEAR|CLOSE|COL|COLOR|COMMIT|'
+             r'CONTROL|COPY|CURSOR|D|DECLARE|DEFAULT|DEFINE|DELETE|DENWA|'
+             r'DISPLAY|DLI|DO|DUPLICATE|E|ELSE|ELSE-IF|END|END-CASE|END-DO|'
+             r'END-IF|END-PROC|ENDPAGE|ENDTABLE|ENTER|EOF|EQ|ERROR|EXIT|'
+             r'EXTERNAL|EZLIB|F1|F10|F11|F12|F13|F14|F15|F16|F17|F18|F19|F2|'
+             r'F20|F21|F22|F23|F24|F25|F26|F27|F28|F29|F3|F30|F31|F32|F33|'
+             r'F34|F35|F36|F4|F5|F6|F7|F8|F9|FETCH|FILE|FILE-STATUS|FILL|'
+             r'FINAL|FIRST|FIRST-DUP|FOR|GE|GET|GO|GOTO|GQ|GR|GT|HEADING|'
+             r'HEX|HIGH-VALUES|IDD|IDMS|IF|IN|INSERT|JOB|JUSTIFY|KANJI-DATE|'
+             r'KANJI-DATE-LONG|KANJI-TIME|KEY|KEY-PRESSED|KOKUGO|KUN|'
+             r'LAST-DUP|LE|LEVEL|LIKE|LINE|LINE-COUNT|LINE-NUMBER|LINK|LIST|'
+             r'LOW-VALUES|LQ|LS|LT|MASK|MATCHED|MEND|MESSAGE|MOVE|MSTART|NE|'
+             r'NEWPAGE|NOMASK|NOPRINT|NOT|NOTE|NOVERIFY|NQ|NULL|OF|OR|'
+             r'OTHERWISE|PA1|PA2|PA3|PAGE-COUNT|PAGE-NUMBER|PARM-REGISTER|'
+             r'PATH-ID|PATTERN|PERFORM|POINT|POS|PRIMARY|PRINT|PROC|'
+             r'PROCEDURE|PROGRAM|PUT|READ|RECORD|RECORD-COUNT|RECORD-LENGTH|'
+             r'REFRESH|RELEASE|RENUM|REPEAT|REPORT|REPORT-INPUT|RESHOW|'
+             r'RESTART|RETRIEVE|RETURN-CODE|ROLLBACK|ROW|S|SCREEN|SEARCH|'
+             r'SECONDARY|SELECT|SEQUENCE|SIZE|SKIP|SOKAKU|SORT|SQL|STOP|SUM|'
+             r'SYSDATE|SYSDATE-LONG|SYSIN|SYSIPT|SYSLST|SYSPRINT|SYSSNAP|'
+             r'SYSTIME|TALLY|TERM-COLUMNS|TERM-NAME|TERM-ROWS|TERMINATION|'
+             r'TITLE|TO|TRANSFER|TRC|UNIQUE|UNTIL|UPDATE|UPPERCASE|USER|'
+             r'USERID|VALUE|VERIFY|W|WHEN|WHILE|WORK|WRITE|X|XDM|XRST)[ \'.,():]',
              Keyword.Reserved),
             # These are not actually keywords but section separators so
             # treating them differently from names seems in order.
-            # TODO: Fix: (r'(param|report)[ \'.,():]', Keyword),
+            # TODO: Fix: (r'(PARAM|REPORT)[ \'.,():]', Keyword),
             (r'[\[\](){}<>;,]', Punctuation),
             (ur'[-+/=&%¬]', Operator),
             (r'[0-9]+\.[0-9]*', Number.Float),
