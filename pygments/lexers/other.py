@@ -3671,36 +3671,38 @@ class AutoItLexer(RegexLexer):
 
 class EasyTrieveLexer(RegexLexer):
     """
-    EasyTrieve (Classic and Plus) are programming languages tailored to
-    generating reports and are mainly used in mainframe related environments.
+    Easytrieve Plus is a programming language for extracting, filtering and
+    converting sequential data. Furthermore it can layout data for reports.
+    It is mainly used on mainframe platforms and can access several of the
+    mainframe's native file formats. It is somewhat comparable to awk. 
 
-    This lexer is designed for EasyTrieve Plus 6.4.
+    *New in Pygments 1.x.*
     """
     name = 'EasyTrieve'
     aliases = ['easytrieve']
-    filenames = ['*.ezt']
+    filenames = ['*.ezt', '*.mac']
     mimetypes = ['text/x-easytrieve']
     flags = 0
 
     # TODO: Fix capitalization: Easytrieve instead of EasyTrieve.
-    # TODO: Add support for MACRO and related calls.
-    # TODO: Treat only the first 72 characters as source code and the rest as comment.
-    # TODO: After some reserved words such as 'define', even keywords are names.
-    # TODO: Consider continuation characters '+' and '-'
 
     tokens = {
+        # Note: We cannot use r'\b' at the start and end of keywords because
+        # EasyTrieve Plus delimiter characters are:
+        #
+        #   * space ( )
+        #   * apostrophe (')
+        #   * period (.)
+        #   * comma (,)
+        #   * paranthesis ( and )
+        #   * colon (:)
         'root': [
             (r'\*.*\n', Comment.Single),
             (r'\n+', Whitespace),
-            # Note: We cannot use r'\b' at the start and end of keywords
-            # because EasyTrieve Plus delimiter characters are:
-            #
-            #   * space ( )
-            #   * apostrophe (')
-            #   * period (.)
-            #   * comma (,)
-            #   * paranthesis ( and )
-            #   * colon (:)
+            # Macro argument
+            (r'&[^ *\'.,():\n]+\.', Name.Variable, 'after_macro_argument'),
+            # Macro call
+            (r'%[^ *\'.,():\n]+', Name.Variable),
             (r'(FILE|JOB|PARM|PROC|REPORT)([ \'.,():\n])',
              bygroups(Keyword.Declaration, Operator)),
             (r'(AFTER-BREAK|AFTER-LINE|AFTER-SCREEN|AIM|AND|ATTR|BEFORE|'
@@ -3737,7 +3739,15 @@ class EasyTrieveLexer(RegexLexer):
             (r'\.', Operator),
             (r'\s+', Whitespace),
             (r'[^ \'.,():\n]+', Name)  # Everything else just belongs to a name
-         ]
+         ],
+        'after_macro_argument': [
+            (r'\*.*\n', Comment.Single, 'root'),
+            (r'[\n\s]+', Whitespace, 'root'),
+            (r'[\[\](){}<>;,]', Punctuation, 'root'),
+            (ur'[.+/=&%¬]', Operator, 'root'),
+            (r"'(''|[^'])*'", String, 'root'),
+            (r'[^ \'.,():\n]+', Name)  # Everything else just belongs to a name
+        ],
     }
 
     def analyse_text(text):
@@ -3745,7 +3755,9 @@ class EasyTrieveLexer(RegexLexer):
         Perform a structural analysis for basic EasyTrieve constructs.
         """
         result = 0.0
+        lines = text.split('\n')
         hasEndProc = False
+        hasHeaderComment = False
         hasFile = False
         hasJob = False
         hasProc = False
@@ -3753,50 +3765,62 @@ class EasyTrieveLexer(RegexLexer):
         hasReport = False
         isBroken = False
 
-        # Scan the source for lines starting with indicators.
-        for line in text.split('\n'):
-            words = line.split()
-            if (len(words) >= 2):
-                first_word = words[0]
-                if not hasReport:
-                    if not hasJob:
-                        if not hasFile:
-                            if not hasParm:
-                                if first_word == 'PARM':
-                                    hasParm = True
-                            if first_word == 'FILE':
-                                hasFile = True
-                        if first_word == 'JOB':
-                            hasJob = True
-                    elif first_word == 'PROC':
-                        hasProc = True
-                    elif first_word == 'END-PROC':
-                        hasEndProc = True
-                    elif first_word == 'REPORT':
-                        hasReport = True
+        # Skip possible header comments.
+        while len(lines) and lines[0].startswith('*'):
+            hasHeaderComment = True
+            del lines[0]
 
-        # Weight the findings.
-        if not isBroken and hasJob and (hasProc == hasEndProc):
-            if hasParm:
-                if hasProc:
-                    # Found PARM, JOB and PROC/END-PROC:
-                    # pretty sure this is EasyTrieve.
-                    result = 0.8
-                else:
-                    # Found PARAM and  JOB: probably this is EasyTrieve
-                    result = 0.5
-            else:
-                # Found JOB and possibly other keywords: might be EasyTrieve
-                result = 0.11
+        firstLine = lines[0]
+        if firstLine[:6] in ('MACRO', 'MACRO '):
+            # Looks like an Easytrieve macro.
+            result = 0.4
+            if hasHeaderComment:
+                result += 0.4
+        else:
+            # Scan the source for lines starting with indicators.
+            for line in lines:
+                words = line.split()
+                if (len(words) >= 2):
+                    first_word = words[0]
+                    if not hasReport:
+                        if not hasJob:
+                            if not hasFile:
+                                if not hasParm:
+                                    if first_word == 'PARM':
+                                        hasParm = True
+                                if first_word == 'FILE':
+                                    hasFile = True
+                            if first_word == 'JOB':
+                                hasJob = True
+                        elif first_word == 'PROC':
+                            hasProc = True
+                        elif first_word == 'END-PROC':
+                            hasEndProc = True
+                        elif first_word == 'REPORT':
+                            hasReport = True
+    
+            # Weight the findings.
+            if not isBroken and hasJob and (hasProc == hasEndProc):
                 if hasParm:
-                    # Note: PARAM is not a proper English word, so this is
-                    # regarded a much better indicator for EasyTrieve than
-                    # the other words.
-                    result += 0.2
-                if hasFile:
-                    result += 0.01
-                if hasReport:
-                    result += 0.01
+                    if hasProc:
+                        # Found PARM, JOB and PROC/END-PROC:
+                        # pretty sure this is EasyTrieve.
+                        result = 0.8
+                    else:
+                        # Found PARAM and  JOB: probably this is EasyTrieve
+                        result = 0.5
+                else:
+                    # Found JOB and possibly other keywords: might be EasyTrieve
+                    result = 0.11
+                    if hasParm:
+                        # Note: PARAM is not a proper English word, so this is
+                        # regarded a much better indicator for EasyTrieve than
+                        # the other words.
+                        result += 0.2
+                    if hasFile:
+                        result += 0.01
+                    if hasReport:
+                        result += 0.01
         assert 0.0 <= result <= 1.0
         return result
 

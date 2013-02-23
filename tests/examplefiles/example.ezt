@@ -10,6 +10,10 @@ FILE PERSNL FB(150 1800)
   DEPT  98 3 N. GROSS 94 4 P 2
   *           ^ 2 field definitions in 1 line.
 
+FILE EXAMPLE FB(80 200)
+%EXAMPLE SOMEFILE SOME
+
+* Macro declaration (to be valid, this would
 * Activity Section.
 JOB INPUT PERSNL NAME FIRST-PROGRAM
   PRINT PAY-RPT
