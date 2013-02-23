@@ -3680,13 +3680,18 @@ class EasyTrieveLexer(RegexLexer):
     aliases = ['easytrieve']
     filenames = ['*.ezt']
     mimetypes = ['text/x-easytrieve']
+    flags = 0
 
+    # TODO: Fix capitalization: Easytrieve instead of EasyTrieve.
+    # TODO: Add support for MACRO and related calls.
     # TODO: Treat only the first 72 characters as source code and the rest as comment.
     # TODO: After some reserved words such as 'define', even keywords are names.
     # TODO: Consider continuation characters '+' and '-'
 
     tokens = {
         'root': [
+            (r'\*.*\n', Comment.Single),
+            (r'\n+', Whitespace),
             # Note: We cannot use r'\b' at the start and end of keywords
             # because EasyTrieve Plus delimiter characters are:
             #
@@ -3696,6 +3701,8 @@ class EasyTrieveLexer(RegexLexer):
             #   * comma (,)
             #   * paranthesis ( and )
             #   * colon (:)
+            (r'(FILE|JOB|PARM|PROC|REPORT)([ \'.,():\n])',
+             bygroups(Keyword.Declaration, Operator)),
             (r'(AFTER-BREAK|AFTER-LINE|AFTER-SCREEN|AIM|AND|ATTR|BEFORE|'
              r'BEFORE-BREAK|BEFORE-LINE|BEFORE-SCREEN|BUSHU|BY|CALL|CASE|'
              r'CHECKPOINT|CHKP|CHKP-STATUS|CLEAR|CLOSE|COL|COLOR|COMMIT|'
@@ -3704,15 +3711,15 @@ class EasyTrieveLexer(RegexLexer):
              r'END-IF|END-PROC|ENDPAGE|ENDTABLE|ENTER|EOF|EQ|ERROR|EXIT|'
              r'EXTERNAL|EZLIB|F1|F10|F11|F12|F13|F14|F15|F16|F17|F18|F19|F2|'
              r'F20|F21|F22|F23|F24|F25|F26|F27|F28|F29|F3|F30|F31|F32|F33|'
-             r'F34|F35|F36|F4|F5|F6|F7|F8|F9|FETCH|FILE|FILE-STATUS|FILL|'
+             r'F34|F35|F36|F4|F5|F6|F7|F8|F9|FETCH|FILE-STATUS|FILL|'
              r'FINAL|FIRST|FIRST-DUP|FOR|GE|GET|GO|GOTO|GQ|GR|GT|HEADING|'
-             r'HEX|HIGH-VALUES|IDD|IDMS|IF|IN|INSERT|JOB|JUSTIFY|KANJI-DATE|'
+             r'HEX|HIGH-VALUES|IDD|IDMS|IF|IN|INSERT|JUSTIFY|KANJI-DATE|'
              r'KANJI-DATE-LONG|KANJI-TIME|KEY|KEY-PRESSED|KOKUGO|KUN|'
              r'LAST-DUP|LE|LEVEL|LIKE|LINE|LINE-COUNT|LINE-NUMBER|LINK|LIST|'
              r'LOW-VALUES|LQ|LS|LT|MASK|MATCHED|MEND|MESSAGE|MOVE|MSTART|NE|'
              r'NEWPAGE|NOMASK|NOPRINT|NOT|NOTE|NOVERIFY|NQ|NULL|OF|OR|'
              r'OTHERWISE|PA1|PA2|PA3|PAGE-COUNT|PAGE-NUMBER|PARM-REGISTER|'
-             r'PATH-ID|PATTERN|PERFORM|POINT|POS|PRIMARY|PRINT|PROC|'
+             r'PATH-ID|PATTERN|PERFORM|POINT|POS|PRIMARY|PRINT|'
              r'PROCEDURE|PROGRAM|PUT|READ|RECORD|RECORD-COUNT|RECORD-LENGTH|'
              r'REFRESH|RELEASE|RENUM|REPEAT|REPORT|REPORT-INPUT|RESHOW|'
              r'RESTART|RETRIEVE|RETURN-CODE|ROLLBACK|ROW|S|SCREEN|SEARCH|'
@@ -3720,20 +3727,16 @@ class EasyTrieveLexer(RegexLexer):
              r'SYSDATE|SYSDATE-LONG|SYSIN|SYSIPT|SYSLST|SYSPRINT|SYSSNAP|'
              r'SYSTIME|TALLY|TERM-COLUMNS|TERM-NAME|TERM-ROWS|TERMINATION|'
              r'TITLE|TO|TRANSFER|TRC|UNIQUE|UNTIL|UPDATE|UPPERCASE|USER|'
-             r'USERID|VALUE|VERIFY|W|WHEN|WHILE|WORK|WRITE|X|XDM|XRST)[ \'.,():]',
-             Keyword.Reserved),
-            # These are not actually keywords but section separators so
-            # treating them differently from names seems in order.
-            # TODO: Fix: (r'(PARAM|REPORT)[ \'.,():]', Keyword),
+             r'USERID|VALUE|VERIFY|W|WHEN|WHILE|WORK|WRITE|X|XDM|XRST)([ \'.,():\n])',
+             bygroups(Keyword.Reserved, Operator)),
             (r'[\[\](){}<>;,]', Punctuation),
             (ur'[-+/=&%¬]', Operator),
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r"'(''|[^'])*'", String),
-            (r'\*.*\n', Comment.Single),
             (r'\.', Operator),
             (r'\s+', Whitespace),
-            (r'[^ \'.,():]+', Name)  # Everything else just belongs to a name
+            (r'[^ \'.,():\n]+', Name)  # Everything else just belongs to a name
          ]
     }
 
@@ -3746,7 +3749,7 @@ class EasyTrieveLexer(RegexLexer):
         hasFile = False
         hasJob = False
         hasProc = False
-        hasParam = False
+        hasParm = False
         hasReport = False
         isBroken = False
 
@@ -3758,9 +3761,9 @@ class EasyTrieveLexer(RegexLexer):
                 if not hasReport:
                     if not hasJob:
                         if not hasFile:
-                            if not hasParam:
-                                if first_word == 'PARAM':
-                                    hasParam = True
+                            if not hasParm:
+                                if first_word == 'PARM':
+                                    hasParm = True
                             if first_word == 'FILE':
                                 hasFile = True
                         if first_word == 'JOB':
@@ -3774,9 +3777,9 @@ class EasyTrieveLexer(RegexLexer):
 
         # Weight the findings.
         if not isBroken and hasJob and (hasProc == hasEndProc):
-            if hasParam:
+            if hasParm:
                 if hasProc:
-                    # Found PARAM, JOB and PROC/END-PROC:
+                    # Found PARM, JOB and PROC/END-PROC:
                     # pretty sure this is EasyTrieve.
                     result = 0.8
                 else:
@@ -3785,7 +3788,7 @@ class EasyTrieveLexer(RegexLexer):
             else:
                 # Found JOB and possibly other keywords: might be EasyTrieve
                 result = 0.11
-                if hasParam:
+                if hasParm:
                     # Note: PARAM is not a proper English word, so this is
                     # regarded a much better indicator for EasyTrieve than
                     # the other words.
