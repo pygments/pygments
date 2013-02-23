@@ -36,7 +36,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
-           'CbmBasicV2Lexer', 'AutoItLexer', 'EasyTrieveLexer', 'JclLexer',
+           'CbmBasicV2Lexer', 'AutoItLexer', 'EasytrieveLexer', 'JclLexer',
            'WebFocusLexer']
 
 
@@ -3669,7 +3669,7 @@ class AutoItLexer(RegexLexer):
     }
 
 
-class EasyTrieveLexer(RegexLexer):
+class EasytrieveLexer(RegexLexer):
     """
     Easytrieve Plus is a programming language for extracting, filtering and
     converting sequential data. Furthermore it can layout data for reports.
@@ -3678,17 +3678,15 @@ class EasyTrieveLexer(RegexLexer):
 
     *New in Pygments 1.x.*
     """
-    name = 'EasyTrieve'
+    name = 'Easytrieve'
     aliases = ['easytrieve']
     filenames = ['*.ezt', '*.mac']
     mimetypes = ['text/x-easytrieve']
     flags = 0
 
-    # TODO: Fix capitalization: Easytrieve instead of EasyTrieve.
-
     tokens = {
         # Note: We cannot use r'\b' at the start and end of keywords because
-        # EasyTrieve Plus delimiter characters are:
+        # Easytrieve Plus delimiter characters are:
         #
         #   * space ( )
         #   * apostrophe (')
@@ -3752,7 +3750,7 @@ class EasyTrieveLexer(RegexLexer):
 
     def analyse_text(text):
         """
-        Perform a structural analysis for basic EasyTrieve constructs.
+        Perform a structural analysis for basic Easytrieve constructs.
         """
         result = 0.0
         lines = text.split('\n')
@@ -3804,17 +3802,17 @@ class EasyTrieveLexer(RegexLexer):
                 if hasParm:
                     if hasProc:
                         # Found PARM, JOB and PROC/END-PROC:
-                        # pretty sure this is EasyTrieve.
+                        # pretty sure this is Easytrieve.
                         result = 0.8
                     else:
-                        # Found PARAM and  JOB: probably this is EasyTrieve
+                        # Found PARAM and  JOB: probably this is Easytrieve
                         result = 0.5
                 else:
-                    # Found JOB and possibly other keywords: might be EasyTrieve
+                    # Found JOB and possibly other keywords: might be Easytrieve
                     result = 0.11
                     if hasParm:
                         # Note: PARAM is not a proper English word, so this is
-                        # regarded a much better indicator for EasyTrieve than
+                        # regarded a much better indicator for Easytrieve than
                         # the other words.
                         result += 0.2
                     if hasFile:
