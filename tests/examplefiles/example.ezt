@@ -3,14 +3,14 @@
 * Environtment section.
 PARM DEBUG(FLOW FLDCHK)
 
-* Library Section
+* Library Section.
 FILE PERSNL FB(150 1800)
   NAME  17 8 A
   EMP#   9 5 N * Note: '#' is a valid character for names.
   DEPT  98 3 N. GROSS 94 4 P 2
   *           ^ 2 field definitions in 1 line.
 
-* Activity Section
+* Activity Section.
 JOB INPUT PERSNL NAME FIRST-PROGRAM
   PRINT PAY-RPT
 REPORT PAY-RPT LINESIZE 80
