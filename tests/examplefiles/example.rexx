@@ -5,19 +5,22 @@ almost_pi = 0.1415 + 3
 if almost_pi < 3 then
    say 'huh?'
 else do
-   say 'ok, almost_pi=' almost_pi || " - done"
+   say 'almost_pi=' almost_pi || " - ok"
 end
 x = '"' || "'" || '''' || """" /* quotes */
 
 /* A comment
-   spawning multiple
-   lines. */
+ * spawning multiple
+   lines. /* / */
 
-half: procedure
-    parse arg some
-    return some / 2
+/* Labels and procedures. */
+some_label :
 
-some_label: /* ... ready to go to. */
+divide: procedure
+    parse arg some other
+    return some / other
+
+call divide(5, 2)
 
 /* Print a text file on MVS. */
 ADDRESS TSO
