@@ -11,7 +11,8 @@ import os
 import unittest
 
 from pygments.lexers import guess_lexer
-from pygments.lexers.other import EasytrieveLexer, JclLexer, WebFocusLexer
+from pygments.lexers.other import EasytrieveLexer, JclLexer, RexxLexer, \
+    WebFocusLexer
 
 
 def _exampleFilePath(filename):
@@ -47,6 +48,9 @@ class JclLexerTest(_AnalyseTextTest):
     def setUp(self):
         self.lexer = JclLexer()
 
+class RexxLexerTest(_AnalyseTextTest):
+    def setUp(self):
+        self.lexer = RexxLexer()
 
 class WebFocusLexerTest(_AnalyseTextTest):
     def setUp(self):

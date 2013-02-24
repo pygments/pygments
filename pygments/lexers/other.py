@@ -37,7 +37,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
            'CbmBasicV2Lexer', 'AutoItLexer', 'EasytrieveLexer', 'JclLexer',
-           'WebFocusLexer']
+           'RexxLexer', 'WebFocusLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -4080,4 +4080,71 @@ class WebFocusLexer(RegexLexer):
         if hasSet:
             result += 0.1
         assert 0.0 <= result <= 1.0
+        return result
+
+
+class RexxLexer(RegexLexer):
+    """
+    `REXX <http://www.rexxinfo.org/>`_ is a scripting language available for
+    a wide range of different platforms with its roots found on mainframe
+    systems. It is popular for I/O- and data based tasks and can act as glue
+    language to bind different applications together.
+    """
+    name = 'REXX'
+    aliases = ['rexx', 'ARexx', 'arexx']
+    filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
+    mimetypes = ['text/x-rexx']
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'[\s\n]', Whitespace),
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'["]', String, 'string_double'),
+            (r"'", String, 'string_single'),
+            (r'[0-9]+(\.[0-9]+)?(e[+-]?[0-9])?', Number),
+            (r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)',
+             bygroups(Name.Function, Whitespace, Operator, Whitespace, Keyword.Declaration)),
+            (r'([a-z_][a-z0-9_]*)(\s*)(:)',
+             bygroups(Name.Label, Whitespace, Operator)),
+            include('keyword'),
+            include('operator'),
+            (r'[a-z_][a-z0-9_]*', Text),
+        ],
+        'keyword': [
+            (r'(address|arg|by|call|do|drop|else|end|exit|for|forever|if|'
+             r'interpret|iterate|leave|nop|numeric|off|on|options|parse|'
+             r'pull|push|queue|return|say|select|signal|to|then|trace|until|'
+             r'while)', Keyword.Reserved),
+        ],
+        'operator': [
+            (ur'(-|//|/|\(|\)|\*\*|\*|\\|\\<<|\\<|\\==|\\=|\\>>|\\>|\|\||\||'
+             ur'&&|&|%|\+|<<=|<<|<=|<>|<|==|=|><|>=|>>=|>>|>|¬<<|¬<|¬==|¬=|'
+             ur'¬>>|¬>|¬|\.)', Operator),
+        ],
+        'string_double': [
+            (r'""', String),
+            (r'"', String, 'root'),
+            (r'\n', Error, 'root'),
+            (r'[^"]', String),
+        ],
+        'string_single': [
+            (r'\'\'', String),
+            (r'\'', String, 'root'),
+            (r'\n', Error, 'root'),
+            (r'[^\']', String),
+        ],
+        'comment': [
+            (r'[^*/]', Comment.Multiline),
+            (r'\*/', Comment.Multiline, 'root'),
+        ]
+    }
+
+    def analyse_text(text):
+        """
+        Check for inital comment.
+        """
+        result = 0.0
+        if re.search(r'/\*\**\s*rexx', text, re.IGNORECASE):
+            result = 1.0
         return result
