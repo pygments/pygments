@@ -4115,12 +4115,12 @@ class RexxLexer(RegexLexer):
             (r'(address|arg|by|call|do|drop|else|end|exit|for|forever|if|'
              r'interpret|iterate|leave|nop|numeric|off|on|options|parse|'
              r'pull|push|queue|return|say|select|signal|to|then|trace|until|'
-             r'while)', Keyword.Reserved),
+             r'while)\b', Keyword.Reserved),
         ],
         'operator': [
             (ur'(-|//|/|\(|\)|\*\*|\*|\\|\\<<|\\<|\\==|\\=|\\>>|\\>|\|\||\||'
              ur'&&|&|%|\+|<<=|<<|<=|<>|<|==|=|><|>=|>>=|>>|>|¬<<|¬<|¬==|¬=|'
-             ur'¬>>|¬>|¬|\.)', Operator),
+             ur'¬>>|¬>|¬|\.|,)', Operator),
         ],
         'string_double': [
             (r'""', String),
@@ -4135,8 +4135,8 @@ class RexxLexer(RegexLexer):
             (r'[^\']', String),
         ],
         'comment': [
-            (r'[^*/]', Comment.Multiline),
             (r'\*/', Comment.Multiline, 'root'),
+            (r'(.|\n)', Comment.Multiline),
         ]
     }
 
