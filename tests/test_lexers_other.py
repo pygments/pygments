@@ -32,7 +32,8 @@ class _AnalyseTextTest(unittest.TestCase):
                     text = exampleFile.read()
                     probability = self.lexer.analyse_text(text)
                     self.assertTrue(probability > 0,
-                            '%s must recognize %r' % (self.lexer.name, exampleFilePath))
+                            '%s must recognize %r' % (
+                            self.lexer.name, exampleFilePath))
                     guessedLexer = guess_lexer(text)
                     self.assertEqual(guessedLexer.name, self.lexer.name)
                 finally:
@@ -48,9 +49,35 @@ class JclLexerTest(_AnalyseTextTest):
     def setUp(self):
         self.lexer = JclLexer()
 
+
 class RexxLexerTest(_AnalyseTextTest):
     def setUp(self):
         self.lexer = RexxLexer()
+
+    def testCanGuessFromText(self):
+        self.assertAlmostEqual(0.01,
+            self.lexer.analyse_text('/* */'))
+        self.assertAlmostEqual(1.0,
+            self.lexer.analyse_text('''/* Rexx */
+                say "hello world"'''))
+        self.assertLess(0.5,
+            self.lexer.analyse_text('/* */\n' \
+                + 'hello:pRoceduRe\n' \
+                + '  say "hello world"'))
+        self.assertLess(0.2,
+            self.lexer.analyse_text('''/* */
+                if 1 > 0 then do
+                    say "ok"
+                end
+                else do
+                    say "huh?"
+                end'''))
+        self.assertLess(0.2,
+            self.lexer.analyse_text('''/* */
+                greeting = "hello world!"
+                parse value greeting "hello" name "!"
+                say name'''))
+
 
 class WebFocusLexerTest(_AnalyseTextTest):
     def setUp(self):
