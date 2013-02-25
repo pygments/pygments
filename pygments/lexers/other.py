@@ -3626,7 +3626,7 @@ class AutoItLexer(RegexLexer):
             (r'[a-zA-Z_#@$][a-zA-Z0-9_#@$]*', Name),
             (r'\\|\'', Text),
             (r'\`([\,\%\`abfnrtv\-\+;])', String.Escape),
-            (r'_\n', Text), # Line continuation
+            (r'_\n', Text),  # Line continuation
             include('garbage'),
         ],
         'commands': [
@@ -3674,7 +3674,7 @@ class EasytrieveLexer(RegexLexer):
     Easytrieve Plus is a programming language for extracting, filtering and
     converting sequential data. Furthermore it can layout data for reports.
     It is mainly used on mainframe platforms and can access several of the
-    mainframe's native file formats. It is somewhat comparable to awk. 
+    mainframe's native file formats. It is somewhat comparable to awk.
 
     *New in Pygments 1.x.*
     """
@@ -3796,7 +3796,7 @@ class EasytrieveLexer(RegexLexer):
                             hasEndProc = True
                         elif first_word == 'REPORT':
                             hasReport = True
-    
+
             # Weight the findings.
             if not isBroken and hasJob and (hasProc == hasEndProc):
                 if hasParm:
@@ -4103,7 +4103,7 @@ class RexxLexer(RegexLexer):
             (r'["]', String, 'string_double'),
             (r"'", String, 'string_single'),
             (r'[0-9]+(\.[0-9]+)?(e[+-]?[0-9])?', Number),
-            (r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)',
+            (r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b',
              bygroups(Name.Function, Whitespace, Operator, Whitespace, Keyword.Declaration)),
             (r'([a-z_][a-z0-9_]*)(\s*)(:)',
              bygroups(Name.Label, Whitespace, Operator)),
@@ -4140,11 +4140,69 @@ class RexxLexer(RegexLexer):
         ]
     }
 
+    _ADDRESS_COMMAND_REGEX = re.compile(r'\s*address\s+command\b', re.IGNORECASE)
+    _ADDRESS_REGEX = re.compile(r'\s*address\s+', re.IGNORECASE)
+    _DO_WHILE_REGEX = re.compile(r'\s*do\s+while\b', re.IGNORECASE)
+    _IF_THEN_DO_REGEX = re.compile(r'\s*if\b.+\bthen\s+do\s*$', re.IGNORECASE)
+    _PROCEDURE_REGEX = re.compile(r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b', re.IGNORECASE)
+    _ELSE_DO_REGEX = re.compile(r'\s*else\s+do\s*$', re.IGNORECASE)
+    _PARSE_ARG_REGEX = re.compile(r'\s*parse\s+(upper\s+)?(arg|value)\b', re.IGNORECASE)
+    _REGEXS = [
+        _ADDRESS_COMMAND_REGEX,
+        _ADDRESS_REGEX,
+        _DO_WHILE_REGEX,
+        _ELSE_DO_REGEX,
+        _IF_THEN_DO_REGEX,
+        _PROCEDURE_REGEX,
+        _PARSE_ARG_REGEX,
+    ]
+
     def analyse_text(text):
         """
         Check for inital comment.
         """
         result = 0.0
         if re.search(r'/\*\**\s*rexx', text, re.IGNORECASE):
+            # Header matches MVS Rexx requirements, this is certainly a Rexx
+            # script.
             result = 1.0
+        elif text.startswith('/*'):
+            # Header matches general Rexx requirements; the source code might
+            # still be any language using C comments such as C++, C# or Java.
+            result = 0.01
+
+            # Check if lines match certain regular expressions and
+            # collect the respective counts in a dictionary.
+            regexCount = len(RexxLexer._REGEXS)
+            regexToCountMap = {}
+            for regex in RexxLexer._REGEXS:
+                regexToCountMap[regex] = 0
+            for line in (text.split('\n'))[1:]:
+                regexIndex = 0
+                lineHasAnyRegex = False
+                while not lineHasAnyRegex and (regexIndex < regexCount):
+                    regexToCheck = RexxLexer._REGEXS[regexIndex]
+                    if regexToCheck.match(line) is not None:
+                        regexToCountMap[regexToCheck] = \
+                            regexToCountMap[regexToCheck] + 1
+                        lineHasAnyRegex = True
+                    else:
+                        regexIndex += 1
+            # Evaluate the findings.
+            if regexToCountMap[RexxLexer._PROCEDURE_REGEX] > 0:
+                result += 0.5
+            elif regexToCountMap[RexxLexer._ADDRESS_COMMAND_REGEX] > 0:
+                result += 0.2
+            elif regexToCountMap[RexxLexer._ADDRESS_REGEX] > 0:
+                result += 0.05
+            if regexToCountMap[RexxLexer._DO_WHILE_REGEX] > 0:
+                result += 0.1
+            if regexToCountMap[RexxLexer._ELSE_DO_REGEX] > 0:
+                result += 0.1
+            if regexToCountMap[RexxLexer._PARSE_ARG_REGEX] > 0:
+                result += 0.2
+            if regexToCountMap[RexxLexer._IF_THEN_DO_REGEX] > 0:
+                result += 0.1
+            result = min(result, 1.0)
+        assert 0.0 <= result <= result
         return result
