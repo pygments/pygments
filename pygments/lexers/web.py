@@ -1277,8 +1277,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'\!', Comment.Preproc),
             (r'\(', Comment.Preproc, ('#pop', 'preproc-parenthesis')),
             
-            # Haxe preproc name can contains '-'
-            (ident + r'(?:-' + ident + ')*', Comment.Preproc, '#pop'),
+            (ident, Comment.Preproc, '#pop'),
             (r"'", String.Single, ('#pop', 'string-single')),
             (r'"', String.Double, ('#pop', 'string-double')),
         ],
@@ -1301,8 +1300,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'\!', Comment.Preproc),
             (r'\(', Comment.Preproc, ('#pop', 'preproc-expr-chain', 'preproc-parenthesis')),
             
-            # Haxe preproc name can contains '-'
-            (ident + r'(?:-' + ident + ')*', Comment.Preproc, ('#pop', 'preproc-expr-chain')),
+            (ident, Comment.Preproc, ('#pop', 'preproc-expr-chain')),
             (r"'", String.Single, ('#pop', 'preproc-expr-chain', 'string-single')),
             (r'"', String.Double, ('#pop', 'preproc-expr-chain', 'string-double')),
         ],
