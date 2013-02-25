@@ -3825,12 +3825,12 @@ class EasytrieveLexer(RegexLexer):
 
 class JclLexer(RegexLexer):
     """
-    Job Control Language (JCL) is a scripting language used on IBM mainframe
-    operating systems to instruct the system on how to run a batch job or
-    start a subsystem.
+    `Job Control Language (JCL) <http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/BOOKS/IEA2B570/CCONTENTS>`_
+    is a scripting language used on mainframe platforms to instruct the system
+    on how to run a batch job or start a  subsystem. It is somewhat
+    comparable to MS DOS batch and Unix shell scripts.
 
-    For more information, refer to the
-    `MVS Job Control Language Reference <http://publibz.boulder.ibm.com/epubs/pdf/iea2b661.pdf>`_
+    *New in Pygments 1.x.*
     """
     name = 'JCL'
     aliases = ['jcl']
@@ -3907,11 +3907,12 @@ class JclLexer(RegexLexer):
 
 class WebFocusLexer(RegexLexer):
     """
-    WebFOCUS und FOCUS are business intelligence tools mainly used in
-    mainframe related environments.
+    `(Web)FOCUS <http://www.informationbuilders.com/products/webfocus/>`_ is
+    a language for business intelligence applications. It enables to
+    describe, query and modify data from various sources including mainframe
+    platforms. It also includes FIDEL, a language to describe input forms.
 
-    For more information, refer to the
-    `Information Builders product page <http://www.informationbuilders.com/products/webfocus/index.html>`_.
+    *New in Pygments 1.x.*
     """
     name = 'WebFOCUS'
     aliases = ['webfocus', 'FOCUS', 'focus']
@@ -4085,10 +4086,12 @@ class WebFocusLexer(RegexLexer):
 
 class RexxLexer(RegexLexer):
     """
-    `REXX <http://www.rexxinfo.org/>`_ is a scripting language available for
+    `Rexx <http://www.rexxinfo.org/>`_ is a scripting language available for
     a wide range of different platforms with its roots found on mainframe
     systems. It is popular for I/O- and data based tasks and can act as glue
     language to bind different applications together.
+
+    *New in Pygments 1.x.*
     """
     name = 'REXX'
     aliases = ['rexx', 'ARexx', 'arexx']
