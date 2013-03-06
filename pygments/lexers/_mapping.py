@@ -246,6 +246,7 @@ LEXERS = {
     'RhtmlLexer': ('pygments.lexers.templates', 'RHTML', ('rhtml', 'html+erb', 'html+ruby'), ('*.rhtml',), ('text/html+ruby',)),
     'RobotFrameworkLexer': ('pygments.lexers.other', 'RobotFramework', ('RobotFramework', 'robotframework'), ('*.txt', '*.robot'), ('text/x-robotframework',)),
     'RstLexer': ('pygments.lexers.text', 'reStructuredText', ('rst', 'rest', 'restructuredtext'), ('*.rst', '*.rest'), ('text/x-rst', 'text/prs.fallenstein.rst')),
+    'RtsLexer': ('pygments.lexers.trafficscript', 'TrafficScript', ('trafficscript', 'rts'), ('*.rts'), ('text/x-trafficscript', 'application/x-trafficscript')),
     'RubyConsoleLexer': ('pygments.lexers.agile', 'Ruby irb session', ('rbcon', 'irb'), (), ('text/x-ruby-shellsession',)),
     'RubyLexer': ('pygments.lexers.agile', 'Ruby', ('rb', 'ruby', 'duby'), ('*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec', '*.rbx', '*.duby'), ('text/x-ruby', 'application/x-ruby')),
     'RustLexer': ('pygments.lexers.compiled', 'Rust', ('rust',), ('*.rs', '*.rc'), ('text/x-rustsrc',)),
