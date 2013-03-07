@@ -28,7 +28,7 @@ class QBasicLexer(RegexLexer):
     mimetype = []
 
     declarations = """\
-    DATA DECLARE
+    DATA LET
     """.split()
 
     functions = """\
@@ -44,7 +44,7 @@ ABS ASC ATN CDBL CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS CVSMB
     """.split()
 
     statements = """\
-    BEEP BLOAD BSAVE CALL CALL ABSOLUTE CALL INTERRUPT CALLS CHAIN CHDIR CIRCLE CLEAR CLOSE CLS COLOR COM COMMON CONST DATE$ DEF FN DEF SEG DEFDBL DEFINT DEFLNG DEFSNG DEFSTR DIM DO DRAW END ENVIRON ERASE ERROR EXIT FIELD FILES FOR FUNCTION GET GOSUB GOTO IF INPUT INPUT# IOCTL KEY KILL LET LINE INPUT LINE INPUT# LOCATE LOCK LPRINT LSET MID$ MKDIR NAME ON OPEN OPTION BASE OUT PAINT PALETTE PCOPY PEN PLAY POKE PRESET PRINT PRINT# PRINT USING PSET PUT RANDOMIZE READ REDIM RESET RESTORE RESUME RETURN RMDIR RSET RUN SCREEN SEEK SELECT CASE SHARED SHELL SLEEP SOUND STATIC STOP STRIG SUB SWAP SYSTEM TIME$ TIMER TROFF TRON TYPE UEVENT UNLOCK VIEW WAIT WHILE WIDTH WINDOW WRITE
+    BEEP BLOAD BSAVE CALL CALL ABSOLUTE CALL INTERRUPT CALLS CHAIN CHDIR CIRCLE CLEAR CLOSE CLS COLOR COM COMMON CONST DATE$ DEF FN DEF SEG DEFDBL DEFINT DEFLNG DEFSNG DEFSTR DIM DO DRAW END ENVIRON ERASE ERROR EXIT FIELD FILES FOR FUNCTION GET GOSUB GOTO IF INPUT IOCTL KEY KILL LINE LOCATE LOCK LPRINT LSET MID$ MKDIR NAME ON OPEN OPTION BASE OUT PAINT PALETTE PCOPY PEN PLAY POKE PRESET PRINT PRINT USING PSET PUT RANDOMIZE READ REDIM RESET RESTORE RESUME RETURN RMDIR RSET RUN SCREEN SEEK SELECT CASE SHARED SHELL SLEEP SOUND STATIC STOP STRIG SUB SWAP SYSTEM TIME$ TIMER TROFF TRON TYPE UEVENT UNLOCK VIEW WAIT WHILE WIDTH WINDOW WRITE
     """.split()
 
     keywords = """\
@@ -55,38 +55,49 @@ ABS ASC ATN CDBL CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS CVSMB
         'root': [
             (r'\'.*\n', Comment.Single),
             (r'REM .*\n', Comment.Single),
-            (r'[\s\t\n]+', Text.Whitespace),
-            (r'[\[\]{}(),;]', Punctuation),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*[\$|@|#|&]', Name.Variable.Global),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*\:', Name.Label),
-            (r'\-?[0-9]*\.[0-9]+\#?', Number.Float),
-            (r'\-?[0-9]+\#?', Number.Integer),
-            (r'!=|==|:=|\.=|<<|>>|[-~+/\\*%=<>&^|?:!.]', Operator),
             (r'"[^\n\"]*"', String.Double),
-            (r'CHR$(.+)', String.Char),
+            (r'(DECLARE)(\s+)([A-Z]+)(\s+)([^\s]+)',
+            	bygroups(Keyword.Declaration, Text.Whitespace, Name.Variable, Text.Whitespace, Name.Function)),
+            (r'(DIM)(\s+)(SHARED)(\s+)([^\n\s\t\(]+)',
+            	bygroups(Keyword.Declaration, Text.Whitespace, Name.Variable, Text.Whitespace, Name.Variable.Global)),
+            (r'(DIM)(\s+)([^\n\s\t\(]+)',
+            	bygroups(Keyword.Declaration, Text.Whitespace, Name.Variable.Global)),
+            (r'CHR$\(.+\)', String.Char),
+            (r'^(\s*)([a-zA-Z_]+)(\s*)(\=)',
+            	bygroups(Text.Whitespace, Name.Variable.Global, Text.Whitespace, Operator)),
+            (r'(GOTO)(\s+)(\w+\:?)',
+            	bygroups(Keyword.Reserved, Text.Whitespace, Name.Label)),
+            (r'[\[\]{}(),;]', Punctuation),
+            (r'[a-zA-Z_]\w*[\$|@|#|&|!]', Name.Variable.Global),
+            (r'[a-zA-Z_]\w*\:', Name.Label),
+            (r'\-?\d*\.\d+\#?', Number.Float),
+            (r'\-?\d+\#?', Number.Integer),
+            (r'!=|==|:=|\.=|<<|>>|[-~+/\\*%=<>&^|?:!.]', Operator),
             include('declarations'),
             include('functions'),
             include('metacommands'),
             include('operators'),
             include('statements'),
             include('keywords'),
+            (r'[\n]+', Text),
+            (r'[\s]+', Text.Whitespace),
         ],
         'declarations': [
-            (r'(?i)(\s*)(%s)\b' % '|'.join(declarations), Keyword.Declaration),
+            (r'(%s)' % '|'.join(declarations), Keyword.Declaration),
         ],
         'functions': [
-            (r'(?i)(\s*)(%s)\b' % '|'.join(functions), Keyword.Reserved),
+            (r'(%s)' % '|'.join(functions), Keyword.Reserved),
         ],
         'metacommands': [
-            (r'(?i)(\s*)(%s)\b' % '|'.join(metacommands), Keyword.Constant),
+            (r'(%s)' % '|'.join(metacommands), Keyword.Constant),
         ],
         'operators': [
-            (r'(?i)(\s*)(%s)\b' % '|'.join(operators), Operator.Word),
+            (r'(%s)' % '|'.join(operators), Operator.Word),
         ],
         'statements': [
-            (r'(?i)(\s*)(%s)\b' % '|'.join(statements), Keyword.Reserved),
+            (r'(%s)' % '|'.join(statements), Keyword.Reserved),
         ],
         'keywords': [
-            (r'(?i)(\s*)(%s)\b' % '|'.join(keywords), Keyword),
+            (r'(%s)' % '|'.join(keywords), Keyword),
         ],
     }
