@@ -32,7 +32,7 @@ class QBasicLexer(RegexLexer):
     """.split()
 
     functions = """\
-ABS ASC ATN CDBL CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS CVSMBF DATE$ ENVIRON$ EOF ERDEV ERDEV$ ERL ERR EXP FILEATTR FIX FRE FREEFILE HEX$ INKEY$ INP INPUT$ INSTR INT IOCTL$ LBOUND LCASE$ LEFT$ LEN LOC LOF LOG LPOS LTRIM$ MID$ MKD$ MKDMBF$ MKI$ MKL$ MKS$ MKSMBF$ OCT$ PEEK PEN PLAY PMAP POINT POS RIGHT$ RND RTRIM$ SADD SCREEN SEEK SETMEM SGN SIN SPACE$ SPC SQR STICK STR$ STRIG STRING$ TAB TAN TIME$ TIMER UBOUND UCASE$ VAL VARPTR VARPTR$ VARSEG
+ABS ASC ATN CDBL CHR$ CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS CVSMBF DATE$ ENVIRON$ EOF ERDEV ERDEV$ ERL ERR EXP FILEATTR FIX FRE FREEFILE HEX$ INKEY$ INP INPUT$ INSTR INT IOCTL$ LBOUND LCASE$ LEFT$ LEN LOC LOF LOG LPOS LTRIM$ MID$ MKD$ MKDMBF$ MKI$ MKL$ MKS$ MKSMBF$ OCT$ PEEK PEN PLAY PMAP POINT POS RIGHT$ RND RTRIM$ SADD SCREEN SEEK SETMEM SGN SIN SPACE$ SPC SQR STICK STR$ STRIG STRING$ TAB TAN TIME$ TIMER UBOUND UCASE$ VAL VARPTR VARPTR$ VARSEG
     """.split()
 
     metacommands = """\
@@ -65,12 +65,10 @@ ABS ASC ATN CDBL CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS CVSMB
             	bygroups(Keyword.Declaration, Text.Whitespace, Name.Variable, Text.Whitespace, Name.Variable.Global)),
             (r'(DIM)(\s+)([^\n\s\t\(]+)',
             	bygroups(Keyword.Declaration, Text.Whitespace, Name.Variable.Global)),
-            (r'CHR$\(.+\)', String.Char),
             (r'^(\s*)([a-zA-Z_]+)(\s*)(\=)',
             	bygroups(Text.Whitespace, Name.Variable.Global, Text.Whitespace, Operator)),
             (r'(GOTO)(\s+)(\w+\:?)',
             	bygroups(Keyword.Reserved, Text.Whitespace, Name.Label)),
-            (r'[\[\]{}(),;]', Punctuation),
             (r'[a-zA-Z_]\w*[\$|@|#|&|!]', Name.Variable.Global),
             (r'[a-zA-Z_]\w*\:', Name.Label),
             (r'\-?\d*\.\d+\#?', Number.Float),
@@ -82,6 +80,7 @@ ABS ASC ATN CDBL CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS CVSMB
             include('operators'),
             include('statements'),
             include('keywords'),
+            (r'[\[\]{}(),;]', Punctuation),
             (r'[\n]+', Text),
             (r'[\s]+', Text.Whitespace),
         ],
