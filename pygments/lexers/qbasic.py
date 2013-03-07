@@ -53,6 +53,8 @@ ABS ASC ATN CDBL CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS CVSMB
 
     tokens = {
         'root': [
+            (r'^(\s*)(\d+)(\s*)',
+            	bygroups(Text.Whitespace, Name.Label, Text.Whitespace)),
             (r'\'.*\n', Comment.Single),
             (r'REM .*\n', Comment.Single),
             (r'"[^\n\"]*"', String.Double),
