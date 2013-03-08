@@ -44,7 +44,7 @@ ABS ASC ATN CDBL CHR$ CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS 
     """.split()
 
     statements = """\
-    BEEP BLOAD BSAVE CALL CALL ABSOLUTE CALL INTERRUPT CALLS CHAIN CHDIR CIRCLE CLEAR CLOSE CLS COLOR COM COMMON CONST DATE$ DEF FN DEF SEG DEFDBL DEFINT DEFLNG DEFSNG DEFSTR DIM DO DRAW END ENVIRON ERASE ERROR EXIT FIELD FILES FOR FUNCTION GET GOSUB GOTO IF INPUT IOCTL KEY KILL LINE LOCATE LOCK LPRINT LSET MID$ MKDIR NAME ON OPEN OPTION BASE OUT PAINT PALETTE PCOPY PEN PLAY POKE PRESET PRINT PRINT USING PSET PUT RANDOMIZE READ REDIM RESET RESTORE RESUME RETURN RMDIR RSET RUN SCREEN SEEK SELECT CASE SHARED SHELL SLEEP SOUND STATIC STOP STRIG SUB SWAP SYSTEM TIME$ TIMER TROFF TRON TYPE UEVENT UNLOCK VIEW WAIT WHILE WIDTH WINDOW WRITE
+    BEEP BLOAD BSAVE CALL CALL_ABSOLUTE CALL_INTERRUPT CALLS CHAIN CHDIR CIRCLE CLEAR CLOSE CLS COLOR COM COMMON CONST DATA DATE$ DECLARE DEF_FN DEF_SEG DEFDBL DEFINT DEFLNG DEFSNG DEFSTR DEF DIM DO LOOP DRAW END ENVIRON ERASE ERROR EXIT FIELD FILES FOR NEXT FUNCTION GET GOSUB GOTO IF THEN INPUT INPUT_# IOCTL KEY KEY KILL LET LINE LINE_INPUT LINE_INPUT_# LOCATE LOCK UNLOCK LPRINT LSET MID$ MKDIR NAME ON_COM ON_ERROR ON_KEY ON_PEN ON_PLAY ON_STRIG ON_TIMER ON_UEVENT ON OPEN OPEN_COM OPTION_BASE OUT PAINT PALETTE PCOPY PEN PLAY POKE PRESET PRINT PRINT_# PRINT_USING PSET PUT PUT RANDOMIZE READ REDIM REM RESET RESTORE RESUME RETURN RMDIR RSET RUN SCREEN SEEK SELECT_CASE SHARED SHELL SLEEP SOUND STATIC STOP STRIG SUB SWAP SYSTEM TIME$ TIMER TROFF TRON TYPE UEVENT UNLOCK VIEW WAIT WHILE WEND WIDTH WINDOW WRITE
     """.split()
 
     keywords = """\
@@ -53,26 +53,32 @@ ABS ASC ATN CDBL CHR$ CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS 
 
     tokens = {
         'root': [
+            (r'^(\s*)(\d*)(\s*)(REM .*)$',
+            	bygroups(Text.Whitespace, Name.Label, Text.Whitespace, Comment.Single)),
             (r'^(\s*)(\d+)(\s*)',
             	bygroups(Text.Whitespace, Name.Label, Text.Whitespace)),
-            (r'\'.*\n', Comment.Single),
-            (r'(REM)(\s.*)$',
-            	bygroups(Comment.Preproc, Comment.Single)),
+            (r'(?=[\s]*)(\w+)(?=[\s]*=)', Name.Variable.Global),
+            (r'(?=[^"]*)\'.*$', Comment.Single),
             (r'"[^\n\"]*"', String.Double),
+            (r'END (FUNCTION|IF|SELECT|SUB)', Keyword.Reserved),
             (r'(DECLARE)(\s+)([A-Z]+)(\s+)([^\s]+)',
-            	bygroups(Keyword.Declaration, Text.Whitespace, Name.Variable, Text.Whitespace, Name.Function)),
+            	bygroups(Keyword.Declaration, Text.Whitespace, Name.Variable, Text.Whitespace, Name)),
             (r'(DIM)(\s+)(SHARED)(\s+)([^\n\s\t\(]+)',
             	bygroups(Keyword.Declaration, Text.Whitespace, Name.Variable, Text.Whitespace, Name.Variable.Global)),
             (r'(DIM)(\s+)([^\n\s\t\(]+)',
             	bygroups(Keyword.Declaration, Text.Whitespace, Name.Variable.Global)),
             (r'^(\s*)([a-zA-Z_]+)(\s*)(\=)',
             	bygroups(Text.Whitespace, Name.Variable.Global, Text.Whitespace, Operator)),
-            (r'(GOTO)(\s+)(\w+\:?)',
+            (r'(GOTO|GOSUB)(\s+)(\w+\:?)',
+            	bygroups(Keyword.Reserved, Text.Whitespace, Name.Label)),
+            (r'(SUB)(\s+)(\w+\:?)',
             	bygroups(Keyword.Reserved, Text.Whitespace, Name.Label)),
             (r'[a-zA-Z_]\w*[\$|@|#|&|!]', Name.Variable.Global),
             (r'[a-zA-Z_]\w*\:', Name.Label),
-            (r'\-?\d*\.\d+\#?', Number.Float),
-            (r'\-?\d+\#?', Number.Integer),
+            (r'\-?\d*\.\d+[@|#]?', Number.Float),
+            (r'\-?\d+[@|#]', Number.Float),
+            (r'\-?\d+#?', Number.Integer.Long),
+            (r'\-?\d+#?', Number.Integer),
             (r'!=|==|:=|\.=|<<|>>|[-~+/\\*%=<>&^|?:!.]', Operator),
             include('declarations'),
             include('functions'),
@@ -83,23 +89,24 @@ ABS ASC ATN CDBL CHR$ CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS 
             (r'[\[\]{}(),;]', Punctuation),
             (r'[\n]+', Text),
             (r'[\s]+', Text.Whitespace),
+            (r'[\w]+', Name.Variable.Global),
         ],
         'declarations': [
-            (r'(%s)' % '|'.join(declarations), Keyword.Declaration),
+            (r'\b(%s)\b' % '|'.join(declarations), Keyword.Declaration),
         ],
         'functions': [
-            (r'(%s)' % '|'.join(functions), Keyword.Reserved),
+            (r'\b(%s)\b' % '|'.join(functions), Keyword.Reserved),
         ],
         'metacommands': [
-            (r'(%s)' % '|'.join(metacommands), Keyword.Constant),
+            (r'\b(%s)\b' % '|'.join(metacommands), Keyword.Constant),
         ],
         'operators': [
-            (r'(%s)' % '|'.join(operators), Operator.Word),
+            (r'\b(%s)\b' % '|'.join(operators), Operator.Word),
         ],
         'statements': [
-            (r'(%s)' % '|'.join(statements), Keyword.Reserved),
+            (r'\b(%s)\b' % '|'.join(statements).replace('_',' '), Keyword.Reserved),
         ],
         'keywords': [
-            (r'(%s)' % '|'.join(keywords), Keyword),
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
         ],
     }
