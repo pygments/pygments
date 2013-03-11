@@ -2016,48 +2016,59 @@ class Perl6Lexer(ExtendedRegexLexer):
         'not', '<==', '==>', '<<==', '==>>',
     )
 
-    PERL6_OPEN_BRACKET_CHARS  = u'''
-        \u0028 \u003c \u005b \u007b \u00ab \u0f3a \u0f3c \u169b \u2018 \u201a \u201b
-        \u201c \u201e \u201f \u2039 \u2045 \u207d \u208d \u2208 \u2209 \u220a \u2215
-        \u223c \u2243 \u2252 \u2254 \u2264 \u2266 \u2268 \u226a \u226e \u2270 \u2272
-        \u2274 \u2276 \u2278 \u227a \u227c \u227e \u2280 \u2282 \u2284 \u2286 \u2288
-        \u228a \u228f \u2291 \u2298 \u22a2 \u22a6 \u22a8 \u22a9 \u22ab \u22b0 \u22b2
-        \u22b4 \u22b6 \u22c9 \u22cb \u22d0 \u22d6 \u22d8 \u22da \u22dc \u22de \u22e0
-        \u22e2 \u22e4 \u22e6 \u22e8 \u22ea \u22ec \u22f0 \u22f2 \u22f3 \u22f4 \u22f6
-        \u22f7 \u2308 \u230a \u2329 \u2768 \u276a \u276c \u276e \u2770 \u2772 \u2774
-        \u27c3 \u27c5 \u27c8 \u27cb \u27d5 \u27dd \u27e2 \u27e4 \u27e6 \u27e8 \u27ea
-        \u27ec \u27ee \u2983 \u2985 \u2987 \u2989 \u298b \u298d \u298f \u2991 \u2993
-        \u2995 \u2997 \u29c0 \u29c4 \u29cf \u29d1 \u29d4 \u29d8 \u29da \u29f8 \u29fc
-        \u2a2b \u2a2d \u2a34 \u2a3c \u2a64 \u2a79 \u2a7d \u2a7f \u2a81 \u2a83 \u2a8b
-        \u2a91 \u2a93 \u2a95 \u2a97 \u2a99 \u2a9b \u2aa1 \u2aa6 \u2aa8 \u2aaa \u2aac
-        \u2aaf \u2ab3 \u2abb \u2abd \u2abf \u2ac1 \u2ac3 \u2ac5 \u2acd \u2acf \u2ad1
-        \u2ad3 \u2ad5 \u2aec \u2af7 \u2af9 \u2e02 \u2e04 \u2e09 \u2e0c \u2e1c \u2e20
-        \u2e22 \u2e24 \u2e26 \u2e28 \u3008 \u300a \u300c \u300e \u3010 \u3014 \u3016
-        \u3018 \u301a \u301d \ufd3e \ufe17 \ufe35 \ufe37 \ufe39 \ufe3b \ufe3d \ufe3f
-        \ufe41 \ufe43 \ufe47 \ufe59 \ufe5b \ufe5d \ufe64 \uff08 \uff1c \uff3b \uff5b
-        \uff5f \uff62
-    '''.replace(' ', '').replace('\n', '')
-    PERL6_CLOSE_BRACKET_CHARS = u'''
-        \u0029 \u003e \u005d \u007d \u00bb \u0f3b \u0f3d \u169c \u2019 \u2046 \u201d
-        \u201d \u2046 \u203a \u203a \u2046 \u207e \u208e \u220b \u220c \u220d \u29f5
-        \u223d \u22cd \u2253 \u2255 \u2265 \u2267 \u2269 \u226b \u226f \u2271 \u2273
-        \u2275 \u2277 \u2279 \u227b \u227d \u227f \u2281 \u2283 \u2285 \u2287 \u2289
-        \u228b \u2290 \u2292 \u29b8 \u22a3 \u2ade \u2ae4 \u2ae3 \u2ae5 \u22b1 \u22b3
-        \u22b5 \u22b7 \u22ca \u22cc \u22d1 \u22d7 \u22d9 \u22db \u22dd \u22df \u22e1
-        \u22e3 \u22e5 \u22e7 \u22e9 \u22eb \u22ed \u22f1 \u22fa \u22fb \u22fc \u22fd
-        \u22fe \u2309 \u230b \u232a \u2769 \u276b \u276d \u276f \u2771 \u2773 \u2775
-        \u27c4 \u27c6 \u27c9 \u27cd \u27d6 \u27de \u27e3 \u27e5 \u27e7 \u27e9 \u27eb
-        \u27ed \u27ef \u2984 \u2986 \u2988 \u298a \u298c \u298e \u2990 \u2992 \u2994
-        \u2996 \u2998 \u29c1 \u29c5 \u29d0 \u29d2 \u29d5 \u29d9 \u29db \u29f9 \u29fd
-        \u2a2c \u2a2e \u2a35 \u2a3d \u2a65 \u2a7a \u2a7e \u2a80 \u2a82 \u2a84 \u2a8c
-        \u2a92 \u2a94 \u2a96 \u2a98 \u2a9a \u2a9c \u2aa2 \u2aa7 \u2aa9 \u2aab \u2aad
-        \u2ab0 \u2ab4 \u2abc \u2abe \u2ac0 \u2ac2 \u2ac4 \u2ac6 \u2ace \u2ad0 \u2ad2
-        \u2ad4 \u2ad6 \u2aed \u2af8 \u2afa \u2e03 \u2e05 \u2e0a \u2e0d \u2e1d \u2e21
-        \u2e23 \u2e25 \u2e27 \u2e29 \u3009 \u300b \u300d \u300f \u3011 \u3015 \u3017
-        \u3019 \u301b \u301e \ufd3f \ufe18 \ufe36 \ufe38 \ufe3a \ufe3c \ufe3e \ufe40
-        \ufe42 \ufe44 \ufe48 \ufe5a \ufe5c \ufe5e \ufe65 \uff09 \uff1e \uff3d \uff5d
-        \uff60 \uff63
-    '''.replace(' ', '').replace('\n', '')
+    # Perl 6 has a *lot* of possible bracketing characters
+    PERL6_BRACKETS = {
+        u'\u0028' : u'\u0029', u'\u003c' : u'\u003e', u'\u005b' : u'\u005d', u'\u007b' : u'\u007d',
+        u'\u00ab' : u'\u00bb', u'\u0f3a' : u'\u0f3b', u'\u0f3c' : u'\u0f3d', u'\u169b' : u'\u169c',
+        u'\u2018' : u'\u2019', u'\u201a' : u'\u2046', u'\u201b' : u'\u201d', u'\u201c' : u'\u201d',
+        u'\u201e' : u'\u2046', u'\u201f' : u'\u203a', u'\u2039' : u'\u203a', u'\u2045' : u'\u2046',
+        u'\u207d' : u'\u207e', u'\u208d' : u'\u208e', u'\u2208' : u'\u220b', u'\u2209' : u'\u220c',
+        u'\u220a' : u'\u220d', u'\u2215' : u'\u29f5', u'\u223c' : u'\u223d', u'\u2243' : u'\u22cd',
+        u'\u2252' : u'\u2253', u'\u2254' : u'\u2255', u'\u2264' : u'\u2265', u'\u2266' : u'\u2267',
+        u'\u2268' : u'\u2269', u'\u226a' : u'\u226b', u'\u226e' : u'\u226f', u'\u2270' : u'\u2271',
+        u'\u2272' : u'\u2273', u'\u2274' : u'\u2275', u'\u2276' : u'\u2277', u'\u2278' : u'\u2279',
+        u'\u227a' : u'\u227b', u'\u227c' : u'\u227d', u'\u227e' : u'\u227f', u'\u2280' : u'\u2281',
+        u'\u2282' : u'\u2283', u'\u2284' : u'\u2285', u'\u2286' : u'\u2287', u'\u2288' : u'\u2289',
+        u'\u228a' : u'\u228b', u'\u228f' : u'\u2290', u'\u2291' : u'\u2292', u'\u2298' : u'\u29b8',
+        u'\u22a2' : u'\u22a3', u'\u22a6' : u'\u2ade', u'\u22a8' : u'\u2ae4', u'\u22a9' : u'\u2ae3',
+        u'\u22ab' : u'\u2ae5', u'\u22b0' : u'\u22b1', u'\u22b2' : u'\u22b3', u'\u22b4' : u'\u22b5',
+        u'\u22b6' : u'\u22b7', u'\u22c9' : u'\u22ca', u'\u22cb' : u'\u22cc', u'\u22d0' : u'\u22d1',
+        u'\u22d6' : u'\u22d7', u'\u22d8' : u'\u22d9', u'\u22da' : u'\u22db', u'\u22dc' : u'\u22dd',
+        u'\u22de' : u'\u22df', u'\u22e0' : u'\u22e1', u'\u22e2' : u'\u22e3', u'\u22e4' : u'\u22e5',
+        u'\u22e6' : u'\u22e7', u'\u22e8' : u'\u22e9', u'\u22ea' : u'\u22eb', u'\u22ec' : u'\u22ed',
+        u'\u22f0' : u'\u22f1', u'\u22f2' : u'\u22fa', u'\u22f3' : u'\u22fb', u'\u22f4' : u'\u22fc',
+        u'\u22f6' : u'\u22fd', u'\u22f7' : u'\u22fe', u'\u2308' : u'\u2309', u'\u230a' : u'\u230b',
+        u'\u2329' : u'\u232a', u'\u2768' : u'\u2769', u'\u276a' : u'\u276b', u'\u276c' : u'\u276d',
+        u'\u276e' : u'\u276f', u'\u2770' : u'\u2771', u'\u2772' : u'\u2773', u'\u2774' : u'\u2775',
+        u'\u27c3' : u'\u27c4', u'\u27c5' : u'\u27c6', u'\u27c8' : u'\u27c9', u'\u27cb' : u'\u27cd',
+        u'\u27d5' : u'\u27d6', u'\u27dd' : u'\u27de', u'\u27e2' : u'\u27e3', u'\u27e4' : u'\u27e5',
+        u'\u27e6' : u'\u27e7', u'\u27e8' : u'\u27e9', u'\u27ea' : u'\u27eb', u'\u27ec' : u'\u27ed',
+        u'\u27ee' : u'\u27ef', u'\u2983' : u'\u2984', u'\u2985' : u'\u2986', u'\u2987' : u'\u2988',
+        u'\u2989' : u'\u298a', u'\u298b' : u'\u298c', u'\u298d' : u'\u298e', u'\u298f' : u'\u2990',
+        u'\u2991' : u'\u2992', u'\u2993' : u'\u2994', u'\u2995' : u'\u2996', u'\u2997' : u'\u2998',
+        u'\u29c0' : u'\u29c1', u'\u29c4' : u'\u29c5', u'\u29cf' : u'\u29d0', u'\u29d1' : u'\u29d2',
+        u'\u29d4' : u'\u29d5', u'\u29d8' : u'\u29d9', u'\u29da' : u'\u29db', u'\u29f8' : u'\u29f9',
+        u'\u29fc' : u'\u29fd', u'\u2a2b' : u'\u2a2c', u'\u2a2d' : u'\u2a2e', u'\u2a34' : u'\u2a35',
+        u'\u2a3c' : u'\u2a3d', u'\u2a64' : u'\u2a65', u'\u2a79' : u'\u2a7a', u'\u2a7d' : u'\u2a7e',
+        u'\u2a7f' : u'\u2a80', u'\u2a81' : u'\u2a82', u'\u2a83' : u'\u2a84', u'\u2a8b' : u'\u2a8c',
+        u'\u2a91' : u'\u2a92', u'\u2a93' : u'\u2a94', u'\u2a95' : u'\u2a96', u'\u2a97' : u'\u2a98',
+        u'\u2a99' : u'\u2a9a', u'\u2a9b' : u'\u2a9c', u'\u2aa1' : u'\u2aa2', u'\u2aa6' : u'\u2aa7',
+        u'\u2aa8' : u'\u2aa9', u'\u2aaa' : u'\u2aab', u'\u2aac' : u'\u2aad', u'\u2aaf' : u'\u2ab0',
+        u'\u2ab3' : u'\u2ab4', u'\u2abb' : u'\u2abc', u'\u2abd' : u'\u2abe', u'\u2abf' : u'\u2ac0',
+        u'\u2ac1' : u'\u2ac2', u'\u2ac3' : u'\u2ac4', u'\u2ac5' : u'\u2ac6', u'\u2acd' : u'\u2ace',
+        u'\u2acf' : u'\u2ad0', u'\u2ad1' : u'\u2ad2', u'\u2ad3' : u'\u2ad4', u'\u2ad5' : u'\u2ad6',
+        u'\u2aec' : u'\u2aed', u'\u2af7' : u'\u2af8', u'\u2af9' : u'\u2afa', u'\u2e02' : u'\u2e03',
+        u'\u2e04' : u'\u2e05', u'\u2e09' : u'\u2e0a', u'\u2e0c' : u'\u2e0d', u'\u2e1c' : u'\u2e1d',
+        u'\u2e20' : u'\u2e21', u'\u2e22' : u'\u2e23', u'\u2e24' : u'\u2e25', u'\u2e26' : u'\u2e27',
+        u'\u2e28' : u'\u2e29', u'\u3008' : u'\u3009', u'\u300a' : u'\u300b', u'\u300c' : u'\u300d',
+        u'\u300e' : u'\u300f', u'\u3010' : u'\u3011', u'\u3014' : u'\u3015', u'\u3016' : u'\u3017',
+        u'\u3018' : u'\u3019', u'\u301a' : u'\u301b', u'\u301d' : u'\u301e', u'\ufd3e' : u'\ufd3f',
+        u'\ufe17' : u'\ufe18', u'\ufe35' : u'\ufe36', u'\ufe37' : u'\ufe38', u'\ufe39' : u'\ufe3a',
+        u'\ufe3b' : u'\ufe3c', u'\ufe3d' : u'\ufe3e', u'\ufe3f' : u'\ufe40', u'\ufe41' : u'\ufe42',
+        u'\ufe43' : u'\ufe44', u'\ufe47' : u'\ufe48', u'\ufe59' : u'\ufe5a', u'\ufe5b' : u'\ufe5c',
+        u'\ufe5d' : u'\ufe5e', u'\ufe64' : u'\ufe65', u'\uff08' : u'\uff09', u'\uff1c' : u'\uff1e',
+        u'\uff3b' : u'\uff3d', u'\uff5b' : u'\uff5d', u'\uff5f' : u'\uff60', u'\uff62' : u'\uff63',
+    }
 
     name      = 'Perl6'
     aliases   = ['perl6', 'pl6']
@@ -2072,17 +2083,16 @@ class Perl6Lexer(ExtendedRegexLexer):
             n_chars       = len(opening_chars)
             adverbs       = groups.get('adverbs')
 
-            # XXX this could be more efficient, but is fine for now
-            index = Perl6Lexer.PERL6_OPEN_BRACKET_CHARS.find(opening_chars[0])
-            text  = context.text
+            closer = Perl6Lexer.PERL6_BRACKETS.get(opening_chars[0])
+            text   = context.text
 
-            if index == -1: # it's not a mirrored character, which means we just need to
-                            # look for the next occurrence
+            if closer is None: # it's not a mirrored character, which means we
+                               # just need to look for the next occurrence
 
                 end_pos = text.find(opening_chars, match.start('delimiter') + n_chars)
             else: # we need to look for the corresponding closing character,
                   # keep nesting in mind
-                closing_chars = Perl6Lexer.PERL6_CLOSE_BRACKET_CHARS[index] * n_chars
+                closing_chars = closer * n_chars
                 nesting_level = 1
 
                 search_pos = match.start('delimiter')
@@ -2150,7 +2160,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     # process the corresponding one!
     tokens = {
         'root' : [
-            ( r'#`(?P<delimiter>[' + PERL6_OPEN_BRACKET_CHARS + ']+)', brackets_callback(Comment.Multiline) ),
+            ( r'#`(?P<delimiter>[' + ''.join(PERL6_BRACKETS.keys()) + ']+)', brackets_callback(Comment.Multiline) ),
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
             ( r'(regex|token|rule)(.*?)([{])', bygroups(Keyword, Name, Text), 'token' ),
