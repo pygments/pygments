@@ -2163,6 +2163,8 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
             ( r'(regex|token|rule)(.*?)([{])', bygroups(Keyword, Name, Text), 'token' ),
+            # deal with a special class in the Perl 6 grammar (role q { ... })
+            ( r'(role)(\s*)(q)(\s*)', bygroups(Keyword, Text, Name, Text) ),
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
             ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_CHARS), Name.Builtin),
             # copied from PerlLexer
