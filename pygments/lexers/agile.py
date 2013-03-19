@@ -2168,7 +2168,8 @@ class Perl6Lexer(ExtendedRegexLexer):
             # deal with a special class in the Perl 6 grammar (role q { ... })
             ( r'(role)(\s*)(q)(\s*)', bygroups(Keyword, Text, Name, Text) ),
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
-            ( _build_word_match(PERL6_BUILTINS + PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_CHARS), Name.Builtin),
+            ( _build_word_match(PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_CHARS, suffix = '(?::[UD])?'), Name.Builtin ),
+            ( _build_word_match(PERL6_BUILTINS, PERL6_IDENTIFIER_CHARS), Name.Builtin),
             # copied from PerlLexer
             ( r'[$@%&][.^:?=!~]?[' + PERL6_IDENTIFIER_CHARS + u']+(?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable ),
             ( r'[$][!/]', Name.Variable.Global ),
