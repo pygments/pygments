@@ -64,6 +64,31 @@ Here's some POD!  Wooo
 
 =end pod
 
+=for Testing
+    This is POD (see? role isn't highlighted)
+
+say('this is not!');
+
+=table
+    Of role things
+
+say('not in your table');
+#= A single line declarator "block" (with a keyword like role)
+#| Another single line declarator "block" (with a keyword like role)
+#={
+    A declarator block (with a keyword like role)
+  }
+#|{
+    Another declarator block (with a keyword like role)
+  }
+#= { A single line declarator "block" with a brace (with a keyword like role)
+#=«
+    More declarator blocks! (with a keyword like role)
+  »
+#|«
+    More declarator blocks! (with a keyword like role)
+  »
+
 say 'Moar code!';
 
 my $don't = 16;
