@@ -37,7 +37,8 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
            'CbmBasicV2Lexer', 'AutoItLexer', 'EasytrieveLexer', 'JclLexer',
-           'RexxLexer', 'WebFocusLexer']
+           'RexxLexer', 'WebFocusLexer', 'FocusAccessLexer',
+           'FocusMasterLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -4080,6 +4081,98 @@ class WebFocusLexer(RegexLexer):
             result += 0.2
         if hasSet:
             result += 0.1
+        assert 0.0 <= result <= 1.0
+        return result
+
+
+class FocusMasterLexer(RegexLexer):
+    """
+    FOCUS master files describes files and tables to be queried by FOCUS
+    programs. The are somewhat comparable to SQL ``create table`` statements.
+
+    *New in Pygments 1.x.*
+    """
+    name = 'FOCUS master'
+    aliases = ['master']
+    filenames = ['*.mas']
+    mimetypes = ['text/x-focus-master']
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'\$.*\n', Comment.Single),
+            (r'\s+', Whitespace),
+            (r'[a-z_][a-z0-9_]*', Name),
+            (r'=', Punctuation, 'value'),
+            (r'\.', Punctuation),
+         ],
+        'value': [
+            (r'\$.*\n', Comment.Single, 'root'),
+            (r'\n', Text),
+            (r',', Punctuation, 'root'),
+            (r'\.!', Punctuation),
+            (r'["]', String, 'string_double'),
+            (r'\'', String, 'string_single'),
+            (r'[a-z_][a-z0-9_]*', Text),
+            (r'[0-9]+(\.[0-9]+)?', Number),
+            (r'.', Text),
+        ],
+        'string_double': [
+            (r'\'["]["]', String),
+            (r'["]', String, 'value'),
+            (r'[^"]', String),
+        ],
+        'string_single': [
+            (r'\'\'', String),
+            (r'\'', String, 'value'),
+            (r'[^\']', String),
+        ],
+    }
+
+    _HEADER_PATTERN = re.compile(
+        r'^((\s*\$.*)\n)*file(name)?\s*=\s*[a-z_][a-z0-9_]+\s*,(\s*(\$.*)\n)*\s*suffix\s*=\s*.+',
+        re.IGNORECASE
+    )
+
+    def analyse_text(text):
+        """
+        Check for ``FILE=..., SUFFIX=...`` while ignoring comments starting with ``$``.
+        """
+        result = 0.0
+
+        if FocusMasterLexer._HEADER_PATTERN.match(text):
+            result = 0.8
+        
+        assert 0.0 <= result <= 1.0
+        return result
+
+
+class FocusAccessLexer(FocusMasterLexer):
+    """
+    FOCUS access files associate segments in FOCUS master files with actual
+    tables containing data.
+
+    *New in Pygments 1.x.*
+    """
+    name = 'FOCUS access'
+    aliases = []
+    filenames = ['*.acx']
+    mimetypes = ['text/x-focus-access']
+
+    _HEADER_PATTERN = re.compile(
+        r'^((\s*\$.*)\n)*segment\s*=\s*[a-z_][a-z0-9_]+\s*,(\s*(\$.*)\n)*\s*tablename\s*=\s*.+',
+        re.IGNORECASE
+    )
+
+    def analyse_text(text):
+        """
+        Check for ``SEGMENT=..., TABLENAME=...`` while ignoring comments starting with ``$``.
+        """
+        result = 0.0
+
+        if FocusAccessLexer._HEADER_PATTERN.match(text):
+            result = 0.8
+        
         assert 0.0 <= result <= 1.0
         return result
 
