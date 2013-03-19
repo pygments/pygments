@@ -1923,12 +1923,12 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     PERL6_IDENTIFIER_CHARS = "-'a-zA-Z0-9_:"
 
-    def _build_word_match(words, boundary_chars = None):
+    def _build_word_match(words, boundary_chars = None, prefix = '', suffix = ''):
         if boundary_chars is None:
-            return r'\b(' + r'|'.join(words) + r')\b'
+            return r'\b(' + prefix + r'|'.join(words) + suffix + r')\b'
         else:
-            return r'(?<![' + boundary_chars + '])(' + r'|'.join(words) + r')(?![' + \
-                boundary_chars + '])'
+            return r'(?<![' + boundary_chars + '])' + prefix + '(' + \
+                r'|'.join(words) + r')' + suffix + '(?![' + boundary_chars + '])'
 
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
