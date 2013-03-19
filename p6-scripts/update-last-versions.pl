@@ -20,6 +20,9 @@ my @files = grep {
     (split /:/, $_)[0]
 } read_file('p6-scripts/check-files');
 
+unless(-d 'p6-scripts/.last-version') {
+    mkdir('p6-scripts/.last-version');
+}
 foreach my $filename (@files) {
     my $last_version_filename = File::Spec->catfile('p6-scripts/.last-version', $filename);
 
