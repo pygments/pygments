@@ -2073,7 +2073,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     aliases   = ['perl6', 'pl6']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6']
     mimetypes = ['text/x-perl6', 'application/x-perl6']
-    flags     = re.MULTILINE | re.DOTALL
+    flags     = re.MULTILINE | re.DOTALL | re.UNICODE
 
     def brackets_callback(token_class):
         def callback(lexer, match, context):
