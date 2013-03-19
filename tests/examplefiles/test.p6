@@ -227,3 +227,9 @@ my $re5      = rx«something | something-else»;
 my $M := %*COMPILING<%?OPTIONS><M>;
 
 say $M;
+
+sub regex-name { ... }
+my $pair = role-name => 'foo';
+$pair = rolesque => 'foo';
+
+my sub something(Str:D $value) { ... }
