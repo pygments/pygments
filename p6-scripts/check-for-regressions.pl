@@ -98,16 +98,14 @@ sub compare_lines {
     return 1;
 }
 
-unless(@ARGV) {
-    @ARGV = grep {
-        $_->[0] !~ /^#/
-    } map {
-        chomp;
-        [ split /:/, $_ ]
-    } read_file('p6-scripts/check-files');
-}
+my @files = grep {
+    $_->[0] !~ /^#/
+} map {
+    chomp;
+    [ split /:/, $_ ]
+} read_file('p6-scripts/check-files');
 
-foreach my $pair (@ARGV) {
+foreach my $pair (@files) {
     my ( $filename, $good_line ) = @$pair;
     my $last_version_filename = File::Spec->catfile('p6-scripts/.last-version', $filename);
 
