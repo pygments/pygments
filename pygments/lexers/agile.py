@@ -2159,9 +2159,11 @@ class Perl6Lexer(ExtendedRegexLexer):
     # process the corresponding one!
     tokens = {
         'root' : [
-            ( r'#`(?P<delimiter>[' + ''.join(PERL6_BRACKETS.keys()) + ']+)', brackets_callback(Comment.Multiline) ),
+            ( r'#[`|=](?P<delimiter>[' + ''.join(PERL6_BRACKETS.keys()) + ']+)', brackets_callback(Comment.Multiline) ),
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
+            ( r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline ),
+            ( r'^=.*?\n\s*?\n', Comment.Multiline ),
             ( r'(regex|token|rule)(.*?)([{])', bygroups(Keyword, Name, Text), 'token' ),
             # deal with a special class in the Perl 6 grammar (role q { ... })
             ( r'(role)(\s*)(q)(\s*)', bygroups(Keyword, Text, Name, Text) ),
