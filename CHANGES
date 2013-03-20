@@ -8,14 +8,19 @@ pull request numbers to the requests at
 
 Version 1.6
 -----------
-(in development)
+(released Feb 3, 2013)
 
 - Lexers added:
 
   * Dylan console (PR#149)
   * Logos (PR#150)
+  * Shell sessions (PR#158)
 
 - Fix guessed lexers not receiving lexer options (#838).
+
+- Fix unquoted HTML attribute lexing in Opa (#841).
+
+- Fixes to the Dart lexer (PR#160).
 
 
 Version 1.6rc1

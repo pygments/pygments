@@ -310,7 +310,7 @@ class HtmlFormatter(Formatter):
 
     `tagurlformat`
         A string formatting pattern used to generate links to ctags definitions.
-        Avaliabe variable are `%(path)s`, `%(fname)s` and `%(fext)s`.
+        Available variables are `%(path)s`, `%(fname)s` and `%(fext)s`.
         Defaults to an empty string, resulting in just `#prefix-number` links.
         *New in Pygments 1.6.*
 
@@ -712,6 +712,8 @@ class HtmlFormatter(Formatter):
                 filename, linenumber = self._lookup_ctag(value)
                 if linenumber:
                     base, filename = os.path.split(filename)
+                    if base:
+                        base += '/'
                     filename, extension = os.path.splitext(filename)
                     url = self.tagurlformat % {'path': base, 'fname': filename,
                                                'fext': extension}
