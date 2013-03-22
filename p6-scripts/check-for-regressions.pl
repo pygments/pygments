@@ -73,7 +73,7 @@ sub find_difference {
 }
 
 sub compare_lines {
-    my ( $format, $old_lines, $new_lines ) = @_;
+    my ( $format, $offset, $old_lines, $new_lines ) = @_;
 
     foreach my $line_no ( 0 .. $#$old_lines ) {
         my $old = $old_lines->[$line_no];
@@ -83,7 +83,7 @@ sub compare_lines {
             my ( $pos, $old_char, $new_char ) = find_difference($old, $new);
             $pos = length(decolorize(substr($old, 0, $pos)));
 
-            printf $format . "\n", $line_no + 1;
+            printf $format . "\n", $line_no + $offset + 1;
             say "Old: '$old_char' (" . charnames::viacode($old_char) . ')';
             say "New: '$new_char' (" . charnames::viacode($new_char) . ')';
             print $old;
@@ -123,15 +123,17 @@ foreach my $pair (@files) {
     }
 
     if(defined $good_line) {
-        splice @old_lines, $good_line - 1;
-        splice @new_lines, $good_line - 1;
+        splice @old_lines, 0, $good_line;
+        splice @new_lines, 0, $good_line;
     }
 
     next unless compare_lines("Text for line %d of file $filename does not match",
+                              $good_line || 0,
                               [ map { decolorize($_) } @old_lines ],
                               [ map { decolorize($_) } @new_lines ]);
 
     next unless compare_lines("Colors for line %d of file $filename do not match",
+                              $good_line || 0,
                               \@old_lines,
                               \@new_lines);
 }
