@@ -2158,7 +2158,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     # Perl 6 code in regex blocks), so if you need to process one of them, make sure you also
     # process the corresponding one!
     tokens = {
-        'root' : [
+        'common' : [
             ( r'#[`|=](?P<delimiter>[' + ''.join(PERL6_BRACKETS.keys()) + ']+)', brackets_callback(Comment.Multiline) ),
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
@@ -2194,6 +2194,9 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'[0-9a-zA-Z_][' + PERL6_IDENTIFIER_CHARS + ']*', Name ),
             ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
+        ],
+        'root' : [
+            include('common'),
             ( r'[{]', opening_brace_callback ),
             ( r'[}]', closing_brace_callback ),
             ( r'.+?', Text ),
