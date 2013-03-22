@@ -98,12 +98,16 @@ sub compare_lines {
     return 1;
 }
 
+unless(@ARGV) {
+    @ARGV = read_file('p6-scripts/check-files');
+}
+
 my @files = grep {
     $_->[0] !~ /^#/
 } map {
     chomp;
     [ split /:/, $_ ]
-} read_file('p6-scripts/check-files');
+} @ARGV;
 
 foreach my $pair (@files) {
     my ( $filename, $good_line ) = @$pair;
