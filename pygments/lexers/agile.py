@@ -2164,7 +2164,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
             ( r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline ),
             ( r'^=.*?\n\s*?\n', Comment.Multiline ),
-            ( r'(regex|token|rule)(?![' + PERL6_IDENTIFIER_CHARS + '])(\s*[' + PERL6_IDENTIFIER_CHARS + ']+:sym<.*?>)?(.*?)([{])', bygroups(Keyword, Name, Name, Text), 'token' ),
+            ( r'(regex|token|rule)(?![' + PERL6_IDENTIFIER_CHARS + '])(\s*[' + PERL6_IDENTIFIER_CHARS + ']+:sym<.*?>)?', bygroups(Keyword, Name), 'pre-token' ),
             # deal with a special class in the Perl 6 grammar (role q { ... })
             ( r'(role)(\s*)(q)(\s*)', bygroups(Keyword, Text, Name, Text) ),
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
@@ -2199,6 +2199,11 @@ class Perl6Lexer(ExtendedRegexLexer):
             include('common'),
             ( r'[{]', opening_brace_callback ),
             ( r'[}]', closing_brace_callback ),
+            ( r'.+?', Text ),
+        ],
+        'pre-token' : [
+            include('common'),
+            ( r'[{]', Text, ( '#pop', 'token' ) ),
             ( r'.+?', Text ),
         ],
         # the tokens state rules are defined after the class body, for reasons
