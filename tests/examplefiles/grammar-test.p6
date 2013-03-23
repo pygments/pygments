@@ -8,3 +8,11 @@ token pod_formatting_code {
 token pod_string {
     <pod_string_character>+
 }
+
+token name {
+    <!>
+}
+
+token comment:sym<#> {
+   '#' {} \N*
+}
