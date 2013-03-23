@@ -51,6 +51,10 @@ say 'there';
 does {{nesting}} work?
 }}
 
+#`«<
+trying mixed delimiters
+»
+
 my $string = qq<Hooray, arbitrary delimiter!>;
 my $string = qq«Hooray, arbitrary delimiter!»;
 my $string = q <now with whitespace!>;
