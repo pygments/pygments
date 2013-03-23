@@ -2176,7 +2176,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'::[?]\w+', Name.Variable.Global ),
             ( r'[$@%&][*][' + PERL6_IDENTIFIER_CHARS + u']+(?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable.Global ),
             ( r'[$](?:<.*?>)+', Name.Variable ), # XXX what about for special variables (like $/)? should I enter a variable state?
-            ( r'(?:q|qq|Q)[a-zA-Z]?\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>[^0-9a-zA-Z:\s]+)', brackets_callback(String) ),
+            ( r'(?:q|qq|Q)[a-zA-Z]?\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])(?P=first_char)*)', brackets_callback(String) ),
             # copied from PerlLexer
             ( r'0_?[0-7]+(_[0-7]+)*', Number.Oct ),
             ( r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex ),
