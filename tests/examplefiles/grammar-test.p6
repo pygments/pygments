@@ -9,6 +9,10 @@ token pod_string {
     <pod_string_character>+
 }
 
+token something:sym«<» {
+    <!>
+}
+
 token name {
     <!>
 }
