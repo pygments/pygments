@@ -3,12 +3,12 @@
 use strict;
 use warnings;
 use autodie;
-use feature qw(say);
+use feature qw(say state);
 use utf8;
 use charnames ();
 
 use Encode qw(decode_utf8);
-use File::Slurp qw(read_file);
+use File::Slurp qw(read_file write_file);
 use File::Spec;
 
 my $PYTHON = 'python';
@@ -28,6 +28,18 @@ sub decolorize {
 
 sub pygmentize {
     my ( $filename ) = @_;
+
+    state $pygments_mtime = (stat 'pygments/lexers/agile.py')[9];
+
+    my ( undef, undef, $basename ) = File::Spec->splitpath($filename);
+
+    my $current_version_filename = File::Spec->catfile('p6-scripts/.current-version', $basename);
+    my $filename_mtime = (stat $filename)[9];
+    my $current_mtime  = (stat $current_version_filename)[9];
+
+    if(defined $current_mtime && $current_mtime > $filename_mtime && $current_mtime > $pygments_mtime) {
+        return read_file($current_version_filename);
+    }
 
     my @lines;
 
@@ -50,6 +62,11 @@ sub pygmentize {
 
         exec $PYTHON, './pygmentize', '-l', 'perl6', '-O', 'outencoding=utf-8', $filename;
     }
+
+    unless(-e 'p6-scripts/.current-version') {
+        mkdir('p6-scripts/.current-version');
+    }
+    write_file($current_version_filename, \@lines);
 
     return @lines;
 }
