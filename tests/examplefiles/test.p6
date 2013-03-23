@@ -237,3 +237,10 @@ my $pair = role-name => 'foo';
 $pair = rolesque => 'foo';
 
 my sub something(Str:D $value) { ... }
+
+my $s = q«<
+some
+string
+stuff
+»;
+# after
