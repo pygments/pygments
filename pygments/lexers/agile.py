@@ -2159,7 +2159,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     # process the corresponding one!
     tokens = {
         'common' : [
-            ( r'#[`|=](?P<delimiter>[' + ''.join(PERL6_BRACKETS.keys()) + ']+)', brackets_callback(Comment.Multiline) ),
+            ( r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS.keys()) + r'])(?P=first_char)*)', brackets_callback(Comment.Multiline) ),
             ( r'#[^\n]*$', Comment.Singleline ),
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
             ( r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline ),
