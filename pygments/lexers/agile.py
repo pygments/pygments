@@ -2071,7 +2071,8 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     name      = 'Perl6'
     aliases   = ['perl6', 'pl6']
-    filenames = ['*.pl', '*.pm', '*.nqp', '*.p6']
+    filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
+                 '*.6pm', '*.p6m', '*.pm6']
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     flags     = re.MULTILINE | re.DOTALL | re.UNICODE
 
