@@ -2216,12 +2216,44 @@ class Perl6Lexer(ExtendedRegexLexer):
         # explained below.
     }
 
-    # ↓ this can likely be improved
     def analyse_text(text):
+        def strip_pod(lines):
+            in_pod         = False
+            stripped_lines = []
+
+            for line in lines:
+                if re.match(r'^=(?:end|cut)', line):
+                    in_pod = False
+                elif re.match(r'^=\w+', line):
+                    in_pod = True
+                elif not in_pod:
+                    stripped_lines.append(line)
+
+            return stripped_lines
+
+        lines = text.splitlines()
+        lines = strip_pod(lines)
+        text  = '\n'.join(lines)
+
         if shebang_matches(text, r'perl6|rakudo|niecza'):
             return True
+
         if 'use v6' in text:
             return 0.91 # 0.01 greater than Perl says for 'my $'
+        if re.search(r'[$@%][*][A-Z]+', text): # Perl 6-style globals ($*OS)
+            return 0.91
+        if re.search(r'[$@%][?][A-Z]+', text): # Perl 6 compiler variables ($?PACKAGE)
+            return 0.91
+        if re.search(r'[$@%][!.][A-Za-z0-9_-]+', text): # Perl 6 member variables
+            return 0.91
+
+        for line in text.splitlines():
+            if re.match(r'\s*(?:my|our)?\s*module', line): # module declarations
+                return 0.91
+            if re.match(r'\s*(?:my|our)?\s*role', line): # role declarations
+                return 0.91
+            if re.match(r'\s*(?:my|our)?\s*class\b', line): # class declarations
+                return 0.91
         return False
 
     def __init__(self, **options):
