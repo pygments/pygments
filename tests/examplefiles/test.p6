@@ -243,4 +243,6 @@ some
 string
 stuff
 »;
+
+my $regex = m«< some chars »;
 # after
