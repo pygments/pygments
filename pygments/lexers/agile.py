@@ -2164,8 +2164,9 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline ),
             ( r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline ),
             ( r'^=.*?\n\s*?\n', Comment.Multiline ),
-            ( r'(regex|token|rule)(?![' + PERL6_IDENTIFIER_CHARS.replace(':', '') + '])(\s*[' + PERL6_IDENTIFIER_CHARS.replace(':', '') + ']+(?::sym<.*?>)?)?', bygroups(Keyword, Name), 'pre-token' ),
-            # deal with a special class in the Perl 6 grammar (role q { ... })
+            ( r'(regex|token|rule)(?![' + PERL6_IDENTIFIER_CHARS + '])(\s*[' + PERL6_IDENTIFIER_CHARS + ']+:sym)', bygroups(Keyword, Name), 'token-sym-brackets' ),
+            ( r'(regex|token|rule)(?![' + PERL6_IDENTIFIER_CHARS + '])(\s*[' + PERL6_IDENTIFIER_CHARS + ']+)?', bygroups(Keyword, Name), 'pre-token' ),
+            # deal with a special case in the Perl 6 grammar (role q { ... })
             ( r'(role)(\s*)(q)(\s*)', bygroups(Keyword, Text, Name, Text) ),
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_CHARS), Keyword ),
             ( _build_word_match(PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_CHARS, suffix = '(?::[UD])?'), Name.Builtin ),
@@ -2205,6 +2206,10 @@ class Perl6Lexer(ExtendedRegexLexer):
             include('common'),
             ( r'[{]', Text, ( '#pop', 'token' ) ),
             ( r'.+?', Text ),
+        ],
+        'token-sym-brackets' : [
+            ( r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS.keys()) + '])(?P=first_char)*)', brackets_callback(Name), ( '#pop', 'pre-token' ) ),
+            ( r'.', Name, ( '#pop', 'pre-token' ) ),
         ],
         # the tokens state rules are defined after the class body, for reasons
         # explained below.
