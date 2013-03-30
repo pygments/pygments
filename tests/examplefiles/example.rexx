@@ -13,6 +13,11 @@ x = '"' || "'" || '''' || """" /* quotes */
  * spawning multiple
    lines. /* / */
 
+/* Built-in functions. */
+line = 'line containing some short text'
+say WordPos(line, 'some')
+say Word(line, 4)
+
 /* Labels and procedures. */
 some_label :
 

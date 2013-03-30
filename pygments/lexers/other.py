@@ -4203,9 +4203,21 @@ class RexxLexer(RegexLexer):
              bygroups(Name.Function, Whitespace, Operator, Whitespace, Keyword.Declaration)),
             (r'([a-z_][a-z0-9_]*)(\s*)(:)',
              bygroups(Name.Label, Whitespace, Operator)),
+            include('function'),
             include('keyword'),
             include('operator'),
             (r'[a-z_][a-z0-9_]*', Text),
+        ],
+        'function': [
+            (r'(abbrev|abs|address|arg|b2x|bitand|bitor|bitxor|c2d|c2x|'
+             r'center|charin|charout|chars|compare|condition|copies|d2c|'
+             r'd2x|datatype|date|delstr|delword|digits|errortext|form|'
+             r'format|fuzz|insert|lastpos|left|length|linein|lineout|lines|'
+             r'max|min|overlay|pos|queued|random|reverse|right|sign|'
+             r'sourceline|space|stream|strip|substr|subword|symbol|time|'
+             r'trace|translate|trunc|value|verify|word|wordindex|'
+             r'wordlength|wordpos|words|x2b|x2c|x2d|xrange)(\s*)([(])',
+             bygroups(Name.Builtin, Whitespace, Operator)),
         ],
         'keyword': [
             (r'(address|arg|by|call|do|drop|else|end|exit|for|forever|if|'
