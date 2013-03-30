@@ -38,7 +38,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
            'CbmBasicV2Lexer', 'AutoItLexer', 'EasytrieveLexer', 'JclLexer',
            'RexxLexer', 'WebFocusLexer', 'FocusAccessLexer',
-           'FocusMasterLexer']
+           'FocusMasterLexer', 'FocusStyleSheetLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -4093,23 +4093,31 @@ class FocusMasterLexer(RegexLexer):
     *New in Pygments 1.x.*
     """
     name = 'FOCUS master'
-    aliases = ['master']
+    aliases = ['focus-master']
     filenames = ['*.mas']
     mimetypes = ['text/x-focus-master']
     flags = re.IGNORECASE
 
     tokens = {
         'root': [
+            (r'-\*.*\n', Comment.Single),
+            include('name'),
+         ],
+        'name': [
             (r'\$.*\n', Comment.Single),
             (r'\s+', Whitespace),
-            (r'[a-z_][a-z0-9_]*', Name),
+            (r'[a-z_][a-z0-9_]*', Name.Builtin, 'before_value'),
+            (r'(\\)(\n)', bygroups(Operator, Text)),
+        ],
+        'before_value': [
             (r'=', Punctuation, 'value'),
-            (r'\.', Punctuation),
-         ],
+            (r'\s+', Whitespace),
+            (r'.', Error, 'name')
+        ],
         'value': [
             (r'\$.*\n', Comment.Single, 'root'),
             (r'\n', Text),
-            (r',', Punctuation, 'root'),
+            (r',', Punctuation, 'name'),
             (r'\.!', Punctuation),
             (r'["]', String, 'string_double'),
             (r'\'', String, 'string_single'),
@@ -4155,7 +4163,7 @@ class FocusAccessLexer(FocusMasterLexer):
     *New in Pygments 1.x.*
     """
     name = 'FOCUS access'
-    aliases = []
+    aliases = ['focus-access']
     filenames = ['*.acx']
     mimetypes = ['text/x-focus-access']
 
@@ -4166,13 +4174,54 @@ class FocusAccessLexer(FocusMasterLexer):
 
     def analyse_text(text):
         """
-        Check for ``SEGMENT=..., TABLENAME=...`` while ignoring comments starting with ``$``.
+        Check for ``SEGMENT=..., TABLENAME=...`` while ignoring comments
+        starting with ``$``.
         """
         result = 0.0
 
         if FocusAccessLexer._HEADER_PATTERN.match(text):
             result = 0.8
         
+        assert 0.0 <= result <= 1.0
+        return result
+
+
+class FocusStyleSheetLexer(FocusMasterLexer):
+    """
+    Style sheet to format reports written in FOCUS.
+
+    *New in Pygments 1.x.*
+    """
+    name = 'FOCUS style sheet'
+    aliases = ['focus-style']
+    filenames = ['*.sty']
+    mimetypes = ['text/x-focus-style']
+
+    _HEADER_TYPE_PATTERN = re.compile(
+        r'^(((\s*\$)|(-\*)).*\n)*type\s*=\s*[a-z]+\s*,.+',
+        re.IGNORECASE
+    )
+    _HEADER_PAGE_DECLARATION_PATTERN = re.compile(
+        r'^(((\s*\$)|(-\*)).*\n)*(orientation|pagecolor|pagesize)\s*=\s*.+\s*,.+',
+        re.IGNORECASE
+    )
+
+    def analyse_text(text):
+        """
+        Check for ``TYPE=...,...`` or page layout declaration while
+        ignoring comments starting with ``$`` or ``-*``.
+        """
+        result = 0.0
+
+        if FocusStyleSheetLexer._HEADER_TYPE_PATTERN.match(text):
+            result = 0.7
+        elif FocusStyleSheetLexer._HEADER_PAGE_DECLARATION_PATTERN.match(text):
+            result = 0.5
+        if result > 0:
+            textStartsWithComment = text.startswith('-*') or text.lstrip().startswith('$')
+            if textStartsWithComment:
+                result += 0.2
+
         assert 0.0 <= result <= 1.0
         return result
 
