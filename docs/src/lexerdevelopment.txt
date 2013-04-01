@@ -83,6 +83,67 @@ If no rule matches at the current position, the current char is emitted as an
 1.
 
 
+Adding and testing your lexer
+=============================
+
+To make pygments aware of your new lexer, you have to perform the following
+steps:
+
+First, change to the current directory containing the pygments source code:
+
+.. sourcecode::
+
+    $ cd .../pygments-main
+
+Next, make sure the lexer is known from outside of the module. All modules in
+the ``pygments.lexers`` specify ``__all__``. For example, ``other.py``sets:
+
+.. sourcecode:: python
+
+    __all__ = ['BrainfuckLexer', 'BefungeLexer', ...]
+
+Simply add the name of you lexer class to this list.
+
+Now update the ``python.lexers._mapping``. This is a generated module which
+can update itself changing the current directory to its location and simply
+running it:
+
+.. sourcecode::
+
+    $ cd pygments/lexers/
+    $ python _mapping.py
+    $ cd ../..
+
+Without the ``cd`` command, you will get an ``ImportError``:
+
+.. sourcecode::
+
+    ImportError: No module named ez_setup
+
+To test the new lexer, store an example file with the proper extension in
+``tests/examplefiles``. For example, to test your ``DiffLexer``, add a
+``tests/examplefiles/example.diff`` containing a sample diff output.
+
+Now you can use pygmentize to render your example to HTML:
+
+.. sourcecode::
+
+    $ ./pygmentize -O full -f html -o /tmp/example.html tests/examplefiles/example.diff
+
+Note that we explicitely call the ``pygmentize`` in the current directory by
+preceding it with ``./``. This ensures your modifications are used.
+Otherwise a possibly already installed, unmodified version without your new
+lexer would have been called from the system search path (``$PATH``).
+
+To view the result, open ``/tmp/example.html`` in your browser.
+
+Once the example renders as expected, you should run the complete test suite:
+
+.. sourcecode::
+
+    $ python tests/run.py
+
+
 Regex Flags
 ===========
 
