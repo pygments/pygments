@@ -83,20 +83,20 @@ If no rule matches at the current position, the current char is emitted as an
 1.
 
 
-Adding and testing your lexer
-=============================
+Adding and testing a new lexer
+==============================
 
 To make pygments aware of your new lexer, you have to perform the following
 steps:
 
 First, change to the current directory containing the pygments source code:
 
-.. sourcecode::
+.. sourcecode:: console
 
     $ cd .../pygments-main
 
 Next, make sure the lexer is known from outside of the module. All modules in
-the ``pygments.lexers`` specify ``__all__``. For example, ``other.py``sets:
+the ``pygments.lexers`` specify ``__all__``. For example, ``other.py`` sets:
 
 .. sourcecode:: python
 
@@ -105,10 +105,10 @@ the ``pygments.lexers`` specify ``__all__``. For example, ``other.py``sets:
 Simply add the name of you lexer class to this list.
 
 Now update the ``python.lexers._mapping``. This is a generated module which
-can update itself changing the current directory to its location and simply
+can update itself by changing the current directory to its location and
 running it:
 
-.. sourcecode::
+.. sourcecode:: console
 
     $ cd pygments/lexers/
     $ python _mapping.py
@@ -116,7 +116,7 @@ running it:
 
 Without the ``cd`` command, you will get an ``ImportError``:
 
-.. sourcecode::
+.. sourcecode:: pycon
 
     ImportError: No module named ez_setup
 
@@ -126,7 +126,7 @@ To test the new lexer, store an example file with the proper extension in
 
 Now you can use pygmentize to render your example to HTML:
 
-.. sourcecode::
+.. sourcecode:: console
 
     $ ./pygmentize -O full -f html -o /tmp/example.html tests/examplefiles/example.diff
 
@@ -139,7 +139,7 @@ To view the result, open ``/tmp/example.html`` in your browser.
 
 Once the example renders as expected, you should run the complete test suite:
 
-.. sourcecode::
+.. sourcecode:: console
 
     $ python tests/run.py
 
