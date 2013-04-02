@@ -102,23 +102,14 @@ the ``pygments.lexers`` specify ``__all__``. For example, ``other.py`` sets:
 
     __all__ = ['BrainfuckLexer', 'BefungeLexer', ...]
 
-Simply add the name of you lexer class to this list.
+Simply add the name of your lexer class to this list.
 
-Now update the ``python.lexers._mapping``. This is a generated module which
-can update itself by changing the current directory to its location and
-running it:
+Finally the lexer can be made publically known by rebuilding the lexer
+mapping:
 
 .. sourcecode:: console
 
-    $ cd pygments/lexers/
-    $ python _mapping.py
-    $ cd ../..
-
-Without the ``cd`` command, you will get an ``ImportError``:
-
-.. sourcecode:: pycon
-
-    ImportError: No module named ez_setup
+    $ make mapfiles
 
 To test the new lexer, store an example file with the proper extension in
 ``tests/examplefiles``. For example, to test your ``DiffLexer``, add a
@@ -130,8 +121,8 @@ Now you can use pygmentize to render your example to HTML:
 
     $ ./pygmentize -O full -f html -o /tmp/example.html tests/examplefiles/example.diff
 
-Note that we explicitely call the ``pygmentize`` in the current directory by
-preceding it with ``./``. This ensures your modifications are used.
+Note that this explicitely calls the ``pygmentize`` in the current directory
+by preceding it with ``./``. This ensures your modifications are used.
 Otherwise a possibly already installed, unmodified version without your new
 lexer would have been called from the system search path (``$PATH``).
 
@@ -141,7 +132,7 @@ Once the example renders as expected, you should run the complete test suite:
 
 .. sourcecode:: console
 
-    $ python tests/run.py
+    $ make test
 
 
 Regex Flags
