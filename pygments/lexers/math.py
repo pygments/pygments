@@ -59,7 +59,7 @@ class JuliaLexer(RegexLexer):
             (r'(begin|while|for|in|return|break|continue|'
              r'macro|quote|let|if|elseif|else|try|catch|end|'
              r'bitstype|ccall|do|using|module|import|export|'
-             r'importall|baremodule)\b', Keyword),
+             r'importall|baremodule|immutable)\b', Keyword),
             (r'(local|global|const)\b', Keyword.Declaration),
             (r'(Bool|Int|Int8|Int16|Int32|Int64|Uint|Uint8|Uint16|Uint32|Uint64'
              r'|Float32|Float64|Complex64|Complex128|Any|Nothing|None)\b',
@@ -99,11 +99,17 @@ class JuliaLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
             # numbers
+            (r'(\d+(_\d+)+\.\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+(_\d+)+[eEf][+-]?[0-9]+', Number.Float),
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'0b[01]+(_[01]+)+', Number.Binary),
             (r'0b[01]+', Number.Binary),
+            (r'0o[0-7]+(_[0-7]+)+', Number.Oct),
             (r'0o[0-7]+', Number.Oct),
+            (r'0x[a-fA-F0-9]+(_[a-fA-F0-9]+)+', Number.Hex),
             (r'0x[a-fA-F0-9]+', Number.Hex),
+            (r'\d+(_\d+)+', Number.Integer),
             (r'\d+', Number.Integer)
         ],
 
