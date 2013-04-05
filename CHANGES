@@ -21,6 +21,9 @@ Version 1.7
 - Julia lexer: add keywords and underscore-separated number
   literals (PR#176).
 
+- Lasso lexer: fix method highlighting, update builtins. Fix
+  guessing so that plain XML isn't always taken as Lasso (PR#163).
+
 
 Version 1.6
 -----------
