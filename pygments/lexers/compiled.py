@@ -29,7 +29,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'DylanLexer
            'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
            'NimrodLexer', 'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
-           'CobolFreeformatLexer', 'LogosLexer']
+           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -262,6 +262,57 @@ class ECLexer(CLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
+        ],
+    }
+
+
+class ClayLexer(RegexLexer):
+    """
+    For `Clay <http://claylabs.com/clay/>`_ source.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'Clay'
+    filenames = ['*.clay']
+    aliases = ['clay']
+    mimetypes = ['text/x-clay']
+    tokens = {
+        'root': [
+            (r'\s', Text),
+            (r'//.*?$', Comment.Singleline),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'\b(public|private|import|as|record|variant|instance'
+             r'|define|overload|default|external|alias'
+             r'|rvalue|ref|forward|inline|noinline|forceinline'
+             r'|enum|var|and|or|not|if|else|goto|return|while'
+             r'|switch|case|break|continue|for|in|true|false|try|catch|throw'
+             r'|finally|onerror|staticassert|eval|when|newtype'
+             r'|__FILE__|__LINE__|__COLUMN__|__ARG__'
+             r')\b', Keyword),
+            (r'[~!%^&*+=|:<>/-]', Operator),
+            (r'[#(){}\[\],;.]', Punctuation),
+            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'\d+[LlUu]*', Number.Integer),
+            (r'\b(true|false)\b', Name.Builtin),
+            (r'(?i)[a-z_?][a-z_?0-9]*', Name),
+            (r'"""', String, 'tdqs'),
+            (r'"', String, 'dqs'),
+        ],
+        'strings': [
+            (r'(?i)\\(x[0-9a-f]{2}|.)', String.Escape),
+            (r'.', String),
+        ],
+        'nl': [
+            (r'\n', String),
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            include('strings'),
+        ],
+        'tdqs': [
+            (r'"""', String, '#pop'),
+            include('strings'),
+            include('nl'),
         ],
     }
 
