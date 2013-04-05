@@ -234,7 +234,14 @@ class Python3Lexer(RegexLexer):
          r'TypeError|UnboundLocalError|UnicodeDecodeError|'
          r'UnicodeEncodeError|UnicodeError|UnicodeTranslateError|'
          r'UnicodeWarning|UserWarning|ValueError|VMSError|Warning|'
-         r'WindowsError|ZeroDivisionError)\b', Name.Exception),
+         r'WindowsError|ZeroDivisionError|'
+         # new builtin exceptions from PEP 3151
+         r'BlockingIOError|ChildProcessError|ConnectionError|'
+         r'BrokenPipeError|ConnectionAbortedError|ConnectionRefusedError|'
+         r'ConnectionResetError|FileExistsError|FileNotFoundError|'
+         r'InterruptedError|IsADirectoryError|NotADirectoryError|'
+         r'PermissionError|ProcessLookupError|TimeoutError)\b',
+         Name.Exception),
     ]
     tokens['numbers'] = [
         (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
