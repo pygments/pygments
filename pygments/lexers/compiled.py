@@ -23,13 +23,13 @@ from pygments.scanner import Scanner
 from pygments.lexers.functional import OcamlLexer
 from pygments.lexers.jvm import JavaLexer, ScalaLexer
 
-__all__ = ['CLexer', 'CppLexer', 'ClayLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'DylanLexer',
+__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'DylanLexer',
            'ObjectiveCLexer', 'ObjectiveCppLexer', 'FortranLexer', 'GLShaderLexer',
            'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
            'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
            'NimrodLexer', 'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
-           'CobolFreeformatLexer', 'LogosLexer']
+           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -268,7 +268,9 @@ class ECLexer(CLexer):
 
 class ClayLexer(RegexLexer):
     """
-    For Clay source.
+    For `Clay <http://claylabs.com/clay/>`_ source.
+
+    *New in Pygments 1.7.*
     """
     name = 'Clay'
     filenames = ['*.clay']
@@ -313,6 +315,7 @@ class ClayLexer(RegexLexer):
             include('nl'),
         ],
     }
+
 
 class DLexer(RegexLexer):
     """
