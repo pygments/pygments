@@ -1659,7 +1659,7 @@ class LassoHtmlLexer(DelegatingLexer):
         super(LassoHtmlLexer, self).__init__(HtmlLexer, LassoLexer, **options)
 
     def analyse_text(text):
-        rv = LassoLexer.analyse_text(text)
+        rv = LassoLexer.analyse_text(text) - 0.01
         if re.search(r'<\w+>', text, re.I):
             rv += 0.2
         if html_doctype_matches(text):
@@ -1685,9 +1685,9 @@ class LassoXmlLexer(DelegatingLexer):
         super(LassoXmlLexer, self).__init__(XmlLexer, LassoLexer, **options)
 
     def analyse_text(text):
-        rv = LassoLexer.analyse_text(text)
+        rv = LassoLexer.analyse_text(text) - 0.01
         if looks_like_xml(text):
-            rv += 0.5
+            rv += 0.4
         return rv
 
 
@@ -1709,8 +1709,8 @@ class LassoCssLexer(DelegatingLexer):
         super(LassoCssLexer, self).__init__(CssLexer, LassoLexer, **options)
 
     def analyse_text(text):
-        rv = LassoLexer.analyse_text(text)
-        if re.search(r'\w+:.+;', text):
+        rv = LassoLexer.analyse_text(text) - 0.05
+        if re.search(r'\w+:.+?;', text):
             rv += 0.1
         if 'padding:' in text:
             rv += 0.1
@@ -1738,7 +1738,7 @@ class LassoJavascriptLexer(DelegatingLexer):
                                                    **options)
 
     def analyse_text(text):
-        rv = LassoLexer.analyse_text(text)
+        rv = LassoLexer.analyse_text(text) - 0.05
         if 'function' in text:
             rv += 0.2
         return rv
