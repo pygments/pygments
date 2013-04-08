@@ -216,7 +216,7 @@ LEXERS = {
     'PostgresConsoleLexer': ('pygments.lexers.sql', 'PostgreSQL console (psql)', ('psql', 'postgresql-console', 'postgres-console'), (), ('text/x-postgresql-psql',)),
     'PostgresLexer': ('pygments.lexers.sql', 'PostgreSQL SQL dialect', ('postgresql', 'postgres'), (), ('text/x-postgresql',)),
     'PovrayLexer': ('pygments.lexers.other', 'POVRay', ('pov',), ('*.pov', '*.inc'), ('text/x-povray',)),
-    'PowerShellLexer': ('pygments.lexers.shell', 'PowerShell', ('powershell', 'posh', 'ps1'), ('*.ps1',), ('text/x-powershell',)),
+    'PowerShellLexer': ('pygments.lexers.shell', 'PowerShell', ('powershell', 'posh', 'ps1', 'psm1'), ('*.ps1','*.psm1'), ('text/x-powershell',)),
     'PrologLexer': ('pygments.lexers.compiled', 'Prolog', ('prolog',), ('*.prolog', '*.pro', '*.pl'), ('text/x-prolog',)),
     'PropertiesLexer': ('pygments.lexers.text', 'Properties', ('properties',), ('*.properties',), ('text/x-java-properties',)),
     'ProtoBufLexer': ('pygments.lexers.other', 'Protocol Buffer', ('protobuf',), ('*.proto',), ()),
