@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, \
-     LexerContext, include, combined, do_insertions, bygroups, using
+     LexerContext, include, combined, do_insertions, bygroups, using, this
 from pygments.token import Error, Text, Other, \
      Comment, Operator, Keyword, Name, String, Number, Generic, Punctuation
 from pygments.util import get_bool_opt, get_list_opt, shebang_matches
@@ -2154,6 +2154,12 @@ class Perl6Lexer(ExtendedRegexLexer):
             if context.perl6_token_nesting_level == 0:
                 stack.pop()
 
+    def embedded_perl6_callback(lexer, match, context):
+        context.perl6_token_nesting_level = 1
+        yield match.start(), Text, context.text[match.start() : match.end()]
+        context.pos = match.end()
+        context.stack.append('root')
+
     # If you're modifying these rules, be careful if you need to process '{' or '}' characters.
     # We have special logic for processing these characters (due to the fact that you can nest
     # Perl 6 code in regex blocks), so if you need to process one of them, make sure you also
@@ -2212,8 +2218,18 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS.keys()) + '])(?P=first_char)*)', brackets_callback(Name), ('#pop', 'pre-token')),
             (r'', Name, ('#pop', 'pre-token')),
         ],
-        # the tokens state rules are defined after the class body, for reasons
-        # explained below.
+        'token': [
+            (r'}', Text, '#pop'),
+            (r'(?<=:)(?:my|our|state|constant|temp|let).*?;', using(this)),
+            # make sure that quotes in character classes aren't treated as strings
+            (r'<(?:[-!?+.]\s*)?\[.*?\]>', String.Regex),
+            # make sure that '#' characters in quotes aren't treated as comments
+            (r"(?<!\\)'(\\\\|\\[^\\]|[^'\\])*'", String.Regex),
+            (r'(?<!\\)"(\\\\|\\[^\\]|[^"\\])*"', String.Regex),
+            (r'#.*?$', Comment.Singleline),
+            (r'\{', embedded_perl6_callback),
+            ('.+?', String.Regex),
+        ],
     }
 
     def analyse_text(text):
@@ -2259,24 +2275,3 @@ class Perl6Lexer(ExtendedRegexLexer):
     def __init__(self, **options):
         super(Perl6Lexer, self).__init__(**options)
         self.encoding = options.get('encoding', 'utf-8')
-
-def embedded_perl6_callback(lexer, match, context):
-    context.perl6_token_nesting_level = 1
-    yield match.start(), Text, context.text[match.start() : match.end()]
-    context.pos = match.end()
-    context.stack.append('root')
-
-# we have to define these here because we have to be able to refer to
-# the Perl6Lexer class
-Perl6Lexer.tokens['token'] = [
-    (r'}', Text, '#pop'),
-    (r'(?<=:)(?:my|our|state|constant|temp|let).*?;', using(Perl6Lexer)),
-    # make sure that quotes in character classes aren't treated as strings
-    (r'<(?:[-!?+.]\s*)?\[.*?\]>', String.Regex),
-    # make sure that '#' characters in quotes aren't treated as comments
-    (r"(?<!\\)'(\\\\|\\[^\\]|[^'\\])*'", String.Regex),
-    (r'(?<!\\)"(\\\\|\\[^\\]|[^"\\])*"', String.Regex),
-    (r'#.*?$', Comment.Singleline),
-    (r'\{', embedded_perl6_callback),
-    ('.+?', String.Regex),
-]
