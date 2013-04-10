@@ -1918,7 +1918,7 @@ class DgLexer(RegexLexer):
 
 class Perl6Lexer(ExtendedRegexLexer):
     """
-    For `Perl 6 <http://www.perl6.org>` source code.
+    For `Perl 6 <http://www.perl6.org>`_ source code.
     """
 
     PERL6_IDENTIFIER_CHARS = "-'a-zA-Z0-9_:"
