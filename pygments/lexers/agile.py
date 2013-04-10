@@ -2210,7 +2210,7 @@ class Perl6Lexer(ExtendedRegexLexer):
         ],
         'token-sym-brackets' : [
             (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS.keys()) + '])(?P=first_char)*)', brackets_callback(Name), ('#pop', 'pre-token')),
-            (r'.', Name, ('#pop', 'pre-token')),
+            (r'', Name, ('#pop', 'pre-token')),
         ],
         # the tokens state rules are defined after the class body, for reasons
         # explained below.
