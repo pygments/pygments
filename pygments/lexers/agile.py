@@ -2174,10 +2174,10 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( _build_word_match(PERL6_BUILTINS, PERL6_IDENTIFIER_RANGE), Name.Builtin),
             # copied from PerlLexer
             ( r'[$@%&][.^:?=!~]?' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable ),
-            ( r'[$][!/](?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable.Global ),
-            ( r'::[?]\w+', Name.Variable.Global ),
-            ( r'[$@%&][*]' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable.Global ),
-            ( r'[$](?:<.*?>)+', Name.Variable ),
+            ( r'\$[!/](?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable.Global ),
+            ( r'::\?\w+', Name.Variable.Global ),
+            ( r'[$@%&]\*' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable.Global ),
+            ( r'\$(?:<.*?>)+', Name.Variable ),
             ( r'(?:q|qq|Q)[a-zA-Z]?\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])(?P=first_char)*)', brackets_callback(String) ),
             # copied from PerlLexer
             ( r'0_?[0-7]+(_[0-7]+)*', Number.Oct ),
@@ -2188,7 +2188,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'\d+(_\d+)*', Number.Integer ),
             ( r'(?<=~~)\s*/(?:\\\\|\\/|.)*?/', String.Regex ),
             ( r'(?<=[=(,])\s*/(?:\\\\|\\/|.)*?/', String.Regex ),
-            ( r'm\w+(?=[(])', Name ),
+            ( r'm\w+(?=\()', Name ),
             ( r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])(?P=first_char)*)', brackets_callback(String.Regex) ),
             ( r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/', String.Regex ),
             ( r'<[^\s=].*?\S>', String ),
@@ -2199,13 +2199,13 @@ class Perl6Lexer(ExtendedRegexLexer):
         ],
         'root' : [
             include('common'),
-            ( r'[{]', opening_brace_callback ),
-            ( r'[}]', closing_brace_callback ),
+            ( r'\{', opening_brace_callback ),
+            ( r'\}', closing_brace_callback ),
             ( r'.+?', Text ),
         ],
         'pre-token' : [
             include('common'),
-            ( r'[{]', Text, ( '#pop', 'token' ) ),
+            ( r'\{', Text, ( '#pop', 'token' ) ),
             ( r'.+?', Text ),
         ],
         'token-sym-brackets' : [
@@ -2240,9 +2240,9 @@ class Perl6Lexer(ExtendedRegexLexer):
 
         if 'use v6' in text:
             return 0.91 # 0.01 greater than Perl says for 'my $'
-        if re.search(r'[$@%][*][A-Z]+', text): # Perl 6-style globals ($*OS)
+        if re.search(r'[$@%]\*[A-Z]+', text): # Perl 6-style globals ($*OS)
             return 0.91
-        if re.search(r'[$@%][?][A-Z]+', text): # Perl 6 compiler variables ($?PACKAGE)
+        if re.search(r'[$@%]\?[A-Z]+', text): # Perl 6 compiler variables ($?PACKAGE)
             return 0.91
         if re.search(r'[$@%][!.][A-Za-z0-9_-]+', text): # Perl 6 member variables
             return 0.91
@@ -2277,6 +2277,6 @@ Perl6Lexer.tokens['token'] = [
     ( r"(?<!\\)'(\\\\|\\[^\\]|[^'\\])*'", String.Regex ),
     ( r'(?<!\\)"(\\\\|\\[^\\]|[^"\\])*"', String.Regex ),
     ( r'#.*?$', Comment.Singleline ),
-    ( r'[{]', embedded_perl6_callback ),
+    ( r'\{', embedded_perl6_callback ),
     ( '.+?', String.Regex ),
 ]
