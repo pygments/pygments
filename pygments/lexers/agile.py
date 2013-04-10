@@ -1921,6 +1921,13 @@ class Perl6Lexer(ExtendedRegexLexer):
     For `Perl 6 <http://www.perl6.org>`_ source code.
     """
 
+    name      = 'Perl6'
+    aliases   = ['perl6', 'pl6']
+    filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
+                 '*.6pm', '*.p6m', '*.pm6']
+    mimetypes = ['text/x-perl6', 'application/x-perl6']
+    flags     = re.MULTILINE | re.DOTALL | re.UNICODE
+
     PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]"
 
     def _build_word_match(words, boundary_regex_fragment = None, prefix = '', suffix = ''):
@@ -2068,13 +2075,6 @@ class Perl6Lexer(ExtendedRegexLexer):
         u'\ufe5b' : u'\ufe5c', u'\ufe5d' : u'\ufe5e', u'\uff08' : u'\uff09', u'\uff1c' : u'\uff1e',
         u'\uff3b' : u'\uff3d', u'\uff5b' : u'\uff5d', u'\uff5f' : u'\uff60', u'\uff62' : u'\uff63',
     }
-
-    name      = 'Perl6'
-    aliases   = ['perl6', 'pl6']
-    filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
-                 '*.6pm', '*.p6m', '*.pm6']
-    mimetypes = ['text/x-perl6', 'application/x-perl6']
-    flags     = re.MULTILINE | re.DOTALL | re.UNICODE
 
     def brackets_callback(token_class):
         def callback(lexer, match, context):
