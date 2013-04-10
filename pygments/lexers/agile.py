@@ -1930,13 +1930,6 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]"
 
-    def _build_word_match(words, boundary_regex_fragment = None, prefix = '', suffix = ''):
-        if boundary_regex_fragment is None:
-            return r'\b(' + prefix + r'|'.join(words) + suffix + r')\b'
-        else:
-            return r'(?<!' + boundary_regex_fragment + ')' + prefix + '(' + \
-                r'|'.join(words) + r')' + suffix + '(?!' + boundary_regex_fragment + ')'
-
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
         'KEEP', 'LAST', 'LEAVE', 'NEXT', 'POST', 'PRE', 'START', 'TEMP',
@@ -2075,6 +2068,13 @@ class Perl6Lexer(ExtendedRegexLexer):
         u'\ufe5b' : u'\ufe5c', u'\ufe5d' : u'\ufe5e', u'\uff08' : u'\uff09', u'\uff1c' : u'\uff1e',
         u'\uff3b' : u'\uff3d', u'\uff5b' : u'\uff5d', u'\uff5f' : u'\uff60', u'\uff62' : u'\uff63',
     }
+
+    def _build_word_match(words, boundary_regex_fragment = None, prefix = '', suffix = ''):
+        if boundary_regex_fragment is None:
+            return r'\b(' + prefix + r'|'.join(words) + suffix + r')\b'
+        else:
+            return r'(?<!' + boundary_regex_fragment + ')' + prefix + '(' + \
+                r'|'.join(words) + r')' + suffix + '(?!' + boundary_regex_fragment + ')'
 
     def brackets_callback(token_class):
         def callback(lexer, match, context):
