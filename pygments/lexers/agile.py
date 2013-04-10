@@ -2168,7 +2168,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'(regex|token|rule)(\s*' + PERL6_IDENTIFIER_RANGE + '+:sym)', bygroups(Keyword, Name), 'token-sym-brackets' ),
             ( r'(regex|token|rule)(?!' + PERL6_IDENTIFIER_RANGE + ')(\s*' + PERL6_IDENTIFIER_RANGE + '+)?', bygroups(Keyword, Name), 'pre-token' ),
             # deal with a special case in the Perl 6 grammar (role q { ... })
-            ( r'(role)(\s*)(q)(\s*)', bygroups(Keyword, Text, Name, Text) ),
+            ( r'(role)(\s+)(q)(\s*)', bygroups(Keyword, Text, Name, Text) ),
             ( _build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_RANGE), Keyword ),
             ( _build_word_match(PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_RANGE, suffix = '(?::[UD])?'), Name.Builtin ),
             ( _build_word_match(PERL6_BUILTINS, PERL6_IDENTIFIER_RANGE), Name.Builtin),

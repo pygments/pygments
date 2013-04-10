@@ -248,3 +248,5 @@ my $regex = m«< some chars »;
 # after
 
 say $/<foo><bar>;
+
+roleq;
