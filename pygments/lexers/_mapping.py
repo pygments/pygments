@@ -123,6 +123,8 @@ LEXERS = {
     'GroffLexer': ('pygments.lexers.text', 'Groff', ('groff', 'nroff', 'man'), ('*.[1234567]', '*.man'), ('application/x-troff', 'text/troff')),
     'GroovyLexer': ('pygments.lexers.jvm', 'Groovy', ('groovy',), ('*.groovy',), ('text/x-groovy',)),
     'HamlLexer': ('pygments.lexers.web', 'Haml', ('haml', 'HAML'), ('*.haml',), ('text/x-haml',)),
+    'HandlebarsHtmlLexer': ('pygments.lexers.templates', 'HTML+Handlebars', ('html+handlebars',), ('*.handlebars', '*.hbs'), ('text/html+handlebars', 'text/x-handlebars-template')),
+    'HandlebarsLexer': ('pygments.lexers.templates', 'Handlebars', ('handlebars',), (), ()),
     'HaskellLexer': ('pygments.lexers.functional', 'Haskell', ('haskell', 'hs'), ('*.hs',), ('text/x-haskell',)),
     'HaxeLexer': ('pygments.lexers.web', 'haXe', ('hx', 'haXe'), ('*.hx',), ('text/haxe',)),
     'HtmlDjangoLexer': ('pygments.lexers.templates', 'HTML+Django/Jinja', ('html+django', 'html+jinja'), (), ('text/html+django', 'text/html+jinja')),
