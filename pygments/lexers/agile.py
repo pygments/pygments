@@ -2071,10 +2071,10 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     def _build_word_match(words, boundary_regex_fragment = None, prefix = '', suffix = ''):
         if boundary_regex_fragment is None:
-            return r'\b(' + prefix + r'|'.join(words) + suffix + r')\b'
+            return r'\b(' + prefix + r'|'.join([ re.escape(x) for x in words]) + suffix + r')\b'
         else:
             return r'(?<!' + boundary_regex_fragment + ')' + prefix + '(' + \
-                r'|'.join(words) + r')' + suffix + '(?!' + boundary_regex_fragment + ')'
+                r'|'.join([ re.escape(x) for x in words]) + r')' + suffix + '(?!' + boundary_regex_fragment + ')'
 
     def brackets_callback(token_class):
         def callback(lexer, match, context):
@@ -2192,7 +2192,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             ( r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])(?P=first_char)*)', brackets_callback(String.Regex) ),
             ( r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/', String.Regex ),
             ( r'<[^\s=].*?\S>', String ),
-            ( _build_word_match([ re.escape(x) for x in PERL6_OPERATORS]), Operator ),
+            ( _build_word_match(PERL6_OPERATORS), Operator ),
             ( r'[0-9a-zA-Z_]' + PERL6_IDENTIFIER_RANGE + '*', Name ),
             ( r"'(\\\\|\\[^\\]|[^'\\])*'", String ),
             ( r'"(\\\\|\\[^\\]|[^"\\])*"', String ),
