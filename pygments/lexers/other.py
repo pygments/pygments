@@ -1400,8 +1400,6 @@ class RebolLexer(RegexLexer):
             (r';.*\n', Comment),
             (r'%"', Name.Decorator, 'stringFile'),
             (r'%[^(\^{^")\s\[\]]+', Name.Decorator),
-            (r'<[a-zA-Z0-9:._-]*>', Name.Tag),
-            (r'<[^(<>\s")]+', Name.Tag, 'tag'),
             (r'[+-]?([a-zA-Z]{1,3})?\$\d+(\.\d+)?', Number.Float), # money
             (r'[+-]?\d+\:\d+(\:\d+)?(\.\d+)?', String.Other), # time
             (r'\d+\-[0-9a-zA-Z]+\-\d+(\/\d+\:\d+(\:\d+)?'
@@ -1418,6 +1416,8 @@ class RebolLexer(RegexLexer):
             (r'comment\s', Comment, 'comment'),
             (r'/[^(\^{^")\s/[\]]*', Name.Attribute),
             (r'([^(\^{^")\s/[\]]+)(?=[:({"\s/\[\]])', word_callback),
+            (r'<[a-zA-Z0-9:._-]*>', Name.Tag),
+            (r'<[^(<>\s")]+', Name.Tag, 'tag'),
             (r'([^(\^{^")\s]+)', Text),
         ],
         'string': [
