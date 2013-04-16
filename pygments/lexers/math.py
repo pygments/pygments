@@ -15,7 +15,7 @@ from pygments.util import shebang_matches
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
     combined, do_insertions
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
-    Operator, Number, Text, Generic, Error
+    Operator, Number, Text, Generic
 
 from pygments.lexers.agile import PythonLexer
 from pygments.lexers import _scilab_builtins
@@ -1302,9 +1302,9 @@ class JagsLexer(RegexLexer):
 class StanLexer(RegexLexer):
     """Pygments Lexer for Stan models. 
 
-    The Stan modeling language is specified in the *Stan 1.1.1
+    The Stan modeling language is specified in the *Stan 1.3.0
     Modeling Language Manual* `pdf
-    <http://code.google.com/p/stan/downloads/detail?name=stan-reference-1.1.1.pdf>`_.
+    <http://code.google.com/p/stan/downloads/detail?name=stan-reference-1.3.0.pdf>`_.
 
     *New in Pygments 1.6.*
     """
@@ -1312,12 +1312,6 @@ class StanLexer(RegexLexer):
     name = 'Stan'
     aliases = ['stan']
     filenames = ['*.stan']
-
-    _KEYWORDS = ('for', 'in', 'while', 'if', 'else', 'print',
-                 'T', 'lower', 'upper')
-            
-    _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
-              'matrix', 'corr_matrix', 'cov_matrix', 'positive_ordered')
 
     tokens = {
         'whitespace' : [
@@ -1342,11 +1336,11 @@ class StanLexer(RegexLexer):
                         'model', r'generated\s+quantities')),
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
-            (r'(%s)\b' % r'|'.join(_KEYWORDS), Keyword),
+            (r'(%s)\b' % r'|'.join(_stan_builtins.KEYWORDS), Keyword),
             # Truncation
             (r'T(?=\s*\[)', Keyword),
             # Data types
-            (r'(%s)\b' % r'|'.join(_TYPES), Keyword.Type),
+            (r'(%s)\b' % r'|'.join(_stan_builtins.TYPES), Keyword.Type),
             # Punctuation
             (r"[;:,\[\]()]", Punctuation),
             # Builtin
@@ -1354,11 +1348,9 @@ class StanLexer(RegexLexer):
              % r'|'.join(_stan_builtins.FUNCTIONS
                          + _stan_builtins.DISTRIBUTIONS),
              Name.Builtin),
-            (r'(%s)(?=\s*\()'
-             % r'|'.join(_stan_builtins.CONSTANTS), Keyword.Constant),
             # Special names ending in __, like lp__
             (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
-            ('%s\b' % r'|'.join(_stan_builtins.CPP_RESERVED), Keyword.Reserved),
+            ('(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
             # Regular variable names
             (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
             # Real Literals
