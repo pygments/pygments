@@ -1350,7 +1350,7 @@ class StanLexer(RegexLexer):
              Name.Builtin),
             # Special names ending in __, like lp__
             (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
-            ('(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
+            (r'(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
             # Regular variable names
             (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
             # Real Literals
