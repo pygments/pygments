@@ -83,6 +83,58 @@ If no rule matches at the current position, the current char is emitted as an
 1.
 
 
+Adding and testing a new lexer
+==============================
+
+To make pygments aware of your new lexer, you have to perform the following
+steps:
+
+First, change to the current directory containing the pygments source code:
+
+.. sourcecode:: console
+
+    $ cd .../pygments-main
+
+Next, make sure the lexer is known from outside of the module. All modules in
+the ``pygments.lexers`` specify ``__all__``. For example, ``other.py`` sets:
+
+.. sourcecode:: python
+
+    __all__ = ['BrainfuckLexer', 'BefungeLexer', ...]
+
+Simply add the name of your lexer class to this list.
+
+Finally the lexer can be made publically known by rebuilding the lexer
+mapping:
+
+.. sourcecode:: console
+
+    $ make mapfiles
+
+To test the new lexer, store an example file with the proper extension in
+``tests/examplefiles``. For example, to test your ``DiffLexer``, add a
+``tests/examplefiles/example.diff`` containing a sample diff output.
+
+Now you can use pygmentize to render your example to HTML:
+
+.. sourcecode:: console
+
+    $ ./pygmentize -O full -f html -o /tmp/example.html tests/examplefiles/example.diff
+
+Note that this explicitely calls the ``pygmentize`` in the current directory
+by preceding it with ``./``. This ensures your modifications are used.
+Otherwise a possibly already installed, unmodified version without your new
+lexer would have been called from the system search path (``$PATH``).
+
+To view the result, open ``/tmp/example.html`` in your browser.
+
+Once the example renders as expected, you should run the complete test suite:
+
+.. sourcecode:: console
+
+    $ make test
+
+
 Regex Flags
 ===========
 
