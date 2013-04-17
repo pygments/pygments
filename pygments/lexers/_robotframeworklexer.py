@@ -163,7 +163,7 @@ class RowSplitter(object):
     def split(self, row):
         splitter = (row.startswith('| ') and self._split_from_pipes
                     or self._split_from_spaces)
-        for value in splitter(row.rstrip()):
+        for value in splitter(row):
             yield value
         yield '\n'
 
