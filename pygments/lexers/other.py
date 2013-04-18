@@ -4369,5 +4369,5 @@ class RexxLexer(RegexLexer):
             if regexToCountMap[RexxLexer._IF_THEN_DO_REGEX] > 0:
                 result += 0.1
             result = min(result, 1.0)
-        assert 0.0 <= result <= result
+        assert 0.0 <= result <= 1.0
         return result
