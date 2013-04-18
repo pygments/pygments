@@ -3685,24 +3685,31 @@ class EasytrieveLexer(RegexLexer):
     mimetypes = ['text/x-easytrieve']
     flags = 0
 
+    # Note: We cannot use r'\b' at the start and end of keywords because
+    # Easytrieve Plus delimiter characters are:
+    #
+    #   * space ( )
+    #   * apostrophe (')
+    #   * period (.)
+    #   * comma (,)
+    #   * paranthesis ( and )
+    #   * colon (:)
+    #
+    # Additionally words end once a '*' appears, indicatins a comment.
+    _DELIMITERS = r' \'.,():\n'
+    _DELIMITERS_OR_COMENT = _DELIMITERS + '*'
+    _DELIMITER_PATTERN = '[' + _DELIMITERS + ']'
+    _NON_DELIMITER_OR_COMMENT_PATTERN = '[^' + _DELIMITERS_OR_COMENT + ']'
+
     tokens = {
-        # Note: We cannot use r'\b' at the start and end of keywords because
-        # Easytrieve Plus delimiter characters are:
-        #
-        #   * space ( )
-        #   * apostrophe (')
-        #   * period (.)
-        #   * comma (,)
-        #   * paranthesis ( and )
-        #   * colon (:)
         'root': [
             (r'\*.*\n', Comment.Single),
             (r'\n+', Whitespace),
             # Macro argument
-            (r'&[^ *\'.,():\n]+\.', Name.Variable, 'after_macro_argument'),
+            (r'&' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+\.', Name.Variable, 'after_macro_argument'),
             # Macro call
-            (r'%[^ *\'.,():\n]+', Name.Variable),
-            (r'(FILE|JOB|PARM|PROC|REPORT)([ \'.,():\n])',
+            (r'%' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Variable),
+            (r'(FILE|JOB|PARM|PROC|REPORT)(' + _DELIMITER_PATTERN + r')',
              bygroups(Keyword.Declaration, Operator)),
             (r'(AFTER-BREAK|AFTER-LINE|AFTER-SCREEN|AIM|AND|ATTR|BEFORE|'
              r'BEFORE-BREAK|BEFORE-LINE|BEFORE-SCREEN|BUSHU|BY|CALL|CASE|'
@@ -3728,7 +3735,8 @@ class EasytrieveLexer(RegexLexer):
              r'SYSDATE|SYSDATE-LONG|SYSIN|SYSIPT|SYSLST|SYSPRINT|SYSSNAP|'
              r'SYSTIME|TALLY|TERM-COLUMNS|TERM-NAME|TERM-ROWS|TERMINATION|'
              r'TITLE|TO|TRANSFER|TRC|UNIQUE|UNTIL|UPDATE|UPPERCASE|USER|'
-             r'USERID|VALUE|VERIFY|W|WHEN|WHILE|WORK|WRITE|X|XDM|XRST)([ \'.,():\n])',
+             r'USERID|VALUE|VERIFY|W|WHEN|WHILE|WORK|WRITE|X|XDM|XRST)'
+             r'(' + _DELIMITER_PATTERN + r')',
              bygroups(Keyword.Reserved, Operator)),
             (r'[\[\](){}<>;,]', Punctuation),
             (ur'[-+/=&%¬]', Operator),
@@ -3737,7 +3745,7 @@ class EasytrieveLexer(RegexLexer):
             (r"'(''|[^'])*'", String),
             (r'\.', Operator),
             (r'\s+', Whitespace),
-            (r'[^ \'.,():\n]+', Name)  # Everything else just belongs to a name
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
          ],
         'after_macro_argument': [
             (r'\*.*\n', Comment.Single, 'root'),
@@ -3745,7 +3753,7 @@ class EasytrieveLexer(RegexLexer):
             (r'[\[\](){}<>;,]', Punctuation, 'root'),
             (ur'[.+/=&%¬]', Operator, 'root'),
             (r"'(''|[^'])*'", String, 'root'),
-            (r'[^ \'.,():\n]+', Name)  # Everything else just belongs to a name
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
         ],
     }
 
