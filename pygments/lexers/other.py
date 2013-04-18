@@ -3677,7 +3677,7 @@ class EasytrieveLexer(RegexLexer):
     It is mainly used on mainframe platforms and can access several of the
     mainframe's native file formats. It is somewhat comparable to awk.
 
-    *New in Pygments 1.x.*
+    *New in Pygments 1.7.*
     """
     name = 'Easytrieve'
     aliases = ['easytrieve']
@@ -3839,7 +3839,7 @@ class JclLexer(RegexLexer):
     on how to run a batch job or start a  subsystem. It is somewhat
     comparable to MS DOS batch and Unix shell scripts.
 
-    *New in Pygments 1.x.*
+    *New in Pygments 1.7.*
     """
     name = 'JCL'
     aliases = ['jcl']
@@ -3921,7 +3921,7 @@ class WebFocusLexer(RegexLexer):
     describe, query and modify data from various sources including mainframe
     platforms. It also includes FIDEL, a language to describe input forms.
 
-    *New in Pygments 1.x.*
+    *New in Pygments 1.7.*
     """
     name = 'WebFOCUS'
     aliases = ['webfocus', 'FOCUS', 'focus']
@@ -4098,7 +4098,7 @@ class FocusMasterLexer(RegexLexer):
     FOCUS master files describes files and tables to be queried by FOCUS
     programs. The are somewhat comparable to SQL ``create table`` statements.
 
-    *New in Pygments 1.x.*
+    *New in Pygments 1.7.*
     """
     name = 'FOCUS master'
     aliases = ['focus-master']
@@ -4168,7 +4168,7 @@ class FocusAccessLexer(FocusMasterLexer):
     FOCUS access files associate segments in FOCUS master files with actual
     tables containing data.
 
-    *New in Pygments 1.x.*
+    *New in Pygments 1.7.*
     """
     name = 'FOCUS access'
     aliases = ['focus-access']
@@ -4198,7 +4198,7 @@ class FocusStyleSheetLexer(FocusMasterLexer):
     """
     Style sheet to format reports written in FOCUS.
 
-    *New in Pygments 1.x.*
+    *New in Pygments 1.7.*
     """
     name = 'FOCUS style sheet'
     aliases = ['focus-style']
@@ -4241,7 +4241,7 @@ class RexxLexer(RegexLexer):
     systems. It is popular for I/O- and data based tasks and can act as glue
     language to bind different applications together.
 
-    *New in Pygments 1.x.*
+    *New in Pygments 1.7.*
     """
     name = 'REXX'
     aliases = ['rexx', 'ARexx', 'arexx']
