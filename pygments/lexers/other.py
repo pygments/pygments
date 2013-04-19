@@ -3668,7 +3668,7 @@ class AutoItLexer(RegexLexer):
 
 class PanLexer(RegexLexer):
     """
-    Lexer for pan source files.
+    Lexer for `pan <http://github.com/quattor/pan/>`_ source files.
 
     Based on tcsh lexer.
     """
