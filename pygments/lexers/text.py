@@ -1709,12 +1709,12 @@ class HttpLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE)( +)([^ ]+)( +)'
-             r'(HTTPS?)(/)(1\.[01])(\r?\n|$)',
+            (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE|PATCH)( +)([^ ]+)( +)'
+             r'(HTTP)(/)(1\.[01])(\r?\n|$)',
              bygroups(Name.Function, Text, Name.Namespace, Text,
                       Keyword.Reserved, Operator, Number, Text),
              'headers'),
-            (r'(HTTPS?)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|$)',
+            (r'(HTTP)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|$)',
              bygroups(Keyword.Reserved, Operator, Number, Text, Number,
                       Text, Name.Exception, Text),
              'headers'),
