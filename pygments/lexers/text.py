@@ -1853,20 +1853,6 @@ class EbnfLexer(RegexLexer):
     filenames = ['*.ebnf']
     mimetypes = ['text/x-ebnf']
 
-    """
-syn match ebnfMetaIdentifier /[A-Za-z]/ skipwhite skipempty nextgroup=ebnfSeperator
-
-syn match ebnfSeperator "=" contained nextgroup=ebnfProduction skipwhite skipempty
-
-syn region ebnfProduction start=/\zs[^\.;]/ end=/[\.;]/me=e-1 contained contains=ebnfSpecial,ebnfDelimiter,ebnfTerminal,ebnfSpecialSequence,ebnfComment nextgroup=ebnfEndProduction skipwhite skipempty
-syn match ebnfDelimiter #[,(|)\]}\[{/!]\|\(\*)\)\|\((\*\)\|\(/)\)\|\(:)\)\|\((/\)\|\((:\)# contained
-syn match ebnfSpecial /[\-\*]/ contained
-syn region ebnfSpecialSequence matchgroup=Delimiter start=/?/ end=/?/ contained
-syn match ebnfEndProduction /[\.;]/ contained
-syn region ebnfTerminal matchgroup=delimiter start=/"/ end=/"/ contained
-syn region ebnfTerminal matchgroup=delimiter start=/'/ end=/'/ contained
-syn region ebnfComment start="(\*" end="\*)"
-    """
     tokens = {
         'root': [
             include('whitespace'),
