@@ -25,7 +25,7 @@ __all__ = ['IniLexer', 'PropertiesLexer', 'SourcesListLexer', 'BaseMakefileLexer
            'RstLexer', 'VimLexer', 'GettextLexer', 'SquidConfLexer',
            'DebianControlLexer', 'DarcsPatchLexer', 'YamlLexer',
            'LighttpdConfLexer', 'NginxConfLexer', 'CMakeLexer', 'HttpLexer',
-           'PyPyLogLexer', 'RegeditLexer', 'HxmlLexer']
+           'PyPyLogLexer', 'RegeditLexer', 'HxmlLexer', 'EbnfLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1840,4 +1840,75 @@ class HxmlLexer(RegexLexer):
             # Single line comment, multiline ones are not allowed.
             (r'#.*', Comment.Single)
         ]
+    }
+
+
+class EbnfLexer(RegexLexer):
+    """
+    Lexer for ISO/IEC 14977 EBNF grammars.
+    """
+
+    name = 'EBNF'
+    aliases = ['ebnf']
+    filenames = ['*.ebnf']
+    mimetypes = ['text/x-ebnf']
+
+    """
+syn match ebnfMetaIdentifier /[A-Za-z]/ skipwhite skipempty nextgroup=ebnfSeperator
+
+syn match ebnfSeperator "=" contained nextgroup=ebnfProduction skipwhite skipempty
+
+syn region ebnfProduction start=/\zs[^\.;]/ end=/[\.;]/me=e-1 contained contains=ebnfSpecial,ebnfDelimiter,ebnfTerminal,ebnfSpecialSequence,ebnfComment nextgroup=ebnfEndProduction skipwhite skipempty
+syn match ebnfDelimiter #[,(|)\]}\[{/!]\|\(\*)\)\|\((\*\)\|\(/)\)\|\(:)\)\|\((/\)\|\((:\)# contained
+syn match ebnfSpecial /[\-\*]/ contained
+syn region ebnfSpecialSequence matchgroup=Delimiter start=/?/ end=/?/ contained
+syn match ebnfEndProduction /[\.;]/ contained
+syn region ebnfTerminal matchgroup=delimiter start=/"/ end=/"/ contained
+syn region ebnfTerminal matchgroup=delimiter start=/'/ end=/'/ contained
+syn region ebnfComment start="(\*" end="\*)"
+    """
+    tokens = {
+        'root': [
+            include('whitespace'),
+            include('comment_start'),
+            include('identifier'),
+            (r'=', Operator, 'production'),
+        ],
+        'production': [
+            include('whitespace'),
+            include('comment_start'),
+            include('identifier'),
+            include('strings'),
+            (r'(\?[^?]*\?)', Name.Entity),
+            (r'[\[\]{}(),|]', Punctuation),
+            (r'-', Operator),
+            (r';', Punctuation, '#pop'),
+        ],
+        'whitespace': [
+            (r'\s+', Text),
+          ],
+        'comment_start': [
+            (r'\(\*', Comment.Multiline, 'comment'),
+          ],
+        'comment': [
+          (r'[^*)]', Comment.Multiline),
+          include('comment_start'),
+          (r'\*\)', Comment.Multiline, '#pop'),
+          (r'[*)]', Comment.Multiline),
+          ],
+        'identifier': [
+            (r'([a-zA-Z][a-zA-Z0-9 \-]*)', Keyword),
+          ],
+        'strings': [
+          (r'"', String.Double, 'dq_string'),
+          (r"'", String.Single, 'sq_string'),
+          ],
+        'dq_string': [
+          (r'[^"]', String.Double),
+          (r'"', String.Double, '#pop'),
+          ],
+        'sq_string': [
+          (r"[^']", String.Single),
+          (r"'", String.Single, '#pop'),
+          ],
     }

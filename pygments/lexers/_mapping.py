@@ -94,6 +94,7 @@ LEXERS = {
     'DylanLidLexer': ('pygments.lexers.compiled', 'DylanLID', ('dylan-lid', 'lid'), ('*.lid', '*.hdp'), ('text/x-dylan-lid',)),
     'ECLLexer': ('pygments.lexers.other', 'ECL', ('ecl',), ('*.ecl',), ('application/x-ecl',)),
     'ECLexer': ('pygments.lexers.compiled', 'eC', ('ec',), ('*.ec', '*.eh'), ('text/x-echdr', 'text/x-ecsrc')),
+    'EbnfLexer': ('pygments.lexers.text', 'EBNF', ('ebnf',), ('*.ebnf',), ('text/x-ebnf',)),
     'ElixirConsoleLexer': ('pygments.lexers.functional', 'Elixir iex session', ('iex',), (), ('text/x-elixir-shellsession',)),
     'ElixirLexer': ('pygments.lexers.functional', 'Elixir', ('elixir', 'ex', 'exs'), ('*.ex', '*.exs'), ('text/x-elixir',)),
     'ErbLexer': ('pygments.lexers.templates', 'ERB', ('erb',), (), ('application/x-ruby-templating',)),
