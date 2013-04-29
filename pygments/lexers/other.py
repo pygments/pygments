@@ -2839,8 +2839,8 @@ class BroLexer(RegexLexer):
             (r'\\\n', Text),
             # Keywords
             (r'(add|alarm|break|case|const|continue|delete|do|else|enum|event'
-             r'|export|for|function|if|global|local|module|next'
-             r'|of|print|redef|return|schedule|type|when|while)\b', Keyword),
+             r'|export|for|function|if|global|hook|local|module|next'
+             r'|of|print|redef|return|schedule|switch|type|when|while)\b', Keyword),
             (r'(addr|any|bool|count|counter|double|file|int|interval|net'
              r'|pattern|port|record|set|string|subnet|table|time|timer'
              r'|vector)\b', Keyword.Type),
