@@ -40,6 +40,7 @@ LEXERS = {
     'BashSessionLexer': ('pygments.lexers.shell', 'Bash Session', ('console',), ('*.sh-session',), ('application/x-shell-session',)),
     'BatchLexer': ('pygments.lexers.shell', 'Batchfile', ('bat',), ('*.bat', '*.cmd'), ('application/x-dos-batch',)),
     'BefungeLexer': ('pygments.lexers.other', 'Befunge', ('befunge',), ('*.befunge',), ('application/x-befunge',)),
+    'BlitzBasicLexer': ('pygments.lexers.compiled', 'BlitzBasic', ('blitzbasic', 'b3d', 'bplus'), ('*.bb', '*.decls'), ('text/x-bb',)),
     'BlitzMaxLexer': ('pygments.lexers.compiled', 'BlitzMax', ('blitzmax', 'bmax'), ('*.bmx',), ('text/x-bmx',)),
     'BooLexer': ('pygments.lexers.dotnet', 'Boo', ('boo',), ('*.boo',), ('text/x-boo',)),
     'BrainfuckLexer': ('pygments.lexers.other', 'Brainfuck', ('brainfuck', 'bf'), ('*.bf', '*.b'), ('application/x-brainfuck',)),
