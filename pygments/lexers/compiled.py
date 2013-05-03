@@ -26,7 +26,7 @@ from pygments.lexers.jvm import JavaLexer, ScalaLexer
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'DylanLexer',
            'ObjectiveCLexer', 'ObjectiveCppLexer', 'FortranLexer', 'GLShaderLexer',
            'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
-           'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
+           'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer', 'BlitzBasicLexer',
            'NimrodLexer', 'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
            'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer']
@@ -2623,6 +2623,83 @@ class BlitzMaxLexer(RegexLexer):
              r'Goto|DefData|ReadData|RestoreData)\b', Keyword.Reserved),
             # Final resolve (for variable names and such)
             (r'(%s)' % (bmax_name), Name.Variable),
+        ],
+        'string': [
+            (r'""', String.Double),
+            (r'"C?', String.Double, '#pop'),
+            (r'[^"]+', String.Double),
+        ],
+    }
+
+
+class BlitzBasicLexer(RegexLexer):
+    """
+    For `BlitzBasic <http://blitzbasic.com>`_ source code.
+    """
+
+    name = 'BlitzBasic'
+    aliases = ['blitzbasic', 'b3d', 'bplus']
+    filenames = ['*.bb', '*.decls']
+    mimetypes = ['text/x-bb']
+
+    bb_vopwords = (r'\b(Shl|Shr|Sar|Mod|Or|And|Not|'
+	              'Abs|Sgn|Handle|Object|Int|Float|Str'
+				  'First|Last|Before|After)\b')
+    bb_sktypes = r'@{1,2}|[#$%]'
+    bb_name = r'[a-z][a-z0-9_]*'
+    bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)(\.)([ \t]*)(?:(%s)))') % \
+                (bb_name, bb_sktypes, bb_name)
+    bb_func = bb_var + r'?((?:[ \t])([(])'
+
+    flags = re.MULTILINE | re.IGNORECASE
+    tokens = {
+        'root': [
+            # Text
+            (r'[ \t]+', Text),
+            # Comments
+            (r";.*?\n", Comment.Single),
+            # Data types
+            ('"', String.Double, 'string'),
+            # Numbers
+            (r'[0-9]+\.[0-9]*(?!\.)', Number.Float),
+            (r'\.[0-9]*(?!\.)', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r'\$[0-9a-f]+', Number.Hex),
+            (r'\%[10]+', Number), # Binary
+            # Other
+            (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/~]))|[=<>^]))' %
+             (bb_vopwords), Operator),
+            (r'[(),.:\[\]\\]', Punctuation),
+            (r'(?:\.[\w \t]*)', Name.Label),
+            # Identifiers
+            (r'\b(New)\b([ \t]?)([(]?)(%s)' % (bb_name),
+             bygroups(Keyword.Reserved, Text, Punctuation, Name.Class)),
+            (bb_func, bygroups(Name.Function, Text, Keyword.Type,
+                               Operator, Text, Punctuation, Text,
+                               Keyword.Type, Name.Class, Text,
+                               Keyword.Type, Text, Punctuation)),
+            (bb_var, bygroups(Name.Variable, Text, Keyword.Type, Operator,
+                              Text, Punctuation, Text, Keyword.Type,
+                              Name.Class, Text, Keyword.Type)),
+            (r'\b(Type)([ \t]+)(%s)' % (bb_name),
+             bygroups(Keyword.Reserved, Text, Name.Class)),
+            # Keywords
+            (r'\b(Pi|True|False|Null)\b', Keyword.Constant),
+            (r'\b(Local|Global|Const|Field)\b', Keyword.Declaration),
+            (r'End|Return|Exit'
+             r'Chr|Len|Asc|'
+             r'New|Delete|Insert|'
+             r'Include|'
+             r'Function|'
+             r'Type|'
+             r'If|Then|Else|ElseIf|EndIf|'
+             r'For|To|Next|Step|Each|'
+             r'While|Wend|'
+             r'Repeat|Until|Forever|'
+             r'Select|Case|Default|'
+             r'Goto|Gosub|Data|Read|Restore)\b', Keyword.Reserved),
+            # Final resolve (for variable names and such)
+            (r'(%s)' % (bb_name), Name.Variable),
         ],
         'string': [
             (r'""', String.Double),
