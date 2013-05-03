@@ -2647,9 +2647,9 @@ class BlitzBasicLexer(RegexLexer):
 				  'First|Last|Before|After)\b')
     bb_sktypes = r'@{1,2}|[#$%]'
     bb_name = r'[a-z][a-z0-9_]*'
-    bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)(\.)([ \t]*)(?:(%s)))') % \
+    bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)([.])([ \t]*)(?:(%s)))') % \
                 (bb_name, bb_sktypes, bb_name)
-    bb_func = bb_var + r'?((?:[ \t])([(])'
+    bb_func = bb_var + r'?(?:[ \t]*)(\()'
 
     flags = re.MULTILINE | re.IGNORECASE
     tokens = {
@@ -2672,21 +2672,19 @@ class BlitzBasicLexer(RegexLexer):
             (r'[(),.:\[\]\\]', Punctuation),
             (r'(?:\.[\w \t]*)', Name.Label),
             # Identifiers
-            (r'\b(New)\b([ \t]?)([(]?)(%s)' % (bb_name),
-             bygroups(Keyword.Reserved, Text, Punctuation, Name.Class)),
-            (bb_func, bygroups(Name.Function, Text, Keyword.Type,
-                               Operator, Text, Punctuation, Text,
-                               Keyword.Type, Name.Class, Text,
-                               Keyword.Type, Text, Punctuation)),
-            (bb_var, bygroups(Name.Variable, Text, Keyword.Type, Operator,
-                              Text, Punctuation, Text, Keyword.Type,
-                              Name.Class, Text, Keyword.Type)),
+            (r'\b(New)\b([ \t]?)(%s)' % (bb_name),
+             bygroups(Keyword.Reserved, Text, Name.Class)),
+			(bb_func, bygroups(Name.Function, Text, Keyword.Type,
+                               Text, Punctuation, Text, Name.Class,
+							   Punctuation)),
+            (bb_var, bygroups(Name.Variable, Text, Keyword.Type,
+                              Text, Punctuation, Text, Name.Class)),
             (r'\b(Type)([ \t]+)(%s)' % (bb_name),
              bygroups(Keyword.Reserved, Text, Name.Class)),
             # Keywords
             (r'\b(Pi|True|False|Null)\b', Keyword.Constant),
             (r'\b(Local|Global|Const|Field)\b', Keyword.Declaration),
-            (r'End|Return|Exit'
+            (r'\b(End|Return|Exit'
              r'Chr|Len|Asc|'
              r'New|Delete|Insert|'
              r'Include|'
