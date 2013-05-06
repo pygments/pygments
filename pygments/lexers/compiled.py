@@ -2643,13 +2643,12 @@ class BlitzBasicLexer(RegexLexer):
     mimetypes = ['text/x-bb']
 
     bb_vopwords = (r'\b(Shl|Shr|Sar|Mod|Or|And|Not|'
-	              'Abs|Sgn|Handle|Object|Int|Float|Str'
-				  'First|Last|Before|After)\b')
+                   r'Abs|Sgn|Handle|Int|Float|Str|'
+                   r'First|Last|Before|After)\b')
     bb_sktypes = r'@{1,2}|[#$%]'
     bb_name = r'[a-z][a-z0-9_]*'
-    bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)([.])([ \t]*)(?:(%s)))') % \
+    bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)([.])([ \t]*)(?:(%s)))?') % \
                 (bb_name, bb_sktypes, bb_name)
-    bb_func = bb_var + r'?(?:[ \t]*)(\()'
 
     flags = re.MULTILINE | re.IGNORECASE
     tokens = {
@@ -2662,29 +2661,33 @@ class BlitzBasicLexer(RegexLexer):
             ('"', String.Double, 'string'),
             # Numbers
             (r'[0-9]+\.[0-9]*(?!\.)', Number.Float),
-            (r'\.[0-9]*(?!\.)', Number.Float),
+            (r'\.[0-9]+(?!\.)', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'\$[0-9a-f]+', Number.Hex),
             (r'\%[10]+', Number), # Binary
             # Other
-            (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/~]))|[=<>^]))' %
-             (bb_vopwords), Operator),
-            (r'[(),.:\[\]\\]', Punctuation),
-            (r'(?:\.[\w \t]*)', Name.Label),
+            (r'(?:%s|([+\-*/~=<>^]))' % (bb_vopwords), Operator),
+            (r'[(),:\[\]\\]', Punctuation),
+            (r'\.([ \t]*)(%s)' % bb_name, Name.Label),
             # Identifiers
-            (r'\b(New)\b([ \t]?)(%s)' % (bb_name),
+            (r'\b(New)\b([ \t]+)(%s)' % (bb_name),
              bygroups(Keyword.Reserved, Text, Name.Class)),
-			(bb_func, bygroups(Name.Function, Text, Keyword.Type,
-                               Text, Punctuation, Text, Name.Class,
-							   Punctuation)),
-            (bb_var, bygroups(Name.Variable, Text, Keyword.Type,
+            (r'\b(Gosub|Goto)\b([ \t]+)(%s)' % (bb_name),
+             bygroups(Keyword.Reserved, Text, Name.Label)),
+            (r'\b(Object)\b([ \t]*)([.])([ \t]*)(%s)\b' % (bb_name),
+             bygroups(Operator, Text, Punctuation, Text, Name.Class)),
+            (r'\b%s\b([ \t]*)(\()' % bb_var,
+             bygroups(Name.Function, Text, Keyword.Type,Text, Punctuation,
+                      Text, Name.Class, Text, Punctuation)),
+            (r'\b(Function)\b([ \t]+)%s' % bb_var,
+             bygroups(Keyword.Reserved, Text, Name.Function, Text, Keyword.Type,
                               Text, Punctuation, Text, Name.Class)),
             (r'\b(Type)([ \t]+)(%s)' % (bb_name),
              bygroups(Keyword.Reserved, Text, Name.Class)),
             # Keywords
             (r'\b(Pi|True|False|Null)\b', Keyword.Constant),
-            (r'\b(Local|Global|Const|Field)\b', Keyword.Declaration),
-            (r'\b(End|Return|Exit'
+            (r'\b(Local|Global|Const|Field|Dim)\b', Keyword.Declaration),
+            (r'\b(End|Return|Exit|'
              r'Chr|Len|Asc|'
              r'New|Delete|Insert|'
              r'Include|'
@@ -2697,7 +2700,9 @@ class BlitzBasicLexer(RegexLexer):
              r'Select|Case|Default|'
              r'Goto|Gosub|Data|Read|Restore)\b', Keyword.Reserved),
             # Final resolve (for variable names and such)
-            (r'(%s)' % (bb_name), Name.Variable),
+#            (r'(%s)' % (bb_name), Name.Variable),
+            (bb_var, bygroups(Name.Variable, Text, Keyword.Type,
+                              Text, Punctuation, Text, Name.Class)),
         ],
         'string': [
             (r'""', String.Double),
