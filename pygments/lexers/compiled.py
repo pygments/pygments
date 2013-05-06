@@ -291,7 +291,7 @@ class NesCLexer(CLexer):
 
 class ClayLexer(RegexLexer):
     """
-    For `Clay <http://claylabs.com/clay/>`_source.
+    For `Clay <http://claylabs.com/clay/>`_ source.
 
     *New in Pygments 1.7.*
     """
@@ -299,7 +299,6 @@ class ClayLexer(RegexLexer):
     filenames = ['*.clay']
     aliases = ['clay']
     mimetypes = ['text/x-clay']
-
     tokens = {
         'root': [
             (r'\s', Text),
