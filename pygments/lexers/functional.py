@@ -808,6 +808,8 @@ class CommonLispLexer(RegexLexer):
             (r'"(\\.|\\\n|[^"\\])*"', String),
             # quoting
             (r":" + symbol, String.Symbol),
+            (r"::" + symbol, String.Symbol),
+            (r":#" + symbol, String.Symbol),
             (r"'" + symbol, String.Symbol),
             (r"'", Operator),
             (r"`", Operator),
