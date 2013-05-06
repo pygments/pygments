@@ -3749,7 +3749,7 @@ class EasytrieveLexer(RegexLexer):
          ],
         'after_macro_argument': [
             (r'\*.*\n', Comment.Single, 'root'),
-            (r'[\n\s]+', Whitespace, 'root'),
+            (r'\s+', Whitespace, 'root'),
             (r'[\[\](){}<>;,]', Punctuation, 'root'),
             (ur'[.+/=&%¬]', Operator, 'root'),
             (r"'(''|[^'])*'", String, 'root'),
@@ -3879,7 +3879,7 @@ class JclLexer(RegexLexer):
             (r'\*', Name.Builtin),
             (r'[\[\](){}<>;,]', Punctuation),
             (r'[-+*/=&%]', Operator),
-            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name),
+            (r'[a-z_][a-z_0-9]*', Name),
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'\.[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
@@ -3895,7 +3895,7 @@ class JclLexer(RegexLexer):
         ],
         'option_comment': [
             (r'\n', Text, 'root'),
-            (r'.*', Comment.Single),
+            (r'.+', Comment.Single),
         ]
     }
 
@@ -3954,20 +3954,20 @@ class WebFocusLexer(RegexLexer):
              r'update|when|where|with|within)\b', Keyword.Reserved),
             (r'"', String, 'focus_fidel'),
             (r'\b(missing)\b', Name.Constant),
-            (r'\b(asq|ave|cnt|cnt|ct|dst|fst|lst|max|min|pct|rcpt|st|sum|'
-             r'tot)\.', Operator),
+            (r'\b(asq|ave|cnt|ct|dst|fst|lst|max|min|pct|rcpt|st|sum|tot)\.',
+             Operator),
             # FOCUS field declaration including display options.
             (r'([a-z][a-z_0-9]*)([/])([adfip]*[0-9]+(\.[0-9]+)[-%bcdelmnrsty]*)',
              bygroups(Name.Variable, Operator, Keyword.Type)),
             # Rules common to 'focus' and 'dialog_manager'.
             (r'\b(and|contains|div|eq|exceeds|excludes|from|ge|gt|in|'
-             r'includes|is|is-from|is-from|is-less-than|is-more-than|'
-             r'is-not-missing|le|like|lt|mod|ne|not|not-from|omits|or|to)\b',
+             r'includes|is-from|is-less-than|is-more-than|'
+             r'is-not-missing|is|le|like|lt|mod|ne|not-from|not|omits|or|to)\b',
              Operator),
             (r'[-+*/=|!]', Operator),
             (r'[(){}<>;,]', Punctuation),
             (r'[a-z_][a-z_0-9]*', Literal),
-            (r'[&]+[a-z_][a-z_0-9]*', Literal),
+            (r'&+[a-z_][a-z_0-9]*', Literal),
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'\.[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
@@ -3977,13 +3977,13 @@ class WebFocusLexer(RegexLexer):
         'dialog_manager': [
             # Detect possible labels in first word of dialog manager line.
             (r'\s*type\b', Keyword.Reserved, 'dialog_manager_type'),
-            (r'[:][a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
+            (r':[a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
             (r'"', String, 'dialog_manager_fidel'),
             # TODO: Get rid of redundant dialog manager keyword rule which
             # already could be handled by the included
             # 'dialog_manager_others'. However, we currently need it to not
             # recognize classic labels without ':' too soon.
-            (r'\b([?]|close|cms|crtclear|crtform|default|defaults|else|exit|'
+            (r'\b(\?|close|cms|crtclear|crtform|default|defaults|else|exit|'
              r'goto|htmlform|if|include|mvs|pass|prompt|quit|read|repeat|'
              r'run|set|then|tso|type|window|write)\b', Keyword.Reserved,
              'dialog_manager_others'),
@@ -3993,8 +3993,8 @@ class WebFocusLexer(RegexLexer):
         'dialog_manager_others': [
             (r'\n', Text, 'root'),
             (r'\s*type\b', Keyword.Reserved, 'dialog_manager_type'),
-            (r'[:][a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
-            (r'\b([?]|close|cms|crtclear|crtform|default|defaults|else|exit|'
+            (r':[a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
+            (r'\b(\?|close|cms|crtclear|crtform|default|defaults|else|exit|'
              r'goto|htmlform|if|include|mvs|pass|prompt|quit|read|repeat|'
              r'run|set|then|tso|type|window|write)\b', Keyword.Reserved),
             # Rules common to 'focus' and 'dialog_manager'.
@@ -4005,7 +4005,7 @@ class WebFocusLexer(RegexLexer):
             (r'[-+*/=|!]', Operator),
             (r'[(){}<>;,]', Punctuation),
             (r'[a-z_][a-z_0-9]*', Literal),
-            (r'[&]+[a-z_][a-z_0-9]*', Name.Variable),
+            (r'&+[a-z_][a-z_0-9]*', Name.Variable),
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'\.[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
@@ -4015,12 +4015,12 @@ class WebFocusLexer(RegexLexer):
         'dialog_manager_type': [
             # For -TYPE, render everything as ``String`` except variables.
             (r'\n', Text, 'root'),
-            (r'[&]+[a-z_][a-z_0-9]*\.*', Name.Variable),
-            (r'[^&\n]*', String)
+            (r'&+[a-z_][a-z_0-9]*\.*', Name.Variable),
+            (r'[^&\n]+', String)
         ],
         'dialog_manager_fidel': [
             (r'"', String, 'dialog_manager_fidel_end'),
-            (r'([<])([&][a-z][a-z_0-9]*)([/])([0-9]+)',
+            (r'(<)(&[a-z][a-z_0-9]*)([/])([0-9]+)',
              bygroups(Keyword.Reserved, Name.Variable, Operator, Number.Integer)),
             (r'.', String)
         ],
@@ -4030,13 +4030,13 @@ class WebFocusLexer(RegexLexer):
         ],
         'focus_fidel': [
             (r'"', String, 'focus_fidel_end'),
-            (r'[&]+[a-z][a-z_0-9]*', Name.Variable),
+            (r'&+[a-z][a-z_0-9]*', Name.Variable),
             (r'\>', Keyword.Reserved),
             # Line continuation.
             (r'\<0x\s*\n', Keyword.Reserved),
-            (r'([<])([a-z][a-z_0-9]*)',
+            (r'(<)([a-z][a-z_0-9]*)',
              bygroups(Keyword.Reserved, Name.Variable)),
-            (r'([<])([+-/]?)([0-9]+)',
+            (r'(<)(\+|-|/)?([0-9]+)',
              bygroups(Keyword.Reserved, Operator, Number.Integer)),
             (r'.', String)
         ],
@@ -4127,15 +4127,15 @@ class FocusMasterLexer(RegexLexer):
             (r'\n', Text),
             (r',', Punctuation, 'name'),
             (r'\.!', Punctuation),
-            (r'["]', String, 'string_double'),
+            (r'"', String, 'string_double'),
             (r'\'', String, 'string_single'),
             (r'[a-z_][a-z0-9_]*', Text),
             (r'[0-9]+(\.[0-9]+)?', Number),
             (r'.', Text),
         ],
         'string_double': [
-            (r'\'["]["]', String),
-            (r'["]', String, 'value'),
+            (r'""', String),
+            (r'"', String, 'value'),
             (r'[^"]', String),
         ],
         'string_single': [
@@ -4251,9 +4251,9 @@ class RexxLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[\s\n]', Whitespace),
+            (r'\s', Whitespace),
             (r'/\*', Comment.Multiline, 'comment'),
-            (r'["]', String, 'string_double'),
+            (r'"', String, 'string_double'),
             (r"'", String, 'string_single'),
             (r'[0-9]+(\.[0-9]+)?(e[+-]?[0-9])?', Number),
             (r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b',
@@ -4283,7 +4283,7 @@ class RexxLexer(RegexLexer):
              r'while)\b', Keyword.Reserved),
         ],
         'operator': [
-            (ur'(-|//|/|\(|\)|\*\*|\*|\\|\\<<|\\<|\\==|\\=|\\>>|\\>|\|\||\||'
+            (ur'(-|//|/|\(|\)|\*\*|\*|\\<<|\\<|\\==|\\=|\\>>|\\>|\\|\|\||\||'
              ur'&&|&|%|\+|<<=|<<|<=|<>|<|==|=|><|>=|>>=|>>|>|¬<<|¬<|¬==|¬=|'
              ur'¬>>|¬>|¬|\.|,)', Operator),
         ],
