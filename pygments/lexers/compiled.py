@@ -268,7 +268,8 @@ class ECLexer(CLexer):
 
 class NesCLexer(CLexer):
     """
-    For nesC source code with preprocessor directives.
+    For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
+    directives.
     """
     name = 'nesC'
     aliases = ['nesc']
