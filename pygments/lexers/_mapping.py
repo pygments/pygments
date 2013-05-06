@@ -196,6 +196,7 @@ LEXERS = {
     'NSISLexer': ('pygments.lexers.other', 'NSIS', ('nsis', 'nsi', 'nsh'), ('*.nsi', '*.nsh'), ('text/x-nsis',)),
     'NasmLexer': ('pygments.lexers.asm', 'NASM', ('nasm',), ('*.asm', '*.ASM'), ('text/x-nasm',)),
     'NemerleLexer': ('pygments.lexers.dotnet', 'Nemerle', ('nemerle',), ('*.n',), ('text/x-nemerle',)),
+    'NesCLexer': ('pygments.lexers.compiled', 'nesC', ('nesc',), ('*.nc',), ('text/x-nescsrc',)),
     'NewLispLexer': ('pygments.lexers.functional', 'NewLisp', ('newlisp',), ('*.lsp', '*.nl'), ('text/x-newlisp', 'application/x-newlisp')),
     'NewspeakLexer': ('pygments.lexers.other', 'Newspeak', ('newspeak',), ('*.ns2',), ('text/x-newspeak',)),
     'NginxConfLexer': ('pygments.lexers.text', 'Nginx configuration file', ('nginx',), (), ('text/x-nginx-conf',)),
