@@ -1845,7 +1845,9 @@ class HxmlLexer(RegexLexer):
 
 class EbnfLexer(RegexLexer):
     """
-    Lexer for ISO/IEC 14977 EBNF grammars.
+    Lexer for `ISO/IEC 14977 EBNF
+    <http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form>`_
+    grammars.
     """
 
     name = 'EBNF'
@@ -1864,7 +1866,8 @@ class EbnfLexer(RegexLexer):
             include('whitespace'),
             include('comment_start'),
             include('identifier'),
-            include('strings'),
+            (r'"[^"]*"', String.Double),
+            (r"'[^']*'", String.Single),
             (r'(\?[^?]*\?)', Name.Entity),
             (r'[\[\]{}(),|]', Punctuation),
             (r'-', Operator),
@@ -1877,24 +1880,12 @@ class EbnfLexer(RegexLexer):
             (r'\(\*', Comment.Multiline, 'comment'),
           ],
         'comment': [
-          (r'[^*)]', Comment.Multiline),
-          include('comment_start'),
-          (r'\*\)', Comment.Multiline, '#pop'),
-          (r'[*)]', Comment.Multiline),
+            (r'[^*)]', Comment.Multiline),
+            include('comment_start'),
+            (r'\*\)', Comment.Multiline, '#pop'),
+            (r'[*)]', Comment.Multiline),
           ],
         'identifier': [
             (r'([a-zA-Z][a-zA-Z0-9 \-]*)', Keyword),
-          ],
-        'strings': [
-          (r'"', String.Double, 'dq_string'),
-          (r"'", String.Single, 'sq_string'),
-          ],
-        'dq_string': [
-          (r'[^"]', String.Double),
-          (r'"', String.Double, '#pop'),
-          ],
-        'sq_string': [
-          (r"[^']", String.Single),
-          (r"'", String.Single, '#pop'),
           ],
     }
