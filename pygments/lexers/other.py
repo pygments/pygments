@@ -14,7 +14,8 @@ import re
 from pygments.lexer import RegexLexer, include, bygroups, using, \
      this, combined, ExtendedRegexLexer
 from pygments.token import Error, Punctuation, Literal, Token, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Generic
+     Text, Comment, Operator, Keyword, Name, String, Number, Generic, Other, \
+     Whitespace
 from pygments.util import get_bool_opt
 from pygments.lexers.web import HtmlLexer
 
@@ -35,7 +36,9 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
-           'CbmBasicV2Lexer', 'AutoItLexer']
+           'CbmBasicV2Lexer', 'AutoItLexer', 'EasytrieveLexer', 'JclLexer',
+           'RexxLexer', 'WebFocusLexer', 'FocusAccessLexer',
+           'FocusMasterLexer', 'FocusStyleSheetLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -363,7 +366,7 @@ class SmalltalkLexer(RegexLexer):
             include('literals'),
         ],
         'afterobject' : [
-            (r'! !$', Keyword , '#pop'), # squeak chunk delimeter
+            (r'! !$', Keyword , '#pop'), # squeak chunk delimiter
             include('whitespaces'),
             (r'\b(ifTrue:|ifFalse:|whileTrue:|whileFalse:|timesRepeat:)',
              Name.Builtin, '#pop'),
@@ -1961,11 +1964,11 @@ class AsymptoteLexer(RegexLexer):
         from pygments.lexers._asybuiltins import ASYFUNCNAME, ASYVARNAME
         for index, token, value in \
                RegexLexer.get_tokens_unprocessed(self, text):
-           if token is Name and value in ASYFUNCNAME:
-               token = Name.Function
-           elif token is Name and value in ASYVARNAME:
-               token = Name.Variable
-           yield index, token, value
+            if token is Name and value in ASYFUNCNAME:
+                token = Name.Function
+            elif token is Name and value in ASYVARNAME:
+                token = Name.Variable
+            yield index, token, value
 
 
 class PostScriptLexer(RegexLexer):
@@ -3624,7 +3627,7 @@ class AutoItLexer(RegexLexer):
             (r'[a-zA-Z_#@$][a-zA-Z0-9_#@$]*', Name),
             (r'\\|\'', Text),
             (r'\`([\,\%\`abfnrtv\-\+;])', String.Escape),
-            (r'_\n', Text), # Line continuation
+            (r'_\n', Text),  # Line continuation
             include('garbage'),
         ],
         'commands': [
@@ -3665,3 +3668,706 @@ class AutoItLexer(RegexLexer):
             (r'[^\S\n]', Text),
         ],
     }
+
+
+class EasytrieveLexer(RegexLexer):
+    """
+    Easytrieve Plus is a programming language for extracting, filtering and
+    converting sequential data. Furthermore it can layout data for reports.
+    It is mainly used on mainframe platforms and can access several of the
+    mainframe's native file formats. It is somewhat comparable to awk.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'Easytrieve'
+    aliases = ['easytrieve']
+    filenames = ['*.ezt', '*.mac']
+    mimetypes = ['text/x-easytrieve']
+    flags = 0
+
+    # Note: We cannot use r'\b' at the start and end of keywords because
+    # Easytrieve Plus delimiter characters are:
+    #
+    #   * space ( )
+    #   * apostrophe (')
+    #   * period (.)
+    #   * comma (,)
+    #   * paranthesis ( and )
+    #   * colon (:)
+    #
+    # Additionally words end once a '*' appears, indicatins a comment.
+    _DELIMITERS = r' \'.,():\n'
+    _DELIMITERS_OR_COMENT = _DELIMITERS + '*'
+    _DELIMITER_PATTERN = '[' + _DELIMITERS + ']'
+    _NON_DELIMITER_OR_COMMENT_PATTERN = '[^' + _DELIMITERS_OR_COMENT + ']'
+
+    tokens = {
+        'root': [
+            (r'\*.*\n', Comment.Single),
+            (r'\n+', Whitespace),
+            # Macro argument
+            (r'&' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+\.', Name.Variable, 'after_macro_argument'),
+            # Macro call
+            (r'%' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Variable),
+            (r'(FILE|JOB|PARM|PROC|REPORT)(' + _DELIMITER_PATTERN + r')',
+             bygroups(Keyword.Declaration, Operator)),
+            (r'(AFTER-BREAK|AFTER-LINE|AFTER-SCREEN|AIM|AND|ATTR|BEFORE|'
+             r'BEFORE-BREAK|BEFORE-LINE|BEFORE-SCREEN|BUSHU|BY|CALL|CASE|'
+             r'CHECKPOINT|CHKP|CHKP-STATUS|CLEAR|CLOSE|COL|COLOR|COMMIT|'
+             r'CONTROL|COPY|CURSOR|D|DECLARE|DEFAULT|DEFINE|DELETE|DENWA|'
+             r'DISPLAY|DLI|DO|DUPLICATE|E|ELSE|ELSE-IF|END|END-CASE|END-DO|'
+             r'END-IF|END-PROC|ENDPAGE|ENDTABLE|ENTER|EOF|EQ|ERROR|EXIT|'
+             r'EXTERNAL|EZLIB|F1|F10|F11|F12|F13|F14|F15|F16|F17|F18|F19|F2|'
+             r'F20|F21|F22|F23|F24|F25|F26|F27|F28|F29|F3|F30|F31|F32|F33|'
+             r'F34|F35|F36|F4|F5|F6|F7|F8|F9|FETCH|FILE-STATUS|FILL|'
+             r'FINAL|FIRST|FIRST-DUP|FOR|GE|GET|GO|GOTO|GQ|GR|GT|HEADING|'
+             r'HEX|HIGH-VALUES|IDD|IDMS|IF|IN|INSERT|JUSTIFY|KANJI-DATE|'
+             r'KANJI-DATE-LONG|KANJI-TIME|KEY|KEY-PRESSED|KOKUGO|KUN|'
+             r'LAST-DUP|LE|LEVEL|LIKE|LINE|LINE-COUNT|LINE-NUMBER|LINK|LIST|'
+             r'LOW-VALUES|LQ|LS|LT|MASK|MATCHED|MEND|MESSAGE|MOVE|MSTART|NE|'
+             r'NEWPAGE|NOMASK|NOPRINT|NOT|NOTE|NOVERIFY|NQ|NULL|OF|OR|'
+             r'OTHERWISE|PA1|PA2|PA3|PAGE-COUNT|PAGE-NUMBER|PARM-REGISTER|'
+             r'PATH-ID|PATTERN|PERFORM|POINT|POS|PRIMARY|PRINT|'
+             r'PROCEDURE|PROGRAM|PUT|READ|RECORD|RECORD-COUNT|RECORD-LENGTH|'
+             r'REFRESH|RELEASE|RENUM|REPEAT|REPORT|REPORT-INPUT|RESHOW|'
+             r'RESTART|RETRIEVE|RETURN-CODE|ROLLBACK|ROW|S|SCREEN|SEARCH|'
+             r'SECONDARY|SELECT|SEQUENCE|SIZE|SKIP|SOKAKU|SORT|SQL|STOP|SUM|'
+             r'SYSDATE|SYSDATE-LONG|SYSIN|SYSIPT|SYSLST|SYSPRINT|SYSSNAP|'
+             r'SYSTIME|TALLY|TERM-COLUMNS|TERM-NAME|TERM-ROWS|TERMINATION|'
+             r'TITLE|TO|TRANSFER|TRC|UNIQUE|UNTIL|UPDATE|UPPERCASE|USER|'
+             r'USERID|VALUE|VERIFY|W|WHEN|WHILE|WORK|WRITE|X|XDM|XRST)'
+             r'(' + _DELIMITER_PATTERN + r')',
+             bygroups(Keyword.Reserved, Operator)),
+            (r'[\[\](){}<>;,]', Punctuation),
+            (ur'[-+/=&%¬]', Operator),
+            (r'[0-9]+\.[0-9]*', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String),
+            (r'\.', Operator),
+            (r'\s+', Whitespace),
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
+         ],
+        'after_macro_argument': [
+            (r'\*.*\n', Comment.Single, 'root'),
+            (r'\s+', Whitespace, 'root'),
+            (r'[\[\](){}<>;,]', Punctuation, 'root'),
+            (ur'[.+/=&%¬]', Operator, 'root'),
+            (r"'(''|[^'])*'", String, 'root'),
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
+        ],
+    }
+
+    def analyse_text(text):
+        """
+        Perform a structural analysis for basic Easytrieve constructs.
+        """
+        result = 0.0
+        lines = text.split('\n')
+        hasEndProc = False
+        hasHeaderComment = False
+        hasFile = False
+        hasJob = False
+        hasProc = False
+        hasParm = False
+        hasReport = False
+        isBroken = False
+
+        # Skip possible header comments.
+        while len(lines) and lines[0].startswith('*'):
+            hasHeaderComment = True
+            del lines[0]
+
+        firstLine = lines[0]
+        if firstLine[:6] in ('MACRO', 'MACRO '):
+            # Looks like an Easytrieve macro.
+            result = 0.4
+            if hasHeaderComment:
+                result += 0.4
+        else:
+            # Scan the source for lines starting with indicators.
+            for line in lines:
+                words = line.split()
+                if (len(words) >= 2):
+                    first_word = words[0]
+                    if not hasReport:
+                        if not hasJob:
+                            if not hasFile:
+                                if not hasParm:
+                                    if first_word == 'PARM':
+                                        hasParm = True
+                                if first_word == 'FILE':
+                                    hasFile = True
+                            if first_word == 'JOB':
+                                hasJob = True
+                        elif first_word == 'PROC':
+                            hasProc = True
+                        elif first_word == 'END-PROC':
+                            hasEndProc = True
+                        elif first_word == 'REPORT':
+                            hasReport = True
+
+            # Weight the findings.
+            if not isBroken and hasJob and (hasProc == hasEndProc):
+                if hasParm:
+                    if hasProc:
+                        # Found PARM, JOB and PROC/END-PROC:
+                        # pretty sure this is Easytrieve.
+                        result = 0.8
+                    else:
+                        # Found PARAM and  JOB: probably this is Easytrieve
+                        result = 0.5
+                else:
+                    # Found JOB and possibly other keywords: might be Easytrieve
+                    result = 0.11
+                    if hasParm:
+                        # Note: PARAM is not a proper English word, so this is
+                        # regarded a much better indicator for Easytrieve than
+                        # the other words.
+                        result += 0.2
+                    if hasFile:
+                        result += 0.01
+                    if hasReport:
+                        result += 0.01
+        assert 0.0 <= result <= 1.0
+        return result
+
+
+class JclLexer(RegexLexer):
+    """
+    `Job Control Language (JCL) <http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/BOOKS/IEA2B570/CCONTENTS>`_
+    is a scripting language used on mainframe platforms to instruct the system
+    on how to run a batch job or start a  subsystem. It is somewhat
+    comparable to MS DOS batch and Unix shell scripts.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'JCL'
+    aliases = ['jcl']
+    filenames = ['*.jcl']
+    mimetypes = ['text/x-jcl']
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'//\*.*\n', Comment.Single),
+            (r'//', Keyword.Pseudo, 'statement'),
+            (r'/\*', Keyword.Pseudo, 'jes2_statement'),
+            # TODO: JES3 statement
+            (r'.*\n', Other)  # Input text or inline code in any language.
+        ],
+        'statement': [
+            (r'\s*\n', Whitespace, 'root'),
+            (r'([a-z][a-z_0-9]*)(\s+)(exec|job)(\s*)',
+             bygroups(Name.Label, Whitespace, Keyword.Reserved, Whitespace),
+             'option'),
+            (r'[a-z][a-z_0-9]*', Name.Variable, 'statement_command'),
+            (r'\s+', Whitespace, 'statement_command'),
+        ],
+        'statement_command': [
+            (r'\s+(command|cntl|dd|endctl|endif|else|include|jcllib|'
+             r'output|pend|proc|set|then|xmit)\s*', Keyword.Reserved, 'option'),
+            include('option')
+        ],
+        'jes2_statement': [
+            (r'\s*\n', Whitespace, 'root'),
+            (r'\$', Keyword, 'option'),
+            (r'\b(jobparam|message|netacct|notify|output|priority|route|'
+             r'setup|signoff|xeq|xmit)\b', Keyword, 'option'),
+        ],
+        'option': [
+            (r'\n', Text, 'root'),
+            (r'\*', Name.Builtin),
+            (r'[\[\](){}<>;,]', Punctuation),
+            (r'[-+*/=&%]', Operator),
+            (r'[a-z_][a-z_0-9]*', Name),
+            (r'[0-9]+\.[0-9]*', Number.Float),
+            (r'\.[0-9]+', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'", String, 'option_string'),
+            (r'\s+', Whitespace, 'option_comment'),
+            (r'\.', Punctuation),
+        ],
+        'option_string': [
+            (r"(\n)(//)", bygroups(Text, Keyword.Pseudo)),
+            (r"''", String),
+            (r"[^']", String),
+            (r"'", String, 'option'),
+        ],
+        'option_comment': [
+            (r'\n', Text, 'root'),
+            (r'.+', Comment.Single),
+        ]
+    }
+
+    _JOB_HEADER_PATTERN = re.compile(r'^//[a-z#$@][a-z0-9#$@]{0,7}\s+job(\s+.*)?$', re.IGNORECASE)
+
+    def analyse_text(text):
+        """
+        Recognize JCL job by header.
+        """
+        result = 0.0
+        lines = text.split('\n')
+        if len(lines) > 0:
+            if JclLexer._JOB_HEADER_PATTERN.match(lines[0]):
+                result = 1.0
+        assert 0.0 <= result <= 1.0
+        return result
+
+
+class WebFocusLexer(RegexLexer):
+    """
+    `(Web)FOCUS <http://www.informationbuilders.com/products/webfocus/>`_ is
+    a language for business intelligence applications. It enables to
+    describe, query and modify data from various sources including mainframe
+    platforms. It also includes FIDEL, a language to describe input forms.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'WebFOCUS'
+    aliases = ['webfocus', 'FOCUS', 'focus']
+    filenames = ['*.fex']
+    mimetypes = ['text/x-webfocus', 'text/x-focus']
+    flags = re.IGNORECASE
+
+    # TODO: Consolidate rules common to 'focus' and 'dialog_manager' with 'include' or something.
+    # TODO: Find out if FIDEL supports "" to escape " and if so implement it.
+    # TODO: Add support for backslash escapes in single quote strings (and maybe double quote too?).
+    # TODO: Support dialog manager FIDEL input modifiers such as '.nodisplay'.
+    # TODO: Highlight function name after DEFINE FUNCTION.
+    # TODO: Highlight field name for all field types, not only numeric ones.
+    tokens = {
+        'root': [
+            (r'-\*.*\n', Comment.Single),
+            (r'-', Punctuation, 'dialog_manager'),
+            include('focus')
+         ],
+        'focus': [
+            (r'\n', Text, 'root'),
+            (r'\s*(across|add|alloc|as|by|clear|column-total|compute|count|'
+             r'crtform|decode|define|dynam|else|end|ex|exceeds|exec|file|'
+             r'filter|footing|for|format|free|heading|highest|hold|if|'
+             r'in-groups-of|in-ranges-of|join|list|lowest|match|modify|'
+             r'multilines|newpage|nomatch|noprint|nototal|on|over|'
+             r'page-break|print|printonly|ranked|recap|recompute|redefines|'
+             r'reject|row-total|rows|savb|save|set|sub-total|subfoot|'
+             r'subhead|subtotal|sum|summarize|tablef|table|the|then|tiles|'
+             r'total|update|when|where|with|within)\b', Keyword.Reserved),
+            (r'"', String, 'focus_fidel'),
+            (r'\b(missing)\b', Name.Constant),
+            (r'\b(asq|ave|cnt|ct|dst|fst|lst|max|min|pct|rcpt|st|sum|tot)\.',
+             Operator),
+            # FOCUS field declaration including display options.
+            (r'([a-z][a-z_0-9]*)([/])([adfip]*[0-9]+(\.[0-9]+)[-%bcdelmnrsty]*)',
+             bygroups(Name.Variable, Operator, Keyword.Type)),
+            # Rules common to 'focus' and 'dialog_manager'.
+            (r'\b(and|contains|div|eq|exceeds|excludes|from|ge|gt|in|'
+             r'includes|is-from|is-less-than|is-more-than|'
+             r'is-not-missing|is|le|like|lt|mod|ne|not-from|not|omits|or|to)\b',
+             Operator),
+            (r'[-+*/=|!]', Operator),
+            (r'[(){}<>;,]', Punctuation),
+            (r'[a-z_][a-z_0-9]*', Literal),
+            (r'&+[a-z_][a-z_0-9]*', Literal),
+            (r'[0-9]+\.[0-9]*', Number.Float),
+            (r'\.[0-9]+', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String),
+            (r'\s+', Whitespace)
+        ],
+        'dialog_manager': [
+            # Detect possible labels in first word of dialog manager line.
+            (r'\s*type\b', Keyword.Reserved, 'dialog_manager_type'),
+            (r':[a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
+            (r'"', String, 'dialog_manager_fidel'),
+            # TODO: Get rid of redundant dialog manager keyword rule which
+            # already could be handled by the included
+            # 'dialog_manager_others'. However, we currently need it to not
+            # recognize classic labels without ':' too soon.
+            (r'\b(\?|close|cms|crtclear|crtform|default|defaults|else|exit|'
+             r'goto|htmlform|if|include|mvs|pass|prompt|quit|read|repeat|'
+             r'run|set|then|tso|type|window|write)\b', Keyword.Reserved,
+             'dialog_manager_others'),
+            (r'[a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
+            include('dialog_manager_others'),
+        ],
+        'dialog_manager_others': [
+            (r'\n', Text, 'root'),
+            (r'\s*type\b', Keyword.Reserved, 'dialog_manager_type'),
+            (r':[a-z_][a-z_0-9]*\s*\n', Name.Label, 'root'),
+            (r'\b(\?|close|cms|crtclear|crtform|default|defaults|else|exit|'
+             r'goto|htmlform|if|include|mvs|pass|prompt|quit|read|repeat|'
+             r'run|set|then|tso|type|window|write)\b', Keyword.Reserved),
+            # Rules common to 'focus' and 'dialog_manager'.
+            (r'\b(and|contains|div|eq|exceeds|excludes|from|ge|gt|in|'
+             r'includes|is|is-from|is-from|is-less-than|is-more-than|'
+             r'is-not-missing|le|like|lt|mod|ne|not|not-from|omits|or|to)\b',
+             Operator),
+            (r'[-+*/=|!]', Operator),
+            (r'[(){}<>;,]', Punctuation),
+            (r'[a-z_][a-z_0-9]*', Literal),
+            (r'&+[a-z_][a-z_0-9]*', Name.Variable),
+            (r'[0-9]+\.[0-9]*', Number.Float),
+            (r'\.[0-9]+', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String),
+            (r'\s+', Whitespace)
+        ],
+        'dialog_manager_type': [
+            # For -TYPE, render everything as ``String`` except variables.
+            (r'\n', Text, 'root'),
+            (r'&+[a-z_][a-z_0-9]*\.*', Name.Variable),
+            (r'[^&\n]+', String)
+        ],
+        'dialog_manager_fidel': [
+            (r'"', String, 'dialog_manager_fidel_end'),
+            (r'(<)(&[a-z][a-z_0-9]*)([/])([0-9]+)',
+             bygroups(Keyword.Reserved, Name.Variable, Operator, Number.Integer)),
+            (r'.', String)
+        ],
+        'dialog_manager_fidel_end': [
+            (r'\n', Text, 'root'),
+            (r'\s+', Whitespace)
+        ],
+        'focus_fidel': [
+            (r'"', String, 'focus_fidel_end'),
+            (r'&+[a-z][a-z_0-9]*', Name.Variable),
+            (r'\>', Keyword.Reserved),
+            # Line continuation.
+            (r'\<0x\s*\n', Keyword.Reserved),
+            (r'(<)([a-z][a-z_0-9]*)',
+             bygroups(Keyword.Reserved, Name.Variable)),
+            (r'(<)(\+|-|/)?([0-9]+)',
+             bygroups(Keyword.Reserved, Operator, Number.Integer)),
+            (r'.', String)
+        ],
+        'focus_fidel_end': [
+            (r'\n', Text, 'root'),
+            (r'\s+', Whitespace)
+       ]
+    }
+
+    def analyse_text(text):
+        """
+        Perform a heuristic analysis for certain very common WebFOCUS
+        constructs.
+        """
+        result = 0.0
+        hasComment = False
+        hasExec = False
+        hasInclude = False
+        hasSet = False
+        hasTableFile = False
+
+        # Scan the source lines for indicators.
+        for line in text.lower().split('\n'):
+            if line.startswith('-'):
+                words = line[1:].split()
+                wordCount = len(words)
+                if wordCount > 0:
+                    firstWord = words[0]
+                    if firstWord.startswith('*'):
+                        hasComment = True
+                    elif wordCount > 1:
+                        if firstWord == 'include':
+                            hasInclude = True
+                        elif (firstWord == 'set') and words[1].startswith('&'):
+                            hasSet = True
+            else:
+                words = line.split()
+                wordCount = len(words)
+                if wordCount > 1:
+                    if words[0] in ('ex', 'exec'):
+                        hasExec = True
+                    elif (words[0] in ('table', 'tablef')) \
+                            and (words[1] == 'file'):
+                        hasTableFile = True
+        if hasComment:
+            result += 0.2
+        if hasExec or hasInclude:
+            result += 0.1
+        if hasTableFile:
+            result += 0.2
+        if hasSet:
+            result += 0.1
+        assert 0.0 <= result <= 1.0
+        return result
+
+
+class FocusMasterLexer(RegexLexer):
+    """
+    FOCUS master files describes files and tables to be queried by FOCUS
+    programs. The are somewhat comparable to SQL ``create table`` statements.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'FOCUS master'
+    aliases = ['focus-master']
+    filenames = ['*.mas']
+    mimetypes = ['text/x-focus-master']
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'-\*.*\n', Comment.Single),
+            include('name'),
+         ],
+        'name': [
+            (r'\$.*\n', Comment.Single),
+            (r'\s+', Whitespace),
+            (r'[a-z_][a-z0-9_]*', Name.Builtin, 'before_value'),
+            (r'(\\)(\n)', bygroups(Operator, Text)),
+        ],
+        'before_value': [
+            (r'=', Punctuation, 'value'),
+            (r'\s+', Whitespace),
+            (r'.', Error, 'name')
+        ],
+        'value': [
+            (r'\$.*\n', Comment.Single, 'root'),
+            (r'\n', Text),
+            (r',', Punctuation, 'name'),
+            (r'\.!', Punctuation),
+            (r'"', String, 'string_double'),
+            (r'\'', String, 'string_single'),
+            (r'[a-z_][a-z0-9_]*', Text),
+            (r'[0-9]+(\.[0-9]+)?', Number),
+            (r'.', Text),
+        ],
+        'string_double': [
+            (r'""', String),
+            (r'"', String, 'value'),
+            (r'[^"]', String),
+        ],
+        'string_single': [
+            (r'\'\'', String),
+            (r'\'', String, 'value'),
+            (r'[^\']', String),
+        ],
+    }
+
+    _HEADER_PATTERN = re.compile(
+        r'^((\s*\$.*)\n)*file(name)?\s*=\s*[a-z_][a-z0-9_]+\s*,(\s*(\$.*)\n)*\s*suffix\s*=\s*.+',
+        re.IGNORECASE
+    )
+
+    def analyse_text(text):
+        """
+        Check for ``FILE=..., SUFFIX=...`` while ignoring comments starting with ``$``.
+        """
+        result = 0.0
+
+        if FocusMasterLexer._HEADER_PATTERN.match(text):
+            result = 0.8
+        
+        assert 0.0 <= result <= 1.0
+        return result
+
+
+class FocusAccessLexer(FocusMasterLexer):
+    """
+    FOCUS access files associate segments in FOCUS master files with actual
+    tables containing data.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'FOCUS access'
+    aliases = ['focus-access']
+    filenames = ['*.acx']
+    mimetypes = ['text/x-focus-access']
+
+    _HEADER_PATTERN = re.compile(
+        r'^((\s*\$.*)\n)*segment\s*=\s*[a-z_][a-z0-9_]+\s*,(\s*(\$.*)\n)*\s*tablename\s*=\s*.+',
+        re.IGNORECASE
+    )
+
+    def analyse_text(text):
+        """
+        Check for ``SEGMENT=..., TABLENAME=...`` while ignoring comments
+        starting with ``$``.
+        """
+        result = 0.0
+
+        if FocusAccessLexer._HEADER_PATTERN.match(text):
+            result = 0.8
+        
+        assert 0.0 <= result <= 1.0
+        return result
+
+
+class FocusStyleSheetLexer(FocusMasterLexer):
+    """
+    Style sheet to format reports written in FOCUS.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'FOCUS style sheet'
+    aliases = ['focus-style']
+    filenames = ['*.sty']
+    mimetypes = ['text/x-focus-style']
+
+    _HEADER_TYPE_PATTERN = re.compile(
+        r'^(((\s*\$)|(-\*)).*\n)*type\s*=\s*[a-z]+\s*,.+',
+        re.IGNORECASE
+    )
+    _HEADER_PAGE_DECLARATION_PATTERN = re.compile(
+        r'^(((\s*\$)|(-\*)).*\n)*(orientation|pagecolor|pagesize)\s*=\s*.+\s*,.+',
+        re.IGNORECASE
+    )
+
+    def analyse_text(text):
+        """
+        Check for ``TYPE=...,...`` or page layout declaration while
+        ignoring comments starting with ``$`` or ``-*``.
+        """
+        result = 0.0
+
+        if FocusStyleSheetLexer._HEADER_TYPE_PATTERN.match(text):
+            result = 0.7
+        elif FocusStyleSheetLexer._HEADER_PAGE_DECLARATION_PATTERN.match(text):
+            result = 0.5
+        if result > 0:
+            textStartsWithComment = text.startswith('-*') or text.lstrip().startswith('$')
+            if textStartsWithComment:
+                result += 0.2
+
+        assert 0.0 <= result <= 1.0
+        return result
+
+
+class RexxLexer(RegexLexer):
+    """
+    `Rexx <http://www.rexxinfo.org/>`_ is a scripting language available for
+    a wide range of different platforms with its roots found on mainframe
+    systems. It is popular for I/O- and data based tasks and can act as glue
+    language to bind different applications together.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'REXX'
+    aliases = ['rexx', 'ARexx', 'arexx']
+    filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
+    mimetypes = ['text/x-rexx']
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'\s', Whitespace),
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'"', String, 'string_double'),
+            (r"'", String, 'string_single'),
+            (r'[0-9]+(\.[0-9]+)?(e[+-]?[0-9])?', Number),
+            (r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b',
+             bygroups(Name.Function, Whitespace, Operator, Whitespace, Keyword.Declaration)),
+            (r'([a-z_][a-z0-9_]*)(\s*)(:)',
+             bygroups(Name.Label, Whitespace, Operator)),
+            include('function'),
+            include('keyword'),
+            include('operator'),
+            (r'[a-z_][a-z0-9_]*', Text),
+        ],
+        'function': [
+            (r'(abbrev|abs|address|arg|b2x|bitand|bitor|bitxor|c2d|c2x|'
+             r'center|charin|charout|chars|compare|condition|copies|d2c|'
+             r'd2x|datatype|date|delstr|delword|digits|errortext|form|'
+             r'format|fuzz|insert|lastpos|left|length|linein|lineout|lines|'
+             r'max|min|overlay|pos|queued|random|reverse|right|sign|'
+             r'sourceline|space|stream|strip|substr|subword|symbol|time|'
+             r'trace|translate|trunc|value|verify|word|wordindex|'
+             r'wordlength|wordpos|words|x2b|x2c|x2d|xrange)(\s*)([(])',
+             bygroups(Name.Builtin, Whitespace, Operator)),
+        ],
+        'keyword': [
+            (r'(address|arg|by|call|do|drop|else|end|exit|for|forever|if|'
+             r'interpret|iterate|leave|nop|numeric|off|on|options|parse|'
+             r'pull|push|queue|return|say|select|signal|to|then|trace|until|'
+             r'while)\b', Keyword.Reserved),
+        ],
+        'operator': [
+            (ur'(-|//|/|\(|\)|\*\*|\*|\\<<|\\<|\\==|\\=|\\>>|\\>|\\|\|\||\||'
+             ur'&&|&|%|\+|<<=|<<|<=|<>|<|==|=|><|>=|>>=|>>|>|¬<<|¬<|¬==|¬=|'
+             ur'¬>>|¬>|¬|\.|,)', Operator),
+        ],
+        'string_double': [
+            (r'[^"\n]', String),
+            (r'""', String),
+            (r'"', String, '#pop'),
+            (r'', Text, '#pop'),  # Linefeed also terminates strings.
+        ],
+        'string_single': [
+            (r'[^\'\n]', String),
+            (r'\'\'', String),
+            (r'\'', String, '#pop'),
+            (r'', Text, '#pop'),  # Linefeed also terminates strings.
+        ],
+        'comment': [
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'(.|\n)', Comment.Multiline),
+        ]
+    }
+
+    _ADDRESS_COMMAND_REGEX = re.compile(r'\s*address\s+command\b', re.IGNORECASE)
+    _ADDRESS_REGEX = re.compile(r'\s*address\s+', re.IGNORECASE)
+    _DO_WHILE_REGEX = re.compile(r'\s*do\s+while\b', re.IGNORECASE)
+    _IF_THEN_DO_REGEX = re.compile(r'\s*if\b.+\bthen\s+do\s*$', re.IGNORECASE)
+    _PROCEDURE_REGEX = re.compile(r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b', re.IGNORECASE)
+    _ELSE_DO_REGEX = re.compile(r'\s*else\s+do\s*$', re.IGNORECASE)
+    _PARSE_ARG_REGEX = re.compile(r'\s*parse\s+(upper\s+)?(arg|value)\b', re.IGNORECASE)
+    _REGEXS = [
+        _ADDRESS_COMMAND_REGEX,
+        _ADDRESS_REGEX,
+        _DO_WHILE_REGEX,
+        _ELSE_DO_REGEX,
+        _IF_THEN_DO_REGEX,
+        _PROCEDURE_REGEX,
+        _PARSE_ARG_REGEX,
+    ]
+
+    def analyse_text(text):
+        """
+        Check for inital comment.
+        """
+        result = 0.0
+        if re.search(r'/\*\**\s*rexx', text, re.IGNORECASE):
+            # Header matches MVS Rexx requirements, this is certainly a Rexx
+            # script.
+            result = 1.0
+        elif text.startswith('/*'):
+            # Header matches general Rexx requirements; the source code might
+            # still be any language using C comments such as C++, C# or Java.
+            result = 0.01
+
+            # Check if lines match certain regular expressions and
+            # collect the respective counts in a dictionary.
+            regexCount = len(RexxLexer._REGEXS)
+            regexToCountMap = {}
+            for regex in RexxLexer._REGEXS:
+                regexToCountMap[regex] = 0
+            for line in (text.split('\n'))[1:]:
+                regexIndex = 0
+                lineHasAnyRegex = False
+                while not lineHasAnyRegex and (regexIndex < regexCount):
+                    regexToCheck = RexxLexer._REGEXS[regexIndex]
+                    if regexToCheck.match(line) is not None:
+                        regexToCountMap[regexToCheck] = \
+                            regexToCountMap[regexToCheck] + 1
+                        lineHasAnyRegex = True
+                    else:
+                        regexIndex += 1
+            # Evaluate the findings.
+            if regexToCountMap[RexxLexer._PROCEDURE_REGEX] > 0:
+                result += 0.5
+            elif regexToCountMap[RexxLexer._ADDRESS_COMMAND_REGEX] > 0:
+                result += 0.2
+            elif regexToCountMap[RexxLexer._ADDRESS_REGEX] > 0:
+                result += 0.05
+            if regexToCountMap[RexxLexer._DO_WHILE_REGEX] > 0:
+                result += 0.1
+            if regexToCountMap[RexxLexer._ELSE_DO_REGEX] > 0:
+                result += 0.1
+            if regexToCountMap[RexxLexer._PARSE_ARG_REGEX] > 0:
+                result += 0.2
+            if regexToCountMap[RexxLexer._IF_THEN_DO_REGEX] > 0:
+                result += 0.1
+            result = min(result, 1.0)
+        assert 0.0 <= result <= 1.0
+        return result
