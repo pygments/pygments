@@ -3677,7 +3677,7 @@ class RexxLexer(RegexLexer):
 
     *New in Pygments 1.7.*
     """
-    name = 'REXX'
+    name = 'Rexx'
     aliases = ['rexx', 'ARexx', 'arexx']
     filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
     mimetypes = ['text/x-rexx']
