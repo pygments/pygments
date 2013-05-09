@@ -4288,19 +4288,19 @@ class RexxLexer(RegexLexer):
              ur'¬>>|¬>|¬|\.|,)', Operator),
         ],
         'string_double': [
+            (r'[^"\n]', String),
             (r'""', String),
-            (r'"', String, 'root'),
-            (r'\n', Error, 'root'),
-            (r'[^"]', String),
+            (r'"', String, '#pop'),
+            (r'', Text, '#pop'),  # Linefeed also terminates strings.
         ],
         'string_single': [
+            (r'[^\'\n]', String),
             (r'\'\'', String),
-            (r'\'', String, 'root'),
-            (r'\n', Error, 'root'),
-            (r'[^\']', String),
+            (r'\'', String, '#pop'),
+            (r'', Text, '#pop'),  # Linefeed also terminates strings.
         ],
         'comment': [
-            (r'\*/', Comment.Multiline, 'root'),
+            (r'\*/', Comment.Multiline, '#pop'),
             (r'(.|\n)', Comment.Multiline),
         ]
     }
