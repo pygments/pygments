@@ -3950,8 +3950,8 @@ class WebFocusLexer(RegexLexer):
              r'multilines|newpage|nomatch|noprint|nototal|on|over|'
              r'page-break|print|printonly|ranked|recap|recompute|redefines|'
              r'reject|row-total|rows|savb|save|set|sub-total|subfoot|'
-             r'subhead|subtotal|sum|summarize|table|the|then|tiles|total|'
-             r'update|when|where|with|within)\b', Keyword.Reserved),
+             r'subhead|subtotal|sum|summarize|tablef|table|the|then|tiles|'
+             r'total|update|when|where|with|within)\b', Keyword.Reserved),
             (r'"', String, 'focus_fidel'),
             (r'\b(missing)\b', Name.Constant),
             (r'\b(asq|ave|cnt|ct|dst|fst|lst|max|min|pct|rcpt|st|sum|tot)\.',
