@@ -14,7 +14,8 @@ import re
 from pygments.lexer import RegexLexer, include, bygroups, using, \
      this, combined, ExtendedRegexLexer
 from pygments.token import Error, Punctuation, Literal, Token, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Generic
+     Text, Comment, Operator, Keyword, Name, String, Number, Generic, Other, \
+     Whitespace
 from pygments.util import get_bool_opt
 from pygments.lexers.web import HtmlLexer
 
@@ -35,7 +36,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
-           'CbmBasicV2Lexer', 'AutoItLexer']
+           'CbmBasicV2Lexer', 'AutoItLexer', 'RexxLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -363,7 +364,7 @@ class SmalltalkLexer(RegexLexer):
             include('literals'),
         ],
         'afterobject' : [
-            (r'! !$', Keyword , '#pop'), # squeak chunk delimeter
+            (r'! !$', Keyword , '#pop'), # squeak chunk delimiter
             include('whitespaces'),
             (r'\b(ifTrue:|ifFalse:|whileTrue:|whileFalse:|timesRepeat:)',
              Name.Builtin, '#pop'),
@@ -1961,11 +1962,11 @@ class AsymptoteLexer(RegexLexer):
         from pygments.lexers._asybuiltins import ASYFUNCNAME, ASYVARNAME
         for index, token, value in \
                RegexLexer.get_tokens_unprocessed(self, text):
-           if token is Name and value in ASYFUNCNAME:
-               token = Name.Function
-           elif token is Name and value in ASYVARNAME:
-               token = Name.Variable
-           yield index, token, value
+            if token is Name and value in ASYFUNCNAME:
+                token = Name.Function
+            elif token is Name and value in ASYVARNAME:
+                token = Name.Variable
+            yield index, token, value
 
 
 class PostScriptLexer(RegexLexer):
@@ -3624,7 +3625,7 @@ class AutoItLexer(RegexLexer):
             (r'[a-zA-Z_#@$][a-zA-Z0-9_#@$]*', Name),
             (r'\\|\'', Text),
             (r'\`([\,\%\`abfnrtv\-\+;])', String.Escape),
-            (r'_\n', Text), # Line continuation
+            (r'_\n', Text),  # Line continuation
             include('garbage'),
         ],
         'commands': [
@@ -3665,3 +3666,142 @@ class AutoItLexer(RegexLexer):
             (r'[^\S\n]', Text),
         ],
     }
+
+
+class RexxLexer(RegexLexer):
+    """
+    `Rexx <http://www.rexxinfo.org/>`_ is a scripting language available for
+    a wide range of different platforms with its roots found on mainframe
+    systems. It is popular for I/O- and data based tasks and can act as glue
+    language to bind different applications together.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'REXX'
+    aliases = ['rexx', 'ARexx', 'arexx']
+    filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
+    mimetypes = ['text/x-rexx']
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'\s', Whitespace),
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'"', String, 'string_double'),
+            (r"'", String, 'string_single'),
+            (r'[0-9]+(\.[0-9]+)?(e[+-]?[0-9])?', Number),
+            (r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b',
+             bygroups(Name.Function, Whitespace, Operator, Whitespace, Keyword.Declaration)),
+            (r'([a-z_][a-z0-9_]*)(\s*)(:)',
+             bygroups(Name.Label, Whitespace, Operator)),
+            include('function'),
+            include('keyword'),
+            include('operator'),
+            (r'[a-z_][a-z0-9_]*', Text),
+        ],
+        'function': [
+            (r'(abbrev|abs|address|arg|b2x|bitand|bitor|bitxor|c2d|c2x|'
+             r'center|charin|charout|chars|compare|condition|copies|d2c|'
+             r'd2x|datatype|date|delstr|delword|digits|errortext|form|'
+             r'format|fuzz|insert|lastpos|left|length|linein|lineout|lines|'
+             r'max|min|overlay|pos|queued|random|reverse|right|sign|'
+             r'sourceline|space|stream|strip|substr|subword|symbol|time|'
+             r'trace|translate|trunc|value|verify|word|wordindex|'
+             r'wordlength|wordpos|words|x2b|x2c|x2d|xrange)(\s*)([(])',
+             bygroups(Name.Builtin, Whitespace, Operator)),
+        ],
+        'keyword': [
+            (r'(address|arg|by|call|do|drop|else|end|exit|for|forever|if|'
+             r'interpret|iterate|leave|nop|numeric|off|on|options|parse|'
+             r'pull|push|queue|return|say|select|signal|to|then|trace|until|'
+             r'while)\b', Keyword.Reserved),
+        ],
+        'operator': [
+            (ur'(-|//|/|\(|\)|\*\*|\*|\\<<|\\<|\\==|\\=|\\>>|\\>|\\|\|\||\||'
+             ur'&&|&|%|\+|<<=|<<|<=|<>|<|==|=|><|>=|>>=|>>|>|¬<<|¬<|¬==|¬=|'
+             ur'¬>>|¬>|¬|\.|,)', Operator),
+        ],
+        'string_double': [
+            (r'[^"\n]', String),
+            (r'""', String),
+            (r'"', String, '#pop'),
+            (r'', Text, '#pop'),  # Linefeed also terminates strings.
+        ],
+        'string_single': [
+            (r'[^\'\n]', String),
+            (r'\'\'', String),
+            (r'\'', String, '#pop'),
+            (r'', Text, '#pop'),  # Linefeed also terminates strings.
+        ],
+        'comment': [
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'(.|\n)', Comment.Multiline),
+        ]
+    }
+
+    _ADDRESS_COMMAND_REGEX = re.compile(r'\s*address\s+command\b', re.IGNORECASE)
+    _ADDRESS_REGEX = re.compile(r'\s*address\s+', re.IGNORECASE)
+    _DO_WHILE_REGEX = re.compile(r'\s*do\s+while\b', re.IGNORECASE)
+    _IF_THEN_DO_REGEX = re.compile(r'\s*if\b.+\bthen\s+do\s*$', re.IGNORECASE)
+    _PROCEDURE_REGEX = re.compile(r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b', re.IGNORECASE)
+    _ELSE_DO_REGEX = re.compile(r'\s*else\s+do\s*$', re.IGNORECASE)
+    _PARSE_ARG_REGEX = re.compile(r'\s*parse\s+(upper\s+)?(arg|value)\b', re.IGNORECASE)
+    _REGEXS = [
+        _ADDRESS_COMMAND_REGEX,
+        _ADDRESS_REGEX,
+        _DO_WHILE_REGEX,
+        _ELSE_DO_REGEX,
+        _IF_THEN_DO_REGEX,
+        _PROCEDURE_REGEX,
+        _PARSE_ARG_REGEX,
+    ]
+
+    def analyse_text(text):
+        """
+        Check for inital comment.
+        """
+        result = 0.0
+        if re.search(r'/\*\**\s*rexx', text, re.IGNORECASE):
+            # Header matches MVS Rexx requirements, this is certainly a Rexx
+            # script.
+            result = 1.0
+        elif text.startswith('/*'):
+            # Header matches general Rexx requirements; the source code might
+            # still be any language using C comments such as C++, C# or Java.
+            result = 0.01
+
+            # Check if lines match certain regular expressions and
+            # collect the respective counts in a dictionary.
+            regexCount = len(RexxLexer._REGEXS)
+            regexToCountMap = {}
+            for regex in RexxLexer._REGEXS:
+                regexToCountMap[regex] = 0
+            for line in (text.split('\n'))[1:]:
+                regexIndex = 0
+                lineHasAnyRegex = False
+                while not lineHasAnyRegex and (regexIndex < regexCount):
+                    regexToCheck = RexxLexer._REGEXS[regexIndex]
+                    if regexToCheck.match(line) is not None:
+                        regexToCountMap[regexToCheck] = \
+                            regexToCountMap[regexToCheck] + 1
+                        lineHasAnyRegex = True
+                    else:
+                        regexIndex += 1
+            # Evaluate the findings.
+            if regexToCountMap[RexxLexer._PROCEDURE_REGEX] > 0:
+                result += 0.5
+            elif regexToCountMap[RexxLexer._ADDRESS_COMMAND_REGEX] > 0:
+                result += 0.2
+            elif regexToCountMap[RexxLexer._ADDRESS_REGEX] > 0:
+                result += 0.05
+            if regexToCountMap[RexxLexer._DO_WHILE_REGEX] > 0:
+                result += 0.1
+            if regexToCountMap[RexxLexer._ELSE_DO_REGEX] > 0:
+                result += 0.1
+            if regexToCountMap[RexxLexer._PARSE_ARG_REGEX] > 0:
+                result += 0.2
+            if regexToCountMap[RexxLexer._IF_THEN_DO_REGEX] > 0:
+                result += 0.1
+            result = min(result, 1.0)
+        assert 0.0 <= result <= 1.0
+        return result
