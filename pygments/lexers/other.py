@@ -3722,16 +3722,16 @@ class RexxLexer(RegexLexer):
              ur'¬>>|¬>|¬|\.|,)', Operator),
         ],
         'string_double': [
-            (r'[^"\n]', String),
+            (r'[^"\n]+', String),
             (r'""', String),
             (r'"', String, '#pop'),
-            (r'', Text, '#pop'),  # Linefeed also terminates strings.
+            (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
         ],
         'string_single': [
             (r'[^\'\n]', String),
             (r'\'\'', String),
             (r'\'', String, '#pop'),
-            (r'', Text, '#pop'),  # Linefeed also terminates strings.
+            (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
         ],
         'comment': [
             (r'\*/', Comment.Multiline, '#pop'),
