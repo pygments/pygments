@@ -559,10 +559,12 @@ class MasonLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        rv = 0.0
-        if re.search('<&', text) is not None:
-            rv = 1.0
-        return rv
+        result = 0.0
+        if re.search(r'</%(class|doc|init)%>', text) is not None:
+            result = 1.0
+        elif re.search(r'<&.+&>', text, re.DOTALL) is not None:
+            result = 0.11
+        return result
 
 
 class MakoLexer(RegexLexer):
