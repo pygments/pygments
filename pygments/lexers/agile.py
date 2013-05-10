@@ -428,10 +428,13 @@ class Python3TracebackLexer(RegexLexer):
              r'exception occurred:\n\n', Generic.Traceback),
             (r'^The above exception was the direct cause of the '
              r'following exception:\n\n', Generic.Traceback),
+            (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
         ],
         'intb': [
             (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
              bygroups(Text, Name.Builtin, Text, Number, Text, Name, Text)),
+            (r'^(  File )("[^"]+")(, line )(\d+)(\n)',
+             bygroups(Text, Name.Builtin, Text, Number, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(Python3Lexer), Text)),
             (r'^([ \t]*)(\.\.\.)(\n)',
