@@ -249,8 +249,38 @@ class SwigLexer(CppLexer):
             inherit,
          ],
     }
+
+    # This is a far from complete set of SWIG directives
+    swig_directives = ( \
+        # Most common directives
+        '%apply', '%define', '%director', '%enddef', '%exception', '%extend',
+        '%feature', '%fragment', '%ignore', '%immutable', '%import', '%include',
+        '%inline', '%insert', '%module', '%newobject', '%nspace', '%pragma',
+        '%rename', '%shared_ptr', '%template', '%typecheck', '%typemap',
+        # Less common directives
+        '%arg', '%attribute', '%bang', '%begin', '%callback', '%catches', '%clear',
+        '%constant', '%copyctor', '%csconst', '%csconstvalue', '%csenum',
+        '%csmethodmodifiers', '%csnothrowexception', '%default', '%defaultctor',
+        '%defaultdtor', '%defined', '%delete', '%delobject', '%descriptor',
+        '%exceptionclass', '%exceptionvar', '%extend_smart_pointer', '%fragments',
+        '%header', '%ifcplusplus', '%ignorewarn', '%implicit', '%implicitconv',
+        '%init', '%javaconst', '%javaconstvalue', '%javaenum', '%javaexception',
+        '%javamethodmodifiers', '%kwargs', '%luacode', '%mutable', '%naturalvar',
+        '%nestedworkaround', '%perlcode', '%pythonabc', '%pythonappend',
+        '%pythoncallback', '%pythoncode', '%pythondynamic', '%pythonmaybecall',
+        '%pythonnondynamic', '%pythonprepend', '%refobject', '%shadow', '%sizeof',
+        '%trackobjects', '%types', '%unrefobject', '%varargs', '%warn', '%warnfilter')
+
     def analyse_text(text):
-        return 0.1
+        rv = 0.1 # Same as C/C++
+        matches = re.findall(r'%[a-z_][a-z0-9_]*', text, re.M) # Search for SWIG directive
+        for m in matches:
+            if m in SwigLexer.swig_directives:
+                rv = 0.98
+                break
+            else:
+                rv = 0.91 # Fraction higher than MatlabLexer
+        return rv
 
 
 class ECLexer(CLexer):
