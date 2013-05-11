@@ -32,6 +32,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
            'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer']
 
+
 class CFamilyLexer(RegexLexer):
     """
     For C family source code.  This is used as a base class to avoid repetitious
@@ -314,6 +315,81 @@ class ECLexer(CLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
+        ],
+    }
+
+
+class NesCLexer(CLexer):
+    """
+    For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
+    directives.
+    """
+    name = 'nesC'
+    aliases = ['nesc']
+    filenames = ['*.nc']
+    mimetypes = ['text/x-nescsrc']
+
+    tokens = {
+        'statements': [
+            (r'(abstract|as|async|atomic|call|command|component|components|'
+             r'configuration|event|extends|generic|implementation|includes|'
+             r'interface|module|new|norace|post|provides|signal|task|uses)\b',
+             Keyword),
+            (r'(nx_struct|nx_union|nx_int8_t|nx_int16_t|nx_int32_t|nx_int64_t|'
+             r'nx_uint8_t|nx_uint16_t|nx_uint32_t|nx_uint64_t)\b',
+             Keyword.Type),
+            inherit,
+        ],
+    }
+
+
+class ClayLexer(RegexLexer):
+    """
+    For `Clay <http://claylabs.com/clay/>`_ source.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'Clay'
+    filenames = ['*.clay']
+    aliases = ['clay']
+    mimetypes = ['text/x-clay']
+    tokens = {
+        'root': [
+            (r'\s', Text),
+            (r'//.*?$', Comment.Singleline),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'\b(public|private|import|as|record|variant|instance'
+             r'|define|overload|default|external|alias'
+             r'|rvalue|ref|forward|inline|noinline|forceinline'
+             r'|enum|var|and|or|not|if|else|goto|return|while'
+             r'|switch|case|break|continue|for|in|true|false|try|catch|throw'
+             r'|finally|onerror|staticassert|eval|when|newtype'
+             r'|__FILE__|__LINE__|__COLUMN__|__ARG__'
+             r')\b', Keyword),
+            (r'[~!%^&*+=|:<>/-]', Operator),
+            (r'[#(){}\[\],;.]', Punctuation),
+            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'\d+[LlUu]*', Number.Integer),
+            (r'\b(true|false)\b', Name.Builtin),
+            (r'(?i)[a-z_?][a-z_?0-9]*', Name),
+            (r'"""', String, 'tdqs'),
+            (r'"', String, 'dqs'),
+        ],
+        'strings': [
+            (r'(?i)\\(x[0-9a-f]{2}|.)', String.Escape),
+            (r'.', String),
+        ],
+        'nl': [
+            (r'\n', String),
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            include('strings'),
+        ],
+        'tdqs': [
+            (r'"""', String, '#pop'),
+            include('strings'),
+            include('nl'),
         ],
     }
 
@@ -2624,6 +2700,86 @@ class BlitzMaxLexer(RegexLexer):
              r'Goto|DefData|ReadData|RestoreData)\b', Keyword.Reserved),
             # Final resolve (for variable names and such)
             (r'(%s)' % (bmax_name), Name.Variable),
+        ],
+        'string': [
+            (r'""', String.Double),
+            (r'"C?', String.Double, '#pop'),
+            (r'[^"]+', String.Double),
+        ],
+    }
+
+
+class BlitzBasicLexer(RegexLexer):
+    """
+    For `BlitzBasic <http://blitzbasic.com>`_ source code.
+    """
+
+    name = 'BlitzBasic'
+    aliases = ['blitzbasic', 'b3d', 'bplus']
+    filenames = ['*.bb', '*.decls']
+    mimetypes = ['text/x-bb']
+
+    bb_vopwords = (r'\b(Shl|Shr|Sar|Mod|Or|And|Not|'
+                   r'Abs|Sgn|Handle|Int|Float|Str|'
+                   r'First|Last|Before|After)\b')
+    bb_sktypes = r'@{1,2}|[#$%]'
+    bb_name = r'[a-z][a-z0-9_]*'
+    bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)([.])([ \t]*)(?:(%s)))?') % \
+                (bb_name, bb_sktypes, bb_name)
+
+    flags = re.MULTILINE | re.IGNORECASE
+    tokens = {
+        'root': [
+            # Text
+            (r'[ \t]+', Text),
+            # Comments
+            (r";.*?\n", Comment.Single),
+            # Data types
+            ('"', String.Double, 'string'),
+            # Numbers
+            (r'[0-9]+\.[0-9]*(?!\.)', Number.Float),
+            (r'\.[0-9]+(?!\.)', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r'\$[0-9a-f]+', Number.Hex),
+            (r'\%[10]+', Number), # Binary
+            # Other
+            (r'(?:%s|([+\-*/~=<>^]))' % (bb_vopwords), Operator),
+            (r'[(),:\[\]\\]', Punctuation),
+            (r'\.([ \t]*)(%s)' % bb_name, Name.Label),
+            # Identifiers
+            (r'\b(New)\b([ \t]+)(%s)' % (bb_name),
+             bygroups(Keyword.Reserved, Text, Name.Class)),
+            (r'\b(Gosub|Goto)\b([ \t]+)(%s)' % (bb_name),
+             bygroups(Keyword.Reserved, Text, Name.Label)),
+            (r'\b(Object)\b([ \t]*)([.])([ \t]*)(%s)\b' % (bb_name),
+             bygroups(Operator, Text, Punctuation, Text, Name.Class)),
+            (r'\b%s\b([ \t]*)(\()' % bb_var,
+             bygroups(Name.Function, Text, Keyword.Type,Text, Punctuation,
+                      Text, Name.Class, Text, Punctuation)),
+            (r'\b(Function)\b([ \t]+)%s' % bb_var,
+             bygroups(Keyword.Reserved, Text, Name.Function, Text, Keyword.Type,
+                              Text, Punctuation, Text, Name.Class)),
+            (r'\b(Type)([ \t]+)(%s)' % (bb_name),
+             bygroups(Keyword.Reserved, Text, Name.Class)),
+            # Keywords
+            (r'\b(Pi|True|False|Null)\b', Keyword.Constant),
+            (r'\b(Local|Global|Const|Field|Dim)\b', Keyword.Declaration),
+            (r'\b(End|Return|Exit|'
+             r'Chr|Len|Asc|'
+             r'New|Delete|Insert|'
+             r'Include|'
+             r'Function|'
+             r'Type|'
+             r'If|Then|Else|ElseIf|EndIf|'
+             r'For|To|Next|Step|Each|'
+             r'While|Wend|'
+             r'Repeat|Until|Forever|'
+             r'Select|Case|Default|'
+             r'Goto|Gosub|Data|Read|Restore)\b', Keyword.Reserved),
+            # Final resolve (for variable names and such)
+#            (r'(%s)' % (bb_name), Name.Variable),
+            (bb_var, bygroups(Name.Variable, Text, Keyword.Type,
+                              Text, Punctuation, Text, Name.Class)),
         ],
         'string': [
             (r'""', String.Double),
