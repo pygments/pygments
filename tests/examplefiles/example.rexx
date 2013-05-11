@@ -27,6 +27,17 @@ divide: procedure
 
 call divide(5, 2)
 
+/* Loops */
+do i = 1 to 5
+    do j = -3 to -9 by -3
+        say i '+' j '=' i + j
+    end j
+end i
+
+do forever
+  leave
+end
+
 /* Print a text file on MVS. */
 ADDRESS TSO
 "ALLOC F(TEXTFILE) DSN('some.text.dsn') SHR REU"
@@ -34,6 +45,6 @@ ADDRESS TSO
 "FREE F(TEXTFILE)"
 I = 1
 DO WHILE I <= LINES.0
-   SAY ' LINE ' I ' : ' LINES.I
-   I = I + 1
+    SAY ' LINE ' I ' : ' LINES.I
+    I = I + 1
 END

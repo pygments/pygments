@@ -3707,7 +3707,7 @@ class RexxLexer(RegexLexer):
              r'max|min|overlay|pos|queued|random|reverse|right|sign|'
              r'sourceline|space|stream|strip|substr|subword|symbol|time|'
              r'trace|translate|trunc|value|verify|word|wordindex|'
-             r'wordlength|wordpos|words|x2b|x2c|x2d|xrange)(\s*)([(])',
+             r'wordlength|wordpos|words|x2b|x2c|x2d|xrange)(\s*)(\()',
              bygroups(Name.Builtin, Whitespace, Operator)),
         ],
         'keyword': [
@@ -3734,27 +3734,38 @@ class RexxLexer(RegexLexer):
             (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
         ],
         'comment': [
+            (r'[^*]+', Comment.Multiline),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'(.|\n)', Comment.Multiline),
+            (r'\*', Comment.Multiline),
         ]
     }
 
-    _ADDRESS_COMMAND_REGEX = re.compile(r'\s*address\s+command\b', re.IGNORECASE)
-    _ADDRESS_REGEX = re.compile(r'\s*address\s+', re.IGNORECASE)
-    _DO_WHILE_REGEX = re.compile(r'\s*do\s+while\b', re.IGNORECASE)
-    _IF_THEN_DO_REGEX = re.compile(r'\s*if\b.+\bthen\s+do\s*$', re.IGNORECASE)
-    _PROCEDURE_REGEX = re.compile(r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b', re.IGNORECASE)
-    _ELSE_DO_REGEX = re.compile(r'\s*else\s+do\s*$', re.IGNORECASE)
-    _PARSE_ARG_REGEX = re.compile(r'\s*parse\s+(upper\s+)?(arg|value)\b', re.IGNORECASE)
-    _REGEXS = [
-        _ADDRESS_COMMAND_REGEX,
-        _ADDRESS_REGEX,
-        _DO_WHILE_REGEX,
-        _ELSE_DO_REGEX,
-        _IF_THEN_DO_REGEX,
-        _PROCEDURE_REGEX,
-        _PARSE_ARG_REGEX,
-    ]
+    _ADDRESS_COMMAND_PATTERN = r'^\s*address\s+command\b'
+    _ADDRESS_PATTERN = r'^\s*address\s+'
+    _DO_WHILE_PATTERN = r'^\s*do\s+while\b'
+    _IF_THEN_DO_PATTERN = r'^\s*if\b.+\bthen\s+do\s*$'
+    _PROCEDURE_PATTERN = r'^\s*([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b'
+    _ELSE_DO_PATTERN = r'\belse\s+do\s*$'
+    _PARSE_ARG_PATTERN = r'^\s*parse\s+(upper\s+)?(arg|value)\b'
+    _PATTERNS_AND_WEIGHTS = (
+        (_ADDRESS_COMMAND_PATTERN, 0.2),
+        (_ADDRESS_PATTERN, 0.05),
+        (_DO_WHILE_PATTERN, 0.1),
+        (_ELSE_DO_PATTERN, 0.1),
+        (_IF_THEN_DO_PATTERN, 0.1),
+        (_PROCEDURE_PATTERN, 0.5),
+        (_PARSE_ARG_PATTERN, 0.2),
+    )
+
+    @staticmethod
+    def _analyse_text_for_weighted_patterns(text, patternsAndWeights):
+        result = 0.0
+        lowerText = text.lower()
+        for pattern, weight in patternsAndWeights:
+            regex = re.compile(pattern, re.MULTILINE)
+            if regex.search(lowerText):
+                result += weight
+        return result
 
     def analyse_text(text):
         """
@@ -3769,39 +3780,8 @@ class RexxLexer(RegexLexer):
             # Header matches general Rexx requirements; the source code might
             # still be any language using C comments such as C++, C# or Java.
             result = 0.01
-
-            # Check if lines match certain regular expressions and
-            # collect the respective counts in a dictionary.
-            regexCount = len(RexxLexer._REGEXS)
-            regexToCountMap = {}
-            for regex in RexxLexer._REGEXS:
-                regexToCountMap[regex] = 0
-            for line in (text.split('\n'))[1:]:
-                regexIndex = 0
-                lineHasAnyRegex = False
-                while not lineHasAnyRegex and (regexIndex < regexCount):
-                    regexToCheck = RexxLexer._REGEXS[regexIndex]
-                    if regexToCheck.match(line) is not None:
-                        regexToCountMap[regexToCheck] = \
-                            regexToCountMap[regexToCheck] + 1
-                        lineHasAnyRegex = True
-                    else:
-                        regexIndex += 1
-            # Evaluate the findings.
-            if regexToCountMap[RexxLexer._PROCEDURE_REGEX] > 0:
-                result += 0.5
-            elif regexToCountMap[RexxLexer._ADDRESS_COMMAND_REGEX] > 0:
-                result += 0.2
-            elif regexToCountMap[RexxLexer._ADDRESS_REGEX] > 0:
-                result += 0.05
-            if regexToCountMap[RexxLexer._DO_WHILE_REGEX] > 0:
-                result += 0.1
-            if regexToCountMap[RexxLexer._ELSE_DO_REGEX] > 0:
-                result += 0.1
-            if regexToCountMap[RexxLexer._PARSE_ARG_REGEX] > 0:
-                result += 0.2
-            if regexToCountMap[RexxLexer._IF_THEN_DO_REGEX] > 0:
-                result += 0.1
+            result += RexxLexer._analyse_text_for_weighted_patterns(
+                text, RexxLexer._PATTERNS_AND_WEIGHTS)
             result = min(result, 1.0)
         assert 0.0 <= result <= 1.0
         return result
