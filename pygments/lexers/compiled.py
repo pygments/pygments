@@ -252,7 +252,7 @@ class SwigLexer(CppLexer):
     }
 
     # This is a far from complete set of SWIG directives
-    swig_directives = ( \
+    swig_directives = (
         # Most common directives
         '%apply', '%define', '%director', '%enddef', '%exception', '%extend',
         '%feature', '%fragment', '%ignore', '%immutable', '%import', '%include',
@@ -274,7 +274,10 @@ class SwigLexer(CppLexer):
 
     def analyse_text(text):
         rv = 0.1 # Same as C/C++
-        matches = re.findall(r'%[a-z_][a-z0-9_]*', text, re.M) # Search for SWIG directive
+        # Search for SWIG directives, which are conventionally at the beginning of
+        # a line. The probability of them being within a line is low, so let another
+        # lexer win in this case.
+        matches = re.findall(r'^\s*(%[a-z_][a-z0-9_]*)', text, re.M)
         for m in matches:
             if m in SwigLexer.swig_directives:
                 rv = 0.98
