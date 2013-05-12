@@ -2453,7 +2453,7 @@ class KokaLexer(RegexLexer):
     sboundary = '(?!'+symbols+')'
 
     # name boundary: a keyword should not be followed by any of these
-    boundary = '(?![a-zA-Z0-9_])'
+    boundary = '(?![\w\d/])'
 
     # koka token abstractions
     tokenType = Name.Attribute
@@ -2477,33 +2477,34 @@ class KokaLexer(RegexLexer):
             (r'(module)(\s+)(interface\s+)?((?:[a-z]\w*/)*[a-z]\w*)',
              bygroups(Keyword, Text, Keyword, Name.Namespace)),
             (r'(import)(\s+)((?:[a-z]\w*/)*[a-z]\w*)'
-             r'(?:(\s*)(=)(\s*)((?:qualified\s*)?)'
-             r'((?:[a-z]\w*/)*[a-z]\w*))?',
+              r'(?:(\s*)(=)(\s*)((?:qualified\s*)?)'
+              r'((?:[a-z]\w*/)*[a-z]\w*))?',
              bygroups(Keyword, Text, Name.Namespace,
                       Text, Keyword,Text,Keyword,
                       Name.Namespace)),
 
-            (r'(^(?:(?:public|private)\s*)?(?:function|fun|val))(\s+)([a-z]\w*)', 
+            (r'(^(?:(?:public|private)\s*)?(?:function|fun|val))(\s+)([a-z]\w*|\((?:' + symbols + r'|/)\))', 
              bygroups(Keyword,Text,Name.Function)),
-            (r'(^(?:(?:public|private)\s*)?external)(\s+)(inline\s+)?([a-z]\w*)', 
+            (r'(^(?:(?:public|private)\s*)?external)(\s+)(inline\s+)?([a-z]\w*|\((?:' + symbols + r'|/)\))', 
              bygroups(Keyword,Text,Keyword,Name.Function)),
 
             # keywords
             (r'(%s)' % '|'.join(typekeywords) + boundary, Keyword.Type),
             (r'(%s)' % '|'.join(keywords) + boundary, Keyword),
             (r'(%s)' % '|'.join(builtin) + boundary, Keyword.Pseudo),
-            (r'::|:=|\->|[=\.:]' + sboundary, Keyword),
+            (r'::?|:=|\->|[=\.]' + sboundary, Keyword),
             
             # names
             (r'((?:[a-z]\w*/)*)([A-Z]\w*)', bygroups(Name.Namespace,tokenConstructor)),
             (r'((?:[a-z]\w*/)*)([a-z]\w*)', bygroups(Name.Namespace,Name)),
+            (r'((?:[a-z]\w*/)*)(\((?:' + symbols + r'|/)\))', bygroups(Name.Namespace,Name)),
             (r'_\w*', Name.Variable),
 
             # literal string
             (r'@"', String.Double, 'litstring'),
 
             # operators
-            (symbols, Operator),
+            (symbols + "|/(?![\*/])", Operator),            
             (r'`', Operator),
             (r'[\{\}\(\)\[\];,]', Punctuation),
 
@@ -2557,7 +2558,7 @@ class KokaLexer(RegexLexer):
             (r'[EPHVX]' + boundary, tokenType),
             
             # type names
-            (r'[a-z][0-9]*(?![a-zA-Z_/])', tokenType ),
+            (r'[a-z][0-9]*(?![\w/])', tokenType ),
             (r'_\w*', tokenType.Variable),  # Generic.Emph
             (r'((?:[a-z]\w*/)*)([A-Z]\w*)', bygroups(Name.Namespace,tokenType)),
             (r'((?:[a-z]\w*/)*)([a-z]\w+)', bygroups(Name.Namespace,tokenType)),
