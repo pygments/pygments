@@ -2453,7 +2453,7 @@ class KokaLexer(RegexLexer):
     sboundary = '(?!'+symbols+')'
 
     # name boundary: a keyword should not be followed by any of these
-    boundary = '(?![\w\d/])'
+    boundary = '(?![\w/])'
 
     # koka token abstractions
     tokenType = Name.Attribute
