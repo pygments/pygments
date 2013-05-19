@@ -136,6 +136,7 @@ LEXERS = {
     'HxmlLexer': ('pygments.lexers.text', 'Hxml', ('haxeml', 'hxml'), ('*.hxml',), ()),
     'HybrisLexer': ('pygments.lexers.other', 'Hybris', ('hybris', 'hy'), ('*.hy', '*.hyb'), ('text/x-hybris', 'application/x-hybris')),
     'IDLLexer': ('pygments.lexers.math', 'IDL', ('idl',), ('*.pro',), ('text/idl',)),
+    'IgorLexer': ('pygments.lexers.math', 'Igor', ('igor', 'igorpro'), ('*.ipf',), ('text/ipf',)),
     'IniLexer': ('pygments.lexers.text', 'INI', ('ini', 'cfg', 'dosini'), ('*.ini', '*.cfg'), ('text/x-ini',)),
     'IoLexer': ('pygments.lexers.agile', 'Io', ('io',), ('*.io',), ('text/x-iosrc',)),
     'IokeLexer': ('pygments.lexers.jvm', 'Ioke', ('ioke', 'ik'), ('*.ik',), ('text/x-iokesrc',)),
