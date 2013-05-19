@@ -1113,7 +1113,8 @@ class SLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return '<-' in text
+        if re.search(r'[a-z0-9_\])\s]<-(?!-)', text):
+            return 0.11
 
 
 class BugsLexer(RegexLexer):
