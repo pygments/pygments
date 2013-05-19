@@ -1631,7 +1631,7 @@ class CMakeLexer(RegexLexer):
             # r'VTK_MAKE_INSTANTIATOR|VTK_WRAP_JAVA|VTK_WRAP_PYTHON|'
             # r'VTK_WRAP_TCL|WHILE|WRITE_FILE|'
             # r'COUNTARGS)\b', Name.Builtin, 'args'),
-            (r'\b([A-Za-z_]+)([ \t]*)(\()', bygroups(Name.Builtin, Text,
+            (r'\b(\w+)([ \t]*)(\()', bygroups(Name.Builtin, Text,
                                                      Punctuation), 'args'),
             include('keywords'),
             include('ws')
