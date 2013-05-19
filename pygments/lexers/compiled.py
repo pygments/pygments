@@ -1655,7 +1655,7 @@ class CythonLexer(RegexLexer):
     """
 
     name = 'Cython'
-    aliases = ['cython', 'pyx']
+    aliases = ['cython', 'pyx', 'pyrex']
     filenames = ['*.pyx', '*.pxd', '*.pxi']
     mimetypes = ['text/x-cython', 'application/x-cython']
 

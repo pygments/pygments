@@ -34,7 +34,7 @@ class IniLexer(RegexLexer):
     """
 
     name = 'INI'
-    aliases = ['ini', 'cfg']
+    aliases = ['ini', 'cfg', 'dosini']
     filenames = ['*.ini', '*.cfg']
     mimetypes = ['text/x-ini']
 
@@ -106,7 +106,7 @@ class PropertiesLexer(RegexLexer):
     """
 
     name = 'Properties'
-    aliases = ['properties']
+    aliases = ['properties', 'jproperties']
     filenames = ['*.properties']
     mimetypes = ['text/x-java-properties']
 
@@ -128,7 +128,7 @@ class SourcesListLexer(RegexLexer):
     """
 
     name = 'Debian Sourcelist'
-    aliases = ['sourceslist', 'sources.list']
+    aliases = ['sourceslist', 'sources.list', 'debsources']
     filenames = ['sources.list']
     mimetype = ['application/x-debian-sourceslist']
 
@@ -1053,7 +1053,7 @@ class DebianControlLexer(RegexLexer):
     *New in Pygments 0.9.*
     """
     name = 'Debian Control file'
-    aliases = ['control']
+    aliases = ['control', 'debcontrol']
     filenames = ['control']
 
     tokens = {

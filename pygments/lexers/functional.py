@@ -719,7 +719,7 @@ class CommonLispLexer(RegexLexer):
     *New in Pygments 0.9.*
     """
     name = 'Common Lisp'
-    aliases = ['common-lisp', 'cl']
+    aliases = ['common-lisp', 'cl', 'lisp']
     filenames = ['*.cl', '*.lisp', '*.el']  # use for Elisp too
     mimetypes = ['text/x-common-lisp']
 
@@ -1028,7 +1028,7 @@ class LiterateHaskellLexer(Lexer):
     *New in Pygments 0.9.*
     """
     name = 'Literate Haskell'
-    aliases = ['lhs', 'literate-haskell']
+    aliases = ['lhs', 'literate-haskell', 'lhaskell']
     filenames = ['*.lhs']
     mimetypes = ['text/x-literate-haskell']
 
