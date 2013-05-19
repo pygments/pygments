@@ -245,7 +245,7 @@ class MOOCodeLexer(RegexLexer):
     """
     name = 'MOOCode'
     filenames = ['*.moo']
-    aliases = ['moocode']
+    aliases = ['moocode', 'moo']
     mimetypes = ['text/x-moocode']
 
     tokens = {
@@ -289,7 +289,7 @@ class SmalltalkLexer(RegexLexer):
     """
     name = 'Smalltalk'
     filenames = ['*.st']
-    aliases = ['smalltalk', 'squeak']
+    aliases = ['smalltalk', 'squeak', 'st']
     mimetypes = ['text/x-smalltalk']
 
     tokens = {
@@ -1979,7 +1979,7 @@ class PostScriptLexer(RegexLexer):
     *New in Pygments 1.4.*
     """
     name = 'PostScript'
-    aliases = ['postscript']
+    aliases = ['postscript', 'postscr']
     filenames = ['*.ps', '*.eps']
     mimetypes = ['application/postscript']
 
@@ -2067,7 +2067,7 @@ class AutohotkeyLexer(RegexLexer):
     *New in Pygments 1.4.*
     """
     name = 'autohotkey'
-    aliases = ['ahk']
+    aliases = ['ahk', 'autohotkey']
     filenames = ['*.ahk', '*.ahkl']
     mimetypes = ['text/x-autohotkey']
 
@@ -2352,7 +2352,7 @@ class ProtoBufLexer(RegexLexer):
     """
 
     name = 'Protocol Buffer'
-    aliases = ['protobuf']
+    aliases = ['protobuf', 'proto']
     filenames = ['*.proto']
 
     tokens = {
@@ -2839,8 +2839,8 @@ class BroLexer(RegexLexer):
             (r'\\\n', Text),
             # Keywords
             (r'(add|alarm|break|case|const|continue|delete|do|else|enum|event'
-             r'|export|for|function|if|global|local|module|next'
-             r'|of|print|redef|return|schedule|type|when|while)\b', Keyword),
+             r'|export|for|function|if|global|hook|local|module|next'
+             r'|of|print|redef|return|schedule|switch|type|when|while)\b', Keyword),
             (r'(addr|any|bool|count|counter|double|file|int|interval|net'
              r'|pattern|port|record|set|string|subnet|table|time|timer'
              r'|vector)\b', Keyword.Type),
