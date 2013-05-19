@@ -3700,6 +3700,9 @@ class EasytrieveLexer(RegexLexer):
     _DELIMITERS_OR_COMENT = _DELIMITERS + '*'
     _DELIMITER_PATTERN = '[' + _DELIMITERS + ']'
     _NON_DELIMITER_OR_COMMENT_PATTERN = '[^' + _DELIMITERS_OR_COMENT + ']'
+    _PUNCTUATIONS = r'[\[\](){}<>;,]'
+    _OPERATORS = ur'[+\-/=&%¬]'
+
 
     tokens = {
         'root': [
@@ -3738,21 +3741,20 @@ class EasytrieveLexer(RegexLexer):
              r'USERID|VALUE|VERIFY|W|WHEN|WHILE|WORK|WRITE|X|XDM|XRST)'
              r'(' + _DELIMITER_PATTERN + r')',
              bygroups(Keyword.Reserved, Operator)),
-            (r'[\[\](){}<>;,]', Punctuation),
-            (ur'[-+/=&%¬]', Operator),
+            (_PUNCTUATIONS, Punctuation),
+            (_OPERATORS, Operator),
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r"'(''|[^'])*'", String),
-            (r'\.', Operator),
             (r'\s+', Whitespace),
             (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
          ],
         'after_macro_argument': [
-            (r'\*.*\n', Comment.Single, 'root'),
-            (r'\s+', Whitespace, 'root'),
-            (r'[\[\](){}<>;,]', Punctuation, 'root'),
-            (ur'[.+/=&%¬]', Operator, 'root'),
-            (r"'(''|[^'])*'", String, 'root'),
+            (r'\*.*\n', Comment.Single, '#pop'),
+            (r'\s+', Whitespace, '#pop'),
+            (_PUNCTUATIONS, Punctuation, '#pop'),
+            (_OPERATORS, Operator, '#pop'),
+            (r"'(''|[^'])*'", String, '#pop'),
             (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
         ],
     }
