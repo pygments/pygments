@@ -13,6 +13,15 @@ Version 1.7
 - Lexers added:
 
   * Clay (PR#184)
+  * Perl 6 (PR#181)
+  * Swig (PR#168)
+  * nesC (PR#166)
+  * BlitzBasic (PR#197)
+  * EBNF (PR#193)
+  * Igor Pro (PR#172)
+
+- Pygments will now recognize "vim" modelines when guessing the lexer for
+  a file based on content (PR#118).
 
 - Python 3 lexer: add new exceptions from PEP 3151.
 
@@ -23,6 +32,20 @@ Version 1.7
 
 - Lasso lexer: fix method highlighting, update builtins. Fix
   guessing so that plain XML isn't always taken as Lasso (PR#163).
+
+- Objective C/C++ lexers: allow "@" prefixing any expression (#871).
+
+- Ruby lexer: fix lexing of Name::Space tokens (#860).
+
+- Stan lexer: update for version 1.3.0 of the language (PR#162).
+
+- JavaScript lexer: add the "yield" keyword (PR#196).
+
+- HTTP lexer: support for PATCH method (PR#190).
+
+- Koka lexer: update to newest language spec (PR#201).
+
+- Haxe lexer: rewrite and support for Haxe 3 (PR#174).
 
 
 Version 1.6
@@ -278,7 +301,7 @@ Version 1.3
   * Ada
   * Coldfusion
   * Modula-2
-  * haXe
+  * Haxe
   * R console
   * Objective-J
   * Haml and Sass
@@ -337,7 +360,7 @@ Version 1.2
   * CMake
   * Ooc
   * Coldfusion
-  * haXe
+  * Haxe
   * R console
 
 - Added options for rendering LaTeX in source code comments in the

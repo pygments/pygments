@@ -28,7 +28,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
            'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
            'Modula2Lexer', 'BlitzMaxLexer', 'BlitzBasicLexer', 'NimrodLexer',
-           'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer',
+           'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
            'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer']
 
@@ -232,6 +232,63 @@ class CppLexer(CFamilyLexer):
         return 0.1
 
 
+class SwigLexer(CppLexer):
+    """
+    For `SWIG <http://www.swig.org/>`_ source code.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'SWIG'
+    aliases = ['Swig', 'swig']
+    filenames = ['*.swg', '*.i']
+    mimetypes = ['text/swig']
+    priority = 0.04 # Lower than C/C++ and Objective C/C++
+
+    tokens = {
+        'statements': [
+            (r'(%[a-z_][a-z0-9_]*)', Name.Function), # SWIG directives
+            ('\$\**\&?[a-zA-Z0-9_]+', Name), # Special variables
+            (r'##*[a-zA-Z_][a-zA-Z0-9_]*', Comment.Preproc), # Stringification / additional preprocessor directives
+            inherit,
+         ],
+    }
+
+    # This is a far from complete set of SWIG directives
+    swig_directives = (
+        # Most common directives
+        '%apply', '%define', '%director', '%enddef', '%exception', '%extend',
+        '%feature', '%fragment', '%ignore', '%immutable', '%import', '%include',
+        '%inline', '%insert', '%module', '%newobject', '%nspace', '%pragma',
+        '%rename', '%shared_ptr', '%template', '%typecheck', '%typemap',
+        # Less common directives
+        '%arg', '%attribute', '%bang', '%begin', '%callback', '%catches', '%clear',
+        '%constant', '%copyctor', '%csconst', '%csconstvalue', '%csenum',
+        '%csmethodmodifiers', '%csnothrowexception', '%default', '%defaultctor',
+        '%defaultdtor', '%defined', '%delete', '%delobject', '%descriptor',
+        '%exceptionclass', '%exceptionvar', '%extend_smart_pointer', '%fragments',
+        '%header', '%ifcplusplus', '%ignorewarn', '%implicit', '%implicitconv',
+        '%init', '%javaconst', '%javaconstvalue', '%javaenum', '%javaexception',
+        '%javamethodmodifiers', '%kwargs', '%luacode', '%mutable', '%naturalvar',
+        '%nestedworkaround', '%perlcode', '%pythonabc', '%pythonappend',
+        '%pythoncallback', '%pythoncode', '%pythondynamic', '%pythonmaybecall',
+        '%pythonnondynamic', '%pythonprepend', '%refobject', '%shadow', '%sizeof',
+        '%trackobjects', '%types', '%unrefobject', '%varargs', '%warn', '%warnfilter')
+
+    def analyse_text(text):
+        rv = 0.1 # Same as C/C++
+        # Search for SWIG directives, which are conventionally at the beginning of
+        # a line. The probability of them being within a line is low, so let another
+        # lexer win in this case.
+        matches = re.findall(r'^\s*(%[a-z_][a-z0-9_]*)', text, re.M)
+        for m in matches:
+            if m in SwigLexer.swig_directives:
+                rv = 0.98
+                break
+            else:
+                rv = 0.91 # Fraction higher than MatlabLexer
+        return rv
+
+
 class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
@@ -271,6 +328,8 @@ class NesCLexer(CLexer):
     """
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
+
+    *New in Pygments 1.7.*
     """
     name = 'nesC'
     aliases = ['nesc']
@@ -1292,6 +1351,8 @@ def objective(baselexer):
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_forward_classname')),
+                # @ can also prefix other expressions like @{...} or @(...)
+                (r'@', Punctuation),
                 inherit,
             ],
             'oc_classname' : [
@@ -1598,7 +1659,7 @@ class CythonLexer(RegexLexer):
     """
 
     name = 'Cython'
-    aliases = ['cython', 'pyx']
+    aliases = ['cython', 'pyx', 'pyrex']
     filenames = ['*.pyx', '*.pxd', '*.pxi']
     mimetypes = ['text/x-cython', 'application/x-cython']
 
@@ -2660,6 +2721,8 @@ class BlitzMaxLexer(RegexLexer):
 class BlitzBasicLexer(RegexLexer):
     """
     For `BlitzBasic <http://blitzbasic.com>`_ source code.
+
+    *New in Pygments 1.7.*
     """
 
     name = 'BlitzBasic'

@@ -25,7 +25,7 @@ __all__ = ['IniLexer', 'PropertiesLexer', 'SourcesListLexer', 'BaseMakefileLexer
            'RstLexer', 'VimLexer', 'GettextLexer', 'SquidConfLexer',
            'DebianControlLexer', 'DarcsPatchLexer', 'YamlLexer',
            'LighttpdConfLexer', 'NginxConfLexer', 'CMakeLexer', 'HttpLexer',
-           'PyPyLogLexer', 'RegeditLexer', 'HxmlLexer']
+           'PyPyLogLexer', 'RegeditLexer', 'HxmlLexer', 'EbnfLexer']
 
 
 class IniLexer(RegexLexer):
@@ -34,7 +34,7 @@ class IniLexer(RegexLexer):
     """
 
     name = 'INI'
-    aliases = ['ini', 'cfg']
+    aliases = ['ini', 'cfg', 'dosini']
     filenames = ['*.ini', '*.cfg']
     mimetypes = ['text/x-ini']
 
@@ -106,7 +106,7 @@ class PropertiesLexer(RegexLexer):
     """
 
     name = 'Properties'
-    aliases = ['properties']
+    aliases = ['properties', 'jproperties']
     filenames = ['*.properties']
     mimetypes = ['text/x-java-properties']
 
@@ -128,7 +128,7 @@ class SourcesListLexer(RegexLexer):
     """
 
     name = 'Debian Sourcelist'
-    aliases = ['sourceslist', 'sources.list']
+    aliases = ['sourceslist', 'sources.list', 'debsources']
     filenames = ['sources.list']
     mimetype = ['application/x-debian-sourceslist']
 
@@ -1053,7 +1053,7 @@ class DebianControlLexer(RegexLexer):
     *New in Pygments 0.9.*
     """
     name = 'Debian Control file'
-    aliases = ['control']
+    aliases = ['control', 'debcontrol']
     filenames = ['control']
 
     tokens = {
@@ -1840,4 +1840,54 @@ class HxmlLexer(RegexLexer):
             # Single line comment, multiline ones are not allowed.
             (r'#.*', Comment.Single)
         ]
+    }
+
+
+class EbnfLexer(RegexLexer):
+    """
+    Lexer for `ISO/IEC 14977 EBNF
+    <http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form>`_
+    grammars.
+
+    *New in Pygments 1.7.*
+    """
+
+    name = 'EBNF'
+    aliases = ['ebnf']
+    filenames = ['*.ebnf']
+    mimetypes = ['text/x-ebnf']
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            include('comment_start'),
+            include('identifier'),
+            (r'=', Operator, 'production'),
+        ],
+        'production': [
+            include('whitespace'),
+            include('comment_start'),
+            include('identifier'),
+            (r'"[^"]*"', String.Double),
+            (r"'[^']*'", String.Single),
+            (r'(\?[^?]*\?)', Name.Entity),
+            (r'[\[\]{}(),|]', Punctuation),
+            (r'-', Operator),
+            (r';', Punctuation, '#pop'),
+        ],
+        'whitespace': [
+            (r'\s+', Text),
+          ],
+        'comment_start': [
+            (r'\(\*', Comment.Multiline, 'comment'),
+          ],
+        'comment': [
+            (r'[^*)]', Comment.Multiline),
+            include('comment_start'),
+            (r'\*\)', Comment.Multiline, '#pop'),
+            (r'[*)]', Comment.Multiline),
+          ],
+        'identifier': [
+            (r'([a-zA-Z][a-zA-Z0-9 \-]*)', Keyword),
+          ],
     }
