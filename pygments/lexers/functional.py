@@ -22,6 +22,9 @@ __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'ElixirConsoleLexer', 'KokaLexer']
 
 
+line_re = re.compile('.*?\n')
+
+
 class RacketLexer(RegexLexer):
     """
     Lexer for `Racket <http://racket-lang.org/>`_ source code (formerly known as
@@ -1012,90 +1015,6 @@ class HaskellLexer(RegexLexer):
     }
 
 
-line_re = re.compile('.*?\n')
-bird_re = re.compile(r'(>[ \t]*)(.*\n)')
-
-# bird-style
-def _bird_get_tokens_unprocessed(text, baselexer):
-    code = ''
-    insertions = []
-    for match in line_re.finditer(text):
-        line = match.group()
-        m = bird_re.match(line)
-        if m:
-            insertions.append((len(code),
-                               [(0, Comment.Special, m.group(1))]))
-            code += m.group(2)
-        else:
-            insertions.append((len(code), [(0, Text, line)]))
-    for item in do_insertions(insertions, baselexer.get_tokens_unprocessed(code)):
-        yield item
-
-
-# latex-style
-def _latex_get_tokens_unprocessed(text, baselexer, lxlexer):
-    code = ''
-    insertions = []
-
-    codelines = 0
-    latex = ''
-    for match in line_re.finditer(text):
-        line = match.group()
-        if codelines:
-            if line.lstrip().startswith('\\end{code}'):
-                codelines = 0
-                latex += line
-            else:
-                code += line
-        elif line.lstrip().startswith('\\begin{code}'):
-            codelines = 1
-            latex += line
-            insertions.append((len(code),
-                               list(lxlexer.get_tokens_unprocessed(latex))))
-            latex = ''
-        else:
-            latex += line
-    insertions.append((len(code),
-                       list(lxlexer.get_tokens_unprocessed(latex))))
-    for item in do_insertions(insertions, baselexer.get_tokens_unprocessed(code)):
-        yield item
-
-
-class LiterateHaskellLexer(Lexer):
-    """
-    For Literate Haskell (Bird-style or LaTeX) source.
-
-    Additional options accepted:
-
-    `litstyle`
-        If given, must be ``"bird"`` or ``"latex"``.  If not given, the style
-        is autodetected: if the first non-whitespace character in the source
-        is a backslash or percent character, LaTeX is assumed, else Bird.
-
-    *New in Pygments 0.9.*
-    """
-    name = 'Literate Haskell'
-    aliases = ['lhs', 'literate-haskell']
-    filenames = ['*.lhs']
-    mimetypes = ['text/x-literate-haskell']
-
-    def get_tokens_unprocessed(self, text):
-        hslexer = HaskellLexer(**self.options)
-
-        style = self.options.get('litstyle')
-        if style is None:
-            style = (text.lstrip()[0:1] in '%\\') and 'latex' or 'bird'
-
-        if style == 'bird':
-            for item in _bird_get_tokens_unprocessed(text, hslexer):
-                yield item
-        else:
-            from pygments.lexers.text import TexLexer
-            lxlexer = TexLexer(**self.options)
-            for item in _latex_get_tokens_unprocessed(text, hslexer, lxlexer):
-                yield item
-
-
 class AgdaLexer(RegexLexer):
     """
     For the `Agda <http://wiki.portal.chalmers.se/agda/pmwiki.php>`_
@@ -1167,7 +1086,95 @@ class AgdaLexer(RegexLexer):
     }
 
 
-class LiterateAgdaLexer(Lexer):
+class LiterateLexer(Lexer):
+    """
+    Base class for lexers of literate file formats based on LaTeX or Bird-style
+    (prefixing each code line with ">").
+
+    Additional options accepted:
+
+    `litstyle`
+        If given, must be ``"bird"`` or ``"latex"``.  If not given, the style
+        is autodetected: if the first non-whitespace character in the source
+        is a backslash or percent character, LaTeX is assumed, else Bird.
+    """
+
+    bird_re = re.compile(r'(>[ \t]*)(.*\n)')
+
+    def __init__(self, baselexer, **options):
+        self.baselexer = baselexer
+        Lexer.__init__(self, **options)
+
+    def get_tokens_unprocessed(self, text):
+        style = self.options.get('litstyle')
+        if style is None:
+            style = (text.lstrip()[0:1] in '%\\') and 'latex' or 'bird'
+
+        code = ''
+        insertions = []
+        if style == 'bird':
+            # bird-style
+            for match in line_re.finditer(text):
+                line = match.group()
+                m = self.bird_re.match(line)
+                if m:
+                    insertions.append((len(code),
+                                       [(0, Comment.Special, m.group(1))]))
+                    code += m.group(2)
+                else:
+                    insertions.append((len(code), [(0, Text, line)]))
+        else:
+            # latex-style
+            from pygments.lexers.text import TexLexer
+            lxlexer = TexLexer(**self.options)
+            codelines = 0
+            latex = ''
+            for match in line_re.finditer(text):
+                line = match.group()
+                if codelines:
+                    if line.lstrip().startswith('\\end{code}'):
+                        codelines = 0
+                        latex += line
+                    else:
+                        code += line
+                elif line.lstrip().startswith('\\begin{code}'):
+                    codelines = 1
+                    latex += line
+                    insertions.append((len(code),
+                                       list(lxlexer.get_tokens_unprocessed(latex))))
+                    latex = ''
+                else:
+                    latex += line
+            insertions.append((len(code),
+                               list(lxlexer.get_tokens_unprocessed(latex))))
+        for item in do_insertions(insertions, self.baselexer.get_tokens_unprocessed(code)):
+            yield item
+
+
+class LiterateHaskellLexer(LiterateLexer):
+    """
+    For Literate Haskell (Bird-style or LaTeX) source.
+
+    Additional options accepted:
+
+    `litstyle`
+        If given, must be ``"bird"`` or ``"latex"``.  If not given, the style
+        is autodetected: if the first non-whitespace character in the source
+        is a backslash or percent character, LaTeX is assumed, else Bird.
+
+    *New in Pygments 0.9.*
+    """
+    name = 'Literate Haskell'
+    aliases = ['lhs', 'literate-haskell']
+    filenames = ['*.lhs']
+    mimetypes = ['text/x-literate-haskell']
+
+    def __init__(self, **options):
+        hslexer = HaskellLexer(**options)
+        LiterateLexer.__init__(self, hslexer, **options)
+
+
+class LiterateAgdaLexer(LiterateLexer):
     """
     For Literate Agda source.
     """
@@ -1176,13 +1183,9 @@ class LiterateAgdaLexer(Lexer):
     filenames = ['*.lagda']
     mimetypes = ['text/x-literate-agda']
 
-    def get_tokens_unprocessed(self, text):
-        agdalexer = AgdaLexer(**self.options)
-
-        from pygments.lexers.text import TexLexer
-        lxlexer = TexLexer(**self.options)
-        for item in _latex_get_tokens_unprocessed(text, agdalexer, lxlexer):
-            yield item
+    def __init__(self, **options):
+        agdalexer = AgdaLexer(**options)
+        LiterateLexer.__init__(self, agdalexer, litstyle='latex', **options)
 
 
 class SMLLexer(RegexLexer):
