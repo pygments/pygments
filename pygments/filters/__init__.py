@@ -129,7 +129,7 @@ class KeywordCaseFilter(Filter):
 
 class NameHighlightFilter(Filter):
     """
-    Highlight a normal Name token with a different token type.
+    Highlight a normal Name (and Name.*) token with a different token type.
 
     Example::
 
@@ -163,7 +163,7 @@ class NameHighlightFilter(Filter):
 
     def filter(self, lexer, stream):
         for ttype, value in stream:
-            if ttype is Name and value in self.names:
+            if ttype in Name and value in self.names:
                 yield self.tokentype, value
             else:
                 yield ttype, value

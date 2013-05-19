@@ -768,7 +768,7 @@ class CheetahHtmlLexer(DelegatingLexer):
     """
 
     name = 'HTML+Cheetah'
-    aliases = ['html+cheetah', 'html+spitfire']
+    aliases = ['html+cheetah', 'html+spitfire', 'htmlcheetah']
     mimetypes = ['text/html+cheetah', 'text/html+spitfire']
 
     def __init__(self, **options):
@@ -1260,7 +1260,7 @@ class HtmlDjangoLexer(DelegatingLexer):
     """
 
     name = 'HTML+Django/Jinja'
-    aliases = ['html+django', 'html+jinja']
+    aliases = ['html+django', 'html+jinja', 'htmldjango']
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
     mimetypes = ['text/html+django', 'text/html+jinja']
 

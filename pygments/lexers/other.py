@@ -14,7 +14,11 @@ import re
 from pygments.lexer import RegexLexer, include, bygroups, using, \
      this, combined, ExtendedRegexLexer
 from pygments.token import Error, Punctuation, Literal, Token, \
+<<<<<<< local
      Text, Comment, Operator, Keyword, Name, String, Number, Generic, Other, \
+=======
+     Text, Comment, Operator, Keyword, Name, String, Number, Generic, \
+>>>>>>> other
      Whitespace
 from pygments.util import get_bool_opt
 from pygments.lexers.web import HtmlLexer
@@ -248,7 +252,7 @@ class MOOCodeLexer(RegexLexer):
     """
     name = 'MOOCode'
     filenames = ['*.moo']
-    aliases = ['moocode']
+    aliases = ['moocode', 'moo']
     mimetypes = ['text/x-moocode']
 
     tokens = {
@@ -292,7 +296,7 @@ class SmalltalkLexer(RegexLexer):
     """
     name = 'Smalltalk'
     filenames = ['*.st']
-    aliases = ['smalltalk', 'squeak']
+    aliases = ['smalltalk', 'squeak', 'st']
     mimetypes = ['text/x-smalltalk']
 
     tokens = {
@@ -1982,7 +1986,7 @@ class PostScriptLexer(RegexLexer):
     *New in Pygments 1.4.*
     """
     name = 'PostScript'
-    aliases = ['postscript']
+    aliases = ['postscript', 'postscr']
     filenames = ['*.ps', '*.eps']
     mimetypes = ['application/postscript']
 
@@ -2070,7 +2074,7 @@ class AutohotkeyLexer(RegexLexer):
     *New in Pygments 1.4.*
     """
     name = 'autohotkey'
-    aliases = ['ahk']
+    aliases = ['ahk', 'autohotkey']
     filenames = ['*.ahk', '*.ahkl']
     mimetypes = ['text/x-autohotkey']
 
@@ -2355,7 +2359,7 @@ class ProtoBufLexer(RegexLexer):
     """
 
     name = 'Protocol Buffer'
-    aliases = ['protobuf']
+    aliases = ['protobuf', 'proto']
     filenames = ['*.proto']
 
     tokens = {
@@ -4160,7 +4164,7 @@ class FocusMasterLexer(RegexLexer):
 
         if FocusMasterLexer._HEADER_PATTERN.match(text):
             result = 0.8
-        
+
         assert 0.0 <= result <= 1.0
         return result
 
@@ -4191,7 +4195,7 @@ class FocusAccessLexer(FocusMasterLexer):
 
         if FocusAccessLexer._HEADER_PATTERN.match(text):
             result = 0.8
-        
+
         assert 0.0 <= result <= 1.0
         return result
 
@@ -4245,7 +4249,7 @@ class RexxLexer(RegexLexer):
 
     *New in Pygments 1.7.*
     """
-    name = 'REXX'
+    name = 'Rexx'
     aliases = ['rexx', 'ARexx', 'arexx']
     filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
     mimetypes = ['text/x-rexx']
@@ -4259,7 +4263,8 @@ class RexxLexer(RegexLexer):
             (r"'", String, 'string_single'),
             (r'[0-9]+(\.[0-9]+)?(e[+-]?[0-9])?', Number),
             (r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b',
-             bygroups(Name.Function, Whitespace, Operator, Whitespace, Keyword.Declaration)),
+             bygroups(Name.Function, Whitespace, Operator, Whitespace,
+                      Keyword.Declaration)),
             (r'([a-z_][a-z0-9_]*)(\s*)(:)',
              bygroups(Name.Label, Whitespace, Operator)),
             include('function'),
@@ -4275,7 +4280,7 @@ class RexxLexer(RegexLexer):
              r'max|min|overlay|pos|queued|random|reverse|right|sign|'
              r'sourceline|space|stream|strip|substr|subword|symbol|time|'
              r'trace|translate|trunc|value|verify|word|wordindex|'
-             r'wordlength|wordpos|words|x2b|x2c|x2d|xrange)(\s*)([(])',
+             r'wordlength|wordpos|words|x2b|x2c|x2d|xrange)(\s*)(\()',
              bygroups(Name.Builtin, Whitespace, Operator)),
         ],
         'keyword': [
@@ -4290,86 +4295,56 @@ class RexxLexer(RegexLexer):
              ur'¬>>|¬>|¬|\.|,)', Operator),
         ],
         'string_double': [
-            (r'[^"\n]', String),
+            (r'[^"\n]+', String),
             (r'""', String),
             (r'"', String, '#pop'),
-            (r'', Text, '#pop'),  # Linefeed also terminates strings.
+            (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
         ],
         'string_single': [
             (r'[^\'\n]', String),
             (r'\'\'', String),
             (r'\'', String, '#pop'),
-            (r'', Text, '#pop'),  # Linefeed also terminates strings.
+            (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
         ],
         'comment': [
+            (r'[^*]+', Comment.Multiline),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'(.|\n)', Comment.Multiline),
+            (r'\*', Comment.Multiline),
         ]
     }
 
-    _ADDRESS_COMMAND_REGEX = re.compile(r'\s*address\s+command\b', re.IGNORECASE)
-    _ADDRESS_REGEX = re.compile(r'\s*address\s+', re.IGNORECASE)
-    _DO_WHILE_REGEX = re.compile(r'\s*do\s+while\b', re.IGNORECASE)
-    _IF_THEN_DO_REGEX = re.compile(r'\s*if\b.+\bthen\s+do\s*$', re.IGNORECASE)
-    _PROCEDURE_REGEX = re.compile(r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b', re.IGNORECASE)
-    _ELSE_DO_REGEX = re.compile(r'\s*else\s+do\s*$', re.IGNORECASE)
-    _PARSE_ARG_REGEX = re.compile(r'\s*parse\s+(upper\s+)?(arg|value)\b', re.IGNORECASE)
-    _REGEXS = [
-        _ADDRESS_COMMAND_REGEX,
-        _ADDRESS_REGEX,
-        _DO_WHILE_REGEX,
-        _ELSE_DO_REGEX,
-        _IF_THEN_DO_REGEX,
-        _PROCEDURE_REGEX,
-        _PARSE_ARG_REGEX,
-    ]
+    _c = lambda s: re.compile(s, re.MULTILINE)
+    _ADDRESS_COMMAND_PATTERN = _c(r'^\s*address\s+command\b')
+    _ADDRESS_PATTERN = _c(r'^\s*address\s+')
+    _DO_WHILE_PATTERN = _c(r'^\s*do\s+while\b')
+    _IF_THEN_DO_PATTERN = _c(r'^\s*if\b.+\bthen\s+do\s*$')
+    _PROCEDURE_PATTERN = _c(r'^\s*([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b')
+    _ELSE_DO_PATTERN = _c(r'\belse\s+do\s*$')
+    _PARSE_ARG_PATTERN = _c(r'^\s*parse\s+(upper\s+)?(arg|value)\b')
+    PATTERNS_AND_WEIGHTS = (
+        (_ADDRESS_COMMAND_PATTERN, 0.2),
+        (_ADDRESS_PATTERN, 0.05),
+        (_DO_WHILE_PATTERN, 0.1),
+        (_ELSE_DO_PATTERN, 0.1),
+        (_IF_THEN_DO_PATTERN, 0.1),
+        (_PROCEDURE_PATTERN, 0.5),
+        (_PARSE_ARG_PATTERN, 0.2),
+    )
 
     def analyse_text(text):
         """
-        Check for inital comment.
+        Check for inital comment and patterns that distinguish Rexx from other
+        C-like languages.
         """
-        result = 0.0
         if re.search(r'/\*\**\s*rexx', text, re.IGNORECASE):
             # Header matches MVS Rexx requirements, this is certainly a Rexx
             # script.
-            result = 1.0
+            return 1.0
         elif text.startswith('/*'):
             # Header matches general Rexx requirements; the source code might
             # still be any language using C comments such as C++, C# or Java.
-            result = 0.01
-
-            # Check if lines match certain regular expressions and
-            # collect the respective counts in a dictionary.
-            regexCount = len(RexxLexer._REGEXS)
-            regexToCountMap = {}
-            for regex in RexxLexer._REGEXS:
-                regexToCountMap[regex] = 0
-            for line in (text.split('\n'))[1:]:
-                regexIndex = 0
-                lineHasAnyRegex = False
-                while not lineHasAnyRegex and (regexIndex < regexCount):
-                    regexToCheck = RexxLexer._REGEXS[regexIndex]
-                    if regexToCheck.match(line) is not None:
-                        regexToCountMap[regexToCheck] = \
-                            regexToCountMap[regexToCheck] + 1
-                        lineHasAnyRegex = True
-                    else:
-                        regexIndex += 1
-            # Evaluate the findings.
-            if regexToCountMap[RexxLexer._PROCEDURE_REGEX] > 0:
-                result += 0.5
-            elif regexToCountMap[RexxLexer._ADDRESS_COMMAND_REGEX] > 0:
-                result += 0.2
-            elif regexToCountMap[RexxLexer._ADDRESS_REGEX] > 0:
-                result += 0.05
-            if regexToCountMap[RexxLexer._DO_WHILE_REGEX] > 0:
-                result += 0.1
-            if regexToCountMap[RexxLexer._ELSE_DO_REGEX] > 0:
-                result += 0.1
-            if regexToCountMap[RexxLexer._PARSE_ARG_REGEX] > 0:
-                result += 0.2
-            if regexToCountMap[RexxLexer._IF_THEN_DO_REGEX] > 0:
-                result += 0.1
-            result = min(result, 1.0)
-        assert 0.0 <= result <= 1.0
-        return result
+            lowerText = text.lower()
+            result = sum(weight
+                         for (pattern, weight) in RexxLexer.PATTERNS_AND_WEIGHTS
+                         if pattern.search(lowerText)) + 0.01
+            return min(result, 1.0)
