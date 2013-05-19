@@ -25,7 +25,7 @@ class GasLexer(RegexLexer):
     For Gas (AT&T) assembly code.
     """
     name = 'GAS'
-    aliases = ['gas']
+    aliases = ['gas', 'asm']
     filenames = ['*.s', '*.S']
     mimetypes = ['text/x-gas']
 

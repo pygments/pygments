@@ -19,53 +19,45 @@ def _exampleFilePath(filename):
     return os.path.join(os.path.dirname(__file__), 'examplefiles', filename)
 
 
-class _AnalyseTextTest(unittest.TestCase):
-    def setUp(self):
-        raise NotImplementedError('self.lexer must be set')
+class AnalyseTextTest(unittest.TestCase):
+    def _testCanRecognizeAndGuessExampleFiles(self, lexer):
+        assert lexer is not None
 
-    def testCanRecognizeAndGuessExampleFiles(self):
-        for pattern in self.lexer.filenames:
+        for pattern in lexer.filenames:
             exampleFilesPattern = _exampleFilePath(pattern)
             for exampleFilePath in glob.glob(exampleFilesPattern):
                 exampleFile = open(exampleFilePath, 'rb')
                 try:
                     text = exampleFile.read()
-                    probability = self.lexer.analyse_text(text)
+                    probability = lexer.analyse_text(text)
                     self.assertTrue(probability > 0,
-                            '%s must recognize %r' % (
-                            self.lexer.name, exampleFilePath))
+                        '%s must recognize %r' % (
+                        lexer.name, exampleFilePath))
                     guessedLexer = guess_lexer(text)
-                    self.assertEqual(guessedLexer.name, self.lexer.name)
+                    self.assertEqual(guessedLexer.name, lexer.name)
                 finally:
                     exampleFile.close()
 
-
-class EasytrieveLexerTest(_AnalyseTextTest):
-    def setUp(self):
-        self.lexer = EasytrieveLexer()
-
-
-class JclLexerTest(_AnalyseTextTest):
-    def setUp(self):
-        self.lexer = JclLexer()
+    def testCanRecognizeAndGuessExampleFiles(self):
+        self._testCanRecognizeAndGuessExampleFiles(EasytrieveLexer)
+        self._testCanRecognizeAndGuessExampleFiles(JclLexer)
+        self._testCanRecognizeAndGuessExampleFiles(RexxLexer)
+        self._testCanRecognizeAndGuessExampleFiles(WebFocusLexer)
 
 
-class RexxLexerTest(_AnalyseTextTest):
-    def setUp(self):
-        self.lexer = RexxLexer()
-
+class RexxLexerTest(unittest.TestCase):
     def testCanGuessFromText(self):
         self.assertAlmostEqual(0.01,
-            self.lexer.analyse_text('/* */'))
+            RexxLexer.analyse_text('/* */'))
         self.assertAlmostEqual(1.0,
-            self.lexer.analyse_text('''/* Rexx */
+            RexxLexer.analyse_text('''/* Rexx */
                 say "hello world"'''))
         self.assertLess(0.5,
-            self.lexer.analyse_text('/* */\n' \
-                + 'hello:pRoceduRe\n' \
-                + '  say "hello world"'))
+            RexxLexer.analyse_text('/* */\n'
+                'hello:pRoceduRe\n'
+                '  say "hello world"'))
         self.assertLess(0.2,
-            self.lexer.analyse_text('''/* */
+            RexxLexer.analyse_text('''/* */
                 if 1 > 0 then do
                     say "ok"
                 end
@@ -73,12 +65,7 @@ class RexxLexerTest(_AnalyseTextTest):
                     say "huh?"
                 end'''))
         self.assertLess(0.2,
-            self.lexer.analyse_text('''/* */
+            RexxLexer.analyse_text('''/* */
                 greeting = "hello world!"
                 parse value greeting "hello" name "!"
                 say name'''))
-
-
-class WebFocusLexerTest(_AnalyseTextTest):
-    def setUp(self):
-        self.lexer = WebFocusLexer()
