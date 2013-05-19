@@ -1929,6 +1929,8 @@ class DgLexer(RegexLexer):
 class Perl6Lexer(ExtendedRegexLexer):
     """
     For `Perl 6 <http://www.perl6.org>`_ source code.
+
+    *New in Pygments 1.7.*
     """
 
     name      = 'Perl6'

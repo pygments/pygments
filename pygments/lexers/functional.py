@@ -719,7 +719,7 @@ class CommonLispLexer(RegexLexer):
     *New in Pygments 0.9.*
     """
     name = 'Common Lisp'
-    aliases = ['common-lisp', 'cl']
+    aliases = ['common-lisp', 'cl', 'lisp']
     filenames = ['*.cl', '*.lisp', '*.el']  # use for Elisp too
     mimetypes = ['text/x-common-lisp']
 
@@ -1028,7 +1028,7 @@ class LiterateHaskellLexer(Lexer):
     *New in Pygments 0.9.*
     """
     name = 'Literate Haskell'
-    aliases = ['lhs', 'literate-haskell']
+    aliases = ['lhs', 'literate-haskell', 'lhaskell']
     filenames = ['*.lhs']
     mimetypes = ['text/x-literate-haskell']
 
@@ -2467,44 +2467,50 @@ class KokaLexer(RegexLexer):
 
             # go into type mode
             (r'::?' + sboundary, tokenType, 'type'),
-            (r'(alias)(\s+)([a-z]\w*)?', bygroups(Keyword,Text,tokenTypeDef), 'alias-type'),
-            (r'(struct)(\s+)([a-z]\w*)?',  bygroups(Keyword,Text,tokenTypeDef), 'struct-type'),
+            (r'(alias)(\s+)([a-z]\w*)?', bygroups(Keyword, Text, tokenTypeDef),
+             'alias-type'),
+            (r'(struct)(\s+)([a-z]\w*)?', bygroups(Keyword, Text, tokenTypeDef),
+             'struct-type'),
             ((r'(%s)' % '|'.join(typeStartKeywords)) +
-             r'(\s+)([a-z]\w*)?', bygroups(Keyword,Text,tokenTypeDef), 'type'),
-            
+             r'(\s+)([a-z]\w*)?', bygroups(Keyword, Text, tokenTypeDef),
+             'type'),
+
             # special sequences of tokens (we use ?: for non-capturing group as
             # required by 'bygroups')
             (r'(module)(\s+)(interface\s+)?((?:[a-z]\w*/)*[a-z]\w*)',
              bygroups(Keyword, Text, Keyword, Name.Namespace)),
             (r'(import)(\s+)((?:[a-z]\w*/)*[a-z]\w*)'
-              r'(?:(\s*)(=)(\s*)((?:qualified\s*)?)'
-              r'((?:[a-z]\w*/)*[a-z]\w*))?',
-             bygroups(Keyword, Text, Name.Namespace,
-                      Text, Keyword,Text,Keyword,
-                      Name.Namespace)),
+             r'(?:(\s*)(=)(\s*)((?:qualified\s*)?)'
+             r'((?:[a-z]\w*/)*[a-z]\w*))?',
+             bygroups(Keyword, Text, Name.Namespace, Text, Keyword, Text,
+                      Keyword, Name.Namespace)),
 
-            (r'(^(?:(?:public|private)\s*)?(?:function|fun|val))(\s+)([a-z]\w*|\((?:' + symbols + r'|/)\))', 
-             bygroups(Keyword,Text,Name.Function)),
-            (r'(^(?:(?:public|private)\s*)?external)(\s+)(inline\s+)?([a-z]\w*|\((?:' + symbols + r'|/)\))', 
-             bygroups(Keyword,Text,Keyword,Name.Function)),
+            (r'(^(?:(?:public|private)\s*)?(?:function|fun|val))'
+             r'(\s+)([a-z]\w*|\((?:' + symbols + r'|/)\))',
+             bygroups(Keyword, Text, Name.Function)),
+            (r'(^(?:(?:public|private)\s*)?external)(\s+)(inline\s+)?'
+             r'([a-z]\w*|\((?:' + symbols + r'|/)\))',
+             bygroups(Keyword, Text, Keyword, Name.Function)),
 
             # keywords
             (r'(%s)' % '|'.join(typekeywords) + boundary, Keyword.Type),
             (r'(%s)' % '|'.join(keywords) + boundary, Keyword),
             (r'(%s)' % '|'.join(builtin) + boundary, Keyword.Pseudo),
             (r'::?|:=|\->|[=\.]' + sboundary, Keyword),
-            
+
             # names
-            (r'((?:[a-z]\w*/)*)([A-Z]\w*)', bygroups(Name.Namespace,tokenConstructor)),
-            (r'((?:[a-z]\w*/)*)([a-z]\w*)', bygroups(Name.Namespace,Name)),
-            (r'((?:[a-z]\w*/)*)(\((?:' + symbols + r'|/)\))', bygroups(Name.Namespace,Name)),
+            (r'((?:[a-z]\w*/)*)([A-Z]\w*)',
+             bygroups(Name.Namespace, tokenConstructor)),
+            (r'((?:[a-z]\w*/)*)([a-z]\w*)', bygroups(Name.Namespace, Name)),
+            (r'((?:[a-z]\w*/)*)(\((?:' + symbols + r'|/)\))',
+             bygroups(Name.Namespace, Name)),
             (r'_\w*', Name.Variable),
 
             # literal string
             (r'@"', String.Double, 'litstring'),
 
             # operators
-            (symbols + "|/(?![\*/])", Operator),            
+            (symbols + "|/(?![\*/])", Operator),
             (r'`', Operator),
             (r'[\{\}\(\)\[\];,]', Punctuation),
 
@@ -2541,7 +2547,7 @@ class KokaLexer(RegexLexer):
             (r'[\(\[<]', tokenType, 'type-nested'),
             (r',', tokenType),
             (r'([a-z]\w*)(\s*)(:)(?!:)',
-             bygroups(Name,Text,tokenType)),  # parameter name
+             bygroups(Name, Text, tokenType)),  # parameter name
             include('type-content')
         ],
 
@@ -2556,12 +2562,14 @@ class KokaLexer(RegexLexer):
 
             # kinds
             (r'[EPHVX]' + boundary, tokenType),
-            
+
             # type names
             (r'[a-z][0-9]*(?![\w/])', tokenType ),
             (r'_\w*', tokenType.Variable),  # Generic.Emph
-            (r'((?:[a-z]\w*/)*)([A-Z]\w*)', bygroups(Name.Namespace,tokenType)),
-            (r'((?:[a-z]\w*/)*)([a-z]\w+)', bygroups(Name.Namespace,tokenType)),
+            (r'((?:[a-z]\w*/)*)([A-Z]\w*)',
+             bygroups(Name.Namespace, tokenType)),
+            (r'((?:[a-z]\w*/)*)([a-z]\w+)',
+             bygroups(Name.Namespace, tokenType)),
 
             # type keyword operators
             (r'::|\->|[\.:|]', tokenType),
@@ -2575,7 +2583,7 @@ class KokaLexer(RegexLexer):
             (r'\n\s*#.*$', Comment.Preproc),
             (r'\s+', Text),
             (r'/\*', Comment.Multiline, 'comment'),
-            (r'//.*$', Comment.Single)            
+            (r'//.*$', Comment.Single)
         ],
         'comment': [
             (r'[^/\*]+', Comment.Multiline),
@@ -2606,4 +2614,3 @@ class KokaLexer(RegexLexer):
             (r'\\U[0-9a-fA-F]{6}', String.Escape)
         ]
     }
-
