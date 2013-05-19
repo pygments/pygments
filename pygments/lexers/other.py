@@ -14,7 +14,7 @@ import re
 from pygments.lexer import RegexLexer, include, bygroups, using, \
      this, combined, ExtendedRegexLexer
 from pygments.token import Error, Punctuation, Literal, Token, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Generic, Other, \
+     Text, Comment, Operator, Keyword, Name, String, Number, Generic, \
      Whitespace
 from pygments.util import get_bool_opt
 from pygments.lexers.web import HtmlLexer
@@ -3691,7 +3691,8 @@ class RexxLexer(RegexLexer):
             (r"'", String, 'string_single'),
             (r'[0-9]+(\.[0-9]+)?(e[+-]?[0-9])?', Number),
             (r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b',
-             bygroups(Name.Function, Whitespace, Operator, Whitespace, Keyword.Declaration)),
+             bygroups(Name.Function, Whitespace, Operator, Whitespace,
+                      Keyword.Declaration)),
             (r'([a-z_][a-z0-9_]*)(\s*)(:)',
              bygroups(Name.Label, Whitespace, Operator)),
             include('function'),
@@ -3740,14 +3741,15 @@ class RexxLexer(RegexLexer):
         ]
     }
 
-    _ADDRESS_COMMAND_PATTERN = r'^\s*address\s+command\b'
-    _ADDRESS_PATTERN = r'^\s*address\s+'
-    _DO_WHILE_PATTERN = r'^\s*do\s+while\b'
-    _IF_THEN_DO_PATTERN = r'^\s*if\b.+\bthen\s+do\s*$'
-    _PROCEDURE_PATTERN = r'^\s*([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b'
-    _ELSE_DO_PATTERN = r'\belse\s+do\s*$'
-    _PARSE_ARG_PATTERN = r'^\s*parse\s+(upper\s+)?(arg|value)\b'
-    _PATTERNS_AND_WEIGHTS = (
+    _c = lambda s: re.compile(s, re.MULTILINE)
+    _ADDRESS_COMMAND_PATTERN = _c(r'^\s*address\s+command\b')
+    _ADDRESS_PATTERN = _c(r'^\s*address\s+')
+    _DO_WHILE_PATTERN = _c(r'^\s*do\s+while\b')
+    _IF_THEN_DO_PATTERN = _c(r'^\s*if\b.+\bthen\s+do\s*$')
+    _PROCEDURE_PATTERN = _c(r'^\s*([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b')
+    _ELSE_DO_PATTERN = _c(r'\belse\s+do\s*$')
+    _PARSE_ARG_PATTERN = _c(r'^\s*parse\s+(upper\s+)?(arg|value)\b')
+    PATTERNS_AND_WEIGHTS = (
         (_ADDRESS_COMMAND_PATTERN, 0.2),
         (_ADDRESS_PATTERN, 0.05),
         (_DO_WHILE_PATTERN, 0.1),
@@ -3757,31 +3759,20 @@ class RexxLexer(RegexLexer):
         (_PARSE_ARG_PATTERN, 0.2),
     )
 
-    @staticmethod
-    def _analyse_text_for_weighted_patterns(text, patternsAndWeights):
-        result = 0.0
-        lowerText = text.lower()
-        for pattern, weight in patternsAndWeights:
-            regex = re.compile(pattern, re.MULTILINE)
-            if regex.search(lowerText):
-                result += weight
-        return result
-
     def analyse_text(text):
         """
-        Check for inital comment.
+        Check for inital comment and patterns that distinguish Rexx from other
+        C-like languages.
         """
-        result = 0.0
         if re.search(r'/\*\**\s*rexx', text, re.IGNORECASE):
             # Header matches MVS Rexx requirements, this is certainly a Rexx
             # script.
-            result = 1.0
+            return 1.0
         elif text.startswith('/*'):
             # Header matches general Rexx requirements; the source code might
             # still be any language using C comments such as C++, C# or Java.
-            result = 0.01
-            result += RexxLexer._analyse_text_for_weighted_patterns(
-                text, RexxLexer._PATTERNS_AND_WEIGHTS)
-            result = min(result, 1.0)
-        assert 0.0 <= result <= 1.0
-        return result
+            lowerText = text.lower()
+            result = sum(weight
+                         for (pattern, weight) in RexxLexer.PATTERNS_AND_WEIGHTS
+                         if pattern.search(lowerText)) + 0.01
+            return min(result, 1.0)
