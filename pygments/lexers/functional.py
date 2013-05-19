@@ -16,9 +16,10 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic, Error
 
 __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
-           'LiterateHaskellLexer', 'SMLLexer', 'OcamlLexer', 'ErlangLexer',
-           'ErlangShellLexer', 'OpaLexer', 'CoqLexer', 'AgdaLexer',
-           'NewLispLexer', 'ElixirLexer', 'ElixirConsoleLexer', 'KokaLexer']
+           'LiterateHaskellLexer', 'AgdaLexer', 'LiterateAgdaLexer',
+           'SMLLexer', 'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer',
+           'OpaLexer', 'CoqLexer', 'AgdaLexer', 'NewLispLexer', 'ElixirLexer',
+           'ElixirConsoleLexer', 'KokaLexer']
 
 
 class RacketLexer(RegexLexer):
@@ -1014,6 +1015,52 @@ class HaskellLexer(RegexLexer):
 line_re = re.compile('.*?\n')
 bird_re = re.compile(r'(>[ \t]*)(.*\n)')
 
+# bird-style
+def _bird_get_tokens_unprocessed(text, baselexer):
+    code = ''
+    insertions = []
+    for match in line_re.finditer(text):
+        line = match.group()
+        m = bird_re.match(line)
+        if m:
+            insertions.append((len(code),
+                               [(0, Comment.Special, m.group(1))]))
+            code += m.group(2)
+        else:
+            insertions.append((len(code), [(0, Text, line)]))
+    for item in do_insertions(insertions, baselexer.get_tokens_unprocessed(code)):
+        yield item
+
+
+# latex-style
+def _latex_get_tokens_unprocessed(text, baselexer, lxlexer):
+    code = ''
+    insertions = []
+
+    codelines = 0
+    latex = ''
+    for match in line_re.finditer(text):
+        line = match.group()
+        if codelines:
+            if line.lstrip().startswith('\\end{code}'):
+                codelines = 0
+                latex += line
+            else:
+                code += line
+        elif line.lstrip().startswith('\\begin{code}'):
+            codelines = 1
+            latex += line
+            insertions.append((len(code),
+                               list(lxlexer.get_tokens_unprocessed(latex))))
+            latex = ''
+        else:
+            latex += line
+    insertions.append((len(code),
+                       list(lxlexer.get_tokens_unprocessed(latex))))
+    for item in do_insertions(insertions, baselexer.get_tokens_unprocessed(code)):
+        yield item
+
+
 class LiterateHaskellLexer(Lexer):
     """
     For Literate Haskell (Bird-style or LaTeX) source.
@@ -1039,46 +1086,14 @@ class LiterateHaskellLexer(Lexer):
         if style is None:
             style = (text.lstrip()[0:1] in '%\\') and 'latex' or 'bird'
 
-        code = ''
-        insertions = []
         if style == 'bird':
-            # bird-style
-            for match in line_re.finditer(text):
-                line = match.group()
-                m = bird_re.match(line)
-                if m:
-                    insertions.append((len(code),
-                                       [(0, Comment.Special, m.group(1))]))
-                    code += m.group(2)
-                else:
-                    insertions.append((len(code), [(0, Text, line)]))
+            for item in _bird_get_tokens_unprocessed(text, hslexer):
+                yield item
         else:
-            # latex-style
             from pygments.lexers.text import TexLexer
             lxlexer = TexLexer(**self.options)
-
-            codelines = 0
-            latex = ''
-            for match in line_re.finditer(text):
-                line = match.group()
-                if codelines:
-                    if line.lstrip().startswith('\\end{code}'):
-                        codelines = 0
-                        latex += line
-                    else:
-                        code += line
-                elif line.lstrip().startswith('\\begin{code}'):
-                    codelines = 1
-                    latex += line
-                    insertions.append((len(code),
-                                       list(lxlexer.get_tokens_unprocessed(latex))))
-                    latex = ''
-                else:
-                    latex += line
-            insertions.append((len(code),
-                               list(lxlexer.get_tokens_unprocessed(latex))))
-        for item in do_insertions(insertions, hslexer.get_tokens_unprocessed(code)):
-            yield item
+            for item in _latex_get_tokens_unprocessed(text, hslexer, lxlexer):
+                yield item
 
 
 class AgdaLexer(RegexLexer):
@@ -1102,7 +1117,6 @@ class AgdaLexer(RegexLexer):
         'root': [
             # Declaration
             (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)', bygroups(Text, Name.Function, Text, Operator.Word, Text)),
-            (r'\s+', Text),  # Whitespace
             # Comments
             (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
@@ -1117,10 +1131,6 @@ class AgdaLexer(RegexLexer):
             #  Special Symbols
             (r'(\(|\)|\{|\})', Operator),
             (ur'(\.{1,3}|\||[\u039B]|[\u2200]|[\u2192]|:|=|->)', Operator.Word),
-            #(r'\\(?![:!#$%&*+.\\/<=>?@^|~-]+)', Name.Function), # lambda operator
-            #(r'(<-|::|->|=>|=)(?![:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
-            #(r':[:!#$%&*+.\\/<=>?@^|~-]*', Keyword.Type), # Constructor operators
-            #(r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator), # Other operators
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
             (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
@@ -1130,6 +1140,7 @@ class AgdaLexer(RegexLexer):
             (r"'", String.Char, 'character'),
             (r'"', String, 'string'),
             (r'[^\s\(\)\{\}]+', Text),
+            (r'\s+?', Text),  # Whitespace
         ],
         'comment': [
             # Multiline Comments
@@ -1149,6 +1160,24 @@ class AgdaLexer(RegexLexer):
         'string': HaskellLexer.tokens['string'],
         'escape': HaskellLexer.tokens['escape']
     }
+
+
+class LiterateAgdaLexer(Lexer):
+    """
+    For Literate Agda source.
+    """
+    name = 'Literate Agda'
+    aliases = ['lagda', 'literate-agda']
+    filenames = ['*.lagda']
+    mimetypes = ['text/x-literate-agda']
+
+    def get_tokens_unprocessed(self, text):
+        agdalexer = AgdaLexer(**self.options)
+
+        from pygments.lexers.text import TexLexer
+        lxlexer = TexLexer(**self.options)
+        for item in _latex_get_tokens_unprocessed(text, agdalexer, lxlexer):
+            yield item
 
 
 class SMLLexer(RegexLexer):
