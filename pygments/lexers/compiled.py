@@ -23,11 +23,12 @@ from pygments.scanner import Scanner
 from pygments.lexers.functional import OcamlLexer
 from pygments.lexers.jvm import JavaLexer, ScalaLexer
 
-__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer', 'DylanLexer',
-           'ObjectiveCLexer', 'ObjectiveCppLexer', 'FortranLexer', 'GLShaderLexer',
-           'PrologLexer', 'CythonLexer', 'ValaLexer', 'OocLexer', 'GoLexer',
-           'FelixLexer', 'AdaLexer', 'Modula2Lexer', 'BlitzMaxLexer',
-           'NimrodLexer', 'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer',
+__all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
+           'NesCLexer', 'DylanLexer', 'ObjectiveCLexer', 'ObjectiveCppLexer',
+           'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
+           'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
+           'Modula2Lexer', 'BlitzMaxLexer', 'BlitzBasicLexer', 'NimrodLexer',
+           'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
            'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer']
 
@@ -231,6 +232,63 @@ class CppLexer(CFamilyLexer):
         return 0.1
 
 
+class SwigLexer(CppLexer):
+    """
+    For `SWIG <http://www.swig.org/>`_ source code.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'SWIG'
+    aliases = ['Swig', 'swig']
+    filenames = ['*.swg', '*.i']
+    mimetypes = ['text/swig']
+    priority = 0.04 # Lower than C/C++ and Objective C/C++
+
+    tokens = {
+        'statements': [
+            (r'(%[a-z_][a-z0-9_]*)', Name.Function), # SWIG directives
+            ('\$\**\&?[a-zA-Z0-9_]+', Name), # Special variables
+            (r'##*[a-zA-Z_][a-zA-Z0-9_]*', Comment.Preproc), # Stringification / additional preprocessor directives
+            inherit,
+         ],
+    }
+
+    # This is a far from complete set of SWIG directives
+    swig_directives = (
+        # Most common directives
+        '%apply', '%define', '%director', '%enddef', '%exception', '%extend',
+        '%feature', '%fragment', '%ignore', '%immutable', '%import', '%include',
+        '%inline', '%insert', '%module', '%newobject', '%nspace', '%pragma',
+        '%rename', '%shared_ptr', '%template', '%typecheck', '%typemap',
+        # Less common directives
+        '%arg', '%attribute', '%bang', '%begin', '%callback', '%catches', '%clear',
+        '%constant', '%copyctor', '%csconst', '%csconstvalue', '%csenum',
+        '%csmethodmodifiers', '%csnothrowexception', '%default', '%defaultctor',
+        '%defaultdtor', '%defined', '%delete', '%delobject', '%descriptor',
+        '%exceptionclass', '%exceptionvar', '%extend_smart_pointer', '%fragments',
+        '%header', '%ifcplusplus', '%ignorewarn', '%implicit', '%implicitconv',
+        '%init', '%javaconst', '%javaconstvalue', '%javaenum', '%javaexception',
+        '%javamethodmodifiers', '%kwargs', '%luacode', '%mutable', '%naturalvar',
+        '%nestedworkaround', '%perlcode', '%pythonabc', '%pythonappend',
+        '%pythoncallback', '%pythoncode', '%pythondynamic', '%pythonmaybecall',
+        '%pythonnondynamic', '%pythonprepend', '%refobject', '%shadow', '%sizeof',
+        '%trackobjects', '%types', '%unrefobject', '%varargs', '%warn', '%warnfilter')
+
+    def analyse_text(text):
+        rv = 0.1 # Same as C/C++
+        # Search for SWIG directives, which are conventionally at the beginning of
+        # a line. The probability of them being within a line is low, so let another
+        # lexer win in this case.
+        matches = re.findall(r'^\s*(%[a-z_][a-z0-9_]*)', text, re.M)
+        for m in matches:
+            if m in SwigLexer.swig_directives:
+                rv = 0.98
+                break
+            else:
+                rv = 0.91 # Fraction higher than MatlabLexer
+        return rv
+
+
 class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
@@ -262,6 +320,32 @@ class ECLexer(CLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
+        ],
+    }
+
+
+class NesCLexer(CLexer):
+    """
+    For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
+    directives.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'nesC'
+    aliases = ['nesc']
+    filenames = ['*.nc']
+    mimetypes = ['text/x-nescsrc']
+
+    tokens = {
+        'statements': [
+            (r'(abstract|as|async|atomic|call|command|component|components|'
+             r'configuration|event|extends|generic|implementation|includes|'
+             r'interface|module|new|norace|post|provides|signal|task|uses)\b',
+             Keyword),
+            (r'(nx_struct|nx_union|nx_int8_t|nx_int16_t|nx_int32_t|nx_int64_t|'
+             r'nx_uint8_t|nx_uint16_t|nx_uint32_t|nx_uint64_t)\b',
+             Keyword.Type),
+            inherit,
         ],
     }
 
@@ -1267,6 +1351,8 @@ def objective(baselexer):
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_forward_classname')),
+                # @ can also prefix other expressions like @{...} or @(...)
+                (r'@', Punctuation),
                 inherit,
             ],
             'oc_classname' : [
@@ -1573,7 +1659,7 @@ class CythonLexer(RegexLexer):
     """
 
     name = 'Cython'
-    aliases = ['cython', 'pyx']
+    aliases = ['cython', 'pyx', 'pyrex']
     filenames = ['*.pyx', '*.pxd', '*.pxi']
     mimetypes = ['text/x-cython', 'application/x-cython']
 
@@ -2623,6 +2709,88 @@ class BlitzMaxLexer(RegexLexer):
              r'Goto|DefData|ReadData|RestoreData)\b', Keyword.Reserved),
             # Final resolve (for variable names and such)
             (r'(%s)' % (bmax_name), Name.Variable),
+        ],
+        'string': [
+            (r'""', String.Double),
+            (r'"C?', String.Double, '#pop'),
+            (r'[^"]+', String.Double),
+        ],
+    }
+
+
+class BlitzBasicLexer(RegexLexer):
+    """
+    For `BlitzBasic <http://blitzbasic.com>`_ source code.
+
+    *New in Pygments 1.7.*
+    """
+
+    name = 'BlitzBasic'
+    aliases = ['blitzbasic', 'b3d', 'bplus']
+    filenames = ['*.bb', '*.decls']
+    mimetypes = ['text/x-bb']
+
+    bb_vopwords = (r'\b(Shl|Shr|Sar|Mod|Or|And|Not|'
+                   r'Abs|Sgn|Handle|Int|Float|Str|'
+                   r'First|Last|Before|After)\b')
+    bb_sktypes = r'@{1,2}|[#$%]'
+    bb_name = r'[a-z][a-z0-9_]*'
+    bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)([.])([ \t]*)(?:(%s)))?') % \
+                (bb_name, bb_sktypes, bb_name)
+
+    flags = re.MULTILINE | re.IGNORECASE
+    tokens = {
+        'root': [
+            # Text
+            (r'[ \t]+', Text),
+            # Comments
+            (r";.*?\n", Comment.Single),
+            # Data types
+            ('"', String.Double, 'string'),
+            # Numbers
+            (r'[0-9]+\.[0-9]*(?!\.)', Number.Float),
+            (r'\.[0-9]+(?!\.)', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r'\$[0-9a-f]+', Number.Hex),
+            (r'\%[10]+', Number), # Binary
+            # Other
+            (r'(?:%s|([+\-*/~=<>^]))' % (bb_vopwords), Operator),
+            (r'[(),:\[\]\\]', Punctuation),
+            (r'\.([ \t]*)(%s)' % bb_name, Name.Label),
+            # Identifiers
+            (r'\b(New)\b([ \t]+)(%s)' % (bb_name),
+             bygroups(Keyword.Reserved, Text, Name.Class)),
+            (r'\b(Gosub|Goto)\b([ \t]+)(%s)' % (bb_name),
+             bygroups(Keyword.Reserved, Text, Name.Label)),
+            (r'\b(Object)\b([ \t]*)([.])([ \t]*)(%s)\b' % (bb_name),
+             bygroups(Operator, Text, Punctuation, Text, Name.Class)),
+            (r'\b%s\b([ \t]*)(\()' % bb_var,
+             bygroups(Name.Function, Text, Keyword.Type,Text, Punctuation,
+                      Text, Name.Class, Text, Punctuation)),
+            (r'\b(Function)\b([ \t]+)%s' % bb_var,
+             bygroups(Keyword.Reserved, Text, Name.Function, Text, Keyword.Type,
+                              Text, Punctuation, Text, Name.Class)),
+            (r'\b(Type)([ \t]+)(%s)' % (bb_name),
+             bygroups(Keyword.Reserved, Text, Name.Class)),
+            # Keywords
+            (r'\b(Pi|True|False|Null)\b', Keyword.Constant),
+            (r'\b(Local|Global|Const|Field|Dim)\b', Keyword.Declaration),
+            (r'\b(End|Return|Exit|'
+             r'Chr|Len|Asc|'
+             r'New|Delete|Insert|'
+             r'Include|'
+             r'Function|'
+             r'Type|'
+             r'If|Then|Else|ElseIf|EndIf|'
+             r'For|To|Next|Step|Each|'
+             r'While|Wend|'
+             r'Repeat|Until|Forever|'
+             r'Select|Case|Default|'
+             r'Goto|Gosub|Data|Read|Restore)\b', Keyword.Reserved),
+            # Final resolve (for variable names and such)
+#            (r'(%s)' % (bb_name), Name.Variable),
+            (bb_var, bygroups(Name.Variable, Text, Keyword.Type,
+                              Text, Punctuation, Text, Name.Class)),
         ],
         'string': [
             (r'""', String.Double),

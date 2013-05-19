@@ -34,7 +34,7 @@ class IniLexer(RegexLexer):
     """
 
     name = 'INI'
-    aliases = ['ini', 'cfg']
+    aliases = ['ini', 'cfg', 'dosini']
     filenames = ['*.ini', '*.cfg']
     mimetypes = ['text/x-ini']
 
@@ -106,7 +106,7 @@ class PropertiesLexer(RegexLexer):
     """
 
     name = 'Properties'
-    aliases = ['properties']
+    aliases = ['properties', 'jproperties']
     filenames = ['*.properties']
     mimetypes = ['text/x-java-properties']
 
@@ -128,7 +128,7 @@ class SourcesListLexer(RegexLexer):
     """
 
     name = 'Debian Sourcelist'
-    aliases = ['sourceslist', 'sources.list']
+    aliases = ['sourceslist', 'sources.list', 'debsources']
     filenames = ['sources.list']
     mimetype = ['application/x-debian-sourceslist']
 
@@ -1053,7 +1053,7 @@ class DebianControlLexer(RegexLexer):
     *New in Pygments 0.9.*
     """
     name = 'Debian Control file'
-    aliases = ['control']
+    aliases = ['control', 'debcontrol']
     filenames = ['control']
 
     tokens = {
@@ -1709,12 +1709,12 @@ class HttpLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE)( +)([^ ]+)( +)'
-             r'(HTTPS?)(/)(1\.[01])(\r?\n|$)',
+            (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE|PATCH)( +)([^ ]+)( +)'
+             r'(HTTP)(/)(1\.[01])(\r?\n|$)',
              bygroups(Name.Function, Text, Name.Namespace, Text,
                       Keyword.Reserved, Operator, Number, Text),
              'headers'),
-            (r'(HTTPS?)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|$)',
+            (r'(HTTP)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|$)',
              bygroups(Keyword.Reserved, Operator, Number, Text, Number,
                       Text, Name.Exception, Text),
              'headers'),
@@ -1848,6 +1848,8 @@ class EbnfLexer(RegexLexer):
     Lexer for `ISO/IEC 14977 EBNF
     <http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form>`_
     grammars.
+
+    *New in Pygments 1.7.*
     """
 
     name = 'EBNF'
