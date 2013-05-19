@@ -25,7 +25,7 @@ class GasLexer(RegexLexer):
     For Gas (AT&T) assembly code.
     """
     name = 'GAS'
-    aliases = ['gas']
+    aliases = ['gas', 'asm']
     filenames = ['*.s', '*.S']
     mimetypes = ['text/x-gas']
 
@@ -244,7 +244,7 @@ class LlvmLexer(RegexLexer):
              r'|align|addrspace|section|alias|module|asm|sideeffect|gc|dbg'
 
              r'|ccc|fastcc|coldcc|x86_stdcallcc|x86_fastcallcc|arm_apcscc'
-             r'|arm_aapcscc|arm_aapcs_vfpcc'
+             r'|arm_aapcscc|arm_aapcs_vfpcc|ptx_device|ptx_kernel'
 
              r'|cc|c'
 
