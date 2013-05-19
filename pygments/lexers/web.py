@@ -722,8 +722,10 @@ class HtmlLexer(RegexLexer):
             ('<![^>]*>', Comment.Preproc),
             (r'<\s*script\s*', Name.Tag, ('script-content', 'tag')),
             (r'<\s*style\s*', Name.Tag, ('style-content', 'tag')),
-            (r'<\s*[a-zA-Z0-9:]+', Name.Tag, 'tag'),
-            (r'<\s*/\s*[a-zA-Z0-9:]+\s*>', Name.Tag),
+            # note: this allows tag names not used in HTML like <x:with-dash>,
+            # this is to support yet-unknown template engines and the like
+            (r'<\s*[\w:.-]+', Name.Tag, 'tag'),
+            (r'<\s*/\s*[\w:.-]+\s*>', Name.Tag),
         ],
         'comment': [
             ('[^-]+', Comment),
