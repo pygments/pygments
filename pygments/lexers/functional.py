@@ -1107,11 +1107,12 @@ class AgdaLexer(RegexLexer):
     filenames = ['*.agda']
     mimetypes = ['text/x-agda']
 
-    reserved = ['abstract', 'codata', 'coinductive', 'data', 'field',
-                'forall', 'hiding', 'in', 'inductive', 'infix', 'infixl',
-                'infixr', 'let', 'open', 'pattern', 'primitive', 'private',
-                'mutual', 'quote', 'quoteGoal', 'quoteTerm', 'record',
-                'syntax', 'rewrite', 'unquote', 'using', 'where', 'with']
+    reserved = ['abstract', 'codata', 'coinductive', 'constructor', 'data',
+                'field', 'forall', 'hiding', 'in', 'inductive', 'infix',
+                'infixl', 'infixr', 'let', 'open', 'pattern', 'primitive',
+                'private', 'mutual', 'quote', 'quoteGoal', 'quoteTerm',
+                'record', 'syntax', 'rewrite', 'unquote', 'using', 'where',
+                'with']
 
     tokens = {
         'root': [
@@ -1125,8 +1126,7 @@ class AgdaLexer(RegexLexer):
             # Lexemes:
             #  Identifiers
             (ur'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
-            (r'(import)(\s+)([A-Z][a-zA-Z0-9_.]*)', bygroups(Keyword.Reserved, Text, Name)),
-            (r'(module)(\s+)([A-Z][a-zA-Z0-9_.]*)', bygroups(Keyword.Reserved, Text, Name)),
+            (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
             (r'\b(Set|Prop)\b', Keyword.Type),
             #  Special Symbols
             (r'(\(|\)|\{|\})', Operator),
@@ -1155,6 +1155,11 @@ class AgdaLexer(RegexLexer):
             (r'{!', Comment.Directive, '#push'),
             (r'!}', Comment.Directive, '#pop'),
             (r'[!{}]', Comment.Directive),
+        ],
+        'module': [
+            (r'{-', Comment.Multiline, 'comment'),
+            (r'[a-zA-Z][a-zA-Z0-9_.]*', Name, '#pop'),
+            (r'[^a-zA-Z]*', Text)
         ],
         'character': HaskellLexer.tokens['character'],
         'string': HaskellLexer.tokens['string'],
