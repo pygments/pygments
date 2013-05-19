@@ -15,6 +15,9 @@ Version 1.7
   * Clay (PR#184)
   * Perl 6 (PR#181)
 
+- Pygments will now recognize "vim" modelines when guessing the lexer for
+  a file based on content (PR#118).
+
 - Python 3 lexer: add new exceptions from PEP 3151.
 
 - Opa lexer: add new keywords (PR#170).
