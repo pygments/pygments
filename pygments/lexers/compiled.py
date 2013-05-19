@@ -1347,6 +1347,8 @@ def objective(baselexer):
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_forward_classname')),
+                # @ can also prefix other expressions like @{...} or @(...)
+                (r'@', Punctuation),
                 inherit,
             ],
             'oc_classname' : [
