@@ -235,6 +235,8 @@ class CppLexer(CFamilyLexer):
 class SwigLexer(CppLexer):
     """
     For `SWIG <http://www.swig.org/>`_ source code.
+
+    *New in Pygments 1.7.*
     """
     name = 'SWIG'
     aliases = ['Swig', 'swig']
@@ -326,6 +328,8 @@ class NesCLexer(CLexer):
     """
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
+
+    *New in Pygments 1.7.*
     """
     name = 'nesC'
     aliases = ['nesc']
@@ -2717,6 +2721,8 @@ class BlitzMaxLexer(RegexLexer):
 class BlitzBasicLexer(RegexLexer):
     """
     For `BlitzBasic <http://blitzbasic.com>`_ source code.
+
+    *New in Pygments 1.7.*
     """
 
     name = 'BlitzBasic'
