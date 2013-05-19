@@ -24,7 +24,7 @@ from pygments.lexers import _stan_builtins
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
            'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
            'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer',
-           'IDLLexer', 'RdLexer']
+           'IDLLexer', 'RdLexer', 'IgorLexer']
 
 
 class JuliaLexer(RegexLexer):
@@ -59,7 +59,7 @@ class JuliaLexer(RegexLexer):
             (r'(begin|while|for|in|return|break|continue|'
              r'macro|quote|let|if|elseif|else|try|catch|end|'
              r'bitstype|ccall|do|using|module|import|export|'
-             r'importall|baremodule)\b', Keyword),
+             r'importall|baremodule|immutable)\b', Keyword),
             (r'(local|global|const)\b', Keyword.Declaration),
             (r'(Bool|Int|Int8|Int16|Int32|Int64|Uint|Uint8|Uint16|Uint32|Uint64'
              r'|Float32|Float64|Complex64|Complex128|Any|Nothing|None)\b',
@@ -99,11 +99,17 @@ class JuliaLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
             # numbers
+            (r'(\d+(_\d+)+\.\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+(_\d+)+[eEf][+-]?[0-9]+', Number.Float),
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
+            (r'0b[01]+(_[01]+)+', Number.Binary),
             (r'0b[01]+', Number.Binary),
+            (r'0o[0-7]+(_[0-7]+)+', Number.Oct),
             (r'0o[0-7]+', Number.Oct),
+            (r'0x[a-fA-F0-9]+(_[a-fA-F0-9]+)+', Number.Hex),
             (r'0x[a-fA-F0-9]+', Number.Hex),
+            (r'\d+(_\d+)+', Number.Integer),
             (r'\d+', Number.Integer)
         ],
 
@@ -1294,8 +1300,11 @@ class JagsLexer(RegexLexer):
             return 0
 
 class StanLexer(RegexLexer):
-    """
-    Pygments Lexer for Stan models.
+    """Pygments Lexer for Stan models.
+
+    The Stan modeling language is specified in the *Stan 1.3.0
+    Modeling Language Manual* `pdf
+    <http://code.google.com/p/stan/downloads/detail?name=stan-reference-1.3.0.pdf>`_.
 
     *New in Pygments 1.6.*
     """
@@ -1303,13 +1312,6 @@ class StanLexer(RegexLexer):
     name = 'Stan'
     aliases = ['stan']
     filenames = ['*.stan']
-
-    _RESERVED = ('for', 'in', 'while', 'repeat', 'until', 'if',
-                 'then', 'else', 'true', 'false', 'T',
-                 'lower', 'upper', 'print')
-
-    _TYPES = ('int', 'real', 'vector', 'simplex', 'ordered', 'row_vector',
-              'matrix', 'corr_matrix', 'cov_matrix', 'positive_ordered')
 
     tokens = {
         'whitespace' : [
@@ -1334,20 +1336,21 @@ class StanLexer(RegexLexer):
                         'model', r'generated\s+quantities')),
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
-            (r'(%s)\b' % r'|'.join(_RESERVED), Keyword.Reserved),
+            (r'(%s)\b' % r'|'.join(_stan_builtins.KEYWORDS), Keyword),
+            # Truncation
+            (r'T(?=\s*\[)', Keyword),
             # Data types
-            (r'(%s)\b' % r'|'.join(_TYPES), Keyword.Type),
+            (r'(%s)\b' % r'|'.join(_stan_builtins.TYPES), Keyword.Type),
             # Punctuation
-            (r"[;:,\[\]()<>]", Punctuation),
+            (r"[;:,\[\]()]", Punctuation),
             # Builtin
             (r'(%s)(?=\s*\()'
              % r'|'.join(_stan_builtins.FUNCTIONS
                          + _stan_builtins.DISTRIBUTIONS),
              Name.Builtin),
-            (r'(%s)(?=\s*\()'
-             % r'|'.join(_stan_builtins.CONSTANTS), Keyword.Constant),
             # Special names ending in __, like lp__
             (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
+            (r'(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
             # Regular variable names
             (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
             # Real Literals
@@ -1359,7 +1362,7 @@ class StanLexer(RegexLexer):
             # SLexer makes these tokens Operators.
             (r'<-|~', Operator),
             # Infix and prefix operators (and = )
-            (r"\+|-|\.?\*|\.?/|\\|'|=", Operator),
+            (r"\+|-|\.?\*|\.?/|\\|'|==?|!=?|<=?|>=?|\|\||&&", Operator),
             # Block delimiters
             (r'[{}]', Punctuation),
             ]
@@ -1650,3 +1653,260 @@ class RdLexer(RegexLexer):
             (r'.', Text),
             ]
         }
+
+
+class IgorLexer(RegexLexer):
+    """
+    Pygments Lexer for Igor Pro procedure files (.ipf).
+    See http://www.wavemetrics.com/ and http://www.igorexchange.com/.
+
+    *New in Pygments 1.7.*
+    """
+
+    name = 'Igor'
+    aliases = ['igor', 'igorpro']
+    filenames = ['*.ipf']
+    mimetypes = ['text/ipf']
+
+    flags = re.IGNORECASE
+
+    flowControl = [
+        'if', 'else', 'elseif', 'endif', 'for', 'endfor', 'strswitch', 'switch',
+        'case', 'endswitch', 'do', 'while', 'try', 'catch', 'endtry', 'break',
+        'continue', 'return',
+    ]
+    types = [
+        'variable', 'string', 'constant', 'strconstant', 'NVAR', 'SVAR', 'WAVE',
+        'STRUCT', 'ThreadSafe', 'function', 'end', 'static', 'macro', 'window',
+        'graph', 'Structure', 'EndStructure', 'EndMacro', 'FuncFit', 'Proc',
+        'Picture', 'Menu', 'SubMenu', 'Prompt', 'DoPrompt',
+    ]
+    operations = [
+        'Abort', 'AddFIFOData', 'AddFIFOVectData', 'AddMovieAudio',
+        'AddMovieFrame', 'APMath', 'Append', 'AppendImage',
+        'AppendLayoutObject', 'AppendMatrixContour', 'AppendText',
+        'AppendToGraph', 'AppendToLayout', 'AppendToTable', 'AppendXYZContour',
+        'AutoPositionWindow', 'BackgroundInfo', 'Beep', 'BoundingBall',
+        'BrowseURL', 'BuildMenu', 'Button', 'cd', 'Chart', 'CheckBox',
+        'CheckDisplayed', 'ChooseColor', 'Close', 'CloseMovie', 'CloseProc',
+        'ColorScale', 'ColorTab2Wave', 'Concatenate', 'ControlBar',
+        'ControlInfo', 'ControlUpdate', 'ConvexHull', 'Convolve', 'CopyFile',
+        'CopyFolder', 'CopyScales', 'Correlate', 'CreateAliasShortcut', 'Cross',
+        'CtrlBackground', 'CtrlFIFO', 'CtrlNamedBackground', 'Cursor',
+        'CurveFit', 'CustomControl', 'CWT', 'Debugger', 'DebuggerOptions',
+        'DefaultFont', 'DefaultGuiControls', 'DefaultGuiFont', 'DefineGuide',
+        'DelayUpdate', 'DeleteFile', 'DeleteFolder', 'DeletePoints',
+        'Differentiate', 'dir', 'Display', 'DisplayHelpTopic',
+        'DisplayProcedure', 'DoAlert', 'DoIgorMenu', 'DoUpdate', 'DoWindow',
+        'DoXOPIdle', 'DrawAction', 'DrawArc', 'DrawBezier', 'DrawLine',
+        'DrawOval', 'DrawPICT', 'DrawPoly', 'DrawRect', 'DrawRRect', 'DrawText',
+        'DSPDetrend', 'DSPPeriodogram', 'Duplicate', 'DuplicateDataFolder',
+        'DWT', 'EdgeStats', 'Edit', 'ErrorBars', 'Execute', 'ExecuteScriptText',
+        'ExperimentModified', 'Extract', 'FastGaussTransform', 'FastOp',
+        'FBinRead', 'FBinWrite', 'FFT', 'FIFO2Wave', 'FIFOStatus', 'FilterFIR',
+        'FilterIIR', 'FindLevel', 'FindLevels', 'FindPeak', 'FindPointsInPoly',
+        'FindRoots', 'FindSequence', 'FindValue', 'FPClustering', 'fprintf',
+        'FReadLine', 'FSetPos', 'FStatus', 'FTPDelete', 'FTPDownload',
+        'FTPUpload', 'FuncFit', 'FuncFitMD', 'GetAxis', 'GetFileFolderInfo',
+        'GetLastUserMenuInfo', 'GetMarquee', 'GetSelection', 'GetWindow',
+        'GraphNormal', 'GraphWaveDraw', 'GraphWaveEdit', 'Grep', 'GroupBox',
+        'Hanning', 'HideIgorMenus', 'HideInfo', 'HideProcedures', 'HideTools',
+        'HilbertTransform', 'Histogram', 'IFFT', 'ImageAnalyzeParticles',
+        'ImageBlend', 'ImageBoundaryToMask', 'ImageEdgeDetection',
+        'ImageFileInfo', 'ImageFilter', 'ImageFocus', 'ImageGenerateROIMask',
+        'ImageHistModification', 'ImageHistogram', 'ImageInterpolate',
+        'ImageLineProfile', 'ImageLoad', 'ImageMorphology', 'ImageRegistration',
+        'ImageRemoveBackground', 'ImageRestore', 'ImageRotate', 'ImageSave',
+        'ImageSeedFill', 'ImageSnake', 'ImageStats', 'ImageThreshold',
+        'ImageTransform', 'ImageUnwrapPhase', 'ImageWindow', 'IndexSort',
+        'InsertPoints', 'Integrate', 'IntegrateODE', 'Interp3DPath',
+        'Interpolate3D', 'KillBackground', 'KillControl', 'KillDataFolder',
+        'KillFIFO', 'KillFreeAxis', 'KillPath', 'KillPICTs', 'KillStrings',
+        'KillVariables', 'KillWaves', 'KillWindow', 'KMeans', 'Label', 'Layout',
+        'Legend', 'LinearFeedbackShiftRegister', 'ListBox', 'LoadData',
+        'LoadPackagePreferences', 'LoadPICT', 'LoadWave', 'Loess',
+        'LombPeriodogram', 'Make', 'MakeIndex', 'MarkPerfTestTime',
+        'MatrixConvolve', 'MatrixCorr', 'MatrixEigenV', 'MatrixFilter',
+        'MatrixGaussJ', 'MatrixInverse', 'MatrixLinearSolve',
+        'MatrixLinearSolveTD', 'MatrixLLS', 'MatrixLUBkSub', 'MatrixLUD',
+        'MatrixMultiply', 'MatrixOP', 'MatrixSchur', 'MatrixSolve',
+        'MatrixSVBkSub', 'MatrixSVD', 'MatrixTranspose', 'MeasureStyledText',
+        'Modify', 'ModifyContour', 'ModifyControl', 'ModifyControlList',
+        'ModifyFreeAxis', 'ModifyGraph', 'ModifyImage', 'ModifyLayout',
+        'ModifyPanel', 'ModifyTable', 'ModifyWaterfall', 'MoveDataFolder',
+        'MoveFile', 'MoveFolder', 'MoveString', 'MoveSubwindow', 'MoveVariable',
+        'MoveWave', 'MoveWindow', 'NeuralNetworkRun', 'NeuralNetworkTrain',
+        'NewDataFolder', 'NewFIFO', 'NewFIFOChan', 'NewFreeAxis', 'NewImage',
+        'NewLayout', 'NewMovie', 'NewNotebook', 'NewPanel', 'NewPath',
+        'NewWaterfall', 'Note', 'Notebook', 'NotebookAction', 'Open',
+        'OpenNotebook', 'Optimize', 'ParseOperationTemplate', 'PathInfo',
+        'PauseForUser', 'PauseUpdate', 'PCA', 'PlayMovie', 'PlayMovieAction',
+        'PlaySnd', 'PlaySound', 'PopupContextualMenu', 'PopupMenu',
+        'Preferences', 'PrimeFactors', 'Print', 'printf', 'PrintGraphs',
+        'PrintLayout', 'PrintNotebook', 'PrintSettings', 'PrintTable',
+        'Project', 'PulseStats', 'PutScrapText', 'pwd', 'Quit',
+        'RatioFromNumber', 'Redimension', 'Remove', 'RemoveContour',
+        'RemoveFromGraph', 'RemoveFromLayout', 'RemoveFromTable', 'RemoveImage',
+        'RemoveLayoutObjects', 'RemovePath', 'Rename', 'RenameDataFolder',
+        'RenamePath', 'RenamePICT', 'RenameWindow', 'ReorderImages',
+        'ReorderTraces', 'ReplaceText', 'ReplaceWave', 'Resample',
+        'ResumeUpdate', 'Reverse', 'Rotate', 'Save', 'SaveData',
+        'SaveExperiment', 'SaveGraphCopy', 'SaveNotebook',
+        'SavePackagePreferences', 'SavePICT', 'SaveTableCopy',
+        'SetActiveSubwindow', 'SetAxis', 'SetBackground', 'SetDashPattern',
+        'SetDataFolder', 'SetDimLabel', 'SetDrawEnv', 'SetDrawLayer',
+        'SetFileFolderInfo', 'SetFormula', 'SetIgorHook', 'SetIgorMenuMode',
+        'SetIgorOption', 'SetMarquee', 'SetProcessSleep', 'SetRandomSeed',
+        'SetScale', 'SetVariable', 'SetWaveLock', 'SetWindow', 'ShowIgorMenus',
+        'ShowInfo', 'ShowTools', 'Silent', 'Sleep', 'Slider', 'Smooth',
+        'SmoothCustom', 'Sort', 'SoundInRecord', 'SoundInSet',
+        'SoundInStartChart', 'SoundInStatus', 'SoundInStopChart',
+        'SphericalInterpolate', 'SphericalTriangulate', 'SplitString',
+        'sprintf', 'sscanf', 'Stack', 'StackWindows',
+        'StatsAngularDistanceTest', 'StatsANOVA1Test', 'StatsANOVA2NRTest',
+        'StatsANOVA2RMTest', 'StatsANOVA2Test', 'StatsChiTest',
+        'StatsCircularCorrelationTest', 'StatsCircularMeans',
+        'StatsCircularMoments', 'StatsCircularTwoSampleTest',
+        'StatsCochranTest', 'StatsContingencyTable', 'StatsDIPTest',
+        'StatsDunnettTest', 'StatsFriedmanTest', 'StatsFTest',
+        'StatsHodgesAjneTest', 'StatsJBTest', 'StatsKendallTauTest',
+        'StatsKSTest', 'StatsKWTest', 'StatsLinearCorrelationTest',
+        'StatsLinearRegression', 'StatsMultiCorrelationTest',
+        'StatsNPMCTest', 'StatsNPNominalSRTest', 'StatsQuantiles',
+        'StatsRankCorrelationTest', 'StatsResample', 'StatsSample',
+        'StatsScheffeTest', 'StatsSignTest', 'StatsSRTest', 'StatsTTest',
+        'StatsTukeyTest', 'StatsVariancesTest', 'StatsWatsonUSquaredTest',
+        'StatsWatsonWilliamsTest', 'StatsWheelerWatsonTest',
+        'StatsWilcoxonRankTest', 'StatsWRCorrelationTest', 'String',
+        'StructGet', 'StructPut', 'TabControl', 'Tag', 'TextBox', 'Tile',
+        'TileWindows', 'TitleBox', 'ToCommandLine', 'ToolsGrid',
+        'Triangulate3d', 'Unwrap', 'ValDisplay', 'Variable', 'WaveMeanStdv',
+        'WaveStats', 'WaveTransform', 'wfprintf', 'WignerTransform',
+        'WindowFunction',
+    ]
+    functions = [
+        'abs', 'acos', 'acosh', 'AiryA', 'AiryAD', 'AiryB', 'AiryBD', 'alog',
+        'area', 'areaXY', 'asin', 'asinh', 'atan', 'atan2', 'atanh',
+        'AxisValFromPixel', 'Besseli', 'Besselj', 'Besselk', 'Bessely', 'bessi',
+        'bessj', 'bessk', 'bessy', 'beta', 'betai', 'BinarySearch',
+        'BinarySearchInterp', 'binomial', 'binomialln', 'binomialNoise', 'cabs',
+        'CaptureHistoryStart', 'ceil', 'cequal', 'char2num', 'chebyshev',
+        'chebyshevU', 'CheckName', 'cmplx', 'cmpstr', 'conj', 'ContourZ', 'cos',
+        'cosh', 'cot', 'CountObjects', 'CountObjectsDFR', 'cpowi',
+        'CreationDate', 'csc', 'DataFolderExists', 'DataFolderRefsEqual',
+        'DataFolderRefStatus', 'date2secs', 'datetime', 'DateToJulian',
+        'Dawson', 'DDEExecute', 'DDEInitiate', 'DDEPokeString', 'DDEPokeWave',
+        'DDERequestWave', 'DDEStatus', 'DDETerminate', 'deltax', 'digamma',
+        'DimDelta', 'DimOffset', 'DimSize', 'ei', 'enoise', 'equalWaves', 'erf',
+        'erfc', 'exists', 'exp', 'expInt', 'expNoise', 'factorial', 'fakedata',
+        'faverage', 'faverageXY', 'FindDimLabel', 'FindListItem', 'floor',
+        'FontSizeHeight', 'FontSizeStringWidth', 'FresnelCos', 'FresnelSin',
+        'gamma', 'gammaInc', 'gammaNoise', 'gammln', 'gammp', 'gammq', 'Gauss',
+        'Gauss1D', 'Gauss2D', 'gcd', 'GetDefaultFontSize',
+        'GetDefaultFontStyle', 'GetKeyState', 'GetRTError', 'gnoise',
+        'GrepString', 'hcsr', 'hermite', 'hermiteGauss', 'HyperG0F1',
+        'HyperG1F1', 'HyperG2F1', 'HyperGNoise', 'HyperGPFQ', 'IgorVersion',
+        'ilim', 'imag', 'Inf', 'Integrate1D', 'interp', 'Interp2D', 'Interp3D',
+        'inverseERF', 'inverseERFC', 'ItemsInList', 'jlim', 'Laguerre',
+        'LaguerreA', 'LaguerreGauss', 'leftx', 'LegendreA', 'limit', 'ln',
+        'log', 'logNormalNoise', 'lorentzianNoise', 'magsqr', 'MandelbrotPoint',
+        'MarcumQ', 'MatrixDet', 'MatrixDot', 'MatrixRank', 'MatrixTrace', 'max',
+        'mean', 'min', 'mod', 'ModDate', 'NaN', 'norm', 'NumberByKey',
+        'numpnts', 'numtype', 'NumVarOrDefault', 'NVAR_Exists', 'p2rect',
+        'ParamIsDefault', 'pcsr', 'Pi', 'PixelFromAxisVal', 'pnt2x',
+        'poissonNoise', 'poly', 'poly2D', 'PolygonArea', 'qcsr', 'r2polar',
+        'real', 'rightx', 'round', 'sawtooth', 'ScreenResolution', 'sec',
+        'SelectNumber', 'sign', 'sin', 'sinc', 'sinh', 'SphericalBessJ',
+        'SphericalBessJD', 'SphericalBessY', 'SphericalBessYD',
+        'SphericalHarmonics', 'sqrt', 'StartMSTimer', 'StatsBetaCDF',
+        'StatsBetaPDF', 'StatsBinomialCDF', 'StatsBinomialPDF',
+        'StatsCauchyCDF', 'StatsCauchyPDF', 'StatsChiCDF', 'StatsChiPDF',
+        'StatsCMSSDCDF', 'StatsCorrelation', 'StatsDExpCDF', 'StatsDExpPDF',
+        'StatsErlangCDF', 'StatsErlangPDF', 'StatsErrorPDF', 'StatsEValueCDF',
+        'StatsEValuePDF', 'StatsExpCDF', 'StatsExpPDF', 'StatsFCDF',
+        'StatsFPDF', 'StatsFriedmanCDF', 'StatsGammaCDF', 'StatsGammaPDF',
+        'StatsGeometricCDF', 'StatsGeometricPDF', 'StatsHyperGCDF',
+        'StatsHyperGPDF', 'StatsInvBetaCDF', 'StatsInvBinomialCDF',
+        'StatsInvCauchyCDF', 'StatsInvChiCDF', 'StatsInvCMSSDCDF',
+        'StatsInvDExpCDF', 'StatsInvEValueCDF', 'StatsInvExpCDF',
+        'StatsInvFCDF', 'StatsInvFriedmanCDF', 'StatsInvGammaCDF',
+        'StatsInvGeometricCDF', 'StatsInvKuiperCDF', 'StatsInvLogisticCDF',
+        'StatsInvLogNormalCDF', 'StatsInvMaxwellCDF', 'StatsInvMooreCDF',
+        'StatsInvNBinomialCDF', 'StatsInvNCChiCDF', 'StatsInvNCFCDF',
+        'StatsInvNormalCDF', 'StatsInvParetoCDF', 'StatsInvPoissonCDF',
+        'StatsInvPowerCDF', 'StatsInvQCDF', 'StatsInvQpCDF',
+        'StatsInvRayleighCDF', 'StatsInvRectangularCDF', 'StatsInvSpearmanCDF',
+        'StatsInvStudentCDF', 'StatsInvTopDownCDF', 'StatsInvTriangularCDF',
+        'StatsInvUsquaredCDF', 'StatsInvVonMisesCDF', 'StatsInvWeibullCDF',
+        'StatsKuiperCDF', 'StatsLogisticCDF', 'StatsLogisticPDF',
+        'StatsLogNormalCDF', 'StatsLogNormalPDF', 'StatsMaxwellCDF',
+        'StatsMaxwellPDF', 'StatsMedian', 'StatsMooreCDF', 'StatsNBinomialCDF',
+        'StatsNBinomialPDF', 'StatsNCChiCDF', 'StatsNCChiPDF', 'StatsNCFCDF',
+        'StatsNCFPDF', 'StatsNCTCDF', 'StatsNCTPDF', 'StatsNormalCDF',
+        'StatsNormalPDF', 'StatsParetoCDF', 'StatsParetoPDF', 'StatsPermute',
+        'StatsPoissonCDF', 'StatsPoissonPDF', 'StatsPowerCDF',
+        'StatsPowerNoise', 'StatsPowerPDF', 'StatsQCDF', 'StatsQpCDF',
+        'StatsRayleighCDF', 'StatsRayleighPDF', 'StatsRectangularCDF',
+        'StatsRectangularPDF', 'StatsRunsCDF', 'StatsSpearmanRhoCDF',
+        'StatsStudentCDF', 'StatsStudentPDF', 'StatsTopDownCDF',
+        'StatsTriangularCDF', 'StatsTriangularPDF', 'StatsTrimmedMean',
+        'StatsUSquaredCDF', 'StatsVonMisesCDF', 'StatsVonMisesNoise',
+        'StatsVonMisesPDF', 'StatsWaldCDF', 'StatsWaldPDF', 'StatsWeibullCDF',
+        'StatsWeibullPDF', 'StopMSTimer', 'str2num', 'stringCRC', 'stringmatch',
+        'strlen', 'strsearch', 'StudentA', 'StudentT', 'sum', 'SVAR_Exists',
+        'TagVal', 'tan', 'tanh', 'ThreadGroupCreate', 'ThreadGroupRelease',
+        'ThreadGroupWait', 'ThreadProcessorCount', 'ThreadReturnValue', 'ticks',
+        'trunc', 'Variance', 'vcsr', 'WaveCRC', 'WaveDims', 'WaveExists',
+        'WaveMax', 'WaveMin', 'WaveRefsEqual', 'WaveType', 'WhichListItem',
+        'WinType', 'WNoise', 'x', 'x2pnt', 'xcsr', 'y', 'z', 'zcsr', 'ZernikeR',
+    ]
+    functions += [
+        'AddListItem', 'AnnotationInfo', 'AnnotationList', 'AxisInfo',
+        'AxisList', 'CaptureHistory', 'ChildWindowList', 'CleanupName',
+        'ContourInfo', 'ContourNameList', 'ControlNameList', 'CsrInfo',
+        'CsrWave', 'CsrXWave', 'CTabList', 'DataFolderDir', 'date',
+        'DDERequestString', 'FontList', 'FuncRefInfo', 'FunctionInfo',
+        'FunctionList', 'FunctionPath', 'GetDataFolder', 'GetDefaultFont',
+        'GetDimLabel', 'GetErrMessage', 'GetFormula',
+        'GetIndependentModuleName', 'GetIndexedObjName', 'GetIndexedObjNameDFR',
+        'GetRTErrMessage', 'GetRTStackInfo', 'GetScrapText', 'GetUserData',
+        'GetWavesDataFolder', 'GrepList', 'GuideInfo', 'GuideNameList', 'Hash',
+        'IgorInfo', 'ImageInfo', 'ImageNameList', 'IndexedDir', 'IndexedFile',
+        'JulianToDate', 'LayoutInfo', 'ListMatch', 'LowerStr', 'MacroList',
+        'NameOfWave', 'note', 'num2char', 'num2istr', 'num2str',
+        'OperationList', 'PadString', 'ParseFilePath', 'PathList', 'PICTInfo',
+        'PICTList', 'PossiblyQuoteName', 'ProcedureText', 'RemoveByKey',
+        'RemoveEnding', 'RemoveFromList', 'RemoveListItem',
+        'ReplaceNumberByKey', 'ReplaceString', 'ReplaceStringByKey',
+        'Secs2Date', 'Secs2Time', 'SelectString', 'SortList',
+        'SpecialCharacterInfo', 'SpecialCharacterList', 'SpecialDirPath',
+        'StringByKey', 'StringFromList', 'StringList', 'StrVarOrDefault',
+        'TableInfo', 'TextFile', 'ThreadGroupGetDF', 'time', 'TraceFromPixel',
+        'TraceInfo', 'TraceNameList', 'UniqueName', 'UnPadString', 'UpperStr',
+        'VariableList', 'WaveInfo', 'WaveList', 'WaveName', 'WaveUnits',
+        'WinList', 'WinName', 'WinRecreation', 'XWaveName',
+        'ContourNameToWaveRef', 'CsrWaveRef', 'CsrXWaveRef',
+        'ImageNameToWaveRef', 'NewFreeWave', 'TagWaveRef', 'TraceNameToWaveRef',
+        'WaveRefIndexed', 'XWaveRefFromTrace', 'GetDataFolderDFR',
+        'GetWavesDataFolderDFR', 'NewFreeDataFolder', 'ThreadGroupGetDFR',
+    ]
+
+    tokens = {
+        'root': [
+            (r'//.*$', Comment.Single),
+            (r'"([^"\\]|\\.)*"', String),
+            # Flow Control.
+            (r'\b(%s)\b' % '|'.join(flowControl), Keyword),
+            # Types.
+            (r'\b(%s)\b' % '|'.join(types), Keyword.Type),
+            # Built-in operations.
+            (r'\b(%s)\b' % '|'.join(operations), Name.Class),
+            # Built-in functions.
+            (r'\b(%s)\b' % '|'.join(functions), Name.Function),
+            # Compiler directives.
+            (r'^#(include|pragma|define|ifdef|ifndef|endif)',
+             Name.Decorator),
+            (r'[^a-zA-Z"/]+', Text),
+            (r'.', Text),
+        ],
+    }
