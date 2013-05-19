@@ -24,6 +24,8 @@ Version 1.7
 - Pygments will now recognize "vim" modelines when guessing the lexer for
   a file based on content (PR#118).
 
+- The NameHighlightFilter now works with any Name.* token type (#790).
+
 - Python 3 lexer: add new exceptions from PEP 3151.
 
 - Opa lexer: add new keywords (PR#170).
@@ -48,7 +50,7 @@ Version 1.7
 
 - Haxe lexer: rewrite and support for Haxe 3 (PR#174).
 
-- The NameHighlightFilter now works with any Name.* token type (#790).
+- Prolog lexer: add different kinds of numeric literals (#864).
 
 
 Version 1.6
