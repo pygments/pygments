@@ -246,7 +246,7 @@ class MOOCodeLexer(RegexLexer):
     """
     name = 'MOOCode'
     filenames = ['*.moo']
-    aliases = ['moocode']
+    aliases = ['moocode', 'moo']
     mimetypes = ['text/x-moocode']
 
     tokens = {
@@ -290,7 +290,7 @@ class SmalltalkLexer(RegexLexer):
     """
     name = 'Smalltalk'
     filenames = ['*.st']
-    aliases = ['smalltalk', 'squeak']
+    aliases = ['smalltalk', 'squeak', 'st']
     mimetypes = ['text/x-smalltalk']
 
     tokens = {
@@ -1980,7 +1980,7 @@ class PostScriptLexer(RegexLexer):
     *New in Pygments 1.4.*
     """
     name = 'PostScript'
-    aliases = ['postscript']
+    aliases = ['postscript', 'postscr']
     filenames = ['*.ps', '*.eps']
     mimetypes = ['application/postscript']
 
@@ -2068,7 +2068,7 @@ class AutohotkeyLexer(RegexLexer):
     *New in Pygments 1.4.*
     """
     name = 'autohotkey'
-    aliases = ['ahk']
+    aliases = ['ahk', 'autohotkey']
     filenames = ['*.ahk', '*.ahkl']
     mimetypes = ['text/x-autohotkey']
 
@@ -2353,7 +2353,7 @@ class ProtoBufLexer(RegexLexer):
     """
 
     name = 'Protocol Buffer'
-    aliases = ['protobuf']
+    aliases = ['protobuf', 'proto']
     filenames = ['*.proto']
 
     tokens = {

@@ -428,10 +428,13 @@ class Python3TracebackLexer(RegexLexer):
              r'exception occurred:\n\n', Generic.Traceback),
             (r'^The above exception was the direct cause of the '
              r'following exception:\n\n', Generic.Traceback),
+            (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
         ],
         'intb': [
             (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
              bygroups(Text, Name.Builtin, Text, Number, Text, Name, Text)),
+            (r'^(  File )("[^"]+")(, line )(\d+)(\n)',
+             bygroups(Text, Name.Builtin, Text, Number, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(Python3Lexer), Text)),
             (r'^([ \t]*)(\.\.\.)(\n)',
@@ -528,7 +531,7 @@ class RubyLexer(ExtendedRegexLexer):
             (r":'(\\\\|\\'|[^'])*'", String.Symbol),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r':"', String.Symbol, 'simple-sym'),
-            (r'([a-zA-Z_][a-zA-Z0-9]*)(:)',
+            (r'([a-zA-Z_][a-zA-Z0-9]*)(:)(?!:)',
              bygroups(String.Symbol, Punctuation)),  # Since Ruby 1.9
             (r'"', String.Double, 'simple-string'),
             (r'(?<!\.)`', String.Backtick, 'simple-backtick'),
@@ -1926,6 +1929,8 @@ class DgLexer(RegexLexer):
 class Perl6Lexer(ExtendedRegexLexer):
     """
     For `Perl 6 <http://www.perl6.org>`_ source code.
+
+    *New in Pygments 1.7.*
     """
 
     name      = 'Perl6'
