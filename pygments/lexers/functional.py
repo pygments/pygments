@@ -17,8 +17,8 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
 
 __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'LiterateHaskellLexer', 'SMLLexer', 'OcamlLexer', 'ErlangLexer',
-           'ErlangShellLexer', 'OpaLexer', 'CoqLexer', 'NewLispLexer',
-           'ElixirLexer', 'ElixirConsoleLexer', 'KokaLexer']
+           'ErlangShellLexer', 'OpaLexer', 'CoqLexer', 'AgdaLexer',
+           'NewLispLexer', 'ElixirLexer', 'ElixirConsoleLexer', 'KokaLexer']
 
 
 class RacketLexer(RegexLexer):
@@ -1079,6 +1079,76 @@ class LiterateHaskellLexer(Lexer):
                                list(lxlexer.get_tokens_unprocessed(latex))))
         for item in do_insertions(insertions, hslexer.get_tokens_unprocessed(code)):
             yield item
+
+
+class AgdaLexer(RegexLexer):
+    """
+    For the `Agda <http://wiki.portal.chalmers.se/agda/pmwiki.php>`_
+    dependently typed functional programming language and proof assistant.
+    """
+
+    name = 'Agda'
+    aliases = ['agda']
+    filenames = ['*.agda']
+    mimetypes = ['text/x-agda']
+
+    reserved = ['abstract', 'codata', 'coinductive', 'data', 'field',
+                'forall', 'hiding', 'in', 'inductive', 'infix', 'infixl',
+                'infixr', 'let', 'open', 'pattern', 'primitive', 'private',
+                'mutual', 'quote', 'quoteGoal', 'quoteTerm', 'record',
+                'syntax', 'rewrite', 'unquote', 'using', 'where', 'with']
+
+    tokens = {
+        'root': [
+            # Declaration
+            (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)', bygroups(Text, Name.Function, Text, Operator.Word, Text)),
+            (r'\s+', Text),  # Whitespace
+            # Comments
+            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
+            (r'{-', Comment.Multiline, 'comment'),
+            # Holes
+            (r'{!', Comment.Directive, 'hole'),
+            # Lexemes:
+            #  Identifiers
+            (ur'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'(import)(\s+)([A-Z][a-zA-Z0-9_.]*)', bygroups(Keyword.Reserved, Text, Name)),
+            (r'(module)(\s+)([A-Z][a-zA-Z0-9_.]*)', bygroups(Keyword.Reserved, Text, Name)),
+            (r'\b(Set|Prop)\b', Keyword.Type),
+            #  Special Symbols
+            (r'(\(|\)|\{|\})', Operator),
+            (ur'(\.{1,3}|\||[\u039B]|[\u2200]|[\u2192]|:|=|->)', Operator.Word),
+            #(r'\\(?![:!#$%&*+.\\/<=>?@^|~-]+)', Name.Function), # lambda operator
+            #(r'(<-|::|->|=>|=)(?![:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
+            #(r':[:!#$%&*+.\\/<=>?@^|~-]*', Keyword.Type), # Constructor operators
+            #(r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator), # Other operators
+            #  Numbers
+            (r'\d+[eE][+-]?\d+', Number.Float),
+            (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
+            (r'0[xX][\da-fA-F]+', Number.Hex),
+            (r'\d+', Number.Integer),
+            # Strings
+            (r"'", String.Char, 'character'),
+            (r'"', String, 'string'),
+            (r'[^\s\(\)\{\}]+', Text),
+        ],
+        'comment': [
+            # Multiline Comments
+            (r'[^-{}]+', Comment.Multiline),
+            (r'{-', Comment.Multiline, '#push'),
+            (r'-}', Comment.Multiline, '#pop'),
+            (r'[-{}]', Comment.Multiline),
+        ],
+        'hole': [
+            # Holes
+            (r'[^!{}]+', Comment.Directive),
+            (r'{!', Comment.Directive, '#push'),
+            (r'!}', Comment.Directive, '#pop'),
+            (r'[!{}]', Comment.Directive),
+        ],
+        'character': HaskellLexer.tokens['character'],
+        'string': HaskellLexer.tokens['string'],
+        'escape': HaskellLexer.tokens['escape']
+    }
 
 
 class SMLLexer(RegexLexer):
