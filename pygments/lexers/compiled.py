@@ -1608,7 +1608,15 @@ class PrologLexer(RegexLexer):
             (r'^#.*', Comment.Single),
             (r'/\*', Comment.Multiline, 'nested-comment'),
             (r'%.*', Comment.Single),
-            (r'[0-9]+', Number),
+            # character literal
+            (r'0\'.', String.Char),
+            (r'0b[01]+', Number.Bin),
+            (r'0o[0-7]+', Number.Oct),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            # literal with prepended base
+            (r'\d\d?\'[a-zA-Z0-9]+', Number.Integer),
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+', Number.Integer),
             (r'[\[\](){}|.,;!]', Punctuation),
             (r':-|-->', Punctuation),
             (r'"(?:\\x[0-9a-fA-F]+\\|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|'
