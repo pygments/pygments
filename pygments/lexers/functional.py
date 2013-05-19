@@ -16,9 +16,9 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic, Error
 
 __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
-           'LiterateHaskellLexer', 'AgdaLexer', 'LiterateAgdaLexer',
+           'AgdaLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
            'SMLLexer', 'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer',
-           'OpaLexer', 'CoqLexer', 'AgdaLexer', 'NewLispLexer', 'ElixirLexer',
+           'OpaLexer', 'CoqLexer', 'NewLispLexer', 'ElixirLexer',
            'ElixirConsoleLexer', 'KokaLexer']
 
 
@@ -1036,7 +1036,8 @@ class AgdaLexer(RegexLexer):
     tokens = {
         'root': [
             # Declaration
-            (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)', bygroups(Text, Name.Function, Text, Operator.Word, Text)),
+            (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
+             bygroups(Text, Name.Function, Text, Operator.Word, Text)),
             # Comments
             (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
