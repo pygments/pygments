@@ -14,11 +14,7 @@ import re
 from pygments.lexer import RegexLexer, include, bygroups, using, \
      this, combined, ExtendedRegexLexer
 from pygments.token import Error, Punctuation, Literal, Token, \
-<<<<<<< local
      Text, Comment, Operator, Keyword, Name, String, Number, Generic, Other, \
-=======
-     Text, Comment, Operator, Keyword, Name, String, Number, Generic, \
->>>>>>> other
      Whitespace
 from pygments.util import get_bool_opt
 from pygments.lexers.web import HtmlLexer
