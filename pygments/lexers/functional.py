@@ -16,9 +16,13 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic, Error
 
 __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
-           'LiterateHaskellLexer', 'SMLLexer', 'OcamlLexer', 'ErlangLexer',
-           'ErlangShellLexer', 'OpaLexer', 'CoqLexer', 'NewLispLexer',
-           'ElixirLexer', 'ElixirConsoleLexer', 'KokaLexer']
+           'AgdaLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
+           'SMLLexer', 'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer',
+           'OpaLexer', 'CoqLexer', 'NewLispLexer', 'ElixirLexer',
+           'ElixirConsoleLexer', 'KokaLexer']
+
+
+line_re = re.compile('.*?\n')
 
 
 class RacketLexer(RegexLexer):
@@ -981,6 +985,8 @@ class HaskellLexer(RegexLexer):
             (r'\(', Punctuation, ('funclist', 'funclist')),
             (r'\)', Punctuation, '#pop:2'),
         ],
+        # NOTE: the next four states are shared in the AgdaLexer; make sure
+        # any change is compatible with Agda as well or copy over and change
         'comment': [
             # Multiline Comments
             (r'[^-{}]+', Comment.Multiline),
@@ -1011,12 +1017,78 @@ class HaskellLexer(RegexLexer):
     }
 
 
-line_re = re.compile('.*?\n')
-bird_re = re.compile(r'(>[ \t]*)(.*\n)')
-
-class LiterateHaskellLexer(Lexer):
+class AgdaLexer(RegexLexer):
     """
-    For Literate Haskell (Bird-style or LaTeX) source.
+    For the `Agda <http://wiki.portal.chalmers.se/agda/pmwiki.php>`_
+    dependently typed functional programming language and proof assistant.
+
+    *New in Pygments 1.7.*
+    """
+
+    name = 'Agda'
+    aliases = ['agda']
+    filenames = ['*.agda']
+    mimetypes = ['text/x-agda']
+
+    reserved = ['abstract', 'codata', 'coinductive', 'constructor', 'data',
+                'field', 'forall', 'hiding', 'in', 'inductive', 'infix',
+                'infixl', 'infixr', 'let', 'open', 'pattern', 'primitive',
+                'private', 'mutual', 'quote', 'quoteGoal', 'quoteTerm',
+                'record', 'syntax', 'rewrite', 'unquote', 'using', 'where',
+                'with']
+
+    tokens = {
+        'root': [
+            # Declaration
+            (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
+             bygroups(Text, Name.Function, Text, Operator.Word, Text)),
+            # Comments
+            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
+            (r'{-', Comment.Multiline, 'comment'),
+            # Holes
+            (r'{!', Comment.Directive, 'hole'),
+            # Lexemes:
+            #  Identifiers
+            (ur'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
+            (r'\b(Set|Prop)\b', Keyword.Type),
+            #  Special Symbols
+            (r'(\(|\)|\{|\})', Operator),
+            (ur'(\.{1,3}|\||[\u039B]|[\u2200]|[\u2192]|:|=|->)', Operator.Word),
+            #  Numbers
+            (r'\d+[eE][+-]?\d+', Number.Float),
+            (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
+            (r'0[xX][\da-fA-F]+', Number.Hex),
+            (r'\d+', Number.Integer),
+            # Strings
+            (r"'", String.Char, 'character'),
+            (r'"', String, 'string'),
+            (r'[^\s\(\)\{\}]+', Text),
+            (r'\s+?', Text),  # Whitespace
+        ],
+        'hole': [
+            # Holes
+            (r'[^!{}]+', Comment.Directive),
+            (r'{!', Comment.Directive, '#push'),
+            (r'!}', Comment.Directive, '#pop'),
+            (r'[!{}]', Comment.Directive),
+        ],
+        'module': [
+            (r'{-', Comment.Multiline, 'comment'),
+            (r'[a-zA-Z][a-zA-Z0-9_.]*', Name, '#pop'),
+            (r'[^a-zA-Z]*', Text)
+        ],
+        'comment': HaskellLexer.tokens['comment'],
+        'character': HaskellLexer.tokens['character'],
+        'string': HaskellLexer.tokens['string'],
+        'escape': HaskellLexer.tokens['escape']
+    }
+
+
+class LiterateLexer(Lexer):
+    """
+    Base class for lexers of literate file formats based on LaTeX or Bird-style
+    (prefixing each code line with ">").
 
     Additional options accepted:
 
@@ -1024,17 +1096,15 @@ class LiterateHaskellLexer(Lexer):
         If given, must be ``"bird"`` or ``"latex"``.  If not given, the style
         is autodetected: if the first non-whitespace character in the source
         is a backslash or percent character, LaTeX is assumed, else Bird.
-
-    *New in Pygments 0.9.*
     """
-    name = 'Literate Haskell'
-    aliases = ['lhs', 'literate-haskell', 'lhaskell']
-    filenames = ['*.lhs']
-    mimetypes = ['text/x-literate-haskell']
+
+    bird_re = re.compile(r'(>[ \t]*)(.*\n)')
+
+    def __init__(self, baselexer, **options):
+        self.baselexer = baselexer
+        Lexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
-        hslexer = HaskellLexer(**self.options)
-
         style = self.options.get('litstyle')
         if style is None:
             style = (text.lstrip()[0:1] in '%\\') and 'latex' or 'bird'
@@ -1045,7 +1115,7 @@ class LiterateHaskellLexer(Lexer):
             # bird-style
             for match in line_re.finditer(text):
                 line = match.group()
-                m = bird_re.match(line)
+                m = self.bird_re.match(line)
                 if m:
                     insertions.append((len(code),
                                        [(0, Comment.Special, m.group(1))]))
@@ -1056,7 +1126,6 @@ class LiterateHaskellLexer(Lexer):
             # latex-style
             from pygments.lexers.text import TexLexer
             lxlexer = TexLexer(**self.options)
-
             codelines = 0
             latex = ''
             for match in line_re.finditer(text):
@@ -1077,8 +1146,54 @@ class LiterateHaskellLexer(Lexer):
                     latex += line
             insertions.append((len(code),
                                list(lxlexer.get_tokens_unprocessed(latex))))
-        for item in do_insertions(insertions, hslexer.get_tokens_unprocessed(code)):
+        for item in do_insertions(insertions, self.baselexer.get_tokens_unprocessed(code)):
             yield item
+
+
+class LiterateHaskellLexer(LiterateLexer):
+    """
+    For Literate Haskell (Bird-style or LaTeX) source.
+
+    Additional options accepted:
+
+    `litstyle`
+        If given, must be ``"bird"`` or ``"latex"``.  If not given, the style
+        is autodetected: if the first non-whitespace character in the source
+        is a backslash or percent character, LaTeX is assumed, else Bird.
+
+    *New in Pygments 0.9.*
+    """
+    name = 'Literate Haskell'
+    aliases = ['lhs', 'literate-haskell', 'lhaskell']
+    filenames = ['*.lhs']
+    mimetypes = ['text/x-literate-haskell']
+
+    def __init__(self, **options):
+        hslexer = HaskellLexer(**options)
+        LiterateLexer.__init__(self, hslexer, **options)
+
+
+class LiterateAgdaLexer(LiterateLexer):
+    """
+    For Literate Agda source.
+
+    Additional options accepted:
+
+    `litstyle`
+        If given, must be ``"bird"`` or ``"latex"``.  If not given, the style
+        is autodetected: if the first non-whitespace character in the source
+        is a backslash or percent character, LaTeX is assumed, else Bird.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'Literate Agda'
+    aliases = ['lagda', 'literate-agda']
+    filenames = ['*.lagda']
+    mimetypes = ['text/x-literate-agda']
+
+    def __init__(self, **options):
+        agdalexer = AgdaLexer(**options)
+        LiterateLexer.__init__(self, agdalexer, litstyle='latex', **options)
 
 
 class SMLLexer(RegexLexer):
