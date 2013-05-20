@@ -983,6 +983,11 @@ class NumPyLexer(PythonLexer):
             else:
                 yield index, token, value
 
+    def analyse_text(text):
+        return (shebang_matches(text, r'pythonw?(2(\.\d)?)?') or
+                'import ' in text[:1000]) \
+            and ('import numpy' in text or 'from numpy import' in text)
+
 
 class RConsoleLexer(Lexer):
     """
