@@ -12,6 +12,7 @@
 import sys
 import types
 import fnmatch
+import re
 from os.path import basename
 
 from pygments.lexers._mapping import LEXERS
@@ -24,6 +25,19 @@ __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
            'guess_lexer'] + LEXERS.keys()
 
 _lexer_cache = {}
+_pattern_cache = {}
+
+def _fn_matches(fn, glob):
+    """
+    Return whether the supplied file name fn matches pattern filename
+    """
+    if glob not in _pattern_cache:
+        pattern = re.compile(fnmatch.translate(glob))
+        _pattern_cache[glob] = pattern
+    else:
+        pattern = _pattern_cache[glob]
+
+    return pattern.match(fn)
 
 
 def _load_lexers(module_name):
@@ -91,13 +105,13 @@ def get_lexer_for_filename(_fn, code=None, **options):
     fn = basename(_fn)
     for modname, name, _, filenames, _ in LEXERS.itervalues():
         for filename in filenames:
-            if fnmatch.fnmatch(fn, filename):
+            if _fn_matches(fn, filename):
                 if name not in _lexer_cache:
                     _load_lexers(modname)
                 matches.append((_lexer_cache[name], filename))
     for cls in find_plugin_lexers():
         for filename in cls.filenames:
-            if fnmatch.fnmatch(fn, filename):
+            if _fn_matches(fn, filename):
                 matches.append((cls, filename))
 
     if sys.version_info > (3,) and isinstance(code, bytes):
@@ -172,11 +186,11 @@ def guess_lexer_for_filename(_fn, _text, **options):
     matching_lexers = set()
     for lexer in _iter_lexerclasses():
         for filename in lexer.filenames:
-            if fnmatch.fnmatch(fn, filename):
+            if _fn_matches(fn, filename):
                 matching_lexers.add(lexer)
                 primary = lexer
         for filename in lexer.alias_filenames:
-            if fnmatch.fnmatch(fn, filename):
+            if _fn_matches(fn, filename):
                 matching_lexers.add(lexer)
     if not matching_lexers:
         raise ClassNotFound('no lexer for filename %r found' % fn)
