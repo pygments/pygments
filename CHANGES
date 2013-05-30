@@ -20,6 +20,7 @@ Version 1.7
   * EBNF (PR#193)
   * Igor Pro (PR#172)
   * Rexx (PR#199)
+  * Agda and Literate Agda (PR#203)
 
 - Pygments will now recognize "vim" modelines when guessing the lexer for
   a file based on content (PR#118).
@@ -51,6 +52,8 @@ Version 1.7
 - Haxe lexer: rewrite and support for Haxe 3 (PR#174).
 
 - Prolog lexer: add different kinds of numeric literals (#864).
+
+- F# lexer: rewrite with newest spec for F# 3.0 (#842).
 
 
 Version 1.6
