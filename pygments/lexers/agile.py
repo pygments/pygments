@@ -185,7 +185,8 @@ class PythonLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return shebang_matches(text, r'pythonw?(2(\.\d)?)?')
+        return shebang_matches(text, r'pythonw?(2(\.\d)?)?') or \
+            'import ' in text[:1000]
 
 
 class Python3Lexer(RegexLexer):
