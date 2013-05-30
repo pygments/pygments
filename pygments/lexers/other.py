@@ -26,6 +26,7 @@ from pygments.lexers._robotframeworklexer import RobotFrameworkLexer
 from pygments.lexers.sql import SqlLexer, MySqlLexer, SqliteConsoleLexer
 from pygments.lexers.shell import BashLexer, BashSessionLexer, BatchLexer, \
      TcshLexer
+from pygments.util import sorted_keywords_pattern
 
 __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'SmalltalkLexer', 'LogtalkLexer', 'GnuplotLexer', 'PovrayLexer',
@@ -3700,10 +3701,41 @@ class EasytrieveLexer(RegexLexer):
     _DELIMITERS_OR_COMENT = _DELIMITERS + '*'
     _DELIMITER_PATTERN = '[' + _DELIMITERS + ']'
     _NON_DELIMITER_OR_COMMENT_PATTERN = '[^' + _DELIMITERS_OR_COMENT + ']'
-    _PUNCTUATIONS = r'[\[\](){}<>;,]'
-    _OPERATORS = ur'[+\-/=&%¬]'
-
-
+    _OPERATORS_PATTERN = ur'[.+\-/=\[\](){}<>;,&%¬]'
+    _KEYWORDS_PATTERN = sorted_keywords_pattern([
+        'AFTER-BREAK', 'AFTER-LINE', 'AFTER-SCREEN', 'AIM', 'AND', 'ATTR',
+        'BEFORE', 'BEFORE-BREAK', 'BEFORE-LINE', 'BEFORE-SCREEN', 'BUSHU',
+        'BY', 'CALL', 'CASE', 'CHECKPOINT', 'CHKP', 'CHKP-STATUS', 'CLEAR',
+        'CLOSE', 'COL', 'COLOR', 'COMMIT', 'CONTROL', 'COPY', 'CURSOR', 'D',
+        'DECLARE', 'DEFAULT', 'DEFINE', 'DELETE', 'DENWA', 'DISPLAY', 'DLI',
+        'DO', 'DUPLICATE', 'E', 'ELSE', 'ELSE-IF', 'END', 'END-CASE',
+        'END-DO', 'END-IF', 'END-PROC', 'ENDPAGE', 'ENDTABLE', 'ENTER', 'EOF',
+        'EQ', 'ERROR', 'EXIT', 'EXTERNAL', 'EZLIB', 'F1', 'F10', 'F11', 'F12',
+        'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19', 'F2', 'F20', 'F21',
+        'F22', 'F23', 'F24', 'F25', 'F26', 'F27', 'F28', 'F29', 'F3', 'F30',
+        'F31', 'F32', 'F33', 'F34', 'F35', 'F36', 'F4', 'F5', 'F6', 'F7',
+        'F8', 'F9', 'FETCH', 'FILE-STATUS', 'FILL', 'FINAL', 'FIRST',
+        'FIRST-DUP', 'FOR', 'GE', 'GET', 'GO', 'GOTO', 'GQ', 'GR', 'GT',
+        'HEADING', 'HEX', 'HIGH-VALUES', 'IDD', 'IDMS', 'IF', 'IN', 'INSERT',
+        'JUSTIFY', 'KANJI-DATE', 'KANJI-DATE-LONG', 'KANJI-TIME', 'KEY',
+        'KEY-PRESSED', 'KOKUGO', 'KUN', 'LAST-DUP', 'LE', 'LEVEL', 'LIKE',
+        'LINE', 'LINE-COUNT', 'LINE-NUMBER', 'LINK', 'LIST', 'LOW-VALUES',
+        'LQ', 'LS', 'LT', 'MASK', 'MATCHED', 'MEND', 'MESSAGE', 'MOVE',
+        'MSTART', 'NE', 'NEWPAGE', 'NOMASK', 'NOPRINT', 'NOT', 'NOTE',
+        'NOVERIFY', 'NQ', 'NULL', 'OF', 'OR', 'OTHERWISE', 'PA1', 'PA2',
+        'PA3', 'PAGE-COUNT', 'PAGE-NUMBER', 'PARM-REGISTER', 'PATH-ID',
+        'PATTERN', 'PERFORM', 'POINT', 'POS', 'PRIMARY', 'PRINT', 'PROCEDURE',
+        'PROGRAM', 'PUT', 'READ', 'RECORD', 'RECORD-COUNT', 'RECORD-LENGTH',
+        'REFRESH', 'RELEASE', 'RENUM', 'REPEAT', 'REPORT', 'REPORT-INPUT',
+        'RESHOW', 'RESTART', 'RETRIEVE', 'RETURN-CODE', 'ROLLBACK', 'ROW',
+        'S', 'SCREEN', 'SEARCH', 'SECONDARY', 'SELECT', 'SEQUENCE', 'SIZE',
+        'SKIP', 'SOKAKU', 'SORT', 'SQL', 'STOP', 'SUM', 'SYSDATE',
+        'SYSDATE-LONG', 'SYSIN', 'SYSIPT', 'SYSLST', 'SYSPRINT', 'SYSSNAP',
+        'SYSTIME', 'TALLY', 'TERM-COLUMNS', 'TERM-NAME', 'TERM-ROWS',
+        'TERMINATION', 'TITLE', 'TO', 'TRANSFER', 'TRC', 'UNIQUE', 'UNTIL',
+        'UPDATE', 'UPPERCASE', 'USER', 'USERID', 'VALUE', 'VERIFY', 'W',
+        'WHEN', 'WHILE', 'WORK', 'WRITE', 'X', 'XDM', 'XRST'
+    ])
     tokens = {
         'root': [
             (r'\*.*\n', Comment.Single),
@@ -3714,35 +3746,9 @@ class EasytrieveLexer(RegexLexer):
             (r'%' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Variable),
             (r'(FILE|JOB|PARM|PROC|REPORT)(' + _DELIMITER_PATTERN + r')',
              bygroups(Keyword.Declaration, Operator)),
-            (r'(AFTER-BREAK|AFTER-LINE|AFTER-SCREEN|AIM|AND|ATTR|BEFORE|'
-             r'BEFORE-BREAK|BEFORE-LINE|BEFORE-SCREEN|BUSHU|BY|CALL|CASE|'
-             r'CHECKPOINT|CHKP|CHKP-STATUS|CLEAR|CLOSE|COL|COLOR|COMMIT|'
-             r'CONTROL|COPY|CURSOR|D|DECLARE|DEFAULT|DEFINE|DELETE|DENWA|'
-             r'DISPLAY|DLI|DO|DUPLICATE|E|ELSE|ELSE-IF|END|END-CASE|END-DO|'
-             r'END-IF|END-PROC|ENDPAGE|ENDTABLE|ENTER|EOF|EQ|ERROR|EXIT|'
-             r'EXTERNAL|EZLIB|F1|F10|F11|F12|F13|F14|F15|F16|F17|F18|F19|F2|'
-             r'F20|F21|F22|F23|F24|F25|F26|F27|F28|F29|F3|F30|F31|F32|F33|'
-             r'F34|F35|F36|F4|F5|F6|F7|F8|F9|FETCH|FILE-STATUS|FILL|'
-             r'FINAL|FIRST|FIRST-DUP|FOR|GE|GET|GO|GOTO|GQ|GR|GT|HEADING|'
-             r'HEX|HIGH-VALUES|IDD|IDMS|IF|IN|INSERT|JUSTIFY|KANJI-DATE|'
-             r'KANJI-DATE-LONG|KANJI-TIME|KEY|KEY-PRESSED|KOKUGO|KUN|'
-             r'LAST-DUP|LE|LEVEL|LIKE|LINE|LINE-COUNT|LINE-NUMBER|LINK|LIST|'
-             r'LOW-VALUES|LQ|LS|LT|MASK|MATCHED|MEND|MESSAGE|MOVE|MSTART|NE|'
-             r'NEWPAGE|NOMASK|NOPRINT|NOT|NOTE|NOVERIFY|NQ|NULL|OF|OR|'
-             r'OTHERWISE|PA1|PA2|PA3|PAGE-COUNT|PAGE-NUMBER|PARM-REGISTER|'
-             r'PATH-ID|PATTERN|PERFORM|POINT|POS|PRIMARY|PRINT|'
-             r'PROCEDURE|PROGRAM|PUT|READ|RECORD|RECORD-COUNT|RECORD-LENGTH|'
-             r'REFRESH|RELEASE|RENUM|REPEAT|REPORT|REPORT-INPUT|RESHOW|'
-             r'RESTART|RETRIEVE|RETURN-CODE|ROLLBACK|ROW|S|SCREEN|SEARCH|'
-             r'SECONDARY|SELECT|SEQUENCE|SIZE|SKIP|SOKAKU|SORT|SQL|STOP|SUM|'
-             r'SYSDATE|SYSDATE-LONG|SYSIN|SYSIPT|SYSLST|SYSPRINT|SYSSNAP|'
-             r'SYSTIME|TALLY|TERM-COLUMNS|TERM-NAME|TERM-ROWS|TERMINATION|'
-             r'TITLE|TO|TRANSFER|TRC|UNIQUE|UNTIL|UPDATE|UPPERCASE|USER|'
-             r'USERID|VALUE|VERIFY|W|WHEN|WHILE|WORK|WRITE|X|XDM|XRST)'
-             r'(' + _DELIMITER_PATTERN + r')',
+            (_KEYWORDS_PATTERN + r'(' + _DELIMITER_PATTERN + r')',
              bygroups(Keyword.Reserved, Operator)),
-            (_PUNCTUATIONS, Punctuation),
-            (_OPERATORS, Operator),
+            (_OPERATORS_PATTERN, Operator),
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r"'(''|[^'])*'", String),
@@ -3752,8 +3758,7 @@ class EasytrieveLexer(RegexLexer):
         'after_macro_argument': [
             (r'\*.*\n', Comment.Single, '#pop'),
             (r'\s+', Whitespace, '#pop'),
-            (_PUNCTUATIONS, Punctuation, '#pop'),
-            (_OPERATORS, Operator, '#pop'),
+            (_OPERATORS_PATTERN, Operator, '#pop'),
             (r"'(''|[^'])*'", String, '#pop'),
             (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
         ],
