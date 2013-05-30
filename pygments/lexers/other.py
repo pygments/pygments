@@ -4256,6 +4256,28 @@ class RexxLexer(RegexLexer):
     mimetypes = ['text/x-rexx']
     flags = re.IGNORECASE
 
+    _FUNCTIONS_PATTERN = sorted_keywords_pattern([
+        'abbrev', 'abs', 'address', 'arg', 'b2x', 'bitand', 'bitor', 'bitxor',
+        'c2d', 'c2x', 'center', 'charin', 'charout', 'chars', 'compare',
+        'condition', 'copies', 'd2c', 'd2x', 'datatype', 'date', 'delstr',
+        'delword', 'digits', 'errortext', 'form', 'format', 'fuzz', 'insert',
+        'lastpos', 'left', 'length', 'linein', 'lineout', 'lines', 'max',
+        'min', 'overlay', 'pos', 'queued', 'random', 'reverse', 'right',
+        'sign', 'sourceline', 'space', 'stream', 'strip', 'substr', 'subword',
+        'symbol', 'time', 'trace', 'translate', 'trunc', 'value', 'verify',
+        'word', 'wordindex', 'wordlength', 'wordpos', 'words', 'x2b', 'x2c',
+        'x2d', 'xrange'])
+    _KEYWORDS_PATTERN = sorted_keywords_pattern([
+        'address', 'arg', 'by', 'call', 'do', 'drop', 'else', 'end', 'exit',
+        'for', 'forever', 'if', 'interpret', 'iterate', 'leave', 'nop',
+        'numeric', 'off', 'on', 'options', 'parse', 'pull', 'push', 'queue',
+        'return', 'say', 'select', 'signal', 'then', 'to', 'trace', 'until',
+        'while'])
+    _OPERATORS_PATTERN = sorted_keywords_pattern([
+        '%', '&', '&&', '(', ')', '*', '**', '+', ',', '-', '.', '/', '//',
+        '<', '<<', '<<=', '<=', '<>', '=', '==', '>', '><', '>=', '>>', '>>=',
+        '\\', '\\<', '\\<<', '\\=', '\\==', '\\>', '\\>>', '|', '||', u'¬',
+        u'¬<', u'¬<<', u'¬=', u'¬==', u'¬>', u'¬>>'])
     tokens = {
         'root': [
             (r'\s', Whitespace),
@@ -4268,32 +4290,11 @@ class RexxLexer(RegexLexer):
                       Keyword.Declaration)),
             (r'([a-z_][a-z0-9_]*)(\s*)(:)',
              bygroups(Name.Label, Whitespace, Operator)),
-            include('function'),
-            include('keyword'),
-            include('operator'),
-            (r'[a-z_][a-z0-9_]*', Text),
-        ],
-        'function': [
-            (r'(abbrev|abs|address|arg|b2x|bitand|bitor|bitxor|c2d|c2x|'
-             r'center|charin|charout|chars|compare|condition|copies|d2c|'
-             r'd2x|datatype|date|delstr|delword|digits|errortext|form|'
-             r'format|fuzz|insert|lastpos|left|length|linein|lineout|lines|'
-             r'max|min|overlay|pos|queued|random|reverse|right|sign|'
-             r'sourceline|space|stream|strip|substr|subword|symbol|time|'
-             r'trace|translate|trunc|value|verify|word|wordindex|'
-             r'wordlength|wordpos|words|x2b|x2c|x2d|xrange)(\s*)(\()',
+            (_FUNCTIONS_PATTERN + r'(\s*)(\()',
              bygroups(Name.Builtin, Whitespace, Operator)),
-        ],
-        'keyword': [
-            (r'(address|arg|by|call|do|drop|else|end|exit|for|forever|if|'
-             r'interpret|iterate|leave|nop|numeric|off|on|options|parse|'
-             r'pull|push|queue|return|say|select|signal|to|then|trace|until|'
-             r'while)\b', Keyword.Reserved),
-        ],
-        'operator': [
-            (ur'(-|//|/|\(|\)|\*\*|\*|\\<<|\\<|\\==|\\=|\\>>|\\>|\\|\|\||\||'
-             ur'&&|&|%|\+|<<=|<<|<=|<>|<|==|=|><|>=|>>=|>>|>|¬<<|¬<|¬==|¬=|'
-             ur'¬>>|¬>|¬|\.|,)', Operator),
+            (_KEYWORDS_PATTERN + r'\b', Keyword.Reserved),
+            (_OPERATORS_PATTERN, Operator),
+            (r'[a-z_][a-z0-9_]*', Text),
         ],
         'string_double': [
             (r'[^"\n]+', String),

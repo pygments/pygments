@@ -255,7 +255,7 @@ def sorted_keywords_pattern(keywords):
     '''
     Pattern for a regular expression that matches any word in ``keywords`` even if
     some of them are prefixes of others. This is particular useful if '\b' cannot be
-    use as delimiter after a keyword.
+    used as delimiter after a keyword.
 
     >>> sorted_keywords_pattern(['a', 'aa', 'aaa', 'b', 'cc'])
     u'(aaa|aa|cc|a|b)'
@@ -264,7 +264,7 @@ def sorted_keywords_pattern(keywords):
     escaped_keywords = [re.escape(keyword) for keyword in keywords]
     sort_key = lambda keyword: (-len(keyword), keyword)
     sorted_keywords = sorted(escaped_keywords, key=sort_key)
-    return u'(' + '|'.join(sorted_keywords) + u')'
+    return u'(' + u'|'.join(sorted_keywords) + u')'
 
 # Python 2/3 compatibility
 
