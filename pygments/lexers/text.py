@@ -1656,7 +1656,7 @@ class CMakeLexer(RegexLexer):
         ],
         'ws': [
             (r'[ \t]+', Text),
-            (r'#.+\n', Comment),
+            (r'#.*\n', Comment),
         ]
     }
 
