@@ -60,10 +60,7 @@ def test_lexer_classes():
         if cls.name in ['XQuery', 'Opa']:   # XXX temporary
             return
 
-        try:
-            tokens = list(inst.get_tokens(test_content))
-        except KeyboardInterrupt:
-            raise KeyboardInterrupt('interrupted %s.get_tokens(): test_content=%r' % (cls.__name__, test_content))
+        tokens = list(inst.get_tokens(test_content))
         txt = ""
         for token in tokens:
             assert isinstance(token, tuple)
