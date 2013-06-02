@@ -22,9 +22,10 @@ ham
 /*
 //SORTOUT  DD SYSOUT=*
 /*
-//* Test line continuation with comment at the end of a line
+//* Test line continuation with comment at end of line continued by a
+//* character at column 72 (in this case 'X').
 //STP4     EXEC PROC=BILLING,COND.PAID=((20,LT),EVEN),
 //         COND.LATE=(60,GT,FIND),
-//         COND.BILL=((20,GE),(30,LT,CHGE))  THIS STATEMENT CALLS  X
-//         THE BILLING PROCEDURE AND SPECIFIES RETURN CODE TESTS   X
-//         FOR THREE PROCEDURE STEPS.
+//         COND.BILL=((20,GE),(30,LT,CHGE))  THIS STATEMENT CALLS THE X
+//         BILLING PROCEDURE AND SPECIFIES RETURN CODE TESTS FOR THREEX
+//         PROCEDURE STEPS.
