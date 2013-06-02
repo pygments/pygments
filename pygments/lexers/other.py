@@ -3720,21 +3720,21 @@ class EasytrieveLexer(RegexLexer):
         'JUSTIFY', 'KANJI-DATE', 'KANJI-DATE-LONG', 'KANJI-TIME', 'KEY',
         'KEY-PRESSED', 'KOKUGO', 'KUN', 'LAST-DUP', 'LE', 'LEVEL', 'LIKE',
         'LINE', 'LINE-COUNT', 'LINE-NUMBER', 'LINK', 'LIST', 'LOW-VALUES',
-        'LQ', 'LS', 'LT', 'MASK', 'MATCHED', 'MEND', 'MESSAGE', 'MOVE',
-        'MSTART', 'NE', 'NEWPAGE', 'NOMASK', 'NOPRINT', 'NOT', 'NOTE',
-        'NOVERIFY', 'NQ', 'NULL', 'OF', 'OR', 'OTHERWISE', 'PA1', 'PA2',
-        'PA3', 'PAGE-COUNT', 'PAGE-NUMBER', 'PARM-REGISTER', 'PATH-ID',
-        'PATTERN', 'PERFORM', 'POINT', 'POS', 'PRIMARY', 'PRINT', 'PROCEDURE',
-        'PROGRAM', 'PUT', 'READ', 'RECORD', 'RECORD-COUNT', 'RECORD-LENGTH',
-        'REFRESH', 'RELEASE', 'RENUM', 'REPEAT', 'REPORT', 'REPORT-INPUT',
-        'RESHOW', 'RESTART', 'RETRIEVE', 'RETURN-CODE', 'ROLLBACK', 'ROW',
-        'S', 'SCREEN', 'SEARCH', 'SECONDARY', 'SELECT', 'SEQUENCE', 'SIZE',
-        'SKIP', 'SOKAKU', 'SORT', 'SQL', 'STOP', 'SUM', 'SYSDATE',
-        'SYSDATE-LONG', 'SYSIN', 'SYSIPT', 'SYSLST', 'SYSPRINT', 'SYSSNAP',
-        'SYSTIME', 'TALLY', 'TERM-COLUMNS', 'TERM-NAME', 'TERM-ROWS',
-        'TERMINATION', 'TITLE', 'TO', 'TRANSFER', 'TRC', 'UNIQUE', 'UNTIL',
-        'UPDATE', 'UPPERCASE', 'USER', 'USERID', 'VALUE', 'VERIFY', 'W',
-        'WHEN', 'WHILE', 'WORK', 'WRITE', 'X', 'XDM', 'XRST'
+        'LQ', 'LS', 'LT', 'MACRO', 'MASK', 'MATCHED', 'MEND', 'MESSAGE',
+        'MOVE', 'MSTART', 'NE', 'NEWPAGE', 'NOMASK', 'NOPRINT', 'NOT',
+        'NOTE', 'NOVERIFY', 'NQ', 'NULL', 'OF', 'OR', 'OTHERWISE', 'PA1',
+        'PA2', 'PA3', 'PAGE-COUNT', 'PAGE-NUMBER', 'PARM-REGISTER',
+        'PATH-ID', 'PATTERN', 'PERFORM', 'POINT', 'POS', 'PRIMARY', 'PRINT',
+        'PROCEDURE', 'PROGRAM', 'PUT', 'READ', 'RECORD', 'RECORD-COUNT',
+        'RECORD-LENGTH', 'REFRESH', 'RELEASE', 'RENUM', 'REPEAT', 'REPORT',
+        'REPORT-INPUT', 'RESHOW', 'RESTART', 'RETRIEVE', 'RETURN-CODE',
+        'ROLLBACK', 'ROW', 'S', 'SCREEN', 'SEARCH', 'SECONDARY', 'SELECT',
+        'SEQUENCE', 'SIZE', 'SKIP', 'SOKAKU', 'SORT', 'SQL', 'STOP', 'SUM',
+        'SYSDATE', 'SYSDATE-LONG', 'SYSIN', 'SYSIPT', 'SYSLST', 'SYSPRINT',
+        'SYSSNAP', 'SYSTIME', 'TALLY', 'TERM-COLUMNS', 'TERM-NAME',
+        'TERM-ROWS', 'TERMINATION', 'TITLE', 'TO', 'TRANSFER', 'TRC',
+        'UNIQUE', 'UNTIL', 'UPDATE', 'UPPERCASE', 'USER', 'USERID', 'VALUE',
+        'VERIFY', 'W', 'WHEN', 'WHILE', 'WORK', 'WRITE', 'X', 'XDM', 'XRST'
     ])
     tokens = {
         'root': [
@@ -3744,17 +3744,26 @@ class EasytrieveLexer(RegexLexer):
             (r'&' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+\.', Name.Variable, 'after_macro_argument'),
             # Macro call
             (r'%' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Variable),
-            (r'(FILE|JOB|PARM|PROC|REPORT)(' + _DELIMITER_PATTERN + r')',
+            (r'(FILE|MACRO|REPORT)(\s+)',
+             bygroups(Keyword.Declaration, Whitespace), 'after_declaration'),
+            (r'(JOB|PARM)' + r'(' + _DELIMITER_PATTERN + r')',
              bygroups(Keyword.Declaration, Operator)),
             (_KEYWORDS_PATTERN + r'(' + _DELIMITER_PATTERN + r')',
              bygroups(Keyword.Reserved, Operator)),
             (_OPERATORS_PATTERN, Operator),
+            # Procedure declaration
+            (r'(' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+)(\s*)(\.?)(\s*)(PROC)(\s*\n)',
+             bygroups(Name.Function, Whitespace, Operator, Whitespace, Keyword.Declaration, Whitespace)),
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r"'(''|[^'])*'", String),
             (r'\s+', Whitespace),
             (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
          ],
+        'after_declaration': [
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Function),
+            ('', Whitespace, '#pop')
+        ],
         'after_macro_argument': [
             (r'\*.*\n', Comment.Single, '#pop'),
             (r'\s+', Whitespace, '#pop'),
@@ -3763,6 +3772,8 @@ class EasytrieveLexer(RegexLexer):
             (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
         ],
     }
+    _COMMENT_LINE_REGEX = re.compile(r'^\s*\*')
+    _MACRO_HEADER_REGEX = re.compile(r'^\s*MACRO')
 
     def analyse_text(text):
         """
@@ -3777,15 +3788,20 @@ class EasytrieveLexer(RegexLexer):
         hasProc = False
         hasParm = False
         hasReport = False
-        isBroken = False
 
-        # Skip possible header comments.
-        while len(lines) and lines[0].startswith('*'):
-            hasHeaderComment = True
+        def isCommentLine(line):
+            return EasytrieveLexer._COMMENT_LINE_REGEX.match(lines[0]) is not None
+
+        def isEmptyLine(line):
+            return not bool(line.strip())
+
+        # Remove possible empty lines and header comments.
+        while lines and (isEmptyLine(lines[0]) or isCommentLine(lines[0])):
+            if not isEmptyLine(lines[0]):
+                hasHeaderComment = True
             del lines[0]
 
-        firstLine = lines[0]
-        if firstLine[:6] in ('MACRO', 'MACRO '):
+        if EasytrieveLexer._MACRO_HEADER_REGEX.match(lines[0]):
             # Looks like an Easytrieve macro.
             result = 0.4
             if hasHeaderComment:
@@ -3795,37 +3811,39 @@ class EasytrieveLexer(RegexLexer):
             for line in lines:
                 words = line.split()
                 if (len(words) >= 2):
-                    first_word = words[0]
+                    firstWord = words[0]
                     if not hasReport:
                         if not hasJob:
                             if not hasFile:
                                 if not hasParm:
-                                    if first_word == 'PARM':
+                                    if firstWord == 'PARM':
                                         hasParm = True
-                                if first_word == 'FILE':
+                                if firstWord == 'FILE':
                                     hasFile = True
-                            if first_word == 'JOB':
+                            if firstWord == 'JOB':
                                 hasJob = True
-                        elif first_word == 'PROC':
+                        elif firstWord == 'PROC':
                             hasProc = True
-                        elif first_word == 'END-PROC':
+                        elif firstWord == 'END-PROC':
                             hasEndProc = True
-                        elif first_word == 'REPORT':
+                        elif firstWord == 'REPORT':
                             hasReport = True
 
             # Weight the findings.
-            if not isBroken and hasJob and (hasProc == hasEndProc):
+            if hasJob and (hasProc == hasEndProc):
+                if hasHeaderComment:
+                    result += 0.1
                 if hasParm:
                     if hasProc:
                         # Found PARM, JOB and PROC/END-PROC:
                         # pretty sure this is Easytrieve.
-                        result = 0.8
+                        result += 0.8
                     else:
                         # Found PARAM and  JOB: probably this is Easytrieve
-                        result = 0.5
+                        result += 0.5
                 else:
                     # Found JOB and possibly other keywords: might be Easytrieve
-                    result = 0.11
+                    result += 0.11
                     if hasParm:
                         # Note: PARAM is not a proper English word, so this is
                         # regarded a much better indicator for Easytrieve than
@@ -3843,7 +3861,7 @@ class JclLexer(RegexLexer):
     """
     `Job Control Language (JCL) <http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/BOOKS/IEA2B570/CCONTENTS>`_
     is a scripting language used on mainframe platforms to instruct the system
-    on how to run a batch job or start a  subsystem. It is somewhat
+    on how to run a batch job or start a subsystem. It is somewhat
     comparable to MS DOS batch and Unix shell scripts.
 
     *New in Pygments 1.7.*
@@ -3863,7 +3881,7 @@ class JclLexer(RegexLexer):
             (r'.*\n', Other)  # Input text or inline code in any language.
         ],
         'statement': [
-            (r'\s*\n', Whitespace, 'root'),
+            (r'\s*\n', Whitespace, '#pop'),
             (r'([a-z][a-z_0-9]*)(\s+)(exec|job)(\s*)',
              bygroups(Name.Label, Whitespace, Keyword.Reserved, Whitespace),
              'option'),
@@ -3872,11 +3890,11 @@ class JclLexer(RegexLexer):
         ],
         'statement_command': [
             (r'\s+(command|cntl|dd|endctl|endif|else|include|jcllib|'
-             r'output|pend|proc|set|then|xmit)\s*', Keyword.Reserved, 'option'),
+             r'output|pend|proc|set|then|xmit)\s+', Keyword.Reserved, 'option'),
             include('option')
         ],
         'jes2_statement': [
-            (r'\s*\n', Whitespace, 'root'),
+            (r'\s*\n', Whitespace, '#pop'),
             (r'\$', Keyword, 'option'),
             (r'\b(jobparam|message|netacct|notify|output|priority|route|'
              r'setup|signoff|xeq|xmit)\b', Keyword, 'option'),
@@ -3898,7 +3916,7 @@ class JclLexer(RegexLexer):
             (r"(\n)(//)", bygroups(Text, Keyword.Pseudo)),
             (r"''", String),
             (r"[^']", String),
-            (r"'", String, 'option'),
+            (r"'", String, '#pop'),
         ],
         'option_comment': [
             (r'\n', Text, 'root'),

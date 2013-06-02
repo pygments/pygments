@@ -39,10 +39,24 @@ class AnalyseTextTest(unittest.TestCase):
                     exampleFile.close()
 
     def testCanRecognizeAndGuessExampleFiles(self):
-        self._testCanRecognizeAndGuessExampleFiles(EasytrieveLexer)
-        self._testCanRecognizeAndGuessExampleFiles(JclLexer)
-        self._testCanRecognizeAndGuessExampleFiles(RexxLexer)
-        self._testCanRecognizeAndGuessExampleFiles(WebFocusLexer)
+        LEXERS_TO_TEST = [
+            EasytrieveLexer,
+            JclLexer,
+            RexxLexer,
+        ]
+        for lexerToTest in LEXERS_TO_TEST:
+            self._testCanRecognizeAndGuessExampleFiles(lexerToTest)
+
+
+class EasyTrieveLexerTest(unittest.TestCase):
+    def testCanGuessFromText(self):
+        self.assertLess(0, EasytrieveLexer.analyse_text('MACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text('\nMACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text(' \nMACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text(' \n MACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text('*\nMACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text(
+            '*\n *\n\n \n*\n MACRO'))
 
 
 class RexxLexerTest(unittest.TestCase):
