@@ -11,9 +11,7 @@ import os
 import unittest
 
 from pygments.lexers import guess_lexer
-from pygments.lexers.other import EasytrieveLexer, JclLexer, RexxLexer, \
-    WebFocusLexer
-
+from pygments.lexers.other import EasytrieveLexer, JclLexer, RexxLexer
 
 def _exampleFilePath(filename):
     return os.path.join(os.path.dirname(__file__), 'examplefiles', filename)
