@@ -19,7 +19,8 @@ __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'AgdaLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
            'SMLLexer', 'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer',
            'OpaLexer', 'CoqLexer', 'NewLispLexer', 'ElixirLexer',
-           'ElixirConsoleLexer', 'KokaLexer', 'IdrisLexer']
+           'ElixirConsoleLexer', 'KokaLexer', 'IdrisLexer',
+           'LiterateIdrisLexer']
 
 
 line_re = re.compile('.*?\n')
@@ -1016,6 +1017,7 @@ class HaskellLexer(RegexLexer):
         ],
     }
 
+
 class IdrisLexer(RegexLexer):
     """
     A lexer for the dependently typed programming language Idris.
@@ -1120,9 +1122,10 @@ class IdrisLexer(RegexLexer):
             (r'o[0-7]+', String.Escape, '#pop'),
             (r'x[\da-fA-F]+', String.Escape, '#pop'),
             (r'\d+', String.Escape, '#pop'),
-            (r'\s+\\', String.Escape, '#pop'),
+            (r'\s+\\', String.Escape, '#pop')
         ],
     }
+
 
 class AgdaLexer(RegexLexer):
     """
@@ -1277,6 +1280,29 @@ class LiterateHaskellLexer(LiterateLexer):
 
     def __init__(self, **options):
         hslexer = HaskellLexer(**options)
+        LiterateLexer.__init__(self, hslexer, **options)
+
+
+class LiterateIdrisLexer(LiterateLexer):
+    """
+    For Literate Idris (Bird-style or LaTeX) source.
+
+    Additional options accepted:
+
+    `litstyle`
+        If given, must be ``"bird"`` or ``"latex"``.  If not given, the style
+        is autodetected: if the first non-whitespace character in the source
+        is a backslash or percent character, LaTeX is assumed, else Bird.
+
+    *New in Pygments 1.6.*
+    """
+    name = 'Literate Idris'
+    aliases = ['lidr', 'literate-idris', 'lidris']
+    filenames = ['*.lidr']
+    mimetypes = ['text/x-literate-idris']
+
+    def __init__(self, **options):
+        hslexer = IdrisLexer(**options)
         LiterateLexer.__init__(self, hslexer, **options)
 
 
