@@ -25,7 +25,8 @@ from pygments.lexers.jvm import JavaLexer, ScalaLexer
 
 __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'NesCLexer', 'DylanLexer', 'ObjectiveCLexer', 'ObjectiveCppLexer',
-           'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
+           'FortranLexer', 'FortranFixedLexer', 'GLShaderLexer',
+           'PrologLexer', 'CythonLexer',
            'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
            'Modula2Lexer', 'BlitzMaxLexer', 'BlitzBasicLexer', 'NimrodLexer',
            'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
@@ -1440,7 +1441,7 @@ class FortranLexer(RegexLexer):
     """
     name = 'Fortran'
     aliases = ['fortran']
-    filenames = ['*.f', '*.f90', '*.F', '*.F90']
+    filenames = ['*.f90', '*.F90', '*.f03', '*.F03']
     mimetypes = ['text/x-fortran']
     flags = re.IGNORECASE
 
@@ -1544,6 +1545,47 @@ class FortranLexer(RegexLexer):
             (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
             (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
         ],
+    }
+
+class FortranFixedLexer(RegexLexer):
+    """
+    Lexer for fixed format Fortran.
+    """
+    name = 'FortranFixed'
+    aliases = ['fortranfixed']
+    filenames = ['*.f', '*.F']
+
+    flags  = re.IGNORECASE
+
+    def _lex_fortran(self, match, ctx=None):
+        """Lex a line just as free form fortran without line break."""
+        lexer = FortranLexer()
+        text = match.group(0) + "\n"
+        for index, token, value in lexer.get_tokens_unprocessed(text):
+            value = value.replace('\n','')
+            if value != '':
+                yield index, token, value
+
+    tokens = {
+        'root': [ 
+              (r'[C*].*\n', Comment),
+              (r'#.*\n',    Comment.Preproc),
+              (r' {0,4}!.*\n', Comment),
+              (r'(.{5})', Name.Label, 'cont-char'),
+              (r'.*\n', using(FortranLexer)),
+        ],
+
+        'cont-char': [ 
+            (' ', Text, 'code'),
+            ('0', Comment, 'code'),
+            ('.', Generic.Strong, 'code') 
+        ],
+
+        'code' : [ 
+            (r'(.{66})(.*)(\n)', 
+                bygroups(_lex_fortran, Comment, Text), 'root'),
+            (r'(.*)(\n)', bygroups(_lex_fortran, Text), 'root'),
+            (r'', Text, 'root')]
     }
 
 
