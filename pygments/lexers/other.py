@@ -36,7 +36,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
-           'CbmBasicV2Lexer', 'AutoItLexer', 'RexxLexer']
+           'CbmBasicV2Lexer', 'AutoItLexer', 'RexxLexer', 'RslLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -3776,3 +3776,48 @@ class RexxLexer(RegexLexer):
                          for (pattern, weight) in RexxLexer.PATTERNS_AND_WEIGHTS
                          if pattern.search(lowerText)) + 0.01
             return min(result, 1.0)
+
+class RslLexer(RegexLexer):
+    """
+    `RSL <http://en.wikipedia.org/wiki/RAISE>`_ is the formal specification
+    language used in RAISE (Rigorous Approach to Industrial Software Engineering)
+    method. 
+
+    *New in Pygments 1.7.*
+    """
+    name = 'RSL'
+    aliases = ['rsl']
+    filenames = ['*.rsl']
+    mimetypes = ['text/rsl']
+    flags = re.MULTILINE | re.DOTALL
+
+    tokens = {
+        'root':[
+            (r'\b(Bool|Char|Int|Nat|Real|Text|Unit|abs|all|always|any|as|axiom|card|case|channel|chaos|class|devt_relation|dom|elems|else|elif|end|exists|extend|false|for|hd|hide|if|in|is|inds|initialise|int|inter|isin|len|let|local|ltl_assertion|object|of|out|post|pre|read|real|rng|scheme|skip|stop|swap|then|thoery|test_case|tl|transition_system|true|type|union|until|use|value|variable|while|with|write|~isin|-inflist|-infset|-list|-set)\b', Keyword),
+            (r'(variable|value)', Keyword.Declaration),
+            (r'--.*?\n', Comment),
+            (r'<:.*?:>', Comment),
+            (r'\{!.*?!\}', Comment),
+            (r'/\*.*?\*/', Comment),
+            (r'^[ \t]*([\w]+)[ \t]*:[^:]', Name.Function),
+            (r'(^[ \t]*)([\w]+)([ \t]*\([\w\s, ]*\)[ \t]*)(is|as)', bygroups(Text,Name.Function, Text, Keyword)),
+            (r'\b[A-Z]\w*\b',Keyword.Type),
+            (r'(true|false)\b', Keyword.Constant),
+            (r'".*"',String),
+            (r'\'.\'',String.Char),
+            (r'(><|->|-m->|/\\|<=|<<=|<\.|\|\||\|\^\||-~->|-~m->|\\/|>=|>>|\.>|\+\+|-\\|<->|=>|:-|~=|\*\*|<<|>>=|\+>|!!|\|=\||#)', Operator),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-f]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'.', Text),
+       ],
+   }
+
+    def analyse_text(text):
+        """ 
+        Check for the most common text in the beginning of a RSL file.
+        """
+        if re.search(r'scheme\s*.*?=\s*class\s*type', text, re.I) is not None:
+            return 1.0
+        else:
+            return 0.01
