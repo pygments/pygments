@@ -1239,7 +1239,7 @@ class ModelicaLexer(RegexLexer):
         'keywords': [
             (r'(algorithm|annotation|break|connect|constant|constrainedby|'
             r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
-            r'end|equation|exit|expandable|extends|'
+            r'equation|exit|expandable|extends|'
             r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
             r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
             r'protected|public|pure|redeclare|replaceable|stream|time|then|true|'
@@ -1258,9 +1258,9 @@ class ModelicaLexer(RegexLexer):
              r'terminate)\b', Name.Builtin),
         ],
         'classes': [
-            (r'(block|class|connector|function|model|package|'
-             r'record|type)(\s+)([A-Za-z_]+)',
-             bygroups(Keyword, Text, Name.Class))
+            (r'(block|class|connector|end|function|model|package|'
+             r'record|type)(\s+)([A-Za-z_][\w]*)([;]?)',
+             bygroups(Keyword, Text, Name.Class, Text))
         ],
         'string': [
             (r'"', String, '#pop'),
