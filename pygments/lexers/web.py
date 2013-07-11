@@ -3639,7 +3639,7 @@ class DartLexer(RegexLexer):
 
 class TypeScriptLexer(RegexLexer):
     """
-    For `TypeScript <http://www.python.org>`_ source code.
+    For `TypeScript <http://typescriptlang.org/>`_ source code.
 
     *New in Pygments 1.6.*
     """
