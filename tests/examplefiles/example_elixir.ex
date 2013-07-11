@@ -361,3 +361,5 @@ defmodule Module do
         "could not call #{fun} on module #{module} because it was already compiled"
   end
 end
+
+HashDict.new [{'A', 0}, {'T', 0}, {'C', 0}, {'G', 0}]
