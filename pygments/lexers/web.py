@@ -833,7 +833,8 @@ class PhpLexer(RegexLexer):
              r'endif|list|__LINE__|endswitch|new|__sleep|endwhile|not|'
              r'array|__wakeup|E_ALL|NULL|final|php_user_filter|interface|'
              r'implements|public|private|protected|abstract|clone|try|'
-             r'catch|throw|this|use|namespace|trait)\b', Keyword),
+             r'catch|throw|this|use|namespace|trait|yield|'
+             r'finally)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'\$\{\$+[a-zA-Z_][a-zA-Z0-9_]*\}', Name.Variable),
             (r'\$+[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
