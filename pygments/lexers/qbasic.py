@@ -25,7 +25,7 @@ class QBasicLexer(RegexLexer):
     name = 'QBasic'
     aliases = ['qbasic', 'basic']
     filenames = ['*.BAS', '*.bas']
-    mimetype = []
+    mimetypes = []
 
     declarations = ['DATA', 'LET']
 
