@@ -27,29 +27,58 @@ class QBasicLexer(RegexLexer):
     filenames = ['*.BAS', '*.bas']
     mimetype = []
 
-    declarations = """\
-    DATA LET
-    """.split()
+    declarations = ['DATA', 'LET']
 
-    functions = """\
-ABS ASC ATN CDBL CHR$ CINT CLNG COMMAND$ COS CSNG CSRLIN CVD CVDMBF CVI CVL CVS CVSMBF DATE$ ENVIRON$ EOF ERDEV ERDEV$ ERL ERR EXP FILEATTR FIX FRE FREEFILE HEX$ INKEY$ INP INPUT$ INSTR INT IOCTL$ LBOUND LCASE$ LEFT$ LEN LOC LOF LOG LPOS LTRIM$ MID$ MKD$ MKDMBF$ MKI$ MKL$ MKS$ MKSMBF$ OCT$ PEEK PEN PLAY PMAP POINT POS RIGHT$ RND RTRIM$ SADD SCREEN SEEK SETMEM SGN SIN SPACE$ SPC SQR STICK STR$ STRIG STRING$ TAB TAN TIME$ TIMER UBOUND UCASE$ VAL VARPTR VARPTR$ VARSEG
-    """.split()
+    functions = [
+                 'ABS', 'ASC', 'ATN', 'CDBL', 'CHR$', 'CINT', 'CLNG',
+                 'COMMAND$', 'COS', 'CSNG', 'CSRLIN', 'CVD', 'CVDMBF', 'CVI',
+                 'CVL', 'CVS', 'CVSMBF', 'DATE$', 'ENVIRON$', 'EOF', 'ERDEV',
+                 'ERDEV$', 'ERL', 'ERR', 'EXP', 'FILEATTR', 'FIX', 'FRE',
+                 'FREEFILE', 'HEX$', 'INKEY$', 'INP', 'INPUT$', 'INSTR', 'INT',
+                 'IOCTL$', 'LBOUND', 'LCASE$', 'LEFT$', 'LEN', 'LOC', 'LOF',
+                 'LOG', 'LPOS', 'LTRIM$', 'MID$', 'MKD$', 'MKDMBF$', 'MKI$',
+                 'MKL$', 'MKS$', 'MKSMBF$', 'OCT$', 'PEEK', 'PEN', 'PLAY',
+                 'PMAP', 'POINT', 'POS', 'RIGHT$', 'RND', 'RTRIM$', 'SADD',
+                 'SCREEN', 'SEEK', 'SETMEM', 'SGN', 'SIN', 'SPACE$', 'SPC',
+                 'SQR', 'STICK', 'STR$', 'STRIG', 'STRING$', 'TAB', 'TAN',
+                 'TIME$', 'TIMER', 'UBOUND', 'UCASE$', 'VAL', 'VARPTR',
+                 'VARPTR$', 'VARSEG'
+    ]
 
-    metacommands = """\
-    $DYNAMIC $INCLUDE $STATIC
-    """.split()
+    metacommands = ['$DYNAMIC', '$INCLUDE', '$STATIC']
 
-    operators = """\
-    AND EQV IMP NOT OR XOR
-    """.split()
+    operators = ['AND', 'EQV', 'IMP', 'NOT', 'OR', 'XOR']
 
-    statements = """\
-    BEEP BLOAD BSAVE CALL CALL_ABSOLUTE CALL_INTERRUPT CALLS CHAIN CHDIR CIRCLE CLEAR CLOSE CLS COLOR COM COMMON CONST DATA DATE$ DECLARE DEF_FN DEF_SEG DEFDBL DEFINT DEFLNG DEFSNG DEFSTR DEF DIM DO LOOP DRAW END ENVIRON ERASE ERROR EXIT FIELD FILES FOR NEXT FUNCTION GET GOSUB GOTO IF THEN INPUT INPUT_# IOCTL KEY KEY KILL LET LINE LINE_INPUT LINE_INPUT_# LOCATE LOCK UNLOCK LPRINT LSET MID$ MKDIR NAME ON_COM ON_ERROR ON_KEY ON_PEN ON_PLAY ON_STRIG ON_TIMER ON_UEVENT ON OPEN OPEN_COM OPTION_BASE OUT PAINT PALETTE PCOPY PEN PLAY POKE PRESET PRINT PRINT_# PRINT_USING PSET PUT PUT RANDOMIZE READ REDIM REM RESET RESTORE RESUME RETURN RMDIR RSET RUN SCREEN SEEK SELECT_CASE SHARED SHELL SLEEP SOUND STATIC STOP STRIG SUB SWAP SYSTEM TIME$ TIMER TROFF TRON TYPE UEVENT UNLOCK VIEW WAIT WHILE WEND WIDTH WINDOW WRITE
-    """.split()
+    statements = [
+                 'BEEP', 'BLOAD', 'BSAVE', 'CALL', 'CALL_ABSOLUTE',
+                 'CALL_INTERRUPT', 'CALLS', 'CHAIN', 'CHDIR', 'CIRCLE', 'CLEAR',
+                 'CLOSE', 'CLS', 'COLOR', 'COM', 'COMMON', 'CONST', 'DATA',
+                 'DATE$', 'DECLARE', 'DEF_FN', 'DEF_SEG', 'DEFDBL', 'DEFINT',
+                 'DEFLNG', 'DEFSNG', 'DEFSTR', 'DEF', 'DIM', 'DO', 'LOOP',
+                 'DRAW', 'END', 'ENVIRON', 'ERASE', 'ERROR', 'EXIT', 'FIELD',
+                 'FILES', 'FOR', 'NEXT', 'FUNCTION', 'GET', 'GOSUB', 'GOTO',
+                 'IF', 'THEN', 'INPUT', 'INPUT_#', 'IOCTL', 'KEY', 'KEY',
+                 'KILL', 'LET', 'LINE', 'LINE_INPUT', 'LINE_INPUT_#', 'LOCATE',
+                 'LOCK', 'UNLOCK', 'LPRINT', 'LSET', 'MID$', 'MKDIR', 'NAME',
+                 'ON_COM', 'ON_ERROR', 'ON_KEY', 'ON_PEN', 'ON_PLAY',
+                 'ON_STRIG', 'ON_TIMER', 'ON_UEVENT', 'ON', 'OPEN', 'OPEN_COM',
+                 'OPTION_BASE', 'OUT', 'PAINT', 'PALETTE', 'PCOPY', 'PEN',
+                 'PLAY', 'POKE', 'PRESET', 'PRINT', 'PRINT_#', 'PRINT_USING',
+                 'PSET', 'PUT', 'PUT', 'RANDOMIZE', 'READ', 'REDIM', 'REM',
+                 'RESET', 'RESTORE', 'RESUME', 'RETURN', 'RMDIR', 'RSET', 'RUN',
+                 'SCREEN', 'SEEK', 'SELECT_CASE', 'SHARED', 'SHELL', 'SLEEP',
+                 'SOUND', 'STATIC', 'STOP', 'STRIG', 'SUB', 'SWAP', 'SYSTEM',
+                 'TIME$', 'TIMER', 'TROFF', 'TRON', 'TYPE', 'UEVENT', 'UNLOCK',
+                 'VIEW', 'WAIT', 'WHILE', 'WEND', 'WIDTH', 'WINDOW', 'WRITE'
+    ]
 
-    keywords = """\
-    ACCESS ALIAS ANY APPEND AS BASE BINARY BYVAL CASE CDECL DOUBLE ELSE ELSEIF ENDIF INTEGER IS LIST LOCAL LONG LOOP MOD NEXT OFF ON OUTPUT RANDOM SIGNAL SINGLE STEP STRING THEN TO UNTIL USING WEND
-    """.split()
+    keywords = [
+                 'ACCESS', 'ALIAS', 'ANY', 'APPEND', 'AS', 'BASE', 'BINARY',
+                 'BYVAL', 'CASE', 'CDECL', 'DOUBLE', 'ELSE', 'ELSEIF', 'ENDIF',
+                 'INTEGER', 'IS', 'LIST', 'LOCAL', 'LONG', 'LOOP', 'MOD',
+                 'NEXT', 'OFF', 'ON', 'OUTPUT', 'RANDOM', 'SIGNAL', 'SINGLE',
+                 'STEP', 'STRING', 'THEN', 'TO', 'UNTIL', 'USING', 'WEND'
+    ]
 
     tokens = {
         'root': [
