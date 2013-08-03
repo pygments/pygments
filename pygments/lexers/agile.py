@@ -1859,9 +1859,9 @@ class DgLexer(RegexLexer):
             (r'(?i)[+-]?[0-9]+j?', Number.Integer),
 
             (r"(?i)(br|r?b?)'''", String, combined('stringescape', 'tsqs', 'string')),
-            (r'(?i)(br|r?b?)*"""', String, combined('stringescape', 'tdqs', 'string')),
-            (r"(?i)(br|r?b?)*'", String, combined('stringescape', 'sqs', 'string')),
-            (r'(?i)(br|r?b?)*"', String, combined('stringescape', 'dqs', 'string')),
+            (r'(?i)(br|r?b?)"""', String, combined('stringescape', 'tdqs', 'string')),
+            (r"(?i)(br|r?b?)'", String, combined('stringescape', 'sqs', 'string')),
+            (r'(?i)(br|r?b?)"', String, combined('stringescape', 'dqs', 'string')),
 
             (r"`\w+'*`", Operator),
             (r'\b(and|in|is|or|where)\b', Operator.Word),
