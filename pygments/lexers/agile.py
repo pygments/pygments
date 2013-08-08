@@ -1889,8 +1889,8 @@ class DgLexer(RegexLexer):
             (r"(?<![\.\w])(except|finally|for|if|import|not|otherwise|raise|"
              r"subclass|while|with|yield)(?!['\w])", Keyword.Reserved),
 
-            (r"[A-Z_]+'*\b", Name),
-            (r"[A-Z]\w+'*\b", Keyword.Type),
+            (r"[A-Z_]+'*(?!['\w])", Name),
+            (r"[A-Z]\w+'*(?!['\w])", Keyword.Type),
             (r"\w+'*", Name),
 
             (r'[()]', Punctuation),
