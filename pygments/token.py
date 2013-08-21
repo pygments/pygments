@@ -49,6 +49,7 @@ Token       = _TokenType()
 # Special token types
 Text        = Token.Text
 Whitespace  = Text.Whitespace
+Escape      = Token.Escape
 Error       = Token.Error
 # Text that doesn't belong to this lexer (e.g. HTML in PHP)
 Other       = Token.Other
@@ -116,6 +117,7 @@ STANDARD_TYPES = {
 
     Text:                          '',
     Whitespace:                    'w',
+    Escape:                        'esc',
     Error:                         'err',
     Other:                         'x',
 

@@ -12,9 +12,10 @@
 from pygments.formatter import Formatter
 from pygments.token import Token, STANDARD_TYPES
 from pygments.util import get_bool_opt, get_int_opt, StringIO
+from pygments.lexer import Lexer
 
 
-__all__ = ['LatexFormatter']
+__all__ = ['LatexEmbededLexer', 'LatexFormatter']
 
 
 def escape_tex(text, commandprefix):
@@ -218,6 +219,13 @@ class LatexFormatter(Formatter):
         If set to ``True``, enables LaTeX math mode escape in comments. That
         is, ``'$...$'`` inside a comment will trigger math mode (default:
         ``False``).  *New in Pygments 1.2.*
+
+    `escapeinside`
+        If set to a string of length 2, enables escaping to LaTeX. Text
+        delimited by these 2 characters is read as LaTeX code and
+        typeset accordingly. It has no effect in string literals. It has
+        no effect in comments if `texcomments` or `mathescape` is
+        set. (default: ``''``).  *New in Pygments 1.3.2*
     """
     name = 'LaTeX'
     aliases = ['latex', 'tex']
@@ -235,6 +243,13 @@ class LatexFormatter(Formatter):
         self.commandprefix = options.get('commandprefix', 'PY')
         self.texcomments = get_bool_opt(options, 'texcomments', False)
         self.mathescape = get_bool_opt(options, 'mathescape', False)
+        self.escapeinside = options.get('escapeinside', '')
+
+        if len(self.escapeinside) == 2:
+            self.left = self.escapeinside[0]
+            self.right = self.escapeinside[1]
+        else:
+            self.escapeinside = ''
 
         self._create_stylesheet()
 
@@ -312,7 +327,7 @@ class LatexFormatter(Formatter):
             outfile.write(u',numbers=left' +
                           (start and u',firstnumber=%d' % start or u'') +
                           (step and u',stepnumber=%d' % step or u''))
-        if self.mathescape or self.texcomments:
+        if self.mathescape or self.texcomments or self.escapeinside:
             outfile.write(ur',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
         if self.verboptions:
             outfile.write(u',' + self.verboptions)
@@ -342,9 +357,22 @@ class LatexFormatter(Formatter):
                             parts[i] = escape_tex(part, self.commandprefix)
                         in_math = not in_math
                     value = '$'.join(parts)
+                elif self.escapeinside:
+                    text = value
+                    value = ''
+                    while len(text) > 0:
+                        a,sep1,text = text.partition(self.left)
+                        if len(sep1) > 0:
+                            b,sep2,text = text.partition(self.right)
+                            if len(sep2) > 0:
+                                value = value + escape_tex(a, self.commandprefix) + b
+                            else:
+                                value = value + escape_tex(a + sep1 + b, self.commandprefix)
+                        else:
+                            value = value + escape_tex(a, self.commandprefix)
                 else:
                     value = escape_tex(value, self.commandprefix)
-            else:
+            elif not (ttype in Token.Escape):
                 value = escape_tex(value, self.commandprefix)
             styles = []
             while ttype is not Token:
@@ -376,3 +404,57 @@ class LatexFormatter(Formatter):
                      encoding  = self.encoding or 'latin1',
                      styledefs = self.get_style_defs(),
                      code      = outfile.getvalue()))
+
+
+class LatexEmbededLexer(Lexer):
+    r"""
+
+    This lexer takes one lexer as argument, the lexer for the language
+    being formatted, and the left and right delimiters for escaped text.
+
+    First everything is scanned using the language lexer to obtain
+    strings and comments. All other consecutive tokens are merged and
+    the resulting text is scanned for escaped segments, which are given
+    the Token.Escape type. Finally text that is not escaped is scanned
+    again with the language lexer.
+    """
+    def __init__(self, left, right, lang, **options):
+        self.left = left
+        self.right = right
+        self.lang = lang
+        Lexer.__init__(self, **options)
+
+    def get_tokens_unprocessed(self, text):
+        buf = ''
+        for i, t, v in self.lang.get_tokens_unprocessed(text):
+            if t in Token.Comment or t in Token.String:
+                if len(buf) > 0:
+                    for x in self.get_tokens_aux(idx, buf):
+                        yield x
+                    buf = ''
+                yield i, t, v
+            else:
+                if len(buf) == 0:
+                    idx = i;
+                buf = buf + v
+        if len(buf) > 0:
+            for x in self.get_tokens_aux(idx, buf):
+                yield x
+
+    def get_tokens_aux(self, index, text):
+        while len(text) > 0:
+            a, sep1, text = text.partition(self.left)
+            if len(a) > 0:
+                for i, t, v in self.lang.get_tokens_unprocessed(a):
+                    yield index + i, t, v
+                    index = index + len(a)
+            if len(sep1) > 0:
+                b, sep2, text = text.partition(self.right)
+                if len(sep2) > 0:
+                    yield index + len(sep1), Token.Escape, b
+                    index = index + len(sep1) + len(b) + len(sep2)
+                else:
+                    yield index, Token.Error, sep1
+                    index = index + len(sep1)
+                    text = b
+
