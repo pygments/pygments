@@ -16,6 +16,7 @@ from pygments import __version__, highlight
 from pygments.util import ClassNotFound, OptionError, docstring_headline
 from pygments.lexers import get_all_lexers, get_lexer_by_name, get_lexer_for_filename, \
      find_lexer_class, guess_lexer, TextLexer
+from pygments.formatters.latex import LatexEmbededLexer, LatexFormatter
 from pygments.formatters import get_all_formatters, get_formatter_by_name, \
      get_formatter_for_filename, find_formatter_class, \
      TerminalFormatter  # pylint:disable-msg=E0611
@@ -401,6 +402,15 @@ def main(args=sys.argv):
             return 2
         else:
             code = sys.stdin.read()
+
+    # When using the LaTeX formatter and the option `escapeinside` is
+    # specified, we need a special lexer which collects escaped text
+    # before running the chosen language lexer.
+    escapeinside = parsed_opts.get('escapeinside', '')
+    if len(escapeinside) == 2 and isinstance(fmter, LatexFormatter):
+        left = escapeinside[0]
+        right = escapeinside[1]
+        lexer = LatexEmbededLexer(left, right, lexer)
 
     # No encoding given? Use latin1 if output file given,
     # stdin/stdout encoding otherwise.
