@@ -3219,7 +3219,7 @@ class LassoLexer(RegexLexer):
             (r'(public|protected|private|provide)(\s+)(([a-z_][\w.]*=?|'
              r'[-+*/%<>]|==)(?=\s*\())', bygroups(Keyword, Text, Name.Function),
                 'signature'),
-            (r'(public|protected|private)(\s+)([a-z_][\w.]*)',
+            (r'(public|protected|private|provide)(\s+)([a-z_][\w.]*)',
                 bygroups(Keyword, Text, Name.Function)),
 
             # keywords
@@ -3246,8 +3246,9 @@ class LassoLexer(RegexLexer):
              r'Run_Children|SOAP_DefineTag|SOAP_LastRequest|SOAP_LastResponse|'
              r'Tag_Name|ascending|average|by|define|descending|do|equals|'
              r'frozen|group|handle_failure|import|in|into|join|let|match|max|'
-             r'min|on|order|parent|protected|provide|public|require|skip|'
-             r'split_thread|sum|take|thread|to|trait|type|where|with|yield)\b',
+             r'min|on|order|parent|protected|provide|public|require|returnhome|'
+             r'skip|split_thread|sum|take|thread|to|trait|type|where|with|'
+             r'yield|yieldhome)\b',
                 bygroups(Punctuation, Keyword)),
 
             # other
