@@ -466,7 +466,9 @@ class CssLexer(RegexLexer):
             (r'\!important', Comment.Preproc),
             (r'/\*(?:.|\n)*?\*/', Comment),
             (r'\#[a-zA-Z0-9]{1,6}', Number),
-            (r'[\.-]?[0-9]*[\.]?[0-9]+(em|px|\%|pt|pc|in|mm|cm|ex|s)\b', Number),
+            (r'[\.-]?[0-9]*[\.]?[0-9]+(em|px|pt|pc|in|mm|cm|ex|s)\b', Number),
+            # Separate regex for percentages, as can't do word boundaries with %
+            (r'[\.-]?[0-9]*[\.]?[0-9]+%', Number),
             (r'-?[0-9]+', Number),
             (r'[~\^\*!%&<>\|+=@:,./?-]+', Operator),
             (r'[\[\]();]+', Punctuation),
