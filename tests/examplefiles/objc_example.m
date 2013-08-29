@@ -23,3 +23,10 @@ for (key in dictionary) {
     NSLog(@"English: %@, Latin: %@", key, [dictionary valueForKey:key]);
 }
 
+// Literals
+NSArray *a = @[ @"1", @"2" ];
+
+NSDictionary *d = @{ @"key": @"value" };
+
+NSNumber *n1 = @( 1 );
+NSNumber *n2 = @( [a length] );
