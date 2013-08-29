@@ -3257,7 +3257,7 @@ class LassoLexer(RegexLexer):
             (r'([a-z_][\w.]*)(\s*::\s*)?([a-z_][\w.]*)?(\s*=(?!=))',
                 bygroups(Name, Punctuation, Name.Label, Operator)),
             (r'(/?)([\w.]+)', bygroups(Punctuation, Name.Other)),
-            (r'(=)(bw|ew|cn|lte?|gte?|n?eq|ft|n?rx)\b',
+            (r'(=)(n?bw|n?ew|n?cn|lte?|gte?|n?eq|n?rx|ft)\b',
                 bygroups(Operator, Operator.Word)),
             (r':=|[-+*/%=<>&|!?\\]+', Operator),
             (r'[{}():;,@^]', Punctuation),
