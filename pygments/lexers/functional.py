@@ -808,6 +808,8 @@ class CommonLispLexer(RegexLexer):
             (r'"(\\.|\\\n|[^"\\])*"', String),
             # quoting
             (r":" + symbol, String.Symbol),
+            (r"::" + symbol, String.Symbol),
+            (r":#" + symbol, String.Symbol),
             (r"'" + symbol, String.Symbol),
             (r"'", Operator),
             (r"`", Operator),
@@ -1663,9 +1665,10 @@ class OpaLexer(RegexLexer):
     # but if you color only real keywords, you might just
     # as well not color anything
     keywords = [
-        'and', 'as', 'begin', 'css', 'database', 'db', 'do', 'else', 'end',
-        'external', 'forall', 'if', 'import', 'match', 'package', 'parser',
-        'rec', 'server', 'then', 'type', 'val', 'with', 'xml_parser',
+        'and', 'as', 'begin', 'case', 'client', 'css', 'database', 'db', 'do',
+        'else', 'end', 'external', 'forall', 'function', 'if', 'import',
+        'match', 'module', 'or', 'package', 'parser', 'rec', 'server', 'then',
+        'type', 'val', 'with', 'xml_parser',
     ]
 
     # matches both stuff and `stuff`
