@@ -155,6 +155,7 @@ LEXERS = {
     'JspLexer': ('pygments.lexers.templates', 'Java Server Page', ('jsp',), ('*.jsp',), ('application/x-jsp',)),
     'JuliaConsoleLexer': ('pygments.lexers.math', 'Julia console', ('jlcon',), (), ()),
     'JuliaLexer': ('pygments.lexers.math', 'Julia', ('julia', 'jl'), ('*.jl',), ('text/x-julia', 'application/x-julia')),
+    'KalLexer': ('pygments.lexers.web', 'Kal', ('kal',), ('*.kal',), ('text/kal', 'application/kal')),
     'KconfigLexer': ('pygments.lexers.other', 'Kconfig', ('kconfig', 'menuconfig', 'linux-config', 'kernel-config'), ('Kconfig', '*Config.in*', 'external.in*', 'standard-modules.in'), ('text/x-kconfig',)),
     'KokaLexer': ('pygments.lexers.functional', 'Koka', ('koka',), ('*.kk', '*.kki'), ('text/x-koka',)),
     'KotlinLexer': ('pygments.lexers.jvm', 'Kotlin', ('kotlin',), ('*.kt',), ('text/x-kotlin',)),
