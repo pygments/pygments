@@ -3807,9 +3807,9 @@ class LassoLexer(RegexLexer):
                 bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
             (r"(self)(\s*->\s*)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
-            (r'(\.\.?)([a-z_][\w.]*)',
+            (r'(\.\.?)([a-z_][\w.]*(=(?=\s*\())?)',
                 bygroups(Name.Builtin.Pseudo, Name.Other.Member)),
-            (r'(->\\?\s*|&\s*)([a-z_][\w.]*)',
+            (r'(->\\?\s*|&\s*)([a-z_][\w.]*(=(?=\s*\())?)',
                 bygroups(Operator, Name.Other.Member)),
             (r'(self|inherited|global|void)\b', Name.Builtin.Pseudo),
             (r'-[a-z_][\w.]*', Name.Attribute),
@@ -3955,7 +3955,8 @@ class LassoLexer(RegexLexer):
         for index, token, value in \
             RegexLexer.get_tokens_unprocessed(self, text, stack):
             if (token is Name.Other and value.lower() in self._builtins or
-                token is Name.Other.Member and value.lower() in self._members):
+                    token is Name.Other.Member and
+                    value.lower().rstrip('=') in self._members):
                 yield index, Name.Builtin, value
                 continue
             yield index, token, value
