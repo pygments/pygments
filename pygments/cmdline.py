@@ -92,7 +92,7 @@ def _parse_options(o_strs):
         for o_arg in o_args:
             o_arg = o_arg.strip()
             try:
-                o_key, o_val = o_arg.split('=')
+                o_key, o_val = o_arg.split('=', 1)
                 o_key = o_key.strip()
                 o_val = o_val.strip()
             except ValueError:
