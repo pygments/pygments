@@ -218,6 +218,11 @@ class LatexFormatter(Formatter):
         If set to ``True``, enables LaTeX math mode escape in comments. That
         is, ``'$...$'`` inside a comment will trigger math mode (default:
         ``False``).  *New in Pygments 1.2.*
+
+    `envname`
+        Allows you to pick an alternative environment name, such as BVerbatim.
+        (default: ``Verbatim''). *New in Pygments 1.6*
+
     """
     name = 'LaTeX'
     aliases = ['latex', 'tex']
@@ -235,6 +240,7 @@ class LatexFormatter(Formatter):
         self.commandprefix = options.get('commandprefix', 'PY')
         self.texcomments = get_bool_opt(options, 'texcomments', False)
         self.mathescape = get_bool_opt(options, 'mathescape', False)
+        self.envname = options.get('envname', 'Verbatim')
 
         self._create_stylesheet()
 
@@ -306,7 +312,7 @@ class LatexFormatter(Formatter):
             realoutfile = outfile
             outfile = StringIO()
 
-        outfile.write(ur'\begin{Verbatim}[commandchars=\\\{\}')
+        outfile.write(ur'\begin{' + self.envname + ur'}[commandchars=\\\{\}')
         if self.linenos:
             start, step = self.linenostart, self.linenostep
             outfile.write(u',numbers=left' +
@@ -366,7 +372,7 @@ class LatexFormatter(Formatter):
             else:
                 outfile.write(value)
 
-        outfile.write(u'\\end{Verbatim}\n')
+        outfile.write(u'\\end{'+self.envname+u'}\n')
 
         if self.full:
             realoutfile.write(DOC_TEMPLATE %
