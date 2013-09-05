@@ -13,6 +13,10 @@
     :license: BSD, see LICENSE for details.
 """
 
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
+
 # start
 from pygments.formatters.bbcode import BBCodeFormatter
 from pygments.formatters.html import HtmlFormatter
