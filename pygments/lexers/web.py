@@ -3812,7 +3812,7 @@ class LassoLexer(RegexLexer):
                 bygroups(Operator, Name.Other.Member)),
             (r'(self|inherited)\b', Name.Builtin.Pseudo),
             (r'-[a-z_][\w.]*', Name.Attribute),
-            (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
+            (r'::\s*[a-z_][\w.]*', Name.Label),
             (r'(error_(code|msg)_\w+|Error_AddError|Error_ColumnRestriction|'
              r'Error_DatabaseConnectionUnavailable|Error_DatabaseTimeout|'
              r'Error_DeleteError|Error_FieldRestriction|Error_FileNotFound|'
@@ -3869,8 +3869,8 @@ class LassoLexer(RegexLexer):
             # other
             (r',', Punctuation, 'commamember'),
             (r'(and|or|not)\b', Operator.Word),
-            (r'([a-z_][\w.]*)(\s*::\s*)?([a-z_][\w.]*)?(\s*=(?!=))',
-                bygroups(Name, Punctuation, Name.Label, Operator)),
+            (r'([a-z_][\w.]*)(\s*::\s*[a-z_][\w.]*)?(\s*=(?!=))',
+                bygroups(Name, Name.Label, Operator)),
             (r'(/?)([\w.]+)', bygroups(Punctuation, Name.Other)),
             (r'(=)(n?bw|n?ew|n?cn|lte?|gte?|n?eq|n?rx|ft)\b',
                 bygroups(Operator, Operator.Word)),
@@ -3909,7 +3909,7 @@ class LassoLexer(RegexLexer):
             (r'(([a-z_][\w.]*=?|[-+*/%])(?=\s*\())', Name, 'requiresignature'),
             (r'(([a-z_][\w.]*=?|[-+*/%])(?=(\s*::\s*[\w.]+)?\s*,))', Name),
             (r'[a-z_][\w.]*=?|[-+*/%]', Name, '#pop'),
-            (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
+            (r'::\s*[a-z_][\w.]*', Name.Label),
             (r',', Punctuation),
             include('whitespacecomments'),
         ],
@@ -3917,7 +3917,7 @@ class LassoLexer(RegexLexer):
             (r'(\)(?=(\s*::\s*[\w.]+)?\s*,))', Punctuation, '#pop'),
             (r'\)', Punctuation, '#pop:2'),
             (r'-?[a-z_][\w.]*', Name.Attribute),
-            (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
+            (r'::\s*[a-z_][\w.]*', Name.Label),
             (r'\.\.\.', Name.Builtin.Pseudo),
             (r'[(,]', Punctuation),
             include('whitespacecomments'),
