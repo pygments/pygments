@@ -3811,7 +3811,7 @@ class LassoLexer(RegexLexer):
                 bygroups(Name.Builtin.Pseudo, Name.Other.Member)),
             (r'(->\\?\s*|&\s*)([a-z_][\w.]*(=(?=\s*\())?)',
                 bygroups(Operator, Name.Other.Member)),
-            (r'(self|inherited|global|void)\b', Name.Builtin.Pseudo),
+            (r'(self|inherited)\b', Name.Builtin.Pseudo),
             (r'-[a-z_][\w.]*', Name.Attribute),
             (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
             (r'(error_(code|msg)_\w+|Error_AddError|Error_ColumnRestriction|'
@@ -3839,10 +3839,10 @@ class LassoLexer(RegexLexer):
                 bygroups(Keyword, Text, Name.Function)),
 
             # keywords
-            (r'(true|false|none|minimal|full|all)\b', Keyword.Constant),
-            (r'(local|var|variable|data(?=\s))\b', Keyword.Declaration),
+            (r'(true|false|none|minimal|full|all|void)\b', Keyword.Constant),
+            (r'(local|var|variable|global|data(?=\s))\b', Keyword.Declaration),
             (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|'
-             r'null|list|queue|set|stack|staticarray)\b', Keyword.Type),
+             r'null|bytes|list|queue|set|stack|staticarray|tie)\b', Keyword.Type),
             (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
             (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Text, Name)),
             (r'require\b', Keyword, 'requiresection'),
