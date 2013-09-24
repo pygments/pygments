@@ -3827,13 +3827,13 @@ class LassoLexer(RegexLexer):
             # definitions
             (r'(define)(\s+)([a-z_][\w.]*)(\s*=>\s*)(type|trait|thread)\b',
                 bygroups(Keyword.Declaration, Text, Name.Class, Operator, Keyword)),
-            (r'(define)(\s+)([a-z_][\w.]*)(\s*->\s*)([a-z_][\w.]*=?|[-+*/%<>]|==)',
+            (r'(define)(\s+)([a-z_][\w.]*)(\s*->\s*)([a-z_][\w.]*=?|[-+*/%])',
                 bygroups(Keyword.Declaration, Text, Name.Class, Operator,
                         Name.Function), 'signature'),
             (r'(define)(\s+)([a-z_][\w.]*)',
                 bygroups(Keyword.Declaration, Text, Name.Function), 'signature'),
-            (r'(public|protected|private|provide)(\s+)(([a-z_][\w.]*=?|'
-             r'[-+*/%<>]|==)(?=\s*\())', bygroups(Keyword, Text, Name.Function),
+            (r'(public|protected|private|provide)(\s+)(([a-z_][\w.]*=?|[-+*/%])'
+             r'(?=\s*\())', bygroups(Keyword, Text, Name.Function),
                 'signature'),
             (r'(public|protected|private|provide)(\s+)([a-z_][\w.]*)',
                 bygroups(Keyword, Text, Name.Function)),
@@ -3907,9 +3907,9 @@ class LassoLexer(RegexLexer):
             include('lasso'),
         ],
         'requiresection': [
-            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=\s*\())', Name, 'requiresignature'),
-            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=(\s*::\s*[\w.]+)?\s*,))', Name),
-            (r'[a-z_][\w.]*=?|[-+*/%<>]|==', Name, '#pop'),
+            (r'(([a-z_][\w.]*=?|[-+*/%])(?=\s*\())', Name, 'requiresignature'),
+            (r'(([a-z_][\w.]*=?|[-+*/%])(?=(\s*::\s*[\w.]+)?\s*,))', Name),
+            (r'[a-z_][\w.]*=?|[-+*/%]', Name, '#pop'),
             (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
             (r',', Punctuation),
             include('whitespacecomments'),
@@ -3924,7 +3924,7 @@ class LassoLexer(RegexLexer):
             include('whitespacecomments'),
         ],
         'commamember': [
-            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)'
+            (r'(([a-z_][\w.]*=?|[-+*/%])'
              r'(?=\s*(\(([^()]*\([^()]*\))*[^)]*\)\s*)?(::[\w.\s]+)?=>))',
                 Name.Function, 'signature'),
             include('whitespacecomments'),
