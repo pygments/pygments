@@ -3777,8 +3777,7 @@ class LassoLexer(RegexLexer):
             include('lasso'),
         ],
         'lassofile': [
-            (r'\]', Comment.Preproc, '#pop'),
-            (r'\?>', Comment.Preproc, '#pop'),
+            (r'\]|\?>', Comment.Preproc, '#pop'),
             include('lasso'),
         ],
         'whitespacecomments': [
@@ -3807,9 +3806,9 @@ class LassoLexer(RegexLexer):
                 bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
             (r"(self)(\s*->\s*)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
-            (r'(\.\.?)([a-z_][\w.]*(=(?=\s*\())?)',
+            (r'(\.\.?)([a-z_][\w.]*(=(?!=))?)',
                 bygroups(Name.Builtin.Pseudo, Name.Other.Member)),
-            (r'(->\\?\s*|&\s*)([a-z_][\w.]*(=(?=\s*\())?)',
+            (r'(->\\?\s*|&\s*)([a-z_][\w.]*(=(?!=))?)',
                 bygroups(Operator, Name.Other.Member)),
             (r'(self|inherited)\b', Name.Builtin.Pseudo),
             (r'-[a-z_][\w.]*', Name.Attribute),
@@ -3882,13 +3881,13 @@ class LassoLexer(RegexLexer):
             (r"'", String.Single, '#pop'),
             (r"[^'\\]+", String.Single),
             include('escape'),
-            (r"\\+", String.Single),
+            (r"\\", String.Single),
         ],
         'doublestring': [
             (r'"', String.Double, '#pop'),
             (r'[^"\\]+', String.Double),
             include('escape'),
-            (r'\\+', String.Double),
+            (r'\\', String.Double),
         ],
         'escape': [
             (r'\\(U[\da-f]{8}|u[\da-f]{4}|x[\da-f]{1,2}|[0-7]{1,3}|:[^:]+:|'
