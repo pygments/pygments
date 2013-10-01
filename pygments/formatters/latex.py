@@ -152,7 +152,7 @@ class LatexFormatter(Formatter):
 
     .. sourcecode:: latex
 
-        \begin{Verbatim}[commandchars=\\{\}]
+        \begin{Verbatim}[commandchars=\\\{\}]
         \PY{k}{def }\PY{n+nf}{foo}(\PY{n}{bar}):
             \PY{k}{pass}
         \end{Verbatim}
