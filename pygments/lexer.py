@@ -673,7 +673,7 @@ class ExtendedRegexLexer(RegexLexer):
                                 if state == '#pop':
                                     ctx.stack.pop()
                                 elif state == '#push':
-                                    ctx.stack.append(statestack[-1])
+                                    ctx.stack.append(ctx.stack[-1])
                                 else:
                                     ctx.stack.append(state)
                         elif isinstance(new_state, int):
