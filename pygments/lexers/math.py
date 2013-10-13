@@ -24,7 +24,7 @@ from pygments.lexers import _stan_builtins
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
            'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
            'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer',
-           'IDLLexer', 'RdLexer', 'IgorLexer']
+           'IDLLexer', 'RdLexer', 'IgorLexer', 'MathematicaLexer']
 
 
 class JuliaLexer(RegexLexer):
@@ -1914,5 +1914,51 @@ class IgorLexer(RegexLexer):
              Name.Decorator),
             (r'[^a-zA-Z"/]+', Text),
             (r'.', Text),
+        ],
+    }
+
+class MathematicaLexer(RegexLexer):
+    """
+    Lexer for `Mathematica <http://www.wolfram.com/mathematica/>`_ source code.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'Mathematica'
+    aliases = ['mathematica', 'mma', 'nb']
+    filenames = ['*.nb', '*.cdf', '*.nbp', "*.ma"]
+    mimetypes = ['application/mathematica',
+                 'application/vnd.wolfram.mathematica',
+                 'application/vnd.wolfram.mathematica.package',
+                 'application/vnd.wolfram.cdf']
+
+    # http://reference.wolfram.com/mathematica/guide/Syntax.html 
+    operators = [
+        ";;", "=", "=.", "!=" "==", ":=", "->", ":>", "/.", "+", "-", "*", "/",
+        "^", "&&", "||", "!", "<>", "|", "/;", "?", "@", "//", "/@", "@@",
+        "@@@", "~~", "===", "&"]
+    operators.sort(reverse=True)
+
+    punctuation = [",", ";", "(", ")", "[", "]", "{", "}"]
+
+    def _multi_escape(entries):
+        return '(%s)' % ('|'.join(re.escape(entry) for entry in entries))
+
+    tokens = {
+        'root': [
+            (r'\(\*.*\*\)', Comment),
+
+            (r'([a-zA-Z]+[A-Za-z0-9]*`)', Name.Namespace),
+            (r'([A-Za-z0-9]*_+[A-Za-z0-9]*)', Name.Variable),
+            (r'#\d*', Name.Variable),
+            (r'([a-zA-Z]+[a-zA-Z0-9]*)', Name),
+
+            (r'-?[0-9]+\.[0-9]*', Number.Float),
+            (r'-?[0-9]*\.[0-9]+', Number.Float),
+            (r'-?[0-9]+', Number.Integer),
+
+            (_multi_escape(operators), Operator),
+            (_multi_escape(punctuation), Punctuation),
+            (r'(".*")', String),
+            (r'\s+', Text.Whitespace),
         ],
     }
