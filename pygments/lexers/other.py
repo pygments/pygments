@@ -1680,6 +1680,7 @@ class ABAPLexer(RegexLexer):
             # because < and > are part of field symbols.
             (r'[?*<>=\-+]', Operator),
             (r"'(''|[^'])*'", String.Single),
+            (r"`([^`])*`", String.Single),
             (r'[/;:()\[\],\.]', Punctuation)
         ],
     }
