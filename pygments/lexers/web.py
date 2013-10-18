@@ -814,7 +814,7 @@ class PhpLexer(RegexLexer):
             (r'/\*\*/', Comment.Multiline),
             (r'/\*\*.*?\*/', String.Doc),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'(->|::)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(->|::)(\s*)([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)',
              bygroups(Operator, Text, Name.Attribute)),
             (r'[~!%^&*+=|:.<>/?@-]+', Operator),
             (r'[\[\]{}();,]+', Punctuation),
@@ -822,7 +822,7 @@ class PhpLexer(RegexLexer):
             (r'(function)(\s*)(?=\()', bygroups(Keyword, Text)),
             (r'(function)(\s+)(&?)(\s*)',
               bygroups(Keyword, Text, Operator, Text), 'functionname'),
-            (r'(const)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(const)(\s+)([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)',
               bygroups(Keyword, Text, Name.Constant)),
             (r'(and|E_PARSE|old_function|E_ERROR|or|as|E_WARNING|parent|'
              r'eval|PHP_OS|break|exit|case|extends|PHP_VERSION|cfunction|'
@@ -835,9 +835,9 @@ class PhpLexer(RegexLexer):
              r'implements|public|private|protected|abstract|clone|try|'
              r'catch|throw|this|use|namespace|trait)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'\$\{\$+[a-zA-Z_][a-zA-Z0-9_]*\}', Name.Variable),
-            (r'\$+[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
-            (r'[\\a-zA-Z_][\\a-zA-Z0-9_]*', Name.Other),
+            (r'\$\{\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*\}', Name.Variable),
+            (r'\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*', Name.Variable),
+            (r'[\\a-zA-Z_\x7f-\xff][\\a-zA-Z0-9_\x7f-\xff]*', Name.Other),
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+', Number.Float),
             (r'0[0-7]+', Number.Oct),
@@ -848,16 +848,16 @@ class PhpLexer(RegexLexer):
             (r'"', String.Double, 'string'),
         ],
         'classname': [
-            (r'[a-zA-Z_][\\a-zA-Z0-9_]*', Name.Class, '#pop')
+            (r'[a-zA-Z_\x7f-\xff][\\a-zA-Z0-9_\x7f-\xff]*', Name.Class, '#pop')
         ],
         'functionname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop')
+            (r'[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*', Name.Function, '#pop')
         ],
         'string': [
             (r'"', String.Double, '#pop'),
             (r'[^{$"\\]+', String.Double),
             (r'\\([nrt\"$\\]|[0-7]{1,3}|x[0-9A-Fa-f]{1,2})', String.Escape),
-            (r'\$[a-zA-Z_][a-zA-Z0-9_]*(\[\S+\]|->[a-zA-Z_][a-zA-Z0-9_]*)?',
+            (r'\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[\S+\]|->[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)?',
              String.Interpol),
             (r'(\{\$\{)(.*?)(\}\})',
              bygroups(String.Interpol, using(this, _startinline=True),
