@@ -167,8 +167,8 @@ class JuliaConsoleLexer(Lexer):
 
             if line.startswith('julia>'):
                 insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, line[:3])]))
-                curcode += line[3:]
+                                   [(0, Generic.Prompt, line[:6])]))
+                curcode += line[6:]
 
             elif line.startswith('      '):
 
