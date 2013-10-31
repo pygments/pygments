@@ -1674,7 +1674,7 @@ class IgorLexer(RegexLexer):
     filenames = ['*.ipf']
     mimetypes = ['text/ipf']
 
-    flags = re.IGNORECASE
+    flags = re.IGNORECASE | re.MULTILINE
 
     flowControl = [
         'if', 'else', 'elseif', 'endif', 'for', 'endfor', 'strswitch', 'switch',
@@ -1902,7 +1902,7 @@ class IgorLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'//.*', Comment.Single),
+            (r'//.*$', Comment.Single),
             (r'"([^"\\]|\\.)*"', String),
             # Flow Control.
             (r'\b(%s)\b' % '|'.join(flowControl), Keyword),
@@ -1917,7 +1917,7 @@ class IgorLexer(RegexLexer):
             # Compiler directives.
             (r'^#(include|pragma|define|ifdef|ifndef|endif)',
              Name.Decorator),
-            (r'[^a-zA-Z"/]+', Text),
+            (r'[^a-zA-Z"/]+$', Text),
             (r'.', Text),
         ],
     }
