@@ -333,8 +333,8 @@ class PythonConsoleLexer(Lexer):
         for match in line_re.finditer(text):
             line = match.group()
             if line == u'>>>\n':
-                # Catch common problem: editors which remove trailing
-                # whitespace from bare prompt lines.
+                # Catch common problem: when editors remove trailing whitespace
+                # from bare prompt lines.
                 line = u'>>> \n'
             if line.startswith(u'>>> ') or line.startswith(u'... '):
                 # The line begins or continues user input.
@@ -386,7 +386,7 @@ class PythonConsoleLexer(Lexer):
                         # Indented lines are assumed to be part of stack
                         break_tb = False
                     elif stripped[0].isalnum():
-                        # Handles stripped == '...' as
+                        # Properly covers the case when stripped == '...'.
                         break_tb = True
                     else:
                         break_tb = False
@@ -441,9 +441,7 @@ class PythonTracebackLexer(RegexLexer):
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
             (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
              bygroups(Generic.Error, Text), '#pop'),
-            # Doctests also allow the line to begin with any non-alphanumeric
-            # character. We do a minimal (non-greedy) match to process each
-            # line on its own.
+            # doctests: the line can begin with any non-alphanumeric character.
             (r'^(\W.*)(\n)',
              bygroups(Comment, Text)),
         ],
@@ -490,9 +488,7 @@ class Python3TracebackLexer(RegexLexer):
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
             (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
              bygroups(Generic.Error, Text), '#pop'),
-            # Doctests also allow the line to begin with any non-alphanumeric
-            # character. We do a minimal (non-greedy) match to process each
-            # line on its own.
+            # doctests: the line can begin with any non-alphanumeric character.
             (r'^(\W.*)(\n)',
              bygroups(Comment, Text)),
         ],
