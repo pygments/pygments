@@ -333,18 +333,21 @@ class PythonConsoleLexer(Lexer):
         for match in line_re.finditer(text):
             line = match.group()
             if line.startswith(u'>>> ') or line.startswith(u'... '):
+                # The line begins or continues user input.
                 tb = 0
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:4])]))
                 curcode += line[4:]
             elif line.rstrip() == u'...' and not tb:
-                # only a new >>> prompt can end an exception block
-                # otherwise an ellipsis in place of the traceback frames
-                # will be mishandled
+                # The line ends multiline user input.  However, we cannot
+                # end the block of input until a new >>> prompt.  The reason
+                # is that an ellipsis can appear in a traceback (though it
+                # is usually perpended by whitespace---hence the rstrip).
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, u'...')]))
                 curcode += line[3:]
             else:
+                # The line is not input---is either output or part of traceback
                 if curcode:
                     for item in do_insertions(insertions,
                                     pylexer.get_tokens_unprocessed(curcode)):
@@ -360,7 +363,31 @@ class PythonConsoleLexer(Lexer):
                     yield match.start(), Name.Class, line
                 elif tb:
                     curtb += line
-                    if not (line.startswith(' ') or line.strip() == u'...'):
+                    # Any line beginning with ' ' is indented and assumed to be
+                    # part of the traceback stack, and so we continue adding
+                    # to curtb. For doctests, none of the traceback stack is
+                    # considered. So, it is customary to replace the actual
+                    # stack with an ellipsis instead.  Usually the ellipsis is
+                    # indented, and thus, is covered by the startswith(' ').
+                    # However, the line can also begin with a non-alphanumeric
+                    # character. This means that the ellipsis need not be
+                    # indented and also that even crazier lines can be part
+                    # of the stack as well.
+                    # http://docs.python.org/library/doctest.html#what-about-exceptions
+                    stripped = line.strip()
+                    if not stripped:
+                        # Line was empty and should mark the end of the tb.
+                        break_tb = True
+                    elif line.startswith(' '):
+                        # Indented lines are assumed to be part of stack
+                        break_tb = False
+                    elif stripped[0].isalnum():
+                        # Handles stripped == '...' as
+                        break_tb = True
+                    else:
+                        break_tb = False
+
+                    if break_tb:
                         tb = 0
                         for i, t, v in tblexer.get_tokens_unprocessed(curtb):
                             yield tbindex+i, t, v
@@ -388,6 +415,8 @@ class PythonTracebackLexer(RegexLexer):
         'root': [
             (r'^Traceback \(most recent call last\):\n',
              Generic.Traceback, 'intb'),
+            (r'^Traceback \(innermost last\):\n',
+             Generic.Traceback, 'intb'),
             # SyntaxError starts with this.
             (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
             (r'^.*\n', Other),
@@ -399,12 +428,20 @@ class PythonTracebackLexer(RegexLexer):
              bygroups(Text, Name.Builtin, Text, Number, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(PythonLexer), Text)),
+            # If there are not exactly 4 spaces, then any number of spaces
+            # and tabs followed by 3 dots will be tokenized as a comment.
+            # This is added as a special rule to hide the stack for doctests.
             (r'^([ \t]*)(\.\.\.)(\n)',
-             bygroups(Text, Comment, Text)), # for doctests...
-            (r'^([^:]+)(: )(.+)(\n)',
+             bygroups(Text, Comment, Text)),
+            (r'^([^:\n]+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
             (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
-             bygroups(Generic.Error, Text), '#pop')
+             bygroups(Generic.Error, Text), '#pop'),
+            # Doctests also allow the line to begin with any non-alphanumeric
+            # character. We do a minimal (non-greedy) match to process each
+            # line on its own.
+            (r'^(\W.*)(\n)',
+             bygroups(Comment, Text)),
         ],
     }
 
@@ -425,10 +462,12 @@ class Python3TracebackLexer(RegexLexer):
         'root': [
             (r'\n', Text),
             (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
+            (r'^Traceback \(innermost last\):\n', Generic.Traecback, 'intb'),
             (r'^During handling of the above exception, another '
              r'exception occurred:\n\n', Generic.Traceback),
             (r'^The above exception was the direct cause of the '
              r'following exception:\n\n', Generic.Traceback),
+            # SyntaxError starts with this.
             (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
         ],
         'intb': [
@@ -438,12 +477,20 @@ class Python3TracebackLexer(RegexLexer):
              bygroups(Text, Name.Builtin, Text, Number, Text)),
             (r'^(    )(.+)(\n)',
              bygroups(Text, using(Python3Lexer), Text)),
+            # If there are not exactly 4 spaces, then any number of spaces
+            # and tabs followed by 3 dots will be tokenized as a comment.
+            # This is added as a special rule to hide the stack for doctests.
             (r'^([ \t]*)(\.\.\.)(\n)',
-             bygroups(Text, Comment, Text)), # for doctests...
-            (r'^([^:]+)(: )(.+)(\n)',
+             bygroups(Text, Comment, Text)),
+            (r'^([^:\n]+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
             (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
-             bygroups(Generic.Error, Text), '#pop')
+             bygroups(Generic.Error, Text), '#pop'),
+            # Doctests also allow the line to begin with any non-alphanumeric
+            # character. We do a minimal (non-greedy) match to process each
+            # line on its own.
+            (r'^(\W.*)(\n)',
+             bygroups(Comment, Text)),
         ],
     }
 
