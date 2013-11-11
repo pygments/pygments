@@ -332,6 +332,10 @@ class PythonConsoleLexer(Lexer):
         tb = 0
         for match in line_re.finditer(text):
             line = match.group()
+            if line == u'>>>\n':
+                # Catch common problem: editors which remove trailing
+                # whitespace from bare prompt lines.
+                line = u'>>> \n'
             if line.startswith(u'>>> ') or line.startswith(u'... '):
                 # The line begins or continues user input.
                 tb = 0
