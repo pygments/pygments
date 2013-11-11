@@ -346,7 +346,7 @@ class PythonConsoleLexer(Lexer):
                 # The line ends multiline user input.  However, we cannot
                 # end the block of input until a new >>> prompt.  The reason
                 # is that an ellipsis can appear in a traceback (though it
-                # is usually perpended by whitespace---hence the rstrip).
+                # is usually prepended by whitespace---hence the rstrip).
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, u'...')]))
                 curcode += line[3:]
