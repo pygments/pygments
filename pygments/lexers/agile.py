@@ -363,8 +363,6 @@ class PythonConsoleLexer(Lexer):
                     tb = 1
                     curtb = line
                     tbindex = match.start()
-                #elif line == 'KeyboardInterrupt\n':
-                #    yield match.start(), Name.Class, line
                 elif tb:
                     curtb += line
                     # Any line beginning with ' ' is indented and assumed to be

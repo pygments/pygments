@@ -604,6 +604,8 @@ class RegexLexer(Lexer):
                         statetokens = tokendefs[statestack[-1]]
                     break
             else:
+                # We are here only if all state tokens have been considered
+                # and there was not a match on any of them.
                 try:
                     if text[pos] == '\n':
                         # at EOL, reset state to "root"
