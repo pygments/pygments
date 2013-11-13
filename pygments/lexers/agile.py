@@ -358,13 +358,13 @@ class PythonConsoleLexer(Lexer):
                         yield item
                     curcode = ''
                     insertions = []
-                if (line.startswith(u'Traceback (most recent call last):') or
+                if (re.match(u'(\^C)?Traceback.*$', line) or
                     re.match(ur'  File "[^"]+", line \d+\n$', line)):
                     tb = 1
                     curtb = line
                     tbindex = match.start()
-                elif line == 'KeyboardInterrupt\n':
-                    yield match.start(), Name.Class, line
+                #elif line == 'KeyboardInterrupt\n':
+                #    yield match.start(), Name.Class, line
                 elif tb:
                     curtb += line
                     # Any line beginning with ' ' is indented and assumed to be
@@ -417,10 +417,10 @@ class PythonTracebackLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^Traceback \(most recent call last\):\n',
-             Generic.Traceback, 'intb'),
-            (r'^Traceback \(innermost last\):\n',
-             Generic.Traceback, 'intb'),
+            # Cover both (most recent call last) and (innermost last)
+            # The optional ^C allows us to catch keyboard interrupt signals.
+            (r'^(\^C)?(Traceback.*\n)',
+             bygroups(Error, Generic.Traceback), 'intb'),
             # SyntaxError starts with this.
             (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
             (r'^.*\n', Other),
