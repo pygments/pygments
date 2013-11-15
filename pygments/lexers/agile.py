@@ -289,118 +289,6 @@ class Python3Lexer(RegexLexer):
         return shebang_matches(text, r'pythonw?3(\.\d)?')
 
 
-class PythonConsoleLexer(Lexer):
-    """
-    For Python console output or doctests, such as:
-
-    .. sourcecode:: pycon
-
-        >>> a = 'foo'
-        >>> print a
-        foo
-        >>> 1 / 0
-        Traceback (most recent call last):
-          File "<stdin>", line 1, in <module>
-        ZeroDivisionError: integer division or modulo by zero
-
-    Additional options:
-
-    `python3`
-        Use Python 3 lexer for code.  Default is ``False``.
-        *New in Pygments 1.0.*
-    """
-    name = 'Python console session'
-    aliases = ['pycon']
-    mimetypes = ['text/x-python-doctest']
-
-    def __init__(self, **options):
-        self.python3 = get_bool_opt(options, 'python3', False)
-        Lexer.__init__(self, **options)
-
-    def get_tokens_unprocessed(self, text):
-        if self.python3:
-            pylexer = Python3Lexer(**self.options)
-            tblexer = Python3TracebackLexer(**self.options)
-        else:
-            pylexer = PythonLexer(**self.options)
-            tblexer = PythonTracebackLexer(**self.options)
-
-        curcode = ''
-        insertions = []
-        curtb = ''
-        tbindex = 0
-        tb = 0
-        for match in line_re.finditer(text):
-            line = match.group()
-            if line == u'>>>\n':
-                # Catch common problem: when editors remove trailing whitespace
-                # from bare prompt lines.
-                line = u'>>> \n'
-            if line.startswith(u'>>> ') or line.startswith(u'... '):
-                # The line begins or continues user input.
-                tb = 0
-                insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, line[:4])]))
-                curcode += line[4:]
-            elif line.rstrip() == u'...' and not tb:
-                # The line ends multiline user input.  However, we cannot
-                # end the block of input until a new >>> prompt.  The reason
-                # is that an ellipsis can appear in a traceback (though it
-                # is usually prepended by whitespace---hence the rstrip).
-                insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, u'...')]))
-                curcode += line[3:]
-            else:
-                # The line is not input---is either output or part of traceback
-                if curcode:
-                    for item in do_insertions(insertions,
-                                    pylexer.get_tokens_unprocessed(curcode)):
-                        yield item
-                    curcode = ''
-                    insertions = []
-                if (re.match(u'(\^C)?Traceback.*$', line) or
-                    re.match(ur'  File "[^"]+", line \d+\n$', line)):
-                    tb = 1
-                    curtb = line
-                    tbindex = match.start()
-                elif tb:
-                    curtb += line
-                    # Any line beginning with ' ' is indented and assumed to be
-                    # part of the traceback stack, and so we continue adding
-                    # to curtb. For doctests, none of the traceback stack is
-                    # considered. So, it is customary to replace the actual
-                    # stack with an ellipsis instead.  Usually the ellipsis is
-                    # indented, and thus, is covered by the startswith(' ').
-                    # However, the line can also begin with a non-alphanumeric
-                    # character. This means that the ellipsis need not be
-                    # indented and also that even crazier lines can be part
-                    # of the stack as well.
-                    # http://docs.python.org/library/doctest.html#what-about-exceptions
-                    stripped = line.strip()
-                    if not stripped:
-                        # Line was empty and should mark the end of the tb.
-                        break_tb = True
-                    elif line.startswith(' '):
-                        # Indented lines are assumed to be part of stack
-                        break_tb = False
-                    elif stripped[0].isalnum():
-                        # Properly covers the case when stripped == '...'.
-                        break_tb = True
-                    else:
-                        break_tb = False
-
-                    if break_tb:
-                        tb = 0
-                        for i, t, v in tblexer.get_tokens_unprocessed(curtb):
-                            yield tbindex+i, t, v
-                else:
-                    yield match.start(), Generic.Output, line
-        if curcode:
-            for item in do_insertions(insertions,
-                                      pylexer.get_tokens_unprocessed(curcode)):
-                yield item
-
-
 class PythonTracebackLexer(RegexLexer):
     """
     For Python tracebacks.
@@ -461,12 +349,14 @@ class Python3TracebackLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\n', Text),
-            (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
-            (r'^Traceback \(innermost last\):\n', Generic.Traecback, 'intb'),
+            # Cover both (most recent call last) and (innermost last)
+            # The optional ^C allows us to catch keyboard interrupt signals.
+            (r'^(\^C)?(Traceback.*\n)',
+             bygroups(Error, Generic.Traceback), 'intb'),
             (r'^During handling of the above exception, another '
-             r'exception occurred:\n\n', Generic.Traceback),
+             r'exception occurred:\n', Generic.Traceback),
             (r'^The above exception was the direct cause of the '
-             r'following exception:\n\n', Generic.Traceback),
+             r'following exception:\n', Generic.Traceback),
             # SyntaxError starts with this.
             (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
         ],
@@ -491,6 +381,135 @@ class Python3TracebackLexer(RegexLexer):
              bygroups(Comment, Text)),
         ],
     }
+
+
+class PythonConsoleLexer(Lexer):
+    """
+    For Python console output or doctests, such as:
+
+    .. sourcecode:: pycon
+
+        >>> a = 'foo'
+        >>> print a
+        foo
+        >>> 1 / 0
+        Traceback (most recent call last):
+          File "<stdin>", line 1, in <module>
+        ZeroDivisionError: integer division or modulo by zero
+
+    Additional options:
+
+    `python3`
+        Use Python 3 lexer for code.  Default is ``False``.
+        *New in Pygments 1.0.*
+
+    """
+    name = 'Python console session'
+    aliases = ['pycon']
+    mimetypes = ['text/x-python-doctest']
+
+    def __init__(self, **options):
+        self.python3 = get_bool_opt(options, 'python3', False)
+        Lexer.__init__(self, **options)
+
+        if self.python3:
+            pylexer = Python3Lexer
+            tblexer = Python3TracebackLexer
+        else:
+            pylexer = PythonLexer
+            tblexer = PythonTracebackLexer
+
+        self.pylexer = pylexer(**options)
+        self.tblexer = tblexer(**options)
+
+        self.tbregex = re.compile(u'(\^C)?Traceback.*$')
+        self.stregex = re.compile(ur'  File "[^"]+", line \d+\n$')
+
+        self.reset()
+
+    def reset(self):
+        self.mode = 'output'
+        self.index = 0
+        self.buffer = ''
+        self.insertions = []
+
+    def buffered_tokens(self):
+        """
+        Generator of unprocessed tokens after doing insertions and before
+        changing to a new state.
+
+        """
+        if self.mode == 'output':
+            tokens = [(0, Generic.Output, self.buffer)]
+        elif self.mode == 'input':
+            tokens = self.pylexer.get_tokens_unprocessed(self.buffer)
+        else: # traceback
+            tokens = self.tblexer.get_tokens_unprocessed(self.buffer)
+
+        for i, t, v in do_insertions(self.insertions, tokens):
+            # All token indexes are relative to the buffer.
+            yield self.index + i, t, v
+
+        # Clear it all
+        self.index += len(self.buffer)
+        self.buffer = ''
+        self.insertions = []
+
+    def get_modecode(self, line):
+        """
+        Returns the next mode and code to be added to the next mode's buffer.
+
+        The next mode depends on current mode and contents of line.
+
+        """
+        if line.strip() == u'...' and self.mode != 'tb':
+            # Tail end of an input, except when in tb.
+            mode = 'output'
+            code = ''
+            insertion = (0, Generic.Prompt, '...\n')
+        elif line.startswith('>>>') or \
+           (line.startswith('...') and self.mode != 'tb'):
+            # New input or when not in tb, continued input.
+            # We do not check for continued input when in tb since it is
+            # allowable to replace a long stack with an ellipsis.
+            mode = 'input'
+            code = line[4:]
+            insertion = (0, Generic.Prompt, line[:4])
+        elif self.tbregex.match(line) or self.stregex.match(line):
+            mode = 'tb'
+            code = line
+            insertion = None
+        else:
+            if self.mode in ('input', 'output'):
+                # We assume all other text is output.  Multiline input via
+                # an open string does not have a continuation marker (...),
+                # so these are erroneously tokened as output.  Doing this
+                # right is tricky and perhaps not worth it.
+                mode = 'output'
+            else:
+                mode = 'tb'
+            code = line
+            insertion = None
+
+        if insertion:
+            self.insertions.append((len(self.buffer), [insertion]))
+
+        return mode, code
+
+    def get_tokens_unprocessed(self, text):
+        self.reset()
+        for match in line_re.finditer(text):
+            line = match.group()
+            mode, code = self.get_modecode(line)
+            if mode != self.mode:
+                # Yield buffered tokens before transitioning to new mode.
+                for token in self.buffered_tokens():
+                    yield token
+                self.mode = mode
+            self.buffer += code
+        else:
+            for token in self.buffered_tokens():
+                yield token
 
 
 class RubyLexer(ExtendedRegexLexer):
