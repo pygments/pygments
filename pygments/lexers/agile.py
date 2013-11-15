@@ -430,7 +430,7 @@ class PythonConsoleLexer(Lexer):
     def reset(self):
         self.mode = 'output'
         self.index = 0
-        self.buffer = ''
+        self.buffer = u''
         self.insertions = []
 
     def buffered_tokens(self):
@@ -450,14 +450,14 @@ class PythonConsoleLexer(Lexer):
             # All token indexes are relative to the buffer.
             yield self.index + i, t, v
 
-        # Clear it all
-        self.index += len(self.buffer)
-        self.buffer = ''
+        # Update the index into the main text, include insertions.
+        self.index += len(self.buffer) + 4 * len(self.insertions)
+        self.buffer = u''
         self.insertions = []
 
     def get_modecode(self, line):
         """
-        Returns the next mode and code to be added to the next mode's buffer.
+        Returns the next mode, code, and insertion.
 
         The next mode depends on current mode and contents of line.
 
@@ -465,8 +465,8 @@ class PythonConsoleLexer(Lexer):
         if line.strip() == u'...' and self.mode != 'tb':
             # Tail end of an input, except when in tb.
             mode = 'output'
-            code = ''
-            insertion = (0, Generic.Prompt, '...\n')
+            code = u''
+            insertion = (0, Generic.Prompt, u'...\n')
         elif line.startswith('>>>') or \
            (line.startswith('...') and self.mode != 'tb'):
             # New input or when not in tb, continued input.
@@ -488,21 +488,22 @@ class PythonConsoleLexer(Lexer):
             code = line
             insertion = None
 
-        if insertion:
-            self.insertions.append((len(self.buffer), [insertion]))
-
-        return mode, code
+        return mode, code, insertion
 
     def get_tokens_unprocessed(self, text):
         self.reset()
         for match in line_re.finditer(text):
             line = match.group()
-            mode, code = self.get_modecode(line)
+            mode, code, insertion = self.get_modecode(line)
+
             if mode != self.mode:
                 # Yield buffered tokens before transitioning to new mode.
                 for token in self.buffered_tokens():
                     yield token
                 self.mode = mode
+
+            if insertion:
+                self.insertions.append((len(self.buffer), [insertion]))
             self.buffer += code
         else:
             for token in self.buffered_tokens():
