@@ -481,10 +481,7 @@ class PythonConsoleLexer(Lexer):
             insertion = None
         else:
             if self.mode in ('input', 'output'):
-                # We assume all other text is output.  Multiline input via
-                # an open string does not have a continuation marker (...),
-                # so these are erroneously tokened as output.  Doing this
-                # right is tricky and perhaps not worth it.
+                # We assume all other text is output.
                 mode = 'output'
             else:
                 mode = 'tb'
