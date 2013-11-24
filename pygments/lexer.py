@@ -192,7 +192,9 @@ class Lexer(object):
 
     def get_tokens_unprocessed(self, text):
         """
-        Return an iterable of (tokentype, value) pairs.
+        Return an iterable of (index, tokentype, value) pairs where "index"
+        is the starting position of the token within the input text.
+
         In subclasses, implement this method as a generator to
         maximize effectiveness.
         """
