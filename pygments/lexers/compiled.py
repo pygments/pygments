@@ -3741,7 +3741,7 @@ class ChapelLexer(RegexLexer):
             (r'//(.*?)\n', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
 
-            (r'(config|const|ref|in|inout|out|param|proc|type|var)\b',
+            (r'(config|const|in|inout|out|param|proc|ref|type|var)\b',
              Keyword.Declaration),
             (r'(atomic|begin|break|by|cobegin|coforall|continue|iter|'
              r'delete|dmapped|do|domain|else|enum|export|extern|for|forall|'
