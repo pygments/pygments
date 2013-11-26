@@ -30,7 +30,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'Modula2Lexer', 'BlitzMaxLexer', 'BlitzBasicLexer', 'NimrodLexer',
            'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
-           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer']
+           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'ChapelLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -3721,3 +3721,77 @@ class LogosLexer(ObjectiveCppLexer):
         if LogosLexer._logos_keywords.search(text):
             return 1.0
         return 0
+
+
+class ChapelLexer(RegexLexer):
+    """
+    For `Chapel <http://chapel.cray.com/>`_ source.
+    """
+    name = 'Chapel'
+    filenames = ['*.chpl']
+    aliases = ['chapel', 'chpl']
+    # mimetypes = ['text/x-chapel']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text),
+
+            (r'//(.*?)\n', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+
+            (r'(config|const|ref|in|inout|out|param|proc|type|var)\b',
+             Keyword.Declaration),
+            (r'(atomic|begin|break|by|cobegin|coforall|continue|iter|'
+             r'delete|dmapped|do|domain|else|enum|export|extern|for|forall|'
+             r'if|index|inline|label|lambda|let|local|new|on|otherwise|'
+             r'reduce|return|scan|select|serial|single|sparse|'
+             'subdomain|sync|then|use|when|where|while|yield|zip)\b',
+             Keyword),
+            (r'(false|nil|true)\b', Keyword.Constant),
+            (r'(bool|complex|imag|int|opaque|range|real|string|uint)\b',
+             Keyword.Type),
+            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(module|record|union)(\s+)', bygroups(Keyword, Text), 'names'),
+
+            # imaginary integers
+            (r'\d+i', Number),
+            (r'\d+\.\d*([Ee][-+]\d+)?i', Number),
+            (r'\.\d+([Ee][-+]\d+)?i', Number),
+            (r'\d+[Ee][-+]\d+i', Number),
+
+            # reals
+            (r'\d+(\.\d+[eE][+\-]?\d+|'
+             r'\.\d*|[eE][+\-]?\d+)', Number.Float),
+            (r'\.\d+([eE][+\-]?\d+)?', Number.Float),
+
+            # integer literals
+            # -- binary
+            (r'0[bB][0-1]+', Number),
+            # -- hex
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            # -- decimal
+            (r'(0|[1-9][0-9]*)', Number.Integer),
+
+            # strings
+            (r'["\'](\\\\|\\"|[^"\'])*["\']', String),
+
+            # tokens
+            (r'(=|\+=|-=|\*=|/=|\*\*=|%=|&=|\|=|\^=|&&=|\|\|=|<<=|>>=|'
+             r'<=>|\.\.|by|#|\.\.\.|'
+             r'&&|\|\||!|&|\||\^|~|<<|>>|'
+             r'==|!=|<=|>=|<|>|'
+             r'[+\-*/%]|\*\*)', Operator),
+            (r'[:;,.?()\[\]{}]', Punctuation),
+
+            # identifiers
+            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Other),
+        ],
+        'classname': [
+            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Class, '#pop'),
+        ],
+        'names': [
+            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name, '#pop'),
+        ],
+    }
