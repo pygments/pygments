@@ -3750,7 +3750,7 @@ class ChapelLexer(RegexLexer):
              r'delete|dmapped|do|domain|else|enum|export|extern|for|forall|'
              r'if|index|inline|label|lambda|let|local|new|on|otherwise|'
              r'reduce|return|scan|select|serial|single|sparse|'
-             'subdomain|sync|then|use|when|where|while|yield|zip)\b',
+             r'subdomain|sync|then|use|when|where|while|yield|zip)\b',
              Keyword),
             (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
             (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text), 'classname'),
