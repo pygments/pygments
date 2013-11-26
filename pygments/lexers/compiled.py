@@ -3741,19 +3741,19 @@ class ChapelLexer(RegexLexer):
             (r'//(.*?)\n', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
 
-            (r'(config|const|in|inout|out|param|proc|ref|type|var)\b',
+            (r'(config|const|in|inout|out|param|ref|type|var)\b',
              Keyword.Declaration),
+            (r'(false|nil|true)\b', Keyword.Constant),
+            (r'(bool|complex|imag|int|opaque|range|real|string|uint)\b',
+             Keyword.Type),
             (r'(atomic|begin|break|by|cobegin|coforall|continue|iter|'
              r'delete|dmapped|do|domain|else|enum|export|extern|for|forall|'
              r'if|index|inline|label|lambda|let|local|new|on|otherwise|'
              r'reduce|return|scan|select|serial|single|sparse|'
              'subdomain|sync|then|use|when|where|while|yield|zip)\b',
              Keyword),
-            (r'(false|nil|true)\b', Keyword.Constant),
-            (r'(bool|complex|imag|int|opaque|range|real|string|uint)\b',
-             Keyword.Type),
-            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (r'(module|record|union)(\s+)', bygroups(Keyword, Text), 'names'),
+            (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
+            (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text), 'classname'),
 
             # imaginary integers
             (r'\d+i', Number),
@@ -3791,7 +3791,7 @@ class ChapelLexer(RegexLexer):
         'classname': [
             (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Class, '#pop'),
         ],
-        'names': [
-            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name, '#pop'),
+        'procname': [
+            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Function, '#pop'),
         ],
     }
