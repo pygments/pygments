@@ -66,3 +66,53 @@ proc computeAction(bottleNum) {
   return if (bottleNum == 0) then "Go to the store and buy some more, "
     else "Take one down and pass it around, ";
 }
+
+
+// Modules...
+module M1 {
+  var x = 10;
+}
+
+module M2 {
+  use M1;
+  proc main() {
+    writeln("M2 -> M1 -> x " + x);
+  }
+}
+
+
+// Classes, records, unions...
+const PI: real = 3.14159;
+
+record Point {
+  var x, y: real;
+}
+var p: Point;
+writeln("Distance from origin: " + sqrt(p.x ** 2 + p.y ** 2)); 
+p = new Point(1.0, 2.0);
+writeln("Distance from origin: " + sqrt(p.x ** 2 + p.y ** 2)); 
+
+class Circle {
+  var p: Point;
+  var r: real;
+}
+var c = new Circle(r=2.0);
+proc Circle.area()
+  return PI * r ** 2;
+writeln("Area of circle: " + c.area());
+
+class Oval: Circle {
+  var r2: real;
+}
+proc Oval.area()
+  return PI * r * r2;
+
+delete c;
+c = nil;
+c = new Oval(r=1.0, r2=2.0);
+writeln("Area of oval: " + c.area());
+
+union U {
+  var i: int;
+  var r: real;
+}
