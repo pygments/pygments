@@ -3753,7 +3753,8 @@ class ChapelLexer(RegexLexer):
              r'subdomain|sync|then|use|when|where|while|yield|zip)\b',
              Keyword),
             (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
-            (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text),
+             'classname'),
 
             # imaginary integers
             (r'\d+i', Number),
