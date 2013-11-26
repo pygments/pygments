@@ -3761,10 +3761,10 @@ class ChapelLexer(RegexLexer):
             (r'\.\d+([Ee][-+]\d+)?i', Number),
             (r'\d+[Ee][-+]\d+i', Number),
 
-            # reals
-            (r'\d+(\.\d+[eE][+\-]?\d+|'
-             r'\.\d*|[eE][+\-]?\d+)', Number.Float),
-            (r'\.\d+([eE][+\-]?\d+)?', Number.Float),
+            # reals cannot end with a period due to lexical ambiguity with
+            # .. operator. See reference for rationale.
+            (r'(\d*\.\d+)([eE][+-]?[0-9]+)?i?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+i?', Number.Float),
 
             # integer literals
             # -- binary
