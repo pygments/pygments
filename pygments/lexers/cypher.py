@@ -7,7 +7,7 @@
 
     `CypherLexer`
 
-    the ``tests/examplefiles`` contains file "movie_queries.cyp" which has valid
+    the ``tests/examplefiles`` contains file "test.cyp" which has valid
     cypher queries that execute against the example database shipped with Neo4J
 
 
@@ -17,16 +17,37 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups
+from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Punctuation, Text, Comment, Operator, Name, \
 String, Number, Generic
-from pygments.lexers import get_lexer_by_name, ClassNotFound
+
 
 __all__ = ['CypherLexer']
 
-line_re = re.compile('.*?\n')
 
-name = 'Cypher'
-aliases = ['cypher']
-filenames = ['*.cyp','*.cypher']
-flags = re.MULTILINE | re.DOTALL
+class CypherLexer(RegexLexer):
+    """
+    For Cypher Query Language
+    http://docs.neo4j.org/chunked/milestone/cypher-query-lang.html
+    For the Cypher version in Neo4J 2.0
+    """
+    name = 'Cypher'
+    aliases = ['cypher']
+    filenames = ['*.cyp','*.cypher']
+    
+    tokens = {
+        'root': [
+            include('comment'),
+            include('keywords'),
+            include('clauses'),
+            include('relations')
+            ],
+        'comment': ["^.*//.*$"],
+        'keywords': [],
+        'clauses': [],
+        'relations': []
+        }
+
+
+    
+
