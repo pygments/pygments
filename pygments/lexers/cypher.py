@@ -34,24 +34,27 @@ class CypherLexer(RegexLexer):
     name = 'Cypher'
     aliases = ['cypher']
     filenames = ['*.cyp','*.cypher']
+    flags = re.MULTILINE | re.IGNORECASE
     
     tokens = {
         'root': [
             include('comment'),
             include('keywords'),
             include('clauses'),
-            include('relations')
+            include('relations'),
+            include('strings')
             ],
         'comment': [(r'^.*//.*\n', Comment.Single)],
         'keywords': [
             (r'create|order|match|limit|set|skip|start|return|with|where|delete'
-             r'|foreach|not|by|as', Keyword)],
+             r'|foreach|not| by ', Keyword)],
         'clauses': [(r' all | any | as | asc |create|create unique|delete|'
                      r'desc |distinct|foreach| in |is null|limit|match|none|'
                      r'order by|return|set|skip|single|start|union|where|with', 
                      Keyword)],
-        'relations': [(r'-->|-\[.*\]->|<-\[.*\]-|<--', Punctuation),
-                      (r'<|>|<>|=|<=|=>', Operator)]
+        'relations': [(r'-->|-\[.*\]->|<-\[.*\]-|<--|\[|\]', Operator),
+                      (r'<|>|<>|=|<=|=>|\(|\)|\||:|,|;', Punctuation)],
+        'strings': [(r'\".*\"', String)]
         }
 
 
