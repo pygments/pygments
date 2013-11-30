@@ -44,8 +44,8 @@ class CypherLexer(RegexLexer):
             ],
         'comment': [(r'^.*//.*\n', Comment.Single)],
         'keywords': [
-            (r'CREATE|ORDER|MATCH|LIMIT|SET|SKIP|START|RETURN|WITH|WHERE|DELETE'
-             r'|FOREACH|NOT|BY|AS', Keyword)],
+            (r'create|order|match|limit|set|skip|start|return|with|where|delete'
+             r'|foreach|not|by|as', Keyword)],
         'clauses': [(r' all | any | as | asc |create|create unique|delete|'
                      r'desc |distinct|foreach| in |is null|limit|match|none|'
                      r'order by|return|set|skip|single|start|union|where|with', 
