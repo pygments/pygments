@@ -35,7 +35,7 @@ class CypherLexer(RegexLexer):
     aliases = ['cypher']
     filenames = ['*.cyp','*.cypher']
     flags = re.MULTILINE | re.IGNORECASE
-    
+
     tokens = {
         'root': [
             include('comment'),
@@ -50,13 +50,11 @@ class CypherLexer(RegexLexer):
              r'|foreach|not| by ', Keyword)],
         'clauses': [(r' all | any | as | asc |create|create unique|delete|'
                      r'desc |distinct|foreach| in |is null|limit|match|none|'
-                     r'order by|return|set|skip|single|start|union|where|with', 
+                     r'order by|return|set|skip|single|start|union|where|with',
                      Keyword)],
         'relations': [(r'-->|-\[.*\]->|<-\[.*\]-|<--|\[|\]', Operator),
                       (r'<|>|<>|=|<=|=>|\(|\)|\||:|,|;', Punctuation)],
         'strings': [(r'\".*\"', String)]
         }
 
-
-    
 
