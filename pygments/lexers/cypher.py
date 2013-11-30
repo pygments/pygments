@@ -18,7 +18,7 @@
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups
-from pygments.token import Punctuation, Text, Comment, Operator, Name, \
+from pygments.token import Keyword, Punctuation, Text, Comment, Operator, Name,\
 String, Number, Generic
 
 
@@ -43,11 +43,15 @@ class CypherLexer(RegexLexer):
             include('relations')
             ],
         'comment': [(r'^.*//.*\n', Comment.Single)],
-        'keywords': [(
-            r''
-        )],
-        'clauses': [],
-        'relations': []
+        'keywords': [
+            (r'CREATE|ORDER|MATCH|LIMIT|SET|SKIP|START|RETURN|WITH|WHERE|DELETE'
+             r'|FOREACH|NOT|BY|AS', Keyword)],
+        'clauses': [(r' all | any | as | asc |create|create unique|delete|'
+                     r'desc |distinct|foreach| in |is null|limit|match|none|'
+                     r'order by|return|set|skip|single|start|union|where|with', 
+                     Keyword)],
+        'relations': [(r'-->|-\[.*\]->|<-\[.*\]-|<--', Punctuation),
+                      (r'<|>|<>|=|<=|=>', Operator)]
         }
 
 
