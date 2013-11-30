@@ -42,8 +42,10 @@ class CypherLexer(RegexLexer):
             include('clauses'),
             include('relations')
             ],
-        'comment': ["^.*//.*$"],
-        'keywords': [],
+        'comment': [(r'^.*//.*\n', Comment.Single)],
+        'keywords': [(
+            r''
+        )],
         'clauses': [],
         'relations': []
         }
