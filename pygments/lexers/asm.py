@@ -283,7 +283,7 @@ class LlvmLexer(RegexLexer):
              r')\b', Keyword),
 
             # Types
-            (r'void|float|double|x86_fp80|fp128|ppc_fp128|label|metadata',
+            (r'void|half|float|double|x86_fp80|fp128|ppc_fp128|label|metadata',
              Keyword.Type),
 
             # Integer types
