@@ -269,13 +269,16 @@ class LlvmLexer(RegexLexer):
              r'|lshr|ashr|and|or|xor|icmp|fcmp'
 
              r'|phi|call|trunc|zext|sext|fptrunc|fpext|uitofp|sitofp|fptoui'
-             r'fptosi|inttoptr|ptrtoint|bitcast|select|va_arg|ret|br|switch'
+             r'|fptosi|inttoptr|ptrtoint|bitcast|select|va_arg|ret|br|switch'
              r'|invoke|unwind|unreachable'
+             r'|indirectbr|landingpad|resume
 
              r'|malloc|alloca|free|load|store|getelementptr'
 
              r'|extractelement|insertelement|shufflevector|getresult'
              r'|extractvalue|insertvalue'
+             
+             r'|atomicrmw|cmpxchg|fence
 
              r')\b', Keyword),
 
