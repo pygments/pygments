@@ -270,9 +270,9 @@ class LlvmLexer(RegexLexer):
              r'|oeq|one|olt|ogt|ole'
              r'|oge|ord|uno|ueq|une'
              r'|x'
-             r'|acq_rel|acquire|alignstack|atomic|catch|cleanup|filter
-             r'|inteldialect|max|min|monotonic|nand|personality|release
-             r'|seq_cst|singlethread|umax|umin|unordered|xchg
+             r'|acq_rel|acquire|alignstack|atomic|catch|cleanup|filter'
+             r'|inteldialect|max|min|monotonic|nand|personality|release'
+             r'|seq_cst|singlethread|umax|umin|unordered|xchg'
 
              # instructions
              r'|add|fadd|sub|fsub|mul|fmul|udiv|sdiv|fdiv|urem|srem|frem|shl'
