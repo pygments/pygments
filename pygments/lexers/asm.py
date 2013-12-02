@@ -214,10 +214,10 @@ class LlvmLexer(RegexLexer):
 
             (r'%' + identifier, Name.Variable),#Name.Identifier.Local),
             (r'@' + identifier, Name.Variable.Global),#Name.Identifier.Global),
-            (r'#' + identifier, Name.Variable.AttributeGroup),#Name.Identifier.AttributeGroup),
+            (r'#' + identifier, Name.Variable.Global),#Name.Identifier.Global),
             (r'%\d+', Name.Variable.Anonymous),#Name.Identifier.Anonymous),
             (r'@\d+', Name.Variable.Global),#Name.Identifier.Anonymous),
-            (r'#\d+', Name.Variable.AttributeGroup.Anonymous),#Name.Identifier.AttributeGroup),
+            (r'#\d+', Name.Variable.Global),#Name.Identifier.Global),
             (r'!' + identifier, Name.Variable),
             (r'!\d+', Name.Variable.Anonymous),
             (r'c?' + string, String),
