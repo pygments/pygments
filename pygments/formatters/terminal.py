@@ -73,6 +73,10 @@ class TerminalFormatter(Formatter):
     `colorscheme`
         A dictionary mapping token types to (lightbg, darkbg) color names or
         ``None`` (default: ``None`` = use builtin colorscheme).
+
+    `linenos`
+        Set to ``True`` to have line numbers on the terminal output as well
+        (default: ``False`` = no line numbers).
     """
     name = 'Terminal'
     aliases = ['terminal', 'console']
@@ -83,6 +87,8 @@ class TerminalFormatter(Formatter):
         self.darkbg = get_choice_opt(options, 'bg',
                                      ['light', 'dark'], 'light') == 'dark'
         self.colorscheme = options.get('colorscheme', None) or TERMINAL_COLORS
+        self.linenos = options.get('linenos', False)
+        self._lineno = 0
 
     def format(self, tokensource, outfile):
         # hack: if the output is a terminal and has an encoding set,
@@ -93,7 +99,40 @@ class TerminalFormatter(Formatter):
             self.encoding = outfile.encoding
         return Formatter.format(self, tokensource, outfile)
 
+    def _write_lineno(self, outfile):
+        self._lineno += 1
+        outfile.write("\n%04d: " % self._lineno)
+
+    def _format_unencoded_with_lineno(self, tokensource, outfile):
+        self._write_lineno(outfile)
+
+        for ttype, value in tokensource:
+            if value.endswith("\n"):
+               self._write_lineno(outfile)
+               value = value[:-1]
+            color = self.colorscheme.get(ttype)
+            while color is None:
+                ttype = ttype[:-1]
+                color = self.colorscheme.get(ttype)
+            if color:
+                color = color[self.darkbg]
+                spl = value.split('\n')
+                for line in spl[:-1]:
+                    self._write_lineno(outfile)
+                    if line:
+                        outfile.write(ansiformat(color, line[:-1]))
+                if spl[-1]:
+                    outfile.write(ansiformat(color, spl[-1]))
+            else:
+                outfile.write(value)
+
+        outfile.write("\n")
+
     def format_unencoded(self, tokensource, outfile):
+        if self.linenos:
+            self._format_unencoded_with_lineno(tokensource, outfile)
+            return
+
         for ttype, value in tokensource:
             color = self.colorscheme.get(ttype)
             while color is None:
@@ -110,3 +149,4 @@ class TerminalFormatter(Formatter):
                     outfile.write(ansiformat(color, spl[-1]))
             else:
                 outfile.write(value)
+
