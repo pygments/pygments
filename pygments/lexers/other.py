@@ -1400,8 +1400,8 @@ class RebolLexer(RegexLexer):
             (r'%[^(\^{^")\s\[\]]+', Name.Decorator),
             (r'[+-]?([a-zA-Z]{1,3})?\$\d+(\.\d+)?', Number.Float), # money
             (r'[+-]?\d+\:\d+(\:\d+)?(\.\d+)?', String.Other), # time
-            (r'\d+\-[0-9a-zA-Z]+\-\d+(\/\d+\:\d+(\:\d+)?'
-             r'([\.\d+]?([+-]?\d+:\d+)?)?)?', String.Other), # date
+            (r'\d+[\-\/][0-9a-zA-Z]+[\-\/]\d+(\/\d+\:\d+((\:\d+)?'
+             r'([\.\d+]?([+-]?\d+:\d+)?)?)?)?', String.Other), # date
             (r'\d+(\.\d+)+\.\d+', Keyword.Constant), # tuple
             (r'\d+[xX]\d+', Keyword.Constant), # pair
             (r'[+-]?\d+(\'\d+)?([\.,]\d*)?[eE][+-]?\d+', Number.Float),
