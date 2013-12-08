@@ -1381,9 +1381,9 @@ class RebolLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'REBOL', Generic.Strong, 'script'),
-            (r'R', Comment),
             (r'[^R]+', Comment),
+            (r'REBOL\s+\[', Generic.Strong, 'script'),
+            (r'R', Comment)
         ],
         'script': [
             (r'\s+', Text),
