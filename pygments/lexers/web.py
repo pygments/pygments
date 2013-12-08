@@ -3746,7 +3746,7 @@ class LassoLexer(RegexLexer):
             (r'\[', Comment.Preproc, ('delimiters', 'squarebrackets')),
             (r'<\?(LassoScript|lasso|=)', Comment.Preproc,
                 ('delimiters', 'anglebrackets')),
-            (r'<', Other, 'delimiters'),
+            (r'<(!--.*?-->)?', Other, 'delimiters'),
             (r'\s+', Other),
             (r'', Other, ('delimiters', 'lassofile')),
         ],
@@ -3755,7 +3755,7 @@ class LassoLexer(RegexLexer):
             (r'\[noprocess\]', Comment.Preproc, 'noprocess'),
             (r'\[', Comment.Preproc, 'squarebrackets'),
             (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
-            (r'<', Other),
+            (r'<(!--.*?-->)?', Other),
             (r'[^[<]+', Other),
         ],
         'nosquarebrackets': [
