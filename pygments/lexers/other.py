@@ -1497,12 +1497,12 @@ class RebolLexer(RegexLexer):
         """
         Check if code contains REBOL header and so it probably not R code
         """
-        if text.startswith('\sREBOL\s\['):
+        if re.match(r'^\s*REBOL\s*\[', text, re.IGNORECASE):
             # The code starts with REBOL header
             return 1.0
-        elif re.search(r'\sREBOL\s[', text, re.IGNORECASE):
+        elif re.search(r'\s*REBOL\s*[', text, re.IGNORECASE):
             # The code contains REBOL header but also some text before it
-            return 0.9
+            return 0.5
 
 
 class ABAPLexer(RegexLexer):
