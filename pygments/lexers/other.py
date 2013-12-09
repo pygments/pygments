@@ -1493,6 +1493,16 @@ class RebolLexer(RegexLexer):
             (r'[^(\[\])]+', Comment),
         ],
     }
+    def analyse_text(text):
+        """
+        Check if code contains REBOL header and so it probably not R code
+        """
+        if text.startswith('\sREBOL\s\['):
+            # The code starts with REBOL header
+            return 1.0
+        elif re.search(r'\sREBOL\s[', text, re.IGNORECASE):
+            # The code contains REBOL header but also some text before it
+            return 0.9
 
 
 class ABAPLexer(RegexLexer):
