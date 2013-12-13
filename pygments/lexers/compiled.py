@@ -1333,20 +1333,23 @@ def objective(baselexer):
         tokens = {
             'statements': [
                 (r'@"', String, 'string'),
-                (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
-                 String.Char),
+                (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
                 (r'@(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
                 (r'@(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
                 (r'@0x[0-9a-fA-F]+[Ll]?', Number.Hex),
                 (r'@0[0-7]+[Ll]?', Number.Oct),
                 (r'@\d+[Ll]?', Number.Integer),
-                (r'(in|@selector|@private|@protected|@public|@encode|'
+                (r'@\(.+\)', Number),
+                (r'(@selector|@private|@protected|@public|@encode|'
                  r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
-                 r'@synthesize|@dynamic|@optional)\b', Keyword),
-                (r'(id|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
+                 r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong'
+                 r'weak|strong|retain|assign|unsafe_unretained|nonatomic|'
+                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|'
+                 r'@synthesize|@dynamic|@optional|@required|@autoreleasepool)\b', Keyword),
+                (r'(id|instancetype|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
                  Keyword.Type),
                 (r'@(true|false|YES|NO)\n', Name.Builtin),
-                (r'(YES|NO|nil)\b', Name.Builtin),
+                (r'(YES|NO|nil|self|super)\b', Name.Builtin),
                 (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
