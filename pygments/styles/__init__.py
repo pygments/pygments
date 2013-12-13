@@ -34,6 +34,7 @@ STYLE_MAP = {
     'vs':       'vs::VisualStudioStyle',
     'tango':    'tango::TangoStyle',
     'rrt':      'rrt::RrtStyle',
+    'xcode':    'xcode::XcodeStyle',
 }
 
 
