@@ -41,7 +41,7 @@ class XcodeStyle(Style):
         # Name.Property:          '#000000',
         # Name.Namespace:         '#000000',
         Name.Builtin:           '#AA0D92',
-        # Name.Builtin.Pseudo:     '#000000',
+        Name.Builtin.Pseudo:    '#5B269A',          # In Obj-C code this token is used to colour Cocoa types, TODO new token type
         Name.Variable:          '#000000',          # it was method argument (but not always recognized successfully)
         # Name.Variable.Class:    '#000000',
         # Name.Variable.Instance: '#000000',
