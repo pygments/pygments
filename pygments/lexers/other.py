@@ -1217,15 +1217,16 @@ class ModelicaLexer(RegexLexer):
         ],
         'statements': [
             (r'"', String, 'string'),
+            (r'\'', Name, 'quoted_ident'),
             (r'(\d+\.\d*|\.\d+|\d+|\d.)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+)', Number.Float),
             (r'\d+[Ll]?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\]{},.;]', Punctuation),
             (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
-            (r"([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*')"
-             r"(\.([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*'))+", Name.Class),
-            (r"('[\w\+\-\*\/\^]+'|\w+)", Name),
+            (r'([a-zA-Z_][\w\[\]]*|\'[a-zA-Z_\+\-\*\/\^][\w]*\')'
+             r'(\.([a-zA-Z_\][\w\[\]]*|\'[a-zA-Z_\+\-\*\/\^][\w]*\'))+', Name.Class),
+            (r'(\'[\w\+\-\*\/\^]+\'|\w+)', Name),
         ],
         'root': [
             include('whitespace'),
@@ -1239,7 +1240,7 @@ class ModelicaLexer(RegexLexer):
         'keywords': [
             (r'(algorithm|annotation|break|connect|constant|constrainedby|'
             r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
-            r'end|equation|exit|expandable|extends|'
+            r'equation|exit|expandable|extends|'
             r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
             r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
             r'protected|public|pure|redeclare|replaceable|stream|time|then|true|'
@@ -1258,9 +1259,13 @@ class ModelicaLexer(RegexLexer):
              r'terminate)\b', Name.Builtin),
         ],
         'classes': [
-            (r'(block|class|connector|function|model|package|'
-             r'record|type)(\s+)([A-Za-z_]+)',
-             bygroups(Keyword, Text, Name.Class))
+            (r'(block|class|connector|end|function|model|package|'
+             r'record|type)(\s+)((?!if|when|while)[A-Za-z_]\w*|[\'][^\']+[\'])([;]?)',
+             bygroups(Keyword, Text, Name.Class, Text))
+        ],
+        'quoted_ident': [
+            (r'\'', Name, '#pop'),
+            (r'[^\']+', Name), # all other characters
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -1271,7 +1276,7 @@ class ModelicaLexer(RegexLexer):
             (r'\\', String), # stray backslash
         ],
         'html-content': [
-            (r'<\s*/\s*html\s*>', Name.Tag, '#pop'),
+            (r'<\s*/\s*html\s*>"', Name.Tag, '#pop'),
             (r'.+?(?=<\s*/\s*html\s*>)', using(HtmlLexer)),
         ]
     }
