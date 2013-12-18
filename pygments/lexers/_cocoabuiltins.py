@@ -6,31 +6,37 @@ frameworks = os.listdir(FRAMEWORKS_PATH)
 
 all_interfaces = set()
 all_protocols  = set()
+all_primitives = set()
 for framework in frameworks:
 	frameworkHeadersDir = FRAMEWORKS_PATH + framework + '/Headers/'
 	if (not os.path.exists(frameworkHeadersDir)): continue
 
 	headerFilenames = os.listdir(frameworkHeadersDir)
 
-	interfaces = set()
-
 	for f in headerFilenames:
 		if (not f.endswith('.h')): continue
 
 		headerFilePath = frameworkHeadersDir + f
 		content = open(headerFilePath).read()
-		int_res = re.search('(?<=@interface )\w+', content)
-		if (int_res):
-			interfaces.add(int_res.group(0))
-			all_interfaces.add(int_res.group(0))
+		res = re.findall('(?<=@interface )\w+', content)
+		for r in res:
+			all_interfaces.add(r)
 		
-		pro_res = re.search('(?<=@protocol )\w+', content)
-		if (pro_res):
-			interfaces.add(pro_res.group(0))
-			all_protocols.add(pro_res.group(0))
+		res = re.findall('(?<=@protocol )\w+', content)
+		for r in res:
+			all_protocols.add(r)
 
-	print framework + "\n"
-	# print types
+		res = re.findall('(?<=typedef enum )\w+', content)
+		for r in res:
+			all_primitives.add(r)
+
+		res = re.findall('(?<=typedef struct )\w+', content)
+		for r in res:
+ 			all_primitives.add(r)
+
+		res = re.findall('(?<=typedef const struct )\w+', content)
+		for r in res:
+ 			all_primitives.add(r)
 
 
 print "ALL interfaces: \n"
@@ -38,3 +44,6 @@ print all_interfaces
 
 print "\nALL protocols: \n"
 print all_protocols
+
+print "\nALL primitives2: \n"
+print all_primitives
