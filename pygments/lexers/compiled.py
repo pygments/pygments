@@ -1415,7 +1415,7 @@ def objective(baselexer):
                 baselexer.get_tokens_unprocessed(self, text):
                 if token is Name:
                     if value in COCOA_INTERFACES or value in COCOA_PROTOCOLS or value in COCOA_PRIMITIVES:
-                        token = Name.Builtin.Pseudo # TODO new token type
+                        token = Name.Builtin.Pseudo
 
                 yield index, token, value
 
