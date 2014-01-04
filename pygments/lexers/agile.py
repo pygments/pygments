@@ -2280,6 +2280,8 @@ class Perl6Lexer(ExtendedRegexLexer):
             # in Perl 6, and also (more importantly) they are a glob deference in
             # Perl 5.
             return 0.91
+        if re.search(r'sub\s+\w+:(?![(:])', text): # Special sub/method syntax (ex. sub postcircumfix:<[ ]>)
+            return 0.91
 
         for line in text.splitlines():
             if re.match(r'\s*(?:my|our)?\s*(?:module|role|class)\b', line): # module, role, class declarations
