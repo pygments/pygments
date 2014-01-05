@@ -1780,6 +1780,7 @@ class GherkinLexer(RegexLexer):
         'examples_table_header': [
             (r"\s+\|\s*$", Keyword, "#pop:2"),
             include('comments'),
+            (r"\\\|", Name.Variable),
             (r"\s*\|", Keyword),
             (r"[^\|]", Name.Variable),
           ],
@@ -1822,6 +1823,7 @@ class GherkinLexer(RegexLexer):
           'table_content': [
             (r"\s+\|\s*$", Keyword, "#pop"),
             include('comments'),
+            (r"\\\|", String),
             (r"\s*\|", Keyword),
             include('string'),
           ],
