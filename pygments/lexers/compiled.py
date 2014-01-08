@@ -3213,7 +3213,8 @@ class RustLexer(RegexLexer):
             (r'(mod|use)', Keyword.Namespace),
             (r'(true|false)', Keyword.Constant),
             (r'let', Keyword.Declaration),
-            (r'|u8|u16|u32|u64|i8|i16|i32|i64|uint|int|f32|f64', Keyword.Type),
+            (r'(u8|u16|u32|u64|i8|i16|i32|i64|uint|int|f32|f64'
+             r'|str|bool)', Keyword.Type),
             (r'self', Name.Builtin.Pseudo),
             # Prelude
             (r'(Freeze|Pod|Send|Sized|Add|Sub|Mul|Div|Rem|Neg|Not|BitAnd'
