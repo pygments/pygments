@@ -27,7 +27,8 @@ __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JsonLexer', 'CssLexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'LiveScriptLexer',
            'DuelLexer', 'ScamlLexer', 'JadeLexer', 'XQueryLexer',
-           'DtdLexer', 'DartLexer', 'LassoLexer', 'QmlLexer', 'TypeScriptLexer']
+           'DtdLexer', 'DartLexer', 'LassoLexer', 'QmlLexer', 'TypeScriptLexer',
+           'KalLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -2482,6 +2483,121 @@ class CoffeeScriptLexer(RegexLexer):
         'strings': [
             (r'[^#\\\'"]+', String),
             # note that all coffee script strings are multi-line.
+            # hashmarks, quotes and backslashes must be parsed one at a time
+        ],
+        'interpoling_string' : [
+            (r'}', String.Interpol, "#pop"),
+            include('root')
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            (r'\\.|\'', String), # double-quoted string don't need ' escapes
+            (r'#{', String.Interpol, "interpoling_string"),
+            include('strings')
+        ],
+        'sqs': [
+            (r"'", String, '#pop'),
+            (r'#|\\.|"', String), # single quoted strings don't need " escapses
+            include('strings')
+        ],
+        'tdqs': [
+            (r'"""', String, '#pop'),
+            (r'\\.|\'|"', String), # no need to escape quotes in triple-string
+            (r'#{', String.Interpol, "interpoling_string"),
+            include('strings'),
+        ],
+        'tsqs': [
+            (r"'''", String, '#pop'),
+            (r'#|\\.|\'|"', String), # no need to escape quotes in triple-strings
+            include('strings')
+        ],
+    }
+
+
+class KalLexer(RegexLexer):
+    """
+    For `Kal`_ source code.
+
+    .. _Kal: http://rzimmerman.github.io/kal
+
+    """
+
+    name = 'Kal'
+    aliases = ['kal']
+    filenames = ['*.kal']
+    mimetypes = ['text/kal', 'application/kal']
+
+    flags = re.DOTALL
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'###[^#].*?###', Comment.Multiline),
+            (r'#(?!##[^#]).*?\n', Comment.Single),
+        ],
+        'functiondef': [
+            (r'[$a-zA-Z_][a-zA-Z0-9_\$]*\s*', Name.Function, '#pop'),
+            include('commentsandwhitespace'),
+        ],
+        'classdef': [
+            (r'\binherits\s+from\b', Keyword),
+            (r'[$a-zA-Z_][a-zA-Z0-9_\$]*\s*\n', Name.Class, '#pop'),
+            (r'[$a-zA-Z_][a-zA-Z0-9_\$]*\s*', Name.Class),
+            include('commentsandwhitespace'),
+        ],
+        'listcomprehension': [
+            (r'\]', Punctuation, '#pop'),
+            (r'\b(property|value)\b', Keyword),
+            include('root'),
+        ],
+        'waitfor': [
+            (r'\n', Punctuation, '#pop'),
+            (r'\bfrom\b', Keyword),
+            include('root'),
+        ],
+        'root': [
+            include('commentsandwhitespace'),
+            (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex),
+            (r'\?|:|_(?=\n)|==?|!=|-(?!>)|[<>+*/-]=?',
+             Operator),
+            (r'\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|'
+             r'\bbut\b|\bbitwise\b|\bmod\b|\^|\bxor\b|\bexists\b|\bdoesnt\s+exist\b',
+             Operator.Word),
+            (r'(?:\([^()]+\))?\s*>', Name.Function),
+            (r'[{(]', Punctuation),
+            (r'\[', Punctuation, 'listcomprehension'),
+            (r'[})\]\.\,]', Punctuation),
+            (r'\b(function|method|task)\b', Keyword.Declaration, 'functiondef'),
+            (r'\bclass\b', Keyword.Declaration, 'classdef'),
+            (r'\b(safe\s+)?wait\s+for\b', Keyword, 'waitfor'),
+            (r'\b(me|this)(\.[$a-zA-Z_][a-zA-Z0-9_\.\$]*)?\b', Name.Variable.Instance),
+            (r'(?<![\.\$])(for(\s+(parallel|series))?|in|of|while|until|'
+             r'break|return|continue|'
+             r'when|if|unless|else|otherwise|except\s+when|'
+             r'throw|raise|fail\s+with|try|catch|finally|new|delete|'
+             r'typeof|instanceof|super|run\s+in\s+parallel|'
+             r'inherits\s+from)\b', Keyword),
+            (r'(?<![\.\$])(true|false|yes|no|on|off|null|nothing|none|'
+             r'NaN|Infinity|undefined)\b',
+             Keyword.Constant),
+            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
+             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+             r'decodeURIComponent|encodeURI|encodeURIComponent|'
+             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window|'
+             r'print)\b',
+             Name.Builtin),
+            (r'[$a-zA-Z_][a-zA-Z0-9_\.\$]*\s*(:|[\+\-\*\/]?\=)?\b', Name.Variable),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            ('"""', String, 'tdqs'),
+            ("'''", String, 'tsqs'),
+            ('"', String, 'dqs'),
+            ("'", String, 'sqs'),
+        ],
+        'strings': [
+            (r'[^#\\\'"]+', String),
+            # note that all kal strings are multi-line.
             # hashmarks, quotes and backslashes must be parsed one at a time
         ],
         'interpoling_string' : [
