@@ -1924,6 +1924,7 @@ class DgLexer(RegexLexer):
         ],
     }
 
+
 class Perl6Lexer(ExtendedRegexLexer):
     """
     For `Perl 6 <http://www.perl6.org>`_ source code.
@@ -2243,6 +2244,9 @@ class Perl6Lexer(ExtendedRegexLexer):
     }
 
     def analyse_text(text):
+        # disabled for now; the lexer is not bug-free and will loop sometimes,
+        # so let's be sure to use it only for "real" Perl 6 code.
+        return False
         def strip_pod(lines):
             in_pod         = False
             stripped_lines = []
