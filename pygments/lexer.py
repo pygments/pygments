@@ -166,6 +166,8 @@ class Lexer(object):
                 text = decoded
             else:
                 text = text.decode(self.encoding)
+                if text.startswith(u'\ufeff'):
+                    text = text[len(u'\ufeff'):]
         else:
             if text.startswith(u'\ufeff'):
                 text = text[len(u'\ufeff'):]
