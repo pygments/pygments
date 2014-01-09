@@ -18,7 +18,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
 __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'AgdaLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
            'SMLLexer', 'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer',
-           'OpaLexer', 'CoqLexer', 'NewLispLexer', 'ElixirLexer',
+           'OpaLexer', 'CoqLexer', 'NewLispLexer', 'NixLexer', 'ElixirLexer',
            'ElixirConsoleLexer', 'KokaLexer']
 
 
@@ -71,7 +71,7 @@ class RacketLexer(RegexLexer):
         'syntax/loc', 'time', 'transcript-off', 'transcript-on', 'unless',
         'unquote', 'unquote-splicing', 'unsyntax', 'unsyntax-splicing',
         'when', 'with-continuation-mark', 'with-handlers',
-        'with-handlers*', 'with-syntax', 'λ'
+        'with-handlers*', 'with-syntax', u'λ'
     ]
 
     # From namespace-mapped-symbols
@@ -2359,6 +2359,127 @@ class NewLispLexer(RegexLexer):
     }
 
 
+class NixLexer(RegexLexer):
+    """
+    For the `Nix language <http://nixos.org/nix/>`_.
+
+    *New in Pygments 1.7.*
+    """
+
+    name = 'Nix'
+    aliases = ['nixos']
+    filenames = ['*.nix']
+    mimetypes = ['text/x-nix']
+
+    flags = re.MULTILINE | re.UNICODE
+
+    keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
+                'else', 'then', '...']
+    builtins = ['import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',
+                'map', 'removeAttrs', 'throw', 'toString', 'derivation']
+    operators = ['++', '+', '?', '.', '!', '//', '==',
+                 '!=', '&&', '||', '->', '=']
+
+    punctuations = ["(", ")", "[", "]", ";", "{", "}", ":", ",", "@"]
+
+    tokens = {
+        'root': [
+            # comments starting with #
+            (r'#.*$', Comment.Single),
+
+            # multiline comments
+            (r'/\*', Comment.Multiline, 'comment'),
+
+            # whitespace
+            (r'\s+', Text),
+
+            # keywords
+            ('(%s)' % '|'.join(re.escape(entry) + '\\b' for entry in keywords), Keyword),
+
+            # highlight the builtins
+            ('(%s)' % '|'.join(re.escape(entry) + '\\b' for entry in builtins),
+             Name.Builtin),
+
+            (r'\b(true|false)\b', Name.Constant),
+
+            # operators
+            ('(%s)' % '|'.join(re.escape(entry) for entry in operators),
+             Operator),
+
+            # word operators
+            (r'\b(or|and)\b', Operator.Word),
+
+            # punctuations
+            ('(%s)' % '|'.join(re.escape(entry) for entry in punctuations), Punctuation),
+
+            # integers
+            (r'[0-9]+', Number.Integer),
+
+            # strings
+            (r'"', String.Double, 'doublequote'),
+            (r"''", String.Single, 'singlequote'),
+
+            # paths
+            (r'[a-zA-Z0-9._+-]*(\/[a-zA-Z0-9._+-]+)+', Literal),
+            (r'\<[a-zA-Z0-9._+-]+(\/[a-zA-Z0-9._+-]+)*\>', Literal),
+
+            # urls
+            (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[a-zA-Z0-9%/?:@&=+$,\\_.!~*\'-]+', Literal),
+
+            # names of variables
+            (r'[a-zA-Z_][a-zA-Z0-9_\'-]*', String.Symbol),
+
+        ],
+        'comment': [
+            (r'[^/\*]+', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[\*/]', Comment.Multiline),
+        ],
+        'singlequote': [
+            (r"'''", String.Escape),
+            (r"''\$\{", String.Escape),
+            (r"''\n", String.Escape),
+            (r"''\r", String.Escape),
+            (r"''\t", String.Escape),
+            (r"''", String.Single, '#pop'),
+            (r'\$\{', String.Interpol, 'antiquote'),
+            (r"[^']", String.Single),
+        ],
+        'doublequote': [
+            (r'\\', String.Escape),
+            (r'\\"', String.Escape),
+            (r'\\${', String.Escape),
+            (r'"', String.Double, '#pop'),
+            (r'\$\{', String.Interpol, 'antiquote'),
+            (r'[^"]', String.Double),
+        ],
+        'antiquote': [
+            (r"}", String.Interpol, '#pop'),
+            # TODO: we should probably escape also here ''${ \${
+            (r"\$\{", String.Interpol, '#push'),
+            include('root'),
+        ],
+    }
+
+    def analyse_text(text):
+        rv = 0.0
+        # TODO: let/in
+        if re.search(r'import.+?<[^>]+>', text):
+            rv += 0.4
+        if re.search(r'mkDerivation\s+(\(|\{|rec)', text):
+            rv += 0.4
+        if re.search(r'with\s+[a-zA-Z\.]+;', text):
+            rv += 0.2
+        if re.search(r'inherit\s+[a-zA-Z()\.];', text):
+            rv += 0.2
+        if re.search(r'=\s+mkIf\s+', text):
+            rv += 0.4
+        if re.search(r'\{[a-zA-Z,\s]+\}:', text):
+            rv += 0.1
+        return rv
+
+
 class ElixirLexer(RegexLexer):
     """
     For the `Elixir language <http://elixir-lang.org>`_.
@@ -2378,7 +2499,7 @@ class ElixirLexer(RegexLexer):
             (r'(%[A-Ba-z])?"""(?:.|\n)*?"""', String.Doc),
             (r"'''(?:.|\n)*?'''", String.Doc),
             (r'"', String.Double, 'dqs'),
-            (r"'.*'", String.Single),
+            (r"'.*?'", String.Single),
             (r'(?<!\w)\?(\\(x\d{1,2}|\h{1,2}(?!\h)\b|0[0-7]{0,2}(?![0-7])\b|'
              r'[^x0MC])|(\\[MC]-)+\w|[^\s\\])', String.Other)
         ]
