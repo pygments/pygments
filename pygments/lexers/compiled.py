@@ -3213,6 +3213,8 @@ class RustLexer(RegexLexer):
             (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
              String.Char),
+            # Lifetime
+            (r"""'[a-zA-Z_][a-zA-Z0-9_]*""", Name.Label),
             # Binary Literal
             (r'0[Bb][01_]+', Number, 'number_lit'),
             # Octal Literal
