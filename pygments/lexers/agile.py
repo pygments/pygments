@@ -1941,7 +1941,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     flags     = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]" # if you alter this, search for a copy made of it below
+    PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]"
 
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
@@ -2281,10 +2281,6 @@ class Perl6Lexer(ExtendedRegexLexer):
             # Perl 5.
             return 0.91
         if re.search(r'sub\s+\w+:\w*[^a-zA-Z0-9{(: ]', text): # Special sub/method syntax (ex. sub postcircumfix:<[ ]>)
-            return 0.91
-        # XXX I don't like the copy+pasting of PERL6_IDENTIFIER_RANGE from above, but I don't know how to access it
-        #     otherwise
-        if re.search(r'my\s+[\'a-zA-Z0-9_:-]+\s+[$@%(]', text): # my TYPE [$scalar|@array|%hash|($list, $of, $vars)]
             return 0.91
 
         for line in text.splitlines():
