@@ -1917,6 +1917,7 @@ class IgorLexer(RegexLexer):
         ],
     }
 
+
 class MathematicaLexer(RegexLexer):
     """
     Lexer for `Mathematica <http://www.wolfram.com/mathematica/>`_ source code.
@@ -1925,7 +1926,7 @@ class MathematicaLexer(RegexLexer):
     """
     name = 'Mathematica'
     aliases = ['mathematica', 'mma', 'nb']
-    filenames = ['*.nb', '*.cdf', '*.nbp', "*.ma"]
+    filenames = ['*.nb', '*.cdf', '*.nbp', '*.ma']
     mimetypes = ['application/mathematica',
                  'application/vnd.wolfram.mathematica',
                  'application/vnd.wolfram.mathematica.package',
@@ -1945,7 +1946,7 @@ class MathematicaLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\(\*.*\*\)', Comment),
+            (r'(?s)\(\*.*?\*\)', Comment),
 
             (r'([a-zA-Z]+[A-Za-z0-9]*`)', Name.Namespace),
             (r'([A-Za-z0-9]*_+[A-Za-z0-9]*)', Name.Variable),
@@ -1958,7 +1959,7 @@ class MathematicaLexer(RegexLexer):
 
             (_multi_escape(operators), Operator),
             (_multi_escape(punctuation), Punctuation),
-            (r'(".*")', String),
+            (r'".*?"', String),
             (r'\s+', Text.Whitespace),
         ],
     }
