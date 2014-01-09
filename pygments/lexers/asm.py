@@ -216,6 +216,7 @@ class LlvmLexer(RegexLexer):
             (r'@' + identifier, Name.Variable.Global),#Name.Identifier.Global),
             (r'%\d+', Name.Variable.Anonymous),#Name.Identifier.Anonymous),
             (r'@\d+', Name.Variable.Global),#Name.Identifier.Anonymous),
+            (r'#\d+', Name.Variable.Global),#Name.Identifier.Global),
             (r'!' + identifier, Name.Variable),
             (r'!\d+', Name.Variable.Anonymous),
             (r'c?' + string, String),
@@ -242,17 +243,24 @@ class LlvmLexer(RegexLexer):
              r'|thread_local|zeroinitializer|undef|null|to|tail|target|triple'
              r'|datalayout|volatile|nuw|nsw|nnan|ninf|nsz|arcp|fast|exact|inbounds'
              r'|align|addrspace|section|alias|module|asm|sideeffect|gc|dbg'
+             r'|linker_private_weak'
+             r'|attributes|blockaddress|initialexec|localdynamic|localexec'
+             r'|prefix|unnamed_addr'
 
              r'|ccc|fastcc|coldcc|x86_stdcallcc|x86_fastcallcc|arm_apcscc'
              r'|arm_aapcscc|arm_aapcs_vfpcc|ptx_device|ptx_kernel'
+             r'|intel_ocl_bicc|msp430_intrcc|spir_func|spir_kernel'
+             r'|x86_64_sysvcc|x86_64_win64cc|x86_thiscallcc'
 
              r'|cc|c'
 
              r'|signext|zeroext|inreg|sret|nounwind|noreturn|noalias|nocapture'
              r'|byval|nest|readnone|readonly'
-
              r'|inlinehint|noinline|alwaysinline|optsize|ssp|sspreq|noredzone'
              r'|noimplicitfloat|naked'
+             r'|builtin|cold|nobuiltin|noduplicate|nonlazybind|optnone'
+             r'|returns_twice|sanitize_address|sanitize_memory|sanitize_thread'
+             r'|sspstrong|uwtable|returned'
 
              r'|type|opaque'
 
@@ -261,24 +269,30 @@ class LlvmLexer(RegexLexer):
              r'|oeq|one|olt|ogt|ole'
              r'|oge|ord|uno|ueq|une'
              r'|x'
+             r'|acq_rel|acquire|alignstack|atomic|catch|cleanup|filter'
+             r'|inteldialect|max|min|monotonic|nand|personality|release'
+             r'|seq_cst|singlethread|umax|umin|unordered|xchg'
 
              # instructions
              r'|add|fadd|sub|fsub|mul|fmul|udiv|sdiv|fdiv|urem|srem|frem|shl'
              r'|lshr|ashr|and|or|xor|icmp|fcmp'
 
              r'|phi|call|trunc|zext|sext|fptrunc|fpext|uitofp|sitofp|fptoui'
-             r'fptosi|inttoptr|ptrtoint|bitcast|select|va_arg|ret|br|switch'
+             r'|fptosi|inttoptr|ptrtoint|bitcast|select|va_arg|ret|br|switch'
              r'|invoke|unwind|unreachable'
+             r'|indirectbr|landingpad|resume'
 
              r'|malloc|alloca|free|load|store|getelementptr'
 
              r'|extractelement|insertelement|shufflevector|getresult'
              r'|extractvalue|insertvalue'
+             
+             r'|atomicrmw|cmpxchg|fence'
 
              r')\b', Keyword),
 
             # Types
-            (r'void|float|double|x86_fp80|fp128|ppc_fp128|label|metadata',
+            (r'void|half|float|double|x86_fp80|fp128|ppc_fp128|label|metadata',
              Keyword.Type),
 
             # Integer types
