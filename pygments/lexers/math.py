@@ -403,17 +403,22 @@ class MatlabSessionLexer(Lexer):
         for match in line_re.finditer(text):
             line = match.group()
 
-            if line.startswith('>>'):
+            if line.startswith('>> '):
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:3])]))
                 curcode += line[3:]
+
+            elif line.startswith('>>'):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, line[:2])]))
+                curcode += line[2:]
 
             elif line.startswith('???'):
 
                 idx = len(curcode)
 
                 # without is showing error on same line as before...?
-                line = "\n" + line
+                #line = "\n" + line
                 token = (0, Generic.Traceback, line)
                 insertions.append((idx, [token]))
 
@@ -427,6 +432,7 @@ class MatlabSessionLexer(Lexer):
 
                 yield match.start(), Generic.Output, line
 
+        print insertions
         if curcode: # or item:
             for item in do_insertions(
                 insertions, mlexer.get_tokens_unprocessed(curcode)):
