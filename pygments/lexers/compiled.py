@@ -231,6 +231,7 @@ class CppLexer(CFamilyLexer):
     def analyse_text(text):
         return 0.1
 
+
 class PikeLexer(CppLexer):
     """
     For `Pike <http://pike.lysator.liu.se/>`_ source code.
@@ -268,6 +269,7 @@ class PikeLexer(CppLexer):
             (r'\s*(?=>)', Text, '#pop'),
         ],
     }
+
 
 class SwigLexer(CppLexer):
     """
