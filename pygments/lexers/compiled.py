@@ -278,7 +278,7 @@ class SwigLexer(CppLexer):
     *New in Pygments 1.7.*
     """
     name = 'SWIG'
-    aliases = ['Swig', 'swig']
+    aliases = ['swig']
     filenames = ['*.swg', '*.i']
     mimetypes = ['text/swig']
     priority = 0.04 # Lower than C/C++ and Objective C/C++

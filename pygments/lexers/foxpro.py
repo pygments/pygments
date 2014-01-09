@@ -28,7 +28,7 @@ class FoxProLexer(RegexLexer):
     """
 
     name = 'FoxPro'
-    aliases = ['Clipper', 'XBase']
+    aliases = ['foxpro', 'vfp', 'clipper', 'xbase']
     filenames = ['*.PRG', '*.prg']
     mimetype = []
 

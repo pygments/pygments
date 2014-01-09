@@ -45,6 +45,8 @@ def test_lexer_classes():
         result = cls.analyse_text(".abc")
         assert isinstance(result, float) and 0.0 <= result <= 1.0
 
+        assert all(al.lower() == al for al in cls.aliases)
+
         inst = cls(opt1="val1", opt2="val2")
         if issubclass(cls, RegexLexer):
             if not hasattr(cls, '_tokens'):
