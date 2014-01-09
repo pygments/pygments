@@ -532,7 +532,7 @@ class RubyLexer(ExtendedRegexLexer):
             (r":'(\\\\|\\'|[^'])*'", String.Symbol),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r':"', String.Symbol, 'simple-sym'),
-            (r'([a-zA-Z_][a-zA-Z0-9]*)(:)(?!:)',
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)(?!:)',
              bygroups(String.Symbol, Punctuation)),  # Since Ruby 1.9
             (r'"', String.Double, 'simple-string'),
             (r'(?<!\.)`', String.Backtick, 'simple-backtick'),
@@ -848,7 +848,7 @@ class PerlLexer(RegexLexer):
 
     name = 'Perl'
     aliases = ['perl', 'pl']
-    filenames = ['*.pl', '*.pm']
+    filenames = ['*.pl', '*.pm', '*.t']
     mimetypes = ['text/x-perl', 'application/x-perl']
 
     flags = re.DOTALL | re.MULTILINE
@@ -1937,7 +1937,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     name      = 'Perl6'
     aliases   = ['perl6', 'pl6']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
-                 '*.6pm', '*.p6m', '*.pm6']
+                 '*.6pm', '*.p6m', '*.pm6', '*.t']
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     flags     = re.MULTILINE | re.DOTALL | re.UNICODE
 
