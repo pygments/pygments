@@ -3768,6 +3768,8 @@ class LogosLexer(ObjectiveCppLexer):
 class ChapelLexer(RegexLexer):
     """
     For `Chapel <http://chapel.cray.com/>`_ source.
+
+    *New in Pygments 1.7.*
     """
     name = 'Chapel'
     filenames = ['*.chpl']
