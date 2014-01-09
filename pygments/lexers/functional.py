@@ -2380,6 +2380,8 @@ class NixLexer(RegexLexer):
     operators = ['++', '+', '?', '.', '!', '//', '==',
                  '!=', '&&', '||', '->', '=']
 
+    punctuations = ["(", ")", "[", "]", ";", "{", "}", ":", ",", "@"]
+
     tokens = {
         'root': [
             # comments starting with #
@@ -2395,7 +2397,7 @@ class NixLexer(RegexLexer):
             ('(%s)' % '|'.join(re.escape(entry) + '\\b' for entry in keywords), Keyword),
 
             # highlight the builtins
-            ('(%s)' % '|'.join(re.escape(entry) for entry in builtins),
+            ('(%s)' % '|'.join(re.escape(entry) + '\\b' for entry in builtins),
              Name.Builtin),
 
             (r'\b(true|false)\b', Name.Constant),
@@ -2405,14 +2407,10 @@ class NixLexer(RegexLexer):
              Operator),
 
             # word operators
-            (r'(or|and)', Operator.Word),
-
+            (r'\b(or|and)\b', Operator.Word),
 
             # punctuations
-            (r'(\(|\)|\[|\]|;|\{|\}|:|@|,)', Punctuation),
-
-            # semicolons
-            (r';', Punctuation),
+            ('(%s)' % '|'.join(re.escape(entry) for entry in punctuations), Punctuation),
 
             # integers
             (r'[0-9]+', Number.Integer),
@@ -2422,14 +2420,14 @@ class NixLexer(RegexLexer):
             (r"''", String.Single, 'singlequote'),
 
             # paths
-            (r'[a-zA-Z0-9\.\_\-\+]*(\/[a-zA-Z0-9\.\_\-\+]+)+', Literal),
-            (r'\<[a-zA-Z0-9\.\_\-\+]+(\/[a-zA-Z0-9\.\_\-\+]+)*\>', Literal),
+            (r'[a-zA-Z0-9._+-]*(\/[a-zA-Z0-9._+-]+)+', Literal),
+            (r'\<[a-zA-Z0-9._+-]+(\/[a-zA-Z0-9._+-]+)*\>', Literal),
 
             # urls
-            (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[a-zA-Z0-9\%\/\?\:\@\&\=\+\$\,\-\_\.\!\~\*\']+', Literal),
+            (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[a-zA-Z0-9%/?:@&=+$,\\_.!~*\'-]+', Literal),
 
             # names of variables
-            (r'[a-zA-Z\_][a-zA-Z0-9\_\'\-]*', String.Symbol),
+            (r'[a-zA-Z_][a-zA-Z0-9_\'-]*', String.Symbol),
 
         ],
         'comment': [
@@ -2467,17 +2465,17 @@ class NixLexer(RegexLexer):
     def analyse_text(text):
         rv = 0.0
         # TODO: let/in
-        if re.search(r'import.+?<[^>]+>', text) is not None:
+        if re.search(r'import.+?<[^>]+>', text):
             rv += 0.4
-        if re.search(r'mkDerivation\s+(\(|\{|rec)', text) is not None:
+        if re.search(r'mkDerivation\s+(\(|\{|rec)', text):
             rv += 0.4
-        if re.search(r'with\s+[a-zA-Z\.]+;', text) is not None:
+        if re.search(r'with\s+[a-zA-Z\.]+;', text):
             rv += 0.2
-        if re.search(r'inherit\s+[a-zA-Z()\.];', text) is not None:
+        if re.search(r'inherit\s+[a-zA-Z()\.];', text):
             rv += 0.2
-        if re.search(r'=\s+mkIf\s+', text) is not None:
+        if re.search(r'=\s+mkIf\s+', text):
             rv += 0.4
-        if re.search(r'\{[a-zA-Z,\s]+\}:', text) is not None:
+        if re.search(r'\{[a-zA-Z,\s]+\}:', text):
             rv += 0.1
         return rv
 
