@@ -1217,15 +1217,16 @@ class ModelicaLexer(RegexLexer):
         ],
         'statements': [
             (r'"', String, 'string'),
+            (r'\'', Name, 'quoted_ident'),
             (r'(\d+\.\d*|\.\d+|\d+|\d.)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+)', Number.Float),
             (r'\d+[Ll]?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\]{},.;]', Punctuation),
             (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
-            (r"([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*')"
-             r"(\.([a-zA-Z_][\w]*|'[a-zA-Z_\+\-\*\/\^][\w]*'))+", Name.Class),
-            (r"('[\w\+\-\*\/\^]+'|\w+)", Name),
+            (r'([a-zA-Z_][\w\[\]]*|\'[a-zA-Z_\+\-\*\/\^][\w]*\')'
+             r'(\.([a-zA-Z_\][\w\[\]]*|\'[a-zA-Z_\+\-\*\/\^][\w]*\'))+', Name.Class),
+            (r'(\'[\w\+\-\*\/\^]+\'|\w+)', Name),
         ],
         'root': [
             include('whitespace'),
@@ -1239,7 +1240,7 @@ class ModelicaLexer(RegexLexer):
         'keywords': [
             (r'(algorithm|annotation|break|connect|constant|constrainedby|'
             r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
-            r'end|equation|exit|expandable|extends|'
+            r'equation|exit|expandable|extends|'
             r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
             r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
             r'protected|public|pure|redeclare|replaceable|stream|time|then|true|'
@@ -1258,9 +1259,13 @@ class ModelicaLexer(RegexLexer):
              r'terminate)\b', Name.Builtin),
         ],
         'classes': [
-            (r'(block|class|connector|function|model|package|'
-             r'record|type)(\s+)([A-Za-z_]+)',
-             bygroups(Keyword, Text, Name.Class))
+            (r'(block|class|connector|end|function|model|package|'
+             r'record|type)(\s+)((?!if|when|while)[A-Za-z_]\w*|[\'][^\']+[\'])([;]?)',
+             bygroups(Keyword, Text, Name.Class, Text))
+        ],
+        'quoted_ident': [
+            (r'\'', Name, '#pop'),
+            (r'[^\']+', Name), # all other characters
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -1271,7 +1276,7 @@ class ModelicaLexer(RegexLexer):
             (r'\\', String), # stray backslash
         ],
         'html-content': [
-            (r'<\s*/\s*html\s*>', Name.Tag, '#pop'),
+            (r'<\s*/\s*html\s*>"', Name.Tag, '#pop'),
             (r'.+?(?=<\s*/\s*html\s*>)', using(HtmlLexer)),
         ]
     }
@@ -1381,9 +1386,9 @@ class RebolLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'REBOL', Generic.Strong, 'script'),
-            (r'R', Comment),
             (r'[^R]+', Comment),
+            (r'REBOL\s+\[', Generic.Strong, 'script'),
+            (r'R', Comment)
         ],
         'script': [
             (r'\s+', Text),
@@ -1400,8 +1405,8 @@ class RebolLexer(RegexLexer):
             (r'%[^(\^{^")\s\[\]]+', Name.Decorator),
             (r'[+-]?([a-zA-Z]{1,3})?\$\d+(\.\d+)?', Number.Float), # money
             (r'[+-]?\d+\:\d+(\:\d+)?(\.\d+)?', String.Other), # time
-            (r'\d+\-[0-9a-zA-Z]+\-\d+(\/\d+\:\d+(\:\d+)?'
-             r'([\.\d+]?([+-]?\d+:\d+)?)?)?', String.Other), # date
+            (r'\d+[\-\/][0-9a-zA-Z]+[\-\/]\d+(\/\d+\:\d+((\:\d+)?'
+             r'([\.\d+]?([+-]?\d+:\d+)?)?)?)?', String.Other), # date
             (r'\d+(\.\d+)+\.\d+', Keyword.Constant), # tuple
             (r'\d+[xX]\d+', Keyword.Constant), # pair
             (r'[+-]?\d+(\'\d+)?([\.,]\d*)?[eE][+-]?\d+', Number.Float),
@@ -1493,6 +1498,16 @@ class RebolLexer(RegexLexer):
             (r'[^(\[\])]+', Comment),
         ],
     }
+    def analyse_text(text):
+        """
+        Check if code contains REBOL header and so it probably not R code
+        """
+        if re.match(r'^\s*REBOL\s*\[', text, re.IGNORECASE):
+            # The code starts with REBOL header
+            return 1.0
+        elif re.search(r'\s*REBOL\s*[', text, re.IGNORECASE):
+            # The code contains REBOL header but also some text before it
+            return 0.5
 
 
 class ABAPLexer(RegexLexer):
@@ -1780,6 +1795,7 @@ class GherkinLexer(RegexLexer):
         'examples_table_header': [
             (r"\s+\|\s*$", Keyword, "#pop:2"),
             include('comments'),
+            (r"\\\|", Name.Variable),
             (r"\s*\|", Keyword),
             (r"[^\|]", Name.Variable),
           ],
@@ -1822,6 +1838,7 @@ class GherkinLexer(RegexLexer):
           'table_content': [
             (r"\s+\|\s*$", Keyword, "#pop"),
             include('comments'),
+            (r"\\\|", String),
             (r"\s*\|", Keyword),
             include('string'),
           ],
