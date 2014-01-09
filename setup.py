@@ -31,16 +31,22 @@ try:
     from setuptools import setup, find_packages
     have_setuptools = True
 except ImportError:
-    from distutils.core import setup
-    def find_packages():
-        return [
-            'pygments',
-            'pygments.lexers',
-            'pygments.formatters',
-            'pygments.styles',
-            'pygments.filters',
-        ]
-    have_setuptools = False
+    try:
+        import ez_setup
+        ez_setup.use_setuptools()
+        from setuptools import setup, find_packages
+        have_setuptools = True
+    except ImportError:
+        from distutils.core import setup
+        def find_packages(*args, **kwargs):
+            return [
+                'pygments',
+                'pygments.lexers',
+                'pygments.formatters',
+                'pygments.styles',
+                'pygments.filters',
+            ]
+        have_setuptools = False
 
 try:
     from distutils.command.build_py import build_py_2to3 as build_py
@@ -68,7 +74,7 @@ setup(
     description = 'Pygments is a syntax highlighting package written in Python.',
     long_description = __doc__,
     keywords = 'syntax highlighting',
-    packages = find_packages(),
+    packages = find_packages(exclude=['ez_setup']),
     platforms = 'any',
     zip_safe = False,
     include_package_data = True,

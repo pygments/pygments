@@ -2442,10 +2442,10 @@ class CoffeeScriptLexer(RegexLexer):
             #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
-             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|'
-             r'=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?',
+             r'\|\||\\(?=\n)|'
+             r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?',
              Operator, 'slashstartsregex'),
-            (r'(?:\([^()]+\))?\s*[=-]>', Name.Function),
+            (r'(?:\([^()]*\))?\s*[=-]>', Name.Function),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(?<![\.\$])(for|own|in|of|while|until|'
