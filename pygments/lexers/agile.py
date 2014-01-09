@@ -2294,7 +2294,7 @@ class HyLexer(RegexLexer):
     *New in Pygments 1.7.*
     """
     name = 'Hy'
-    aliases = ['hy']
+    aliases = ['hylang']
     filenames = ['*.hy']
     mimetypes = ['text/x-hy', 'application/x-hy']
     

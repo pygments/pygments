@@ -136,7 +136,7 @@ LEXERS = {
     'HtmlSmartyLexer': ('pygments.lexers.templates', 'HTML+Smarty', ('html+smarty',), (), ('text/html+smarty',)),
     'HttpLexer': ('pygments.lexers.text', 'HTTP', ('http',), (), ()),
     'HxmlLexer': ('pygments.lexers.text', 'Hxml', ('haxeml', 'hxml'), ('*.hxml',), ()),
-    'HyLexer': ('pygments.lexers.agile', 'Hy', ('hy',), ('*.hy',), ('text/x-hy', 'application/x-hy')),
+    'HyLexer': ('pygments.lexers.agile', 'Hy', ('hylang',), ('*.hy',), ('text/x-hy', 'application/x-hy')),
     'HybrisLexer': ('pygments.lexers.other', 'Hybris', ('hybris', 'hy'), ('*.hy', '*.hyb'), ('text/x-hybris', 'application/x-hybris')),
     'IDLLexer': ('pygments.lexers.math', 'IDL', ('idl',), ('*.pro',), ('text/idl',)),
     'IgorLexer': ('pygments.lexers.math', 'Igor', ('igor', 'igorpro'), ('*.ipf',), ('text/ipf',)),
