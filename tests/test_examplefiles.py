@@ -32,23 +32,29 @@ def test_example_files():
         if not os.path.isfile(absfn):
             continue
 
-        code = open(absfn).read()
+        print absfn
+        code = open(absfn, 'rb').read()
+        try:
+            code = code.decode('utf-8')
+        except UnicodeError:
+            code = code.decode('latin1')
         
         outfn = os.path.join(outdir, fn)
 
-        try:
-            lx = get_lexer_for_filename(absfn, code=code)
-        except ClassNotFound:
-            if "_" not in fn:
+        lx = None
+        if '_' in fn:
+            try:
+                lx = get_lexer_by_name(fn.split('_')[0])
+            except ClassNotFound:
+                pass
+        if lx is None:
+            try:
+                lx = get_lexer_for_filename(absfn, code=code)
+            except ClassNotFound:
                 raise AssertionError('file %r has no registered extension, '
                                      'nor is of the form <lexer>_filename '
                                      'for overriding, thus no lexer found.'
-                                    % fn)
-            try:
-                name, rest = fn.split("_", 1)
-                lx = get_lexer_by_name(name)
-            except ClassNotFound:
-                raise AssertionError('no lexer found for file %r' % fn)
+                                     % fn)
         yield check_lexer, lx, absfn, outfn
 
 def check_lexer(lx, absfn, outfn):
