@@ -71,7 +71,7 @@ class RacketLexer(RegexLexer):
         'syntax/loc', 'time', 'transcript-off', 'transcript-on', 'unless',
         'unquote', 'unquote-splicing', 'unsyntax', 'unsyntax-splicing',
         'when', 'with-continuation-mark', 'with-handlers',
-        'with-handlers*', 'with-syntax', 'λ'
+        'with-handlers*', 'with-syntax', u'λ'
     ]
 
     # From namespace-mapped-symbols
