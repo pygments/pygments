@@ -2288,7 +2288,11 @@ class Perl6Lexer(ExtendedRegexLexer):
             return 0.91
 
         for line in text.splitlines():
-            if re.match(r'\s*(?:my|our)?\s*(?:module|role|class)\b', line): # module, role, class declarations
+            if re.match(r'\s*(?:my|our)?\s*module', line): # module declarations
+                return 0.91
+            if re.match(r'\s*(?:my|our)?\s*role', line): # role declarations
+                return 0.91
+            if re.match(r'\s*(?:my|our)?\s*class\b', line): # class declarations
                 return 0.91
         return False
 
