@@ -30,7 +30,8 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'Modula2Lexer', 'BlitzMaxLexer', 'BlitzBasicLexer', 'NimrodLexer',
            'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
-           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'ChapelLexer']
+           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'PikeLexer',
+           'ChapelLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -230,6 +231,45 @@ class CppLexer(CFamilyLexer):
 
     def analyse_text(text):
         return 0.1
+
+
+class PikeLexer(CppLexer):
+    """
+    For `Pike <http://pike.lysator.liu.se/>`_ source code.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'Pike'
+    aliases = ['pike']
+    filenames = ['*.pike', '*.pmod']
+    mimetypes = ['text/x-pike']
+
+    tokens = {
+        'statements': [
+            (r'(catch|new|private|protected|public|gauge|'
+             r'throw|throws|class|interface|implement|abstract|extends|from|'
+             r'this|super|new|constant|final|static|import|use|extern|'
+             r'inline|proto|break|continue|if|else|for|'
+             r'while|do|switch|case|as|in|version|return|true|false|null|'
+             r'__VERSION__|__MAJOR__|__MINOR__|__BUILD__|__REAL_VERSION__|'
+             r'__REAL_MAJOR__|__REAL_MINOR__|__REAL_BUILD__|__DATE__|__TIME__|'
+             r'__FILE__|__DIR__|__LINE__|__AUTO_BIGNUM__|__NT__|__PIKE__|'
+             r'__amigaos__|_Pragma|static_assert|defined|sscanf)\b',
+             Keyword),
+            (r'(bool|int|long|float|short|double|char|string|object|void|mapping|'
+             r'array|multiset|program|function|lambda|mixed|'
+             r'[a-z_][a-z0-9_]*_t)\b',
+             Keyword.Type),
+            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'[~!%^&*+=|?:<>/-@]', Operator),
+            inherit,
+        ],
+        'classname': [
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            # template specification
+            (r'\s*(?=>)', Text, '#pop'),
+        ],
+    }
 
 
 class SwigLexer(CppLexer):
@@ -3213,6 +3253,8 @@ class RustLexer(RegexLexer):
             (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
              String.Char),
+            # Lifetime
+            (r"""'[a-zA-Z_][a-zA-Z0-9_]*""", Name.Label),
             # Binary Literal
             (r'0[Bb][01_]+', Number, 'number_lit'),
             # Octal Literal
