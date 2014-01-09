@@ -19,6 +19,7 @@ data {
   positive_ordered[3] wibble;
   corr_matrix[3] grault;
   cov_matrix[3] garply;
+  cholesky_factor_cov[3] waldo;
   
   real<lower=-1,upper=1> foo1;
   real<lower=0> foo2;
@@ -94,6 +95,7 @@ model {
   // lp__ should be highlighted
   // normal_log as a function
   lp__ <- lp__ + normal_log(plugh, 0, 1);
+  increment_log_prob(normal_log(plugh, 0, 1));
   
   // print statement and string literal
   print("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_~@#$%^&*`'-+={}[].,;: ");

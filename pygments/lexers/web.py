@@ -833,7 +833,8 @@ class PhpLexer(RegexLexer):
              r'endif|list|__LINE__|endswitch|new|__sleep|endwhile|not|'
              r'array|__wakeup|E_ALL|NULL|final|php_user_filter|interface|'
              r'implements|public|private|protected|abstract|clone|try|'
-             r'catch|throw|this|use|namespace|trait)\b', Keyword),
+             r'catch|throw|this|use|namespace|trait|yield|'
+             r'finally)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'\$\{\$+[a-zA-Z_][a-zA-Z0-9_]*\}', Name.Variable),
             (r'\$+[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
@@ -843,6 +844,7 @@ class PhpLexer(RegexLexer):
             (r'0[0-7]+', Number.Oct),
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+', Number.Integer),
+            (r'0b[01]+', Number.Binary),
             (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
             (r'`([^`\\]*(?:\\.[^`\\]*)*)`', String.Backtick),
             (r'"', String.Double, 'string'),
@@ -2442,10 +2444,10 @@ class CoffeeScriptLexer(RegexLexer):
             #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
-             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|'
-             r'=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?',
+             r'\|\||\\(?=\n)|'
+             r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?',
              Operator, 'slashstartsregex'),
-            (r'(?:\([^()]+\))?\s*[=-]>', Name.Function),
+            (r'(?:\([^()]*\))?\s*[=-]>', Name.Function),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(?<![\.\$])(for|own|in|of|while|until|'
