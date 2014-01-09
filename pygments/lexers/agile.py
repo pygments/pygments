@@ -2290,6 +2290,8 @@ class Perl6Lexer(ExtendedRegexLexer):
 class HyLexer(RegexLexer):
     """
     Lexer for `Hy <http://hylang.org/>`_ source code.
+
+    *New in Pygments 1.7.*
     """
     name = 'Hy'
     aliases = ['hy']
