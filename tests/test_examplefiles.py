@@ -31,10 +31,13 @@ def test_example_files():
         absfn = os.path.join(testdir, 'examplefiles', fn)
         if not os.path.isfile(absfn):
             continue
+
+        code = open(absfn).read()
+        
         outfn = os.path.join(outdir, fn)
 
         try:
-            lx = get_lexer_for_filename(absfn)
+            lx = get_lexer_for_filename(absfn, code=code)
         except ClassNotFound:
             if "_" not in fn:
                 raise AssertionError('file %r has no registered extension, '
