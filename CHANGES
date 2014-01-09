@@ -30,6 +30,9 @@ Version 1.7
   * Chapel (PR#256)
   * Kal (PR#233)
 
+- File name matching in lexers and formatters will now use a regex cache
+  for speed (PR#205).
+
 - Pygments will now recognize "vim" modelines when guessing the lexer for
   a file based on content (PR#118).
 
