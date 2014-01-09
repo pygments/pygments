@@ -93,14 +93,14 @@ class MonokaiStyle(Style):
         String.Symbol:             "",        # class: 'ss'
 
         Generic:                   "",        # class: 'g'
-        Generic.Deleted:           "",        # class: 'gd',
+        Generic.Deleted:           "#f92672", # class: 'gd',
         Generic.Emph:              "italic",  # class: 'ge'
         Generic.Error:             "",        # class: 'gr'
         Generic.Heading:           "",        # class: 'gh'
-        Generic.Inserted:          "",        # class: 'gi'
+        Generic.Inserted:          "#a6e22e", # class: 'gi'
         Generic.Output:            "",        # class: 'go'
         Generic.Prompt:            "",        # class: 'gp'
         Generic.Strong:            "bold",    # class: 'gs'
-        Generic.Subheading:        "",        # class: 'gu'
+        Generic.Subheading:        "#75715e", # class: 'gu'
         Generic.Traceback:         "",        # class: 'gt'
     }
