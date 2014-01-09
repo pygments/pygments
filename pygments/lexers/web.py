@@ -364,7 +364,7 @@ class CssLexer(RegexLexer):
             (r'\#[a-zA-Z0-9_-]+', Name.Function),
             (r'@[a-zA-Z0-9_-]+', Keyword, 'atrule'),
             (r'[a-zA-Z0-9_-]+', Name.Tag),
-            (r'[~\^\*!%&\[\]\(\)<>\|+=@:;,./?-]', Operator),
+            (r'[~\^\*!%&$\[\]\(\)<>\|+=@:;,./?-]', Operator),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single)
         ],
