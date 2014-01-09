@@ -1381,9 +1381,9 @@ class RebolLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'REBOL', Generic.Strong, 'script'),
-            (r'R', Comment),
             (r'[^R]+', Comment),
+            (r'REBOL\s+\[', Generic.Strong, 'script'),
+            (r'R', Comment)
         ],
         'script': [
             (r'\s+', Text),
@@ -1400,8 +1400,8 @@ class RebolLexer(RegexLexer):
             (r'%[^(\^{^")\s\[\]]+', Name.Decorator),
             (r'[+-]?([a-zA-Z]{1,3})?\$\d+(\.\d+)?', Number.Float), # money
             (r'[+-]?\d+\:\d+(\:\d+)?(\.\d+)?', String.Other), # time
-            (r'\d+\-[0-9a-zA-Z]+\-\d+(\/\d+\:\d+(\:\d+)?'
-             r'([\.\d+]?([+-]?\d+:\d+)?)?)?', String.Other), # date
+            (r'\d+[\-\/][0-9a-zA-Z]+[\-\/]\d+(\/\d+\:\d+((\:\d+)?'
+             r'([\.\d+]?([+-]?\d+:\d+)?)?)?)?', String.Other), # date
             (r'\d+(\.\d+)+\.\d+', Keyword.Constant), # tuple
             (r'\d+[xX]\d+', Keyword.Constant), # pair
             (r'[+-]?\d+(\'\d+)?([\.,]\d*)?[eE][+-]?\d+', Number.Float),
@@ -1493,6 +1493,16 @@ class RebolLexer(RegexLexer):
             (r'[^(\[\])]+', Comment),
         ],
     }
+    def analyse_text(text):
+        """
+        Check if code contains REBOL header and so it probably not R code
+        """
+        if re.match(r'^\s*REBOL\s*\[', text, re.IGNORECASE):
+            # The code starts with REBOL header
+            return 1.0
+        elif re.search(r'\s*REBOL\s*[', text, re.IGNORECASE):
+            # The code contains REBOL header but also some text before it
+            return 0.5
 
 
 class ABAPLexer(RegexLexer):
