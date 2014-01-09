@@ -1848,56 +1848,53 @@ class DgLexer(RegexLexer):
 
     tokens = {
         'root': [
-            # Whitespace:
             (r'\s+', Text),
             (r'#.*?$', Comment.Single),
-            # Lexemes:
-            #  Numbers
-            (r'0[bB][01]+', Number.Bin),
-            (r'0[oO][0-7]+', Number.Oct),
-            (r'0[xX][\da-fA-F]+', Number.Hex),
-            (r'[+-]?\d+\.\d+([eE][+-]?\d+)?[jJ]?', Number.Float),
-            (r'[+-]?\d+[eE][+-]?\d+[jJ]?', Number.Float),
-            (r'[+-]?\d+[jJ]?', Number.Integer),
-            #  Character/String Literals
-            (r"[br]*'''", String, combined('stringescape', 'tsqs', 'string')),
-            (r'[br]*"""', String, combined('stringescape', 'tdqs', 'string')),
-            (r"[br]*'", String, combined('stringescape', 'sqs', 'string')),
-            (r'[br]*"', String, combined('stringescape', 'dqs', 'string')),
-            #  Operators
-            (r"`\w+'*`", Operator), # Infix links
-            #   Reserved infix links
-            (r'\b(or|and|if|else|where|is|in)\b', Operator.Word),
+
+            (r'(?i)0b[01]+', Number.Bin),
+            (r'(?i)0o[0-7]+', Number.Oct),
+            (r'(?i)0x[0-9a-f]+', Number.Hex),
+            (r'(?i)[+-]?[0-9]+\.[0-9]+(e[+-]?[0-9]+)?j?', Number.Float),
+            (r'(?i)[+-]?[0-9]+e[+-]?\d+j?', Number.Float),
+            (r'(?i)[+-]?[0-9]+j?', Number.Integer),
+
+            (r"(?i)(br|r?b?)'''", String, combined('stringescape', 'tsqs', 'string')),
+            (r'(?i)(br|r?b?)"""', String, combined('stringescape', 'tdqs', 'string')),
+            (r"(?i)(br|r?b?)'", String, combined('stringescape', 'sqs', 'string')),
+            (r'(?i)(br|r?b?)"', String, combined('stringescape', 'dqs', 'string')),
+
+            (r"`\w+'*`", Operator),
+            (r'\b(and|in|is|or|where)\b', Operator.Word),
             (r'[!$%&*+\-./:<-@\\^|~;,]+', Operator),
-            #  Identifiers
-            #   Python 3 types
+
             (r"(?<!\.)(bool|bytearray|bytes|classmethod|complex|dict'?|"
              r"float|frozenset|int|list'?|memoryview|object|property|range|"
              r"set'?|slice|staticmethod|str|super|tuple'?|type)"
              r"(?!['\w])", Name.Builtin),
-            #   Python 3 builtins + some more
             (r'(?<!\.)(__import__|abs|all|any|bin|bind|chr|cmp|compile|complex|'
-             r'delattr|dir|divmod|drop|dropwhile|enumerate|eval|filter|flip|'
-             r'foldl1?|format|fst|getattr|globals|hasattr|hash|head|hex|id|'
-             r'init|input|isinstance|issubclass|iter|iterate|last|len|locals|'
-             r'map|max|min|next|oct|open|ord|pow|print|repr|reversed|round|'
-             r'setattr|scanl1?|snd|sorted|sum|tail|take|takewhile|vars|zip)'
-             r"(?!['\w])", Name.Builtin),
+             r'delattr|dir|divmod|drop|dropwhile|enumerate|eval|exhaust|'
+             r'filter|flip|foldl1?|format|fst|getattr|globals|hasattr|hash|'
+             r'head|hex|id|init|input|isinstance|issubclass|iter|iterate|last|'
+             r'len|locals|map|max|min|next|oct|open|ord|pow|print|repr|'
+             r'reversed|round|setattr|scanl1?|snd|sorted|sum|tail|take|'
+             r"takewhile|vars|zip)(?!['\w])", Name.Builtin),
             (r"(?<!\.)(self|Ellipsis|NotImplemented|None|True|False)(?!['\w])",
              Name.Builtin.Pseudo),
+
             (r"(?<!\.)[A-Z]\w*(Error|Exception|Warning)'*(?!['\w])",
              Name.Exception),
-            (r"(?<!\.)(KeyboardInterrupt|SystemExit|StopIteration|"
-             r"GeneratorExit)(?!['\w])", Name.Exception),
-            #   Compiler-defined identifiers
-            (r"(?<![\.\w])(import|inherit|for|while|switch|not|raise|unsafe|"
-             r"yield|with)(?!['\w])", Keyword.Reserved),
-            #   Other links
-            (r"[A-Z_']+\b", Name),
-            (r"[A-Z][\w']*\b", Keyword.Type),
+            (r"(?<!\.)(Exception|GeneratorExit|KeyboardInterrupt|StopIteration|"
+             r"SystemExit)(?!['\w])", Name.Exception),
+
+            (r"(?<![\.\w])(except|finally|for|if|import|not|otherwise|raise|"
+             r"subclass|while|with|yield)(?!['\w])", Keyword.Reserved),
+
+            (r"[A-Z_]+'*(?!['\w])", Name),
+            (r"[A-Z]\w+'*(?!['\w])", Keyword.Type),
             (r"\w+'*", Name),
-            #  Blocks
+
             (r'[()]', Punctuation),
+            (r'.', Error),
         ],
         'stringescape': [
             (r'\\([\\abfnrtv"\']|\n|N{.*?}|u[a-fA-F0-9]{4}|'
