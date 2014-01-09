@@ -1530,7 +1530,7 @@ class FortranLexer(RegexLexer):
 
             (r'(::)', Keyword.Declaration),
 
-            (r'[(),:&%;]', Punctuation),
+            (r'[()\[\],:&%;]', Punctuation),
 
             # Intrinsics
             (r'\b(Abort|Abs|Access|AChar|ACos|AdjustL|AdjustR|AImag|AInt|Alarm|'
