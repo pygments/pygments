@@ -167,8 +167,8 @@ class JuliaConsoleLexer(Lexer):
 
             if line.startswith('julia>'):
                 insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, line[:3])]))
-                curcode += line[3:]
+                                   [(0, Generic.Prompt, line[:6])]))
+                curcode += line[6:]
 
             elif line.startswith('      '):
 
@@ -1308,9 +1308,9 @@ class JagsLexer(RegexLexer):
 class StanLexer(RegexLexer):
     """Pygments Lexer for Stan models.
 
-    The Stan modeling language is specified in the *Stan 1.3.0
+    The Stan modeling language is specified in the *Stan 2.0.1
     Modeling Language Manual* `pdf
-    <http://code.google.com/p/stan/downloads/detail?name=stan-reference-1.3.0.pdf>`_.
+    <https://github.com/stan-dev/stan/releases/download/v2.0.1/stan-reference-2.0.1.pdf>`__
 
     *New in Pygments 1.6.*
     """
