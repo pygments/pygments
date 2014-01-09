@@ -2520,6 +2520,8 @@ class KalLexer(RegexLexer):
 
     .. _Kal: http://rzimmerman.github.io/kal
 
+
+    *New in Pygments 1.7.*
     """
 
     name = 'Kal'
