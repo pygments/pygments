@@ -251,7 +251,9 @@ class VelocityLexer(RegexLexer):
             (r"\b[0-9]+\b", Number),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'\(', Punctuation, '#push'),
-            (r'\)', Punctuation, '#pop')
+            (r'\)', Punctuation, '#pop'),
+            (r'\[', Punctuation, '#push'),
+            (r'\]', Punctuation, '#pop'),
         ]
     }
 
