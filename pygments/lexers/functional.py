@@ -2367,7 +2367,7 @@ class NixLexer(RegexLexer):
     """
 
     name = 'Nix'
-    aliases = ['nixos']
+    aliases = ['nixos', 'nix']
     filenames = ['*.nix']
     mimetypes = ['text/x-nix']
 
