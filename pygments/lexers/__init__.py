@@ -84,7 +84,7 @@ def get_lexer_by_name(_alias, **options):
     """
     # lookup builtin lexers
     for module_name, name, aliases, _, _ in LEXERS.itervalues():
-        if _alias in aliases:
+        if _alias.lower() in aliases:
             if name not in _lexer_cache:
                 _load_lexers(module_name)
             return _lexer_cache[name](**options)
