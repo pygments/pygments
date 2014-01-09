@@ -30,6 +30,8 @@ Version 1.7
   * Chapel (PR#256)
   * Kal (PR#233)
 
+- Lexer aliases passed to ``get_lexer_by_name()`` are now case-insensitive.
+
 - File name matching in lexers and formatters will now use a regex cache
   for speed (PR#205).
 

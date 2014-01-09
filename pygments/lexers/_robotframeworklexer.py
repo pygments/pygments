@@ -60,7 +60,7 @@ class RobotFrameworkLexer(Lexer):
     *New in Pygments 1.6.*
     """
     name = 'RobotFramework'
-    aliases = ['RobotFramework', 'robotframework']
+    aliases = ['robotframework']
     filenames = ['*.txt', '*.robot']
     mimetypes = ['text/x-robotframework']
 

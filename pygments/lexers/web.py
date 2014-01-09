@@ -1141,7 +1141,7 @@ class HaxeLexer(ExtendedRegexLexer):
     """
 
     name = 'Haxe'
-    aliases = ['hx', 'Haxe', 'haxe', 'haXe', 'hxsl']
+    aliases = ['hx', 'haxe', 'hxsl']
     filenames = ['*.hx', '*.hxsl']
     mimetypes = ['text/haxe', 'text/x-haxe', 'text/x-hx']
 
@@ -2011,7 +2011,7 @@ class HamlLexer(ExtendedRegexLexer):
     """
 
     name = 'Haml'
-    aliases = ['haml', 'HAML']
+    aliases = ['haml']
     filenames = ['*.haml']
     mimetypes = ['text/x-haml']
 
@@ -2288,7 +2288,7 @@ class SassLexer(ExtendedRegexLexer):
     """
 
     name = 'Sass'
-    aliases = ['sass', 'SASS']
+    aliases = ['sass']
     filenames = ['*.sass']
     mimetypes = ['text/x-sass']
 
@@ -2752,7 +2752,7 @@ class DuelLexer(RegexLexer):
     """
 
     name = 'Duel'
-    aliases = ['duel', 'Duel Engine', 'Duel View', 'JBST', 'jbst', 'JsonML+BST']
+    aliases = ['duel', 'jbst', 'jsonml+bst']
     filenames = ['*.duel','*.jbst']
     mimetypes = ['text/x-duel','text/x-jbst']
 
@@ -2783,7 +2783,7 @@ class ScamlLexer(ExtendedRegexLexer):
     """
 
     name = 'Scaml'
-    aliases = ['scaml', 'SCAML']
+    aliases = ['scaml']
     filenames = ['*.scaml']
     mimetypes = ['text/x-scaml']
 
@@ -2897,7 +2897,7 @@ class JadeLexer(ExtendedRegexLexer):
     """
 
     name = 'Jade'
-    aliases = ['jade', 'JADE']
+    aliases = ['jade']
     filenames = ['*.jade']
     mimetypes = ['text/x-jade']
 
@@ -4106,7 +4106,7 @@ class QmlLexer(RegexLexer):
     # JavascriptLexer above.
 
     name = 'QML'
-    aliases = ['qml', 'Qt Meta Language', 'Qt modeling Language']
+    aliases = ['qml']
     filenames = ['*.qml',]
     mimetypes = [ 'application/x-qml',]
 

@@ -1765,7 +1765,7 @@ class GherkinLexer(RegexLexer):
     *New in Pygments 1.2.*
     """
     name = 'Gherkin'
-    aliases = ['Cucumber', 'cucumber', 'Gherkin', 'gherkin']
+    aliases = ['cucumber', 'gherkin']
     filenames = ['*.feature']
     mimetypes = ['text/x-gherkin']
 
@@ -3516,7 +3516,7 @@ class AutoItLexer(RegexLexer):
     *New in Pygments 1.6.*
     """
     name = 'AutoIt'
-    aliases = ['autoit', 'Autoit']
+    aliases = ['autoit']
     filenames = ['*.au3']
     mimetypes = ['text/x-autoit']
 
@@ -3696,7 +3696,7 @@ class RexxLexer(RegexLexer):
     *New in Pygments 1.7.*
     """
     name = 'Rexx'
-    aliases = ['rexx', 'ARexx', 'arexx']
+    aliases = ['rexx', 'arexx']
     filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
     mimetypes = ['text/x-rexx']
     flags = re.IGNORECASE
