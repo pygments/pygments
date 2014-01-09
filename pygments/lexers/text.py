@@ -645,9 +645,10 @@ class RstLexer(RegexLexer):
     Additional options accepted:
 
     `handlecodeblocks`
-        Highlight the contents of ``.. sourcecode:: langauge`` and
-        ``.. code:: language`` directives with a lexer for the given
-        language (default: ``True``). *New in Pygments 0.8.*
+        Highlight the contents of ``.. sourcecode:: language``,
+        ``.. code:: language`` and ``.. code-block:: language``
+        directives with a lexer for the given language (default:
+        ``True``). *New in Pygments 0.8.*
     """
     name = 'reStructuredText'
     aliases = ['rst', 'rest', 'restructuredtext']
@@ -731,7 +732,7 @@ class RstLexer(RegexLexer):
             (r'^(\s*)(\|)( .+\n(?:\|  .+\n)*)',
              bygroups(Text, Operator, using(this, state='inline'))),
             # Sourcecode directives
-            (r'^( *\.\.)(\s*)((?:source)?code)(::)([ \t]*)([^\n]+)'
+            (r'^( *\.\.)(\s*)((?:source)?code(?:-block)?)(::)([ \t]*)([^\n]+)'
              r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*|)\n)+)',
              _handle_sourcecode),
             # A directive
