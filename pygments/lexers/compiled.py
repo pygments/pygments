@@ -1339,10 +1339,10 @@ def objective(baselexer):
                 (r'@0x[0-9a-fA-F]+[Ll]?', Number.Hex),
                 (r'@0[0-7]+[Ll]?', Number.Oct),
                 (r'@\d+[Ll]?', Number.Integer),
-                (r'@\(.+\)', Number),
+                (r'@\([^()]+\)', Number),
                 (r'(@selector|@private|@protected|@public|@encode|'
                  r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
-                 r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong'
+                 r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong|'
                  r'weak|strong|retain|assign|unsafe_unretained|nonatomic|'
                  r'readonly|readwrite|setter|getter|typeof|in|out|inout|'
                  r'@synthesize|@dynamic|@optional|@required|@autoreleasepool)\b', Keyword),
