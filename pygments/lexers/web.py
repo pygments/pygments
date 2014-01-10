@@ -28,7 +28,7 @@ __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JsonLexer', 'CssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'LiveScriptLexer',
            'DuelLexer', 'ScamlLexer', 'JadeLexer', 'XQueryLexer',
            'DtdLexer', 'DartLexer', 'LassoLexer', 'QmlLexer', 'TypeScriptLexer',
-           'KalLexer']
+           'KalLexer', 'CirruLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -4164,5 +4164,55 @@ class QmlLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
+        ]
+    }
+
+class CirruLexer(RegexLexer):
+    """
+    Syntax rules of Cirru can be found at:
+    http://grammar.cirru.org/
+
+    * using `()` to markup blocks, but limited in the same line
+    * using `""` to markup strings, allow `\` to escape
+    * using `$` as a shorthand for `()` till indentation end or `)`
+    * using indentations for create nesting
+    """
+
+    name = 'Cirru'
+    aliases = ['cirru']
+    filenames = ['*.cirru', '*.cr']
+    mimetypes = ['text/x-cirru']
+    flags = re.MULTILINE
+
+    tokens = {
+        'string': [
+            (r'[^"\\\n]', String),
+            (r'\\"', String),
+            (r'\\', String),
+            (r'"', String, '#pop'),
+        ],
+        'function': [
+            (r'[\w-][^\s\(\)\"]*', Name.Function, '#pop'),
+            (r'\)', Operator, '#pop'),
+            (r'(?=\n)', Text.Whitespace, '#pop'),
+            (r'\(', Operator, '#push'),
+            (r'"', String, ('#pop', 'string')),
+            (r'\s+', Text.Whitespace),
+        ],
+        'line': [
+            (r'^\B', Text.Whitespace, 'function'),
+            (r'\$', Operator, 'function'),
+            (r'\(', Operator, 'function'),
+            (r'\)', Operator),
+            (r'(?=\n)', Text.Whitespace, '#pop'),
+            (r'\n', Text.Whitespace, '#pop'),
+            (r'"', String, 'string'),
+            (r'\s+', Text.Whitespace),
+            (r'[\d\.]+', Number),
+            (r'[\w-][^\"\(\)\s]*', Name.Variable),
+        ],
+        'root': [
+            (r'^\s*', Text.Whitespace, ('line', 'function')),
+            (r'^\s+$', Text.Whitespace),
         ]
     }
