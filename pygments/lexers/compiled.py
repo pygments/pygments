@@ -31,7 +31,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
            'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'PikeLexer',
-           'ChapelLexer']
+           'ChapelLexer', 'EiffelLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -3855,3 +3855,44 @@ class ChapelLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Function, '#pop'),
         ],
     }
+
+class EiffelLexer(RegexLexer):
+    """
+    For `Eiffel <http://www.eiffel.com>`_ source code.
+    """
+    name = 'Eiffel'
+    aliases = ['eiffel']
+    filenames = ['*.e']
+    mimetypes = ['text/x-eiffel']
+    tokens = {
+        'root': [
+            (r'[^\S\n]+', Text),
+            (r'--.*?\n', Comment.Single),
+            (r'[^\S\n]+', Text),
+                # Please note thant keyword and operator are case insensitive.
+            (r'(?i)(true|false|void|current|result|precursor)\b', Keyword.Constant),
+            (r'(?i)(and(\s+then)?|not|xor|implies|or(\s+else)?)\b', Operator.Word),
+            (r'(?i)\b(across|agent|alias|all|as|assign|attached|attribute|check|'
+                r'class|convert|create|debug|deferred|detachable|do|else|elseif|'
+                r'end|ensure|expanded|export|external|feature|from|frozen|if|'
+                r'inherit|inspect|invariant|like|local|loop|none|note|obsolete|'
+                r'old|once|only|redefine|rename|require|rescue|retry|select|'
+                r'separate|then|undefine|until|variant|when)\b',Keyword.Reserved),
+            (r'"\[(([^\]%]|\n)|%(.|\n)|\][^"])*?\]"', String),
+			(r'"([^"%\n]|%.)*?"', String),
+            include('numbers'),
+            (r"'([^'%]|%'|%%)'", String.Char),
+            (r"(//|\\\\|>=|<=|:=|/=|~|/~|[\\\?!#%&@|+/\-=\>\*$<|^\[\]])", Operator),
+            (r"([{}():;,.])", Punctuation),
+            (r'([a-z][a-zA-Z0-9_]*)|([A-Z][A-Z0-9_]*[a-z][a-zA-Z0-9_]*)', Name),
+            (r'([A-Z][A-Z0-9_]*)', Name.Class),
+            (r'\n+', Text),
+            ],
+        'numbers' : [
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'0[bB][0-1]+', Number.Bin),
+            (r'0[cC][0-7]+', Number.Oct),
+            (r'([0-9]+\.[0-9]*)|([0-9]*\.[0-9]+)', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            ],
+        }
