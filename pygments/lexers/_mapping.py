@@ -98,6 +98,7 @@ LEXERS = {
     'ECLLexer': ('pygments.lexers.other', 'ECL', ('ecl',), ('*.ecl',), ('application/x-ecl',)),
     'ECLexer': ('pygments.lexers.compiled', 'eC', ('ec',), ('*.ec', '*.eh'), ('text/x-echdr', 'text/x-ecsrc')),
     'EbnfLexer': ('pygments.lexers.text', 'EBNF', ('ebnf',), ('*.ebnf',), ('text/x-ebnf',)),
+    'EiffelLexer': ('pygments.lexers.compiled', 'Eiffel', ('eiffel',), ('*.e',), ('text/x-eiffel',)),
     'ElixirConsoleLexer': ('pygments.lexers.functional', 'Elixir iex session', ('iex',), (), ('text/x-elixir-shellsession',)),
     'ElixirLexer': ('pygments.lexers.functional', 'Elixir', ('elixir', 'ex', 'exs'), ('*.ex', '*.exs'), ('text/x-elixir',)),
     'ErbLexer': ('pygments.lexers.templates', 'ERB', ('erb',), (), ('application/x-ruby-templating',)),

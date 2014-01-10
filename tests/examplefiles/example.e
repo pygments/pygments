@@ -2,7 +2,7 @@ note
 	description : "[
 						This is use to have almost every language element."
 						
-						That way, I can correctly test the lexer.
+						That way, I can correctly test the lexer. %]"
 						
 						Don't try to understand what it does. It's not even compilling.
 					]"
@@ -87,7 +87,7 @@ feature -- Access
 				l_list.count - l_list.index
 			end
 			check Current /= Void end
-			debug print("Here%N") end
+			debug print("%"Here%"%N") end
 		ensure
 			Is_Cool_Not_Change: is_cool = old is_cool
 		end
