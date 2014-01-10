@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.styles.xcode
-    ~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Style similar to the `Xcode` default theme.
 
@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic, Whitespace, Text, Other, Literal, Punctuation
+     Number, Operator
 
 
 class XcodeStyle(Style):
@@ -27,7 +27,7 @@ class XcodeStyle(Style):
 
         String:                 '#C41A16',
         String.Char:            '#2300CE',
-        
+
         Operator:               '#000000',
 
         Keyword:                '#AA0D92',
@@ -37,11 +37,13 @@ class XcodeStyle(Style):
         Name.Class:             '#000000',
         Name.Function:          '#000000',
         Name.Builtin:           '#AA0D92',
-        Name.Builtin.Pseudo:    '#5B269A',          # In Obj-C code this token is used to colour Cocoa types
+        # In Obj-C code this token is used to colour Cocoa types
+        Name.Builtin.Pseudo:    '#5B269A',
         Name.Variable:          '#000000',
         Name.Tag:               '#000000',
         Name.Decorator:         '#000000',
-        Name.Label:             '#000000',          # Workaround for a BUG here: lexer treats multiline method signatres as labels
+        # Workaround for a BUG here: lexer treats multiline method signatres as labels
+        Name.Label:             '#000000',
 
         Number:                 '#2300CE',
         Error:                  '#000000',
