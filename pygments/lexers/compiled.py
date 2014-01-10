@@ -31,7 +31,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
            'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'PikeLexer',
-           'ChapelLexer']
+           'ChapelLexer', 'EiffelLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -3839,3 +3839,104 @@ class ChapelLexer(RegexLexer):
             (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Function, '#pop'),
         ],
     }
+
+class EiffelLexer(RegexLexer):
+    """
+    For `Eiffel <http://www.eiffel.com>`_ source code.
+    """
+    name = 'Eiffel'
+    aliases = ['eiffel']
+    filenames = ['*.e']
+    mimetypes = ['text/x-eiffel']
+    tokens = {
+        'root': [
+            (r'[^\S\n]+', Text),
+            (r'--.*?\n', Comment.Single),
+            (r'[^\S\n]+', Text),
+                # Please note thant keyword and operator are case insensitive.
+            (r'('
+                r'[tT][rR][uU][eE]|'                # True
+                r'[fF][aA][lL][sS][eE]|'            # False
+                r'[vV][oO][iI][dD]|'                # Void
+                r'[cC][uU][rR][rR][eE][nN][tT]|'        # Current
+                r'[rR][eE][sS][uU][lL][tT]|'            # Result
+                r'[pP][rR][eE][cC][uU][rR][sS][oO][rR]'        # Precursor
+                r')\b', Keyword.Constant),
+            (r'('
+                r'[aA][nN][dD](\s+[tT][hH][eE][nN])?|'        # and / and then
+                r'[nN][oO][tT]|'                # not
+                r'[xX][oO][rR]|'                # xor
+                r'[iI][mM][pP][lL][iI][eE][sS]|'        # implies
+                r'[oO][rR](\s+[eE][lL][sS][eE])?'        # or / or else
+                r')\b', Operator.Word),
+            (r'\b('
+                r'[aA][cC][rR][oO][sS][sS]|'            # across
+                r'[aA][gG][eE][nN][tT]|'            # agent
+                r'[aA][lL][iI][aA][sS]|'            # alias
+                r'[aA][lL][lL]|'                # all
+                r'[aA][sS]|'                    # as
+                r'[aA][sS][sS][iI][gG][nN]|'            # assign
+                r'[aA][tT][tT][aA][cC][hH][eE][dD]|'        # attached
+                r'[aA][tT][tT][rR][iI][bB][uU][tT][eE]|'    # attribute
+                r'[cC][hH][eE][cC][kK]|'            # check
+                r'[cC][lL][aA][sS][sS]|'            # class
+                r'[cC][oO][nN][vV][eE][rR][tT]|'        # convert
+                r'[cC][rR][eE][aA][tT][eE]|'            # create
+                r'[dD][eE][bB][uU][gG]|'            # debug
+                r'[dD][eE][fF][eE][rR][rR][eE][dD]|'        # deferred
+                r'[dD][eE][tT][aA][cC][hH][aA][bB][lL][eE]|'    # detachable
+                r'[dD][oO]|'                    # do
+                r'[eE][lL][sS][eE]|'                # else
+                r'[eE][lL][sS][eE][iI][fF]|'            # elseif
+                r'[eE][nN][dD]|'                # end
+                r'[eE][nN][sS][uU][rR][eE]|'            # ensure
+                r'[eE][xX][pP][aA][nN][dD][eE][dD]|'        # expanded
+                r'[eE][xX][pP][oO][rR][tT]|'            # export
+                r'[eE][xX][tT][eE][rR][nN][aA][lL]|'        # external
+                r'[fF][eE][aA][tT][uU][rR][eE]|'        # feature
+                r'[fF][rR][oO][mM]|'                # from
+                r'[fF][rR][oO][zZ][eE][nN]|'            # frozen
+                r'[iI][fF]|'                    # if
+                r'[iI][nN][hH][eE][rR][iI][tT]|'        # inherit
+                r'[iI][nN][sS][pP][eE][cC][tT]|'        # inspect
+                r'[iI][nN][vV][aA][rR][iI][aA][nN][tT]|'    # invariant
+                r'[lL][iI][kK][eE]|'                # like
+                r'[lL][oO][cC][aA][lL]|'            # local
+                r'[lL][oO][oO][pP]|'                # loop
+                r'[nN][oO][nN][eE]|'                # none
+                r'[nN][oO][tT][eE]|'                # note
+                r'[oO][bB][sS][oO][lL][eE][tT][eE]|'        # obsolete
+                r'[oO][lL][dD]|'                # old
+                r'[oO][nN][cC][eE]|'                # once
+                r'[oO][nN][lL][yY]|'                # only
+                r'[rR][eE][dD][eE][fF][iI][nN][eE]|'        # redefine
+                r'[rR][eE][nN][aA][mM][eE]|'            # rename
+                r'[rR][eE][qQ][uU][iI][rR][eE]|'        # require
+                r'[rR][eE][sS][cC][uU][eE]|'            # rescue
+                r'[rR][eE][tT][rR][yY]|'            # retry
+                r'[sS][eE][lL][eE][cC][tT]|'            # select
+                r'[sS][eE][pP][aA][rR][aA][tT][eE]|'        # separate
+                r'[tT][hH][eE][nN]|'                # then
+                r'[uU][nN][dD][eE][fF][iI][nN][eE]|'        # undefine
+                r'[uU][nN][tT][iI][lL]|'            # until
+                r'[vV][aA][rR][iI][aA][nN][tT]|'        # variant
+                r'[wW][hH][eE][nN]'                # when
+                r')\b',Keyword.Reserved),
+            (r'"\[(.|\n)*\]"', String),
+            (r'"[^"]*"', String),
+            include('numbers'),
+            (r"'[^']'", String.Char),
+            (r"(//|\\|>=|<=|:=|/=|~|/~|[\\\?!#%&@|+/\-=\>\*$<|^\[\]])", Operator),
+            (r"([{}():;,.])", Punctuation),
+            (r'([a-z][a-zA-Z0-9_]*)|([A-Z][A-Z0-9_]*[a-z][a-zA-Z0-9_]*)', Name),
+            (r'([A-Z][A-Z0-9_]*)', Name.Class),
+            (r'\n+', Text),
+            ],
+        'numbers' : [
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'0[bB][0-1]+', Number.Bin),
+            (r'0[cC][0-7]+', Number.Oct),
+            (r'([0-9]+\.[0-9]*)|([0-9]*\.[0-9]+)', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            ],
+        }
