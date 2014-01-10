@@ -3186,7 +3186,7 @@ class SourcePawnLexer(RegexLexer):
         ]
     }
 
-    SM_TYPES = ['Action', 'bool', 'Float', 'Plugin', 'String', 'any',
+    SM_TYPES = set(['Action', 'bool', 'Float', 'Plugin', 'String', 'any',
                 'AdminFlag', 'OverrideType', 'OverrideRule', 'ImmunityType',
                 'GroupId', 'AdminId', 'AdmAccessMode', 'AdminCachePart',
                 'CookieAccess', 'CookieMenu', 'CookieMenuAction', 'NetFlow',
@@ -3204,16 +3204,16 @@ class SourcePawnLexer(RegexLexer):
                 'SortFunc2D', 'APLRes', 'FeatureType', 'FeatureStatus',
                 'SMCResult', 'SMCError', 'TFClassType', 'TFTeam', 'TFCond',
                 'TFResourceType', 'Timer', 'TopMenuAction', 'TopMenuObjectType',
-                'TopMenuPosition', 'TopMenuObject', 'UserMsg']
+                'TopMenuPosition', 'TopMenuObject', 'UserMsg'])
 
     def __init__(self, **options):
         self.smhighlighting = get_bool_opt(options,
                 'sourcemod', True)
 
-        self._functions = []
+        self._functions = set()
         if self.smhighlighting:
             from pygments.lexers._sourcemodbuiltins import FUNCTIONS
-            self._functions.extend(FUNCTIONS)
+            self._functions.update(FUNCTIONS)
         RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
