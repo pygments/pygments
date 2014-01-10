@@ -188,7 +188,8 @@ class CLexer(CFamilyLexer):
     priority = 0.1
 
     def analyse_text(text):
-        return 0.1
+        if re.search('#include [<"]', text):
+            return 0.1
 
 
 class CppLexer(CFamilyLexer):
@@ -229,7 +230,10 @@ class CppLexer(CFamilyLexer):
     }
 
     def analyse_text(text):
-        return 0.1
+        if re.search('#include <[a-z]+>', text):
+            return 0.2
+        if re.search('using namespace ', text):
+            return 0.4
 
 
 class PikeLexer(CppLexer):
@@ -314,7 +318,7 @@ class SwigLexer(CppLexer):
         '%trackobjects', '%types', '%unrefobject', '%varargs', '%warn', '%warnfilter')
 
     def analyse_text(text):
-        rv = 0.1 # Same as C/C++
+        rv = 0
         # Search for SWIG directives, which are conventionally at the beginning of
         # a line. The probability of them being within a line is low, so let another
         # lexer win in this case.
