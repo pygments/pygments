@@ -43,7 +43,7 @@ class CFamilyLexer(RegexLexer):
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
     #: only one /* */ style comment
-    _ws1 = r'\s*(?:/[*].*?[*]/\s*)?'
+    _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
     tokens = {
         'whitespace': [
