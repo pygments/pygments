@@ -286,7 +286,7 @@ class LlvmLexer(RegexLexer):
 
              r'|extractelement|insertelement|shufflevector|getresult'
              r'|extractvalue|insertvalue'
-             
+
              r'|atomicrmw|cmpxchg|fence'
 
              r')\b', Keyword),

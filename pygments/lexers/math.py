@@ -1933,7 +1933,7 @@ class MathematicaLexer(RegexLexer):
                  'application/vnd.wolfram.mathematica.package',
                  'application/vnd.wolfram.cdf']
 
-    # http://reference.wolfram.com/mathematica/guide/Syntax.html 
+    # http://reference.wolfram.com/mathematica/guide/Syntax.html
     operators = [
         ";;", "=", "=.", "!=" "==", ":=", "->", ":>", "/.", "+", "-", "*", "/",
         "^", "&&", "||", "!", "<>", "|", "/;", "?", "@", "//", "/@", "@@",

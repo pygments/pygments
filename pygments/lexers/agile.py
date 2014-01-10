@@ -2301,17 +2301,17 @@ class HyLexer(RegexLexer):
     aliases = ['hylang']
     filenames = ['*.hy']
     mimetypes = ['text/x-hy', 'application/x-hy']
-    
+
     special_forms = [
         'cond', 'for', '->', '->>', 'car',
         'cdr', 'first', 'rest', 'let', 'when', 'unless',
         'import', 'do', 'progn', 'get', 'slice', 'assoc', 'with-decorator',
-        ',', 'list_comp', 'kwapply', '~', 'is', 'in', 'is-not', 'not-in', 
+        ',', 'list_comp', 'kwapply', '~', 'is', 'in', 'is-not', 'not-in',
         'quasiquote', 'unquote', 'unquote-splice', 'quote', '|', '<<=', '>>=',
-        'foreach', 'while', 
+        'foreach', 'while',
         'eval-and-compile', 'eval-when-compile'
     ]
-    
+
     declarations = [
         'def' 'defn', 'defun', 'defmacro', 'defclass', 'lambda', 'fn', 'setv'
     ]
@@ -2400,4 +2400,5 @@ class HyLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return '(import' in text or '(defn' in text
+        if '(import ' in text or '(defn ' in text:
+            return 0.9
