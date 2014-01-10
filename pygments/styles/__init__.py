@@ -35,6 +35,7 @@ STYLE_MAP = {
     'tango':    'tango::TangoStyle',
     'rrt':      'rrt::RrtStyle',
     'xcode':    'xcode::XcodeStyle',
+    'igor':     'igor::IgorStyle',
 }
 
 

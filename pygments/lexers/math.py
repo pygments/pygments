@@ -1675,18 +1675,22 @@ class IgorLexer(RegexLexer):
     filenames = ['*.ipf']
     mimetypes = ['text/ipf']
 
-    flags = re.IGNORECASE
+    flags = re.IGNORECASE | re.MULTILINE
 
     flowControl = [
         'if', 'else', 'elseif', 'endif', 'for', 'endfor', 'strswitch', 'switch',
-        'case', 'endswitch', 'do', 'while', 'try', 'catch', 'endtry', 'break',
-        'continue', 'return',
+        'case', 'default', 'endswitch', 'do', 'while', 'try', 'catch', 'endtry',
+        'break', 'continue', 'return',
     ]
     types = [
         'variable', 'string', 'constant', 'strconstant', 'NVAR', 'SVAR', 'WAVE',
-        'STRUCT', 'ThreadSafe', 'function', 'end', 'static', 'macro', 'window',
-        'graph', 'Structure', 'EndStructure', 'EndMacro', 'FuncFit', 'Proc',
-        'Picture', 'Menu', 'SubMenu', 'Prompt', 'DoPrompt',
+        'STRUCT', 'dfref'
+    ]
+    keywords = [
+        'override', 'ThreadSafe', 'static',  'FuncFit', 'Proc', 'Picture',
+        'Prompt', 'DoPrompt', 'macro', 'window', 'graph', 'function', 'end',
+        'Structure', 'EndStructure', 'EndMacro', 'Menu', 'SubMenu', 'Prompt',
+        'DoPrompt',
     ]
     operations = [
         'Abort', 'AddFIFOData', 'AddFIFOVectData', 'AddMovieAudio',
@@ -1906,6 +1910,8 @@ class IgorLexer(RegexLexer):
             (r'\b(%s)\b' % '|'.join(flowControl), Keyword),
             # Types.
             (r'\b(%s)\b' % '|'.join(types), Keyword.Type),
+            # Keywords.
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword.Reserved),
             # Built-in operations.
             (r'\b(%s)\b' % '|'.join(operations), Name.Class),
             # Built-in functions.
@@ -1913,7 +1919,7 @@ class IgorLexer(RegexLexer):
             # Compiler directives.
             (r'^#(include|pragma|define|ifdef|ifndef|endif)',
              Name.Decorator),
-            (r'[^a-zA-Z"/]+', Text),
+            (r'[^a-zA-Z"/]+$', Text),
             (r'.', Text),
         ],
     }
