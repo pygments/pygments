@@ -376,10 +376,9 @@ class MatlabLexer(RegexLexer):
 
     def analyse_text(text):
         if re.match('^\s*%', text, re.M): # comment
-            return 0.9
+            return 0.2
         elif re.match('^!\w+', text, re.M): # system cmd
-            return 0.9
-        return 0.1
+            return 0.2
 
 
 line_re  = re.compile('.*?\n')
@@ -828,10 +827,6 @@ class OctaveLexer(RegexLexer):
                       Punctuation, Text.Whitespace), '#pop'),
         ],
     }
-
-    def analyse_text(text):
-        if re.match('^\s*[%#]', text, re.M): #Comment
-            return 0.1
 
 
 class ScilabLexer(RegexLexer):

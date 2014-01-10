@@ -205,7 +205,7 @@ class RagelEmbeddedLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return '@LANG: indep' in text or 0.1
+        return '@LANG: indep' in text
 
 
 class RagelRubyLexer(DelegatingLexer):

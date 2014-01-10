@@ -1022,7 +1022,6 @@ class PerlLexer(RegexLexer):
             return True
         if 'my $' in text:
             return 0.9
-        return 0.1 # who knows, might still be perl!
 
 
 class LuaLexer(RegexLexer):
