@@ -4187,14 +4187,16 @@ class CirruLexer(RegexLexer):
     tokens = {
         'string': [
             (r'[^"\\\n]', String),
-            (r'\\"', String),
-            (r'\\', String),
+            (r'\\', String.Escape, 'escape'),
             (r'"', String, '#pop'),
+        ],
+        'escape': [
+            (r'.', String.Escape, '#pop'),
         ],
         'function': [
             (r'[\w-][^\s\(\)\"]*', Name.Function, '#pop'),
             (r'\)', Operator, '#pop'),
-            (r'(?=\n)', Text.Whitespace, '#pop'),
+            (r'(?=\n)', Text, '#pop'),
             (r'\(', Operator, '#push'),
             (r'"', String, ('#pop', 'string')),
             (r'\s+', Text.Whitespace),
@@ -4204,12 +4206,13 @@ class CirruLexer(RegexLexer):
             (r'\$', Operator, 'function'),
             (r'\(', Operator, 'function'),
             (r'\)', Operator),
-            (r'(?=\n)', Text.Whitespace, '#pop'),
-            (r'\n', Text.Whitespace, '#pop'),
+            (r'(?=\n)', Text, '#pop'),
+            (r'\n', Text, '#pop'),
             (r'"', String, 'string'),
             (r'\s+', Text.Whitespace),
             (r'[\d\.]+', Number),
             (r'[\w-][^\"\(\)\s]*', Name.Variable),
+            (r'--', Comment.Single)
         ],
         'root': [
             (r'^\s*', Text.Whitespace, ('line', 'function')),
