@@ -24,8 +24,14 @@ print just-print
 eval (self) just-print
 eval just-print
 
-print (string "string content\nand")
+print (string "string with space")
+print (string "escapes \n \"\\")
 
-demo ((((()))))
+brackets ((((()))))
 
 "eval" $ string "eval"
+
+print (add $ (int 1) (int 2))
+
+print $ unwrap $
+  map (a $ int 1) (b $ int 2)
