@@ -2274,7 +2274,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             return 0.91
         if re.search(r'[$@%]\?[A-Z]+', text): # Perl 6 compiler variables ($?PACKAGE)
             return 0.91
-        if re.search(r'[$@%][!.][A-Za-z0-9_-]+', text): # Perl 6 member variables
+        if re.search(r'[$@%][!.][A-Za-z_][A-Za-z0-9_-]*', text): # Perl 6 member variables
             return 0.91
         if re.search(r'[*][@%&]', text): # Slurpy parameters
             # Scalar slurpies (*$slurp) are not included because they're more rare
