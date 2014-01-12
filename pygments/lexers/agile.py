@@ -2281,7 +2281,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             # in Perl 6, and also (more importantly) they are a glob deference in
             # Perl 5.
             return 0.91
-        if re.search(r'sub\s+\w+:(?![(:])', text): # Special sub/method syntax (ex. sub postcircumfix:<[ ]>)
+        if re.search(r'sub\s+\w+:\w*[^a-zA-Z0-9{(: ]', text): # Special sub/method syntax (ex. sub postcircumfix:<[ ]>)
             return 0.91
 
         for line in text.splitlines():
