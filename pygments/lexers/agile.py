@@ -2276,6 +2276,11 @@ class Perl6Lexer(ExtendedRegexLexer):
             return 0.91
         if re.search(r'[$@%][!.][A-Za-z0-9_-]+', text): # Perl 6 member variables
             return 0.91
+        if re.search(r'[*][@%&]', text): # Slurpy parameters
+            # Scalar slurpies (*$slurp) are not included because they're more rare
+            # in Perl 6, and also (more importantly) they are a glob deference in
+            # Perl 5.
+            return 0.91
 
         for line in text.splitlines():
             if re.match(r'\s*(?:my|our)?\s*module', line): # module declarations
