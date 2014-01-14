@@ -2260,34 +2260,10 @@ class Perl6Lexer(ExtendedRegexLexer):
 
         lines = text.splitlines()
         lines = strip_pod(lines)
-        text  = '\n'.join(lines)
 
         if shebang_matches(text, r'perl6|rakudo|niecza'):
             return True
 
-        if 'use v6' in text:
-            return 0.91 # 0.01 greater than Perl says for 'my $'
-        if re.search(r'[$@%]\*[A-Z]+', text): # Perl 6-style globals ($*OS)
-            return 0.91
-        if re.search(r'[$@%]\?[A-Z]+', text): # Perl 6 compiler variables ($?PACKAGE)
-            return 0.91
-        if re.search(r'[$@%][!.][A-Za-z_][A-Za-z0-9_-]*', text): # Perl 6 member variables
-            return 0.91
-        if re.search(r'[*][@%&]', text): # Slurpy parameters
-            # Scalar slurpies (*$slurp) are not included because they're more rare
-            # in Perl 6, and also (more importantly) they are a glob deference in
-            # Perl 5.
-            return 0.91
-        if re.search(r'sub\s+\w+:\w*[^a-zA-Z0-9{(: ]', text): # Special sub/method syntax (ex. sub postcircumfix:<[ ]>)
-            return 0.91
-        # XXX I don't like the copy+pasting of PERL6_IDENTIFIER_RANGE from above, but I don't know how to access it
-        #     otherwise
-        if re.search(r'my\s+[\'a-zA-Z0-9_:-]+\s+[$@%(]', text): # my TYPE [$scalar|@array|%hash|($list, $of, $vars)]
-            return 0.91
-
-        for line in text.splitlines():
-            if re.match(r'\s*(?:my|our)?\s*(?:module|role|class)\b', line): # module, role, class declarations
-                return 0.91
         return False
 
     def __init__(self, **options):
