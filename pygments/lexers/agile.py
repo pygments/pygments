@@ -2273,7 +2273,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             # match v6; use v6; use v6.0; use v6.0.0;
             if re.match('^\s*(?:use\s+)?v6(?:\.\d(?:\.\d)?)?;', line):
                 return True
-            # match class, module, role declarations
+            # match class, module, role, enum, grammar declarations
             if re.match('^\s*(?:(?:my|our)\s+)?(?:module|class|role|enum|grammar)', line):
                 return True
             break
