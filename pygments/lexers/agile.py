@@ -2270,8 +2270,9 @@ class Perl6Lexer(ExtendedRegexLexer):
             if re.match('^\s*$', line):
                 continue
 
-            #if re.match('', line):
-                #return True
+            # match v6; use v6; use v6.0; use v6.0.0;
+            if re.match('^\s*(?:use\s+)?v6(?:\.\d(?:\.\d)?)?;', line):
+                return True
 
         return False
 
