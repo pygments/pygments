@@ -1944,7 +1944,7 @@ class TodotxtLexer(RegexLexer):
     tokens = {
         # Should parse starting at beginning of line; each line is a task
         'root': [
-            ## Incomplete task entry points: two total:
+            ## Complete task entry points: two total:
             # 1. Complete task with two dates
             (complete_two_date_regex, bygroups(CompleteTaskText, Date,
                                                CompleteTaskText, Date),
