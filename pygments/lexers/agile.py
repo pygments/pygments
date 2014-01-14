@@ -2258,11 +2258,20 @@ class Perl6Lexer(ExtendedRegexLexer):
 
             return stripped_lines
 
+        # XXX handle block comments
         lines = text.splitlines()
         lines = strip_pod(lines)
 
-        if shebang_matches(text, r'perl6|rakudo|niecza'):
+        if shebang_matches(text, r'perl6|rakudo|niecza|pugs'):
             return True
+
+        for line in lines:
+            line = re.sub('#.*', '', line)
+            if re.match('^\s*$', line):
+                continue
+
+            #if re.match('', line):
+                #return True
 
         return False
 
