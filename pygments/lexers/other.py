@@ -1253,9 +1253,10 @@ class ModelicaLexer(RegexLexer):
              r'tanh|zeros)\b', Name.Function),
         ],
         'operators': [
-            (r'(actualStream|and|assert|cardinality|change|Clock|delay|der|edge|'
-             r'hold|homotopy|initial|inStream|noEvent|not|or|pre|previous|reinit|'
-             r'return|sample|smooth|spatialDistribution|subSample|terminal|'
+            (r'(actualStream|and|assert|backSample|cardinality|change|Clock|'
+             r'delay|der|edge|hold|homotopy|initial|inStream|noClock|noEvent|'
+             r'not|or|pre|previous|reinit|return|sample|smooth|'
+             r'spatialDistribution|shiftSample|subSample|superSample|terminal|'
              r'terminate)\b', Name.Builtin),
         ],
         'classes': [
