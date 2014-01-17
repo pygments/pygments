@@ -4167,6 +4167,7 @@ class QmlLexer(RegexLexer):
         ]
     }
 
+
 class CirruLexer(RegexLexer):
     """
     Syntax rules of Cirru can be found at:
@@ -4176,6 +4177,8 @@ class CirruLexer(RegexLexer):
     * using `""` to markup strings, allow `\` to escape
     * using `$` as a shorthand for `()` till indentation end or `)`
     * using indentations for create nesting
+
+    *New in Pygments 1.7.*
     """
 
     name = 'Cirru'
