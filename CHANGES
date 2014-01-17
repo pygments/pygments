@@ -29,6 +29,10 @@ Version 1.7
   * Hy (PR#238)
   * Chapel (PR#256)
   * Kal (PR#233)
+  * Eiffel (PR#273)
+
+- New styles: "xcode" and "igor", similar to the default highlighting of
+  the respective IDEs.
 
 - Lexer aliases passed to ``get_lexer_by_name()`` are now case-insensitive.
 
@@ -67,7 +71,8 @@ Version 1.7
 
 - Prolog lexer: add different kinds of numeric literals (#864).
 
-- F# lexer: rewrite with newest spec for F# 3.0 (#842).
+- F# lexer: rewrite with newest spec for F# 3.0 (#842), fix a bug with
+  dotted chains (#948).
 
 - Kotlin lexer: general update (PR#271).
 

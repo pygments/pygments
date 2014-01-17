@@ -5,7 +5,7 @@
 
     Lexers for non-source code file types.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -180,7 +180,7 @@ class MakefileLexer(Lexer):
 
     name = 'Makefile'
     aliases = ['make', 'makefile', 'mf', 'bsdmake']
-    filenames = ['*.mak', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile']
+    filenames = ['*.mak', '*.mk', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile']
     mimetypes = ['text/x-makefile']
 
     r_special = re.compile(r'^(?:'
@@ -206,6 +206,11 @@ class MakefileLexer(Lexer):
                 done += line
         for item in do_insertions(ins, lex.get_tokens_unprocessed(done)):
             yield item
+
+    def analyse_text(text):
+        # Many makefiles have $(BIG_CAPS) style variables
+        if re.search(r'\$\([A-Z_]+\)', text):
+            return 0.1
 
 
 class BaseMakefileLexer(RegexLexer):

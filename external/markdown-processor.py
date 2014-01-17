@@ -22,7 +22,7 @@
 
     .. _Markdown: https://pypi.python.org/pypi/Markdown
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

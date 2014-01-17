@@ -5,7 +5,7 @@
 
     Lexers for compiled languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -31,7 +31,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
            'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'PikeLexer',
-           'ChapelLexer']
+           'ChapelLexer', 'EiffelLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -43,7 +43,7 @@ class CFamilyLexer(RegexLexer):
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
     #: only one /* */ style comment
-    _ws1 = r'\s*(?:/[*].*?[*]/\s*)?'
+    _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
     tokens = {
         'whitespace': [
@@ -188,7 +188,8 @@ class CLexer(CFamilyLexer):
     priority = 0.1
 
     def analyse_text(text):
-        return 0.1
+        if re.search('#include [<"]', text):
+            return 0.1
 
 
 class CppLexer(CFamilyLexer):
@@ -229,7 +230,10 @@ class CppLexer(CFamilyLexer):
     }
 
     def analyse_text(text):
-        return 0.1
+        if re.search('#include <[a-z]+>', text):
+            return 0.2
+        if re.search('using namespace ', text):
+            return 0.4
 
 
 class PikeLexer(CppLexer):
@@ -314,7 +318,7 @@ class SwigLexer(CppLexer):
         '%trackobjects', '%types', '%unrefobject', '%varargs', '%warn', '%warnfilter')
 
     def analyse_text(text):
-        rv = 0.1 # Same as C/C++
+        rv = 0
         # Search for SWIG directives, which are conventionally at the beginning of
         # a line. The probability of them being within a line is low, so let another
         # lexer win in this case.
@@ -1372,20 +1376,23 @@ def objective(baselexer):
         tokens = {
             'statements': [
                 (r'@"', String, 'string'),
-                (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
-                 String.Char),
+                (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
                 (r'@(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
                 (r'@(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
                 (r'@0x[0-9a-fA-F]+[Ll]?', Number.Hex),
                 (r'@0[0-7]+[Ll]?', Number.Oct),
                 (r'@\d+[Ll]?', Number.Integer),
-                (r'(in|@selector|@private|@protected|@public|@encode|'
+                (r'@\([^()]+\)', Number),
+                (r'(@selector|@private|@protected|@public|@encode|'
                  r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
-                 r'@synthesize|@dynamic|@optional)\b', Keyword),
-                (r'(id|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
+                 r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong|'
+                 r'weak|strong|retain|assign|unsafe_unretained|nonatomic|'
+                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|'
+                 r'@synthesize|@dynamic|@optional|@required|@autoreleasepool)\b', Keyword),
+                (r'(id|instancetype|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
                  Keyword.Type),
                 (r'@(true|false|YES|NO)\n', Name.Builtin),
-                (r'(YES|NO|nil)\b', Name.Builtin),
+                (r'(YES|NO|nil|self|super)\b', Name.Builtin),
                 (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
@@ -1443,6 +1450,19 @@ def objective(baselexer):
             elif _oc_message.search(text):
                 return 0.8
             return 0
+
+        def get_tokens_unprocessed(self, text):
+            from pygments.lexers._cocoabuiltins import COCOA_INTERFACES, \
+                COCOA_PROTOCOLS, COCOA_PRIMITIVES
+
+            for index, token, value in \
+                baselexer.get_tokens_unprocessed(self, text):
+                if token is Name:
+                    if value in COCOA_INTERFACES or value in COCOA_PROTOCOLS \
+                       or value in COCOA_PRIMITIVES:
+                        token = Name.Builtin.Pseudo
+
+                yield index, token, value
 
     return GeneratedObjectiveCVariant
 
@@ -3837,5 +3857,50 @@ class ChapelLexer(RegexLexer):
         ],
         'procname': [
             (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Function, '#pop'),
+        ],
+    }
+
+
+class EiffelLexer(RegexLexer):
+    """
+    For `Eiffel <http://www.eiffel.com>`_ source code.
+
+    *New in Pygments 1.7.*
+    """
+    name = 'Eiffel'
+    aliases = ['eiffel']
+    filenames = ['*.e']
+    mimetypes = ['text/x-eiffel']
+
+    tokens = {
+        'root': [
+            (r'[^\S\n]+', Text),
+            (r'--.*?\n', Comment.Single),
+            (r'[^\S\n]+', Text),
+                # Please note that keyword and operator are case insensitive.
+            (r'(?i)(true|false|void|current|result|precursor)\b', Keyword.Constant),
+            (r'(?i)(and(\s+then)?|not|xor|implies|or(\s+else)?)\b', Operator.Word),
+            (r'(?i)\b(across|agent|alias|all|as|assign|attached|attribute|check|'
+                r'class|convert|create|debug|deferred|detachable|do|else|elseif|'
+                r'end|ensure|expanded|export|external|feature|from|frozen|if|'
+                r'inherit|inspect|invariant|like|local|loop|none|note|obsolete|'
+                r'old|once|only|redefine|rename|require|rescue|retry|select|'
+                r'separate|then|undefine|until|variant|when)\b',Keyword.Reserved),
+            (r'"\[(([^\]%]|\n)|%(.|\n)|\][^"])*?\]"', String),
+            (r'"([^"%\n]|%.)*?"', String),
+            include('numbers'),
+            (r"'([^'%]|%'|%%)'", String.Char),
+            (r"(//|\\\\|>=|<=|:=|/=|~|/~|[\\\?!#%&@|+/\-=\>\*$<|^\[\]])", Operator),
+            (r"([{}():;,.])", Punctuation),
+            (r'([a-z][a-zA-Z0-9_]*)|([A-Z][A-Z0-9_]*[a-z][a-zA-Z0-9_]*)', Name),
+            (r'([A-Z][A-Z0-9_]*)', Name.Class),
+            (r'\n+', Text),
+        ],
+        'numbers': [
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'0[bB][0-1]+', Number.Bin),
+            (r'0[cC][0-7]+', Number.Oct),
+            (r'([0-9]+\.[0-9]*)|([0-9]*\.[0-9]+)', Number.Float),
+            (r'[0-9]+', Number.Integer),
         ],
     }
