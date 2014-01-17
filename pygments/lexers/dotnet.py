@@ -5,7 +5,7 @@
 
     Lexers for .net languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re
@@ -638,6 +638,8 @@ class FSharpLexer(RegexLexer):
             (r'[A-Z][A-Za-z0-9_\']*(?=\s*\.)', Name.Namespace),
             (r'[A-Z][A-Za-z0-9_\']*', Name, '#pop'),
             (r'[a-z_][A-Za-z0-9_\']*', Name, '#pop'),
+            # e.g. dictionary index access
+            (r'', Text, '#pop'),
         ],
         'comment': [
             (r'[^(*)@"]+', Comment),

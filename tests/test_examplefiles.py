@@ -3,7 +3,7 @@
     Pygments tests with example files
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -38,7 +38,7 @@ def test_example_files():
             code = code.decode('utf-8')
         except UnicodeError:
             code = code.decode('latin1')
-        
+
         outfn = os.path.join(outdir, fn)
 
         lx = None

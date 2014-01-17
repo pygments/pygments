@@ -5,7 +5,7 @@
 
     Lexers for parser generators.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -205,7 +205,7 @@ class RagelEmbeddedLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return '@LANG: indep' in text or 0.1
+        return '@LANG: indep' in text
 
 
 class RagelRubyLexer(DelegatingLexer):

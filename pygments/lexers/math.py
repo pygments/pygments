@@ -5,7 +5,7 @@
 
     Lexers for math languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -376,10 +376,9 @@ class MatlabLexer(RegexLexer):
 
     def analyse_text(text):
         if re.match('^\s*%', text, re.M): # comment
-            return 0.9
+            return 0.2
         elif re.match('^!\w+', text, re.M): # system cmd
-            return 0.9
-        return 0.1
+            return 0.2
 
 
 line_re  = re.compile('.*?\n')
@@ -828,10 +827,6 @@ class OctaveLexer(RegexLexer):
                       Punctuation, Text.Whitespace), '#pop'),
         ],
     }
-
-    def analyse_text(text):
-        if re.match('^\s*[%#]', text, re.M): #Comment
-            return 0.1
 
 
 class ScilabLexer(RegexLexer):
@@ -1680,18 +1675,22 @@ class IgorLexer(RegexLexer):
     filenames = ['*.ipf']
     mimetypes = ['text/ipf']
 
-    flags = re.IGNORECASE
+    flags = re.IGNORECASE | re.MULTILINE
 
     flowControl = [
         'if', 'else', 'elseif', 'endif', 'for', 'endfor', 'strswitch', 'switch',
-        'case', 'endswitch', 'do', 'while', 'try', 'catch', 'endtry', 'break',
-        'continue', 'return',
+        'case', 'default', 'endswitch', 'do', 'while', 'try', 'catch', 'endtry',
+        'break', 'continue', 'return',
     ]
     types = [
         'variable', 'string', 'constant', 'strconstant', 'NVAR', 'SVAR', 'WAVE',
-        'STRUCT', 'ThreadSafe', 'function', 'end', 'static', 'macro', 'window',
-        'graph', 'Structure', 'EndStructure', 'EndMacro', 'FuncFit', 'Proc',
-        'Picture', 'Menu', 'SubMenu', 'Prompt', 'DoPrompt',
+        'STRUCT', 'dfref'
+    ]
+    keywords = [
+        'override', 'ThreadSafe', 'static',  'FuncFit', 'Proc', 'Picture',
+        'Prompt', 'DoPrompt', 'macro', 'window', 'graph', 'function', 'end',
+        'Structure', 'EndStructure', 'EndMacro', 'Menu', 'SubMenu', 'Prompt',
+        'DoPrompt',
     ]
     operations = [
         'Abort', 'AddFIFOData', 'AddFIFOVectData', 'AddMovieAudio',
@@ -1911,6 +1910,8 @@ class IgorLexer(RegexLexer):
             (r'\b(%s)\b' % '|'.join(flowControl), Keyword),
             # Types.
             (r'\b(%s)\b' % '|'.join(types), Keyword.Type),
+            # Keywords.
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword.Reserved),
             # Built-in operations.
             (r'\b(%s)\b' % '|'.join(operations), Name.Class),
             # Built-in functions.
@@ -1918,7 +1919,7 @@ class IgorLexer(RegexLexer):
             # Compiler directives.
             (r'^#(include|pragma|define|ifdef|ifndef|endif)',
              Name.Decorator),
-            (r'[^a-zA-Z"/]+', Text),
+            (r'[^a-zA-Z"/]+$', Text),
             (r'.', Text),
         ],
     }
@@ -1938,7 +1939,7 @@ class MathematicaLexer(RegexLexer):
                  'application/vnd.wolfram.mathematica.package',
                  'application/vnd.wolfram.cdf']
 
-    # http://reference.wolfram.com/mathematica/guide/Syntax.html 
+    # http://reference.wolfram.com/mathematica/guide/Syntax.html
     operators = [
         ";;", "=", "=.", "!=" "==", ":=", "->", ":>", "/.", "+", "-", "*", "/",
         "^", "&&", "||", "!", "<>", "|", "/;", "?", "@", "//", "/@", "@@",
