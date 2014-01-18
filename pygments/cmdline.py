@@ -8,7 +8,9 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 from __future__ import print_function
+
 import sys
 import getopt
 from textwrap import dedent
@@ -203,7 +205,7 @@ def main(args=sys.argv):
 
     try:
         popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:hVHg")
-    except getopt.GetoptError as err:
+    except getopt.GetoptError:
         print(usage, file=sys.stderr)
         return 2
     opts = {}
@@ -427,7 +429,7 @@ def main(args=sys.argv):
         for fname, fopts in F_opts:
             lexer.add_filter(fname, **fopts)
         highlight(code, lexer, fmter, outfile)
-    except Exception as err:
+    except Exception:
         import traceback
         info = traceback.format_exception(*sys.exc_info())
         msg = info[-1].strip()

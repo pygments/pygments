@@ -10,9 +10,12 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 from __future__ import print_function
 
-import sys, os, re
+import os
+import re
+import sys
 import getopt
 from os.path import join, abspath, isdir, isfile
 

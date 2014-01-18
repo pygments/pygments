@@ -11,9 +11,11 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 from __future__ import print_function
 
-import sys, os
+import os
+import sys
 
 # always prefer Pygments from source if exists
 srcpath = os.path.join(os.path.dirname(__file__), '..')

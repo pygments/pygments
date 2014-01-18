@@ -12,6 +12,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 from __future__ import print_function
 
 MODULES = {'basic': ['_G',

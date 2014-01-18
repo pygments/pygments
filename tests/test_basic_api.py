@@ -6,9 +6,9 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 from __future__ import print_function
 
-import os
 import random
 import unittest
 
@@ -16,7 +16,7 @@ from pygments import lexers, formatters, filters, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatters.img import FontNotFound
-from pygments.util import BytesIO, StringIO, bytes, b
+from pygments.util import StringIO, bytes
 
 import support
 

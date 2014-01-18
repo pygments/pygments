@@ -15,8 +15,8 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-from __future__ import print_function
 
+from __future__ import print_function
 
 MODULES = {'.NET': ['dotnet_load'],
  'APC': ['apc_add',
