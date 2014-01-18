@@ -10,7 +10,10 @@
 """
 
 import re
-import urllib
+try:
+    from urllib import urlopen
+except ImportError:
+    from urllib.request import urlopen
 
 # One man's constant is another man's variable.
 SOURCE_URL = 'https://github.com/postgres/postgres/raw/master'
@@ -18,11 +21,11 @@ KEYWORDS_URL = SOURCE_URL + '/doc/src/sgml/keywords.sgml'
 DATATYPES_URL = SOURCE_URL + '/doc/src/sgml/datatype.sgml'
 
 def update_myself():
-    data_file = list(fetch(DATATYPES_URL))
+    data_file = list(urlopen(DATATYPES_URL))
     datatypes = parse_datatypes(data_file)
     pseudos = parse_pseudos(data_file)
 
-    keywords = parse_keywords(fetch(KEYWORDS_URL))
+    keywords = parse_keywords(urlopen(KEYWORDS_URL))
     update_consts(__file__, 'DATATYPES', datatypes)
     update_consts(__file__, 'PSEUDO_TYPES', pseudos)
     update_consts(__file__, 'KEYWORDS', keywords)
@@ -95,9 +98,6 @@ def parse_pseudos(f):
         raise ValueError('pseudo datatypes not found')
 
     return dt
-
-def fetch(url):
-    return urllib.urlopen(url)
 
 def update_consts(filename, constname, content):
     f = open(filename)

@@ -1014,7 +1014,10 @@ if __name__ == '__main__':
     import pprint
     import re
     import sys
-    import urllib
+    try:
+        from urllib import urlopen
+    except ImportError:
+        from urllib.request import urlopen
 
     # urllib ends up wanting to import a module called 'math' -- if
     # pygments/lexers is in the path, this ends badly.
@@ -1023,7 +1026,7 @@ if __name__ == '__main__':
             del sys.path[i]
 
     def get_version():
-        f = urllib.urlopen('http://docs.sourcemod.net/api/index.php')
+        f = urlopen('http://docs.sourcemod.net/api/index.php')
         r = re.compile(r'SourceMod v\.<b>([\d\.]+)</td>')
         for line in f:
             m = r.search(line)
@@ -1031,7 +1034,7 @@ if __name__ == '__main__':
                 return m.groups()[0]
 
     def get_sm_functions():
-        f = urllib.urlopen('http://docs.sourcemod.net/api/SMfuncs.js')
+        f = urlopen('http://docs.sourcemod.net/api/SMfuncs.js')
         r = re.compile(r'SMfunctions\[\d+\] = Array \("(?:public )?([^,]+)",".+"\);')
         functions = []
         for line in f:

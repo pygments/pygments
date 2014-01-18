@@ -12,11 +12,11 @@ from __future__ import print_function
 import os
 import pprint
 import difflib
-import cPickle as pickle
+import pickle
 
 from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
 from pygments.token import Error
-from pygments.util import ClassNotFound, b
+from pygments.util import ClassNotFound
 
 STORE_OUTPUT = False
 
@@ -65,8 +65,8 @@ def check_lexer(lx, absfn, outfn):
         text = fp.read()
     finally:
         fp.close()
-    text = text.replace(b('\r\n'), b('\n'))
-    text = text.strip(b('\n')) + b('\n')
+    text = text.replace(b'\r\n', b'\n')
+    text = text.strip(b'\n') + b'\n'
     try:
         text = text.decode('utf-8')
         if text.startswith(u'\ufeff'):

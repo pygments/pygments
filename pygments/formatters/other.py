@@ -10,7 +10,7 @@
 """
 
 from pygments.formatter import Formatter
-from pygments.util import OptionError, get_choice_opt, b
+from pygments.util import OptionError, get_choice_opt
 from pygments.token import Token
 from pygments.console import colorize
 
@@ -79,7 +79,7 @@ class RawTokenFormatter(Formatter):
 
     def format(self, tokensource, outfile):
         try:
-            outfile.write(b(''))
+            outfile.write(b'')
         except TypeError:
             raise TypeError('The raw tokens formatter needs a binary '
                             'output file')

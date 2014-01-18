@@ -17,7 +17,7 @@ def main():
             uses[f].append(cls)
 
     ret = 0
-    for k, v in uses.iteritems():
+    for k, v in uses.items():
         if len(v) > 1:
             #print "Multiple for", k, v
             for i in v:

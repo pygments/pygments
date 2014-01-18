@@ -14,11 +14,11 @@ from __future__ import print_function
 import os
 import sys
 import os.path
-import StringIO
 
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
-from pygments.util import get_bool_opt, get_int_opt, get_list_opt, bytes
+from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
+    StringIO, string_types, iteritems
 
 try:
     import ctags
@@ -455,7 +455,7 @@ class HtmlFormatter(Formatter):
         """
         if arg is None:
             arg = ('cssclass' in self.options and '.'+self.cssclass or '')
-        if isinstance(arg, basestring):
+        if isinstance(arg, string_types):
             args = [arg]
         else:
             args = list(arg)
@@ -469,7 +469,7 @@ class HtmlFormatter(Formatter):
             return ', '.join(tmp)
 
         styles = [(level, ttype, cls, style)
-                  for cls, (style, ttype, level) in self.class2style.iteritems()
+                  for cls, (style, ttype, level) in iteritems(self.class2style)
                   if cls and style]
         styles.sort()
         lines = ['%s { %s } /* %s */' % (prefix(cls), style, repr(ttype)[6:])
@@ -536,7 +536,7 @@ class HtmlFormatter(Formatter):
         yield 0, DOC_FOOTER
 
     def _wrap_tablelinenos(self, inner):
-        dummyoutfile = StringIO.StringIO()
+        dummyoutfile = StringIO()
         lncount = 0
         for t, line in inner:
             if t:
