@@ -878,7 +878,7 @@ class DelphiLexer(Lexer):
         if get_bool_opt(options, 'freepascal', True):
             self.keywords.update(self.FREE_PASCAL_KEYWORDS)
         self.builtins = set()
-        for unit in get_list_opt(options, 'units', self.BUILTIN_UNITS.keys()):
+        for unit in get_list_opt(options, 'units', list(self.BUILTIN_UNITS)):
             self.builtins.update(self.BUILTIN_UNITS[unit])
 
     def get_tokens_unprocessed(self, text):

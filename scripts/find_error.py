@@ -107,7 +107,7 @@ def main(fn, lexer=None, options={}):
         # already debugged before
         debug_lexer = True
     lno = 1
-    text = file(fn, 'U').read()
+    text = open(fn, 'U').read()
     text = text.strip('\n') + '\n'
     tokens = []
     states = []

@@ -9,23 +9,23 @@
 
 from __future__ import print_function
 
+import io
 import os
 import re
 import unittest
-import StringIO
 import tempfile
 from os.path import join, dirname, isfile
 
+from pygments.util import StringIO
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.formatters.html import escape_html
-from pygments.util import uni_open
 
 import support
 
 TESTFILE, TESTDIR = support.location(__file__)
 
-fp = uni_open(TESTFILE, encoding='utf-8')
+fp = io.open(TESTFILE, encoding='utf-8')
 try:
     tokensource = list(PythonLexer().get_tokens(fp.read()))
 finally:
@@ -35,11 +35,11 @@ finally:
 class HtmlFormatterTest(unittest.TestCase):
     def test_correct_output(self):
         hfmt = HtmlFormatter(nowrap=True)
-        houtfile = StringIO.StringIO()
+        houtfile = StringIO()
         hfmt.format(tokensource, houtfile)
 
         nfmt = NullFormatter()
-        noutfile = StringIO.StringIO()
+        noutfile = StringIO()
         nfmt.format(tokensource, noutfile)
 
         stripped_html = re.sub('<.*?>', '', houtfile.getvalue())
@@ -76,13 +76,13 @@ class HtmlFormatterTest(unittest.TestCase):
                         dict(linenos=True, full=True),
                         dict(linenos=True, full=True, noclasses=True)]:
 
-            outfile = StringIO.StringIO()
+            outfile = StringIO()
             fmt = HtmlFormatter(**optdict)
             fmt.format(tokensource, outfile)
 
     def test_linenos(self):
         optdict = dict(linenos=True)
-        outfile = StringIO.StringIO()
+        outfile = StringIO()
         fmt = HtmlFormatter(**optdict)
         fmt.format(tokensource, outfile)
         html = outfile.getvalue()
@@ -90,7 +90,7 @@ class HtmlFormatterTest(unittest.TestCase):
 
     def test_linenos_with_startnum(self):
         optdict = dict(linenos=True, linenostart=5)
-        outfile = StringIO.StringIO()
+        outfile = StringIO()
         fmt = HtmlFormatter(**optdict)
         fmt.format(tokensource, outfile)
         html = outfile.getvalue()
@@ -98,7 +98,7 @@ class HtmlFormatterTest(unittest.TestCase):
 
     def test_lineanchors(self):
         optdict = dict(lineanchors="foo")
-        outfile = StringIO.StringIO()
+        outfile = StringIO()
         fmt = HtmlFormatter(**optdict)
         fmt.format(tokensource, outfile)
         html = outfile.getvalue()
@@ -106,7 +106,7 @@ class HtmlFormatterTest(unittest.TestCase):
 
     def test_lineanchors_with_startnum(self):
         optdict = dict(lineanchors="foo", linenostart=5)
-        outfile = StringIO.StringIO()
+        outfile = StringIO()
         fmt = HtmlFormatter(**optdict)
         fmt.format(tokensource, outfile)
         html = outfile.getvalue()
@@ -174,7 +174,7 @@ class HtmlFormatterTest(unittest.TestCase):
             # anymore in the actual source
             fmt = HtmlFormatter(tagsfile='support/tags', lineanchors='L',
                                 tagurlformat='%(fname)s%(fext)s')
-            outfile = StringIO.StringIO()
+            outfile = StringIO()
             fmt.format(tokensource, outfile)
             self.assertTrue('<a href="test_html_formatter.py#L-165">test_ctags</a>'
                             in outfile.getvalue())

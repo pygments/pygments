@@ -53,7 +53,7 @@ reindent:
 	@$(PYTHON) scripts/reindent.py -r -B .
 
 test:
-	@$(PYTHON) tests/run.py $(TESTS)
+	@$(PYTHON) tests/run.py $(TEST)
 
 test-coverage:
-	@$(PYTHON) tests/run.py -C $(TESTS)
+	@$(PYTHON) tests/run.py -C $(TEST)

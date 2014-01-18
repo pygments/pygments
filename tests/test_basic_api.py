@@ -16,7 +16,7 @@ from pygments import lexers, formatters, filters, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatters.img import FontNotFound
-from pygments.util import StringIO, bytes
+from pygments.util import text_type, StringIO, xrange
 
 import support
 
@@ -29,7 +29,7 @@ test_content = ''.join(test_content) + '\n'
 
 def test_lexer_import_all():
     # instantiate every lexer, to see if the token type defs are correct
-    for x in lexers.LEXERS.keys():
+    for x in lexers.LEXERS:
         c = getattr(lexers, x)()
 
 
@@ -73,7 +73,7 @@ def test_lexer_classes():
             assert isinstance(token[0], _TokenType)
             if isinstance(token[1], str):
                 print(repr(token[1]))
-            assert isinstance(token[1], unicode)
+            assert isinstance(token[1], text_type)
             txt += token[1]
         assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \
                (cls.name, test_content, txt)
@@ -128,7 +128,7 @@ def test_get_lexers():
                        ]:
         yield verify, func, args
 
-    for cls, (_, lname, aliases, _, mimetypes) in lexers.LEXERS.iteritems():
+    for cls, (_, lname, aliases, _, mimetypes) in lexers.LEXERS.items():
         assert cls == lexers.find_lexer_class(lname).__name__
 
         for alias in aliases:
@@ -163,7 +163,7 @@ def test_formatter_public_api():
             pass
         inst.format(ts, out)
 
-    for formatter, info in formatters.FORMATTERS.iteritems():
+    for formatter, info in formatters.FORMATTERS.items():
         yield verify, formatter, info
 
 def test_formatter_encodings():
@@ -173,7 +173,7 @@ def test_formatter_encodings():
     fmt = HtmlFormatter()
     tokens = [(Text, u"ä")]
     out = format(tokens, fmt)
-    assert type(out) is unicode
+    assert type(out) is text_type
     assert u"ä" in out
 
     # encoding option
@@ -202,7 +202,7 @@ def test_formatter_unicode_handling():
         if formatter.name != 'Raw tokens':
             out = format(tokens, inst)
             if formatter.unicodeoutput:
-                assert type(out) is unicode
+                assert type(out) is text_type
 
             inst = formatter(encoding='utf-8')
             out = format(tokens, inst)
@@ -214,7 +214,7 @@ def test_formatter_unicode_handling():
             out = format(tokens, inst)
             assert type(out) is bytes, '%s: %r' % (formatter, out)
 
-    for formatter, info in formatters.FORMATTERS.iteritems():
+    for formatter, info in formatters.FORMATTERS.items():
         yield verify, formatter
 
 
@@ -242,7 +242,7 @@ class FiltersTest(unittest.TestCase):
             'whitespace': {'spaces': True, 'tabs': True, 'newlines': True},
             'highlight': {'names': ['isinstance', 'lexers', 'x']},
         }
-        for x in filters.FILTERS.keys():
+        for x in filters.FILTERS:
             lx = lexers.PythonLexer()
             lx.add_filter(x, **filter_args.get(x, {}))
             fp = open(TESTFILE, 'rb')

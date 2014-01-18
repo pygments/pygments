@@ -48,7 +48,7 @@ def generate_lexer_docs():
 
     modules = {}
     moduledocstrings = {}
-    for classname, data in sorted(LEXERS.iteritems(), key=lambda x: x[0]):
+    for classname, data in sorted(LEXERS.items(), key=lambda x: x[0]):
         module = data[0]
         mod = __import__(module, None, None, [classname])
         cls = getattr(mod, classname)
@@ -63,18 +63,21 @@ def generate_lexer_docs():
         if module not in moduledocstrings:
             moduledocstrings[module] = mod.__doc__
 
-    for module, lexers in sorted(modules.iteritems(), key=lambda x: x[0]):
+    for module, lexers in sorted(modules.items(), key=lambda x: x[0]):
         heading = moduledocstrings[module].splitlines()[4].strip().rstrip('.')
         out.append('\n' + heading + '\n' + '-'*len(heading) + '\n')
         for data in lexers:
             out.append(LEXERDOC % data)
-    return ''.join(out).decode('utf-8')
+    s = ''.join(out)
+    if isinstance(s, bytes):
+        s = s.decode('utf-8')
+    return s
 
 def generate_formatter_docs():
     from pygments.formatters import FORMATTERS
 
     out = []
-    for cls, data in sorted(FORMATTERS.iteritems(),
+    for cls, data in sorted(FORMATTERS.items(),
                             key=lambda x: x[0].__name__):
         heading = cls.__name__
         out.append('`' + heading + '`\n' + '-'*(2+len(heading)) + '\n')
@@ -85,24 +88,30 @@ def generate_formatter_docs():
 
 
 ''' % (', '.join(data[1]) or 'None', ', '.join(data[2]).replace('*', '\\*') or 'None'))
-    return ''.join(out).decode('utf-8')
+    s = ''.join(out)
+    if isinstance(s, bytes):
+        s = s.decode('utf-8')
+    return s
 
 def generate_filter_docs():
     from pygments.filters import FILTERS
 
     out = []
-    for name, cls in FILTERS.iteritems():
+    for name, cls in FILTERS.items():
         out.append('''
 `%s`
 %s
     :Name: %s
 ''' % (cls.__name__, cls.__doc__, name))
-    return ''.join(out).decode('utf-8')
+    s = ''.join(out)
+    if isinstance(s, bytes):
+        s = s.decode('utf-8')
+    return s
 
 def generate_changelog():
     fn = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
                          'CHANGES'))
-    f = file(fn)
+    f = open(fn)
     result = []
     in_header = False
     header = True
@@ -115,12 +124,15 @@ def generate_changelog():
         else:
             result.append(line.rstrip())
     f.close()
-    return '\n'.join(result).decode('utf-8')
+    s = '\n'.join(result)
+    if isinstance(s, bytes):
+        s = s.decode('utf-8')
+    return s
 
 def generate_authors():
     fn = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
                          'AUTHORS'))
-    f = file(fn)
+    f = open(fn, 'rb')
     r = f.read().rstrip().decode('utf-8')
     f.close()
     return r
@@ -410,7 +422,7 @@ def handle_python(filename, fp, dst):
         else:
             return '/docs/%s/' % href
     parts = generate_documentation(content, urlize)
-    result = file(os.path.join(dst, title + '.py'), 'w')
+    result = open(os.path.join(dst, title + '.py'), 'w')
     result.write('# -*- coding: utf-8 -*-\n')
     result.write('"""\n    Pygments Documentation - %s\n' % title)
     result.write('    %s\n\n' % ('~' * (24 + len(title))))
@@ -428,7 +440,7 @@ def handle_html(filename, fp, dst):
     title = os.path.basename(filename)[:-4]
     content = fp.read().decode('utf-8')
     c = generate_documentation(content, (lambda x: './%s.html' % x))
-    result = file(os.path.join(dst, title + '.html'), 'w')
+    result = open(os.path.join(dst, title + '.html'), 'wb')
     c['style'] = STYLESHEET + PYGMENTS_FORMATTER.get_style_defs('.syntax')
     c['generation_date'] = now
     c['file_id'] = title
@@ -448,7 +460,7 @@ def run(handle_file, dst, sources=()):
         if not os.path.isfile(fn):
             continue
         print('Processing %s' % fn)
-        f = open(fn)
+        f = open(fn, 'rb')
         try:
             handle_file(fn, f, dst)
         finally:

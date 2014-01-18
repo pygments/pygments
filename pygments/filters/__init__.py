@@ -16,7 +16,7 @@ from pygments.token import String, Comment, Keyword, Name, Error, Whitespace, \
     string_to_tokentype
 from pygments.filter import Filter
 from pygments.util import get_list_opt, get_int_opt, get_bool_opt, \
-     get_choice_opt, ClassNotFound, OptionError
+     get_choice_opt, ClassNotFound, OptionError, text_type, string_types
 from pygments.plugin import find_plugin_filters
 
 
@@ -117,7 +117,7 @@ class KeywordCaseFilter(Filter):
     def __init__(self, **options):
         Filter.__init__(self, **options)
         case = get_choice_opt(options, 'case', ['lower', 'upper', 'capitalize'], 'lower')
-        self.convert = getattr(unicode, case)
+        self.convert = getattr(text_type, case)
 
     def filter(self, lexer, stream):
         for ttype, value in stream:
@@ -235,9 +235,11 @@ class VisibleWhitespaceFilter(Filter):
 
     def __init__(self, **options):
         Filter.__init__(self, **options)
-        for name, default in {'spaces': u'·', 'tabs': u'»', 'newlines': u'¶'}.items():
+        for name, default in [('spaces',   u'·'),
+                              ('tabs',     u'»'),
+                              ('newlines', u'¶')]:
             opt = options.get(name, False)
-            if isinstance(opt, basestring) and len(opt) == 1:
+            if isinstance(opt, string_types) and len(opt) == 1:
                 setattr(self, name, opt)
             else:
                 setattr(self, name, (opt and default or ''))

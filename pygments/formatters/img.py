@@ -12,8 +12,8 @@
 import sys
 
 from pygments.formatter import Formatter
-from pygments.util import get_bool_opt, get_int_opt, \
-     get_list_opt, get_choice_opt
+from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
+    get_choice_opt, xrange
 
 # Import this carefully
 try:
@@ -25,7 +25,10 @@ except ImportError:
 try:
     import _winreg
 except ImportError:
-    _winreg = None
+    try:
+        import winreg as _winreg
+    except ImportError:
+        _winreg = None
 
 __all__ = ['ImageFormatter', 'GifImageFormatter', 'JpgImageFormatter',
            'BmpImageFormatter']
@@ -72,7 +75,10 @@ class FontManager(object):
             self._create_nix()
 
     def _get_nix_font_path(self, name, style):
-        from commands import getstatusoutput
+        try:
+            from commands import getstatusoutput
+        except ImportError:
+            from subprocess import getstatusoutput
         exit, out = getstatusoutput('fc-list "%s:style=%s" file' %
                                     (name, style))
         if not exit:

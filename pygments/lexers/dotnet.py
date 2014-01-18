@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, include, \
      using, this
 from pygments.token import Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Literal, Other
-from pygments.util import get_choice_opt
+from pygments.util import get_choice_opt, iteritems
 from pygments import unistring as uni
 
 from pygments.lexers.web import XmlLexer
@@ -71,7 +71,7 @@ class CSharpLexer(RegexLexer):
     tokens = {}
     token_variants = True
 
-    for levelname, cs_ident in levels.items():
+    for levelname, cs_ident in iteritems(levels):
         tokens[levelname] = {
             'root': [
                 # method names
@@ -126,7 +126,7 @@ class CSharpLexer(RegexLexer):
         }
 
     def __init__(self, **options):
-        level = get_choice_opt(options, 'unicodelevel', self.tokens.keys(), 'basic')
+        level = get_choice_opt(options, 'unicodelevel', list(self.tokens), 'basic')
         if level not in self._all_tokens:
             # compile the regexes now
             self._tokens = self.__class__.process_tokendef(level)
@@ -183,7 +183,7 @@ class NemerleLexer(RegexLexer):
     tokens = {}
     token_variants = True
 
-    for levelname, cs_ident in levels.items():
+    for levelname, cs_ident in iteritems(levels):
         tokens[levelname] = {
             'root': [
                 # method names
@@ -284,7 +284,7 @@ class NemerleLexer(RegexLexer):
         }
 
     def __init__(self, **options):
-        level = get_choice_opt(options, 'unicodelevel', self.tokens.keys(),
+        level = get_choice_opt(options, 'unicodelevel', list(self.tokens),
                                'basic')
         if level not in self._all_tokens:
             # compile the regexes now

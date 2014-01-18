@@ -8,11 +8,13 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 from __future__ import division
 
 from pygments.formatter import Formatter
 from pygments.token import Token, STANDARD_TYPES
-from pygments.util import get_bool_opt, get_int_opt, StringIO
+from pygments.util import get_bool_opt, get_int_opt, StringIO, xrange, \
+    iteritems
 
 
 __all__ = ['LatexFormatter']
@@ -292,7 +294,7 @@ class LatexFormatter(Formatter):
         """
         cp = self.commandprefix
         styles = []
-        for name, definition in self.cmd2def.iteritems():
+        for name, definition in iteritems(self.cmd2def):
             styles.append(r'\expandafter\def\csname %s@tok@%s\endcsname{%s}' %
                           (cp, name, definition))
         return STYLE_TEMPLATE % {'cp': self.commandprefix,
@@ -307,14 +309,14 @@ class LatexFormatter(Formatter):
             realoutfile = outfile
             outfile = StringIO()
 
-        outfile.write(ur'\begin{Verbatim}[commandchars=\\\{\}')
+        outfile.write(r'\begin{Verbatim}[commandchars=\\\{\}')
         if self.linenos:
             start, step = self.linenostart, self.linenostep
             outfile.write(u',numbers=left' +
                           (start and u',firstnumber=%d' % start or u'') +
                           (step and u',stepnumber=%d' % step or u''))
         if self.mathescape or self.texcomments:
-            outfile.write(ur',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
+            outfile.write(r',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
         if self.verboptions:
             outfile.write(u',' + self.verboptions)
         outfile.write(u']\n')

@@ -11,14 +11,14 @@
 
 import codecs
 
-from pygments.util import get_bool_opt
+from pygments.util import get_bool_opt, string_types
 from pygments.styles import get_style_by_name
 
 __all__ = ['Formatter']
 
 
 def _lookup_style(style):
-    if isinstance(style, basestring):
+    if isinstance(style, string_types):
         return get_style_by_name(style)
     return style
 

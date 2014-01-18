@@ -13,11 +13,11 @@
 
 from __future__ import print_function
 
+import io
 import os
 import re
 import sys
 import getopt
-import cStringIO
 from os.path import join, splitext, abspath
 
 
@@ -71,6 +71,9 @@ def check_style_and_encoding(fn, lines):
                 encoding = co.group(1)
         try:
             line.decode(encoding)
+        except AttributeError:
+            # Python 3 - encoding was already checked
+            pass
         except UnicodeDecodeError as err:
             yield lno+1, "not decodable: %s\n   Line: %r" % (err, line)
         except LookupError as err:
@@ -134,7 +137,7 @@ def check_fileheader(fn, lines):
         yield 0, "no correct license info"
 
     ci = -3
-    copyright = [s.decode('utf-8') for s in llist[ci:ci+1]]
+    copyright = llist[ci:ci+1]
     while copyright and copyright_2_re.match(copyright[0]):
         ci -= 1
         copyright = llist[ci:ci+1]
@@ -188,14 +191,14 @@ def main(argv):
     verbose = '-v' in opts
 
     num = 0
-    out = cStringIO.StringIO()
+    out = io.StringIO()
 
     # TODO: replace os.walk run with iteration over output of
     #       `svn list -R`.
 
     for root, dirs, files in os.walk(path):
-        if '.svn' in dirs:
-            dirs.remove('.svn')
+        if '.hg' in dirs:
+            dirs.remove('.hg')
         if '-i' in opts and abspath(root) in opts['-i']:
             del dirs[:]
             continue
@@ -230,7 +233,7 @@ def main(argv):
                 if not in_pocoo_pkg and checker.only_pkg:
                     continue
                 for lno, msg in checker(fn, lines):
-                    print("%s:%d: %s" % (fn, lno, msg), file=out)
+                    print(u"%s:%d: %s" % (fn, lno, msg), file=out)
                     num += 1
     if verbose:
         print()

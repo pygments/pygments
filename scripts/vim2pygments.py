@@ -16,7 +16,7 @@ from __future__ import print_function
 import sys
 import re
 from os import path
-from cStringIO import StringIO
+from io import StringIO
 
 split_re = re.compile(r'(?<!\\)\s+')
 
@@ -767,7 +767,7 @@ TOKENS = {
 }
 
 TOKEN_TYPES = set()
-for token in TOKENS.itervalues():
+for token in TOKENS.values():
     if not isinstance(token, tuple):
         token = (token,)
     for token in token:
@@ -838,7 +838,7 @@ def find_colors(code):
         colors['Normal']['bgcolor'] = bg_color
 
     color_map = {}
-    for token, styles in colors.iteritems():
+    for token, styles in colors.items():
         if token in TOKENS:
             tmp = []
             if styles.get('noinherit'):
@@ -881,7 +881,7 @@ class StyleWriter(object):
     def write(self, out):
         self.write_header(out)
         default_token, tokens = find_colors(self.code)
-        tokens = tokens.items()
+        tokens = list(tokens.items())
         tokens.sort(lambda a, b: cmp(len(a[0]), len(a[1])))
         bg_color = [x[3:] for x in default_token.split() if x.startswith('bg:')]
         if bg_color:

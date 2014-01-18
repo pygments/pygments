@@ -121,11 +121,15 @@ def main():
             if '-i' in opts and abspath(root) in opts['-i']:
                 del dirs[:]
                 continue
-            if '.svn' in dirs:
-                dirs.remove('.svn')
+            if '.hg' in dirs:
+                dirs.remove('.hg')
+            if 'examplefiles' in dirs:
+                dirs.remove('examplefiles')
+            if 'dist' in dirs:
+                dirs.remove('dist')
             for fn in files:
                 gnum += 1
-                if gnum % 50 == 0 and not verbose:
+                if gnum % 25 == 0 and not verbose:
                     sys.stdout.write('.')
                     sys.stdout.flush()
 
@@ -150,7 +154,7 @@ def main():
         print()
 
     print("Processed %d of %d files. Found %d tags in %d files." % (
-        num, gnum, sum(len(fitem) for fitem in store.itervalues()), len(store)))
+        num, gnum, sum(len(fitem) for fitem in store.values()), len(store)))
 
     if not store:
         return 0
@@ -194,7 +198,7 @@ td { padding: 2px 5px 2px 5px;
           '<td class="tag %%(tag)s">%%(tag)s</td>'
           '<td class="who">%%(who)s</td><td class="what">%%(what)s</td></tr>')
 
-    f = file(output, 'w')
+    f = open(output, 'w')
     table = '\n'.join(TABLE % fname +
                       '\n'.join(TR % (no % 2,) % entry
                                 for no, entry in enumerate(store[fname]))
