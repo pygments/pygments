@@ -3,8 +3,8 @@ Unicode and Encodings
 =====================
 
 Since Pygments 0.6, all lexers use unicode strings internally. Because of that
-you might encounter the occasional `UnicodeDecodeError` if you pass strings with the
-wrong encoding.
+you might encounter the occasional :exc:`UnicodeDecodeError` if you pass strings
+with the wrong encoding.
 
 Per default all lexers have their input encoding set to `latin1`.
 If you pass a lexer a string object (not unicode), it tries to decode the data
@@ -39,11 +39,12 @@ Unicode string with this encoding before writing it. This is the case for
 `sys.stdout`, for example. The other formatters don't have that behavior.
 
 Another note: If you call Pygments via the command line (`pygmentize`),
-encoding is handled differently, see `the command line docs <cmdline.txt>`_.
+encoding is handled differently, see :doc:`the command line docs <cmdline>`.
 
-*New in Pygments 0.7*: the formatters now also accept an `outencoding` option
-which will override the `encoding` option if given. This makes it possible to
-use a single options dict with lexers and formatters, and still have different
-input and output encodings.
+.. versionadded:: 0.7
+   The formatters now also accept an `outencoding` option which will override
+   the `encoding` option if given. This makes it possible to use a single
+   options dict with lexers and formatters, and still have different input and
+   output encodings.
 
 .. _chardet: http://chardet.feedparser.org/

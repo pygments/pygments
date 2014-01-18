@@ -4,7 +4,7 @@
 Write your own formatter
 ========================
 
-As well as creating `your own lexer <lexerdevelopment.txt>`_, writing a new
+As well as creating :doc:`your own lexer <lexerdevelopment>`, writing a new
 formatter for Pygments is easy and straightforward.
 
 A formatter is a class that is initialized with some keyword arguments (the

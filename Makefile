@@ -36,11 +36,8 @@ codetags:
 	@$(PYTHON) scripts/find_codetags.py -i tests/examplefiles -i scripts/pylintrc \
 		   -i scripts/find_codetags.py -o codetags.html .
 
-docs: docs/build
-
-docs/build: docs/src/*.txt
-	$(PYTHON) docs/generate.py html docs/build $?
-	touch docs/build
+docs:
+	make -C doc html
 
 mapfiles:
 	(cd pygments/lexers; $(PYTHON) _mapping.py)

@@ -4,8 +4,8 @@
 Command Line Interface
 ======================
 
-You can use Pygments from the shell, provided you installed the `pygmentize`
-script::
+You can use Pygments from the shell, provided you installed the
+:program:`pygmentize` script::
 
     $ pygmentize test.py
     print "Hello World"
@@ -28,7 +28,7 @@ written to stdout.
 The ``-f`` option selects a formatter (as with ``-l``, it can also be omitted
 if an output file name is given and has a supported extension).
 If no output file name is given and ``-f`` is omitted, the
-`TerminalFormatter` is used.
+:class:`.TerminalFormatter` is used.
 
 The above command could therefore also be given as::
 
@@ -82,14 +82,15 @@ Usage is as follows::
 generates a CSS style sheet (because you selected the HTML formatter) for
 the "colorful" style prepending a ".syntax" selector to all style rules.
 
-For an explanation what ``-a`` means for `a particular formatter`_, look for
-the `arg` argument for the formatter's `get_style_defs()` method.
+For an explanation what ``-a`` means for :doc:`a particular formatter
+<formatters>`, look for the `arg` argument for the formatter's
+:meth:`.get_style_defs()` method.
 
 
 Getting lexer names
 -------------------
 
-*New in Pygments 1.0.*
+.. versionadded:: 1.0
 
 The ``-N`` option guesses a lexer name for a given filename, so that ::
 
@@ -125,7 +126,7 @@ will print the help for the Python lexer, etc.
 A note on encodings
 -------------------
 
-*New in Pygments 0.9.*
+.. versionadded:: 0.9
 
 Pygments tries to be smart regarding encodings in the formatting process:
 
@@ -141,7 +142,4 @@ Pygments tries to be smart regarding encodings in the formatting process:
 
 * If you don't give an encoding and haven't given an output file (that means
   output is written to the console), the default encoding for lexer and
-  formatter is the terminal encoding (`sys.stdout.encoding`).
-
-
-.. _a particular formatter: formatters.txt
+  formatter is the terminal encoding (``sys.stdout.encoding``).

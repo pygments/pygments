@@ -4,7 +4,9 @@
 Builtin Tokens
 ==============
 
-Inside the `pygments.token` module, there is a special object called `Token`
+.. module:: pygments.token
+
+In the :mod:`pygments.token` module, there is a special object called `Token`
 that is used to create token types.
 
 You can create a new token type by accessing an attribute of `Token`:
@@ -30,8 +32,8 @@ As of Pygments 0.7 you can also use the ``in`` operator to perform set tests:
     >>> Comment in Comment.Multi
     False
 
-This can be useful in `filters`_ and if you write lexers on your own without
-using the base lexers.
+This can be useful in :doc:`filters <filters>` and if you write lexers on your
+own without using the base lexers.
 
 You can also split a token type into a hierarchy, and get the parent of it:
 
@@ -55,7 +57,7 @@ For some tokens aliases are already defined:
     >>> String
     Token.Literal.String
 
-Inside the `pygments.token` module the following aliases are defined:
+Inside the :mod:`pygments.token` module the following aliases are defined:
 
 ============= ============================ ====================================
 `Text`        `Token.Text`                 for any type of text data
@@ -280,7 +282,7 @@ Operators
 Punctuation
 ===========
 
-*New in Pygments 0.7.*
+.. versionadded:: 0.7
 
 `Punctuation`
     For any punctuation which is not an operator (e.g. ``[``, ``(``...)
@@ -345,5 +347,3 @@ highlight a programming language but a patch file.
 
 `Generic.Traceback`
     Marks the token value as a part of an error traceback.
-
-.. _filters: filters.txt

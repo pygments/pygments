@@ -4,7 +4,7 @@
 Filters
 =======
 
-*New in Pygments 0.7.*
+.. versionadded:: 0.7
 
 You can filter token streams coming from lexers to improve or annotate the
 output. For example, you can highlight special words in comments, convert
@@ -31,12 +31,11 @@ To get a list of all registered filters by name, you can use the
 `get_all_filters()` function from the `pygments.filters` module that returns an
 iterable for all known filters.
 
-If you want to write your own filter, have a look at `Write your own filter`_.
-
-.. _Write your own filter: filterdevelopment.txt
+If you want to write your own filter, have a look at :doc:`Write your own filter
+<filterdevelopment>`.
 
 
 Builtin Filters
 ===============
 
-[builtin_filter_docs]
+.. pygmentsdoc:: filters

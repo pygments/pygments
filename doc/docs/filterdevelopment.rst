@@ -4,7 +4,7 @@
 Write your own filter
 =====================
 
-*New in Pygments 0.7.*
+.. versionadded:: 0.7
 
 Writing own filters is very easy. All you have to do is to subclass
 the `Filter` class and override the `filter` method. Additionally a

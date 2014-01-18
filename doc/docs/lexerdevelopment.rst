@@ -7,13 +7,13 @@ Write your own lexer
 If a lexer for your favorite language is missing in the Pygments package, you can
 easily write your own and extend Pygments.
 
-All you need can be found inside the `pygments.lexer` module. As you can read in
-the `API documentation <api.txt>`_, a lexer is a class that is initialized with
-some keyword arguments (the lexer options) and that provides a
-`get_tokens_unprocessed()` method which is given a string or unicode object with
-the data to parse.
+All you need can be found inside the :mod:`pygments.lexer` module. As you can
+read in the :doc:`API documentation <api>`, a lexer is a class that is
+initialized with some keyword arguments (the lexer options) and that provides a
+:meth:`.get_tokens_unprocessed()` method which is given a string or unicode
+object with the data to parse.
 
-The `get_tokens_unprocessed()` method must return an iterator or iterable
+The :meth:`.get_tokens_unprocessed()` method must return an iterator or iterable
 containing tuples in the form ``(index, token, value)``. Normally you don't need
 to do this since there are numerous base lexers you can subclass.
 
@@ -21,9 +21,9 @@ to do this since there are numerous base lexers you can subclass.
 RegexLexer
 ==========
 
-A very powerful (but quite easy to use) lexer is the `RegexLexer`. This lexer
-base class allows you to define lexing rules in terms of *regular expressions*
-for different *states*.
+A very powerful (but quite easy to use) lexer is the :class:`RegexLexer`. This
+lexer base class allows you to define lexing rules in terms of *regular
+expressions* for different *states*.
 
 States are groups of regular expressions that are matched against the input
 string at the *current position*. If one of these expressions matches, a
@@ -289,8 +289,9 @@ There are a few more things you can do with states:
   the closing ``*/``. Then, both states are popped from the stack again and
   lexing continues in the root state.
 
-  *New in Pygments 0.9:* The tuple can contain the special ``'#push'`` and
-  ``'#pop'`` (but not ``'#pop:n'``) directives.
+  .. versionadded:: 0.9
+     The tuple can contain the special ``'#push'`` and ``'#pop'`` (but not
+     ``'#pop:n'``) directives.
 
 
 - You can include the rules of a state in the definition of another.  This is
@@ -598,6 +599,4 @@ the ``get_tokens_unprocessed()`` method. The following lexer subclasses the
 
 The `PhpLexer` and `LuaLexer` use this method to resolve builtin functions.
 
-**Note** Do not confuse this with the `filter`_ system.
-
-.. _filter: filters.txt
+.. note:: Do not confuse this with the :doc:`filter <filters>` system.

@@ -12,8 +12,6 @@ Common options
 All formatters support these options:
 
 `encoding`
-    *New in Pygments 0.6.*
-
     If given, must be an encoding name (such as ``"utf-8"``). This will
     be used to convert the token strings (which are Unicode strings)
     to byte strings in the output (default: ``None``).
@@ -30,19 +28,21 @@ All formatters support these options:
     supports Unicode arguments to `write()`. Using a regular file object
     wouldn't work.
 
-`outencoding`
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.6
 
+`outencoding`
     When using Pygments from the command line, any `encoding` option given is
     passed to the lexer and the formatter. This is sometimes not desirable,
     for example if you want to set the input encoding to ``"guess"``.
     Therefore, `outencoding` has been introduced which overrides `encoding`
     for the formatter if given.
 
+    .. versionadded:: 0.7
+
 
 Formatter classes
 =================
 
-All these classes are importable from `pygments.formatters`.
+All these classes are importable from :mod:`pygments.formatters`.
 
-[builtin_formatter_docs]
+.. pygmentsdoc:: formatters
