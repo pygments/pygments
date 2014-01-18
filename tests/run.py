@@ -11,6 +11,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 import sys, os
 
@@ -40,14 +41,14 @@ try:
     sys.path.insert(0, '..')
     import pygments
 except SyntaxError:
-    print ('Syntax error: %s' % sys.exc_info()[1])
+    print(('Syntax error: %s' % sys.exc_info()[1]))
     print ('Please run setup.py build before make test on Python 3')
     sys.exit(1)
 except ImportError:
-    print ('Cannot find Pygments to test: %s' % sys.exc_info()[1])
+    print(('Cannot find Pygments to test: %s' % sys.exc_info()[1]))
     sys.exit(1)
 else:
-    print ('Pygments %s test suite running (Python %s)...' %
-           (pygments.__version__, sys.version.split()[0]))
+    print(('Pygments %s test suite running (Python %s)...' %
+           (pygments.__version__, sys.version.split()[0])))
 
 nose.main()

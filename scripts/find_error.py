@@ -11,6 +11,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 import sys, os
 
@@ -111,29 +112,29 @@ def main(fn, lexer=None, options={}):
 
     def show_token(tok, state):
         reprs = map(repr, tok)
-        print '   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0],
+        print('   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0], end=' ')
         if debug_lexer:
-            print ' ' + ' ' * (29-len(reprs[0])) + repr(state),
-        print
+            print(' ' + ' ' * (29-len(reprs[0])) + repr(state), end=' ')
+        print()
 
     for type, val in lx.get_tokens(text):
         lno += val.count('\n')
         if type == Error:
-            print 'Error parsing', fn, 'on line', lno
-            print 'Previous tokens' + (debug_lexer and ' and states' or '') + ':'
+            print('Error parsing', fn, 'on line', lno)
+            print('Previous tokens' + (debug_lexer and ' and states' or '') + ':')
             if showall:
                 for tok, state in map(None, tokens, states):
                     show_token(tok, state)
             else:
                 for i in range(max(len(tokens) - num, 0), len(tokens)):
                     show_token(tokens[i], states[i])
-            print 'Error token:'
+            print('Error token:')
             l = len(repr(val))
-            print '   ' + repr(val),
+            print('   ' + repr(val), end=' ')
             if debug_lexer and hasattr(lx, 'statestack'):
-                print ' ' * (60-l) + repr(lx.statestack),
-            print
-            print
+                print(' ' * (60-l) + repr(lx.statestack), end=' ')
+            print()
+            print()
             return 1
         tokens.append((type, val))
         if debug_lexer:

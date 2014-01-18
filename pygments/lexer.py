@@ -457,7 +457,7 @@ class RegexLexerMeta(LexerMeta):
 
             try:
                 rex = cls._process_regex(tdef[0], rflags)
-            except Exception, err:
+            except Exception as err:
                 raise ValueError("uncompilable regex %r in state %r of %r: %s" %
                                  (tdef[0], state, cls, err))
 

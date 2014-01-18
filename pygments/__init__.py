@@ -43,7 +43,7 @@ def lex(code, lexer):
     """
     try:
         return lexer.get_tokens(code)
-    except TypeError, err:
+    except TypeError as err:
         if isinstance(err.args[0], str) and \
            'unbound method get_tokens' in err.args[0]:
             raise TypeError('lex() argument must be a lexer instance, '
@@ -67,7 +67,7 @@ def format(tokens, formatter, outfile=None):
             return realoutfile.getvalue()
         else:
             formatter.format(tokens, outfile)
-    except TypeError, err:
+    except TypeError as err:
         if isinstance(err.args[0], str) and \
            'unbound method format' in err.args[0]:
             raise TypeError('format() argument must be a formatter instance, '

@@ -8,6 +8,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import division
 
 from pygments.formatter import Formatter
 from pygments.token import Token, STANDARD_TYPES

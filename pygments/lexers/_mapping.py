@@ -12,6 +12,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 LEXERS = {
     'ABAPLexer': ('pygments.lexers.other', 'ABAP', ('abap',), ('*.abap',), ('text/x-abap',)),
@@ -327,7 +328,7 @@ if __name__ == '__main__':
     for filename in os.listdir('.'):
         if filename.endswith('.py') and not filename.startswith('_'):
             module_name = 'pygments.lexers.%s' % filename[:-3]
-            print module_name
+            print(module_name)
             module = __import__(module_name, None, None, [''])
             for lexer_name in module.__all__:
                 lexer = getattr(module, lexer_name)
