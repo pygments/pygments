@@ -18,14 +18,13 @@ Currently, **all lexers** support these options:
 `ensurenl`
     Make sure that the input ends with a newline (default: ``True``).  This
     is required for some lexers that consume input linewise.
-    *New in Pygments 1.3.*
+
+    .. versionadded:: 1.3
 
 `tabsize`
     If given and greater than 0, expand tabs in the input (default: ``0``).
 
 `encoding`
-    *New in Pygments 0.6.*
-
     If given, must be an encoding name (such as ``"utf-8"``). This encoding
     will be used to convert the input string to Unicode (if it is not already
     a Unicode string). The default is ``"latin1"``.
@@ -35,18 +34,21 @@ Currently, **all lexers** support these options:
     `chardet library <http://chardet.feedparser.org/>`__ is used to
     guess the encoding of the input.
 
+    .. versionadded:: 0.6
+
 
 The "Short Names" field lists the identifiers that can be used with the
 `get_lexer_by_name()` function.
 
 These lexers are builtin and can be imported from `pygments.lexers`:
 
-[builtin_lexer_docs]
+.. pygmentsdoc:: lexers
+
 
 Iterating over all lexers
 -------------------------
 
-*New in Pygments 0.6.*
+.. versionadded:: 0.6
 
 To get all lexers (both the builtin and the plugin ones), you can
 use the `get_all_lexers()` function from the `pygments.lexers`

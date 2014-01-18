@@ -58,8 +58,8 @@ can be produced by:
 
     print HtmlFormatter().get_style_defs('.highlight')
 
-The argument to `get_style_defs` is used as an additional CSS selector: the output
-may look like this:
+The argument to :func:`get_style_defs` is used as an additional CSS selector:
+the output may look like this:
 
 .. sourcecode:: css
 
@@ -71,9 +71,9 @@ may look like this:
 Options
 =======
 
-The `highlight()` function supports a fourth argument called `outfile`, it must be
-a file object if given. The formatted output will then be written to this file
-instead of being returned as a string.
+The :func:`highlight()` function supports a fourth argument called *outfile*, it
+must be a file object if given. The formatted output will then be written to
+this file instead of being returned as a string.
 
 Lexers and formatters both support options. They are given to them as keyword
 arguments either to the class or to the lookup method:
@@ -103,9 +103,9 @@ Important options include:
 
 
 For an overview of builtin lexers and formatters and their options, visit the
-`lexer <lexers.txt>`_ and `formatters <formatters.txt>`_ lists.
+:doc:`lexer <lexers>` and :doc:`formatters <formatters>` lists.
 
-For a documentation on filters, see `this page <filters.txt>`_.
+For a documentation on filters, see :doc:`this page <filters>`.
 
 
 Lexer and formatter lookup
@@ -131,9 +131,9 @@ one of the following methods:
 All these functions accept keyword arguments; they will be passed to the lexer
 as options.
 
-A similar API is available for formatters: use `get_formatter_by_name()` and
-`get_formatter_for_filename()` from the `pygments.formatters` module
-for this purpose.
+A similar API is available for formatters: use :func:`.get_formatter_by_name()`
+and :func:`.get_formatter_for_filename()` from the :mod:`pygments.formatters`
+module for this purpose.
 
 
 Guessing lexers
@@ -153,16 +153,17 @@ or some template tags), use these functions:
     >>> guess_lexer_for_filename('test.py', 'print "Hello World!"')
     <pygments.lexers.PythonLexer>
 
-`guess_lexer()` passes the given content to the lexer classes' `analyse_text()`
-method and returns the one for which it returns the highest number.
+:func:`.guess_lexer()` passes the given content to the lexer classes'
+:meth:`analyse_text()` method and returns the one for which it returns the
+highest number.
 
 All lexers have two different filename pattern lists: the primary and the
-secondary one. The `get_lexer_for_filename()` function only uses the primary
-list, whose entries are supposed to be unique among all lexers.
-`guess_lexer_for_filename()`, however, will first loop through all lexers and
-look at the primary and secondary filename patterns if the filename matches.
+secondary one. The :func:`.get_lexer_for_filename()` function only uses the
+primary list, whose entries are supposed to be unique among all lexers.
+:func:`.guess_lexer_for_filename()`, however, will first loop through all lexers
+and look at the primary and secondary filename patterns if the filename matches.
 If only one lexer matches, it is returned, else the guessing mechanism of
-`guess_lexer()` is used with the matching lexers.
+:func:`.guess_lexer()` is used with the matching lexers.
 
 As usual, keyword arguments to these functions are given to the created lexer
 as options.    
@@ -171,7 +172,8 @@ as options.
 Command line usage
 ==================
 
-You can use Pygments from the command line, using the `pygmentize` script::
+You can use Pygments from the command line, using the :program:`pygmentize`
+script::
 
     $ pygmentize test.py
 
@@ -199,4 +201,5 @@ it can be created with::
 
 where ``default`` is the style name.
 
-More options and tricks and be found in the `command line reference <cmdline.txt>`_.
+More options and tricks and be found in the :doc:`command line reference
+<cmdline>`.

@@ -4173,9 +4173,9 @@ class CirruLexer(RegexLexer):
     Syntax rules of Cirru can be found at:
     http://grammar.cirru.org/
 
-    * using `()` to markup blocks, but limited in the same line
-    * using `""` to markup strings, allow `\` to escape
-    * using `$` as a shorthand for `()` till indentation end or `)`
+    * using ``()`` to markup blocks, but limited in the same line
+    * using ``""`` to markup strings, allow ``\`` to escape
+    * using ``$`` as a shorthand for ``()`` till indentation end or ``)``
     * using indentations for create nesting
 
     *New in Pygments 1.7.*

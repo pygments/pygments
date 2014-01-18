@@ -68,7 +68,7 @@ they can be used for a variety of formatters.)
 
 To make the style usable for Pygments, you must
 
-* either register it as a plugin (see `the plugin docs <plugins.txt>`_)
+* either register it as a plugin (see :doc:`the plugin docs <plugins>`)
 * or drop it into the `styles` subpackage of your Pygments distribution one style
   class per style, where the file name is the style name and the class name is
   `StylenameClass`. For example, if your style should be called
@@ -132,7 +132,7 @@ To get a list of known styles you can use this snippet:
 Getting a list of available styles
 ==================================
 
-*New in Pygments 0.6.*
+.. versionadded:: 0.6
 
 Because it could be that a plugin registered a style, there is
 a way to iterate over all styles:

@@ -23,8 +23,9 @@ Markdown
 --------
 
 Since Pygments 0.9, the distribution ships Markdown_ preprocessor sample code
-that uses Pygments to render source code in `external/markdown-processor.py`.
-You can copy and adapt it to your liking.
+that uses Pygments to render source code in
+:file:`external/markdown-processor.py`.  You can copy and adapt it to your
+liking.
 
 .. _Markdown: http://www.freewisdom.org/projects/python-markdown/
 
@@ -41,8 +42,3 @@ Bash completion
 
 The source distribution contains a file ``external/pygments.bashcomp`` that
 sets up completion for the ``pygmentize`` command in bash.
-
-Java
-----
-
-See the `Java quickstart <java.txt>`_ document.

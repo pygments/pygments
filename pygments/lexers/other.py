@@ -3436,7 +3436,7 @@ class NSISLexer(RegexLexer):
 
 class RPMSpecLexer(RegexLexer):
     """
-    For RPM *.spec files
+    For RPM ``.spec`` files.
 
     *New in Pygments 1.6.*
     """

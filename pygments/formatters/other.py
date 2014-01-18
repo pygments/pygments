@@ -40,7 +40,7 @@ class RawTokenFormatter(Formatter):
 
     The format is ``tokentype<TAB>repr(tokenstring)\n``. The output can later
     be converted to a token stream with the `RawTokenLexer`, described in the
-    `lexer list <lexers.txt>`_.
+    :doc:`lexer list <lexers>`.
 
     Only two options are accepted:
 
