@@ -11,6 +11,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 FUNCTIONS = ['TopMenuHandler',
  'CreateTopMenu',
@@ -1057,13 +1058,13 @@ if __name__ == '__main__':
 
     def run():
         version = get_version()
-        print '> Downloading function index for SourceMod %s' % version
+        print('> Downloading function index for SourceMod %s' % version)
         functions = get_sm_functions()
-        print '> %d functions found:' % len(functions)
+        print('> %d functions found:' % len(functions))
 
         functionlist = []
         for full_function_name in functions:
-            print '>> %s' % full_function_name
+            print('>> %s' % full_function_name)
             functionlist.append(full_function_name)
 
         regenerate(__file__, functionlist)

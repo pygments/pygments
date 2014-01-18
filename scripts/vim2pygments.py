@@ -10,6 +10,7 @@
     :copyright 2006 by Armin Ronacher.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 import sys
 import re
@@ -916,14 +917,14 @@ def convert(filename, stream=None):
 
 def main():
     if len(sys.argv) != 2 or sys.argv[1] in ('-h', '--help'):
-        print 'Usage: %s <filename.vim>' % sys.argv[0]
+        print('Usage: %s <filename.vim>' % sys.argv[0])
         return 2
     if sys.argv[1] in ('-v', '--version'):
-        print '%s %s' % (SCRIPT_NAME, SCRIPT_VERSION)
+        print('%s %s' % (SCRIPT_NAME, SCRIPT_VERSION))
         return
     filename = sys.argv[1]
     if not (path.exists(filename) and path.isfile(filename)):
-        print 'Error: %s not found' % filename
+        print('Error: %s not found' % filename)
         return 1
     convert(filename, sys.stdout)
     sys.stdout.write('\n')

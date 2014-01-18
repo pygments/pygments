@@ -1,3 +1,4 @@
+from __future__ import print_function
 import re
 from pprint import pprint
 
@@ -31,7 +32,7 @@ def getkw(input, output):
 
     for a, b in output_info.items():
         b.sort()
-        print >>out, '%s=[%s]' % (a, ','.join(b))
+        print('%s=[%s]' % (a, ','.join(b)), file=out)
 
 def is_keyword(w, keywords):
     for i in range(len(w), 0, -1):

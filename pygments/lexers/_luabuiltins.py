@@ -12,6 +12,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 MODULES = {'basic': ['_G',
            '_VERSION',
@@ -233,13 +234,13 @@ if __name__ == '__main__':
 
     def run():
         version = get_newest_version()
-        print '> Downloading function index for Lua %s' % version
+        print('> Downloading function index for Lua %s' % version)
         functions = get_lua_functions(version)
-        print '> %d functions found:' % len(functions)
+        print('> %d functions found:' % len(functions))
 
         modules = {}
         for full_function_name in functions:
-            print '>> %s' % full_function_name
+            print('>> %s' % full_function_name)
             m = get_function_module(full_function_name)
             modules.setdefault(m, []).append(full_function_name)
 

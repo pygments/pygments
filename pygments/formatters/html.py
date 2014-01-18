@@ -8,6 +8,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 import os
 import sys
@@ -505,8 +506,8 @@ class HtmlFormatter(Formatter):
                     cssfilename = os.path.join(os.path.dirname(filename),
                                                self.cssfile)
                 except AttributeError:
-                    print >>sys.stderr, 'Note: Cannot determine output file name, ' \
-                          'using current directory as base for the CSS file name'
+                    print('Note: Cannot determine output file name, ' \
+                          'using current directory as base for the CSS file name', file=sys.stderr)
                     cssfilename = self.cssfile
             # write CSS file only if noclobber_cssfile isn't given as an option.
             try:
@@ -515,7 +516,7 @@ class HtmlFormatter(Formatter):
                     cf.write(CSSFILE_TEMPLATE %
                             {'styledefs': self.get_style_defs('body')})
                     cf.close()
-            except IOError, err:
+            except IOError as err:
                 err.strerror = 'Error writing CSS file: ' + err.strerror
                 raise
 

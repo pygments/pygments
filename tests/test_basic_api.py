@@ -6,6 +6,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 import os
 import random
@@ -71,7 +72,7 @@ def test_lexer_classes():
             assert isinstance(token, tuple)
             assert isinstance(token[0], _TokenType)
             if isinstance(token[1], str):
-                print repr(token[1])
+                print(repr(token[1]))
             assert isinstance(token[1], unicode)
             txt += token[1]
         assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \

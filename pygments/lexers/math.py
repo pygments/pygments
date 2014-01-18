@@ -8,6 +8,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 import re
 
@@ -431,7 +432,7 @@ class MatlabSessionLexer(Lexer):
 
                 yield match.start(), Generic.Output, line
 
-        print insertions
+        print(insertions)
         if curcode: # or item:
             for item in do_insertions(
                 insertions, mlexer.get_tokens_unprocessed(curcode)):

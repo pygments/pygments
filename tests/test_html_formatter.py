@@ -6,6 +6,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 import os
 import re
@@ -132,7 +133,7 @@ class HtmlFormatterTest(unittest.TestCase):
             pass
         else:
             if ret:
-                print output
+                print(output)
             self.assertFalse(ret, 'nsgmls run reported errors')
 
         os.unlink(pathname)

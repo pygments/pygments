@@ -9,6 +9,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 import os
 import sys
@@ -51,7 +52,7 @@ def generate_lexer_docs():
         mod = __import__(module, None, None, [classname])
         cls = getattr(mod, classname)
         if not cls.__doc__:
-            print "Warning: %s does not have a docstring." % classname
+            print("Warning: %s does not have a docstring." % classname)
         modules.setdefault(module, []).append((
             classname,
             cls.__doc__,
@@ -441,11 +442,11 @@ def run(handle_file, dst, sources=()):
         sources = [os.path.join(path, fn) for fn in os.listdir(path)]
     if not os.path.isdir(dst):
         os.makedirs(dst)
-    print 'Making docs for Pygments %s in %s' % (__version__, dst)
+    print('Making docs for Pygments %s in %s' % (__version__, dst))
     for fn in sources:
         if not os.path.isfile(fn):
             continue
-        print 'Processing %s' % fn
+        print('Processing %s' % fn)
         f = open(fn)
         try:
             handle_file(fn, f, dst)
@@ -460,13 +461,13 @@ def main(mode, dst='build/', *sources):
             'python':       handle_python
         }[mode]
     except KeyError:
-        print 'Error: unknown mode "%s"' % mode
+        print('Error: unknown mode "%s"' % mode)
         sys.exit(1)
     run(handler, os.path.realpath(dst), sources)
 
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:
-        print USAGE
+        print(USAGE)
     else:
         main(*sys.argv[1:])

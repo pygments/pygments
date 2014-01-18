@@ -15,6 +15,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 
 MODULES = {'.NET': ['dotnet_load'],
@@ -3777,10 +3778,10 @@ if __name__ == '__main__':
         f.close()
 
     def run():
-        print '>> Downloading Function Index'
+        print('>> Downloading Function Index')
         modules = get_php_functions()
         total = sum(len(v) for v in modules.itervalues())
-        print '%d functions found' % total
+        print('%d functions found' % total)
         regenerate(__file__, modules)
         shutil.rmtree(PHP_MANUAL_DIR)
 

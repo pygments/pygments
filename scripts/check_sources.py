@@ -10,6 +10,7 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import print_function
 
 import sys, os, re
 import getopt
@@ -46,7 +47,7 @@ misspellings = ["developement", "adress", "verificate",  # ALLOW-MISSPELLING
 def check_syntax(fn, lines):
     try:
         compile(''.join(lines), fn, "exec")
-    except SyntaxError, err:
+    except SyntaxError as err:
         yield 0, "not compilable: %s" % err
 
 
@@ -67,9 +68,9 @@ def check_style_and_encoding(fn, lines):
                 encoding = co.group(1)
         try:
             line.decode(encoding)
-        except UnicodeDecodeError, err:
+        except UnicodeDecodeError as err:
             yield lno+1, "not decodable: %s\n   Line: %r" % (err, line)
-        except LookupError, err:
+        except LookupError as err:
             yield 0, "unknown encoding: %s" % encoding
             encoding = 'latin1'
 
@@ -165,7 +166,7 @@ def main(argv):
     try:
         gopts, args = getopt.getopt(argv[1:], "vi:")
     except getopt.GetoptError:
-        print "Usage: %s [-v] [-i ignorepath]* [path]" % argv[0]
+        print("Usage: %s [-v] [-i ignorepath]* [path]" % argv[0])
         return 2
     opts = {}
     for opt, val in gopts:
@@ -178,7 +179,7 @@ def main(argv):
     elif len(args) == 1:
         path = args[0]
     else:
-        print "Usage: %s [-v] [-i ignorepath]* [path]" % argv[0]
+        print("Usage: %s [-v] [-i ignorepath]* [path]" % argv[0])
         return 2
 
     verbose = '-v' in opts
@@ -212,13 +213,13 @@ def main(argv):
                 continue
 
             if verbose:
-                print "Checking %s..." % fn
+                print("Checking %s..." % fn)
 
             try:
                 f = open(fn, 'r')
                 lines = list(f)
-            except (IOError, OSError), err:
-                print "%s: cannot open: %s" % (fn, err)
+            except (IOError, OSError) as err:
+                print("%s: cannot open: %s" % (fn, err))
                 num += 1
                 continue
 
@@ -226,15 +227,15 @@ def main(argv):
                 if not in_pocoo_pkg and checker.only_pkg:
                     continue
                 for lno, msg in checker(fn, lines):
-                    print >>out, "%s:%d: %s" % (fn, lno, msg)
+                    print("%s:%d: %s" % (fn, lno, msg), file=out)
                     num += 1
     if verbose:
-        print
+        print()
     if num == 0:
-        print "No errors found."
+        print("No errors found.")
     else:
-        print out.getvalue().rstrip('\n')
-        print "%d error%s found." % (num, num > 1 and "s" or "")
+        print(out.getvalue().rstrip('\n'))
+        print("%d error%s found." % (num, num > 1 and "s" or ""))
     return int(num > 0)
 
 
