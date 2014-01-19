@@ -45,7 +45,7 @@ class ECLLexer(RegexLexer):
     <http://hpccsystems.com/community/docs/ecl-language-reference/html>`_
     language.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'ECL'
@@ -176,7 +176,7 @@ class BefungeLexer(RegexLexer):
     Lexer for the esoteric `Befunge <http://en.wikipedia.org/wiki/Befunge>`_
     language.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
     name = 'Befunge'
     aliases = ['befunge']
@@ -206,7 +206,7 @@ class RedcodeLexer(RegexLexer):
     A simple Redcode lexer based on ICWS'94.
     Contributed by Adam Blinkinsop <blinks@acm.org>.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
     name = 'Redcode'
     aliases = ['redcode']
@@ -242,7 +242,7 @@ class MOOCodeLexer(RegexLexer):
     For `MOOCode <http://www.moo.mud.org/>`_ (the MOO scripting
     language).
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'MOOCode'
     filenames = ['*.moo']
@@ -286,7 +286,7 @@ class SmalltalkLexer(RegexLexer):
     Contributed by Stefan Matthias Aust.
     Rewritten by Nils Winter.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Smalltalk'
     filenames = ['*.st']
@@ -405,7 +405,7 @@ class LogtalkLexer(RegexLexer):
     """
     For `Logtalk <http://logtalk.org/>`_ source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'Logtalk'
@@ -633,7 +633,7 @@ class GnuplotLexer(RegexLexer):
     """
     For `Gnuplot <http://gnuplot.info/>`_ plotting scripts.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
 
     name = 'Gnuplot'
@@ -792,7 +792,7 @@ class PovrayLexer(RegexLexer):
     """
     For `Persistence of Vision Raytracer <http://www.povray.org/>`_ files.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
     name = 'POVRay'
     aliases = ['pov']
@@ -1198,7 +1198,7 @@ class ModelicaLexer(RegexLexer):
     """
     For `Modelica <http://www.modelica.org/>`_ source code.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'Modelica'
     aliases = ['modelica']
@@ -1287,7 +1287,7 @@ class RebolLexer(RegexLexer):
     """
     A `REBOL <http://www.rebol.com/>`_ lexer.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'REBOL'
     aliases = ['rebol']
@@ -1515,7 +1515,7 @@ class ABAPLexer(RegexLexer):
     """
     Lexer for ABAP, SAP's integrated language.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'ABAP'
     aliases = ['abap']
@@ -1763,7 +1763,7 @@ class GherkinLexer(RegexLexer):
     """
     For `Gherkin <http://github.com/aslakhellesoy/gherkin/>` syntax.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'Gherkin'
     aliases = ['cucumber', 'gherkin']
@@ -1875,7 +1875,7 @@ class AsymptoteLexer(RegexLexer):
     """
     For `Asymptote <http://asymptote.sf.net/>`_ source code.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'Asymptote'
     aliases = ['asy', 'asymptote']
@@ -1996,7 +1996,7 @@ class PostScriptLexer(RegexLexer):
     <http://partners.adobe.com/public/developer/en/ps/PLRM.pdf>
     is the authority for this.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'PostScript'
     aliases = ['postscript', 'postscr']
@@ -2084,7 +2084,7 @@ class AutohotkeyLexer(RegexLexer):
     """
     For `autohotkey <http://www.autohotkey.com/>`_ source code.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'autohotkey'
     aliases = ['ahk', 'autohotkey']
@@ -2264,7 +2264,7 @@ class MaqlLexer(RegexLexer):
     <https://secure.gooddata.com/docs/html/advanced.metric.tutorial.html>`_
     scripts.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'MAQL'
@@ -2323,7 +2323,7 @@ class GoodDataCLLexer(RegexLexer):
     Lexer for `GoodData-CL <http://github.com/gooddata/GoodData-CL/raw/master/cli/src/main/resources/com/gooddata/processor/COMMANDS.txt>`_
     script files.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'GoodData-CL'
@@ -2368,7 +2368,7 @@ class ProtoBufLexer(RegexLexer):
     Lexer for `Protocol Buffer <http://code.google.com/p/protobuf/>`_
     definition files.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Protocol Buffer'
@@ -2420,7 +2420,7 @@ class HybrisLexer(RegexLexer):
     """
     For `Hybris <http://www.hybris-lang.org>`_ source code.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Hybris'
@@ -2498,7 +2498,7 @@ class AwkLexer(RegexLexer):
     """
     For Awk scripts.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Awk'
@@ -2552,7 +2552,7 @@ class Cfengine3Lexer(RegexLexer):
     """
     Lexer for `CFEngine3 <http://cfengine.org>`_ policy files.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'CFEngine3'
@@ -2616,7 +2616,7 @@ class SnobolLexer(RegexLexer):
     Recognizes the common ASCII equivalents of the original SNOBOL4 operators.
     Does not require spaces around binary operators.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = "Snobol"
@@ -2680,7 +2680,7 @@ class UrbiscriptLexer(ExtendedRegexLexer):
     """
     For UrbiScript source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'UrbiScript'
@@ -2787,7 +2787,7 @@ class OpenEdgeLexer(RegexLexer):
     Lexer for `OpenEdge ABL (formerly Progress)
     <http://web.progress.com/en/openedge/abl.html>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'OpenEdge ABL'
     aliases = ['openedge', 'abl', 'progress']
@@ -2839,7 +2839,7 @@ class BroLexer(RegexLexer):
     """
     For `Bro <http://bro-ids.org/>`_ scripts.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Bro'
     aliases = ['bro']
@@ -2917,7 +2917,7 @@ class CbmBasicV2Lexer(RegexLexer):
     """
     For CBM BASIC V2 sources.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'CBM BASIC V2'
     aliases = ['cbmbas']
@@ -2955,7 +2955,7 @@ class MscgenLexer(RegexLexer):
     """
     For `Mscgen <http://www.mcternan.me.uk/mscgen/>`_ files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Mscgen'
     aliases = ['mscgen', 'msc']
@@ -3016,7 +3016,7 @@ class KconfigLexer(RegexLexer):
     """
     For Linux-style Kconfig files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Kconfig'
@@ -3091,7 +3091,7 @@ class VGLLexer(RegexLexer):
     For `SampleManager VGL <http://www.thermoscientific.com/samplemanager>`_
     source code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'VGL'
     aliases = ['vgl']
@@ -3124,7 +3124,7 @@ class SourcePawnLexer(RegexLexer):
     """
     For SourcePawn source code with preprocessor directives.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'SourcePawn'
     aliases = ['sp']
@@ -3233,7 +3233,7 @@ class PuppetLexer(RegexLexer):
     """
     For `Puppet <http://puppetlabs.com/>`__ configuration DSL.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Puppet'
     aliases = ['puppet']
@@ -3314,7 +3314,7 @@ class NSISLexer(RegexLexer):
     """
     For `NSIS <http://nsis.sourceforge.net/>`_ scripts.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'NSIS'
     aliases = ['nsis', 'nsi', 'nsh']
@@ -3438,7 +3438,7 @@ class RPMSpecLexer(RegexLexer):
     """
     For RPM ``.spec`` files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'RPMSpec'
@@ -3514,7 +3514,7 @@ class AutoItLexer(RegexLexer):
     AutoIt is a freeware BASIC-like scripting language
     designed for automating the Windows GUI and general scripting
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'AutoIt'
     aliases = ['autoit']
@@ -3694,7 +3694,7 @@ class RexxLexer(RegexLexer):
     systems. It is popular for I/O- and data based tasks and can act as glue
     language to bind different applications together.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
     name = 'Rexx'
     aliases = ['rexx', 'arexx']

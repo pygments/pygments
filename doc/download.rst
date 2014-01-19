@@ -30,8 +30,8 @@ online `here <http://bitbucket.org/birkenfeld/pygments-main/src>`_.
 The latest changes in the development source code are listed in the `changelog
 <http://bitbucket.org/birkenfeld/pygments-main/src/tip/CHANGES>`_.
 
-Documentation
--------------
+.. Documentation
+   -------------
 
 .. XXX todo
 

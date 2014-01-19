@@ -125,7 +125,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
     """
     Lexer for the PostgreSQL dialect of SQL.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'PostgreSQL SQL dialect'
@@ -170,7 +170,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     """
     Handle the extra syntax in Pl/pgSQL language.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'PL/pgSQL'
     aliases = ['plpgsql']
@@ -258,7 +258,7 @@ class PostgresConsoleLexer(Lexer):
     """
     Lexer for psql sessions.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'PostgreSQL console (psql)'
@@ -525,7 +525,7 @@ class SqliteConsoleLexer(Lexer):
     """
     Lexer for example sessions using sqlite3.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
 
     name = 'sqlite3con'

@@ -378,7 +378,7 @@ class Ca65Lexer(RegexLexer):
     """
     For ca65 assembler sources.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'ca65'
     aliases = ['ca65']

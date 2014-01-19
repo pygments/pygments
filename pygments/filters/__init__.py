@@ -182,7 +182,7 @@ class RaiseOnErrorTokenFilter(Filter):
       The exception class to raise.
       The default is `pygments.filters.ErrorToken`.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
 
     def __init__(self, **options):
@@ -230,7 +230,7 @@ class VisibleWhitespaceFilter(Filter):
       styling the visible whitespace differently (e.g. greyed out), but it can
       disrupt background colors.  The default is ``True``.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
 
     def __init__(self, **options):
@@ -295,7 +295,7 @@ class GobbleFilter(Filter):
     `n` : int
        The number of characters to gobble.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     def __init__(self, **options):
         Filter.__init__(self, **options)
@@ -327,7 +327,7 @@ class TokenMergeFilter(Filter):
     Merges consecutive tokens with the same token type in the output stream of a
     lexer.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     def __init__(self, **options):
         Filter.__init__(self, **options)

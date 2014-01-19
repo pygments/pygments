@@ -95,7 +95,7 @@ class JsonLexer(RegexLexer):
     """
     For JSON data structures.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'JSON'
@@ -178,7 +178,7 @@ class ActionScriptLexer(RegexLexer):
     """
     For ActionScript source code.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
 
     name = 'ActionScript'
@@ -262,7 +262,7 @@ class ActionScript3Lexer(RegexLexer):
     """
     For ActionScript 3 source code.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
 
     name = 'ActionScript 3'
@@ -484,7 +484,7 @@ class ObjectiveJLexer(RegexLexer):
     """
     For Objective-J source code with preprocessor directives.
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'Objective-J'
@@ -921,7 +921,7 @@ class DtdLexer(RegexLexer):
     """
     A lexer for DTDs (Document Type Definitions).
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     flags = re.MULTILINE | re.DOTALL
@@ -1056,7 +1056,7 @@ class XsltLexer(XmlLexer):
     '''
     A lexer for XSLT.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     '''
 
     name = 'XSLT'
@@ -1094,7 +1094,7 @@ class MxmlLexer(RegexLexer):
     For MXML markup.
     Nested AS3 in <script> tags is highlighted by the appropriate lexer.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     flags = re.MULTILINE | re.DOTALL
     name = 'MXML'
@@ -1137,7 +1137,7 @@ class HaxeLexer(ExtendedRegexLexer):
     """
     For Haxe source code (http://haxe.org/).
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'Haxe'
@@ -2007,7 +2007,7 @@ class HamlLexer(ExtendedRegexLexer):
     """
     For Haml markup.
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'Haml'
@@ -2284,7 +2284,7 @@ class SassLexer(ExtendedRegexLexer):
     """
     For Sass stylesheets.
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'Sass'
@@ -2414,7 +2414,7 @@ class CoffeeScriptLexer(RegexLexer):
 
     .. _CoffeeScript: http://coffeescript.org
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'CoffeeScript'
@@ -2521,7 +2521,7 @@ class KalLexer(RegexLexer):
     .. _Kal: http://rzimmerman.github.io/kal
 
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
 
     name = 'Kal'
@@ -2748,7 +2748,7 @@ class DuelLexer(RegexLexer):
     See http://duelengine.org/.
     See http://jsonml.org/jbst/.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Duel'
@@ -2779,7 +2779,7 @@ class ScamlLexer(ExtendedRegexLexer):
     """
     For `Scaml markup <http://scalate.fusesource.org/>`_.  Scaml is Haml for Scala.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Scaml'
@@ -2893,7 +2893,7 @@ class JadeLexer(ExtendedRegexLexer):
     Jade is a variant of Scaml, see:
     http://scalate.fusesource.org/documentation/scaml-reference.html
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Jade'
@@ -3001,7 +3001,7 @@ class XQueryLexer(ExtendedRegexLexer):
     An XQuery lexer, parsing a stream and outputting the tokens needed to
     highlight xquery code.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'XQuery'
     aliases = ['xquery', 'xqy', 'xq', 'xql', 'xqm']
@@ -3663,7 +3663,7 @@ class DartLexer(RegexLexer):
     """
     For `Dart <http://dartlang.org/>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Dart'
@@ -3763,7 +3763,7 @@ class TypeScriptLexer(RegexLexer):
     """
     For `TypeScript <http://typescriptlang.org/>`_ source code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'TypeScript'
@@ -3850,7 +3850,7 @@ class LassoLexer(RegexLexer):
         If given and ``True``, only highlight code between delimiters as Lasso
         (default: ``False``).
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Lasso'
@@ -4099,7 +4099,7 @@ class QmlLexer(RegexLexer):
     """
     For QML files. See http://doc.qt.digia.com/4.7/qdeclarativeintroduction.html.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     # QML is based on javascript, so much of this is taken from the
@@ -4178,7 +4178,7 @@ class CirruLexer(RegexLexer):
     * using ``$`` as a shorthand for ``()`` till indentation end or ``)``
     * using indentations for create nesting
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
 
     name = 'Cirru'

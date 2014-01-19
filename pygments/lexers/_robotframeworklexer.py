@@ -58,7 +58,7 @@ class RobotFrameworkLexer(Lexer):
 
     Supports both space and pipe separated plain text formats.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'RobotFramework'
     aliases = ['robotframework']

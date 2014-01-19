@@ -76,7 +76,7 @@ class Terminal256Formatter(Formatter):
     and converts them to nearest ANSI 256-color escape sequences. Bold and
     underline attributes from the style are preserved (and displayed).
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
 
     Options accepted:
 

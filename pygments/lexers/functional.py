@@ -30,7 +30,7 @@ class RacketLexer(RegexLexer):
     Lexer for `Racket <http://racket-lang.org/>`_ source code (formerly known as
     PLT Scheme).
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Racket'
@@ -599,7 +599,7 @@ class SchemeLexer(RegexLexer):
 
     It supports the full Scheme syntax as defined in R5RS.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
     name = 'Scheme'
     aliases = ['scheme', 'scm']
@@ -720,7 +720,7 @@ class CommonLispLexer(RegexLexer):
     """
     A Common Lisp lexer.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Common Lisp'
     aliases = ['common-lisp', 'cl', 'lisp']
@@ -898,7 +898,7 @@ class HaskellLexer(RegexLexer):
     """
     A Haskell lexer based on the lexemes defined in the Haskell 98 Report.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
     name = 'Haskell'
     aliases = ['haskell', 'hs']
@@ -1022,7 +1022,7 @@ class AgdaLexer(RegexLexer):
     For the `Agda <http://wiki.portal.chalmers.se/agda/pmwiki.php>`_
     dependently typed functional programming language and proof assistant.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
 
     name = 'Agda'
@@ -1161,7 +1161,7 @@ class LiterateHaskellLexer(LiterateLexer):
         is autodetected: if the first non-whitespace character in the source
         is a backslash or percent character, LaTeX is assumed, else Bird.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Literate Haskell'
     aliases = ['lhs', 'literate-haskell', 'lhaskell']
@@ -1184,7 +1184,7 @@ class LiterateAgdaLexer(LiterateLexer):
         is autodetected: if the first non-whitespace character in the source
         is a backslash or percent character, LaTeX is assumed, else Bird.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
     name = 'Literate Agda'
     aliases = ['lagda', 'literate-agda']
@@ -1200,7 +1200,7 @@ class SMLLexer(RegexLexer):
     """
     For the Standard ML language.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Standard ML'
@@ -1526,7 +1526,7 @@ class OcamlLexer(RegexLexer):
     """
     For the OCaml language.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'OCaml'
@@ -1620,7 +1620,7 @@ class ErlangLexer(RegexLexer):
 
     Blame Jeremy Thurgood (http://jerith.za.net/).
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
 
     name = 'Erlang'
@@ -1725,7 +1725,7 @@ class ErlangShellLexer(Lexer):
     """
     Shell sessions in erl (for Erlang code).
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'Erlang erl session'
     aliases = ['erl']
@@ -1768,7 +1768,7 @@ class OpaLexer(RegexLexer):
     """
     Lexer for the Opa language (http://opalang.org).
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Opa'
@@ -2091,7 +2091,7 @@ class CoqLexer(RegexLexer):
     """
     For the `Coq <http://coq.inria.fr/>`_ theorem prover.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Coq'
@@ -2232,7 +2232,7 @@ class NewLispLexer(RegexLexer):
     """
     For `newLISP. <www.newlisp.org>`_ source code (version 10.3.0).
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'NewLisp'
@@ -2363,7 +2363,7 @@ class NixLexer(RegexLexer):
     """
     For the `Nix language <http://nixos.org/nix/>`_.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
 
     name = 'Nix'
@@ -2484,7 +2484,7 @@ class ElixirLexer(RegexLexer):
     """
     For the `Elixir language <http://elixir-lang.org>`_.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Elixir'
@@ -2595,7 +2595,7 @@ class ElixirConsoleLexer(Lexer):
         iex> length [head | tail]
         3
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Elixir iex session'
@@ -2641,7 +2641,7 @@ class KokaLexer(RegexLexer):
     Lexer for the `Koka <http://koka.codeplex.com>`_
     language.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Koka'
