@@ -44,7 +44,7 @@ class CSharpLexer(RegexLexer):
 
       The default value is ``basic``.
 
-      *New in Pygments 0.8.*
+      .. versionadded:: 0.8
     """
 
     name = 'C#'
@@ -156,7 +156,7 @@ class NemerleLexer(RegexLexer):
 
       The default value is ``basic``.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Nemerle'
@@ -531,7 +531,7 @@ class FSharpLexer(RegexLexer):
     """
     For the F# language (version 3.0).
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'FSharp'

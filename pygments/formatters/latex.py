@@ -208,19 +208,24 @@ class LatexFormatter(Formatter):
     `commandprefix`
         The LaTeX commands used to produce colored output are constructed
         using this prefix and some letters (default: ``'PY'``).
-        *New in Pygments 0.7.*
 
-        *New in Pygments 0.10:* the default is now ``'PY'`` instead of ``'C'``.
+        .. versionadded:: 0.7
+        .. versionchanged:: 0.10
+           The default is now ``'PY'`` instead of ``'C'``.
 
     `texcomments`
         If set to ``True``, enables LaTeX comment lines.  That is, LaTex markup
         in comment tokens is not escaped so that LaTeX can render it (default:
-        ``False``).  *New in Pygments 1.2.*
+        ``False``).
+
+        .. versionadded:: 1.2
 
     `mathescape`
         If set to ``True``, enables LaTeX math mode escape in comments. That
         is, ``'$...$'`` inside a comment will trigger math mode (default:
-        ``False``).  *New in Pygments 1.2.*
+        ``False``).
+
+        .. versionadded:: 1.2
     """
     name = 'LaTeX'
     aliases = ['latex', 'tex']

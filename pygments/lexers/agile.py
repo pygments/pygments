@@ -194,7 +194,7 @@ class Python3Lexer(RegexLexer):
     """
     For `Python <http://www.python.org>`_ source code (version 3.0).
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'Python 3'
@@ -308,7 +308,8 @@ class PythonConsoleLexer(Lexer):
 
     `python3`
         Use Python 3 lexer for code.  Default is ``False``.
-        *New in Pygments 1.0.*
+
+        .. versionadded:: 1.0
     """
     name = 'Python console session'
     aliases = ['pycon']
@@ -377,7 +378,7 @@ class PythonTracebackLexer(RegexLexer):
     """
     For Python tracebacks.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'Python Traceback'
@@ -414,7 +415,7 @@ class Python3TracebackLexer(RegexLexer):
     """
     For Python 3.0 tracebacks, with support for chained exceptions.
 
-    *New in Pygments 1.0.*
+    .. versionadded:: 1.0
     """
 
     name = 'Python 3.0 Traceback'
@@ -1151,7 +1152,7 @@ class MoonScriptLexer(LuaLexer):
     """
     For `MoonScript <http://moonscript.org.org>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = "MoonScript"
@@ -1290,7 +1291,7 @@ class IoLexer(RegexLexer):
     For `Io <http://iolanguage.com/>`_ (a small, prototype-based
     programming language) source.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Io'
     filenames = ['*.io']
@@ -1336,7 +1337,7 @@ class TclLexer(RegexLexer):
     """
     For Tcl source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     keyword_cmds_re = (
@@ -1466,7 +1467,7 @@ class FactorLexer(RegexLexer):
     """
     Lexer for the `Factor <http://factorcode.org>`_ language.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'Factor'
     aliases = ['factor']
@@ -1757,7 +1758,7 @@ class FancyLexer(RegexLexer):
     class-based, concurrent general-purpose programming language
     running on Rubinius, the Ruby VM.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Fancy'
     filenames = ['*.fy', '*.fancypack']
@@ -1839,7 +1840,7 @@ class DgLexer(RegexLexer):
     a functional and object-oriented programming language
     running on the CPython 3 VM.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'dg'
     aliases = ['dg']
@@ -1929,7 +1930,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     """
     For `Perl 6 <http://www.perl6.org>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
 
     name      = 'Perl6'
@@ -2295,7 +2296,7 @@ class HyLexer(RegexLexer):
     """
     Lexer for `Hy <http://hylang.org/>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
     name = 'Hy'
     aliases = ['hylang']

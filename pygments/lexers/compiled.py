@@ -240,7 +240,7 @@ class PikeLexer(CppLexer):
     """
     For `Pike <http://pike.lysator.liu.se/>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
     name = 'Pike'
     aliases = ['pike']
@@ -279,7 +279,7 @@ class SwigLexer(CppLexer):
     """
     For `SWIG <http://www.swig.org/>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
     name = 'SWIG'
     aliases = ['swig']
@@ -336,7 +336,7 @@ class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'eC'
     aliases = ['ec']
@@ -372,7 +372,7 @@ class NesCLexer(CLexer):
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
     name = 'nesC'
     aliases = ['nesc']
@@ -397,7 +397,7 @@ class ClayLexer(RegexLexer):
     """
     For `Clay <http://claylabs.com/clay/>`_ source.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
     name = 'Clay'
     filenames = ['*.clay']
@@ -448,7 +448,7 @@ class DLexer(RegexLexer):
     """
     For D source.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'D'
     filenames = ['*.d', '*.di']
@@ -1082,7 +1082,7 @@ class DylanLexer(RegexLexer):
     """
     For the `Dylan <http://www.opendylan.org/>`_ language.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'Dylan'
@@ -1274,7 +1274,7 @@ class DylanLidLexer(RegexLexer):
     """
     For Dylan LID (Library Interchange Definition) files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'DylanLID'
@@ -1312,7 +1312,7 @@ class DylanConsoleLexer(Lexer):
 
     This is based on a copy of the RubyConsoleLexer.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Dylan session'
     aliases = ['dylan-console', 'dylan-repl']
@@ -1495,7 +1495,7 @@ class FortranLexer(RegexLexer):
     """
     Lexer for FORTRAN 90 code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Fortran'
     aliases = ['fortran']
@@ -1610,7 +1610,7 @@ class GLShaderLexer(RegexLexer):
     """
     GLSL (OpenGL Shader) lexer.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'GLSL'
     aliases = ['glsl']
@@ -1722,7 +1722,7 @@ class CythonLexer(RegexLexer):
     """
     For Pyrex and `Cython <http://cython.org>`_ source code.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
 
     name = 'Cython'
@@ -1888,7 +1888,7 @@ class ValaLexer(RegexLexer):
     """
     For Vala source code with preprocessor directives.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'Vala'
     aliases = ['vala', 'vapi']
@@ -1977,7 +1977,7 @@ class OocLexer(RegexLexer):
     """
     For `Ooc <http://ooc-lang.org/>`_ source code
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'Ooc'
     aliases = ['ooc']
@@ -2116,7 +2116,7 @@ class FelixLexer(RegexLexer):
     """
     For `Felix <http://www.felix-lang.org>`_ source code.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
 
     name = 'Felix'
@@ -2370,7 +2370,7 @@ class AdaLexer(RegexLexer):
     """
     For Ada source code.
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'Ada'
@@ -2513,7 +2513,7 @@ class Modula2Lexer(RegexLexer):
     `gm2ext`
         Also highlight GNU extensions (default: False).
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
     name = 'Modula-2'
     aliases = ['modula2', 'm2']
@@ -2695,7 +2695,7 @@ class BlitzMaxLexer(RegexLexer):
     """
     For `BlitzMax <http://blitzbasic.com>`_ source code.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'BlitzMax'
@@ -2789,7 +2789,7 @@ class BlitzBasicLexer(RegexLexer):
     """
     For `BlitzBasic <http://blitzbasic.com>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
 
     name = 'BlitzBasic'
@@ -2871,7 +2871,7 @@ class NimrodLexer(RegexLexer):
     """
     For `Nimrod <http://nimrod-code.org/>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Nimrod'
@@ -3012,7 +3012,7 @@ class FantomLexer(RegexLexer):
     """
     For Fantom source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Fantom'
     aliases = ['fan']
@@ -3244,7 +3244,7 @@ class RustLexer(RegexLexer):
     """
     Lexer for Mozilla's Rust programming language.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Rust'
     filenames = ['*.rs', '*.rc']
@@ -3333,7 +3333,7 @@ class CudaLexer(CLexer):
     For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
     source.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'CUDA'
     filenames = ['*.cu', '*.cuh']
@@ -3383,7 +3383,7 @@ class MonkeyLexer(RegexLexer):
     `Monkey <https://en.wikipedia.org/wiki/Monkey_(programming_language)>`_
     source code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Monkey'
@@ -3511,7 +3511,7 @@ class CobolLexer(RegexLexer):
     """
     Lexer for OpenCOBOL code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'COBOL'
     aliases = ['cobol']
@@ -3705,7 +3705,7 @@ class CobolFreeformatLexer(CobolLexer):
     """
     Lexer for Free format OpenCOBOL code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'COBOLFree'
     aliases = ['cobolfree']
@@ -3724,7 +3724,7 @@ class LogosLexer(ObjectiveCppLexer):
     """
     For Logos + Objective-C source code with preprocessor directives.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Logos'
@@ -3788,7 +3788,7 @@ class ChapelLexer(RegexLexer):
     """
     For `Chapel <http://chapel.cray.com/>`_ source.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
     name = 'Chapel'
     filenames = ['*.chpl']
@@ -3865,7 +3865,7 @@ class EiffelLexer(RegexLexer):
     """
     For `Eiffel <http://www.eiffel.com>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 1.7
     """
     name = 'Eiffel'
     aliases = ['eiffel']

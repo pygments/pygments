@@ -22,7 +22,7 @@ class VerilogLexer(RegexLexer):
     """
     For verilog source code with preprocessor directives.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'verilog'
     aliases = ['verilog', 'v']
@@ -134,7 +134,7 @@ class SystemVerilogLexer(RegexLexer):
     Extends verilog lexer to recognise all SystemVerilog keywords from IEEE
     1800-2009 standard.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'systemverilog'
     aliases = ['systemverilog', 'sv']
@@ -274,7 +274,7 @@ class VhdlLexer(RegexLexer):
     """
     For VHDL source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'vhdl'
     aliases = ['vhdl']

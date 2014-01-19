@@ -21,7 +21,7 @@ class RtfFormatter(Formatter):
     documents with color information and other useful stuff. Perfect for Copy and
     Paste into Microsoft® Word® documents.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
 
     Additional options accepted:
 

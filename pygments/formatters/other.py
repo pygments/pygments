@@ -50,7 +50,8 @@ class RawTokenFormatter(Formatter):
     `error_color`
         If set to a color name, highlight error tokens using that color.  If
         set but with no value, defaults to ``'red'``.
-        *New in Pygments 0.11.*
+
+        .. versionadded:: 0.11
 
     """
     name = 'Raw tokens'
