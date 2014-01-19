@@ -1022,7 +1022,7 @@ class AgdaLexer(RegexLexer):
     For the `Agda <http://wiki.portal.chalmers.se/agda/pmwiki.php>`_
     dependently typed functional programming language and proof assistant.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
 
     name = 'Agda'
@@ -1184,7 +1184,7 @@ class LiterateAgdaLexer(LiterateLexer):
         is autodetected: if the first non-whitespace character in the source
         is a backslash or percent character, LaTeX is assumed, else Bird.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
     name = 'Literate Agda'
     aliases = ['lagda', 'literate-agda']
@@ -2363,7 +2363,7 @@ class NixLexer(RegexLexer):
     """
     For the `Nix language <http://nixos.org/nix/>`_.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
 
     name = 'Nix'

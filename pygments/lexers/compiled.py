@@ -240,7 +240,7 @@ class PikeLexer(CppLexer):
     """
     For `Pike <http://pike.lysator.liu.se/>`_ source code.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
     name = 'Pike'
     aliases = ['pike']
@@ -279,7 +279,7 @@ class SwigLexer(CppLexer):
     """
     For `SWIG <http://www.swig.org/>`_ source code.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
     name = 'SWIG'
     aliases = ['swig']
@@ -372,7 +372,7 @@ class NesCLexer(CLexer):
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
     name = 'nesC'
     aliases = ['nesc']
@@ -397,7 +397,7 @@ class ClayLexer(RegexLexer):
     """
     For `Clay <http://claylabs.com/clay/>`_ source.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
     name = 'Clay'
     filenames = ['*.clay']
@@ -2789,7 +2789,7 @@ class BlitzBasicLexer(RegexLexer):
     """
     For `BlitzBasic <http://blitzbasic.com>`_ source code.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
 
     name = 'BlitzBasic'
@@ -3788,7 +3788,7 @@ class ChapelLexer(RegexLexer):
     """
     For `Chapel <http://chapel.cray.com/>`_ source.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
     name = 'Chapel'
     filenames = ['*.chpl']
@@ -3865,7 +3865,7 @@ class EiffelLexer(RegexLexer):
     """
     For `Eiffel <http://www.eiffel.com>`_ source code.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
     name = 'Eiffel'
     aliases = ['eiffel']

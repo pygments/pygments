@@ -1858,7 +1858,7 @@ class EbnfLexer(RegexLexer):
     <http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form>`_
     grammars.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
 
     name = 'EBNF'

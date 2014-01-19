@@ -1669,7 +1669,7 @@ class IgorLexer(RegexLexer):
     Pygments Lexer for Igor Pro procedure files (.ipf).
     See http://www.wavemetrics.com/ and http://www.igorexchange.com/.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
 
     name = 'Igor'
@@ -1931,7 +1931,7 @@ class MathematicaLexer(RegexLexer):
     """
     Lexer for `Mathematica <http://www.wolfram.com/mathematica/>`_ source code.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
     name = 'Mathematica'
     aliases = ['mathematica', 'mma', 'nb']

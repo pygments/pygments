@@ -1930,7 +1930,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     """
     For `Perl 6 <http://www.perl6.org>`_ source code.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
 
     name      = 'Perl6'
@@ -2296,7 +2296,7 @@ class HyLexer(RegexLexer):
     """
     Lexer for `Hy <http://hylang.org/>`_ source code.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
     name = 'Hy'
     aliases = ['hylang']
