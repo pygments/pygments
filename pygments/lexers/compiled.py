@@ -3197,7 +3197,7 @@ class RustLexer(RegexLexer):
             # Whitespace and Comments
             (r'\n', Text),
             (r'\s+', Text),
-            (r'///(.*?)\n'),
+            (r'//[/!](.*?)\n', Comment.Doc),
             (r'//(.*?)\n', Comment.Single),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
 
@@ -3206,16 +3206,17 @@ class RustLexer(RegexLexer):
              r'|do|else|enum|extern'
              r'|fn|for|if|impl|in'
              r'|loop|match|mut|priv|proc|pub'
-             r'|ref|return|static|\'static|struct|trait|true|type|unsafe|while',
+             r'|ref|return|static|\'static|struct|trait|true|type'
+             r'|unsafe|while)\b',
              Keyword),
             (r'(alignof|be|const|offsetof|pure|sizeof|typeof|once|unsized'
-             r'|yield)', Keyword.Reserved),
-            (r'(mod|use)', Keyword.Namespace),
-            (r'(true|false)', Keyword.Constant),
+             r'|yield)\b', Keyword.Reserved),
+            (r'(mod|use)\b', Keyword.Namespace),
+            (r'(true|false)\b', Keyword.Constant),
             (r'let', Keyword.Declaration),
             (r'(u8|u16|u32|u64|i8|i16|i32|i64|uint|int|f32|f64'
-             r'|str|bool)', Keyword.Type),
-            (r'self', Name.Builtin.Pseudo),
+             r'|str|bool)\b', Keyword.Type),
+            (r'self\b', Name.Builtin.Pseudo),
             # Prelude
             (r'(Freeze|Pod|Send|Sized|Add|Sub|Mul|Div|Rem|Neg|Not|BitAnd'
              r'|BitOr|BitXor|Drop|Shl|Shr|Index|Option|Some|None|Result'
