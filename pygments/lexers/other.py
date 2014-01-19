@@ -3694,7 +3694,7 @@ class RexxLexer(RegexLexer):
     systems. It is popular for I/O- and data based tasks and can act as glue
     language to bind different applications together.
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
     name = 'Rexx'
     aliases = ['rexx', 'arexx']

@@ -2521,7 +2521,7 @@ class KalLexer(RegexLexer):
     .. _Kal: http://rzimmerman.github.io/kal
 
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
 
     name = 'Kal'
@@ -4178,7 +4178,7 @@ class CirruLexer(RegexLexer):
     * using ``$`` as a shorthand for ``()`` till indentation end or ``)``
     * using indentations for create nesting
 
-    .. versionadded:: 1.7
+    .. versionadded:: 2.0
     """
 
     name = 'Cirru'
