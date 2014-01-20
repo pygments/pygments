@@ -13,6 +13,8 @@ Version 2.0
 - Dropped Python 2.4 and 2.5 compatibility.  This is in favor of single-source
   compatibility between Python 2.6, 2.7 and 3.3+.
 
+- New website and documentation based on Sphinx (finally!)
+
 - Lexers added:
 
   * Clay (PR#184)
@@ -32,8 +34,6 @@ Version 2.0
   * Kal (PR#233)
   * Eiffel (PR#273)
   * Cirru (PR#275)
-
-- New documentation based on Sphinx (finally!)
 
 - New styles: "xcode" and "igor", similar to the default highlighting of
   the respective IDEs.
@@ -95,6 +95,8 @@ Version 2.0
 - Ceylon lexer: fix parsing of nested multiline comments (#915).
 
 - C family lexers: fix parsing of indented preprocessor directives (#944).
+
+- Rust lexer: update to 0.9 language version (PR#270).
 
 
 Version 1.6
