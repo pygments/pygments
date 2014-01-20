@@ -1940,7 +1940,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     flags     = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]"
+    PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]" # if you alter this, search for a copy made of it below
 
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
@@ -2245,9 +2245,6 @@ class Perl6Lexer(ExtendedRegexLexer):
     }
 
     def analyse_text(text):
-        # disabled for now; the lexer is not bug-free and will loop sometimes,
-        # so let's be sure to use it only for "real" Perl 6 code.
-        return False
         def strip_pod(lines):
             in_pod         = False
             stripped_lines = []
@@ -2262,29 +2259,26 @@ class Perl6Lexer(ExtendedRegexLexer):
 
             return stripped_lines
 
+        # XXX handle block comments
         lines = text.splitlines()
         lines = strip_pod(lines)
-        text  = '\n'.join(lines)
 
-        if shebang_matches(text, r'perl6|rakudo|niecza'):
+        if shebang_matches(text, r'perl6|rakudo|niecza|pugs'):
             return True
 
-        if 'use v6' in text:
-            return 0.91 # 0.01 greater than Perl says for 'my $'
-        if re.search(r'[$@%]\*[A-Z]+', text): # Perl 6-style globals ($*OS)
-            return 0.91
-        if re.search(r'[$@%]\?[A-Z]+', text): # Perl 6 compiler variables ($?PACKAGE)
-            return 0.91
-        if re.search(r'[$@%][!.][A-Za-z0-9_-]+', text): # Perl 6 member variables
-            return 0.91
+        for line in lines:
+            line = re.sub('#.*', '', line)
+            if re.match('^\s*$', line):
+                continue
 
-        for line in text.splitlines():
-            if re.match(r'\s*(?:my|our)?\s*module', line): # module declarations
-                return 0.91
-            if re.match(r'\s*(?:my|our)?\s*role', line): # role declarations
-                return 0.91
-            if re.match(r'\s*(?:my|our)?\s*class\b', line): # class declarations
-                return 0.91
+            # match v6; use v6; use v6.0; use v6.0.0;
+            if re.match('^\s*(?:use\s+)?v6(?:\.\d(?:\.\d)?)?;', line):
+                return True
+            # match class, module, role, enum, grammar declarations
+            if re.match('^\s*(?:(?:my|our)\s+)?(?:module|class|role|enum|grammar)', line):
+                return True
+            break
+
         return False
 
     def __init__(self, **options):
