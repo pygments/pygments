@@ -2131,10 +2131,10 @@ class Perl6Lexer(ExtendedRegexLexer):
 
             if adverbs is not None and re.search(r':to\b', adverbs):
                 heredoc_terminator = text[match.start('delimiter') + n_chars : end_pos]
-                end_heredoc = re.search(r'^\s*' + re.escape(heredoc_terminator) + r'\s*$', text[ match.end('delimiter') : ], re.MULTILINE)
+                end_heredoc = re.search(r'^\s*' + re.escape(heredoc_terminator) + r'\s*$', text[ end_pos : ], re.MULTILINE)
 
                 if end_heredoc:
-                    end_pos = match.end('delimiter') + end_heredoc.end()
+                    end_pos += end_heredoc.end()
                 else:
                     end_pos = len(text)
 
