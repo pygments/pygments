@@ -2266,9 +2266,16 @@ class Perl6Lexer(ExtendedRegexLexer):
         # XXX handle block comments
         lines = text.splitlines()
         lines = strip_pod(lines)
+        text  = '\n'.join(lines)
 
         if shebang_matches(text, r'perl6|rakudo|niecza|pugs'):
             return True
+
+        saw_perl_decl = False
+        # check for my/our/has declarations
+        # copied PERL6_IDENTIFIER_RANGE from above; not happy about that
+        if re.search("(?:my|our|has)\s+(?:['a-zA-Z0-9_:-]+\s+)?[$@%&(]", text):
+            saw_perl_decl = True
 
         for line in lines:
             line = re.sub('#.*', '', line)
@@ -2279,7 +2286,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             if re.match('^\s*(?:use\s+)?v6(?:\.\d(?:\.\d)?)?;', line):
                 return True
             # match class, module, role, enum, grammar declarations
-            if re.match('^\s*(?:(?:my|our)\s+)?(?:module|class|role|enum|grammar)', line):
+            if saw_perl_decl and re.match('^\s*(?:(?:my|our)\s+)?(?:module|class|role|enum|grammar)', line):
                 return True
             break
 
