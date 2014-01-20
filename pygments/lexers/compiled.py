@@ -3213,7 +3213,7 @@ class RustLexer(RegexLexer):
              r'|yield)\b', Keyword.Reserved),
             (r'(mod|use)\b', Keyword.Namespace),
             (r'(true|false)\b', Keyword.Constant),
-            (r'let', Keyword.Declaration),
+            (r'let\b', Keyword.Declaration),
             (r'(u8|u16|u32|u64|i8|i16|i32|i64|uint|int|f32|f64'
              r'|str|bool)\b', Keyword.Type),
             (r'self\b', Name.Builtin.Pseudo),
@@ -3260,7 +3260,8 @@ class RustLexer(RegexLexer):
             (r'[0-9][0-9_]*(\.[0-9_]+[eE][+\-]?'
              r'[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+)?', Number, 'number_lit'),
             # String Literal
-            (r'("|r")', String, 'string'),
+            (r'"', String, 'string'),
+            (r'r(#*)".*?"\1', String.Raw),
 
             # Operators and Punctuation
             (r'[{}()\[\],.;]', Punctuation),
