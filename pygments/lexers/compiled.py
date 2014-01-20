@@ -3350,12 +3350,12 @@ class RustLexer(RegexLexer):
             (r'\\', String),
         ],
         'macro{': [
-            (r'{', Operator, '#push'),
-            (r'}', Operator, '#pop'),
+            (r'\{', Operator, '#push'),
+            (r'\}', Operator, '#pop'),
         ],
         'macro(': [
-            (r'(', Operator, '#push'),
-            (r')', Operator, '#pop'),
+            (r'\(', Operator, '#push'),
+            (r'\)', Operator, '#pop'),
         ],
         'attribute_common': [
             (r'"', String, 'string'),
