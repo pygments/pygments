@@ -3242,12 +3242,12 @@ class FantomLexer(RegexLexer):
 
 class RustLexer(RegexLexer):
     """
-    Lexer for Mozilla's Rust programming language.
+    Lexer for the Rust programming language (version 0.9).
 
     .. versionadded:: 1.6
     """
     name = 'Rust'
-    filenames = ['*.rs', '*.rc']
+    filenames = ['*.rs']
     aliases = ['rust']
     mimetypes = ['text/x-rustsrc']
 
@@ -3256,18 +3256,55 @@ class RustLexer(RegexLexer):
             # Whitespace and Comments
             (r'\n', Text),
             (r'\s+', Text),
+            (r'//[/!](.*?)\n', Comment.Doc),
             (r'//(.*?)\n', Comment.Single),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
 
             # Keywords
-            (r'(as|assert|break|const'
-             r'|copy|do|else|enum|extern|fail'
-             r'|false|fn|for|if|impl|let|log'
-             r'|loop|match|mod|move|mut|once|priv|pub|pure'
-             r'|ref|return|static|struct|trait|true|type|unsafe|use|while'
-             r'|u8|u16|u32|u64|i8|i16|i32|i64|uint'
-             r'|int|float|f32|f64|str)\b', Keyword),
-
+            (r'(as|box|break|continue'
+             r'|do|else|enum|extern'
+             r'|fn|for|if|impl|in'
+             r'|loop|match|mut|priv|proc|pub'
+             r'|ref|return|static|\'static|struct|trait|true|type'
+             r'|unsafe|while)\b',
+             Keyword),
+            (r'(alignof|be|const|offsetof|pure|sizeof|typeof|once|unsized'
+             r'|yield)\b', Keyword.Reserved),
+            (r'(mod|use)\b', Keyword.Namespace),
+            (r'(true|false)\b', Keyword.Constant),
+            (r'let\b', Keyword.Declaration),
+            (r'(u8|u16|u32|u64|i8|i16|i32|i64|uint|int|f32|f64'
+             r'|str|bool)\b', Keyword.Type),
+            (r'self\b', Name.Builtin.Pseudo),
+            # Prelude
+            (r'(Freeze|Pod|Send|Sized|Add|Sub|Mul|Div|Rem|Neg|Not|BitAnd'
+             r'|BitOr|BitXor|Drop|Shl|Shr|Index|Option|Some|None|Result'
+             r'|Ok|Err|from_str|range|print|println|Any|AnyOwnExt|AnyRefExt'
+             r'|AnyMutRefExt|Ascii|AsciiCast|OnwedAsciiCast|AsciiStr'
+             r'|IntoBytes|Bool|ToCStr|Char|Clone|DeepClone|Eq|ApproxEq'
+             r'|Ord|TotalEq|Ordering|Less|Equal|Greater|Equiv|Container'
+             r'|Mutable|Map|MutableMap|Set|MutableSet|Default|FromStr'
+             r'|Hash|FromIterator|Extendable|Iterator|DoubleEndedIterator'
+             r'|RandomAccessIterator|CloneableIterator|OrdIterator'
+             r'|MutableDoubleEndedIterator|ExactSize|Times|Algebraic'
+             r'|Trigonometric|Exponential|Hyperbolic|Bitwise|BitCount'
+             r'|Bounded|Integer|Fractional|Real|RealExt|Num|NumCast'
+             r'|CheckedAdd|CheckedSub|CheckedMul|Orderable|Signed'
+             r'|Unsigned|Round|Primitive|Int|Float|ToStrRadix'
+             r'|ToPrimitive|FromPrimitive|GenericPath|Path|PosixPath'
+             r'|WindowsPath|RawPtr|Buffer|Writer|Reader|Seek'
+             r'|SendStr|SendStrOwned|SendStrStatic|IntoSendStr|Str'
+             r'|StrVector|StrSlice|OwnedStr|IterBytes|ToStr|IntoStr'
+             r'|CopyableTuple|ImmutableTuple|ImmutableTuple\d+'
+             r'|Tuple\d+|ImmutableEqVector|ImmutableTotalOrdVector'
+             r'|ImmutableCopyableVector|OwnedVector|OwnedCopyableVector'
+             r'|OwnedEqVector|MutableVector|MutableTotalOrdVector'
+             r'|Vector|VectorVector|CopyableVector|ImmutableVector'
+             r'|Port|Chan|SharedChan|spawn|drop)\b', Name.Builtin),
+            # Borrowed pointer
+            (r'(&)(\'[A-Za-z_]\w*)?', bygroups(Operator, Name)),
+            # Labels
+            (r'\'[A-Za-z_]\w*:', Name.Label),
             # Character Literal
             (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
@@ -3275,9 +3312,9 @@ class RustLexer(RegexLexer):
             # Lifetime
             (r"""'[a-zA-Z_][a-zA-Z0-9_]*""", Name.Label),
             # Binary Literal
-            (r'0[Bb][01_]+', Number, 'number_lit'),
+            (r'0b[01_]+', Number, 'number_lit'),
             # Octal Literal
-            (r'0[0-7_]+', Number.Oct, 'number_lit'),
+            (r'0o[0-7_]+', Number.Oct, 'number_lit'),
             # Hexadecimal Literal
             (r'0[xX][0-9a-fA-F_]+', Number.Hex, 'number_lit'),
             # Decimal Literal
@@ -3285,20 +3322,22 @@ class RustLexer(RegexLexer):
              r'[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+)?', Number, 'number_lit'),
             # String Literal
             (r'"', String, 'string'),
+            (r'r(#*)".*?"\1', String.Raw),
 
             # Operators and Punctuation
             (r'[{}()\[\],.;]', Punctuation),
             (r'[+\-*/%&|<>^!~@=:?]', Operator),
 
             # Identifier
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
 
             # Attributes
             (r'#\[', Comment.Preproc, 'attribute['),
-            (r'#\(', Comment.Preproc, 'attribute('),
             # Macros
-            (r'[A-Za-z_][A-Za-z0-9_]*!\[', Comment.Preproc, 'attribute['),
-            (r'[A-Za-z_][A-Za-z0-9_]*!\(', Comment.Preproc, 'attribute('),
+            (r'([A-Za-z_]\w*)!\s*([A-Za-z_]\w*)?\s*\{',
+             bygroups(Comment.Preproc, Name), 'macro{'),
+            (r'([A-Za-z_]\w*)!\s*([A-Za-z_]\w*)?\(',
+             bygroups(Comment.Preproc, Name), 'macro('),
         ],
         'number_lit': [
             (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop'),
@@ -3309,6 +3348,14 @@ class RustLexer(RegexLexer):
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}""", String.Escape),
             (r'[^\\"]+', String),
             (r'\\', String),
+        ],
+        'macro{': [
+            (r'{', Operator, '#push'),
+            (r'}', Operator, '#pop'),
+        ],
+        'macro(': [
+            (r'(', Operator, '#push'),
+            (r')', Operator, '#pop'),
         ],
         'attribute_common': [
             (r'"', String, 'string'),
