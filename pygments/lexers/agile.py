@@ -2211,7 +2211,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'(?<=~~)\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'(?<=[=(,])\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'm\w+(?=\()', Name),
-            (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])(?P=first_char)*)', brackets_callback(String.Regex)),
+            (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z_:\s])(?P=first_char)*)', brackets_callback(String.Regex)),
             (r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'<[^\s=].*?\S>', String),
             (_build_word_match(PERL6_OPERATORS), Operator),
