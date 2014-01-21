@@ -2287,8 +2287,10 @@ class Perl6Lexer(ExtendedRegexLexer):
                 return True
             # match class, module, role, enum, grammar declarations
             class_decl = re.match('^\s*(?:(?P<scope>my|our)\s+)?(?:module|class|role|enum|grammar)', line)
-            if class_decl and (saw_perl_decl or class_decl.group('scope') is not None):
-                return True
+            if class_decl:
+                if saw_perl_decl or class_decl.group('scope') is not None:
+                    return True
+                continue
             break
 
         return 0.8 if saw_perl_decl else False
