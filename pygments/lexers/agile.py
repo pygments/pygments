@@ -2272,9 +2272,12 @@ class Perl6Lexer(ExtendedRegexLexer):
             return True
 
         saw_perl_decl = False
+        rating        = False
+
         # check for my/our/has declarations
         # copied PERL6_IDENTIFIER_RANGE from above; not happy about that
         if re.search("(?:my|our|has)\s+(?:['a-zA-Z0-9_:-]+\s+)?[$@%&(]", text):
+            rating        = 0.8
             saw_perl_decl = True
 
         for line in lines:
@@ -2290,10 +2293,11 @@ class Perl6Lexer(ExtendedRegexLexer):
             if class_decl:
                 if saw_perl_decl or class_decl.group('scope') is not None:
                     return True
+                rating = 0.05
                 continue
             break
 
-        return 0.8 if saw_perl_decl else False
+        return rating
 
     def __init__(self, **options):
         super(Perl6Lexer, self).__init__(**options)
