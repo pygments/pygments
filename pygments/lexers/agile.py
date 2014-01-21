@@ -1021,7 +1021,7 @@ class PerlLexer(RegexLexer):
     def analyse_text(text):
         if shebang_matches(text, r'perl'):
             return True
-        if 'my $' in text:
+        if re.search('my\s+[$@%(]', text):
             return 0.9
 
 
