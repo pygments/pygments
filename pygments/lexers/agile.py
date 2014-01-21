@@ -2290,7 +2290,7 @@ class Perl6Lexer(ExtendedRegexLexer):
                 return True
             break
 
-        return False
+        return 0.8 if saw_perl_decl else False
 
     def __init__(self, **options):
         super(Perl6Lexer, self).__init__(**options)
