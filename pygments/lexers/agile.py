@@ -2286,7 +2286,8 @@ class Perl6Lexer(ExtendedRegexLexer):
             if re.match('^\s*(?:use\s+)?v6(?:\.\d(?:\.\d)?)?;', line):
                 return True
             # match class, module, role, enum, grammar declarations
-            if saw_perl_decl and re.match('^\s*(?:(?:my|our)\s+)?(?:module|class|role|enum|grammar)', line):
+            class_decl = re.match('^\s*(?:(?P<scope>my|our)\s+)?(?:module|class|role|enum|grammar)', line)
+            if class_decl and (saw_perl_decl or class_decl.group('scope') is not None):
                 return True
             break
 
