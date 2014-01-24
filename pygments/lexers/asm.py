@@ -17,7 +17,7 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
      Other, Keyword, Operator
 
 __all__ = ['GasLexer', 'ObjdumpLexer','DObjdumpLexer', 'CppObjdumpLexer',
-           'CObjdumpLexer', 'LlvmLexer', 'NasmLexer', 'Ca65Lexer']
+           'CObjdumpLexer', 'LlvmLexer', 'NasmLexer', 'NasmObjdumpLexer', 'Ca65Lexer']
 
 
 class GasLexer(RegexLexer):
@@ -96,6 +96,55 @@ class GasLexer(RegexLexer):
             return 0.1
 
 
+def _objdump_lexer_tokens(asm_lexer):
+    """
+    Common objdump lexer tokens to wrap an ASM lexer.
+    """
+    hex_re = r'[0-9A-Za-z]'
+    return {
+	'root': [
+	    # File name & format:
+	    ('(.*?)(:)( +file format )(.*?)$',
+		bygroups(Name.Label, Punctuation, Text, String)),
+	    # Section header
+	    ('(Disassembly of section )(.*?)(:)$',
+		bygroups(Text, Name.Label, Punctuation)),
+	    # Function labels
+	    # (With offset)
+	    ('('+hex_re+'+)( )(<)(.*?)([-+])(0[xX][A-Za-z0-9]+)(>:)$',
+		bygroups(Number.Hex, Text, Punctuation, Name.Function,
+			 Punctuation, Number.Hex, Punctuation)),
+	    # (Without offset)
+	    ('('+hex_re+'+)( )(<)(.*?)(>:)$',
+		bygroups(Number.Hex, Text, Punctuation, Name.Function,
+			 Punctuation)),
+	    # Code line with disassembled instructions
+	    ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *\t)([a-zA-Z].*?)$',
+		bygroups(Text, Name.Label, Text, Number.Hex, Text,
+			 using(asm_lexer))),
+	    # Code line with ascii
+	    ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *)(.*?)$',
+		bygroups(Text, Name.Label, Text, Number.Hex, Text, String)),
+	    # Continued code line, only raw opcodes without disassembled
+	    # instruction
+	    ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)$',
+		bygroups(Text, Name.Label, Text, Number.Hex)),
+	    # Skipped a few bytes
+	    (r'\t\.\.\.$', Text),
+	    # Relocation line
+	    # (With offset)
+	    (r'(\t\t\t)('+hex_re+r'+:)( )([^\t]+)(\t)(.*?)([-+])(0x'+hex_re+'+)$',
+		bygroups(Text, Name.Label, Text, Name.Property, Text,
+			 Name.Constant, Punctuation, Number.Hex)),
+	    # (Without offset)
+	    (r'(\t\t\t)('+hex_re+r'+:)( )([^\t]+)(\t)(.*?)$',
+		bygroups(Text, Name.Label, Text, Name.Property, Text,
+			 Name.Constant)),
+	    (r'[^\n]+\n', Other)
+	]
+    }
+
+
 class ObjdumpLexer(RegexLexer):
     """
     For the output of 'objdump -dr'
@@ -105,50 +154,9 @@ class ObjdumpLexer(RegexLexer):
     filenames = ['*.objdump']
     mimetypes = ['text/x-objdump']
 
-    hex = r'[0-9A-Za-z]'
 
-    tokens = {
-        'root': [
-            # File name & format:
-            ('(.*?)(:)( +file format )(.*?)$',
-                bygroups(Name.Label, Punctuation, Text, String)),
-            # Section header
-            ('(Disassembly of section )(.*?)(:)$',
-                bygroups(Text, Name.Label, Punctuation)),
-            # Function labels
-            # (With offset)
-            ('('+hex+'+)( )(<)(.*?)([-+])(0[xX][A-Za-z0-9]+)(>:)$',
-                bygroups(Number.Hex, Text, Punctuation, Name.Function,
-                         Punctuation, Number.Hex, Punctuation)),
-            # (Without offset)
-            ('('+hex+'+)( )(<)(.*?)(>:)$',
-                bygroups(Number.Hex, Text, Punctuation, Name.Function,
-                         Punctuation)),
-            # Code line with disassembled instructions
-            ('( *)('+hex+r'+:)(\t)((?:'+hex+hex+' )+)( *\t)([a-zA-Z].*?)$',
-                bygroups(Text, Name.Label, Text, Number.Hex, Text,
-                         using(GasLexer))),
-            # Code line with ascii
-            ('( *)('+hex+r'+:)(\t)((?:'+hex+hex+' )+)( *)(.*?)$',
-                bygroups(Text, Name.Label, Text, Number.Hex, Text, String)),
-            # Continued code line, only raw opcodes without disassembled
-            # instruction
-            ('( *)('+hex+r'+:)(\t)((?:'+hex+hex+' )+)$',
-                bygroups(Text, Name.Label, Text, Number.Hex)),
-            # Skipped a few bytes
-            (r'\t\.\.\.$', Text),
-            # Relocation line
-            # (With offset)
-            (r'(\t\t\t)('+hex+r'+:)( )([^\t]+)(\t)(.*?)([-+])(0x' + hex + '+)$',
-                bygroups(Text, Name.Label, Text, Name.Property, Text,
-                         Name.Constant, Punctuation, Number.Hex)),
-            # (Without offset)
-            (r'(\t\t\t)('+hex+r'+:)( )([^\t]+)(\t)(.*?)$',
-                bygroups(Text, Name.Label, Text, Name.Property, Text,
-                         Name.Constant)),
-            (r'[^\n]+\n', Other)
-        ]
-    }
+    tokens = _objdump_lexer_tokens(GasLexer)
+
 
 
 class DObjdumpLexer(DelegatingLexer):
@@ -372,6 +380,17 @@ class NasmLexer(RegexLexer):
             (type, Keyword.Type)
         ],
     }
+
+
+class NasmObjdumpLexer(ObjdumpLexer):
+    """
+    For the output of 'objdump -d -M intel'
+    """
+    name = 'objdump-nasm'
+    aliases = ['objdump-nasm']
+    filenames = ['*.objdump-intel']
+
+    tokens = _objdump_lexer_tokens(NasmLexer)
 
 
 class Ca65Lexer(RegexLexer):
