@@ -28,7 +28,7 @@ __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JsonLexer', 'CssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'LiveScriptLexer',
            'DuelLexer', 'ScamlLexer', 'JadeLexer', 'XQueryLexer',
            'DtdLexer', 'DartLexer', 'LassoLexer', 'QmlLexer', 'TypeScriptLexer',
-           'KalLexer', 'CirruLexer']
+           'KalLexer', 'CirruLexer', 'MaskLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -4220,5 +4220,118 @@ class CirruLexer(RegexLexer):
         'root': [
             (r'^\s*', Text.Whitespace, ('line', 'function')),
             (r'^\s+$', Text.Whitespace),
+        ]
+    }
+
+
+class MaskLexer(RegexLexer):
+    """
+    For Mask markup
+    """
+    name = 'Mask'
+    aliases = ['mask']
+    filenames = ['*.mask']
+    mimetypes = ['text/x-mask']
+
+    flags = re.MULTILINE | re.IGNORECASE | re.DOTALL
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'[\{\};>]', Punctuation),
+            (r"'''", String, 'string-trpl-single'),
+            (r'"""', String, 'string-trpl-double'),
+            (r"'", String, 'string-single'),
+            (r'"', String, 'string-double'),
+            (r'([\w-]+)', Name.Tag, 'node'),
+            (r'([^\.#;{>\s]+)', Name.Class, 'node'),
+            (r'(#[\w_-]+)', Name.Function, 'node'),
+            (r'(\.[\w_-]+)', Name.Variable.Class, 'node')
+        ],
+        'string-base': [
+            (r'\\.', String.Escape),
+            (r'~\[', String.Interpol, 'interpolation'),
+            (r'.', String.Single),  
+        ],
+        'string-single':[
+            (r"'", String.Single, '#pop'),
+            include('string-base')
+        ],  
+        'string-double':[
+            (r'"', String.Single, '#pop'),
+            include('string-base')
+        ],
+        'string-trpl-single':[
+            (r"'''", String.Single, '#pop'),
+            include('string-base')
+        ],
+        'string-trpl-double':[
+            (r'"""', String.Single, '#pop'),
+            include('string-base')
+        ],
+        'interpolation': [
+            (r'\]', String.Interpol, '#pop'),
+            (r'\s*:', String.Interpol, 'expression'),
+            (r'\s*\w+:', Name.Other),
+            (r'[^\]]+', String.Interpol)
+        ],
+        'expression': [
+            (r'[^\]]+', using(JavascriptLexer), '#pop')
+        ],  
+        'node': [
+            (r'\s+', Text),
+            (r'\.', Name.Variable.Class, 'node-class'),
+            (r'\#', Name.Function, 'node-id'),
+            (r'style[ \t]*=', Name.Attribute, 'node-attr-style-value'),
+            (r'[\w_:-]+[ \t]*=', Name.Attribute, 'node-attr-value'),
+            (r'[\w_:-]+', Name.Attribute),
+            (r'[>{;]', Punctuation, '#pop')
+        ],  
+        'node-class': [
+            (r'[\w-]+', Name.Variable.Class),
+            (r'~\[', String.Interpol, 'interpolation'),
+            (r'', Text, '#pop')
+        ],
+        'node-id': [
+            (r'[\w-]+', Name.Function),
+            (r'~\[', String.Interpol, 'interpolation'),
+            (r'', Text, '#pop')
+        ],
+        'node-attr-value':[
+            (r'\s+', Text),
+            (r'[\w_]+', Name.Variable, '#pop'),
+            (r"'", String, 'string-single-pop2'),
+            (r'"', String, 'string-double-pop2'),
+            (r'', Text, '#pop')
+        ],
+        'node-attr-style-value':[
+            (r'\s+', Text),
+            (r"'", String.Single, 'css-single-end'),
+            (r'"', String.Single, 'css-double-end'),
+            include('node-attr-value')
+        ],
+        'css-base': [
+            (r'\s+', Text),
+            (r"[;]", Punctuation),
+            (r"[\w\-_]+\s*:", Name.Builtin)
+        ],
+        'css-single-end': [
+            include('css-base'),
+            (r"'", String.Single, '#pop:2'),
+            (r"[^;']+", Name.Entity)
+        ],
+        'css-double-end': [
+            include('css-base'),
+            (r'"', String.Single, '#pop:2'),
+            (r"[^;\"]+", Name.Entity)
+        ],  
+        'string-single-pop2':[
+            (r"'", String.Single, '#pop:2'),
+            include('string-base')
+        ],
+        'string-double-pop2':[
+            (r'"', String.Single, '#pop:2'),
+            include('string-base')
         ]
     }
