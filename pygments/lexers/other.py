@@ -36,7 +36,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
-           'CbmBasicV2Lexer', 'AutoItLexer', 'RexxLexer']
+           'CbmBasicV2Lexer', 'AutoItLexer', 'RexxLexer', 'PanLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -3795,3 +3795,64 @@ class RexxLexer(RegexLexer):
                          for (pattern, weight) in RexxLexer.PATTERNS_AND_WEIGHTS
                          if pattern.search(lowerText)) + 0.01
             return min(result, 1.0)
+
+
+class PanLexer(RegexLexer):
+    """
+    Lexer for `pan <http://github.com/quattor/pan/>`_ source files.
+
+    Based on tcsh lexer.
+    """
+
+    name = 'Pan'
+    aliases = ['pan']
+    filenames = ['*.pan']
+
+    tokens = {
+        'root': [
+            include('basic'),
+            (r'\$\(', Keyword, 'paren'),
+            (r'\${#?', Keyword, 'curly'),
+            include('data'),
+        ],
+        'basic': [
+            (r'\b(if|for|with|else|type|bind|while|valid|final|prefix|unique|'
+             r'object|foreach|include|template|function|variable|structure|'
+             r'extensible|declaration)\s*\b',
+             Keyword),
+            (r'\b(file_contents|format|index|length|match|matches|replace|'
+             r'splice|split|substr|to_lowercase|to_uppercase|debug|error|'
+             r'traceback|deprecated|base64_decode|base64_encode|digest|escape|'
+             r'unescape|append|create|first|nlist|key|length|list|merge|next|'
+             r'prepend|splice|is_boolean|is_defined|is_double|is_list|is_long|'
+             r'is_nlist|is_null|is_number|is_property|is_resource|is_string|'
+             r'to_boolean|to_double|to_long|to_string|clone|delete|exists|'
+             r'path_exists|if_exists|return|value)\s*\b',
+             Name.Builtin),
+            (r'#.*\n', Comment),
+            (r'\\[\w\W]', String.Escape),
+            (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
+            (r'[\[\]{}()=]+', Operator),
+            (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
+        ],
+        'data': [
+            (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
+            (r"(?s)'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
+            (r'\s+', Text),
+            (r'[^=\s\[\]{}()$"\'`\\]+', Text),
+            (r'\d+(?= |\Z)', Number),
+            (r'\$#?(\w+|.)', Name.Variable),
+        ],
+        'curly': [
+            (r'}', Keyword, '#pop'),
+            (r':-', Keyword),
+            (r'[a-zA-Z0-9_]+', Name.Variable),
+            (r'[^}:"\'`$]+', Punctuation),
+            (r':', Punctuation),
+            include('root'),
+        ],
+        'paren': [
+            (r'\)', Keyword, '#pop'),
+            include('root'),
+        ],
+    }
