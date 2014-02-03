@@ -3811,8 +3811,8 @@ class PanLexer(RegexLexer):
     tokens = {
         'root': [
             include('basic'),
-            (r'\$\(', Keyword, 'paren'),
-            (r'\${#?', Keyword, 'curly'),
+            (r'\(', Keyword, 'paren'),
+            (r'{', Keyword, 'curly'),
             include('data'),
         ],
         'basic': [
@@ -3841,7 +3841,6 @@ class PanLexer(RegexLexer):
             (r'\s+', Text),
             (r'[^=\s\[\]{}()$"\'`\\]+', Text),
             (r'\d+(?= |\Z)', Number),
-            (r'\$#?(\w+|.)', Name.Variable),
         ],
         'curly': [
             (r'}', Keyword, '#pop'),
