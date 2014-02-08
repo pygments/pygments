@@ -36,9 +36,10 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'MakoCssLexer', 'JspLexer', 'CheetahLexer', 'CheetahHtmlLexer',
            'CheetahXmlLexer', 'CheetahJavascriptLexer', 'EvoqueLexer',
            'EvoqueHtmlLexer', 'EvoqueXmlLexer', 'ColdfusionLexer',
-           'ColdfusionHtmlLexer', 'VelocityLexer', 'VelocityHtmlLexer',
-           'VelocityXmlLexer', 'SspLexer', 'TeaTemplateLexer', 'LassoHtmlLexer',
-           'LassoXmlLexer', 'LassoCssLexer', 'LassoJavascriptLexer']
+           'ColdfusionHtmlLexer', 'ColdfusionCFCLexer', 'VelocityLexer', 
+           'VelocityHtmlLexer', 'VelocityXmlLexer', 'SspLexer', 
+           'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer', 
+           'LassoCssLexer', 'LassoJavascriptLexer']
 
 
 class ErbLexer(Lexer):
@@ -1558,11 +1559,25 @@ class ColdfusionHtmlLexer(DelegatingLexer):
     """
     name = 'Coldfusion HTML'
     aliases = ['cfm']
-    filenames = ['*.cfm', '*.cfml', '*.cfc']
+    filenames = ['*.cfm', '*.cfml']
     mimetypes = ['application/x-coldfusion']
 
     def __init__(self, **options):
         super(ColdfusionHtmlLexer, self).__init__(HtmlLexer, ColdfusionMarkupLexer,
+                                                  **options)
+
+
+class ColdfusionCFCLexer(DelegatingLexer):
+    """
+    Coldfusion markup/script components
+    """
+    name = 'Coldfusion CFC'
+    aliases = ['cfc']
+    filenames = ['*.cfc']
+    mimetypes = ['application/x-coldfusion']
+
+    def __init__(self, **options):
+        super(ColdfusionCFCLexer, self).__init__(ColdfusionHtmlLexer, ColdfusionLexer,
                                                   **options)
 
 
