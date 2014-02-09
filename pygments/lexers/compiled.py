@@ -31,7 +31,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
            'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'PikeLexer',
-           'ChapelLexer', 'EiffelLexer']
+           'ChapelLexer', 'EiffelLexer', 'MqlLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -3951,3 +3951,14 @@ class EiffelLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
         ],
     }
+
+class MqlLexer(CppLexer):
+    """
+    For `MQL4 <http://docs.mql4.com/>`_ and `MQL5 <http://www.mql5.com/en/docs>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'MQL'
+    aliases = ['mql', 'mq4', 'mq5', 'mql4', 'mql5']
+    filenames = ['*.mq4', '*.mq5', '*.mqh']
+    mimetypes = ['text/x-mql']
