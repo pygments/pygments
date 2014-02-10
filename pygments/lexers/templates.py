@@ -1479,11 +1479,12 @@ class ColdfusionLexer(RegexLexer):
     aliases = ['cfs']
     filenames = []
     mimetypes = []
-    flags = re.IGNORECASE | re.MULTILINE
+    flags = re.IGNORECASE
 
     tokens = {
         'root': [
-            (r'//.*', Comment),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
             (r'\+\+|--', Operator),
             (r'[-+*/^&=!]', Operator),
             (r'<=|>=|<|>', Operator),
