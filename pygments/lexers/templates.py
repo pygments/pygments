@@ -1499,7 +1499,7 @@ class ColdfusionLexer(RegexLexer):
             (r'\d+', Number),
             (r'(if|else|len|var|case|default|break|switch|component|property|function|do|try|catch|in|continue|for|return|while)\b', Keyword),
             (r'(required|any|array|binary|boolean|component|date|guid|numeric|query|string|struct|uuid|xml)\b', Keyword),
-            #(r'(true|false|null)\b', Keyword.Constant),
+            (r'(true|false|null)\b', Keyword.Constant),
             (r'([A-Za-z_$][A-Za-z0-9_.]*)(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
             (r'[A-Za-z_$][A-Za-z0-9_.]*', Name.Variable),
