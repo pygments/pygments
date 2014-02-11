@@ -45,6 +45,13 @@ component extends="coldbox.system.orm.hibernate.VirtualEntityService" singleton{
 		// init it
 		super.init(entityName=arguments.entityName, useQueryCaching=true);
 
+		// Test scope coloring in pygments
+		this.colorTestVar = "Just for testing pygments!";
+		cookie.colorTestVar = "";
+		client.colorTestVar = ""
+		session.colorTestVar = "";
+		application.colorTestVar = "";
+
 		return this;
 	}
 
