@@ -227,8 +227,6 @@ class BaseMakefileLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^(?:[\t ]+.*\n|\n)+', using(BashLexer)),
-            (r'\$\((?:.*\\\n|.*\n)+', using(BashLexer)),
             (r'\s+', Text),
             (r'#.*?\n', Comment),
             (r'(export)(\s+)(?=[a-zA-Z0-9_${}\t -]+\n)',
@@ -243,6 +241,10 @@ class BaseMakefileLexer(RegexLexer):
             # targets
             (r'([^\n:]+)(:+)([ \t]*)', bygroups(Name.Function, Operator, Text),
              'block-header'),
+            # recipes
+            (r'^(?:[\t ]+.*\n|\n)+', using(BashLexer)),
+            # expansions
+            (r'\$\((?:.*\\\n|.*\n)+', using(BashLexer)),
             # TODO: add paren handling (grr)
         ],
         'export': [
