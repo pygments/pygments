@@ -5,7 +5,7 @@
 
     Lexers for non-source code file types.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -61,7 +61,7 @@ class RegeditLexer(RegexLexer):
     <http://en.wikipedia.org/wiki/Windows_Registry#.REG_files>`_ files produced
     by regedit.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'reg'
@@ -102,7 +102,7 @@ class PropertiesLexer(RegexLexer):
     """
     Lexer for configuration files in Java's properties format.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Properties'
@@ -124,7 +124,7 @@ class SourcesListLexer(RegexLexer):
     """
     Lexer that highlights debian sources.list files.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'Debian Sourcelist'
@@ -180,7 +180,7 @@ class MakefileLexer(Lexer):
 
     name = 'Makefile'
     aliases = ['make', 'makefile', 'mf', 'bsdmake']
-    filenames = ['*.mak', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile']
+    filenames = ['*.mak', '*.mk', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile']
     mimetypes = ['text/x-makefile']
 
     r_special = re.compile(r'^(?:'
@@ -207,12 +207,17 @@ class MakefileLexer(Lexer):
         for item in do_insertions(ins, lex.get_tokens_unprocessed(done)):
             yield item
 
+    def analyse_text(text):
+        # Many makefiles have $(BIG_CAPS) style variables
+        if re.search(r'\$\([A-Z_]+\)', text):
+            return 0.1
+
 
 class BaseMakefileLexer(RegexLexer):
     """
     Lexer for simple Makefiles (no preprocessing).
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'Base Makefile'
@@ -297,7 +302,7 @@ class DarcsPatchLexer(RegexLexer):
     format.  Examples of this format are derived by commands such as
     ``darcs annotate --patch`` and ``darcs send``.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Darcs Patch'
     aliases = ['dpatch']
@@ -410,7 +415,7 @@ class BBCodeLexer(RegexLexer):
     """
     A lexer that highlights BBCode(-like) syntax.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'BBCode'
@@ -501,7 +506,7 @@ class GroffLexer(RegexLexer):
     Lexer for the (g)roff typesetting language, supporting groff
     extensions. Mainly useful for highlighting manpage sources.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'Groff'
@@ -556,7 +561,7 @@ class ApacheConfLexer(RegexLexer):
     Lexer for configuration files following the Apache config file
     format.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'ApacheConf'
@@ -595,7 +600,7 @@ class MoinWikiLexer(RegexLexer):
     """
     For MoinMoin (and Trac) Wiki markup.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'MoinMoin/Trac Wiki markup'
@@ -640,14 +645,17 @@ class RstLexer(RegexLexer):
     """
     For `reStructuredText <http://docutils.sf.net/rst.html>`_ markup.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
 
     Additional options accepted:
 
     `handlecodeblocks`
-        Highlight the contents of ``.. sourcecode:: langauge`` and
-        ``.. code:: language`` directives with a lexer for the given
-        language (default: ``True``). *New in Pygments 0.8.*
+        Highlight the contents of ``.. sourcecode:: language``,
+        ``.. code:: language`` and ``.. code-block:: language``
+        directives with a lexer for the given language (default:
+        ``True``).
+
+        .. versionadded:: 0.8
     """
     name = 'reStructuredText'
     aliases = ['rst', 'rest', 'restructuredtext']
@@ -731,7 +739,7 @@ class RstLexer(RegexLexer):
             (r'^(\s*)(\|)( .+\n(?:\|  .+\n)*)',
              bygroups(Text, Operator, using(this, state='inline'))),
             # Sourcecode directives
-            (r'^( *\.\.)(\s*)((?:source)?code)(::)([ \t]*)([^\n]+)'
+            (r'^( *\.\.)(\s*)((?:source)?code(?:-block)?)(::)([ \t]*)([^\n]+)'
              r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*|)\n)+)',
              _handle_sourcecode),
             # A directive
@@ -755,7 +763,7 @@ class RstLexer(RegexLexer):
             (r'^( *)(:.*?:)([ \t]+)(.*?)$',
              bygroups(Text, Name.Class, Text, Name.Function)),
             # Definition list
-            (r'^([^ ].*(?<!::)\n)((?:(?: +.*)\n)+)',
+            (r'^([^\s].*(?<!::)\n)((?:(?: +.*)\n)+)',
              bygroups(using(this, state='inline'), using(this, state='inline'))),
             # Code blocks
             (r'(::)(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\3.*|)\n)+)',
@@ -806,7 +814,7 @@ class VimLexer(RegexLexer):
     """
     Lexer for VimL script files.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
     name = 'VimL'
     aliases = ['vim']
@@ -890,7 +898,7 @@ class GettextLexer(RegexLexer):
     """
     Lexer for Gettext catalog files.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Gettext Catalog'
     aliases = ['pot', 'po']
@@ -918,7 +926,7 @@ class SquidConfLexer(RegexLexer):
     """
     Lexer for `squid <http://www.squid-cache.org/>`_ configuration files.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
 
     name = 'SquidConf'
@@ -1050,7 +1058,7 @@ class DebianControlLexer(RegexLexer):
     """
     Lexer for Debian ``control`` files and ``apt-cache show <pkg>`` outputs.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Debian Control file'
     aliases = ['control', 'debcontrol']
@@ -1120,7 +1128,7 @@ class YamlLexer(ExtendedRegexLexer):
     Lexer for `YAML <http://yaml.org/>`_, a human-friendly data serialization
     language.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
 
     name = 'YAML'
@@ -1522,7 +1530,7 @@ class LighttpdConfLexer(RegexLexer):
     """
     Lexer for `Lighttpd <http://lighttpd.net/>`_ configuration files.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
     name = 'Lighttpd configuration file'
     aliases = ['lighty', 'lighttpd']
@@ -1550,7 +1558,7 @@ class NginxConfLexer(RegexLexer):
     """
     Lexer for `Nginx <http://nginx.net/>`_ configuration files.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
     name = 'Nginx configuration file'
     aliases = ['nginx']
@@ -1596,7 +1604,7 @@ class CMakeLexer(RegexLexer):
     """
     Lexer for `CMake <http://cmake.org/Wiki/CMake>`_ files.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'CMake'
     aliases = ['cmake']
@@ -1640,6 +1648,7 @@ class CMakeLexer(RegexLexer):
             (r'\(', Punctuation, '#push'),
             (r'\)', Punctuation, '#pop'),
             (r'(\${)(.+?)(})', bygroups(Operator, Name.Variable, Operator)),
+            (r'(\$<)(.+?)(>)', bygroups(Operator, Name.Variable, Operator)),
             (r'(?s)".*?"', String.Double),
             (r'\\\S+', String),
             (r'[^\)$"# \t\n]+', String),
@@ -1656,7 +1665,7 @@ class CMakeLexer(RegexLexer):
         ],
         'ws': [
             (r'[ \t]+', Text),
-            (r'#.+\n', Comment),
+            (r'#.*\n', Comment),
         ]
     }
 
@@ -1665,7 +1674,7 @@ class HttpLexer(RegexLexer):
     """
     Lexer for HTTP sessions.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'HTTP'
@@ -1734,7 +1743,7 @@ class PyPyLogLexer(RegexLexer):
     """
     Lexer for PyPy log files.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = "PyPy Log"
     aliases = ["pypylog", "pypy"]
@@ -1806,7 +1815,7 @@ class HxmlLexer(RegexLexer):
     """
     Lexer for `haXe build <http://haxe.org/doc/compiler>`_ files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Hxml'
     aliases = ['haxeml', 'hxml']
@@ -1849,7 +1858,7 @@ class EbnfLexer(RegexLexer):
     <http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form>`_
     grammars.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name = 'EBNF'

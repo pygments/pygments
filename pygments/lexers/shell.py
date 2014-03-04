@@ -5,7 +5,7 @@
 
     Lexers for various shells.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -27,13 +27,13 @@ class BashLexer(RegexLexer):
     """
     Lexer for (ba|k|)sh shell scripts.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'Bash'
     aliases = ['bash', 'sh', 'ksh']
     filenames = ['*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass',
-                 '.bashrc', 'bashrc', '.bash_*', 'bash_*']
+                 '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'PKGBUILD']
     mimetypes = ['application/x-sh', 'application/x-shellscript']
 
     tokens = {
@@ -47,8 +47,8 @@ class BashLexer(RegexLexer):
         ],
         'basic': [
             (r'\b(if|fi|else|while|do|done|for|then|return|function|case|'
-             r'select|continue|until|esac|elif)\s*\b',
-             Keyword),
+             r'select|continue|until|esac|elif)(\s*)\b',
+             bygroups(Keyword, Text)),
             (r'\b(alias|bg|bind|break|builtin|caller|cd|command|compgen|'
              r'complete|declare|dirs|disown|echo|enable|eval|exec|exit|'
              r'export|false|fc|fg|getopts|hash|help|history|jobs|kill|let|'
@@ -111,7 +111,7 @@ class BashSessionLexer(Lexer):
     """
     Lexer for simplistic shell sessions.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
 
     name = 'Bash Session'
@@ -162,7 +162,7 @@ class ShellSessionLexer(Lexer):
     """
     Lexer for shell sessions that works with different command prompts
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Shell Session'
@@ -179,7 +179,7 @@ class ShellSessionLexer(Lexer):
 
         for match in line_re.finditer(text):
             line = match.group()
-            m = re.match(r'^((?:\[?\S+@[^$#%]+)[$#%])(.*\n?)', line)
+            m = re.match(r'^((?:\[?\S+@[^$#%]+\]?\s*)[$#%])(.*\n?)', line)
             if m:
                 # To support output lexers (say diff output), the output
                 # needs to be broken by prompts whenever the output lexer
@@ -208,10 +208,10 @@ class BatchLexer(RegexLexer):
     """
     Lexer for the DOS/Windows Batch file format.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
     name = 'Batchfile'
-    aliases = ['bat', 'dosbatch', 'winbatch']
+    aliases = ['bat', 'batch', 'dosbatch', 'winbatch']
     filenames = ['*.bat', '*.cmd']
     mimetypes = ['application/x-dos-batch']
 
@@ -228,9 +228,9 @@ class BatchLexer(RegexLexer):
             # like %~$VAR:zlt
             (r'%%?[~$:\w]+%?', Name.Variable),
             (r'::.*', Comment), # Technically :: only works at BOL
-            (r'(set)(\s+)(\w+)', bygroups(Keyword, Text, Name.Variable)),
-            (r'(call)(\s+)(:\w+)', bygroups(Keyword, Text, Name.Label)),
-            (r'(goto)(\s+)(\w+)', bygroups(Keyword, Text, Name.Label)),
+            (r'\b(set)(\s+)(\w+)', bygroups(Keyword, Text, Name.Variable)),
+            (r'\b(call)(\s+)(:\w+)', bygroups(Keyword, Text, Name.Label)),
+            (r'\b(goto)(\s+)(\w+)', bygroups(Keyword, Text, Name.Label)),
             (r'\b(set|call|echo|on|off|endlocal|for|do|goto|if|pause|'
              r'setlocal|shift|errorlevel|exist|defined|cmdextversion|'
              r'errorlevel|else|cd|md|del|deltree|cls|choice)\b', Keyword),
@@ -264,7 +264,7 @@ class TcshLexer(RegexLexer):
     """
     Lexer for tcsh scripts.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'Tcsh'
@@ -331,7 +331,7 @@ class PowerShellLexer(RegexLexer):
     """
     For Windows PowerShell code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'PowerShell'
     aliases = ['powershell', 'posh', 'ps1', 'psm1']
@@ -408,7 +408,7 @@ class PowerShellLexer(RegexLexer):
             (r'[#&.]', Comment.Multiline),
         ],
         'string': [
-            (r"`[0abfnrtv'\"\$]", String.Escape),
+            (r"`[0abfnrtv'\"\$`]", String.Escape),
             (r'[^$`"]+', String.Double),
             (r'\$\(', Punctuation, 'child'),
             (r'""', String.Double),

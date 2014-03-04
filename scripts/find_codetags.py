@@ -7,11 +7,15 @@
     Find code tags in specified files and/or directories
     and create a report in HTML format.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import sys, os, re
+from __future__ import print_function
+
+import os
+import re
+import sys
 import getopt
 from os.path import join, abspath, isdir, isfile
 
@@ -73,8 +77,8 @@ def main():
     try:
         gopts, args = getopt.getopt(sys.argv[1:], "vo:i:")
     except getopt.GetoptError:
-        print ("Usage: %s [-v] [-i ignoredir]* [-o reportfile.html] "
-               "path ..." % sys.argv[0])
+        print(("Usage: %s [-v] [-i ignoredir]* [-o reportfile.html] "
+               "path ..." % sys.argv[0]))
         return 2
     opts = {}
     for opt, val in gopts:
@@ -97,18 +101,18 @@ def main():
     num = 0
 
     for path in args:
-        print "Searching for code tags in %s, please wait." % path
+        print("Searching for code tags in %s, please wait." % path)
 
         if isfile(path):
             gnum += 1
             if process_file(store, path):
                 if verbose:
-                    print path + ": found %d tags" % \
-                        (path in store and len(store[path]) or 0)
+                    print(path + ": found %d tags" % \
+                        (path in store and len(store[path]) or 0))
                 num += 1
             else:
                 if verbose:
-                    print path + ": binary or not readable"
+                    print(path + ": binary or not readable")
             continue
         elif not isdir(path):
             continue
@@ -117,11 +121,15 @@ def main():
             if '-i' in opts and abspath(root) in opts['-i']:
                 del dirs[:]
                 continue
-            if '.svn' in dirs:
-                dirs.remove('.svn')
+            if '.hg' in dirs:
+                dirs.remove('.hg')
+            if 'examplefiles' in dirs:
+                dirs.remove('examplefiles')
+            if 'dist' in dirs:
+                dirs.remove('dist')
             for fn in files:
                 gnum += 1
-                if gnum % 50 == 0 and not verbose:
+                if gnum % 25 == 0 and not verbose:
                     sys.stdout.write('.')
                     sys.stdout.flush()
 
@@ -137,16 +145,16 @@ def main():
                 if fn[:2] == './': fn = fn[2:]
                 if process_file(store, fn):
                     if verbose:
-                        print fn + ": found %d tags" % \
-                            (fn in store and len(store[fn]) or 0)
+                        print(fn + ": found %d tags" % \
+                            (fn in store and len(store[fn]) or 0))
                     num += 1
                 else:
                     if verbose:
-                        print fn + ": binary or not readable"
-        print
+                        print(fn + ": binary or not readable")
+        print()
 
-    print "Processed %d of %d files. Found %d tags in %d files." % (
-        num, gnum, sum(len(fitem) for fitem in store.itervalues()), len(store))
+    print("Processed %d of %d files. Found %d tags in %d files." % (
+        num, gnum, sum(len(fitem) for fitem in store.values()), len(store)))
 
     if not store:
         return 0
@@ -190,7 +198,7 @@ td { padding: 2px 5px 2px 5px;
           '<td class="tag %%(tag)s">%%(tag)s</td>'
           '<td class="who">%%(who)s</td><td class="what">%%(what)s</td></tr>')
 
-    f = file(output, 'w')
+    f = open(output, 'w')
     table = '\n'.join(TABLE % fname +
                       '\n'.join(TR % (no % 2,) % entry
                                 for no, entry in enumerate(store[fname]))
@@ -198,7 +206,7 @@ td { padding: 2px 5px 2px 5px;
     f.write(HTML % (', '.join(map(abspath, args)), table))
     f.close()
 
-    print "Report written to %s." % output
+    print("Report written to %s." % output)
     return 0
 
 if __name__ == '__main__':
