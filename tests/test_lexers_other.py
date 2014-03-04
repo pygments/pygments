@@ -3,7 +3,7 @@
     Tests for other lexers
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -28,7 +28,7 @@ class AnalyseTextTest(unittest.TestCase):
             for exampleFilePath in glob.glob(exampleFilesPattern):
                 exampleFile = open(exampleFilePath, 'rb')
                 try:
-                    text = exampleFile.read()
+                    text = exampleFile.read().decode('utf-8')
                     probability = lexer.analyse_text(text)
                     self.assertTrue(probability > 0,
                         '%s must recognize %r' % (

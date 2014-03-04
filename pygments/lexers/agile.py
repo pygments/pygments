@@ -5,7 +5,7 @@
 
     Lexers for agile languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -15,7 +15,7 @@ from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, \
      LexerContext, include, combined, do_insertions, bygroups, using, this
 from pygments.token import Error, Text, Other, \
      Comment, Operator, Keyword, Name, String, Number, Generic, Punctuation
-from pygments.util import get_bool_opt, get_list_opt, shebang_matches
+from pygments.util import get_bool_opt, get_list_opt, shebang_matches, iteritems
 from pygments import unistring as uni
 
 
@@ -23,7 +23,7 @@ __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python3Lexer', 'Python3TracebackLexer', 'RubyLexer',
            'RubyConsoleLexer', 'PerlLexer', 'LuaLexer', 'MoonScriptLexer',
            'CrocLexer', 'MiniDLexer', 'IoLexer', 'TclLexer', 'FactorLexer',
-           'FancyLexer', 'DgLexer', 'Perl6Lexer']
+           'FancyLexer', 'DgLexer', 'Perl6Lexer', 'HyLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -109,6 +109,7 @@ class PythonLexer(RegexLexer):
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
             (r'0[0-7]+j?', Number.Oct),
+            (r'0[bB][01]+', Number.Bin),
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),
             (r'\d+j?', Number.Integer)
@@ -193,7 +194,7 @@ class Python3Lexer(RegexLexer):
     """
     For `Python <http://www.python.org>`_ source code (version 3.0).
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'Python 3'
@@ -307,7 +308,8 @@ class PythonConsoleLexer(Lexer):
 
     `python3`
         Use Python 3 lexer for code.  Default is ``False``.
-        *New in Pygments 1.0.*
+
+        .. versionadded:: 1.0
     """
     name = 'Python console session'
     aliases = ['pycon']
@@ -352,7 +354,7 @@ class PythonConsoleLexer(Lexer):
                     curcode = ''
                     insertions = []
                 if (line.startswith(u'Traceback (most recent call last):') or
-                    re.match(ur'  File "[^"]+", line \d+\n$', line)):
+                    re.match(u'  File "[^"]+", line \\d+\\n$', line)):
                     tb = 1
                     curtb = line
                     tbindex = match.start()
@@ -376,7 +378,7 @@ class PythonTracebackLexer(RegexLexer):
     """
     For Python tracebacks.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'Python Traceback'
@@ -413,7 +415,7 @@ class Python3TracebackLexer(RegexLexer):
     """
     For Python 3.0 tracebacks, with support for chained exceptions.
 
-    *New in Pygments 1.0.*
+    .. versionadded:: 1.0
     """
 
     name = 'Python 3.0 Traceback'
@@ -532,7 +534,7 @@ class RubyLexer(ExtendedRegexLexer):
             (r":'(\\\\|\\'|[^'])*'", String.Symbol),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r':"', String.Symbol, 'simple-sym'),
-            (r'([a-zA-Z_][a-zA-Z0-9]*)(:)(?!:)',
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)(?!:)',
              bygroups(String.Symbol, Punctuation)),  # Since Ruby 1.9
             (r'"', String.Double, 'simple-string'),
             (r'(?<!\.)`', String.Backtick, 'simple-backtick'),
@@ -848,7 +850,7 @@ class PerlLexer(RegexLexer):
 
     name = 'Perl'
     aliases = ['perl', 'pl']
-    filenames = ['*.pl', '*.pm']
+    filenames = ['*.pl', '*.pm', '*.t']
     mimetypes = ['text/x-perl', 'application/x-perl']
 
     flags = re.DOTALL | re.MULTILINE
@@ -1019,9 +1021,8 @@ class PerlLexer(RegexLexer):
     def analyse_text(text):
         if shebang_matches(text, r'perl'):
             return True
-        if 'my $' in text:
+        if re.search('(?:my|our)\s+[$@%(]', text):
             return 0.9
-        return 0.1 # who knows, might still be perl!
 
 
 class LuaLexer(RegexLexer):
@@ -1126,7 +1127,7 @@ class LuaLexer(RegexLexer):
         self._functions = set()
         if self.func_name_highlighting:
             from pygments.lexers._luabuiltins import MODULES
-            for mod, func in MODULES.iteritems():
+            for mod, func in iteritems(MODULES):
                 if mod not in self.disabled_modules:
                     self._functions.update(func)
         RegexLexer.__init__(self, **options)
@@ -1151,7 +1152,7 @@ class MoonScriptLexer(LuaLexer):
     """
     For `MoonScript <http://moonscript.org.org>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = "MoonScript"
@@ -1290,7 +1291,7 @@ class IoLexer(RegexLexer):
     For `Io <http://iolanguage.com/>`_ (a small, prototype-based
     programming language) source.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Io'
     filenames = ['*.io']
@@ -1336,7 +1337,7 @@ class TclLexer(RegexLexer):
     """
     For Tcl source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     keyword_cmds_re = (
@@ -1466,7 +1467,7 @@ class FactorLexer(RegexLexer):
     """
     Lexer for the `Factor <http://factorcode.org>`_ language.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'Factor'
     aliases = ['factor']
@@ -1757,7 +1758,7 @@ class FancyLexer(RegexLexer):
     class-based, concurrent general-purpose programming language
     running on Rubinius, the Ruby VM.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Fancy'
     filenames = ['*.fy', '*.fancypack']
@@ -1839,7 +1840,7 @@ class DgLexer(RegexLexer):
     a functional and object-oriented programming language
     running on the CPython 3 VM.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'dg'
     aliases = ['dg']
@@ -1848,56 +1849,53 @@ class DgLexer(RegexLexer):
 
     tokens = {
         'root': [
-            # Whitespace:
             (r'\s+', Text),
             (r'#.*?$', Comment.Single),
-            # Lexemes:
-            #  Numbers
-            (r'0[bB][01]+', Number.Bin),
-            (r'0[oO][0-7]+', Number.Oct),
-            (r'0[xX][\da-fA-F]+', Number.Hex),
-            (r'[+-]?\d+\.\d+([eE][+-]?\d+)?[jJ]?', Number.Float),
-            (r'[+-]?\d+[eE][+-]?\d+[jJ]?', Number.Float),
-            (r'[+-]?\d+[jJ]?', Number.Integer),
-            #  Character/String Literals
-            (r"[br]*'''", String, combined('stringescape', 'tsqs', 'string')),
-            (r'[br]*"""', String, combined('stringescape', 'tdqs', 'string')),
-            (r"[br]*'", String, combined('stringescape', 'sqs', 'string')),
-            (r'[br]*"', String, combined('stringescape', 'dqs', 'string')),
-            #  Operators
-            (r"`\w+'*`", Operator), # Infix links
-            #   Reserved infix links
-            (r'\b(or|and|if|else|where|is|in)\b', Operator.Word),
+
+            (r'(?i)0b[01]+', Number.Bin),
+            (r'(?i)0o[0-7]+', Number.Oct),
+            (r'(?i)0x[0-9a-f]+', Number.Hex),
+            (r'(?i)[+-]?[0-9]+\.[0-9]+(e[+-]?[0-9]+)?j?', Number.Float),
+            (r'(?i)[+-]?[0-9]+e[+-]?\d+j?', Number.Float),
+            (r'(?i)[+-]?[0-9]+j?', Number.Integer),
+
+            (r"(?i)(br|r?b?)'''", String, combined('stringescape', 'tsqs', 'string')),
+            (r'(?i)(br|r?b?)"""', String, combined('stringescape', 'tdqs', 'string')),
+            (r"(?i)(br|r?b?)'", String, combined('stringescape', 'sqs', 'string')),
+            (r'(?i)(br|r?b?)"', String, combined('stringescape', 'dqs', 'string')),
+
+            (r"`\w+'*`", Operator),
+            (r'\b(and|in|is|or|where)\b', Operator.Word),
             (r'[!$%&*+\-./:<-@\\^|~;,]+', Operator),
-            #  Identifiers
-            #   Python 3 types
+
             (r"(?<!\.)(bool|bytearray|bytes|classmethod|complex|dict'?|"
              r"float|frozenset|int|list'?|memoryview|object|property|range|"
              r"set'?|slice|staticmethod|str|super|tuple'?|type)"
              r"(?!['\w])", Name.Builtin),
-            #   Python 3 builtins + some more
             (r'(?<!\.)(__import__|abs|all|any|bin|bind|chr|cmp|compile|complex|'
-             r'delattr|dir|divmod|drop|dropwhile|enumerate|eval|filter|flip|'
-             r'foldl1?|format|fst|getattr|globals|hasattr|hash|head|hex|id|'
-             r'init|input|isinstance|issubclass|iter|iterate|last|len|locals|'
-             r'map|max|min|next|oct|open|ord|pow|print|repr|reversed|round|'
-             r'setattr|scanl1?|snd|sorted|sum|tail|take|takewhile|vars|zip)'
-             r"(?!['\w])", Name.Builtin),
+             r'delattr|dir|divmod|drop|dropwhile|enumerate|eval|exhaust|'
+             r'filter|flip|foldl1?|format|fst|getattr|globals|hasattr|hash|'
+             r'head|hex|id|init|input|isinstance|issubclass|iter|iterate|last|'
+             r'len|locals|map|max|min|next|oct|open|ord|pow|print|repr|'
+             r'reversed|round|setattr|scanl1?|snd|sorted|sum|tail|take|'
+             r"takewhile|vars|zip)(?!['\w])", Name.Builtin),
             (r"(?<!\.)(self|Ellipsis|NotImplemented|None|True|False)(?!['\w])",
              Name.Builtin.Pseudo),
+
             (r"(?<!\.)[A-Z]\w*(Error|Exception|Warning)'*(?!['\w])",
              Name.Exception),
-            (r"(?<!\.)(KeyboardInterrupt|SystemExit|StopIteration|"
-             r"GeneratorExit)(?!['\w])", Name.Exception),
-            #   Compiler-defined identifiers
-            (r"(?<![\.\w])(import|inherit|for|while|switch|not|raise|unsafe|"
-             r"yield|with)(?!['\w])", Keyword.Reserved),
-            #   Other links
-            (r"[A-Z_']+\b", Name),
-            (r"[A-Z][\w']*\b", Keyword.Type),
+            (r"(?<!\.)(Exception|GeneratorExit|KeyboardInterrupt|StopIteration|"
+             r"SystemExit)(?!['\w])", Name.Exception),
+
+            (r"(?<![\.\w])(except|finally|for|if|import|not|otherwise|raise|"
+             r"subclass|while|with|yield)(?!['\w])", Keyword.Reserved),
+
+            (r"[A-Z_]+'*(?!['\w])", Name),
+            (r"[A-Z]\w+'*(?!['\w])", Keyword.Type),
             (r"\w+'*", Name),
-            #  Blocks
+
             (r'[()]', Punctuation),
+            (r'.', Error),
         ],
         'stringescape': [
             (r'\\([\\abfnrtv"\']|\n|N{.*?}|u[a-fA-F0-9]{4}|'
@@ -1927,21 +1925,22 @@ class DgLexer(RegexLexer):
         ],
     }
 
+
 class Perl6Lexer(ExtendedRegexLexer):
     """
     For `Perl 6 <http://www.perl6.org>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name      = 'Perl6'
     aliases   = ['perl6', 'pl6']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
-                 '*.6pm', '*.p6m', '*.pm6']
+                 '*.6pm', '*.p6m', '*.pm6', '*.t']
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     flags     = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]"
+    PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]" # if you alter this, search for a copy made of it below
 
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
@@ -2126,12 +2125,16 @@ class Perl6Lexer(ExtendedRegexLexer):
 
                 end_pos = next_close_pos
 
+            if end_pos < 0: # if we didn't find a closer, just highlight the
+                            # rest of the text in this class
+                end_pos = len(text)
+
             if adverbs is not None and re.search(r':to\b', adverbs):
                 heredoc_terminator = text[match.start('delimiter') + n_chars : end_pos]
-                end_heredoc = re.search(r'^\s*' + re.escape(heredoc_terminator) + r'\s*$', text[ match.end('delimiter') : ], re.MULTILINE)
+                end_heredoc = re.search(r'^\s*' + re.escape(heredoc_terminator) + r'\s*$', text[ end_pos : ], re.MULTILINE)
 
                 if end_heredoc:
-                    end_pos = match.end('delimiter') + end_heredoc.end()
+                    end_pos += end_heredoc.end()
                 else:
                     end_pos = len(text)
 
@@ -2179,7 +2182,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     # process the corresponding one!
     tokens = {
         'common' : [
-            (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS.keys()) + r'])(?P=first_char)*)', brackets_callback(Comment.Multiline)),
+            (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + r'])(?P=first_char)*)', brackets_callback(Comment.Multiline)),
             (r'#[^\n]*$', Comment.Singleline),
             (r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline),
             (r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline),
@@ -2208,7 +2211,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'(?<=~~)\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'(?<=[=(,])\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'm\w+(?=\()', Name),
-            (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])(?P=first_char)*)', brackets_callback(String.Regex)),
+            (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z_:\s])(?P=first_char)*)', brackets_callback(String.Regex)),
             (r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'<[^\s=].*?\S>', String),
             (_build_word_match(PERL6_OPERATORS), Operator),
@@ -2228,7 +2231,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'.+?', Text),
         ],
         'token-sym-brackets' : [
-            (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS.keys()) + '])(?P=first_char)*)', brackets_callback(Name), ('#pop', 'pre-token')),
+            (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + '])(?P=first_char)*)', brackets_callback(Name), ('#pop', 'pre-token')),
             (r'', Name, ('#pop', 'pre-token')),
         ],
         'token': [
@@ -2260,31 +2263,155 @@ class Perl6Lexer(ExtendedRegexLexer):
 
             return stripped_lines
 
+        # XXX handle block comments
         lines = text.splitlines()
         lines = strip_pod(lines)
         text  = '\n'.join(lines)
 
-        if shebang_matches(text, r'perl6|rakudo|niecza'):
+        if shebang_matches(text, r'perl6|rakudo|niecza|pugs'):
             return True
 
-        if 'use v6' in text:
-            return 0.91 # 0.01 greater than Perl says for 'my $'
-        if re.search(r'[$@%]\*[A-Z]+', text): # Perl 6-style globals ($*OS)
-            return 0.91
-        if re.search(r'[$@%]\?[A-Z]+', text): # Perl 6 compiler variables ($?PACKAGE)
-            return 0.91
-        if re.search(r'[$@%][!.][A-Za-z0-9_-]+', text): # Perl 6 member variables
-            return 0.91
+        saw_perl_decl = False
+        rating        = False
 
-        for line in text.splitlines():
-            if re.match(r'\s*(?:my|our)?\s*module', line): # module declarations
-                return 0.91
-            if re.match(r'\s*(?:my|our)?\s*role', line): # role declarations
-                return 0.91
-            if re.match(r'\s*(?:my|our)?\s*class\b', line): # class declarations
-                return 0.91
-        return False
+        # check for my/our/has declarations
+        # copied PERL6_IDENTIFIER_RANGE from above; not happy about that
+        if re.search("(?:my|our|has)\s+(?:['a-zA-Z0-9_:-]+\s+)?[$@%&(]", text):
+            rating        = 0.8
+            saw_perl_decl = True
+
+        for line in lines:
+            line = re.sub('#.*', '', line)
+            if re.match('^\s*$', line):
+                continue
+
+            # match v6; use v6; use v6.0; use v6.0.0;
+            if re.match('^\s*(?:use\s+)?v6(?:\.\d(?:\.\d)?)?;', line):
+                return True
+            # match class, module, role, enum, grammar declarations
+            class_decl = re.match('^\s*(?:(?P<scope>my|our)\s+)?(?:module|class|role|enum|grammar)', line)
+            if class_decl:
+                if saw_perl_decl or class_decl.group('scope') is not None:
+                    return True
+                rating = 0.05
+                continue
+            break
+
+        return rating
 
     def __init__(self, **options):
         super(Perl6Lexer, self).__init__(**options)
         self.encoding = options.get('encoding', 'utf-8')
+
+
+class HyLexer(RegexLexer):
+    """
+    Lexer for `Hy <http://hylang.org/>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Hy'
+    aliases = ['hylang']
+    filenames = ['*.hy']
+    mimetypes = ['text/x-hy', 'application/x-hy']
+
+    special_forms = [
+        'cond', 'for', '->', '->>', 'car',
+        'cdr', 'first', 'rest', 'let', 'when', 'unless',
+        'import', 'do', 'progn', 'get', 'slice', 'assoc', 'with-decorator',
+        ',', 'list_comp', 'kwapply', '~', 'is', 'in', 'is-not', 'not-in',
+        'quasiquote', 'unquote', 'unquote-splice', 'quote', '|', '<<=', '>>=',
+        'foreach', 'while',
+        'eval-and-compile', 'eval-when-compile'
+    ]
+
+    declarations = [
+        'def' 'defn', 'defun', 'defmacro', 'defclass', 'lambda', 'fn', 'setv'
+    ]
+
+    hy_builtins = []
+
+    hy_core = [
+        'cycle', 'dec', 'distinct', 'drop', 'even?', 'filter', 'inc',
+        'instance?', 'iterable?', 'iterate', 'iterator?', 'neg?',
+        'none?', 'nth', 'numeric?', 'odd?', 'pos?', 'remove', 'repeat',
+        'repeatedly', 'take', 'take_nth', 'take_while', 'zero?'
+    ]
+
+    builtins = hy_builtins + hy_core
+
+    # valid names for identifiers
+    # well, names can only not consist fully of numbers
+    # but this should be good enough for now
+    valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
+
+    def _multi_escape(entries):
+        return '(%s)' % ('|'.join(re.escape(entry) + ' ' for entry in entries))
+
+    tokens = {
+        'root': [
+            # the comments - always starting with semicolon
+            # and going to the end of the line
+            (r';.*$', Comment.Single),
+
+            # whitespaces - usually not relevant
+            (r'[,\s]+', Text),
+
+            # numbers
+            (r'-?\d+\.\d+', Number.Float),
+            (r'-?\d+', Number.Integer),
+            (r'0[0-7]+j?', Number.Oct),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+
+            # strings, symbols and characters
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'" + valid_name, String.Symbol),
+            (r"\\(.|[a-z]+)", String.Char),
+            (r'^(\s*)([rRuU]{,2}"""(?:.|\n)*?""")', bygroups(Text, String.Doc)),
+            (r"^(\s*)([rRuU]{,2}'''(?:.|\n)*?''')", bygroups(Text, String.Doc)),
+
+            # keywords
+            (r'::?' + valid_name, String.Symbol),
+
+            # special operators
+            (r'~@|[`\'#^~&@]', Operator),
+
+            include('py-keywords'),
+            include('py-builtins'),
+
+            # highlight the special forms
+            (_multi_escape(special_forms), Keyword),
+
+            # Technically, only the special forms are 'keywords'. The problem
+            # is that only treating them as keywords means that things like
+            # 'defn' and 'ns' need to be highlighted as builtins. This is ugly
+            # and weird for most styles. So, as a compromise we're going to
+            # highlight them as Keyword.Declarations.
+            (_multi_escape(declarations), Keyword.Declaration),
+
+            # highlight the builtins
+            (_multi_escape(builtins), Name.Builtin),
+
+            # the remaining functions
+            (r'(?<=\()' + valid_name, Name.Function),
+
+            # find the remaining variables
+            (valid_name, Name.Variable),
+
+            # Hy accepts vector notation
+            (r'(\[|\])', Punctuation),
+
+            # Hy accepts map notation
+            (r'(\{|\})', Punctuation),
+
+            # the famous parentheses!
+            (r'(\(|\))', Punctuation),
+
+        ],
+        'py-keywords': PythonLexer.tokens['keywords'],
+        'py-builtins': PythonLexer.tokens['builtins'],
+    }
+
+    def analyse_text(text):
+        if '(import ' in text or '(defn ' in text:
+            return 0.9

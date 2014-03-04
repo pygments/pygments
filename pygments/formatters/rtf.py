@@ -5,7 +5,7 @@
 
     A formatter that generates RTF files.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -21,7 +21,7 @@ class RtfFormatter(Formatter):
     documents with color information and other useful stuff. Perfect for Copy and
     Paste into Microsoft® Word® documents.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
 
     Additional options accepted:
 

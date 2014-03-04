@@ -5,7 +5,7 @@
 
     Lexers for compiled languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -30,7 +30,8 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'Modula2Lexer', 'BlitzMaxLexer', 'BlitzBasicLexer', 'NimrodLexer',
            'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
-           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer']
+           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'PikeLexer',
+           'ChapelLexer', 'EiffelLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -42,7 +43,7 @@ class CFamilyLexer(RegexLexer):
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
     #: only one /* */ style comment
-    _ws1 = r':\s*/[*].*?[*]/\s*'
+    _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
     tokens = {
         'whitespace': [
@@ -73,7 +74,6 @@ class CFamilyLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
-            (r'\b(case)(.+?)(:)', bygroups(Keyword, using(this), Text)),
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
              r'for|goto|if|register|restricted|return|sizeof|static|struct|'
              r'switch|typedef|union|volatile|while)\b', Keyword),
@@ -188,7 +188,8 @@ class CLexer(CFamilyLexer):
     priority = 0.1
 
     def analyse_text(text):
-        return 0.1
+        if re.search('#include [<"]', text):
+            return 0.1
 
 
 class CppLexer(CFamilyLexer):
@@ -229,17 +230,59 @@ class CppLexer(CFamilyLexer):
     }
 
     def analyse_text(text):
-        return 0.1
+        if re.search('#include <[a-z]+>', text):
+            return 0.2
+        if re.search('using namespace ', text):
+            return 0.4
+
+
+class PikeLexer(CppLexer):
+    """
+    For `Pike <http://pike.lysator.liu.se/>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Pike'
+    aliases = ['pike']
+    filenames = ['*.pike', '*.pmod']
+    mimetypes = ['text/x-pike']
+
+    tokens = {
+        'statements': [
+            (r'(catch|new|private|protected|public|gauge|'
+             r'throw|throws|class|interface|implement|abstract|extends|from|'
+             r'this|super|new|constant|final|static|import|use|extern|'
+             r'inline|proto|break|continue|if|else|for|'
+             r'while|do|switch|case|as|in|version|return|true|false|null|'
+             r'__VERSION__|__MAJOR__|__MINOR__|__BUILD__|__REAL_VERSION__|'
+             r'__REAL_MAJOR__|__REAL_MINOR__|__REAL_BUILD__|__DATE__|__TIME__|'
+             r'__FILE__|__DIR__|__LINE__|__AUTO_BIGNUM__|__NT__|__PIKE__|'
+             r'__amigaos__|_Pragma|static_assert|defined|sscanf)\b',
+             Keyword),
+            (r'(bool|int|long|float|short|double|char|string|object|void|mapping|'
+             r'array|multiset|program|function|lambda|mixed|'
+             r'[a-z_][a-z0-9_]*_t)\b',
+             Keyword.Type),
+            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'[~!%^&*+=|?:<>/-@]', Operator),
+            inherit,
+        ],
+        'classname': [
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            # template specification
+            (r'\s*(?=>)', Text, '#pop'),
+        ],
+    }
 
 
 class SwigLexer(CppLexer):
     """
     For `SWIG <http://www.swig.org/>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'SWIG'
-    aliases = ['Swig', 'swig']
+    aliases = ['swig']
     filenames = ['*.swg', '*.i']
     mimetypes = ['text/swig']
     priority = 0.04 # Lower than C/C++ and Objective C/C++
@@ -275,7 +318,7 @@ class SwigLexer(CppLexer):
         '%trackobjects', '%types', '%unrefobject', '%varargs', '%warn', '%warnfilter')
 
     def analyse_text(text):
-        rv = 0.1 # Same as C/C++
+        rv = 0
         # Search for SWIG directives, which are conventionally at the beginning of
         # a line. The probability of them being within a line is low, so let another
         # lexer win in this case.
@@ -293,7 +336,7 @@ class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'eC'
     aliases = ['ec']
@@ -329,7 +372,7 @@ class NesCLexer(CLexer):
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'nesC'
     aliases = ['nesc']
@@ -354,7 +397,7 @@ class ClayLexer(RegexLexer):
     """
     For `Clay <http://claylabs.com/clay/>`_ source.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'Clay'
     filenames = ['*.clay']
@@ -405,7 +448,7 @@ class DLexer(RegexLexer):
     """
     For D source.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'D'
     filenames = ['*.d', '*.di']
@@ -835,7 +878,7 @@ class DelphiLexer(Lexer):
         if get_bool_opt(options, 'freepascal', True):
             self.keywords.update(self.FREE_PASCAL_KEYWORDS)
         self.builtins = set()
-        for unit in get_list_opt(options, 'units', self.BUILTIN_UNITS.keys()):
+        for unit in get_list_opt(options, 'units', list(self.BUILTIN_UNITS)):
             self.builtins.update(self.BUILTIN_UNITS[unit])
 
     def get_tokens_unprocessed(self, text):
@@ -1039,7 +1082,7 @@ class DylanLexer(RegexLexer):
     """
     For the `Dylan <http://www.opendylan.org/>`_ language.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'Dylan'
@@ -1231,7 +1274,7 @@ class DylanLidLexer(RegexLexer):
     """
     For Dylan LID (Library Interchange Definition) files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'DylanLID'
@@ -1269,7 +1312,7 @@ class DylanConsoleLexer(Lexer):
 
     This is based on a copy of the RubyConsoleLexer.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Dylan session'
     aliases = ['dylan-console', 'dylan-repl']
@@ -1333,20 +1376,23 @@ def objective(baselexer):
         tokens = {
             'statements': [
                 (r'@"', String, 'string'),
-                (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
-                 String.Char),
+                (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
                 (r'@(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
                 (r'@(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
                 (r'@0x[0-9a-fA-F]+[Ll]?', Number.Hex),
                 (r'@0[0-7]+[Ll]?', Number.Oct),
                 (r'@\d+[Ll]?', Number.Integer),
-                (r'(in|@selector|@private|@protected|@public|@encode|'
+                (r'@\([^()]+\)', Number),
+                (r'(@selector|@private|@protected|@public|@encode|'
                  r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
-                 r'@synthesize|@dynamic|@optional)\b', Keyword),
-                (r'(id|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
+                 r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong|'
+                 r'weak|strong|retain|assign|unsafe_unretained|nonatomic|'
+                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|'
+                 r'@synthesize|@dynamic|@optional|@required|@autoreleasepool)\b', Keyword),
+                (r'(id|instancetype|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
                  Keyword.Type),
                 (r'@(true|false|YES|NO)\n', Name.Builtin),
-                (r'(YES|NO|nil)\b', Name.Builtin),
+                (r'(YES|NO|nil|self|super)\b', Name.Builtin),
                 (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
@@ -1405,6 +1451,19 @@ def objective(baselexer):
                 return 0.8
             return 0
 
+        def get_tokens_unprocessed(self, text):
+            from pygments.lexers._cocoabuiltins import COCOA_INTERFACES, \
+                COCOA_PROTOCOLS, COCOA_PRIMITIVES
+
+            for index, token, value in \
+                baselexer.get_tokens_unprocessed(self, text):
+                if token is Name:
+                    if value in COCOA_INTERFACES or value in COCOA_PROTOCOLS \
+                       or value in COCOA_PRIMITIVES:
+                        token = Name.Builtin.Pseudo
+
+                yield index, token, value
+
     return GeneratedObjectiveCVariant
 
 
@@ -1436,7 +1495,7 @@ class FortranLexer(RegexLexer):
     """
     Lexer for FORTRAN 90 code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Fortran'
     aliases = ['fortran']
@@ -1491,7 +1550,7 @@ class FortranLexer(RegexLexer):
 
             (r'(::)', Keyword.Declaration),
 
-            (r'[(),:&%;]', Punctuation),
+            (r'[()\[\],:&%;]', Punctuation),
 
             # Intrinsics
             (r'\b(Abort|Abs|Access|AChar|ACos|AdjustL|AdjustR|AImag|AInt|Alarm|'
@@ -1551,7 +1610,7 @@ class GLShaderLexer(RegexLexer):
     """
     GLSL (OpenGL Shader) lexer.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'GLSL'
     aliases = ['glsl']
@@ -1620,7 +1679,7 @@ class PrologLexer(RegexLexer):
             (r'[\[\](){}|.,;!]', Punctuation),
             (r':-|-->', Punctuation),
             (r'"(?:\\x[0-9a-fA-F]+\\|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|'
-             r'\\[0-7]+\\|\\[\w\W]|[^"])*"', String.Double),
+             r'\\[0-7]+\\|\\["\nabcefnrstv]|[^\\"])*"', String.Double),
             (r"'(?:''|[^'])*'", String.Atom), # quoted atom
             # Needs to not be followed by an atom.
             #(r'=(?=\s|[a-zA-Z\[])', Operator),
@@ -1663,7 +1722,7 @@ class CythonLexer(RegexLexer):
     """
     For Pyrex and `Cython <http://cython.org>`_ source code.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
 
     name = 'Cython'
@@ -1829,7 +1888,7 @@ class ValaLexer(RegexLexer):
     """
     For Vala source code with preprocessor directives.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'Vala'
     aliases = ['vala', 'vapi']
@@ -1918,7 +1977,7 @@ class OocLexer(RegexLexer):
     """
     For `Ooc <http://ooc-lang.org/>`_ source code
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'Ooc'
     aliases = ['ooc']
@@ -2057,7 +2116,7 @@ class FelixLexer(RegexLexer):
     """
     For `Felix <http://www.felix-lang.org>`_ source code.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
 
     name = 'Felix'
@@ -2311,7 +2370,7 @@ class AdaLexer(RegexLexer):
     """
     For Ada source code.
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'Ada'
@@ -2454,7 +2513,7 @@ class Modula2Lexer(RegexLexer):
     `gm2ext`
         Also highlight GNU extensions (default: False).
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
     name = 'Modula-2'
     aliases = ['modula2', 'm2']
@@ -2636,7 +2695,7 @@ class BlitzMaxLexer(RegexLexer):
     """
     For `BlitzMax <http://blitzbasic.com>`_ source code.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'BlitzMax'
@@ -2730,7 +2789,7 @@ class BlitzBasicLexer(RegexLexer):
     """
     For `BlitzBasic <http://blitzbasic.com>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name = 'BlitzBasic'
@@ -2812,7 +2871,7 @@ class NimrodLexer(RegexLexer):
     """
     For `Nimrod <http://nimrod-code.org/>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Nimrod'
@@ -2953,7 +3012,7 @@ class FantomLexer(RegexLexer):
     """
     For Fantom source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Fantom'
     aliases = ['fan']
@@ -3183,12 +3242,12 @@ class FantomLexer(RegexLexer):
 
 class RustLexer(RegexLexer):
     """
-    Lexer for Mozilla's Rust programming language.
+    Lexer for the Rust programming language (version 0.9).
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Rust'
-    filenames = ['*.rs', '*.rc']
+    filenames = ['*.rs']
     aliases = ['rust']
     mimetypes = ['text/x-rustsrc']
 
@@ -3197,26 +3256,65 @@ class RustLexer(RegexLexer):
             # Whitespace and Comments
             (r'\n', Text),
             (r'\s+', Text),
+            (r'//[/!](.*?)\n', Comment.Doc),
             (r'//(.*?)\n', Comment.Single),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
 
             # Keywords
-            (r'(as|assert|break|const'
-             r'|copy|do|else|enum|extern|fail'
-             r'|false|fn|for|if|impl|let|log'
-             r'|loop|match|mod|move|mut|once|priv|pub|pure'
-             r'|ref|return|static|struct|trait|true|type|unsafe|use|while'
-             r'|u8|u16|u32|u64|i8|i16|i32|i64|uint'
-             r'|int|float|f32|f64|str)\b', Keyword),
-
+            (r'(as|box|break|continue'
+             r'|do|else|enum|extern'
+             r'|fn|for|if|impl|in'
+             r'|loop|match|mut|priv|proc|pub'
+             r'|ref|return|static|\'static|struct|trait|true|type'
+             r'|unsafe|while)\b',
+             Keyword),
+            (r'(alignof|be|const|offsetof|pure|sizeof|typeof|once|unsized'
+             r'|yield)\b', Keyword.Reserved),
+            (r'(mod|use)\b', Keyword.Namespace),
+            (r'(true|false)\b', Keyword.Constant),
+            (r'let\b', Keyword.Declaration),
+            (r'(u8|u16|u32|u64|i8|i16|i32|i64|uint|int|f32|f64'
+             r'|str|bool)\b', Keyword.Type),
+            (r'self\b', Name.Builtin.Pseudo),
+            # Prelude
+            (r'(Freeze|Pod|Send|Sized|Add|Sub|Mul|Div|Rem|Neg|Not|BitAnd'
+             r'|BitOr|BitXor|Drop|Shl|Shr|Index|Option|Some|None|Result'
+             r'|Ok|Err|from_str|range|print|println|Any|AnyOwnExt|AnyRefExt'
+             r'|AnyMutRefExt|Ascii|AsciiCast|OnwedAsciiCast|AsciiStr'
+             r'|IntoBytes|Bool|ToCStr|Char|Clone|DeepClone|Eq|ApproxEq'
+             r'|Ord|TotalEq|Ordering|Less|Equal|Greater|Equiv|Container'
+             r'|Mutable|Map|MutableMap|Set|MutableSet|Default|FromStr'
+             r'|Hash|FromIterator|Extendable|Iterator|DoubleEndedIterator'
+             r'|RandomAccessIterator|CloneableIterator|OrdIterator'
+             r'|MutableDoubleEndedIterator|ExactSize|Times|Algebraic'
+             r'|Trigonometric|Exponential|Hyperbolic|Bitwise|BitCount'
+             r'|Bounded|Integer|Fractional|Real|RealExt|Num|NumCast'
+             r'|CheckedAdd|CheckedSub|CheckedMul|Orderable|Signed'
+             r'|Unsigned|Round|Primitive|Int|Float|ToStrRadix'
+             r'|ToPrimitive|FromPrimitive|GenericPath|Path|PosixPath'
+             r'|WindowsPath|RawPtr|Buffer|Writer|Reader|Seek'
+             r'|SendStr|SendStrOwned|SendStrStatic|IntoSendStr|Str'
+             r'|StrVector|StrSlice|OwnedStr|IterBytes|ToStr|IntoStr'
+             r'|CopyableTuple|ImmutableTuple|ImmutableTuple\d+'
+             r'|Tuple\d+|ImmutableEqVector|ImmutableTotalOrdVector'
+             r'|ImmutableCopyableVector|OwnedVector|OwnedCopyableVector'
+             r'|OwnedEqVector|MutableVector|MutableTotalOrdVector'
+             r'|Vector|VectorVector|CopyableVector|ImmutableVector'
+             r'|Port|Chan|SharedChan|spawn|drop)\b', Name.Builtin),
+            # Borrowed pointer
+            (r'(&)(\'[A-Za-z_]\w*)?', bygroups(Operator, Name)),
+            # Labels
+            (r'\'[A-Za-z_]\w*:', Name.Label),
             # Character Literal
             (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
              String.Char),
+            # Lifetime
+            (r"""'[a-zA-Z_][a-zA-Z0-9_]*""", Name.Label),
             # Binary Literal
-            (r'0[Bb][01_]+', Number, 'number_lit'),
+            (r'0b[01_]+', Number, 'number_lit'),
             # Octal Literal
-            (r'0[0-7_]+', Number.Oct, 'number_lit'),
+            (r'0o[0-7_]+', Number.Oct, 'number_lit'),
             # Hexadecimal Literal
             (r'0[xX][0-9a-fA-F_]+', Number.Hex, 'number_lit'),
             # Decimal Literal
@@ -3224,20 +3322,22 @@ class RustLexer(RegexLexer):
              r'[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+)?', Number, 'number_lit'),
             # String Literal
             (r'"', String, 'string'),
+            (r'r(#*)".*?"\1', String.Raw),
 
             # Operators and Punctuation
             (r'[{}()\[\],.;]', Punctuation),
             (r'[+\-*/%&|<>^!~@=:?]', Operator),
 
             # Identifier
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
 
             # Attributes
             (r'#\[', Comment.Preproc, 'attribute['),
-            (r'#\(', Comment.Preproc, 'attribute('),
             # Macros
-            (r'[A-Za-z_][A-Za-z0-9_]*!\[', Comment.Preproc, 'attribute['),
-            (r'[A-Za-z_][A-Za-z0-9_]*!\(', Comment.Preproc, 'attribute('),
+            (r'([A-Za-z_]\w*)!\s*([A-Za-z_]\w*)?\s*\{',
+             bygroups(Comment.Preproc, Name), 'macro{'),
+            (r'([A-Za-z_]\w*)!\s*([A-Za-z_]\w*)?\(',
+             bygroups(Comment.Preproc, Name), 'macro('),
         ],
         'number_lit': [
             (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop'),
@@ -3248,6 +3348,14 @@ class RustLexer(RegexLexer):
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}""", String.Escape),
             (r'[^\\"]+', String),
             (r'\\', String),
+        ],
+        'macro{': [
+            (r'\{', Operator, '#push'),
+            (r'\}', Operator, '#pop'),
+        ],
+        'macro(': [
+            (r'\(', Operator, '#push'),
+            (r'\)', Operator, '#pop'),
         ],
         'attribute_common': [
             (r'"', String, 'string'),
@@ -3272,7 +3380,7 @@ class CudaLexer(CLexer):
     For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
     source.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'CUDA'
     filenames = ['*.cu', '*.cuh']
@@ -3322,7 +3430,7 @@ class MonkeyLexer(RegexLexer):
     `Monkey <https://en.wikipedia.org/wiki/Monkey_(programming_language)>`_
     source code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Monkey'
@@ -3450,7 +3558,7 @@ class CobolLexer(RegexLexer):
     """
     Lexer for OpenCOBOL code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'COBOL'
     aliases = ['cobol']
@@ -3644,7 +3752,7 @@ class CobolFreeformatLexer(CobolLexer):
     """
     Lexer for Free format OpenCOBOL code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'COBOLFree'
     aliases = ['cobolfree']
@@ -3663,7 +3771,7 @@ class LogosLexer(ObjectiveCppLexer):
     """
     For Logos + Objective-C source code with preprocessor directives.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Logos'
@@ -3721,3 +3829,125 @@ class LogosLexer(ObjectiveCppLexer):
         if LogosLexer._logos_keywords.search(text):
             return 1.0
         return 0
+
+
+class ChapelLexer(RegexLexer):
+    """
+    For `Chapel <http://chapel.cray.com/>`_ source.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Chapel'
+    filenames = ['*.chpl']
+    aliases = ['chapel', 'chpl']
+    # mimetypes = ['text/x-chapel']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text),
+
+            (r'//(.*?)\n', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+
+            (r'(config|const|in|inout|out|param|ref|type|var)\b',
+             Keyword.Declaration),
+            (r'(false|nil|true)\b', Keyword.Constant),
+            (r'(bool|complex|imag|int|opaque|range|real|string|uint)\b',
+             Keyword.Type),
+            (r'(atomic|begin|break|by|cobegin|coforall|continue|iter|'
+             r'delete|dmapped|do|domain|else|enum|export|extern|for|forall|'
+             r'if|index|inline|label|lambda|let|local|new|on|otherwise|'
+             r'reduce|return|scan|select|serial|single|sparse|'
+             r'subdomain|sync|then|use|when|where|while|yield|zip)\b',
+             Keyword),
+            (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
+            (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text),
+             'classname'),
+
+            # imaginary integers
+            (r'\d+i', Number),
+            (r'\d+\.\d*([Ee][-+]\d+)?i', Number),
+            (r'\.\d+([Ee][-+]\d+)?i', Number),
+            (r'\d+[Ee][-+]\d+i', Number),
+
+            # reals cannot end with a period due to lexical ambiguity with
+            # .. operator. See reference for rationale.
+            (r'(\d*\.\d+)([eE][+-]?[0-9]+)?i?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+i?', Number.Float),
+
+            # integer literals
+            # -- binary
+            (r'0[bB][0-1]+', Number),
+            # -- hex
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            # -- decimal
+            (r'(0|[1-9][0-9]*)', Number.Integer),
+
+            # strings
+            (r'["\'](\\\\|\\"|[^"\'])*["\']', String),
+
+            # tokens
+            (r'(=|\+=|-=|\*=|/=|\*\*=|%=|&=|\|=|\^=|&&=|\|\|=|<<=|>>=|'
+             r'<=>|\.\.|by|#|\.\.\.|'
+             r'&&|\|\||!|&|\||\^|~|<<|>>|'
+             r'==|!=|<=|>=|<|>|'
+             r'[+\-*/%]|\*\*)', Operator),
+            (r'[:;,.?()\[\]{}]', Punctuation),
+
+            # identifiers
+            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Other),
+        ],
+        'classname': [
+            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Class, '#pop'),
+        ],
+        'procname': [
+            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Function, '#pop'),
+        ],
+    }
+
+
+class EiffelLexer(RegexLexer):
+    """
+    For `Eiffel <http://www.eiffel.com>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Eiffel'
+    aliases = ['eiffel']
+    filenames = ['*.e']
+    mimetypes = ['text/x-eiffel']
+
+    tokens = {
+        'root': [
+            (r'[^\S\n]+', Text),
+            (r'--.*?\n', Comment.Single),
+            (r'[^\S\n]+', Text),
+                # Please note that keyword and operator are case insensitive.
+            (r'(?i)(true|false|void|current|result|precursor)\b', Keyword.Constant),
+            (r'(?i)(and(\s+then)?|not|xor|implies|or(\s+else)?)\b', Operator.Word),
+            (r'(?i)\b(across|agent|alias|all|as|assign|attached|attribute|check|'
+                r'class|convert|create|debug|deferred|detachable|do|else|elseif|'
+                r'end|ensure|expanded|export|external|feature|from|frozen|if|'
+                r'inherit|inspect|invariant|like|local|loop|none|note|obsolete|'
+                r'old|once|only|redefine|rename|require|rescue|retry|select|'
+                r'separate|then|undefine|until|variant|when)\b',Keyword.Reserved),
+            (r'"\[(([^\]%]|\n)|%(.|\n)|\][^"])*?\]"', String),
+            (r'"([^"%\n]|%.)*?"', String),
+            include('numbers'),
+            (r"'([^'%]|%'|%%)'", String.Char),
+            (r"(//|\\\\|>=|<=|:=|/=|~|/~|[\\\?!#%&@|+/\-=\>\*$<|^\[\]])", Operator),
+            (r"([{}():;,.])", Punctuation),
+            (r'([a-z][a-zA-Z0-9_]*)|([A-Z][A-Z0-9_]*[a-z][a-zA-Z0-9_]*)', Name),
+            (r'([A-Z][A-Z0-9_]*)', Name.Class),
+            (r'\n+', Text),
+        ],
+        'numbers': [
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'0[bB][0-1]+', Number.Bin),
+            (r'0[cC][0-7]+', Number.Oct),
+            (r'([0-9]+\.[0-9]*)|([0-9]*\.[0-9]+)', Number.Float),
+            (r'[0-9]+', Number.Integer),
+        ],
+    }

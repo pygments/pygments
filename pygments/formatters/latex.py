@@ -5,13 +5,16 @@
 
     Formatter for LaTeX fancyvrb output.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
+from __future__ import division
+
 from pygments.formatter import Formatter
 from pygments.token import Token, STANDARD_TYPES
-from pygments.util import get_bool_opt, get_int_opt, StringIO
+from pygments.util import get_bool_opt, get_int_opt, StringIO, xrange, \
+    iteritems
 
 
 __all__ = ['LatexFormatter']
@@ -152,7 +155,7 @@ class LatexFormatter(Formatter):
 
     .. sourcecode:: latex
 
-        \begin{Verbatim}[commandchars=\\{\}]
+        \begin{Verbatim}[commandchars=\\\{\}]
         \PY{k}{def }\PY{n+nf}{foo}(\PY{n}{bar}):
             \PY{k}{pass}
         \end{Verbatim}
@@ -205,19 +208,24 @@ class LatexFormatter(Formatter):
     `commandprefix`
         The LaTeX commands used to produce colored output are constructed
         using this prefix and some letters (default: ``'PY'``).
-        *New in Pygments 0.7.*
 
-        *New in Pygments 0.10:* the default is now ``'PY'`` instead of ``'C'``.
+        .. versionadded:: 0.7
+        .. versionchanged:: 0.10
+           The default is now ``'PY'`` instead of ``'C'``.
 
     `texcomments`
         If set to ``True``, enables LaTeX comment lines.  That is, LaTex markup
         in comment tokens is not escaped so that LaTeX can render it (default:
-        ``False``).  *New in Pygments 1.2.*
+        ``False``).
+
+        .. versionadded:: 1.2
 
     `mathescape`
         If set to ``True``, enables LaTeX math mode escape in comments. That
         is, ``'$...$'`` inside a comment will trigger math mode (default:
-        ``False``).  *New in Pygments 1.2.*
+        ``False``).
+
+        .. versionadded:: 1.2
     """
     name = 'LaTeX'
     aliases = ['latex', 'tex']
@@ -291,7 +299,7 @@ class LatexFormatter(Formatter):
         """
         cp = self.commandprefix
         styles = []
-        for name, definition in self.cmd2def.iteritems():
+        for name, definition in iteritems(self.cmd2def):
             styles.append(r'\expandafter\def\csname %s@tok@%s\endcsname{%s}' %
                           (cp, name, definition))
         return STYLE_TEMPLATE % {'cp': self.commandprefix,
@@ -306,14 +314,14 @@ class LatexFormatter(Formatter):
             realoutfile = outfile
             outfile = StringIO()
 
-        outfile.write(ur'\begin{Verbatim}[commandchars=\\\{\}')
+        outfile.write(r'\begin{Verbatim}[commandchars=\\\{\}')
         if self.linenos:
             start, step = self.linenostart, self.linenostep
             outfile.write(u',numbers=left' +
                           (start and u',firstnumber=%d' % start or u'') +
                           (step and u',stepnumber=%d' % step or u''))
         if self.mathescape or self.texcomments:
-            outfile.write(ur',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
+            outfile.write(r',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
         if self.verboptions:
             outfile.write(u',' + self.verboptions)
         outfile.write(u']\n')

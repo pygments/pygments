@@ -5,7 +5,7 @@
 
     Lexers for functional languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -18,9 +18,8 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, \
 __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'AgdaLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
            'SMLLexer', 'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer',
-           'OpaLexer', 'CoqLexer', 'NewLispLexer', 'ElixirLexer',
-           'ElixirConsoleLexer', 'KokaLexer', 'IdrisLexer',
-           'LiterateIdrisLexer']
+           'OpaLexer', 'CoqLexer', 'NewLispLexer', 'NixLexer', 'ElixirLexer',
+           'ElixirConsoleLexer', 'KokaLexer', 'IdrisLexer', 'LiterateIdrisLexer']
 
 
 line_re = re.compile('.*?\n')
@@ -31,7 +30,7 @@ class RacketLexer(RegexLexer):
     Lexer for `Racket <http://racket-lang.org/>`_ source code (formerly known as
     PLT Scheme).
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Racket'
@@ -72,7 +71,7 @@ class RacketLexer(RegexLexer):
         'syntax/loc', 'time', 'transcript-off', 'transcript-on', 'unless',
         'unquote', 'unquote-splicing', 'unsyntax', 'unsyntax-splicing',
         'when', 'with-continuation-mark', 'with-handlers',
-        'with-handlers*', 'with-syntax', 'λ'
+        'with-handlers*', 'with-syntax', u'λ'
     ]
 
     # From namespace-mapped-symbols
@@ -600,7 +599,7 @@ class SchemeLexer(RegexLexer):
 
     It supports the full Scheme syntax as defined in R5RS.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
     name = 'Scheme'
     aliases = ['scheme', 'scm']
@@ -721,7 +720,7 @@ class CommonLispLexer(RegexLexer):
     """
     A Common Lisp lexer.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Common Lisp'
     aliases = ['common-lisp', 'cl', 'lisp']
@@ -899,7 +898,7 @@ class HaskellLexer(RegexLexer):
     """
     A Haskell lexer based on the lexemes defined in the Haskell 98 Report.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
     name = 'Haskell'
     aliases = ['haskell', 'hs']
@@ -1024,7 +1023,7 @@ class IdrisLexer(RegexLexer):
 
     Based on the Haskell and Agda Lexer.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 2.0
     """
     name = 'Idris'
     aliases = ['idris', 'idr']
@@ -1132,7 +1131,7 @@ class AgdaLexer(RegexLexer):
     For the `Agda <http://wiki.portal.chalmers.se/agda/pmwiki.php>`_
     dependently typed functional programming language and proof assistant.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name = 'Agda'
@@ -1159,12 +1158,12 @@ class AgdaLexer(RegexLexer):
             (r'{!', Comment.Directive, 'hole'),
             # Lexemes:
             #  Identifiers
-            (ur'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
             (r'\b(Set|Prop)\b', Keyword.Type),
             #  Special Symbols
             (r'(\(|\)|\{|\})', Operator),
-            (ur'(\.{1,3}|\||[\u039B]|[\u2200]|[\u2192]|:|=|->)', Operator.Word),
+            (u'(\\.{1,3}|\\||[\u039B]|[\u2200]|[\u2192]|:|=|->)', Operator.Word),
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
             (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
@@ -1271,7 +1270,7 @@ class LiterateHaskellLexer(LiterateLexer):
         is autodetected: if the first non-whitespace character in the source
         is a backslash or percent character, LaTeX is assumed, else Bird.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Literate Haskell'
     aliases = ['lhs', 'literate-haskell', 'lhaskell']
@@ -1294,7 +1293,7 @@ class LiterateIdrisLexer(LiterateLexer):
         is autodetected: if the first non-whitespace character in the source
         is a backslash or percent character, LaTeX is assumed, else Bird.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 2.0
     """
     name = 'Literate Idris'
     aliases = ['lidr', 'literate-idris', 'lidris']
@@ -1317,7 +1316,7 @@ class LiterateAgdaLexer(LiterateLexer):
         is autodetected: if the first non-whitespace character in the source
         is a backslash or percent character, LaTeX is assumed, else Bird.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'Literate Agda'
     aliases = ['lagda', 'literate-agda']
@@ -1333,7 +1332,7 @@ class SMLLexer(RegexLexer):
     """
     For the Standard ML language.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Standard ML'
@@ -1659,7 +1658,7 @@ class OcamlLexer(RegexLexer):
     """
     For the OCaml language.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'OCaml'
@@ -1753,7 +1752,7 @@ class ErlangLexer(RegexLexer):
 
     Blame Jeremy Thurgood (http://jerith.za.net/).
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
 
     name = 'Erlang'
@@ -1858,7 +1857,7 @@ class ErlangShellLexer(Lexer):
     """
     Shell sessions in erl (for Erlang code).
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'Erlang erl session'
     aliases = ['erl']
@@ -1901,7 +1900,7 @@ class OpaLexer(RegexLexer):
     """
     Lexer for the Opa language (http://opalang.org).
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Opa'
@@ -2224,7 +2223,7 @@ class CoqLexer(RegexLexer):
     """
     For the `Coq <http://coq.inria.fr/>`_ theorem prover.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Coq'
@@ -2365,7 +2364,7 @@ class NewLispLexer(RegexLexer):
     """
     For `newLISP. <www.newlisp.org>`_ source code (version 10.3.0).
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'NewLisp'
@@ -2492,11 +2491,132 @@ class NewLispLexer(RegexLexer):
     }
 
 
+class NixLexer(RegexLexer):
+    """
+    For the `Nix language <http://nixos.org/nix/>`_.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'Nix'
+    aliases = ['nixos', 'nix']
+    filenames = ['*.nix']
+    mimetypes = ['text/x-nix']
+
+    flags = re.MULTILINE | re.UNICODE
+
+    keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
+                'else', 'then', '...']
+    builtins = ['import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',
+                'map', 'removeAttrs', 'throw', 'toString', 'derivation']
+    operators = ['++', '+', '?', '.', '!', '//', '==',
+                 '!=', '&&', '||', '->', '=']
+
+    punctuations = ["(", ")", "[", "]", ";", "{", "}", ":", ",", "@"]
+
+    tokens = {
+        'root': [
+            # comments starting with #
+            (r'#.*$', Comment.Single),
+
+            # multiline comments
+            (r'/\*', Comment.Multiline, 'comment'),
+
+            # whitespace
+            (r'\s+', Text),
+
+            # keywords
+            ('(%s)' % '|'.join(re.escape(entry) + '\\b' for entry in keywords), Keyword),
+
+            # highlight the builtins
+            ('(%s)' % '|'.join(re.escape(entry) + '\\b' for entry in builtins),
+             Name.Builtin),
+
+            (r'\b(true|false)\b', Name.Constant),
+
+            # operators
+            ('(%s)' % '|'.join(re.escape(entry) for entry in operators),
+             Operator),
+
+            # word operators
+            (r'\b(or|and)\b', Operator.Word),
+
+            # punctuations
+            ('(%s)' % '|'.join(re.escape(entry) for entry in punctuations), Punctuation),
+
+            # integers
+            (r'[0-9]+', Number.Integer),
+
+            # strings
+            (r'"', String.Double, 'doublequote'),
+            (r"''", String.Single, 'singlequote'),
+
+            # paths
+            (r'[a-zA-Z0-9._+-]*(\/[a-zA-Z0-9._+-]+)+', Literal),
+            (r'\<[a-zA-Z0-9._+-]+(\/[a-zA-Z0-9._+-]+)*\>', Literal),
+
+            # urls
+            (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[a-zA-Z0-9%/?:@&=+$,\\_.!~*\'-]+', Literal),
+
+            # names of variables
+            (r'[a-zA-Z_][a-zA-Z0-9_\'-]*', String.Symbol),
+
+        ],
+        'comment': [
+            (r'[^/\*]+', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[\*/]', Comment.Multiline),
+        ],
+        'singlequote': [
+            (r"'''", String.Escape),
+            (r"''\$\{", String.Escape),
+            (r"''\n", String.Escape),
+            (r"''\r", String.Escape),
+            (r"''\t", String.Escape),
+            (r"''", String.Single, '#pop'),
+            (r'\$\{', String.Interpol, 'antiquote'),
+            (r"[^']", String.Single),
+        ],
+        'doublequote': [
+            (r'\\', String.Escape),
+            (r'\\"', String.Escape),
+            (r'\\${', String.Escape),
+            (r'"', String.Double, '#pop'),
+            (r'\$\{', String.Interpol, 'antiquote'),
+            (r'[^"]', String.Double),
+        ],
+        'antiquote': [
+            (r"}", String.Interpol, '#pop'),
+            # TODO: we should probably escape also here ''${ \${
+            (r"\$\{", String.Interpol, '#push'),
+            include('root'),
+        ],
+    }
+
+    def analyse_text(text):
+        rv = 0.0
+        # TODO: let/in
+        if re.search(r'import.+?<[^>]+>', text):
+            rv += 0.4
+        if re.search(r'mkDerivation\s+(\(|\{|rec)', text):
+            rv += 0.4
+        if re.search(r'with\s+[a-zA-Z\.]+;', text):
+            rv += 0.2
+        if re.search(r'inherit\s+[a-zA-Z()\.];', text):
+            rv += 0.2
+        if re.search(r'=\s+mkIf\s+', text):
+            rv += 0.4
+        if re.search(r'\{[a-zA-Z,\s]+\}:', text):
+            rv += 0.1
+        return rv
+
+
 class ElixirLexer(RegexLexer):
     """
     For the `Elixir language <http://elixir-lang.org>`_.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Elixir'
@@ -2511,7 +2631,7 @@ class ElixirLexer(RegexLexer):
             (r'(%[A-Ba-z])?"""(?:.|\n)*?"""', String.Doc),
             (r"'''(?:.|\n)*?'''", String.Doc),
             (r'"', String.Double, 'dqs'),
-            (r"'.*'", String.Single),
+            (r"'.*?'", String.Single),
             (r'(?<!\w)\?(\\(x\d{1,2}|\h{1,2}(?!\h)\b|0[0-7]{0,2}(?![0-7])\b|'
              r'[^x0MC])|(\\[MC]-)+\w|[^\s\\])', String.Other)
         ]
@@ -2607,7 +2727,7 @@ class ElixirConsoleLexer(Lexer):
         iex> length [head | tail]
         3
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Elixir iex session'
@@ -2653,7 +2773,7 @@ class KokaLexer(RegexLexer):
     Lexer for the `Koka <http://koka.codeplex.com>`_
     language.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Koka'
