@@ -19,7 +19,7 @@ __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'AgdaLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
            'SMLLexer', 'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer',
            'OpaLexer', 'CoqLexer', 'NewLispLexer', 'NixLexer', 'ElixirLexer',
-           'ElixirConsoleLexer', 'KokaLexer']
+           'ElixirConsoleLexer', 'KokaLexer', 'IdrisLexer', 'LiterateIdrisLexer']
 
 
 line_re = re.compile('.*?\n')
@@ -1017,6 +1017,115 @@ class HaskellLexer(RegexLexer):
     }
 
 
+class IdrisLexer(RegexLexer):
+    """
+    A lexer for the dependently typed programming language Idris.
+
+    Based on the Haskell and Agda Lexer.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Idris'
+    aliases = ['idris', 'idr']
+    filenames = ['*.idr']
+    mimetypes = ['text/x-idris']
+
+    reserved = ['case','class','data','default','using','do','else',
+                'if','in','infix[lr]?','instance','rewrite','auto',
+                'namespace','codata','mutual','private','public','abstract',
+                'total','partial',
+                'let','proof','of','then','static','where','_','with',
+                'pattern', 'term', 'syntax','prefix',
+                'postulate','parameters','record','dsl','impossible','implicit',
+                'tactics','intros','intro','compute','refine','exaxt','trivial']
+
+    ascii = ['NUL','SOH','[SE]TX','EOT','ENQ','ACK',
+             'BEL','BS','HT','LF','VT','FF','CR','S[OI]','DLE',
+             'DC[1-4]','NAK','SYN','ETB','CAN',
+             'EM','SUB','ESC','[FGRU]S','SP','DEL']
+
+    annotations = ['assert_total','lib','link','include','provide','access',
+                   'default']
+
+    tokens = {
+        'root': [
+            # Declaration
+            (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
+             bygroups(Text, Name.Function, Text, Operator.Word, Text)),
+            # Comments
+            (r'^(\s*)(%%%s)' % '|'.join(annotations),
+             bygroups(Text, Keyword.Reserved)),
+            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
+            (r'{-', Comment.Multiline, 'comment'),
+            #  Identifiers
+            (ur'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
+            (r"('')?[A-Z][\w\']*", Keyword.Type),
+            (r'[a-z][A-Za-z0-9_\']*', Text),
+            #  Special Symbols
+            (r'(<-|::|->|=>|=)', Operator.Word), # specials
+            (r'([\[\]:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
+            #  Numbers
+            (r'\d+[eE][+-]?\d+', Number.Float),
+            (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
+            (r'0[xX][\da-fA-F]+', Number.Hex),
+            (r'\d+', Number.Integer),
+            # Strings
+            (r"'", String.Char, 'character'),
+            (r'"', String, 'string'),
+            (r'[^\s\(\)\{\}]+', Text),
+            (r'\s+?', Text),  # Whitespace
+        ],
+        'module': [
+            (r'\s+', Text),
+            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+             bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
+            (r'[A-Z][a-zA-Z0-9_.]*', Name.Namespace, '#pop'),
+        ],
+        'funclist': [
+            (r'\s+', Text),
+            (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
+            (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
+            (r'--.*$', Comment.Single),
+            (r'{-', Comment.Multiline, 'comment'),
+            (r',', Punctuation),
+            (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
+            # (HACK, but it makes sense to push two instances, believe me)
+            (r'\(', Punctuation, ('funclist', 'funclist')),
+            (r'\)', Punctuation, '#pop:2'),
+        ],
+        # NOTE: the next four states are shared in the AgdaLexer; make sure
+        # any change is compatible with Agda as well or copy over and change
+        'comment': [
+            # Multiline Comments
+            (r'[^-{}]+', Comment.Multiline),
+            (r'{-', Comment.Multiline, '#push'),
+            (r'-}', Comment.Multiline, '#pop'),
+            (r'[-{}]', Comment.Multiline),
+        ],
+        'character': [
+            # Allows multi-chars, incorrectly.
+            (r"[^\\']", String.Char),
+            (r"\\", String.Escape, 'escape'),
+            ("'", String.Char, '#pop'),
+        ],
+        'string': [
+            (r'[^\\"]+', String),
+            (r"\\", String.Escape, 'escape'),
+            ('"', String, '#pop'),
+        ],
+        'escape': [
+            (r'[abfnrtv"\'&\\]', String.Escape, '#pop'),
+            (r'\^[][A-Z@\^_]', String.Escape, '#pop'),
+            ('|'.join(ascii), String.Escape, '#pop'),
+            (r'o[0-7]+', String.Escape, '#pop'),
+            (r'x[\da-fA-F]+', String.Escape, '#pop'),
+            (r'\d+', String.Escape, '#pop'),
+            (r'\s+\\', String.Escape, '#pop')
+        ],
+    }
+
+
 class AgdaLexer(RegexLexer):
     """
     For the `Agda <http://wiki.portal.chalmers.se/agda/pmwiki.php>`_
@@ -1170,6 +1279,29 @@ class LiterateHaskellLexer(LiterateLexer):
 
     def __init__(self, **options):
         hslexer = HaskellLexer(**options)
+        LiterateLexer.__init__(self, hslexer, **options)
+
+
+class LiterateIdrisLexer(LiterateLexer):
+    """
+    For Literate Idris (Bird-style or LaTeX) source.
+
+    Additional options accepted:
+
+    `litstyle`
+        If given, must be ``"bird"`` or ``"latex"``.  If not given, the style
+        is autodetected: if the first non-whitespace character in the source
+        is a backslash or percent character, LaTeX is assumed, else Bird.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Literate Idris'
+    aliases = ['lidr', 'literate-idris', 'lidris']
+    filenames = ['*.lidr']
+    mimetypes = ['text/x-literate-idris']
+
+    def __init__(self, **options):
+        hslexer = IdrisLexer(**options)
         LiterateLexer.__init__(self, hslexer, **options)
 
 
