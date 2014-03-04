@@ -227,6 +227,10 @@ class BaseMakefileLexer(RegexLexer):
 
     tokens = {
         'root': [
+            # recipes (need to allow spaces because of expandtabs)
+            (r'^(?:[\t ]+.*\n|\n)+', using(BashLexer)),
+            # special variables
+            (r'\$[<@$+%?|*]', Keyword),
             (r'\s+', Text),
             (r'#.*?\n', Comment),
             (r'(export)(\s+)(?=[a-zA-Z0-9_${}\t -]+\n)',
@@ -241,11 +245,15 @@ class BaseMakefileLexer(RegexLexer):
             # targets
             (r'([^\n:]+)(:+)([ \t]*)', bygroups(Name.Function, Operator, Text),
              'block-header'),
-            # recipes
-            (r'^(?:[\t ]+.*\n|\n)+', using(BashLexer)),
             # expansions
-            (r'\$\((?:.*\\\n|.*\n)+', using(BashLexer)),
-            # TODO: add paren handling (grr)
+            (r'\$\(', Keyword, 'expansion'),
+        ],
+        'expansion': [
+            (r'[^$a-zA-Z_)]+', Text),
+            (r'[a-zA-Z_]+', Name.Variable),
+            (r'\$', Keyword),
+            (r'\(', Keyword, '#push'),
+            (r'\)', Keyword, '#pop'),
         ],
         'export': [
             (r'[a-zA-Z0-9_${}-]+', Name.Variable),
@@ -253,12 +261,13 @@ class BaseMakefileLexer(RegexLexer):
             (r'\s+', Text),
         ],
         'block-header': [
-            (r'[^,\\\n#]+', Number),
-            (r',', Punctuation),
-            (r'#.*?\n', Comment),
+            (r'[,|]', Punctuation),
+            (r'#.*?\n', Comment, '#pop'),
             (r'\\\n', Text), # line continuation
-            (r'\\.', Text),
-            (r'(?:[\t ]+.*\n|\n)+', using(BashLexer), '#pop'),
+            (r'\$\(', Keyword, 'expansion'),
+            (r'[a-zA-Z_]+', Name),
+            (r'\n', Text, '#pop'),
+            (r'.', Text),
         ],
     }
 
