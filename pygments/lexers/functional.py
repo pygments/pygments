@@ -1058,7 +1058,7 @@ class IdrisLexer(RegexLexer):
             (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
             #  Identifiers
-            (ur'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
             (r"('')?[A-Z][\w\']*", Keyword.Type),
             (r'[a-z][A-Za-z0-9_\']*', Text),

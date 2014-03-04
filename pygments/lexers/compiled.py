@@ -3972,10 +3972,10 @@ class Inform6Lexer(RegexLexer):
     # Inform 7 maps these four character classes to their ASCII
     # equivalents. To support Inform 6 inclusions within Inform 7,
     # Inform6Lexer maps them too.
-    _dash = ur'\-\u2010-\u2014'
-    _dquote = ur'"\u201c\u201d'
-    _squote = ur"'\u2018\u2019"
-    _newline = ur'\n\u0085\u2028\u2029'
+    _dash = u'\\-\u2010-\u2014'
+    _dquote = u'"\u201c\u201d'
+    _squote = u"'\u2018\u2019"
+    _newline = u'\\n\u0085\u2028\u2029'
 
     tokens = {
         'root': [
