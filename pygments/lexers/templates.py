@@ -36,9 +36,10 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'MakoCssLexer', 'JspLexer', 'CheetahLexer', 'CheetahHtmlLexer',
            'CheetahXmlLexer', 'CheetahJavascriptLexer', 'EvoqueLexer',
            'EvoqueHtmlLexer', 'EvoqueXmlLexer', 'ColdfusionLexer',
-           'ColdfusionHtmlLexer', 'VelocityLexer', 'VelocityHtmlLexer',
-           'VelocityXmlLexer', 'SspLexer', 'TeaTemplateLexer', 'LassoHtmlLexer',
-           'LassoXmlLexer', 'LassoCssLexer', 'LassoJavascriptLexer']
+           'ColdfusionHtmlLexer', 'ColdfusionCFCLexer', 'VelocityLexer', 
+           'VelocityHtmlLexer', 'VelocityXmlLexer', 'SspLexer', 
+           'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer', 
+           'LassoCssLexer', 'LassoJavascriptLexer']
 
 
 class ErbLexer(Lexer):
@@ -1478,23 +1479,28 @@ class ColdfusionLexer(RegexLexer):
     aliases = ['cfs']
     filenames = []
     mimetypes = []
-    flags = re.IGNORECASE | re.MULTILINE
+    flags = re.IGNORECASE
 
     tokens = {
         'root': [
-            (r'//.*', Comment),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
             (r'\+\+|--', Operator),
             (r'[-+*/^&=!]', Operator),
-            (r'<=|>=|<|>', Operator),
+            (r'<=|>=|<|>|==', Operator),
             (r'mod\b', Operator),
             (r'(eq|lt|gt|lte|gte|not|is|and|or)\b', Operator),
             (r'\|\||&&', Operator),
+            (r'\?', Operator),
             (r'"', String.Double, 'string'),
             # There is a special rule for allowing html in single quoted
             # strings, evidently.
             (r"'.*?'", String.Single),
             (r'\d+', Number),
-            (r'(if|else|len|var|case|default|break|switch)\b', Keyword),
+            (r'(if|else|len|var|case|default|break|switch|component|property|function|do|try|catch|in|continue|for|return|while)\b', Keyword),
+            (r'(required|any|array|binary|boolean|component|date|guid|numeric|query|string|struct|uuid|xml)\b', Keyword),
+            (r'(true|false|null)\b', Keyword.Constant),
+            (r'(application|session|client|cookie|super|this|variables|arguments)\b', Name.Constant),
             (r'([A-Za-z_$][A-Za-z0-9_.]*)(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
             (r'[A-Za-z_$][A-Za-z0-9_.]*', Name.Variable),
@@ -1558,11 +1564,25 @@ class ColdfusionHtmlLexer(DelegatingLexer):
     """
     name = 'Coldfusion HTML'
     aliases = ['cfm']
-    filenames = ['*.cfm', '*.cfml', '*.cfc']
+    filenames = ['*.cfm', '*.cfml']
     mimetypes = ['application/x-coldfusion']
 
     def __init__(self, **options):
         super(ColdfusionHtmlLexer, self).__init__(HtmlLexer, ColdfusionMarkupLexer,
+                                                  **options)
+
+
+class ColdfusionCFCLexer(DelegatingLexer):
+    """
+    Coldfusion markup/script components
+    """
+    name = 'Coldfusion CFC'
+    aliases = ['cfc']
+    filenames = ['*.cfc']
+    mimetypes = []
+
+    def __init__(self, **options):
+        super(ColdfusionCFCLexer, self).__init__(ColdfusionHtmlLexer, ColdfusionLexer,
                                                   **options)
 
 
