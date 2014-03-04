@@ -1064,7 +1064,7 @@ class IdrisLexer(RegexLexer):
             (r'[a-z][A-Za-z0-9_\']*', Text),
             #  Special Symbols
             (r'(<-|::|->|=>|=)', Operator.Word), # specials
-            (r'([\[\]:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
+            (r'([\(\)\{\}\[\]:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
             (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
