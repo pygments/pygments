@@ -146,7 +146,7 @@ LEXERS = {
     'IDLLexer': ('pygments.lexers.math', 'IDL', ('idl',), ('*.pro',), ('text/idl',)),
     'IdrisLexer': ('pygments.lexers.functional', 'Idris', ('idris', 'idr'), ('*.idr',), ('text/x-idris',)),
     'IgorLexer': ('pygments.lexers.math', 'Igor', ('igor', 'igorpro'), ('*.ipf',), ('text/ipf',)),
-    'Inform6Lexer': ('pygments.lexers.compiled', 'Inform 6', ('inform6', 'i6'), ('*.inf', '*.h'), ()),
+    'Inform6Lexer': ('pygments.lexers.compiled', 'Inform 6', ('inform6', 'i6'), ('*.inf',), ()),
     'Inform6TemplateLexer': ('pygments.lexers.compiled', 'Inform 6 template', ('i6t',), ('*.i6t',), ()),
     'Inform7Lexer': ('pygments.lexers.compiled', 'Inform 7', ('inform7', 'i7'), ('*.ni', '*.i7x'), ()),
     'IniLexer': ('pygments.lexers.text', 'INI', ('ini', 'cfg', 'dosini'), ('*.ini', '*.cfg'), ('text/x-ini',)),
