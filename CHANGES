@@ -44,6 +44,8 @@ Version 2.0
 - New styles: "xcode" and "igor", similar to the default highlighting of
   the respective IDEs.
 
+- Updated the Makefile lexer to yield a little more useful highlighting.
+
 - Lexer aliases passed to ``get_lexer_by_name()`` are now case-insensitive.
 
 - File name matching in lexers and formatters will now use a regex cache
