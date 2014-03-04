@@ -3957,11 +3957,13 @@ class EiffelLexer(RegexLexer):
 class Inform6Lexer(RegexLexer):
     """
     For `Inform 6 <http://inform-fiction.org/>`_ source code.
+
+    .. versionadded:: 2.0
     """
 
     name = 'Inform 6'
     aliases = ['inform6', 'i6']
-    filenames = ['*.inf', '*.h']
+    filenames = ['*.inf']
 
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
@@ -4420,6 +4422,8 @@ class Inform6Lexer(RegexLexer):
 class Inform7Lexer(RegexLexer):
     """
     For `Inform 7 <http://inform7.com/>`_ source code.
+
+    .. versionadded:: 2.0
     """
 
     name = 'Inform 7'
@@ -4622,6 +4626,8 @@ class Inform6TemplateLexer(Inform7Lexer):
     """
     For `Inform 6 template
     <http://inform7.com/sources/src/i6template/Woven/index.html>`_ code.
+
+    .. versionadded:: 2.0
     """
 
     name = 'Inform 6 template'
