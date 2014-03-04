@@ -384,7 +384,9 @@ class NasmLexer(RegexLexer):
 
 class NasmObjdumpLexer(ObjdumpLexer):
     """
-    For the output of 'objdump -d -M intel'
+    For the output of 'objdump -d -M intel'.
+
+    .. versionadded:: 2.0
     """
     name = 'objdump-nasm'
     aliases = ['objdump-nasm']
