@@ -210,6 +210,7 @@ LEXERS = {
     'MyghtyXmlLexer': ('pygments.lexers.templates', 'XML+Myghty', ('xml+myghty',), (), ('application/xml+myghty',)),
     'NSISLexer': ('pygments.lexers.other', 'NSIS', ('nsis', 'nsi', 'nsh'), ('*.nsi', '*.nsh'), ('text/x-nsis',)),
     'NasmLexer': ('pygments.lexers.asm', 'NASM', ('nasm',), ('*.asm', '*.ASM'), ('text/x-nasm',)),
+    'NasmObjdumpLexer': ('pygments.lexers.asm', 'objdump-nasm', ('objdump-nasm',), ('*.objdump-intel',), ('text/x-objdump',)),
     'NemerleLexer': ('pygments.lexers.dotnet', 'Nemerle', ('nemerle',), ('*.n',), ('text/x-nemerle',)),
     'NesCLexer': ('pygments.lexers.compiled', 'nesC', ('nesc',), ('*.nc',), ('text/x-nescsrc',)),
     'NewLispLexer': ('pygments.lexers.functional', 'NewLisp', ('newlisp',), ('*.lsp', '*.nl'), ('text/x-newlisp', 'application/x-newlisp')),
