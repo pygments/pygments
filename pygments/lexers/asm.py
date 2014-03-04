@@ -391,6 +391,7 @@ class NasmObjdumpLexer(ObjdumpLexer):
     name = 'objdump-nasm'
     aliases = ['objdump-nasm']
     filenames = ['*.objdump-intel']
+    mimetypes = ['text/x-nasm-objdump']
 
     tokens = _objdump_lexer_tokens(NasmLexer)
 
