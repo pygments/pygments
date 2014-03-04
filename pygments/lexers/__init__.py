@@ -98,7 +98,7 @@ def get_lexer_by_name(_alias, **options):
 def get_lexer_for_filename(_fn, code=None, **options):
     """
     Get a lexer for a filename.  If multiple lexers match the filename
-    pattern, use ``analyze_text()`` to figure out which one is more
+    pattern, use ``analyse_text()`` to figure out which one is more
     appropriate.
     """
     matches = []
