@@ -4227,7 +4227,9 @@ class CirruLexer(RegexLexer):
 
 class MaskLexer(RegexLexer):
     """
-    For Mask markup
+    For `Mask <http://github.com/atmajs/MaskJS>`__ markup.
+
+    .. versionadded:: 2.0
     """
     name = 'Mask'
     aliases = ['mask']
