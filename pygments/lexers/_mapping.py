@@ -69,7 +69,7 @@ LEXERS = {
     'CobolFreeformatLexer': ('pygments.lexers.compiled', 'COBOLFree', ('cobolfree',), ('*.cbl', '*.CBL'), ()),
     'CobolLexer': ('pygments.lexers.compiled', 'COBOL', ('cobol',), ('*.cob', '*.COB', '*.cpy', '*.CPY'), ('text/x-cobol',)),
     'CoffeeScriptLexer': ('pygments.lexers.web', 'CoffeeScript', ('coffee-script', 'coffeescript', 'coffee'), ('*.coffee',), ('text/coffeescript',)),
-    'ColdfusionCFCLexer': ('pygments.lexers.templates', 'Coldfusion CFC', ('cfc',), ('*.cfc',), ('application/x-coldfusion',)),
+    'ColdfusionCFCLexer': ('pygments.lexers.templates', 'Coldfusion CFC', ('cfc',), ('*.cfc',), ()),
     'ColdfusionHtmlLexer': ('pygments.lexers.templates', 'Coldfusion HTML', ('cfm',), ('*.cfm', '*.cfml'), ('application/x-coldfusion',)),
     'ColdfusionLexer': ('pygments.lexers.templates', 'cfstatement', ('cfs',), (), ()),
     'CommonLispLexer': ('pygments.lexers.functional', 'Common Lisp', ('common-lisp', 'cl', 'lisp'), ('*.cl', '*.lisp', '*.el'), ('text/x-common-lisp',)),

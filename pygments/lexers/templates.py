@@ -1579,7 +1579,7 @@ class ColdfusionCFCLexer(DelegatingLexer):
     name = 'Coldfusion CFC'
     aliases = ['cfc']
     filenames = ['*.cfc']
-    mimetypes = ['application/x-coldfusion']
+    mimetypes = []
 
     def __init__(self, **options):
         super(ColdfusionCFCLexer, self).__init__(ColdfusionHtmlLexer, ColdfusionLexer,
