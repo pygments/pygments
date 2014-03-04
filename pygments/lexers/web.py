@@ -4203,6 +4203,7 @@ class CirruLexer(RegexLexer):
             (r'\(', Operator, '#push'),
             (r'"', String, ('#pop', 'string')),
             (r'\s+', Text.Whitespace),
+            (r'\,', Operator, '#pop'),
         ],
         'line': [
             (r'^\B', Text.Whitespace, 'function'),
