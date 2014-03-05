@@ -1334,7 +1334,7 @@ class SLexer(RegexLexer):
             (r'\*|\+|\^|/|!|%[^%]*%|=|~|\$|@|:{1,3}', Operator)
         ],
         'builtin_symbols': [
-            (r'(NULL|NA(_(integer|real|complex|character)_)?|months\.(abb|name)?|'
+            (r'(NULL|NA(_(integer|real|complex|character)_)?|'
              r'letters|LETTERS|Inf|TRUE|FALSE|NaN|pi|\.\.(\.|[0-9]+))'
              r'(?![0-9a-zA-Z\._])',
              Keyword.Constant),
@@ -1350,7 +1350,7 @@ class SLexer(RegexLexer):
         'statements': [
             include('comments'),
             # whitespaces
-            (r'\s+', Text),            
+            (r'\s+', Text),
             (r'`.*?`', String.Backtick),
             (r'\'', String, 'string_squote'),
             (r'\"', String, 'string_dquote'),
