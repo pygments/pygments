@@ -72,7 +72,7 @@ LEXERS = {
     'ColdfusionCFCLexer': ('pygments.lexers.templates', 'Coldfusion CFC', ('cfc',), ('*.cfc',), ()),
     'ColdfusionHtmlLexer': ('pygments.lexers.templates', 'Coldfusion HTML', ('cfm',), ('*.cfm', '*.cfml'), ('application/x-coldfusion',)),
     'ColdfusionLexer': ('pygments.lexers.templates', 'cfstatement', ('cfs',), (), ()),
-    'CommonLispLexer': ('pygments.lexers.functional', 'Common Lisp', ('common-lisp', 'cl', 'lisp'), ('*.cl', '*.lisp', '*.el'), ('text/x-common-lisp',)),
+    'CommonLispLexer': ('pygments.lexers.functional', 'Common Lisp', ('common-lisp', 'cl', 'lisp', 'elisp', 'emacs'), ('*.cl', '*.lisp', '*.el'), ('text/x-common-lisp',)),
     'CoqLexer': ('pygments.lexers.functional', 'Coq', ('coq',), ('*.v',), ('text/x-coq',)),
     'CppLexer': ('pygments.lexers.compiled', 'C++', ('cpp', 'c++'), ('*.cpp', '*.hpp', '*.c++', '*.h++', '*.cc', '*.hh', '*.cxx', '*.hxx', '*.C', '*.H', '*.cp', '*.CPP'), ('text/x-c++hdr', 'text/x-c++src')),
     'CppObjdumpLexer': ('pygments.lexers.asm', 'cpp-objdump', ('cpp-objdump', 'c++-objdumb', 'cxx-objdump'), ('*.cpp-objdump', '*.c++-objdump', '*.cxx-objdump'), ('text/x-cpp-objdump',)),
