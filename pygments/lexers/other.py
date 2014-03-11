@@ -57,7 +57,7 @@ class LSLLexer(RegexLexer):
 
     flags = re.MULTILINE
 
-    lsl_keywords = r'\b(?:@|do|else|for|if|jump|return|while)\b'
+    lsl_keywords = r'\b(?:do|else|for|if|jump|return|while)\b'
     lsl_types = r'\b(?:float|integer|key|list|quaternion|rotation|string|vector)\b'
     lsl_states = r'\b(?:(?:state)\s+\w+|default)\b'
     lsl_events = r'\b(?:state_(?:entry|exit)|touch(?:_(?:start|end))?|(?:land_)?collision(?:_(?:start|end))?|timer|listen|(?:no_)?sensor|control|(?:not_)?at_(?:rot_)?target|money|email|run_time_permissions|changed|attach|dataserver|moving_(?:start|end)|link_message|(?:on|object)_rez|remote_data|http_re(?:sponse|quest)|path_update|transaction_result)\b'
