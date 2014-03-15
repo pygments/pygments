@@ -68,6 +68,9 @@ def get_lexer_by_name(_alias, **options):
     """
     Get a lexer by an alias.
     """
+    if not _alias:
+        raise ClassNotFound('no lexer for alias %r found' % _alias)
+
     # lookup builtin lexers
     for module_name, name, aliases, _, _ in LEXERS.itervalues():
         if _alias in aliases:
