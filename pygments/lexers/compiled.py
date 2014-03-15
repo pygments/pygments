@@ -1448,6 +1448,8 @@ def objective(baselexer):
                 return 1.0
             elif '@"' in text: # strings
                 return 0.8
+            elif re.search('@[0-9]+', text):
+                return 0.7
             elif _oc_message.search(text):
                 return 0.8
             return 0
