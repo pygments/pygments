@@ -15,7 +15,7 @@ from pygments import lexers, formatters, filters, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatters.img import FontNotFound
-from pygments.util import BytesIO, StringIO, bytes, b
+from pygments.util import BytesIO, StringIO, bytes, b, ClassNotFound
 
 import support
 
@@ -130,6 +130,13 @@ def test_get_lexers():
 
         for mimetype in mimetypes:
             assert cls == lexers.get_lexer_for_mimetype(mimetype).__class__.__name__
+
+    try:
+        lexers.get_lexer_by_name(None)
+    except ClassNotFound:
+        pass
+    else:
+        raise Exception
 
 
 def test_formatter_public_api():
