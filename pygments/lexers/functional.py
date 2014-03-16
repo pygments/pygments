@@ -996,7 +996,7 @@ class HaskellLexer(RegexLexer):
         ],
         'character': [
             # Allows multi-chars, incorrectly.
-            (r"[^\\']", String.Char),
+            (r"[^\\']'", String.Char, '#pop'),
             (r"\\", String.Escape, 'escape'),
             ("'", String.Char, '#pop'),
         ],
