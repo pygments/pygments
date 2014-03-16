@@ -842,7 +842,7 @@ class VimLexer(RegexLexer):
             # TODO: regexes can have other delims
             (r'/(\\\\|\\/|[^\n/])*/', String.Regex),
             (r'"(\\\\|\\"|[^\n"])*"', String.Double),
-            (r"'(\\\\|\\'|[^\n'])*'", String.Single),
+            (r"'(''|[^\n'])*'", String.Single),
 
             # Who decided that doublequote was a good comment character??
             (r'(?<=\s)"[^\-:.%#=*].*', Comment),
