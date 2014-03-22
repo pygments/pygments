@@ -1434,7 +1434,7 @@ def objective(baselexer):
                 # discussion in Issue 789
                 (r',', Punctuation),
                 (r'\.\.\.', Punctuation),
-                (r'(\(.*?\))( *)([a-zA-Z$_][a-zA-Z0-9$_]*)',
+                (r'(\(.*?\))(\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)',
                 bygroups(using(this), Text, Name.Variable)),
                 (r'[a-zA-Z$_][a-zA-Z0-9$_]*:', Name.Function),
                 (';', Punctuation, '#pop'),
