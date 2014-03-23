@@ -1423,7 +1423,7 @@ def objective(baselexer):
               (r'^([-+])(\s*)'                         # method marker
                r'(\(.*?\))?(\s*)'                      # return type
                r'([a-zA-Z$_][a-zA-Z0-9$_]*:?)',        # begin of method name
-               bygroups(Keyword, Text, using(this),
+               bygroups(Punctuation, Text, using(this),
                         Text, Name.Function),
                'method'),
               inherit,
