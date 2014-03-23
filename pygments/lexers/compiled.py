@@ -1404,12 +1404,18 @@ def objective(baselexer):
             ],
             'oc_classname' : [
                 # interface definition that inherits
+                ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*:\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)?(\s*)({)',
+                 bygroups(Name.Class, Text, Name.Class, Text, Punctuation), ('#pop', 'oc_ivars')),
                 ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*:\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)?',
                  bygroups(Name.Class, Text, Name.Class), '#pop'),
                 # interface definition for a category
+                ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(\([a-zA-Z$_][a-zA-Z0-9$_]*\))(\s*)({)',
+                 bygroups(Name.Class, Text, Name.Label, Text, Punctuation), ('#pop', 'oc_ivars')),
                 ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(\([a-zA-Z$_][a-zA-Z0-9$_]*\))',
                  bygroups(Name.Class, Text, Name.Label), '#pop'),
                 # simple interface / implementation
+                ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)({)',
+                 bygroups(Name.Class, Text, Punctuation), ('#pop', 'oc_ivars')),
                 ('([a-zA-Z$_][a-zA-Z0-9$_]*)', Name.Class, '#pop')
             ],
             'oc_forward_classname' : [
@@ -1417,6 +1423,13 @@ def objective(baselexer):
                bygroups(Name.Class, Text), 'oc_forward_classname'),
               ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*;?)',
                bygroups(Name.Class, Text), '#pop')
+            ],
+            'oc_ivars' : [
+              include('whitespace'),
+              include('statements'),
+              (';', Punctuation),
+              ('{', Punctuation, '#push'),
+              ('}', Punctuation, '#pop'),
             ],
             'root': [
               # methods
