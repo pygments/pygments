@@ -8,8 +8,8 @@ Switches d2SDq;
 Constant Story "Informal Testing";
 Constant Headline "^Not a game.^";!% This is a comment, not ICL.
 
-Release 1;
-Serial "140128";
+Release 2;
+Serial "140308";
 Version 5;
 
 Ifndef TARGET_ZCODE;
@@ -58,6 +58,7 @@ Array table buffer 260;
 
 Attribute reversed;
 Attribute opaque alias locked;
+Constant to reversed;
 
 Property long additive additive long alias;
 Property long long long wingspan alias alias;
@@ -271,7 +272,7 @@ Extend only 'feel' 'touch' replace * noun -> Feel;
         1, 9:
             box "Testing oneself is best when done alone."
                 "                         -- Jimmy Carter";
-        2, 6, 3 to 5:
+        2, 6, to, 3 to 5, to to to:
             <Take pigeon>;
             #Ifdef VN_1633;
             <Jump, person>;
@@ -357,13 +358,16 @@ Extend only 'feel' 'touch' replace * noun -> Feel;
 
 [ FeelSub; print_ret (The) noun, " feels normal."; ];
 
-Global to;
-[ ReverseSub;
-    to = parent(noun);
+[ ReverseSub from;
+    from = parent(noun);
     move noun to parent(second);
-    move second to to;
-    give noun reversed;
-    give second reversed;
+    if (from == to)
+        move second to to;
+    else
+        move second to from;
+    give noun to;
+    from = to;
+    give second from;
     "You swap ", (the) noun, " and ", (the) second, ".";
 ];
 

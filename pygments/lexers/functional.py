@@ -996,7 +996,7 @@ class HaskellLexer(RegexLexer):
         ],
         'character': [
             # Allows multi-chars, incorrectly.
-            (r"[^\\']", String.Char),
+            (r"[^\\']'", String.Char, '#pop'),
             (r"\\", String.Escape, 'escape'),
             ("'", String.Char, '#pop'),
         ],
@@ -2532,7 +2532,7 @@ class NixLexer(RegexLexer):
             ('(%s)' % '|'.join(re.escape(entry) + '\\b' for entry in builtins),
              Name.Builtin),
 
-            (r'\b(true|false)\b', Name.Constant),
+            (r'\b(true|false|null)\b', Name.Constant),
 
             # operators
             ('(%s)' % '|'.join(re.escape(entry) for entry in operators),
@@ -2559,7 +2559,8 @@ class NixLexer(RegexLexer):
             (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[a-zA-Z0-9%/?:@&=+$,\\_.!~*\'-]+', Literal),
 
             # names of variables
-            (r'[a-zA-Z_][a-zA-Z0-9_\'-]*', String.Symbol),
+            (r'[a-zA-Z0-9-_]+\s*=', String.Symbol),
+            (r'[a-zA-Z_][a-zA-Z0-9_\'-]*', Text),
 
         ],
         'comment': [
