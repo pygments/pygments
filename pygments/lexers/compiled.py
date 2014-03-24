@@ -1423,7 +1423,7 @@ def objective(baselexer):
               (r'^([-+])(\s*)'                         # method marker
                r'(\(.*?\))?(\s*)'                      # return type
                r'([a-zA-Z$_][a-zA-Z0-9$_]*:?)',        # begin of method name
-               bygroups(Keyword, Text, using(this),
+               bygroups(Punctuation, Text, using(this),
                         Text, Name.Function),
                'method'),
               inherit,
@@ -1448,6 +1448,8 @@ def objective(baselexer):
                 return 1.0
             elif '@"' in text: # strings
                 return 0.8
+            elif re.search('@[0-9]+', text):
+                return 0.7
             elif _oc_message.search(text):
                 return 0.8
             return 0
@@ -4015,7 +4017,6 @@ class Inform6Lexer(RegexLexer):
              Operator, '_expression'),
             (r'(has|hasnt|in|notin|ofclass|or|provides)\b', Operator.Word,
              '_expression'),
-            (r'(from|near|to)\b', Keyword, '_expression'),
             (r'sp\b', Name),
             (r'\?~?', Name.Label, 'label?'),
             (r'[@{]', Error),
@@ -4032,6 +4033,10 @@ class Inform6Lexer(RegexLexer):
         '_for-expression': [
             (r'\)', Punctuation, '#pop:2'),
             (r':', Punctuation, '#pop'),
+            include('expression')
+        ],
+        '_keyword-expression': [
+            (r'(from|near|to)\b', Keyword, '_expression'),
             include('expression')
         ],
         '_list-expression': [
@@ -4086,13 +4091,16 @@ class Inform6Lexer(RegexLexer):
             # Other built-in symbols
             (r'(?i)(call|copy|create|DEBUG|destroy|DICT_CHAR_SIZE|'
              r'DICT_ENTRY_BYTES|DICT_IS_UNICODE|DICT_WORD_SIZE|false|'
-             r'FLOAT_INFINITY|FLOAT_NAN|FLOAT_NINFINITY|Grammar__Version|'
-             r'INDIV_PROP_START|INFIX|infix__watching|MODULE_MODE|name|'
-             r'nothing|NUM_ATTR_BYTES|print|print_to_array|recreate|remaining|'
-             r'self|sender|STRICT_MODE|sw__var|sys__glob0|sys__glob1|'
-             r'sys__glob2|sys_statusline_flag|TARGET_GLULX|TARGET_ZCODE|'
-             r'temp__global2|temp__global3|temp__global4|temp_global|true|'
-             r'USE_MODULES|WORDSIZE)\b', Name.Builtin, '#pop'),
+             r'FLOAT_INFINITY|FLOAT_NAN|FLOAT_NINFINITY|GOBJFIELD_CHAIN|'
+             r'GOBJFIELD_CHILD|GOBJFIELD_NAME|GOBJFIELD_PARENT|'
+             r'GOBJFIELD_PROPTAB|GOBJFIELD_SIBLING|GOBJ_EXT_START|'
+             r'GOBJ_TOTAL_LENGTH|Grammar__Version|INDIV_PROP_START|INFIX|'
+             r'infix__watching|MODULE_MODE|name|nothing|NUM_ATTR_BYTES|print|'
+             r'print_to_array|recreate|remaining|self|sender|STRICT_MODE|'
+             r'sw__var|sys__glob0|sys__glob1|sys__glob2|sys_statusline_flag|'
+             r'TARGET_GLULX|TARGET_ZCODE|temp__global2|temp__global3|'
+             r'temp__global4|temp_global|true|USE_MODULES|WORDSIZE)\b',
+             Name.Builtin, '#pop'),
             # Other values
             (_name, Name, '#pop')
         ],
@@ -4325,9 +4333,9 @@ class Inform6Lexer(RegexLexer):
             include('_whitespace'),
             (r'\]', Punctuation, '#pop'),
             (r'[;{}]', Punctuation),
-            (r'(box|break|continue|default|give|inversion|move|new_line|quit|'
-             r'read|remove|return|rfalse|rtrue|spaces|string|until)\b',
-             Keyword, 'default'),
+            (r'(box|break|continue|default|give|inversion|new_line|quit|read|'
+             r'remove|return|rfalse|rtrue|spaces|string|until)\b', Keyword,
+             'default'),
             (r'(do|else)\b', Keyword),
             (r'(font|style)\b', Keyword,
              ('default', 'miscellaneous-keyword?')),
@@ -4335,13 +4343,15 @@ class Inform6Lexer(RegexLexer):
             (r'(if|switch|while)', Keyword,
              ('expression', '_expression', '(?')),
             (r'(jump|save|restore)\b', Keyword, ('default', 'label?')),
-            (r'objectloop\b', Keyword, ('expression', 'variable?', '(?')),
+            (r'objectloop\b', Keyword,
+             ('_keyword-expression', 'variable?', '(?')),
             (r'print(_ret)?\b|(?=[%s])' % _dquote, Keyword, 'print-list'),
             (r'\.', Name.Label, 'label?'),
             (r'@', Keyword, 'opcode'),
             (r'#(?![agrnw]\$|#)', Punctuation, 'directive'),
             (r'<', Punctuation, 'default'),
-            (r'', Text, 'default')
+            (r'(move\b)?', Keyword,
+             ('default', '_keyword-expression', '_expression'))
         ],
         'miscellaneous-keyword?': [
             include('_whitespace'),
