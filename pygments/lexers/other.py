@@ -2528,11 +2528,11 @@ class AwkLexer(RegexLexer):
         'root': [
             (r'^(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'\+\+|--|\|\||&&|in|\$|!?~|'
+            (r'\+\+|--|\|\||&&|in\b|\$|!?~|'
              r'(\*\*|[-<>+*%\^/!=])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
-            (r'(break|continue|do|while|exit|for|if|'
+            (r'(break|continue|do|while|exit|for|if|else|'
              r'return)\b', Keyword, 'slashstartsregex'),
             (r'function\b', Keyword.Declaration, 'slashstartsregex'),
             (r'(atan2|cos|exp|int|log|rand|sin|sqrt|srand|gensub|gsub|index|'
