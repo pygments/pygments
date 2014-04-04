@@ -8,6 +8,8 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+#TODO: single quoted string
+#TODO: backquote escaped litterals
 
 from pygments.lexer import RegexLexer, bygroups, include, combined
 from pygments.token import Text, Comment, Operator, Punctuation, Name,\
