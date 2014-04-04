@@ -95,7 +95,7 @@ class GoloLexer(RegexLexer):
             (r'[a-zA-Z_][a-z$A-Z0-9_]*', Name.Variable, '#pop'),
         ],
         'string': [
-            (r'[^\\\"\n]+', String),
+            (r'[^\\\'"\n]+', String),
             (r'[\'"\\]', String)
         ],
         'stringescape': [
