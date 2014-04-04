@@ -77,6 +77,7 @@ class GoloLexer(RegexLexer):
 
             (r'"""', String, combined('stringescape', 'triplestring')),
             (r'"', String, combined('stringescape', 'doublestring')),
+            (r"'", String, 'singlestring'),
             (r'----', String.Doc, 'doc'),
 
         ],
@@ -109,7 +110,12 @@ class GoloLexer(RegexLexer):
         'doublestring': [
             (r'"', String.Double, '#pop'),
             (r'\\\\|\\"|\\n', String.Escape),
-            include('string')
+            include('string'),
+        ],
+        'singlestring': [
+            (r"'", String, '#pop'),
+            (r"\\\\|\\'|\\n", String.Escape),
+            include('string'),
         ],
         'doc': [
             (r'----', String.Doc, '#pop'),
