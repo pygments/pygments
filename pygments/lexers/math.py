@@ -26,7 +26,7 @@ from pygments.lexers import _stan_builtins
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
            'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
            'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer',
-           'IDLLexer', 'RdLexer', 'IgorLexer', 'MathematicaLexer']
+           'IDLLexer', 'RdLexer', 'IgorLexer', 'MathematicaLexer', 'GAPLexer']
 
 
 class JuliaLexer(RegexLexer):
@@ -1971,4 +1971,51 @@ class MathematicaLexer(RegexLexer):
             (r'".*?"', String),
             (r'\s+', Text.Whitespace),
         ],
+    }
+
+class GAPLexer(RegexLexer):
+    """
+    A `GAP <http://www.gap-system.org>`_ lexer.
+    Contributed by Max Horn <max@quendi.de>.
+
+    .. versionadded:: ???
+    """
+    name = 'GAP'
+    aliases = ['gap']
+    filenames = ['*.g', '*.gd', '*.gi', '*.gap']
+
+    tokens = {
+      'root' : [
+        (r'#.*$', Comment.Single),
+        (r'"(?:[^"\\]|\\.)*"', String),
+        (r'\(|\)|\[|\]|\{|\}', Punctuation),
+        (r'''(?x)\b(?:
+            if|then|elif|else|fi|
+            for|while|do|od|
+            repeat|until|
+            break|continue|
+            function|local|return|end|
+            rec
+          )\b''', Keyword),
+        (r'''(?x)\b(?:
+            true|false|fail|infinity
+          )\b''',
+          Name.Constant),
+        (r'''(?x)\b(?:
+            (Declare|Install)([A-Z][A-Za-z]+)|
+			   BindGlobal|BIND_GLOBAL
+          )\b''',
+          Name.Builtin),
+        (r'\.|,|:=|;|=|\+|-|\*|/|\^|>|<', Operator),
+        (r'''(?x)\b(?:
+            and|or|not|mod|in
+          )\b''',
+          Operator.Word),
+        (r'''(?x)
+          (?:[a-zA-Z_0-9]+|`[^`]*`)
+          (?:::[a-zA-Z_0-9]+|`[^`]*`)*''', Name.Variable),
+        (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
+        (r'\.[0-9]+(?:e[0-9]+)?', Number),
+        (r'.', Text)
+      ]
     }
