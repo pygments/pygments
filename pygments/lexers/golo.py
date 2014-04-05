@@ -41,6 +41,7 @@ class GoloLexer(RegexLexer):
             (r'(module|import)(\s+)',
                 bygroups(Keyword.Namespace, Text),
                 'modname'),
+            (r'\b([a-zA-Z_][a-z$A-Z0-9._]*)(::)',  bygroups(Name.Namespace, Punctuation)),
 
             (r'(let|var)(\s+)',
                 bygroups(Keyword.Declaration, Text),
