@@ -8,8 +8,8 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-#TODO: single quoted string
 #TODO: backquote escaped litterals
+#TODO: ---- quoted doc string: conflict with - operator
 
 from pygments.lexer import RegexLexer, bygroups, include, combined
 from pygments.token import Text, Comment, Operator, Punctuation, Name,\
@@ -41,6 +41,7 @@ class GoloLexer(RegexLexer):
             (r'(module|import)(\s+)',
                 bygroups(Keyword.Namespace, Text),
                 'modname'),
+
             (r'(let|var)(\s+)',
                 bygroups(Keyword.Declaration, Text),
                 'varname'),
@@ -64,7 +65,7 @@ class GoloLexer(RegexLexer):
                 bygroups(Name.Builtin, Punctuation)),
             (r'(print|println|readln|raise|fun'
              r'|asInterfaceInstance)\b', Name.Builtin),
-            (r'\b([a-zA-Z_][a-z$A-Z0-9_]*)(\()',
+            (r'\b(`?[a-zA-Z_][a-z$A-Z0-9_]*)(\()',
                 bygroups(Name.Function, Punctuation)),
 
             (r'-?[\d_]*\.[\d_]*([eE][+-]?\d[\d_]*)?F?', Number.Float),
@@ -73,7 +74,7 @@ class GoloLexer(RegexLexer):
             (r'-?\d[\d_]*L', Number.Integer.Long),
             (r'-?\d[\d_]*', Number.Integer),
 
-            ('[a-zA-Z_][a-z$A-Z0-9_]*', Name),
+            ('`?[a-zA-Z_][a-z$A-Z0-9_]*', Name),
 
             (r'"""', String, combined('stringescape', 'triplestring')),
             (r'"', String, combined('stringescape', 'doublestring')),
@@ -81,18 +82,18 @@ class GoloLexer(RegexLexer):
             (r'----', String.Doc, 'doc'),
 
         ],
-
+        
         'funcname': [
-            (r'[a-zA-Z_][a-z$A-Z0-9_]*', Name.Function, '#pop'),
+            (r'`?[a-zA-Z_][a-z$A-Z0-9_]*', Name.Function, '#pop'),
         ],
         'modname': [
             (r'[a-zA-Z_][a-z$A-Z0-9._]*\*?', Name.Namespace, '#pop')
         ],
         'structname': [
-            (r'[a-zA-Z0-9_.]+\*?', Name.Class, '#pop')
+            (r'`?[a-zA-Z0-9_.]+\*?', Name.Class, '#pop')
         ],
         'varname': [
-            (r'[a-zA-Z_][a-z$A-Z0-9_]*', Name.Variable, '#pop'),
+            (r'`?[a-zA-Z_][a-z$A-Z0-9_]*', Name.Variable, '#pop'),
         ],
         'string': [
             (r'[^\\\'"\n]+', String),
