@@ -32,8 +32,10 @@ class GoloLexer(RegexLexer):
 
             (r'#.*$', Comment),
 
-            (r'(\^|\.\.\.|:|\?:|->|==|!=|=|\+|-|\*|%|/|<|<=|>|>=|=|\.)',
+            (r'(\^|\.\.\.|:|\?:|->|==|!=|=|\+|\*|%|/|<|<=|>|>=|=|\.)',
                 Operator),
+            (r'(?<=[^-])(-)(?=[^-])', Operator),
+
             (r'(is|isnt|and|or|not|oftype|in|orIfNull)\b', Operator.Word),
             (r'[]{}|(),[]', Punctuation),
 
@@ -80,7 +82,7 @@ class GoloLexer(RegexLexer):
             (r'"""', String, combined('stringescape', 'triplestring')),
             (r'"', String, combined('stringescape', 'doublestring')),
             (r"'", String, combined('stringescape', 'singlestring')),
-            (r'----', String.Doc, 'doc'),
+            (r'----((.|\n)*?)----', String.Doc)
 
         ],
 
@@ -117,15 +119,4 @@ class GoloLexer(RegexLexer):
             (r"'", String, '#pop'),
             include('string'),
         ],
-        'doc': [
-            (r'----', String.Doc, '#pop'),
-            (r'#\s+.*#?$', Generic.Heading),
-            (r'##+\s+.*#?$', Generic.Subheading),
-            (r'\*[^*]+\*', Generic.Emph),
-            (r'_[^_]+_', Generic.Emph),
-            (r'\*\*[^*]+\*\*', Generic.Strong),
-            (r'__[^_]+__', Generic.Strong),
-            #(r'`(.*?)`', using(GoloLexer)),
-        ],
-
     }
