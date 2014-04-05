@@ -8,7 +8,6 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-#TODO: ---- quoted doc string: conflict with - operator
 
 from pygments.lexer import RegexLexer, bygroups, include, combined
 from pygments.token import Text, Comment, Operator, Punctuation, Name,\
