@@ -35,7 +35,7 @@ class GoloLexer(RegexLexer):
                 Operator),
             (r'(?<=[^-])(-)(?=[^-])', Operator),
 
-            (r'(is|isnt|and|or|not|oftype|in|orIfNull)\b', Operator.Word),
+            (r'(?<=[^`])(is|isnt|and|or|not|oftype|in|orIfNull)\b', Operator.Word),
             (r'[]{}|(),[]', Punctuation),
 
             (r'(module|import)(\s+)',
@@ -67,7 +67,7 @@ class GoloLexer(RegexLexer):
                 bygroups(Name.Builtin, Punctuation)),
             (r'(print|println|readln|raise|fun'
              r'|asInterfaceInstance)\b', Name.Builtin),
-            (r'\b(`?[a-zA-Z_][a-z$A-Z0-9_]*)(\()',
+            (r'(`?[a-zA-Z_][a-z$A-Z0-9_]*)(\()',
                 bygroups(Name.Function, Punctuation)),
 
             (r'-?[\d_]*\.[\d_]*([eE][+-]?\d[\d_]*)?F?', Number.Float),
