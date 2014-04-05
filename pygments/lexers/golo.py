@@ -8,7 +8,6 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-#TODO: backquote escaped litterals
 #TODO: ---- quoted doc string: conflict with - operator
 
 from pygments.lexer import RegexLexer, bygroups, include, combined
@@ -42,6 +41,7 @@ class GoloLexer(RegexLexer):
                 bygroups(Keyword.Namespace, Text),
                 'modname'),
             (r'\b([a-zA-Z_][a-z$A-Z0-9._]*)(::)',  bygroups(Name.Namespace, Punctuation)),
+            (r'\b([a-zA-Z_][a-z$A-Z0-9_]*(?:\.[a-zA-Z_][a-z$A-Z0-9_]*)+)\b', Name.Namespace),
 
             (r'(let|var)(\s+)',
                 bygroups(Keyword.Declaration, Text),
