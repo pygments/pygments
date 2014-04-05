@@ -79,11 +79,11 @@ class GoloLexer(RegexLexer):
 
             (r'"""', String, combined('stringescape', 'triplestring')),
             (r'"', String, combined('stringescape', 'doublestring')),
-            (r"'", String, 'singlestring'),
+            (r"'", String, combined('stringescape', 'singlestring')),
             (r'----', String.Doc, 'doc'),
 
         ],
-        
+
         'funcname': [
             (r'`?[a-zA-Z_][a-z$A-Z0-9_]*', Name.Function, '#pop'),
         ],
@@ -111,12 +111,10 @@ class GoloLexer(RegexLexer):
         ],
         'doublestring': [
             (r'"', String.Double, '#pop'),
-            (r'\\\\|\\"|\\n', String.Escape),
             include('string'),
         ],
         'singlestring': [
             (r"'", String, '#pop'),
-            (r"\\\\|\\'|\\n", String.Escape),
             include('string'),
         ],
         'doc': [
