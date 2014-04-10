@@ -1246,7 +1246,7 @@ class ModelicaLexer(RegexLexer):
             r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
             r'equation|exit|expandable|extends|'
             r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
-            r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
+            r'inner|input|loop|nondiscrete|outer|output|parameter|operator|partial|'
             r'protected|public|pure|redeclare|replaceable|stream|time|then|true|'
             r'when|while|within)\b', Keyword),
         ],
@@ -1259,7 +1259,7 @@ class ModelicaLexer(RegexLexer):
         'operators': [
             (r'(actualStream|and|assert|backSample|cardinality|change|Clock|'
              r'delay|der|edge|hold|homotopy|initial|inStream|noClock|noEvent|'
-             r'not|or|operator|pre|previous|reinit|return|sample|smooth|'
+             r'not|or|pre|previous|reinit|return|sample|smooth|'
              r'spatialDistribution|shiftSample|subSample|superSample|terminal|'
              r'terminate)\b', Name.Builtin),
         ],
