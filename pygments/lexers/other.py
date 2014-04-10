@@ -1235,8 +1235,8 @@ class ModelicaLexer(RegexLexer):
         'root': [
             include('whitespace'),
             include('keywords'),
-            include('functions'),
             include('classes'),
+            include('functions'),
             include('operators'),
             (r'("<html>|<html>)', Name.Tag, 'html-content'),
             include('statements'),
@@ -1246,7 +1246,7 @@ class ModelicaLexer(RegexLexer):
             r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
             r'equation|exit|expandable|extends|'
             r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
-            r'inner|input|loop|nondiscrete|outer|output|parameter|operator|partial|'
+            r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
             r'protected|public|pure|redeclare|replaceable|stream|time|then|true|'
             r'when|while|within)\b', Keyword),
         ],
