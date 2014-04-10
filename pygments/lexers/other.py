@@ -1264,7 +1264,7 @@ class ModelicaLexer(RegexLexer):
              r'terminate)\b', Name.Builtin),
         ],
         'classes': [
-            (r'((operator)?)((\s+)?)(block|class|connector|end|function|model|operator|package|'
+            (r'(operator)?(\s+)?(block|class|connector|end|function|model|operator|package|'
              r'record|type)(\s+)((?!if|when|while)[A-Za-z_]\w*|[\'][^\']+[\'])([;]?)',
              bygroups(Keyword, Text, Keyword, Text, Name.Class, Text))
         ],
