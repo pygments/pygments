@@ -1259,7 +1259,7 @@ class ModelicaLexer(RegexLexer):
         'operators': [
             (r'(actualStream|and|assert|backSample|cardinality|change|Clock|'
              r'delay|der|edge|hold|homotopy|initial|inStream|noClock|noEvent|'
-             r'not|or|pre|previous|reinit|return|sample|smooth|'
+             r'not|or|operator|pre|previous|reinit|return|sample|smooth|'
              r'spatialDistribution|shiftSample|subSample|superSample|terminal|'
              r'terminate)\b', Name.Builtin),
         ],
