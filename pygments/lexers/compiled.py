@@ -469,20 +469,23 @@ class DLexer(RegexLexer):
             (r'(abstract|alias|align|asm|assert|auto|body|break|case|cast'
              r'|catch|class|const|continue|debug|default|delegate|delete'
              r'|deprecated|do|else|enum|export|extern|finally|final'
-             r'|foreach_reverse|foreach|for|function|goto|if|import|inout'
-             r'|interface|invariant|in|is|lazy|mixin|module|new|nothrow|out'
+             r'|foreach_reverse|foreach|for|function|goto|if|immutable|import'
+             r'|interface|invariant|inout|in|is|lazy|mixin|module|new|nothrow|out'
              r'|override|package|pragma|private|protected|public|pure|ref|return'
-             r'|scope|static|struct|super|switch|synchronized|template|this'
+             r'|scope|shared|static|struct|super|switch|synchronized|template|this'
              r'|throw|try|typedef|typeid|typeof|union|unittest|version|volatile'
-             r'|while|with|__traits)\b', Keyword
+             r'|while|with|__gshared|__traits|__vector|__parameters)\b', Keyword
             ),
             (r'(bool|byte|cdouble|cent|cfloat|char|creal|dchar|double|float'
              r'|idouble|ifloat|int|ireal|long|real|short|ubyte|ucent|uint|ulong'
              r'|ushort|void|wchar)\b', Keyword.Type
             ),
             (r'(false|true|null)\b', Keyword.Constant),
+            (r'(__FILE__|__MODULE__|__LINE__|__FUNCTION__|__PRETTY_FUNCTION__'
+             r'|__DATE__|__EOF__|__TIME__|__TIMESTAMP__|__VENDOR__|__VERSION__)\b',
+             Keyword.Pseudo),
             (r'macro\b', Keyword.Reserved),
-            (r'(string|wstring|dstring)\b', Name.Builtin),
+            (r'(string|wstring|dstring|size_t|ptrdiff_t)\b', Name.Builtin),
             # FloatLiteral
             # -- HexFloat
             (r'0[xX]([0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)'
@@ -528,6 +531,8 @@ class DLexer(RegexLexer):
             (r'q"(.).*?\1"', String),
             # -- TokenString
             (r'q{', String, 'token_string'),
+            # Attributes
+            (r'@([a-zA-Z_]\w*)?', Name.Decorator),
             # Tokens
             (r'(~=|\^=|%=|\*=|==|!>=|!<=|!<>=|!<>|!<|!>|!=|>>>=|>>>|>>=|>>|>='
              r'|<>=|<>|<<=|<<|<=|\+\+|\+=|--|-=|\|\||\|=|&&|&=|\.\.\.|\.\.|/=)'
@@ -535,6 +540,8 @@ class DLexer(RegexLexer):
             ),
             # Identifier
             (r'[a-zA-Z_]\w*', Name),
+            # Line
+            (r'#line\s.*\n', Comment.Special),
         ],
         'nested_comment': [
             (r'[^+/]+', Comment.Multiline),
@@ -1434,8 +1441,8 @@ def objective(baselexer):
                 # discussion in Issue 789
                 (r',', Punctuation),
                 (r'\.\.\.', Punctuation),
-                (r'(\(.*?\))([a-zA-Z$_][a-zA-Z0-9$_]*)', bygroups(using(this),
-                                                                  Name.Variable)),
+                (r'(\(.*?\))(\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)',
+                 bygroups(using(this), Text, Name.Variable)),
                 (r'[a-zA-Z$_][a-zA-Z0-9$_]*:', Name.Function),
                 (';', Punctuation, '#pop'),
                 ('{', Punctuation, 'function'),
