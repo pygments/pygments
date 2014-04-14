@@ -21,7 +21,7 @@ class SmaliLexer(RegexLexer):
     For `Smali <http://code.google.com/p/smali/>`_ (Android/Dalvik) assembly
     code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Smali'
     aliases = ['smali']

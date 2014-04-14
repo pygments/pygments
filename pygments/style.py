@@ -10,6 +10,7 @@
 """
 
 from pygments.token import Token, STANDARD_TYPES
+from pygments.util import add_metaclass
 
 
 class StyleMeta(type):
@@ -104,8 +105,8 @@ class StyleMeta(type):
         return len(cls._styles)
 
 
+@add_metaclass(StyleMeta)
 class Style(object):
-    __metaclass__ = StyleMeta
 
     #: overall background color (``None`` means transparent)
     background_color = '#ffffff'

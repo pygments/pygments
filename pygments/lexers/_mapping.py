@@ -13,8 +13,11 @@
     :license: BSD, see LICENSE for details.
 """
 
+from __future__ import print_function
+
 LEXERS = {
     'ABAPLexer': ('pygments.lexers.other', 'ABAP', ('abap',), ('*.abap',), ('text/x-abap',)),
+    'APLLexer': ('pygments.lexers.other', 'APL', ('apl',), ('*.apl',), ()),
     'ActionScript3Lexer': ('pygments.lexers.web', 'ActionScript 3', ('as3', 'actionscript3'), ('*.as',), ('application/x-actionscript', 'text/x-actionscript', 'text/actionscript')),
     'ActionScriptLexer': ('pygments.lexers.web', 'ActionScript', ('as', 'actionscript'), ('*.as',), ('application/x-actionscript3', 'text/x-actionscript3', 'text/actionscript3')),
     'AdaLexer': ('pygments.lexers.compiled', 'Ada', ('ada', 'ada95ada2005'), ('*.adb', '*.ads', '*.ada'), ('text/x-ada',)),
@@ -61,14 +64,17 @@ LEXERS = {
     'CheetahJavascriptLexer': ('pygments.lexers.templates', 'JavaScript+Cheetah', ('js+cheetah', 'javascript+cheetah', 'js+spitfire', 'javascript+spitfire'), (), ('application/x-javascript+cheetah', 'text/x-javascript+cheetah', 'text/javascript+cheetah', 'application/x-javascript+spitfire', 'text/x-javascript+spitfire', 'text/javascript+spitfire')),
     'CheetahLexer': ('pygments.lexers.templates', 'Cheetah', ('cheetah', 'spitfire'), ('*.tmpl', '*.spt'), ('application/x-cheetah', 'application/x-spitfire')),
     'CheetahXmlLexer': ('pygments.lexers.templates', 'XML+Cheetah', ('xml+cheetah', 'xml+spitfire'), (), ('application/xml+cheetah', 'application/xml+spitfire')),
+    'CirruLexer': ('pygments.lexers.web', 'Cirru', ('cirru',), ('*.cirru', '*.cr'), ('text/x-cirru',)),
     'ClayLexer': ('pygments.lexers.compiled', 'Clay', ('clay',), ('*.clay',), ('text/x-clay',)),
     'ClojureLexer': ('pygments.lexers.jvm', 'Clojure', ('clojure', 'clj'), ('*.clj',), ('text/x-clojure', 'application/x-clojure')),
+    'ClojureScriptLexer': ('pygments.lexers.jvm', 'ClojureScript', ('clojurescript', 'cljs'), ('*.cljs',), ('text/x-clojurescript', 'application/x-clojurescript')),
     'CobolFreeformatLexer': ('pygments.lexers.compiled', 'COBOLFree', ('cobolfree',), ('*.cbl', '*.CBL'), ()),
     'CobolLexer': ('pygments.lexers.compiled', 'COBOL', ('cobol',), ('*.cob', '*.COB', '*.cpy', '*.CPY'), ('text/x-cobol',)),
     'CoffeeScriptLexer': ('pygments.lexers.web', 'CoffeeScript', ('coffee-script', 'coffeescript', 'coffee'), ('*.coffee',), ('text/coffeescript',)),
-    'ColdfusionHtmlLexer': ('pygments.lexers.templates', 'Coldfusion HTML', ('cfm',), ('*.cfm', '*.cfml', '*.cfc'), ('application/x-coldfusion',)),
+    'ColdfusionCFCLexer': ('pygments.lexers.templates', 'Coldfusion CFC', ('cfc',), ('*.cfc',), ()),
+    'ColdfusionHtmlLexer': ('pygments.lexers.templates', 'Coldfusion HTML', ('cfm',), ('*.cfm', '*.cfml'), ('application/x-coldfusion',)),
     'ColdfusionLexer': ('pygments.lexers.templates', 'cfstatement', ('cfs',), (), ()),
-    'CommonLispLexer': ('pygments.lexers.functional', 'Common Lisp', ('common-lisp', 'cl', 'lisp'), ('*.cl', '*.lisp', '*.el'), ('text/x-common-lisp',)),
+    'CommonLispLexer': ('pygments.lexers.functional', 'Common Lisp', ('common-lisp', 'cl', 'lisp', 'elisp', 'emacs'), ('*.cl', '*.lisp', '*.el'), ('text/x-common-lisp',)),
     'CoqLexer': ('pygments.lexers.functional', 'Coq', ('coq',), ('*.v',), ('text/x-coq',)),
     'CppLexer': ('pygments.lexers.compiled', 'C++', ('cpp', 'c++'), ('*.cpp', '*.hpp', '*.c++', '*.h++', '*.cc', '*.hh', '*.cxx', '*.hxx', '*.C', '*.H', '*.cp', '*.CPP'), ('text/x-c++hdr', 'text/x-c++src')),
     'CppObjdumpLexer': ('pygments.lexers.asm', 'cpp-objdump', ('cpp-objdump', 'c++-objdumb', 'cxx-objdump'), ('*.cpp-objdump', '*.c++-objdump', '*.cxx-objdump'), ('text/x-cpp-objdump',)),
@@ -114,6 +120,7 @@ LEXERS = {
     'FelixLexer': ('pygments.lexers.compiled', 'Felix', ('felix', 'flx'), ('*.flx', '*.flxh'), ('text/x-felix',)),
     'FortranLexer': ('pygments.lexers.compiled', 'Fortran', ('fortran',), ('*.f', '*.f90', '*.F', '*.F90'), ('text/x-fortran',)),
     'FoxProLexer': ('pygments.lexers.foxpro', 'FoxPro', ('foxpro', 'vfp', 'clipper', 'xbase'), ('*.PRG', '*.prg'), ()),
+    'GAPLexer': ('pygments.lexers.math', 'GAP', ('gap',), ('*.g', '*.gd', '*.gi', '*.gap'), ()),
     'GLShaderLexer': ('pygments.lexers.compiled', 'GLSL', ('glsl',), ('*.vert', '*.frag', '*.geo'), ('text/x-glslsrc',)),
     'GasLexer': ('pygments.lexers.asm', 'GAS', ('gas', 'asm'), ('*.s', '*.S'), ('text/x-gas',)),
     'GenshiLexer': ('pygments.lexers.templates', 'Genshi', ('genshi', 'kid', 'xml+genshi', 'xml+kid'), ('*.kid',), ('application/x-genshi', 'application/x-kid')),
@@ -140,7 +147,11 @@ LEXERS = {
     'HyLexer': ('pygments.lexers.agile', 'Hy', ('hylang',), ('*.hy',), ('text/x-hy', 'application/x-hy')),
     'HybrisLexer': ('pygments.lexers.other', 'Hybris', ('hybris', 'hy'), ('*.hy', '*.hyb'), ('text/x-hybris', 'application/x-hybris')),
     'IDLLexer': ('pygments.lexers.math', 'IDL', ('idl',), ('*.pro',), ('text/idl',)),
+    'IdrisLexer': ('pygments.lexers.functional', 'Idris', ('idris', 'idr'), ('*.idr',), ('text/x-idris',)),
     'IgorLexer': ('pygments.lexers.math', 'Igor', ('igor', 'igorpro'), ('*.ipf',), ('text/ipf',)),
+    'Inform6Lexer': ('pygments.lexers.compiled', 'Inform 6', ('inform6', 'i6'), ('*.inf',), ()),
+    'Inform6TemplateLexer': ('pygments.lexers.compiled', 'Inform 6 template', ('i6t',), ('*.i6t',), ()),
+    'Inform7Lexer': ('pygments.lexers.compiled', 'Inform 7', ('inform7', 'i7'), ('*.ni', '*.i7x'), ()),
     'IniLexer': ('pygments.lexers.text', 'INI', ('ini', 'cfg', 'dosini'), ('*.ini', '*.cfg'), ('text/x-ini',)),
     'IoLexer': ('pygments.lexers.agile', 'Io', ('io',), ('*.io',), ('text/x-iosrc',)),
     'IokeLexer': ('pygments.lexers.jvm', 'Ioke', ('ioke', 'ik'), ('*.ik',), ('text/x-iokesrc',)),
@@ -170,6 +181,7 @@ LEXERS = {
     'LighttpdConfLexer': ('pygments.lexers.text', 'Lighttpd configuration file', ('lighty', 'lighttpd'), (), ('text/x-lighttpd-conf',)),
     'LiterateAgdaLexer': ('pygments.lexers.functional', 'Literate Agda', ('lagda', 'literate-agda'), ('*.lagda',), ('text/x-literate-agda',)),
     'LiterateHaskellLexer': ('pygments.lexers.functional', 'Literate Haskell', ('lhs', 'literate-haskell', 'lhaskell'), ('*.lhs',), ('text/x-literate-haskell',)),
+    'LiterateIdrisLexer': ('pygments.lexers.functional', 'Literate Idris', ('lidr', 'literate-idris', 'lidris'), ('*.lidr',), ('text/x-literate-idris',)),
     'LiveScriptLexer': ('pygments.lexers.web', 'LiveScript', ('live-script', 'livescript'), ('*.ls',), ('text/livescript',)),
     'LlvmLexer': ('pygments.lexers.asm', 'LLVM', ('llvm',), ('*.ll',), ('text/x-llvm',)),
     'LogosLexer': ('pygments.lexers.compiled', 'Logos', ('logos',), ('*.x', '*.xi', '*.xm', '*.xmi'), ('text/x-logos',)),
@@ -183,6 +195,7 @@ LEXERS = {
     'MakoLexer': ('pygments.lexers.templates', 'Mako', ('mako',), ('*.mao',), ('application/x-mako',)),
     'MakoXmlLexer': ('pygments.lexers.templates', 'XML+Mako', ('xml+mako',), (), ('application/xml+mako',)),
     'MaqlLexer': ('pygments.lexers.other', 'MAQL', ('maql',), ('*.maql',), ('text/x-gooddata-maql', 'application/x-gooddata-maql')),
+    'MaskLexer': ('pygments.lexers.web', 'Mask', ('mask',), ('*.mask',), ('text/x-mask',)),
     'MasonLexer': ('pygments.lexers.templates', 'Mason', ('mason',), ('*.m', '*.mhtml', '*.mc', '*.mi', 'autohandler', 'dhandler'), ('application/x-mason',)),
     'MathematicaLexer': ('pygments.lexers.math', 'Mathematica', ('mathematica', 'mma', 'nb'), ('*.nb', '*.cdf', '*.nbp', '*.ma'), ('application/mathematica', 'application/vnd.wolfram.mathematica', 'application/vnd.wolfram.mathematica.package', 'application/vnd.wolfram.cdf')),
     'MatlabLexer': ('pygments.lexers.math', 'Matlab', ('matlab',), ('*.m',), ('text/matlab',)),
@@ -193,6 +206,7 @@ LEXERS = {
     'MoinWikiLexer': ('pygments.lexers.text', 'MoinMoin/Trac Wiki markup', ('trac-wiki', 'moin'), (), ('text/x-trac-wiki',)),
     'MonkeyLexer': ('pygments.lexers.compiled', 'Monkey', ('monkey',), ('*.monkey',), ('text/x-monkey',)),
     'MoonScriptLexer': ('pygments.lexers.agile', 'MoonScript', ('moon', 'moonscript'), ('*.moon',), ('text/x-moonscript', 'application/x-moonscript')),
+    'MqlLexer': ('pygments.lexers.compiled', 'MQL', ('mql', 'mq4', 'mq5', 'mql4', 'mql5'), ('*.mq4', '*.mq5', '*.mqh'), ('text/x-mql',)),
     'MscgenLexer': ('pygments.lexers.other', 'Mscgen', ('mscgen', 'msc'), ('*.msc',), ()),
     'MuPADLexer': ('pygments.lexers.math', 'MuPAD', ('mupad',), ('*.mu',), ()),
     'MxmlLexer': ('pygments.lexers.web', 'MXML', ('mxml',), ('*.mxml',), ()),
@@ -204,6 +218,7 @@ LEXERS = {
     'MyghtyXmlLexer': ('pygments.lexers.templates', 'XML+Myghty', ('xml+myghty',), (), ('application/xml+myghty',)),
     'NSISLexer': ('pygments.lexers.other', 'NSIS', ('nsis', 'nsi', 'nsh'), ('*.nsi', '*.nsh'), ('text/x-nsis',)),
     'NasmLexer': ('pygments.lexers.asm', 'NASM', ('nasm',), ('*.asm', '*.ASM'), ('text/x-nasm',)),
+    'NasmObjdumpLexer': ('pygments.lexers.asm', 'objdump-nasm', ('objdump-nasm',), ('*.objdump-intel',), ('text/x-nasm-objdump',)),
     'NemerleLexer': ('pygments.lexers.dotnet', 'Nemerle', ('nemerle',), ('*.n',), ('text/x-nemerle',)),
     'NesCLexer': ('pygments.lexers.compiled', 'nesC', ('nesc',), ('*.nc',), ('text/x-nescsrc',)),
     'NewLispLexer': ('pygments.lexers.functional', 'NewLisp', ('newlisp',), ('*.lsp', '*.nl'), ('text/x-newlisp', 'application/x-newlisp')),
@@ -224,6 +239,7 @@ LEXERS = {
     'Perl6Lexer': ('pygments.lexers.agile', 'Perl6', ('perl6', 'pl6'), ('*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6', '*.6pm', '*.p6m', '*.pm6', '*.t'), ('text/x-perl6', 'application/x-perl6')),
     'PerlLexer': ('pygments.lexers.agile', 'Perl', ('perl', 'pl'), ('*.pl', '*.pm', '*.t'), ('text/x-perl', 'application/x-perl')),
     'PhpLexer': ('pygments.lexers.web', 'PHP', ('php', 'php3', 'php4', 'php5'), ('*.php', '*.php[345]', '*.inc'), ('text/x-php',)),
+    'PigLexer': ('pygments.lexers.jvm', 'Pig', ('pig',), ('*.pig',), ('text/x-pig',)),
     'PikeLexer': ('pygments.lexers.compiled', 'Pike', ('pike',), ('*.pike', '*.pmod'), ('text/x-pike',)),
     'PlPgsqlLexer': ('pygments.lexers.sql', 'PL/pgSQL', ('plpgsql',), (), ('text/x-plpgsql',)),
     'PostScriptLexer': ('pygments.lexers.other', 'PostScript', ('postscript', 'postscr'), ('*.ps', '*.eps'), ('application/postscript',)),
@@ -264,7 +280,7 @@ LEXERS = {
     'RstLexer': ('pygments.lexers.text', 'reStructuredText', ('rst', 'rest', 'restructuredtext'), ('*.rst', '*.rest'), ('text/x-rst', 'text/prs.fallenstein.rst')),
     'RubyConsoleLexer': ('pygments.lexers.agile', 'Ruby irb session', ('rbcon', 'irb'), (), ('text/x-ruby-shellsession',)),
     'RubyLexer': ('pygments.lexers.agile', 'Ruby', ('rb', 'ruby', 'duby'), ('*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec', '*.rbx', '*.duby'), ('text/x-ruby', 'application/x-ruby')),
-    'RustLexer': ('pygments.lexers.compiled', 'Rust', ('rust',), ('*.rs', '*.rc'), ('text/x-rustsrc',)),
+    'RustLexer': ('pygments.lexers.compiled', 'Rust', ('rust',), ('*.rs',), ('text/x-rustsrc',)),
     'SLexer': ('pygments.lexers.math', 'S', ('splus', 's', 'r'), ('*.S', '*.R', '.Rhistory', '.Rprofile'), ('text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r', 'text/x-R', 'text/x-r-history', 'text/x-r-profile')),
     'SMLLexer': ('pygments.lexers.functional', 'Standard ML', ('sml',), ('*.sml', '*.sig', '*.fun'), ('text/x-standardml', 'application/x-standardml')),
     'SassLexer': ('pygments.lexers.web', 'Sass', ('sass',), ('*.sass',), ('text/x-sass',)),
@@ -315,6 +331,7 @@ LEXERS = {
     'XsltLexer': ('pygments.lexers.web', 'XSLT', ('xslt',), ('*.xsl', '*.xslt', '*.xpl'), ('application/xsl+xml', 'application/xslt+xml')),
     'XtendLexer': ('pygments.lexers.jvm', 'Xtend', ('xtend',), ('*.xtend',), ('text/x-xtend',)),
     'YamlLexer': ('pygments.lexers.text', 'YAML', ('yaml',), ('*.yaml', '*.yml'), ('text/x-yaml',)),
+    'ZephirLexer': ('pygments.lexers.web', 'Zephir', ('zephir',), ('*.zep',), ()),
 }
 
 if __name__ == '__main__':
@@ -327,7 +344,7 @@ if __name__ == '__main__':
     for filename in os.listdir('.'):
         if filename.endswith('.py') and not filename.startswith('_'):
             module_name = 'pygments.lexers.%s' % filename[:-3]
-            print module_name
+            print(module_name)
             module = __import__(module_name, None, None, [''])
             for lexer_name in module.__all__:
                 lexer = getattr(module, lexer_name)

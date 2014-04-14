@@ -27,6 +27,7 @@ import re
 
 from pygments.lexer import Lexer
 from pygments.token import Token
+from pygments.util import text_type
 
 
 HEADING = Token.Generic.Heading
@@ -57,7 +58,7 @@ class RobotFrameworkLexer(Lexer):
 
     Supports both space and pipe separated plain text formats.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'RobotFramework'
     aliases = ['robotframework']
@@ -77,7 +78,7 @@ class RobotFrameworkLexer(Lexer):
             for value, token in row_tokenizer.tokenize(row):
                 for value, token in var_tokenizer.tokenize(value, token):
                     if value:
-                        yield index, token, unicode(value)
+                        yield index, token, text_type(value)
                         index += len(value)
 
 

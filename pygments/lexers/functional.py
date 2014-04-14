@@ -19,7 +19,7 @@ __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'AgdaLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
            'SMLLexer', 'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer',
            'OpaLexer', 'CoqLexer', 'NewLispLexer', 'NixLexer', 'ElixirLexer',
-           'ElixirConsoleLexer', 'KokaLexer']
+           'ElixirConsoleLexer', 'KokaLexer', 'IdrisLexer', 'LiterateIdrisLexer']
 
 
 line_re = re.compile('.*?\n')
@@ -30,7 +30,7 @@ class RacketLexer(RegexLexer):
     Lexer for `Racket <http://racket-lang.org/>`_ source code (formerly known as
     PLT Scheme).
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Racket'
@@ -599,7 +599,7 @@ class SchemeLexer(RegexLexer):
 
     It supports the full Scheme syntax as defined in R5RS.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
     name = 'Scheme'
     aliases = ['scheme', 'scm']
@@ -720,10 +720,10 @@ class CommonLispLexer(RegexLexer):
     """
     A Common Lisp lexer.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Common Lisp'
-    aliases = ['common-lisp', 'cl', 'lisp']
+    aliases = ['common-lisp', 'cl', 'lisp', 'elisp', 'emacs']
     filenames = ['*.cl', '*.lisp', '*.el']  # use for Elisp too
     mimetypes = ['text/x-common-lisp']
 
@@ -898,7 +898,7 @@ class HaskellLexer(RegexLexer):
     """
     A Haskell lexer based on the lexemes defined in the Haskell 98 Report.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
     name = 'Haskell'
     aliases = ['haskell', 'hs']
@@ -996,7 +996,7 @@ class HaskellLexer(RegexLexer):
         ],
         'character': [
             # Allows multi-chars, incorrectly.
-            (r"[^\\']", String.Char),
+            (r"[^\\']'", String.Char, '#pop'),
             (r"\\", String.Escape, 'escape'),
             ("'", String.Char, '#pop'),
         ],
@@ -1017,12 +1017,121 @@ class HaskellLexer(RegexLexer):
     }
 
 
+class IdrisLexer(RegexLexer):
+    """
+    A lexer for the dependently typed programming language Idris.
+
+    Based on the Haskell and Agda Lexer.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Idris'
+    aliases = ['idris', 'idr']
+    filenames = ['*.idr']
+    mimetypes = ['text/x-idris']
+
+    reserved = ['case','class','data','default','using','do','else',
+                'if','in','infix[lr]?','instance','rewrite','auto',
+                'namespace','codata','mutual','private','public','abstract',
+                'total','partial',
+                'let','proof','of','then','static','where','_','with',
+                'pattern', 'term', 'syntax','prefix',
+                'postulate','parameters','record','dsl','impossible','implicit',
+                'tactics','intros','intro','compute','refine','exaxt','trivial']
+
+    ascii = ['NUL','SOH','[SE]TX','EOT','ENQ','ACK',
+             'BEL','BS','HT','LF','VT','FF','CR','S[OI]','DLE',
+             'DC[1-4]','NAK','SYN','ETB','CAN',
+             'EM','SUB','ESC','[FGRU]S','SP','DEL']
+
+    annotations = ['assert_total','lib','link','include','provide','access',
+                   'default']
+
+    tokens = {
+        'root': [
+            # Declaration
+            (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
+             bygroups(Text, Name.Function, Text, Operator.Word, Text)),
+            # Comments
+            (r'^(\s*)(%%%s)' % '|'.join(annotations),
+             bygroups(Text, Keyword.Reserved)),
+            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
+            (r'{-', Comment.Multiline, 'comment'),
+            #  Identifiers
+            (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
+            (r"('')?[A-Z][\w\']*", Keyword.Type),
+            (r'[a-z][A-Za-z0-9_\']*', Text),
+            #  Special Symbols
+            (r'(<-|::|->|=>|=)', Operator.Word), # specials
+            (r'([\(\)\{\}\[\]:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
+            #  Numbers
+            (r'\d+[eE][+-]?\d+', Number.Float),
+            (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
+            (r'0[xX][\da-fA-F]+', Number.Hex),
+            (r'\d+', Number.Integer),
+            # Strings
+            (r"'", String.Char, 'character'),
+            (r'"', String, 'string'),
+            (r'[^\s\(\)\{\}]+', Text),
+            (r'\s+?', Text),  # Whitespace
+        ],
+        'module': [
+            (r'\s+', Text),
+            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+             bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
+            (r'[A-Z][a-zA-Z0-9_.]*', Name.Namespace, '#pop'),
+        ],
+        'funclist': [
+            (r'\s+', Text),
+            (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
+            (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
+            (r'--.*$', Comment.Single),
+            (r'{-', Comment.Multiline, 'comment'),
+            (r',', Punctuation),
+            (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
+            # (HACK, but it makes sense to push two instances, believe me)
+            (r'\(', Punctuation, ('funclist', 'funclist')),
+            (r'\)', Punctuation, '#pop:2'),
+        ],
+        # NOTE: the next four states are shared in the AgdaLexer; make sure
+        # any change is compatible with Agda as well or copy over and change
+        'comment': [
+            # Multiline Comments
+            (r'[^-{}]+', Comment.Multiline),
+            (r'{-', Comment.Multiline, '#push'),
+            (r'-}', Comment.Multiline, '#pop'),
+            (r'[-{}]', Comment.Multiline),
+        ],
+        'character': [
+            # Allows multi-chars, incorrectly.
+            (r"[^\\']", String.Char),
+            (r"\\", String.Escape, 'escape'),
+            ("'", String.Char, '#pop'),
+        ],
+        'string': [
+            (r'[^\\"]+', String),
+            (r"\\", String.Escape, 'escape'),
+            ('"', String, '#pop'),
+        ],
+        'escape': [
+            (r'[abfnrtv"\'&\\]', String.Escape, '#pop'),
+            (r'\^[][A-Z@\^_]', String.Escape, '#pop'),
+            ('|'.join(ascii), String.Escape, '#pop'),
+            (r'o[0-7]+', String.Escape, '#pop'),
+            (r'x[\da-fA-F]+', String.Escape, '#pop'),
+            (r'\d+', String.Escape, '#pop'),
+            (r'\s+\\', String.Escape, '#pop')
+        ],
+    }
+
+
 class AgdaLexer(RegexLexer):
     """
     For the `Agda <http://wiki.portal.chalmers.se/agda/pmwiki.php>`_
     dependently typed functional programming language and proof assistant.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name = 'Agda'
@@ -1049,12 +1158,12 @@ class AgdaLexer(RegexLexer):
             (r'{!', Comment.Directive, 'hole'),
             # Lexemes:
             #  Identifiers
-            (ur'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
             (r'\b(Set|Prop)\b', Keyword.Type),
             #  Special Symbols
             (r'(\(|\)|\{|\})', Operator),
-            (ur'(\.{1,3}|\||[\u039B]|[\u2200]|[\u2192]|:|=|->)', Operator.Word),
+            (u'(\\.{1,3}|\\||[\u039B]|[\u2200]|[\u2192]|:|=|->)', Operator.Word),
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
             (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
@@ -1161,7 +1270,7 @@ class LiterateHaskellLexer(LiterateLexer):
         is autodetected: if the first non-whitespace character in the source
         is a backslash or percent character, LaTeX is assumed, else Bird.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Literate Haskell'
     aliases = ['lhs', 'literate-haskell', 'lhaskell']
@@ -1170,6 +1279,29 @@ class LiterateHaskellLexer(LiterateLexer):
 
     def __init__(self, **options):
         hslexer = HaskellLexer(**options)
+        LiterateLexer.__init__(self, hslexer, **options)
+
+
+class LiterateIdrisLexer(LiterateLexer):
+    """
+    For Literate Idris (Bird-style or LaTeX) source.
+
+    Additional options accepted:
+
+    `litstyle`
+        If given, must be ``"bird"`` or ``"latex"``.  If not given, the style
+        is autodetected: if the first non-whitespace character in the source
+        is a backslash or percent character, LaTeX is assumed, else Bird.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Literate Idris'
+    aliases = ['lidr', 'literate-idris', 'lidris']
+    filenames = ['*.lidr']
+    mimetypes = ['text/x-literate-idris']
+
+    def __init__(self, **options):
+        hslexer = IdrisLexer(**options)
         LiterateLexer.__init__(self, hslexer, **options)
 
 
@@ -1184,7 +1316,7 @@ class LiterateAgdaLexer(LiterateLexer):
         is autodetected: if the first non-whitespace character in the source
         is a backslash or percent character, LaTeX is assumed, else Bird.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'Literate Agda'
     aliases = ['lagda', 'literate-agda']
@@ -1200,7 +1332,7 @@ class SMLLexer(RegexLexer):
     """
     For the Standard ML language.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Standard ML'
@@ -1526,7 +1658,7 @@ class OcamlLexer(RegexLexer):
     """
     For the OCaml language.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'OCaml'
@@ -1620,7 +1752,7 @@ class ErlangLexer(RegexLexer):
 
     Blame Jeremy Thurgood (http://jerith.za.net/).
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
 
     name = 'Erlang'
@@ -1725,7 +1857,7 @@ class ErlangShellLexer(Lexer):
     """
     Shell sessions in erl (for Erlang code).
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'Erlang erl session'
     aliases = ['erl']
@@ -1768,7 +1900,7 @@ class OpaLexer(RegexLexer):
     """
     Lexer for the Opa language (http://opalang.org).
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Opa'
@@ -2091,7 +2223,7 @@ class CoqLexer(RegexLexer):
     """
     For the `Coq <http://coq.inria.fr/>`_ theorem prover.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Coq'
@@ -2232,7 +2364,7 @@ class NewLispLexer(RegexLexer):
     """
     For `newLISP. <www.newlisp.org>`_ source code (version 10.3.0).
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'NewLisp'
@@ -2363,7 +2495,7 @@ class NixLexer(RegexLexer):
     """
     For the `Nix language <http://nixos.org/nix/>`_.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name = 'Nix'
@@ -2400,7 +2532,7 @@ class NixLexer(RegexLexer):
             ('(%s)' % '|'.join(re.escape(entry) + '\\b' for entry in builtins),
              Name.Builtin),
 
-            (r'\b(true|false)\b', Name.Constant),
+            (r'\b(true|false|null)\b', Name.Constant),
 
             # operators
             ('(%s)' % '|'.join(re.escape(entry) for entry in operators),
@@ -2427,7 +2559,8 @@ class NixLexer(RegexLexer):
             (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[a-zA-Z0-9%/?:@&=+$,\\_.!~*\'-]+', Literal),
 
             # names of variables
-            (r'[a-zA-Z_][a-zA-Z0-9_\'-]*', String.Symbol),
+            (r'[a-zA-Z0-9-_]+\s*=', String.Symbol),
+            (r'[a-zA-Z_][a-zA-Z0-9_\'-]*', Text),
 
         ],
         'comment': [
@@ -2484,7 +2617,7 @@ class ElixirLexer(RegexLexer):
     """
     For the `Elixir language <http://elixir-lang.org>`_.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Elixir'
@@ -2595,7 +2728,7 @@ class ElixirConsoleLexer(Lexer):
         iex> length [head | tail]
         3
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Elixir iex session'
@@ -2641,7 +2774,7 @@ class KokaLexer(RegexLexer):
     Lexer for the `Koka <http://koka.codeplex.com>`_
     language.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Koka'

@@ -1,5 +1,5 @@
+from __future__ import print_function
 import re
-from pprint import pprint
 
 r_line = re.compile(r"^(syn keyword vimCommand contained|syn keyword vimOption "
                     r"contained|syn keyword vimAutoEvent contained)\s+(.*)")
@@ -31,12 +31,12 @@ def getkw(input, output):
 
     for a, b in output_info.items():
         b.sort()
-        print >>out, '%s=[%s]' % (a, ','.join(b))
+        print('%s=[%s]' % (a, ','.join(b)), file=out)
 
 def is_keyword(w, keywords):
     for i in range(len(w), 0, -1):
         if w[:i] in keywords:
-            return signals[w[:i]][:len(w)] == w
+            return keywords[w[:i]][:len(w)] == w
     return False
 
 if __name__ == "__main__":

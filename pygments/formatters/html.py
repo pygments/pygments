@@ -9,14 +9,16 @@
     :license: BSD, see LICENSE for details.
 """
 
+from __future__ import print_function
+
 import os
 import sys
 import os.path
-import StringIO
 
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
-from pygments.util import get_bool_opt, get_int_opt, get_list_opt, bytes
+from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
+    StringIO, string_types, iteritems
 
 try:
     import ctags
@@ -218,29 +220,34 @@ class HtmlFormatter(Formatter):
         If you set this option, the default selector for `get_style_defs()`
         will be this class.
 
-        *New in Pygments 0.9:* If you select the ``'table'`` line numbers, the
-        wrapping table will have a CSS class of this string plus ``'table'``,
-        the default is accordingly ``'highlighttable'``.
+        .. versionadded:: 0.9
+           If you select the ``'table'`` line numbers, the wrapping table will
+           have a CSS class of this string plus ``'table'``, the default is
+           accordingly ``'highlighttable'``.
 
     `cssstyles`
         Inline CSS styles for the wrapping ``<div>`` tag (default: ``''``).
 
     `prestyles`
-        Inline CSS styles for the ``<pre>`` tag (default: ``''``).  *New in
-        Pygments 0.11.*
+        Inline CSS styles for the ``<pre>`` tag (default: ``''``).
+
+        .. versionadded:: 0.11
 
     `cssfile`
         If the `full` option is true and this option is given, it must be the
         name of an external file. If the filename does not include an absolute
         path, the file's path will be assumed to be relative to the main output
         file's path, if the latter can be found. The stylesheet is then written
-        to this file instead of the HTML file. *New in Pygments 0.6.*
+        to this file instead of the HTML file.
+
+        .. versionadded:: 0.6
 
     `noclobber_cssfile`
         If `cssfile` is given and the specified file exists, the css file will
         not be overwritten. This allows the use of the `full` option in
         combination with a user specified css file. Default is ``False``.
-        *New in Pygments 1.1.*
+
+        .. versionadded:: 1.1
 
     `linenos`
         If set to ``'table'``, output line numbers as a table with two cells,
@@ -263,7 +270,9 @@ class HtmlFormatter(Formatter):
         125%``).
 
     `hl_lines`
-        Specify a list of lines to be highlighted.  *New in Pygments 0.11.*
+        Specify a list of lines to be highlighted.
+
+        .. versionadded:: 0.11
 
     `linenostart`
         The line number for the first line (default: ``1``).
@@ -279,24 +288,30 @@ class HtmlFormatter(Formatter):
         If set to ``True``, the formatter won't output the background color
         for the wrapping element (this automatically defaults to ``False``
         when there is no wrapping element [eg: no argument for the
-        `get_syntax_defs` method given]) (default: ``False``). *New in
-        Pygments 0.6.*
+        `get_syntax_defs` method given]) (default: ``False``).
+
+        .. versionadded:: 0.6
 
     `lineseparator`
         This string is output between lines of code. It defaults to ``"\n"``,
         which is enough to break a line inside ``<pre>`` tags, but you can
-        e.g. set it to ``"<br>"`` to get HTML line breaks. *New in Pygments
-        0.7.*
+        e.g. set it to ``"<br>"`` to get HTML line breaks.
+
+        .. versionadded:: 0.7
 
     `lineanchors`
         If set to a nonempty string, e.g. ``foo``, the formatter will wrap each
         output line in an anchor tag with a ``name`` of ``foo-linenumber``.
-        This allows easy linking to certain lines. *New in Pygments 0.9.*
+        This allows easy linking to certain lines.
+
+        .. versionadded:: 0.9
 
     `linespans`
         If set to a nonempty string, e.g. ``foo``, the formatter will wrap each
         output line in a span tag with an ``id`` of ``foo-linenumber``.
-        This allows easy access to lines via javascript. *New in Pygments 1.6.*
+        This allows easy access to lines via javascript.
+
+        .. versionadded:: 1.6
 
     `anchorlinenos`
         If set to `True`, will wrap line numbers in <a> tags. Used in
@@ -306,18 +321,20 @@ class HtmlFormatter(Formatter):
         If set to the path of a ctags file, wrap names in anchor tags that
         link to their definitions. `lineanchors` should be used, and the
         tags file should specify line numbers (see the `-n` option to ctags).
-        *New in Pygments 1.6.*
+
+        .. versionadded:: 1.6
 
     `tagurlformat`
         A string formatting pattern used to generate links to ctags definitions.
         Available variables are `%(path)s`, `%(fname)s` and `%(fext)s`.
         Defaults to an empty string, resulting in just `#prefix-number` links.
-        *New in Pygments 1.6.*
+
+        .. versionadded:: 1.6
 
 
     **Subclassing the HTML formatter**
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
 
     The HTML formatter is now built in a way that allows easy subclassing, thus
     customizing the output HTML code. The `format()` method calls
@@ -453,7 +470,7 @@ class HtmlFormatter(Formatter):
         """
         if arg is None:
             arg = ('cssclass' in self.options and '.'+self.cssclass or '')
-        if isinstance(arg, basestring):
+        if isinstance(arg, string_types):
             args = [arg]
         else:
             args = list(arg)
@@ -467,7 +484,7 @@ class HtmlFormatter(Formatter):
             return ', '.join(tmp)
 
         styles = [(level, ttype, cls, style)
-                  for cls, (style, ttype, level) in self.class2style.iteritems()
+                  for cls, (style, ttype, level) in iteritems(self.class2style)
                   if cls and style]
         styles.sort()
         lines = ['%s { %s } /* %s */' % (prefix(cls), style, repr(ttype)[6:])
@@ -505,8 +522,8 @@ class HtmlFormatter(Formatter):
                     cssfilename = os.path.join(os.path.dirname(filename),
                                                self.cssfile)
                 except AttributeError:
-                    print >>sys.stderr, 'Note: Cannot determine output file name, ' \
-                          'using current directory as base for the CSS file name'
+                    print('Note: Cannot determine output file name, ' \
+                          'using current directory as base for the CSS file name', file=sys.stderr)
                     cssfilename = self.cssfile
             # write CSS file only if noclobber_cssfile isn't given as an option.
             try:
@@ -515,7 +532,7 @@ class HtmlFormatter(Formatter):
                     cf.write(CSSFILE_TEMPLATE %
                             {'styledefs': self.get_style_defs('body')})
                     cf.close()
-            except IOError, err:
+            except IOError as err:
                 err.strerror = 'Error writing CSS file: ' + err.strerror
                 raise
 
@@ -534,7 +551,7 @@ class HtmlFormatter(Formatter):
         yield 0, DOC_FOOTER
 
     def _wrap_tablelinenos(self, inner):
-        dummyoutfile = StringIO.StringIO()
+        dummyoutfile = StringIO()
         lncount = 0
         for t, line in inner:
             if t:

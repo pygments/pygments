@@ -7,14 +7,16 @@
     :license: BSD, see LICENSE for details.
 """
 
+from __future__ import print_function
+
 import os
 import pprint
 import difflib
-import cPickle as pickle
+import pickle
 
 from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
 from pygments.token import Error
-from pygments.util import ClassNotFound, b
+from pygments.util import ClassNotFound
 
 STORE_OUTPUT = False
 
@@ -32,7 +34,7 @@ def test_example_files():
         if not os.path.isfile(absfn):
             continue
 
-        print absfn
+        print(absfn)
         code = open(absfn, 'rb').read()
         try:
             code = code.decode('utf-8')
@@ -63,8 +65,8 @@ def check_lexer(lx, absfn, outfn):
         text = fp.read()
     finally:
         fp.close()
-    text = text.replace(b('\r\n'), b('\n'))
-    text = text.strip(b('\n')) + b('\n')
+    text = text.replace(b'\r\n', b'\n')
+    text = text.strip(b'\n') + b'\n'
     try:
         text = text.decode('utf-8')
         if text.startswith(u'\ufeff'):
@@ -80,8 +82,8 @@ def check_lexer(lx, absfn, outfn):
             (lx, absfn, val, len(u''.join(ntext)))
         tokens.append((type, val))
     if u''.join(ntext) != text:
-        print '\n'.join(difflib.unified_diff(u''.join(ntext).splitlines(),
-                                             text.splitlines()))
+        print('\n'.join(difflib.unified_diff(u''.join(ntext).splitlines(),
+                                             text.splitlines())))
         raise AssertionError('round trip failed for ' + absfn)
 
     # check output against previous run if enabled
@@ -103,6 +105,6 @@ def check_lexer(lx, absfn, outfn):
         if stored_tokens != tokens:
             f1 = pprint.pformat(stored_tokens)
             f2 = pprint.pformat(tokens)
-            print '\n'.join(difflib.unified_diff(f1.splitlines(),
-                                                 f2.splitlines()))
+            print('\n'.join(difflib.unified_diff(f1.splitlines(),
+                                                 f2.splitlines())))
             assert False, absfn

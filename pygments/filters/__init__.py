@@ -16,7 +16,7 @@ from pygments.token import String, Comment, Keyword, Name, Error, Whitespace, \
     string_to_tokentype
 from pygments.filter import Filter
 from pygments.util import get_list_opt, get_int_opt, get_bool_opt, \
-     get_choice_opt, ClassNotFound, OptionError
+     get_choice_opt, ClassNotFound, OptionError, text_type, string_types
 from pygments.plugin import find_plugin_filters
 
 
@@ -117,7 +117,7 @@ class KeywordCaseFilter(Filter):
     def __init__(self, **options):
         Filter.__init__(self, **options)
         case = get_choice_opt(options, 'case', ['lower', 'upper', 'capitalize'], 'lower')
-        self.convert = getattr(unicode, case)
+        self.convert = getattr(text_type, case)
 
     def filter(self, lexer, stream):
         for ttype, value in stream:
@@ -182,7 +182,7 @@ class RaiseOnErrorTokenFilter(Filter):
       The exception class to raise.
       The default is `pygments.filters.ErrorToken`.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
 
     def __init__(self, **options):
@@ -230,14 +230,16 @@ class VisibleWhitespaceFilter(Filter):
       styling the visible whitespace differently (e.g. greyed out), but it can
       disrupt background colors.  The default is ``True``.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
 
     def __init__(self, **options):
         Filter.__init__(self, **options)
-        for name, default in {'spaces': u'·', 'tabs': u'»', 'newlines': u'¶'}.items():
+        for name, default in [('spaces',   u'·'),
+                              ('tabs',     u'»'),
+                              ('newlines', u'¶')]:
             opt = options.get(name, False)
-            if isinstance(opt, basestring) and len(opt) == 1:
+            if isinstance(opt, string_types) and len(opt) == 1:
                 setattr(self, name, opt)
             else:
                 setattr(self, name, (opt and default or ''))
@@ -293,7 +295,7 @@ class GobbleFilter(Filter):
     `n` : int
        The number of characters to gobble.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     def __init__(self, **options):
         Filter.__init__(self, **options)
@@ -325,7 +327,7 @@ class TokenMergeFilter(Filter):
     Merges consecutive tokens with the same token type in the output stream of a
     lexer.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     def __init__(self, **options):
         Filter.__init__(self, **options)

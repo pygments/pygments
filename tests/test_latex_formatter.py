@@ -7,6 +7,8 @@
     :license: BSD, see LICENSE for details.
 """
 
+from __future__ import print_function
+
 import os
 import unittest
 import tempfile
@@ -48,7 +50,7 @@ class LatexFormatterTest(unittest.TestCase):
             pass
         else:
             if ret:
-                print output
+                print(output)
             self.assertFalse(ret, 'latex run reported errors')
 
         os.unlink(pathname)
