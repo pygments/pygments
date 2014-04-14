@@ -34,7 +34,7 @@
     The ``tests/examplefiles`` contains a few test files with data to be
     parsed by these lexers.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -42,8 +42,9 @@ import re
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups
 from pygments.token import Punctuation, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Generic
+    Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.lexers import get_lexer_by_name, ClassNotFound
+from pygments.util import iteritems
 
 from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
      PSEUDO_TYPES, PLPGSQL_KEYWORDS
@@ -124,7 +125,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
     """
     Lexer for the PostgreSQL dialect of SQL.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'PostgreSQL SQL dialect'
@@ -169,14 +170,14 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     """
     Handle the extra syntax in Pl/pgSQL language.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'PL/pgSQL'
     aliases = ['plpgsql']
     mimetypes = ['text/x-plpgsql']
 
     flags = re.IGNORECASE
-    tokens = dict((k, l[:]) for (k, l) in PostgresLexer.tokens.iteritems())
+    tokens = dict((k, l[:]) for (k, l) in iteritems(PostgresLexer.tokens))
 
     # extend the keywords list
     for i, pattern in enumerate(tokens['root']):
@@ -210,7 +211,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     aliases = []    # not public
 
     flags = re.IGNORECASE
-    tokens = dict((k, l[:]) for (k, l) in PostgresLexer.tokens.iteritems())
+    tokens = dict((k, l[:]) for (k, l) in iteritems(PostgresLexer.tokens))
 
     tokens['root'].append(
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
@@ -244,19 +245,20 @@ class lookahead(object):
     def send(self, i):
         self._nextitem = i
         return i
-    def next(self):
+    def __next__(self):
         if self._nextitem is not None:
             ni = self._nextitem
             self._nextitem = None
             return ni
-        return self.iter.next()
+        return next(self.iter)
+    next = __next__
 
 
 class PostgresConsoleLexer(Lexer):
     """
     Lexer for psql sessions.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'PostgreSQL console (psql)'
@@ -277,7 +279,7 @@ class PostgresConsoleLexer(Lexer):
             insertions = []
             while 1:
                 try:
-                    line = lines.next()
+                    line = next(lines)
                 except StopIteration:
                     # allow the emission of partially collected items
                     # the repl loop will be broken below
@@ -314,7 +316,7 @@ class PostgresConsoleLexer(Lexer):
             # Emit the output lines
             out_token = Generic.Output
             while 1:
-                line = lines.next()
+                line = next(lines)
                 mprompt = re_prompt.match(line)
                 if mprompt is not None:
                     # push the line back to have it processed by the prompt
@@ -375,7 +377,7 @@ class SqlLexer(RegexLexer):
              r'DIAGNOSTICS|DICTIONARY|DISCONNECT|DISPATCH|DISTINCT|DO|'
              r'DOMAIN|DROP|DYNAMIC|DYNAMIC_FUNCTION|DYNAMIC_FUNCTION_CODE|'
              r'EACH|ELSE|ENCODING|ENCRYPTED|END|END-EXEC|EQUALS|ESCAPE|EVERY|'
-             r'EXCEPT|ESCEPTION|EXCLUDING|EXCLUSIVE|EXEC|EXECUTE|EXISTING|'
+             r'EXCEPTION|EXCEPT|EXCLUDING|EXCLUSIVE|EXEC|EXECUTE|EXISTING|'
              r'EXISTS|EXPLAIN|EXTERNAL|EXTRACT|FALSE|FETCH|FINAL|FIRST|FOR|'
              r'FORCE|FOREIGN|FORTRAN|FORWARD|FOUND|FREE|FREEZE|FROM|FULL|'
              r'FUNCTION|G|GENERAL|GENERATED|GET|GLOBAL|GO|GOTO|GRANT|GRANTED|'
@@ -523,7 +525,7 @@ class SqliteConsoleLexer(Lexer):
     """
     Lexer for example sessions using sqlite3.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
 
     name = 'sqlite3con'
