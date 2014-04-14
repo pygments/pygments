@@ -1972,7 +1972,7 @@ class TodotxtLexer(RegexLexer):
         # Parse a complete task
         'complete': [
             # Newline indicates end of task, should return to root
-            ('\s*\n', CompleteTaskText, '#pop'),
+            (r'\s*\n', CompleteTaskText, '#pop'),
             # Tokenize contexts and projects
             (context_regex, Context),
             (project_regex, Project),
@@ -1985,7 +1985,7 @@ class TodotxtLexer(RegexLexer):
         # Parse an incomplete task
         'incomplete': [
             # Newline indicates end of task, should return to root
-            ('\s*\n', IncompleteTaskText, '#pop'),
+            (r'\s*\n', IncompleteTaskText, '#pop'),
             # Tokenize contexts and projects
             (context_regex, Context),
             (project_regex, Project),
