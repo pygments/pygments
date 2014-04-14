@@ -1916,6 +1916,8 @@ class EbnfLexer(RegexLexer):
 class TodotxtLexer(RegexLexer):
     """
     Lexer for `Todo.txt <http://todotxt.com/>`_ todo list format.
+
+    .. versionadded:: 2.0
     """
     
     name = 'Todotxt'
@@ -1923,6 +1925,7 @@ class TodotxtLexer(RegexLexer):
     # *.todotxt is not a standard extension for Todo.txt files; including it
     # makes testing easier, and also makes autodetecting file type easier.
     filenames = ['todo.txt', '*.todotxt']
+    mimetypes = ['text/x-todo']
 
     ## Aliases mapping standard token types of Todo.txt format concepts
     CompleteTaskText = Operator # Chosen to de-emphasize complete tasks
