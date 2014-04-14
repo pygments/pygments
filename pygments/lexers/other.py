@@ -37,7 +37,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
            'CbmBasicV2Lexer', 'AutoItLexer', 'RexxLexer', 'APLLexer',
-           'LSLLexer', 'AmbientTalkLexer', 'PawnLexer']
+           'LSLLexer', 'AmbientTalkLexer', 'PawnLexer', 'VCTreeStatusLexer']
 
 
 class LSLLexer(RegexLexer):
@@ -4089,5 +4089,29 @@ class PawnLexer(RegexLexer):
             (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
             (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
             (r'.*?\n', Comment),
+        ]
+    }
+
+class VCTreeStatusLexer(RegexLexer):
+    """
+    For colorizing output of version control status commans, like "hg
+    status" or "svn status".
+
+    .. versionadded:: 2.0
+    """
+    name = 'VCTreeStatus'
+    aliases = ['vctreestatus']
+    filenames = []
+    mimetypes = []
+    tokens = {
+        'root' : [
+            (r'^A  \+  C\s+', Generic.Error),
+            (r'^A\s+\+?\s+', String),
+            (r'^M\s+', Generic.Inserted),
+            (r'^C\s+', Generic.Error),
+            (r'^D\s+', Generic.Deleted),
+            (r'^[\?!]\s+', Comment.Preproc),
+            (r'      >\s+.*\n', Comment.Preproc),
+            (r'.*\n', Text)
         ]
     }
