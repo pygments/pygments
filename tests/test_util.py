@@ -3,10 +3,11 @@
     Test suite for the util module
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
+import re
 import unittest
 
 from pygments import util
@@ -97,8 +98,10 @@ class UtilTest(unittest.TestCase):
         self.assertTrue(util.shebang_matches('#!C:\\Python2.4\\Python.exe',
                                              r'python(2\.\d)?'))
 
-        self.assertFalse(util.shebang_matches('#!/usr/bin/python-ruby', r'python(2\.\d)?'))
-        self.assertFalse(util.shebang_matches('#!/usr/bin/python/ruby', r'python(2\.\d)?'))
+        self.assertFalse(util.shebang_matches('#!/usr/bin/python-ruby',
+                                              r'python(2\.\d)?'))
+        self.assertFalse(util.shebang_matches('#!/usr/bin/python/ruby',
+                                              r'python(2\.\d)?'))
         self.assertFalse(util.shebang_matches('#!', r'python'))
 
     def test_doctype_matches(self):
@@ -114,3 +117,19 @@ class UtilTest(unittest.TestCase):
             '<?xml ?><!DOCTYPE html PUBLIC  "-//W3C//DTD XHTML 1.0 Strict//EN">'))
         self.assertTrue(util.looks_like_xml('<html xmlns>abc</html>'))
         self.assertFalse(util.looks_like_xml('<html>'))
+
+    def test_unirange(self):
+        first_non_bmp = u'\U00010000'
+        r = re.compile(util.unirange(0x10000, 0x20000))
+        m = r.match(first_non_bmp)
+        self.assertTrue(m)
+        self.assertEquals(m.end(), len(first_non_bmp))
+        self.assertFalse(r.match(u'\uffff'))
+        self.assertFalse(r.match(u'xxx'))
+        # Tests that end is inclusive
+        r = re.compile(util.unirange(0x10000, 0x10000) + '+')
+        # Tests that the plus works for the entire unicode point, if narrow
+        # build
+        m = r.match(first_non_bmp * 2)
+        self.assertTrue(m)
+        self.assertEquals(m.end(), len(first_non_bmp) * 2)

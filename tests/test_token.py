@@ -3,7 +3,7 @@
     Test suite for the token module
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -36,11 +36,11 @@ class TokenTest(unittest.TestCase):
         stp = token.STANDARD_TYPES.copy()
         stp[token.Token] = '---' # Token and Text do conflict, that is okay
         t = {}
-        for k, v in stp.iteritems():
+        for k, v in stp.items():
             t.setdefault(v, []).append(k)
         if len(t) == len(stp):
             return # Okay
 
-        for k, v in t.iteritems():
+        for k, v in t.items():
             if len(v) > 1:
                 self.fail("%r has more than one key: %r" % (k, v))

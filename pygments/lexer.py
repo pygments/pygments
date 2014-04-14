@@ -5,27 +5,27 @@
 
     Base lexer classes.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import re
+import re, itertools
 
 from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
 from pygments.token import Error, Text, Other, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
-     make_analysator
+     make_analysator, text_type, add_metaclass, iteritems
 
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
-           'LexerContext', 'include', 'bygroups', 'using', 'this']
+           'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this']
 
 
-_encoding_map = [('\xef\xbb\xbf', 'utf-8'),
-                 ('\xff\xfe\0\0', 'utf-32'),
-                 ('\0\0\xfe\xff', 'utf-32be'),
-                 ('\xff\xfe', 'utf-16'),
-                 ('\xfe\xff', 'utf-16be')]
+_encoding_map = [(b'\xef\xbb\xbf', 'utf-8'),
+                 (b'\xff\xfe\0\0', 'utf-32'),
+                 (b'\0\0\xfe\xff', 'utf-32be'),
+                 (b'\xff\xfe', 'utf-16'),
+                 (b'\xfe\xff', 'utf-16be')]
 
 _default_analyse = staticmethod(lambda x: 0.0)
 
@@ -42,6 +42,7 @@ class LexerMeta(type):
         return type.__new__(cls, name, bases, d)
 
 
+@add_metaclass(LexerMeta)
 class Lexer(object):
     """
     Lexer for a specific language.
@@ -55,7 +56,9 @@ class Lexer(object):
     ``ensurenl``
         Make sure that the input ends with a newline (default: True).  This
         is required for some lexers that consume input linewise.
-        *New in Pygments 1.3.*
+
+        .. versionadded:: 1.3
+
     ``tabsize``
         If given and greater than 0, expand tabs in the input (default: 0).
     ``encoding``
@@ -72,16 +75,17 @@ class Lexer(object):
     #: Shortcuts for the lexer
     aliases = []
 
-    #: fn match rules
+    #: File name globs
     filenames = []
 
-    #: fn alias filenames
+    #: Secondary file name globs
     alias_filenames = []
 
-    #: mime types
+    #: MIME types
     mimetypes = []
 
-    __metaclass__ = LexerMeta
+    #: Priority, should multiple lexers match and no content is provided
+    priority = 0
 
     def __init__(self, **options):
         self.options = options
@@ -133,7 +137,7 @@ class Lexer(object):
         Also preprocess the text, i.e. expand tabs and strip it if
         wanted and applies registered filters.
         """
-        if not isinstance(text, unicode):
+        if not isinstance(text, text_type):
             if self.encoding == 'guess':
                 try:
                     text = text.decode('utf-8')
@@ -152,17 +156,22 @@ class Lexer(object):
                 decoded = None
                 for bom, encoding in _encoding_map:
                     if text.startswith(bom):
-                        decoded = unicode(text[len(bom):], encoding,
-                                          errors='replace')
+                        decoded = text[len(bom):].decode(encoding, 'replace')
                         break
                 # no BOM found, so use chardet
                 if decoded is None:
                     enc = chardet.detect(text[:1024]) # Guess using first 1KB
-                    decoded = unicode(text, enc.get('encoding') or 'utf-8',
-                                      errors='replace')
+                    decoded = text.decode(enc.get('encoding') or 'utf-8',
+                                          'replace')
                 text = decoded
             else:
                 text = text.decode(self.encoding)
+                if text.startswith(u'\ufeff'):
+                    text = text[len(u'\ufeff'):]
+        else:
+            if text.startswith(u'\ufeff'):
+                text = text[len(u'\ufeff'):]
+
         # text now *is* a unicode string
         text = text.replace('\r\n', '\n')
         text = text.replace('\r', '\n')
@@ -185,7 +194,9 @@ class Lexer(object):
 
     def get_tokens_unprocessed(self, text):
         """
-        Return an iterable of (tokentype, value) pairs.
+        Return an iterable of (index, tokentype, value) pairs where "index"
+        is the starting position of the token within the input text.
+
         In subclasses, implement this method as a generator to
         maximize effectiveness.
         """
@@ -236,6 +247,16 @@ class include(str):
     Indicates that a state should include rules from another state.
     """
     pass
+
+
+class _inherit(object):
+    """
+    Indicates the a state should inherit from its superclass.
+    """
+    def __repr__(self):
+        return 'inherit'
+
+inherit = _inherit()
 
 
 class combined(tuple):
@@ -428,12 +449,15 @@ class RegexLexerMeta(LexerMeta):
                 tokens.extend(cls._process_state(unprocessed, processed,
                                                  str(tdef)))
                 continue
+            if isinstance(tdef, _inherit):
+                # processed already
+                continue
 
             assert type(tdef) is tuple, "wrong rule def %r" % tdef
 
             try:
                 rex = cls._process_regex(tdef[0], rflags)
-            except Exception, err:
+            except Exception as err:
                 raise ValueError("uncompilable regex %r in state %r of %r: %s" %
                                  (tdef[0], state, cls, err))
 
@@ -452,9 +476,52 @@ class RegexLexerMeta(LexerMeta):
         """Preprocess a dictionary of token definitions."""
         processed = cls._all_tokens[name] = {}
         tokendefs = tokendefs or cls.tokens[name]
-        for state in tokendefs.keys():
+        for state in list(tokendefs):
             cls._process_state(tokendefs, processed, state)
         return processed
+
+    def get_tokendefs(cls):
+        """
+        Merge tokens from superclasses in MRO order, returning a single tokendef
+        dictionary.
+
+        Any state that is not defined by a subclass will be inherited
+        automatically.  States that *are* defined by subclasses will, by
+        default, override that state in the superclass.  If a subclass wishes to
+        inherit definitions from a superclass, it can use the special value
+        "inherit", which will cause the superclass' state definition to be
+        included at that point in the state.
+        """
+        tokens = {}
+        inheritable = {}
+        for c in itertools.chain((cls,), cls.__mro__):
+            toks = c.__dict__.get('tokens', {})
+
+            for state, items in iteritems(toks):
+                curitems = tokens.get(state)
+                if curitems is None:
+                    tokens[state] = items
+                    try:
+                        inherit_ndx = items.index(inherit)
+                    except ValueError:
+                        continue
+                    inheritable[state] = inherit_ndx
+                    continue
+
+                inherit_ndx = inheritable.pop(state, None)
+                if inherit_ndx is None:
+                    continue
+
+                # Replace the "inherit" value with the items
+                curitems[inherit_ndx:inherit_ndx+1] = items
+                try:
+                    new_inh_ndx = items.index(inherit)
+                except ValueError:
+                    pass
+                else:
+                    inheritable[state] = inherit_ndx + new_inh_ndx
+
+        return tokens
 
     def __call__(cls, *args, **kwds):
         """Instantiate cls after preprocessing its token definitions."""
@@ -465,18 +532,18 @@ class RegexLexerMeta(LexerMeta):
                 # don't process yet
                 pass
             else:
-                cls._tokens = cls.process_tokendef('', cls.tokens)
+                cls._tokens = cls.process_tokendef('', cls.get_tokendefs())
 
         return type.__call__(cls, *args, **kwds)
 
 
+@add_metaclass(RegexLexerMeta)
 class RegexLexer(Lexer):
     """
     Base for simple stateful regular expression-based lexers.
     Simplifies the lexing process so that you need only
     provide a list of states and regular expressions.
     """
-    __metaclass__ = RegexLexerMeta
 
     #: Flags for compiling the regular expressions.
     #: Defaults to MULTILINE.
@@ -606,7 +673,13 @@ class ExtendedRegexLexer(RegexLexer):
                     if new_state is not None:
                         # state transition
                         if isinstance(new_state, tuple):
-                            ctx.stack.extend(new_state)
+                            for state in new_state:
+                                if state == '#pop':
+                                    ctx.stack.pop()
+                                elif state == '#push':
+                                    ctx.stack.append(ctx.stack[-1])
+                                else:
+                                    ctx.stack.append(state)
                         elif isinstance(new_state, int):
                             # pop
                             del ctx.stack[new_state:]
@@ -622,10 +695,10 @@ class ExtendedRegexLexer(RegexLexer):
                         break
                     if text[ctx.pos] == '\n':
                         # at EOL, reset state to "root"
-                        ctx.pos += 1
                         ctx.stack = ['root']
                         statetokens = tokendefs['root']
                         yield ctx.pos, Text, u'\n'
+                        ctx.pos += 1
                         continue
                     yield ctx.pos, Error, text[ctx.pos]
                     ctx.pos += 1
@@ -649,7 +722,7 @@ def do_insertions(insertions, tokens):
     """
     insertions = iter(insertions)
     try:
-        index, itokens = insertions.next()
+        index, itokens = next(insertions)
     except StopIteration:
         # no insertions
         for item in tokens:
@@ -675,7 +748,7 @@ def do_insertions(insertions, tokens):
                 realpos += len(it_value)
             oldi = index - i
             try:
-                index, itokens = insertions.next()
+                index, itokens = next(insertions)
             except StopIteration:
                 insleft = False
                 break  # not strictly necessary
@@ -690,8 +763,7 @@ def do_insertions(insertions, tokens):
             yield realpos, t, v
             realpos += len(v)
         try:
-            index, itokens = insertions.next()
+            index, itokens = next(insertions)
         except StopIteration:
             insleft = False
             break  # not strictly necessary
-

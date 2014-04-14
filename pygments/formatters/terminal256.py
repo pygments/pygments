@@ -11,7 +11,7 @@
 
     Formatter version 1.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -76,7 +76,7 @@ class Terminal256Formatter(Formatter):
     and converts them to nearest ANSI 256-color escape sequences. Bold and
     underline attributes from the style are preserved (and displayed).
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
 
     Options accepted:
 
