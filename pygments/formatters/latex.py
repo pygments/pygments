@@ -438,33 +438,33 @@ class LatexEmbededLexer(Lexer):
         buf = ''
         for i, t, v in self.lang.get_tokens_unprocessed(text):
             if t in Token.Comment or t in Token.String:
-                if len(buf) > 0:
+                if buf:
                     for x in self.get_tokens_aux(idx, buf):
                         yield x
                     buf = ''
                 yield i, t, v
             else:
-                if len(buf) == 0:
+                if not buf:
                     idx = i;
-                buf = buf + v
-        if len(buf) > 0:
+                buf += v
+        if buf:
             for x in self.get_tokens_aux(idx, buf):
                 yield x
 
     def get_tokens_aux(self, index, text):
-        while len(text) > 0:
+        while text:
             a, sep1, text = text.partition(self.left)
-            if len(a) > 0:
+            if a:
                 for i, t, v in self.lang.get_tokens_unprocessed(a):
                     yield index + i, t, v
-                    index = index + len(a)
-            if len(sep1) > 0:
+                    index += len(a)
+            if sep1:
                 b, sep2, text = text.partition(self.right)
-                if len(sep2) > 0:
+                if sep2:
                     yield index + len(sep1), Token.Escape, b
-                    index = index + len(sep1) + len(b) + len(sep2)
+                    index += len(sep1) + len(b) + len(sep2)
                 else:
                     yield index, Token.Error, sep1
-                    index = index + len(sep1)
+                    index += len(sep1)
                     text = b
 
