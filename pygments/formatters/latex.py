@@ -18,7 +18,7 @@ from pygments.util import get_bool_opt, get_int_opt, StringIO, xrange, \
     iteritems
 
 
-__all__ = ['LatexEmbededLexer', 'LatexFormatter']
+__all__ = ['LatexFormatter']
 
 
 def escape_tex(text, commandprefix):
