@@ -331,14 +331,14 @@ class LatexFormatter(Formatter):
             realoutfile = outfile
             outfile = StringIO()
 
-        outfile.write(r'\begin{Verbatim}[commandchars=\\\{\}')
+        outfile.write(u'\\begin{Verbatim}[commandchars=\\\\\\{\\}')
         if self.linenos:
             start, step = self.linenostart, self.linenostep
             outfile.write(u',numbers=left' +
                           (start and u',firstnumber=%d' % start or u'') +
                           (step and u',stepnumber=%d' % step or u''))
         if self.mathescape or self.texcomments or self.escapeinside:
-            outfile.write(ur',codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}')
+            outfile.write(u',codes={\\catcode`\\$=3\\catcode`\\^=7\\catcode`\\_=8}')
         if self.verboptions:
             outfile.write(u',' + self.verboptions)
         outfile.write(u']\n')
@@ -416,7 +416,7 @@ class LatexFormatter(Formatter):
                      code      = outfile.getvalue()))
 
 
-class LatexEmbededLexer(Lexer):
+class LatexEmbeddedLexer(Lexer):
     r"""
 
     This lexer takes one lexer as argument, the lexer for the language
