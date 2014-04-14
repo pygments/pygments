@@ -6,13 +6,56 @@ Issue numbers refer to the tracker at
 pull request numbers to the requests at
 <http://bitbucket.org/birkenfeld/pygments-main/pull-requests/merged>.
 
-Version 1.7
+Version 2.0
 -----------
 (under development)
+
+- Dropped Python 2.4 and 2.5 compatibility.  This is in favor of single-source
+  compatibility between Python 2.6, 2.7 and 3.3+.
+
+- New website and documentation based on Sphinx (finally!)
 
 - Lexers added:
 
   * Clay (PR#184)
+  * Perl 6 (PR#181)
+  * Swig (PR#168)
+  * nesC (PR#166)
+  * BlitzBasic (PR#197)
+  * EBNF (PR#193)
+  * Igor Pro (PR#172)
+  * Rexx (PR#199)
+  * Agda and Literate Agda (PR#203)
+  * Mathematica (PR#245)
+  * Nix (PR#267)
+  * Pike (PR#237)
+  * Hy (PR#238)
+  * Chapel (PR#256)
+  * Kal (PR#233)
+  * Eiffel (PR#273)
+  * Cirru (PR#275)
+  * ColdFusion CFC (PR#283)
+  * Idris (PR#210)
+  * Intel objdump (PR#279)
+  * MaskJS (PR#280)
+  * Inform 6/7 (PR#281)
+  * MQL (PR#285)
+  * APL (#969)
+
+- New styles: "xcode" and "igor", similar to the default highlighting of
+  the respective IDEs.
+
+- Updated the Makefile lexer to yield a little more useful highlighting.
+
+- Lexer aliases passed to ``get_lexer_by_name()`` are now case-insensitive.
+
+- File name matching in lexers and formatters will now use a regex cache
+  for speed (PR#205).
+
+- Pygments will now recognize "vim" modelines when guessing the lexer for
+  a file based on content (PR#118).
+
+- The NameHighlightFilter now works with any Name.* token type (#790).
 
 - Python 3 lexer: add new exceptions from PEP 3151.
 
@@ -23,6 +66,46 @@ Version 1.7
 
 - Lasso lexer: fix method highlighting, update builtins. Fix
   guessing so that plain XML isn't always taken as Lasso (PR#163).
+
+- Objective C/C++ lexers: allow "@" prefixing any expression (#871).
+
+- Ruby lexer: fix lexing of Name::Space tokens (#860) and of symbols
+  in hashes (#873).
+
+- Stan lexer: update for version 1.3.0 of the language (PR#162).
+
+- JavaScript lexer: add the "yield" keyword (PR#196).
+
+- HTTP lexer: support for PATCH method (PR#190).
+
+- Koka lexer: update to newest language spec (PR#201).
+
+- Haxe lexer: rewrite and support for Haxe 3 (PR#174).
+
+- Prolog lexer: add different kinds of numeric literals (#864).
+
+- F# lexer: rewrite with newest spec for F# 3.0 (#842), fix a bug with
+  dotted chains (#948).
+
+- Kotlin lexer: general update (PR#271).
+
+- Rebol lexer: fix comment detection and analyse_text (PR#261).
+
+- Stan lexer: update to v2.0.1 (PR#255).
+
+- LLVM lexer: update keywords to v3.4 (PR#258).
+
+- PHP lexer: add new keywords and binary literals (PR#222).
+
+- external/markdown-processor.py updated to newest python-markdown (PR#221).
+
+- CSS lexer: some highlighting order fixes (PR#231).
+
+- Ceylon lexer: fix parsing of nested multiline comments (#915).
+
+- C family lexers: fix parsing of indented preprocessor directives (#944).
+
+- Rust lexer: update to 0.9 language version (PR#270).
 
 
 Version 1.6
@@ -278,7 +361,7 @@ Version 1.3
   * Ada
   * Coldfusion
   * Modula-2
-  * haXe
+  * Haxe
   * R console
   * Objective-J
   * Haml and Sass
@@ -337,7 +420,7 @@ Version 1.2
   * CMake
   * Ooc
   * Coldfusion
-  * haXe
+  * Haxe
   * R console
 
 - Added options for rendering LaTeX in source code comments in the

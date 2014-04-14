@@ -5,7 +5,7 @@
 
     Lexers for hardware descriptor languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,7 +22,7 @@ class VerilogLexer(RegexLexer):
     """
     For verilog source code with preprocessor directives.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'verilog'
     aliases = ['verilog', 'v']
@@ -134,7 +134,7 @@ class SystemVerilogLexer(RegexLexer):
     Extends verilog lexer to recognise all SystemVerilog keywords from IEEE
     1800-2009 standard.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'systemverilog'
     aliases = ['systemverilog', 'sv']
@@ -215,12 +215,12 @@ class SystemVerilogLexer(RegexLexer):
              r'\$dumpportsall|\$dumpportsflush|\$dumpportslimit|\$dumpportsoff|'
              r'\$dumpportson|\$dumpvars|\$fclose|\$fdisplay|\$fdisplayb|'
              r'\$fdisplayh|\$fdisplayo|\$feof|\$ferror|\$fflush|\$fgetc|'
-             r'\$fgets|\$fmonitor|\$fmonitorb|\$fmonitorh|\$fmonitoro|'
+             r'\$fgets|\$finish|\$fmonitor|\$fmonitorb|\$fmonitorh|\$fmonitoro|'
              r'\$fopen|\$fread|\$fscanf|\$fseek|\$fstrobe|\$fstrobeb|\$fstrobeh|'
              r'\$fstrobeo|\$ftell|\$fwrite|\$fwriteb|\$fwriteh|\$fwriteo|'
              r'\$monitor|\$monitorb|\$monitorh|\$monitoro|\$monitoroff|'
-             r'\$monitoron|\$plusargs|\$readmemb|\$readmemh|\$rewind|\$sformat|'
-             r'\$sformatf|\$sscanf|\$strobe|\$strobeb|\$strobeh|\$strobeo|'
+             r'\$monitoron|\$plusargs|\$random\|$readmemb|\$readmemh|\$rewind|'
+             r'\$sformat|\$sformatf|\$sscanf|\$strobe|\$strobeb|\$strobeh|\$strobeo|'
              r'\$swrite|\$swriteb|\$swriteh|\$swriteo|\$test|\$ungetc|'
              r'\$value\$plusargs|\$write|\$writeb|\$writeh|\$writememb|'
              r'\$writememh|\$writeo)\b' , Name.Builtin ),
@@ -274,7 +274,7 @@ class VhdlLexer(RegexLexer):
     """
     For VHDL source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'vhdl'
     aliases = ['vhdl']

@@ -5,7 +5,7 @@
 
     Lexers for web-related languages and markup.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,11 +13,11 @@ import re
 import copy
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, bygroups, using, \
-     include, this
+    include, this
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-     Number, Other, Punctuation, Literal
+    Number, Other, Punctuation, Literal
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
-                          html_doctype_matches, unirange
+    html_doctype_matches, unirange, iteritems
 from pygments.lexers.agile import RubyLexer
 from pygments.lexers.compiled import ScalaLexer
 
@@ -27,7 +27,8 @@ __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JsonLexer', 'CssLexer',
            'MxmlLexer', 'HaxeLexer', 'HamlLexer', 'SassLexer', 'ScssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'LiveScriptLexer',
            'DuelLexer', 'ScamlLexer', 'JadeLexer', 'XQueryLexer',
-           'DtdLexer', 'DartLexer', 'LassoLexer', 'QmlLexer', 'TypeScriptLexer']
+           'DtdLexer', 'DartLexer', 'LassoLexer', 'QmlLexer', 'TypeScriptLexer',
+           'KalLexer', 'CirruLexer', 'MaskLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -67,7 +68,7 @@ class JavascriptLexer(RegexLexer):
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
-             r'throw|try|catch|finally|new|delete|typeof|instanceof|void|'
+             r'throw|try|catch|finally|new|delete|typeof|instanceof|void|yield|'
              r'this)\b', Keyword, 'slashstartsregex'),
             (r'(var|let|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
             (r'(abstract|boolean|byte|char|class|const|debugger|double|enum|export|'
@@ -94,7 +95,7 @@ class JsonLexer(RegexLexer):
     """
     For JSON data structures.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'JSON'
@@ -177,7 +178,7 @@ class ActionScriptLexer(RegexLexer):
     """
     For ActionScript source code.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
 
     name = 'ActionScript'
@@ -261,7 +262,7 @@ class ActionScript3Lexer(RegexLexer):
     """
     For ActionScript 3 source code.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
 
     name = 'ActionScript 3'
@@ -363,7 +364,7 @@ class CssLexer(RegexLexer):
             (r'\#[a-zA-Z0-9_-]+', Name.Function),
             (r'@[a-zA-Z0-9_-]+', Keyword, 'atrule'),
             (r'[a-zA-Z0-9_-]+', Name.Tag),
-            (r'[~\^\*!%&\[\]\(\)<>\|+=@:;,./?-]', Operator),
+            (r'[~\^\*!%&$\[\]\(\)<>\|+=@:;,./?-]', Operator),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single)
         ],
@@ -398,19 +399,19 @@ class CssLexer(RegexLexer):
              r'list-style-type|list-style-image|list-style-position|'
              r'list-style|margin-bottom|margin-left|margin-right|'
              r'margin-top|margin|marker-offset|marks|max-height|max-width|'
-             r'min-height|min-width|opacity|orphans|outline|outline-color|'
-             r'outline-style|outline-width|overflow(?:-x|-y)?|padding-bottom|'
+             r'min-height|min-width|opacity|orphans|outline-color|'
+             r'outline-style|outline-width|outline|overflow(?:-x|-y)?|padding-bottom|'
              r'padding-left|padding-right|padding-top|padding|page|'
              r'page-break-after|page-break-before|page-break-inside|'
-             r'pause-after|pause-before|pause|pitch|pitch-range|'
+             r'pause-after|pause-before|pause|pitch-range|pitch|'
              r'play-during|position|quotes|richness|right|size|'
              r'speak-header|speak-numeral|speak-punctuation|speak|'
              r'speech-rate|stress|table-layout|text-align|text-decoration|'
              r'text-indent|text-shadow|text-transform|top|unicode-bidi|'
              r'vertical-align|visibility|voice-family|volume|white-space|'
-             r'widows|width|word-spacing|z-index|bottom|left|'
+             r'widows|width|word-spacing|z-index|bottom|'
              r'above|absolute|always|armenian|aural|auto|avoid|baseline|'
-             r'behind|below|bidi-override|blink|block|bold|bolder|both|'
+             r'behind|below|bidi-override|blink|block|bolder|bold|both|'
              r'capitalize|center-left|center-right|center|circle|'
              r'cjk-ideographic|close-quote|collapse|condensed|continuous|'
              r'crop|crosshair|cross|cursive|dashed|decimal-leading-zero|'
@@ -420,7 +421,7 @@ class CssLexer(RegexLexer):
              r'hidden|hide|higher|high|hiragana-iroha|hiragana|icon|'
              r'inherit|inline-table|inline|inset|inside|invert|italic|'
              r'justify|katakana-iroha|katakana|landscape|larger|large|'
-             r'left-side|leftwards|level|lighter|line-through|list-item|'
+             r'left-side|leftwards|left|level|lighter|line-through|list-item|'
              r'loud|lower-alpha|lower-greek|lower-roman|lowercase|ltr|'
              r'lower|low|medium|message-box|middle|mix|monospace|'
              r'n-resize|narrower|ne-resize|no-close-quote|no-open-quote|'
@@ -429,11 +430,11 @@ class CssLexer(RegexLexer):
              r'relative|repeat-x|repeat-y|repeat|rgb|ridge|right-side|'
              r'rightwards|s-resize|sans-serif|scroll|se-resize|'
              r'semi-condensed|semi-expanded|separate|serif|show|silent|'
-             r'slow|slower|small-caps|small-caption|smaller|soft|solid|'
+             r'slower|slow|small-caps|small-caption|smaller|soft|solid|'
              r'spell-out|square|static|status-bar|super|sw-resize|'
              r'table-caption|table-cell|table-column|table-column-group|'
              r'table-footer-group|table-header-group|table-row|'
-             r'table-row-group|text|text-bottom|text-top|thick|thin|'
+             r'table-row-group|text-bottom|text-top|text|thick|thin|'
              r'transparent|ultra-condensed|ultra-expanded|underline|'
              r'upper-alpha|upper-latin|upper-roman|uppercase|url|'
              r'visible|w-resize|wait|wider|x-fast|x-high|x-large|x-loud|'
@@ -466,7 +467,9 @@ class CssLexer(RegexLexer):
             (r'\!important', Comment.Preproc),
             (r'/\*(?:.|\n)*?\*/', Comment),
             (r'\#[a-zA-Z0-9]{1,6}', Number),
-            (r'[\.-]?[0-9]*[\.]?[0-9]+(em|px|\%|pt|pc|in|mm|cm|ex|s)\b', Number),
+            (r'[\.-]?[0-9]*[\.]?[0-9]+(em|px|pt|pc|in|mm|cm|ex|s)\b', Number),
+            # Separate regex for percentages, as can't do word boundaries with %
+            (r'[\.-]?[0-9]*[\.]?[0-9]+%', Number),
             (r'-?[0-9]+', Number),
             (r'[~\^\*!%&<>\|+=@:,./?-]+', Operator),
             (r'[\[\]();]+', Punctuation),
@@ -481,7 +484,7 @@ class ObjectiveJLexer(RegexLexer):
     """
     For Objective-J source code with preprocessor directives.
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'Objective-J'
@@ -722,8 +725,10 @@ class HtmlLexer(RegexLexer):
             ('<![^>]*>', Comment.Preproc),
             (r'<\s*script\s*', Name.Tag, ('script-content', 'tag')),
             (r'<\s*style\s*', Name.Tag, ('style-content', 'tag')),
-            (r'<\s*[a-zA-Z0-9:]+', Name.Tag, 'tag'),
-            (r'<\s*/\s*[a-zA-Z0-9:]+\s*>', Name.Tag),
+            # note: this allows tag names not used in HTML like <x:with-dash>,
+            # this is to support yet-unknown template engines and the like
+            (r'<\s*[\w:.-]+', Name.Tag, 'tag'),
+            (r'<\s*/\s*[\w:.-]+\s*>', Name.Tag),
         ],
         'comment': [
             ('[^-]+', Comment),
@@ -831,7 +836,8 @@ class PhpLexer(RegexLexer):
              r'endif|list|__LINE__|endswitch|new|__sleep|endwhile|not|'
              r'array|__wakeup|E_ALL|NULL|final|php_user_filter|interface|'
              r'implements|public|private|protected|abstract|clone|try|'
-             r'catch|throw|this|use|namespace|trait)\b', Keyword),
+             r'catch|throw|this|use|namespace|trait|yield|'
+             r'finally)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'\$\{\$+[a-zA-Z_][a-zA-Z0-9_]*\}', Name.Variable),
             (r'\$+[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
@@ -841,6 +847,7 @@ class PhpLexer(RegexLexer):
             (r'0[0-7]+', Number.Oct),
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+', Number.Integer),
+            (r'0b[01]+', Number.Binary),
             (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
             (r'`([^`\\]*(?:\\.[^`\\]*)*)`', String.Backtick),
             (r'"', String.Double, 'string'),
@@ -855,7 +862,7 @@ class PhpLexer(RegexLexer):
             (r'"', String.Double, '#pop'),
             (r'[^{$"\\]+', String.Double),
             (r'\\([nrt\"$\\]|[0-7]{1,3}|x[0-9A-Fa-f]{1,2})', String.Escape),
-            (r'\$[a-zA-Z_][a-zA-Z0-9_]*(\[\S+\]|->[a-zA-Z_][a-zA-Z0-9_]*)?',
+            (r'\$[a-zA-Z_][a-zA-Z0-9_]*(\[\S+?\]|->[a-zA-Z_][a-zA-Z0-9_]*)?',
              String.Interpol),
             (r'(\{\$\{)(.*?)(\}\})',
              bygroups(String.Interpol, using(this, _startinline=True),
@@ -884,7 +891,7 @@ class PhpLexer(RegexLexer):
         self._functions = set()
         if self.funcnamehighlighting:
             from pygments.lexers._phpbuiltins import MODULES
-            for key, value in MODULES.iteritems():
+            for key, value in iteritems(MODULES):
                 if key not in self.disabledmodules:
                     self._functions.update(value)
         RegexLexer.__init__(self, **options)
@@ -914,7 +921,7 @@ class DtdLexer(RegexLexer):
     """
     A lexer for DTDs (Document Type Definitions).
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     flags = re.MULTILINE | re.DOTALL
@@ -1006,7 +1013,8 @@ class XmlLexer(RegexLexer):
 
     name = 'XML'
     aliases = ['xml']
-    filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd', '*.wsdl']
+    filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd',
+                 '*.wsdl', '*.wsf']
     mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
                  'application/rss+xml', 'application/atom+xml']
 
@@ -1048,7 +1056,7 @@ class XsltLexer(XmlLexer):
     '''
     A lexer for XSLT.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     '''
 
     name = 'XSLT'
@@ -1086,7 +1094,7 @@ class MxmlLexer(RegexLexer):
     For MXML markup.
     Nested AS3 in <script> tags is highlighted by the appropriate lexer.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     flags = re.MULTILINE | re.DOTALL
     name = 'MXML'
@@ -1125,227 +1133,840 @@ class MxmlLexer(RegexLexer):
         }
 
 
-class HaxeLexer(RegexLexer):
+class HaxeLexer(ExtendedRegexLexer):
     """
-    For haXe source code (http://haxe.org/).
+    For Haxe source code (http://haxe.org/).
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
-    name = 'haXe'
-    aliases = ['hx', 'haXe']
-    filenames = ['*.hx']
-    mimetypes = ['text/haxe']
+    name = 'Haxe'
+    aliases = ['hx', 'haxe', 'hxsl']
+    filenames = ['*.hx', '*.hxsl']
+    mimetypes = ['text/haxe', 'text/x-haxe', 'text/x-hx']
 
-    ident = r'(?:[a-zA-Z_][a-zA-Z0-9_]*)'
-    typeid = r'(?:(?:[a-z0-9_\.])*[A-Z_][A-Za-z0-9_]*)'
-    key_prop = r'(?:default|null|never)'
-    key_decl_mod = r'(?:public|private|override|static|inline|extern|dynamic)'
+    # keywords extracted from lexer.mll in the haxe compiler source
+    keyword = (r'(?:function|class|static|var|if|else|while|do|for|'
+               r'break|return|continue|extends|implements|import|'
+               r'switch|case|default|public|private|try|untyped|'
+               r'catch|new|this|throw|extern|enum|in|interface|'
+               r'cast|override|dynamic|typedef|package|'
+               r'inline|using|null|true|false|abstract)\b')
+
+    # idtype in lexer.mll
+    typeid = r'_*[A-Z][_a-zA-Z0-9]*'
+
+    # combined ident and dollar and idtype
+    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + \
+        '|_+|\$[_a-zA-Z0-9]+)'
+
+    binop = (r'(?:%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>\s*>\s*=|>\s*>\s*>\s*=|==|'
+             r'!=|<=|>\s*=|&&|\|\||<<|>>>|>\s*>|\.\.\.|<|>|%|&|\||\^|\+|\*|'
+             r'/|\-|=>|=)')
+
+    # ident except keywords
+    ident_no_keyword = r'(?!' + keyword + ')' + ident
 
     flags = re.DOTALL | re.MULTILINE
 
+    preproc_stack = []
+
+    def preproc_callback(self, match, ctx):
+        proc = match.group(2)
+
+        if proc == 'if':
+            # store the current stack
+            self.preproc_stack.append(ctx.stack[:])
+        elif proc in ['else', 'elseif']:
+            # restore the stack back to right before #if
+            if self.preproc_stack: ctx.stack = self.preproc_stack[-1][:]
+        elif proc == 'end':
+            # remove the saved stack of previous #if
+            if self.preproc_stack: self.preproc_stack.pop()
+
+        # #if and #elseif should follow by an expr
+        if proc in ['if', 'elseif']:
+            ctx.stack.append('preproc-expr')
+
+        # #error can be optionally follow by the error msg
+        if proc in ['error']:
+            ctx.stack.append('preproc-error')
+
+        yield match.start(), Comment.Preproc, '#' + proc
+        ctx.pos = match.end()
+
+
     tokens = {
         'root': [
-            include('whitespace'),
-            include('comments'),
-            (key_decl_mod, Keyword.Declaration),
-            include('enumdef'),
-            include('typedef'),
-            include('classdef'),
-            include('imports'),
+            include('spaces'),
+            include('meta'),
+            (r'(?:package)\b', Keyword.Namespace, ('semicolon', 'package')),
+            (r'(?:import)\b', Keyword.Namespace, ('semicolon', 'import')),
+            (r'(?:using)\b', Keyword.Namespace, ('semicolon', 'using')),
+            (r'(?:extern|private)\b', Keyword.Declaration),
+            (r'(?:abstract)\b', Keyword.Declaration, 'abstract'),
+            (r'(?:class|interface)\b', Keyword.Declaration, 'class'),
+            (r'(?:enum)\b', Keyword.Declaration, 'enum'),
+            (r'(?:typedef)\b', Keyword.Declaration, 'typedef'),
+
+            # top-level expression
+            # although it is not supported in haxe, but it is common to write
+            # expression in web pages the positive lookahead here is to prevent
+            # an infinite loop at the EOF
+            (r'(?=.)', Text, 'expr-statement'),
         ],
 
-        # General constructs
-        'comments': [
-            (r'//.*?\n', Comment.Single),
-            (r'/\*.*?\*/', Comment.Multiline),
-            (r'#[^\n]*', Comment.Preproc),
-        ],
-        'whitespace': [
-            include('comments'),
+        # space/tab/comment/preproc
+        'spaces': [
             (r'\s+', Text),
-        ],
-        'codekeywords': [
-            (r'\b(if|else|while|do|for|in|break|continue|'
-             r'return|switch|case|try|catch|throw|null|trace|'
-             r'new|this|super|untyped|cast|callback|here)\b',
-             Keyword.Reserved),
-        ],
-        'literals': [
-            (r'0[xX][0-9a-fA-F]+', Number.Hex),
-            (r'[0-9]+', Number.Integer),
-            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r'~/([^\n])*?/[gisx]*', String.Regex),
-            (r'\b(true|false|null)\b', Keyword.Constant),
-        ],
-        'codeblock': [
-          include('whitespace'),
-          include('new'),
-          include('case'),
-          include('anonfundef'),
-          include('literals'),
-          include('vardef'),
-          include('codekeywords'),
-          (r'[();,\[\]]', Punctuation),
-          (r'(?:=|\+=|-=|\*=|/=|%=|&=|\|=|\^=|<<=|>>=|>>>=|\|\||&&|'
-           r'\.\.\.|==|!=|>|<|>=|<=|\||&|\^|<<|>>>|>>|\+|\-|\*|/|%|'
-           r'!|\+\+|\-\-|~|\.|\?|\:)',
-           Operator),
-          (ident, Name),
-
-          (r'}', Punctuation,'#pop'),
-          (r'{', Punctuation,'#push'),
+            (r'//[^\n\r]*', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'(#)(if|elseif|else|end|error)\b', preproc_callback),
         ],
 
-        # Instance/Block level constructs
-        'propertydef': [
-            (r'(\()(' + key_prop + ')(,)(' + key_prop + ')(\))',
-             bygroups(Punctuation, Keyword.Reserved, Punctuation,
-                      Keyword.Reserved, Punctuation)),
-        ],
-        'new': [
-            (r'\bnew\b', Keyword, 'typedecl'),
-        ],
-        'case': [
-            (r'\b(case)(\s+)(' + ident + ')(\s*)(\()',
-             bygroups(Keyword.Reserved, Text, Name, Text, Punctuation),
-             'funargdecl'),
-        ],
-        'vardef': [
-            (r'\b(var)(\s+)(' + ident + ')',
-             bygroups(Keyword.Declaration, Text, Name.Variable), 'vardecl'),
-        ],
-        'vardecl': [
-            include('whitespace'),
-            include('typelabel'),
-            (r'=', Operator,'#pop'),
-            (r';', Punctuation,'#pop'),
-        ],
-        'instancevardef': [
-            (key_decl_mod,Keyword.Declaration),
-            (r'\b(var)(\s+)(' + ident + ')',
-             bygroups(Keyword.Declaration, Text, Name.Variable.Instance),
-             'instancevardecl'),
-        ],
-        'instancevardecl': [
-            include('vardecl'),
-            include('propertydef'),
+        'string-single-interpol': [
+            (r'\$\{', String.Interpol, ('string-interpol-close', 'expr')),
+            (r'\$\$', String.Escape),
+            (r'\$(?=' + ident + ')', String.Interpol, 'ident'),
+            include('string-single'),
         ],
 
-        'anonfundef': [
-            (r'\bfunction\b', Keyword.Declaration, 'fundecl'),
+        'string-single': [
+            (r"'", String.Single, '#pop'),
+            (r'\\.', String.Escape),
+            (r'.', String.Single),
         ],
-        'instancefundef': [
-            (key_decl_mod, Keyword.Declaration),
-            (r'\b(function)(\s+)(' + ident + ')',
-             bygroups(Keyword.Declaration, Text, Name.Function), 'fundecl'),
+
+        'string-double': [
+            (r'"', String.Double, '#pop'),
+            (r'\\.', String.Escape),
+            (r'.', String.Double),
         ],
-        'fundecl': [
-            include('whitespace'),
-            include('typelabel'),
-            include('generictypedecl'),
-            (r'\(',Punctuation,'funargdecl'),
-            (r'(?=[a-zA-Z0-9_])',Text,'#pop'),
-            (r'{',Punctuation,('#pop','codeblock')),
-            (r';',Punctuation,'#pop'),
+
+        'string-interpol-close': [
+            (r'\$'+ident, String.Interpol),
+            (r'\}', String.Interpol, '#pop'),
         ],
-        'funargdecl': [
-            include('whitespace'),
-            (ident, Name.Variable),
-            include('typelabel'),
-            include('literals'),
-            (r'=', Operator),
+
+        'package': [
+            include('spaces'),
+            (ident, Name.Namespace),
+            (r'\.', Punctuation, 'import-ident'),
+            (r'', Text, '#pop'),
+        ],
+
+        'import': [
+            include('spaces'),
+            (ident, Name.Namespace),
+            (r'\*', Keyword), # wildcard import
+            (r'\.', Punctuation, 'import-ident'),
+            (r'in', Keyword.Namespace, 'ident'),
+            (r'', Text, '#pop'),
+        ],
+
+        'import-ident': [
+            include('spaces'),
+            (r'\*', Keyword, '#pop'), # wildcard import
+            (ident, Name.Namespace, '#pop'),
+        ],
+
+        'using': [
+            include('spaces'),
+            (ident, Name.Namespace),
+            (r'\.', Punctuation, 'import-ident'),
+            (r'', Text, '#pop'),
+        ],
+
+        'preproc-error': [
+            (r'\s+', Comment.Preproc),
+            (r"'", String.Single, ('#pop', 'string-single')),
+            (r'"', String.Double, ('#pop', 'string-double')),
+            (r'', Text, '#pop'),
+        ],
+
+        'preproc-expr': [
+            (r'\s+', Comment.Preproc),
+            (r'\!', Comment.Preproc),
+            (r'\(', Comment.Preproc, ('#pop', 'preproc-parenthesis')),
+
+            (ident, Comment.Preproc, '#pop'),
+            (r"'", String.Single, ('#pop', 'string-single')),
+            (r'"', String.Double, ('#pop', 'string-double')),
+        ],
+
+        'preproc-parenthesis': [
+            (r'\s+', Comment.Preproc),
+            (r'\)', Comment.Preproc, '#pop'),
+            ('', Text, 'preproc-expr-in-parenthesis'),
+        ],
+
+        'preproc-expr-chain': [
+            (r'\s+', Comment.Preproc),
+            (binop, Comment.Preproc, ('#pop', 'preproc-expr-in-parenthesis')),
+            (r'', Text, '#pop'),
+        ],
+
+        # same as 'preproc-expr' but able to chain 'preproc-expr-chain'
+        'preproc-expr-in-parenthesis': [
+            (r'\s+', Comment.Preproc),
+            (r'\!', Comment.Preproc),
+            (r'\(', Comment.Preproc,
+             ('#pop', 'preproc-expr-chain', 'preproc-parenthesis')),
+
+            (ident, Comment.Preproc, ('#pop', 'preproc-expr-chain')),
+            (r"'", String.Single,
+             ('#pop', 'preproc-expr-chain', 'string-single')),
+            (r'"', String.Double,
+             ('#pop', 'preproc-expr-chain', 'string-double')),
+        ],
+
+        'abstract' : [
+            include('spaces'),
+            (r'', Text, ('#pop', 'abstract-body', 'abstract-relation',
+                    'abstract-opaque', 'type-param-constraint', 'type-name')),
+        ],
+
+        'abstract-body' : [
+            include('spaces'),
+            (r'\{', Punctuation, ('#pop', 'class-body')),
+        ],
+
+        'abstract-opaque' : [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'parenthesis-close', 'type')),
+            (r'', Text, '#pop'),
+        ],
+
+        'abstract-relation': [
+            include('spaces'),
+            (r'(?:to|from)', Keyword.Declaration, 'type'),
             (r',', Punctuation),
+            (r'', Text, '#pop'),
+        ],
+
+        'meta': [
+            include('spaces'),
+            (r'@', Name.Decorator, ('meta-body', 'meta-ident', 'meta-colon')),
+        ],
+
+        # optional colon
+        'meta-colon': [
+            include('spaces'),
+            (r':', Name.Decorator, '#pop'),
+            (r'', Text, '#pop'),
+        ],
+
+        # same as 'ident' but set token as Name.Decorator instead of Name
+        'meta-ident': [
+            include('spaces'),
+            (ident, Name.Decorator, '#pop'),
+        ],
+
+        'meta-body': [
+            include('spaces'),
+            (r'\(', Name.Decorator, ('#pop', 'meta-call')),
+            (r'', Text, '#pop'),
+        ],
+
+        'meta-call': [
+            include('spaces'),
+            (r'\)', Name.Decorator, '#pop'),
+            (r'', Text, ('#pop', 'meta-call-sep', 'expr')),
+        ],
+
+        'meta-call-sep': [
+            include('spaces'),
+            (r'\)', Name.Decorator, '#pop'),
+            (r',', Punctuation, ('#pop', 'meta-call')),
+        ],
+
+        'typedef': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'typedef-body', 'type-param-constraint',
+                         'type-name')),
+        ],
+
+        'typedef-body': [
+            include('spaces'),
+            (r'=', Operator, ('#pop', 'optional-semicolon', 'type')),
+        ],
+
+        'enum': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'enum-body', 'bracket-open',
+                         'type-param-constraint', 'type-name')),
+        ],
+
+        'enum-body': [
+            include('spaces'),
+            include('meta'),
+            (r'\}', Punctuation, '#pop'),
+            (ident_no_keyword, Name, ('enum-member', 'type-param-constraint')),
+        ],
+
+        'enum-member': [
+            include('spaces'),
+            (r'\(', Punctuation,
+             ('#pop', 'semicolon', 'flag', 'function-param')),
+            (r'', Punctuation, ('#pop', 'semicolon', 'flag')),
+        ],
+
+        'class': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'class-body', 'bracket-open', 'extends',
+                         'type-param-constraint', 'type-name')),
+        ],
+
+        'extends': [
+            include('spaces'),
+            (r'(?:extends|implements)\b', Keyword.Declaration, 'type'),
+            (r',', Punctuation), # the comma is made optional here, since haxe2
+                                 # requires the comma but haxe3 does not allow it
+            (r'', Text, '#pop'),
+        ],
+
+        'bracket-open': [
+            include('spaces'),
+            (r'\{', Punctuation, '#pop'),
+        ],
+
+        'bracket-close': [
+            include('spaces'),
+            (r'\}', Punctuation, '#pop'),
+        ],
+
+        'class-body': [
+            include('spaces'),
+            include('meta'),
+            (r'\}', Punctuation, '#pop'),
+            (r'(?:static|public|private|override|dynamic|inline|macro)\b',
+             Keyword.Declaration),
+            (r'', Text, 'class-member'),
+        ],
+
+        'class-member': [
+            include('spaces'),
+            (r'(var)\b', Keyword.Declaration,
+             ('#pop', 'optional-semicolon', 'prop')),
+            (r'(function)\b', Keyword.Declaration,
+             ('#pop', 'optional-semicolon', 'class-method')),
+        ],
+
+        # local function, anonymous or not
+        'function-local': [
+            include('spaces'),
+            (r'(' + ident_no_keyword + ')?', Name.Function,
+             ('#pop', 'expr', 'flag', 'function-param',
+              'parenthesis-open', 'type-param-constraint')),
+        ],
+
+        'optional-expr': [
+            include('spaces'),
+            include('expr'),
+            (r'', Text, '#pop'),
+        ],
+
+        'class-method': [
+            include('spaces'),
+            (ident, Name.Function, ('#pop', 'optional-expr', 'flag',
+                                    'function-param', 'parenthesis-open',
+                                    'type-param-constraint')),
+        ],
+
+        # function arguments
+        'function-param': [
+            include('spaces'),
+            (r'\)', Punctuation, '#pop'),
             (r'\?', Punctuation),
+            (ident_no_keyword, Name,
+             ('#pop', 'function-param-sep', 'assign', 'flag')),
+        ],
+
+        'function-param-sep': [
+            include('spaces'),
+            (r'\)', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'function-param')),
+        ],
+
+        # class property
+        # eg. var prop(default, null):String;
+        'prop': [
+            include('spaces'),
+            (ident_no_keyword, Name, ('#pop', 'assign', 'flag', 'prop-get-set')),
+        ],
+
+        'prop-get-set': [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'parenthesis-close',
+                                  'prop-get-set-opt', 'comma', 'prop-get-set-opt')),
+            (r'', Text, '#pop'),
+        ],
+
+        'prop-get-set-opt': [
+            include('spaces'),
+            (r'(?:default|null|never|dynamic|get|set)\b', Keyword, '#pop'),
+            (ident_no_keyword, Text, '#pop'), #custom getter/setter
+        ],
+
+        'expr-statement': [
+            include('spaces'),
+            # makes semicolon optional here, just to avoid checking the last
+            # one is bracket or not.
+            (r'', Text, ('#pop', 'optional-semicolon', 'expr')),
+        ],
+
+        'expr': [
+            include('spaces'),
+            (r'@', Name.Decorator, ('#pop', 'optional-expr', 'meta-body',
+                                    'meta-ident', 'meta-colon')),
+            (r'(?:\+\+|\-\-|~(?!/)|!|\-)', Operator),
+            (r'\(', Punctuation, ('#pop', 'expr-chain', 'parenthesis')),
+            (r'(?:inline)\b', Keyword.Declaration),
+            (r'(?:function)\b', Keyword.Declaration, ('#pop', 'expr-chain',
+                                                      'function-local')),
+            (r'\{', Punctuation, ('#pop', 'expr-chain', 'bracket')),
+            (r'(?:true|false|null)\b', Keyword.Constant, ('#pop', 'expr-chain')),
+            (r'(?:this)\b', Keyword, ('#pop', 'expr-chain')),
+            (r'(?:cast)\b', Keyword, ('#pop', 'expr-chain', 'cast')),
+            (r'(?:try)\b', Keyword, ('#pop', 'catch', 'expr')),
+            (r'(?:var)\b', Keyword.Declaration, ('#pop', 'var')),
+            (r'(?:new)\b', Keyword, ('#pop', 'expr-chain', 'new')),
+            (r'(?:switch)\b', Keyword, ('#pop', 'switch')),
+            (r'(?:if)\b', Keyword, ('#pop', 'if')),
+            (r'(?:do)\b', Keyword, ('#pop', 'do')),
+            (r'(?:while)\b', Keyword, ('#pop', 'while')),
+            (r'(?:for)\b', Keyword, ('#pop', 'for')),
+            (r'(?:untyped|throw)\b', Keyword),
+            (r'(?:return)\b', Keyword, ('#pop', 'optional-expr')),
+            (r'(?:macro)\b', Keyword, ('#pop', 'macro')),
+            (r'(?:continue|break)\b', Keyword, '#pop'),
+            (r'(?:\$\s*[a-z]\b|\$(?!'+ident+'))', Name, ('#pop', 'dollar')),
+            (ident_no_keyword, Name, ('#pop', 'expr-chain')),
+
+            # Float
+            (r'\.[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+\.[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+\.(?!' + ident + '|\.\.)', Number.Float, ('#pop', 'expr-chain')),
+
+            # Int
+            (r'0x[0-9a-fA-F]+', Number.Hex, ('#pop', 'expr-chain')),
+            (r'[0-9]+', Number.Integer, ('#pop', 'expr-chain')),
+
+            # String
+            (r"'", String.Single, ('#pop', 'expr-chain', 'string-single-interpol')),
+            (r'"', String.Double, ('#pop', 'expr-chain', 'string-double')),
+
+            # EReg
+            (r'~/(\\\\|\\/|[^/\n])*/[gimsu]*', String.Regex, ('#pop', 'expr-chain')),
+
+            # Array
+            (r'\[', Punctuation, ('#pop', 'expr-chain', 'array-decl')),
+        ],
+
+        'expr-chain': [
+            include('spaces'),
+            (r'(?:\+\+|\-\-)', Operator),
+            (binop, Operator, ('#pop', 'expr')),
+            (r'(?:in)\b', Keyword, ('#pop', 'expr')),
+            (r'\?', Operator, ('#pop', 'expr', 'ternary', 'expr')),
+            (r'(\.)(' + ident_no_keyword + ')', bygroups(Punctuation, Name)),
+            (r'\[', Punctuation, 'array-access'),
+            (r'\(', Punctuation, 'call'),
+            (r'', Text, '#pop'),
+        ],
+
+        # macro reification
+        'macro': [
+            include('spaces'),
+            (r':', Punctuation, ('#pop', 'type')),
+            (r'', Text, ('#pop', 'expr')),
+        ],
+
+        # cast can be written as "cast expr" or "cast(expr, type)"
+        'cast': [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'parenthesis-close',
+                                  'cast-type', 'expr')),
+            (r'', Text, ('#pop', 'expr')),
+        ],
+
+        # optionally give a type as the 2nd argument of cast()
+        'cast-type': [
+            include('spaces'),
+            (r',', Punctuation, ('#pop', 'type')),
+            (r'', Text, '#pop'),
+        ],
+
+        'catch': [
+            include('spaces'),
+            (r'(?:catch)\b', Keyword, ('expr', 'function-param',
+                                       'parenthesis-open')),
+            (r'', Text, '#pop'),
+        ],
+
+        # do-while loop
+        'do': [
+            include('spaces'),
+            (r'', Punctuation, ('#pop', 'do-while', 'expr')),
+        ],
+
+        # the while after do
+        'do-while': [
+            include('spaces'),
+            (r'(?:while)\b', Keyword, ('#pop', 'parenthesis',
+                                       'parenthesis-open')),
+        ],
+
+        'while': [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'expr', 'parenthesis')),
+        ],
+
+        'for': [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'expr', 'parenthesis')),
+        ],
+
+        'if': [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'else', 'optional-semicolon', 'expr',
+                                  'parenthesis')),
+        ],
+
+        'else': [
+            include('spaces'),
+            (r'(?:else)\b', Keyword, ('#pop', 'expr')),
+            (r'', Text, '#pop'),
+        ],
+
+        'switch': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'switch-body', 'bracket-open', 'expr')),
+        ],
+
+        'switch-body': [
+            include('spaces'),
+            (r'(?:case|default)\b', Keyword, ('case-block', 'case')),
+            (r'\}', Punctuation, '#pop'),
+        ],
+
+        'case': [
+            include('spaces'),
+            (r':', Punctuation, '#pop'),
+            (r'', Text, ('#pop', 'case-sep', 'case-guard', 'expr')),
+        ],
+
+        'case-sep': [
+            include('spaces'),
+            (r':', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'case')),
+        ],
+
+        'case-guard': [
+            include('spaces'),
+            (r'(?:if)\b', Keyword, ('#pop', 'parenthesis', 'parenthesis-open')),
+            (r'', Text, '#pop'),
+        ],
+
+        # optional multiple expr under a case
+        'case-block': [
+            include('spaces'),
+            (r'(?!(?:case|default)\b|\})', Keyword, 'expr-statement'),
+            (r'', Text, '#pop'),
+        ],
+
+        'new': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'call', 'parenthesis-open', 'type')),
+        ],
+
+        'array-decl': [
+            include('spaces'),
+            (r'\]', Punctuation, '#pop'),
+            (r'', Text, ('#pop', 'array-decl-sep', 'expr')),
+        ],
+
+        'array-decl-sep': [
+            include('spaces'),
+            (r'\]', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'array-decl')),
+        ],
+
+        'array-access': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'array-access-close', 'expr')),
+        ],
+
+        'array-access-close': [
+            include('spaces'),
+            (r'\]', Punctuation, '#pop'),
+        ],
+
+        'comma': [
+            include('spaces'),
+            (r',', Punctuation, '#pop'),
+        ],
+
+        'colon': [
+            include('spaces'),
+            (r':', Punctuation, '#pop'),
+        ],
+
+        'semicolon': [
+            include('spaces'),
+            (r';', Punctuation, '#pop'),
+        ],
+
+        'optional-semicolon': [
+            include('spaces'),
+            (r';', Punctuation, '#pop'),
+            (r'', Text, '#pop'),
+        ],
+
+        # identity that CAN be a Haxe keyword
+        'ident': [
+            include('spaces'),
+            (ident, Name, '#pop'),
+        ],
+
+        'dollar': [
+            include('spaces'),
+            (r'\{', Keyword, ('#pop', 'bracket-close', 'expr')),
+            (r'', Text, ('#pop', 'expr-chain')),
+        ],
+
+        'type-name': [
+            include('spaces'),
+            (typeid, Name, '#pop'),
+        ],
+
+        'type-full-name': [
+            include('spaces'),
+            (r'\.', Punctuation, 'ident'),
+            (r'', Text, '#pop'),
+        ],
+
+        'type': [
+            include('spaces'),
+            (r'\?', Punctuation),
+            (ident, Name, ('#pop', 'type-check', 'type-full-name')),
+            (r'\{', Punctuation, ('#pop', 'type-check', 'type-struct')),
+            (r'\(', Punctuation, ('#pop', 'type-check', 'type-parenthesis')),
+        ],
+
+        'type-parenthesis': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'parenthesis-close', 'type')),
+        ],
+
+        'type-check': [
+            include('spaces'),
+            (r'->', Punctuation, ('#pop', 'type')),
+            (r'<(?!=)', Punctuation, 'type-param'),
+            (r'', Text, '#pop'),
+        ],
+
+        'type-struct': [
+            include('spaces'),
+            (r'\}', Punctuation, '#pop'),
+            (r'\?', Punctuation),
+            (r'>', Punctuation, ('comma', 'type')),
+            (ident_no_keyword, Name, ('#pop', 'type-struct-sep', 'type', 'colon')),
+            include('class-body'),
+        ],
+
+        'type-struct-sep': [
+            include('spaces'),
+            (r'\}', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'type-struct')),
+        ],
+
+        # type-param can be a normal type or a constant literal...
+        'type-param-type': [
+            # Float
+            (r'\.[0-9]+', Number.Float, '#pop'),
+            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
+            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
+            (r'[0-9]+\.[0-9]+', Number.Float, '#pop'),
+            (r'[0-9]+\.(?!' + ident + '|\.\.)', Number.Float, '#pop'),
+
+            # Int
+            (r'0x[0-9a-fA-F]+', Number.Hex, '#pop'),
+            (r'[0-9]+', Number.Integer, '#pop'),
+
+            # String
+            (r"'", String.Single, ('#pop', 'string-single')),
+            (r'"', String.Double, ('#pop', 'string-double')),
+
+            # EReg
+            (r'~/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex, '#pop'),
+
+            # Array
+            (r'\[', Operator, ('#pop', 'array-decl')),
+
+            include('type'),
+        ],
+
+        # type-param part of a type
+        # ie. the <A,B> path in Map<A,B>
+        'type-param': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'type-param-sep', 'type-param-type')),
+        ],
+
+        'type-param-sep': [
+            include('spaces'),
+            (r'>', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'type-param')),
+        ],
+
+        # optional type-param that may include constraint
+        # ie. <T:Constraint, T2:(ConstraintA,ConstraintB)>
+        'type-param-constraint': [
+            include('spaces'),
+            (r'<(?!=)', Punctuation, ('#pop', 'type-param-constraint-sep',
+                                      'type-param-constraint-flag', 'type-name')),
+            (r'', Text, '#pop'),
+        ],
+
+        'type-param-constraint-sep': [
+            include('spaces'),
+            (r'>', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'type-param-constraint-sep',
+                                 'type-param-constraint-flag', 'type-name')),
+        ],
+
+        # the optional constraint inside type-param
+        'type-param-constraint-flag': [
+            include('spaces'),
+            (r':', Punctuation, ('#pop', 'type-param-constraint-flag-type')),
+            (r'', Text, '#pop'),
+        ],
+
+        'type-param-constraint-flag-type': [
+            include('spaces'),
+            (r'\(', Punctuation, ('#pop', 'type-param-constraint-flag-type-sep',
+                                  'type')),
+            (r'', Text, ('#pop', 'type')),
+        ],
+
+        'type-param-constraint-flag-type-sep': [
+            include('spaces'),
+            (r'\)', Punctuation, '#pop'),
+            (r',', Punctuation, 'type'),
+        ],
+
+        # a parenthesis expr that contain exactly one expr
+        'parenthesis': [
+            include('spaces'),
+            (r'', Text, ('#pop', 'parenthesis-close', 'expr')),
+        ],
+
+        'parenthesis-open': [
+            include('spaces'),
+            (r'\(', Punctuation, '#pop'),
+        ],
+
+        'parenthesis-close': [
+            include('spaces'),
             (r'\)', Punctuation, '#pop'),
         ],
 
-        'typelabel': [
-            (r':', Punctuation, 'type'),
-        ],
-        'typedecl': [
-            include('whitespace'),
-            (typeid, Name.Class),
-            (r'<', Punctuation, 'generictypedecl'),
-            (r'(?=[{}()=,a-z])', Text,'#pop'),
-        ],
-        'type': [
-            include('whitespace'),
-            (typeid, Name.Class),
-            (r'<', Punctuation, 'generictypedecl'),
-            (r'->', Keyword.Type),
-            (r'(?=[{}(),;=])', Text, '#pop'),
-        ],
-        'generictypedecl': [
-            include('whitespace'),
-            (typeid, Name.Class),
-            (r'<', Punctuation, '#push'),
-            (r'>', Punctuation, '#pop'),
-            (r',', Punctuation),
+        'var': [
+            include('spaces'),
+            (ident_no_keyword, Text, ('#pop', 'var-sep', 'assign', 'flag')),
         ],
 
-        # Top level constructs
-        'imports': [
-            (r'(package|import|using)(\s+)([^;]+)(;)',
-             bygroups(Keyword.Namespace, Text, Name.Namespace,Punctuation)),
-        ],
-        'typedef': [
-            (r'typedef', Keyword.Declaration, ('typedefprebody', 'typedecl')),
-        ],
-        'typedefprebody': [
-            include('whitespace'),
-            (r'(=)(\s*)({)', bygroups(Punctuation, Text, Punctuation),
-             ('#pop', 'typedefbody')),
-        ],
-        'enumdef': [
-            (r'enum', Keyword.Declaration, ('enumdefprebody', 'typedecl')),
-        ],
-        'enumdefprebody': [
-            include('whitespace'),
-            (r'{', Punctuation, ('#pop','enumdefbody')),
-        ],
-        'classdef': [
-            (r'class', Keyword.Declaration, ('classdefprebody', 'typedecl')),
-        ],
-        'classdefprebody': [
-            include('whitespace'),
-            (r'(extends|implements)', Keyword.Declaration,'typedecl'),
-            (r'{', Punctuation, ('#pop', 'classdefbody')),
-        ],
-        'interfacedef': [
-            (r'interface', Keyword.Declaration,
-             ('interfacedefprebody', 'typedecl')),
-        ],
-        'interfacedefprebody': [
-            include('whitespace'),
-            (r'(extends)', Keyword.Declaration, 'typedecl'),
-            (r'{', Punctuation, ('#pop', 'classdefbody')),
+        # optional more var decl.
+        'var-sep': [
+            include('spaces'),
+            (r',', Punctuation, ('#pop', 'var')),
+            (r'', Text, '#pop'),
         ],
 
-        'typedefbody': [
-          include('whitespace'),
-          include('instancevardef'),
-          include('instancefundef'),
-          (r'>', Punctuation, 'typedecl'),
-          (r',', Punctuation),
-          (r'}', Punctuation, '#pop'),
+        # optional assignment
+        'assign': [
+            include('spaces'),
+            (r'=', Operator, ('#pop', 'expr')),
+            (r'', Text, '#pop'),
         ],
-        'enumdefbody': [
-          include('whitespace'),
-          (ident, Name.Variable.Instance),
-          (r'\(', Punctuation, 'funargdecl'),
-          (r';', Punctuation),
-          (r'}', Punctuation, '#pop'),
+
+        # optional type flag
+        'flag': [
+            include('spaces'),
+            (r':', Punctuation, ('#pop', 'type')),
+            (r'', Text, '#pop'),
         ],
-        'classdefbody': [
-          include('whitespace'),
-          include('instancevardef'),
-          include('instancefundef'),
-          (r'}', Punctuation, '#pop'),
-          include('codeblock'),
+
+        # colon as part of a ternary operator (?:)
+        'ternary': [
+            include('spaces'),
+            (r':', Operator, '#pop'),
         ],
+
+        # function call
+        'call': [
+            include('spaces'),
+            (r'\)', Punctuation, '#pop'),
+            (r'', Text, ('#pop', 'call-sep', 'expr')),
+        ],
+
+        # after a call param
+        'call-sep': [
+            include('spaces'),
+            (r'\)', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'call')),
+        ],
+
+        # bracket can be block or object
+        'bracket': [
+            include('spaces'),
+            (r'(?!(?:\$\s*[a-z]\b|\$(?!'+ident+')))' + ident_no_keyword, Name,
+             ('#pop', 'bracket-check')),
+            (r"'", String.Single, ('#pop', 'bracket-check', 'string-single')),
+            (r'"', String.Double, ('#pop', 'bracket-check', 'string-double')),
+            (r'', Text, ('#pop', 'block')),
+        ],
+
+        'bracket-check': [
+            include('spaces'),
+            (r':', Punctuation, ('#pop', 'object-sep', 'expr')), #is object
+            (r'', Text, ('#pop', 'block', 'optional-semicolon', 'expr-chain')), #is block
+        ],
+
+        # code block
+        'block': [
+            include('spaces'),
+            (r'\}', Punctuation, '#pop'),
+            (r'', Text, 'expr-statement'),
+        ],
+
+        # object in key-value pairs
+        'object': [
+            include('spaces'),
+            (r'\}', Punctuation, '#pop'),
+            (r'', Text, ('#pop', 'object-sep', 'expr', 'colon', 'ident-or-string'))
+        ],
+
+        # a key of an object
+        'ident-or-string': [
+            include('spaces'),
+            (ident_no_keyword, Name, '#pop'),
+            (r"'", String.Single, ('#pop', 'string-single')),
+            (r'"', String.Double, ('#pop', 'string-double')),
+        ],
+
+        # after a key-value pair in object
+        'object-sep': [
+            include('spaces'),
+            (r'\}', Punctuation, '#pop'),
+            (r',', Punctuation, ('#pop', 'object')),
+        ],
+
+
+
     }
 
     def analyse_text(text):
@@ -1386,11 +2007,11 @@ class HamlLexer(ExtendedRegexLexer):
     """
     For Haml markup.
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'Haml'
-    aliases = ['haml', 'HAML']
+    aliases = ['haml']
     filenames = ['*.haml']
     mimetypes = ['text/x-haml']
 
@@ -1663,11 +2284,11 @@ class SassLexer(ExtendedRegexLexer):
     """
     For Sass stylesheets.
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'Sass'
-    aliases = ['sass', 'SASS']
+    aliases = ['sass']
     filenames = ['*.sass']
     mimetypes = ['text/x-sass']
 
@@ -1734,7 +2355,7 @@ class SassLexer(ExtendedRegexLexer):
             (r"\*/", Comment, '#pop'),
         ],
     }
-    for group, common in common_sass_tokens.iteritems():
+    for group, common in iteritems(common_sass_tokens):
         tokens[group] = copy.copy(common)
     tokens['value'].append((r'\n', Text, 'root'))
     tokens['selector'].append((r'\n', Text, 'root'))
@@ -1781,7 +2402,7 @@ class ScssLexer(RegexLexer):
             (r"\*/", Comment, '#pop'),
         ],
     }
-    for group, common in common_sass_tokens.iteritems():
+    for group, common in iteritems(common_sass_tokens):
         tokens[group] = copy.copy(common)
     tokens['value'].extend([(r'\n', Text), (r'[;{}]', Punctuation, 'root')])
     tokens['selector'].extend([(r'\n', Text), (r'[;{}]', Punctuation, 'root')])
@@ -1793,11 +2414,11 @@ class CoffeeScriptLexer(RegexLexer):
 
     .. _CoffeeScript: http://coffeescript.org
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'CoffeeScript'
-    aliases = ['coffee-script', 'coffeescript']
+    aliases = ['coffee-script', 'coffeescript', 'coffee']
     filenames = ['*.coffee']
     mimetypes = ['text/coffeescript']
 
@@ -1826,10 +2447,10 @@ class CoffeeScriptLexer(RegexLexer):
             #(r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
-             r'\|\||\\(?=\n)|(<<|>>>?|==?|!=?|'
-             r'=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?',
+             r'\|\||\\(?=\n)|'
+             r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?',
              Operator, 'slashstartsregex'),
-            (r'(?:\([^()]+\))?\s*[=-]>', Name.Function),
+            (r'(?:\([^()]*\))?\s*[=-]>', Name.Function),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(?<![\.\$])(for|own|in|of|while|until|'
@@ -1862,6 +2483,123 @@ class CoffeeScriptLexer(RegexLexer):
         'strings': [
             (r'[^#\\\'"]+', String),
             # note that all coffee script strings are multi-line.
+            # hashmarks, quotes and backslashes must be parsed one at a time
+        ],
+        'interpoling_string' : [
+            (r'}', String.Interpol, "#pop"),
+            include('root')
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            (r'\\.|\'', String), # double-quoted string don't need ' escapes
+            (r'#{', String.Interpol, "interpoling_string"),
+            include('strings')
+        ],
+        'sqs': [
+            (r"'", String, '#pop'),
+            (r'#|\\.|"', String), # single quoted strings don't need " escapses
+            include('strings')
+        ],
+        'tdqs': [
+            (r'"""', String, '#pop'),
+            (r'\\.|\'|"', String), # no need to escape quotes in triple-string
+            (r'#{', String.Interpol, "interpoling_string"),
+            include('strings'),
+        ],
+        'tsqs': [
+            (r"'''", String, '#pop'),
+            (r'#|\\.|\'|"', String), # no need to escape quotes in triple-strings
+            include('strings')
+        ],
+    }
+
+
+class KalLexer(RegexLexer):
+    """
+    For `Kal`_ source code.
+
+    .. _Kal: http://rzimmerman.github.io/kal
+
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'Kal'
+    aliases = ['kal']
+    filenames = ['*.kal']
+    mimetypes = ['text/kal', 'application/kal']
+
+    flags = re.DOTALL
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'###[^#].*?###', Comment.Multiline),
+            (r'#(?!##[^#]).*?\n', Comment.Single),
+        ],
+        'functiondef': [
+            (r'[$a-zA-Z_][a-zA-Z0-9_\$]*\s*', Name.Function, '#pop'),
+            include('commentsandwhitespace'),
+        ],
+        'classdef': [
+            (r'\binherits\s+from\b', Keyword),
+            (r'[$a-zA-Z_][a-zA-Z0-9_\$]*\s*\n', Name.Class, '#pop'),
+            (r'[$a-zA-Z_][a-zA-Z0-9_\$]*\s*', Name.Class),
+            include('commentsandwhitespace'),
+        ],
+        'listcomprehension': [
+            (r'\]', Punctuation, '#pop'),
+            (r'\b(property|value)\b', Keyword),
+            include('root'),
+        ],
+        'waitfor': [
+            (r'\n', Punctuation, '#pop'),
+            (r'\bfrom\b', Keyword),
+            include('root'),
+        ],
+        'root': [
+            include('commentsandwhitespace'),
+            (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex),
+            (r'\?|:|_(?=\n)|==?|!=|-(?!>)|[<>+*/-]=?',
+             Operator),
+            (r'\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|'
+             r'\bbut\b|\bbitwise\b|\bmod\b|\^|\bxor\b|\bexists\b|\bdoesnt\s+exist\b',
+             Operator.Word),
+            (r'(?:\([^()]+\))?\s*>', Name.Function),
+            (r'[{(]', Punctuation),
+            (r'\[', Punctuation, 'listcomprehension'),
+            (r'[})\]\.\,]', Punctuation),
+            (r'\b(function|method|task)\b', Keyword.Declaration, 'functiondef'),
+            (r'\bclass\b', Keyword.Declaration, 'classdef'),
+            (r'\b(safe\s+)?wait\s+for\b', Keyword, 'waitfor'),
+            (r'\b(me|this)(\.[$a-zA-Z_][a-zA-Z0-9_\.\$]*)?\b', Name.Variable.Instance),
+            (r'(?<![\.\$])(for(\s+(parallel|series))?|in|of|while|until|'
+             r'break|return|continue|'
+             r'when|if|unless|else|otherwise|except\s+when|'
+             r'throw|raise|fail\s+with|try|catch|finally|new|delete|'
+             r'typeof|instanceof|super|run\s+in\s+parallel|'
+             r'inherits\s+from)\b', Keyword),
+            (r'(?<![\.\$])(true|false|yes|no|on|off|null|nothing|none|'
+             r'NaN|Infinity|undefined)\b',
+             Keyword.Constant),
+            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
+             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+             r'decodeURIComponent|encodeURI|encodeURIComponent|'
+             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window|'
+             r'print)\b',
+             Name.Builtin),
+            (r'[$a-zA-Z_][a-zA-Z0-9_\.\$]*\s*(:|[\+\-\*\/]?\=)?\b', Name.Variable),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            ('"""', String, 'tdqs'),
+            ("'''", String, 'tsqs'),
+            ('"', String, 'dqs'),
+            ("'", String, 'sqs'),
+        ],
+        'strings': [
+            (r'[^#\\\'"]+', String),
+            # note that all kal strings are multi-line.
             # hashmarks, quotes and backslashes must be parsed one at a time
         ],
         'interpoling_string' : [
@@ -1966,7 +2704,7 @@ class LiveScriptLexer(RegexLexer):
             ('"', String, 'dqs'),
             ("'", String, 'sqs'),
             (r'\\[\w$-]+', String),
-            (r'<\[.*\]>', String),
+            (r'<\[.*?\]>', String),
         ],
         'strings': [
             (r'[^#\\\'"]+', String),
@@ -2010,11 +2748,11 @@ class DuelLexer(RegexLexer):
     See http://duelengine.org/.
     See http://jsonml.org/jbst/.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Duel'
-    aliases = ['duel', 'Duel Engine', 'Duel View', 'JBST', 'jbst', 'JsonML+BST']
+    aliases = ['duel', 'jbst', 'jsonml+bst']
     filenames = ['*.duel','*.jbst']
     mimetypes = ['text/x-duel','text/x-jbst']
 
@@ -2041,11 +2779,11 @@ class ScamlLexer(ExtendedRegexLexer):
     """
     For `Scaml markup <http://scalate.fusesource.org/>`_.  Scaml is Haml for Scala.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Scaml'
-    aliases = ['scaml', 'SCAML']
+    aliases = ['scaml']
     filenames = ['*.scaml']
     mimetypes = ['text/x-scaml']
 
@@ -2155,11 +2893,11 @@ class JadeLexer(ExtendedRegexLexer):
     Jade is a variant of Scaml, see:
     http://scalate.fusesource.org/documentation/scaml-reference.html
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Jade'
-    aliases = ['jade', 'JADE']
+    aliases = ['jade']
     filenames = ['*.jade']
     mimetypes = ['text/x-jade']
 
@@ -2263,7 +3001,7 @@ class XQueryLexer(ExtendedRegexLexer):
     An XQuery lexer, parsing a stream and outputting the tokens needed to
     highlight xquery code.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'XQuery'
     aliases = ['xquery', 'xqy', 'xq', 'xql', 'xqm']
@@ -2668,7 +3406,7 @@ class XQueryLexer(ExtendedRegexLexer):
         'xml_comment': [
             (r'(-->)', popstate_xmlcomment_callback),
             (r'[^-]{1,2}', Literal),
-            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+            (u'\\t|\\r|\\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
              unirange(0x10000, 0x10ffff), Literal),
         ],
         'processing_instruction': [
@@ -2678,12 +3416,12 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'processing_instruction_content': [
             (r'\?>', String.Doc, '#pop'),
-            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+            (u'\\t|\\r|\\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
              unirange(0x10000, 0x10ffff), Literal),
         ],
         'cdata_section': [
             (r']]>', String.Doc, '#pop'),
-            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+            (u'\\t|\\r|\\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
              unirange(0x10000, 0x10ffff), Literal),
         ],
         'start_tag': [
@@ -2752,7 +3490,7 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'pragmacontents': [
             (r'#\)', Punctuation, 'operator'),
-            (ur'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
+            (u'\\t|\\r|\\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
              unirange(0x10000, 0x10ffff), Literal),
             (r'(\s+)', Text),
         ],
@@ -2925,7 +3663,7 @@ class DartLexer(RegexLexer):
     """
     For `Dart <http://dartlang.org/>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Dart'
@@ -3023,9 +3761,9 @@ class DartLexer(RegexLexer):
 
 class TypeScriptLexer(RegexLexer):
     """
-    For `TypeScript <http://www.python.org>`_ source code.
+    For `TypeScript <http://typescriptlang.org/>`_ source code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'TypeScript'
@@ -3112,7 +3850,7 @@ class LassoLexer(RegexLexer):
         If given and ``True``, only highlight code between delimiters as Lasso
         (default: ``False``).
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Lasso'
@@ -3130,7 +3868,7 @@ class LassoLexer(RegexLexer):
             (r'\[', Comment.Preproc, ('delimiters', 'squarebrackets')),
             (r'<\?(LassoScript|lasso|=)', Comment.Preproc,
                 ('delimiters', 'anglebrackets')),
-            (r'<', Other, 'delimiters'),
+            (r'<(!--.*?-->)?', Other, 'delimiters'),
             (r'\s+', Other),
             (r'', Other, ('delimiters', 'lassofile')),
         ],
@@ -3139,7 +3877,7 @@ class LassoLexer(RegexLexer):
             (r'\[noprocess\]', Comment.Preproc, 'noprocess'),
             (r'\[', Comment.Preproc, 'squarebrackets'),
             (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
-            (r'<', Other),
+            (r'<(!--.*?-->)?', Other),
             (r'[^[<]+', Other),
         ],
         'nosquarebrackets': [
@@ -3161,8 +3899,7 @@ class LassoLexer(RegexLexer):
             include('lasso'),
         ],
         'lassofile': [
-            (r'\]', Comment.Preproc, '#pop'),
-            (r'\?>', Comment.Preproc, '#pop'),
+            (r'\]|\?>', Comment.Preproc, '#pop'),
             include('lasso'),
         ],
         'whitespacecomments': [
@@ -3191,13 +3928,13 @@ class LassoLexer(RegexLexer):
                 bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
             (r"(self)(\s*->\s*)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
-            (r'(\.\.?)([a-z_][\w.]*)',
+            (r'(\.\.?)([a-z_][\w.]*(=(?!=))?)',
                 bygroups(Name.Builtin.Pseudo, Name.Other.Member)),
-            (r'(->\\?\s*|&\s*)([a-z_][\w.]*)',
+            (r'(->\\?\s*|&\s*)([a-z_][\w.]*(=(?!=))?)',
                 bygroups(Operator, Name.Other.Member)),
-            (r'(self|inherited|global|void)\b', Name.Builtin.Pseudo),
+            (r'(self|inherited)\b', Name.Builtin.Pseudo),
             (r'-[a-z_][\w.]*', Name.Attribute),
-            (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
+            (r'::\s*[a-z_][\w.]*', Name.Label),
             (r'(error_(code|msg)_\w+|Error_AddError|Error_ColumnRestriction|'
              r'Error_DatabaseConnectionUnavailable|Error_DatabaseTimeout|'
              r'Error_DeleteError|Error_FieldRestriction|Error_FileNotFound|'
@@ -3211,22 +3948,22 @@ class LassoLexer(RegexLexer):
             # definitions
             (r'(define)(\s+)([a-z_][\w.]*)(\s*=>\s*)(type|trait|thread)\b',
                 bygroups(Keyword.Declaration, Text, Name.Class, Operator, Keyword)),
-            (r'(define)(\s+)([a-z_][\w.]*)(\s*->\s*)([a-z_][\w.]*=?|[-+*/%<>]|==)',
+            (r'(define)(\s+)([a-z_][\w.]*)(\s*->\s*)([a-z_][\w.]*=?|[-+*/%])',
                 bygroups(Keyword.Declaration, Text, Name.Class, Operator,
                         Name.Function), 'signature'),
             (r'(define)(\s+)([a-z_][\w.]*)',
                 bygroups(Keyword.Declaration, Text, Name.Function), 'signature'),
-            (r'(public|protected|private|provide)(\s+)(([a-z_][\w.]*=?|'
-             r'[-+*/%<>]|==)(?=\s*\())', bygroups(Keyword, Text, Name.Function),
+            (r'(public|protected|private|provide)(\s+)(([a-z_][\w.]*=?|[-+*/%])'
+             r'(?=\s*\())', bygroups(Keyword, Text, Name.Function),
                 'signature'),
-            (r'(public|protected|private)(\s+)([a-z_][\w.]*)',
+            (r'(public|protected|private|provide)(\s+)([a-z_][\w.]*)',
                 bygroups(Keyword, Text, Name.Function)),
 
             # keywords
-            (r'(true|false|none|minimal|full|all)\b', Keyword.Constant),
-            (r'(local|var|variable|data(?=\s))\b', Keyword.Declaration),
+            (r'(true|false|none|minimal|full|all|void)\b', Keyword.Constant),
+            (r'(local|var|variable|global|data(?=\s))\b', Keyword.Declaration),
             (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|'
-             r'null|list|queue|set|stack|staticarray)\b', Keyword.Type),
+             r'null|bytes|list|queue|set|stack|staticarray|tie)\b', Keyword.Type),
             (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
             (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Text, Name)),
             (r'require\b', Keyword, 'requiresection'),
@@ -3246,17 +3983,18 @@ class LassoLexer(RegexLexer):
              r'Run_Children|SOAP_DefineTag|SOAP_LastRequest|SOAP_LastResponse|'
              r'Tag_Name|ascending|average|by|define|descending|do|equals|'
              r'frozen|group|handle_failure|import|in|into|join|let|match|max|'
-             r'min|on|order|parent|protected|provide|public|require|skip|'
-             r'split_thread|sum|take|thread|to|trait|type|where|with|yield)\b',
+             r'min|on|order|parent|protected|provide|public|require|returnhome|'
+             r'skip|split_thread|sum|take|thread|to|trait|type|where|with|'
+             r'yield|yieldhome)\b',
                 bygroups(Punctuation, Keyword)),
 
             # other
             (r',', Punctuation, 'commamember'),
             (r'(and|or|not)\b', Operator.Word),
-            (r'([a-z_][\w.]*)(\s*::\s*)?([a-z_][\w.]*)?(\s*=(?!=))',
-                bygroups(Name, Punctuation, Name.Label, Operator)),
+            (r'([a-z_][\w.]*)(\s*::\s*[a-z_][\w.]*)?(\s*=(?!=))',
+                bygroups(Name, Name.Label, Operator)),
             (r'(/?)([\w.]+)', bygroups(Punctuation, Name.Other)),
-            (r'(=)(bw|ew|cn|lte?|gte?|n?eq|ft|n?rx)\b',
+            (r'(=)(n?bw|n?ew|n?cn|lte?|gte?|n?eq|n?rx|ft)\b',
                 bygroups(Operator, Operator.Word)),
             (r':=|[-+*/%=<>&|!?\\]+', Operator),
             (r'[{}():;,@^]', Punctuation),
@@ -3265,13 +4003,13 @@ class LassoLexer(RegexLexer):
             (r"'", String.Single, '#pop'),
             (r"[^'\\]+", String.Single),
             include('escape'),
-            (r"\\+", String.Single),
+            (r"\\", String.Single),
         ],
         'doublestring': [
             (r'"', String.Double, '#pop'),
             (r'[^"\\]+', String.Double),
             include('escape'),
-            (r'\\+', String.Double),
+            (r'\\', String.Double),
         ],
         'escape': [
             (r'\\(U[\da-f]{8}|u[\da-f]{4}|x[\da-f]{1,2}|[0-7]{1,3}|:[^:]+:|'
@@ -3290,10 +4028,10 @@ class LassoLexer(RegexLexer):
             include('lasso'),
         ],
         'requiresection': [
-            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=\s*\())', Name, 'requiresignature'),
-            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)(?=(\s*::\s*[\w.]+)?\s*,))', Name),
-            (r'[a-z_][\w.]*=?|[-+*/%<>]|==', Name, '#pop'),
-            (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
+            (r'(([a-z_][\w.]*=?|[-+*/%])(?=\s*\())', Name, 'requiresignature'),
+            (r'(([a-z_][\w.]*=?|[-+*/%])(?=(\s*::\s*[\w.]+)?\s*,))', Name),
+            (r'[a-z_][\w.]*=?|[-+*/%]', Name, '#pop'),
+            (r'::\s*[a-z_][\w.]*', Name.Label),
             (r',', Punctuation),
             include('whitespacecomments'),
         ],
@@ -3301,13 +4039,13 @@ class LassoLexer(RegexLexer):
             (r'(\)(?=(\s*::\s*[\w.]+)?\s*,))', Punctuation, '#pop'),
             (r'\)', Punctuation, '#pop:2'),
             (r'-?[a-z_][\w.]*', Name.Attribute),
-            (r'(::\s*)([a-z_][\w.]*)', bygroups(Punctuation, Name.Label)),
+            (r'::\s*[a-z_][\w.]*', Name.Label),
             (r'\.\.\.', Name.Builtin.Pseudo),
             (r'[(,]', Punctuation),
             include('whitespacecomments'),
         ],
         'commamember': [
-            (r'(([a-z_][\w.]*=?|[-+*/%<>]|==)'
+            (r'(([a-z_][\w.]*=?|[-+*/%])'
              r'(?=\s*(\(([^()]*\([^()]*\))*[^)]*\)\s*)?(::[\w.\s]+)?=>))',
                 Name.Function, 'signature'),
             include('whitespacecomments'),
@@ -3325,9 +4063,9 @@ class LassoLexer(RegexLexer):
         self._members = set()
         if self.builtinshighlighting:
             from pygments.lexers._lassobuiltins import BUILTINS, MEMBERS
-            for key, value in BUILTINS.iteritems():
+            for key, value in iteritems(BUILTINS):
                 self._builtins.update(value)
-            for key, value in MEMBERS.iteritems():
+            for key, value in iteritems(MEMBERS):
                 self._members.update(value)
         RegexLexer.__init__(self, **options)
 
@@ -3338,7 +4076,8 @@ class LassoLexer(RegexLexer):
         for index, token, value in \
             RegexLexer.get_tokens_unprocessed(self, text, stack):
             if (token is Name.Other and value.lower() in self._builtins or
-                token is Name.Other.Member and value.lower() in self._members):
+                    token is Name.Other.Member and
+                    value.lower().rstrip('=') in self._members):
                 yield index, Name.Builtin, value
                 continue
             yield index, token, value
@@ -3360,14 +4099,14 @@ class QmlLexer(RegexLexer):
     """
     For QML files. See http://doc.qt.digia.com/4.7/qdeclarativeintroduction.html.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     # QML is based on javascript, so much of this is taken from the
     # JavascriptLexer above.
 
     name = 'QML'
-    aliases = ['qml', 'Qt Meta Language', 'Qt modeling Language']
+    aliases = ['qml']
     filenames = ['*.qml',]
     mimetypes = [ 'application/x-qml',]
 
@@ -3425,5 +4164,177 @@ class QmlLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
+        ]
+    }
+
+
+class CirruLexer(RegexLexer):
+    """
+    Syntax rules of Cirru can be found at:
+    http://grammar.cirru.org/
+
+    * using ``()`` to markup blocks, but limited in the same line
+    * using ``""`` to markup strings, allow ``\`` to escape
+    * using ``$`` as a shorthand for ``()`` till indentation end or ``)``
+    * using indentations for create nesting
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'Cirru'
+    aliases = ['cirru']
+    filenames = ['*.cirru', '*.cr']
+    mimetypes = ['text/x-cirru']
+    flags = re.MULTILINE
+
+    tokens = {
+        'string': [
+            (r'[^"\\\n]', String),
+            (r'\\', String.Escape, 'escape'),
+            (r'"', String, '#pop'),
+        ],
+        'escape': [
+            (r'.', String.Escape, '#pop'),
+        ],
+        'function': [
+            (r'[\w-][^\s\(\)\"]*', Name.Function, '#pop'),
+            (r'\)', Operator, '#pop'),
+            (r'(?=\n)', Text, '#pop'),
+            (r'\(', Operator, '#push'),
+            (r'"', String, ('#pop', 'string')),
+            (r'\s+', Text.Whitespace),
+            (r'\,', Operator, '#pop'),
+        ],
+        'line': [
+            (r'^\B', Text.Whitespace, 'function'),
+            (r'\$', Operator, 'function'),
+            (r'\(', Operator, 'function'),
+            (r'\)', Operator),
+            (r'(?=\n)', Text, '#pop'),
+            (r'\n', Text, '#pop'),
+            (r'"', String, 'string'),
+            (r'\s+', Text.Whitespace),
+            (r'[\d\.]+', Number),
+            (r'[\w-][^\"\(\)\s]*', Name.Variable),
+            (r'--', Comment.Single)
+        ],
+        'root': [
+            (r'^\s*', Text.Whitespace, ('line', 'function')),
+            (r'^\s+$', Text.Whitespace),
+        ]
+    }
+
+
+class MaskLexer(RegexLexer):
+    """
+    For `Mask <http://github.com/atmajs/MaskJS>`__ markup.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Mask'
+    aliases = ['mask']
+    filenames = ['*.mask']
+    mimetypes = ['text/x-mask']
+
+    flags = re.MULTILINE | re.IGNORECASE | re.DOTALL
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'[\{\};>]', Punctuation),
+            (r"'''", String, 'string-trpl-single'),
+            (r'"""', String, 'string-trpl-double'),
+            (r"'", String, 'string-single'),
+            (r'"', String, 'string-double'),
+            (r'([\w-]+)', Name.Tag, 'node'),
+            (r'([^\.#;{>\s]+)', Name.Class, 'node'),
+            (r'(#[\w_-]+)', Name.Function, 'node'),
+            (r'(\.[\w_-]+)', Name.Variable.Class, 'node')
+        ],
+        'string-base': [
+            (r'\\.', String.Escape),
+            (r'~\[', String.Interpol, 'interpolation'),
+            (r'.', String.Single),  
+        ],
+        'string-single':[
+            (r"'", String.Single, '#pop'),
+            include('string-base')
+        ],  
+        'string-double':[
+            (r'"', String.Single, '#pop'),
+            include('string-base')
+        ],
+        'string-trpl-single':[
+            (r"'''", String.Single, '#pop'),
+            include('string-base')
+        ],
+        'string-trpl-double':[
+            (r'"""', String.Single, '#pop'),
+            include('string-base')
+        ],
+        'interpolation': [
+            (r'\]', String.Interpol, '#pop'),
+            (r'\s*:', String.Interpol, 'expression'),
+            (r'\s*\w+:', Name.Other),
+            (r'[^\]]+', String.Interpol)
+        ],
+        'expression': [
+            (r'[^\]]+', using(JavascriptLexer), '#pop')
+        ],  
+        'node': [
+            (r'\s+', Text),
+            (r'\.', Name.Variable.Class, 'node-class'),
+            (r'\#', Name.Function, 'node-id'),
+            (r'style[ \t]*=', Name.Attribute, 'node-attr-style-value'),
+            (r'[\w_:-]+[ \t]*=', Name.Attribute, 'node-attr-value'),
+            (r'[\w_:-]+', Name.Attribute),
+            (r'[>{;]', Punctuation, '#pop')
+        ],  
+        'node-class': [
+            (r'[\w-]+', Name.Variable.Class),
+            (r'~\[', String.Interpol, 'interpolation'),
+            (r'', Text, '#pop')
+        ],
+        'node-id': [
+            (r'[\w-]+', Name.Function),
+            (r'~\[', String.Interpol, 'interpolation'),
+            (r'', Text, '#pop')
+        ],
+        'node-attr-value':[
+            (r'\s+', Text),
+            (r'[\w_]+', Name.Variable, '#pop'),
+            (r"'", String, 'string-single-pop2'),
+            (r'"', String, 'string-double-pop2'),
+            (r'', Text, '#pop')
+        ],
+        'node-attr-style-value':[
+            (r'\s+', Text),
+            (r"'", String.Single, 'css-single-end'),
+            (r'"', String.Single, 'css-double-end'),
+            include('node-attr-value')
+        ],
+        'css-base': [
+            (r'\s+', Text),
+            (r"[;]", Punctuation),
+            (r"[\w\-_]+\s*:", Name.Builtin)
+        ],
+        'css-single-end': [
+            include('css-base'),
+            (r"'", String.Single, '#pop:2'),
+            (r"[^;']+", Name.Entity)
+        ],
+        'css-double-end': [
+            include('css-base'),
+            (r'"', String.Single, '#pop:2'),
+            (r"[^;\"]+", Name.Entity)
+        ],  
+        'string-single-pop2':[
+            (r"'", String.Single, '#pop:2'),
+            include('string-base')
+        ],
+        'string-double-pop2':[
+            (r'"', String.Single, '#pop:2'),
+            include('string-base')
         ]
     }

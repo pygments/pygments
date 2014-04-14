@@ -5,9 +5,11 @@
 
     Lexers for math languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
+from __future__ import print_function
 
 import re
 
@@ -24,14 +26,14 @@ from pygments.lexers import _stan_builtins
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
            'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
            'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer',
-           'IDLLexer', 'RdLexer']
+           'IDLLexer', 'RdLexer', 'IgorLexer', 'MathematicaLexer', 'GAPLexer']
 
 
 class JuliaLexer(RegexLexer):
     """
     For `Julia <http://julialang.org/>`_ source code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Julia'
     aliases = ['julia','jl']
@@ -151,7 +153,7 @@ class JuliaConsoleLexer(Lexer):
     """
     For Julia console sessions. Modeled after MatlabSessionLexer.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Julia console'
     aliases = ['jlcon']
@@ -167,8 +169,8 @@ class JuliaConsoleLexer(Lexer):
 
             if line.startswith('julia>'):
                 insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, line[:3])]))
-                curcode += line[3:]
+                                   [(0, Generic.Prompt, line[:6])]))
+                curcode += line[6:]
 
             elif line.startswith('      '):
 
@@ -200,7 +202,7 @@ class MuPADLexer(RegexLexer):
     A `MuPAD <http://www.mupad.com>`_ lexer.
     Contributed by Christopher Creutzig <christopher@creutzig.de>.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
     name = 'MuPAD'
     aliases = ['mupad']
@@ -270,7 +272,7 @@ class MatlabLexer(RegexLexer):
     """
     For Matlab source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Matlab'
     aliases = ['matlab']
@@ -348,13 +350,13 @@ class MatlabLexer(RegexLexer):
 
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
-            (r'(?<=[\w\)\]])\'', Operator),
+            (r'(?<=[\w\)\].])\'+', Operator),
 
             (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'\d+', Number.Integer),
 
-            (r'(?<![\w\)\]])\'', String, 'string'),
+            (r'(?<![\w\)\].])\'', String, 'string'),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
         ],
@@ -376,10 +378,9 @@ class MatlabLexer(RegexLexer):
 
     def analyse_text(text):
         if re.match('^\s*%', text, re.M): # comment
-            return 0.9
+            return 0.2
         elif re.match('^!\w+', text, re.M): # system cmd
-            return 0.9
-        return 0.1
+            return 0.2
 
 
 line_re  = re.compile('.*?\n')
@@ -389,7 +390,7 @@ class MatlabSessionLexer(Lexer):
     For Matlab sessions.  Modeled after PythonConsoleLexer.
     Contributed by Ken Schutte <kschutte@csail.mit.edu>.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Matlab session'
     aliases = ['matlabsession']
@@ -403,17 +404,22 @@ class MatlabSessionLexer(Lexer):
         for match in line_re.finditer(text):
             line = match.group()
 
-            if line.startswith('>>'):
+            if line.startswith('>> '):
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:3])]))
                 curcode += line[3:]
+
+            elif line.startswith('>>'):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, line[:2])]))
+                curcode += line[2:]
 
             elif line.startswith('???'):
 
                 idx = len(curcode)
 
                 # without is showing error on same line as before...?
-                line = "\n" + line
+                #line = "\n" + line
                 token = (0, Generic.Traceback, line)
                 insertions.append((idx, [token]))
 
@@ -427,6 +433,7 @@ class MatlabSessionLexer(Lexer):
 
                 yield match.start(), Generic.Output, line
 
+        print(insertions)
         if curcode: # or item:
             for item in do_insertions(
                 insertions, mlexer.get_tokens_unprocessed(curcode)):
@@ -437,7 +444,7 @@ class OctaveLexer(RegexLexer):
     """
     For GNU Octave source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Octave'
     aliases = ['octave']
@@ -806,8 +813,8 @@ class OctaveLexer(RegexLexer):
 
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
-            (r'(?<=[\w\)\]])\'', Operator),
-            (r'(?<![\w\)\]])\'', String, 'string'),
+            (r'(?<=[\w\)\].])\'+', Operator),
+            (r'(?<![\w\)\].])\'', String, 'string'),
 
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
@@ -823,16 +830,12 @@ class OctaveLexer(RegexLexer):
         ],
     }
 
-    def analyse_text(text):
-        if re.match('^\s*[%#]', text, re.M): #Comment
-            return 0.1
-
 
 class ScilabLexer(RegexLexer):
     """
     For Scilab source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Scilab'
     aliases = ['scilab']
@@ -871,8 +874,8 @@ class ScilabLexer(RegexLexer):
 
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
-            (r'(?<=[\w\)\]])\'', Operator),
-            (r'(?<![\w\)\]])\'', String, 'string'),
+            (r'(?<=[\w\)\].])\'+', Operator),
+            (r'(?<![\w\)\].])\'', String, 'string'),
 
             (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
@@ -898,7 +901,7 @@ class NumPyLexer(PythonLexer):
     """
     A Python lexer recognizing Numerical Python builtins.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'NumPy'
@@ -983,6 +986,11 @@ class NumPyLexer(PythonLexer):
             else:
                 yield index, token, value
 
+    def analyse_text(text):
+        return (shebang_matches(text, r'pythonw?(2(\.\d)?)?') or
+                'import ' in text[:1000]) \
+            and ('import numpy' in text or 'from numpy import' in text)
+
 
 class RConsoleLexer(Lexer):
     """
@@ -1034,7 +1042,7 @@ class SLexer(RegexLexer):
     """
     For S, S-plus, and R source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'S'
@@ -1113,7 +1121,8 @@ class SLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return '<-' in text
+        if re.search(r'[a-z0-9_\])\s]<-(?!-)', text):
+            return 0.11
 
 
 class BugsLexer(RegexLexer):
@@ -1121,7 +1130,7 @@ class BugsLexer(RegexLexer):
     Pygments Lexer for `OpenBugs <http://www.openbugs.info/w/>`_ and WinBugs
     models.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'BUGS'
@@ -1216,7 +1225,7 @@ class JagsLexer(RegexLexer):
     """
     Pygments Lexer for JAGS.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'JAGS'
@@ -1300,13 +1309,13 @@ class JagsLexer(RegexLexer):
             return 0
 
 class StanLexer(RegexLexer):
-    """Pygments Lexer for Stan models. 
+    """Pygments Lexer for Stan models.
 
-    The Stan modeling language is specified in the *Stan 1.3.0
+    The Stan modeling language is specified in the *Stan 2.0.1
     Modeling Language Manual* `pdf
-    <http://code.google.com/p/stan/downloads/detail?name=stan-reference-1.3.0.pdf>`_.
+    <https://github.com/stan-dev/stan/releases/download/v2.0.1/stan-reference-2.0.1.pdf>`__
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Stan'
@@ -1379,7 +1388,7 @@ class IDLLexer(RegexLexer):
     """
     Pygments Lexer for IDL (Interactive Data Language).
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'IDL'
     aliases = ['idl']
@@ -1625,7 +1634,7 @@ class RdLexer(RegexLexer):
     Extensions <http://cran.r-project.org/doc/manuals/R-exts.html>`_
     and `Parsing Rd files <developer.r-project.org/parseRd.pdf>`_.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Rd'
     aliases = ['rd']
@@ -1653,3 +1662,363 @@ class RdLexer(RegexLexer):
             (r'.', Text),
             ]
         }
+
+
+class IgorLexer(RegexLexer):
+    """
+    Pygments Lexer for Igor Pro procedure files (.ipf).
+    See http://www.wavemetrics.com/ and http://www.igorexchange.com/.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'Igor'
+    aliases = ['igor', 'igorpro']
+    filenames = ['*.ipf']
+    mimetypes = ['text/ipf']
+
+    flags = re.IGNORECASE | re.MULTILINE
+
+    flowControl = [
+        'if', 'else', 'elseif', 'endif', 'for', 'endfor', 'strswitch', 'switch',
+        'case', 'default', 'endswitch', 'do', 'while', 'try', 'catch', 'endtry',
+        'break', 'continue', 'return',
+    ]
+    types = [
+        'variable', 'string', 'constant', 'strconstant', 'NVAR', 'SVAR', 'WAVE',
+        'STRUCT', 'dfref'
+    ]
+    keywords = [
+        'override', 'ThreadSafe', 'static',  'FuncFit', 'Proc', 'Picture',
+        'Prompt', 'DoPrompt', 'macro', 'window', 'graph', 'function', 'end',
+        'Structure', 'EndStructure', 'EndMacro', 'Menu', 'SubMenu', 'Prompt',
+        'DoPrompt',
+    ]
+    operations = [
+        'Abort', 'AddFIFOData', 'AddFIFOVectData', 'AddMovieAudio',
+        'AddMovieFrame', 'APMath', 'Append', 'AppendImage',
+        'AppendLayoutObject', 'AppendMatrixContour', 'AppendText',
+        'AppendToGraph', 'AppendToLayout', 'AppendToTable', 'AppendXYZContour',
+        'AutoPositionWindow', 'BackgroundInfo', 'Beep', 'BoundingBall',
+        'BrowseURL', 'BuildMenu', 'Button', 'cd', 'Chart', 'CheckBox',
+        'CheckDisplayed', 'ChooseColor', 'Close', 'CloseMovie', 'CloseProc',
+        'ColorScale', 'ColorTab2Wave', 'Concatenate', 'ControlBar',
+        'ControlInfo', 'ControlUpdate', 'ConvexHull', 'Convolve', 'CopyFile',
+        'CopyFolder', 'CopyScales', 'Correlate', 'CreateAliasShortcut', 'Cross',
+        'CtrlBackground', 'CtrlFIFO', 'CtrlNamedBackground', 'Cursor',
+        'CurveFit', 'CustomControl', 'CWT', 'Debugger', 'DebuggerOptions',
+        'DefaultFont', 'DefaultGuiControls', 'DefaultGuiFont', 'DefineGuide',
+        'DelayUpdate', 'DeleteFile', 'DeleteFolder', 'DeletePoints',
+        'Differentiate', 'dir', 'Display', 'DisplayHelpTopic',
+        'DisplayProcedure', 'DoAlert', 'DoIgorMenu', 'DoUpdate', 'DoWindow',
+        'DoXOPIdle', 'DrawAction', 'DrawArc', 'DrawBezier', 'DrawLine',
+        'DrawOval', 'DrawPICT', 'DrawPoly', 'DrawRect', 'DrawRRect', 'DrawText',
+        'DSPDetrend', 'DSPPeriodogram', 'Duplicate', 'DuplicateDataFolder',
+        'DWT', 'EdgeStats', 'Edit', 'ErrorBars', 'Execute', 'ExecuteScriptText',
+        'ExperimentModified', 'Extract', 'FastGaussTransform', 'FastOp',
+        'FBinRead', 'FBinWrite', 'FFT', 'FIFO2Wave', 'FIFOStatus', 'FilterFIR',
+        'FilterIIR', 'FindLevel', 'FindLevels', 'FindPeak', 'FindPointsInPoly',
+        'FindRoots', 'FindSequence', 'FindValue', 'FPClustering', 'fprintf',
+        'FReadLine', 'FSetPos', 'FStatus', 'FTPDelete', 'FTPDownload',
+        'FTPUpload', 'FuncFit', 'FuncFitMD', 'GetAxis', 'GetFileFolderInfo',
+        'GetLastUserMenuInfo', 'GetMarquee', 'GetSelection', 'GetWindow',
+        'GraphNormal', 'GraphWaveDraw', 'GraphWaveEdit', 'Grep', 'GroupBox',
+        'Hanning', 'HideIgorMenus', 'HideInfo', 'HideProcedures', 'HideTools',
+        'HilbertTransform', 'Histogram', 'IFFT', 'ImageAnalyzeParticles',
+        'ImageBlend', 'ImageBoundaryToMask', 'ImageEdgeDetection',
+        'ImageFileInfo', 'ImageFilter', 'ImageFocus', 'ImageGenerateROIMask',
+        'ImageHistModification', 'ImageHistogram', 'ImageInterpolate',
+        'ImageLineProfile', 'ImageLoad', 'ImageMorphology', 'ImageRegistration',
+        'ImageRemoveBackground', 'ImageRestore', 'ImageRotate', 'ImageSave',
+        'ImageSeedFill', 'ImageSnake', 'ImageStats', 'ImageThreshold',
+        'ImageTransform', 'ImageUnwrapPhase', 'ImageWindow', 'IndexSort',
+        'InsertPoints', 'Integrate', 'IntegrateODE', 'Interp3DPath',
+        'Interpolate3D', 'KillBackground', 'KillControl', 'KillDataFolder',
+        'KillFIFO', 'KillFreeAxis', 'KillPath', 'KillPICTs', 'KillStrings',
+        'KillVariables', 'KillWaves', 'KillWindow', 'KMeans', 'Label', 'Layout',
+        'Legend', 'LinearFeedbackShiftRegister', 'ListBox', 'LoadData',
+        'LoadPackagePreferences', 'LoadPICT', 'LoadWave', 'Loess',
+        'LombPeriodogram', 'Make', 'MakeIndex', 'MarkPerfTestTime',
+        'MatrixConvolve', 'MatrixCorr', 'MatrixEigenV', 'MatrixFilter',
+        'MatrixGaussJ', 'MatrixInverse', 'MatrixLinearSolve',
+        'MatrixLinearSolveTD', 'MatrixLLS', 'MatrixLUBkSub', 'MatrixLUD',
+        'MatrixMultiply', 'MatrixOP', 'MatrixSchur', 'MatrixSolve',
+        'MatrixSVBkSub', 'MatrixSVD', 'MatrixTranspose', 'MeasureStyledText',
+        'Modify', 'ModifyContour', 'ModifyControl', 'ModifyControlList',
+        'ModifyFreeAxis', 'ModifyGraph', 'ModifyImage', 'ModifyLayout',
+        'ModifyPanel', 'ModifyTable', 'ModifyWaterfall', 'MoveDataFolder',
+        'MoveFile', 'MoveFolder', 'MoveString', 'MoveSubwindow', 'MoveVariable',
+        'MoveWave', 'MoveWindow', 'NeuralNetworkRun', 'NeuralNetworkTrain',
+        'NewDataFolder', 'NewFIFO', 'NewFIFOChan', 'NewFreeAxis', 'NewImage',
+        'NewLayout', 'NewMovie', 'NewNotebook', 'NewPanel', 'NewPath',
+        'NewWaterfall', 'Note', 'Notebook', 'NotebookAction', 'Open',
+        'OpenNotebook', 'Optimize', 'ParseOperationTemplate', 'PathInfo',
+        'PauseForUser', 'PauseUpdate', 'PCA', 'PlayMovie', 'PlayMovieAction',
+        'PlaySnd', 'PlaySound', 'PopupContextualMenu', 'PopupMenu',
+        'Preferences', 'PrimeFactors', 'Print', 'printf', 'PrintGraphs',
+        'PrintLayout', 'PrintNotebook', 'PrintSettings', 'PrintTable',
+        'Project', 'PulseStats', 'PutScrapText', 'pwd', 'Quit',
+        'RatioFromNumber', 'Redimension', 'Remove', 'RemoveContour',
+        'RemoveFromGraph', 'RemoveFromLayout', 'RemoveFromTable', 'RemoveImage',
+        'RemoveLayoutObjects', 'RemovePath', 'Rename', 'RenameDataFolder',
+        'RenamePath', 'RenamePICT', 'RenameWindow', 'ReorderImages',
+        'ReorderTraces', 'ReplaceText', 'ReplaceWave', 'Resample',
+        'ResumeUpdate', 'Reverse', 'Rotate', 'Save', 'SaveData',
+        'SaveExperiment', 'SaveGraphCopy', 'SaveNotebook',
+        'SavePackagePreferences', 'SavePICT', 'SaveTableCopy',
+        'SetActiveSubwindow', 'SetAxis', 'SetBackground', 'SetDashPattern',
+        'SetDataFolder', 'SetDimLabel', 'SetDrawEnv', 'SetDrawLayer',
+        'SetFileFolderInfo', 'SetFormula', 'SetIgorHook', 'SetIgorMenuMode',
+        'SetIgorOption', 'SetMarquee', 'SetProcessSleep', 'SetRandomSeed',
+        'SetScale', 'SetVariable', 'SetWaveLock', 'SetWindow', 'ShowIgorMenus',
+        'ShowInfo', 'ShowTools', 'Silent', 'Sleep', 'Slider', 'Smooth',
+        'SmoothCustom', 'Sort', 'SoundInRecord', 'SoundInSet',
+        'SoundInStartChart', 'SoundInStatus', 'SoundInStopChart',
+        'SphericalInterpolate', 'SphericalTriangulate', 'SplitString',
+        'sprintf', 'sscanf', 'Stack', 'StackWindows',
+        'StatsAngularDistanceTest', 'StatsANOVA1Test', 'StatsANOVA2NRTest',
+        'StatsANOVA2RMTest', 'StatsANOVA2Test', 'StatsChiTest',
+        'StatsCircularCorrelationTest', 'StatsCircularMeans',
+        'StatsCircularMoments', 'StatsCircularTwoSampleTest',
+        'StatsCochranTest', 'StatsContingencyTable', 'StatsDIPTest',
+        'StatsDunnettTest', 'StatsFriedmanTest', 'StatsFTest',
+        'StatsHodgesAjneTest', 'StatsJBTest', 'StatsKendallTauTest',
+        'StatsKSTest', 'StatsKWTest', 'StatsLinearCorrelationTest',
+        'StatsLinearRegression', 'StatsMultiCorrelationTest',
+        'StatsNPMCTest', 'StatsNPNominalSRTest', 'StatsQuantiles',
+        'StatsRankCorrelationTest', 'StatsResample', 'StatsSample',
+        'StatsScheffeTest', 'StatsSignTest', 'StatsSRTest', 'StatsTTest',
+        'StatsTukeyTest', 'StatsVariancesTest', 'StatsWatsonUSquaredTest',
+        'StatsWatsonWilliamsTest', 'StatsWheelerWatsonTest',
+        'StatsWilcoxonRankTest', 'StatsWRCorrelationTest', 'String',
+        'StructGet', 'StructPut', 'TabControl', 'Tag', 'TextBox', 'Tile',
+        'TileWindows', 'TitleBox', 'ToCommandLine', 'ToolsGrid',
+        'Triangulate3d', 'Unwrap', 'ValDisplay', 'Variable', 'WaveMeanStdv',
+        'WaveStats', 'WaveTransform', 'wfprintf', 'WignerTransform',
+        'WindowFunction',
+    ]
+    functions = [
+        'abs', 'acos', 'acosh', 'AiryA', 'AiryAD', 'AiryB', 'AiryBD', 'alog',
+        'area', 'areaXY', 'asin', 'asinh', 'atan', 'atan2', 'atanh',
+        'AxisValFromPixel', 'Besseli', 'Besselj', 'Besselk', 'Bessely', 'bessi',
+        'bessj', 'bessk', 'bessy', 'beta', 'betai', 'BinarySearch',
+        'BinarySearchInterp', 'binomial', 'binomialln', 'binomialNoise', 'cabs',
+        'CaptureHistoryStart', 'ceil', 'cequal', 'char2num', 'chebyshev',
+        'chebyshevU', 'CheckName', 'cmplx', 'cmpstr', 'conj', 'ContourZ', 'cos',
+        'cosh', 'cot', 'CountObjects', 'CountObjectsDFR', 'cpowi',
+        'CreationDate', 'csc', 'DataFolderExists', 'DataFolderRefsEqual',
+        'DataFolderRefStatus', 'date2secs', 'datetime', 'DateToJulian',
+        'Dawson', 'DDEExecute', 'DDEInitiate', 'DDEPokeString', 'DDEPokeWave',
+        'DDERequestWave', 'DDEStatus', 'DDETerminate', 'deltax', 'digamma',
+        'DimDelta', 'DimOffset', 'DimSize', 'ei', 'enoise', 'equalWaves', 'erf',
+        'erfc', 'exists', 'exp', 'expInt', 'expNoise', 'factorial', 'fakedata',
+        'faverage', 'faverageXY', 'FindDimLabel', 'FindListItem', 'floor',
+        'FontSizeHeight', 'FontSizeStringWidth', 'FresnelCos', 'FresnelSin',
+        'gamma', 'gammaInc', 'gammaNoise', 'gammln', 'gammp', 'gammq', 'Gauss',
+        'Gauss1D', 'Gauss2D', 'gcd', 'GetDefaultFontSize',
+        'GetDefaultFontStyle', 'GetKeyState', 'GetRTError', 'gnoise',
+        'GrepString', 'hcsr', 'hermite', 'hermiteGauss', 'HyperG0F1',
+        'HyperG1F1', 'HyperG2F1', 'HyperGNoise', 'HyperGPFQ', 'IgorVersion',
+        'ilim', 'imag', 'Inf', 'Integrate1D', 'interp', 'Interp2D', 'Interp3D',
+        'inverseERF', 'inverseERFC', 'ItemsInList', 'jlim', 'Laguerre',
+        'LaguerreA', 'LaguerreGauss', 'leftx', 'LegendreA', 'limit', 'ln',
+        'log', 'logNormalNoise', 'lorentzianNoise', 'magsqr', 'MandelbrotPoint',
+        'MarcumQ', 'MatrixDet', 'MatrixDot', 'MatrixRank', 'MatrixTrace', 'max',
+        'mean', 'min', 'mod', 'ModDate', 'NaN', 'norm', 'NumberByKey',
+        'numpnts', 'numtype', 'NumVarOrDefault', 'NVAR_Exists', 'p2rect',
+        'ParamIsDefault', 'pcsr', 'Pi', 'PixelFromAxisVal', 'pnt2x',
+        'poissonNoise', 'poly', 'poly2D', 'PolygonArea', 'qcsr', 'r2polar',
+        'real', 'rightx', 'round', 'sawtooth', 'ScreenResolution', 'sec',
+        'SelectNumber', 'sign', 'sin', 'sinc', 'sinh', 'SphericalBessJ',
+        'SphericalBessJD', 'SphericalBessY', 'SphericalBessYD',
+        'SphericalHarmonics', 'sqrt', 'StartMSTimer', 'StatsBetaCDF',
+        'StatsBetaPDF', 'StatsBinomialCDF', 'StatsBinomialPDF',
+        'StatsCauchyCDF', 'StatsCauchyPDF', 'StatsChiCDF', 'StatsChiPDF',
+        'StatsCMSSDCDF', 'StatsCorrelation', 'StatsDExpCDF', 'StatsDExpPDF',
+        'StatsErlangCDF', 'StatsErlangPDF', 'StatsErrorPDF', 'StatsEValueCDF',
+        'StatsEValuePDF', 'StatsExpCDF', 'StatsExpPDF', 'StatsFCDF',
+        'StatsFPDF', 'StatsFriedmanCDF', 'StatsGammaCDF', 'StatsGammaPDF',
+        'StatsGeometricCDF', 'StatsGeometricPDF', 'StatsHyperGCDF',
+        'StatsHyperGPDF', 'StatsInvBetaCDF', 'StatsInvBinomialCDF',
+        'StatsInvCauchyCDF', 'StatsInvChiCDF', 'StatsInvCMSSDCDF',
+        'StatsInvDExpCDF', 'StatsInvEValueCDF', 'StatsInvExpCDF',
+        'StatsInvFCDF', 'StatsInvFriedmanCDF', 'StatsInvGammaCDF',
+        'StatsInvGeometricCDF', 'StatsInvKuiperCDF', 'StatsInvLogisticCDF',
+        'StatsInvLogNormalCDF', 'StatsInvMaxwellCDF', 'StatsInvMooreCDF',
+        'StatsInvNBinomialCDF', 'StatsInvNCChiCDF', 'StatsInvNCFCDF',
+        'StatsInvNormalCDF', 'StatsInvParetoCDF', 'StatsInvPoissonCDF',
+        'StatsInvPowerCDF', 'StatsInvQCDF', 'StatsInvQpCDF',
+        'StatsInvRayleighCDF', 'StatsInvRectangularCDF', 'StatsInvSpearmanCDF',
+        'StatsInvStudentCDF', 'StatsInvTopDownCDF', 'StatsInvTriangularCDF',
+        'StatsInvUsquaredCDF', 'StatsInvVonMisesCDF', 'StatsInvWeibullCDF',
+        'StatsKuiperCDF', 'StatsLogisticCDF', 'StatsLogisticPDF',
+        'StatsLogNormalCDF', 'StatsLogNormalPDF', 'StatsMaxwellCDF',
+        'StatsMaxwellPDF', 'StatsMedian', 'StatsMooreCDF', 'StatsNBinomialCDF',
+        'StatsNBinomialPDF', 'StatsNCChiCDF', 'StatsNCChiPDF', 'StatsNCFCDF',
+        'StatsNCFPDF', 'StatsNCTCDF', 'StatsNCTPDF', 'StatsNormalCDF',
+        'StatsNormalPDF', 'StatsParetoCDF', 'StatsParetoPDF', 'StatsPermute',
+        'StatsPoissonCDF', 'StatsPoissonPDF', 'StatsPowerCDF',
+        'StatsPowerNoise', 'StatsPowerPDF', 'StatsQCDF', 'StatsQpCDF',
+        'StatsRayleighCDF', 'StatsRayleighPDF', 'StatsRectangularCDF',
+        'StatsRectangularPDF', 'StatsRunsCDF', 'StatsSpearmanRhoCDF',
+        'StatsStudentCDF', 'StatsStudentPDF', 'StatsTopDownCDF',
+        'StatsTriangularCDF', 'StatsTriangularPDF', 'StatsTrimmedMean',
+        'StatsUSquaredCDF', 'StatsVonMisesCDF', 'StatsVonMisesNoise',
+        'StatsVonMisesPDF', 'StatsWaldCDF', 'StatsWaldPDF', 'StatsWeibullCDF',
+        'StatsWeibullPDF', 'StopMSTimer', 'str2num', 'stringCRC', 'stringmatch',
+        'strlen', 'strsearch', 'StudentA', 'StudentT', 'sum', 'SVAR_Exists',
+        'TagVal', 'tan', 'tanh', 'ThreadGroupCreate', 'ThreadGroupRelease',
+        'ThreadGroupWait', 'ThreadProcessorCount', 'ThreadReturnValue', 'ticks',
+        'trunc', 'Variance', 'vcsr', 'WaveCRC', 'WaveDims', 'WaveExists',
+        'WaveMax', 'WaveMin', 'WaveRefsEqual', 'WaveType', 'WhichListItem',
+        'WinType', 'WNoise', 'x', 'x2pnt', 'xcsr', 'y', 'z', 'zcsr', 'ZernikeR',
+    ]
+    functions += [
+        'AddListItem', 'AnnotationInfo', 'AnnotationList', 'AxisInfo',
+        'AxisList', 'CaptureHistory', 'ChildWindowList', 'CleanupName',
+        'ContourInfo', 'ContourNameList', 'ControlNameList', 'CsrInfo',
+        'CsrWave', 'CsrXWave', 'CTabList', 'DataFolderDir', 'date',
+        'DDERequestString', 'FontList', 'FuncRefInfo', 'FunctionInfo',
+        'FunctionList', 'FunctionPath', 'GetDataFolder', 'GetDefaultFont',
+        'GetDimLabel', 'GetErrMessage', 'GetFormula',
+        'GetIndependentModuleName', 'GetIndexedObjName', 'GetIndexedObjNameDFR',
+        'GetRTErrMessage', 'GetRTStackInfo', 'GetScrapText', 'GetUserData',
+        'GetWavesDataFolder', 'GrepList', 'GuideInfo', 'GuideNameList', 'Hash',
+        'IgorInfo', 'ImageInfo', 'ImageNameList', 'IndexedDir', 'IndexedFile',
+        'JulianToDate', 'LayoutInfo', 'ListMatch', 'LowerStr', 'MacroList',
+        'NameOfWave', 'note', 'num2char', 'num2istr', 'num2str',
+        'OperationList', 'PadString', 'ParseFilePath', 'PathList', 'PICTInfo',
+        'PICTList', 'PossiblyQuoteName', 'ProcedureText', 'RemoveByKey',
+        'RemoveEnding', 'RemoveFromList', 'RemoveListItem',
+        'ReplaceNumberByKey', 'ReplaceString', 'ReplaceStringByKey',
+        'Secs2Date', 'Secs2Time', 'SelectString', 'SortList',
+        'SpecialCharacterInfo', 'SpecialCharacterList', 'SpecialDirPath',
+        'StringByKey', 'StringFromList', 'StringList', 'StrVarOrDefault',
+        'TableInfo', 'TextFile', 'ThreadGroupGetDF', 'time', 'TraceFromPixel',
+        'TraceInfo', 'TraceNameList', 'UniqueName', 'UnPadString', 'UpperStr',
+        'VariableList', 'WaveInfo', 'WaveList', 'WaveName', 'WaveUnits',
+        'WinList', 'WinName', 'WinRecreation', 'XWaveName',
+        'ContourNameToWaveRef', 'CsrWaveRef', 'CsrXWaveRef',
+        'ImageNameToWaveRef', 'NewFreeWave', 'TagWaveRef', 'TraceNameToWaveRef',
+        'WaveRefIndexed', 'XWaveRefFromTrace', 'GetDataFolderDFR',
+        'GetWavesDataFolderDFR', 'NewFreeDataFolder', 'ThreadGroupGetDFR',
+    ]
+
+    tokens = {
+        'root': [
+            (r'//.*$', Comment.Single),
+            (r'"([^"\\]|\\.)*"', String),
+            # Flow Control.
+            (r'\b(%s)\b' % '|'.join(flowControl), Keyword),
+            # Types.
+            (r'\b(%s)\b' % '|'.join(types), Keyword.Type),
+            # Keywords.
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword.Reserved),
+            # Built-in operations.
+            (r'\b(%s)\b' % '|'.join(operations), Name.Class),
+            # Built-in functions.
+            (r'\b(%s)\b' % '|'.join(functions), Name.Function),
+            # Compiler directives.
+            (r'^#(include|pragma|define|ifdef|ifndef|endif)',
+             Name.Decorator),
+            (r'[^a-zA-Z"/]+$', Text),
+            (r'.', Text),
+        ],
+    }
+
+
+class MathematicaLexer(RegexLexer):
+    """
+    Lexer for `Mathematica <http://www.wolfram.com/mathematica/>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Mathematica'
+    aliases = ['mathematica', 'mma', 'nb']
+    filenames = ['*.nb', '*.cdf', '*.nbp', '*.ma']
+    mimetypes = ['application/mathematica',
+                 'application/vnd.wolfram.mathematica',
+                 'application/vnd.wolfram.mathematica.package',
+                 'application/vnd.wolfram.cdf']
+
+    # http://reference.wolfram.com/mathematica/guide/Syntax.html
+    operators = [
+        ";;", "=", "=.", "!=" "==", ":=", "->", ":>", "/.", "+", "-", "*", "/",
+        "^", "&&", "||", "!", "<>", "|", "/;", "?", "@", "//", "/@", "@@",
+        "@@@", "~~", "===", "&"]
+    operators.sort(reverse=True)
+
+    punctuation = [",", ";", "(", ")", "[", "]", "{", "}"]
+
+    def _multi_escape(entries):
+        return '(%s)' % ('|'.join(re.escape(entry) for entry in entries))
+
+    tokens = {
+        'root': [
+            (r'(?s)\(\*.*?\*\)', Comment),
+
+            (r'([a-zA-Z]+[A-Za-z0-9]*`)', Name.Namespace),
+            (r'([A-Za-z0-9]*_+[A-Za-z0-9]*)', Name.Variable),
+            (r'#\d*', Name.Variable),
+            (r'([a-zA-Z]+[a-zA-Z0-9]*)', Name),
+
+            (r'-?[0-9]+\.[0-9]*', Number.Float),
+            (r'-?[0-9]*\.[0-9]+', Number.Float),
+            (r'-?[0-9]+', Number.Integer),
+
+            (_multi_escape(operators), Operator),
+            (_multi_escape(punctuation), Punctuation),
+            (r'".*?"', String),
+            (r'\s+', Text.Whitespace),
+        ],
+    }
+
+class GAPLexer(RegexLexer):
+    """
+    For `GAP <http://www.gap-system.org>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'GAP'
+    aliases = ['gap']
+    filenames = ['*.g', '*.gd', '*.gi', '*.gap']
+
+    tokens = {
+      'root' : [
+        (r'#.*$', Comment.Single),
+        (r'"(?:[^"\\]|\\.)*"', String),
+        (r'\(|\)|\[|\]|\{|\}', Punctuation),
+        (r'''(?x)\b(?:
+            if|then|elif|else|fi|
+            for|while|do|od|
+            repeat|until|
+            break|continue|
+            function|local|return|end|
+            rec|
+            quit|QUIT|
+            IsBound|Unbind|
+            TryNextMethod|
+            Info|Assert
+          )\b''', Keyword),
+        (r'''(?x)\b(?:
+            true|false|fail|infinity
+          )\b''',
+          Name.Constant),
+        (r'''(?x)\b(?:
+            (Declare|Install)([A-Z][A-Za-z]+)|
+               BindGlobal|BIND_GLOBAL
+          )\b''',
+          Name.Builtin),
+        (r'\.|,|:=|;|=|\+|-|\*|/|\^|>|<', Operator),
+        (r'''(?x)\b(?:
+            and|or|not|mod|in
+          )\b''',
+          Operator.Word),
+        (r'''(?x)
+          (?:[a-zA-Z_0-9]+|`[^`]*`)
+          (?:::[a-zA-Z_0-9]+|`[^`]*`)*''', Name.Variable),
+        (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
+        (r'\.[0-9]+(?:e[0-9]+)?', Number),
+        (r'.', Text)
+      ]
+    }
