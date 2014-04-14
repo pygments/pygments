@@ -311,7 +311,7 @@ LEXERS = {
     'TeaTemplateLexer': ('pygments.lexers.templates', 'Tea', ('tea',), ('*.tea',), ('text/x-tea',)),
     'TexLexer': ('pygments.lexers.text', 'TeX', ('tex', 'latex'), ('*.tex', '*.aux', '*.toc'), ('text/x-tex', 'text/x-latex')),
     'TextLexer': ('pygments.lexers.special', 'Text only', ('text',), ('*.txt',), ('text/plain',)),
-    'TodotxtLexer': ('pygments.lexers.text', 'Todotxt', ('todotxt',), ('todo.txt', '*.todotxt'), ()),
+    'TodotxtLexer': ('pygments.lexers.text', 'Todotxt', ('todotxt',), ('todo.txt', '*.todotxt'), ('text/x-todo',)),
     'TreetopLexer': ('pygments.lexers.parsers', 'Treetop', ('treetop',), ('*.treetop', '*.tt'), ()),
     'TypeScriptLexer': ('pygments.lexers.web', 'TypeScript', ('ts',), ('*.ts',), ('text/x-typescript',)),
     'UrbiscriptLexer': ('pygments.lexers.other', 'UrbiScript', ('urbiscript',), ('*.u',), ('application/x-urbiscript',)),
