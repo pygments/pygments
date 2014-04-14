@@ -3969,9 +3969,14 @@ class APLLexer(RegexLexer):
     }
 
 class AmbientTalkLexer(RegexLexer):
+    """
+    Lexer for `AmbientTalk <https://code.google.com/p/ambienttalk>`_ source code.
+
+    .. versionadded:: 2.0
+    """
     name = 'AmbientTalk'
     filenames = ['*.at']
-    aliases = ['AT', 'ambienttalk', 'AmbientTalk/2', 'ambienttalk/2', 'AT/2']
+    aliases = ['at', 'ambienttalk', 'ambienttalk/2']
     mimetypes = ['text/x-ambienttalk']
 
     flags = re.MULTILINE | re.DOTALL
