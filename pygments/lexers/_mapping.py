@@ -129,6 +129,7 @@ LEXERS = {
     'GherkinLexer': ('pygments.lexers.other', 'Gherkin', ('cucumber', 'gherkin'), ('*.feature',), ('text/x-gherkin',)),
     'GnuplotLexer': ('pygments.lexers.other', 'Gnuplot', ('gnuplot',), ('*.plot', '*.plt'), ('text/x-gnuplot',)),
     'GoLexer': ('pygments.lexers.compiled', 'Go', ('go',), ('*.go',), ('text/x-gosrc',)),
+    'GoloLexer': ('pygments.lexers.jvm', 'Golo', ('golo',), ('*.golo',), ()),
     'GoodDataCLLexer': ('pygments.lexers.other', 'GoodData-CL', ('gooddata-cl',), ('*.gdc',), ('text/x-gooddata-cl',)),
     'GosuLexer': ('pygments.lexers.jvm', 'Gosu', ('gosu',), ('*.gs', '*.gsx', '*.gsp', '*.vark'), ('text/x-gosu',)),
     'GosuTemplateLexer': ('pygments.lexers.jvm', 'Gosu Template', ('gst',), ('*.gst',), ('text/x-gosu-template',)),
@@ -173,6 +174,7 @@ LEXERS = {
     'KconfigLexer': ('pygments.lexers.other', 'Kconfig', ('kconfig', 'menuconfig', 'linux-config', 'kernel-config'), ('Kconfig', '*Config.in*', 'external.in*', 'standard-modules.in'), ('text/x-kconfig',)),
     'KokaLexer': ('pygments.lexers.functional', 'Koka', ('koka',), ('*.kk', '*.kki'), ('text/x-koka',)),
     'KotlinLexer': ('pygments.lexers.jvm', 'Kotlin', ('kotlin',), ('*.kt',), ('text/x-kotlin',)),
+    'LSLLexer': ('pygments.lexers.other', 'LSL', ('lsl',), ('*.lsl',), ('text/x-lsl',)),
     'LassoCssLexer': ('pygments.lexers.templates', 'CSS+Lasso', ('css+lasso',), (), ('text/css+lasso',)),
     'LassoHtmlLexer': ('pygments.lexers.templates', 'HTML+Lasso', ('html+lasso',), (), ('text/html+lasso', 'application/x-httpd-lasso', 'application/x-httpd-lasso[89]')),
     'LassoJavascriptLexer': ('pygments.lexers.templates', 'JavaScript+Lasso', ('js+lasso', 'javascript+lasso'), (), ('application/x-javascript+lasso', 'text/x-javascript+lasso', 'text/javascript+lasso')),
@@ -330,6 +332,7 @@ LEXERS = {
     'XsltLexer': ('pygments.lexers.web', 'XSLT', ('xslt',), ('*.xsl', '*.xslt', '*.xpl'), ('application/xsl+xml', 'application/xslt+xml')),
     'XtendLexer': ('pygments.lexers.jvm', 'Xtend', ('xtend',), ('*.xtend',), ('text/x-xtend',)),
     'YamlLexer': ('pygments.lexers.text', 'YAML', ('yaml',), ('*.yaml', '*.yml'), ('text/x-yaml',)),
+    'ZephirLexer': ('pygments.lexers.web', 'Zephir', ('zephir',), ('*.zep',), ()),
 }
 
 if __name__ == '__main__':

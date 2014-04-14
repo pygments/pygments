@@ -82,6 +82,7 @@ Programming languages
 * Visual Basic.NET
 * Visual FoxPro
 * XQuery
+* Zephir
   </ul>
 
 Template languages
