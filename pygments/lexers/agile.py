@@ -5,7 +5,7 @@
 
     Lexers for agile languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -15,7 +15,7 @@ from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, \
      LexerContext, include, combined, do_insertions, bygroups, using, this
 from pygments.token import Error, Text, Other, \
      Comment, Operator, Keyword, Name, String, Number, Generic, Punctuation
-from pygments.util import get_bool_opt, get_list_opt, shebang_matches
+from pygments.util import get_bool_opt, get_list_opt, shebang_matches, iteritems
 from pygments import unistring as uni
 
 
@@ -23,7 +23,7 @@ __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python3Lexer', 'Python3TracebackLexer', 'RubyLexer',
            'RubyConsoleLexer', 'PerlLexer', 'LuaLexer', 'MoonScriptLexer',
            'CrocLexer', 'MiniDLexer', 'IoLexer', 'TclLexer', 'FactorLexer',
-           'FancyLexer', 'DgLexer', 'Perl6Lexer']
+           'FancyLexer', 'DgLexer', 'Perl6Lexer', 'HyLexer']
 
 # b/w compatibility
 from pygments.lexers.functional import SchemeLexer
@@ -109,6 +109,7 @@ class PythonLexer(RegexLexer):
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
             (r'0[0-7]+j?', Number.Oct),
+            (r'0[bB][01]+', Number.Bin),
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),
             (r'\d+j?', Number.Integer)
@@ -193,7 +194,7 @@ class Python3Lexer(RegexLexer):
     """
     For `Python <http://www.python.org>`_ source code (version 3.0).
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'Python 3'
@@ -307,7 +308,8 @@ class PythonConsoleLexer(Lexer):
 
     `python3`
         Use Python 3 lexer for code.  Default is ``False``.
-        *New in Pygments 1.0.*
+
+        .. versionadded:: 1.0
     """
     name = 'Python console session'
     aliases = ['pycon']
@@ -352,7 +354,7 @@ class PythonConsoleLexer(Lexer):
                     curcode = ''
                     insertions = []
                 if (line.startswith(u'Traceback (most recent call last):') or
-                    re.match(ur'  File "[^"]+", line \d+\n$', line)):
+                    re.match(u'  File "[^"]+", line \\d+\\n$', line)):
                     tb = 1
                     curtb = line
                     tbindex = match.start()
@@ -376,7 +378,7 @@ class PythonTracebackLexer(RegexLexer):
     """
     For Python tracebacks.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'Python Traceback'
@@ -413,7 +415,7 @@ class Python3TracebackLexer(RegexLexer):
     """
     For Python 3.0 tracebacks, with support for chained exceptions.
 
-    *New in Pygments 1.0.*
+    .. versionadded:: 1.0
     """
 
     name = 'Python 3.0 Traceback'
@@ -532,7 +534,7 @@ class RubyLexer(ExtendedRegexLexer):
             (r":'(\\\\|\\'|[^'])*'", String.Symbol),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r':"', String.Symbol, 'simple-sym'),
-            (r'([a-zA-Z_][a-zA-Z0-9]*)(:)(?!:)',
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)(?!:)',
              bygroups(String.Symbol, Punctuation)),  # Since Ruby 1.9
             (r'"', String.Double, 'simple-string'),
             (r'(?<!\.)`', String.Backtick, 'simple-backtick'),
@@ -848,7 +850,7 @@ class PerlLexer(RegexLexer):
 
     name = 'Perl'
     aliases = ['perl', 'pl']
-    filenames = ['*.pl', '*.pm']
+    filenames = ['*.pl', '*.pm', '*.t']
     mimetypes = ['text/x-perl', 'application/x-perl']
 
     flags = re.DOTALL | re.MULTILINE
@@ -1019,9 +1021,8 @@ class PerlLexer(RegexLexer):
     def analyse_text(text):
         if shebang_matches(text, r'perl'):
             return True
-        if 'my $' in text:
+        if re.search('(?:my|our)\s+[$@%(]', text):
             return 0.9
-        return 0.1 # who knows, might still be perl!
 
 
 class LuaLexer(RegexLexer):
@@ -1126,7 +1127,7 @@ class LuaLexer(RegexLexer):
         self._functions = set()
         if self.func_name_highlighting:
             from pygments.lexers._luabuiltins import MODULES
-            for mod, func in MODULES.iteritems():
+            for mod, func in iteritems(MODULES):
                 if mod not in self.disabled_modules:
                     self._functions.update(func)
         RegexLexer.__init__(self, **options)
@@ -1151,7 +1152,7 @@ class MoonScriptLexer(LuaLexer):
     """
     For `MoonScript <http://moonscript.org.org>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = "MoonScript"
@@ -1290,7 +1291,7 @@ class IoLexer(RegexLexer):
     For `Io <http://iolanguage.com/>`_ (a small, prototype-based
     programming language) source.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Io'
     filenames = ['*.io']
@@ -1336,7 +1337,7 @@ class TclLexer(RegexLexer):
     """
     For Tcl source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     keyword_cmds_re = (
@@ -1466,7 +1467,7 @@ class FactorLexer(RegexLexer):
     """
     Lexer for the `Factor <http://factorcode.org>`_ language.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'Factor'
     aliases = ['factor']
@@ -1476,232 +1477,272 @@ class FactorLexer(RegexLexer):
     flags = re.MULTILINE | re.UNICODE
 
     builtin_kernel = (
-        r'(?:or|2bi|2tri|while|wrapper|nip|4dip|wrapper\\?|bi\\*|'
-        r'callstack>array|both\\?|hashcode|die|dupd|callstack|'
-        r'callstack\\?|3dup|tri@|pick|curry|build|\\?execute|3bi|'
-        r'prepose|>boolean|\\?if|clone|eq\\?|tri\\*|\\?|=|swapd|'
-        r'2over|2keep|3keep|clear|2dup|when|not|tuple\\?|dup|2bi\\*|'
-        r'2tri\\*|call|tri-curry|object|bi@|do|unless\\*|if\\*|loop|'
-        r'bi-curry\\*|drop|when\\*|assert=|retainstack|assert\\?|-rot|'
-        r'execute|2bi@|2tri@|boa|with|either\\?|3drop|bi|curry\\?|'
-        r'datastack|until|3dip|over|3curry|tri-curry\\*|tri-curry@|swap|'
-        r'and|2nip|throw|bi-curry|\\(clone\\)|hashcode\\*|compose|2dip|if|3tri|'
-        r'unless|compose\\?|tuple|keep|2curry|equal\\?|assert|tri|2drop|'
-        r'most|<wrapper>|boolean\\?|identity-hashcode|identity-tuple\\?|'
-        r'null|new|dip|bi-curry@|rot|xor|identity-tuple|boolean)\s'
-        )
+        r'(?:-rot|2bi|2bi@|2bi\*|2curry|2dip|2drop|2dup|2keep|2nip|'
+        r'2over|2tri|2tri@|2tri\*|3bi|3curry|3dip|3drop|3dup|3keep|'
+        r'3tri|4dip|4drop|4dup|4keep|<wrapper>|=|>boolean|\(clone\)|'
+        r'\?|\?execute|\?if|and|assert|assert=|assert\?|bi|bi-curry|'
+        r'bi-curry@|bi-curry\*|bi@|bi\*|boa|boolean|boolean\?|both\?|'
+        r'build|call|callstack|callstack>array|callstack\?|clear|clone|'
+        r'compose|compose\?|curry|curry\?|datastack|die|dip|do|drop|'
+        r'dup|dupd|either\?|eq\?|equal\?|execute|hashcode|hashcode\*|'
+        r'identity-hashcode|identity-tuple|identity-tuple\?|if|if\*|'
+        r'keep|loop|most|new|nip|not|null|object|or|over|pick|prepose|'
+        r'retainstack|rot|same\?|swap|swapd|throw|tri|tri-curry|'
+        r'tri-curry@|tri-curry\*|tri@|tri\*|tuple|tuple\?|unless|'
+        r'unless\*|until|when|when\*|while|with|wrapper|wrapper\?|xor)\s'
+    )
 
     builtin_assocs = (
-        r'(?:\\?at|assoc\\?|assoc-clone-like|assoc=|delete-at\\*|'
-        r'assoc-partition|extract-keys|new-assoc|value\\?|assoc-size|'
-        r'map>assoc|push-at|assoc-like|key\\?|assoc-intersect|'
-        r'assoc-refine|update|assoc-union|assoc-combine|at\\*|'
-        r'assoc-empty\\?|at\\+|set-at|assoc-all\\?|assoc-subset\\?|'
-        r'assoc-hashcode|change-at|assoc-each|assoc-diff|zip|values|'
-        r'value-at|rename-at|inc-at|enum\\?|at|cache|assoc>map|<enum>|'
-        r'assoc|assoc-map|enum|value-at\\*|assoc-map-as|>alist|'
-        r'assoc-filter-as|clear-assoc|assoc-stack|maybe-set-at|'
-        r'substitute|assoc-filter|2cache|delete-at|assoc-find|keys|'
-        r'assoc-any\\?|unzip)\s'
-        )
+        r'(?:2cache|<enum>|>alist|\?at|\?of|assoc|assoc-all\?|'
+        r'assoc-any\?|assoc-clone-like|assoc-combine|assoc-diff|'
+        r'assoc-diff!|assoc-differ|assoc-each|assoc-empty\?|'
+        r'assoc-filter|assoc-filter!|assoc-filter-as|assoc-find|'
+        r'assoc-hashcode|assoc-intersect|assoc-like|assoc-map|'
+        r'assoc-map-as|assoc-partition|assoc-refine|assoc-size|'
+        r'assoc-stack|assoc-subset\?|assoc-union|assoc-union!|'
+        r'assoc=|assoc>map|assoc\?|at|at+|at\*|cache|change-at|'
+        r'clear-assoc|delete-at|delete-at\*|enum|enum\?|extract-keys|'
+        r'inc-at|key\?|keys|map>assoc|maybe-set-at|new-assoc|of|'
+        r'push-at|rename-at|set-at|sift-keys|sift-values|substitute|'
+        r'unzip|value-at|value-at\*|value\?|values|zip)\s'
+    )
 
     builtin_combinators = (
-        r'(?:case|execute-effect|no-cond|no-case\\?|3cleave>quot|2cleave|'
-        r'cond>quot|wrong-values\\?|no-cond\\?|cleave>quot|no-case|'
-        r'case>quot|3cleave|wrong-values|to-fixed-point|alist>quot|'
-        r'case-find|cond|cleave|call-effect|2cleave>quot|recursive-hashcode|'
-        r'linear-case-quot|spread|spread>quot)\s'
-        )
+        r'(?:2cleave|2cleave>quot|3cleave|3cleave>quot|4cleave|'
+        r'4cleave>quot|alist>quot|call-effect|case|case-find|'
+        r'case>quot|cleave|cleave>quot|cond|cond>quot|deep-spread>quot|'
+        r'execute-effect|linear-case-quot|no-case|no-case\?|no-cond|'
+        r'no-cond\?|recursive-hashcode|shallow-spread>quot|spread|'
+        r'to-fixed-point|wrong-values|wrong-values\?)\s'
+    )
 
     builtin_math = (
-        r'(?:number=|if-zero|next-power-of-2|each-integer|\\?1\\+|'
-        r'fp-special\\?|imaginary-part|unless-zero|float>bits|number\\?|'
-        r'fp-infinity\\?|bignum\\?|fp-snan\\?|denominator|fp-bitwise=|\\*|'
-        r'\\+|power-of-2\\?|-|u>=|/|>=|bitand|log2-expects-positive|<|'
-        r'log2|>|integer\\?|number|bits>double|2/|zero\\?|(find-integer)|'
-        r'bits>float|float\\?|shift|ratio\\?|even\\?|ratio|fp-sign|bitnot|'
-        r'>fixnum|complex\\?|/i|/f|byte-array>bignum|when-zero|sgn|>bignum|'
-        r'next-float|u<|u>|mod|recip|rational|find-last-integer|>float|'
-        r'(all-integers\\?)|2^|times|integer|fixnum\\?|neg|fixnum|sq|'
-        r'bignum|(each-integer)|bit\\?|fp-qnan\\?|find-integer|complex|'
-        r'<fp-nan>|real|double>bits|bitor|rem|fp-nan-payload|all-integers\\?|'
-        r'real-part|log2-expects-positive\\?|prev-float|align|unordered\\?|'
-        r'float|fp-nan\\?|abs|bitxor|u<=|odd\\?|<=|/mod|rational\\?|>integer|'
-        r'real\\?|numerator)\s'
-        )
+        r'(?:-|/|/f|/i|/mod|2/|2\^|<|<=|<fp-nan>|>|>=|>bignum|'
+        r'>fixnum|>float|>integer|\(all-integers\?\)|'
+        r'\(each-integer\)|\(find-integer\)|\*|\+|\?1\+|'
+        r'abs|align|all-integers\?|bignum|bignum\?|bit\?|bitand|'
+        r'bitnot|bitor|bits>double|bits>float|bitxor|complex|'
+        r'complex\?|denominator|double>bits|each-integer|even\?|'
+        r'find-integer|find-last-integer|fixnum|fixnum\?|float|'
+        r'float>bits|float\?|fp-bitwise=|fp-infinity\?|fp-nan-payload|'
+        r'fp-nan\?|fp-qnan\?|fp-sign|fp-snan\?|fp-special\?|'
+        r'if-zero|imaginary-part|integer|integer>fixnum|'
+        r'integer>fixnum-strict|integer\?|log2|log2-expects-positive|'
+        r'log2-expects-positive\?|mod|neg|neg\?|next-float|'
+        r'next-power-of-2|number|number=|number\?|numerator|odd\?|'
+        r'out-of-fixnum-range|out-of-fixnum-range\?|power-of-2\?|'
+        r'prev-float|ratio|ratio\?|rational|rational\?|real|'
+        r'real-part|real\?|recip|rem|sgn|shift|sq|times|u<|u<=|u>|'
+        r'u>=|unless-zero|unordered\?|when-zero|zero\?)\s'
+    )
 
     builtin_sequences = (
-        r'(?:member-eq\\?|append|assert-sequence=|find-last-from|trim-head-slice|'
-        r'clone-like|3sequence|assert-sequence\\?|map-as|last-index-from|'
-        r'reversed|index-from|cut\\*|pad-tail|remove-eq!|concat-as|'
-        r'but-last|snip|trim-tail|nths|nth|2selector|sequence|slice\\?|'
-        r'<slice>|partition|remove-nth|tail-slice|empty\\?|tail\\*|'
-        r'if-empty|find-from|virtual-sequence\\?|member\\?|set-length|'
-        r'drop-prefix|unclip|unclip-last-slice|iota|map-sum|'
-        r'bounds-error\\?|sequence-hashcode-step|selector-for|'
-        r'accumulate-as|map|start|midpoint@|\\(accumulate\\)|rest-slice|'
-        r'prepend|fourth|sift|accumulate!|new-sequence|follow|map!|'
-        r'like|first4|1sequence|reverse|slice|unless-empty|padding|'
-        r'virtual@|repetition\\?|set-last|index|4sequence|max-length|'
-        r'set-second|immutable-sequence|first2|first3|replicate-as|'
-        r'reduce-index|unclip-slice|supremum|suffix!|insert-nth|'
-        r'trim-tail-slice|tail|3append|short|count|suffix|concat|'
-        r'flip|filter|sum|immutable\\?|reverse!|2sequence|map-integers|'
-        r'delete-all|start\\*|indices|snip-slice|check-slice|sequence\\?|'
-        r'head|map-find|filter!|append-as|reduce|sequence=|halves|'
-        r'collapse-slice|interleave|2map|filter-as|binary-reduce|'
-        r'slice-error\\?|product|bounds-check\\?|bounds-check|harvest|'
-        r'immutable|virtual-exemplar|find|produce|remove|pad-head|last|'
-        r'replicate|set-fourth|remove-eq|shorten|reversed\\?|'
-        r'map-find-last|3map-as|2unclip-slice|shorter\\?|3map|find-last|'
-        r'head-slice|pop\\*|2map-as|tail-slice\\*|but-last-slice|'
-        r'2map-reduce|iota\\?|collector-for|accumulate|each|selector|'
-        r'append!|new-resizable|cut-slice|each-index|head-slice\\*|'
-        r'2reverse-each|sequence-hashcode|pop|set-nth|\\?nth|'
-        r'<flat-slice>|second|join|when-empty|collector|'
-        r'immutable-sequence\\?|<reversed>|all\\?|3append-as|'
-        r'virtual-sequence|subseq\\?|remove-nth!|push-either|new-like|'
-        r'length|last-index|push-if|2all\\?|lengthen|assert-sequence|'
-        r'copy|map-reduce|move|third|first|3each|tail\\?|set-first|'
-        r'prefix|bounds-error|any\\?|<repetition>|trim-slice|exchange|'
-        r'surround|2reduce|cut|change-nth|min-length|set-third|produce-as|'
-        r'push-all|head\\?|delete-slice|rest|sum-lengths|2each|head\\*|'
-        r'infimum|remove!|glue|slice-error|subseq|trim|replace-slice|'
-        r'push|repetition|map-index|trim-head|unclip-last|mismatch)\s'
-        )
+        r'(?:1sequence|2all\?|2each|2map|2map-as|2map-reduce|2reduce|'
+        r'2selector|2sequence|3append|3append-as|3each|3map|3map-as|'
+        r'3sequence|4sequence|<repetition>|<reversed>|<slice>|\?first|'
+        r'\?last|\?nth|\?second|\?set-nth|accumulate|accumulate!|'
+        r'accumulate-as|all\?|any\?|append|append!|append-as|'
+        r'assert-sequence|assert-sequence=|assert-sequence\?|'
+        r'binary-reduce|bounds-check|bounds-check\?|bounds-error|'
+        r'bounds-error\?|but-last|but-last-slice|cartesian-each|'
+        r'cartesian-map|cartesian-product|change-nth|check-slice|'
+        r'check-slice-error|clone-like|collapse-slice|collector|'
+        r'collector-for|concat|concat-as|copy|count|cut|cut-slice|'
+        r'cut\*|delete-all|delete-slice|drop-prefix|each|each-from|'
+        r'each-index|empty\?|exchange|filter|filter!|filter-as|find|'
+        r'find-from|find-index|find-index-from|find-last|find-last-from|'
+        r'first|first2|first3|first4|flip|follow|fourth|glue|halves|'
+        r'harvest|head|head-slice|head-slice\*|head\*|head\?|'
+        r'if-empty|immutable|immutable-sequence|immutable-sequence\?|'
+        r'immutable\?|index|index-from|indices|infimum|infimum-by|'
+        r'insert-nth|interleave|iota|iota-tuple|iota-tuple\?|join|'
+        r'join-as|last|last-index|last-index-from|length|lengthen|'
+        r'like|longer|longer\?|longest|map|map!|map-as|map-find|'
+        r'map-find-last|map-index|map-integers|map-reduce|map-sum|'
+        r'max-length|member-eq\?|member\?|midpoint@|min-length|'
+        r'mismatch|move|new-like|new-resizable|new-sequence|'
+        r'non-negative-integer-expected|non-negative-integer-expected\?|'
+        r'nth|nths|pad-head|pad-tail|padding|partition|pop|pop\*|'
+        r'prefix|prepend|prepend-as|produce|produce-as|product|push|'
+        r'push-all|push-either|push-if|reduce|reduce-index|remove|'
+        r'remove!|remove-eq|remove-eq!|remove-nth|remove-nth!|repetition|'
+        r'repetition\?|replace-slice|replicate|replicate-as|rest|'
+        r'rest-slice|reverse|reverse!|reversed|reversed\?|second|'
+        r'selector|selector-for|sequence|sequence-hashcode|sequence=|'
+        r'sequence\?|set-first|set-fourth|set-last|set-length|set-nth|'
+        r'set-second|set-third|short|shorten|shorter|shorter\?|'
+        r'shortest|sift|slice|slice-error|slice-error\?|slice\?|'
+        r'snip|snip-slice|start|start\*|subseq|subseq\?|suffix|'
+        r'suffix!|sum|sum-lengths|supremum|supremum-by|surround|tail|'
+        r'tail-slice|tail-slice\*|tail\*|tail\?|third|trim|'
+        r'trim-head|trim-head-slice|trim-slice|trim-tail|trim-tail-slice|'
+        r'unclip|unclip-last|unclip-last-slice|unclip-slice|unless-empty|'
+        r'virtual-exemplar|virtual-sequence|virtual-sequence\?|virtual@|'
+        r'when-empty)\s'
+    )
 
     builtin_namespaces = (
-        r'(?:global|\\+@|change|set-namestack|change-global|init-namespaces|'
-        r'on|off|set-global|namespace|set|with-scope|bind|with-variable|'
-        r'inc|dec|counter|initialize|namestack|get|get-global|make-assoc)\s'
-        )
+        r'(?:\+@|change|change-global|counter|dec|get|get-global|'
+        r'global|inc|init-namespaces|initialize|is-global|make-assoc|'
+        r'namespace|namestack|off|on|set|set-global|set-namestack|'
+        r'toggle|with-global|with-scope|with-variable|with-variables)\s'
+    )
 
     builtin_arrays = (
-        r'(?:<array>|2array|3array|pair|>array|1array|4array|pair\\?|'
-        r'array|resize-array|array\\?)\s'
-        )
+        r'(?:1array|2array|3array|4array|<array>|>array|array|array\?|'
+        r'pair|pair\?|resize-array)\s'
+    )
 
     builtin_io = (
-        r'(?:\\+character\\+|bad-seek-type\\?|readln|each-morsel|stream-seek|'
-        r'read|print|with-output-stream|contents|write1|stream-write1|'
-        r'stream-copy|stream-element-type|with-input-stream|'
-        r'stream-print|stream-read|stream-contents|stream-tell|'
-        r'tell-output|bl|seek-output|bad-seek-type|nl|stream-nl|write|'
-        r'flush|stream-lines|\\+byte\\+|stream-flush|read1|'
-        r'seek-absolute\\?|stream-read1|lines|stream-readln|'
-        r'stream-read-until|each-line|seek-end|with-output-stream\\*|'
-        r'seek-absolute|with-streams|seek-input|seek-relative\\?|'
-        r'input-stream|stream-write|read-partial|seek-end\\?|'
-        r'seek-relative|error-stream|read-until|with-input-stream\\*|'
-        r'with-streams\\*|tell-input|each-block|output-stream|'
-        r'stream-read-partial|each-stream-block|each-stream-line)\s'
-        )
+        r'(?:\(each-stream-block-slice\)|\(each-stream-block\)|'
+        r'\(stream-contents-by-block\)|\(stream-contents-by-element\)|'
+        r'\(stream-contents-by-length-or-block\)|'
+        r'\(stream-contents-by-length\)|\+byte\+|\+character\+|'
+        r'bad-seek-type|bad-seek-type\?|bl|contents|each-block|'
+        r'each-block-size|each-block-slice|each-line|each-morsel|'
+        r'each-stream-block|each-stream-block-slice|each-stream-line|'
+        r'error-stream|flush|input-stream|input-stream\?|'
+        r'invalid-read-buffer|invalid-read-buffer\?|lines|nl|'
+        r'output-stream|output-stream\?|print|read|read-into|'
+        r'read-partial|read-partial-into|read-until|read1|readln|'
+        r'seek-absolute|seek-absolute\?|seek-end|seek-end\?|'
+        r'seek-input|seek-output|seek-relative|seek-relative\?|'
+        r'stream-bl|stream-contents|stream-contents\*|stream-copy|'
+        r'stream-copy\*|stream-element-type|stream-flush|'
+        r'stream-length|stream-lines|stream-nl|stream-print|'
+        r'stream-read|stream-read-into|stream-read-partial|'
+        r'stream-read-partial-into|stream-read-partial-unsafe|'
+        r'stream-read-unsafe|stream-read-until|stream-read1|'
+        r'stream-readln|stream-seek|stream-seekable\?|stream-tell|'
+        r'stream-write|stream-write1|tell-input|tell-output|'
+        r'with-error-stream|with-error-stream\*|with-error>output|'
+        r'with-input-output\+error-streams|'
+        r'with-input-output\+error-streams\*|with-input-stream|'
+        r'with-input-stream\*|with-output-stream|with-output-stream\*|'
+        r'with-output>error|with-output\+error-stream|'
+        r'with-output\+error-stream\*|with-streams|with-streams\*|'
+        r'write|write1)\s'
+    )
 
     builtin_strings = (
-        r'(?:resize-string|>string|<string>|1string|string|string\\?)\s'
-        )
+        r'(?:1string|<string>|>string|resize-string|string|string\?)\s'
+    )
 
     builtin_vectors = (
-        r'(?:vector\\?|<vector>|\\?push|vector|>vector|1vector)\s'
-        )
+        r'(?:1vector|<vector>|>vector|\?push|vector|vector\?)\s'
+    )
 
     builtin_continuations = (
-        r'(?:with-return|restarts|return-continuation|with-datastack|'
-        r'recover|rethrow-restarts|<restart>|ifcc|set-catchstack|'
-        r'>continuation<|cleanup|ignore-errors|restart\\?|'
-        r'compute-restarts|attempt-all-error|error-thread|continue|'
-        r'<continuation>|attempt-all-error\\?|condition\\?|'
-        r'<condition>|throw-restarts|error|catchstack|continue-with|'
-        r'thread-error-hook|continuation|rethrow|callcc1|'
-        r'error-continuation|callcc0|attempt-all|condition|'
-        r'continuation\\?|restart|return)\s'
-        )
+        r'(?:<condition>|<continuation>|<restart>|attempt-all|'
+        r'attempt-all-error|attempt-all-error\?|callback-error-hook|'
+        r'callcc0|callcc1|cleanup|compute-restarts|condition|'
+        r'condition\?|continuation|continuation\?|continue|'
+        r'continue-restart|continue-with|current-continuation|'
+        r'error|error-continuation|error-in-thread|error-thread|'
+        r'ifcc|ignore-errors|in-callback\?|original-error|recover|'
+        r'restart|restart\?|restarts|rethrow|rethrow-restarts|'
+        r'return|return-continuation|thread-error-hook|throw-continue|'
+        r'throw-restarts|with-datastack|with-return)\s'
+    )
 
     tokens = {
         'root': [
-            # TODO: (( inputs -- outputs ))
-            # TODO: << ... >>
+            # factor allows a file to start with a shebang
+            (r'#!.*$', Comment.Preproc),
+            (r'', Text, 'base'),
+        ],
+        'base': [
+            (r'\s+', Text),
 
             # defining words
-            (r'(\s*)(:|::|MACRO:|MEMO:)(\s+)(\S+)',
-             bygroups(Text, Keyword, Text, Name.Function)),
-            (r'(\s*)(M:)(\s+)(\S+)(\s+)(\S+)',
-             bygroups(Text, Keyword, Text, Name.Class, Text, Name.Function)),
-            (r'(\s*)(GENERIC:)(\s+)(\S+)',
-             bygroups(Text, Keyword, Text, Name.Function)),
-            (r'(\s*)(HOOK:|GENERIC#)(\s+)(\S+)(\s+)(\S+)',
-             bygroups(Text, Keyword, Text, Name.Function, Text, Name.Function)),
-            (r'(\()(\s+)', bygroups(Name.Function, Text), 'stackeffect'),
-            (r'\;\s', Keyword),
+            (r'((?:MACRO|MEMO|TYPED)?:[:]?)(\s+)(\S+)',
+             bygroups(Keyword, Text, Name.Function)),
+            (r'(M:[:]?)(\s+)(\S+)(\s+)(\S+)',
+             bygroups(Keyword, Text, Name.Class, Text, Name.Function)),
+            (r'(C:)(\s+)(\S+)(\s+)(\S+)',
+             bygroups(Keyword, Text, Name.Function, Text, Name.Class)),
+            (r'(GENERIC:)(\s+)(\S+)',
+             bygroups(Keyword, Text, Name.Function)),
+            (r'(HOOK:|GENERIC#)(\s+)(\S+)(\s+)(\S+)',
+             bygroups(Keyword, Text, Name.Function, Text, Name.Function)),
+            (r'\(\s', Name.Function, 'stackeffect'),
+            (r';\s', Keyword),
 
             # imports and namespaces
-            (r'(USING:)((?:\s|\\\s)+)',
-             bygroups(Keyword.Namespace, Text), 'import'),
-            (r'(USE:)(\s+)(\S+)',
+            (r'(USING:)(\s+)',
+             bygroups(Keyword.Namespace, Text), 'vocabs'),
+            (r'(USE:|UNUSE:|IN:|QUALIFIED:)(\s+)(\S+)',
              bygroups(Keyword.Namespace, Text, Name.Namespace)),
-            (r'(UNUSE:)(\s+)(\S+)',
-             bygroups(Keyword.Namespace, Text, Name.Namespace)),
-            (r'(QUALIFIED:)(\s+)(\S+)',
-             bygroups(Keyword.Namespace, Text, Name.Namespace)),
-            (r'(QUALIFIED-WITH:)(\s+)(\S+)',
-             bygroups(Keyword.Namespace, Text, Name.Namespace)),
-            (r'(FROM:|EXCLUDE:)(\s+)(\S+)(\s+)(=>)',
-             bygroups(Keyword.Namespace, Text, Name.Namespace, Text, Text)),
-            (r'(IN:)(\s+)(\S+)',
-             bygroups(Keyword.Namespace, Text, Name.Namespace)),
-            (r'(?:ALIAS|DEFER|FORGET|POSTPONE):', Keyword.Namespace),
+            (r'(QUALIFIED-WITH:)(\s+)(\S+)(\s+)(\S+)',
+             bygroups(Keyword.Namespace, Text, Name.Namespace, Text, Name.Namespace)),
+            (r'(FROM:|EXCLUDE:)(\s+)(\S+)(\s+=>\s)',
+             bygroups(Keyword.Namespace, Text, Name.Namespace, Text), 'words'),
+            (r'(RENAME:)(\s+)(\S+)(\s+)(\S+)(\s+=>\s+)(\S+)',
+             bygroups(Keyword.Namespace, Text, Name.Function, Text, Name.Namespace, Text, Name.Function)),
+            (r'(ALIAS:|TYPEDEF:)(\s+)(\S+)(\s+)(\S+)',
+             bygroups(Keyword.Namespace, Text, Name.Function, Text, Name.Function)),
+            (r'(DEFER:|FORGET:|POSTPONE:)(\s+)(\S+)',
+             bygroups(Keyword.Namespace, Text, Name.Function)),
 
             # tuples and classes
-            (r'(TUPLE:)(\s+)(\S+)(\s+<\s+)(\S+)',
+            (r'(TUPLE:|ERROR:)(\s+)(\S+)(\s+<\s+)(\S+)',
              bygroups(Keyword, Text, Name.Class, Text, Name.Class), 'slots'),
-            (r'(TUPLE:)(\s+)(\S+)',
+            (r'(TUPLE:|ERROR:|BUILTIN:)(\s+)(\S+)',
              bygroups(Keyword, Text, Name.Class), 'slots'),
-            (r'(UNION:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class)),
-            (r'(INTERSECTION:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class)),
+            (r'(MIXIN:|UNION:|INTERSECTION:)(\s+)(\S+)',
+             bygroups(Keyword, Text, Name.Class)),
             (r'(PREDICATE:)(\s+)(\S+)(\s+<\s+)(\S+)',
-                bygroups(Keyword, Text, Name.Class, Text, Name.Class)),
+             bygroups(Keyword, Text, Name.Class, Text, Name.Class)),
             (r'(C:)(\s+)(\S+)(\s+)(\S+)',
-                bygroups(Keyword, Text, Name.Function, Text, Name.Class)),
-            (r'INSTANCE:', Keyword),
-            (r'SLOT:', Keyword),
-            (r'MIXIN:', Keyword),
-            (r'(?:SINGLETON|SINGLETONS):', Keyword),
+             bygroups(Keyword, Text, Name.Function, Text, Name.Class)),
+            (r'(INSTANCE:)(\s+)(\S+)(\s+)(\S+)',
+             bygroups(Keyword, Text, Name.Class, Text, Name.Class)),
+            (r'(SLOT:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Function)),
+            (r'(SINGLETON:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class)),
+            (r'SINGLETONS:', Keyword, 'classes'),
 
             # other syntax
-            (r'CONSTANT:', Keyword),
-            (r'(?:SYMBOL|SYMBOLS):', Keyword),
-            (r'ERROR:', Keyword),
-            (r'SYNTAX:', Keyword),
-            (r'(HELP:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Function)),
-            (r'(MAIN:)(\s+)(\S+)',
-             bygroups(Keyword.Namespace, Text, Name.Function)),
-            (r'(?:ALIEN|TYPEDEF|FUNCTION|STRUCT):', Keyword),
+            (r'(CONSTANT:|SYMBOL:|MAIN:|HELP:)(\s+)(\S+)',
+             bygroups(Keyword, Text, Name.Function)),
+            (r'SYMBOLS:\s', Keyword, 'words'),
+            (r'SYNTAX:\s', Keyword),
+            (r'ALIEN:\s', Keyword),
+            (r'(STRUCT:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class)),
+            (r'(FUNCTION:)(\s+\S+\s+)(\S+)(\s+\(\s+[^\)]+\)\s)',
+             bygroups(Keyword.Namespace, Text, Name.Function, Text)),
+            (r'(FUNCTION-ALIAS:)(\s+)(\S+)(\s+\S+\s+)(\S+)(\s+\(\s+[^\)]+\)\s)',
+             bygroups(Keyword.Namespace, Text, Name.Function, Text, Name.Function, Text)),
 
             # vocab.private
-            # TODO: words inside vocab.private should have red names?
-            (r'(?:<PRIVATE|PRIVATE>)', Keyword.Namespace),
+            (r'(?:<PRIVATE|PRIVATE>)\s', Keyword.Namespace),
 
             # strings
             (r'"""\s+(?:.|\n)*?\s+"""', String),
             (r'"(?:\\\\|\\"|[^"])*"', String),
-            (r'CHAR:\s+(\\[\\abfnrstv]*|\S)\s', String.Char),
+            (r'\S+"\s+(?:\\\\|\\"|[^"])*"', String),
+            (r'CHAR:\s+(\\[\\abfnrstv]|[^\\]\S+)\s', String.Char),
 
             # comments
-            (r'\!\s+.*$', Comment),
-            (r'#\!\s+.*$', Comment),
+            (r'!\s+.*$', Comment),
+            (r'#!\s+.*$', Comment),
+            (r'/\*\s+(?:.|\n)*?\s\*/\s', Comment),
 
             # boolean constants
             (r'(t|f)\s', Name.Constant),
 
-            # numbers
-            (r'-?\d+\.\d+\s', Number.Float),
-            (r'-?\d+\s', Number.Integer),
-            (r'HEX:\s+[a-fA-F\d]+\s', Number.Hex),
-            (r'BIN:\s+[01]+\s', Number.Integer),
-            (r'OCT:\s+[0-7]+\s', Number.Oct),
+            # symbols and literals
+            (r'[\\$]\s+\S+', Name.Constant),
+            (r'M\\\s+\S+\s+\S+', Name.Constant),
 
-            # operators
-            (r'[-+/*=<>^]\s', Operator),
+            # numbers
+            (r'[+-]?([\d,]*\d)?\.(\d([\d,]*\d)?)?([eE][+-]?\d+)?\s', Number),
+            (r'[+-]?\d([\d,]*\d)?([eE][+-]?\d+)?\s', Number),
+            (r'0x[a-fA-F\d]([a-fA-F\d,]*[a-fA-F\d])?(p\d([\d,]*\d)?)?\s', Number),
+            (r'NAN:\s+[a-fA-F\d]([a-fA-F\d,]*[a-fA-F\d])?(p\d([\d,]*\d)?)?\s', Number),
+            (r'0b[01]+\s', Number),
+            (r'0o[0-7]+\s', Number),
+            (r'(\d([\d,]*\d)?)?\+\d([\d,]*\d)?/\d([\d,]*\d)?\s', Number),
+            (r'(\-\d([\d,]*\d)?)?\-\d([\d,]*\d)?/\d([\d,]*\d)?\s', Number),
 
             # keywords
             (r'(?:deprecated|final|foldable|flushable|inline|recursive)\s',
@@ -1720,31 +1761,37 @@ class FactorLexer(RegexLexer):
             (builtin_vectors, Name.Builtin),
             (builtin_continuations, Name.Builtin),
 
-            # whitespaces - usually not relevant
-            (r'\s+', Text),
-
             # everything else is text
             (r'\S+', Text),
         ],
-
         'stackeffect': [
-            (r'\s*\(', Name.Function, 'stackeffect'),
-            (r'\)', Name.Function, '#pop'),
-            (r'\-\-', Name.Function),
             (r'\s+', Text),
+            (r'\(\s+', Name.Function, 'stackeffect'),
+            (r'\)\s', Name.Function, '#pop'),
+            (r'--\s', Name.Function),
             (r'\S+', Name.Variable),
         ],
-
         'slots': [
             (r'\s+', Text),
             (r';\s', Keyword, '#pop'),
+            (r'({\s+)(\S+)(\s+[^}]+\s+}\s)',
+             bygroups(Text, Name.Variable, Text)),
             (r'\S+', Name.Variable),
         ],
-
-        'import': [
-            (r';', Keyword, '#pop'),
-            (r'\S+', Name.Namespace),
+        'vocabs': [
             (r'\s+', Text),
+            (r';\s', Keyword, '#pop'),
+            (r'\S+', Name.Namespace),
+        ],
+        'classes': [
+            (r'\s+', Text),
+            (r';\s', Keyword, '#pop'),
+            (r'\S+', Name.Class),
+        ],
+        'words': [
+            (r'\s+', Text),
+            (r';\s', Keyword, '#pop'),
+            (r'\S+', Name.Function),
         ],
     }
 
@@ -1757,7 +1804,7 @@ class FancyLexer(RegexLexer):
     class-based, concurrent general-purpose programming language
     running on Rubinius, the Ruby VM.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Fancy'
     filenames = ['*.fy', '*.fancypack']
@@ -1839,7 +1886,7 @@ class DgLexer(RegexLexer):
     a functional and object-oriented programming language
     running on the CPython 3 VM.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'dg'
     aliases = ['dg']
@@ -1848,56 +1895,53 @@ class DgLexer(RegexLexer):
 
     tokens = {
         'root': [
-            # Whitespace:
             (r'\s+', Text),
             (r'#.*?$', Comment.Single),
-            # Lexemes:
-            #  Numbers
-            (r'0[bB][01]+', Number.Bin),
-            (r'0[oO][0-7]+', Number.Oct),
-            (r'0[xX][\da-fA-F]+', Number.Hex),
-            (r'[+-]?\d+\.\d+([eE][+-]?\d+)?[jJ]?', Number.Float),
-            (r'[+-]?\d+[eE][+-]?\d+[jJ]?', Number.Float),
-            (r'[+-]?\d+[jJ]?', Number.Integer),
-            #  Character/String Literals
-            (r"[br]*'''", String, combined('stringescape', 'tsqs', 'string')),
-            (r'[br]*"""', String, combined('stringescape', 'tdqs', 'string')),
-            (r"[br]*'", String, combined('stringescape', 'sqs', 'string')),
-            (r'[br]*"', String, combined('stringescape', 'dqs', 'string')),
-            #  Operators
-            (r"`\w+'*`", Operator), # Infix links
-            #   Reserved infix links
-            (r'\b(or|and|if|else|where|is|in)\b', Operator.Word),
+
+            (r'(?i)0b[01]+', Number.Bin),
+            (r'(?i)0o[0-7]+', Number.Oct),
+            (r'(?i)0x[0-9a-f]+', Number.Hex),
+            (r'(?i)[+-]?[0-9]+\.[0-9]+(e[+-]?[0-9]+)?j?', Number.Float),
+            (r'(?i)[+-]?[0-9]+e[+-]?\d+j?', Number.Float),
+            (r'(?i)[+-]?[0-9]+j?', Number.Integer),
+
+            (r"(?i)(br|r?b?)'''", String, combined('stringescape', 'tsqs', 'string')),
+            (r'(?i)(br|r?b?)"""', String, combined('stringescape', 'tdqs', 'string')),
+            (r"(?i)(br|r?b?)'", String, combined('stringescape', 'sqs', 'string')),
+            (r'(?i)(br|r?b?)"', String, combined('stringescape', 'dqs', 'string')),
+
+            (r"`\w+'*`", Operator),
+            (r'\b(and|in|is|or|where)\b', Operator.Word),
             (r'[!$%&*+\-./:<-@\\^|~;,]+', Operator),
-            #  Identifiers
-            #   Python 3 types
+
             (r"(?<!\.)(bool|bytearray|bytes|classmethod|complex|dict'?|"
              r"float|frozenset|int|list'?|memoryview|object|property|range|"
              r"set'?|slice|staticmethod|str|super|tuple'?|type)"
              r"(?!['\w])", Name.Builtin),
-            #   Python 3 builtins + some more
             (r'(?<!\.)(__import__|abs|all|any|bin|bind|chr|cmp|compile|complex|'
-             r'delattr|dir|divmod|drop|dropwhile|enumerate|eval|filter|flip|'
-             r'foldl1?|format|fst|getattr|globals|hasattr|hash|head|hex|id|'
-             r'init|input|isinstance|issubclass|iter|iterate|last|len|locals|'
-             r'map|max|min|next|oct|open|ord|pow|print|repr|reversed|round|'
-             r'setattr|scanl1?|snd|sorted|sum|tail|take|takewhile|vars|zip)'
-             r"(?!['\w])", Name.Builtin),
+             r'delattr|dir|divmod|drop|dropwhile|enumerate|eval|exhaust|'
+             r'filter|flip|foldl1?|format|fst|getattr|globals|hasattr|hash|'
+             r'head|hex|id|init|input|isinstance|issubclass|iter|iterate|last|'
+             r'len|locals|map|max|min|next|oct|open|ord|pow|print|repr|'
+             r'reversed|round|setattr|scanl1?|snd|sorted|sum|tail|take|'
+             r"takewhile|vars|zip)(?!['\w])", Name.Builtin),
             (r"(?<!\.)(self|Ellipsis|NotImplemented|None|True|False)(?!['\w])",
              Name.Builtin.Pseudo),
+
             (r"(?<!\.)[A-Z]\w*(Error|Exception|Warning)'*(?!['\w])",
              Name.Exception),
-            (r"(?<!\.)(KeyboardInterrupt|SystemExit|StopIteration|"
-             r"GeneratorExit)(?!['\w])", Name.Exception),
-            #   Compiler-defined identifiers
-            (r"(?<![\.\w])(import|inherit|for|while|switch|not|raise|unsafe|"
-             r"yield|with)(?!['\w])", Keyword.Reserved),
-            #   Other links
-            (r"[A-Z_']+\b", Name),
-            (r"[A-Z][\w']*\b", Keyword.Type),
+            (r"(?<!\.)(Exception|GeneratorExit|KeyboardInterrupt|StopIteration|"
+             r"SystemExit)(?!['\w])", Name.Exception),
+
+            (r"(?<![\.\w])(except|finally|for|if|import|not|otherwise|raise|"
+             r"subclass|while|with|yield)(?!['\w])", Keyword.Reserved),
+
+            (r"[A-Z_]+'*(?!['\w])", Name),
+            (r"[A-Z]\w+'*(?!['\w])", Keyword.Type),
             (r"\w+'*", Name),
-            #  Blocks
+
             (r'[()]', Punctuation),
+            (r'.', Error),
         ],
         'stringescape': [
             (r'\\([\\abfnrtv"\']|\n|N{.*?}|u[a-fA-F0-9]{4}|'
@@ -1927,21 +1971,22 @@ class DgLexer(RegexLexer):
         ],
     }
 
+
 class Perl6Lexer(ExtendedRegexLexer):
     """
     For `Perl 6 <http://www.perl6.org>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name      = 'Perl6'
     aliases   = ['perl6', 'pl6']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
-                 '*.6pm', '*.p6m', '*.pm6']
+                 '*.6pm', '*.p6m', '*.pm6', '*.t']
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     flags     = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]"
+    PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]" # if you alter this, search for a copy made of it below
 
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
@@ -2126,12 +2171,16 @@ class Perl6Lexer(ExtendedRegexLexer):
 
                 end_pos = next_close_pos
 
+            if end_pos < 0: # if we didn't find a closer, just highlight the
+                            # rest of the text in this class
+                end_pos = len(text)
+
             if adverbs is not None and re.search(r':to\b', adverbs):
                 heredoc_terminator = text[match.start('delimiter') + n_chars : end_pos]
-                end_heredoc = re.search(r'^\s*' + re.escape(heredoc_terminator) + r'\s*$', text[ match.end('delimiter') : ], re.MULTILINE)
+                end_heredoc = re.search(r'^\s*' + re.escape(heredoc_terminator) + r'\s*$', text[ end_pos : ], re.MULTILINE)
 
                 if end_heredoc:
-                    end_pos = match.end('delimiter') + end_heredoc.end()
+                    end_pos += end_heredoc.end()
                 else:
                     end_pos = len(text)
 
@@ -2179,7 +2228,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     # process the corresponding one!
     tokens = {
         'common' : [
-            (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS.keys()) + r'])(?P=first_char)*)', brackets_callback(Comment.Multiline)),
+            (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + r'])(?P=first_char)*)', brackets_callback(Comment.Multiline)),
             (r'#[^\n]*$', Comment.Singleline),
             (r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline),
             (r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline),
@@ -2208,7 +2257,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'(?<=~~)\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'(?<=[=(,])\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'm\w+(?=\()', Name),
-            (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])(?P=first_char)*)', brackets_callback(String.Regex)),
+            (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z_:\s])(?P=first_char)*)', brackets_callback(String.Regex)),
             (r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'<[^\s=].*?\S>', String),
             (_build_word_match(PERL6_OPERATORS), Operator),
@@ -2228,7 +2277,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'.+?', Text),
         ],
         'token-sym-brackets' : [
-            (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS.keys()) + '])(?P=first_char)*)', brackets_callback(Name), ('#pop', 'pre-token')),
+            (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + '])(?P=first_char)*)', brackets_callback(Name), ('#pop', 'pre-token')),
             (r'', Name, ('#pop', 'pre-token')),
         ],
         'token': [
@@ -2260,31 +2309,155 @@ class Perl6Lexer(ExtendedRegexLexer):
 
             return stripped_lines
 
+        # XXX handle block comments
         lines = text.splitlines()
         lines = strip_pod(lines)
         text  = '\n'.join(lines)
 
-        if shebang_matches(text, r'perl6|rakudo|niecza'):
+        if shebang_matches(text, r'perl6|rakudo|niecza|pugs'):
             return True
 
-        if 'use v6' in text:
-            return 0.91 # 0.01 greater than Perl says for 'my $'
-        if re.search(r'[$@%]\*[A-Z]+', text): # Perl 6-style globals ($*OS)
-            return 0.91
-        if re.search(r'[$@%]\?[A-Z]+', text): # Perl 6 compiler variables ($?PACKAGE)
-            return 0.91
-        if re.search(r'[$@%][!.][A-Za-z0-9_-]+', text): # Perl 6 member variables
-            return 0.91
+        saw_perl_decl = False
+        rating        = False
 
-        for line in text.splitlines():
-            if re.match(r'\s*(?:my|our)?\s*module', line): # module declarations
-                return 0.91
-            if re.match(r'\s*(?:my|our)?\s*role', line): # role declarations
-                return 0.91
-            if re.match(r'\s*(?:my|our)?\s*class\b', line): # class declarations
-                return 0.91
-        return False
+        # check for my/our/has declarations
+        # copied PERL6_IDENTIFIER_RANGE from above; not happy about that
+        if re.search("(?:my|our|has)\s+(?:['a-zA-Z0-9_:-]+\s+)?[$@%&(]", text):
+            rating        = 0.8
+            saw_perl_decl = True
+
+        for line in lines:
+            line = re.sub('#.*', '', line)
+            if re.match('^\s*$', line):
+                continue
+
+            # match v6; use v6; use v6.0; use v6.0.0;
+            if re.match('^\s*(?:use\s+)?v6(?:\.\d(?:\.\d)?)?;', line):
+                return True
+            # match class, module, role, enum, grammar declarations
+            class_decl = re.match('^\s*(?:(?P<scope>my|our)\s+)?(?:module|class|role|enum|grammar)', line)
+            if class_decl:
+                if saw_perl_decl or class_decl.group('scope') is not None:
+                    return True
+                rating = 0.05
+                continue
+            break
+
+        return rating
 
     def __init__(self, **options):
         super(Perl6Lexer, self).__init__(**options)
         self.encoding = options.get('encoding', 'utf-8')
+
+
+class HyLexer(RegexLexer):
+    """
+    Lexer for `Hy <http://hylang.org/>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Hy'
+    aliases = ['hylang']
+    filenames = ['*.hy']
+    mimetypes = ['text/x-hy', 'application/x-hy']
+
+    special_forms = [
+        'cond', 'for', '->', '->>', 'car',
+        'cdr', 'first', 'rest', 'let', 'when', 'unless',
+        'import', 'do', 'progn', 'get', 'slice', 'assoc', 'with-decorator',
+        ',', 'list_comp', 'kwapply', '~', 'is', 'in', 'is-not', 'not-in',
+        'quasiquote', 'unquote', 'unquote-splice', 'quote', '|', '<<=', '>>=',
+        'foreach', 'while',
+        'eval-and-compile', 'eval-when-compile'
+    ]
+
+    declarations = [
+        'def' 'defn', 'defun', 'defmacro', 'defclass', 'lambda', 'fn', 'setv'
+    ]
+
+    hy_builtins = []
+
+    hy_core = [
+        'cycle', 'dec', 'distinct', 'drop', 'even?', 'filter', 'inc',
+        'instance?', 'iterable?', 'iterate', 'iterator?', 'neg?',
+        'none?', 'nth', 'numeric?', 'odd?', 'pos?', 'remove', 'repeat',
+        'repeatedly', 'take', 'take_nth', 'take_while', 'zero?'
+    ]
+
+    builtins = hy_builtins + hy_core
+
+    # valid names for identifiers
+    # well, names can only not consist fully of numbers
+    # but this should be good enough for now
+    valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
+
+    def _multi_escape(entries):
+        return '(%s)' % ('|'.join(re.escape(entry) + ' ' for entry in entries))
+
+    tokens = {
+        'root': [
+            # the comments - always starting with semicolon
+            # and going to the end of the line
+            (r';.*$', Comment.Single),
+
+            # whitespaces - usually not relevant
+            (r'[,\s]+', Text),
+
+            # numbers
+            (r'-?\d+\.\d+', Number.Float),
+            (r'-?\d+', Number.Integer),
+            (r'0[0-7]+j?', Number.Oct),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+
+            # strings, symbols and characters
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'" + valid_name, String.Symbol),
+            (r"\\(.|[a-z]+)", String.Char),
+            (r'^(\s*)([rRuU]{,2}"""(?:.|\n)*?""")', bygroups(Text, String.Doc)),
+            (r"^(\s*)([rRuU]{,2}'''(?:.|\n)*?''')", bygroups(Text, String.Doc)),
+
+            # keywords
+            (r'::?' + valid_name, String.Symbol),
+
+            # special operators
+            (r'~@|[`\'#^~&@]', Operator),
+
+            include('py-keywords'),
+            include('py-builtins'),
+
+            # highlight the special forms
+            (_multi_escape(special_forms), Keyword),
+
+            # Technically, only the special forms are 'keywords'. The problem
+            # is that only treating them as keywords means that things like
+            # 'defn' and 'ns' need to be highlighted as builtins. This is ugly
+            # and weird for most styles. So, as a compromise we're going to
+            # highlight them as Keyword.Declarations.
+            (_multi_escape(declarations), Keyword.Declaration),
+
+            # highlight the builtins
+            (_multi_escape(builtins), Name.Builtin),
+
+            # the remaining functions
+            (r'(?<=\()' + valid_name, Name.Function),
+
+            # find the remaining variables
+            (valid_name, Name.Variable),
+
+            # Hy accepts vector notation
+            (r'(\[|\])', Punctuation),
+
+            # Hy accepts map notation
+            (r'(\{|\})', Punctuation),
+
+            # the famous parentheses!
+            (r'(\(|\))', Punctuation),
+
+        ],
+        'py-keywords': PythonLexer.tokens['keywords'],
+        'py-builtins': PythonLexer.tokens['builtins'],
+    }
+
+    def analyse_text(text):
+        if '(import ' in text or '(defn ' in text:
+            return 0.9

@@ -30,3 +30,6 @@ NSDictionary *d = @{ @"key": @"value" };
 
 NSNumber *n1 = @( 1 );
 NSNumber *n2 = @( [a length] );
+
++ (void)f1:(NSString *)s1;
++ (void)f2:(NSString *) s2;

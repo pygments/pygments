@@ -9,9 +9,8 @@
 # This program can be used as a .lessfilter for the less pager to auto-color less's output
 
 lexer=`pygmentize -N "$1"`
+file_common_opts="--brief --dereference --uncompress"
 if [ "$lexer" = "text" ]; then
-  file_common_opts="--brief --dereference --uncompress"
-
   unset lexer
   case `file --mime-type $file_common_opts "$1"` in
       application/xml|image/svg+xml) lexer=xml;;
@@ -40,11 +39,13 @@ if [ "$lexer" = "text" ]; then
       text/x-tcl) lexer=tcl;;
       text/x-tex|text/x-texinfo) lexer=latex;; # FIXME: texinfo really needs its own lexer
       
-      # Types that file outputs which pygmentize didn't support as of file 5.11, pygments 1.6rc1
+      # Types that file outputs which pygmentize didn't support as of file 5.14, pygments 1.6
       # text/calendar
+      # text/inf
       # text/PGP
       # text/rtf
       # text/texmacs
+      # text/vnd.graphviz
       # text/x-bcpl
       # text/x-info
       # text/x-m4
@@ -53,7 +54,7 @@ if [ "$lexer" = "text" ]; then
   esac
 fi
 
-encoding=`file --brief --mime-encoding $file_common_opts "$1"`
+encoding=`file --mime-encoding $file_common_opts "$1"`
 
 if [ -n "$lexer" ]; then
     # FIXME: Specify input encoding rather than output encoding https://bitbucket.org/birkenfeld/pygments-main/issue/800

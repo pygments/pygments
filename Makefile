@@ -4,7 +4,7 @@
 #
 # Combines scripts for common tasks.
 #
-# :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+# :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
 # :license: BSD, see LICENSE for details.
 #
 
@@ -36,11 +36,8 @@ codetags:
 	@$(PYTHON) scripts/find_codetags.py -i tests/examplefiles -i scripts/pylintrc \
 		   -i scripts/find_codetags.py -o codetags.html .
 
-docs: docs/build
-
-docs/build: docs/src/*.txt
-	$(PYTHON) docs/generate.py html docs/build $?
-	touch docs/build
+docs:
+	make -C doc html
 
 mapfiles:
 	(cd pygments/lexers; $(PYTHON) _mapping.py)
@@ -53,7 +50,7 @@ reindent:
 	@$(PYTHON) scripts/reindent.py -r -B .
 
 test:
-	@$(PYTHON) tests/run.py $(TESTS)
+	@$(PYTHON) tests/run.py $(TEST)
 
 test-coverage:
-	@$(PYTHON) tests/run.py -C $(TESTS)
+	@$(PYTHON) tests/run.py -C $(TEST)
