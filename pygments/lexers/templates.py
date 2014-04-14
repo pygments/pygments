@@ -36,9 +36,10 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'MakoCssLexer', 'JspLexer', 'CheetahLexer', 'CheetahHtmlLexer',
            'CheetahXmlLexer', 'CheetahJavascriptLexer', 'EvoqueLexer',
            'EvoqueHtmlLexer', 'EvoqueXmlLexer', 'ColdfusionLexer',
-           'ColdfusionHtmlLexer', 'VelocityLexer', 'VelocityHtmlLexer',
-           'VelocityXmlLexer', 'SspLexer', 'TeaTemplateLexer', 'LassoHtmlLexer',
-           'LassoXmlLexer', 'LassoCssLexer', 'LassoJavascriptLexer']
+           'ColdfusionHtmlLexer', 'ColdfusionCFCLexer', 'VelocityLexer', 
+           'VelocityHtmlLexer', 'VelocityXmlLexer', 'SspLexer', 
+           'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer', 
+           'LassoCssLexer', 'LassoJavascriptLexer']
 
 
 class ErbLexer(Lexer):
@@ -399,7 +400,7 @@ class MyghtyLexer(RegexLexer):
     Generic `myghty templates`_ lexer. Code that isn't Myghty
     markup is yielded as `Token.Other`.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
 
     .. _myghty templates: http://www.myghty.org/
     """
@@ -447,7 +448,7 @@ class MyghtyHtmlLexer(DelegatingLexer):
     Subclass of the `MyghtyLexer` that highlights unlexer data
     with the `HtmlLexer`.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'HTML+Myghty'
@@ -464,7 +465,7 @@ class MyghtyXmlLexer(DelegatingLexer):
     Subclass of the `MyghtyLexer` that highlights unlexer data
     with the `XmlLexer`.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'XML+Myghty'
@@ -481,7 +482,7 @@ class MyghtyJavascriptLexer(DelegatingLexer):
     Subclass of the `MyghtyLexer` that highlights unlexer data
     with the `JavascriptLexer`.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'JavaScript+Myghty'
@@ -500,7 +501,7 @@ class MyghtyCssLexer(DelegatingLexer):
     Subclass of the `MyghtyLexer` that highlights unlexer data
     with the `CssLexer`.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'CSS+Myghty'
@@ -519,7 +520,7 @@ class MasonLexer(RegexLexer):
 
     .. _mason templates: http://www.masonhq.com/
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'Mason'
     aliases = ['mason']
@@ -572,7 +573,7 @@ class MakoLexer(RegexLexer):
     Generic `mako templates`_ lexer. Code that isn't Mako
     markup is yielded as `Token.Other`.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
 
     .. _mako templates: http://www.makotemplates.org/
     """
@@ -640,7 +641,7 @@ class MakoHtmlLexer(DelegatingLexer):
     Subclass of the `MakoLexer` that highlights unlexed data
     with the `HtmlLexer`.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'HTML+Mako'
@@ -656,7 +657,7 @@ class MakoXmlLexer(DelegatingLexer):
     Subclass of the `MakoLexer` that highlights unlexer data
     with the `XmlLexer`.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'XML+Mako'
@@ -672,7 +673,7 @@ class MakoJavascriptLexer(DelegatingLexer):
     Subclass of the `MakoLexer` that highlights unlexer data
     with the `JavascriptLexer`.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'JavaScript+Mako'
@@ -690,7 +691,7 @@ class MakoCssLexer(DelegatingLexer):
     Subclass of the `MakoLexer` that highlights unlexer data
     with the `CssLexer`.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'CSS+Mako'
@@ -1343,7 +1344,7 @@ class JspRootLexer(RegexLexer):
     Base for the `JspLexer`. Yields `Token.Other` for area outside of
     JSP tags.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     tokens = {
@@ -1367,7 +1368,7 @@ class JspLexer(DelegatingLexer):
     """
     Lexer for Java Server Pages.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
     name = 'Java Server Page'
     aliases = ['jsp']
@@ -1390,7 +1391,7 @@ class EvoqueLexer(RegexLexer):
     """
     For files using the Evoque templating system.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'Evoque'
     aliases = ['evoque']
@@ -1443,7 +1444,7 @@ class EvoqueHtmlLexer(DelegatingLexer):
     Subclass of the `EvoqueLexer` that highlights unlexed data with the
     `HtmlLexer`.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'HTML+Evoque'
     aliases = ['html+evoque']
@@ -1459,7 +1460,7 @@ class EvoqueXmlLexer(DelegatingLexer):
     Subclass of the `EvoqueLexer` that highlights unlexed data with the
     `XmlLexer`.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'XML+Evoque'
     aliases = ['xml+evoque']
@@ -1478,23 +1479,28 @@ class ColdfusionLexer(RegexLexer):
     aliases = ['cfs']
     filenames = []
     mimetypes = []
-    flags = re.IGNORECASE | re.MULTILINE
+    flags = re.IGNORECASE
 
     tokens = {
         'root': [
-            (r'//.*', Comment),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
             (r'\+\+|--', Operator),
             (r'[-+*/^&=!]', Operator),
-            (r'<=|>=|<|>', Operator),
+            (r'<=|>=|<|>|==', Operator),
             (r'mod\b', Operator),
             (r'(eq|lt|gt|lte|gte|not|is|and|or)\b', Operator),
             (r'\|\||&&', Operator),
+            (r'\?', Operator),
             (r'"', String.Double, 'string'),
             # There is a special rule for allowing html in single quoted
             # strings, evidently.
             (r"'.*?'", String.Single),
             (r'\d+', Number),
-            (r'(if|else|len|var|case|default|break|switch)\b', Keyword),
+            (r'(if|else|len|var|case|default|break|switch|component|property|function|do|try|catch|in|continue|for|return|while)\b', Keyword),
+            (r'(required|any|array|binary|boolean|component|date|guid|numeric|query|string|struct|uuid|xml)\b', Keyword),
+            (r'(true|false|null)\b', Keyword.Constant),
+            (r'(application|session|client|cookie|super|this|variables|arguments)\b', Name.Constant),
             (r'([A-Za-z_$][A-Za-z0-9_.]*)(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
             (r'[A-Za-z_$][A-Za-z0-9_.]*', Name.Variable),
@@ -1558,7 +1564,7 @@ class ColdfusionHtmlLexer(DelegatingLexer):
     """
     name = 'Coldfusion HTML'
     aliases = ['cfm']
-    filenames = ['*.cfm', '*.cfml', '*.cfc']
+    filenames = ['*.cfm', '*.cfml']
     mimetypes = ['application/x-coldfusion']
 
     def __init__(self, **options):
@@ -1566,11 +1572,25 @@ class ColdfusionHtmlLexer(DelegatingLexer):
                                                   **options)
 
 
+class ColdfusionCFCLexer(DelegatingLexer):
+    """
+    Coldfusion markup/script components
+    """
+    name = 'Coldfusion CFC'
+    aliases = ['cfc']
+    filenames = ['*.cfc']
+    mimetypes = []
+
+    def __init__(self, **options):
+        super(ColdfusionCFCLexer, self).__init__(ColdfusionHtmlLexer, ColdfusionLexer,
+                                                  **options)
+
+
 class SspLexer(DelegatingLexer):
     """
     Lexer for Scalate Server Pages.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'Scalate Server Page'
     aliases = ['ssp']
@@ -1596,7 +1616,7 @@ class TeaTemplateRootLexer(RegexLexer):
     Base for the `TeaTemplateLexer`. Yields `Token.Other` for area outside of
     code blocks.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     tokens = {
@@ -1617,7 +1637,7 @@ class TeaTemplateLexer(DelegatingLexer):
     """
     Lexer for `Tea Templates <http://teatrove.org/>`_.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Tea'
     aliases = ['tea']
@@ -1644,7 +1664,7 @@ class LassoHtmlLexer(DelegatingLexer):
 
     Nested JavaScript and CSS is also highlighted.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'HTML+Lasso'
@@ -1672,7 +1692,7 @@ class LassoXmlLexer(DelegatingLexer):
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `XmlLexer`.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'XML+Lasso'
@@ -1696,7 +1716,7 @@ class LassoCssLexer(DelegatingLexer):
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `CssLexer`.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'CSS+Lasso'
@@ -1722,7 +1742,7 @@ class LassoJavascriptLexer(DelegatingLexer):
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `JavascriptLexer`.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'JavaScript+Lasso'

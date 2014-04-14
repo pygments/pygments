@@ -62,7 +62,7 @@ class RegeditLexer(RegexLexer):
     <http://en.wikipedia.org/wiki/Windows_Registry#.REG_files>`_ files produced
     by regedit.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'reg'
@@ -103,7 +103,7 @@ class PropertiesLexer(RegexLexer):
     """
     Lexer for configuration files in Java's properties format.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Properties'
@@ -125,7 +125,7 @@ class SourcesListLexer(RegexLexer):
     """
     Lexer that highlights debian sources.list files.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'Debian Sourcelist'
@@ -218,7 +218,7 @@ class BaseMakefileLexer(RegexLexer):
     """
     Lexer for simple Makefiles (no preprocessing).
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'Base Makefile'
@@ -228,8 +228,10 @@ class BaseMakefileLexer(RegexLexer):
 
     tokens = {
         'root': [
+            # recipes (need to allow spaces because of expandtabs)
             (r'^(?:[\t ]+.*\n|\n)+', using(BashLexer)),
-            (r'\$\((?:.*\\\n|.*\n)+', using(BashLexer)),
+            # special variables
+            (r'\$[<@$+%?|*]', Keyword),
             (r'\s+', Text),
             (r'#.*?\n', Comment),
             (r'(export)(\s+)(?=[a-zA-Z0-9_${}\t -]+\n)',
@@ -244,7 +246,15 @@ class BaseMakefileLexer(RegexLexer):
             # targets
             (r'([^\n:]+)(:+)([ \t]*)', bygroups(Name.Function, Operator, Text),
              'block-header'),
-            # TODO: add paren handling (grr)
+            # expansions
+            (r'\$\(', Keyword, 'expansion'),
+        ],
+        'expansion': [
+            (r'[^$a-zA-Z_)]+', Text),
+            (r'[a-zA-Z_]+', Name.Variable),
+            (r'\$', Keyword),
+            (r'\(', Keyword, '#push'),
+            (r'\)', Keyword, '#pop'),
         ],
         'export': [
             (r'[a-zA-Z0-9_${}-]+', Name.Variable),
@@ -252,12 +262,13 @@ class BaseMakefileLexer(RegexLexer):
             (r'\s+', Text),
         ],
         'block-header': [
-            (r'[^,\\\n#]+', Number),
-            (r',', Punctuation),
-            (r'#.*?\n', Comment),
+            (r'[,|]', Punctuation),
+            (r'#.*?\n', Comment, '#pop'),
             (r'\\\n', Text), # line continuation
-            (r'\\.', Text),
-            (r'(?:[\t ]+.*\n|\n)+', using(BashLexer), '#pop'),
+            (r'\$\(', Keyword, 'expansion'),
+            (r'[a-zA-Z_]+', Name),
+            (r'\n', Text, '#pop'),
+            (r'.', Text),
         ],
     }
 
@@ -303,7 +314,7 @@ class DarcsPatchLexer(RegexLexer):
     format.  Examples of this format are derived by commands such as
     ``darcs annotate --patch`` and ``darcs send``.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Darcs Patch'
     aliases = ['dpatch']
@@ -416,7 +427,7 @@ class BBCodeLexer(RegexLexer):
     """
     A lexer that highlights BBCode(-like) syntax.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'BBCode'
@@ -507,7 +518,7 @@ class GroffLexer(RegexLexer):
     Lexer for the (g)roff typesetting language, supporting groff
     extensions. Mainly useful for highlighting manpage sources.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'Groff'
@@ -562,7 +573,7 @@ class ApacheConfLexer(RegexLexer):
     Lexer for configuration files following the Apache config file
     format.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'ApacheConf'
@@ -601,7 +612,7 @@ class MoinWikiLexer(RegexLexer):
     """
     For MoinMoin (and Trac) Wiki markup.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'MoinMoin/Trac Wiki markup'
@@ -646,7 +657,7 @@ class RstLexer(RegexLexer):
     """
     For `reStructuredText <http://docutils.sf.net/rst.html>`_ markup.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
 
     Additional options accepted:
 
@@ -654,7 +665,9 @@ class RstLexer(RegexLexer):
         Highlight the contents of ``.. sourcecode:: language``,
         ``.. code:: language`` and ``.. code-block:: language``
         directives with a lexer for the given language (default:
-        ``True``). *New in Pygments 0.8.*
+        ``True``).
+
+        .. versionadded:: 0.8
     """
     name = 'reStructuredText'
     aliases = ['rst', 'rest', 'restructuredtext']
@@ -813,7 +826,7 @@ class VimLexer(RegexLexer):
     """
     Lexer for VimL script files.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
     name = 'VimL'
     aliases = ['vim']
@@ -830,7 +843,7 @@ class VimLexer(RegexLexer):
             # TODO: regexes can have other delims
             (r'/(\\\\|\\/|[^\n/])*/', String.Regex),
             (r'"(\\\\|\\"|[^\n"])*"', String.Double),
-            (r"'(\\\\|\\'|[^\n'])*'", String.Single),
+            (r"'(''|[^\n'])*'", String.Single),
 
             # Who decided that doublequote was a good comment character??
             (r'(?<=\s)"[^\-:.%#=*].*', Comment),
@@ -897,7 +910,7 @@ class GettextLexer(RegexLexer):
     """
     Lexer for Gettext catalog files.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Gettext Catalog'
     aliases = ['pot', 'po']
@@ -925,7 +938,7 @@ class SquidConfLexer(RegexLexer):
     """
     Lexer for `squid <http://www.squid-cache.org/>`_ configuration files.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
 
     name = 'SquidConf'
@@ -1057,7 +1070,7 @@ class DebianControlLexer(RegexLexer):
     """
     Lexer for Debian ``control`` files and ``apt-cache show <pkg>`` outputs.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Debian Control file'
     aliases = ['control', 'debcontrol']
@@ -1127,7 +1140,7 @@ class YamlLexer(ExtendedRegexLexer):
     Lexer for `YAML <http://yaml.org/>`_, a human-friendly data serialization
     language.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
 
     name = 'YAML'
@@ -1529,7 +1542,7 @@ class LighttpdConfLexer(RegexLexer):
     """
     Lexer for `Lighttpd <http://lighttpd.net/>`_ configuration files.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
     name = 'Lighttpd configuration file'
     aliases = ['lighty', 'lighttpd']
@@ -1557,7 +1570,7 @@ class NginxConfLexer(RegexLexer):
     """
     Lexer for `Nginx <http://nginx.net/>`_ configuration files.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
     name = 'Nginx configuration file'
     aliases = ['nginx']
@@ -1603,7 +1616,7 @@ class CMakeLexer(RegexLexer):
     """
     Lexer for `CMake <http://cmake.org/Wiki/CMake>`_ files.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'CMake'
     aliases = ['cmake']
@@ -1673,7 +1686,7 @@ class HttpLexer(RegexLexer):
     """
     Lexer for HTTP sessions.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'HTTP'
@@ -1742,7 +1755,7 @@ class PyPyLogLexer(RegexLexer):
     """
     Lexer for PyPy log files.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = "PyPy Log"
     aliases = ["pypylog", "pypy"]
@@ -1814,7 +1827,7 @@ class HxmlLexer(RegexLexer):
     """
     Lexer for `haXe build <http://haxe.org/doc/compiler>`_ files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Hxml'
     aliases = ['haxeml', 'hxml']
@@ -1857,7 +1870,7 @@ class EbnfLexer(RegexLexer):
     <http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form>`_
     grammars.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name = 'EBNF'

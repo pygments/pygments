@@ -13,6 +13,8 @@
     :license: BSD, see LICENSE for details.
 """
 
+from __future__ import print_function
+
 # start
 from pygments.formatters.bbcode import BBCodeFormatter
 from pygments.formatters.html import HtmlFormatter
@@ -57,7 +59,7 @@ if __name__ == '__main__':
     for filename in os.listdir('.'):
         if filename.endswith('.py') and not filename.startswith('_'):
             module_name = 'pygments.formatters.%s' % filename[:-3]
-            print module_name
+            print(module_name)
             module = __import__(module_name, None, None, [''])
             for formatter_name in module.__all__:
                 imports.append((module_name, formatter_name))

@@ -10,6 +10,7 @@
 """
 
 from pygments.formatter import Formatter
+from pygments.util import get_int_opt
 
 
 __all__ = ['RtfFormatter']
@@ -21,7 +22,7 @@ class RtfFormatter(Formatter):
     documents with color information and other useful stuff. Perfect for Copy and
     Paste into Microsoft® Word® documents.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
 
     Additional options accepted:
 
@@ -32,6 +33,12 @@ class RtfFormatter(Formatter):
     `fontface`
         The used font famliy, for example ``Bitstream Vera Sans``. Defaults to
         some generic font which is supposed to have fixed width.
+
+    `fontsize`
+        Size of the font used. Size is specified in half points. The
+        default is 24 half-points, giving a size 12 font.
+
+        .. versionadded:: 2.0
     """
     name = 'RTF'
     aliases = ['rtf']
@@ -49,9 +56,11 @@ class RtfFormatter(Formatter):
             specification claims that ``\fmodern`` are "Fixed-pitch serif
             and sans serif fonts". Hope every RTF implementation thinks
             the same about modern...
+
         """
         Formatter.__init__(self, **options)
         self.fontface = options.get('fontface') or ''
+        self.fontsize = get_int_opt(options, 'fontsize', 0)
 
     def _escape(self, text):
         return text.replace('\\', '\\\\') \
@@ -106,6 +115,8 @@ class RtfFormatter(Formatter):
                     ))
                     offset += 1
         outfile.write(r'}\f0')
+        if self.fontsize:
+            outfile.write(r'\fs%d' % (self.fontsize))
 
         # highlight stream
         for ttype, value in tokensource:

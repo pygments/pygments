@@ -15,7 +15,7 @@ from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, \
      LexerContext, include, combined, do_insertions, bygroups, using, this
 from pygments.token import Error, Text, Other, \
      Comment, Operator, Keyword, Name, String, Number, Generic, Punctuation
-from pygments.util import get_bool_opt, get_list_opt, shebang_matches
+from pygments.util import get_bool_opt, get_list_opt, shebang_matches, iteritems
 from pygments import unistring as uni
 
 
@@ -194,7 +194,7 @@ class Python3Lexer(RegexLexer):
     """
     For `Python <http://www.python.org>`_ source code (version 3.0).
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'Python 3'
@@ -308,7 +308,8 @@ class PythonConsoleLexer(Lexer):
 
     `python3`
         Use Python 3 lexer for code.  Default is ``False``.
-        *New in Pygments 1.0.*
+
+        .. versionadded:: 1.0
     """
     name = 'Python console session'
     aliases = ['pycon']
@@ -353,7 +354,7 @@ class PythonConsoleLexer(Lexer):
                     curcode = ''
                     insertions = []
                 if (line.startswith(u'Traceback (most recent call last):') or
-                    re.match(ur'  File "[^"]+", line \d+\n$', line)):
+                    re.match(u'  File "[^"]+", line \\d+\\n$', line)):
                     tb = 1
                     curtb = line
                     tbindex = match.start()
@@ -377,7 +378,7 @@ class PythonTracebackLexer(RegexLexer):
     """
     For Python tracebacks.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'Python Traceback'
@@ -414,7 +415,7 @@ class Python3TracebackLexer(RegexLexer):
     """
     For Python 3.0 tracebacks, with support for chained exceptions.
 
-    *New in Pygments 1.0.*
+    .. versionadded:: 1.0
     """
 
     name = 'Python 3.0 Traceback'
@@ -1020,7 +1021,7 @@ class PerlLexer(RegexLexer):
     def analyse_text(text):
         if shebang_matches(text, r'perl'):
             return True
-        if 'my $' in text:
+        if re.search('(?:my|our)\s+[$@%(]', text):
             return 0.9
 
 
@@ -1126,7 +1127,7 @@ class LuaLexer(RegexLexer):
         self._functions = set()
         if self.func_name_highlighting:
             from pygments.lexers._luabuiltins import MODULES
-            for mod, func in MODULES.iteritems():
+            for mod, func in iteritems(MODULES):
                 if mod not in self.disabled_modules:
                     self._functions.update(func)
         RegexLexer.__init__(self, **options)
@@ -1151,7 +1152,7 @@ class MoonScriptLexer(LuaLexer):
     """
     For `MoonScript <http://moonscript.org.org>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = "MoonScript"
@@ -1290,7 +1291,7 @@ class IoLexer(RegexLexer):
     For `Io <http://iolanguage.com/>`_ (a small, prototype-based
     programming language) source.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Io'
     filenames = ['*.io']
@@ -1336,7 +1337,7 @@ class TclLexer(RegexLexer):
     """
     For Tcl source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     keyword_cmds_re = (
@@ -1466,7 +1467,7 @@ class FactorLexer(RegexLexer):
     """
     Lexer for the `Factor <http://factorcode.org>`_ language.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'Factor'
     aliases = ['factor']
@@ -1757,7 +1758,7 @@ class FancyLexer(RegexLexer):
     class-based, concurrent general-purpose programming language
     running on Rubinius, the Ruby VM.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Fancy'
     filenames = ['*.fy', '*.fancypack']
@@ -1839,7 +1840,7 @@ class DgLexer(RegexLexer):
     a functional and object-oriented programming language
     running on the CPython 3 VM.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'dg'
     aliases = ['dg']
@@ -1929,7 +1930,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     """
     For `Perl 6 <http://www.perl6.org>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name      = 'Perl6'
@@ -1939,7 +1940,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     flags     = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]"
+    PERL6_IDENTIFIER_RANGE = "['a-zA-Z0-9_:-]" # if you alter this, search for a copy made of it below
 
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
@@ -2124,12 +2125,16 @@ class Perl6Lexer(ExtendedRegexLexer):
 
                 end_pos = next_close_pos
 
+            if end_pos < 0: # if we didn't find a closer, just highlight the
+                            # rest of the text in this class
+                end_pos = len(text)
+
             if adverbs is not None and re.search(r':to\b', adverbs):
                 heredoc_terminator = text[match.start('delimiter') + n_chars : end_pos]
-                end_heredoc = re.search(r'^\s*' + re.escape(heredoc_terminator) + r'\s*$', text[ match.end('delimiter') : ], re.MULTILINE)
+                end_heredoc = re.search(r'^\s*' + re.escape(heredoc_terminator) + r'\s*$', text[ end_pos : ], re.MULTILINE)
 
                 if end_heredoc:
-                    end_pos = match.end('delimiter') + end_heredoc.end()
+                    end_pos += end_heredoc.end()
                 else:
                     end_pos = len(text)
 
@@ -2177,7 +2182,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     # process the corresponding one!
     tokens = {
         'common' : [
-            (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS.keys()) + r'])(?P=first_char)*)', brackets_callback(Comment.Multiline)),
+            (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + r'])(?P=first_char)*)', brackets_callback(Comment.Multiline)),
             (r'#[^\n]*$', Comment.Singleline),
             (r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline),
             (r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline),
@@ -2206,7 +2211,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'(?<=~~)\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'(?<=[=(,])\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'm\w+(?=\()', Name),
-            (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])(?P=first_char)*)', brackets_callback(String.Regex)),
+            (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z_:\s])(?P=first_char)*)', brackets_callback(String.Regex)),
             (r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'<[^\s=].*?\S>', String),
             (_build_word_match(PERL6_OPERATORS), Operator),
@@ -2226,7 +2231,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'.+?', Text),
         ],
         'token-sym-brackets' : [
-            (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS.keys()) + '])(?P=first_char)*)', brackets_callback(Name), ('#pop', 'pre-token')),
+            (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + '])(?P=first_char)*)', brackets_callback(Name), ('#pop', 'pre-token')),
             (r'', Name, ('#pop', 'pre-token')),
         ],
         'token': [
@@ -2244,9 +2249,6 @@ class Perl6Lexer(ExtendedRegexLexer):
     }
 
     def analyse_text(text):
-        # disabled for now; the lexer is not bug-free and will loop sometimes,
-        # so let's be sure to use it only for "real" Perl 6 code.
-        return False
         def strip_pod(lines):
             in_pod         = False
             stripped_lines = []
@@ -2261,30 +2263,41 @@ class Perl6Lexer(ExtendedRegexLexer):
 
             return stripped_lines
 
+        # XXX handle block comments
         lines = text.splitlines()
         lines = strip_pod(lines)
         text  = '\n'.join(lines)
 
-        if shebang_matches(text, r'perl6|rakudo|niecza'):
+        if shebang_matches(text, r'perl6|rakudo|niecza|pugs'):
             return True
 
-        if 'use v6' in text:
-            return 0.91 # 0.01 greater than Perl says for 'my $'
-        if re.search(r'[$@%]\*[A-Z]+', text): # Perl 6-style globals ($*OS)
-            return 0.91
-        if re.search(r'[$@%]\?[A-Z]+', text): # Perl 6 compiler variables ($?PACKAGE)
-            return 0.91
-        if re.search(r'[$@%][!.][A-Za-z0-9_-]+', text): # Perl 6 member variables
-            return 0.91
+        saw_perl_decl = False
+        rating        = False
 
-        for line in text.splitlines():
-            if re.match(r'\s*(?:my|our)?\s*module', line): # module declarations
-                return 0.91
-            if re.match(r'\s*(?:my|our)?\s*role', line): # role declarations
-                return 0.91
-            if re.match(r'\s*(?:my|our)?\s*class\b', line): # class declarations
-                return 0.91
-        return False
+        # check for my/our/has declarations
+        # copied PERL6_IDENTIFIER_RANGE from above; not happy about that
+        if re.search("(?:my|our|has)\s+(?:['a-zA-Z0-9_:-]+\s+)?[$@%&(]", text):
+            rating        = 0.8
+            saw_perl_decl = True
+
+        for line in lines:
+            line = re.sub('#.*', '', line)
+            if re.match('^\s*$', line):
+                continue
+
+            # match v6; use v6; use v6.0; use v6.0.0;
+            if re.match('^\s*(?:use\s+)?v6(?:\.\d(?:\.\d)?)?;', line):
+                return True
+            # match class, module, role, enum, grammar declarations
+            class_decl = re.match('^\s*(?:(?P<scope>my|our)\s+)?(?:module|class|role|enum|grammar)', line)
+            if class_decl:
+                if saw_perl_decl or class_decl.group('scope') is not None:
+                    return True
+                rating = 0.05
+                continue
+            break
+
+        return rating
 
     def __init__(self, **options):
         super(Perl6Lexer, self).__init__(**options)
@@ -2295,7 +2308,7 @@ class HyLexer(RegexLexer):
     """
     Lexer for `Hy <http://hylang.org/>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'Hy'
     aliases = ['hylang']

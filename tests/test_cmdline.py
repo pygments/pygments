@@ -9,11 +9,12 @@
 
 # Test the command line interface
 
-import sys, os
+import io
+import sys
 import unittest
-import StringIO
 
 from pygments import highlight
+from pygments.util import StringIO
 from pygments.cmdline import main as cmdline_main
 
 import support
@@ -24,8 +25,8 @@ TESTFILE, TESTDIR = support.location(__file__)
 def run_cmdline(*args):
     saved_stdout = sys.stdout
     saved_stderr = sys.stderr
-    new_stdout = sys.stdout = StringIO.StringIO()
-    new_stderr = sys.stderr = StringIO.StringIO()
+    new_stdout = sys.stdout = StringIO()
+    new_stderr = sys.stderr = StringIO()
     try:
         ret = cmdline_main(["pygmentize"] + list(args))
     finally:

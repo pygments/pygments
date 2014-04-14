@@ -36,7 +36,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'ECLLexer', 'UrbiscriptLexer', 'OpenEdgeLexer', 'BroLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
-           'CbmBasicV2Lexer', 'AutoItLexer', 'RexxLexer']
+           'CbmBasicV2Lexer', 'AutoItLexer', 'RexxLexer', 'APLLexer']
 
 
 class ECLLexer(RegexLexer):
@@ -45,7 +45,7 @@ class ECLLexer(RegexLexer):
     <http://hpccsystems.com/community/docs/ecl-language-reference/html>`_
     language.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'ECL'
@@ -176,7 +176,7 @@ class BefungeLexer(RegexLexer):
     Lexer for the esoteric `Befunge <http://en.wikipedia.org/wiki/Befunge>`_
     language.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
     name = 'Befunge'
     aliases = ['befunge']
@@ -206,7 +206,7 @@ class RedcodeLexer(RegexLexer):
     A simple Redcode lexer based on ICWS'94.
     Contributed by Adam Blinkinsop <blinks@acm.org>.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
     name = 'Redcode'
     aliases = ['redcode']
@@ -242,7 +242,7 @@ class MOOCodeLexer(RegexLexer):
     For `MOOCode <http://www.moo.mud.org/>`_ (the MOO scripting
     language).
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'MOOCode'
     filenames = ['*.moo']
@@ -286,7 +286,7 @@ class SmalltalkLexer(RegexLexer):
     Contributed by Stefan Matthias Aust.
     Rewritten by Nils Winter.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Smalltalk'
     filenames = ['*.st']
@@ -405,7 +405,7 @@ class LogtalkLexer(RegexLexer):
     """
     For `Logtalk <http://logtalk.org/>`_ source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'Logtalk'
@@ -633,7 +633,7 @@ class GnuplotLexer(RegexLexer):
     """
     For `Gnuplot <http://gnuplot.info/>`_ plotting scripts.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
 
     name = 'Gnuplot'
@@ -792,7 +792,7 @@ class PovrayLexer(RegexLexer):
     """
     For `Persistence of Vision Raytracer <http://www.povray.org/>`_ files.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
     name = 'POVRay'
     aliases = ['pov']
@@ -1150,18 +1150,18 @@ class AppleScriptLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (ur'¬\n', String.Escape),
+            (u'¬\\n', String.Escape),
             (r"'s\s+", Text), # This is a possessive, consider moving
             (r'(--|#).*?$', Comment),
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'[\(\){}!,.:]', Punctuation),
-            (ur'(«)([^»]+)(»)',
+            (u'(«)([^»]+)(»)',
              bygroups(Text, Name.Builtin, Text)),
             (r'\b((?:considering|ignoring)\s*)'
              r'(application responses|case|diacriticals|hyphens|'
              r'numeric strings|punctuation|white space)',
              bygroups(Keyword, Name.Builtin)),
-            (ur'(-|\*|\+|&|≠|>=?|<=?|=|≥|≤|/|÷|\^)', Operator),
+            (u'(-|\\*|\\+|&|≠|>=?|<=?|=|≥|≤|/|÷|\\^)', Operator),
             (r"\b(%s)\b" % '|'.join(Operators), Operator.Word),
             (r'^(\s*(?:on|end)\s+)'
              r'(%s)' % '|'.join(StudioEvents[::-1]),
@@ -1198,7 +1198,7 @@ class ModelicaLexer(RegexLexer):
     """
     For `Modelica <http://www.modelica.org/>`_ source code.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'Modelica'
     aliases = ['modelica']
@@ -1217,23 +1217,27 @@ class ModelicaLexer(RegexLexer):
         ],
         'statements': [
             (r'"', String, 'string'),
-            (r'\'', Name, 'quoted_ident'),
             (r'(\d+\.\d*|\.\d+|\d+|\d.)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+)', Number.Float),
             (r'\d+[Ll]?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r'[()\[\]{},.;]', Punctuation),
             (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
-            (r'([a-zA-Z_][\w\[\]]*|\'[a-zA-Z_\+\-\*\/\^][\w]*\')'
-             r'(\.([a-zA-Z_\][\w\[\]]*|\'[a-zA-Z_\+\-\*\/\^][\w]*\'))+', Name.Class),
+            (r'([a-zA-Z_][\w]*|[\'][^\']+[\'])'
+             r'([\[\d,:\]]*)'
+             r'(\.([a-zA-Z_][\w]*|[\'][^\']+[\']))+'
+             r'([\[\d,:\]]*)', Name.Class),
+            (r'([a-zA-Z_][\w]*|[\'][^\']+[\'])'
+             r'([\[\d,:\]]+)', Name.Class),
             (r'(\'[\w\+\-\*\/\^]+\'|\w+)', Name),
+            (r'[()\[\]{},.;]', Punctuation),
+            (r'\'', Name, 'quoted_ident'),
         ],
         'root': [
             include('whitespace'),
             include('keywords'),
+            include('classes'),
             include('functions'),
             include('operators'),
-            include('classes'),
             (r'("<html>|<html>)', Name.Tag, 'html-content'),
             include('statements'),
         ],
@@ -1253,15 +1257,16 @@ class ModelicaLexer(RegexLexer):
              r'tanh|zeros)\b', Name.Function),
         ],
         'operators': [
-            (r'(actualStream|and|assert|cardinality|change|Clock|delay|der|edge|'
-             r'hold|homotopy|initial|inStream|noEvent|not|or|pre|previous|reinit|'
-             r'return|sample|smooth|spatialDistribution|subSample|terminal|'
+            (r'(actualStream|and|assert|backSample|cardinality|change|Clock|'
+             r'delay|der|edge|hold|homotopy|initial|inStream|noClock|noEvent|'
+             r'not|or|pre|previous|reinit|return|sample|smooth|'
+             r'spatialDistribution|shiftSample|subSample|superSample|terminal|'
              r'terminate)\b', Name.Builtin),
         ],
         'classes': [
-            (r'(block|class|connector|end|function|model|package|'
+            (r'(operator)?(\s+)?(block|class|connector|end|function|model|operator|package|'
              r'record|type)(\s+)((?!if|when|while)[A-Za-z_]\w*|[\'][^\']+[\'])([;]?)',
-             bygroups(Keyword, Text, Name.Class, Text))
+             bygroups(Keyword, Text, Keyword, Text, Name.Class, Text))
         ],
         'quoted_ident': [
             (r'\'', Name, '#pop'),
@@ -1286,7 +1291,7 @@ class RebolLexer(RegexLexer):
     """
     A `REBOL <http://www.rebol.com/>`_ lexer.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'REBOL'
     aliases = ['rebol']
@@ -1514,7 +1519,7 @@ class ABAPLexer(RegexLexer):
     """
     Lexer for ABAP, SAP's integrated language.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'ABAP'
     aliases = ['abap']
@@ -1762,17 +1767,17 @@ class GherkinLexer(RegexLexer):
     """
     For `Gherkin <http://github.com/aslakhellesoy/gherkin/>` syntax.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'Gherkin'
     aliases = ['cucumber', 'gherkin']
     filenames = ['*.feature']
     mimetypes = ['text/x-gherkin']
 
-    feature_keywords         = ur'^(기능|機能|功能|フィーチャ|خاصية|תכונה|Функціонал|Функционалност|Функционал|Фича|Особина|Могућност|Özellik|Właściwość|Tính năng|Trajto|Savybė|Požiadavka|Požadavek|Osobina|Ominaisuus|Omadus|OH HAI|Mogućnost|Mogucnost|Jellemző|Fīča|Funzionalità|Funktionalität|Funkcionalnost|Funkcionalitāte|Funcționalitate|Functionaliteit|Functionalitate|Funcionalitat|Funcionalidade|Fonctionnalité|Fitur|Feature|Egenskap|Egenskab|Crikey|Característica|Arwedd)(:)(.*)$'
-    feature_element_keywords = ur'^(\s*)(시나리오 개요|시나리오|배경|背景|場景大綱|場景|场景大纲|场景|劇本大綱|劇本|テンプレ|シナリオテンプレート|シナリオテンプレ|シナリオアウトライン|シナリオ|سيناريو مخطط|سيناريو|الخلفية|תרחיש|תבנית תרחיש|רקע|Тарих|Сценарій|Сценарио|Сценарий структураси|Сценарий|Структура сценарію|Структура сценарија|Структура сценария|Скица|Рамка на сценарий|Пример|Предыстория|Предистория|Позадина|Передумова|Основа|Концепт|Контекст|Założenia|Wharrimean is|Tình huống|The thing of it is|Tausta|Taust|Tapausaihio|Tapaus|Szenariogrundriss|Szenario|Szablon scenariusza|Stsenaarium|Struktura scenarija|Skica|Skenario konsep|Skenario|Situācija|Senaryo taslağı|Senaryo|Scénář|Scénario|Schema dello scenario|Scenārijs pēc parauga|Scenārijs|Scenár|Scenaro|Scenariusz|Scenariul de şablon|Scenariul de sablon|Scenariu|Scenario Outline|Scenario Amlinellol|Scenario|Scenarijus|Scenarijaus šablonas|Scenarij|Scenarie|Rerefons|Raamstsenaarium|Primer|Pozadí|Pozadina|Pozadie|Plan du scénario|Plan du Scénario|Osnova scénáře|Osnova|Náčrt Scénáře|Náčrt Scenáru|Mate|MISHUN SRSLY|MISHUN|Kịch bản|Konturo de la scenaro|Kontext|Konteksts|Kontekstas|Kontekst|Koncept|Khung tình huống|Khung kịch bản|Háttér|Grundlage|Geçmiş|Forgatókönyv vázlat|Forgatókönyv|Fono|Esquema do Cenário|Esquema do Cenario|Esquema del escenario|Esquema de l\'escenari|Escenario|Escenari|Dis is what went down|Dasar|Contexto|Contexte|Contesto|Condiţii|Conditii|Cenário|Cenario|Cefndir|Bối cảnh|Blokes|Bakgrunn|Bakgrund|Baggrund|Background|B4|Antecedents|Antecedentes|All y\'all|Achtergrond|Abstrakt Scenario|Abstract Scenario)(:)(.*)$'
-    examples_keywords        = ur'^(\s*)(예|例子|例|サンプル|امثلة|דוגמאות|Сценарији|Примери|Приклади|Мисоллар|Значения|Örnekler|Voorbeelden|Variantai|Tapaukset|Scenarios|Scenariji|Scenarijai|Příklady|Példák|Príklady|Przykłady|Primjeri|Primeri|Piemēri|Pavyzdžiai|Paraugs|Juhtumid|Exemplos|Exemples|Exemplele|Exempel|Examples|Esempi|Enghreifftiau|Ekzemploj|Eksempler|Ejemplos|EXAMPLZ|Dữ liệu|Contoh|Cobber|Beispiele)(:)(.*)$'
-    step_keywords            = ur'^(\s*)(하지만|조건|먼저|만일|만약|단|그리고|그러면|那麼|那么|而且|當|当|前提|假設|假如|但是|但し|並且|もし|ならば|ただし|しかし|かつ|و |متى |لكن |عندما |ثم |بفرض |اذاً |כאשר |וגם |בהינתן |אזי |אז |אבל |Якщо |Унда |То |Припустимо, що |Припустимо |Онда |Но |Нехай |Лекин |Когато |Када |Кад |К тому же |И |Задато |Задати |Задате |Если |Допустим |Дадено |Ва |Бирок |Аммо |Али |Але |Агар |А |І |Și |És |Zatati |Zakładając |Zadato |Zadate |Zadano |Zadani |Zadan |Youse know when youse got |Youse know like when |Yna |Ya know how |Ya gotta |Y |Wun |Wtedy |When y\'all |When |Wenn |WEN |Và |Ve |Und |Un |Thì |Then y\'all |Then |Tapi |Tak |Tada |Tad |Så |Stel |Soit |Siis |Si |Sed |Se |Quando |Quand |Quan |Pryd |Pokud |Pokiaľ |Però |Pero |Pak |Oraz |Onda |Ond |Oletetaan |Og |Och |O zaman |Når |När |Niin |Nhưng |N |Mutta |Men |Mas |Maka |Majd |Mais |Maar |Ma |Lorsque |Lorsqu\'|Kun |Kuid |Kui |Khi |Keď |Ketika |Když |Kaj |Kai |Kada |Kad |Jeżeli |Ja |Ir |I CAN HAZ |I |Ha |Givun |Givet |Given y\'all |Given |Gitt |Gegeven |Gegeben sei |Fakat |Eğer ki |Etant donné |Et |Então |Entonces |Entao |En |Eeldades |E |Duota |Dun |Donitaĵo |Donat |Donada |Do |Diyelim ki |Dengan |Den youse gotta |De |Dato |Dar |Dann |Dan |Dado |Dacă |Daca |DEN |Când |Cuando |Cho |Cept |Cand |Cal |But y\'all |But |Buh |Biết |Bet |BUT |Atès |Atunci |Atesa |Anrhegedig a |Angenommen |And y\'all |And |An |Ama |Als |Alors |Allora |Ali |Aleshores |Ale |Akkor |Aber |AN |A také |A |\* )'
+    feature_keywords         = u'^(기능|機能|功能|フィーチャ|خاصية|תכונה|Функціонал|Функционалност|Функционал|Фича|Особина|Могућност|Özellik|Właściwość|Tính năng|Trajto|Savybė|Požiadavka|Požadavek|Osobina|Ominaisuus|Omadus|OH HAI|Mogućnost|Mogucnost|Jellemző|Fīča|Funzionalità|Funktionalität|Funkcionalnost|Funkcionalitāte|Funcționalitate|Functionaliteit|Functionalitate|Funcionalitat|Funcionalidade|Fonctionnalité|Fitur|Feature|Egenskap|Egenskab|Crikey|Característica|Arwedd)(:)(.*)$'
+    feature_element_keywords = u'^(\\s*)(시나리오 개요|시나리오|배경|背景|場景大綱|場景|场景大纲|场景|劇本大綱|劇本|テンプレ|シナリオテンプレート|シナリオテンプレ|シナリオアウトライン|シナリオ|سيناريو مخطط|سيناريو|الخلفية|תרחיש|תבנית תרחיש|רקע|Тарих|Сценарій|Сценарио|Сценарий структураси|Сценарий|Структура сценарію|Структура сценарија|Структура сценария|Скица|Рамка на сценарий|Пример|Предыстория|Предистория|Позадина|Передумова|Основа|Концепт|Контекст|Założenia|Wharrimean is|Tình huống|The thing of it is|Tausta|Taust|Tapausaihio|Tapaus|Szenariogrundriss|Szenario|Szablon scenariusza|Stsenaarium|Struktura scenarija|Skica|Skenario konsep|Skenario|Situācija|Senaryo taslağı|Senaryo|Scénář|Scénario|Schema dello scenario|Scenārijs pēc parauga|Scenārijs|Scenár|Scenaro|Scenariusz|Scenariul de şablon|Scenariul de sablon|Scenariu|Scenario Outline|Scenario Amlinellol|Scenario|Scenarijus|Scenarijaus šablonas|Scenarij|Scenarie|Rerefons|Raamstsenaarium|Primer|Pozadí|Pozadina|Pozadie|Plan du scénario|Plan du Scénario|Osnova scénáře|Osnova|Náčrt Scénáře|Náčrt Scenáru|Mate|MISHUN SRSLY|MISHUN|Kịch bản|Konturo de la scenaro|Kontext|Konteksts|Kontekstas|Kontekst|Koncept|Khung tình huống|Khung kịch bản|Háttér|Grundlage|Geçmiş|Forgatókönyv vázlat|Forgatókönyv|Fono|Esquema do Cenário|Esquema do Cenario|Esquema del escenario|Esquema de l\'escenari|Escenario|Escenari|Dis is what went down|Dasar|Contexto|Contexte|Contesto|Condiţii|Conditii|Cenário|Cenario|Cefndir|Bối cảnh|Blokes|Bakgrunn|Bakgrund|Baggrund|Background|B4|Antecedents|Antecedentes|All y\'all|Achtergrond|Abstrakt Scenario|Abstract Scenario)(:)(.*)$'
+    examples_keywords        = u'^(\\s*)(예|例子|例|サンプル|امثلة|דוגמאות|Сценарији|Примери|Приклади|Мисоллар|Значения|Örnekler|Voorbeelden|Variantai|Tapaukset|Scenarios|Scenariji|Scenarijai|Příklady|Példák|Príklady|Przykłady|Primjeri|Primeri|Piemēri|Pavyzdžiai|Paraugs|Juhtumid|Exemplos|Exemples|Exemplele|Exempel|Examples|Esempi|Enghreifftiau|Ekzemploj|Eksempler|Ejemplos|EXAMPLZ|Dữ liệu|Contoh|Cobber|Beispiele)(:)(.*)$'
+    step_keywords            = u'^(\\s*)(하지만|조건|먼저|만일|만약|단|그리고|그러면|那麼|那么|而且|當|当|前提|假設|假如|但是|但し|並且|もし|ならば|ただし|しかし|かつ|و |متى |لكن |عندما |ثم |بفرض |اذاً |כאשר |וגם |בהינתן |אזי |אז |אבל |Якщо |Унда |То |Припустимо, що |Припустимо |Онда |Но |Нехай |Лекин |Когато |Када |Кад |К тому же |И |Задато |Задати |Задате |Если |Допустим |Дадено |Ва |Бирок |Аммо |Али |Але |Агар |А |І |Și |És |Zatati |Zakładając |Zadato |Zadate |Zadano |Zadani |Zadan |Youse know when youse got |Youse know like when |Yna |Ya know how |Ya gotta |Y |Wun |Wtedy |When y\'all |When |Wenn |WEN |Và |Ve |Und |Un |Thì |Then y\'all |Then |Tapi |Tak |Tada |Tad |Så |Stel |Soit |Siis |Si |Sed |Se |Quando |Quand |Quan |Pryd |Pokud |Pokiaľ |Però |Pero |Pak |Oraz |Onda |Ond |Oletetaan |Og |Och |O zaman |Når |När |Niin |Nhưng |N |Mutta |Men |Mas |Maka |Majd |Mais |Maar |Ma |Lorsque |Lorsqu\'|Kun |Kuid |Kui |Khi |Keď |Ketika |Když |Kaj |Kai |Kada |Kad |Jeżeli |Ja |Ir |I CAN HAZ |I |Ha |Givun |Givet |Given y\'all |Given |Gitt |Gegeven |Gegeben sei |Fakat |Eğer ki |Etant donné |Et |Então |Entonces |Entao |En |Eeldades |E |Duota |Dun |Donitaĵo |Donat |Donada |Do |Diyelim ki |Dengan |Den youse gotta |De |Dato |Dar |Dann |Dan |Dado |Dacă |Daca |DEN |Când |Cuando |Cho |Cept |Cand |Cal |But y\'all |But |Buh |Biết |Bet |BUT |Atès |Atunci |Atesa |Anrhegedig a |Angenommen |And y\'all |And |An |Ama |Als |Alors |Allora |Ali |Aleshores |Ale |Akkor |Aber |AN |A také |A |\* )'
 
     tokens = {
         'comments': [
@@ -1874,7 +1879,7 @@ class AsymptoteLexer(RegexLexer):
     """
     For `Asymptote <http://asymptote.sf.net/>`_ source code.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'Asymptote'
     aliases = ['asy', 'asymptote']
@@ -1995,7 +2000,7 @@ class PostScriptLexer(RegexLexer):
     <http://partners.adobe.com/public/developer/en/ps/PLRM.pdf>
     is the authority for this.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'PostScript'
     aliases = ['postscript', 'postscr']
@@ -2083,7 +2088,7 @@ class AutohotkeyLexer(RegexLexer):
     """
     For `autohotkey <http://www.autohotkey.com/>`_ source code.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'autohotkey'
     aliases = ['ahk', 'autohotkey']
@@ -2263,7 +2268,7 @@ class MaqlLexer(RegexLexer):
     <https://secure.gooddata.com/docs/html/advanced.metric.tutorial.html>`_
     scripts.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'MAQL'
@@ -2322,7 +2327,7 @@ class GoodDataCLLexer(RegexLexer):
     Lexer for `GoodData-CL <http://github.com/gooddata/GoodData-CL/raw/master/cli/src/main/resources/com/gooddata/processor/COMMANDS.txt>`_
     script files.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'GoodData-CL'
@@ -2367,7 +2372,7 @@ class ProtoBufLexer(RegexLexer):
     Lexer for `Protocol Buffer <http://code.google.com/p/protobuf/>`_
     definition files.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Protocol Buffer'
@@ -2419,7 +2424,7 @@ class HybrisLexer(RegexLexer):
     """
     For `Hybris <http://www.hybris-lang.org>`_ source code.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Hybris'
@@ -2497,7 +2502,7 @@ class AwkLexer(RegexLexer):
     """
     For Awk scripts.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Awk'
@@ -2523,11 +2528,11 @@ class AwkLexer(RegexLexer):
         'root': [
             (r'^(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'\+\+|--|\|\||&&|in|\$|!?~|'
+            (r'\+\+|--|\|\||&&|in\b|\$|!?~|'
              r'(\*\*|[-<>+*%\^/!=])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
-            (r'(break|continue|do|while|exit|for|if|'
+            (r'(break|continue|do|while|exit|for|if|else|'
              r'return)\b', Keyword, 'slashstartsregex'),
             (r'function\b', Keyword.Declaration, 'slashstartsregex'),
             (r'(atan2|cos|exp|int|log|rand|sin|sqrt|srand|gensub|gsub|index|'
@@ -2551,7 +2556,7 @@ class Cfengine3Lexer(RegexLexer):
     """
     Lexer for `CFEngine3 <http://cfengine.org>`_ policy files.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'CFEngine3'
@@ -2615,7 +2620,7 @@ class SnobolLexer(RegexLexer):
     Recognizes the common ASCII equivalents of the original SNOBOL4 operators.
     Does not require spaces around binary operators.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = "Snobol"
@@ -2679,7 +2684,7 @@ class UrbiscriptLexer(ExtendedRegexLexer):
     """
     For UrbiScript source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'UrbiScript'
@@ -2786,7 +2791,7 @@ class OpenEdgeLexer(RegexLexer):
     Lexer for `OpenEdge ABL (formerly Progress)
     <http://web.progress.com/en/openedge/abl.html>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'OpenEdge ABL'
     aliases = ['openedge', 'abl', 'progress']
@@ -2838,7 +2843,7 @@ class BroLexer(RegexLexer):
     """
     For `Bro <http://bro-ids.org/>`_ scripts.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Bro'
     aliases = ['bro']
@@ -2916,7 +2921,7 @@ class CbmBasicV2Lexer(RegexLexer):
     """
     For CBM BASIC V2 sources.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'CBM BASIC V2'
     aliases = ['cbmbas']
@@ -2954,7 +2959,7 @@ class MscgenLexer(RegexLexer):
     """
     For `Mscgen <http://www.mcternan.me.uk/mscgen/>`_ files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Mscgen'
     aliases = ['mscgen', 'msc']
@@ -3015,7 +3020,7 @@ class KconfigLexer(RegexLexer):
     """
     For Linux-style Kconfig files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Kconfig'
@@ -3090,7 +3095,7 @@ class VGLLexer(RegexLexer):
     For `SampleManager VGL <http://www.thermoscientific.com/samplemanager>`_
     source code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'VGL'
     aliases = ['vgl']
@@ -3123,7 +3128,7 @@ class SourcePawnLexer(RegexLexer):
     """
     For SourcePawn source code with preprocessor directives.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'SourcePawn'
     aliases = ['sp']
@@ -3232,7 +3237,7 @@ class PuppetLexer(RegexLexer):
     """
     For `Puppet <http://puppetlabs.com/>`__ configuration DSL.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Puppet'
     aliases = ['puppet']
@@ -3313,7 +3318,7 @@ class NSISLexer(RegexLexer):
     """
     For `NSIS <http://nsis.sourceforge.net/>`_ scripts.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'NSIS'
     aliases = ['nsis', 'nsi', 'nsh']
@@ -3435,9 +3440,9 @@ class NSISLexer(RegexLexer):
 
 class RPMSpecLexer(RegexLexer):
     """
-    For RPM *.spec files
+    For RPM ``.spec`` files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'RPMSpec'
@@ -3513,7 +3518,7 @@ class AutoItLexer(RegexLexer):
     AutoIt is a freeware BASIC-like scripting language
     designed for automating the Windows GUI and general scripting
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'AutoIt'
     aliases = ['autoit']
@@ -3693,7 +3698,7 @@ class RexxLexer(RegexLexer):
     systems. It is popular for I/O- and data based tasks and can act as glue
     language to bind different applications together.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'Rexx'
     aliases = ['rexx', 'arexx']
@@ -3736,9 +3741,9 @@ class RexxLexer(RegexLexer):
              r'while)\b', Keyword.Reserved),
         ],
         'operator': [
-            (ur'(-|//|/|\(|\)|\*\*|\*|\\<<|\\<|\\==|\\=|\\>>|\\>|\\|\|\||\||'
-             ur'&&|&|%|\+|<<=|<<|<=|<>|<|==|=|><|>=|>>=|>>|>|¬<<|¬<|¬==|¬=|'
-             ur'¬>>|¬>|¬|\.|,)', Operator),
+            (r'(-|//|/|\(|\)|\*\*|\*|\\<<|\\<|\\==|\\=|\\>>|\\>|\\|\|\||\||'
+             r'&&|&|%|\+|<<=|<<|<=|<>|<|==|=|><|>=|>>=|>>|>|¬<<|¬<|¬==|¬=|'
+             r'¬>>|¬>|¬|\.|,)', Operator),
         ],
         'string_double': [
             (r'[^"\n]+', String),
@@ -3794,3 +3799,88 @@ class RexxLexer(RegexLexer):
                          for (pattern, weight) in RexxLexer.PATTERNS_AND_WEIGHTS
                          if pattern.search(lowerText)) + 0.01
             return min(result, 1.0)
+
+
+class APLLexer(RegexLexer):
+    """
+    A simple APL lexer.
+
+    .. versionadded:: 2.0
+    """
+    name = 'APL'
+    aliases = ['apl']
+    filenames = ['*.apl']
+
+    tokens = {
+        'root': [
+            # Whitespace
+            # ==========
+            (r'\s+', Text),
+            #
+            # Comment
+            # =======
+            # '⍝' is traditional; '#' is supported by GNU APL and NGN (but not Dyalog)
+            (u'[⍝#].*$', Comment.Single),
+            #
+            # Strings
+            # =======
+            (r'\'((\'\')|[^\'])*\'', String.Single),
+            (r'"(("")|[^"])*"', String.Double), # supported by NGN APL
+            #
+            # Punctuation
+            # ===========
+            # This token type is used for diamond and parenthesis
+            # but not for bracket and ; (see below)
+            (u'[⋄◇()]', Punctuation),
+            #
+            # Array indexing
+            # ==============
+            # Since this token type is very important in APL, it is not included in
+            # the punctuation token type but rather in the following one
+            (r'[\[\];]', String.Regex),
+            #
+            # Distinguished names
+            # ===================
+            # following IBM APL2 standard
+            (u'⎕[A-Za-zΔ∆⍙][A-Za-zΔ∆⍙_¯0-9]*', Name.Function),
+            #
+            # Labels
+            # ======
+            # following IBM APL2 standard
+            # (u'[A-Za-zΔ∆⍙][A-Za-zΔ∆⍙_¯0-9]*:', Name.Label),
+            #
+            # Variables
+            # =========
+            # following IBM APL2 standard
+            (u'[A-Za-zΔ∆⍙][A-Za-zΔ∆⍙_¯0-9]*', Name.Variable),
+            #
+            # Numbers
+            # =======
+            (u'¯?(0[Xx][0-9A-Fa-f]+|[0-9]*\.?[0-9]+([Ee][+¯]?[0-9]+)?|¯|∞)'
+             u'([Jj]¯?(0[Xx][0-9A-Fa-f]+|[0-9]*\.?[0-9]+([Ee][+¯]?[0-9]+)?|¯|∞))?',
+             Number),
+            #
+            # Operators
+            # ==========
+            (u'[\.\\\/⌿⍀¨⍣⍨⍠⍤∘]', Name.Attribute), # closest token type
+            (u'[+\-×÷⌈⌊∣|⍳?*⍟○!⌹<≤=>≥≠≡≢∊⍷∪∩~∨∧⍱⍲⍴,⍪⌽⊖⍉↑↓⊂⊃⌷⍋⍒⊤⊥⍕⍎⊣⊢⍁⍂≈⌸⍯↗]',
+             Operator),
+            #
+            # Constant
+            # ========
+            (u'⍬', Name.Constant),
+            #
+            # Quad symbol
+            # ===========
+            (u'[⎕⍞]', Name.Variable.Global),
+            #
+            # Arrows left/right
+            # =================
+            (u'[←→]', Keyword.Declaration),
+            #
+            # D-Fn
+            # ====
+            (u'[⍺⍵⍶⍹∇:]', Name.Builtin.Pseudo),
+            (r'[{}]', Keyword.Type),
+        ],
+    }

@@ -11,7 +11,6 @@
 
 import re
 import sys
-import codecs
 
 
 split_path_re = re.compile(r'[/\\ ]')
@@ -52,7 +51,7 @@ def get_bool_opt(options, optname, default=None):
         return string
     elif isinstance(string, int):
         return bool(string)
-    elif not isinstance(string, basestring):
+    elif not isinstance(string, string_types):
         raise OptionError('Invalid type %r for option %s; use '
                           '1/0, yes/no, true/false, on/off' % (
                           string, optname))
@@ -82,7 +81,7 @@ def get_int_opt(options, optname, default=None):
 
 def get_list_opt(options, optname, default=None):
     val = options.get(optname, default)
-    if isinstance(val, basestring):
+    if isinstance(val, string_types):
         return val.split()
     elif isinstance(val, (list, tuple)):
         return list(val)
@@ -253,25 +252,35 @@ def unirange(a, b):
 
 # Python 2/3 compatibility
 
-if sys.version_info < (3,0):
-    b = bytes = str
+if sys.version_info < (3, 0):
+    unichr = unichr
+    xrange = xrange
+    string_types = (str, unicode)
+    text_type = unicode
     u_prefix = 'u'
+    iteritems = dict.iteritems
+    itervalues = dict.itervalues
     import StringIO, cStringIO
-    BytesIO = cStringIO.StringIO
+    # unfortunately, io.StringIO in Python 2 doesn't accept str at all
     StringIO = StringIO.StringIO
-    uni_open = codecs.open
+    BytesIO = cStringIO.StringIO
 else:
-    import builtins
-    bytes = builtins.bytes
+    unichr = chr
+    xrange = range
+    string_types = (str,)
+    text_type = str
     u_prefix = ''
-    def b(s):
-        if isinstance(s, str):
-            return bytes(map(ord, s))
-        elif isinstance(s, bytes):
-            return s
-        else:
-            raise TypeError("Invalid argument %r for b()" % (s,))
-    import io
-    BytesIO = io.BytesIO
-    StringIO = io.StringIO
-    uni_open = builtins.open
+    iteritems = dict.items
+    itervalues = dict.values
+    from io import StringIO, BytesIO
+
+def add_metaclass(metaclass):
+    """Class decorator for creating a class with a metaclass."""
+    def wrapper(cls):
+        orig_vars = cls.__dict__.copy()
+        orig_vars.pop('__dict__', None)
+        orig_vars.pop('__weakref__', None)
+        for slots_var in orig_vars.get('__slots__', ()):
+            orig_vars.pop(slots_var)
+        return metaclass(cls.__name__, cls.__bases__, orig_vars)
+    return wrapper

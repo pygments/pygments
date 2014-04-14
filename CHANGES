@@ -6,11 +6,14 @@ Issue numbers refer to the tracker at
 pull request numbers to the requests at
 <http://bitbucket.org/birkenfeld/pygments-main/pull-requests/merged>.
 
-Version 1.7
+Version 2.0
 -----------
 (under development)
 
-- Dropped Python 2.4 compatibility.
+- Dropped Python 2.4 and 2.5 compatibility.  This is in favor of single-source
+  compatibility between Python 2.6, 2.7 and 3.3+.
+
+- New website and documentation based on Sphinx (finally!)
 
 - Lexers added:
 
@@ -30,9 +33,19 @@ Version 1.7
   * Chapel (PR#256)
   * Kal (PR#233)
   * Eiffel (PR#273)
+  * Cirru (PR#275)
+  * ColdFusion CFC (PR#283)
+  * Idris (PR#210)
+  * Intel objdump (PR#279)
+  * MaskJS (PR#280)
+  * Inform 6/7 (PR#281)
+  * MQL (PR#285)
+  * APL (#969)
 
 - New styles: "xcode" and "igor", similar to the default highlighting of
   the respective IDEs.
+
+- Updated the Makefile lexer to yield a little more useful highlighting.
 
 - Lexer aliases passed to ``get_lexer_by_name()`` are now case-insensitive.
 
@@ -71,7 +84,8 @@ Version 1.7
 
 - Prolog lexer: add different kinds of numeric literals (#864).
 
-- F# lexer: rewrite with newest spec for F# 3.0 (#842).
+- F# lexer: rewrite with newest spec for F# 3.0 (#842), fix a bug with
+  dotted chains (#948).
 
 - Kotlin lexer: general update (PR#271).
 
@@ -90,6 +104,8 @@ Version 1.7
 - Ceylon lexer: fix parsing of nested multiline comments (#915).
 
 - C family lexers: fix parsing of indented preprocessor directives (#944).
+
+- Rust lexer: update to 0.9 language version (PR#270).
 
 
 Version 1.6
