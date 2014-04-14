@@ -2002,7 +2002,7 @@ class GAPLexer(RegexLexer):
           Name.Constant),
         (r'''(?x)\b(?:
             (Declare|Install)([A-Z][A-Za-z]+)|
-			   BindGlobal|BIND_GLOBAL
+               BindGlobal|BIND_GLOBAL
           )\b''',
           Name.Builtin),
         (r'\.|,|:=|;|=|\+|-|\*|/|\^|>|<', Operator),
