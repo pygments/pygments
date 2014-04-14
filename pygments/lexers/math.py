@@ -1994,7 +1994,11 @@ class GAPLexer(RegexLexer):
             repeat|until|
             break|continue|
             function|local|return|end|
-            rec
+            rec|
+            quit|QUIT|
+            IsBound|Unbind|
+            TryNextMethod|
+            Info|Assert
           )\b''', Keyword),
         (r'''(?x)\b(?:
             true|false|fail|infinity
