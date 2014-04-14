@@ -33,6 +33,12 @@ class RtfFormatter(Formatter):
     `fontface`
         The used font famliy, for example ``Bitstream Vera Sans``. Defaults to
         some generic font which is supposed to have fixed width.
+
+    `fontsize`
+        Size of the font used. Size is specified in half points. The
+        default is 24 half-points, giving a size 12 font.
+
+        .. versionadded:: 2.0
     """
     name = 'RTF'
     aliases = ['rtf']
@@ -51,9 +57,6 @@ class RtfFormatter(Formatter):
             and sans serif fonts". Hope every RTF implementation thinks
             the same about modern...
 
-        ``fontsize``
-            Size of the font used. Size is specified in half points. The
-            default is 24 half-points, giving a size 12 font.
         """
         Formatter.__init__(self, **options)
         self.fontface = options.get('fontface') or ''
