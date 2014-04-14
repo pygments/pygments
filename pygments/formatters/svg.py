@@ -5,7 +5,7 @@
 
     Formatter for SVG output.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -35,7 +35,7 @@ class SvgFormatter(Formatter):
     By default, this formatter outputs a full SVG document including doctype
     declaration and the ``<svg>`` root element.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
 
     Additional options accepted:
 

@@ -8,11 +8,14 @@
     the text where Error tokens are being generated, along
     with some context.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import sys, os
+from __future__ import print_function
+
+import os
+import sys
 
 # always prefer Pygments from source if exists
 srcpath = os.path.join(os.path.dirname(__file__), '..')
@@ -104,36 +107,36 @@ def main(fn, lexer=None, options={}):
         # already debugged before
         debug_lexer = True
     lno = 1
-    text = file(fn, 'U').read()
+    text = open(fn, 'U').read()
     text = text.strip('\n') + '\n'
     tokens = []
     states = []
 
     def show_token(tok, state):
         reprs = map(repr, tok)
-        print '   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0],
+        print('   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0], end=' ')
         if debug_lexer:
-            print ' ' + ' ' * (29-len(reprs[0])) + repr(state),
-        print
+            print(' ' + ' ' * (29-len(reprs[0])) + repr(state), end=' ')
+        print()
 
     for type, val in lx.get_tokens(text):
         lno += val.count('\n')
         if type == Error:
-            print 'Error parsing', fn, 'on line', lno
-            print 'Previous tokens' + (debug_lexer and ' and states' or '') + ':'
+            print('Error parsing', fn, 'on line', lno)
+            print('Previous tokens' + (debug_lexer and ' and states' or '') + ':')
             if showall:
                 for tok, state in map(None, tokens, states):
                     show_token(tok, state)
             else:
                 for i in range(max(len(tokens) - num, 0), len(tokens)):
                     show_token(tokens[i], states[i])
-            print 'Error token:'
+            print('Error token:')
             l = len(repr(val))
-            print '   ' + repr(val),
+            print('   ' + repr(val), end=' ')
             if debug_lexer and hasattr(lx, 'statestack'):
-                print ' ' * (60-l) + repr(lx.statestack),
-            print
-            print
+                print(' ' * (60-l) + repr(lx.statestack), end=' ')
+            print()
+            print()
             return 1
         tokens.append((type, val))
         if debug_lexer:
