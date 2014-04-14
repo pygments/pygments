@@ -46,15 +46,9 @@ class LSLLexer(RegexLexer):
     """
 
     name = 'LSL'
-    aliases = [
-        'lsl',
-        'Linden Scripting Language',
-        'Linden Script',
-        'Second Life']
-    filenames = [
-        '*.lsl']
-    mimetypes = [
-        'text/x-lsl']
+    aliases = ['lsl']
+    filenames = ['*.lsl']
+    mimetypes = ['text/x-lsl']
 
     flags = re.MULTILINE
 
@@ -122,7 +116,8 @@ class LSLLexer(RegexLexer):
         [
             (r'\\([nt"\\])',                      String.Escape),
             (r'"',                                String.Double, '#pop'),
-            (r'\\.',                              Error)
+            (r'\\.',                              Error),
+            (r'[^"\\]+',                          String.Double),
         ]
     }
 
