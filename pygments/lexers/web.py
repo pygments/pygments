@@ -3691,7 +3691,7 @@ class DartLexer(RegexLexer):
              r'native|operator|set|static|typedef|var)\b', Keyword.Declaration),
             (r'\b(bool|double|Dynamic|int|num|Object|String|void)\b', Keyword.Type),
             (r'\b(false|null|true)\b', Keyword.Constant),
-            (r'[~!%^&*+=|?:<>/-]|as', Operator),
+            (r'[~!%^&*+=|?:<>/-]|as\b', Operator),
             (r'[a-zA-Z_$][a-zA-Z0-9_]*:', Name.Label),
             (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
             (r'[(){}\[\],.;]', Punctuation),
