@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.inferno
@@ -21,10 +20,10 @@ from pygments.util import get_bool_opt
 
 __all__ = ['LimboLexer']
 
+
 class LimboLexer(RegexLexer):
     """
-    Lexer for Limbo programming language
-    see (http://www.vitanuova.com/inferno/limbo.html)
+    Lexer for `Limbo programming language <http://www.vitanuova.com/inferno/limbo.html>`_
 
     TODO:
         - maybe implement better var declaration highlighting
