@@ -9,9 +9,12 @@
 
     Do not edit the MODULES dict by hand.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
+from __future__ import print_function
+
 
 MODULES = {'basic': ['_G',
            '_VERSION',
@@ -142,7 +145,10 @@ MODULES = {'basic': ['_G',
 
 if __name__ == '__main__':
     import re
-    import urllib
+    try:
+        from urllib import urlopen
+    except ImportError:
+        from urllib.request import urlopen
     import pprint
 
     # you can't generally find out what module a function belongs to if you
@@ -188,7 +194,7 @@ if __name__ == '__main__':
 
 
     def get_newest_version():
-        f = urllib.urlopen('http://www.lua.org/manual/')
+        f = urlopen('http://www.lua.org/manual/')
         r = re.compile(r'^<A HREF="(\d\.\d)/">Lua \1</A>')
         for line in f:
             m = r.match(line)
@@ -196,7 +202,7 @@ if __name__ == '__main__':
                 return m.groups()[0]
 
     def get_lua_functions(version):
-        f = urllib.urlopen('http://www.lua.org/manual/%s/' % version)
+        f = urlopen('http://www.lua.org/manual/%s/' % version)
         r = re.compile(r'^<A HREF="manual.html#pdf-(.+)">\1</A>')
         functions = []
         for line in f:
@@ -206,7 +212,7 @@ if __name__ == '__main__':
         return functions
 
     def get_function_module(name):
-        for mod, cb in module_callbacks().iteritems():
+        for mod, cb in module_callbacks().items():
             if cb(name):
                 return mod
         if '.' in name:
@@ -233,13 +239,13 @@ if __name__ == '__main__':
 
     def run():
         version = get_newest_version()
-        print '> Downloading function index for Lua %s' % version
+        print('> Downloading function index for Lua %s' % version)
         functions = get_lua_functions(version)
-        print '> %d functions found:' % len(functions)
+        print('> %d functions found:' % len(functions))
 
         modules = {}
         for full_function_name in functions:
-            print '>> %s' % full_function_name
+            print('>> %s' % full_function_name)
             m = get_function_module(full_function_name)
             modules.setdefault(m, []).append(full_function_name)
 

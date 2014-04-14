@@ -5,7 +5,7 @@
 
     Lexers for .net languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re
@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, include, \
      using, this
 from pygments.token import Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Literal, Other
-from pygments.util import get_choice_opt
+from pygments.util import get_choice_opt, iteritems
 from pygments import unistring as uni
 
 from pygments.lexers.web import XmlLexer
@@ -44,7 +44,7 @@ class CSharpLexer(RegexLexer):
 
       The default value is ``basic``.
 
-      *New in Pygments 0.8.*
+      .. versionadded:: 0.8
     """
 
     name = 'C#'
@@ -71,7 +71,7 @@ class CSharpLexer(RegexLexer):
     tokens = {}
     token_variants = True
 
-    for levelname, cs_ident in levels.items():
+    for levelname, cs_ident in iteritems(levels):
         tokens[levelname] = {
             'root': [
                 # method names
@@ -126,7 +126,7 @@ class CSharpLexer(RegexLexer):
         }
 
     def __init__(self, **options):
-        level = get_choice_opt(options, 'unicodelevel', self.tokens.keys(), 'basic')
+        level = get_choice_opt(options, 'unicodelevel', list(self.tokens), 'basic')
         if level not in self._all_tokens:
             # compile the regexes now
             self._tokens = self.__class__.process_tokendef(level)
@@ -156,7 +156,7 @@ class NemerleLexer(RegexLexer):
 
       The default value is ``basic``.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Nemerle'
@@ -183,7 +183,7 @@ class NemerleLexer(RegexLexer):
     tokens = {}
     token_variants = True
 
-    for levelname, cs_ident in levels.items():
+    for levelname, cs_ident in iteritems(levels):
         tokens[levelname] = {
             'root': [
                 # method names
@@ -284,7 +284,7 @@ class NemerleLexer(RegexLexer):
         }
 
     def __init__(self, **options):
-        level = get_choice_opt(options, 'unicodelevel', self.tokens.keys(),
+        level = get_choice_opt(options, 'unicodelevel', list(self.tokens),
                                'basic')
         if level not in self._all_tokens:
             # compile the regexes now
@@ -531,7 +531,7 @@ class FSharpLexer(RegexLexer):
     """
     For the F# language (version 3.0).
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'FSharp'
@@ -638,6 +638,8 @@ class FSharpLexer(RegexLexer):
             (r'[A-Z][A-Za-z0-9_\']*(?=\s*\.)', Name.Namespace),
             (r'[A-Z][A-Za-z0-9_\']*', Name, '#pop'),
             (r'[a-z_][A-Za-z0-9_\']*', Name, '#pop'),
+            # e.g. dictionary index access
+            (r'', Text, '#pop'),
         ],
         'comment': [
             (r'[^(*)@"]+', Comment),

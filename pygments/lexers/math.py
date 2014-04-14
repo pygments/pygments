@@ -5,9 +5,11 @@
 
     Lexers for math languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
+from __future__ import print_function
 
 import re
 
@@ -24,14 +26,14 @@ from pygments.lexers import _stan_builtins
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
            'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
            'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer',
-           'IDLLexer', 'RdLexer', 'IgorLexer']
+           'IDLLexer', 'RdLexer', 'IgorLexer', 'MathematicaLexer', 'GAPLexer']
 
 
 class JuliaLexer(RegexLexer):
     """
     For `Julia <http://julialang.org/>`_ source code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Julia'
     aliases = ['julia','jl']
@@ -151,7 +153,7 @@ class JuliaConsoleLexer(Lexer):
     """
     For Julia console sessions. Modeled after MatlabSessionLexer.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Julia console'
     aliases = ['jlcon']
@@ -167,8 +169,8 @@ class JuliaConsoleLexer(Lexer):
 
             if line.startswith('julia>'):
                 insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, line[:3])]))
-                curcode += line[3:]
+                                   [(0, Generic.Prompt, line[:6])]))
+                curcode += line[6:]
 
             elif line.startswith('      '):
 
@@ -200,7 +202,7 @@ class MuPADLexer(RegexLexer):
     A `MuPAD <http://www.mupad.com>`_ lexer.
     Contributed by Christopher Creutzig <christopher@creutzig.de>.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
     name = 'MuPAD'
     aliases = ['mupad']
@@ -270,7 +272,7 @@ class MatlabLexer(RegexLexer):
     """
     For Matlab source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Matlab'
     aliases = ['matlab']
@@ -348,13 +350,13 @@ class MatlabLexer(RegexLexer):
 
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
-            (r'(?<=[\w\)\]])\'', Operator),
+            (r'(?<=[\w\)\].])\'+', Operator),
 
             (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'\d+', Number.Integer),
 
-            (r'(?<![\w\)\]])\'', String, 'string'),
+            (r'(?<![\w\)\].])\'', String, 'string'),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
         ],
@@ -376,10 +378,9 @@ class MatlabLexer(RegexLexer):
 
     def analyse_text(text):
         if re.match('^\s*%', text, re.M): # comment
-            return 0.9
+            return 0.2
         elif re.match('^!\w+', text, re.M): # system cmd
-            return 0.9
-        return 0.1
+            return 0.2
 
 
 line_re  = re.compile('.*?\n')
@@ -389,7 +390,7 @@ class MatlabSessionLexer(Lexer):
     For Matlab sessions.  Modeled after PythonConsoleLexer.
     Contributed by Ken Schutte <kschutte@csail.mit.edu>.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Matlab session'
     aliases = ['matlabsession']
@@ -403,17 +404,22 @@ class MatlabSessionLexer(Lexer):
         for match in line_re.finditer(text):
             line = match.group()
 
-            if line.startswith('>>'):
+            if line.startswith('>> '):
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:3])]))
                 curcode += line[3:]
+
+            elif line.startswith('>>'):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, line[:2])]))
+                curcode += line[2:]
 
             elif line.startswith('???'):
 
                 idx = len(curcode)
 
                 # without is showing error on same line as before...?
-                line = "\n" + line
+                #line = "\n" + line
                 token = (0, Generic.Traceback, line)
                 insertions.append((idx, [token]))
 
@@ -427,6 +433,7 @@ class MatlabSessionLexer(Lexer):
 
                 yield match.start(), Generic.Output, line
 
+        print(insertions)
         if curcode: # or item:
             for item in do_insertions(
                 insertions, mlexer.get_tokens_unprocessed(curcode)):
@@ -437,7 +444,7 @@ class OctaveLexer(RegexLexer):
     """
     For GNU Octave source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Octave'
     aliases = ['octave']
@@ -806,8 +813,8 @@ class OctaveLexer(RegexLexer):
 
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
-            (r'(?<=[\w\)\]])\'', Operator),
-            (r'(?<![\w\)\]])\'', String, 'string'),
+            (r'(?<=[\w\)\].])\'+', Operator),
+            (r'(?<![\w\)\].])\'', String, 'string'),
 
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'.', Text),
@@ -823,16 +830,12 @@ class OctaveLexer(RegexLexer):
         ],
     }
 
-    def analyse_text(text):
-        if re.match('^\s*[%#]', text, re.M): #Comment
-            return 0.1
-
 
 class ScilabLexer(RegexLexer):
     """
     For Scilab source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Scilab'
     aliases = ['scilab']
@@ -871,8 +874,8 @@ class ScilabLexer(RegexLexer):
 
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
-            (r'(?<=[\w\)\]])\'', Operator),
-            (r'(?<![\w\)\]])\'', String, 'string'),
+            (r'(?<=[\w\)\].])\'+', Operator),
+            (r'(?<![\w\)\].])\'', String, 'string'),
 
             (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
@@ -898,7 +901,7 @@ class NumPyLexer(PythonLexer):
     """
     A Python lexer recognizing Numerical Python builtins.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'NumPy'
@@ -1039,7 +1042,7 @@ class SLexer(RegexLexer):
     """
     For S, S-plus, and R source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'S'
@@ -1127,7 +1130,7 @@ class BugsLexer(RegexLexer):
     Pygments Lexer for `OpenBugs <http://www.openbugs.info/w/>`_ and WinBugs
     models.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'BUGS'
@@ -1222,7 +1225,7 @@ class JagsLexer(RegexLexer):
     """
     Pygments Lexer for JAGS.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'JAGS'
@@ -1308,11 +1311,11 @@ class JagsLexer(RegexLexer):
 class StanLexer(RegexLexer):
     """Pygments Lexer for Stan models.
 
-    The Stan modeling language is specified in the *Stan 1.3.0
+    The Stan modeling language is specified in the *Stan 2.0.1
     Modeling Language Manual* `pdf
-    <http://code.google.com/p/stan/downloads/detail?name=stan-reference-1.3.0.pdf>`_.
+    <https://github.com/stan-dev/stan/releases/download/v2.0.1/stan-reference-2.0.1.pdf>`__
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Stan'
@@ -1385,7 +1388,7 @@ class IDLLexer(RegexLexer):
     """
     Pygments Lexer for IDL (Interactive Data Language).
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'IDL'
     aliases = ['idl']
@@ -1631,7 +1634,7 @@ class RdLexer(RegexLexer):
     Extensions <http://cran.r-project.org/doc/manuals/R-exts.html>`_
     and `Parsing Rd files <developer.r-project.org/parseRd.pdf>`_.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Rd'
     aliases = ['rd']
@@ -1666,7 +1669,7 @@ class IgorLexer(RegexLexer):
     Pygments Lexer for Igor Pro procedure files (.ipf).
     See http://www.wavemetrics.com/ and http://www.igorexchange.com/.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name = 'Igor'
@@ -1674,18 +1677,22 @@ class IgorLexer(RegexLexer):
     filenames = ['*.ipf']
     mimetypes = ['text/ipf']
 
-    flags = re.IGNORECASE
+    flags = re.IGNORECASE | re.MULTILINE
 
     flowControl = [
         'if', 'else', 'elseif', 'endif', 'for', 'endfor', 'strswitch', 'switch',
-        'case', 'endswitch', 'do', 'while', 'try', 'catch', 'endtry', 'break',
-        'continue', 'return',
+        'case', 'default', 'endswitch', 'do', 'while', 'try', 'catch', 'endtry',
+        'break', 'continue', 'return',
     ]
     types = [
         'variable', 'string', 'constant', 'strconstant', 'NVAR', 'SVAR', 'WAVE',
-        'STRUCT', 'ThreadSafe', 'function', 'end', 'static', 'macro', 'window',
-        'graph', 'Structure', 'EndStructure', 'EndMacro', 'FuncFit', 'Proc',
-        'Picture', 'Menu', 'SubMenu', 'Prompt', 'DoPrompt',
+        'STRUCT', 'dfref'
+    ]
+    keywords = [
+        'override', 'ThreadSafe', 'static',  'FuncFit', 'Proc', 'Picture',
+        'Prompt', 'DoPrompt', 'macro', 'window', 'graph', 'function', 'end',
+        'Structure', 'EndStructure', 'EndMacro', 'Menu', 'SubMenu', 'Prompt',
+        'DoPrompt',
     ]
     operations = [
         'Abort', 'AddFIFOData', 'AddFIFOVectData', 'AddMovieAudio',
@@ -1905,6 +1912,8 @@ class IgorLexer(RegexLexer):
             (r'\b(%s)\b' % '|'.join(flowControl), Keyword),
             # Types.
             (r'\b(%s)\b' % '|'.join(types), Keyword.Type),
+            # Keywords.
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword.Reserved),
             # Built-in operations.
             (r'\b(%s)\b' % '|'.join(operations), Name.Class),
             # Built-in functions.
@@ -1912,7 +1921,104 @@ class IgorLexer(RegexLexer):
             # Compiler directives.
             (r'^#(include|pragma|define|ifdef|ifndef|endif)',
              Name.Decorator),
-            (r'[^a-zA-Z"/]+', Text),
+            (r'[^a-zA-Z"/]+$', Text),
             (r'.', Text),
         ],
+    }
+
+
+class MathematicaLexer(RegexLexer):
+    """
+    Lexer for `Mathematica <http://www.wolfram.com/mathematica/>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Mathematica'
+    aliases = ['mathematica', 'mma', 'nb']
+    filenames = ['*.nb', '*.cdf', '*.nbp', '*.ma']
+    mimetypes = ['application/mathematica',
+                 'application/vnd.wolfram.mathematica',
+                 'application/vnd.wolfram.mathematica.package',
+                 'application/vnd.wolfram.cdf']
+
+    # http://reference.wolfram.com/mathematica/guide/Syntax.html
+    operators = [
+        ";;", "=", "=.", "!=" "==", ":=", "->", ":>", "/.", "+", "-", "*", "/",
+        "^", "&&", "||", "!", "<>", "|", "/;", "?", "@", "//", "/@", "@@",
+        "@@@", "~~", "===", "&"]
+    operators.sort(reverse=True)
+
+    punctuation = [",", ";", "(", ")", "[", "]", "{", "}"]
+
+    def _multi_escape(entries):
+        return '(%s)' % ('|'.join(re.escape(entry) for entry in entries))
+
+    tokens = {
+        'root': [
+            (r'(?s)\(\*.*?\*\)', Comment),
+
+            (r'([a-zA-Z]+[A-Za-z0-9]*`)', Name.Namespace),
+            (r'([A-Za-z0-9]*_+[A-Za-z0-9]*)', Name.Variable),
+            (r'#\d*', Name.Variable),
+            (r'([a-zA-Z]+[a-zA-Z0-9]*)', Name),
+
+            (r'-?[0-9]+\.[0-9]*', Number.Float),
+            (r'-?[0-9]*\.[0-9]+', Number.Float),
+            (r'-?[0-9]+', Number.Integer),
+
+            (_multi_escape(operators), Operator),
+            (_multi_escape(punctuation), Punctuation),
+            (r'".*?"', String),
+            (r'\s+', Text.Whitespace),
+        ],
+    }
+
+class GAPLexer(RegexLexer):
+    """
+    For `GAP <http://www.gap-system.org>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'GAP'
+    aliases = ['gap']
+    filenames = ['*.g', '*.gd', '*.gi', '*.gap']
+
+    tokens = {
+      'root' : [
+        (r'#.*$', Comment.Single),
+        (r'"(?:[^"\\]|\\.)*"', String),
+        (r'\(|\)|\[|\]|\{|\}', Punctuation),
+        (r'''(?x)\b(?:
+            if|then|elif|else|fi|
+            for|while|do|od|
+            repeat|until|
+            break|continue|
+            function|local|return|end|
+            rec|
+            quit|QUIT|
+            IsBound|Unbind|
+            TryNextMethod|
+            Info|Assert
+          )\b''', Keyword),
+        (r'''(?x)\b(?:
+            true|false|fail|infinity
+          )\b''',
+          Name.Constant),
+        (r'''(?x)\b(?:
+            (Declare|Install)([A-Z][A-Za-z]+)|
+               BindGlobal|BIND_GLOBAL
+          )\b''',
+          Name.Builtin),
+        (r'\.|,|:=|;|=|\+|-|\*|/|\^|>|<', Operator),
+        (r'''(?x)\b(?:
+            and|or|not|mod|in
+          )\b''',
+          Operator.Word),
+        (r'''(?x)
+          (?:[a-zA-Z_0-9]+|`[^`]*`)
+          (?:::[a-zA-Z_0-9]+|`[^`]*`)*''', Name.Variable),
+        (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
+        (r'\.[0-9]+(?:e[0-9]+)?', Number),
+        (r'.', Text)
+      ]
     }

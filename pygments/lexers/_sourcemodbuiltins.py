@@ -8,9 +8,11 @@
 
     Do not edit the FUNCTIONS list by hand.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
+from __future__ import print_function
 
 FUNCTIONS = ['TopMenuHandler',
  'CreateTopMenu',
@@ -1012,7 +1014,10 @@ if __name__ == '__main__':
     import pprint
     import re
     import sys
-    import urllib
+    try:
+        from urllib import urlopen
+    except ImportError:
+        from urllib.request import urlopen
 
     # urllib ends up wanting to import a module called 'math' -- if
     # pygments/lexers is in the path, this ends badly.
@@ -1021,7 +1026,7 @@ if __name__ == '__main__':
             del sys.path[i]
 
     def get_version():
-        f = urllib.urlopen('http://docs.sourcemod.net/api/index.php')
+        f = urlopen('http://docs.sourcemod.net/api/index.php')
         r = re.compile(r'SourceMod v\.<b>([\d\.]+)</td>')
         for line in f:
             m = r.search(line)
@@ -1029,7 +1034,7 @@ if __name__ == '__main__':
                 return m.groups()[0]
 
     def get_sm_functions():
-        f = urllib.urlopen('http://docs.sourcemod.net/api/SMfuncs.js')
+        f = urlopen('http://docs.sourcemod.net/api/SMfuncs.js')
         r = re.compile(r'SMfunctions\[\d+\] = Array \("(?:public )?([^,]+)",".+"\);')
         functions = []
         for line in f:
@@ -1057,13 +1062,13 @@ if __name__ == '__main__':
 
     def run():
         version = get_version()
-        print '> Downloading function index for SourceMod %s' % version
+        print('> Downloading function index for SourceMod %s' % version)
         functions = get_sm_functions()
-        print '> %d functions found:' % len(functions)
+        print('> %d functions found:' % len(functions))
 
         functionlist = []
         for full_function_name in functions:
-            print '>> %s' % full_function_name
+            print('>> %s' % full_function_name)
             functionlist.append(full_function_name)
 
         regenerate(__file__, functionlist)
