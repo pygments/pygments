@@ -3910,12 +3910,12 @@ class AmbientTalkLexer(RegexLexer):
             (r'"(\\\\|\\"|[^"])*"', String),
             (r'\|', Punctuation, 'arglist'),
             (r'<:|[\^\*!%&<>+=,./?-]|:=', Operator),
-            (r"`\w[\w\d]*", String.Symbol),
-            (r"\w[\w\d]*:", Name.Function),
+            (r"`[a-zA-Z_][a-zA-Z0-9_]*", String.Symbol),
+            (r"[a-zA-Z_][a-zA-Z0-9_]*:", Name.Function),
             (r"[\{\}()\[\];`]", Punctuation),
             (r'(self|super)\b', Name.Variable.Instance),
-            (r"\w[\w\d]*", Name.Variable),
-            (r"@\w[\w\d]*", Name.Class),
+            (r"[a-zA-Z_][a-zA-Z0-9_]*", Name.Variable),
+            (r"@[a-zA-Z_][a-zA-Z0-9_]*", Name.Class),
             (r"@\[", Name.Class, 'annotations'),
             include('numbers'),
         ],
@@ -3924,9 +3924,9 @@ class AmbientTalkLexer(RegexLexer):
             (r'\d+', Number.Integer)
         ],
         'namespace': [
-            (r'\w[\w\d]*\.', Name.Namespace),
-            (r'\w[\w\d]*:', Name.Function , '#pop'),
-            (r'\w[\w\d]*(?!\.)', Name.Function , '#pop')
+            (r'[a-zA-Z_][a-zA-Z0-9_]*\.', Name.Namespace),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Function , '#pop'),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*(?!\.)', Name.Function , '#pop')
         ],
         'annotations' : [
             (r"(.*?)\]", Name.Class, '#pop')
@@ -3934,6 +3934,6 @@ class AmbientTalkLexer(RegexLexer):
         'arglist' : [
             (r'\|', Punctuation, '#pop'),
             (r'\s*(,)\s*', Punctuation),
-            (r'\w[\w\d]*', Name.Variable)
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable)
         ]
     }
