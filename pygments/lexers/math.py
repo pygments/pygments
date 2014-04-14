@@ -1976,7 +1976,6 @@ class MathematicaLexer(RegexLexer):
 class GAPLexer(RegexLexer):
     """
     A `GAP <http://www.gap-system.org>`_ lexer.
-    Contributed by Max Horn <max@quendi.de>.
 
     .. versionadded:: ???
     """
