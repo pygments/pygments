@@ -18,7 +18,7 @@ from pygments.util import get_bool_opt, get_int_opt, StringIO, xrange, \
     iteritems
 
 
-__all__ = ['LatexEmbededLexer', 'LatexFormatter']
+__all__ = ['LatexEmbeddedLexer', 'LatexFormatter']
 
 
 def escape_tex(text, commandprefix):
@@ -416,7 +416,7 @@ class LatexFormatter(Formatter):
                      code      = outfile.getvalue()))
 
 
-class LatexEmbededLexer(Lexer):
+class LatexEmbeddedLexer(Lexer):
     r"""
 
     This lexer takes one lexer as argument, the lexer for the language
