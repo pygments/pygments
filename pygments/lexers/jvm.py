@@ -1252,4 +1252,9 @@ class GoloLexer(RegexLexer):
             (r"'", String, '#pop'),
             include('string'),
         ],
+        'operators': [
+            (r'[#=,./%+\-?]', Operator),
+            (r'(eq|gt|lt|gte|lte|neq|matches)\b', Operator),
+            (r'(==|<=|<|>=|>|!=)', Operator),
+        ],
     }
