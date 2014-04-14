@@ -35,6 +35,7 @@ Programming languages
 * Fancy
 * Fortran
 * F#
+* GAP
 * Gherkin (Cucumber)
 * GL shaders
 * Groovy
@@ -81,6 +82,7 @@ Programming languages
 * Visual Basic.NET
 * Visual FoxPro
 * XQuery
+* Zephir
   </ul>
 
 Template languages

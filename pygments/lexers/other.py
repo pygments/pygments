@@ -1235,9 +1235,9 @@ class ModelicaLexer(RegexLexer):
         'root': [
             include('whitespace'),
             include('keywords'),
+            include('classes'),
             include('functions'),
             include('operators'),
-            include('classes'),
             (r'("<html>|<html>)', Name.Tag, 'html-content'),
             include('statements'),
         ],
@@ -1264,9 +1264,9 @@ class ModelicaLexer(RegexLexer):
              r'terminate)\b', Name.Builtin),
         ],
         'classes': [
-            (r'(block|class|connector|end|function|model|package|'
+            (r'(operator)?(\s+)?(block|class|connector|end|function|model|operator|package|'
              r'record|type)(\s+)((?!if|when|while)[A-Za-z_]\w*|[\'][^\']+[\'])([;]?)',
-             bygroups(Keyword, Text, Name.Class, Text))
+             bygroups(Keyword, Text, Keyword, Text, Name.Class, Text))
         ],
         'quoted_ident': [
             (r'\'', Name, '#pop'),
@@ -2528,11 +2528,11 @@ class AwkLexer(RegexLexer):
         'root': [
             (r'^(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'\+\+|--|\|\||&&|in|\$|!?~|'
+            (r'\+\+|--|\|\||&&|in\b|\$|!?~|'
              r'(\*\*|[-<>+*%\^/!=])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
-            (r'(break|continue|do|while|exit|for|if|'
+            (r'(break|continue|do|while|exit|for|if|else|'
              r'return)\b', Keyword, 'slashstartsregex'),
             (r'function\b', Keyword.Declaration, 'slashstartsregex'),
             (r'(atan2|cos|exp|int|log|rand|sin|sqrt|srand|gensub|gsub|index|'

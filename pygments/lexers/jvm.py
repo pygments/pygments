@@ -19,8 +19,9 @@ from pygments import unistring as uni
 
 
 __all__ = ['JavaLexer', 'ScalaLexer', 'GosuLexer', 'GosuTemplateLexer',
-           'GroovyLexer', 'IokeLexer', 'ClojureLexer', 'KotlinLexer',
-           'XtendLexer', 'AspectJLexer', 'CeylonLexer']
+           'GroovyLexer', 'IokeLexer', 'ClojureLexer', 'ClojureScriptLexer',
+           'KotlinLexer', 'XtendLexer', 'AspectJLexer', 'CeylonLexer',
+           'PigLexer']
 
 
 class JavaLexer(RegexLexer):
@@ -813,6 +814,19 @@ class ClojureLexer(RegexLexer):
     }
 
 
+class ClojureScriptLexer(ClojureLexer):
+    """
+    Lexer for `ClojureScript <http://clojure.org/clojurescript>`_
+    source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'ClojureScript'
+    aliases = ['clojurescript', 'cljs']
+    filenames = ['*.cljs']
+    mimetypes = ['text/x-clojurescript', 'application/x-clojurescript']
+
+
 class TeaLangLexer(RegexLexer):
     """
     For `Tea <http://teatrove.org/>`_ source code. Only used within a
@@ -1064,5 +1078,71 @@ class XtendLexer(RegexLexer):
             (r"'''", String, '#pop'),
             (u'\u00AB', String, '#pop'),
             (r'.', String)
+        ],
+    }
+
+class PigLexer(RegexLexer):
+    """
+    For `Pig Latin <https://pig.apache.org/>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'Pig'
+    aliases = ['pig']
+    filenames = ['*.pig']
+    mimetypes = ['text/x-pig']
+
+    flags = re.MULTILINE | re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'--.*', Comment),
+            (r'/\*[\w\W]*?\*/', Comment.Multiline),
+            (r'\\\n', Text),
+            (r'\\', Text),
+            (r'\'(?:\\[ntbrf\\\']|\\u[0-9a-f]{4}|[^\'\\\n\r])*\'', String),
+            include('keywords'),
+            include('types'),
+            include('builtins'),
+            include('punct'),
+            include('operators'),
+            (r'[0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-f]+', Number.Hex),
+            (r'[0-9]+L?', Number.Integer),
+            (r'\n', Text),
+            (r'([a-z_][a-z0-9_]*)(\s*)(\()',
+             bygroups(Name.Function, Text, Punctuation)),
+            (r'[()#:]', Text),
+            (r'[^(:#\'\")\s]+', Text),
+            (r'\S+\s+', Text) # TODO: make tests pass without \s+
+        ],
+        'keywords': [
+            (r'(assert|and|any|all|arrange|as|asc|bag|by|cache|CASE|cat|cd|cp|'
+             r'%declare|%default|define|dense|desc|describe|distinct|du|dump|'
+             r'eval|exex|explain|filter|flatten|foreach|full|generate|group|'
+             r'help|if|illustrate|import|inner|input|into|is|join|kill|left|'
+             r'limit|load|ls|map|matches|mkdir|mv|not|null|onschema|or|order|'
+             r'outer|output|parallel|pig|pwd|quit|register|returns|right|rm|'
+             r'rmf|rollup|run|sample|set|ship|split|stderr|stdin|stdout|store|'
+             r'stream|through|union|using|void)\b', Keyword)
+        ],
+        'builtins': [
+            (r'(AVG|BinStorage|cogroup|CONCAT|copyFromLocal|copyToLocal|COUNT|'
+             r'cross|DIFF|MAX|MIN|PigDump|PigStorage|SIZE|SUM|TextLoader|'
+             r'TOKENIZE)\b', Name.Builtin)
+        ],
+        'types': [
+            (r'(bytearray|BIGINTEGER|BIGDECIMAL|chararray|datetime|double|float|'
+             r'int|long|tuple)\b', Keyword.Type)
+        ],
+        'punct': [
+            (r'[;(){}\[\]]', Punctuation),
+        ],
+        'operators': [
+            (r'[#=,./%+\-?]', Operator),
+            (r'(eq|gt|lt|gte|lte|neq|matches)\b', Operator),
+            (r'(==|<=|<|>=|>|!=)', Operator),
         ],
     }
