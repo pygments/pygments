@@ -5,7 +5,7 @@
 
     Lexers for non-source code file types.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -25,7 +25,8 @@ __all__ = ['IniLexer', 'PropertiesLexer', 'SourcesListLexer', 'BaseMakefileLexer
            'RstLexer', 'VimLexer', 'GettextLexer', 'SquidConfLexer',
            'DebianControlLexer', 'DarcsPatchLexer', 'YamlLexer',
            'LighttpdConfLexer', 'NginxConfLexer', 'CMakeLexer', 'HttpLexer',
-           'PyPyLogLexer']
+           'PyPyLogLexer', 'RegeditLexer', 'HxmlLexer', 'EbnfLexer',
+           'TodotxtLexer']
 
 
 class IniLexer(RegexLexer):
@@ -34,14 +35,14 @@ class IniLexer(RegexLexer):
     """
 
     name = 'INI'
-    aliases = ['ini', 'cfg']
+    aliases = ['ini', 'cfg', 'dosini']
     filenames = ['*.ini', '*.cfg']
     mimetypes = ['text/x-ini']
 
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'[;#].*?$', Comment),
+            (r'[;#].*', Comment.Single),
             (r'\[.*?\]$', Keyword),
             (r'(.*?)([ \t]*)(=)([ \t]*)(.*(?:\n[ \t].+)*)',
              bygroups(Name.Attribute, Text, Operator, Text, String))
@@ -55,15 +56,58 @@ class IniLexer(RegexLexer):
         return text[0] == '[' and text[npos-1] == ']'
 
 
+class RegeditLexer(RegexLexer):
+    """
+    Lexer for `Windows Registry
+    <http://en.wikipedia.org/wiki/Windows_Registry#.REG_files>`_ files produced
+    by regedit.
+
+    .. versionadded:: 1.6
+    """
+
+    name = 'reg'
+    aliases = ['registry']
+    filenames = ['*.reg']
+    mimetypes = ['text/x-windows-registry']
+
+    tokens = {
+        'root': [
+            (r'Windows Registry Editor.*', Text),
+            (r'\s+', Text),
+            (r'[;#].*', Comment.Single),
+            (r'(\[)(-?)(HKEY_[A-Z_]+)(.*?\])$',
+             bygroups(Keyword, Operator, Name.Builtin, Keyword)),
+            # String keys, which obey somewhat normal escaping
+            (r'("(?:\\"|\\\\|[^"])+")([ \t]*)(=)([ \t]*)',
+             bygroups(Name.Attribute, Text, Operator, Text),
+             'value'),
+            # Bare keys (includes @)
+            (r'(.*?)([ \t]*)(=)([ \t]*)',
+             bygroups(Name.Attribute, Text, Operator, Text),
+             'value'),
+        ],
+        'value': [
+            (r'-', Operator, '#pop'), # delete value
+            (r'(dword|hex(?:\([0-9a-fA-F]\))?)(:)([0-9a-fA-F,]+)',
+             bygroups(Name.Variable, Punctuation, Number), '#pop'),
+            # As far as I know, .reg files do not support line continuation.
+            (r'.*', String, '#pop'),
+        ]
+    }
+
+    def analyse_text(text):
+        return text.startswith('Windows Registry Editor')
+
+
 class PropertiesLexer(RegexLexer):
     """
     Lexer for configuration files in Java's properties format.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'Properties'
-    aliases = ['properties']
+    aliases = ['properties', 'jproperties']
     filenames = ['*.properties']
     mimetypes = ['text/x-java-properties']
 
@@ -81,11 +125,11 @@ class SourcesListLexer(RegexLexer):
     """
     Lexer that highlights debian sources.list files.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'Debian Sourcelist'
-    aliases = ['sourceslist', 'sources.list']
+    aliases = ['sourceslist', 'sources.list', 'debsources']
     filenames = ['sources.list']
     mimetype = ['application/x-debian-sourceslist']
 
@@ -137,7 +181,7 @@ class MakefileLexer(Lexer):
 
     name = 'Makefile'
     aliases = ['make', 'makefile', 'mf', 'bsdmake']
-    filenames = ['*.mak', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile']
+    filenames = ['*.mak', '*.mk', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile']
     mimetypes = ['text/x-makefile']
 
     r_special = re.compile(r'^(?:'
@@ -164,12 +208,17 @@ class MakefileLexer(Lexer):
         for item in do_insertions(ins, lex.get_tokens_unprocessed(done)):
             yield item
 
+    def analyse_text(text):
+        # Many makefiles have $(BIG_CAPS) style variables
+        if re.search(r'\$\([A-Z_]+\)', text):
+            return 0.1
+
 
 class BaseMakefileLexer(RegexLexer):
     """
     Lexer for simple Makefiles (no preprocessing).
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
 
     name = 'Base Makefile'
@@ -179,15 +228,17 @@ class BaseMakefileLexer(RegexLexer):
 
     tokens = {
         'root': [
+            # recipes (need to allow spaces because of expandtabs)
             (r'^(?:[\t ]+.*\n|\n)+', using(BashLexer)),
-            (r'\$\((?:.*\\\n|.*\n)+', using(BashLexer)),
+            # special variables
+            (r'\$[<@$+%?|*]', Keyword),
             (r'\s+', Text),
             (r'#.*?\n', Comment),
             (r'(export)(\s+)(?=[a-zA-Z0-9_${}\t -]+\n)',
              bygroups(Keyword, Text), 'export'),
             (r'export\s+', Keyword),
             # assignment
-            (r'([a-zA-Z0-9_${}.-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n|.*\n)+)',
+            (r'([a-zA-Z0-9_${}.-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n)+|.*\n)',
              bygroups(Name.Variable, Text, Operator, Text, using(BashLexer))),
             # strings
             (r'(?s)"(\\\\|\\.|[^"\\])*"', String.Double),
@@ -195,7 +246,15 @@ class BaseMakefileLexer(RegexLexer):
             # targets
             (r'([^\n:]+)(:+)([ \t]*)', bygroups(Name.Function, Operator, Text),
              'block-header'),
-            # TODO: add paren handling (grr)
+            # expansions
+            (r'\$\(', Keyword, 'expansion'),
+        ],
+        'expansion': [
+            (r'[^$a-zA-Z_)]+', Text),
+            (r'[a-zA-Z_]+', Name.Variable),
+            (r'\$', Keyword),
+            (r'\(', Keyword, '#push'),
+            (r'\)', Keyword, '#pop'),
         ],
         'export': [
             (r'[a-zA-Z0-9_${}-]+', Name.Variable),
@@ -203,12 +262,13 @@ class BaseMakefileLexer(RegexLexer):
             (r'\s+', Text),
         ],
         'block-header': [
-            (r'[^,\\\n#]+', Number),
-            (r',', Punctuation),
-            (r'#.*?\n', Comment),
+            (r'[,|]', Punctuation),
+            (r'#.*?\n', Comment, '#pop'),
             (r'\\\n', Text), # line continuation
-            (r'\\.', Text),
-            (r'(?:[\t ]+.*\n|\n)+', using(BashLexer), '#pop'),
+            (r'\$\(', Keyword, 'expansion'),
+            (r'[a-zA-Z_]+', Name),
+            (r'\n', Text, '#pop'),
+            (r'.', Text),
         ],
     }
 
@@ -254,7 +314,7 @@ class DarcsPatchLexer(RegexLexer):
     format.  Examples of this format are derived by commands such as
     ``darcs annotate --patch`` and ``darcs send``.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Darcs Patch'
     aliases = ['dpatch']
@@ -367,7 +427,7 @@ class BBCodeLexer(RegexLexer):
     """
     A lexer that highlights BBCode(-like) syntax.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'BBCode'
@@ -458,7 +518,7 @@ class GroffLexer(RegexLexer):
     Lexer for the (g)roff typesetting language, supporting groff
     extensions. Mainly useful for highlighting manpage sources.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'Groff'
@@ -513,7 +573,7 @@ class ApacheConfLexer(RegexLexer):
     Lexer for configuration files following the Apache config file
     format.
 
-    *New in Pygments 0.6.*
+    .. versionadded:: 0.6
     """
 
     name = 'ApacheConf'
@@ -552,7 +612,7 @@ class MoinWikiLexer(RegexLexer):
     """
     For MoinMoin (and Trac) Wiki markup.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'MoinMoin/Trac Wiki markup'
@@ -573,7 +633,7 @@ class MoinWikiLexer(RegexLexer):
             (r'(\'\'\'?|\|\||`|__|~~|\^|,,|::)', Comment), # Formatting
             # Lists
             (r'^( +)([.*-])( )', bygroups(Text, Name.Builtin, Text)),
-            (r'^( +)([a-zivx]{1,5}\.)( )', bygroups(Text, Name.Builtin, Text)),
+            (r'^( +)([a-z]{1,5}\.)( )', bygroups(Text, Name.Builtin, Text)),
             # Other Formatting
             (r'\[\[\w+.*?\]\]', Keyword), # Macro
             (r'(\[[^\s\]]+)(\s+[^\]]+?)?(\])',
@@ -597,14 +657,17 @@ class RstLexer(RegexLexer):
     """
     For `reStructuredText <http://docutils.sf.net/rst.html>`_ markup.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
 
     Additional options accepted:
 
     `handlecodeblocks`
-        Highlight the contents of ``.. sourcecode:: langauge`` and
-        ``.. code:: language`` directives with a lexer for the given
-        language (default: ``True``). *New in Pygments 0.8.*
+        Highlight the contents of ``.. sourcecode:: language``,
+        ``.. code:: language`` and ``.. code-block:: language``
+        directives with a lexer for the given language (default:
+        ``True``).
+
+        .. versionadded:: 0.8
     """
     name = 'reStructuredText'
     aliases = ['rst', 'rest', 'restructuredtext']
@@ -688,7 +751,7 @@ class RstLexer(RegexLexer):
             (r'^(\s*)(\|)( .+\n(?:\|  .+\n)*)',
              bygroups(Text, Operator, using(this, state='inline'))),
             # Sourcecode directives
-            (r'^( *\.\.)(\s*)((?:source)?code)(::)([ \t]*)([^\n]+)'
+            (r'^( *\.\.)(\s*)((?:source)?code(?:-block)?)(::)([ \t]*)([^\n]+)'
              r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*|)\n)+)',
              _handle_sourcecode),
             # A directive
@@ -712,7 +775,7 @@ class RstLexer(RegexLexer):
             (r'^( *)(:.*?:)([ \t]+)(.*?)$',
              bygroups(Text, Name.Class, Text, Name.Function)),
             # Definition list
-            (r'^([^ ].*(?<!::)\n)((?:(?: +.*)\n)+)',
+            (r'^([^\s].*(?<!::)\n)((?:(?: +.*)\n)+)',
              bygroups(using(this, state='inline'), using(this, state='inline'))),
             # Code blocks
             (r'(::)(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\3.*|)\n)+)',
@@ -763,7 +826,7 @@ class VimLexer(RegexLexer):
     """
     Lexer for VimL script files.
 
-    *New in Pygments 0.8.*
+    .. versionadded:: 0.8
     """
     name = 'VimL'
     aliases = ['vim']
@@ -780,7 +843,7 @@ class VimLexer(RegexLexer):
             # TODO: regexes can have other delims
             (r'/(\\\\|\\/|[^\n/])*/', String.Regex),
             (r'"(\\\\|\\"|[^\n"])*"', String.Double),
-            (r"'(\\\\|\\'|[^\n'])*'", String.Single),
+            (r"'(''|[^\n'])*'", String.Single),
 
             # Who decided that doublequote was a good comment character??
             (r'(?<=\s)"[^\-:.%#=*].*', Comment),
@@ -847,7 +910,7 @@ class GettextLexer(RegexLexer):
     """
     Lexer for Gettext catalog files.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Gettext Catalog'
     aliases = ['pot', 'po']
@@ -875,7 +938,7 @@ class SquidConfLexer(RegexLexer):
     """
     Lexer for `squid <http://www.squid-cache.org/>`_ configuration files.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
 
     name = 'SquidConf'
@@ -1007,10 +1070,10 @@ class DebianControlLexer(RegexLexer):
     """
     Lexer for Debian ``control`` files and ``apt-cache show <pkg>`` outputs.
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
     """
     name = 'Debian Control file'
-    aliases = ['control']
+    aliases = ['control', 'debcontrol']
     filenames = ['control']
 
     tokens = {
@@ -1077,7 +1140,7 @@ class YamlLexer(ExtendedRegexLexer):
     Lexer for `YAML <http://yaml.org/>`_, a human-friendly data serialization
     language.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
 
     name = 'YAML'
@@ -1479,7 +1542,7 @@ class LighttpdConfLexer(RegexLexer):
     """
     Lexer for `Lighttpd <http://lighttpd.net/>`_ configuration files.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
     name = 'Lighttpd configuration file'
     aliases = ['lighty', 'lighttpd']
@@ -1507,7 +1570,7 @@ class NginxConfLexer(RegexLexer):
     """
     Lexer for `Nginx <http://nginx.net/>`_ configuration files.
 
-    *New in Pygments 0.11.*
+    .. versionadded:: 0.11
     """
     name = 'Nginx configuration file'
     aliases = ['nginx']
@@ -1553,7 +1616,7 @@ class CMakeLexer(RegexLexer):
     """
     Lexer for `CMake <http://cmake.org/Wiki/CMake>`_ files.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'CMake'
     aliases = ['cmake']
@@ -1588,7 +1651,7 @@ class CMakeLexer(RegexLexer):
             # r'VTK_MAKE_INSTANTIATOR|VTK_WRAP_JAVA|VTK_WRAP_PYTHON|'
             # r'VTK_WRAP_TCL|WHILE|WRITE_FILE|'
             # r'COUNTARGS)\b', Name.Builtin, 'args'),
-            (r'\b([A-Za-z_]+)([ \t]*)(\()', bygroups(Name.Builtin, Text,
+            (r'\b(\w+)([ \t]*)(\()', bygroups(Name.Builtin, Text,
                                                      Punctuation), 'args'),
             include('keywords'),
             include('ws')
@@ -1597,6 +1660,7 @@ class CMakeLexer(RegexLexer):
             (r'\(', Punctuation, '#push'),
             (r'\)', Punctuation, '#pop'),
             (r'(\${)(.+?)(})', bygroups(Operator, Name.Variable, Operator)),
+            (r'(\$<)(.+?)(>)', bygroups(Operator, Name.Variable, Operator)),
             (r'(?s)".*?"', String.Double),
             (r'\\\S+', String),
             (r'[^\)$"# \t\n]+', String),
@@ -1613,7 +1677,7 @@ class CMakeLexer(RegexLexer):
         ],
         'ws': [
             (r'[ \t]+', Text),
-            (r'#.+\n', Comment),
+            (r'#.*\n', Comment),
         ]
     }
 
@@ -1622,7 +1686,7 @@ class HttpLexer(RegexLexer):
     """
     Lexer for HTTP sessions.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'HTTP'
@@ -1643,6 +1707,11 @@ class HttpLexer(RegexLexer):
         yield match.start(5), Literal, match.group(5)
         yield match.start(6), Text, match.group(6)
 
+    def continuous_header_callback(self, match):
+        yield match.start(1), Text, match.group(1)
+        yield match.start(2), Literal, match.group(2)
+        yield match.start(3), Text, match.group(3)
+
     def content_callback(self, match):
         content_type = getattr(self, 'content_type', None)
         content = match.group()
@@ -1661,18 +1730,19 @@ class HttpLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE)( +)([^ ]+)( +)'
-             r'(HTTPS?)(/)(1\.[01])(\r?\n|$)',
+            (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE|PATCH)( +)([^ ]+)( +)'
+             r'(HTTP)(/)(1\.[01])(\r?\n|$)',
              bygroups(Name.Function, Text, Name.Namespace, Text,
                       Keyword.Reserved, Operator, Number, Text),
              'headers'),
-            (r'(HTTPS?)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|$)',
+            (r'(HTTP)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|$)',
              bygroups(Keyword.Reserved, Operator, Number, Text, Number,
                       Text, Name.Exception, Text),
              'headers'),
         ],
         'headers': [
             (r'([^\s:]+)( *)(:)( *)([^\r\n]+)(\r?\n|$)', header_callback),
+            (r'([\t ]+)([^\r\n]+)(\r?\n|$)', continuous_header_callback),
             (r'\r?\n', Text, 'content')
         ],
         'content': [
@@ -1685,7 +1755,7 @@ class PyPyLogLexer(RegexLexer):
     """
     Lexer for PyPy log files.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = "PyPy Log"
     aliases = ["pypylog", "pypy"]
@@ -1700,8 +1770,8 @@ class PyPyLogLexer(RegexLexer):
         ],
         "jit-log": [
             (r"\[\w+\] jit-log-.*?}$", Keyword, "#pop"),
-
             (r"^\+\d+: ", Comment),
+            (r"--end of the loop--", Comment),
             (r"[ifp]\d+", Name),
             (r"ptr\d+", Name),
             (r"(\()(\w+(?:\.\w+)?)(\))",
@@ -1711,7 +1781,7 @@ class PyPyLogLexer(RegexLexer):
             (r"-?\d+", Number.Integer),
             (r"'.*'", String),
             (r"(None|descr|ConstClass|ConstPtr|TargetToken)", Name),
-            (r"<.*?>", Name.Builtin),
+            (r"<.*?>+", Name.Builtin),
             (r"(label|debug_merge_point|jump|finish)", Name.Class),
             (r"(int_add_ovf|int_add|int_sub_ovf|int_sub|int_mul_ovf|int_mul|"
              r"int_floordiv|int_mod|int_lshift|int_rshift|int_and|int_or|"
@@ -1749,5 +1819,195 @@ class PyPyLogLexer(RegexLexer):
         "extra-stuff": [
             (r"\s+", Text),
             (r"#.*?$", Comment),
+        ],
+    }
+
+
+class HxmlLexer(RegexLexer):
+    """
+    Lexer for `haXe build <http://haxe.org/doc/compiler>`_ files.
+
+    .. versionadded:: 1.6
+    """
+    name = 'Hxml'
+    aliases = ['haxeml', 'hxml']
+    filenames = ['*.hxml']
+
+    tokens = {
+        'root': [
+            # Seperator
+            (r'(--)(next)', bygroups(Punctuation, Generic.Heading)),
+            # Compiler switches with one dash
+            (r'(-)(prompt|debug|v)', bygroups(Punctuation, Keyword.Keyword)),
+            # Compilerswitches with two dashes
+            (r'(--)(neko-source|flash-strict|flash-use-stage|no-opt|no-traces|'
+             r'no-inline|times|no-output)', bygroups(Punctuation, Keyword)),
+            # Targets and other options that take an argument
+            (r'(-)(cpp|js|neko|x|as3|swf9?|swf-lib|php|xml|main|lib|D|resource|'
+             r'cp|cmd)( +)(.+)',
+             bygroups(Punctuation, Keyword, Whitespace, String)),
+            # Options that take only numerical arguments
+            (r'(-)(swf-version)( +)(\d+)',
+             bygroups(Punctuation, Keyword, Number.Integer)),
+            # An Option that defines the size, the fps and the background
+            # color of an flash movie
+            (r'(-)(swf-header)( +)(\d+)(:)(\d+)(:)(\d+)(:)([A-Fa-f0-9]{6})',
+             bygroups(Punctuation, Keyword, Whitespace, Number.Integer,
+                      Punctuation, Number.Integer, Punctuation, Number.Integer,
+                      Punctuation, Number.Hex)),
+            # options with two dashes that takes arguments
+            (r'(--)(js-namespace|php-front|php-lib|remap|gen-hx-classes)( +)'
+             r'(.+)', bygroups(Punctuation, Keyword, Whitespace, String)),
+            # Single line comment, multiline ones are not allowed.
+            (r'#.*', Comment.Single)
+        ]
+    }
+
+
+class EbnfLexer(RegexLexer):
+    """
+    Lexer for `ISO/IEC 14977 EBNF
+    <http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form>`_
+    grammars.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'EBNF'
+    aliases = ['ebnf']
+    filenames = ['*.ebnf']
+    mimetypes = ['text/x-ebnf']
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            include('comment_start'),
+            include('identifier'),
+            (r'=', Operator, 'production'),
+        ],
+        'production': [
+            include('whitespace'),
+            include('comment_start'),
+            include('identifier'),
+            (r'"[^"]*"', String.Double),
+            (r"'[^']*'", String.Single),
+            (r'(\?[^?]*\?)', Name.Entity),
+            (r'[\[\]{}(),|]', Punctuation),
+            (r'-', Operator),
+            (r';', Punctuation, '#pop'),
+        ],
+        'whitespace': [
+            (r'\s+', Text),
+          ],
+        'comment_start': [
+            (r'\(\*', Comment.Multiline, 'comment'),
+          ],
+        'comment': [
+            (r'[^*)]', Comment.Multiline),
+            include('comment_start'),
+            (r'\*\)', Comment.Multiline, '#pop'),
+            (r'[*)]', Comment.Multiline),
+          ],
+        'identifier': [
+            (r'([a-zA-Z][a-zA-Z0-9 \-]*)', Keyword),
+          ],
+    }
+
+class TodotxtLexer(RegexLexer):
+    """
+    Lexer for `Todo.txt <http://todotxt.com/>`_ todo list format.
+
+    .. versionadded:: 2.0
+    """
+    
+    name = 'Todotxt'
+    aliases = ['todotxt']
+    # *.todotxt is not a standard extension for Todo.txt files; including it
+    # makes testing easier, and also makes autodetecting file type easier.
+    filenames = ['todo.txt', '*.todotxt']
+    mimetypes = ['text/x-todo']
+
+    ## Aliases mapping standard token types of Todo.txt format concepts
+    CompleteTaskText = Operator # Chosen to de-emphasize complete tasks
+    IncompleteTaskText = Text # Incomplete tasks should look like plain text 
+    
+    # Priority should have most emphasis to indicate importance of tasks
+    Priority = Generic.Heading
+    # Dates should have next most emphasis because time is important
+    Date = Generic.Subheading
+    
+    # Project and context should have equal weight, and be in different colors
+    Project = Generic.Error 
+    Context = String
+    
+    # If tag functionality is added, it should have the same weight as Project
+    # and Context, and a different color. Generic.Traceback would work well.
+
+    # Regex patterns for building up rules; dates, priorities, projects, and
+    # contexts are all atomic
+    # TODO: Make date regex more ISO 8601 compliant
+    date_regex = r'\d{4,}-\d{2}-\d{2}' 
+    priority_regex = r'\([A-Z]\)'
+    project_regex = r'\+\S+'
+    context_regex = r'@\S+'
+
+    # Compound regex expressions
+    complete_one_date_regex = r'(x )(' + date_regex + r')'
+    complete_two_date_regex = (complete_one_date_regex + r'( )(' + 
+                                date_regex + r')')
+    priority_date_regex = r'(' + priority_regex + r')( )(' + date_regex + r')'
+
+    tokens = {
+        # Should parse starting at beginning of line; each line is a task
+        'root': [
+            ## Complete task entry points: two total:
+            # 1. Complete task with two dates
+            (complete_two_date_regex, bygroups(CompleteTaskText, Date,
+                                               CompleteTaskText, Date),
+             'complete'),
+            # 2. Complete task with one date
+            (complete_one_date_regex, bygroups(CompleteTaskText, Date),
+             'complete'),
+            
+            ## Incomplete task entry points: six total:
+            # 1. Priority plus date
+            (priority_date_regex, bygroups(Priority, IncompleteTaskText, Date),
+             'incomplete'),
+            # 2. Priority only
+            (priority_regex, Priority, 'incomplete'),
+            # 3. Leading date
+            (date_regex, Date, 'incomplete'),
+            # 4. Leading context
+            (context_regex, Context, 'incomplete'),
+            # 5. Leading project
+            (project_regex, Project, 'incomplete'),
+            # 6. Non-whitespace catch-all
+            ('\S+', IncompleteTaskText, 'incomplete'),
+        ],
+            
+        # Parse a complete task
+        'complete': [
+            # Newline indicates end of task, should return to root
+            (r'\s*\n', CompleteTaskText, '#pop'),
+            # Tokenize contexts and projects
+            (context_regex, Context),
+            (project_regex, Project),
+            # Tokenize non-whitespace text
+            ('\S+', CompleteTaskText),
+            # Tokenize whitespace not containing a newline
+            ('\s+', CompleteTaskText),
+        ],
+
+        # Parse an incomplete task
+        'incomplete': [
+            # Newline indicates end of task, should return to root
+            (r'\s*\n', IncompleteTaskText, '#pop'),
+            # Tokenize contexts and projects
+            (context_regex, Context),
+            (project_regex, Project),
+            # Tokenize non-whitespace text
+            ('\S+', IncompleteTaskText),
+            # Tokenize whitespace not containing a newline
+            ('\s+', IncompleteTaskText),
         ],
     }

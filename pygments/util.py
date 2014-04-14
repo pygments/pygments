@@ -5,13 +5,12 @@
 
     Utility functions.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 import sys
-import codecs
 
 
 split_path_re = re.compile(r'[/\\ ]')
@@ -52,7 +51,7 @@ def get_bool_opt(options, optname, default=None):
         return string
     elif isinstance(string, int):
         return bool(string)
-    elif not isinstance(string, basestring):
+    elif not isinstance(string, string_types):
         raise OptionError('Invalid type %r for option %s; use '
                           '1/0, yes/no, true/false, on/off' % (
                           string, optname))
@@ -82,7 +81,7 @@ def get_int_opt(options, optname, default=None):
 
 def get_list_opt(options, optname, default=None):
     val = options.get(optname, default)
-    if isinstance(val, basestring):
+    if isinstance(val, string_types):
         return val.split()
     elif isinstance(val, (list, tuple)):
         return list(val)
@@ -206,27 +205,82 @@ def looks_like_xml(text):
         _looks_like_xml_cache[key] = rv
         return rv
 
+# Python narrow build compatibility
+
+def _surrogatepair(c):
+    return (0xd7c0 + (c >> 10), (0xdc00 + (c & 0x3ff)))
+
+def unirange(a, b):
+    """
+    Returns a regular expression string to match the given non-BMP range.
+    """
+    if b < a:
+        raise ValueError("Bad character range")
+    if a < 0x10000 or b < 0x10000:
+        raise ValueError("unirange is only defined for non-BMP ranges")
+
+    if sys.maxunicode > 0xffff:
+        # wide build
+        return u'[%s-%s]' % (unichr(a), unichr(b))
+    else:
+        # narrow build stores surrogates, and the 're' module handles them
+        # (incorrectly) as characters.  Since there is still ordering among
+        # these characters, expand the range to one that it understands.  Some
+        # background in http://bugs.python.org/issue3665 and
+        # http://bugs.python.org/issue12749
+        #
+        # Additionally, the lower constants are using unichr rather than
+        # literals because jython [which uses the wide path] can't load this
+        # file if they are literals.
+        ah, al = _surrogatepair(a)
+        bh, bl = _surrogatepair(b)
+        if ah == bh:
+            return u'(?:%s[%s-%s])' % (unichr(ah), unichr(al), unichr(bl))
+        else:
+            buf = []
+            buf.append(u'%s[%s-%s]' %
+                       (unichr(ah), unichr(al),
+                        ah == bh and unichr(bl) or unichr(0xdfff)))
+            if ah - bh > 1:
+                buf.append(u'[%s-%s][%s-%s]' %
+                           unichr(ah+1), unichr(bh-1), unichr(0xdc00), unichr(0xdfff))
+            if ah != bh:
+                buf.append(u'%s[%s-%s]' %
+                           (unichr(bh), unichr(0xdc00), unichr(bl)))
+
+            return u'(?:' + u'|'.join(buf) + u')'
+
 # Python 2/3 compatibility
 
-if sys.version_info < (3,0):
-    b = bytes = str
+if sys.version_info < (3, 0):
+    unichr = unichr
+    xrange = xrange
+    string_types = (str, unicode)
+    text_type = unicode
     u_prefix = 'u'
+    iteritems = dict.iteritems
+    itervalues = dict.itervalues
     import StringIO, cStringIO
-    BytesIO = cStringIO.StringIO
+    # unfortunately, io.StringIO in Python 2 doesn't accept str at all
     StringIO = StringIO.StringIO
-    uni_open = codecs.open
+    BytesIO = cStringIO.StringIO
 else:
-    import builtins
-    bytes = builtins.bytes
+    unichr = chr
+    xrange = range
+    string_types = (str,)
+    text_type = str
     u_prefix = ''
-    def b(s):
-        if isinstance(s, str):
-            return bytes(map(ord, s))
-        elif isinstance(s, bytes):
-            return s
-        else:
-            raise TypeError("Invalid argument %r for b()" % (s,))
-    import io
-    BytesIO = io.BytesIO
-    StringIO = io.StringIO
-    uni_open = builtins.open
+    iteritems = dict.items
+    itervalues = dict.values
+    from io import StringIO, BytesIO
+
+def add_metaclass(metaclass):
+    """Class decorator for creating a class with a metaclass."""
+    def wrapper(cls):
+        orig_vars = cls.__dict__.copy()
+        orig_vars.pop('__dict__', None)
+        orig_vars.pop('__weakref__', None)
+        for slots_var in orig_vars.get('__slots__', ()):
+            orig_vars.pop(slots_var)
+        return metaclass(cls.__name__, cls.__bases__, orig_vars)
+    return wrapper

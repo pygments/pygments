@@ -12,10 +12,11 @@
              internet connection. don't run that at home, use
              a server ;-)
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
+from __future__ import print_function
 
 MODULES = {'.NET': ['dotnet_load'],
  'APC': ['apc_add',
@@ -3711,7 +3712,10 @@ if __name__ == '__main__':
     import re
     import shutil
     import tarfile
-    import urllib
+    try:
+        from urllib import urlretrieve
+    except ImportError:
+        from urllib.request import urlretrieve
 
     PHP_MANUAL_URL     = 'http://us3.php.net/distributions/manual/php_manual_en.tar.gz'
     PHP_MANUAL_DIR     = './php-chunked-xhtml/'
@@ -3752,7 +3756,7 @@ if __name__ == '__main__':
         return modules
 
     def get_php_references():
-        download = urllib.urlretrieve(PHP_MANUAL_URL)
+        download = urlretrieve(PHP_MANUAL_URL)
         tar = tarfile.open(download[0])
         tar.extractall()
         tar.close()
@@ -3777,10 +3781,10 @@ if __name__ == '__main__':
         f.close()
 
     def run():
-        print '>> Downloading Function Index'
+        print('>> Downloading Function Index')
         modules = get_php_functions()
-        total = sum(len(v) for v in modules.itervalues())
-        print '%d functions found' % total
+        total = sum(len(v) for v in modules.values())
+        print('%d functions found' % total)
         regenerate(__file__, modules)
         shutil.rmtree(PHP_MANUAL_DIR)
 

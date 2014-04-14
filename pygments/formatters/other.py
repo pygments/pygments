@@ -5,12 +5,12 @@
 
     Other formatters: NullFormatter, RawTokenFormatter.
 
-    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.formatter import Formatter
-from pygments.util import OptionError, get_choice_opt, b
+from pygments.util import OptionError, get_choice_opt
 from pygments.token import Token
 from pygments.console import colorize
 
@@ -40,7 +40,7 @@ class RawTokenFormatter(Formatter):
 
     The format is ``tokentype<TAB>repr(tokenstring)\n``. The output can later
     be converted to a token stream with the `RawTokenLexer`, described in the
-    `lexer list <lexers.txt>`_.
+    :doc:`lexer list <lexers>`.
 
     Only two options are accepted:
 
@@ -50,7 +50,8 @@ class RawTokenFormatter(Formatter):
     `error_color`
         If set to a color name, highlight error tokens using that color.  If
         set but with no value, defaults to ``'red'``.
-        *New in Pygments 0.11.*
+
+        .. versionadded:: 0.11
 
     """
     name = 'Raw tokens'
@@ -79,7 +80,7 @@ class RawTokenFormatter(Formatter):
 
     def format(self, tokensource, outfile):
         try:
-            outfile.write(b(''))
+            outfile.write(b'')
         except TypeError:
             raise TypeError('The raw tokens formatter needs a binary '
                             'output file')
@@ -102,8 +103,6 @@ class RawTokenFormatter(Formatter):
                 outfile.write(text.encode())
             flush = outfile.flush
 
-        lasttype = None
-        lastval = u''
         if self.error_color:
             for ttype, value in tokensource:
                 line = "%s\t%r\n" % (ttype, value)
