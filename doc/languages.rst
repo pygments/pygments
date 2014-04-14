@@ -35,6 +35,7 @@ Programming languages
 * Fancy
 * Fortran
 * F#
+* GAP
 * Gherkin (Cucumber)
 * GL shaders
 * Groovy
