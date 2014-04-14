@@ -723,7 +723,7 @@ class CommonLispLexer(RegexLexer):
     .. versionadded:: 0.9
     """
     name = 'Common Lisp'
-    aliases = ['common-lisp', 'cl', 'lisp']
+    aliases = ['common-lisp', 'cl', 'lisp', 'elisp', 'emacs']
     filenames = ['*.cl', '*.lisp', '*.el']  # use for Elisp too
     mimetypes = ['text/x-common-lisp']
 
