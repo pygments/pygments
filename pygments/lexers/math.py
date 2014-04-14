@@ -1975,9 +1975,9 @@ class MathematicaLexer(RegexLexer):
 
 class GAPLexer(RegexLexer):
     """
-    A `GAP <http://www.gap-system.org>`_ lexer.
+    For `GAP <http://www.gap-system.org>`_ source code.
 
-    .. versionadded:: ???
+    .. versionadded:: 2.0
     """
     name = 'GAP'
     aliases = ['gap']
