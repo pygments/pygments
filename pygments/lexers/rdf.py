@@ -5,23 +5,30 @@
 
     Lexers for semantic web and RDF query languages and markup.
 
-    :copyright: Copyright 2012 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2012-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re
 
 from pygments.lexer import RegexLexer, include, this, bygroups, include
-from pygments.token import Keyword, Punctuation, String, Number, Operator, Whitespace, Name, Literal, Comment
+from pygments.token import Keyword, Punctuation, String, Number, Operator, \
+    Whitespace, Name, Literal, Comment, Text
 
 __all__ = ['SparqlLexer']
 
+
 class SparqlLexer(RegexLexer):
+    """
+    Lexer for `SPARQL <http://www.w3.org/TR/rdf-sparql-query/>`_ query language.
+
+    .. versionadded:: 2.0
+    """
     name = 'SPARQL'
     aliases = ['sparql']
-    filenames = ['.rq', '*.sparql']
+    filenames = ['*.rq', '*.sparql']
     mimetypes = ['application/sparql-query']
 
-    flags = re.I
+    flags = re.IGNORECASE
 
     tokens = {
         'root': [
@@ -32,17 +39,21 @@ class SparqlLexer(RegexLexer):
              r'insert\s+data|delete\s+data|delete\s+where|delete|insert|'
              r'using named|using|graph|default|named|all|optional|service|'
              r'silent|bind|union|not in|in|as|a)', Keyword),
-            (r'(prefix|base)(\s+)([a-z][a-z\d_\-]*)(\s*)(\:)', bygroups(Keyword, Whitespace, Name.Namespace, Whitespace, Punctuation)),
+            (r'(prefix|base)(\s+)([a-z][a-z\d_\-]*)(\s*)(\:)',
+             bygroups(Keyword, Whitespace, Name.Namespace, Whitespace,
+                      Punctuation)),
             (r'\?[a-z_][a-z\d_]*', Name.Variable),
             (r'<[^>]+>', Name.Label),
-            (r'([a-z][a-z\d_\-]*)(\:)([a-z][a-z\d_\-]*)', bygroups(Name.Namespace, Punctuation, Name.Tag)),
+            (r'([a-z][a-z\d_\-]*)(\:)([a-z][a-z\d_\-]*)',
+             bygroups(Name.Namespace, Punctuation, Name.Tag)),
             (r'(str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
              r'ceil|floor|round|concat|strlen|ucase|lcase|encode_for_uri|'
              r'contains|strstarts|strends|strbefore|strafter|year|month|day|'
              r'hours|minutes|seconds|timezone|tz|now|md5|sha1|sha256|sha384|'
              r'sha512|coalesce|if|strlang|strdt|sameterm|isiri|isuri|isblank|'
              r'isliteral|isnumeric|regex|substr|replace|exists|not exists|'
-             r'count|sum|min|max|avg|sample|group_concat|separator)', Name.Function),
+             r'count|sum|min|max|avg|sample|group_concat|separator)\b',
+             Name.Function),
             (r'(true|false)', Literal),
             (r'[+\-]?\d*\.\d+', Number.Float),
             (r'[+\-]?\d*(:?\.\d+)?[eE][+\-]?\d+', Number.Float),
@@ -79,8 +90,9 @@ class SparqlLexer(RegexLexer):
             (r'.', String, '#pop'),
         ],
         'end-of-string': [
-            (r'(@)([a-zA-Z]+(:?-[a-zA-Z0-9]+)*)', bygroups(Operator, Name.Function), 'root'),
-            (r'^^', Operator, 'root'),
-            include('root'),
+            (r'(@)([a-z]+(:?-[a-z0-9]+)*)',
+             bygroups(Operator, Name.Function), '#pop:2'),
+            (r'\^\^', Operator, '#pop:2'),
+            (r'', Text, '#pop:2'),
         ],
     }
