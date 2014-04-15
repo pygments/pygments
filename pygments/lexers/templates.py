@@ -39,7 +39,8 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'ColdfusionHtmlLexer', 'ColdfusionCFCLexer', 'VelocityLexer', 
            'VelocityHtmlLexer', 'VelocityXmlLexer', 'SspLexer', 
            'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer', 
-           'LassoCssLexer', 'LassoJavascriptLexer']
+           'LassoCssLexer', 'LassoJavascriptLexer', 'HandlebarsLexer',
+           'HandlebarsHtmlLexer']
 
 
 class ErbLexer(Lexer):
@@ -1762,3 +1763,64 @@ class LassoJavascriptLexer(DelegatingLexer):
         if 'function' in text:
             rv += 0.2
         return rv
+
+class HandlebarsLexer(RegexLexer):
+    """
+    Generic `handlebars <http://handlebarsjs.com/>` template lexer.
+
+    Highlights only the Handlebars template tags (stuff between `{{` and `}}`).
+    Everything else is left for a delegating lexer.
+    """
+
+    name = "Handlebars"
+    aliases = ['handlebars']
+
+    tokens = {
+        'root': [
+            (r'[^{]+', Other),
+
+            (r'{{!.*}}', Comment),
+
+            (r'({{{)(\s*)', bygroups(Comment.Special, Text), 'tag'),
+            (r'({{)(\s*)', bygroups(Comment.Preproc, Text), 'tag'),
+        ],
+
+        'tag': [
+            (r'\s+', Text),
+            (r'\}\}\}', Comment.Special, '#pop'),
+            (r'\}\}', Comment.Preproc, '#pop'),
+
+            # Handlebars
+            (r'([\#/]*)(each|if|unless|else|with|log|in)', bygroups(Keyword, 
+             Keyword)),
+
+            # General {{#block}}
+            (r'([\#/])(\w+)', bygroups(Name.Function, Name.Function)),
+
+            # {{opt=something}}
+            (r'(\w+)(=)', bygroups(Name.Attribute, Operator)),
+
+            # borrowed from DjangoLexer
+            (r':?"(\\\\|\\"|[^"])*"', String.Double),
+            (r":?'(\\\\|\\'|[^'])*'", String.Single),
+            (r'[a-zA-Z][a-zA-Z0-9_-]*', Name.Variable),
+            (r'\.[a-zA-Z0-9_]+', Name.Variable),
+            (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
+             r"0[xX][0-9a-fA-F]+[Ll]?", Number),
+        ]
+    }
+
+
+class HandlebarsHtmlLexer(DelegatingLexer):
+    """
+    Subclass of the `HandlebarsLexer` that highlights unlexed data with the 
+    `HtmlLexer`.
+    """
+
+    name = "HTML+Handlebars"
+    aliases = ["html+handlebars"]
+    filenames = ['*.handlebars', '*.hbs']
+    mimetypes = ['text/html+handlebars', 'text/x-handlebars-template']
+
+    def __init__(self, **options):
+        super(HandlebarsHtmlLexer, self).__init__(HtmlLexer, HandlebarsLexer, **options)

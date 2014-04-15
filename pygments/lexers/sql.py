@@ -51,7 +51,7 @@ from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
 
 
 __all__ = ['PostgresLexer', 'PlPgsqlLexer', 'PostgresConsoleLexer',
-           'SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer']
+           'SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'RqlLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -559,3 +559,34 @@ class SqliteConsoleLexer(Lexer):
             for item in do_insertions(insertions,
                                       sql.get_tokens_unprocessed(curcode)):
                 yield item
+
+
+class RqlLexer(RegexLexer):
+    """
+    Lexer for Relation Query Language.
+
+    `RQL <http://www.logilab.org/project/rql>`_
+
+    .. versionadded:: 2.0
+    """
+    name = 'RQL'
+    aliases = ['rql']
+    filenames = ['*.rql']
+    mimetypes = ['text/x-rql']
+
+    flags = re.IGNORECASE
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'(DELETE|SET|INSERT|UNION|DISTINCT|WITH|WHERE|BEING|OR'
+             r'|AND|NOT|GROUPBY|HAVING|ORDERBY|ASC|DESC|LIMIT|OFFSET'
+             r'|TODAY|NOW|TRUE|FALSE|NULL|EXISTS)\b', Keyword),
+            (r'[+*/<>=%-]', Operator),
+            (r'(Any|is|instance_of|CWEType|CWRelation)\b', Name.Builtin),
+            (r'[0-9]+', Number.Integer),
+            (r'[A-Z_][A-Z0-9_]*\??', Name),
+            (r"'(''|[^'])*'", String.Single),
+            (r'"(""|[^"])*"', String.Single),
+            (r'[;:()\[\],\.]', Punctuation)
+        ],
+    }
