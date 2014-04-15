@@ -82,11 +82,11 @@ class RtfFormatter(Formatter):
         buf = []
         for c in text:
             if ord(c) > 128:
-                ansic = c.encode(encoding, 'ignore') or '?'
-                if ord(ansic) > 128:
+                ansic = c.encode(encoding, 'ignore')
+                if ansic and ord(ansic) > 128:
                     ansic = '\\\'%x' % ord(ansic)
                 else:
-                    ansic = c
+                    ansic = '?'
                 buf.append(r'\ud{\u%d%s}' % (ord(c), ansic))
             else:
                 buf.append(str(c))
