@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.inferno
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Inferno os and all the related stuff.
 
@@ -11,12 +11,9 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using, \
-     this, combined, ExtendedRegexLexer
-from pygments.token import Error, Punctuation, Literal, Token, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Generic, \
-     Whitespace
-from pygments.util import get_bool_opt
+from pygments.lexer import RegexLexer, include, bygroups
+from pygments.token import Punctuation, Text, Comment, Operator, Keyword, \
+    Name, String, Number
 
 __all__ = ['LimboLexer']
 

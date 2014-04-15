@@ -36,9 +36,9 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'MakoCssLexer', 'JspLexer', 'CheetahLexer', 'CheetahHtmlLexer',
            'CheetahXmlLexer', 'CheetahJavascriptLexer', 'EvoqueLexer',
            'EvoqueHtmlLexer', 'EvoqueXmlLexer', 'ColdfusionLexer',
-           'ColdfusionHtmlLexer', 'ColdfusionCFCLexer', 'VelocityLexer', 
-           'VelocityHtmlLexer', 'VelocityXmlLexer', 'SspLexer', 
-           'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer', 
+           'ColdfusionHtmlLexer', 'ColdfusionCFCLexer', 'VelocityLexer',
+           'VelocityHtmlLexer', 'VelocityXmlLexer', 'SspLexer',
+           'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer',
            'LassoCssLexer', 'LassoJavascriptLexer', 'HandlebarsLexer',
            'HandlebarsHtmlLexer']
 
@@ -1791,7 +1791,7 @@ class HandlebarsLexer(RegexLexer):
             (r'\}\}', Comment.Preproc, '#pop'),
 
             # Handlebars
-            (r'([\#/]*)(each|if|unless|else|with|log|in)', bygroups(Keyword, 
+            (r'([\#/]*)(each|if|unless|else|with|log|in)', bygroups(Keyword,
              Keyword)),
 
             # General {{#block}}
@@ -1813,7 +1813,7 @@ class HandlebarsLexer(RegexLexer):
 
 class HandlebarsHtmlLexer(DelegatingLexer):
     """
-    Subclass of the `HandlebarsLexer` that highlights unlexed data with the 
+    Subclass of the `HandlebarsLexer` that highlights unlexed data with the
     `HtmlLexer`.
     """
 

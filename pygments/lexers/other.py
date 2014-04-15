@@ -4030,7 +4030,7 @@ class PawnLexer(RegexLexer):
     """
     For Pawn source code
     """
-    
+
     name = 'Pawn'
     aliases = ['pawn']
     filenames = ['*.p', '*.pwn', '*.inc']

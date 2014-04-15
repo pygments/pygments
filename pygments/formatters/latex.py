@@ -382,7 +382,7 @@ class LatexFormatter(Formatter):
                             value = value + escape_tex(a, self.commandprefix)
                 else:
                     value = escape_tex(value, self.commandprefix)
-            elif not (ttype in Token.Escape):
+            elif ttype not in Token.Escape:
                 value = escape_tex(value, self.commandprefix)
             styles = []
             while ttype is not Token:
@@ -445,7 +445,7 @@ class LatexEmbeddedLexer(Lexer):
                 yield i, t, v
             else:
                 if not buf:
-                    idx = i;
+                    idx = i
                 buf += v
         if buf:
             for x in self.get_tokens_aux(idx, buf):

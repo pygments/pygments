@@ -5,12 +5,13 @@
 
     Lexers for semantic web and RDF query languages and markup.
 
-    :copyright: Copyright 2012-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 import re
 
-from pygments.lexer import RegexLexer, include, this, bygroups, include
+from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Keyword, Punctuation, String, Number, Operator, \
     Whitespace, Name, Literal, Comment, Text
 
