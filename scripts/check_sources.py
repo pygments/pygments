@@ -145,29 +145,6 @@ def check_fileheader(fn, lines):
         yield 0, "no correct copyright info"
 
 
-@checker('.py', '.html', '.js')
-def check_whitespace_and_spelling(fn, lines):
-    for lno, line in enumerate(lines):
-        if "\t" in line:
-            yield lno+1, "OMG TABS!!!1 "
-        if line[:-1].rstrip(' \t') != line[:-1]:
-            yield lno+1, "trailing whitespace"
-        for word in misspellings:
-            if word in line and 'ALLOW-MISSPELLING' not in line:
-                yield lno+1, '"%s" used' % word
-
-
-bad_tags = ('<b>', '<i>', '<u>', '<s>', '<strike>'
-            '<center>', '<big>', '<small>', '<font')
-
-@checker('.html')
-def check_xhtml(fn, lines):
-    for lno, line in enumerate(lines):
-        for bad_tag in bad_tags:
-            if bad_tag in line:
-                yield lno+1, "used " + bad_tag
-
-
 def main(argv):
     try:
         gopts, args = getopt.getopt(argv[1:], "vi:")
