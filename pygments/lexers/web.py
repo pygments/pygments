@@ -799,6 +799,13 @@ class PhpLexer(RegexLexer):
     filenames = ['*.php', '*.php[345]', '*.inc']
     mimetypes = ['text/x-php']
 
+    # Note that a backslash is included in the following two patterns
+    # PHP uses a backslash as a namespace separator
+    _ident_char = r'[\\_a-zA-Z0-9]|[^\x00-\x7f]'
+    _ident_begin = r'(?:[\\_a-zA-Z]|[^\x00-\x7f])'
+    _ident_end = r'(?:' + _ident_char + ')*'
+    _ident_inner = _ident_begin + _ident_end
+
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
     tokens = {
         'root': [
@@ -808,7 +815,7 @@ class PhpLexer(RegexLexer):
         ],
         'php': [
             (r'\?>', Comment.Preproc, '#pop'),
-            (r'<<<(\'?)([a-zA-Z_][a-zA-Z0-9_]*)\1\n.*?\n\2\;?\n', String),
+            (r'<<<(\'?)(' + _ident_inner + ')\1\n.*?\n\2\;?\n', String),
             (r'\s+', Text),
             (r'#.*?\n', Comment.Single),
             (r'//.*?\n', Comment.Single),
@@ -817,7 +824,7 @@ class PhpLexer(RegexLexer):
             (r'/\*\*/', Comment.Multiline),
             (r'/\*\*.*?\*/', String.Doc),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'(->|::)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(->|::)(\s*)(' + _ident_inner + ')',
              bygroups(Operator, Text, Name.Attribute)),
             (r'[~!%^&*+=|:.<>/?@-]+', Operator),
             (r'[\[\]{}();,]+', Punctuation),
@@ -825,7 +832,7 @@ class PhpLexer(RegexLexer):
             (r'(function)(\s*)(?=\()', bygroups(Keyword, Text)),
             (r'(function)(\s+)(&?)(\s*)',
               bygroups(Keyword, Text, Operator, Text), 'functionname'),
-            (r'(const)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(const)(\s+)(' + _ident_inner + ')',
               bygroups(Keyword, Text, Name.Constant)),
             (r'(and|E_PARSE|old_function|E_ERROR|or|as|E_WARNING|parent|'
              r'eval|PHP_OS|break|exit|case|extends|PHP_VERSION|cfunction|'
@@ -839,9 +846,9 @@ class PhpLexer(RegexLexer):
              r'catch|throw|this|use|namespace|trait|yield|'
              r'finally)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'\$\{\$+[a-zA-Z_][a-zA-Z0-9_]*\}', Name.Variable),
-            (r'\$+[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
-            (r'[\\a-zA-Z_][\\a-zA-Z0-9_]*', Name.Other),
+            (r'\$\{\$+' + _ident_inner + '\}', Name.Variable),
+            (r'\$+' + _ident_inner, Name.Variable),
+            (_ident_inner, Name.Other),
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+', Number.Float),
             (r'0[0-7]+', Number.Oct),
@@ -853,16 +860,16 @@ class PhpLexer(RegexLexer):
             (r'"', String.Double, 'string'),
         ],
         'classname': [
-            (r'[a-zA-Z_][\\a-zA-Z0-9_]*', Name.Class, '#pop')
+            (_ident_inner, Name.Class, '#pop')
         ],
         'functionname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop')
+            (_ident_inner, Name.Function, '#pop')
         ],
         'string': [
             (r'"', String.Double, '#pop'),
             (r'[^{$"\\]+', String.Double),
             (r'\\([nrt\"$\\]|[0-7]{1,3}|x[0-9A-Fa-f]{1,2})', String.Escape),
-            (r'\$[a-zA-Z_][a-zA-Z0-9_]*(\[\S+?\]|->[a-zA-Z_][a-zA-Z0-9_]*)?',
+            (r'\$' + _ident_inner + '(\[\S+?\]|->' + _ident_inner + ')?',
              String.Interpol),
             (r'(\{\$\{)(.*?)(\}\})',
              bygroups(String.Interpol, using(this, _startinline=True),
