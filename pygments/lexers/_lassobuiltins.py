@@ -5,7 +5,7 @@
 
     Built-in Lasso types, traits, methods, and members.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -136,8 +136,10 @@ BUILTINS = {
         'timeonly',
         'net_tcp',
         'net_tcpssl',
+        'net_tcp_ssl',
         'net_named_pipe',
         'net_udppacket',
+        'net_udp_packet',
         'net_udp',
         'pdf_typebase',
         'pdf_doc',
@@ -1275,6 +1277,7 @@ BUILTINS = {
         'lcapi_datasourcesortascending',
         'lcapi_datasourcesortdescending',
         'lcapi_datasourcesortcustom',
+        'lcapi_updatedatasourceslist',
         'lcapi_loadmodules',
         'lasso_version',
         'lasso_uniqueid',
@@ -4024,6 +4027,10 @@ MEMBERS = {
         'statuscode',
         'raw',
         'version',
+        'download',
+        'upload',
+        'ftpdeletefile',
+        'ftpgetlisting',
         'perform',
         'performonce',
         's',
@@ -4114,8 +4121,11 @@ MEMBERS = {
         'foreachaccept',
         'writeobjecttcp',
         'readobjecttcp',
+        'beginssl',
+        'endssl',
         'begintls',
         'endtls',
+        'acceptnossl',
         'loadcerts',
         'sslerrfail',
         'fromname',
