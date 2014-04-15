@@ -9,6 +9,8 @@ underscores_i$d = ->
   //regexp2//g
   'strings' and "strings" and \strings
 
+another-word-list = <[ more words ]>
+
 [2 til 10]
   |> map (* 2)
   |> filter (> 5)

@@ -5,7 +5,7 @@
 
     Base lexer classes.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re, itertools
@@ -14,18 +14,18 @@ from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
 from pygments.token import Error, Text, Other, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
-     make_analysator
+     make_analysator, text_type, add_metaclass, iteritems
 
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
            'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this']
 
 
-_encoding_map = [('\xef\xbb\xbf', 'utf-8'),
-                 ('\xff\xfe\0\0', 'utf-32'),
-                 ('\0\0\xfe\xff', 'utf-32be'),
-                 ('\xff\xfe', 'utf-16'),
-                 ('\xfe\xff', 'utf-16be')]
+_encoding_map = [(b'\xef\xbb\xbf', 'utf-8'),
+                 (b'\xff\xfe\0\0', 'utf-32'),
+                 (b'\0\0\xfe\xff', 'utf-32be'),
+                 (b'\xff\xfe', 'utf-16'),
+                 (b'\xfe\xff', 'utf-16be')]
 
 _default_analyse = staticmethod(lambda x: 0.0)
 
@@ -42,6 +42,7 @@ class LexerMeta(type):
         return type.__new__(cls, name, bases, d)
 
 
+@add_metaclass(LexerMeta)
 class Lexer(object):
     """
     Lexer for a specific language.
@@ -55,7 +56,9 @@ class Lexer(object):
     ``ensurenl``
         Make sure that the input ends with a newline (default: True).  This
         is required for some lexers that consume input linewise.
-        *New in Pygments 1.3.*
+
+        .. versionadded:: 1.3
+
     ``tabsize``
         If given and greater than 0, expand tabs in the input (default: 0).
     ``encoding``
@@ -83,8 +86,6 @@ class Lexer(object):
 
     #: Priority, should multiple lexers match and no content is provided
     priority = 0
-
-    __metaclass__ = LexerMeta
 
     def __init__(self, **options):
         self.options = options
@@ -136,7 +137,7 @@ class Lexer(object):
         Also preprocess the text, i.e. expand tabs and strip it if
         wanted and applies registered filters.
         """
-        if not isinstance(text, unicode):
+        if not isinstance(text, text_type):
             if self.encoding == 'guess':
                 try:
                     text = text.decode('utf-8')
@@ -155,17 +156,18 @@ class Lexer(object):
                 decoded = None
                 for bom, encoding in _encoding_map:
                     if text.startswith(bom):
-                        decoded = unicode(text[len(bom):], encoding,
-                                          errors='replace')
+                        decoded = text[len(bom):].decode(encoding, 'replace')
                         break
                 # no BOM found, so use chardet
                 if decoded is None:
                     enc = chardet.detect(text[:1024]) # Guess using first 1KB
-                    decoded = unicode(text, enc.get('encoding') or 'utf-8',
-                                      errors='replace')
+                    decoded = text.decode(enc.get('encoding') or 'utf-8',
+                                          'replace')
                 text = decoded
             else:
                 text = text.decode(self.encoding)
+                if text.startswith(u'\ufeff'):
+                    text = text[len(u'\ufeff'):]
         else:
             if text.startswith(u'\ufeff'):
                 text = text[len(u'\ufeff'):]
@@ -455,7 +457,7 @@ class RegexLexerMeta(LexerMeta):
 
             try:
                 rex = cls._process_regex(tdef[0], rflags)
-            except Exception, err:
+            except Exception as err:
                 raise ValueError("uncompilable regex %r in state %r of %r: %s" %
                                  (tdef[0], state, cls, err))
 
@@ -474,7 +476,7 @@ class RegexLexerMeta(LexerMeta):
         """Preprocess a dictionary of token definitions."""
         processed = cls._all_tokens[name] = {}
         tokendefs = tokendefs or cls.tokens[name]
-        for state in tokendefs.keys():
+        for state in list(tokendefs):
             cls._process_state(tokendefs, processed, state)
         return processed
 
@@ -495,7 +497,7 @@ class RegexLexerMeta(LexerMeta):
         for c in itertools.chain((cls,), cls.__mro__):
             toks = c.__dict__.get('tokens', {})
 
-            for state, items in toks.iteritems():
+            for state, items in iteritems(toks):
                 curitems = tokens.get(state)
                 if curitems is None:
                     tokens[state] = items
@@ -535,13 +537,13 @@ class RegexLexerMeta(LexerMeta):
         return type.__call__(cls, *args, **kwds)
 
 
+@add_metaclass(RegexLexerMeta)
 class RegexLexer(Lexer):
     """
     Base for simple stateful regular expression-based lexers.
     Simplifies the lexing process so that you need only
     provide a list of states and regular expressions.
     """
-    __metaclass__ = RegexLexerMeta
 
     #: Flags for compiling the regular expressions.
     #: Defaults to MULTILINE.
@@ -720,7 +722,7 @@ def do_insertions(insertions, tokens):
     """
     insertions = iter(insertions)
     try:
-        index, itokens = insertions.next()
+        index, itokens = next(insertions)
     except StopIteration:
         # no insertions
         for item in tokens:
@@ -746,7 +748,7 @@ def do_insertions(insertions, tokens):
                 realpos += len(it_value)
             oldi = index - i
             try:
-                index, itokens = insertions.next()
+                index, itokens = next(insertions)
             except StopIteration:
                 insleft = False
                 break  # not strictly necessary
@@ -761,7 +763,7 @@ def do_insertions(insertions, tokens):
             yield realpos, t, v
             realpos += len(v)
         try:
-            index, itokens = insertions.next()
+            index, itokens = next(insertions)
         except StopIteration:
             insleft = False
             break  # not strictly necessary

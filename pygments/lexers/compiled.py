@@ -5,7 +5,7 @@
 
     Lexers for compiled languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -30,7 +30,9 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'Modula2Lexer', 'BlitzMaxLexer', 'BlitzBasicLexer', 'NimrodLexer',
            'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
-           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer']
+           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'PikeLexer',
+           'ChapelLexer', 'EiffelLexer', 'Inform6Lexer', 'Inform7Lexer',
+           'Inform6TemplateLexer', 'MqlLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -42,7 +44,7 @@ class CFamilyLexer(RegexLexer):
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
     #: only one /* */ style comment
-    _ws1 = r':\s*/[*].*?[*]/\s*'
+    _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
     tokens = {
         'whitespace': [
@@ -73,7 +75,6 @@ class CFamilyLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
-            (r'\b(case)(.+?)(:)', bygroups(Keyword, using(this), Text)),
             (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
              r'for|goto|if|register|restricted|return|sizeof|static|struct|'
              r'switch|typedef|union|volatile|while)\b', Keyword),
@@ -188,7 +189,8 @@ class CLexer(CFamilyLexer):
     priority = 0.1
 
     def analyse_text(text):
-        return 0.1
+        if re.search('#include [<"]', text):
+            return 0.1
 
 
 class CppLexer(CFamilyLexer):
@@ -229,17 +231,59 @@ class CppLexer(CFamilyLexer):
     }
 
     def analyse_text(text):
-        return 0.1
+        if re.search('#include <[a-z]+>', text):
+            return 0.2
+        if re.search('using namespace ', text):
+            return 0.4
+
+
+class PikeLexer(CppLexer):
+    """
+    For `Pike <http://pike.lysator.liu.se/>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Pike'
+    aliases = ['pike']
+    filenames = ['*.pike', '*.pmod']
+    mimetypes = ['text/x-pike']
+
+    tokens = {
+        'statements': [
+            (r'(catch|new|private|protected|public|gauge|'
+             r'throw|throws|class|interface|implement|abstract|extends|from|'
+             r'this|super|new|constant|final|static|import|use|extern|'
+             r'inline|proto|break|continue|if|else|for|'
+             r'while|do|switch|case|as|in|version|return|true|false|null|'
+             r'__VERSION__|__MAJOR__|__MINOR__|__BUILD__|__REAL_VERSION__|'
+             r'__REAL_MAJOR__|__REAL_MINOR__|__REAL_BUILD__|__DATE__|__TIME__|'
+             r'__FILE__|__DIR__|__LINE__|__AUTO_BIGNUM__|__NT__|__PIKE__|'
+             r'__amigaos__|_Pragma|static_assert|defined|sscanf)\b',
+             Keyword),
+            (r'(bool|int|long|float|short|double|char|string|object|void|mapping|'
+             r'array|multiset|program|function|lambda|mixed|'
+             r'[a-z_][a-z0-9_]*_t)\b',
+             Keyword.Type),
+            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'[~!%^&*+=|?:<>/-@]', Operator),
+            inherit,
+        ],
+        'classname': [
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            # template specification
+            (r'\s*(?=>)', Text, '#pop'),
+        ],
+    }
 
 
 class SwigLexer(CppLexer):
     """
     For `SWIG <http://www.swig.org/>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'SWIG'
-    aliases = ['Swig', 'swig']
+    aliases = ['swig']
     filenames = ['*.swg', '*.i']
     mimetypes = ['text/swig']
     priority = 0.04 # Lower than C/C++ and Objective C/C++
@@ -275,7 +319,7 @@ class SwigLexer(CppLexer):
         '%trackobjects', '%types', '%unrefobject', '%varargs', '%warn', '%warnfilter')
 
     def analyse_text(text):
-        rv = 0.1 # Same as C/C++
+        rv = 0
         # Search for SWIG directives, which are conventionally at the beginning of
         # a line. The probability of them being within a line is low, so let another
         # lexer win in this case.
@@ -293,7 +337,7 @@ class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'eC'
     aliases = ['ec']
@@ -329,7 +373,7 @@ class NesCLexer(CLexer):
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'nesC'
     aliases = ['nesc']
@@ -354,7 +398,7 @@ class ClayLexer(RegexLexer):
     """
     For `Clay <http://claylabs.com/clay/>`_ source.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'Clay'
     filenames = ['*.clay']
@@ -405,7 +449,7 @@ class DLexer(RegexLexer):
     """
     For D source.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'D'
     filenames = ['*.d', '*.di']
@@ -425,20 +469,23 @@ class DLexer(RegexLexer):
             (r'(abstract|alias|align|asm|assert|auto|body|break|case|cast'
              r'|catch|class|const|continue|debug|default|delegate|delete'
              r'|deprecated|do|else|enum|export|extern|finally|final'
-             r'|foreach_reverse|foreach|for|function|goto|if|import|inout'
-             r'|interface|invariant|in|is|lazy|mixin|module|new|nothrow|out'
+             r'|foreach_reverse|foreach|for|function|goto|if|immutable|import'
+             r'|interface|invariant|inout|in|is|lazy|mixin|module|new|nothrow|out'
              r'|override|package|pragma|private|protected|public|pure|ref|return'
-             r'|scope|static|struct|super|switch|synchronized|template|this'
+             r'|scope|shared|static|struct|super|switch|synchronized|template|this'
              r'|throw|try|typedef|typeid|typeof|union|unittest|version|volatile'
-             r'|while|with|__traits)\b', Keyword
+             r'|while|with|__gshared|__traits|__vector|__parameters)\b', Keyword
             ),
             (r'(bool|byte|cdouble|cent|cfloat|char|creal|dchar|double|float'
              r'|idouble|ifloat|int|ireal|long|real|short|ubyte|ucent|uint|ulong'
              r'|ushort|void|wchar)\b', Keyword.Type
             ),
             (r'(false|true|null)\b', Keyword.Constant),
+            (r'(__FILE__|__MODULE__|__LINE__|__FUNCTION__|__PRETTY_FUNCTION__'
+             r'|__DATE__|__EOF__|__TIME__|__TIMESTAMP__|__VENDOR__|__VERSION__)\b',
+             Keyword.Pseudo),
             (r'macro\b', Keyword.Reserved),
-            (r'(string|wstring|dstring)\b', Name.Builtin),
+            (r'(string|wstring|dstring|size_t|ptrdiff_t)\b', Name.Builtin),
             # FloatLiteral
             # -- HexFloat
             (r'0[xX]([0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)'
@@ -484,6 +531,8 @@ class DLexer(RegexLexer):
             (r'q"(.).*?\1"', String),
             # -- TokenString
             (r'q{', String, 'token_string'),
+            # Attributes
+            (r'@([a-zA-Z_]\w*)?', Name.Decorator),
             # Tokens
             (r'(~=|\^=|%=|\*=|==|!>=|!<=|!<>=|!<>|!<|!>|!=|>>>=|>>>|>>=|>>|>='
              r'|<>=|<>|<<=|<<|<=|\+\+|\+=|--|-=|\|\||\|=|&&|&=|\.\.\.|\.\.|/=)'
@@ -491,6 +540,8 @@ class DLexer(RegexLexer):
             ),
             # Identifier
             (r'[a-zA-Z_]\w*', Name),
+            # Line
+            (r'#line\s.*\n', Comment.Special),
         ],
         'nested_comment': [
             (r'[^+/]+', Comment.Multiline),
@@ -835,7 +886,7 @@ class DelphiLexer(Lexer):
         if get_bool_opt(options, 'freepascal', True):
             self.keywords.update(self.FREE_PASCAL_KEYWORDS)
         self.builtins = set()
-        for unit in get_list_opt(options, 'units', self.BUILTIN_UNITS.keys()):
+        for unit in get_list_opt(options, 'units', list(self.BUILTIN_UNITS)):
             self.builtins.update(self.BUILTIN_UNITS[unit])
 
     def get_tokens_unprocessed(self, text):
@@ -1039,7 +1090,7 @@ class DylanLexer(RegexLexer):
     """
     For the `Dylan <http://www.opendylan.org/>`_ language.
 
-    *New in Pygments 0.7.*
+    .. versionadded:: 0.7
     """
 
     name = 'Dylan'
@@ -1231,7 +1282,7 @@ class DylanLidLexer(RegexLexer):
     """
     For Dylan LID (Library Interchange Definition) files.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'DylanLID'
@@ -1269,7 +1320,7 @@ class DylanConsoleLexer(Lexer):
 
     This is based on a copy of the RubyConsoleLexer.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Dylan session'
     aliases = ['dylan-console', 'dylan-repl']
@@ -1333,20 +1384,23 @@ def objective(baselexer):
         tokens = {
             'statements': [
                 (r'@"', String, 'string'),
-                (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
-                 String.Char),
+                (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
                 (r'@(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
                 (r'@(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
                 (r'@0x[0-9a-fA-F]+[Ll]?', Number.Hex),
                 (r'@0[0-7]+[Ll]?', Number.Oct),
                 (r'@\d+[Ll]?', Number.Integer),
-                (r'(in|@selector|@private|@protected|@public|@encode|'
+                (r'@\([^()]+\)', Number),
+                (r'(@selector|@private|@protected|@public|@encode|'
                  r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
-                 r'@synthesize|@dynamic|@optional)\b', Keyword),
-                (r'(id|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
+                 r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong|'
+                 r'weak|strong|retain|assign|unsafe_unretained|nonatomic|'
+                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|'
+                 r'@synthesize|@dynamic|@optional|@required|@autoreleasepool)\b', Keyword),
+                (r'(id|instancetype|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
                  Keyword.Type),
                 (r'@(true|false|YES|NO)\n', Name.Builtin),
-                (r'(YES|NO|nil)\b', Name.Builtin),
+                (r'(YES|NO|nil|self|super)\b', Name.Builtin),
                 (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
@@ -1376,7 +1430,7 @@ def objective(baselexer):
               (r'^([-+])(\s*)'                         # method marker
                r'(\(.*?\))?(\s*)'                      # return type
                r'([a-zA-Z$_][a-zA-Z0-9$_]*:?)',        # begin of method name
-               bygroups(Keyword, Text, using(this),
+               bygroups(Punctuation, Text, using(this),
                         Text, Name.Function),
                'method'),
               inherit,
@@ -1387,8 +1441,8 @@ def objective(baselexer):
                 # discussion in Issue 789
                 (r',', Punctuation),
                 (r'\.\.\.', Punctuation),
-                (r'(\(.*?\))([a-zA-Z$_][a-zA-Z0-9$_]*)', bygroups(using(this),
-                                                                  Name.Variable)),
+                (r'(\(.*?\))(\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)',
+                 bygroups(using(this), Text, Name.Variable)),
                 (r'[a-zA-Z$_][a-zA-Z0-9$_]*:', Name.Function),
                 (';', Punctuation, '#pop'),
                 ('{', Punctuation, 'function'),
@@ -1401,9 +1455,24 @@ def objective(baselexer):
                 return 1.0
             elif '@"' in text: # strings
                 return 0.8
+            elif re.search('@[0-9]+', text):
+                return 0.7
             elif _oc_message.search(text):
                 return 0.8
             return 0
+
+        def get_tokens_unprocessed(self, text):
+            from pygments.lexers._cocoabuiltins import COCOA_INTERFACES, \
+                COCOA_PROTOCOLS, COCOA_PRIMITIVES
+
+            for index, token, value in \
+                baselexer.get_tokens_unprocessed(self, text):
+                if token is Name:
+                    if value in COCOA_INTERFACES or value in COCOA_PROTOCOLS \
+                       or value in COCOA_PRIMITIVES:
+                        token = Name.Builtin.Pseudo
+
+                yield index, token, value
 
     return GeneratedObjectiveCVariant
 
@@ -1436,7 +1505,7 @@ class FortranLexer(RegexLexer):
     """
     Lexer for FORTRAN 90 code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
     """
     name = 'Fortran'
     aliases = ['fortran']
@@ -1491,7 +1560,7 @@ class FortranLexer(RegexLexer):
 
             (r'(::)', Keyword.Declaration),
 
-            (r'[(),:&%;]', Punctuation),
+            (r'[()\[\],:&%;]', Punctuation),
 
             # Intrinsics
             (r'\b(Abort|Abs|Access|AChar|ACos|AdjustL|AdjustR|AImag|AInt|Alarm|'
@@ -1551,7 +1620,7 @@ class GLShaderLexer(RegexLexer):
     """
     GLSL (OpenGL Shader) lexer.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'GLSL'
     aliases = ['glsl']
@@ -1620,7 +1689,7 @@ class PrologLexer(RegexLexer):
             (r'[\[\](){}|.,;!]', Punctuation),
             (r':-|-->', Punctuation),
             (r'"(?:\\x[0-9a-fA-F]+\\|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|'
-             r'\\[0-7]+\\|\\[\w\W]|[^"])*"', String.Double),
+             r'\\[0-7]+\\|\\["\nabcefnrstv]|[^\\"])*"', String.Double),
             (r"'(?:''|[^'])*'", String.Atom), # quoted atom
             # Needs to not be followed by an atom.
             #(r'=(?=\s|[a-zA-Z\[])', Operator),
@@ -1663,7 +1732,7 @@ class CythonLexer(RegexLexer):
     """
     For Pyrex and `Cython <http://cython.org>`_ source code.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
 
     name = 'Cython'
@@ -1829,7 +1898,7 @@ class ValaLexer(RegexLexer):
     """
     For Vala source code with preprocessor directives.
 
-    *New in Pygments 1.1.*
+    .. versionadded:: 1.1
     """
     name = 'Vala'
     aliases = ['vala', 'vapi']
@@ -1918,7 +1987,7 @@ class OocLexer(RegexLexer):
     """
     For `Ooc <http://ooc-lang.org/>`_ source code
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
     name = 'Ooc'
     aliases = ['ooc']
@@ -2057,7 +2126,7 @@ class FelixLexer(RegexLexer):
     """
     For `Felix <http://www.felix-lang.org>`_ source code.
 
-    *New in Pygments 1.2.*
+    .. versionadded:: 1.2
     """
 
     name = 'Felix'
@@ -2311,7 +2380,7 @@ class AdaLexer(RegexLexer):
     """
     For Ada source code.
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
 
     name = 'Ada'
@@ -2454,7 +2523,7 @@ class Modula2Lexer(RegexLexer):
     `gm2ext`
         Also highlight GNU extensions (default: False).
 
-    *New in Pygments 1.3.*
+    .. versionadded:: 1.3
     """
     name = 'Modula-2'
     aliases = ['modula2', 'm2']
@@ -2636,7 +2705,7 @@ class BlitzMaxLexer(RegexLexer):
     """
     For `BlitzMax <http://blitzbasic.com>`_ source code.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
 
     name = 'BlitzMax'
@@ -2730,7 +2799,7 @@ class BlitzBasicLexer(RegexLexer):
     """
     For `BlitzBasic <http://blitzbasic.com>`_ source code.
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
 
     name = 'BlitzBasic'
@@ -2812,7 +2881,7 @@ class NimrodLexer(RegexLexer):
     """
     For `Nimrod <http://nimrod-code.org/>`_ source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
 
     name = 'Nimrod'
@@ -2953,7 +3022,7 @@ class FantomLexer(RegexLexer):
     """
     For Fantom source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'Fantom'
     aliases = ['fan']
@@ -3183,12 +3252,12 @@ class FantomLexer(RegexLexer):
 
 class RustLexer(RegexLexer):
     """
-    Lexer for Mozilla's Rust programming language.
+    Lexer for the Rust programming language (version 0.9).
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'Rust'
-    filenames = ['*.rs', '*.rc']
+    filenames = ['*.rs']
     aliases = ['rust']
     mimetypes = ['text/x-rustsrc']
 
@@ -3197,26 +3266,65 @@ class RustLexer(RegexLexer):
             # Whitespace and Comments
             (r'\n', Text),
             (r'\s+', Text),
+            (r'//[/!](.*?)\n', Comment.Doc),
             (r'//(.*?)\n', Comment.Single),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
 
             # Keywords
-            (r'(as|assert|break|const'
-             r'|copy|do|else|enum|extern|fail'
-             r'|false|fn|for|if|impl|let|log'
-             r'|loop|match|mod|move|mut|once|priv|pub|pure'
-             r'|ref|return|static|struct|trait|true|type|unsafe|use|while'
-             r'|u8|u16|u32|u64|i8|i16|i32|i64|uint'
-             r'|int|float|f32|f64|str)\b', Keyword),
-
+            (r'(as|box|break|continue'
+             r'|do|else|enum|extern'
+             r'|fn|for|if|impl|in'
+             r'|loop|match|mut|priv|proc|pub'
+             r'|ref|return|static|\'static|struct|trait|true|type'
+             r'|unsafe|while)\b',
+             Keyword),
+            (r'(alignof|be|const|offsetof|pure|sizeof|typeof|once|unsized'
+             r'|yield)\b', Keyword.Reserved),
+            (r'(mod|use)\b', Keyword.Namespace),
+            (r'(true|false)\b', Keyword.Constant),
+            (r'let\b', Keyword.Declaration),
+            (r'(u8|u16|u32|u64|i8|i16|i32|i64|uint|int|f32|f64'
+             r'|str|bool)\b', Keyword.Type),
+            (r'self\b', Name.Builtin.Pseudo),
+            # Prelude
+            (r'(Freeze|Pod|Send|Sized|Add|Sub|Mul|Div|Rem|Neg|Not|BitAnd'
+             r'|BitOr|BitXor|Drop|Shl|Shr|Index|Option|Some|None|Result'
+             r'|Ok|Err|from_str|range|print|println|Any|AnyOwnExt|AnyRefExt'
+             r'|AnyMutRefExt|Ascii|AsciiCast|OnwedAsciiCast|AsciiStr'
+             r'|IntoBytes|Bool|ToCStr|Char|Clone|DeepClone|Eq|ApproxEq'
+             r'|Ord|TotalEq|Ordering|Less|Equal|Greater|Equiv|Container'
+             r'|Mutable|Map|MutableMap|Set|MutableSet|Default|FromStr'
+             r'|Hash|FromIterator|Extendable|Iterator|DoubleEndedIterator'
+             r'|RandomAccessIterator|CloneableIterator|OrdIterator'
+             r'|MutableDoubleEndedIterator|ExactSize|Times|Algebraic'
+             r'|Trigonometric|Exponential|Hyperbolic|Bitwise|BitCount'
+             r'|Bounded|Integer|Fractional|Real|RealExt|Num|NumCast'
+             r'|CheckedAdd|CheckedSub|CheckedMul|Orderable|Signed'
+             r'|Unsigned|Round|Primitive|Int|Float|ToStrRadix'
+             r'|ToPrimitive|FromPrimitive|GenericPath|Path|PosixPath'
+             r'|WindowsPath|RawPtr|Buffer|Writer|Reader|Seek'
+             r'|SendStr|SendStrOwned|SendStrStatic|IntoSendStr|Str'
+             r'|StrVector|StrSlice|OwnedStr|IterBytes|ToStr|IntoStr'
+             r'|CopyableTuple|ImmutableTuple|ImmutableTuple\d+'
+             r'|Tuple\d+|ImmutableEqVector|ImmutableTotalOrdVector'
+             r'|ImmutableCopyableVector|OwnedVector|OwnedCopyableVector'
+             r'|OwnedEqVector|MutableVector|MutableTotalOrdVector'
+             r'|Vector|VectorVector|CopyableVector|ImmutableVector'
+             r'|Port|Chan|SharedChan|spawn|drop)\b', Name.Builtin),
+            # Borrowed pointer
+            (r'(&)(\'[A-Za-z_]\w*)?', bygroups(Operator, Name)),
+            # Labels
+            (r'\'[A-Za-z_]\w*:', Name.Label),
             # Character Literal
             (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
              String.Char),
+            # Lifetime
+            (r"""'[a-zA-Z_][a-zA-Z0-9_]*""", Name.Label),
             # Binary Literal
-            (r'0[Bb][01_]+', Number, 'number_lit'),
+            (r'0b[01_]+', Number, 'number_lit'),
             # Octal Literal
-            (r'0[0-7_]+', Number.Oct, 'number_lit'),
+            (r'0o[0-7_]+', Number.Oct, 'number_lit'),
             # Hexadecimal Literal
             (r'0[xX][0-9a-fA-F_]+', Number.Hex, 'number_lit'),
             # Decimal Literal
@@ -3224,20 +3332,22 @@ class RustLexer(RegexLexer):
              r'[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+)?', Number, 'number_lit'),
             # String Literal
             (r'"', String, 'string'),
+            (r'r(#*)".*?"\1', String.Raw),
 
             # Operators and Punctuation
             (r'[{}()\[\],.;]', Punctuation),
             (r'[+\-*/%&|<>^!~@=:?]', Operator),
 
             # Identifier
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
 
             # Attributes
             (r'#\[', Comment.Preproc, 'attribute['),
-            (r'#\(', Comment.Preproc, 'attribute('),
             # Macros
-            (r'[A-Za-z_][A-Za-z0-9_]*!\[', Comment.Preproc, 'attribute['),
-            (r'[A-Za-z_][A-Za-z0-9_]*!\(', Comment.Preproc, 'attribute('),
+            (r'([A-Za-z_]\w*)!\s*([A-Za-z_]\w*)?\s*\{',
+             bygroups(Comment.Preproc, Name), 'macro{'),
+            (r'([A-Za-z_]\w*)!\s*([A-Za-z_]\w*)?\(',
+             bygroups(Comment.Preproc, Name), 'macro('),
         ],
         'number_lit': [
             (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop'),
@@ -3248,6 +3358,14 @@ class RustLexer(RegexLexer):
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}""", String.Escape),
             (r'[^\\"]+', String),
             (r'\\', String),
+        ],
+        'macro{': [
+            (r'\{', Operator, '#push'),
+            (r'\}', Operator, '#pop'),
+        ],
+        'macro(': [
+            (r'\(', Operator, '#push'),
+            (r'\)', Operator, '#pop'),
         ],
         'attribute_common': [
             (r'"', String, 'string'),
@@ -3272,7 +3390,7 @@ class CudaLexer(CLexer):
     For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
     source.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'CUDA'
     filenames = ['*.cu', '*.cuh']
@@ -3322,7 +3440,7 @@ class MonkeyLexer(RegexLexer):
     `Monkey <https://en.wikipedia.org/wiki/Monkey_(programming_language)>`_
     source code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Monkey'
@@ -3450,7 +3568,7 @@ class CobolLexer(RegexLexer):
     """
     Lexer for OpenCOBOL code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'COBOL'
     aliases = ['cobol']
@@ -3644,7 +3762,7 @@ class CobolFreeformatLexer(CobolLexer):
     """
     Lexer for Free format OpenCOBOL code.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
     name = 'COBOLFree'
     aliases = ['cobolfree']
@@ -3663,7 +3781,7 @@ class LogosLexer(ObjectiveCppLexer):
     """
     For Logos + Objective-C source code with preprocessor directives.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 1.6
     """
 
     name = 'Logos'
@@ -3721,3 +3839,1260 @@ class LogosLexer(ObjectiveCppLexer):
         if LogosLexer._logos_keywords.search(text):
             return 1.0
         return 0
+
+
+class ChapelLexer(RegexLexer):
+    """
+    For `Chapel <http://chapel.cray.com/>`_ source.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Chapel'
+    filenames = ['*.chpl']
+    aliases = ['chapel', 'chpl']
+    # mimetypes = ['text/x-chapel']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text),
+
+            (r'//(.*?)\n', Comment.Single),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+
+            (r'(config|const|in|inout|out|param|ref|type|var)\b',
+             Keyword.Declaration),
+            (r'(false|nil|true)\b', Keyword.Constant),
+            (r'(bool|complex|imag|int|opaque|range|real|string|uint)\b',
+             Keyword.Type),
+            (r'(atomic|begin|break|by|cobegin|coforall|continue|iter|'
+             r'delete|dmapped|do|domain|else|enum|export|extern|for|forall|'
+             r'if|index|inline|label|lambda|let|local|new|on|otherwise|'
+             r'reduce|return|scan|select|serial|single|sparse|'
+             r'subdomain|sync|then|use|when|where|while|yield|zip)\b',
+             Keyword),
+            (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
+            (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text),
+             'classname'),
+
+            # imaginary integers
+            (r'\d+i', Number),
+            (r'\d+\.\d*([Ee][-+]\d+)?i', Number),
+            (r'\.\d+([Ee][-+]\d+)?i', Number),
+            (r'\d+[Ee][-+]\d+i', Number),
+
+            # reals cannot end with a period due to lexical ambiguity with
+            # .. operator. See reference for rationale.
+            (r'(\d*\.\d+)([eE][+-]?[0-9]+)?i?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+i?', Number.Float),
+
+            # integer literals
+            # -- binary
+            (r'0[bB][0-1]+', Number),
+            # -- hex
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            # -- decimal
+            (r'(0|[1-9][0-9]*)', Number.Integer),
+
+            # strings
+            (r'["\'](\\\\|\\"|[^"\'])*["\']', String),
+
+            # tokens
+            (r'(=|\+=|-=|\*=|/=|\*\*=|%=|&=|\|=|\^=|&&=|\|\|=|<<=|>>=|'
+             r'<=>|\.\.|by|#|\.\.\.|'
+             r'&&|\|\||!|&|\||\^|~|<<|>>|'
+             r'==|!=|<=|>=|<|>|'
+             r'[+\-*/%]|\*\*)', Operator),
+            (r'[:;,.?()\[\]{}]', Punctuation),
+
+            # identifiers
+            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Other),
+        ],
+        'classname': [
+            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Class, '#pop'),
+        ],
+        'procname': [
+            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Function, '#pop'),
+        ],
+    }
+
+
+class EiffelLexer(RegexLexer):
+    """
+    For `Eiffel <http://www.eiffel.com>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Eiffel'
+    aliases = ['eiffel']
+    filenames = ['*.e']
+    mimetypes = ['text/x-eiffel']
+
+    tokens = {
+        'root': [
+            (r'[^\S\n]+', Text),
+            (r'--.*?\n', Comment.Single),
+            (r'[^\S\n]+', Text),
+                # Please note that keyword and operator are case insensitive.
+            (r'(?i)(true|false|void|current|result|precursor)\b', Keyword.Constant),
+            (r'(?i)(and(\s+then)?|not|xor|implies|or(\s+else)?)\b', Operator.Word),
+            (r'(?i)\b(across|agent|alias|all|as|assign|attached|attribute|check|'
+                r'class|convert|create|debug|deferred|detachable|do|else|elseif|'
+                r'end|ensure|expanded|export|external|feature|from|frozen|if|'
+                r'inherit|inspect|invariant|like|local|loop|none|note|obsolete|'
+                r'old|once|only|redefine|rename|require|rescue|retry|select|'
+                r'separate|then|undefine|until|variant|when)\b',Keyword.Reserved),
+            (r'"\[(([^\]%]|\n)|%(.|\n)|\][^"])*?\]"', String),
+            (r'"([^"%\n]|%.)*?"', String),
+            include('numbers'),
+            (r"'([^'%]|%'|%%)'", String.Char),
+            (r"(//|\\\\|>=|<=|:=|/=|~|/~|[\\\?!#%&@|+/\-=\>\*$<|^\[\]])", Operator),
+            (r"([{}():;,.])", Punctuation),
+            (r'([a-z][a-zA-Z0-9_]*)|([A-Z][A-Z0-9_]*[a-z][a-zA-Z0-9_]*)', Name),
+            (r'([A-Z][A-Z0-9_]*)', Name.Class),
+            (r'\n+', Text),
+        ],
+        'numbers': [
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'0[bB][0-1]+', Number.Bin),
+            (r'0[cC][0-7]+', Number.Oct),
+            (r'([0-9]+\.[0-9]*)|([0-9]*\.[0-9]+)', Number.Float),
+            (r'[0-9]+', Number.Integer),
+        ],
+    }
+
+
+class Inform6Lexer(RegexLexer):
+    """
+    For `Inform 6 <http://inform-fiction.org/>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'Inform 6'
+    aliases = ['inform6', 'i6']
+    filenames = ['*.inf']
+
+    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+
+    _name = r'[a-zA-Z_][a-zA-Z_0-9]*'
+
+    # Inform 7 maps these four character classes to their ASCII
+    # equivalents. To support Inform 6 inclusions within Inform 7,
+    # Inform6Lexer maps them too.
+    _dash = u'\\-\u2010-\u2014'
+    _dquote = u'"\u201c\u201d'
+    _squote = u"'\u2018\u2019"
+    _newline = u'\\n\u0085\u2028\u2029'
+
+    tokens = {
+        'root': [
+            (r'(\A(!%%[^%s]*[%s])+)?' % (_newline, _newline), Comment.Preproc,
+             'directive')
+        ],
+        '_whitespace': [
+            (r'\s+', Text),
+            (r'![^%s]*' % _newline, Comment.Single)
+        ],
+        'default': [
+            include('_whitespace'),
+            (r'\[', Punctuation, 'many-values'),  # Array initialization
+            (r':|(?=;)', Punctuation, '#pop'),
+            (r'<', Punctuation),  # Second angle bracket in an action statement
+            (r'', Text, ('expression', '_expression'))
+        ],
+
+        # Expressions
+        '_expression': [
+            include('_whitespace'),
+            (r'(?=sp\b)', Text, '#pop'),
+            (r'(?=[%s%s$0-9#a-zA-Z_])' % (_dquote, _squote), Text,
+             ('#pop', 'value')),
+            (r'\+\+|[%s]{1,2}(?!>)|~~?' % _dash, Operator),
+            (r'(?=[()\[%s,?@{:;])' % _dash, Text, '#pop')
+        ],
+        'expression': [
+            include('_whitespace'),
+            (r'\(', Punctuation, ('expression', '_expression')),
+            (r'\)', Punctuation, '#pop'),
+            (r'\[', Punctuation, ('#pop', 'statements', 'locals')),
+            (r'>(?=(\s+|(![^%s]*))*[>;])' % _newline, Punctuation),
+            (r'\+\+|[%s]{2}(?!>)' % _dash, Operator),
+            (r',', Punctuation, '_expression'),
+            (r'&&?|\|\|?|[=~><]?=|[%s]{1,2}>?|\.\.?[&#]?|::|[<>+*/%%]' % _dash,
+             Operator, '_expression'),
+            (r'(has|hasnt|in|notin|ofclass|or|provides)\b', Operator.Word,
+             '_expression'),
+            (r'sp\b', Name),
+            (r'\?~?', Name.Label, 'label?'),
+            (r'[@{]', Error),
+            (r'', Text, '#pop')
+        ],
+        '_assembly-expression': [
+            (r'\(', Punctuation, ('#push', '_expression')),
+            (r'[\[\]]', Punctuation),
+            (r'[%s]>' % _dash, Punctuation, '_expression'),
+            (r'sp\b', Keyword.Pseudo),
+            (r';', Punctuation, '#pop:3'),
+            include('expression')
+        ],
+        '_for-expression': [
+            (r'\)', Punctuation, '#pop:2'),
+            (r':', Punctuation, '#pop'),
+            include('expression')
+        ],
+        '_keyword-expression': [
+            (r'(from|near|to)\b', Keyword, '_expression'),
+            include('expression')
+        ],
+        '_list-expression': [
+            (r',', Punctuation, '#pop'),
+            include('expression')
+        ],
+        '_object-expression': [
+            (r'has\b', Keyword.Declaration, '#pop'),
+            include('_list-expression')
+        ],
+
+        # Values
+        'value': [
+            include('_whitespace'),
+            # Strings
+            (r'[%s][^@][%s]' % (_squote, _squote), String.Char, '#pop'),
+            (r'([%s])(@{[0-9a-fA-F]{1,4}})([%s])' % (_squote, _squote),
+             bygroups(String.Char, String.Escape, String.Char), '#pop'),
+            (r'([%s])(@..)([%s])' % (_squote, _squote),
+             bygroups(String.Char, String.Escape, String.Char), '#pop'),
+            (r'[%s]' % _squote, String.Single, ('#pop', 'dictionary-word')),
+            (r'[%s]' % _dquote, String.Double, ('#pop', 'string')),
+            # Numbers
+            (r'\$[+%s][0-9]*\.?[0-9]*([eE][+%s]?[0-9]+)?' % (_dash, _dash),
+             Number.Float, '#pop'),
+            (r'\$[0-9a-fA-F]+', Number.Hex, '#pop'),
+            (r'\$\$[01]+', Number, '#pop'),  # Binary
+            (r'[0-9]+', Number.Integer, '#pop'),
+            # Values prefixed by hashes
+            (r'(##|#a\$)(%s)' % _name, bygroups(Operator, Name), '#pop'),
+            (r'(#g\$)(%s)' % _name,
+             bygroups(Operator, Name.Variable.Global), '#pop'),
+            (r'#[nw]\$', Operator, ('#pop', 'obsolete-dictionary-word')),
+            (r'(#r\$)(%s)' % _name, bygroups(Operator, Name.Function), '#pop'),
+            (r'#', Name.Builtin, ('#pop', 'system-constant')),
+            # System functions
+            (r'(child|children|elder|eldest|glk|indirect|metaclass|parent|'
+             r'random|sibling|younger|youngest)\b', Name.Builtin, '#pop'),
+            # Metaclasses
+            (r'(?i)(Class|Object|Routine|String)\b', Name.Builtin, '#pop'),
+            # Veneer routines
+            (r'(?i)(Box__Routine|CA__Pr|CDefArt|CInDefArt|Cl__Ms|'
+             r'Copy__Primitive|CP__Tab|DA__Pr|DB__Pr|DefArt|Dynam__String|'
+             r'EnglishNumber|Glk__Wrap|IA__Pr|IB__Pr|InDefArt|Main__|'
+             r'Meta__class|OB__Move|OB__Remove|OC__Cl|OP__Pr|Print__Addr|'
+             r'Print__PName|PrintShortName|RA__Pr|RA__Sc|RL__Pr|R_Process|'
+             r'RT__ChG|RT__ChGt|RT__ChLDB|RT__ChLDW|RT__ChPR|RT__ChPrintA|'
+             r'RT__ChPrintC|RT__ChPrintO|RT__ChPrintS|RT__ChPS|RT__ChR|'
+             r'RT__ChSTB|RT__ChSTW|RT__ChT|RT__Err|RT__TrPS|RV__Pr|'
+             r'Symb__Tab|Unsigned__Compare|WV__Pr|Z__Region)\b', Name.Builtin,
+             '#pop'),
+            # Other built-in symbols
+            (r'(?i)(call|copy|create|DEBUG|destroy|DICT_CHAR_SIZE|'
+             r'DICT_ENTRY_BYTES|DICT_IS_UNICODE|DICT_WORD_SIZE|false|'
+             r'FLOAT_INFINITY|FLOAT_NAN|FLOAT_NINFINITY|GOBJFIELD_CHAIN|'
+             r'GOBJFIELD_CHILD|GOBJFIELD_NAME|GOBJFIELD_PARENT|'
+             r'GOBJFIELD_PROPTAB|GOBJFIELD_SIBLING|GOBJ_EXT_START|'
+             r'GOBJ_TOTAL_LENGTH|Grammar__Version|INDIV_PROP_START|INFIX|'
+             r'infix__watching|MODULE_MODE|name|nothing|NUM_ATTR_BYTES|print|'
+             r'print_to_array|recreate|remaining|self|sender|STRICT_MODE|'
+             r'sw__var|sys__glob0|sys__glob1|sys__glob2|sys_statusline_flag|'
+             r'TARGET_GLULX|TARGET_ZCODE|temp__global2|temp__global3|'
+             r'temp__global4|temp_global|true|USE_MODULES|WORDSIZE)\b',
+             Name.Builtin, '#pop'),
+            # Other values
+            (_name, Name, '#pop')
+        ],
+        # Strings
+        'dictionary-word': [
+            (r'[~^]+', String.Escape),
+            (r'[^~^\\@({%s]+' % _squote, String.Single),
+            (r'[({]', String.Single),
+            (r'@{[0-9a-fA-F]{,4}}', String.Escape),
+            (r'@..', String.Escape),
+            (r'[%s]' % _squote, String.Single, '#pop')
+        ],
+        'string': [
+            (r'[~^]+', String.Escape),
+            (r'[^~^\\@({%s]+' % _dquote, String.Double),
+            (r'[({]', String.Double),
+            (r'\\', String.Escape),
+            (r'@(\\\s*[%s]\s*)*@((\\\s*[%s]\s*)*[0-9])*' %
+             (_newline, _newline), String.Escape),
+            (r'@(\\\s*[%s]\s*)*{((\\\s*[%s]\s*)*[0-9a-fA-F]){,4}'
+             r'(\\\s*[%s]\s*)*}' % (_newline, _newline, _newline),
+             String.Escape),
+            (r'@(\\\s*[%s]\s*)*.(\\\s*[%s]\s*)*.' % (_newline, _newline),
+             String.Escape),
+            (r'[%s]' % _dquote, String.Double, '#pop')
+        ],
+        'plain-string': [
+            (r'[^~^\\({\[\]%s]+' % _dquote, String.Double),
+            (r'[~^({\[\]]', String.Double),
+            (r'\\', String.Escape),
+            (r'[%s]' % _dquote, String.Double, '#pop')
+        ],
+        # Names
+        '_constant': [
+            include('_whitespace'),
+            (_name, Name.Constant, '#pop'),
+            include('value')
+        ],
+        '_global': [
+            include('_whitespace'),
+            (_name, Name.Variable.Global, '#pop'),
+            include('value')
+        ],
+        'label?': [
+            include('_whitespace'),
+            (r'(%s)?' % _name, Name.Label, '#pop')
+        ],
+        'variable?': [
+            include('_whitespace'),
+            (r'(%s)?' % _name, Name.Variable, '#pop')
+        ],
+        # Values after hashes
+        'obsolete-dictionary-word': [
+            (r'\S[a-zA-Z_0-9]*', String.Other, '#pop')
+        ],
+        'system-constant': [
+            include('_whitespace'),
+            (_name, Name.Builtin, '#pop')
+        ],
+
+        # Directives
+        'directive': [
+            include('_whitespace'),
+            (r'#', Punctuation),
+            (r';', Punctuation, '#pop'),
+            (r'\[', Punctuation,
+             ('default', 'statements', 'locals', 'routine-name?')),
+            (r'(?i)(abbreviate|endif|dictionary|ifdef|iffalse|ifndef|ifnot|'
+             r'iftrue|ifv3|ifv5|release|serial|switches|system_file|version)'
+             r'\b', Keyword, 'default'),
+            (r'(?i)(array|global)\b', Keyword,
+             ('default', 'directive-keyword?', '_global')),
+            (r'(?i)attribute\b', Keyword, ('default', 'alias?', '_constant')),
+            (r'(?i)class\b', Keyword,
+             ('object-body', 'duplicates', 'class-name')),
+            (r'(?i)(constant|default)\b', Keyword,
+             ('default', 'expression', '_constant')),
+            (r'(?i)(end\b)(.*)', bygroups(Keyword, Text)),
+            (r'(?i)(extend|verb)\b', Keyword, 'grammar'),
+            (r'(?i)fake_action\b', Keyword, ('default', '_constant')),
+            (r'(?i)import\b', Keyword, 'manifest'),
+            (r'(?i)(include|link)\b', Keyword,
+             ('default', 'before-plain-string')),
+            (r'(?i)(lowstring|undef)\b', Keyword, ('default', '_constant')),
+            (r'(?i)message\b', Keyword, ('default', 'diagnostic')),
+            (r'(?i)(nearby|object)\b', Keyword,
+             ('object-body', '_object-head')),
+            (r'(?i)property\b', Keyword,
+             ('default', 'alias?', '_constant', 'property-keyword*')),
+            (r'(?i)replace\b', Keyword,
+             ('default', 'routine-name?', 'routine-name?')),
+            (r'(?i)statusline\b', Keyword, ('default', 'directive-keyword?')),
+            (r'(?i)stub\b', Keyword, ('default', 'routine-name?')),
+            (r'(?i)trace\b', Keyword,
+             ('default', 'trace-keyword?', 'trace-keyword?')),
+            (r'(?i)zcharacter\b', Keyword,
+             ('default', 'directive-keyword?', 'directive-keyword?')),
+            (_name, Name.Class, ('object-body', '_object-head'))
+        ],
+        # [, Replace, Stub
+        'routine-name?': [
+            include('_whitespace'),
+            (r'(%s)?' % _name, Name.Function, '#pop')
+        ],
+        'locals': [
+            include('_whitespace'),
+            (r';', Punctuation, '#pop'),
+            (r'\*', Punctuation),
+            (_name, Name.Variable)
+        ],
+        # Array
+        'many-values': [
+            include('_whitespace'),
+            (r';', Punctuation),
+            (r'\]', Punctuation, '#pop'),
+            (r':', Error),
+            (r'', Text, ('expression', '_expression'))
+        ],
+        # Attribute, Property
+        'alias?': [
+            include('_whitespace'),
+            (r'alias\b', Keyword, ('#pop', '_constant')),
+            (r'', Text, '#pop')
+        ],
+        # Class, Object, Nearby
+        'class-name': [
+            include('_whitespace'),
+            (r'(?=[,;]|(class|has|private|with)\b)', Text, '#pop'),
+            (_name, Name.Class, '#pop')
+        ],
+        'duplicates': [
+            include('_whitespace'),
+            (r'\(', Punctuation, ('#pop', 'expression', '_expression')),
+            (r'', Text, '#pop')
+        ],
+        '_object-head': [
+            (r'[%s]>' % _dash, Punctuation),
+            (r'(class|has|private|with)\b', Keyword.Declaration, '#pop'),
+            include('_global')
+        ],
+        'object-body': [
+            include('_whitespace'),
+            (r';', Punctuation, '#pop:2'),
+            (r',', Punctuation),
+            (r'class\b', Keyword.Declaration, 'class-segment'),
+            (r'(has|private|with)\b', Keyword.Declaration),
+            (r':', Error),
+            (r'', Text, ('_object-expression', '_expression'))
+        ],
+        'class-segment': [
+            include('_whitespace'),
+            (r'(?=[,;]|(class|has|private|with)\b)', Text, '#pop'),
+            (_name, Name.Class),
+            (r'', Text, 'value')
+        ],
+        # Extend, Verb
+        'grammar': [
+            include('_whitespace'),
+            (r'=', Punctuation, ('#pop', 'default')),
+            (r'\*', Punctuation, ('#pop', 'grammar-line')),
+            (r'', Text, '_directive-keyword')
+        ],
+        'grammar-line': [
+            include('_whitespace'),
+            (r';', Punctuation, '#pop'),
+            (r'[/*]', Punctuation),
+            (r'[%s]>' % _dash, Punctuation, 'value'),
+            (r'(noun|scope)\b', Keyword, '=routine'),
+            (r'', Text, '_directive-keyword')
+        ],
+        '=routine': [
+            include('_whitespace'),
+            (r'=', Punctuation, 'routine-name?'),
+            (r'', Text, '#pop')
+        ],
+        # Import
+        'manifest': [
+            include('_whitespace'),
+            (r';', Punctuation, '#pop'),
+            (r',', Punctuation),
+            (r'(?i)(global\b)?', Keyword, '_global')
+        ],
+        # Include, Link, Message
+        'diagnostic': [
+            include('_whitespace'),
+            (r'[%s]' % _dquote, String.Double, ('#pop', 'message-string')),
+            (r'', Text, ('#pop', 'before-plain-string', 'directive-keyword?'))
+        ],
+        'before-plain-string': [
+            include('_whitespace'),
+            (r'[%s]' % _dquote, String.Double, ('#pop', 'plain-string'))
+        ],
+        'message-string': [
+            (r'[~^]+', String.Escape),
+            include('plain-string')
+        ],
+
+        # Keywords used in directives
+        '_directive-keyword!': [
+            include('_whitespace'),
+            (r'(additive|alias|buffer|class|creature|data|error|fatalerror|'
+             r'first|has|held|initial|initstr|last|long|meta|multi|'
+             r'multiexcept|multiheld|multiinside|noun|number|only|private|'
+             r'replace|reverse|scope|score|special|string|table|terminating|'
+             r'time|topic|warning|with)\b', Keyword, '#pop'),
+            (r'[%s]{1,2}>|[+=]' % _dash, Punctuation, '#pop')
+        ],
+        '_directive-keyword': [
+            include('_directive-keyword!'),
+            include('value')
+        ],
+        'directive-keyword?': [
+            include('_directive-keyword!'),
+            (r'', Text, '#pop')
+        ],
+        'property-keyword*': [
+            include('_whitespace'),
+            (r'(additive|long)\b', Keyword),
+            (r'', Text, '#pop')
+        ],
+        'trace-keyword?': [
+            include('_whitespace'),
+            (r'(assembly|dictionary|expressions|lines|linker|objects|off|on|'
+             r'symbols|tokens|verbs)\b', Keyword, '#pop'),
+            (r'', Text, '#pop')
+        ],
+
+        # Statements
+        'statements': [
+            include('_whitespace'),
+            (r'\]', Punctuation, '#pop'),
+            (r'[;{}]', Punctuation),
+            (r'(box|break|continue|default|give|inversion|new_line|quit|read|'
+             r'remove|return|rfalse|rtrue|spaces|string|until)\b', Keyword,
+             'default'),
+            (r'(do|else)\b', Keyword),
+            (r'(font|style)\b', Keyword,
+             ('default', 'miscellaneous-keyword?')),
+            (r'for\b', Keyword, ('for', '(?')),
+            (r'(if|switch|while)', Keyword,
+             ('expression', '_expression', '(?')),
+            (r'(jump|save|restore)\b', Keyword, ('default', 'label?')),
+            (r'objectloop\b', Keyword,
+             ('_keyword-expression', 'variable?', '(?')),
+            (r'print(_ret)?\b|(?=[%s])' % _dquote, Keyword, 'print-list'),
+            (r'\.', Name.Label, 'label?'),
+            (r'@', Keyword, 'opcode'),
+            (r'#(?![agrnw]\$|#)', Punctuation, 'directive'),
+            (r'<', Punctuation, 'default'),
+            (r'(move\b)?', Keyword,
+             ('default', '_keyword-expression', '_expression'))
+        ],
+        'miscellaneous-keyword?': [
+            include('_whitespace'),
+            (r'(bold|fixed|from|near|off|on|reverse|roman|to|underline)\b',
+             Keyword, '#pop'),
+            (r'(a|A|an|address|char|name|number|object|property|string|the|'
+             r'The)\b(?=(\s+|(![^%s]*))*\))' % _newline, Keyword.Pseudo,
+             '#pop'),
+            (r'%s(?=(\s+|(![^%s]*))*\))' % (_name, _newline), Name.Function,
+             '#pop'),
+            (r'', Text, '#pop')
+        ],
+        '(?': [
+            include('_whitespace'),
+            (r'\(?', Punctuation, '#pop')
+        ],
+        'for': [
+            include('_whitespace'),
+            (r';?', Punctuation, ('_for-expression', '_expression'))
+        ],
+        'print-list': [
+            include('_whitespace'),
+            (r';', Punctuation, '#pop'),
+            (r':', Error),
+            (r'', Text,
+             ('_list-expression', '_expression', '_list-expression', 'form'))
+        ],
+        'form': [
+            include('_whitespace'),
+            (r'\(', Punctuation, ('#pop', 'miscellaneous-keyword?')),
+            (r'', Text, '#pop')
+        ],
+
+        # Assembly
+        'opcode': [
+            include('_whitespace'),
+            (r'[%s]' % _dquote, String.Double, ('operands', 'plain-string')),
+            (_name, Keyword, 'operands')
+        ],
+        'operands': [
+            (r':', Error),
+            (r'', Text, ('_assembly-expression', '_expression'))
+        ]
+    }
+
+    def get_tokens_unprocessed(self, text):
+        # 'in' is either a keyword or an operator.
+        # If the token two tokens after 'in' is ')', 'in' is a keyword:
+        #   objectloop(a in b)
+        # Otherwise, it is an operator:
+        #   objectloop(a in b && true)
+        objectloop_queue = []
+        objectloop_token_count = -1
+        previous_token = None
+        for index, token, value in RegexLexer.get_tokens_unprocessed(self,
+                                                                     text):
+            if previous_token is Name.Variable and value == 'in':
+                objectloop_queue = [[index, token, value]]
+                objectloop_token_count = 2
+            elif objectloop_token_count > 0:
+                if token not in Comment and token not in Text:
+                    objectloop_token_count -= 1
+                objectloop_queue.append((index, token, value))
+            else:
+                if objectloop_token_count == 0:
+                    if objectloop_queue[-1][2] == ')':
+                        objectloop_queue[0][1] = Keyword
+                    while objectloop_queue:
+                        yield objectloop_queue.pop(0)
+                    objectloop_token_count = -1
+                yield index, token, value
+            if token not in Comment and token not in Text:
+                previous_token = token
+        while objectloop_queue:
+            yield objectloop_queue.pop(0)
+
+
+class Inform7Lexer(RegexLexer):
+    """
+    For `Inform 7 <http://inform7.com/>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'Inform 7'
+    aliases = ['inform7', 'i7']
+    filenames = ['*.ni', '*.i7x']
+
+    flags = re.MULTILINE | re.DOTALL | re.UNICODE
+
+    _dash = Inform6Lexer._dash
+    _dquote = Inform6Lexer._dquote
+    _newline = Inform6Lexer._newline
+    _start = r'\A|(?<=[%s])' % _newline
+
+    # There are three variants of Inform 7, differing in how to
+    # interpret at signs and braces in I6T. In top-level inclusions, at
+    # signs in the first column are inweb syntax. In phrase definitions
+    # and use options, tokens in braces are treated as I7. Use options
+    # also interpret "{N}".
+    tokens = {}
+    token_variants = ['+i6t-not-inline', '+i6t-inline', '+i6t-use-option']
+
+    for level in token_variants:
+        tokens[level] = {
+            '+i6-root': list(Inform6Lexer.tokens['root']),
+            '+i6t-root': [  # For Inform6TemplateLexer
+                (r'[^%s]*' % Inform6Lexer._newline, Comment.Preproc,
+                 ('directive', '+p'))
+            ],
+            'root': [
+                (r'(\|?\s)+', Text),
+                (r'\[', Comment.Multiline, '+comment'),
+                (r'[%s]' % _dquote, Generic.Heading,
+                 ('+main', '+titling', '+titling-string')),
+                (r'', Text, ('+main', '+heading?'))
+            ],
+            '+titling-string': [
+                (r'[^%s]+' % _dquote, Generic.Heading),
+                (r'[%s]' % _dquote, Generic.Heading, '#pop')
+            ],
+            '+titling': [
+                (r'\[', Comment.Multiline, '+comment'),
+                (r'[^%s.;:|%s]+' % (_dquote, _newline), Generic.Heading),
+                (r'[%s]' % _dquote, Generic.Heading, '+titling-string'),
+                (r'[%s]{2}|(?<=[\s%s])\|[\s%s]' % (_newline, _dquote, _dquote),
+                 Text, ('#pop', '+heading?')),
+                (r'[.;:]|(?<=[\s%s])\|' % _dquote, Text, '#pop'),
+                (r'[|%s]' % _newline, Generic.Heading)
+            ],
+            '+main': [
+                (r'(?i)[^%s:a\[(|%s]+' % (_dquote, _newline), Text),
+                (r'[%s]' % _dquote, String.Double, '+text'),
+                (r':', Text, '+phrase-definition'),
+                (r'(?i)\bas\b', Text, '+use-option'),
+                (r'\[', Comment.Multiline, '+comment'),
+                (r'(\([%s])(.*?)([%s]\))' % (_dash, _dash),
+                 bygroups(Punctuation,
+                          using(this, state=('+i6-root', 'directive'),
+                                i6t='+i6t-not-inline'), Punctuation)),
+                (r'(%s|(?<=[\s;:.%s]))\|\s|[%s]{2,}' %
+                 (_start, _dquote, _newline), Text, '+heading?'),
+                (r'(?i)[a(|%s]' % _newline, Text)
+            ],
+            '+phrase-definition': [
+                (r'\s+', Text),
+                (r'\[', Comment.Multiline, '+comment'),
+                (r'(\([%s])(.*?)([%s]\))' % (_dash, _dash),
+                 bygroups(Punctuation,
+                          using(this, state=('+i6-root', 'directive',
+                                             'default', 'statements'),
+                                i6t='+i6t-inline'), Punctuation), '#pop'),
+                (r'', Text, '#pop')
+            ],
+            '+use-option': [
+                (r'\s+', Text),
+                (r'\[', Comment.Multiline, '+comment'),
+                (r'(\([%s])(.*?)([%s]\))' % (_dash, _dash),
+                 bygroups(Punctuation,
+                          using(this, state=('+i6-root', 'directive'),
+                                i6t='+i6t-use-option'), Punctuation), '#pop'),
+                (r'', Text, '#pop')
+            ],
+            '+comment': [
+                (r'[^\[\]]+', Comment.Multiline),
+                (r'\[', Comment.Multiline, '#push'),
+                (r'\]', Comment.Multiline, '#pop')
+            ],
+            '+text': [
+                (r'[^\[%s]+' % _dquote, String.Double),
+                (r'\[.*?\]', String.Interpol),
+                (r'[%s]' % _dquote, String.Double, '#pop')
+            ],
+            '+heading?': [
+                (r'(\|?\s)+', Text),
+                (r'\[', Comment.Multiline, '+comment'),
+                (r'[%s]{4}\s+' % _dash, Text, '+documentation-heading'),
+                (r'[%s]{1,3}' % _dash, Text),
+                (r'(?i)(volume|book|part|chapter|section)\b[^%s]*' % _newline,
+                 Generic.Heading, '#pop'),
+                (r'', Text, '#pop')
+            ],
+            '+documentation-heading': [
+                (r'\s+', Text),
+                (r'\[', Comment.Multiline, '+comment'),
+                (r'(?i)documentation\s+', Text, '+documentation-heading2'),
+                (r'', Text, '#pop')
+            ],
+            '+documentation-heading2': [
+                (r'\s+', Text),
+                (r'\[', Comment.Multiline, '+comment'),
+                (r'[%s]{4}\s' % _dash, Text, '+documentation'),
+                (r'', Text, '#pop:2')
+            ],
+            '+documentation': [
+                (r'(?i)(%s)\s*(chapter|example)\s*:[^%s]*' %
+                 (_start, _newline), Generic.Heading),
+                (r'(?i)(%s)\s*section\s*:[^%s]*' % (_start, _newline),
+                 Generic.Subheading),
+                (r'((%s)\t.*?[%s])+' % (_start, _newline),
+                 using(this, state='+main')),
+                (r'[^%s\[]+|[%s\[]' % (_newline, _newline), Text),
+                (r'\[', Comment.Multiline, '+comment'),
+            ],
+            '+i6t-not-inline': [
+                (r'(%s)@c( .*?)?([%s]|\Z)' % (_start, _newline),
+                 Comment.Preproc),
+                (r'(%s)@([%s]+|Purpose:)[^%s]*' % (_start, _dash, _newline),
+                 Comment.Preproc),
+                (r'(%s)@p( .*?)?([%s]|\Z)' % (_start, _newline),
+                 Generic.Heading, '+p')
+            ],
+            '+i6t-use-option': [
+                include('+i6t-not-inline'),
+                (r'({)(N)(})', bygroups(Punctuation, Text, Punctuation))
+            ],
+            '+i6t-inline': [
+                (r'({)(\S[^}]*)?(})',
+                 bygroups(Punctuation, using(this, state='+main'),
+                          Punctuation))
+            ],
+            '+i6t': [
+                (r'({[%s])(![^}]*)(}?)' % _dash,
+                 bygroups(Punctuation, Comment.Single, Punctuation)),
+                (r'({[%s])(lines)(:)([^}]*)(}?)' % _dash,
+                 bygroups(Punctuation, Keyword, Punctuation, Text,
+                          Punctuation), '+lines'),
+                (r'({[%s])([^:}]*)(:?)([^}]*)(}?)' % _dash,
+                 bygroups(Punctuation, Keyword, Punctuation, Text,
+                          Punctuation)),
+                (r'(\(\+)(.*?)(\+\)|\Z)',
+                 bygroups(Punctuation, using(this, state='+main'),
+                          Punctuation))
+            ],
+            '+p': [
+                (r'[^@]+', Comment.Preproc),
+                (r'(%s)@c( .*?)?([%s]|\Z)' % (_start, _newline),
+                 Comment.Preproc, '#pop'),
+                (r'(%s)@([%s]|Purpose:)' % (_start, _dash), Comment.Preproc),
+                (r'(%s)@p( .*?)?([%s]|\Z)' % (_start, _newline),
+                 Generic.Heading),
+                (r'@', Comment.Preproc)
+            ],
+            '+lines': [
+                (r'(%s)@c( .*?)?([%s]|\Z)' % (_start, _newline),
+                 Comment.Preproc),
+                (r'(%s)@([%s]|Purpose:)[^%s]*' % (_start, _dash, _newline),
+                 Comment.Preproc),
+                (r'(%s)@p( .*?)?([%s]|\Z)' % (_start, _newline),
+                 Generic.Heading, '+p'),
+                (r'(%s)@[a-zA-Z_0-9]*[ %s]' % (_start, _newline), Keyword),
+                (r'![^%s]*' % _newline, Comment.Single),
+                (r'({)([%s]endlines)(})' % _dash,
+                 bygroups(Punctuation, Keyword, Punctuation), '#pop'),
+                (r'[^@!{]+?([%s]|\Z)|.' % _newline, Text)
+            ]
+        }
+        # Inform 7 can include snippets of Inform 6 template language,
+        # so all of Inform6Lexer's states are copied here, with
+        # modifications to account for template syntax. Inform7Lexer's
+        # own states begin with '+' to avoid name conflicts. Some of
+        # Inform6Lexer's states begin with '_': these are not modified.
+        # They deal with template syntax either by including modified
+        # states, or by matching r'' then pushing to modified states.
+        for token in Inform6Lexer.tokens:
+            if token == 'root':
+                continue
+            tokens[level][token] = list(Inform6Lexer.tokens[token])
+            if not token.startswith('_'):
+                tokens[level][token][:0] = [include('+i6t'), include(level)]
+
+    def __init__(self, **options):
+        level = options.get('i6t', '+i6t-not-inline')
+        if level not in self._all_tokens:
+            self._tokens = self.__class__.process_tokendef(level)
+        else:
+            self._tokens = self._all_tokens[level]
+        RegexLexer.__init__(self, **options)
+
+
+class Inform6TemplateLexer(Inform7Lexer):
+    """
+    For `Inform 6 template
+    <http://inform7.com/sources/src/i6template/Woven/index.html>`_ code.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'Inform 6 template'
+    aliases = ['i6t']
+    filenames = ['*.i6t']
+
+    def get_tokens_unprocessed(self, text, stack=('+i6t-root',)):
+        return Inform7Lexer.get_tokens_unprocessed(self, text, stack)
+
+
+class MqlLexer(CppLexer):
+    """
+    For `MQL4 <http://docs.mql4.com/>`_ and
+    `MQL5 <http://www.mql5.com/en/docs>`_ source code.
+
+    .. versionadded:: 2.0
+    """
+    name = 'MQL'
+    aliases = ['mql', 'mq4', 'mq5', 'mql4', 'mql5']
+    filenames = ['*.mq4', '*.mq5', '*.mqh']
+    mimetypes = ['text/x-mql']
+
+    tokens = {
+        'statements': [
+            (r'(input|_Digits|_Point|_LastError|_Period|_RandomSeed|'
+             r'_StopFlag|_Symbol|_UninitReason|'
+             r'Ask|Bars|Bid|Close|Digits|High|Low|Open|Point|Time|Volume)\b',
+             Keyword),
+            (r'(void|char|uchar|bool|short|ushort|int|uint|color|long|ulong|datetime|'
+             r'float|double|string)\b',
+             Keyword.Type),
+            (r'(Alert|CheckPointer|Comment|DebugBreak|ExpertRemove|'
+             r'GetPointer|GetTickCount|MessageBox|PeriodSeconds|PlaySound|'
+             r'Print|PrintFormat|ResetLastError|ResourceCreate|ResourceFree|'
+             r'ResourceReadImage|ResourceSave|SendFTP|SendMail|SendNotification|'
+             r'Sleep|TerminalClose|TesterStatistics|ZeroMemory|'
+             r'ArrayBsearch|ArrayCopy|ArrayCompare|ArrayFree|ArrayGetAsSeries|'
+             r'ArrayInitialize|ArrayFill|ArrayIsSeries|ArrayIsDynamic|'
+             r'ArrayMaximum|ArrayMinimum|ArrayRange|ArrayResize|'
+             r'ArraySetAsSeries|ArraySize|ArraySort|ArrayCopyRates|'
+             r'ArrayCopySeries|ArrayDimension|'
+             r'CharToString|DoubleToString|EnumToString|NormalizeDouble|'
+             r'StringToDouble|StringToInteger|StringToTime|TimeToString|'
+             r'IntegerToString|ShortToString|ShortArrayToString|'
+             r'StringToShortArray|CharArrayToString|StringToCharArray|'
+             r'ColorToARGB|ColorToString|StringToColor|StringFormat|'
+             r'CharToStr|DoubleToStr|StrToDouble|StrToInteger|StrToTime|TimeToStr|'
+             r'MathAbs|MathArccos|MathArcsin|MathArctan|MathCeil|MathCos|MathExp|'
+             r'MathFloor|MathLog|MathMax|MathMin|MathMod|MathPow|MathRand|'
+             r'MathRound|MathSin|MathSqrt|MathSrand|MathTan|MathIsValidNumber|'
+             r'StringAdd|StringBufferLen|StringCompare|StringConcatenate|StringFill|'
+             r'StringFind|StringGetCharacter|StringInit|StringLen|StringReplace|'
+             r'StringSetCharacter|StringSplit|StringSubstr|StringToLower|StringToUpper|'
+             r'StringTrimLeft|StringTrimRight|StringGetChar|StringSetChar|'
+             r'TimeCurrent|TimeTradeServer|TimeLocal|TimeGMT|TimeDaylightSavings|'
+             r'TimeGMTOffset|TimeToStruct|StructToTime|Day|DayOfWeek|DayOfYear|'
+             r'Hour|Minute|Month|Seconds|TimeDay|TimeDayOfWeek|TimeDayOfYear|TimeHour|'
+             r'TimeMinute|TimeMonth|TimeSeconds|TimeYear|Year|'
+             r'AccountInfoDouble|AccountInfoInteger|AccountInfoString|AccountBalance|'
+             r'AccountCredit|AccountCompany|AccountCurrency|AccountEquity|'
+             r'AccountFreeMargin|AccountFreeMarginCheck|AccountFreeMarginMode|'
+             r'AccountLeverage|AccountMargin|AccountName|AccountNumber|AccountProfit|'
+             r'AccountServer|AccountStopoutLevel|AccountStopoutMode|'
+             r'GetLastError|IsStopped|UninitializeReason|MQLInfoInteger|MQLInfoString|'
+             r'Symbol|Period|Digits|Point|IsConnected|IsDemo|IsDllsAllowed|'
+             r'IsExpertEnabled|IsLibrariesAllowed|IsOptimization|IsTesting|'
+             r'IsTradeAllowed|'
+             r'IsTradeContextBusy|IsVisualMode|TerminalCompany|TerminalName|'
+             r'TerminalPath|'
+             r'SymbolsTotal|SymbolName|SymbolSelect|SymbolIsSynchronized|'
+             r'SymbolInfoDouble|'
+             r'SymbolInfoInteger|SymbolInfoString|SymbolInfoTick|'
+             r'SymbolInfoSessionQuote|'
+             r'SymbolInfoSessionTrade|MarketInfo|'
+             r'SeriesInfoInteger|CopyRates|CopyTime|CopyOpen|'
+             r'CopyHigh|CopyLow|CopyClose|'
+             r'CopyTickVolume|CopyRealVolume|CopySpread|iBars|iBarShift|iClose|'
+             r'iHigh|iHighest|iLow|iLowest|iOpen|iTime|iVolume|'
+             r'HideTestIndicators|Period|RefreshRates|Symbol|WindowBarsPerChart|'
+             r'WindowExpertName|WindowFind|WindowFirstVisibleBar|WindowHandle|'
+             r'WindowIsVisible|WindowOnDropped|WindowPriceMax|WindowPriceMin|'
+             r'WindowPriceOnDropped|WindowRedraw|WindowScreenShot|'
+             r'WindowTimeOnDropped|WindowsTotal|WindowXOnDropped|WindowYOnDropped|'
+             r'OrderClose|OrderCloseBy|OrderClosePrice|OrderCloseTime|OrderComment|'
+             r'OrderCommission|OrderDelete|OrderExpiration|OrderLots|OrderMagicNumber|'
+             r'OrderModify|OrderOpenPrice|OrderOpenTime|OrderPrint|OrderProfit|'
+             r'OrderSelect|OrderSend|OrdersHistoryTotal|OrderStopLoss|OrdersTotal|'
+             r'OrderSwap|OrderSymbol|OrderTakeProfit|OrderTicket|OrderType|'
+             r'GlobalVariableCheck|GlobalVariableTime|'
+             r'GlobalVariableDel|GlobalVariableGet|GlobalVariableName|'
+             r'GlobalVariableSet|GlobalVariablesFlush|GlobalVariableTemp|'
+             r'GlobalVariableSetOnCondition|GlobalVariablesDeleteAll|'
+             r'GlobalVariablesTotal|GlobalVariableCheck|GlobalVariableTime|'
+             r'GlobalVariableDel|GlobalVariableGet|'
+             r'GlobalVariableName|GlobalVariableSet|GlobalVariablesFlush|'
+             r'GlobalVariableTemp|GlobalVariableSetOnCondition|'
+             r'GlobalVariablesDeleteAll|GlobalVariablesTotal|'
+             r'GlobalVariableCheck|GlobalVariableTime|GlobalVariableDel|'
+             r'GlobalVariableGet|GlobalVariableName|GlobalVariableSet|'
+             r'GlobalVariablesFlush|GlobalVariableTemp|'
+             r'GlobalVariableSetOnCondition|GlobalVariablesDeleteAll|'
+             r'GlobalVariablesTotal|'
+             r'FileFindFirst|FileFindNext|FileFindClose|FileOpen|FileDelete|'
+             r'FileFlush|FileGetInteger|FileIsEnding|FileIsLineEnding|'
+             r'FileClose|FileIsExist|FileCopy|FileMove|FileReadArray|'
+             r'FileReadBool|FileReadDatetime|FileReadDouble|FileReadFloat|'
+             r'FileReadInteger|FileReadLong|FileReadNumber|FileReadString|'
+             r'FileReadStruct|FileSeek|FileSize|FileTell|FileWrite|'
+             r'FileWriteArray|FileWriteDouble|FileWriteFloat|FileWriteInteger|'
+             r'FileWriteLong|FileWriteString|FileWriteStruct|FolderCreate|'
+             r'FolderDelete|FolderClean|FileOpenHistory|'
+             r'IndicatorSetDouble|IndicatorSetInteger|IndicatorSetString|'
+             r'SetIndexBuffer|IndicatorBuffers|IndicatorCounted|IndicatorDigits|'
+             r'IndicatorShortName|SetIndexArrow|SetIndexDrawBegin|'
+             r'SetIndexEmptyValue|SetIndexLabel|SetIndexShift|'
+             r'SetIndexStyle|SetLevelStyle|SetLevelValue|'
+             r'ObjectCreate|ObjectName|ObjectDelete|ObjectsDeleteAll|'
+             r'ObjectFind|ObjectGetTimeByValue|ObjectGetValueByTime|'
+             r'ObjectMove|ObjectsTotal|ObjectGetDouble|ObjectGetInteger|'
+             r'ObjectGetString|ObjectSetDouble|ObjectSetInteger|'
+             r'ObjectSetString|TextSetFont|TextOut|TextGetSize|'
+             r'ObjectDescription|ObjectGet|ObjectGetFiboDescription|'
+             r'ObjectGetShiftByValue|ObjectGetValueByShift|ObjectSet|'
+             r'ObjectSetFiboDescription|ObjectSetText|ObjectType|'
+             r'iAC|iAD|iADX|iAlligator|iAO|iATR|iBearsPower|'
+             r'iBands|iBandsOnArray|iBullsPower|iCCI|iCCIOnArray|'
+             r'iCustom|iDeMarker|iEnvelopes|iEnvelopesOnArray|'
+             r'iForce|iFractals|iGator|iIchimoku|iBWMFI|iMomentum|'
+             r'iMomentumOnArray|iMFI|iMA|iMAOnArray|iOsMA|iMACD|'
+             r'iOBV|iSAR|iRSI|iRSIOnArray|iRVI|iStdDev|iStdDevOnArray|'
+             r'iStochastic|iWPR|'
+             r'EventSetMillisecondTimer|EventSetTimer|'
+             r'EventKillTimer|EventChartCustom)\b', Name.Function),
+            (r'(CHARTEVENT_KEYDOWN|CHARTEVENT_MOUSE_MOVE|'
+             r'CHARTEVENT_OBJECT_CREATE|'
+             r'CHARTEVENT_OBJECT_CHANGE|CHARTEVENT_OBJECT_DELETE|'
+             r'CHARTEVENT_CLICK|'
+             r'CHARTEVENT_OBJECT_CLICK|CHARTEVENT_OBJECT_DRAG|'
+             r'CHARTEVENT_OBJECT_ENDEDIT|'
+             r'CHARTEVENT_CHART_CHANGE|CHARTEVENT_CUSTOM|'
+             r'CHARTEVENT_CUSTOM_LAST|'
+             r'PERIOD_CURRENT|PERIOD_M1|PERIOD_M2|PERIOD_M3|'
+             r'PERIOD_M4|PERIOD_M5|'
+             r'PERIOD_M6|PERIOD_M10|PERIOD_M12|PERIOD_M15|'
+             r'PERIOD_M20|PERIOD_M30|'
+             r'PERIOD_H1|PERIOD_H2|PERIOD_H3|PERIOD_H4|'
+             r'PERIOD_H6|PERIOD_H8|'
+             r'PERIOD_H12|PERIOD_D1|PERIOD_W1|PERIOD_MN1|'
+             r'CHART_IS_OBJECT|CHART_BRING_TO_TOP|'
+             r'CHART_MOUSE_SCROLL|CHART_EVENT_MOUSE_MOVE|'
+             r'CHART_EVENT_OBJECT_CREATE|'
+             r'CHART_EVENT_OBJECT_DELETE|CHART_MODE|CHART_FOREGROUND|'
+             r'CHART_SHIFT|'
+             r'CHART_AUTOSCROLL|CHART_SCALE|CHART_SCALEFIX|'
+             r'CHART_SCALEFIX_11|'
+             r'CHART_SCALE_PT_PER_BAR|CHART_SHOW_OHLC|'
+             r'CHART_SHOW_BID_LINE|'
+             r'CHART_SHOW_ASK_LINE|CHART_SHOW_LAST_LINE|'
+             r'CHART_SHOW_PERIOD_SEP|'
+             r'CHART_SHOW_GRID|CHART_SHOW_VOLUMES|'
+             r'CHART_SHOW_OBJECT_DESCR|'
+             r'CHART_VISIBLE_BARS|CHART_WINDOWS_TOTAL|'
+             r'CHART_WINDOW_IS_VISIBLE|'
+             r'CHART_WINDOW_HANDLE|CHART_WINDOW_YDISTANCE|'
+             r'CHART_FIRST_VISIBLE_BAR|'
+             r'CHART_WIDTH_IN_BARS|CHART_WIDTH_IN_PIXELS|'
+             r'CHART_HEIGHT_IN_PIXELS|'
+             r'CHART_COLOR_BACKGROUND|CHART_COLOR_FOREGROUND|'
+             r'CHART_COLOR_GRID|'
+             r'CHART_COLOR_VOLUME|CHART_COLOR_CHART_UP|'
+             r'CHART_COLOR_CHART_DOWN|'
+             r'CHART_COLOR_CHART_LINE|CHART_COLOR_CANDLE_BULL|'
+             r'CHART_COLOR_CANDLE_BEAR|'
+             r'CHART_COLOR_BID|CHART_COLOR_ASK|CHART_COLOR_LAST|'
+             r'CHART_COLOR_STOP_LEVEL|'
+             r'CHART_SHOW_TRADE_LEVELS|CHART_DRAG_TRADE_LEVELS|'
+             r'CHART_SHOW_DATE_SCALE|'
+             r'CHART_SHOW_PRICE_SCALE|CHART_SHIFT_SIZE|'
+             r'CHART_FIXED_POSITION|'
+             r'CHART_FIXED_MAX|CHART_FIXED_MIN|CHART_POINTS_PER_BAR|'
+             r'CHART_PRICE_MIN|'
+             r'CHART_PRICE_MAX|CHART_COMMENT|CHART_BEGIN|'
+             r'CHART_CURRENT_POS|CHART_END|'
+             r'CHART_BARS|CHART_CANDLES|CHART_LINE|CHART_VOLUME_HIDE|'
+             r'CHART_VOLUME_TICK|CHART_VOLUME_REAL|'
+             r'OBJ_VLINE|OBJ_HLINE|OBJ_TREND|OBJ_TRENDBYANGLE|OBJ_CYCLES|'
+             r'OBJ_CHANNEL|OBJ_STDDEVCHANNEL|OBJ_REGRESSION|OBJ_PITCHFORK|'
+             r'OBJ_GANNLINE|OBJ_GANNFAN|OBJ_GANNGRID|OBJ_FIBO|'
+             r'OBJ_FIBOTIMES|OBJ_FIBOFAN|OBJ_FIBOARC|OBJ_FIBOCHANNEL|'
+             r'OBJ_EXPANSION|OBJ_RECTANGLE|OBJ_TRIANGLE|OBJ_ELLIPSE|'
+             r'OBJ_ARROW_THUMB_UP|OBJ_ARROW_THUMB_DOWN|'
+             r'OBJ_ARROW_UP|OBJ_ARROW_DOWN|'
+             r'OBJ_ARROW_STOP|OBJ_ARROW_CHECK|OBJ_ARROW_LEFT_PRICE|'
+             r'OBJ_ARROW_RIGHT_PRICE|OBJ_ARROW_BUY|OBJ_ARROW_SELL|'
+             r'OBJ_ARROW|'
+             r'OBJ_TEXT|OBJ_LABEL|OBJ_BUTTON|OBJ_BITMAP|'
+             r'OBJ_BITMAP_LABEL|'
+             r'OBJ_EDIT|OBJ_EVENT|OBJ_RECTANGLE_LABEL|'
+             r'OBJPROP_TIME1|OBJPROP_PRICE1|OBJPROP_TIME2|'
+             r'OBJPROP_PRICE2|OBJPROP_TIME3|'
+             r'OBJPROP_PRICE3|OBJPROP_COLOR|OBJPROP_STYLE|'
+             r'OBJPROP_WIDTH|'
+             r'OBJPROP_BACK|OBJPROP_RAY|OBJPROP_ELLIPSE|'
+             r'OBJPROP_SCALE|'
+             r'OBJPROP_ANGLE|OBJPROP_ARROWCODE|OBJPROP_TIMEFRAMES|'
+             r'OBJPROP_DEVIATION|OBJPROP_FONTSIZE|OBJPROP_CORNER|'
+             r'OBJPROP_XDISTANCE|OBJPROP_YDISTANCE|OBJPROP_FIBOLEVELS|'
+             r'OBJPROP_LEVELCOLOR|OBJPROP_LEVELSTYLE|OBJPROP_LEVELWIDTH|'
+             r'OBJPROP_FIRSTLEVEL|OBJPROP_COLOR|OBJPROP_STYLE|OBJPROP_WIDTH|'
+             r'OBJPROP_BACK|OBJPROP_ZORDER|OBJPROP_FILL|OBJPROP_HIDDEN|'
+             r'OBJPROP_SELECTED|OBJPROP_READONLY|OBJPROP_TYPE|OBJPROP_TIME|'
+             r'OBJPROP_SELECTABLE|OBJPROP_CREATETIME|OBJPROP_LEVELS|'
+             r'OBJPROP_LEVELCOLOR|OBJPROP_LEVELSTYLE|OBJPROP_LEVELWIDTH|'
+             r'OBJPROP_ALIGN|OBJPROP_FONTSIZE|OBJPROP_RAY_RIGHT|OBJPROP_RAY|'
+             r'OBJPROP_ELLIPSE|OBJPROP_ARROWCODE|OBJPROP_TIMEFRAMES|OBJPROP_ANCHOR|'
+             r'OBJPROP_XDISTANCE|OBJPROP_YDISTANCE|OBJPROP_DRAWLINES|OBJPROP_STATE|'
+             r'OBJPROP_CHART_ID|OBJPROP_XSIZE|OBJPROP_YSIZE|OBJPROP_XOFFSET|'
+             r'OBJPROP_YOFFSET|OBJPROP_PERIOD|OBJPROP_DATE_SCALE|OBJPROP_PRICE_SCALE|'
+             r'OBJPROP_CHART_SCALE|OBJPROP_BGCOLOR|OBJPROP_CORNER|OBJPROP_BORDER_TYPE|'
+             r'OBJPROP_BORDER_COLOR|OBJPROP_PRICE|OBJPROP_LEVELVALUE|OBJPROP_SCALE|'
+             r'OBJPROP_ANGLE|OBJPROP_DEVIATION|'
+             r'OBJPROP_NAME|OBJPROP_TEXT|OBJPROP_TOOLTIP|OBJPROP_LEVELTEXT|'
+             r'OBJPROP_FONT|OBJPROP_BMPFILE|OBJPROP_SYMBOL|'
+             r'BORDER_FLAT|BORDER_RAISED|BORDER_SUNKEN|ALIGN_LEFT|ALIGN_CENTER|'
+             r'ALIGN_RIGHT|ANCHOR_LEFT_UPPER|ANCHOR_LEFT|ANCHOR_LEFT_LOWER|'
+             r'ANCHOR_LOWER|ANCHOR_RIGHT_LOWER|ANCHOR_RIGHT|ANCHOR_RIGHT_UPPER|'
+             r'ANCHOR_UPPER|ANCHOR_CENTER|ANCHOR_TOP|ANCHOR_BOTTOM|'
+             r'CORNER_LEFT_UPPER|CORNER_LEFT_LOWER|CORNER_RIGHT_LOWER|'
+             r'CORNER_RIGHT_UPPER|'
+             r'OBJ_NO_PERIODS|EMPTY|OBJ_PERIOD_M1|OBJ_PERIOD_M5|OBJ_PERIOD_M15|'
+             r'OBJ_PERIOD_M30|OBJ_PERIOD_H1|OBJ_PERIOD_H4|OBJ_PERIOD_D1|'
+             r'OBJ_PERIOD_W1|OBJ_PERIOD_MN1|OBJ_ALL_PERIODS|'
+             r'GANN_UP_TREND|GANN_DOWN_TREND|'
+             r'((clr)?(Black|DarkGreen|DarkSlateGray|Olive|'
+             r'Green|Teal|Navy|Purple|'
+             r'Maroon|Indigo|MidnightBlue|DarkBlue|'
+             r'DarkOliveGreen|SaddleBrown|'
+             r'ForestGreen|OliveDrab|SeaGreen|'
+             r'DarkGoldenrod|DarkSlateBlue|'
+             r'Sienna|MediumBlue|Brown|DarkTurquoise|'
+             r'DimGray|LightSeaGreen|'
+             r'DarkViolet|FireBrick|MediumVioletRed|'
+             r'MediumSeaGreen|Chocolate|'
+             r'Crimson|SteelBlue|Goldenrod|MediumSpringGreen|'
+             r'LawnGreen|CadetBlue|'
+             r'DarkOrchid|YellowGreen|LimeGreen|OrangeRed|'
+             r'DarkOrange|Orange|'
+             r'Gold|Yellow|Chartreuse|Lime|SpringGreen|'
+             r'Aqua|DeepSkyBlue|Blue|'
+             r'Magenta|Red|Gray|SlateGray|Peru|BlueViolet|'
+             r'LightSlateGray|DeepPink|'
+             r'MediumTurquoise|DodgerBlue|Turquoise|RoyalBlue|'
+             r'SlateBlue|DarkKhaki|'
+             r'IndianRed|MediumOrchid|GreenYellow|'
+             r'MediumAquamarine|DarkSeaGreen|'
+             r'Tomato|RosyBrown|Orchid|MediumPurple|'
+             r'PaleVioletRed|Coral|CornflowerBlue|'
+             r'DarkGray|SandyBrown|MediumSlateBlue|'
+             r'Tan|DarkSalmon|BurlyWood|'
+             r'HotPink|Salmon|Violet|LightCoral|SkyBlue|'
+             r'LightSalmon|Plum|'
+             r'Khaki|LightGreen|Aquamarine|Silver|'
+             r'LightSkyBlue|LightSteelBlue|'
+             r'LightBlue|PaleGreen|Thistle|PowderBlue|'
+             r'PaleGoldenrod|PaleTurquoise|'
+             r'LightGray|Wheat|NavajoWhite|Moccasin|'
+             r'LightPink|Gainsboro|PeachPuff|'
+             r'Pink|Bisque|LightGoldenrod|BlanchedAlmond|'
+             r'LemonChiffon|Beige|'
+             r'AntiqueWhite|PapayaWhip|Cornsilk|'
+             r'LightYellow|LightCyan|Linen|'
+             r'Lavender|MistyRose|OldLace|WhiteSmoke|'
+             r'Seashell|Ivory|Honeydew|'
+             r'AliceBlue|LavenderBlush|MintCream|Snow|White))|'
+             r'SYMBOL_THUMBSUP|SYMBOL_THUMBSDOWN|'
+             r'SYMBOL_ARROWUP|SYMBOL_ARROWDOWN|'
+             r'SYMBOL_STOPSIGN|SYMBOL_CHECKSIGN|'
+             r'SYMBOL_LEFTPRICE|SYMBOL_RIGHTPRICE|'
+             r'PRICE_CLOSE|PRICE_OPEN|PRICE_HIGH|PRICE_LOW|'
+             r'PRICE_MEDIAN|PRICE_TYPICAL|PRICE_WEIGHTED|'
+             r'VOLUME_TICK|VOLUME_REAL|'
+             r'STO_LOWHIGH|STO_CLOSECLOSE|'
+             r'MODE_OPEN|MODE_LOW|MODE_HIGH|MODE_CLOSE|MODE_VOLUME|MODE_TIME|'
+             r'MODE_SMA|MODE_EMA|MODE_SMMA|MODE_LWMA|'
+             r'MODE_MAIN|MODE_SIGNAL|MODE_MAIN|'
+             r'MODE_PLUSDI|MODE_MINUSDI|MODE_UPPER|'
+             r'MODE_LOWER|MODE_GATORJAW|MODE_GATORTEETH|'
+             r'MODE_GATORLIPS|MODE_TENKANSEN|'
+             r'MODE_KIJUNSEN|MODE_SENKOUSPANA|'
+             r'MODE_SENKOUSPANB|MODE_CHINKOUSPAN|'
+             r'DRAW_LINE|DRAW_SECTION|DRAW_HISTOGRAM|'
+             r'DRAW_ARROW|DRAW_ZIGZAG|DRAW_NONE|'
+             r'STYLE_SOLID|STYLE_DASH|STYLE_DOT|'
+             r'STYLE_DASHDOT|STYLE_DASHDOTDOT|'
+             r'DRAW_NONE|DRAW_LINE|DRAW_SECTION|DRAW_HISTOGRAM|'
+             r'DRAW_ARROW|DRAW_ZIGZAG|DRAW_FILLING|'
+             r'INDICATOR_DATA|INDICATOR_COLOR_INDEX|'
+             r'INDICATOR_CALCULATIONS|INDICATOR_DIGITS|'
+             r'INDICATOR_HEIGHT|INDICATOR_LEVELS|'
+             r'INDICATOR_LEVELCOLOR|INDICATOR_LEVELSTYLE|'
+             r'INDICATOR_LEVELWIDTH|INDICATOR_MINIMUM|'
+             r'INDICATOR_MAXIMUM|INDICATOR_LEVELVALUE|'
+             r'INDICATOR_SHORTNAME|INDICATOR_LEVELTEXT|'
+             r'TERMINAL_BUILD|TERMINAL_CONNECTED|'
+             r'TERMINAL_DLLS_ALLOWED|TERMINAL_TRADE_ALLOWED|'
+             r'TERMINAL_EMAIL_ENABLED|'
+             r'TERMINAL_FTP_ENABLED|TERMINAL_MAXBARS|'
+             r'TERMINAL_CODEPAGE|TERMINAL_CPU_CORES|'
+             r'TERMINAL_DISK_SPACE|TERMINAL_MEMORY_PHYSICAL|'
+             r'TERMINAL_MEMORY_TOTAL|'
+             r'TERMINAL_MEMORY_AVAILABLE|TERMINAL_MEMORY_USED|'
+             r'TERMINAL_X64|'
+             r'TERMINAL_OPENCL_SUPPORT|TERMINAL_LANGUAGE|'
+             r'TERMINAL_COMPANY|TERMINAL_NAME|'
+             r'TERMINAL_PATH|TERMINAL_DATA_PATH|'
+             r'TERMINAL_COMMONDATA_PATH|'
+             r'MQL_PROGRAM_TYPE|MQL_DLLS_ALLOWED|'
+             r'MQL_TRADE_ALLOWED|MQL_DEBUG|'
+             r'MQL_PROFILER|MQL_TESTER|MQL_OPTIMIZATION|'
+             r'MQL_VISUAL_MODE|'
+             r'MQL_FRAME_MODE|MQL_LICENSE_TYPE|MQL_PROGRAM_NAME|'
+             r'MQL_PROGRAM_PATH|'
+             r'PROGRAM_SCRIPT|PROGRAM_EXPERT|'
+             r'PROGRAM_INDICATOR|LICENSE_FREE|'
+             r'LICENSE_DEMO|LICENSE_FULL|LICENSE_TIME|'
+             r'MODE_LOW|MODE_HIGH|MODE_TIME|MODE_BID|'
+             r'MODE_ASK|MODE_POINT|'
+             r'MODE_DIGITS|MODE_SPREAD|MODE_STOPLEVEL|'
+             r'MODE_LOTSIZE|MODE_TICKVALUE|'
+             r'MODE_TICKSIZE|MODE_SWAPLONG|'
+             r'MODE_SWAPSHORT|MODE_STARTING|'
+             r'MODE_EXPIRATION|MODE_TRADEALLOWED|'
+             r'MODE_MINLOT|MODE_LOTSTEP|MODE_MAXLOT|'
+             r'MODE_SWAPTYPE|MODE_PROFITCALCMODE|'
+             r'MODE_MARGINCALCMODE|MODE_MARGININIT|'
+             r'MODE_MARGINMAINTENANCE|MODE_MARGINHEDGED|'
+             r'MODE_MARGINREQUIRED|MODE_FREEZELEVEL|'
+             r'SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSDAY|'
+             r'FRIDAY|SATURDAY|'
+             r'ACCOUNT_LOGIN|ACCOUNT_TRADE_MODE|'
+             r'ACCOUNT_LEVERAGE|'
+             r'ACCOUNT_LIMIT_ORDERS|ACCOUNT_MARGIN_SO_MODE|'
+             r'ACCOUNT_TRADE_ALLOWED|ACCOUNT_TRADE_EXPERT|'
+             r'ACCOUNT_BALANCE|'
+             r'ACCOUNT_CREDIT|ACCOUNT_PROFIT|ACCOUNT_EQUITY|'
+             r'ACCOUNT_MARGIN|'
+             r'ACCOUNT_FREEMARGIN|ACCOUNT_MARGIN_LEVEL|'
+             r'ACCOUNT_MARGIN_SO_CALL|'
+             r'ACCOUNT_MARGIN_SO_SO|ACCOUNT_NAME|'
+             r'ACCOUNT_SERVER|ACCOUNT_CURRENCY|'
+             r'ACCOUNT_COMPANY|ACCOUNT_TRADE_MODE_DEMO|'
+             r'ACCOUNT_TRADE_MODE_CONTEST|'
+             r'ACCOUNT_TRADE_MODE_REAL|ACCOUNT_STOPOUT_MODE_PERCENT|'
+             r'ACCOUNT_STOPOUT_MODE_MONEY|'
+             r'STAT_INITIAL_DEPOSIT|STAT_WITHDRAWAL|STAT_PROFIT|'
+             r'STAT_GROSS_PROFIT|'
+             r'STAT_GROSS_LOSS|STAT_MAX_PROFITTRADE|'
+             r'STAT_MAX_LOSSTRADE|STAT_CONPROFITMAX|'
+             r'STAT_CONPROFITMAX_TRADES|STAT_MAX_CONWINS|'
+             r'STAT_MAX_CONPROFIT_TRADES|'
+             r'STAT_CONLOSSMAX|STAT_CONLOSSMAX_TRADES|'
+             r'STAT_MAX_CONLOSSES|'
+             r'STAT_MAX_CONLOSS_TRADES|STAT_BALANCEMIN|'
+             r'STAT_BALANCE_DD|'
+             r'STAT_BALANCEDD_PERCENT|STAT_BALANCE_DDREL_PERCENT|'
+             r'STAT_BALANCE_DD_RELATIVE|STAT_EQUITYMIN|'
+             r'STAT_EQUITY_DD|'
+             r'STAT_EQUITYDD_PERCENT|STAT_EQUITY_DDREL_PERCENT|'
+             r'STAT_EQUITY_DD_RELATIVE|STAT_EXPECTED_PAYOFF|'
+             r'STAT_PROFIT_FACTOR|'
+             r'STAT_RECOVERY_FACTOR|STAT_SHARPE_RATIO|'
+             r'STAT_MIN_MARGINLEVEL|'
+             r'STAT_CUSTOM_ONTESTER|STAT_DEALS|STAT_TRADES|'
+             r'STAT_PROFIT_TRADES|'
+             r'STAT_LOSS_TRADES|STAT_SHORT_TRADES|STAT_LONG_TRADES|'
+             r'STAT_PROFIT_SHORTTRADES|STAT_PROFIT_LONGTRADES|'
+             r'STAT_PROFITTRADES_AVGCON|STAT_LOSSTRADES_AVGCON|'
+             r'SERIES_BARS_COUNT|SERIES_FIRSTDATE|SERIES_LASTBAR_DATE|'
+             r'SERIES_SERVER_FIRSTDATE|SERIES_TERMINAL_FIRSTDATE|'
+             r'SERIES_SYNCHRONIZED|'
+             r'OP_BUY|OP_SELL|OP_BUYLIMIT|OP_SELLLIMIT|'
+             r'OP_BUYSTOP|OP_SELLSTOP|'
+             r'TRADE_ACTION_DEAL|TRADE_ACTION_PENDING|'
+             r'TRADE_ACTION_SLTP|'
+             r'TRADE_ACTION_MODIFY|TRADE_ACTION_REMOVE|'
+             r'__DATE__|__DATETIME__|__LINE__|__FILE__|'
+             r'__PATH__|__FUNCTION__|'
+             r'__FUNCSIG__|__MQLBUILD__|__MQL4BUILD__|'
+             r'M_E|M_LOG2E|M_LOG10E|M_LN2|M_LN10|'
+             r'M_PI|M_PI_2|M_PI_4|M_1_PI|'
+             r'M_2_PI|M_2_SQRTPI|M_SQRT2|M_SQRT1_2|'
+             r'CHAR_MIN|CHAR_MAX|UCHAR_MAX|'
+             r'SHORT_MIN|SHORT_MAX|USHORT_MAX|'
+             r'INT_MIN|INT_MAX|UINT_MAX|'
+             r'LONG_MIN|LONG_MAX|ULONG_MAX|'
+             r'DBL_MIN|DBL_MAX|DBL_EPSILON|DBL_DIG|DBL_MANT_DIG|'
+             r'DBL_MAX_10_EXP|DBL_MAX_EXP|DBL_MIN_10_EXP|DBL_MIN_EXP|'
+             r'FLT_MIN|FLT_MAX|FLT_EPSILON|'
+             r'FLT_DIG|FLT_MANT_DIG|FLT_MAX_10_EXP|'
+             r'FLT_MAX_EXP|FLT_MIN_10_EXP|FLT_MIN_EXP|REASON_PROGRAM'
+             r'REASON_REMOVE|REASON_RECOMPILE|'
+             r'REASON_CHARTCHANGE|REASON_CHARTCLOSE|'
+             r'REASON_PARAMETERS|REASON_ACCOUNT|'
+             r'REASON_TEMPLATE|REASON_INITFAILED|'
+             r'REASON_CLOSE|POINTER_INVALID'
+             r'POINTER_DYNAMIC|POINTER_AUTOMATIC|'
+             r'NULL|EMPTY|EMPTY_VALUE|CLR_NONE|WHOLE_ARRAY|'
+             r'CHARTS_MAX|clrNONE|EMPTY_VALUE|INVALID_HANDLE|'
+             r'IS_DEBUG_MODE|IS_PROFILE_MODE|NULL|WHOLE_ARRAY|WRONG_VALUE|'
+             r'ERR_NO_ERROR|ERR_NO_RESULT|ERR_COMMON_ERROR|'
+             r'ERR_INVALID_TRADE_PARAMETERS|'
+             r'ERR_SERVER_BUSY|ERR_OLD_VERSION|ERR_NO_CONNECTION|'
+             r'ERR_NOT_ENOUGH_RIGHTS|'
+             r'ERR_TOO_FREQUENT_REQUESTS|ERR_MALFUNCTIONAL_TRADE|'
+             r'ERR_ACCOUNT_DISABLED|'
+             r'ERR_INVALID_ACCOUNT|ERR_TRADE_TIMEOUT|'
+             r'ERR_INVALID_PRICE|ERR_INVALID_STOPS|'
+             r'ERR_INVALID_TRADE_VOLUME|ERR_MARKET_CLOSED|'
+             r'ERR_TRADE_DISABLED|'
+             r'ERR_NOT_ENOUGH_MONEY|ERR_PRICE_CHANGED|'
+             r'ERR_OFF_QUOTES|ERR_BROKER_BUSY|'
+             r'ERR_REQUOTE|ERR_ORDER_LOCKED|'
+             r'ERR_LONG_POSITIONS_ONLY_ALLOWED|ERR_TOO_MANY_REQUESTS|'
+             r'ERR_TRADE_MODIFY_DENIED|ERR_TRADE_CONTEXT_BUSY|'
+             r'ERR_TRADE_EXPIRATION_DENIED|'
+             r'ERR_TRADE_TOO_MANY_ORDERS|ERR_TRADE_HEDGE_PROHIBITED|'
+             r'ERR_TRADE_PROHIBITED_BY_FIFO|'
+             r'FILE_READ|FILE_WRITE|FILE_BIN|FILE_CSV|FILE_TXT|'
+             r'FILE_ANSI|FILE_UNICODE|'
+             r'FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_REWRITE|'
+             r'FILE_COMMON|FILE_EXISTS|'
+             r'FILE_CREATE_DATE|FILE_MODIFY_DATE|'
+             r'FILE_ACCESS_DATE|FILE_SIZE|FILE_POSITION|'
+             r'FILE_END|FILE_LINE_END|FILE_IS_COMMON|'
+             r'FILE_IS_TEXT|FILE_IS_BINARY|'
+             r'FILE_IS_CSV|FILE_IS_ANSI|FILE_IS_READABLE|FILE_IS_WRITABLE|'
+             r'SEEK_SET|SEEK_CUR|SEEK_END|CP_ACP|'
+             r'CP_OEMCP|CP_MACCP|CP_THREAD_ACP|'
+             r'CP_SYMBOL|CP_UTF7|CP_UTF8|IDOK|IDCANCEL|IDABORT|'
+             r'IDRETRY|IDIGNORE|IDYES|IDNO|IDTRYAGAIN|IDCONTINUE|'
+             r'MB_OK|MB_OKCANCEL|MB_ABORTRETRYIGNORE|MB_YESNOCANCEL|'
+             r'MB_YESNO|MB_RETRYCANCEL|'
+             r'MB_CANCELTRYCONTINUE|MB_ICONSTOP|MB_ICONERROR|'
+             r'MB_ICONHAND|MB_ICONQUESTION|'
+             r'MB_ICONEXCLAMATION|MB_ICONWARNING|'
+             r'MB_ICONINFORMATION|MB_ICONASTERISK|'
+             r'MB_DEFBUTTON1|MB_DEFBUTTON2|MB_DEFBUTTON3|MB_DEFBUTTON4)\b',
+                Name.Constant),
+            inherit,
+        ],
+    }
