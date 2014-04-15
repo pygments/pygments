@@ -1,22 +1,28 @@
 # -*- coding: utf-8 -*-
 """
-Paraíso (Dark)
-by Jan T. Sott
+    pygments.styles.paraiso_light
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Pygments template by Jan T. Sott (https://github.com/idleberg)
-Created with Base16 Builder by Chris Kempson (https://github.com/chriskempson/base16-builder)
+    Paraíso (Light) by Jan T. Sott
+
+    Pygments template by Jan T. Sott (https://github.com/idleberg)
+    Created with Base16 Builder by Chris Kempson
+    (https://github.com/chriskempson/base16-builder).
+
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, Text, \
-     Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
+    Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
 
 
-BACKGROUND = "#2f1e2e"
-CURRENT_LINE = "#41323f"
-SELECTION = "#4f424c"
-FOREGROUND = "#e7e9db"
-COMMENT = "#776e71"
+BACKGROUND = "#e7e9db"
+CURRENT_LINE = "#b9b6b0"
+SELECTION = "#a39e9b"
+FOREGROUND = "#2f1e2e"
+COMMENT = "#8d8687"
 RED = "#ef6155"
 ORANGE = "#f99b15"
 YELLOW = "#fec418"
@@ -26,7 +32,7 @@ BLUE = "#06b6ef"
 PURPLE = "#815ba4"
 
 
-class paraiso_dark(Style):
+class ParaisoLightStyle(Style):
 
     default_style = ''
 
