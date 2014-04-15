@@ -1051,7 +1051,7 @@ class SLexer(RegexLexer):
     mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
                  'text/x-R', 'text/x-r-history', 'text/x-r-profile']
 
-    builtins_base = [ 
+    builtins_base = [
             'Arg', 'Conj', 'Cstack_info', 'Encoding', 'FALSE',
             'Filter', 'Find', 'I', 'ISOdate', 'ISOdatetime', 'Im', 'Inf',
             'La\.svd', 'Map', 'Math\.Date', 'Math\.POSIXt', 'Math\.data\.frame',
@@ -1171,8 +1171,8 @@ class SLexer(RegexLexer):
             'getNativeSymbolInfo', 'getOption', 'getRversion', 'getSrcLines',
             'getTaskCallbackNames', 'geterrmessage', 'gettext', 'gettextf',
             'getwd', 'gl', 'globalenv', 'gregexpr', 'grep', 'grepRaw', 'grepl',
-            'gsub', 'gzcon', 'gzfile', 'head', 'iconv', 'iconvlist', 
-            'icuSetCollate', 'identical', 'identity', 'ifelse', 'importIntoEnv', 
+            'gsub', 'gzcon', 'gzfile', 'head', 'iconv', 'iconvlist',
+            'icuSetCollate', 'identical', 'identity', 'ifelse', 'importIntoEnv',
             'in', 'inherits', 'intToBits', 'intToUtf8', 'interaction', 'interactive',
             'intersect', 'inverse\.rle', 'invisible', 'invokeRestart',
             'invokeRestartInteractively', 'is\.R', 'is\.array', 'is\.atomic',
@@ -1317,7 +1317,7 @@ class SLexer(RegexLexer):
         'keywords': [
             (r'(' + r'|'.join(builtins_base) + r')'
              r'(?![\w\. =])',
-             Keyword.Pseudo),  
+             Keyword.Pseudo),
             (r'(if|else|for|while|repeat|in|next|break|return|switch|function)'
              r'(?![\w\.])',
              Keyword.Reserved),

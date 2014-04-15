@@ -4262,12 +4262,12 @@ class MaskLexer(RegexLexer):
         'string-base': [
             (r'\\.', String.Escape),
             (r'~\[', String.Interpol, 'interpolation'),
-            (r'.', String.Single),  
+            (r'.', String.Single),
         ],
         'string-single':[
             (r"'", String.Single, '#pop'),
             include('string-base')
-        ],  
+        ],
         'string-double':[
             (r'"', String.Single, '#pop'),
             include('string-base')
@@ -4288,7 +4288,7 @@ class MaskLexer(RegexLexer):
         ],
         'expression': [
             (r'[^\]]+', using(JavascriptLexer), '#pop')
-        ],  
+        ],
         'node': [
             (r'\s+', Text),
             (r'\.', Name.Variable.Class, 'node-class'),
@@ -4297,7 +4297,7 @@ class MaskLexer(RegexLexer):
             (r'[\w_:-]+[ \t]*=', Name.Attribute, 'node-attr-value'),
             (r'[\w_:-]+', Name.Attribute),
             (r'[>{;]', Punctuation, '#pop')
-        ],  
+        ],
         'node-class': [
             (r'[\w-]+', Name.Variable.Class),
             (r'~\[', String.Interpol, 'interpolation'),
@@ -4335,7 +4335,7 @@ class MaskLexer(RegexLexer):
             include('css-base'),
             (r'"', String.Single, '#pop:2'),
             (r"[^;\"]+", Name.Entity)
-        ],  
+        ],
         'string-single-pop2':[
             (r"'", String.Single, '#pop:2'),
             include('string-base')

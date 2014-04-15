@@ -1919,7 +1919,7 @@ class TodotxtLexer(RegexLexer):
 
     .. versionadded:: 2.0
     """
-    
+
     name = 'Todotxt'
     aliases = ['todotxt']
     # *.todotxt is not a standard extension for Todo.txt files; including it
@@ -1929,31 +1929,31 @@ class TodotxtLexer(RegexLexer):
 
     ## Aliases mapping standard token types of Todo.txt format concepts
     CompleteTaskText = Operator # Chosen to de-emphasize complete tasks
-    IncompleteTaskText = Text # Incomplete tasks should look like plain text 
-    
+    IncompleteTaskText = Text # Incomplete tasks should look like plain text
+
     # Priority should have most emphasis to indicate importance of tasks
     Priority = Generic.Heading
     # Dates should have next most emphasis because time is important
     Date = Generic.Subheading
-    
+
     # Project and context should have equal weight, and be in different colors
-    Project = Generic.Error 
+    Project = Generic.Error
     Context = String
-    
+
     # If tag functionality is added, it should have the same weight as Project
     # and Context, and a different color. Generic.Traceback would work well.
 
     # Regex patterns for building up rules; dates, priorities, projects, and
     # contexts are all atomic
     # TODO: Make date regex more ISO 8601 compliant
-    date_regex = r'\d{4,}-\d{2}-\d{2}' 
+    date_regex = r'\d{4,}-\d{2}-\d{2}'
     priority_regex = r'\([A-Z]\)'
     project_regex = r'\+\S+'
     context_regex = r'@\S+'
 
     # Compound regex expressions
     complete_one_date_regex = r'(x )(' + date_regex + r')'
-    complete_two_date_regex = (complete_one_date_regex + r'( )(' + 
+    complete_two_date_regex = (complete_one_date_regex + r'( )(' +
                                 date_regex + r')')
     priority_date_regex = r'(' + priority_regex + r')( )(' + date_regex + r')'
 
@@ -1968,7 +1968,7 @@ class TodotxtLexer(RegexLexer):
             # 2. Complete task with one date
             (complete_one_date_regex, bygroups(CompleteTaskText, Date),
              'complete'),
-            
+
             ## Incomplete task entry points: six total:
             # 1. Priority plus date
             (priority_date_regex, bygroups(Priority, IncompleteTaskText, Date),
@@ -1984,7 +1984,7 @@ class TodotxtLexer(RegexLexer):
             # 6. Non-whitespace catch-all
             ('\S+', IncompleteTaskText, 'incomplete'),
         ],
-            
+
         # Parse a complete task
         'complete': [
             # Newline indicates end of task, should return to root
