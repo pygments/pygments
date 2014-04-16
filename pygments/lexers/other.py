@@ -1309,8 +1309,6 @@ class ModelicaLexer(RegexLexer):
              r'([\[\d,:\]]*)'
              r'(\.([a-zA-Z_][\w]*|[\'][^\']+[\']))+'
              r'([\[\d,:\]]*)', Name.Class),
-            (r'([a-zA-Z_][\w]*|[\'][^\']+[\'])'
-             r'([\[\d,:\]]+)', Name.Class),
             (r'(\'[\w\+\-\*\/\^]+\'|\w+)', Name),
             (r'[()\[\]{},.;]', Punctuation),
             (r'\'', Name, 'quoted_ident'),
