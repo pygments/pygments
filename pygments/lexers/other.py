@@ -1333,9 +1333,11 @@ class ModelicaLexer(RegexLexer):
         ],
         'functions': [
             (r'(abs|acos|acosh|asin|asinh|atan|atan2|atan3|ceil|cos|cosh|'
-             r'cross|div|exp|floor|getInstanceName|log|log10|mod|rem|'
-             r'semiLinear|sign|sin|sinh|size|spatialDistribution|sqrt|tan|'
-             r'tanh|zeros)\b', Name.Function),
+             r'cross|diagonal|div|exp|fill|floor|getInstanceName|identity|'
+             r'linspace|log|log10|matrix|mod|max|min|ndims|ones|outerProduct|'
+             r'product|rem|scalar|semiLinear|skew|sign|sin|sinh|size|'
+             r'spatialDistribution|sum|sqrt|symmetric|tan|tanh|transpose|'
+             r'vector|zeros)\b', Name.Function),
         ],
         'operators': [
             (r'(actualStream|and|assert|backSample|cardinality|change|Clock|'
