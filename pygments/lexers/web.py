@@ -2710,7 +2710,7 @@ class LiveScriptLexer(RegexLexer):
             ("'''", String, 'tsqs'),
             ('"', String, 'dqs'),
             ("'", String, 'sqs'),
-            (r'\\[\w$-]+', String),
+            (r'\\\S+', String),
             (r'<\[.*?\]>', String),
         ],
         'strings': [
