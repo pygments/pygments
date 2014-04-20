@@ -977,10 +977,10 @@ class HaskellLexer(RegexLexer):
             (r'\s+', Text),
             (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
             (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
+            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
+            (r'{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
-            (r'--.*$', Comment.Single),
-            (r'{-', Comment.Multiline, 'comment'),
             # (HACK, but it makes sense to push two instances, believe me)
             (r'\(', Punctuation, ('funclist', 'funclist')),
             (r'\)', Punctuation, '#pop:2'),
