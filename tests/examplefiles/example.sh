@@ -15,5 +15,8 @@ echo $m
 m=$((10#$1))
 echo $m
 
+m=$((10#1))
+echo $m
+
 m=$((10))
 echo $m
