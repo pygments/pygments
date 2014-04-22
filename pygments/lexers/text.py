@@ -1681,6 +1681,12 @@ class CMakeLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        exp = r'^ *CMAKE_MINIMUM_REQUIRED *\( *VERSION *\d(\.\d)* *( FATAL_ERROR)? *\) *$'
+        if re.search(exp, text, flags=re.MULTILINE | re.IGNORECASE):
+            return 0.8
+        return 0.0
+
 
 class HttpLexer(RegexLexer):
     """

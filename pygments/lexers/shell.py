@@ -71,8 +71,8 @@ class BashLexer(RegexLexer):
             (r'&', Punctuation),
             (r'\|', Punctuation),
             (r'\s+', Text),
-            (r'[^=\s\[\]{}()$"\'`\\<&|;]+', Text),
             (r'\d+(?= |\Z)', Number),
+            (r'[^=\s\[\]{}()$"\'`\\<&|;]+', Text),
             (r'\$#?(\w+|.)', Name.Variable),
             (r'<', Text),
         ],
@@ -91,6 +91,8 @@ class BashLexer(RegexLexer):
         'math': [
             (r'\)\)', Keyword, '#pop'),
             (r'[-+*/%^|&]|\*\*|\|\|', Operator),
+            (r'\d+#\d+', Number),
+            (r'\d+#(?! )', Number),
             (r'\d+', Number),
             include('root'),
         ],
