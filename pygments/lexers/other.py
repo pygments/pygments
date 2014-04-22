@@ -1315,16 +1315,16 @@ class ModelicaLexer(RegexLexer):
         ],
         'root': [
             include('whitespace'),
-            include('keywords'),
             include('classes'),
             include('functions'),
+            include('keywords'),
             include('operators'),
             (r'("<html>|<html>)', Name.Tag, 'html-content'),
             include('statements'),
         ],
         'keywords': [
             (r'(algorithm|annotation|break|connect|constant|constrainedby|'
-            r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
+            r'discrete|each|end|else|elseif|elsewhen|encapsulated|enumeration|'
             r'equation|exit|expandable|extends|'
             r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
             r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
