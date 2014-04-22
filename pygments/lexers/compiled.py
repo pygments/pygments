@@ -1384,6 +1384,7 @@ def objective(baselexer):
         tokens = {
             'statements': [
                 (r'@"', String, 'string'),
+                (r'@(YES|NO)', Number),
                 (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
                 (r'@(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
                 (r'@(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
