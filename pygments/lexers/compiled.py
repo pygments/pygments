@@ -1394,8 +1394,8 @@ def objective(baselexer):
                 (r'(@selector|@private|@protected|@public|@encode|'
                  r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
                  r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong|'
-                 r'weak|strong|retain|assign|unsafe_unretained|nonatomic|'
-                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|'
+                 r'weak|strong|copy|retain|assign|unsafe_unretained|atomic|nonatomic|'
+                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|release|class|'
                  r'@synthesize|@dynamic|@optional|@required|@autoreleasepool)\b', Keyword),
                 (r'(id|instancetype|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
                  Keyword.Type),
