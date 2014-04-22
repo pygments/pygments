@@ -1480,7 +1480,7 @@ def objective(baselexer):
 
             for index, token, value in \
                 baselexer.get_tokens_unprocessed(self, text):
-                if token is Name:
+                if token is Name or token is Name.Class:
                     if value in COCOA_INTERFACES or value in COCOA_PROTOCOLS \
                        or value in COCOA_PRIMITIVES:
                         token = Name.Builtin.Pseudo
