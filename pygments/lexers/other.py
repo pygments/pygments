@@ -1309,8 +1309,6 @@ class ModelicaLexer(RegexLexer):
              r'([\[\d,:\]]*)'
              r'(\.([a-zA-Z_][\w]*|[\'][^\']+[\']))+'
              r'([\[\d,:\]]*)', Name.Class),
-            (r'([a-zA-Z_][\w]*|[\'][^\']+[\'])'
-             r'([\[\d,:\]]+)', Name.Class),
             (r'(\'[\w\+\-\*\/\^]+\'|\w+)', Name),
             (r'[()\[\]{},.;]', Punctuation),
             (r'\'', Name, 'quoted_ident'),
@@ -1335,9 +1333,11 @@ class ModelicaLexer(RegexLexer):
         ],
         'functions': [
             (r'(abs|acos|acosh|asin|asinh|atan|atan2|atan3|ceil|cos|cosh|'
-             r'cross|div|exp|floor|getInstanceName|log|log10|mod|rem|'
-             r'semiLinear|sign|sin|sinh|size|spatialDistribution|sqrt|tan|'
-             r'tanh|zeros)\b', Name.Function),
+             r'cross|diagonal|div|exp|fill|floor|getInstanceName|identity|'
+             r'linspace|log|log10|matrix|mod|max|min|ndims|ones|outerProduct|'
+             r'product|rem|scalar|semiLinear|skew|sign|sin|sinh|size|'
+             r'spatialDistribution|sum|sqrt|symmetric|tan|tanh|transpose|'
+             r'vector|zeros)\b', Name.Function),
         ],
         'operators': [
             (r'(actualStream|and|assert|backSample|cardinality|change|Clock|'
@@ -1347,8 +1347,9 @@ class ModelicaLexer(RegexLexer):
              r'terminate)\b', Name.Builtin),
         ],
         'classes': [
-            (r'(operator)?(\s+)?(block|class|connector|end|function|model|operator|package|'
-             r'record|type)(\s+)((?!if|when|while)[A-Za-z_]\w*|[\'][^\']+[\'])([;]?)',
+            (r'(operator)?(\s+)?(block|class|connector|end|function|model|'
+             r'operator|package|record|type)(\s+)'
+             r'((?!if|for|when|while)[A-Za-z_]\w*|[\'][^\']+[\'])([;]?)',
              bygroups(Keyword, Text, Keyword, Text, Name.Class, Text))
         ],
         'quoted_ident': [
