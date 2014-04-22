@@ -3392,7 +3392,7 @@ class PuppetLexer(RegexLexer):
 
         'strings': [
             (r'"([^"])*"', String),
-            (r'\'([^\'])*\'', String),
+            (r"'(\\'|[^'])*'", String),
         ],
 
     }
