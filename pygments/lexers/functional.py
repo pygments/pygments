@@ -977,7 +977,7 @@ class HaskellLexer(RegexLexer):
             (r'\s+', Text),
             (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
             (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
-            (r'--.*$', Comment.Single),
+            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
