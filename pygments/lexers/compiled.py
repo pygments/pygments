@@ -1622,9 +1622,9 @@ class FortranLexer(RegexLexer):
         ],
 
         'nums': [
-            (r'\d+(?![.Ee])', Number.Integer),
-            (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
-            (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
+            (r'\d+(?![.Ee])(_[a-z][a-z0-9_]+)?', Number.Integer),
+            (r'[+-]?\d*\.\d+([eE][-+]?\d+)?(_[a-z][a-z0-9_]+)?', Number.Float),
+            (r'[+-]?\d+\.\d*([eE][-+]?\d+)?(_[a-z][a-z0-9_]+)?', Number.Float),
         ],
     }
 
