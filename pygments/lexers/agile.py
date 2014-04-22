@@ -1720,7 +1720,7 @@ class FactorLexer(RegexLexer):
             (r'"""\s+(?:.|\n)*?\s+"""', String),
             (r'"(?:\\\\|\\"|[^"])*"', String),
             (r'\S+"\s+(?:\\\\|\\"|[^"])*"', String),
-            (r'CHAR:\s+(\\[\\abfnrstv]|(?:[^\\]\S*))\s', String.Char),
+            (r'CHAR:\s+(?:\\[\\abfnrstv]|[^\\]\S*)\s', String.Char),
 
             # comments
             (r'!\s+.*$', Comment),
@@ -1728,21 +1728,21 @@ class FactorLexer(RegexLexer):
             (r'/\*\s+(?:.|\n)*?\s\*/\s', Comment),
 
             # boolean constants
-            (r'(t|f)\s', Name.Constant),
+            (r'[tf]\s', Name.Constant),
 
             # symbols and literals
             (r'[\\$]\s+\S+', Name.Constant),
             (r'M\\\s+\S+\s+\S+', Name.Constant),
 
             # numbers
-            (r'[+-]?([\d,]*\d)?\.(\d([\d,]*\d)?)?([eE][+-]?\d+)?\s', Number),
-            (r'[+-]?\d([\d,]*\d)?([eE][+-]?\d+)?\s', Number),
-            (r'0x[a-fA-F\d]([a-fA-F\d,]*[a-fA-F\d])?(p\d([\d,]*\d)?)?\s', Number),
-            (r'NAN:\s+[a-fA-F\d]([a-fA-F\d,]*[a-fA-F\d])?(p\d([\d,]*\d)?)?\s', Number),
+            (r'[+-]?(?:[\d,]*\d)?\.(?:\d([\d,]*\d)?)?(?:[eE][+-]?\d+)?\s', Number),
+            (r'[+-]?\d(?:[\d,]*\d)?(?:[eE][+-]?\d+)?\s', Number),
+            (r'0x[a-fA-F\d](?:[a-fA-F\d,]*[a-fA-F\d])?(?:p\d([\d,]*\d)?)?\s', Number),
+            (r'NAN:\s+[a-fA-F\d](?:[a-fA-F\d,]*[a-fA-F\d])?(?:p\d([\d,]*\d)?)?\s', Number),
             (r'0b[01]+\s', Number),
             (r'0o[0-7]+\s', Number),
-            (r'(\d([\d,]*\d)?)?\+\d([\d,]*\d)?/\d([\d,]*\d)?\s', Number),
-            (r'(\-\d([\d,]*\d)?)?\-\d([\d,]*\d)?/\d([\d,]*\d)?\s', Number),
+            (r'(?:\d([\d,]*\d)?)?\+\d(?:[\d,]*\d)?/\d(?:[\d,]*\d)?\s', Number),
+            (r'(?:\-\d([\d,]*\d)?)?\-\d(?:[\d,]*\d)?/\d(?:[\d,]*\d)?\s', Number),
 
             # keywords
             (r'(?:deprecated|final|foldable|flushable|inline|recursive)\s',
