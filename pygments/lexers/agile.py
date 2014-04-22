@@ -1720,7 +1720,7 @@ class FactorLexer(RegexLexer):
             (r'"""\s+(?:.|\n)*?\s+"""', String),
             (r'"(?:\\\\|\\"|[^"])*"', String),
             (r'\S+"\s+(?:\\\\|\\"|[^"])*"', String),
-            (r'CHAR:\s+(\\[\\abfnrstv]|[^\\]\S+)\s', String.Char),
+            (r'CHAR:\s+(\\[\\abfnrstv]|(?:[^\\]\S*))\s', String.Char),
 
             # comments
             (r'!\s+.*$', Comment),
