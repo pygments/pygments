@@ -87,7 +87,7 @@ class CFamilyLexer(RegexLexer):
              r'declspec|finally|int64|try|leave|wchar_t|w64|unaligned|'
              r'raise|noop|identifier|forceinline|assume)\b', Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*:)(?!:)', bygroups(Name.Label, Text)),
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'root': [
