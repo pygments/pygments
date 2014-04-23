@@ -7,7 +7,7 @@
 
     .. _perldoc: http://perldoc.perl.org/
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

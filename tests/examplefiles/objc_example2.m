@@ -22,3 +22,6 @@
 @synthesize lastModifiedDate;
 // implementation continues
 @end
+
++ (void)f1:(NSString *)s1;
++ (void)f2:(NSString *)s2;

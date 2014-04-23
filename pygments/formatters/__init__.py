@@ -5,11 +5,12 @@
 
     Pygments formatters.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import os.path
 import fnmatch
+import re
 
 from pygments.formatters._mapping import FORMATTERS
 from pygments.plugin import find_plugin_formatters
@@ -34,7 +35,8 @@ def _init_formatter_cache():
         for alias in cls.aliases:
             _formatter_alias_cache[alias] = cls
         for fn in cls.filenames:
-            _formatter_filename_cache.append((fn, cls))
+            _formatter_filename_cache.append((
+                re.compile(fnmatch.translate(fn)), cls))
 
 
 def find_formatter_class(name):
@@ -55,7 +57,7 @@ def get_formatter_for_filename(fn, **options):
     _init_formatter_cache()
     fn = os.path.basename(fn)
     for pattern, cls in _formatter_filename_cache:
-        if fnmatch.fnmatch(fn, pattern):
+        if pattern.match(fn):
             return cls(**options)
     raise ClassNotFound("No formatter found for file name %r" % fn)
 

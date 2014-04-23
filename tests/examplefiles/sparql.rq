@@ -1,0 +1,23 @@
+# This is a test SPARQL query
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX ex: <http://example.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?person (COUNT(?nick) AS ?nickCount) {
+    ?person foaf:nick ?nick ;
+      foaf:lastName "Smith" ;
+      foaf:age "21"^^xsd:int ;
+      ex:title 'Mr' ; # single-quoted string
+      ex:height 1.80 ; # float
+      ex:distanceToSun +1.4e8 ; # float with exponent
+      ex:ownsACat true ;
+      dcterms:description "Someone with a cat called \"cat\"."@en .
+    OPTIONAL { ?person foaf:isPrimaryTopicOf ?page }
+    OPTIONAL { ?person foaf:name ?name
+               { ?person foaf:depiction ?img }
+               UNION
+               { ?person foaf:firstName ?firstN } }
+    FILTER ( bound(?page) || bound(?img) || bound(?firstN) )
+} GROUP BY ?person ORDER BY ?img 

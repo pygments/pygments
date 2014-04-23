@@ -3,11 +3,12 @@
     Pygments basic API tests
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import os
+from __future__ import print_function
+
 import random
 import unittest
 
@@ -15,7 +16,7 @@ from pygments import lexers, formatters, filters, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatters.img import FontNotFound
-from pygments.util import BytesIO, StringIO, bytes, b
+from pygments.util import text_type, StringIO, xrange, ClassNotFound
 
 import support
 
@@ -28,7 +29,7 @@ test_content = ''.join(test_content) + '\n'
 
 def test_lexer_import_all():
     # instantiate every lexer, to see if the token type defs are correct
-    for x in lexers.LEXERS.keys():
+    for x in lexers.LEXERS:
         c = getattr(lexers, x)()
 
 
@@ -42,6 +43,10 @@ def test_lexer_classes():
                    "%s: %s attribute wrong" % (cls, attr)
         result = cls.analyse_text("abc")
         assert isinstance(result, float) and 0.0 <= result <= 1.0
+        result = cls.analyse_text(".abc")
+        assert isinstance(result, float) and 0.0 <= result <= 1.0
+
+        assert all(al.lower() == al for al in cls.aliases)
 
         inst = cls(opt1="val1", opt2="val2")
         if issubclass(cls, RegexLexer):
@@ -55,17 +60,20 @@ def test_lexer_classes():
                 assert 'root' in cls._tokens, \
                        '%s has no root state' % cls
 
-        if cls.name == 'XQuery':   # XXX temporary
+        if cls.name in ['XQuery', 'Opa']:   # XXX temporary
             return
 
-        tokens = list(inst.get_tokens(test_content))
+        try:
+            tokens = list(inst.get_tokens(test_content))
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt('interrupted %s.get_tokens(): test_content=%r' % (cls.__name__, test_content))
         txt = ""
         for token in tokens:
             assert isinstance(token, tuple)
             assert isinstance(token[0], _TokenType)
             if isinstance(token[1], str):
-                print repr(token[1])
-            assert isinstance(token[1], unicode)
+                print(repr(token[1]))
+            assert isinstance(token[1], text_type)
             txt += token[1]
         assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \
                (cls.name, test_content, txt)
@@ -90,7 +98,10 @@ def test_lexer_options():
         if cls.__name__ not in (
             'PythonConsoleLexer', 'RConsoleLexer', 'RubyConsoleLexer',
             'SqliteConsoleLexer', 'MatlabSessionLexer', 'ErlangShellLexer',
-            'BashSessionLexer', 'LiterateHaskellLexer'):
+            'BashSessionLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
+            'PostgresConsoleLexer', 'ElixirConsoleLexer', 'JuliaConsoleLexer',
+            'RobotFrameworkLexer', 'DylanConsoleLexer', 'ShellSessionLexer',
+            'LiterateIdrisLexer'):
             inst = cls(ensurenl=False)
             ensure(inst.get_tokens('a\nb'), 'a\nb')
             inst = cls(ensurenl=False, stripall=True)
@@ -118,6 +129,22 @@ def test_get_lexers():
                        ]:
         yield verify, func, args
 
+    for cls, (_, lname, aliases, _, mimetypes) in lexers.LEXERS.items():
+        assert cls == lexers.find_lexer_class(lname).__name__
+
+        for alias in aliases:
+            assert cls == lexers.get_lexer_by_name(alias).__class__.__name__
+
+        for mimetype in mimetypes:
+            assert cls == lexers.get_lexer_for_mimetype(mimetype).__class__.__name__
+
+    try:
+        lexers.get_lexer_by_name(None)
+    except ClassNotFound:
+        pass
+    else:
+        raise Exception
+
 
 def test_formatter_public_api():
     ts = list(lexers.PythonLexer().get_tokens("def f(): pass"))
@@ -144,7 +171,7 @@ def test_formatter_public_api():
             pass
         inst.format(ts, out)
 
-    for formatter, info in formatters.FORMATTERS.iteritems():
+    for formatter, info in formatters.FORMATTERS.items():
         yield verify, formatter, info
 
 def test_formatter_encodings():
@@ -154,7 +181,7 @@ def test_formatter_encodings():
     fmt = HtmlFormatter()
     tokens = [(Text, u"ä")]
     out = format(tokens, fmt)
-    assert type(out) is unicode
+    assert type(out) is text_type
     assert u"ä" in out
 
     # encoding option
@@ -183,7 +210,7 @@ def test_formatter_unicode_handling():
         if formatter.name != 'Raw tokens':
             out = format(tokens, inst)
             if formatter.unicodeoutput:
-                assert type(out) is unicode
+                assert type(out) is text_type
 
             inst = formatter(encoding='utf-8')
             out = format(tokens, inst)
@@ -195,7 +222,7 @@ def test_formatter_unicode_handling():
             out = format(tokens, inst)
             assert type(out) is bytes, '%s: %r' % (formatter, out)
 
-    for formatter, info in formatters.FORMATTERS.iteritems():
+    for formatter, info in formatters.FORMATTERS.items():
         yield verify, formatter
 
 
@@ -223,16 +250,20 @@ class FiltersTest(unittest.TestCase):
             'whitespace': {'spaces': True, 'tabs': True, 'newlines': True},
             'highlight': {'names': ['isinstance', 'lexers', 'x']},
         }
-        for x in filters.FILTERS.keys():
+        for x in filters.FILTERS:
             lx = lexers.PythonLexer()
             lx.add_filter(x, **filter_args.get(x, {}))
-            text = open(TESTFILE, 'rb').read().decode('utf-8')
+            fp = open(TESTFILE, 'rb')
+            try:
+                text = fp.read().decode('utf-8')
+            finally:
+                fp.close()
             tokens = list(lx.get_tokens(text))
             roundtext = ''.join([t[1] for t in tokens])
             if x not in ('whitespace', 'keywordcase'):
                 # these filters change the text
-                self.assertEquals(roundtext, text,
-                                  "lexer roundtrip with %s filter failed" % x)
+                self.assertEqual(roundtext, text,
+                                 "lexer roundtrip with %s filter failed" % x)
 
     def test_raiseonerror(self):
         lx = lexers.PythonLexer()
@@ -242,24 +273,32 @@ class FiltersTest(unittest.TestCase):
     def test_whitespace(self):
         lx = lexers.PythonLexer()
         lx.add_filter('whitespace', spaces='%')
-        text = open(TESTFILE, 'rb').read().decode('utf-8')
+        fp = open(TESTFILE, 'rb')
+        try:
+            text = fp.read().decode('utf-8')
+        finally:
+            fp.close()
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
-        self.failIf(' ' in lxtext)
+        self.assertFalse(' ' in lxtext)
 
     def test_keywordcase(self):
         lx = lexers.PythonLexer()
         lx.add_filter('keywordcase', case='capitalize')
-        text = open(TESTFILE, 'rb').read().decode('utf-8')
+        fp = open(TESTFILE, 'rb')
+        try:
+            text = fp.read().decode('utf-8')
+        finally:
+            fp.close()
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
-        self.assert_('Def' in lxtext and 'Class' in lxtext)
+        self.assertTrue('Def' in lxtext and 'Class' in lxtext)
 
     def test_codetag(self):
         lx = lexers.PythonLexer()
         lx.add_filter('codetagify')
         text = u'# BUG: text'
         tokens = list(lx.get_tokens(text))
-        self.assertEquals('# ', tokens[0][1])
-        self.assertEquals('BUG', tokens[1][1])
+        self.assertEqual('# ', tokens[0][1])
+        self.assertEqual('BUG', tokens[1][1])
 
     def test_codetag_boundary(self):
         # ticket #368
@@ -267,4 +306,4 @@ class FiltersTest(unittest.TestCase):
         lx.add_filter('codetagify')
         text = u'# DEBUG: text'
         tokens = list(lx.get_tokens(text))
-        self.assertEquals('# DEBUG: text', tokens[0][1])
+        self.assertEqual('# DEBUG: text', tokens[0][1])

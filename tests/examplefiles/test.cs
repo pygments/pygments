@@ -153,6 +153,29 @@ namespace Diva.Core {
                 public OpenerTask (string fileName)
                 {
                         this.fileName = fileName;
+                        var verbatimString = @"c:\test\";
+
+                        var verbatimStringWithNewline = @"test \\ \n \t \r
+a
+b
+c";
+                        var verbatimStringWithEscapedQuotes = @"He said
+""she says \"" is not an escaped character in verbatimstrings""
+";
+
+                        int[] numbers = { 5,6,4,2,4,6,8,9,7,0 };
+                        var linqExample = from n in numbers
+                                          where n > 5
+                                          select n;
+
+                        var anotherlinqExample = from n in numbers
+                                                 orderby n descending
+                                                 select n;
+
+                        int[] someMoreNumbers = { 8,2,17,34,8,9,9,5,3,4,2,1,5 };
+                        var moreLinq = from n in numbers
+                                       join mn in moreNumbers on n equals mn + 2
+                                       select new {n, mn};
                 }
                 
                 public override void Reset ()

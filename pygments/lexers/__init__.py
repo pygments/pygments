@@ -5,24 +5,39 @@
 
     Pygments lexers.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import sys
 import types
 import fnmatch
+import re
 from os.path import basename
 
 from pygments.lexers._mapping import LEXERS
+from pygments.modeline import get_filetype_from_buffer
 from pygments.plugin import find_plugin_lexers
-from pygments.util import ClassNotFound, bytes
+from pygments.util import ClassNotFound, itervalues
 
 
 __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
-           'guess_lexer'] + LEXERS.keys()
+           'guess_lexer'] + list(LEXERS)
 
 _lexer_cache = {}
+_pattern_cache = {}
+
+def _fn_matches(fn, glob):
+    """
+    Return whether the supplied file name fn matches pattern filename
+    """
+    if glob not in _pattern_cache:
+        pattern = re.compile(fnmatch.translate(glob))
+        _pattern_cache[glob] = pattern
+    else:
+        pattern = _pattern_cache[glob]
+
+    return pattern.match(fn)
 
 
 def _load_lexers(module_name):
@@ -40,7 +55,7 @@ def get_all_lexers():
     Return a generator of tuples in the form ``(name, aliases,
     filenames, mimetypes)`` of all know lexers.
     """
-    for item in LEXERS.itervalues():
+    for item in itervalues(LEXERS):
         yield item[1:]
     for lexer in find_plugin_lexers():
         yield lexer.name, lexer.aliases, lexer.filenames, lexer.mimetypes
@@ -53,7 +68,7 @@ def find_lexer_class(name):
     if name in _lexer_cache:
         return _lexer_cache[name]
     # lookup builtin lexers
-    for module_name, lname, aliases, _, _ in LEXERS.itervalues():
+    for module_name, lname, aliases, _, _ in itervalues(LEXERS):
         if name == lname:
             _load_lexers(module_name)
             return _lexer_cache[name]
@@ -67,9 +82,12 @@ def get_lexer_by_name(_alias, **options):
     """
     Get a lexer by an alias.
     """
+    if not _alias:
+        raise ClassNotFound('no lexer for alias %r found' % _alias)
+
     # lookup builtin lexers
-    for module_name, name, aliases, _, _ in LEXERS.itervalues():
-        if _alias in aliases:
+    for module_name, name, aliases, _, _ in itervalues(LEXERS):
+        if _alias.lower() in aliases:
             if name not in _lexer_cache:
                 _load_lexers(module_name)
             return _lexer_cache[name](**options)
@@ -83,40 +101,42 @@ def get_lexer_by_name(_alias, **options):
 def get_lexer_for_filename(_fn, code=None, **options):
     """
     Get a lexer for a filename.  If multiple lexers match the filename
-    pattern, use ``analyze_text()`` to figure out which one is more
+    pattern, use ``analyse_text()`` to figure out which one is more
     appropriate.
     """
     matches = []
     fn = basename(_fn)
-    for modname, name, _, filenames, _ in LEXERS.itervalues():
+    for modname, name, _, filenames, _ in itervalues(LEXERS):
         for filename in filenames:
-            if fnmatch.fnmatch(fn, filename):
+            if _fn_matches(fn, filename):
                 if name not in _lexer_cache:
                     _load_lexers(modname)
-                matches.append(_lexer_cache[name])
+                matches.append((_lexer_cache[name], filename))
     for cls in find_plugin_lexers():
         for filename in cls.filenames:
-            if fnmatch.fnmatch(fn, filename):
-                matches.append(cls)
+            if _fn_matches(fn, filename):
+                matches.append((cls, filename))
 
     if sys.version_info > (3,) and isinstance(code, bytes):
         # decode it, since all analyse_text functions expect unicode
         code = code.decode('latin1')
 
-    def get_rating(cls):
+    def get_rating(info):
+        cls, filename = info
+        # explicit patterns get a bonus
+        bonus = '*' not in filename and 0.5 or 0
         # The class _always_ defines analyse_text because it's included in
         # the Lexer class.  The default implementation returns None which
         # gets turned into 0.0.  Run scripts/detect_missing_analyse_text.py
         # to find lexers which need it overridden.
-        d = cls.analyse_text(code)
-        #print "Got %r from %r" % (d, cls)
-        return d
+        if code:
+            return cls.analyse_text(code) + bonus
+        return cls.priority + bonus
 
-    if code:
-        matches.sort(key=get_rating)
     if matches:
+        matches.sort(key=get_rating)
         #print "Possible lexers, after sort:", matches
-        return matches[-1](**options)
+        return matches[-1][0](**options)
     raise ClassNotFound('no lexer for filename %r found' % _fn)
 
 
@@ -124,7 +144,7 @@ def get_lexer_for_mimetype(_mime, **options):
     """
     Get a lexer for a mimetype.
     """
-    for modname, name, _, _, mimetypes in LEXERS.itervalues():
+    for modname, name, _, _, mimetypes in itervalues(LEXERS):
         if _mime in mimetypes:
             if name not in _lexer_cache:
                 _load_lexers(modname)
@@ -139,7 +159,8 @@ def _iter_lexerclasses():
     """
     Return an iterator over all lexer classes.
     """
-    for module_name, name, _, _, _ in LEXERS.itervalues():
+    for key in sorted(LEXERS):
+        module_name, name = LEXERS[key][:2]
         if name not in _lexer_cache:
             _load_lexers(module_name)
         yield _lexer_cache[name]
@@ -168,11 +189,11 @@ def guess_lexer_for_filename(_fn, _text, **options):
     matching_lexers = set()
     for lexer in _iter_lexerclasses():
         for filename in lexer.filenames:
-            if fnmatch.fnmatch(fn, filename):
+            if _fn_matches(fn, filename):
                 matching_lexers.add(lexer)
                 primary = lexer
         for filename in lexer.alias_filenames:
-            if fnmatch.fnmatch(fn, filename):
+            if _fn_matches(fn, filename):
                 matching_lexers.add(lexer)
     if not matching_lexers:
         raise ClassNotFound('no lexer for filename %r found' % fn)
@@ -184,7 +205,13 @@ def guess_lexer_for_filename(_fn, _text, **options):
         if rv == 1.0:
             return lexer(**options)
         result.append((rv, lexer))
-    result.sort()
+
+    # since py3 can no longer sort by class name by default, here is the
+    # sorting function that works in both
+    def type_sort(type_):
+        return (type_[0], type_[1].__name__)
+    result.sort(key=type_sort)
+
     if not result[-1][0] and primary is not None:
         return primary(**options)
     return result[-1][1](**options)
@@ -194,6 +221,16 @@ def guess_lexer(_text, **options):
     """
     Guess a lexer by strong distinctions in the text (eg, shebang).
     """
+
+    # try to get a vim modeline first
+    ft = get_filetype_from_buffer(_text)
+
+    if ft is not None:
+        try:
+            return get_lexer_by_name(ft, **options)
+        except ClassNotFound:
+            pass
+
     best_lexer = [0.0, None]
     for lexer in _iter_lexerclasses():
         rv = lexer.analyse_text(_text)

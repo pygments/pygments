@@ -11,7 +11,7 @@
 
     Formatter version 1.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -23,6 +23,8 @@
 #    xterm. This means that default colors are white-on-black, not
 #    black-on-while, so colors like "white background" need to be converted
 #    to "white background, black foreground", etc...
+
+import sys
 
 from pygments.formatter import Formatter
 
@@ -74,7 +76,7 @@ class Terminal256Formatter(Formatter):
     and converts them to nearest ANSI 256-color escape sequences. Bold and
     underline attributes from the style are preserved (and displayed).
 
-    *New in Pygments 0.9.*
+    .. versionadded:: 0.9
 
     Options accepted:
 
@@ -185,7 +187,8 @@ class Terminal256Formatter(Formatter):
         # hack: if the output is a terminal and has an encoding set,
         # use that to avoid unicode encode problems
         if not self.encoding and hasattr(outfile, "encoding") and \
-           hasattr(outfile, "isatty") and outfile.isatty():
+           hasattr(outfile, "isatty") and outfile.isatty() and \
+           sys.version_info < (3,):
             self.encoding = outfile.encoding
         return Formatter.format(self, tokensource, outfile)
 
