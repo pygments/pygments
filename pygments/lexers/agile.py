@@ -2466,7 +2466,9 @@ class HyLexer(RegexLexer):
 
 class ChaiscriptLexer(RegexLexer):
     """
-    For ChaiScript source code.
+    For `ChaiScript <http://chaiscript.com/>`_ source code.
+
+    .. versionadded:: 2.0
     """
 
     name = 'ChaiScript'
@@ -2500,6 +2502,7 @@ class ChaiscriptLexer(RegexLexer):
              r'(<<|>>>?|==?|!=?|[-<>+*%&\|\^/])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
+            (r'[=+\-*/]', Operator),
             (r'(for|in|while|do|break|return|continue|if|else|'
              r'throw|try|catch'
              r')\b', Keyword, 'slashstartsregex'),
@@ -2512,7 +2515,15 @@ class ChaiscriptLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r'"', String.Double, 'dqstring'),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-        ]
+        ],
+        'dqstring': [
+            (r'\${[^"}]+?}', String.Iterpol),
+            (r'\$', String.Double),
+            (r'\\\\', String.Double),
+            (r'\\"', String.Double),
+            (r'[^\\\\\\"$]+', String.Double),
+            (r'"', String.Double, '#pop'),
+        ],
     }
