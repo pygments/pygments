@@ -56,8 +56,6 @@ class CFamilyLexer(RegexLexer):
              bygroups(using(this), Comment.Preproc), 'if0'),
             ('^(' + _ws1 + ')(#)',
              bygroups(using(this), Comment.Preproc), 'macro'),
-            (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*)(\s*:)(?!:)',
-             bygroups(Text, Name.Label, Text)),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
@@ -89,6 +87,7 @@ class CFamilyLexer(RegexLexer):
              r'declspec|finally|int64|try|leave|wchar_t|w64|unaligned|'
              r'raise|noop|identifier|forceinline|assume)\b', Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*:)(?!:)', bygroups(Name.Label, Text)),
             ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
         ],
         'root': [
