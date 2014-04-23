@@ -5,16 +5,15 @@
 
     Formatter for Pixmap output.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import sys
-from commands import getstatusoutput
 
 from pygments.formatter import Formatter
-from pygments.util import get_bool_opt, get_int_opt, \
-     get_list_opt, get_choice_opt
+from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
+    get_choice_opt, xrange
 
 # Import this carefully
 try:
@@ -26,7 +25,10 @@ except ImportError:
 try:
     import _winreg
 except ImportError:
-    _winreg = None
+    try:
+        import winreg as _winreg
+    except ImportError:
+        _winreg = None
 
 __all__ = ['ImageFormatter', 'GifImageFormatter', 'JpgImageFormatter',
            'BmpImageFormatter']
@@ -73,6 +75,10 @@ class FontManager(object):
             self._create_nix()
 
     def _get_nix_font_path(self, name, style):
+        try:
+            from commands import getstatusoutput
+        except ImportError:
+            from subprocess import getstatusoutput
         exit, out = getstatusoutput('fc-list "%s:style=%s" file' %
                                     (name, style))
         if not exit:
@@ -169,7 +175,7 @@ class ImageFormatter(Formatter):
     Create a PNG image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
 
     Additional options accepted:
 
@@ -258,12 +264,16 @@ class ImageFormatter(Formatter):
         Default: 6
 
     `hl_lines`
-        Specify a list of lines to be highlighted.  *New in Pygments 1.2.*
+        Specify a list of lines to be highlighted.
+
+        .. versionadded:: 1.2
 
         Default: empty list
 
     `hl_color`
-        Specify the color for highlighting lines.  *New in Pygments 1.2.*
+        Specify the color for highlighting lines.
+
+        .. versionadded:: 1.2
 
         Default: highlight color of the selected style
     """
@@ -513,8 +523,7 @@ class GifImageFormatter(ImageFormatter):
     Create a GIF image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 1.0.* (You could create GIF images before by passing a
-    suitable `image_format` option to the `ImageFormatter`.)
+    .. versionadded:: 1.0
     """
 
     name = 'img_gif'
@@ -528,8 +537,7 @@ class JpgImageFormatter(ImageFormatter):
     Create a JPEG image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 1.0.* (You could create JPEG images before by passing a
-    suitable `image_format` option to the `ImageFormatter`.)
+    .. versionadded:: 1.0
     """
 
     name = 'img_jpg'
@@ -543,8 +551,7 @@ class BmpImageFormatter(ImageFormatter):
     Create a bitmap image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 1.0.* (You could create bitmap images before by passing a
-    suitable `image_format` option to the `ImageFormatter`.)
+    .. versionadded:: 1.0
     """
 
     name = 'img_bmp'

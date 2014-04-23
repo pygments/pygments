@@ -5,7 +5,7 @@
 
     pygments version of my "fruity" vim theme.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -30,7 +30,6 @@ class FruityStyle(Style):
         Number:             '#0086f7 bold',
         Name.Tag:           '#fb660a bold',
         Name.Variable:      '#fb660a',
-        Name.Constant:      '#fb660a',
         Comment:            '#008800 bg:#0f140f italic',
         Name.Attribute:     '#ff0086 bold',
         String:             '#0086d2',

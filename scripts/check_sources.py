@@ -7,13 +7,17 @@
     Make sure each Python file has a correct file header
     including copyright and license information.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import sys, os, re
+from __future__ import print_function
+
+import io
+import os
+import re
+import sys
 import getopt
-import cStringIO
 from os.path import join, splitext, abspath
 
 
@@ -30,7 +34,7 @@ def checker(*suffixes, **kwds):
 
 
 name_mail_re = r'[\w ]+(<.*?>)?'
-copyright_re = re.compile(r'^    :copyright: Copyright (?:\d{4}-)?2010 by '
+copyright_re = re.compile(r'^    :copyright: Copyright 2006-2014 by '
                           r'the Pygments team, see AUTHORS\.$', re.UNICODE)
 copyright_2_re = re.compile(r'^                %s(, %s)*[,.]$' %
                             (name_mail_re, name_mail_re), re.UNICODE)
@@ -46,7 +50,7 @@ misspellings = ["developement", "adress", "verificate",  # ALLOW-MISSPELLING
 def check_syntax(fn, lines):
     try:
         compile(''.join(lines), fn, "exec")
-    except SyntaxError, err:
+    except SyntaxError as err:
         yield 0, "not compilable: %s" % err
 
 
@@ -67,9 +71,12 @@ def check_style_and_encoding(fn, lines):
                 encoding = co.group(1)
         try:
             line.decode(encoding)
-        except UnicodeDecodeError, err:
+        except AttributeError:
+            # Python 3 - encoding was already checked
+            pass
+        except UnicodeDecodeError as err:
             yield lno+1, "not decodable: %s\n   Line: %r" % (err, line)
-        except LookupError, err:
+        except LookupError as err:
             yield 0, "unknown encoding: %s" % encoding
             encoding = 'latin1'
 
@@ -130,7 +137,7 @@ def check_fileheader(fn, lines):
         yield 0, "no correct license info"
 
     ci = -3
-    copyright = [s.decode('utf-8') for s in llist[ci:ci+1]]
+    copyright = llist[ci:ci+1]
     while copyright and copyright_2_re.match(copyright[0]):
         ci -= 1
         copyright = llist[ci:ci+1]
@@ -138,34 +145,11 @@ def check_fileheader(fn, lines):
         yield 0, "no correct copyright info"
 
 
-@checker('.py', '.html', '.js')
-def check_whitespace_and_spelling(fn, lines):
-    for lno, line in enumerate(lines):
-        if "\t" in line:
-            yield lno+1, "OMG TABS!!!1 "
-        if line[:-1].rstrip(' \t') != line[:-1]:
-            yield lno+1, "trailing whitespace"
-        for word in misspellings:
-            if word in line and 'ALLOW-MISSPELLING' not in line:
-                yield lno+1, '"%s" used' % word
-
-
-bad_tags = ('<b>', '<i>', '<u>', '<s>', '<strike>'
-            '<center>', '<big>', '<small>', '<font')
-
-@checker('.html')
-def check_xhtml(fn, lines):
-    for lno, line in enumerate(lines):
-        for bad_tag in bad_tags:
-            if bad_tag in line:
-                yield lno+1, "used " + bad_tag
-
-
 def main(argv):
     try:
         gopts, args = getopt.getopt(argv[1:], "vi:")
     except getopt.GetoptError:
-        print "Usage: %s [-v] [-i ignorepath]* [path]" % argv[0]
+        print("Usage: %s [-v] [-i ignorepath]* [path]" % argv[0])
         return 2
     opts = {}
     for opt, val in gopts:
@@ -178,20 +162,20 @@ def main(argv):
     elif len(args) == 1:
         path = args[0]
     else:
-        print "Usage: %s [-v] [-i ignorepath]* [path]" % argv[0]
+        print("Usage: %s [-v] [-i ignorepath]* [path]" % argv[0])
         return 2
 
     verbose = '-v' in opts
 
     num = 0
-    out = cStringIO.StringIO()
+    out = io.StringIO()
 
     # TODO: replace os.walk run with iteration over output of
     #       `svn list -R`.
 
     for root, dirs, files in os.walk(path):
-        if '.svn' in dirs:
-            dirs.remove('.svn')
+        if '.hg' in dirs:
+            dirs.remove('.hg')
         if '-i' in opts and abspath(root) in opts['-i']:
             del dirs[:]
             continue
@@ -212,13 +196,13 @@ def main(argv):
                 continue
 
             if verbose:
-                print "Checking %s..." % fn
+                print("Checking %s..." % fn)
 
             try:
                 f = open(fn, 'r')
                 lines = list(f)
-            except (IOError, OSError), err:
-                print "%s: cannot open: %s" % (fn, err)
+            except (IOError, OSError) as err:
+                print("%s: cannot open: %s" % (fn, err))
                 num += 1
                 continue
 
@@ -226,15 +210,15 @@ def main(argv):
                 if not in_pocoo_pkg and checker.only_pkg:
                     continue
                 for lno, msg in checker(fn, lines):
-                    print >>out, "%s:%d: %s" % (fn, lno, msg)
+                    print(u"%s:%d: %s" % (fn, lno, msg), file=out)
                     num += 1
     if verbose:
-        print
+        print()
     if num == 0:
-        print "No errors found."
+        print("No errors found.")
     else:
-        print out.getvalue().rstrip('\n')
-        print "%d error%s found." % (num, num > 1 and "s" or "")
+        print(out.getvalue().rstrip('\n'))
+        print("%d error%s found." % (num, num > 1 and "s" or ""))
     return int(num > 0)
 
 

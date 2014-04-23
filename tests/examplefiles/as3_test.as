@@ -7,7 +7,7 @@
 			private static const ADD_SONG:uint = 1;
 			private static const SONG_DETAIL:uint = 2;
 			
-			private var playList:PlayList = new PlayList();
+			private var playList:PlayList = new PlayList.<T>();
 
 			private function initApp():void
 			{
@@ -24,7 +24,7 @@
 			}
 
 
-			private function sortList(sortField:SortProperty):void
+			private function sortList(sortField:SortProperty.<T>):void
 			{
 				// Make all the sort type buttons enabled.
 				// The active one will be grayed-out below

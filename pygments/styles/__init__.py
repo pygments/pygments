@@ -5,7 +5,7 @@
 
     Contains built-in styles.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -33,6 +33,11 @@ STYLE_MAP = {
     'vim':      'vim::VimStyle',
     'vs':       'vs::VisualStudioStyle',
     'tango':    'tango::TangoStyle',
+    'rrt':      'rrt::RrtStyle',
+    'xcode':    'xcode::XcodeStyle',
+    'igor':     'igor::IgorStyle',
+    'paraiso-light': 'paraiso_light::ParaisoLightStyle',
+    'paraiso-dark': 'paraiso_dark::ParaisoDarkStyle',
 }
 
 

@@ -5,11 +5,12 @@
 
     Basic style object.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.token import Token, STANDARD_TYPES
+from pygments.util import add_metaclass
 
 
 class StyleMeta(type):
@@ -26,7 +27,7 @@ class StyleMeta(type):
                 if len(col) == 6:
                     return col
                 elif len(col) == 3:
-                    return col[0]+'0'+col[1]+'0'+col[2]+'0'
+                    return col[0]*2 + col[1]*2 + col[2]*2
             elif text == '':
                 return ''
             assert False, "wrong color format %r" % text
@@ -104,8 +105,8 @@ class StyleMeta(type):
         return len(cls._styles)
 
 
+@add_metaclass(StyleMeta)
 class Style(object):
-    __metaclass__ = StyleMeta
 
     #: overall background color (``None`` means transparent)
     background_color = '#ffffff'

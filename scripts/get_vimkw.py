@@ -1,5 +1,5 @@
+from __future__ import print_function
 import re
-from pprint import pprint
 
 r_line = re.compile(r"^(syn keyword vimCommand contained|syn keyword vimOption "
                     r"contained|syn keyword vimAutoEvent contained)\s+(.*)")
@@ -22,17 +22,22 @@ def getkw(input, output):
 
             # Extract all the shortened versions
             for i in r_item.finditer(m.group(2)):
-                d.append((i.group(1), "%s%s" % (i.group(1), i.group(2) or '')))
-            d.sort()
+                d.append('(%r,%r)' %
+                         (i.group(1), "%s%s" % (i.group(1), i.group(2) or '')))
+
+    output_info['option'].append("('nnoremap','nnoremap')")
+    output_info['option'].append("('inoremap','inoremap')")
+    output_info['option'].append("('vnoremap','vnoremap')")
 
     for a, b in output_info.items():
-        print >>out, '%s=%r' % (a, b)
+        b.sort()
+        print('%s=[%s]' % (a, ','.join(b)), file=out)
 
 def is_keyword(w, keywords):
     for i in range(len(w), 0, -1):
         if w[:i] in keywords:
-            return signals[w[:i]][:len(w)] == w
+            return keywords[w[:i]][:len(w)] == w
     return False
 
 if __name__ == "__main__":
-    getkw("/usr/share/vim/vim70/syntax/vim.vim", "temp.py")
+    getkw("/usr/share/vim/vim73/syntax/vim.vim", "temp.py")
