@@ -4127,30 +4127,41 @@ class RslLexer(RegexLexer):
     language used in RAISE (Rigorous Approach to Industrial Software Engineering)
     method. 
 
-    *New in Pygments 1.7.*
+    .. versionadded:: 2.0
     """
     name = 'RSL'
     aliases = ['rsl']
     filenames = ['*.rsl']
     mimetypes = ['text/rsl']
+
     flags = re.MULTILINE | re.DOTALL
 
     tokens = {
         'root':[
-            (r'\b(Bool|Char|Int|Nat|Real|Text|Unit|abs|all|always|any|as|axiom|card|case|channel|chaos|class|devt_relation|dom|elems|else|elif|end|exists|extend|false|for|hd|hide|if|in|is|inds|initialise|int|inter|isin|len|let|local|ltl_assertion|object|of|out|post|pre|read|real|rng|scheme|skip|stop|swap|then|thoery|test_case|tl|transition_system|true|type|union|until|use|value|variable|while|with|write|~isin|-inflist|-infset|-list|-set)\b', Keyword),
-            (r'(variable|value)', Keyword.Declaration),
+            (r'\b(Bool|Char|Int|Nat|Real|Text|Unit|abs|all|always|any|as|'
+             r'axiom|card|case|channel|chaos|class|devt_relation|dom|elems|'
+             r'else|elif|end|exists|extend|false|for|hd|hide|if|in|is|inds|'
+             r'initialise|int|inter|isin|len|let|local|ltl_assertion|object|'
+             r'of|out|post|pre|read|real|rng|scheme|skip|stop|swap|then|'
+             r'thoery|test_case|tl|transition_system|true|type|union|until|'
+             r'use|value|variable|while|with|write|~isin|-inflist|-infset|'
+             r'-list|-set)\b', Keyword),
+            (r'(variable|value)\b', Keyword.Declaration),
             (r'--.*?\n', Comment),
             (r'<:.*?:>', Comment),
             (r'\{!.*?!\}', Comment),
             (r'/\*.*?\*/', Comment),
             (r'^[ \t]*([\w]+)[ \t]*:[^:]', Name.Function),
-            (r'(^[ \t]*)([\w]+)([ \t]*\([\w\s, ]*\)[ \t]*)(is|as)', bygroups(Text,Name.Function, Text, Keyword)),
+            (r'(^[ \t]*)([\w]+)([ \t]*\([\w\s,]*\)[ \t]*)(is|as)',
+             bygroups(Text, Name.Function, Text, Keyword)),
             (r'\b[A-Z]\w*\b',Keyword.Type),
             (r'(true|false)\b', Keyword.Constant),
             (r'".*"',String),
             (r'\'.\'',String.Char),
-            (r'(><|->|-m->|/\\|<=|<<=|<\.|\|\||\|\^\||-~->|-~m->|\\/|>=|>>|\.>|\+\+|-\\|<->|=>|:-|~=|\*\*|<<|>>=|\+>|!!|\|=\||#)', Operator),
-            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'(><|->|-m->|/\\|<=|<<=|<\.|\|\||\|\^\||-~->|-~m->|\\/|>=|>>|'
+             r'\.>|\+\+|-\\|<->|=>|:-|~=|\*\*|<<|>>=|\+>|!!|\|=\||#)',
+             Operator),
+            (r'[0-9]+\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-f]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
             (r'.', Text),
