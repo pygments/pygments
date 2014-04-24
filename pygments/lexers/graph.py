@@ -48,13 +48,14 @@ class CypherLexer(RegexLexer):
             (r'^.*//.*\n', Comment.Single),
         ],
         'keywords': [
-            (r'create|order|match|limit|set|skip|start|return|with|where|delete'
-             r'|foreach|not| by ', Keyword),
+            (r'(create|order|match|limit|set|skip|start|return|with|where|'
+             r'delete|foreach|not|by)\b', Keyword),
         ],
         'clauses': [
-            (r' all | any | as | asc |create|create unique|delete|'
-             r'desc |distinct|foreach| in |is null|limit|match|none|'
-             r'order by|return|set|skip|single|start|union|where|with',
+            # TODO: many missing ones, see http://docs.neo4j.org/refcard/2.0/
+            (r'(all|any|as|asc|create|create\s+unique|delete|'
+             r'desc|distinct|foreach|in|is\s+null|limit|match|none|'
+             r'order\s+by|return|set|skip|single|start|union|where|with)\b',
              Keyword),
         ],
         'relations': [
