@@ -98,6 +98,7 @@ LEXERS = {
     'DgLexer': ('pygments.lexers.agile', 'dg', ('dg',), ('*.dg',), ('text/x-dg',)),
     'DiffLexer': ('pygments.lexers.text', 'Diff', ('diff', 'udiff'), ('*.diff', '*.patch'), ('text/x-diff', 'text/x-patch')),
     'DjangoLexer': ('pygments.lexers.templates', 'Django/Jinja', ('django', 'jinja'), (), ('application/x-django-templating', 'application/x-jinja')),
+    'DockerLexer': ('pygments.lexers.text', 'Docker', ('docker', 'dockerfile'), ('Dockerfile',), ('text/x-dockerfile-config',)),
     'DtdLexer': ('pygments.lexers.web', 'DTD', ('dtd',), ('*.dtd',), ('application/xml-dtd',)),
     'DuelLexer': ('pygments.lexers.web', 'Duel', ('duel', 'jbst', 'jsonml+bst'), ('*.duel', '*.jbst'), ('text/x-duel', 'text/x-jbst')),
     'DylanConsoleLexer': ('pygments.lexers.compiled', 'Dylan session', ('dylan-console', 'dylan-repl'), ('*.dylan-console',), ('text/x-dylan-console',)),
