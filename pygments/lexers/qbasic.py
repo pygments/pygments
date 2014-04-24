@@ -9,11 +9,14 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include, bygroups, using, \
-     this, combined, ExtendedRegexLexer
-from pygments.token import *
+import re
+
+from pygments.lexer import RegexLexer, include, bygroups
+from pygments.token import Text, Name, Comment, String, Keyword, Punctuation, \
+    Number, Operator
 
 __all__ = ['QBasicLexer']
+
 
 class QBasicLexer(RegexLexer):
     """
@@ -30,19 +33,19 @@ class QBasicLexer(RegexLexer):
     declarations = ['DATA', 'LET']
 
     functions = [
-                 'ABS', 'ASC', 'ATN', 'CDBL', 'CHR$', 'CINT', 'CLNG',
-                 'COMMAND$', 'COS', 'CSNG', 'CSRLIN', 'CVD', 'CVDMBF', 'CVI',
-                 'CVL', 'CVS', 'CVSMBF', 'DATE$', 'ENVIRON$', 'EOF', 'ERDEV',
-                 'ERDEV$', 'ERL', 'ERR', 'EXP', 'FILEATTR', 'FIX', 'FRE',
-                 'FREEFILE', 'HEX$', 'INKEY$', 'INP', 'INPUT$', 'INSTR', 'INT',
-                 'IOCTL$', 'LBOUND', 'LCASE$', 'LEFT$', 'LEN', 'LOC', 'LOF',
-                 'LOG', 'LPOS', 'LTRIM$', 'MID$', 'MKD$', 'MKDMBF$', 'MKI$',
-                 'MKL$', 'MKS$', 'MKSMBF$', 'OCT$', 'PEEK', 'PEN', 'PLAY',
-                 'PMAP', 'POINT', 'POS', 'RIGHT$', 'RND', 'RTRIM$', 'SADD',
-                 'SCREEN', 'SEEK', 'SETMEM', 'SGN', 'SIN', 'SPACE$', 'SPC',
-                 'SQR', 'STICK', 'STR$', 'STRIG', 'STRING$', 'TAB', 'TAN',
-                 'TIME$', 'TIMER', 'UBOUND', 'UCASE$', 'VAL', 'VARPTR',
-                 'VARPTR$', 'VARSEG'
+        'ABS', 'ASC', 'ATN', 'CDBL', 'CHR$', 'CINT', 'CLNG',
+        'COMMAND$', 'COS', 'CSNG', 'CSRLIN', 'CVD', 'CVDMBF', 'CVI',
+        'CVL', 'CVS', 'CVSMBF', 'DATE$', 'ENVIRON$', 'EOF', 'ERDEV',
+        'ERDEV$', 'ERL', 'ERR', 'EXP', 'FILEATTR', 'FIX', 'FRE',
+        'FREEFILE', 'HEX$', 'INKEY$', 'INP', 'INPUT$', 'INSTR', 'INT',
+        'IOCTL$', 'LBOUND', 'LCASE$', 'LEFT$', 'LEN', 'LOC', 'LOF',
+        'LOG', 'LPOS', 'LTRIM$', 'MID$', 'MKD$', 'MKDMBF$', 'MKI$',
+        'MKL$', 'MKS$', 'MKSMBF$', 'OCT$', 'PEEK', 'PEN', 'PLAY',
+        'PMAP', 'POINT', 'POS', 'RIGHT$', 'RND', 'RTRIM$', 'SADD',
+        'SCREEN', 'SEEK', 'SETMEM', 'SGN', 'SIN', 'SPACE$', 'SPC',
+        'SQR', 'STICK', 'STR$', 'STRIG', 'STRING$', 'TAB', 'TAN',
+        'TIME$', 'TIMER', 'UBOUND', 'UCASE$', 'VAL', 'VARPTR',
+        'VARPTR$', 'VARSEG'
     ]
 
     metacommands = ['$DYNAMIC', '$INCLUDE', '$STATIC']
@@ -50,34 +53,34 @@ class QBasicLexer(RegexLexer):
     operators = ['AND', 'EQV', 'IMP', 'NOT', 'OR', 'XOR']
 
     statements = [
-                 'BEEP', 'BLOAD', 'BSAVE', 'CALL', 'CALL_ABSOLUTE',
-                 'CALL_INTERRUPT', 'CALLS', 'CHAIN', 'CHDIR', 'CIRCLE', 'CLEAR',
-                 'CLOSE', 'CLS', 'COLOR', 'COM', 'COMMON', 'CONST', 'DATA',
-                 'DATE$', 'DECLARE', 'DEF_FN', 'DEF_SEG', 'DEFDBL', 'DEFINT',
-                 'DEFLNG', 'DEFSNG', 'DEFSTR', 'DEF', 'DIM', 'DO', 'LOOP',
-                 'DRAW', 'END', 'ENVIRON', 'ERASE', 'ERROR', 'EXIT', 'FIELD',
-                 'FILES', 'FOR', 'NEXT', 'FUNCTION', 'GET', 'GOSUB', 'GOTO',
-                 'IF', 'THEN', 'INPUT', 'INPUT_#', 'IOCTL', 'KEY', 'KEY',
-                 'KILL', 'LET', 'LINE', 'LINE_INPUT', 'LINE_INPUT_#', 'LOCATE',
-                 'LOCK', 'UNLOCK', 'LPRINT', 'LSET', 'MID$', 'MKDIR', 'NAME',
-                 'ON_COM', 'ON_ERROR', 'ON_KEY', 'ON_PEN', 'ON_PLAY',
-                 'ON_STRIG', 'ON_TIMER', 'ON_UEVENT', 'ON', 'OPEN', 'OPEN_COM',
-                 'OPTION_BASE', 'OUT', 'PAINT', 'PALETTE', 'PCOPY', 'PEN',
-                 'PLAY', 'POKE', 'PRESET', 'PRINT', 'PRINT_#', 'PRINT_USING',
-                 'PSET', 'PUT', 'PUT', 'RANDOMIZE', 'READ', 'REDIM', 'REM',
-                 'RESET', 'RESTORE', 'RESUME', 'RETURN', 'RMDIR', 'RSET', 'RUN',
-                 'SCREEN', 'SEEK', 'SELECT_CASE', 'SHARED', 'SHELL', 'SLEEP',
-                 'SOUND', 'STATIC', 'STOP', 'STRIG', 'SUB', 'SWAP', 'SYSTEM',
-                 'TIME$', 'TIMER', 'TROFF', 'TRON', 'TYPE', 'UEVENT', 'UNLOCK',
-                 'VIEW', 'WAIT', 'WHILE', 'WEND', 'WIDTH', 'WINDOW', 'WRITE'
+        'BEEP', 'BLOAD', 'BSAVE', 'CALL', 'CALL ABSOLUTE',
+        'CALL INTERRUPT', 'CALLS', 'CHAIN', 'CHDIR', 'CIRCLE', 'CLEAR',
+        'CLOSE', 'CLS', 'COLOR', 'COM', 'COMMON', 'CONST', 'DATA',
+        'DATE$', 'DECLARE', 'DEF FN', 'DEF SEG', 'DEFDBL', 'DEFINT',
+        'DEFLNG', 'DEFSNG', 'DEFSTR', 'DEF', 'DIM', 'DO', 'LOOP',
+        'DRAW', 'END', 'ENVIRON', 'ERASE', 'ERROR', 'EXIT', 'FIELD',
+        'FILES', 'FOR', 'NEXT', 'FUNCTION', 'GET', 'GOSUB', 'GOTO',
+        'IF', 'THEN', 'INPUT', 'INPUT #', 'IOCTL', 'KEY', 'KEY',
+        'KILL', 'LET', 'LINE', 'LINE INPUT', 'LINE INPUT #', 'LOCATE',
+        'LOCK', 'UNLOCK', 'LPRINT', 'LSET', 'MID$', 'MKDIR', 'NAME',
+        'ON COM', 'ON ERROR', 'ON KEY', 'ON PEN', 'ON PLAY',
+        'ON STRIG', 'ON TIMER', 'ON UEVENT', 'ON', 'OPEN', 'OPEN COM',
+        'OPTION BASE', 'OUT', 'PAINT', 'PALETTE', 'PCOPY', 'PEN',
+        'PLAY', 'POKE', 'PRESET', 'PRINT', 'PRINT #', 'PRINT USING',
+        'PSET', 'PUT', 'PUT', 'RANDOMIZE', 'READ', 'REDIM', 'REM',
+        'RESET', 'RESTORE', 'RESUME', 'RETURN', 'RMDIR', 'RSET', 'RUN',
+        'SCREEN', 'SEEK', 'SELECT CASE', 'SHARED', 'SHELL', 'SLEEP',
+        'SOUND', 'STATIC', 'STOP', 'STRIG', 'SUB', 'SWAP', 'SYSTEM',
+        'TIME$', 'TIMER', 'TROFF', 'TRON', 'TYPE', 'UEVENT', 'UNLOCK',
+        'VIEW', 'WAIT', 'WHILE', 'WEND', 'WIDTH', 'WINDOW', 'WRITE'
     ]
 
     keywords = [
-                 'ACCESS', 'ALIAS', 'ANY', 'APPEND', 'AS', 'BASE', 'BINARY',
-                 'BYVAL', 'CASE', 'CDECL', 'DOUBLE', 'ELSE', 'ELSEIF', 'ENDIF',
-                 'INTEGER', 'IS', 'LIST', 'LOCAL', 'LONG', 'LOOP', 'MOD',
-                 'NEXT', 'OFF', 'ON', 'OUTPUT', 'RANDOM', 'SIGNAL', 'SINGLE',
-                 'STEP', 'STRING', 'THEN', 'TO', 'UNTIL', 'USING', 'WEND'
+        'ACCESS', 'ALIAS', 'ANY', 'APPEND', 'AS', 'BASE', 'BINARY',
+        'BYVAL', 'CASE', 'CDECL', 'DOUBLE', 'ELSE', 'ELSEIF', 'ENDIF',
+        'INTEGER', 'IS', 'LIST', 'LOCAL', 'LONG', 'LOOP', 'MOD',
+        'NEXT', 'OFF', 'ON', 'OUTPUT', 'RANDOM', 'SIGNAL', 'SINGLE',
+        'STEP', 'STRING', 'THEN', 'TO', 'UNTIL', 'USING', 'WEND'
     ]
 
     tokens = {
@@ -125,19 +128,23 @@ class QBasicLexer(RegexLexer):
             (r'[\w]+', Name.Variable.Global),
         ],
         'declarations': [
-            (r'\b(%s)\b' % '|'.join(declarations), Keyword.Declaration),
+            (r'\b(%s)\b' % '|'.join(map(re.escape, declarations)),
+             Keyword.Declaration),
         ],
         'functions': [
-            (r'\b(%s)\b' % '|'.join(functions), Keyword.Reserved),
+            (r'\b(%s)\b' % '|'.join(map(re.escape, functions)),
+             Keyword.Reserved),
         ],
         'metacommands': [
-            (r'\b(%s)\b' % '|'.join(metacommands), Keyword.Constant),
+            (r'\b(%s)\b' % '|'.join(map(re.escape, metacommands)),
+             Keyword.Constant),
         ],
         'operators': [
-            (r'\b(%s)\b' % '|'.join(operators), Operator.Word),
+            (r'\b(%s)\b' % '|'.join(map(re.escape, operators)), Operator.Word),
         ],
         'statements': [
-            (r'\b(%s)\b' % '|'.join(statements).replace('_',' '), Keyword.Reserved),
+            (r'\b(%s)\b' % '|'.join(map(re.escape, statements)),
+             Keyword.Reserved),
         ],
         'keywords': [
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
