@@ -66,7 +66,6 @@ MATCH (a)-[:ACTED_IN]->(m)
 WITH a,count(m) as Movies
 RETURN a.name as Actor, Movies ORDER BY Movies;
 
---does not work
 START keanu=node:node_auto_index(name="Keanu Reeves"),actor
 MATCH past=(keanu)-[:ACTED_IN]->()<-[:ACTED_IN]-(),
       actors=(actor)-[:ACTED_IN]->()
@@ -117,3 +116,8 @@ MATCH p=shortestPath((charlize)-[:KNOWS*]->(bacon))
 RETURN extract(n in nodes(p) | n.name)[1];
 
 START actors=node:
+
+MATCH (alice)-[:`REALLY LIKES`]->(bob)
+MATCH (alice)-[:`REALLY ``LIKES```]->(bob)
+myFancyIdentifier.`(weird property name)`
+"string\t\n\b\f\\\''\""
