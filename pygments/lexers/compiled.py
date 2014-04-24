@@ -1391,7 +1391,9 @@ def objective(baselexer):
                 (r'@0x[0-9a-fA-F]+[Ll]?', Number.Hex),
                 (r'@0[0-7]+[Ll]?', Number.Oct),
                 (r'@\d+[Ll]?', Number.Integer),
-                (r'@\([^()]+\)', Number),
+                (r'@\(', Literal, 'literal_number'),
+                (r'@\[', Literal, 'literal_array'),
+                (r'@\{', Literal, 'literal_dictionary'),
                 (r'(@selector|@private|@protected|@public|@encode|'
                  r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
                  r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong|'
@@ -1465,6 +1467,30 @@ def objective(baselexer):
                 (';', Punctuation, '#pop'),
                 ('{', Punctuation, 'function'),
                 ('', Text, '#pop'),
+            ],
+            'literal_number': [
+                (r'\(', Punctuation, 'literal_number_inner'),
+                (r'\)', Literal, '#pop'),
+                include('statement'),
+            ],
+            'literal_number_inner': [
+                (r'\(', Punctuation, '#push'),
+                (r'\)', Punctuation, '#pop'),
+                include('statement'),
+            ],
+            'literal_array': [
+                (r'\[', Punctuation, 'literal_array_inner'),
+                (r'\]', Literal, '#pop'),
+                include('statement'),
+            ],
+            'literal_array_inner': [
+                (r'\[', Punctuation, '#push'),
+                (r'\]', Punctuation, '#pop'),
+                include('statement'),
+            ],
+            'literal_dictionary': [
+                (r'\}', Literal, '#pop'),
+                include('statement'),
             ],
         }
 
