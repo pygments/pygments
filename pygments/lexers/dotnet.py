@@ -459,6 +459,11 @@ class VbNetLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        if re.search(r'^\s*#If', text, re.I) or re.search(r'^\s*(Module|Namespace)', re.I):
+            return 0.5
+
+
 
 class GenericAspxLexer(RegexLexer):
     """
