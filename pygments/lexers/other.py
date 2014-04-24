@@ -4183,6 +4183,8 @@ class PanLexer(RegexLexer):
     Lexer for `pan <http://github.com/quattor/pan/>`_ source files.
 
     Based on tcsh lexer.
+
+    .. versionadded:: 2.0
     """
 
     name = 'Pan'
@@ -4210,17 +4212,18 @@ class PanLexer(RegexLexer):
              r'to_boolean|to_double|to_long|to_string|clone|delete|exists|'
              r'path_exists|if_exists|return|value)\s*\b',
              Name.Builtin),
-            (r'#.*\n', Comment),
+            (r'#.*', Comment),
             (r'\\[\w\W]', String.Escape),
             (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
             (r'[\[\]{}()=]+', Operator),
             (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
+            (r';', Punctuation),
         ],
         'data': [
             (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
             (r"(?s)'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
             (r'\s+', Text),
-            (r'[^=\s\[\]{}()$"\'`\\]+', Text),
+            (r'[^=\s\[\]{}()$"\'`\\;#]+', Text),
             (r'\d+(?= |\Z)', Number),
         ],
         'curly': [
