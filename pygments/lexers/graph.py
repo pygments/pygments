@@ -11,9 +11,9 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups
+from pygments.lexer import RegexLexer, include, bygroups, using, this
 from pygments.token import Keyword, Punctuation, Text, Comment, Operator, Name,\
-String, Number, Generic
+    String, Number, Generic, Whitespace
 
 
 __all__ = ['CypherLexer']
@@ -31,6 +31,7 @@ class CypherLexer(RegexLexer):
     name = 'Cypher'
     aliases = ['cypher']
     filenames = ['*.cyp','*.cypher']
+
     flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {
@@ -39,7 +40,9 @@ class CypherLexer(RegexLexer):
             include('keywords'),
             include('clauses'),
             include('relations'),
-            include('strings')
+            include('strings'),
+            include('whitespace'),
+            include('barewords'),
             ],
         'comment': [
             (r'^.*//.*\n', Comment.Single),
@@ -55,12 +58,23 @@ class CypherLexer(RegexLexer):
              Keyword),
         ],
         'relations': [
-            (r'-->|-\[.*\]->|<-\[.*\]-|<--|\[|\]', Operator),
+            (r'(-\[)(.*?)(\]->)', bygroups(Operator, using(this), Operator)),
+            (r'(<-\[)(.*?)(\]-)', bygroups(Operator, using(this), Operator)),
+            (r'-->|<--|\[|\]', Operator),
             (r'<|>|<>|=|<=|=>|\(|\)|\||:|,|;', Punctuation),
+            (r'[.*{}]', Punctuation),
         ],
         'strings': [
-            (r'\".*\"', String),
-        ]
+            (r'"(?:\\[tbnrf\'\"\\]|[^\\"])*"', String),
+            (r'`(?:``|[^`])+`', Name.Variable),
+        ],
+        'whitespace': [
+            (r'\s+', Whitespace),
+        ],
+        'barewords': [
+            (r'[a-z][a-zA-Z0-9_]*', Name),
+            (r'\d+', Number),
+        ],
     }
 
 
