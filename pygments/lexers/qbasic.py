@@ -85,6 +85,8 @@ class QBasicLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'\n+', Text),
+            (r'\s+', Text.Whitespace),
             (r'^(\s*)(\d*)(\s*)(REM .*)$',
              bygroups(Text.Whitespace, Name.Label, Text.Whitespace,
              Comment.Single)),
@@ -93,7 +95,8 @@ class QBasicLexer(RegexLexer):
             (r'(?=[\s]*)(\w+)(?=[\s]*=)', Name.Variable.Global),
             (r'(?=[^"]*)\'.*$', Comment.Single),
             (r'"[^\n\"]*"', String.Double),
-            (r'END (FUNCTION|IF|SELECT|SUB)', Keyword.Reserved),
+            (r'(END)(\s+)(FUNCTION|IF|SELECT|SUB)',
+             bygroups(Keyword.Reserved, Text.Whitespace, Keyword.Reserved)),
             (r'(DECLARE)(\s+)([A-Z]+)(\s+)(\S+)',
              bygroups(Keyword.Declaration, Text.Whitespace, Name.Variable,
              Text.Whitespace, Name)),
@@ -109,6 +112,12 @@ class QBasicLexer(RegexLexer):
              bygroups(Keyword.Reserved, Text.Whitespace, Name.Label)),
             (r'(SUB)(\s+)(\w+\:?)',
              bygroups(Keyword.Reserved, Text.Whitespace, Name.Label)),
+            include('declarations'),
+            include('functions'),
+            include('metacommands'),
+            include('operators'),
+            include('statements'),
+            include('keywords'),
             (r'[a-zA-Z_]\w*[\$@#&!]', Name.Variable.Global),
             (r'[a-zA-Z_]\w*\:', Name.Label),
             (r'\-?\d*\.\d+[@|#]?', Number.Float),
@@ -116,31 +125,24 @@ class QBasicLexer(RegexLexer):
             (r'\-?\d+#?', Number.Integer.Long),
             (r'\-?\d+#?', Number.Integer),
             (r'!=|==|:=|\.=|<<|>>|[-~+/\\*%=<>&^|?:!.]', Operator),
-            include('declarations'),
-            include('functions'),
-            include('metacommands'),
-            include('operators'),
-            include('statements'),
-            include('keywords'),
             (r'[\[\]{}(),;]', Punctuation),
-            (r'[\n]+', Text),
-            (r'[\s]+', Text.Whitespace),
             (r'[\w]+', Name.Variable.Global),
         ],
+        # can't use regular \b because of X$()
         'declarations': [
-            (r'\b(%s)\b' % '|'.join(map(re.escape, declarations)),
+            (r'\b(%s)(?=\(|\b)' % '|'.join(map(re.escape, declarations)),
              Keyword.Declaration),
         ],
         'functions': [
-            (r'\b(%s)\b' % '|'.join(map(re.escape, functions)),
+            (r'\b(%s)(?=\(|\b)' % '|'.join(map(re.escape, functions)),
              Keyword.Reserved),
         ],
         'metacommands': [
-            (r'\b(%s)\b' % '|'.join(map(re.escape, metacommands)),
+            (r'\b(%s)(?=\(|\b)' % '|'.join(map(re.escape, metacommands)),
              Keyword.Constant),
         ],
         'operators': [
-            (r'\b(%s)\b' % '|'.join(map(re.escape, operators)), Operator.Word),
+            (r'\b(%s)(?=\(|\b)' % '|'.join(map(re.escape, operators)), Operator.Word),
         ],
         'statements': [
             (r'\b(%s)\b' % '|'.join(map(re.escape, statements)),
