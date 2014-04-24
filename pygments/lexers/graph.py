@@ -41,17 +41,26 @@ class CypherLexer(RegexLexer):
             include('relations'),
             include('strings')
             ],
-        'comment': [(r'^.*//.*\n', Comment.Single)],
+        'comment': [
+            (r'^.*//.*\n', Comment.Single),
+        ],
         'keywords': [
             (r'create|order|match|limit|set|skip|start|return|with|where|delete'
-             r'|foreach|not| by ', Keyword)],
-        'clauses': [(r' all | any | as | asc |create|create unique|delete|'
-                     r'desc |distinct|foreach| in |is null|limit|match|none|'
-                     r'order by|return|set|skip|single|start|union|where|with',
-                     Keyword)],
-        'relations': [(r'-->|-\[.*\]->|<-\[.*\]-|<--|\[|\]', Operator),
-                      (r'<|>|<>|=|<=|=>|\(|\)|\||:|,|;', Punctuation)],
-        'strings': [(r'\".*\"', String)]
-        }
+             r'|foreach|not| by ', Keyword),
+        ],
+        'clauses': [
+            (r' all | any | as | asc |create|create unique|delete|'
+             r'desc |distinct|foreach| in |is null|limit|match|none|'
+             r'order by|return|set|skip|single|start|union|where|with',
+             Keyword),
+        ],
+        'relations': [
+            (r'-->|-\[.*\]->|<-\[.*\]-|<--|\[|\]', Operator),
+            (r'<|>|<>|=|<=|=>|\(|\)|\||:|,|;', Punctuation),
+        ],
+        'strings': [
+            (r'\".*\"', String),
+        ]
+    }
 
 
