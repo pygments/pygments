@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+from math import floor
 from pygments.formatter import Formatter
 from pygments.util import get_int_opt
 
@@ -72,30 +73,45 @@ class RtfFormatter(Formatter):
         if not text:
             return ''
 
+        def calculate_surrogate_pair(cn):
+            """Calculate the surrogate pair of character.
+
+            Given a unicode character code
+            with length greater than 16 bits,
+            return the two 16 bit surrogate pair.
+            From example D28 of:
+            http://www.unicode.org/book/ch03.pdf
+            """
+            if (2**16) <= cn:
+                h = floor((cn - 0x10000) / 0x400) + 0xD800
+                l = ((cn - 0x10000) % 0x400) + 0xDC00
+                return h,l
+            else:
+                return cn
+
         # escape text
         text = self._escape(text)
-        if self.encoding in ('utf-8', 'utf-16', 'utf-32'):
-            encoding = 'iso-8859-15'
-        else:
-            encoding = self.encoding or 'iso-8859-15'
 
         buf = []
         for c in text:
-            if ord(c) > 128:
-                ansic = c.encode(encoding, 'ignore')
-                if ansic and ord(ansic) > 128:
-                    ansic = '\\\'%x' % ord(ansic)
-                else:
-                    ansic = '?'
-                buf.append(r'\ud{\u%d%s}' % (ord(c), ansic))
-            else:
+            cn = ord(c)
+            if cn < (2**7):
+                # ASCII character
                 buf.append(str(c))
+            elif (2**7) <= cn < (2**16):
+                # single unicode escape sequence
+                buf.append(r'{\u%d}' % cn)
+            elif (2**16) <= cn:
+                # RTF limits unicode to 16 bits
+                # surrogates enforced
+                for uc in calculate_surrogate_pair(cn):
+                    buf.append(r'{\u%i}' % uc)
 
         return ''.join(buf).replace('\n', '\\par\n')
 
     def format_unencoded(self, tokensource, outfile):
         # rtf 1.8 header
-        outfile.write(r'{\rtf1\ansi\deff0'
+        outfile.write(r'{\rtf1\ansi\uc0\deff0'
                       r'{\fonttbl{\f0\fmodern\fprq1\fcharset0%s;}}'
                       r'{\colortbl;' % (self.fontface and
                                         ' ' + self._escape(self.fontface) or
@@ -114,7 +130,7 @@ class RtfFormatter(Formatter):
                         int(color[4:6], 16)
                     ))
                     offset += 1
-        outfile.write(r'}\f0')
+        outfile.write(r'}\f0 ')
         if self.fontsize:
             outfile.write(r'\fs%d' % (self.fontsize))
 
