@@ -1,4 +1,11 @@
 <!--- cfcomment --->
+<!--- nested <!--- cfcomment ---> --->
+<!--- multi-line
+nested
+<!---
+cfcomment
+--->
+--->
 <!-- html comment -->
 <html>
 <head>
