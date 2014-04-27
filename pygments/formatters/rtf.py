@@ -105,7 +105,7 @@ class RtfFormatter(Formatter):
                 # RTF limits unicode to 16 bits
                 # surrogates enforced
                 for uc in calculate_surrogate_pair(cn):
-                    buf.append(r'{\u%i}' % uc)
+                    buf.append(r'{\u%d}' % uc)
 
         return ''.join(buf).replace('\n', '\\par\n')
 
