@@ -9,7 +9,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from math import floor
 from pygments.formatter import Formatter
 from pygments.util import get_int_opt
 
@@ -82,8 +81,9 @@ class RtfFormatter(Formatter):
             From example D28 of:
             http://www.unicode.org/book/ch03.pdf
             """
+            cn = int(cn)
             if (2**16) <= cn:
-                h = floor((cn - 0x10000) / 0x400) + 0xD800
+                h = ((cn - 0x10000) / 0x400) + 0xD800
                 l = ((cn - 0x10000) % 0x400) + 0xDC00
                 return h,l
             else:
