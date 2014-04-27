@@ -1866,7 +1866,7 @@ class GherkinLexer(RegexLexer):
 
     tokens = {
         'comments': [
-            (r'#.*$', Comment),
+            (r'^\s*#.*$', Comment),
           ],
         'feature_elements' : [
             (step_keywords, Keyword, "step_content_stack"),
@@ -1895,6 +1895,7 @@ class GherkinLexer(RegexLexer):
           ],
         'narrative': [
             include('scenario_sections_on_stack'),
+            include('comments'),
             (r"(\s|.)", Name.Function),
           ],
         'table_vars': [
