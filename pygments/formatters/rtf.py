@@ -22,6 +22,10 @@ class RtfFormatter(Formatter):
     documents with color information and other useful stuff. Perfect for Copy and
     Paste into Microsoft® Word® documents.
 
+    Please note that ``encoding`` and ``outencoding`` options are ignored.
+    The RTF format is ASCII natively, but handles unicode characters correctly
+    thanks to escape sequences.
+
     .. versionadded:: 0.6
 
     Additional options accepted:
