@@ -76,7 +76,6 @@ class RtfFormatter(Formatter):
         if not text:
             return ''
 
-
         # escape text
         text = self._escape(text)
 
