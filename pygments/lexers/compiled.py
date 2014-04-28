@@ -1407,7 +1407,7 @@ def objective(baselexer):
                 # Carbon types
                 (r'(Boolean|UInt8|SInt8|UInt16|SInt16|UInt32|SInt32)\b', Keyword.Type),
                 # Carbon built-ins
-                (r'@(TRUE|FALSE)\n', Name.Builtin),
+                (r'(TRUE|FALSE)\b', Name.Builtin),
                 (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
