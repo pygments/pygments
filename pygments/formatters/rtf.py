@@ -72,22 +72,6 @@ class RtfFormatter(Formatter):
         if not text:
             return ''
 
-        def calculate_surrogate_pair(cn):
-            """Calculate the surrogate pair of character.
-
-            Given a unicode character code
-            with length greater than 16 bits,
-            return the two 16 bit surrogate pair.
-            From example D28 of:
-            http://www.unicode.org/book/ch03.pdf
-            """
-            cn = int(cn)
-            if (2**16) <= cn:
-                h = ((cn - 0x10000) / 0x400) + 0xD800
-                l = ((cn - 0x10000) % 0x400) + 0xDC00
-                return h,l
-            else:
-                return cn
 
         # escape text
         text = self._escape(text)
@@ -102,10 +86,16 @@ class RtfFormatter(Formatter):
                 # single unicode escape sequence
                 buf.append(r'{\u%d}' % cn)
             elif (2**16) <= cn:
-                # RTF limits unicode to 16 bits
-                # surrogates enforced
-                for uc in calculate_surrogate_pair(cn):
-                    buf.append(r'{\u%d}' % uc)
+                # RTF limits unicode to 16 bits.
+                # Given a unicode character code
+                # with length greater than 16 bits,
+                # print the two 16 bit surrogate pair.
+                # From example D28 of:
+                # http://www.unicode.org/book/ch03.pdf
+                h = ((cn - 0x10000) / 0x400) + 0xD800
+                l = ((cn - 0x10000) % 0x400) + 0xDC00
+                buf.append(r'{\u%d}' % h)
+                buf.append(r'{\u%d}' % l)
 
         return ''.join(buf).replace('\n', '\\par\n')
 
