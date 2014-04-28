@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    Pygments LaTeX formatter tests
+    Pygments RTF formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
