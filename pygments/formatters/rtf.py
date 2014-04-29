@@ -97,8 +97,7 @@ class RtfFormatter(Formatter):
                 # http://www.unicode.org/book/ch03.pdf
                 h = ((cn - 0x10000) / 0x400) + 0xD800
                 l = ((cn - 0x10000) % 0x400) + 0xDC00
-                buf.append(r'{\u%d}' % h)
-                buf.append(r'{\u%d}' % l)
+                buf.append(r'{\u%d}{\u%d}' % (h,l))
 
         return ''.join(buf).replace('\n', '\\par\n')
 
