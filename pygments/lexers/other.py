@@ -4323,7 +4323,7 @@ class RedLexer(RegexLexer):
             (r'#{[0-9a-fA-F\s]*}', Number.Hex),
             (r'2#{', Number.Hex, 'bin2'),
             (r'64#{[0-9a-zA-Z+/=\s]*}', Number.Hex),
-			(r'([0-9a-fA-F]+)(h)((\s)|(?=[\[\]{}""\(\)]))',  bygroups(Number.Hex, Name.Variable, Whitespace)),
+            (r'([0-9a-fA-F]+)(h)((\s)|(?=[\[\]{}""\(\)]))',  bygroups(Number.Hex, Name.Variable, Whitespace)),
             (r'"', String, 'string'),
             (r'{', String, 'string2'),
             (r';#+.*\n', Comment.Special),
