@@ -285,6 +285,7 @@ LEXERS = {
     'RdLexer': ('pygments.lexers.math', 'Rd', ('rd',), ('*.Rd',), ('text/x-r-doc',)),
     'RebolLexer': ('pygments.lexers.other', 'REBOL', ('rebol',), ('*.r', '*.r3'), ('text/x-rebol',)),
     'RedcodeLexer': ('pygments.lexers.other', 'Redcode', ('redcode',), ('*.cw',), ()),
+    'RedLexer': ('pygments.lexers.other', 'Red', ('red','red/system'), ('*.red', '*.reds'), ('text/x-red','text/x-red-system',)),
     'RegeditLexer': ('pygments.lexers.text', 'reg', ('registry',), ('*.reg',), ('text/x-windows-registry',)),
     'RexxLexer': ('pygments.lexers.other', 'Rexx', ('rexx', 'arexx'), ('*.rexx', '*.rex', '*.rx', '*.arexx'), ('text/x-rexx',)),
     'RhtmlLexer': ('pygments.lexers.templates', 'RHTML', ('rhtml', 'html+erb', 'html+ruby'), ('*.rhtml',), ('text/html+ruby',)),
