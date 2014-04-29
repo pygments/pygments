@@ -4245,7 +4245,7 @@ class RedLexer(RegexLexer):
     """
     A `Red-language <http://www.red-lang.org/>`_ lexer.
 
-    *New in Pygments 1.6.*
+    .. versionadded:: 2.0
     """
     name = 'Red'
     aliases = ['red', 'red/system']
@@ -4253,8 +4253,6 @@ class RedLexer(RegexLexer):
     mimetypes = ['text/x-red', 'text/x-red-system']
 
     flags = re.IGNORECASE | re.MULTILINE
-
-    re.IGNORECASE
 
     escape_re = r'(?:\^\([0-9a-fA-F]{1,4}\)*)'
 
