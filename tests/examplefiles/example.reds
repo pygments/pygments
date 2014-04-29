@@ -84,9 +84,13 @@ date!: alias struct! [
  #{00FF0000	FF000000} ;with tab instead of space
  2#{00001111}
  64#{/wAAAA==}
- 64#{/wAAA A==} ;with space inside
+ 64#{/wAAA A==} ;with space	 inside
  64#{/wAAA	A==} ;with tab inside
  
+ 
+ ;string with char
+ {bla ^(ff) foo}
+ {bla ^(( foo}
  ;some numbers:
  12
  1'000
