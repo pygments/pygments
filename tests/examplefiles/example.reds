@@ -78,6 +78,15 @@ date!: alias struct! [
  10-1-2013
  quit
  
+ ;binary:
+ #{00FF0000}
+ #{00FF0000 FF000000}
+ #{00FF0000	FF000000} ;with tab instead of space
+ 2#{00001111}
+ 64#{/wAAAA==}
+ 64#{/wAAA A==} ;with space inside
+ 64#{/wAAA	A==} ;with tab inside
+ 
  ;some numbers:
  12
  1'000
