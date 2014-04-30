@@ -37,7 +37,8 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'MscgenLexer', 'KconfigLexer', 'VGLLexer', 'SourcePawnLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
            'CbmBasicV2Lexer', 'AutoItLexer', 'RexxLexer', 'APLLexer',
-           'LSLLexer', 'AmbientTalkLexer', 'PawnLexer', 'VCTreeStatusLexer']
+           'LSLLexer', 'AmbientTalkLexer', 'PawnLexer', 'VCTreeStatusLexer',
+           'RslLexer', 'PanLexer', 'RedLexer']
 
 
 class LSLLexer(RegexLexer):
@@ -1865,7 +1866,7 @@ class GherkinLexer(RegexLexer):
 
     tokens = {
         'comments': [
-            (r'#.*$', Comment),
+            (r'^\s*#.*$', Comment),
           ],
         'feature_elements' : [
             (step_keywords, Keyword, "step_content_stack"),
@@ -1894,6 +1895,7 @@ class GherkinLexer(RegexLexer):
           ],
         'narrative': [
             include('scenario_sections_on_stack'),
+            include('comments'),
             (r"(\s|.)", Name.Function),
           ],
         'table_vars': [
@@ -4117,4 +4119,310 @@ class VCTreeStatusLexer(RegexLexer):
             (r'      >\s+.*\n', Comment.Preproc),
             (r'.*\n', Text)
         ]
+    }
+
+
+class RslLexer(RegexLexer):
+    """
+    `RSL <http://en.wikipedia.org/wiki/RAISE>`_ is the formal specification
+    language used in RAISE (Rigorous Approach to Industrial Software Engineering)
+    method. 
+
+    .. versionadded:: 2.0
+    """
+    name = 'RSL'
+    aliases = ['rsl']
+    filenames = ['*.rsl']
+    mimetypes = ['text/rsl']
+
+    flags = re.MULTILINE | re.DOTALL
+
+    tokens = {
+        'root':[
+            (r'\b(Bool|Char|Int|Nat|Real|Text|Unit|abs|all|always|any|as|'
+             r'axiom|card|case|channel|chaos|class|devt_relation|dom|elems|'
+             r'else|elif|end|exists|extend|false|for|hd|hide|if|in|is|inds|'
+             r'initialise|int|inter|isin|len|let|local|ltl_assertion|object|'
+             r'of|out|post|pre|read|real|rng|scheme|skip|stop|swap|then|'
+             r'thoery|test_case|tl|transition_system|true|type|union|until|'
+             r'use|value|variable|while|with|write|~isin|-inflist|-infset|'
+             r'-list|-set)\b', Keyword),
+            (r'(variable|value)\b', Keyword.Declaration),
+            (r'--.*?\n', Comment),
+            (r'<:.*?:>', Comment),
+            (r'\{!.*?!\}', Comment),
+            (r'/\*.*?\*/', Comment),
+            (r'^[ \t]*([\w]+)[ \t]*:[^:]', Name.Function),
+            (r'(^[ \t]*)([\w]+)([ \t]*\([\w\s,]*\)[ \t]*)(is|as)',
+             bygroups(Text, Name.Function, Text, Keyword)),
+            (r'\b[A-Z]\w*\b',Keyword.Type),
+            (r'(true|false)\b', Keyword.Constant),
+            (r'".*"',String),
+            (r'\'.\'',String.Char),
+            (r'(><|->|-m->|/\\|<=|<<=|<\.|\|\||\|\^\||-~->|-~m->|\\/|>=|>>|'
+             r'\.>|\+\+|-\\|<->|=>|:-|~=|\*\*|<<|>>=|\+>|!!|\|=\||#)',
+             Operator),
+            (r'[0-9]+\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-f]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'.', Text),
+       ],
+   }
+
+    def analyse_text(text):
+        """ 
+        Check for the most common text in the beginning of a RSL file.
+        """
+        if re.search(r'scheme\s*.*?=\s*class\s*type', text, re.I) is not None:
+            return 1.0
+        else:
+            return 0.01
+
+
+class PanLexer(RegexLexer):
+    """
+    Lexer for `pan <http://github.com/quattor/pan/>`_ source files.
+
+    Based on tcsh lexer.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'Pan'
+    aliases = ['pan']
+    filenames = ['*.pan']
+
+    tokens = {
+        'root': [
+            include('basic'),
+            (r'\(', Keyword, 'paren'),
+            (r'{', Keyword, 'curly'),
+            include('data'),
+        ],
+        'basic': [
+            (r'\b(if|for|with|else|type|bind|while|valid|final|prefix|unique|'
+             r'object|foreach|include|template|function|variable|structure|'
+             r'extensible|declaration)\s*\b',
+             Keyword),
+            (r'\b(file_contents|format|index|length|match|matches|replace|'
+             r'splice|split|substr|to_lowercase|to_uppercase|debug|error|'
+             r'traceback|deprecated|base64_decode|base64_encode|digest|escape|'
+             r'unescape|append|create|first|nlist|key|length|list|merge|next|'
+             r'prepend|splice|is_boolean|is_defined|is_double|is_list|is_long|'
+             r'is_nlist|is_null|is_number|is_property|is_resource|is_string|'
+             r'to_boolean|to_double|to_long|to_string|clone|delete|exists|'
+             r'path_exists|if_exists|return|value)\s*\b',
+             Name.Builtin),
+            (r'#.*', Comment),
+            (r'\\[\w\W]', String.Escape),
+            (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
+            (r'[\[\]{}()=]+', Operator),
+            (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
+            (r';', Punctuation),
+        ],
+        'data': [
+            (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
+            (r"(?s)'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
+            (r'\s+', Text),
+            (r'[^=\s\[\]{}()$"\'`\\;#]+', Text),
+            (r'\d+(?= |\Z)', Number),
+        ],
+        'curly': [
+            (r'}', Keyword, '#pop'),
+            (r':-', Keyword),
+            (r'[a-zA-Z0-9_]+', Name.Variable),
+            (r'[^}:"\'`$]+', Punctuation),
+            (r':', Punctuation),
+            include('root'),
+        ],
+        'paren': [
+            (r'\)', Keyword, '#pop'),
+            include('root'),
+        ],
+    }
+    
+class RedLexer(RegexLexer):
+    """
+    A `Red-language <http://www.red-lang.org/>`_ lexer.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Red'
+    aliases = ['red', 'red/system']
+    filenames = ['*.red', '*.reds']
+    mimetypes = ['text/x-red', 'text/x-red-system']
+
+    flags = re.IGNORECASE | re.MULTILINE
+
+    escape_re = r'(?:\^\([0-9a-fA-F]{1,4}\)*)'
+
+    def word_callback(lexer, match):
+        word = match.group()
+
+        if re.match(".*:$", word):
+            yield match.start(), Generic.Subheading, word
+        elif re.match(
+            r'(if|unless|either|any|all|while|until|loop|repeat|'
+            r'foreach|forall|func|function|does|has|switch|'
+            r'case|reduce|compose|get|set|print|prin|equal\?|'
+            r'not-equal\?|strict-equal\?|lesser\?|greater\?|lesser-or-equal\?|'
+            r'greater-or-equal\?|same\?|not|type\?|stats|'
+            r'bind|union|replace|charset|routine)$', word):
+            yield match.start(), Name.Builtin, word
+        elif re.match(
+            r'(make|random|reflect|to|form|mold|absolute|add|divide|multiply|negate|'
+            r'power|remainder|round|subtract|even\?|odd\?|and~|complement|or~|xor~|'
+            r'append|at|back|change|clear|copy|find|head|head\?|index\?|insert|'
+            r'length\?|next|pick|poke|remove|reverse|select|sort|skip|swap|tail|tail\?|'
+            r'take|trim|create|close|delete|modify|open|open\?|query|read|rename|update|write)$', word):
+            yield match.start(), Name.Function, word
+        elif re.match(
+            r'(yes|on|no|off|true|false|tab|cr|lf|newline|escape|slash|sp|space|null|none|crlf|dot|null-byte)$', word):
+            yield match.start(), Name.Builtin.Pseudo, word
+        elif re.match(
+            r'(#system-global|#include|#enum|#define|#either|#if|#import|#export|#switch|#default|#get-definition)$', word):
+            yield match.start(), Keyword.Namespace, word
+        elif re.match(
+            r'(system|halt|quit|quit-return|do|load|q|recycle|call|run|ask|parse|raise-error|'
+            r'return|exit|break|alias|push|pop|probe|\?\?|spec-of|body-of|quote|forever)$', word):
+            yield match.start(), Name.Exception, word
+        elif re.match(
+            r'(action\?|block\?|char\?|datatype\?|file\?|function\?|get-path\?|zero\?|any-struct\?|'
+            r'get-word\?|integer\?|issue\?|lit-path\?|lit-word\?|logic\?|native\?|none\?|'
+            r'op\?|paren\?|path\?|refinement\?|set-path\?|set-word\?|string\?|unset\?|word\?|any-series\?)$', word):
+            yield match.start(), Keyword, word
+        elif re.match(r'(JNICALL|stdcall|cdecl|infix)$', word):
+            yield match.start(), Keyword.Namespace, word
+        elif re.match("to-.*", word):
+            yield match.start(), Keyword, word
+        elif re.match('(\+|-|\*|/|//|\*\*|and|or|xor|=\?|=|==|===|<>|<|>|<=|>=|<<|>>|<<<|>>>|%|-\*\*)$', word):
+            yield match.start(), Operator, word
+        elif re.match(".*\!$", word):
+            yield match.start(), Keyword.Type, word
+        elif re.match("'.*", word):
+            yield match.start(), Name.Variable.Instance, word # lit-word
+        elif re.match("#.*", word):
+            yield match.start(), Name.Label, word # issue
+        elif re.match("%.*", word):
+            yield match.start(), Name.Decorator, word # file
+        elif re.match(":.*", word):
+            yield match.start(), Generic.Subheading, word # get-word
+        else:
+            yield match.start(), Name.Variable, word
+
+    tokens = {
+        'root': [
+            (r'[^R]+', Comment),
+            (r'Red/System\s+\[', Generic.Strong, 'script'),
+            (r'Red\s+\[', Generic.Strong, 'script'),
+            (r'R', Comment)
+        ],
+        'script': [
+            (r'\s+', Text),
+            (r'#"', String.Char, 'char'),
+            (r'#{[0-9a-fA-F\s]*}', Number.Hex),
+            (r'2#{', Number.Hex, 'bin2'),
+            (r'64#{[0-9a-zA-Z+/=\s]*}', Number.Hex),
+            (r'([0-9a-fA-F]+)(h)((\s)|(?=[\[\]{}""\(\)]))',  bygroups(Number.Hex, Name.Variable, Whitespace)),
+            (r'"', String, 'string'),
+            (r'{', String, 'string2'),
+            (r';#+.*\n', Comment.Special),
+            (r';\*+.*\n', Comment.Preproc),
+            (r';.*\n', Comment),
+            (r'%"', Name.Decorator, 'stringFile'),
+            (r'%[^(\^{^")\s\[\]]+', Name.Decorator),
+            (r'[+-]?([a-zA-Z]{1,3})?\$\d+(\.\d+)?', Number.Float), # money
+            (r'[+-]?\d+\:\d+(\:\d+)?(\.\d+)?', String.Other), # time
+            (r'\d+[\-\/][0-9a-zA-Z]+[\-\/]\d+(\/\d+\:\d+((\:\d+)?'
+             r'([\.\d+]?([+-]?\d+:\d+)?)?)?)?', String.Other), # date
+            (r'\d+(\.\d+)+\.\d+', Keyword.Constant), # tuple
+            (r'\d+[xX]\d+', Keyword.Constant), # pair
+            (r'[+-]?\d+(\'\d+)?([\.,]\d*)?[eE][+-]?\d+', Number.Float),
+            (r'[+-]?\d+(\'\d+)?[\.,]\d*', Number.Float),
+            (r'[+-]?\d+(\'\d+)?', Number),
+            (r'[\[\]\(\)]', Generic.Strong),
+            (r'[a-zA-Z]+[^(\^{"\s:)]*://[^(\^{"\s)]*', Name.Decorator), # url
+            (r'mailto:[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator), # url
+            (r'[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator), # email
+            (r'comment\s', Comment, 'comment'),
+            (r'/[^(\^{^")\s/[\]]*', Name.Attribute),
+            (r'([^(\^{^")\s/[\]]+)(?=[:({"\s/\[\]])', word_callback),
+            (r'<[a-zA-Z0-9:._-]*>', Name.Tag),
+            (r'<[^(<>\s")]+', Name.Tag, 'tag'),
+            (r'([^(\^{^")\s]+)', Text),
+        ],
+        'string': [
+            (r'[^(\^")]+', String),
+            (escape_re, String.Escape),
+            (r'[\(|\)]+', String),
+            (r'\^.', String.Escape),
+            (r'"', String, '#pop'),
+        ],
+        'string2': [
+            (r'[^(\^{^})]+', String),
+            (escape_re, String.Escape),
+            (r'[\(|\)]+', String),
+            (r'\^.', String.Escape),
+            (r'{', String, '#push'),
+            (r'}', String, '#pop'),
+        ],
+        'stringFile': [
+            (r'[^(\^")]+', Name.Decorator),
+            (escape_re, Name.Decorator),
+            (r'\^.', Name.Decorator),
+            (r'"', Name.Decorator, '#pop'),
+        ],
+        'char': [
+            (escape_re + '"', String.Char, '#pop'),
+            (r'\^."', String.Char, '#pop'),
+            (r'."', String.Char, '#pop'),
+        ],
+        'tag': [
+            (escape_re, Name.Tag),
+            (r'"', Name.Tag, 'tagString'),
+            (r'[^(<>\r\n")]+', Name.Tag),
+            (r'>', Name.Tag, '#pop'),
+        ],
+        'tagString': [
+            (r'[^(\^")]+', Name.Tag),
+            (escape_re, Name.Tag),
+            (r'[\(|\)]+', Name.Tag),
+            (r'\^.', Name.Tag),
+            (r'"', Name.Tag, '#pop'),
+        ],
+        'tuple': [
+            (r'(\d+\.)+', Keyword.Constant),
+            (r'\d+', Keyword.Constant, '#pop'),
+        ],
+        'bin2': [
+            (r'\s+', Number.Hex),
+            (r'([0-1]\s*){8}', Number.Hex),
+            (r'}', Number.Hex, '#pop'),
+        ],
+        'comment': [
+            (r'"', Comment, 'commentString1'),
+            (r'{', Comment, 'commentString2'),
+            (r'\[', Comment, 'commentBlock'),
+            (r'[^(\s{\"\[]+', Comment, '#pop'),
+        ],
+        'commentString1': [
+            (r'[^(\^")]+', Comment),
+            (escape_re, Comment),
+            (r'[\(|\)]+', Comment),
+            (r'\^.', Comment),
+            (r'"', Comment, '#pop'),
+        ],
+        'commentString2': [
+            (r'[^(\^{^})]+', Comment),
+            (escape_re, Comment),
+            (r'[\(|\)]+', Comment),
+            (r'\^.', Comment),
+            (r'{', Comment, '#push'),
+            (r'}', Comment, '#pop'),
+        ],
+        'commentBlock': [
+            (r'\[', Comment, '#push'),
+            (r'\]', Comment, '#pop'),
+            (r'[^(\[\])]+', Comment),
+        ],
     }
