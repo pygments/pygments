@@ -11,7 +11,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator
+     Number, Operator, Literal
 
 
 class XcodeStyle(Style):
@@ -30,13 +30,13 @@ class XcodeStyle(Style):
 
         Operator:               '#000000',
 
-        Keyword:                '#AA0D92',
+        Keyword:                '#A90D91',
 
         Name:                   '#000000',
         Name.Attribute:         '#836C28',
-        Name.Class:             '#000000',
+        Name.Class:             '#3F6E75',
         Name.Function:          '#000000',
-        Name.Builtin:           '#AA0D92',
+        Name.Builtin:           '#A90D91',
         # In Obj-C code this token is used to colour Cocoa types
         Name.Builtin.Pseudo:    '#5B269A',
         Name.Variable:          '#000000',
@@ -45,6 +45,7 @@ class XcodeStyle(Style):
         # Workaround for a BUG here: lexer treats multiline method signatres as labels
         Name.Label:             '#000000',
 
-        Number:                 '#2300CE',
+        Literal:                '#1C01CE',
+        Number:                 '#1C01CE',
         Error:                  '#000000',
     }

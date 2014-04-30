@@ -1383,23 +1383,30 @@ def objective(baselexer):
         tokens = {
             'statements': [
                 (r'@"', String, 'string'),
+                (r'@(YES|NO)', Number),
                 (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
                 (r'@(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
                 (r'@(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
                 (r'@0x[0-9a-fA-F]+[Ll]?', Number.Hex),
                 (r'@0[0-7]+[Ll]?', Number.Oct),
                 (r'@\d+[Ll]?', Number.Integer),
-                (r'@\([^()]+\)', Number),
+                (r'@\(', Literal, 'literal_number'),
+                (r'@\[', Literal, 'literal_array'),
+                (r'@\{', Literal, 'literal_dictionary'),
                 (r'(@selector|@private|@protected|@public|@encode|'
                  r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
                  r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong|'
-                 r'weak|strong|retain|assign|unsafe_unretained|nonatomic|'
-                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|'
+                 r'weak|strong|copy|retain|assign|unsafe_unretained|atomic|nonatomic|'
+                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|release|class|'
                  r'@synthesize|@dynamic|@optional|@required|@autoreleasepool)\b', Keyword),
                 (r'(id|instancetype|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
                  Keyword.Type),
                 (r'@(true|false|YES|NO)\n', Name.Builtin),
                 (r'(YES|NO|nil|self|super)\b', Name.Builtin),
+                # Carbon types
+                (r'(Boolean|UInt8|SInt8|UInt16|SInt16|UInt32|SInt32)\b', Keyword.Type),
+                # Carbon built-ins
+                (r'(TRUE|FALSE)\b', Name.Builtin),
                 (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
@@ -1460,6 +1467,30 @@ def objective(baselexer):
                 ('{', Punctuation, 'function'),
                 ('', Text, '#pop'),
             ],
+            'literal_number': [
+                (r'\(', Punctuation, 'literal_number_inner'),
+                (r'\)', Literal, '#pop'),
+                include('statement'),
+            ],
+            'literal_number_inner': [
+                (r'\(', Punctuation, '#push'),
+                (r'\)', Punctuation, '#pop'),
+                include('statement'),
+            ],
+            'literal_array': [
+                (r'\[', Punctuation, 'literal_array_inner'),
+                (r'\]', Literal, '#pop'),
+                include('statement'),
+            ],
+            'literal_array_inner': [
+                (r'\[', Punctuation, '#push'),
+                (r'\]', Punctuation, '#pop'),
+                include('statement'),
+            ],
+            'literal_dictionary': [
+                (r'\}', Literal, '#pop'),
+                include('statement'),
+            ],
         }
 
         def analyse_text(text):
@@ -1479,7 +1510,7 @@ def objective(baselexer):
 
             for index, token, value in \
                 baselexer.get_tokens_unprocessed(self, text):
-                if token is Name:
+                if token is Name or token is Name.Class:
                     if value in COCOA_INTERFACES or value in COCOA_PROTOCOLS \
                        or value in COCOA_PRIMITIVES:
                         token = Name.Builtin.Pseudo
