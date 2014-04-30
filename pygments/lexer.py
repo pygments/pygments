@@ -18,7 +18,7 @@ from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
 
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
-           'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this']
+           'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this', 'default']
 
 
 _encoding_map = [(b'\xef\xbb\xbf', 'utf-8'),
@@ -383,6 +383,13 @@ def using(_other, **kwargs):
     return callback
 
 
+class default(str):
+    """
+    Indicates that a state should include rules from another state.
+    """
+    pass
+
+
 class RegexLexerMeta(LexerMeta):
     """
     Metaclass for RegexLexer, creates the self._tokens attribute from
@@ -451,6 +458,11 @@ class RegexLexerMeta(LexerMeta):
                 continue
             if isinstance(tdef, _inherit):
                 # processed already
+                continue
+            if isinstance(tdef, default):
+                new_state = cls._process_new_state(str(tdef),
+                                                   unprocessed, processed)
+                tokens.append((re.compile('').match, None, new_state))
                 continue
 
             assert type(tdef) is tuple, "wrong rule def %r" % tdef
@@ -582,11 +594,12 @@ class RegexLexer(Lexer):
             for rexmatch, action, new_state in statetokens:
                 m = rexmatch(text, pos)
                 if m:
-                    if type(action) is _TokenType:
-                        yield pos, action, m.group()
-                    else:
-                        for item in action(self, m):
-                            yield item
+                    if action is not None:
+                        if type(action) is _TokenType:
+                            yield pos, action, m.group()
+                        else:
+                            for item in action(self, m):
+                                yield item
                     pos = m.end()
                     if new_state is not None:
                         # state transition
