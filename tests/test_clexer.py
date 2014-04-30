@@ -28,7 +28,7 @@ class CLexerTest(unittest.TestCase):
                          Number.Float, Number.Float], code.split()):
             wanted.append(item)
             wanted.append((Text, ' '))
-        wanted = [(Text, '')] + wanted[:-1] + [(Text, '\n')]
+        wanted = wanted[:-1] + [(Text, '\n')]
         self.assertEqual(list(self.lexer.get_tokens(code)), wanted)
 
     def testSwitch(self):
@@ -44,15 +44,12 @@ class CLexerTest(unittest.TestCase):
         }
         '''
         expected = [
-            (Token.Text, u''),
             (Token.Keyword.Type, u'int'),
             (Token.Text, u' '),
             (Token.Name.Function, u'main'),
-            (Token.Text, u''),
             (Token.Punctuation, u'('),
             (Token.Punctuation, u')'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
             (Token.Punctuation, u'{'),
             (Token.Text, u'\n'),
             (Token.Text, u'    '),
@@ -83,7 +80,6 @@ class CLexerTest(unittest.TestCase):
             (Token.Text, u'\n'),
             (Token.Punctuation, u'}'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
 
@@ -100,15 +96,12 @@ class CLexerTest(unittest.TestCase):
         }
         '''
         expected = [
-            (Token.Text, u''),
             (Token.Keyword.Type, u'int'),
             (Token.Text, u' '),
             (Token.Name.Function, u'main'),
-            (Token.Text, u''),
             (Token.Punctuation, u'('),
             (Token.Punctuation, u')'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
             (Token.Punctuation, u'{'),
             (Token.Text, u'\n'),
             (Token.Text, u'    '),
@@ -141,7 +134,6 @@ class CLexerTest(unittest.TestCase):
             (Token.Text, u'\n'),
             (Token.Punctuation, u'}'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
 
@@ -154,15 +146,12 @@ class CLexerTest(unittest.TestCase):
         }
         '''
         expected = [
-            (Token.Text, u''),
             (Token.Keyword.Type, u'int'),
             (Token.Text, u' '),
             (Token.Name.Function, u'main'),
-            (Token.Text, u''),
             (Token.Punctuation, u'('),
             (Token.Punctuation, u')'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
             (Token.Punctuation, u'{'),
             (Token.Text, u'\n'),
             (Token.Name.Label, u'foo'),
@@ -176,7 +165,6 @@ class CLexerTest(unittest.TestCase):
             (Token.Text, u'\n'),
             (Token.Punctuation, u'}'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
 
@@ -189,15 +177,12 @@ class CLexerTest(unittest.TestCase):
         }
         '''
         expected = [
-            (Token.Text, u''),
             (Token.Keyword.Type, u'int'),
             (Token.Text, u' '),
             (Token.Name.Function, u'main'),
-            (Token.Text, u''),
             (Token.Punctuation, u'('),
             (Token.Punctuation, u')'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
             (Token.Punctuation, u'{'),
             (Token.Text, u'\n'),
             (Token.Name.Label, u'foo'),
@@ -212,7 +197,6 @@ class CLexerTest(unittest.TestCase):
             (Token.Text, u'\n'),
             (Token.Punctuation, u'}'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
 
@@ -225,15 +209,12 @@ class CLexerTest(unittest.TestCase):
         }
         '''
         expected = [
-            (Token.Text, u''),
             (Token.Keyword.Type, u'int'),
             (Token.Text, u' '),
             (Token.Name.Function, u'main'),
-            (Token.Text, u''),
             (Token.Punctuation, u'('),
             (Token.Punctuation, u')'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
             (Token.Punctuation, u'{'),
             (Token.Text, u'\n'),
             (Token.Name.Label, u'foo'),
@@ -251,6 +232,5 @@ class CLexerTest(unittest.TestCase):
             (Token.Text, u'\n'),
             (Token.Punctuation, u'}'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
