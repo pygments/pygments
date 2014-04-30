@@ -26,7 +26,7 @@ __all__ = ['IniLexer', 'PropertiesLexer', 'SourcesListLexer', 'BaseMakefileLexer
            'DebianControlLexer', 'DarcsPatchLexer', 'YamlLexer',
            'LighttpdConfLexer', 'NginxConfLexer', 'CMakeLexer', 'HttpLexer',
            'PyPyLogLexer', 'RegeditLexer', 'HxmlLexer', 'EbnfLexer',
-           'TodotxtLexer']
+           'TodotxtLexer', 'DockerLexer']
 
 
 class IniLexer(RegexLexer):
@@ -2015,5 +2015,32 @@ class TodotxtLexer(RegexLexer):
             ('\S+', IncompleteTaskText),
             # Tokenize whitespace not containing a newline
             ('\s+', IncompleteTaskText),
+        ],
+    }
+
+
+class DockerLexer(RegexLexer):
+    """
+    Lexer for `Docker <http://docker.io>`_ configuration files.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Docker'
+    aliases = ['docker', 'dockerfile']
+    filenames = ['Dockerfile', '*.docker']
+    mimetypes = ['text/x-dockerfile-config']
+
+    _keywords = (r'(?:FROM|MAINTAINER|RUN|CMD|EXPOSE|ENV|ADD|ENTRYPOINT|'
+                 r'VOLUME|WORKDIR)')
+
+    flags = re.IGNORECASE | re.MULTILINE
+
+    tokens = {
+        'root': [
+            (r'^(ONBUILD)(\s+)(%s)\b' % (_keywords,),
+             bygroups(Name.Keyword, Whitespace, Keyword)),
+            (_keywords + r'\b', Keyword),
+            (r'#.*', Comment),
+            (r'.+', using(BashLexer)),
         ],
     }
