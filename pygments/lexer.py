@@ -383,11 +383,14 @@ def using(_other, **kwargs):
     return callback
 
 
-class default(str):
+class default:
     """
-    Indicates that a state should include rules from another state.
+    Indicates a state or state action (e.g. #pop) to apply.
+    For example default('#pop') is equivalent to ('', Token, '#pop')
+    Note that state tuples may be used as well
     """
-    pass
+    def __init__(self, state):
+        self.state = state
 
 
 class RegexLexerMeta(LexerMeta):
@@ -460,8 +463,7 @@ class RegexLexerMeta(LexerMeta):
                 # processed already
                 continue
             if isinstance(tdef, default):
-                new_state = cls._process_new_state(str(tdef),
-                                                   unprocessed, processed)
+                new_state = cls._process_new_state(tdef.state, unprocessed, processed)
                 tokens.append((re.compile('').match, None, new_state))
                 continue
 
