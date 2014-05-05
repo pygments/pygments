@@ -1412,7 +1412,7 @@ class LiterateCryptolLexer(LiterateLexer):
     """
     name = 'Literate Cryptol'
     aliases = ['lcry', 'literate-cryptol', 'lcryptol']
-    filenames = ['*.lhs']
+    filenames = ['*.lcry']
     mimetypes = ['text/x-literate-cryptol']
 
     def __init__(self, **options):
