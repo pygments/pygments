@@ -25,6 +25,7 @@ Programming languages
 * ColdFusion
 * Common Lisp
 * Coq
+* Cryptol (incl. Literate Cryptol)
 * `Cython <http://cython.org>`_
 * `D <http://digitalmars.com/d>`_
 * Dart
