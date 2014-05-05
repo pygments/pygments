@@ -1506,7 +1506,10 @@ class RebolLexer(RegexLexer):
             (r'[a-zA-Z]+[^(\^{"\s:)]*://[^(\^{"\s)]*', Name.Decorator), # url
             (r'mailto:[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator), # url
             (r'[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator), # email
-            (r'comment\s', Comment, 'comment'),
+            (r'comment\s"', Comment, 'commentString1'),
+            (r'comment\s{', Comment, 'commentString2'),
+            (r'comment\s\[', Comment, 'commentBlock'),
+            (r'comment\s[^(\s{\"\[]+', Comment),
             (r'/[^(\^{^")\s/[\]]*', Name.Attribute),
             (r'([^(\^{^")\s/[\]]+)(?=[:({"\s/\[\]])', word_callback),
             (r'<[a-zA-Z0-9:._-]*>', Name.Tag),
@@ -1561,12 +1564,6 @@ class RebolLexer(RegexLexer):
             (r'([0-1]\s*){8}', Number.Hex),
             (r'}', Number.Hex, '#pop'),
         ],
-        'comment': [
-            (r'"', Comment, 'commentString1'),
-            (r'{', Comment, 'commentString2'),
-            (r'\[', Comment, 'commentBlock'),
-            (r'[^(\s{\"\[]+', Comment, '#pop'),
-        ],
         'commentString1': [
             (r'[^(\^")]+', Comment),
             (escape_re, Comment),
@@ -1585,7 +1582,9 @@ class RebolLexer(RegexLexer):
         'commentBlock': [
             (r'\[', Comment, '#push'),
             (r'\]', Comment, '#pop'),
-            (r'[^(\[\])]+', Comment),
+            (r'"', Comment, "commentString1"),
+            (r'{', Comment, "commentString2"),
+            (r'[^(\[\]\"{)]+', Comment),
         ],
     }
     def analyse_text(text):
