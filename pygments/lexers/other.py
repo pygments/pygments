@@ -1380,7 +1380,7 @@ class RebolLexer(RegexLexer):
     """
     name = 'REBOL'
     aliases = ['rebol']
-    filenames = ['*.r', '*.r3']
+    filenames = ['*.r', '*.r3', '*.reb']
     mimetypes = ['text/x-rebol']
 
     flags = re.IGNORECASE | re.MULTILINE
