@@ -17,6 +17,28 @@ from pygments.lexers.special import TextLexer
 class RtfFormatterTest(StringTests, unittest.TestCase):
     foot = (r'\par' '\n' r'}')
 
+    def _escape(self, string):
+        return(string.replace("\n", r"\n"))
+
+    def _build_message(self, *args, **kwargs):
+        string = kwargs.get('string', None)
+        t = self._escape(kwargs.get('t', ''))
+        expected = self._escape(kwargs.get('expected', ''))
+        result = self._escape(kwargs.get('result', ''))
+
+        if string is None:
+            string = (u"The expected output of '{t}'\n"
+                      u"\t\tShould end with '{expected}'\n"
+                      u"\t\tActually ended with '{result}'\n"
+                      u"\t(WARNING: Partial Output of Result!)")
+
+        start = -(len(self._escape(self.foot))+len(expected))
+        end = -(len(self._escape(self.foot)))
+
+        return string.format(t=t,
+                             result = result[start:end],
+                             expected = expected)
+
     def format_rtf(self, t):
         tokensource = list(TextLexer().get_tokens(t))
         fmt = RtfFormatter()
@@ -30,36 +52,58 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
         t = u''
         result = self.format_rtf(t)
         expected = r'{\rtf1\ansi\uc0'
-        self.assertStartsWith(result, expected)
+        msg = (u"RTF documents are expected to start with '{expected}'\n"
+               u"\t\tStarts intead with '{result}'\n"
+               u"\t(WARNING: Partial Output of Result!)".format(
+                   expected = expected,
+                   result = result[:len(expected)]))
+        self.assertStartsWith(result, expected, msg)
 
     def test_rtf_footer(self):
         t = u''
         result = self.format_rtf(t)
         expected = self.foot
-        self.assertEndsWith(result, expected)
+        msg = (u"RTF documents are expected to end with '{expected}'\n"
+               u"\t\tEnds intead with '{result}'\n"
+               u"\t(WARNING: Partial Output of Result!)".format(
+                   expected = self._escape(expected),
+                   result = self._escape(result[-len(expected):])))
+        self.assertEndsWith(result, expected, msg)
 
     def test_ascii_characters(self):
         t = u'a b c d ~'
         result = self.format_rtf(t)
         expected = (r'a b c d ~')
-        self.assertEndsWith(result, expected+self.foot)
+        if not result.endswith(self.foot):
+            return(unittest.skip('RTF Footer incorrect'))
+        msg = self._build_message(t=t, result=result, expected=expected)
+        self.assertEndsWith(result, expected+self.foot, msg)
 
     def test_escape_characters(self):
         t = u'\ {{'
         result = self.format_rtf(t)
         expected = (r'\\ \{\{')
-        self.assertEndsWith(result, expected+self.foot)
+        if not result.endswith(self.foot):
+            return(unittest.skip('RTF Footer incorrect'))
+        msg = self._build_message(t=t, result=result, expected=expected)
+        self.assertEndsWith(result, expected+self.foot, msg)
 
     def test_single_characters(self):
         t = u'â € ¤ каждой'
         result = self.format_rtf(t)
         expected = (r'{\u226} {\u8364} {\u164} '
                     r'{\u1082}{\u1072}{\u1078}{\u1076}{\u1086}{\u1081}')
-        self.assertEndsWith(result, expected+self.foot)
+        if not result.endswith(self.foot):
+            return(unittest.skip('RTF Footer incorrect'))
+        msg = self._build_message(t=t, result=result, expected=expected)
+        self.assertEndsWith(result, expected+self.foot, msg)
 
     def test_double_characters(self):
         t = u'က 힣 ↕ ↕︎ 鼖'
         result = self.format_rtf(t)
         expected = (r'{\u4096} {\u55203} {\u8597} '
                     r'{\u8597}{\u65038} {\u55422}{\u56859}')
-        self.assertEndsWith(result, expected+self.foot)
+        if not result.endswith(self.foot):
+            return(unittest.skip('RTF Footer incorrect'))
+        msg = self._build_message(t=t, result=result, expected=expected)
+        self.assertEndsWith(result, expected+self.foot, msg)
