@@ -32,8 +32,8 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
                       u"\t\tActually ended with '{result}'\n"
                       u"\t(WARNING: Partial Output of Result!)")
 
-        start = -(len(self._escape(self.foot))+len(expected))
         end = -(len(self._escape(self.foot)))
+        start = end-len(expected)
 
         return string.format(t=t,
                              result = result[start:end],
