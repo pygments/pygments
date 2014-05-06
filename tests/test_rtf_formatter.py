@@ -15,6 +15,7 @@ from pygments.formatters import RtfFormatter
 from pygments.lexers.special import TextLexer
 
 class RtfFormatterTest(StringTests, unittest.TestCase):
+    foot = (r'\par' '\n' r'}')
 
     def format_rtf(self, t):
         tokensource = list(TextLexer().get_tokens(t))
@@ -30,6 +31,12 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
         result = self.format_rtf(t)
         expected = r'{\rtf1\ansi\uc0'
         self.assertStartsWith(result, expected)
+
+    def test_rtf_footer(self):
+        t = u''
+        result = self.format_rtf(t)
+        expected = self.foot
+        self.assertEndsWith(result, expected)
 
     def test_ascii_characters(self):
         t = u'a b c d ~'
