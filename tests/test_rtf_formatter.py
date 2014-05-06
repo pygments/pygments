@@ -41,27 +41,25 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
     def test_ascii_characters(self):
         t = u'a b c d ~'
         result = self.format_rtf(t)
-        expected = (r'a b c d ~\par' '\n' r'}')
-        self.assertEndsWith(result, expected)
+        expected = (r'a b c d ~')
+        self.assertEndsWith(result, expected+self.foot)
 
     def test_escape_characters(self):
         t = u'\ {{'
         result = self.format_rtf(t)
-        expected = (r'\\ \{\{\par' '\n' r'}')
-        self.assertEndsWith(result, expected)
+        expected = (r'\\ \{\{')
+        self.assertEndsWith(result, expected+self.foot)
 
     def test_single_characters(self):
         t = u'â € ¤ каждой'
         result = self.format_rtf(t)
         expected = (r'{\u226} {\u8364} {\u164} '
-                    r'{\u1082}{\u1072}{\u1078}{\u1076}{\u1086}{\u1081}'
-                    r'\par' '\n' r'}')
-        self.assertEndsWith(result, expected)
+                    r'{\u1082}{\u1072}{\u1078}{\u1076}{\u1086}{\u1081}')
+        self.assertEndsWith(result, expected+self.foot)
 
     def test_double_characters(self):
         t = u'က 힣 ↕ ↕︎ 鼖'
         result = self.format_rtf(t)
         expected = (r'{\u4096} {\u55203} {\u8597} '
-                    r'{\u8597}{\u65038} {\u55422}{\u56859}'
-                    r'\par' '\n' r'}')
-        self.assertEndsWith(result, expected)
+                    r'{\u8597}{\u65038} {\u55422}{\u56859}')
+        self.assertEndsWith(result, expected+self.foot)
