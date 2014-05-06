@@ -208,6 +208,11 @@ def looks_like_xml(text):
 # Python narrow build compatibility
 
 def _surrogatepair(c):
+    # Given a unicode character code
+    # with length greater than 16 bits,
+    # print the two 16 bit surrogate pair.
+    # From example D28 of:
+    # http://www.unicode.org/book/ch03.pdf
     return (0xd7c0 + (c >> 10), (0xdc00 + (c & 0x3ff)))
 
 def unirange(a, b):
