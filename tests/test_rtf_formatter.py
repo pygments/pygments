@@ -27,17 +27,20 @@ class RtfFormatterTest(unittest.TestCase):
     def test_rtf_header(self):
         t = u''
         result = self.format_rtf(t)
-        self.assertTrue(result.startswith(r'{\rtf1\ansi\uc0'))
+        expected = r'{\rtf1\ansi\uc0'
+        self.assertTrue(result.startswith(expected))
 
     def test_ascii_characters(self):
         t = u'a b c d ~'
         result = self.format_rtf(t)
-        self.assertTrue(result.endswith(r'a b c d ~\par' '\n' r'}'))
+        expected = (r'a b c d ~\par' '\n' r'}')
+        self.assertTrue(result.endswith(expected))
 
     def test_escape_characters(self):
         t = u'\ {{'
         result = self.format_rtf(t)
-        self.assertTrue(result.endswith(r'\\ \{\{\par' '\n' r'}'))
+        expected = (r'\\ \{\{\par' '\n' r'}')
+        self.assertTrue(result.endswith(expected))
 
     def test_single_characters(self):
         t = u'â € ¤ каждой'
