@@ -898,9 +898,9 @@ class CommonLispLexer(RegexLexer):
 
 class CryptolLexer(RegexLexer):
     """
-    FIXME: A Cryptol lexer based on the lexemes defined in the Haskell 98 Report.
+    FIXME: A Cryptol2 lexer based on the lexemes defined in the Haskell 98 Report.
 
-    .. versionadded:: 0.1
+    .. versionadded:: 2.0
     """
     name = 'Cryptol'
     aliases = ['cryptol', 'cry']
