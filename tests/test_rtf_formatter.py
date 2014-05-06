@@ -28,8 +28,8 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
 
         if string is None:
             string = (u"The expected output of '{t}'\n"
-                      u"\t\tShould end with '{expected}'\n"
-                      u"\t\tActually ended with '{result}'\n"
+                      u"\t\tShould be '{expected}'\n"
+                      u"\t\tActually outputs '{result}'\n"
                       u"\t(WARNING: Partial Output of Result!)")
 
         end = -(len(self._escape(self.foot)))
