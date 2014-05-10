@@ -49,20 +49,20 @@ class RexxLexerTest(unittest.TestCase):
         self.assertAlmostEqual(1.0,
             RexxLexer.analyse_text('''/* Rexx */
                 say "hello world"'''))
-        self.assertLess(0.5,
-            RexxLexer.analyse_text('/* */\n'
+        val = RexxLexer.analyse_text('/* */\n'
                 'hello:pRoceduRe\n'
-                '  say "hello world"'))
-        self.assertLess(0.2,
-            RexxLexer.analyse_text('''/* */
+                '  say "hello world"')
+        self.assertTrue(val > 0.5, val)
+        val = RexxLexer.analyse_text('''/* */
                 if 1 > 0 then do
                     say "ok"
                 end
                 else do
                     say "huh?"
-                end'''))
-        self.assertLess(0.2,
-            RexxLexer.analyse_text('''/* */
+                end''')
+        self.assertTrue(val > 0.2, val)
+        val = RexxLexer.analyse_text('''/* */
                 greeting = "hello world!"
                 parse value greeting "hello" name "!"
-                say name'''))
+                say name''')
+        self.assertTrue(val > 0.2, val)
