@@ -9,6 +9,8 @@
     :license: BSD, see LICENSE for details.
 """
 
+import re
+
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Keyword, Text, Comment, Name, String, Number, \
                            Punctuation
@@ -102,3 +104,21 @@ class SmaliLexer(RegexLexer):
             (r'#.*?\n', Comment),
         ],
     }
+
+    def analyse_text(text):
+        if not re.search(r'^\s*\.class\s', text, re.MULTILINE):
+            return 0
+        if re.search(r'(\.(catchall|epilogue|restart local|prologue)|'
+                     r'\b(array-data|class-change-error|declared-synchronized|'
+                     r'(field|inline|vtable)@0x[0-9a-fA-F]|generic-error|'
+                     r'illegal-class-access|illegal-field-access|'
+                     r'illegal-method-access|instantiation-error|no-error|'
+                     r'no-such-class|no-such-field|no-such-method|'
+                     r'packed-switch|sparse-switch))\b', text, re.MULTILINE):
+            return 1
+        if re.search(r'\b(check-cast|instance-of|throw-verification-error)\b|'
+                     r'\b(-to|add|[ais]get|[ais]put|and|cmpl|const|div|if|'
+                     r'invoke|move|mul|neg|not|or|rem|return|rsub|shl|shr|sub|'
+                     r'ushr)[-/]|{|}', text, re.MULTILINE):
+            return 0.8
+        return 0.5
