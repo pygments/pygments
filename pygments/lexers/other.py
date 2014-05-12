@@ -4275,22 +4275,27 @@ class RedLexer(RegexLexer):
             r'power|remainder|round|subtract|even\?|odd\?|and~|complement|or~|xor~|'
             r'append|at|back|change|clear|copy|find|head|head\?|index\?|insert|'
             r'length\?|next|pick|poke|remove|reverse|select|sort|skip|swap|tail|tail\?|'
-            r'take|trim|create|close|delete|modify|open|open\?|query|read|rename|update|write)$', word):
+            r'take|trim|create|close|delete|modify|open|open\?|query|read|rename|'
+            r'update|write)$', word):
             yield match.start(), Name.Function, word
         elif re.match(
-            r'(yes|on|no|off|true|false|tab|cr|lf|newline|escape|slash|sp|space|null|none|crlf|dot|null-byte)$', word):
+            r'(yes|on|no|off|true|false|tab|cr|lf|newline|escape|slash|sp|space|null|'
+            r'none|crlf|dot|null-byte)$', word):
             yield match.start(), Name.Builtin.Pseudo, word
         elif re.match(
-            r'(#system-global|#include|#enum|#define|#either|#if|#import|#export|#switch|#default|#get-definition)$', word):
+            r'(#system-global|#include|#enum|#define|#either|#if|#import|#export|'
+            r'#switch|#default|#get-definition)$', word):
             yield match.start(), Keyword.Namespace, word
         elif re.match(
-            r'(system|halt|quit|quit-return|do|load|q|recycle|call|run|ask|parse|raise-error|'
-            r'return|exit|break|alias|push|pop|probe|\?\?|spec-of|body-of|quote|forever)$', word):
+            r'(system|halt|quit|quit-return|do|load|q|recycle|call|run|ask|parse|'
+            r'raise-error|return|exit|break|alias|push|pop|probe|\?\?|spec-of|body-of|'
+            r'quote|forever)$', word):
             yield match.start(), Name.Exception, word
         elif re.match(
-            r'(action\?|block\?|char\?|datatype\?|file\?|function\?|get-path\?|zero\?|any-struct\?|'
-            r'get-word\?|integer\?|issue\?|lit-path\?|lit-word\?|logic\?|native\?|none\?|'
-            r'op\?|paren\?|path\?|refinement\?|set-path\?|set-word\?|string\?|unset\?|word\?|any-series\?)$', word):
+            r'(action\?|block\?|char\?|datatype\?|file\?|function\?|get-path\?|zero\?|'
+            r'get-word\?|integer\?|issue\?|lit-path\?|lit-word\?|logic\?|native\?|'
+            r'op\?|paren\?|path\?|refinement\?|set-path\?|set-word\?|string\?|unset\?|'
+            r'any-struct\?|none\?|word\?|any-series\?)$', word):
             yield match.start(), Keyword, word
         elif re.match(r'(JNICALL|stdcall|cdecl|infix)$', word):
             yield match.start(), Keyword.Namespace, word
@@ -4324,7 +4329,8 @@ class RedLexer(RegexLexer):
             (r'#{[0-9a-fA-F\s]*}', Number.Hex),
             (r'2#{', Number.Hex, 'bin2'),
             (r'64#{[0-9a-zA-Z+/=\s]*}', Number.Hex),
-            (r'([0-9a-fA-F]+)(h)((\s)|(?=[\[\]{}""\(\)]))',  bygroups(Number.Hex, Name.Variable, Whitespace)),
+            (r'([0-9a-fA-F]+)(h)((\s)|(?=[\[\]{}""\(\)]))',
+             bygroups(Number.Hex, Name.Variable, Whitespace)),
             (r'"', String, 'string'),
             (r'{', String, 'string2'),
             (r';#+.*\n', Comment.Special),

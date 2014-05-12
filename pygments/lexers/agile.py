@@ -2146,10 +2146,12 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     def _build_word_match(words, boundary_regex_fragment = None, prefix = '', suffix = ''):
         if boundary_regex_fragment is None:
-            return r'\b(' + prefix + r'|'.join([ re.escape(x) for x in words]) + suffix + r')\b'
+            return r'\b(' + prefix + r'|'.join([ re.escape(x) for x in words]) + \
+                suffix + r')\b'
         else:
-            return r'(?<!' + boundary_regex_fragment + ')' + prefix + '(' + \
-                r'|'.join([ re.escape(x) for x in words]) + r')' + suffix + '(?!' + boundary_regex_fragment + ')'
+            return r'(?<!' + boundary_regex_fragment + r')' + prefix + r'(' + \
+                r'|'.join([ re.escape(x) for x in words]) + r')' + suffix + r'(?!' + \
+                boundary_regex_fragment + r')'
 
     def brackets_callback(token_class):
         def callback(lexer, match, context):
@@ -2250,7 +2252,8 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline),
             (r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline),
             (r'^=.*?\n\s*?\n', Comment.Multiline),
-            (r'(regex|token|rule)(\s*' + PERL6_IDENTIFIER_RANGE + '+:sym)', bygroups(Keyword, Name), 'token-sym-brackets'),
+            (r'(regex|token|rule)(\s*' + PERL6_IDENTIFIER_RANGE + '+:sym)',
+             bygroups(Keyword, Name), 'token-sym-brackets'),
             (r'(regex|token|rule)(?!' + PERL6_IDENTIFIER_RANGE + ')(\s*' + PERL6_IDENTIFIER_RANGE + '+)?', bygroups(Keyword, Name), 'pre-token'),
             # deal with a special case in the Perl 6 grammar (role q { ... })
             (r'(role)(\s+)(q)(\s*)', bygroups(Keyword, Text, Name, Text)),
@@ -2258,24 +2261,28 @@ class Perl6Lexer(ExtendedRegexLexer):
             (_build_word_match(PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_RANGE, suffix = '(?::[UD])?'), Name.Builtin),
             (_build_word_match(PERL6_BUILTINS, PERL6_IDENTIFIER_RANGE), Name.Builtin),
             # copied from PerlLexer
-            (r'[$@%&][.^:?=!~]?' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable),
+            (r'[$@%&][.^:?=!~]?' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*',
+             Name.Variable),
             (r'\$[!/](?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable.Global),
             (r'::\?\w+', Name.Variable.Global),
-            (r'[$@%&]\*' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable.Global),
+            (r'[$@%&]\*' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*',
+             Name.Variable.Global),
             (r'\$(?:<.*?>)+', Name.Variable),
             (r'(?:q|qq|Q)[a-zA-Z]?\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])(?P=first_char)*)', brackets_callback(String)),
             # copied from PerlLexer
             (r'0_?[0-7]+(_[0-7]+)*', Number.Oct),
             (r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex),
             (r'0b[01]+(_[01]+)*', Number.Bin),
-            (r'(?i)(\d*(_\d*)*\.\d+(_\d*)*|\d+(_\d*)*\.\d+(_\d*)*)(e[+-]?\d+)?', Number.Float),
+            (r'(?i)(\d*(_\d*)*\.\d+(_\d*)*|\d+(_\d*)*\.\d+(_\d*)*)(e[+-]?\d+)?',
+             Number.Float),
             (r'(?i)\d+(_\d*)*e[+-]?\d+(_\d*)*', Number.Float),
             (r'\d+(_\d+)*', Number.Integer),
             (r'(?<=~~)\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'(?<=[=(,])\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'm\w+(?=\()', Name),
             (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z_:\s])(?P=first_char)*)', brackets_callback(String.Regex)),
-            (r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/', String.Regex),
+            (r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/',
+             String.Regex),
             (r'<[^\s=].*?\S>', String),
             (_build_word_match(PERL6_OPERATORS), Operator),
             (r'[0-9a-zA-Z_]' + PERL6_IDENTIFIER_RANGE + '*', Name),
