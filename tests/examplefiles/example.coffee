@@ -15,11 +15,13 @@ methodF:(c,d)-> 'F'
 # strings
 
 "#{wow}"
+"w#{wow}w"
 "#wow"
 "wow#"
 "w#ow"
 
 '#{wow}'
+'w#{wow}w'
 '#wow'
 'wow#'
 'w#ow'
