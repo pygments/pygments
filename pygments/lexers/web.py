@@ -2488,7 +2488,7 @@ class CoffeeScriptLexer(RegexLexer):
             ("'", String, 'sqs'),
         ],
         'strings': [
-            (r'[^\\\'"]+', String),
+            (r'[^#\\\'"]+', String),
             # note that all coffee script strings are multi-line.
             # hashmarks, quotes and backslashes must be parsed one at a time
         ],
@@ -2500,22 +2500,24 @@ class CoffeeScriptLexer(RegexLexer):
             (r'"', String, '#pop'),
             (r'\\.|\'', String), # double-quoted string don't need ' escapes
             (r'#{', String.Interpol, "interpoling_string"),
+            (r'#', String),
             include('strings')
         ],
         'sqs': [
             (r"'", String, '#pop'),
-            (r'\\.|"', String), # single quoted strings don't need " escapses
+            (r'#|\\.|"', String), # single quoted strings don't need " escapses
             include('strings')
         ],
         'tdqs': [
             (r'"""', String, '#pop'),
             (r'\\.|\'|"', String), # no need to escape quotes in triple-string
             (r'#{', String.Interpol, "interpoling_string"),
+            (r'#', String),
             include('strings'),
         ],
         'tsqs': [
             (r"'''", String, '#pop'),
-            (r'\\.|\'|"', String), # no need to escape quotes in triple-strings
+            (r'#|\\.|\'|"', String), # no need to escape quotes in triple-strings
             include('strings')
         ],
     }
