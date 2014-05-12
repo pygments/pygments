@@ -1890,7 +1890,9 @@ class GherkinLexer(RegexLexer):
             (r"[^\|]", Name.Variable),
           ],
         'scenario_sections_on_stack': [
-            (feature_element_keywords, bygroups(Name.Function, Keyword, Keyword, Name.Function), "feature_elements_on_stack"),
+            (feature_element_keywords,
+             bygroups(Name.Function, Keyword, Keyword, Name.Function),
+             "feature_elements_on_stack"),
           ],
         'narrative': [
             include('scenario_sections_on_stack'),

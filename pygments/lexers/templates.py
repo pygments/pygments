@@ -1498,10 +1498,12 @@ class ColdfusionLexer(RegexLexer):
             # strings, evidently.
             (r"'.*?'", String.Single),
             (r'\d+', Number),
-            (r'(if|else|len|var|case|default|break|switch|component|property|function|do|try|catch|in|continue|for|return|while)\b', Keyword),
-            (r'(required|any|array|binary|boolean|component|date|guid|numeric|query|string|struct|uuid|xml)\b', Keyword),
+            (r'(if|else|len|var|xml|default|break|switch|component|property|function|do|'
+             r'try|catch|in|continue|for|return|while|required|any|array|binary|boolean|'
+             r'component|date|guid|numeric|query|string|struct|uuid|case)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(application|session|client|cookie|super|this|variables|arguments)\b', Name.Constant),
+            (r'(application|session|client|cookie|super|this|variables|arguments)\b',
+             Name.Constant),
             (r'([A-Za-z_$][A-Za-z0-9_.]*)(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
             (r'[A-Za-z_$][A-Za-z0-9_.]*', Name.Variable),
