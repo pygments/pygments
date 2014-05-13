@@ -38,7 +38,7 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'MOOCodeLexer',
            'RobotFrameworkLexer', 'PuppetLexer', 'NSISLexer', 'RPMSpecLexer',
            'CbmBasicV2Lexer', 'AutoItLexer', 'RexxLexer', 'APLLexer',
            'LSLLexer', 'AmbientTalkLexer', 'PawnLexer', 'VCTreeStatusLexer',
-           'RslLexer', 'PanLexer', 'RedLexer']
+           'RslLexer', 'PanLexer', 'RedLexer', 'AlloyLexer']
 
 
 class LSLLexer(RegexLexer):
@@ -4423,4 +4423,62 @@ class RedLexer(RegexLexer):
             (r'{', Comment, "commentString2"),
             (r'[^(\[\]\"{)]+', Comment),
         ],
+    }
+
+
+class AlloyLexer(RegexLexer):
+    """
+    For `Alloy <http://alloy.mit.edu>`_ source code.
+    """
+
+    name = 'Alloy'
+    aliases = ['alloy']
+    filenames = ['*.als']
+    mimetypes = ['text/x-alloy']
+
+    flags = re.MULTILINE | re.DOTALL
+
+    iden_rex = r'[a-zA-Z_][a-zA-Z0-9_\']*'
+    text_tuple = (r'[^\S\n]+', Text)
+
+    tokens = {
+        'sig': [
+            (r'(extends)\b', Keyword, '#pop'),
+            (iden_rex, Name),
+            text_tuple,
+            (r',', Punctuation),
+            (r'\{', Operator, '#pop'),
+        ],
+        'module': [
+            text_tuple,
+            (iden_rex, Name, '#pop'),
+        ],
+        'fun': [
+            text_tuple,
+            (r'\{', Operator, '#pop'),
+            (iden_rex, Name, '#pop'),
+        ],
+        'root': [
+            (r'--.*?$', Comment.Single),
+            (r'//.*?$', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            text_tuple,
+            (r'(module|open)(\s+)', bygroups(Keyword.Namespace, Text),
+                'module'),
+            (r'(sig|enum)(\s+)', bygroups(Keyword.Declaration, Text), 'sig'),
+            (r'(iden|univ|none)\b', Keyword.Constant),
+            (r'(int|Int)\b', Keyword.Type),
+            (r'(this|abstract|extends|set|seq|one|lone|let)\b', Keyword),
+            (r'(all|some|no|sum|disj|when|else)\b', Keyword),
+            (r'(run|check|for|but|exactly|expect|as)\b', Keyword),
+            (r'(and|or|implies|iff|in)\b', Operator.Word),
+            (r'(fun|pred|fact|assert)(\s+)', bygroups(Keyword, Text), 'fun'),
+            (r'!|#|&&|\+\+|<<|>>|>=|<=|<=>|\.|->', Operator),
+            (r'[-+/*%=<>&!^|~\{\}\[\]\(\)\.]', Operator),
+            (iden_rex, Name),
+            (r'[:,]', Punctuation),
+            (r'[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'\n', Text),
+        ]
     }
