@@ -140,3 +140,46 @@ typedef Pt2 = {
 	?z:Float, //optional z
 	add : Point -> Void,
 }
+
+
+//top-level class members
+public function test();
+private var attr(get, set) = 1;
+
+
+//pre-proc number
+public static inline function indexOf<T>(arr:Array<T>, v:T) : Int
+{
+	#if (haxe_ver >= 3.1) 
+	return arr.indexOf(v);
+	#else
+		#if (flash || js)
+		return untyped arr.indexOf(v);
+		#else
+		return std.Lambda.indexOf(arr, v);
+		#end
+	#end
+}
+
+//macro reification
+var e = macro var $myVar = 0;
+var e = macro ${v}.toLowerCase();
+var e = macro o.$myField;
+var e = macro { $myField : 0 };
+var e = macro $i{varName}++;
+var e = macro $v{myStr};
+var args = [macro "sub", macro 3];
+var e = macro "Hello".toLowerCase($a{args});
+(macro $i{tmp}.addAtom($v{name}, $atom)).finalize(op.pos);
+
+var c = macro class MyClass {
+    public function new() { }
+    public function $funcName() {
+        trace($v{funcName} + " was called");
+    }
+}
+
+var c = macro interface IClass {}
+
+//ECheckType
+var f = (123:Float);
