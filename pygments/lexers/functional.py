@@ -905,6 +905,8 @@ class HaskellLexer(RegexLexer):
     filenames = ['*.hs']
     mimetypes = ['text/x-haskell']
 
+    flags = re.UNICODE
+
     reserved = ['case','class','data','default','deriving','do','else',
                 'if','in','infix[lr]?','instance',
                 'let','newtype','of','then','type','where','_']
@@ -956,26 +958,26 @@ class HaskellLexer(RegexLexer):
             (r'\)', Punctuation, '#pop'),
             (r'qualified\b', Keyword),
             # import X as Y
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(as)(\s+)([A-Z][a-zA-Z0-9_.]*)',
+            (r'([A-Z][\w.]*)(\s+)(as)(\s+)([A-Z][\w.]*)',
              bygroups(Name.Namespace, Text, Keyword, Text, Name), '#pop'),
             # import X hiding (functions)
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(hiding)(\s+)(\()',
+            (r'([A-Z][\w.]*)(\s+)(hiding)(\s+)(\()',
              bygroups(Name.Namespace, Text, Keyword, Text, Punctuation), 'funclist'),
             # import X (functions)
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+            (r'([A-Z][\w.]*)(\s+)(\()',
              bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
             # import X
-            (r'[a-zA-Z0-9_.]+', Name.Namespace, '#pop'),
+            (r'[\w.]+', Name.Namespace, '#pop'),
         ],
         'module': [
             (r'\s+', Text),
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+            (r'([A-Z][\w.]*)(\s+)(\()',
              bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
-            (r'[A-Z][a-zA-Z0-9_.]*', Name.Namespace, '#pop'),
+            (r'[A-Z][\w.]*', Name.Namespace, '#pop'),
         ],
         'funclist': [
             (r'\s+', Text),
-            (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
+            (r'[A-Z]\w*', Keyword.Type),
             (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
             (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),

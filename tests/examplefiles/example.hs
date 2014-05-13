@@ -13,3 +13,5 @@ import "base" Data.Char (isControl, -- isSpace)
 
 main :: IO ()
 main = putStrLn "hello world"
+
+gádd x y = x + y
