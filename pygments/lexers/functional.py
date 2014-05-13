@@ -905,7 +905,7 @@ class HaskellLexer(RegexLexer):
     filenames = ['*.hs']
     mimetypes = ['text/x-haskell']
 
-    flags = re.UNICODE
+    flags = re.MULTILINE | re.UNICODE
 
     reserved = ['case','class','data','default','deriving','do','else',
                 'if','in','infix[lr]?','instance',
