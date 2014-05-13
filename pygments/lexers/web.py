@@ -1297,6 +1297,19 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'\(', Comment.Preproc, ('#pop', 'preproc-parenthesis')),
 
             (ident, Comment.Preproc, '#pop'),
+
+            # Float
+            (r'\.[0-9]+', Number.Float),
+            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float),
+            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float),
+            (r'[0-9]+\.[0-9]+', Number.Float),
+            (r'[0-9]+\.(?!' + ident + '|\.\.)', Number.Float),
+
+            # Int
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+
+            # String
             (r"'", String.Single, ('#pop', 'string-single')),
             (r'"', String.Double, ('#pop', 'string-double')),
         ],
@@ -1321,6 +1334,19 @@ class HaxeLexer(ExtendedRegexLexer):
              ('#pop', 'preproc-expr-chain', 'preproc-parenthesis')),
 
             (ident, Comment.Preproc, ('#pop', 'preproc-expr-chain')),
+
+            # Float
+            (r'\.[0-9]+', Number.Float, ('#pop', 'preproc-expr-chain')),
+            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'preproc-expr-chain')),
+            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'preproc-expr-chain')),
+            (r'[0-9]+\.[0-9]+', Number.Float, ('#pop', 'preproc-expr-chain')),
+            (r'[0-9]+\.(?!' + ident + '|\.\.)', Number.Float, ('#pop', 'preproc-expr-chain')),
+
+            # Int
+            (r'0x[0-9a-fA-F]+', Number.Hex, ('#pop', 'preproc-expr-chain')),
+            (r'[0-9]+', Number.Integer, ('#pop', 'preproc-expr-chain')),
+
+            # String
             (r"'", String.Single,
              ('#pop', 'preproc-expr-chain', 'string-single')),
             (r'"', String.Double,
@@ -1454,7 +1480,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'class-member': [
             include('spaces'),
             (r'(var)\b', Keyword.Declaration,
-             ('#pop', 'optional-semicolon', 'prop')),
+             ('#pop', 'optional-semicolon', 'var')),
             (r'(function)\b', Keyword.Declaration,
              ('#pop', 'optional-semicolon', 'class-method')),
         ],
@@ -1463,7 +1489,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'function-local': [
             include('spaces'),
             (r'(' + ident_no_keyword + ')?', Name.Function,
-             ('#pop', 'expr', 'flag', 'function-param',
+             ('#pop', 'optional-expr', 'flag', 'function-param',
               'parenthesis-open', 'type-param-constraint')),
         ],
 
@@ -1495,13 +1521,6 @@ class HaxeLexer(ExtendedRegexLexer):
             (r',', Punctuation, ('#pop', 'function-param')),
         ],
 
-        # class property
-        # eg. var prop(default, null):String;
-        'prop': [
-            include('spaces'),
-            (ident_no_keyword, Name, ('#pop', 'assign', 'flag', 'prop-get-set')),
-        ],
-
         'prop-get-set': [
             include('spaces'),
             (r'\(', Punctuation, ('#pop', 'parenthesis-close',
@@ -1528,7 +1547,8 @@ class HaxeLexer(ExtendedRegexLexer):
                                     'meta-ident', 'meta-colon')),
             (r'(?:\+\+|\-\-|~(?!/)|!|\-)', Operator),
             (r'\(', Punctuation, ('#pop', 'expr-chain', 'parenthesis')),
-            (r'(?:inline)\b', Keyword.Declaration),
+            (r'(?:static|public|private|override|dynamic|inline)\b',
+             Keyword.Declaration),
             (r'(?:function)\b', Keyword.Declaration, ('#pop', 'expr-chain',
                                                       'function-local')),
             (r'\{', Punctuation, ('#pop', 'expr-chain', 'bracket')),
@@ -1587,7 +1607,15 @@ class HaxeLexer(ExtendedRegexLexer):
         # macro reification
         'macro': [
             include('spaces'),
+            include('meta'),
             (r':', Punctuation, ('#pop', 'type')),
+
+            (r'(?:extern|private)\b', Keyword.Declaration),
+            (r'(?:abstract)\b', Keyword.Declaration, 'abstract'),
+            (r'(?:class|interface)\b', Keyword.Declaration, 'class'),
+            (r'(?:enum)\b', Keyword.Declaration, 'enum'),
+            (r'(?:typedef)\b', Keyword.Declaration, 'typedef'),
+            
             (r'', Text, ('#pop', 'expr')),
         ],
 
@@ -1740,7 +1768,7 @@ class HaxeLexer(ExtendedRegexLexer):
 
         'dollar': [
             include('spaces'),
-            (r'\{', Keyword, ('#pop', 'bracket-close', 'expr')),
+            (r'\{', Punctuation, ('#pop', 'expr-chain', 'bracket-close', 'expr')),
             (r'', Text, ('#pop', 'expr-chain')),
         ],
 
@@ -1868,7 +1896,7 @@ class HaxeLexer(ExtendedRegexLexer):
         # a parenthesis expr that contain exactly one expr
         'parenthesis': [
             include('spaces'),
-            (r'', Text, ('#pop', 'parenthesis-close', 'expr')),
+            (r'', Text, ('#pop', 'parenthesis-close', 'flag', 'expr')),
         ],
 
         'parenthesis-open': [
@@ -1883,7 +1911,7 @@ class HaxeLexer(ExtendedRegexLexer):
 
         'var': [
             include('spaces'),
-            (ident_no_keyword, Text, ('#pop', 'var-sep', 'assign', 'flag')),
+            (ident_no_keyword, Text, ('#pop', 'var-sep', 'assign', 'flag', 'prop-get-set')),
         ],
 
         # optional more var decl.
