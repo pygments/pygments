@@ -179,7 +179,7 @@ var c = macro class MyClass {
     }
 }
 
-var c = macro interface IClass {}
+var c = macro interface IClass {};
 
 //ECheckType
 var f = (123:Float);

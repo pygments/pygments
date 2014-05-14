@@ -1611,10 +1611,10 @@ class HaxeLexer(ExtendedRegexLexer):
             (r':', Punctuation, ('#pop', 'type')),
 
             (r'(?:extern|private)\b', Keyword.Declaration),
-            (r'(?:abstract)\b', Keyword.Declaration, 'abstract'),
-            (r'(?:class|interface)\b', Keyword.Declaration, 'class'),
-            (r'(?:enum)\b', Keyword.Declaration, 'enum'),
-            (r'(?:typedef)\b', Keyword.Declaration, 'typedef'),
+            (r'(?:abstract)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'abstract')),
+            (r'(?:class|interface)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'class')),
+            (r'(?:enum)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'enum')),
+            (r'(?:typedef)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'typedef')),
             
             (r'', Text, ('#pop', 'expr')),
         ],
