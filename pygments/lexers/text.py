@@ -840,7 +840,7 @@ class VimLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^([ \t:]*)(' + _python + r')([ \t]*)(<<)([ \t]*)(.*)((?:\n|.)*)(\5)',
+            (r'^([ \t:]*)(' + _python + r')([ \t]*)(<<)([ \t]*)(.*)((?:\n|.)*)(\6)',
              bygroups(using(this), Keyword, Text, Operator, Text, Text,
                       using(PythonLexer), Text)), 
             (r'^([ \t:]*)(' + _python + r')([ \t])(.*)',
