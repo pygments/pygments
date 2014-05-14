@@ -843,8 +843,8 @@ class VimLexer(RegexLexer):
             (r'^([ \t:]*)(' + _python + r')([ \t]*)(<<)([ \t]*)(.*)((?:\n|.)*)(\5)',
              bygroups(using(this), Keyword, Text, Operator, Text, Text,
                       using(PythonLexer), Text)), 
-            (r'^([ \t:]*)(' + _python + r')(.*)',
-             bygroups(using(this), Keyword, using(PythonLexer))),
+            (r'^([ \t:]*)(' + _python + r')([ \t])(.*)',
+             bygroups(using(this), Keyword, Text, using(PythonLexer))),
 
             (r'^\s*".*', Comment),
 
