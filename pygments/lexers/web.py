@@ -81,7 +81,7 @@ class JavascriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -248,7 +248,7 @@ class ActionScriptLexer(RegexLexer):
              r'isXMLName|clearInterval|fscommand|getTimer|getURL|getVersion|'
              r'isFinite|parseFloat|parseInt|setInterval|trace|updateAfterEvent|'
              r'unescape)\b',Name.Function),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-f]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -271,7 +271,7 @@ class ActionScript3Lexer(RegexLexer):
     mimetypes = ['application/x-actionscript', 'text/x-actionscript',
                  'text/actionscript']
 
-    identifier = r'[$a-zA-Z_][a-zA-Z0-9_]*'
+    identifier = r'[$a-zA-Z_]\w*'
     typeidentifier = identifier + '(?:\.<\w+>)?'
 
     flags = re.DOTALL | re.MULTILINE
@@ -475,7 +475,7 @@ class CssLexer(RegexLexer):
             (r'[\[\]();]+', Punctuation),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name)
+            (r'[a-zA-Z_]\w*', Name)
         ]
     }
 
@@ -595,26 +595,26 @@ class ObjectiveJLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
 
-            (r'([$a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r')(?=\()',
+            (r'([$a-zA-Z_]\w*)(' + _ws + r')(?=\()',
              bygroups(Name.Function, using(this))),
 
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'[$a-zA-Z_]\w*', Name),
         ],
         'classname' : [
             # interface definition that inherits
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r':' + _ws +
-             r')([a-zA-Z_][a-zA-Z0-9_]*)?',
+            (r'([a-zA-Z_]\w*)(' + _ws + r':' + _ws +
+             r')([a-zA-Z_]\w*)?',
              bygroups(Name.Class, using(this), Name.Class), '#pop'),
             # interface definition for a category
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r'\()([a-zA-Z_][a-zA-Z0-9_]*)(\))',
+            (r'([a-zA-Z_]\w*)(' + _ws + r'\()([a-zA-Z_]\w*)(\))',
              bygroups(Name.Class, using(this), Name.Label, Text), '#pop'),
             # simple interface / implementation
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)', Name.Class, '#pop'),
+            (r'([a-zA-Z_]\w*)', Name.Class, '#pop'),
         ],
         'forward_classname' : [
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*,\s*)',
+            (r'([a-zA-Z_]\w*)(\s*,\s*)',
              bygroups(Name.Class, Text), '#push'),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*;?)',
+            (r'([a-zA-Z_]\w*)(\s*;?)',
              bygroups(Name.Class, Text), '#pop'),
         ],
         'function_signature': [
@@ -622,26 +622,26 @@ class ObjectiveJLexer(RegexLexer):
 
             # start of a selector w/ parameters
             (r'(\(' + _ws + r')'                # open paren
-             r'([a-zA-Z_][a-zA-Z0-9_]+)'        # return type
+             r'([a-zA-Z_]\w+)'                  # return type
              r'(' + _ws + r'\)' + _ws + r')'    # close paren
-             r'([$a-zA-Z_][a-zA-Z0-9_]+' + _ws + r':)', # function name
+             r'([$a-zA-Z_]\w+' + _ws + r':)',   # function name
              bygroups(using(this), Keyword.Type, using(this),
                  Name.Function), 'function_parameters'),
 
             # no-param function
             (r'(\(' + _ws + r')'                # open paren
-             r'([a-zA-Z_][a-zA-Z0-9_]+)'        # return type
+             r'([a-zA-Z_]\w+)'                  # return type
              r'(' + _ws + r'\)' + _ws + r')'    # close paren
-             r'([$a-zA-Z_][a-zA-Z0-9_]+)',      # function name
+             r'([$a-zA-Z_]\w+)',                # function name
              bygroups(using(this), Keyword.Type, using(this),
                  Name.Function), "#pop"),
 
             # no return type given, start of a selector w/ parameters
-            (r'([$a-zA-Z_][a-zA-Z0-9_]+' + _ws + r':)', # function name
+            (r'([$a-zA-Z_]\w+' + _ws + r':)',   # function name
              bygroups (Name.Function), 'function_parameters'),
 
             # no return type given, no-param function
-            (r'([$a-zA-Z_][a-zA-Z0-9_]+)',      # function name
+            (r'([$a-zA-Z_]\w+)',                # function name
              bygroups(Name.Function), "#pop"),
 
             ('', Text, '#pop'),
@@ -653,11 +653,11 @@ class ObjectiveJLexer(RegexLexer):
             (r'(\(' + _ws + ')'                 # open paren
              r'([^\)]+)'                        # type
              r'(' + _ws + r'\)' + _ws + r')'    # close paren
-             r'([$a-zA-Z_][a-zA-Z0-9_]+)',      # param name
+             r'([$a-zA-Z_]\w+)',      # param name
              bygroups(using(this), Keyword.Type, using(this), Text)),
 
             # one piece of a selector name
-            (r'([$a-zA-Z_][a-zA-Z0-9_]+' + _ws + r':)',     # function name
+            (r'([$a-zA-Z_]\w+' + _ws + r':)',   # function name
              Name.Function),
 
             # smallest possible selector piece
@@ -667,10 +667,10 @@ class ObjectiveJLexer(RegexLexer):
             (r'(,' + _ws + r'\.\.\.)', using(this)),
 
             # param name
-            (r'([$a-zA-Z_][a-zA-Z0-9_]+)', Text),
+            (r'([$a-zA-Z_]\w+)', Text),
         ],
         'expression' : [
-            (r'([$a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function,
+            (r'([$a-zA-Z_]\w*)(\()', bygroups(Name.Function,
                                                         Punctuation)),
             (r'(\))', Punctuation, "#pop"),
         ],
@@ -3699,8 +3699,8 @@ class DartLexer(RegexLexer):
             (r'\b(bool|double|Dynamic|int|num|Object|String|void)\b', Keyword.Type),
             (r'\b(false|null|true)\b', Keyword.Constant),
             (r'[~!%^&*+=|?:<>/-]|as\b', Operator),
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*:', Name.Label),
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_$]\w*:', Name.Label),
+            (r'[a-zA-Z_$]\w*', Name),
             (r'[(){}\[\],.;]', Punctuation),
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
             # DIGIT+ (‘.’ DIGIT*)? EXPONENT?
@@ -3710,13 +3710,13 @@ class DartLexer(RegexLexer):
             # pseudo-keyword negate intentionally left out
         ],
         'class': [
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name.Class, '#pop')
+            (r'[a-zA-Z_$]\w*', Name.Class, '#pop')
         ],
         'import_decl': [
             include('string_literal'),
             (r'\s+', Text),
             (r'\b(as|show|hide)\b', Keyword),
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_$]\w*', Name),
             (r'\,', Punctuation),
             (r'\;', Punctuation, '#pop')
         ],
@@ -3735,7 +3735,7 @@ class DartLexer(RegexLexer):
         'string_common': [
             (r"\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{[0-9A-Fa-f]*\}|[a-z\'\"$\\])",
              String.Escape),
-            (r'(\$)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(String.Interpol, Name)),
+            (r'(\$)([a-zA-Z_]\w*)', bygroups(String.Interpol, Name)),
             (r'(\$\{)(.*?)(\})',
              bygroups(String.Interpol, using(this), String.Interpol))
         ],
@@ -3832,7 +3832,7 @@ class TypeScriptLexer(RegexLexer):
             # Match stuff like: (function: return type)
             (r'([a-zA-Z0-9_?.$][\w?.$]*)(\s*:\s*)([a-zA-Z0-9_?.$][\w?.$]*)',
              bygroups(Name.Other, Text, Keyword.Type)),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -4165,7 +4165,7 @@ class QmlLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),

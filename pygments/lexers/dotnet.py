@@ -58,7 +58,7 @@ class CSharpLexer(RegexLexer):
     # see http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
     levels = {
-        'none': '@?[_a-zA-Z][a-zA-Z0-9_]*',
+        'none': '@?[_a-zA-Z]\w*',
         'basic': ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
                   '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
                   uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
@@ -170,7 +170,7 @@ class NemerleLexer(RegexLexer):
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
     levels = dict(
-        none = '@?[_a-zA-Z][a-zA-Z0-9_]*',
+        none = '@?[_a-zA-Z]\w*',
         basic = ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
                  '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
                  uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
@@ -336,7 +336,7 @@ class BooLexer(RegexLexer):
             (r'"""(\\\\|\\"|.*?)"""', String.Double),
             (r'"(\\\\|\\"|[^"]*?)"', String.Double),
             (r"'(\\\\|\\'|[^']*?)'", String.Single),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
             (r'[0-9][0-9\.]*(ms?|d|h|s)', Number),
             (r'0\d+', Number.Oct),
@@ -351,10 +351,10 @@ class BooLexer(RegexLexer):
             ('[*/]', Comment.Multiline)
         ],
         'funcname': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop')
+            ('[a-zA-Z_]\w*', Name.Function, '#pop')
         ],
         'classname': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            ('[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'namespace': [
             ('[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace, '#pop')
@@ -425,7 +425,7 @@ class VbNetLexer(RegexLexer):
              r'<=|>=|<>|[-&*/\\^+=<>]',
              Operator),
             ('"', String, 'string'),
-            ('[a-zA-Z_][a-zA-Z0-9_]*[%&@!#$]?', Name),
+            ('[a-zA-Z_]\w*[%&@!#$]?', Name),
             ('#.*?#', Literal.Date),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
             (r'\d+([SILDFR]|US|UI|UL)?', Number.Integer),
@@ -608,11 +608,11 @@ class FSharpLexer(RegexLexer):
 
             (r'\b(open|module)(\s+)([a-zA-Z0-9_.]+)',
              bygroups(Keyword, Text, Name.Namespace)),
-            (r'\b(let!?)(\s+)([a-zA-Z0-9_]+)',
+            (r'\b(let!?)(\s+)(\w+)',
              bygroups(Keyword, Text, Name.Variable)),
-            (r'\b(type)(\s+)([a-zA-Z0-9_]+)',
+            (r'\b(type)(\s+)(\w+)',
              bygroups(Keyword, Text, Name.Class)),
-            (r'\b(member|override)(\s+)([a-zA-Z0-9_]+)(\.)([a-zA-Z0-9_]+)',
+            (r'\b(member|override)(\s+)(\w+)(\.)(\w+)',
              bygroups(Keyword, Text, Name, Punctuation, Name.Function)),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
             (r'(%s)' % '|'.join(keyopts), Operator),
