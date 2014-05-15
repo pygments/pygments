@@ -2499,6 +2499,7 @@ class CoffeeScriptLexer(RegexLexer):
             (r'"', String, '#pop'),
             (r'\\.|\'', String), # double-quoted string don't need ' escapes
             (r'#{', String.Interpol, "interpoling_string"),
+            (r'#', String),
             include('strings')
         ],
         'sqs': [
@@ -2510,6 +2511,7 @@ class CoffeeScriptLexer(RegexLexer):
             (r'"""', String, '#pop'),
             (r'\\.|\'|"', String), # no need to escape quotes in triple-string
             (r'#{', String.Interpol, "interpoling_string"),
+            (r'#', String),
             include('strings'),
         ],
         'tsqs': [

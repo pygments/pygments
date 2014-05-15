@@ -1536,7 +1536,7 @@ class ColdfusionMarkupLexer(RegexLexer):
             (r'<[^<>]*', Other),
         ],
         'tags': [
-            (r'(?s)<!---.*?--->', Comment.Multiline),
+            (r'<!---', Comment.Multiline, 'cfcomment'),
             (r'(?s)<!--.*?-->', Comment),
             (r'<cfoutput.*?>', Name.Builtin, 'cfoutput'),
             (r'(?s)(<cfscript.*?>)(.+?)(</cfscript.*?>)',
@@ -1557,6 +1557,12 @@ class ColdfusionMarkupLexer(RegexLexer):
             include('tags'),
             (r'(?s)<[^<>]*', Other),
             (r'#', Other),
+        ],
+        'cfcomment': [
+            (r'(?s)(.*?)(<!---)',
+             bygroups(Comment.Multiline, Comment.Multiline), '#push'),
+            (r'(?s)(.*?)(--->)',
+             bygroups(Comment.Multiline, Comment.Multiline), '#pop'),
         ],
     }
 
