@@ -93,17 +93,17 @@ class CFamilyLexer(RegexLexer):
         'root': [
             include('whitespace'),
             # functions
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
-             r'([a-zA-Z_]\w*)'                       # method name
-             r'(\s*\([^;]*?\))'                      # signature
+            (r'((?:[\w*\s])+?(?:\s|[*]))' # return arguments
+             r'([a-zA-Z_]\w*)'            # method name
+             r'(\s*\([^;]*?\))'           # signature
              r'(' + _ws + r')?({)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
-             r'([a-zA-Z_]\w*)'                       # method name
-             r'(\s*\([^;]*?\))'                      # signature
+            (r'((?:[\w*\s])+?(?:\s|[*]))' # return arguments
+             r'([a-zA-Z_]\w*)'            # method name
+             r'(\s*\([^;]*?\))'           # signature
              r'(' + _ws + r')?(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
@@ -1748,15 +1748,15 @@ class PrologLexer(RegexLexer):
             (r'_', Keyword), # The don't-care variable
             (r'([a-z]+)(:)', bygroups(Name.Namespace, Punctuation)),
             (u'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
-             u'[a-zA-Z0-9_$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
+             u'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
              u'(\\s*)(:-|-->)',
              bygroups(Name.Function, Text, Operator)), # function defn
             (u'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
-             u'[a-zA-Z0-9_$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
+             u'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
              u'(\\s*)(\\()',
              bygroups(Name.Function, Text, Punctuation)),
             (u'[a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
-             u'[a-zA-Z0-9_$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*',
+             u'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*',
              String.Atom), # atom, characters
             # This one includes !
             (u'[#&*+\\-./:<=>?@\\\\^~\u00a1-\u00bf\u2010-\u303f]+',
@@ -1892,13 +1892,13 @@ class CythonLexer(RegexLexer):
         ],
         'import': [
             (r'(\s+)(as)(\s+)', bygroups(Text, Keyword, Text)),
-            (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace),
+            (r'[a-zA-Z_][\w.]*', Name.Namespace),
             (r'(\s*)(,)(\s*)', bygroups(Text, Operator, Text)),
             (r'', Text, '#pop') # all else: go back
         ],
         'fromimport': [
             (r'(\s+)(c?import)\b', bygroups(Text, Keyword), '#pop'),
-            (r'[a-zA-Z_.][a-zA-Z0-9_.]*', Name.Namespace),
+            (r'[a-zA-Z_.][\w.]*', Name.Namespace),
             # ``cdef foo from "header"``, or ``for foo from 0 < i < 10``
             (r'', Text, '#pop'),
         ],
@@ -2026,7 +2026,7 @@ class ValaLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'namespace': [
-            (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace, '#pop')
+            (r'[a-zA-Z_][\w.]*', Name.Namespace, '#pop')
         ],
     }
 
@@ -2503,7 +2503,7 @@ class AdaLexer(RegexLexer):
         ],
         'end' : [
             ('(if|case|record|loop|select)', Keyword.Reserved),
-            ('"[^"]+"|[a-zA-Z0-9_.]+', Name.Function),
+            ('"[^"]+"|[\w.]+', Name.Function),
             ('\s+', Text),
             (';', Punctuation, '#pop'),
         ],
@@ -2543,7 +2543,7 @@ class AdaLexer(RegexLexer):
             ('is', Keyword.Reserved, '#pop'),
             (';', Punctuation, '#pop'),
             ('\(', Punctuation, 'package_instantiation'),
-            ('([a-zA-Z0-9_.]+)', Name.Class),
+            ('([\w.]+)', Name.Class),
             include('root'),
         ],
         'package_instantiation': [
@@ -2586,7 +2586,7 @@ class Modula2Lexer(RegexLexer):
             (r'\s+', Text), # whitespace
         ],
         'identifiers': [
-            (r'([a-zA-Z_\$][a-zA-Z0-9_\$]*)', Name),
+            (r'([a-zA-Z_\$][\w\$]*)', Name),
         ],
         'numliterals': [
             (r'[01]+B', Number.Binary),        # binary number (ObjM2)
@@ -3955,13 +3955,13 @@ class ChapelLexer(RegexLexer):
             (r'[:;,.?()\[\]{}]', Punctuation),
 
             # identifiers
-            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Other),
+            (r'[a-zA-Z_][\w$]*', Name.Other),
         ],
         'classname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Class, '#pop'),
+            (r'[a-zA-Z_][\w$]*', Name.Class, '#pop'),
         ],
         'procname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Function, '#pop'),
+            (r'[a-zA-Z_][\w$]*', Name.Function, '#pop'),
         ],
     }
 

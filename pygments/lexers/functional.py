@@ -956,22 +956,22 @@ class HaskellLexer(RegexLexer):
             (r'\)', Punctuation, '#pop'),
             (r'qualified\b', Keyword),
             # import X as Y
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(as)(\s+)([A-Z][a-zA-Z0-9_.]*)',
+            (r'([A-Z][\w.]*)(\s+)(as)(\s+)([A-Z][\w.]*)',
              bygroups(Name.Namespace, Text, Keyword, Text, Name), '#pop'),
             # import X hiding (functions)
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(hiding)(\s+)(\()',
+            (r'([A-Z][\w.]*)(\s+)(hiding)(\s+)(\()',
              bygroups(Name.Namespace, Text, Keyword, Text, Punctuation), 'funclist'),
             # import X (functions)
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+            (r'([A-Z][\w.]*)(\s+)(\()',
              bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
             # import X
-            (r'[a-zA-Z0-9_.]+', Name.Namespace, '#pop'),
+            (r'[\w.]+', Name.Namespace, '#pop'),
         ],
         'module': [
             (r'\s+', Text),
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+            (r'([A-Z][\w.]*)(\s+)(\()',
              bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
-            (r'[A-Z][a-zA-Z0-9_.]*', Name.Namespace, '#pop'),
+            (r'[A-Z][\w.]*', Name.Namespace, '#pop'),
         ],
         'funclist': [
             (r'\s+', Text),
@@ -1061,7 +1061,7 @@ class IdrisLexer(RegexLexer):
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
             (r"('')?[A-Z][\w\']*", Keyword.Type),
-            (r'[a-z][A-Za-z0-9_\']*', Text),
+            (r'[a-z][\w\']*', Text),
             #  Special Symbols
             (r'(<-|::|->|=>|=)', Operator.Word), # specials
             (r'([\(\)\{\}\[\]:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
@@ -1078,9 +1078,9 @@ class IdrisLexer(RegexLexer):
         ],
         'module': [
             (r'\s+', Text),
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+            (r'([A-Z][\w.]*)(\s+)(\()',
              bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
-            (r'[A-Z][a-zA-Z0-9_.]*', Name.Namespace, '#pop'),
+            (r'[A-Z][\w.]*', Name.Namespace, '#pop'),
         ],
         'funclist': [
             (r'\s+', Text),
@@ -1184,7 +1184,7 @@ class AgdaLexer(RegexLexer):
         ],
         'module': [
             (r'{-', Comment.Multiline, 'comment'),
-            (r'[a-zA-Z][a-zA-Z0-9_.]*', Name, '#pop'),
+            (r'[a-zA-Z][\w.]*', Name, '#pop'),
             (r'[^a-zA-Z]*', Text)
         ],
         'comment': HaskellLexer.tokens['comment'],
@@ -1360,7 +1360,7 @@ class SMLLexer(RegexLexer):
 
     nonid_reserved = [ '(', ')', '[', ']', '{', '}', ',', ';', '...', '_' ]
 
-    alphanumid_re = r"[a-zA-Z][a-zA-Z0-9_']*"
+    alphanumid_re = r"[a-zA-Z][\w']*"
     symbolicid_re = r"[!%&$#+\-/:<=>?@\\~`^|*]+"
 
     # A character constant is a sequence of the form #s, where s is a string
@@ -1697,9 +1697,9 @@ class OcamlLexer(RegexLexer):
         'root': [
             (r'\s+', Text),
             (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
-            (r'\b([A-Z][A-Za-z0-9_\']*)(?=\s*\.)',
+            (r'\b([A-Z][\w\']*)(?=\s*\.)',
              Name.Namespace, 'dotted'),
-            (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
+            (r'\b([A-Z][\w\']*)', Name.Class),
             (r'\(\*(?![)])', Comment, 'comment'),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
@@ -1739,9 +1739,9 @@ class OcamlLexer(RegexLexer):
         'dotted': [
             (r'\s+', Text),
             (r'\.', Punctuation),
-            (r'[A-Z][A-Za-z0-9_\']*(?=\s*\.)', Name.Namespace),
-            (r'[A-Z][A-Za-z0-9_\']*', Name.Class, '#pop'),
-            (r'[a-z_][A-Za-z0-9_\']*', Name, '#pop'),
+            (r'[A-Z][\w\']*(?=\s*\.)', Name.Namespace),
+            (r'[A-Z][\w\']*', Name.Class, '#pop'),
+            (r'[a-z_][\w\']*', Name, '#pop'),
         ],
     }
 
@@ -2309,9 +2309,9 @@ class CoqLexer(RegexLexer):
             (r'\b(%s)\b' % '|'.join(keywords4), Keyword),
             (r'\b(%s)\b' % '|'.join(keywords5), Keyword.Pseudo),
             (r'\b(%s)\b' % '|'.join(keywords6), Keyword.Reserved),
-            (r'\b([A-Z][A-Za-z0-9_\']*)(?=\s*\.)',
+            (r'\b([A-Z][\w\']*)(?=\s*\.)',
              Name.Namespace, 'dotted'),
-            (r'\b([A-Z][A-Za-z0-9_\']*)', Name.Class),
+            (r'\b([A-Z][\w\']*)', Name.Class),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
@@ -2348,8 +2348,8 @@ class CoqLexer(RegexLexer):
         'dotted': [
             (r'\s+', Text),
             (r'\.', Punctuation),
-            (r'[A-Z][A-Za-z0-9_\']*(?=\s*\.)', Name.Namespace),
-            (r'[A-Z][A-Za-z0-9_\']*', Name.Class, '#pop'),
+            (r'[A-Z][\w\']*(?=\s*\.)', Name.Namespace),
+            (r'[A-Z][\w\']*', Name.Class, '#pop'),
             (r'[a-z][a-z0-9_\']*', Name, '#pop'),
             (r'', Text, '#pop')
         ],
@@ -2560,7 +2560,7 @@ class NixLexer(RegexLexer):
 
             # names of variables
             (r'[a-zA-Z0-9-_]+\s*=', String.Symbol),
-            (r'[a-zA-Z_][a-zA-Z0-9_\'-]*', Text),
+            (r'[a-zA-Z_][\w\'-]*', Text),
 
         ],
         'comment': [

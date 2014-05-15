@@ -115,7 +115,7 @@ class VerilogLexer(RegexLexer):
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'import': [
-            (r'[a-zA-Z0-9_:]+\*?', Name.Namespace, '#pop')
+            (r'[\w:]+\*?', Name.Namespace, '#pop')
         ]
     }
 
@@ -252,7 +252,7 @@ class SystemVerilogLexer(RegexLexer):
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'import': [
-            (r'[a-zA-Z0-9_:]+\*?', Name.Namespace, '#pop')
+            (r'[\w:]+\*?', Name.Namespace, '#pop')
         ]
     }
 
@@ -297,7 +297,7 @@ class VhdlLexer(RegexLexer):
             (r'(library)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword, Text, Name.Namespace)),
             (r'(use)(\s+)(entity)', bygroups(Keyword, Text, Keyword)),
-            (r'(use)(\s+)([a-zA-Z_][\.a-zA-Z0-9_]*)',
+            (r'(use)(\s+)([a-zA-Z_][\.\w]*)',
              bygroups(Keyword, Text, Name.Namespace)),
             (r'(entity|component)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword, Text, Name.Class)),

@@ -97,7 +97,7 @@ class JuliaLexer(RegexLexer):
             (r'[E]?"', String, combined('stringescape', 'string')),
 
             # names
-            (r'@[a-zA-Z0-9_.]+', Name.Decorator),
+            (r'@[\w.]+', Name.Decorator),
             (r'[a-zA-Z_]\w*', Name),
 
             # numbers
@@ -1461,7 +1461,7 @@ class BugsLexer(RegexLexer):
              % r'|'.join(_FUNCTIONS + _DISTRIBUTIONS),
              Name.Builtin),
             # Regular variable names
-            (r'[A-Za-z][A-Za-z0-9_.]*', Name),
+            (r'[A-Za-z][\w.]*', Name),
             # Number Literals
             (r'[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?', Number),
             # Punctuation
@@ -1521,7 +1521,7 @@ class JagsLexer(RegexLexer):
             ],
         'names' : [
             # Regular variable names
-            (r'[a-zA-Z][a-zA-Z0-9_.]*\b', Name),
+            (r'[a-zA-Z][\w.]*\b', Name),
             ],
         'comments' : [
             # do not use stateful comments
