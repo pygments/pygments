@@ -732,7 +732,7 @@ class CommonLispLexer(RegexLexer):
     ### couple of useful regexes
 
     # characters that are not macro-characters and can be used to begin a symbol
-    nonmacro = r'\\.|[a-zA-Z0-9!$%&*+-/<=>?@\[\]^_{}~]'
+    nonmacro = r'\\.|[\w!$%&*+-/<=>?@\[\]^{}~]'
     constituent = nonmacro + '|[#.:]'
     terminated = r'(?=[ "()\'\n,;`])' # whitespace or terminating macro characters
 
@@ -1450,7 +1450,7 @@ class SMLLexer(RegexLexer):
             (r'\b(type|eqtype)\b(?!\')', Keyword.Reserved, 'tname'),
 
             # Regular identifiers, long and otherwise
-            (r'\'[0-9a-zA-Z_\']*', Name.Decorator),
+            (r'\'[\w\']*', Name.Decorator),
             (r'(%s)(\.)' % alphanumid_re, long_id_callback, "dotted"),
             (r'(%s)' % alphanumid_re, id_callback),
             (r'(%s)' % symbolicid_re, id_callback),
@@ -2437,7 +2437,7 @@ class NewLispLexer(RegexLexer):
     ]
 
     # valid names
-    valid_name = r'([a-zA-Z0-9!$%&*+.,/<=>?@^_~|-])+|(\[.*?\])+'
+    valid_name = r'([\w!$%&*+.,/<=>?@^~|-])+|(\[.*?\])+'
 
     tokens = {
         'root': [
@@ -2552,14 +2552,14 @@ class NixLexer(RegexLexer):
             (r"''", String.Single, 'singlequote'),
 
             # paths
-            (r'[a-zA-Z0-9._+-]*(\/[a-zA-Z0-9._+-]+)+', Literal),
-            (r'\<[a-zA-Z0-9._+-]+(\/[a-zA-Z0-9._+-]+)*\>', Literal),
+            (r'[\w.+-]*(\/[\w.+-]+)+', Literal),
+            (r'\<[\w.+-]+(\/[\w.+-]+)*\>', Literal),
 
             # urls
-            (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[a-zA-Z0-9%/?:@&=+$,\\_.!~*\'-]+', Literal),
+            (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[\w%/?:@&=+$,\\.!~*\'-]+', Literal),
 
             # names of variables
-            (r'[a-zA-Z0-9-_]+\s*=', String.Symbol),
+            (r'[\w-]+\s*=', String.Symbol),
             (r'[a-zA-Z_][\w\'-]*', Text),
 
         ],
