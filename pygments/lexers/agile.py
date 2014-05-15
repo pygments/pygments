@@ -1987,7 +1987,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     flags     = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    PERL6_IDENTIFIER_RANGE = "['\w:-]" # if you alter this, search for a copy of it below
+    PERL6_IDENTIFIER_RANGE = "['\w:-]"
 
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
@@ -2345,8 +2345,8 @@ class Perl6Lexer(ExtendedRegexLexer):
         rating        = False
 
         # check for my/our/has declarations
-        # copied PERL6_IDENTIFIER_RANGE from above; not happy about that
-        if re.search("(?:my|our|has)\s+(?:['\w:-]+\s+)?[$@%&(]", text):
+        if re.search("(?:my|our|has)\s+(?:" + Perl6Lexer.PERL6_IDENTIFIER_RANGE + \
+                     "+\s+)?[$@%&(]", text):
             rating        = 0.8
             saw_perl_decl = True
 
