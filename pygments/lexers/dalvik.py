@@ -82,7 +82,7 @@ class SmaliLexer(RegexLexer):
              bygroups(Punctuation, Name.Function, Punctuation)),
         ],
         'label': [
-            (r':[A-Za-z0-9_]+', Name.Label),
+            (r':\w+', Name.Label),
         ],
         'class': [
             # class names in the form Lcom/namespace/ClassName;

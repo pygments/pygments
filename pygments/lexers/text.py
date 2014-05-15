@@ -588,7 +588,7 @@ class ApacheConfLexer(RegexLexer):
             (r'(#.*?)$', Comment),
             (r'(<[^\s>]+)(?:(\s+)(.*?))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
-            (r'([a-zA-Z][a-zA-Z0-9_]*)(\s+)',
+            (r'([a-zA-Z]\w*)(\s+)',
              bygroups(Name.Builtin, Text), 'value'),
             (r'\.+', Text),
         ],

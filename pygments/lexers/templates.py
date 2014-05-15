@@ -161,22 +161,22 @@ class SmartyLexer(RegexLexer):
             (r'(\{php\})(.*?)(\{/php\})',
              bygroups(Comment.Preproc, using(PhpLexer, startinline=True),
                       Comment.Preproc)),
-            (r'(\{)(/?[a-zA-Z_][a-zA-Z0-9_]*)(\s*)',
+            (r'(\{)(/?[a-zA-Z_]\w*)(\s*)',
              bygroups(Comment.Preproc, Name.Function, Text), 'smarty'),
             (r'\{', Comment.Preproc, 'smarty')
         ],
         'smarty': [
             (r'\s+', Text),
             (r'\}', Comment.Preproc, '#pop'),
-            (r'#[a-zA-Z_][a-zA-Z0-9_]*#', Name.Variable),
-            (r'\$[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*', Name.Variable),
+            (r'#[a-zA-Z_]\w*#', Name.Variable),
+            (r'\$[a-zA-Z_]\w*(\.\w+)*', Name.Variable),
             (r'[~!%^&*()+=|\[\]:;,.<>/?{}@-]', Operator),
             (r'(true|false|null)\b', Keyword.Constant),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute)
+            (r'[a-zA-Z_]\w*', Name.Attribute)
         ]
     }
 
@@ -207,7 +207,7 @@ class VelocityLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    identifier = r'[a-zA-Z_][a-zA-Z0-9_]*'
+    identifier = r'[a-zA-Z_]\w*'
 
     tokens = {
         'root': [
@@ -267,8 +267,8 @@ class VelocityLexer(RegexLexer):
             rv += 0.15
         if re.search(r'#\{?foreach\}?\(.+?\).*?#\{?end\}?', text):
             rv += 0.15
-        if re.search(r'\$\{?[a-zA-Z_][a-zA-Z0-9_]*(\([^)]*\))?'
-                     r'(\.[a-zA-Z0-9_]+(\([^)]*\))?)*\}?', text):
+        if re.search(r'\$\{?[a-zA-Z_]\w*(\([^)]*\))?'
+                     r'(\.\w+(\([^)]*\))?)*\}?', text):
             rv += 0.01
         return rv
 
@@ -347,17 +347,17 @@ class DjangoLexer(RegexLexer):
                       Text, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
             # filter blocks
-            (r'(\{%)(-?\s*)(filter)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\{%)(-?\s*)(filter)(\s+)([a-zA-Z_]\w*)',
              bygroups(Comment.Preproc, Text, Keyword, Text, Name.Function),
              'block'),
-            (r'(\{%)(-?\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\{%)(-?\s*)([a-zA-Z_]\w*)',
              bygroups(Comment.Preproc, Text, Keyword), 'block'),
             (r'\{', Other)
         ],
         'varnames': [
-            (r'(\|)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\|)(\s*)([a-zA-Z_]\w*)',
              bygroups(Operator, Text, Name.Function)),
-            (r'(is)(\s+)(not)?(\s+)?([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(is)(\s+)(not)?(\s+)?([a-zA-Z_]\w*)',
              bygroups(Keyword, Text, Keyword, Text, Name.Function)),
             (r'(_|true|false|none|True|False|None)\b', Keyword.Pseudo),
             (r'(in|as|reversed|recursive|not|and|or|is|if|else|import|'
@@ -365,7 +365,7 @@ class DjangoLexer(RegexLexer):
              Keyword),
             (r'(loop|block|super|forloop)\b', Name.Builtin),
             (r'[a-zA-Z][a-zA-Z0-9_-]*', Name.Variable),
-            (r'\.[a-zA-Z0-9_]+', Name.Variable),
+            (r'\.\w+', Name.Variable),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
             (r'([{}()\[\]+\-*/,:~]|[><=]=?)', Operator),
@@ -745,7 +745,7 @@ class CheetahLexer(RegexLexer):
              (bygroups(Comment.Preproc, using(CheetahPythonLexer),
                        Comment.Preproc))),
             # TODO support other Python syntax like $foo['bar']
-            (r'(\$)([a-zA-Z_][a-zA-Z0-9_\.]*[a-zA-Z0-9_])',
+            (r'(\$)([a-zA-Z_][a-zA-Z0-9_\.]*\w)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer))),
             (r'(\$\{!?)(.*?)(\})(?s)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer),
@@ -1806,7 +1806,7 @@ class HandlebarsLexer(RegexLexer):
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
             (r'[a-zA-Z][a-zA-Z0-9_-]*', Name.Variable),
-            (r'\.[a-zA-Z0-9_]+', Name.Variable),
+            (r'\.\w+', Name.Variable),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ]

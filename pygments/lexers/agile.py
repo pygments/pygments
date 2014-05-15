@@ -120,13 +120,13 @@ class PythonLexer(RegexLexer):
         ],
         'name': [
             (r'@[a-zA-Z0-9_.]+', Name.Decorator),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'funcname': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop')
+            ('[a-zA-Z_]\w*', Name.Function, '#pop')
         ],
         'classname': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            ('[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'import': [
             (r'(?:[ \t]|\\\n)+', Text),
@@ -152,7 +152,7 @@ class PythonLexer(RegexLexer):
              r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
         'strings': [
-            (r'%(\([a-zA-Z0-9_]+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
+            (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
              '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
             (r'[^\\\'"%\n]+', String),
             # quotes, percents and backslashes must be parsed one at a time
@@ -255,7 +255,7 @@ class Python3Lexer(RegexLexer):
     ]
     tokens['backtick'] = []
     tokens['name'] = [
-        (r'@[a-zA-Z0-9_]+', Name.Decorator),
+        (r'@\w+', Name.Decorator),
         (uni_name, Name),
     ]
     tokens['funcname'] = [
@@ -406,7 +406,7 @@ class PythonTracebackLexer(RegexLexer):
              bygroups(Text, Comment, Text)), # for doctests...
             (r'^([^:]+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
-            (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
+            (r'^([a-zA-Z_]\w*)(:?\n)',
              bygroups(Generic.Error, Text), '#pop')
         ],
     }
@@ -445,7 +445,7 @@ class Python3TracebackLexer(RegexLexer):
              bygroups(Text, Comment, Text)), # for doctests...
             (r'^([^:]+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
-            (r'^([a-zA-Z_][a-zA-Z0-9_]*)(:?\n)',
+            (r'^([a-zA-Z_]\w*)(:?\n)',
              bygroups(Generic.Error, Text), '#pop')
         ],
     }
@@ -535,7 +535,7 @@ class RubyLexer(ExtendedRegexLexer):
             (r":'(\\\\|\\'|[^'])*'", String.Symbol),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r':"', String.Symbol, 'simple-sym'),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)(?!:)',
+            (r'([a-zA-Z_]\w*)(:)(?!:)',
              bygroups(String.Symbol, Punctuation)),  # Since Ruby 1.9
             (r'"', String.Double, 'simple-string'),
             (r'(?<!\.)`', String.Backtick, 'simple-backtick'),
@@ -621,8 +621,8 @@ class RubyLexer(ExtendedRegexLexer):
              r'rescue|raise|retry|return|super|then|undef|unless|until|when|'
              r'while|yield)\b', Keyword),
             # start of function, class and module names
-            (r'(module)(\s+)([a-zA-Z_][a-zA-Z0-9_]*'
-             r'(?:::[a-zA-Z_][a-zA-Z0-9_]*)*)',
+            (r'(module)(\s+)([a-zA-Z_]\w*'
+             r'(?:::[a-zA-Z_]\w*)*)',
              bygroups(Keyword, Text, Name.Namespace)),
             (r'(def)(\s+)', bygroups(Keyword, Text), 'funcname'),
             (r'def(?=[*%&^`~+-/\[<>=])', Keyword, 'funcname'),
@@ -713,9 +713,9 @@ class RubyLexer(ExtendedRegexLexer):
             (r'([\d]+(?:_\d+)*)(\s*)([/?])?',
              bygroups(Number.Integer, Text, Operator)),
             # Names
-            (r'@@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Class),
-            (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Instance),
-            (r'\$[a-zA-Z0-9_]+', Name.Variable.Global),
+            (r'@@[a-zA-Z_]\w*', Name.Variable.Class),
+            (r'@[a-zA-Z_]\w*', Name.Variable.Instance),
+            (r'\$\w+', Name.Variable.Global),
             (r'\$[!@&`\'+~=/\\,;.<>_*$?:"]', Name.Variable.Global),
             (r'\$-[0adFiIlpvw]', Name.Variable.Global),
             (r'::', Operator),
@@ -725,7 +725,7 @@ class RubyLexer(ExtendedRegexLexer):
              r'(\\([\\abefnrstv#"\']|x[a-fA-F0-9]{1,2}|[0-7]{1,3})|\S)'
              r'(?!\w)',
              String.Char),
-            (r'[A-Z][a-zA-Z0-9_]+', Name.Constant),
+            (r'[A-Z]\w+', Name.Constant),
             # this is needed because ruby attributes can look
             # like keywords (class) or like this: ` ?!?
             (r'(\.|::)([a-zA-Z_]\w*[\!\?]?|[*%&^`~+-/\[<>=])',
@@ -739,7 +739,7 @@ class RubyLexer(ExtendedRegexLexer):
         ],
         'funcname': [
             (r'\(', Punctuation, 'defexpr'),
-            (r'(?:([a-zA-Z_][a-zA-Z0-9_]*)(\.))?'
+            (r'(?:([a-zA-Z_]\w*)(\.))?'
              r'([a-zA-Z_]\w*[\!\?]?|\*\*?|[-+]@?|'
              r'[/%&|^`~]|\[\]=?|<<|>>|<=?>|>=?|===?)',
              bygroups(Name.Class, Operator, Name.Function), '#pop'),
@@ -762,8 +762,8 @@ class RubyLexer(ExtendedRegexLexer):
         ],
         'string-intp': [
             (r'#{', String.Interpol, 'in-intp'),
-            (r'#@@?[a-zA-Z_][a-zA-Z0-9_]*', String.Interpol),
-            (r'#\$[a-zA-Z_][a-zA-Z0-9_]*', String.Interpol)
+            (r'#@@?[a-zA-Z_]\w*', String.Interpol),
+            (r'#\$[a-zA-Z_]\w*', String.Interpol)
         ],
         'string-intp-escaped': [
             include('string-intp'),
@@ -814,7 +814,7 @@ class RubyConsoleLexer(Lexer):
     aliases = ['rbcon', 'irb']
     mimetypes = ['text/x-ruby-shellsession']
 
-    _prompt_re = re.compile('irb\([a-zA-Z_][a-zA-Z0-9_]*\):\d{3}:\d+[>*"\'] '
+    _prompt_re = re.compile('irb\([a-zA-Z_]\w*\):\d{3}:\d+[>*"\'] '
                             '|>> |\?> ')
 
     def get_tokens_unprocessed(self, text):
@@ -875,7 +875,7 @@ class PerlLexer(RegexLexer):
             (r'(case|continue|do|else|elsif|for|foreach|if|last|my|'
              r'next|our|redo|reset|then|unless|until|while|use|'
              r'print|new|BEGIN|CHECK|INIT|END|return)\b', Keyword),
-            (r'(format)(\s+)([a-zA-Z0-9_]+)(\s*)(=)(\s*\n)',
+            (r'(format)(\s+)(\w+)(\s*)(=)(\s*\n)',
              bygroups(Keyword, Text, Name, Text, Punctuation, Text), 'format'),
             (r'(eq|lt|gt|le|ge|ne|not|and|or|cmp)\b', Operator.Word),
             # common delimiters
@@ -928,7 +928,7 @@ class PerlLexer(RegexLexer):
              r'utime|values|vec|wait|waitpid|wantarray|warn|write'
              r')\b', Name.Builtin),
             (r'((__(DATA|DIE|WARN)__)|(STD(IN|OUT|ERR)))\b', Name.Builtin.Pseudo),
-            (r'<<([\'"]?)([a-zA-Z_][a-zA-Z0-9_]*)\1;?\n.*?\n\2\n', String),
+            (r'<<([\'"]?)([a-zA-Z_]\w*)\1;?\n.*?\n\2\n', String),
             (r'__END__', Comment.Preproc, 'end-part'),
             (r'\$\^[ADEFHILMOPSTWX]', Name.Variable.Global),
             (r"\$[\\\"\[\]'&`+*.,;=%~?@$!<>(^|/-](?!\w)", Name.Variable.Global),
@@ -966,11 +966,11 @@ class PerlLexer(RegexLexer):
             (r'\s+', Text),
             (r'\{', Punctuation, '#pop'), # hash syntax?
             (r'\)|,', Punctuation, '#pop'), # argument specifier
-            (r'[a-zA-Z0-9_]+::', Name.Namespace),
+            (r'\w+::', Name.Namespace),
             (r'[a-zA-Z0-9_:]+', Name.Variable, '#pop'),
         ],
         'name': [
-            (r'[a-zA-Z0-9_]+::', Name.Namespace),
+            (r'\w+::', Name.Namespace),
             (r'[a-zA-Z0-9_:]+', Name, '#pop'),
             (r'[A-Z_]+(?=[^a-zA-Z0-9_])', Name.Constant, '#pop'),
             (r'(?=[^a-zA-Z0-9_])', Text, '#pop'),
@@ -1085,7 +1085,7 @@ class LuaLexer(RegexLexer):
 
             (r'(function)\b', Keyword, 'funcname'),
 
-            (r'[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)?', Name),
+            (r'[A-Za-z_]\w*(\.[A-Za-z_]\w*)?', Name),
 
             ("'", String.Single, combined('stringescape', 'sqs')),
             ('"', String.Double, combined('stringescape', 'dqs'))
@@ -1093,7 +1093,7 @@ class LuaLexer(RegexLexer):
 
         'funcname': [
             (r'\s+', Text),
-            ('(?:([A-Za-z_][A-Za-z0-9_]*)(\.))?([A-Za-z_][A-Za-z0-9_]*)',
+            ('(?:([A-Za-z_]\w*)(\.))?([A-Za-z_]\w*)',
              bygroups(Name.Class, Punctuation, Name.Function), '#pop'),
             # inline function
             ('\(', Punctuation, '#pop'),
@@ -1176,20 +1176,20 @@ class MoonScriptLexer(LuaLexer):
             (r'[^\S\n]+', Text),
             (r'(?s)\[(=*)\[.*?\]\1\]', String),
             (r'(->|=>)', Name.Function),
-            (r':[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            (r':[a-zA-Z_]\w*', Name.Variable),
             (r'(==|!=|~=|<=|>=|\.\.\.|\.\.|[=+\-*/%^<>#!.\\:])', Operator),
             (r'[;,]', Punctuation),
             (r'[\[\]\{\}\(\)]', Keyword.Type),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Variable),
+            (r'[a-zA-Z_]\w*:', Name.Variable),
             (r"(class|extends|if|then|super|do|with|import|export|"
              r"while|elseif|return|for|in|from|when|using|else|"
              r"and|or|not|switch|break)\b", Keyword),
             (r'(true|false|nil)\b', Keyword.Constant),
             (r'(and|or|not)\b', Operator.Word),
             (r'(self)\b', Name.Builtin.Pseudo),
-            (r'@@?([a-zA-Z_][a-zA-Z0-9_]*)?', Name.Variable.Class),
+            (r'@@?([a-zA-Z_]\w*)?', Name.Variable.Class),
             (r'[A-Z]\w*', Name.Class), # proper name
-            (r'[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)?', Name),
+            (r'[A-Za-z_]\w*(\.[A-Za-z_]\w*)?', Name),
             ("'", String.Single, combined('stringescape', 'sqs')),
             ('"', String.Double, combined('stringescape', 'dqs'))
         ],
@@ -1320,7 +1320,7 @@ class IoLexer(RegexLexer):
             # names
             (r'(Object|list|List|Map|args|Sequence|Coroutine|File)\b',
              Name.Builtin),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
             # numbers
             (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+', Number.Integer)
@@ -1857,14 +1857,14 @@ class FancyLexer(RegexLexer):
              r'FalseClass|Tuple|Symbol|Stack|Set|FancySpec|Method|Package|'
              r'Range)\b', Name.Builtin),
             # functions
-            (r'[a-zA-Z]([a-zA-Z0-9_]|[-+?!=*/^><%])*:', Name.Function),
+            (r'[a-zA-Z](\w|[-+?!=*/^><%])*:', Name.Function),
             # operators, must be below functions
             (r'[-+*/~,<>=&!?%^\[\]\.$]+', Operator),
-            ('[A-Z][a-zA-Z0-9_]*', Name.Constant),
-            ('@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Instance),
-            ('@@[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable.Class),
+            ('[A-Z]\w*', Name.Constant),
+            ('@[a-zA-Z_]\w*', Name.Variable.Instance),
+            ('@@[a-zA-Z_]\w*', Name.Variable.Class),
             ('@@?', Operator),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
             # numbers - / checks are necessary to avoid mismarking regexes,
             # see comment in RubyLexer
             (r'(0[oO]?[0-7]+(?:_[0-7]+)*)(\s*)([/?])?',
@@ -1949,7 +1949,7 @@ class DgLexer(RegexLexer):
              r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
         'string': [
-            (r'%(\([a-zA-Z0-9_]+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
+            (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
              '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
             (r'[^\\\'"%\n]+', String),
             # quotes, percents and backslashes must be parsed one at a time
@@ -2534,7 +2534,7 @@ class ChaiscriptLexer(RegexLexer):
             (r'(true|false)\b', Keyword.Constant),
             (r'(eval|throw)\b', Name.Builtin),
             (r'`\S+`', Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),

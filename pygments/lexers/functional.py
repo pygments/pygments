@@ -975,7 +975,7 @@ class HaskellLexer(RegexLexer):
         ],
         'funclist': [
             (r'\s+', Text),
-            (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
+            (r'[A-Z]\w*', Keyword.Type),
             (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
             (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
@@ -1084,7 +1084,7 @@ class IdrisLexer(RegexLexer):
         ],
         'funclist': [
             (r'\s+', Text),
-            (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
+            (r'[A-Z]\w*', Keyword.Type),
             (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
             (r'--.*$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
@@ -1801,9 +1801,9 @@ class ErlangLexer(RegexLexer):
         'div', 'not', 'or', 'orelse', 'rem', 'xor'
         ]
 
-    atom_re = r"(?:[a-z][a-zA-Z0-9_]*|'[^\n']*[^\\]')"
+    atom_re = r"(?:[a-z]\w*|'[^\n']*[^\\]')"
 
-    variable_re = r'(?:[A-Z_][a-zA-Z0-9_]*)'
+    variable_re = r'(?:[A-Z_]\w*)'
 
     escape_re = r'(?:\\(?:[bdefnrstv\'"\\/]|[0-7][0-7]?[0-7]?|\^[a-zA-Z]))'
 
