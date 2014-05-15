@@ -364,7 +364,7 @@ class DjangoLexer(RegexLexer):
              r'with(?:(?:out)?\s*context)?|scoped|ignore\s+missing)\b',
              Keyword),
             (r'(loop|block|super|forloop)\b', Name.Builtin),
-            (r'[a-zA-Z][a-zA-Z0-9_-]*', Name.Variable),
+            (r'[a-zA-Z][\w-]*', Name.Variable),
             (r'\.\w+', Name.Variable),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
@@ -745,7 +745,7 @@ class CheetahLexer(RegexLexer):
              (bygroups(Comment.Preproc, using(CheetahPythonLexer),
                        Comment.Preproc))),
             # TODO support other Python syntax like $foo['bar']
-            (r'(\$)([a-zA-Z_][a-zA-Z0-9_\.]*\w)',
+            (r'(\$)([a-zA-Z_][\w\.]*\w)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer))),
             (r'(\$\{!?)(.*?)(\})(?s)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer),
@@ -843,7 +843,7 @@ class GenshiTextLexer(RegexLexer):
         'variable': [
             (r'(?<!\$)(\$\{)(.+?)(\})',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
-            (r'(?<!\$)(\$)([a-zA-Z_][a-zA-Z0-9_\.]*)',
+            (r'(?<!\$)(\$)([a-zA-Z_][\w\.]*)',
              Name.Variable),
         ]
     }
@@ -871,7 +871,7 @@ class GenshiMarkupLexer(RegexLexer):
         ],
         'pytag': [
             (r'\s+', Text),
-            (r'[a-zA-Z0-9_:-]+\s*=', Name.Attribute, 'pyattr'),
+            (r'[\w:-]+\s*=', Name.Attribute, 'pyattr'),
             (r'/?\s*>', Name.Tag, '#pop'),
         ],
         'pyattr': [
@@ -881,8 +881,8 @@ class GenshiMarkupLexer(RegexLexer):
         ],
         'tag': [
             (r'\s+', Text),
-            (r'py:[a-zA-Z0-9_-]+\s*=', Name.Attribute, 'pyattr'),
-            (r'[a-zA-Z0-9_:-]+\s*=', Name.Attribute, 'attr'),
+            (r'py:[\w-]+\s*=', Name.Attribute, 'pyattr'),
+            (r'[\w:-]+\s*=', Name.Attribute, 'attr'),
             (r'/?\s*>', Name.Tag, '#pop'),
         ],
         'attr': [
@@ -907,7 +907,7 @@ class GenshiMarkupLexer(RegexLexer):
         'variable': [
             (r'(?<!\$)(\$\{)(.+?)(\})',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
-            (r'(?<!\$)(\$)([a-zA-Z_][a-zA-Z0-9_\.]*)',
+            (r'(?<!\$)(\$)([a-zA-Z_][\w\.]*)',
              Name.Variable),
         ]
     }
@@ -1504,9 +1504,9 @@ class ColdfusionLexer(RegexLexer):
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(application|session|client|cookie|super|this|variables|arguments)\b',
              Name.Constant),
-            (r'([A-Za-z_$][A-Za-z0-9_.]*)(\s*)(\()',
+            (r'([A-Za-z_$][\w.]*)(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
-            (r'[A-Za-z_$][A-Za-z0-9_.]*', Name.Variable),
+            (r'[A-Za-z_$][\w.]*', Name.Variable),
             (r'[()\[\]{};:,.\\]', Punctuation),
             (r'\s+', Text),
         ],
@@ -1805,7 +1805,7 @@ class HandlebarsLexer(RegexLexer):
             # borrowed from DjangoLexer
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z][a-zA-Z0-9_-]*', Name.Variable),
+            (r'[a-zA-Z][\w-]*', Name.Variable),
             (r'\.\w+', Name.Variable),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),

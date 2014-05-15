@@ -119,7 +119,7 @@ class PythonLexer(RegexLexer):
             ('`.*?`', String.Backtick),
         ],
         'name': [
-            (r'@[a-zA-Z0-9_.]+', Name.Decorator),
+            (r'@[\w.]+', Name.Decorator),
             ('[a-zA-Z_]\w*', Name),
         ],
         'funcname': [
@@ -132,7 +132,7 @@ class PythonLexer(RegexLexer):
             (r'(?:[ \t]|\\\n)+', Text),
             (r'as\b', Keyword.Namespace),
             (r',', Operator),
-            (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace),
+            (r'[a-zA-Z_][\w.]*', Name.Namespace),
             (r'', Text, '#pop') # all else: go back
         ],
         'fromimport': [
@@ -142,7 +142,7 @@ class PythonLexer(RegexLexer):
             # never be a module name
             (r'None\b', Name.Builtin.Pseudo, '#pop'),
             # sadly, in "raise x from y" y will be highlighted as namespace too
-            (r'[a-zA-Z_.][a-zA-Z0-9_.]*', Name.Namespace),
+            (r'[a-zA-Z_.][\w.]*', Name.Namespace),
             # anything else here also means "raise x from y" and is therefore
             # not an error
             (r'', Text, '#pop'),
@@ -967,13 +967,13 @@ class PerlLexer(RegexLexer):
             (r'\{', Punctuation, '#pop'), # hash syntax?
             (r'\)|,', Punctuation, '#pop'), # argument specifier
             (r'\w+::', Name.Namespace),
-            (r'[a-zA-Z0-9_:]+', Name.Variable, '#pop'),
+            (r'[\w:]+', Name.Variable, '#pop'),
         ],
         'name': [
             (r'\w+::', Name.Namespace),
-            (r'[a-zA-Z0-9_:]+', Name, '#pop'),
-            (r'[A-Z_]+(?=[^a-zA-Z0-9_])', Name.Constant, '#pop'),
-            (r'(?=[^a-zA-Z0-9_])', Text, '#pop'),
+            (r'[\w:]+', Name, '#pop'),
+            (r'[A-Z_]+(?=[^\w])', Name.Constant, '#pop'),
+            (r'(?=[^\w])', Text, '#pop'),
         ],
         'modulename': [
             (r'[a-zA-Z_]\w*', Name.Namespace, '#pop')

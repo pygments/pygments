@@ -2028,17 +2028,17 @@ class AsymptoteLexer(RegexLexer):
         'root': [
             include('whitespace'),
             # functions
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|\*))'    # return arguments
-             r'([a-zA-Z_]\w*)'                       # method name
-             r'(\s*\([^;]*?\))'                      # signature
+            (r'((?:[\w*\s])+?(?:\s|\*))' # return arguments
+             r'([a-zA-Z_]\w*)'           # method name
+             r'(\s*\([^;]*?\))'          # signature
              r'(' + _ws + r')({)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|\*))'    # return arguments
-             r'([a-zA-Z_]\w*)'                       # method name
-             r'(\s*\([^;]*?\))'                      # signature
+            (r'((?:[\w*\s])+?(?:\s|\*))' # return arguments
+             r'([a-zA-Z_]\w*)'           # method name
+             r'(\s*\([^;]*?\))'          # signature
              r'(' + _ws + r')(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
@@ -2191,7 +2191,7 @@ class AutohotkeyLexer(RegexLexer):
             (r'^;.*?$', Comment.Singleline),
             (r'[]{}(),;[]', Punctuation),
             (r'(in|is|and|or|not)\b', Operator.Word),
-            (r'\%[a-zA-Z_#@$][a-zA-Z0-9_#@$]*\%', Name.Variable),
+            (r'\%[a-zA-Z_#@$][\w#@$]*\%', Name.Variable),
             (r'!=|==|:=|\.=|<<|>>|[-~+/*%=<>&^|?:!.]', Operator),
             include('commands'),
             include('labels'),
@@ -2199,7 +2199,7 @@ class AutohotkeyLexer(RegexLexer):
             include('builtInVariables'),
             (r'"', String, combined('stringescape', 'dqs')),
             include('numbers'),
-            (r'[a-zA-Z_#@$][a-zA-Z0-9_#@$]*', Name),
+            (r'[a-zA-Z_#@$][\w#@$]*', Name),
             (r'\\|\'', Text),
             (r'\`([\,\%\`abfnrtv\-\+;])', String.Escape),
             include('garbage'),
@@ -2491,9 +2491,9 @@ class ProtoBufLexer(RegexLexer):
             (r'0[0-7]+[LlUu]*', Number.Oct),
             (r'\d+[LlUu]*', Number.Integer),
             (r'[+-=]', Operator),
-            (r'([a-zA-Z_][a-zA-Z0-9_\.]*)([ \t]*)(=)',
+            (r'([a-zA-Z_][\w\.]*)([ \t]*)(=)',
              bygroups(Name.Attribute, Text, Operator)),
-            ('[a-zA-Z_][a-zA-Z0-9_\.]*', Name),
+            ('[a-zA-Z_][\w\.]*', Name),
         ],
         'package': [
             (r'[a-zA-Z_]\w*', Name.Namespace, '#pop')
@@ -2530,7 +2530,7 @@ class HybrisLexer(RegexLexer):
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'@[a-zA-Z_][a-zA-Z0-9_\.]*', Name.Decorator),
+            (r'@[a-zA-Z_][\w\.]*', Name.Decorator),
             (r'(break|case|catch|next|default|do|else|finally|for|foreach|of|'
              r'unless|if|new|return|switch|me|throw|try|while)\b', Keyword),
             (r'(extends|private|protected|public|static|throws|function|method|'
@@ -2580,7 +2580,7 @@ class HybrisLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'import': [
-            (r'[a-zA-Z0-9_.]+\*?', Name.Namespace, '#pop')
+            (r'[\w.]+\*?', Name.Namespace, '#pop')
         ],
     }
 
@@ -3732,7 +3732,7 @@ class AutoItLexer(RegexLexer):
             include('builtInMarcros'),
             (r'"', String, combined('stringescape', 'dqs')),
             include('numbers'),
-            (r'[a-zA-Z_#@$][a-zA-Z0-9_#@$]*', Name),
+            (r'[a-zA-Z_#@$][\w#@$]*', Name),
             (r'\\|\'', Text),
             (r'\`([\,\%\`abfnrtv\-\+;])', String.Escape),
             (r'_\n', Text),  # Line continuation

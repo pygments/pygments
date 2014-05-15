@@ -357,7 +357,7 @@ class BooLexer(RegexLexer):
             ('[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'namespace': [
-            ('[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace, '#pop')
+            ('[a-zA-Z_][\w.]*', Name.Namespace, '#pop')
         ]
     }
 
@@ -595,9 +595,9 @@ class FSharpLexer(RegexLexer):
         'root': [
             (r'\s+', Text),
             (r'\(\)|\[\]', Name.Builtin.Pseudo),
-            (r'\b(?<!\.)([A-Z][A-Za-z0-9_\']*)(?=\s*\.)',
+            (r'\b(?<!\.)([A-Z][\w\']*)(?=\s*\.)',
              Name.Namespace, 'dotted'),
-            (r'\b([A-Z][A-Za-z0-9_\']*)', Name),
+            (r'\b([A-Z][\w\']*)', Name),
             (r'///.*?\n', String.Doc),
             (r'//.*?\n', Comment.Single),
             (r'\(\*(?!\))', Comment, 'comment'),
@@ -606,7 +606,7 @@ class FSharpLexer(RegexLexer):
             (r'"""', String, 'tqs'),
             (r'"', String, 'string'),
 
-            (r'\b(open|module)(\s+)([a-zA-Z0-9_.]+)',
+            (r'\b(open|module)(\s+)([\w.]+)',
              bygroups(Keyword, Text, Name.Namespace)),
             (r'\b(let!?)(\s+)(\w+)',
              bygroups(Keyword, Text, Name.Variable)),
@@ -641,9 +641,9 @@ class FSharpLexer(RegexLexer):
         'dotted': [
             (r'\s+', Text),
             (r'\.', Punctuation),
-            (r'[A-Z][A-Za-z0-9_\']*(?=\s*\.)', Name.Namespace),
-            (r'[A-Z][A-Za-z0-9_\']*', Name, '#pop'),
-            (r'[a-z_][A-Za-z0-9_\']*', Name, '#pop'),
+            (r'[A-Z][\w\']*(?=\s*\.)', Name.Namespace),
+            (r'[A-Z][\w\']*', Name, '#pop'),
+            (r'[a-z_][\w\']*', Name, '#pop'),
             # e.g. dictionary index access
             (r'', Text, '#pop'),
         ],
