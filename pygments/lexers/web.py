@@ -801,7 +801,7 @@ class PhpLexer(RegexLexer):
 
     # Note that a backslash is included in the following two patterns
     # PHP uses a backslash as a namespace separator
-    _ident_char = r'[\\_a-zA-Z0-9]|[^\x00-\x7f]'
+    _ident_char = r'[\\\w]|[^\x00-\x7f]'
     _ident_begin = r'(?:[\\_a-zA-Z]|[^\x00-\x7f])'
     _ident_end = r'(?:' + _ident_char + ')*'
     _ident_inner = _ident_begin + _ident_end
@@ -1118,8 +1118,8 @@ class MxmlLexer(RegexLexer):
                 ('<!--', Comment, 'comment'),
                 (r'<\?.*?\?>', Comment.Preproc),
                 ('<![^>]*>', Comment.Preproc),
-                (r'<\s*[a-zA-Z0-9:._-]+', Name.Tag, 'tag'),
-                (r'<\s*/\s*[a-zA-Z0-9:._-]+\s*>', Name.Tag),
+                (r'<\s*[\w:.-]+', Name.Tag, 'tag'),
+                (r'<\s*/\s*[\w:.-]+\s*>', Name.Tag),
             ],
             'comment': [
                 ('[^-]+', Comment),
@@ -1161,11 +1161,10 @@ class HaxeLexer(ExtendedRegexLexer):
                r'inline|using|null|true|false|abstract)\b')
 
     # idtype in lexer.mll
-    typeid = r'_*[A-Z][_a-zA-Z0-9]*'
+    typeid = r'_*[A-Z]\w*'
 
     # combined ident and dollar and idtype
-    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + \
-        '|_+|\$[_a-zA-Z0-9]+)'
+    ident = r'(?:_*[a-z]\w*|_+[0-9]\w*|' + typeid + '|_+|\$\w+)'
 
     binop = (r'(?:%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>\s*>\s*=|>\s*>\s*>\s*=|==|'
              r'!=|<=|>\s*=|&&|\|\||<<|>>>|>\s*>|\.\.\.|<|>|%|&|\||\^|\+|\*|'
@@ -2038,8 +2037,8 @@ class HamlLexer(ExtendedRegexLexer):
         ],
 
         'css': [
-            (r'\.[a-z0-9_:-]+', Name.Class, 'tag'),
-            (r'\#[a-z0-9_:-]+', Name.Function, 'tag'),
+            (r'\.[\w:-]+', Name.Class, 'tag'),
+            (r'\#[\w:-]+', Name.Function, 'tag'),
         ],
 
         'eval-or-plain': [
@@ -2052,7 +2051,7 @@ class HamlLexer(ExtendedRegexLexer):
 
         'content': [
             include('css'),
-            (r'%[a-z0-9_:-]+', Name.Tag, 'tag'),
+            (r'%[\w:-]+', Name.Tag, 'tag'),
             (r'!!!' + _dot + r'*\n', Name.Namespace, '#pop'),
             (r'(/)(\[' + _dot + '*?\])(' + _dot + r'*\n)',
              bygroups(Comment, Comment.Special, Comment),
@@ -2088,16 +2087,16 @@ class HamlLexer(ExtendedRegexLexer):
 
         'html-attributes': [
             (r'\s+', Text),
-            (r'[a-z0-9_:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
-            (r'[a-z0-9_:-]+', Name.Attribute),
+            (r'[\w:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
+            (r'[\w:-]+', Name.Attribute),
             (r'\)', Text, '#pop'),
         ],
 
         'html-attribute-value': [
             (r'[ \t]+', Text),
-            (r'[a-z0-9_]+', Name.Variable, '#pop'),
-            (r'@[a-z0-9_]+', Name.Variable.Instance, '#pop'),
-            (r'\$[a-z0-9_]+', Name.Variable.Global, '#pop'),
+            (r'\w+', Name.Variable, '#pop'),
+            (r'@\w+', Name.Variable.Instance, '#pop'),
+            (r'\$\w+', Name.Variable.Global, '#pop'),
             (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
             (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
         ],

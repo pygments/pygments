@@ -4357,7 +4357,7 @@ class RedLexer(RegexLexer):
             (r'comment\s[^(\s{\"\[]+', Comment),
             (r'/[^(\^{^")\s/[\]]*', Name.Attribute),
             (r'([^(\^{^")\s/[\]]+)(?=[:({"\s/\[\]])', word_callback),
-            (r'<[a-zA-Z0-9:._-]*>', Name.Tag),
+            (r'<[\w:.-]*>', Name.Tag),
             (r'<[^(<>\s")]+', Name.Tag, 'tag'),
             (r'([^(\^{^")\s]+)', Text),
         ],
