@@ -17,6 +17,7 @@ from pygments.lexer import Lexer, LexerContext, RegexLexer, ExtendedRegexLexer, 
 from pygments.token import Punctuation, Text, Comment, Keyword, Name, String, \
      Generic, Operator, Number, Whitespace, Literal
 from pygments.util import get_bool_opt, ClassNotFound
+from pygments.lexers.agile import PythonLexer
 from pygments.lexers.other import BashLexer
 
 __all__ = ['IniLexer', 'PropertiesLexer', 'SourcesListLexer', 'BaseMakefileLexer',
@@ -835,8 +836,16 @@ class VimLexer(RegexLexer):
     mimetypes = ['text/x-vim']
     flags = re.MULTILINE
 
+    _python = r'py(?:t(?:h(?:o(?:n)?)?)?)?'
+
     tokens = {
         'root': [
+            (r'^([ \t:]*)(' + _python + r')([ \t]*)(<<)([ \t]*)(.*)((?:\n|.)*)(\6)',
+             bygroups(using(this), Keyword, Text, Operator, Text, Text,
+                      using(PythonLexer), Text)), 
+            (r'^([ \t:]*)(' + _python + r')([ \t])(.*)',
+             bygroups(using(this), Keyword, Text, using(PythonLexer))),
+
             (r'^\s*".*', Comment),
 
             (r'[ \t]+', Text),

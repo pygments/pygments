@@ -1,3 +1,5 @@
+# function arrows
+
 methodA:-> 'A'
 methodB:=> 'B'
 methodC:()=> 'C'
@@ -9,3 +11,17 @@ methodF:(c,d)-> 'F'
 
 (-> 'I')
 (=> 'J')
+
+# strings
+
+"#{wow}"
+"w#{wow}w"
+"#wow"
+"wow#"
+"w#ow"
+
+'#{wow}'
+'w#{wow}w'
+'#wow'
+'wow#'
+'w#ow'
