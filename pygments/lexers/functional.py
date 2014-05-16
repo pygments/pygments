@@ -14,6 +14,7 @@ import re
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic, Error
+from pygments import unistring as uni
 
 __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'HaskellLexer',
            'AgdaLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
@@ -905,6 +906,8 @@ class HaskellLexer(RegexLexer):
     filenames = ['*.hs']
     mimetypes = ['text/x-haskell']
 
+    flags = re.MULTILINE | re.UNICODE
+
     reserved = ['case','class','data','default','deriving','do','else',
                 'if','in','infix[lr]?','instance',
                 'let','newtype','of','then','type','where','_']
@@ -926,9 +929,9 @@ class HaskellLexer(RegexLexer):
             (r'\bmodule\b', Keyword.Reserved, 'module'),
             (r'\berror\b', Name.Exception),
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
-            (r'^[_a-z][\w\']*', Name.Function),
-            (r"'?[_a-z][\w']*", Name),
-            (r"('')?[A-Z][\w\']*", Keyword.Type),
+            (r'^[_' + uni.Ll + r'][\w\']*', Name.Function),
+            (r"'?[_" + uni.Ll + r"'][\w']*", Name),
+            (r"('')?[" + uni.Lu + r"][\w\']*", Keyword.Type),
             #  Operators
             (r'\\(?![:!#$%&*+.\\/<=>?@^|~-]+)', Name.Function), # lambda operator
             (r'(<-|::|->|=>|=)(?![:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word), # specials
@@ -956,27 +959,27 @@ class HaskellLexer(RegexLexer):
             (r'\)', Punctuation, '#pop'),
             (r'qualified\b', Keyword),
             # import X as Y
-            (r'([A-Z][\w.]*)(\s+)(as)(\s+)([A-Z][\w.]*)',
+            (r'([' + uni.Lu + r'][\w.]*)(\s+)(as)(\s+)([' + uni.Lu + r'][\w.]*)',
              bygroups(Name.Namespace, Text, Keyword, Text, Name), '#pop'),
             # import X hiding (functions)
-            (r'([A-Z][\w.]*)(\s+)(hiding)(\s+)(\()',
+            (r'([' + uni.Lu + r'][\w.]*)(\s+)(hiding)(\s+)(\()',
              bygroups(Name.Namespace, Text, Keyword, Text, Punctuation), 'funclist'),
             # import X (functions)
-            (r'([A-Z][\w.]*)(\s+)(\()',
+            (r'([' + uni.Lu + r'][\w.]*)(\s+)(\()',
              bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
             # import X
             (r'[\w.]+', Name.Namespace, '#pop'),
         ],
         'module': [
             (r'\s+', Text),
-            (r'([A-Z][\w.]*)(\s+)(\()',
+            (r'([' + uni.Lu + r'][\w.]*)(\s+)(\()',
              bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
-            (r'[A-Z][\w.]*', Name.Namespace, '#pop'),
+            (r'[' + uni.Lu + r'][\w.]*', Name.Namespace, '#pop'),
         ],
         'funclist': [
             (r'\s+', Text),
-            (r'[A-Z]\w*', Keyword.Type),
-            (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
+            (r'[' + uni.Lu + r']\w*', Keyword.Type),
+            (r'(_[\w\']+|[' + uni.Ll + r'][\w\']*)', Name.Function),
             (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
             (r'{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
@@ -1007,7 +1010,7 @@ class HaskellLexer(RegexLexer):
         ],
         'escape': [
             (r'[abfnrtv"\'&\\]', String.Escape, '#pop'),
-            (r'\^[][A-Z@\^_]', String.Escape, '#pop'),
+            (r'\^[][' + uni.Lu + r'@\^_]', String.Escape, '#pop'),
             ('|'.join(ascii), String.Escape, '#pop'),
             (r'o[0-7]+', String.Escape, '#pop'),
             (r'x[\da-fA-F]+', String.Escape, '#pop'),
