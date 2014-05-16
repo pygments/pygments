@@ -97,8 +97,8 @@ class JuliaLexer(RegexLexer):
             (r'[E]?"', String, combined('stringescape', 'string')),
 
             # names
-            (r'@[a-zA-Z0-9_.]+', Name.Decorator),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'@[\w.]+', Name.Decorator),
+            (r'[a-zA-Z_]\w*', Name),
 
             # numbers
             (r'(\d+(_\d+)+\.\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
@@ -116,13 +116,13 @@ class JuliaLexer(RegexLexer):
         ],
 
         'funcname': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop'),
+            ('[a-zA-Z_]\w*', Name.Function, '#pop'),
             ('\([^\s\w{]{1,2}\)', Operator, '#pop'),
             ('[^\s\w{]{1,2}', Operator, '#pop'),
         ],
 
         'typename': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            ('[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
 
         'stringescape': [
@@ -133,7 +133,7 @@ class JuliaLexer(RegexLexer):
         'string': [
             (r'"', String, '#pop'),
             (r'\\\\|\\"|\\\n', String.Escape), # included here for raw strings
-            (r'\$(\([a-zA-Z0-9_]+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?',
+            (r'\$(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?',
                 String.Interpol),
             (r'[^\\"$]+', String),
             # quotes, dollar signs, and backslashes must be parsed one at a time
@@ -357,7 +357,7 @@ class MatlabLexer(RegexLexer):
             (r'\d+', Number.Integer),
 
             (r'(?<![\w\)\].])\'', String, 'string'),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
         'string': [
@@ -816,7 +816,7 @@ class OctaveLexer(RegexLexer):
             (r'(?<=[\w\)\].])\'+', Operator),
             (r'(?<![\w\)\].])\'', String, 'string'),
 
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
         'string': [
@@ -881,7 +881,7 @@ class ScilabLexer(RegexLexer):
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'\d+', Number.Integer),
 
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
         'string': [
@@ -1461,7 +1461,7 @@ class BugsLexer(RegexLexer):
              % r'|'.join(_FUNCTIONS + _DISTRIBUTIONS),
              Name.Builtin),
             # Regular variable names
-            (r'[A-Za-z][A-Za-z0-9_.]*', Name),
+            (r'[A-Za-z][\w.]*', Name),
             # Number Literals
             (r'[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?', Number),
             # Punctuation
@@ -1521,7 +1521,7 @@ class JagsLexer(RegexLexer):
             ],
         'names' : [
             # Regular variable names
-            (r'[a-zA-Z][a-zA-Z0-9_.]*\b', Name),
+            (r'[a-zA-Z][\w.]*\b', Name),
             ],
         'comments' : [
             # do not use stateful comments
@@ -1619,10 +1619,10 @@ class StanLexer(RegexLexer):
                          + _stan_builtins.DISTRIBUTIONS),
              Name.Builtin),
             # Special names ending in __, like lp__
-            (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
+            (r'[A-Za-z]\w*__\b', Name.Builtin.Pseudo),
             (r'(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
             # Regular variable names
-            (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
+            (r'[A-Za-z]\w*\b', Name),
             # Real Literals
             (r'-?[0-9]+(\.[0-9]+)?[eE]-?[0-9]+', Number.Float),
             (r'-?[0-9]*\.[0-9]*', Number.Float),

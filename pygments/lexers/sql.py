@@ -150,7 +150,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r"(E|U&)?'(''|[^'])*'", String.Single),
             (r'(U&)?"(""|[^"])*"', String.Name), # quoted identifier
             (r'(?s)(\$[^\$]*\$)(.*?)(\1)', language_callback),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
 
             # psql variable in SQL
             (r""":(['"]?)[a-z][a-z0-9_]*\b\1""", Name.Variable),
@@ -435,7 +435,7 @@ class SqlLexer(RegexLexer):
             # TODO: Backslash escapes?
             (r"'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Symbol), # not a real string literal in ANSI SQL
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
             (r'[;:()\[\],\.]', Punctuation)
         ],
         'multiline-comments': [
@@ -506,9 +506,9 @@ class MySqlLexer(RegexLexer):
             # TODO: this list is not complete
             (r'\b(auto_increment|engine|charset|tables)\b', Keyword.Pseudo),
             (r'(true|false|null)', Name.Constant),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\()',
+            (r'([a-zA-Z_]\w*)(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
             (r'@[A-Za-z0-9]*[._]*[A-Za-z0-9]*', Name.Variable),
             (r'[;:()\[\],\.]', Punctuation)
         ],

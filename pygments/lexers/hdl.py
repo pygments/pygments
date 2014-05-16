@@ -54,7 +54,7 @@ class VerilogLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.;\']', Punctuation),
-            (r'`[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant),
+            (r'`[a-zA-Z_]\w*', Name.Constant),
 
             (r'^(\s*)(package)(\s+)', bygroups(Text, Keyword.Namespace, Text)),
             (r'^(\s*)(import)(\s+)', bygroups(Text, Keyword.Namespace, Text),
@@ -96,8 +96,8 @@ class VerilogLexer(RegexLexer):
              r'bit|logic|reg|'
              r'supply0|supply1|tri|triand|trior|tri0|tri1|trireg|uwire|wire|wand|wor'
              r'shortreal|real|realtime)\b', Keyword.Type),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*:(?!:)', Name.Label),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -115,7 +115,7 @@ class VerilogLexer(RegexLexer):
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'import': [
-            (r'[a-zA-Z0-9_:]+\*?', Name.Namespace, '#pop')
+            (r'[\w:]+\*?', Name.Namespace, '#pop')
         ]
     }
 
@@ -169,7 +169,7 @@ class SystemVerilogLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.;\']', Punctuation),
-            (r'`[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant),
+            (r'`[a-zA-Z_]\w*', Name.Constant),
 
             (r'(accept_on|alias|always|always_comb|always_ff|always_latch|'
              r'and|assert|assign|assume|automatic|before|begin|bind|bins|'
@@ -230,11 +230,11 @@ class SystemVerilogLexer(RegexLexer):
              r'bit|logic|reg|'
              r'supply0|supply1|tri|triand|trior|tri0|tri1|trireg|uwire|wire|wand|wor'
              r'shortreal|real|realtime)\b', Keyword.Type),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*:(?!:)', Name.Label),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'classname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -252,7 +252,7 @@ class SystemVerilogLexer(RegexLexer):
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'import': [
-            (r'[a-zA-Z0-9_:]+\*?', Name.Namespace, '#pop')
+            (r'[\w:]+\*?', Name.Namespace, '#pop')
         ]
     }
 
@@ -290,19 +290,19 @@ class VhdlLexer(RegexLexer):
             (r'--(?![!#$%&*+./<=>?@\^|_~]).*?$', Comment.Single),
             (r"'(U|X|0|1|Z|W|L|H|-)'", String.Char),
             (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r"'[a-zA-Z_][a-zA-Z0-9_]*", Name.Attribute),
+            (r"'[a-zA-Z_]\w*", Name.Attribute),
             (r'[()\[\],.;\']', Punctuation),
             (r'"[^\n\\]*"', String),
 
-            (r'(library)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(library)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword, Text, Name.Namespace)),
             (r'(use)(\s+)(entity)', bygroups(Keyword, Text, Keyword)),
-            (r'(use)(\s+)([a-zA-Z_][\.a-zA-Z0-9_]*)',
+            (r'(use)(\s+)([a-zA-Z_][\.\w]*)',
              bygroups(Keyword, Text, Name.Namespace)),
-            (r'(entity|component)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(entity|component)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword, Text, Name.Class)),
-            (r'(architecture|configuration)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)'
-             r'(of)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)(is)',
+            (r'(architecture|configuration)(\s+)([a-zA-Z_]\w*)(\s+)'
+             r'(of)(\s+)([a-zA-Z_]\w*)(\s+)(is)',
              bygroups(Keyword, Text, Name.Class, Text, Keyword, Text,
                       Name.Class, Text, Keyword)),
 
@@ -312,11 +312,11 @@ class VhdlLexer(RegexLexer):
             include('keywords'),
             include('numbers'),
 
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'endblock': [
             include('keywords'),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class),
+            (r'[a-zA-Z_]\w*', Name.Class),
             (r'(\s+)', Text),
             (r';', Punctuation, '#pop'),
         ],
