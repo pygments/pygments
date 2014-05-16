@@ -192,10 +192,10 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
 
     # Add specific PL/pgSQL rules (before the SQL ones)
     tokens['root'][:0] = [
-        (r'\%[a-z][a-z0-9_]*\b', Name.Builtin),     # actually, a datatype
+        (r'\%[a-z]\w*\b', Name.Builtin),     # actually, a datatype
         (r':=', Operator),
-        (r'\<\<[a-z][a-z0-9_]*\>\>', Name.Label),
-        (r'\#[a-z][a-z0-9_]*\b', Keyword.Pseudo),   # #variable_conflict
+        (r'\<\<[a-z]\w*\>\>', Name.Label),
+        (r'\#[a-z]\w*\b', Keyword.Pseudo),   # #variable_conflict
     ]
 
 
@@ -219,7 +219,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
         (r'\n', Text, 'root'),
         (r'\s+', Text),
         (r'\\[^\s]+', Keyword.Pseudo),
-        (r""":(['"]?)[a-z][a-z0-9_]*\b\1""", Name.Variable),
+        (r""":(['"]?)[a-z]\w*\b\1""", Name.Variable),
         (r"'(''|[^'])*'", String.Single),
         (r"`([^`])*`", String.Backtick),
         (r"[^\s]+", String.Symbol),
@@ -584,7 +584,7 @@ class RqlLexer(RegexLexer):
             (r'[+*/<>=%-]', Operator),
             (r'(Any|is|instance_of|CWEType|CWRelation)\b', Name.Builtin),
             (r'[0-9]+', Number.Integer),
-            (r'[A-Z_][A-Z0-9_]*\??', Name),
+            (r'[A-Z_]\w*\??', Name),
             (r"'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Single),
             (r'[;:()\[\],\.]', Punctuation)

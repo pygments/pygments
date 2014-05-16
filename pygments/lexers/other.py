@@ -3202,9 +3202,9 @@ class VGLLexer(RegexLexer):
             (r'(true|false|null|empty|error|locked)', Keyword.Constant),
             (r'[~\^\*\#!%&\[\]\(\)<>\|+=:;,./?-]', Operator),
             (r'"[^"]*"', String),
-            (r'(\.)([a-z_\$][a-z0-9_\$]*)', bygroups(Operator, Name.Attribute)),
+            (r'(\.)([a-z_\$][\w\$]*)', bygroups(Operator, Name.Attribute)),
             (r'[0-9][0-9]*(\.[0-9]+(e[+\-]?[0-9]+)?)?', Number),
-            (r'[a-z_\$][a-z0-9_\$]*', Name),
+            (r'[a-z_\$][\w\$]*', Name),
             (r'[\r\n]+', Text),
             (r'\s+', Text)
         ]
@@ -3800,15 +3800,15 @@ class RexxLexer(RegexLexer):
             (r'"', String, 'string_double'),
             (r"'", String, 'string_single'),
             (r'[0-9]+(\.[0-9]+)?(e[+-]?[0-9])?', Number),
-            (r'([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b',
+            (r'([a-z_]\w*)(\s*)(:)(\s*)(procedure)\b',
              bygroups(Name.Function, Whitespace, Operator, Whitespace,
                       Keyword.Declaration)),
-            (r'([a-z_][a-z0-9_]*)(\s*)(:)',
+            (r'([a-z_]\w*)(\s*)(:)',
              bygroups(Name.Label, Whitespace, Operator)),
             include('function'),
             include('keyword'),
             include('operator'),
-            (r'[a-z_][a-z0-9_]*', Text),
+            (r'[a-z_]\w*', Text),
         ],
         'function': [
             (r'(abbrev|abs|address|arg|b2x|bitand|bitor|bitxor|c2d|c2x|'
@@ -3856,7 +3856,7 @@ class RexxLexer(RegexLexer):
     _ADDRESS_PATTERN = _c(r'^\s*address\s+')
     _DO_WHILE_PATTERN = _c(r'^\s*do\s+while\b')
     _IF_THEN_DO_PATTERN = _c(r'^\s*if\b.+\bthen\s+do\s*$')
-    _PROCEDURE_PATTERN = _c(r'^\s*([a-z_][a-z0-9_]*)(\s*)(:)(\s*)(procedure)\b')
+    _PROCEDURE_PATTERN = _c(r'^\s*([a-z_]\w*)(\s*)(:)(\s*)(procedure)\b')
     _ELSE_DO_PATTERN = _c(r'\belse\s+do\s*$')
     _PARSE_ARG_PATTERN = _c(r'^\s*parse\s+(upper\s+)?(arg|value)\b')
     PATTERNS_AND_WEIGHTS = (

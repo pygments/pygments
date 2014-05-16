@@ -1573,7 +1573,7 @@ class FortranLexer(RegexLexer):
             (r'!.*\n', Comment),
             include('strings'),
             include('core'),
-            (r'[a-z][a-z0-9_]*', Name.Variable),
+            (r'[a-z]\w*', Name.Variable),
             include('nums'),
             (r'[\s]+', Text),
         ],
@@ -1657,9 +1657,9 @@ class FortranLexer(RegexLexer):
         ],
 
         'nums': [
-            (r'\d+(?![.Ee])(_[a-z][a-z0-9_]+)?', Number.Integer),
-            (r'[+-]?\d*\.\d+([eE][-+]?\d+)?(_[a-z][a-z0-9_]+)?', Number.Float),
-            (r'[+-]?\d+\.\d*([eE][-+]?\d+)?(_[a-z][a-z0-9_]+)?', Number.Float),
+            (r'\d+(?![.e])(_[a-z]\w+)?', Number.Integer),
+            (r'[+-]?\d*\.\d+(e[-+]?\d+)?(_[a-z]\w+)?', Number.Float),
+            (r'[+-]?\d+\.\d*(e[-+]?\d+)?(_[a-z]\w+)?', Number.Float),
         ],
     }
 
@@ -2764,7 +2764,7 @@ class BlitzMaxLexer(RegexLexer):
     bmax_vopwords = r'\b(Shl|Shr|Sar|Mod)\b'
     bmax_sktypes = r'@{1,2}|[!#$%]'
     bmax_lktypes = r'\b(Int|Byte|Short|Float|Double|Long)\b'
-    bmax_name = r'[a-z_][a-z0-9_]*'
+    bmax_name = r'[a-z_]\w*'
     bmax_var = (r'(%s)(?:(?:([ \t]*)(%s)|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)'
                 r'|([ \t]*)(:)([ \t]*)(?:%s|(%s)))(?:([ \t]*)(Ptr))?)') % \
                 (bmax_name, bmax_sktypes, bmax_lktypes, bmax_name)
@@ -2859,7 +2859,7 @@ class BlitzBasicLexer(RegexLexer):
                    r'Abs|Sgn|Handle|Int|Float|Str|'
                    r'First|Last|Before|After)\b')
     bb_sktypes = r'@{1,2}|[#$%]'
-    bb_name = r'[a-z][a-z0-9_]*'
+    bb_name = r'[a-z]\w*'
     bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)([.])([ \t]*)(?:(%s)))?') % \
                 (bb_name, bb_sktypes, bb_name)
 
