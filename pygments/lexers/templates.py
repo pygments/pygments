@@ -753,7 +753,7 @@ class CheetahLexer(RegexLexer):
             (r'''(?sx)
                 (.+?)               # anything, followed by:
                 (?:
-                 (?=[#][#a-zA-Z]*) |   # an eval comment
+                 (?=\#[#a-zA-Z]*) | # an eval comment
                  (?=\$[a-zA-Z_{]) | # a substitution
                  \Z                 # end of string
                 )

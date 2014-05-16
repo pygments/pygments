@@ -4352,7 +4352,7 @@ class MaskLexer(RegexLexer):
         ],
         'css-base': [
             (r'\s+', Text),
-            (r"[;]", Punctuation),
+            (r";", Punctuation),
             (r"[\w\-_]+\s*:", Name.Builtin)
         ],
         'css-single-end': [
