@@ -156,15 +156,15 @@ class ECLLexer(RegexLexer):
             include('hash'),
             (r'"', String, 'string'),
             (r'\'', String, 'string'),
-            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+)e[+-]?\d+[lu]*', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
-            (r'0[0-7]+[LlUu]*', Number.Oct),
+            (r'0x[0-9a-f]+[lu]*', Number.Hex),
+            (r'0[0-7]+[lu]*', Number.Oct),
             (r'\d+[LlUu]*', Number.Integer),
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]+', Operator),
             (r'[{}()\[\],.;]', Punctuation),
-            (r'[a-zA-Z_]\w*', Name),
+            (r'[a-z_]\w*', Name),
         ],
         'hash': [
             (r'^#.*$', Comment.Preproc),
@@ -1306,9 +1306,9 @@ class ModelicaLexer(RegexLexer):
             (r'\d+[Ll]?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
-            (r'([a-zA-Z_][\w]*|\'[^\']+\')'
+            (r'([a-z_][\w]*|\'[^\']+\')'
              r'([\[\d,:\]]*)'
-             r'(\.([a-zA-Z_][\w]*|\'[^\']+\'))+'
+             r'(\.([a-z_][\w]*|\'[^\']+\'))+'
              r'([\[\d,:\]]*)', Name.Class),
             (r'(\'[\w\+\-\*\/\^]+\'|\w+)', Name),
             (r'[()\[\]{},.;]', Punctuation),
@@ -1350,7 +1350,7 @@ class ModelicaLexer(RegexLexer):
         'classes': [
             (r'(operator)?(\s+)?(block|class|connector|end|function|model|'
              r'operator|package|record|type)(\s+)'
-             r'((?!if|for|when|while)[A-Za-z_]\w*|\'[^\']+\')([;]?)',
+             r'((?!if|for|when|while)[a-z_]\w*|\'[^\']+\')([;]?)',
              bygroups(Keyword, Text, Keyword, Text, Name.Class, Text))
         ],
         'quoted_ident': [
@@ -1359,7 +1359,7 @@ class ModelicaLexer(RegexLexer):
         ],
         'string': [
             (r'"', String, '#pop'),
-            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})',
+            (r'\\([\\abfnrtv"\']|x[a-f0-9]{2,4}|[0-7]{1,3})',
              String.Escape),
             (r'[^\\"\n]+', String), # all other characters
             (r'\\\n', String), # line continuation
@@ -1387,7 +1387,7 @@ class RebolLexer(RegexLexer):
 
     re.IGNORECASE
 
-    escape_re = r'(?:\^\([0-9a-fA-F]{1,4}\)*)'
+    escape_re = r'(?:\^\([0-9a-f]{1,4}\)*)'
 
     def word_callback(lexer, match):
         word = match.group()
@@ -1483,9 +1483,9 @@ class RebolLexer(RegexLexer):
         'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
-            (r'#{[0-9a-fA-F]*}', Number.Hex),
+            (r'#{[0-9a-f]*}', Number.Hex),
             (r'2#{', Number.Hex, 'bin2'),
-            (r'64#{[0-9a-zA-Z+/=\s]*}', Number.Hex),
+            (r'64#{[0-9a-z+/=\s]*}', Number.Hex),
             (r'"', String, 'string'),
             (r'{', String, 'string2'),
             (r';#+.*\n', Comment.Special),
@@ -1493,9 +1493,9 @@ class RebolLexer(RegexLexer):
             (r';.*\n', Comment),
             (r'%"', Name.Decorator, 'stringFile'),
             (r'%[^(\^{^")\s\[\]]+', Name.Decorator),
-            (r'[+-]?([a-zA-Z]{1,3})?\$\d+(\.\d+)?', Number.Float), # money
+            (r'[+-]?([a-z]{1,3})?\$\d+(\.\d+)?', Number.Float), # money
             (r'[+-]?\d+\:\d+(\:\d+)?(\.\d+)?', String.Other), # time
-            (r'\d+[\-\/][0-9a-zA-Z]+[\-\/]\d+(\/\d+\:\d+((\:\d+)?'
+            (r'\d+[\-\/][0-9a-z]+[\-\/]\d+(\/\d+\:\d+((\:\d+)?'
              r'([\.\d+]?([+-]?\d+:\d+)?)?)?)?', String.Other), # date
             (r'\d+(\.\d+)+\.\d+', Keyword.Constant), # tuple
             (r'\d+[xX]\d+', Keyword.Constant), # pair
@@ -1503,7 +1503,7 @@ class RebolLexer(RegexLexer):
             (r'[+-]?\d+(\'\d+)?[\.,]\d*', Number.Float),
             (r'[+-]?\d+(\'\d+)?', Number),
             (r'[\[\]\(\)]', Generic.Strong),
-            (r'[a-zA-Z]+[^(\^{"\s:)]*://[^(\^{"\s)]*', Name.Decorator), # url
+            (r'[a-z]+[^(\^{"\s:)]*://[^(\^{"\s)]*', Name.Decorator), # url
             (r'mailto:[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator), # url
             (r'[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator), # email
             (r'comment\s"', Comment, 'commentString1'),
@@ -1512,7 +1512,7 @@ class RebolLexer(RegexLexer):
             (r'comment\s[^(\s{\"\[]+', Comment),
             (r'/[^(\^{^")\s/[\]]*', Name.Attribute),
             (r'([^(\^{^")\s/[\]]+)(?=[:({"\s/\[\]])', word_callback),
-            (r'<[a-zA-Z0-9:._-]*>', Name.Tag),
+            (r'<[\w:.-]*>', Name.Tag),
             (r'<[^(<>\s")]+', Name.Tag, 'tag'),
             (r'([^(\^{^")\s]+)', Text),
         ],
@@ -2393,7 +2393,7 @@ class MaqlLexer(RegexLexer):
              r'SYNCHRONIZE|TYPE|DEFAULT|ORDER|ASC|DESC|HYPERLINK|'
              r'INCLUDE|TEMPLATE|MODIFY)\b', Keyword),
             # FUNCNAME
-            (r'[a-zA-Z]\w*\b', Name.Function),
+            (r'[a-z]\w*\b', Name.Function),
             # Comments
             (r'#.*', Comment.Single),
             # Punctuation
@@ -2428,7 +2428,7 @@ class GoodDataCLLexer(RegexLexer):
             # Comments
             (r'#.*', Comment.Single),
             # Function call
-            (r'[a-zA-Z]\w*', Name.Function),
+            (r'[a-z]\w*', Name.Function),
             # Argument list
             (r'\(', Token.Punctuation, 'args-list'),
             # Punctuation
@@ -2439,7 +2439,7 @@ class GoodDataCLLexer(RegexLexer):
         'args-list': [
             (r'\)', Token.Punctuation, '#pop'),
             (r',', Token.Punctuation),
-            (r'[a-zA-Z]\w*', Name.Variable),
+            (r'[a-z]\w*', Name.Variable),
             (r'=', Operator),
             (r'"', Literal.String, 'string-literal'),
             (r'[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]{1,3})?', Literal.Number),
@@ -4255,7 +4255,7 @@ class RedLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    escape_re = r'(?:\^\([0-9a-fA-F]{1,4}\)*)'
+    escape_re = r'(?:\^\([0-9a-f]{1,4}\)*)'
 
     def word_callback(lexer, match):
         word = match.group()
@@ -4326,10 +4326,10 @@ class RedLexer(RegexLexer):
         'script': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
-            (r'#{[0-9a-fA-F\s]*}', Number.Hex),
+            (r'#{[0-9a-f\s]*}', Number.Hex),
             (r'2#{', Number.Hex, 'bin2'),
-            (r'64#{[0-9a-zA-Z+/=\s]*}', Number.Hex),
-            (r'([0-9a-fA-F]+)(h)((\s)|(?=[\[\]{}""\(\)]))',
+            (r'64#{[0-9a-z+/=\s]*}', Number.Hex),
+            (r'([0-9a-f]+)(h)((\s)|(?=[\[\]{}""\(\)]))',
              bygroups(Number.Hex, Name.Variable, Whitespace)),
             (r'"', String, 'string'),
             (r'{', String, 'string2'),
@@ -4338,9 +4338,9 @@ class RedLexer(RegexLexer):
             (r';.*\n', Comment),
             (r'%"', Name.Decorator, 'stringFile'),
             (r'%[^(\^{^")\s\[\]]+', Name.Decorator),
-            (r'[+-]?([a-zA-Z]{1,3})?\$\d+(\.\d+)?', Number.Float), # money
+            (r'[+-]?([a-z]{1,3})?\$\d+(\.\d+)?', Number.Float), # money
             (r'[+-]?\d+\:\d+(\:\d+)?(\.\d+)?', String.Other), # time
-            (r'\d+[\-\/][0-9a-zA-Z]+[\-\/]\d+(\/\d+\:\d+((\:\d+)?'
+            (r'\d+[\-\/][0-9a-z]+[\-\/]\d+(\/\d+\:\d+((\:\d+)?'
              r'([\.\d+]?([+-]?\d+:\d+)?)?)?)?', String.Other), # date
             (r'\d+(\.\d+)+\.\d+', Keyword.Constant), # tuple
             (r'\d+[xX]\d+', Keyword.Constant), # pair
@@ -4348,7 +4348,7 @@ class RedLexer(RegexLexer):
             (r'[+-]?\d+(\'\d+)?[\.,]\d*', Number.Float),
             (r'[+-]?\d+(\'\d+)?', Number),
             (r'[\[\]\(\)]', Generic.Strong),
-            (r'[a-zA-Z]+[^(\^{"\s:)]*://[^(\^{"\s)]*', Name.Decorator), # url
+            (r'[a-z]+[^(\^{"\s:)]*://[^(\^{"\s)]*', Name.Decorator), # url
             (r'mailto:[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator), # url
             (r'[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator), # email
             (r'comment\s"', Comment, 'commentString1'),

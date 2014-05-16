@@ -2182,7 +2182,7 @@ class IgorLexer(RegexLexer):
             # Compiler directives.
             (r'^#(include|pragma|define|ifdef|ifndef|endif)',
              Name.Decorator),
-            (r'[^a-zA-Z"/]+$', Text),
+            (r'[^a-z"/]+$', Text),
             (r'.', Text),
         ],
     }
