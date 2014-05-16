@@ -73,22 +73,22 @@ class SmaliLexer(RegexLexer):
             (r'[0-9]+L?', Number.Integer),
         ],
         'field': [
-            (r'(\$?\b)([A-Za-z0-9_$]*)(:)',
+            (r'(\$?\b)([\w$]*)(:)',
              bygroups(Punctuation, Name.Variable, Punctuation)),
         ],
         'method': [
             (r'<(?:cl)?init>', Name.Function), # constructor
-            (r'(\$?\b)([A-Za-z0-9_$]*)(\()',
+            (r'(\$?\b)([\w$]*)(\()',
              bygroups(Punctuation, Name.Function, Punctuation)),
         ],
         'label': [
-            (r':[A-Za-z0-9_]+', Name.Label),
+            (r':\w+', Name.Label),
         ],
         'class': [
             # class names in the form Lcom/namespace/ClassName;
             # I only want to color the ClassName part, so the namespace part is
             # treated as 'Text'
-            (r'(L)((?:[A-Za-z0-9_$]+/)*)([A-Za-z0-9_$]+)(;)',
+            (r'(L)((?:[\w$]+/)*)([\w$]+)(;)',
                 bygroups(Keyword.Type, Text, Name.Class, Text)),
         ],
         'punctuation': [

@@ -81,7 +81,7 @@ class JavascriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -248,7 +248,7 @@ class ActionScriptLexer(RegexLexer):
              r'isXMLName|clearInterval|fscommand|getTimer|getURL|getVersion|'
              r'isFinite|parseFloat|parseInt|setInterval|trace|updateAfterEvent|'
              r'unescape)\b',Name.Function),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-f]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -271,7 +271,7 @@ class ActionScript3Lexer(RegexLexer):
     mimetypes = ['application/x-actionscript', 'text/x-actionscript',
                  'text/actionscript']
 
-    identifier = r'[$a-zA-Z_][a-zA-Z0-9_]*'
+    identifier = r'[$a-zA-Z_]\w*'
     typeidentifier = identifier + '(?:\.<\w+>)?'
 
     flags = re.DOTALL | re.MULTILINE
@@ -359,11 +359,11 @@ class CssLexer(RegexLexer):
             (r'\s+', Text),
             (r'/\*(?:.|\n)*?\*/', Comment),
             (r'{', Punctuation, 'content'),
-            (r'\:[a-zA-Z0-9_-]+', Name.Decorator),
-            (r'\.[a-zA-Z0-9_-]+', Name.Class),
-            (r'\#[a-zA-Z0-9_-]+', Name.Function),
-            (r'@[a-zA-Z0-9_-]+', Keyword, 'atrule'),
-            (r'[a-zA-Z0-9_-]+', Name.Tag),
+            (r'\:[\w-]+', Name.Decorator),
+            (r'\.[\w-]+', Name.Class),
+            (r'\#[\w-]+', Name.Function),
+            (r'@[\w-]+', Keyword, 'atrule'),
+            (r'[\w-]+', Name.Tag),
             (r'[~\^\*!%&$\[\]\(\)<>\|+=@:;,./?-]', Operator),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single)
@@ -475,7 +475,7 @@ class CssLexer(RegexLexer):
             (r'[\[\]();]+', Punctuation),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name)
+            (r'[a-zA-Z_]\w*', Name)
         ]
     }
 
@@ -595,26 +595,26 @@ class ObjectiveJLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
 
-            (r'([$a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r')(?=\()',
+            (r'([$a-zA-Z_]\w*)(' + _ws + r')(?=\()',
              bygroups(Name.Function, using(this))),
 
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'[$a-zA-Z_]\w*', Name),
         ],
         'classname' : [
             # interface definition that inherits
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r':' + _ws +
-             r')([a-zA-Z_][a-zA-Z0-9_]*)?',
+            (r'([a-zA-Z_]\w*)(' + _ws + r':' + _ws +
+             r')([a-zA-Z_]\w*)?',
              bygroups(Name.Class, using(this), Name.Class), '#pop'),
             # interface definition for a category
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(' + _ws + r'\()([a-zA-Z_][a-zA-Z0-9_]*)(\))',
+            (r'([a-zA-Z_]\w*)(' + _ws + r'\()([a-zA-Z_]\w*)(\))',
              bygroups(Name.Class, using(this), Name.Label, Text), '#pop'),
             # simple interface / implementation
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)', Name.Class, '#pop'),
+            (r'([a-zA-Z_]\w*)', Name.Class, '#pop'),
         ],
         'forward_classname' : [
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*,\s*)',
+            (r'([a-zA-Z_]\w*)(\s*,\s*)',
              bygroups(Name.Class, Text), '#push'),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*;?)',
+            (r'([a-zA-Z_]\w*)(\s*;?)',
              bygroups(Name.Class, Text), '#pop'),
         ],
         'function_signature': [
@@ -622,26 +622,26 @@ class ObjectiveJLexer(RegexLexer):
 
             # start of a selector w/ parameters
             (r'(\(' + _ws + r')'                # open paren
-             r'([a-zA-Z_][a-zA-Z0-9_]+)'        # return type
+             r'([a-zA-Z_]\w+)'                  # return type
              r'(' + _ws + r'\)' + _ws + r')'    # close paren
-             r'([$a-zA-Z_][a-zA-Z0-9_]+' + _ws + r':)', # function name
+             r'([$a-zA-Z_]\w+' + _ws + r':)',   # function name
              bygroups(using(this), Keyword.Type, using(this),
                  Name.Function), 'function_parameters'),
 
             # no-param function
             (r'(\(' + _ws + r')'                # open paren
-             r'([a-zA-Z_][a-zA-Z0-9_]+)'        # return type
+             r'([a-zA-Z_]\w+)'                  # return type
              r'(' + _ws + r'\)' + _ws + r')'    # close paren
-             r'([$a-zA-Z_][a-zA-Z0-9_]+)',      # function name
+             r'([$a-zA-Z_]\w+)',                # function name
              bygroups(using(this), Keyword.Type, using(this),
                  Name.Function), "#pop"),
 
             # no return type given, start of a selector w/ parameters
-            (r'([$a-zA-Z_][a-zA-Z0-9_]+' + _ws + r':)', # function name
+            (r'([$a-zA-Z_]\w+' + _ws + r':)',   # function name
              bygroups (Name.Function), 'function_parameters'),
 
             # no return type given, no-param function
-            (r'([$a-zA-Z_][a-zA-Z0-9_]+)',      # function name
+            (r'([$a-zA-Z_]\w+)',                # function name
              bygroups(Name.Function), "#pop"),
 
             ('', Text, '#pop'),
@@ -653,11 +653,11 @@ class ObjectiveJLexer(RegexLexer):
             (r'(\(' + _ws + ')'                 # open paren
              r'([^\)]+)'                        # type
              r'(' + _ws + r'\)' + _ws + r')'    # close paren
-             r'([$a-zA-Z_][a-zA-Z0-9_]+)',      # param name
+             r'([$a-zA-Z_]\w+)',      # param name
              bygroups(using(this), Keyword.Type, using(this), Text)),
 
             # one piece of a selector name
-            (r'([$a-zA-Z_][a-zA-Z0-9_]+' + _ws + r':)',     # function name
+            (r'([$a-zA-Z_]\w+' + _ws + r':)',   # function name
              Name.Function),
 
             # smallest possible selector piece
@@ -667,10 +667,10 @@ class ObjectiveJLexer(RegexLexer):
             (r'(,' + _ws + r'\.\.\.)', using(this)),
 
             # param name
-            (r'([$a-zA-Z_][a-zA-Z0-9_]+)', Text),
+            (r'([$a-zA-Z_]\w+)', Text),
         ],
         'expression' : [
-            (r'([$a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function,
+            (r'([$a-zA-Z_]\w*)(\()', bygroups(Name.Function,
                                                         Punctuation)),
             (r'(\))', Punctuation, "#pop"),
         ],
@@ -737,8 +737,8 @@ class HtmlLexer(RegexLexer):
         ],
         'tag': [
             (r'\s+', Text),
-            (r'[a-zA-Z0-9_:-]+\s*=', Name.Attribute, 'attr'),
-            (r'[a-zA-Z0-9_:-]+', Name.Attribute),
+            (r'[\w:-]+\s*=', Name.Attribute, 'attr'),
+            (r'[\w:-]+', Name.Attribute),
             (r'/?\s*>', Name.Tag, '#pop'),
         ],
         'script-content': [
@@ -801,7 +801,7 @@ class PhpLexer(RegexLexer):
 
     # Note that a backslash is included in the following two patterns
     # PHP uses a backslash as a namespace separator
-    _ident_char = r'[\\_a-zA-Z0-9]|[^\x00-\x7f]'
+    _ident_char = r'[\\\w]|[^\x00-\x7f]'
     _ident_begin = r'(?:[\\_a-zA-Z]|[^\x00-\x7f])'
     _ident_end = r'(?:' + _ident_char + ')*'
     _ident_inner = _ident_begin + _ident_end
@@ -1118,8 +1118,8 @@ class MxmlLexer(RegexLexer):
                 ('<!--', Comment, 'comment'),
                 (r'<\?.*?\?>', Comment.Preproc),
                 ('<![^>]*>', Comment.Preproc),
-                (r'<\s*[a-zA-Z0-9:._-]+', Name.Tag, 'tag'),
-                (r'<\s*/\s*[a-zA-Z0-9:._-]+\s*>', Name.Tag),
+                (r'<\s*[\w:.-]+', Name.Tag, 'tag'),
+                (r'<\s*/\s*[\w:.-]+\s*>', Name.Tag),
             ],
             'comment': [
                 ('[^-]+', Comment),
@@ -1128,7 +1128,7 @@ class MxmlLexer(RegexLexer):
             ],
             'tag': [
                 (r'\s+', Text),
-                (r'[a-zA-Z0-9_.:-]+\s*=', Name.Attribute, 'attr'),
+                (r'[\w.:-]+\s*=', Name.Attribute, 'attr'),
                 (r'/?\s*>', Name.Tag, '#pop'),
             ],
             'attr': [
@@ -1161,11 +1161,10 @@ class HaxeLexer(ExtendedRegexLexer):
                r'inline|using|null|true|false|abstract)\b')
 
     # idtype in lexer.mll
-    typeid = r'_*[A-Z][_a-zA-Z0-9]*'
+    typeid = r'_*[A-Z]\w*'
 
     # combined ident and dollar and idtype
-    ident = r'(?:_*[a-z][_a-zA-Z0-9]*|_+[0-9][_a-zA-Z0-9]*|' + typeid + \
-        '|_+|\$[_a-zA-Z0-9]+)'
+    ident = r'(?:_*[a-z]\w*|_+[0-9]\w*|' + typeid + '|_+|\$\w+)'
 
     binop = (r'(?:%=|&=|\|=|\^=|\+=|\-=|\*=|/=|<<=|>\s*>\s*=|>\s*>\s*>\s*=|==|'
              r'!=|<=|>\s*=|&&|\|\||<<|>>>|>\s*>|\.\.\.|<|>|%|&|\||\^|\+|\*|'
@@ -2066,8 +2065,8 @@ class HamlLexer(ExtendedRegexLexer):
         ],
 
         'css': [
-            (r'\.[a-z0-9_:-]+', Name.Class, 'tag'),
-            (r'\#[a-z0-9_:-]+', Name.Function, 'tag'),
+            (r'\.[\w:-]+', Name.Class, 'tag'),
+            (r'\#[\w:-]+', Name.Function, 'tag'),
         ],
 
         'eval-or-plain': [
@@ -2080,7 +2079,7 @@ class HamlLexer(ExtendedRegexLexer):
 
         'content': [
             include('css'),
-            (r'%[a-z0-9_:-]+', Name.Tag, 'tag'),
+            (r'%[\w:-]+', Name.Tag, 'tag'),
             (r'!!!' + _dot + r'*\n', Name.Namespace, '#pop'),
             (r'(/)(\[' + _dot + '*?\])(' + _dot + r'*\n)',
              bygroups(Comment, Comment.Special, Comment),
@@ -2116,16 +2115,16 @@ class HamlLexer(ExtendedRegexLexer):
 
         'html-attributes': [
             (r'\s+', Text),
-            (r'[a-z0-9_:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
-            (r'[a-z0-9_:-]+', Name.Attribute),
+            (r'[\w:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
+            (r'[\w:-]+', Name.Attribute),
             (r'\)', Text, '#pop'),
         ],
 
         'html-attribute-value': [
             (r'[ \t]+', Text),
-            (r'[a-z0-9_]+', Name.Variable, '#pop'),
-            (r'@[a-z0-9_]+', Name.Variable.Instance, '#pop'),
-            (r'\$[a-z0-9_]+', Name.Variable.Global, '#pop'),
+            (r'\w+', Name.Variable, '#pop'),
+            (r'@\w+', Name.Variable.Instance, '#pop'),
+            (r'\$\w+', Name.Variable.Global, '#pop'),
             (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
             (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
         ],
@@ -2265,7 +2264,7 @@ common_sass_tokens = {
         (r'\:', Name.Decorator, 'pseudo-class'),
         (r'\.', Name.Class, 'class'),
         (r'\#', Name.Namespace, 'id'),
-        (r'[a-zA-Z0-9_-]+', Name.Tag),
+        (r'[\w-]+', Name.Tag),
         (r'#\{', String.Interpol, 'interpolation'),
         (r'&', Keyword),
         (r'[~\^\*!&\[\]\(\)<>\|+=@:;,./?-]', Operator),
@@ -2501,12 +2500,12 @@ class CoffeeScriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'eval|isFinite|isNaN|parseFloat|parseInt|document|window)\b',
              Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_\.:\$]*\s*[:=]\s', Name.Variable,
+            (r'[$a-zA-Z_][\w\.:\$]*\s*[:=]\s', Name.Variable,
               'slashstartsregex'),
-            (r'@[$a-zA-Z_][a-zA-Z0-9_\.:\$]*\s*[:=]\s', Name.Variable.Instance,
+            (r'@[$a-zA-Z_][\w\.:\$]*\s*[:=]\s', Name.Variable.Instance,
               'slashstartsregex'),
             (r'@', Name.Other, 'slashstartsregex'),
-            (r'@?[$a-zA-Z_][a-zA-Z0-9_\$]*', Name.Other, 'slashstartsregex'),
+            (r'@?[$a-zA-Z_][\w\$]*', Name.Other, 'slashstartsregex'),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -2574,13 +2573,13 @@ class KalLexer(RegexLexer):
             (r'#(?!##[^#]).*?\n', Comment.Single),
         ],
         'functiondef': [
-            (r'[$a-zA-Z_][a-zA-Z0-9_\$]*\s*', Name.Function, '#pop'),
+            (r'[$a-zA-Z_][\w\$]*\s*', Name.Function, '#pop'),
             include('commentsandwhitespace'),
         ],
         'classdef': [
             (r'\binherits\s+from\b', Keyword),
-            (r'[$a-zA-Z_][a-zA-Z0-9_\$]*\s*\n', Name.Class, '#pop'),
-            (r'[$a-zA-Z_][a-zA-Z0-9_\$]*\s*', Name.Class),
+            (r'[$a-zA-Z_][\w\$]*\s*\n', Name.Class, '#pop'),
+            (r'[$a-zA-Z_][\w\$]*\s*', Name.Class),
             include('commentsandwhitespace'),
         ],
         'listcomprehension': [
@@ -2609,7 +2608,7 @@ class KalLexer(RegexLexer):
             (r'\b(function|method|task)\b', Keyword.Declaration, 'functiondef'),
             (r'\bclass\b', Keyword.Declaration, 'classdef'),
             (r'\b(safe\s+)?wait\s+for\b', Keyword, 'waitfor'),
-            (r'\b(me|this)(\.[$a-zA-Z_][a-zA-Z0-9_\.\$]*)?\b', Name.Variable.Instance),
+            (r'\b(me|this)(\.[$a-zA-Z_][\w\.\$]*)?\b', Name.Variable.Instance),
             (r'(?<![\.\$])(for(\s+(parallel|series))?|in|of|while|until|'
              r'break|return|continue|'
              r'when|if|unless|else|otherwise|except\s+when|'
@@ -2625,7 +2624,7 @@ class KalLexer(RegexLexer):
              r'eval|isFinite|isNaN|parseFloat|parseInt|document|window|'
              r'print)\b',
              Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_\.\$]*\s*(:|[\+\-\*\/]?\=)?\b', Name.Variable),
+            (r'[$a-zA-Z_][\w\.\$]*\s*(:|[\+\-\*\/]?\=)?\b', Name.Variable),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -2728,12 +2727,12 @@ class LiveScriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'eval|isFinite|isNaN|parseFloat|parseInt|document|window)\b',
               Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_\.\-:\$]*\s*[:=]\s', Name.Variable,
+            (r'[$a-zA-Z_][\w\.\-:\$]*\s*[:=]\s', Name.Variable,
               'slashstartsregex'),
-            (r'@[$a-zA-Z_][a-zA-Z0-9_\.\-:\$]*\s*[:=]\s', Name.Variable.Instance,
+            (r'@[$a-zA-Z_][\w\.\-:\$]*\s*[:=]\s', Name.Variable.Instance,
               'slashstartsregex'),
             (r'@', Name.Other, 'slashstartsregex'),
-            (r'@?[$a-zA-Z_][a-zA-Z0-9_\-]*', Name.Other, 'slashstartsregex'),
+            (r'@?[$a-zA-Z_][\w\-]*', Name.Other, 'slashstartsregex'),
             (r'[0-9]+\.[0-9]+([eE][0-9]+)?[fd]?(?:[a-zA-Z_]+)?', Number.Float),
             (r'[0-9]+(~[0-9a-z]+)?(?:[a-zA-Z_]+)?', Number.Integer),
             ('"""', String, 'tdqs'),
@@ -3729,8 +3728,8 @@ class DartLexer(RegexLexer):
             (r'\b(bool|double|Dynamic|int|num|Object|String|void)\b', Keyword.Type),
             (r'\b(false|null|true)\b', Keyword.Constant),
             (r'[~!%^&*+=|?:<>/-]|as\b', Operator),
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*:', Name.Label),
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_$]\w*:', Name.Label),
+            (r'[a-zA-Z_$]\w*', Name),
             (r'[(){}\[\],.;]', Punctuation),
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
             # DIGIT+ (‘.’ DIGIT*)? EXPONENT?
@@ -3740,13 +3739,13 @@ class DartLexer(RegexLexer):
             # pseudo-keyword negate intentionally left out
         ],
         'class': [
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name.Class, '#pop')
+            (r'[a-zA-Z_$]\w*', Name.Class, '#pop')
         ],
         'import_decl': [
             include('string_literal'),
             (r'\s+', Text),
             (r'\b(as|show|hide)\b', Keyword),
-            (r'[a-zA-Z_$][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_$]\w*', Name),
             (r'\,', Punctuation),
             (r'\;', Punctuation, '#pop')
         ],
@@ -3765,7 +3764,7 @@ class DartLexer(RegexLexer):
         'string_common': [
             (r"\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{[0-9A-Fa-f]*\}|[a-z\'\"$\\])",
              String.Escape),
-            (r'(\$)([a-zA-Z_][a-zA-Z0-9_]*)', bygroups(String.Interpol, Name)),
+            (r'(\$)([a-zA-Z_]\w*)', bygroups(String.Interpol, Name)),
             (r'(\$\{)(.*?)(\})',
              bygroups(String.Interpol, using(this), String.Interpol))
         ],
@@ -3848,7 +3847,7 @@ class TypeScriptLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
             # Match stuff like: module name {...}
-            (r'\b(module)(\s*)(\s*[a-zA-Z0-9_?.$][\w?.$]*)(\s*)',
+            (r'\b(module)(\s*)(\s*[\w?.$][\w?.$]*)(\s*)',
              bygroups(Keyword.Reserved, Text, Name.Other, Text), 'slashstartsregex'),
             # Match variable type keywords
             (r'\b(string|bool|number)\b', Keyword.Type),
@@ -3860,9 +3859,9 @@ class TypeScriptLexer(RegexLexer):
             # Match stuff like: function() {...}
             (r'([a-zA-Z_?.$][\w?.$]*)\(\) \{', Name.Other, 'slashstartsregex'),
             # Match stuff like: (function: return type)
-            (r'([a-zA-Z0-9_?.$][\w?.$]*)(\s*:\s*)([a-zA-Z0-9_?.$][\w?.$]*)',
+            (r'([\w?.$][\w?.$]*)(\s*:\s*)([\w?.$][\w?.$]*)',
              bygroups(Name.Other, Text, Keyword.Type)),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -4195,7 +4194,7 @@ class QmlLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -4418,19 +4417,20 @@ class ZephirLexer(RegexLexer):
              r'(<<|>>>?|==?|!=?|->|[-<>+*%&\|\^/])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
-            (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|loop|require|inline|'
-             r'throw|try|catch|finally|new|delete|typeof|instanceof|void|namespace|use|extends|'
-             r'this|fetch|isset|unset|echo|fetch|likely|unlikely|empty)\b', Keyword, 'slashstartsregex'),
+            (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|loop|'
+             r'require|inline|throw|try|catch|finally|new|delete|typeof|instanceof|void|'
+             r'namespace|use|extends|this|fetch|isset|unset|echo|fetch|likely|unlikely|'
+             r'empty)\b', Keyword, 'slashstartsregex'),
             (r'(var|let|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
-            (r'(abstract|boolean|bool|char|class|const|double|enum|export|'
-             r'extends|final|float|goto|implements|import|int|string|interface|long|ulong|char|uchar|native|unsigned|'
-             r'private|protected|public|short|static|self|throws|reverse|'
+            (r'(abstract|boolean|bool|char|class|const|double|enum|export|extends|final|'
+             r'native|goto|implements|import|int|string|interface|long|ulong|char|uchar|'
+             r'float|unsigned|private|protected|public|short|static|self|throws|reverse|'
              r'transient|volatile)\b', Keyword.Reserved),
             (r'(true|false|null|undefined)\b', Keyword.Constant),
             (r'(Array|Boolean|Date|_REQUEST|_COOKIE|_SESSION|'
              r'_GET|_POST|_SERVER|this|stdClass|range|count|iterator|'
              r'window)\b', Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_\\]*', Name.Other),
+            (r'[$a-zA-Z_][\w\\]*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
