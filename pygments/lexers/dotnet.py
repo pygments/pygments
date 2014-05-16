@@ -425,7 +425,7 @@ class VbNetLexer(RegexLexer):
              r'<=|>=|<>|[-&*/\\^+=<>]',
              Operator),
             ('"', String, 'string'),
-            ('[a-zA-Z_]\w*[%&@!#$]?', Name),
+            ('[a-z_]\w*[%&@!#$]?', Name),
             ('#.*?#', Literal.Date),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
             (r'\d+([SILDFR]|US|UI|UL)?', Number.Integer),

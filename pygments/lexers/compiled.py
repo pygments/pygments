@@ -1158,7 +1158,7 @@ class DylanLexer(RegexLexer):
         'type-error-value', 'type-for-copy', 'type-union', 'union', 'values',
         'vector', 'zero?'])
 
-    valid_name = '\\\\?[a-zA-Z0-9' + re.escape('!&*<>|^$%@_-+~?/=') + ']+'
+    valid_name = '\\\\?[a-z0-9' + re.escape('!&*<>|^$%@_-+~?/=') + ']+'
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):
@@ -1187,7 +1187,7 @@ class DylanLexer(RegexLexer):
             (r'//.*?\n', Comment.Single),
 
             # lid header
-            (r'([A-Za-z0-9-]+)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
+            (r'([a-z0-9-]+)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
                 bygroups(Name.Attribute, Operator, Text, String)),
 
             ('', Text, 'code') # no header match, switch to code
@@ -1204,7 +1204,7 @@ class DylanLexer(RegexLexer):
 
             # strings and characters
             (r'"', String, 'string'),
-            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
+            (r"'(\\.|\\[0-7]{1,3}|\\x[a-f0-9]{1,2}|[^\\\'\n])'", String.Char),
 
             # binary integer
             (r'#[bB][01]+', Number),
@@ -1219,7 +1219,7 @@ class DylanLexer(RegexLexer):
             (r'[-+]?\d+', Number.Integer),
 
             # hex integer
-            (r'#[xX][0-9a-fA-F]+', Number.Hex),
+            (r'#[xX][0-9a-f]+', Number.Hex),
 
             # Macro parameters
             (r'(\?' + valid_name + ')(:)'
@@ -1243,7 +1243,7 @@ class DylanLexer(RegexLexer):
             (r'#"', String.Symbol, 'keyword'),
 
             # #rest, #key, #all-keys, etc.
-            (r'#[a-zA-Z0-9-]+', Keyword),
+            (r'#[a-z0-9-]+', Keyword),
 
             # required-init-keyword: style keywords.
             (valid_name + ':', Keyword),
@@ -1272,7 +1272,7 @@ class DylanLexer(RegexLexer):
         ],
         'string': [
             (r'"', String, '#pop'),
-            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'\\([\\abfnrtv"\']|x[a-f0-9]{2,4}|[0-7]{1,3})', String.Escape),
             (r'[^\\"\n]+', String), # all other characters
             (r'\\\n', String), # line continuation
             (r'\\', String), # stray backslash
@@ -3004,7 +3004,7 @@ class NimrodLexer(RegexLexer):
             # Numbers
             (r'[0-9][0-9_]*(?=([eE.]|\'[fF](32|64)))',
               Number.Float, ('float-suffix', 'float-number')),
-            (r'0[xX][a-fA-F0-9][a-fA-F0-9_]*', Number.Hex, 'int-suffix'),
+            (r'0[xX][a-f0-9][a-f0-9_]*', Number.Hex, 'int-suffix'),
             (r'0[bB][01][01_]*', Number, 'int-suffix'),
             (r'0o[0-7][0-7_]*', Number.Oct, 'int-suffix'),
             (r'[0-9][0-9_]*', Number.Integer, 'int-suffix'),
@@ -3013,7 +3013,7 @@ class NimrodLexer(RegexLexer):
             (r'.+$', Error),
         ],
         'chars': [
-          (r'\\([\\abcefnrtvl"\']|x[a-fA-F0-9]{2}|[0-9]{1,3})', String.Escape),
+          (r'\\([\\abcefnrtvl"\']|x[a-f0-9]{2}|[0-9]{1,3})', String.Escape),
           (r"'", String.Char, '#pop'),
           (r".", String.Char)
         ],
@@ -3027,7 +3027,7 @@ class NimrodLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ],
         'dqs': [
-            (r'\\([\\abcefnrtvl"\']|\n|x[a-fA-F0-9]{2}|[0-9]{1,3})',
+            (r'\\([\\abcefnrtvl"\']|\n|x[a-f0-9]{2}|[0-9]{1,3})',
              String.Escape),
             (r'"', String, '#pop'),
             include('strings')

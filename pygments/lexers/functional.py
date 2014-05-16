@@ -850,10 +850,10 @@ class CommonLispLexer(RegexLexer):
             (r'#[oO][+-]?[0-7]+(/[0-7]+)?', Number.Oct),
 
             # hex rational
-            (r'#[xX][+-]?[0-9a-fA-F]+(/[0-9a-fA-F]+)?', Number.Hex),
+            (r'#[xX][+-]?[0-9a-f]+(/[0-9a-f]+)?', Number.Hex),
 
             # radix rational
-            (r'#\d+[rR][+-]?[0-9a-zA-Z]+(/[0-9a-zA-Z]+)?', Number),
+            (r'#\d+[rR][+-]?[0-9a-z]+(/[0-9a-z]+)?', Number),
 
             # complex
             (r'(#[cC])(\()', bygroups(Number, Punctuation), 'body'),

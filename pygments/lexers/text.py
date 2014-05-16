@@ -589,7 +589,7 @@ class ApacheConfLexer(RegexLexer):
             (r'(#.*?)$', Comment),
             (r'(<[^\s>]+)(?:(\s+)(.*?))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
-            (r'([a-zA-Z]\w*)(\s+)',
+            (r'([a-z]\w*)(\s+)',
              bygroups(Name.Builtin, Text), 'value'),
             (r'\.+', Text),
         ],
@@ -598,7 +598,7 @@ class ApacheConfLexer(RegexLexer):
             (r'[^\S\n]+', Text),
             (r'\d+\.\d+\.\d+\.\d+(?:/\d+)?', Number),
             (r'\d+', Number),
-            (r'/([a-zA-Z0-9][\w./-]+)', String.Other),
+            (r'/([a-z0-9][\w./-]+)', String.Other),
             (r'(on|off|none|any|all|double|email|dns|min|minimal|'
              r'os|productonly|full|emerg|alert|crit|error|warn|'
              r'notice|info|debug|registry|script|inetd|standalone|'

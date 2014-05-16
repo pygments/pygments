@@ -802,7 +802,7 @@ class PhpLexer(RegexLexer):
     # Note that a backslash is included in the following two patterns
     # PHP uses a backslash as a namespace separator
     _ident_char = r'[\\\w]|[^\x00-\x7f]'
-    _ident_begin = r'(?:[\\_a-zA-Z]|[^\x00-\x7f])'
+    _ident_begin = r'(?:[\\_a-z]|[^\x00-\x7f])'
     _ident_end = r'(?:' + _ident_char + ')*'
     _ident_inner = _ident_begin + _ident_end
 
@@ -852,7 +852,7 @@ class PhpLexer(RegexLexer):
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+', Number.Float),
             (r'0[0-7]+', Number.Oct),
-            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'0[xX][a-f0-9]+', Number.Hex),
             (r'\d+', Number.Integer),
             (r'0b[01]+', Number.Binary),
             (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
@@ -868,7 +868,7 @@ class PhpLexer(RegexLexer):
         'string': [
             (r'"', String.Double, '#pop'),
             (r'[^{$"\\]+', String.Double),
-            (r'\\([nrt\"$\\]|[0-7]{1,3}|x[0-9A-Fa-f]{1,2})', String.Escape),
+            (r'\\([nrt\"$\\]|[0-7]{1,3}|x[0-9a-f]{1,2})', String.Escape),
             (r'\$' + _ident_inner + '(\[\S+?\]|->' + _ident_inner + ')?',
              String.Interpol),
             (r'(\{\$\{)(.*?)(\}\})',
