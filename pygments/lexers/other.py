@@ -1306,9 +1306,9 @@ class ModelicaLexer(RegexLexer):
             (r'\d+[Ll]?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
-            (r'([a-zA-Z_][\w]*|[\'][^\']+[\'])'
+            (r'([a-zA-Z_][\w]*|\'[^\']+\')'
              r'([\[\d,:\]]*)'
-             r'(\.([a-zA-Z_][\w]*|[\'][^\']+[\']))+'
+             r'(\.([a-zA-Z_][\w]*|\'[^\']+\'))+'
              r'([\[\d,:\]]*)', Name.Class),
             (r'(\'[\w\+\-\*\/\^]+\'|\w+)', Name),
             (r'[()\[\]{},.;]', Punctuation),
@@ -1350,7 +1350,7 @@ class ModelicaLexer(RegexLexer):
         'classes': [
             (r'(operator)?(\s+)?(block|class|connector|end|function|model|'
              r'operator|package|record|type)(\s+)'
-             r'((?!if|for|when|while)[A-Za-z_]\w*|[\'][^\']+[\'])([;]?)',
+             r'((?!if|for|when|while)[A-Za-z_]\w*|\'[^\']+\')([;]?)',
              bygroups(Keyword, Text, Keyword, Text, Name.Class, Text))
         ],
         'quoted_ident': [
