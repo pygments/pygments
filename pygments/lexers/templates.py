@@ -753,7 +753,7 @@ class CheetahLexer(RegexLexer):
             (r'''(?sx)
                 (.+?)               # anything, followed by:
                 (?:
-                 (?=[#][#a-zA-Z]*) |   # an eval comment
+                 (?=\#[#a-zA-Z]*) | # an eval comment
                  (?=\$[a-zA-Z_{]) | # a substitution
                  \Z                 # end of string
                 )
@@ -1504,9 +1504,9 @@ class ColdfusionLexer(RegexLexer):
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(application|session|client|cookie|super|this|variables|arguments)\b',
              Name.Constant),
-            (r'([A-Za-z_$][\w.]*)(\s*)(\()',
+            (r'([a-z_$][\w.]*)(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
-            (r'[A-Za-z_$][\w.]*', Name.Variable),
+            (r'[a-z_$][\w.]*', Name.Variable),
             (r'[()\[\]{};:,.\\]', Punctuation),
             (r'\s+', Text),
         ],

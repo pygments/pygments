@@ -290,19 +290,19 @@ class VhdlLexer(RegexLexer):
             (r'--(?![!#$%&*+./<=>?@\^|_~]).*?$', Comment.Single),
             (r"'(U|X|0|1|Z|W|L|H|-)'", String.Char),
             (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r"'[a-zA-Z_]\w*", Name.Attribute),
+            (r"'[a-z_]\w*", Name.Attribute),
             (r'[()\[\],.;\']', Punctuation),
             (r'"[^\n\\]*"', String),
 
-            (r'(library)(\s+)([a-zA-Z_]\w*)',
+            (r'(library)(\s+)([a-z_]\w*)',
              bygroups(Keyword, Text, Name.Namespace)),
             (r'(use)(\s+)(entity)', bygroups(Keyword, Text, Keyword)),
-            (r'(use)(\s+)([a-zA-Z_][\.\w]*)',
+            (r'(use)(\s+)([a-z_][\.\w]*)',
              bygroups(Keyword, Text, Name.Namespace)),
-            (r'(entity|component)(\s+)([a-zA-Z_]\w*)',
+            (r'(entity|component)(\s+)([a-z_]\w*)',
              bygroups(Keyword, Text, Name.Class)),
-            (r'(architecture|configuration)(\s+)([a-zA-Z_]\w*)(\s+)'
-             r'(of)(\s+)([a-zA-Z_]\w*)(\s+)(is)',
+            (r'(architecture|configuration)(\s+)([a-z_]\w*)(\s+)'
+             r'(of)(\s+)([a-z_]\w*)(\s+)(is)',
              bygroups(Keyword, Text, Name.Class, Text, Keyword, Text,
                       Name.Class, Text, Keyword)),
 
@@ -312,11 +312,11 @@ class VhdlLexer(RegexLexer):
             include('keywords'),
             include('numbers'),
 
-            (r'[a-zA-Z_]\w*', Name),
+            (r'[a-z_]\w*', Name),
         ],
         'endblock': [
             include('keywords'),
-            (r'[a-zA-Z_]\w*', Name.Class),
+            (r'[a-z_]\w*', Name.Class),
             (r'(\s+)', Text),
             (r';', Punctuation, '#pop'),
         ],
@@ -345,11 +345,11 @@ class VhdlLexer(RegexLexer):
              r'while|with|xnor|xor)\b', Keyword),
         ],
         'numbers': [
-            (r'\d{1,2}#[0-9a-fA-F_]+#?', Number.Integer),
+            (r'\d{1,2}#[0-9a-f_]+#?', Number.Integer),
             (r'[0-1_]+(\.[0-1_])', Number.Integer),
             (r'\d+', Number.Integer),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+', Number.Float),
-            (r'H"[0-9a-fA-F_]+"', Number.Oct),
+            (r'H"[0-9a-f_]+"', Number.Oct),
             (r'O"[0-7_]+"', Number.Oct),
             (r'B"[0-1_]+"', Number.Oct),
         ],

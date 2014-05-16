@@ -802,7 +802,7 @@ class PhpLexer(RegexLexer):
     # Note that a backslash is included in the following two patterns
     # PHP uses a backslash as a namespace separator
     _ident_char = r'[\\\w]|[^\x00-\x7f]'
-    _ident_begin = r'(?:[\\_a-zA-Z]|[^\x00-\x7f])'
+    _ident_begin = r'(?:[\\_a-z]|[^\x00-\x7f])'
     _ident_end = r'(?:' + _ident_char + ')*'
     _ident_inner = _ident_begin + _ident_end
 
@@ -852,7 +852,7 @@ class PhpLexer(RegexLexer):
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+', Number.Float),
             (r'0[0-7]+', Number.Oct),
-            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'0[xX][a-f0-9]+', Number.Hex),
             (r'\d+', Number.Integer),
             (r'0b[01]+', Number.Binary),
             (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
@@ -868,7 +868,7 @@ class PhpLexer(RegexLexer):
         'string': [
             (r'"', String.Double, '#pop'),
             (r'[^{$"\\]+', String.Double),
-            (r'\\([nrt\"$\\]|[0-7]{1,3}|x[0-9A-Fa-f]{1,2})', String.Escape),
+            (r'\\([nrt\"$\\]|[0-7]{1,3}|x[0-9a-f]{1,2})', String.Escape),
             (r'\$' + _ident_inner + '(\[\S+?\]|->' + _ident_inner + ')?',
              String.Interpol),
             (r'(\{\$\{)(.*?)(\}\})',
@@ -2344,7 +2344,7 @@ class SassLexer(ExtendedRegexLexer):
             (r'(@mixin)( [\w-]+)', bygroups(Keyword, Name.Function), 'value'),
             (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
             (r'@extend', Keyword, 'selector'),
-            (r'@[a-z0-9_-]+', Keyword, 'selector'),
+            (r'@[\w-]+', Keyword, 'selector'),
             (r'=[\w-]+', Name.Function, 'value'),
             (r'\+[\w-]+', Name.Decorator, 'value'),
             (r'([!$][\w-]\w*)([ \t]*(?:(?:\|\|)?=|:))',
@@ -2417,7 +2417,7 @@ class ScssLexer(RegexLexer):
             (r'(@mixin)( [\w-]+)', bygroups(Keyword, Name.Function), 'value'),
             (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
             (r'@extend', Keyword, 'selector'),
-            (r'@[a-z0-9_-]+', Keyword, 'selector'),
+            (r'@[\w-]+', Keyword, 'selector'),
             (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
             (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
             (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
@@ -2837,8 +2837,8 @@ class ScamlLexer(ExtendedRegexLexer):
         ],
 
         'css': [
-            (r'\.[a-z0-9_:-]+', Name.Class, 'tag'),
-            (r'\#[a-z0-9_:-]+', Name.Function, 'tag'),
+            (r'\.[\w:-]+', Name.Class, 'tag'),
+            (r'\#[\w:-]+', Name.Function, 'tag'),
         ],
 
         'eval-or-plain': [
@@ -2851,7 +2851,7 @@ class ScamlLexer(ExtendedRegexLexer):
 
         'content': [
             include('css'),
-            (r'%[a-z0-9_:-]+', Name.Tag, 'tag'),
+            (r'%[\w:-]+', Name.Tag, 'tag'),
             (r'!!!' + _dot + r'*\n', Name.Namespace, '#pop'),
             (r'(/)(\[' + _dot + '*?\])(' + _dot + r'*\n)',
              bygroups(Comment, Comment.Special, Comment),
@@ -2890,16 +2890,16 @@ class ScamlLexer(ExtendedRegexLexer):
 
         'html-attributes': [
             (r'\s+', Text),
-            (r'[a-z0-9_:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
-            (r'[a-z0-9_:-]+', Name.Attribute),
+            (r'[\w:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
+            (r'[\w:-]+', Name.Attribute),
             (r'\)', Text, '#pop'),
         ],
 
         'html-attribute-value': [
             (r'[ \t]+', Text),
-            (r'[a-z0-9_]+', Name.Variable, '#pop'),
-            (r'@[a-z0-9_]+', Name.Variable.Instance, '#pop'),
-            (r'\$[a-z0-9_]+', Name.Variable.Global, '#pop'),
+            (r'\w+', Name.Variable, '#pop'),
+            (r'@\w+', Name.Variable.Instance, '#pop'),
+            (r'\$\w+', Name.Variable.Global, '#pop'),
             (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
             (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
         ],
@@ -2947,8 +2947,8 @@ class JadeLexer(ExtendedRegexLexer):
         ],
 
         'css': [
-            (r'\.[a-z0-9_:-]+', Name.Class, 'tag'),
-            (r'\#[a-z0-9_:-]+', Name.Function, 'tag'),
+            (r'\.[\w:-]+', Name.Class, 'tag'),
+            (r'\#[\w:-]+', Name.Function, 'tag'),
         ],
 
         'eval-or-plain': [
@@ -2976,7 +2976,7 @@ class JadeLexer(ExtendedRegexLexer):
              '#pop'),
             (r':' + _dot + r'*\n', _starts_block(Name.Decorator, 'filter-block'),
              '#pop'),
-            (r'[a-z0-9_:-]+', Name.Tag, 'tag'),
+            (r'[\w:-]+', Name.Tag, 'tag'),
             (r'\|', Text, 'eval-or-plain'),
         ],
 
@@ -2999,16 +2999,16 @@ class JadeLexer(ExtendedRegexLexer):
 
         'html-attributes': [
             (r'\s+', Text),
-            (r'[a-z0-9_:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
-            (r'[a-z0-9_:-]+', Name.Attribute),
+            (r'[\w:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
+            (r'[\w:-]+', Name.Attribute),
             (r'\)', Text, '#pop'),
         ],
 
         'html-attribute-value': [
             (r'[ \t]+', Text),
-            (r'[a-z0-9_]+', Name.Variable, '#pop'),
-            (r'@[a-z0-9_]+', Name.Variable.Instance, '#pop'),
-            (r'\$[a-z0-9_]+', Name.Variable.Global, '#pop'),
+            (r'\w+', Name.Variable, '#pop'),
+            (r'@\w+', Name.Variable.Instance, '#pop'),
+            (r'\$\w+', Name.Variable.Global, '#pop'),
             (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
             (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
         ],
@@ -4285,8 +4285,8 @@ class MaskLexer(RegexLexer):
             (r'"', String, 'string-double'),
             (r'([\w-]+)', Name.Tag, 'node'),
             (r'([^\.#;{>\s]+)', Name.Class, 'node'),
-            (r'(#[\w_-]+)', Name.Function, 'node'),
-            (r'(\.[\w_-]+)', Name.Variable.Class, 'node')
+            (r'(#[\w-]+)', Name.Function, 'node'),
+            (r'(\.[\w-]+)', Name.Variable.Class, 'node')
         ],
         'string-base': [
             (r'\\.', String.Escape),
@@ -4323,8 +4323,8 @@ class MaskLexer(RegexLexer):
             (r'\.', Name.Variable.Class, 'node-class'),
             (r'\#', Name.Function, 'node-id'),
             (r'style[ \t]*=', Name.Attribute, 'node-attr-style-value'),
-            (r'[\w_:-]+[ \t]*=', Name.Attribute, 'node-attr-value'),
-            (r'[\w_:-]+', Name.Attribute),
+            (r'[\w:-]+[ \t]*=', Name.Attribute, 'node-attr-value'),
+            (r'[\w:-]+', Name.Attribute),
             (r'[>{;]', Punctuation, '#pop')
         ],
         'node-class': [
@@ -4339,7 +4339,7 @@ class MaskLexer(RegexLexer):
         ],
         'node-attr-value':[
             (r'\s+', Text),
-            (r'[\w_]+', Name.Variable, '#pop'),
+            (r'\w+', Name.Variable, '#pop'),
             (r"'", String, 'string-single-pop2'),
             (r'"', String, 'string-double-pop2'),
             (r'', Text, '#pop')
@@ -4352,8 +4352,8 @@ class MaskLexer(RegexLexer):
         ],
         'css-base': [
             (r'\s+', Text),
-            (r"[;]", Punctuation),
-            (r"[\w\-_]+\s*:", Name.Builtin)
+            (r";", Punctuation),
+            (r"[\w\-]+\s*:", Name.Builtin)
         ],
         'css-single-end': [
             include('css-base'),

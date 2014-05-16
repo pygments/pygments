@@ -425,7 +425,7 @@ class VbNetLexer(RegexLexer):
              r'<=|>=|<>|[-&*/\\^+=<>]',
              Operator),
             ('"', String, 'string'),
-            ('[a-zA-Z_]\w*[%&@!#$]?', Name),
+            ('[a-z_]\w*[%&@!#$]?', Name),
             ('#.*?#', Literal.Date),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
             (r'\d+([SILDFR]|US|UI|UL)?', Number.Integer),
@@ -439,17 +439,17 @@ class VbNetLexer(RegexLexer):
             (r'[^"]+', String),
         ],
         'dim': [
-            (r'[a-z_][a-z0-9_]*', Name.Variable, '#pop'),
+            (r'[a-z_]\w*', Name.Variable, '#pop'),
             (r'', Text, '#pop'),  # any other syntax
         ],
         'funcname': [
-            (r'[a-z_][a-z0-9_]*', Name.Function, '#pop'),
+            (r'[a-z_]\w*', Name.Function, '#pop'),
         ],
         'classname': [
-            (r'[a-z_][a-z0-9_]*', Name.Class, '#pop'),
+            (r'[a-z_]\w*', Name.Class, '#pop'),
         ],
         'namespace': [
-            (r'[a-z_][a-z0-9_.]*', Name.Namespace, '#pop'),
+            (r'[a-z_][\w.]*', Name.Namespace, '#pop'),
         ],
         'end': [
             (r'\s+', Text),

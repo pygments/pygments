@@ -851,10 +851,10 @@ class CommonLispLexer(RegexLexer):
             (r'#[oO][+-]?[0-7]+(/[0-7]+)?', Number.Oct),
 
             # hex rational
-            (r'#[xX][+-]?[0-9a-fA-F]+(/[0-9a-fA-F]+)?', Number.Hex),
+            (r'#[xX][+-]?[0-9a-f]+(/[0-9a-f]+)?', Number.Hex),
 
             # radix rational
-            (r'#\d+[rR][+-]?[0-9a-zA-Z]+(/[0-9a-zA-Z]+)?', Number),
+            (r'#\d+[rR][+-]?[0-9a-z]+(/[0-9a-z]+)?', Number),
 
             # complex
             (r'(#[cC])(\()', bygroups(Number, Punctuation), 'body'),
@@ -1166,7 +1166,7 @@ class AgdaLexer(RegexLexer):
             (r'\b(Set|Prop)\b', Keyword.Type),
             #  Special Symbols
             (r'(\(|\)|\{|\})', Operator),
-            (u'(\\.{1,3}|\\||[\u039B]|[\u2200]|[\u2192]|:|=|->)', Operator.Word),
+            (u'(\\.{1,3}|\\||\u039B|\u2200|\u2192|:|=|->)', Operator.Word),
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
             (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
@@ -2682,7 +2682,7 @@ class ElixirLexer(RegexLexer):
             (r':"', String.Symbol, 'interpoling_symbol'),
             (r'\b(nil|true|false)\b(?![?!])|\b[A-Z]\w*\b', Name.Constant),
             (r'\b(__(FILE|LINE|MODULE|MAIN|FUNCTION)__)\b(?![?!])', Name.Builtin.Pseudo),
-            (r'[a-zA-Z_!][\w_]*[!\?]?', Name),
+            (r'[a-zA-Z_!]\w*[!\?]?', Name),
             (r'[(){};,/\|:\\\[\]]', Punctuation),
             (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
             (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^\d\s])'

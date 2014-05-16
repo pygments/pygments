@@ -1656,6 +1656,8 @@ class IDLLexer(RegexLexer):
     filenames = ['*.pro']
     mimetypes = ['text/idl']
 
+    flags = re.IGNORECASE | re.MULTILINE
+
     _RESERVED = ['and', 'begin', 'break', 'case', 'common', 'compile_opt',
                  'continue', 'do', 'else', 'end', 'endcase', 'elseelse',
                  'endfor', 'endforeach', 'endif', 'endrep', 'endswitch',
@@ -1677,7 +1679,7 @@ class IDLLexer(RegexLexer):
                     'broyden', 'butterworth', 'bytarr', 'byte', 'byteorder',
                     'bytscl', 'caldat', 'calendar', 'call_external',
                     'call_function', 'call_method', 'call_procedure', 'canny',
-                    'catch', 'cd', 'cdf_[0-9a-za-z_]*', 'ceil', 'chebyshev',
+                    'catch', 'cd', 'cdf_\w*', 'ceil', 'chebyshev',
                     'check_math',
                     'chisqr_cvf', 'chisqr_pdf', 'choldc', 'cholsol', 'cindgen',
                     'cir_3pnt', 'close', 'cluster', 'cluster_tree', 'clust_wts',
@@ -1711,7 +1713,7 @@ class IDLLexer(RegexLexer):
                     'dlm_load', 'dlm_register', 'doc_library', 'double',
                     'draw_roi', 'edge_dog', 'efont', 'eigenql', 'eigenvec',
                     'ellipse', 'elmhes', 'emboss', 'empty', 'enable_sysrtn',
-                    'eof', 'eos_[0-9a-za-z_]*', 'erase', 'erf', 'erfc', 'erfcx',
+                    'eof', 'eos_\w*', 'erase', 'erf', 'erfc', 'erfcx',
                     'erode', 'errorplot', 'errplot', 'estimator_filter',
                     'execute', 'exit', 'exp', 'expand', 'expand_path', 'expint',
                     'extrac', 'extract_slice', 'factorial', 'fft', 'filepath',
@@ -1728,11 +1730,11 @@ class IDLLexer(RegexLexer):
                     'gauss_cvf', 'gauss_pdf', 'gauss_smooth', 'getenv',
                     'getwindows', 'get_drive_list', 'get_dxf_objects',
                     'get_kbrd', 'get_login_info', 'get_lun', 'get_screen_size',
-                    'greg2jul', 'grib_[0-9a-za-z_]*', 'grid3', 'griddata',
+                    'greg2jul', 'grib_\w*', 'grid3', 'griddata',
                     'grid_input', 'grid_tps', 'gs_iter',
-                    'h5[adfgirst]_[0-9a-za-z_]*', 'h5_browser', 'h5_close',
+                    'h5[adfgirst]_\w*', 'h5_browser', 'h5_close',
                     'h5_create', 'h5_get_libversion', 'h5_open', 'h5_parse',
-                    'hanning', 'hash', 'hdf_[0-9a-za-z_]*', 'heap_free',
+                    'hanning', 'hash', 'hdf_\w*', 'heap_free',
                     'heap_gc', 'heap_nosave', 'heap_refcount', 'heap_save',
                     'help', 'hilbert', 'histogram', 'hist_2d', 'hist_equal',
                     'hls', 'hough', 'hqr', 'hsv', 'h_eq_ct', 'h_eq_int',
@@ -1780,7 +1782,7 @@ class IDLLexer(RegexLexer):
                     'modifyct', 'moment', 'morph_close', 'morph_distance',
                     'morph_gradient', 'morph_hitormiss', 'morph_open',
                     'morph_thin', 'morph_tophat', 'multi', 'm_correlate',
-                    'ncdf_[0-9a-za-z_]*', 'newton', 'noise_hurl', 'noise_pick',
+                    'ncdf_\w*', 'newton', 'noise_hurl', 'noise_pick',
                     'noise_scatter', 'noise_slur', 'norm', 'n_elements',
                     'n_params', 'n_tags', 'objarr', 'obj_class', 'obj_destroy',
                     'obj_hasmethod', 'obj_isa', 'obj_new', 'obj_valid',
@@ -2182,7 +2184,7 @@ class IgorLexer(RegexLexer):
             # Compiler directives.
             (r'^#(include|pragma|define|ifdef|ifndef|endif)',
              Name.Decorator),
-            (r'[^a-zA-Z"/]+$', Text),
+            (r'[^a-z"/]+$', Text),
             (r'.', Text),
         ],
     }
