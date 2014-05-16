@@ -2679,7 +2679,7 @@ class ElixirLexer(RegexLexer):
             (r':"', String.Symbol, 'interpoling_symbol'),
             (r'\b(nil|true|false)\b(?![?!])|\b[A-Z]\w*\b', Name.Constant),
             (r'\b(__(FILE|LINE|MODULE|MAIN|FUNCTION)__)\b(?![?!])', Name.Builtin.Pseudo),
-            (r'[a-zA-Z_!][\w_]*[!\?]?', Name),
+            (r'[a-zA-Z_!]\w*[!\?]?', Name),
             (r'[(){};,/\|:\\\[\]]', Punctuation),
             (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
             (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^\d\s])'
