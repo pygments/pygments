@@ -73,7 +73,7 @@ class CypherLexer(RegexLexer):
             (r'\s+', Whitespace),
         ],
         'barewords': [
-            (r'[a-z][a-zA-Z0-9_]*', Name),
+            (r'[a-z]\w*', Name),
             (r'\d+', Number),
         ],
     }
