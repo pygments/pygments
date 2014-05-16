@@ -95,7 +95,7 @@ class LSLLexer(RegexLexer):
             (lsl_invalid_unimplemented,           Error),
             (lsl_reserved_godmode,                Keyword.Reserved),
             (lsl_reserved_log,                    Keyword.Reserved),
-            (r'\b([a-zA-Z_][a-zA-Z0-9_]*)\b',     Name.Variable),
+            (r'\b([a-zA-Z_]\w*)\b',     Name.Variable),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d*', Number.Float),
             (r'(\d+\.\d*|\.\d+)',                 Number.Float),
             (r'0[xX][0-9a-fA-F]+',                Number.Hex),
@@ -164,7 +164,7 @@ class ECLLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]+', Operator),
             (r'[{}()\[\],.;]', Punctuation),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'hash': [
             (r'^#.*$', Comment.Preproc),
@@ -514,7 +514,7 @@ class LogtalkLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+', Number),
             (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
             # Variables
-            (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
+            (r'([A-Z_]\w*)', Name.Variable),
             # Event handlers
             (r'(after|before)(?=[(])', Keyword),
             # Execution-context methods
@@ -630,7 +630,7 @@ class LogtalkLexer(RegexLexer):
             # Ponctuation
             (r'[()\[\],.|]', Text),
             # Atoms
-            (r"[a-z][a-zA-Z0-9_]*", Text),
+            (r"[a-z]\w*", Text),
             (r"'", String, 'quoted_atom'),
         ],
 
@@ -661,8 +661,8 @@ class LogtalkLexer(RegexLexer):
             (r'op(?=[(])', Keyword, 'root'),
             (r'(c(alls|oinductive)|reexport|use(s|_module))(?=[(])',
              Keyword, 'root'),
-            (r'[a-z][a-zA-Z0-9_]*(?=[(])', Text, 'root'),
-            (r'[a-z][a-zA-Z0-9_]*[.]', Text, 'root'),
+            (r'[a-z]\w*(?=[(])', Text, 'root'),
+            (r'[a-z]\w*[.]', Text, 'root'),
         ],
 
         'entityrelations': [
@@ -675,9 +675,9 @@ class LogtalkLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+', Number),
             (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
             # Variables
-            (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
+            (r'([A-Z_]\w*)', Name.Variable),
             # Atoms
-            (r"[a-z][a-zA-Z0-9_]*", Text),
+            (r"[a-z]\w*", Text),
             (r"'", String, 'quoted_atom'),
             # Strings
             (r'"(\\\\|\\"|[^"])*"', String),
@@ -747,11 +747,11 @@ class GnuplotLexer(RegexLexer):
             (_shortened_many('pwd$', 're$read', 'res$et', 'scr$eendump',
                              'she$ll', 'test$'),
              Keyword, 'noargs'),
-            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(=)',
+            ('([a-zA-Z_]\w*)(\s*)(=)',
              bygroups(Name.Variable, Text, Operator), 'genericargs'),
-            ('([a-zA-Z_][a-zA-Z0-9_]*)(\s*\(.*?\)\s*)(=)',
+            ('([a-zA-Z_]\w*)(\s*\(.*?\)\s*)(=)',
              bygroups(Name.Function, Text, Operator), 'genericargs'),
-            (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant), # macros
+            (r'@[a-zA-Z_]\w*', Name.Constant), # macros
             (r';', Keyword),
         ],
         'comment': [
@@ -797,10 +797,10 @@ class GnuplotLexer(RegexLexer):
             ('[,.~!%^&*+=|?:<>/-]', Operator),
             ('[{}()\[\]]', Punctuation),
             (r'(eq|ne)\b', Operator.Word),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\()',
+            (r'([a-zA-Z_]\w*)(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
-            (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant), # macros
+            (r'[a-zA-Z_]\w*', Name),
+            (r'@[a-zA-Z_]\w*', Name.Constant), # macros
             (r'\\\n', Text),
         ],
         'optionarg': [
@@ -1803,15 +1803,15 @@ class NewspeakLexer(RegexLexer):
        'root' : [
            (r'\b(Newsqueak2)\b',Keyword.Declaration),
            (r"'[^']*'",String),
-           (r'\b(class)(\s+)([a-zA-Z0-9_]+)(\s*)',
+           (r'\b(class)(\s+)(\w+)(\s*)',
             bygroups(Keyword.Declaration,Text,Name.Class,Text)),
            (r'\b(mixin|self|super|private|public|protected|nil|true|false)\b',
             Keyword),
-           (r'([a-zA-Z0-9_]+\:)(\s*)([a-zA-Z_]\w+)',
+           (r'(\w+\:)(\s*)([a-zA-Z_]\w+)',
             bygroups(Name.Function,Text,Name.Variable)),
-           (r'([a-zA-Z0-9_]+)(\s*)(=)',
+           (r'(\w+)(\s*)(=)',
             bygroups(Name.Attribute,Text,Operator)),
-           (r'<[a-zA-Z0-9_]+>', Comment.Special),
+           (r'<\w+>', Comment.Special),
            include('expressionstat'),
            include('whitespace')
         ],
@@ -1890,7 +1890,9 @@ class GherkinLexer(RegexLexer):
             (r"[^\|]", Name.Variable),
           ],
         'scenario_sections_on_stack': [
-            (feature_element_keywords, bygroups(Name.Function, Keyword, Keyword, Name.Function), "feature_elements_on_stack"),
+            (feature_element_keywords,
+             bygroups(Name.Function, Keyword, Keyword, Name.Function),
+             "feature_elements_on_stack"),
           ],
         'narrative': [
             include('scenario_sections_on_stack'),
@@ -2020,23 +2022,23 @@ class AsymptoteLexer(RegexLexer):
              r'bounds|coord|frame|guide|horner|int|linefit|marginT|pair|pen|'
              r'picture|position|real|revolution|slice|splitface|ticksgridT|'
              r'tickvalues|tree|triple|vertex|void)\b', Keyword.Type),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*:(?!:)', Name.Label),
+            ('[a-zA-Z_]\w*', Name),
             ],
         'root': [
             include('whitespace'),
             # functions
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|\*))'    # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
-             r'(\s*\([^;]*?\))'                      # signature
+            (r'((?:[\w*\s])+?(?:\s|\*))' # return arguments
+             r'([a-zA-Z_]\w*)'           # method name
+             r'(\s*\([^;]*?\))'          # signature
              r'(' + _ws + r')({)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|\*))'    # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
-             r'(\s*\([^;]*?\))'                      # signature
+            (r'((?:[\w*\s])+?(?:\s|\*))' # return arguments
+             r'([a-zA-Z_]\w*)'           # method name
+             r'(\s*\([^;]*?\))'          # signature
              r'(' + _ws + r')(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
@@ -2189,7 +2191,7 @@ class AutohotkeyLexer(RegexLexer):
             (r'^;.*?$', Comment.Singleline),
             (r'[]{}(),;[]', Punctuation),
             (r'(in|is|and|or|not)\b', Operator.Word),
-            (r'\%[a-zA-Z_#@$][a-zA-Z0-9_#@$]*\%', Name.Variable),
+            (r'\%[a-zA-Z_#@$][\w#@$]*\%', Name.Variable),
             (r'!=|==|:=|\.=|<<|>>|[-~+/*%=<>&^|?:!.]', Operator),
             include('commands'),
             include('labels'),
@@ -2197,7 +2199,7 @@ class AutohotkeyLexer(RegexLexer):
             include('builtInVariables'),
             (r'"', String, combined('stringescape', 'dqs')),
             include('numbers'),
-            (r'[a-zA-Z_#@$][a-zA-Z0-9_#@$]*', Name),
+            (r'[a-zA-Z_#@$][\w#@$]*', Name),
             (r'\\|\'', Text),
             (r'\`([\,\%\`abfnrtv\-\+;])', String.Escape),
             include('garbage'),
@@ -2489,18 +2491,18 @@ class ProtoBufLexer(RegexLexer):
             (r'0[0-7]+[LlUu]*', Number.Oct),
             (r'\d+[LlUu]*', Number.Integer),
             (r'[+-=]', Operator),
-            (r'([a-zA-Z_][a-zA-Z0-9_\.]*)([ \t]*)(=)',
+            (r'([a-zA-Z_][\w\.]*)([ \t]*)(=)',
              bygroups(Name.Attribute, Text, Operator)),
-            ('[a-zA-Z_][a-zA-Z0-9_\.]*', Name),
+            ('[a-zA-Z_][\w\.]*', Name),
         ],
         'package': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Namespace, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Namespace, '#pop')
         ],
         'message': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'type': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name, '#pop')
+            (r'[a-zA-Z_]\w*', Name, '#pop')
         ],
     }
 
@@ -2523,12 +2525,12 @@ class HybrisLexer(RegexLexer):
         'root': [
             # method names
             (r'^(\s*(?:function|method|operator\s+)+?)'
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'
+             r'([a-zA-Z_]\w*)'
              r'(\s*)(\()', bygroups(Keyword, Name.Function, Text, Operator)),
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'@[a-zA-Z_][a-zA-Z0-9_\.]*', Name.Decorator),
+            (r'@[a-zA-Z_][\w\.]*', Name.Decorator),
             (r'(break|case|catch|next|default|do|else|finally|for|foreach|of|'
              r'unless|if|new|return|switch|me|throw|try|while)\b', Keyword),
             (r'(extends|private|protected|public|static|throws|function|method|'
@@ -2564,10 +2566,10 @@ class HybrisLexer(RegexLexer):
              r'Exception)\b', Keyword.Type),
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
-            (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\.)([a-zA-Z_]\w*)',
              bygroups(Operator, Name.Attribute)),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Label),
-            (r'[a-zA-Z_\$][a-zA-Z0-9_]*', Name),
+            (r'[a-zA-Z_]\w*:', Name.Label),
+            (r'[a-zA-Z_\$]\w*', Name),
             (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?\-@]+', Operator),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-f]+', Number.Hex),
@@ -2575,10 +2577,10 @@ class HybrisLexer(RegexLexer):
             (r'\n', Text),
         ],
         'class': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'import': [
-            (r'[a-zA-Z0-9_.]+\*?', Name.Namespace, '#pop')
+            (r'[\w.]+\*?', Name.Namespace, '#pop')
         ],
     }
 
@@ -2627,7 +2629,7 @@ class AwkLexer(RegexLexer):
             (r'(ARGC|ARGIND|ARGV|CONVFMT|ENVIRON|ERRNO|FIELDWIDTHS|FILENAME|FNR|FS|'
              r'IGNORECASE|NF|NR|OFMT|OFS|ORFS|RLENGTH|RS|RSTART|RT|'
              r'SUBSEP)\b', Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -2844,7 +2846,7 @@ class UrbiscriptLexer(ExtendedRegexLexer):
              Operator.Word),
             (r'[{}\[\]()]+', Punctuation),
             (r'(?:;|\||,|&|\?|!)+', Punctuation),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
+            (r'[$a-zA-Z_]\w*', Name.Other),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             # Float, Integer, Angle and Duration
             (r'(?:[0-9]+(?:(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)?'
@@ -3050,7 +3052,7 @@ class MscgenLexer(RegexLexer):
     aliases = ['mscgen', 'msc']
     filenames = ['*.msc']
 
-    _var = r'([a-zA-Z0-9_]+|"(?:\\"|[^"])*")'
+    _var = r'(\w+|"(?:\\"|[^"])*")'
 
     tokens = {
         'root': [
@@ -3252,7 +3254,7 @@ class SourcePawnLexer(RegexLexer):
              r'public|return|sizeof|static|decl|struct|switch)\b', Keyword),
             (r'(bool|Float)\b', Keyword.Type),
             (r'(true|false)\b', Keyword.Constant),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -3352,7 +3354,7 @@ class PuppetLexer(RegexLexer):
         ],
 
         'names': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute),
+            ('[a-zA-Z_]\w*', Name.Attribute),
             (r'(\$\S+)(\[)(\S+)(\])', bygroups(Name.Variable, Punctuation,
                                                String, Punctuation)),
             (r'\$\S+', Name.Variable),
@@ -3589,9 +3591,9 @@ class RPMSpecLexer(RegexLexer):
         'interpol': [
             (r'%\{?__[a-z_]+\}?', Name.Function),
             (r'%\{?_([a-z_]+dir|[a-z_]+path|prefix)\}?', Keyword.Pseudo),
-            (r'%\{\?[A-Za-z0-9_]+\}', Name.Variable),
+            (r'%\{\?\w+\}', Name.Variable),
             (r'\$\{?RPM_[A-Z0-9_]+\}?', Name.Variable.Global),
-            (r'%\{[a-zA-Z][a-zA-Z0-9_]+\}', Keyword.Constant),
+            (r'%\{[a-zA-Z]\w+\}', Keyword.Constant),
         ]
     }
 
@@ -3722,7 +3724,7 @@ class AutoItLexer(RegexLexer):
             (r'(#comments-start|#cs).*?(#comments-end|#ce)', Comment.Multiline),
             (r'[\[\]{}(),;]', Punctuation),
             (r'(and|or|not)\b', Operator.Word),
-            (r'[\$|@][a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            (r'[\$|@][a-zA-Z_]\w*', Name.Variable),
             (r'!=|==|:=|\.=|<<|>>|[-~+/*%=<>&^|?:!.]', Operator),
             include('commands'),
             include('labels'),
@@ -3730,7 +3732,7 @@ class AutoItLexer(RegexLexer):
             include('builtInMarcros'),
             (r'"', String, combined('stringescape', 'dqs')),
             include('numbers'),
-            (r'[a-zA-Z_#@$][a-zA-Z0-9_#@$]*', Name),
+            (r'[a-zA-Z_#@$][\w#@$]*', Name),
             (r'\\|\'', Text),
             (r'\`([\,\%\`abfnrtv\-\+;])', String.Escape),
             (r'_\n', Text),  # Line continuation
@@ -3999,12 +4001,12 @@ class AmbientTalkLexer(RegexLexer):
             (r'"(\\\\|\\"|[^"])*"', String),
             (r'\|', Punctuation, 'arglist'),
             (r'<:|[\^\*!%&<>+=,./?-]|:=', Operator),
-            (r"`[a-zA-Z_][a-zA-Z0-9_]*", String.Symbol),
-            (r"[a-zA-Z_][a-zA-Z0-9_]*:", Name.Function),
+            (r"`[a-zA-Z_]\w*", String.Symbol),
+            (r"[a-zA-Z_]\w*:", Name.Function),
             (r"[\{\}()\[\];`]", Punctuation),
             (r'(self|super)\b', Name.Variable.Instance),
-            (r"[a-zA-Z_][a-zA-Z0-9_]*", Name.Variable),
-            (r"@[a-zA-Z_][a-zA-Z0-9_]*", Name.Class),
+            (r"[a-zA-Z_]\w*", Name.Variable),
+            (r"@[a-zA-Z_]\w*", Name.Class),
             (r"@\[", Name.Class, 'annotations'),
             include('numbers'),
         ],
@@ -4013,9 +4015,9 @@ class AmbientTalkLexer(RegexLexer):
             (r'\d+', Number.Integer)
         ],
         'namespace': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*\.', Name.Namespace),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*:', Name.Function , '#pop'),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*(?!\.)', Name.Function , '#pop')
+            (r'[a-zA-Z_]\w*\.', Name.Namespace),
+            (r'[a-zA-Z_]\w*:', Name.Function , '#pop'),
+            (r'[a-zA-Z_]\w*(?!\.)', Name.Function , '#pop')
         ],
         'annotations' : [
             (r"(.*?)\]", Name.Class, '#pop')
@@ -4023,7 +4025,7 @@ class AmbientTalkLexer(RegexLexer):
         'arglist' : [
             (r'\|', Punctuation, '#pop'),
             (r'\s*(,)\s*', Punctuation),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            (r'[a-zA-Z_]\w*', Name.Variable),
         ],
     }
 
@@ -4070,7 +4072,7 @@ class PawnLexer(RegexLexer):
              r'public|return|sizeof|tagof|state|goto)\b', Keyword),
             (r'(bool|Float)\b', Keyword.Type),
             (r'(true|false)\b', Keyword.Constant),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -4229,7 +4231,7 @@ class PanLexer(RegexLexer):
         'curly': [
             (r'}', Keyword, '#pop'),
             (r':-', Keyword),
-            (r'[a-zA-Z0-9_]+', Name.Variable),
+            (r'\w+', Name.Variable),
             (r'[^}:"\'`$]+', Punctuation),
             (r':', Punctuation),
             include('root'),
@@ -4273,22 +4275,27 @@ class RedLexer(RegexLexer):
             r'power|remainder|round|subtract|even\?|odd\?|and~|complement|or~|xor~|'
             r'append|at|back|change|clear|copy|find|head|head\?|index\?|insert|'
             r'length\?|next|pick|poke|remove|reverse|select|sort|skip|swap|tail|tail\?|'
-            r'take|trim|create|close|delete|modify|open|open\?|query|read|rename|update|write)$', word):
+            r'take|trim|create|close|delete|modify|open|open\?|query|read|rename|'
+            r'update|write)$', word):
             yield match.start(), Name.Function, word
         elif re.match(
-            r'(yes|on|no|off|true|false|tab|cr|lf|newline|escape|slash|sp|space|null|none|crlf|dot|null-byte)$', word):
+            r'(yes|on|no|off|true|false|tab|cr|lf|newline|escape|slash|sp|space|null|'
+            r'none|crlf|dot|null-byte)$', word):
             yield match.start(), Name.Builtin.Pseudo, word
         elif re.match(
-            r'(#system-global|#include|#enum|#define|#either|#if|#import|#export|#switch|#default|#get-definition)$', word):
+            r'(#system-global|#include|#enum|#define|#either|#if|#import|#export|'
+            r'#switch|#default|#get-definition)$', word):
             yield match.start(), Keyword.Namespace, word
         elif re.match(
-            r'(system|halt|quit|quit-return|do|load|q|recycle|call|run|ask|parse|raise-error|'
-            r'return|exit|break|alias|push|pop|probe|\?\?|spec-of|body-of|quote|forever)$', word):
+            r'(system|halt|quit|quit-return|do|load|q|recycle|call|run|ask|parse|'
+            r'raise-error|return|exit|break|alias|push|pop|probe|\?\?|spec-of|body-of|'
+            r'quote|forever)$', word):
             yield match.start(), Name.Exception, word
         elif re.match(
-            r'(action\?|block\?|char\?|datatype\?|file\?|function\?|get-path\?|zero\?|any-struct\?|'
-            r'get-word\?|integer\?|issue\?|lit-path\?|lit-word\?|logic\?|native\?|none\?|'
-            r'op\?|paren\?|path\?|refinement\?|set-path\?|set-word\?|string\?|unset\?|word\?|any-series\?)$', word):
+            r'(action\?|block\?|char\?|datatype\?|file\?|function\?|get-path\?|zero\?|'
+            r'get-word\?|integer\?|issue\?|lit-path\?|lit-word\?|logic\?|native\?|'
+            r'op\?|paren\?|path\?|refinement\?|set-path\?|set-word\?|string\?|unset\?|'
+            r'any-struct\?|none\?|word\?|any-series\?)$', word):
             yield match.start(), Keyword, word
         elif re.match(r'(JNICALL|stdcall|cdecl|infix)$', word):
             yield match.start(), Keyword.Namespace, word
@@ -4322,7 +4329,8 @@ class RedLexer(RegexLexer):
             (r'#{[0-9a-fA-F\s]*}', Number.Hex),
             (r'2#{', Number.Hex, 'bin2'),
             (r'64#{[0-9a-zA-Z+/=\s]*}', Number.Hex),
-            (r'([0-9a-fA-F]+)(h)((\s)|(?=[\[\]{}""\(\)]))',  bygroups(Number.Hex, Name.Variable, Whitespace)),
+            (r'([0-9a-fA-F]+)(h)((\s)|(?=[\[\]{}""\(\)]))',
+             bygroups(Number.Hex, Name.Variable, Whitespace)),
             (r'"', String, 'string'),
             (r'{', String, 'string2'),
             (r';#+.*\n', Comment.Special),
@@ -4349,7 +4357,7 @@ class RedLexer(RegexLexer):
             (r'comment\s[^(\s{\"\[]+', Comment),
             (r'/[^(\^{^")\s/[\]]*', Name.Attribute),
             (r'([^(\^{^")\s/[\]]+)(?=[:({"\s/\[\]])', word_callback),
-            (r'<[a-zA-Z0-9:._-]*>', Name.Tag),
+            (r'<[\w:.-]*>', Name.Tag),
             (r'<[^(<>\s")]+', Name.Tag, 'tag'),
             (r'([^(\^{^")\s]+)', Text),
         ],
