@@ -972,8 +972,8 @@ class PerlLexer(RegexLexer):
         'name': [
             (r'\w+::', Name.Namespace),
             (r'[\w:]+', Name, '#pop'),
-            (r'[A-Z_]+(?=[^\w])', Name.Constant, '#pop'),
-            (r'(?=[^\w])', Text, '#pop'),
+            (r'[A-Z_]+(?=\W)', Name.Constant, '#pop'),
+            (r'(?=\W)', Text, '#pop'),
         ],
         'modulename': [
             (r'[a-zA-Z_]\w*', Name.Namespace, '#pop')
