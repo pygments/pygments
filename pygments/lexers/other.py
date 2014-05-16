@@ -1619,7 +1619,7 @@ class ABAPLexer(RegexLexer):
             (r'\".*?\n', Comment.Single),
             ],
         'variable-names': [
-            (r'<[\S_]+>', Name.Variable),
+            (r'<\S+>', Name.Variable),
             (r'\w[\w~]*(?:(\[\])|->\*)?', Name.Variable),
             ],
         'root': [

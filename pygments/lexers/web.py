@@ -4285,8 +4285,8 @@ class MaskLexer(RegexLexer):
             (r'"', String, 'string-double'),
             (r'([\w-]+)', Name.Tag, 'node'),
             (r'([^\.#;{>\s]+)', Name.Class, 'node'),
-            (r'(#[\w_-]+)', Name.Function, 'node'),
-            (r'(\.[\w_-]+)', Name.Variable.Class, 'node')
+            (r'(#[\w-]+)', Name.Function, 'node'),
+            (r'(\.[\w-]+)', Name.Variable.Class, 'node')
         ],
         'string-base': [
             (r'\\.', String.Escape),
@@ -4323,8 +4323,8 @@ class MaskLexer(RegexLexer):
             (r'\.', Name.Variable.Class, 'node-class'),
             (r'\#', Name.Function, 'node-id'),
             (r'style[ \t]*=', Name.Attribute, 'node-attr-style-value'),
-            (r'[\w_:-]+[ \t]*=', Name.Attribute, 'node-attr-value'),
-            (r'[\w_:-]+', Name.Attribute),
+            (r'[\w:-]+[ \t]*=', Name.Attribute, 'node-attr-value'),
+            (r'[\w:-]+', Name.Attribute),
             (r'[>{;]', Punctuation, '#pop')
         ],
         'node-class': [
@@ -4339,7 +4339,7 @@ class MaskLexer(RegexLexer):
         ],
         'node-attr-value':[
             (r'\s+', Text),
-            (r'[\w_]+', Name.Variable, '#pop'),
+            (r'\w+', Name.Variable, '#pop'),
             (r"'", String, 'string-single-pop2'),
             (r'"', String, 'string-double-pop2'),
             (r'', Text, '#pop')
@@ -4353,7 +4353,7 @@ class MaskLexer(RegexLexer):
         'css-base': [
             (r'\s+', Text),
             (r";", Punctuation),
-            (r"[\w\-_]+\s*:", Name.Builtin)
+            (r"[\w\-]+\s*:", Name.Builtin)
         ],
         'css-single-end': [
             include('css-base'),
