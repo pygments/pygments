@@ -2344,7 +2344,7 @@ class SassLexer(ExtendedRegexLexer):
             (r'(@mixin)( [\w-]+)', bygroups(Keyword, Name.Function), 'value'),
             (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
             (r'@extend', Keyword, 'selector'),
-            (r'@[a-z0-9_-]+', Keyword, 'selector'),
+            (r'@[\w-]+', Keyword, 'selector'),
             (r'=[\w-]+', Name.Function, 'value'),
             (r'\+[\w-]+', Name.Decorator, 'value'),
             (r'([!$][\w-]\w*)([ \t]*(?:(?:\|\|)?=|:))',
@@ -2417,7 +2417,7 @@ class ScssLexer(RegexLexer):
             (r'(@mixin)( [\w-]+)', bygroups(Keyword, Name.Function), 'value'),
             (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
             (r'@extend', Keyword, 'selector'),
-            (r'@[a-z0-9_-]+', Keyword, 'selector'),
+            (r'@[\w-]+', Keyword, 'selector'),
             (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
             (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
             (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
@@ -2837,8 +2837,8 @@ class ScamlLexer(ExtendedRegexLexer):
         ],
 
         'css': [
-            (r'\.[a-z0-9_:-]+', Name.Class, 'tag'),
-            (r'\#[a-z0-9_:-]+', Name.Function, 'tag'),
+            (r'\.[\w:-]+', Name.Class, 'tag'),
+            (r'\#[\w:-]+', Name.Function, 'tag'),
         ],
 
         'eval-or-plain': [
@@ -2851,7 +2851,7 @@ class ScamlLexer(ExtendedRegexLexer):
 
         'content': [
             include('css'),
-            (r'%[a-z0-9_:-]+', Name.Tag, 'tag'),
+            (r'%[\w:-]+', Name.Tag, 'tag'),
             (r'!!!' + _dot + r'*\n', Name.Namespace, '#pop'),
             (r'(/)(\[' + _dot + '*?\])(' + _dot + r'*\n)',
              bygroups(Comment, Comment.Special, Comment),
@@ -2890,16 +2890,16 @@ class ScamlLexer(ExtendedRegexLexer):
 
         'html-attributes': [
             (r'\s+', Text),
-            (r'[a-z0-9_:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
-            (r'[a-z0-9_:-]+', Name.Attribute),
+            (r'[\w:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
+            (r'[\w:-]+', Name.Attribute),
             (r'\)', Text, '#pop'),
         ],
 
         'html-attribute-value': [
             (r'[ \t]+', Text),
-            (r'[a-z0-9_]+', Name.Variable, '#pop'),
-            (r'@[a-z0-9_]+', Name.Variable.Instance, '#pop'),
-            (r'\$[a-z0-9_]+', Name.Variable.Global, '#pop'),
+            (r'\w+', Name.Variable, '#pop'),
+            (r'@\w+', Name.Variable.Instance, '#pop'),
+            (r'\$\w+', Name.Variable.Global, '#pop'),
             (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
             (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
         ],
@@ -2947,8 +2947,8 @@ class JadeLexer(ExtendedRegexLexer):
         ],
 
         'css': [
-            (r'\.[a-z0-9_:-]+', Name.Class, 'tag'),
-            (r'\#[a-z0-9_:-]+', Name.Function, 'tag'),
+            (r'\.[\w:-]+', Name.Class, 'tag'),
+            (r'\#[\w:-]+', Name.Function, 'tag'),
         ],
 
         'eval-or-plain': [
@@ -2976,7 +2976,7 @@ class JadeLexer(ExtendedRegexLexer):
              '#pop'),
             (r':' + _dot + r'*\n', _starts_block(Name.Decorator, 'filter-block'),
              '#pop'),
-            (r'[a-z0-9_:-]+', Name.Tag, 'tag'),
+            (r'[\w:-]+', Name.Tag, 'tag'),
             (r'\|', Text, 'eval-or-plain'),
         ],
 
@@ -2999,16 +2999,16 @@ class JadeLexer(ExtendedRegexLexer):
 
         'html-attributes': [
             (r'\s+', Text),
-            (r'[a-z0-9_:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
-            (r'[a-z0-9_:-]+', Name.Attribute),
+            (r'[\w:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
+            (r'[\w:-]+', Name.Attribute),
             (r'\)', Text, '#pop'),
         ],
 
         'html-attribute-value': [
             (r'[ \t]+', Text),
-            (r'[a-z0-9_]+', Name.Variable, '#pop'),
-            (r'@[a-z0-9_]+', Name.Variable.Instance, '#pop'),
-            (r'\$[a-z0-9_]+', Name.Variable.Global, '#pop'),
+            (r'\w+', Name.Variable, '#pop'),
+            (r'@\w+', Name.Variable.Instance, '#pop'),
+            (r'\$\w+', Name.Variable.Global, '#pop'),
             (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
             (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
         ],
