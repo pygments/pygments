@@ -17,6 +17,7 @@ from pygments.lexer import Lexer, LexerContext, RegexLexer, ExtendedRegexLexer, 
 from pygments.token import Punctuation, Text, Comment, Keyword, Name, String, \
      Generic, Operator, Number, Whitespace, Literal
 from pygments.util import get_bool_opt, ClassNotFound
+from pygments.lexers.agile import PythonLexer
 from pygments.lexers.other import BashLexer
 
 __all__ = ['IniLexer', 'PropertiesLexer', 'SourcesListLexer', 'BaseMakefileLexer',
@@ -234,11 +235,11 @@ class BaseMakefileLexer(RegexLexer):
             (r'\$[<@$+%?|*]', Keyword),
             (r'\s+', Text),
             (r'#.*?\n', Comment),
-            (r'(export)(\s+)(?=[a-zA-Z0-9_${}\t -]+\n)',
+            (r'(export)(\s+)(?=[\w${}\t -]+\n)',
              bygroups(Keyword, Text), 'export'),
             (r'export\s+', Keyword),
             # assignment
-            (r'([a-zA-Z0-9_${}.-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n)+|.*\n)',
+            (r'([\w${}.-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n)+|.*\n)',
              bygroups(Name.Variable, Text, Operator, Text, using(BashLexer))),
             # strings
             (r'(?s)"(\\\\|\\.|[^"\\])*"', String.Double),
@@ -257,7 +258,7 @@ class BaseMakefileLexer(RegexLexer):
             (r'\)', Keyword, '#pop'),
         ],
         'export': [
-            (r'[a-zA-Z0-9_${}-]+', Name.Variable),
+            (r'[\w${}-]+', Name.Variable),
             (r'\n', Text, '#pop'),
             (r'\s+', Text),
         ],
@@ -588,7 +589,7 @@ class ApacheConfLexer(RegexLexer):
             (r'(#.*?)$', Comment),
             (r'(<[^\s>]+)(?:(\s+)(.*?))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
-            (r'([a-zA-Z][a-zA-Z0-9_]*)(\s+)',
+            (r'([a-zA-Z]\w*)(\s+)',
              bygroups(Name.Builtin, Text), 'value'),
             (r'\.+', Text),
         ],
@@ -597,7 +598,7 @@ class ApacheConfLexer(RegexLexer):
             (r'[^\S\n]+', Text),
             (r'\d+\.\d+\.\d+\.\d+(?:/\d+)?', Number),
             (r'\d+', Number),
-            (r'/([a-zA-Z0-9][a-zA-Z0-9_./-]+)', String.Other),
+            (r'/([a-zA-Z0-9][\w./-]+)', String.Other),
             (r'(on|off|none|any|all|double|email|dns|min|minimal|'
              r'os|productonly|full|emerg|alert|crit|error|warn|'
              r'notice|info|debug|registry|script|inetd|standalone|'
@@ -835,8 +836,16 @@ class VimLexer(RegexLexer):
     mimetypes = ['text/x-vim']
     flags = re.MULTILINE
 
+    _python = r'py(?:t(?:h(?:o(?:n)?)?)?)?'
+
     tokens = {
         'root': [
+            (r'^([ \t:]*)(' + _python + r')([ \t]*)(<<)([ \t]*)(.*)((?:\n|.)*)(\6)',
+             bygroups(using(this), Keyword, Text, Operator, Text, Text,
+                      using(PythonLexer), Text)), 
+            (r'^([ \t:]*)(' + _python + r')([ \t])(.*)',
+             bygroups(using(this), Keyword, Text, using(PythonLexer))),
+
             (r'^\s*".*', Comment),
 
             (r'[ \t]+', Text),
