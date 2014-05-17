@@ -1572,9 +1572,8 @@ class JagsLexer(RegexLexer):
 class StanLexer(RegexLexer):
     """Pygments Lexer for Stan models.
 
-    The Stan modeling language is specified in the *Stan 2.0.1
-    Modeling Language Manual* `pdf
-    <https://github.com/stan-dev/stan/releases/download/v2.0.1/stan-reference-2.0.1.pdf>`__
+    The Stan modeling language is specified in the *Stan Modeling Language User's Guide and Reference Manual, v2.2.0*,
+    `pdf <https://github.com/stan-dev/stan/releases/download/v2.2.0/stan-reference-2.2.0.pdf>`__.
 
     .. versionadded:: 1.6
     """
