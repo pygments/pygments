@@ -101,7 +101,7 @@ def test_lexer_options():
             'BashSessionLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
             'PostgresConsoleLexer', 'ElixirConsoleLexer', 'JuliaConsoleLexer',
             'RobotFrameworkLexer', 'DylanConsoleLexer', 'ShellSessionLexer',
-            'LiterateIdrisLexer'):
+            'LiterateIdrisLexer', 'LiterateCryptolLexer'):
             inst = cls(ensurenl=False)
             ensure(inst.get_tokens('a\nb'), 'a\nb')
             inst = cls(ensurenl=False, stripall=True)
