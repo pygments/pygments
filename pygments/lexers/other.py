@@ -4473,7 +4473,7 @@ class AlloyLexer(RegexLexer):
             (r'(run|check|for|but|exactly|expect|as)\b', Keyword),
             (r'(and|or|implies|iff|in)\b', Operator.Word),
             (r'(fun|pred|fact|assert)(\s+)', bygroups(Keyword, Text), 'fun'),
-            (r'!|#|&&|\+\+|<<|>>|>=|<=|<=>|\.|->', Operator),
+            (r'!|#|&&|\+\+|<<|>>|>=|<=>|<=|\.|->', Operator),
             (r'[-+/*%=<>&!^|~\{\}\[\]\(\)\.]', Operator),
             (iden_rex, Name),
             (r'[:,]', Punctuation),
