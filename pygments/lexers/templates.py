@@ -161,22 +161,22 @@ class SmartyLexer(RegexLexer):
             (r'(\{php\})(.*?)(\{/php\})',
              bygroups(Comment.Preproc, using(PhpLexer, startinline=True),
                       Comment.Preproc)),
-            (r'(\{)(/?[a-zA-Z_][a-zA-Z0-9_]*)(\s*)',
+            (r'(\{)(/?[a-zA-Z_]\w*)(\s*)',
              bygroups(Comment.Preproc, Name.Function, Text), 'smarty'),
             (r'\{', Comment.Preproc, 'smarty')
         ],
         'smarty': [
             (r'\s+', Text),
             (r'\}', Comment.Preproc, '#pop'),
-            (r'#[a-zA-Z_][a-zA-Z0-9_]*#', Name.Variable),
-            (r'\$[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*', Name.Variable),
+            (r'#[a-zA-Z_]\w*#', Name.Variable),
+            (r'\$[a-zA-Z_]\w*(\.\w+)*', Name.Variable),
             (r'[~!%^&*()+=|\[\]:;,.<>/?{}@-]', Operator),
             (r'(true|false|null)\b', Keyword.Constant),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Attribute)
+            (r'[a-zA-Z_]\w*', Name.Attribute)
         ]
     }
 
@@ -207,7 +207,7 @@ class VelocityLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    identifier = r'[a-zA-Z_][a-zA-Z0-9_]*'
+    identifier = r'[a-zA-Z_]\w*'
 
     tokens = {
         'root': [
@@ -267,8 +267,8 @@ class VelocityLexer(RegexLexer):
             rv += 0.15
         if re.search(r'#\{?foreach\}?\(.+?\).*?#\{?end\}?', text):
             rv += 0.15
-        if re.search(r'\$\{?[a-zA-Z_][a-zA-Z0-9_]*(\([^)]*\))?'
-                     r'(\.[a-zA-Z0-9_]+(\([^)]*\))?)*\}?', text):
+        if re.search(r'\$\{?[a-zA-Z_]\w*(\([^)]*\))?'
+                     r'(\.\w+(\([^)]*\))?)*\}?', text):
             rv += 0.01
         return rv
 
@@ -347,25 +347,25 @@ class DjangoLexer(RegexLexer):
                       Text, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
             # filter blocks
-            (r'(\{%)(-?\s*)(filter)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\{%)(-?\s*)(filter)(\s+)([a-zA-Z_]\w*)',
              bygroups(Comment.Preproc, Text, Keyword, Text, Name.Function),
              'block'),
-            (r'(\{%)(-?\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\{%)(-?\s*)([a-zA-Z_]\w*)',
              bygroups(Comment.Preproc, Text, Keyword), 'block'),
             (r'\{', Other)
         ],
         'varnames': [
-            (r'(\|)(\s*)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\|)(\s*)([a-zA-Z_]\w*)',
              bygroups(Operator, Text, Name.Function)),
-            (r'(is)(\s+)(not)?(\s+)?([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(is)(\s+)(not)?(\s+)?([a-zA-Z_]\w*)',
              bygroups(Keyword, Text, Keyword, Text, Name.Function)),
             (r'(_|true|false|none|True|False|None)\b', Keyword.Pseudo),
             (r'(in|as|reversed|recursive|not|and|or|is|if|else|import|'
              r'with(?:(?:out)?\s*context)?|scoped|ignore\s+missing)\b',
              Keyword),
             (r'(loop|block|super|forloop)\b', Name.Builtin),
-            (r'[a-zA-Z][a-zA-Z0-9_-]*', Name.Variable),
-            (r'\.[a-zA-Z0-9_]+', Name.Variable),
+            (r'[a-zA-Z][\w-]*', Name.Variable),
+            (r'\.\w+', Name.Variable),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
             (r'([{}()\[\]+\-*/,:~]|[><=]=?)', Operator),
@@ -745,7 +745,7 @@ class CheetahLexer(RegexLexer):
              (bygroups(Comment.Preproc, using(CheetahPythonLexer),
                        Comment.Preproc))),
             # TODO support other Python syntax like $foo['bar']
-            (r'(\$)([a-zA-Z_][a-zA-Z0-9_\.]*[a-zA-Z0-9_])',
+            (r'(\$)([a-zA-Z_][\w\.]*\w)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer))),
             (r'(\$\{!?)(.*?)(\})(?s)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer),
@@ -753,7 +753,7 @@ class CheetahLexer(RegexLexer):
             (r'''(?sx)
                 (.+?)               # anything, followed by:
                 (?:
-                 (?=[#][#a-zA-Z]*) |   # an eval comment
+                 (?=\#[#a-zA-Z]*) | # an eval comment
                  (?=\$[a-zA-Z_{]) | # a substitution
                  \Z                 # end of string
                 )
@@ -843,7 +843,7 @@ class GenshiTextLexer(RegexLexer):
         'variable': [
             (r'(?<!\$)(\$\{)(.+?)(\})',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
-            (r'(?<!\$)(\$)([a-zA-Z_][a-zA-Z0-9_\.]*)',
+            (r'(?<!\$)(\$)([a-zA-Z_][\w\.]*)',
              Name.Variable),
         ]
     }
@@ -871,7 +871,7 @@ class GenshiMarkupLexer(RegexLexer):
         ],
         'pytag': [
             (r'\s+', Text),
-            (r'[a-zA-Z0-9_:-]+\s*=', Name.Attribute, 'pyattr'),
+            (r'[\w:-]+\s*=', Name.Attribute, 'pyattr'),
             (r'/?\s*>', Name.Tag, '#pop'),
         ],
         'pyattr': [
@@ -881,8 +881,8 @@ class GenshiMarkupLexer(RegexLexer):
         ],
         'tag': [
             (r'\s+', Text),
-            (r'py:[a-zA-Z0-9_-]+\s*=', Name.Attribute, 'pyattr'),
-            (r'[a-zA-Z0-9_:-]+\s*=', Name.Attribute, 'attr'),
+            (r'py:[\w-]+\s*=', Name.Attribute, 'pyattr'),
+            (r'[\w:-]+\s*=', Name.Attribute, 'attr'),
             (r'/?\s*>', Name.Tag, '#pop'),
         ],
         'attr': [
@@ -907,7 +907,7 @@ class GenshiMarkupLexer(RegexLexer):
         'variable': [
             (r'(?<!\$)(\$\{)(.+?)(\})',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
-            (r'(?<!\$)(\$)([a-zA-Z_][a-zA-Z0-9_\.]*)',
+            (r'(?<!\$)(\$)([a-zA-Z_][\w\.]*)',
              Name.Variable),
         ]
     }
@@ -1498,13 +1498,15 @@ class ColdfusionLexer(RegexLexer):
             # strings, evidently.
             (r"'.*?'", String.Single),
             (r'\d+', Number),
-            (r'(if|else|len|var|case|default|break|switch|component|property|function|do|try|catch|in|continue|for|return|while)\b', Keyword),
-            (r'(required|any|array|binary|boolean|component|date|guid|numeric|query|string|struct|uuid|xml)\b', Keyword),
+            (r'(if|else|len|var|xml|default|break|switch|component|property|function|do|'
+             r'try|catch|in|continue|for|return|while|required|any|array|binary|boolean|'
+             r'component|date|guid|numeric|query|string|struct|uuid|case)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(application|session|client|cookie|super|this|variables|arguments)\b', Name.Constant),
-            (r'([A-Za-z_$][A-Za-z0-9_.]*)(\s*)(\()',
+            (r'(application|session|client|cookie|super|this|variables|arguments)\b',
+             Name.Constant),
+            (r'([a-z_$][\w.]*)(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
-            (r'[A-Za-z_$][A-Za-z0-9_.]*', Name.Variable),
+            (r'[a-z_$][\w.]*', Name.Variable),
             (r'[()\[\]{};:,.\\]', Punctuation),
             (r'\s+', Text),
         ],
@@ -1534,7 +1536,7 @@ class ColdfusionMarkupLexer(RegexLexer):
             (r'<[^<>]*', Other),
         ],
         'tags': [
-            (r'(?s)<!---.*?--->', Comment.Multiline),
+            (r'<!---', Comment.Multiline, 'cfcomment'),
             (r'(?s)<!--.*?-->', Comment),
             (r'<cfoutput.*?>', Name.Builtin, 'cfoutput'),
             (r'(?s)(<cfscript.*?>)(.+?)(</cfscript.*?>)',
@@ -1555,6 +1557,12 @@ class ColdfusionMarkupLexer(RegexLexer):
             include('tags'),
             (r'(?s)<[^<>]*', Other),
             (r'#', Other),
+        ],
+        'cfcomment': [
+            (r'(?s)(.*?)(<!---)',
+             bygroups(Comment.Multiline, Comment.Multiline), '#push'),
+            (r'(?s)(.*?)(--->)',
+             bygroups(Comment.Multiline, Comment.Multiline), '#pop'),
         ],
     }
 
@@ -1803,8 +1811,8 @@ class HandlebarsLexer(RegexLexer):
             # borrowed from DjangoLexer
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z][a-zA-Z0-9_-]*', Name.Variable),
-            (r'\.[a-zA-Z0-9_]+', Name.Variable),
+            (r'[a-zA-Z][\w-]*', Name.Variable),
+            (r'\.\w+', Name.Variable),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ]

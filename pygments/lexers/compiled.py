@@ -56,8 +56,6 @@ class CFamilyLexer(RegexLexer):
              bygroups(using(this), Comment.Preproc), 'if0'),
             ('^(' + _ws1 + ')(#)',
              bygroups(using(this), Comment.Preproc), 'macro'),
-            (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*)(\s*:)(?!:)',
-             bygroups(Text, Name.Label, Text)),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
@@ -89,22 +87,23 @@ class CFamilyLexer(RegexLexer):
              r'declspec|finally|int64|try|leave|wchar_t|w64|unaligned|'
              r'raise|noop|identifier|forceinline|assume)\b', Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'([a-zA-Z_]\w*)(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'root': [
             include('whitespace'),
             # functions
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
-             r'(\s*\([^;]*?\))'                      # signature
+            (r'((?:[\w*\s])+?(?:\s|[*]))' # return arguments
+             r'([a-zA-Z_]\w*)'            # method name
+             r'(\s*\([^;]*?\))'           # signature
              r'(' + _ws + r')?({)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:[a-zA-Z0-9_*\s])+?(?:\s|[*]))'    # return arguments
-             r'([a-zA-Z_][a-zA-Z0-9_]*)'             # method name
-             r'(\s*\([^;]*?\))'                      # signature
+            (r'((?:[\w*\s])+?(?:\s|[*]))' # return arguments
+             r'([a-zA-Z_]\w*)'            # method name
+             r'(\s*\([^;]*?\))'           # signature
              r'(' + _ws + r')?(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
@@ -224,7 +223,7 @@ class CppLexer(CFamilyLexer):
             (r'(__offload|__blockingoffload|__outer)\b', Keyword.Pseudo),
         ],
         'classname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
         ],
@@ -269,7 +268,7 @@ class PikeLexer(CppLexer):
             inherit,
         ],
         'classname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
         ],
@@ -290,9 +289,12 @@ class SwigLexer(CppLexer):
 
     tokens = {
         'statements': [
-            (r'(%[a-z_][a-z0-9_]*)', Name.Function), # SWIG directives
-            ('\$\**\&?[a-zA-Z0-9_]+', Name), # Special variables
-            (r'##*[a-zA-Z_][a-zA-Z0-9_]*', Comment.Preproc), # Stringification / additional preprocessor directives
+            # SWIG directives
+            (r'(%[a-z_][a-z0-9_]*)', Name.Function),
+            # Special variables
+            ('\$\**\&?\w+', Name),
+            # Stringification / additional preprocessor directives
+            (r'##*[a-zA-Z_]\w*', Comment.Preproc),
             inherit,
          ],
     }
@@ -361,7 +363,7 @@ class ECLexer(CLexer):
             inherit,
         ],
         'classname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
         ],
@@ -1156,7 +1158,7 @@ class DylanLexer(RegexLexer):
         'type-error-value', 'type-for-copy', 'type-union', 'union', 'values',
         'vector', 'zero?'])
 
-    valid_name = '\\\\?[a-zA-Z0-9' + re.escape('!&*<>|^$%@_-+~?/=') + ']+'
+    valid_name = '\\\\?[a-z0-9' + re.escape('!&*<>|^$%@_-+~?/=') + ']+'
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):
@@ -1185,7 +1187,7 @@ class DylanLexer(RegexLexer):
             (r'//.*?\n', Comment.Single),
 
             # lid header
-            (r'([A-Za-z0-9-]+)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
+            (r'([a-z0-9-]+)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
                 bygroups(Name.Attribute, Operator, Text, String)),
 
             ('', Text, 'code') # no header match, switch to code
@@ -1202,7 +1204,7 @@ class DylanLexer(RegexLexer):
 
             # strings and characters
             (r'"', String, 'string'),
-            (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
+            (r"'(\\.|\\[0-7]{1,3}|\\x[a-f0-9]{1,2}|[^\\\'\n])'", String.Char),
 
             # binary integer
             (r'#[bB][01]+', Number),
@@ -1217,7 +1219,7 @@ class DylanLexer(RegexLexer):
             (r'[-+]?\d+', Number.Integer),
 
             # hex integer
-            (r'#[xX][0-9a-fA-F]+', Number.Hex),
+            (r'#[xX][0-9a-f]+', Number.Hex),
 
             # Macro parameters
             (r'(\?' + valid_name + ')(:)'
@@ -1241,7 +1243,7 @@ class DylanLexer(RegexLexer):
             (r'#"', String.Symbol, 'keyword'),
 
             # #rest, #key, #all-keys, etc.
-            (r'#[a-zA-Z0-9-]+', Keyword),
+            (r'#[a-z0-9-]+', Keyword),
 
             # required-init-keyword: style keywords.
             (valid_name + ':', Keyword),
@@ -1270,7 +1272,7 @@ class DylanLexer(RegexLexer):
         ],
         'string': [
             (r'"', String, '#pop'),
-            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'\\([\\abfnrtv"\']|x[a-f0-9]{2,4}|[0-7]{1,3})', String.Escape),
             (r'[^\\"\n]+', String), # all other characters
             (r'\\\n', String), # line continuation
             (r'\\', String), # stray backslash
@@ -1372,9 +1374,9 @@ def objective(baselexer):
 
     # Matches [ <ws>? identifier <ws> ( identifier <ws>? ] |  identifier? : )
     # (note the identifier is *optional* when there is a ':'!)
-    _oc_message = re.compile(r'\[\s*[a-zA-Z_][a-zA-Z0-9_]*\s+'
-                             r'(?:[a-zA-Z_][a-zA-Z0-9_]*\s*\]|'
-                             r'(?:[a-zA-Z_][a-zA-Z0-9_]*)?:)')
+    _oc_message = re.compile(r'\[\s*[a-zA-Z_]\w*\s+'
+                             r'(?:[a-zA-Z_]\w*\s*\]|'
+                             r'(?:[a-zA-Z_]\w*)?:)')
 
     class GeneratedObjectiveCVariant(baselexer):
         """
@@ -1384,23 +1386,30 @@ def objective(baselexer):
         tokens = {
             'statements': [
                 (r'@"', String, 'string'),
+                (r'@(YES|NO)', Number),
                 (r"@'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
                 (r'@(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
                 (r'@(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
                 (r'@0x[0-9a-fA-F]+[Ll]?', Number.Hex),
                 (r'@0[0-7]+[Ll]?', Number.Oct),
                 (r'@\d+[Ll]?', Number.Integer),
-                (r'@\([^()]+\)', Number),
+                (r'@\(', Literal, 'literal_number'),
+                (r'@\[', Literal, 'literal_array'),
+                (r'@\{', Literal, 'literal_dictionary'),
                 (r'(@selector|@private|@protected|@public|@encode|'
-                 r'@synchronized|@try|@throw|@catch|@finally|@end|@property|'
+                 r'@synchronized|@try|@throw|@catch|@finally|@end|@property|@synthesize|'
                  r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong|'
-                 r'weak|strong|retain|assign|unsafe_unretained|nonatomic|'
-                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|'
-                 r'@synthesize|@dynamic|@optional|@required|@autoreleasepool)\b', Keyword),
+                 r'weak|strong|copy|retain|assign|unsafe_unretained|atomic|nonatomic|'
+                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|release|class|'
+                 r'@dynamic|@optional|@required|@autoreleasepool)\b', Keyword),
                 (r'(id|instancetype|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
                  Keyword.Type),
                 (r'@(true|false|YES|NO)\n', Name.Builtin),
                 (r'(YES|NO|nil|self|super)\b', Name.Builtin),
+                # Carbon types
+                (r'(Boolean|UInt8|SInt8|UInt16|SInt16|UInt32|SInt32)\b', Keyword.Type),
+                # Carbon built-ins
+                (r'(TRUE|FALSE)\b', Name.Builtin),
                 (r'(@interface|@implementation)(\s+)', bygroups(Keyword, Text),
                  ('#pop', 'oc_classname')),
                 (r'(@class|@protocol)(\s+)', bygroups(Keyword, Text),
@@ -1411,24 +1420,26 @@ def objective(baselexer):
             ],
             'oc_classname' : [
                 # interface definition that inherits
-                ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*:\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)?(\s*)({)',
-                 bygroups(Name.Class, Text, Name.Class, Text, Punctuation), ('#pop', 'oc_ivars')),
-                ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*:\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)?',
+                ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?(\s*)({)',
+                 bygroups(Name.Class, Text, Name.Class, Text, Punctuation),
+                 ('#pop', 'oc_ivars')),
+                ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?',
                  bygroups(Name.Class, Text, Name.Class), '#pop'),
                 # interface definition for a category
-                ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(\([a-zA-Z$_][a-zA-Z0-9$_]*\))(\s*)({)',
-                 bygroups(Name.Class, Text, Name.Label, Text, Punctuation), ('#pop', 'oc_ivars')),
-                ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(\([a-zA-Z$_][a-zA-Z0-9$_]*\))',
+                ('([a-zA-Z$_][\w$]*)(\s*)(\([a-zA-Z$_][\w$]*\))(\s*)({)',
+                 bygroups(Name.Class, Text, Name.Label, Text, Punctuation),
+                 ('#pop', 'oc_ivars')),
+                ('([a-zA-Z$_][\w$]*)(\s*)(\([a-zA-Z$_][\w$]*\))',
                  bygroups(Name.Class, Text, Name.Label), '#pop'),
                 # simple interface / implementation
-                ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)({)',
+                ('([a-zA-Z$_][\w$]*)(\s*)({)',
                  bygroups(Name.Class, Text, Punctuation), ('#pop', 'oc_ivars')),
-                ('([a-zA-Z$_][a-zA-Z0-9$_]*)', Name.Class, '#pop')
+                ('([a-zA-Z$_][\w$]*)', Name.Class, '#pop')
             ],
             'oc_forward_classname' : [
-              ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*,\s*)',
+              ('([a-zA-Z$_][\w$]*)(\s*,\s*)',
                bygroups(Name.Class, Text), 'oc_forward_classname'),
-              ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*;?)',
+              ('([a-zA-Z$_][\w$]*)(\s*;?)',
                bygroups(Name.Class, Text), '#pop')
             ],
             'oc_ivars' : [
@@ -1442,7 +1453,7 @@ def objective(baselexer):
               # methods
               (r'^([-+])(\s*)'                         # method marker
                r'(\(.*?\))?(\s*)'                      # return type
-               r'([a-zA-Z$_][a-zA-Z0-9$_]*:?)',        # begin of method name
+               r'([a-zA-Z$_][\w$]*:?)',        # begin of method name
                bygroups(Punctuation, Text, using(this),
                         Text, Name.Function),
                'method'),
@@ -1454,12 +1465,36 @@ def objective(baselexer):
                 # discussion in Issue 789
                 (r',', Punctuation),
                 (r'\.\.\.', Punctuation),
-                (r'(\(.*?\))(\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)',
+                (r'(\(.*?\))(\s*)([a-zA-Z$_][\w$]*)',
                  bygroups(using(this), Text, Name.Variable)),
-                (r'[a-zA-Z$_][a-zA-Z0-9$_]*:', Name.Function),
+                (r'[a-zA-Z$_][\w$]*:', Name.Function),
                 (';', Punctuation, '#pop'),
                 ('{', Punctuation, 'function'),
                 ('', Text, '#pop'),
+            ],
+            'literal_number': [
+                (r'\(', Punctuation, 'literal_number_inner'),
+                (r'\)', Literal, '#pop'),
+                include('statement'),
+            ],
+            'literal_number_inner': [
+                (r'\(', Punctuation, '#push'),
+                (r'\)', Punctuation, '#pop'),
+                include('statement'),
+            ],
+            'literal_array': [
+                (r'\[', Punctuation, 'literal_array_inner'),
+                (r'\]', Literal, '#pop'),
+                include('statement'),
+            ],
+            'literal_array_inner': [
+                (r'\[', Punctuation, '#push'),
+                (r'\]', Punctuation, '#pop'),
+                include('statement'),
+            ],
+            'literal_dictionary': [
+                (r'\}', Literal, '#pop'),
+                include('statement'),
             ],
         }
 
@@ -1480,7 +1515,7 @@ def objective(baselexer):
 
             for index, token, value in \
                 baselexer.get_tokens_unprocessed(self, text):
-                if token is Name:
+                if token is Name or token is Name.Class:
                     if value in COCOA_INTERFACES or value in COCOA_PROTOCOLS \
                        or value in COCOA_PRIMITIVES:
                         token = Name.Builtin.Pseudo
@@ -1538,7 +1573,7 @@ class FortranLexer(RegexLexer):
             (r'!.*\n', Comment),
             include('strings'),
             include('core'),
-            (r'[a-z][a-z0-9_]*', Name.Variable),
+            (r'[a-z]\w*', Name.Variable),
             include('nums'),
             (r'[\s]+', Text),
         ],
@@ -1622,9 +1657,9 @@ class FortranLexer(RegexLexer):
         ],
 
         'nums': [
-            (r'\d+(?![.Ee])', Number.Integer),
-            (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
-            (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
+            (r'\d+(?![.e])(_[a-z]\w+)?', Number.Integer),
+            (r'[+-]?\d*\.\d+(e[-+]?\d+)?(_[a-z]\w+)?', Number.Float),
+            (r'[+-]?\d+\.\d*(e[-+]?\d+)?(_[a-z]\w+)?', Number.Float),
         ],
     }
 
@@ -1713,20 +1748,20 @@ class PrologLexer(RegexLexer):
             (r'_', Keyword), # The don't-care variable
             (r'([a-z]+)(:)', bygroups(Name.Namespace, Punctuation)),
             (u'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
-             u'[a-zA-Z0-9_$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
+             u'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
              u'(\\s*)(:-|-->)',
              bygroups(Name.Function, Text, Operator)), # function defn
             (u'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
-             u'[a-zA-Z0-9_$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
+             u'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
              u'(\\s*)(\\()',
              bygroups(Name.Function, Text, Punctuation)),
             (u'[a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
-             u'[a-zA-Z0-9_$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*',
+             u'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*',
              String.Atom), # atom, characters
             # This one includes !
             (u'[#&*+\\-./:<=>?@\\\\^~\u00a1-\u00bf\u2010-\u303f]+',
              String.Atom), # atom, graphics
-            (r'[A-Z_][A-Za-z0-9_]*', Name.Variable),
+            (r'[A-Z_]\w*', Name.Variable),
             (u'\\s+|[\u2000-\u200f\ufff0-\ufffe\uffef]', Text),
         ],
         'nested-comment': [
@@ -1832,38 +1867,38 @@ class CythonLexer(RegexLexer):
             ('`.*?`', String.Backtick),
         ],
         'name': [
-            (r'@[a-zA-Z0-9_]+', Name.Decorator),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'@\w+', Name.Decorator),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'funcname': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop')
+            ('[a-zA-Z_]\w*', Name.Function, '#pop')
         ],
         'cdef': [
             (r'(public|readonly|extern|api|inline)\b', Keyword.Reserved),
             (r'(struct|enum|union|class)\b', Keyword),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(?=[(:#=]|$)',
+            (r'([a-zA-Z_]\w*)(\s*)(?=[(:#=]|$)',
              bygroups(Name.Function, Text), '#pop'),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\s*)(,)',
+            (r'([a-zA-Z_]\w*)(\s*)(,)',
              bygroups(Name.Function, Text, Punctuation)),
             (r'from\b', Keyword, '#pop'),
             (r'as\b', Keyword),
             (r':', Punctuation, '#pop'),
             (r'(?=["\'])', Text, '#pop'),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Keyword.Type),
+            (r'[a-zA-Z_]\w*', Keyword.Type),
             (r'.', Text),
         ],
         'classname': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            ('[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'import': [
             (r'(\s+)(as)(\s+)', bygroups(Text, Keyword, Text)),
-            (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace),
+            (r'[a-zA-Z_][\w.]*', Name.Namespace),
             (r'(\s*)(,)(\s*)', bygroups(Text, Operator, Text)),
             (r'', Text, '#pop') # all else: go back
         ],
         'fromimport': [
             (r'(\s+)(c?import)\b', bygroups(Text, Keyword), '#pop'),
-            (r'[a-zA-Z_.][a-zA-Z0-9_.]*', Name.Namespace),
+            (r'[a-zA-Z_.][\w.]*', Name.Namespace),
             # ``cdef foo from "header"``, or ``for foo from 0 < i < 10``
             (r'', Text, '#pop'),
         ],
@@ -1955,14 +1990,14 @@ class ValaLexer(RegexLexer):
              'namespace'),
             (r'(class|errordomain|interface|struct)(\s+)',
              bygroups(Keyword.Declaration, Text), 'class'),
-            (r'(\.)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(\.)([a-zA-Z_]\w*)',
              bygroups(Operator, Name.Attribute)),
             # void is an actual keyword, others are in glib-2.0.vapi
             (r'(void|bool|char|double|float|int|int8|int16|int32|int64|long|'
              r'short|size_t|ssize_t|string|time_t|uchar|uint|uint8|uint16|'
              r'uint32|uint64|ulong|unichar|ushort)\b', Keyword.Type),
             (r'(true|false|null)\b', Name.Builtin),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'root': [
             include('whitespace'),
@@ -1988,10 +2023,10 @@ class ValaLexer(RegexLexer):
             (r'.*?\n', Comment),
         ],
         'class': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'namespace': [
-            (r'[a-zA-Z_][a-zA-Z0-9_.]*', Name.Namespace, '#pop')
+            (r'[a-zA-Z_][\w.]*', Name.Namespace, '#pop')
         ],
     }
 
@@ -2015,9 +2050,9 @@ class OocLexer(RegexLexer):
              r'while|do|switch|case|as|in|version|return|true|false|null)\b',
              Keyword),
             (r'include\b', Keyword, 'include'),
-            (r'(cover)([ \t]+)(from)([ \t]+)([a-zA-Z0-9_]+[*@]?)',
+            (r'(cover)([ \t]+)(from)([ \t]+)(\w+[*@]?)',
              bygroups(Keyword, Text, Keyword, Text, Name.Class)),
-            (r'(func)((?:[ \t]|\\\n)+)(~[a-z_][a-zA-Z0-9_]*)',
+            (r'(func)((?:[ \t]|\\\n)+)(~[a-z_]\w*)',
              bygroups(Keyword, Text, Name.Function)),
             (r'\bfunc\b', Keyword),
             # Note: %= and ^= not listed on http://ooc-lang.org/syntax
@@ -2028,11 +2063,11 @@ class OocLexer(RegexLexer):
             (r'(\.)([ \t]*)([a-z]\w*)', bygroups(Operator, Text,
                                                  Name.Function)),
             (r'[A-Z][A-Z0-9_]+', Name.Constant),
-            (r'[A-Z][a-zA-Z0-9_]*([@*]|\[[ \t]*\])?', Name.Class),
+            (r'[A-Z]\w*([@*]|\[[ \t]*\])?', Name.Class),
 
-            (r'([a-z][a-zA-Z0-9_]*(?:~[a-z][a-zA-Z0-9_]*)?)((?:[ \t]|\\\n)*)(?=\()',
+            (r'([a-z]\w*(?:~[a-z]\w*)?)((?:[ \t]|\\\n)*)(?=\()',
              bygroups(Name.Function, Text)),
-            (r'[a-z][a-zA-Z0-9_]*', Name.Variable),
+            (r'[a-z]\w*', Name.Variable),
 
             # : introduces types
             (r'[:(){}\[\];,]', Punctuation),
@@ -2414,7 +2449,7 @@ class AdaLexer(RegexLexer):
             (r'task|protected', Keyword.Declaration),
             (r'(subtype)(\s+)', bygroups(Keyword.Declaration, Text)),
             (r'(end)(\s+)', bygroups(Keyword.Reserved, Text), 'end'),
-            (r'(pragma)(\s+)([a-zA-Z0-9_]+)', bygroups(Keyword.Reserved, Text,
+            (r'(pragma)(\s+)(\w+)', bygroups(Keyword.Reserved, Text,
                                                        Comment.Preproc)),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(Address|Byte|Boolean|Character|Controlled|Count|Cursor|'
@@ -2457,7 +2492,7 @@ class AdaLexer(RegexLexer):
             (r'[0-9_]+', Number.Integer),
         ],
         'attribute' : [
-            (r"(')([a-zA-Z0-9_]+)", bygroups(Punctuation, Name.Attribute)),
+            (r"(')(\w+)", bygroups(Punctuation, Name.Attribute)),
         ],
         'subprogram' : [
             (r'\(', Punctuation, ('#pop', 'formal_part')),
@@ -2468,7 +2503,7 @@ class AdaLexer(RegexLexer):
         ],
         'end' : [
             ('(if|case|record|loop|select)', Keyword.Reserved),
-            ('"[^"]+"|[a-zA-Z0-9_.]+', Name.Function),
+            ('"[^"]+"|[\w.]+', Name.Function),
             ('\s+', Text),
             (';', Punctuation, '#pop'),
         ],
@@ -2508,7 +2543,7 @@ class AdaLexer(RegexLexer):
             ('is', Keyword.Reserved, '#pop'),
             (';', Punctuation, '#pop'),
             ('\(', Punctuation, 'package_instantiation'),
-            ('([a-zA-Z0-9_.]+)', Name.Class),
+            ('([\w.]+)', Name.Class),
             include('root'),
         ],
         'package_instantiation': [
@@ -2551,7 +2586,7 @@ class Modula2Lexer(RegexLexer):
             (r'\s+', Text), # whitespace
         ],
         'identifiers': [
-            (r'([a-zA-Z_\$][a-zA-Z0-9_\$]*)', Name),
+            (r'([a-zA-Z_\$][\w\$]*)', Name),
         ],
         'numliterals': [
             (r'[01]+B', Number.Binary),        # binary number (ObjM2)
@@ -2729,9 +2764,9 @@ class BlitzMaxLexer(RegexLexer):
     bmax_vopwords = r'\b(Shl|Shr|Sar|Mod)\b'
     bmax_sktypes = r'@{1,2}|[!#$%]'
     bmax_lktypes = r'\b(Int|Byte|Short|Float|Double|Long)\b'
-    bmax_name = r'[a-z_][a-z0-9_]*'
+    bmax_name = r'[a-z_]\w*'
     bmax_var = (r'(%s)(?:(?:([ \t]*)(%s)|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)'
-                r'|([ \t]*)([:])([ \t]*)(?:%s|(%s)))(?:([ \t]*)(Ptr))?)') % \
+                r'|([ \t]*)(:)([ \t]*)(?:%s|(%s)))(?:([ \t]*)(Ptr))?)') % \
                 (bmax_name, bmax_sktypes, bmax_lktypes, bmax_name)
     bmax_func = bmax_var + r'?((?:[ \t]|\.\.\n)*)([(])'
 
@@ -2824,7 +2859,7 @@ class BlitzBasicLexer(RegexLexer):
                    r'Abs|Sgn|Handle|Int|Float|Str|'
                    r'First|Last|Before|After)\b')
     bb_sktypes = r'@{1,2}|[#$%]'
-    bb_name = r'[a-z][a-z0-9_]*'
+    bb_name = r'[a-z]\w*'
     bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)([.])([ \t]*)(?:(%s)))?') % \
                 (bb_name, bb_sktypes, bb_name)
 
@@ -2969,7 +3004,7 @@ class NimrodLexer(RegexLexer):
             # Numbers
             (r'[0-9][0-9_]*(?=([eE.]|\'[fF](32|64)))',
               Number.Float, ('float-suffix', 'float-number')),
-            (r'0[xX][a-fA-F0-9][a-fA-F0-9_]*', Number.Hex, 'int-suffix'),
+            (r'0[xX][a-f0-9][a-f0-9_]*', Number.Hex, 'int-suffix'),
             (r'0[bB][01][01_]*', Number, 'int-suffix'),
             (r'0o[0-7][0-7_]*', Number.Oct, 'int-suffix'),
             (r'[0-9][0-9_]*', Number.Integer, 'int-suffix'),
@@ -2978,7 +3013,7 @@ class NimrodLexer(RegexLexer):
             (r'.+$', Error),
         ],
         'chars': [
-          (r'\\([\\abcefnrtvl"\']|x[a-fA-F0-9]{2}|[0-9]{1,3})', String.Escape),
+          (r'\\([\\abcefnrtvl"\']|x[a-f0-9]{2}|[0-9]{1,3})', String.Escape),
           (r"'", String.Char, '#pop'),
           (r".", String.Char)
         ],
@@ -2992,7 +3027,7 @@ class NimrodLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ],
         'dqs': [
-            (r'\\([\\abcefnrtvl"\']|\n|x[a-fA-F0-9]{2}|[0-9]{1,3})',
+            (r'\\([\\abcefnrtvl"\']|\n|x[a-f0-9]{2}|[0-9]{1,3})',
              String.Escape),
             (r'"', String, '#pop'),
             include('strings')
@@ -3048,7 +3083,7 @@ class FantomLexer(RegexLexer):
             dict (
                 pod = r'[\"\w\.]+',
                 eos = r'\n|;',
-                id = r'[a-zA-Z_][a-zA-Z0-9_]*',
+                id = r'[a-zA-Z_]\w*',
                 # all chars which can be part of type definition. Starts with
                 # either letter, or [ (maps), or | (funcs)
                 type = r'(?:\[|[a-zA-Z_]|\|)[:\w\[\]\|\->\?]*?',
@@ -3333,7 +3368,7 @@ class RustLexer(RegexLexer):
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
              String.Char),
             # Lifetime
-            (r"""'[a-zA-Z_][a-zA-Z0-9_]*""", Name.Label),
+            (r"""'[a-zA-Z_]\w*""", Name.Label),
             # Binary Literal
             (r'0b[01_]+', Number, 'number_lit'),
             # Octal Literal
@@ -3461,10 +3496,10 @@ class MonkeyLexer(RegexLexer):
     filenames = ['*.monkey']
     mimetypes = ['text/x-monkey']
 
-    name_variable = r'[a-z_][a-zA-Z0-9_]*'
-    name_function = r'[A-Z][a-zA-Z0-9_]*'
+    name_variable = r'[a-z_]\w*'
+    name_function = r'[A-Z]\w*'
     name_constant = r'[A-Z_][A-Z0-9_]*'
-    name_class = r'[A-Z][a-zA-Z0-9_]*'
+    name_class = r'[A-Z]\w*'
     name_module = r'[a-z0-9_]*'
 
     keyword_type = r'(?:Int|Float|String|Bool|Object|Array|Void)'
@@ -3806,12 +3841,12 @@ class LogosLexer(ObjectiveCppLexer):
     tokens = {
         'statements': [
             (r'(%orig|%log)\b', Keyword),
-            (r'(%c)\b(\()(\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(\))',
+            (r'(%c)\b(\()(\s*)([a-zA-Z$_][\w$]*)(\s*)(\))',
              bygroups(Keyword, Punctuation, Text, Name.Class, Text, Punctuation)),
             (r'(%init)\b(\()',
              bygroups(Keyword, Punctuation), 'logos_init_directive'),
             (r'(%init)(?=\s*;)', bygroups(Keyword)),
-            (r'(%hook|%group)(\s+)([a-zA-Z$_][a-zA-Z0-9$_]+)',
+            (r'(%hook|%group)(\s+)([a-zA-Z$_][\w$]+)',
              bygroups(Keyword, Text, Name.Class), '#pop'),
             (r'(%subclass)(\s+)', bygroups(Keyword, Text),
             ('#pop', 'logos_classname')),
@@ -3820,20 +3855,20 @@ class LogosLexer(ObjectiveCppLexer):
         'logos_init_directive' : [
             ('\s+', Text),
             (',', Punctuation, ('logos_init_directive', '#pop')),
-            ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*)(=)(\s*)([^);]*)',
+            ('([a-zA-Z$_][\w$]*)(\s*)(=)(\s*)([^);]*)',
              bygroups(Name.Class, Text, Punctuation, Text, Text)),
-            ('([a-zA-Z$_][a-zA-Z0-9$_]*)', Name.Class),
+            ('([a-zA-Z$_][\w$]*)', Name.Class),
             ('\)', Punctuation, '#pop'),
         ],
         'logos_classname' : [
-            ('([a-zA-Z$_][a-zA-Z0-9$_]*)(\s*:\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)?',
+            ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?',
              bygroups(Name.Class, Text, Name.Class), '#pop'),
-            ('([a-zA-Z$_][a-zA-Z0-9$_]*)', Name.Class, '#pop')
+            ('([a-zA-Z$_][\w$]*)', Name.Class, '#pop')
         ],
         'root': [
             (r'(%subclass)(\s+)', bygroups(Keyword, Text),
              'logos_classname'),
-            (r'(%hook|%group)(\s+)([a-zA-Z$_][a-zA-Z0-9$_]+)',
+            (r'(%hook|%group)(\s+)([a-zA-Z$_][\w$]+)',
              bygroups(Keyword, Text, Name.Class)),
             (r'(%config)(\s*\(\s*)(\w+)(\s*=\s*)(.*?)(\s*\)\s*)',
              bygroups(Keyword, Text, Name.Variable, Text, String, Text)),
@@ -3920,13 +3955,13 @@ class ChapelLexer(RegexLexer):
             (r'[:;,.?()\[\]{}]', Punctuation),
 
             # identifiers
-            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Other),
+            (r'[a-zA-Z_][\w$]*', Name.Other),
         ],
         'classname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Class, '#pop'),
+            (r'[a-zA-Z_][\w$]*', Name.Class, '#pop'),
         ],
         'procname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_$]*', Name.Function, '#pop'),
+            (r'[a-zA-Z_][\w$]*', Name.Function, '#pop'),
         ],
     }
 
@@ -3962,7 +3997,7 @@ class EiffelLexer(RegexLexer):
             (r"'([^'%]|%'|%%)'", String.Char),
             (r"(//|\\\\|>=|<=|:=|/=|~|/~|[\\\?!#%&@|+/\-=\>\*$<|^\[\]])", Operator),
             (r"([{}():;,.])", Punctuation),
-            (r'([a-z][a-zA-Z0-9_]*)|([A-Z][A-Z0-9_]*[a-z][a-zA-Z0-9_]*)', Name),
+            (r'([a-z]\w*)|([A-Z][A-Z0-9_]*[a-z]\w*)', Name),
             (r'([A-Z][A-Z0-9_]*)', Name.Class),
             (r'\n+', Text),
         ],

@@ -375,9 +375,9 @@ class LatexFormatter(Formatter):
                         if len(sep1) > 0:
                             b,sep2,text = text.partition(self.right)
                             if len(sep2) > 0:
-                                value = value + escape_tex(a, self.commandprefix) + b
+                                value += escape_tex(a, self.commandprefix) + b
                             else:
-                                value = value + escape_tex(a + sep1 + b, self.commandprefix)
+                                value += escape_tex(a + sep1 + b, self.commandprefix)
                         else:
                             value = value + escape_tex(a, self.commandprefix)
                 else:
