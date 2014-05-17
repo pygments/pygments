@@ -460,10 +460,9 @@ class VbNetLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if (re.search(r'^[ \t]*#If', text, re.I)
-            or re.search(r'^[ \t]*(Module|Namespace)', re.I)):
+        if re.search(r'^\s*(#If|Module|Namespace)', text,
+                     re.IGNORECASE | re.MULTILINE):
             return 0.5
-
 
 
 class GenericAspxLexer(RegexLexer):
