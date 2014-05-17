@@ -318,8 +318,8 @@ class NasmLexer(RegexLexer):
     filenames = ['*.asm', '*.ASM']
     mimetypes = ['text/x-nasm']
 
-    identifier = r'[a-zA-Z$._?][a-zA-Z0-9$._?#@~]*'
-    hexn = r'(?:0[xX][0-9a-fA-F]+|$0[0-9a-fA-F]*|[0-9]+[0-9a-fA-F]*h)'
+    identifier = r'[a-z$._?][\w$.?#@~]*'
+    hexn = r'(?:0[xX][0-9a-f]+|$0[0-9a-f]*|[0-9]+[0-9a-f]*h)'
     octn = r'[0-7]+q'
     binn = r'[01]+b'
     decn = r'[0-9]+'
@@ -417,7 +417,7 @@ class Ca65Lexer(RegexLexer):
              r'|cl[cvdi]|se[cdi]|jmp|jsr|bne|beq|bpl|bmi|bvc|bvs|bcc|bcs'
              r'|p[lh][ap]|rt[is]|brk|nop|ta[xy]|t[xy]a|txs|tsx|and|ora|eor'
              r'|bit)\b', Keyword),
-            (r'\.[a-z0-9_]+', Keyword.Pseudo),
+            (r'\.\w+', Keyword.Pseudo),
             (r'[-+~*/^&|!<>=]', Operator),
             (r'"[^"\n]*.', String),
             (r"'[^'\n]*.", String.Char),
