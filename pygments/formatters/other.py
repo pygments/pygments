@@ -118,11 +118,11 @@ class RawTokenFormatter(Formatter):
 TESTCASE_BEFORE = u'''\
     def testNeedsName(self):
         fragment = %r
-        expected = [
+        tokens = [
 '''
 TESTCASE_AFTER = u'''\
         ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
 '''
 
 

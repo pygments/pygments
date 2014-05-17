@@ -523,7 +523,8 @@ class HtmlFormatter(Formatter):
                                                self.cssfile)
                 except AttributeError:
                     print('Note: Cannot determine output file name, ' \
-                          'using current directory as base for the CSS file name', file=sys.stderr)
+                          'using current directory as base for the CSS file name',
+                          file=sys.stderr)
                     cssfilename = self.cssfile
             # write CSS file only if noclobber_cssfile isn't given as an option.
             try:
