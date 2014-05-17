@@ -109,6 +109,32 @@ foo char
 ;lit-word:
 'foo 'foo
 
+;multiple comment tests...
+1 + 1
+comment "aa"								
+2 + 2
+comment {aa}
+3 + 3
+comment {a^{}
+4 + 4
+comment {{}}
+5 + 5
+comment {
+	foo: 6
+}
+6 + 6
+comment [foo: 6]
+7 + 7
+comment [foo: "[" ]
+8 + 8
+comment [foo: {^{} ]
+9 + 9
+comment [foo: {boo} ]
+10 + 10
+comment 5-May-2014/11:17:34+2:00
+11 + 11
+
+
 to-integer foo
 foo/(a + 1)/b
 

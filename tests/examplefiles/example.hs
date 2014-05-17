@@ -1,3 +1,5 @@
+module ĈrazyThings where
+
 import "base" Data.Char
 import "base" Data.Char (isControl, isSpace)
 import "base" Data.Char (isControl, --isSpace)
@@ -13,3 +15,13 @@ import "base" Data.Char (isControl, -- isSpace)
 
 main :: IO ()
 main = putStrLn "hello world"
+
+gádd x y = x + y
+ádd x y = x + y
+
+
+data ĈrazyThings =
+  Ĉar |
+  House |
+  Peár
+    deriving (Show, Eq)
