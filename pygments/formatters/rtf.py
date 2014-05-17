@@ -10,7 +10,7 @@
 """
 
 from pygments.formatter import Formatter
-from pygments.util import get_int_opt
+from pygments.util import get_int_opt, _surrogatepair
 
 
 __all__ = ['RtfFormatter']
@@ -21,6 +21,10 @@ class RtfFormatter(Formatter):
     Format tokens as RTF markup. This formatter automatically outputs full RTF
     documents with color information and other useful stuff. Perfect for Copy and
     Paste into Microsoft® Word® documents.
+
+    Please note that ``encoding`` and ``outencoding`` options are ignored.
+    The RTF format is ASCII natively, but handles unicode characters correctly
+    thanks to escape sequences.
 
     .. versionadded:: 0.6
 
@@ -74,28 +78,27 @@ class RtfFormatter(Formatter):
 
         # escape text
         text = self._escape(text)
-        if self.encoding in ('utf-8', 'utf-16', 'utf-32'):
-            encoding = 'iso-8859-15'
-        else:
-            encoding = self.encoding or 'iso-8859-15'
 
         buf = []
         for c in text:
-            if ord(c) > 128:
-                ansic = c.encode(encoding, 'ignore')
-                if ansic and ord(ansic) > 128:
-                    ansic = '\\\'%x' % ord(ansic)
-                else:
-                    ansic = '?'
-                buf.append(r'\ud{\u%d%s}' % (ord(c), ansic))
-            else:
+            cn = ord(c)
+            if cn < (2**7):
+                # ASCII character
                 buf.append(str(c))
+            elif (2**7) <= cn < (2**16):
+                # single unicode escape sequence
+                buf.append(r'{\u%d}' % cn)
+            elif (2**16) <= cn:
+                # RTF limits unicode to 16 bits.
+                # Force surrogate pairs
+                h,l = _surrogatepair(cn)
+                buf.append(r'{\u%d}{\u%d}' % (h,l))
 
         return ''.join(buf).replace('\n', '\\par\n')
 
     def format_unencoded(self, tokensource, outfile):
         # rtf 1.8 header
-        outfile.write(r'{\rtf1\ansi\deff0'
+        outfile.write(r'{\rtf1\ansi\uc0\deff0'
                       r'{\fonttbl{\f0\fmodern\fprq1\fcharset0%s;}}'
                       r'{\colortbl;' % (self.fontface and
                                         ' ' + self._escape(self.fontface) or
@@ -114,7 +117,7 @@ class RtfFormatter(Formatter):
                         int(color[4:6], 16)
                     ))
                     offset += 1
-        outfile.write(r'}\f0')
+        outfile.write(r'}\f0 ')
         if self.fontsize:
             outfile.write(r'\fs%d' % (self.fontsize))
 
