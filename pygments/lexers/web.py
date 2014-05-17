@@ -184,8 +184,8 @@ class ActionScriptLexer(RegexLexer):
     name = 'ActionScript'
     aliases = ['as', 'actionscript']
     filenames = ['*.as']
-    mimetypes = ['application/x-actionscript3', 'text/x-actionscript3',
-                 'text/actionscript3']
+    mimetypes = ['application/x-actionscript', 'text/x-actionscript',
+                 'text/actionscript']
 
     flags = re.DOTALL
     tokens = {
@@ -268,8 +268,8 @@ class ActionScript3Lexer(RegexLexer):
     name = 'ActionScript 3'
     aliases = ['as3', 'actionscript3']
     filenames = ['*.as']
-    mimetypes = ['application/x-actionscript', 'text/x-actionscript',
-                 'text/actionscript']
+    mimetypes = ['application/x-actionscript3', 'text/x-actionscript3',
+                 'text/actionscript3']
 
     identifier = r'[$a-zA-Z_]\w*'
     typeidentifier = identifier + '(?:\.<\w+>)?'
