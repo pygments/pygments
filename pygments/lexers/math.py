@@ -97,8 +97,8 @@ class JuliaLexer(RegexLexer):
             (r'[E]?"', String, combined('stringescape', 'string')),
 
             # names
-            (r'@[a-zA-Z0-9_.]+', Name.Decorator),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'@[\w.]+', Name.Decorator),
+            (r'[a-zA-Z_]\w*', Name),
 
             # numbers
             (r'(\d+(_\d+)+\.\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
@@ -116,13 +116,13 @@ class JuliaLexer(RegexLexer):
         ],
 
         'funcname': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Function, '#pop'),
+            ('[a-zA-Z_]\w*', Name.Function, '#pop'),
             ('\([^\s\w{]{1,2}\)', Operator, '#pop'),
             ('[^\s\w{]{1,2}', Operator, '#pop'),
         ],
 
         'typename': [
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop')
+            ('[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
 
         'stringescape': [
@@ -133,7 +133,7 @@ class JuliaLexer(RegexLexer):
         'string': [
             (r'"', String, '#pop'),
             (r'\\\\|\\"|\\\n', String.Escape), # included here for raw strings
-            (r'\$(\([a-zA-Z0-9_]+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?',
+            (r'\$(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?',
                 String.Interpol),
             (r'[^\\"$]+', String),
             # quotes, dollar signs, and backslashes must be parsed one at a time
@@ -357,7 +357,7 @@ class MatlabLexer(RegexLexer):
             (r'\d+', Number.Integer),
 
             (r'(?<![\w\)\].])\'', String, 'string'),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
         'string': [
@@ -816,7 +816,7 @@ class OctaveLexer(RegexLexer):
             (r'(?<=[\w\)\].])\'+', Operator),
             (r'(?<![\w\)\].])\'', String, 'string'),
 
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
         'string': [
@@ -881,7 +881,7 @@ class ScilabLexer(RegexLexer):
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'\d+', Number.Integer),
 
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
         'string': [
@@ -1461,7 +1461,7 @@ class BugsLexer(RegexLexer):
              % r'|'.join(_FUNCTIONS + _DISTRIBUTIONS),
              Name.Builtin),
             # Regular variable names
-            (r'[A-Za-z][A-Za-z0-9_.]*', Name),
+            (r'[A-Za-z][\w.]*', Name),
             # Number Literals
             (r'[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?', Number),
             # Punctuation
@@ -1521,7 +1521,7 @@ class JagsLexer(RegexLexer):
             ],
         'names' : [
             # Regular variable names
-            (r'[a-zA-Z][a-zA-Z0-9_.]*\b', Name),
+            (r'[a-zA-Z][\w.]*\b', Name),
             ],
         'comments' : [
             # do not use stateful comments
@@ -1572,9 +1572,8 @@ class JagsLexer(RegexLexer):
 class StanLexer(RegexLexer):
     """Pygments Lexer for Stan models.
 
-    The Stan modeling language is specified in the *Stan 2.0.1
-    Modeling Language Manual* `pdf
-    <https://github.com/stan-dev/stan/releases/download/v2.0.1/stan-reference-2.0.1.pdf>`__
+    The Stan modeling language is specified in the *Stan Modeling Language User's Guide and Reference Manual, v2.2.0*,
+    `pdf <https://github.com/stan-dev/stan/releases/download/v2.2.0/stan-reference-2.2.0.pdf>`__.
 
     .. versionadded:: 1.6
     """
@@ -1619,10 +1618,10 @@ class StanLexer(RegexLexer):
                          + _stan_builtins.DISTRIBUTIONS),
              Name.Builtin),
             # Special names ending in __, like lp__
-            (r'[A-Za-z][A-Za-z0-9_]*__\b', Name.Builtin.Pseudo),
+            (r'[A-Za-z]\w*__\b', Name.Builtin.Pseudo),
             (r'(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
             # Regular variable names
-            (r'[A-Za-z][A-Za-z0-9_]*\b', Name),
+            (r'[A-Za-z]\w*\b', Name),
             # Real Literals
             (r'-?[0-9]+(\.[0-9]+)?[eE]-?[0-9]+', Number.Float),
             (r'-?[0-9]*\.[0-9]*', Number.Float),
@@ -1656,6 +1655,8 @@ class IDLLexer(RegexLexer):
     filenames = ['*.pro']
     mimetypes = ['text/idl']
 
+    flags = re.IGNORECASE | re.MULTILINE
+
     _RESERVED = ['and', 'begin', 'break', 'case', 'common', 'compile_opt',
                  'continue', 'do', 'else', 'end', 'endcase', 'elseelse',
                  'endfor', 'endforeach', 'endif', 'endrep', 'endswitch',
@@ -1677,7 +1678,7 @@ class IDLLexer(RegexLexer):
                     'broyden', 'butterworth', 'bytarr', 'byte', 'byteorder',
                     'bytscl', 'caldat', 'calendar', 'call_external',
                     'call_function', 'call_method', 'call_procedure', 'canny',
-                    'catch', 'cd', 'cdf_[0-9a-za-z_]*', 'ceil', 'chebyshev',
+                    'catch', 'cd', 'cdf_\w*', 'ceil', 'chebyshev',
                     'check_math',
                     'chisqr_cvf', 'chisqr_pdf', 'choldc', 'cholsol', 'cindgen',
                     'cir_3pnt', 'close', 'cluster', 'cluster_tree', 'clust_wts',
@@ -1711,7 +1712,7 @@ class IDLLexer(RegexLexer):
                     'dlm_load', 'dlm_register', 'doc_library', 'double',
                     'draw_roi', 'edge_dog', 'efont', 'eigenql', 'eigenvec',
                     'ellipse', 'elmhes', 'emboss', 'empty', 'enable_sysrtn',
-                    'eof', 'eos_[0-9a-za-z_]*', 'erase', 'erf', 'erfc', 'erfcx',
+                    'eof', 'eos_\w*', 'erase', 'erf', 'erfc', 'erfcx',
                     'erode', 'errorplot', 'errplot', 'estimator_filter',
                     'execute', 'exit', 'exp', 'expand', 'expand_path', 'expint',
                     'extrac', 'extract_slice', 'factorial', 'fft', 'filepath',
@@ -1728,11 +1729,11 @@ class IDLLexer(RegexLexer):
                     'gauss_cvf', 'gauss_pdf', 'gauss_smooth', 'getenv',
                     'getwindows', 'get_drive_list', 'get_dxf_objects',
                     'get_kbrd', 'get_login_info', 'get_lun', 'get_screen_size',
-                    'greg2jul', 'grib_[0-9a-za-z_]*', 'grid3', 'griddata',
+                    'greg2jul', 'grib_\w*', 'grid3', 'griddata',
                     'grid_input', 'grid_tps', 'gs_iter',
-                    'h5[adfgirst]_[0-9a-za-z_]*', 'h5_browser', 'h5_close',
+                    'h5[adfgirst]_\w*', 'h5_browser', 'h5_close',
                     'h5_create', 'h5_get_libversion', 'h5_open', 'h5_parse',
-                    'hanning', 'hash', 'hdf_[0-9a-za-z_]*', 'heap_free',
+                    'hanning', 'hash', 'hdf_\w*', 'heap_free',
                     'heap_gc', 'heap_nosave', 'heap_refcount', 'heap_save',
                     'help', 'hilbert', 'histogram', 'hist_2d', 'hist_equal',
                     'hls', 'hough', 'hqr', 'hsv', 'h_eq_ct', 'h_eq_int',
@@ -1780,7 +1781,7 @@ class IDLLexer(RegexLexer):
                     'modifyct', 'moment', 'morph_close', 'morph_distance',
                     'morph_gradient', 'morph_hitormiss', 'morph_open',
                     'morph_thin', 'morph_tophat', 'multi', 'm_correlate',
-                    'ncdf_[0-9a-za-z_]*', 'newton', 'noise_hurl', 'noise_pick',
+                    'ncdf_\w*', 'newton', 'noise_hurl', 'noise_pick',
                     'noise_scatter', 'noise_slur', 'norm', 'n_elements',
                     'n_params', 'n_tags', 'objarr', 'obj_class', 'obj_destroy',
                     'obj_hasmethod', 'obj_isa', 'obj_new', 'obj_valid',
@@ -2182,7 +2183,7 @@ class IgorLexer(RegexLexer):
             # Compiler directives.
             (r'^#(include|pragma|define|ifdef|ifndef|endif)',
              Name.Decorator),
-            (r'[^a-zA-Z"/]+$', Text),
+            (r'[^a-z"/]+$', Text),
             (r'.', Text),
         ],
     }
