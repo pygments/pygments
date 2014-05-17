@@ -35,7 +35,7 @@ class LimboLexer(RegexLexer):
 
     tokens = {
         'whitespace': [
-            (r'^(\s*)([a-zA-Z_][a-zA-Z0-9_]*:(\s*)\n)',
+            (r'^(\s*)([a-zA-Z_]\w*:(\s*)\n)',
              bygroups(Text, Name.Label)),
             (r'\n', Text),
             (r'\s+', Text),
@@ -64,7 +64,7 @@ class LimboLexer(RegexLexer):
             (r'(byte|int|big|real|string|array|chan|list|adt'
              r'|fn|ref|of|module|self|type)\b', Keyword.Type),
             (r'(con|iota|nil)\b', Keyword.Constant),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'statement' : [
             include('whitespace'),

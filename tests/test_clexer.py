@@ -43,7 +43,7 @@ class CLexerTest(unittest.TestCase):
             }
         }
         '''
-        expected = [
+        tokens = [
             (Token.Keyword.Type, u'int'),
             (Token.Text, u' '),
             (Token.Name.Function, u'main'),
@@ -81,7 +81,7 @@ class CLexerTest(unittest.TestCase):
             (Token.Punctuation, u'}'),
             (Token.Text, u'\n'),
         ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
+        self.assertEqual(tokens, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
 
     def testSwitchSpaceBeforeColon(self):
         fragment = u'''\
@@ -95,7 +95,7 @@ class CLexerTest(unittest.TestCase):
             }
         }
         '''
-        expected = [
+        tokens = [
             (Token.Keyword.Type, u'int'),
             (Token.Text, u' '),
             (Token.Name.Function, u'main'),
@@ -135,7 +135,7 @@ class CLexerTest(unittest.TestCase):
             (Token.Punctuation, u'}'),
             (Token.Text, u'\n'),
         ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
+        self.assertEqual(tokens, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
 
     def testLabel(self):
         fragment = u'''\
@@ -145,7 +145,7 @@ class CLexerTest(unittest.TestCase):
           goto foo;
         }
         '''
-        expected = [
+        tokens = [
             (Token.Keyword.Type, u'int'),
             (Token.Text, u' '),
             (Token.Name.Function, u'main'),
@@ -166,7 +166,7 @@ class CLexerTest(unittest.TestCase):
             (Token.Punctuation, u'}'),
             (Token.Text, u'\n'),
         ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
+        self.assertEqual(tokens, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
 
     def testLabelSpaceBeforeColon(self):
         fragment = u'''\
@@ -176,7 +176,7 @@ class CLexerTest(unittest.TestCase):
           goto foo;
         }
         '''
-        expected = [
+        tokens = [
             (Token.Keyword.Type, u'int'),
             (Token.Text, u' '),
             (Token.Name.Function, u'main'),
@@ -198,7 +198,7 @@ class CLexerTest(unittest.TestCase):
             (Token.Punctuation, u'}'),
             (Token.Text, u'\n'),
         ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
+        self.assertEqual(tokens, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
 
     def testLabelFollowedByStatement(self):
         fragment = u'''\
@@ -208,7 +208,7 @@ class CLexerTest(unittest.TestCase):
           goto foo;
         }
         '''
-        expected = [
+        tokens = [
             (Token.Keyword.Type, u'int'),
             (Token.Text, u' '),
             (Token.Name.Function, u'main'),
@@ -233,4 +233,4 @@ class CLexerTest(unittest.TestCase):
             (Token.Punctuation, u'}'),
             (Token.Text, u'\n'),
         ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
+        self.assertEqual(tokens, list(self.lexer.get_tokens(textwrap.dedent(fragment))))

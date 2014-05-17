@@ -25,6 +25,7 @@ Programming languages
 * ColdFusion
 * Common Lisp
 * Coq
+* Cryptol (incl. Literate Cryptol)
 * `Cython <http://cython.org>`_
 * `D <http://digitalmars.com/d>`_
 * Dart
@@ -65,7 +66,8 @@ Programming languages
 * PowerShell
 * Prolog
 * `Python <http://www.python.org>`_ 2.x and 3.x (incl. console sessions and tracebacks)
-* Rebol
+* `REBOL <http://www.rebol.com>`_
+* `Red <http://www.red-lang.org>`_
 * Redcode
 * `Ruby <http://www.ruby-lang.org>`_ (incl. irb sessions)
 * Rust

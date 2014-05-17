@@ -102,7 +102,7 @@ class RagelLexer(RegexLexer):
         'host': [
             (r'(' + r'|'.join(( # keep host code in largest possible chunks
                 r'[^{}\'"/#]+', # exclude unsafe characters
-                r'[^\\][\\][{}]', # allow escaped { or }
+                r'[^\\]\\[{}]', # allow escaped { or }
 
                 # strings and comments may safely contain unsafe characters
                 r'"(\\\\|\\"|[^"])*"', # double quote string
@@ -173,7 +173,7 @@ class RagelEmbeddedLexer(RegexLexer):
                     r'[^}\'"\[/#]', # exclude unsafe characters
                     r'}(?=[^%]|$)', # } is okay as long as it's not followed by %
                     r'}%(?=[^%]|$)', # ...well, one %'s okay, just not two...
-                    r'[^\\][\\][{}]', # ...and } is okay if it's escaped
+                    r'[^\\]\\[{}]', # ...and } is okay if it's escaped
 
                     # allow / if it's preceded with one of these symbols
                     # (ragel EOF actions)
