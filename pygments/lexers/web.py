@@ -13,7 +13,7 @@ import re
 import copy
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, bygroups, using, \
-    include, this
+    include, this, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Other, Punctuation, Literal
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
@@ -55,7 +55,7 @@ class JavascriptLexer(RegexLexer):
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'badregex': [
             (r'\n', Text, '#pop')
@@ -542,7 +542,7 @@ class ObjectiveJLexer(RegexLexer):
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
         'badregex': [
             (r'\n', Text, '#pop'),
@@ -1258,7 +1258,7 @@ class HaxeLexer(ExtendedRegexLexer):
             include('spaces'),
             (ident, Name.Namespace),
             (r'\.', Punctuation, 'import-ident'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'import': [
@@ -1267,7 +1267,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'\*', Keyword), # wildcard import
             (r'\.', Punctuation, 'import-ident'),
             (r'in', Keyword.Namespace, 'ident'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'import-ident': [
@@ -1280,14 +1280,14 @@ class HaxeLexer(ExtendedRegexLexer):
             include('spaces'),
             (ident, Name.Namespace),
             (r'\.', Punctuation, 'import-ident'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'preproc-error': [
             (r'\s+', Comment.Preproc),
             (r"'", String.Single, ('#pop', 'string-single')),
             (r'"', String.Double, ('#pop', 'string-double')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'preproc-expr': [
@@ -1322,7 +1322,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'preproc-expr-chain': [
             (r'\s+', Comment.Preproc),
             (binop, Comment.Preproc, ('#pop', 'preproc-expr-in-parenthesis')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # same as 'preproc-expr' but able to chain 'preproc-expr-chain'
@@ -1354,7 +1354,7 @@ class HaxeLexer(ExtendedRegexLexer):
 
         'abstract' : [
             include('spaces'),
-            (r'', Text, ('#pop', 'abstract-body', 'abstract-relation',
+            default(('#pop', 'abstract-body', 'abstract-relation',
                     'abstract-opaque', 'type-param-constraint', 'type-name')),
         ],
 
@@ -1366,14 +1366,14 @@ class HaxeLexer(ExtendedRegexLexer):
         'abstract-opaque' : [
             include('spaces'),
             (r'\(', Punctuation, ('#pop', 'parenthesis-close', 'type')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'abstract-relation': [
             include('spaces'),
             (r'(?:to|from)', Keyword.Declaration, 'type'),
             (r',', Punctuation),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'meta': [
@@ -1385,7 +1385,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'meta-colon': [
             include('spaces'),
             (r':', Name.Decorator, '#pop'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # same as 'ident' but set token as Name.Decorator instead of Name
@@ -1397,13 +1397,13 @@ class HaxeLexer(ExtendedRegexLexer):
         'meta-body': [
             include('spaces'),
             (r'\(', Name.Decorator, ('#pop', 'meta-call')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'meta-call': [
             include('spaces'),
             (r'\)', Name.Decorator, '#pop'),
-            (r'', Text, ('#pop', 'meta-call-sep', 'expr')),
+            default(('#pop', 'meta-call-sep', 'expr')),
         ],
 
         'meta-call-sep': [
@@ -1414,7 +1414,7 @@ class HaxeLexer(ExtendedRegexLexer):
 
         'typedef': [
             include('spaces'),
-            (r'', Text, ('#pop', 'typedef-body', 'type-param-constraint',
+            default(('#pop', 'typedef-body', 'type-param-constraint',
                          'type-name')),
         ],
 
@@ -1425,7 +1425,7 @@ class HaxeLexer(ExtendedRegexLexer):
 
         'enum': [
             include('spaces'),
-            (r'', Text, ('#pop', 'enum-body', 'bracket-open',
+            default(('#pop', 'enum-body', 'bracket-open',
                          'type-param-constraint', 'type-name')),
         ],
 
@@ -1440,12 +1440,12 @@ class HaxeLexer(ExtendedRegexLexer):
             include('spaces'),
             (r'\(', Punctuation,
              ('#pop', 'semicolon', 'flag', 'function-param')),
-            (r'', Punctuation, ('#pop', 'semicolon', 'flag')),
+            default(('#pop', 'semicolon', 'flag')),
         ],
 
         'class': [
             include('spaces'),
-            (r'', Text, ('#pop', 'class-body', 'bracket-open', 'extends',
+            default(('#pop', 'class-body', 'bracket-open', 'extends',
                          'type-param-constraint', 'type-name')),
         ],
 
@@ -1454,7 +1454,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'(?:extends|implements)\b', Keyword.Declaration, 'type'),
             (r',', Punctuation), # the comma is made optional here, since haxe2
                                  # requires the comma but haxe3 does not allow it
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'bracket-open': [
@@ -1473,7 +1473,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'\}', Punctuation, '#pop'),
             (r'(?:static|public|private|override|dynamic|inline|macro)\b',
              Keyword.Declaration),
-            (r'', Text, 'class-member'),
+            default('class-member'),
         ],
 
         'class-member': [
@@ -1495,7 +1495,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'optional-expr': [
             include('spaces'),
             include('expr'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'class-method': [
@@ -1524,7 +1524,7 @@ class HaxeLexer(ExtendedRegexLexer):
             include('spaces'),
             (r'\(', Punctuation, ('#pop', 'parenthesis-close',
                                   'prop-get-set-opt', 'comma', 'prop-get-set-opt')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'prop-get-set-opt': [
@@ -1537,7 +1537,7 @@ class HaxeLexer(ExtendedRegexLexer):
             include('spaces'),
             # makes semicolon optional here, just to avoid checking the last
             # one is bracket or not.
-            (r'', Text, ('#pop', 'optional-semicolon', 'expr')),
+            default(('#pop', 'optional-semicolon', 'expr')),
         ],
 
         'expr': [
@@ -1600,7 +1600,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'(\.)(' + ident_no_keyword + ')', bygroups(Punctuation, Name)),
             (r'\[', Punctuation, 'array-access'),
             (r'\(', Punctuation, 'call'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # macro reification
@@ -1615,7 +1615,7 @@ class HaxeLexer(ExtendedRegexLexer):
             (r'(?:enum)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'enum')),
             (r'(?:typedef)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'typedef')),
             
-            (r'', Text, ('#pop', 'expr')),
+            default(('#pop', 'expr')),
         ],
 
         # cast can be written as "cast expr" or "cast(expr, type)"
@@ -1623,27 +1623,27 @@ class HaxeLexer(ExtendedRegexLexer):
             include('spaces'),
             (r'\(', Punctuation, ('#pop', 'parenthesis-close',
                                   'cast-type', 'expr')),
-            (r'', Text, ('#pop', 'expr')),
+            default(('#pop', 'expr')),
         ],
 
         # optionally give a type as the 2nd argument of cast()
         'cast-type': [
             include('spaces'),
             (r',', Punctuation, ('#pop', 'type')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'catch': [
             include('spaces'),
             (r'(?:catch)\b', Keyword, ('expr', 'function-param',
                                        'parenthesis-open')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # do-while loop
         'do': [
             include('spaces'),
-            (r'', Punctuation, ('#pop', 'do-while', 'expr')),
+            default(('#pop', 'do-while', 'expr')),
         ],
 
         # the while after do
@@ -1672,12 +1672,12 @@ class HaxeLexer(ExtendedRegexLexer):
         'else': [
             include('spaces'),
             (r'(?:else)\b', Keyword, ('#pop', 'expr')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'switch': [
             include('spaces'),
-            (r'', Text, ('#pop', 'switch-body', 'bracket-open', 'expr')),
+            default(('#pop', 'switch-body', 'bracket-open', 'expr')),
         ],
 
         'switch-body': [
@@ -1689,7 +1689,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'case': [
             include('spaces'),
             (r':', Punctuation, '#pop'),
-            (r'', Text, ('#pop', 'case-sep', 'case-guard', 'expr')),
+            default(('#pop', 'case-sep', 'case-guard', 'expr')),
         ],
 
         'case-sep': [
@@ -1701,25 +1701,25 @@ class HaxeLexer(ExtendedRegexLexer):
         'case-guard': [
             include('spaces'),
             (r'(?:if)\b', Keyword, ('#pop', 'parenthesis', 'parenthesis-open')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # optional multiple expr under a case
         'case-block': [
             include('spaces'),
             (r'(?!(?:case|default)\b|\})', Keyword, 'expr-statement'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'new': [
             include('spaces'),
-            (r'', Text, ('#pop', 'call', 'parenthesis-open', 'type')),
+            default(('#pop', 'call', 'parenthesis-open', 'type')),
         ],
 
         'array-decl': [
             include('spaces'),
             (r'\]', Punctuation, '#pop'),
-            (r'', Text, ('#pop', 'array-decl-sep', 'expr')),
+            default(('#pop', 'array-decl-sep', 'expr')),
         ],
 
         'array-decl-sep': [
@@ -1730,7 +1730,7 @@ class HaxeLexer(ExtendedRegexLexer):
 
         'array-access': [
             include('spaces'),
-            (r'', Text, ('#pop', 'array-access-close', 'expr')),
+            default(('#pop', 'array-access-close', 'expr')),
         ],
 
         'array-access-close': [
@@ -1756,7 +1756,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'optional-semicolon': [
             include('spaces'),
             (r';', Punctuation, '#pop'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # identity that CAN be a Haxe keyword
@@ -1768,7 +1768,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'dollar': [
             include('spaces'),
             (r'\{', Punctuation, ('#pop', 'expr-chain', 'bracket-close', 'expr')),
-            (r'', Text, ('#pop', 'expr-chain')),
+            default(('#pop', 'expr-chain')),
         ],
 
         'type-name': [
@@ -1779,7 +1779,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'type-full-name': [
             include('spaces'),
             (r'\.', Punctuation, 'ident'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'type': [
@@ -1792,14 +1792,14 @@ class HaxeLexer(ExtendedRegexLexer):
 
         'type-parenthesis': [
             include('spaces'),
-            (r'', Text, ('#pop', 'parenthesis-close', 'type')),
+            default(('#pop', 'parenthesis-close', 'type')),
         ],
 
         'type-check': [
             include('spaces'),
             (r'->', Punctuation, ('#pop', 'type')),
             (r'<(?!=)', Punctuation, 'type-param'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'type-struct': [
@@ -1847,7 +1847,7 @@ class HaxeLexer(ExtendedRegexLexer):
         # ie. the <A,B> path in Map<A,B>
         'type-param': [
             include('spaces'),
-            (r'', Text, ('#pop', 'type-param-sep', 'type-param-type')),
+            default(('#pop', 'type-param-sep', 'type-param-type')),
         ],
 
         'type-param-sep': [
@@ -1862,7 +1862,7 @@ class HaxeLexer(ExtendedRegexLexer):
             include('spaces'),
             (r'<(?!=)', Punctuation, ('#pop', 'type-param-constraint-sep',
                                       'type-param-constraint-flag', 'type-name')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'type-param-constraint-sep': [
@@ -1876,14 +1876,14 @@ class HaxeLexer(ExtendedRegexLexer):
         'type-param-constraint-flag': [
             include('spaces'),
             (r':', Punctuation, ('#pop', 'type-param-constraint-flag-type')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'type-param-constraint-flag-type': [
             include('spaces'),
             (r'\(', Punctuation, ('#pop', 'type-param-constraint-flag-type-sep',
                                   'type')),
-            (r'', Text, ('#pop', 'type')),
+            default(('#pop', 'type')),
         ],
 
         'type-param-constraint-flag-type-sep': [
@@ -1895,7 +1895,7 @@ class HaxeLexer(ExtendedRegexLexer):
         # a parenthesis expr that contain exactly one expr
         'parenthesis': [
             include('spaces'),
-            (r'', Text, ('#pop', 'parenthesis-close', 'flag', 'expr')),
+            default(('#pop', 'parenthesis-close', 'flag', 'expr')),
         ],
 
         'parenthesis-open': [
@@ -1917,21 +1917,21 @@ class HaxeLexer(ExtendedRegexLexer):
         'var-sep': [
             include('spaces'),
             (r',', Punctuation, ('#pop', 'var')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # optional assignment
         'assign': [
             include('spaces'),
             (r'=', Operator, ('#pop', 'expr')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # optional type flag
         'flag': [
             include('spaces'),
             (r':', Punctuation, ('#pop', 'type')),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # colon as part of a ternary operator (?:)
@@ -1944,7 +1944,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'call': [
             include('spaces'),
             (r'\)', Punctuation, '#pop'),
-            (r'', Text, ('#pop', 'call-sep', 'expr')),
+            default(('#pop', 'call-sep', 'expr')),
         ],
 
         # after a call param
@@ -1961,27 +1961,27 @@ class HaxeLexer(ExtendedRegexLexer):
              ('#pop', 'bracket-check')),
             (r"'", String.Single, ('#pop', 'bracket-check', 'string-single')),
             (r'"', String.Double, ('#pop', 'bracket-check', 'string-double')),
-            (r'', Text, ('#pop', 'block')),
+            default(('#pop', 'block')),
         ],
 
         'bracket-check': [
             include('spaces'),
             (r':', Punctuation, ('#pop', 'object-sep', 'expr')), #is object
-            (r'', Text, ('#pop', 'block', 'optional-semicolon', 'expr-chain')), #is block
+            default(('#pop', 'block', 'optional-semicolon', 'expr-chain')), #is block
         ],
 
         # code block
         'block': [
             include('spaces'),
             (r'\}', Punctuation, '#pop'),
-            (r'', Text, 'expr-statement'),
+            default('expr-statement'),
         ],
 
         # object in key-value pairs
         'object': [
             include('spaces'),
             (r'\}', Punctuation, '#pop'),
-            (r'', Text, ('#pop', 'object-sep', 'expr', 'colon', 'ident-or-string'))
+            default(('#pop', 'object-sep', 'expr', 'colon', 'ident-or-string'))
         ],
 
         # a key of an object
@@ -2074,7 +2074,7 @@ class HamlLexer(ExtendedRegexLexer):
             (r'([&!]?[=~])(' + _comma_dot + r'*\n)',
              bygroups(Punctuation, using(RubyLexer)),
              'root'),
-            (r'', Text, 'plain'),
+            default('plain'),
         ],
 
         'content': [
@@ -2293,19 +2293,19 @@ common_sass_tokens = {
     'pseudo-class': [
         (r'[\w-]+', Name.Decorator),
         (r'#\{', String.Interpol, 'interpolation'),
-        (r'', Text, '#pop'),
+        default('#pop'),
     ],
 
     'class': [
         (r'[\w-]+', Name.Class),
         (r'#\{', String.Interpol, 'interpolation'),
-        (r'', Text, '#pop'),
+        default('#pop'),
     ],
 
     'id': [
         (r'[\w-]+', Name.Namespace),
         (r'#\{', String.Interpol, 'interpolation'),
-        (r'', Text, '#pop'),
+        default('#pop'),
     ],
 
     'for': [
@@ -2351,7 +2351,7 @@ class SassLexer(ExtendedRegexLexer):
              bygroups(Name.Variable, Operator), 'value'),
             (r':', Name.Attribute, 'old-style-attr'),
             (r'(?=.+?[=:]([^a-z]|$))', Name.Attribute, 'new-style-attr'),
-            (r'', Text, 'selector'),
+            default('selector'),
         ],
 
         'single-comment': [
@@ -2374,7 +2374,7 @@ class SassLexer(ExtendedRegexLexer):
             (r'[^\s:="\[]+', Name.Attribute),
             (r'#{', String.Interpol, 'interpolation'),
             (r'[ \t]*=', Operator, 'value'),
-            (r'', Text, 'value'),
+            default('value'),
         ],
 
         'new-style-attr': [
@@ -2421,7 +2421,7 @@ class ScssLexer(RegexLexer):
             (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
             (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
             (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
-            (r'', Text, 'selector'),
+            default('selector'),
         ],
 
         'attr': [
@@ -2474,7 +2474,7 @@ class CoffeeScriptLexer(RegexLexer):
             (r'///', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
         'root': [
             # this next expr leads to infinite loops root -> slashstartsregex
@@ -2699,7 +2699,7 @@ class LiveScriptLexer(RegexLexer):
             (r'//', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
         'root': [
             # this next expr leads to infinite loops root -> slashstartsregex
@@ -2846,7 +2846,7 @@ class ScamlLexer(ExtendedRegexLexer):
             (r'([&!]?[=~])(' + _dot + r'*\n)',
              bygroups(Punctuation, using(ScalaLexer)),
              'root'),
-            (r'', Text, 'plain'),
+            default('plain'),
         ],
 
         'content': [
@@ -2955,7 +2955,7 @@ class JadeLexer(ExtendedRegexLexer):
             (r'[&!]?==', Punctuation, 'plain'),
             (r'([&!]?[=~])(' + _dot + r'*\n)',
              bygroups(Punctuation, using(ScalaLexer)),  'root'),
-            (r'', Text, 'plain'),
+            default('plain'),
         ],
 
         'content': [
@@ -3535,7 +3535,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'\(:', Comment, 'comment'),
             (r'\*|\?|\+', Operator, 'operator'),
             (r':=', Operator, 'root'),
-            (r'', Text, 'operator'),
+            default('operator'),
         ],
         'option': [
             include('whitespace'),
@@ -3820,7 +3820,7 @@ class TypeScriptLexer(RegexLexer):
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'badregex': [
             (r'\n', Text, '#pop')
@@ -3906,7 +3906,7 @@ class LassoLexer(RegexLexer):
                 ('delimiters', 'anglebrackets')),
             (r'<(!--.*?-->)?', Other, 'delimiters'),
             (r'\s+', Other),
-            (r'', Other, ('delimiters', 'lassofile')),
+            default(('delimiters', 'lassofile')),
         ],
         'delimiters': [
             (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
@@ -4085,7 +4085,7 @@ class LassoLexer(RegexLexer):
              r'(?=\s*(\(([^()]*\([^()]*\))*[^)]*\)\s*)?(::[\w.\s]+)?=>))',
                 Name.Function, 'signature'),
             include('whitespacecomments'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
     }
 
@@ -4161,7 +4161,7 @@ class QmlLexer(RegexLexer):
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'badregex': [
             (r'\n', Text, '#pop')
@@ -4330,19 +4330,19 @@ class MaskLexer(RegexLexer):
         'node-class': [
             (r'[\w-]+', Name.Variable.Class),
             (r'~\[', String.Interpol, 'interpolation'),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'node-id': [
             (r'[\w-]+', Name.Function),
             (r'~\[', String.Interpol, 'interpolation'),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'node-attr-value':[
             (r'\s+', Text),
             (r'\w+', Name.Variable, '#pop'),
             (r"'", String, 'string-single-pop2'),
             (r'"', String, 'string-double-pop2'),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'node-attr-style-value':[
             (r'\s+', Text),
@@ -4405,7 +4405,7 @@ class ZephirLexer(RegexLexer):
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'badregex': [
             (r'\n', Text, '#pop')

@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups
+from pygments.lexer import RegexLexer, bygroups, default
 from pygments.token import Keyword, Punctuation, String, Number, Operator, \
     Whitespace, Name, Literal, Comment, Text
 
@@ -94,6 +94,6 @@ class SparqlLexer(RegexLexer):
             (r'(@)([a-z]+(:?-[a-z0-9]+)*)',
              bygroups(Operator, Name.Function), '#pop:2'),
             (r'\^\^', Operator, '#pop:2'),
-            (r'', Text, '#pop:2'),
+            default('#pop:2'),
         ],
     }

@@ -11,7 +11,7 @@
 import re
 
 from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, include, \
-     using, this
+     using, this, default
 from pygments.token import Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Literal, Other
 from pygments.util import get_choice_opt, iteritems
@@ -440,7 +440,7 @@ class VbNetLexer(RegexLexer):
         ],
         'dim': [
             (r'[a-z_]\w*', Name.Variable, '#pop'),
-            (r'', Text, '#pop'),  # any other syntax
+            default('#pop'),  # any other syntax
         ],
         'funcname': [
             (r'[a-z_]\w*', Name.Function, '#pop'),
@@ -455,7 +455,7 @@ class VbNetLexer(RegexLexer):
             (r'\s+', Text),
             (r'(Function|Sub|Property|Class|Structure|Enum|Module|Namespace)\b',
              Keyword, '#pop'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ]
     }
 
@@ -645,7 +645,7 @@ class FSharpLexer(RegexLexer):
             (r'[A-Z][\w\']*', Name, '#pop'),
             (r'[a-z_][\w\']*', Name, '#pop'),
             # e.g. dictionary index access
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
         'comment': [
             (r'[^(*)@"]+', Comment),

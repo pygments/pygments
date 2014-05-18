@@ -13,7 +13,7 @@ import re
 from bisect import bisect
 
 from pygments.lexer import Lexer, LexerContext, RegexLexer, ExtendedRegexLexer, \
-     bygroups, include, using, this, do_insertions
+     bygroups, include, using, this, do_insertions, default
 from pygments.token import Punctuation, Text, Comment, Keyword, Name, String, \
      Generic, Operator, Number, Whitespace, Literal
 from pygments.util import get_bool_opt, ClassNotFound
@@ -503,7 +503,7 @@ class TexLexer(RegexLexer):
         'command': [
             (r'\[.*?\]', Name.Attribute),
             (r'\*', Keyword),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
     }
 
