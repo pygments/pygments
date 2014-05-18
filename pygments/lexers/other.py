@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using, \
-     this, combined, ExtendedRegexLexer
+     this, combined, ExtendedRegexLexer, default
 from pygments.token import Error, Punctuation, Literal, Token, \
      Text, Comment, Operator, Keyword, Name, String, Number, Generic, \
      Whitespace
@@ -403,7 +403,7 @@ class SmalltalkLexer(RegexLexer):
             (r'(:)(\s*)(\w+)',
              bygroups(Operator, Text, Name.Variable)),
             (r'\|', Operator, '#pop'),
-            (r'', Text, '#pop'), # else pop
+            default('#pop'), # else pop
         ],
         'literals' : [
             (r"'(''|[^'])*'", String, 'afterobject'),
@@ -2607,7 +2607,7 @@ class AwkLexer(RegexLexer):
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'\B', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'badregex': [
             (r'\n', Text, '#pop')
@@ -3129,7 +3129,7 @@ class KconfigLexer(RegexLexer):
         return [
             (_rx_indent(level), String.Doc),
             (r'\s*\n', Text),
-            (r'', Generic, '#pop:2')
+            default('#pop:2')
         ]
 
     tokens = {

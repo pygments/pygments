@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, \
-     LexerContext, include, combined, do_insertions, bygroups, using, this
+     LexerContext, include, combined, do_insertions, bygroups, using, this, default
 from pygments.token import Error, Text, Other, \
      Comment, Operator, Keyword, Name, String, Number, Generic, Punctuation
 from pygments.util import get_bool_opt, get_list_opt, shebang_matches, iteritems
@@ -133,7 +133,7 @@ class PythonLexer(RegexLexer):
             (r'as\b', Keyword.Namespace),
             (r',', Operator),
             (r'[a-zA-Z_][\w.]*', Name.Namespace),
-            (r'', Text, '#pop') # all else: go back
+            default('#pop') # all else: go back
         ],
         'fromimport': [
             (r'(?:[ \t]|\\\n)+', Text),
@@ -145,7 +145,7 @@ class PythonLexer(RegexLexer):
             (r'[a-zA-Z_.][\w.]*', Name.Namespace),
             # anything else here also means "raise x from y" and is therefore
             # not an error
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
         'stringescape': [
             (r'\\([\\abfnrtv"\']|\n|N{.*?}|u[a-fA-F0-9]{4}|'
@@ -269,13 +269,13 @@ class Python3Lexer(RegexLexer):
         (r'\.', Name.Namespace),
         (uni_name, Name.Namespace),
         (r'(\s*)(,)(\s*)', bygroups(Text, Operator, Text)),
-        (r'', Text, '#pop') # all else: go back
+        default('#pop') # all else: go back
     ]
     tokens['fromimport'] = [
         (r'(\s+)(import)\b', bygroups(Text, Keyword), '#pop'),
         (r'\.', Name.Namespace),
         (uni_name, Name.Namespace),
-        (r'', Text, '#pop'),
+        default('#pop'),
     ]
     # don't highlight "%s" substitutions
     tokens['strings'] = [
@@ -743,13 +743,13 @@ class RubyLexer(ExtendedRegexLexer):
              r'([a-zA-Z_]\w*[\!\?]?|\*\*?|[-+]@?|'
              r'[/%&|^`~]|\[\]=?|<<|>>|<=?>|>=?|===?)',
              bygroups(Name.Class, Operator, Name.Function), '#pop'),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'classname': [
             (r'\(', Punctuation, 'defexpr'),
             (r'<<', Operator, '#pop'),
             (r'[A-Z_]\w*', Name.Class, '#pop'),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'defexpr': [
             (r'(\))(\.|::)?', bygroups(Punctuation, Operator), '#pop'),
@@ -1058,7 +1058,7 @@ class LuaLexer(RegexLexer):
         'root': [
             # lua allows a file to start with a shebang
             (r'#!(.*?)$', Comment.Preproc),
-            (r'', Text, 'base'),
+            default('base'),
         ],
         'base': [
             (r'(?s)--\[(=*)\[.*?\]\1\]', Comment.Multiline),
@@ -1164,7 +1164,7 @@ class MoonScriptLexer(LuaLexer):
     tokens = {
         'root': [
             (r'#!(.*?)$', Comment.Preproc),
-            (r'', Text, 'base'),
+            default('base'),
         ],
         'base': [
             ('--.*$', Comment.Single),
@@ -1650,7 +1650,7 @@ class FactorLexer(RegexLexer):
         'root': [
             # factor allows a file to start with a shebang
             (r'#!.*$', Comment.Preproc),
-            (r'', Text, 'base'),
+            default('base'),
         ],
         'base': [
             (r'\s+', Text),
@@ -2302,7 +2302,7 @@ class Perl6Lexer(ExtendedRegexLexer):
         ],
         'token-sym-brackets' : [
             (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + '])(?P=first_char)*)', brackets_callback(Name), ('#pop', 'pre-token')),
-            (r'', Name, ('#pop', 'pre-token')),
+            default(('#pop', 'pre-token')),
         ],
         'token': [
             (r'}', Text, '#pop'),
@@ -2512,7 +2512,7 @@ class ChaiscriptLexer(RegexLexer):
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'badregex': [
             ('\n', Text, '#pop')
