@@ -675,15 +675,16 @@ class ExtendedRegexLexer(RegexLexer):
             for rexmatch, action, new_state in statetokens:
                 m = rexmatch(text, ctx.pos, ctx.end)
                 if m:
-                    if type(action) is _TokenType:
-                        yield ctx.pos, action, m.group()
-                        ctx.pos = m.end()
-                    else:
-                        for item in action(self, m, ctx):
-                            yield item
-                        if not new_state:
-                            # altered the state stack?
-                            statetokens = tokendefs[ctx.stack[-1]]
+                    if action is not None:
+                        if type(action) is _TokenType:
+                            yield ctx.pos, action, m.group()
+                            ctx.pos = m.end()
+                        else:
+                            for item in action(self, m, ctx):
+                                yield item
+                            if not new_state:
+                                # altered the state stack?
+                                statetokens = tokendefs[ctx.stack[-1]]
                     # CAUTION: callback must set ctx.pos!
                     if new_state is not None:
                         # state transition
