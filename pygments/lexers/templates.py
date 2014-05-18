@@ -17,7 +17,7 @@ from pygments.lexers.agile import PythonLexer, PerlLexer
 from pygments.lexers.compiled import JavaLexer
 from pygments.lexers.jvm import TeaLangLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
-     include, using, this
+     include, using, this, default
 from pygments.token import Error, Punctuation, \
      Text, Comment, Operator, Keyword, Name, String, Number, Other, Token
 from pygments.util import html_doctype_matches, looks_like_xml
@@ -229,7 +229,7 @@ class VelocityLexer(RegexLexer):
             (r'(\.)(' + identifier + r')',
              bygroups(Punctuation, Name.Variable), '#push'),
             (r'\}', Punctuation, '#pop'),
-            (r'', Other, '#pop')
+            default('#pop')
         ],
         'directiveparams': [
             (r'(&&|\|\||==?|!=?|[-<>+*%&\|\^/])|\b(eq|ne|gt|lt|ge|le|not|in)\b',
