@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions
+from pygments.lexer import Lexer, RegexLexer, bygroups, include, do_insertions, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
      String, Number, Punctuation, Literal, Generic, Error
 from pygments import unistring as uni
@@ -860,7 +860,7 @@ class RacketLexer(RegexLexer):
             (r'`|,@?', Operator),
             (_symbol, String.Symbol, '#pop'),
             (r'[|\\]', Error),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
         'list': [
             (_closing_parenthesis, Punctuation, '#pop')
@@ -1960,7 +1960,7 @@ class SMLLexer(RegexLexer):
 
 
         # Main parser (prevents errors in files that have scoping errors)
-        'root': [ (r'', Text, 'main') ],
+        'root': [ default('main') ],
 
         # In this scope, I expect '|' to not be followed by a function name,
         # and I expect 'and' to be followed by a binding site
@@ -2013,7 +2013,7 @@ class SMLLexer(RegexLexer):
             include('breakout'),
 
             (r'(%s)' % alphanumid_re, Name.Namespace),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # Dealing with what comes after the 'fun' (or 'and' or '|') keyword
@@ -2026,7 +2026,7 @@ class SMLLexer(RegexLexer):
             (r'(%s)' % symbolicid_re, Name.Function, '#pop'),
 
             # Ignore interesting function declarations like "fun (x + y) = ..."
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # Dealing with what comes after the 'val' (or 'and') keyword
@@ -2043,7 +2043,7 @@ class SMLLexer(RegexLexer):
             (r'(%s)' % symbolicid_re, Name.Variable, '#pop'),
 
             # Ignore interesting patterns like 'val (x, y)'
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         # Dealing with what comes after the 'type' (or 'and') keyword
@@ -2545,7 +2545,7 @@ class OpaLexer(RegexLexer):
         'type': [
             include('comments-and-spaces'),
             (r'->', Keyword.Type),
-            (r'', Keyword.Type, ('#pop', 'type-lhs-1', 'type-with-slash')),
+            default(('#pop', 'type-lhs-1', 'type-with-slash')),
         ],
 
         # parses all the atomic or closed constructions in the syntax of type
@@ -2562,7 +2562,7 @@ class OpaLexer(RegexLexer):
             # we think we are parsing types when in fact we are parsing
             # some css, so we just pop the states until we get back into
             # the root state
-            (r'', Keyword.Type, '#pop'),
+            default('#pop'),
         ],
 
         # type-with-slash is either:
@@ -2570,13 +2570,13 @@ class OpaLexer(RegexLexer):
         # * type-1 (/ type-1)+
         'type-with-slash': [
             include('comments-and-spaces'),
-            (r'', Keyword.Type, ('#pop', 'slash-type-1', 'type-1')),
+            default(('#pop', 'slash-type-1', 'type-1')),
         ],
         'slash-type-1': [
             include('comments-and-spaces'),
             ('/', Keyword.Type, ('#pop', 'type-1')),
             # same remark as above
-            (r'', Keyword.Type, '#pop'),
+            default('#pop'),
         ],
 
         # we go in this state after having parsed a type-with-slash
@@ -2588,7 +2588,7 @@ class OpaLexer(RegexLexer):
             include('comments-and-spaces'),
             (r'->', Keyword.Type, ('#pop', 'type')),
             (r'(?=,)', Keyword.Type, ('#pop', 'type-arrow')),
-            (r'', Keyword.Type, '#pop'),
+            default('#pop'),
         ],
         'type-arrow': [
             include('comments-and-spaces'),
@@ -2597,7 +2597,7 @@ class OpaLexer(RegexLexer):
             (r',(?=[^:]*?->)', Keyword.Type, 'type-with-slash'),
             (r'->', Keyword.Type, ('#pop', 'type')),
             # same remark as above
-            (r'', Keyword.Type, '#pop'),
+            default('#pop'),
         ],
 
         # no need to do precise parsing for tuples and records
@@ -2624,7 +2624,7 @@ class OpaLexer(RegexLexer):
 #        'type-tuple': [
 #            include('comments-and-spaces'),
 #            (r'\)', Keyword.Type, '#pop'),
-#            (r'', Keyword.Type, ('#pop', 'type-tuple-1', 'type-1')),
+#            default(('#pop', 'type-tuple-1', 'type-1')),
 #        ],
 #        'type-tuple-1': [
 #            include('comments-and-spaces'),
@@ -2846,7 +2846,7 @@ class CoqLexer(RegexLexer):
             (r'[A-Z][\w\']*(?=\s*\.)', Name.Namespace),
             (r'[A-Z][\w\']*', Name.Class, '#pop'),
             (r'[a-z][a-z0-9_\']*', Name, '#pop'),
-            (r'', Text, '#pop')
+            default('#pop')
         ],
     }
 
@@ -3439,7 +3439,7 @@ class KokaLexer(RegexLexer):
             (r'::|\->|[\.:|]', tokenType),
 
             #catchall
-            (r'', Text, '#pop')
+            default('#pop')
         ],
 
         # comments and literals
