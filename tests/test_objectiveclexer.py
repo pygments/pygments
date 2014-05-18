@@ -22,20 +22,17 @@ class ObjectiveCLexerTest(unittest.TestCase):
     def testLiteralNumberInt(self):
         fragment = u'@(1);\n'
         expected = [
-            (Token.Text, u''),
             (Token.Literal, u'@('),
             (Token.Literal.Number.Integer, u'1'),
             (Token.Literal, u')'),
             (Token.Punctuation, u';'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
 
     def testLiteralNumberExpression(self):
         fragment = u'@(1+2);\n'
         expected = [
-            (Token.Text, u''),
             (Token.Literal, u'@('),
             (Token.Literal.Number.Integer, u'1'),
             (Token.Operator, u'+'),
@@ -43,14 +40,12 @@ class ObjectiveCLexerTest(unittest.TestCase):
             (Token.Literal, u')'),
             (Token.Punctuation, u';'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
 
     def testLiteralNumberNestedExpression(self):
         fragment = u'@(1+(2+3));\n'
         expected = [
-            (Token.Text, u''),
             (Token.Literal, u'@('),
             (Token.Literal.Number.Integer, u'1'),
             (Token.Operator, u'+'),
@@ -62,30 +57,25 @@ class ObjectiveCLexerTest(unittest.TestCase):
             (Token.Literal, u')'),
             (Token.Punctuation, u';'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
 
     def testLiteralNumberBool(self):
         fragment = u'@NO;\n'
         expected = [
-            (Token.Text, u''),
             (Token.Literal.Number, u'@NO'),
             (Token.Punctuation, u';'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
 
     def testLieralNumberBoolExpression(self):
         fragment = u'@(YES);\n'
         expected = [
-            (Token.Text, u''),
             (Token.Literal, u'@('),
             (Token.Name.Builtin, u'YES'),
             (Token.Literal, u')'),
             (Token.Punctuation, u';'),
             (Token.Text, u'\n'),
-            (Token.Text, u''),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))

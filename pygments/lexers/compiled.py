@@ -13,7 +13,7 @@ import re
 from string import Template
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-     this, combined, inherit, do_insertions
+     this, combined, inherit, do_insertions, default
 from pygments.util import get_bool_opt, get_list_opt
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
      Number, Punctuation, Error, Literal, Generic
@@ -107,7 +107,7 @@ class CFamilyLexer(RegexLexer):
              r'(' + _ws + r')?(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
-            ('', Text, 'statement'),
+            default('statement'),
         ],
         'statement' : [
             include('whitespace'),
