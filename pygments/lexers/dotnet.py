@@ -626,7 +626,7 @@ class FSharpLexer(RegexLexer):
             (r'\d[\d_]*[uU]?[yslLnQRZINGmM]?', Number.Integer),
             (r'0[xX][\da-fA-F][\da-fA-F_]*[uU]?[yslLn]?[fF]?', Number.Hex),
             (r'0[oO][0-7][0-7_]*[uU]?[yslLn]?', Number.Oct),
-            (r'0[bB][01][01_]*[uU]?[yslLn]?', Number.Binary),
+            (r'0[bB][01][01_]*[uU]?[yslLn]?', Number.Bin),
             (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)[fFmM]?',
              Number.Float),
 
