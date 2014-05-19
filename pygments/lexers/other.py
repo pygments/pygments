@@ -4041,7 +4041,7 @@ class PawnLexer(RegexLexer):
     mimetypes = ['text/x-pawn']
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    _ws = r'(?:\s|//.*?\n|/[*][\w\W]*?[*]/)+'
 
     tokens = {
         'root': [
@@ -4055,7 +4055,7 @@ class PawnLexer(RegexLexer):
             (r'\s+', Text),
             (r'\\\n', Text), # line continuation
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?\*[\w\W]*?\*(\\\n)?/', Comment.Multiline),
             (r'[{}]', Punctuation),
             (r'L?"', String, 'string'),
             (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),

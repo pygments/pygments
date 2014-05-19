@@ -536,6 +536,9 @@ class FSharpLexer(RegexLexer):
     """
     For the F# language (version 3.0).
 
+    AAAAACK Strings
+    http://research.microsoft.com/en-us/um/cambridge/projects/fsharp/manual/spec.html#_Toc335818775
+
     .. versionadded:: 1.5
     """
 
@@ -634,6 +637,8 @@ class FSharpLexer(RegexLexer):
              String.Char),
             (r"'.'", String.Char),
             (r"'", Keyword), # a stray quote is another syntax element
+
+            (r'@?"', String.Double, 'string'),
 
             (r'[~?][a-z][\w\']*:', Name.Variable),
         ],
