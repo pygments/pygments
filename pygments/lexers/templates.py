@@ -1559,10 +1559,9 @@ class ColdfusionMarkupLexer(RegexLexer):
             (r'#', Other),
         ],
         'cfcomment': [
-            (r'(?s)(.*?)(<!---)',
-             bygroups(Comment.Multiline, Comment.Multiline), '#push'),
-            (r'(?s)(.*?)(--->)',
-             bygroups(Comment.Multiline, Comment.Multiline), '#pop'),
+            (r'<!---', Comment.Multiline, '#push'),
+            (r'--->', Comment.Multiline, '#pop'),
+            (r'([^<-]|<(?!!---)|-(?!-->))+', Comment.Multiline),
         ],
     }
 
