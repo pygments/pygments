@@ -46,7 +46,7 @@ class VerilogLexer(RegexLexer):
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'([0-9]+)|(\'h)[0-9a-fA-F]+', Number.Hex),
-            (r'([0-9]+)|(\'b)[0-1]+', Number.Hex),   # should be binary
+            (r'([0-9]+)|(\'b)[0-1]+', Number.Bin),
             (r'([0-9]+)|(\'d)[0-9]+', Number.Integer),
             (r'([0-9]+)|(\'o)[0-7]+', Number.Oct),
             (r'\'[01xz]', Number),
@@ -161,7 +161,7 @@ class SystemVerilogLexer(RegexLexer):
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'([0-9]+)|(\'h)[0-9a-fA-F]+', Number.Hex),
-            (r'([0-9]+)|(\'b)[0-1]+', Number.Hex),   # should be binary
+            (r'([0-9]+)|(\'b)[0-1]+', Number.Bin),
             (r'([0-9]+)|(\'d)[0-9]+', Number.Integer),
             (r'([0-9]+)|(\'o)[0-7]+', Number.Oct),
             (r'\'[01xz]', Number),
@@ -346,11 +346,10 @@ class VhdlLexer(RegexLexer):
         ],
         'numbers': [
             (r'\d{1,2}#[0-9a-f_]+#?', Number.Integer),
-            (r'[0-1_]+(\.[0-1_])', Number.Integer),
             (r'\d+', Number.Integer),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+', Number.Float),
-            (r'H"[0-9a-f_]+"', Number.Oct),
+            (r'X"[0-9a-f_]+"', Number.Hex),
             (r'O"[0-7_]+"', Number.Oct),
-            (r'B"[0-1_]+"', Number.Oct),
+            (r'B"[0-1_]+"', Number.Bin),
         ],
     }

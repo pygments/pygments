@@ -253,6 +253,9 @@ Literals
 `Number`
     Token type for any number literal.
 
+`Number.Bin`
+    Token type for binary literals (e.g. ``0b101010``).
+
 `Number.Float`
     Token type for float literals (e.g. ``42.0``).
 

@@ -1242,7 +1242,7 @@ class CrocLexer(RegexLexer):
              Number.Float),
             # IntegerLiteral
             # -- Binary
-            (r'0[bB][01][01_]*', Number),
+            (r'0[bB][01][01_]*', Number.Bin),
             # -- Hexadecimal
             (r'0[xX][0-9a-fA-F][0-9a-fA-F_]*', Number.Hex),
             # -- Decimal
@@ -1740,8 +1740,8 @@ class FactorLexer(RegexLexer):
             (r'[+-]?\d(?:[\d,]*\d)?(?:[eE][+-]?\d+)?\s', Number),
             (r'0x[a-fA-F\d](?:[a-fA-F\d,]*[a-fA-F\d])?(?:p\d([\d,]*\d)?)?\s', Number),
             (r'NAN:\s+[a-fA-F\d](?:[a-fA-F\d,]*[a-fA-F\d])?(?:p\d([\d,]*\d)?)?\s', Number),
-            (r'0b[01]+\s', Number),
-            (r'0o[0-7]+\s', Number),
+            (r'0b[01]+\s', Number.Bin),
+            (r'0o[0-7]+\s', Number.Oct),
             (r'(?:\d([\d,]*\d)?)?\+\d(?:[\d,]*\d)?/\d(?:[\d,]*\d)?\s', Number),
             (r'(?:\-\d([\d,]*\d)?)?\-\d(?:[\d,]*\d)?/\d(?:[\d,]*\d)?\s', Number),
 
