@@ -47,4 +47,4 @@ cfcomment
 <cfset c = a * b>
 <cfset c = a + b>
 <cfset c = a - b>
-
+<!--- <!-- another <!--- nested --> ---> comment --->
