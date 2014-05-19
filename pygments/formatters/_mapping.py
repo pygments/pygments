@@ -14,6 +14,13 @@
 """
 
 from __future__ import print_function
+try:
+    import pygments
+except ImportError:
+    # This block makes this mapping work like the lexer one -- not requiring
+    # that Pygments already be on your PYTHONPATH.
+    import os.path, sys
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 # start
 from pygments.formatters.bbcode import BBCodeFormatter
