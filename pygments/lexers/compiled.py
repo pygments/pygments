@@ -2106,6 +2106,8 @@ class GoLexer(RegexLexer):
     aliases = ['go']
     mimetypes = ['text/x-gosrc']
 
+    flags = re.MULTILINE | re.UNICODE
+
     tokens = {
         'root': [
             (r'\n', Text),
@@ -2165,7 +2167,7 @@ class GoLexer(RegexLexer):
              r'|<-|\+\+|--|==|!=|:=|\.\.\.|[+\-*/%&])', Operator),
             (r'[|^<>=!()\[\]{}.,;:]', Punctuation),
             # identifier
-            (r'[a-zA-Z_]\w*', Name.Other),
+            (r'[^\W\d]\w*', Name.Other),
         ]
     }
 
