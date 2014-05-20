@@ -774,7 +774,7 @@ class RacketLexer(RegexLexer):
     _closing_parenthesis = r'[)\]}]'
     _delimiters = r'()[\]{}",\'`;\s'
     _symbol = r'(?u)(?:\|[^|]*\||\\[\w\W]|[^|\\%s]+)+' % _delimiters
-    _number_prefix = r'(?:#e)?(?:#b|(?:#d)?)(?:#e)?'
+    _exact_decimal_prefix = r'(?:#e)?(?:#d)?(?:#e)?'
     _exponent = r'(?:[defls][-+]?\d+)'
     _inexact_simple_no_hashes = r'(?:\d+(?:/\d+|\.\d*)?|\.\d+)'
     _inexact_simple = (r'(?:%s|(?:\d+#+(?:\.#*|/\d+#*)?|\.\d+#+|'
@@ -804,18 +804,18 @@ class RacketLexer(RegexLexer):
             # can denote the base or the type. These don't map neatly
             # onto Pygments token types; some judgment calls here.
 
-            # #b or #d or no prefix
-            (r'(?i)%s[-+]?\d+(?=[%s])' % (_number_prefix, _delimiters),
+            # #d or no prefix
+            (r'(?i)%s[-+]?\d+(?=[%s])' % (_exact_decimal_prefix, _delimiters),
              Number.Integer, '#pop'),
             (r'(?i)%s[-+]?(\d+(\.\d*)?|\.\d+)([deflst][-+]?\d+)?(?=[%s])' %
-             (_number_prefix, _delimiters), Number.Float, '#pop'),
+             (_exact_decimal_prefix, _delimiters), Number.Float, '#pop'),
             (r'(?i)%s[-+]?(%s([-+]%s?i)?|[-+]%s?i)(?=[%s])' %
-             (_number_prefix, _inexact_normal_no_hashes,
+             (_exact_decimal_prefix, _inexact_normal_no_hashes,
               _inexact_normal_no_hashes, _inexact_normal_no_hashes,
               _delimiters), Number, '#pop'),
 
             # Inexact without explicit #i
-            (r'(?i)(#[bd])?(%s([-+]%s?i)?|[-+]%s?i|%s@%s)(?=[%s])' %
+            (r'(?i)(#d)?(%s([-+]%s?i)?|[-+]%s?i|%s@%s)(?=[%s])' %
              (_inexact_real, _inexact_unsigned, _inexact_unsigned,
               _inexact_real, _inexact_real, _delimiters), Number.Float,
              '#pop'),
@@ -824,6 +824,9 @@ class RacketLexer(RegexLexer):
             (r'(?i)(([-+]?%st[-+]?\d+)|[-+](inf|nan)\.t)(?=[%s])' %
              (_inexact_simple, _delimiters), Number.Float, '#pop'),
 
+            # #b
+            (r'(?i)(#[ei])?#b%s' % _symbol, Number.Bin, '#pop'),
+
             # #o
             (r'(?i)(#[ei])?#o%s' % _symbol, Number.Oct, '#pop'),
 
@@ -831,7 +834,7 @@ class RacketLexer(RegexLexer):
             (r'(?i)(#[ei])?#x%s' % _symbol, Number.Hex, '#pop'),
 
             # #i is always inexact, i.e. float
-            (r'(?i)(#[bd])?#i%s' % _symbol, Number.Float, '#pop'),
+            (r'(?i)(#d)?#i%s' % _symbol, Number.Float, '#pop'),
 
             # Strings and characters
             (r'#?"', String.Double, ('#pop', 'string')),
@@ -1178,7 +1181,7 @@ class CommonLispLexer(RegexLexer):
             (r'#\'', Name.Function),
 
             # binary rational
-            (r'#[bB][+-]?[01]+(/[01]+)?', Number),
+            (r'#[bB][+-]?[01]+(/[01]+)?', Number.Bin),
 
             # octal rational
             (r'#[oO][+-]?[0-7]+(/[0-7]+)?', Number.Oct),
@@ -2207,7 +2210,7 @@ class OcamlLexer(RegexLexer):
             (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
             (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
             (r'0[oO][0-7][0-7_]*', Number.Oct),
-            (r'0[bB][01][01_]*', Number.Binary),
+            (r'0[bB][01][01_]*', Number.Bin),
             (r'\d[\d_]*', Number.Integer),
 
             (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
@@ -2455,7 +2458,7 @@ class OpaLexer(RegexLexer):
             (r'-?\d+[eE][+\-]?\d+', Number.Float),
             (r'0[xX][\da-fA-F]+', Number.Hex),
             (r'0[oO][0-7]+', Number.Oct),
-            (r'0[bB][01]+', Number.Binary),
+            (r'0[bB][01]+', Number.Bin),
             (r'\d+', Number.Integer),
             # color literals
             (r'#[\da-fA-F]{3,6}', Number.Integer),
@@ -2817,7 +2820,7 @@ class CoqLexer(RegexLexer):
             (r'\d[\d_]*', Number.Integer),
             (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
             (r'0[oO][0-7][0-7_]*', Number.Oct),
-            (r'0[bB][01][01_]*', Number.Binary),
+            (r'0[bB][01][01_]*', Number.Bin),
             (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
 
             (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
@@ -3177,8 +3180,11 @@ class ElixirLexer(RegexLexer):
             (r'[a-zA-Z_!]\w*[!\?]?', Name),
             (r'[(){};,/\|:\\\[\]]', Punctuation),
             (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
-            (r'\b(0[xX][0-9A-Fa-f]+|\d(_?\d)*(\.(?![^\d\s])'
-             r'(_?\d)*)?([eE][-+]?\d(_?\d)*)?|0[bB][01]+)\b', Number),
+            (r'(?i)\b(0x[\da-f]+)\b', Number.Hex),
+            (r'\b\d(_?\d)*(?!\.)\b', Number.Integer),
+            (r'\b(\d(_?\d)*(\.(?![^\d\s])(_?\d)*)?([eE][-+]?\d(_?\d)*)?)\b',
+             Number.Float),
+            (r'\b(0[bB][01]+)\b', Number.Bin),
             (r'%r\/.*\/', String.Regex),
             include('strings'),
         ],

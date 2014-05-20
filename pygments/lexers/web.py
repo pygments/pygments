@@ -854,7 +854,7 @@ class PhpLexer(RegexLexer):
             (r'0[0-7]+', Number.Oct),
             (r'0[xX][a-f0-9]+', Number.Hex),
             (r'\d+', Number.Integer),
-            (r'0b[01]+', Number.Binary),
+            (r'0b[01]+', Number.Bin),
             (r"'([^'\\]*(?:\\.[^'\\]*)*)'", String.Single),
             (r'`([^`\\]*(?:\\.[^`\\]*)*)`', String.Backtick),
             (r'"', String.Double, 'string'),
@@ -3558,9 +3558,9 @@ class XQueryLexer(ExtendedRegexLexer):
 
             # handle operator state
             # order on numbers matters - handle most complex first
-            (r'\d+(\.\d*)?[eE][\+\-]?\d+', Number.Double, 'operator'),
-            (r'(\.\d+)[eE][\+\-]?\d+', Number.Double, 'operator'),
-            (r'(\.\d+|\d+\.\d*)', Number, 'operator'),
+            (r'\d+(\.\d*)?[eE][\+\-]?\d+', Number.Float, 'operator'),
+            (r'(\.\d+)[eE][\+\-]?\d+', Number.Float, 'operator'),
+            (r'(\.\d+|\d+\.\d*)', Number.Float, 'operator'),
             (r'(\d+)', Number.Integer, 'operator'),
             (r'(\.\.|\.|\))', Punctuation, 'operator'),
             (r'(declare)(\s+)(construction)',

@@ -166,6 +166,7 @@ STANDARD_TYPES = {
     String.Symbol:                 'ss',
 
     Number:                        'm',
+    Number.Bin:                    'mb',
     Number.Float:                  'mf',
     Number.Hex:                    'mh',
     Number.Integer:                'mi',
