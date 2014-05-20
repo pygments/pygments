@@ -498,7 +498,7 @@ class DLexer(RegexLexer):
             (r'\.(0|[1-9][0-9_]*)([eE][+\-]?[0-9_]+)?[fFL]?[i]?', Number.Float),
             # IntegerLiteral
             # -- Binary
-            (r'0[Bb][01_]+', Number),
+            (r'0[Bb][01_]+', Number.Bin),
             # -- Octal
             (r'0[0-7_]+', Number.Oct),
             # -- Hexadecimal
@@ -1207,7 +1207,7 @@ class DylanLexer(RegexLexer):
             (r"'(\\.|\\[0-7]{1,3}|\\x[a-f0-9]{1,2}|[^\\\'\n])'", String.Char),
 
             # binary integer
-            (r'#[bB][01]+', Number),
+            (r'#[bB][01]+', Number.Bin),
 
             # octal integer
             (r'#[oO][0-7]+', Number.Oct),
@@ -2074,7 +2074,7 @@ class OocLexer(RegexLexer):
 
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'0c[0-9]+', Number.Oct),
-            (r'0b[01]+', Number.Binary),
+            (r'0b[01]+', Number.Bin),
             (r'[0-9_]\.[0-9_]*(?!\.)', Number.Float),
             (r'[0-9_]+', Number.Decimal),
 
@@ -2279,7 +2279,7 @@ class FelixLexer(RegexLexer):
 
             # IntegerLiteral
             # -- Binary
-            (r'0[Bb][01_]+%s' % decimal_suffixes, Number),
+            (r'0[Bb][01_]+%s' % decimal_suffixes, Number.Bin),
             # -- Octal
             (r'0[0-7_]+%s' % decimal_suffixes, Number.Oct),
             # -- Hexadecimal
@@ -2589,7 +2589,7 @@ class Modula2Lexer(RegexLexer):
             (r'([a-zA-Z_\$][\w\$]*)', Name),
         ],
         'numliterals': [
-            (r'[01]+B', Number.Binary),        # binary number (ObjM2)
+            (r'[01]+B', Number.Bin),           # binary number (ObjM2)
             (r'[0-7]+B', Number.Oct),          # octal number (PIM + ISO)
             (r'[0-7]+C', Number.Oct),          # char code (PIM + ISO)
             (r'[0-9A-F]+C', Number.Hex),       # char code (ObjM2)
@@ -2786,7 +2786,7 @@ class BlitzMaxLexer(RegexLexer):
             (r'\.[0-9]*(?!\.)', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'\$[0-9a-f]+', Number.Hex),
-            (r'\%[10]+', Number), # Binary
+            (r'\%[10]+', Number.Bin),
             # Other
             (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/&|~]))|Or|And|Not|[=<>^]))' %
              (bmax_vopwords), Operator),
@@ -2877,7 +2877,7 @@ class BlitzBasicLexer(RegexLexer):
             (r'\.[0-9]+(?!\.)', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'\$[0-9a-f]+', Number.Hex),
-            (r'\%[10]+', Number), # Binary
+            (r'\%[10]+', Number.Bin),
             # Other
             (r'(?:%s|([+\-*/~=<>^]))' % (bb_vopwords), Operator),
             (r'[(),:\[\]\\]', Punctuation),
@@ -3005,7 +3005,7 @@ class NimrodLexer(RegexLexer):
             (r'[0-9][0-9_]*(?=([eE.]|\'[fF](32|64)))',
               Number.Float, ('float-suffix', 'float-number')),
             (r'0[xX][a-f0-9][a-f0-9_]*', Number.Hex, 'int-suffix'),
-            (r'0[bB][01][01_]*', Number, 'int-suffix'),
+            (r'0[bB][01][01_]*', Number.Bin, 'int-suffix'),
             (r'0o[0-7][0-7_]*', Number.Oct, 'int-suffix'),
             (r'[0-9][0-9_]*', Number.Integer, 'int-suffix'),
             # Whitespace
@@ -3370,14 +3370,15 @@ class RustLexer(RegexLexer):
             # Lifetime
             (r"""'[a-zA-Z_]\w*""", Name.Label),
             # Binary Literal
-            (r'0b[01_]+', Number, 'number_lit'),
+            (r'0b[01_]+', Number.Bin, 'number_lit'),
             # Octal Literal
             (r'0o[0-7_]+', Number.Oct, 'number_lit'),
             # Hexadecimal Literal
             (r'0[xX][0-9a-fA-F_]+', Number.Hex, 'number_lit'),
             # Decimal Literal
-            (r'[0-9][0-9_]*(\.[0-9_]+[eE][+\-]?'
-             r'[0-9_]+|\.[0-9_]*|[eE][+\-]?[0-9_]+)?', Number, 'number_lit'),
+            (r'[0-9][0-9_]*(\.[0-9_]+[eE][+\-]?[0-9_]+|'
+             r'\.[0-9_]*|[eE][+\-]?[0-9_]+)', Number.Float, 'number_lit'),
+            (r'[0-9][0-9_]*', Number.Integer, 'number_lit'),
             # String Literal
             (r'"', String, 'string'),
             (r'r(#*)".*?"\1', String.Raw),
@@ -3526,7 +3527,7 @@ class MonkeyLexer(RegexLexer):
             (r'\.[0-9]+(?!\.)', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'\$[0-9a-fA-Z]+', Number.Hex),
-            (r'\%[10]+', Number), # Binary
+            (r'\%[10]+', Number.Bin),
             # Native data types
             (r'\b%s\b' % keyword_type, Keyword.Type),
             # Exception handling
@@ -3937,7 +3938,7 @@ class ChapelLexer(RegexLexer):
 
             # integer literals
             # -- binary
-            (r'0[bB][0-1]+', Number),
+            (r'0[bB][0-1]+', Number.Bin),
             # -- hex
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
             # -- decimal
@@ -4118,7 +4119,7 @@ class Inform6Lexer(RegexLexer):
             (r'\$[+%s][0-9]*\.?[0-9]*([eE][+%s]?[0-9]+)?' % (_dash, _dash),
              Number.Float, '#pop'),
             (r'\$[0-9a-fA-F]+', Number.Hex, '#pop'),
-            (r'\$\$[01]+', Number, '#pop'),  # Binary
+            (r'\$\$[01]+', Number.Bin, '#pop'),
             (r'[0-9]+', Number.Integer, '#pop'),
             # Values prefixed by hashes
             (r'(##|#a\$)(%s)' % _name, bygroups(Operator, Name), '#pop'),

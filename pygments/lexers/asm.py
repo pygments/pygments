@@ -353,7 +353,7 @@ class NasmLexer(RegexLexer):
             (string, String),
             (hexn, Number.Hex),
             (octn, Number.Oct),
-            (binn, Number),
+            (binn, Number.Bin),
             (floatn, Number.Float),
             (decn, Number.Integer),
             include('punctuation'),
@@ -422,7 +422,8 @@ class Ca65Lexer(RegexLexer):
             (r'"[^"\n]*.', String),
             (r"'[^'\n]*.", String.Char),
             (r'\$[0-9a-f]+|[0-9a-f]+h\b', Number.Hex),
-            (r'\d+|%[01]+', Number.Integer),
+            (r'\d+', Number.Integer),
+            (r'%[01]+', Number.Bin),
             (r'[#,.:()=]', Punctuation),
             (r'[a-z_.@$][\w.@$]*', Name),
         ]
