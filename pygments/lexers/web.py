@@ -28,7 +28,7 @@ __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JsonLexer', 'CssLexer',
            'ObjectiveJLexer', 'CoffeeScriptLexer', 'LiveScriptLexer',
            'DuelLexer', 'ScamlLexer', 'JadeLexer', 'XQueryLexer',
            'DtdLexer', 'DartLexer', 'LassoLexer', 'QmlLexer', 'TypeScriptLexer',
-           'KalLexer', 'CirruLexer', 'MaskLexer', 'ZephirLexer']
+           'KalLexer', 'CirruLexer', 'MaskLexer', 'ZephirLexer', 'SlimLexer']
 
 
 class JavascriptLexer(RegexLexer):
@@ -4437,4 +4437,74 @@ class ZephirLexer(RegexLexer):
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
         ]
+    }
+
+class SlimLexer(ExtendedRegexLexer):
+    """
+    For Slim markup.
+    """
+
+    name = 'Slim'
+    aliases = ['slim']
+    filenames = ['*.slim']
+    mimetypes = ['text/x-slim']
+
+    flags = re.IGNORECASE
+    _dot = r'(?: \|\n(?=.* \|)|.)'
+    tokens = {
+        'root': [
+            (r'[ \t]*\n', Text),
+            (r'[ \t]*', _indentation),
+        ],
+
+        'css': [
+            (r'\.[\w:-]+', Name.Class, 'tag'),
+            (r'\#[\w:-]+', Name.Function, 'tag'),
+        ],
+
+        'eval-or-plain': [
+            (r'([ \t]*==?)(.*\n)',
+             bygroups(Punctuation, using(RubyLexer)),
+             'root'),
+            (r'[ \t]+[\w:-]+(?=[=])', Name.Attribute, 'html-attributes'),
+            (r'', Text, 'plain'),
+        ],
+
+        'content': [
+            include('css'),
+            (r'[\w:-]+:[ \t]*\n', Text, 'plain'),
+            (r'(-)(.*\n)',
+             bygroups(Punctuation, using(RubyLexer)),
+             '#pop'),
+            (r'\|' + _dot + r'*\n', _starts_block(Text, 'plain'), '#pop'),
+            (r'/' + _dot + r'*\n', _starts_block(Comment.Preproc, 'slim-comment-block'), '#pop'),
+            (r'[\w:-]+', Name.Tag, 'tag'),
+            include('eval-or-plain'),
+        ],
+
+        'tag': [
+            include('css'),
+            (r'[<>]{1,2}(?=[ \t=])', Punctuation),
+            (r'[ \t]+\n', Punctuation, '#pop:2'),
+            include('eval-or-plain'),
+        ],
+
+        'plain': [
+            (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Text),
+            (r'(#\{)(.*?)(\})',
+             bygroups(String.Interpol, using(RubyLexer), String.Interpol)),
+            (r'\n', Text, 'root'),
+        ],
+
+        'html-attributes': [
+            (r'=', Punctuation),
+            (r'"[^\"]+"', using(RubyLexer), 'tag'),
+            (r'\'[^\']+\'', using(RubyLexer), 'tag'),
+            (r'[\w]+', Text, 'tag'),
+        ],
+
+        'slim-comment-block': [
+            (_dot + '+', Comment.Preproc),
+            (r'\n', Text, 'root'),
+        ],
     }
