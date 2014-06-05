@@ -999,11 +999,16 @@ class SchemeLexer(RegexLexer):
 
     tokens = {
         'root' : [
-            # the comments - always starting with semicolon
+            # the comments
             # and going to the end of the line
             (r';.*$', Comment.Single),
             # multi-line comment
             (r'#\|', Comment.Multiline, 'multiline-comment'),
+            # commented form (entire sexpr folliwng)
+            (r'#;\s*\(', Comment, 'commented-form'),
+            # signifies that the program text that follows is written with the
+            # lexical and datum syntax described in r6rs
+            (r'#!r6rs', Comment),
 
             # whitespaces - usually not relevant
             (r'\s+', Text),
@@ -1057,6 +1062,11 @@ class SchemeLexer(RegexLexer):
             (r'\|#', Comment.Multiline, '#pop'),
             (r'[^|#]+', Comment.Multiline),
             (r'[|#]', Comment.Multiline),
+        ],
+        'commented-form' : [
+            (r'\(', Comment, '#push'),
+            (r'\)', Comment, '#pop'),
+            (r'[^()]+', Comment),
         ],
     }
 
