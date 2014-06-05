@@ -321,6 +321,7 @@ LEXERS = {
     'SquidConfLexer': ('pygments.lexers.text', 'SquidConf', ('squidconf', 'squid.conf', 'squid'), ('squid.conf',), ('text/x-squidconf',)),
     'SspLexer': ('pygments.lexers.templates', 'Scalate Server Page', ('ssp',), ('*.ssp',), ('application/x-ssp',)),
     'StanLexer': ('pygments.lexers.math', 'Stan', ('stan',), ('*.stan',), ()),
+    'SwiftLexer': ('pygments.lexers.compiled', 'Swift', ('swift',), ('*.swift',), ('text/x-swift',)),
     'SwigLexer': ('pygments.lexers.compiled', 'SWIG', ('swig',), ('*.swg', '*.i'), ('text/swig',)),
     'SystemVerilogLexer': ('pygments.lexers.hdl', 'systemverilog', ('systemverilog', 'sv'), ('*.sv', '*.svh'), ('text/x-systemverilog',)),
     'TclLexer': ('pygments.lexers.agile', 'Tcl', ('tcl',), ('*.tcl',), ('text/x-tcl', 'text/x-script.tcl', 'application/x-tcl')),
