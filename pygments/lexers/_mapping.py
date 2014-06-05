@@ -309,6 +309,7 @@ LEXERS = {
     'ScilabLexer': ('pygments.lexers.math', 'Scilab', ('scilab',), ('*.sci', '*.sce', '*.tst'), ('text/scilab',)),
     'ScssLexer': ('pygments.lexers.web', 'SCSS', ('scss',), ('*.scss',), ('text/x-scss',)),
     'ShellSessionLexer': ('pygments.lexers.shell', 'Shell Session', ('shell-session',), ('*.shell-session',), ('application/x-sh-session',)),
+    'SlimLexer': ('pygments.lexers.web', 'Slim', ('slim',), ('*.slim',), ('text/x-slim',)),
     'SmaliLexer': ('pygments.lexers.dalvik', 'Smali', ('smali',), ('*.smali',), ('text/smali',)),
     'SmalltalkLexer': ('pygments.lexers.other', 'Smalltalk', ('smalltalk', 'squeak', 'st'), ('*.st',), ('text/x-smalltalk',)),
     'SmartyLexer': ('pygments.lexers.templates', 'Smarty', ('smarty',), ('*.tpl',), ('application/x-smarty',)),
@@ -351,6 +352,7 @@ LEXERS = {
     'XmlSmartyLexer': ('pygments.lexers.templates', 'XML+Smarty', ('xml+smarty',), (), ('application/xml+smarty',)),
     'XsltLexer': ('pygments.lexers.web', 'XSLT', ('xslt',), ('*.xsl', '*.xslt', '*.xpl'), ('application/xsl+xml', 'application/xslt+xml')),
     'XtendLexer': ('pygments.lexers.jvm', 'Xtend', ('xtend',), ('*.xtend',), ('text/x-xtend',)),
+    'YamlJinjaLexer': ('pygments.lexers.templates', 'YAML+Jinja', ('yaml+jinja', 'salt', 'sls'), ('*.sls',), ('text/x-yaml+jinja', 'text/x-sls')),
     'YamlLexer': ('pygments.lexers.text', 'YAML', ('yaml',), ('*.yaml', '*.yml'), ('text/x-yaml',)),
     'ZephirLexer': ('pygments.lexers.web', 'Zephir', ('zephir',), ('*.zep',), ()),
 }

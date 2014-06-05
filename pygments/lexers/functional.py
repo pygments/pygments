@@ -1002,6 +1002,8 @@ class SchemeLexer(RegexLexer):
             # the comments - always starting with semicolon
             # and going to the end of the line
             (r';.*$', Comment.Single),
+            # multi-line comment
+            (r'#\|', Comment.Multiline, 'multiline-comment'),
 
             # whitespaces - usually not relevant
             (r'\s+', Text),
@@ -1049,6 +1051,12 @@ class SchemeLexer(RegexLexer):
             # the famous parentheses!
             (r'(\(|\))', Punctuation),
             (r'(\[|\])', Punctuation),
+        ],
+        'multiline-comment' : [
+            (r'#\|', Comment.Multiline, '#push'),
+            (r'\|#', Comment.Multiline, '#pop'),
+            (r'[^|#]+', Comment.Multiline),
+            (r'[|#]', Comment.Multiline),
         ],
     }
 
