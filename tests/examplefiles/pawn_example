@@ -16,15 +16,6 @@ DEFINE TEMP-TABLE ttNames NO-UNDO
 /* One-line comment */
 /* Two-line
    Comment  */
-/*
-  Nested
-  /*
-    Multiline
-    /*
-      Comment
-    */
-  */
-*/
 
 CREATE ttNames.
 ASSIGN ttNames.cName = {&MY_NAME}.
