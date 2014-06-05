@@ -3119,6 +3119,33 @@ class NixLexer(RegexLexer):
         return rv
 
 
+def gen_elixir_string_rules(name, symbol, token):
+    states = {}
+    states['string_' + name] = [
+        (r'[^#%s\\]+' % (symbol,), token),
+        include('escapes'),
+        (r'\\.', token),
+        (r'(%s)(:?)' % (symbol,), bygroups(token, Punctuation), "#pop"),
+        include('interpol')
+    ]
+    return states
+
+def gen_elixir_sigstr_rules(term, token, interpol=True):
+    if interpol:
+        return [
+            (r'[^#%s\\]+' % (term,), token),
+            include('escapes'),
+            (r'\\.', token),
+            (r'%s[a-zA-Z]*' % (term,), token, '#pop'),
+            include('interpol')
+        ]
+    else:
+        return [
+            (r'[^%s\\]+' % (term,), token),
+            (r'\\.', token),
+            (r'%s[a-zA-Z]*' % (term,), token, '#pop'),
+        ]
+
 class ElixirLexer(RegexLexer):
     """
     For the `Elixir language <http://elixir-lang.org>`_.
@@ -3131,92 +3158,228 @@ class ElixirLexer(RegexLexer):
     filenames = ['*.ex', '*.exs']
     mimetypes = ['text/x-elixir']
 
-    def gen_elixir_sigil_rules():
-        states = {}
+    KEYWORD = ['fn', 'do', 'end', 'after', 'else', 'rescue', 'catch']
+    KEYWORD_OPERATOR = ['not', 'and', 'or', 'xor', 'when', 'in']
+    BUILTIN = [
+        'case', 'cond', 'for', 'if', 'unless', 'try', 'receive', 'raise',
+        'quote', 'unquote', 'unquote_splicing', 'throw', 'super'
+    ]
+    BUILTIN_DECLARATION = [
+        'def', 'defp', 'defmodule', 'defprotocol', 'defmacro', 'defmacrop',
+        'defdelegate', 'defexception', 'defstruct', 'defimpl', 'defcallback'
+    ]
 
-        states['strings'] = [
-            (r'(%[A-Ba-z])?"""(?:.|\n)*?"""', String.Doc),
-            (r"'''(?:.|\n)*?'''", String.Doc),
-            (r'"', String.Double, 'dqs'),
-            (r"'.*?'", String.Single),
-            (r'(?<!\w)\?(\\(x\d{1,2}|\h{1,2}(?!\h)\b|0[0-7]{0,2}(?![0-7])\b|'
-             r'[^x0MC])|(\\[MC]-)+\w|[^\s\\])', String.Other)
+    BUILTIN_NAMESPACE = ['import', 'require', 'use', 'alias']
+    CONSTANT = ['nil', 'true', 'false']
+
+    PSEUDO_VAR = ['_', '__MODULE__', '__DIR__', '__ENV__', '__CALLER__']
+
+    OPERATORS3 = ['<<<', '>>>', '|||', '&&&', '^^^', '~~~', '===', '!==']
+    OPERATORS2 = [
+        '==', '!=', '<=', '>=', '&&', '||', '<>', '++', '--', '|>', '=~'
+    ]
+    OPERATORS1 = ['<', '>', '+', '-', '*', '/', '!', '^', '&']
+
+    PUNCTUATION = [
+        '\\\\', '<<', '>>', '::', '->', '<-', '=>', '|', '(', ')',
+        '{', '}', ';', ',', '.', '[', ']', '%', '='
+    ]
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):
+            if token is Name:
+                if value in self.KEYWORD:
+                    yield index, Keyword, value
+                elif value in self.KEYWORD_OPERATOR:
+                    yield index, Operator.Word, value
+                elif value in self.BUILTIN:
+                    yield index, Keyword, value
+                elif value in self.BUILTIN_DECLARATION:
+                    yield index, Keyword.Declaration, value
+                elif value in self.BUILTIN_NAMESPACE:
+                    yield index, Keyword.Namespace, value
+                elif value in self.CONSTANT:
+                    yield index, Name.Constant, value
+                elif value in self.PSEUDO_VAR:
+                    yield index, Name.Builtin.Pseudo, value
+                else:
+                    yield index, token, value
+            else:
+                yield index, token, value
+
+    def gen_elixir_sigil_rules():
+        # these braces are balanced inside the sigil string
+        braces = [
+            (r'\{', r'\}', 'cb'),
+            (r'\[', r'\]', 'sb'),
+            (r'\(', r'\)', 'pa'),
+            (r'\<', r'\>', 'ab'),
         ]
 
-        for lbrace, rbrace, name, in ('\\{', '\\}', 'cb'), \
-                                     ('\\[', '\\]', 'sb'), \
-                                     ('\\(', '\\)', 'pa'), \
-                                     ('\\<', '\\>', 'lt'):
+        # these are also valid sigil terminators, they are not balanced
+        terms = [
+            (r'\/', 'slas'), (r'\|', 'pipe'), ('"', 'quot'), ("'", 'apos'),
+        ]
 
-            states['strings'] += [
-                (r'%[a-z]' + lbrace, String.Double, name + 'intp'),
-                (r'%[A-Z]' + lbrace, String.Double, name + 'no-intp')
+        # heredocs have slightly different rules, they are not balanced
+        triquotes = [(r'"""', 'triquot'), (r"'''", 'triapos')]
+
+        token = String.Other
+        states = {'sigils': []}
+
+        for term, name in triquotes:
+            states['sigils'] += [
+                (r'(~[a-z])(%s)' % (term,), bygroups(token, String.Heredoc),
+                    (name + '-end', name + '-intp')),
+                (r'(~[A-Z])(%s)' % (term,), bygroups(token, String.Heredoc),
+                    (name + '-end', name + '-no-intp')),
             ]
 
-            states[name +'intp'] = [
-                (r'' + rbrace + '[a-z]*', String.Double, "#pop"),
-                include('enddoublestr')
+            states[name +'-end'] = [(r'[a-zA-Z]*', token, '#pop')]
+            states[name +'-intp'] = [
+                (r'^\s*' + term, String.Heredoc, '#pop'),
+                include('heredoc_interpol'),
+            ]
+            states[name +'-no-intp'] = [
+                (r'^\s*' + term, String.Heredoc, '#pop'),
+                include('heredoc_no_interpol'),
             ]
 
-            states[name +'no-intp'] = [
-                (r'.*' + rbrace + '[a-z]*', String.Double , "#pop")
+        for term, name in terms:
+            states['sigils'] += [
+                (r'~[a-z]' + term, token, name + '-intp'),
+                (r'~[A-Z]' + term, token, name + '-no-intp'),
             ]
+
+            # Similar states to the braced sigils, but no balancing of
+            # terminators
+            states[name +'-intp'] = gen_elixir_sigstr_rules(term, token)
+            states[name +'-no-intp'] = \
+                gen_elixir_sigstr_rules(term, token, interpol=False)
+
+        for lbrace, rbrace, name in braces:
+            states['sigils'] += [
+                (r'~[a-z]' + lbrace, token, name + '-intp'),
+                (r'~[A-Z]' + lbrace, token, name + '-no-intp')
+            ]
+
+            states[name +'-intp'] = [
+                (r'\\.', token),
+                (lbrace, token, '#push'),
+            ] + gen_elixir_sigstr_rules(rbrace, token)
+
+            states[name +'-no-intp'] = [
+                (r'\\.', token),
+                (lbrace, token, '#push'),
+            ] + gen_elixir_sigstr_rules(rbrace, token, interpol=False)
 
         return states
+
+    op3_re = "|".join(re.escape(s) for s in OPERATORS3)
+    op2_re = "|".join(re.escape(s) for s in OPERATORS2)
+    op1_re = "|".join(re.escape(s) for s in OPERATORS1)
+    ops_re = r'(?:%s|%s|%s)' % (op3_re, op2_re, op1_re)
+    punctuation_re = "|".join(re.escape(s) for s in PUNCTUATION)
+    name_re = r'[a-z_][a-zA-Z_0-9]*[!\?]?'
+    modname_re = r'[A-Z][A-Za-z_]*(?:\.[A-Z][A-Za-z_]*)*'
+    complex_name_re = r'(?:%s|%s|%s)' % (name_re, modname_re, ops_re)
+    special_atom_re = r'(?:\.\.\.|<<>>|%{}|%|{})'
 
     tokens = {
         'root': [
             (r'\s+', Text),
             (r'#.*$', Comment.Single),
-            (r'\b(case|cond|end|bc|lc|if|unless|try|loop|receive|fn|defmodule|'
-             r'defp?|defprotocol|defimpl|defrecord|defmacrop?|defdelegate|'
-             r'defexception|exit|raise|throw|unless|after|rescue|catch|else)\b(?![?!])|'
-             r'(?<!\.)\b(do|\-\>)\b\s*', Keyword),
-            (r'\b(import|require|use|recur|quote|unquote|super|refer)\b(?![?!])',
-                Keyword.Namespace),
-            (r'(?<!\.)\b(and|not|or|when|xor|in)\b', Operator.Word),
-            (r'%=|\*=|\*\*=|\+=|\-=|\^=|\|\|=|'
-             r'<=>|<(?!<|=)|>(?!<|=|>)|<=|>=|===|==|=~|!=|!~|(?=[ \t])\?|'
-             r'(?<=[ \t])!+|&&|\|\||\^|\*|\+|\-|/|'
-             r'\||\+\+|\-\-|\*\*|\/\/|\<\-|\<\>|<<|>>|=|\.', Operator),
-            (r'(?<!:)(:)([a-zA-Z_]\w*([?!]|=(?![>=]))?|\<\>|===?|>=?|<=?|'
-             r'<=>|&&?|%\(\)|%\[\]|%\{\}|\+\+?|\-\-?|\|\|?|\!|//|[%&`/\|]|'
-             r'\*\*?|=?~|<\-)|([a-zA-Z_]\w*([?!])?)(:)(?!:)', String.Symbol),
-            (r':"', String.Symbol, 'interpoling_symbol'),
-            (r'\b(nil|true|false)\b(?![?!])|\b[A-Z]\w*\b', Name.Constant),
-            (r'\b(__(FILE|LINE|MODULE|MAIN|FUNCTION)__)\b(?![?!])', Name.Builtin.Pseudo),
-            (r'[a-zA-Z_!]\w*[!\?]?', Name),
-            (r'[(){};,/\|:\\\[\]]', Punctuation),
-            (r'@[a-zA-Z_]\w*|&\d', Name.Variable),
-            (r'(?i)\b(0x[\da-f]+)\b', Number.Hex),
-            (r'\b\d(_?\d)*(?!\.)\b', Number.Integer),
-            (r'\b(\d(_?\d)*(\.(?![^\d\s])(_?\d)*)?([eE][-+]?\d(_?\d)*)?)\b',
-             Number.Float),
-            (r'\b(0[bB][01]+)\b', Number.Bin),
-            (r'%r\/.*\/', String.Regex),
-            include('strings'),
+
+            # Various kinds of characters
+            (r'(?i)(\?)(\\x{)([\da-f]+)(})',
+                bygroups(String.Char,
+                    String.Escape, Number.Hex, String.Escape)),
+            (r'(?i)(\?)(\\x[\da-f]{1,2})',
+                bygroups(String.Char, String.Escape)),
+            (r'(\?)(\\[0-7]{1,3})',
+                bygroups(String.Char, String.Escape)),
+            (r'(\?)(\\[abdefnrstv])',
+                bygroups(String.Char, String.Escape)),
+            (r'\?\\?.', String.Char),
+
+            # atoms
+            (r':' + special_atom_re, String.Symbol),
+            (r':' + complex_name_re, String.Symbol),
+            (r':"', String.Symbol, 'string_double_atom'),
+            (r":'", String.Symbol, 'string_single_atom'),
+
+            # [keywords: ...]
+            (r'(%s|%s)(:)(?=\s|\n)' % (special_atom_re, complex_name_re),
+                bygroups(String.Symbol, Punctuation)),
+
+            # @attributes
+            (r'@' + name_re, Name.Attribute),
+
+            # operators and punctuation
+            (op3_re, Operator),
+            (op2_re, Operator),
+            (punctuation_re, Punctuation),
+            (r'&\d', Name.Entity),   # anon func arguments
+            (op1_re, Operator),
+
+            # identifiers
+            (name_re, Name),
+            (modname_re, Name.Class),
+
+            # numbers
+            (r'0[bB][01]+', Number.Bin),
+            (r'0[0-7]+', Number.Oct),
+            (r'(?i)0x[\da-f]+', Number.Hex),
+            (r'\d(_?\d)*\.\d(_?\d)*([eE][-+]?\d(_?\d)*)?', Number.Float),
+            (r'\d(_?\d)*', Number.Integer),
+
+            # strings and heredocs
+            (r'"""\s*', String.Heredoc, 'heredoc_double'),
+            (r"'''\s*$", String.Heredoc, 'heredoc_single'),
+            (r'"', String.Double, 'string_double'),
+            (r"'", String.Single, 'string_single'),
+
+            include('sigils'),
         ],
-        'dqs': [
-            (r'"', String.Double, "#pop"),
-            include('enddoublestr')
+        'heredoc_double': [
+            (r'^\s*"""', String.Heredoc, '#pop'),
+            include('heredoc_interpol'),
         ],
-        'interpoling': [
-            (r'#{', String.Interpol, 'interpoling_string'),
+        'heredoc_single': [
+            (r"^\s*'''", String.Heredoc, '#pop'),
+            include('heredoc_interpol'),
         ],
-        'interpoling_string' : [
+        'heredoc_interpol': [
+            (r'[^#\\\n]+', String.Heredoc),
+            include('escapes'),
+            (r'\\.', String.Heredoc),
+            (r'\n+', String.Heredoc),
+            include('interpol'),
+        ],
+        'heredoc_no_interpol': [
+            (r'[^\\\n]+', String.Heredoc),
+            (r'\\.', String.Heredoc),
+            (r'\n+', String.Heredoc),
+        ],
+        'escapes': [
+            (r'(?i)(\\x{)([\da-f]+)(})',
+                bygroups(String.Escape, Number.Hex, String.Escape)),
+            (r'(?i)\\x[\da-f]{1,2}', String.Escape),
+            (r'\\[0-7]{1,3}', String.Escape),
+            (r'\\[abdefnrstv]', String.Escape),
+        ],
+        'interpol': [
+            (r'#{', String.Interpol, 'interpol_string'),
+        ],
+        'interpol_string' : [
             (r'}', String.Interpol, "#pop"),
             include('root')
         ],
-        'interpoling_symbol': [
-            (r'"', String.Symbol, "#pop"),
-            include('interpoling'),
-            (r'[^#"]+', String.Symbol),
-        ],
-        'enddoublestr' : [
-            include('interpoling'),
-            (r'[^#"]+', String.Double),
-        ]
     }
+    tokens.update(gen_elixir_string_rules('double', '"', String.Double))
+    tokens.update(gen_elixir_string_rules('single', "'", String.Single))
+    tokens.update(gen_elixir_string_rules('double_atom', '"', String.Symbol))
+    tokens.update(gen_elixir_string_rules('single_atom', "'", String.Symbol))
     tokens.update(gen_elixir_sigil_rules())
 
 
