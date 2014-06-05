@@ -32,7 +32,7 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
            'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'PikeLexer',
            'ChapelLexer', 'EiffelLexer', 'Inform6Lexer', 'Inform7Lexer',
-           'Inform6TemplateLexer', 'MqlLexer']
+           'Inform6TemplateLexer', 'MqlLexer', 'SwiftLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -5146,3 +5146,44 @@ class MqlLexer(CppLexer):
             inherit,
         ],
     }
+
+class SwiftLexer(ObjectiveCLexer):
+    """
+    For `Swift <https://developer.apple.com/swift/>`_ source.
+    """
+    name = 'Swift'
+    filenames = ['*.swift']
+    aliases = ['swift']
+    mimetypes = ['text/x-swift']
+
+    keywords_decl = ['class', 'deinit', 'enum', 'extension', 'func', 'import',
+                      'init', 'let', 'protocol', 'static', 'struct', 'subscript',
+                      'typealias', 'var']
+    keywords_stmt = ['break', 'case', 'continue', 'default', 'do', 'else',
+                     'fallthrough', 'if', 'in', 'for', 'return', 'switch',
+                     'where', 'while']
+    keywords_type = ['as', 'dynamicType', 'is', 'new', 'super', 'self', 'Self',
+                     'Type', '__COLUMN__', '__FILE__', '__FUNCTION__',
+                     '__LINE__']
+    keywords_resrv = ['associativity', 'didSet', 'get', 'infix', 'inout', 'left',
+                      'mutating', 'none', 'nonmutating', 'operator', 'override',
+                      'postfix', 'precedence', 'prefix', 'right', 'set',
+                      'unowned', 'unowned(safe)', 'unowned(unsafe)', 'weak',
+                      'willSet']
+    operators = ['->']
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in \
+            ObjectiveCLexer.get_tokens_unprocessed(self, text):
+            if token is Name:
+                if value in self.keywords_decl:
+                    token = Keyword
+                elif value in self.keywords_stmt:
+                    token = Keyword
+                elif value in self.keywords_type:
+                    token = Keyword.Type
+                elif value in self.keywords_resrv:
+                    token = Keyword.Reserved
+                elif value in self.operators:
+                    token = Operator
+            yield index, token, value
