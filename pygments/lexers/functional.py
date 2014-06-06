@@ -3218,7 +3218,7 @@ class ElixirLexer(RegexLexer):
 
         # these are also valid sigil terminators, they are not balanced
         terms = [
-            (r'\/', 'slas'), (r'\|', 'pipe'), ('"', 'quot'), ("'", 'apos'),
+            (r'/', 'slas'), (r'\|', 'pipe'), ('"', 'quot'), ("'", 'apos'),
         ]
 
         # heredocs have slightly different rules, they are not balanced
