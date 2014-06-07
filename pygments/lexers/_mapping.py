@@ -191,6 +191,7 @@ LEXERS = {
     'LassoXmlLexer': ('pygments.lexers.templates', 'XML+Lasso', ('xml+lasso',), (), ('application/xml+lasso',)),
     'LighttpdConfLexer': ('pygments.lexers.text', 'Lighttpd configuration file', ('lighty', 'lighttpd'), (), ('text/x-lighttpd-conf',)),
     'LimboLexer': ('pygments.lexers.inferno', 'Limbo', ('limbo',), ('*.b',), ('text/limbo',)),
+    'LiquidLexer': ('pygments.lexers.templates', 'liquid', ('liquid',), ('*.liquid',), ()),
     'LiterateAgdaLexer': ('pygments.lexers.functional', 'Literate Agda', ('lagda', 'literate-agda'), ('*.lagda',), ('text/x-literate-agda',)),
     'LiterateCryptolLexer': ('pygments.lexers.functional', 'Literate Cryptol', ('lcry', 'literate-cryptol', 'lcryptol'), ('*.lcry',), ('text/x-literate-cryptol',)),
     'LiterateHaskellLexer': ('pygments.lexers.functional', 'Literate Haskell', ('lhs', 'literate-haskell', 'lhaskell'), ('*.lhs',), ('text/x-literate-haskell',)),
