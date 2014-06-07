@@ -1856,7 +1856,8 @@ class YamlJinjaLexer(DelegatingLexer):
 
 class LiquidLexer(RegexLexer):
     """
-    Lexer for Liquid templates.
+    Lexer for `Liquid templates
+    <http://www.rubydoc.info/github/Shopify/liquid>`_.
 
     .. versionadded:: 2.0
     """
