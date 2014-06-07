@@ -1855,6 +1855,11 @@ class YamlJinjaLexer(DelegatingLexer):
 
 
 class LiquidLexer(RegexLexer):
+    """
+    Lexer for Liquid templates.
+
+    .. versionadded:: 2.0
+    """
     name = 'liquid'
     aliases = ['liquid']
     filenames = ['*.liquid']
@@ -1862,28 +1867,43 @@ class LiquidLexer(RegexLexer):
     tokens = {
         'root': [
             (r'[^\{]+', Text),
-            (r'(\{%)(\s*)', bygroups(Punctuation, Whitespace), 'tag-or-block'), # tags and block tags
-            (r'(\{\{)(\s*)([^\s(\}\})]+)', bygroups(Punctuation, Whitespace, using(this, state = 'generic')), 'output'), # output tags
+            # tags and block tags
+            (r'(\{%)(\s*)', bygroups(Punctuation, Whitespace), 'tag-or-block'),
+            # output tags
+            (r'(\{\{)(\s*)([^\s(\}\})]+)',
+             bygroups(Punctuation, Whitespace, using(this, state = 'generic')),
+             'output'),
             (r'\{', Text)
         ],
 
         'tag-or-block': [
             # builtin logic blocks
             (r'(if|unless|elsif|case)(?=\s+)', Keyword.Reserved, 'condition'),
-            (r'(when)(\s+)', bygroups(Keyword.Reserved, Whitespace), combined('end-of-block', 'whitespace', 'generic')),
-            (r'(else)(\s*)(%\})', bygroups(Keyword.Reserved, Whitespace, Punctuation), '#pop'),
+            (r'(when)(\s+)', bygroups(Keyword.Reserved, Whitespace),
+             combined('end-of-block', 'whitespace', 'generic')),
+            (r'(else)(\s*)(%\})',
+             bygroups(Keyword.Reserved, Whitespace, Punctuation), '#pop'),
 
             # other builtin blocks
-            (r'(capture)(\s+)([^\s%]+)(\s*)(%\})', bygroups(Name.Tag, Whitespace, using(this, state = 'variable'), Whitespace, Punctuation), '#pop'),
-            (r'(comment)(\s*)(%\})', bygroups(Name.Tag, Whitespace, Punctuation), 'comment'),
-            (r'(raw)(\s*)(%\})', bygroups(Name.Tag, Whitespace, Punctuation), 'raw'),
+            (r'(capture)(\s+)([^\s%]+)(\s*)(%\})',
+             bygroups(Name.Tag, Whitespace, using(this, state = 'variable'),
+                      Whitespace, Punctuation), '#pop'),
+            (r'(comment)(\s*)(%\})',
+             bygroups(Name.Tag, Whitespace, Punctuation), 'comment'),
+            (r'(raw)(\s*)(%\})',
+             bygroups(Name.Tag, Whitespace, Punctuation), 'raw'),
 
             # end of block
-            (r'(end(case|unless|if))(\s*)(%\})', bygroups(Keyword.Reserved, None, Whitespace, Punctuation), '#pop'),
-            (r'(end([^\s%]+))(\s*)(%\})', bygroups(Name.Tag, None, Whitespace, Punctuation), '#pop'),
+            (r'(end(case|unless|if))(\s*)(%\})',
+             bygroups(Keyword.Reserved, None, Whitespace, Punctuation), '#pop'),
+            (r'(end([^\s%]+))(\s*)(%\})',
+             bygroups(Name.Tag, None, Whitespace, Punctuation), '#pop'),
 
             # builtin tags (assign and include are handled together with usual tags)
-            (r'(cycle)(\s+)(([^\s:]*)(:))?(\s*)', bygroups(Name.Tag, Whitespace, None, using(this, state = 'generic'), Punctuation, Whitespace), 'variable-tag-markup'),
+            (r'(cycle)(\s+)(([^\s:]*)(:))?(\s*)',
+             bygroups(Name.Tag, Whitespace, None,
+                      using(this, state='generic'), Punctuation, Whitespace),
+             'variable-tag-markup'),
 
             # other tags or blocks
             (r'([^\s%]+)(\s*)', bygroups(Name.Tag, Whitespace), 'tag-markup')
@@ -1900,7 +1920,8 @@ class LiquidLexer(RegexLexer):
             include('whitespace'),
             (r'\}\}', Punctuation, ('#pop', '#pop')), # end of filters and output
 
-            (r'([^\s\|:]+)(:?)(\s*)', bygroups(Name.Function, Punctuation, Whitespace), 'filter-markup')
+            (r'([^\s\|:]+)(:?)(\s*)',
+             bygroups(Name.Function, Punctuation, Whitespace), 'filter-markup')
         ],
 
         'filter-markup': [
@@ -1912,10 +1933,15 @@ class LiquidLexer(RegexLexer):
         'condition': [
             include('end-of-block'),
             include('whitespace'),
-            
-            (r'([^\s=!><]+)(\s*)([=!><]=?)(\s*)([^\s]+)(\s*)(%\})', bygroups(using(this, state = 'generic'), Whitespace, Operator, Whitespace, using(this, state = 'generic'), Whitespace, Punctuation)),
+
+            (r'([^\s=!><]+)(\s*)([=!><]=?)(\s*)([^\s]+)(\s*)(%\})',
+             bygroups(using(this, state = 'generic'), Whitespace, Operator,
+                      Whitespace, using(this, state = 'generic'), Whitespace,
+                      Punctuation)),
             (r'\b((!)|(not\b))', bygroups(None, Operator, Operator.Word)),
-            (r'([\w\.\'"]+)(\s+)(contains)(\s+)([\w\.\'"]+)', bygroups(using(this, state = 'generic'), Whitespace, Operator.Word, Whitespace, using(this, state = 'generic'))),
+            (r'([\w\.\'"]+)(\s+)(contains)(\s+)([\w\.\'"]+)',
+             bygroups(using(this, state = 'generic'), Whitespace, Operator.Word,
+                      Whitespace, using(this, state = 'generic'))),
 
             include('generic'),
             include('whitespace')
@@ -1927,8 +1953,10 @@ class LiquidLexer(RegexLexer):
         ],
 
         'operator': [
-            (r'(\s*)((=|!|>|<)=?)(\s*)', bygroups(Whitespace, Operator, None, Whitespace), '#pop'),
-            (r'(\s*)(\bcontains\b)(\s*)', bygroups(Whitespace, Operator.Word, Whitespace), '#pop'),
+            (r'(\s*)((=|!|>|<)=?)(\s*)',
+             bygroups(Whitespace, Operator, None, Whitespace), '#pop'),
+            (r'(\s*)(\bcontains\b)(\s*)',
+             bygroups(Whitespace, Operator.Word, Whitespace), '#pop'),
         ],
 
         'end-of-tag': [
@@ -1946,8 +1974,14 @@ class LiquidLexer(RegexLexer):
         # states for unknown markup
         'param-markup': [
             include('whitespace'),
-            (r'([^\s=:]+)(\s*)(=|:)', bygroups(Name.Attribute, Whitespace, Operator)), # params with colons or equals
-            (r'(\{\{)(\s*)([^\s\}])(\s*)(\}\})', bygroups(Punctuation, Whitespace, using(this, state = 'variable'), Whitespace, Punctuation)), # explicit variables
+            # params with colons or equals
+            (r'([^\s=:]+)(\s*)(=|:)',
+             bygroups(Name.Attribute, Whitespace, Operator)),
+            # explicit variables
+            (r'(\{\{)(\s*)([^\s\}])(\s*)(\}\})',
+             bygroups(Punctuation, Whitespace, using(this, state = 'variable'),
+                      Whitespace, Punctuation)),
+
             include('string'),
             include('number'),
             include('keyword'),
@@ -2008,13 +2042,17 @@ class LiquidLexer(RegexLexer):
 
         # states for builtin blocks
         'comment': [
-            (r'(\{%)(\s*)(endcomment)(\s*)(%\})', bygroups(Punctuation, Whitespace, Name.Tag, Whitespace, Punctuation), ('#pop', '#pop')),
+            (r'(\{%)(\s*)(endcomment)(\s*)(%\})',
+             bygroups(Punctuation, Whitespace, Name.Tag, Whitespace,
+                      Punctuation), ('#pop', '#pop')),
             (r'.', Comment)
         ],
 
         'raw': [
             (r'[^\{]+', Text),
-            (r'(\{%)(\s*)(endraw)(\s*)(%\})', bygroups(Punctuation, Whitespace, Name.Tag, Whitespace, Punctuation), '#pop'),
+            (r'(\{%)(\s*)(endraw)(\s*)(%\})',
+             bygroups(Punctuation, Whitespace, Name.Tag, Whitespace,
+                      Punctuation), '#pop'),
             (r'\{', Text)
         ]
     }
