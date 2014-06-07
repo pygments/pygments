@@ -210,7 +210,10 @@ class CppLexer(CFamilyLexer):
              r'export|friend|mutable|namespace|new|operator|'
              r'private|protected|public|reinterpret_cast|'
              r'restrict|static_cast|template|this|throw|throws|'
-             r'typeid|typename|using|virtual)\b', Keyword),
+             r'typeid|typename|using|virtual|'
+             r'constexpr|nullptr|decltype|thread_local|'
+             r'alignas|alignof|static_assert|noexcept|override|final)\b', Keyword),
+            (r'(char16_t|char32_t)\b', Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             inherit,
          ],

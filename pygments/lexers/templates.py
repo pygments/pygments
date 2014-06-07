@@ -16,6 +16,7 @@ from pygments.lexers.web import \
 from pygments.lexers.agile import PythonLexer, PerlLexer
 from pygments.lexers.compiled import JavaLexer
 from pygments.lexers.jvm import TeaLangLexer
+from pygments.lexers.text import YamlLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
      include, using, this, default
 from pygments.token import Error, Punctuation, \
@@ -40,7 +41,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'VelocityHtmlLexer', 'VelocityXmlLexer', 'SspLexer',
            'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer',
            'LassoCssLexer', 'LassoJavascriptLexer', 'HandlebarsLexer',
-           'HandlebarsHtmlLexer']
+           'HandlebarsHtmlLexer', 'YamlJinjaLexer']
 
 
 class ErbLexer(Lexer):
@@ -1831,3 +1832,22 @@ class HandlebarsHtmlLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(HandlebarsHtmlLexer, self).__init__(HtmlLexer, HandlebarsLexer, **options)
+
+
+class YamlJinjaLexer(DelegatingLexer):
+    """
+    Subclass of the `DjangoLexer` that highighlights unlexed data with the
+    `YamlLexer`.
+
+    Commonly used in Saltstack salt states.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'YAML+Jinja'
+    aliases = ['yaml+jinja', 'salt', 'sls']
+    filenames = ['*.sls']
+    mimetypes = ['text/x-yaml+jinja', 'text/x-sls']
+
+    def __init__(self, **options):
+        super(YamlJinjaLexer, self).__init__(YamlLexer, DjangoLexer, **options)
