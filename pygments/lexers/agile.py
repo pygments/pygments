@@ -1362,7 +1362,7 @@ class TclLexer(RegexLexer):
 
     name = 'Tcl'
     aliases = ['tcl']
-    filenames = ['*.tcl']
+    filenames = ['*.tcl', '*.rvt']
     mimetypes = ['text/x-tcl', 'text/x-script.tcl', 'application/x-tcl']
 
     def _gen_command_rules(keyword_cmds_re, builtin_cmds_re, context=""):
