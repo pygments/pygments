@@ -1718,7 +1718,7 @@ class PrologLexer(RegexLexer):
     """
     name = 'Prolog'
     aliases = ['prolog']
-    filenames = ['*.prolog', '*.pro', '*.pl']
+    filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl']
     mimetypes = ['text/x-prolog']
 
     flags = re.UNICODE
