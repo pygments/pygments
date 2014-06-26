@@ -82,6 +82,11 @@ end
 # String interpolation
 "String #{inspect "interpolation"} is quite #{1+4+7} difficult"
 
+# Identifiers
+abc_123 = 1
+_018OP = 2
+A__0 = 3
+
 # Modules
 defmodule Long.Module.Name do
   @moduledoc "Simple module docstring"
@@ -182,7 +187,7 @@ end
 
 # Lexical scope modifiers
 import Kernel, except: [spawn: 1, +: 2, /: 2, Unless: 2]
-alias Long.Module.Name, as: Namen
+alias Long.Module.Name, as: N0men123_and4
 use Bitwise
 
 4 &&& 5
