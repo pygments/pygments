@@ -2760,7 +2760,7 @@ class CoqLexer(RegexLexer):
         'Proposition', 'Fact', 'Remark', 'Example', 'Proof', 'Goal', 'Save',
         'Qed', 'Defined', 'Hint', 'Resolve', 'Rewrite', 'View', 'Search',
         'Show', 'Print', 'Printing', 'All', 'Graph', 'Projections', 'inside',
-        'outside',
+        'outside', 'Check',
     ]
     keywords2 = [
         # Gallina
@@ -2781,7 +2781,7 @@ class CoqLexer(RegexLexer):
         'unfold', 'change', 'cutrewrite', 'simpl', 'have', 'suff', 'wlog',
         'suffices', 'without', 'loss', 'nat_norm', 'assert', 'cut', 'trivial',
         'revert', 'bool_congr', 'nat_congr', 'symmetry', 'transitivity', 'auto',
-        'split', 'left', 'right', 'autorewrite',
+        'split', 'left', 'right', 'autorewrite', 'tauto',
     ]
     keywords5 = [
         # Terminators
