@@ -4,9 +4,9 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This file contains the names of functions for Stan used by
-    ``pygments.lexers.math.StanLexer. This is for Stan language version 2.2.0.
+    ``pygments.lexers.math.StanLexer. This is for Stan language version 2.3.0.
 
-    :copyright: Copyright 2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -17,7 +17,6 @@ KEYWORDS = [   u'else',
     u'lp__',
     u'print',
     u'return',
-    u'void',
     u'while']
 
 TYPES = [   u'cholesky_factor_cov',
@@ -31,7 +30,8 @@ TYPES = [   u'cholesky_factor_cov',
     u'row_vector',
     u'simplex',
     u'unit_vector',
-    u'vector']
+    u'vector',
+    u'void']
 
 FUNCTIONS = [   u'Phi',
     u'Phi_approx',
