@@ -5,6 +5,11 @@ It is not a real model and will not compile
 */
 # also a comment
 // also a comment
+functions {
+  void func1(real a) {
+    return 1 / a;
+  }
+}
 data {
   // valid name
   int abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_abc;
