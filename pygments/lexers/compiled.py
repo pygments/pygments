@@ -3920,10 +3920,10 @@ class ChapelLexer(RegexLexer):
             (r'(false|nil|true)\b', Keyword.Constant),
             (r'(bool|complex|imag|int|opaque|range|real|string|uint)\b',
              Keyword.Type),
-            (r'(atomic|begin|break|by|cobegin|coforall|continue|iter|'
+            (r'(align|atomic|begin|break|by|cobegin|coforall|continue|'
              r'delete|dmapped|do|domain|else|enum|export|extern|for|forall|'
-             r'if|index|inline|label|lambda|let|local|new|on|otherwise|'
-             r'reduce|return|scan|select|serial|single|sparse|'
+             r'if|index|inline|iter|label|lambda|let|local|new|noinit|on|'
+             r'otherwise|pragma|reduce|return|scan|select|serial|single|sparse|'
              r'subdomain|sync|then|use|when|where|while|yield|zip)\b',
              Keyword),
             (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
@@ -3947,14 +3947,14 @@ class ChapelLexer(RegexLexer):
             # -- hex
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
             # -- decimal
-            (r'(0|[1-9][0-9]*)', Number.Integer),
+            (r'[0-9]+', Number.Integer),
 
             # strings
             (r'["\'](\\\\|\\"|[^"\'])*["\']', String),
 
             # tokens
             (r'(=|\+=|-=|\*=|/=|\*\*=|%=|&=|\|=|\^=|&&=|\|\|=|<<=|>>=|'
-             r'<=>|\.\.|by|#|\.\.\.|'
+             r'<=>|<~>|\.\.|by|#|\.\.\.|'
              r'&&|\|\||!|&|\||\^|~|<<|>>|'
              r'==|!=|<=|>=|<|>|'
              r'[+\-*/%]|\*\*)', Operator),
