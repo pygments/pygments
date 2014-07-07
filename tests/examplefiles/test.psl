@@ -1,0 +1,151 @@
+//  This is a comment
+
+//  1. Basics
+
+//  Functions
+func Add(X : Univ_Integer; Y : Univ_Integer) -> Univ_Integer is
+   //  End of line semi-colons are optional
+   return X + Y;
+end func Add;
+
+//  If you find Univ_Integer to be too verbose you can import Short_Names
+//  which defines aliases like Int for Univ_Integer and String for Univ_String
+import PSL::Short_Names::*, *
+
+func Greetings() is
+   //  All declarations are 'const', 'var', or 'ref'
+   const S : String := "Hello, World!"
+   Println(S)
+end func Greetings
+
+func Fib(N : Int) {N >= 0} -> Int is
+   //  '{N >= 0}' is a precondition to this function
+   //  Preconditions are built in to the language and checked by the compiler
+   if N <= 1 then
+      return N
+   else
+      //  Left and right side of '+' are computed in Parallel here
+      return Fib(N - 1) + Fib(N - 2)
+   end if
+end func Fib
+
+//  ParaSail does not have mutable global variables
+//  Instead, use 'var' parameters
+func Increment_All(var Nums : Vector<Int>) is
+   //  This function takes a 'var' parameter.
+   //  The modifications made here will be seen by caller
+   for each Elem of Nums concurrent loop
+      //  The 'concurrent' keyword tells the compiler that
+      //  iterations of the loop can happen in any order.
+      //  It will choose the most optimal number of picothreads to use.
+      //  Other options are 'forward' and 'reverse'.
+      Elem += 1
+   end loop
+end func Increment_All
+
+func Sum_Of_Squares(N : Int) -> Int is
+   //  Built-in and inherently parallel map-reduce
+   //  Initial value is enclosed with angle brackets
+   return (for I in 1 .. N => <0> + I ** 2)
+end func Sum_Of_Squares
+
+func Sum_Of(N : Int; F : func (Int) -> Int) -> Int is
+   //  It has functional aspects as well
+   //  Here, we're taking an (Int) -> Int function as a parameter
+   return (for I in 1 .. N => <0> + F(I))
+end func Sum_Of
+
+func main(Args : Basic_Array<String>) is
+   Greetings()
+   Println(Fib(5));
+   var Vec : Vector<Int> := [0, 1, 2]
+   Increment_All(Vec)
+   //  '|' is an overloaded operator. Here used for building strings
+   Println(Vec[1] | ", " | Vec[2] | ", " | Vec[3])
+   Println(Sum_Of_Squares(3))
+   
+   //  Sum of fibs!
+   Println(Sum_Of(10, Fib))
+end func main
+
+//  Preceding a type with 'optional' allows it to take the value 'null'
+func Divide(A, B : Int) -> optional Int is
+   if B == 0 then
+      return null;
+   else
+      return A / B;
+   end if;
+end func Divide;
+
+//  2. Modules
+//  Modules are composed of an interface and a class
+//  ParaSail has object orientation
+
+concurrent interface Locked_Box<Content_Type is Assignable<>> is
+   // Create a box with the given content
+   func Create(C : optional Content_Type) -> Locked_Box;
+
+   // Put something into the box
+   func Put(locked var B : Locked_Box; C : Content_Type);
+
+   // Get a copy of current content
+   func Content(locked B : Locked_Box) -> optional Content_Type;
+
+   // Remove current content, leaving it null
+   func Remove(locked var B : Locked_Box) -> optional Content_Type;
+
+   // Wait until content is non-null, then return it, leaving it null.
+   func Get(queued var B : Locked_Box) -> Content_Type;
+end interface Locked_Box;
+
+concurrent class Locked_Box is
+    var Content : optional Content_Type;
+  exports
+    func Create(C : optional Content_Type) -> Locked_Box is
+        return (Content => C);
+    end func Create;
+
+    func Put(locked var B : Locked_Box; C : Content_Type) is
+        B.Content := C;
+    end func Put;
+
+    func Content(locked B : Locked_Box) -> optional Content_Type is
+        return B.Content;
+    end func Content;
+
+    func Remove(locked var B : Locked_Box) -> Result : optional Content_Type is
+        // '<==' is the move operator
+        // It moves the right operand into the left operand,
+        // leaving the right null.
+        Result <== B.Content;
+    end func Remove;
+
+    func Get(queued var B : Locked_Box) -> Result : Content_Type is
+      queued until B.Content not null then
+        Result <== B.Content;
+    end func Get;
+end class Locked_Box;
+
+func Use_Box(Seed : Univ_Integer) is
+    var U_Box : Locked_Box<Univ_Integer> := Create(null);
+    //  Type Inference. The type of 'Ran' can be left out because
+    //  it is inferred from the return type of Random::Start
+    var Ran := Random::Start(Seed);
+
+    Println("Starting 100 pico-threads trying to put something in the box");
+    Println(" or take something out.");
+    for I in 1..100 concurrent loop
+        if I < 30 then
+            Println("Getting out " | Get(U_Box));
+        else
+            Println("Putting in " | I);
+            U_Box.Put(I);
+
+            //  The first parameter can be moved to the front with a dot
+            //  X.Foo(Y) is equivalent to Foo(X, Y)
+        end if;
+    end loop;
+
+    Println("And the winner is: " | Remove(U_Box));
+    Println("And the box is now " | Content(U_Box));
+end func Use_Box;

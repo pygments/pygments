@@ -27,12 +27,12 @@ __all__ = ['CLexer', 'CppLexer', 'DLexer', 'DelphiLexer', 'ECLexer',
            'NesCLexer', 'DylanLexer', 'ObjectiveCLexer', 'ObjectiveCppLexer',
            'FortranLexer', 'GLShaderLexer', 'PrologLexer', 'CythonLexer',
            'ValaLexer', 'OocLexer', 'GoLexer', 'FelixLexer', 'AdaLexer',
-           'Modula2Lexer', 'BlitzMaxLexer', 'BlitzBasicLexer', 'NimrodLexer',
-           'FantomLexer', 'RustLexer', 'CudaLexer', 'MonkeyLexer', 'SwigLexer',
-           'DylanLidLexer', 'DylanConsoleLexer', 'CobolLexer',
-           'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer', 'PikeLexer',
-           'ChapelLexer', 'EiffelLexer', 'Inform6Lexer', 'Inform7Lexer',
-           'Inform6TemplateLexer', 'MqlLexer', 'SwiftLexer']
+           'ParaSailLexer', 'Modula2Lexer', 'BlitzMaxLexer', 'BlitzBasicLexer',
+           'NimrodLexer', 'FantomLexer', 'RustLexer', 'CudaLexer',
+           'MonkeyLexer', 'SwigLexer', 'DylanLidLexer', 'DylanConsoleLexer',
+           'CobolLexer', 'CobolFreeformatLexer', 'LogosLexer', 'ClayLexer',
+           'PikeLexer', 'ChapelLexer', 'EiffelLexer', 'Inform6Lexer',
+           'Inform7Lexer', 'Inform6TemplateLexer', 'MqlLexer', 'SwiftLexer']
 
 
 class CFamilyLexer(RegexLexer):
@@ -2560,6 +2560,52 @@ class AdaLexer(RegexLexer):
         ],
     }
 
+class ParaSailLexer(RegexLexer):
+    """
+    For ParaSail source code.
+
+    .. versionadded:: TODO
+    """
+
+    name = 'ParaSail'
+    aliases = ['parasail']
+    filenames = ['*.psi', '*.psl']
+    mimetypes = ['text/x-parasail']
+
+    flags = re.MULTILINE
+
+    tokens = {
+        'root': [
+            (r'[^\S\n]+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'[^\S\n]+', Text),
+            (r'abstract', Keyword.Declaration),
+            (r'(interface|class)', Keyword.Declaration),
+            (r'\b(abs|abstract|all|and|block|concurrent|const|continue|each|'
+             r'end|exit|extends|exports|forward|func|global|implements|in|'
+             r'interface|import|class|is|and=|or=|xor='
+             r'lambda|locked|mod|new|not|null|of|optional|op|or|private|queued|'
+             r'ref|rem|return|reverse|seperate|some|type|until|var|with|xor|if|'
+             r'then|else|elsif|case|for|while|loop)\b',
+             Keyword.Reserved),
+            (r'"[^"]*"', String),
+            include('numbers'),
+            (r'#[a-zA-Z][_a-zA-Z]*', Keyword.Constant),
+            (r"'[^']'", String.Character),
+            (r'([a-zA-Z0-9_]+)', Name),
+            (r'(<|>|:=|\[|\]|\(|\)|\||:|;|,|.|\{|\})'
+               , Punctuation),
+            (r'(<==|==>|<=>|\*\*=|<\|=|<<=|>>=|==|!=|=\?|<=|>=|'
+             r'\*\*|<<|>>|=>|:=|\+=|-=|\*=|\||\|=|/=|->|\+|-|\*|/)', Operator),
+            (r'\n+', Text),
+        ],
+        'numbers' : [
+            (r'[0-9_]+#[0-9a-fA-F]+#', Number.Hex),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
+            (r'[0-9_]+\.[0-9_]*', Number.Float),
+            (r'[0-9_]+', Number.Integer),
+        ],
+    }
 
 class Modula2Lexer(RegexLexer):
     """
