@@ -27,6 +27,10 @@ func Boolean_Examples(B : Bool) is
    const Or := B or #false            //  Parallel execution of operands
    const Or_Else := B or else #false  //  Short-Cirtuit
    const Xor := B xor #true
+   var Result : Bool := #true;
+   Result and= #false;
+   Result or= #true;
+   Result xor= #false;
 end func Boolean_Examples
 //  Booleans are a special type of enumeration
 //  All enumerations are preceded by a sharp '#'

@@ -2578,9 +2578,9 @@ class ParaSailLexer(RegexLexer):
         'root': [
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
-             # matching and=, or=, and xor= doesn't work yet
-            (r'\b(and(=|\sthen)?|or(=|\selse)?|xor=?|rem|mod|'
-             r'(is|not)\snull)\b',
+            (r'\b(and|or|xor)=', Operator.Word),
+            (r'\b(and(\s+then)?|or(\s+else)?|xor|rem|mod|'
+             r'(is|not)\s+null)\b',
                Operator.Word),
              # Keywords
             (r'\b(abs|abstract|all|block|class|concurrent|const|continue|'
@@ -2593,12 +2593,14 @@ class ParaSailLexer(RegexLexer):
                Keyword.Reserved),
             (r'(abstract\s+)?(interface|class|op|func|type)',
                Keyword.Declaration),
+             # Literals
             (r'"[^"]*"', String),
             (r'\\[\'ntrf"0]', String.Escape),
-            (r'#[a-zA-Z]\w*', Literal),
+            (r'#[a-zA-Z]\w*', Literal),       #Enumeration
             include('numbers'),
             (r"'[^']'", String.Char),
             (r'[a-zA-Z]\w*', Name),
+             # Operators and Punctuation
             (r'(<==|==>|<=>|\*\*=|<\|=|<<=|>>=|==|!=|=\?|<=|>=|'
              r'\*\*|<<|>>|=>|:=|\+=|-=|\*=|\||\|=|/=|\+|-|\*|/|'
              r'\.\.|<\.\.|\.\.<|<\.\.<)',
