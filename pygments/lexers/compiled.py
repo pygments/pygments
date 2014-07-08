@@ -2581,7 +2581,7 @@ class ParaSailLexer(RegexLexer):
              # matching and=, or=, and xor= doesn't work yet
             (r'\b(and(=|\sthen)?|or(=|\selse)?|xor=?|rem|mod|'
              r'(is|not)\snull)\b',
-             Operator.Word),
+               Operator.Word),
              # Keywords
             (r'\b(abs|abstract|all|block|class|concurrent|const|continue|'
              r'each|end|exit|extends|exports|forward|func|global|implements|'
@@ -2590,8 +2590,9 @@ class ParaSailLexer(RegexLexer):
              r'type|until|var|with|'
              # Control flow
              r'if|then|else|elsif|case|for|while|loop)\b',
-             Keyword.Reserved),
-            (r'[abstract]?(interface|class|op|func|type)', Keyword.Declaration),
+               Keyword.Reserved),
+            (r'(abstract\s+)?(interface|class|op|func|type)',
+               Keyword.Declaration),
             (r'"[^"]*"', String),
             (r'\\[\'ntrf"0]', String.Escape),
             (r'#[a-zA-Z]\w*', Literal),
