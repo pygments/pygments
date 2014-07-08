@@ -815,7 +815,7 @@ class PhpLexer(RegexLexer):
         ],
         'php': [
             (r'\?>', Comment.Preproc, '#pop'),
-            (r'<<<(\'?)(' + _ident_inner + ')\1\n.*?\n\2\;?\n', String),
+            (r'<<<([\'"]?)(' + _ident_inner + r')\1\n.*?\n\2\;?\n', String),
             (r'\s+', Text),
             (r'#.*?\n', Comment.Single),
             (r'//.*?\n', Comment.Single),
