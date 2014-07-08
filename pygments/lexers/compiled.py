@@ -2562,7 +2562,7 @@ class AdaLexer(RegexLexer):
 
 class ParaSailLexer(RegexLexer):
     """
-    For ParaSail source code.
+    For `ParaSail <http://www.parasail-lang.org>`_ source code.
 
     .. versionadded:: TODO
     """
@@ -2578,32 +2578,42 @@ class ParaSailLexer(RegexLexer):
         'root': [
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
-            (r'[^\S\n]+', Text),
-            (r'abstract', Keyword.Declaration),
-            (r'(interface|class)', Keyword.Declaration),
-            (r'\b(abs|abstract|all|and|block|concurrent|const|continue|each|'
-             r'end|exit|extends|exports|forward|func|global|implements|in|'
-             r'interface|import|class|is|and=|or=|xor='
-             r'lambda|locked|mod|new|not|null|of|optional|op|or|private|queued|'
-             r'ref|rem|return|reverse|seperate|some|type|until|var|with|xor|if|'
-             r'then|else|elsif|case|for|while|loop)\b',
+             # matching and=, or=, and xor= doesn't work yet
+            (r'\b(and(=|\sthen)?|or(=|\selse)?|xor=?|rem|mod|'
+             r'(is|not)\snull)\b',
+             Operator.Word),
+             # Keywords
+            (r'\b(abs|abstract|all|block|class|concurrent|const|continue|'
+             r'each|end|exit|extends|exports|forward|func|global|implements|'
+             r'import|in|interface|is|lambda|locked|new|not|null|of|op|'
+             r'optional|private|queued|ref|return|reverse|separate|some|'
+             r'type|until|var|with|'
+             # Control flow
+             r'if|then|else|elsif|case|for|while|loop)\b',
              Keyword.Reserved),
+            (r'[abstract]?(interface|class|op|func|type)', Keyword.Declaration),
             (r'"[^"]*"', String),
+            (r'\\[\'ntrf"0]', String.Escape),
+            (r'#[a-zA-Z]\w*', Literal),
             include('numbers'),
-            (r'#[a-zA-Z][_a-zA-Z]*', Keyword.Constant),
-            (r"'[^']'", String.Character),
-            (r'([a-zA-Z0-9_]+)', Name),
-            (r'(<|>|:=|\[|\]|\(|\)|\||:|;|,|.|\{|\})'
-               , Punctuation),
+            (r"'[^']'", String.Char),
+            (r'[a-zA-Z]\w*', Name),
             (r'(<==|==>|<=>|\*\*=|<\|=|<<=|>>=|==|!=|=\?|<=|>=|'
-             r'\*\*|<<|>>|=>|:=|\+=|-=|\*=|\||\|=|/=|->|\+|-|\*|/)', Operator),
+             r'\*\*|<<|>>|=>|:=|\+=|-=|\*=|\||\|=|/=|\+|-|\*|/|'
+             r'\.\.|<\.\.|\.\.<|<\.\.<)',
+               Operator),
+            (r'(<|>|\[|\]|\(|\)|\||:|;|,|.|\{|\}|->)',
+               Punctuation),
             (r'\n+', Text),
         ],
         'numbers' : [
-            (r'[0-9_]+#[0-9a-fA-F]+#', Number.Hex),
-            (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'[0-9_]+\.[0-9_]*', Number.Float),
-            (r'[0-9_]+', Number.Integer),
+            (r'\d[0-9_]*#[0-9a-fA-F][0-9a-fA-F_]*#', Number.Hex), # any base
+            (r'0[xX][0-9a-fA-F][0-9a-fA-F_]*', Number.Hex),       # C-like hex
+            (r'0[bB][01][01_]*', Number.Bin),                     # C-like bin
+            (r'\d[0-9_]*\.\d[0-9_]*[eE][+-]\d[0-9_]*',            # float exp
+               Number.Float),
+            (r'\d[0-9_]*\.\d[0-9_]*', Number.Float),              # float
+            (r'\d[0-9_]*', Number.Integer),                       # integer
         ],
     }
 
