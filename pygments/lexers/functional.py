@@ -22,7 +22,7 @@ __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'CryptolLexer',
            'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer', 'OpaLexer',
            'CoqLexer', 'NewLispLexer', 'NixLexer', 'ElixirLexer',
            'ElixirConsoleLexer', 'KokaLexer', 'IdrisLexer',
-           'LiterateIdrisLexer']
+           'LiterateIdrisLexer', 'ShenLexer']
 
 
 line_re = re.compile('.*?\n')
@@ -3669,3 +3669,163 @@ class KokaLexer(RegexLexer):
             (r'\\U[0-9a-fA-F]{6}', String.Escape)
         ]
     }
+
+class ShenLexer(RegexLexer):
+    """
+    Lexer for `Shen <http://shenlanguage.org/>`_ source code.
+    """
+    name = 'Shen'
+    aliases = ['shen']
+    filenames = ['*.shen']
+    mimetypes = ['text/x-shen', 'application/x-shen']
+
+    DECLARATIONS = re.findall(r'\S+', """
+        datatype define defmacro defprolog defcc synonyms declare package
+        type function
+    """)
+
+    SPECIAL_FORMS = re.findall(r'\S+', """
+        lambda get let if cases cond put time freeze value load $
+        protect or and not do output prolog? trap-error error
+        make-string /. set @p @s @v
+    """)
+
+    BUILTINS = re.findall(r'\S+', """
+        == = * + - / < > >= <= <-address <-vector abort absvector
+        absvector? address-> adjoin append arity assoc bind boolean?
+        bound? call cd close cn compile concat cons cons? cut destroy
+        difference element? empty? enable-type-theory error-to-string
+        eval eval-kl exception explode external fail fail-if file
+        findall fix fst fwhen gensym get-time hash hd hdstr hdv head
+        identical implementation in include include-all-but inferences
+        input input+ integer? intern intersection is kill language
+        length limit lineread loaded macro macroexpand map mapcan
+        maxinferences mode n->string nl nth null number? occurrences
+        occurs-check open os out port porters pos pr preclude
+        preclude-all-but print profile profile-results ps quit read
+        read+ read-byte read-file read-file-as-bytelist
+        read-file-as-string read-from-string release remove return
+        reverse run save set simple-error snd specialise spy step
+        stinput stoutput str string->n string->symbol string? subst
+        symbol? systemf tail tc tc? thaw tl tlstr tlv track tuple?
+        undefmacro unify unify! union unprofile unspecialise untrack
+        variable? vector vector-> vector? verified version warn when
+        write-byte write-to-file y-or-n?
+    """)
+
+    BUILTINS_ANYWHERE = re.findall(r'\S+', """
+        where skip >> _ ! <e> <!>
+    """)
+
+    MAPPINGS = dict((s, Keyword) for s in DECLARATIONS)
+    MAPPINGS.update((s, Name.Builtin) for s in BUILTINS)
+    MAPPINGS.update((s, Keyword) for s in SPECIAL_FORMS)
+
+    valid_symbol_chars = r'[\w!$%*+,<=>?/.\'@&#:_-]'
+    valid_name = '%s+' % valid_symbol_chars
+    symbol_name = r'[a-z!$%%*+,<=>?/.\'@&#_-]%s*' % valid_symbol_chars
+    variable = r'[A-Z]%s*' % valid_symbol_chars
+
+    tokens = {
+        'string': [
+            (r'"', String, '#pop'),
+            (r'c#\d{1,3};', String.Escape),
+            (r'~[ARS%]', String.Interpol),
+            (r'(?s).', String),
+        ],
+
+        'root' : [
+            (r'(?ms)\\\*.*?\*\\', Comment.Multiline), # \* ... *\
+            (r'\\\\.*', Comment.Single), # \\ ...
+            (r'(?ms)\s+', Text),
+            (r'_{5,}', Punctuation),
+            (r'={5,}', Punctuation),
+            (r'(;|:=|\||--?>|<--?)', Punctuation),
+            (r'(:-|:|\{|\})', Literal),
+            (r'[+-]*\d*\.\d+(e[+-]?\d+)?', Number.Float),
+            (r'[+-]*\d+', Number.Integer),
+            (r'"', String, 'string'),
+            (variable, Name.Variable),
+            (r'(true|false|<>|\[\])', Keyword.Pseudo),
+            (symbol_name, Literal),
+            (r'(\[|\]|\(|\))', Punctuation),
+        ],
+    }
+
+    def get_tokens_unprocessed(self, text):
+        tokens = RegexLexer.get_tokens_unprocessed(self, text)
+        tokens = self._process_symbols(tokens)
+        tokens = self._process_declarations(tokens)
+        return tokens
+
+    def _relevant(self, token):
+        return token not in (Text, Comment.Single, Comment.Multiline)
+
+    def _process_declarations(self, tokens):
+        opening_paren = False
+        for index, token, value in tokens:
+            yield index, token, value
+            if self._relevant(token):
+                if opening_paren and token == Keyword and value in self.DECLARATIONS:
+                    declaration = value
+                    for index, token, value \
+                        in self._process_declaration(declaration, tokens):
+                        yield index, token, value
+                opening_paren = value == '(' and token == Punctuation
+
+    def _process_symbols(self, tokens):
+        opening_paren = False
+        for index, token, value in tokens:
+            if opening_paren and token in (Literal, Name.Variable):
+                token = self.MAPPINGS.get(value, Name.Function)
+            elif token == Literal and value in self.BUILTINS_ANYWHERE:
+                token = Name.Builtin
+            opening_paren = value == '(' and token == Punctuation
+            yield index, token, value
+
+    def _process_declaration(self, declaration, tokens):
+        for index, token, value in tokens:
+            if self._relevant(token):
+                break
+            yield index, token, value
+        
+        if declaration == 'datatype':
+            prev_was_colon = False
+            token = Keyword.Type if token == Literal else token
+            yield index, token, value
+            for index, token, value in tokens:
+                if prev_was_colon and token == Literal:
+                    token = Keyword.Type
+                yield index, token, value
+                if self._relevant(token):
+                    prev_was_colon = token == Literal and value == ':'
+        elif declaration == 'package':
+            token = Name.Namespace if token == Literal else token
+            yield index, token, value
+        elif declaration == 'define':
+            token = Name.Function if token == Literal else token
+            yield index, token , value
+            for index, token, value in tokens:
+                if self._relevant(token):
+                    break
+                yield index, token, value
+            if value == '{' and token == Literal:
+                yield index, Punctuation, value
+                for index, token, value in self._process_signature(tokens):
+                    yield index, token, value
+            else:
+                yield index, token, value
+        else:
+            token = Name.Function if token == Literal else token
+            yield index, token , value
+
+        raise StopIteration
+
+    def _process_signature(self, tokens):
+        for index, token, value in tokens:
+            if token == Literal and value ==  '}':
+                yield index, Punctuation, value
+                raise StopIteration
+            elif token in (Literal, Name.Function):
+                token = Name.Variable if value.istitle() else Keyword.Type
+            yield index, token, value
