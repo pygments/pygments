@@ -1572,8 +1572,8 @@ class JagsLexer(RegexLexer):
 class StanLexer(RegexLexer):
     """Pygments Lexer for Stan models.
 
-    The Stan modeling language is specified in the *Stan Modeling Language User's Guide and Reference Manual, v2.3.0*,
-    `pdf <https://github.com/stan-dev/stan/releases/download/v2.3.0/stan-reference-2.3.0.pdf>`__.
+    The Stan modeling language is specified in the *Stan Modeling Language User's Guide and Reference Manual, v2.4.0*,
+    `pdf <https://github.com/stan-dev/stan/releases/download/v2.4.0/stan-reference-2.4.0.pdf>`__.
 
     .. versionadded:: 1.6
     """
@@ -1630,8 +1630,8 @@ class StanLexer(RegexLexer):
             # Assignment operators
             # SLexer makes these tokens Operators.
             (r'<-|~', Operator),
-            # Infix and prefix operators (and = )
-            (r"\+|-|\.?\*|\.?/|\\|'|==?|!=?|<=?|>=?|\|\||&&", Operator),
+            # Infix, prefix and postfix operators (and = )
+            (r"\+|-|\.?\*|\.?/|\\|'|\^|==?|!=?|<=?|>=?|\|\||&&", Operator),
             # Block delimiters
             (r'[{}]', Punctuation),
             ]
