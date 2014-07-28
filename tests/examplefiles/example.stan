@@ -6,8 +6,11 @@ It is not a real model and will not compile
 # also a comment
 // also a comment
 functions {
-  void func1(real a) {
+  void f1(void a, real b) {
     return 1 / a;
+  }
+  real f2(int a, vector b, real c) {
+    return a + b + c;
   }
 }
 data {
@@ -25,6 +28,7 @@ data {
   corr_matrix[3] grault;
   cov_matrix[3] garply;
   cholesky_factor_cov[3] waldo;
+  cholesky_factor_corr[3] waldo2;
   
   real<lower=-1,upper=1> foo1;
   real<lower=0> foo2;
@@ -92,6 +96,7 @@ model {
   tmp / tmp;
   tmp .* tmp;
   tmp ./ tmp;
+  tmp ^ tmp;
   ! tmp;
   - tmp;
   + tmp;
@@ -112,4 +117,3 @@ generated quantities {
   real bar1;
   bar1 <- foo + 1;
 }
-
