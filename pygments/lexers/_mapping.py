@@ -165,6 +165,7 @@ LEXERS = {
     'IoLexer': ('pygments.lexers.agile', 'Io', ('io',), ('*.io',), ('text/x-iosrc',)),
     'IokeLexer': ('pygments.lexers.jvm', 'Ioke', ('ioke', 'ik'), ('*.ik',), ('text/x-iokesrc',)),
     'IrcLogsLexer': ('pygments.lexers.text', 'IRC logs', ('irc',), ('*.weechatlog',), ('text/x-irclog',)),
+    'IsabelleLexer': ('pygments.lexers.functional', 'Isabelle', ('isabelle',), ('*.thy',), ('text/x-isabelle',)),
     'JadeLexer': ('pygments.lexers.web', 'Jade', ('jade',), ('*.jade',), ('text/x-jade',)),
     'JagsLexer': ('pygments.lexers.math', 'JAGS', ('jags',), ('*.jag', '*.bug'), ()),
     'JasminLexer': ('pygments.lexers.jvm', 'Jasmin', ('jasmin', 'jasminxt'), ('*.j',), ()),
