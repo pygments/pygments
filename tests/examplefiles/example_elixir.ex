@@ -129,7 +129,8 @@ end
 # Structs
 defmodule Second.Module do
   s = %Long.Module.Name{name: "Silly"}
-  %{s | height: {192, :cm}}
+  %Long.Module.Name{s | height: {192, :cm}}
+  ".. #{%Long.Module.Name{s | height: {192, :cm}}} .."
 end
 
 # Types, pseudo-vars, attributes

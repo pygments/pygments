@@ -3187,12 +3187,12 @@ class ElixirLexer(RegexLexer):
     OPERATORS3 = ['<<<', '>>>', '|||', '&&&', '^^^', '~~~', '===', '!==']
     OPERATORS2 = [
         '==', '!=', '<=', '>=', '&&', '||', '<>', '++', '--', '|>', '=~',
-        '->', '<-', '|', '.', '%', '='
+        '->', '<-', '|', '.', '='
     ]
     OPERATORS1 = ['<', '>', '+', '-', '*', '/', '!', '^', '&']
 
     PUNCTUATION = [
-        '\\\\', '<<', '>>', '=>', '(', ')', '{', '}', ':', ';', ',', '[', ']'
+        '\\\\', '<<', '>>', '=>', '(', ')', ':', ';', ',', '[', ']'
     ]
 
     def get_tokens_unprocessed(self, text):
@@ -3321,7 +3321,7 @@ class ElixirLexer(RegexLexer):
 
             # identifiers
             (name_re, Name),
-            (modname_re, Name.Class),
+            (r'(%%?)(%s)' % (modname_re,), bygroups(Punctuation, Name.Class)),
 
             # numbers
             (r'0b[01]+', Number.Bin),
@@ -3337,6 +3337,9 @@ class ElixirLexer(RegexLexer):
             (r"'", String.Single, 'string_single'),
 
             include('sigils'),
+
+            (r'%{', Punctuation, 'map_key'),
+            (r'{', Punctuation, 'tuple'),
         ],
         'heredoc_double': [
             (r'^\s*"""', String.Heredoc, '#pop'),
@@ -3370,6 +3373,21 @@ class ElixirLexer(RegexLexer):
         'interpol_string' : [
             (r'}', String.Interpol, "#pop"),
             include('root')
+        ],
+        'map_key': [
+            include('root'),
+            (r':', Punctuation, 'map_val'),
+            (r'=>', Punctuation, 'map_val'),
+            (r'}', Punctuation, '#pop'),
+        ],
+        'map_val': [
+            include('root'),
+            (r',', Punctuation, '#pop'),
+            (r'(?=})', Punctuation, '#pop'),
+        ],
+        'tuple': [
+            include('root'),
+            (r'}', Punctuation, '#pop'),
         ],
     }
     tokens.update(gen_elixir_string_rules('double', '"', String.Double))
