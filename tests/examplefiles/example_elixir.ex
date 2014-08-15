@@ -45,6 +45,8 @@ atom"
 ~w(hello #{ ["has" <> "123", '\c\d', "\123 interpol" | []] } world)s
 ~W(hello #{no "123" \c\d \123 interpol} world)s
 
+~s{Escapes terminators \{ and \}, but no {balancing} # outside of sigil here }
+
 ~S"No escapes \s\t\n and no #{interpolation}"
 
 :"atoms work #{"to" <> "o"}"
