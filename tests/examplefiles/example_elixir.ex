@@ -1,8 +1,12 @@
 # Numbers
 0b0101011
-1234 ; 0x1A ; 0xbeef ; 0763
+1234 ; 0x1A ; 0xbeef ; 0763 ; 0o123
 3.14 ; 5.0e21 ; 0.5e-12
 100_000_000
+
+# these are not valid numbers
+0b012 ; 0xboar ; 0o888
+0B01 ; 0XAF ; 0O123
 
 # Characters
 ?a ; ?1 ; ?\n ; ?\s ; ?\c ; ? ; ?,
