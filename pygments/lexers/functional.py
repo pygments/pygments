@@ -3218,20 +3218,19 @@ class ElixirLexer(RegexLexer):
                 yield index, token, value
 
     def gen_elixir_sigil_rules():
-        # these braces are balanced inside the sigil string
-        braces = [
+        # all valid sigil terminators (excluding heredocs)
+        terminators = [
             (r'\{', r'\}', 'cb'),
             (r'\[', r'\]', 'sb'),
             (r'\(', r'\)', 'pa'),
             (r'\<', r'\>', 'ab'),
+            (r'/', r'/', 'slas'),
+            (r'\|', r'\|', 'pipe'),
+            ('"', '"', 'quot'),
+            ("'", "'", 'apos'),
         ]
 
-        # these are also valid sigil terminators, they are not balanced
-        terms = [
-            (r'/', 'slas'), (r'\|', 'pipe'), ('"', 'quot'), ("'", 'apos'),
-        ]
-
-        # heredocs have slightly different rules, they are not balanced
+        # heredocs have slightly different rules
         triquotes = [(r'"""', 'triquot'), (r"'''", 'triapos')]
 
         token = String.Other
@@ -3255,33 +3254,14 @@ class ElixirLexer(RegexLexer):
                 include('heredoc_no_interpol'),
             ]
 
-        for term, name in terms:
+        for lterm, rterm, name in terminators:
             states['sigils'] += [
-                (r'~[a-z]' + term, token, name + '-intp'),
-                (r'~[A-Z]' + term, token, name + '-no-intp'),
+                (r'~[a-z]' + lterm, token, name + '-intp'),
+                (r'~[A-Z]' + lterm, token, name + '-no-intp'),
             ]
-
-            # Similar states to the braced sigils, but no balancing of
-            # terminators
-            states[name +'-intp'] = gen_elixir_sigstr_rules(term, token)
+            states[name +'-intp'] = gen_elixir_sigstr_rules(rterm, token)
             states[name +'-no-intp'] = \
-                gen_elixir_sigstr_rules(term, token, interpol=False)
-
-        for lbrace, rbrace, name in braces:
-            states['sigils'] += [
-                (r'~[a-z]' + lbrace, token, name + '-intp'),
-                (r'~[A-Z]' + lbrace, token, name + '-no-intp')
-            ]
-
-            states[name +'-intp'] = [
-                (r'\\.', token),
-                (lbrace, token, '#push'),
-            ] + gen_elixir_sigstr_rules(rbrace, token)
-
-            states[name +'-no-intp'] = [
-                (r'\\.', token),
-                (lbrace, token, '#push'),
-            ] + gen_elixir_sigstr_rules(rbrace, token, interpol=False)
+                gen_elixir_sigstr_rules(rterm, token, interpol=False)
 
         return states
 
