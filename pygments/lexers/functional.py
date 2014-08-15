@@ -3276,20 +3276,22 @@ class ElixirLexer(RegexLexer):
     complex_name_re = r'(?:%s|%s|%s)' % (name_re, modname_re, ops_re)
     special_atom_re = r'(?:\.\.\.|<<>>|%{}|%|{})'
 
+    long_hex_char_re = r'(\\x{)([\da-fA-F]+)(})'
+    hex_char_re = r'(\\x[\da-fA-F]{1,2})'
+    escape_char_re = r'(\\[abdefnrstv])'
+
     tokens = {
         'root': [
             (r'\s+', Text),
             (r'#.*$', Comment.Single),
 
             # Various kinds of characters
-            (r'(?i)(\?)(\\x{)([\da-f]+)(})',
+            (r'(\?)' + long_hex_char_re,
                 bygroups(String.Char,
                     String.Escape, Number.Hex, String.Escape)),
-            (r'(?i)(\?)(\\x[\da-f]{1,2})',
+            (r'(\?)' + hex_char_re,
                 bygroups(String.Char, String.Escape)),
-            (r'(\?)(\\[0-7]{1,3})',
-                bygroups(String.Char, String.Escape)),
-            (r'(\?)(\\[abdefnrstv])',
+            (r'(\?)' + escape_char_re,
                 bygroups(String.Char, String.Escape)),
             (r'\?\\?.', String.Char),
 
@@ -3353,11 +3355,10 @@ class ElixirLexer(RegexLexer):
             (r'\n+', String.Heredoc),
         ],
         'escapes': [
-            (r'(?i)(\\x{)([\da-f]+)(})',
+            (long_hex_char_re,
                 bygroups(String.Escape, Number.Hex, String.Escape)),
-            (r'(?i)\\x[\da-f]{1,2}', String.Escape),
-            (r'\\[0-7]{1,3}', String.Escape),
-            (r'\\[abdefnrstv]', String.Escape),
+            (hex_char_re, String.Escape),
+            (escape_char_re, String.Escape),
         ],
         'interpol': [
             (r'#{', String.Interpol, 'interpol_string'),
