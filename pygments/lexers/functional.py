@@ -3169,7 +3169,7 @@ class ElixirLexer(RegexLexer):
     mimetypes = ['text/x-elixir']
 
     KEYWORD = ['fn', 'do', 'end', 'after', 'else', 'rescue', 'catch']
-    KEYWORD_OPERATOR = ['not', 'and', 'or', 'xor', 'when', 'in']
+    KEYWORD_OPERATOR = ['not', 'and', 'or', 'when', 'in']
     BUILTIN = [
         'case', 'cond', 'for', 'if', 'unless', 'try', 'receive', 'raise',
         'quote', 'unquote', 'unquote_splicing', 'throw', 'super'
@@ -3318,9 +3318,9 @@ class ElixirLexer(RegexLexer):
             (modname_re, Name.Class),
 
             # numbers
-            (r'0[bB][01]+', Number.Bin),
-            (r'0[0-7]+', Number.Oct),
-            (r'(?i)0x[\da-f]+', Number.Hex),
+            (r'0b[01]+', Number.Bin),
+            (r'0o[0-7]+', Number.Oct),
+            (r'0x[\da-fA-F]+', Number.Hex),
             (r'\d(_?\d)*\.\d(_?\d)*([eE][-+]?\d(_?\d)*)?', Number.Float),
             (r'\d(_?\d)*', Number.Integer),
 
