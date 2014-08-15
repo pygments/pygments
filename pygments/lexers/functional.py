@@ -3135,7 +3135,7 @@ def gen_elixir_string_rules(name, symbol, token):
         (r'[^#%s\\]+' % (symbol,), token),
         include('escapes'),
         (r'\\.', token),
-        (r'(%s)(:?)' % (symbol,), bygroups(token, Punctuation), "#pop"),
+        (r'(%s)' % (symbol,), bygroups(token), "#pop"),
         include('interpol')
     ]
     return states
@@ -3186,13 +3186,13 @@ class ElixirLexer(RegexLexer):
 
     OPERATORS3 = ['<<<', '>>>', '|||', '&&&', '^^^', '~~~', '===', '!==']
     OPERATORS2 = [
-        '==', '!=', '<=', '>=', '&&', '||', '<>', '++', '--', '|>', '=~'
+        '==', '!=', '<=', '>=', '&&', '||', '<>', '++', '--', '|>', '=~',
+        '->', '<-', '|', '.', '%', '='
     ]
     OPERATORS1 = ['<', '>', '+', '-', '*', '/', '!', '^', '&']
 
     PUNCTUATION = [
-        '\\\\', '<<', '>>', '::', '->', '<-', '=>', '|', '(', ')',
-        '{', '}', ';', ',', '.', '[', ']', '%', '='
+        '\\\\', '<<', '>>', '=>', '(', ')', '{', '}', ':', ';', ',', '[', ']'
     ]
 
     def get_tokens_unprocessed(self, text):
@@ -3294,6 +3294,10 @@ class ElixirLexer(RegexLexer):
             (r'(\?)' + escape_char_re,
                 bygroups(String.Char, String.Escape)),
             (r'\?\\?.', String.Char),
+
+            # '::' has to go before atoms
+            (r':::', String.Symbol),
+            (r'::', Operator),
 
             # atoms
             (r':' + special_atom_re, String.Symbol),

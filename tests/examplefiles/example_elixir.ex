@@ -24,7 +24,8 @@
  line ' \s \123 \xff
 atom"
 :... ; :<<>> ; :%{} ; :% ; :{}
-:++; :--; :*; :~~~
+:++; :--; :*; :~~~; :::
+:% ; :. ; :<-
 
 # Strings
 "Hello world"
@@ -83,7 +84,7 @@ map = %{shortcut: "syntax"}
 # Comprehensions
 for x <- 1..10, x < 5, do: {x, x}
 pixels = "12345678"
-for << <<r::4, g::4, b::4, a::4>> <- pixels >> do
+for << <<r::4, g::4, b::4, a::size(4)>> <- pixels >> do
   [r, {g, %{"b" => a}}]
 end
 
