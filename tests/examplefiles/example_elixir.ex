@@ -60,7 +60,7 @@ atom"
 
 # Operators
 x = 1 + 2.0 * 3
-y = true and false; z = false xor true
+y = true and false; z = false or true
 ... = 144
 ... == !x && y || z
 "hello" |> String.upcase |> String.downcase()
@@ -94,7 +94,7 @@ end
 # Identifiers
 abc_123 = 1
 _018OP = 2
-A__0 = 3
+A__0 == 3
 
 # Modules
 defmodule Long.Module.Name do
@@ -103,7 +103,12 @@ defmodule Long.Module.Name do
   @doc """
   Multiline docstring
   "with quotes"
-  and #{ %{"interpolation" => "in" <> "action"} }
+  and #{ inspect %{"interpolation" => "in" <> "action"} }
+  now with #{ {:a, 'tuple'} }
+  and #{ inspect {
+      :tuple,
+      %{ with: "nested #{ inspect %{ :interpolation => %{} } }" }
+  } }
   """
   defstruct [:a, :name, :height]
 
