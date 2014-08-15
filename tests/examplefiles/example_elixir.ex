@@ -11,7 +11,9 @@
 # Characters
 ?a ; ?1 ; ?\n ; ?\s ; ?\c ; ? ; ?,
 ?\x{12} ; ?\x{abcd}
-?\x34 ; ?\xf
+?\x34 ; ?\xF
+
+# these show that only the first digit is part of the character
 ?\123 ; ?\12 ; ?\7
 
 # Atoms
@@ -26,8 +28,8 @@ atom"
 
 # Strings
 "Hello world"
-"Interspersed \x{ff} codes \7 \8 \65 \016 and \t\s\z\+ \\ escapes"
-"Quotes ' inside \" \123 the \"\" \xF string \\\" end"
+"Interspersed \x{ff} codes \7 \8 \65 \016 and \t\s\\s\z\+ \\ escapes"
+"Quotes ' inside \" \123 the \"\" \xF \\xF string \\\" end"
 "Multiline
    string"
 
