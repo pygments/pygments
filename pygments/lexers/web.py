@@ -1611,11 +1611,16 @@ class HaxeLexer(ExtendedRegexLexer):
 
             (r'(?:extern|private)\b', Keyword.Declaration),
             (r'(?:abstract)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'abstract')),
-            (r'(?:class|interface)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'class')),
+            (r'(?:class|interface)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'macro-class')),
             (r'(?:enum)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'enum')),
             (r'(?:typedef)\b', Keyword.Declaration, ('#pop', 'optional-semicolon', 'typedef')),
             
             default(('#pop', 'expr')),
+        ],
+
+        'macro-class': [
+            (r'\{', Punctuation, ('#pop', 'class-body')),
+            include('class')
         ],
 
         # cast can be written as "cast expr" or "cast(expr, type)"
