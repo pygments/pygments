@@ -60,6 +60,7 @@ using (G : Vect n Ty)
 
     fromInteger = Val . fromInteger
 
+  ||| Evaluates an expression in the given context.
   interp : Env G -> {static} Expr G t -> interpTy t
   interp env (Var i)     = lookup i env
   interp env (Val x)     = x

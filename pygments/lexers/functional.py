@@ -1546,6 +1546,7 @@ class IdrisLexer(RegexLexer):
             (r'^(\s*)(%%%s)' % '|'.join(annotations),
              bygroups(Text, Keyword.Reserved)),
             (r'(\s*)(--(?![!#$%&*+./<=>?@\^|_~:\\]).*?)$', bygroups(Text, Comment.Single)),
+            (r'(\s*)(\|{3}.*?)$', bygroups(Text, Comment.Single)),
             (r'(\s*)({-)', bygroups(Text, Comment.Multiline), 'comment'),
             # Declaration
             (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
