@@ -1542,14 +1542,14 @@ class IdrisLexer(RegexLexer):
 
     tokens = {
         'root': [
-            # Declaration
-            (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
-             bygroups(Text, Name.Function, Text, Operator.Word, Text)),
             # Comments
             (r'^(\s*)(%%%s)' % '|'.join(annotations),
              bygroups(Text, Keyword.Reserved)),
-            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
-            (r'{-', Comment.Multiline, 'comment'),
+            (r'(\s*)(--(?![!#$%&*+./<=>?@\^|_~:\\]).*?)$', bygroups(Text, Comment.Single)),
+            (r'(\s*)({-)', bygroups(Text, Comment.Multiline), 'comment'),
+            # Declaration
+            (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
+             bygroups(Text, Name.Function, Text, Operator.Word, Text)),
             #  Identifiers
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
