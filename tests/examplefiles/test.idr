@@ -87,6 +87,13 @@ using (G : Vect n Ty)
 testFac : Int
 testFac = interp [] eFac 4
 
+--testFacTooBig : Int
+--testFacTooBig = interp [] eFac 100000
+
+ {-testFacTooBig2 : Int
+testFacTooBig2 = interp [] eFac 1000
+-}
+
 main : IO ()
 main = print testFac
 
