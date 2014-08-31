@@ -1537,13 +1537,13 @@ class IdrisLexer(RegexLexer):
              'DC[1-4]','NAK','SYN','ETB','CAN',
              'EM','SUB','ESC','[FGRU]S','SP','DEL']
 
-    annotations = ['assert_total','lib','link','include','provide','access',
-                   'default']
+    directives = ['lib','link','flag','include','hide','freeze','access',
+                  'default','logging','dynamic','name','error_handlers','language']
 
     tokens = {
         'root': [
             # Comments
-            (r'^(\s*)(%%%s)' % '|'.join(annotations),
+            (r'^(\s*)(%%%s)' % '|'.join(directives),
              bygroups(Text, Keyword.Reserved)),
             (r'(\s*)(--(?![!#$%&*+./<=>?@\^|_~:\\]).*?)$', bygroups(Text, Comment.Single)),
             (r'(\s*)(\|{3}.*?)$', bygroups(Text, Comment.Single)),
