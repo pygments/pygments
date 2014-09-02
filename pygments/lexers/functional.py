@@ -21,7 +21,7 @@ __all__ = ['RacketLexer', 'SchemeLexer', 'CommonLispLexer', 'CryptolLexer',
            'LiterateHaskellLexer', 'LiterateAgdaLexer', 'SMLLexer',
            'OcamlLexer', 'ErlangLexer', 'ErlangShellLexer', 'OpaLexer',
            'CoqLexer', 'NewLispLexer', 'NixLexer', 'ElixirLexer',
-           'ElixirConsoleLexer', 'KokaLexer', 'IdrisLexer',
+           'ElixirConsoleLexer', 'KokaLexer', 'IdrisLexer', 'LeanLexer',
            'LiterateIdrisLexer']
 
 
@@ -1684,6 +1684,93 @@ class AgdaLexer(RegexLexer):
         'character': HaskellLexer.tokens['character'],
         'string': HaskellLexer.tokens['string'],
         'escape': HaskellLexer.tokens['escape']
+    }
+
+class LeanLexer(RegexLexer):
+    """
+    For the `Lean <https://github.com/leanprover/lean>`_
+    theorem prover
+    """
+    name = 'Lean'
+    aliases = ['lean']
+    filenames = ['*.lean']
+    mimetypes = ['text/x-lean']
+
+    flags = re.MULTILINE | re.UNICODE
+
+    keywords1 = ['import', 'abbreviation', 'opaque_hint', 'tactic_hint', 'definition', 'renaming',
+                 'inline', 'hiding', 'exposing', 'parameter', 'parameters', 'conjecture',
+                 'hypothesis', 'lemma', 'corollary', 'variable', 'variables', 'print', 'theorem',
+                 'axiom', 'inductive', 'structure', 'universe', 'alias', 'help',
+                 'options', 'precedence', 'postfix', 'prefix', 'calc_trans', 'calc_subst', 'calc_refl',
+                 'infix', 'infixl', 'infixr', 'notation', 'eval', 'check', 'exit', 'coercion', 'end',
+                 'private', 'using', 'namespace', 'including', 'instance', 'section', 'context',
+                 'protected', 'expose', 'export', 'set_option', 'add_rewrite', 'extends']
+
+    keywords2 = [
+        'forall', 'exists', 'fun', 'Pi', 'obtain', 'from', 'have', 'show', 'assume', 'take',
+        'let', 'if', 'else', 'then', 'by', 'in', 'with', 'begin', 'proof', 'qed', 'calc'
+    ]
+
+    keywords3 = [
+        # Sorts
+        'Type', 'Prop',
+    ]
+
+    keywords4 = [
+        # Tactics
+        'apply', 'and_then', 'or_else', 'append', 'interleave', 'par', 'fixpoint', 'repeat',
+        'at_most', 'discard', 'focus_at', 'rotate', 'try_for', 'now', 'assumption', 'eassumption',
+        'state', 'intro', 'generalize', 'exact', 'unfold', 'beta', 'trace', 'focus', 'repeat1',
+        'determ', 'destruct', 'try', 'auto', 'intros'
+    ]
+
+    operators = [
+        '!=', '#', '&', '&&', r'\*', r'\+', '-', '/', r'#', r'@',
+        r'-\.', '->', r'\.', r'\.\.', r'\.\.\.', '::', ':>', ';', ';;', '<',
+        '<-', '=', '==', '>', '_', '`', r'\|', r'\|\|', '~', '=>', '<=', '>=',
+        r'/\\', r'\\/', u'∀', u'Π', u'λ', u'↔', u'∧', u'∨', u'≠', u'≤', u'≥', u'¬', u'⁻¹', u'⬝', u'▸',
+        u'→', u'∃', u'ℕ', u'ℤ', u'≈'
+    ]
+
+    word_operators = ['and', 'or', 'not', 'iff', 'eq']
+
+    punctuation = [ r'\(', r'\)', r':', r'{', r'}', r'\[', r'\]', u'⦃', u'⦄', r':=', r',' ]
+
+    primitives = ['unit', 'int', 'bool', 'string', 'char', 'list',
+                  'array', 'prod', 'sum', 'pair', 'real', 'nat', 'num', 'path']
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'\b(false)\b|\b(true)\b|\(\)|\[\]', Name.Builtin.Pseudo),
+            (r'/-', Comment, 'comment'),
+            (r'--.*?$', Comment.Single),
+            (r'\b(%s)\b' % '|'.join(keywords1), Keyword.Namespace),
+            (r'\b(%s)\b' % '|'.join(keywords2), Keyword),
+            (r'\b(%s)\b' % '|'.join(keywords3), Keyword.Type),
+            (r'\b(%s)\b' % '|'.join(keywords4), Keyword),
+            (r'(%s)' % '|'.join(operators[::-1]), Name.Builtin.Pseudo),
+            (r'\b(%s)\b' % '|'.join(word_operators), Name.Builtin.Pseudo),
+            (r'(%s)' % '|'.join(punctuation[::-1]), Operator),
+            (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
+            (u"[A-Za-z_\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f][A-Za-z_'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079\u207f-\u2089\u2090-\u209c\u2100-\u214f]*", Name),
+            (r'\d[\d]*', Number.Integer),
+            (r'"', String.Double, 'string'),
+            (r'[~?][a-z][\w\']*:', Name.Variable)
+        ],
+        'comment': [
+            # Multiline Comments
+            (r'[^/-]', Comment.Multiline),
+            (r'/-', Comment.Multiline, '#push'),
+            (r'-/', Comment.Multiline, '#pop'),
+            (r'[/-]', Comment.Multiline)
+        ],
+        'string': [
+            (r'[^\\"]+', String.Double),
+            (r'\\[n"\\]', String.Escape),
+            ('"', String.Double, '#pop'),
+        ],
     }
 
 
