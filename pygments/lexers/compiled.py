@@ -3946,10 +3946,10 @@ class ChapelLexer(RegexLexer):
             (r'0[bB][0-1]+', Number.Bin),
             # -- hex
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
-            # -- decimal
-            (r'[0-9]+', Number.Integer),
             # -- octal
             (r'0[oO][0-7]+', Number.Oct),
+            # -- decimal
+            (r'[0-9]+', Number.Integer),
 
             # strings
             (r'["\'](\\\\|\\"|[^"\'])*["\']', String),
