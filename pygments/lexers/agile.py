@@ -2010,8 +2010,8 @@ class Perl6Lexer(ExtendedRegexLexer):
     PERL6_BUILTINS = (
         'ACCEPTS', 'HOW', 'REJECTS', 'VAR', 'WHAT', 'WHENCE', 'WHERE', 'WHICH',
         'WHO', 'abs', 'acos', 'acosec', 'acosech', 'acosh', 'acotan', 'acotanh',
-        'all', 'any', 'approx', 'arity', 'asec', 'asech', 'asin', 'asinh'
-        'assuming', 'atan', 'atan2', 'atanh', 'attr', 'bless', 'body', 'by'
+        'all', 'any', 'approx', 'arity', 'asec', 'asech', 'asin', 'asinh',
+        'assuming', 'atan', 'atan2', 'atanh', 'attr', 'bless', 'body', 'by',
         'bytes', 'caller', 'callsame', 'callwith', 'can', 'capitalize', 'cat',
         'ceiling', 'chars', 'chmod', 'chomp', 'chop', 'chr', 'chroot',
         'circumfix', 'cis', 'classify', 'clone', 'close', 'cmp_ok', 'codes',
@@ -2396,7 +2396,7 @@ class HyLexer(RegexLexer):
     ]
 
     declarations = [
-        'def' 'defn', 'defun', 'defmacro', 'defclass', 'lambda', 'fn', 'setv'
+        'def', 'defn', 'defun', 'defmacro', 'defclass', 'lambda', 'fn', 'setv'
     ]
 
     hy_builtins = []
