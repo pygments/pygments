@@ -147,3 +147,15 @@ class IntPair {
 }
 var ip = new IntPair(17,2);
 write(ip);
+
+var targetDom: {1..10},
+  target: [targetDom] int;
+coforall i in targetDom with (ref target) {
+  targetDom[i] = i ** 3;
+}
+
+var wideOpen = 0o777,
+  mememe = 0o600,
+  clique_y = 0O660,
+  zeroOct = 0o0,
+  minPosOct = 0O1;
