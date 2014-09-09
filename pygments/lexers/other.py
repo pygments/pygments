@@ -2473,7 +2473,7 @@ class ProtoBufLexer(RegexLexer):
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
             (r'\b(import|option|optional|required|repeated|default|packed|'
-             r'ctype|extensions|to|max|rpc|returns)\b', Keyword),
+             r'ctype|extensions|to|max|rpc|returns|oneof)\b', Keyword),
             (r'(int32|int64|uint32|uint64|sint32|sint64|'
              r'fixed32|fixed64|sfixed32|sfixed64|'
              r'float|double|bool|string|bytes)\b', Keyword.Type),

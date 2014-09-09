@@ -2437,7 +2437,7 @@ class AdaLexer(RegexLexer):
     """
 
     name = 'Ada'
-    aliases = ['ada', 'ada95' 'ada2005']
+    aliases = ['ada', 'ada95', 'ada2005']
     filenames = ['*.adb', '*.ads', '*.ada']
     mimetypes = ['text/x-ada']
 
@@ -3924,7 +3924,7 @@ class ChapelLexer(RegexLexer):
              r'delete|dmapped|do|domain|else|enum|export|extern|for|forall|'
              r'if|index|inline|iter|label|lambda|let|local|new|noinit|on|'
              r'otherwise|pragma|reduce|return|scan|select|serial|single|sparse|'
-             r'subdomain|sync|then|use|when|where|while|yield|zip)\b',
+             r'subdomain|sync|then|use|when|where|while|with|yield|zip)\b',
              Keyword),
             (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
             (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text),
@@ -3948,6 +3948,8 @@ class ChapelLexer(RegexLexer):
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
             # -- decimal
             (r'[0-9]+', Number.Integer),
+            # -- octal
+            (r'0[oO][0-7]+', Number.Oct),
 
             # strings
             (r'["\'](\\\\|\\"|[^"\'])*["\']', String),
