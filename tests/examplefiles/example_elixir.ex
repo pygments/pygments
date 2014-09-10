@@ -66,6 +66,14 @@ y = true and false; z = false or true
 "hello" |> String.upcase |> String.downcase()
 {^z, a} = {true, x}
 
+# Free operators (added in 1.0.0)
+p  ~>> f  = bind(p, f)
+p1 ~>  p2 = pair_right(p1, p2)
+p1 <~  p2 = pair_left(p1, p2)
+p1 <~> p2 = pair_both(p1, p2)
+p  |~> f  = map(p, f)
+p1 <|> p2 = either(p1, p2)
+
 # Lists, tuples, maps, keywords
 [1, :a, 'hello'] ++ [2, 3]
 [:head | [?t, ?a, ?i, ?l]]
