@@ -3187,7 +3187,7 @@ class ElixirLexer(RegexLexer):
 
     OPERATORS3 = [
         '<<<', '>>>', '|||', '&&&', '^^^', '~~~', '===', '!==',
-        '~>>', '<~>', '\|~>', '<\|>',
+        '~>>', '<~>', '|~>', '<|>',
     ]
     OPERATORS2 = [
         '==', '!=', '<=', '>=', '&&', '||', '<>', '++', '--', '|>', '=~',
@@ -3275,7 +3275,7 @@ class ElixirLexer(RegexLexer):
     ops_re = r'(?:%s|%s|%s)' % (op3_re, op2_re, op1_re)
     punctuation_re = "|".join(re.escape(s) for s in PUNCTUATION)
     alnum = '[A-Za-z_0-9]'
-    name_re = r'[a-z_]%s*[!\?]?' % alnum
+    name_re = r'(?:\.\.\.|[a-z_]%s*[!\?]?)' % alnum
     modname_re = r'[A-Z]%(alnum)s*(?:\.[A-Z]%(alnum)s*)*' % {'alnum': alnum}
     complex_name_re = r'(?:%s|%s|%s)' % (name_re, modname_re, ops_re)
     special_atom_re = r'(?:\.\.\.|<<>>|%{}|%|{})'
@@ -3316,16 +3316,16 @@ class ElixirLexer(RegexLexer):
             # @attributes
             (r'@' + name_re, Name.Attribute),
 
+            # identifiers
+            (name_re, Name),
+            (r'(%%?)(%s)' % (modname_re,), bygroups(Punctuation, Name.Class)),
+
             # operators and punctuation
             (op3_re, Operator),
             (op2_re, Operator),
             (punctuation_re, Punctuation),
             (r'&\d', Name.Entity),   # anon func arguments
             (op1_re, Operator),
-
-            # identifiers
-            (name_re, Name),
-            (r'(%%?)(%s)' % (modname_re,), bygroups(Punctuation, Name.Class)),
 
             # numbers
             (r'0b[01]+', Number.Bin),
