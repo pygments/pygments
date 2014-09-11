@@ -642,7 +642,7 @@ class LogtalkLexer(RegexLexer):
         ],
 
         'directive': [
-			# Conditional compilation directives
+            # Conditional compilation directives
             (r'(el)?if(?=[(])', Keyword, 'root'),
             (r'(e(lse|ndif))[.]', Keyword, 'root'),
             # Entity directives
