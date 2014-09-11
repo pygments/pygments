@@ -494,7 +494,7 @@ class LogtalkLexer(RegexLexer):
 
     name = 'Logtalk'
     aliases = ['logtalk']
-    filenames = ['*.lgt']
+    filenames = ['*.lgt', '*.logtalk']
     mimetypes = ['text/x-logtalk']
 
     tokens = {
@@ -509,24 +509,24 @@ class LogtalkLexer(RegexLexer):
             (r'\s+', Text),
             # Numbers
             (r"0'.", Number),
-            (r'0b[01]+', Number.Bin),
-            (r'0o[0-7]+', Number.Oct),
-            (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number.Float),
+            (r'0b[01]+', Number),
+            (r'0o[0-7]+', Number),
+            (r'0x[0-9a-fA-F]+', Number),
+            (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
             # Variables
-            (r'([A-Z_]\w*)', Name.Variable),
+            (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
             # Event handlers
             (r'(after|before)(?=[(])', Keyword),
+            # Message forwarding handler
+            (r'forward(?=[(])', Keyword),
             # Execution-context methods
             (r'(parameter|this|se(lf|nder))(?=[(])', Keyword),
             # Reflection
             (r'(current_predicate|predicate_property)(?=[(])', Keyword),
             # DCGs and term expansion
-            (r'(expand_(goal|term)|(goal|term)_expansion|phrase)(?=[(])',
-             Keyword),
+            (r'(expand_(goal|term)|(goal|term)_expansion|phrase)(?=[(])', Keyword),
             # Entity
-            (r'(abolish|c(reate|urrent))_(object|protocol|category)(?=[(])',
-             Keyword),
+            (r'(abolish|c(reate|urrent))_(object|protocol|category)(?=[(])', Keyword),
             (r'(object|protocol|category)_property(?=[(])', Keyword),
             # Entity relations
             (r'co(mplements_object|nforms_to_protocol)(?=[(])', Keyword),
@@ -538,32 +538,30 @@ class LogtalkLexer(RegexLexer):
             # Flags
             (r'(current|set)_logtalk_flag(?=[(])', Keyword),
             # Compiling, loading, and library paths
-            (r'logtalk_(compile|l(ibrary_path|oad_context|oad))(?=[(])',
-             Keyword),
+            (r'logtalk_(compile|l(ibrary_path|oad|oad_context)|make)(?=[(])', Keyword),
+            (r'\blogtalk_make\b', Keyword),
             # Database
             (r'(clause|retract(all)?)(?=[(])', Keyword),
             (r'a(bolish|ssert(a|z))(?=[(])', Keyword),
             # Control constructs
             (r'(ca(ll|tch)|throw)(?=[(])', Keyword),
-            (r'(fail|true)\b', Keyword),
+            (r'(fa(il|lse)|true)\b', Keyword),
             # All solutions
             (r'((bag|set)of|f(ind|or)all)(?=[(])', Keyword),
             # Multi-threading meta-predicates
-            (r'threaded(_(call|once|ignore|exit|peek|wait|notify))?(?=[(])',
-             Keyword),
+            (r'threaded(_(call|once|ignore|exit|peek|wait|notify))?(?=[(])', Keyword),
             # Term unification
-            (r'unify_with_occurs_check(?=[(])', Keyword),
+            (r'(subsumes_term|unify_with_occurs_check)(?=[(])', Keyword),
             # Term creation and decomposition
-            (r'(functor|arg|copy_term|numbervars)(?=[(])', Keyword),
+            (r'(functor|arg|copy_term|numbervars|term_variables)(?=[(])', Keyword),
             # Evaluable functors
-            (r'(rem|mod|abs|sign)(?=[(])', Keyword),
+            (r'(rem|m(ax|in|od)|abs|sign)(?=[(])', Keyword),
             (r'float(_(integer|fractional)_part)?(?=[(])', Keyword),
             (r'(floor|truncate|round|ceiling)(?=[(])', Keyword),
             # Other arithmetic functors
-            (r'(cos|atan|exp|log|s(in|qrt))(?=[(])', Keyword),
+            (r'(cos|a(cos|sin|tan)|exp|log|s(in|qrt))(?=[(])', Keyword),
             # Term testing
-            (r'(var|atom(ic)?|integer|float|c(allable|ompound)|n(onvar|umber)|'
-             r'ground)(?=[(])', Keyword),
+            (r'(var|atom(ic)?|integer|float|c(allable|ompound)|n(onvar|umber)|ground|acyclic_term)(?=[(])', Keyword),
             # Term comparison
             (r'compare(?=[(])', Keyword),
             # Stream selection and control
@@ -571,8 +569,7 @@ class LogtalkLexer(RegexLexer):
             (r'(open|close)(?=[(])', Keyword),
             (r'flush_output(?=[(])', Keyword),
             (r'(at_end_of_stream|flush_output)\b', Keyword),
-            (r'(stream_property|at_end_of_stream|set_stream_position)(?=[(])',
-             Keyword),
+            (r'(stream_property|at_end_of_stream|set_stream_position)(?=[(])', Keyword),
             # Character and byte input/output
             (r'(nl|(get|peek|put)_(byte|c(har|ode)))(?=[(])', Keyword),
             (r'\bnl\b', Keyword),
@@ -594,12 +591,14 @@ class LogtalkLexer(RegexLexer):
             # External call
             (r'[{}]', Keyword),
             # Logic and control
-            (r'\b(ignore|once)(?=[(])', Keyword),
+            (r'(ignore|once)(?=[(])', Keyword),
             (r'\brepeat\b', Keyword),
             # Sorting
             (r'(key)?sort(?=[(])', Keyword),
             # Bitwise functors
             (r'(>>|<<|/\\|\\\\|\\)', Operator),
+            # Predicate aliases
+            (r'\bas\b', Operator),
             # Arithemtic evaluation
             (r'\bis\b', Keyword),
             # Arithemtic comparison
@@ -630,20 +629,20 @@ class LogtalkLexer(RegexLexer):
             # Ponctuation
             (r'[()\[\],.|]', Text),
             # Atoms
-            (r"[a-z]\w*", Text),
-            (r"'", String, 'quoted_atom'),
+            (r"[a-z][a-zA-Z0-9_]*", Text),
+            (r"[']", String, 'quoted_atom'),
         ],
 
         'quoted_atom': [
-            (r"''", String),
-            (r"'", String, '#pop'),
+            (r"['][']", String),
+            (r"[']", String, '#pop'),
             (r'\\([\\abfnrtv"\']|(x[a-fA-F0-9]+|[0-7]+)\\)', String.Escape),
             (r"[^\\'\n]+", String),
             (r'\\', String),
         ],
 
         'directive': [
-            # Conditional compilation directives
+			# Conditional compilation directives
             (r'(el)?if(?=[(])', Keyword, 'root'),
             (r'(e(lse|ndif))[.]', Keyword, 'root'),
             # Entity directives
@@ -653,32 +652,28 @@ class LogtalkLexer(RegexLexer):
             (r'(public|protected|private)(?=[(])', Keyword, 'root'),
             # Other directives
             (r'e(n(coding|sure_loaded)|xport)(?=[(])', Keyword, 'root'),
-            (r'in(fo|itialization)(?=[(])', Keyword, 'root'),
-            (r'(dynamic|synchronized|threaded)[.]', Keyword, 'root'),
-            (r'(alias|d(ynamic|iscontiguous)|m(eta_predicate|ode|ultifile)|'
-             r's(et_(logtalk|prolog)_flag|ynchronized))(?=[(])',
-             Keyword, 'root'),
+            (r'in(clude|itialization|fo)(?=[(])', Keyword, 'root'),
+            (r'(built_in|dynamic|synchronized|threaded)[.]', Keyword, 'root'),
+            (r'(alias|d(ynamic|iscontiguous)|m(eta_(non_terminal|predicate)|ode|ultifile)|s(et_(logtalk|prolog)_flag|ynchronized))(?=[(])', Keyword, 'root'),
             (r'op(?=[(])', Keyword, 'root'),
-            (r'(c(alls|oinductive)|reexport|use(s|_module))(?=[(])',
-             Keyword, 'root'),
-            (r'[a-z]\w*(?=[(])', Text, 'root'),
-            (r'[a-z]\w*[.]', Text, 'root'),
+            (r'(c(alls|oinductive)|module|reexport|use(s|_module))(?=[(])', Keyword, 'root'),
+            (r'[a-z][a-zA-Z0-9_]*(?=[(])', Text, 'root'),
+            (r'[a-z][a-zA-Z0-9_]*[.]', Text, 'root'),
         ],
 
         'entityrelations': [
-            (r'(complements|extends|i(nstantiates|mp(lements|orts))|specializes)'
-             r'(?=[(])', Keyword),
+            (r'(complements|extends|i(nstantiates|mp(lements|orts))|specializes)(?=[(])', Keyword),
             # Numbers
             (r"0'.", Number),
-            (r'0b[01]+', Number.Bin),
-            (r'0o[0-7]+', Number.Oct),
-            (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number.Float),
+            (r'0b[01]+', Number),
+            (r'0o[0-7]+', Number),
+            (r'0x[0-9a-fA-F]+', Number),
+            (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
             # Variables
-            (r'([A-Z_]\w*)', Name.Variable),
+            (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
             # Atoms
-            (r"[a-z]\w*", Text),
-            (r"'", String, 'quoted_atom'),
+            (r"[a-z][a-zA-Z0-9_]*", Text),
+            (r"[']", String, 'quoted_atom'),
             # Strings
             (r'"(\\\\|\\"|[^"])*"', String),
             # End of entity-opening directive
@@ -702,6 +697,8 @@ class LogtalkLexer(RegexLexer):
         if ':- protocol(' in text:
             return True
         if ':- category(' in text:
+            return True
+        if ':-' in text:
             return True
         return False
 
