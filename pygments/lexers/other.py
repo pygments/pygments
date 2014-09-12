@@ -665,9 +665,9 @@ class LogtalkLexer(RegexLexer):
             (r'(complements|extends|i(nstantiates|mp(lements|orts))|specializes)(?=[(])', Keyword),
             # Numbers
             (r"0'.", Number),
-            (r'0b[01]+', Number),
-            (r'0o[0-7]+', Number),
-            (r'0x[0-9a-fA-F]+', Number),
+            (r'0b[01]+', Number.Bin),
+            (r'0o[0-7]+', Number.Oct),
+            (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
             # Variables
             (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
