@@ -488,23 +488,32 @@ class DLexer(RegexLexer):
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'/\+', Comment.Multiline, 'nested_comment'),
             # Keywords
-            (r'(abstract|alias|align|asm|assert|auto|body|break|case|cast'
-             r'|catch|class|const|continue|debug|default|delegate|delete'
-             r'|deprecated|do|else|enum|export|extern|finally|final'
-             r'|foreach_reverse|foreach|for|function|goto|if|immutable|import'
-             r'|interface|invariant|inout|in|is|lazy|mixin|module|new|nothrow|out'
-             r'|override|package|pragma|private|protected|public|pure|ref|return'
-             r'|scope|shared|static|struct|super|switch|synchronized|template|this'
-             r'|throw|try|typedef|typeid|typeof|union|unittest|version|volatile'
-             r'|while|with|__gshared|__traits|__vector|__parameters)\b', Keyword
-            ),
-            (r'(bool|byte|cdouble|cent|cfloat|char|creal|dchar|double|float'
-             r'|idouble|ifloat|int|ireal|long|real|short|ubyte|ucent|uint|ulong'
-             r'|ushort|void|wchar)\b', Keyword.Type
-            ),
+            (words((
+                'abstract', 'alias', 'align', 'asm', 'assert', 'auto', 'body',
+                'break', 'case', 'cast', 'catch', 'class', 'const', 'continue',
+                'debug', 'default', 'delegate', 'delete', 'deprecated', 'do', 'else',
+                'enum', 'export', 'extern', 'finally', 'final', 'foreach_reverse',
+                'foreach', 'for', 'function', 'goto', 'if', 'immutable', 'import',
+                'interface', 'invariant', 'inout', 'in', 'is', 'lazy', 'mixin',
+                'module', 'new', 'nothrow', 'out', 'override', 'package', 'pragma',
+                'private', 'protected', 'public', 'pure', 'ref', 'return', 'scope',
+                'shared', 'static', 'struct', 'super', 'switch', 'synchronized',
+                'template', 'this', 'throw', 'try', 'typedef', 'typeid', 'typeof',
+                'union', 'unittest', 'version', 'volatile', 'while', 'with',
+                '__gshared', '__traits', '__vector', '__parameters'),
+                suffix=r'\b'),
+             Keyword),
+            (words((
+                'bool', 'byte', 'cdouble', 'cent', 'cfloat', 'char', 'creal',
+                'dchar', 'double', 'float', 'idouble', 'ifloat', 'int', 'ireal',
+                'long', 'real', 'short', 'ubyte', 'ucent', 'uint', 'ulong',
+                'ushort', 'void', 'wchar'), suffix=r'\b'),
+             Keyword.Type),
             (r'(false|true|null)\b', Keyword.Constant),
-            (r'(__FILE__|__MODULE__|__LINE__|__FUNCTION__|__PRETTY_FUNCTION__'
-             r'|__DATE__|__EOF__|__TIME__|__TIMESTAMP__|__VENDOR__|__VERSION__)\b',
+            (words((
+                '__FILE__', '__MODULE__', '__LINE__', '__FUNCTION__', '__PRETTY_FUNCTION__'
+                '', '__DATE__', '__EOF__', '__TIME__', '__TIMESTAMP__', '__VENDOR__',
+                '__VERSION__'), suffix=r'\b'),
              Keyword.Pseudo),
             (r'macro\b', Keyword.Reserved),
             (r'(string|wstring|dstring|size_t|ptrdiff_t)\b', Name.Builtin),
@@ -5202,6 +5211,7 @@ class MqlLexer(CppLexer):
         ],
     }
 
+
 class SwiftLexer(ObjectiveCLexer):
     """
     For `Swift <https://developer.apple.com/swift/>`_ source.
@@ -5211,25 +5221,24 @@ class SwiftLexer(ObjectiveCLexer):
     aliases = ['swift']
     mimetypes = ['text/x-swift']
 
-    keywords_decl = ['class', 'deinit', 'enum', 'extension', 'func', 'import',
-                      'init', 'let', 'protocol', 'static', 'struct', 'subscript',
-                      'typealias', 'var']
-    keywords_stmt = ['break', 'case', 'continue', 'default', 'do', 'else',
-                     'fallthrough', 'if', 'in', 'for', 'return', 'switch',
-                     'where', 'while']
-    keywords_type = ['as', 'dynamicType', 'is', 'new', 'super', 'self', 'Self',
-                     'Type', '__COLUMN__', '__FILE__', '__FUNCTION__',
-                     '__LINE__']
-    keywords_resrv = ['associativity', 'didSet', 'get', 'infix', 'inout', 'left',
-                      'mutating', 'none', 'nonmutating', 'operator', 'override',
-                      'postfix', 'precedence', 'prefix', 'right', 'set',
-                      'unowned', 'unowned(safe)', 'unowned(unsafe)', 'weak',
-                      'willSet']
-    operators = ['->']
+    keywords_decl = set(('class', 'deinit', 'enum', 'extension', 'func', 'import',
+                         'init', 'let', 'protocol', 'static', 'struct', 'subscript',
+                         'typealias', 'var'))
+    keywords_stmt = set(('break', 'case', 'continue', 'default', 'do', 'else',
+                         'fallthrough', 'if', 'in', 'for', 'return', 'switch',
+                         'where', 'while'))
+    keywords_type = set(('as', 'dynamicType', 'is', 'new', 'super', 'self', 'Self',
+                         'Type', '__COLUMN__', '__FILE__', '__FUNCTION__',
+                         '__LINE__'))
+    keywords_resrv = set(('associativity', 'didSet', 'get', 'infix', 'inout', 'left',
+                          'mutating', 'none', 'nonmutating', 'operator', 'override',
+                          'postfix', 'precedence', 'prefix', 'right', 'set',
+                          'unowned', 'unowned(safe)', 'unowned(unsafe)', 'weak',
+                          'willSet'))
+    operators = set(('->',))
 
     def get_tokens_unprocessed(self, text):
-        for index, token, value in \
-            ObjectiveCLexer.get_tokens_unprocessed(self, text):
+        for index, token, value in ObjectiveCLexer.get_tokens_unprocessed(self, text):
             if token is Name:
                 if value in self.keywords_decl:
                     token = Keyword
