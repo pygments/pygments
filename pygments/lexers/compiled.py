@@ -3914,10 +3914,10 @@ class LogosLexer(ObjectiveCppLexer):
             (r'(%hook|%group)(\s+)([a-zA-Z$_][\w$]+)',
              bygroups(Keyword, Text, Name.Class), '#pop'),
             (r'(%subclass)(\s+)', bygroups(Keyword, Text),
-            ('#pop', 'logos_classname')),
+             ('#pop', 'logos_classname')),
             inherit,
         ],
-        'logos_init_directive' : [
+        'logos_init_directive': [
             ('\s+', Text),
             (',', Punctuation, ('logos_init_directive', '#pop')),
             ('([a-zA-Z$_][\w$]*)(\s*)(=)(\s*)([^);]*)',
@@ -3925,7 +3925,7 @@ class LogosLexer(ObjectiveCppLexer):
             ('([a-zA-Z$_][\w$]*)', Name.Class),
             ('\)', Punctuation, '#pop'),
         ],
-        'logos_classname' : [
+        'logos_classname': [
             ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?',
              bygroups(Name.Class, Text, Name.Class), '#pop'),
             ('([a-zA-Z$_][\w$]*)', Name.Class, '#pop')
@@ -3979,11 +3979,14 @@ class ChapelLexer(RegexLexer):
             (r'(false|nil|true)\b', Keyword.Constant),
             (r'(bool|complex|imag|int|opaque|range|real|string|uint)\b',
              Keyword.Type),
-            (r'(align|atomic|begin|break|by|cobegin|coforall|continue|'
-             r'delete|dmapped|do|domain|else|enum|export|extern|for|forall|'
-             r'if|index|inline|iter|label|lambda|let|local|new|noinit|on|'
-             r'otherwise|pragma|reduce|return|scan|select|serial|single|sparse|'
-             r'subdomain|sync|then|use|when|where|while|with|yield|zip)\b',
+            (words((
+                'align', 'atomic', 'begin', 'break', 'by', 'cobegin', 'coforall',
+                'continue', 'delete', 'dmapped', 'do', 'domain', 'else', 'enum',
+                'export', 'extern', 'for', 'forall', 'if', 'index', 'inline',
+                'iter', 'label', 'lambda', 'let', 'local', 'new', 'noinit', 'on',
+                'otherwise', 'pragma', 'reduce', 'return', 'scan', 'select',
+                'serial', 'single', 'sparse', 'subdomain', 'sync', 'then', 'use',
+                'when', 'where', 'while', 'with', 'yield', 'zip'), suffix=r'\b'),
              Keyword),
             (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
             (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text),
@@ -4049,15 +4052,19 @@ class EiffelLexer(RegexLexer):
             (r'[^\S\n]+', Text),
             (r'--.*?\n', Comment.Single),
             (r'[^\S\n]+', Text),
-                # Please note that keyword and operator are case insensitive.
+            # Please note that keyword and operator are case insensitive.
             (r'(?i)(true|false|void|current|result|precursor)\b', Keyword.Constant),
             (r'(?i)(and(\s+then)?|not|xor|implies|or(\s+else)?)\b', Operator.Word),
-            (r'(?i)\b(across|agent|alias|all|as|assign|attached|attribute|check|'
-                r'class|convert|create|debug|deferred|detachable|do|else|elseif|'
-                r'end|ensure|expanded|export|external|feature|from|frozen|if|'
-                r'inherit|inspect|invariant|like|local|loop|none|note|obsolete|'
-                r'old|once|only|redefine|rename|require|rescue|retry|select|'
-                r'separate|then|undefine|until|variant|when)\b',Keyword.Reserved),
+            (words((
+                'across', 'agent', 'alias', 'all', 'as', 'assign', 'attached',
+                'attribute', 'check', 'class', 'convert', 'create', 'debug',
+                'deferred', 'detachable', 'do', 'else', 'elseif', 'end', 'ensure',
+                'expanded', 'export', 'external', 'feature', 'from', 'frozen', 'if',
+                'inherit', 'inspect', 'invariant', 'like', 'local', 'loop', 'none',
+                'note', 'obsolete', 'old', 'once', 'only', 'redefine', 'rename',
+                'require', 'rescue', 'retry', 'select', 'separate', 'then',
+                'undefine', 'until', 'variant', 'when'), prefix=r'(?i)\b', suffix=r'\b'),
+             Keyword.Reserved),
             (r'"\[(([^\]%]|\n)|%(.|\n)|\][^"])*?\]"', String),
             (r'"([^"%\n]|%.)*?"', String),
             include('numbers'),
@@ -4195,33 +4202,39 @@ class Inform6Lexer(RegexLexer):
             (r'(#r\$)(%s)' % _name, bygroups(Operator, Name.Function), '#pop'),
             (r'#', Name.Builtin, ('#pop', 'system-constant')),
             # System functions
-            (r'(child|children|elder|eldest|glk|indirect|metaclass|parent|'
-             r'random|sibling|younger|youngest)\b', Name.Builtin, '#pop'),
+            (words((
+                'child', 'children', 'elder', 'eldest', 'glk', 'indirect', 'metaclass',
+                'parent', 'random', 'sibling', 'younger', 'youngest'), suffix=r'\b'),
+             Name.Builtin, '#pop'),
             # Metaclasses
             (r'(?i)(Class|Object|Routine|String)\b', Name.Builtin, '#pop'),
             # Veneer routines
-            (r'(?i)(Box__Routine|CA__Pr|CDefArt|CInDefArt|Cl__Ms|'
-             r'Copy__Primitive|CP__Tab|DA__Pr|DB__Pr|DefArt|Dynam__String|'
-             r'EnglishNumber|Glk__Wrap|IA__Pr|IB__Pr|InDefArt|Main__|'
-             r'Meta__class|OB__Move|OB__Remove|OC__Cl|OP__Pr|Print__Addr|'
-             r'Print__PName|PrintShortName|RA__Pr|RA__Sc|RL__Pr|R_Process|'
-             r'RT__ChG|RT__ChGt|RT__ChLDB|RT__ChLDW|RT__ChPR|RT__ChPrintA|'
-             r'RT__ChPrintC|RT__ChPrintO|RT__ChPrintS|RT__ChPS|RT__ChR|'
-             r'RT__ChSTB|RT__ChSTW|RT__ChT|RT__Err|RT__TrPS|RV__Pr|'
-             r'Symb__Tab|Unsigned__Compare|WV__Pr|Z__Region)\b', Name.Builtin,
-             '#pop'),
+            (words((
+                'Box__Routine', 'CA__Pr', 'CDefArt', 'CInDefArt', 'Cl__Ms',
+                'Copy__Primitive', 'CP__Tab', 'DA__Pr', 'DB__Pr', 'DefArt', 'Dynam__String',
+                'EnglishNumber', 'Glk__Wrap', 'IA__Pr', 'IB__Pr', 'InDefArt', 'Main__',
+                'Meta__class', 'OB__Move', 'OB__Remove', 'OC__Cl', 'OP__Pr', 'Print__Addr',
+                'Print__PName', 'PrintShortName', 'RA__Pr', 'RA__Sc', 'RL__Pr', 'R_Process',
+                'RT__ChG', 'RT__ChGt', 'RT__ChLDB', 'RT__ChLDW', 'RT__ChPR', 'RT__ChPrintA',
+                'RT__ChPrintC', 'RT__ChPrintO', 'RT__ChPrintS', 'RT__ChPS', 'RT__ChR',
+                'RT__ChSTB', 'RT__ChSTW', 'RT__ChT', 'RT__Err', 'RT__TrPS', 'RV__Pr',
+                'Symb__Tab', 'Unsigned__Compare', 'WV__Pr', 'Z__Region'),
+                prefix='(?i)', suffix=r'\b'),
+             Name.Builtin, '#pop'),
             # Other built-in symbols
-            (r'(?i)(call|copy|create|DEBUG|destroy|DICT_CHAR_SIZE|'
-             r'DICT_ENTRY_BYTES|DICT_IS_UNICODE|DICT_WORD_SIZE|false|'
-             r'FLOAT_INFINITY|FLOAT_NAN|FLOAT_NINFINITY|GOBJFIELD_CHAIN|'
-             r'GOBJFIELD_CHILD|GOBJFIELD_NAME|GOBJFIELD_PARENT|'
-             r'GOBJFIELD_PROPTAB|GOBJFIELD_SIBLING|GOBJ_EXT_START|'
-             r'GOBJ_TOTAL_LENGTH|Grammar__Version|INDIV_PROP_START|INFIX|'
-             r'infix__watching|MODULE_MODE|name|nothing|NUM_ATTR_BYTES|print|'
-             r'print_to_array|recreate|remaining|self|sender|STRICT_MODE|'
-             r'sw__var|sys__glob0|sys__glob1|sys__glob2|sys_statusline_flag|'
-             r'TARGET_GLULX|TARGET_ZCODE|temp__global2|temp__global3|'
-             r'temp__global4|temp_global|true|USE_MODULES|WORDSIZE)\b',
+            (words((
+                'call', 'copy', 'create', 'DEBUG', 'destroy', 'DICT_CHAR_SIZE',
+                'DICT_ENTRY_BYTES', 'DICT_IS_UNICODE', 'DICT_WORD_SIZE', 'false',
+                'FLOAT_INFINITY', 'FLOAT_NAN', 'FLOAT_NINFINITY', 'GOBJFIELD_CHAIN',
+                'GOBJFIELD_CHILD', 'GOBJFIELD_NAME', 'GOBJFIELD_PARENT',
+                'GOBJFIELD_PROPTAB', 'GOBJFIELD_SIBLING', 'GOBJ_EXT_START',
+                'GOBJ_TOTAL_LENGTH', 'Grammar__Version', 'INDIV_PROP_START', 'INFIX',
+                'infix__watching', 'MODULE_MODE', 'name', 'nothing', 'NUM_ATTR_BYTES', 'print',
+                'print_to_array', 'recreate', 'remaining', 'self', 'sender', 'STRICT_MODE',
+                'sw__var', 'sys__glob0', 'sys__glob1', 'sys__glob2', 'sys_statusline_flag',
+                'TARGET_GLULX', 'TARGET_ZCODE', 'temp__global2', 'temp__global3',
+                'temp__global4', 'temp_global', 'true', 'USE_MODULES', 'WORDSIZE'),
+                prefix='(?i)', suffix=r'\b'),
              Name.Builtin, '#pop'),
             # Other values
             (_name, Name, '#pop')
@@ -4290,9 +4303,11 @@ class Inform6Lexer(RegexLexer):
             (r';', Punctuation, '#pop'),
             (r'\[', Punctuation,
              ('default', 'statements', 'locals', 'routine-name?')),
-            (r'(?i)(abbreviate|endif|dictionary|ifdef|iffalse|ifndef|ifnot|'
-             r'iftrue|ifv3|ifv5|release|serial|switches|system_file|version)'
-             r'\b', Keyword, 'default'),
+            (words((
+                'abbreviate', 'endif', 'dictionary', 'ifdef', 'iffalse', 'ifndef', 'ifnot',
+                'iftrue', 'ifv3', 'ifv5', 'release', 'serial', 'switches', 'system_file',
+                'version'), prefix='(?i)', suffix=r'\b'),
+             Keyword, 'default'),
             (r'(?i)(array|global)\b', Keyword,
              ('default', 'directive-keyword?', '_global')),
             (r'(?i)attribute\b', Keyword, ('default', 'alias?', '_constant')),
@@ -4423,11 +4438,13 @@ class Inform6Lexer(RegexLexer):
         # Keywords used in directives
         '_directive-keyword!': [
             include('_whitespace'),
-            (r'(additive|alias|buffer|class|creature|data|error|fatalerror|'
-             r'first|has|held|initial|initstr|last|long|meta|multi|'
-             r'multiexcept|multiheld|multiinside|noun|number|only|private|'
-             r'replace|reverse|scope|score|special|string|table|terminating|'
-             r'time|topic|warning|with)\b', Keyword, '#pop'),
+            (words((
+                'additive', 'alias', 'buffer', 'class', 'creature', 'data', 'error', 'fatalerror',
+                'first', 'has', 'held', 'initial', 'initstr', 'last', 'long', 'meta', 'multi',
+                'multiexcept', 'multiheld', 'multiinside', 'noun', 'number', 'only', 'private',
+                'replace', 'reverse', 'scope', 'score', 'special', 'string', 'table', 'terminating',
+                'time', 'topic', 'warning', 'with'), suffix=r'\b'),
+             Keyword, '#pop'),
             (r'[%s]{1,2}>|[+=]' % _dash, Punctuation, '#pop')
         ],
         '_directive-keyword': [
@@ -4445,8 +4462,10 @@ class Inform6Lexer(RegexLexer):
         ],
         'trace-keyword?': [
             include('_whitespace'),
-            (r'(assembly|dictionary|expressions|lines|linker|objects|off|on|'
-             r'symbols|tokens|verbs)\b', Keyword, '#pop'),
+            (words((
+                'assembly', 'dictionary', 'expressions', 'lines', 'linker',
+                'objects', 'off', 'on', 'symbols', 'tokens', 'verbs'), suffix=r'\b'),
+             Keyword, '#pop'),
             default('#pop')
         ],
 
@@ -4455,9 +4474,11 @@ class Inform6Lexer(RegexLexer):
             include('_whitespace'),
             (r'\]', Punctuation, '#pop'),
             (r'[;{}]', Punctuation),
-            (r'(box|break|continue|default|give|inversion|new_line|quit|read|'
-             r'remove|return|rfalse|rtrue|spaces|string|until)\b', Keyword,
-             'default'),
+            (words((
+                'box', 'break', 'continue', 'default', 'give', 'inversion',
+                'new_line', 'quit', 'read', 'remove', 'return', 'rfalse', 'rtrue',
+                'spaces', 'string', 'until'), suffix=r'\b'),
+             Keyword, 'default'),
             (r'(do|else)\b', Keyword),
             (r'(font|style)\b', Keyword,
              ('default', 'miscellaneous-keyword?')),
