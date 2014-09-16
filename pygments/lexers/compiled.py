@@ -3015,7 +3015,7 @@ class NimrodLexer(RegexLexer):
         'is', 'isnot', 'iterator', 'lambda', 'let', 'macro', 'method',
         'mod', 'not', 'notin', 'object', 'of', 'or', 'out', 'proc',
         'ptr', 'raise', 'ref', 'return', 'shl', 'shr', 'template', 'try',
-        'tuple', 'type' , 'when', 'while', 'with', 'without', 'xor'
+        'tuple', 'type', 'when', 'while', 'with', 'without', 'xor'
     ]
 
     keywordsPseudo = [
@@ -3061,7 +3061,7 @@ class NimrodLexer(RegexLexer):
             (r'\b((?![_\d])\w)(((?!_)\w)|(_(?!_)\w))*', Name),
             # Numbers
             (r'[0-9][0-9_]*(?=([eE.]|\'[fF](32|64)))',
-              Number.Float, ('float-suffix', 'float-number')),
+             Number.Float, ('float-suffix', 'float-number')),
             (r'0[xX][a-f0-9][a-f0-9_]*', Number.Hex, 'int-suffix'),
             (r'0[bB][01][01_]*', Number.Bin, 'int-suffix'),
             (r'0o[0-7][0-7_]*', Number.Oct, 'int-suffix'),
@@ -3071,9 +3071,9 @@ class NimrodLexer(RegexLexer):
             (r'.+$', Error),
         ],
         'chars': [
-          (r'\\([\\abcefnrtvl"\']|x[a-f0-9]{2}|[0-9]{1,3})', String.Escape),
-          (r"'", String.Char, '#pop'),
-          (r".", String.Char)
+            (r'\\([\\abcefnrtvl"\']|x[a-f0-9]{2}|[0-9]{1,3})', String.Escape),
+            (r"'", String.Char, '#pop'),
+            (r".", String.Char)
         ],
         'strings': [
             (r'(?<!\$)\$(\d+|#|\w+)+', String.Interpol),
@@ -3108,18 +3108,18 @@ class NimrodLexer(RegexLexer):
             (r'\n', String)
         ],
         'float-number': [
-          (r'\.(?!\.)[0-9_]*', Number.Float),
-          (r'[eE][+-]?[0-9][0-9_]*', Number.Float),
-          default('#pop')
+            (r'\.(?!\.)[0-9_]*', Number.Float),
+            (r'[eE][+-]?[0-9][0-9_]*', Number.Float),
+            default('#pop')
         ],
         'float-suffix': [
-          (r'\'[fF](32|64)', Number.Float),
-          default('#pop')
+            (r'\'[fF](32|64)', Number.Float),
+            default('#pop')
         ],
         'int-suffix': [
-          (r'\'[iI](32|64)', Number.Integer.Long),
-          (r'\'[iI](8|16)', Number.Integer),
-          default('#pop')
+            (r'\'[iI](32|64)', Number.Integer.Long),
+            (r'\'[iI](8|16)', Number.Integer),
+            default('#pop')
         ],
     }
 
@@ -3138,66 +3138,65 @@ class FantomLexer(RegexLexer):
     # often used regexes
     def s(str):
         return Template(str).substitute(
-            dict (
+            dict(
                 pod = r'[\"\w\.]+',
                 eos = r'\n|;',
                 id = r'[a-zA-Z_]\w*',
                 # all chars which can be part of type definition. Starts with
                 # either letter, or [ (maps), or | (funcs)
                 type = r'(?:\[|[a-zA-Z_]|\|)[:\w\[\]\|\->\?]*?',
-                )
             )
-
+        )
 
     tokens = {
         'comments': [
-            (r'(?s)/\*.*?\*/', Comment.Multiline),           #Multiline
-            (r'//.*?\n', Comment.Single),                    #Single line
-            #todo: highlight references in fandocs
-            (r'\*\*.*?\n', Comment.Special),                 #Fandoc
-            (r'#.*\n', Comment.Single)                       #Shell-style
+            (r'(?s)/\*.*?\*/', Comment.Multiline),           # Multiline
+            (r'//.*?\n', Comment.Single),                    # Single line
+            # TODO: highlight references in fandocs
+            (r'\*\*.*?\n', Comment.Special),                 # Fandoc
+            (r'#.*\n', Comment.Single)                       # Shell-style
         ],
         'literals': [
-            (r'\b-?[\d_]+(ns|ms|sec|min|hr|day)', Number),   #Duration
+            (r'\b-?[\d_]+(ns|ms|sec|min|hr|day)', Number),   # Duration
             (r'\b-?[\d_]*\.[\d_]+(ns|ms|sec|min|hr|day)', Number),
-                                                             #Duration with dot
-            (r'\b-?(\d+)?\.\d+(f|F|d|D)?', Number.Float),    #Float/Decimal
-            (r'\b-?0x[0-9a-fA-F_]+', Number.Hex),            #Hex
-            (r'\b-?[\d_]+', Number.Integer),                 #Int
-            (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char), #Char
-            (r'"', Punctuation, 'insideStr'),                #Opening quote
-            (r'`', Punctuation, 'insideUri'),                #Opening accent
-            (r'\b(true|false|null)\b', Keyword.Constant),    #Bool & null
-            (r'(?:(\w+)(::))?(\w+)(<\|)(.*?)(\|>)',          #DSL
+                                                             # Duration with dot
+            (r'\b-?(\d+)?\.\d+(f|F|d|D)?', Number.Float),    # Float/Decimal
+            (r'\b-?0x[0-9a-fA-F_]+', Number.Hex),            # Hex
+            (r'\b-?[\d_]+', Number.Integer),                 # Int
+            (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),  # Char
+            (r'"', Punctuation, 'insideStr'),                # Opening quote
+            (r'`', Punctuation, 'insideUri'),                # Opening accent
+            (r'\b(true|false|null)\b', Keyword.Constant),    # Bool & null
+            (r'(?:(\w+)(::))?(\w+)(<\|)(.*?)(\|>)',          # DSL
              bygroups(Name.Namespace, Punctuation, Name.Class,
                       Punctuation, String, Punctuation)),
-            (r'(?:(\w+)(::))?(\w+)?(#)(\w+)?',               #Type/slot literal
+            (r'(?:(\w+)(::))?(\w+)?(#)(\w+)?',               # Type/slot literal
              bygroups(Name.Namespace, Punctuation, Name.Class,
                       Punctuation, Name.Function)),
             (r'\[,\]', Literal),                             # Empty list
             (s(r'($type)(\[,\])'),                           # Typed empty list
-             bygroups(using(this, state = 'inType'), Literal)),
+             bygroups(using(this, state='inType'), Literal)),
             (r'\[:\]', Literal),                             # Empty Map
             (s(r'($type)(\[:\])'),
-             bygroups(using(this, state = 'inType'), Literal)),
+             bygroups(using(this, state='inType'), Literal)),
         ],
         'insideStr': [
-            (r'\\\\', String.Escape),                        #Escaped backslash
-            (r'\\"', String.Escape),                         #Escaped "
-            (r'\\`', String.Escape),                         #Escaped `
-            (r'\$\w+', String.Interpol),                     #Subst var
-            (r'\${.*?}', String.Interpol),                   #Subst expr
-            (r'"', Punctuation, '#pop'),                     #Closing quot
-            (r'.', String)                                   #String content
+            (r'\\\\', String.Escape),                        # Escaped backslash
+            (r'\\"', String.Escape),                         # Escaped "
+            (r'\\`', String.Escape),                         # Escaped `
+            (r'\$\w+', String.Interpol),                     # Subst var
+            (r'\${.*?}', String.Interpol),                   # Subst expr
+            (r'"', Punctuation, '#pop'),                     # Closing quot
+            (r'.', String)                                   # String content
         ],
-        'insideUri': [  #TODO: remove copy/paste str/uri
-            (r'\\\\', String.Escape),                        #Escaped backslash
-            (r'\\"', String.Escape),                         #Escaped "
-            (r'\\`', String.Escape),                         #Escaped `
-            (r'\$\w+', String.Interpol),                     #Subst var
-            (r'\${.*?}', String.Interpol),                   #Subst expr
-            (r'`', Punctuation, '#pop'),                     #Closing tick
-            (r'.', String.Backtick)                          #URI content
+        'insideUri': [  # TODO: remove copy/paste str/uri
+            (r'\\\\', String.Escape),                        # Escaped backslash
+            (r'\\"', String.Escape),                         # Escaped "
+            (r'\\`', String.Escape),                         # Escaped `
+            (r'\$\w+', String.Interpol),                     # Subst var
+            (r'\${.*?}', String.Interpol),                   # Subst expr
+            (r'`', Punctuation, '#pop'),                     # Closing tick
+            (r'.', String.Backtick)                          # URI content
         ],
         'protectionKeywords': [
             (r'\b(public|protected|private|internal)\b', Keyword),
@@ -3214,8 +3213,10 @@ class FantomLexer(RegexLexer):
              r'readonly)\b', Keyword)
         ],
         'otherKeywords': [
-            (r'\b(try|catch|throw|finally|for|if|else|while|as|is|isnot|'
-             r'switch|case|default|continue|break|do|return|get|set)\b',
+            (words((
+                'try', 'catch', 'throw', 'finally', 'for', 'if', 'else', 'while',
+                'as', 'is', 'isnot', 'switch', 'case', 'default', 'continue',
+                'break', 'do', 'return', 'get', 'set'), prefix=r'\b', suffix=r'\b'),
              Keyword),
             (r'\b(it|this|super)\b', Name.Builtin.Pseudo),
         ],
@@ -3242,7 +3243,6 @@ class FantomLexer(RegexLexer):
             (r'(class|mixin)(\s+)(\w+)', bygroups(Keyword, Text, Name.Class),
              'inheritance'),                                  # Inheritance list
 
-
             ### Type var := val
             (s(r'($type)([ \t]+)($id)(\s*)(:=)'),
              bygroups(using(this, state = 'inType'), Text,
@@ -3267,8 +3267,8 @@ class FantomLexer(RegexLexer):
              'insideMethodDeclArgs'),
 
             ### Type name (  ####
-            (s(r'($type)([ \t]+)' #Return type and whitespace
-               r'($id)(\s*)(\()'), #method name + open brace
+            (s(r'($type)([ \t]+)'  # Return type and whitespace
+               r'($id)(\s*)(\()'),  # method name + open brace
              bygroups(using(this, state = 'inType'), Text,
                       Name.Function, Text, Punctuation),
              'insideMethodDeclArgs'),
@@ -3317,27 +3317,27 @@ class FantomLexer(RegexLexer):
             include('root'),
         ],
         'inheritance': [
-            (r'\s+', Text),                                      #Whitespace
+            (r'\s+', Text),                                      # Whitespace
             (r':|,', Punctuation),
             (r'(?:(\w+)(::))?(\w+)',
              bygroups(Name.Namespace, Punctuation, Name.Class)),
             (r'{', Punctuation, '#pop')
         ],
         'using': [
-            (r'[ \t]+', Text), # consume whitespaces
+            (r'[ \t]+', Text),  # consume whitespaces
             (r'(\[)(\w+)(\])',
-             bygroups(Punctuation, Comment.Special, Punctuation)), #ffi
+             bygroups(Punctuation, Comment.Special, Punctuation)),  # ffi
             (r'(\")?([\w\.]+)(\")?',
-             bygroups(Punctuation, Name.Namespace, Punctuation)), #podname
+             bygroups(Punctuation, Name.Namespace, Punctuation)),  # podname
             (r'::', Punctuation, 'usingClass'),
             default('#pop')
         ],
         'usingClass': [
-            (r'[ \t]+', Text), # consume whitespaces
+            (r'[ \t]+', Text),  # consume whitespaces
             (r'(as)(\s+)(\w+)',
              bygroups(Keyword.Declaration, Text, Name.Class), '#pop:2'),
             (r'[\w\$]+', Name.Class),
-            default('#pop:2') # jump out to root state
+            default('#pop:2')  # jump out to root state
         ],
         'facet': [
             (r'\s+', Text),
