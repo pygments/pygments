@@ -1,13 +1,19 @@
 # Numbers
 0b0101011
-1234 ; 0x1A ; 0xbeef ; 0763
+1234 ; 0x1A ; 0xbeef ; 0763 ; 0o123
 3.14 ; 5.0e21 ; 0.5e-12
 100_000_000
+
+# these are not valid numbers
+0b012 ; 0xboar ; 0o888
+0B01 ; 0XAF ; 0O123
 
 # Characters
 ?a ; ?1 ; ?\n ; ?\s ; ?\c ; ? ; ?,
 ?\x{12} ; ?\x{abcd}
-?\x34 ; ?\xf
+?\x34 ; ?\xF
+
+# these show that only the first digit is part of the character
 ?\123 ; ?\12 ; ?\7
 
 # Atoms
@@ -18,12 +24,13 @@
  line ' \s \123 \xff
 atom"
 :... ; :<<>> ; :%{} ; :% ; :{}
-:++; :--; :*; :~~~
+:++; :--; :*; :~~~; :::
+:% ; :. ; :<-
 
 # Strings
 "Hello world"
-"Interspersed \x{ff} codes \7 \8 \65 \016 and \t\s\z\+ \\ escapes"
-"Quotes ' inside \" \123 the \"\" \xF string \\\" end"
+"Interspersed \x{ff} codes \7 \8 \65 \016 and \t\s\\s\z\+ \\ escapes"
+"Quotes ' inside \" \123 the \"\" \xF \\xF string \\\" end"
 "Multiline
    string"
 
@@ -45,17 +52,27 @@ atom"
 ~w(hello #{ ["has" <> "123", '\c\d', "\123 interpol" | []] } world)s
 ~W(hello #{no "123" \c\d \123 interpol} world)s
 
+~s{Escapes terminators \{ and \}, but no {balancing} # outside of sigil here }
+
 ~S"No escapes \s\t\n and no #{interpolation}"
 
 :"atoms work #{"to" <> "o"}"
 
 # Operators
 x = 1 + 2.0 * 3
-y = true and false; z = false xor true
+y = true and false; z = false or true
 ... = 144
 ... == !x && y || z
 "hello" |> String.upcase |> String.downcase()
 {^z, a} = {true, x}
+
+# Free operators (added in 1.0.0)
+p  ~>> f  = bind(p, f)
+p1 ~>  p2 = pair_right(p1, p2)
+p1 <~  p2 = pair_left(p1, p2)
+p1 <~> p2 = pair_both(p1, p2)
+p  |~> f  = map(p, f)
+p1 <|> p2 = either(p1, p2)
 
 # Lists, tuples, maps, keywords
 [1, :a, 'hello'] ++ [2, 3]
@@ -75,12 +92,17 @@ map = %{shortcut: "syntax"}
 # Comprehensions
 for x <- 1..10, x < 5, do: {x, x}
 pixels = "12345678"
-for << <<r::4, g::4, b::4, a::4>> <- pixels >> do
+for << <<r::4, g::4, b::4, a::size(4)>> <- pixels >> do
   [r, {g, %{"b" => a}}]
 end
 
 # String interpolation
 "String #{inspect "interpolation"} is quite #{1+4+7} difficult"
+
+# Identifiers
+abc_123 = 1
+_018OP = 2
+A__0 == 3
 
 # Modules
 defmodule Long.Module.Name do
@@ -89,7 +111,12 @@ defmodule Long.Module.Name do
   @doc """
   Multiline docstring
   "with quotes"
-  and #{ %{"interpolation" => "in" <> "action"} }
+  and #{ inspect %{"interpolation" => "in" <> "action"} }
+  now with #{ {:a, 'tuple'} }
+  and #{ inspect {
+      :tuple,
+      %{ with: "nested #{ inspect %{ :interpolation => %{} } }" }
+  } }
   """
   defstruct [:a, :name, :height]
 
@@ -110,7 +137,8 @@ end
 # Structs
 defmodule Second.Module do
   s = %Long.Module.Name{name: "Silly"}
-  %{s | height: {192, :cm}}
+  %Long.Module.Name{s | height: {192, :cm}}
+  ".. #{%Long.Module.Name{s | height: {192, :cm}}} .."
 end
 
 # Types, pseudo-vars, attributes
@@ -182,7 +210,7 @@ end
 
 # Lexical scope modifiers
 import Kernel, except: [spawn: 1, +: 2, /: 2, Unless: 2]
-alias Long.Module.Name, as: Namen
+alias Long.Module.Name, as: N0men123_and4
 use Bitwise
 
 4 &&& 5

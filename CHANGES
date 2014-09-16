@@ -41,6 +41,7 @@ Version 2.0
   * Inform 6/7 (PR#281)
   * MQL (PR#285)
   * APL (#969)
+  * Nit (PR#375)
 
 - New styles: "xcode" and "igor", similar to the default highlighting of
   the respective IDEs.
@@ -72,7 +73,7 @@ Version 2.0
 - Ruby lexer: fix lexing of Name::Space tokens (#860) and of symbols
   in hashes (#873).
 
-- Stan lexer: update for version 1.3.0 of the language (PR#162).
+- Stan lexer: update for version 2.4.0 of the language (PR#162, PR#255, PR#377).
 
 - JavaScript lexer: add the "yield" keyword (PR#196).
 
@@ -91,8 +92,6 @@ Version 2.0
 
 - Rebol lexer: fix comment detection and analyse_text (PR#261).
 
-- Stan lexer: update to v2.0.1 (PR#255).
-
 - LLVM lexer: update keywords to v3.4 (PR#258).
 
 - PHP lexer: add new keywords and binary literals (PR#222).
@@ -105,7 +104,9 @@ Version 2.0
 
 - C family lexers: fix parsing of indented preprocessor directives (#944).
 
-- Rust lexer: update to 0.9 language version (PR#270).
+- Rust lexer: update to 0.9 language version (PR#270, PR#388).
+
+- Elixir lexer: update to 0.15 language version (PR#392).
 
 
 Version 1.6

@@ -464,10 +464,9 @@ class MySqlLexer(RegexLexer):
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'[0-9]+', Number.Integer),
             (r'[0-9]*\.[0-9]+(e[+-][0-9]+)', Number.Float),
-            # TODO: add backslash escapes
-            (r"'(''|[^'])*'", String.Single),
-            (r'"(""|[^"])*"', String.Double),
-            (r"`(``|[^`])*`", String.Symbol),
+            (r"'(\\\\|\\'|''|[^'])*'", String.Single),
+            (r'"(\\\\|\\"|""|[^"])*"', String.Double),
+            (r"`(\\\\|\\`|``|[^`])*`", String.Symbol),
             (r'[+*/<>=~!@#%^&|`?-]', Operator),
             (r'\b(tinyint|smallint|mediumint|int|integer|bigint|date|'
              r'datetime|time|bit|bool|tinytext|mediumtext|longtext|text|'
