@@ -5199,9 +5199,12 @@ class SwiftLexer(ObjectiveCLexer):
                     token = Operator
             yield index, token, value
 
+
 class NitLexer(RegexLexer):
 	"""
 	For `nit <http://nitlanguage.org>`_ source.
+
+        .. versionadded:: 2.0
 	"""
 
 	name = 'Nit'
@@ -5219,7 +5222,8 @@ class NitLexer(RegexLexer):
 		'isset|label|__debug__)(?=( |\n|\t|\r|\())', Keyword),
 		(r'[A-Z][A-Za-z0-9_]*', Name.Class),
 		(r'"""(([^\'\\]|\\.)|\\r|\\n)*(({{?)?(""?{{?)*""""*)', String), #Simple long string
-		(r'\'\'\'(((\\.|[^\'\\])|\\r|\\n)|\'((\\.|[^\'\\])|\\r|\\n)|\'\'((\\.|[^\'\\])|\\r|\\n))*\'\'\'', String), #Simple long string alt
+		(r'\'\'\'(((\\.|[^\'\\])|\\r|\\n)|\'((\\.|[^\'\\])|\\r|\\n)|'
+                 r'\'\'((\\.|[^\'\\])|\\r|\\n))*\'\'\'', String), #Simple long string alt
 		(r'"""(([^\'\\]|\\.)|\\r|\\n)*((""?)?({{?""?)*{{{{*)', String), #Start long string
 		(r'}}}(((\\.|[^\'\\])|\\r|\\n))*(""?)?({{?""?)*{{{{*', String), #Mid long string
 		(r'}}}(((\\.|[^\'\\])|\\r|\\n))*({{?)?(""?{{?)*""""*', String), #End long string
