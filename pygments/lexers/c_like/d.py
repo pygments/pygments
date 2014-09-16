@@ -13,7 +13,7 @@ from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Keyword, Name, String, \
     Number, Punctuation
 
-__all__ = ['DLexer']
+__all__ = ['DLexer', 'CrocLexer', 'MiniDLexer']
 
 
 class DLexer(RegexLexer):
@@ -177,3 +177,72 @@ class DLexer(RegexLexer):
             (r'}', String, '#pop'),
         ],
     }
+
+
+class CrocLexer(RegexLexer):
+    """
+    For `Croc <http://jfbillingsley.com/croc>`_ source.
+    """
+    name = 'Croc'
+    filenames = ['*.croc']
+    aliases = ['croc']
+    mimetypes = ['text/x-crocsrc']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            # Comments
+            (r'//(.*?)\n', Comment.Single),
+            (r'/\*', Comment.Multiline, 'nestedcomment'),
+            # Keywords
+            (r'(as|assert|break|case|catch|class|continue|default'
+             r'|do|else|finally|for|foreach|function|global|namespace'
+             r'|if|import|in|is|local|module|return|scope|super|switch'
+             r'|this|throw|try|vararg|while|with|yield)\b', Keyword),
+            (r'(false|true|null)\b', Keyword.Constant),
+            # FloatLiteral
+            (r'([0-9][0-9_]*)(?=[.eE])(\.[0-9][0-9_]*)?([eE][+\-]?[0-9_]+)?',
+             Number.Float),
+            # IntegerLiteral
+            # -- Binary
+            (r'0[bB][01][01_]*', Number.Bin),
+            # -- Hexadecimal
+            (r'0[xX][0-9a-fA-F][0-9a-fA-F_]*', Number.Hex),
+            # -- Decimal
+            (r'([0-9][0-9_]*)(?![.eE])', Number.Integer),
+            # CharacterLiteral
+            (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-9]{1,3}"""
+             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
+             String.Char),
+            # StringLiteral
+            # -- WysiwygString
+            (r'@"(""|[^"])*"', String),
+            (r'@`(``|[^`])*`', String),
+            (r"@'(''|[^'])*'", String),
+            # -- DoubleQuotedString
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # Tokens
+            (r'(~=|\^=|%=|\*=|==|!=|>>>=|>>>|>>=|>>|>=|<=>|\?=|-\>'
+             r'|<<=|<<|<=|\+\+|\+=|--|-=|\|\||\|=|&&|&=|\.\.|/=)'
+             r'|[-/.&$@|\+<>!()\[\]{}?,;:=*%^~#\\]', Punctuation),
+            # Identifier
+            (r'[a-zA-Z_]\w*', Name),
+        ],
+        'nestedcomment': [
+            (r'[^*/]+', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
+        ],
+    }
+
+
+class MiniDLexer(CrocLexer):
+    """
+    For MiniD source. MiniD is now known as Croc.
+    """
+    name = 'MiniD'
+    filenames = ['*.md']
+    aliases = ['minid']
+    mimetypes = ['text/x-minidsrc']
