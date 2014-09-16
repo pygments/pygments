@@ -20,7 +20,7 @@ from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python3Lexer', 'Python3TracebackLexer', 'CythonLexer',
-           'HyLexer', 'DgLexer']
+           'DgLexer']
 
 line_re = re.compile('.*?\n')
 
@@ -68,35 +68,46 @@ class PythonLexer(RegexLexer):
             include('numbers'),
         ],
         'keywords': [
-            (r'(assert|break|continue|del|elif|else|except|exec|'
-             r'finally|for|global|if|lambda|pass|print|raise|'
-             r'return|try|while|yield(\s+from)?|as|with)\b', Keyword),
+            (words((
+                'assert', 'break', 'continue', 'del', 'elif', 'else', 'except',
+                'exec', 'finally', 'for', 'global', 'if', 'lambda', 'pass',
+                'print', 'raise', 'return', 'try', 'while', 'yield',
+                'yield from', 'as', 'with'), suffix=r'\b'),
+             Keyword),
         ],
         'builtins': [
-            (r'(?<!\.)(__import__|abs|all|any|apply|basestring|bin|bool|buffer|'
-             r'bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|'
-             r'complex|delattr|dict|dir|divmod|enumerate|eval|execfile|exit|'
-             r'file|filter|float|frozenset|getattr|globals|hasattr|hash|hex|id|'
-             r'input|int|intern|isinstance|issubclass|iter|len|list|locals|'
-             r'long|map|max|min|next|object|oct|open|ord|pow|property|range|'
-             r'raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|'
-             r'sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|'
-             r'vars|xrange|zip)\b', Name.Builtin),
+            (words((
+                '__import__', 'abs', 'all', 'any', 'apply', 'basestring', 'bin',
+                'bool', 'buffer', 'bytearray', 'bytes', 'callable', 'chr', 'classmethod',
+                'cmp', 'coerce', 'compile', 'complex', 'delattr', 'dict', 'dir', 'divmod',
+                'enumerate', 'eval', 'execfile', 'exit', 'file', 'filter', 'float',
+                'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'hex', 'id',
+                'input', 'int', 'intern', 'isinstance', 'issubclass', 'iter', 'len',
+                'list', 'locals', 'long', 'map', 'max', 'min', 'next', 'object',
+                'oct', 'open', 'ord', 'pow', 'property', 'range', 'raw_input', 'reduce',
+                'reload', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice',
+                'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type',
+                'unichr', 'unicode', 'vars', 'xrange', 'zip'),
+                prefix=r'(?<!\.)', suffix=r'\b'),
+             Name.Builtin),
             (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True'
              r')\b', Name.Builtin.Pseudo),
-            (r'(?<!\.)(ArithmeticError|AssertionError|AttributeError|'
-             r'BaseException|DeprecationWarning|EOFError|EnvironmentError|'
-             r'Exception|FloatingPointError|FutureWarning|GeneratorExit|IOError|'
-             r'ImportError|ImportWarning|IndentationError|IndexError|KeyError|'
-             r'KeyboardInterrupt|LookupError|MemoryError|NameError|'
-             r'NotImplemented|NotImplementedError|OSError|OverflowError|'
-             r'OverflowWarning|PendingDeprecationWarning|ReferenceError|'
-             r'RuntimeError|RuntimeWarning|StandardError|StopIteration|'
-             r'SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|'
-             r'TypeError|UnboundLocalError|UnicodeDecodeError|'
-             r'UnicodeEncodeError|UnicodeError|UnicodeTranslateError|'
-             r'UnicodeWarning|UserWarning|ValueError|VMSError|Warning|'
-             r'WindowsError|ZeroDivisionError)\b', Name.Exception),
+            (words((
+                'ArithmeticError', 'AssertionError', 'AttributeError',
+                'BaseException', 'DeprecationWarning', 'EOFError', 'EnvironmentError',
+                'Exception', 'FloatingPointError', 'FutureWarning', 'GeneratorExit',
+                'IOError', 'ImportError', 'ImportWarning', 'IndentationError',
+                'IndexError', 'KeyError', 'KeyboardInterrupt', 'LookupError',
+                'MemoryError', 'NameError', 'NotImplemented', 'NotImplementedError',
+                'OSError', 'OverflowError', 'OverflowWarning', 'PendingDeprecationWarning',
+                'ReferenceError', 'RuntimeError', 'RuntimeWarning', 'StandardError',
+                'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError',
+                'SystemExit', 'TabError', 'TypeError', 'UnboundLocalError',
+                'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeError',
+                'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning',
+                'ValueError', 'VMSError', 'Warning', 'WindowsError',
+                'ZeroDivisionError'), prefix=r'(?<!\.)', suffix=r'\b'),
+             Name.Exception),
         ],
         'numbers': [
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
@@ -201,41 +212,49 @@ class Python3Lexer(RegexLexer):
 
     tokens = PythonLexer.tokens.copy()
     tokens['keywords'] = [
-        (r'(assert|break|continue|del|elif|else|except|'
-         r'finally|for|global|if|lambda|pass|raise|nonlocal|'
-         r'return|try|while|yield(\s+from)?|as|with|True|False|None)\b',
+        (words((
+            'assert', 'break', 'continue', 'del', 'elif', 'else', 'except',
+            'finally', 'for', 'global', 'if', 'lambda', 'pass', 'raise',
+            'nonlocal', 'return', 'try', 'while', 'yield', 'yield from', 'as',
+            'with', 'True', 'False', 'None'), suffix=r'\b'),
          Keyword),
     ]
     tokens['builtins'] = [
-        (r'(?<!\.)(__import__|abs|all|any|bin|bool|bytearray|bytes|'
-         r'chr|classmethod|cmp|compile|complex|delattr|dict|dir|'
-         r'divmod|enumerate|eval|filter|float|format|frozenset|getattr|'
-         r'globals|hasattr|hash|hex|id|input|int|isinstance|issubclass|'
-         r'iter|len|list|locals|map|max|memoryview|min|next|object|oct|'
-         r'open|ord|pow|print|property|range|repr|reversed|round|'
-         r'set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|'
-         r'vars|zip)\b', Name.Builtin),
+        (words((
+            '__import__', 'abs', 'all', 'any', 'bin', 'bool', 'bytearray', 'bytes',
+            'chr', 'classmethod', 'cmp', 'compile', 'complex', 'delattr', 'dict',
+            'dir', 'divmod', 'enumerate', 'eval', 'filter', 'float', 'format',
+            'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'hex', 'id',
+            'input', 'int', 'isinstance', 'issubclass', 'iter', 'len', 'list',
+            'locals', 'map', 'max', 'memoryview', 'min', 'next', 'object', 'oct',
+            'open', 'ord', 'pow', 'print', 'property', 'range', 'repr', 'reversed',
+            'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str',
+            'sum', 'super', 'tuple', 'type', 'vars', 'zip'), prefix=r'(?<!\.)',
+            suffix=r'\b'),
+         Name.Builtin),
         (r'(?<!\.)(self|Ellipsis|NotImplemented)\b', Name.Builtin.Pseudo),
-        (r'(?<!\.)(ArithmeticError|AssertionError|AttributeError|'
-         r'BaseException|BufferError|BytesWarning|DeprecationWarning|'
-         r'EOFError|EnvironmentError|Exception|FloatingPointError|'
-         r'FutureWarning|GeneratorExit|IOError|ImportError|'
-         r'ImportWarning|IndentationError|IndexError|KeyError|'
-         r'KeyboardInterrupt|LookupError|MemoryError|NameError|'
-         r'NotImplementedError|OSError|OverflowError|'
-         r'PendingDeprecationWarning|ReferenceError|'
-         r'RuntimeError|RuntimeWarning|StopIteration|'
-         r'SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|'
-         r'TypeError|UnboundLocalError|UnicodeDecodeError|'
-         r'UnicodeEncodeError|UnicodeError|UnicodeTranslateError|'
-         r'UnicodeWarning|UserWarning|ValueError|VMSError|Warning|'
-         r'WindowsError|ZeroDivisionError|'
-         # new builtin exceptions from PEP 3151
-         r'BlockingIOError|ChildProcessError|ConnectionError|'
-         r'BrokenPipeError|ConnectionAbortedError|ConnectionRefusedError|'
-         r'ConnectionResetError|FileExistsError|FileNotFoundError|'
-         r'InterruptedError|IsADirectoryError|NotADirectoryError|'
-         r'PermissionError|ProcessLookupError|TimeoutError)\b',
+        (words((
+            'ArithmeticError', 'AssertionError', 'AttributeError',
+            'BaseException', 'BufferError', 'BytesWarning', 'DeprecationWarning',
+            'EOFError', 'EnvironmentError', 'Exception', 'FloatingPointError',
+            'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError',
+            'ImportWarning', 'IndentationError', 'IndexError', 'KeyError',
+            'KeyboardInterrupt', 'LookupError', 'MemoryError', 'NameError',
+            'NotImplementedError', 'OSError', 'OverflowError',
+            'PendingDeprecationWarning', 'ReferenceError',
+            'RuntimeError', 'RuntimeWarning', 'StopIteration',
+            'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError',
+            'TypeError', 'UnboundLocalError', 'UnicodeDecodeError',
+            'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError',
+            'UnicodeWarning', 'UserWarning', 'ValueError', 'VMSError', 'Warning',
+            'WindowsError', 'ZeroDivisionError',
+            # new builtin exceptions from PEP 3151
+            'BlockingIOError', 'ChildProcessError', 'ConnectionError',
+            'BrokenPipeError', 'ConnectionAbortedError', 'ConnectionRefusedError',
+            'ConnectionResetError', 'FileExistsError', 'FileNotFoundError',
+            'InterruptedError', 'IsADirectoryError', 'NotADirectoryError',
+            'PermissionError', 'ProcessLookupError', 'TimeoutError'),
+            prefix=r'(?<!\.)', suffix=r'\b'),
          Name.Exception),
     ]
     tokens['numbers'] = [
@@ -619,119 +638,6 @@ class CythonLexer(RegexLexer):
     }
 
 
-class HyLexer(RegexLexer):
-    """
-    Lexer for `Hy <http://hylang.org/>`_ source code.
-
-    .. versionadded:: 2.0
-    """
-    name = 'Hy'
-    aliases = ['hylang']
-    filenames = ['*.hy']
-    mimetypes = ['text/x-hy', 'application/x-hy']
-
-    special_forms = [
-        'cond', 'for', '->', '->>', 'car',
-        'cdr', 'first', 'rest', 'let', 'when', 'unless',
-        'import', 'do', 'progn', 'get', 'slice', 'assoc', 'with-decorator',
-        ',', 'list_comp', 'kwapply', '~', 'is', 'in', 'is-not', 'not-in',
-        'quasiquote', 'unquote', 'unquote-splice', 'quote', '|', '<<=', '>>=',
-        'foreach', 'while',
-        'eval-and-compile', 'eval-when-compile'
-    ]
-
-    declarations = [
-        'def', 'defn', 'defun', 'defmacro', 'defclass', 'lambda', 'fn', 'setv'
-    ]
-
-    hy_builtins = []
-
-    hy_core = [
-        'cycle', 'dec', 'distinct', 'drop', 'even?', 'filter', 'inc',
-        'instance?', 'iterable?', 'iterate', 'iterator?', 'neg?',
-        'none?', 'nth', 'numeric?', 'odd?', 'pos?', 'remove', 'repeat',
-        'repeatedly', 'take', 'take_nth', 'take_while', 'zero?'
-    ]
-
-    builtins = hy_builtins + hy_core
-
-    # valid names for identifiers
-    # well, names can only not consist fully of numbers
-    # but this should be good enough for now
-    valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
-
-    def _multi_escape(entries):
-        return '(%s)' % ('|'.join(re.escape(entry) + ' ' for entry in entries))
-
-    tokens = {
-        'root': [
-            # the comments - always starting with semicolon
-            # and going to the end of the line
-            (r';.*$', Comment.Single),
-
-            # whitespaces - usually not relevant
-            (r'[,\s]+', Text),
-
-            # numbers
-            (r'-?\d+\.\d+', Number.Float),
-            (r'-?\d+', Number.Integer),
-            (r'0[0-7]+j?', Number.Oct),
-            (r'0[xX][a-fA-F0-9]+', Number.Hex),
-
-            # strings, symbols and characters
-            (r'"(\\\\|\\"|[^"])*"', String),
-            (r"'" + valid_name, String.Symbol),
-            (r"\\(.|[a-z]+)", String.Char),
-            (r'^(\s*)([rRuU]{,2}"""(?:.|\n)*?""")', bygroups(Text, String.Doc)),
-            (r"^(\s*)([rRuU]{,2}'''(?:.|\n)*?''')", bygroups(Text, String.Doc)),
-
-            # keywords
-            (r'::?' + valid_name, String.Symbol),
-
-            # special operators
-            (r'~@|[`\'#^~&@]', Operator),
-
-            include('py-keywords'),
-            include('py-builtins'),
-
-            # highlight the special forms
-            (_multi_escape(special_forms), Keyword),
-
-            # Technically, only the special forms are 'keywords'. The problem
-            # is that only treating them as keywords means that things like
-            # 'defn' and 'ns' need to be highlighted as builtins. This is ugly
-            # and weird for most styles. So, as a compromise we're going to
-            # highlight them as Keyword.Declarations.
-            (_multi_escape(declarations), Keyword.Declaration),
-
-            # highlight the builtins
-            (_multi_escape(builtins), Name.Builtin),
-
-            # the remaining functions
-            (r'(?<=\()' + valid_name, Name.Function),
-
-            # find the remaining variables
-            (valid_name, Name.Variable),
-
-            # Hy accepts vector notation
-            (r'(\[|\])', Punctuation),
-
-            # Hy accepts map notation
-            (r'(\{|\})', Punctuation),
-
-            # the famous parentheses!
-            (r'(\(|\))', Punctuation),
-
-        ],
-        'py-keywords': PythonLexer.tokens['keywords'],
-        'py-builtins': PythonLexer.tokens['builtins'],
-    }
-
-    def analyse_text(text):
-        if '(import ' in text or '(defn ' in text:
-            return 0.9
-
-
 class DgLexer(RegexLexer):
     """
     Lexer for `dg <http://pyos.github.com/dg>`_,
@@ -766,17 +672,22 @@ class DgLexer(RegexLexer):
             (r'\b(and|in|is|or|where)\b', Operator.Word),
             (r'[!$%&*+\-./:<-@\\^|~;,]+', Operator),
 
-            (r"(?<!\.)(bool|bytearray|bytes|classmethod|complex|dict'?|"
-             r"float|frozenset|int|list'?|memoryview|object|property|range|"
-             r"set'?|slice|staticmethod|str|super|tuple'?|type)"
-             r"(?!['\w])", Name.Builtin),
-            (r'(?<!\.)(__import__|abs|all|any|bin|bind|chr|cmp|compile|complex|'
-             r'delattr|dir|divmod|drop|dropwhile|enumerate|eval|exhaust|'
-             r'filter|flip|foldl1?|format|fst|getattr|globals|hasattr|hash|'
-             r'head|hex|id|init|input|isinstance|issubclass|iter|iterate|last|'
-             r'len|locals|map|max|min|next|oct|open|ord|pow|print|repr|'
-             r'reversed|round|setattr|scanl1?|snd|sorted|sum|tail|take|'
-             r"takewhile|vars|zip)(?!['\w])", Name.Builtin),
+            (words((
+                'bool', 'bytearray', 'bytes', 'classmethod', 'complex', 'dict', 'dict\'',
+                'float', 'frozenset', 'int', 'list', 'list\'', 'memoryview', 'object',
+                'property', 'range', 'set', 'set\'', 'slice', 'staticmethod', 'str', 'super',
+                'tuple', 'tuple\'', 'type'), prefix=r'(?<!\.)', suffix=r'(?![\'\w])'),
+             Name.Builtin),
+            (words((
+                '__import__', 'abs', 'all', 'any', 'bin', 'bind', 'chr', 'cmp', 'compile',
+                'complex', 'delattr', 'dir', 'divmod', 'drop', 'dropwhile', 'enumerate',
+                'eval', 'exhaust', 'filter', 'flip', 'foldl1?', 'format', 'fst', 'getattr',
+                'globals', 'hasattr', 'hash', 'head', 'hex', 'id', 'init', 'input',
+                'isinstance', 'issubclass', 'iter', 'iterate', 'last', 'len', 'locals',
+                'map', 'max', 'min', 'next', 'oct', 'open', 'ord', 'pow', 'print', 'repr',
+                'reversed', 'round', 'setattr', 'scanl1?', 'snd', 'sorted', 'sum', 'tail',
+                'take', 'takewhile', 'vars', 'zip'), prefix=r'(?<!\.)', suffix=r'(?![\'\w])'),
+             Name.Builtin),
             (r"(?<!\.)(self|Ellipsis|NotImplemented|None|True|False)(?!['\w])",
              Name.Builtin.Pseudo),
 
