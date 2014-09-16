@@ -367,20 +367,22 @@ if __name__ == '__main__':
     # lookup lexers
     found_lexers = []
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
-    for filename in os.listdir('.'):
-        if filename.endswith('.py') and not filename.startswith('_'):
-            module_name = 'pygments.lexers.%s' % filename[:-3]
-            print(module_name)
-            module = __import__(module_name, None, None, [''])
-            for lexer_name in module.__all__:
-                lexer = getattr(module, lexer_name)
-                found_lexers.append(
-                    '%r: %r' % (lexer_name,
-                                (module_name,
-                                 lexer.name,
-                                 tuple(lexer.aliases),
-                                 tuple(lexer.filenames),
-                                 tuple(lexer.mimetypes))))
+    for root, dirs, files in os.walk('.'):
+        for filename in files:
+            if filename.endswith('.py') and not filename.startswith('_'):
+                module_name = 'pygments.lexers%s.%s' % (
+                    root[1:].replace('/', '.'), filename[:-3])
+                print(module_name)
+                module = __import__(module_name, None, None, [''])
+                for lexer_name in module.__all__:
+                    lexer = getattr(module, lexer_name)
+                    found_lexers.append(
+                        '%r: %r' % (lexer_name,
+                                    (module_name,
+                                     lexer.name,
+                                     tuple(lexer.aliases),
+                                     tuple(lexer.filenames),
+                                     tuple(lexer.mimetypes))))
     # sort them, that should make the diff files for svn smaller
     found_lexers.sort()
 
