@@ -8,17 +8,20 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import re, itertools
+
+import re
+import itertools
 
 from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
 from pygments.token import Error, Text, Other, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
-     make_analysator, text_type, add_metaclass, iteritems
+    make_analysator, text_type, add_metaclass, iteritems
 
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
-           'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this', 'default']
+           'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this',
+           'default']
 
 
 _encoding_map = [(b'\xef\xbb\xbf', 'utf-8'),
@@ -160,7 +163,7 @@ class Lexer(object):
                         break
                 # no BOM found, so use chardet
                 if decoded is None:
-                    enc = chardet.detect(text[:1024]) # Guess using first 1KB
+                    enc = chardet.detect(text[:1024])  # Guess using first 1KB
                     decoded = text.decode(enc.get('encoding') or 'utf-8',
                                           'replace')
                 text = decoded
@@ -237,7 +240,7 @@ class DelegatingLexer(Lexer):
                              self.root_lexer.get_tokens_unprocessed(buffered))
 
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # RegexLexer and ExtendedRegexLexer
 #
 
@@ -406,7 +409,7 @@ class RegexLexerMeta(LexerMeta):
     def _process_token(cls, token):
         """Preprocess the token component of a token definition."""
         assert type(token) is _TokenType or callable(token), \
-               'token type must be simple type or callable, not %r' % (token,)
+            'token type must be simple type or callable, not %r' % (token,)
         return token
 
     def _process_new_state(cls, new_state, unprocessed, processed):
@@ -439,7 +442,7 @@ class RegexLexerMeta(LexerMeta):
             for istate in new_state:
                 assert (istate in unprocessed or
                         istate in ('#pop', '#push')), \
-                       'unknown new state ' + istate
+                    'unknown new state ' + istate
             return new_state
         else:
             assert False, 'unknown new state def %r' % new_state
@@ -645,7 +648,7 @@ class LexerContext(object):
     def __init__(self, text, pos, stack=None, end=None):
         self.text = text
         self.pos = pos
-        self.end = end or len(text) # end=0 not supported ;-)
+        self.end = end or len(text)  # end=0 not supported ;-)
         self.stack = stack or ['root']
 
     def __repr__(self):
