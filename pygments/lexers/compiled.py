@@ -482,7 +482,7 @@ class DLexer(RegexLexer):
         'root': [
             (r'\n', Text),
             (r'\s+', Text),
-            #(r'\\\n', Text), # line continuations
+            # (r'\\\n', Text), # line continuations
             # Comments
             (r'//(.*?)\n', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
@@ -537,8 +537,7 @@ class DLexer(RegexLexer):
             # CharacterLiteral
             (r"""'(\\['"?\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|\\&\w+;|.)'""",
-             String.Char
-            ),
+             String.Char),
             # StringLiteral
             # -- WysiwygString
             (r'r"[^"]*"[cwd]?', String),
@@ -549,8 +548,7 @@ class DLexer(RegexLexer):
             # -- EscapeSequence
             (r"\\(['\"?\\abfnrtv]|x[0-9a-fA-F]{2}|[0-7]{1,3}"
              r"|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|&\w+;)",
-             String
-            ),
+             String),
             # -- HexString
             (r'x"[0-9a-fA-F_\s]*"[cwd]?', String),
             # -- DelimitedString
@@ -567,8 +565,7 @@ class DLexer(RegexLexer):
             # Tokens
             (r'(~=|\^=|%=|\*=|==|!>=|!<=|!<>=|!<>|!<|!>|!=|>>>=|>>>|>>=|>>|>='
              r'|<>=|<>|<<=|<<|<=|\+\+|\+=|--|-=|\|\||\|=|&&|&=|\.\.\.|\.\.|/=)'
-             r'|[/.&|\-+<>!()\[\]{}?,;:$=*%^~]', Punctuation
-            ),
+             r'|[/.&|\-+<>!()\[\]{}?,;:$=*%^~]', Punctuation),
             # Identifier
             (r'[a-zA-Z_]\w*', Name),
             # Line
@@ -656,7 +653,7 @@ class DelphiLexer(Lexer):
     filenames = ['*.pas']
     mimetypes = ['text/x-pascal']
 
-    TURBO_PASCAL_KEYWORDS = [
+    TURBO_PASCAL_KEYWORDS = (
         'absolute', 'and', 'array', 'asm', 'begin', 'break', 'case',
         'const', 'constructor', 'continue', 'destructor', 'div', 'do',
         'downto', 'else', 'end', 'file', 'for', 'function', 'goto',
@@ -665,41 +662,41 @@ class DelphiLexer(Lexer):
         'or', 'packed', 'procedure', 'program', 'record', 'reintroduce',
         'repeat', 'self', 'set', 'shl', 'shr', 'string', 'then', 'to',
         'type', 'unit', 'until', 'uses', 'var', 'while', 'with', 'xor'
-    ]
+    )
 
-    DELPHI_KEYWORDS = [
+    DELPHI_KEYWORDS = (
         'as', 'class', 'except', 'exports', 'finalization', 'finally',
         'initialization', 'is', 'library', 'on', 'property', 'raise',
         'threadvar', 'try'
-    ]
+    )
 
-    FREE_PASCAL_KEYWORDS = [
+    FREE_PASCAL_KEYWORDS = (
         'dispose', 'exit', 'false', 'new', 'true'
-    ]
+    )
 
-    BLOCK_KEYWORDS = set([
+    BLOCK_KEYWORDS = set((
         'begin', 'class', 'const', 'constructor', 'destructor', 'end',
         'finalization', 'function', 'implementation', 'initialization',
         'label', 'library', 'operator', 'procedure', 'program', 'property',
         'record', 'threadvar', 'type', 'unit', 'uses', 'var'
-    ])
+    ))
 
-    FUNCTION_MODIFIERS = set([
+    FUNCTION_MODIFIERS = set((
         'alias', 'cdecl', 'export', 'inline', 'interrupt', 'nostackframe',
         'pascal', 'register', 'safecall', 'softfloat', 'stdcall',
         'varargs', 'name', 'dynamic', 'near', 'virtual', 'external',
         'override', 'assembler'
-    ])
+    ))
 
     # XXX: those aren't global. but currently we know no way for defining
     #      them just for the type context.
-    DIRECTIVES = set([
+    DIRECTIVES = set((
         'absolute', 'abstract', 'assembler', 'cppdecl', 'default', 'far',
         'far16', 'forward', 'index', 'oldfpccall', 'private', 'protected',
         'published', 'public'
-    ])
+    ))
 
-    BUILTIN_TYPES = set([
+    BUILTIN_TYPES = set((
         'ansichar', 'ansistring', 'bool', 'boolean', 'byte', 'bytebool',
         'cardinal', 'char', 'comp', 'currency', 'double', 'dword',
         'extended', 'int64', 'integer', 'iunknown', 'longbool', 'longint',
@@ -713,10 +710,10 @@ class DelphiLexer(Lexer):
         'shortstring', 'single', 'smallint', 'string', 'tclass', 'tdate',
         'tdatetime', 'textfile', 'thandle', 'tobject', 'ttime', 'variant',
         'widechar', 'widestring', 'word', 'wordbool'
-    ])
+    ))
 
     BUILTIN_UNITS = {
-        'System': [
+        'System': (
             'abs', 'acquireexceptionobject', 'addr', 'ansitoutf8',
             'append', 'arctan', 'assert', 'assigned', 'assignfile',
             'beginthread', 'blockread', 'blockwrite', 'break', 'chdir',
@@ -748,8 +745,8 @@ class DelphiLexer(Lexer):
             'widecharlentostring', 'widecharlentostrvar',
             'widechartostring', 'widechartostrvar',
             'widestringtoucs4string', 'write', 'writeln'
-        ],
-        'SysUtils': [
+        ),
+        'SysUtils': (
             'abort', 'addexitproc', 'addterminateproc', 'adjustlinebreaks',
             'allocmem', 'ansicomparefilename', 'ansicomparestr',
             'ansicomparetext', 'ansidequotedstr', 'ansiextractquotedstr',
@@ -815,8 +812,8 @@ class DelphiLexer(Lexer):
             'widefmtstr', 'wideformat', 'wideformatbuf', 'widelowercase',
             'widesamestr', 'widesametext', 'wideuppercase', 'win32check',
             'wraptext'
-        ],
-        'Classes': [
+        ),
+        'Classes': (
             'activateclassgroup', 'allocatehwnd', 'bintohex', 'checksynchronize',
             'collectionsequal', 'countgenerations', 'deallocatehwnd', 'equalrect',
             'extractstrings', 'findclass', 'findglobalcomponent', 'getclass',
@@ -831,8 +828,8 @@ class DelphiLexer(Lexer):
             'teststreamformat', 'unregisterclass', 'unregisterclasses',
             'unregisterintegerconsts', 'unregistermoduleclasses',
             'writecomponentresfile'
-        ],
-        'Math': [
+        ),
+        'Math': (
             'arccos', 'arccosh', 'arccot', 'arccoth', 'arccsc', 'arccsch', 'arcsec',
             'arcsech', 'arcsin', 'arcsinh', 'arctan2', 'arctanh', 'ceil',
             'comparevalue', 'cosecant', 'cosh', 'cot', 'cotan', 'coth', 'csc',
@@ -852,10 +849,10 @@ class DelphiLexer(Lexer):
             'sign', 'simpleroundto', 'sincos', 'sinh', 'slndepreciation', 'stddev',
             'sum', 'sumint', 'sumofsquares', 'sumsandsquares', 'syddepreciation',
             'tan', 'tanh', 'totalvariance', 'variance'
-        ]
+        )
     }
 
-    ASM_REGISTERS = set([
+    ASM_REGISTERS = set((
         'ah', 'al', 'ax', 'bh', 'bl', 'bp', 'bx', 'ch', 'cl', 'cr0',
         'cr1', 'cr2', 'cr3', 'cr4', 'cs', 'cx', 'dh', 'di', 'dl', 'dr0',
         'dr1', 'dr2', 'dr3', 'dr4', 'dr5', 'dr6', 'dr7', 'ds', 'dx',
@@ -864,9 +861,9 @@ class DelphiLexer(Lexer):
         'mm7', 'si', 'sp', 'ss', 'st0', 'st1', 'st2', 'st3', 'st4', 'st5',
         'st6', 'st7', 'xmm0', 'xmm1', 'xmm2', 'xmm3', 'xmm4', 'xmm5',
         'xmm6', 'xmm7'
-    ])
+    ))
 
-    ASM_INSTRUCTIONS = set([
+    ASM_INSTRUCTIONS = set((
         'aaa', 'aad', 'aam', 'aas', 'adc', 'add', 'and', 'arpl', 'bound',
         'bsf', 'bsr', 'bswap', 'bt', 'btc', 'btr', 'bts', 'call', 'cbw',
         'cdq', 'clc', 'cld', 'cli', 'clts', 'cmc', 'cmova', 'cmovae',
@@ -905,7 +902,7 @@ class DelphiLexer(Lexer):
         'sysret', 'test', 'ud1', 'ud2', 'umov', 'verr', 'verw', 'wait',
         'wbinvd', 'wrmsr', 'wrshr', 'xadd', 'xbts', 'xchg', 'xlat',
         'xlatb', 'xor'
-    ])
+    ))
 
     def __init__(self, **options):
         Lexer.__init__(self, **options)
@@ -999,12 +996,12 @@ class DelphiLexer(Lexer):
                     # is in the set of registered modifiers. highlight
                     # it as pseudo keyword
                     elif in_function_block and \
-                         lowercase_name in self.FUNCTION_MODIFIERS:
+                            lowercase_name in self.FUNCTION_MODIFIERS:
                         token = Keyword.Pseudo
                     # if we are in a property highlight some more
                     # modifiers
                     elif in_property_block and \
-                         lowercase_name in ('read', 'write'):
+                            lowercase_name in ('read', 'write'):
                         token = Keyword.Pseudo
                         next_token_is_function = True
                     # if the last iteration set next_token_is_function
@@ -1131,27 +1128,27 @@ class DylanLexer(RegexLexer):
 
     flags = re.IGNORECASE
 
-    builtins = set([
+    builtins = set((
         'subclass', 'abstract', 'block', 'concrete', 'constant', 'class',
         'compiler-open', 'compiler-sideways', 'domain', 'dynamic',
         'each-subclass', 'exception', 'exclude', 'function', 'generic',
         'handler', 'inherited', 'inline', 'inline-only', 'instance',
         'interface', 'import', 'keyword', 'library', 'macro', 'method',
         'module', 'open', 'primary', 'required', 'sealed', 'sideways',
-        'singleton', 'slot', 'thread', 'variable', 'virtual'])
+        'singleton', 'slot', 'thread', 'variable', 'virtual'))
 
-    keywords = set([
+    keywords = set((
         'above', 'afterwards', 'begin', 'below', 'by', 'case', 'cleanup',
         'create', 'define', 'else', 'elseif', 'end', 'export', 'finally',
         'for', 'from', 'if', 'in', 'let', 'local', 'otherwise', 'rename',
         'select', 'signal', 'then', 'to', 'unless', 'until', 'use', 'when',
-        'while'])
+        'while'))
 
-    operators = set([
+    operators = set((
         '~', '+', '-', '*', '|', '^', '=', '==', '~=', '~==', '<', '<=',
-        '>', '>=', '&', '|'])
+        '>', '>=', '&', '|'))
 
-    functions = set([
+    functions = set((
         'abort', 'abs', 'add', 'add!', 'add-method', 'add-new', 'add-new!',
         'all-superclasses', 'always', 'any?', 'applicable-method?', 'apply',
         'aref', 'aref-setter', 'as', 'as-lowercase', 'as-lowercase!',
@@ -1185,7 +1182,7 @@ class DylanLexer(RegexLexer):
         'subtype?', 'table-protocol', 'tail', 'tail-setter', 'third',
         'third-setter', 'truncate', 'truncate/', 'type-error-expected-type',
         'type-error-value', 'type-for-copy', 'type-union', 'union', 'values',
-        'vector', 'zero?'])
+        'vector', 'zero?'))
 
     valid_name = '\\\\?[a-z0-9' + re.escape('!&*<>|^$%@_-+~?/=') + ']+'
 
@@ -1219,7 +1216,7 @@ class DylanLexer(RegexLexer):
             (r'([a-z0-9-]+)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
                 bygroups(Name.Attribute, Operator, Text, String)),
 
-            ('', Text, 'code') # no header match, switch to code
+            ('', Text, 'code')  # no header match, switch to code
         ],
         'code': [
             # Whitespace
@@ -1297,14 +1294,14 @@ class DylanLexer(RegexLexer):
         ],
         'keyword': [
             (r'"', String.Symbol, '#pop'),
-            (r'[^\\"]+', String.Symbol), # all other characters
+            (r'[^\\"]+', String.Symbol),  # all other characters
         ],
         'string': [
             (r'"', String, '#pop'),
             (r'\\([\\abfnrtv"\']|x[a-f0-9]{2,4}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"\n]+', String), # all other characters
-            (r'\\\n', String), # line continuation
-            (r'\\', String), # stray backslash
+            (r'[^\\"\n]+', String),  # all other characters
+            (r'\\\n', String),  # line continuation
+            (r'\\', String),  # stray backslash
         ]
     }
 
@@ -1358,7 +1355,7 @@ class DylanConsoleLexer(Lexer):
     filenames = ['*.dylan-console']
     mimetypes = ['text/x-dylan-console']
 
-    _line_re  = re.compile('.*?\n')
+    _line_re = re.compile('.*?\n')
     _prompt_re = re.compile('\?| ')
 
     def get_tokens_unprocessed(self, text):
@@ -1377,7 +1374,7 @@ class DylanConsoleLexer(Lexer):
             else:
                 if curcode:
                     for item in do_insertions(insertions,
-                                    dylexer.get_tokens_unprocessed(curcode)):
+                                              dylexer.get_tokens_unprocessed(curcode)):
                         yield item
                     curcode = ''
                     insertions = []
@@ -1425,13 +1422,18 @@ def objective(baselexer):
                 (r'@\(', Literal, 'literal_number'),
                 (r'@\[', Literal, 'literal_array'),
                 (r'@\{', Literal, 'literal_dictionary'),
-                (r'(@selector|@private|@protected|@public|@encode|'
-                 r'@synchronized|@try|@throw|@catch|@finally|@end|@property|@synthesize|'
-                 r'__bridge|__bridge_transfer|__autoreleasing|__block|__weak|__strong|'
-                 r'weak|strong|copy|retain|assign|unsafe_unretained|atomic|nonatomic|'
-                 r'readonly|readwrite|setter|getter|typeof|in|out|inout|release|class|'
-                 r'@dynamic|@optional|@required|@autoreleasepool)\b', Keyword),
-                (r'(id|instancetype|Class|IMP|SEL|BOOL|IBOutlet|IBAction|unichar)\b',
+                (words((
+                    '@selector', '@private', '@protected', '@public', '@encode',
+                    '@synchronized', '@try', '@throw', '@catch', '@finally',
+                    '@end', '@property', '@synthesize', '__bridge', '__bridge_transfer',
+                    '__autoreleasing', '__block', '__weak', '__strong', 'weak', 'strong',
+                    'copy', 'retain', 'assign', 'unsafe_unretained', 'atomic', 'nonatomic',
+                    'readonly', 'readwrite', 'setter', 'getter', 'typeof', 'in',
+                    'out', 'inout', 'release', 'class', '@dynamic', '@optional',
+                    '@required', '@autoreleasepool'), suffix=r'\b'),
+                 Keyword),
+                (words(('id', 'instancetype', 'Class', 'IMP', 'SEL', 'BOOL',
+                        'IBOutlet', 'IBAction', 'unichar'), suffix=r'\b'),
                  Keyword.Type),
                 (r'@(true|false|YES|NO)\n', Name.Builtin),
                 (r'(YES|NO|nil|self|super)\b', Name.Builtin),
@@ -1447,7 +1449,7 @@ def objective(baselexer):
                 (r'@', Punctuation),
                 inherit,
             ],
-            'oc_classname' : [
+            'oc_classname': [
                 # interface definition that inherits
                 ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?(\s*)({)',
                  bygroups(Name.Class, Text, Name.Class, Text, Punctuation),
@@ -1465,28 +1467,28 @@ def objective(baselexer):
                  bygroups(Name.Class, Text, Punctuation), ('#pop', 'oc_ivars')),
                 ('([a-zA-Z$_][\w$]*)', Name.Class, '#pop')
             ],
-            'oc_forward_classname' : [
-              ('([a-zA-Z$_][\w$]*)(\s*,\s*)',
-               bygroups(Name.Class, Text), 'oc_forward_classname'),
-              ('([a-zA-Z$_][\w$]*)(\s*;?)',
-               bygroups(Name.Class, Text), '#pop')
+            'oc_forward_classname': [
+                ('([a-zA-Z$_][\w$]*)(\s*,\s*)',
+                 bygroups(Name.Class, Text), 'oc_forward_classname'),
+                ('([a-zA-Z$_][\w$]*)(\s*;?)',
+                 bygroups(Name.Class, Text), '#pop')
             ],
-            'oc_ivars' : [
-              include('whitespace'),
-              include('statements'),
-              (';', Punctuation),
-              ('{', Punctuation, '#push'),
-              ('}', Punctuation, '#pop'),
+            'oc_ivars': [
+                include('whitespace'),
+                include('statements'),
+                (';', Punctuation),
+                ('{', Punctuation, '#push'),
+                ('}', Punctuation, '#pop'),
             ],
             'root': [
-              # methods
-              (r'^([-+])(\s*)'                         # method marker
-               r'(\(.*?\))?(\s*)'                      # return type
-               r'([a-zA-Z$_][\w$]*:?)',        # begin of method name
-               bygroups(Punctuation, Text, using(this),
-                        Text, Name.Function),
-               'method'),
-              inherit,
+                # methods
+                (r'^([-+])(\s*)'                         # method marker
+                 r'(\(.*?\))?(\s*)'                      # return type
+                 r'([a-zA-Z$_][\w$]*:?)',        # begin of method name
+                 bygroups(Punctuation, Text, using(this),
+                          Text, Name.Function),
+                 'method'),
+                inherit,
             ],
             'method': [
                 include('whitespace'),
@@ -1626,7 +1628,7 @@ class FortranLexer(RegexLexer):
                 'RECURSIVE', 'RESULT', 'RETURN', 'REWIND', 'SAVE', 'SELECT', 'SEQUENCE',
                 'STOP', 'SUBMODULE', 'SUBROUTINE', 'SYNC', 'SYNCALL', 'SYNCIMAGES',
                 'SYNCMEMORY', 'TARGET', 'THEN', 'TYPE', 'UNLOCK', 'USE', 'VALUE',
-                'VOLATILE', 'WHERE', 'WRITE', 'WHILE'), prefix='\\b', suffix='\\s*\\b'),
+                'VOLATILE', 'WHERE', 'WRITE', 'WHILE'), prefix=r'\b', suffix=r'\s*\b'),
              Keyword),
 
             # Data Types
@@ -1638,7 +1640,7 @@ class FortranLexer(RegexLexer):
                 'C_INT_FAST16_T', 'C_INT_FAST32_T', 'C_INT_FAST64_T', 'C_INTMAX_T',
                 'C_INTPTR_T', 'C_FLOAT', 'C_DOUBLE', 'C_LONG_DOUBLE', 'C_FLOAT_COMPLEX',
                 'C_DOUBLE_COMPLEX', 'C_LONG_DOUBLE_COMPLEX', 'C_BOOL', 'C_CHAR', 'C_PTR',
-                'C_FUNPTR'), prefix='\\b', suffix='\\s*\\b'),
+                'C_FUNPTR'), prefix=r'\b', suffix=r'\s*\b'),
              Keyword.Type),
 
             # Operators
@@ -1698,7 +1700,7 @@ class FortranLexer(RegexLexer):
                 'Tan', 'TanH', 'Time', 'This_Image', 'Tiny', 'TrailZ', 'Transfer',
                 'Transpose', 'Trim', 'TtyNam', 'UBound', 'UCoBound', 'UMask',
                 'Unlink', 'Unpack', 'Verify', 'XOr', 'ZAbs', 'ZCos', 'ZExp',
-                'ZLog', 'ZSin', 'ZSqRt'), prefix='\\b', suffix='\\s*\\b'),
+                'ZLog', 'ZSin', 'ZSqRt'), prefix=r'\b', suffix=r'\s*\b'),
              Name.Builtin),
 
             # Booleans
@@ -1738,26 +1740,38 @@ class GLShaderLexer(RegexLexer):
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'\+|-|~|!=?|\*|/|%|<<|>>|<=?|>=?|==?|&&?|\^|\|\|?',
              Operator),
-            (r'[?:]', Operator), # quick hack for ternary
+            (r'[?:]', Operator),  # quick hack for ternary
             (r'\bdefined\b', Operator),
             (r'[;{}(),\[\]]', Punctuation),
-            #FIXME when e is present, no decimal point needed
+            # FIXME when e is present, no decimal point needed
             (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
             (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
             (r'0[xX][0-9a-fA-F]*', Number.Hex),
             (r'0[0-7]*', Number.Oct),
             (r'[1-9][0-9]*', Number.Integer),
-            (r'\b(attribute|const|uniform|varying|centroid|break|continue|'
-             r'do|for|while|if|else|in|out|inout|float|int|void|bool|true|'
-             r'false|invariant|discard|return|mat[234]|mat[234]x[234]|'
-             r'vec[234]|[ib]vec[234]|sampler[123]D|samplerCube|'
-             r'sampler[12]DShadow|struct)\b', Keyword),
-            (r'\b(asm|class|union|enum|typedef|template|this|packed|goto|'
-             r'switch|default|inline|noinline|volatile|public|static|extern|'
-             r'external|interface|long|short|double|half|fixed|unsigned|'
-             r'lowp|mediump|highp|precision|input|output|hvec[234]|'
-             r'[df]vec[234]|sampler[23]DRect|sampler2DRectShadow|sizeof|'
-             r'cast|namespace|using)\b', Keyword), #future use
+            (words((
+                'attribute', 'const', 'uniform', 'varying', 'centroid', 'break',
+                'continue', 'do', 'for', 'while', 'if', 'else', 'in', 'out',
+                'inout', 'float', 'int', 'void', 'bool', 'true', 'false',
+                'invariant', 'discard', 'return', 'mat2', 'mat3' 'mat4',
+                'mat2x2', 'mat3x2', 'mat4x2', 'mat2x3', 'mat3x3', 'mat4x3',
+                'mat2x4', 'mat3x4', 'mat4x4', 'vec2', 'vec3', 'vec4',
+                'ivec2', 'ivec3', 'ivec4', 'bvec2', 'bvec3', 'bvec4',
+                'sampler1D', 'sampler2D', 'sampler3D' 'samplerCube',
+                'sampler1DShadow', 'sampler2DShadow', 'struct'),
+                prefix=r'\b', suffix=r'\b'),
+             Keyword),
+            (words((
+                'asm', 'class', 'union', 'enum', 'typedef', 'template', 'this',
+                'packed', 'goto', 'switch', 'default', 'inline', 'noinline',
+                'volatile', 'public', 'static', 'extern', 'external', 'interface',
+                'long', 'short', 'double', 'half', 'fixed', 'unsigned', 'lowp',
+                'mediump', 'highp', 'precision', 'input', 'output',
+                'hvec2', 'hvec3', 'hvec4', 'dvec2', 'dvec3', 'dvec4',
+                'fvec2', 'fvec3', 'fvec4', 'sampler2DRect', 'sampler3DRect',
+                'sampler2DRectShadow', 'sizeof', 'cast', 'namespace', 'using'),
+                prefix=r'\b', suffix=r'\b'),
+             Keyword),  # future use
             (r'[a-zA-Z_][a-zA-Z_0-9]*', Name),
             (r'\.', Punctuation),
             (r'\s+', Text),
@@ -1794,29 +1808,29 @@ class PrologLexer(RegexLexer):
             (r':-|-->', Punctuation),
             (r'"(?:\\x[0-9a-fA-F]+\\|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|'
              r'\\[0-7]+\\|\\["\nabcefnrstv]|[^\\"])*"', String.Double),
-            (r"'(?:''|[^'])*'", String.Atom), # quoted atom
+            (r"'(?:''|[^'])*'", String.Atom),  # quoted atom
             # Needs to not be followed by an atom.
-            #(r'=(?=\s|[a-zA-Z\[])', Operator),
+            # (r'=(?=\s|[a-zA-Z\[])', Operator),
             (r'is\b', Operator),
             (r'(<|>|=<|>=|==|=:=|=|/|//|\*|\+|-)(?=\s|[a-zA-Z0-9\[])',
              Operator),
             (r'(mod|div|not)\b', Operator),
-            (r'_', Keyword), # The don't-care variable
+            (r'_', Keyword),  # The don't-care variable
             (r'([a-z]+)(:)', bygroups(Name.Namespace, Punctuation)),
             (u'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
              u'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
              u'(\\s*)(:-|-->)',
-             bygroups(Name.Function, Text, Operator)), # function defn
+             bygroups(Name.Function, Text, Operator)),  # function defn
             (u'([a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
              u'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*)'
              u'(\\s*)(\\()',
              bygroups(Name.Function, Text, Punctuation)),
             (u'[a-z\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]'
              u'[\w$\u00c0-\u1fff\u3040-\ud7ff\ue000-\uffef]*',
-             String.Atom), # atom, characters
+             String.Atom),  # atom, characters
             # This one includes !
             (u'[#&*+\\-./:<=>?@\\\\^~\u00a1-\u00bf\u2010-\u303f]+',
-             String.Atom), # atom, graphics
+             String.Atom),  # atom, graphics
             (r'[A-Z_]\w*', Name.Variable),
             (u'\\s+|[\u2000-\u200f\ufff0-\ufffe\uffef]', Text),
         ],
