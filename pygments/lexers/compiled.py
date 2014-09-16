@@ -3377,46 +3377,49 @@ class RustLexer(RegexLexer):
             (r'/\*', Comment.Multiline, 'comment'),
 
             # Keywords
-            (r'(as|box|break|continue'
-             r'|do|else|enum|extern'
-             r'|fn|for|if|impl|in'
-             r'|loop|match|mut|priv|proc|pub'
-             r'|ref|return|static|\'static|struct|trait|true|type'
-             r'|unsafe|while)\b',
+            (words((
+                'as', 'box', 'break', 'continue', 'do', 'else', 'enum', 'extern',
+                'fn', 'for', 'if', 'impl', 'in', 'loop', 'match', 'mut', 'priv',
+                'proc', 'pub', 'ref', 'return', 'static', '\'static', 'struct',
+                'trait', 'true', 'type', 'unsafe', 'while'), suffix=r'\b'),
              Keyword),
-            (r'(alignof|be|const|offsetof|pure|sizeof|typeof|once|unsized'
-             r'|yield)\b', Keyword.Reserved),
+            (words(('alignof', 'be', 'const', 'offsetof', 'pure', 'sizeof',
+                    'typeof', 'once', 'unsized', 'yield'), suffix=r'\b'),
+             Keyword.Reserved),
             (r'(mod|use)\b', Keyword.Namespace),
             (r'(true|false)\b', Keyword.Constant),
             (r'let\b', Keyword.Declaration),
-            (r'(u8|u16|u32|u64|i8|i16|i32|i64|uint|int|f32|f64'
-             r'|str|bool)\b', Keyword.Type),
+            (words(('u8', 'u16', 'u32', 'u64', 'i8', 'i16', 'i32', 'i64', 'uint',
+                    'int', 'f32', 'f64', 'str', 'bool'), suffix=r'\b'),
+             Keyword.Type),
             (r'self\b', Name.Builtin.Pseudo),
             # Prelude
-            (r'(Freeze|Pod|Send|Sized|Add|Sub|Mul|Div|Rem|Neg|Not|BitAnd'
-             r'|BitOr|BitXor|Drop|Shl|Shr|Index|Option|Some|None|Result'
-             r'|Ok|Err|from_str|range|print|println|Any|AnyOwnExt|AnyRefExt'
-             r'|AnyMutRefExt|Ascii|AsciiCast|OnwedAsciiCast|AsciiStr'
-             r'|IntoBytes|Bool|ToCStr|Char|Clone|DeepClone|Eq|ApproxEq'
-             r'|Ord|TotalEq|Ordering|Less|Equal|Greater|Equiv|Container'
-             r'|Mutable|Map|MutableMap|Set|MutableSet|Default|FromStr'
-             r'|Hash|FromIterator|Extendable|Iterator|DoubleEndedIterator'
-             r'|RandomAccessIterator|CloneableIterator|OrdIterator'
-             r'|MutableDoubleEndedIterator|ExactSize|Times|Algebraic'
-             r'|Trigonometric|Exponential|Hyperbolic|Bitwise|BitCount'
-             r'|Bounded|Integer|Fractional|Real|RealExt|Num|NumCast'
-             r'|CheckedAdd|CheckedSub|CheckedMul|Orderable|Signed'
-             r'|Unsigned|Round|Primitive|Int|Float|ToStrRadix'
-             r'|ToPrimitive|FromPrimitive|GenericPath|Path|PosixPath'
-             r'|WindowsPath|RawPtr|Buffer|Writer|Reader|Seek'
-             r'|SendStr|SendStrOwned|SendStrStatic|IntoSendStr|Str'
-             r'|StrVector|StrSlice|OwnedStr|IterBytes|ToStr|IntoStr'
-             r'|CopyableTuple|ImmutableTuple|ImmutableTuple\d+'
-             r'|Tuple\d+|ImmutableEqVector|ImmutableTotalOrdVector'
-             r'|ImmutableCopyableVector|OwnedVector|OwnedCopyableVector'
-             r'|OwnedEqVector|MutableVector|MutableTotalOrdVector'
-             r'|Vector|VectorVector|CopyableVector|ImmutableVector'
-             r'|Port|Chan|SharedChan|spawn|drop)\b', Name.Builtin),
+            (words((
+                'Freeze', 'Pod', 'Send', 'Sized', 'Add', 'Sub', 'Mul', 'Div', 'Rem', 'Neg', 'Not', 'BitAnd',
+                'BitOr', 'BitXor', 'Drop', 'Shl', 'Shr', 'Index', 'Option', 'Some', 'None', 'Result',
+                'Ok', 'Err', 'from_str', 'range', 'print', 'println', 'Any', 'AnyOwnExt', 'AnyRefExt',
+                'AnyMutRefExt', 'Ascii', 'AsciiCast', 'OnwedAsciiCast', 'AsciiStr',
+                'IntoBytes', 'Bool', 'ToCStr', 'Char', 'Clone', 'DeepClone', 'Eq', 'ApproxEq',
+                'Ord', 'TotalEq', 'Ordering', 'Less', 'Equal', 'Greater', 'Equiv', 'Container',
+                'Mutable', 'Map', 'MutableMap', 'Set', 'MutableSet', 'Default', 'FromStr',
+                'Hash', 'FromIterator', 'Extendable', 'Iterator', 'DoubleEndedIterator',
+                'RandomAccessIterator', 'CloneableIterator', 'OrdIterator',
+                'MutableDoubleEndedIterator', 'ExactSize', 'Times', 'Algebraic',
+                'Trigonometric', 'Exponential', 'Hyperbolic', 'Bitwise', 'BitCount',
+                'Bounded', 'Integer', 'Fractional', 'Real', 'RealExt', 'Num', 'NumCast',
+                'CheckedAdd', 'CheckedSub', 'CheckedMul', 'Orderable', 'Signed',
+                'Unsigned', 'Round', 'Primitive', 'Int', 'Float', 'ToStrRadix',
+                'ToPrimitive', 'FromPrimitive', 'GenericPath', 'Path', 'PosixPath',
+                'WindowsPath', 'RawPtr', 'Buffer', 'Writer', 'Reader', 'Seek',
+                'SendStr', 'SendStrOwned', 'SendStrStatic', 'IntoSendStr', 'Str',
+                'StrVector', 'StrSlice', 'OwnedStr', 'IterBytes', 'ToStr', 'IntoStr',
+                'CopyableTuple', 'ImmutableTuple', 'ImmutableEqVector', 'ImmutableTotalOrdVector',
+                'ImmutableCopyableVector', 'OwnedVector', 'OwnedCopyableVector',
+                'OwnedEqVector', 'MutableVector', 'MutableTotalOrdVector',
+                'Vector', 'VectorVector', 'CopyableVector', 'ImmutableVector',
+                'Port', 'Chan', 'SharedChan', 'spawn', 'drop'), suffix=r'\b'),
+             Name.Builtin),
+            (r'(ImmutableTuple\d+|Tuple\d+)\b', Name.Builtin),
             # Borrowed pointer
             (r'(&)(\'[A-Za-z_]\w*)?', bygroups(Operator, Name)),
             # Labels
@@ -3510,27 +3513,26 @@ class CudaLexer(CLexer):
     aliases = ['cuda', 'cu']
     mimetypes = ['text/x-cuda']
 
-    function_qualifiers = ['__device__', '__global__', '__host__',
-                           '__noinline__', '__forceinline__']
-    variable_qualifiers = ['__device__', '__constant__', '__shared__',
-                           '__restrict__']
-    vector_types = ['char1', 'uchar1', 'char2', 'uchar2', 'char3', 'uchar3',
-                    'char4', 'uchar4', 'short1', 'ushort1', 'short2', 'ushort2',
-                    'short3', 'ushort3', 'short4', 'ushort4', 'int1', 'uint1',
-                    'int2', 'uint2', 'int3', 'uint3', 'int4', 'uint4', 'long1',
-                    'ulong1', 'long2', 'ulong2', 'long3', 'ulong3', 'long4',
-                    'ulong4', 'longlong1', 'ulonglong1', 'longlong2',
-                    'ulonglong2', 'float1', 'float2', 'float3', 'float4',
-                    'double1', 'double2', 'dim3']
-    variables = ['gridDim', 'blockIdx', 'blockDim', 'threadIdx', 'warpSize']
-    functions = ['__threadfence_block', '__threadfence', '__threadfence_system',
-                 '__syncthreads', '__syncthreads_count', '__syncthreads_and',
-                 '__syncthreads_or']
-    execution_confs = ['<<<', '>>>']
+    function_qualifiers = set(('__device__', '__global__', '__host__',
+                               '__noinline__', '__forceinline__'))
+    variable_qualifiers = set(('__device__', '__constant__', '__shared__',
+                               '__restrict__'))
+    vector_types = set(('char1', 'uchar1', 'char2', 'uchar2', 'char3', 'uchar3',
+                        'char4', 'uchar4', 'short1', 'ushort1', 'short2', 'ushort2',
+                        'short3', 'ushort3', 'short4', 'ushort4', 'int1', 'uint1',
+                        'int2', 'uint2', 'int3', 'uint3', 'int4', 'uint4', 'long1',
+                        'ulong1', 'long2', 'ulong2', 'long3', 'ulong3', 'long4',
+                        'ulong4', 'longlong1', 'ulonglong1', 'longlong2',
+                        'ulonglong2', 'float1', 'float2', 'float3', 'float4',
+                        'double1', 'double2', 'dim3'))
+    variables = set(('gridDim', 'blockIdx', 'blockDim', 'threadIdx', 'warpSize'))
+    functions = set(('__threadfence_block', '__threadfence', '__threadfence_system',
+                     '__syncthreads', '__syncthreads_count', '__syncthreads_and',
+                     '__syncthreads_or'))
+    execution_confs = set(('<<<', '>>>'))
 
     def get_tokens_unprocessed(self, text):
-        for index, token, value in \
-            CLexer.get_tokens_unprocessed(self, text):
+        for index, token, value in CLexer.get_tokens_unprocessed(self, text):
             if token is Name:
                 if value in self.variable_qualifiers:
                     token = Keyword.Type
@@ -3575,7 +3577,7 @@ class MonkeyLexer(RegexLexer):
 
     tokens = {
         'root': [
-            #Text
+            # Text
             (r'\s+', Text),
             # Comments
             (r"'.*", Comment),
@@ -3668,7 +3670,7 @@ class MonkeyLexer(RegexLexer):
             (r'~q|~n|~r|~t|~z|~~', String.Escape),
             (r'"', String.Double, '#pop'),
         ],
-        'comment' : [
+        'comment': [
             (r'(?i)^#rem.*?', Comment.Multiline, "#push"),
             (r'(?i)^#end.*?', Comment.Multiline, "#pop"),
             (r'\n', Comment.Multiline),
@@ -3839,7 +3841,7 @@ class CobolLexer(RegexLexer):
              r'DATE-OF-INTEGER|DATE-TO-YYYYMMDD|DAY-OF-INTEGER|DAY-TO-YYYYDDD|'
              r'EXCEPTION-(?:FILE|LOCATION|STATEMENT|STATUS)|EXP10|EXP|E|'
              r'FACTORIAL|FRACTION-PART|INTEGER-OF-(?:DATE|DAY|PART)|INTEGER|'
-             r'LENGTH|LOCALE-(?:DATE|TIME(?:-FROM-SECONDS)?)|LOG10|LOG|'
+             r'LENGTH|LOCALE-(?:DATE|TIME(?:-FROM-SECONDS)?)|LOG(?:10)?|'
              r'LOWER-CASE|MAX|MEAN|MEDIAN|MIDRANGE|MIN|MOD|NUMVAL(?:-C)?|'
              r'ORD(?:-MAX|-MIN)?|PI|PRESENT-VALUE|RANDOM|RANGE|REM|REVERSE|'
              r'SECONDS-FROM-FORMATTED-TIME|SECONDS-PAST-MIDNIGHT|SIGN|SIN|SQRT|'
