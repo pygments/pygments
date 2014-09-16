@@ -3321,7 +3321,7 @@ class RustLexer(RegexLexer):
             (r'\s+', Text),
             (r'//[/!](.*?)\n', Comment.Doc),
             (r'//(.*?)\n', Comment.Single),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'/\*', Comment.Multiline, 'comment'),
 
             # Keywords
             (r'(as|box|break|continue'
@@ -3402,6 +3402,12 @@ class RustLexer(RegexLexer):
              bygroups(Comment.Preproc, Name), 'macro{'),
             (r'([A-Za-z_]\w*)!\s*([A-Za-z_]\w*)?\(',
              bygroups(Comment.Preproc, Name), 'macro('),
+        ],
+        'comment': [
+            (r'[^*/]+', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
         ],
         'number_lit': [
             (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop'),
@@ -3920,11 +3926,11 @@ class ChapelLexer(RegexLexer):
             (r'(false|nil|true)\b', Keyword.Constant),
             (r'(bool|complex|imag|int|opaque|range|real|string|uint)\b',
              Keyword.Type),
-            (r'(atomic|begin|break|by|cobegin|coforall|continue|iter|'
+            (r'(align|atomic|begin|break|by|cobegin|coforall|continue|'
              r'delete|dmapped|do|domain|else|enum|export|extern|for|forall|'
-             r'if|index|inline|label|lambda|let|local|new|on|otherwise|'
-             r'reduce|return|scan|select|serial|single|sparse|'
-             r'subdomain|sync|then|use|when|where|while|yield|zip)\b',
+             r'if|index|inline|iter|label|lambda|let|local|new|noinit|on|'
+             r'otherwise|pragma|reduce|return|scan|select|serial|single|sparse|'
+             r'subdomain|sync|then|use|when|where|while|with|yield|zip)\b',
              Keyword),
             (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
             (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text),
@@ -3946,15 +3952,17 @@ class ChapelLexer(RegexLexer):
             (r'0[bB][0-1]+', Number.Bin),
             # -- hex
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            # -- octal
+            (r'0[oO][0-7]+', Number.Oct),
             # -- decimal
-            (r'(0|[1-9][0-9]*)', Number.Integer),
+            (r'[0-9]+', Number.Integer),
 
             # strings
             (r'["\'](\\\\|\\"|[^"\'])*["\']', String),
 
             # tokens
             (r'(=|\+=|-=|\*=|/=|\*\*=|%=|&=|\|=|\^=|&&=|\|\|=|<<=|>>=|'
-             r'<=>|\.\.|by|#|\.\.\.|'
+             r'<=>|<~>|\.\.|by|#|\.\.\.|'
              r'&&|\|\||!|&|\||\^|~|<<|>>|'
              r'==|!=|<=|>=|<|>|'
              r'[+\-*/%]|\*\*)', Operator),
