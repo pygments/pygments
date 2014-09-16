@@ -58,7 +58,7 @@ Usage as a library is thoroughly demonstrated in the Documentation section.
 How do I make a new style?
 --------------------------
 
-Please see the documentation on styles.
+Please see the :doc:`documentation on styles <docs/styles>`.
 
 How can I report a bug or suggest a feature?
 --------------------------------------------
