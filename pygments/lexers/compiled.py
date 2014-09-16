@@ -3321,7 +3321,7 @@ class RustLexer(RegexLexer):
             (r'\s+', Text),
             (r'//[/!](.*?)\n', Comment.Doc),
             (r'//(.*?)\n', Comment.Single),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'/\*', Comment.Multiline, 'comment'),
 
             # Keywords
             (r'(as|box|break|continue'
@@ -3402,6 +3402,12 @@ class RustLexer(RegexLexer):
              bygroups(Comment.Preproc, Name), 'macro{'),
             (r'([A-Za-z_]\w*)!\s*([A-Za-z_]\w*)?\(',
              bygroups(Comment.Preproc, Name), 'macro('),
+        ],
+        'comment': [
+            (r'[^*/]+', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
         ],
         'number_lit': [
             (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop'),
