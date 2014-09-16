@@ -694,13 +694,14 @@ class LogtalkLexer(RegexLexer):
     def analyse_text(text):
         if ':- object(' in text:
             return True
-        if ':- protocol(' in text:
+        elif ':- protocol(' in text:
             return True
-        if ':- category(' in text:
+        elif ':- category(' in text:
             return True
-        if ':-' in text:
-            return True
-        return False
+        elif re.search('^:-\s[a-z]', text, re.M):
+            return 0.9
+        else:
+            return False
 
 
 def _shortened(word):
