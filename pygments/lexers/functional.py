@@ -1530,7 +1530,7 @@ class IdrisLexer(RegexLexer):
                 'let','proof','of','then','static','where','_','with',
                 'pattern', 'term', 'syntax','prefix',
                 'postulate','parameters','record','dsl','impossible','implicit',
-                'tactics','intros','intro','compute','refine','exaxt','trivial']
+                'tactics','intros','intro','compute','refine','exact','trivial']
 
     ascii = ['NUL','SOH','[SE]TX','EOT','ENQ','ACK',
              'BEL','BS','HT','LF','VT','FF','CR','S[OI]','DLE',
