@@ -17,11 +17,11 @@ from pygments.filters import get_filter_by_name
 from pygments.token import Error, Text, Other, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
     make_analysator, text_type, add_metaclass, iteritems
-
+from pygments.regexopt import regex_opt
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
            'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this',
-           'default']
+           'default', 'words']
 
 
 _encoding_map = [(b'\xef\xbb\xbf', 'utf-8'),
@@ -390,10 +390,25 @@ class default:
     """
     Indicates a state or state action (e.g. #pop) to apply.
     For example default('#pop') is equivalent to ('', Token, '#pop')
-    Note that state tuples may be used as well
+    Note that state tuples may be used as well.
+
+    .. versionadded:: 2.0
     """
     def __init__(self, state):
         self.state = state
+
+
+class words:
+    """
+    Indicates a list of literal words that is transformed into an optimized
+    regex that matches any of the words.
+
+    .. versionadded:: 2.0
+    """
+    def __init__(self, words, prefix='', suffix=''):
+        self.words = words
+        self.prefix = prefix
+        self.suffix = suffix
 
 
 class RegexLexerMeta(LexerMeta):
@@ -404,6 +419,9 @@ class RegexLexerMeta(LexerMeta):
 
     def _process_regex(cls, regex, rflags):
         """Preprocess the regular expression component of a token definition."""
+        if isinstance(regex, words):
+            return regex_opt(regex.words, rflags, prefix=regex.prefix,
+                             suffix=regex.suffix).match
         return re.compile(regex, rflags).match
 
     def _process_token(cls, token):
