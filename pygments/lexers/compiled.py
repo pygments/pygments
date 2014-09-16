@@ -1881,36 +1881,46 @@ class CythonLexer(RegexLexer):
             include('numbers'),
         ],
         'keywords': [
-            (r'(assert|break|by|continue|ctypedef|del|elif|else|except\??|exec|'
-             r'finally|for|gil|global|if|include|lambda|nogil|pass|print|raise|'
-             r'return|try|while|yield|as|with)\b', Keyword),
+            (words((
+                'assert', 'break', 'by', 'continue', 'ctypedef', 'del', 'elif',
+                'else', 'except', 'except?', 'exec', 'finally', 'for', 'gil',
+                'global', 'if', 'include', 'lambda', 'nogil', 'pass', 'print',
+                'raise', 'return', 'try', 'while', 'yield', 'as', 'with'), suffix=r'\b'),
+             Keyword),
             (r'(DEF|IF|ELIF|ELSE)\b', Comment.Preproc),
         ],
         'builtins': [
-            (r'(?<!\.)(__import__|abs|all|any|apply|basestring|bin|bool|buffer|'
-             r'bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|'
-             r'complex|delattr|dict|dir|divmod|enumerate|eval|execfile|exit|'
-             r'file|filter|float|frozenset|getattr|globals|hasattr|hash|hex|id|'
-             r'input|int|intern|isinstance|issubclass|iter|len|list|locals|'
-             r'long|map|max|min|next|object|oct|open|ord|pow|property|range|'
-             r'raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|'
-             r'sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|'
-             r'vars|xrange|zip)\b', Name.Builtin),
+            (words((
+                '__import__', 'abs', 'all', 'any', 'apply', 'basestring', 'bin',
+                'bool', 'buffer', 'bytearray', 'bytes', 'callable', 'chr',
+                'classmethod', 'cmp', 'coerce', 'compile', 'complex', 'delattr',
+                'dict', 'dir', 'divmod', 'enumerate', 'eval', 'execfile', 'exit',
+                'file', 'filter', 'float', 'frozenset', 'getattr', 'globals',
+                'hasattr', 'hash', 'hex', 'id', 'input', 'int', 'intern', 'isinstance',
+                'issubclass', 'iter', 'len', 'list', 'locals', 'long', 'map', 'max',
+                'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'property',
+                'range', 'raw_input', 'reduce', 'reload', 'repr', 'reversed',
+                'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod',
+                'str', 'sum', 'super', 'tuple', 'type', 'unichr', 'unicode',
+                'vars', 'xrange', 'zip'), prefix=r'(?<!\.)', suffix=r'\b'),
+             Name.Builtin),
             (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True|NULL'
              r')\b', Name.Builtin.Pseudo),
-            (r'(?<!\.)(ArithmeticError|AssertionError|AttributeError|'
-             r'BaseException|DeprecationWarning|EOFError|EnvironmentError|'
-             r'Exception|FloatingPointError|FutureWarning|GeneratorExit|IOError|'
-             r'ImportError|ImportWarning|IndentationError|IndexError|KeyError|'
-             r'KeyboardInterrupt|LookupError|MemoryError|NameError|'
-             r'NotImplemented|NotImplementedError|OSError|OverflowError|'
-             r'OverflowWarning|PendingDeprecationWarning|ReferenceError|'
-             r'RuntimeError|RuntimeWarning|StandardError|StopIteration|'
-             r'SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|'
-             r'TypeError|UnboundLocalError|UnicodeDecodeError|'
-             r'UnicodeEncodeError|UnicodeError|UnicodeTranslateError|'
-             r'UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError'
-             r')\b', Name.Exception),
+            (words((
+                'ArithmeticError', 'AssertionError', 'AttributeError',
+                'BaseException', 'DeprecationWarning', 'EOFError', 'EnvironmentError',
+                'Exception', 'FloatingPointError', 'FutureWarning', 'GeneratorExit', 'IOError',
+                'ImportError', 'ImportWarning', 'IndentationError', 'IndexError', 'KeyError',
+                'KeyboardInterrupt', 'LookupError', 'MemoryError', 'NameError',
+                'NotImplemented', 'NotImplementedError', 'OSError', 'OverflowError',
+                'OverflowWarning', 'PendingDeprecationWarning', 'ReferenceError',
+                'RuntimeError', 'RuntimeWarning', 'StandardError', 'StopIteration',
+                'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError',
+                'TypeError', 'UnboundLocalError', 'UnicodeDecodeError',
+                'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError',
+                'UnicodeWarning', 'UserWarning', 'ValueError', 'Warning',
+                'ZeroDivisionError'), prefix=r'(?<!\.)', suffix=r'\b'),
+             Name.Exception),
         ],
         'numbers': [
             (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
@@ -1950,7 +1960,7 @@ class CythonLexer(RegexLexer):
             (r'(\s+)(as)(\s+)', bygroups(Text, Keyword, Text)),
             (r'[a-zA-Z_][\w.]*', Name.Namespace),
             (r'(\s*)(,)(\s*)', bygroups(Text, Operator, Text)),
-            default('#pop') # all else: go back
+            default('#pop')  # all else: go back
         ],
         'fromimport': [
             (r'(\s+)(c?import)\b', bygroups(Text, Keyword), '#pop'),
@@ -1977,12 +1987,12 @@ class CythonLexer(RegexLexer):
         ],
         'dqs': [
             (r'"', String, '#pop'),
-            (r'\\\\|\\"|\\\n', String.Escape), # included here again for raw strings
+            (r'\\\\|\\"|\\\n', String.Escape),  # included here again for raw strings
             include('strings')
         ],
         'sqs': [
             (r"'", String, '#pop'),
-            (r"\\\\|\\'|\\\n", String.Escape), # included here again for raw strings
+            (r"\\\\|\\'|\\\n", String.Escape),  # included here again for raw strings
             include('strings')
         ],
         'tdqs': [
@@ -2014,7 +2024,7 @@ class ValaLexer(RegexLexer):
             (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
             (r'\n', Text),
             (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
+            (r'\\\n', Text),  # line continuation
             (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
@@ -2034,13 +2044,18 @@ class ValaLexer(RegexLexer):
             (r'(\[)(CCode|(?:Integer|Floating)Type)',
              bygroups(Punctuation, Name.Decorator)),
             (r'[()\[\],.]', Punctuation),
-            (r'(as|base|break|case|catch|construct|continue|default|delete|do|'
-             r'else|enum|finally|for|foreach|get|if|in|is|lock|new|out|params|'
-             r'return|set|sizeof|switch|this|throw|try|typeof|while|yield)\b',
+            (words((
+                'as', 'base', 'break', 'case', 'catch', 'construct', 'continue',
+                'default', 'delete', 'do', 'else', 'enum', 'finally', 'for',
+                'foreach', 'get', 'if', 'in', 'is', 'lock', 'new', 'out', 'params',
+                'return', 'set', 'sizeof', 'switch', 'this', 'throw', 'try',
+                'typeof', 'while', 'yield'), suffix=r'\b'),
              Keyword),
-            (r'(abstract|const|delegate|dynamic|ensures|extern|inline|internal|'
-             r'override|owned|private|protected|public|ref|requires|signal|'
-             r'static|throws|unowned|var|virtual|volatile|weak|yields)\b',
+            (words((
+                'abstract', 'const', 'delegate', 'dynamic', 'ensures', 'extern',
+                'inline', 'internal', 'override', 'owned', 'private', 'protected',
+                'public', 'ref', 'requires', 'signal', 'static', 'throws', 'unowned',
+                'var', 'virtual', 'volatile', 'weak', 'yields'), suffix=r'\b'),
              Keyword.Declaration),
             (r'(namespace|using)(\s+)', bygroups(Keyword.Namespace, Text),
              'namespace'),
@@ -2049,9 +2064,12 @@ class ValaLexer(RegexLexer):
             (r'(\.)([a-zA-Z_]\w*)',
              bygroups(Operator, Name.Attribute)),
             # void is an actual keyword, others are in glib-2.0.vapi
-            (r'(void|bool|char|double|float|int|int8|int16|int32|int64|long|'
-             r'short|size_t|ssize_t|string|time_t|uchar|uint|uint8|uint16|'
-             r'uint32|uint64|ulong|unichar|ushort)\b', Keyword.Type),
+            (words((
+                'void', 'bool', 'char', 'double', 'float', 'int', 'int8', 'int16',
+                'int32', 'int64', 'long', 'short', 'size_t', 'ssize_t', 'string',
+                'time_t', 'uchar', 'uint', 'uint8', 'uint16', 'uint32', 'uint64',
+                'ulong', 'unichar', 'ushort'), suffix=r'\b'),
+             Keyword.Type),
             (r'(true|false|null)\b', Name.Builtin),
             ('[a-zA-Z_]\w*', Name),
         ],
@@ -2059,7 +2077,7 @@ class ValaLexer(RegexLexer):
             include('whitespace'),
             ('', Text, 'statement'),
         ],
-        'statement' : [
+        'statement': [
             include('whitespace'),
             include('statements'),
             ('[{}]', Punctuation),
@@ -2068,9 +2086,9 @@ class ValaLexer(RegexLexer):
         'string': [
             (r'"', String, '#pop'),
             (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"\n]+', String), # all other characters
-            (r'\\\n', String), # line continuation
-            (r'\\', String), # stray backslash
+            (r'[^\\"\n]+', String),  # all other characters
+            (r'\\\n', String),  # line continuation
+            (r'\\', String),  # stray backslash
         ],
         'if0': [
             (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
@@ -2100,10 +2118,13 @@ class OocLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\b(class|interface|implement|abstract|extends|from|'
-             r'this|super|new|const|final|static|import|use|extern|'
-             r'inline|proto|break|continue|fallthrough|operator|if|else|for|'
-             r'while|do|switch|case|as|in|version|return|true|false|null)\b',
+            (words((
+                'class', 'interface', 'implement', 'abstract', 'extends', 'from',
+                'this', 'super', 'new', 'const', 'final', 'static', 'import',
+                'use', 'extern', 'inline', 'proto', 'break', 'continue',
+                'fallthrough', 'operator', 'if', 'else', 'for', 'while', 'do',
+                'switch', 'case', 'as', 'in', 'version', 'return', 'true',
+                'false', 'null'), prefix=r'\b', suffix=r'\b'),
              Keyword),
             (r'include\b', Keyword, 'include'),
             (r'(cover)([ \t]+)(from)([ \t]+)(\w+[*@]?)',
@@ -2138,8 +2159,8 @@ class OocLexer(RegexLexer):
              String.Double),
             (r"'(?:\\.|\\[0-9]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
              String.Char),
-            (r'@', Punctuation), # pointer dereference
-            (r'\.', Punctuation), # imports or chain operator
+            (r'@', Punctuation),  # pointer dereference
+            (r'\.', Punctuation),  # imports or chain operator
 
             (r'\\[ \t\n]', Text),
             (r'[ \t]+', Text),
@@ -2168,30 +2189,37 @@ class GoLexer(RegexLexer):
         'root': [
             (r'\n', Text),
             (r'\s+', Text),
-            (r'\\\n', Text), # line continuations
+            (r'\\\n', Text),  # line continuations
             (r'//(.*?)\n', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'(import|package)\b', Keyword.Namespace),
-            (r'(var|func|struct|map|chan|type|interface|const)\b', Keyword.Declaration),
-            (r'(break|default|select|case|defer|go'
-             r'|else|goto|switch|fallthrough|if|range'
-             r'|continue|for|return)\b', Keyword),
+            (r'(var|func|struct|map|chan|type|interface|const)\b',
+             Keyword.Declaration),
+            (words((
+                'break', 'default', 'select', 'case', 'defer', 'go',
+                'else', 'goto', 'switch', 'fallthrough', 'if', 'range',
+                'continue', 'for', 'return'), suffix=r'\b'),
+             Keyword),
             (r'(true|false|iota|nil)\b', Keyword.Constant),
             # It seems the builtin types aren't actually keywords, but
             # can be used as functions. So we need two declarations.
-            (r'(uint|uint8|uint16|uint32|uint64'
-             r'|int|int8|int16|int32|int64'
-             r'|float|float32|float64'
-             r'|complex64|complex128|byte|rune'
-             r'|string|bool|error|uintptr'
-             r'|print|println|panic|recover|close|complex|real|imag'
-             r'|len|cap|append|copy|delete|new|make)\b(\()',
+            (words((
+                'uint', 'uint8', 'uint16', 'uint32', 'uint64',
+                'int', 'int8', 'int16', 'int32', 'int64',
+                'float', 'float32', 'float64',
+                'complex64', 'complex128', 'byte', 'rune',
+                'string', 'bool', 'error', 'uintptr',
+                'print', 'println', 'panic', 'recover', 'close', 'complex',
+                'real', 'imag', 'len', 'cap', 'append', 'copy', 'delete',
+                'new', 'make'), suffix=r'\b(\()'),
              bygroups(Name.Builtin, Punctuation)),
-            (r'(uint|uint8|uint16|uint32|uint64'
-             r'|int|int8|int16|int32|int64'
-             r'|float|float32|float64'
-             r'|complex64|complex128|byte|rune'
-             r'|string|bool|error|uintptr)\b', Keyword.Type),
+            (words((
+                'uint', 'uint8', 'uint16', 'uint32', 'uint64',
+                'int', 'int8', 'int16', 'int32', 'int64',
+                'float', 'float32', 'float64',
+                'complex64', 'complex128', 'byte', 'rune',
+                'string', 'bool', 'error', 'uintptr'), suffix=r'\b'),
+             Keyword.Type),
             # imaginary_lit
             (r'\d+i', Number),
             (r'\d+\.\d*([Ee][-+]\d+)?i', Number),
@@ -2211,8 +2239,7 @@ class GoLexer(RegexLexer):
             # char_lit
             (r"""'(\\['"\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|[^\\])'""",
-             String.Char
-            ),
+             String.Char),
             # StringLiteral
             # -- raw_string_lit
             (r'`[^`]*`', String),
@@ -2240,11 +2267,11 @@ class FelixLexer(RegexLexer):
     filenames = ['*.flx', '*.flxh']
     mimetypes = ['text/x-felix']
 
-    preproc = [
+    preproc = (
         'elif', 'else', 'endif', 'if', 'ifdef', 'ifndef',
-    ]
+    )
 
-    keywords = [
+    keywords = (
         '_', '_deref', 'all', 'as',
         'assert', 'attempt', 'call', 'callback', 'case', 'caseno', 'cclass',
         'code', 'compound', 'ctypes', 'do', 'done', 'downto', 'elif', 'else',
@@ -2256,20 +2283,20 @@ class FelixLexer(RegexLexer):
         'regexp', 'reglex', 'regmatch', 'rename', 'return', 'the', 'then',
         'to', 'type', 'typecase', 'typedef', 'typematch', 'typeof', 'upto',
         'when', 'whilst', 'with', 'yield',
-    ]
+    )
 
-    keyword_directives = [
+    keyword_directives = (
         '_gc_pointer', '_gc_type', 'body', 'comment', 'const', 'export',
         'header', 'inline', 'lval', 'macro', 'noinline', 'noreturn',
         'package', 'private', 'pod', 'property', 'public', 'publish',
         'requires', 'todo', 'virtual', 'use',
-    ]
+    )
 
-    keyword_declarations = [
+    keyword_declarations = (
         'def', 'let', 'ref', 'val', 'var',
-    ]
+    )
 
-    keyword_types = [
+    keyword_types = (
         'unit', 'void', 'any', 'bool',
         'byte',  'offset',
         'address', 'caddress', 'cvaddress', 'vaddress',
@@ -2286,23 +2313,23 @@ class FelixLexer(RegexLexer):
         'cont',
         'array', 'varray', 'list',
         'lvalue', 'opt', 'slice',
-    ]
+    )
 
-    keyword_constants = [
+    keyword_constants = (
         'false', 'true',
-    ]
+    )
 
-    operator_words = [
+    operator_words = (
         'and', 'not', 'in', 'is', 'isin', 'or', 'xor',
-    ]
+    )
 
-    name_builtins = [
+    name_builtins = (
         '_svc', 'while',
-    ]
+    )
 
-    name_pseudo = [
+    name_pseudo = (
         'root', 'self', 'this',
-    ]
+    )
 
     decimal_suffixes = '([tTsSiIlLvV]|ll|LL|([iIuU])(8|16|32|64))?'
 
@@ -2311,16 +2338,18 @@ class FelixLexer(RegexLexer):
             include('whitespace'),
 
             # Keywords
-            (r'(axiom|ctor|fun|gen|proc|reduce|union)\b', Keyword,
-             'funcname'),
-            (r'(class|cclass|cstruct|obj|struct)\b', Keyword, 'classname'),
+            (words(('axiom', 'ctor', 'fun', 'gen', 'proc', 'reduce',
+                    'union'), suffix=r'\b'),
+             Keyword, 'funcname'),
+            (words(('class', 'cclass', 'cstruct', 'obj', 'struct'), suffix=r'\b'),
+             Keyword, 'classname'),
             (r'(instance|module|typeclass)\b', Keyword, 'modulename'),
 
-            (r'(%s)\b' % '|'.join(keywords), Keyword),
-            (r'(%s)\b' % '|'.join(keyword_directives), Name.Decorator),
-            (r'(%s)\b' % '|'.join(keyword_declarations), Keyword.Declaration),
-            (r'(%s)\b' % '|'.join(keyword_types), Keyword.Type),
-            (r'(%s)\b' % '|'.join(keyword_constants), Keyword.Constant),
+            (words(keywords, suffix=r'\b'), Keyword),
+            (words(keyword_directives, suffix=r'\b'), Name.Decorator),
+            (words(keyword_declarations, suffix=r'\b'), Keyword.Declaration),
+            (words(keyword_types, suffix=r'\b'), Keyword.Type),
+            (words(keyword_constants, suffix=r'\b'), Keyword.Constant),
 
             # Operators
             include('operators'),
@@ -2404,8 +2433,8 @@ class FelixLexer(RegexLexer):
             (r"(import|include)(\s+)('[^']*?')",
              bygroups(Comment.Preproc, Text, String), '#pop'),
             (r'[^/\n]+', Comment.Preproc),
-            ##(r'/[*](.|\n)*?[*]/', Comment),
-            ##(r'//.*?\n', Comment, '#pop'),
+            # (r'/[*](.|\n)*?[*]/', Comment),
+            # (r'//.*?\n', Comment, '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Comment.Preproc),
             (r'\n', Comment.Preproc, '#pop'),
@@ -2479,7 +2508,7 @@ class FelixLexer(RegexLexer):
             include('strings'),
             include('nl')
         ],
-     }
+    }
 
 
 class AdaLexer(RegexLexer):
@@ -2508,13 +2537,14 @@ class AdaLexer(RegexLexer):
             (r'(subtype)(\s+)', bygroups(Keyword.Declaration, Text)),
             (r'(end)(\s+)', bygroups(Keyword.Reserved, Text), 'end'),
             (r'(pragma)(\s+)(\w+)', bygroups(Keyword.Reserved, Text,
-                                                       Comment.Preproc)),
+                                             Comment.Preproc)),
             (r'(true|false|null)\b', Keyword.Constant),
-            (r'(Address|Byte|Boolean|Character|Controlled|Count|Cursor|'
-             r'Duration|File_Mode|File_Type|Float|Generator|Integer|Long_Float|'
-             r'Long_Integer|Long_Long_Float|Long_Long_Integer|Natural|Positive|'
-             r'Reference_Type|Short_Float|Short_Integer|Short_Short_Float|'
-             r'Short_Short_Integer|String|Wide_Character|Wide_String)\b',
+            (words((
+                'Address', 'Byte', 'Boolean', 'Character', 'Controlled', 'Count', 'Cursor',
+                'Duration', 'File_Mode', 'File_Type', 'Float', 'Generator', 'Integer', 'Long_Float',
+                'Long_Integer', 'Long_Long_Float', 'Long_Long_Integer', 'Natural', 'Positive',
+                'Reference_Type', 'Short_Float', 'Short_Integer', 'Short_Short_Float',
+                'Short_Short_Integer', 'String', 'Wide_Character', 'Wide_String'), suffix=r'\b'),
              Keyword.Type),
             (r'(and(\s+then)?|in|mod|not|or(\s+else)|rem)\b', Operator.Word),
             (r'generic|private', Keyword.Declaration),
@@ -2527,13 +2557,16 @@ class AdaLexer(RegexLexer):
             (r'<<[a-z0-9_]+>>', Name.Label),
             (r'([a-z0-9_]+)(\s*)(:)(\s*)(declare|begin|loop|for|while)',
              bygroups(Name.Label, Text, Punctuation, Text, Keyword.Reserved)),
-            (r'\b(abort|abs|abstract|accept|access|aliased|all|array|at|begin|'
-             r'body|case|constant|declare|delay|delta|digits|do|else|elsif|end|'
-             r'entry|exception|exit|interface|for|goto|if|is|limited|loop|new|'
-             r'null|of|or|others|out|overriding|pragma|protected|raise|range|'
-             r'record|renames|requeue|return|reverse|select|separate|subtype|'
-             r'synchronized|task|tagged|terminate|then|type|until|when|while|'
-             r'xor)\b',
+            (words((
+                'abort', 'abs', 'abstract', 'accept', 'access', 'aliased', 'all',
+                'array', 'at', 'begin', 'body', 'case', 'constant', 'declare',
+                'delay', 'delta', 'digits', 'do', 'else', 'elsif', 'end', 'entry',
+                'exception', 'exit', 'interface', 'for', 'goto', 'if', 'is', 'limited',
+                'loop', 'new', 'null', 'of', 'or', 'others', 'out', 'overriding',
+                'pragma', 'protected', 'raise', 'range', 'record', 'renames', 'requeue',
+                'return', 'reverse', 'select', 'separate', 'subtype', 'synchronized',
+                'task', 'tagged', 'terminate', 'then', 'type', 'until', 'when',
+                'while', 'xor'), prefix=r'\b', suffix=r'\b'),
              Keyword.Reserved),
             (r'"[^"]*"', String),
             include('attribute'),
@@ -2544,22 +2577,22 @@ class AdaLexer(RegexLexer):
             (r'[*<>+=/&-]', Operator),
             (r'\n+', Text),
         ],
-        'numbers' : [
+        'numbers': [
             (r'[0-9_]+#[0-9a-f]+#', Number.Hex),
             (r'[0-9_]+\.[0-9_]*', Number.Float),
             (r'[0-9_]+', Number.Integer),
         ],
-        'attribute' : [
+        'attribute': [
             (r"(')(\w+)", bygroups(Punctuation, Name.Attribute)),
         ],
-        'subprogram' : [
+        'subprogram': [
             (r'\(', Punctuation, ('#pop', 'formal_part')),
             (r';', Punctuation, '#pop'),
             (r'is\b', Keyword.Reserved, '#pop'),
             (r'"[^"]+"|[a-z0-9_]+', Name.Function),
             include('root'),
         ],
-        'end' : [
+        'end': [
             ('(if|case|record|loop|select)', Keyword.Reserved),
             ('"[^"]+"|[\w.]+', Name.Function),
             ('\s+', Text),
@@ -2574,13 +2607,13 @@ class AdaLexer(RegexLexer):
             (r'(null record)(;)', bygroups(Keyword.Reserved, Punctuation), '#pop'),
             include('root'),
         ],
-        'array_def' : [
+        'array_def': [
             (r';', Punctuation, '#pop'),
             (r'([a-z0-9_]+)(\s+)(range)', bygroups(Keyword.Type, Text,
                                                    Keyword.Reserved)),
             include('root'),
         ],
-        'record_def' : [
+        'record_def': [
             (r'end record', Keyword.Reserved, '#pop'),
             include('root'),
         ],
@@ -2588,7 +2621,7 @@ class AdaLexer(RegexLexer):
             (r'[a-z0-9_.]+', Name.Namespace, '#pop'),
             default('#pop'),
         ],
-        'formal_part' : [
+        'formal_part': [
             (r'\)', Punctuation, '#pop'),
             (r'[a-z0-9_]+', Name.Variable),
             (r',|:[^=]', Punctuation),
@@ -2795,8 +2828,7 @@ class Modula2Lexer(RegexLexer):
         RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
-        for index, token, value in \
-            RegexLexer.get_tokens_unprocessed(self, text):
+        for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):
             # check for reserved words and pervasives
             if token is Name:
                 if value in self.reserved_words:
@@ -2825,7 +2857,7 @@ class BlitzMaxLexer(RegexLexer):
     bmax_name = r'[a-z_]\w*'
     bmax_var = (r'(%s)(?:(?:([ \t]*)(%s)|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)'
                 r'|([ \t]*)(:)([ \t]*)(?:%s|(%s)))(?:([ \t]*)(Ptr))?)') % \
-                (bmax_name, bmax_sktypes, bmax_lktypes, bmax_name)
+        (bmax_name, bmax_sktypes, bmax_lktypes, bmax_name)
     bmax_func = bmax_var + r'?((?:[ \t]|\.\.\n)*)([(])'
 
     flags = re.MULTILINE | re.IGNORECASE
@@ -2833,7 +2865,7 @@ class BlitzMaxLexer(RegexLexer):
         'root': [
             # Text
             (r'[ \t]+', Text),
-            (r'\.\.\n', Text), # Line continuation
+            (r'\.\.\n', Text),  # Line continuation
             # Comments
             (r"'.*?\n", Comment.Single),
             (r'([ \t]*)\bRem\n(\n|.)*?\s*\bEnd([ \t]*)Rem', Comment.Multiline),
@@ -2870,26 +2902,23 @@ class BlitzMaxLexer(RegexLexer):
             (r'\b(Ptr)\b', Keyword.Type),
             (r'\b(Pi|True|False|Null|Self|Super)\b', Keyword.Constant),
             (r'\b(Local|Global|Const|Field)\b', Keyword.Declaration),
-            (r'\b(TNullMethodException|TNullFunctionException|'
-             r'TNullObjectException|TArrayBoundsException|'
-             r'TRuntimeException)\b', Name.Exception),
-            (r'\b(Strict|SuperStrict|Module|ModuleInfo|'
-             r'End|Return|Continue|Exit|Public|Private|'
-             r'Var|VarPtr|Chr|Len|Asc|SizeOf|Sgn|Abs|Min|Max|'
-             r'New|Release|Delete|'
-             r'Incbin|IncbinPtr|IncbinLen|'
-             r'Framework|Include|Import|Extern|EndExtern|'
-             r'Function|EndFunction|'
-             r'Type|EndType|Extends|'
-             r'Method|EndMethod|'
-             r'Abstract|Final|'
-             r'If|Then|Else|ElseIf|EndIf|'
-             r'For|To|Next|Step|EachIn|'
-             r'While|Wend|EndWhile|'
-             r'Repeat|Until|Forever|'
-             r'Select|Case|Default|EndSelect|'
-             r'Try|Catch|EndTry|Throw|Assert|'
-             r'Goto|DefData|ReadData|RestoreData)\b', Keyword.Reserved),
+            (words((
+                'TNullMethodException', 'TNullFunctionException',
+                'TNullObjectException', 'TArrayBoundsException',
+                'TRuntimeException'), prefix=r'\b', suffix=r'\b'), Name.Exception),
+            (words((
+                'Strict', 'SuperStrict', 'Module', 'ModuleInfo',
+                'End', 'Return', 'Continue', 'Exit', 'Public', 'Private',
+                'Var', 'VarPtr', 'Chr', 'Len', 'Asc', 'SizeOf', 'Sgn', 'Abs', 'Min', 'Max',
+                'New', 'Release', 'Delete', 'Incbin', 'IncbinPtr', 'IncbinLen',
+                'Framework', 'Include', 'Import', 'Extern', 'EndExtern',
+                'Function', 'EndFunction', 'Type', 'EndType', 'Extends', 'Method', 'EndMethod',
+                'Abstract', 'Final', 'If', 'Then', 'Else', 'ElseIf', 'EndIf',
+                'For', 'To', 'Next', 'Step', 'EachIn', 'While', 'Wend', 'EndWhile',
+                'Repeat', 'Until', 'Forever', 'Select', 'Case', 'Default', 'EndSelect',
+                'Try', 'Catch', 'EndTry', 'Throw', 'Assert', 'Goto', 'DefData', 'ReadData',
+                'RestoreData'), prefix=r'\b', suffix=r'\b'),
+             Keyword.Reserved),
             # Final resolve (for variable names and such)
             (r'(%s)' % (bmax_name), Name.Variable),
         ],
@@ -2913,13 +2942,10 @@ class BlitzBasicLexer(RegexLexer):
     filenames = ['*.bb', '*.decls']
     mimetypes = ['text/x-bb']
 
-    bb_vopwords = (r'\b(Shl|Shr|Sar|Mod|Or|And|Not|'
-                   r'Abs|Sgn|Handle|Int|Float|Str|'
-                   r'First|Last|Before|After)\b')
     bb_sktypes = r'@{1,2}|[#$%]'
     bb_name = r'[a-z]\w*'
     bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)([.])([ \t]*)(?:(%s)))?') % \
-                (bb_name, bb_sktypes, bb_name)
+             (bb_name, bb_sktypes, bb_name)
 
     flags = re.MULTILINE | re.IGNORECASE
     tokens = {
@@ -2937,7 +2963,12 @@ class BlitzBasicLexer(RegexLexer):
             (r'\$[0-9a-f]+', Number.Hex),
             (r'\%[10]+', Number.Bin),
             # Other
-            (r'(?:%s|([+\-*/~=<>^]))' % (bb_vopwords), Operator),
+            (words(('Shl', 'Shr', 'Sar', 'Mod', 'Or', 'And', 'Not',
+                    'Abs', 'Sgn', 'Handle', 'Int', 'Float', 'Str',
+                    'First', 'Last', 'Before', 'After'),
+                   prefix=r'\b', suffix=r'\b'),
+             Operator),
+            (r'([+\-*/~=<>^])', Operator),
             (r'[(),:\[\]\\]', Punctuation),
             (r'\.([ \t]*)(%s)' % bb_name, Name.Label),
             # Identifiers
@@ -2948,30 +2979,25 @@ class BlitzBasicLexer(RegexLexer):
             (r'\b(Object)\b([ \t]*)([.])([ \t]*)(%s)\b' % (bb_name),
              bygroups(Operator, Text, Punctuation, Text, Name.Class)),
             (r'\b%s\b([ \t]*)(\()' % bb_var,
-             bygroups(Name.Function, Text, Keyword.Type,Text, Punctuation,
+             bygroups(Name.Function, Text, Keyword.Type, Text, Punctuation,
                       Text, Name.Class, Text, Punctuation)),
             (r'\b(Function)\b([ \t]+)%s' % bb_var,
              bygroups(Keyword.Reserved, Text, Name.Function, Text, Keyword.Type,
-                              Text, Punctuation, Text, Name.Class)),
+                      Text, Punctuation, Text, Name.Class)),
             (r'\b(Type)([ \t]+)(%s)' % (bb_name),
              bygroups(Keyword.Reserved, Text, Name.Class)),
             # Keywords
             (r'\b(Pi|True|False|Null)\b', Keyword.Constant),
             (r'\b(Local|Global|Const|Field|Dim)\b', Keyword.Declaration),
-            (r'\b(End|Return|Exit|'
-             r'Chr|Len|Asc|'
-             r'New|Delete|Insert|'
-             r'Include|'
-             r'Function|'
-             r'Type|'
-             r'If|Then|Else|ElseIf|EndIf|'
-             r'For|To|Next|Step|Each|'
-             r'While|Wend|'
-             r'Repeat|Until|Forever|'
-             r'Select|Case|Default|'
-             r'Goto|Gosub|Data|Read|Restore)\b', Keyword.Reserved),
+            (words((
+                'End', 'Return', 'Exit', 'Chr', 'Len', 'Asc', 'New', 'Delete', 'Insert',
+                'Include', 'Function', 'Type', 'If', 'Then', 'Else', 'ElseIf', 'EndIf',
+                'For', 'To', 'Next', 'Step', 'Each', 'While', 'Wend',
+                'Repeat', 'Until', 'Forever', 'Select', 'Case', 'Default',
+                'Goto', 'Gosub', 'Data', 'Read', 'Restore'), prefix=r'\b', suffix=r'\b'),
+             Keyword.Reserved),
             # Final resolve (for variable names and such)
-#            (r'(%s)' % (bb_name), Name.Variable),
+            # (r'(%s)' % (bb_name), Name.Variable),
             (bb_var, bygroups(Name.Variable, Text, Keyword.Type,
                               Text, Punctuation, Text, Name.Class)),
         ],
