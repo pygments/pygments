@@ -58,7 +58,7 @@ class CFamilyLexer(RegexLexer):
              bygroups(using(this), Comment.Preproc), 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
+            (r'\\\n', Text),  # line continuation
             (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
@@ -73,19 +73,25 @@ class CFamilyLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
-            (r'(auto|break|case|const|continue|default|do|else|enum|extern|'
-             r'for|goto|if|register|restricted|return|sizeof|static|struct|'
-             r'switch|typedef|union|volatile|while)\b', Keyword),
+            (words(('auto', 'break', 'case', 'const', 'continue', 'default', 'do',
+                    'else', 'enum', 'extern', 'for', 'goto', 'if', 'register',
+                    'restricted', 'return', 'sizeof', 'static', 'struct',
+                    'switch', 'typedef', 'union', 'volatile', 'while'),
+                   suffix=r'\b'), Keyword),
             (r'(bool|int|long|float|short|double|char|unsigned|signed|void|'
              r'[a-z_][a-z0-9_]*_t)\b',
              Keyword.Type),
-            (r'(_{0,2}inline|naked|restrict|thread|typename)\b', Keyword.Reserved),
+            (words(('inline', '_inline', '__inline', 'naked', 'restrict',
+                    'thread', 'typename'), suffix=r'\b'), Keyword.Reserved),
             # Vector intrinsics
-            (r'(__(m128i|m128d|m128|m64))\b', Keyword.Reserved),
+            (r'(__m(128i|128d|128|64))\b', Keyword.Reserved),
             # Microsoft-isms
-            (r'__(asm|int8|based|except|int16|stdcall|cdecl|fastcall|int32|'
-             r'declspec|finally|int64|try|leave|wchar_t|w64|unaligned|'
-             r'raise|noop|identifier|forceinline|assume)\b', Keyword.Reserved),
+            (words((
+                'asm', 'int8', 'based', 'except', 'int16', 'stdcall', 'cdecl',
+                'fastcall', 'int32', 'declspec', 'finally', 'int64', 'try',
+                'leave', 'wchar_t', 'w64', 'unaligned', 'raise', 'noop',
+                'identifier', 'forceinline', 'assume'),
+                prefix=r'__', suffix=r'\b'), Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
             (r'([a-zA-Z_]\w*)(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
             ('[a-zA-Z_]\w*', Name),
@@ -109,7 +115,7 @@ class CFamilyLexer(RegexLexer):
                       Punctuation)),
             default('statement'),
         ],
-        'statement' : [
+        'statement': [
             include('whitespace'),
             include('statements'),
             ('[{}]', Punctuation),
@@ -126,9 +132,9 @@ class CFamilyLexer(RegexLexer):
             (r'"', String, '#pop'),
             (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|'
              r'u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"\n]+', String), # all other characters
-            (r'\\\n', String), # line continuation
-            (r'\\', String), # stray backslash
+            (r'[^\\"\n]+', String),  # all other characters
+            (r'\\\n', String),  # line continuation
+            (r'\\', String),  # stray backslash
         ],
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
@@ -206,24 +212,27 @@ class CppLexer(CFamilyLexer):
 
     tokens = {
         'statements': [
-            (r'(asm|catch|const_cast|delete|dynamic_cast|explicit|'
-             r'export|friend|mutable|namespace|new|operator|'
-             r'private|protected|public|reinterpret_cast|'
-             r'restrict|static_cast|template|this|throw|throws|'
-             r'typeid|typename|using|virtual|'
-             r'constexpr|nullptr|decltype|thread_local|'
-             r'alignas|alignof|static_assert|noexcept|override|final)\b', Keyword),
-            (r'(char16_t|char32_t)\b', Keyword.Type),
+            (words((
+                'asm', 'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
+                'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
+                'private', 'protected', 'public', 'reinterpret_cast',
+                'restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
+                'typeid', 'typename', 'using', 'virtual',
+                'constexpr', 'nullptr', 'decltype', 'thread_local',
+                'alignas', 'alignof', 'static_assert', 'noexcept', 'override',
+                'final'), suffix=r'\b'), Keyword),
+            (r'char(16_t|32_t)\b', Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             inherit,
          ],
         'root': [
             inherit,
             # C++ Microsoft-isms
-            (r'__(virtual_inheritance|uuidof|super|single_inheritance|'
-             r'multiple_inheritance|interface|event)\b', Keyword.Reserved),
+            (words(('virtual_inheritance', 'uuidof', 'super', 'single_inheritance',
+                    'multiple_inheritance', 'interface', 'event'),
+                   prefix=r'__', suffix=r'\b'), Keyword.Reserved),
             # Offload C++ extensions, http://offload.codeplay.com/
-            (r'(__offload|__blockingoffload|__outer)\b', Keyword.Pseudo),
+            (r'__(offload|blockingoffload|outer)\b', Keyword.Pseudo),
         ],
         'classname': [
             (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
@@ -252,15 +261,16 @@ class PikeLexer(CppLexer):
 
     tokens = {
         'statements': [
-            (r'(catch|new|private|protected|public|gauge|'
-             r'throw|throws|class|interface|implement|abstract|extends|from|'
-             r'this|super|new|constant|final|static|import|use|extern|'
-             r'inline|proto|break|continue|if|else|for|'
-             r'while|do|switch|case|as|in|version|return|true|false|null|'
-             r'__VERSION__|__MAJOR__|__MINOR__|__BUILD__|__REAL_VERSION__|'
-             r'__REAL_MAJOR__|__REAL_MINOR__|__REAL_BUILD__|__DATE__|__TIME__|'
-             r'__FILE__|__DIR__|__LINE__|__AUTO_BIGNUM__|__NT__|__PIKE__|'
-             r'__amigaos__|_Pragma|static_assert|defined|sscanf)\b',
+            (words((
+                'catch', 'new', 'private', 'protected', 'public', 'gauge',
+                'throw', 'throws', 'class', 'interface', 'implement', 'abstract', 'extends', 'from',
+                'this', 'super', 'new', 'constant', 'final', 'static', 'import', 'use', 'extern',
+                'inline', 'proto', 'break', 'continue', 'if', 'else', 'for',
+                'while', 'do', 'switch', 'case', 'as', 'in', 'version', 'return', 'true', 'false', 'null',
+                '__VERSION__', '__MAJOR__', '__MINOR__', '__BUILD__', '__REAL_VERSION__',
+                '__REAL_MAJOR__', '__REAL_MINOR__', '__REAL_BUILD__', '__DATE__', '__TIME__',
+                '__FILE__', '__DIR__', '__LINE__', '__AUTO_BIGNUM__', '__NT__', '__PIKE__',
+                '__amigaos__', '_Pragma', 'static_assert', 'defined', 'sscanf'), suffix=r'\b'),
              Keyword),
             (r'(bool|int|long|float|short|double|char|string|object|void|mapping|'
              r'array|multiset|program|function|lambda|mixed|'
@@ -303,7 +313,7 @@ class SwigLexer(CppLexer):
     }
 
     # This is a far from complete set of SWIG directives
-    swig_directives = (
+    swig_directives = set((
         # Most common directives
         '%apply', '%define', '%director', '%enddef', '%exception', '%extend',
         '%feature', '%fragment', '%ignore', '%immutable', '%import', '%include',
@@ -321,7 +331,8 @@ class SwigLexer(CppLexer):
         '%nestedworkaround', '%perlcode', '%pythonabc', '%pythonappend',
         '%pythoncallback', '%pythoncode', '%pythondynamic', '%pythonmaybecall',
         '%pythonnondynamic', '%pythonprepend', '%refobject', '%shadow', '%sizeof',
-        '%trackobjects', '%types', '%unrefobject', '%varargs', '%warn', '%warnfilter')
+        '%trackobjects', '%types', '%unrefobject', '%varargs', '%warn',
+        '%warnfilter'))
 
     def analyse_text(text):
         rv = 0
@@ -351,15 +362,18 @@ class ECLexer(CLexer):
 
     tokens = {
         'statements': [
-            (r'(virtual|class|private|public|property|import|delete|new|new0|'
-             r'renew|renew0|define|get|set|remote|dllexport|dllimport|stdcall|'
-             r'subclass|__on_register_module|namespace|using|typed_object|'
-             r'any_object|incref|register|watch|stopwatching|firewatchers|'
-             r'watchable|class_designer|class_fixed|class_no_expansion|isset|'
-             r'class_default_property|property_category|class_data|'
-             r'class_property|virtual|thisclass|'
-             r'dbtable|dbindex|database_open|dbfield)\b', Keyword),
-            (r'(uint|uint16|uint32|uint64|bool|byte|unichar|int64)\b',
+            (words((
+                'virtual', 'class', 'private', 'public', 'property', 'import',
+                'delete', 'new', 'new0', 'renew', 'renew0', 'define', 'get',
+                'set', 'remote', 'dllexport', 'dllimport', 'stdcall', 'subclass',
+                '__on_register_module', 'namespace', 'using', 'typed_object',
+                'any_object', 'incref', 'register', 'watch', 'stopwatching', 'firewatchers',
+                'watchable', 'class_designer', 'class_fixed', 'class_no_expansion', 'isset',
+                'class_default_property', 'property_category', 'class_data',
+                'class_property', 'virtual', 'thisclass', 'dbtable', 'dbindex',
+                'database_open', 'dbfield'), suffix=r'\b'), Keyword),
+            (words(('uint', 'uint16', 'uint32', 'uint64', 'bool', 'byte',
+                    'unichar', 'int64'), suffix=r'\b'),
              Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(null|value|this)\b', Name.Builtin),
@@ -387,12 +401,15 @@ class NesCLexer(CLexer):
 
     tokens = {
         'statements': [
-            (r'(abstract|as|async|atomic|call|command|component|components|'
-             r'configuration|event|extends|generic|implementation|includes|'
-             r'interface|module|new|norace|post|provides|signal|task|uses)\b',
+            (words((
+                'abstract', 'as', 'async', 'atomic', 'call', 'command', 'component',
+                'components', 'configuration', 'event', 'extends', 'generic',
+                'implementation', 'includes', 'interface', 'module', 'new', 'norace',
+                'post', 'provides', 'signal', 'task', 'uses'), suffix=r'\b'),
              Keyword),
-            (r'(nx_struct|nx_union|nx_int8_t|nx_int16_t|nx_int32_t|nx_int64_t|'
-             r'nx_uint8_t|nx_uint16_t|nx_uint32_t|nx_uint64_t)\b',
+            (words(('nx_struct', 'nx_union', 'nx_int8_t', 'nx_int16_t', 'nx_int32_t',
+                    'nx_int64_t', 'nx_uint8_t', 'nx_uint16_t', 'nx_uint32_t',
+                    'nx_uint64_t'), suffix=r'\b'),
              Keyword.Type),
             inherit,
         ],
