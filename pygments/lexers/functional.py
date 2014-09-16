@@ -1530,26 +1530,27 @@ class IdrisLexer(RegexLexer):
                 'let','proof','of','then','static','where','_','with',
                 'pattern', 'term', 'syntax','prefix',
                 'postulate','parameters','record','dsl','impossible','implicit',
-                'tactics','intros','intro','compute','refine','exaxt','trivial']
+                'tactics','intros','intro','compute','refine','exact','trivial']
 
     ascii = ['NUL','SOH','[SE]TX','EOT','ENQ','ACK',
              'BEL','BS','HT','LF','VT','FF','CR','S[OI]','DLE',
              'DC[1-4]','NAK','SYN','ETB','CAN',
              'EM','SUB','ESC','[FGRU]S','SP','DEL']
 
-    annotations = ['assert_total','lib','link','include','provide','access',
-                   'default']
+    directives = ['lib','link','flag','include','hide','freeze','access',
+                  'default','logging','dynamic','name','error_handlers','language']
 
     tokens = {
         'root': [
+            # Comments
+            (r'^(\s*)(%%%s)' % '|'.join(directives),
+             bygroups(Text, Keyword.Reserved)),
+            (r'(\s*)(--(?![!#$%&*+./<=>?@\^|_~:\\]).*?)$', bygroups(Text, Comment.Single)),
+            (r'(\s*)(\|{3}.*?)$', bygroups(Text, Comment.Single)),
+            (r'(\s*)({-)', bygroups(Text, Comment.Multiline), 'comment'),
             # Declaration
             (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
              bygroups(Text, Name.Function, Text, Operator.Word, Text)),
-            # Comments
-            (r'^(\s*)(%%%s)' % '|'.join(annotations),
-             bygroups(Text, Keyword.Reserved)),
-            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
-            (r'{-', Comment.Multiline, 'comment'),
             #  Identifiers
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
@@ -3135,7 +3136,7 @@ def gen_elixir_string_rules(name, symbol, token):
         (r'[^#%s\\]+' % (symbol,), token),
         include('escapes'),
         (r'\\.', token),
-        (r'(%s)(:?)' % (symbol,), bygroups(token, Punctuation), "#pop"),
+        (r'(%s)' % (symbol,), bygroups(token), "#pop"),
         include('interpol')
     ]
     return states
@@ -3169,7 +3170,7 @@ class ElixirLexer(RegexLexer):
     mimetypes = ['text/x-elixir']
 
     KEYWORD = ['fn', 'do', 'end', 'after', 'else', 'rescue', 'catch']
-    KEYWORD_OPERATOR = ['not', 'and', 'or', 'xor', 'when', 'in']
+    KEYWORD_OPERATOR = ['not', 'and', 'or', 'when', 'in']
     BUILTIN = [
         'case', 'cond', 'for', 'if', 'unless', 'try', 'receive', 'raise',
         'quote', 'unquote', 'unquote_splicing', 'throw', 'super'
@@ -3184,15 +3185,19 @@ class ElixirLexer(RegexLexer):
 
     PSEUDO_VAR = ['_', '__MODULE__', '__DIR__', '__ENV__', '__CALLER__']
 
-    OPERATORS3 = ['<<<', '>>>', '|||', '&&&', '^^^', '~~~', '===', '!==']
+
+    OPERATORS3 = [
+        '<<<', '>>>', '|||', '&&&', '^^^', '~~~', '===', '!==',
+        '~>>', '<~>', '|~>', '<|>',
+    ]
     OPERATORS2 = [
-        '==', '!=', '<=', '>=', '&&', '||', '<>', '++', '--', '|>', '=~'
+        '==', '!=', '<=', '>=', '&&', '||', '<>', '++', '--', '|>', '=~',
+        '->', '<-', '|', '.', '=', '~>', '<~',
     ]
     OPERATORS1 = ['<', '>', '+', '-', '*', '/', '!', '^', '&']
 
     PUNCTUATION = [
-        '\\\\', '<<', '>>', '::', '->', '<-', '=>', '|', '(', ')',
-        '{', '}', ';', ',', '.', '[', ']', '%', '='
+        '\\\\', '<<', '>>', '=>', '(', ')', ':', ';', ',', '[', ']'
     ]
 
     def get_tokens_unprocessed(self, text):
@@ -3218,20 +3223,19 @@ class ElixirLexer(RegexLexer):
                 yield index, token, value
 
     def gen_elixir_sigil_rules():
-        # these braces are balanced inside the sigil string
-        braces = [
+        # all valid sigil terminators (excluding heredocs)
+        terminators = [
             (r'\{', r'\}', 'cb'),
             (r'\[', r'\]', 'sb'),
             (r'\(', r'\)', 'pa'),
             (r'\<', r'\>', 'ab'),
+            (r'/', r'/', 'slas'),
+            (r'\|', r'\|', 'pipe'),
+            ('"', '"', 'quot'),
+            ("'", "'", 'apos'),
         ]
 
-        # these are also valid sigil terminators, they are not balanced
-        terms = [
-            (r'/', 'slas'), (r'\|', 'pipe'), ('"', 'quot'), ("'", 'apos'),
-        ]
-
-        # heredocs have slightly different rules, they are not balanced
+        # heredocs have slightly different rules
         triquotes = [(r'"""', 'triquot'), (r"'''", 'triapos')]
 
         token = String.Other
@@ -3255,33 +3259,14 @@ class ElixirLexer(RegexLexer):
                 include('heredoc_no_interpol'),
             ]
 
-        for term, name in terms:
+        for lterm, rterm, name in terminators:
             states['sigils'] += [
-                (r'~[a-z]' + term, token, name + '-intp'),
-                (r'~[A-Z]' + term, token, name + '-no-intp'),
+                (r'~[a-z]' + lterm, token, name + '-intp'),
+                (r'~[A-Z]' + lterm, token, name + '-no-intp'),
             ]
-
-            # Similar states to the braced sigils, but no balancing of
-            # terminators
-            states[name +'-intp'] = gen_elixir_sigstr_rules(term, token)
+            states[name +'-intp'] = gen_elixir_sigstr_rules(rterm, token)
             states[name +'-no-intp'] = \
-                gen_elixir_sigstr_rules(term, token, interpol=False)
-
-        for lbrace, rbrace, name in braces:
-            states['sigils'] += [
-                (r'~[a-z]' + lbrace, token, name + '-intp'),
-                (r'~[A-Z]' + lbrace, token, name + '-no-intp')
-            ]
-
-            states[name +'-intp'] = [
-                (r'\\.', token),
-                (lbrace, token, '#push'),
-            ] + gen_elixir_sigstr_rules(rbrace, token)
-
-            states[name +'-no-intp'] = [
-                (r'\\.', token),
-                (lbrace, token, '#push'),
-            ] + gen_elixir_sigstr_rules(rbrace, token, interpol=False)
+                gen_elixir_sigstr_rules(rterm, token, interpol=False)
 
         return states
 
@@ -3290,10 +3275,15 @@ class ElixirLexer(RegexLexer):
     op1_re = "|".join(re.escape(s) for s in OPERATORS1)
     ops_re = r'(?:%s|%s|%s)' % (op3_re, op2_re, op1_re)
     punctuation_re = "|".join(re.escape(s) for s in PUNCTUATION)
-    name_re = r'[a-z_][a-zA-Z_0-9]*[!\?]?'
-    modname_re = r'[A-Z][A-Za-z_]*(?:\.[A-Z][A-Za-z_]*)*'
+    alnum = '[A-Za-z_0-9]'
+    name_re = r'(?:\.\.\.|[a-z_]%s*[!\?]?)' % alnum
+    modname_re = r'[A-Z]%(alnum)s*(?:\.[A-Z]%(alnum)s*)*' % {'alnum': alnum}
     complex_name_re = r'(?:%s|%s|%s)' % (name_re, modname_re, ops_re)
     special_atom_re = r'(?:\.\.\.|<<>>|%{}|%|{})'
+
+    long_hex_char_re = r'(\\x{)([\da-fA-F]+)(})'
+    hex_char_re = r'(\\x[\da-fA-F]{1,2})'
+    escape_char_re = r'(\\[abdefnrstv])'
 
     tokens = {
         'root': [
@@ -3301,16 +3291,18 @@ class ElixirLexer(RegexLexer):
             (r'#.*$', Comment.Single),
 
             # Various kinds of characters
-            (r'(?i)(\?)(\\x{)([\da-f]+)(})',
+            (r'(\?)' + long_hex_char_re,
                 bygroups(String.Char,
                     String.Escape, Number.Hex, String.Escape)),
-            (r'(?i)(\?)(\\x[\da-f]{1,2})',
+            (r'(\?)' + hex_char_re,
                 bygroups(String.Char, String.Escape)),
-            (r'(\?)(\\[0-7]{1,3})',
-                bygroups(String.Char, String.Escape)),
-            (r'(\?)(\\[abdefnrstv])',
+            (r'(\?)' + escape_char_re,
                 bygroups(String.Char, String.Escape)),
             (r'\?\\?.', String.Char),
+
+            # '::' has to go before atoms
+            (r':::', String.Symbol),
+            (r'::', Operator),
 
             # atoms
             (r':' + special_atom_re, String.Symbol),
@@ -3325,6 +3317,10 @@ class ElixirLexer(RegexLexer):
             # @attributes
             (r'@' + name_re, Name.Attribute),
 
+            # identifiers
+            (name_re, Name),
+            (r'(%%?)(%s)' % (modname_re,), bygroups(Punctuation, Name.Class)),
+
             # operators and punctuation
             (op3_re, Operator),
             (op2_re, Operator),
@@ -3332,14 +3328,10 @@ class ElixirLexer(RegexLexer):
             (r'&\d', Name.Entity),   # anon func arguments
             (op1_re, Operator),
 
-            # identifiers
-            (name_re, Name),
-            (modname_re, Name.Class),
-
             # numbers
-            (r'0[bB][01]+', Number.Bin),
-            (r'0[0-7]+', Number.Oct),
-            (r'(?i)0x[\da-f]+', Number.Hex),
+            (r'0b[01]+', Number.Bin),
+            (r'0o[0-7]+', Number.Oct),
+            (r'0x[\da-fA-F]+', Number.Hex),
             (r'\d(_?\d)*\.\d(_?\d)*([eE][-+]?\d(_?\d)*)?', Number.Float),
             (r'\d(_?\d)*', Number.Integer),
 
@@ -3350,6 +3342,9 @@ class ElixirLexer(RegexLexer):
             (r"'", String.Single, 'string_single'),
 
             include('sigils'),
+
+            (r'%{', Punctuation, 'map_key'),
+            (r'{', Punctuation, 'tuple'),
         ],
         'heredoc_double': [
             (r'^\s*"""', String.Heredoc, '#pop'),
@@ -3372,11 +3367,10 @@ class ElixirLexer(RegexLexer):
             (r'\n+', String.Heredoc),
         ],
         'escapes': [
-            (r'(?i)(\\x{)([\da-f]+)(})',
+            (long_hex_char_re,
                 bygroups(String.Escape, Number.Hex, String.Escape)),
-            (r'(?i)\\x[\da-f]{1,2}', String.Escape),
-            (r'\\[0-7]{1,3}', String.Escape),
-            (r'\\[abdefnrstv]', String.Escape),
+            (hex_char_re, String.Escape),
+            (escape_char_re, String.Escape),
         ],
         'interpol': [
             (r'#{', String.Interpol, 'interpol_string'),
@@ -3384,6 +3378,21 @@ class ElixirLexer(RegexLexer):
         'interpol_string' : [
             (r'}', String.Interpol, "#pop"),
             include('root')
+        ],
+        'map_key': [
+            include('root'),
+            (r':', Punctuation, 'map_val'),
+            (r'=>', Punctuation, 'map_val'),
+            (r'}', Punctuation, '#pop'),
+        ],
+        'map_val': [
+            include('root'),
+            (r',', Punctuation, '#pop'),
+            (r'(?=})', Punctuation, '#pop'),
+        ],
+        'tuple': [
+            include('root'),
+            (r'}', Punctuation, '#pop'),
         ],
     }
     tokens.update(gen_elixir_string_rules('double', '"', String.Double))
