@@ -15,7 +15,8 @@ from pygments.lexer import RegexLexer, include, bygroups, using, this
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Punctuation, Generic, Number, Whitespace
 
-__all__ = ['NSISLexer', 'RPMSpecLexer']
+__all__ = ['NSISLexer', 'RPMSpecLexer', 'SourcesListLexer',
+           'DebianControlLexer']
 
 
 class NSISLexer(RegexLexer):

@@ -18,7 +18,7 @@ from pygments.lexers.markup import BBCodeLexer, MoinWikiLexer, RstLexer, \
 from pygments.lexers.installers import DebianControlLexer, SourcesListLexer
 from pygments.lexers.misc.make import MakefileLexer, BaseMakefileLexer, \
     CMakeLexer
-from pygments.lexers.dsls import HxmlLexer
+from pygments.lexers.haxe import HxmlLexer
 from pygments.lexers.diff import DiffLexer, DarcsPatchLexer
 from pygments.lexers.data import YamlLexer
 from pygments.lexers.textfmts import IrcLogsLexer, GettextLexer, HttpLexer

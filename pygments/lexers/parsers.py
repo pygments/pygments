@@ -691,7 +691,7 @@ class AntlrActionScriptLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        from pygments.lexers.web import ActionScriptLexer
+        from pygments.lexers.actionscript import ActionScriptLexer
         super(AntlrActionScriptLexer, self).__init__(ActionScriptLexer,
                                                      AntlrLexer, **options)
 

@@ -17,7 +17,7 @@ from pygments.token import Punctuation, \
 from pygments.util import get_choice_opt, iteritems
 from pygments import unistring as uni
 
-from pygments.lexers.web import XmlLexer
+from pygments.lexers.html import XmlLexer
 
 __all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
            'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer']
