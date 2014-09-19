@@ -24,7 +24,7 @@ from pygments.lexers.fortran import FortranLexer
 from pygments.lexers.prolog import PrologLexer
 from pygments.lexers.python import CythonLexer
 from pygments.lexers.graphics import GLShaderLexer
-from pygments.lexers.misc.blitz import BlitzBasicLexer, BlitzMaxLexer, \
+from pygments.lexers.misc.basic import BlitzBasicLexer, BlitzMaxLexer, \
     MonkeyLexer
 from pygments.lexers.misc.dylan import DylanLexer, DylanLidLexer, \
     DylanConsoleLexer
