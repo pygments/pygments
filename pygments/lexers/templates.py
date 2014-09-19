@@ -12,16 +12,15 @@
 import re
 
 from pygments.lexers.web import \
-     PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer, LassoLexer
-from pygments.lexers.agile import PythonLexer, PerlLexer
-from pygments.lexers.compiled import JavaLexer
-from pygments.lexers.jvm import TeaLangLexer
-from pygments.lexers.text import YamlLexer
+    PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer, LassoLexer
+from pygments.lexers.python import PythonLexer
+from pygments.lexers.perl import PerlLexer
+from pygments.lexers.jvm import JavaLexer, TeaLangLexer
+from pygments.lexers.data import YamlLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
-     include, using, this, default, combined
-from pygments.token import Error, Punctuation, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Other, Token, \
-     Whitespace
+    include, using, this, default, combined
+from pygments.token import Error, Punctuation, Whitespace, \
+    Text, Comment, Operator, Keyword, Name, String, Number, Other, Token
 from pygments.util import html_doctype_matches, looks_like_xml
 
 __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
@@ -63,7 +62,7 @@ class ErbLexer(Lexer):
     _block_re = re.compile(r'(<%%|%%>|<%=|<%#|<%-|<%|-%>|%>|^%[^%].*?$)', re.M)
 
     def __init__(self, **options):
-        from pygments.lexers.agile import RubyLexer
+        from pygments.lexers.ruby import RubyLexer
         self.ruby_lexer = RubyLexer(**options)
         Lexer.__init__(self, **options)
 

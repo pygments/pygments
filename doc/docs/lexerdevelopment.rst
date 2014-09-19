@@ -584,7 +584,7 @@ the ``get_tokens_unprocessed()`` method. The following lexer subclasses the
 
 .. sourcecode:: python
 
-    from pygments.lexers.agile import PythonLexer
+    from pygments.lexers.python import PythonLexer
     from pygments.token import Name, Keyword
 
     class MyPythonLexer(PythonLexer):

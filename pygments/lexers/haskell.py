@@ -503,7 +503,7 @@ class LiterateLexer(Lexer):
                     insertions.append((len(code), [(0, Text, line)]))
         else:
             # latex-style
-            from pygments.lexers.text import TexLexer
+            from pygments.lexers.markup import TexLexer
             lxlexer = TexLexer(**self.options)
             codelines = 0
             latex = ''
