@@ -15,8 +15,8 @@ from pygments.lexer import RegexLexer, bygroups, words, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Literal
 
-__all__ = ['ProtoBufLexer', 'BroLexer', 'PuppetLexer', 'RslLexer', 'MscgenLexer',
-           'VGLLexer', 'AlloyLexer']
+__all__ = ['ProtoBufLexer', 'BroLexer', 'PuppetLexer', 'RslLexer',
+           'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer']
 
 
 class ProtoBufLexer(RegexLexer):
@@ -438,4 +438,69 @@ class AlloyLexer(RegexLexer):
             (r'"(\\\\|\\"|[^"])*"', String),
             (r'\n', Text),
         ]
+    }
+
+
+class PanLexer(RegexLexer):
+    """
+    Lexer for `pan <http://github.com/quattor/pan/>`_ source files.
+
+    Based on tcsh lexer.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'Pan'
+    aliases = ['pan']
+    filenames = ['*.pan']
+
+    tokens = {
+        'root': [
+            include('basic'),
+            (r'\(', Keyword, 'paren'),
+            (r'{', Keyword, 'curly'),
+            include('data'),
+        ],
+        'basic': [
+            (words((
+                'if', 'for', 'with', 'else', 'type', 'bind', 'while', 'valid', 'final', 'prefix',
+                'unique', 'object', 'foreach', 'include', 'template', 'function', 'variable',
+                'structure', 'extensible', 'declaration'), prefix=r'\b', suffix=r'\s*\b'),
+             Keyword),
+            (words((
+                'file_contents', 'format', 'index', 'length', 'match', 'matches', 'replace',
+                'splice', 'split', 'substr', 'to_lowercase', 'to_uppercase', 'debug', 'error',
+                'traceback', 'deprecated', 'base64_decode', 'base64_encode', 'digest', 'escape',
+                'unescape', 'append', 'create', 'first', 'nlist', 'key', 'length', 'list', 'merge', 'next',
+                'prepend', 'splice', 'is_boolean', 'is_defined', 'is_double', 'is_list', 'is_long',
+                'is_nlist', 'is_null', 'is_number', 'is_property', 'is_resource', 'is_string',
+                'to_boolean', 'to_double', 'to_long', 'to_string', 'clone', 'delete', 'exists',
+                'path_exists', 'if_exists', 'return', 'value'), prefix=r'\b', suffix=r'\s*\b'),
+             Name.Builtin),
+            (r'#.*', Comment),
+            (r'\\[\w\W]', String.Escape),
+            (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
+            (r'[\[\]{}()=]+', Operator),
+            (r'<<\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
+            (r';', Punctuation),
+        ],
+        'data': [
+            (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
+            (r"(?s)'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
+            (r'\s+', Text),
+            (r'[^=\s\[\]{}()$"\'`\\;#]+', Text),
+            (r'\d+(?= |\Z)', Number),
+        ],
+        'curly': [
+            (r'}', Keyword, '#pop'),
+            (r':-', Keyword),
+            (r'\w+', Name.Variable),
+            (r'[^}:"\'`$]+', Punctuation),
+            (r':', Punctuation),
+            include('root'),
+        ],
+        'paren': [
+            (r'\)', Keyword, '#pop'),
+            include('root'),
+        ],
     }

@@ -18,7 +18,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.util import get_bool_opt, get_list_opt, iteritems
 
 __all__ = ['LuaLexer', 'MoonScriptLexer', 'ChaiscriptLexer', 'LSLLexer',
-           'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer']
+           'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer', 'HybrisLexer']
 
 
 class LuaLexer(RegexLexer):
@@ -837,4 +837,86 @@ class MOOCodeLexer(RegexLexer):
             # variables
             (r'([a-zA-Z_0-9]+)', Text),
         ]
+    }
+
+
+class HybrisLexer(RegexLexer):
+    """
+    For `Hybris <http://www.hybris-lang.org>`_ source code.
+
+    .. versionadded:: 1.4
+    """
+
+    name = 'Hybris'
+    aliases = ['hybris', 'hy']
+    filenames = ['*.hy', '*.hyb']
+    mimetypes = ['text/x-hybris', 'application/x-hybris']
+
+    flags = re.MULTILINE | re.DOTALL
+
+    tokens = {
+        'root': [
+            # method names
+            (r'^(\s*(?:function|method|operator\s+)+?)'
+             r'([a-zA-Z_]\w*)'
+             r'(\s*)(\()', bygroups(Keyword, Name.Function, Text, Operator)),
+            (r'[^\S\n]+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'@[a-zA-Z_][\w\.]*', Name.Decorator),
+            (r'(break|case|catch|next|default|do|else|finally|for|foreach|of|'
+             r'unless|if|new|return|switch|me|throw|try|while)\b', Keyword),
+            (r'(extends|private|protected|public|static|throws|function|method|'
+             r'operator)\b', Keyword.Declaration),
+            (r'(true|false|null|__FILE__|__LINE__|__VERSION__|__LIB_PATH__|'
+             r'__INC_PATH__)\b', Keyword.Constant),
+            (r'(class|struct)(\s+)',
+             bygroups(Keyword.Declaration, Text), 'class'),
+            (r'(import|include)(\s+)',
+             bygroups(Keyword.Namespace, Text), 'import'),
+            (words((
+                'gc_collect', 'gc_mm_items', 'gc_mm_usage', 'gc_collect_threshold',
+                'urlencode', 'urldecode', 'base64encode', 'base64decode', 'sha1', 'crc32', 'sha2',
+                'md5', 'md5_file', 'acos', 'asin', 'atan', 'atan2', 'ceil', 'cos', 'cosh', 'exp', 'fabs', 'floor',
+                'fmod', 'log', 'log10', 'pow', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'isint', 'isfloat', 'ischar',
+                'isstring', 'isarray', 'ismap', 'isalias', 'typeof', 'sizeof', 'toint', 'tostring',
+                'fromxml', 'toxml', 'binary', 'pack', 'load', 'eval', 'var_names', 'var_values',
+                'user_functions', 'dyn_functions', 'methods', 'call', 'call_method', 'mknod',
+                'mkfifo', 'mount', 'umount2', 'umount', 'ticks', 'usleep', 'sleep', 'time', 'strtime',
+                'strdate', 'dllopen', 'dlllink', 'dllcall', 'dllcall_argv', 'dllclose', 'env', 'exec',
+                'fork', 'getpid', 'wait', 'popen', 'pclose', 'exit', 'kill', 'pthread_create',
+                'pthread_create_argv', 'pthread_exit', 'pthread_join', 'pthread_kill',
+                'smtp_send', 'http_get', 'http_post', 'http_download', 'socket', 'bind', 'listen',
+                'accept', 'getsockname', 'getpeername', 'settimeout', 'connect', 'server', 'recv',
+                'send', 'close', 'print', 'println', 'printf', 'input', 'readline', 'serial_open',
+                'serial_fcntl', 'serial_get_attr', 'serial_get_ispeed', 'serial_get_ospeed',
+                'serial_set_attr', 'serial_set_ispeed', 'serial_set_ospeed', 'serial_write',
+                'serial_read', 'serial_close', 'xml_load', 'xml_parse', 'fopen', 'fseek', 'ftell',
+                'fsize', 'fread', 'fwrite', 'fgets', 'fclose', 'file', 'readdir', 'pcre_replace', 'size',
+                'pop', 'unmap', 'has', 'keys', 'values', 'length', 'find', 'substr', 'replace', 'split', 'trim',
+                'remove', 'contains', 'join'), suffix=r'\b'),
+             Name.Builtin),
+            (words((
+                'MethodReference', 'Runner', 'Dll', 'Thread', 'Pipe', 'Process',
+                'Runnable', 'CGI', 'ClientSocket', 'Socket', 'ServerSocket',
+                'File', 'Console', 'Directory', 'Exception'), suffix=r'\b'),
+             Keyword.Type),
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'\\.'|'[^\\]'|'\\u[0-9a-f]{4}'", String.Char),
+            (r'(\.)([a-zA-Z_]\w*)',
+             bygroups(Operator, Name.Attribute)),
+            (r'[a-zA-Z_]\w*:', Name.Label),
+            (r'[a-zA-Z_\$]\w*', Name),
+            (r'[~\^\*!%&\[\]\(\)\{\}<>\|+=:;,./?\-@]+', Operator),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0x[0-9a-f]+', Number.Hex),
+            (r'[0-9]+L?', Number.Integer),
+            (r'\n', Text),
+        ],
+        'class': [
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
+        ],
+        'import': [
+            (r'[\w.]+\*?', Name.Namespace, '#pop')
+        ],
     }
