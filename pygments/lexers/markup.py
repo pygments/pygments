@@ -3,7 +3,7 @@
     pygments.lexers.markup
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for markup languages.
+    Lexers for non-HTML markup languages.
 
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.

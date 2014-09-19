@@ -11,8 +11,9 @@
 
 import re
 
-from pygments.lexers.web import \
-    PhpLexer, HtmlLexer, XmlLexer, JavascriptLexer, CssLexer, LassoLexer
+from pygments.lexers.html import HtmlLexer, XmlLexer
+from pygments.lexers.javascript import JavascriptLexer, LassoLexer
+from pygments.lexers.css import CssLexer
 from pygments.lexers.python import PythonLexer
 from pygments.lexers.perl import PerlLexer
 from pygments.lexers.jvm import JavaLexer, TeaLangLexer

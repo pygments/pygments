@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, include, bygroups, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
-from pygments.lexers.web import HtmlLexer
+from pygments.lexers.html import HtmlLexer
 
 __all__ = ['ModelicaLexer']
 
