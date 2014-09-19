@@ -190,7 +190,7 @@ nevertheless need a group, use a non-capturing group defined using this syntax:
 If you find yourself needing a capturing group inside the regex which
 shouldn't be part of the output but is used in the regular expressions for
 backreferencing (eg: ``r'(<(foo|bar)>)(.*?)(</\2>)'``), you can pass `None`
-to the bygroups function and it will skip that group will be skipped in the
+to the bygroups function and that group will be skipped in the
 output.
 
 
@@ -584,7 +584,7 @@ the ``get_tokens_unprocessed()`` method. The following lexer subclasses the
 
 .. sourcecode:: python
 
-    from pygments.lexers.agile import PythonLexer
+    from pygments.lexers.python import PythonLexer
     from pygments.token import Name, Keyword
 
     class MyPythonLexer(PythonLexer):
