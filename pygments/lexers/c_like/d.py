@@ -196,10 +196,13 @@ class CrocLexer(RegexLexer):
             (r'//(.*?)\n', Comment.Single),
             (r'/\*', Comment.Multiline, 'nestedcomment'),
             # Keywords
-            (r'(as|assert|break|case|catch|class|continue|default'
-             r'|do|else|finally|for|foreach|function|global|namespace'
-             r'|if|import|in|is|local|module|return|scope|super|switch'
-             r'|this|throw|try|vararg|while|with|yield)\b', Keyword),
+            (words((
+                'as', 'assert', 'break', 'case', 'catch', 'class', 'continue',
+                'default', 'do', 'else', 'finally', 'for', 'foreach', 'function',
+                'global', 'namespace', 'if', 'import', 'in', 'is', 'local',
+                'module', 'return', 'scope', 'super', 'switch', 'this', 'throw',
+                'try', 'vararg', 'while', 'with', 'yield'), suffix=r'\b'),
+             Keyword),
             (r'(false|true|null)\b', Keyword.Constant),
             # FloatLiteral
             (r'([0-9][0-9_]*)(?=[.eE])(\.[0-9][0-9_]*)?([eE][+\-]?[0-9_]+)?',

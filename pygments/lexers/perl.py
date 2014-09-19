@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
-    using, this, default
+    using, this, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 from pygments.util import shebang_matches
@@ -48,9 +48,12 @@ class PerlLexer(RegexLexer):
         'root': [
             (r'\#.*?$', Comment.Single),
             (r'^=[a-zA-Z0-9]+\s+.*?\n=cut', Comment.Multiline),
-            (r'(case|continue|do|else|elsif|for|foreach|if|last|my|'
-             r'next|our|redo|reset|then|unless|until|while|use|'
-             r'print|new|BEGIN|CHECK|INIT|END|return)\b', Keyword),
+            (words((
+                'case', 'continue', 'do', 'else', 'elsif', 'for', 'foreach',
+                'if', 'last', 'my', 'next', 'our', 'redo', 'reset', 'then',
+                'unless', 'until', 'while', 'use', 'print', 'new', 'BEGIN',
+                'CHECK', 'INIT', 'END', 'return'), suffix=r'\b'),
+             Keyword),
             (r'(format)(\s+)(\w+)(\s*)(=)(\s*\n)',
              bygroups(Keyword, Text, Name, Text, Punctuation, Text), 'format'),
             (r'(eq|lt|gt|le|ge|ne|not|and|or|cmp)\b', Operator.Word),
@@ -76,33 +79,34 @@ class PerlLexer(RegexLexer):
             (r'((?<==~)|(?<=\())\s*/(\\\\|\\[^\\]|[^\\/])*/[gcimosx]*',
                 String.Regex),
             (r'\s+', Text),
-            (r'(abs|accept|alarm|atan2|bind|binmode|bless|caller|chdir|'
-             r'chmod|chomp|chop|chown|chr|chroot|close|closedir|connect|'
-             r'continue|cos|crypt|dbmclose|dbmopen|defined|delete|die|'
-             r'dump|each|endgrent|endhostent|endnetent|endprotoent|'
-             r'endpwent|endservent|eof|eval|exec|exists|exit|exp|fcntl|'
-             r'fileno|flock|fork|format|formline|getc|getgrent|getgrgid|'
-             r'getgrnam|gethostbyaddr|gethostbyname|gethostent|getlogin|'
-             r'getnetbyaddr|getnetbyname|getnetent|getpeername|getpgrp|'
-             r'getppid|getpriority|getprotobyname|getprotobynumber|'
-             r'getprotoent|getpwent|getpwnam|getpwuid|getservbyname|'
-             r'getservbyport|getservent|getsockname|getsockopt|glob|gmtime|'
-             r'goto|grep|hex|import|index|int|ioctl|join|keys|kill|last|'
-             r'lc|lcfirst|length|link|listen|local|localtime|log|lstat|'
-             r'map|mkdir|msgctl|msgget|msgrcv|msgsnd|my|next|no|oct|open|'
-             r'opendir|ord|our|pack|package|pipe|pop|pos|printf|'
-             r'prototype|push|quotemeta|rand|read|readdir|'
-             r'readline|readlink|readpipe|recv|redo|ref|rename|require|'
-             r'reverse|rewinddir|rindex|rmdir|scalar|seek|seekdir|'
-             r'select|semctl|semget|semop|send|setgrent|sethostent|setnetent|'
-             r'setpgrp|setpriority|setprotoent|setpwent|setservent|'
-             r'setsockopt|shift|shmctl|shmget|shmread|shmwrite|shutdown|'
-             r'sin|sleep|socket|socketpair|sort|splice|split|sprintf|sqrt|'
-             r'srand|stat|study|substr|symlink|syscall|sysopen|sysread|'
-             r'sysseek|system|syswrite|tell|telldir|tie|tied|time|times|tr|'
-             r'truncate|uc|ucfirst|umask|undef|unlink|unpack|unshift|untie|'
-             r'utime|values|vec|wait|waitpid|wantarray|warn|write'
-             r')\b', Name.Builtin),
+            (words((
+                'abs', 'accept', 'alarm', 'atan2', 'bind', 'binmode', 'bless', 'caller', 'chdir',
+                'chmod', 'chomp', 'chop', 'chown', 'chr', 'chroot', 'close', 'closedir', 'connect',
+                'continue', 'cos', 'crypt', 'dbmclose', 'dbmopen', 'defined', 'delete', 'die',
+                'dump', 'each', 'endgrent', 'endhostent', 'endnetent', 'endprotoent',
+                'endpwent', 'endservent', 'eof', 'eval', 'exec', 'exists', 'exit', 'exp', 'fcntl',
+                'fileno', 'flock', 'fork', 'format', 'formline', 'getc', 'getgrent', 'getgrgid',
+                'getgrnam', 'gethostbyaddr', 'gethostbyname', 'gethostent', 'getlogin',
+                'getnetbyaddr', 'getnetbyname', 'getnetent', 'getpeername', 'getpgrp',
+                'getppid', 'getpriority', 'getprotobyname', 'getprotobynumber',
+                'getprotoent', 'getpwent', 'getpwnam', 'getpwuid', 'getservbyname',
+                'getservbyport', 'getservent', 'getsockname', 'getsockopt', 'glob', 'gmtime',
+                'goto', 'grep', 'hex', 'import', 'index', 'int', 'ioctl', 'join', 'keys', 'kill', 'last',
+                'lc', 'lcfirst', 'length', 'link', 'listen', 'local', 'localtime', 'log', 'lstat',
+                'map', 'mkdir', 'msgctl', 'msgget', 'msgrcv', 'msgsnd', 'my', 'next', 'no', 'oct', 'open',
+                'opendir', 'ord', 'our', 'pack', 'package', 'pipe', 'pop', 'pos', 'printf',
+                'prototype', 'push', 'quotemeta', 'rand', 'read', 'readdir',
+                'readline', 'readlink', 'readpipe', 'recv', 'redo', 'ref', 'rename', 'require',
+                'reverse', 'rewinddir', 'rindex', 'rmdir', 'scalar', 'seek', 'seekdir',
+                'select', 'semctl', 'semget', 'semop', 'send', 'setgrent', 'sethostent', 'setnetent',
+                'setpgrp', 'setpriority', 'setprotoent', 'setpwent', 'setservent',
+                'setsockopt', 'shift', 'shmctl', 'shmget', 'shmread', 'shmwrite', 'shutdown',
+                'sin', 'sleep', 'socket', 'socketpair', 'sort', 'splice', 'split', 'sprintf', 'sqrt',
+                'srand', 'stat', 'study', 'substr', 'symlink', 'syscall', 'sysopen', 'sysread',
+                'sysseek', 'system', 'syswrite', 'tell', 'telldir', 'tie', 'tied', 'time', 'times', 'tr',
+                'truncate', 'uc', 'ucfirst', 'umask', 'undef', 'unlink', 'unpack', 'unshift', 'untie',
+                'utime', 'values', 'vec', 'wait', 'waitpid', 'wantarray', 'warn', 'write'), suffix=r'\b'),
+             Name.Builtin),
             (r'((__(DATA|DIE|WARN)__)|(STD(IN|OUT|ERR)))\b', Name.Builtin.Pseudo),
             (r'<<([\'"]?)([a-zA-Z_]\w*)\1;?\n.*?\n\2\n', String),
             (r'__END__', Comment.Preproc, 'end-part'),
