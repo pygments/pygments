@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Punctuation, Generic
+    Punctuation, Generic, Number, Whitespace
 
 __all__ = ['NSISLexer', 'RPMSpecLexer']
 
@@ -211,5 +211,113 @@ class RPMSpecLexer(RegexLexer):
             (r'%\{\?\w+\}', Name.Variable),
             (r'\$\{?RPM_[A-Z0-9_]+\}?', Name.Variable.Global),
             (r'%\{[a-zA-Z]\w+\}', Keyword.Constant),
+        ]
+    }
+
+
+class SourcesListLexer(RegexLexer):
+    """
+    Lexer that highlights debian sources.list files.
+
+    .. versionadded:: 0.7
+    """
+
+    name = 'Debian Sourcelist'
+    aliases = ['sourceslist', 'sources.list', 'debsources']
+    filenames = ['sources.list']
+    mimetype = ['application/x-debian-sourceslist']
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'#.*?$', Comment),
+            (r'^(deb(?:-src)?)(\s+)',
+             bygroups(Keyword, Text), 'distribution')
+        ],
+        'distribution': [
+            (r'#.*?$', Comment, '#pop'),
+            (r'\$\(ARCH\)', Name.Variable),
+            (r'[^\s$[]+', String),
+            (r'\[', String.Other, 'escaped-distribution'),
+            (r'\$', String),
+            (r'\s+', Text, 'components')
+        ],
+        'escaped-distribution': [
+            (r'\]', String.Other, '#pop'),
+            (r'\$\(ARCH\)', Name.Variable),
+            (r'[^\]$]+', String.Other),
+            (r'\$', String.Other)
+        ],
+        'components': [
+            (r'#.*?$', Comment, '#pop:2'),
+            (r'$', Text, '#pop:2'),
+            (r'\s+', Text),
+            (r'\S+', Keyword.Pseudo),
+        ]
+    }
+
+    def analyse_text(text):
+        for line in text.split('\n'):
+            line = line.strip()
+            if not (line.startswith('#') or line.startswith('deb ') or
+                    line.startswith('deb-src ') or not line):
+                return False
+        return True
+
+
+class DebianControlLexer(RegexLexer):
+    """
+    Lexer for Debian ``control`` files and ``apt-cache show <pkg>`` outputs.
+
+    .. versionadded:: 0.9
+    """
+    name = 'Debian Control file'
+    aliases = ['control', 'debcontrol']
+    filenames = ['control']
+
+    tokens = {
+        'root': [
+            (r'^(Description)', Keyword, 'description'),
+            (r'^(Maintainer)(:\s*)', bygroups(Keyword, Text), 'maintainer'),
+            (r'^((Build-)?Depends)', Keyword, 'depends'),
+            (r'^((?:Python-)?Version)(:\s*)(\S+)$',
+             bygroups(Keyword, Text, Number)),
+            (r'^((?:Installed-)?Size)(:\s*)(\S+)$',
+             bygroups(Keyword, Text, Number)),
+            (r'^(MD5Sum|SHA1|SHA256)(:\s*)(\S+)$',
+             bygroups(Keyword, Text, Number)),
+            (r'^([a-zA-Z\-0-9\.]*?)(:\s*)(.*?)$',
+             bygroups(Keyword, Whitespace, String)),
+        ],
+        'maintainer': [
+            (r'<[^>]+>', Generic.Strong),
+            (r'<[^>]+>$', Generic.Strong, '#pop'),
+            (r',\n?', Text),
+            (r'.', Text),
+        ],
+        'description': [
+            (r'(.*)(Homepage)(: )(\S+)',
+             bygroups(Text, String, Name, Name.Class)),
+            (r':.*\n', Generic.Strong),
+            (r' .*\n', Text),
+            ('', Text, '#pop'),
+        ],
+        'depends': [
+            (r':\s*', Text),
+            (r'(\$)(\{)(\w+\s*:\s*\w+)', bygroups(Operator, Text, Name.Entity)),
+            (r'\(', Text, 'depend_vers'),
+            (r',', Text),
+            (r'\|', Operator),
+            (r'[\s]+', Text),
+            (r'[}\)]\s*$', Text, '#pop'),
+            (r'}', Text),
+            (r'[^,]$', Name.Function, '#pop'),
+            (r'([\+\.a-zA-Z0-9-])(\s*)', bygroups(Name.Function, Text)),
+            (r'\[.*?\]', Name.Entity),
+        ],
+        'depend_vers': [
+            (r'\),', Text, '#pop'),
+            (r'\)[^,]', Text, '#pop:2'),
+            (r'([><=]+)(\s*)([^\)]+)', bygroups(Operator, Text, Number))
         ]
     }

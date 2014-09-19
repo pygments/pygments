@@ -13,10 +13,10 @@ import re
 
 from pygments.lexer import RegexLexer, bygroups, words, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Literal
+    Number, Punctuation, Literal, Generic, Whitespace
 
 __all__ = ['ProtoBufLexer', 'BroLexer', 'PuppetLexer', 'RslLexer',
-           'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer']
+           'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer', 'HxmlLexer']
 
 
 class ProtoBufLexer(RegexLexer):
@@ -503,4 +503,45 @@ class PanLexer(RegexLexer):
             (r'\)', Keyword, '#pop'),
             include('root'),
         ],
+    }
+
+
+class HxmlLexer(RegexLexer):
+    """
+    Lexer for `haXe build <http://haxe.org/doc/compiler>`_ files.
+
+    .. versionadded:: 1.6
+    """
+    name = 'Hxml'
+    aliases = ['haxeml', 'hxml']
+    filenames = ['*.hxml']
+
+    tokens = {
+        'root': [
+            # Seperator
+            (r'(--)(next)', bygroups(Punctuation, Generic.Heading)),
+            # Compiler switches with one dash
+            (r'(-)(prompt|debug|v)', bygroups(Punctuation, Keyword.Keyword)),
+            # Compilerswitches with two dashes
+            (r'(--)(neko-source|flash-strict|flash-use-stage|no-opt|no-traces|'
+             r'no-inline|times|no-output)', bygroups(Punctuation, Keyword)),
+            # Targets and other options that take an argument
+            (r'(-)(cpp|js|neko|x|as3|swf9?|swf-lib|php|xml|main|lib|D|resource|'
+             r'cp|cmd)( +)(.+)',
+             bygroups(Punctuation, Keyword, Whitespace, String)),
+            # Options that take only numerical arguments
+            (r'(-)(swf-version)( +)(\d+)',
+             bygroups(Punctuation, Keyword, Number.Integer)),
+            # An Option that defines the size, the fps and the background
+            # color of an flash movie
+            (r'(-)(swf-header)( +)(\d+)(:)(\d+)(:)(\d+)(:)([A-Fa-f0-9]{6})',
+             bygroups(Punctuation, Keyword, Whitespace, Number.Integer,
+                      Punctuation, Number.Integer, Punctuation, Number.Integer,
+                      Punctuation, Number.Hex)),
+            # options with two dashes that takes arguments
+            (r'(--)(js-namespace|php-front|php-lib|remap|gen-hx-classes)( +)'
+             r'(.+)', bygroups(Punctuation, Keyword, Whitespace, String)),
+            # Single line comment, multiline ones are not allowed.
+            (r'#.*', Comment.Single)
+        ]
     }

@@ -19,7 +19,7 @@ from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
     Operator, Number, Text, Generic
 
-from pygments.lexers.agile import PythonLexer
+from pygments.lexers.python import PythonLexer
 from pygments.lexers import _scilab_builtins
 from pygments.lexers import _stan_builtins
 

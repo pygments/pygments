@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexers.functional import SchemeLexer
+from pygments.lexers.lisp import SchemeLexer
 from pygments.lexers.jvm import IokeLexer, ClojureLexer
 from pygments.lexers.python import PythonLexer, PythonConsoleLexer, \
     PythonTracebackLexer, Python3Lexer, Python3TracebackLexer, DgLexer

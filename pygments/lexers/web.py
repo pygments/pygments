@@ -18,8 +18,8 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Other, Punctuation, Literal
 from pygments.util import get_bool_opt, get_list_opt, looks_like_xml, \
     html_doctype_matches, unirange, iteritems
-from pygments.lexers.agile import RubyLexer
-from pygments.lexers.compiled import ScalaLexer
+from pygments.lexers.ruby import RubyLexer
+from pygments.lexers.jvm import ScalaLexer
 
 
 __all__ = ['HtmlLexer', 'XmlLexer', 'JavascriptLexer', 'JsonLexer', 'CssLexer',

@@ -11,7 +11,7 @@ import time
 import unittest
 
 from pygments.token import String
-from pygments.lexers.agile import PerlLexer
+from pygments.lexers.perl import PerlLexer
 
 
 class RunawayRegexTest(unittest.TestCase):

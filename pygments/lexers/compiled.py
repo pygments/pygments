@@ -9,7 +9,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexers.functional import OcamlLexer
 from pygments.lexers.jvm import JavaLexer, ScalaLexer
 from pygments.lexers.c_like.c_cpp import CLexer, CppLexer
 from pygments.lexers.c_like.d import DLexer
@@ -24,6 +23,7 @@ from pygments.lexers.fortran import FortranLexer
 from pygments.lexers.prolog import PrologLexer
 from pygments.lexers.python import CythonLexer
 from pygments.lexers.graphics import GLShaderLexer
+from pygments.lexers.misc.ml import OcamlLexer
 from pygments.lexers.misc.basic import BlitzBasicLexer, BlitzMaxLexer, \
     MonkeyLexer
 from pygments.lexers.misc.dylan import DylanLexer, DylanLidLexer, \
