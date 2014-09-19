@@ -1592,6 +1592,8 @@ class ColdfusionHtmlLexer(DelegatingLexer):
 class ColdfusionCFCLexer(DelegatingLexer):
     """
     Coldfusion markup/script components
+
+    .. versionadded:: 2.0
     """
     name = 'Coldfusion CFC'
     aliases = ['cfc']
@@ -1787,6 +1789,8 @@ class HandlebarsLexer(RegexLexer):
 
     Highlights only the Handlebars template tags (stuff between `{{` and `}}`).
     Everything else is left for a delegating lexer.
+
+    .. versionadded:: 2.0
     """
 
     name = "Handlebars"
@@ -1832,6 +1836,8 @@ class HandlebarsHtmlLexer(DelegatingLexer):
     """
     Subclass of the `HandlebarsLexer` that highlights unlexed data with the
     `HtmlLexer`.
+
+    .. versionadded:: 2.0
     """
 
     name = "HTML+Handlebars"
