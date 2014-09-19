@@ -14,7 +14,7 @@
 
 from __future__ import print_function
 
-FUNCTIONS = ['TopMenuHandler',
+FUNCTIONS = ('TopMenuHandler',
  'CreateTopMenu',
  'LoadTopMenuConfig',
  'AddToTopMenu',
@@ -1008,7 +1008,7 @@ FUNCTIONS = ['TopMenuHandler',
  'PrepSDKCall_SetReturnInfo',
  'PrepSDKCall_AddParameter',
  'EndPrepSDKCall',
- 'SDKCall']
+ 'SDKCall')
 
 if __name__ == '__main__':
     import pprint

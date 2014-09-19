@@ -138,9 +138,9 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r'\s+', Text),
             (r'--.*?\n', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'(' + '|'.join([s.replace(" ", "\s+")
-                for s in DATATYPES + PSEUDO_TYPES])
-                  + r')\b', Name.Builtin),
+            (r'(' + '|'.join(s.replace(" ", "\s+")
+                             for s in DATATYPES + PSEUDO_TYPES)
+             + r')\b', Name.Builtin),
             (r'(' + '|'.join(KEYWORDS) + r')\b', Keyword),
             (r'[+*/<>=~!@#%^&|`?-]+', Operator),
             (r'::', Operator),  # cast
