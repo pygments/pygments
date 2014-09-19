@@ -181,5 +181,12 @@ var c = macro class MyClass {
 
 var c = macro interface IClass {};
 
+//macro class could have no name...
+var def = macro class {
+	private inline function new(loader) this = loader;
+	private var loader(get,never) : $loaderType;
+	inline private function get_loader() : $loaderType return this;
+};
+
 //ECheckType
 var f = (123:Float);

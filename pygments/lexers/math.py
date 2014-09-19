@@ -15,11 +15,11 @@ import re
 
 from pygments.util import shebang_matches
 from pygments.lexer import Lexer, RegexLexer, bygroups, include, \
-    combined, do_insertions
+    combined, do_insertions, words
 from pygments.token import Comment, String, Punctuation, Keyword, Name, \
     Operator, Number, Text, Generic
 
-from pygments.lexers.agile import PythonLexer
+from pygments.lexers.python import PythonLexer
 from pygments.lexers import _scilab_builtins
 from pygments.lexers import _stan_builtins
 
@@ -36,16 +36,16 @@ class JuliaLexer(RegexLexer):
     .. versionadded:: 1.6
     """
     name = 'Julia'
-    aliases = ['julia','jl']
+    aliases = ['julia', 'jl']
     filenames = ['*.jl']
-    mimetypes = ['text/x-julia','application/x-julia']
+    mimetypes = ['text/x-julia', 'application/x-julia']
 
     builtins = [
-        'exit','whos','edit','load','is','isa','isequal','typeof','tuple',
-        'ntuple','uid','hash','finalizer','convert','promote','subtype',
-        'typemin','typemax','realmin','realmax','sizeof','eps','promote_type',
-        'method_exists','applicable','invoke','dlopen','dlsym','system',
-        'error','throw','assert','new','Inf','Nan','pi','im',
+        'exit', 'whos', 'edit', 'load', 'is', 'isa', 'isequal', 'typeof', 'tuple',
+        'ntuple', 'uid', 'hash', 'finalizer', 'convert', 'promote', 'subtype',
+        'typemin', 'typemax', 'realmin', 'realmax', 'sizeof', 'eps', 'promote_type',
+        'method_exists', 'applicable', 'invoke', 'dlopen', 'dlsym', 'system',
+        'error', 'throw', 'assert', 'new', 'Inf', 'Nan', 'pi', 'im',
     ]
 
     tokens = {
@@ -69,11 +69,11 @@ class JuliaLexer(RegexLexer):
 
             # functions
             (r'(function)((?:\s|\\\s)+)',
-                bygroups(Keyword,Name.Function), 'funcname'),
+                bygroups(Keyword, Name.Function), 'funcname'),
 
             # types
             (r'(type|typealias|abstract)((?:\s|\\\s)+)',
-                bygroups(Keyword,Name.Class), 'typename'),
+                bygroups(Keyword, Name.Class), 'typename'),
 
             # operators
             (r'==|!=|<=|>=|->|&&|\|\||::|<:|[-~+/*%=<>&^|.?!$]', Operator),
@@ -132,7 +132,7 @@ class JuliaLexer(RegexLexer):
 
         'string': [
             (r'"', String, '#pop'),
-            (r'\\\\|\\"|\\\n', String.Escape), # included here for raw strings
+            (r'\\\\|\\"|\\\n', String.Escape),  # included here for raw strings
             (r'\$(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?',
                 String.Interpol),
             (r'[^\\"$]+', String),
@@ -148,6 +148,7 @@ class JuliaLexer(RegexLexer):
 
 
 line_re  = re.compile('.*?\n')
+
 
 class JuliaConsoleLexer(Lexer):
     """
@@ -184,16 +185,16 @@ class JuliaConsoleLexer(Lexer):
             else:
                 if curcode:
                     for item in do_insertions(
-                        insertions, jllexer.get_tokens_unprocessed(curcode)):
+                            insertions, jllexer.get_tokens_unprocessed(curcode)):
                         yield item
                     curcode = ''
                     insertions = []
 
                 yield match.start(), Generic.Output, line
 
-        if curcode: # or item:
+        if curcode:  # or item:
             for item in do_insertions(
-                insertions, jllexer.get_tokens_unprocessed(curcode)):
+                    insertions, jllexer.get_tokens_unprocessed(curcode)):
                 yield item
 
 
@@ -209,62 +210,62 @@ class MuPADLexer(RegexLexer):
     filenames = ['*.mu']
 
     tokens = {
-      'root' : [
-        (r'//.*?$', Comment.Single),
-        (r'/\*', Comment.Multiline, 'comment'),
-        (r'"(?:[^"\\]|\\.)*"', String),
-        (r'\(|\)|\[|\]|\{|\}', Punctuation),
-        (r'''(?x)\b(?:
-            next|break|end|
-            axiom|end_axiom|category|end_category|domain|end_domain|inherits|
-            if|%if|then|elif|else|end_if|
-            case|of|do|otherwise|end_case|
-            while|end_while|
-            repeat|until|end_repeat|
-            for|from|to|downto|step|end_for|
-            proc|local|option|save|begin|end_proc|
-            delete|frame
-          )\b''', Keyword),
-        (r'''(?x)\b(?:
-            DOM_ARRAY|DOM_BOOL|DOM_COMPLEX|DOM_DOMAIN|DOM_EXEC|DOM_EXPR|
-            DOM_FAIL|DOM_FLOAT|DOM_FRAME|DOM_FUNC_ENV|DOM_HFARRAY|DOM_IDENT|
-            DOM_INT|DOM_INTERVAL|DOM_LIST|DOM_NIL|DOM_NULL|DOM_POLY|DOM_PROC|
-            DOM_PROC_ENV|DOM_RAT|DOM_SET|DOM_STRING|DOM_TABLE|DOM_VAR
-          )\b''', Name.Class),
-        (r'''(?x)\b(?:
-            PI|EULER|E|CATALAN|
-            NIL|FAIL|undefined|infinity|
-            TRUE|FALSE|UNKNOWN
-          )\b''',
-          Name.Constant),
-        (r'\b(?:dom|procname)\b', Name.Builtin.Pseudo),
-        (r'\.|,|:|;|=|\+|-|\*|/|\^|@|>|<|\$|\||!|\'|%|~=', Operator),
-        (r'''(?x)\b(?:
-            and|or|not|xor|
-            assuming|
-            div|mod|
-            union|minus|intersect|in|subset
-          )\b''',
-          Operator.Word),
-        (r'\b(?:I|RDN_INF|RD_NINF|RD_NAN)\b', Number),
-        #(r'\b(?:adt|linalg|newDomain|hold)\b', Name.Builtin),
-        (r'''(?x)
-          ((?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
-          (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*)(\s*)([(])''',
-          bygroups(Name.Function, Text, Punctuation)),
-        (r'''(?x)
-          (?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
-          (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*''', Name.Variable),
-        (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
-        (r'\.[0-9]+(?:e[0-9]+)?', Number),
-        (r'.', Text)
-      ],
-      'comment' : [
-        (r'[^*/]', Comment.Multiline),
-        (r'/\*', Comment.Multiline, '#push'),
-        (r'\*/', Comment.Multiline, '#pop'),
-        (r'[*/]', Comment.Multiline)
-      ]
+        'root': [
+            (r'//.*?$', Comment.Single),
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'"(?:[^"\\]|\\.)*"', String),
+            (r'\(|\)|\[|\]|\{|\}', Punctuation),
+            (r'''(?x)\b(?:
+                next|break|end|
+                axiom|end_axiom|category|end_category|domain|end_domain|inherits|
+                if|%if|then|elif|else|end_if|
+                case|of|do|otherwise|end_case|
+                while|end_while|
+                repeat|until|end_repeat|
+                for|from|to|downto|step|end_for|
+                proc|local|option|save|begin|end_proc|
+                delete|frame
+              )\b''', Keyword),
+            (r'''(?x)\b(?:
+                DOM_ARRAY|DOM_BOOL|DOM_COMPLEX|DOM_DOMAIN|DOM_EXEC|DOM_EXPR|
+                DOM_FAIL|DOM_FLOAT|DOM_FRAME|DOM_FUNC_ENV|DOM_HFARRAY|DOM_IDENT|
+                DOM_INT|DOM_INTERVAL|DOM_LIST|DOM_NIL|DOM_NULL|DOM_POLY|DOM_PROC|
+                DOM_PROC_ENV|DOM_RAT|DOM_SET|DOM_STRING|DOM_TABLE|DOM_VAR
+              )\b''', Name.Class),
+            (r'''(?x)\b(?:
+                PI|EULER|E|CATALAN|
+                NIL|FAIL|undefined|infinity|
+                TRUE|FALSE|UNKNOWN
+              )\b''',
+             Name.Constant),
+            (r'\b(?:dom|procname)\b', Name.Builtin.Pseudo),
+            (r'\.|,|:|;|=|\+|-|\*|/|\^|@|>|<|\$|\||!|\'|%|~=', Operator),
+            (r'''(?x)\b(?:
+                and|or|not|xor|
+                assuming|
+                div|mod|
+                union|minus|intersect|in|subset
+              )\b''',
+             Operator.Word),
+            (r'\b(?:I|RDN_INF|RD_NINF|RD_NAN)\b', Number),
+            # (r'\b(?:adt|linalg|newDomain|hold)\b', Name.Builtin),
+            (r'''(?x)
+              ((?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
+              (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*)(\s*)([(])''',
+             bygroups(Name.Function, Text, Punctuation)),
+            (r'''(?x)
+              (?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
+              (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*''', Name.Variable),
+            (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
+            (r'\.[0-9]+(?:e[0-9]+)?', Number),
+            (r'.', Text)
+        ],
+        'comment': [
+            (r'[^*/]', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline)
+        ]
     }
 
 
@@ -295,30 +296,30 @@ class MatlabLexer(RegexLexer):
     #
     # taken from Matlab version 7.4.0.336 (R2007a)
     #
-    elfun = ["sin","sind","sinh","asin","asind","asinh","cos","cosd","cosh",
-             "acos","acosd","acosh","tan","tand","tanh","atan","atand","atan2",
-             "atanh","sec","secd","sech","asec","asecd","asech","csc","cscd",
-             "csch","acsc","acscd","acsch","cot","cotd","coth","acot","acotd",
-             "acoth","hypot","exp","expm1","log","log1p","log10","log2","pow2",
-             "realpow","reallog","realsqrt","sqrt","nthroot","nextpow2","abs",
-             "angle","complex","conj","imag","real","unwrap","isreal","cplxpair",
-             "fix","floor","ceil","round","mod","rem","sign"]
-    specfun = ["airy","besselj","bessely","besselh","besseli","besselk","beta",
-               "betainc","betaln","ellipj","ellipke","erf","erfc","erfcx",
-               "erfinv","expint","gamma","gammainc","gammaln","psi","legendre",
-               "cross","dot","factor","isprime","primes","gcd","lcm","rat",
-               "rats","perms","nchoosek","factorial","cart2sph","cart2pol",
-               "pol2cart","sph2cart","hsv2rgb","rgb2hsv"]
-    elmat = ["zeros","ones","eye","repmat","rand","randn","linspace","logspace",
-             "freqspace","meshgrid","accumarray","size","length","ndims","numel",
-             "disp","isempty","isequal","isequalwithequalnans","cat","reshape",
-             "diag","blkdiag","tril","triu","fliplr","flipud","flipdim","rot90",
-             "find","end","sub2ind","ind2sub","bsxfun","ndgrid","permute",
-             "ipermute","shiftdim","circshift","squeeze","isscalar","isvector",
-             "ans","eps","realmax","realmin","pi","i","inf","nan","isnan",
-             "isinf","isfinite","j","why","compan","gallery","hadamard","hankel",
-             "hilb","invhilb","magic","pascal","rosser","toeplitz","vander",
-             "wilkinson"]
+    elfun = ("sin", "sind", "sinh", "asin", "asind", "asinh", "cos", "cosd", "cosh",
+             "acos", "acosd", "acosh", "tan", "tand", "tanh", "atan", "atand", "atan2",
+             "atanh", "sec", "secd", "sech", "asec", "asecd", "asech", "csc", "cscd",
+             "csch", "acsc", "acscd", "acsch", "cot", "cotd", "coth", "acot", "acotd",
+             "acoth", "hypot", "exp", "expm1", "log", "log1p", "log10", "log2", "pow2",
+             "realpow", "reallog", "realsqrt", "sqrt", "nthroot", "nextpow2", "abs",
+             "angle", "complex", "conj", "imag", "real", "unwrap", "isreal", "cplxpair",
+             "fix", "floor", "ceil", "round", "mod", "rem", "sign")
+    specfun = ("airy", "besselj", "bessely", "besselh", "besseli", "besselk", "beta",
+               "betainc", "betaln", "ellipj", "ellipke", "erf", "erfc", "erfcx",
+               "erfinv", "expint", "gamma", "gammainc", "gammaln", "psi", "legendre",
+               "cross", "dot", "factor", "isprime", "primes", "gcd", "lcm", "rat",
+               "rats", "perms", "nchoosek", "factorial", "cart2sph", "cart2pol",
+               "pol2cart", "sph2cart", "hsv2rgb", "rgb2hsv")
+    elmat = ("zeros", "ones", "eye", "repmat", "rand", "randn", "linspace", "logspace",
+             "freqspace", "meshgrid", "accumarray", "size", "length", "ndims", "numel",
+             "disp", "isempty", "isequal", "isequalwithequalnans", "cat", "reshape",
+             "diag", "blkdiag", "tril", "triu", "fliplr", "flipud", "flipdim", "rot90",
+             "find", "end", "sub2ind", "ind2sub", "bsxfun", "ndgrid", "permute",
+             "ipermute", "shiftdim", "circshift", "squeeze", "isscalar", "isvector",
+             "ans", "eps", "realmax", "realmin", "pi", "i", "inf", "nan", "isnan",
+             "isinf", "isfinite", "j", "why", "compan", "gallery", "hadamard", "hankel",
+             "hilb", "invhilb", "magic", "pascal", "rosser", "toeplitz", "vander",
+             "wilkinson")
 
     tokens = {
         'root': [
@@ -330,9 +331,12 @@ class MatlabLexer(RegexLexer):
             (r'^\s*function', Keyword, 'deffunc'),
 
             # from 'iskeyword' on version 7.11 (R2010):
-            (r'(break|case|catch|classdef|continue|else|elseif|end|enumerated|'
-             r'events|for|function|global|if|methods|otherwise|parfor|'
-             r'persistent|properties|return|spmd|switch|try|while)\b', Keyword),
+            (words((
+                'break', 'case', 'catch', 'classdef', 'continue', 'else', 'elseif',
+                'end', 'enumerated', 'events', 'for', 'function', 'global', 'if',
+                'methods', 'otherwise', 'parfor', 'persistent', 'properties',
+                'return', 'spmd', 'switch', 'try', 'while'), suffix=r'\b'),
+             Keyword),
 
             ("(" + "|".join(elfun+specfun+elmat) + r')\b',  Name.Builtin),
 
@@ -377,13 +381,14 @@ class MatlabLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.match('^\s*%', text, re.M): # comment
+        if re.match('^\s*%', text, re.M):  # comment
             return 0.2
-        elif re.match('^!\w+', text, re.M): # system cmd
+        elif re.match('^!\w+', text, re.M):  # system cmd
             return 0.2
 
 
 line_re  = re.compile('.*?\n')
+
 
 class MatlabSessionLexer(Lexer):
     """
@@ -419,14 +424,14 @@ class MatlabSessionLexer(Lexer):
                 idx = len(curcode)
 
                 # without is showing error on same line as before...?
-                #line = "\n" + line
+                # line = "\n" + line
                 token = (0, Generic.Traceback, line)
                 insertions.append((idx, [token]))
 
             else:
                 if curcode:
                     for item in do_insertions(
-                        insertions, mlexer.get_tokens_unprocessed(curcode)):
+                            insertions, mlexer.get_tokens_unprocessed(curcode)):
                         yield item
                     curcode = ''
                     insertions = []
@@ -434,9 +439,9 @@ class MatlabSessionLexer(Lexer):
                 yield match.start(), Generic.Output, line
 
         print(insertions)
-        if curcode: # or item:
+        if curcode:  # or item:
             for item in do_insertions(
-                insertions, mlexer.get_tokens_unprocessed(curcode)):
+                    insertions, mlexer.get_tokens_unprocessed(curcode)):
                 yield item
 
 
@@ -475,328 +480,333 @@ class OctaveLexer(RegexLexer):
 
     # taken from Octave Mercurial changeset 8cc154f45e37 (30-jan-2011)
 
-    builtin_kw = [ "addlistener", "addpath", "addproperty", "all",
-                   "and", "any", "argnames", "argv", "assignin",
-                   "atexit", "autoload",
-                   "available_graphics_toolkits", "beep_on_error",
-                   "bitand", "bitmax", "bitor", "bitshift", "bitxor",
-                   "cat", "cell", "cellstr", "char", "class", "clc",
-                   "columns", "command_line_path",
-                   "completion_append_char", "completion_matches",
-                   "complex", "confirm_recursive_rmdir", "cputime",
-                   "crash_dumps_octave_core", "ctranspose", "cumprod",
-                   "cumsum", "debug_on_error", "debug_on_interrupt",
-                   "debug_on_warning", "default_save_options",
-                   "dellistener", "diag", "diff", "disp",
-                   "doc_cache_file", "do_string_escapes", "double",
-                   "drawnow", "e", "echo_executing_commands", "eps",
-                   "eq", "errno", "errno_list", "error", "eval",
-                   "evalin", "exec", "exist", "exit", "eye", "false",
-                   "fclear", "fclose", "fcntl", "fdisp", "feof",
-                   "ferror", "feval", "fflush", "fgetl", "fgets",
-                   "fieldnames", "file_in_loadpath", "file_in_path",
-                   "filemarker", "filesep", "find_dir_in_path",
-                   "fixed_point_format", "fnmatch", "fopen", "fork",
-                   "formula", "fprintf", "fputs", "fread", "freport",
-                   "frewind", "fscanf", "fseek", "fskipl", "ftell",
-                   "functions", "fwrite", "ge", "genpath", "get",
-                   "getegid", "getenv", "geteuid", "getgid",
-                   "getpgrp", "getpid", "getppid", "getuid", "glob",
-                   "gt", "gui_mode", "history_control",
-                   "history_file", "history_size",
-                   "history_timestamp_format_string", "home",
-                   "horzcat", "hypot", "ifelse",
-                   "ignore_function_time_stamp", "inferiorto",
-                   "info_file", "info_program", "inline", "input",
-                   "intmax", "intmin", "ipermute",
-                   "is_absolute_filename", "isargout", "isbool",
-                   "iscell", "iscellstr", "ischar", "iscomplex",
-                   "isempty", "isfield", "isfloat", "isglobal",
-                   "ishandle", "isieee", "isindex", "isinteger",
-                   "islogical", "ismatrix", "ismethod", "isnull",
-                   "isnumeric", "isobject", "isreal",
-                   "is_rooted_relative_filename", "issorted",
-                   "isstruct", "isvarname", "kbhit", "keyboard",
-                   "kill", "lasterr", "lasterror", "lastwarn",
-                   "ldivide", "le", "length", "link", "linspace",
-                   "logical", "lstat", "lt", "make_absolute_filename",
-                   "makeinfo_program", "max_recursion_depth", "merge",
-                   "methods", "mfilename", "minus", "mislocked",
-                   "mkdir", "mkfifo", "mkstemp", "mldivide", "mlock",
-                   "mouse_wheel_zoom", "mpower", "mrdivide", "mtimes",
-                   "munlock", "nargin", "nargout",
-                   "native_float_format", "ndims", "ne", "nfields",
-                   "nnz", "norm", "not", "numel", "nzmax",
-                   "octave_config_info", "octave_core_file_limit",
-                   "octave_core_file_name",
-                   "octave_core_file_options", "ones", "or",
-                   "output_max_field_width", "output_precision",
-                   "page_output_immediately", "page_screen_output",
-                   "path", "pathsep", "pause", "pclose", "permute",
-                   "pi", "pipe", "plus", "popen", "power",
-                   "print_empty_dimensions", "printf",
-                   "print_struct_array_contents", "prod",
-                   "program_invocation_name", "program_name",
-                   "putenv", "puts", "pwd", "quit", "rats", "rdivide",
-                   "readdir", "readlink", "read_readline_init_file",
-                   "realmax", "realmin", "rehash", "rename",
-                   "repelems", "re_read_readline_init_file", "reset",
-                   "reshape", "resize", "restoredefaultpath",
-                   "rethrow", "rmdir", "rmfield", "rmpath", "rows",
-                   "save_header_format_string", "save_precision",
-                   "saving_history", "scanf", "set", "setenv",
-                   "shell_cmd", "sighup_dumps_octave_core",
-                   "sigterm_dumps_octave_core", "silent_functions",
-                   "single", "size", "size_equal", "sizemax",
-                   "sizeof", "sleep", "source", "sparse_auto_mutate",
-                   "split_long_rows", "sprintf", "squeeze", "sscanf",
-                   "stat", "stderr", "stdin", "stdout", "strcmp",
-                   "strcmpi", "string_fill_char", "strncmp",
-                   "strncmpi", "struct", "struct_levels_to_print",
-                   "strvcat", "subsasgn", "subsref", "sum", "sumsq",
-                   "superiorto", "suppress_verbose_help_message",
-                   "symlink", "system", "tic", "tilde_expand",
-                   "times", "tmpfile", "tmpnam", "toc", "toupper",
-                   "transpose", "true", "typeinfo", "umask", "uminus",
-                   "uname", "undo_string_escapes", "unlink", "uplus",
-                   "upper", "usage", "usleep", "vec", "vectorize",
-                   "vertcat", "waitpid", "warning", "warranty",
-                   "whos_line_format", "yes_or_no", "zeros",
-                   "inf", "Inf", "nan", "NaN"]
+    builtin_kw = (
+        "addlistener", "addpath", "addproperty", "all",
+        "and", "any", "argnames", "argv", "assignin",
+        "atexit", "autoload",
+        "available_graphics_toolkits", "beep_on_error",
+        "bitand", "bitmax", "bitor", "bitshift", "bitxor",
+        "cat", "cell", "cellstr", "char", "class", "clc",
+        "columns", "command_line_path",
+        "completion_append_char", "completion_matches",
+        "complex", "confirm_recursive_rmdir", "cputime",
+        "crash_dumps_octave_core", "ctranspose", "cumprod",
+        "cumsum", "debug_on_error", "debug_on_interrupt",
+        "debug_on_warning", "default_save_options",
+        "dellistener", "diag", "diff", "disp",
+        "doc_cache_file", "do_string_escapes", "double",
+        "drawnow", "e", "echo_executing_commands", "eps",
+        "eq", "errno", "errno_list", "error", "eval",
+        "evalin", "exec", "exist", "exit", "eye", "false",
+        "fclear", "fclose", "fcntl", "fdisp", "feof",
+        "ferror", "feval", "fflush", "fgetl", "fgets",
+        "fieldnames", "file_in_loadpath", "file_in_path",
+        "filemarker", "filesep", "find_dir_in_path",
+        "fixed_point_format", "fnmatch", "fopen", "fork",
+        "formula", "fprintf", "fputs", "fread", "freport",
+        "frewind", "fscanf", "fseek", "fskipl", "ftell",
+        "functions", "fwrite", "ge", "genpath", "get",
+        "getegid", "getenv", "geteuid", "getgid",
+        "getpgrp", "getpid", "getppid", "getuid", "glob",
+        "gt", "gui_mode", "history_control",
+        "history_file", "history_size",
+        "history_timestamp_format_string", "home",
+        "horzcat", "hypot", "ifelse",
+        "ignore_function_time_stamp", "inferiorto",
+        "info_file", "info_program", "inline", "input",
+        "intmax", "intmin", "ipermute",
+        "is_absolute_filename", "isargout", "isbool",
+        "iscell", "iscellstr", "ischar", "iscomplex",
+        "isempty", "isfield", "isfloat", "isglobal",
+        "ishandle", "isieee", "isindex", "isinteger",
+        "islogical", "ismatrix", "ismethod", "isnull",
+        "isnumeric", "isobject", "isreal",
+        "is_rooted_relative_filename", "issorted",
+        "isstruct", "isvarname", "kbhit", "keyboard",
+        "kill", "lasterr", "lasterror", "lastwarn",
+        "ldivide", "le", "length", "link", "linspace",
+        "logical", "lstat", "lt", "make_absolute_filename",
+        "makeinfo_program", "max_recursion_depth", "merge",
+        "methods", "mfilename", "minus", "mislocked",
+        "mkdir", "mkfifo", "mkstemp", "mldivide", "mlock",
+        "mouse_wheel_zoom", "mpower", "mrdivide", "mtimes",
+        "munlock", "nargin", "nargout",
+        "native_float_format", "ndims", "ne", "nfields",
+        "nnz", "norm", "not", "numel", "nzmax",
+        "octave_config_info", "octave_core_file_limit",
+        "octave_core_file_name",
+        "octave_core_file_options", "ones", "or",
+        "output_max_field_width", "output_precision",
+        "page_output_immediately", "page_screen_output",
+        "path", "pathsep", "pause", "pclose", "permute",
+        "pi", "pipe", "plus", "popen", "power",
+        "print_empty_dimensions", "printf",
+        "print_struct_array_contents", "prod",
+        "program_invocation_name", "program_name",
+        "putenv", "puts", "pwd", "quit", "rats", "rdivide",
+        "readdir", "readlink", "read_readline_init_file",
+        "realmax", "realmin", "rehash", "rename",
+        "repelems", "re_read_readline_init_file", "reset",
+        "reshape", "resize", "restoredefaultpath",
+        "rethrow", "rmdir", "rmfield", "rmpath", "rows",
+        "save_header_format_string", "save_precision",
+        "saving_history", "scanf", "set", "setenv",
+        "shell_cmd", "sighup_dumps_octave_core",
+        "sigterm_dumps_octave_core", "silent_functions",
+        "single", "size", "size_equal", "sizemax",
+        "sizeof", "sleep", "source", "sparse_auto_mutate",
+        "split_long_rows", "sprintf", "squeeze", "sscanf",
+        "stat", "stderr", "stdin", "stdout", "strcmp",
+        "strcmpi", "string_fill_char", "strncmp",
+        "strncmpi", "struct", "struct_levels_to_print",
+        "strvcat", "subsasgn", "subsref", "sum", "sumsq",
+        "superiorto", "suppress_verbose_help_message",
+        "symlink", "system", "tic", "tilde_expand",
+        "times", "tmpfile", "tmpnam", "toc", "toupper",
+        "transpose", "true", "typeinfo", "umask", "uminus",
+        "uname", "undo_string_escapes", "unlink", "uplus",
+        "upper", "usage", "usleep", "vec", "vectorize",
+        "vertcat", "waitpid", "warning", "warranty",
+        "whos_line_format", "yes_or_no", "zeros",
+        "inf", "Inf", "nan", "NaN")
 
-    command_kw = [ "close", "load", "who", "whos", ]
+    command_kw = ("close", "load", "who", "whos")
 
-    function_kw = [ "accumarray", "accumdim", "acosd", "acotd",
-                   "acscd", "addtodate", "allchild", "ancestor",
-                   "anova", "arch_fit", "arch_rnd", "arch_test",
-                   "area", "arma_rnd", "arrayfun", "ascii", "asctime",
-                   "asecd", "asind", "assert", "atand",
-                   "autoreg_matrix", "autumn", "axes", "axis", "bar",
-                   "barh", "bartlett", "bartlett_test", "beep",
-                   "betacdf", "betainv", "betapdf", "betarnd",
-                   "bicgstab", "bicubic", "binary", "binocdf",
-                   "binoinv", "binopdf", "binornd", "bitcmp",
-                   "bitget", "bitset", "blackman", "blanks",
-                   "blkdiag", "bone", "box", "brighten", "calendar",
-                   "cast", "cauchy_cdf", "cauchy_inv", "cauchy_pdf",
-                   "cauchy_rnd", "caxis", "celldisp", "center", "cgs",
-                   "chisquare_test_homogeneity",
-                   "chisquare_test_independence", "circshift", "cla",
-                   "clabel", "clf", "clock", "cloglog", "closereq",
-                   "colon", "colorbar", "colormap", "colperm",
-                   "comet", "common_size", "commutation_matrix",
-                   "compan", "compare_versions", "compass",
-                   "computer", "cond", "condest", "contour",
-                   "contourc", "contourf", "contrast", "conv",
-                   "convhull", "cool", "copper", "copyfile", "cor",
-                   "corrcoef", "cor_test", "cosd", "cotd", "cov",
-                   "cplxpair", "cross", "cscd", "cstrcat", "csvread",
-                   "csvwrite", "ctime", "cumtrapz", "curl", "cut",
-                   "cylinder", "date", "datenum", "datestr",
-                   "datetick", "datevec", "dblquad", "deal",
-                   "deblank", "deconv", "delaunay", "delaunayn",
-                   "delete", "demo", "detrend", "diffpara", "diffuse",
-                   "dir", "discrete_cdf", "discrete_inv",
-                   "discrete_pdf", "discrete_rnd", "display",
-                   "divergence", "dlmwrite", "dos", "dsearch",
-                   "dsearchn", "duplication_matrix", "durbinlevinson",
-                   "ellipsoid", "empirical_cdf", "empirical_inv",
-                   "empirical_pdf", "empirical_rnd", "eomday",
-                   "errorbar", "etime", "etreeplot", "example",
-                   "expcdf", "expinv", "expm", "exppdf", "exprnd",
-                   "ezcontour", "ezcontourf", "ezmesh", "ezmeshc",
-                   "ezplot", "ezpolar", "ezsurf", "ezsurfc", "factor",
-                   "factorial", "fail", "fcdf", "feather", "fftconv",
-                   "fftfilt", "fftshift", "figure", "fileattrib",
-                   "fileparts", "fill", "findall", "findobj",
-                   "findstr", "finv", "flag", "flipdim", "fliplr",
-                   "flipud", "fpdf", "fplot", "fractdiff", "freqz",
-                   "freqz_plot", "frnd", "fsolve",
-                   "f_test_regression", "ftp", "fullfile", "fzero",
-                   "gamcdf", "gaminv", "gampdf", "gamrnd", "gca",
-                   "gcbf", "gcbo", "gcf", "genvarname", "geocdf",
-                   "geoinv", "geopdf", "geornd", "getfield", "ginput",
-                   "glpk", "gls", "gplot", "gradient",
-                   "graphics_toolkit", "gray", "grid", "griddata",
-                   "griddatan", "gtext", "gunzip", "gzip", "hadamard",
-                   "hamming", "hankel", "hanning", "hggroup",
-                   "hidden", "hilb", "hist", "histc", "hold", "hot",
-                   "hotelling_test", "housh", "hsv", "hurst",
-                   "hygecdf", "hygeinv", "hygepdf", "hygernd",
-                   "idivide", "ifftshift", "image", "imagesc",
-                   "imfinfo", "imread", "imshow", "imwrite", "index",
-                   "info", "inpolygon", "inputname", "interpft",
-                   "interpn", "intersect", "invhilb", "iqr", "isa",
-                   "isdefinite", "isdir", "is_duplicate_entry",
-                   "isequal", "isequalwithequalnans", "isfigure",
-                   "ishermitian", "ishghandle", "is_leap_year",
-                   "isletter", "ismac", "ismember", "ispc", "isprime",
-                   "isprop", "isscalar", "issquare", "isstrprop",
-                   "issymmetric", "isunix", "is_valid_file_id",
-                   "isvector", "jet", "kendall",
-                   "kolmogorov_smirnov_cdf",
-                   "kolmogorov_smirnov_test", "kruskal_wallis_test",
-                   "krylov", "kurtosis", "laplace_cdf", "laplace_inv",
-                   "laplace_pdf", "laplace_rnd", "legend", "legendre",
-                   "license", "line", "linkprop", "list_primes",
-                   "loadaudio", "loadobj", "logistic_cdf",
-                   "logistic_inv", "logistic_pdf", "logistic_rnd",
-                   "logit", "loglog", "loglogerr", "logm", "logncdf",
-                   "logninv", "lognpdf", "lognrnd", "logspace",
-                   "lookfor", "ls_command", "lsqnonneg", "magic",
-                   "mahalanobis", "manova", "matlabroot",
-                   "mcnemar_test", "mean", "meansq", "median", "menu",
-                   "mesh", "meshc", "meshgrid", "meshz", "mexext",
-                   "mget", "mkpp", "mode", "moment", "movefile",
-                   "mpoles", "mput", "namelengthmax", "nargchk",
-                   "nargoutchk", "nbincdf", "nbininv", "nbinpdf",
-                   "nbinrnd", "nchoosek", "ndgrid", "newplot", "news",
-                   "nonzeros", "normcdf", "normest", "norminv",
-                   "normpdf", "normrnd", "now", "nthroot", "null",
-                   "ocean", "ols", "onenormest", "optimget",
-                   "optimset", "orderfields", "orient", "orth",
-                   "pack", "pareto", "parseparams", "pascal", "patch",
-                   "pathdef", "pcg", "pchip", "pcolor", "pcr",
-                   "peaks", "periodogram", "perl", "perms", "pie",
-                   "pink", "planerot", "playaudio", "plot",
-                   "plotmatrix", "plotyy", "poisscdf", "poissinv",
-                   "poisspdf", "poissrnd", "polar", "poly",
-                   "polyaffine", "polyarea", "polyderiv", "polyfit",
-                   "polygcd", "polyint", "polyout", "polyreduce",
-                   "polyval", "polyvalm", "postpad", "powerset",
-                   "ppder", "ppint", "ppjumps", "ppplot", "ppval",
-                   "pqpnonneg", "prepad", "primes", "print",
-                   "print_usage", "prism", "probit", "qp", "qqplot",
-                   "quadcc", "quadgk", "quadl", "quadv", "quiver",
-                   "qzhess", "rainbow", "randi", "range", "rank",
-                   "ranks", "rat", "reallog", "realpow", "realsqrt",
-                   "record", "rectangle_lw", "rectangle_sw",
-                   "rectint", "refresh", "refreshdata",
-                   "regexptranslate", "repmat", "residue", "ribbon",
-                   "rindex", "roots", "rose", "rosser", "rotdim",
-                   "rref", "run", "run_count", "rundemos", "run_test",
-                   "runtests", "saveas", "saveaudio", "saveobj",
-                   "savepath", "scatter", "secd", "semilogx",
-                   "semilogxerr", "semilogy", "semilogyerr",
-                   "setaudio", "setdiff", "setfield", "setxor",
-                   "shading", "shift", "shiftdim", "sign_test",
-                   "sinc", "sind", "sinetone", "sinewave", "skewness",
-                   "slice", "sombrero", "sortrows", "spaugment",
-                   "spconvert", "spdiags", "spearman", "spectral_adf",
-                   "spectral_xdf", "specular", "speed", "spencer",
-                   "speye", "spfun", "sphere", "spinmap", "spline",
-                   "spones", "sprand", "sprandn", "sprandsym",
-                   "spring", "spstats", "spy", "sqp", "stairs",
-                   "statistics", "std", "stdnormal_cdf",
-                   "stdnormal_inv", "stdnormal_pdf", "stdnormal_rnd",
-                   "stem", "stft", "strcat", "strchr", "strjust",
-                   "strmatch", "strread", "strsplit", "strtok",
-                   "strtrim", "strtrunc", "structfun", "studentize",
-                   "subplot", "subsindex", "subspace", "substr",
-                   "substruct", "summer", "surf", "surface", "surfc",
-                   "surfl", "surfnorm", "svds", "swapbytes",
-                   "sylvester_matrix", "symvar", "synthesis", "table",
-                   "tand", "tar", "tcdf", "tempdir", "tempname",
-                   "test", "text", "textread", "textscan", "tinv",
-                   "title", "toeplitz", "tpdf", "trace", "trapz",
-                   "treelayout", "treeplot", "triangle_lw",
-                   "triangle_sw", "tril", "trimesh", "triplequad",
-                   "triplot", "trisurf", "triu", "trnd", "tsearchn",
-                   "t_test", "t_test_regression", "type", "unidcdf",
-                   "unidinv", "unidpdf", "unidrnd", "unifcdf",
-                   "unifinv", "unifpdf", "unifrnd", "union", "unique",
-                   "unix", "unmkpp", "unpack", "untabify", "untar",
-                   "unwrap", "unzip", "u_test", "validatestring",
-                   "vander", "var", "var_test", "vech", "ver",
-                   "version", "view", "voronoi", "voronoin",
-                   "waitforbuttonpress", "wavread", "wavwrite",
-                   "wblcdf", "wblinv", "wblpdf", "wblrnd", "weekday",
-                   "welch_test", "what", "white", "whitebg",
-                   "wienrnd", "wilcoxon_test", "wilkinson", "winter",
-                   "xlabel", "xlim", "ylabel", "yulewalker", "zip",
-                   "zlabel", "z_test", ]
+    function_kw = (
+        "accumarray", "accumdim", "acosd", "acotd",
+        "acscd", "addtodate", "allchild", "ancestor",
+        "anova", "arch_fit", "arch_rnd", "arch_test",
+        "area", "arma_rnd", "arrayfun", "ascii", "asctime",
+        "asecd", "asind", "assert", "atand",
+        "autoreg_matrix", "autumn", "axes", "axis", "bar",
+        "barh", "bartlett", "bartlett_test", "beep",
+        "betacdf", "betainv", "betapdf", "betarnd",
+        "bicgstab", "bicubic", "binary", "binocdf",
+        "binoinv", "binopdf", "binornd", "bitcmp",
+        "bitget", "bitset", "blackman", "blanks",
+        "blkdiag", "bone", "box", "brighten", "calendar",
+        "cast", "cauchy_cdf", "cauchy_inv", "cauchy_pdf",
+        "cauchy_rnd", "caxis", "celldisp", "center", "cgs",
+        "chisquare_test_homogeneity",
+        "chisquare_test_independence", "circshift", "cla",
+        "clabel", "clf", "clock", "cloglog", "closereq",
+        "colon", "colorbar", "colormap", "colperm",
+        "comet", "common_size", "commutation_matrix",
+        "compan", "compare_versions", "compass",
+        "computer", "cond", "condest", "contour",
+        "contourc", "contourf", "contrast", "conv",
+        "convhull", "cool", "copper", "copyfile", "cor",
+        "corrcoef", "cor_test", "cosd", "cotd", "cov",
+        "cplxpair", "cross", "cscd", "cstrcat", "csvread",
+        "csvwrite", "ctime", "cumtrapz", "curl", "cut",
+        "cylinder", "date", "datenum", "datestr",
+        "datetick", "datevec", "dblquad", "deal",
+        "deblank", "deconv", "delaunay", "delaunayn",
+        "delete", "demo", "detrend", "diffpara", "diffuse",
+        "dir", "discrete_cdf", "discrete_inv",
+        "discrete_pdf", "discrete_rnd", "display",
+        "divergence", "dlmwrite", "dos", "dsearch",
+        "dsearchn", "duplication_matrix", "durbinlevinson",
+        "ellipsoid", "empirical_cdf", "empirical_inv",
+        "empirical_pdf", "empirical_rnd", "eomday",
+        "errorbar", "etime", "etreeplot", "example",
+        "expcdf", "expinv", "expm", "exppdf", "exprnd",
+        "ezcontour", "ezcontourf", "ezmesh", "ezmeshc",
+        "ezplot", "ezpolar", "ezsurf", "ezsurfc", "factor",
+        "factorial", "fail", "fcdf", "feather", "fftconv",
+        "fftfilt", "fftshift", "figure", "fileattrib",
+        "fileparts", "fill", "findall", "findobj",
+        "findstr", "finv", "flag", "flipdim", "fliplr",
+        "flipud", "fpdf", "fplot", "fractdiff", "freqz",
+        "freqz_plot", "frnd", "fsolve",
+        "f_test_regression", "ftp", "fullfile", "fzero",
+        "gamcdf", "gaminv", "gampdf", "gamrnd", "gca",
+        "gcbf", "gcbo", "gcf", "genvarname", "geocdf",
+        "geoinv", "geopdf", "geornd", "getfield", "ginput",
+        "glpk", "gls", "gplot", "gradient",
+        "graphics_toolkit", "gray", "grid", "griddata",
+        "griddatan", "gtext", "gunzip", "gzip", "hadamard",
+        "hamming", "hankel", "hanning", "hggroup",
+        "hidden", "hilb", "hist", "histc", "hold", "hot",
+        "hotelling_test", "housh", "hsv", "hurst",
+        "hygecdf", "hygeinv", "hygepdf", "hygernd",
+        "idivide", "ifftshift", "image", "imagesc",
+        "imfinfo", "imread", "imshow", "imwrite", "index",
+        "info", "inpolygon", "inputname", "interpft",
+        "interpn", "intersect", "invhilb", "iqr", "isa",
+        "isdefinite", "isdir", "is_duplicate_entry",
+        "isequal", "isequalwithequalnans", "isfigure",
+        "ishermitian", "ishghandle", "is_leap_year",
+        "isletter", "ismac", "ismember", "ispc", "isprime",
+        "isprop", "isscalar", "issquare", "isstrprop",
+        "issymmetric", "isunix", "is_valid_file_id",
+        "isvector", "jet", "kendall",
+        "kolmogorov_smirnov_cdf",
+        "kolmogorov_smirnov_test", "kruskal_wallis_test",
+        "krylov", "kurtosis", "laplace_cdf", "laplace_inv",
+        "laplace_pdf", "laplace_rnd", "legend", "legendre",
+        "license", "line", "linkprop", "list_primes",
+        "loadaudio", "loadobj", "logistic_cdf",
+        "logistic_inv", "logistic_pdf", "logistic_rnd",
+        "logit", "loglog", "loglogerr", "logm", "logncdf",
+        "logninv", "lognpdf", "lognrnd", "logspace",
+        "lookfor", "ls_command", "lsqnonneg", "magic",
+        "mahalanobis", "manova", "matlabroot",
+        "mcnemar_test", "mean", "meansq", "median", "menu",
+        "mesh", "meshc", "meshgrid", "meshz", "mexext",
+        "mget", "mkpp", "mode", "moment", "movefile",
+        "mpoles", "mput", "namelengthmax", "nargchk",
+        "nargoutchk", "nbincdf", "nbininv", "nbinpdf",
+        "nbinrnd", "nchoosek", "ndgrid", "newplot", "news",
+        "nonzeros", "normcdf", "normest", "norminv",
+        "normpdf", "normrnd", "now", "nthroot", "null",
+        "ocean", "ols", "onenormest", "optimget",
+        "optimset", "orderfields", "orient", "orth",
+        "pack", "pareto", "parseparams", "pascal", "patch",
+        "pathdef", "pcg", "pchip", "pcolor", "pcr",
+        "peaks", "periodogram", "perl", "perms", "pie",
+        "pink", "planerot", "playaudio", "plot",
+        "plotmatrix", "plotyy", "poisscdf", "poissinv",
+        "poisspdf", "poissrnd", "polar", "poly",
+        "polyaffine", "polyarea", "polyderiv", "polyfit",
+        "polygcd", "polyint", "polyout", "polyreduce",
+        "polyval", "polyvalm", "postpad", "powerset",
+        "ppder", "ppint", "ppjumps", "ppplot", "ppval",
+        "pqpnonneg", "prepad", "primes", "print",
+        "print_usage", "prism", "probit", "qp", "qqplot",
+        "quadcc", "quadgk", "quadl", "quadv", "quiver",
+        "qzhess", "rainbow", "randi", "range", "rank",
+        "ranks", "rat", "reallog", "realpow", "realsqrt",
+        "record", "rectangle_lw", "rectangle_sw",
+        "rectint", "refresh", "refreshdata",
+        "regexptranslate", "repmat", "residue", "ribbon",
+        "rindex", "roots", "rose", "rosser", "rotdim",
+        "rref", "run", "run_count", "rundemos", "run_test",
+        "runtests", "saveas", "saveaudio", "saveobj",
+        "savepath", "scatter", "secd", "semilogx",
+        "semilogxerr", "semilogy", "semilogyerr",
+        "setaudio", "setdiff", "setfield", "setxor",
+        "shading", "shift", "shiftdim", "sign_test",
+        "sinc", "sind", "sinetone", "sinewave", "skewness",
+        "slice", "sombrero", "sortrows", "spaugment",
+        "spconvert", "spdiags", "spearman", "spectral_adf",
+        "spectral_xdf", "specular", "speed", "spencer",
+        "speye", "spfun", "sphere", "spinmap", "spline",
+        "spones", "sprand", "sprandn", "sprandsym",
+        "spring", "spstats", "spy", "sqp", "stairs",
+        "statistics", "std", "stdnormal_cdf",
+        "stdnormal_inv", "stdnormal_pdf", "stdnormal_rnd",
+        "stem", "stft", "strcat", "strchr", "strjust",
+        "strmatch", "strread", "strsplit", "strtok",
+        "strtrim", "strtrunc", "structfun", "studentize",
+        "subplot", "subsindex", "subspace", "substr",
+        "substruct", "summer", "surf", "surface", "surfc",
+        "surfl", "surfnorm", "svds", "swapbytes",
+        "sylvester_matrix", "symvar", "synthesis", "table",
+        "tand", "tar", "tcdf", "tempdir", "tempname",
+        "test", "text", "textread", "textscan", "tinv",
+        "title", "toeplitz", "tpdf", "trace", "trapz",
+        "treelayout", "treeplot", "triangle_lw",
+        "triangle_sw", "tril", "trimesh", "triplequad",
+        "triplot", "trisurf", "triu", "trnd", "tsearchn",
+        "t_test", "t_test_regression", "type", "unidcdf",
+        "unidinv", "unidpdf", "unidrnd", "unifcdf",
+        "unifinv", "unifpdf", "unifrnd", "union", "unique",
+        "unix", "unmkpp", "unpack", "untabify", "untar",
+        "unwrap", "unzip", "u_test", "validatestring",
+        "vander", "var", "var_test", "vech", "ver",
+        "version", "view", "voronoi", "voronoin",
+        "waitforbuttonpress", "wavread", "wavwrite",
+        "wblcdf", "wblinv", "wblpdf", "wblrnd", "weekday",
+        "welch_test", "what", "white", "whitebg",
+        "wienrnd", "wilcoxon_test", "wilkinson", "winter",
+        "xlabel", "xlim", "ylabel", "yulewalker", "zip",
+        "zlabel", "z_test")
 
-    loadable_kw = [ "airy", "amd", "balance", "besselh", "besseli",
-                   "besselj", "besselk", "bessely", "bitpack",
-                   "bsxfun", "builtin", "ccolamd", "cellfun",
-                   "cellslices", "chol", "choldelete", "cholinsert",
-                   "cholinv", "cholshift", "cholupdate", "colamd",
-                   "colloc", "convhulln", "convn", "csymamd",
-                   "cummax", "cummin", "daspk", "daspk_options",
-                   "dasrt", "dasrt_options", "dassl", "dassl_options",
-                   "dbclear", "dbdown", "dbstack", "dbstatus",
-                   "dbstop", "dbtype", "dbup", "dbwhere", "det",
-                   "dlmread", "dmperm", "dot", "eig", "eigs",
-                   "endgrent", "endpwent", "etree", "fft", "fftn",
-                   "fftw", "filter", "find", "full", "gcd",
-                   "getgrent", "getgrgid", "getgrnam", "getpwent",
-                   "getpwnam", "getpwuid", "getrusage", "givens",
-                   "gmtime", "gnuplot_binary", "hess", "ifft",
-                   "ifftn", "inv", "isdebugmode", "issparse", "kron",
-                   "localtime", "lookup", "lsode", "lsode_options",
-                   "lu", "luinc", "luupdate", "matrix_type", "max",
-                   "min", "mktime", "pinv", "qr", "qrdelete",
-                   "qrinsert", "qrshift", "qrupdate", "quad",
-                   "quad_options", "qz", "rand", "rande", "randg",
-                   "randn", "randp", "randperm", "rcond", "regexp",
-                   "regexpi", "regexprep", "schur", "setgrent",
-                   "setpwent", "sort", "spalloc", "sparse", "spparms",
-                   "sprank", "sqrtm", "strfind", "strftime",
-                   "strptime", "strrep", "svd", "svd_driver", "syl",
-                   "symamd", "symbfact", "symrcm", "time", "tsearch",
-                   "typecast", "urlread", "urlwrite", ]
+    loadable_kw = (
+        "airy", "amd", "balance", "besselh", "besseli",
+        "besselj", "besselk", "bessely", "bitpack",
+        "bsxfun", "builtin", "ccolamd", "cellfun",
+        "cellslices", "chol", "choldelete", "cholinsert",
+        "cholinv", "cholshift", "cholupdate", "colamd",
+        "colloc", "convhulln", "convn", "csymamd",
+        "cummax", "cummin", "daspk", "daspk_options",
+        "dasrt", "dasrt_options", "dassl", "dassl_options",
+        "dbclear", "dbdown", "dbstack", "dbstatus",
+        "dbstop", "dbtype", "dbup", "dbwhere", "det",
+        "dlmread", "dmperm", "dot", "eig", "eigs",
+        "endgrent", "endpwent", "etree", "fft", "fftn",
+        "fftw", "filter", "find", "full", "gcd",
+        "getgrent", "getgrgid", "getgrnam", "getpwent",
+        "getpwnam", "getpwuid", "getrusage", "givens",
+        "gmtime", "gnuplot_binary", "hess", "ifft",
+        "ifftn", "inv", "isdebugmode", "issparse", "kron",
+        "localtime", "lookup", "lsode", "lsode_options",
+        "lu", "luinc", "luupdate", "matrix_type", "max",
+        "min", "mktime", "pinv", "qr", "qrdelete",
+        "qrinsert", "qrshift", "qrupdate", "quad",
+        "quad_options", "qz", "rand", "rande", "randg",
+        "randn", "randp", "randperm", "rcond", "regexp",
+        "regexpi", "regexprep", "schur", "setgrent",
+        "setpwent", "sort", "spalloc", "sparse", "spparms",
+        "sprank", "sqrtm", "strfind", "strftime",
+        "strptime", "strrep", "svd", "svd_driver", "syl",
+        "symamd", "symbfact", "symrcm", "time", "tsearch",
+        "typecast", "urlread", "urlwrite")
 
-    mapping_kw = [ "abs", "acos", "acosh", "acot", "acoth", "acsc",
-                  "acsch", "angle", "arg", "asec", "asech", "asin",
-                  "asinh", "atan", "atanh", "beta", "betainc",
-                  "betaln", "bincoeff", "cbrt", "ceil", "conj", "cos",
-                  "cosh", "cot", "coth", "csc", "csch", "erf", "erfc",
-                  "erfcx", "erfinv", "exp", "finite", "fix", "floor",
-                  "fmod", "gamma", "gammainc", "gammaln", "imag",
-                  "isalnum", "isalpha", "isascii", "iscntrl",
-                  "isdigit", "isfinite", "isgraph", "isinf",
-                  "islower", "isna", "isnan", "isprint", "ispunct",
-                  "isspace", "isupper", "isxdigit", "lcm", "lgamma",
-                  "log", "lower", "mod", "real", "rem", "round",
-                  "roundb", "sec", "sech", "sign", "sin", "sinh",
-                  "sqrt", "tan", "tanh", "toascii", "tolower", "xor",
-                  ]
+    mapping_kw = (
+        "abs", "acos", "acosh", "acot", "acoth", "acsc",
+        "acsch", "angle", "arg", "asec", "asech", "asin",
+        "asinh", "atan", "atanh", "beta", "betainc",
+        "betaln", "bincoeff", "cbrt", "ceil", "conj", "cos",
+        "cosh", "cot", "coth", "csc", "csch", "erf", "erfc",
+        "erfcx", "erfinv", "exp", "finite", "fix", "floor",
+        "fmod", "gamma", "gammainc", "gammaln", "imag",
+        "isalnum", "isalpha", "isascii", "iscntrl",
+        "isdigit", "isfinite", "isgraph", "isinf",
+        "islower", "isna", "isnan", "isprint", "ispunct",
+        "isspace", "isupper", "isxdigit", "lcm", "lgamma",
+        "log", "lower", "mod", "real", "rem", "round",
+        "roundb", "sec", "sech", "sign", "sin", "sinh",
+        "sqrt", "tan", "tanh", "toascii", "tolower", "xor")
 
-    builtin_consts = [ "EDITOR", "EXEC_PATH", "I", "IMAGE_PATH", "NA",
-                   "OCTAVE_HOME", "OCTAVE_VERSION", "PAGER",
-                   "PAGER_FLAGS", "SEEK_CUR", "SEEK_END", "SEEK_SET",
-                   "SIG", "S_ISBLK", "S_ISCHR", "S_ISDIR", "S_ISFIFO",
-                   "S_ISLNK", "S_ISREG", "S_ISSOCK", "WCONTINUE",
-                   "WCOREDUMP", "WEXITSTATUS", "WIFCONTINUED",
-                   "WIFEXITED", "WIFSIGNALED", "WIFSTOPPED", "WNOHANG",
-                   "WSTOPSIG", "WTERMSIG", "WUNTRACED", ]
+    builtin_consts = (
+        "EDITOR", "EXEC_PATH", "I", "IMAGE_PATH", "NA",
+        "OCTAVE_HOME", "OCTAVE_VERSION", "PAGER",
+        "PAGER_FLAGS", "SEEK_CUR", "SEEK_END", "SEEK_SET",
+        "SIG", "S_ISBLK", "S_ISCHR", "S_ISDIR", "S_ISFIFO",
+        "S_ISLNK", "S_ISREG", "S_ISSOCK", "WCONTINUE",
+        "WCOREDUMP", "WEXITSTATUS", "WIFCONTINUED",
+        "WIFEXITED", "WIFSIGNALED", "WIFSTOPPED", "WNOHANG",
+        "WSTOPSIG", "WTERMSIG", "WUNTRACED")
 
     tokens = {
         'root': [
-            #We should look into multiline comments
+            # We should look into multiline comments
             (r'[%#].*$', Comment),
             (r'^\s*function', Keyword, 'deffunc'),
 
             # from 'iskeyword' on hg changeset 8cc154f45e37
-            (r'(__FILE__|__LINE__|break|case|catch|classdef|continue|do|else|'
-             r'elseif|end|end_try_catch|end_unwind_protect|endclassdef|'
-             r'endevents|endfor|endfunction|endif|endmethods|endproperties|'
-             r'endswitch|endwhile|events|for|function|get|global|if|methods|'
-             r'otherwise|persistent|properties|return|set|static|switch|try|'
-             r'until|unwind_protect|unwind_protect_cleanup|while)\b', Keyword),
+            (words((
+                '__FILE__', '__LINE__', 'break', 'case', 'catch', 'classdef', 'continue', 'do', 'else',
+                'elseif', 'end', 'end_try_catch', 'end_unwind_protect', 'endclassdef',
+                'endevents', 'endfor', 'endfunction', 'endif', 'endmethods', 'endproperties',
+                'endswitch', 'endwhile', 'events', 'for', 'function', 'get', 'global', 'if', 'methods',
+                'otherwise', 'persistent', 'properties', 'return', 'set', 'static', 'switch', 'try',
+                'until', 'unwind_protect', 'unwind_protect_cleanup', 'while'), suffix=r'\b'),
+             Keyword),
 
-            ("(" + "|".join(  builtin_kw + command_kw
-                            + function_kw + loadable_kw
-                            + mapping_kw) + r')\b',  Name.Builtin),
+            (words(builtin_kw + command_kw + function_kw + loadable_kw + mapping_kw,
+                   suffix=r'\b'),  Name.Builtin),
 
-            ("(" + "|".join(builtin_consts) + r')\b', Name.Constant),
+            (words(builtin_consts, suffix=r'\b'), Name.Constant),
 
             # operators in Octave but not Matlab:
             (r'-=|!=|!|/=|--', Operator),
             # operators:
             (r'-|==|~=|<|>|<=|>=|&&|&|~|\|\|?', Operator),
             # operators in Octave but not Matlab requiring escape for re:
-            (r'\*=|\+=|\^=|\/=|\\=|\*\*|\+\+|\.\*\*',Operator),
+            (r'\*=|\+=|\^=|\/=|\\=|\*\*|\+\+|\.\*\*', Operator),
             # operators requiring escape for re:
             (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
 
@@ -847,12 +857,14 @@ class ScilabLexer(RegexLexer):
             (r'//.*?$', Comment.Single),
             (r'^\s*function', Keyword, 'deffunc'),
 
-            (r'(__FILE__|__LINE__|break|case|catch|classdef|continue|do|else|'
-             r'elseif|end|end_try_catch|end_unwind_protect|endclassdef|'
-             r'endevents|endfor|endfunction|endif|endmethods|endproperties|'
-             r'endswitch|endwhile|events|for|function|get|global|if|methods|'
-             r'otherwise|persistent|properties|return|set|static|switch|try|'
-             r'until|unwind_protect|unwind_protect_cleanup|while)\b', Keyword),
+            (words((
+                '__FILE__', '__LINE__', 'break', 'case', 'catch', 'classdef', 'continue', 'do', 'else',
+                'elseif', 'end', 'end_try_catch', 'end_unwind_protect', 'endclassdef',
+                'endevents', 'endfor', 'endfunction', 'endif', 'endmethods', 'endproperties',
+                'endswitch', 'endwhile', 'events', 'for', 'function', 'get', 'global', 'if', 'methods',
+                'otherwise', 'persistent', 'properties', 'return', 'set', 'static', 'switch', 'try',
+                'until', 'unwind_protect', 'unwind_protect_cleanup', 'while'), suffix=r'\b'),
+             Keyword),
 
             ("(" + "|".join(_scilab_builtins.functions_kw +
                             _scilab_builtins.commands_kw +
@@ -911,7 +923,7 @@ class NumPyLexer(PythonLexer):
     mimetypes = []
     filenames = []
 
-    EXTRA_KEYWORDS = set([
+    EXTRA_KEYWORDS = set((
         'abs', 'absolute', 'accumulate', 'add', 'alen', 'all', 'allclose',
         'alltrue', 'alterdot', 'amax', 'amin', 'angle', 'any', 'append',
         'apply_along_axis', 'apply_over_axes', 'arange', 'arccos', 'arccosh',
@@ -976,7 +988,7 @@ class NumPyLexer(PythonLexer):
         'typename', 'uniform', 'union1d', 'unique', 'unique1d', 'unravel_index',
         'unwrap', 'vander', 'var', 'vdot', 'vectorize', 'view', 'vonmises',
         'vsplit', 'vstack', 'weibull', 'where', 'who', 'zeros', 'zeros_like'
-    ])
+    ))
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in \
@@ -1020,8 +1032,8 @@ class RConsoleLexer(Lexer):
                 # If we have stored prompt lines, need to process them first.
                 if current_code_block:
                     # Weave together the prompts and highlight code.
-                    for item in do_insertions(insertions,
-                          slexer.get_tokens_unprocessed(current_code_block)):
+                    for item in do_insertions(
+                            insertions, slexer.get_tokens_unprocessed(current_code_block)):
                         yield item
                     # Reset vars for next code block.
                     current_code_block = ''
@@ -1033,8 +1045,8 @@ class RConsoleLexer(Lexer):
         # process the last code block. This is neither elegant nor DRY so
         # should be changed.
         if current_code_block:
-            for item in do_insertions(insertions,
-                    slexer.get_tokens_unprocessed(current_code_block)):
+            for item in do_insertions(
+                    insertions, slexer.get_tokens_unprocessed(current_code_block)):
                 yield item
 
 
@@ -1051,256 +1063,256 @@ class SLexer(RegexLexer):
     mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
                  'text/x-R', 'text/x-r-history', 'text/x-r-profile']
 
-    builtins_base = [
-            'Arg', 'Conj', 'Cstack_info', 'Encoding', 'FALSE',
-            'Filter', 'Find', 'I', 'ISOdate', 'ISOdatetime', 'Im', 'Inf',
-            'La\.svd', 'Map', 'Math\.Date', 'Math\.POSIXt', 'Math\.data\.frame',
-            'Math\.difftime', 'Math\.factor', 'Mod', 'NA_character_',
-            'NA_complex_', 'NA_real_', 'NCOL', 'NROW', 'NULLNA_integer_', 'NaN',
-            'Negate', 'NextMethod', 'Ops\.Date', 'Ops\.POSIXt', 'Ops\.data\.frame',
-            'Ops\.difftime', 'Ops\.factor', 'Ops\.numeric_version', 'Ops\.ordered',
-            'Position', 'R\.Version', 'R\.home', 'R\.version', 'R\.version\.string',
-            'RNGkind', 'RNGversion', 'R_system_version', 'Re', 'Recall',
-            'Reduce', 'Summary\.Date', 'Summary\.POSIXct', 'Summary\.POSIXlt',
-            'Summary\.data\.frame', 'Summary\.difftime', 'Summary\.factor',
-            'Summary\.numeric_version', 'Summary\.ordered', 'Sys\.Date',
-            'Sys\.chmod', 'Sys\.getenv', 'Sys\.getlocale', 'Sys\.getpid',
-            'Sys\.glob', 'Sys\.info', 'Sys\.localeconv', 'Sys\.readlink',
-            'Sys\.setFileTime', 'Sys\.setenv', 'Sys\.setlocale', 'Sys\.sleep',
-            'Sys\.time', 'Sys\.timezone', 'Sys\.umask', 'Sys\.unsetenv',
-            'Sys\.which', 'TRUE', 'UseMethod', 'Vectorize', 'abbreviate', 'abs',
-            'acos', 'acosh', 'addNA', 'addTaskCallback', 'agrep', 'alist',
-            'all', 'all\.equal', 'all\.equal\.POSIXct', 'all\.equal\.character',
-            'all\.equal\.default', 'all\.equal\.factor', 'all\.equal\.formula',
-            'all\.equal\.language', 'all\.equal\.list', 'all\.equal\.numeric',
-            'all\.equal\.raw', 'all\.names', 'all\.vars', 'any', 'anyDuplicated',
-            'anyDuplicated\.array', 'anyDuplicated\.data\.frame',
-            'anyDuplicated\.default', 'anyDuplicated\.matrix', 'aperm',
-            'aperm\.default', 'aperm\.table', 'append', 'apply', 'args',
-            'arrayInd', 'as\.Date', 'as\.Date\.POSIXct', 'as\.Date\.POSIXlt',
-            'as\.Date\.character', 'as\.Date\.date', 'as\.Date\.dates',
-            'as\.Date\.default', 'as\.Date\.factor', 'as\.Date\.numeric',
-            'as\.POSIXct', 'as\.POSIXct\.Date', 'as\.POSIXct\.POSIXlt',
-            'as\.POSIXct\.date', 'as\.POSIXct\.dates', 'as\.POSIXct\.default',
-            'as\.POSIXct\.numeric', 'as\.POSIXlt', 'as\.POSIXlt\.Date',
-            'as\.POSIXlt\.POSIXct', 'as\.POSIXlt\.character', 'as\.POSIXlt\.date',
-            'as\.POSIXlt\.dates', 'as\.POSIXlt\.default', 'as\.POSIXlt\.factor',
-            'as\.POSIXlt\.numeric', 'as\.array', 'as\.array\.default', 'as\.call',
-            'as\.character', 'as\.character\.Date', 'as\.character\.POSIXt',
-            'as\.character\.condition', 'as\.character\.default',
-            'as\.character\.error', 'as\.character\.factor', 'as\.character\.hexmode',
-            'as\.character\.numeric_version', 'as\.character\.octmode',
-            'as\.character\.srcref', 'as\.complex', 'as\.data\.frame',
-            'as\.data\.frame\.AsIs', 'as\.data\.frame\.Date', 'as\.data\.frame\.POSIXct',
-            'as\.data\.frame\.POSIXlt', 'as\.data\.frame\.array',
-            'as\.data\.frame\.character', 'as\.data\.frame\.complex',
-            'as\.data\.frame\.data\.frame', 'as\.data\.frame\.default',
-            'as\.data\.frame\.difftime', 'as\.data\.frame\.factor',
-            'as\.data\.frame\.integer', 'as\.data\.frame\.list',
-            'as\.data\.frame\.logical', 'as\.data\.frame\.matrix',
-            'as\.data\.frame\.model\.matrix', 'as\.data\.frame\.numeric',
-            'as\.data\.frame\.numeric_version', 'as\.data\.frame\.ordered',
-            'as\.data\.frame\.raw', 'as\.data\.frame\.table', 'as\.data\.frame\.ts',
-            'as\.data\.frame\.vector', 'as\.difftime', 'as\.double',
-            'as\.double\.POSIXlt', 'as\.double\.difftime', 'as\.environment',
-            'as\.expression', 'as\.expression\.default', 'as\.factor',
-            'as\.function', 'as\.function\.default', 'as\.hexmode', 'as\.integer',
-            'as\.list', 'as\.list\.Date', 'as\.list\.POSIXct', 'as\.list\.data\.frame',
-            'as\.list\.default', 'as\.list\.environment', 'as\.list\.factor',
-            'as\.list\.function', 'as\.list\.numeric_version', 'as\.logical',
-            'as\.logical\.factor', 'as\.matrix', 'as\.matrix\.POSIXlt',
-            'as\.matrix\.data\.frame', 'as\.matrix\.default', 'as\.matrix\.noquote',
-            'as\.name', 'as\.null', 'as\.null\.default', 'as\.numeric',
-            'as\.numeric_version', 'as\.octmode', 'as\.ordered',
-            'as\.package_version', 'as\.pairlist', 'as\.qr', 'as\.raw', 'as\.single',
-            'as\.single\.default', 'as\.symbol', 'as\.table', 'as\.table\.default',
-            'as\.vector', 'as\.vector\.factor', 'asNamespace', 'asS3', 'asS4',
-            'asin', 'asinh', 'assign', 'atan', 'atan2', 'atanh',
-            'attachNamespace', 'attr', 'attr\.all\.equal', 'attributes',
-            'autoload', 'autoloader', 'backsolve', 'baseenv', 'basename',
-            'besselI', 'besselJ', 'besselK', 'besselY', 'beta',
-            'bindingIsActive', 'bindingIsLocked', 'bindtextdomain', 'bitwAnd',
-            'bitwNot', 'bitwOr', 'bitwShiftL', 'bitwShiftR', 'bitwXor', 'body',
-            'bquote', 'browser', 'browserCondition', 'browserSetDebug',
-            'browserText', 'builtins', 'by', 'by\.data\.frame', 'by\.default',
-            'bzfile', 'c\.Date', 'c\.POSIXct', 'c\.POSIXlt', 'c\.noquote',
-            'c\.numeric_version', 'call', 'callCC', 'capabilities', 'casefold',
-            'cat', 'category', 'cbind', 'cbind\.data\.frame', 'ceiling',
-            'char\.expand', 'charToRaw', 'charmatch', 'chartr', 'check_tzones',
-            'chol', 'chol\.default', 'chol2inv', 'choose', 'class',
-            'clearPushBack', 'close', 'close\.connection', 'close\.srcfile',
-            'close\.srcfilealias', 'closeAllConnections', 'col', 'colMeans',
-            'colSums', 'colnames', 'commandArgs', 'comment', 'computeRestarts',
-            'conditionCall', 'conditionCall\.condition', 'conditionMessage',
-            'conditionMessage\.condition', 'conflicts', 'contributors', 'cos',
-            'cosh', 'crossprod', 'cummax', 'cummin', 'cumprod', 'cumsum', 'cut',
-            'cut\.Date', 'cut\.POSIXt', 'cut\.default', 'dQuote', 'data\.class',
-            'data\.matrix', 'date', 'debug', 'debugonce',
-            'default\.stringsAsFactors', 'delayedAssign', 'deparse', 'det',
-            'determinant', 'determinant\.matrix', 'dget', 'diag', 'diff',
-            'diff\.Date', 'diff\.POSIXt', 'diff\.default', 'difftime', 'digamma',
-            'dim', 'dim\.data\.frame', 'dimnames', 'dimnames\.data\.frame', 'dir',
-            'dir\.create', 'dirname', 'do\.call', 'dput', 'drop', 'droplevels',
-            'droplevels\.data\.frame', 'droplevels\.factor', 'dump', 'duplicated',
-            'duplicated\.POSIXlt', 'duplicated\.array', 'duplicated\.data\.frame',
-            'duplicated\.default', 'duplicated\.matrix',
-            'duplicated\.numeric_version', 'dyn\.load', 'dyn\.unload', 'eapply',
-            'eigen', 'else', 'emptyenv', 'enc2native', 'enc2utf8',
-            'encodeString', 'enquote', 'env\.profile', 'environment',
-            'environmentIsLocked', 'environmentName', 'eval', 'eval\.parent',
-            'evalq', 'exists', 'exp', 'expand\.grid', 'expm1', 'expression',
-            'factor', 'factorial', 'fifo', 'file', 'file\.access', 'file\.append',
-            'file\.choose', 'file\.copy', 'file\.create', 'file\.exists',
-            'file\.info', 'file\.link', 'file\.path', 'file\.remove', 'file\.rename',
-            'file\.show', 'file\.symlink', 'find\.package', 'findInterval',
-            'findPackageEnv', 'findRestart', 'floor', 'flush',
-            'flush\.connection', 'force', 'formals', 'format',
-            'format\.AsIs', 'format\.Date', 'format\.POSIXct', 'format\.POSIXlt',
-            'format\.data\.frame', 'format\.default', 'format\.difftime',
-            'format\.factor', 'format\.hexmode', 'format\.info',
-            'format\.libraryIQR', 'format\.numeric_version', 'format\.octmode',
-            'format\.packageInfo', 'format\.pval', 'format\.summaryDefault',
-            'formatC', 'formatDL', 'forwardsolve', 'gamma', 'gc', 'gc\.time',
-            'gcinfo', 'gctorture', 'gctorture2', 'get', 'getAllConnections',
-            'getCallingDLL', 'getCallingDLLe', 'getConnection',
-            'getDLLRegisteredRoutines', 'getDLLRegisteredRoutines\.DLLInfo',
-            'getDLLRegisteredRoutines\.character', 'getElement',
-            'getExportedValue', 'getHook', 'getLoadedDLLs', 'getNamespace',
-            'getNamespaceExports', 'getNamespaceImports', 'getNamespaceInfo',
-            'getNamespaceName', 'getNamespaceUsers', 'getNamespaceVersion',
-            'getNativeSymbolInfo', 'getOption', 'getRversion', 'getSrcLines',
-            'getTaskCallbackNames', 'geterrmessage', 'gettext', 'gettextf',
-            'getwd', 'gl', 'globalenv', 'gregexpr', 'grep', 'grepRaw', 'grepl',
-            'gsub', 'gzcon', 'gzfile', 'head', 'iconv', 'iconvlist',
-            'icuSetCollate', 'identical', 'identity', 'ifelse', 'importIntoEnv',
-            'in', 'inherits', 'intToBits', 'intToUtf8', 'interaction', 'interactive',
-            'intersect', 'inverse\.rle', 'invisible', 'invokeRestart',
-            'invokeRestartInteractively', 'is\.R', 'is\.array', 'is\.atomic',
-            'is\.call', 'is\.character', 'is\.complex', 'is\.data\.frame',
-            'is\.double', 'is\.element', 'is\.environment', 'is\.expression',
-            'is\.factor', 'is\.finite', 'is\.function', 'is\.infinite',
-            'is\.integer', 'is\.language', 'is\.list', 'is\.loaded', 'is\.logical',
-            'is\.matrix', 'is\.na', 'is\.na\.POSIXlt', 'is\.na\.data\.frame',
-            'is\.na\.numeric_version', 'is\.name', 'is\.nan', 'is\.null',
-            'is\.numeric', 'is\.numeric\.Date', 'is\.numeric\.POSIXt',
-            'is\.numeric\.difftime', 'is\.numeric_version', 'is\.object',
-            'is\.ordered', 'is\.package_version', 'is\.pairlist', 'is\.primitive',
-            'is\.qr', 'is\.raw', 'is\.recursive', 'is\.single', 'is\.symbol',
-            'is\.table', 'is\.unsorted', 'is\.vector', 'isBaseNamespace',
-            'isIncomplete', 'isNamespace', 'isOpen', 'isRestart', 'isS4',
-            'isSeekable', 'isSymmetric', 'isSymmetric\.matrix', 'isTRUE',
-            'isatty', 'isdebugged', 'jitter', 'julian', 'julian\.Date',
-            'julian\.POSIXt', 'kappa', 'kappa\.default', 'kappa\.lm', 'kappa\.qr',
-            'kronecker', 'l10n_info', 'labels', 'labels\.default', 'lapply',
-            'lazyLoad', 'lazyLoadDBexec', 'lazyLoadDBfetch', 'lbeta', 'lchoose',
-            'length', 'length\.POSIXlt', 'letters', 'levels', 'levels\.default',
-            'lfactorial', 'lgamma', 'library\.dynam', 'library\.dynam\.unload',
-            'licence', 'license', 'list\.dirs', 'list\.files', 'list2env', 'load',
-            'loadNamespace', 'loadedNamespaces', 'loadingNamespaceInfo',
-            'local', 'lockBinding', 'lockEnvironment', 'log', 'log10', 'log1p',
-            'log2', 'logb', 'lower\.tri', 'ls', 'make\.names', 'make\.unique',
-            'makeActiveBinding', 'mapply', 'margin\.table', 'mat\.or\.vec',
-            'match', 'match\.arg', 'match\.call', 'match\.fun', 'max', 'max\.col',
-            'mean', 'mean\.Date', 'mean\.POSIXct', 'mean\.POSIXlt', 'mean\.default',
-            'mean\.difftime', 'mem\.limits', 'memCompress', 'memDecompress',
-            'memory\.profile', 'merge', 'merge\.data\.frame', 'merge\.default',
-            'message', 'mget', 'min', 'missing', 'mode', 'month\.abb',
-            'month\.name', 'months', 'months\.Date', 'months\.POSIXt',
-            'months\.abb', 'months\.nameletters', 'names', 'names\.POSIXlt',
-            'namespaceExport', 'namespaceImport', 'namespaceImportClasses',
-            'namespaceImportFrom', 'namespaceImportMethods', 'nargs', 'nchar',
-            'ncol', 'new\.env', 'ngettext', 'nlevels', 'noquote', 'norm',
-            'normalizePath', 'nrow', 'numeric_version', 'nzchar', 'objects',
-            'oldClass', 'on\.exit', 'open', 'open\.connection', 'open\.srcfile',
-            'open\.srcfilealias', 'open\.srcfilecopy', 'options', 'order',
-            'ordered', 'outer', 'packBits', 'packageEvent',
-            'packageHasNamespace', 'packageStartupMessage', 'package_version',
-            'pairlist', 'parent\.env', 'parent\.frame', 'parse',
-            'parseNamespaceFile', 'paste', 'paste0', 'path\.expand',
-            'path\.package', 'pipe', 'pmatch', 'pmax', 'pmax\.int', 'pmin',
-            'pmin\.int', 'polyroot', 'pos\.to\.env', 'pretty', 'pretty\.default',
-            'prettyNum', 'print', 'print\.AsIs', 'print\.DLLInfo',
-            'print\.DLLInfoList', 'print\.DLLRegisteredRoutines', 'print\.Date',
-            'print\.NativeRoutineList', 'print\.POSIXct', 'print\.POSIXlt',
-            'print\.by', 'print\.condition', 'print\.connection',
-            'print\.data\.frame', 'print\.default', 'print\.difftime',
-            'print\.factor', 'print\.function', 'print\.hexmode',
-            'print\.libraryIQR', 'print\.listof', 'print\.noquote',
-            'print\.numeric_version', 'print\.octmode', 'print\.packageInfo',
-            'print\.proc_time', 'print\.restart', 'print\.rle',
-            'print\.simple\.list', 'print\.srcfile', 'print\.srcref',
-            'print\.summary\.table', 'print\.summaryDefault', 'print\.table',
-            'print\.warnings', 'prmatrix', 'proc\.time', 'prod', 'prop\.table',
-            'provideDimnames', 'psigamma', 'pushBack', 'pushBackLength', 'q',
-            'qr', 'qr\.Q', 'qr\.R', 'qr\.X', 'qr\.coef', 'qr\.default', 'qr\.fitted',
-            'qr\.qty', 'qr\.qy', 'qr\.resid', 'qr\.solve', 'quarters',
-            'quarters\.Date', 'quarters\.POSIXt', 'quit', 'quote', 'range',
-            'range\.default', 'rank', 'rapply', 'raw', 'rawConnection',
-            'rawConnectionValue', 'rawShift', 'rawToBits', 'rawToChar', 'rbind',
-            'rbind\.data\.frame', 'rcond', 'read\.dcf', 'readBin', 'readChar',
-            'readLines', 'readRDS', 'readRenviron', 'readline', 'reg\.finalizer',
-            'regexec', 'regexpr', 'registerS3method', 'registerS3methods',
-            'regmatches', 'remove', 'removeTaskCallback', 'rep', 'rep\.Date',
-            'rep\.POSIXct', 'rep\.POSIXlt', 'rep\.factor', 'rep\.int',
-            'rep\.numeric_version', 'rep_len', 'replace', 'replicate',
-            'requireNamespace', 'restartDescription', 'restartFormals',
-            'retracemem', 'rev', 'rev\.default', 'rle', 'rm', 'round',
-            'round\.Date', 'round\.POSIXt', 'row', 'row\.names',
-            'row\.names\.data\.frame', 'row\.names\.default', 'rowMeans', 'rowSums',
-            'rownames', 'rowsum', 'rowsum\.data\.frame', 'rowsum\.default',
-            'sQuote', 'sample', 'sample\.int', 'sapply', 'save', 'save\.image',
-            'saveRDS', 'scale', 'scale\.default', 'scan', 'search',
-            'searchpaths', 'seek', 'seek\.connection', 'seq', 'seq\.Date',
-            'seq\.POSIXt', 'seq\.default', 'seq\.int', 'seq_along', 'seq_len',
-            'sequence', 'serialize', 'set\.seed', 'setHook', 'setNamespaceInfo',
-            'setSessionTimeLimit', 'setTimeLimit', 'setdiff', 'setequal',
-            'setwd', 'shQuote', 'showConnections', 'sign', 'signalCondition',
-            'signif', 'simpleCondition', 'simpleError', 'simpleMessage',
-            'simpleWarning', 'simplify2array', 'sin', 'single',
-            'sinh', 'sink', 'sink\.number', 'slice\.index', 'socketConnection',
-            'socketSelect', 'solve', 'solve\.default', 'solve\.qr', 'sort',
-            'sort\.POSIXlt', 'sort\.default', 'sort\.int', 'sort\.list', 'split',
-            'split\.Date', 'split\.POSIXct', 'split\.data\.frame', 'split\.default',
-            'sprintf', 'sqrt', 'srcfile', 'srcfilealias', 'srcfilecopy',
-            'srcref', 'standardGeneric', 'stderr', 'stdin', 'stdout', 'stop',
-            'stopifnot', 'storage\.mode', 'strftime', 'strptime', 'strsplit',
-            'strtoi', 'strtrim', 'structure', 'strwrap', 'sub', 'subset',
-            'subset\.data\.frame', 'subset\.default', 'subset\.matrix',
-            'substitute', 'substr', 'substring', 'sum', 'summary',
-            'summary\.Date', 'summary\.POSIXct', 'summary\.POSIXlt',
-            'summary\.connection', 'summary\.data\.frame', 'summary\.default',
-            'summary\.factor', 'summary\.matrix', 'summary\.proc_time',
-            'summary\.srcfile', 'summary\.srcref', 'summary\.table',
-            'suppressMessages', 'suppressPackageStartupMessages',
-            'suppressWarnings', 'svd', 'sweep', 'sys\.call', 'sys\.calls',
-            'sys\.frame', 'sys\.frames', 'sys\.function', 'sys\.load\.image',
-            'sys\.nframe', 'sys\.on\.exit', 'sys\.parent', 'sys\.parents',
-            'sys\.save\.image', 'sys\.source', 'sys\.status', 'system',
-            'system\.file', 'system\.time', 'system2', 't', 't\.data\.frame',
-            't\.default', 'table', 'tabulate', 'tail', 'tan', 'tanh', 'tapply',
-            'taskCallbackManager', 'tcrossprod', 'tempdir', 'tempfile',
-            'testPlatformEquivalence', 'textConnection', 'textConnectionValue',
-            'toString', 'toString\.default', 'tolower', 'topenv', 'toupper',
-            'trace', 'traceback', 'tracemem', 'tracingState', 'transform',
-            'transform\.data\.frame', 'transform\.default', 'trigamma', 'trunc',
-            'trunc\.Date', 'trunc\.POSIXt', 'truncate', 'truncate\.connection',
-            'try', 'tryCatch', 'typeof', 'unclass', 'undebug', 'union',
-            'unique', 'unique\.POSIXlt', 'unique\.array', 'unique\.data\.frame',
-            'unique\.default', 'unique\.matrix', 'unique\.numeric_version',
-            'units', 'units\.difftime', 'unix\.time', 'unlink', 'unlist',
-            'unloadNamespace', 'unlockBinding', 'unname', 'unserialize',
-            'unsplit', 'untrace', 'untracemem', 'unz', 'upper\.tri', 'url',
-            'utf8ToInt', 'vapply', 'version', 'warning', 'warnings', 'weekdays',
-            'weekdays\.Date', 'weekdays\.POSIXt', 'which', 'which\.max',
-            'which\.min', 'with', 'with\.default', 'withCallingHandlers',
-            'withRestarts', 'withVisible', 'within', 'within\.data\.frame',
-            'within\.list', 'write', 'write\.dcf', 'writeBin', 'writeChar',
-            'writeLines', 'xor', 'xor\.hexmode', 'xor\.octmode',
-            'xpdrows\.data\.frame', 'xtfrm', 'xtfrm\.AsIs', 'xtfrm\.Date',
-            'xtfrm\.POSIXct', 'xtfrm\.POSIXlt', 'xtfrm\.Surv', 'xtfrm\.default',
-            'xtfrm\.difftime', 'xtfrm\.factor', 'xtfrm\.numeric_version', 'xzfile',
-            'zapsmall'
-        ]
+    builtins_base = (
+        'Arg', 'Conj', 'Cstack_info', 'Encoding', 'FALSE',
+        'Filter', 'Find', 'I', 'ISOdate', 'ISOdatetime', 'Im', 'Inf',
+        'La.svd', 'Map', 'Math.Date', 'Math.POSIXt', 'Math.data.frame',
+        'Math.difftime', 'Math.factor', 'Mod', 'NA_character_',
+        'NA_complex_', 'NA_real_', 'NCOL', 'NROW', 'NULLNA_integer_', 'NaN',
+        'Negate', 'NextMethod', 'Ops.Date', 'Ops.POSIXt', 'Ops.data.frame',
+        'Ops.difftime', 'Ops.factor', 'Ops.numeric_version', 'Ops.ordered',
+        'Position', 'R.Version', 'R.home', 'R.version', 'R.version.string',
+        'RNGkind', 'RNGversion', 'R_system_version', 'Re', 'Recall',
+        'Reduce', 'Summary.Date', 'Summary.POSIXct', 'Summary.POSIXlt',
+        'Summary.data.frame', 'Summary.difftime', 'Summary.factor',
+        'Summary.numeric_version', 'Summary.ordered', 'Sys.Date',
+        'Sys.chmod', 'Sys.getenv', 'Sys.getlocale', 'Sys.getpid',
+        'Sys.glob', 'Sys.info', 'Sys.localeconv', 'Sys.readlink',
+        'Sys.setFileTime', 'Sys.setenv', 'Sys.setlocale', 'Sys.sleep',
+        'Sys.time', 'Sys.timezone', 'Sys.umask', 'Sys.unsetenv',
+        'Sys.which', 'TRUE', 'UseMethod', 'Vectorize', 'abbreviate', 'abs',
+        'acos', 'acosh', 'addNA', 'addTaskCallback', 'agrep', 'alist',
+        'all', 'all.equal', 'all.equal.POSIXct', 'all.equal.character',
+        'all.equal.default', 'all.equal.factor', 'all.equal.formula',
+        'all.equal.language', 'all.equal.list', 'all.equal.numeric',
+        'all.equal.raw', 'all.names', 'all.vars', 'any', 'anyDuplicated',
+        'anyDuplicated.array', 'anyDuplicated.data.frame',
+        'anyDuplicated.default', 'anyDuplicated.matrix', 'aperm',
+        'aperm.default', 'aperm.table', 'append', 'apply', 'args',
+        'arrayInd', 'as.Date', 'as.Date.POSIXct', 'as.Date.POSIXlt',
+        'as.Date.character', 'as.Date.date', 'as.Date.dates',
+        'as.Date.default', 'as.Date.factor', 'as.Date.numeric',
+        'as.POSIXct', 'as.POSIXct.Date', 'as.POSIXct.POSIXlt',
+        'as.POSIXct.date', 'as.POSIXct.dates', 'as.POSIXct.default',
+        'as.POSIXct.numeric', 'as.POSIXlt', 'as.POSIXlt.Date',
+        'as.POSIXlt.POSIXct', 'as.POSIXlt.character', 'as.POSIXlt.date',
+        'as.POSIXlt.dates', 'as.POSIXlt.default', 'as.POSIXlt.factor',
+        'as.POSIXlt.numeric', 'as.array', 'as.array.default', 'as.call',
+        'as.character', 'as.character.Date', 'as.character.POSIXt',
+        'as.character.condition', 'as.character.default',
+        'as.character.error', 'as.character.factor', 'as.character.hexmode',
+        'as.character.numeric_version', 'as.character.octmode',
+        'as.character.srcref', 'as.complex', 'as.data.frame',
+        'as.data.frame.AsIs', 'as.data.frame.Date', 'as.data.frame.POSIXct',
+        'as.data.frame.POSIXlt', 'as.data.frame.array',
+        'as.data.frame.character', 'as.data.frame.complex',
+        'as.data.frame.data.frame', 'as.data.frame.default',
+        'as.data.frame.difftime', 'as.data.frame.factor',
+        'as.data.frame.integer', 'as.data.frame.list',
+        'as.data.frame.logical', 'as.data.frame.matrix',
+        'as.data.frame.model.matrix', 'as.data.frame.numeric',
+        'as.data.frame.numeric_version', 'as.data.frame.ordered',
+        'as.data.frame.raw', 'as.data.frame.table', 'as.data.frame.ts',
+        'as.data.frame.vector', 'as.difftime', 'as.double',
+        'as.double.POSIXlt', 'as.double.difftime', 'as.environment',
+        'as.expression', 'as.expression.default', 'as.factor',
+        'as.function', 'as.function.default', 'as.hexmode', 'as.integer',
+        'as.list', 'as.list.Date', 'as.list.POSIXct', 'as.list.data.frame',
+        'as.list.default', 'as.list.environment', 'as.list.factor',
+        'as.list.function', 'as.list.numeric_version', 'as.logical',
+        'as.logical.factor', 'as.matrix', 'as.matrix.POSIXlt',
+        'as.matrix.data.frame', 'as.matrix.default', 'as.matrix.noquote',
+        'as.name', 'as.null', 'as.null.default', 'as.numeric',
+        'as.numeric_version', 'as.octmode', 'as.ordered',
+        'as.package_version', 'as.pairlist', 'as.qr', 'as.raw', 'as.single',
+        'as.single.default', 'as.symbol', 'as.table', 'as.table.default',
+        'as.vector', 'as.vector.factor', 'asNamespace', 'asS3', 'asS4',
+        'asin', 'asinh', 'assign', 'atan', 'atan2', 'atanh',
+        'attachNamespace', 'attr', 'attr.all.equal', 'attributes',
+        'autoload', 'autoloader', 'backsolve', 'baseenv', 'basename',
+        'besselI', 'besselJ', 'besselK', 'besselY', 'beta',
+        'bindingIsActive', 'bindingIsLocked', 'bindtextdomain', 'bitwAnd',
+        'bitwNot', 'bitwOr', 'bitwShiftL', 'bitwShiftR', 'bitwXor', 'body',
+        'bquote', 'browser', 'browserCondition', 'browserSetDebug',
+        'browserText', 'builtins', 'by', 'by.data.frame', 'by.default',
+        'bzfile', 'c.Date', 'c.POSIXct', 'c.POSIXlt', 'c.noquote',
+        'c.numeric_version', 'call', 'callCC', 'capabilities', 'casefold',
+        'cat', 'category', 'cbind', 'cbind.data.frame', 'ceiling',
+        'char.expand', 'charToRaw', 'charmatch', 'chartr', 'check_tzones',
+        'chol', 'chol.default', 'chol2inv', 'choose', 'class',
+        'clearPushBack', 'close', 'close.connection', 'close.srcfile',
+        'close.srcfilealias', 'closeAllConnections', 'col', 'colMeans',
+        'colSums', 'colnames', 'commandArgs', 'comment', 'computeRestarts',
+        'conditionCall', 'conditionCall.condition', 'conditionMessage',
+        'conditionMessage.condition', 'conflicts', 'contributors', 'cos',
+        'cosh', 'crossprod', 'cummax', 'cummin', 'cumprod', 'cumsum', 'cut',
+        'cut.Date', 'cut.POSIXt', 'cut.default', 'dQuote', 'data.class',
+        'data.matrix', 'date', 'debug', 'debugonce',
+        'default.stringsAsFactors', 'delayedAssign', 'deparse', 'det',
+        'determinant', 'determinant.matrix', 'dget', 'diag', 'diff',
+        'diff.Date', 'diff.POSIXt', 'diff.default', 'difftime', 'digamma',
+        'dim', 'dim.data.frame', 'dimnames', 'dimnames.data.frame', 'dir',
+        'dir.create', 'dirname', 'do.call', 'dput', 'drop', 'droplevels',
+        'droplevels.data.frame', 'droplevels.factor', 'dump', 'duplicated',
+        'duplicated.POSIXlt', 'duplicated.array', 'duplicated.data.frame',
+        'duplicated.default', 'duplicated.matrix',
+        'duplicated.numeric_version', 'dyn.load', 'dyn.unload', 'eapply',
+        'eigen', 'else', 'emptyenv', 'enc2native', 'enc2utf8',
+        'encodeString', 'enquote', 'env.profile', 'environment',
+        'environmentIsLocked', 'environmentName', 'eval', 'eval.parent',
+        'evalq', 'exists', 'exp', 'expand.grid', 'expm1', 'expression',
+        'factor', 'factorial', 'fifo', 'file', 'file.access', 'file.append',
+        'file.choose', 'file.copy', 'file.create', 'file.exists',
+        'file.info', 'file.link', 'file.path', 'file.remove', 'file.rename',
+        'file.show', 'file.symlink', 'find.package', 'findInterval',
+        'findPackageEnv', 'findRestart', 'floor', 'flush',
+        'flush.connection', 'force', 'formals', 'format',
+        'format.AsIs', 'format.Date', 'format.POSIXct', 'format.POSIXlt',
+        'format.data.frame', 'format.default', 'format.difftime',
+        'format.factor', 'format.hexmode', 'format.info',
+        'format.libraryIQR', 'format.numeric_version', 'format.octmode',
+        'format.packageInfo', 'format.pval', 'format.summaryDefault',
+        'formatC', 'formatDL', 'forwardsolve', 'gamma', 'gc', 'gc.time',
+        'gcinfo', 'gctorture', 'gctorture2', 'get', 'getAllConnections',
+        'getCallingDLL', 'getCallingDLLe', 'getConnection',
+        'getDLLRegisteredRoutines', 'getDLLRegisteredRoutines.DLLInfo',
+        'getDLLRegisteredRoutines.character', 'getElement',
+        'getExportedValue', 'getHook', 'getLoadedDLLs', 'getNamespace',
+        'getNamespaceExports', 'getNamespaceImports', 'getNamespaceInfo',
+        'getNamespaceName', 'getNamespaceUsers', 'getNamespaceVersion',
+        'getNativeSymbolInfo', 'getOption', 'getRversion', 'getSrcLines',
+        'getTaskCallbackNames', 'geterrmessage', 'gettext', 'gettextf',
+        'getwd', 'gl', 'globalenv', 'gregexpr', 'grep', 'grepRaw', 'grepl',
+        'gsub', 'gzcon', 'gzfile', 'head', 'iconv', 'iconvlist',
+        'icuSetCollate', 'identical', 'identity', 'ifelse', 'importIntoEnv',
+        'in', 'inherits', 'intToBits', 'intToUtf8', 'interaction', 'interactive',
+        'intersect', 'inverse.rle', 'invisible', 'invokeRestart',
+        'invokeRestartInteractively', 'is.R', 'is.array', 'is.atomic',
+        'is.call', 'is.character', 'is.complex', 'is.data.frame',
+        'is.double', 'is.element', 'is.environment', 'is.expression',
+        'is.factor', 'is.finite', 'is.function', 'is.infinite',
+        'is.integer', 'is.language', 'is.list', 'is.loaded', 'is.logical',
+        'is.matrix', 'is.na', 'is.na.POSIXlt', 'is.na.data.frame',
+        'is.na.numeric_version', 'is.name', 'is.nan', 'is.null',
+        'is.numeric', 'is.numeric.Date', 'is.numeric.POSIXt',
+        'is.numeric.difftime', 'is.numeric_version', 'is.object',
+        'is.ordered', 'is.package_version', 'is.pairlist', 'is.primitive',
+        'is.qr', 'is.raw', 'is.recursive', 'is.single', 'is.symbol',
+        'is.table', 'is.unsorted', 'is.vector', 'isBaseNamespace',
+        'isIncomplete', 'isNamespace', 'isOpen', 'isRestart', 'isS4',
+        'isSeekable', 'isSymmetric', 'isSymmetric.matrix', 'isTRUE',
+        'isatty', 'isdebugged', 'jitter', 'julian', 'julian.Date',
+        'julian.POSIXt', 'kappa', 'kappa.default', 'kappa.lm', 'kappa.qr',
+        'kronecker', 'l10n_info', 'labels', 'labels.default', 'lapply',
+        'lazyLoad', 'lazyLoadDBexec', 'lazyLoadDBfetch', 'lbeta', 'lchoose',
+        'length', 'length.POSIXlt', 'letters', 'levels', 'levels.default',
+        'lfactorial', 'lgamma', 'library.dynam', 'library.dynam.unload',
+        'licence', 'license', 'list.dirs', 'list.files', 'list2env', 'load',
+        'loadNamespace', 'loadedNamespaces', 'loadingNamespaceInfo',
+        'local', 'lockBinding', 'lockEnvironment', 'log', 'log10', 'log1p',
+        'log2', 'logb', 'lower.tri', 'ls', 'make.names', 'make.unique',
+        'makeActiveBinding', 'mapply', 'margin.table', 'mat.or.vec',
+        'match', 'match.arg', 'match.call', 'match.fun', 'max', 'max.col',
+        'mean', 'mean.Date', 'mean.POSIXct', 'mean.POSIXlt', 'mean.default',
+        'mean.difftime', 'mem.limits', 'memCompress', 'memDecompress',
+        'memory.profile', 'merge', 'merge.data.frame', 'merge.default',
+        'message', 'mget', 'min', 'missing', 'mode', 'month.abb',
+        'month.name', 'months', 'months.Date', 'months.POSIXt',
+        'months.abb', 'months.nameletters', 'names', 'names.POSIXlt',
+        'namespaceExport', 'namespaceImport', 'namespaceImportClasses',
+        'namespaceImportFrom', 'namespaceImportMethods', 'nargs', 'nchar',
+        'ncol', 'new.env', 'ngettext', 'nlevels', 'noquote', 'norm',
+        'normalizePath', 'nrow', 'numeric_version', 'nzchar', 'objects',
+        'oldClass', 'on.exit', 'open', 'open.connection', 'open.srcfile',
+        'open.srcfilealias', 'open.srcfilecopy', 'options', 'order',
+        'ordered', 'outer', 'packBits', 'packageEvent',
+        'packageHasNamespace', 'packageStartupMessage', 'package_version',
+        'pairlist', 'parent.env', 'parent.frame', 'parse',
+        'parseNamespaceFile', 'paste', 'paste0', 'path.expand',
+        'path.package', 'pipe', 'pmatch', 'pmax', 'pmax.int', 'pmin',
+        'pmin.int', 'polyroot', 'pos.to.env', 'pretty', 'pretty.default',
+        'prettyNum', 'print', 'print.AsIs', 'print.DLLInfo',
+        'print.DLLInfoList', 'print.DLLRegisteredRoutines', 'print.Date',
+        'print.NativeRoutineList', 'print.POSIXct', 'print.POSIXlt',
+        'print.by', 'print.condition', 'print.connection',
+        'print.data.frame', 'print.default', 'print.difftime',
+        'print.factor', 'print.function', 'print.hexmode',
+        'print.libraryIQR', 'print.listof', 'print.noquote',
+        'print.numeric_version', 'print.octmode', 'print.packageInfo',
+        'print.proc_time', 'print.restart', 'print.rle',
+        'print.simple.list', 'print.srcfile', 'print.srcref',
+        'print.summary.table', 'print.summaryDefault', 'print.table',
+        'print.warnings', 'prmatrix', 'proc.time', 'prod', 'prop.table',
+        'provideDimnames', 'psigamma', 'pushBack', 'pushBackLength', 'q',
+        'qr', 'qr.Q', 'qr.R', 'qr.X', 'qr.coef', 'qr.default', 'qr.fitted',
+        'qr.qty', 'qr.qy', 'qr.resid', 'qr.solve', 'quarters',
+        'quarters.Date', 'quarters.POSIXt', 'quit', 'quote', 'range',
+        'range.default', 'rank', 'rapply', 'raw', 'rawConnection',
+        'rawConnectionValue', 'rawShift', 'rawToBits', 'rawToChar', 'rbind',
+        'rbind.data.frame', 'rcond', 'read.dcf', 'readBin', 'readChar',
+        'readLines', 'readRDS', 'readRenviron', 'readline', 'reg.finalizer',
+        'regexec', 'regexpr', 'registerS3method', 'registerS3methods',
+        'regmatches', 'remove', 'removeTaskCallback', 'rep', 'rep.Date',
+        'rep.POSIXct', 'rep.POSIXlt', 'rep.factor', 'rep.int',
+        'rep.numeric_version', 'rep_len', 'replace', 'replicate',
+        'requireNamespace', 'restartDescription', 'restartFormals',
+        'retracemem', 'rev', 'rev.default', 'rle', 'rm', 'round',
+        'round.Date', 'round.POSIXt', 'row', 'row.names',
+        'row.names.data.frame', 'row.names.default', 'rowMeans', 'rowSums',
+        'rownames', 'rowsum', 'rowsum.data.frame', 'rowsum.default',
+        'sQuote', 'sample', 'sample.int', 'sapply', 'save', 'save.image',
+        'saveRDS', 'scale', 'scale.default', 'scan', 'search',
+        'searchpaths', 'seek', 'seek.connection', 'seq', 'seq.Date',
+        'seq.POSIXt', 'seq.default', 'seq.int', 'seq_along', 'seq_len',
+        'sequence', 'serialize', 'set.seed', 'setHook', 'setNamespaceInfo',
+        'setSessionTimeLimit', 'setTimeLimit', 'setdiff', 'setequal',
+        'setwd', 'shQuote', 'showConnections', 'sign', 'signalCondition',
+        'signif', 'simpleCondition', 'simpleError', 'simpleMessage',
+        'simpleWarning', 'simplify2array', 'sin', 'single',
+        'sinh', 'sink', 'sink.number', 'slice.index', 'socketConnection',
+        'socketSelect', 'solve', 'solve.default', 'solve.qr', 'sort',
+        'sort.POSIXlt', 'sort.default', 'sort.int', 'sort.list', 'split',
+        'split.Date', 'split.POSIXct', 'split.data.frame', 'split.default',
+        'sprintf', 'sqrt', 'srcfile', 'srcfilealias', 'srcfilecopy',
+        'srcref', 'standardGeneric', 'stderr', 'stdin', 'stdout', 'stop',
+        'stopifnot', 'storage.mode', 'strftime', 'strptime', 'strsplit',
+        'strtoi', 'strtrim', 'structure', 'strwrap', 'sub', 'subset',
+        'subset.data.frame', 'subset.default', 'subset.matrix',
+        'substitute', 'substr', 'substring', 'sum', 'summary',
+        'summary.Date', 'summary.POSIXct', 'summary.POSIXlt',
+        'summary.connection', 'summary.data.frame', 'summary.default',
+        'summary.factor', 'summary.matrix', 'summary.proc_time',
+        'summary.srcfile', 'summary.srcref', 'summary.table',
+        'suppressMessages', 'suppressPackageStartupMessages',
+        'suppressWarnings', 'svd', 'sweep', 'sys.call', 'sys.calls',
+        'sys.frame', 'sys.frames', 'sys.function', 'sys.load.image',
+        'sys.nframe', 'sys.on.exit', 'sys.parent', 'sys.parents',
+        'sys.save.image', 'sys.source', 'sys.status', 'system',
+        'system.file', 'system.time', 'system2', 't', 't.data.frame',
+        't.default', 'table', 'tabulate', 'tail', 'tan', 'tanh', 'tapply',
+        'taskCallbackManager', 'tcrossprod', 'tempdir', 'tempfile',
+        'testPlatformEquivalence', 'textConnection', 'textConnectionValue',
+        'toString', 'toString.default', 'tolower', 'topenv', 'toupper',
+        'trace', 'traceback', 'tracemem', 'tracingState', 'transform',
+        'transform.data.frame', 'transform.default', 'trigamma', 'trunc',
+        'trunc.Date', 'trunc.POSIXt', 'truncate', 'truncate.connection',
+        'try', 'tryCatch', 'typeof', 'unclass', 'undebug', 'union',
+        'unique', 'unique.POSIXlt', 'unique.array', 'unique.data.frame',
+        'unique.default', 'unique.matrix', 'unique.numeric_version',
+        'units', 'units.difftime', 'unix.time', 'unlink', 'unlist',
+        'unloadNamespace', 'unlockBinding', 'unname', 'unserialize',
+        'unsplit', 'untrace', 'untracemem', 'unz', 'upper.tri', 'url',
+        'utf8ToInt', 'vapply', 'version', 'warning', 'warnings', 'weekdays',
+        'weekdays.Date', 'weekdays.POSIXt', 'which', 'which.max',
+        'which.min', 'with', 'with.default', 'withCallingHandlers',
+        'withRestarts', 'withVisible', 'within', 'within.data.frame',
+        'within.list', 'write', 'write.dcf', 'writeBin', 'writeChar',
+        'writeLines', 'xor', 'xor.hexmode', 'xor.octmode',
+        'xpdrows.data.frame', 'xtfrm', 'xtfrm.AsIs', 'xtfrm.Date',
+        'xtfrm.POSIXct', 'xtfrm.POSIXlt', 'xtfrm.Surv', 'xtfrm.default',
+        'xtfrm.difftime', 'xtfrm.factor', 'xtfrm.numeric_version', 'xzfile',
+        'zapsmall'
+    )
 
     tokens = {
         'comments': [
@@ -1315,8 +1327,7 @@ class SLexer(RegexLexer):
             (r'\[{1,2}|\]{1,2}|\(|\)|;|,', Punctuation),
         ],
         'keywords': [
-            (r'(' + r'|'.join(builtins_base) + r')'
-             r'(?![\w\. =])',
+            (words(builtins_base, suffix=r'(?![\w\. =])'),
              Keyword.Pseudo),
             (r'(if|else|for|while|repeat|in|next|break|return|switch|function)'
              r'(?![\w\.])',
@@ -1365,14 +1376,14 @@ class SLexer(RegexLexer):
             include('statements'),
             # blocks:
             (r'\{|\}', Punctuation),
-            #(r'\{', Punctuation, 'block'),
+            # (r'\{', Punctuation, 'block'),
             (r'.', Text),
         ],
-        #'block': [
+        # 'block': [
         #    include('statements'),
         #    ('\{', Punctuation, '#push'),
         #    ('\}', Punctuation, '#pop')
-        #],
+        # ],
         'string_squote': [
             (r'([^\'\\]|\\.)*\'', String, '#pop'),
         ],
@@ -1398,7 +1409,7 @@ class BugsLexer(RegexLexer):
     aliases = ['bugs', 'winbugs', 'openbugs']
     filenames = ['*.bug']
 
-    _FUNCTIONS = [
+    _FUNCTIONS = (
         # Scalar functions
         'abs', 'arccos', 'arccosh', 'arcsin', 'arcsinh', 'arctan', 'arctanh',
         'cloglog', 'cos', 'cosh', 'cumulative', 'cut', 'density', 'deviance',
@@ -1411,8 +1422,8 @@ class BugsLexer(RegexLexer):
         'inprod', 'interp.lin', 'inverse', 'logdet', 'mean', 'eigen.vals',
         'ode', 'prod', 'p.valueM', 'rank', 'ranked', 'replicate.postM',
         'sd', 'sort', 'sum',
-        ## Special
-        'D', 'I', 'F', 'T', 'C']
+        # Special
+        'D', 'I', 'F', 'T', 'C')
     """ OpenBUGS built-in functions
 
     From http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAII
@@ -1426,27 +1437,26 @@ class BugsLexer(RegexLexer):
 
     """
 
-    _DISTRIBUTIONS = ['dbern', 'dbin', 'dcat', 'dnegbin', 'dpois',
+    _DISTRIBUTIONS = ('dbern', 'dbin', 'dcat', 'dnegbin', 'dpois',
                       'dhyper', 'dbeta', 'dchisqr', 'ddexp', 'dexp',
                       'dflat', 'dgamma', 'dgev', 'df', 'dggamma', 'dgpar',
                       'dloglik', 'dlnorm', 'dlogis', 'dnorm', 'dpar',
                       'dt', 'dunif', 'dweib', 'dmulti', 'ddirch', 'dmnorm',
-                      'dmt', 'dwish']
+                      'dmt', 'dwish')
     """ OpenBUGS built-in distributions
 
     Functions from
     http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAI
     """
 
-
     tokens = {
-        'whitespace' : [
+        'whitespace': [
             (r"\s+", Text),
-            ],
-        'comments' : [
+        ],
+        'comments': [
             # Comments
             (r'#.*$', Comment.Single),
-            ],
+        ],
         'root': [
             # Comments
             include('comments'),
@@ -1473,14 +1483,15 @@ class BugsLexer(RegexLexer):
             (r'\+|-|\*|/', Operator),
             # Block
             (r'[{}]', Punctuation),
-            ]
-        }
+        ]
+    }
 
     def analyse_text(text):
         if re.search(r"^\s*model\s*{", text, re.M):
             return 0.7
         else:
             return 0.0
+
 
 class JagsLexer(RegexLexer):
     """
@@ -1493,8 +1504,8 @@ class JagsLexer(RegexLexer):
     aliases = ['jags']
     filenames = ['*.jag', '*.bug']
 
-    ## JAGS
-    _FUNCTIONS = [
+    # JAGS
+    _FUNCTIONS = (
         'abs', 'arccos', 'arccosh', 'arcsin', 'arcsinh', 'arctan', 'arctanh',
         'cos', 'cosh', 'cloglog',
         'equals', 'exp', 'icloglog', 'ifelse', 'ilogit', 'log', 'logfact',
@@ -1503,32 +1514,32 @@ class JagsLexer(RegexLexer):
         'logdet', 'max', 'mean', 'min', 'prod', 'sum', 'sd', 'inverse',
         'rank', 'sort', 't', 'acos', 'acosh', 'asin', 'asinh', 'atan',
         # Truncation/Censoring (should I include)
-        'T', 'I']
+        'T', 'I')
     # Distributions with density, probability and quartile functions
-    _DISTRIBUTIONS = ['[dpq]%s' % x for x in
-                           ['bern', 'beta', 'dchiqsqr', 'ddexp', 'dexp',
-                            'df', 'gamma', 'gen.gamma', 'logis', 'lnorm',
-                            'negbin', 'nchisqr', 'norm', 'par', 'pois', 'weib']]
+    _DISTRIBUTIONS = tuple('[dpq]%s' % x for x in
+                      ('bern', 'beta', 'dchiqsqr', 'ddexp', 'dexp',
+                       'df', 'gamma', 'gen.gamma', 'logis', 'lnorm',
+                       'negbin', 'nchisqr', 'norm', 'par', 'pois', 'weib'))
     # Other distributions without density and probability
-    _OTHER_DISTRIBUTIONS = [
+    _OTHER_DISTRIBUTIONS = (
         'dt', 'dunif', 'dbetabin', 'dbern', 'dbin', 'dcat', 'dhyper',
         'ddirch', 'dmnorm', 'dwish', 'dmt', 'dmulti', 'dbinom', 'dchisq',
-        'dnbinom', 'dweibull', 'ddirich']
+        'dnbinom', 'dweibull', 'ddirich')
 
     tokens = {
-        'whitespace' : [
+        'whitespace': [
             (r"\s+", Text),
-            ],
-        'names' : [
+        ],
+        'names': [
             # Regular variable names
             (r'[a-zA-Z][\w.]*\b', Name),
-            ],
-        'comments' : [
+        ],
+        'comments': [
             # do not use stateful comments
             (r'(?s)/\*.*?\*/', Comment.Multiline),
             # Comments
             (r'#.*$', Comment.Single),
-            ],
+        ],
         'root': [
             # Comments
             include('comments'),
@@ -1542,8 +1553,8 @@ class JagsLexer(RegexLexer):
             # Builtins
             # Need to use lookahead because . is a valid char
             (r'(%s)(?=\s*\()' % r'|'.join(_FUNCTIONS
-                                 + _DISTRIBUTIONS
-                                 + _OTHER_DISTRIBUTIONS),
+                                          + _DISTRIBUTIONS
+                                          + _OTHER_DISTRIBUTIONS),
              Name.Builtin),
             # Names
             include('names'),
@@ -1555,8 +1566,8 @@ class JagsLexer(RegexLexer):
             # # JAGS includes many more than OpenBUGS
             (r'\+|-|\*|\/|\|\|[&]{2}|[<>=]=?|\^|%.*?%', Operator),
             (r'[{}]', Punctuation),
-            ]
-        }
+        ]
+    }
 
     def analyse_text(text):
         if re.search(r'^\s*model\s*\{', text, re.M):
@@ -1569,11 +1580,12 @@ class JagsLexer(RegexLexer):
         else:
             return 0
 
+
 class StanLexer(RegexLexer):
     """Pygments Lexer for Stan models.
 
-    The Stan modeling language is specified in the *Stan Modeling Language User's Guide and Reference Manual, v2.2.0*,
-    `pdf <https://github.com/stan-dev/stan/releases/download/v2.2.0/stan-reference-2.2.0.pdf>`__.
+    The Stan modeling language is specified in the *Stan Modeling Language User's Guide and Reference Manual, v2.4.0*,
+    `pdf <https://github.com/stan-dev/stan/releases/download/v2.4.0/stan-reference-2.4.0.pdf>`__.
 
     .. versionadded:: 1.6
     """
@@ -1583,14 +1595,14 @@ class StanLexer(RegexLexer):
     filenames = ['*.stan']
 
     tokens = {
-        'whitespace' : [
+        'whitespace': [
             (r"\s+", Text),
-            ],
-        'comments' : [
+        ],
+        'comments': [
             (r'(?s)/\*.*?\*/', Comment.Multiline),
             # Comments
             (r'(//|#).*$', Comment.Single),
-            ],
+        ],
         'root': [
             # Stan is more restrictive on strings than this regex
             (r'"[^"]*"', String),
@@ -1600,7 +1612,7 @@ class StanLexer(RegexLexer):
             include('whitespace'),
             # Block start
             (r'(%s)(\s*)({)' %
-             r'|'.join(('data', r'transformed\s+?data',
+             r'|'.join(('functions', 'data', r'transformed\s+?data',
                         'parameters', r'transformed\s+parameters',
                         'model', r'generated\s+quantities')),
              bygroups(Keyword.Namespace, Text, Punctuation)),
@@ -1630,12 +1642,12 @@ class StanLexer(RegexLexer):
             # Assignment operators
             # SLexer makes these tokens Operators.
             (r'<-|~', Operator),
-            # Infix and prefix operators (and = )
-            (r"\+|-|\.?\*|\.?/|\\|'|==?|!=?|<=?|>=?|\|\||&&", Operator),
+            # Infix, prefix and postfix operators (and = )
+            (r"\+|-|\.?\*|\.?/|\\|'|\^|==?|!=?|<=?|>=?|\|\||&&", Operator),
             # Block delimiters
             (r'[{}]', Punctuation),
-            ]
-        }
+        ]
+    }
 
     def analyse_text(text):
         if re.search(r'^\s*parameters\s*\{', text, re.M):
@@ -1657,226 +1669,228 @@ class IDLLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    _RESERVED = ['and', 'begin', 'break', 'case', 'common', 'compile_opt',
-                 'continue', 'do', 'else', 'end', 'endcase', 'elseelse',
-                 'endfor', 'endforeach', 'endif', 'endrep', 'endswitch',
-                 'endwhile', 'eq', 'for', 'foreach', 'forward_function',
-                 'function', 'ge', 'goto', 'gt', 'if', 'inherits', 'le',
-                 'lt', 'mod', 'ne', 'not', 'of', 'on_ioerror', 'or', 'pro',
-                 'repeat', 'switch', 'then', 'until', 'while', 'xor']
+    _RESERVED = (
+        'and', 'begin', 'break', 'case', 'common', 'compile_opt',
+        'continue', 'do', 'else', 'end', 'endcase', 'elseelse',
+        'endfor', 'endforeach', 'endif', 'endrep', 'endswitch',
+        'endwhile', 'eq', 'for', 'foreach', 'forward_function',
+        'function', 'ge', 'goto', 'gt', 'if', 'inherits', 'le',
+        'lt', 'mod', 'ne', 'not', 'of', 'on_ioerror', 'or', 'pro',
+        'repeat', 'switch', 'then', 'until', 'while', 'xor')
     """Reserved words from: http://www.exelisvis.com/docs/reswords.html"""
 
-    _BUILTIN_LIB = ['abs', 'acos', 'adapt_hist_equal', 'alog', 'alog10',
-                    'amoeba', 'annotate', 'app_user_dir', 'app_user_dir_query',
-                    'arg_present', 'array_equal', 'array_indices', 'arrow',
-                    'ascii_template', 'asin', 'assoc', 'atan', 'axis',
-                    'a_correlate', 'bandpass_filter', 'bandreject_filter',
-                    'barplot', 'bar_plot', 'beseli', 'beselj', 'beselk',
-                    'besely', 'beta', 'bilinear', 'binary_template', 'bindgen',
-                    'binomial', 'bin_date', 'bit_ffs', 'bit_population',
-                    'blas_axpy', 'blk_con', 'box_cursor', 'breakpoint',
-                    'broyden', 'butterworth', 'bytarr', 'byte', 'byteorder',
-                    'bytscl', 'caldat', 'calendar', 'call_external',
-                    'call_function', 'call_method', 'call_procedure', 'canny',
-                    'catch', 'cd', 'cdf_\w*', 'ceil', 'chebyshev',
-                    'check_math',
-                    'chisqr_cvf', 'chisqr_pdf', 'choldc', 'cholsol', 'cindgen',
-                    'cir_3pnt', 'close', 'cluster', 'cluster_tree', 'clust_wts',
-                    'cmyk_convert', 'colorbar', 'colorize_sample',
-                    'colormap_applicable', 'colormap_gradient',
-                    'colormap_rotation', 'colortable', 'color_convert',
-                    'color_exchange', 'color_quan', 'color_range_map', 'comfit',
-                    'command_line_args', 'complex', 'complexarr', 'complexround',
-                    'compute_mesh_normals', 'cond', 'congrid', 'conj',
-                    'constrained_min', 'contour', 'convert_coord', 'convol',
-                    'convol_fft', 'coord2to3', 'copy_lun', 'correlate', 'cos',
-                    'cosh', 'cpu', 'cramer', 'create_cursor', 'create_struct',
-                    'create_view', 'crossp', 'crvlength', 'cti_test',
-                    'ct_luminance', 'cursor', 'curvefit', 'cvttobm', 'cv_coord',
-                    'cw_animate', 'cw_animate_getp', 'cw_animate_load',
-                    'cw_animate_run', 'cw_arcball', 'cw_bgroup', 'cw_clr_index',
-                    'cw_colorsel', 'cw_defroi', 'cw_field', 'cw_filesel',
-                    'cw_form', 'cw_fslider', 'cw_light_editor',
-                    'cw_light_editor_get', 'cw_light_editor_set', 'cw_orient',
-                    'cw_palette_editor', 'cw_palette_editor_get',
-                    'cw_palette_editor_set', 'cw_pdmenu', 'cw_rgbslider',
-                    'cw_tmpl', 'cw_zoom', 'c_correlate', 'dblarr', 'db_exists',
-                    'dcindgen', 'dcomplex', 'dcomplexarr', 'define_key',
-                    'define_msgblk', 'define_msgblk_from_file', 'defroi',
-                    'defsysv', 'delvar', 'dendrogram', 'dendro_plot', 'deriv',
-                    'derivsig', 'determ', 'device', 'dfpmin', 'diag_matrix',
-                    'dialog_dbconnect', 'dialog_message', 'dialog_pickfile',
-                    'dialog_printersetup', 'dialog_printjob',
-                    'dialog_read_image', 'dialog_write_image', 'digital_filter',
-                    'dilate', 'dindgen', 'dissolve', 'dist', 'distance_measure',
-                    'dlm_load', 'dlm_register', 'doc_library', 'double',
-                    'draw_roi', 'edge_dog', 'efont', 'eigenql', 'eigenvec',
-                    'ellipse', 'elmhes', 'emboss', 'empty', 'enable_sysrtn',
-                    'eof', 'eos_\w*', 'erase', 'erf', 'erfc', 'erfcx',
-                    'erode', 'errorplot', 'errplot', 'estimator_filter',
-                    'execute', 'exit', 'exp', 'expand', 'expand_path', 'expint',
-                    'extrac', 'extract_slice', 'factorial', 'fft', 'filepath',
-                    'file_basename', 'file_chmod', 'file_copy', 'file_delete',
-                    'file_dirname', 'file_expand_path', 'file_info',
-                    'file_lines', 'file_link', 'file_mkdir', 'file_move',
-                    'file_poll_input', 'file_readlink', 'file_same',
-                    'file_search', 'file_test', 'file_which', 'findgen',
-                    'finite', 'fix', 'flick', 'float', 'floor', 'flow3',
-                    'fltarr', 'flush', 'format_axis_values', 'free_lun',
-                    'fstat', 'fulstr', 'funct', 'fv_test', 'fx_root',
-                    'fz_roots', 'f_cvf', 'f_pdf', 'gamma', 'gamma_ct',
-                    'gauss2dfit', 'gaussfit', 'gaussian_function', 'gaussint',
-                    'gauss_cvf', 'gauss_pdf', 'gauss_smooth', 'getenv',
-                    'getwindows', 'get_drive_list', 'get_dxf_objects',
-                    'get_kbrd', 'get_login_info', 'get_lun', 'get_screen_size',
-                    'greg2jul', 'grib_\w*', 'grid3', 'griddata',
-                    'grid_input', 'grid_tps', 'gs_iter',
-                    'h5[adfgirst]_\w*', 'h5_browser', 'h5_close',
-                    'h5_create', 'h5_get_libversion', 'h5_open', 'h5_parse',
-                    'hanning', 'hash', 'hdf_\w*', 'heap_free',
-                    'heap_gc', 'heap_nosave', 'heap_refcount', 'heap_save',
-                    'help', 'hilbert', 'histogram', 'hist_2d', 'hist_equal',
-                    'hls', 'hough', 'hqr', 'hsv', 'h_eq_ct', 'h_eq_int',
-                    'i18n_multibytetoutf8', 'i18n_multibytetowidechar',
-                    'i18n_utf8tomultibyte', 'i18n_widechartomultibyte',
-                    'ibeta', 'icontour', 'iconvertcoord', 'idelete', 'identity',
-                    'idlexbr_assistant', 'idlitsys_createtool', 'idl_base64',
-                    'idl_validname', 'iellipse', 'igamma', 'igetcurrent',
-                    'igetdata', 'igetid', 'igetproperty', 'iimage', 'image',
-                    'image_cont', 'image_statistics', 'imaginary', 'imap',
-                    'indgen', 'intarr', 'interpol', 'interpolate',
-                    'interval_volume', 'int_2d', 'int_3d', 'int_tabulated',
-                    'invert', 'ioctl', 'iopen', 'iplot', 'ipolygon',
-                    'ipolyline', 'iputdata', 'iregister', 'ireset', 'iresolve',
-                    'irotate', 'ir_filter', 'isa', 'isave', 'iscale',
-                    'isetcurrent', 'isetproperty', 'ishft', 'isocontour',
-                    'isosurface', 'isurface', 'itext', 'itranslate', 'ivector',
-                    'ivolume', 'izoom', 'i_beta', 'journal', 'json_parse',
-                    'json_serialize', 'jul2greg', 'julday', 'keyword_set',
-                    'krig2d', 'kurtosis', 'kw_test', 'l64indgen', 'label_date',
-                    'label_region', 'ladfit', 'laguerre', 'laplacian',
-                    'la_choldc', 'la_cholmprove', 'la_cholsol', 'la_determ',
-                    'la_eigenproblem', 'la_eigenql', 'la_eigenvec', 'la_elmhes',
-                    'la_gm_linear_model', 'la_hqr', 'la_invert',
-                    'la_least_squares', 'la_least_square_equality',
-                    'la_linear_equation', 'la_ludc', 'la_lumprove', 'la_lusol',
-                    'la_svd', 'la_tridc', 'la_trimprove', 'la_triql',
-                    'la_trired', 'la_trisol', 'least_squares_filter', 'leefilt',
-                    'legend', 'legendre', 'linbcg', 'lindgen', 'linfit',
-                    'linkimage', 'list', 'll_arc_distance', 'lmfit', 'lmgr',
-                    'lngamma', 'lnp_test', 'loadct', 'locale_get',
-                    'logical_and', 'logical_or', 'logical_true', 'lon64arr',
-                    'lonarr', 'long', 'long64', 'lsode', 'ludc', 'lumprove',
-                    'lusol', 'lu_complex', 'machar', 'make_array', 'make_dll',
-                    'make_rt', 'map', 'mapcontinents', 'mapgrid', 'map_2points',
-                    'map_continents', 'map_grid', 'map_image', 'map_patch',
-                    'map_proj_forward', 'map_proj_image', 'map_proj_info',
-                    'map_proj_init', 'map_proj_inverse', 'map_set',
-                    'matrix_multiply', 'matrix_power', 'max', 'md_test',
-                    'mean', 'meanabsdev', 'mean_filter', 'median', 'memory',
-                    'mesh_clip', 'mesh_decimate', 'mesh_issolid', 'mesh_merge',
-                    'mesh_numtriangles', 'mesh_obj', 'mesh_smooth',
-                    'mesh_surfacearea', 'mesh_validate', 'mesh_volume',
-                    'message', 'min', 'min_curve_surf', 'mk_html_help',
-                    'modifyct', 'moment', 'morph_close', 'morph_distance',
-                    'morph_gradient', 'morph_hitormiss', 'morph_open',
-                    'morph_thin', 'morph_tophat', 'multi', 'm_correlate',
-                    'ncdf_\w*', 'newton', 'noise_hurl', 'noise_pick',
-                    'noise_scatter', 'noise_slur', 'norm', 'n_elements',
-                    'n_params', 'n_tags', 'objarr', 'obj_class', 'obj_destroy',
-                    'obj_hasmethod', 'obj_isa', 'obj_new', 'obj_valid',
-                    'online_help', 'on_error', 'open', 'oplot', 'oploterr',
-                    'parse_url', 'particle_trace', 'path_cache', 'path_sep',
-                    'pcomp', 'plot', 'plot3d', 'ploterr', 'plots', 'plot_3dbox',
-                    'plot_field', 'pnt_line', 'point_lun', 'polarplot',
-                    'polar_contour', 'polar_surface', 'poly', 'polyfill',
-                    'polyfillv', 'polygon', 'polyline', 'polyshade', 'polywarp',
-                    'poly_2d', 'poly_area', 'poly_fit', 'popd', 'powell',
-                    'pref_commit', 'pref_get', 'pref_set', 'prewitt', 'primes',
-                    'print', 'printd', 'product', 'profile', 'profiler',
-                    'profiles', 'project_vol', 'psafm', 'pseudo',
-                    'ps_show_fonts', 'ptrarr', 'ptr_free', 'ptr_new',
-                    'ptr_valid', 'pushd', 'p_correlate', 'qgrid3', 'qhull',
-                    'qromb', 'qromo', 'qsimp', 'query_ascii', 'query_bmp',
-                    'query_csv', 'query_dicom', 'query_gif', 'query_image',
-                    'query_jpeg', 'query_jpeg2000', 'query_mrsid', 'query_pict',
-                    'query_png', 'query_ppm', 'query_srf', 'query_tiff',
-                    'query_wav', 'radon', 'randomn', 'randomu', 'ranks',
-                    'rdpix', 'read', 'reads', 'readu', 'read_ascii',
-                    'read_binary', 'read_bmp', 'read_csv', 'read_dicom',
-                    'read_gif', 'read_image', 'read_interfile', 'read_jpeg',
-                    'read_jpeg2000', 'read_mrsid', 'read_pict', 'read_png',
-                    'read_ppm', 'read_spr', 'read_srf', 'read_sylk',
-                    'read_tiff', 'read_wav', 'read_wave', 'read_x11_bitmap',
-                    'read_xwd', 'real_part', 'rebin', 'recall_commands',
-                    'recon3', 'reduce_colors', 'reform', 'region_grow',
-                    'register_cursor', 'regress', 'replicate',
-                    'replicate_inplace', 'resolve_all', 'resolve_routine',
-                    'restore', 'retall', 'return', 'reverse', 'rk4', 'roberts',
-                    'rot', 'rotate', 'round', 'routine_filepath',
-                    'routine_info', 'rs_test', 'r_correlate', 'r_test',
-                    'save', 'savgol', 'scale3', 'scale3d', 'scope_level',
-                    'scope_traceback', 'scope_varfetch', 'scope_varname',
-                    'search2d', 'search3d', 'sem_create', 'sem_delete',
-                    'sem_lock', 'sem_release', 'setenv', 'set_plot',
-                    'set_shading', 'sfit', 'shade_surf', 'shade_surf_irr',
-                    'shade_volume', 'shift', 'shift_diff', 'shmdebug', 'shmmap',
-                    'shmunmap', 'shmvar', 'show3', 'showfont', 'simplex', 'sin',
-                    'sindgen', 'sinh', 'size', 'skewness', 'skip_lun',
-                    'slicer3', 'slide_image', 'smooth', 'sobel', 'socket',
-                    'sort', 'spawn', 'spher_harm', 'sph_4pnt', 'sph_scat',
-                    'spline', 'spline_p', 'spl_init', 'spl_interp', 'sprsab',
-                    'sprsax', 'sprsin', 'sprstp', 'sqrt', 'standardize',
-                    'stddev', 'stop', 'strarr', 'strcmp', 'strcompress',
-                    'streamline', 'stregex', 'stretch', 'string', 'strjoin',
-                    'strlen', 'strlowcase', 'strmatch', 'strmessage', 'strmid',
-                    'strpos', 'strput', 'strsplit', 'strtrim', 'struct_assign',
-                    'struct_hide', 'strupcase', 'surface', 'surfr', 'svdc',
-                    'svdfit', 'svsol', 'swap_endian', 'swap_endian_inplace',
-                    'symbol', 'systime', 's_test', 't3d', 'tag_names', 'tan',
-                    'tanh', 'tek_color', 'temporary', 'tetra_clip',
-                    'tetra_surface', 'tetra_volume', 'text', 'thin', 'threed',
-                    'timegen', 'time_test2', 'tm_test', 'total', 'trace',
-                    'transpose', 'triangulate', 'trigrid', 'triql', 'trired',
-                    'trisol', 'tri_surf', 'truncate_lun', 'ts_coef', 'ts_diff',
-                    'ts_fcast', 'ts_smooth', 'tv', 'tvcrs', 'tvlct', 'tvrd',
-                    'tvscl', 'typename', 't_cvt', 't_pdf', 'uindgen', 'uint',
-                    'uintarr', 'ul64indgen', 'ulindgen', 'ulon64arr', 'ulonarr',
-                    'ulong', 'ulong64', 'uniq', 'unsharp_mask', 'usersym',
-                    'value_locate', 'variance', 'vector', 'vector_field', 'vel',
-                    'velovect', 'vert_t3d', 'voigt', 'voronoi', 'voxel_proj',
-                    'wait', 'warp_tri', 'watershed', 'wdelete', 'wf_draw',
-                    'where', 'widget_base', 'widget_button', 'widget_combobox',
-                    'widget_control', 'widget_displaycontextmen', 'widget_draw',
-                    'widget_droplist', 'widget_event', 'widget_info',
-                    'widget_label', 'widget_list', 'widget_propertysheet',
-                    'widget_slider', 'widget_tab', 'widget_table',
-                    'widget_text', 'widget_tree', 'widget_tree_move',
-                    'widget_window', 'wiener_filter', 'window', 'writeu',
-                    'write_bmp', 'write_csv', 'write_gif', 'write_image',
-                    'write_jpeg', 'write_jpeg2000', 'write_nrif', 'write_pict',
-                    'write_png', 'write_ppm', 'write_spr', 'write_srf',
-                    'write_sylk', 'write_tiff', 'write_wav', 'write_wave',
-                    'wset', 'wshow', 'wtn', 'wv_applet', 'wv_cwt',
-                    'wv_cw_wavelet', 'wv_denoise', 'wv_dwt', 'wv_fn_coiflet',
-                    'wv_fn_daubechies', 'wv_fn_gaussian', 'wv_fn_haar',
-                    'wv_fn_morlet', 'wv_fn_paul', 'wv_fn_symlet',
-                    'wv_import_data', 'wv_import_wavelet', 'wv_plot3d_wps',
-                    'wv_plot_multires', 'wv_pwt', 'wv_tool_denoise',
-                    'xbm_edit', 'xdisplayfile', 'xdxf', 'xfont',
-                    'xinteranimate', 'xloadct', 'xmanager', 'xmng_tmpl',
-                    'xmtool', 'xobjview', 'xobjview_rotate',
-                    'xobjview_write_image', 'xpalette', 'xpcolor', 'xplot3d',
-                    'xregistered', 'xroi', 'xsq_test', 'xsurface', 'xvaredit',
-                    'xvolume', 'xvolume_rotate', 'xvolume_write_image',
-                    'xyouts', 'zoom', 'zoom_24']
+    _BUILTIN_LIB = (
+        'abs', 'acos', 'adapt_hist_equal', 'alog', 'alog10',
+        'amoeba', 'annotate', 'app_user_dir', 'app_user_dir_query',
+        'arg_present', 'array_equal', 'array_indices', 'arrow',
+        'ascii_template', 'asin', 'assoc', 'atan', 'axis',
+        'a_correlate', 'bandpass_filter', 'bandreject_filter',
+        'barplot', 'bar_plot', 'beseli', 'beselj', 'beselk',
+        'besely', 'beta', 'bilinear', 'binary_template', 'bindgen',
+        'binomial', 'bin_date', 'bit_ffs', 'bit_population',
+        'blas_axpy', 'blk_con', 'box_cursor', 'breakpoint',
+        'broyden', 'butterworth', 'bytarr', 'byte', 'byteorder',
+        'bytscl', 'caldat', 'calendar', 'call_external',
+        'call_function', 'call_method', 'call_procedure', 'canny',
+        'catch', 'cd', 'cdf_\w*', 'ceil', 'chebyshev',
+        'check_math',
+        'chisqr_cvf', 'chisqr_pdf', 'choldc', 'cholsol', 'cindgen',
+        'cir_3pnt', 'close', 'cluster', 'cluster_tree', 'clust_wts',
+        'cmyk_convert', 'colorbar', 'colorize_sample',
+        'colormap_applicable', 'colormap_gradient',
+        'colormap_rotation', 'colortable', 'color_convert',
+        'color_exchange', 'color_quan', 'color_range_map', 'comfit',
+        'command_line_args', 'complex', 'complexarr', 'complexround',
+        'compute_mesh_normals', 'cond', 'congrid', 'conj',
+        'constrained_min', 'contour', 'convert_coord', 'convol',
+        'convol_fft', 'coord2to3', 'copy_lun', 'correlate', 'cos',
+        'cosh', 'cpu', 'cramer', 'create_cursor', 'create_struct',
+        'create_view', 'crossp', 'crvlength', 'cti_test',
+        'ct_luminance', 'cursor', 'curvefit', 'cvttobm', 'cv_coord',
+        'cw_animate', 'cw_animate_getp', 'cw_animate_load',
+        'cw_animate_run', 'cw_arcball', 'cw_bgroup', 'cw_clr_index',
+        'cw_colorsel', 'cw_defroi', 'cw_field', 'cw_filesel',
+        'cw_form', 'cw_fslider', 'cw_light_editor',
+        'cw_light_editor_get', 'cw_light_editor_set', 'cw_orient',
+        'cw_palette_editor', 'cw_palette_editor_get',
+        'cw_palette_editor_set', 'cw_pdmenu', 'cw_rgbslider',
+        'cw_tmpl', 'cw_zoom', 'c_correlate', 'dblarr', 'db_exists',
+        'dcindgen', 'dcomplex', 'dcomplexarr', 'define_key',
+        'define_msgblk', 'define_msgblk_from_file', 'defroi',
+        'defsysv', 'delvar', 'dendrogram', 'dendro_plot', 'deriv',
+        'derivsig', 'determ', 'device', 'dfpmin', 'diag_matrix',
+        'dialog_dbconnect', 'dialog_message', 'dialog_pickfile',
+        'dialog_printersetup', 'dialog_printjob',
+        'dialog_read_image', 'dialog_write_image', 'digital_filter',
+        'dilate', 'dindgen', 'dissolve', 'dist', 'distance_measure',
+        'dlm_load', 'dlm_register', 'doc_library', 'double',
+        'draw_roi', 'edge_dog', 'efont', 'eigenql', 'eigenvec',
+        'ellipse', 'elmhes', 'emboss', 'empty', 'enable_sysrtn',
+        'eof', 'eos_\w*', 'erase', 'erf', 'erfc', 'erfcx',
+        'erode', 'errorplot', 'errplot', 'estimator_filter',
+        'execute', 'exit', 'exp', 'expand', 'expand_path', 'expint',
+        'extrac', 'extract_slice', 'factorial', 'fft', 'filepath',
+        'file_basename', 'file_chmod', 'file_copy', 'file_delete',
+        'file_dirname', 'file_expand_path', 'file_info',
+        'file_lines', 'file_link', 'file_mkdir', 'file_move',
+        'file_poll_input', 'file_readlink', 'file_same',
+        'file_search', 'file_test', 'file_which', 'findgen',
+        'finite', 'fix', 'flick', 'float', 'floor', 'flow3',
+        'fltarr', 'flush', 'format_axis_values', 'free_lun',
+        'fstat', 'fulstr', 'funct', 'fv_test', 'fx_root',
+        'fz_roots', 'f_cvf', 'f_pdf', 'gamma', 'gamma_ct',
+        'gauss2dfit', 'gaussfit', 'gaussian_function', 'gaussint',
+        'gauss_cvf', 'gauss_pdf', 'gauss_smooth', 'getenv',
+        'getwindows', 'get_drive_list', 'get_dxf_objects',
+        'get_kbrd', 'get_login_info', 'get_lun', 'get_screen_size',
+        'greg2jul', 'grib_\w*', 'grid3', 'griddata',
+        'grid_input', 'grid_tps', 'gs_iter',
+        'h5[adfgirst]_\w*', 'h5_browser', 'h5_close',
+        'h5_create', 'h5_get_libversion', 'h5_open', 'h5_parse',
+        'hanning', 'hash', 'hdf_\w*', 'heap_free',
+        'heap_gc', 'heap_nosave', 'heap_refcount', 'heap_save',
+        'help', 'hilbert', 'histogram', 'hist_2d', 'hist_equal',
+        'hls', 'hough', 'hqr', 'hsv', 'h_eq_ct', 'h_eq_int',
+        'i18n_multibytetoutf8', 'i18n_multibytetowidechar',
+        'i18n_utf8tomultibyte', 'i18n_widechartomultibyte',
+        'ibeta', 'icontour', 'iconvertcoord', 'idelete', 'identity',
+        'idlexbr_assistant', 'idlitsys_createtool', 'idl_base64',
+        'idl_validname', 'iellipse', 'igamma', 'igetcurrent',
+        'igetdata', 'igetid', 'igetproperty', 'iimage', 'image',
+        'image_cont', 'image_statistics', 'imaginary', 'imap',
+        'indgen', 'intarr', 'interpol', 'interpolate',
+        'interval_volume', 'int_2d', 'int_3d', 'int_tabulated',
+        'invert', 'ioctl', 'iopen', 'iplot', 'ipolygon',
+        'ipolyline', 'iputdata', 'iregister', 'ireset', 'iresolve',
+        'irotate', 'ir_filter', 'isa', 'isave', 'iscale',
+        'isetcurrent', 'isetproperty', 'ishft', 'isocontour',
+        'isosurface', 'isurface', 'itext', 'itranslate', 'ivector',
+        'ivolume', 'izoom', 'i_beta', 'journal', 'json_parse',
+        'json_serialize', 'jul2greg', 'julday', 'keyword_set',
+        'krig2d', 'kurtosis', 'kw_test', 'l64indgen', 'label_date',
+        'label_region', 'ladfit', 'laguerre', 'laplacian',
+        'la_choldc', 'la_cholmprove', 'la_cholsol', 'la_determ',
+        'la_eigenproblem', 'la_eigenql', 'la_eigenvec', 'la_elmhes',
+        'la_gm_linear_model', 'la_hqr', 'la_invert',
+        'la_least_squares', 'la_least_square_equality',
+        'la_linear_equation', 'la_ludc', 'la_lumprove', 'la_lusol',
+        'la_svd', 'la_tridc', 'la_trimprove', 'la_triql',
+        'la_trired', 'la_trisol', 'least_squares_filter', 'leefilt',
+        'legend', 'legendre', 'linbcg', 'lindgen', 'linfit',
+        'linkimage', 'list', 'll_arc_distance', 'lmfit', 'lmgr',
+        'lngamma', 'lnp_test', 'loadct', 'locale_get',
+        'logical_and', 'logical_or', 'logical_true', 'lon64arr',
+        'lonarr', 'long', 'long64', 'lsode', 'ludc', 'lumprove',
+        'lusol', 'lu_complex', 'machar', 'make_array', 'make_dll',
+        'make_rt', 'map', 'mapcontinents', 'mapgrid', 'map_2points',
+        'map_continents', 'map_grid', 'map_image', 'map_patch',
+        'map_proj_forward', 'map_proj_image', 'map_proj_info',
+        'map_proj_init', 'map_proj_inverse', 'map_set',
+        'matrix_multiply', 'matrix_power', 'max', 'md_test',
+        'mean', 'meanabsdev', 'mean_filter', 'median', 'memory',
+        'mesh_clip', 'mesh_decimate', 'mesh_issolid', 'mesh_merge',
+        'mesh_numtriangles', 'mesh_obj', 'mesh_smooth',
+        'mesh_surfacearea', 'mesh_validate', 'mesh_volume',
+        'message', 'min', 'min_curve_surf', 'mk_html_help',
+        'modifyct', 'moment', 'morph_close', 'morph_distance',
+        'morph_gradient', 'morph_hitormiss', 'morph_open',
+        'morph_thin', 'morph_tophat', 'multi', 'm_correlate',
+        'ncdf_\w*', 'newton', 'noise_hurl', 'noise_pick',
+        'noise_scatter', 'noise_slur', 'norm', 'n_elements',
+        'n_params', 'n_tags', 'objarr', 'obj_class', 'obj_destroy',
+        'obj_hasmethod', 'obj_isa', 'obj_new', 'obj_valid',
+        'online_help', 'on_error', 'open', 'oplot', 'oploterr',
+        'parse_url', 'particle_trace', 'path_cache', 'path_sep',
+        'pcomp', 'plot', 'plot3d', 'ploterr', 'plots', 'plot_3dbox',
+        'plot_field', 'pnt_line', 'point_lun', 'polarplot',
+        'polar_contour', 'polar_surface', 'poly', 'polyfill',
+        'polyfillv', 'polygon', 'polyline', 'polyshade', 'polywarp',
+        'poly_2d', 'poly_area', 'poly_fit', 'popd', 'powell',
+        'pref_commit', 'pref_get', 'pref_set', 'prewitt', 'primes',
+        'print', 'printd', 'product', 'profile', 'profiler',
+        'profiles', 'project_vol', 'psafm', 'pseudo',
+        'ps_show_fonts', 'ptrarr', 'ptr_free', 'ptr_new',
+        'ptr_valid', 'pushd', 'p_correlate', 'qgrid3', 'qhull',
+        'qromb', 'qromo', 'qsimp', 'query_ascii', 'query_bmp',
+        'query_csv', 'query_dicom', 'query_gif', 'query_image',
+        'query_jpeg', 'query_jpeg2000', 'query_mrsid', 'query_pict',
+        'query_png', 'query_ppm', 'query_srf', 'query_tiff',
+        'query_wav', 'radon', 'randomn', 'randomu', 'ranks',
+        'rdpix', 'read', 'reads', 'readu', 'read_ascii',
+        'read_binary', 'read_bmp', 'read_csv', 'read_dicom',
+        'read_gif', 'read_image', 'read_interfile', 'read_jpeg',
+        'read_jpeg2000', 'read_mrsid', 'read_pict', 'read_png',
+        'read_ppm', 'read_spr', 'read_srf', 'read_sylk',
+        'read_tiff', 'read_wav', 'read_wave', 'read_x11_bitmap',
+        'read_xwd', 'real_part', 'rebin', 'recall_commands',
+        'recon3', 'reduce_colors', 'reform', 'region_grow',
+        'register_cursor', 'regress', 'replicate',
+        'replicate_inplace', 'resolve_all', 'resolve_routine',
+        'restore', 'retall', 'return', 'reverse', 'rk4', 'roberts',
+        'rot', 'rotate', 'round', 'routine_filepath',
+        'routine_info', 'rs_test', 'r_correlate', 'r_test',
+        'save', 'savgol', 'scale3', 'scale3d', 'scope_level',
+        'scope_traceback', 'scope_varfetch', 'scope_varname',
+        'search2d', 'search3d', 'sem_create', 'sem_delete',
+        'sem_lock', 'sem_release', 'setenv', 'set_plot',
+        'set_shading', 'sfit', 'shade_surf', 'shade_surf_irr',
+        'shade_volume', 'shift', 'shift_diff', 'shmdebug', 'shmmap',
+        'shmunmap', 'shmvar', 'show3', 'showfont', 'simplex', 'sin',
+        'sindgen', 'sinh', 'size', 'skewness', 'skip_lun',
+        'slicer3', 'slide_image', 'smooth', 'sobel', 'socket',
+        'sort', 'spawn', 'spher_harm', 'sph_4pnt', 'sph_scat',
+        'spline', 'spline_p', 'spl_init', 'spl_interp', 'sprsab',
+        'sprsax', 'sprsin', 'sprstp', 'sqrt', 'standardize',
+        'stddev', 'stop', 'strarr', 'strcmp', 'strcompress',
+        'streamline', 'stregex', 'stretch', 'string', 'strjoin',
+        'strlen', 'strlowcase', 'strmatch', 'strmessage', 'strmid',
+        'strpos', 'strput', 'strsplit', 'strtrim', 'struct_assign',
+        'struct_hide', 'strupcase', 'surface', 'surfr', 'svdc',
+        'svdfit', 'svsol', 'swap_endian', 'swap_endian_inplace',
+        'symbol', 'systime', 's_test', 't3d', 'tag_names', 'tan',
+        'tanh', 'tek_color', 'temporary', 'tetra_clip',
+        'tetra_surface', 'tetra_volume', 'text', 'thin', 'threed',
+        'timegen', 'time_test2', 'tm_test', 'total', 'trace',
+        'transpose', 'triangulate', 'trigrid', 'triql', 'trired',
+        'trisol', 'tri_surf', 'truncate_lun', 'ts_coef', 'ts_diff',
+        'ts_fcast', 'ts_smooth', 'tv', 'tvcrs', 'tvlct', 'tvrd',
+        'tvscl', 'typename', 't_cvt', 't_pdf', 'uindgen', 'uint',
+        'uintarr', 'ul64indgen', 'ulindgen', 'ulon64arr', 'ulonarr',
+        'ulong', 'ulong64', 'uniq', 'unsharp_mask', 'usersym',
+        'value_locate', 'variance', 'vector', 'vector_field', 'vel',
+        'velovect', 'vert_t3d', 'voigt', 'voronoi', 'voxel_proj',
+        'wait', 'warp_tri', 'watershed', 'wdelete', 'wf_draw',
+        'where', 'widget_base', 'widget_button', 'widget_combobox',
+        'widget_control', 'widget_displaycontextmen', 'widget_draw',
+        'widget_droplist', 'widget_event', 'widget_info',
+        'widget_label', 'widget_list', 'widget_propertysheet',
+        'widget_slider', 'widget_tab', 'widget_table',
+        'widget_text', 'widget_tree', 'widget_tree_move',
+        'widget_window', 'wiener_filter', 'window', 'writeu',
+        'write_bmp', 'write_csv', 'write_gif', 'write_image',
+        'write_jpeg', 'write_jpeg2000', 'write_nrif', 'write_pict',
+        'write_png', 'write_ppm', 'write_spr', 'write_srf',
+        'write_sylk', 'write_tiff', 'write_wav', 'write_wave',
+        'wset', 'wshow', 'wtn', 'wv_applet', 'wv_cwt',
+        'wv_cw_wavelet', 'wv_denoise', 'wv_dwt', 'wv_fn_coiflet',
+        'wv_fn_daubechies', 'wv_fn_gaussian', 'wv_fn_haar',
+        'wv_fn_morlet', 'wv_fn_paul', 'wv_fn_symlet',
+        'wv_import_data', 'wv_import_wavelet', 'wv_plot3d_wps',
+        'wv_plot_multires', 'wv_pwt', 'wv_tool_denoise',
+        'xbm_edit', 'xdisplayfile', 'xdxf', 'xfont',
+        'xinteranimate', 'xloadct', 'xmanager', 'xmng_tmpl',
+        'xmtool', 'xobjview', 'xobjview_rotate',
+        'xobjview_write_image', 'xpalette', 'xpcolor', 'xplot3d',
+        'xregistered', 'xroi', 'xsq_test', 'xsurface', 'xvaredit',
+        'xvolume', 'xvolume_rotate', 'xvolume_write_image',
+        'xyouts', 'zoom', 'zoom_24')
     """Functions from: http://www.exelisvis.com/docs/routines-1.html"""
 
     tokens = {
         'root': [
             (r'^\s*;.*?\n', Comment.Singleline),
-            (r'\b(' + '|'.join(_RESERVED) + r')\b', Keyword),
-            (r'\b(' + '|'.join(_BUILTIN_LIB) + r')\b', Name.Builtin),
+            (words(_RESERVED, prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(_BUILTIN_LIB, prefix=r'\b', suffix=r'\b'), Name.Builtin),
             (r'\+=|-=|\^=|\*=|/=|#=|##=|<=|>=|=', Operator),
             (r'\+\+|--|->|\+|-|##|#|\*|/|<|>|&&|\^|~|\|\|\?|:', Operator),
             (r'\b(mod=|lt=|le=|eq=|ne=|ge=|gt=|not=|and=|or=|xor=)', Operator),
@@ -1906,7 +1920,7 @@ class RdLexer(RegexLexer):
     # To account for verbatim / LaTeX-like / and R-like areas
     # would require parsing.
     tokens = {
-        'root' : [
+        'root': [
             # catch escaped brackets and percent sign
             (r'\\[\\{}%]', String.Escape),
             # comments
@@ -1922,8 +1936,8 @@ class RdLexer(RegexLexer):
             # everything else
             (r'[^\\%\n{}]+', Text),
             (r'.', Text),
-            ]
-        }
+        ]
+    }
 
 
 class IgorLexer(RegexLexer):
@@ -1941,22 +1955,22 @@ class IgorLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    flowControl = [
+    flowControl = (
         'if', 'else', 'elseif', 'endif', 'for', 'endfor', 'strswitch', 'switch',
         'case', 'default', 'endswitch', 'do', 'while', 'try', 'catch', 'endtry',
         'break', 'continue', 'return',
-    ]
-    types = [
+    )
+    types = (
         'variable', 'string', 'constant', 'strconstant', 'NVAR', 'SVAR', 'WAVE',
         'STRUCT', 'dfref'
-    ]
-    keywords = [
+    )
+    keywords = (
         'override', 'ThreadSafe', 'static',  'FuncFit', 'Proc', 'Picture',
         'Prompt', 'DoPrompt', 'macro', 'window', 'graph', 'function', 'end',
         'Structure', 'EndStructure', 'EndMacro', 'Menu', 'SubMenu', 'Prompt',
         'DoPrompt',
-    ]
-    operations = [
+    )
+    operations = (
         'Abort', 'AddFIFOData', 'AddFIFOVectData', 'AddMovieAudio',
         'AddMovieFrame', 'APMath', 'Append', 'AppendImage',
         'AppendLayoutObject', 'AppendMatrixContour', 'AppendText',
@@ -2058,8 +2072,8 @@ class IgorLexer(RegexLexer):
         'Triangulate3d', 'Unwrap', 'ValDisplay', 'Variable', 'WaveMeanStdv',
         'WaveStats', 'WaveTransform', 'wfprintf', 'WignerTransform',
         'WindowFunction',
-    ]
-    functions = [
+    )
+    functions = (
         'abs', 'acos', 'acosh', 'AiryA', 'AiryAD', 'AiryB', 'AiryBD', 'alog',
         'area', 'areaXY', 'asin', 'asinh', 'atan', 'atan2', 'atanh',
         'AxisValFromPixel', 'Besseli', 'Besselj', 'Besselk', 'Bessely', 'bessi',
@@ -2134,8 +2148,8 @@ class IgorLexer(RegexLexer):
         'trunc', 'Variance', 'vcsr', 'WaveCRC', 'WaveDims', 'WaveExists',
         'WaveMax', 'WaveMin', 'WaveRefsEqual', 'WaveType', 'WhichListItem',
         'WinType', 'WNoise', 'x', 'x2pnt', 'xcsr', 'y', 'z', 'zcsr', 'ZernikeR',
-    ]
-    functions += [
+    )
+    functions += (
         'AddListItem', 'AnnotationInfo', 'AnnotationList', 'AxisInfo',
         'AxisList', 'CaptureHistory', 'ChildWindowList', 'CleanupName',
         'ContourInfo', 'ContourNameList', 'ControlNameList', 'CsrInfo',
@@ -2164,22 +2178,22 @@ class IgorLexer(RegexLexer):
         'ImageNameToWaveRef', 'NewFreeWave', 'TagWaveRef', 'TraceNameToWaveRef',
         'WaveRefIndexed', 'XWaveRefFromTrace', 'GetDataFolderDFR',
         'GetWavesDataFolderDFR', 'NewFreeDataFolder', 'ThreadGroupGetDFR',
-    ]
+    )
 
     tokens = {
         'root': [
             (r'//.*$', Comment.Single),
             (r'"([^"\\]|\\.)*"', String),
             # Flow Control.
-            (r'\b(%s)\b' % '|'.join(flowControl), Keyword),
+            (words(flowControl, prefix=r'\b', suffix=r'\b'), Keyword),
             # Types.
-            (r'\b(%s)\b' % '|'.join(types), Keyword.Type),
+            (words(types, prefix=r'\b', suffix=r'\b'), Keyword.Type),
             # Keywords.
-            (r'\b(%s)\b' % '|'.join(keywords), Keyword.Reserved),
+            (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword.Reserved),
             # Built-in operations.
-            (r'\b(%s)\b' % '|'.join(operations), Name.Class),
+            (words(operations, prefix=r'\b', suffix=r'\b'), Name.Class),
             # Built-in functions.
-            (r'\b(%s)\b' % '|'.join(functions), Name.Function),
+            (words(functions, prefix=r'\b', suffix=r'\b'), Name.Function),
             # Compiler directives.
             (r'^#(include|pragma|define|ifdef|ifndef|endif)',
              Name.Decorator),
@@ -2235,6 +2249,7 @@ class MathematicaLexer(RegexLexer):
         ],
     }
 
+
 class GAPLexer(RegexLexer):
     """
     For `GAP <http://www.gap-system.org>`_ source code.
@@ -2246,41 +2261,41 @@ class GAPLexer(RegexLexer):
     filenames = ['*.g', '*.gd', '*.gi', '*.gap']
 
     tokens = {
-      'root' : [
-        (r'#.*$', Comment.Single),
-        (r'"(?:[^"\\]|\\.)*"', String),
-        (r'\(|\)|\[|\]|\{|\}', Punctuation),
-        (r'''(?x)\b(?:
-            if|then|elif|else|fi|
-            for|while|do|od|
-            repeat|until|
-            break|continue|
-            function|local|return|end|
-            rec|
-            quit|QUIT|
-            IsBound|Unbind|
-            TryNextMethod|
-            Info|Assert
-          )\b''', Keyword),
-        (r'''(?x)\b(?:
-            true|false|fail|infinity
-          )\b''',
-          Name.Constant),
-        (r'''(?x)\b(?:
-            (Declare|Install)([A-Z][A-Za-z]+)|
-               BindGlobal|BIND_GLOBAL
-          )\b''',
-          Name.Builtin),
-        (r'\.|,|:=|;|=|\+|-|\*|/|\^|>|<', Operator),
-        (r'''(?x)\b(?:
-            and|or|not|mod|in
-          )\b''',
-          Operator.Word),
-        (r'''(?x)
-          (?:[a-zA-Z_0-9]+|`[^`]*`)
-          (?:::[a-zA-Z_0-9]+|`[^`]*`)*''', Name.Variable),
-        (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
-        (r'\.[0-9]+(?:e[0-9]+)?', Number),
-        (r'.', Text)
-      ]
+        'root': [
+            (r'#.*$', Comment.Single),
+            (r'"(?:[^"\\]|\\.)*"', String),
+            (r'\(|\)|\[|\]|\{|\}', Punctuation),
+            (r'''(?x)\b(?:
+                if|then|elif|else|fi|
+                for|while|do|od|
+                repeat|until|
+                break|continue|
+                function|local|return|end|
+                rec|
+                quit|QUIT|
+                IsBound|Unbind|
+                TryNextMethod|
+                Info|Assert
+              )\b''', Keyword),
+            (r'''(?x)\b(?:
+                true|false|fail|infinity
+              )\b''',
+             Name.Constant),
+            (r'''(?x)\b(?:
+                (Declare|Install)([A-Z][A-Za-z]+)|
+                   BindGlobal|BIND_GLOBAL
+              )\b''',
+             Name.Builtin),
+            (r'\.|,|:=|;|=|\+|-|\*|/|\^|>|<', Operator),
+            (r'''(?x)\b(?:
+                and|or|not|mod|in
+              )\b''',
+             Operator.Word),
+            (r'''(?x)
+              (?:[a-zA-Z_0-9]+|`[^`]*`)
+              (?:::[a-zA-Z_0-9]+|`[^`]*`)*''', Name.Variable),
+            (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
+            (r'\.[0-9]+(?:e[0-9]+)?', Number),
+            (r'.', Text)
+        ]
     }
