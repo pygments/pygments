@@ -10,7 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-KEYWORDS = [   u'else',
+KEYWORDS = (   u'else',
     u'for',
     u'if',
     u'in',
@@ -18,9 +18,9 @@ KEYWORDS = [   u'else',
     u'lp__',
     u'print',
     u'return',
-    u'while']
+    u'while')
 
-TYPES = [   u'cholesky_factor_corr',
+TYPES = (   u'cholesky_factor_corr',
     u'cholesky_factor_cov',
     u'corr_matrix',
     u'cov_matrix',
@@ -33,9 +33,9 @@ TYPES = [   u'cholesky_factor_corr',
     u'simplex',
     u'unit_vector',
     u'vector',
-    u'void']
+    u'void')
 
-FUNCTIONS = [   u'Phi',
+FUNCTIONS = (   u'Phi',
     u'Phi_approx',
     u'abs',
     u'acos',
@@ -349,9 +349,9 @@ FUNCTIONS = [   u'Phi',
     u'weibull_log',
     u'weibull_rng',
     u'wishart_log',
-    u'wishart_rng']
+    u'wishart_rng')
 
-DISTRIBUTIONS = [   u'bernoulli',
+DISTRIBUTIONS = (   u'bernoulli',
     u'bernoulli_logit',
     u'beta',
     u'beta_binomial',
@@ -398,9 +398,9 @@ DISTRIBUTIONS = [   u'bernoulli',
     u'uniform',
     u'von_mises',
     u'weibull',
-    u'wishart']
+    u'wishart')
 
-RESERVED = [   u'alignas',
+RESERVED = (   u'alignas',
     u'alignof',
     u'and',
     u'and_eq',
@@ -485,5 +485,4 @@ RESERVED = [   u'alignas',
     u'volatile',
     u'wchar_t',
     u'xor',
-    u'xor_eq']
-
+    u'xor_eq')
