@@ -112,7 +112,50 @@ c = nil;
 c = new Oval(r=1.0, r2=2.0);
 writeln("Area of oval: " + c.area());
 
+// This is a valid decimal integer:
+var x = 0000000000012;
+
 union U {
   var i: int;
   var r: real;
 }
+
+// chapel ranges are awesome.
+var r1 = 1..10,            // 1 2 3 4 5 6 7 8 9 10
+  r2 = 10..1,              // no values in this range
+  r3 = 1..10 by -1,        // 10 9 8 7 6 5 4 3 2 1
+  r4 = 1..10 by 2,         // 1 3 5 7 9
+  r5 = 1..10 by 2 align 0, // 2 4 6 8 10
+  r6 = 1..10 by 2 align 2, // 2 4 6 8 10
+  r7 = 1..10 # 3,          // 1 2 3
+  r8 = 1..10 # -2,         // 9 10
+  r9 = 1..100 # 10 by 2,   // 1 3 5 7 9
+  ra = 1..100 by 2 # 10,   // 1 3 5 7 9 11 13 15 17 19
+  rb = 1.. # 100 by 10;    // 1 11 21 31 41 51 61 71 81 91
+
+// create a variable with default initialization
+var myVarWithoutInit: real = noinit;
+myVarWithoutInit = 1.0;
+
+// Chapel has <~> operator for read and write I/O operations.
+class IntPair {
+  var x: int;
+  var y: int;
+  proc readWriteThis(f) {
+    f <~> x <~> new ioLiteral(",") <~> y <~> new ioNewline();
+  }
+}
+var ip = new IntPair(17,2);
+write(ip);
+
+var targetDom: {1..10},
+  target: [targetDom] int;
+coforall i in targetDom with (ref target) {
+  targetDom[i] = i ** 3;
+}
+
+var wideOpen = 0o777,
+  mememe = 0o600,
+  clique_y = 0O660,
+  zeroOct = 0o0,
+  minPosOct = 0O1;

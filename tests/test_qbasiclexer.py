@@ -12,7 +12,8 @@ import os
 import unittest
 
 from pygments.token import Token
-from pygments.lexers.qbasic import QBasicLexer
+from pygments.lexers.misc.basic import QBasicLexer
+
 
 class QBasicTest(unittest.TestCase):
     def setUp(self):
@@ -40,4 +41,3 @@ class QBasicTest(unittest.TestCase):
             (Token.Text, u'\n'),
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
-

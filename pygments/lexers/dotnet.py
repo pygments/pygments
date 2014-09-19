@@ -11,13 +11,13 @@
 import re
 
 from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, include, \
-     using, this, default
+    using, this, default
 from pygments.token import Punctuation, \
-     Text, Comment, Operator, Keyword, Name, String, Number, Literal, Other
+    Text, Comment, Operator, Keyword, Name, String, Number, Literal, Other
 from pygments.util import get_choice_opt, iteritems
 from pygments import unistring as uni
 
-from pygments.lexers.web import XmlLexer
+from pygments.lexers.html import XmlLexer
 
 __all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
            'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer']
@@ -50,7 +50,7 @@ class CSharpLexer(RegexLexer):
     name = 'C#'
     aliases = ['csharp', 'c#']
     filenames = ['*.cs']
-    mimetypes = ['text/x-csharp'] # inferred
+    mimetypes = ['text/x-csharp']  # inferred
 
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
@@ -75,13 +75,13 @@ class CSharpLexer(RegexLexer):
         tokens[levelname] = {
             'root': [
                 # method names
-                (r'^([ \t]*(?:' + cs_ident + r'(?:\[\])?\s+)+?)' # return type
-                 r'(' + cs_ident + ')'                           # method name
+                (r'^([ \t]*(?:' + cs_ident + r'(?:\[\])?\s+)+?)'  # return type
+                 r'(' + cs_ident + ')'                            # method name
                  r'(\s*)(\()',                               # signature start
                  bygroups(using(this), Name.Function, Text, Punctuation)),
                 (r'^\s*\[.*?\]', Name.Attribute),
                 (r'[^\S\n]+', Text),
-                (r'\\\n', Text), # line continuation
+                (r'\\\n', Text),  # line continuation
                 (r'//.*?\n', Comment.Single),
                 (r'/[*].*?[*]/', Comment.Multiline),
                 (r'\n', Text),
@@ -120,7 +120,7 @@ class CSharpLexer(RegexLexer):
                 (cs_ident, Name.Class, '#pop')
             ],
             'namespace': [
-                (r'(?=\()', Text, '#pop'), # using (resource)
+                (r'(?=\()', Text, '#pop'),  # using (resource)
                 ('(' + cs_ident + r'|\.)+', Name.Namespace, '#pop')
             ]
         }
@@ -162,7 +162,7 @@ class NemerleLexer(RegexLexer):
     name = 'Nemerle'
     aliases = ['nemerle']
     filenames = ['*.n']
-    mimetypes = ['text/x-nemerle'] # inferred
+    mimetypes = ['text/x-nemerle']  # inferred
 
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
@@ -170,14 +170,14 @@ class NemerleLexer(RegexLexer):
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
     levels = dict(
-        none = '@?[_a-zA-Z]\w*',
-        basic = ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
-                 '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
-                 uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
-        full = ('@?(?:_|[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
-                                            'Nl') + '])'
-                + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
-                                       'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
+        none='@?[_a-zA-Z]\w*',
+        basic=('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
+               '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
+               uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
+        full=('@?(?:_|[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
+                                          'Nl') + '])'
+              + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                     'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     )
 
     tokens = {}
@@ -187,13 +187,13 @@ class NemerleLexer(RegexLexer):
         tokens[levelname] = {
             'root': [
                 # method names
-                (r'^([ \t]*(?:' + cs_ident + r'(?:\[\])?\s+)+?)' # return type
-                 r'(' + cs_ident + ')'                           # method name
+                (r'^([ \t]*(?:' + cs_ident + r'(?:\[\])?\s+)+?)'  # return type
+                 r'(' + cs_ident + ')'                            # method name
                  r'(\s*)(\()',                               # signature start
                  bygroups(using(this), Name.Function, Text, Punctuation)),
                 (r'^\s*\[.*?\]', Name.Attribute),
                 (r'[^\S\n]+', Text),
-                (r'\\\n', Text), # line continuation
+                (r'\\\n', Text),  # line continuation
                 (r'//.*?\n', Comment.Single),
                 (r'/[*].*?[*]/', Comment.Multiline),
                 (r'\n', Text),
@@ -249,7 +249,7 @@ class NemerleLexer(RegexLexer):
                 (cs_ident, Name.Class, '#pop')
             ],
             'namespace': [
-                (r'(?=\()', Text, '#pop'), # using (resource)
+                (r'(?=\()', Text, '#pop'),  # using (resource)
                 ('(' + cs_ident + r'|\.)+', Name.Namespace, '#pop')
             ],
             'splice-string': [
@@ -372,7 +372,7 @@ class VbNetLexer(RegexLexer):
     name = 'VB.net'
     aliases = ['vb.net', 'vbnet']
     filenames = ['*.vb', '*.bas']
-    mimetypes = ['text/x-vbnet', 'text/x-vba'] # (?)
+    mimetypes = ['text/x-vbnet', 'text/x-vba']  # (?)
 
     flags = re.MULTILINE | re.IGNORECASE
     tokens = {
@@ -431,7 +431,7 @@ class VbNetLexer(RegexLexer):
             (r'\d+([SILDFR]|US|UI|UL)?', Number.Integer),
             (r'&H[0-9a-f]+([SILDFR]|US|UI|UL)?', Number.Integer),
             (r'&O[0-7]+([SILDFR]|US|UI|UL)?', Number.Integer),
-            (r'_\n', Text), # Line continuation
+            (r'_\n', Text),  # Line continuation
         ],
         'string': [
             (r'""', String),
@@ -488,7 +488,7 @@ class GenericAspxLexer(RegexLexer):
     }
 
 
-#TODO support multiple languages within the same source file
+# TODO support multiple languages within the same source file
 class CSharpAspxLexer(DelegatingLexer):
     """
     Lexer for highligting C# within ASP.NET pages.
@@ -500,7 +500,7 @@ class CSharpAspxLexer(DelegatingLexer):
     mimetypes = []
 
     def __init__(self, **options):
-        super(CSharpAspxLexer, self).__init__(CSharpLexer,GenericAspxLexer,
+        super(CSharpAspxLexer, self).__init__(CSharpLexer, GenericAspxLexer,
                                               **options)
 
     def analyse_text(text):
@@ -521,8 +521,8 @@ class VbNetAspxLexer(DelegatingLexer):
     mimetypes = []
 
     def __init__(self, **options):
-        super(VbNetAspxLexer, self).__init__(VbNetLexer,GenericAspxLexer,
-                                              **options)
+        super(VbNetAspxLexer, self).__init__(VbNetLexer, GenericAspxLexer,
+                                             **options)
 
     def analyse_text(text):
         if re.search(r'Page\s*Language="Vb"', text, re.I) is not None:
@@ -548,15 +548,15 @@ class FSharpLexer(RegexLexer):
     mimetypes = ['text/x-fsharp']
 
     keywords = [
-      'abstract', 'as', 'assert', 'base', 'begin', 'class', 'default',
-      'delegate', 'do!', 'do', 'done', 'downcast', 'downto', 'elif', 'else',
-      'end', 'exception', 'extern', 'false', 'finally', 'for', 'function',
-      'fun', 'global', 'if', 'inherit', 'inline', 'interface', 'internal',
-      'in', 'lazy', 'let!', 'let', 'match', 'member', 'module', 'mutable',
-      'namespace', 'new', 'null', 'of', 'open', 'override', 'private', 'public',
-      'rec', 'return!', 'return', 'select', 'static', 'struct', 'then', 'to',
-      'true', 'try', 'type', 'upcast', 'use!', 'use', 'val', 'void', 'when',
-      'while', 'with', 'yield!', 'yield',
+        'abstract', 'as', 'assert', 'base', 'begin', 'class', 'default',
+        'delegate', 'do!', 'do', 'done', 'downcast', 'downto', 'elif', 'else',
+        'end', 'exception', 'extern', 'false', 'finally', 'for', 'function',
+        'fun', 'global', 'if', 'inherit', 'inline', 'interface', 'internal',
+        'in', 'lazy', 'let!', 'let', 'match', 'member', 'module', 'mutable',
+        'namespace', 'new', 'null', 'of', 'open', 'override', 'private', 'public',
+        'rec', 'return!', 'return', 'select', 'static', 'struct', 'then', 'to',
+        'true', 'try', 'type', 'upcast', 'use!', 'use', 'val', 'void', 'when',
+        'while', 'with', 'yield!', 'yield',
     ]
     # Reserved words; cannot hurt to color them as keywords too.
     keywords += [
@@ -567,10 +567,10 @@ class FSharpLexer(RegexLexer):
         'virtual', 'volatile',
     ]
     keyopts = [
-      '!=', '#', '&&', '&', '\(', '\)', '\*', '\+', ',', '-\.',
-      '->', '-', '\.\.', '\.', '::', ':=', ':>', ':', ';;', ';', '<-',
-      '<\]', '<', '>\]', '>', '\?\?', '\?', '\[<', '\[\|', '\[', '\]',
-      '_', '`', '{', '\|\]', '\|', '}', '~', '<@@', '<@', '=', '@>', '@@>',
+        '!=', '#', '&&', '&', '\(', '\)', '\*', '\+', ',', '-\.',
+        '->', '-', '\.\.', '\.', '::', ':=', ':>', ':', ';;', ';', '<-',
+        '<\]', '<', '>\]', '>', '\?\?', '\?', '\[<', '\[\|', '\[', '\]',
+        '_', '`', '{', '\|\]', '\|', '}', '~', '<@@', '<@', '=', '@>', '@@>',
     ]
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
@@ -636,7 +636,7 @@ class FSharpLexer(RegexLexer):
             (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'B?",
              String.Char),
             (r"'.'", String.Char),
-            (r"'", Keyword), # a stray quote is another syntax element
+            (r"'", Keyword),  # a stray quote is another syntax element
 
             (r'@?"', String.Double, 'string'),
 
