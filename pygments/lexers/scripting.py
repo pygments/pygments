@@ -18,7 +18,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.util import get_bool_opt, get_list_opt, iteritems
 
 __all__ = ['LuaLexer', 'MoonScriptLexer', 'ChaiscriptLexer', 'LSLLexer',
-           'AppleScriptLexer']
+           'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer']
 
 
 class LuaLexer(RegexLexer):
@@ -681,4 +681,160 @@ class AppleScriptLexer(RegexLexer):
             ('[^*(]+', Comment.Multiline),
             ('[*(]', Comment.Multiline),
         ],
+    }
+
+
+class RexxLexer(RegexLexer):
+    """
+    `Rexx <http://www.rexxinfo.org/>`_ is a scripting language available for
+    a wide range of different platforms with its roots found on mainframe
+    systems. It is popular for I/O- and data based tasks and can act as glue
+    language to bind different applications together.
+
+    .. versionadded:: 2.0
+    """
+    name = 'Rexx'
+    aliases = ['rexx', 'arexx']
+    filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
+    mimetypes = ['text/x-rexx']
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'\s', Whitespace),
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'"', String, 'string_double'),
+            (r"'", String, 'string_single'),
+            (r'[0-9]+(\.[0-9]+)?(e[+-]?[0-9])?', Number),
+            (r'([a-z_]\w*)(\s*)(:)(\s*)(procedure)\b',
+             bygroups(Name.Function, Whitespace, Operator, Whitespace,
+                      Keyword.Declaration)),
+            (r'([a-z_]\w*)(\s*)(:)',
+             bygroups(Name.Label, Whitespace, Operator)),
+            include('function'),
+            include('keyword'),
+            include('operator'),
+            (r'[a-z_]\w*', Text),
+        ],
+        'function': [
+            (words((
+                'abbrev', 'abs', 'address', 'arg', 'b2x', 'bitand', 'bitor', 'bitxor',
+                'c2d', 'c2x', 'center', 'charin', 'charout', 'chars', 'compare',
+                'condition', 'copies', 'd2c', 'd2x', 'datatype', 'date', 'delstr',
+                'delword', 'digits', 'errortext', 'form', 'format', 'fuzz', 'insert',
+                'lastpos', 'left', 'length', 'linein', 'lineout', 'lines', 'max',
+                'min', 'overlay', 'pos', 'queued', 'random', 'reverse', 'right', 'sign',
+                'sourceline', 'space', 'stream', 'strip', 'substr', 'subword', 'symbol',
+                'time', 'trace', 'translate', 'trunc', 'value', 'verify', 'word',
+                'wordindex', 'wordlength', 'wordpos', 'words', 'x2b', 'x2c', 'x2d',
+                'xrange'), suffix=r'(\s*)(\()'),
+             bygroups(Name.Builtin, Whitespace, Operator)),
+        ],
+        'keyword': [
+            (r'(address|arg|by|call|do|drop|else|end|exit|for|forever|if|'
+             r'interpret|iterate|leave|nop|numeric|off|on|options|parse|'
+             r'pull|push|queue|return|say|select|signal|to|then|trace|until|'
+             r'while)\b', Keyword.Reserved),
+        ],
+        'operator': [
+            (r'(-|//|/|\(|\)|\*\*|\*|\\<<|\\<|\\==|\\=|\\>>|\\>|\\|\|\||\||'
+             r'&&|&|%|\+|<<=|<<|<=|<>|<|==|=|><|>=|>>=|>>|>|¬<<|¬<|¬==|¬=|'
+             r'¬>>|¬>|¬|\.|,)', Operator),
+        ],
+        'string_double': [
+            (r'[^"\n]+', String),
+            (r'""', String),
+            (r'"', String, '#pop'),
+            (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
+        ],
+        'string_single': [
+            (r'[^\'\n]', String),
+            (r'\'\'', String),
+            (r'\'', String, '#pop'),
+            (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
+        ],
+        'comment': [
+            (r'[^*]+', Comment.Multiline),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'\*', Comment.Multiline),
+        ]
+    }
+
+    _c = lambda s: re.compile(s, re.MULTILINE)
+    _ADDRESS_COMMAND_PATTERN = _c(r'^\s*address\s+command\b')
+    _ADDRESS_PATTERN = _c(r'^\s*address\s+')
+    _DO_WHILE_PATTERN = _c(r'^\s*do\s+while\b')
+    _IF_THEN_DO_PATTERN = _c(r'^\s*if\b.+\bthen\s+do\s*$')
+    _PROCEDURE_PATTERN = _c(r'^\s*([a-z_]\w*)(\s*)(:)(\s*)(procedure)\b')
+    _ELSE_DO_PATTERN = _c(r'\belse\s+do\s*$')
+    _PARSE_ARG_PATTERN = _c(r'^\s*parse\s+(upper\s+)?(arg|value)\b')
+    PATTERNS_AND_WEIGHTS = (
+        (_ADDRESS_COMMAND_PATTERN, 0.2),
+        (_ADDRESS_PATTERN, 0.05),
+        (_DO_WHILE_PATTERN, 0.1),
+        (_ELSE_DO_PATTERN, 0.1),
+        (_IF_THEN_DO_PATTERN, 0.1),
+        (_PROCEDURE_PATTERN, 0.5),
+        (_PARSE_ARG_PATTERN, 0.2),
+    )
+
+    def analyse_text(text):
+        """
+        Check for inital comment and patterns that distinguish Rexx from other
+        C-like languages.
+        """
+        if re.search(r'/\*\**\s*rexx', text, re.IGNORECASE):
+            # Header matches MVS Rexx requirements, this is certainly a Rexx
+            # script.
+            return 1.0
+        elif text.startswith('/*'):
+            # Header matches general Rexx requirements; the source code might
+            # still be any language using C comments such as C++, C# or Java.
+            lowerText = text.lower()
+            result = sum(weight
+                         for (pattern, weight) in RexxLexer.PATTERNS_AND_WEIGHTS
+                         if pattern.search(lowerText)) + 0.01
+            return min(result, 1.0)
+
+
+class MOOCodeLexer(RegexLexer):
+    """
+    For `MOOCode <http://www.moo.mud.org/>`_ (the MOO scripting
+    language).
+
+    .. versionadded:: 0.9
+    """
+    name = 'MOOCode'
+    filenames = ['*.moo']
+    aliases = ['moocode', 'moo']
+    mimetypes = ['text/x-moocode']
+
+    tokens = {
+        'root': [
+            # Numbers
+            (r'(0|[1-9][0-9_]*)', Number.Integer),
+            # Strings
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # exceptions
+            (r'(E_PERM|E_DIV)', Name.Exception),
+            # db-refs
+            (r'((#[-0-9]+)|(\$[a-z_A-Z0-9]+))', Name.Entity),
+            # Keywords
+            (r'\b(if|else|elseif|endif|for|endfor|fork|endfork|while'
+             r'|endwhile|break|continue|return|try'
+             r'|except|endtry|finally|in)\b', Keyword),
+            # builtins
+            (r'(random|length)', Name.Builtin),
+            # special variables
+            (r'(player|caller|this|args)', Name.Variable.Instance),
+            # skip whitespace
+            (r'\s+', Text),
+            (r'\n', Text),
+            # other operators
+            (r'([!;=,{}&\|:\.\[\]@\(\)\<\>\?]+)', Operator),
+            # function call
+            (r'([a-z_A-Z0-9]+)(\()', bygroups(Name.Function, Operator)),
+            # variables
+            (r'([a-zA-Z_0-9]+)', Text),
+        ]
     }
