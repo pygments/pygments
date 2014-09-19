@@ -241,7 +241,7 @@ LEXERS = {
     'NimrodLexer': ('pygments.lexers.misc.nimrod', 'Nimrod', ('nimrod', 'nim'), ('*.nim', '*.nimrod'), ('text/x-nimrod',)),
     'NitLexer': ('pygments.lexers.misc.nit', 'Nit', ('nit',), ('*.nit',), ()),
     'NixLexer': ('pygments.lexers.misc.nix', 'Nix', ('nixos', 'nix'), ('*.nix',), ('text/x-nix',)),
-    'NumPyLexer': ('pygments.lexers.math', 'NumPy', ('numpy',), (), ()),
+    'NumPyLexer': ('pygments.lexers.python', 'NumPy', ('numpy',), (), ()),
     'ObjdumpLexer': ('pygments.lexers.asm', 'objdump', ('objdump',), ('*.objdump',), ('text/x-objdump',)),
     'ObjectiveCLexer': ('pygments.lexers.c_like.objective', 'Objective-C', ('objective-c', 'objectivec', 'obj-c', 'objc'), ('*.m', '*.h'), ('text/x-objective-c',)),
     'ObjectiveCppLexer': ('pygments.lexers.c_like.objective', 'Objective-C++', ('objective-c++', 'objectivec++', 'obj-c++', 'objc++'), ('*.mm', '*.hh'), ('text/x-objective-c++',)),

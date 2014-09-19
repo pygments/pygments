@@ -22,11 +22,11 @@ from pygments.token import Comment, String, Punctuation, Keyword, Name, \
 from pygments.lexers import _scilab_builtins
 from pygments.lexers import _stan_builtins
 
-
+# backwards compat
 from pygments.lexers.python import NumPyLexer
 
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer', 'MuPADLexer', 'MatlabLexer',
-           'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer', 'NumPyLexer',
+           'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer',
            'RConsoleLexer', 'SLexer', 'JagsLexer', 'BugsLexer', 'StanLexer',
            'IDLLexer', 'RdLexer', 'IgorLexer', 'MathematicaLexer', 'GAPLexer']
 
