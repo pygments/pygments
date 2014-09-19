@@ -852,6 +852,8 @@ class CirruLexer(RegexLexer):
 class SlimLexer(ExtendedRegexLexer):
     """
     For Slim markup.
+
+    .. versionadded:: 2.0
     """
 
     name = 'Slim'

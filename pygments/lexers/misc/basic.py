@@ -362,6 +362,8 @@ class QBasicLexer(RegexLexer):
     For
     `QBasic <http://en.wikipedia.org/wiki/QBasic>`_
     source code.
+
+    .. versionadded:: 2.0
     """
 
     name = 'QBasic'
