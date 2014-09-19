@@ -199,7 +199,7 @@ LEXERS = {
     'LiveScriptLexer': ('pygments.lexers.web', 'LiveScript', ('live-script', 'livescript'), ('*.ls',), ('text/livescript',)),
     'LlvmLexer': ('pygments.lexers.asm', 'LLVM', ('llvm',), ('*.ll',), ('text/x-llvm',)),
     'LogosLexer': ('pygments.lexers.c_like.objective', 'Logos', ('logos',), ('*.x', '*.xi', '*.xm', '*.xmi'), ('text/x-logos',)),
-    'LogtalkLexer': ('pygments.lexers.other', 'Logtalk', ('logtalk',), ('*.lgt',), ('text/x-logtalk',)),
+    'LogtalkLexer': ('pygments.lexers.other', 'Logtalk', ('logtalk',), ('*.lgt', '*.logtalk'), ('text/x-logtalk',)),
     'LuaLexer': ('pygments.lexers.scripting', 'Lua', ('lua',), ('*.lua', '*.wlua'), ('text/x-lua', 'application/x-lua')),
     'MOOCodeLexer': ('pygments.lexers.other', 'MOOCode', ('moocode', 'moo'), ('*.moo',), ('text/x-moocode',)),
     'MakefileLexer': ('pygments.lexers.text', 'Makefile', ('make', 'makefile', 'mf', 'bsdmake'), ('*.mak', '*.mk', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile'), ('text/x-makefile',)),

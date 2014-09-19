@@ -9,9 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import RegexLexer, include, bygroups
+from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
@@ -31,7 +29,7 @@ class HyLexer(RegexLexer):
     filenames = ['*.hy']
     mimetypes = ['text/x-hy', 'application/x-hy']
 
-    special_forms = [
+    special_forms = (
         'cond', 'for', '->', '->>', 'car',
         'cdr', 'first', 'rest', 'let', 'when', 'unless',
         'import', 'do', 'progn', 'get', 'slice', 'assoc', 'with-decorator',
@@ -39,20 +37,20 @@ class HyLexer(RegexLexer):
         'quasiquote', 'unquote', 'unquote-splice', 'quote', '|', '<<=', '>>=',
         'foreach', 'while',
         'eval-and-compile', 'eval-when-compile'
-    ]
+    )
 
-    declarations = [
+    declarations = (
         'def', 'defn', 'defun', 'defmacro', 'defclass', 'lambda', 'fn', 'setv'
-    ]
+    )
 
-    hy_builtins = []
+    hy_builtins = ()
 
-    hy_core = [
+    hy_core = (
         'cycle', 'dec', 'distinct', 'drop', 'even?', 'filter', 'inc',
         'instance?', 'iterable?', 'iterate', 'iterator?', 'neg?',
         'none?', 'nth', 'numeric?', 'odd?', 'pos?', 'remove', 'repeat',
         'repeatedly', 'take', 'take_nth', 'take_while', 'zero?'
-    ]
+    )
 
     builtins = hy_builtins + hy_core
 
@@ -62,7 +60,7 @@ class HyLexer(RegexLexer):
     valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
 
     def _multi_escape(entries):
-        return '(%s)' % ('|'.join(re.escape(entry) + ' ' for entry in entries))
+        return words(entries, suffix=' ')
 
     tokens = {
         'root': [
