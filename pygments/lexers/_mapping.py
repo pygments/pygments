@@ -327,7 +327,7 @@ LEXERS = {
     'SwiftLexer': ('pygments.lexers.c_like.objective', 'Swift', ('swift',), ('*.swift',), ('text/x-swift',)),
     'SwigLexer': ('pygments.lexers.c_like.other', 'SWIG', ('swig',), ('*.swg', '*.i'), ('text/swig',)),
     'SystemVerilogLexer': ('pygments.lexers.hdl', 'systemverilog', ('systemverilog', 'sv'), ('*.sv', '*.svh'), ('text/x-systemverilog',)),
-    'TclLexer': ('pygments.lexers.misc.tcl', 'Tcl', ('tcl',), ('*.tcl',), ('text/x-tcl', 'text/x-script.tcl', 'application/x-tcl')),
+    'TclLexer': ('pygments.lexers.misc.tcl', 'Tcl', ('tcl',), ('*.tcl', '*.rvt'), ('text/x-tcl', 'text/x-script.tcl', 'application/x-tcl')),
     'TcshLexer': ('pygments.lexers.shell', 'Tcsh', ('tcsh', 'csh'), ('*.tcsh', '*.csh'), ('application/x-csh',)),
     'TeaTemplateLexer': ('pygments.lexers.templates', 'Tea', ('tea',), ('*.tea',), ('text/x-tea',)),
     'TexLexer': ('pygments.lexers.markup', 'TeX', ('tex', 'latex'), ('*.tex', '*.aux', '*.toc'), ('text/x-tex', 'text/x-latex')),
