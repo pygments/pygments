@@ -23,8 +23,8 @@ if os.path.isdir(os.path.join(srcpath, 'pygments')):
     sys.path.insert(0, srcpath)
 
 
-from pygments.lexer import RegexLexer
-from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
+from pygments.lexer import RegexLexer, ProfilingRegexLexer, ProfilingRegexLexerMeta
+from pygments.lexers import find_lexer_class, find_lexer_class_for_filename
 from pygments.token import Error, Text, _TokenType
 from pygments.cmdline import _parse_options
 
@@ -46,11 +46,12 @@ class DebuggingRegexLexer(RegexLexer):
             for rexmatch, action, new_state in statetokens:
                 self.m = m = rexmatch(text, self.pos)
                 if m:
-                    if type(action) is _TokenType:
-                        yield self.pos, action, m.group()
-                    else:
-                        for item in action(self, m):
-                            yield item
+                    if action is not None:
+                        if type(action) is _TokenType:
+                            yield self.pos, action, m.group()
+                        else:
+                            for item in action(self, m):
+                                yield item
                     self.pos = m.end()
                     if new_state is not None:
                         # state transition
@@ -88,26 +89,34 @@ class DebuggingRegexLexer(RegexLexer):
 
 def main(fn, lexer=None, options={}):
     if lexer is not None:
-        lx = get_lexer_by_name(lexer)
+        lxcls = find_lexer_class(lexer)
     else:
         try:
-            lx = get_lexer_for_filename(os.path.basename(fn), **options)
+            lxcls = find_lexer_class_for_filename(os.path.basename(fn))
         except ValueError:
             try:
                 name, rest = fn.split('_', 1)
-                lx = get_lexer_by_name(name, **options)
+                lxcls = find_lexer_class(name)
             except ValueError:
                 raise AssertionError('no lexer found for file %r' % fn)
     debug_lexer = False
-    # does not work for e.g. ExtendedRegexLexers
-    if lx.__class__.__bases__ == (RegexLexer,):
-        lx.__class__.__bases__ = (DebuggingRegexLexer,)
-        debug_lexer = True
-    elif lx.__class__.__bases__ == (DebuggingRegexLexer,):
-        # already debugged before
-        debug_lexer = True
+    if profile:
+        # does not work for e.g. ExtendedRegexLexers
+        if lxcls.__bases__ == (RegexLexer,):
+            # yes we can!  (change the metaclass)
+            lxcls.__class__ = ProfilingRegexLexerMeta
+            lxcls.__bases__ = (ProfilingRegexLexer,)
+            lxcls._prof_sort_index = profsort
+    else:
+        if lxcls.__bases__ == (RegexLexer,):
+            lxcls.__bases__ = (DebuggingRegexLexer,)
+            debug_lexer = True
+        elif lxcls.__bases__ == (DebuggingRegexLexer,):
+            # already debugged before
+            debug_lexer = True
+    lx = lxcls(**options)
     lno = 1
-    text = open(fn, 'U').read()
+    text = open(fn, 'U').read().decode('utf-8')
     text = text.strip('\n') + '\n'
     tokens = []
     states = []
@@ -129,7 +138,10 @@ def main(fn, lexer=None, options={}):
                     show_token(tok, state)
             else:
                 for i in range(max(len(tokens) - num, 0), len(tokens)):
-                    show_token(tokens[i], states[i])
+                    if debug_lexer:
+                        show_token(tokens[i], states[i])
+                    else:
+                        show_token(tokens[i], None)
             print('Error token:')
             l = len(repr(val))
             print('   ' + repr(val), end=' ')
@@ -150,14 +162,43 @@ def main(fn, lexer=None, options={}):
     return 0
 
 
+def print_help():
+    print('''\
+Pygments development helper to quickly debug lexers.
+
+Give one or more filenames to lex them and display possible error tokens
+and/or profiling info.  Options are:
+
+Selecting lexer and options:
+
+    -l NAME         use lexer named NAME (default is to guess from
+                    the given filenames)
+    -O OPTIONSTR    use lexer options parsed from OPTIONSTR
+
+Debugging lexing errors:
+
+    -n N            show the last N tokens on error
+    -a              always show all lexed tokens (default is only
+                    to show them when an error occurs)
+
+Profiling:
+
+    -p              use the ProfilingRegexLexer to profile regexes
+                    instead of the debugging lexer
+    -s N            sort profiling output by column N (default is
+                    column 4, the time per call)
+''')
+
 num = 10
 showall = False
 lexer = None
 options = {}
+profile = False
+profsort = 4
 
 if __name__ == '__main__':
     import getopt
-    opts, args = getopt.getopt(sys.argv[1:], 'n:l:aO:')
+    opts, args = getopt.getopt(sys.argv[1:], 'n:l:apO:s:h')
     for opt, val in opts:
         if opt == '-n':
             num = int(val)
@@ -165,8 +206,15 @@ if __name__ == '__main__':
             showall = True
         elif opt == '-l':
             lexer = val
+        elif opt == '-p':
+            profile = True
+        elif opt == '-s':
+            profsort = int(val)
         elif opt == '-O':
             options = _parse_options([val])
+        elif opt == '-h':
+            print_help()
+            sys.exit(0)
     ret = 0
     for f in args:
         ret += main(f, lexer, options)
