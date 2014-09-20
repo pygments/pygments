@@ -166,15 +166,16 @@ def get_lexer_for_mimetype(_mime, **options):
     raise ClassNotFound('no lexer for mimetype %r found' % _mime)
 
 
-def _iter_lexerclasses():
+def _iter_lexerclasses(plugins=True):
     """Return an iterator over all lexer classes."""
     for key in sorted(LEXERS):
         module_name, name = LEXERS[key][:2]
         if name not in _lexer_cache:
             _load_lexers(module_name)
         yield _lexer_cache[name]
-    for lexer in find_plugin_lexers():
-        yield lexer
+    if plugins:
+        for lexer in find_plugin_lexers():
+            yield lexer
 
 
 def guess_lexer_for_filename(_fn, _text, **options):
