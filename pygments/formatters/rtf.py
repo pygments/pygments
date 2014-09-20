@@ -96,8 +96,8 @@ class RtfFormatter(Formatter):
     def format_unencoded(self, tokensource, outfile):
         # rtf 1.8 header
         outfile.write(u'{\\rtf1\\ansi\\uc0\\deff0'
-                      ur'{\fonttbl{\f0\fmodern\fprq1\fcharset0%s;}}'
-                      ur'{\colortbl;' % (self.fontface and
+                      u'{\\fonttbl{\\f0\\fmodern\\fprq1\\fcharset0%s;}}'
+                      u'{\\colortbl;' % (self.fontface and
                                          u' ' + self._escape(self.fontface) or
                                          u''))
 
@@ -108,15 +108,15 @@ class RtfFormatter(Formatter):
             for color in style['color'], style['bgcolor'], style['border']:
                 if color and color not in color_mapping:
                     color_mapping[color] = offset
-                    outfile.write(ur'\red%d\green%d\blue%d;' % (
+                    outfile.write(u'\\red%d\\green%d\\blue%d;' % (
                         int(color[0:2], 16),
                         int(color[2:4], 16),
                         int(color[4:6], 16)
                     ))
                     offset += 1
-        outfile.write(ur'}\f0 ')
+        outfile.write(u'}\\f0 ')
         if self.fontsize:
-            outfile.write(ur'\fs%d' % (self.fontsize))
+            outfile.write(u'\\fs%d' % (self.fontsize))
 
         # highlight stream
         for ttype, value in tokensource:
@@ -125,17 +125,17 @@ class RtfFormatter(Formatter):
             style = self.style.style_for_token(ttype)
             buf = []
             if style['bgcolor']:
-                buf.append(ur'\cb%d' % color_mapping[style['bgcolor']])
+                buf.append(u'\\cb%d' % color_mapping[style['bgcolor']])
             if style['color']:
-                buf.append(ur'\cf%d' % color_mapping[style['color']])
+                buf.append(u'\\cf%d' % color_mapping[style['color']])
             if style['bold']:
-                buf.append(ur'\b')
+                buf.append(u'\\b')
             if style['italic']:
-                buf.append(ur'\i')
+                buf.append(u'\\i')
             if style['underline']:
                 buf.append(u'\\ul')
             if style['border']:
-                buf.append(ur'\chbrdr\chcfpat%d' %
+                buf.append(u'\\chbrdr\\chcfpat%d' %
                            color_mapping[style['border']])
             start = u''.join(buf)
             if start:
