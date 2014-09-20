@@ -151,10 +151,10 @@ def test_formatter_public_api():
     out = StringIO()
     # test that every formatter class has the correct public API
     def verify(formatter, info):
-        assert len(info) == 4
-        assert info[0], "missing formatter name"
-        assert info[1], "missing formatter aliases"
-        assert info[3], "missing formatter docstring"
+        assert len(info) == 5
+        assert info[1], "missing formatter name"
+        assert info[2], "missing formatter aliases"
+        assert info[4], "missing formatter docstring"
 
         if formatter.name == 'Raw tokens':
             # will not work with Unicode output file
@@ -172,7 +172,9 @@ def test_formatter_public_api():
         inst.format(ts, out)
 
     for formatter, info in formatters.FORMATTERS.items():
-        yield verify, formatter, info
+        fmter = getattr(formatters, formatter)
+        yield verify, fmter, info
+
 
 def test_formatter_encodings():
     from pygments.formatters import HtmlFormatter
@@ -223,7 +225,9 @@ def test_formatter_unicode_handling():
             assert type(out) is bytes, '%s: %r' % (formatter, out)
 
     for formatter, info in formatters.FORMATTERS.items():
-        yield verify, formatter
+        # this tests the automatic importing as well
+        fmter = getattr(formatters, formatter)
+        yield verify, fmter
 
 
 def test_get_formatters():

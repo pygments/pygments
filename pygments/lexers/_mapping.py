@@ -383,7 +383,7 @@ if __name__ == '__main__':
                                      tuple(lexer.aliases),
                                      tuple(lexer.filenames),
                                      tuple(lexer.mimetypes))))
-    # sort them, that should make the diff files for svn smaller
+    # sort them to make the diff minimal
     found_lexers.sort()
 
     # extract useful sourcecode from this file
@@ -396,8 +396,10 @@ if __name__ == '__main__':
     footer = content[content.find("if __name__ == '__main__':"):]
 
     # write new file
-    f = open(__file__, 'wb')
+    f = open(__file__, 'w')
     f.write(header)
     f.write('LEXERS = {\n    %s,\n}\n\n' % ',\n    '.join(found_lexers))
     f.write(footer)
     f.close()
+
+    print ('=== %d lexers processed.' % len(found_lexers))

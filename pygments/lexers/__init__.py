@@ -9,10 +9,10 @@
     :license: BSD, see LICENSE for details.
 """
 
+import re
 import sys
 import types
 import fnmatch
-import re
 from os.path import basename
 
 from pygments.lexers._mapping import LEXERS
@@ -27,23 +27,17 @@ __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
 _lexer_cache = {}
 _pattern_cache = {}
 
-def _fn_matches(fn, glob):
-    """
-    Return whether the supplied file name fn matches pattern filename
-    """
-    if glob not in _pattern_cache:
-        pattern = re.compile(fnmatch.translate(glob))
-        _pattern_cache[glob] = pattern
-    else:
-        pattern = _pattern_cache[glob]
 
-    return pattern.match(fn)
+def _fn_matches(fn, glob):
+    """Return whether the supplied file name fn matches pattern filename."""
+    if glob not in _pattern_cache:
+        pattern = _pattern_cache[glob] = re.compile(fnmatch.translate(glob))
+        return pattern.match(fn)
+    return _pattern_cache[glob].match(fn)
 
 
 def _load_lexers(module_name):
-    """
-    Load a lexer (and all others in the module too).
-    """
+    """Load a lexer (and all others in the module too)."""
     mod = __import__(module_name, None, None, ['__all__'])
     for lexer_name in mod.__all__:
         cls = getattr(mod, lexer_name)
@@ -51,8 +45,7 @@ def _load_lexers(module_name):
 
 
 def get_all_lexers():
-    """
-    Return a generator of tuples in the form ``(name, aliases,
+    """Return a generator of tuples in the form ``(name, aliases,
     filenames, mimetypes)`` of all know lexers.
     """
     for item in itervalues(LEXERS):
@@ -62,8 +55,9 @@ def get_all_lexers():
 
 
 def find_lexer_class(name):
-    """
-    Lookup a lexer class by name. Return None if not found.
+    """Lookup a lexer class by name.
+
+    Return None if not found.
     """
     if name in _lexer_cache:
         return _lexer_cache[name]
@@ -79,8 +73,9 @@ def find_lexer_class(name):
 
 
 def get_lexer_by_name(_alias, **options):
-    """
-    Get a lexer by an alias.
+    """Get a lexer by an alias.
+
+    Raises ClassNotFound if not found.
     """
     if not _alias:
         raise ClassNotFound('no lexer for alias %r found' % _alias)
@@ -99,10 +94,12 @@ def get_lexer_by_name(_alias, **options):
 
 
 def get_lexer_for_filename(_fn, code=None, **options):
-    """
-    Get a lexer for a filename.  If multiple lexers match the filename
-    pattern, use ``analyse_text()`` to figure out which one is more
-    appropriate.
+    """Get a lexer for a filename.
+
+    If multiple lexers match the filename pattern, use ``analyse_text()`` to
+    figure out which one is more appropriate.
+
+    Raises ClassNotFound if not found.
     """
     matches = []
     fn = basename(_fn)
@@ -141,8 +138,9 @@ def get_lexer_for_filename(_fn, code=None, **options):
 
 
 def get_lexer_for_mimetype(_mime, **options):
-    """
-    Get a lexer for a mimetype.
+    """Get a lexer for a mimetype.
+
+    Raises ClassNotFound if not found.
     """
     for modname, name, _, _, mimetypes in itervalues(LEXERS):
         if _mime in mimetypes:
@@ -156,9 +154,7 @@ def get_lexer_for_mimetype(_mime, **options):
 
 
 def _iter_lexerclasses():
-    """
-    Return an iterator over all lexer classes.
-    """
+    """Return an iterator over all lexer classes."""
     for key in sorted(LEXERS):
         module_name, name = LEXERS[key][:2]
         if name not in _lexer_cache:
@@ -218,9 +214,7 @@ def guess_lexer_for_filename(_fn, _text, **options):
 
 
 def guess_lexer(_text, **options):
-    """
-    Guess a lexer by strong distinctions in the text (eg, shebang).
-    """
+    """Guess a lexer by strong distinctions in the text (eg, shebang)."""
 
     # try to get a vim modeline first
     ft = get_filetype_from_buffer(_text)
@@ -256,8 +250,8 @@ class _automodule(types.ModuleType):
         raise AttributeError(name)
 
 
-oldmod = sys.modules['pygments.lexers']
-newmod = _automodule('pygments.lexers')
+oldmod = sys.modules[__name__]
+newmod = _automodule(__name__)
 newmod.__dict__.update(oldmod.__dict__)
-sys.modules['pygments.lexers'] = newmod
+sys.modules[__name__] = newmod
 del newmod.newmod, newmod.oldmod, newmod.sys, newmod.types
