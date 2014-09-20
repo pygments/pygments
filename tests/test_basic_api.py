@@ -42,7 +42,7 @@ def test_lexer_classes():
         for attr in 'aliases', 'filenames', 'alias_filenames', 'mimetypes':
             assert hasattr(cls, attr)
             assert type(getattr(cls, attr)) is list, \
-                   "%s: %s attribute wrong" % (cls, attr)
+                "%s: %s attribute wrong" % (cls, attr)
         result = cls.analyse_text("abc")
         assert isinstance(result, float) and 0.0 <= result <= 1.0
         result = cls.analyse_text(".abc")
@@ -78,7 +78,7 @@ def test_lexer_classes():
             assert isinstance(token[1], text_type)
             txt += token[1]
         assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \
-               (cls.name, test_content, txt)
+            (cls.name, test_content, txt)
 
     for lexer in lexers._iter_lexerclasses():
         yield verify, lexer
@@ -89,7 +89,8 @@ def test_lexer_options():
     def ensure(tokens, output):
         concatenated = ''.join(token[1] for token in tokens)
         assert concatenated == output, \
-               '%s: %r != %r' % (lexer, concatenated, output)
+            '%s: %r != %r' % (lexer, concatenated, output)
+
     def verify(cls):
         inst = cls(stripnl=False)
         ensure(inst.get_tokens('a\nb'), 'a\nb\n')
@@ -98,12 +99,12 @@ def test_lexer_options():
         ensure(inst.get_tokens('   \n  b\n\n\n'), 'b\n')
         # some lexers require full lines in input
         if cls.__name__ not in (
-            'PythonConsoleLexer', 'RConsoleLexer', 'RubyConsoleLexer',
-            'SqliteConsoleLexer', 'MatlabSessionLexer', 'ErlangShellLexer',
-            'BashSessionLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
-            'PostgresConsoleLexer', 'ElixirConsoleLexer', 'JuliaConsoleLexer',
-            'RobotFrameworkLexer', 'DylanConsoleLexer', 'ShellSessionLexer',
-            'LiterateIdrisLexer', 'LiterateCryptolLexer'):
+                'PythonConsoleLexer', 'RConsoleLexer', 'RubyConsoleLexer',
+                'SqliteConsoleLexer', 'MatlabSessionLexer', 'ErlangShellLexer',
+                'BashSessionLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
+                'PostgresConsoleLexer', 'ElixirConsoleLexer', 'JuliaConsoleLexer',
+                'RobotFrameworkLexer', 'DylanConsoleLexer', 'ShellSessionLexer',
+                'LiterateIdrisLexer', 'LiterateCryptolLexer'):
             inst = cls(ensurenl=False)
             ensure(inst.get_tokens('a\nb'), 'a\nb')
             inst = cls(ensurenl=False, stripall=True)
@@ -149,9 +150,10 @@ def test_get_lexers():
 
 
 def test_formatter_public_api():
+    # test that every formatter class has the correct public API
     ts = list(lexers.PythonLexer().get_tokens("def f(): pass"))
     out = StringIO()
-    # test that every formatter class has the correct public API
+
     def verify(formatter, info):
         assert len(info) == 5
         assert info[1], "missing formatter name"
@@ -165,7 +167,7 @@ def test_formatter_public_api():
         try:
             inst = formatter(opt1="val1")
         except (ImportError, FontNotFound):
-            return
+            raise support.SkipTest
         try:
             inst.get_style_defs()
         except NotImplementedError:
@@ -209,7 +211,7 @@ def test_formatter_unicode_handling():
             inst = formatter(encoding=None)
         except (ImportError, FontNotFound):
             # some dependency or font not installed
-            return
+            raise support.SkipTest
 
         if formatter.name != 'Raw tokens':
             out = format(tokens, inst)
@@ -246,7 +248,7 @@ def test_get_formatters():
 def test_styles():
     # minimal style test
     from pygments.formatters import HtmlFormatter
-    fmt = HtmlFormatter(style="pastie")
+    HtmlFormatter(style="pastie")
 
 
 class FiltersTest(unittest.TestCase):
