@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-    Pygments
+"""Pygments
     ~~~~~~~~
 
     Pygments is a syntax highlighting package written in Python.
 
-    It is a generic syntax highlighter for general use in all kinds of software
-    such as forum systems, wikis or other applications that need to prettify
-    source code. Highlights are:
+    It is a generic syntax highlighter suitable for use in code hosting, forums,
+    wikis or other applications that need to prettify source code.  Highlights
+    are:
 
-    * a wide range of common languages and markup formats is supported
+    * a wide range of over 300 languages and other text formats is supported
     * special attention is paid to details, increasing quality by a fair amount
     * support for new languages and formats are added easily
     * a number of output formats, presently HTML, LaTeX, RTF, SVG, all image \
