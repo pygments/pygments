@@ -295,6 +295,7 @@ class ImageFormatter(Formatter):
             raise PilNotAvailable(
                 'Python Imaging Library is required for this formatter')
         Formatter.__init__(self, **options)
+        self.encoding = 'latin1'  # let pygments.format() do the right thing
         # Read the style
         self.styles = dict(self.style)
         if self.style.background_color is None:
@@ -478,8 +479,7 @@ class ImageFormatter(Formatter):
         draw = ImageDraw.Draw(im)
         recth = im.size[-1]
         rectw = self.image_pad + self.line_number_width - self.line_number_pad
-        draw.rectangle([(0, 0),
-                        (rectw, recth)],
+        draw.rectangle([(0, 0), (rectw, recth)],
                        fill=self.line_number_bg)
         draw.line([(rectw, 0), (rectw, recth)], fill=self.line_number_fg)
         del draw

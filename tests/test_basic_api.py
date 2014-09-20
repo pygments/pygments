@@ -217,7 +217,7 @@ def test_formatter_unicode_handling():
         if formatter.name != 'Raw tokens':
             out = format(tokens, inst)
             if formatter.unicodeoutput:
-                assert type(out) is text_type
+                assert type(out) is text_type, '%s: %r' % (formatter, out)
 
             inst = formatter(encoding='utf-8')
             out = format(tokens, inst)
