@@ -27,10 +27,12 @@ random.shuffle(test_content)
 test_content = ''.join(test_content) + '\n'
 
 
-def test_lexer_import_all():
+def test_lexer_instantiate_all():
     # instantiate every lexer, to see if the token type defs are correct
+    def verify(name):
+        getattr(lexers, name)
     for x in lexers.LEXERS:
-        c = getattr(lexers, x)()
+        yield verify, x
 
 
 def test_lexer_classes():
