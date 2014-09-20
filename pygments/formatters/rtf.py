@@ -9,6 +9,8 @@
     :license: BSD, see LICENSE for details.
 """
 
+from __future__ import unicode_literals
+
 from pygments.formatter import Formatter
 from pygments.util import get_int_opt, _surrogatepair
 
@@ -48,8 +50,6 @@ class RtfFormatter(Formatter):
     aliases = ['rtf']
     filenames = ['*.rtf']
 
-    unicodeoutput = False
-
     def __init__(self, **options):
         """
         Additional options accepted:
@@ -87,18 +87,18 @@ class RtfFormatter(Formatter):
                 buf.append(str(c))
             elif (2**7) <= cn < (2**16):
                 # single unicode escape sequence
-                buf.append(r'{\u%d}' % cn)
+                buf.append('{\\u%d}' % cn)
             elif (2**16) <= cn:
                 # RTF limits unicode to 16 bits.
                 # Force surrogate pairs
                 h,l = _surrogatepair(cn)
-                buf.append(r'{\u%d}{\u%d}' % (h,l))
+                buf.append('{\\u%d}{\\u%d}' % (h,l))
 
         return ''.join(buf).replace('\n', '\\par\n')
 
     def format_unencoded(self, tokensource, outfile):
         # rtf 1.8 header
-        outfile.write(r'{\rtf1\ansi\uc0\deff0'
+        outfile.write('{\\rtf1\\ansi\\uc0\\deff0'
                       r'{\fonttbl{\f0\fmodern\fprq1\fcharset0%s;}}'
                       r'{\colortbl;' % (self.fontface and
                                         ' ' + self._escape(self.fontface) or
@@ -136,7 +136,7 @@ class RtfFormatter(Formatter):
             if style['italic']:
                 buf.append(r'\i')
             if style['underline']:
-                buf.append(r'\ul')
+                buf.append('\\ul')
             if style['border']:
                 buf.append(r'\chbrdr\chcfpat%d' %
                            color_mapping[style['border']])
