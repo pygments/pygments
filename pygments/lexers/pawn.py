@@ -30,6 +30,8 @@ class SourcePawnLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
+    #: only one /* */ style comment
+    _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
     tokens = {
         'root': [
@@ -37,8 +39,8 @@ class SourcePawnLexer(RegexLexer):
             ('^#if\s+0', Comment.Preproc, 'if0'),
             ('^#', Comment.Preproc, 'macro'),
             # or with whitespace
-            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
-            ('^' + _ws + '#', Comment.Preproc, 'macro'),
+            ('^' + _ws1 + r'#if\s+0', Comment.Preproc, 'if0'),
+            ('^' + _ws1 + '#', Comment.Preproc, 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text),  # line continuation
@@ -140,6 +142,8 @@ class PawnLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*][\w\W]*?[*]/)+'
+    #: only one /* */ style comment
+    _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
     tokens = {
         'root': [
@@ -147,8 +151,8 @@ class PawnLexer(RegexLexer):
             ('^#if\s+0', Comment.Preproc, 'if0'),
             ('^#', Comment.Preproc, 'macro'),
             # or with whitespace
-            ('^' + _ws + r'#if\s+0', Comment.Preproc, 'if0'),
-            ('^' + _ws + '#', Comment.Preproc, 'macro'),
+            ('^' + _ws1 + r'#if\s+0', Comment.Preproc, 'if0'),
+            ('^' + _ws1 + '#', Comment.Preproc, 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text),  # line continuation
