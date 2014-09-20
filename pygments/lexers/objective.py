@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.c_like.objective
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.objective
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Objective-C family languages.
 
@@ -15,7 +15,7 @@ from pygments.lexer import include, bygroups, using, this, words, inherit
 from pygments.token import Text, Keyword, Name, String, Operator, \
     Number, Punctuation, Literal
 
-from pygments.lexers.c_like.c_cpp import CLexer, CppLexer
+from pygments.lexers.c_cpp import CLexer, CppLexer
 
 __all__ = ['ObjectiveCLexer', 'ObjectiveCppLexer', 'LogosLexer', 'SwiftLexer']
 

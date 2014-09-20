@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.c_like.go
-    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.go
+    ~~~~~~~~~~~~~~~~~~
 
-    Lexers for Go languages.
+    Lexers for the Google Go language.
 
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.

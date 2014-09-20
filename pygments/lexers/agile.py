@@ -15,7 +15,7 @@ from pygments.lexers.python import PythonLexer, PythonConsoleLexer, \
     PythonTracebackLexer, Python3Lexer, Python3TracebackLexer, DgLexer
 from pygments.lexers.ruby import RubyLexer, RubyConsoleLexer, FancyLexer
 from pygments.lexers.perl import PerlLexer, Perl6Lexer
-from pygments.lexers.c_like.d import CrocLexer, MiniDLexer
+from pygments.lexers.d import CrocLexer, MiniDLexer
 from pygments.lexers.misc.iolang import IoLexer
 from pygments.lexers.misc.tcl import TclLexer
 from pygments.lexers.misc.factor import FactorLexer

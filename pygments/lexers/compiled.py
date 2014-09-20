@@ -10,13 +10,13 @@
 """
 
 from pygments.lexers.jvm import JavaLexer, ScalaLexer
-from pygments.lexers.c_like.c_cpp import CLexer, CppLexer
-from pygments.lexers.c_like.d import DLexer
-from pygments.lexers.c_like.objective import ObjectiveCLexer, \
+from pygments.lexers.c_cpp import CLexer, CppLexer
+from pygments.lexers.d import DLexer
+from pygments.lexers.objective import ObjectiveCLexer, \
     ObjectiveCppLexer, LogosLexer
-from pygments.lexers.c_like.go import GoLexer
-from pygments.lexers.c_like.rust import RustLexer
-from pygments.lexers.c_like.other import ECLexer, ValaLexer, CudaLexer
+from pygments.lexers.go import GoLexer
+from pygments.lexers.rust import RustLexer
+from pygments.lexers.c_like import ECLexer, ValaLexer, CudaLexer
 from pygments.lexers.pascal import DelphiLexer, Modula2Lexer, AdaLexer
 from pygments.lexers.business import CobolLexer, CobolFreeformatLexer
 from pygments.lexers.fortran import FortranLexer
