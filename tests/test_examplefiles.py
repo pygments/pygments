@@ -66,12 +66,12 @@ def test_example_files():
     stats.sort(key=lambda x: x[1][1])
     print('\nExample files that took longest absolute time:')
     for fn, t in stats[-N:]:
-        print('%-30s  %6d chars  %8.2f ms  %7.3f s/char' % ((fn,) + t))
+        print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
     print()
     stats.sort(key=lambda x: x[1][2])
     print('\nExample files that took longest relative time:')
     for fn, t in stats[-N:]:
-        print('%-30s  %6d chars  %8.2f ms  %7.3f s/char' % ((fn,) + t))
+        print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
 
 
 def check_lexer(lx, absfn, outfn, stats):
