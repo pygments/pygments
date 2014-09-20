@@ -315,20 +315,20 @@ class ImageFormatter(Formatter):
         self.line_number_fg = options.get('line_number_fg', '#886')
         self.line_number_bg = options.get('line_number_bg', '#eed')
         self.line_number_chars = get_int_opt(options,
-                                        'line_number_chars', 2)
+                                             'line_number_chars', 2)
         self.line_number_bold = get_bool_opt(options,
-                                        'line_number_bold', False)
+                                             'line_number_bold', False)
         self.line_number_italic = get_bool_opt(options,
-                                        'line_number_italic', False)
+                                               'line_number_italic', False)
         self.line_number_pad = get_int_opt(options, 'line_number_pad', 6)
         self.line_numbers = get_bool_opt(options, 'line_numbers', True)
         self.line_number_separator = get_bool_opt(options,
-                                        'line_number_separator', True)
+                                                  'line_number_separator', True)
         self.line_number_step = get_int_opt(options, 'line_number_step', 1)
         self.line_number_start = get_int_opt(options, 'line_number_start', 1)
         if self.line_numbers:
             self.line_number_width = (self.fontw * self.line_number_chars +
-                                   self.line_number_pad * 2)
+                                      self.line_number_pad * 2)
         else:
             self.line_number_width = 0
         self.hl_lines = []
@@ -437,7 +437,7 @@ class ImageFormatter(Formatter):
             # quite complex.
             value = value.expandtabs(4)
             lines = value.splitlines(True)
-            #print lines
+            # print lines
             for i, line in enumerate(lines):
                 temp = line.rstrip('\n')
                 if temp:
@@ -480,7 +480,7 @@ class ImageFormatter(Formatter):
         rectw = self.image_pad + self.line_number_width - self.line_number_pad
         draw.rectangle([(0, 0),
                         (rectw, recth)],
-             fill=self.line_number_bg)
+                       fill=self.line_number_bg)
         draw.line([(rectw, 0), (rectw, recth)], fill=self.line_number_fg)
         del draw
 
