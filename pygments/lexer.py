@@ -8,17 +8,24 @@
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import re, itertools
+
+from __future__ import print_function
+
+import re
+import sys
+import time
+import itertools
 
 from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
 from pygments.token import Error, Text, Other, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
-     make_analysator, text_type, add_metaclass, iteritems
-
+    make_analysator, text_type, add_metaclass, iteritems
+from pygments.regexopt import regex_opt
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
-           'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this', 'default']
+           'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this',
+           'default', 'words']
 
 
 _encoding_map = [(b'\xef\xbb\xbf', 'utf-8'),
@@ -160,7 +167,7 @@ class Lexer(object):
                         break
                 # no BOM found, so use chardet
                 if decoded is None:
-                    enc = chardet.detect(text[:1024]) # Guess using first 1KB
+                    enc = chardet.detect(text[:1024])  # Guess using first 1KB
                     decoded = text.decode(enc.get('encoding') or 'utf-8',
                                           'replace')
                 text = decoded
@@ -237,7 +244,7 @@ class DelegatingLexer(Lexer):
                              self.root_lexer.get_tokens_unprocessed(buffered))
 
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # RegexLexer and ExtendedRegexLexer
 #
 
@@ -387,10 +394,25 @@ class default:
     """
     Indicates a state or state action (e.g. #pop) to apply.
     For example default('#pop') is equivalent to ('', Token, '#pop')
-    Note that state tuples may be used as well
+    Note that state tuples may be used as well.
+
+    .. versionadded:: 2.0
     """
     def __init__(self, state):
         self.state = state
+
+
+class words:
+    """
+    Indicates a list of literal words that is transformed into an optimized
+    regex that matches any of the words.
+
+    .. versionadded:: 2.0
+    """
+    def __init__(self, words, prefix='', suffix=''):
+        self.words = words
+        self.prefix = prefix
+        self.suffix = suffix
 
 
 class RegexLexerMeta(LexerMeta):
@@ -399,14 +421,17 @@ class RegexLexerMeta(LexerMeta):
     self.tokens on the first instantiation.
     """
 
-    def _process_regex(cls, regex, rflags):
+    def _process_regex(cls, regex, rflags, state):
         """Preprocess the regular expression component of a token definition."""
+        if isinstance(regex, words):
+            return re.compile(regex_opt(regex.words, prefix=regex.prefix,
+                                        suffix=regex.suffix), rflags).match
         return re.compile(regex, rflags).match
 
     def _process_token(cls, token):
         """Preprocess the token component of a token definition."""
         assert type(token) is _TokenType or callable(token), \
-               'token type must be simple type or callable, not %r' % (token,)
+            'token type must be simple type or callable, not %r' % (token,)
         return token
 
     def _process_new_state(cls, new_state, unprocessed, processed):
@@ -439,7 +464,7 @@ class RegexLexerMeta(LexerMeta):
             for istate in new_state:
                 assert (istate in unprocessed or
                         istate in ('#pop', '#push')), \
-                       'unknown new state ' + istate
+                    'unknown new state ' + istate
             return new_state
         else:
             assert False, 'unknown new state def %r' % new_state
@@ -470,7 +495,7 @@ class RegexLexerMeta(LexerMeta):
             assert type(tdef) is tuple, "wrong rule def %r" % tdef
 
             try:
-                rex = cls._process_regex(tdef[0], rflags)
+                rex = cls._process_regex(tdef[0], rflags, state)
             except Exception as err:
                 raise ValueError("uncompilable regex %r in state %r of %r: %s" %
                                  (tdef[0], state, cls, err))
@@ -645,7 +670,7 @@ class LexerContext(object):
     def __init__(self, text, pos, stack=None, end=None):
         self.text = text
         self.pos = pos
-        self.end = end or len(text) # end=0 not supported ;-)
+        self.end = end or len(text)  # end=0 not supported ;-)
         self.stack = stack or ['root']
 
     def __repr__(self):
@@ -783,3 +808,56 @@ def do_insertions(insertions, tokens):
         except StopIteration:
             insleft = False
             break  # not strictly necessary
+
+
+class ProfilingRegexLexerMeta(RegexLexerMeta):
+    """Metaclass for ProfilingRegexLexer, collects regex timing info."""
+
+    def _process_regex(cls, regex, rflags, state):
+        if isinstance(regex, words):
+            rex = regex_opt(regex.words, prefix=regex.prefix,
+                            suffix=regex.suffix)
+        else:
+            rex = regex
+        compiled = re.compile(rex, rflags)
+
+        def match_func(text, pos, endpos=sys.maxsize):
+            info = cls._prof_data[-1].setdefault((state, rex), [0, 0.0])
+            t0 = time.time()
+            res = compiled.match(text, pos, endpos)
+            t1 = time.time()
+            info[0] += 1
+            info[1] += t1 - t0
+            return res
+        return match_func
+
+
+@add_metaclass(ProfilingRegexLexerMeta)
+class ProfilingRegexLexer(RegexLexer):
+    """Drop-in replacement for RegexLexer that does profiling of its regexes."""
+
+    _prof_data = []
+    _prof_sort_index = 4  # defaults to time per call
+
+    def get_tokens_unprocessed(self, text, stack=('root',)):
+        # this needs to be a stack, since using(this) will produce nested calls
+        self.__class__._prof_data.append({})
+        for tok in RegexLexer.get_tokens_unprocessed(self, text, stack):
+            yield tok
+        rawdata = self.__class__._prof_data.pop()
+        data = sorted(((s, repr(r).strip('u\'').replace('\\\\', '\\')[:65],
+                        n, 1000 * t, 1000 * t / n)
+                       for ((s, r), (n, t)) in rawdata.items()),
+                      key=lambda x: x[self._prof_sort_index],
+                      reverse=True)
+        sum_total = sum(x[3] for x in data)
+
+        print()
+        print('Profiling result for %s lexing %d chars in %.3f ms' %
+              (self.__class__.__name__, len(text), sum_total))
+        print('=' * 110)
+        print('%-20s %-64s ncalls  tottime  percall' % ('state', 'regex'))
+        print('-' * 110)
+        for d in data:
+            print('%-20s %-65s %5d %8.4f %8.4f' % d)
+        print('=' * 110)

@@ -14,22 +14,24 @@ import re
 from pygments.lexer import RegexLexer, DelegatingLexer, \
     include, bygroups, using
 from pygments.token import Punctuation, Other, Text, Comment, Operator, \
-     Keyword, Name, String, Number, Whitespace
-from pygments.lexers.compiled import JavaLexer, CLexer, CppLexer, \
-    ObjectiveCLexer, DLexer
+    Keyword, Name, String, Number, Whitespace
+from pygments.lexers.jvm import JavaLexer
+from pygments.lexers.c_cpp import CLexer, CppLexer
+from pygments.lexers.objective import ObjectiveCLexer
+from pygments.lexers.d import DLexer
 from pygments.lexers.dotnet import CSharpLexer
-from pygments.lexers.agile import RubyLexer, PythonLexer, PerlLexer
-from pygments.lexers.web import ActionScriptLexer
-
+from pygments.lexers.ruby import RubyLexer
+from pygments.lexers.python import PythonLexer
+from pygments.lexers.perl import PerlLexer
 
 __all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
            'RagelCppLexer', 'RagelObjectiveCLexer', 'RagelRubyLexer',
            'RagelJavaLexer', 'AntlrLexer', 'AntlrPythonLexer',
            'AntlrPerlLexer', 'AntlrRubyLexer', 'AntlrCppLexer',
-           #'AntlrCLexer',
+           # 'AntlrCLexer',
            'AntlrCSharpLexer', 'AntlrObjectiveCLexer',
-           'AntlrJavaLexer', "AntlrActionScriptLexer",
-           'TreetopLexer']
+           'AntlrJavaLexer', 'AntlrActionScriptLexer',
+           'TreetopLexer', 'EbnfLexer']
 
 
 class RagelLexer(RegexLexer):
@@ -63,29 +65,29 @@ class RagelLexer(RegexLexer):
             (r'[+-]?[0-9]+', Number.Integer),
         ],
         'literals': [
-            (r'"(\\\\|\\"|[^"])*"', String), # double quote string
-            (r"'(\\\\|\\'|[^'])*'", String), # single quote string
-            (r'\[(\\\\|\\\]|[^\]])*\]', String), # square bracket literals
-            (r'/(?!\*)(\\\\|\\/|[^/])*/', String.Regex), # regular expressions
+            (r'"(\\\\|\\"|[^"])*"', String),              # double quote string
+            (r"'(\\\\|\\'|[^'])*'", String),              # single quote string
+            (r'\[(\\\\|\\\]|[^\]])*\]', String),          # square bracket literals
+            (r'/(?!\*)(\\\\|\\/|[^/])*/', String.Regex),  # regular expressions
         ],
         'identifiers': [
             (r'[a-zA-Z_][a-zA-Z_0-9]*', Name.Variable),
         ],
         'operators': [
-            (r',', Operator), # Join
-            (r'\||&|--?', Operator), # Union, Intersection and Subtraction
-            (r'\.|<:|:>>?', Operator), # Concatention
-            (r':', Operator), # Label
-            (r'->', Operator), # Epsilon Transition
-            (r'(>|\$|%|<|@|<>)(/|eof\b)', Operator), # EOF Actions
-            (r'(>|\$|%|<|@|<>)(!|err\b)', Operator), # Global Error Actions
-            (r'(>|\$|%|<|@|<>)(\^|lerr\b)', Operator), # Local Error Actions
-            (r'(>|\$|%|<|@|<>)(~|to\b)', Operator), # To-State Actions
-            (r'(>|\$|%|<|@|<>)(\*|from\b)', Operator), # From-State Actions
-            (r'>|@|\$|%', Operator), # Transition Actions and Priorities
-            (r'\*|\?|\+|{[0-9]*,[0-9]*}', Operator), # Repetition
-            (r'!|\^', Operator), # Negation
-            (r'\(|\)', Operator), # Grouping
+            (r',', Operator),                           # Join
+            (r'\||&|--?', Operator),                    # Union, Intersection and Subtraction
+            (r'\.|<:|:>>?', Operator),                  # Concatention
+            (r':', Operator),                           # Label
+            (r'->', Operator),                          # Epsilon Transition
+            (r'(>|\$|%|<|@|<>)(/|eof\b)', Operator),    # EOF Actions
+            (r'(>|\$|%|<|@|<>)(!|err\b)', Operator),    # Global Error Actions
+            (r'(>|\$|%|<|@|<>)(\^|lerr\b)', Operator),  # Local Error Actions
+            (r'(>|\$|%|<|@|<>)(~|to\b)', Operator),     # To-State Actions
+            (r'(>|\$|%|<|@|<>)(\*|from\b)', Operator),  # From-State Actions
+            (r'>|@|\$|%', Operator),                    # Transition Actions and Priorities
+            (r'\*|\?|\+|{[0-9]*,[0-9]*}', Operator),    # Repetition
+            (r'!|\^', Operator),                        # Negation
+            (r'\(|\)', Operator),                       # Grouping
         ],
         'root': [
             include('literals'),
@@ -100,16 +102,16 @@ class RagelLexer(RegexLexer):
             (r';', Punctuation),
         ],
         'host': [
-            (r'(' + r'|'.join(( # keep host code in largest possible chunks
-                r'[^{}\'"/#]+', # exclude unsafe characters
-                r'[^\\]\\[{}]', # allow escaped { or }
+            (r'(' + r'|'.join((  # keep host code in largest possible chunks
+                r'[^{}\'"/#]+',  # exclude unsafe characters
+                r'[^\\]\\[{}]',  # allow escaped { or }
 
                 # strings and comments may safely contain unsafe characters
-                r'"(\\\\|\\"|[^"])*"', # double quote string
-                r"'(\\\\|\\'|[^'])*'", # single quote string
-                r'//.*$\n?', # single line comment
-                r'/\*(.|\n)*?\*/', # multi-line javadoc-style comment
-                r'\#.*$\n?', # ruby comment
+                r'"(\\\\|\\"|[^"])*"',  # double quote string
+                r"'(\\\\|\\'|[^'])*'",  # single quote string
+                r'//.*$\n?',            # single line comment
+                r'/\*(.|\n)*?\*/',      # multi-line javadoc-style comment
+                r'\#.*$\n?',            # ruby comment
 
                 # regular expression: There's no reason for it to start
                 # with a * and this stops confusion with comments.
@@ -141,17 +143,17 @@ class RagelEmbeddedLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(' + r'|'.join(( # keep host code in largest possible chunks
-                r'[^%\'"/#]+', # exclude unsafe characters
-                r'%(?=[^%]|$)', # a single % sign is okay, just not 2 of them
+            (r'(' + r'|'.join((   # keep host code in largest possible chunks
+                r'[^%\'"/#]+',    # exclude unsafe characters
+                r'%(?=[^%]|$)',   # a single % sign is okay, just not 2 of them
 
                 # strings and comments may safely contain unsafe characters
-                r'"(\\\\|\\"|[^"])*"', # double quote string
-                r"'(\\\\|\\'|[^'])*'", # single quote string
-                r'/\*(.|\n)*?\*/', # multi-line javadoc-style comment
-                r'//.*$\n?', # single line comment
-                r'\#.*$\n?', # ruby/ragel comment
-                r'/(?!\*)(\\\\|\\/|[^/])*/', # regular expression
+                r'"(\\\\|\\"|[^"])*"',  # double quote string
+                r"'(\\\\|\\'|[^'])*'",  # single quote string
+                r'/\*(.|\n)*?\*/',      # multi-line javadoc-style comment
+                r'//.*$\n?',  # single line comment
+                r'\#.*$\n?',  # ruby/ragel comment
+                r'/(?!\*)(\\\\|\\/|[^/])*/',  # regular expression
 
                 # / is safe now that we've handled regex and javadoc comments
                 r'/',
@@ -168,12 +170,12 @@ class RagelEmbeddedLexer(RegexLexer):
             (r'(%%%%|%%){', Punctuation, 'multi-line-fsm'),
         ],
         'multi-line-fsm': [
-            (r'(' + r'|'.join(( # keep ragel code in largest possible chunks.
+            (r'(' + r'|'.join((  # keep ragel code in largest possible chunks.
                 r'(' + r'|'.join((
-                    r'[^}\'"\[/#]', # exclude unsafe characters
-                    r'}(?=[^%]|$)', # } is okay as long as it's not followed by %
-                    r'}%(?=[^%]|$)', # ...well, one %'s okay, just not two...
-                    r'[^\\]\\[{}]', # ...and } is okay if it's escaped
+                    r'[^}\'"\[/#]',   # exclude unsafe characters
+                    r'}(?=[^%]|$)',   # } is okay as long as it's not followed by %
+                    r'}%(?=[^%]|$)',  # ...well, one %'s okay, just not two...
+                    r'[^\\]\\[{}]',   # ...and } is okay if it's escaped
 
                     # allow / if it's preceded with one of these symbols
                     # (ragel EOF actions)
@@ -189,15 +191,15 @@ class RagelEmbeddedLexer(RegexLexer):
                     # We want to match as many of these as we can in one block.
                     # Not sure if we need the + sign here,
                     # does it help performance?
-                    )) + r')+',
+                )) + r')+',
 
                 # strings and comments may safely contain unsafe characters
-                r'"(\\\\|\\"|[^"])*"', # double quote string
-                r"'(\\\\|\\'|[^'])*'", # single quote string
-                r"\[(\\\\|\\\]|[^\]])*\]", # square bracket literal
-                r'/\*(.|\n)*?\*/', # multi-line javadoc-style comment
-                r'//.*$\n?', # single line comment
-                r'\#.*$\n?', # ruby/ragel comment
+                r'"(\\\\|\\"|[^"])*"',      # double quote string
+                r"'(\\\\|\\'|[^'])*'",      # single quote string
+                r"\[(\\\\|\\\]|[^\]])*\]",  # square bracket literal
+                r'/\*(.|\n)*?\*/',          # multi-line javadoc-style comment
+                r'//.*$\n?',                # single line comment
+                r'\#.*$\n?',                # ruby/ragel comment
             )) + r')+', using(RagelLexer)),
 
             (r'}%%', Punctuation, '#pop'),
@@ -221,7 +223,7 @@ class RagelRubyLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(RagelRubyLexer, self).__init__(RubyLexer, RagelEmbeddedLexer,
-                                              **options)
+                                             **options)
 
     def analyse_text(text):
         return '@LANG: ruby' in text
@@ -336,9 +338,9 @@ class AntlrLexer(RegexLexer):
     aliases = ['antlr']
     filenames = []
 
-    _id =          r'[A-Za-z][A-Za-z_0-9]*'
-    _TOKEN_REF =   r'[A-Z][A-Za-z_0-9]*'
-    _RULE_REF =    r'[a-z][A-Za-z_0-9]*'
+    _id = r'[A-Za-z][A-Za-z_0-9]*'
+    _TOKEN_REF = r'[A-Z][A-Za-z_0-9]*'
+    _RULE_REF = r'[a-z][A-Za-z_0-9]*'
     _STRING_LITERAL = r'\'(?:\\\\|\\\'|[^\']*)\''
     _INT = r'[0-9]+'
 
@@ -372,7 +374,7 @@ class AntlrLexer(RegexLexer):
              bygroups(Name.Label, Whitespace, Punctuation, Whitespace,
                       Name.Label, Whitespace, Punctuation), 'action'),
             # rule
-            (r'((?:protected|private|public|fragment)\b)?(\s*)(' + _id + ')(!)?', \
+            (r'((?:protected|private|public|fragment)\b)?(\s*)(' + _id + ')(!)?',
              bygroups(Keyword, Whitespace, Name.Label, Punctuation),
              ('rule-alts', 'rule-prelims')),
         ],
@@ -395,14 +397,14 @@ class AntlrLexer(RegexLexer):
             (r'(throws)(\s+)(' + _id + ')',
              bygroups(Keyword, Whitespace, Name.Label)),
             (r'(,)(\s*)(' + _id + ')',
-             bygroups(Punctuation, Whitespace, Name.Label)), # Additional throws
+             bygroups(Punctuation, Whitespace, Name.Label)),  # Additional throws
             # optionsSpec
             (r'options\b', Keyword, 'options'),
             # ruleScopeSpec - scope followed by target language code or name of action
             # TODO finish implementing other possibilities for scope
             # L173 ANTLRv3.g from ANTLR book
             (r'(scope)(\s+)({)', bygroups(Keyword, Whitespace, Punctuation),
-            'action'),
+             'action'),
             (r'(scope)(\s+)(' + _id + ')(\s*)(;)',
              bygroups(Keyword, Whitespace, Name.Label, Whitespace, Punctuation)),
             # ruleAction
@@ -450,20 +452,20 @@ class AntlrLexer(RegexLexer):
             include('comments'),
             (r'{', Punctuation),
             (r'(' + _id + r')(\s*)(=)(\s*)(' +
-             '|'.join((_id, _STRING_LITERAL, _INT, '\*'))+ ')(\s*)(;)',
+             '|'.join((_id, _STRING_LITERAL, _INT, '\*')) + ')(\s*)(;)',
              bygroups(Name.Variable, Whitespace, Punctuation, Whitespace,
                       Text, Whitespace, Punctuation)),
             (r'}', Punctuation, '#pop'),
         ],
         'action': [
-            (r'(' + r'|'.join(( # keep host code in largest possible chunks
-                r'[^\${}\'"/\\]+', # exclude unsafe characters
+            (r'(' + r'|'.join((     # keep host code in largest possible chunks
+                r'[^\${}\'"/\\]+',  # exclude unsafe characters
 
                 # strings and comments may safely contain unsafe characters
-                r'"(\\\\|\\"|[^"])*"', # double quote string
-                r"'(\\\\|\\'|[^'])*'", # single quote string
-                r'//.*$\n?', # single line comment
-                r'/\*(.|\n)*?\*/', # multi-line javadoc-style comment
+                r'"(\\\\|\\"|[^"])*"',  # double quote string
+                r"'(\\\\|\\'|[^'])*'",  # single quote string
+                r'//.*$\n?',            # single line comment
+                r'/\*(.|\n)*?\*/',      # multi-line javadoc-style comment
 
                 # regular expression: There's no reason for it to start
                 # with a * and this stops confusion with comments.
@@ -483,14 +485,14 @@ class AntlrLexer(RegexLexer):
             (r'}', Punctuation, '#pop'),
         ],
         'nested-arg-action': [
-            (r'(' + r'|'.join(( # keep host code in largest possible chunks.
-                r'[^\$\[\]\'"/]+', # exclude unsafe characters
+            (r'(' + r'|'.join((     # keep host code in largest possible chunks.
+                r'[^\$\[\]\'"/]+',  # exclude unsafe characters
 
                 # strings and comments may safely contain unsafe characters
-                r'"(\\\\|\\"|[^"])*"', # double quote string
-                r"'(\\\\|\\'|[^'])*'", # single quote string
-                r'//.*$\n?', # single line comment
-                r'/\*(.|\n)*?\*/', # multi-line javadoc-style comment
+                r'"(\\\\|\\"|[^"])*"',  # double quote string
+                r"'(\\\\|\\'|[^'])*'",  # single quote string
+                r'//.*$\n?',            # single line comment
+                r'/\*(.|\n)*?\*/',      # multi-line javadoc-style comment
 
                 # regular expression: There's no reason for it to start
                 # with a * and this stops confusion with comments.
@@ -520,7 +522,7 @@ class AntlrLexer(RegexLexer):
 # so just assume they're C++.  No idea how to make Objective C work in the
 # future.
 
-#class AntlrCLexer(DelegatingLexer):
+# class AntlrCLexer(DelegatingLexer):
 #    """
 #    ANTLR with C Target
 #
@@ -536,6 +538,7 @@ class AntlrLexer(RegexLexer):
 #
 #    def analyse_text(text):
 #        return re.match(r'^\s*language\s*=\s*C\s*;', text)
+
 
 class AntlrCppLexer(DelegatingLexer):
     """
@@ -553,7 +556,7 @@ class AntlrCppLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-               re.search(r'^\s*language\s*=\s*C\s*;', text, re.M)
+            re.search(r'^\s*language\s*=\s*C\s*;', text, re.M)
 
 
 class AntlrObjectiveCLexer(DelegatingLexer):
@@ -573,7 +576,7 @@ class AntlrObjectiveCLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-               re.search(r'^\s*language\s*=\s*ObjC\s*;', text)
+            re.search(r'^\s*language\s*=\s*ObjC\s*;', text)
 
 
 class AntlrCSharpLexer(DelegatingLexer):
@@ -593,7 +596,7 @@ class AntlrCSharpLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-               re.search(r'^\s*language\s*=\s*CSharp2\s*;', text, re.M)
+            re.search(r'^\s*language\s*=\s*CSharp2\s*;', text, re.M)
 
 
 class AntlrPythonLexer(DelegatingLexer):
@@ -613,7 +616,7 @@ class AntlrPythonLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-               re.search(r'^\s*language\s*=\s*Python\s*;', text, re.M)
+            re.search(r'^\s*language\s*=\s*Python\s*;', text, re.M)
 
 
 class AntlrJavaLexer(DelegatingLexer):
@@ -653,7 +656,7 @@ class AntlrRubyLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-               re.search(r'^\s*language\s*=\s*Ruby\s*;', text, re.M)
+            re.search(r'^\s*language\s*=\s*Ruby\s*;', text, re.M)
 
 
 class AntlrPerlLexer(DelegatingLexer):
@@ -673,7 +676,7 @@ class AntlrPerlLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-               re.search(r'^\s*language\s*=\s*Perl5\s*;', text, re.M)
+            re.search(r'^\s*language\s*=\s*Perl5\s*;', text, re.M)
 
 
 class AntlrActionScriptLexer(DelegatingLexer):
@@ -688,12 +691,14 @@ class AntlrActionScriptLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
+        from pygments.lexers.actionscript import ActionScriptLexer
         super(AntlrActionScriptLexer, self).__init__(ActionScriptLexer,
                                                      AntlrLexer, **options)
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-               re.search(r'^\s*language\s*=\s*ActionScript\s*;', text, re.M)
+            re.search(r'^\s*language\s*=\s*ActionScript\s*;', text, re.M)
+
 
 class TreetopBaseLexer(RegexLexer):
     """
@@ -763,6 +768,7 @@ class TreetopBaseLexer(RegexLexer):
         ],
     }
 
+
 class TreetopLexer(DelegatingLexer):
     """
     A lexer for `Treetop <http://treetop.rubyforge.org/>`_ grammars.
@@ -776,3 +782,53 @@ class TreetopLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(TreetopLexer, self).__init__(RubyLexer, TreetopBaseLexer, **options)
+
+
+class EbnfLexer(RegexLexer):
+    """
+    Lexer for `ISO/IEC 14977 EBNF
+    <http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form>`_
+    grammars.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'EBNF'
+    aliases = ['ebnf']
+    filenames = ['*.ebnf']
+    mimetypes = ['text/x-ebnf']
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            include('comment_start'),
+            include('identifier'),
+            (r'=', Operator, 'production'),
+        ],
+        'production': [
+            include('whitespace'),
+            include('comment_start'),
+            include('identifier'),
+            (r'"[^"]*"', String.Double),
+            (r"'[^']*'", String.Single),
+            (r'(\?[^?]*\?)', Name.Entity),
+            (r'[\[\]{}(),|]', Punctuation),
+            (r'-', Operator),
+            (r';', Punctuation, '#pop'),
+        ],
+        'whitespace': [
+            (r'\s+', Text),
+        ],
+        'comment_start': [
+            (r'\(\*', Comment.Multiline, 'comment'),
+        ],
+        'comment': [
+            (r'[^*)]', Comment.Multiline),
+            include('comment_start'),
+            (r'\*\)', Comment.Multiline, '#pop'),
+            (r'[*)]', Comment.Multiline),
+        ],
+        'identifier': [
+            (r'([a-zA-Z][a-zA-Z0-9 \-]*)', Keyword),
+        ],
+    }

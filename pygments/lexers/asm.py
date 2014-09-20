@@ -12,12 +12,14 @@
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using, DelegatingLexer
-from pygments.lexers.compiled import DLexer, CppLexer, CLexer
+from pygments.lexers.c_cpp import CppLexer, CLexer
+from pygments.lexers.d import DLexer
 from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
-     Other, Keyword, Operator
+    Other, Keyword, Operator
 
-__all__ = ['GasLexer', 'ObjdumpLexer','DObjdumpLexer', 'CppObjdumpLexer',
-           'CObjdumpLexer', 'LlvmLexer', 'NasmLexer', 'NasmObjdumpLexer', 'Ca65Lexer']
+__all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
+           'CObjdumpLexer', 'LlvmLexer', 'NasmLexer', 'NasmObjdumpLexer',
+           'Ca65Lexer']
 
 
 class GasLexer(RegexLexer):
@@ -154,9 +156,7 @@ class ObjdumpLexer(RegexLexer):
     filenames = ['*.objdump']
     mimetypes = ['text/x-objdump']
 
-
     tokens = _objdump_lexer_tokens(GasLexer)
-
 
 
 class DObjdumpLexer(DelegatingLexer):
@@ -220,11 +220,11 @@ class LlvmLexer(RegexLexer):
 
             include('keyword'),
 
-            (r'%' + identifier, Name.Variable),#Name.Identifier.Local),
-            (r'@' + identifier, Name.Variable.Global),#Name.Identifier.Global),
-            (r'%\d+', Name.Variable.Anonymous),#Name.Identifier.Anonymous),
-            (r'@\d+', Name.Variable.Global),#Name.Identifier.Anonymous),
-            (r'#\d+', Name.Variable.Global),#Name.Identifier.Global),
+            (r'%' + identifier, Name.Variable),
+            (r'@' + identifier, Name.Variable.Global),
+            (r'%\d+', Name.Variable.Anonymous),
+            (r'@\d+', Name.Variable.Global),
+            (r'#\d+', Name.Variable.Global),
             (r'!' + identifier, Name.Variable),
             (r'!\d+', Name.Variable.Anonymous),
             (r'c?' + string, String),
