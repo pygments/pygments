@@ -80,7 +80,7 @@ def test_lexer_classes():
         assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \
             (cls.name, test_content, txt)
 
-    for lexer in lexers._iter_lexerclasses():
+    for lexer in lexers._iter_lexerclasses(plugins=False):
         yield verify, lexer
 
 
@@ -110,7 +110,7 @@ def test_lexer_options():
             inst = cls(ensurenl=False, stripall=True)
             ensure(inst.get_tokens('a\nb\n\n'), 'a\nb')
 
-    for lexer in lexers._iter_lexerclasses():
+    for lexer in lexers._iter_lexerclasses(plugins=False):
         if lexer.__name__ == 'RawTokenLexer':
             # this one is special
             continue
