@@ -93,13 +93,13 @@ def get_lexer_by_name(_alias, **options):
     raise ClassNotFound('no lexer for alias %r found' % _alias)
 
 
-def get_lexer_for_filename(_fn, code=None, **options):
+def find_lexer_class_for_filename(_fn, code=None):
     """Get a lexer for a filename.
 
     If multiple lexers match the filename pattern, use ``analyse_text()`` to
     figure out which one is more appropriate.
 
-    Raises ClassNotFound if not found.
+    Returns None if not found.
     """
     matches = []
     fn = basename(_fn)
@@ -132,9 +132,22 @@ def get_lexer_for_filename(_fn, code=None, **options):
 
     if matches:
         matches.sort(key=get_rating)
-        #print "Possible lexers, after sort:", matches
-        return matches[-1][0](**options)
-    raise ClassNotFound('no lexer for filename %r found' % _fn)
+        # print "Possible lexers, after sort:", matches
+        return matches[-1][0]
+
+
+def get_lexer_for_filename(_fn, code=None, **options):
+    """Get a lexer for a filename.
+
+    If multiple lexers match the filename pattern, use ``analyse_text()`` to
+    figure out which one is more appropriate.
+
+    Raises ClassNotFound if not found.
+    """
+    res = find_lexer_class_for_filename(_fn, code)(**options)
+    if not res:
+        raise ClassNotFound('no lexer for filename %r found' % _fn)
+    return res
 
 
 def get_lexer_for_mimetype(_mime, **options):
