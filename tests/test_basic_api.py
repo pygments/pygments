@@ -27,10 +27,12 @@ random.shuffle(test_content)
 test_content = ''.join(test_content) + '\n'
 
 
-def test_lexer_import_all():
+def test_lexer_instantiate_all():
     # instantiate every lexer, to see if the token type defs are correct
+    def verify(name):
+        getattr(lexers, name)
     for x in lexers.LEXERS:
-        c = getattr(lexers, x)()
+        yield verify, x
 
 
 def test_lexer_classes():
@@ -40,7 +42,7 @@ def test_lexer_classes():
         for attr in 'aliases', 'filenames', 'alias_filenames', 'mimetypes':
             assert hasattr(cls, attr)
             assert type(getattr(cls, attr)) is list, \
-                   "%s: %s attribute wrong" % (cls, attr)
+                "%s: %s attribute wrong" % (cls, attr)
         result = cls.analyse_text("abc")
         assert isinstance(result, float) and 0.0 <= result <= 1.0
         result = cls.analyse_text(".abc")
@@ -76,9 +78,9 @@ def test_lexer_classes():
             assert isinstance(token[1], text_type)
             txt += token[1]
         assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \
-               (cls.name, test_content, txt)
+            (cls.name, test_content, txt)
 
-    for lexer in lexers._iter_lexerclasses():
+    for lexer in lexers._iter_lexerclasses(plugins=False):
         yield verify, lexer
 
 
@@ -87,7 +89,8 @@ def test_lexer_options():
     def ensure(tokens, output):
         concatenated = ''.join(token[1] for token in tokens)
         assert concatenated == output, \
-               '%s: %r != %r' % (lexer, concatenated, output)
+            '%s: %r != %r' % (lexer, concatenated, output)
+
     def verify(cls):
         inst = cls(stripnl=False)
         ensure(inst.get_tokens('a\nb'), 'a\nb\n')
@@ -96,18 +99,18 @@ def test_lexer_options():
         ensure(inst.get_tokens('   \n  b\n\n\n'), 'b\n')
         # some lexers require full lines in input
         if cls.__name__ not in (
-            'PythonConsoleLexer', 'RConsoleLexer', 'RubyConsoleLexer',
-            'SqliteConsoleLexer', 'MatlabSessionLexer', 'ErlangShellLexer',
-            'BashSessionLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
-            'PostgresConsoleLexer', 'ElixirConsoleLexer', 'JuliaConsoleLexer',
-            'RobotFrameworkLexer', 'DylanConsoleLexer', 'ShellSessionLexer',
-            'LiterateIdrisLexer', 'LiterateCryptolLexer'):
+                'PythonConsoleLexer', 'RConsoleLexer', 'RubyConsoleLexer',
+                'SqliteConsoleLexer', 'MatlabSessionLexer', 'ErlangShellLexer',
+                'BashSessionLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
+                'PostgresConsoleLexer', 'ElixirConsoleLexer', 'JuliaConsoleLexer',
+                'RobotFrameworkLexer', 'DylanConsoleLexer', 'ShellSessionLexer',
+                'LiterateIdrisLexer', 'LiterateCryptolLexer'):
             inst = cls(ensurenl=False)
             ensure(inst.get_tokens('a\nb'), 'a\nb')
             inst = cls(ensurenl=False, stripall=True)
             ensure(inst.get_tokens('a\nb\n\n'), 'a\nb')
 
-    for lexer in lexers._iter_lexerclasses():
+    for lexer in lexers._iter_lexerclasses(plugins=False):
         if lexer.__name__ == 'RawTokenLexer':
             # this one is special
             continue
@@ -147,14 +150,16 @@ def test_get_lexers():
 
 
 def test_formatter_public_api():
+    # test that every formatter class has the correct public API
     ts = list(lexers.PythonLexer().get_tokens("def f(): pass"))
     out = StringIO()
-    # test that every formatter class has the correct public API
-    def verify(formatter, info):
-        assert len(info) == 4
-        assert info[0], "missing formatter name"
-        assert info[1], "missing formatter aliases"
-        assert info[3], "missing formatter docstring"
+
+    def verify(formatter):
+        info = formatters.FORMATTERS[formatter.__name__]
+        assert len(info) == 5
+        assert info[1], "missing formatter name"
+        assert info[2], "missing formatter aliases"
+        assert info[4], "missing formatter docstring"
 
         if formatter.name == 'Raw tokens':
             # will not work with Unicode output file
@@ -163,7 +168,7 @@ def test_formatter_public_api():
         try:
             inst = formatter(opt1="val1")
         except (ImportError, FontNotFound):
-            return
+            raise support.SkipTest
         try:
             inst.get_style_defs()
         except NotImplementedError:
@@ -171,8 +176,10 @@ def test_formatter_public_api():
             pass
         inst.format(ts, out)
 
-    for formatter, info in formatters.FORMATTERS.items():
-        yield verify, formatter, info
+    for name in formatters.FORMATTERS:
+        formatter = getattr(formatters, name)
+        yield verify, formatter
+
 
 def test_formatter_encodings():
     from pygments.formatters import HtmlFormatter
@@ -205,12 +212,12 @@ def test_formatter_unicode_handling():
             inst = formatter(encoding=None)
         except (ImportError, FontNotFound):
             # some dependency or font not installed
-            return
+            raise support.SkipTest
 
         if formatter.name != 'Raw tokens':
             out = format(tokens, inst)
             if formatter.unicodeoutput:
-                assert type(out) is text_type
+                assert type(out) is text_type, '%s: %r' % (formatter, out)
 
             inst = formatter(encoding='utf-8')
             out = format(tokens, inst)
@@ -223,7 +230,9 @@ def test_formatter_unicode_handling():
             assert type(out) is bytes, '%s: %r' % (formatter, out)
 
     for formatter, info in formatters.FORMATTERS.items():
-        yield verify, formatter
+        # this tests the automatic importing as well
+        fmter = getattr(formatters, formatter)
+        yield verify, fmter
 
 
 def test_get_formatters():
@@ -240,7 +249,7 @@ def test_get_formatters():
 def test_styles():
     # minimal style test
     from pygments.formatters import HtmlFormatter
-    fmt = HtmlFormatter(style="pastie")
+    HtmlFormatter(style="pastie")
 
 
 class FiltersTest(unittest.TestCase):

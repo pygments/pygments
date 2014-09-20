@@ -12,7 +12,7 @@ import os
 import unittest
 
 from pygments.lexers import guess_lexer
-from pygments.lexers.other import RexxLexer
+from pygments.lexers.scripting import RexxLexer
 
 
 def _exampleFilePath(filename):
