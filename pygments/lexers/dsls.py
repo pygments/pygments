@@ -208,24 +208,30 @@ class PuppetLexer(RegexLexer):
         'keywords': [
             # Left out 'group' and 'require'
             # Since they're often used as attributes
-            (r'(?i)(absent|alert|alias|audit|augeas|before|case|check|class|'
-             r'computer|configured|contained|create_resources|crit|cron|debug|'
-             r'default|define|defined|directory|else|elsif|emerg|err|exec|'
-             r'extlookup|fail|false|file|filebucket|fqdn_rand|generate|host|if|'
-             r'import|include|info|inherits|inline_template|installed|'
-             r'interface|k5login|latest|link|loglevel|macauthorization|'
-             r'mailalias|maillist|mcx|md5|mount|mounted|nagios_command|'
-             r'nagios_contact|nagios_contactgroup|nagios_host|'
-             r'nagios_hostdependency|nagios_hostescalation|nagios_hostextinfo|'
-             r'nagios_hostgroup|nagios_service|nagios_servicedependency|'
-             r'nagios_serviceescalation|nagios_serviceextinfo|'
-             r'nagios_servicegroup|nagios_timeperiod|node|noop|notice|notify|'
-             r'package|present|purged|realize|regsubst|resources|role|router|'
-             r'running|schedule|scheduled_task|search|selboolean|selmodule|'
-             r'service|sha1|shellquote|split|sprintf|ssh_authorized_key|sshkey|'
-             r'stage|stopped|subscribe|tag|tagged|template|tidy|true|undef|'
-             r'unmounted|user|versioncmp|vlan|warning|yumrepo|zfs|zone|'
-             r'zpool)\b', Keyword),
+            (words((
+                'absent', 'alert', 'alias', 'audit', 'augeas', 'before', 'case',
+                'check', 'class', 'computer', 'configured', 'contained',
+                'create_resources', 'crit', 'cron', 'debug', 'default',
+                'define', 'defined', 'directory', 'else', 'elsif', 'emerg',
+                'err', 'exec', 'extlookup', 'fail', 'false', 'file',
+                'filebucket', 'fqdn_rand', 'generate', 'host', 'if', 'import',
+                'include', 'info', 'inherits', 'inline_template', 'installed',
+                'interface', 'k5login', 'latest', 'link', 'loglevel',
+                'macauthorization', 'mailalias', 'maillist', 'mcx', 'md5',
+                'mount', 'mounted', 'nagios_command', 'nagios_contact',
+                'nagios_contactgroup', 'nagios_host', 'nagios_hostdependency',
+                'nagios_hostescalation', 'nagios_hostextinfo', 'nagios_hostgroup',
+                'nagios_service', 'nagios_servicedependency', 'nagios_serviceescalation',
+                'nagios_serviceextinfo', 'nagios_servicegroup', 'nagios_timeperiod',
+                'node', 'noop', 'notice', 'notify', 'package', 'present', 'purged',
+                'realize', 'regsubst', 'resources', 'role', 'router', 'running',
+                'schedule', 'scheduled_task', 'search', 'selboolean', 'selmodule',
+                'service', 'sha1', 'shellquote', 'split', 'sprintf',
+                'ssh_authorized_key', 'sshkey', 'stage', 'stopped', 'subscribe',
+                'tag', 'tagged', 'template', 'tidy', 'true', 'undef', 'unmounted',
+                'user', 'versioncmp', 'vlan', 'warning', 'yumrepo', 'zfs', 'zone',
+                'zpool'), prefix='(?i)', suffix=r'\b'),
+             Keyword),
         ],
 
         'strings': [
