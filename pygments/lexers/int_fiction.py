@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.inform
-    ~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.int_fiction
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for Inform languages.
+    Lexers for interactive fiction languages.
 
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
