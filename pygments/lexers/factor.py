@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.factor
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.factor
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Factor language.
 

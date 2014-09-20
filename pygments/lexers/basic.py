@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.basic
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.basic
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for BASIC like languages (other than VB.net).
 

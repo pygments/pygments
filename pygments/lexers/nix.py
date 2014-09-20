@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.nix
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.nix
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for the NixOS Nix language.
 

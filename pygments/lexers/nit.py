@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.nit
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.nit
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Nit language.
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.make
-    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.make
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Makefiles and similar.
 

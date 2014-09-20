@@ -16,8 +16,8 @@ from pygments.lexers.robotframework import RobotFrameworkLexer
 from pygments.lexers.testing import GherkinLexer
 from pygments.lexers.esoteric import BrainfuckLexer, BefungeLexer, RedcodeLexer
 from pygments.lexers.prolog import LogtalkLexer
-from pygments.lexers.misc.snobol import SnobolLexer
-from pygments.lexers.misc.rebol import RebolLexer
+from pygments.lexers.snobol import SnobolLexer
+from pygments.lexers.rebol import RebolLexer
 from pygments.lexers.configs import KconfigLexer, Cfengine3Lexer
 from pygments.lexers.modeling import ModelicaLexer
 from pygments.lexers.scripting import AppleScriptLexer, MOOCodeLexer, \
@@ -29,11 +29,11 @@ from pygments.lexers.business import ABAPLexer, OpenEdgeLexer, \
 from pygments.lexers.automation import AutoItLexer, AutohotkeyLexer
 from pygments.lexers.dsls import ProtoBufLexer, BroLexer, PuppetLexer, \
     MscgenLexer, VGLLexer
-from pygments.lexers.misc.basic import CbmBasicV2Lexer
-from pygments.lexers.misc.pawn import SourcePawnLexer, PawnLexer
-from pygments.lexers.misc.ecl import ECLLexer
-from pygments.lexers.misc.urbi import UrbiscriptLexer
-from pygments.lexers.misc.smalltalk import SmalltalkLexer, NewspeakLexer
+from pygments.lexers.basic import CbmBasicV2Lexer
+from pygments.lexers.pawn import SourcePawnLexer, PawnLexer
+from pygments.lexers.ecl import ECLLexer
+from pygments.lexers.urbi import UrbiscriptLexer
+from pygments.lexers.smalltalk import SmalltalkLexer, NewspeakLexer
 from pygments.lexers.installers import NSISLexer, RPMSpecLexer
 from pygments.lexers.textedit import AwkLexer
 

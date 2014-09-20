@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.fantom
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.fantom
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Fantom language.
 

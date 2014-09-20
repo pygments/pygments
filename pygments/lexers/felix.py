@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.felix
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.felix
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Felix language.
 

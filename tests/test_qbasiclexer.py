@@ -12,7 +12,7 @@ import os
 import unittest
 
 from pygments.token import Token
-from pygments.lexers.misc.basic import QBasicLexer
+from pygments.lexers.basic import QBasicLexer
 
 
 class QBasicTest(unittest.TestCase):

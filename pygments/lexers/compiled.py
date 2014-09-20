@@ -23,13 +23,11 @@ from pygments.lexers.fortran import FortranLexer
 from pygments.lexers.prolog import PrologLexer
 from pygments.lexers.python import CythonLexer
 from pygments.lexers.graphics import GLShaderLexer
-from pygments.lexers.misc.ml import OcamlLexer
-from pygments.lexers.misc.basic import BlitzBasicLexer, BlitzMaxLexer, \
-    MonkeyLexer
-from pygments.lexers.misc.dylan import DylanLexer, DylanLidLexer, \
-    DylanConsoleLexer
-from pygments.lexers.misc.ooc import OocLexer
-from pygments.lexers.misc.felix import FelixLexer
-from pygments.lexers.misc.nimrod import NimrodLexer
+from pygments.lexers.ml import OcamlLexer
+from pygments.lexers.basic import BlitzBasicLexer, BlitzMaxLexer, MonkeyLexer
+from pygments.lexers.dylan import DylanLexer, DylanLidLexer, DylanConsoleLexer
+from pygments.lexers.ooc import OocLexer
+from pygments.lexers.felix import FelixLexer
+from pygments.lexers.nimrod import NimrodLexer
 
 __all__ = []

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.iolang
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.iolang
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Io language.
 
