@@ -20,10 +20,13 @@ from pygments.util import ClassNotFound
 
 STORE_OUTPUT = False
 
+STATS = {}
+
 
 # generate methods
 def test_example_files():
-    stats = {}
+    global STATS
+    STATS = {}
     testdir = os.path.dirname(__file__)
     outdir = os.path.join(testdir, 'examplefiles', 'output')
     if STORE_OUTPUT and not os.path.isdir(outdir):
@@ -59,10 +62,10 @@ def test_example_files():
                                      'nor is of the form <lexer>_filename '
                                      'for overriding, thus no lexer found.'
                                      % fn)
-        yield check_lexer, lx, absfn, outfn, stats
+        yield check_lexer, lx, absfn, outfn
 
     N = 7
-    stats = list(stats.items())
+    stats = list(STATS.items())
     stats.sort(key=lambda x: x[1][1])
     print('\nExample files that took longest absolute time:')
     for fn, t in stats[-N:]:
@@ -74,7 +77,7 @@ def test_example_files():
         print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
 
 
-def check_lexer(lx, absfn, outfn, stats):
+def check_lexer(lx, absfn, outfn):
     fp = open(absfn, 'rb')
     try:
         text = fp.read()
@@ -99,7 +102,7 @@ def check_lexer(lx, absfn, outfn, stats):
             (lx, absfn, val, len(u''.join(ntext)))
         tokens.append((type, val))
     t2 = time.time()
-    stats[os.path.basename(absfn)] = (len(text),
+    STATS[os.path.basename(absfn)] = (len(text),
                                       1000 * (t2 - t1), 1000 * (t2 - t1) / len(text))
     if u''.join(ntext) != text:
         print('\n'.join(difflib.unified_diff(u''.join(ntext).splitlines(),
