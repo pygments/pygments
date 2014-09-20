@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.c_like.rust
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.rust
+    ~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for Rust languages.
+    Lexers for the Rust language.
 
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.

@@ -16,9 +16,9 @@ from pygments.lexer import RegexLexer, DelegatingLexer, \
 from pygments.token import Punctuation, Other, Text, Comment, Operator, \
     Keyword, Name, String, Number, Whitespace
 from pygments.lexers.jvm import JavaLexer
-from pygments.lexers.c_like.c_cpp import CLexer, CppLexer
-from pygments.lexers.c_like.objective import ObjectiveCLexer
-from pygments.lexers.c_like.d import DLexer
+from pygments.lexers.c_cpp import CLexer, CppLexer
+from pygments.lexers.objective import ObjectiveCLexer
+from pygments.lexers.d import DLexer
 from pygments.lexers.dotnet import CSharpLexer
 from pygments.lexers.ruby import RubyLexer
 from pygments.lexers.python import PythonLexer

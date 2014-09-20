@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.c_like.d
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.d
+    ~~~~~~~~~~~~~~~~~
 
     Lexers for D languages.
 

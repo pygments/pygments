@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.c_like.c_cpp
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.c_cpp
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for C/C++ languages.
 

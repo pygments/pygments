@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.c_like.other
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.c_like
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for other C-like languages.
 
@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, include, bygroups, inherit, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
-from pygments.lexers.c_like.c_cpp import CLexer, CppLexer
+from pygments.lexers.c_cpp import CLexer, CppLexer
 
 __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
            'CudaLexer', 'SwigLexer', 'MqlLexer']
