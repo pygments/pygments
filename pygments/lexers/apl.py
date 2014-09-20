@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.apl
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.apl
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for APL.
 

@@ -14,8 +14,8 @@ from pygments.lexers.lisp import SchemeLexer, CommonLispLexer, RacketLexer, \
 from pygments.lexers.haskell import HaskellLexer, LiterateHaskellLexer, \
     KokaLexer
 from pygments.lexers.theorem import CoqLexer
-from pygments.lexers.misc.erlang import ErlangLexer, ErlangShellLexer, \
+from pygments.lexers.erlang import ErlangLexer, ErlangShellLexer, \
     ElixirConsoleLexer, ElixirLexer
-from pygments.lexers.misc.ml import SMLLexer, OcamlLexer, OpaLexer
+from pygments.lexers.ml import SMLLexer, OcamlLexer, OpaLexer
 
 __all__ = []

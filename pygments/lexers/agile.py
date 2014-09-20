@@ -16,9 +16,9 @@ from pygments.lexers.python import PythonLexer, PythonConsoleLexer, \
 from pygments.lexers.ruby import RubyLexer, RubyConsoleLexer, FancyLexer
 from pygments.lexers.perl import PerlLexer, Perl6Lexer
 from pygments.lexers.d import CrocLexer, MiniDLexer
-from pygments.lexers.misc.iolang import IoLexer
-from pygments.lexers.misc.tcl import TclLexer
-from pygments.lexers.misc.factor import FactorLexer
+from pygments.lexers.iolang import IoLexer
+from pygments.lexers.tcl import TclLexer
+from pygments.lexers.factor import FactorLexer
 from pygments.lexers.scripting import LuaLexer, MoonScriptLexer
 
 __all__ = []

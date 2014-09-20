@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.ooc
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.ooc
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Ooc language.
 

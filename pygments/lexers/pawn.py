@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.pawn
-    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.pawn
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Pawn languages.
 

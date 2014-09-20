@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.nimrod
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.nimrod
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Nimrod language.
 

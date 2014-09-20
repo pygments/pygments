@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.urbi
-    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.urbi
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for UrbiScript language.
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.erlang
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.erlang
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Erlang.
 

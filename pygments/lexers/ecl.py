@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.ecl
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.ecl
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for the ECL language.
 

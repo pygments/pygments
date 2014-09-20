@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.rebol
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.rebol
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the REBOL and related languages.
 

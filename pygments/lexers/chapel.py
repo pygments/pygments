@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.chapel
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.chapel
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Chapel language.
 

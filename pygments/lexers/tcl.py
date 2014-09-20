@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.tcl
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.tcl
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for Tcl and related languages.
 

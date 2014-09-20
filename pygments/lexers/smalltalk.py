@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.smalltalk
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.smalltalk
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Smalltalk and related languages.
 

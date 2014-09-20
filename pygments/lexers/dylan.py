@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.dylan
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.dylan
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Dylan language.
 

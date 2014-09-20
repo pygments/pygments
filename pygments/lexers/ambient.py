@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.misc.ambient
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.ambient
+    ~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for AmbientTalk language.
 
