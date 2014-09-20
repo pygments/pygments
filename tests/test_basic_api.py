@@ -154,7 +154,8 @@ def test_formatter_public_api():
     ts = list(lexers.PythonLexer().get_tokens("def f(): pass"))
     out = StringIO()
 
-    def verify(formatter, info):
+    def verify(formatter):
+        info = formatters.FORMATTERS[formatter.__name__]
         assert len(info) == 5
         assert info[1], "missing formatter name"
         assert info[2], "missing formatter aliases"
@@ -175,9 +176,9 @@ def test_formatter_public_api():
             pass
         inst.format(ts, out)
 
-    for formatter, info in formatters.FORMATTERS.items():
-        fmter = getattr(formatters, formatter)
-        yield verify, fmter, info
+    for name in formatters.FORMATTERS:
+        formatter = getattr(formatters, name)
+        yield verify, formatter
 
 
 def test_formatter_encodings():
