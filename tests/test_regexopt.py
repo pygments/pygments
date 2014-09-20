@@ -7,6 +7,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import re
 import random
 import unittest
 import itertools
@@ -32,7 +33,7 @@ class RegexOptTestCase(unittest.TestCase):
             to_match = random.sample(kwlist,
                                      random.randint(1, len(kwlist) - 1))
             no_match = set(kwlist) - set(to_match)
-            rex = regex_opt(to_match, True)
+            rex = re.compile(regex_opt(to_match))
             for w in to_match:
                 self.assertTrue(rex.match(w))
             for w in no_match:

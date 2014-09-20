@@ -420,8 +420,8 @@ class RegexLexerMeta(LexerMeta):
     def _process_regex(cls, regex, rflags):
         """Preprocess the regular expression component of a token definition."""
         if isinstance(regex, words):
-            return regex_opt(regex.words, rflags, prefix=regex.prefix,
-                             suffix=regex.suffix).match
+            return re.compile(regex_opt(regex.words, prefix=regex.prefix,
+                                        suffix=regex.suffix), rflags).match
         return re.compile(regex, rflags).match
 
     def _process_token(cls, token):

@@ -80,7 +80,7 @@ def regex_opt_inner(strings, open_paren):
         + close_paren
 
 
-def regex_opt(strings, flags=0, prefix='', suffix=''):
+def regex_opt(strings, prefix='', suffix=''):
     """Return a compiled regex that matches any string in the given list.
 
     The strings to match must be literal strings, not regexes.  They will be
@@ -89,5 +89,4 @@ def regex_opt(strings, flags=0, prefix='', suffix=''):
     *prefix* and *suffix* are pre- and appended to the final regex.
     """
     strings = sorted(strings)
-    rex = prefix + regex_opt_inner(strings, '(') + suffix
-    return re.compile(rex, flags)
+    return prefix + regex_opt_inner(strings, '(') + suffix
