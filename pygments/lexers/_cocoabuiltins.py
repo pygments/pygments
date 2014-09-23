@@ -23,7 +23,7 @@ if __name__ == '__main__':
     import os
     import re
 
-    FRAMEWORKS_PATH = '/Applications/Xcode6-Beta3.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/System/Library/Frameworks/'
+    FRAMEWORKS_PATH = '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/System/Library/Frameworks/'
     frameworks = os.listdir(FRAMEWORKS_PATH)
 
     all_interfaces = set()
