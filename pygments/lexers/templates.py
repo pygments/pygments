@@ -43,7 +43,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'VelocityHtmlLexer', 'VelocityXmlLexer', 'SspLexer',
            'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer',
            'LassoCssLexer', 'LassoJavascriptLexer', 'HandlebarsLexer',
-           'HandlebarsHtmlLexer', 'YamlJinjaLexer', 'LiquidLexer']
+           'HandlebarsHtmlLexer', 'YamlJinjaLexer', 'LiquidLexer', 'TwigLexer']
 
 
 class ErbLexer(Lexer):
@@ -2071,4 +2071,85 @@ class LiquidLexer(RegexLexer):
                       Punctuation), '#pop'),
             (r'\{', Text)
         ]
+
+
+class TwigLexer(RegexLexer):
+    """
+    `Twig <http://twig.sensiolabs.org/>`_ template lexer.
+
+    It just highlights Twig code between the preprocessor directives,
+    other data is left untouched by the lexer.
+    """
+
+    name = 'Twig'
+    aliases = ['twig']
+    mimetypes = ['application/x-twig']
+
+    flags = re.M | re.S
+
+    tokens = {
+        'root': [
+            (r'[^{]+', Other),
+            (r'\{\{', Comment.Preproc, 'var'),
+            # twig comments
+            (r'\{\#.*?\#\}', Comment),
+             bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
+                      Comment, Comment.Preproc, Text, Keyword, Text,
+                      Comment.Preproc)),
+            # raw twig blocks
+            (r'(\{%)(-?\s*)(raw|verbatim)(\s*-?)(%\})(.*?)'
+             r'(\{%)(-?\s*)(endraw|endverbatim)(\s*-?)(%\})',
+             bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
+                      Text, Comment.Preproc, Text, Keyword, Text,
+                      Comment.Preproc)),
+            # filter blocks
+            (r'(\{%)(-?\s*)(filter)(\s+)([a-zA-Z_]\w*)',
+             bygroups(Comment.Preproc, Text, Keyword, Text, Name.Function),
+             'block'),
+            (r'(\{%)(-?\s*)([a-zA-Z_]\w*)',
+             bygroups(Comment.Preproc, Text, Keyword), 'block')
+        ],
+        'varnames': [
+            (r'(\|)(\s*)([a-zA-Z_]\w*)',
+             bygroups(Operator, Text, Name.Function)),
+            (r'(is)(\s+)(not)?(\s+)?([a-zA-Z_]\w*)',
+             bygroups(Keyword, Text, Keyword, Text, Name.Function)),
+            (r'(true|false|none|null)\b', Keyword.Pseudo),
+            (r'(in|not|and|b-and|or|b-or|b-xor|is'
+             r'if|else|elseif|import'
+             r'constant|defined|divisibleby|empty|even|iterable|odd|sameas'
+             r'matches|starts\s+with|ends\s+with)\b',
+             Keyword),
+            (r'(loop|block|parent)\b', Name.Builtin),
+            (r'[a-zA-Z][\w-]*', Name.Variable),
+            (r'\.\w+', Name.Variable),
+            (r':?"(\\\\|\\"|[^"])*"', String.Double),
+            (r":?'(\\\\|\\'|[^'])*'", String.Single),
+            (r'([{}()\[\]+\-*/,:~%]|\.\.|\?:|\*\*|\/\/|!=|[><=]=?)', Operator),
+            (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
+             r"0[xX][0-9a-fA-F]+[Ll]?", Number),
+        ],
+        'var': [
+            (r'\s+', Text),
+            (r'(-?)(\}\})', bygroups(Text, Comment.Preproc), '#pop'),
+            include('varnames')
+        ],
+        'block': [
+            (r'\s+', Text),
+            (r'(-?)(%\})', bygroups(Text, Comment.Preproc), '#pop'),
+            include('varnames'),
+            (r'.', Punctuation)
+        ]
     }
+
+    def analyse_text(text):
+        rv = 0.0
+        if re.search(r'\{%\s*(block|extends)', text) is not None:
+            rv += 0.4
+        if re.search(r'\{%\s*if\s*.*?%\}', text) is not None:
+            rv += 0.1
+        if re.search(r'\{\{.*?\}\}', text) is not None:
+            rv += 0.1
+        return rv
+
+}
