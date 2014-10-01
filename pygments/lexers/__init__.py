@@ -144,10 +144,10 @@ def get_lexer_for_filename(_fn, code=None, **options):
 
     Raises ClassNotFound if not found.
     """
-    res = find_lexer_class_for_filename(_fn, code)(**options)
+    res = find_lexer_class_for_filename(_fn, code)
     if not res:
         raise ClassNotFound('no lexer for filename %r found' % _fn)
-    return res
+    return res(**options)
 
 
 def get_lexer_for_mimetype(_mime, **options):

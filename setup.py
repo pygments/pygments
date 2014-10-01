@@ -15,7 +15,6 @@
     * a number of output formats, presently HTML, LaTeX, RTF, SVG, all image \
       formats that PIL supports and ANSI sequences
     * it is usable as a command-line tool and as a library
-    * ... and it highlights even Brainfuck!
 
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
