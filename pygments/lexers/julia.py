@@ -42,7 +42,7 @@ class JuliaLexer(RegexLexer):
         'root': [
             (r'\n', Text),
             (r'[^\S\n]+', Text),
-            (r'#=\s*\n', Comment.Multiline, "blockcomment"),
+            (r'#=', Comment.Multiline, "blockcomment"),
             (r'#.*$', Comment),
             (r'[]{}:(),;[@]', Punctuation),
             (r'\\\n', Text),
