@@ -42,6 +42,7 @@ class JuliaLexer(RegexLexer):
         'root': [
             (r'\n', Text),
             (r'[^\S\n]+', Text),
+            (r'#=\s*\n', Comment.Multiline, "blockcomment"),
             (r'#.*$', Comment),
             (r'[]{}:(),;[@]', Punctuation),
             (r'\\\n', Text),
@@ -119,7 +120,12 @@ class JuliaLexer(RegexLexer):
             (r'\\([\\abfnrtv"\']|\n|N{.*?}|u[a-fA-F0-9]{4}|'
              r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
-
+        "blockcomment": [
+            (r'[^=#]', Comment.Multiline),
+            (r'#=', Comment.Multiline, '#push'),
+            (r'=#', Comment.Multiline, '#pop'),
+            (r'[=#]', Comment.Multiline),
+        ],
         'string': [
             (r'"', String, '#pop'),
             (r'\\\\|\\"|\\\n', String.Escape),  # included here for raw strings
