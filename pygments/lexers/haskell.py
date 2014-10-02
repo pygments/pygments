@@ -275,10 +275,11 @@ class AgdaLexer(RegexLexer):
 
     reserved = ['abstract', 'codata', 'coinductive', 'constructor', 'data',
                 'field', 'forall', 'hiding', 'in', 'inductive', 'infix',
-                'infixl', 'infixr', 'let', 'open', 'pattern', 'primitive',
-                'private', 'mutual', 'quote', 'quoteGoal', 'quoteTerm',
-                'record', 'syntax', 'rewrite', 'unquote', 'using', 'where',
-                'with']
+                'infixl', 'infixr', 'instance', 'let', 'mutual', 'open',
+                'pattern', 'postulate', 'primitive', 'private',
+                'quote', 'quoteGoal', 'quoteTerm',
+                'record', 'renaming', 'rewrite', 'syntax', 'tactic',
+                'unquote', 'unquoteDecl', 'using', 'where', 'with']
 
     tokens = {
         'root': [
