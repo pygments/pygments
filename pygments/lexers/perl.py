@@ -481,18 +481,21 @@ class Perl6Lexer(ExtendedRegexLexer):
     # them, make sure you also process the corresponding one!
     tokens = {
         'common': [
-            (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + r'])(?P=first_char)*)', brackets_callback(Comment.Multiline)),
+            (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + r'])(?P=first_char)*)',
+             brackets_callback(Comment.Multiline)),
             (r'#[^\n]*$', Comment.Singleline),
             (r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline),
             (r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline),
             (r'^=.*?\n\s*?\n', Comment.Multiline),
             (r'(regex|token|rule)(\s*' + PERL6_IDENTIFIER_RANGE + '+:sym)',
              bygroups(Keyword, Name), 'token-sym-brackets'),
-            (r'(regex|token|rule)(?!' + PERL6_IDENTIFIER_RANGE + ')(\s*' + PERL6_IDENTIFIER_RANGE + '+)?', bygroups(Keyword, Name), 'pre-token'),
+            (r'(regex|token|rule)(?!' + PERL6_IDENTIFIER_RANGE + ')(\s*' + PERL6_IDENTIFIER_RANGE + '+)?',
+             bygroups(Keyword, Name), 'pre-token'),
             # deal with a special case in the Perl 6 grammar (role q { ... })
             (r'(role)(\s+)(q)(\s*)', bygroups(Keyword, Text, Name, Text)),
             (_build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_RANGE), Keyword),
-            (_build_word_match(PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_RANGE, suffix='(?::[UD])?'), Name.Builtin),
+            (_build_word_match(PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_RANGE, suffix='(?::[UD])?'),
+             Name.Builtin),
             (_build_word_match(PERL6_BUILTINS, PERL6_IDENTIFIER_RANGE), Name.Builtin),
             # copied from PerlLexer
             (r'[$@%&][.^:?=!~]?' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*',
@@ -502,7 +505,8 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'[$@%&]\*' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*',
              Name.Variable.Global),
             (r'\$(?:<.*?>)+', Name.Variable),
-            (r'(?:q|qq|Q)[a-zA-Z]?\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])(?P=first_char)*)', brackets_callback(String)),
+            (r'(?:q|qq|Q)[a-zA-Z]?\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])'
+             r'(?P=first_char)*)', brackets_callback(String)),
             # copied from PerlLexer
             (r'0_?[0-7]+(_[0-7]+)*', Number.Oct),
             (r'0x[0-9A-Fa-f]+(_[0-9A-Fa-f]+)*', Number.Hex),
@@ -514,7 +518,8 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'(?<=~~)\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'(?<=[=(,])\s*/(?:\\\\|\\/|.)*?/', String.Regex),
             (r'm\w+(?=\()', Name),
-            (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z_:\s])(?P=first_char)*)', brackets_callback(String.Regex)),
+            (r'(?:m|ms|rx)\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z_:\s])'
+             r'(?P=first_char)*)', brackets_callback(String.Regex)),
             (r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/',
              String.Regex),
             (r'<[^\s=].*?\S>', String),
@@ -535,7 +540,8 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'.+?', Text),
         ],
         'token-sym-brackets': [
-            (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + '])(?P=first_char)*)', brackets_callback(Name), ('#pop', 'pre-token')),
+            (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + '])(?P=first_char)*)',
+             brackets_callback(Name), ('#pop', 'pre-token')),
             default(('#pop', 'pre-token')),
         ],
         'token': [

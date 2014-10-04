@@ -161,7 +161,8 @@ class LogtalkLexer(RegexLexer):
             # Other arithmetic functors
             (r'(cos|a(cos|sin|tan)|exp|log|s(in|qrt))(?=[(])', Keyword),
             # Term testing
-            (r'(var|atom(ic)?|integer|float|c(allable|ompound)|n(onvar|umber)|ground|acyclic_term)(?=[(])', Keyword),
+            (r'(var|atom(ic)?|integer|float|c(allable|ompound)|n(onvar|umber)|'
+             r'ground|acyclic_term)(?=[(])', Keyword),
             # Term comparison
             (r'compare(?=[(])', Keyword),
             # Stream selection and control
@@ -254,7 +255,8 @@ class LogtalkLexer(RegexLexer):
             (r'e(n(coding|sure_loaded)|xport)(?=[(])', Keyword, 'root'),
             (r'in(clude|itialization|fo)(?=[(])', Keyword, 'root'),
             (r'(built_in|dynamic|synchronized|threaded)[.]', Keyword, 'root'),
-            (r'(alias|d(ynamic|iscontiguous)|m(eta_(non_terminal|predicate)|ode|ultifile)|s(et_(logtalk|prolog)_flag|ynchronized))(?=[(])', Keyword, 'root'),
+            (r'(alias|d(ynamic|iscontiguous)|m(eta_(non_terminal|predicate)|ode|ultifile)|'
+             r's(et_(logtalk|prolog)_flag|ynchronized))(?=[(])', Keyword, 'root'),
             (r'op(?=[(])', Keyword, 'root'),
             (r'(c(alls|oinductive)|module|reexport|use(s|_module))(?=[(])', Keyword, 'root'),
             (r'[a-z][a-zA-Z0-9_]*(?=[(])', Text, 'root'),
