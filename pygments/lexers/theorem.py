@@ -249,7 +249,7 @@ class IsabelleLexer(RegexLexer):
         'boogie_file', 'datatype_compat', 'text_cartouche',
     )
 
-    keyword_theory_script = ('inductive_cases', 'inductive_simps', )
+    keyword_theory_script = ('inductive_cases', 'inductive_simps')
 
     keyword_theory_goal = (
         'ax_specification', 'bnf', 'code_pred', 'corollary', 'cpodef',
@@ -266,7 +266,7 @@ class IsabelleLexer(RegexLexer):
     keyword_qed = ('by', 'done', 'qed')
     keyword_abandon_proof = ('sorry', 'oops')
 
-    keyword_proof_goal = ('have', 'hence', 'interpret', )
+    keyword_proof_goal = ('have', 'hence', 'interpret')
 
     keyword_proof_block = ('next', 'proof')
 
