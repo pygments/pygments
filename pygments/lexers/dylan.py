@@ -160,7 +160,7 @@ class DylanLexer(RegexLexer):
             (r'\?' + valid_name, Name.Tag),
 
             # Punctuation
-            (r'(=>|::|#\(|#\[|##|\?|\?\?|\?=|[(){}\[\],\.;])', Punctuation),
+            (r'(=>|::|#\(|#\[|##|\?\?|\?=|\?|[(){}\[\],\.;])', Punctuation),
 
             # Most operators are picked up as names and then re-flagged.
             # This one isn't valid in a name though, so we pick it up now.

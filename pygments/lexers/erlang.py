@@ -94,7 +94,7 @@ class ErlangLexer(RegexLexer):
             (r'%.*\n', Comment),
             (words(keywords, suffix=r'\b'), Keyword),
             (words(builtins, suffix=r'\b'), Name.Builtin),
-            (words(word_operators, suffix='\b'), Operator.Word),
+            (words(word_operators, suffix=r'\b'), Operator.Word),
             (r'^-', Punctuation, 'directive'),
             (operators, Operator),
             (r'"', String, 'string'),

@@ -320,7 +320,7 @@ class AgdaLexer(RegexLexer):
         'module': [
             (r'{-', Comment.Multiline, 'comment'),
             (r'[a-zA-Z][\w.]*', Name, '#pop'),
-            (r'[^a-zA-Z]*', Text)
+            (r'[^a-zA-Z]+', Text)
         ],
         'comment': HaskellLexer.tokens['comment'],
         'character': HaskellLexer.tokens['character'],

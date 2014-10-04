@@ -300,8 +300,8 @@ class IsabelleLexer(RegexLexer):
             (r'\(\*', Comment, 'comment'),
             (r'\{\*', Comment, 'text'),
 
-            (r'(%s)' % '|'.join(operators), Operator),
-            (r'(%s)' % '|'.join(proof_operators), Operator.Word),
+            (words(operators), Operator),
+            (words(proof_operators), Operator.Word),
 
             (words(keyword_minor, prefix=r'\b', suffix=r'\b'), Keyword.Pseudo),
 

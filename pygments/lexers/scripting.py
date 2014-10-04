@@ -240,7 +240,7 @@ class ChaiscriptLexer(RegexLexer):
             default('#pop')
         ],
         'badregex': [
-            ('\n', Text, '#pop')
+            (r'\n', Text, '#pop')
         ],
         'root': [
             include('commentsandwhitespace'),

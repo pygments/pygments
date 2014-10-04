@@ -37,7 +37,7 @@ class NitLexer(RegexLexer):
                 'else', 'while', 'loop', 'for', 'in', 'and', 'or', 'not',
                 'implies', 'return', 'continue', 'break', 'abort', 'assert',
                 'new', 'is', 'once', 'super', 'self', 'true', 'false', 'nullable',
-                'null', 'as', 'isset', 'label', '__debug__'), suffix='(?=( |\n|\t|\r|\())'),
+                'null', 'as', 'isset', 'label', '__debug__'), suffix=r'(?=[\r\n\t\( ])'),
              Keyword),
             (r'[A-Z][A-Za-z0-9_]*', Name.Class),
             (r'"""(([^\'\\]|\\.)|\\r|\\n)*(({{?)?(""?{{?)*""""*)', String),  # Simple long string
@@ -59,6 +59,6 @@ class NitLexer(RegexLexer):
             (r'==|!=|<==>|>=|>>|>|<=|<<|<|\+|-|=|/|\*|%|\+=|-=|!|@', Operator),
             (r'\(|\)|\[|\]|,|\.\.\.|\.\.|\.|::|:', Punctuation),
             (r'`{[^`]*`}', Text),  # Extern blocks won't be Lexed by Nit
-            ('(\r|\n| |\t)+', Text),
+            (r'[\r\n\t ]+', Text),
         ],
     }

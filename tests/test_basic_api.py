@@ -68,7 +68,9 @@ def test_lexer_classes():
         try:
             tokens = list(inst.get_tokens(test_content))
         except KeyboardInterrupt:
-            raise KeyboardInterrupt('interrupted %s.get_tokens(): test_content=%r' % (cls.__name__, test_content))
+            raise KeyboardInterrupt(
+                'interrupted %s.get_tokens(): test_content=%r' %
+                (cls.__name__, test_content))
         txt = ""
         for token in tokens:
             assert isinstance(token, tuple)
