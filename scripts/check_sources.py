@@ -40,8 +40,6 @@ copyright_re = re.compile(r'^    :copyright: Copyright 2006-2014 by '
                           r'the Pygments team, see AUTHORS\.$', re.UNICODE)
 copyright_2_re = re.compile(r'^                %s(, %s)*[,.]$' %
                             (name_mail_re, name_mail_re), re.UNICODE)
-coding_re    = re.compile(r'coding[:=]\s*([-\w.]+)')
-not_ix_re    = re.compile(r'\bnot\s+\S+?\s+i[sn]\s\S+')
 is_const_re  = re.compile(r'if.*?==\s+(None|False|True)\b')
 
 misspellings = ["developement", "adress", "verificate",  # ALLOW-MISSPELLING
@@ -50,44 +48,30 @@ misspellings = ["developement", "adress", "verificate",  # ALLOW-MISSPELLING
 
 @checker('.py')
 def check_syntax(fn, lines):
+    if '#!/' in lines[0]:
+        lines = lines[1:]
+    if 'coding:' in lines[0]:
+        lines = lines[1:]
     try:
-        compile(''.join(lines), fn, "exec")
+        compile('\n'.join(lines), fn, "exec")
     except SyntaxError as err:
         yield 0, "not compilable: %s" % err
 
 
 @checker('.py')
 def check_style_and_encoding(fn, lines):
-    encoding = 'ascii'
     for lno, line in enumerate(lines):
         if len(line) > 110:
             yield lno+1, "line too long"
-        m = not_ix_re.search(line)
-        if m:
-            yield lno+1, '"' + m.group() + '"'
         if is_const_re.search(line):
             yield lno+1, 'using == None/True/False'
-        if lno < 2:
-            co = coding_re.search(line)
-            if co:
-                encoding = co.group(1)
-        try:
-            line.decode(encoding)
-        except AttributeError:
-            # Python 3 - encoding was already checked
-            pass
-        except UnicodeDecodeError as err:
-            yield lno+1, "not decodable: %s\n   Line: %r" % (err, line)
-        except LookupError as err:
-            yield 0, "unknown encoding: %s" % encoding
-            encoding = 'latin1'
 
 
 @checker('.py', only_pkg=True)
 def check_fileheader(fn, lines):
     # line number correction
     c = 1
-    if lines[0:1] == ['#!/usr/bin/env python\n']:
+    if lines[0:1] == ['#!/usr/bin/env python']:
         lines = lines[1:]
         c = 2
 
@@ -96,31 +80,28 @@ def check_fileheader(fn, lines):
     for lno, l in enumerate(lines):
         llist.append(l)
         if lno == 0:
-            if l == '# -*- coding: rot13 -*-\n':
-                # special-case pony package
-                return
-            elif l != '# -*- coding: utf-8 -*-\n':
+            if l != '# -*- coding: utf-8 -*-':
                 yield 1, "missing coding declaration"
         elif lno == 1:
-            if l != '"""\n' and l != 'r"""\n':
+            if l != '"""' and l != 'r"""':
                 yield 2, 'missing docstring begin (""")'
             else:
                 docopen = True
         elif docopen:
-            if l == '"""\n':
+            if l == '"""':
                 # end of docstring
                 if lno <= 4:
                     yield lno+c, "missing module name in docstring"
                 break
 
-            if l != "\n" and l[:4] != '    ' and docopen:
+            if l != "" and l[:4] != '    ' and docopen:
                 yield lno+c, "missing correct docstring indentation"
 
             if lno == 2:
                 # if not in package, don't check the module name
                 modname = fn[:-3].replace('/', '.').replace('.__init__', '')
                 while modname:
-                    if l.lower()[4:-1] == modname:
+                    if l.lower()[4:] == modname:
                         break
                     modname = '.'.join(modname.split('.')[1:])
                 else:
@@ -135,7 +116,7 @@ def check_fileheader(fn, lines):
 
     # check for copyright and license fields
     license = llist[-2:-1]
-    if license != ["    :license: BSD, see LICENSE for details.\n"]:
+    if license != ["    :license: BSD, see LICENSE for details."]:
         yield 0, "no correct license info"
 
     ci = -3
@@ -204,8 +185,7 @@ def main(argv):
                 print("Checking %s..." % fn)
 
             try:
-                f = open(fn, 'r')
-                lines = list(f)
+                lines = open(fn, 'rb').read().decode('utf-8').splitlines()
             except (IOError, OSError) as err:
                 print("%s: cannot open: %s" % (fn, err))
                 num += 1
