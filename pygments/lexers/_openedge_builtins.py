@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers._openedgebuiltins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers._openedge_builtins
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Builtin list for the OpenEdgeLexer.
 

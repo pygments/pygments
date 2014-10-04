@@ -189,7 +189,7 @@ class CommonLispLexer(RegexLexer):
     symbol = r'(\|[^|]+\||(?:%s)(?:%s)*)' % (nonmacro, constituent)
 
     def __init__(self, **options):
-        from pygments.lexers._clbuiltins import BUILTIN_FUNCTIONS, \
+        from pygments.lexers._cl_builtins import BUILTIN_FUNCTIONS, \
             SPECIAL_FORMS, MACROS, LAMBDA_LIST_KEYWORDS, DECLARATIONS, \
             BUILTIN_TYPES, BUILTIN_CLASSES
         self.builtin_function = BUILTIN_FUNCTIONS

@@ -20,8 +20,7 @@ all: clean-pyc check test
 check:
 	@$(PYTHON) scripts/detect_missing_analyse_text.py || true
 	@$(PYTHON) scripts/check_sources.py -i build -i dist -i pygments/lexers/_mapping.py \
-		   -i docs/build -i pygments/formatters/_mapping.py -i pygments/unistring.py \
-		   -i pygments/lexers/_vimbuiltins.py
+		   -i docs/build -i pygments/formatters/_mapping.py -i pygments/unistring.py
 
 clean: clean-pyc
 	-rm -rf build

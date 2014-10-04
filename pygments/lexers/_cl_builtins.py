@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers._clbuiltins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers._cl_builtins
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ANSI Common Lisp builtins.
 
@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-BUILTIN_FUNCTIONS = set(( # 638 functions
+BUILTIN_FUNCTIONS = set((  # 638 functions
     '<', '<=', '=', '>', '>=', '-', '/', '/=', '*', '+', '1-', '1+',
     'abort', 'abs', 'acons', 'acos', 'acosh', 'add-method', 'adjoin',
     'adjustable-array-p', 'adjust-array', 'allocate-instance',

@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 
-from pygments.lexers._openedgebuiltins import OPENEDGEKEYWORDS
+from pygments.lexers._openedge_builtins import OPENEDGEKEYWORDS
 
 __all__ = ['CobolLexer', 'CobolFreeformatLexer', 'ABAPLexer', 'OpenEdgeLexer',
            'GoodDataCLLexer', 'MaqlLexer']
@@ -445,9 +445,10 @@ class OpenEdgeLexer(RegexLexer):
              r'INT64|INTEGER|INT|INTE|INTEG|INTEGE|'
              r'LOGICAL|LONGCHAR|MEMPTR|RAW|RECID|ROWID)\s*($|(?=[^0-9a-z_\-]))')
 
-    keywords = (r'(?i)(^|(?<=[^0-9a-z_\-]))(' +
-                r'|'.join(OPENEDGEKEYWORDS) +
-                r')\s*($|(?=[^0-9a-z_\-]))')
+    keywords = words(OPENEDGEKEYWORDS,
+                     prefix=r'(?i)(^|(?<=[^0-9a-z_\-]))',
+                     suffix=r'\s*($|(?=[^0-9a-z_\-]))')
+
     tokens = {
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
