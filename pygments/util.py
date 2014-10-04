@@ -276,6 +276,18 @@ def format_lines(var_name, seq, raw=False, indent_level=0):
     lines.append(base_indent + ')')
     return '\n'.join(lines)
 
+
+class Future(object):
+    """
+    Generic class to defer some work.
+
+    Handled specially in RegexLexerMeta, to support regex string construction at
+    first use.
+    """
+    def get(self):
+        raise NotImplementedError
+
+
 # Python 2/3 compatibility
 
 if sys.version_info < (3, 0):
