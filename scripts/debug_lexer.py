@@ -116,7 +116,7 @@ def main(fn, lexer=None, options={}):
             debug_lexer = True
     lx = lxcls(**options)
     lno = 1
-    text = open(fn, 'U').read().decode('utf-8')
+    text = open(fn, 'rb').read().decode('utf-8')
     text = text.strip('\n') + '\n'
     tokens = []
     states = []
@@ -166,8 +166,10 @@ def print_help():
     print('''\
 Pygments development helper to quickly debug lexers.
 
+    scripts/debug_lexer.py [options] file ...
+
 Give one or more filenames to lex them and display possible error tokens
-and/or profiling info.  Options are:
+and/or profiling info.  Files are assumed to be encoded in UTF-8.
 
 Selecting lexer and options:
 
@@ -216,6 +218,8 @@ if __name__ == '__main__':
             print_help()
             sys.exit(0)
     ret = 0
+    if not args:
+        print_help()
     for f in args:
         ret += main(f, lexer, options)
     sys.exit(bool(ret))
