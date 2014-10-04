@@ -5,10 +5,8 @@
 
     Builtin list for the OpenEdgeLexer.
 
-    :copyright: Copyright 2006-2014 by the Pygments team,
-    see AUTHORS.
-    :license: BSD,
-    see LICENSE for details.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 OPENEDGEKEYWORDS = (
