@@ -616,13 +616,11 @@ class ScilabLexer(RegexLexer):
                 'until', 'unwind_protect', 'unwind_protect_cleanup', 'while'), suffix=r'\b'),
              Keyword),
 
-            ("(" + "|".join(_scilab_builtins.functions_kw +
-                            _scilab_builtins.commands_kw +
-                            _scilab_builtins.macros_kw
-                            ) + r')\b',  Name.Builtin),
+            (words(_scilab_builtins.functions_kw +
+                   _scilab_builtins.commands_kw +
+                   _scilab_builtins.macros_kw, suffix=r'\b'), Name.Builtin),
 
-            (r'(%s)\b' % "|".join(map(re.escape, _scilab_builtins.builtin_consts)),
-             Name.Constant),
+            (words(_scilab_builtins.variables_kw, suffix=r'\b'), Name.Constant),
 
             # operators:
             (r'-|==|~=|<|>|<=|>=|&&|&|~|\|\|?', Operator),
