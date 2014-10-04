@@ -1011,13 +1011,14 @@ FUNCTIONS = ('TopMenuHandler',
  'SDKCall')
 
 if __name__ == '__main__':
-    import pprint
     import re
     import sys
     try:
-        from urllib import urlopen
+        from urllib import FancyURLopener
     except ImportError:
-        from urllib.request import urlopen
+        from urllib.request import FancyURLopener
+
+    from pygments.util import format_lines
 
     # urllib ends up wanting to import a module called 'math' -- if
     # pygments/lexers is in the path, this ends badly.
@@ -1025,16 +1026,22 @@ if __name__ == '__main__':
         if sys.path[i].endswith('/lexers'):
             del sys.path[i]
 
+    class Opener(FancyURLopener):
+        version = 'Mozilla/5.0 (Pygments Sourcemod Builtins Update)'
+
+    opener = Opener()
+
     def get_version():
-        f = urlopen('http://docs.sourcemod.net/api/index.php')
-        r = re.compile(r'SourceMod v\.<b>([\d\.]+)</td>')
+        f = opener.open('http://docs.sourcemod.net/api/index.php')
+        r = re.compile(r'SourceMod v\.<b>([\d\.]+(?:-\w+)?)</td>')
         for line in f:
             m = r.search(line)
             if m is not None:
                 return m.groups()[0]
+        raise ValueError('No version in api docs')
 
     def get_sm_functions():
-        f = urlopen('http://docs.sourcemod.net/api/SMfuncs.js')
+        f = opener.open('http://docs.sourcemod.net/api/SMfuncs.js')
         r = re.compile(r'SMfunctions\[\d+\] = Array \("(?:public )?([^,]+)",".+"\);')
         functions = []
         for line in f:
@@ -1050,13 +1057,13 @@ if __name__ == '__main__':
         finally:
             f.close()
 
-        header = content[:content.find('FUNCTIONS = [')]
-        footer = content[content.find("if __name__ == '__main__':"):]
+        header = content[:content.find('FUNCTIONS = (')]
+        footer = content[content.find("if __name__ == '__main__':")-1:]
 
 
         f = open(filename, 'w')
         f.write(header)
-        f.write('FUNCTIONS = %s\n\n' % pprint.pformat(natives))
+        f.write(format_lines('FUNCTIONS', natives))
         f.write(footer)
         f.close()
 
