@@ -256,23 +256,24 @@ def unirange(a, b):
             return u'(?:' + u'|'.join(buf) + u')'
 
 
-def format_lines(var_name, seq, raw=False):
+def format_lines(var_name, seq, raw=False, indent_level=0):
     """
     Formats a sequence of strings for output.
     """
     lines = []
-    indent = ' ' * 4
-    lines.append(var_name + ' = (')
+    base_indent = ' ' * indent_level * 4
+    inner_indent = ' ' * (indent_level + 1) * 4
+    lines.append(base_indent + var_name + ' = (')
     if raw:
         # These should be preformatted reprs of, say, tuples.
         for i in seq:
-            lines.append(indent + i + ',')
+            lines.append(inner_indent + i + ',')
     else:
         for i in seq:
             # Force use of single quotes
             r = repr(i + '"')
-            lines.append(indent + r[:-2] + r[-1] + ',')
-    lines.append(')')
+            lines.append(inner_indent + r[:-2] + r[-1] + ',')
+    lines.append(base_indent + ')')
     return '\n'.join(lines)
 
 # Python 2/3 compatibility
