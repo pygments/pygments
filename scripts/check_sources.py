@@ -23,8 +23,10 @@ from os.path import join, splitext, abspath
 
 checkers = {}
 
+
 def checker(*suffixes, **kwds):
     only_pkg = kwds.pop('only_pkg', False)
+
     def deco(func):
         for suffix in suffixes:
             checkers.setdefault(suffix, []).append(func)
@@ -58,7 +60,7 @@ def check_syntax(fn, lines):
 def check_style_and_encoding(fn, lines):
     encoding = 'ascii'
     for lno, line in enumerate(lines):
-        if len(line) > 90:
+        if len(line) > 110:
             yield lno+1, "line too long"
         m = not_ix_re.search(line)
         if m:
@@ -176,16 +178,19 @@ def main(argv):
     for root, dirs, files in os.walk(path):
         if '.hg' in dirs:
             dirs.remove('.hg')
+        if 'examplefiles' in dirs:
+            dirs.remove('examplefiles')
         if '-i' in opts and abspath(root) in opts['-i']:
             del dirs[:]
             continue
         # XXX: awkward: for the Makefile call: don't check non-package
         #      files for file headers
-        in_pocoo_pkg = root.startswith('./pygments')
+        in_pygments_pkg = root.startswith('./pygments')
         for fn in files:
 
             fn = join(root, fn)
-            if fn[:2] == './': fn = fn[2:]
+            if fn[:2] == './':
+                fn = fn[2:]
 
             if '-i' in opts and abspath(fn) in opts['-i']:
                 continue
@@ -207,7 +212,7 @@ def main(argv):
                 continue
 
             for checker in checkerlist:
-                if not in_pocoo_pkg and checker.only_pkg:
+                if not in_pygments_pkg and checker.only_pkg:
                     continue
                 for lno, msg in checker(fn, lines):
                     print(u"%s:%d: %s" % (fn, lno, msg), file=out)
