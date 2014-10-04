@@ -20,7 +20,7 @@ from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
 from pygments.token import Error, Text, Other, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
-    make_analysator, text_type, add_metaclass, iteritems
+    make_analysator, text_type, add_metaclass, iteritems, Future
 from pygments.regexopt import regex_opt
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
@@ -402,7 +402,7 @@ class default:
         self.state = state
 
 
-class words:
+class words(Future):
     """
     Indicates a list of literal words that is transformed into an optimized
     regex that matches any of the words.
@@ -414,6 +414,9 @@ class words:
         self.prefix = prefix
         self.suffix = suffix
 
+    def get(self):
+        return regex_opt(self.words, prefix=self.prefix, suffix=self.suffix)
+
 
 class RegexLexerMeta(LexerMeta):
     """
@@ -423,9 +426,8 @@ class RegexLexerMeta(LexerMeta):
 
     def _process_regex(cls, regex, rflags, state):
         """Preprocess the regular expression component of a token definition."""
-        if isinstance(regex, words):
-            return re.compile(regex_opt(regex.words, prefix=regex.prefix,
-                                        suffix=regex.suffix), rflags).match
+        if isinstance(regex, Future):
+            regex = regex.get()
         return re.compile(regex, rflags).match
 
     def _process_token(cls, token):
