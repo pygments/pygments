@@ -133,3 +133,13 @@ class UtilTest(unittest.TestCase):
         m = r.match(first_non_bmp * 2)
         self.assertTrue(m)
         self.assertEquals(m.end(), len(first_non_bmp) * 2)
+
+    def test_format_lines(self):
+        lst = ['cat', 'dog']
+        output = util.format_lines('var', lst)
+        print output
+        d = {}
+        exec output in d
+        print d['var']
+        self.assertTrue(isinstance(d['var'], tuple))
+        self.assertEquals(('cat', 'dog'), d['var'])
