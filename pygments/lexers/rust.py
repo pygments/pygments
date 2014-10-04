@@ -11,7 +11,7 @@
 
 from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+    Number, Punctuation, Whitespace
 
 __all__ = ['RustLexer']
 
@@ -30,8 +30,8 @@ class RustLexer(RegexLexer):
     tokens = {
         'root': [
             # Whitespace and Comments
-            (r'\n', Text),
-            (r'\s+', Text),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
             (r'//[/!](.*?)\n', Comment.Doc),
             (r'//(.*?)\n', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
@@ -114,10 +114,12 @@ class RustLexer(RegexLexer):
             # Attributes
             (r'#\[', Comment.Preproc, 'attribute['),
             # Macros
-            (r'([A-Za-z_]\w*)!\s*([A-Za-z_]\w*)?\s*\{',
-             bygroups(Comment.Preproc, Name), 'macro{'),
-            (r'([A-Za-z_]\w*)!\s*([A-Za-z_]\w*)?\(',
-             bygroups(Comment.Preproc, Name), 'macro('),
+            (r'([A-Za-z_]\w*)(!)(\s*)([A-Za-z_]\w*)?(\s*)(\{)',
+             bygroups(Comment.Preproc, Punctuation, Whitespace, Name,
+                      Whitespace, Punctuation), 'macro{'),
+            (r'([A-Za-z_]\w*)(!)(\s*)([A-Za-z_]\w*)?(\()',
+             bygroups(Comment.Preproc, Punctuation, Whitespace, Name,
+                      Punctuation), 'macro('),
         ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
