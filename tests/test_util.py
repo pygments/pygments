@@ -137,9 +137,7 @@ class UtilTest(unittest.TestCase):
     def test_format_lines(self):
         lst = ['cat', 'dog']
         output = util.format_lines('var', lst)
-        print output
         d = {}
-        exec output in d
-        print d['var']
+        exec(output, d)
         self.assertTrue(isinstance(d['var'], tuple))
         self.assertEquals(('cat', 'dog'), d['var'])
