@@ -373,19 +373,22 @@ There are a few more things you can do with states:
 Subclassing lexers derived from RegexLexer
 ==========================================
 
+.. versionadded:: 1.6
+
 Sometimes multiple languages are very similar, but should still be lexed by
 different lexer classes.
 
 When subclassing a lexer derived from RegexLexer, the ``tokens`` dictionaries
 defined in the parent and child class are merged.  For example::
 
-      from pygments.lexer import RegexLexer, bygroups, include
+      from pygments.lexer import RegexLexer, inherit
       from pygments.token import *
 
       class BaseLexer(RegexLexer):
           tokens = {
               'root': [
                   ('[a-z]+', Name),
+                  (r'/\*', Comment, 'comment'),
                   ('"', String, 'string'),
                   ('\s+', Text),
               ],
@@ -393,19 +396,35 @@ defined in the parent and child class are merged.  For example::
                   ('[^"]+', String),
                   ('"', String, '#pop'),
               ],
+              'comment': [
+                  ...
+              ],
           }
 
       class DerivedLexer(BaseLexer):
           tokens = {
               'root': [
+                  ('[0-9]+', Number),
                   inherit,
               ],
               'string': [
-                  ('[^"]
+                  (r'[^"\\]+', String),
+                  (r'\\.', String.Escape),
+                  ('"', String, '#pop'),
               ],
           }
 
-  .. versionadded:: 1.6
+The `BaseLexer` defines two states, lexing names and strings.  The
+`DerivedLexer` defines its own tokens dictionary, which extends the definitions
+of the base lexer:
+
+* The "root" state has an additional rule and then the special object `inherit`,
+  which tells Pygments to insert the token definitions of the parent class at
+  that point.
+
+* The "string" state is replaced entirely, since there is not `inherit` rule.
+
+* The "comment" state is inherited entirely.
 
 
 Using multiple lexers
