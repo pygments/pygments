@@ -713,7 +713,7 @@ class LassoLexer(RegexLexer):
         self._builtins = set()
         self._members = set()
         if self.builtinshighlighting:
-            from pygments.lexers._lassobuiltins import BUILTINS, MEMBERS
+            from pygments.lexers._lasso_builtins import BUILTINS, MEMBERS
             for key, value in iteritems(BUILTINS):
                 self._builtins.update(value)
             for key, value in iteritems(MEMBERS):

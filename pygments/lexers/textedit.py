@@ -121,7 +121,7 @@ class VimLexer(RegexLexer):
     }
 
     def __init__(self, **options):
-        from pygments.lexers._vimbuiltins import command, option, auto
+        from pygments.lexers._vim_builtins import command, option, auto
         self._cmd = command
         self._opt = option
         self._aut = auto

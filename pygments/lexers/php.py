@@ -104,11 +104,11 @@ class PhpLexer(RegexLexer):
         that are known to php but are undocumented.
 
         To get a list of allowed modules have a look into the
-        `_phpbuiltins` module:
+        `_php_builtins` module:
 
         .. sourcecode:: pycon
 
-            >>> from pygments.lexers._phpbuiltins import MODULES
+            >>> from pygments.lexers._php_builtins import MODULES
             >>> MODULES.keys()
             ['PHP Options/Info', 'Zip', 'dba', ...]
 
@@ -219,7 +219,7 @@ class PhpLexer(RegexLexer):
         # collect activated functions in a set
         self._functions = set()
         if self.funcnamehighlighting:
-            from pygments.lexers._phpbuiltins import MODULES
+            from pygments.lexers._php_builtins import MODULES
             for key, value in iteritems(MODULES):
                 if key not in self.disabledmodules:
                     self._functions.update(value)

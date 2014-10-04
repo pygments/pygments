@@ -176,7 +176,7 @@ def objective(baselexer):
             return 0
 
         def get_tokens_unprocessed(self, text):
-            from pygments.lexers._cocoabuiltins import COCOA_INTERFACES, \
+            from pygments.lexers._cocoa_builtins import COCOA_INTERFACES, \
                 COCOA_PROTOCOLS, COCOA_PRIMITIVES
 
             for index, token, value in \

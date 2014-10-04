@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers._sourcemodbuiltins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers._sourcemod_builtins
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This file contains the names of SourceMod functions.
     It is able to re-generate itself.

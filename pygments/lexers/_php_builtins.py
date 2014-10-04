@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers._phpbuiltins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers._php_builtins
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This file loads the function names and their modules from the
     php webpage and generates itself.

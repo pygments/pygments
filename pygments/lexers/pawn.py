@@ -112,7 +112,7 @@ class SourcePawnLexer(RegexLexer):
 
         self._functions = set()
         if self.smhighlighting:
-            from pygments.lexers._sourcemodbuiltins import FUNCTIONS
+            from pygments.lexers._sourcemod_builtins import FUNCTIONS
             self._functions.update(FUNCTIONS)
         RegexLexer.__init__(self, **options)
 

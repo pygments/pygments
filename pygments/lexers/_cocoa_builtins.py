@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers._cocoabuiltins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers._cocoa_builtins
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This file defines a set of types used across Cocoa frameworks from Apple.
     There is a list of @interfaces, @protocols and some other (structs, unions)

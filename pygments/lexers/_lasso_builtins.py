@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers._lassobuiltins
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers._lasso_builtins
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Built-in Lasso types, traits, methods, and members.
 
