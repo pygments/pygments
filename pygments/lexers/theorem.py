@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.functl
-    ~~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.theorem
+    ~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for theorem-proving languages.
 
