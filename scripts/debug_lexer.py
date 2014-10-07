@@ -115,13 +115,16 @@ def main(fn, lexer=None, options={}):
             debug_lexer = True
         else:
             # HACK: ExtendedRegexLexer subclasses will only partially work here.
-            print(lxcls.__bases__)
             lxcls.__bases__ = (DebuggingRegexLexer,)
             debug_lexer = True
 
     lx = lxcls(**options)
     lno = 1
-    text = open(fn, 'rb').read().decode('utf-8')
+    if fn == '-':
+        text = sys.stdin.read()
+    else:
+        with open(fn, 'rb') as fp:
+            text = fp.read().decode('utf-8')
     text = text.strip('\n') + '\n'
     tokens = []
     states = []
