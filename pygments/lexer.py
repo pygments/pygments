@@ -75,6 +75,8 @@ class Lexer(object):
         Can also be ``'guess'`` to use a simple UTF-8 / Locale / Latin1
         detection, or ``'chardet'`` to use the chardet library, if it is
         installed.
+    ``inencoding``
+        Overrides the ``encoding`` if given.
     """
 
     #: Name of the lexer
@@ -102,7 +104,7 @@ class Lexer(object):
         self.ensurenl = get_bool_opt(options, 'ensurenl', True)
         self.tabsize = get_int_opt(options, 'tabsize', 0)
         self.encoding = options.get('encoding', 'latin1')
-        # self.encoding = options.get('inencoding', None) or self.encoding
+        self.encoding = options.get('inencoding') or self.encoding
         self.filters = []
         for filter_ in get_list_opt(options, 'filters', ()):
             self.add_filter(filter_)
