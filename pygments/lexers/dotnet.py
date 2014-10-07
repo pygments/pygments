@@ -422,7 +422,7 @@ class VbNetLexer(RegexLexer):
             (r'(?<!\.)(AddressOf|And|AndAlso|As|GetType|In|Is|IsNot|Like|Mod|'
              r'Or|OrElse|TypeOf|Xor)\b', Operator.Word),
             (r'&=|[*]=|/=|\\=|\^=|\+=|-=|<<=|>>=|<<|>>|:=|'
-             r'<=|>=|<>|[-&*/\\^+=<>]',
+             r'<=|>=|<>|[-&*/\\^+=<>\[\]]',
              Operator),
             ('"', String, 'string'),
             ('[a-z_]\w*[%&@!#$]?', Name),
