@@ -371,7 +371,8 @@ def main(args=sys.argv):
 
         infn = args[0]
         try:
-            code = open(infn, 'rb').read()
+            with open(infn, 'rb') as infp:
+                code = infp.read()
         except Exception as err:
             print('Error: cannot read infile:', err, file=sys.stderr)
             return 1

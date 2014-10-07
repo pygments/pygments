@@ -91,11 +91,8 @@ class CmdLineTest(unittest.TestCase):
         from pygments.lexers import PythonLexer
         from pygments.formatters import HtmlFormatter
         filename = TESTFILE
-        fp = open(filename, 'rb')
-        try:
+        with open(filename, 'rb') as fp:
             code = fp.read()
-        finally:
-            fp.close()
 
         output = highlight(code, PythonLexer(), HtmlFormatter())
 

@@ -62,19 +62,15 @@ if __name__ == '__main__':
     found_formatters.sort()
 
     # extract useful sourcecode from this file
-    f = open(__file__)
-    try:
-        content = f.read()
-    finally:
-        f.close()
+    with open(__file__) as fp:
+        content = fp.read()
     header = content[:content.find('FORMATTERS = {')]
     footer = content[content.find("if __name__ == '__main__':"):]
 
     # write new file
-    f = open(__file__, 'w')
-    f.write(header)
-    f.write('FORMATTERS = {\n    %s\n}\n\n' % ',\n    '.join(found_formatters))
-    f.write(footer)
-    f.close()
+    with open(__file__, 'w') as fp:
+        fp.write(header)
+        fp.write('FORMATTERS = {\n    %s\n}\n\n' % ',\n    '.join(found_formatters))
+        fp.write(footer)
 
     print ('=== %d formatters processed.' % len(found_formatters))

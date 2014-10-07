@@ -221,21 +221,17 @@ if __name__ == '__main__':
             return 'basic'
 
     def regenerate(filename, modules):
-        f = open(filename)
-        try:
-            content = f.read()
-        finally:
-            f.close()
+        with open(filename) as fp:
+            content = fp.read()
 
         header = content[:content.find('MODULES = {')]
         footer = content[content.find("if __name__ == '__main__':"):]
 
 
-        f = open(filename, 'w')
-        f.write(header)
-        f.write('MODULES = %s\n\n' % pprint.pformat(modules))
-        f.write(footer)
-        f.close()
+        with open(filename, 'w') as fp:
+            fp.write(header)
+            fp.write('MODULES = %s\n\n' % pprint.pformat(modules))
+            fp.write(footer)
 
     def run():
         version = get_newest_version()

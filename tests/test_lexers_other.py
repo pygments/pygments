@@ -26,17 +26,14 @@ class AnalyseTextTest(unittest.TestCase):
         for pattern in lexer.filenames:
             exampleFilesPattern = _exampleFilePath(pattern)
             for exampleFilePath in glob.glob(exampleFilesPattern):
-                exampleFile = open(exampleFilePath, 'rb')
-                try:
-                    text = exampleFile.read().decode('utf-8')
-                    probability = lexer.analyse_text(text)
-                    self.assertTrue(probability > 0,
-                        '%s must recognize %r' % (
-                        lexer.name, exampleFilePath))
-                    guessedLexer = guess_lexer(text)
-                    self.assertEqual(guessedLexer.name, lexer.name)
-                finally:
-                    exampleFile.close()
+                with open(exampleFilePath, 'rb') as fp:
+                    text = fp.read().decode('utf-8')
+                probability = lexer.analyse_text(text)
+                self.assertTrue(probability > 0,
+                    '%s must recognize %r' % (
+                    lexer.name, exampleFilePath))
+                guessedLexer = guess_lexer(text)
+                self.assertEqual(guessedLexer.name, lexer.name)
 
     def testCanRecognizeAndGuessExampleFiles(self):
         self._testCanRecognizeAndGuessExampleFiles(RexxLexer)
