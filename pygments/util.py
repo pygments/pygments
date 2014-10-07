@@ -282,16 +282,41 @@ def guess_decode(text):
     """
     try:
         text = text.decode('utf-8')
+        return text, 'utf-8'
     except UnicodeDecodeError:
         try:
             import locale
-            text = text.decode(locale.getpreferredencoding())
+            prefencoding = locale.getpreferredencoding()
+            text = text.decode()
+            return text, prefencoding
         except (UnicodeDecodeError, LookupError):
             text = text.decode('latin1')
-    else:
-        if text.startswith(u'\ufeff'):
-            text = text[len(u'\ufeff'):]
-    return text
+            return text, 'latin1'
+
+
+def guess_decode_from_terminal(text, term):
+    """Decode *text* coming from terminal *term*.
+
+    First try the terminal encoding, if given.
+    Then try UTF-8.  Then try the preferred locale encoding.
+    Fall back to latin-1, which always works.
+    """
+    if getattr(term, 'encoding', None):
+        try:
+            text = text.decode(term.encoding)
+        except UnicodeDecodeError:
+            pass
+        else:
+            return text, term.encoding
+    return guess_decode(text)
+
+
+def terminal_encoding(term):
+    """Return our best guess of encoding for the given *term*."""
+    if getattr(term, 'encoding', None):
+        return term.encoding
+    import locale
+    return locale.getpreferredencoding()
 
 
 # Python 2/3 compatibility
