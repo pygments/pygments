@@ -75,8 +75,6 @@ def test_lexer_classes():
         for token in tokens:
             assert isinstance(token, tuple)
             assert isinstance(token[0], _TokenType)
-            if isinstance(token[1], str):
-                print(repr(token[1]))
             assert isinstance(token[1], text_type)
             txt += token[1]
         assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \
