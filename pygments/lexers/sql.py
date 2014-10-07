@@ -442,7 +442,7 @@ class SqlLexer(RegexLexer):
             # TODO: Backslash escapes?
             (r"'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Symbol),  # not a real string literal in ANSI SQL
-            (r'[a-z_]\w*', Name),
+            (r'[a-z_][\w\$]*', Name),  # allow $s in strings for Oracle
             (r'[;:()\[\],\.]', Punctuation)
         ],
         'multiline-comments': [
