@@ -1817,16 +1817,16 @@ class HandlebarsLexer(RegexLexer):
              Keyword)),
 
             # General {{#block}}
-            (r'([\#/])(\w+)', bygroups(Name.Function, Name.Function)),
+            (r'([\#/])([\w-]+)', bygroups(Name.Function, Name.Function)),
 
             # {{opt=something}}
-            (r'(\w+)(=)', bygroups(Name.Attribute, Operator)),
+            (r'([\w-]+)(=)', bygroups(Name.Attribute, Operator)),
 
             # borrowed from DjangoLexer
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
             (r'[a-zA-Z][\w-]*', Name.Variable),
-            (r'\.\w+', Name.Variable),
+            (r'\.[\w-]+', Name.Variable),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ]
