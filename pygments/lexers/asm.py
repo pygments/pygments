@@ -402,7 +402,7 @@ class Ca65Lexer(RegexLexer):
 
     .. versionadded:: 1.6
     """
-    name = 'ca65'
+    name = 'ca65 assembler'
     aliases = ['ca65']
     filenames = ['*.s']
 
