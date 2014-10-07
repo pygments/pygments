@@ -517,7 +517,7 @@ class DockerLexer(RegexLexer):
     filenames = ['Dockerfile', '*.docker']
     mimetypes = ['text/x-dockerfile-config']
 
-    _keywords = (r'(?:FROM|MAINTAINER|RUN|CMD|EXPOSE|ENV|ADD|ENTRYPOINT|'
+    _keywords = (r'(?:FROM|MAINTAINER|CMD|EXPOSE|ENV|ADD|ENTRYPOINT|'
                  r'VOLUME|WORKDIR)')
 
     flags = re.IGNORECASE | re.MULTILINE
@@ -526,8 +526,9 @@ class DockerLexer(RegexLexer):
         'root': [
             (r'^(ONBUILD)(\s+)(%s)\b' % (_keywords,),
              bygroups(Name.Keyword, Whitespace, Keyword)),
-            (_keywords + r'\b', Keyword),
+            (r'^(%s)\b(.*)' % (_keywords,), bygroups(Keyword, String)),
             (r'#.*', Comment),
-            (r'.+', using(BashLexer)),
+            (r'RUN', Keyword), # Rest of line falls through
+            (r'(.*\\\n)*.+', using(BashLexer)),
         ],
     }
