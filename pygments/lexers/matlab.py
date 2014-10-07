@@ -112,7 +112,7 @@ class MatlabLexer(RegexLexer):
             (r'\d+', Number.Integer),
 
             (r'(?<![\w\)\].])\'', String, 'string'),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
         'string': [
@@ -128,6 +128,8 @@ class MatlabLexer(RegexLexer):
              bygroups(Whitespace, Text, Whitespace, Punctuation,
                       Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Whitespace), '#pop'),
+            # function with no args
+            (r'(\s*)([a-zA-Z_]\w*)', bygroups(Text, Name.Function), '#pop'),
         ],
     }
 
@@ -576,7 +578,7 @@ class OctaveLexer(RegexLexer):
             (r'(?<=[\w\)\].])\'+', Operator),
             (r'(?<![\w\)\].])\'', String, 'string'),
 
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
         'string': [
@@ -587,6 +589,8 @@ class OctaveLexer(RegexLexer):
              bygroups(Whitespace, Text, Whitespace, Punctuation,
                       Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Whitespace), '#pop'),
+            # function with no args
+            (r'(\s*)([a-zA-Z_]\w*)', bygroups(Text, Name.Function), '#pop'),
         ],
     }
 
@@ -641,7 +645,7 @@ class ScilabLexer(RegexLexer):
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'\d+', Number.Integer),
 
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
         'string': [
@@ -653,5 +657,7 @@ class ScilabLexer(RegexLexer):
              bygroups(Whitespace, Text, Whitespace, Punctuation,
                       Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Whitespace), '#pop'),
+            # function with no args
+            (r'(\s*)([a-zA-Z_]\w*)', bygroups(Text, Name.Function), '#pop'),
         ],
     }
