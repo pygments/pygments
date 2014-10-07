@@ -25,12 +25,12 @@ class BashTest(unittest.TestCase):
             (Token.Name.Builtin, u'echo'),
             (Token.Text, u' '),
             (Token.Literal.String.Double, u'"'),
-            (Token.Keyword, u'${'),
+            (Token.String.Interpol, u'${'),
             (Token.Name.Variable, u'a'),
             (Token.Punctuation, u'//['),
             (Token.Literal.String.Double, u'"b"'),
             (Token.Punctuation, u']/'),
-            (Token.Keyword, u'}'),
+            (Token.String.Interpol, u'}'),
             (Token.Literal.String.Double, u'"'),
             (Token.Text, u'\n'),
         ]
@@ -41,12 +41,23 @@ class BashTest(unittest.TestCase):
         tokens = [
             (Token.Name.Builtin, u'echo'),
             (Token.Text, u' '),
-            (Token.Keyword, u'${'),
+            (Token.String.Interpol, u'${'),
             (Token.Name.Variable, u'a'),
             (Token.Punctuation, u'//['),
             (Token.Literal.String.Escape, u'\\"'),
             (Token.Punctuation, u']/'),
-            (Token.Keyword, u'}'),
+            (Token.String.Interpol, u'}'),
             (Token.Text, u'\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def testParsedSingle(self):
+        fragment = u"a=$'abc\\''\n"
+        tokens = [
+            (Token.Name.Variable, u'a'),
+            (Token.Operator, u'='),
+            (Token.Literal.String.Single, u"$'abc\\''"),
+            (Token.Text, u'\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
