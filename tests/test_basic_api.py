@@ -16,7 +16,7 @@ from pygments import lexers, formatters, filters, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatters.img import FontNotFound
-from pygments.util import text_type, StringIO, xrange, ClassNotFound
+from pygments.util import text_type, StringIO, BytesIO, xrange, ClassNotFound
 
 import support
 
@@ -154,7 +154,8 @@ def test_get_lexers():
 def test_formatter_public_api():
     # test that every formatter class has the correct public API
     ts = list(lexers.PythonLexer().get_tokens("def f(): pass"))
-    out = StringIO()
+    string_out = StringIO()
+    bytes_out = BytesIO()
 
     def verify(formatter):
         info = formatters.FORMATTERS[formatter.__name__]
@@ -163,20 +164,21 @@ def test_formatter_public_api():
         assert info[2], "missing formatter aliases"
         assert info[4], "missing formatter docstring"
 
-        if formatter.name == 'Raw tokens':
-            # will not work with Unicode output file
-            return
-
         try:
             inst = formatter(opt1="val1")
         except (ImportError, FontNotFound):
             raise support.SkipTest
+
         try:
             inst.get_style_defs()
         except NotImplementedError:
             # may be raised by formatters for which it doesn't make sense
             pass
-        inst.format(ts, out)
+
+        if formatter.unicodeoutput:
+            inst.format(ts, string_out)
+        else:
+            inst.format(ts, bytes_out)
 
     for name in formatters.FORMATTERS:
         formatter = getattr(formatters, name)
