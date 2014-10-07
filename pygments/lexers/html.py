@@ -60,7 +60,7 @@ class HtmlLexer(RegexLexer):
         ],
         'tag': [
             (r'\s+', Text),
-            (r'[\w:-]+\s*=', Name.Attribute, 'attr'),
+            (r'([\w:-]+\s*=)(\s*)', bygroups(Name.Attribute, Text), 'attr'),
             (r'[\w:-]+', Name.Attribute),
             (r'/?\s*>', Name.Tag, '#pop'),
         ],
