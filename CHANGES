@@ -78,6 +78,9 @@ Version 2.0
 - The command-line "pygmentize" tool now tries a little harder to find the
   correct encoding for files and the terminal (#979).
 
+- Added "inencoding" option for lexers to override "encoding" analogous
+  to "outencoding" (#800).
+
 - Updated the Makefile lexer to yield a little more useful highlighting.
 
 - Lexer aliases passed to ``get_lexer_by_name()`` are now case-insensitive.
