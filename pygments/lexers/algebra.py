@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups
+from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
@@ -84,13 +84,13 @@ class MathematicaLexer(RegexLexer):
                  'application/vnd.wolfram.cdf']
 
     # http://reference.wolfram.com/mathematica/guide/Syntax.html
-    operators = [
+    operators = (
         ";;", "=", "=.", "!=" "==", ":=", "->", ":>", "/.", "+", "-", "*", "/",
         "^", "&&", "||", "!", "<>", "|", "/;", "?", "@", "//", "/@", "@@",
-        "@@@", "~~", "===", "&"]
-    operators.sort(reverse=True)
+        "@@@", "~~", "===", "&", "<", ">", "<=", ">=",
+    )
 
-    punctuation = [",", ";", "(", ")", "[", "]", "{", "}"]
+    punctuation = (",", ";", "(", ")", "[", "]", "{", "}")
 
     def _multi_escape(entries):
         return '(%s)' % ('|'.join(re.escape(entry) for entry in entries))
@@ -108,8 +108,8 @@ class MathematicaLexer(RegexLexer):
             (r'-?[0-9]*\.[0-9]+', Number.Float),
             (r'-?[0-9]+', Number.Integer),
 
-            (_multi_escape(operators), Operator),
-            (_multi_escape(punctuation), Punctuation),
+            (words(operators), Operator),
+            (words(punctuation), Punctuation),
             (r'".*?"', String),
             (r'\s+', Text.Whitespace),
         ],
