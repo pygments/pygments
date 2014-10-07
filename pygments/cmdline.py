@@ -16,13 +16,14 @@ import getopt
 from textwrap import dedent
 
 from pygments import __version__, highlight
-from pygments.util import ClassNotFound, OptionError, docstring_headline
-from pygments.lexers import get_all_lexers, get_lexer_by_name, get_lexer_for_filename, \
-     find_lexer_class, guess_lexer, TextLexer
+from pygments.util import ClassNotFound, OptionError, docstring_headline, \
+    text_type, guess_decode
+from pygments.lexers import get_all_lexers, get_lexer_by_name, guess_lexer, \
+    get_lexer_for_filename, find_lexer_class, TextLexer
 from pygments.formatters.latex import LatexEmbeddedLexer, LatexFormatter
 from pygments.formatters import get_all_formatters, get_formatter_by_name, \
-     get_formatter_for_filename, find_formatter_class, \
-     TerminalFormatter  # pylint:disable-msg=E0611
+    get_formatter_for_filename, find_formatter_class, \
+    TerminalFormatter  # pylint:disable-msg=E0611
 from pygments.filters import get_all_filters, find_filter_class
 from pygments.styles import get_all_styles, get_style_by_name
 
@@ -186,6 +187,18 @@ def _print_list(what):
             cls = get_style_by_name(name)
             print("* " + name + ':')
             print("    %s" % docstring_headline(cls))
+
+
+def _get_termencoding():
+    """Return terminal encoding for stdin/stdout.
+
+    Defaults to preferred locale encoding.
+    """
+    import locale
+    defencoding = locale.getpreferredencoding()
+    inencoding = getattr(sys.stdin, 'encoding', None) or defencoding
+    outencoding = getattr(sys.stdout, 'encoding', None) or defencoding
+    return inencoding, outencoding
 
 
 def main(args=sys.argv):
@@ -376,6 +389,8 @@ def main(args=sys.argv):
         except Exception as err:
             print('Error: cannot read infile:', err, file=sys.stderr)
             return 1
+        if 'encoding' not in parsed_opts:
+            code = guess_decode(code)
 
         if not lexer:
             try:
@@ -401,11 +416,14 @@ def main(args=sys.argv):
             except ClassNotFound:
                 lexer = TextLexer(**parsed_opts)
         elif not lexer:
-            print('Error: no lexer name given and reading ' + \
-                                'from stdin (try using -g or -l <lexer>)', file=sys.stderr)
+            print('Error: no lexer name given and reading '
+                  'from stdin (try using -g or -l <lexer>)', file=sys.stderr)
             return 2
         else:
             code = sys.stdin.read()
+        if not isinstance(code, text_type):
+            # Python 2; Python 3's terminal is already fine
+            code = code.decode(_get_termencoding()[0])
 
     # When using the LaTeX formatter and the option `escapeinside` is
     # specified, we need a special lexer which collects escaped text
@@ -426,10 +444,7 @@ def main(args=sys.argv):
         else:
             if sys.version_info < (3,):
                 # use terminal encoding; Python 3's terminals already do that
-                lexer.encoding = getattr(sys.stdin, 'encoding',
-                                         None) or 'ascii'
-                fmter.encoding = getattr(sys.stdout, 'encoding',
-                                         None) or 'ascii'
+                lexer.encoding, fmter.encoding = _get_termencoding()
     elif not outfn and sys.version_info > (3,):
         # output to terminal with encoding -> use .buffer
         outfile = sys.stdout.buffer

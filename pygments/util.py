@@ -288,6 +288,27 @@ class Future(object):
         raise NotImplementedError
 
 
+def guess_decode(text):
+    """Decode *text* with guessed encoding.
+
+    First try UTF-8; this should fail for non-UTF-8 encodings.
+    Then try the preferred locale encoding.
+    Fall back to latin-1, which always works.
+    """
+    try:
+        text = text.decode('utf-8')
+    except UnicodeDecodeError:
+        try:
+            import locale
+            text = text.decode(locale.getpreferredencoding())
+        except (UnicodeDecodeError, LookupError):
+            text = text.decode('latin1')
+    else:
+        if text.startswith(u'\ufeff'):
+            text = text[len(u'\ufeff'):]
+    return text
+
+
 # Python 2/3 compatibility
 
 if sys.version_info < (3, 0):
