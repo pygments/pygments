@@ -21,9 +21,7 @@ from pygments.plugin import find_plugin_filters
 
 
 def find_filter_class(filtername):
-    """
-    Lookup a filter by name. Return None if not found.
-    """
+    """Lookup a filter by name. Return None if not found."""
     if filtername in FILTERS:
         return FILTERS[filtername]
     for name, cls in find_plugin_filters():
@@ -33,9 +31,10 @@ def find_filter_class(filtername):
 
 
 def get_filter_by_name(filtername, **options):
-    """
-    Return an instantiated filter. Options are passed to the filter
-    initializer if wanted. Raise a ClassNotFound if not found.
+    """Return an instantiated filter.
+
+    Options are passed to the filter initializer if wanted.
+    Raise a ClassNotFound if not found.
     """
     cls = find_filter_class(filtername)
     if cls:
@@ -45,9 +44,7 @@ def get_filter_by_name(filtername, **options):
 
 
 def get_all_filters():
-    """
-    Return a generator of all filter names.
-    """
+    """Return a generator of all filter names."""
     for name in FILTERS:
         yield name
     for name, _ in find_plugin_filters():
@@ -68,8 +65,7 @@ def _replace_special(ttype, value, regex, specialttype,
 
 
 class CodeTagFilter(Filter):
-    """
-    Highlight special code tags in comments and docstrings.
+    """Highlight special code tags in comments and docstrings.
 
     Options accepted:
 
@@ -100,8 +96,7 @@ class CodeTagFilter(Filter):
 
 
 class KeywordCaseFilter(Filter):
-    """
-    Convert keywords to lowercase or uppercase or capitalize them, which
+    """Convert keywords to lowercase or uppercase or capitalize them, which
     means first letter uppercase, rest lowercase.
 
     This can be useful e.g. if you highlight Pascal code and want to adapt the
@@ -116,7 +111,8 @@ class KeywordCaseFilter(Filter):
 
     def __init__(self, **options):
         Filter.__init__(self, **options)
-        case = get_choice_opt(options, 'case', ['lower', 'upper', 'capitalize'], 'lower')
+        case = get_choice_opt(options, 'case',
+                              ['lower', 'upper', 'capitalize'], 'lower')
         self.convert = getattr(text_type, case)
 
     def filter(self, lexer, stream):
@@ -128,8 +124,7 @@ class KeywordCaseFilter(Filter):
 
 
 class NameHighlightFilter(Filter):
-    """
-    Highlight a normal Name (and Name.*) token with a different token type.
+    """Highlight a normal Name (and Name.*) token with a different token type.
 
     Example::
 
@@ -172,9 +167,9 @@ class NameHighlightFilter(Filter):
 class ErrorToken(Exception):
     pass
 
+
 class RaiseOnErrorTokenFilter(Filter):
-    """
-    Raise an exception when the lexer generates an error token.
+    """Raise an exception when the lexer generates an error token.
 
     Options accepted:
 
@@ -203,8 +198,7 @@ class RaiseOnErrorTokenFilter(Filter):
 
 
 class VisibleWhitespaceFilter(Filter):
-    """
-    Convert tabs, newlines and/or spaces to visible characters.
+    """Convert tabs, newlines and/or spaces to visible characters.
 
     Options accepted:
 
@@ -283,8 +277,7 @@ class VisibleWhitespaceFilter(Filter):
 
 
 class GobbleFilter(Filter):
-    """
-    Gobbles source code lines (eats initial characters).
+    """Gobbles source code lines (eats initial characters).
 
     This filter drops the first ``n`` characters off every line of code.  This
     may be useful when the source code fed to the lexer is indented by a fixed
@@ -323,9 +316,8 @@ class GobbleFilter(Filter):
 
 
 class TokenMergeFilter(Filter):
-    """
-    Merges consecutive tokens with the same token type in the output stream of a
-    lexer.
+    """Merges consecutive tokens with the same token type in the output
+    stream of a lexer.
 
     .. versionadded:: 1.2
     """
