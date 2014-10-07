@@ -24,7 +24,8 @@ if os.path.isdir(os.path.join(srcpath, 'pygments')):
 
 
 from pygments.lexer import RegexLexer, ProfilingRegexLexer, ProfilingRegexLexerMeta
-from pygments.lexers import get_lexer_by_name, find_lexer_class_for_filename
+from pygments.lexers import get_lexer_by_name, find_lexer_class, \
+    find_lexer_class_for_filename
 from pygments.token import Error, Text, _TokenType
 from pygments.cmdline import _parse_options
 
@@ -93,10 +94,9 @@ def main(fn, lexer=None, options={}):
     else:
         lxcls = find_lexer_class_for_filename(os.path.basename(fn))
         if lxcls is None:
-            try:
-                name, rest = fn.split('_', 1)
-                lxcls = find_lexer_class(name)
-            except ValueError:
+            name, rest = fn.split('_', 1)
+            lxcls = find_lexer_class(name)
+            if lxcls is None:
                 raise AssertionError('no lexer found for file %r' % fn)
     debug_lexer = False
     if profile:
