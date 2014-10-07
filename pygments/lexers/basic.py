@@ -354,7 +354,7 @@ class CbmBasicV2Lexer(RegexLexer):
         # if it starts with a line number, it shouldn't be a "modern" Basic
         # like VB.net
         if re.match(r'\d+', text):
-            return True
+            return 0.2
 
 
 class QBasicLexer(RegexLexer):
@@ -496,4 +496,5 @@ class QBasicLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return 0.2
+        if '$DYNAMIC' in text or '$STATIC' in text:
+            return 0.9

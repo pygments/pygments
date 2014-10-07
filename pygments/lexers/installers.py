@@ -258,12 +258,10 @@ class SourcesListLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        for line in text.split('\n'):
+        for line in text.splitlines():
             line = line.strip()
-            if not (line.startswith('#') or line.startswith('deb ') or
-                    line.startswith('deb-src ') or not line):
-                return False
-        return True
+            if line.startswith('deb ') or line.startswith('deb-src '):
+                return True
 
 
 class DebianControlLexer(RegexLexer):

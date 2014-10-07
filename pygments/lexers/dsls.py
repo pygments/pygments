@@ -300,8 +300,6 @@ class RslLexer(RegexLexer):
         """
         if re.search(r'scheme\s*.*?=\s*class\s*type', text, re.I) is not None:
             return 1.0
-        else:
-            return 0.01
 
 
 class MscgenLexer(RegexLexer):
