@@ -38,7 +38,7 @@ class MakefileLexer(Lexer):
         # BSD Make
         r'\.\s*(include|undef|error|warning|if|else|elif|endif|for|endfor)|'
         # GNU Make
-        r'\s*(ifeq|ifneq|ifdef|ifndef|else|endif|-?include|define|endef|:))(?=\s)')
+        r'\s*(ifeq|ifneq|ifdef|ifndef|else|endif|-?include|define|endef|:|vpath))(?=\s)')
     r_comment = re.compile(r'^\s*@?#')
 
     def get_tokens_unprocessed(self, text):
