@@ -409,21 +409,15 @@ def main(args=sys.argv):
                 return 1
 
     else:
-        if '-g' in opts:
-            code = sys.stdin.read()
+        code = sys.stdin.read()
+        if not isinstance(code, text_type):
+            # Python 2; Python 3's terminal is already fine
+            code = code.decode(_get_termencoding()[0])
+        if not lexer:
             try:
                 lexer = guess_lexer(code, **parsed_opts)
             except ClassNotFound:
                 lexer = TextLexer(**parsed_opts)
-        elif not lexer:
-            print('Error: no lexer name given and reading '
-                  'from stdin (try using -g or -l <lexer>)', file=sys.stderr)
-            return 2
-        else:
-            code = sys.stdin.read()
-        if not isinstance(code, text_type):
-            # Python 2; Python 3's terminal is already fine
-            code = code.decode(_get_termencoding()[0])
 
     # When using the LaTeX formatter and the option `escapeinside` is
     # specified, we need a special lexer which collects escaped text
