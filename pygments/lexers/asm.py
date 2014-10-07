@@ -424,7 +424,7 @@ class Ca65Lexer(RegexLexer):
             (r'\$[0-9a-f]+|[0-9a-f]+h\b', Number.Hex),
             (r'\d+', Number.Integer),
             (r'%[01]+', Number.Bin),
-            (r'[#,.:()=]', Punctuation),
+            (r'[#,.:()=\[\]]', Punctuation),
             (r'[a-z_.@$][\w.@$]*', Name),
         ]
     }
