@@ -149,7 +149,7 @@ class Lexer(object):
         """
         if not isinstance(text, text_type):
             if self.encoding == 'guess':
-                text = guess_decode(text)
+                text, _ = guess_decode(text)
             elif self.encoding == 'chardet':
                 try:
                     import chardet

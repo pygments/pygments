@@ -17,7 +17,7 @@ from textwrap import dedent
 
 from pygments import __version__, highlight
 from pygments.util import ClassNotFound, OptionError, docstring_headline, \
-    text_type, guess_decode
+    guess_decode, guess_decode_from_terminal, terminal_encoding
 from pygments.lexers import get_all_lexers, get_lexer_by_name, guess_lexer, \
     get_lexer_for_filename, find_lexer_class, TextLexer
 from pygments.formatters.latex import LatexEmbeddedLexer, LatexFormatter
@@ -189,18 +189,6 @@ def _print_list(what):
             print("    %s" % docstring_headline(cls))
 
 
-def _get_termencoding():
-    """Return terminal encoding for stdin/stdout.
-
-    Defaults to preferred locale encoding.
-    """
-    import locale
-    defencoding = locale.getpreferredencoding()
-    inencoding = getattr(sys.stdin, 'encoding', None) or defencoding
-    outencoding = getattr(sys.stdout, 'encoding', None) or defencoding
-    return inencoding, outencoding
-
-
 def main(args=sys.argv):
     """
     Main command line entry point.
@@ -287,6 +275,10 @@ def main(args=sys.argv):
             parsed_opts[name] = value
     opts.pop('-P', None)
 
+    # encodings
+    inencoding  = parsed_opts.get('inencoding', parsed_opts.get('encoding'))
+    outencoding = parsed_opts.get('outencoding', parsed_opts.get('encoding'))
+
     # handle ``pygmentize -N``
     infn = opts.pop('-N', None)
     if infn is not None:
@@ -362,7 +354,11 @@ def main(args=sys.argv):
     else:
         if not fmter:
             fmter = TerminalFormatter(**parsed_opts)
-        outfile = sys.stdout
+        if sys.version_info > (3,):
+            # Python 3: we have to use .buffer to get a binary stream
+            outfile = sys.stdout.buffer
+        else:
+            outfile = sys.stdout
 
     # select lexer
     lexer = opts.pop('-l', None)
@@ -373,6 +369,7 @@ def main(args=sys.argv):
             print('Error:', err, file=sys.stderr)
             return 1
 
+    # read input code
     if args:
         if len(args) > 1:
             print(usage, file=sys.stderr)
@@ -385,9 +382,10 @@ def main(args=sys.argv):
         except Exception as err:
             print('Error: cannot read infile:', err, file=sys.stderr)
             return 1
-        if 'encoding' not in parsed_opts:
-            code = guess_decode(code)
+        if not inencoding:
+            code, inencoding = guess_decode(code)
 
+        # do we have to guess the lexer?
         if not lexer:
             try:
                 lexer = get_lexer_for_filename(infn, code, **parsed_opts)
@@ -405,18 +403,16 @@ def main(args=sys.argv):
                 return 1
 
     else:
-        if 'encoding' in parsed_opts:
-            if sys.version_info > (3,):
-                # Python 3: we have to use .buffer
-                code = sys.stdin.buffer.read()
-            else:
-                code = sys.stdin.read()
-            # the lexer will do the decoding
+        # read code from terminal, always in binary mode since we want to
+        # decode ourselves and be tolerant with it
+        if sys.version_info > (3,):
+            # Python 3: we have to use .buffer to get a binary stream
+            code = sys.stdin.buffer.read()
         else:
             code = sys.stdin.read()
-            if not isinstance(code, text_type):
-                # Python 2; Python 3's terminal is already fine
-                code = code.decode(_get_termencoding()[0])
+        if not inencoding:
+            code, inencoding = guess_decode_from_terminal(code, sys.stdin)
+            # else the lexer will do the decoding
         if not lexer:
             try:
                 lexer = guess_lexer(code, **parsed_opts)
@@ -432,20 +428,14 @@ def main(args=sys.argv):
         right = escapeinside[1]
         lexer = LatexEmbeddedLexer(left, right, lexer)
 
-    # No encoding given? Use latin1 if output file given,
-    # stdin/stdout encoding otherwise.
-    # (This is a compromise, I'm not too happy with it...)
-    if 'encoding' not in parsed_opts and 'outencoding' not in parsed_opts:
+    # determine output encoding if not explicitly selected
+    if not outencoding:
         if outfn:
-            # encoding pass-through
-            fmter.encoding = 'latin1'
+            # output file? -> encoding pass-through
+            fmter.encoding = inencoding
         else:
-            if sys.version_info < (3,):
-                # use terminal encoding; Python 3's terminals already do that
-                lexer.encoding, fmter.encoding = _get_termencoding()
-    elif not outfn and sys.version_info > (3,):
-        # output to terminal with encoding -> use .buffer
-        outfile = sys.stdout.buffer
+            # else use terminal encoding
+            fmter.encoding = terminal_encoding(sys.stdout)
 
     # ... and do it!
     try:

@@ -7,14 +7,14 @@
     :license: BSD, see LICENSE for details.
 """
 
-# Test the command line interface
+from __future__ import print_function
 
 import io
 import sys
 import unittest
 
 from pygments import highlight
-from pygments.util import StringIO
+from pygments.util import StringIO, BytesIO
 from pygments.cmdline import main as cmdline_main
 
 import support
@@ -25,14 +25,24 @@ TESTFILE, TESTDIR = support.location(__file__)
 def run_cmdline(*args):
     saved_stdout = sys.stdout
     saved_stderr = sys.stderr
-    new_stdout = sys.stdout = StringIO()
-    new_stderr = sys.stderr = StringIO()
+    if sys.version_info > (3,):
+        stdout_buffer = BytesIO()
+        stderr_buffer = BytesIO()
+        new_stdout = sys.stdout = io.TextIOWrapper(stdout_buffer)
+        new_stderr = sys.stderr = io.TextIOWrapper(stderr_buffer)
+    else:
+        stdout_buffer = new_stdout = sys.stdout = StringIO()
+        stderr_buffer = new_stderr = sys.stderr = StringIO()
     try:
         ret = cmdline_main(["pygmentize"] + list(args))
     finally:
         sys.stdout = saved_stdout
         sys.stderr = saved_stderr
-    return (ret, new_stdout.getvalue(), new_stderr.getvalue())
+    new_stdout.flush()
+    new_stderr.flush()
+    out, err = stdout_buffer.getvalue().decode('utf-8'), \
+        stderr_buffer.getvalue().decode('utf-8')
+    return (ret, out, err)
 
 
 class CmdLineTest(unittest.TestCase):
@@ -83,7 +93,7 @@ class CmdLineTest(unittest.TestCase):
     def test_invalid_opts(self):
         for opts in [("-L", "-lpy"), ("-L", "-fhtml"), ("-L", "-Ox"),
                      ("-a",), ("-Sst", "-lpy"), ("-H",),
-                     ("-H", "formatter"),]:
+                     ("-H", "formatter")]:
             self.assertTrue(run_cmdline(*opts)[0] == 2)
 
     def test_normal(self):
