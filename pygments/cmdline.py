@@ -409,10 +409,18 @@ def main(args=sys.argv):
                 return 1
 
     else:
-        code = sys.stdin.read()
-        if not isinstance(code, text_type):
-            # Python 2; Python 3's terminal is already fine
-            code = code.decode(_get_termencoding()[0])
+        if 'encoding' in parsed_opts:
+            if sys.version_info > (3,):
+                # Python 3: we have to use .buffer
+                code = sys.stdin.buffer.read()
+            else:
+                code = sys.stdin.read()
+            # the lexer will do the decoding
+        else:
+            code = sys.stdin.read()
+            if not isinstance(code, text_type):
+                # Python 2; Python 3's terminal is already fine
+                code = code.decode(_get_termencoding()[0])
         if not lexer:
             try:
                 lexer = guess_lexer(code, **parsed_opts)
