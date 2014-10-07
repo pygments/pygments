@@ -289,6 +289,7 @@ class TexLexer(RegexLexer):
             (r'\$\$', String.Backtick, 'displaymath'),
             (r'\$', String, 'inlinemath'),
             (r'\\([a-zA-Z]+|.)', Keyword, 'command'),
+            (r'\\$', Keyword),
             include('general'),
             (r'[^\\$%&_^{}]+', Text),
         ],
