@@ -16,11 +16,18 @@ from pygments.lexer import RegexLexer, include, bygroups, default, \
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Other
 from pygments.util import get_bool_opt, iteritems
+import pygments.unistring as uni
 
 __all__ = ['JavascriptLexer', 'KalLexer', 'LiveScriptLexer', 'DartLexer',
            'TypeScriptLexer', 'LassoLexer', 'ObjectiveJLexer',
            'CoffeeScriptLexer', 'MaskLexer']
 
+JS_IDENT_START = ('(?:[$_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Lo + uni.Nl
+                  + ']|\\\\u[a-fA-F0-9]{4})')
+JS_IDENT_PART = ('(?:[$_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Lo + uni.Nl
+                 + uni.Mn + uni.Mc + uni.Nd + uni.Pc
+                 + u'\u200c\u200d]|\\\\u[a-fA-F0-9]{4})')
+JS_IDENT = JS_IDENT_START + '(?:' + JS_IDENT_PART + ')*'
 
 class JavascriptLexer(RegexLexer):
     """
@@ -72,7 +79,7 @@ class JavascriptLexer(RegexLexer):
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
              r'window)\b', Name.Builtin),
-            (r'[$a-zA-Z_]\w*', Name.Other),
+            (JS_IDENT, Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
