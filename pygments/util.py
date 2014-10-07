@@ -26,9 +26,7 @@ tag_re = re.compile(r'<(.+?)(\s.*?)?>.*?</.+?>(?uism)')
 
 
 class ClassNotFound(ValueError):
-    """
-    If one of the get_*_by_* functions didn't find a matching class.
-    """
+    """Raised if one of the lookup functions didn't find a matching class."""
 
 
 class OptionError(Exception):
@@ -104,10 +102,7 @@ def docstring_headline(obj):
 
 
 def make_analysator(f):
-    """
-    Return a static text analysation function that
-    returns float values.
-    """
+    """Return a static text analyser function that returns float values."""
     def text_analyse(text):
         try:
             rv = f(text)
@@ -124,8 +119,7 @@ def make_analysator(f):
 
 
 def shebang_matches(text, regex):
-    """
-    Check if the given regular expression matches the last part of the
+    """Check if the given regular expression matches the last part of the
     shebang if one exists.
 
         >>> from pygments.util import shebang_matches
@@ -170,8 +164,8 @@ def shebang_matches(text, regex):
 
 
 def doctype_matches(text, regex):
-    """
-    Check if the doctype matches a regular expression (if present).
+    """Check if the doctype matches a regular expression (if present).
+
     Note that this method only checks the first part of a DOCTYPE.
     eg: 'html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"'
     """
@@ -183,17 +177,13 @@ def doctype_matches(text, regex):
 
 
 def html_doctype_matches(text):
-    """
-    Check if the file looks like it has a html doctype.
-    """
+    """Check if the file looks like it has a html doctype."""
     return doctype_matches(text, r'html\s+PUBLIC\s+"-//W3C//DTD X?HTML.*')
 
 
 _looks_like_xml_cache = {}
 def looks_like_xml(text):
-    """
-    Check if a doctype exists or if we have some tags.
-    """
+    """Check if a doctype exists or if we have some tags."""
     key = hash(text)
     try:
         return _looks_like_xml_cache[key]
@@ -216,9 +206,7 @@ def _surrogatepair(c):
     return (0xd7c0 + (c >> 10), (0xdc00 + (c & 0x3ff)))
 
 def unirange(a, b):
-    """
-    Returns a regular expression string to match the given non-BMP range.
-    """
+    """Returns a regular expression string to match the given non-BMP range."""
     if b < a:
         raise ValueError("Bad character range")
     if a < 0x10000 or b < 0x10000:
@@ -257,9 +245,7 @@ def unirange(a, b):
 
 
 def format_lines(var_name, seq, raw=False, indent_level=0):
-    """
-    Formats a sequence of strings for output.
-    """
+    """Formats a sequence of strings for output."""
     lines = []
     base_indent = ' ' * indent_level * 4
     inner_indent = ' ' * (indent_level + 1) * 4
@@ -278,8 +264,7 @@ def format_lines(var_name, seq, raw=False, indent_level=0):
 
 
 class Future(object):
-    """
-    Generic class to defer some work.
+    """Generic class to defer some work.
 
     Handled specially in RegexLexerMeta, to support regex string construction at
     first use.
@@ -332,6 +317,7 @@ else:
     iteritems = dict.items
     itervalues = dict.values
     from io import StringIO, BytesIO
+
 
 def add_metaclass(metaclass):
     """Class decorator for creating a class with a metaclass."""
