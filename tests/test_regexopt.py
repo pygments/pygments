@@ -15,14 +15,26 @@ import itertools
 from pygments.regexopt import regex_opt
 
 ALPHABET = ['a', 'b', 'c', 'd', 'e']
-N_TRIES = 15
+
+try:
+    from itertools import combinations_with_replacement
+    N_TRIES = 15
+except ImportError:
+    # Python 2.6
+    def combinations_with_replacement(iterable, r):
+        pool = tuple(iterable)
+        n = len(pool)
+        for indices in itertools.product(range(n), repeat=r):
+            if sorted(indices) == list(indices):
+                yield tuple(pool[i] for i in indices)
+    N_TRIES = 9
 
 
 class RegexOptTestCase(unittest.TestCase):
 
     def generate_keywordlist(self, length):
         return [''.join(p) for p in
-                itertools.combinations_with_replacement(ALPHABET, length)]
+                combinations_with_replacement(ALPHABET, length)]
 
     def test_randomly(self):
         # generate a list of all possible keywords of a certain length using
