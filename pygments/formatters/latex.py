@@ -436,6 +436,7 @@ class LatexEmbeddedLexer(Lexer):
 
     def get_tokens_unprocessed(self, text):
         buf = ''
+        idx = 0
         for i, t, v in self.lang.get_tokens_unprocessed(text):
             if t in Token.Comment or t in Token.String:
                 if buf:
