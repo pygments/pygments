@@ -384,6 +384,9 @@ class PythonConsoleLexer(Lexer):
             for item in do_insertions(insertions,
                                       pylexer.get_tokens_unprocessed(curcode)):
                 yield item
+        if curtb:
+            for i, t, v in tblexer.get_tokens_unprocessed(curtb):
+                yield tbindex+i, t, v
 
 
 class PythonTracebackLexer(RegexLexer):
