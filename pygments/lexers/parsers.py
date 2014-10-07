@@ -815,6 +815,7 @@ class EbnfLexer(RegexLexer):
             (r'[\[\]{}(),|]', Punctuation),
             (r'-', Operator),
             (r';', Punctuation, '#pop'),
+            (r'\.', Punctuation, '#pop'),
         ],
         'whitespace': [
             (r'\s+', Text),
@@ -829,6 +830,6 @@ class EbnfLexer(RegexLexer):
             (r'[*)]', Comment.Multiline),
         ],
         'identifier': [
-            (r'([a-zA-Z][a-zA-Z0-9 \-]*)', Keyword),
+            (r'([a-zA-Z][a-zA-Z0-9_ \-]*)', Keyword),
         ],
     }
