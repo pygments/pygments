@@ -117,7 +117,7 @@ class ModelicaLexer(RegexLexer):
 
 class BugsLexer(RegexLexer):
     """
-    Pygments Lexer for `OpenBugs <http://www.openbugs.info/w/>`_ and WinBugs
+    Pygments Lexer for `OpenBugs <http://www.openbugs.net/>`_ and WinBugs
     models.
 
     .. versionadded:: 1.6
