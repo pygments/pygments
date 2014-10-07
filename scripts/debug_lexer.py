@@ -24,7 +24,7 @@ if os.path.isdir(os.path.join(srcpath, 'pygments')):
 
 
 from pygments.lexer import RegexLexer, ProfilingRegexLexer, ProfilingRegexLexerMeta
-from pygments.lexers import find_lexer_class, find_lexer_class_for_filename
+from pygments.lexers import get_lexer_by_name, find_lexer_class_for_filename
 from pygments.token import Error, Text, _TokenType
 from pygments.cmdline import _parse_options
 
@@ -89,11 +89,10 @@ class DebuggingRegexLexer(RegexLexer):
 
 def main(fn, lexer=None, options={}):
     if lexer is not None:
-        lxcls = find_lexer_class(lexer)
+        lxcls = get_lexer_by_name(lexer).__class__
     else:
-        try:
-            lxcls = find_lexer_class_for_filename(os.path.basename(fn))
-        except ValueError:
+        lxcls = find_lexer_class_for_filename(os.path.basename(fn))
+        if lxcls is None:
             try:
                 name, rest = fn.split('_', 1)
                 lxcls = find_lexer_class(name)
@@ -114,6 +113,12 @@ def main(fn, lexer=None, options={}):
         elif lxcls.__bases__ == (DebuggingRegexLexer,):
             # already debugged before
             debug_lexer = True
+        else:
+            # HACK: ExtendedRegexLexer subclasses will only partially work here.
+            print(lxcls.__bases__)
+            lxcls.__bases__ = (DebuggingRegexLexer,)
+            debug_lexer = True
+
     lx = lxcls(**options)
     lno = 1
     text = open(fn, 'rb').read().decode('utf-8')
@@ -122,7 +127,7 @@ def main(fn, lexer=None, options={}):
     states = []
 
     def show_token(tok, state):
-        reprs = map(repr, tok)
+        reprs = list(map(repr, tok))
         print('   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0], end=' ')
         if debug_lexer:
             print(' ' + ' ' * (29-len(reprs[0])) + repr(state), end=' ')
@@ -157,7 +162,7 @@ def main(fn, lexer=None, options={}):
             else:
                 states.append(None)
     if showall:
-        for tok, state in map(None, tokens, states):
+        for tok, state in zip(tokens, states):
             show_token(tok, state)
     return 0
 
