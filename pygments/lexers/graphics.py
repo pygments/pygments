@@ -474,10 +474,11 @@ class PovrayLexer(RegexLexer):
             (r'//.*\n', Comment.Single),
             (r'(?s)"(?:\\.|[^"\\])+"', String.Double),
             (words((
-                'debug', 'default', 'else', 'end', 'error', 'fclose', 'fopen', 'ifdef',
-                'ifndef', 'include', 'range', 'read', 'render', 'statistics', 'switch',
-                'undef', 'version', 'warning', 'while', 'write', 'define', 'macro',
-                'local', 'declare'), prefix=r'#', suffix=r'\b'),
+                'break', 'case', 'debug', 'declare', 'default', 'define', 'else',
+                'elseif', 'end', 'error', 'fclose', 'fopen', 'for', 'if', 'ifdef',
+                'ifndef', 'include', 'local', 'macro', 'range', 'read', 'render',
+                'statistics', 'switch', 'undef', 'version', 'warning', 'while',
+                'write'), prefix=r'#', suffix=r'\b'),
              Comment.Preproc),
             (words((
                 'aa_level', 'aa_threshold', 'abs', 'acos', 'acosh', 'adaptive', 'adc_bailout',
@@ -544,6 +545,7 @@ class PovrayLexer(RegexLexer):
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'\.[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String),
             (r'\s+', Text),
         ]
     }
