@@ -56,7 +56,7 @@ class ProtoBufLexer(RegexLexer):
             (r'\".*\"', String),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'(\-?(inf|nan))', Number.Float),
+            (r'(\-?(inf|nan))\b', Number.Float),
             (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
             (r'0[0-7]+[LlUu]*', Number.Oct),
             (r'\d+[LlUu]*', Number.Integer),
