@@ -257,18 +257,27 @@ def test_styles():
 class FiltersTest(unittest.TestCase):
 
     def test_basic(self):
-        filter_args = {
-            'whitespace': {'spaces': True, 'tabs': True, 'newlines': True},
-            'highlight': {'names': ['isinstance', 'lexers', 'x']},
-        }
-        for x in filters.FILTERS:
+        filters_args = [
+            ('whitespace', {'spaces': True, 'tabs': True, 'newlines': True}),
+            ('whitespace', {'wstokentype': False, 'spaces': True}),
+            ('highlight', {'names': ['isinstance', 'lexers', 'x']}),
+            ('codetagify', {'codetags': 'API'}),
+            ('keywordcase', {'case': 'capitalize'}),
+            ('raiseonerror', {}),
+            ('gobble', {'n': 4}),
+            ('tokenmerge', {}),
+        ]
+        for x, args in filters_args:
             lx = lexers.PythonLexer()
-            lx.add_filter(x, **filter_args.get(x, {}))
+            lx.add_filter(x, **args)
             with open(TESTFILE, 'rb') as fp:
                 text = fp.read().decode('utf-8')
             tokens = list(lx.get_tokens(text))
+            self.assertTrue(all(isinstance(t[1], text_type)
+                                for t in tokens),
+                            '%s filter did not return Unicode' % x)
             roundtext = ''.join([t[1] for t in tokens])
-            if x not in ('whitespace', 'keywordcase'):
+            if x not in ('whitespace', 'keywordcase', 'gobble'):
                 # these filters change the text
                 self.assertEqual(roundtext, text,
                                  "lexer roundtrip with %s filter failed" % x)
