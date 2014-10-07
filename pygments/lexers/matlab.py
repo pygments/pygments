@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, words, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic
+    Number, Punctuation, Generic, Whitespace
 
 from pygments.lexers import _scilab_builtins
 
@@ -89,7 +89,7 @@ class MatlabLexer(RegexLexer):
                 'return', 'spmd', 'switch', 'try', 'while'), suffix=r'\b'),
              Keyword),
 
-            ("(" + "|".join(elfun+specfun+elmat) + r')\b',  Name.Builtin),
+            ("(" + "|".join(elfun + specfun + elmat) + r')\b',  Name.Builtin),
 
             # line continuation with following comment:
             (r'\.\.\..*$', Comment),
@@ -125,9 +125,9 @@ class MatlabLexer(RegexLexer):
         ],
         'deffunc': [
             (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
-             bygroups(Text.Whitespace, Text, Text.Whitespace, Punctuation,
-                      Text.Whitespace, Name.Function, Punctuation, Text,
-                      Punctuation, Text.Whitespace), '#pop'),
+             bygroups(Whitespace, Text, Whitespace, Punctuation,
+                      Whitespace, Name.Function, Punctuation, Text,
+                      Punctuation, Whitespace), '#pop'),
         ],
     }
 
@@ -584,9 +584,9 @@ class OctaveLexer(RegexLexer):
         ],
         'deffunc': [
             (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
-             bygroups(Text.Whitespace, Text, Text.Whitespace, Punctuation,
-                      Text.Whitespace, Name.Function, Punctuation, Text,
-                      Punctuation, Text.Whitespace), '#pop'),
+             bygroups(Whitespace, Text, Whitespace, Punctuation,
+                      Whitespace, Name.Function, Punctuation, Text,
+                      Punctuation, Whitespace), '#pop'),
         ],
     }
 
@@ -650,8 +650,8 @@ class ScilabLexer(RegexLexer):
         ],
         'deffunc': [
             (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
-             bygroups(Text.Whitespace, Text, Text.Whitespace, Punctuation,
-                      Text.Whitespace, Name.Function, Punctuation, Text,
-                      Punctuation, Text.Whitespace), '#pop'),
+             bygroups(Whitespace, Text, Whitespace, Punctuation,
+                      Whitespace, Name.Function, Punctuation, Text,
+                      Punctuation, Whitespace), '#pop'),
         ],
     }
