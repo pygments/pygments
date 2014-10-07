@@ -20,7 +20,7 @@ from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
 from pygments.token import Error, Text, Other, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
-    make_analysator, text_type, add_metaclass, iteritems, Future
+    make_analysator, text_type, add_metaclass, iteritems, Future, guess_decode
 from pygments.regexopt import regex_opt
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
@@ -72,8 +72,9 @@ class Lexer(object):
         If given, must be an encoding name. This encoding will be used to
         convert the input string to Unicode, if it is not already a Unicode
         string (default: ``'latin1'``).
-        Can also be ``'guess'`` to use a simple UTF-8 / Latin1 detection, or
-        ``'chardet'`` to use the chardet library, if it is installed.
+        Can also be ``'guess'`` to use a simple UTF-8 / Locale / Latin1
+        detection, or ``'chardet'`` to use the chardet library, if it is
+        installed.
     """
 
     #: Name of the lexer
@@ -146,12 +147,7 @@ class Lexer(object):
         """
         if not isinstance(text, text_type):
             if self.encoding == 'guess':
-                try:
-                    text = text.decode('utf-8')
-                    if text.startswith(u'\ufeff'):
-                        text = text[len(u'\ufeff'):]
-                except UnicodeDecodeError:
-                    text = text.decode('latin1')
+                text = guess_decode(text)
             elif self.encoding == 'chardet':
                 try:
                     import chardet
