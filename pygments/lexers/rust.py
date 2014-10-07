@@ -112,7 +112,7 @@ class RustLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name),
 
             # Attributes
-            (r'#\[', Comment.Preproc, 'attribute['),
+            (r'#!?\[', Comment.Preproc, 'attribute['),
             # Macros
             (r'([A-Za-z_]\w*)(!)(\s*)([A-Za-z_]\w*)?(\s*)(\{)',
              bygroups(Comment.Preproc, Punctuation, Whitespace, Name,
