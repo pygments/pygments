@@ -235,10 +235,6 @@ def main(args=sys.argv):
             F_opts.append(arg)
         opts[opt] = arg
 
-    if not opts and not args:
-        print(usage)
-        return 0
-
     if opts.pop('-h', None) is not None:
         print(usage)
         return 0
