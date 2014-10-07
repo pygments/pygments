@@ -41,7 +41,8 @@ def test_example_files():
             continue
 
         print(absfn)
-        code = open(absfn, 'rb').read()
+        with open(absfn, 'rb') as f:
+            code = f.read()
         try:
             code = code.decode('utf-8')
         except UnicodeError:
@@ -78,11 +79,8 @@ def test_example_files():
 
 def check_lexer(lx, fn):
     absfn = os.path.join(TESTDIR, 'examplefiles', fn)
-    fp = open(absfn, 'rb')
-    try:
+    with open(absfn, 'rb') as fp:
         text = fp.read()
-    finally:
-        fp.close()
     text = text.replace(b'\r\n', b'\n')
     text = text.strip(b'\n') + b'\n'
     try:
@@ -114,18 +112,12 @@ def check_lexer(lx, fn):
         # no previous output -- store it
         outfn = os.path.join(TESTDIR, 'examplefiles', 'output', fn)
         if not os.path.isfile(outfn):
-            fp = open(outfn, 'wb')
-            try:
+            with open(outfn, 'wb') as fp:
                 pickle.dump(tokens, fp)
-            finally:
-                fp.close()
             return
         # otherwise load it and compare
-        fp = open(outfn, 'rb')
-        try:
+        with open(outfn, 'rb') as fp:
             stored_tokens = pickle.load(fp)
-        finally:
-            fp.close()
         if stored_tokens != tokens:
             f1 = pprint.pformat(stored_tokens)
             f2 = pprint.pformat(tokens)

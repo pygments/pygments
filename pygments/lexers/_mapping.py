@@ -388,19 +388,15 @@ if __name__ == '__main__':
     found_lexers.sort()
 
     # extract useful sourcecode from this file
-    f = open(__file__)
-    try:
-        content = f.read()
-    finally:
-        f.close()
+    with open(__file__) as fp:
+        content = fp.read()
     header = content[:content.find('LEXERS = {')]
     footer = content[content.find("if __name__ == '__main__':"):]
 
     # write new file
-    f = open(__file__, 'w')
-    f.write(header)
-    f.write('LEXERS = {\n    %s,\n}\n\n' % ',\n    '.join(found_lexers))
-    f.write(footer)
-    f.close()
+    with open(__file__, 'w') as fp:
+        fp.write(header)
+        fp.write('LEXERS = {\n    %s,\n}\n\n' % ',\n    '.join(found_lexers))
+        fp.write(footer)
 
     print ('=== %d lexers processed.' % len(found_lexers))

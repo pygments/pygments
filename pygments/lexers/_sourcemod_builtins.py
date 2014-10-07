@@ -1132,21 +1132,17 @@ if __name__ == '__main__':
         return functions
 
     def regenerate(filename, natives):
-        f = open(filename)
-        try:
-            content = f.read()
-        finally:
-            f.close()
+        with open(filename) as fp:
+            content = fp.read()
 
         header = content[:content.find('FUNCTIONS = (')]
         footer = content[content.find("if __name__ == '__main__':")-1:]
 
 
-        f = open(filename, 'w')
-        f.write(header)
-        f.write(format_lines('FUNCTIONS', natives))
-        f.write(footer)
-        f.close()
+        with open(filename, 'w') as fp:
+            fp.write(header)
+            fp.write(format_lines('FUNCTIONS', natives))
+            fp.write(footer)
 
     def run():
         version = get_version()
