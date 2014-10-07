@@ -42,7 +42,7 @@ LEXERS = {
     'AwkLexer': ('pygments.lexers.textedit', 'Awk', ('awk', 'gawk', 'mawk', 'nawk'), ('*.awk',), ('application/x-awk',)),
     'BBCodeLexer': ('pygments.lexers.markup', 'BBCode', ('bbcode',), (), ('text/x-bbcode',)),
     'BaseMakefileLexer': ('pygments.lexers.make', 'Base Makefile', ('basemake',), (), ()),
-    'BashLexer': ('pygments.lexers.shell', 'Bash', ('bash', 'sh', 'ksh'), ('*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass', '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'PKGBUILD'), ('application/x-sh', 'application/x-shellscript')),
+    'BashLexer': ('pygments.lexers.shell', 'Bash', ('bash', 'sh', 'ksh', 'shell'), ('*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass', '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'PKGBUILD'), ('application/x-sh', 'application/x-shellscript')),
     'BashSessionLexer': ('pygments.lexers.shell', 'Bash Session', ('console',), ('*.sh-session',), ('application/x-shell-session',)),
     'BatchLexer': ('pygments.lexers.shell', 'Batchfile', ('bat', 'batch', 'dosbatch', 'winbatch'), ('*.bat', '*.cmd'), ('application/x-dos-batch',)),
     'BefungeLexer': ('pygments.lexers.esoteric', 'Befunge', ('befunge',), ('*.befunge',), ('application/x-befunge',)),
