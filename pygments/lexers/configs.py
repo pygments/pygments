@@ -288,7 +288,9 @@ class ApacheConfLexer(RegexLexer):
             (r'\.+', Text),
         ],
         'value': [
+            (r'\\\n', Text),
             (r'$', Text, '#pop'),
+            (r'\\', Text),
             (r'[^\S\n]+', Text),
             (r'\d+\.\d+\.\d+\.\d+(?:/\d+)?', Number),
             (r'\d+', Number),
@@ -298,8 +300,8 @@ class ApacheConfLexer(RegexLexer):
              r'notice|info|debug|registry|script|inetd|standalone|'
              r'user|group)\b', Keyword),
             (r'"([^"\\]*(?:\\.[^"\\]*)*)"', String.Double),
-            (r'[^\s"]+', Text)
-        ]
+            (r'[^\s"\\]+', Text)
+        ],
     }
 
 
