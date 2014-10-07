@@ -35,9 +35,11 @@ class IrcLogsLexer(RegexLexer):
           # irssi / xchat and others
           (?: \[|\()?                  # Opening bracket or paren for the timestamp
             (?:                        # Timestamp
-                (?: (?:\d{1,4} [-/]?)+ # Date as - or /-separated groups of digits
+                (?: (?:\d{1,4} [-/])*  # Date as - or /-separated groups of digits
+                    (?:\d{1,4})
                  [T ])?                # Date/time separator: T or space
-                (?: \d?\d [:.]?)+      # Time as :/.-separated groups of 1 or 2 digits
+                (?: \d?\d [:.])*       # Time as :/.-separated groups of 1 or 2 digits
+                    (?: \d?\d [:.])
             )
           (?: \]|\))?\s+               # Closing bracket or paren for the timestamp
         |
