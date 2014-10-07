@@ -170,10 +170,11 @@ class SmartyLexer(RegexLexer):
         ],
         'smarty': [
             (r'\s+', Text),
-            (r'\}', Comment.Preproc, '#pop'),
+            (r'{', Comment.Preproc, '#push'),
+            (r'}', Comment.Preproc, '#pop'),
             (r'#[a-zA-Z_]\w*#', Name.Variable),
             (r'\$[a-zA-Z_]\w*(\.\w+)*', Name.Variable),
-            (r'[~!%^&*()+=|\[\]:;,.<>/?{}@-]', Operator),
+            (r'[~!%^&*()+=|\[\]:;,.<>/?@-]', Operator),
             (r'(true|false|null)\b', Keyword.Constant),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
