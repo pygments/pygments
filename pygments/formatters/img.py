@@ -5,15 +5,15 @@
 
     Formatter for Pixmap output.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import sys
 
 from pygments.formatter import Formatter
-from pygments.util import get_bool_opt, get_int_opt, \
-     get_list_opt, get_choice_opt
+from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
+    get_choice_opt, xrange
 
 # Import this carefully
 try:
@@ -25,7 +25,10 @@ except ImportError:
 try:
     import _winreg
 except ImportError:
-    _winreg = None
+    try:
+        import winreg as _winreg
+    except ImportError:
+        _winreg = None
 
 __all__ = ['ImageFormatter', 'GifImageFormatter', 'JpgImageFormatter',
            'BmpImageFormatter']
@@ -72,7 +75,10 @@ class FontManager(object):
             self._create_nix()
 
     def _get_nix_font_path(self, name, style):
-        from commands import getstatusoutput
+        try:
+            from commands import getstatusoutput
+        except ImportError:
+            from subprocess import getstatusoutput
         exit, out = getstatusoutput('fc-list "%s:style=%s" file' %
                                     (name, style))
         if not exit:
@@ -169,7 +175,7 @@ class ImageFormatter(Formatter):
     Create a PNG image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 0.10.*
+    .. versionadded:: 0.10
 
     Additional options accepted:
 
@@ -258,12 +264,16 @@ class ImageFormatter(Formatter):
         Default: 6
 
     `hl_lines`
-        Specify a list of lines to be highlighted.  *New in Pygments 1.2.*
+        Specify a list of lines to be highlighted.
+
+        .. versionadded:: 1.2
 
         Default: empty list
 
     `hl_color`
-        Specify the color for highlighting lines.  *New in Pygments 1.2.*
+        Specify the color for highlighting lines.
+
+        .. versionadded:: 1.2
 
         Default: highlight color of the selected style
     """
@@ -285,6 +295,7 @@ class ImageFormatter(Formatter):
             raise PilNotAvailable(
                 'Python Imaging Library is required for this formatter')
         Formatter.__init__(self, **options)
+        self.encoding = 'latin1'  # let pygments.format() do the right thing
         # Read the style
         self.styles = dict(self.style)
         if self.style.background_color is None:
@@ -305,20 +316,20 @@ class ImageFormatter(Formatter):
         self.line_number_fg = options.get('line_number_fg', '#886')
         self.line_number_bg = options.get('line_number_bg', '#eed')
         self.line_number_chars = get_int_opt(options,
-                                        'line_number_chars', 2)
+                                             'line_number_chars', 2)
         self.line_number_bold = get_bool_opt(options,
-                                        'line_number_bold', False)
+                                             'line_number_bold', False)
         self.line_number_italic = get_bool_opt(options,
-                                        'line_number_italic', False)
+                                               'line_number_italic', False)
         self.line_number_pad = get_int_opt(options, 'line_number_pad', 6)
         self.line_numbers = get_bool_opt(options, 'line_numbers', True)
         self.line_number_separator = get_bool_opt(options,
-                                        'line_number_separator', True)
+                                                  'line_number_separator', True)
         self.line_number_step = get_int_opt(options, 'line_number_step', 1)
         self.line_number_start = get_int_opt(options, 'line_number_start', 1)
         if self.line_numbers:
             self.line_number_width = (self.fontw * self.line_number_chars +
-                                   self.line_number_pad * 2)
+                                      self.line_number_pad * 2)
         else:
             self.line_number_width = 0
         self.hl_lines = []
@@ -427,7 +438,7 @@ class ImageFormatter(Formatter):
             # quite complex.
             value = value.expandtabs(4)
             lines = value.splitlines(True)
-            #print lines
+            # print lines
             for i, line in enumerate(lines):
                 temp = line.rstrip('\n')
                 if temp:
@@ -468,9 +479,8 @@ class ImageFormatter(Formatter):
         draw = ImageDraw.Draw(im)
         recth = im.size[-1]
         rectw = self.image_pad + self.line_number_width - self.line_number_pad
-        draw.rectangle([(0, 0),
-                        (rectw, recth)],
-             fill=self.line_number_bg)
+        draw.rectangle([(0, 0), (rectw, recth)],
+                       fill=self.line_number_bg)
         draw.line([(rectw, 0), (rectw, recth)], fill=self.line_number_fg)
         del draw
 
@@ -513,8 +523,7 @@ class GifImageFormatter(ImageFormatter):
     Create a GIF image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 1.0.* (You could create GIF images before by passing a
-    suitable `image_format` option to the `ImageFormatter`.)
+    .. versionadded:: 1.0
     """
 
     name = 'img_gif'
@@ -528,8 +537,7 @@ class JpgImageFormatter(ImageFormatter):
     Create a JPEG image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 1.0.* (You could create JPEG images before by passing a
-    suitable `image_format` option to the `ImageFormatter`.)
+    .. versionadded:: 1.0
     """
 
     name = 'img_jpg'
@@ -543,8 +551,7 @@ class BmpImageFormatter(ImageFormatter):
     Create a bitmap image from source code. This uses the Python Imaging Library to
     generate a pixmap from the source code.
 
-    *New in Pygments 1.0.* (You could create bitmap images before by passing a
-    suitable `image_format` option to the `ImageFormatter`.)
+    .. versionadded:: 1.0
     """
 
     name = 'img_bmp'
