@@ -81,6 +81,10 @@ Version 2.0
 - Added "inencoding" option for lexers to override "encoding" analogous
   to "outencoding" (#800).
 
+- Added line-by-line "streaming" mode for pygmentize with the "-s" option.
+  (PR#165)  Only fully works for lexers that have no constructs spanning
+  lines!
+
 - Updated the Makefile lexer to yield a little more useful highlighting.
 
 - Lexer aliases passed to ``get_lexer_by_name()`` are now case-insensitive.
