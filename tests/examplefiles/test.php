@@ -504,4 +504,12 @@ function &byref() {
     $x = array();
     return $x;
 }
+
+     echo <<<EOF
+
+     Test the heredocs...
+
+     EOF;
+
 ?>
+

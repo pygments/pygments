@@ -25,11 +25,8 @@ import support
 
 TESTFILE, TESTDIR = support.location(__file__)
 
-fp = io.open(TESTFILE, encoding='utf-8')
-try:
+with io.open(TESTFILE, encoding='utf-8') as fp:
     tokensource = list(PythonLexer().get_tokens(fp.read()))
-finally:
-    fp.close()
 
 
 class HtmlFormatterTest(unittest.TestCase):

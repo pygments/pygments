@@ -21,6 +21,7 @@ option in form of a string:
 .. sourcecode:: pycon
 
     >>> from pygments.styles import get_style_by_name
+    >>> from pygments.formatters import HtmlFormatter
     >>> HtmlFormatter(style='colorful').style
     <class 'pygments.styles.colorful.ColorfulStyle'>
 
@@ -30,6 +31,7 @@ Or you can also import your own style (which must be a subclass of
 .. sourcecode:: pycon
 
     >>> from yourapp.yourmodule import YourStyle
+    >>> from pygments.formatters import HtmlFormatter
     >>> HtmlFormatter(style=YourStyle).style
     <class 'yourapp.yourmodule.YourStyle'>
 

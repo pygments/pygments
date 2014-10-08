@@ -62,9 +62,8 @@ class RawTokenFormatter(Formatter):
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
-        if self.encoding:
-            raise OptionError('the raw formatter does not support the '
-                              'encoding option')
+        # We ignore self.encoding if it is set, since it gets set for lexer
+        # and formatter if given with -Oencoding on the command line.
         self.encoding = 'ascii'  # let pygments.format() do the right thing
         self.compress = get_choice_opt(options, 'compress',
                                        ['', 'none', 'gz', 'bz2'], '')

@@ -19,9 +19,9 @@ all: clean-pyc check test
 
 check:
 	@$(PYTHON) scripts/detect_missing_analyse_text.py || true
+	@pyflakes pygments | grep -v 'but unused' || true
 	@$(PYTHON) scripts/check_sources.py -i build -i dist -i pygments/lexers/_mapping.py \
-		   -i docs/build -i pygments/formatters/_mapping.py -i pygments/unistring.py \
-		   -i pygments/lexers/_vimbuiltins.py
+		   -i docs/build -i pygments/formatters/_mapping.py -i pygments/unistring.py
 
 clean: clean-pyc
 	-rm -rf build
@@ -40,8 +40,8 @@ docs:
 	make -C doc html
 
 mapfiles:
-	(cd pygments/lexers; $(PYTHON) _mapping.py)
 	(cd pygments/formatters; $(PYTHON) _mapping.py)
+	(cd pygments/lexers; $(PYTHON) _mapping.py)
 
 pylint:
 	@pylint --rcfile scripts/pylintrc pygments
