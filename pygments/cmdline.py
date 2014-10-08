@@ -30,7 +30,7 @@ from pygments.styles import get_all_styles, get_style_by_name
 
 USAGE = """\
 Usage: %s [-l <lexer> | -g] [-F <filter>[:<options>]] [-f <formatter>]
-          [-O <options>] [-P <option=value>] [-o <outfile>] [<infile>]
+          [-O <options>] [-P <option=value>] [-s] [-o <outfile>] [<infile>]
 
        %s -S <style> -f <formatter> [-a <arg>] [-O <options>] [-P <option=value>]
        %s -L [<which> ...]
@@ -41,6 +41,10 @@ Usage: %s [-l <lexer> | -g] [-F <filter>[:<options>]] [-f <formatter>]
 Highlight the input file and write the result to <outfile>.
 
 If no input file is given, use stdin, if -o is not given, use stdout.
+
+If -s is passed, lexing will be done in "streaming" mode, reading and
+highlighting one line at a time.  This will only work properly with
+lexers that have no constructs spanning multiple lines!
 
 <lexer> is a lexer name (query all lexer names with -L). If -l is not
 given, the lexer is guessed from the extension of the input file name
@@ -380,10 +384,10 @@ def main(args=sys.argv):
             print(usage, file=sys.stderr)
             return 2
 
-        #if '-s' in opts:
-            #print >>sys.stderr, 'Error: -s option not usable when input ' + \
-            #                    'file specified'
-            #return 1
+        if '-s' in opts:
+            print('Error: -s option not usable when input file specified',
+                  file=sys.stderr)
+            return 1
 
         infn = args[0]
         try:
@@ -457,13 +461,25 @@ def main(args=sys.argv):
             # process whole input as per normal...
             highlight(code, lexer, fmter, outfile)
         else:
+            if not lexer:
+                print('Error: when using -s a lexer has to be selected with -l',
+                      file=sys.stderr)
+                return 1
             # line by line processing of stdin (eg: for 'tail -f')...
             try:
                 while 1:
-                    line = sys.stdin.readline()
+                    if sys.version_info > (3,):
+                        # Python 3: we have to use .buffer to get a binary stream
+                        line = sys.stdin.buffer.readline()
+                    else:
+                        line = sys.stdin.readline()
                     if not line:
                         break
+                    if not inencoding:
+                        line = guess_decode_from_terminal(line, sys.stdin)[0]
                     highlight(line, lexer, fmter, outfile)
+                    if hasattr(outfile, 'flush'):
+                        outfile.flush()
             except KeyboardInterrupt:
                 return 0
 
