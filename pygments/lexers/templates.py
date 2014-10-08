@@ -43,7 +43,8 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'VelocityHtmlLexer', 'VelocityXmlLexer', 'SspLexer',
            'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer',
            'LassoCssLexer', 'LassoJavascriptLexer', 'HandlebarsLexer',
-           'HandlebarsHtmlLexer', 'YamlJinjaLexer', 'LiquidLexer', 'TwigLexer']
+           'HandlebarsHtmlLexer', 'YamlJinjaLexer', 'LiquidLexer',
+           'TwigLexer', 'TwigHtmlLexer']
 
 
 class ErbLexer(Lexer):
@@ -2071,7 +2072,8 @@ class LiquidLexer(RegexLexer):
              bygroups(Punctuation, Whitespace, Name.Tag, Whitespace,
                       Punctuation), '#pop'),
             (r'\{', Text)
-        ]
+        ],
+    }
 
 
 class TwigLexer(RegexLexer):
@@ -2080,6 +2082,8 @@ class TwigLexer(RegexLexer):
 
     It just highlights Twig code between the preprocessor directives,
     other data is left untouched by the lexer.
+
+    .. versionadded:: 2.0
     """
 
     name = 'Twig'
@@ -2094,9 +2098,6 @@ class TwigLexer(RegexLexer):
             (r'\{\{', Comment.Preproc, 'var'),
             # twig comments
             (r'\{\#.*?\#\}', Comment),
-             bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
-                      Comment, Comment.Preproc, Text, Keyword, Text,
-                      Comment.Preproc)),
             # raw twig blocks
             (r'(\{%)(-?\s*)(raw|verbatim)(\s*-?)(%\})(.*?)'
              r'(\{%)(-?\s*)(endraw|endverbatim)(\s*-?)(%\})',
@@ -2108,7 +2109,8 @@ class TwigLexer(RegexLexer):
              bygroups(Comment.Preproc, Text, Keyword, Text, Name.Function),
              'block'),
             (r'(\{%)(-?\s*)([a-zA-Z_]\w*)',
-             bygroups(Comment.Preproc, Text, Keyword), 'block')
+             bygroups(Comment.Preproc, Text, Keyword), 'block'),
+            (r'\{', Other),
         ],
         'varnames': [
             (r'(\|)(\s*)([a-zA-Z_]\w*)',
@@ -2117,7 +2119,7 @@ class TwigLexer(RegexLexer):
              bygroups(Keyword, Text, Keyword, Text, Name.Function)),
             (r'(true|false|none|null)\b', Keyword.Pseudo),
             (r'(in|not|and|b-and|or|b-or|b-xor|is'
-             r'if|else|elseif|import'
+             r'if|elseif|else|import'
              r'constant|defined|divisibleby|empty|even|iterable|odd|sameas'
              r'matches|starts\s+with|ends\s+with)\b',
              Keyword),
@@ -2126,7 +2128,7 @@ class TwigLexer(RegexLexer):
             (r'\.\w+', Name.Variable),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
-            (r'([{}()\[\]+\-*/,:~%]|\.\.|\?:|\*\*|\/\/|!=|[><=]=?)', Operator),
+            (r'([{}()\[\]+\-*/,:~%]|\.\.|\?|:|\*\*|\/\/|!=|[><=]=?)', Operator),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ],
@@ -2139,18 +2141,23 @@ class TwigLexer(RegexLexer):
             (r'\s+', Text),
             (r'(-?)(%\})', bygroups(Text, Comment.Preproc), '#pop'),
             include('varnames'),
-            (r'.', Punctuation)
-        ]
+            (r'.', Punctuation),
+        ],
     }
 
-    def analyse_text(text):
-        rv = 0.0
-        if re.search(r'\{%\s*(block|extends)', text) is not None:
-            rv += 0.4
-        if re.search(r'\{%\s*if\s*.*?%\}', text) is not None:
-            rv += 0.1
-        if re.search(r'\{\{.*?\}\}', text) is not None:
-            rv += 0.1
-        return rv
 
-}
+class TwigHtmlLexer(DelegatingLexer):
+    """
+    Subclass of the `TwigLexer` that highlights unlexed data with the
+    `HtmlLexer`.
+
+    .. versionadded:: 2.0
+    """
+
+    name = "HTML+Twig"
+    aliases = ["html+twig"]
+    filenames = ['*.twig']
+    mimetypes = ['text/html+twig']
+
+    def __init__(self, **options):
+        super(TwigHtmlLexer, self).__init__(HtmlLexer, TwigLexer, **options)
