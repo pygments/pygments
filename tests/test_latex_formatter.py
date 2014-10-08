@@ -24,11 +24,8 @@ TESTFILE, TESTDIR = support.location(__file__)
 class LatexFormatterTest(unittest.TestCase):
 
     def test_valid_output(self):
-        fp = open(TESTFILE)
-        try:
+        with open(TESTFILE) as fp:
             tokensource = list(PythonLexer().get_tokens(fp.read()))
-        finally:
-            fp.close()
         fmt = LatexFormatter(full=True, encoding='latin1')
 
         handle, pathname = tempfile.mkstemp('.tex')

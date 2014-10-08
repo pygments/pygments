@@ -99,11 +99,8 @@ if __name__ == '__main__':
 
     categories = {}
 
-    f = open(__file__)
-    try:
-        content = f.read()
-    finally:
-        f.close()
+    with open(__file__) as fp:
+        content = fp.read()
 
     header = content[:content.find('Cc =')]
     footer = content[content.find("def combine("):]

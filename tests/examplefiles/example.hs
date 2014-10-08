@@ -25,3 +25,7 @@ data ĈrazyThings =
   House |
   Peár
     deriving (Show, Eq)
+
+-- some char literals:
+
+charl = ['"', 'a', '\ESC', '\'', ' ']
