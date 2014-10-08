@@ -5,7 +5,7 @@
 
     Lexers for hardware descriptor languages.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,7 +22,7 @@ class VerilogLexer(RegexLexer):
     """
     For verilog source code with preprocessor directives.
 
-    *New in Pygments 1.4.*
+    .. versionadded:: 1.4
     """
     name = 'verilog'
     aliases = ['verilog', 'v']
@@ -46,7 +46,7 @@ class VerilogLexer(RegexLexer):
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'([0-9]+)|(\'h)[0-9a-fA-F]+', Number.Hex),
-            (r'([0-9]+)|(\'b)[0-1]+', Number.Hex),   # should be binary
+            (r'([0-9]+)|(\'b)[0-1]+', Number.Bin),
             (r'([0-9]+)|(\'d)[0-9]+', Number.Integer),
             (r'([0-9]+)|(\'o)[0-7]+', Number.Oct),
             (r'\'[01xz]', Number),
@@ -54,7 +54,7 @@ class VerilogLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.;\']', Punctuation),
-            (r'`[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant),
+            (r'`[a-zA-Z_]\w*', Name.Constant),
 
             (r'^(\s*)(package)(\s+)', bygroups(Text, Keyword.Namespace, Text)),
             (r'^(\s*)(import)(\s+)', bygroups(Text, Keyword.Namespace, Text),
@@ -96,8 +96,8 @@ class VerilogLexer(RegexLexer):
              r'bit|logic|reg|'
              r'supply0|supply1|tri|triand|trior|tri0|tri1|trireg|uwire|wire|wand|wor'
              r'shortreal|real|realtime)\b', Keyword.Type),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*:(?!:)', Name.Label),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -115,7 +115,7 @@ class VerilogLexer(RegexLexer):
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'import': [
-            (r'[a-zA-Z0-9_:]+\*?', Name.Namespace, '#pop')
+            (r'[\w:]+\*?', Name.Namespace, '#pop')
         ]
     }
 
@@ -134,7 +134,7 @@ class SystemVerilogLexer(RegexLexer):
     Extends verilog lexer to recognise all SystemVerilog keywords from IEEE
     1800-2009 standard.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'systemverilog'
     aliases = ['systemverilog', 'sv']
@@ -161,7 +161,7 @@ class SystemVerilogLexer(RegexLexer):
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'([0-9]+)|(\'h)[0-9a-fA-F]+', Number.Hex),
-            (r'([0-9]+)|(\'b)[0-1]+', Number.Hex),   # should be binary
+            (r'([0-9]+)|(\'b)[0-1]+', Number.Bin),
             (r'([0-9]+)|(\'d)[0-9]+', Number.Integer),
             (r'([0-9]+)|(\'o)[0-7]+', Number.Oct),
             (r'\'[01xz]', Number),
@@ -169,7 +169,7 @@ class SystemVerilogLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.;\']', Punctuation),
-            (r'`[a-zA-Z_][a-zA-Z0-9_]*', Name.Constant),
+            (r'`[a-zA-Z_]\w*', Name.Constant),
 
             (r'(accept_on|alias|always|always_comb|always_ff|always_latch|'
              r'and|assert|assign|assume|automatic|before|begin|bind|bins|'
@@ -215,12 +215,12 @@ class SystemVerilogLexer(RegexLexer):
              r'\$dumpportsall|\$dumpportsflush|\$dumpportslimit|\$dumpportsoff|'
              r'\$dumpportson|\$dumpvars|\$fclose|\$fdisplay|\$fdisplayb|'
              r'\$fdisplayh|\$fdisplayo|\$feof|\$ferror|\$fflush|\$fgetc|'
-             r'\$fgets|\$fmonitor|\$fmonitorb|\$fmonitorh|\$fmonitoro|'
+             r'\$fgets|\$finish|\$fmonitor|\$fmonitorb|\$fmonitorh|\$fmonitoro|'
              r'\$fopen|\$fread|\$fscanf|\$fseek|\$fstrobe|\$fstrobeb|\$fstrobeh|'
              r'\$fstrobeo|\$ftell|\$fwrite|\$fwriteb|\$fwriteh|\$fwriteo|'
              r'\$monitor|\$monitorb|\$monitorh|\$monitoro|\$monitoroff|'
-             r'\$monitoron|\$plusargs|\$readmemb|\$readmemh|\$rewind|\$sformat|'
-             r'\$sformatf|\$sscanf|\$strobe|\$strobeb|\$strobeh|\$strobeo|'
+             r'\$monitoron|\$plusargs|\$random\|$readmemb|\$readmemh|\$rewind|'
+             r'\$sformat|\$sformatf|\$sscanf|\$strobe|\$strobeb|\$strobeh|\$strobeo|'
              r'\$swrite|\$swriteb|\$swriteh|\$swriteo|\$test|\$ungetc|'
              r'\$value\$plusargs|\$write|\$writeb|\$writeh|\$writememb|'
              r'\$writememh|\$writeo)\b' , Name.Builtin ),
@@ -230,11 +230,11 @@ class SystemVerilogLexer(RegexLexer):
              r'bit|logic|reg|'
              r'supply0|supply1|tri|triand|trior|tri0|tri1|trireg|uwire|wire|wand|wor'
              r'shortreal|real|realtime)\b', Keyword.Type),
-            ('[a-zA-Z_][a-zA-Z0-9_]*:(?!:)', Name.Label),
-            ('[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            ('[a-zA-Z_]\w*:(?!:)', Name.Label),
+            ('[a-zA-Z_]\w*', Name),
         ],
         'classname': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class, '#pop'),
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -252,7 +252,7 @@ class SystemVerilogLexer(RegexLexer):
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'import': [
-            (r'[a-zA-Z0-9_:]+\*?', Name.Namespace, '#pop')
+            (r'[\w:]+\*?', Name.Namespace, '#pop')
         ]
     }
 
@@ -274,7 +274,7 @@ class VhdlLexer(RegexLexer):
     """
     For VHDL source code.
 
-    *New in Pygments 1.5.*
+    .. versionadded:: 1.5
     """
     name = 'vhdl'
     aliases = ['vhdl']
@@ -290,19 +290,19 @@ class VhdlLexer(RegexLexer):
             (r'--(?![!#$%&*+./<=>?@\^|_~]).*?$', Comment.Single),
             (r"'(U|X|0|1|Z|W|L|H|-)'", String.Char),
             (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r"'[a-zA-Z_][a-zA-Z0-9_]*", Name.Attribute),
+            (r"'[a-z_]\w*", Name.Attribute),
             (r'[()\[\],.;\']', Punctuation),
             (r'"[^\n\\]*"', String),
 
-            (r'(library)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(library)(\s+)([a-z_]\w*)',
              bygroups(Keyword, Text, Name.Namespace)),
             (r'(use)(\s+)(entity)', bygroups(Keyword, Text, Keyword)),
-            (r'(use)(\s+)([a-zA-Z_][\.a-zA-Z0-9_]*)',
+            (r'(use)(\s+)([a-z_][\.\w]*)',
              bygroups(Keyword, Text, Name.Namespace)),
-            (r'(entity|component)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)',
+            (r'(entity|component)(\s+)([a-z_]\w*)',
              bygroups(Keyword, Text, Name.Class)),
-            (r'(architecture|configuration)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)'
-             r'(of)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)(is)',
+            (r'(architecture|configuration)(\s+)([a-z_]\w*)(\s+)'
+             r'(of)(\s+)([a-z_]\w*)(\s+)(is)',
              bygroups(Keyword, Text, Name.Class, Text, Keyword, Text,
                       Name.Class, Text, Keyword)),
 
@@ -312,11 +312,11 @@ class VhdlLexer(RegexLexer):
             include('keywords'),
             include('numbers'),
 
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
+            (r'[a-z_]\w*', Name),
         ],
         'endblock': [
             include('keywords'),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Class),
+            (r'[a-z_]\w*', Name.Class),
             (r'(\s+)', Text),
             (r';', Punctuation, '#pop'),
         ],
@@ -345,12 +345,11 @@ class VhdlLexer(RegexLexer):
              r'while|with|xnor|xor)\b', Keyword),
         ],
         'numbers': [
-            (r'\d{1,2}#[0-9a-fA-F_]+#?', Number.Integer),
-            (r'[0-1_]+(\.[0-1_])', Number.Integer),
+            (r'\d{1,2}#[0-9a-f_]+#?', Number.Integer),
             (r'\d+', Number.Integer),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+', Number.Float),
-            (r'H"[0-9a-fA-F_]+"', Number.Oct),
+            (r'X"[0-9a-f_]+"', Number.Hex),
             (r'O"[0-7_]+"', Number.Oct),
-            (r'B"[0-1_]+"', Number.Oct),
+            (r'B"[0-1_]+"', Number.Bin),
         ],
     }

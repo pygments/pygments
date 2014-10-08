@@ -12,10 +12,17 @@ open import Data.List hiding ([_])
 open import Data.Vec hiding ([_])
 open import Relation.Nullary.Core
 open import Relation.Binary.PropositionalEquality using (_≡_; refl; cong; trans; inspect; [_])
+  renaming (setoid to setiod)
 
 open SemiringSolver
 
 {- this is a {- nested -} comment -}
+
+postulate pierce : {A B : Set} → ((A → B) → A) → A
+
+instance
+  someBool : Bool
+  someBool = true
 
 -- Factorial
 _! : ℕ → ℕ

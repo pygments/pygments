@@ -3,7 +3,7 @@
     Test suite for the util module
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -123,7 +123,7 @@ class UtilTest(unittest.TestCase):
         r = re.compile(util.unirange(0x10000, 0x20000))
         m = r.match(first_non_bmp)
         self.assertTrue(m)
-        self.assertEquals(m.end(), len(first_non_bmp))
+        self.assertEqual(m.end(), len(first_non_bmp))
         self.assertFalse(r.match(u'\uffff'))
         self.assertFalse(r.match(u'xxx'))
         # Tests that end is inclusive
@@ -132,4 +132,12 @@ class UtilTest(unittest.TestCase):
         # build
         m = r.match(first_non_bmp * 2)
         self.assertTrue(m)
-        self.assertEquals(m.end(), len(first_non_bmp) * 2)
+        self.assertEqual(m.end(), len(first_non_bmp) * 2)
+
+    def test_format_lines(self):
+        lst = ['cat', 'dog']
+        output = util.format_lines('var', lst)
+        d = {}
+        exec(output, d)
+        self.assertTrue(isinstance(d['var'], tuple))
+        self.assertEqual(('cat', 'dog'), d['var'])
