@@ -5,20 +5,25 @@
 
     Command line interface.
 
-    :copyright: Copyright 2006-2013 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
+from __future__ import print_function
+
 import sys
 import getopt
 from textwrap import dedent
 
 from pygments import __version__, highlight
-from pygments.util import ClassNotFound, OptionError, docstring_headline
-from pygments.lexers import get_all_lexers, get_lexer_by_name, get_lexer_for_filename, \
-     find_lexer_class, guess_lexer, TextLexer
+from pygments.util import ClassNotFound, OptionError, docstring_headline, \
+    guess_decode, guess_decode_from_terminal, terminal_encoding
+from pygments.lexers import get_all_lexers, get_lexer_by_name, guess_lexer, \
+    get_lexer_for_filename, find_lexer_class, TextLexer
+from pygments.formatters.latex import LatexEmbeddedLexer, LatexFormatter
 from pygments.formatters import get_all_formatters, get_formatter_by_name, \
-     get_formatter_for_filename, find_formatter_class, \
-     TerminalFormatter  # pylint:disable-msg=E0611
+    get_formatter_for_filename, find_formatter_class, \
+    TerminalFormatter  # pylint:disable-msg=E0611
 from pygments.filters import get_all_filters, find_filter_class
 from pygments.styles import get_all_styles, get_style_by_name
 
@@ -97,7 +102,7 @@ def _parse_options(o_strs):
         for o_arg in o_args:
             o_arg = o_arg.strip()
             try:
-                o_key, o_val = o_arg.split('=')
+                o_key, o_val = o_arg.split('=', 1)
                 o_key = o_key.strip()
                 o_val = o_val.strip()
             except ValueError:
@@ -124,25 +129,25 @@ def _print_help(what, name):
     try:
         if what == 'lexer':
             cls = find_lexer_class(name)
-            print "Help on the %s lexer:" % cls.name
-            print dedent(cls.__doc__)
+            print("Help on the %s lexer:" % cls.name)
+            print(dedent(cls.__doc__))
         elif what == 'formatter':
             cls = find_formatter_class(name)
-            print "Help on the %s formatter:" % cls.name
-            print dedent(cls.__doc__)
+            print("Help on the %s formatter:" % cls.name)
+            print(dedent(cls.__doc__))
         elif what == 'filter':
             cls = find_filter_class(name)
-            print "Help on the %s filter:" % name
-            print dedent(cls.__doc__)
+            print("Help on the %s filter:" % name)
+            print(dedent(cls.__doc__))
     except AttributeError:
-        print >>sys.stderr, "%s not found!" % what
+        print("%s not found!" % what, file=sys.stderr)
 
 
 def _print_list(what):
     if what == 'lexer':
-        print
-        print "Lexers:"
-        print "~~~~~~~"
+        print()
+        print("Lexers:")
+        print("~~~~~~~")
 
         info = []
         for fullname, names, exts, _ in get_all_lexers():
@@ -151,12 +156,12 @@ def _print_list(what):
             info.append(tup)
         info.sort()
         for i in info:
-            print ('* %s\n    %s %s') % i
+            print(('* %s\n    %s %s') % i)
 
     elif what == 'formatter':
-        print
-        print "Formatters:"
-        print "~~~~~~~~~~~"
+        print()
+        print("Formatters:")
+        print("~~~~~~~~~~~")
 
         info = []
         for cls in get_all_formatters():
@@ -166,27 +171,27 @@ def _print_list(what):
             info.append(tup)
         info.sort()
         for i in info:
-            print ('* %s\n    %s %s') % i
+            print(('* %s\n    %s %s') % i)
 
     elif what == 'filter':
-        print
-        print "Filters:"
-        print "~~~~~~~~"
+        print()
+        print("Filters:")
+        print("~~~~~~~~")
 
         for name in get_all_filters():
             cls = find_filter_class(name)
-            print "* " + name + ':'
-            print "    %s" % docstring_headline(cls)
+            print("* " + name + ':')
+            print("    %s" % docstring_headline(cls))
 
     elif what == 'style':
-        print
-        print "Styles:"
-        print "~~~~~~~"
+        print()
+        print("Styles:")
+        print("~~~~~~~")
 
         for name in get_all_styles():
             cls = get_style_by_name(name)
-            print "* " + name + ':'
-            print "    %s" % docstring_headline(cls)
+            print("* " + name + ':')
+            print("    %s" % docstring_headline(cls))
 
 
 def main(args=sys.argv):
@@ -207,8 +212,8 @@ def main(args=sys.argv):
 
     try:
         popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:hVHgs")
-    except getopt.GetoptError, err:
-        print >>sys.stderr, usage
+    except getopt.GetoptError:
+        print(usage, file=sys.stderr)
         return 2
     opts = {}
     O_opts = []
@@ -223,23 +228,19 @@ def main(args=sys.argv):
             F_opts.append(arg)
         opts[opt] = arg
 
-    if not opts and not args:
-        print usage
-        return 0
-
     if opts.pop('-h', None) is not None:
-        print usage
+        print(usage)
         return 0
 
     if opts.pop('-V', None) is not None:
-        print 'Pygments version %s, (c) 2006-2013 by Georg Brandl.' % __version__
+        print('Pygments version %s, (c) 2006-2014 by Georg Brandl.' % __version__)
         return 0
 
     # handle ``pygmentize -L``
     L_opt = opts.pop('-L', None)
     if L_opt is not None:
         if opts:
-            print >>sys.stderr, usage
+            print(usage, file=sys.stderr)
             return 2
 
         # print version
@@ -254,12 +255,12 @@ def main(args=sys.argv):
     H_opt = opts.pop('-H', None)
     if H_opt is not None:
         if opts or len(args) != 2:
-            print >>sys.stderr, usage
+            print(usage, file=sys.stderr)
             return 2
 
         what, name = args
         if what not in ('lexer', 'formatter', 'filter'):
-            print >>sys.stderr, usage
+            print(usage, file=sys.stderr)
             return 2
 
         _print_help(what, name)
@@ -279,18 +280,22 @@ def main(args=sys.argv):
             parsed_opts[name] = value
     opts.pop('-P', None)
 
+    # encodings
+    inencoding  = parsed_opts.get('inencoding', parsed_opts.get('encoding'))
+    outencoding = parsed_opts.get('outencoding', parsed_opts.get('encoding'))
+
     # handle ``pygmentize -N``
     infn = opts.pop('-N', None)
     if infn is not None:
         try:
             lexer = get_lexer_for_filename(infn, **parsed_opts)
-        except ClassNotFound, err:
+        except ClassNotFound as err:
             lexer = TextLexer()
-        except OptionError, err:
-            print >>sys.stderr, 'Error:', err
+        except OptionError as err:
+            print('Error:', err, file=sys.stderr)
             return 1
 
-        print lexer.aliases[0]
+        print(lexer.aliases[0])
         return 0
 
     # handle ``pygmentize -S``
@@ -299,30 +304,30 @@ def main(args=sys.argv):
     if S_opt is not None:
         f_opt = opts.pop('-f', None)
         if not f_opt:
-            print >>sys.stderr, usage
+            print(usage, file=sys.stderr)
             return 2
         if opts or args:
-            print >>sys.stderr, usage
+            print(usage, file=sys.stderr)
             return 2
 
         try:
             parsed_opts['style'] = S_opt
             fmter = get_formatter_by_name(f_opt, **parsed_opts)
-        except ClassNotFound, err:
-            print >>sys.stderr, err
+        except ClassNotFound as err:
+            print(err, file=sys.stderr)
             return 1
 
         arg = a_opt or ''
         try:
-            print fmter.get_style_defs(arg)
-        except Exception, err:
-            print >>sys.stderr, 'Error:', err
+            print(fmter.get_style_defs(arg))
+        except Exception as err:
+            print('Error:', err, file=sys.stderr)
             return 1
         return 0
 
     # if no -S is given, -a is not allowed
     if a_opt is not None:
-        print >>sys.stderr, usage
+        print(usage, file=sys.stderr)
         return 2
 
     # parse -F options
@@ -335,39 +340,44 @@ def main(args=sys.argv):
     if fmter:
         try:
             fmter = get_formatter_by_name(fmter, **parsed_opts)
-        except (OptionError, ClassNotFound), err:
-            print >>sys.stderr, 'Error:', err
+        except (OptionError, ClassNotFound) as err:
+            print('Error:', err, file=sys.stderr)
             return 1
 
     if outfn:
         if not fmter:
             try:
                 fmter = get_formatter_for_filename(outfn, **parsed_opts)
-            except (OptionError, ClassNotFound), err:
-                print >>sys.stderr, 'Error:', err
+            except (OptionError, ClassNotFound) as err:
+                print('Error:', err, file=sys.stderr)
                 return 1
         try:
             outfile = open(outfn, 'wb')
-        except Exception, err:
-            print >>sys.stderr, 'Error: cannot open outfile:', err
+        except Exception as err:
+            print('Error: cannot open outfile:', err, file=sys.stderr)
             return 1
     else:
         if not fmter:
             fmter = TerminalFormatter(**parsed_opts)
-        outfile = sys.stdout
+        if sys.version_info > (3,):
+            # Python 3: we have to use .buffer to get a binary stream
+            outfile = sys.stdout.buffer
+        else:
+            outfile = sys.stdout
 
     # select lexer
     lexer = opts.pop('-l', None)
     if lexer:
         try:
             lexer = get_lexer_by_name(lexer, **parsed_opts)
-        except (OptionError, ClassNotFound), err:
-            print >>sys.stderr, 'Error:', err
+        except (OptionError, ClassNotFound) as err:
+            print('Error:', err, file=sys.stderr)
             return 1
 
+    # read input code
     if args:
         if len(args) > 1:
-            print >>sys.stderr, usage
+            print(usage, file=sys.stderr)
             return 2
 
         #if '-s' in opts:
@@ -377,58 +387,65 @@ def main(args=sys.argv):
 
         infn = args[0]
         try:
-            code = open(infn, 'rb').read()
-        except Exception, err:
-            print >>sys.stderr, 'Error: cannot read infile:', err
+            with open(infn, 'rb') as infp:
+                code = infp.read()
+        except Exception as err:
+            print('Error: cannot read infile:', err, file=sys.stderr)
             return 1
+        if not inencoding:
+            code, inencoding = guess_decode(code)
 
+        # do we have to guess the lexer?
         if not lexer:
             try:
                 lexer = get_lexer_for_filename(infn, code, **parsed_opts)
-            except ClassNotFound, err:
+            except ClassNotFound as err:
                 if '-g' in opts:
                     try:
                         lexer = guess_lexer(code, **parsed_opts)
                     except ClassNotFound:
                         lexer = TextLexer(**parsed_opts)
                 else:
-                    print >>sys.stderr, 'Error:', err
+                    print('Error:', err, file=sys.stderr)
                     return 1
-            except OptionError, err:
-                print >>sys.stderr, 'Error:', err
+            except OptionError as err:
+                print('Error:', err, file=sys.stderr)
                 return 1
 
-    elif '-s' not in opts: #treat stdin as full file (-s support is later)
-        if '-g' in opts:
+    elif '-s' not in opts:  # treat stdin as full file (-s support is later)
+        # read code from terminal, always in binary mode since we want to
+        # decode ourselves and be tolerant with it
+        if sys.version_info > (3,):
+            # Python 3: we have to use .buffer to get a binary stream
+            code = sys.stdin.buffer.read()
+        else:
             code = sys.stdin.read()
+        if not inencoding:
+            code, inencoding = guess_decode_from_terminal(code, sys.stdin)
+            # else the lexer will do the decoding
+        if not lexer:
             try:
                 lexer = guess_lexer(code, **parsed_opts)
             except ClassNotFound:
                 lexer = TextLexer(**parsed_opts)
-        elif not lexer:
-            print >>sys.stderr, 'Error: no lexer name given and reading ' + \
-                                'from stdin (try using -g or -l <lexer>)'
-            return 2
-        else:
-            code = sys.stdin.read()
 
-    # No encoding given? Use latin1 if output file given,
-    # stdin/stdout encoding otherwise.
-    # (This is a compromise, I'm not too happy with it...)
-    if 'encoding' not in parsed_opts and 'outencoding' not in parsed_opts:
+    # When using the LaTeX formatter and the option `escapeinside` is
+    # specified, we need a special lexer which collects escaped text
+    # before running the chosen language lexer.
+    escapeinside = parsed_opts.get('escapeinside', '')
+    if len(escapeinside) == 2 and isinstance(fmter, LatexFormatter):
+        left = escapeinside[0]
+        right = escapeinside[1]
+        lexer = LatexEmbeddedLexer(left, right, lexer)
+
+    # determine output encoding if not explicitly selected
+    if not outencoding:
         if outfn:
-            # encoding pass-through
-            fmter.encoding = 'latin1'
+            # output file? -> encoding pass-through
+            fmter.encoding = inencoding
         else:
-            if sys.version_info < (3,):
-                # use terminal encoding; Python 3's terminals already do that
-                lexer.encoding = getattr(sys.stdin, 'encoding',
-                                         None) or 'ascii'
-                fmter.encoding = getattr(sys.stdout, 'encoding',
-                                         None) or 'ascii'
-    elif not outfn and sys.version_info > (3,):
-        # output to terminal with encoding -> use .buffer
-        outfile = sys.stdout.buffer
+            # else use terminal encoding
+            fmter.encoding = terminal_encoding(sys.stdout)
 
     # ... and do it!
     try:
@@ -437,12 +454,12 @@ def main(args=sys.argv):
             lexer.add_filter(fname, **fopts)
 
         if '-s' not in opts:
-            #process whole input as per normal...
+            # process whole input as per normal...
             highlight(code, lexer, fmter, outfile)
         else:
-            # line input processing of stdout (eg: for 'tail -f')...
+            # line by line processing of stdin (eg: for 'tail -f')...
             try:
-                while True:
+                while 1:
                     line = sys.stdin.readline()
                     if not line:
                         break
@@ -450,16 +467,16 @@ def main(args=sys.argv):
             except KeyboardInterrupt:
                 return 0
 
-    except Exception, err:
+    except Exception:
         import traceback
         info = traceback.format_exception(*sys.exc_info())
         msg = info[-1].strip()
         if len(info) >= 3:
             # extract relevant file and position info
             msg += '\n   (f%s)' % info[-2].split('\n')[0].strip()[1:]
-        print >>sys.stderr
-        print >>sys.stderr, '*** Error while highlighting:'
-        print >>sys.stderr, msg
+        print(file=sys.stderr)
+        print('*** Error while highlighting:', file=sys.stderr)
+        print(msg, file=sys.stderr)
         return 1
 
     return 0
