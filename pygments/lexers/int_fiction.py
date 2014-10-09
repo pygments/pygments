@@ -16,7 +16,8 @@ from pygments.lexer import RegexLexer, include, bygroups, using, \
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error, Generic
 
-__all__ = ['Inform6Lexer', 'Inform6TemplateLexer', 'Inform7Lexer']
+__all__ = ['Inform6Lexer', 'Inform6TemplateLexer', 'Inform7Lexer',
+           'Tads3Lexer']
 
 
 class Inform6Lexer(RegexLexer):
@@ -722,3 +723,609 @@ class Inform6TemplateLexer(Inform7Lexer):
 
     def get_tokens_unprocessed(self, text, stack=('+i6t-root',)):
         return Inform7Lexer.get_tokens_unprocessed(self, text, stack)
+
+
+class Tads3Lexer(RegexLexer):
+    """
+    For `TADS 3 <http://www.tads.org/>`_ source code.
+    """
+
+    name = 'TADS 3'
+    aliases = ['tads3']
+    filenames = ['*.t']
+
+    flags = re.DOTALL | re.MULTILINE
+
+    _comment_single = r'(?://(?:[^\\\n]|\\+[\w\W])*$)'
+    _comment_multiline = r'(?:/\*(?:[^*]|\*(?!/))*\*/)'
+    _escape = (r'(?:\\(?:[\n\\<>"\'^v bnrt]|u[\da-fA-F]{,4}|x[\da-fA-F]{,2}|'
+               r'[0-3]?[0-7]{1,2}))')
+    _name = r'(?:[_a-zA-Z]\w*)'
+    _no_quote = r'(?=\s|\\?>)'
+    _operator = (r'(?:&&|\|\||\+\+|--|\?\?|::|[.,@\[\]~]|'
+                 r'(?:[=+\-*/%!&|^]|<<?|>>?>?)=?)')
+    _ws = r'(?:\\|\s|%s|%s)' % (_comment_single, _comment_multiline)
+    _ws_pp = r'(?:\\\n|[^\S\n]|%s|%s)' % (_comment_single, _comment_multiline)
+
+    def _make_string_state(triple, double, verbatim=None, _escape=_escape):
+        if verbatim:
+            verbatim = ''.join(['(?:%s|%s)' % (re.escape(c.lower()),
+                                               re.escape(c.upper()))
+                                for c in verbatim])
+        char = r'"' if double else r"'"
+        token = String.Double if double else String.Single
+        escaped_quotes = r'+|%s(?!%s{2})' % (char, char) if triple else r''
+        prefix = '%s%s' % ('t' if triple else '', 'd' if double else 's')
+        tag_state_name = '%sqt' % prefix
+        state = []
+        if triple:
+            state += [
+                (r'%s{3,}' % char, token, '#pop'),
+                (r'\\%s+' % char, String.Escape),
+                (char, token)
+            ]
+        else:
+            state.append((char, token, '#pop'))
+        state += [
+            include('s/verbatim'),
+            (r'[^\\<&{}%s]+' % char, token)
+        ]
+        if verbatim:
+            # This regex can't use `(?i)` because escape sequences are
+            # case-sensitive. `<\XMP>` works; `<\xmp>` doesn't.
+            state.append((r'\\?<(/|\\\\|(?!%s)\\)%s(?=[\s=>])' %
+                          (_escape, verbatim),
+                          Name.Tag, ('#pop', '%sqs' % prefix, tag_state_name)))
+        else:
+            state += [
+                (r'\\?<!([^><\\%s]|<(?!<)|\\%s%s|%s|\\.)*>?' %
+                 (char, char, escaped_quotes, _escape), Comment.Multiline),
+                (r'(?i)\\?<listing(?=[\s=>]|\\>)', Name.Tag,
+                 ('#pop', '%sqs/listing' % prefix, tag_state_name)),
+                (r'(?i)\\?<xmp(?=[\s=>]|\\>)', Name.Tag,
+                 ('#pop', '%sqs/xmp' % prefix, tag_state_name)),
+                (r'\\?<([^\s=><\\%s]|<(?!<)|\\%s%s|%s|\\.)*' %
+                 (char, char, escaped_quotes, _escape), Name.Tag,
+                 tag_state_name),
+                include('s/entity')
+            ]
+        state += [
+            include('s/escape'),
+            (r'{([^}<\\%s]|<(?!<)|\\%s%s|%s|\\.)*}' %
+             (char, char, escaped_quotes, _escape), String.Interpol),
+            (r'[\\&{}<]', token)
+        ]
+        return state
+
+    def _make_tag_state(triple, double, _escape=_escape):
+        char = r'"' if double else r"'"
+        quantifier = r'{3,}' if triple else r''
+        state_name = '%s%sqt' % ('t' if triple else '', 'd' if double else 's')
+        token = String.Double if double else String.Single
+        escaped_quotes = r'+|%s(?!%s{2})' % (char, char) if triple else r''
+        return [
+            (r'%s%s' % (char, quantifier), token, '#pop:2'),
+            (r'(\s|\\\n)+', Text),
+            (r'(=)(\\?")', bygroups(Punctuation, String.Double),
+             'dqs/%s' % state_name),
+            (r"(=)(\\?')", bygroups(Punctuation, String.Single),
+             'sqs/%s' % state_name),
+            (r'=', Punctuation, 'uqs/%s' % state_name),
+            (r'\\?>', Name.Tag, '#pop'),
+            (r'{([^}<\\%s]|<(?!<)|\\%s%s|%s|\\.)*}' %
+             (char, char, escaped_quotes, _escape), String.Interpol),
+            (r'([^\s=><\\%s]|<(?!<)|\\%s%s|%s|\\.)+' %
+             (char, char, escaped_quotes, _escape), Name.Attribute),
+            include('s/escape'),
+            include('s/verbatim'),
+            include('s/entity'),
+            (r'[\\{}&]', Name.Attribute)
+        ]
+
+    def _make_attribute_value_state(terminator, host_triple, host_double,
+                                    _escape=_escape):
+        token = (String.Double if terminator == r'"' else
+                 String.Single if terminator == r"'" else String.Other)
+        host_char = r'"' if host_double else r"'"
+        host_quantifier = r'{3,}' if host_triple else r''
+        host_token = String.Double if host_double else String.Single
+        escaped_quotes = (r'+|%s(?!%s{2})' % (host_char, host_char)
+                          if host_triple else r'')
+        return [
+            (r'%s%s' % (host_char, host_quantifier), host_token, '#pop:3'),
+            (r'%s%s' % (r'' if token is String.Other else r'\\?', terminator),
+             token, '#pop'),
+            include('s/verbatim'),
+            include('s/entity'),
+            (r'{([^}<\\%s]|<(?!<)|\\%s%s|%s|\\.)*}' %
+             (host_char, host_char, escaped_quotes, _escape), String.Interpol),
+            (r'([^\s"\'<%s{}\\&])+' % (r'>' if token is String.Other else r''),
+             token),
+            include('s/escape'),
+            (r'["\'\s&{<}\\]', token)
+        ]
+
+    tokens = {
+        'root': [
+            (u'\ufeff', Text),
+            (r'{', Punctuation, 'object-body'),
+            (r';+', Punctuation),
+            (r'(?=(argcount|break|case|catch|continue|default|definingobj|'
+             r'delegated|do|else|for|foreach|finally|goto|if|inherited|'
+             r'invokee|local|nil|new|operator|replaced|return|self|switch|'
+             r'targetobj|targetprop|throw|true|try|while)\b)', Text, 'block'),
+            (r'(%s)(%s*)(\()' % (_name, _ws),
+             bygroups(Name.Function, using(this, state='whitespace'),
+                      Punctuation),
+             ('block?/root', 'more/parameters', 'main/parameters')),
+            include('whitespace'),
+            (r'\++', Punctuation),
+            (r'[^\s!"%-(*->@-_a-z{-~]+', Error),  # Averts an infinite loop
+            (r'(?!\Z)', Text, 'main/root')
+        ],
+        'main/root': [
+            include('main/basic'),
+            default(('#pop', 'object-body/no-braces', 'classes', 'class'))
+        ],
+        'object-body/no-braces': [
+           (r';', Punctuation, '#pop'),
+           (r'{', Punctuation, ('#pop', 'object-body')),
+           include('object-body')
+        ],
+        'object-body': [
+            (r';', Punctuation),
+            (r'{', Punctuation, '#push'),
+            (r'}', Punctuation, '#pop'),
+            (r':', Punctuation, ('classes', 'class')),
+            (r'(%s?)(%s*)(\()' % (_name, _ws),
+             bygroups(Name.Function, using(this, state='whitespace'),
+                      Punctuation),
+             ('block?', 'more/parameters', 'main/parameters')),
+            (r'(%s)(%s*)({)' % (_name, _ws),
+             bygroups(Name.Function, using(this, state='whitespace'),
+                      Punctuation), 'block'),
+            (r'(%s)(%s*)(:)' % (_name, _ws),
+             bygroups(Name.Variable, using(this, state='whitespace'),
+                      Punctuation),
+             ('object-body/no-braces', 'classes', 'class')),
+            include('whitespace'),
+            (r'->|%s' % _operator, Punctuation, 'main'),
+            default('main/object-body')
+        ],
+        'main/object-body': [
+            include('main/basic'),
+            (r'(%s)(%s*)(=?)' % (_name, _ws),
+             bygroups(Name.Variable, using(this, state='whitespace'),
+                      Punctuation), ('#pop', 'more', 'main')),
+            default('#pop:2')
+        ],
+        'block?/root': [
+            (r'{', Punctuation, ('#pop', 'block')),
+            include('whitespace'),
+            (r'(?=[[\'"<(:])', Text,  # It might be a VerbRule macro.
+             ('#pop', 'object-body/no-braces', 'grammar', 'grammar-rules')),
+            # It might be a macro like DefineAction.
+            default(('#pop', 'object-body/no-braces'))
+        ],
+        'block?': [
+            (r'{', Punctuation, ('#pop', 'block')),
+            include('whitespace'),
+            default('#pop')
+        ],
+        'block/basic': [
+            (r'[;:]+', Punctuation),
+            (r'{', Punctuation, '#push'),
+            (r'}', Punctuation, '#pop'),
+            (r'default\b', Keyword.Reserved),
+            (r'(%s)(%s*)(:)' % (_name, _ws),
+             bygroups(Name.Label, using(this, state='whitespace'),
+                      Punctuation)),
+            include('whitespace')
+        ],
+        'block': [
+            include('block/basic'),
+            (r'(?!\Z)', Text, ('more', 'main'))
+        ],
+        'block/embed': [
+            (r'>>', String.Interpol, '#pop'),
+            include('block/basic'),
+            (r'(?!\Z)', Text, ('more/embed', 'main'))
+        ],
+        'main/basic': [
+            include('whitespace'),
+            (r'\(', Punctuation, ('#pop', 'more', 'main')),
+            (r'\[', Punctuation, ('#pop', 'more/list', 'main')),
+            (r'{', Punctuation, ('#pop', 'more/inner', 'main/inner',
+                                 'more/parameters', 'main/parameters')),
+            (r'\*|\.{3}', Punctuation, '#pop'),
+            (r'(?i)0x[\da-f]+', Number.Hex, '#pop'),
+            (r'(\d+\.(?!\.)\d*|\.\d+)([eE][-+]?\d+)?|\d+[eE][-+]?\d+',
+             Number.Float, '#pop'),
+            (r'0[0-7]+', Number.Oct, '#pop'),
+            (r'\d+', Number.Integer, '#pop'),
+            (r'"""', String.Double, ('#pop', 'tdqs')),
+            (r"'''", String.Single, ('#pop', 'tsqs')),
+            (r'"', String.Double, ('#pop', 'dqs')),
+            (r"'", String.Single, ('#pop', 'sqs')),
+            (r'R"""', String.Regex, ('#pop', 'tdqr')),
+            (r"R'''", String.Regex, ('#pop', 'tsqr')),
+            (r'R"', String.Regex, ('#pop', 'dqr')),
+            (r"R'", String.Regex, ('#pop', 'sqr')),
+            # Two-token keywords
+            (r'(extern)(%s+)(object\b)' % _ws,
+             bygroups(Keyword.Reserved, using(this, state='whitespace'),
+                      Keyword.Reserved)),
+            (r'(function|method)(%s*)(\()' % _ws,
+             bygroups(Keyword.Reserved, using(this, state='whitespace'),
+                      Punctuation),
+             ('#pop', 'block?', 'more/parameters', 'main/parameters')),
+            (r'(modify)(%s+)(grammar\b)' % _ws,
+             bygroups(Keyword.Reserved, using(this, state='whitespace'),
+                      Keyword.Reserved),
+             ('#pop', 'object-body/no-braces', ':', 'grammar')),
+            (r'(new)(%s+(?=(?:function|method)\b))' % _ws,
+             bygroups(Keyword.Reserved, using(this, state='whitespace'))),
+            (r'(object)(%s+)(template\b)' % _ws,
+             bygroups(Keyword.Reserved, using(this, state='whitespace'),
+                      Keyword.Reserved), ('#pop', 'template')),
+            (r'(string)(%s+)(template\b)' % _ws,
+             bygroups(Keyword, using(this, state='whitespace'),
+                      Keyword.Reserved), ('#pop', 'function-name')),
+            # Keywords
+            (r'(argcount|definingobj|invokee|replaced|targetobj|targetprop)\b',
+             Name.Builtin, '#pop'),
+            (r'(break|continue|goto)\b', Keyword.Reserved, ('#pop', 'label')),
+            (r'(case|extern|if|intrinsic|return|static|while)\b',
+             Keyword.Reserved),
+            (r'catch\b', Keyword.Reserved, ('#pop', 'catch')),
+            (r'class\b', Keyword.Reserved,
+             ('#pop', 'object-body/no-braces', 'class')),
+            (r'(default|do|else|finally|try)\b', Keyword.Reserved, '#pop'),
+            (r'(dictionary|property)\b', Keyword.Reserved,
+             ('#pop', 'constants')),
+            (r'enum\b', Keyword.Reserved, ('#pop', 'enum')),
+            (r'export\b', Keyword.Reserved, ('#pop', 'main')),
+            (r'(for|foreach)\b', Keyword.Reserved,
+             ('#pop', 'more/inner', 'main/inner')),
+            (r'(function|method)\b', Keyword.Reserved,
+             ('#pop', 'block?', 'function-name')),
+            (r'grammar\b', Keyword.Reserved,
+             ('#pop', 'object-body/no-braces', 'grammar')),
+            (r'inherited\b', Keyword.Reserved, ('#pop', 'inherited')),
+            (r'local\b', Keyword.Reserved,
+             ('#pop', 'more/local', 'main/local')),
+            (r'(modify|replace|switch|throw|transient)\b', Keyword.Reserved,
+             '#pop'),
+            (r'new\b', Keyword.Reserved, ('#pop', 'class')),
+            (r'(nil|true)\b', Keyword.Constant, '#pop'),
+            (r'object\b', Keyword.Reserved, ('#pop', 'object-body/no-braces')),
+            (r'operator\b', Keyword.Reserved, ('#pop', 'operator')),
+            (r'propertyset\b', Keyword.Reserved,
+             ('#pop', 'propertyset', 'main')),
+            (r'self\b', Name.Builtin.Pseudo, '#pop'),
+            (r'template\b', Keyword.Reserved, ('#pop', 'template')),
+            # Operators
+            (r'(__objref|defined)(%s*)(\()' % _ws,
+             bygroups(Operator.Word, using(this, state='whitespace'),
+                      Operator), ('#pop', 'more/__objref', 'main')),
+            (r'delegated\b', Operator.Word),
+            # Compiler-defined macros and built-in properties
+            (r'(__DATE__|__DEBUG|__LINE__|__FILE__|'
+             r'__TADS_MACRO_FORMAT_VERSION|__TADS_SYS_\w*|__TADS_SYSTEM_NAME|'
+             r'__TADS_VERSION_MAJOR|__TADS_VERSION_MINOR|__TADS3|__TIME__|'
+             r'construct|finalize|grammarInfo|grammarTag|lexicalParent|'
+             r'miscVocab|sourceTextGroup|sourceTextGroupName|'
+             r'sourceTextGroupOrder|sourceTextOrder)\b', Name.Builtin, '#pop')
+        ],
+        'main': [
+            include('main/basic'),
+            (_name, Name, '#pop'),
+            default('#pop')
+        ],
+        'more/basic': [
+            (r'\(', Punctuation, ('more/list', 'main')),
+            (r'\[', Punctuation, ('more', 'main')),
+            (r'\.{3}', Punctuation),
+            (r'->|\.\.', Punctuation, 'main'),
+            (r'(?=;)|[:)\]]', Punctuation, '#pop'),
+            include('whitespace'),
+            (_operator, Operator, 'main'),
+            (r'\?', Operator, ('main', 'more/conditional', 'main')),
+            (r'(is|not)(%s+)(in\b)' % _ws,
+             bygroups(Operator.Word, using(this, state='whitespace'),
+                      Operator.Word)),
+            (r'[^\s!"%-_a-z{-~]+', Error)  # Averts an infinite loop
+        ],
+        'more': [
+            include('more/basic'),
+            default('#pop')
+        ],
+        # Then expression (conditional operator)
+        'more/conditional': [
+            (r':(?!:)', Operator, '#pop'),
+            include('more')
+        ],
+        # Embedded expressions
+        'more/embed': [
+            (r'>>', String.Interpol, '#pop:2'),
+            include('more')
+        ],
+        # For/foreach loop initializer or short-form anonymous function
+        'main/inner': [
+            (r'\(', Punctuation, ('#pop', 'more/inner', 'main/inner')),
+            (r'local\b', Keyword.Reserved, ('#pop', 'main/local')),
+            include('main')
+        ],
+        'more/inner': [
+            (r'}', Punctuation, '#pop'),
+            (r',', Punctuation, 'main/inner'),
+            (r'(in|step)\b', Keyword, 'main/inner'),
+            include('more')
+        ],
+        # Local
+        'main/local': [
+            (_name, Name.Variable, '#pop'),
+            include('whitespace')
+        ],
+        'more/local': [
+            (r',', Punctuation, 'main/local'),
+            include('more')
+        ],
+        # List
+        'more/list': [
+            (r'[,:]', Punctuation, 'main'),
+            include('more')
+        ],
+        # Parameter list
+        'main/parameters': [
+            (r'(%s)(%s*)(?=:)' % (_name, _ws),
+             bygroups(Name.Variable, using(this, state='whitespace')), '#pop'),
+            (r'(%s)(%s+)(%s)' % (_name, _ws, _name),
+             bygroups(Name.Class, using(this, state='whitespace'),
+                      Name.Variable), '#pop'),
+            (r'\[+', Punctuation),
+            include('main/basic'),
+            (_name, Name.Variable, '#pop'),
+            default('#pop')
+        ],
+        'more/parameters': [
+            (r'(:)(%s*(?=[?=,:)]))' % _ws,
+             bygroups(Punctuation, using(this, state='whitespace'))),
+            (r'[?\]]+', Punctuation),
+            (r'[:)]', Punctuation, ('#pop', 'multimethod?')),
+            (r',', Punctuation, 'main/parameters'),
+            (r'=', Punctuation, ('more/parameter', 'main')),
+            include('more')
+        ],
+        'more/parameter': [
+            (r'(?=[,)])', Text, '#pop'),
+            include('more')
+        ],
+        'multimethod?': [
+            (r'multimethod\b', Keyword, '#pop'),
+            include('whitespace'),
+            default('#pop')
+        ],
+
+        # Statements and expressions
+        'more/__objref': [
+            (r',', Punctuation, 'mode'),
+            (r'\)', Operator, '#pop'),
+            include('more')
+        ],
+        'mode': [
+            (r'(error|warn)\b', Keyword, '#pop'),
+            include('whitespace')
+        ],
+        'catch': [
+            (r'\(+', Punctuation),
+            (_name, Name.Exception, ('#pop', 'variables')),
+            include('whitespace')
+        ],
+        'enum': [
+            include('whitespace'),
+            (r'(token\b)?', Keyword, ('#pop', 'constants'))
+        ],
+        'grammar': [
+            (r'\)+', Punctuation),
+            (r'\(', Punctuation, 'grammar-tag'),
+            (r':', Punctuation, 'grammar-rules'),
+            (_name, Name.Class),
+            include('whitespace')
+        ],
+        'grammar-tag': [
+            include('whitespace'),
+            (r'"""([^\\"<]|""?(?!")|\\"+|\\.|<(?!<))+("{3,}|<<)|'
+             r'R"""([^\\"]|""?(?!")|\\"+|\\.)+"{3,}|'
+             r"'''([^\\'<]|''?(?!')|\\'+|\\.|<(?!<))+('{3,}|<<)|"
+             r"R'''([^\\']|''?(?!')|\\'+|\\.)+'{3,}|"
+             r'"([^\\"<]|\\.|<(?!<))+("|<<)|R"([^\\"]|\\.)+"|'
+             r"'([^\\'<]|\\.|<(?!<))+('|<<)|R'([^\\']|\\.)+'|"
+             r"([^)\s\\/]|/(?![/*]))+|\)", String.Other, '#pop')
+        ],
+        'grammar-rules': [
+            include('string'),
+            include('whitespace'),
+            (r'(\[)(%s*)(badness)' % _ws,
+             bygroups(Punctuation, using(this, state='whitespace'), Keyword),
+             'main'),
+            (r'->|%s|[()]' % _operator, Punctuation),
+            (_name, Name.Constant),
+            default('#pop:2')
+        ],
+        ':': [
+            (r':', Punctuation, '#pop')
+        ],
+        'function-name': [
+            (r'(<<([^>]|>>>|>(?!>))*>>)+', String.Interpol),
+            (r'(?=%s?%s*[({])' % (_name, _ws), Text, '#pop'),
+            (_name, Name.Function, '#pop'),
+            include('whitespace')
+        ],
+        'inherited': [
+            (r'<', Punctuation, ('#pop', 'classes', 'class')),
+            include('whitespace'),
+            (r'%s?' % _name, Name.Class, '#pop'),
+        ],
+        'operator': [
+            (r'negate\b', Operator.Word, '#pop'),
+            include('whitespace'),
+            (_operator, Operator),
+            default('#pop')
+        ],
+        'propertyset': [
+            (r'\(', Punctuation, ('more/parameters', 'main/parameters')),
+            (r'{', Punctuation, ('#pop', 'object-body')),
+            include('whitespace')
+        ],
+        'template': [
+            (r'(?=;)', Text, '#pop'),
+            include('string'),
+            (r'inherited\b', Keyword.Reserved),
+            include('whitespace'),
+            (r'->|\?|%s' % _operator, Punctuation),
+            (_name, Name.Variable)
+        ],
+
+        # Identifiers
+        'class': [
+            (r'\*|\.{3}', Punctuation, '#pop'),
+            (r'object\b', Keyword.Reserved, '#pop'),
+            (r'transient\b', Keyword.Reserved),
+            (_name, Name.Class, '#pop'),
+            include('whitespace'),
+            default('#pop')
+        ],
+        'classes': [
+            (r'[:,]', Punctuation, 'class'),
+            include('whitespace'),
+            (r'>?', Punctuation, '#pop')
+        ],
+        'constants': [
+            (r',+', Punctuation),
+            (r';', Punctuation, '#pop'),
+            (r'property\b', Keyword.Reserved),
+            (_name, Name.Constant),
+            include('whitespace')
+        ],
+        'label': [
+            (_name, Name.Label, '#pop'),
+            include('whitespace'),
+            default('#pop')
+        ],
+        'variables': [
+            (r',+', Punctuation),
+            (r'\)', Punctuation, '#pop'),
+            include('whitespace'),
+            (_name, Name.Variable)
+        ],
+
+        # Whitespace and comments
+        'whitespace': [
+            (r'^%s*#(%s|[^\n]|(?<=\\)\n)*\n?' % (_ws_pp, _comment_multiline),
+             Comment.Preproc),
+            (_comment_single, Comment.Single),
+            (_comment_multiline, Comment.Multiline),
+            (r'\\+\n+%s*#?|\n+|([^\S\n]|\\)+' % _ws_pp, Text)
+        ],
+
+        # Strings
+        'string': [
+            (r'"""', String.Double, 'tdqs'),
+            (r"'''", String.Single, 'tsqs'),
+            (r'"', String.Double, 'dqs'),
+            (r"'", String.Single, 'sqs')
+        ],
+        's/escape': [
+            (r'{{|}}|%s' % _escape, String.Escape)
+        ],
+        's/verbatim': [
+            (r'<<\s*(as\s+decreasingly\s+likely\s+outcomes|cycling|else|end|'
+             r'first\s+time|one\s+of|only|or|otherwise|'
+             r'(sticky|(then\s+)?(purely\s+)?at)\s+random|stopping|'
+             r'(then\s+)?(half\s+)?shuffled|\|\|)\s*>>', String.Interpol),
+            (r'<<(%%(_(%s|\\?.)|[\-+ ,#]|\[\d*\]?)*\d*\.?\d*(%s|\\?.)|'
+             r'\s*((else|otherwise)\s+)?(if|unless)\b)?' % (_escape, _escape),
+             String.Interpol, ('block/embed', 'more/embed', 'main'))
+        ],
+        's/entity': [
+            (r'(?i)&(#(x[\da-f]+|\d+)|[a-z][\da-z]*);?', Name.Entity)
+        ],
+        'tdqs': _make_string_state(True, True),
+        'tsqs': _make_string_state(True, False),
+        'dqs': _make_string_state(False, True),
+        'sqs': _make_string_state(False, False),
+        'tdqs/listing': _make_string_state(True, True, 'listing'),
+        'tsqs/listing': _make_string_state(True, False, 'listing'),
+        'dqs/listing': _make_string_state(False, True, 'listing'),
+        'sqs/listing': _make_string_state(False, False, 'listing'),
+        'tdqs/xmp': _make_string_state(True, True, 'xmp'),
+        'tsqs/xmp': _make_string_state(True, False, 'xmp'),
+        'dqs/xmp': _make_string_state(False, True, 'xmp'),
+        'sqs/xmp': _make_string_state(False, False, 'xmp'),
+
+        # Tags
+        'tdqt': _make_tag_state(True, True),
+        'tsqt': _make_tag_state(True, False),
+        'dqt': _make_tag_state(False, True),
+        'sqt': _make_tag_state(False, False),
+        'dqs/tdqt': _make_attribute_value_state(r'"', True, True),
+        'dqs/tsqt': _make_attribute_value_state(r'"', True, False),
+        'dqs/dqt': _make_attribute_value_state(r'"', False, True),
+        'dqs/sqt': _make_attribute_value_state(r'"', False, False),
+        'sqs/tdqt': _make_attribute_value_state(r"'", True, True),
+        'sqs/tsqt': _make_attribute_value_state(r"'", True, False),
+        'sqs/dqt': _make_attribute_value_state(r"'", False, True),
+        'sqs/sqt': _make_attribute_value_state(r"'", False, False),
+        'uqs/tdqt': _make_attribute_value_state(_no_quote, True, True),
+        'uqs/tsqt': _make_attribute_value_state(_no_quote, True, False),
+        'uqs/dqt': _make_attribute_value_state(_no_quote, False, True),
+        'uqs/sqt': _make_attribute_value_state(_no_quote, False, False),
+
+        # Regular expressions
+        'tdqr': [
+            (r'[^\\"]+', String.Regex),
+            (r'\\"*', String.Regex),
+            (r'"{3,}', String.Regex, '#pop'),
+            (r'"', String.Regex)
+        ],
+        'tsqr': [
+            (r"[^\\']+", String.Regex),
+            (r"\\'*", String.Regex),
+            (r"'{3,}", String.Regex, '#pop'),
+            (r"'", String.Regex)
+        ],
+        'dqr': [
+            (r'[^\\"]+', String.Regex),
+            (r'\\"?', String.Regex),
+            (r'"', String.Regex, '#pop')
+        ],
+        'sqr': [
+            (r"[^\\']+", String.Regex),
+            (r"\\'?", String.Regex),
+            (r"'", String.Regex, '#pop')
+        ]
+    }
+
+    def get_tokens_unprocessed(self, text, **kwargs):
+        pp = r'^%s*#%s*' % (self._ws_pp, self._ws_pp)
+        if_false_level = 0
+        for index, token, value in (
+            RegexLexer.get_tokens_unprocessed(self, text, **kwargs)):
+            if if_false_level == 0:  # Not in a false #if
+                if (token is Comment.Preproc and
+                    re.match(r'%sif%s+(0|nil)%s*$\n?' %
+                             (pp, self._ws_pp, self._ws_pp), value)):
+                    if_false_level = 1
+            else:  # In a false #if
+                if token is Comment.Preproc:
+                    if (if_false_level == 1 and
+                          re.match(r'%sel(if|se)\b' % pp, value)):
+                        if_false_level = 0
+                    elif re.match(r'%sif' % pp, value):
+                        if_false_level += 1
+                    elif re.match(r'%sendif\b' % pp, value):
+                        if_false_level -= 1
+                else:
+                    token = Comment
+            yield index, token, value
