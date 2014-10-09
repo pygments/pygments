@@ -176,6 +176,7 @@ LEXERS = {
     'JavascriptLexer': ('pygments.lexers.javascript', 'JavaScript', ('js', 'javascript'), ('*.js',), ('application/javascript', 'application/x-javascript', 'text/x-javascript', 'text/javascript')),
     'JavascriptPhpLexer': ('pygments.lexers.templates', 'JavaScript+PHP', ('js+php', 'javascript+php'), (), ('application/x-javascript+php', 'text/x-javascript+php', 'text/javascript+php')),
     'JavascriptSmartyLexer': ('pygments.lexers.templates', 'JavaScript+Smarty', ('js+smarty', 'javascript+smarty'), (), ('application/x-javascript+smarty', 'text/x-javascript+smarty', 'text/javascript+smarty')),
+    'JsonLdLexer': ('pygments.lexers.data', 'JSON-LD', ('json-ld',), ('*.jsonld',), ('application/json-ld',)),
     'JsonLexer': ('pygments.lexers.data', 'JSON', ('json',), ('*.json',), ('application/json',)),
     'JspLexer': ('pygments.lexers.templates', 'Java Server Page', ('jsp',), ('*.jsp',), ('application/x-jsp',)),
     'JuliaConsoleLexer': ('pygments.lexers.julia', 'Julia console', ('jlcon',), (), ()),

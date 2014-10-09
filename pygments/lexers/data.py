@@ -12,11 +12,11 @@
 import re
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, LexerContext, \
-    include, bygroups
+    include, bygroups, inherit
 from pygments.token import Text, Comment, Keyword, Name, String, Number, \
     Punctuation, Literal
 
-__all__ = ['YamlLexer', 'JsonLexer']
+__all__ = ['YamlLexer', 'JsonLexer', 'JsonLdLexer']
 
 
 class YamlLexerContext(LexerContext):
@@ -505,5 +505,26 @@ class JsonLexer(RegexLexer):
         # the root of a json document whould be a value
         'root': [
             include('value'),
+        ],
+    }
+
+class JsonLdLexer(JsonLexer):
+    """
+    For `JSON-LD <http://json-ld.org/>`_ linked data.
+
+    .. versionadded:: 2.0
+    """
+
+    name = 'JSON-LD'
+    aliases = ['jsonld', 'json-ld']
+    filenames = ['*.jsonld']
+    mimetypes = ['application/ld+json']
+
+    tokens = {
+        'objectvalue': [
+            (r'"@(context|id|value|language|type|container|list|set|'
+             r'reverse|index|base|vocab|graph)"', Name.Decorator,
+             'objectattribute'),
+            inherit,
         ],
     }
