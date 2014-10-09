@@ -154,6 +154,16 @@ class HttpLexer(RegexLexer):
                 for idx, token, value in lexer.get_tokens_unprocessed(content):
                     yield offset + idx, token, value
                 return
+            # Check for with just the suffix
+            content_type = re.sub(r'^(.*)/.*\+(.*)$', r'\1/\2', content_type)
+            try:
+                lexer = get_lexer_for_mimetype(content_type)
+            except ClassNotFound:
+                pass
+            else:
+                for idx, token, value in lexer.get_tokens_unprocessed(content):
+                    yield offset + idx, token, value
+                return
         yield offset, Text, content
 
     tokens = {
