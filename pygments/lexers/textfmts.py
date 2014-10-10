@@ -146,24 +146,23 @@ class HttpLexer(RegexLexer):
         offset = match.start()
         if content_type:
             from pygments.lexers import get_lexer_for_mimetype
-            try:
-                lexer = get_lexer_for_mimetype(content_type)
-            except ClassNotFound:
-                pass
-            else:
-                for idx, token, value in lexer.get_tokens_unprocessed(content):
-                    yield offset + idx, token, value
-                return
-            # Check for with just the suffix
-            content_type = re.sub(r'^(.*)/.*\+(.*)$', r'\1/\2', content_type)
-            try:
-                lexer = get_lexer_for_mimetype(content_type)
-            except ClassNotFound:
-                pass
-            else:
-                for idx, token, value in lexer.get_tokens_unprocessed(content):
-                    yield offset + idx, token, value
-                return
+            possible_lexer_mimetypes = [content_type]
+            if '+' in content_type:
+                # application/calendar+xml can be treated as application/xml
+                # if there's not a better match.
+                general_type = re.sub(r'^(.*)/.*\+(.*)$', r'\1/\2',
+                                      content_type)
+                possible_lexer_mimetypes.append(general_type)
+
+            for i in possible_lexer_mimetypes:
+                try:
+                    lexer = get_lexer_for_mimetype(i)
+                except ClassNotFound:
+                    pass
+                else:
+                    for idx, token, value in lexer.get_tokens_unprocessed(content):
+                        yield offset + idx, token, value
+                    return
         yield offset, Text, content
 
     tokens = {
