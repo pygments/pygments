@@ -11,13 +11,20 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using, this, \
-    do_insertions, default
+from pygments.lexers.html import HtmlLexer, XmlLexer
+from pygments.lexers.javascript import JavascriptLexer
+from pygments.lexers.css import CssLexer
+
+from pygments.lexer import RegexLexer, DelegatingLexer, include, bygroups, \
+    using, this, do_insertions, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic
+    Number, Punctuation, Generic, Other
 from pygments.util import get_bool_opt, ClassNotFound
 
-__all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer']
+__all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',
+          'MozPreprocHashLexer', 'MozPreprocPercentLexer',
+           'MozPreprocXulLexer', 'MozPreprocJavascriptLexer',
+           'MozPreprocCssLexer']
 
 
 class BBCodeLexer(RegexLexer):
@@ -378,3 +385,118 @@ class GroffLexer(RegexLexer):
             return True
         if text[1:3].isalnum() and text[3].isspace():
             return 0.9
+
+
+class MozPreprocHashLexer(RegexLexer):
+    """
+    Lexer for Mozilla Preprocessor files (with '#' as the marker).
+
+    Other data is left untouched.
+
+    .. versionadded:: 2.0
+    """
+    name = 'mozhashpreproc'
+    aliases = [name]
+    filenames = []
+    mimetypes = []
+
+    tokens = {
+        'root': [
+            (r'^#', Comment.Preproc, ('expr', 'exprstart')),
+            (r'.+', Other),
+        ],
+        'exprstart': [
+            (r'(literal)(.*)', bygroups(Comment.Preproc, Text), '#pop:2'),
+            (words((
+                'define', 'undef', 'if', 'ifdef', 'ifndef', 'else', 'elif',
+                'elifdef', 'elifndef', 'endif', 'expand', 'filter', 'unfilter',
+                'include', 'includesubst', 'error')),
+             Comment.Preproc, '#pop'),
+        ],
+        'expr': [
+            (words(('!', '!=', '==', '&&', '||')), Operator),
+            (r'(defined)(\()', bygroups(Keyword, Punctuation)),
+            (r'\)', Punctuation),
+            (r'[0-9]+', Number.Decimal),
+            (r'__\w+?__', Name.Variable),
+            (r'@\w+?@', Name.Class),
+            (r'\w+', Name),
+            (r'\n', Text, '#pop'),
+            (r'\s+', Text),
+            (r'\S', Punctuation),
+        ],
+    }
+
+
+class MozPreprocPercentLexer(MozPreprocHashLexer):
+    """
+    Lexer for Mozilla Preprocessor files (with '%' as the marker).
+
+    Other data is left untouched.
+
+    .. versionadded:: 2.0
+    """
+    name = 'mozpercentpreproc'
+    aliases = [name]
+    filenames = []
+    mimetypes = []
+
+
+    tokens = {
+        'root': [
+            (r'^%', Comment.Preproc, ('expr', 'exprstart')),
+            (r'.+', Other),
+        ],
+    }
+
+
+class MozPreprocXulLexer(DelegatingLexer):
+    """
+    Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the
+    `XmlLexer`.
+
+    .. versionadded:: 2.0
+    """
+    name = "XUL+mozpreproc"
+    aliases = ['xul+mozpreproc']
+    filenames = ['*.xul.in']
+    mimetypes = []
+
+    def __init__(self, **options):
+        super(MozPreprocXulLexer, self).__init__(
+            XmlLexer, MozPreprocHashLexer, **options)
+
+
+class MozPreprocJavascriptLexer(DelegatingLexer):
+    """
+    Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the
+    `JavascriptLexer`.
+
+    .. versionadded:: 2.0
+    """
+    name = "Javascript+mozpreproc"
+    aliases = ['javascript+mozpreproc']
+    filenames = ['*.js.in']
+    mimetypes = []
+
+    def __init__(self, **options):
+        super(MozPreprocJavascriptLexer, self).__init__(
+            JavascriptLexer, MozPreprocHashLexer, **options)
+
+
+class MozPreprocCssLexer(DelegatingLexer):
+    """
+    Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the
+    `CssLexer`.
+
+    .. versionadded:: 2.0
+    """
+    name = "CSS+mozpreproc"
+    aliases = ['css+mozpreproc']
+    filenames = ['*.css.in']
+    mimetypes = []
+
+    def __init__(self, **options):
+        super(MozPreprocCssLexer, self).__init__(
+            CssLexer, MozPreprocPercentLexer, **options)
+
