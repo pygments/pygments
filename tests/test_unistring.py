@@ -20,7 +20,7 @@ class UnistringTest(unittest.TestCase):
             s = getattr(uni, cat)
             if s == '': # Probably Cs on Jython
                 continue
-            print cat, repr(s)
+            print("%s %r" % (cat, s))
             re.compile('[%s]' % s)
 
     def _cats_that_match(self, c):
@@ -41,7 +41,7 @@ class UnistringTest(unittest.TestCase):
             c = unichr(o)
             if o > 0xd800 and o <= 0xdfff and not uni.Cs:
                 continue # Bah, Jython.
-            print hex(o)
+            print(hex(o))
             cats = self._cats_that_match(c)
             self.assertEqual(len(cats), 1,
                              "%d (%s): %s" % (o, c, cats))
