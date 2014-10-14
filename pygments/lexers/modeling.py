@@ -32,85 +32,64 @@ class ModelicaLexer(RegexLexer):
     filenames = ['*.mo']
     mimetypes = ['text/x-modelica']
 
-    flags = re.IGNORECASE | re.DOTALL
+    flags = re.DOTALL | re.MULTILINE
+
+    _name = r"(?:'(?:[^\\']|\\.)+'|[a-zA-Z_]\w*)"
 
     tokens = {
         'whitespace': [
-            (r'\n', Text),
-            (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
-            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment),
-        ],
-        'statements': [
-            (r'"', String, 'string'),
-            (r'(\d+\.\d*|\.\d+|\d+|\d.)[eE][+-]?\d+[lL]?', Number.Float),
-            (r'(\d+\.\d*|\.\d+)', Number.Float),
-            (r'\d+[Ll]?', Number.Integer),
-            (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r'(true|false|NULL|Real|Integer|Boolean)\b', Name.Builtin),
-            (r'([a-z_][\w]*|\'[^\']+\')'
-             r'([\[\d,:\]]*)'
-             r'(\.([a-z_][\w]*|\'[^\']+\'))+'
-             r'([\[\d,:\]]*)', Name.Class),
-            (r'(\'[\w\+\-\*\/\^]+\'|\w+)', Name),
-            (r'[()\[\]{},.;]', Punctuation),
-            (r'\'', Name, 'quoted_ident'),
+            (u'[\\s\ufeff]+', Text),
+            (r'//[^\n]*\n?', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline)
         ],
         'root': [
             include('whitespace'),
-            include('classes'),
-            include('functions'),
-            include('keywords'),
-            include('operators'),
-            (r'("<html>|<html>)', Name.Tag, 'html-content'),
-            include('statements'),
+            (r'"', String.Double, 'string'),
+            (r'[()\[\]{},;]+', Punctuation),
+            (r'\.?[\^*/+\-]|\.|<>|[<>:=]=?', Operator),
+            (r'\d+(\.?\d*[eE][-+]?\d+|\.\d*)', Number.Float),
+            (r'\d+', Number.Integer),
+            (r'(abs|acos|actualStream|array|asin|assert|AssertionLevel|atan|'
+             r'atan2|backSample|Boolean|cardinality|cat|ceil|change|Clock|'
+             r'Connections|cos|cosh|cross|delay|diagonal|div|edge|exp|'
+             r'ExternalObject|fill|floor|getInstanceName|hold|homotopy|'
+             r'identity|inStream|integer|Integer|interval|inverse|isPresent|'
+             r'linspace|log|log10|matrix|max|min|mod|ndims|noClock|noEvent|'
+             r'ones|outerProduct|pre|previous|product|Real|reinit|rem|rooted|'
+             r'sample|scalar|semiLinear|shiftSample|sign|sin|sinh|size|skew|'
+             r'smooth|spatialDistribution|sqrt|StateSelect|String|subSample|'
+             r'sum|superSample|symmetric|tan|tanh|terminal|terminate|time|'
+             r'transpose|vector|zeros)\b', Name.Builtin),
+            (r'(algorithm|annotation|break|connect|constant|constrainedby|der|'
+             r'discrete|each|else|elseif|elsewhen|encapsulated|enumeration|'
+             r'equation|exit|expandable|extends|external|final|flow|for|if|'
+             r'import|impure|in|initial|inner|input|loop|nondiscrete|outer|'
+             r'output|parameter|partial|protected|public|pure|redeclare|'
+             r'replaceable|return|stream|then|when|while)\b',
+             Keyword.Reserved),
+            (r'(and|not|or)\b', Operator.Word),
+            (r'(block|class|connector|end|function|model|operator|package|'
+             r'record|type)\b', Keyword.Reserved, 'class'),
+            (r'(false|true)\b', Keyword.Constant),
+            (r'within\b', Keyword.Reserved, 'package-prefix'),
+            (_name, Name)
         ],
-        'keywords': [
-            (r'(algorithm|annotation|break|connect|constant|constrainedby|'
-            r'discrete|each|end|else|elseif|elsewhen|encapsulated|enumeration|'
-            r'equation|exit|expandable|extends|'
-            r'external|false|final|flow|for|if|import|impure|in|initial\sequation|'
-            r'inner|input|loop|nondiscrete|outer|output|parameter|partial|'
-            r'protected|public|pure|redeclare|replaceable|stream|time|then|true|'
-            r'when|while|within)\b', Keyword),
+        'class': [
+            include('whitespace'),
+            (r'(function|record)\b', Keyword.Reserved),
+            (r'(if|for|when|while)\b', Keyword.Reserved, '#pop'),
+            (r'%s?' % _name, Name.Class, '#pop')
         ],
-        'functions': [
-            (r'(abs|acos|acosh|asin|asinh|atan|atan2|atan3|ceil|cos|cosh|'
-             r'cross|diagonal|div|exp|fill|floor|getInstanceName|identity|'
-             r'linspace|log|log10|matrix|mod|max|min|ndims|ones|outerProduct|'
-             r'product|rem|scalar|semiLinear|skew|sign|sin|sinh|size|'
-             r'spatialDistribution|sum|sqrt|symmetric|tan|tanh|transpose|'
-             r'vector|zeros)\b', Name.Function),
-        ],
-        'operators': [
-            (r'(actualStream|and|assert|backSample|cardinality|change|Clock|'
-             r'delay|der|edge|hold|homotopy|initial|inStream|noClock|noEvent|'
-             r'not|or|pre|previous|reinit|return|sample|smooth|'
-             r'spatialDistribution|shiftSample|subSample|superSample|terminal|'
-             r'terminate)\b', Name.Builtin),
-        ],
-        'classes': [
-            (r'(operator)?(\s+)?(block|class|connector|end|function|model|'
-             r'operator|package|record|type)(\s+)'
-             r'((?!if|for|when|while)[a-z_]\w*|\'[^\']+\')([;]?)',
-             bygroups(Keyword, Text, Keyword, Text, Name.Class, Text))
-        ],
-        'quoted_ident': [
-            (r'\'', Name, '#pop'),
-            (r'[^\']+', Name), # all other characters
+        'package-prefix': [
+            include('whitespace'),
+            (r'%s?' % _name, Name.Namespace, '#pop')
         ],
         'string': [
-            (r'"', String, '#pop'),
-            (r'\\([\\abfnrtv"\']|x[a-f0-9]{2,4}|[0-7]{1,3})',
-             String.Escape),
-            (r'[^\\"\n]+', String), # all other characters
-            (r'\\\n', String), # line continuation
-            (r'\\', String), # stray backslash
-        ],
-        'html-content': [
-            (r'<\s*/\s*html\s*>"', Name.Tag, '#pop'),
-            (r'.+?(?=<\s*/\s*html\s*>)', using(HtmlLexer)),
+            (r'"', String.Double, '#pop'),
+            (r'\\[\'"?\\abfnrtv]', String.Escape),
+            (r'(?i)<\s*html\s*>([^\\"]|\\.)+?(<\s*/\s*html\s*>|(?="))',
+             using(HtmlLexer)),
+            (r'<|\\?[^"\\<]+', String.Double)
         ]
     }
 
