@@ -28,8 +28,8 @@ def run_cmdline(*args):
     if sys.version_info > (3,):
         stdout_buffer = BytesIO()
         stderr_buffer = BytesIO()
-        new_stdout = sys.stdout = io.TextIOWrapper(stdout_buffer)
-        new_stderr = sys.stderr = io.TextIOWrapper(stderr_buffer)
+        new_stdout = sys.stdout = io.TextIOWrapper(stdout_buffer, 'utf-8')
+        new_stderr = sys.stderr = io.TextIOWrapper(stderr_buffer, 'utf-8')
     else:
         stdout_buffer = new_stdout = sys.stdout = StringIO()
         stderr_buffer = new_stderr = sys.stderr = StringIO()
