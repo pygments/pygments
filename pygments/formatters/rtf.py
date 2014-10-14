@@ -20,7 +20,7 @@ class RtfFormatter(Formatter):
     """
     Format tokens as RTF markup. This formatter automatically outputs full RTF
     documents with color information and other useful stuff. Perfect for Copy and
-    Paste into Microsoft® Word® documents.
+    Paste into Microsoft(R) Word(R) documents.
 
     Please note that ``encoding`` and ``outencoding`` options are ignored.
     The RTF format is ASCII natively, but handles unicode characters correctly
