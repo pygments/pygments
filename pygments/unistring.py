@@ -21,7 +21,7 @@ Cn = u'\u0378-\u0379\u037f-\u0383\u038b\u038d\u03a2\u0528-\u0530\u0557-\u0558\u0
 Co = u'\ue000-\uf8ff\U000f0000-\U000ffffd\U00100000-\U0010fffd'
 
 try:
-    Cs = eval(r"'\ud800-\udbff\\\udc00\udc01-\udfff'")
+    Cs = eval(r"u'\ud800-\udbff\\\udc00\udc01-\udfff'")
 except UnicodeDecodeError:
     Cs = ''  # Jython can't handle isolated surrogates
 
@@ -155,9 +155,9 @@ if __name__ == '__main__':
             # Jython can't handle isolated surrogates
             f.write("""\
 try:
-    Cs = eval(r"%s")
+    Cs = eval(r"u%s")
 except UnicodeDecodeError:
-    Cs = ''  # Jython can't handle isolated surrogates\n\n""" % repr(val).lstrip('u'))
+    Cs = ''  # Jython can't handle isolated surrogates\n\n""" % ascii(val))
         else:
             f.write('%s = u%a\n\n' % (cat, val))
     f.write('cats = %r\n\n' % sorted(categories))

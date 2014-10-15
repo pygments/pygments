@@ -14,11 +14,12 @@ import random
 from pygments import unistring as uni
 from pygments.util import unichr
 
+
 class UnistringTest(unittest.TestCase):
     def test_cats_exist_and_compilable(self):
         for cat in uni.cats:
             s = getattr(uni, cat)
-            if s == '': # Probably Cs on Jython
+            if s == '':  # Probably Cs on Jython
                 continue
             print("%s %r" % (cat, s))
             re.compile('[%s]' % s)
@@ -27,7 +28,7 @@ class UnistringTest(unittest.TestCase):
         matching_cats = []
         for cat in uni.cats:
             s = getattr(uni, cat)
-            if s == '': # Probably Cs on Jython
+            if s == '':  # Probably Cs on Jython
                 continue
             if re.compile('[%s]' % s).match(c):
                 matching_cats.append(cat)
@@ -40,12 +41,8 @@ class UnistringTest(unittest.TestCase):
             o = random.randint(0, 65535)
             c = unichr(o)
             if o > 0xd800 and o <= 0xdfff and not uni.Cs:
-                continue # Bah, Jython.
+                continue  # Bah, Jython.
             print(hex(o))
             cats = self._cats_that_match(c)
             self.assertEqual(len(cats), 1,
                              "%d (%s): %s" % (o, c, cats))
-
-
-
-
