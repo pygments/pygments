@@ -206,14 +206,6 @@ def main(args=sys.argv):
 
     usage = USAGE % ((args[0],) * 6)
 
-    if sys.platform in ['win32', 'cygwin']:
-        try:
-            # Provide coloring under Windows, if possible
-            import colorama
-            colorama.init()
-        except ImportError:
-            pass
-
     try:
         popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:hVHgs")
     except getopt.GetoptError:
@@ -369,6 +361,31 @@ def main(args=sys.argv):
         else:
             outfile = sys.stdout
 
+    # determine output encoding if not explicitly selected
+    if not outencoding:
+        if outfn:
+            # output file? -> encoding pass-through
+            fmter.encoding = inencoding
+        else:
+            # else use terminal encoding
+            fmter.encoding = terminal_encoding(sys.stdout)
+
+    # provide coloring under Windows, if possible
+    if not outfn and sys.platform in ('win32', 'cygwin') and \
+       fmter.name in ('Terminal', 'Terminal256'):
+        # unfortunately colorama doesn't support binary streams on Py3
+        if sys.version_info > (3,):
+            import io
+            outfile = io.TextIOWrapper(outfile, encoding=fmter.encoding)
+            fmter.encoding = None
+        try:
+            import colorama.initialise
+        except ImportError:
+            pass
+        else:
+            outfile = colorama.initialise.wrap_stream(
+                outfile, convert=None, strip=None, autoreset=False, wrap=True)
+
     # select lexer
     lexer = opts.pop('-l', None)
     if lexer:
@@ -441,15 +458,6 @@ def main(args=sys.argv):
         left = escapeinside[0]
         right = escapeinside[1]
         lexer = LatexEmbeddedLexer(left, right, lexer)
-
-    # determine output encoding if not explicitly selected
-    if not outencoding:
-        if outfn:
-            # output file? -> encoding pass-through
-            fmter.encoding = inencoding
-        else:
-            # else use terminal encoding
-            fmter.encoding = terminal_encoding(sys.stdout)
 
     # ... and do it!
     try:

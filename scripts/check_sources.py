@@ -43,7 +43,7 @@ copyright_2_re = re.compile(r'^                %s(, %s)*[,.]$' %
 is_const_re  = re.compile(r'if.*?==\s+(None|False|True)\b')
 
 misspellings = ["developement", "adress", "verificate",  # ALLOW-MISSPELLING
-                "informations"]                          # ALLOW-MISSPELLING
+                "informations", "unlexer"]               # ALLOW-MISSPELLING
 
 
 @checker('.py')
