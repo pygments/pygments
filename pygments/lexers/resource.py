@@ -20,7 +20,7 @@ __all__ = ['ResourceLexer']
 
 class ResourceLexer(RegexLexer):
     name = 'ResourceBundle'
-    aliases = ['resource', 'resourcebundle', 'rb']
+    aliases = ['resource', 'resourcebundle']
     filenames = ['*.txt']
 
     _types = (':table', ':array', ':string', ':bin', ':import', ':intvector',
