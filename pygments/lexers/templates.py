@@ -171,8 +171,8 @@ class SmartyLexer(RegexLexer):
         ],
         'smarty': [
             (r'\s+', Text),
-            (r'{', Comment.Preproc, '#push'),
-            (r'}', Comment.Preproc, '#pop'),
+            (r'\{', Comment.Preproc, '#push'),
+            (r'\}', Comment.Preproc, '#pop'),
             (r'#[a-zA-Z_]\w*#', Name.Variable),
             (r'\$[a-zA-Z_]\w*(\.\w+)*', Name.Variable),
             (r'[~!%^&*()+=|\[\]:;,.<>/?@-]', Operator),
@@ -1890,7 +1890,7 @@ class LiquidLexer(RegexLexer):
             (r'({{)(\s*)([^\s}]+)',
              bygroups(Punctuation, Whitespace, using(this, state = 'generic')),
              'output'),
-            (r'{', Text)
+            (r'\{', Text)
         ],
 
         'tag-or-block': [

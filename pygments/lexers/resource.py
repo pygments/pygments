@@ -41,15 +41,15 @@ class ResourceLexer(RegexLexer):
         'string': [
             (r'(\\x[0-9a-fA-F]{2}|\\u[0-9a-fA-F]{4}|\\U00[0-9a-fA-F]{6}|'
              r'\\[0-7]{1,3}|\\c.|\\[abtnvfre\'"?\\]|\\{|[^"{\\])+', String),
-            (r'{', String.Escape, 'msgname'),
+            (r'\{', String.Escape, 'msgname'),
             (r'"', String, '#pop')
         ],
         'msgname': [
             (r'([^{},]+)(\s*)', bygroups(Name, String.Escape), ('#pop', 'message'))
         ],
         'message': [
-            (r'{', String.Escape, 'msgname'),
-            (r'}', String.Escape, '#pop'),
+            (r'\{', String.Escape, 'msgname'),
+            (r'\}', String.Escape, '#pop'),
             (r'(,)(\s*)([a-zA-Z]+)(\s*})',
              bygroups(Operator, String.Escape, Keyword, String.Escape), '#pop'),
             (r'(,)(\s*)([a-zA-Z]+)(\s*)(,)(\s*)(offset)(\s*)(:)(\s*)(-?\d+)(\s*)',
@@ -65,12 +65,12 @@ class ResourceLexer(RegexLexer):
             (r'(=|<|>|<=|>=|!=)(-?\d+)(\s*{)',
              bygroups(Operator, Number.Integer, String.Escape), 'message'),
             (r'([a-zA-Z]+)(\s*{)', bygroups(Keyword.Type, String.Escape), 'str'),
-            (r'}', String.Escape, ('#pop', '#pop')),
+            (r'\}', String.Escape, ('#pop', '#pop')),
             (r'\s+', String.Escape)
         ],
         'str': [
-            (r'}', String.Escape, '#pop'),
-            (r'{', String.Escape, 'msgname'),
+            (r'\}', String.Escape, '#pop'),
+            (r'\{', String.Escape, 'msgname'),
             (r'[^{}]+', String)
         ]
     }

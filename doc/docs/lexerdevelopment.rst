@@ -323,7 +323,7 @@ There are a few more things you can do with states:
                   (r'[^}/]+', Text),
                   include('comments'),
                   (r'/', Text),
-                  (r'}', Keyword, '#pop'),
+                  (r'\}', Keyword, '#pop'),
               ]
           }
 

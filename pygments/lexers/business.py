@@ -475,8 +475,8 @@ class OpenEdgeLexer(RegexLexer):
         ],
         'preprocessor': [
             (r'[^{}]', Comment.Preproc),
-            (r'{', Comment.Preproc, '#push'),
-            (r'}', Comment.Preproc, '#pop'),
+            (r'\{', Comment.Preproc, '#push'),
+            (r'\}', Comment.Preproc, '#pop'),
         ],
     }
 

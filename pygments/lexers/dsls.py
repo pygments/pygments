@@ -462,7 +462,7 @@ class PanLexer(RegexLexer):
         'root': [
             include('basic'),
             (r'\(', Keyword, 'paren'),
-            (r'{', Keyword, 'curly'),
+            (r'\{', Keyword, 'curly'),
             include('data'),
         ],
         'basic': [
@@ -496,7 +496,7 @@ class PanLexer(RegexLexer):
             (r'\d+(?= |\Z)', Number),
         ],
         'curly': [
-            (r'}', Keyword, '#pop'),
+            (r'\}', Keyword, '#pop'),
             (r':-', Keyword),
             (r'\w+', Name.Variable),
             (r'[^}:"\'`$]+', Punctuation),

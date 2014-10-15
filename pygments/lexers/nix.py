@@ -109,7 +109,7 @@ class NixLexer(RegexLexer):
         'doublequote': [
             (r'\\', String.Escape),
             (r'\\"', String.Escape),
-            (r'\\${', String.Escape),
+            (r'\\$\{', String.Escape),
             (r'"', String.Double, '#pop'),
             (r'\$\{', String.Interpol, 'antiquote'),
             (r'[^"]', String.Double),

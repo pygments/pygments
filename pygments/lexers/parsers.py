@@ -85,7 +85,7 @@ class RagelLexer(RegexLexer):
             (r'(>|\$|%|<|@|<>)(~|to\b)', Operator),     # To-State Actions
             (r'(>|\$|%|<|@|<>)(\*|from\b)', Operator),  # From-State Actions
             (r'>|@|\$|%', Operator),                    # Transition Actions and Priorities
-            (r'\*|\?|\+|{[0-9]*,[0-9]*}', Operator),    # Repetition
+            (r'\*|\?|\+|\{[0-9]*,[0-9]*\}', Operator),  # Repetition
             (r'!|\^', Operator),                        # Negation
             (r'\(|\)', Operator),                       # Grouping
         ],
@@ -97,7 +97,7 @@ class RagelLexer(RegexLexer):
             include('numbers'),
             include('identifiers'),
             include('operators'),
-            (r'{', Punctuation, 'host'),
+            (r'\{', Punctuation, 'host'),
             (r'=', Operator),
             (r';', Punctuation),
         ],
@@ -121,8 +121,8 @@ class RagelLexer(RegexLexer):
                 r'/',
             )) + r')+', Other),
 
-            (r'{', Punctuation, '#push'),
-            (r'}', Punctuation, '#pop'),
+            (r'\{', Punctuation, '#push'),
+            (r'\}', Punctuation, '#pop'),
         ],
     }
 
@@ -167,7 +167,7 @@ class RagelEmbeddedLexer(RegexLexer):
                                                      Punctuation, Text)),
 
             # Multi Line FSM.
-            (r'(%%%%|%%){', Punctuation, 'multi-line-fsm'),
+            (r'(%%%%|%%)\{', Punctuation, 'multi-line-fsm'),
         ],
         'multi-line-fsm': [
             (r'(' + r'|'.join((  # keep ragel code in largest possible chunks.
@@ -364,13 +364,13 @@ class AntlrLexer(RegexLexer):
             # tokensSpec
             (r'tokens\b', Keyword, 'tokens'),
             # attrScope
-            (r'(scope)(\s*)(' + _id + ')(\s*)({)',
+            (r'(scope)(\s*)(' + _id + ')(\s*)(\{)',
              bygroups(Keyword, Whitespace, Name.Variable, Whitespace,
                       Punctuation), 'action'),
             # exception
             (r'(catch|finally)\b', Keyword, 'exception'),
             # action
-            (r'(@' + _id + ')(\s*)(::)?(\s*)(' + _id + ')(\s*)({)',
+            (r'(@' + _id + ')(\s*)(::)?(\s*)(' + _id + ')(\s*)(\{)',
              bygroups(Name.Label, Whitespace, Punctuation, Whitespace,
                       Name.Label, Whitespace, Punctuation), 'action'),
             # rule
@@ -403,12 +403,12 @@ class AntlrLexer(RegexLexer):
             # ruleScopeSpec - scope followed by target language code or name of action
             # TODO finish implementing other possibilities for scope
             # L173 ANTLRv3.g from ANTLR book
-            (r'(scope)(\s+)({)', bygroups(Keyword, Whitespace, Punctuation),
+            (r'(scope)(\s+)(\{)', bygroups(Keyword, Whitespace, Punctuation),
              'action'),
             (r'(scope)(\s+)(' + _id + ')(\s*)(;)',
              bygroups(Keyword, Whitespace, Name.Label, Whitespace, Punctuation)),
             # ruleAction
-            (r'(@' + _id + ')(\s*)({)',
+            (r'(@' + _id + ')(\s*)(\{)',
              bygroups(Name.Label, Whitespace, Punctuation), 'action'),
             # finished prelims, go to rule alts!
             (r':', Punctuation, '#pop')
@@ -440,22 +440,22 @@ class AntlrLexer(RegexLexer):
         'tokens': [
             include('whitespace'),
             include('comments'),
-            (r'{', Punctuation),
+            (r'\{', Punctuation),
             (r'(' + _TOKEN_REF + r')(\s*)(=)?(\s*)(' + _STRING_LITERAL
              + ')?(\s*)(;)',
              bygroups(Name.Label, Whitespace, Punctuation, Whitespace,
                       String, Whitespace, Punctuation)),
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
         ],
         'options': [
             include('whitespace'),
             include('comments'),
-            (r'{', Punctuation),
+            (r'\{', Punctuation),
             (r'(' + _id + r')(\s*)(=)(\s*)(' +
              '|'.join((_id, _STRING_LITERAL, _INT, '\*')) + ')(\s*)(;)',
              bygroups(Name.Variable, Whitespace, Punctuation, Whitespace,
                       Text, Whitespace, Punctuation)),
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
         ],
         'action': [
             (r'(' + r'|'.join((     # keep host code in largest possible chunks
@@ -481,8 +481,8 @@ class AntlrLexer(RegexLexer):
             (r'(\\)(%)', bygroups(Punctuation, Other)),
             (r'(\$[a-zA-Z]+)(\.?)(text|value)?',
              bygroups(Name.Variable, Punctuation, Name.Property)),
-            (r'{', Punctuation, '#push'),
-            (r'}', Punctuation, '#pop'),
+            (r'\{', Punctuation, '#push'),
+            (r'\}', Punctuation, '#pop'),
         ],
         'nested-arg-action': [
             (r'(' + r'|'.join((     # keep host code in largest possible chunks.
@@ -746,17 +746,17 @@ class TreetopBaseLexer(RegexLexer):
             (r'([0-9]*)(\.\.)([0-9]*)',
              bygroups(Number.Integer, Operator, Number.Integer)),
             (r'(<)([^>]+)(>)', bygroups(Punctuation, Name.Class, Punctuation)),
-            (r'{', Punctuation, 'inline_module'),
+            (r'\{', Punctuation, 'inline_module'),
             (r'\.', String.Regex),
         ],
         'inline_module': [
-            (r'{', Other, 'ruby'),
-            (r'}', Punctuation, '#pop'),
+            (r'\{', Other, 'ruby'),
+            (r'\}', Punctuation, '#pop'),
             (r'[^{}]+', Other),
         ],
         'ruby': [
-            (r'{', Other, '#push'),
-            (r'}', Other, '#pop'),
+            (r'\{', Other, '#push'),
+            (r'\}', Other, '#pop'),
             (r'[^{}]+', Other),
         ],
         'space': [

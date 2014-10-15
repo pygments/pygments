@@ -112,8 +112,8 @@ def objective(baselexer):
                 include('whitespace'),
                 include('statements'),
                 (';', Punctuation),
-                ('{', Punctuation, '#push'),
-                ('}', Punctuation, '#pop'),
+                (r'\{', Punctuation, '#push'),
+                (r'\}', Punctuation, '#pop'),
             ],
             'root': [
                 # methods
@@ -135,7 +135,7 @@ def objective(baselexer):
                  bygroups(using(this), Text, Name.Variable)),
                 (r'[a-zA-Z$_][\w$]*:', Name.Function),
                 (';', Punctuation, '#pop'),
-                ('{', Punctuation, 'function'),
+                (r'\{', Punctuation, 'function'),
                 ('', Text, '#pop'),
             ],
             'literal_number': [

@@ -263,8 +263,8 @@ class AsymptoteLexer(RegexLexer):
             include('whitespace'),
             include('statements'),
             (';', Punctuation),
-            ('{', Punctuation, '#push'),
-            ('}', Punctuation, '#pop'),
+            (r'\{', Punctuation, '#push'),
+            (r'\}', Punctuation, '#pop'),
         ],
         'string': [
             (r"'", String, '#pop'),

@@ -120,7 +120,7 @@ class SchemeLexer(RegexLexer):
             # strings, symbols and characters
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'" + valid_name, String.Symbol),
-            (r"#\\([()/'\"._!§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
+            (r"#\\([()/'\"._!§$%& ?=+-]|[a-zA-Z0-9]+)", String.Char),
 
             # constants
             (r'(#t|#f)', Name.Constant),
@@ -1444,7 +1444,7 @@ class NewLispLexer(RegexLexer):
             (r'"(\\\\|\\"|[^"])*"', String),
 
             # braces
-            (r"{", String, "bracestring"),
+            (r'\{', String, "bracestring"),
 
             # [text] ... [/text] delimited strings
             (r'\[text\]*', String, "tagstring"),
@@ -1468,9 +1468,9 @@ class NewLispLexer(RegexLexer):
 
         # braced strings...
         'bracestring': [
-            ("{", String, "#push"),
-            ("}", String, "#pop"),
-            ("[^{}]+", String),
+            (r'\{', String, "#push"),
+            (r'\}', String, "#pop"),
+            ('[^{}]+', String),
         ],
 
         # tagged [text]...[/text] delimited strings...

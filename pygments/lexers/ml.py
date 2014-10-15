@@ -113,8 +113,8 @@ class SMLLexer(RegexLexer):
             # the `|' is resolved - is it a case/handle expression, or function
             # definition by cases? (This is not how the Definition works, but
             # it's how MLton behaves, see http://mlton.org/SMLNJDeviations)
-            (r'\(|\[|{', Punctuation, 'main'),
-            (r'\)|\]|}', Punctuation, '#pop'),
+            (r'\(|\[|\{', Punctuation, 'main'),
+            (r'\)|\]|\}', Punctuation, '#pop'),
             (r'\b(let|if|local)\b(?!\')', Keyword.Reserved, ('main', 'main')),
             (r'\b(struct|sig|while)\b(?!\')', Keyword.Reserved, 'main'),
             (r'\b(do|else|end|in|then)\b(?!\')', Keyword.Reserved, '#pop'),
@@ -376,10 +376,10 @@ class OcamlLexer(RegexLexer):
         'type', 'value', 'val', 'virtual', 'when', 'while', 'with',
     )
     keyopts = (
-        '!=', '#', '&', '&&', '\(', '\)', '\*', '\+', ',', '-',
-        '-\.', '->', '\.', '\.\.', ':', '::', ':=', ':>', ';', ';;', '<',
-        '<-', '=', '>', '>]', '>}', '\?', '\?\?', '\[', '\[<', '\[>', '\[\|',
-        ']', '_', '`', '{', '{<', '\|', '\|]', '}', '~'
+        '!=', '#', '&', '&&', r'\(', r'\)', r'\*', r'\+', ',', '-',
+        r'-\.', '->', r'\.', r'\.\.', ':', '::', ':=', ':>', ';', ';;', '<',
+        '<-', '=', '>', '>]', r'>\}', r'\?', r'\?\?', r'\[', r'\[<', r'\[>',
+        r'\[\|', ']', '_', '`', r'\{', r'\{<', r'\|', r'\|]', r'\}', '~'
     )
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
@@ -526,8 +526,8 @@ class OpaLexer(RegexLexer):
             # inside a string, we are back in the string state
             # as a consequence, we must also push a state every time we find a
             # '{' or else we will have errors when parsing {} for instance
-            (r'{', Operator, '#push'),
-            (r'}', Operator, '#pop'),
+            (r'\{', Operator, '#push'),
+            (r'\}', Operator, '#pop'),
 
             # html literals
             # this is a much more strict that the actual parser,
@@ -569,7 +569,7 @@ class OpaLexer(RegexLexer):
 
             # id literal, #something, or #{expr}
             (r'#'+ident_re, String.Single),
-            (r'#(?={)', String.Single),
+            (r'#(?=\{)', String.Single),
 
             # identifiers
             # this avoids to color '2' in 'a2' as an integer
@@ -608,7 +608,7 @@ class OpaLexer(RegexLexer):
         'type-1': [
             include('comments-and-spaces'),
             (r'\(', Keyword.Type, ('#pop', 'type-tuple')),
-            (r'~?{', Keyword.Type, ('#pop', 'type-record')),
+            (r'~?\{', Keyword.Type, ('#pop', 'type-record')),
             (ident_re+r'\(', Keyword.Type, ('#pop', 'type-tuple')),
             (ident_re, Keyword.Type, '#pop'),
             ("'"+ident_re, Keyword.Type),
@@ -671,8 +671,8 @@ class OpaLexer(RegexLexer):
             include('comments-and-spaces'),
             (r'[^{}/*]+', Keyword.Type),
             (r'[/*]', Keyword.Type),
-            (r'{', Keyword.Type, '#push'),
-            (r'}', Keyword.Type, '#pop'),
+            (r'\{', Keyword.Type, '#push'),
+            (r'\}', Keyword.Type, '#pop'),
         ],
 
         # 'type-tuple': [
@@ -687,7 +687,7 @@ class OpaLexer(RegexLexer):
         # ],
         # 'type-record':[
         #     include('comments-and-spaces'),
-        #     (r'}', Keyword.Type, '#pop'),
+        #     (r'\}', Keyword.Type, '#pop'),
         #     (r'~?(?:\w+|`[^`]*`)', Keyword.Type, 'type-record-field-expr'),
         # ],
         # 'type-record-field-expr': [
@@ -706,13 +706,13 @@ class OpaLexer(RegexLexer):
         'string': [
             (r'[^\\"{]+', String.Double),
             (r'"', String.Double, '#pop'),
-            (r'{', Operator, 'root'),
+            (r'\{', Operator, 'root'),
             include('escape-sequence'),
         ],
         'single-string': [
             (r'[^\\\'{]+', String.Double),
             (r'\'', String.Double, '#pop'),
-            (r'{', Operator, 'root'),
+            (r'\{', Operator, 'root'),
             include('escape-sequence'),
         ],
 
@@ -747,9 +747,9 @@ class OpaLexer(RegexLexer):
             (r"'", String.Single, ('#pop', 'single-string')),
             (r'"', String.Single, ('#pop', 'string')),
             (r'#'+ident_re, String.Single, '#pop'),
-            (r'#(?={)', String.Single, ('#pop', 'root')),
+            (r'#(?=\{)', String.Single, ('#pop', 'root')),
             (r'[^"\'{`=<>]+', String.Single, '#pop'),
-            (r'{', Operator, ('#pop', 'root')),  # this is a tail call!
+            (r'\{', Operator, ('#pop', 'root')),  # this is a tail call!
         ],
 
         # we should probably deal with '\' escapes here
@@ -757,7 +757,7 @@ class OpaLexer(RegexLexer):
             (r'<!--', Comment, 'html-comment'),
             (r'</', String.Single, ('#pop', 'html-end-tag')),
             (r'<', String.Single, 'html-open-tag'),
-            (r'{', Operator, 'root'),
+            (r'\{', Operator, 'root'),
             (r'[^<{]+', String.Single),
         ],
 
