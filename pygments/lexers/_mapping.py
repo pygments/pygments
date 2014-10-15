@@ -301,6 +301,7 @@ LEXERS = {
     'RedLexer': ('pygments.lexers.rebol', 'Red', ('red', 'red/system'), ('*.red', '*.reds'), ('text/x-red', 'text/x-red-system')),
     'RedcodeLexer': ('pygments.lexers.esoteric', 'Redcode', ('redcode',), ('*.cw',), ()),
     'RegeditLexer': ('pygments.lexers.configs', 'reg', ('registry',), ('*.reg',), ('text/x-windows-registry',)),
+    'ResourceLexer': ('pygments.lexers.resource', 'ResourceBundle', ('resource', 'resourcebundle'), ('*.txt',), ()),
     'RexxLexer': ('pygments.lexers.scripting', 'Rexx', ('rexx', 'arexx'), ('*.rexx', '*.rex', '*.rx', '*.arexx'), ('text/x-rexx',)),
     'RhtmlLexer': ('pygments.lexers.templates', 'RHTML', ('rhtml', 'html+erb', 'html+ruby'), ('*.rhtml',), ('text/html+ruby',)),
     'RobotFrameworkLexer': ('pygments.lexers.robotframework', 'RobotFramework', ('robotframework',), ('*.txt', '*.robot'), ('text/x-robotframework',)),
