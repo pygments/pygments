@@ -18,14 +18,20 @@ from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
 from pygments.token import Error
 from pygments.util import ClassNotFound
 
+import support
+
 STORE_OUTPUT = False
 
 STATS = {}
 
 TESTDIR = os.path.dirname(__file__)
 
+# Jython generates a StackOverflowError for repetitions of the form (a|b)+,
+# which are commonly used in string patterns, when matching more than about 1000
+# chars.  These tests do not complete.  See http://bugs.jython.org/issue1965
+BAD_FILES_FOR_JYTHON = ('Object.st', 'all.nit', 'genclass.clj',
+                        'ragel-cpp_rlscan')
 
-# generate methods
 def test_example_files():
     global STATS
     STATS = {}
@@ -78,6 +84,8 @@ def test_example_files():
 
 
 def check_lexer(lx, fn):
+    if os.name == 'java' and fn in BAD_FILES_FOR_JYTHON:
+        raise support.SkipTest
     absfn = os.path.join(TESTDIR, 'examplefiles', fn)
     with open(absfn, 'rb') as fp:
         text = fp.read()
