@@ -136,10 +136,8 @@ class TestcaseFormatter(Formatter):
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
-        #if self.encoding != 'utf-8':
-        #    print >>sys.stderr, "NOTICE: Forcing encoding to utf-8, as all Pygments source is"
         if self.encoding is not None and self.encoding != 'utf-8':
-            raise ValueError("Only None and utf-u are allowed encodings.")
+            raise ValueError("Only None and utf-8 are allowed encodings.")
 
     def format(self, tokensource, outfile):
         indentation = ' ' * 12
