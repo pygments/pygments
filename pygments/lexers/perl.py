@@ -163,7 +163,7 @@ class PerlLexer(RegexLexer):
             (r'\s+', Text),
             # argument declaration
             (r'(\([$@%]*\))(\s*)', bygroups(Punctuation, Text)),
-            (r'.*?{', Punctuation, '#pop'),
+            (r'.*?\{', Punctuation, '#pop'),
             (r';', Punctuation, '#pop'),
         ],
         'cb-string': [
@@ -545,7 +545,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             default(('#pop', 'pre-token')),
         ],
         'token': [
-            (r'}', Text, '#pop'),
+            (r'\}', Text, '#pop'),
             (r'(?<=:)(?:my|our|state|constant|temp|let).*?;', using(this)),
             # make sure that quotes in character classes aren't treated as strings
             (r'<(?:[-!?+.]\s*)?\[.*?\]>', String.Regex),

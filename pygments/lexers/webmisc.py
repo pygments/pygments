@@ -444,7 +444,7 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'kindtest': [
             (r'\(:', Comment, 'comment'),
-            (r'{', Punctuation, 'root'),
+            (r'\{', Punctuation, 'root'),
             (r'(\))([*+?]?)', popstate_kindtest_callback),
             (r'\*', Name, 'closekindtest'),
             (qname, Name, 'closekindtest'),

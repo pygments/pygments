@@ -22,7 +22,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.util import get_bool_opt, ClassNotFound
 
 __all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',
-          'MozPreprocHashLexer', 'MozPreprocPercentLexer',
+           'MozPreprocHashLexer', 'MozPreprocPercentLexer',
            'MozPreprocXulLexer', 'MozPreprocJavascriptLexer',
            'MozPreprocCssLexer']
 
@@ -81,7 +81,7 @@ class MoinWikiLexer(RegexLexer):
             (r'^(=+)([^=]+)(=+)(\s*#.+)?$',
              bygroups(Generic.Heading, using(this), Generic.Heading, String)),
             # Literal code blocks, with optional shebang
-            (r'({{{)(\n#!.+)?', bygroups(Name.Builtin, Name.Namespace), 'codeblock'),
+            (r'(\{\{\{)(\n#!.+)?', bygroups(Name.Builtin, Name.Namespace), 'codeblock'),
             (r'(\'\'\'?|\|\||`|__|~~|\^|,,|::)', Comment),  # Formatting
             # Lists
             (r'^( +)([.*-])( )', bygroups(Text, Name.Builtin, Text)),
@@ -98,7 +98,7 @@ class MoinWikiLexer(RegexLexer):
         'codeblock': [
             (r'}}}', Name.Builtin, '#pop'),
             # these blocks are allowed to be nested in Trac, but not MoinMoin
-            (r'{{{', Text, '#push'),
+            (r'\{\{\{', Text, '#push'),
             (r'[^{}]+', Comment.Preproc),  # slurp boring text
             (r'.', Comment.Preproc),  # allow loose { or }
         ],
@@ -440,7 +440,6 @@ class MozPreprocPercentLexer(MozPreprocHashLexer):
     aliases = [name]
     filenames = []
     mimetypes = []
-
 
     tokens = {
         'root': [

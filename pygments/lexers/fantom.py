@@ -215,7 +215,7 @@ class FantomLexer(RegexLexer):
             (r':|,', Punctuation),
             (r'(?:(\w+)(::))?(\w+)',
              bygroups(Name.Namespace, Punctuation, Name.Class)),
-            (r'{', Punctuation, '#pop')
+            (r'\{', Punctuation, '#pop')
         ],
         'using': [
             (r'[ \t]+', Text),  # consume whitespaces
@@ -235,7 +235,7 @@ class FantomLexer(RegexLexer):
         ],
         'facet': [
             (r'\s+', Text),
-            (r'{', Punctuation, 'facetFields'),
+            (r'\{', Punctuation, 'facetFields'),
             default('#pop')
         ],
         'facetFields': [
@@ -244,7 +244,7 @@ class FantomLexer(RegexLexer):
             include('operators'),
             (r'\s+', Text),
             (r'(\s*)(\w+)(\s*)(=)', bygroups(Text, Name, Text, Operator)),
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
             (r'.', Text)
         ],
     }

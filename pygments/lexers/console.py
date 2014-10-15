@@ -55,8 +55,8 @@ class PyPyLogLexer(RegexLexer):
 
     tokens = {
         "root": [
-            (r"\[\w+\] {jit-log-.*?$", Keyword, "jit-log"),
-            (r"\[\w+\] {jit-backend-counts$", Keyword, "jit-backend-counts"),
+            (r"\[\w+\] \{jit-log-.*?$", Keyword, "jit-log"),
+            (r"\[\w+\] \{jit-backend-counts$", Keyword, "jit-backend-counts"),
             include("extra-stuff"),
         ],
         "jit-log": [

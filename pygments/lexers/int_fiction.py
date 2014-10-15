@@ -848,7 +848,7 @@ class Tads3Lexer(RegexLexer):
     tokens = {
         'root': [
             (u'\ufeff', Text),
-            (r'{', Punctuation, 'object-body'),
+            (r'\{', Punctuation, 'object-body'),
             (r';+', Punctuation),
             (r'(?=(argcount|break|case|catch|continue|default|definingobj|'
              r'delegated|do|else|for|foreach|finally|goto|if|inherited|'
@@ -869,13 +869,13 @@ class Tads3Lexer(RegexLexer):
         ],
         'object-body/no-braces': [
            (r';', Punctuation, '#pop'),
-           (r'{', Punctuation, ('#pop', 'object-body')),
+           (r'\{', Punctuation, ('#pop', 'object-body')),
            include('object-body')
         ],
         'object-body': [
             (r';', Punctuation),
-            (r'{', Punctuation, '#push'),
-            (r'}', Punctuation, '#pop'),
+            (r'\{', Punctuation, '#push'),
+            (r'\}', Punctuation, '#pop'),
             (r':', Punctuation, ('classes', 'class')),
             (r'(%s?)(%s*)(\()' % (_name, _ws),
              bygroups(Name.Function, using(this, state='whitespace'),
@@ -900,7 +900,7 @@ class Tads3Lexer(RegexLexer):
             default('#pop:2')
         ],
         'block?/root': [
-            (r'{', Punctuation, ('#pop', 'block')),
+            (r'\{', Punctuation, ('#pop', 'block')),
             include('whitespace'),
             (r'(?=[[\'"<(:])', Text,  # It might be a VerbRule macro.
              ('#pop', 'object-body/no-braces', 'grammar', 'grammar-rules')),
@@ -908,14 +908,14 @@ class Tads3Lexer(RegexLexer):
             default(('#pop', 'object-body/no-braces'))
         ],
         'block?': [
-            (r'{', Punctuation, ('#pop', 'block')),
+            (r'\{', Punctuation, ('#pop', 'block')),
             include('whitespace'),
             default('#pop')
         ],
         'block/basic': [
             (r'[;:]+', Punctuation),
-            (r'{', Punctuation, '#push'),
-            (r'}', Punctuation, '#pop'),
+            (r'\{', Punctuation, '#push'),
+            (r'\}', Punctuation, '#pop'),
             (r'default\b', Keyword.Reserved),
             (r'(%s)(%s*)(:)' % (_name, _ws),
              bygroups(Name.Label, using(this, state='whitespace'),
@@ -935,8 +935,8 @@ class Tads3Lexer(RegexLexer):
             include('whitespace'),
             (r'\(', Punctuation, ('#pop', 'more', 'main')),
             (r'\[', Punctuation, ('#pop', 'more/list', 'main')),
-            (r'{', Punctuation, ('#pop', 'more/inner', 'main/inner',
-                                 'more/parameters', 'main/parameters')),
+            (r'\{', Punctuation, ('#pop', 'more/inner', 'main/inner',
+                                  'more/parameters', 'main/parameters')),
             (r'\*|\.{3}', Punctuation, '#pop'),
             (r'(?i)0x[\da-f]+', Number.Hex, '#pop'),
             (r'(\d+\.(?!\.)\d*|\.\d+)([eE][-+]?\d+)?|\d+[eE][-+]?\d+',
@@ -1057,7 +1057,7 @@ class Tads3Lexer(RegexLexer):
             include('main')
         ],
         'more/inner': [
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
             (r',', Punctuation, 'main/inner'),
             (r'(in|step)\b', Keyword, 'main/inner'),
             include('more')
@@ -1175,7 +1175,7 @@ class Tads3Lexer(RegexLexer):
         ],
         'propertyset': [
             (r'\(', Punctuation, ('more/parameters', 'main/parameters')),
-            (r'{', Punctuation, ('#pop', 'object-body')),
+            (r'\{', Punctuation, ('#pop', 'object-body')),
             include('whitespace')
         ],
         'template': [

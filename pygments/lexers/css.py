@@ -38,7 +38,7 @@ class CssLexer(RegexLexer):
         'basics': [
             (r'\s+', Text),
             (r'/\*(?:.|\n)*?\*/', Comment),
-            (r'{', Punctuation, 'content'),
+            (r'\{', Punctuation, 'content'),
             (r'\:[\w-]+', Name.Decorator),
             (r'\.[\w-]+', Name.Class),
             (r'\#[\w-]+', Name.Function),
@@ -49,17 +49,17 @@ class CssLexer(RegexLexer):
             (r"'(\\\\|\\'|[^'])*'", String.Single)
         ],
         'atrule': [
-            (r'{', Punctuation, 'atcontent'),
+            (r'\{', Punctuation, 'atcontent'),
             (r';', Punctuation, '#pop'),
             include('basics'),
         ],
         'atcontent': [
             include('basics'),
-            (r'}', Punctuation, '#pop:2'),
+            (r'\}', Punctuation, '#pop:2'),
         ],
         'content': [
             (r'\s+', Text),
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
             (r'url\(.*?\)', String.Other),
             (r'^@.*?$', Comment.Preproc),
             (words((
@@ -268,7 +268,7 @@ common_sass_tokens = {
         (r'\#[a-z0-9]{1,6}', Number.Hex),
         (r'(-?\d+)(\%|[a-z]+)?', bygroups(Number.Integer, Keyword.Type)),
         (r'(-?\d*\.\d+)(\%|[a-z]+)?', bygroups(Number.Float, Keyword.Type)),
-        (r'#{', String.Interpol, 'interpolation'),
+        (r'#\{', String.Interpol, 'interpolation'),
         (r'[~\^\*!&%<>\|+=@:,./?-]+', Operator),
         (r'[\[\]()]+', Punctuation),
         (r'"', String.Double, 'string-double'),
@@ -426,14 +426,14 @@ class SassLexer(ExtendedRegexLexer):
 
         'old-style-attr': [
             (r'[^\s:="\[]+', Name.Attribute),
-            (r'#{', String.Interpol, 'interpolation'),
+            (r'#\{', String.Interpol, 'interpolation'),
             (r'[ \t]*=', Operator, 'value'),
             default('value'),
         ],
 
         'new-style-attr': [
             (r'[^\s:="\[]+', Name.Attribute),
-            (r'#{', String.Interpol, 'interpolation'),
+            (r'#\{', String.Interpol, 'interpolation'),
             (r'[ \t]*[=:]', Operator, 'value'),
         ],
 
@@ -480,7 +480,7 @@ class ScssLexer(RegexLexer):
 
         'attr': [
             (r'[^\s:="\[]+', Name.Attribute),
-            (r'#{', String.Interpol, 'interpolation'),
+            (r'#\{', String.Interpol, 'interpolation'),
             (r'[ \t]*:', Operator, 'value'),
         ],
 

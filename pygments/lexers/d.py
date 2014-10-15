@@ -104,11 +104,11 @@ class DLexer(RegexLexer):
             (r'q"\[', String, 'delimited_bracket'),
             (r'q"\(', String, 'delimited_parenthesis'),
             (r'q"<', String, 'delimited_angle'),
-            (r'q"{', String, 'delimited_curly'),
+            (r'q"\{', String, 'delimited_curly'),
             (r'q"([a-zA-Z_]\w*)\n.*?\n\1"', String),
             (r'q"(.).*?\1"', String),
             # -- TokenString
-            (r'q{', String, 'token_string'),
+            (r'q\{', String, 'token_string'),
             # Attributes
             (r'@([a-zA-Z_]\w*)?', Name.Decorator),
             # Tokens
@@ -127,13 +127,13 @@ class DLexer(RegexLexer):
             (r'[+/]', Comment.Multiline),
         ],
         'token_string': [
-            (r'{', Punctuation, 'token_string_nest'),
-            (r'}', String, '#pop'),
+            (r'\{', Punctuation, 'token_string_nest'),
+            (r'\}', String, '#pop'),
             include('root'),
         ],
         'token_string_nest': [
-            (r'{', Punctuation, '#push'),
-            (r'}', Punctuation, '#pop'),
+            (r'\{', Punctuation, '#push'),
+            (r'\}', Punctuation, '#pop'),
             include('root'),
         ],
         'delimited_bracket': [
@@ -168,13 +168,13 @@ class DLexer(RegexLexer):
         ],
         'delimited_curly': [
             (r'[^{}]+', String),
-            (r'{', String, 'delimited_inside_curly'),
-            (r'}"', String, '#pop'),
+            (r'\{', String, 'delimited_inside_curly'),
+            (r'\}"', String, '#pop'),
         ],
         'delimited_inside_curly': [
             (r'[^{}]+', String),
-            (r'{', String, '#push'),
-            (r'}', String, '#pop'),
+            (r'\{', String, '#push'),
+            (r'\}', String, '#pop'),
         ],
     }
 

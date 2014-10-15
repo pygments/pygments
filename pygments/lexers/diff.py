@@ -68,8 +68,8 @@ class DarcsPatchLexer(RegexLexer):
         'root': [
             (r'<', Operator),
             (r'>', Operator),
-            (r'{', Operator),
-            (r'}', Operator),
+            (r'\{', Operator),
+            (r'\}', Operator),
             (r'(\[)((?:TAG )?)(.*)(\n)(.*)(\*\*)(\d+)(\s?)(\])',
              bygroups(Operator, Keyword, Name, Text, Name, Operator,
                       Literal.Date, Text, Operator)),

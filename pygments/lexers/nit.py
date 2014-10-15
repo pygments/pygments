@@ -40,16 +40,16 @@ class NitLexer(RegexLexer):
                 'null', 'as', 'isset', 'label', '__debug__'), suffix=r'(?=[\r\n\t\( ])'),
              Keyword),
             (r'[A-Z][A-Za-z0-9_]*', Name.Class),
-            (r'"""(([^\'\\]|\\.)|\\r|\\n)*(({{?)?(""?{{?)*""""*)', String),  # Simple long string
+            (r'"""(([^\'\\]|\\.)|\\r|\\n)*((\{\{?)?(""?\{\{?)*""""*)', String),  # Simple long string
             (r'\'\'\'(((\\.|[^\'\\])|\\r|\\n)|\'((\\.|[^\'\\])|\\r|\\n)|'
              r'\'\'((\\.|[^\'\\])|\\r|\\n))*\'\'\'', String),  # Simple long string alt
-            (r'"""(([^\'\\]|\\.)|\\r|\\n)*((""?)?({{?""?)*{{{{*)', String),  # Start long string
-            (r'}}}(((\\.|[^\'\\])|\\r|\\n))*(""?)?({{?""?)*{{{{*', String),  # Mid long string
-            (r'}}}(((\\.|[^\'\\])|\\r|\\n))*({{?)?(""?{{?)*""""*', String),  # End long string
+            (r'"""(([^\'\\]|\\.)|\\r|\\n)*((""?)?(\{\{?""?)*\{\{\{\{*)', String),  # Start long string
+            (r'\}\}\}(((\\.|[^\'\\])|\\r|\\n))*(""?)?(\{\{?""?)*\{\{\{\{*', String),  # Mid long string
+            (r'\}\}\}(((\\.|[^\'\\])|\\r|\\n))*(\{\{?)?(""?\{\{?)*""""*', String),  # End long string
             (r'"(\\.|([^"}{\\]))*"', String),  # Simple String
-            (r'"(\\.|([^"}{\\]))*{', String),  # Start string
-            (r'}(\\.|([^"}{\\]))*{', String),  # Mid String
-            (r'}(\\.|([^"}{\\]))*"', String),  # End String
+            (r'"(\\.|([^"}{\\]))*\{', String),  # Start string
+            (r'\}(\\.|([^"}{\\]))*\{', String),  # Mid String
+            (r'\}(\\.|([^"}{\\]))*"', String),  # End String
             (r'(\'[^\'\\]\')|(\'\\.\')', String.Char),
             (r'[0-9]+', Number.Integer),
             (r'[0-9]*.[0-9]+', Number.Float),
@@ -58,7 +58,7 @@ class NitLexer(RegexLexer):
             (r'_[A-Za-z0-9_]+', Name.Variable.Instance),
             (r'==|!=|<==>|>=|>>|>|<=|<<|<|\+|-|=|/|\*|%|\+=|-=|!|@', Operator),
             (r'\(|\)|\[|\]|,|\.\.\.|\.\.|\.|::|:', Punctuation),
-            (r'`{[^`]*`}', Text),  # Extern blocks won't be Lexed by Nit
+            (r'`\{[^`]*`\}', Text),  # Extern blocks won't be Lexed by Nit
             (r'[\r\n\t ]+', Text),
         ],
     }

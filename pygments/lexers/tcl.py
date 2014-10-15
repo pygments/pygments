@@ -59,7 +59,7 @@ class TclLexer(RegexLexer):
             include('command'),
             include('basic'),
             include('data'),
-            (r'}', Keyword),  # HACK: somehow we miscounted our braces
+            (r'\}', Keyword),  # HACK: somehow we miscounted our braces
         ],
         'command': _gen_command_rules(keyword_cmds_re, builtin_cmds_re),
         'command-in-brace': _gen_command_rules(keyword_cmds_re,
@@ -96,7 +96,7 @@ class TclLexer(RegexLexer):
             include('data'),
         ],
         'params-in-brace': [
-            (r'}', Keyword, ('#pop', '#pop')),
+            (r'\}', Keyword, ('#pop', '#pop')),
             include('params')
         ],
         'params-in-paren': [
@@ -118,7 +118,7 @@ class TclLexer(RegexLexer):
             (r'\]', String.Double, '#pop')
         ],
         'brace': [
-            (r'}', Keyword, '#pop'),
+            (r'\}', Keyword, '#pop'),
             include('command-in-brace'),
             include('basic'),
             include('data'),

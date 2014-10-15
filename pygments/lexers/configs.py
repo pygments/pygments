@@ -452,12 +452,12 @@ class NginxConfLexer(RegexLexer):
             include('base'),
         ],
         'block': [
-            (r'}', Punctuation, '#pop:2'),
+            (r'\}', Punctuation, '#pop:2'),
             (r'[^\s;#]+', Keyword.Namespace, 'stmt'),
             include('base'),
         ],
         'stmt': [
-            (r'{', Punctuation, 'block'),
+            (r'\{', Punctuation, 'block'),
             (r';', Punctuation, '#pop'),
             include('base'),
         ],

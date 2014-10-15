@@ -323,9 +323,9 @@ class ElixirLexer(RegexLexer):
     name_re = r'(?:\.\.\.|[a-z_]%s*[!\?]?)' % alnum
     modname_re = r'[A-Z]%(alnum)s*(?:\.[A-Z]%(alnum)s*)*' % {'alnum': alnum}
     complex_name_re = r'(?:%s|%s|%s)' % (name_re, modname_re, ops_re)
-    special_atom_re = r'(?:\.\.\.|<<>>|%{}|%|{})'
+    special_atom_re = r'(?:\.\.\.|<<>>|%\{\}|%|\{\})'
 
-    long_hex_char_re = r'(\\x{)([\da-fA-F]+)(})'
+    long_hex_char_re = r'(\\x\{)([\da-fA-F]+)(\})'
     hex_char_re = r'(\\x[\da-fA-F]{1,2})'
     escape_char_re = r'(\\[abdefnrstv])'
 
@@ -387,8 +387,8 @@ class ElixirLexer(RegexLexer):
 
             include('sigils'),
 
-            (r'%{', Punctuation, 'map_key'),
-            (r'{', Punctuation, 'tuple'),
+            (r'%\{', Punctuation, 'map_key'),
+            (r'\{', Punctuation, 'tuple'),
         ],
         'heredoc_double': [
             (r'^\s*"""', String.Heredoc, '#pop'),
@@ -417,17 +417,17 @@ class ElixirLexer(RegexLexer):
             (escape_char_re, String.Escape),
         ],
         'interpol': [
-            (r'#{', String.Interpol, 'interpol_string'),
+            (r'#\{', String.Interpol, 'interpol_string'),
         ],
         'interpol_string': [
-            (r'}', String.Interpol, "#pop"),
+            (r'\}', String.Interpol, "#pop"),
             include('root')
         ],
         'map_key': [
             include('root'),
             (r':', Punctuation, 'map_val'),
             (r'=>', Punctuation, 'map_val'),
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
         ],
         'map_val': [
             include('root'),
@@ -436,7 +436,7 @@ class ElixirLexer(RegexLexer):
         ],
         'tuple': [
             include('root'),
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
         ],
     }
     tokens.update(gen_elixir_string_rules('double', '"', String.Double))

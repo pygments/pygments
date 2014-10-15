@@ -476,14 +476,14 @@ class JsonLexer(RegexLexer):
             # comma terminates the attribute but expects more
             (r',', Punctuation, '#pop'),
             # a closing bracket terminates the entire object, so pop twice
-            (r'}', Punctuation, ('#pop', '#pop')),
+            (r'\}', Punctuation, ('#pop', '#pop')),
         ],
 
         # a json object - { attr, attr, ... }
         'objectvalue': [
             include('whitespace'),
             (r'"(\\\\|\\"|[^"])*"', Name.Tag, 'objectattribute'),
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
         ],
 
         # json array - [ value, value, ... }
@@ -491,14 +491,14 @@ class JsonLexer(RegexLexer):
             include('whitespace'),
             include('value'),
             (r',', Punctuation),
-            (r']', Punctuation, '#pop'),
+            (r'\]', Punctuation, '#pop'),
         ],
 
         # a json value - either a simple value or a complex value (object or array)
         'value': [
             include('whitespace'),
             include('simplevalue'),
-            (r'{', Punctuation, 'objectvalue'),
+            (r'\{', Punctuation, 'objectvalue'),
             (r'\[', Punctuation, 'arrayvalue'),
         ],
 
