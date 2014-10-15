@@ -2129,7 +2129,7 @@ class TwigLexer(RegexLexer):
              bygroups(Operator, Text, Name.Function)),
             (r'(is)(\s+)(not)?(\s*)(%s)' % _ident_inner,
              bygroups(Keyword, Text, Keyword, Text, Name.Function)),
-            (r'(true|false|none|null)\b', Keyword.Pseudo),
+            (r'(?i)(true|false|none|null)\b', Keyword.Pseudo),
             (r'(in|not|and|b-and|or|b-or|b-xor|is'
              r'if|elseif|else|import'
              r'constant|defined|divisibleby|empty|even|iterable|odd|sameas'
@@ -2138,6 +2138,7 @@ class TwigLexer(RegexLexer):
             (r'(loop|block|parent)\b', Name.Builtin),
             (_ident_inner, Name.Variable),
             (r'\.' + _ident_inner, Name.Variable),
+            (r'\.[0-9]+', Number),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
             (r'([{}()\[\]+\-*/,:~%]|\.\.|\?|:|\*\*|\/\/|!=|[><=]=?)', Operator),
