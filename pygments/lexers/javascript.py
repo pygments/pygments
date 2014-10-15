@@ -22,11 +22,11 @@ __all__ = ['JavascriptLexer', 'KalLexer', 'LiveScriptLexer', 'DartLexer',
            'TypeScriptLexer', 'LassoLexer', 'ObjectiveJLexer',
            'CoffeeScriptLexer', 'MaskLexer']
 
-JS_IDENT_START = ('(?:[$_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Lo + uni.Nl
-                  + ']|\\\\u[a-fA-F0-9]{4})')
-JS_IDENT_PART = ('(?:[$_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Lo + uni.Nl
-                 + uni.Mn + uni.Mc + uni.Nd + uni.Pc
-                 + u'\u200c\u200d]|\\\\u[a-fA-F0-9]{4})')
+JS_IDENT_START = ('(?:[$_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') +
+                  ']|\\\\u[a-fA-F0-9]{4})')
+JS_IDENT_PART = ('(?:[$_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                        'Mn', 'Mc', 'Nd', 'Pc') +
+                 u'\u200c\u200d]|\\\\u[a-fA-F0-9]{4})')
 JS_IDENT = JS_IDENT_START + '(?:' + JS_IDENT_PART + ')*'
 
 class JavascriptLexer(RegexLexer):
