@@ -54,14 +54,14 @@ class CSharpLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    # for the range of allowed unicode characters in identifiers,
-    # see http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
+    # for the range of allowed unicode characters in identifiers, see
+    # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
     levels = {
         'none': '@?[_a-zA-Z]\w*',
-        'basic': ('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
-                  '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
-                  uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
+        'basic': ('@?[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' +
+                  '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
+                                    'Cf', 'Mn', 'Mc') + ']*'),
         'full': ('@?(?:_|[^' +
                  uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])'
                  + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
@@ -169,16 +169,16 @@ class NemerleLexer(RegexLexer):
     # for the range of allowed unicode characters in identifiers, see
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
-    levels = dict(
-        none='@?[_a-zA-Z]\w*',
-        basic=('@?[_' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl + ']' +
-               '[' + uni.Lu + uni.Ll + uni.Lt + uni.Lm + uni.Nl +
-               uni.Nd + uni.Pc + uni.Cf + uni.Mn + uni.Mc + ']*'),
-        full=('@?(?:_|[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo',
-                                          'Nl') + '])'
-              + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
-                                     'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
-    )
+    levels = {
+        'none': '@?[_a-zA-Z]\w*',
+        'basic': ('@?[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' +
+                  '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
+                                    'Cf', 'Mn', 'Mc') + ']*'),
+        'full': ('@?(?:_|[^' +
+                 uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') + '])'
+                 + '[^' + uni.allexcept('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
+                                        'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
+    }
 
     tokens = {}
     token_variants = True
