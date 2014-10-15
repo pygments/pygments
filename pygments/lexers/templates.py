@@ -280,7 +280,7 @@ class VelocityLexer(RegexLexer):
 
 class VelocityHtmlLexer(DelegatingLexer):
     """
-    Subclass of the `VelocityLexer` that highlights unlexer data
+    Subclass of the `VelocityLexer` that highlights unlexed data
     with the `HtmlLexer`.
 
     """
@@ -297,7 +297,7 @@ class VelocityHtmlLexer(DelegatingLexer):
 
 class VelocityXmlLexer(DelegatingLexer):
     """
-    Subclass of the `VelocityLexer` that highlights unlexer data
+    Subclass of the `VelocityLexer` that highlights unlexed data
     with the `XmlLexer`.
 
     """
@@ -451,7 +451,7 @@ class MyghtyLexer(RegexLexer):
 
 class MyghtyHtmlLexer(DelegatingLexer):
     """
-    Subclass of the `MyghtyLexer` that highlights unlexer data
+    Subclass of the `MyghtyLexer` that highlights unlexed data
     with the `HtmlLexer`.
 
     .. versionadded:: 0.6
@@ -468,7 +468,7 @@ class MyghtyHtmlLexer(DelegatingLexer):
 
 class MyghtyXmlLexer(DelegatingLexer):
     """
-    Subclass of the `MyghtyLexer` that highlights unlexer data
+    Subclass of the `MyghtyLexer` that highlights unlexed data
     with the `XmlLexer`.
 
     .. versionadded:: 0.6
@@ -485,7 +485,7 @@ class MyghtyXmlLexer(DelegatingLexer):
 
 class MyghtyJavascriptLexer(DelegatingLexer):
     """
-    Subclass of the `MyghtyLexer` that highlights unlexer data
+    Subclass of the `MyghtyLexer` that highlights unlexed data
     with the `JavascriptLexer`.
 
     .. versionadded:: 0.6
@@ -504,7 +504,7 @@ class MyghtyJavascriptLexer(DelegatingLexer):
 
 class MyghtyCssLexer(DelegatingLexer):
     """
-    Subclass of the `MyghtyLexer` that highlights unlexer data
+    Subclass of the `MyghtyLexer` that highlights unlexed data
     with the `CssLexer`.
 
     .. versionadded:: 0.6
@@ -661,7 +661,7 @@ class MakoHtmlLexer(DelegatingLexer):
 
 class MakoXmlLexer(DelegatingLexer):
     """
-    Subclass of the `MakoLexer` that highlights unlexer data
+    Subclass of the `MakoLexer` that highlights unlexed data
     with the `XmlLexer`.
 
     .. versionadded:: 0.7
@@ -678,7 +678,7 @@ class MakoXmlLexer(DelegatingLexer):
 
 class MakoJavascriptLexer(DelegatingLexer):
     """
-    Subclass of the `MakoLexer` that highlights unlexer data
+    Subclass of the `MakoLexer` that highlights unlexed data
     with the `JavascriptLexer`.
 
     .. versionadded:: 0.7
@@ -697,7 +697,7 @@ class MakoJavascriptLexer(DelegatingLexer):
 
 class MakoCssLexer(DelegatingLexer):
     """
-    Subclass of the `MakoLexer` that highlights unlexer data
+    Subclass of the `MakoLexer` that highlights unlexed data
     with the `CssLexer`.
 
     .. versionadded:: 0.7
@@ -773,7 +773,7 @@ class CheetahLexer(RegexLexer):
 
 class CheetahHtmlLexer(DelegatingLexer):
     """
-    Subclass of the `CheetahLexer` that highlights unlexer data
+    Subclass of the `CheetahLexer` that highlights unlexed data
     with the `HtmlLexer`.
     """
 
@@ -788,7 +788,7 @@ class CheetahHtmlLexer(DelegatingLexer):
 
 class CheetahXmlLexer(DelegatingLexer):
     """
-    Subclass of the `CheetahLexer` that highlights unlexer data
+    Subclass of the `CheetahLexer` that highlights unlexed data
     with the `XmlLexer`.
     """
 
@@ -803,7 +803,7 @@ class CheetahXmlLexer(DelegatingLexer):
 
 class CheetahJavascriptLexer(DelegatingLexer):
     """
-    Subclass of the `CheetahLexer` that highlights unlexer data
+    Subclass of the `CheetahLexer` that highlights unlexed data
     with the `JavascriptLexer`.
     """
 

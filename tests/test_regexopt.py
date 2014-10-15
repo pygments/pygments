@@ -50,3 +50,19 @@ class RegexOptTestCase(unittest.TestCase):
                 self.assertTrue(rex.match(w))
             for w in no_match:
                 self.assertFalse(rex.match(w))
+
+    def test_prefix(self):
+        opt = regex_opt(('a', 'b'), prefix=r':{1,2}')
+        print(opt)
+        rex = re.compile(opt)
+        self.assertFalse(rex.match('a'))
+        self.assertTrue(rex.match('::a'))
+        self.assertFalse(rex.match(':::')) # fullmatch
+
+    def test_suffix(self):
+        opt = regex_opt(('a', 'b'), suffix=r':{1,2}')
+        print(opt)
+        rex = re.compile(opt)
+        self.assertFalse(rex.match('a'))
+        self.assertTrue(rex.match('a::'))
+        self.assertFalse(rex.match(':::')) # fullmatch
