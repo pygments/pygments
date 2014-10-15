@@ -2092,6 +2092,13 @@ class TwigLexer(RegexLexer):
 
     flags = re.M | re.S
 
+    # Note that a backslash is included in the following two patterns
+    # PHP uses a backslash as a namespace separator
+    _ident_char = r'[\\\w-]|[^\x00-\x7f]'
+    _ident_begin = r'(?:[\\_a-z]|[^\x00-\x7f])'
+    _ident_end = r'(?:' + _ident_char + ')*'
+    _ident_inner = _ident_begin + _ident_end
+
     tokens = {
         'root': [
             (r'[^{]+', Other),
@@ -2099,23 +2106,28 @@ class TwigLexer(RegexLexer):
             # twig comments
             (r'\{\#.*?\#\}', Comment),
             # raw twig blocks
-            (r'(\{%)(-?\s*)(raw|verbatim)(\s*-?)(%\})(.*?)'
-             r'(\{%)(-?\s*)(endraw|endverbatim)(\s*-?)(%\})',
+            (r'(\{%)(-?\s*)(raw)(\s*-?)(%\})(.*?)'
+             r'(\{%)(-?\s*)(endraw)(\s*-?)(%\})',
              bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
-                      Text, Comment.Preproc, Text, Keyword, Text,
+                      Other, Comment.Preproc, Text, Keyword, Text,
+                      Comment.Preproc)),
+            (r'(\{%)(-?\s*)(verbatim)(\s*-?)(%\})(.*?)'
+             r'(\{%)(-?\s*)(endverbatim)(\s*-?)(%\})',
+             bygroups(Comment.Preproc, Text, Keyword, Text, Comment.Preproc,
+                      Other, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
             # filter blocks
-            (r'(\{%)(-?\s*)(filter)(\s+)([a-zA-Z_]\w*)',
+            (r'(\{%%)(-?\s*)(filter)(\s+)(%s)' % _ident_inner,
              bygroups(Comment.Preproc, Text, Keyword, Text, Name.Function),
-             'block'),
+             'tag'),
             (r'(\{%)(-?\s*)([a-zA-Z_]\w*)',
-             bygroups(Comment.Preproc, Text, Keyword), 'block'),
+             bygroups(Comment.Preproc, Text, Keyword), 'tag'),
             (r'\{', Other),
         ],
         'varnames': [
-            (r'(\|)(\s*)([a-zA-Z_]\w*)',
+            (r'(\|)(\s*)(%s)' % _ident_inner,
              bygroups(Operator, Text, Name.Function)),
-            (r'(is)(\s+)(not)?(\s+)?([a-zA-Z_]\w*)',
+            (r'(is)(\s+)(not)?(\s*)(%s)' % _ident_inner,
              bygroups(Keyword, Text, Keyword, Text, Name.Function)),
             (r'(true|false|none|null)\b', Keyword.Pseudo),
             (r'(in|not|and|b-and|or|b-or|b-xor|is'
@@ -2124,8 +2136,8 @@ class TwigLexer(RegexLexer):
              r'matches|starts\s+with|ends\s+with)\b',
              Keyword),
             (r'(loop|block|parent)\b', Name.Builtin),
-            (r'[a-zA-Z][\w-]*', Name.Variable),
-            (r'\.\w+', Name.Variable),
+            (_ident_inner, Name.Variable),
+            (r'\.' + _ident_inner, Name.Variable),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
             (r'([{}()\[\]+\-*/,:~%]|\.\.|\?|:|\*\*|\/\/|!=|[><=]=?)', Operator),
@@ -2137,7 +2149,7 @@ class TwigLexer(RegexLexer):
             (r'(-?)(\}\})', bygroups(Text, Comment.Preproc), '#pop'),
             include('varnames')
         ],
-        'block': [
+        'tag': [
             (r'\s+', Text),
             (r'(-?)(%\})', bygroups(Text, Comment.Preproc), '#pop'),
             include('varnames'),
