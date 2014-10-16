@@ -83,7 +83,8 @@ class RegeditLexer(RegexLexer):
             (r'(dword|hex(?:\([0-9a-fA-F]\))?)(:)([0-9a-fA-F,]+)',
              bygroups(Name.Variable, Punctuation, Number), '#pop'),
             # As far as I know, .reg files do not support line continuation.
-            (r'.*', String, '#pop'),
+            (r'.+', String, '#pop'),
+            default('#pop'),
         ]
     }
 
@@ -193,7 +194,7 @@ class KconfigLexer(RegexLexer):
             call_indent(3),
             call_indent(2),
             call_indent(1),
-            ('', Text, '#pop'),  # for incomplete help sections without text
+            default('#pop'),  # for incomplete help sections without text
         ],
         # Handle text for indentation levels 7 to 1
         'indent7': do_indent(7),
@@ -433,7 +434,8 @@ class SquidConfLexer(RegexLexer):
         ],
         'comment': [
             (r'\s*TAG:.*', String.Escape, '#pop'),
-            (r'.*', Comment, '#pop'),
+            (r'.+', Comment, '#pop'),
+            default('#pop'),
         ],
     }
 

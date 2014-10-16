@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using, this
+from pygments.lexer import RegexLexer, include, bygroups, using, this, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Punctuation, Generic, Number, Whitespace
 
@@ -299,7 +299,7 @@ class DebianControlLexer(RegexLexer):
              bygroups(Text, String, Name, Name.Class)),
             (r':.*\n', Generic.Strong),
             (r' .*\n', Text),
-            ('', Text, '#pop'),
+            default('#pop'),
         ],
         'depends': [
             (r':\s*', Text),

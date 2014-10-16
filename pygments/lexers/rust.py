@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include, bygroups, words
+from pygments.lexer import RegexLexer, include, bygroups, words, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
@@ -128,7 +128,9 @@ class RustLexer(RegexLexer):
             (r'[*/]', Comment.Multiline),
         ],
         'number_lit': [
-            (r'(([ui](8|16|32|64)?)|(f(32|64)?))?', Keyword, '#pop'),
+            (r'[ui](8|16|32|64)', Keyword, '#pop'),
+            (r'f(32|64)', Keyword, '#pop'),
+            default('#pop'),
         ],
         'string': [
             (r'"', String, '#pop'),

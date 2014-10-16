@@ -230,7 +230,7 @@ class CommonLispLexer(RegexLexer):
 
     tokens = {
         'root': [
-            ('', Text, 'body'),
+            default('body'),
         ],
         'multiline-comment': [
             (r'#\|', Comment.Multiline, '#push'),  # (cf. Hyperspec 2.4.8.19)

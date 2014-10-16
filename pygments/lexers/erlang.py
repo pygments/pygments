@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, words, do_insertions, \
-    include
+    include, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
 
@@ -293,7 +293,10 @@ class ElixirLexer(RegexLexer):
                     (name + '-end', name + '-no-intp')),
             ]
 
-            states[name + '-end'] = [(r'[a-zA-Z]*', token, '#pop')]
+            states[name + '-end'] = [
+                (r'[a-zA-Z]+', token, '#pop'),
+                default('#pop'),
+            ]
             states[name + '-intp'] = [
                 (r'^\s*' + term, String.Heredoc, '#pop'),
                 include('heredoc_interpol'),

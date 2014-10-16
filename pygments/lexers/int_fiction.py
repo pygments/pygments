@@ -45,8 +45,9 @@ class Inform6Lexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(\A(!%%[^%s]*[%s])+)?' % (_newline, _newline), Comment.Preproc,
-             'directive')
+            (r'\A(!%%[^%s]*[%s])+' % (_newline, _newline), Comment.Preproc,
+             'directive'),
+            default('directive')
         ],
         '_whitespace': [
             (r'\s+', Text),
@@ -216,11 +217,13 @@ class Inform6Lexer(RegexLexer):
         ],
         'label?': [
             include('_whitespace'),
-            (r'(%s)?' % _name, Name.Label, '#pop')
+            (_name, Name.Label, '#pop'),
+            default('#pop')
         ],
         'variable?': [
             include('_whitespace'),
-            (r'(%s)?' % _name, Name.Variable, '#pop')
+            (_name, Name.Variable, '#pop'),
+            default('#pop')
         ],
         # Values after hashes
         'obsolete-dictionary-word': [
@@ -275,7 +278,8 @@ class Inform6Lexer(RegexLexer):
         # [, Replace, Stub
         'routine-name?': [
             include('_whitespace'),
-            (r'(%s)?' % _name, Name.Function, '#pop')
+            (_name, Name.Function, '#pop'),
+            default('#pop')
         ],
         'locals': [
             include('_whitespace'),
@@ -353,7 +357,8 @@ class Inform6Lexer(RegexLexer):
             include('_whitespace'),
             (r';', Punctuation, '#pop'),
             (r',', Punctuation),
-            (r'(?i)(global\b)?', Keyword, '_global')
+            (r'(?i)global\b', Keyword, '_global'),
+            default('_global')
         ],
         # Include, Link, Message
         'diagnostic': [
@@ -428,8 +433,9 @@ class Inform6Lexer(RegexLexer):
             (r'@', Keyword, 'opcode'),
             (r'#(?![agrnw]\$|#)', Punctuation, 'directive'),
             (r'<', Punctuation, 'default'),
-            (r'(move\b)?', Keyword,
-             ('default', '_keyword-expression', '_expression'))
+            (r'move\b', Keyword,
+             ('default', '_keyword-expression', '_expression')),
+            default(('default', '_keyword-expression', '_expression'))
         ],
         'miscellaneous-keyword?': [
             include('_whitespace'),
@@ -444,11 +450,13 @@ class Inform6Lexer(RegexLexer):
         ],
         '(?': [
             include('_whitespace'),
-            (r'\(?', Punctuation, '#pop')
+            (r'\(', Punctuation, '#pop'),
+            default('#pop')
         ],
         'for': [
             include('_whitespace'),
-            (r';?', Punctuation, ('_for-expression', '_expression'))
+            (r';', Punctuation, ('_for-expression', '_expression')),
+            default(('_for-expression', '_expression'))
         ],
         'print-list': [
             include('_whitespace'),
@@ -868,9 +876,9 @@ class Tads3Lexer(RegexLexer):
             default(('#pop', 'object-body/no-braces', 'classes', 'class'))
         ],
         'object-body/no-braces': [
-           (r';', Punctuation, '#pop'),
-           (r'\{', Punctuation, ('#pop', 'object-body')),
-           include('object-body')
+            (r';', Punctuation, '#pop'),
+            (r'\{', Punctuation, ('#pop', 'object-body')),
+            include('object-body')
         ],
         'object-body': [
             (r';', Punctuation),
@@ -1124,7 +1132,8 @@ class Tads3Lexer(RegexLexer):
         ],
         'enum': [
             include('whitespace'),
-            (r'(token\b)?', Keyword, ('#pop', 'constants'))
+            (r'token\b', Keyword, ('#pop', 'constants')),
+            default(('#pop', 'constants'))
         ],
         'grammar': [
             (r'\)+', Punctuation),
@@ -1165,7 +1174,8 @@ class Tads3Lexer(RegexLexer):
         'inherited': [
             (r'<', Punctuation, ('#pop', 'classes', 'class')),
             include('whitespace'),
-            (r'%s?' % _name, Name.Class, '#pop'),
+            (_name, Name.Class, '#pop'),
+            default('#pop')
         ],
         'operator': [
             (r'negate\b', Operator.Word, '#pop'),
@@ -1199,7 +1209,8 @@ class Tads3Lexer(RegexLexer):
         'classes': [
             (r'[:,]', Punctuation, 'class'),
             include('whitespace'),
-            (r'>?', Punctuation, '#pop')
+            (r'>', Punctuation, '#pop'),
+            default('#pop')
         ],
         'constants': [
             (r',+', Punctuation),
