@@ -414,8 +414,9 @@ class CryptolLexer(RegexLexer):
             (r'\s+', Text),
             (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
             (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
-            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
-            (r'{-', Comment.Multiline, 'comment'),
+            # TODO: these don't match the comments in docs, remove.
+            #(r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
+            #(r'{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
             # (HACK, but it makes sense to push two instances, believe me)
