@@ -168,18 +168,18 @@ class HttpLexer(RegexLexer):
     tokens = {
         'root': [
             (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE|PATCH)( +)([^ ]+)( +)'
-             r'(HTTP)(/)(1\.[01])(\r?\n|$)',
+             r'(HTTP)(/)(1\.[01])(\r?\n|\Z)',
              bygroups(Name.Function, Text, Name.Namespace, Text,
                       Keyword.Reserved, Operator, Number, Text),
              'headers'),
-            (r'(HTTP)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|$)',
+            (r'(HTTP)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|\Z)',
              bygroups(Keyword.Reserved, Operator, Number, Text, Number,
                       Text, Name.Exception, Text),
              'headers'),
         ],
         'headers': [
-            (r'([^\s:]+)( *)(:)( *)([^\r\n]+)(\r?\n|$)', header_callback),
-            (r'([\t ]+)([^\r\n]+)(\r?\n|$)', continuous_header_callback),
+            (r'([^\s:]+)( *)(:)( *)([^\r\n]+)(\r?\n|\Z)', header_callback),
+            (r'([\t ]+)([^\r\n]+)(\r?\n|\Z)', continuous_header_callback),
             (r'\r?\n', Text, 'content')
         ],
         'content': [
