@@ -776,7 +776,7 @@ class ObjectiveJLexer(RegexLexer):
             include('whitespace'),
 
             # function definition
-            (r'^(' + _ws + r'[\+-]' + _ws + r')([\(a-zA-Z_].*?[^\(])(' + _ws + '{)',
+            (r'^(' + _ws + r'[\+-]' + _ws + r')([\(a-zA-Z_].*?[^\(])(' + _ws + r'\{)',
              bygroups(using(this), using(this, state='function_signature'),
                       using(this))),
 

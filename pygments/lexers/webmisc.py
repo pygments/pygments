@@ -713,7 +713,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'//|/|\+|-|;|,|\(|\)', Punctuation),
 
             # STANDALONE QNAMES
-            (qname + r'(?=\s*{)', Name.Tag, 'qname_braren'),
+            (qname + r'(?=\s*\{)', Name.Tag, 'qname_braren'),
             (qname + r'(?=\s*\([^:])', Name.Function, 'qname_braren'),
             (qname, Name.Tag, 'operator'),
         ]

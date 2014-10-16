@@ -240,7 +240,7 @@ class AsymptoteLexer(RegexLexer):
             (r'((?:[\w*\s])+?(?:\s|\*))'  # return arguments
              r'([a-zA-Z_]\w*)'            # method name
              r'(\s*\([^;]*?\))'           # signature
-             r'(' + _ws + r')({)',
+             r'(' + _ws + r')(\{)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),

@@ -173,8 +173,8 @@ class RagelEmbeddedLexer(RegexLexer):
             (r'(' + r'|'.join((  # keep ragel code in largest possible chunks.
                 r'(' + r'|'.join((
                     r'[^}\'"\[/#]',   # exclude unsafe characters
-                    r'}(?=[^%]|$)',   # } is okay as long as it's not followed by %
-                    r'}%(?=[^%]|$)',  # ...well, one %'s okay, just not two...
+                    r'\}(?=[^%]|$)',   # } is okay as long as it's not followed by %
+                    r'\}%(?=[^%]|$)',  # ...well, one %'s okay, just not two...
                     r'[^\\]\\[{}]',   # ...and } is okay if it's escaped
 
                     # allow / if it's preceded with one of these symbols
@@ -202,7 +202,7 @@ class RagelEmbeddedLexer(RegexLexer):
                 r'\#.*$\n?',                # ruby/ragel comment
             )) + r')+', using(RagelLexer)),
 
-            (r'}%%', Punctuation, '#pop'),
+            (r'\}%%', Punctuation, '#pop'),
         ]
     }
 

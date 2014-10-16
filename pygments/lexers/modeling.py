@@ -309,7 +309,7 @@ class StanLexer(RegexLexer):
             # block start
             include('whitespace'),
             # Block start
-            (r'(%s)(\s*)({)' %
+            (r'(%s)(\s*)(\{)' %
              r'|'.join(('functions', 'data', r'transformed\s+?data',
                         'parameters', r'transformed\s+parameters',
                         'model', r'generated\s+quantities')),

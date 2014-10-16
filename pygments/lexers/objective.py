@@ -86,19 +86,19 @@ def objective(baselexer):
             ],
             'oc_classname': [
                 # interface definition that inherits
-                ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?(\s*)({)',
+                ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?(\s*)(\{)',
                  bygroups(Name.Class, Text, Name.Class, Text, Punctuation),
                  ('#pop', 'oc_ivars')),
                 ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?',
                  bygroups(Name.Class, Text, Name.Class), '#pop'),
                 # interface definition for a category
-                ('([a-zA-Z$_][\w$]*)(\s*)(\([a-zA-Z$_][\w$]*\))(\s*)({)',
+                ('([a-zA-Z$_][\w$]*)(\s*)(\([a-zA-Z$_][\w$]*\))(\s*)(\{)',
                  bygroups(Name.Class, Text, Name.Label, Text, Punctuation),
                  ('#pop', 'oc_ivars')),
                 ('([a-zA-Z$_][\w$]*)(\s*)(\([a-zA-Z$_][\w$]*\))',
                  bygroups(Name.Class, Text, Name.Label), '#pop'),
                 # simple interface / implementation
-                ('([a-zA-Z$_][\w$]*)(\s*)({)',
+                ('([a-zA-Z$_][\w$]*)(\s*)(\{)',
                  bygroups(Name.Class, Text, Punctuation), ('#pop', 'oc_ivars')),
                 ('([a-zA-Z$_][\w$]*)', Name.Class, '#pop')
             ],
