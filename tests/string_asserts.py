@@ -11,12 +11,12 @@ class StringTests(object):
 
     def assertStartsWith(self, haystack, needle, msg=None):
         if msg is None:
-            msg = "'{}' does not start with '{}'".format(haystack, needle)
+            msg = "'{0}' does not start with '{1}'".format(haystack, needle)
         if not haystack.startswith(needle):
             raise(AssertionError(msg))
 
     def assertEndsWith(self, haystack, needle, msg=None):
         if msg is None:
-            msg = "'{}' does not end with '{}'".format(haystack, needle)
+            msg = "'{0}' does not end with '{1}'".format(haystack, needle)
         if not haystack.endswith(needle):
             raise(AssertionError(msg))

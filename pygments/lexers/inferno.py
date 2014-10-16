@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups
+from pygments.lexer import RegexLexer, include, bygroups, default
 from pygments.token import Punctuation, Text, Comment, Operator, Keyword, \
     Name, String, Number
 
@@ -74,7 +74,7 @@ class LimboLexer(RegexLexer):
         ],
         'root': [
             include('whitespace'),
-            ('', Text, 'statement'),
+            default('statement'),
         ],
     }
 

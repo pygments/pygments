@@ -11,6 +11,8 @@
 // based on:
 // http://shootout.alioth.debian.org/u32/benchmark.php?test=nbody&lang=java
 
+/* nest some /* comments */ */
+
 extern mod std;
 
 use core::os;
@@ -22,7 +24,7 @@ use core::os;
 // an llvm intrinsic.
 #[nolink]
 extern mod libc {
-    #[legacy_exports];
+    #![legacy_exports];
     fn sqrt(n: float) -> float;
 }
 

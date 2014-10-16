@@ -13,7 +13,7 @@ import sys
 
 from pygments.formatter import Formatter
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic, Token, Whitespace
+    Number, Operator, Generic, Token, Whitespace
 from pygments.console import ansiformat
 from pygments.util import get_choice_opt
 
@@ -108,8 +108,8 @@ class TerminalFormatter(Formatter):
 
         for ttype, value in tokensource:
             if value.endswith("\n"):
-               self._write_lineno(outfile)
-               value = value[:-1]
+                self._write_lineno(outfile)
+                value = value[:-1]
             color = self.colorscheme.get(ttype)
             while color is None:
                 ttype = ttype[:-1]
@@ -149,4 +149,3 @@ class TerminalFormatter(Formatter):
                     outfile.write(ansiformat(color, spl[-1]))
             else:
                 outfile.write(value)
-
