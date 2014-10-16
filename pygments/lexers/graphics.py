@@ -107,7 +107,7 @@ class PostScriptLexer(RegexLexer):
             # String literals are awkward; enter separate state.
             (r'\(', String, 'stringliteral'),
 
-            (r'[\{\}(\<\<)(\>\>)\[\]]', Punctuation),
+            (r'[{}<>\[\]]', Punctuation),
 
             # Numbers
             (r'<[0-9A-Fa-f]+>' + delimiter_end, Number.Hex),
@@ -225,7 +225,7 @@ class AsymptoteLexer(RegexLexer):
              r'scaleT|scientific|segment|side|slice|splitface|string|surface|'
              r'tensionSpecifier|ticklocate|ticksgridT|tickvalues|transform|'
              r'transformation|tree|triangle|trilinear|triple|vector|'
-             r'vertex|void)(?=([ ]{1,}[a-zA-Z]))', Keyword.Type),
+             r'vertex|void)(?=\s+[a-zA-Z])', Keyword.Type),
             # Now the asy-type-name which are not asy-function-name
             # except yours !
             # Perhaps useless

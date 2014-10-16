@@ -120,7 +120,7 @@ class Inform6Lexer(RegexLexer):
             (r'[%s][^@][%s]' % (_squote, _squote), String.Char, '#pop'),
             (r'([%s])(@\{[0-9a-fA-F]{1,4}\})([%s])' % (_squote, _squote),
              bygroups(String.Char, String.Escape, String.Char), '#pop'),
-            (r'([%s])(@..)([%s])' % (_squote, _squote),
+            (r'([%s])(@.{2})([%s])' % (_squote, _squote),
              bygroups(String.Char, String.Escape, String.Char), '#pop'),
             (r'[%s]' % _squote, String.Single, ('#pop', 'dictionary-word')),
             (r'[%s]' % _dquote, String.Double, ('#pop', 'string')),
@@ -181,7 +181,7 @@ class Inform6Lexer(RegexLexer):
             (r'[^~^\\@({%s]+' % _squote, String.Single),
             (r'[({]', String.Single),
             (r'@\{[0-9a-fA-F]{,4}\}', String.Escape),
-            (r'@..', String.Escape),
+            (r'@.{2}', String.Escape),
             (r'[%s]' % _squote, String.Single, '#pop')
         ],
         'string': [

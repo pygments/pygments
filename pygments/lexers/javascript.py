@@ -137,9 +137,8 @@ class KalLexer(RegexLexer):
              r'([gim]+\b|\B)', String.Regex),
             (r'\?|:|_(?=\n)|==?|!=|-(?!>)|[<>+*/-]=?',
              Operator),
-            (r'\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|'
-             r'\bbut\b|\bbitwise\b|\bmod\b|\^|\bxor\b|\bexists\b|\bdoesnt\s+exist\b',
-             Operator.Word),
+            (r'\b(and|or|isnt|is|not|but|bitwise|mod|\^|xor|exists|'
+             r'doesnt\s+exist)\b', Operator.Word),
             (r'(?:\([^()]+\))?\s*>', Name.Function),
             (r'[{(]', Punctuation),
             (r'\[', Punctuation, 'listcomprehension'),
@@ -373,8 +372,8 @@ class DartLexer(RegexLexer):
         ],
         'string_literal': [
             # Raw strings.
-            (r'r"""([\s|\S]*?)"""', String.Double),
-            (r"r'''([\s|\S]*?)'''", String.Single),
+            (r'r"""([\w\W]*?)"""', String.Double),
+            (r"r'''([\w\W]*?)'''", String.Single),
             (r'r"(.*?)"', String.Double),
             (r"r'(.*?)'", String.Single),
             # Normal Strings.

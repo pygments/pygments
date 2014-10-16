@@ -127,7 +127,11 @@ def _rx_indent(level):
         space_repeat = '+'
     else:
         space_repeat = '{1,%d}' % (tab_width - 1)
-    return r'(?:\t| %s\t| {%s}){%s}.*\n' % (space_repeat, tab_width, level)
+    if level == 1:
+        level_repeat = ''
+    else:
+        level_repeat = '{%s}' % level
+    return r'(?:\t| %s\t| {%s})%s.*\n' % (space_repeat, tab_width, level_repeat)
 
 
 class KconfigLexer(RegexLexer):

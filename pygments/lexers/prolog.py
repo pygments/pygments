@@ -100,10 +100,10 @@ class LogtalkLexer(RegexLexer):
     tokens = {
         'root': [
             # Directives
-            (r'^\s*:-\s',Punctuation,'directive'),
+            (r'^\s*:-\s', Punctuation, 'directive'),
             # Comments
             (r'%.*?\n', Comment),
-            (r'/\*(.|\n)*?\*/',Comment),
+            (r'/\*(.|\n)*?\*/', Comment),
             # Whitespace
             (r'\n', Text),
             (r'\s+', Text),
@@ -231,12 +231,12 @@ class LogtalkLexer(RegexLexer):
             (r'[()\[\],.|]', Text),
             # Atoms
             (r"[a-z][a-zA-Z0-9_]*", Text),
-            (r"[']", String, 'quoted_atom'),
+            (r"'", String, 'quoted_atom'),
         ],
 
         'quoted_atom': [
-            (r"['][']", String),
-            (r"[']", String, '#pop'),
+            (r"''", String),
+            (r"'", String, '#pop'),
             (r'\\([\\abfnrtv"\']|(x[a-fA-F0-9]+|[0-7]+)\\)', String.Escape),
             (r"[^\\'\n]+", String),
             (r'\\', String),
@@ -248,7 +248,7 @@ class LogtalkLexer(RegexLexer):
             (r'(e(lse|ndif))[.]', Keyword, 'root'),
             # Entity directives
             (r'(category|object|protocol)(?=[(])', Keyword, 'entityrelations'),
-            (r'(end_(category|object|protocol))[.]',Keyword, 'root'),
+            (r'(end_(category|object|protocol))[.]', Keyword, 'root'),
             # Predicate scope directives
             (r'(public|protected|private)(?=[(])', Keyword, 'root'),
             # Other directives
@@ -275,7 +275,7 @@ class LogtalkLexer(RegexLexer):
             (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
             # Atoms
             (r"[a-z][a-zA-Z0-9_]*", Text),
-            (r"[']", String, 'quoted_atom'),
+            (r"'", String, 'quoted_atom'),
             # Strings
             (r'"(\\\\|\\"|[^"])*"', String),
             # End of entity-opening directive
@@ -286,7 +286,7 @@ class LogtalkLexer(RegexLexer):
             (r'[()\[\],.|]', Text),
             # Comments
             (r'%.*?\n', Comment),
-            (r'/\*(.|\n)*?\*/',Comment),
+            (r'/\*(.|\n)*?\*/', Comment),
             # Whitespace
             (r'\n', Text),
             (r'\s+', Text),
