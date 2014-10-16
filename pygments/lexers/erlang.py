@@ -432,7 +432,7 @@ class ElixirLexer(RegexLexer):
         'map_val': [
             include('root'),
             (r',', Punctuation, '#pop'),
-            (r'(?=})', Punctuation, '#pop'),
+            (r'(?=\})', Punctuation, '#pop'),
         ],
         'tuple': [
             include('root'),

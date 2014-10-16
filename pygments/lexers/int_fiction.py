@@ -179,7 +179,7 @@ class Inform6Lexer(RegexLexer):
             (r'[~^]+', String.Escape),
             (r'[^~^\\@({%s]+' % _squote, String.Single),
             (r'[({]', String.Single),
-            (r'@{[0-9a-fA-F]{,4}}', String.Escape),
+            (r'@\{[0-9a-fA-F]{,4}\}', String.Escape),
             (r'@..', String.Escape),
             (r'[%s]' % _squote, String.Single, '#pop')
         ],

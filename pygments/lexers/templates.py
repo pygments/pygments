@@ -1802,10 +1802,10 @@ class HandlebarsLexer(RegexLexer):
         'root': [
             (r'[^{]+', Other),
 
-            (r'{{!.*}}', Comment),
+            (r'\{\{!.*\}\}', Comment),
 
-            (r'({{{)(\s*)', bygroups(Comment.Special, Text), 'tag'),
-            (r'({{)(\s*)', bygroups(Comment.Preproc, Text), 'tag'),
+            (r'(\{\{\{)(\s*)', bygroups(Comment.Special, Text), 'tag'),
+            (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'tag'),
         ],
 
         'tag': [
@@ -1887,7 +1887,7 @@ class LiquidLexer(RegexLexer):
             # tags and block tags
             (r'(\{%)(\s*)', bygroups(Punctuation, Whitespace), 'tag-or-block'),
             # output tags
-            (r'({{)(\s*)([^\s}]+)',
+            (r'(\{\{)(\s*)([^\s}]+)',
              bygroups(Punctuation, Whitespace, using(this, state = 'generic')),
              'output'),
             (r'\{', Text)

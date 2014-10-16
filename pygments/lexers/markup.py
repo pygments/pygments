@@ -96,7 +96,7 @@ class MoinWikiLexer(RegexLexer):
             (r'.', Text),
         ],
         'codeblock': [
-            (r'}}}', Name.Builtin, '#pop'),
+            (r'\}\}\}', Name.Builtin, '#pop'),
             # these blocks are allowed to be nested in Trac, but not MoinMoin
             (r'\{\{\{', Text, '#push'),
             (r'[^{}]+', Comment.Preproc),  # slurp boring text
