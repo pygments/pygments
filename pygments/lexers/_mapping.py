@@ -217,7 +217,7 @@ LEXERS = {
     'MathematicaLexer': ('pygments.lexers.algebra', 'Mathematica', ('mathematica', 'mma', 'nb'), ('*.nb', '*.cdf', '*.nbp', '*.ma'), ('application/mathematica', 'application/vnd.wolfram.mathematica', 'application/vnd.wolfram.mathematica.package', 'application/vnd.wolfram.cdf')),
     'MatlabLexer': ('pygments.lexers.matlab', 'Matlab', ('matlab',), ('*.m',), ('text/matlab',)),
     'MatlabSessionLexer': ('pygments.lexers.matlab', 'Matlab session', ('matlabsession',), (), ()),
-    'MiniDLexer': ('pygments.lexers.d', 'MiniD', ('minid',), ('*.md',), ('text/x-minidsrc',)),
+    'MiniDLexer': ('pygments.lexers.d', 'MiniD', ('minid',), (), ('text/x-minidsrc',)),
     'ModelicaLexer': ('pygments.lexers.modeling', 'Modelica', ('modelica',), ('*.mo',), ('text/x-modelica',)),
     'Modula2Lexer': ('pygments.lexers.pascal', 'Modula-2', ('modula2', 'm2'), ('*.def', '*.mod'), ('text/x-modula2',)),
     'MoinWikiLexer': ('pygments.lexers.markup', 'MoinMoin/Trac Wiki markup', ('trac-wiki', 'moin'), (), ('text/x-trac-wiki',)),
