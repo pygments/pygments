@@ -39,7 +39,7 @@ class ResourceLexer(RegexLexer):
             (words(_types), Keyword),
         ],
         'string': [
-            (r'(\\x[0-9a-fA-F]{2}|\\u[0-9a-fA-F]{4}|\\U00[0-9a-fA-F]{6}|'
+            (r'(\\x[0-9a-f]{2}|\\u[0-9a-f]{4}|\\U00[0-9a-f]{6}|'
              r'\\[0-7]{1,3}|\\c.|\\[abtnvfre\'"?\\]|\\\{|[^"{\\])+', String),
             (r'\{', String.Escape, 'msgname'),
             (r'"', String, '#pop')
@@ -50,13 +50,13 @@ class ResourceLexer(RegexLexer):
         'message': [
             (r'\{', String.Escape, 'msgname'),
             (r'\}', String.Escape, '#pop'),
-            (r'(,)(\s*)([a-zA-Z]+)(\s*\})',
+            (r'(,)(\s*)([a-z]+)(\s*\})',
              bygroups(Operator, String.Escape, Keyword, String.Escape), '#pop'),
-            (r'(,)(\s*)([a-zA-Z]+)(\s*)(,)(\s*)(offset)(\s*)(:)(\s*)(-?\d+)(\s*)',
+            (r'(,)(\s*)([a-z]+)(\s*)(,)(\s*)(offset)(\s*)(:)(\s*)(-?\d+)(\s*)',
              bygroups(Operator, String.Escape, Keyword, String.Escape, Operator,
                       String.Escape, Operator.Word, String.Escape, Operator,
                       String.Escape, Number.Integer, String.Escape), 'choice'),
-            (r'(,)(\s*)([a-zA-Z]+)(\s*)(,)(\s*)',
+            (r'(,)(\s*)([a-z]+)(\s*)(,)(\s*)',
              bygroups(Operator, String.Escape, Keyword, String.Escape, Operator,
                       String.Escape), 'choice'),
             (r'\s+', String.Escape)
@@ -64,7 +64,7 @@ class ResourceLexer(RegexLexer):
         'choice': [
             (r'(=|<|>|<=|>=|!=)(-?\d+)(\s*\{)',
              bygroups(Operator, Number.Integer, String.Escape), 'message'),
-            (r'([a-zA-Z]+)(\s*\{)', bygroups(Keyword.Type, String.Escape), 'str'),
+            (r'([a-z]+)(\s*\{)', bygroups(Keyword.Type, String.Escape), 'str'),
             (r'\}', String.Escape, ('#pop', '#pop')),
             (r'\s+', String.Escape)
         ],

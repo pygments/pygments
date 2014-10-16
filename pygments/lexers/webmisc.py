@@ -878,7 +878,7 @@ class SlimLexer(ExtendedRegexLexer):
             (r'([ \t]*==?)(.*\n)',
              bygroups(Punctuation, using(RubyLexer)),
              'root'),
-            (r'[ \t]+[\w:-]+(?=[=])', Name.Attribute, 'html-attributes'),
+            (r'[ \t]+[\w:-]+(?==)', Name.Attribute, 'html-attributes'),
             default('plain'),
         ],
 

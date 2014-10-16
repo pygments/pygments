@@ -51,7 +51,7 @@ class PikeLexer(CppLexer):
              r'[a-z_][a-z0-9_]*_t)\b',
              Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (r'[~!%^&*+=|?:<>/-@]', Operator),
+            (r'[~!%^&*+=|?:<>/@-]', Operator),
             inherit,
         ],
         'classname': [
@@ -625,7 +625,7 @@ class MqlLexer(CppLexer):
                 'PRICE_MEDIAN', 'PRICE_TYPICAL', 'PRICE_WEIGHTED',
                 'VOLUME_TICK', 'VOLUME_REAL',
                 'STO_LOWHIGH', 'STO_CLOSECLOSE',
-                'MODE_OPEN', 'MODE_LOW', 'MODE_HIGH', 'MODE_CLOSE', 'MODE_VOLUME', 'MODE_TIME',
+                'MODE_OPEN', 'MODE_CLOSE', 'MODE_VOLUME',
                 'MODE_SMA', 'MODE_EMA', 'MODE_SMMA', 'MODE_LWMA',
                 'MODE_MAIN', 'MODE_SIGNAL', 'MODE_MAIN',
                 'MODE_PLUSDI', 'MODE_MINUSDI', 'MODE_UPPER',

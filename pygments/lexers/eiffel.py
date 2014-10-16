@@ -49,7 +49,7 @@ class EiffelLexer(RegexLexer):
             (r'"([^"%\n]|%.)*?"', String),
             include('numbers'),
             (r"'([^'%]|%'|%%)'", String.Char),
-            (r"(//|\\\\|>=|<=|:=|/=|~|/~|[\\\?!#%&@|+/\-=\>\*$<|^\[\]])", Operator),
+            (r"(//|\\\\|>=|<=|:=|/=|~|/~|[\\?!#%&@|+/\-=>*$<^\[\]])", Operator),
             (r"([{}():;,.])", Punctuation),
             (r'([a-z]\w*)|([A-Z][A-Z0-9_]*[a-z]\w*)', Name),
             (r'([A-Z][A-Z0-9_]*)', Name.Class),
