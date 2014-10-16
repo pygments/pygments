@@ -11,8 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, default, \
-    using, this
+from pygments.lexer import RegexLexer, include, bygroups, default, using, this
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Other
 from pygments.util import get_bool_opt, iteritems
@@ -918,7 +917,7 @@ class ObjectiveJLexer(RegexLexer):
             (r'([$a-zA-Z_]\w+)',                # function name
              bygroups(Name.Function), "#pop"),
 
-            ('', Text, '#pop'),
+            default('#pop'),
         ],
         'function_parameters': [
             include('whitespace'),

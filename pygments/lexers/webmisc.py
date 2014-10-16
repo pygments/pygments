@@ -879,7 +879,7 @@ class SlimLexer(ExtendedRegexLexer):
              bygroups(Punctuation, using(RubyLexer)),
              'root'),
             (r'[ \t]+[\w:-]+(?=[=])', Name.Attribute, 'html-attributes'),
-            (r'', Text, 'plain'),
+            default('plain'),
         ],
 
         'content': [

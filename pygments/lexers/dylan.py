@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions
+from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Literal
 
@@ -120,7 +120,7 @@ class DylanLexer(RegexLexer):
             (r'([a-z0-9-]+)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
                 bygroups(Name.Attribute, Operator, Text, String)),
 
-            ('', Text, 'code')  # no header match, switch to code
+            default('code')  # no header match, switch to code
         ],
         'code': [
             # Whitespace

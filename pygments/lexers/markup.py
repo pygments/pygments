@@ -350,7 +350,8 @@ class GroffLexer(RegexLexer):
             (r'(\.)(\w+)', bygroups(Text, Keyword), 'request'),
             (r'\.', Punctuation, 'request'),
             # Regular characters, slurp till we find a backslash or newline
-            (r'[^\\\n]*', Text, 'textline'),
+            (r'[^\\\n]+', Text, 'textline'),
+            default('textline'),
         ],
         'textline': [
             include('escapes'),

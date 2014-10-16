@@ -9,7 +9,8 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, words, include, bygroups, using, this
+from pygments.lexer import RegexLexer, words, include, bygroups, using, \
+    this, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
     Number, Punctuation, String
 
@@ -166,7 +167,8 @@ class PostScriptLexer(RegexLexer):
         ],
 
         'escape': [
-            (r'([0-8]{3}|n|r|t|b|f|\\|\(|\))?', String.Escape, '#pop'),
+            (r'[0-8]{3}|n|r|t|b|f|\\|\(|\)', String.Escape, '#pop'),
+            default('#pop'),
         ],
     }
 
@@ -251,7 +253,7 @@ class AsymptoteLexer(RegexLexer):
              r'(' + _ws + r')(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
-            ('', Text, 'statement'),
+            default('statement'),
         ],
         'statement': [
             include('whitespace'),
@@ -344,7 +346,7 @@ class GnuplotLexer(RegexLexer):
             (r'\\\n', Comment),
             (r'\\', Comment),
             # don't add the newline to the Comment token
-            ('', Comment, '#pop'),
+            default('#pop'),
         ],
         'whitespace': [
             ('#', Comment, 'comment'),

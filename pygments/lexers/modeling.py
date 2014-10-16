@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using
+from pygments.lexer import RegexLexer, include, bygroups, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
@@ -78,11 +78,13 @@ class ModelicaLexer(RegexLexer):
             include('whitespace'),
             (r'(function|record)\b', Keyword.Reserved),
             (r'(if|for|when|while)\b', Keyword.Reserved, '#pop'),
-            (r'%s?' % _name, Name.Class, '#pop')
+            (_name, Name.Class, '#pop'),
+            default('#pop')
         ],
         'package-prefix': [
             include('whitespace'),
-            (r'%s?' % _name, Name.Namespace, '#pop')
+            (_name, Name.Namespace, '#pop'),
+            default('#pop')
         ],
         'string': [
             (r'"', String.Double, '#pop'),

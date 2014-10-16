@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups, using, this, words
+from pygments.lexer import RegexLexer, bygroups, using, this, words, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
@@ -179,12 +179,14 @@ class ActionScript3Lexer(RegexLexer):
         'type': [
             (r'(\s*)(:)(\s*)(' + typeidentifier + r'|\*)',
              bygroups(Text, Operator, Text, Keyword.Type), '#pop:2'),
-            (r'\s*', Text, '#pop:2')
+            (r'\s+', Text, '#pop:2'),
+            default('#pop:2')
         ],
         'defval': [
             (r'(=)(\s*)([^(),]+)(\s*)(,?)',
              bygroups(Operator, Text, using(this), Text, Operator), '#pop'),
-            (r',?', Operator, '#pop')
+            (r',', Operator, '#pop'),
+            default('#pop')
         ]
     }
 

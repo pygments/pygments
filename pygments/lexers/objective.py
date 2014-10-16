@@ -11,7 +11,8 @@
 
 import re
 
-from pygments.lexer import include, bygroups, using, this, words, inherit
+from pygments.lexer import include, bygroups, using, this, words, inherit, \
+    default
 from pygments.token import Text, Keyword, Name, String, Operator, \
     Number, Punctuation, Literal
 
@@ -136,7 +137,7 @@ def objective(baselexer):
                 (r'[a-zA-Z$_][\w$]*:', Name.Function),
                 (';', Punctuation, '#pop'),
                 (r'\{', Punctuation, 'function'),
-                ('', Text, '#pop'),
+                default('#pop'),
             ],
             'literal_number': [
                 (r'\(', Punctuation, 'literal_number_inner'),

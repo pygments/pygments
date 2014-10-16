@@ -196,7 +196,7 @@ class HaxeLexer(ExtendedRegexLexer):
         'preproc-parenthesis': [
             (r'\s+', Comment.Preproc),
             (r'\)', Comment.Preproc, '#pop'),
-            ('', Text, 'preproc-expr-in-parenthesis'),
+            default('preproc-expr-in-parenthesis'),
         ],
 
         'preproc-expr-chain': [
@@ -367,9 +367,11 @@ class HaxeLexer(ExtendedRegexLexer):
         # local function, anonymous or not
         'function-local': [
             include('spaces'),
-            (r'(' + ident_no_keyword + ')?', Name.Function,
+            (ident_no_keyword, Name.Function,
              ('#pop', 'optional-expr', 'flag', 'function-param',
               'parenthesis-open', 'type-param-constraint')),
+            default(('#pop', 'optional-expr', 'flag', 'function-param',
+                     'parenthesis-open', 'type-param-constraint')),
         ],
 
         'optional-expr': [

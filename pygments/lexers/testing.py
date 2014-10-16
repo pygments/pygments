@@ -9,12 +9,8 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import RegexLexer, include, bygroups, using, \
-    this, inherit, default, words
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
+from pygments.lexer import RegexLexer, include, bygroups
+from pygments.token import Comment, Keyword, Name, String
 
 __all__ = ['GherkinLexer']
 
@@ -38,79 +34,79 @@ class GherkinLexer(RegexLexer):
     tokens = {
         'comments': [
             (r'^\s*#.*$', Comment),
-          ],
-        'feature_elements' : [
+        ],
+        'feature_elements': [
             (step_keywords, Keyword, "step_content_stack"),
             include('comments'),
             (r"(\s|.)", Name.Function),
-          ],
-        'feature_elements_on_stack' : [
+        ],
+        'feature_elements_on_stack': [
             (step_keywords, Keyword, "#pop:2"),
             include('comments'),
             (r"(\s|.)", Name.Function),
-          ],
+        ],
         'examples_table': [
             (r"\s+\|", Keyword, 'examples_table_header'),
             include('comments'),
             (r"(\s|.)", Name.Function),
-          ],
+        ],
         'examples_table_header': [
             (r"\s+\|\s*$", Keyword, "#pop:2"),
             include('comments'),
             (r"\\\|", Name.Variable),
             (r"\s*\|", Keyword),
             (r"[^\|]", Name.Variable),
-          ],
+        ],
         'scenario_sections_on_stack': [
             (feature_element_keywords,
              bygroups(Name.Function, Keyword, Keyword, Name.Function),
              "feature_elements_on_stack"),
-          ],
+        ],
         'narrative': [
             include('scenario_sections_on_stack'),
             include('comments'),
             (r"(\s|.)", Name.Function),
-          ],
+        ],
         'table_vars': [
             (r'(<[^>]+>)', Name.Variable),
-          ],
+        ],
         'numbers': [
             (r'(\d+\.?\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', String),
-          ],
+        ],
         'string': [
             include('table_vars'),
             (r'(\s|.)', String),
-          ],
+        ],
         'py_string': [
             (r'"""', Keyword, "#pop"),
             include('string'),
-          ],
-          'step_content_root':[
+        ],
+        'step_content_root': [
             (r"$", Keyword, "#pop"),
             include('step_content'),
-          ],
-          'step_content_stack':[
+        ],
+        'step_content_stack': [
             (r"$", Keyword, "#pop:2"),
             include('step_content'),
-          ],
-          'step_content':[
+        ],
+        'step_content': [
             (r'"', Name.Function, "double_string"),
             include('table_vars'),
             include('numbers'),
             include('comments'),
             (r'(\s|.)', Name.Function),
-          ],
-          'table_content': [
+        ],
+        'table_content': [
             (r"\s+\|\s*$", Keyword, "#pop"),
             include('comments'),
             (r"\\\|", String),
             (r"\s*\|", Keyword),
             include('string'),
-          ],
+        ],
         'double_string': [
             (r'"', Name.Function, "#pop"),
             include('string'),
-          ],
+        ],
         'root': [
             (r'\n', Name.Function),
             include('comments'),
