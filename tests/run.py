@@ -14,7 +14,8 @@
 
 from __future__ import print_function
 
-import sys, os
+import os
+import sys
 
 # only find tests in this directory
 if os.path.dirname(__file__):

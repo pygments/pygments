@@ -124,9 +124,11 @@ class PygmentsDoc(Directive):
         from pygments.formatters import FORMATTERS
 
         out = []
-        for cls, data in sorted(FORMATTERS.items(),
-                                key=lambda x: x[0].__name__):
-            self.filenames.add(sys.modules[cls.__module__].__file__)
+        for classname, data in sorted(FORMATTERS.items(), key=lambda x: x[0]):
+            module = data[0]
+            mod = __import__(module, None, None, [classname])
+            self.filenames.add(mod.__file__)
+            cls = getattr(mod, classname)
             docstring = cls.__doc__
             if isinstance(docstring, bytes):
                 docstring = docstring.decode('utf8')

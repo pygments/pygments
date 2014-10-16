@@ -39,12 +39,12 @@ def escape_html(text):
 
 def process_file(store, filename):
     try:
-        f = open(filename, 'r')
+        fp = open(filename, 'r')
     except (IOError, OSError):
         return False
     llmatch = 0
-    try:
-        for lno, line in enumerate(f):
+    with fp:
+        for lno, line in enumerate(fp):
             # just some random heuristics to filter out binary files
             if lno < 100 and binary_re.search(line):
                 return False
@@ -69,8 +69,6 @@ def process_file(store, filename):
                         continue
                 llmatch = 0
         return True
-    finally:
-        f.close()
 
 
 def main():
@@ -198,13 +196,13 @@ td { padding: 2px 5px 2px 5px;
           '<td class="tag %%(tag)s">%%(tag)s</td>'
           '<td class="who">%%(who)s</td><td class="what">%%(what)s</td></tr>')
 
-    f = open(output, 'w')
     table = '\n'.join(TABLE % fname +
                       '\n'.join(TR % (no % 2,) % entry
                                 for no, entry in enumerate(store[fname]))
                       for fname in sorted(store))
-    f.write(HTML % (', '.join(map(abspath, args)), table))
-    f.close()
+
+    with open(output, 'w') as fp:
+        fp.write(HTML % (', '.join(map(abspath, args)), table))
 
     print("Report written to %s." % output)
     return 0
