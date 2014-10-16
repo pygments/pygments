@@ -54,7 +54,7 @@ else:
 
 setup(
     name = 'Pygments',
-    version = '2.0pre',
+    version = '2.0rc1',
     url = 'http://pygments.org/',
     license = 'BSD License',
     author = 'Georg Brandl',
