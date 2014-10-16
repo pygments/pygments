@@ -267,7 +267,7 @@ class ChaiscriptLexer(RegexLexer):
             (r"'(\\\\|\\'|[^'])*'", String.Single),
         ],
         'dqstring': [
-            (r'\$\{[^"}]+?\}', String.Iterpol),
+            (r'\$\{[^"}]+?\}', String.Interpol),
             (r'\$', String.Double),
             (r'\\\\', String.Double),
             (r'\\"', String.Double),
