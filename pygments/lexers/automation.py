@@ -347,7 +347,7 @@ class AutoItLexer(RegexLexer):
         ],
         'labels': [
             # sendkeys
-            (r'(^\s*)({\S+?})', bygroups(Text, Name.Label)),
+            (r'(^\s*)(\{\S+?\})', bygroups(Text, Name.Label)),
         ],
         'numbers': [
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),

@@ -52,7 +52,7 @@ class HaskellLexer(RegexLexer):
             (r'\s+', Text),
             # (r'--\s*|.*$', Comment.Doc),
             (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
-            (r'{-', Comment.Multiline, 'comment'),
+            (r'\{-', Comment.Multiline, 'comment'),
             # Lexemes:
             #  Identifiers
             (r'\bimport\b', Keyword.Reserved, 'import'),
@@ -112,7 +112,7 @@ class HaskellLexer(RegexLexer):
             (r'[' + uni.Lu + r']\w*', Keyword.Type),
             (r'(_[\w\']+|[' + uni.Ll + r'][\w\']*)', Name.Function),
             (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
-            (r'{-', Comment.Multiline, 'comment'),
+            (r'\{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
             # (HACK, but it makes sense to push two instances, believe me)
@@ -124,8 +124,8 @@ class HaskellLexer(RegexLexer):
         'comment': [
             # Multiline Comments
             (r'[^-{}]+', Comment.Multiline),
-            (r'{-', Comment.Multiline, '#push'),
-            (r'-}', Comment.Multiline, '#pop'),
+            (r'\{-', Comment.Multiline, '#push'),
+            (r'-\}', Comment.Multiline, '#pop'),
             (r'[-{}]', Comment.Multiline),
         ],
         'character': [
@@ -188,7 +188,7 @@ class IdrisLexer(RegexLexer):
              bygroups(Text, Keyword.Reserved)),
             (r'(\s*)(--(?![!#$%&*+./<=>?@\^|_~:\\]).*?)$', bygroups(Text, Comment.Single)),
             (r'(\s*)(\|{3}.*?)$', bygroups(Text, Comment.Single)),
-            (r'(\s*)({-)', bygroups(Text, Comment.Multiline), 'comment'),
+            (r'(\s*)(\{-)', bygroups(Text, Comment.Multiline), 'comment'),
             # Declaration
             (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
              bygroups(Text, Name.Function, Text, Operator.Word, Text)),
@@ -222,7 +222,7 @@ class IdrisLexer(RegexLexer):
             (r'[A-Z]\w*', Keyword.Type),
             (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
             (r'--.*$', Comment.Single),
-            (r'{-', Comment.Multiline, 'comment'),
+            (r'\{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
             # (HACK, but it makes sense to push two instances, believe me)
@@ -234,8 +234,8 @@ class IdrisLexer(RegexLexer):
         'comment': [
             # Multiline Comments
             (r'[^-{}]+', Comment.Multiline),
-            (r'{-', Comment.Multiline, '#push'),
-            (r'-}', Comment.Multiline, '#pop'),
+            (r'\{-', Comment.Multiline, '#push'),
+            (r'-\}', Comment.Multiline, '#pop'),
             (r'[-{}]', Comment.Multiline),
         ],
         'character': [
@@ -289,9 +289,9 @@ class AgdaLexer(RegexLexer):
              bygroups(Text, Name.Function, Text, Operator.Word, Text)),
             # Comments
             (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
-            (r'{-', Comment.Multiline, 'comment'),
+            (r'\{-', Comment.Multiline, 'comment'),
             # Holes
-            (r'{!', Comment.Directive, 'hole'),
+            (r'\{!', Comment.Directive, 'hole'),
             # Lexemes:
             #  Identifiers
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
@@ -314,12 +314,12 @@ class AgdaLexer(RegexLexer):
         'hole': [
             # Holes
             (r'[^!{}]+', Comment.Directive),
-            (r'{!', Comment.Directive, '#push'),
-            (r'!}', Comment.Directive, '#pop'),
+            (r'\{!', Comment.Directive, '#push'),
+            (r'!\}', Comment.Directive, '#pop'),
             (r'[!{}]', Comment.Directive),
         ],
         'module': [
-            (r'{-', Comment.Multiline, 'comment'),
+            (r'\{-', Comment.Multiline, 'comment'),
             (r'[a-zA-Z][\w.]*', Name, '#pop'),
             (r'[^a-zA-Z]+', Text)
         ],

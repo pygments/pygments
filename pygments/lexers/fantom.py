@@ -79,7 +79,7 @@ class FantomLexer(RegexLexer):
             (r'\\"', String.Escape),                         # Escaped "
             (r'\\`', String.Escape),                         # Escaped `
             (r'\$\w+', String.Interpol),                     # Subst var
-            (r'\${.*?}', String.Interpol),                   # Subst expr
+            (r'\$\{.*?\}', String.Interpol),                 # Subst expr
             (r'"', Punctuation, '#pop'),                     # Closing quot
             (r'.', String)                                   # String content
         ],
@@ -88,7 +88,7 @@ class FantomLexer(RegexLexer):
             (r'\\"', String.Escape),                         # Escaped "
             (r'\\`', String.Escape),                         # Escaped `
             (r'\$\w+', String.Interpol),                     # Subst var
-            (r'\${.*?}', String.Interpol),                   # Subst expr
+            (r'\$\{.*?\}', String.Interpol),                 # Subst expr
             (r'`', Punctuation, '#pop'),                     # Closing tick
             (r'.', String.Backtick)                          # URI content
         ],

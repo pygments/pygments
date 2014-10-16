@@ -322,7 +322,7 @@ class FactorLexer(RegexLexer):
         'slots': [
             (r'\s+', Text),
             (r';\s', Keyword, '#pop'),
-            (r'({\s+)(\S+)(\s+[^}]+\s+}\s)',
+            (r'(\{\s+)(\S+)(\s+[^}]+\s+\}\s)',
              bygroups(Text, Name.Variable, Text)),
             (r'\S+', Name.Variable),
         ],

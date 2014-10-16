@@ -115,7 +115,7 @@ class NixLexer(RegexLexer):
             (r'[^"]', String.Double),
         ],
         'antiquote': [
-            (r"}", String.Interpol, '#pop'),
+            (r"\}", String.Interpol, '#pop'),
             # TODO: we should probably escape also here ''${ \${
             (r"\$\{", String.Interpol, '#push'),
             include('root'),

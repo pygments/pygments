@@ -159,7 +159,7 @@ class BugsLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
             # Block start
-            (r'(model)(\s+)({)',
+            (r'(model)(\s+)(\{)',
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
             (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
@@ -242,7 +242,7 @@ class JagsLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
             # Block start
-            (r'(model|data)(\s+)({)',
+            (r'(model|data)(\s+)(\{)',
              bygroups(Keyword.Namespace, Text, Punctuation)),
             (r'var(?![0-9a-zA-Z\._])', Keyword.Declaration),
             # Reserved Words
