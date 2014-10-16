@@ -122,7 +122,11 @@ def _rx_indent(level):
     tab_width = 8
     # Regex matching a given indentation {level}, assuming that indentation is
     # a multiple of {tab_width}. In other cases there might be problems.
-    return r'(?:\t| {1,%s}\t| {%s}){%s}.*\n' % (tab_width-1, tab_width, level)
+    if tab_width == 2:
+        space_repeat = '+'
+    else:
+        space_repeat = '{1,%d}' % (tab_width - 1)
+    return r'(?:\t| %s\t| {%s}){%s}.*\n' % (space_repeat, tab_width, level)
 
 
 class KconfigLexer(RegexLexer):
