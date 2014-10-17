@@ -19,6 +19,11 @@ __all__ = ['ResourceLexer']
 
 
 class ResourceLexer(RegexLexer):
+    """Lexer for `ICU Resource bundles
+    <http://userguide.icu-project.org/locale/resources>`_.
+
+    .. versionadded:: 2.0
+    """
     name = 'ResourceBundle'
     aliases = ['resource', 'resourcebundle']
     filenames = ['*.txt']
