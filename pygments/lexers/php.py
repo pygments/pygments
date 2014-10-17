@@ -148,7 +148,8 @@ class PhpLexer(RegexLexer):
             (r'/\*.*?\*/', Comment.Multiline),
             (r'(->|::)(\s*)(' + _ident_inner + ')',
              bygroups(Operator, Text, Name.Attribute)),
-            (r'[~!%^&*+=|:.<>/?@-]+', Operator),
+            (r'[~!%^&*+=|:.<>/@-]+', Operator),
+            (r'\?', Operator),  # don't add to the charclass above!
             (r'[\[\]{}();,]+', Punctuation),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(function)(\s*)(?=\()', bygroups(Keyword, Text)),
