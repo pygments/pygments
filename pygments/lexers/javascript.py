@@ -59,6 +59,7 @@ class JavascriptLexer(RegexLexer):
             (r'\n', Text, '#pop')
         ],
         'root': [
+            (r'^#! ?/.*?\n', Comment),  # shebang lines are recognized by node.js
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
