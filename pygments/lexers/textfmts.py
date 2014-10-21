@@ -187,6 +187,10 @@ class HttpLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        return text.startswith(('GET /', 'POST /', 'PUT /', 'DELETE /', 'HEAD /',
+                                'OPTIONS /', 'TRACE /', 'PATCH /'))
+
 
 class TodotxtLexer(RegexLexer):
     """
