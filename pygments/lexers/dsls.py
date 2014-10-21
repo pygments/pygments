@@ -87,7 +87,7 @@ class BroLexer(RegexLexer):
     aliases = ['bro']
     filenames = ['*.bro']
 
-    _hex = r'[0-9a-fA-F_]+'
+    _hex = r'[0-9a-fA-F_]'
     _float = r'((\d*\.?\d+)|(\d+\.?\d*))([eE][-+]?\d+)?'
     _h = r'[A-Za-z0-9][-A-Za-z0-9]*'
 
