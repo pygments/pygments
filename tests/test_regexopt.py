@@ -66,3 +66,11 @@ class RegexOptTestCase(unittest.TestCase):
         self.assertFalse(rex.match('a'))
         self.assertTrue(rex.match('a::'))
         self.assertFalse(rex.match(':::')) # fullmatch
+
+    def test_suffix_opt(self):
+        # test that detected suffixes remain sorted.
+        opt = regex_opt(('afoo', 'abfoo'))
+        print(opt)
+        rex = re.compile(opt)
+        m = rex.match('abfoo')
+        self.assertEqual(5, m.end())
