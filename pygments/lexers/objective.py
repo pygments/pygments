@@ -416,11 +416,11 @@ class SwiftLexer(RegexLexer):
             (r'(as|dynamicType|false|is|nil|self|Self|super|true|__COLUMN__'
              r'|__FILE__|__FUNCTION__|__LINE__|_)\b', Keyword.Constant),
             (r'import\b', Keyword.Declaration, 'module'),
-            (r'(class|enum|extension|struct|protocol)(\s*)([a-zA-Z_]\w*)',
+            (r'(class|enum|extension|struct|protocol)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(func)(\s*)([a-zA-Z_]\w*)',
+            (r'(func)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Text, Name.Function)),
-            (r'(var|let)(\s*)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration,
+            (r'(var|let)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration,
              Text, Name.Variable)),
             (r'(class|deinit|enum|extension|func|import|init|internal|let'
              r'|operator|private|protocol|public|static|struct|subscript'
