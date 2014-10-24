@@ -401,7 +401,7 @@ class SwiftLexer(RegexLexer):
             (r'[/=\-+!*%<>&|^?~]+', Operator),
 
             # Identifier
-            (r'[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name)
         ],
         'keywords': [
             (r'(break|case|continue|default|do|else|fallthrough|for|if|in'
@@ -416,19 +416,19 @@ class SwiftLexer(RegexLexer):
             (r'(as|dynamicType|false|is|nil|self|Self|super|true|__COLUMN__'
              r'|__FILE__|__FUNCTION__|__LINE__|_)\b', Keyword.Constant),
             (r'import\b', Keyword.Declaration, 'module'),
-            (r'(class|enum|extension|struct|protocol)( *)([a-zA-Z_]\w*)',
+            (r'(class|enum|extension|struct|protocol)(\s*)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(func)( *)([a-zA-Z_]\w*)',
+            (r'(func)(\s*)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Text, Name.Function)),
-            (r'(var|let)( *)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration,
+            (r'(var|let)(\s*)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration,
              Text, Name.Variable)),
             (r'(class|deinit|enum|extension|func|import|init|internal|let'
              r'|operator|private|protocol|public|static|struct|subscript'
-             r'|typealias|var)\b', Keyword.Declaration),
+             r'|typealias|var)\b', Keyword.Declaration)
         ],
         'comment': [
             (r':param: [a-zA-Z_]\w*|:returns?:|(FIXME|MARK|TODO):',
-            Comment.Special),
+            Comment.Special)
         ],
 
         # Nested
@@ -453,7 +453,7 @@ class SwiftLexer(RegexLexer):
             (r'$', Text, '#pop'),
             include('keywords'),
             (r'[A-Za-z]\w*', Comment.Preproc),
-            include('root'),
+            include('root')
         ],
         'string': [
             (r'\\\(', String.Interpol, 'string-intp'),
@@ -461,13 +461,13 @@ class SwiftLexer(RegexLexer):
             (r"""\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}""", String.Escape),
             (r'[^\\"]+', String),
-            (r'\\', String),
+            (r'\\', String)
         ],
         'string-intp': [
             (r'\(', String.Interpol, '#push'),
             (r'\)', String.Interpol, '#pop'),
             include('root')
-        ],
+        ]
     }
 
     def get_tokens_unprocessed(self, text):
