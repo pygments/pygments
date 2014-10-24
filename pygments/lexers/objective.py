@@ -11,10 +11,10 @@
 
 import re
 
-from pygments.lexer import include, bygroups, using, this, words, inherit, \
-    default
+from pygments.lexer import RegexLexer, include, bygroups, using, this, words, \
+    inherit, default
 from pygments.token import Text, Keyword, Name, String, Operator, \
-    Number, Punctuation, Literal
+    Number, Punctuation, Literal, Comment
 
 from pygments.lexers.c_cpp import CLexer, CppLexer
 
@@ -279,45 +279,206 @@ class LogosLexer(ObjectiveCppLexer):
             return 1.0
         return 0
 
-
-class SwiftLexer(ObjectiveCLexer):
+class SwiftLexer(RegexLexer):
     """
     For `Swift <https://developer.apple.com/swift/>`_ source.
-
-    .. versionadded:: 2.0
     """
     name = 'Swift'
     filenames = ['*.swift']
     aliases = ['swift']
     mimetypes = ['text/x-swift']
 
-    keywords_decl = set(('class', 'deinit', 'enum', 'extension', 'func', 'import',
-                         'init', 'let', 'protocol', 'static', 'struct', 'subscript',
-                         'typealias', 'var'))
-    keywords_stmt = set(('break', 'case', 'continue', 'default', 'do', 'else',
-                         'fallthrough', 'if', 'in', 'for', 'return', 'switch',
-                         'where', 'while'))
-    keywords_type = set(('as', 'dynamicType', 'is', 'new', 'super', 'self', 'Self',
-                         'Type', '__COLUMN__', '__FILE__', '__FUNCTION__',
-                         '__LINE__'))
-    keywords_resrv = set(('associativity', 'didSet', 'get', 'infix', 'inout', 'left',
-                          'mutating', 'none', 'nonmutating', 'operator', 'override',
-                          'postfix', 'precedence', 'prefix', 'right', 'set',
-                          'unowned', 'unowned(safe)', 'unowned(unsafe)', 'weak',
-                          'willSet'))
-    operators = set(('->',))
+    tokens = {
+        'root': [
+            # Whitespace and Comments
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'//', Comment.Single, 'comment-single'),
+            (r'/\*', Comment.Multiline, 'comment-multi'),
+            (r'#(if|elseif|else|endif)\b', Comment.Preproc, 'preproc'),
+
+            # Keywords
+            include('keywords'),
+
+            # Global Types
+            (r'(Array|AutoreleasingUnsafeMutablePointer|BidirectionalReverseView'
+             r'|Bit|Bool|CFunctionPointer|COpaquePointer|CVaListPointer'
+             r'|Character|ClosedInterval|CollectionOfOne|ContiguousArray'
+             r'|Dictionary|DictionaryGenerator|DictionaryIndex|Double'
+             r'|EmptyCollection|EmptyGenerator|EnumerateGenerator'
+             r'|EnumerateSequence|FilterCollectionView'
+             r'|FilterCollectionViewIndex|FilterGenerator|FilterSequenceView'
+             r'|Float|Float80|FloatingPointClassification|GeneratorOf'
+             r'|GeneratorOfOne|GeneratorSequence|HalfOpenInterval|HeapBuffer'
+             r'|HeapBufferStorage|ImplicitlyUnwrappedOptional|IndexingGenerator'
+             r'|Int|Int16|Int32|Int64|Int8|LazyBidirectionalCollection'
+             r'|LazyForwardCollection|LazyRandomAccessCollection'
+             r'|LazySequence|MapCollectionView|MapSequenceGenerator'
+             r'|MapSequenceView|MirrorDisposition|ObjectIdentifier|OnHeap'
+             r'|Optional|PermutationGenerator|QuickLookObject'
+             r'|RandomAccessReverseView|Range|RangeGenerator|RawByte|Repeat'
+             r'|ReverseBidirectionalIndex|ReverseRandomAccessIndex|SequenceOf'
+             r'|SinkOf|Slice|StaticString|StrideThrough|StrideThroughGenerator'
+             r'|StrideTo|StrideToGenerator|String|UInt|UInt16|UInt32|UInt64'
+             r'|UInt8|UTF16|UTF32|UTF8|UnicodeDecodingResult|UnicodeScalar'
+             r'|Unmanaged|UnsafeBufferPointer|UnsafeBufferPointerGenerator'
+             r'|UnsafeMutableBufferPointer|UnsafeMutablePointer|UnsafePointer'
+             r'|Zip2|ZipGenerator2'
+             # Protocols
+             r'|AbsoluteValuable|AnyObject|ArrayLiteralConvertible'
+             r'|BidirectionalIndexType|BitwiseOperationsType'
+             r'|BooleanLiteralConvertible|BooleanType|CVarArgType'
+             r'|CollectionType|Comparable|DebugPrintable'
+             r'|DictionaryLiteralConvertible|Equatable'
+             r'|ExtendedGraphemeClusterLiteralConvertible'
+             r'|ExtensibleCollectionType|FloatLiteralConvertible'
+             r'|FloatingPointType|ForwardIndexType|GeneratorType|Hashable'
+             r'|IntegerArithmeticType|IntegerLiteralConvertible|IntegerType'
+             r'|IntervalType|MirrorType|MutableCollectionType|MutableSliceable'
+             r'|NilLiteralConvertible|OutputStreamType|Printable'
+             r'|RandomAccessIndexType|RangeReplaceableCollectionType'
+             r'|RawOptionSetType|RawRepresentable|Reflectable|SequenceType'
+             r'|SignedIntegerType|SignedNumberType|SinkType|Sliceable'
+             r'|Streamable|Strideable|StringInterpolationConvertible'
+             r'|StringLiteralConvertible|UnicodeCodecType'
+             r'|UnicodeScalarLiteralConvertible|UnsignedIntegerType'
+             r'|_ArrayBufferType|_BidirectionalIndexType|_CocoaStringType'
+             r'|_CollectionType|_Comparable|_ExtensibleCollectionType'
+             r'|_ForwardIndexType|_Incrementable|_IntegerArithmeticType'
+             r'|_IntegerType|_ObjectiveCBridgeable|_RandomAccessIndexType'
+             r'|_RawOptionSetType|_SequenceType|_Sequence_Type'
+             r'|_SignedIntegerType|_SignedNumberType|_Sliceable|_Strideable'
+             r'|_SwiftNSArrayRequiredOverridesType|_SwiftNSArrayType'
+             r'|_SwiftNSCopyingType|_SwiftNSDictionaryRequiredOverridesType'
+             r'|_SwiftNSDictionaryType|_SwiftNSEnumeratorType'
+             r'|_SwiftNSFastEnumerationType|_SwiftNSStringRequiredOverridesType'
+             r'|_SwiftNSStringType|_UnsignedIntegerType'
+             # Variables
+             r'|C_ARGC|C_ARGV|Process'
+             # Typealiases
+             r'|Any|AnyClass|BooleanLiteralType|CBool|CChar|CChar16|CChar32'
+             r'|CDouble|CFloat|CInt|CLong|CLongLong|CShort|CSignedChar'
+             r'|CUnsignedInt|CUnsignedLong|CUnsignedShort|CWideChar'
+             r'|ExtendedGraphemeClusterType|Float32|Float64|FloatLiteralType'
+             r'|IntMax|IntegerLiteralType|StringLiteralType|UIntMax|UWord'
+             r'|UnicodeScalarType|Void|Word'
+             # Foundation/Cocoa
+             r'|NSErrorPointer|NSObjectProtocol|Selector)\b', Name.Builtin),
+             # Functions
+            (r'(abs|advance|alignof|alignofValue|assert|assertionFailure'
+             r'|contains|count|countElements|debugPrint|debugPrintln|distance'
+             r'|dropFirst|dropLast|dump|enumerate|equal|extend|fatalError'
+             r'|filter|find|first|getVaList|indices|insert|isEmpty|join|last'
+             r'|lazy|lexicographicalCompare|map|max|maxElement|min|minElement'
+             r'|numericCast|overlaps|partition|precondition|preconditionFailure'
+             r'|prefix|print|println|reduce|reflect|removeAll|removeAtIndex'
+             r'|removeLast|removeRange|reverse|sizeof|sizeofValue|sort|sorted'
+             r'|splice|split|startsWith|stride|strideof|strideofValue|suffix'
+             r'|swap|toDebugString|toString|transcode|underestimateCount'
+             r'|unsafeAddressOf|unsafeBitCast|unsafeDowncast'
+             r'|withExtendedLifetime|withUnsafeMutablePointer'
+             r'|withUnsafeMutablePointers|withUnsafePointer|withUnsafePointers'
+             r'|withVaList)\b', Name.Builtin.Pseudo),
+
+            # Implicit Block Variables
+            (r'\$\d+', Name.Variable),
+
+            # Binary Literal
+            (r'0b[01_]+', Number.Bin),
+            # Octal Literal
+            (r'0o[0-7_]+', Number.Oct),
+            # Hexadecimal Literal
+            (r'0x[0-9a-fA-F_]+', Number.Hex),
+            # Decimal Literal
+            (r'[0-9][0-9_]+(\.[0-9_]+[eE][+\-]?[0-9_]+|'
+             r'\.[0-9_]*|[eE][+\-]?[0-9_]+)', Number.Float),
+            (r'[0-9][0-9_]*', Number.Integer),
+            # String Literal
+            (r'"', String, 'string'),
+
+            # Operators and Punctuation
+            (r'[(){}\[\].,:;=@#`?]|->|[<&?](?=\w)|(?<=\w)[>!?]', Punctuation),
+            (r'[/=\-+!*%<>&|^?~]+', Operator),
+
+            # Identifier
+            (r'[a-zA-Z_]\w*', Name),
+        ],
+        'keywords': [
+            (r'(break|case|continue|default|do|else|fallthrough|for|if|in'
+             r'|return|switch|where|while)\b', Keyword),
+            (r'(associativity|convenience|dynamic|didSet|final|get|infix|inout'
+             r'|lazy|left|mutating|none|nonmutating|optional|override|postfix'
+             r'|precedence|prefix|Protocol|required|right|set|Type|unowned|weak'
+             r'|willSet|@(availability\([^)]*\)|autoclosure|noreturn'
+             r'|NSApplicationMain|NSCopying|NSManaged|objc'
+             r'|UIApplicationMain|IBAction|IBDesignable|IBInspectable'
+             r'|IBOutlet))\b',Keyword.Reserved),
+            (r'(as|dynamicType|false|is|nil|self|Self|super|true|__COLUMN__'
+             r'|__FILE__|__FUNCTION__|__LINE__|_)\b', Keyword.Constant),
+            (r'import\b', Keyword.Declaration, 'module'),
+            (r'(class|enum|extension|struct|protocol)( *)([a-zA-Z_]\w*)',
+             bygroups(Keyword.Declaration, Text, Name.Class)),
+            (r'(func)( *)([a-zA-Z_]\w*)',
+             bygroups(Keyword.Declaration, Text, Name.Function)),
+            (r'(var|let)( *)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration,
+             Text, Name.Variable)),
+            (r'(class|deinit|enum|extension|func|import|init|internal|let'
+             r'|operator|private|protocol|public|static|struct|subscript'
+             r'|typealias|var)\b', Keyword.Declaration),
+        ],
+        'comment': [
+            (r':param: [a-zA-Z_]\w*|:returns?:|(FIXME|MARK|TODO):',
+            Comment.Special),
+        ],
+
+        # Nested
+        'comment-single': [
+            (r'$', Text, '#pop'),
+            include('comment'),
+            (r'[^\n]', Comment.Single)
+        ],
+        'comment-multi': [
+            include('comment'),
+            (r'[^*/]', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline)
+        ],
+        'module': [
+            (r'$', Text, '#pop'),
+            (r'[a-zA-Z_]\w*', Name.Class),
+            include('root')
+        ],
+        'preproc': [
+            (r'$', Text, '#pop'),
+            include('keywords'),
+            (r'[A-Za-z]\w*', Comment.Preproc),
+            include('root'),
+        ],
+        'string': [
+            (r'\\\(', String.Interpol, 'string-intp'),
+            (r'"', String, '#pop'),
+            (r"""\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
+             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}""", String.Escape),
+            (r'[^\\"]+', String),
+            (r'\\', String),
+        ],
+        'string-intp': [
+            (r'\(', String.Interpol, '#push'),
+            (r'\)', String.Interpol, '#pop'),
+            include('root')
+        ],
+    }
 
     def get_tokens_unprocessed(self, text):
-        for index, token, value in ObjectiveCLexer.get_tokens_unprocessed(self, text):
-            if token is Name:
-                if value in self.keywords_decl:
-                    token = Keyword
-                elif value in self.keywords_stmt:
-                    token = Keyword
-                elif value in self.keywords_type:
-                    token = Keyword.Type
-                elif value in self.keywords_resrv:
-                    token = Keyword.Reserved
-                elif value in self.operators:
-                    token = Operator
+        from pygments.lexers._cocoa_builtins import COCOA_INTERFACES, \
+            COCOA_PROTOCOLS, COCOA_PRIMITIVES
+
+        for index, token, value in \
+                RegexLexer.get_tokens_unprocessed(self, text):
+            if token is Name or token is Name.Class:
+                if value in COCOA_INTERFACES or value in COCOA_PROTOCOLS \
+                   or value in COCOA_PRIMITIVES:
+                    token = Name.Builtin.Pseudo
+
             yield index, token, value
