@@ -382,7 +382,7 @@ class VbNetLexer(RegexLexer):
             (r'\n', Text),
             (r'rem\b.*?\n', Comment),
             (r"'.*?\n", Comment),
-            (r'#If\s.*?\sThen|#ElseIf\s.*?\sThen|#End\s+If|#Const|'
+            (r'#If\s.*?\sThen|#ElseIf\s.*?\sThen|#Else|#End\s+If|#Const|'
              r'#ExternalSource.*?\n|#End\s+ExternalSource|'
              r'#Region.*?\n|#End\s+Region|#ExternalChecksum',
              Comment.Preproc),
