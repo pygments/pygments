@@ -533,7 +533,7 @@ class RegexLexerMeta(LexerMeta):
         """
         tokens = {}
         inheritable = {}
-        for c in itertools.chain((cls,), cls.__mro__):
+        for c in cls.__mro__:
             toks = c.__dict__.get('tokens', {})
 
             for state, items in iteritems(toks):
