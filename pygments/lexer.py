@@ -539,6 +539,10 @@ class RegexLexerMeta(LexerMeta):
             for state, items in iteritems(toks):
                 curitems = tokens.get(state)
                 if curitems is None:
+                    # N.b. because this is assigned by reference, sufficiently
+                    # deep hierarchies are processed incrementally (e.g. for
+                    # A(B), B(C), C(RegexLexer), B will be premodified so X(B)
+                    # will not see any inherits in B).
                     tokens[state] = items
                     try:
                         inherit_ndx = items.index(inherit)
@@ -554,6 +558,8 @@ class RegexLexerMeta(LexerMeta):
                 # Replace the "inherit" value with the items
                 curitems[inherit_ndx:inherit_ndx+1] = items
                 try:
+                    # N.b. this is the index in items (that is, the superclass
+                    # copy), so offset required when storing below.
                     new_inh_ndx = items.index(inherit)
                 except ValueError:
                     pass
