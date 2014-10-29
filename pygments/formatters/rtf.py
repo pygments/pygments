@@ -49,7 +49,7 @@ class RtfFormatter(Formatter):
     filenames = ['*.rtf']
 
     def __init__(self, **options):
-        """
+        r"""
         Additional options accepted:
 
         ``fontface``
