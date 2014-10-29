@@ -392,7 +392,7 @@ class SwiftLexer(RegexLexer):
             # Hexadecimal Literal
             (r'0x[0-9a-fA-F_]+', Number.Hex),
             # Decimal Literal
-            (r'[0-9][0-9_]+(\.[0-9_]+[eE][+\-]?[0-9_]+|'
+            (r'[0-9][0-9_]*(\.[0-9_]+[eE][+\-]?[0-9_]+|'
              r'\.[0-9_]*|[eE][+\-]?[0-9_]+)', Number.Float),
             (r'[0-9][0-9_]*', Number.Integer),
             # String Literal
@@ -408,10 +408,11 @@ class SwiftLexer(RegexLexer):
         'keywords': [
             (r'(break|case|continue|default|do|else|fallthrough|for|if|in'
              r'|return|switch|where|while)\b', Keyword),
+            (r'@availability\([^)]+\)', Keyword.Reserved),
             (r'(associativity|convenience|dynamic|didSet|final|get|infix|inout'
              r'|lazy|left|mutating|none|nonmutating|optional|override|postfix'
              r'|precedence|prefix|Protocol|required|right|set|Type|unowned|weak'
-             r'|willSet|@(availability\([^)]*\)|autoclosure|noreturn'
+             r'|willSet|@(availability|autoclosure|noreturn'
              r'|NSApplicationMain|NSCopying|NSManaged|objc'
              r'|UIApplicationMain|IBAction|IBDesignable|IBInspectable'
              r'|IBOutlet))\b',Keyword.Reserved),
@@ -435,7 +436,7 @@ class SwiftLexer(RegexLexer):
 
         # Nested
         'comment-single': [
-            default('#pop'),
+            (r'\n', Text, '#pop'),
             include('comment'),
             (r'[^\n]', Comment.Single)
         ],
@@ -447,12 +448,12 @@ class SwiftLexer(RegexLexer):
             (r'[*/]', Comment.Multiline)
         ],
         'module': [
-            default('#pop'),
+            (r'\n', Text, '#pop'),
             (r'[a-zA-Z_]\w*', Name.Class),
             include('root')
         ],
         'preproc': [
-            default('#pop'),
+            (r'\n', Text, '#pop'),
             include('keywords'),
             (r'[A-Za-z]\w*', Comment.Preproc),
             include('root')
