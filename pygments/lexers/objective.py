@@ -282,6 +282,8 @@ class LogosLexer(ObjectiveCppLexer):
 class SwiftLexer(RegexLexer):
     """
     For `Swift <https://developer.apple.com/swift/>`_ source.
+
+    .. versionadded:: 2.0
     """
     name = 'Swift'
     filenames = ['*.swift']
@@ -364,7 +366,7 @@ class SwiftLexer(RegexLexer):
              r'|UnicodeScalarType|Void|Word'
              # Foundation/Cocoa
              r'|NSErrorPointer|NSObjectProtocol|Selector)\b', Name.Builtin),
-             # Functions
+            # Functions
             (r'(abs|advance|alignof|alignofValue|assert|assertionFailure'
              r'|contains|count|countElements|debugPrint|debugPrintln|distance'
              r'|dropFirst|dropLast|dump|enumerate|equal|extend|fatalError'
@@ -428,12 +430,12 @@ class SwiftLexer(RegexLexer):
         ],
         'comment': [
             (r':param: [a-zA-Z_]\w*|:returns?:|(FIXME|MARK|TODO):',
-            Comment.Special)
+             Comment.Special)
         ],
 
         # Nested
         'comment-single': [
-            (r'$', Text, '#pop'),
+            default('#pop'),
             include('comment'),
             (r'[^\n]', Comment.Single)
         ],
@@ -445,12 +447,12 @@ class SwiftLexer(RegexLexer):
             (r'[*/]', Comment.Multiline)
         ],
         'module': [
-            (r'$', Text, '#pop'),
+            default('#pop'),
             (r'[a-zA-Z_]\w*', Name.Class),
             include('root')
         ],
         'preproc': [
-            (r'$', Text, '#pop'),
+            default('#pop'),
             include('keywords'),
             (r'[A-Za-z]\w*', Comment.Preproc),
             include('root')
