@@ -485,7 +485,9 @@ class RegexLexerMeta(LexerMeta):
                                                  str(tdef)))
                 continue
             if isinstance(tdef, _inherit):
-                # processed already
+                # should be processed already, but may not in the case of:
+                # 1. the state has no counterpart in any parent
+                # 2. the state includes more than one 'inherit'
                 continue
             if isinstance(tdef, default):
                 new_state = cls._process_new_state(tdef.state, unprocessed, processed)
