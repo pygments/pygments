@@ -40,7 +40,7 @@ class JavascriptLexer(RegexLexer):
     mimetypes = ['application/javascript', 'application/x-javascript',
                  'text/x-javascript', 'text/javascript', ]
 
-    flags = re.DOTALL
+    flags = re.DOTALL | re.UNICODE
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Text),
