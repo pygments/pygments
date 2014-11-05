@@ -10,7 +10,7 @@ class _PostUnico$deClassá
 
 class áPreUnicode$Class
 {
-  public int $foo;
+  public int $foo;
   public int á$foo;
   _PostUnico$deClassá áPreUnicodeFunction() { return null; }
 }
