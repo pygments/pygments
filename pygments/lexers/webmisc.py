@@ -85,7 +85,7 @@ class XQueryLexer(ExtendedRegexLexer):
     #                                 ur"[\u203F-\u2040]")
     ncnamechar = r"(?:" + ncnamestartchar + r"|-|\.|[0-9])"
     ncname = "(?:%s+%s*)" % (ncnamestartchar, ncnamechar)
-    pitarget_namestartchar = r"(?:[A-KN-WY-Z]|_|:|[a-kn-wy-z])"
+    pitarget_namestartchar = r"(?:[A-KN-WYZ]|_|:|[a-kn-wyz])"
     pitarget_namechar = r"(?:" + pitarget_namestartchar + r"|-|\.|[0-9])"
     pitarget = "%s+%s*" % (pitarget_namestartchar, pitarget_namechar)
     prefixedname = "%s:%s" % (ncname, ncname)
@@ -101,13 +101,13 @@ class XQueryLexer(ExtendedRegexLexer):
     # FIX UNICODE LATER
     # elementcontentchar = (ur'\t|\r|\n|[\u0020-\u0025]|[\u0028-\u003b]|'
     #                       ur'[\u003d-\u007a]|\u007c|[\u007e-\u007F]')
-    elementcontentchar = r'[A-Za-z]|\s|\d|[!"#$%\(\)\*\+,\-\./\:;=\?\@\[\\\]^_\'`\|~]'
+    elementcontentchar = r'[A-Za-z]|\s|\d|[!"#$%()*+,\-./:;=?@\[\\\]^_\'`|~]'
     # quotattrcontentchar = (ur'\t|\r|\n|[\u0020-\u0021]|[\u0023-\u0025]|'
     #                        ur'[\u0027-\u003b]|[\u003d-\u007a]|\u007c|[\u007e-\u007F]')
-    quotattrcontentchar = r'[A-Za-z]|\s|\d|[!#$%\(\)\*\+,\-\./\:;=\?\@\[\\\]^_\'`\|~]'
+    quotattrcontentchar = r'[A-Za-z]|\s|\d|[!#$%()*+,\-./:;=?@\[\\\]^_\'`|~]'
     # aposattrcontentchar = (ur'\t|\r|\n|[\u0020-\u0025]|[\u0028-\u003b]|'
     #                        ur'[\u003d-\u007a]|\u007c|[\u007e-\u007F]')
-    aposattrcontentchar = r'[A-Za-z]|\s|\d|[!"#$%\(\)\*\+,\-\./\:;=\?\@\[\\\]^_`\|~]'
+    aposattrcontentchar = r'[A-Za-z]|\s|\d|[!"#$%()*+,\-./:;=?@\[\\\]^_`|~]'
 
     # CHAR elements - fix the above elementcontentchar, quotattrcontentchar,
     #                 aposattrcontentchar
@@ -583,8 +583,8 @@ class XQueryLexer(ExtendedRegexLexer):
 
             # handle operator state
             # order on numbers matters - handle most complex first
-            (r'\d+(\.\d*)?[eE][\+\-]?\d+', Number.Float, 'operator'),
-            (r'(\.\d+)[eE][\+\-]?\d+', Number.Float, 'operator'),
+            (r'\d+(\.\d*)?[eE][+-]?\d+', Number.Float, 'operator'),
+            (r'(\.\d+)[eE][+-]?\d+', Number.Float, 'operator'),
             (r'(\.\d+|\d+\.\d*)', Number.Float, 'operator'),
             (r'(\d+)', Number.Integer, 'operator'),
             (r'(\.\.|\.|\))', Punctuation, 'operator'),
@@ -758,14 +758,14 @@ class QmlLexer(RegexLexer):
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
-             r'(<<|>>>?|==?|!=?|[-<>+*%&\|\^/])=?', Operator, 'slashstartsregex'),
+             r'(<<|>>>?|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
 
             # QML insertions
-            (r'\bid\s*:\s*[A-Za-z][_A-Za-z.0-9]*', Keyword.Declaration,
+            (r'\bid\s*:\s*[A-Za-z][\w.]*', Keyword.Declaration,
              'slashstartsregex'),
-            (r'\b[A-Za-z][_A-Za-z.0-9]*\s*:', Keyword, 'slashstartsregex'),
+            (r'\b[A-Za-z][\w.]*\s*:', Keyword, 'slashstartsregex'),
 
             # the rest from JavascriptLexer
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
@@ -821,7 +821,7 @@ class CirruLexer(RegexLexer):
             (r'.', String.Escape, '#pop'),
         ],
         'function': [
-            (r'[^\s\"\(\)]+', Name.Function, '#pop'),
+            (r'[^\s"()]+', Name.Function, '#pop'),
             (r'\)', Operator, '#pop'),
             (r'(?=\n)', Text, '#pop'),
             (r'\(', Operator, '#push'),
@@ -836,11 +836,12 @@ class CirruLexer(RegexLexer):
             (r'(?=\n)', Text, '#pop'),
             (r'"', String, 'string'),
             (r'[ ]+', Text.Whitespace),
-            (r'[\+\-]?[\d\.]+\b', Number),
-            (r'[^\s\"\(\)]+', Name.Variable)
+            (r'[+-]?[\d.]+\b', Number),
+            (r'[^\s"()]+', Name.Variable)
         ],
         'root': [
-            (r'^\n*', Text.Whitespace, ('line', 'function')),
+            (r'^\n+', Text.Whitespace),
+            default(('line', 'function')),
         ]
     }
 
@@ -906,9 +907,9 @@ class SlimLexer(ExtendedRegexLexer):
 
         'html-attributes': [
             (r'=', Punctuation),
-            (r'"[^\"]+"', using(RubyLexer), 'tag'),
+            (r'"[^"]+"', using(RubyLexer), 'tag'),
             (r'\'[^\']+\'', using(RubyLexer), 'tag'),
-            (r'[\w]+', Text, 'tag'),
+            (r'\w+', Text, 'tag'),
         ],
 
         'slim-comment-block': [

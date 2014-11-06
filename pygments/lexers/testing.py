@@ -55,7 +55,7 @@ class GherkinLexer(RegexLexer):
             include('comments'),
             (r"\\\|", Name.Variable),
             (r"\s*\|", Keyword),
-            (r"[^\|]", Name.Variable),
+            (r"[^|]", Name.Variable),
         ],
         'scenario_sections_on_stack': [
             (feature_element_keywords,
