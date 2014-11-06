@@ -117,11 +117,12 @@ class CSharpLexer(RegexLexer):
                 (cs_ident, Name),
             ],
             'class': [
-                (cs_ident, Name.Class, '#pop')
+                (cs_ident, Name.Class, '#pop'),
+                default('#pop'),
             ],
             'namespace': [
                 (r'(?=\()', Text, '#pop'),  # using (resource)
-                ('(' + cs_ident + r'|\.)+', Name.Namespace, '#pop')
+                ('(' + cs_ident + r'|\.)+', Name.Namespace, '#pop'),
             ]
         }
 
