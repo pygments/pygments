@@ -833,7 +833,7 @@ class CirruLexer(RegexLexer):
             (r'\$', Operator, 'function'),
             (r'\(', Operator, 'function'),
             (r'\)', Operator),
-            (r'(?=\n)', Text, '#pop'),
+            (r'\n', Text, '#pop'),
             (r'"', String, 'string'),
             (r'[ ]+', Text.Whitespace),
             (r'[+-]?[\d.]+\b', Number),
