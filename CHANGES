@@ -74,6 +74,9 @@ Version 2.0rc1
   * Todo.txt todo lists
   * Twig (PR#404)
 
+- Default lexer encoding is now "guess", i.e. UTF-8 / Locale / Latin1 is
+  tried in that order.
+
 - Added a helper to "optimize" regular expressions that match one of many
   literal words; this can save 20% and more lexing time with lexers that
   highlight many keywords or builtins.

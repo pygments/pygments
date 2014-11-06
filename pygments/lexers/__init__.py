@@ -18,7 +18,7 @@ from os.path import basename
 from pygments.lexers._mapping import LEXERS
 from pygments.modeline import get_filetype_from_buffer
 from pygments.plugin import find_plugin_lexers
-from pygments.util import ClassNotFound, itervalues
+from pygments.util import ClassNotFound, itervalues, guess_decode
 
 
 __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
@@ -116,7 +116,7 @@ def find_lexer_class_for_filename(_fn, code=None):
 
     if sys.version_info > (3,) and isinstance(code, bytes):
         # decode it, since all analyse_text functions expect unicode
-        code = code.decode('latin1')
+        code = guess_decode(code)
 
     def get_rating(info):
         cls, filename = info
