@@ -137,7 +137,7 @@ class DtdLexer(RegexLexer):
         'element': [
             include('common'),
             (r'EMPTY|ANY|#PCDATA', Keyword.Constant),
-            (r'[^>\s\|()?+*,]+', Name.Tag),
+            (r'[^>\s|()?+*,]+', Name.Tag),
             (r'>', Keyword, '#pop'),
         ],
 
@@ -147,21 +147,21 @@ class DtdLexer(RegexLexer):
              Keyword.Constant),
             (r'#REQUIRED|#IMPLIED|#FIXED', Keyword.Constant),
             (r'xml:space|xml:lang', Keyword.Reserved),
-            (r'[^>\s\|()?+*,]+', Name.Attribute),
+            (r'[^>\s|()?+*,]+', Name.Attribute),
             (r'>', Keyword, '#pop'),
         ],
 
         'entity': [
             include('common'),
             (r'SYSTEM|PUBLIC|NDATA', Keyword.Constant),
-            (r'[^>\s\|()?+*,]+', Name.Entity),
+            (r'[^>\s|()?+*,]+', Name.Entity),
             (r'>', Keyword, '#pop'),
         ],
 
         'notation': [
             include('common'),
             (r'SYSTEM|PUBLIC', Keyword.Constant),
-            (r'[^>\s\|()?+*,]+', Name.Attribute),
+            (r'[^>\s|()?+*,]+', Name.Attribute),
             (r'>', Keyword, '#pop'),
         ],
     }

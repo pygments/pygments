@@ -37,10 +37,10 @@ class SnobolLexer(RegexLexer):
         # as do labels
         'root': [
             (r'\*.*\n', Comment),
-            (r'[\+\.] ', Punctuation, 'statement'),
+            (r'[+.] ', Punctuation, 'statement'),
             (r'-.*\n', Comment),
             (r'END\s*\n', Name.Label, 'heredoc'),
-            (r'[A-Za-z\$][\w$]*', Name.Label, 'statement'),
+            (r'[A-Za-z$][\w$]*', Name.Label, 'statement'),
             (r'\s+', Text, 'statement'),
         ],
         # statement state, line after continuation or label
@@ -52,20 +52,20 @@ class SnobolLexer(RegexLexer):
              r'LEN|SPAN|BREAK|ANY|NOTANY|TAB|RTAB|REM|POS|RPOS|FAIL|FENCE|'
              r'ABORT|ARB|ARBNO|BAL|SUCCEED|INPUT|OUTPUT|TERMINAL)(?=[^\w.])',
              Name.Builtin),
-            (r'[A-Za-z][\w\.]*', Name),
+            (r'[A-Za-z][\w.]*', Name),
             # ASCII equivalents of original operators
             # | for the EBCDIC equivalent, ! likewise
             # \ for EBCDIC negation
-            (r'\*\*|[\?\$\.!%\*/#+\-@\|&\\=]', Operator),
+            (r'\*\*|[?$.!%*/#+\-@|&\\=]', Operator),
             (r'"[^"]*"', String),
             (r"'[^']*'", String),
             # Accept SPITBOL syntax for real numbers
             # as well as Macro SNOBOL4
-            (r'[0-9]+(?=[^\.EeDd])', Number.Integer),
+            (r'[0-9]+(?=[^.EeDd])', Number.Integer),
             (r'[0-9]+(\.[0-9]*)?([EDed][-+]?[0-9]+)?', Number.Float),
             # Goto
             (r':', Punctuation, 'goto'),
-            (r'[\(\)<>,;]', Punctuation),
+            (r'[()<>,;]', Punctuation),
         ],
         # Goto block
         'goto': [

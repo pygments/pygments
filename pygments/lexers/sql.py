@@ -150,18 +150,18 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r"(E|U&)?'(''|[^'])*'", String.Single),
             (r'(U&)?"(""|[^"])*"', String.Name),  # quoted identifier
-            (r'(?s)(\$[^\$]*\$)(.*?)(\1)', language_callback),
+            (r'(?s)(\$[^$]*\$)(.*?)(\1)', language_callback),
             (r'[a-z_]\w*', Name),
 
             # psql variable in SQL
             (r""":(['"]?)[a-z]\w*\b\1""", Name.Variable),
 
-            (r'[;:()\[\]\{\},\.]', Punctuation),
+            (r'[;:()\[\]{},.]', Punctuation),
         ],
         'multiline-comments': [
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[^/\*]+', Comment.Multiline),
+            (r'[^/*]+', Comment.Multiline),
             (r'[/*]', Comment.Multiline)
         ],
     }
@@ -442,13 +442,13 @@ class SqlLexer(RegexLexer):
             # TODO: Backslash escapes?
             (r"'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Symbol),  # not a real string literal in ANSI SQL
-            (r'[a-z_][\w\$]*', Name),  # allow $s in strings for Oracle
-            (r'[;:()\[\],\.]', Punctuation)
+            (r'[a-z_][\w$]*', Name),  # allow $s in strings for Oracle
+            (r'[;:()\[\],.]', Punctuation)
         ],
         'multiline-comments': [
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[^/\*]+', Comment.Multiline),
+            (r'[^/*]+', Comment.Multiline),
             (r'[/*]', Comment.Multiline)
         ]
     }
@@ -516,12 +516,12 @@ class MySqlLexer(RegexLexer):
              bygroups(Name.Function, Text, Punctuation)),
             (r'[a-z_]\w*', Name),
             (r'@[a-z0-9]*[._]*[a-z0-9]*', Name.Variable),
-            (r'[;:()\[\],\.]', Punctuation)
+            (r'[;:()\[\],.]', Punctuation)
         ],
         'multiline-comments': [
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[^/\*]+', Comment.Multiline),
+            (r'[^/*]+', Comment.Multiline),
             (r'[/*]', Comment.Multiline)
         ]
     }
@@ -593,6 +593,6 @@ class RqlLexer(RegexLexer):
             (r'[A-Z_]\w*\??', Name),
             (r"'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Single),
-            (r'[;:()\[\],\.]', Punctuation)
+            (r'[;:()\[\],.]', Punctuation)
         ],
     }
