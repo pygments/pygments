@@ -12,8 +12,8 @@
 import re
 
 from pygments.lexer import RegexLexer, bygroups, words
-from pygments.token import Comment, String, Number, Operator, Text, Keyword, \
-    Name, String
+from pygments.token import Comment, String, Number, Operator, Text, \
+    Keyword, Name
 
 __all__ = ['ResourceLexer']
 
