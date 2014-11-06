@@ -34,7 +34,7 @@ class NSISLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[;\#].*\n', Comment),
+            (r'[;#].*\n', Comment),
             (r"'.*?'", String.Single),
             (r'"', String.Double, 'str_double'),
             (r'`', String.Backtick, 'str_backtick'),
@@ -51,7 +51,7 @@ class NSISLexer(RegexLexer):
             (r'\b([_a-z]\w*)(::)([a-z][a-z0-9]*)\b',
              bygroups(Keyword.Namespace, Punctuation, Name.Function)),
             (r'\b([_a-z]\w*)(:)', bygroups(Name.Label, Punctuation)),
-            (r'(\b[ULS]|\B)([\!\<\>=]?=|\<\>?|\>)\B', Operator),
+            (r'(\b[ULS]|\B)([!<>=]?=|\<\>?|\>)\B', Operator),
             (r'[|+-]', Operator),
             (r'\\', Punctuation),
             (r'\b(Abort|Add(?:BrandingImage|Size)|'
@@ -308,15 +308,15 @@ class DebianControlLexer(RegexLexer):
             (r',', Text),
             (r'\|', Operator),
             (r'[\s]+', Text),
-            (r'[}\)]\s*$', Text, '#pop'),
+            (r'[})]\s*$', Text, '#pop'),
             (r'\}', Text),
             (r'[^,]$', Name.Function, '#pop'),
-            (r'([\+\.a-zA-Z0-9-])(\s*)', bygroups(Name.Function, Text)),
+            (r'([+.a-zA-Z0-9-])(\s*)', bygroups(Name.Function, Text)),
             (r'\[.*?\]', Name.Entity),
         ],
         'depend_vers': [
             (r'\),', Text, '#pop'),
             (r'\)[^,]', Text, '#pop:2'),
-            (r'([><=]+)(\s*)([^\)]+)', bygroups(Operator, Text, Number))
+            (r'([><=]+)(\s*)([^)]+)', bygroups(Operator, Text, Number))
         ]
     }

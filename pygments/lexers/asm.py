@@ -33,7 +33,7 @@ class GasLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     string = r'"(\\"|[^"])*"'
-    char = r'[a-zA-Z$._0-9@-]'
+    char = r'[\w$.@-]'
     identifier = r'(?:[a-zA-Z$_]' + char + '*|\.' + char + '+)'
     number = r'(?:0[xX][a-zA-Z0-9]+|\d+)'
 
@@ -209,7 +209,7 @@ class LlvmLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     string = r'"[^"]*?"'
-    identifier = r'([-a-zA-Z$._][-a-zA-Z$._0-9]*|' + string + ')'
+    identifier = r'([-a-zA-Z$._][\w\-$.]*|' + string + ')'
 
     tokens = {
         'root': [
@@ -319,7 +319,7 @@ class NasmLexer(RegexLexer):
     mimetypes = ['text/x-nasm']
 
     identifier = r'[a-z$._?][\w$.?#@~]*'
-    hexn = r'(?:0[xX][0-9a-f]+|$0[0-9a-f]*|[0-9]+[0-9a-f]*h)'
+    hexn = r'(?:0x[0-9a-f]+|$0[0-9a-f]*|[0-9]+[0-9a-f]*h)'
     octn = r'[0-7]+q'
     binn = r'[01]+b'
     decn = r'[0-9]+'

@@ -736,7 +736,8 @@ class QmlLexer(RegexLexer):
     mimetypes = ['application/x-qml']
 
     # pasted from JavascriptLexer, with some additions
-    flags = re.DOTALL
+    flags = re.DOTALL | re.MULTILINE
+
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Text),

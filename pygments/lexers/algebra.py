@@ -60,8 +60,8 @@ class GAPLexer(RegexLexer):
               )\b''',
              Operator.Word),
             (r'''(?x)
-              (?:[a-zA-Z_0-9]+|`[^`]*`)
-              (?:::[a-zA-Z_0-9]+|`[^`]*`)*''', Name.Variable),
+              (?:\w+|`[^`]*`)
+              (?:::\w+|`[^`]*`)*''', Name.Variable),
             (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
             (r'\.[0-9]+(?:e[0-9]+)?', Number),
             (r'.', Text)
@@ -168,12 +168,12 @@ class MuPADLexer(RegexLexer):
             (r'\b(?:I|RDN_INF|RD_NINF|RD_NAN)\b', Number),
             # (r'\b(?:adt|linalg|newDomain|hold)\b', Name.Builtin),
             (r'''(?x)
-              ((?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
-              (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*)(\s*)([(])''',
+              ((?:[a-zA-Z_#][\w#]*|`[^`]*`)
+              (?:::[a-zA-Z_#][\w#]*|`[^`]*`)*)(\s*)([(])''',
              bygroups(Name.Function, Text, Punctuation)),
             (r'''(?x)
-              (?:[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)
-              (?:::[a-zA-Z_#][a-zA-Z_#0-9]*|`[^`]*`)*''', Name.Variable),
+              (?:[a-zA-Z_#][\w#]*|`[^`]*`)
+              (?:::[a-zA-Z_#][\w#]*|`[^`]*`)*''', Name.Variable),
             (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
             (r'\.[0-9]+(?:e[0-9]+)?', Number),
             (r'.', Text)

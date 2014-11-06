@@ -176,10 +176,10 @@ class FelixLexer(RegexLexer):
             (r'/[*]', Comment.Multiline, 'comment2'),
         ],
         'comment2': [
-            (r'[^\/*]', Comment.Multiline),
+            (r'[^/*]', Comment.Multiline),
             (r'/[*]', Comment.Multiline, '#push'),
             (r'[*]/', Comment.Multiline, '#pop'),
-            (r'[\/*]', Comment.Multiline),
+            (r'[/*]', Comment.Multiline),
         ],
         'if0': [
             (r'^\s*#if.*?(?<!\\)\n', Comment, '#push'),

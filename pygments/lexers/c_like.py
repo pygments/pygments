@@ -119,7 +119,7 @@ class ClayLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
             (r'\d+[LlUu]*', Number.Integer),
             (r'\b(true|false)\b', Name.Builtin),
-            (r'(?i)[a-z_?][a-z_?0-9]*', Name),
+            (r'(?i)[a-z_?][\w?]*', Name),
             (r'"""', String, 'tdqs'),
             (r'"', String, 'dqs'),
         ],

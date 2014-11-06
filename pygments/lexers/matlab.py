@@ -105,13 +105,13 @@ class MatlabLexer(RegexLexer):
 
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
-            (r'(?<=[\w\)\].])\'+', Operator),
+            (r'(?<=[\w)\].])\'+', Operator),
 
             (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),
             (r'\d+', Number.Integer),
 
-            (r'(?<![\w\)\].])\'', String, 'string'),
+            (r'(?<![\w)\].])\'', String, 'string'),
             (r'[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
@@ -564,7 +564,7 @@ class OctaveLexer(RegexLexer):
 
 
             # punctuation:
-            (r'\[|\]|\(|\)|\{|\}|:|@|\.|,', Punctuation),
+            (r'[\[\](){}:@.,]', Punctuation),
             (r'=|:|;', Punctuation),
 
             (r'"[^"]*"', String),
@@ -575,8 +575,8 @@ class OctaveLexer(RegexLexer):
 
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
-            (r'(?<=[\w\)\].])\'+', Operator),
-            (r'(?<![\w\)\].])\'', String, 'string'),
+            (r'(?<=[\w)\].])\'+', Operator),
+            (r'(?<![\w)\].])\'', String, 'string'),
 
             (r'[a-zA-Z_]\w*', Name),
             (r'.', Text),
@@ -638,8 +638,8 @@ class ScilabLexer(RegexLexer):
 
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
-            (r'(?<=[\w\)\].])\'+', Operator),
-            (r'(?<![\w\)\].])\'', String, 'string'),
+            (r'(?<=[\w)\].])\'+', Operator),
+            (r'(?<![\w)\].])\'', String, 'string'),
 
             (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eEf][+-]?[0-9]+', Number.Float),

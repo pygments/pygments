@@ -92,7 +92,7 @@ class SchemeLexer(RegexLexer):
     # valid names for identifiers
     # well, names can only not consist fully of numbers
     # but this should be good enough for now
-    valid_name = r'[a-zA-Z0-9!$%&*+,/:<=>?@^_~|-]+'
+    valid_name = r'[\w!$%&*+,/:<=>?@^~|-]+'
 
     tokens = {
         'root': [
@@ -292,28 +292,28 @@ class CommonLispLexer(RegexLexer):
             (r'#\'', Name.Function),
 
             # binary rational
-            (r'#[bB][+-]?[01]+(/[01]+)?', Number.Bin),
+            (r'#b[+-]?[01]+(/[01]+)?', Number.Bin),
 
             # octal rational
-            (r'#[oO][+-]?[0-7]+(/[0-7]+)?', Number.Oct),
+            (r'#o[+-]?[0-7]+(/[0-7]+)?', Number.Oct),
 
             # hex rational
-            (r'#[xX][+-]?[0-9a-f]+(/[0-9a-f]+)?', Number.Hex),
+            (r'#x[+-]?[0-9a-f]+(/[0-9a-f]+)?', Number.Hex),
 
             # radix rational
-            (r'#\d+[rR][+-]?[0-9a-z]+(/[0-9a-z]+)?', Number),
+            (r'#\d+r[+-]?[0-9a-z]+(/[0-9a-z]+)?', Number),
 
             # complex
-            (r'(#[cC])(\()', bygroups(Number, Punctuation), 'body'),
+            (r'(#c)(\()', bygroups(Number, Punctuation), 'body'),
 
             # array
-            (r'(#\d+[aA])(\()', bygroups(Literal.Other, Punctuation), 'body'),
+            (r'(#\d+a)(\()', bygroups(Literal.Other, Punctuation), 'body'),
 
             # structure
-            (r'(#[sS])(\()', bygroups(Literal.Other, Punctuation), 'body'),
+            (r'(#s)(\()', bygroups(Literal.Other, Punctuation), 'body'),
 
             # path
-            (r'#[pP]?"(\\.|[^"])*"', Literal.Other),
+            (r'#p?"(\\.|[^"])*"', Literal.Other),
 
             # reference
             (r'#\d+=', Operator),

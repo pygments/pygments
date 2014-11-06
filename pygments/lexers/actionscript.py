@@ -38,7 +38,7 @@ class ActionScriptLexer(RegexLexer):
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
             (r'/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex),
-            (r'[~\^\*!%&<>\|+=:;,/?\\-]+', Operator),
+            (r'[~^*!%&<>|+=:;,/?\\-]+', Operator),
             (r'[{}\[\]();.]+', Punctuation),
             (words((
                 'case', 'default', 'for', 'each', 'in', 'while', 'do', 'break',
@@ -166,7 +166,7 @@ class ActionScript3Lexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[~\^\*!%&<>\|+=:;,/?\\{}\[\]().-]+', Operator),
+            (r'[~^*!%&<>|+=:;,/?\\{}\[\]().-]+', Operator),
         ],
         'funcparams': [
             (r'\s+', Text),
