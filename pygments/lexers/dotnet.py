@@ -375,6 +375,10 @@ class VbNetLexer(RegexLexer):
     filenames = ['*.vb', '*.bas']
     mimetypes = ['text/x-vbnet', 'text/x-vba']  # (?)
 
+    uni_name = '[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' + \
+               '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
+                                 'Cf', 'Mn', 'Mc') + ']*'
+
     flags = re.MULTILINE | re.IGNORECASE
     tokens = {
         'root': [
@@ -426,13 +430,13 @@ class VbNetLexer(RegexLexer):
              r'<=|>=|<>|[-&*/\\^+=<>\[\]]',
              Operator),
             ('"', String, 'string'),
-            ('[a-z_]\w*[%&@!#$]?', Name),
+            (r'_\n', Text),  # Line continuation  (must be before Name)
+            (uni_name + '[%&@!#$]?', Name),
             ('#.*?#', Literal.Date),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
             (r'\d+([SILDFR]|US|UI|UL)?', Number.Integer),
             (r'&H[0-9a-f]+([SILDFR]|US|UI|UL)?', Number.Integer),
             (r'&O[0-7]+([SILDFR]|US|UI|UL)?', Number.Integer),
-            (r'_\n', Text),  # Line continuation
         ],
         'string': [
             (r'""', String),
@@ -440,17 +444,19 @@ class VbNetLexer(RegexLexer):
             (r'[^"]+', String),
         ],
         'dim': [
-            (r'[a-z_]\w*', Name.Variable, '#pop'),
+            (uni_name, Name.Variable, '#pop'),
             default('#pop'),  # any other syntax
         ],
         'funcname': [
-            (r'[a-z_]\w*', Name.Function, '#pop'),
+            (uni_name, Name.Function, '#pop'),
         ],
         'classname': [
-            (r'[a-z_]\w*', Name.Class, '#pop'),
+            (uni_name, Name.Class, '#pop'),
         ],
         'namespace': [
-            (r'[a-z_][\w.]*', Name.Namespace, '#pop'),
+            (uni_name, Name.Namespace),
+            (r'\.', Name.Namespace),
+            default('#pop'),
         ],
         'end': [
             (r'\s+', Text),
