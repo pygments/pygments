@@ -87,7 +87,7 @@ class FortranLexer(RegexLexer):
 
             (r'(::)', Keyword.Declaration),
 
-            (r'[()\[\],:&%;]', Punctuation),
+            (r'[()\[\],:&%;.]', Punctuation),
             # Intrinsics
             (words((
                 'Abort', 'Abs', 'Access', 'AChar', 'ACos', 'ACosH', 'AdjustL',
