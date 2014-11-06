@@ -147,12 +147,12 @@ class DLexer(RegexLexer):
             (r'\]', String, '#pop'),
         ],
         'delimited_parenthesis': [
-            (r'[^\(\)]+', String),
+            (r'[^()]+', String),
             (r'\(', String, 'delimited_inside_parenthesis'),
             (r'\)"', String, '#pop'),
         ],
         'delimited_inside_parenthesis': [
-            (r'[^\(\)]+', String),
+            (r'[^()]+', String),
             (r'\(', String, '#push'),
             (r'\)', String, '#pop'),
         ],
