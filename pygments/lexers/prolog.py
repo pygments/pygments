@@ -27,7 +27,7 @@ class PrologLexer(RegexLexer):
     filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl']
     mimetypes = ['text/x-prolog']
 
-    flags = re.UNICODE
+    flags = re.UNICODE | re.MULTILINE
 
     tokens = {
         'root': [
