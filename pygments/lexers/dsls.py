@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups, words, include
+from pygments.lexer import RegexLexer, bygroups, words, include, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Literal
 
@@ -67,13 +67,16 @@ class ProtoBufLexer(RegexLexer):
             ('[a-zA-Z_][\w\.]*', Name),
         ],
         'package': [
-            (r'[a-zA-Z_]\w*', Name.Namespace, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Namespace, '#pop'),
+            default('#pop'),
         ],
         'message': [
-            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
+            default('#pop'),
         ],
         'type': [
-            (r'[a-zA-Z_]\w*', Name, '#pop')
+            (r'[a-zA-Z_]\w*', Name, '#pop'),
+            default('#pop'),
         ],
     }
 
