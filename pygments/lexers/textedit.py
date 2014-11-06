@@ -52,7 +52,7 @@ class AwkLexer(RegexLexer):
             (r'^(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|--|\|\||&&|in\b|\$|!?~|'
-             r'(\*\*|[-<>+*%\^/!=])=?', Operator, 'slashstartsregex'),
+             r'(\*\*|[-<>+*%\^/!=|])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(break|continue|do|while|exit|for|if|else|'
