@@ -34,7 +34,7 @@ class ProtoBufLexer(RegexLexer):
     tokens = {
         'root': [
             (r'[ \t]+', Text),
-            (r'[,;{}\[\]\(\)]', Punctuation),
+            (r'[,;{}\[\]()]', Punctuation),
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
             (words((
@@ -62,9 +62,9 @@ class ProtoBufLexer(RegexLexer):
             (r'0[0-7]+[LlUu]*', Number.Oct),
             (r'\d+[LlUu]*', Number.Integer),
             (r'[+-=]', Operator),
-            (r'([a-zA-Z_][\w\.]*)([ \t]*)(=)',
+            (r'([a-zA-Z_][\w.]*)([ \t]*)(=)',
              bygroups(Name.Attribute, Text, Operator)),
-            ('[a-zA-Z_][\w\.]*', Name),
+            ('[a-zA-Z_][\w.]*', Name),
         ],
         'package': [
             (r'[a-zA-Z_]\w*', Name.Namespace, '#pop'),
@@ -140,7 +140,7 @@ class BroLexer(RegexLexer):
             (r'[{}()\[\]$.,;]', Punctuation),
             # Identfier
             (r'([_a-zA-Z]\w*)(::)', bygroups(Name, Name.Namespace)),
-            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name)
+            (r'[a-zA-Z_]\w*', Name)
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -370,7 +370,7 @@ class VGLLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\{[^\}]*\}', Comment.Multiline),
+            (r'\{[^}]*\}', Comment.Multiline),
             (r'declare', Keyword.Constant),
             (r'(if|then|else|endif|while|do|endwhile|and|or|prompt|object'
              r'|create|on|line|with|global|routine|value|endroutine|constant'
@@ -378,11 +378,11 @@ class VGLLexer(RegexLexer):
              r'|delete|enable|windows|name|notprotected)(?! *[=<>.,()])',
              Keyword),
             (r'(true|false|null|empty|error|locked)', Keyword.Constant),
-            (r'[~\^\*\#!%&\[\]\(\)<>\|+=:;,./?-]', Operator),
+            (r'[~^*#!%&\[\]()<>|+=:;,./?-]', Operator),
             (r'"[^"]*"', String),
-            (r'(\.)([a-z_\$][\w\$]*)', bygroups(Operator, Name.Attribute)),
+            (r'(\.)([a-z_$][\w$]*)', bygroups(Operator, Name.Attribute)),
             (r'[0-9][0-9]*(\.[0-9]+(e[+\-]?[0-9]+)?)?', Number),
-            (r'[a-z_\$][\w\$]*', Name),
+            (r'[a-z_$][\w$]*', Name),
             (r'[\r\n]+', Text),
             (r'\s+', Text)
         ]
@@ -403,7 +403,7 @@ class AlloyLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    iden_rex = r'[a-zA-Z_][a-zA-Z0-9_\']*'
+    iden_rex = r'[a-zA-Z_][\w\']*'
     text_tuple = (r'[^\S\n]+', Text)
 
     tokens = {
@@ -439,7 +439,7 @@ class AlloyLexer(RegexLexer):
             (r'(and|or|implies|iff|in)\b', Operator.Word),
             (r'(fun|pred|fact|assert)(\s+)', bygroups(Keyword, Text), 'fun'),
             (r'!|#|&&|\+\+|<<|>>|>=|<=>|<=|\.|->', Operator),
-            (r'[-+/*%=<>&!^|~\{\}\[\]\(\)\.]', Operator),
+            (r'[-+/*%=<>&!^|~{}\[\]().]', Operator),
             (iden_rex, Name),
             (r'[:,]', Punctuation),
             (r'[0-9]+', Number.Integer),

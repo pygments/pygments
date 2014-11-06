@@ -88,7 +88,7 @@ class DylanLexer(RegexLexer):
         'type-error-value', 'type-for-copy', 'type-union', 'union', 'values',
         'vector', 'zero?'))
 
-    valid_name = '\\\\?[a-z0-9' + re.escape('!&*<>|^$%@_-+~?/=') + ']+'
+    valid_name = '\\\\?[a-z0-9!&*<>|^$%@_\\-+~?/=]+'
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):
@@ -137,10 +137,10 @@ class DylanLexer(RegexLexer):
             (r"'(\\.|\\[0-7]{1,3}|\\x[a-f0-9]{1,2}|[^\\\'\n])'", String.Char),
 
             # binary integer
-            (r'#[bB][01]+', Number.Bin),
+            (r'#b[01]+', Number.Bin),
 
             # octal integer
-            (r'#[oO][0-7]+', Number.Oct),
+            (r'#o[0-7]+', Number.Oct),
 
             # floating point
             (r'[-+]?(\d*\.\d+(e[-+]?\d+)?|\d+(\.\d*)?e[-+]?\d+)', Number.Float),
@@ -149,7 +149,7 @@ class DylanLexer(RegexLexer):
             (r'[-+]?\d+', Number.Integer),
 
             # hex integer
-            (r'#[xX][0-9a-f]+', Number.Hex),
+            (r'#x[0-9a-f]+', Number.Hex),
 
             # Macro parameters
             (r'(\?' + valid_name + ')(:)'
@@ -160,7 +160,7 @@ class DylanLexer(RegexLexer):
             (r'\?' + valid_name, Name.Tag),
 
             # Punctuation
-            (r'(=>|::|#\(|#\[|##|\?\?|\?=|\?|[(){}\[\],\.;])', Punctuation),
+            (r'(=>|::|#\(|#\[|##|\?\?|\?=|\?|[(){}\[\],.;])', Punctuation),
 
             # Most operators are picked up as names and then re-flagged.
             # This one isn't valid in a name though, so we pick it up now.

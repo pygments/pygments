@@ -81,7 +81,7 @@ class JuliaLexer(RegexLexer):
              r"\\U[a-fA-F0-9]{1,6}|[^\\\'\n])'", String.Char),
 
             # try to match trailing transpose
-            (r'(?<=[.\w\)\]])\'+', Operator),
+            (r'(?<=[.\w)\]])\'+', Operator),
 
             # strings
             (r'(?:[IL])"', String, 'string'),

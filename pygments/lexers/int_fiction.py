@@ -33,7 +33,7 @@ class Inform6Lexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    _name = r'[a-zA-Z_][a-zA-Z_0-9]*'
+    _name = r'[a-zA-Z_]\w*'
 
     # Inform 7 maps these four character classes to their ASCII
     # equivalents. To support Inform 6 inclusions within Inform 7,
@@ -227,7 +227,7 @@ class Inform6Lexer(RegexLexer):
         ],
         # Values after hashes
         'obsolete-dictionary-word': [
-            (r'\S[a-zA-Z_0-9]*', String.Other, '#pop')
+            (r'\S\w*', String.Other, '#pop')
         ],
         'system-constant': [
             include('_whitespace'),
@@ -687,7 +687,7 @@ class Inform7Lexer(RegexLexer):
                  Comment.Preproc),
                 (r'(%s)@p( .*?)?([%s]|\Z)' % (_start, _newline),
                  Generic.Heading, '+p'),
-                (r'(%s)@[a-zA-Z_0-9]*[ %s]' % (_start, _newline), Keyword),
+                (r'(%s)@\w*[ %s]' % (_start, _newline), Keyword),
                 (r'![^%s]*' % _newline, Comment.Single),
                 (r'(\{)([%s]endlines)(\})' % _dash,
                  bygroups(Punctuation, Keyword, Punctuation), '#pop'),
