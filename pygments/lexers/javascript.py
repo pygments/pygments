@@ -40,7 +40,8 @@ class JavascriptLexer(RegexLexer):
     mimetypes = ['application/javascript', 'application/x-javascript',
                  'text/x-javascript', 'text/javascript', ]
 
-    flags = re.DOTALL | re.UNICODE
+    flags = re.DOTALL | re.UNICODE | re.MULTILINE
+
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Text),
@@ -59,11 +60,11 @@ class JavascriptLexer(RegexLexer):
             (r'\n', Text, '#pop')
         ],
         'root': [
-            (r'^#! ?/.*?\n', Comment),  # shebang lines are recognized by node.js
+            (r'\A#! ?/.*?\n', Comment),  # shebang lines are recognized by node.js
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
-             r'(<<|>>>?|==?|!=?|[-<>+*%&\|\^/])=?', Operator, 'slashstartsregex'),
+             r'(<<|>>>?|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
