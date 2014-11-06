@@ -163,8 +163,8 @@ class PerlLexer(RegexLexer):
             (r'\s+', Text),
             # argument declaration
             (r'(\([$@%]*\))(\s*)', bygroups(Punctuation, Text)),
-            (r'.*?\{', Punctuation, '#pop'),
             (r';', Punctuation, '#pop'),
+            (r'.*?\{', Punctuation, '#pop'),
         ],
         'cb-string': [
             (r'\\[\{\}\\]', String.Other),
