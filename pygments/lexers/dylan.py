@@ -88,7 +88,7 @@ class DylanLexer(RegexLexer):
         'type-error-value', 'type-for-copy', 'type-union', 'union', 'values',
         'vector', 'zero?'))
 
-    valid_name = '\\\\?[a-z0-9!&*<>|^$%@_\\-+~?/=]+'
+    valid_name = '\\\\?[\\w!&*<>|^$%@\\-+~?/=]+'
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in RegexLexer.get_tokens_unprocessed(self, text):

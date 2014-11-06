@@ -6,12 +6,20 @@ Since Pygments 0.6, all lexers use unicode strings internally. Because of that
 you might encounter the occasional :exc:`UnicodeDecodeError` if you pass strings
 with the wrong encoding.
 
-Per default all lexers have their input encoding set to `latin1`.
-If you pass a lexer a string object (not unicode), it tries to decode the data
-using this encoding.
-You can override the encoding using the `encoding` lexer option. If you have the
-`chardet`_ library installed and set the encoding to ``chardet`` if will ananlyse
-the text and use the encoding it thinks is the right one automatically:
+Per default all lexers have their input encoding set to `guess`.  This means
+that the following encodings are tried:
+
+* UTF-8 (including BOM handling)
+* The locale encoding (i.e. the result of `locale.getpreferredencoding()`)
+* As a last resort, `latin1`
+
+If you pass a lexer a byte string object (not unicode), it tries to decode the
+data using this encoding.
+
+You can override the encoding using the `encoding` or `inencoding` lexer
+options.  If you have the `chardet`_ library installed and set the encoding to
+``chardet`` if will ananlyse the text and use the encoding it thinks is the
+right one automatically:
 
 .. sourcecode:: python
 
