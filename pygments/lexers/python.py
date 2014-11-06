@@ -699,7 +699,7 @@ class DgLexer(RegexLexer):
             (r"(?<!\.)(Exception|GeneratorExit|KeyboardInterrupt|StopIteration|"
              r"SystemExit)(?!['\w])", Name.Exception),
 
-            (r"(?<![\.\w])(except|finally|for|if|import|not|otherwise|raise|"
+            (r"(?<![\w.])(except|finally|for|if|import|not|otherwise|raise|"
              r"subclass|while|with|yield)(?!['\w])", Keyword.Reserved),
 
             (r"[A-Z_]+'*(?!['\w])", Name),
