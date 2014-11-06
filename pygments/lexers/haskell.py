@@ -51,7 +51,7 @@ class HaskellLexer(RegexLexer):
             # Whitespace:
             (r'\s+', Text),
             # (r'--\s*|.*$', Comment.Doc),
-            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
+            (r'--(?![!#$%&*+./<=>?@^|_~:\\]).*?$', Comment.Single),
             (r'\{-', Comment.Multiline, 'comment'),
             # Lexemes:
             #  Identifiers
@@ -111,7 +111,7 @@ class HaskellLexer(RegexLexer):
             (r'\s+', Text),
             (r'[' + uni.Lu + r']\w*', Keyword.Type),
             (r'(_[\w\']+|[' + uni.Ll + r'][\w\']*)', Name.Function),
-            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
+            (r'--(?![!#$%&*+./<=>?@^|_~:\\]).*?$', Comment.Single),
             (r'\{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
@@ -141,7 +141,7 @@ class HaskellLexer(RegexLexer):
         ],
         'escape': [
             (r'[abfnrtv"\'&\\]', String.Escape, '#pop'),
-            (r'\^[][' + uni.Lu + r'@\^_]', String.Escape, '#pop'),
+            (r'\^[][' + uni.Lu + r'@^_]', String.Escape, '#pop'),
             ('|'.join(ascii), String.Escape, '#pop'),
             (r'o[0-7]+', String.Escape, '#pop'),
             (r'x[\da-fA-F]+', String.Escape, '#pop'),
@@ -186,11 +186,11 @@ class IdrisLexer(RegexLexer):
             # Comments
             (r'^(\s*)(%%%s)' % '|'.join(directives),
              bygroups(Text, Keyword.Reserved)),
-            (r'(\s*)(--(?![!#$%&*+./<=>?@\^|_~:\\]).*?)$', bygroups(Text, Comment.Single)),
+            (r'(\s*)(--(?![!#$%&*+./<=>?@^|_~:\\]).*?)$', bygroups(Text, Comment.Single)),
             (r'(\s*)(\|{3}.*?)$', bygroups(Text, Comment.Single)),
             (r'(\s*)(\{-)', bygroups(Text, Comment.Multiline), 'comment'),
             # Declaration
-            (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
+            (r'^(\s*)([^\s(){}]+)(\s*)(:)(\s*)',
              bygroups(Text, Name.Function, Text, Operator.Word, Text)),
             #  Identifiers
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
@@ -199,7 +199,7 @@ class IdrisLexer(RegexLexer):
             (r'[a-z][\w\']*', Text),
             #  Special Symbols
             (r'(<-|::|->|=>|=)', Operator.Word),  # specials
-            (r'([\(\)\{\}\[\]:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word),  # specials
+            (r'([(){}\[\]:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word),  # specials
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
             (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
@@ -208,7 +208,7 @@ class IdrisLexer(RegexLexer):
             # Strings
             (r"'", String.Char, 'character'),
             (r'"', String, 'string'),
-            (r'[^\s\(\)\{\}]+', Text),
+            (r'[^\s(){}]+', Text),
             (r'\s+?', Text),  # Whitespace
         ],
         'module': [
@@ -251,7 +251,7 @@ class IdrisLexer(RegexLexer):
         ],
         'escape': [
             (r'[abfnrtv"\'&\\]', String.Escape, '#pop'),
-            (r'\^[][A-Z@\^_]', String.Escape, '#pop'),
+            (r'\^[][A-Z@^_]', String.Escape, '#pop'),
             ('|'.join(ascii), String.Escape, '#pop'),
             (r'o[0-7]+', String.Escape, '#pop'),
             (r'x[\da-fA-F]+', String.Escape, '#pop'),
@@ -285,10 +285,10 @@ class AgdaLexer(RegexLexer):
     tokens = {
         'root': [
             # Declaration
-            (r'^(\s*)([^\s\(\)\{\}]+)(\s*)(:)(\s*)',
+            (r'^(\s*)([^\s(){}]+)(\s*)(:)(\s*)',
              bygroups(Text, Name.Function, Text, Operator.Word, Text)),
             # Comments
-            (r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
+            (r'--(?![!#$%&*+./<=>?@^|_~:\\]).*?$', Comment.Single),
             (r'\{-', Comment.Multiline, 'comment'),
             # Holes
             (r'\{!', Comment.Directive, 'hole'),
@@ -308,7 +308,7 @@ class AgdaLexer(RegexLexer):
             # Strings
             (r"'", String.Char, 'character'),
             (r'"', String, 'string'),
-            (r'[^\s\(\)\{\}]+', Text),
+            (r'[^\s(){}]+', Text),
             (r'\s+?', Text),  # Whitespace
         ],
         'hole': [
@@ -393,29 +393,29 @@ class CryptolLexer(RegexLexer):
             (r'\)', Punctuation, '#pop'),
             (r'qualified\b', Keyword),
             # import X as Y
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(as)(\s+)([A-Z][a-zA-Z0-9_.]*)',
+            (r'([A-Z][\w.]*)(\s+)(as)(\s+)([A-Z][\w.]*)',
              bygroups(Name.Namespace, Text, Keyword, Text, Name), '#pop'),
             # import X hiding (functions)
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(hiding)(\s+)(\()',
+            (r'([A-Z][\w.]*)(\s+)(hiding)(\s+)(\()',
              bygroups(Name.Namespace, Text, Keyword, Text, Punctuation), 'funclist'),
             # import X (functions)
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+            (r'([A-Z][\w.]*)(\s+)(\()',
              bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
             # import X
-            (r'[a-zA-Z0-9_.]+', Name.Namespace, '#pop'),
+            (r'[\w.]+', Name.Namespace, '#pop'),
         ],
         'module': [
             (r'\s+', Text),
-            (r'([A-Z][a-zA-Z0-9_.]*)(\s+)(\()',
+            (r'([A-Z][\w.]*)(\s+)(\()',
              bygroups(Name.Namespace, Text, Punctuation), 'funclist'),
-            (r'[A-Z][a-zA-Z0-9_.]*', Name.Namespace, '#pop'),
+            (r'[A-Z][\w.]*', Name.Namespace, '#pop'),
         ],
         'funclist': [
             (r'\s+', Text),
-            (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
+            (r'[A-Z]\w*', Keyword.Type),
             (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
             # TODO: these don't match the comments in docs, remove.
-            #(r'--(?![!#$%&*+./<=>?@\^|_~:\\]).*?$', Comment.Single),
+            #(r'--(?![!#$%&*+./<=>?@^|_~:\\]).*?$', Comment.Single),
             #(r'{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
@@ -425,10 +425,10 @@ class CryptolLexer(RegexLexer):
         ],
         'comment': [
             # Multiline Comments
-            (r'[^/\*]+', Comment.Multiline),
+            (r'[^/*]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[\*/]', Comment.Multiline),
+            (r'[*/]', Comment.Multiline),
         ],
         'character': [
             # Allows multi-chars, incorrectly.
@@ -443,7 +443,7 @@ class CryptolLexer(RegexLexer):
         ],
         'escape': [
             (r'[abfnrtv"\'&\\]', String.Escape, '#pop'),
-            (r'\^[][A-Z@\^_]', String.Escape, '#pop'),
+            (r'\^[][A-Z@^_]', String.Escape, '#pop'),
             ('|'.join(ascii), String.Escape, '#pop'),
             (r'o[0-7]+', String.Escape, '#pop'),
             (r'x[\da-fA-F]+', String.Escape, '#pop'),
@@ -671,7 +671,7 @@ class KokaLexer(RegexLexer):
     ]
 
     # symbols that can be in an operator
-    symbols = '[\$%&\*\+@!/\\\^~=\.:\-\?\|<>]+'
+    symbols = r'[$%&*+@!/\\^~=.:\-?|<>]+'
 
     # symbol boundary: an operator keyword should not be followed by any of these
     sboundary = '(?!'+symbols+')'
@@ -720,7 +720,7 @@ class KokaLexer(RegexLexer):
             (r'(%s)' % '|'.join(typekeywords) + boundary, Keyword.Type),
             (r'(%s)' % '|'.join(keywords) + boundary, Keyword),
             (r'(%s)' % '|'.join(builtin) + boundary, Keyword.Pseudo),
-            (r'::?|:=|\->|[=\.]' + sboundary, Keyword),
+            (r'::?|:=|\->|[=.]' + sboundary, Keyword),
 
             # names
             (r'((?:[a-z]\w*/)*)([A-Z]\w*)',
@@ -734,12 +734,12 @@ class KokaLexer(RegexLexer):
             (r'@"', String.Double, 'litstring'),
 
             # operators
-            (symbols + "|/(?![\*/])", Operator),
+            (symbols + "|/(?![*/])", Operator),
             (r'`', Operator),
-            (r'[\{\}\(\)\[\];,]', Punctuation),
+            (r'[{}()\[\];,]', Punctuation),
 
             # literals. No check for literal characters with len > 1
-            (r'[0-9]+\.[0-9]+([eE][\-\+]?[0-9]+)?', Number.Float),
+            (r'[0-9]+\.[0-9]+([eE][\-+]?[0-9]+)?', Number.Float),
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
 
@@ -761,14 +761,14 @@ class KokaLexer(RegexLexer):
 
         # type started by colon
         'type': [
-            (r'[\(\[<]', tokenType, 'type-nested'),
+            (r'[(\[<]', tokenType, 'type-nested'),
             include('type-content')
         ],
 
         # type nested in brackets: can contain parameters, comma etc.
         'type-nested': [
-            (r'[\)\]>]', tokenType, '#pop'),
-            (r'[\(\[<]', tokenType, 'type-nested'),
+            (r'[)\]>]', tokenType, '#pop'),
+            (r'[(\[<]', tokenType, 'type-nested'),
             (r',', tokenType),
             (r'([a-z]\w*)(\s*)(:)(?!:)',
              bygroups(Name, Text, tokenType)),  # parameter name
@@ -796,7 +796,7 @@ class KokaLexer(RegexLexer):
              bygroups(Name.Namespace, tokenType)),
 
             # type keyword operators
-            (r'::|\->|[\.:|]', tokenType),
+            (r'::|->|[.:|]', tokenType),
 
             # catchall
             default('#pop')
@@ -810,10 +810,10 @@ class KokaLexer(RegexLexer):
             (r'//.*$', Comment.Single)
         ],
         'comment': [
-            (r'[^/\*]+', Comment.Multiline),
+            (r'[^/*]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[\*/]', Comment.Multiline),
+            (r'[*/]', Comment.Multiline),
         ],
         'litstring': [
             (r'[^"]+', String.Double),
@@ -831,7 +831,7 @@ class KokaLexer(RegexLexer):
             (r'[\'\n]', String.Char, '#pop'),
         ],
         'escape-sequence': [
-            (r'\\[nrt\\\"\']', String.Escape),
+            (r'\\[nrt\\"\']', String.Escape),
             (r'\\x[0-9a-fA-F]{2}', String.Escape),
             (r'\\u[0-9a-fA-F]{4}', String.Escape),
             # Yes, \U literals are 6 hex digits.
