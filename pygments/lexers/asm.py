@@ -338,8 +338,8 @@ class NasmLexer(RegexLexer):
     flags = re.IGNORECASE | re.MULTILINE
     tokens = {
         'root': [
-            include('whitespace'),
             (r'^\s*%', Comment.Preproc, 'preproc'),
+            include('whitespace'),
             (identifier + ':', Name.Label),
             (r'(%s)(\s+)(equ)' % identifier,
                 bygroups(Name.Constant, Keyword.Declaration, Keyword.Declaration),
