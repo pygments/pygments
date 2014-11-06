@@ -36,6 +36,10 @@ class RustLexer(RegexLexer):
             (r'//(.*?)\n', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
 
+            # Lifetime
+            (r"""'[a-zA-Z_]\w*""", Name.Label),
+            # Macro parameters
+            (r"""\$([a-zA-Z_]\w*|\(,?|\),?|,?)""", Comment.Preproc),
             # Keywords
             (words((
                 'as', 'box', 'break', 'continue', 'do', 'else', 'enum', 'extern',
@@ -88,8 +92,6 @@ class RustLexer(RegexLexer):
             (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
              String.Char),
-            # Lifetime
-            (r"""'[a-zA-Z_]\w*""", Name.Label),
             # Binary Literal
             (r'0b[01_]+', Number.Bin, 'number_lit'),
             # Octal Literal
