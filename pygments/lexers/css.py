@@ -471,6 +471,7 @@ class ScssLexer(RegexLexer):
             (r'(@mixin)( [\w-]+)', bygroups(Keyword, Name.Function), 'value'),
             (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
             (r'@extend', Keyword, 'selector'),
+            (r'(@media)(\s+)', bygroups(Keyword, Text), 'value'),
             (r'@[\w-]+', Keyword, 'selector'),
             (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
             (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
@@ -492,5 +493,5 @@ class ScssLexer(RegexLexer):
     }
     for group, common in iteritems(common_sass_tokens):
         tokens[group] = copy.copy(common)
-    tokens['value'].extend([(r'\n', Text), (r'[;{}]', Punctuation, 'root')])
-    tokens['selector'].extend([(r'\n', Text), (r'[;{}]', Punctuation, 'root')])
+    tokens['value'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
+    tokens['selector'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
