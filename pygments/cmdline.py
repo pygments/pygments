@@ -396,6 +396,8 @@ def main(args=sys.argv):
             return 1
 
     # read input code
+    code = None
+
     if args:
         if len(args) > 1:
             print(usage, file=sys.stderr)
