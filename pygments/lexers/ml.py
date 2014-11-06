@@ -441,6 +441,7 @@ class OcamlLexer(RegexLexer):
             (r'[A-Z][\w\']*(?=\s*\.)', Name.Namespace),
             (r'[A-Z][\w\']*', Name.Class, '#pop'),
             (r'[a-z_][\w\']*', Name, '#pop'),
+            default('#pop'),
         ],
     }
 
