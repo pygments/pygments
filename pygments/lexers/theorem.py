@@ -352,7 +352,7 @@ class IsabelleLexer(RegexLexer):
             (r'[(*)]', Comment),
         ],
         'text': [
-            (r'[^\*\}]+', Comment),
+            (r'[^*}]+', Comment),
             (r'\*\}', Comment, '#pop'),
             (r'\*', Comment),
             (r'\}', Comment),

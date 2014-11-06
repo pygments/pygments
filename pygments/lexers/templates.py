@@ -237,7 +237,7 @@ class VelocityLexer(RegexLexer):
             default('#pop')
         ],
         'directiveparams': [
-            (r'(&&|\|\||==?|!=?|[-<>+*%&\|\^/])|\b(eq|ne|gt|lt|ge|le|not|in)\b',
+            (r'(&&|\|\||==?|!=?|[-<>+*%&|^/])|\b(eq|ne|gt|lt|ge|le|not|in)\b',
              Operator),
             (r'\[', Operator, 'rangeoperator'),
             (r'\b' + identifier + r'\b', Name.Function),
@@ -598,11 +598,11 @@ class MakoLexer(RegexLexer):
             (r'(\s*)(##[^\n]*)(\n|\Z)',
              bygroups(Text, Comment.Preproc, Other)),
             (r'(?s)<%doc>.*?</%doc>', Comment.Preproc),
-            (r'(<%)([\w\.\:]+)',
+            (r'(<%)([\w.:]+)',
              bygroups(Comment.Preproc, Name.Builtin), 'tag'),
-            (r'(</%)([\w\.\:]+)(>)',
+            (r'(</%)([\w.:]+)(>)',
              bygroups(Comment.Preproc, Name.Builtin, Comment.Preproc)),
-            (r'<%(?=([\w\.\:]+))', Comment.Preproc, 'ondeftags'),
+            (r'<%(?=([\w.:]+))', Comment.Preproc, 'ondeftags'),
             (r'(<%(?:!?))(.*?)(%>)(?s)',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
             (r'(\$\{)(.*?)(\})',
@@ -753,7 +753,7 @@ class CheetahLexer(RegexLexer):
              (bygroups(Comment.Preproc, using(CheetahPythonLexer),
                        Comment.Preproc))),
             # TODO support other Python syntax like $foo['bar']
-            (r'(\$)([a-zA-Z_][\w\.]*\w)',
+            (r'(\$)([a-zA-Z_][\w.]*\w)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer))),
             (r'(\$\{!?)(.*?)(\})(?s)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer),
@@ -834,11 +834,11 @@ class GenshiTextLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[^#\$\s]+', Other),
+            (r'[^#$\s]+', Other),
             (r'^(\s*)(##.*)$', bygroups(Text, Comment)),
             (r'^(\s*)(#)', bygroups(Text, Comment.Preproc), 'directive'),
             include('variable'),
-            (r'[#\$\s]', Other),
+            (r'[#$\s]', Other),
         ],
         'directive': [
             (r'\n', Text, '#pop'),
@@ -851,7 +851,7 @@ class GenshiTextLexer(RegexLexer):
         'variable': [
             (r'(?<!\$)(\$\{)(.+?)(\})',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
-            (r'(?<!\$)(\$)([a-zA-Z_][\w\.]*)',
+            (r'(?<!\$)(\$)([a-zA-Z_][\w.]*)',
              Name.Variable),
         ]
     }
@@ -867,7 +867,7 @@ class GenshiMarkupLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[^<\$]+', Other),
+            (r'[^<$]+', Other),
             (r'(<\?python)(.*?)(\?>)',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
             # yield style and script blocks as Other
@@ -875,7 +875,7 @@ class GenshiMarkupLexer(RegexLexer):
             (r'<\s*py:[a-zA-Z0-9]+', Name.Tag, 'pytag'),
             (r'<\s*[a-zA-Z0-9:]+', Name.Tag, 'tag'),
             include('variable'),
-            (r'[<\$]', Other),
+            (r'[<$]', Other),
         ],
         'pytag': [
             (r'\s+', Text),
@@ -1814,11 +1814,11 @@ class HandlebarsLexer(RegexLexer):
             (r'\}\}', Comment.Preproc, '#pop'),
 
             # Handlebars
-            (r'([\#/]*)(each|if|unless|else|with|log|in)', bygroups(Keyword,
+            (r'([#/]*)(each|if|unless|else|with|log|in)', bygroups(Keyword,
              Keyword)),
 
             # General {{#block}}
-            (r'([\#/])([\w-]+)', bygroups(Name.Function, Name.Function)),
+            (r'([#/])([\w-]+)', bygroups(Name.Function, Name.Function)),
 
             # {{opt=something}}
             (r'([\w-]+)(=)', bygroups(Name.Attribute, Operator)),
@@ -1937,7 +1937,7 @@ class LiquidLexer(RegexLexer):
             include('whitespace'),
             (r'\}\}', Punctuation, ('#pop', '#pop')),  # end of filters and output
 
-            (r'([^\s\|:]+)(:?)(\s*)',
+            (r'([^\s|:]+)(:?)(\s*)',
              bygroups(Name.Function, Punctuation, Whitespace), 'filter-markup')
         ],
 
@@ -1957,7 +1957,7 @@ class LiquidLexer(RegexLexer):
                       Punctuation)),
             (r'\b!', Operator),
             (r'\bnot\b', Operator.Word),
-            (r'([\w\.\'"]+)(\s+)(contains)(\s+)([\w\.\'"]+)',
+            (r'([\w.\'"]+)(\s+)(contains)(\s+)([\w.\'"]+)',
              bygroups(using(this, state = 'generic'), Whitespace, Operator.Word,
                       Whitespace, using(this, state = 'generic'))),
 
@@ -1996,7 +1996,7 @@ class LiquidLexer(RegexLexer):
             (r'([^\s=:]+)(\s*)(=|:)',
              bygroups(Name.Attribute, Whitespace, Operator)),
             # explicit variables
-            (r'(\{\{)(\s*)([^\s\}])(\s*)(\}\})',
+            (r'(\{\{)(\s*)([^\s}])(\s*)(\}\})',
              bygroups(Punctuation, Whitespace, using(this, state = 'variable'),
                       Whitespace, Punctuation)),
 
@@ -2067,7 +2067,7 @@ class LiquidLexer(RegexLexer):
         ],
 
         'raw': [
-            (r'[^\{]+', Text),
+            (r'[^{]+', Text),
             (r'(\{%)(\s*)(endraw)(\s*)(%\})',
              bygroups(Punctuation, Whitespace, Name.Tag, Whitespace,
                       Punctuation), '#pop'),
