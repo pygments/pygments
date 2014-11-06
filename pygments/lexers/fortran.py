@@ -39,10 +39,11 @@ class FortranLexer(RegexLexer):
 
     tokens = {
         'root': [
+            ('^#.*\n', Comment.Preproc),
             (r'!.*\n', Comment),
             include('strings'),
             include('core'),
-            (r'[a-z]\w*', Name.Variable),
+            # (r'[a-z]\w*', Name.Variable),  # too broad
             include('nums'),
             (r'[\s]+', Text),
         ],
