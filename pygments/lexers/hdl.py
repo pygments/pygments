@@ -11,9 +11,8 @@
 
 import re
 from pygments.lexer import RegexLexer, bygroups, include, using, this
-from pygments.token import \
-     Text, Comment, Operator, Keyword, Name, String, Number, Punctuation, \
-     Error
+from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
+    Number, Punctuation, Error
 
 __all__ = ['VerilogLexer', 'SystemVerilogLexer', 'VhdlLexer']
 
@@ -37,7 +36,7 @@ class VerilogLexer(RegexLexer):
             (r'^\s*`define', Comment.Preproc, 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
+            (r'\\\n', Text),  # line continuation
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'[{}#@]', Punctuation),
@@ -102,9 +101,9 @@ class VerilogLexer(RegexLexer):
         'string': [
             (r'"', String, '#pop'),
             (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"\n]+', String), # all other characters
-            (r'\\\n', String), # line continuation
-            (r'\\', String), # stray backslash
+            (r'[^\\"\n]+', String),  # all other characters
+            (r'\\\n', String),  # line continuation
+            (r'\\', String),  # stray backslash
         ],
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
@@ -121,7 +120,7 @@ class VerilogLexer(RegexLexer):
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in \
-            RegexLexer.get_tokens_unprocessed(self, text):
+                RegexLexer.get_tokens_unprocessed(self, text):
             # Convention: mark all upper case names as constants
             if token is Name:
                 if value.isupper():
@@ -152,7 +151,7 @@ class SystemVerilogLexer(RegexLexer):
 
             (r'\n', Text),
             (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
+            (r'\\\n', Text),  # line continuation
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'[{}#@]', Punctuation),
@@ -202,13 +201,13 @@ class SystemVerilogLexer(RegexLexer):
              r'tri1|triand|trior|trireg|type|typedef|union|unique|unique0|'
              r'unsigned|until|until_with|untyped|use|uwire|var|vectored|'
              r'virtual|void|wait|wait_order|wand|weak|weak0|weak1|while|'
-             r'wildcard|wire|with|within|wor|xnor|xor)\b', Keyword ),
+             r'wildcard|wire|with|within|wor|xnor|xor)\b', Keyword),
 
             (r'(`__FILE__|`__LINE__|`begin_keywords|`celldefine|`default_nettype|'
              r'`define|`else|`elsif|`end_keywords|`endcelldefine|`endif|'
              r'`ifdef|`ifndef|`include|`line|`nounconnected_drive|`pragma|'
              r'`resetall|`timescale|`unconnected_drive|`undef|`undefineall)\b',
-             Comment.Preproc ),
+             Comment.Preproc),
 
             (r'(\$display|\$displayb|\$displayh|\$displayo|\$dumpall|\$dumpfile|'
              r'\$dumpflush|\$dumplimit|\$dumpoff|\$dumpon|\$dumpports|'
@@ -223,7 +222,7 @@ class SystemVerilogLexer(RegexLexer):
              r'\$sformat|\$sformatf|\$sscanf|\$strobe|\$strobeb|\$strobeh|\$strobeo|'
              r'\$swrite|\$swriteb|\$swriteh|\$swriteo|\$test|\$ungetc|'
              r'\$value\$plusargs|\$write|\$writeb|\$writeh|\$writememb|'
-             r'\$writememh|\$writeo)\b' , Name.Builtin ),
+             r'\$writememh|\$writeo)\b', Name.Builtin),
 
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(byte|shortint|int|longint|integer|time|'
@@ -239,9 +238,9 @@ class SystemVerilogLexer(RegexLexer):
         'string': [
             (r'"', String, '#pop'),
             (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"\n]+', String), # all other characters
-            (r'\\\n', String), # line continuation
-            (r'\\', String), # stray backslash
+            (r'[^\\"\n]+', String),  # all other characters
+            (r'\\\n', String),  # line continuation
+            (r'\\', String),  # stray backslash
         ],
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
@@ -258,7 +257,7 @@ class SystemVerilogLexer(RegexLexer):
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in \
-            RegexLexer.get_tokens_unprocessed(self, text):
+                RegexLexer.get_tokens_unprocessed(self, text):
             # Convention: mark all upper case names as constants
             if token is Name:
                 if value.isupper():
@@ -286,7 +285,7 @@ class VhdlLexer(RegexLexer):
         'root': [
             (r'\n', Text),
             (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
+            (r'\\\n', Text),  # line continuation
             (r'--(?![!#$%&*+./<=>?@\^|_~]).*?$', Comment.Single),
             (r"'(U|X|0|1|Z|W|L|H|-)'", String.Char),
             (r'[~!%^&*+=|?:<>/-]', Operator),
