@@ -28,7 +28,7 @@ class FortranLexer(RegexLexer):
     aliases = ['fortran']
     filenames = ['*.f', '*.f90', '*.F', '*.F90']
     mimetypes = ['text/x-fortran']
-    flags = re.IGNORECASE
+    flags = re.IGNORECASE | re.MULTILINE
 
     # Data Types: INTEGER, REAL, COMPLEX, LOGICAL, CHARACTER and DOUBLE PRECISION
     # Operators: **, *, +, -, /, <, >, <=, >=, ==, /=
@@ -43,7 +43,7 @@ class FortranLexer(RegexLexer):
             (r'!.*\n', Comment),
             include('strings'),
             include('core'),
-            # (r'[a-z]\w*', Name.Variable),  # too broad
+            (r'[a-z]\w*', Name),
             include('nums'),
             (r'[\s]+', Text),
         ],
