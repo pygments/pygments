@@ -10,7 +10,7 @@
 """
 
 from pygments.lexer import RegexLexer, include, bygroups, words, default
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
+from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
 __all__ = ['RustLexer']
