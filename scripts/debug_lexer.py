@@ -23,14 +23,15 @@ if os.path.isdir(os.path.join(srcpath, 'pygments')):
     sys.path.insert(0, srcpath)
 
 
-from pygments.lexer import RegexLexer, ProfilingRegexLexer, ProfilingRegexLexerMeta
+from pygments.lexer import RegexLexer, ExtendedRegexLexer, LexerContext, \
+    ProfilingRegexLexer, ProfilingRegexLexerMeta
 from pygments.lexers import get_lexer_by_name, find_lexer_class, \
     find_lexer_class_for_filename
 from pygments.token import Error, Text, _TokenType
 from pygments.cmdline import _parse_options
 
 
-class DebuggingRegexLexer(RegexLexer):
+class DebuggingRegexLexer(ExtendedRegexLexer):
     """Make the state stack, position and current match instance attributes."""
 
     def get_tokens_unprocessed(self, text, stack=('root',)):
@@ -39,51 +40,61 @@ class DebuggingRegexLexer(RegexLexer):
 
         ``stack`` is the inital stack (default: ``['root']``)
         """
-        self.pos = 0
         tokendefs = self._tokens
-        self.statestack = list(stack)
-        statetokens = tokendefs[self.statestack[-1]]
+        self.ctx = ctx = LexerContext(text, 0)
+        ctx.stack = list(stack)
+        statetokens = tokendefs[ctx.stack[-1]]
         while 1:
             for rexmatch, action, new_state in statetokens:
-                self.m = m = rexmatch(text, self.pos)
+                self.m = m = rexmatch(text, ctx.pos, ctx.end)
                 if m:
                     if action is not None:
                         if type(action) is _TokenType:
-                            yield self.pos, action, m.group()
+                            yield ctx.pos, action, m.group()
+                            ctx.pos = m.end()
                         else:
-                            for item in action(self, m):
-                                yield item
-                    self.pos = m.end()
+                            if not isinstance(self, ExtendedRegexLexer):
+                                for item in action(self, m):
+                                    yield item
+                                ctx.pos = m.end()
+                            else:
+                                for item in action(self, m, ctx):
+                                    yield item
+                                if not new_state:
+                                    # altered the state stack?
+                                    statetokens = tokendefs[ctx.stack[-1]]
                     if new_state is not None:
                         # state transition
                         if isinstance(new_state, tuple):
                             for state in new_state:
                                 if state == '#pop':
-                                    self.statestack.pop()
+                                    ctx.stack.pop()
                                 elif state == '#push':
-                                    self.statestack.append(self.statestack[-1])
+                                    ctx.stack.append(ctx.stack[-1])
                                 else:
-                                    self.statestack.append(state)
+                                    ctx.stack.append(state)
                         elif isinstance(new_state, int):
                             # pop
-                            del self.statestack[new_state:]
+                            del ctx.stack[new_state:]
                         elif new_state == '#push':
-                            self.statestack.append(self.statestack[-1])
+                            ctx.stack.append(ctx.stack[-1])
                         else:
                             assert False, 'wrong state def: %r' % new_state
-                        statetokens = tokendefs[self.statestack[-1]]
+                        statetokens = tokendefs[ctx.stack[-1]]
                     break
             else:
                 try:
-                    if text[self.pos] == '\n':
+                    if ctx.pos >= ctx.end:
+                        break
+                    if text[ctx.pos] == '\n':
                         # at EOL, reset state to 'root'
-                        self.pos += 1
-                        self.statestack = ['root']
+                        ctx.stack = ['root']
                         statetokens = tokendefs['root']
-                        yield self.pos, Text, u'\n'
+                        yield ctx.pos, Text, u'\n'
+                        ctx.pos += 1
                         continue
-                    yield self.pos, Error, text[self.pos]
-                    self.pos += 1
+                    yield ctx.pos, Error, text[ctx.pos]
+                    ctx.pos += 1
                 except IndexError:
                     break
 
@@ -133,7 +144,7 @@ def main(fn, lexer=None, options={}):
         reprs = list(map(repr, tok))
         print('   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0], end=' ')
         if debug_lexer:
-            print(' ' + ' ' * (29-len(reprs[0])) + repr(state), end=' ')
+            print(' ' + ' ' * (29-len(reprs[0])) + ' : '.join(state), end=' ')
         print()
 
     for type, val in lx.get_tokens(text):
@@ -153,15 +164,15 @@ def main(fn, lexer=None, options={}):
             print('Error token:')
             l = len(repr(val))
             print('   ' + repr(val), end=' ')
-            if debug_lexer and hasattr(lx, 'statestack'):
-                print(' ' * (60-l) + repr(lx.statestack), end=' ')
+            if debug_lexer and hasattr(lx, 'ctx'):
+                print(' ' * (60-l) + ' : '.join(lx.ctx.stack), end=' ')
             print()
             print()
             return 1
         tokens.append((type, val))
         if debug_lexer:
-            if hasattr(lx, 'statestack'):
-                states.append(lx.statestack[:])
+            if hasattr(lx, 'ctx'):
+                states.append(lx.ctx.stack[:])
             else:
                 states.append(None)
     if showall:
