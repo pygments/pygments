@@ -380,7 +380,8 @@ class SassLexer(ExtendedRegexLexer):
     filenames = ['*.sass']
     mimetypes = ['text/x-sass']
 
-    flags = re.IGNORECASE
+    flags = re.IGNORECASE | re.MULTILINE
+
     tokens = {
         'root': [
             (r'[ \t]*\n', Text),

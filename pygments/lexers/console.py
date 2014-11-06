@@ -35,7 +35,7 @@ class VCTreeStatusLexer(RegexLexer):
             (r'^M\s+', Generic.Inserted),
             (r'^C\s+', Generic.Error),
             (r'^D\s+', Generic.Deleted),
-            (r'^[\?!]\s+', Comment.Preproc),
+            (r'^[?!]\s+', Comment.Preproc),
             (r'      >\s+.*\n', Comment.Preproc),
             (r'.*\n', Text)
         ]

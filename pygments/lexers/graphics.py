@@ -68,7 +68,7 @@ class GLShaderLexer(RegexLexer):
                 'sampler2DRectShadow', 'sizeof', 'cast', 'namespace', 'using'),
                 prefix=r'\b', suffix=r'\b'),
              Keyword),  # future use
-            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
             (r'\.', Punctuation),
             (r'\s+', Text),
         ],
@@ -90,7 +90,7 @@ class PostScriptLexer(RegexLexer):
     filenames = ['*.ps', '*.eps']
     mimetypes = ['application/postscript']
 
-    delimiter = r'\(\)\<\>\[\]\{\}\/\%\s'
+    delimiter = r'()<>\[\]{}/%\s'
     delimiter_end = r'(?=[%s])' % delimiter
 
     valid_name_chars = r'[^%s]' % delimiter
@@ -160,7 +160,7 @@ class PostScriptLexer(RegexLexer):
         ],
 
         'stringliteral': [
-            (r'[^\(\)\\]+', String),
+            (r'[^()\\]+', String),
             (r'\\', String.Escape, 'escape'),
             (r'\(', String, '#push'),
             (r'\)', String, '#pop'),
@@ -543,7 +543,7 @@ class PovrayLexer(RegexLexer):
             (r'[\[\](){}<>;,]', Punctuation),
             (r'[-+*/=]', Operator),
             (r'\b(x|y|z|u|v)\b', Name.Builtin.Pseudo),
-            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'\.[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
