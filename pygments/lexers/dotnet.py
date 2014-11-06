@@ -339,7 +339,7 @@ class BooLexer(RegexLexer):
             (r"'(\\\\|\\'|[^']*?)'", String.Single),
             (r'[a-zA-Z_]\w*', Name),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
-            (r'[0-9][0-9\.]*(ms?|d|h|s)', Number),
+            (r'[0-9][0-9.]*(ms?|d|h|s)', Number),
             (r'0\d+', Number.Oct),
             (r'0x[a-fA-F0-9]+', Number.Hex),
             (r'\d+L', Number.Integer.Long),
@@ -391,7 +391,7 @@ class VbNetLexer(RegexLexer):
              r'#ExternalSource.*?\n|#End\s+ExternalSource|'
              r'#Region.*?\n|#End\s+Region|#ExternalChecksum',
              Comment.Preproc),
-            (r'[\(\){}!#,.:]', Punctuation),
+            (r'[(){}!#,.:]', Punctuation),
             (r'Option\s+(Strict|Explicit|Compare)\s+'
              r'(On|Off|Binary|Text)', Keyword.Declaration),
             (r'(?<!\.)(AddHandler|Alias|'
@@ -433,7 +433,7 @@ class VbNetLexer(RegexLexer):
             (r'_\n', Text),  # Line continuation  (must be before Name)
             (uni_name + '[%&@!#$]?', Name),
             ('#.*?#', Literal.Date),
-            (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
+            (r'(\d+\.\d*|\d*\.\d+)(F[+-]?[0-9]+)?', Number.Float),
             (r'\d+([SILDFR]|US|UI|UL)?', Number.Integer),
             (r'&H[0-9a-f]+([SILDFR]|US|UI|UL)?', Number.Integer),
             (r'&O[0-7]+([SILDFR]|US|UI|UL)?', Number.Integer),
@@ -596,7 +596,7 @@ class FSharpLexer(RegexLexer):
 
     tokens = {
         'escape-sequence': [
-            (r'\\[\\\"\'ntbrafv]', String.Escape),
+            (r'\\[\\"\'ntbrafv]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),
             (r'\\u[0-9a-fA-F]{4}', String.Escape),
             (r'\\U[0-9a-fA-F]{8}', String.Escape),

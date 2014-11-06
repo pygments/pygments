@@ -224,7 +224,8 @@ class ChaiscriptLexer(RegexLexer):
     filenames = ['*.chai']
     mimetypes = ['text/x-chaiscript', 'application/x-chaiscript']
 
-    flags = re.DOTALL
+    flags = re.DOTALL | re.MULTILINE
+
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Text),

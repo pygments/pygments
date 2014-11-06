@@ -256,9 +256,9 @@ class FactorLexer(RegexLexer):
             (r'SYNTAX:\s', Keyword),
             (r'ALIEN:\s', Keyword),
             (r'(STRUCT:)(\s+)(\S+)', bygroups(Keyword, Text, Name.Class)),
-            (r'(FUNCTION:)(\s+\S+\s+)(\S+)(\s+\(\s+[^\)]+\)\s)',
+            (r'(FUNCTION:)(\s+\S+\s+)(\S+)(\s+\(\s+[^)]+\)\s)',
              bygroups(Keyword.Namespace, Text, Name.Function, Text)),
-            (r'(FUNCTION-ALIAS:)(\s+)(\S+)(\s+\S+\s+)(\S+)(\s+\(\s+[^\)]+\)\s)',
+            (r'(FUNCTION-ALIAS:)(\s+)(\S+)(\s+\S+\s+)(\S+)(\s+\(\s+[^)]+\)\s)',
              bygroups(Keyword.Namespace, Text, Name.Function, Text, Name.Function, Text)),
 
             # vocab.private

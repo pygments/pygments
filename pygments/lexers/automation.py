@@ -45,7 +45,7 @@ class AutohotkeyLexer(RegexLexer):
             include('numbers'),
             (r'[a-zA-Z_#@$][\w#@$]*', Name),
             (r'\\|\'', Text),
-            (r'\`([\,\%\`abfnrtv\-\+;])', String.Escape),
+            (r'\`([,%`abfnrtv\-+;])', String.Escape),
             include('garbage'),
         ],
         'incomment': [
@@ -165,7 +165,7 @@ class AutohotkeyLexer(RegexLexer):
         'labels': [
             # hotkeys and labels
             # technically, hotkey names are limited to named keys and buttons
-            (r'(^\s*)([^:\s\(\"]+?:{1,2})', bygroups(Text, Name.Label)),
+            (r'(^\s*)([^:\s("]+?:{1,2})', bygroups(Text, Name.Label)),
             (r'(^\s*)(::[^:\s]+?::)', bygroups(Text, Name.Label)),
         ],
         'numbers': [
@@ -177,7 +177,7 @@ class AutohotkeyLexer(RegexLexer):
             (r'\d+', Number.Integer)
         ],
         'stringescape': [
-            (r'\"\"|\`([\,\%\`abfnrtv])', String.Escape),
+            (r'\"\"|\`([,%`abfnrtv])', String.Escape),
         ],
         'strings': [
             (r'[^"\n]+', String),
@@ -319,7 +319,7 @@ class AutoItLexer(RegexLexer):
             (r'(#comments-start|#cs).*?(#comments-end|#ce)', Comment.Multiline),
             (r'[\[\]{}(),;]', Punctuation),
             (r'(and|or|not)\b', Operator.Word),
-            (r'[\$|@][a-zA-Z_]\w*', Name.Variable),
+            (r'[$|@][a-zA-Z_]\w*', Name.Variable),
             (r'!=|==|:=|\.=|<<|>>|[-~+/*%=<>&^|?:!.]', Operator),
             include('commands'),
             include('labels'),
@@ -329,7 +329,7 @@ class AutoItLexer(RegexLexer):
             include('numbers'),
             (r'[a-zA-Z_#@$][\w#@$]*', Name),
             (r'\\|\'', Text),
-            (r'\`([\,\%\`abfnrtv\-\+;])', String.Escape),
+            (r'\`([,%`abfnrtv\-+;])', String.Escape),
             (r'_\n', Text),  # Line continuation
             include('garbage'),
         ],
@@ -358,7 +358,7 @@ class AutoItLexer(RegexLexer):
             (r'\d+', Number.Integer)
         ],
         'stringescape': [
-            (r'\"\"|\`([\,\%\`abfnrtv])', String.Escape),
+            (r'\"\"|\`([,%`abfnrtv])', String.Escape),
         ],
         'strings': [
             (r'[^"\n]+', String),

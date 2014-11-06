@@ -272,7 +272,7 @@ class ElixirLexer(RegexLexer):
             (r'\{', r'\}', 'cb'),
             (r'\[', r'\]', 'sb'),
             (r'\(', r'\)', 'pa'),
-            (r'\<', r'\>', 'ab'),
+            (r'<', r'>', 'ab'),
             (r'/', r'/', 'slas'),
             (r'\|', r'\|', 'pipe'),
             ('"', '"', 'quot'),
@@ -322,8 +322,8 @@ class ElixirLexer(RegexLexer):
     op1_re = "|".join(re.escape(s) for s in OPERATORS1)
     ops_re = r'(?:%s|%s|%s)' % (op3_re, op2_re, op1_re)
     punctuation_re = "|".join(re.escape(s) for s in PUNCTUATION)
-    alnum = '[A-Za-z_0-9]'
-    name_re = r'(?:\.\.\.|[a-z_]%s*[!\?]?)' % alnum
+    alnum = '\w'
+    name_re = r'(?:\.\.\.|[a-z_]%s*[!?]?)' % alnum
     modname_re = r'[A-Z]%(alnum)s*(?:\.[A-Z]%(alnum)s*)*' % {'alnum': alnum}
     complex_name_re = r'(?:%s|%s|%s)' % (name_re, modname_re, ops_re)
     special_atom_re = r'(?:\.\.\.|<<>>|%\{\}|%|\{\})'
