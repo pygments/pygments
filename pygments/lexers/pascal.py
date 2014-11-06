@@ -535,7 +535,7 @@ class Modula2Lexer(RegexLexer):
             (r'\s+', Text),  # whitespace
         ],
         'identifiers': [
-            (r'([a-zA-Z_\$][\w\$]*)', Name),
+            (r'([a-zA-Z_$][\w$]*)', Name),
         ],
         'numliterals': [
             (r'[01]+B', Number.Bin),            # binary number (ObjM2)
@@ -560,12 +560,12 @@ class Modula2Lexer(RegexLexer):
             (r'::', Operator),    # type conversion (ObjM2)
         ],
         'punctuation': [
-            (r'[\(\)\[\]{},.:;|]', Punctuation),
+            (r'[()\[\]{},.:;|]', Punctuation),
         ],
         'comments': [
             (r'//.*?\n', Comment.Single),         # ObjM2
             (r'/\*(.*?)\*/', Comment.Multiline),  # ObjM2
-            (r'\(\*([^\$].*?)\*\)', Comment.Multiline),
+            (r'\(\*([^$].*?)\*\)', Comment.Multiline),
             # TO DO: nesting of (* ... *) comments
         ],
         'pragmas': [
@@ -709,7 +709,7 @@ class AdaLexer(RegexLexer):
     filenames = ['*.adb', '*.ads', '*.ada']
     mimetypes = ['text/x-ada']
 
-    flags = re.MULTILINE | re.I  # Ignore case
+    flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {
         'root': [
@@ -717,7 +717,7 @@ class AdaLexer(RegexLexer):
             (r'--.*?\n', Comment.Single),
             (r'[^\S\n]+', Text),
             (r'function|procedure|entry', Keyword.Declaration, 'subprogram'),
-            (r'(subtype|type)(\s+)([a-z0-9_]+)',
+            (r'(subtype|type)(\s+)(\w+)',
              bygroups(Keyword.Declaration, Text, Keyword.Type), 'type_def'),
             (r'task|protected', Keyword.Declaration),
             (r'(subtype)(\s+)', bygroups(Keyword.Declaration, Text)),
@@ -737,11 +737,11 @@ class AdaLexer(RegexLexer):
             (r'package', Keyword.Declaration, 'package'),
             (r'array\b', Keyword.Reserved, 'array_def'),
             (r'(with|use)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
-            (r'([a-z0-9_]+)(\s*)(:)(\s*)(constant)',
+            (r'(\w+)(\s*)(:)(\s*)(constant)',
              bygroups(Name.Constant, Text, Punctuation, Text,
                       Keyword.Reserved)),
-            (r'<<[a-z0-9_]+>>', Name.Label),
-            (r'([a-z0-9_]+)(\s*)(:)(\s*)(declare|begin|loop|for|while)',
+            (r'<<\w+>>', Name.Label),
+            (r'(\w+)(\s*)(:)(\s*)(declare|begin|loop|for|while)',
              bygroups(Name.Label, Text, Punctuation, Text, Keyword.Reserved)),
             (words((
                 'abort', 'abs', 'abstract', 'accept', 'access', 'aliased', 'all',
@@ -758,7 +758,7 @@ class AdaLexer(RegexLexer):
             include('attribute'),
             include('numbers'),
             (r"'[^']'", String.Character),
-            (r'([a-z0-9_]+)(\s*|[(,])', bygroups(Name, using(this))),
+            (r'(\w+)(\s*|[(,])', bygroups(Name, using(this))),
             (r"(<>|=>|:=|[()|:;,.'])", Punctuation),
             (r'[*<>+=/&-]', Operator),
             (r'\n+', Text),
@@ -775,7 +775,7 @@ class AdaLexer(RegexLexer):
             (r'\(', Punctuation, ('#pop', 'formal_part')),
             (r';', Punctuation, '#pop'),
             (r'is\b', Keyword.Reserved, '#pop'),
-            (r'"[^"]+"|[a-z0-9_]+', Name.Function),
+            (r'"[^"]+"|\w+', Name.Function),
             include('root'),
         ],
         'end': [
@@ -795,8 +795,7 @@ class AdaLexer(RegexLexer):
         ],
         'array_def': [
             (r';', Punctuation, '#pop'),
-            (r'([a-z0-9_]+)(\s+)(range)', bygroups(Keyword.Type, Text,
-                                                   Keyword.Reserved)),
+            (r'(\w+)(\s+)(range)', bygroups(Keyword.Type, Text, Keyword.Reserved)),
             include('root'),
         ],
         'record_def': [
@@ -804,12 +803,12 @@ class AdaLexer(RegexLexer):
             include('root'),
         ],
         'import': [
-            (r'[a-z0-9_.]+', Name.Namespace, '#pop'),
+            (r'[\w.]+', Name.Namespace, '#pop'),
             default('#pop'),
         ],
         'formal_part': [
             (r'\)', Punctuation, '#pop'),
-            (r'[a-z0-9_]+', Name.Variable),
+            (r'\w+', Name.Variable),
             (r',|:[^=]', Punctuation),
             (r'(in|not|null|out|access)\b', Keyword.Reserved),
             include('root'),
@@ -824,9 +823,8 @@ class AdaLexer(RegexLexer):
             include('root'),
         ],
         'package_instantiation': [
-            (r'("[^"]+"|[a-z0-9_]+)(\s+)(=>)', bygroups(Name.Variable,
-                                                        Text, Punctuation)),
-            (r'[a-z0-9._\'"]', Text),
+            (r'("[^"]+"|\w+)(\s+)(=>)', bygroups(Name.Variable, Text, Punctuation)),
+            (r'[\w.\'"]', Text),
             (r'\)', Punctuation, '#pop'),
             include('root'),
         ],

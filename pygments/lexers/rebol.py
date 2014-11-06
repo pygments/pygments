@@ -31,8 +31,6 @@ class RebolLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    re.IGNORECASE
-
     escape_re = r'(?:\^\([0-9a-f]{1,4}\)*)'
 
     def word_callback(lexer, match):
@@ -138,47 +136,47 @@ class RebolLexer(RegexLexer):
             (r';\*+.*\n', Comment.Preproc),
             (r';.*\n', Comment),
             (r'%"', Name.Decorator, 'stringFile'),
-            (r'%[^(\^{^")\s\[\]]+', Name.Decorator),
+            (r'%[^(^{")\s\[\]]+', Name.Decorator),
             (r'[+-]?([a-z]{1,3})?\$\d+(\.\d+)?', Number.Float),  # money
             (r'[+-]?\d+\:\d+(\:\d+)?(\.\d+)?', String.Other),    # time
-            (r'\d+[\-\/][0-9a-z]+[\-\/]\d+(\/\d+\:\d+((\:\d+)?'
-             r'([\.\d+]?([+-]?\d+:\d+)?)?)?)?', String.Other),   # date
+            (r'\d+[\-/][0-9a-z]+[\-/]\d+(\/\d+\:\d+((\:\d+)?'
+             r'([.\d+]?([+-]?\d+:\d+)?)?)?)?', String.Other),   # date
             (r'\d+(\.\d+)+\.\d+', Keyword.Constant),             # tuple
-            (r'\d+[xX]\d+', Keyword.Constant),                   # pair
-            (r'[+-]?\d+(\'\d+)?([\.,]\d*)?[eE][+-]?\d+', Number.Float),
-            (r'[+-]?\d+(\'\d+)?[\.,]\d*', Number.Float),
+            (r'\d+X\d+', Keyword.Constant),                   # pair
+            (r'[+-]?\d+(\'\d+)?([.,]\d*)?E[+-]?\d+', Number.Float),
+            (r'[+-]?\d+(\'\d+)?[.,]\d*', Number.Float),
             (r'[+-]?\d+(\'\d+)?', Number),
-            (r'[\[\]\(\)]', Generic.Strong),
-            (r'[a-z]+[^(\^{"\s:)]*://[^(\^{"\s)]*', Name.Decorator),  # url
-            (r'mailto:[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator),  # url
-            (r'[^(\^{"@\s)]+@[^(\^\{"@\s)]+', Name.Decorator),         # email
+            (r'[\[\]()]', Generic.Strong),
+            (r'[a-z]+[^(^{"\s:)]*://[^(^{"\s)]*', Name.Decorator),  # url
+            (r'mailto:[^(^{"@\s)]+@[^(^{"@\s)]+', Name.Decorator),  # url
+            (r'[^(^{"@\s)]+@[^(^{"@\s)]+', Name.Decorator),         # email
             (r'comment\s"', Comment, 'commentString1'),
             (r'comment\s\{', Comment, 'commentString2'),
             (r'comment\s\[', Comment, 'commentBlock'),
-            (r'comment\s[^(\s\{\"\[]+', Comment),
-            (r'/[^(\^{^")\s/[\]]*', Name.Attribute),
-            (r'([^(\^{^")\s/[\]]+)(?=[:({"\s/\[\]])', word_callback),
+            (r'comment\s[^(\s{"\[]+', Comment),
+            (r'/[^(^{")\s/[\]]*', Name.Attribute),
+            (r'([^(^{")\s/[\]]+)(?=[:({"\s/\[\]])', word_callback),
             (r'<[\w:.-]*>', Name.Tag),
             (r'<[^(<>\s")]+', Name.Tag, 'tag'),
-            (r'([^(\^{^")\s]+)', Text),
+            (r'([^(^{")\s]+)', Text),
         ],
         'string': [
-            (r'[^(\^")]+', String),
+            (r'[^(^")]+', String),
             (escape_re, String.Escape),
-            (r'[\(|\)]+', String),
+            (r'[(|)]+', String),
             (r'\^.', String.Escape),
             (r'"', String, '#pop'),
         ],
         'string2': [
-            (r'[^(\^{^})]+', String),
+            (r'[^(^{})]+', String),
             (escape_re, String.Escape),
-            (r'[\(|\)]+', String),
+            (r'[(|)]+', String),
             (r'\^.', String.Escape),
             (r'\{', String, '#push'),
             (r'\}', String, '#pop'),
         ],
         'stringFile': [
-            (r'[^(\^")]+', Name.Decorator),
+            (r'[^(^")]+', Name.Decorator),
             (escape_re, Name.Decorator),
             (r'\^.', Name.Decorator),
             (r'"', Name.Decorator, '#pop'),
@@ -195,9 +193,9 @@ class RebolLexer(RegexLexer):
             (r'>', Name.Tag, '#pop'),
         ],
         'tagString': [
-            (r'[^(\^")]+', Name.Tag),
+            (r'[^(^")]+', Name.Tag),
             (escape_re, Name.Tag),
-            (r'[\(|\)]+', Name.Tag),
+            (r'[(|)]+', Name.Tag),
             (r'\^.', Name.Tag),
             (r'"', Name.Tag, '#pop'),
         ],
@@ -207,20 +205,20 @@ class RebolLexer(RegexLexer):
         ],
         'bin2': [
             (r'\s+', Number.Hex),
-            (r'([0-1]\s*){8}', Number.Hex),
+            (r'([01]\s*){8}', Number.Hex),
             (r'\}', Number.Hex, '#pop'),
         ],
         'commentString1': [
-            (r'[^(\^")]+', Comment),
+            (r'[^(^")]+', Comment),
             (escape_re, Comment),
-            (r'[\(|\)]+', Comment),
+            (r'[(|)]+', Comment),
             (r'\^.', Comment),
             (r'"', Comment, '#pop'),
         ],
         'commentString2': [
-            (r'[^(\^{^})]+', Comment),
+            (r'[^(^{})]+', Comment),
             (escape_re, Comment),
-            (r'[\(|\)]+', Comment),
+            (r'[(|)]+', Comment),
             (r'\^.', Comment),
             (r'\{', Comment, '#push'),
             (r'\}', Comment, '#pop'),
@@ -230,7 +228,7 @@ class RebolLexer(RegexLexer):
             (r'\]', Comment, '#pop'),
             (r'"', Comment, "commentString1"),
             (r'\{', Comment, "commentString2"),
-            (r'[^(\[\]\"{)]+', Comment),
+            (r'[^(\[\]"{)]+', Comment),
         ],
     }
 
@@ -328,7 +326,7 @@ class RedLexer(RegexLexer):
             (r'#\{[0-9a-f\s]*\}', Number.Hex),
             (r'2#\{', Number.Hex, 'bin2'),
             (r'64#\{[0-9a-z+/=\s]*\}', Number.Hex),
-            (r'([0-9a-f]+)(h)((\s)|(?=[\[\]{}"\(\)]))',
+            (r'([0-9a-f]+)(h)((\s)|(?=[\[\]{}"()]))',
              bygroups(Number.Hex, Name.Variable, Whitespace)),
             (r'"', String, 'string'),
             (r'\{', String, 'string2'),
@@ -336,47 +334,47 @@ class RedLexer(RegexLexer):
             (r';\*+.*\n', Comment.Preproc),
             (r';.*\n', Comment),
             (r'%"', Name.Decorator, 'stringFile'),
-            (r'%[^(\^{^")\s\[\]]+', Name.Decorator),
+            (r'%[^(^{")\s\[\]]+', Name.Decorator),
             (r'[+-]?([a-z]{1,3})?\$\d+(\.\d+)?', Number.Float),  # money
             (r'[+-]?\d+\:\d+(\:\d+)?(\.\d+)?', String.Other),    # time
-            (r'\d+[\-\/][0-9a-z]+[\-\/]\d+(\/\d+\:\d+((\:\d+)?'
+            (r'\d+[\-/][0-9a-z]+[\-/]\d+(/\d+:\d+((:\d+)?'
              r'([\.\d+]?([+-]?\d+:\d+)?)?)?)?', String.Other),   # date
             (r'\d+(\.\d+)+\.\d+', Keyword.Constant),             # tuple
-            (r'\d+[xX]\d+', Keyword.Constant),                   # pair
-            (r'[+-]?\d+(\'\d+)?([\.,]\d*)?[eE][+-]?\d+', Number.Float),
-            (r'[+-]?\d+(\'\d+)?[\.,]\d*', Number.Float),
+            (r'\d+X\d+', Keyword.Constant),                   # pair
+            (r'[+-]?\d+(\'\d+)?([.,]\d*)?E[+-]?\d+', Number.Float),
+            (r'[+-]?\d+(\'\d+)?[.,]\d*', Number.Float),
             (r'[+-]?\d+(\'\d+)?', Number),
-            (r'[\[\]\(\)]', Generic.Strong),
-            (r'[a-z]+[^(\^{"\s:)]*://[^(\^{"\s)]*', Name.Decorator),  # url
-            (r'mailto:[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator),  # url
-            (r'[^(\^{"@\s)]+@[^(\^{"@\s)]+', Name.Decorator),         # email
+            (r'[\[\]()]', Generic.Strong),
+            (r'[a-z]+[^(^{"\s:)]*://[^(^{"\s)]*', Name.Decorator),  # url
+            (r'mailto:[^(^{"@\s)]+@[^(^{"@\s)]+', Name.Decorator),  # url
+            (r'[^(^{"@\s)]+@[^(^{"@\s)]+', Name.Decorator),         # email
             (r'comment\s"', Comment, 'commentString1'),
             (r'comment\s\{', Comment, 'commentString2'),
             (r'comment\s\[', Comment, 'commentBlock'),
-            (r'comment\s[^(\s{\"\[]+', Comment),
-            (r'/[^(\^{^")\s/[\]]*', Name.Attribute),
-            (r'([^(\^{^")\s/[\]]+)(?=[:({"\s/\[\]])', word_callback),
+            (r'comment\s[^(\s{"\[]+', Comment),
+            (r'/[^(^{^")\s/[\]]*', Name.Attribute),
+            (r'([^(^{^")\s/[\]]+)(?=[:({"\s/\[\]])', word_callback),
             (r'<[\w:.-]*>', Name.Tag),
             (r'<[^(<>\s")]+', Name.Tag, 'tag'),
-            (r'([^(\^{^")\s]+)', Text),
+            (r'([^(^{")\s]+)', Text),
         ],
         'string': [
-            (r'[^(\^")]+', String),
+            (r'[^(^")]+', String),
             (escape_re, String.Escape),
-            (r'[\(|\)]+', String),
+            (r'[(|)]+', String),
             (r'\^.', String.Escape),
             (r'"', String, '#pop'),
         ],
         'string2': [
-            (r'[^(\^{^})]+', String),
+            (r'[^(^{})]+', String),
             (escape_re, String.Escape),
-            (r'[\(|\)]+', String),
+            (r'[(|)]+', String),
             (r'\^.', String.Escape),
             (r'\{', String, '#push'),
             (r'\}', String, '#pop'),
         ],
         'stringFile': [
-            (r'[^(\^")]+', Name.Decorator),
+            (r'[^(^")]+', Name.Decorator),
             (escape_re, Name.Decorator),
             (r'\^.', Name.Decorator),
             (r'"', Name.Decorator, '#pop'),
@@ -393,9 +391,9 @@ class RedLexer(RegexLexer):
             (r'>', Name.Tag, '#pop'),
         ],
         'tagString': [
-            (r'[^(\^")]+', Name.Tag),
+            (r'[^(^")]+', Name.Tag),
             (escape_re, Name.Tag),
-            (r'[\(|\)]+', Name.Tag),
+            (r'[(|)]+', Name.Tag),
             (r'\^.', Name.Tag),
             (r'"', Name.Tag, '#pop'),
         ],
@@ -405,20 +403,20 @@ class RedLexer(RegexLexer):
         ],
         'bin2': [
             (r'\s+', Number.Hex),
-            (r'([0-1]\s*){8}', Number.Hex),
+            (r'([01]\s*){8}', Number.Hex),
             (r'\}', Number.Hex, '#pop'),
         ],
         'commentString1': [
-            (r'[^(\^")]+', Comment),
+            (r'[^(^")]+', Comment),
             (escape_re, Comment),
-            (r'[\(|\)]+', Comment),
+            (r'[(|)]+', Comment),
             (r'\^.', Comment),
             (r'"', Comment, '#pop'),
         ],
         'commentString2': [
-            (r'[^(\^{^})]+', Comment),
+            (r'[^(^{})]+', Comment),
             (escape_re, Comment),
-            (r'[\(|\)]+', Comment),
+            (r'[(|)]+', Comment),
             (r'\^.', Comment),
             (r'\{', Comment, '#push'),
             (r'\}', Comment, '#pop'),
@@ -428,6 +426,6 @@ class RedLexer(RegexLexer):
             (r'\]', Comment, '#pop'),
             (r'"', Comment, "commentString1"),
             (r'\{', Comment, "commentString2"),
-            (r'[^(\[\]\"{)]+', Comment),
+            (r'[^(\[\]"{)]+', Comment),
         ],
     }
