@@ -63,7 +63,7 @@ class BefungeLexer(RegexLexer):
     tokens = {
         'root': [
             (r'[0-9a-f]', Number),
-            (r'[\+\*/%!`-]', Operator),           # Traditional math
+            (r'[+*/%!`-]', Operator),             # Traditional math
             (r'[<>^v?\[\]rxjk]', Name.Variable),  # Move, imperatives
             (r'[:\\$.,n]', Name.Builtin),         # Stack ops, imperatives
             (r'[|_mw]', Keyword),
@@ -103,7 +103,7 @@ class RedcodeLexer(RegexLexer):
             #  Identifiers
             (r'\b(%s)\b' % '|'.join(opcodes), Name.Function),
             (r'\b(%s)\b' % '|'.join(modifiers), Name.Decorator),
-            (r'[A-Za-z_][A-Za-z_0-9]+', Name),
+            (r'[A-Za-z_]\w+', Name),
             #  Operators
             (r'[-+*/%]', Operator),
             (r'[#$@<>]', Operator),  # mode

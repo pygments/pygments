@@ -91,10 +91,10 @@ class NixLexer(RegexLexer):
 
         ],
         'comment': [
-            (r'[^/\*]+', Comment.Multiline),
+            (r'[^/*]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[\*/]', Comment.Multiline),
+            (r'[*/]', Comment.Multiline),
         ],
         'singlequote': [
             (r"'''", String.Escape),
@@ -129,10 +129,6 @@ class NixLexer(RegexLexer):
             rv += 0.4
         if re.search(r'mkDerivation\s+(\(|\{|rec)', text):
             rv += 0.4
-        if re.search(r'with\s+[a-zA-Z\.]+;', text):
-            rv += 0.2
-        if re.search(r'inherit\s+[a-zA-Z()\.];', text):
-            rv += 0.2
         if re.search(r'=\s+mkIf\s+', text):
             rv += 0.4
         if re.search(r'\{[a-zA-Z,\s]+\}:', text):

@@ -39,7 +39,7 @@ class FortranLexer(RegexLexer):
 
     tokens = {
         'root': [
-            ('^#.*\n', Comment.Preproc),
+            (r'^#.*\n', Comment.Preproc),
             (r'!.*\n', Comment),
             include('strings'),
             include('core'),
@@ -99,10 +99,10 @@ class FortranLexer(RegexLexer):
                 'BLT', 'Bit_Size', 'BTest', 'CAbs', 'CCos', 'Ceiling', 'CExp',
                 'Char', 'ChDir', 'ChMod', 'CLog', 'Cmplx', 'Command_Argument_Count',
                 'Complex', 'Conjg', 'Cos', 'CosH', 'Count', 'CPU_Time', 'CShift',
-                'CSin', 'CSqRt', 'CTime', 'C_Funloc', 'C_Loc', 'C_Associated',
+                'CSin', 'CSqRt', 'CTime', 'C_Loc', 'C_Associated',
                 'C_Null_Ptr', 'C_Null_Funptr', 'C_F_Pointer', 'C_F_ProcPointer',
                 'C_Null_Char', 'C_Alert', 'C_Backspace', 'C_Form_Feed', 'C_FunLoc',
-                'C_Loc', 'C_Sizeof', 'C_New_Line', 'C_Carriage_Return',
+                'C_Sizeof', 'C_New_Line', 'C_Carriage_Return',
                 'C_Horizontal_Tab', 'C_Vertical_Tab', 'DAbs', 'DACos', 'DASin',
                 'DATan', 'Date_and_Time', 'DbesJ', 'DbesJN', 'DbesY',
                 'DbesYN', 'Dble', 'DCos', 'DCosH', 'DDiM', 'DErF',

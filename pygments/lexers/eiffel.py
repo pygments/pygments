@@ -57,7 +57,7 @@ class EiffelLexer(RegexLexer):
         ],
         'numbers': [
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
-            (r'0[bB][0-1]+', Number.Bin),
+            (r'0[bB][01]+', Number.Bin),
             (r'0[cC][0-7]+', Number.Oct),
             (r'([0-9]+\.[0-9]*)|([0-9]*\.[0-9]+)', Number.Float),
             (r'[0-9]+', Number.Integer),

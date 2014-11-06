@@ -66,7 +66,7 @@ class CypherLexer(RegexLexer):
             (r'[.*{}]', Punctuation),
         ],
         'strings': [
-            (r'"(?:\\[tbnrf\'\"\\]|[^\\"])*"', String),
+            (r'"(?:\\[tbnrf\'"\\]|[^\\"])*"', String),
             (r'`(?:``|[^`])+`', Name.Variable),
         ],
         'whitespace': [

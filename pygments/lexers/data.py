@@ -184,7 +184,7 @@ class YamlLexer(ExtendedRegexLexer):
             (r'^(?:---|\.\.\.)(?=[ ]|$)', reset_indent(Name.Namespace),
              'block-line'),
             # indentation spaces
-            (r'[ ]*(?![ \t\n\r\f\v]|$)', save_indent(Text, start=True),
+            (r'[ ]*(?!\s|$)', save_indent(Text, start=True),
              ('block-line', 'indentation')),
         ],
 
@@ -208,8 +208,8 @@ class YamlLexer(ExtendedRegexLexer):
         # the %YAG directive
         'tag-directive': [
             # a tag handle and the corresponding prefix
-            (r'([ ]+)(!|![0-9A-Za-z_-]*!)'
-             r'([ ]+)(!|!?[0-9A-Za-z;/?:@&=+$,_.!~*\'()\[\]%-]+)',
+            (r'([ ]+)(!|![\w-]*!)'
+             r'([ ]+)(!|!?[\w;/?:@&=+$,.!~*\'()\[\]%-]+)',
              bygroups(Text, Keyword.Type, Text, Keyword.Type),
              'ignored-line'),
         ],
@@ -239,7 +239,7 @@ class YamlLexer(ExtendedRegexLexer):
             # flow collections and quoted scalars
             include('flow-nodes'),
             # a plain scalar
-            (r'(?=[^ \t\n\r\f\v?:,\[\]{}#&*!|>\'"%@`-]|[?:-][^ \t\n\r\f\v])',
+            (r'(?=[^\s?:,\[\]{}#&*!|>\'"%@`-]|[?:-]\S)',
              something(Name.Variable),
              'plain-scalar-in-block-context'),
         ],
@@ -247,14 +247,14 @@ class YamlLexer(ExtendedRegexLexer):
         # tags, anchors, aliases
         'descriptors': [
             # a full-form tag
-            (r'!<[0-9A-Za-z;/?:@&=+$,_.!~*\'()\[\]%-]+>', Keyword.Type),
+            (r'!<[\w;/?:@&=+$,.!~*\'()\[\]%-]+>', Keyword.Type),
             # a tag in the form '!', '!suffix' or '!handle!suffix'
-            (r'!(?:[0-9A-Za-z_-]+)?'
-             r'(?:![0-9A-Za-z;/?:@&=+$,_.!~*\'()\[\]%-]+)?', Keyword.Type),
+            (r'!(?:[\w-]+)?'
+             r'(?:![\w;/?:@&=+$,.!~*\'()\[\]%-]+)?', Keyword.Type),
             # an anchor
-            (r'&[0-9A-Za-z_-]+', Name.Label),
+            (r'&[\w-]+', Name.Label),
             # an alias
-            (r'\*[0-9A-Za-z_-]+', Name.Variable),
+            (r'\*[\w-]+', Name.Variable),
         ],
 
         # block collections and scalars
@@ -293,7 +293,7 @@ class YamlLexer(ExtendedRegexLexer):
             # nested collections and quoted scalars
             include('flow-nodes'),
             # a plain scalar
-            (r'(?=[^ \t\n\r\f\v?:,\[\]{}#&*!|>\'"%@`])',
+            (r'(?=[^\s?:,\[\]{}#&*!|>\'"%@`])',
              something(Name.Variable),
              'plain-scalar-in-flow-context'),
         ],
@@ -324,7 +324,7 @@ class YamlLexer(ExtendedRegexLexer):
             # indentation spaces (we may leave the state here)
             (r'^[ ]*', parse_block_scalar_indent(Text)),
             # line content
-            (r'[^\n\r\f\v]+', Name.Constant),
+            (r'[\S\t ]+', Name.Constant),
         ],
 
         # the content of a literal or folded scalar
@@ -357,7 +357,7 @@ class YamlLexer(ExtendedRegexLexer):
             # escaping of the quote character
             (r'\'\'', String.Escape),
             # regular non-whitespace characters
-            (r'[^ \t\n\r\f\v\']+', String),
+            (r'[^\s\']+', String),
             # the closing quote
             (r'\'', String, '#pop'),
         ],
@@ -372,7 +372,7 @@ class YamlLexer(ExtendedRegexLexer):
             (r'\\(?:x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})',
              String.Escape),
             # regular non-whitespace characters
-            (r'[^ \t\n\r\f\v\"\\]+', String),
+            (r'[^\s"\\]+', String),
             # the closing quote
             (r'"', String, '#pop'),
         ],
@@ -402,7 +402,7 @@ class YamlLexer(ExtendedRegexLexer):
             # other whitespaces are a part of the value
             (r'[ ]+', Literal.Scalar.Plain),
             # regular non-whitespace characters
-            (r'(?::(?![ \t\n\r\f\v])|[^ \t\n\r\f\v:])+', Literal.Scalar.Plain),
+            (r'(?::(?!\s)|[^\s:])+', Literal.Scalar.Plain),
         ],
 
         # a plain scalar is the flow context
@@ -419,7 +419,7 @@ class YamlLexer(ExtendedRegexLexer):
             # other whitespaces are a part of the value
             (r'[ ]+', Name.Variable),
             # regular non-whitespace characters
-            (r'[^ \t\n\r\f\v,:?\[\]{}]+', Name.Variable),
+            (r'[^\s,:?\[\]{}]+', Name.Variable),
         ],
 
     }

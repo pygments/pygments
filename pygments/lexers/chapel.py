@@ -67,7 +67,7 @@ class ChapelLexer(RegexLexer):
 
             # integer literals
             # -- binary
-            (r'0[bB][0-1]+', Number.Bin),
+            (r'0[bB][01]+', Number.Bin),
             # -- hex
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
             # -- octal

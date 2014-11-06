@@ -46,7 +46,7 @@ class ModelicaLexer(RegexLexer):
             include('whitespace'),
             (r'"', String.Double, 'string'),
             (r'[()\[\]{},;]+', Punctuation),
-            (r'\.?[\^*/+\-]|\.|<>|[<>:=]=?', Operator),
+            (r'\.?[*^/+-]|\.|<>|[<>:=]=?', Operator),
             (r'\d+(\.?\d*[eE][-+]?\d+|\.\d*)', Number.Float),
             (r'\d+', Number.Integer),
             (r'(abs|acos|actualStream|array|asin|assert|AssertionLevel|atan|'
@@ -164,7 +164,7 @@ class BugsLexer(RegexLexer):
             (r'(model)(\s+)(\{)',
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # Reserved Words
-            (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
+            (r'(for|in)(?![\w.])', Keyword.Reserved),
             # Built-in Functions
             (r'(%s)(?=\s*\()'
              % r'|'.join(_FUNCTIONS + _DISTRIBUTIONS),
@@ -246,9 +246,9 @@ class JagsLexer(RegexLexer):
             # Block start
             (r'(model|data)(\s+)(\{)',
              bygroups(Keyword.Namespace, Text, Punctuation)),
-            (r'var(?![0-9a-zA-Z\._])', Keyword.Declaration),
+            (r'var(?![\w.])', Keyword.Declaration),
             # Reserved Words
-            (r'(for|in)(?![0-9a-zA-Z\._])', Keyword.Reserved),
+            (r'(for|in)(?![\w.])', Keyword.Reserved),
             # Builtins
             # Need to use lookahead because . is a valid char
             (r'(%s)(?=\s*\()' % r'|'.join(_FUNCTIONS

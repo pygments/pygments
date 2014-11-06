@@ -179,8 +179,8 @@ class HaxeLexer(ExtendedRegexLexer):
 
             # Float
             (r'\.[0-9]+', Number.Float),
-            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float),
-            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float),
+            (r'[0-9]+[eE][+\-]?[0-9]+', Number.Float),
+            (r'[0-9]+\.[0-9]*[eE][+\-]?[0-9]+', Number.Float),
             (r'[0-9]+\.[0-9]+', Number.Float),
             (r'[0-9]+\.(?!' + ident + '|\.\.)', Number.Float),
 
@@ -216,8 +216,8 @@ class HaxeLexer(ExtendedRegexLexer):
 
             # Float
             (r'\.[0-9]+', Number.Float, ('#pop', 'preproc-expr-chain')),
-            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'preproc-expr-chain')),
-            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'preproc-expr-chain')),
+            (r'[0-9]+[eE][+\-]?[0-9]+', Number.Float, ('#pop', 'preproc-expr-chain')),
+            (r'[0-9]+\.[0-9]*[eE][+\-]?[0-9]+', Number.Float, ('#pop', 'preproc-expr-chain')),
             (r'[0-9]+\.[0-9]+', Number.Float, ('#pop', 'preproc-expr-chain')),
             (r'[0-9]+\.(?!' + ident + '|\.\.)', Number.Float, ('#pop', 'preproc-expr-chain')),
 
@@ -453,8 +453,8 @@ class HaxeLexer(ExtendedRegexLexer):
 
             # Float
             (r'\.[0-9]+', Number.Float, ('#pop', 'expr-chain')),
-            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
-            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+[eE][+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
+            (r'[0-9]+\.[0-9]*[eE][+\-]?[0-9]+', Number.Float, ('#pop', 'expr-chain')),
             (r'[0-9]+\.[0-9]+', Number.Float, ('#pop', 'expr-chain')),
             (r'[0-9]+\.(?!' + ident + '|\.\.)', Number.Float, ('#pop', 'expr-chain')),
 
@@ -708,8 +708,8 @@ class HaxeLexer(ExtendedRegexLexer):
         'type-param-type': [
             # Float
             (r'\.[0-9]+', Number.Float, '#pop'),
-            (r'[0-9]+[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
-            (r'[0-9]+\.[0-9]*[eE][\+\-]?[0-9]+', Number.Float, '#pop'),
+            (r'[0-9]+[eE][+\-]?[0-9]+', Number.Float, '#pop'),
+            (r'[0-9]+\.[0-9]*[eE][+\-]?[0-9]+', Number.Float, '#pop'),
             (r'[0-9]+\.[0-9]+', Number.Float, '#pop'),
             (r'[0-9]+\.(?!' + ident + '|\.\.)', Number.Float, '#pop'),
 

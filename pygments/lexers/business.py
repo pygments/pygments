@@ -48,7 +48,7 @@ class CobolLexer(RegexLexer):
             include('strings'),
             include('core'),
             include('nums'),
-            (r'[a-z0-9]([_a-z0-9\-]*[a-z0-9]+)?', Name.Variable),
+            (r'[a-z0-9]([\w\-]*[a-z0-9]+)?', Name.Variable),
             # (r'[\s]+', Text),
             (r'[ \t]+', Text),
         ],
@@ -211,8 +211,8 @@ class CobolLexer(RegexLexer):
 
         'nums': [
             (r'\d+(\s*|\.$|$)', Number.Integer),
-            (r'[+-]?\d*\.\d+([eE][-+]?\d+)?', Number.Float),
-            (r'[+-]?\d+\.\d*([eE][-+]?\d+)?', Number.Float),
+            (r'[+-]?\d*\.\d+(E[-+]?\d+)?', Number.Float),
+            (r'[+-]?\d+\.\d*(E[-+]?\d+)?', Number.Float),
         ],
     }
 
@@ -422,7 +422,7 @@ class ABAPLexer(RegexLexer):
             (r'[?*<>=\-+]', Operator),
             (r"'(''|[^'])*'", String.Single),
             (r"`([^`])*`", String.Single),
-            (r'[/;:()\[\],\.]', Punctuation)
+            (r'[/;:()\[\],.]', Punctuation)
         ],
     }
 
@@ -516,7 +516,7 @@ com/gooddata/processor/COMMANDS.txt>`_
             (r'[a-z]\w*', Name.Variable),
             (r'=', Operator),
             (r'"', String, 'string-literal'),
-            (r'[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]{1,3})?', Number),
+            (r'[0-9]+(?:\.[0-9]+)?(?:e[+-]?[0-9]{1,3})?', Number),
             # Space is not significant
             (r'\s', Text)
         ],
@@ -550,7 +550,7 @@ class MaqlLexer(RegexLexer):
             # IDENTIFIER
             (r'\{[^}]+\}', Name.Variable),
             # NUMBER
-            (r'[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]{1,3})?', Number),
+            (r'[0-9]+(?:\.[0-9]+)?(?:e[+-]?[0-9]{1,3})?', Number),
             # STRING
             (r'"', String, 'string-literal'),
             #  RELATION
@@ -580,7 +580,7 @@ class MaqlLexer(RegexLexer):
             # Comments
             (r'#.*', Comment.Single),
             # Punctuation
-            (r'[,;\(\)]', Punctuation),
+            (r'[,;()]', Punctuation),
             # Space is not significant
             (r'\s+', Text)
         ],
