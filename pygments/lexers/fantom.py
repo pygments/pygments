@@ -39,7 +39,7 @@ class FantomLexer(RegexLexer):
                 id=r'[a-zA-Z_]\w*',
                 # all chars which can be part of type definition. Starts with
                 # either letter, or [ (maps), or | (funcs)
-                type=r'(?:\[|[a-zA-Z_]|\|)[:\w\[\]\|\->\?]*?',
+                type=r'(?:\[|[a-zA-Z_]|\|)[:\w\[\]|\->?]*?',
             )
         )
 
@@ -118,7 +118,7 @@ class FantomLexer(RegexLexer):
             (r'\+\+|\-\-|\+|\-|\*|/|\|\||&&|<=>|<=|<|>=|>|=|!|\[|\]', Operator)
         ],
         'inType': [
-            (r'[\[\]\|\->:\?]', Punctuation),
+            (r'[\[\]|\->:?]', Punctuation),
             (s(r'$id'), Name.Class),
             default('#pop'),
 
@@ -221,7 +221,7 @@ class FantomLexer(RegexLexer):
             (r'[ \t]+', Text),  # consume whitespaces
             (r'(\[)(\w+)(\])',
              bygroups(Punctuation, Comment.Special, Punctuation)),  # ffi
-            (r'(\")?([\w\.]+)(\")?',
+            (r'(\")?([\w.]+)(\")?',
              bygroups(Punctuation, Name.Namespace, Punctuation)),  # podname
             (r'::', Punctuation, 'usingClass'),
             default('#pop')
@@ -230,7 +230,7 @@ class FantomLexer(RegexLexer):
             (r'[ \t]+', Text),  # consume whitespaces
             (r'(as)(\s+)(\w+)',
              bygroups(Keyword.Declaration, Text, Name.Class), '#pop:2'),
-            (r'[\w\$]+', Name.Class),
+            (r'[\w$]+', Name.Class),
             default('#pop:2')  # jump out to root state
         ],
         'facet': [

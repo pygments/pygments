@@ -71,7 +71,7 @@ class NimrodLexer(RegexLexer):
         'root': [
             (r'##.*$', String.Doc),
             (r'#.*$', Comment),
-            (r'\*|=|>|<|\+|-|/|@|\$|~|&|%|\!|\?|\||\\|\[|\]', Operator),
+            (r'[*=><+\-/@$~&%!?|\\\[\]]', Operator),
             (r'\.\.|\.|,|\[\.|\.\]|\{\.|\.\}|\(\.|\.\)|\{|\}|\(|\)|:|\^|`|;',
              Punctuation),
 
@@ -85,7 +85,7 @@ class NimrodLexer(RegexLexer):
 
             # Keywords
             (r'(%s)\b' % underscorize(opWords), Operator.Word),
-            (r'(p_?r_?o_?c_?\s)(?![\(\[\]])', Keyword, 'funcname'),
+            (r'(p_?r_?o_?c_?\s)(?![(\[\]])', Keyword, 'funcname'),
             (r'(%s)\b' % underscorize(keywords), Keyword),
             (r'(%s)\b' % underscorize(['from', 'import', 'include']),
              Keyword.Namespace),
@@ -95,10 +95,10 @@ class NimrodLexer(RegexLexer):
             # Identifiers
             (r'\b((?![_\d])\w)(((?!_)\w)|(_(?!_)\w))*', Name),
             # Numbers
-            (r'[0-9][0-9_]*(?=([eE.]|\'[fF](32|64)))',
+            (r'[0-9][0-9_]*(?=([e.]|\'f(32|64)))',
              Number.Float, ('float-suffix', 'float-number')),
-            (r'0[xX][a-f0-9][a-f0-9_]*', Number.Hex, 'int-suffix'),
-            (r'0[bB][01][01_]*', Number.Bin, 'int-suffix'),
+            (r'0x[a-f0-9][a-f0-9_]*', Number.Hex, 'int-suffix'),
+            (r'0b[01][01_]*', Number.Bin, 'int-suffix'),
             (r'0o[0-7][0-7_]*', Number.Oct, 'int-suffix'),
             (r'[0-9][0-9_]*', Number.Integer, 'int-suffix'),
             # Whitespace
@@ -112,7 +112,7 @@ class NimrodLexer(RegexLexer):
         ],
         'strings': [
             (r'(?<!\$)\$(\d+|#|\w+)+', String.Interpol),
-            (r'[^\\\'"\$\n]+', String),
+            (r'[^\\\'"$\n]+', String),
             # quotes, dollars and backslashes must be parsed one at a time
             (r'[\'"\\]', String),
             # unhandled string formatting sign
@@ -144,16 +144,16 @@ class NimrodLexer(RegexLexer):
         ],
         'float-number': [
             (r'\.(?!\.)[0-9_]*', Number.Float),
-            (r'[eE][+-]?[0-9][0-9_]*', Number.Float),
+            (r'e[+-]?[0-9][0-9_]*', Number.Float),
             default('#pop')
         ],
         'float-suffix': [
-            (r'\'[fF](32|64)', Number.Float),
+            (r'\'f(32|64)', Number.Float),
             default('#pop')
         ],
         'int-suffix': [
-            (r'\'[iI](32|64)', Number.Integer.Long),
-            (r'\'[iI](8|16)', Number.Integer),
+            (r'\'i(32|64)', Number.Integer.Long),
+            (r'\'i(8|16)', Number.Integer),
             default('#pop')
         ],
     }
