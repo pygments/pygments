@@ -336,25 +336,25 @@ class SLexer(RegexLexer):
             (r'#.*$', Comment.Single),
         ],
         'valid_name': [
-            (r'[a-zA-Z][0-9a-zA-Z\._]*', Text),
+            (r'[a-zA-Z][\w.]*', Text),
             # can begin with ., but not if that is followed by a digit
-            (r'\.[a-zA-Z_][0-9a-zA-Z\._]*', Text),
+            (r'\.[a-zA-Z_][\w.]*', Text),
         ],
         'punctuation': [
             (r'\[{1,2}|\]{1,2}|\(|\)|;|,', Punctuation),
         ],
         'keywords': [
-            (words(builtins_base, suffix=r'(?![\w\. =])'),
+            (words(builtins_base, suffix=r'(?![\w. =])'),
              Keyword.Pseudo),
             (r'(if|else|for|while|repeat|in|next|break|return|switch|function)'
-             r'(?![\w\.])',
+             r'(?![\w.])',
              Keyword.Reserved),
             (r'(array|category|character|complex|double|function|integer|list|'
              r'logical|matrix|numeric|vector|data.frame|c)'
-             r'(?![\w\.])',
+             r'(?![\w.])',
              Keyword.Type),
             (r'(library|require|attach|detach|source)'
-             r'(?![\w\.])',
+             r'(?![\w.])',
              Keyword.Namespace)
         ],
         'operators': [
@@ -364,7 +364,7 @@ class SLexer(RegexLexer):
         'builtin_symbols': [
             (r'(NULL|NA(_(integer|real|complex|character)_)?|'
              r'letters|LETTERS|Inf|TRUE|FALSE|NaN|pi|\.\.(\.|[0-9]+))'
-             r'(?![0-9a-zA-Z\._])',
+             r'(?![\w.])',
              Keyword.Constant),
             (r'(T|F)\b', Name.Builtin.Pseudo),
         ],
