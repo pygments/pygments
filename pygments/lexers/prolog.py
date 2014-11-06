@@ -114,7 +114,7 @@ class LogtalkLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
             # Variables
-            (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
+            (r'([A-Z_]\w*)', Name.Variable),
             # Event handlers
             (r'(after|before)(?=[(])', Keyword),
             # Message forwarding handler
@@ -230,7 +230,7 @@ class LogtalkLexer(RegexLexer):
             # Ponctuation
             (r'[()\[\],.|]', Text),
             # Atoms
-            (r"[a-z][a-zA-Z0-9_]*", Text),
+            (r"[a-z]\w*", Text),
             (r"'", String, 'quoted_atom'),
         ],
 
@@ -259,8 +259,8 @@ class LogtalkLexer(RegexLexer):
              r's(et_(logtalk|prolog)_flag|ynchronized))(?=[(])', Keyword, 'root'),
             (r'op(?=[(])', Keyword, 'root'),
             (r'(c(alls|oinductive)|module|reexport|use(s|_module))(?=[(])', Keyword, 'root'),
-            (r'[a-z][a-zA-Z0-9_]*(?=[(])', Text, 'root'),
-            (r'[a-z][a-zA-Z0-9_]*[.]', Text, 'root'),
+            (r'[a-z]\w*(?=[(])', Text, 'root'),
+            (r'[a-z]\w*[.]', Text, 'root'),
         ],
 
         'entityrelations': [
@@ -272,9 +272,9 @@ class LogtalkLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
             # Variables
-            (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
+            (r'([A-Z_]\w*)', Name.Variable),
             # Atoms
-            (r"[a-z][a-zA-Z0-9_]*", Text),
+            (r"[a-z]\w*", Text),
             (r"'", String, 'quoted_atom'),
             # Strings
             (r'"(\\\\|\\"|[^"])*"', String),

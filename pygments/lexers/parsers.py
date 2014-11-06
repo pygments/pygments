@@ -71,7 +71,7 @@ class RagelLexer(RegexLexer):
             (r'/(?!\*)(\\\\|\\/|[^/])*/', String.Regex),  # regular expressions
         ],
         'identifiers': [
-            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name.Variable),
+            (r'[a-zA-Z_]\w*', Name.Variable),
         ],
         'operators': [
             (r',', Operator),                           # Join
@@ -186,7 +186,7 @@ class RagelEmbeddedLexer(RegexLexer):
                     r'/(?!\*)(\\\\|\\/|[^/])*/\*',
 
                     # allow / as long as it's not followed by another / or by a *
-                    r'/(?=[^/\*]|$)',
+                    r'/(?=[^/*]|$)',
 
                     # We want to match as many of these as we can in one block.
                     # Not sure if we need the + sign here,
@@ -338,9 +338,9 @@ class AntlrLexer(RegexLexer):
     aliases = ['antlr']
     filenames = []
 
-    _id = r'[A-Za-z][A-Za-z_0-9]*'
-    _TOKEN_REF = r'[A-Z][A-Za-z_0-9]*'
-    _RULE_REF = r'[a-z][A-Za-z_0-9]*'
+    _id = r'[A-Za-z]\w*'
+    _TOKEN_REF = r'[A-Z]\w*'
+    _RULE_REF = r'[a-z]\w*'
     _STRING_LITERAL = r'\'(?:\\\\|\\\'|[^\']*)\''
     _INT = r'[0-9]+'
 
@@ -427,9 +427,9 @@ class AntlrLexer(RegexLexer):
             (r'<<([^>]|>[^>])>>', String),
             # identifiers
             # Tokens start with capital letter.
-            (r'\$?[A-Z_][A-Za-z_0-9]*', Name.Constant),
+            (r'\$?[A-Z_]\w*', Name.Constant),
             # Rules start with small letter.
-            (r'\$?[a-z_][A-Za-z_0-9]*', Name.Variable),
+            (r'\$?[a-z_]\w*', Name.Variable),
             # operators
             (r'(\+|\||->|=>|=|\(|\)|\.\.|\.|\?|\*|\^|!|\#|~)', Operator),
             (r',', Punctuation),
@@ -458,8 +458,8 @@ class AntlrLexer(RegexLexer):
             (r'\}', Punctuation, '#pop'),
         ],
         'action': [
-            (r'(' + r'|'.join((     # keep host code in largest possible chunks
-                r'[^\${}\'"/\\]+',  # exclude unsafe characters
+            (r'(' + r'|'.join((    # keep host code in largest possible chunks
+                r'[^${}\'"/\\]+',  # exclude unsafe characters
 
                 # strings and comments may safely contain unsafe characters
                 r'"(\\\\|\\"|[^"])*"',  # double quote string
@@ -485,8 +485,8 @@ class AntlrLexer(RegexLexer):
             (r'\}', Punctuation, '#pop'),
         ],
         'nested-arg-action': [
-            (r'(' + r'|'.join((     # keep host code in largest possible chunks.
-                r'[^\$\[\]\'"/]+',  # exclude unsafe characters
+            (r'(' + r'|'.join((    # keep host code in largest possible chunks.
+                r'[^$\[\]\'"/]+',  # exclude unsafe characters
 
                 # strings and comments may safely contain unsafe characters
                 r'"(\\\\|\\"|[^"])*"',  # double quote string
@@ -720,26 +720,26 @@ class TreetopBaseLexer(RegexLexer):
             include('end'),
             (r'module\b', Keyword, '#push'),
             (r'grammar\b', Keyword, 'grammar'),
-            (r'[A-Z][A-Za-z_0-9]*(?:::[A-Z][A-Za-z_0-9]*)*', Name.Namespace),
+            (r'[A-Z]\w*(?:::[A-Z]\w*)*', Name.Namespace),
         ],
         'grammar': [
             include('space'),
             include('end'),
             (r'rule\b', Keyword, 'rule'),
             (r'include\b', Keyword, 'include'),
-            (r'[A-Z][A-Za-z_0-9]*', Name),
+            (r'[A-Z]\w*', Name),
         ],
         'include': [
             include('space'),
-            (r'[A-Z][A-Za-z_0-9]*(?:::[A-Z][A-Za-z_0-9]*)*', Name.Class, '#pop'),
+            (r'[A-Z]\w*(?:::[A-Z]\w*)*', Name.Class, '#pop'),
         ],
         'rule': [
             include('space'),
             include('end'),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'([A-Za-z_][A-Za-z_0-9]*)(:)', bygroups(Name.Label, Punctuation)),
-            (r'[A-Za-z_][A-Za-z_0-9]*', Name),
+            (r'([A-Za-z_]\w*)(:)', bygroups(Name.Label, Punctuation)),
+            (r'[A-Za-z_]\w*', Name),
             (r'[()]', Punctuation),
             (r'[?+*/&!~]', Operator),
             (r'\[(?:\\.|\[:\^?[a-z]+:\]|[^\\\]])+\]', String.Regex),
@@ -830,6 +830,6 @@ class EbnfLexer(RegexLexer):
             (r'[*)]', Comment.Multiline),
         ],
         'identifier': [
-            (r'([a-zA-Z][a-zA-Z0-9_ \-]*)', Keyword),
+            (r'([a-zA-Z][\w \-]*)', Keyword),
         ],
     }
