@@ -286,7 +286,7 @@ class VhdlLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text),  # line continuation
-            (r'--(?![!#$%&*+./<=>?@\^|_~]).*?$', Comment.Single),
+            (r'--.*?$', Comment.Single),
             (r"'(U|X|0|1|Z|W|L|H|-)'", String.Char),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r"'[a-z_]\w*", Name.Attribute),
