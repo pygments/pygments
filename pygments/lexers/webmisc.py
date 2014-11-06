@@ -795,7 +795,7 @@ class QmlLexer(RegexLexer):
 class CirruLexer(RegexLexer):
     """
     Syntax rules of Cirru can be found at:
-    http://grammar.cirru.org/
+    http://cirru.org/
 
     * using ``()`` to markup blocks, but limited in the same line
     * using ``""`` to markup strings, allow ``\`` to escape
@@ -807,7 +807,7 @@ class CirruLexer(RegexLexer):
 
     name = 'Cirru'
     aliases = ['cirru']
-    filenames = ['*.cirru', '*.cr']
+    filenames = ['*.cirru']
     mimetypes = ['text/x-cirru']
     flags = re.MULTILINE
 
@@ -821,30 +821,26 @@ class CirruLexer(RegexLexer):
             (r'.', String.Escape, '#pop'),
         ],
         'function': [
-            (r'[\w-][^\s\(\)\"]*', Name.Function, '#pop'),
+            (r'[^\s\"\(\)]+', Name.Function, '#pop'),
             (r'\)', Operator, '#pop'),
             (r'(?=\n)', Text, '#pop'),
             (r'\(', Operator, '#push'),
             (r'"', String, ('#pop', 'string')),
-            (r'\s+', Text.Whitespace),
+            (r'[ ]+', Text.Whitespace),
             (r'\,', Operator, '#pop'),
         ],
         'line': [
-            (r'^\B', Text.Whitespace, 'function'),
             (r'\$', Operator, 'function'),
             (r'\(', Operator, 'function'),
             (r'\)', Operator),
             (r'(?=\n)', Text, '#pop'),
-            (r'\n', Text, '#pop'),
             (r'"', String, 'string'),
-            (r'\s+', Text.Whitespace),
-            (r'[\d\.]+', Number),
-            (r'[\w-][^\"\(\)\s]*', Name.Variable),
-            (r'--', Comment.Single)
+            (r'[ ]+', Text.Whitespace),
+            (r'[\+\-]?[\d\.]+\b', Number),
+            (r'[^\s\"\(\)]+', Name.Variable)
         ],
         'root': [
-            (r'^\s*', Text.Whitespace, ('line', 'function')),
-            (r'^\s+$', Text.Whitespace),
+            (r'^\n*', Text.Whitespace, ('line', 'function')),
         ]
     }
 
