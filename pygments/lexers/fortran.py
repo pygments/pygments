@@ -43,7 +43,7 @@ class FortranLexer(RegexLexer):
             (r'!.*\n', Comment),
             include('strings'),
             include('core'),
-            (r'[a-z]\w*', Name),
+            (r'[a-z][\w$]*', Name),
             include('nums'),
             (r'[\s]+', Text),
         ],
