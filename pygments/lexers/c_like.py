@@ -38,7 +38,7 @@ class PikeLexer(CppLexer):
             (words((
                 'catch', 'new', 'private', 'protected', 'public', 'gauge',
                 'throw', 'throws', 'class', 'interface', 'implement', 'abstract', 'extends', 'from',
-                'this', 'super', 'new', 'constant', 'final', 'static', 'import', 'use', 'extern',
+                'this', 'super', 'constant', 'final', 'static', 'import', 'use', 'extern',
                 'inline', 'proto', 'break', 'continue', 'if', 'else', 'for',
                 'while', 'do', 'switch', 'case', 'as', 'in', 'version', 'return', 'true', 'false', 'null',
                 '__VERSION__', '__MAJOR__', '__MINOR__', '__BUILD__', '__REAL_VERSION__',
@@ -163,7 +163,7 @@ class ECLexer(CLexer):
                 'any_object', 'incref', 'register', 'watch', 'stopwatching', 'firewatchers',
                 'watchable', 'class_designer', 'class_fixed', 'class_no_expansion', 'isset',
                 'class_default_property', 'property_category', 'class_data',
-                'class_property', 'virtual', 'thisclass', 'dbtable', 'dbindex',
+                'class_property', 'thisclass', 'dbtable', 'dbindex',
                 'database_open', 'dbfield'), suffix=r'\b'), Keyword),
             (words(('uint', 'uint16', 'uint32', 'uint64', 'bool', 'byte',
                     'unichar', 'int64'), suffix=r'\b'),

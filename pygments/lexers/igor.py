@@ -44,8 +44,7 @@ class IgorLexer(RegexLexer):
     keywords = (
         'override', 'ThreadSafe', 'static',  'FuncFit', 'Proc', 'Picture',
         'Prompt', 'DoPrompt', 'macro', 'window', 'graph', 'function', 'end',
-        'Structure', 'EndStructure', 'EndMacro', 'Menu', 'SubMenu', 'Prompt',
-        'DoPrompt',
+        'Structure', 'EndStructure', 'EndMacro', 'Menu', 'SubMenu',
     )
     operations = (
         'Abort', 'AddFIFOData', 'AddFIFOVectData', 'AddMovieAudio',

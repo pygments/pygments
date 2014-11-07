@@ -248,7 +248,7 @@ class IsabelleLexer(RegexLexer):
         'free_constructors', 'functor', 'nominal_function',
         'nominal_termination', 'permanent_interpretation',
         'binds', 'defining', 'smt2_status', 'term_cartouche',
-        'boogie_file', 'datatype_compat', 'text_cartouche',
+        'boogie_file', 'text_cartouche',
     )
 
     keyword_theory_script = ('inductive_cases', 'inductive_simps')

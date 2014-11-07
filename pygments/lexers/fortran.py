@@ -106,7 +106,7 @@ class FortranLexer(RegexLexer):
                 'C_Horizontal_Tab', 'C_Vertical_Tab', 'DAbs', 'DACos', 'DASin',
                 'DATan', 'Date_and_Time', 'DbesJ', 'DbesJN', 'DbesY',
                 'DbesYN', 'Dble', 'DCos', 'DCosH', 'DDiM', 'DErF',
-                'DErFC', 'DExp', 'Digits', 'DiM', 'DInt', 'DLog', 'DLog', 'DMax',
+                'DErFC', 'DExp', 'Digits', 'DiM', 'DInt', 'DLog', 'DMax',
                 'DMin', 'DMod', 'DNInt', 'Dot_Product', 'DProd', 'DSign', 'DSinH',
                 'DShiftL', 'DShiftR', 'DSin', 'DSqRt', 'DTanH', 'DTan', 'DTime',
                 'EOShift', 'Epsilon', 'ErF', 'ErFC', 'ErFC_Scaled', 'ETime',
