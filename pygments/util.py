@@ -263,6 +263,22 @@ def format_lines(var_name, seq, raw=False, indent_level=0):
     return '\n'.join(lines)
 
 
+def duplicates_removed(it, already_seen=()):
+    """
+    Returns a list with duplicates removed from the iterable `it`.
+
+    Order is preserved.
+    """
+    lst = []
+    seen = set()
+    for i in it:
+        if i in seen or i in already_seen:
+            continue
+        lst.append(i)
+        seen.add(i)
+    return lst
+
+
 class Future(object):
     """Generic class to defer some work.
 
