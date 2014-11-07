@@ -98,7 +98,7 @@ class ActionScriptLexer(RegexLexer):
             (words((
                 'decodeURI', 'decodeURIComponent', 'encodeURI', 'escape', 'eval', 'isFinite', 'isNaN',
                 'isXMLName', 'clearInterval', 'fscommand', 'getTimer', 'getURL', 'getVersion',
-                'isFinite', 'parseFloat', 'parseInt', 'setInterval', 'trace', 'updateAfterEvent',
+                'parseFloat', 'parseInt', 'setInterval', 'trace', 'updateAfterEvent',
                 'unescape'), suffix=r'\b'),
              Name.Function),
             (r'[$a-zA-Z_]\w*', Name.Other),
