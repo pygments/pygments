@@ -141,3 +141,19 @@ class UtilTest(unittest.TestCase):
         exec(output, d)
         self.assertTrue(isinstance(d['var'], tuple))
         self.assertEqual(('cat', 'dog'), d['var'])
+
+    def test_duplicates_removed_seq_types(self):
+        # tuple
+        x = util.duplicates_removed(('a', 'a', 'b'))
+        self.assertSequenceEqual(('a', 'b'), x)
+        # list
+        x = util.duplicates_removed(['a', 'a', 'b'])
+        self.assertSequenceEqual(('a', 'b'), x)
+        # iterator
+        x = util.duplicates_removed(iter(('a', 'a', 'b')))
+        self.assertSequenceEqual(('a', 'b'), x)
+
+    def test_duplicates_removed_nonconsecutive(self):
+        # keeps first
+        x = util.duplicates_removed(('a', 'b', 'a'))
+        self.assertSequenceEqual(('a', 'b'), x)
