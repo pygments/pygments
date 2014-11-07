@@ -145,15 +145,15 @@ class UtilTest(unittest.TestCase):
     def test_duplicates_removed_seq_types(self):
         # tuple
         x = util.duplicates_removed(('a', 'a', 'b'))
-        self.assertSequenceEqual(('a', 'b'), x)
+        self.assertEqual(['a', 'b'], x)
         # list
         x = util.duplicates_removed(['a', 'a', 'b'])
-        self.assertSequenceEqual(('a', 'b'), x)
+        self.assertEqual(['a', 'b'], x)
         # iterator
         x = util.duplicates_removed(iter(('a', 'a', 'b')))
-        self.assertSequenceEqual(('a', 'b'), x)
+        self.assertEqual(['a', 'b'], x)
 
     def test_duplicates_removed_nonconsecutive(self):
         # keeps first
         x = util.duplicates_removed(('a', 'b', 'a'))
-        self.assertSequenceEqual(('a', 'b'), x)
+        self.assertEqual(['a', 'b'], x)
