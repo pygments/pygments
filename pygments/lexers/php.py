@@ -242,6 +242,4 @@ class PhpLexer(RegexLexer):
         rv = 0.0
         if re.search(r'<\?(?!xml)', text):
             rv += 0.3
-        if '?>' in text:
-            rv += 0.1
         return rv

@@ -17,12 +17,15 @@ split_path_re = re.compile(r'[/\\ ]')
 doctype_lookup_re = re.compile(r'''(?smx)
     (<\?.*?\?>)?\s*
     <!DOCTYPE\s+(
+     [a-zA-Z_][a-zA-Z0-9]*
+     (?: \s+      # optional in HTML5
      [a-zA-Z_][a-zA-Z0-9]*\s+
-     [a-zA-Z_][a-zA-Z0-9]*\s+
-     "[^"]*")
+     "[^"]*")?
+     )
      [^>]*>
 ''')
 tag_re = re.compile(r'<(.+?)(\s.*?)?>.*?</.+?>(?uism)')
+xml_decl_re = re.compile(r'\s*<\?xml[^>]*\?>', re.I)
 
 
 class ClassNotFound(ValueError):
@@ -173,17 +176,19 @@ def doctype_matches(text, regex):
     if m is None:
         return False
     doctype = m.group(2)
-    return re.compile(regex).match(doctype.strip()) is not None
+    return re.compile(regex, re.I).match(doctype.strip()) is not None
 
 
 def html_doctype_matches(text):
     """Check if the file looks like it has a html doctype."""
-    return doctype_matches(text, r'html\s+PUBLIC\s+"-//W3C//DTD X?HTML.*')
+    return doctype_matches(text, r'html')
 
 
 _looks_like_xml_cache = {}
 def looks_like_xml(text):
     """Check if a doctype exists or if we have some tags."""
+    if xml_decl_re.match(text):
+        return True
     key = hash(text)
     try:
         return _looks_like_xml_cache[key]

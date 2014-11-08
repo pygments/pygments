@@ -314,7 +314,7 @@ class VelocityXmlLexer(DelegatingLexer):
     def analyse_text(text):
         rv = VelocityLexer.analyse_text(text) - 0.01
         if looks_like_xml(text):
-            rv += 0.5
+            rv += 0.4
         return rv
 
 
@@ -1701,9 +1701,7 @@ class LassoHtmlLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = LassoLexer.analyse_text(text) - 0.01
-        if re.search(r'<\w+>', text, re.I):
-            rv += 0.2
-        if html_doctype_matches(text):
+        if html_doctype_matches(text):  # same as HTML lexer
             rv += 0.5
         return rv
 
