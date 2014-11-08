@@ -217,7 +217,7 @@ class XmlLexer(RegexLexer):
 
     def analyse_text(text):
         if looks_like_xml(text):
-            return 0.5
+            return 0.45  # less than HTML
 
 
 class XsltLexer(XmlLexer):

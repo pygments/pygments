@@ -746,12 +746,10 @@ class LassoLexer(RegexLexer):
         rv = 0.0
         if 'bin/lasso9' in text:
             rv += 0.8
-        if re.search(r'<\?(=|lasso)|\A\[', text, re.I):
+        if re.search(r'<\?lasso', text, re.I):
             rv += 0.4
         if re.search(r'local\(', text, re.I):
             rv += 0.4
-        if '?>' in text:
-            rv += 0.1
         return rv
 
 
