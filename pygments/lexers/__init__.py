@@ -195,16 +195,17 @@ def guess_lexer_for_filename(_fn, _text, **options):
         <pygments.lexers.templates.CssPhpLexer object at 0xb7ba518c>
     """
     fn = basename(_fn)
-    primary = None
+    primary = {}
     matching_lexers = set()
     for lexer in _iter_lexerclasses():
         for filename in lexer.filenames:
             if _fn_matches(fn, filename):
                 matching_lexers.add(lexer)
-                primary = lexer
+                primary[lexer] = True
         for filename in lexer.alias_filenames:
             if _fn_matches(fn, filename):
                 matching_lexers.add(lexer)
+                primary[lexer] = False
     if not matching_lexers:
         raise ClassNotFound('no lexer for filename %r found' % fn)
     if len(matching_lexers) == 1:
@@ -216,14 +217,15 @@ def guess_lexer_for_filename(_fn, _text, **options):
             return lexer(**options)
         result.append((rv, lexer))
 
-    # since py3 can no longer sort by class name by default, here is the
-    # sorting function that works in both
-    def type_sort(type_):
-        return (type_[0], type_[1].__name__)
+    def type_sort(t):
+        # sort by:
+        # - analyse score
+        # - is primary filename pattern?
+        # - priority
+        # - last resort: class name
+        return (t[0], primary[t[1]], t[1].priority, t[1].__name__)
     result.sort(key=type_sort)
 
-    if not result[-1][0] and primary is not None:
-        return primary(**options)
     return result[-1][1](**options)
 
 
