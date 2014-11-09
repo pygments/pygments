@@ -467,8 +467,7 @@ class VbNetLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.search(r'^\s*(#If|Module|Namespace)', text,
-                     re.IGNORECASE | re.MULTILINE):
+        if re.search(r'^\s*(#If|Module|Namespace)', text, re.MULTILINE):
             return 0.5
 
 
