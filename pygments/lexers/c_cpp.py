@@ -177,7 +177,9 @@ class CLexer(CFamilyLexer):
     priority = 0.1
 
     def analyse_text(text):
-        if re.search('#include [<"]', text):
+        if re.search('^\s*#include [<"]', text, re.MULTILINE):
+            return 0.1
+        if re.search('^\s*#ifdef ', text, re.MULTILINE):
             return 0.1
 
 
