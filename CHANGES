@@ -6,6 +6,24 @@ Issue numbers refer to the tracker at
 pull request numbers to the requests at
 <http://bitbucket.org/birkenfeld/pygments-main/pull-requests/merged>.
 
+Version 2.0
+-----------
+(released Nov 9, 2014)
+
+- Default lexer encoding is now "guess", i.e. UTF-8 / Locale / Latin1 is
+  tried in that order.
+
+- Major update to Swift lexer (PR#410).
+
+- Multiple fixes to lexer guessing in conflicting cases:
+
+  * recognize HTML5 by doctype
+  * recognize XML by XML declaration
+  * don't recognize C/C++ as SystemVerilog
+
+- Simplified regexes and builtin lists.
+
+
 Version 2.0rc1
 --------------
 (released Oct 16, 2014)
@@ -74,9 +92,6 @@ Version 2.0rc1
   * Todo.txt todo lists
   * Twig (PR#404)
 
-- Default lexer encoding is now "guess", i.e. UTF-8 / Locale / Latin1 is
-  tried in that order.
-
 - Added a helper to "optimize" regular expressions that match one of many
   literal words; this can save 20% and more lexing time with lexers that
   highlight many keywords or builtins.
@@ -106,6 +121,10 @@ Version 2.0rc1
 
 - Pygments will now recognize "vim" modelines when guessing the lexer for
   a file based on content (PR#118).
+
+- Major restructure of the ``pygments.lexers`` module namespace.  There are now
+  many more modules with less lexers per module.  Old modules are still around
+  and re-export the lexers they previously contained.
 
 - The NameHighlightFilter now works with any Name.* token type (#790).
 
