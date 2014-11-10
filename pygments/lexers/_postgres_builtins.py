@@ -507,7 +507,8 @@ PLPGSQL_KEYWORDS = (
     'RETURN', 'REVERSE', 'SQLSTATE', 'WHILE',
 )
 
-if __name__ == '__main__':
+
+if __name__ == '__main__':  # pragma: no cover
     import re
     try:
         from urllib import urlopen
