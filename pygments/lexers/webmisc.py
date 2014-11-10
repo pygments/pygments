@@ -333,6 +333,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(\{)', pushstate_root_callback),
             (r'then|else|external|at|div|except', Keyword, 'root'),
             (r'order by', Keyword, 'root'),
+            (r'group by', Keyword, 'root'),
             (r'is|mod|order\s+by|stable\s+order\s+by', Keyword, 'root'),
             (r'and|or', Operator.Word, 'root'),
             (r'(eq|ge|gt|le|lt|ne|idiv|intersect|in)(?=\b)',
@@ -653,7 +654,7 @@ class XQueryLexer(ExtendedRegexLexer):
              pushstate_operator_root_validate_withmode),
             (r'(validate)(\s*)(\{)', pushstate_operator_root_validate),
             (r'(typeswitch)(\s*)(\()', bygroups(Keyword, Text, Punctuation)),
-            (r'(switch)(\s*)(\()', bygroups(Keyword, Text, Punctuation)),
+            (r'(typeswitch)(\s*)(\()', bygroups(Keyword, Text, Punctuation)),
             (r'(element|attribute)(\s*)(\{)',
              pushstate_operator_root_construct_callback),
 
