@@ -415,7 +415,7 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'varname': [
             (r'\(:', Comment, 'comment'),
-            (r'(' + qname + ')(\()?', bygroups(Name.Variable, Punctuation), 'operator'),
+            (r'(' + qname + ')(\()?', bygroups(Name, Punctuation), 'operator'),
         ],
         'singletype': [
             (r'\(:', Comment, 'comment'),
@@ -425,7 +425,7 @@ class XQueryLexer(ExtendedRegexLexer):
         'itemtype': [
             include('whitespace'),
             (r'\(:', Comment, 'comment'),
-            (r'\$', Punctuation, 'varname'),
+            (r'\$', Name.Variable, 'varname'),
             (r'(void)(\s*)(\()(\s*)(\))',
              bygroups(Keyword, Text, Punctuation, Text, Punctuation), 'operator'),
             (r'(element|attribute|schema-element|schema-attribute|comment|text|'
@@ -726,7 +726,7 @@ class XQueryLexer(ExtendedRegexLexer):
 
             (r'then|else', Keyword),
 
-            # ML specific
+            # Marklogic specific
             (r'(try)(\s*)', bygroups(Keyword, Text), 'root'),
             (r'(catch)(\s*)(\()(\$)',
              bygroups(Keyword, Text, Punctuation, Name.Variable), 'varname'),
