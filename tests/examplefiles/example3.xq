@@ -132,6 +132,24 @@ declare function local:ordered() {
 	)
 };
 
+declare function local:concat-expr($postfix) {
+
+	let $concatenated := other:uri() || "/" || $postfix
+	return
+		$concatenated
+};
+
+declare function local:human-units($bytes) {
+	let $unit := if($bytes > math:pow(1024, 3)) then
+		(math:pow(1024, 3), "GB")
+	else if($bytes > math:pow(1024, 2)) then
+		(math:pow(1024, 2), "MB")
+	else
+		(1024, "KB")
+	return
+		format-number($bytes div $unit[1], ".00") || " " || $unit[2]
+};
+
 declare function local:merge-simple($a as xs:string+, $b as xs:string+) as xs:string+ {
 	($a, $b)	
 };
