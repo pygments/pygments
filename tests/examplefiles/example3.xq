@@ -6,7 +6,7 @@ declare variable $local:straight-var1 := 'one';
 
 declare %private variable $local:private-var := 'secret';
 declare %public variable $local:public-var := 'not-secret';
-declare %other:annotation variable $local:some-var := 'anything';
+declare %other:annotation('param1', "param2") variable $local:some-var := 'anything';
 
 declare variable $local:straight-var2 := 'two';
 
@@ -103,4 +103,21 @@ declare function local:plays-by-character() {
 				$title ! <play>{ . }</play>
      		}
 			</character>	
+};
+
+declare
+	%other:a
+	%private
+	%other:b('1')
+	%other:c("1", "2", "3", "4")
+function local:very-annotated() {
+	let $thing := "thing"
+	return
+		$thing
+};
+
+declare %public function local:slightly-annotated() {
+	let $nothing := ()
+	return
+		$nothing
 };
