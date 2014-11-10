@@ -410,8 +410,8 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(\,)(\s+)(' + stringsingle + ')', bygroups(Punctuation, Text, String.Single)),
             (r'\)', Punctuation),
             (r'(\s+)(\%)', bygroups(Text, Name.Decorator), 'annotationname'),
-            (r'(\s+)(variable)(\s+)(\$)', bygroups(Text, Keyword, Text, Name.Variable), 'varname'),
-            (r'(\s+)(function)(\s+)', bygroups(Text, Keyword, Text), 'root')
+            (r'(\s+)(variable)(\s+)(\$)', bygroups(Text, Keyword.Declaration, Text, Name.Variable), 'varname'),
+            (r'(\s+)(function)(\s+)', bygroups(Text, Keyword.Declaration, Text), 'root')
         ],
         'varname': [
             (r'\(:', Comment, 'comment'),
@@ -611,9 +611,9 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(\d+)', Number.Integer, 'operator'),
             (r'(\.\.|\.|\))', Punctuation, 'operator'),
             (r'(declare)(\s+)(construction)',
-             bygroups(Keyword, Text, Keyword), 'operator'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
             (r'(declare)(\s+)(default)(\s+)(order)',
-             bygroups(Keyword, Text, Keyword, Text, Keyword), 'operator'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
             (ncname + ':\*', Name, 'operator'),
             ('\*:'+ncname, Name.Tag, 'operator'),
             ('\*', Name.Tag, 'operator'),
@@ -624,29 +624,29 @@ class XQueryLexer(ExtendedRegexLexer):
 
             # NAMESPACE DECL
             (r'(declare)(\s+)(default)(\s+)(collation)',
-             bygroups(Keyword, Text, Keyword, Text, Keyword)),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration)),
             (r'(module|declare)(\s+)(namespace)',
-             bygroups(Keyword, Text, Keyword), 'namespacedecl'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration), 'namespacedecl'),
             (r'(declare)(\s+)(base-uri)',
-             bygroups(Keyword, Text, Keyword), 'namespacedecl'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration), 'namespacedecl'),
 
             # NAMESPACE KEYWORD
             (r'(declare)(\s+)(default)(\s+)(element|function)',
-             bygroups(Keyword, Text, Keyword, Text, Keyword), 'namespacekeyword'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'namespacekeyword'),
             (r'(import)(\s+)(schema|module)',
              bygroups(Keyword.Pseudo, Text, Keyword.Pseudo), 'namespacekeyword'),
             (r'(declare)(\s+)(copy-namespaces)',
-             bygroups(Keyword, Text, Keyword), 'namespacekeyword'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration), 'namespacekeyword'),
 
             # VARNAMEs
             (r'(for|let|some|every)(\s+)(\$)',
              bygroups(Keyword, Text, Name.Variable), 'varname'),
             (r'\$', Name.Variable, 'varname'),
             (r'(declare)(\s+)(variable)(\s+)(\$)',
-             bygroups(Keyword, Text, Keyword, Text, Name.Variable), 'varname'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Name.Variable), 'varname'),
 
             # ANNOTATED GLOBAL VARIABLES AND FUNCTIONS
-            (r'(declare)(\s+)(\%)', bygroups(Keyword, Text, Name.Decorator), 'annotationname'),
+            (r'(declare)(\s+)(\%)', bygroups(Keyword.Declaration, Text, Name.Decorator), 'annotationname'),
 
             # ITEMTYPE
             (r'(\))(\s+)(as)', bygroups(Operator, Text, Keyword), 'itemtype'),
@@ -668,7 +668,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(<)', pushstate_operator_starttag_callback),
 
             (r'(declare)(\s+)(boundary-space)',
-             bygroups(Keyword, Text, Keyword), 'xmlspace_decl'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration), 'xmlspace_decl'),
 
             (r'(validate)(\s+)(lax|strict)',
              pushstate_operator_root_validate_withmode),
@@ -692,7 +692,7 @@ class XQueryLexer(ExtendedRegexLexer):
              'operator'),
 
             (r'(declare|define)(\s+)(function)',
-             bygroups(Keyword, Text, Keyword)),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration)),
 
             (r'(\{)', pushstate_operator_root_callback),
 
@@ -700,7 +700,7 @@ class XQueryLexer(ExtendedRegexLexer):
              pushstate_operator_order_callback),
 
             (r'(declare)(\s+)(ordering)',
-             bygroups(Keyword, Text, Keyword), 'declareordering'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration), 'declareordering'),
 
             (r'(xquery)(\s+)(version)',
              bygroups(Keyword.Pseudo, Text, Keyword.Pseudo), 'xqueryversion'),
@@ -710,7 +710,7 @@ class XQueryLexer(ExtendedRegexLexer):
             # sometimes return can occur in root state
             (r'return', Keyword),
 
-            (r'(declare)(\s+)(option)', bygroups(Keyword, Text, Keyword),
+            (r'(declare)(\s+)(option)', bygroups(Keyword.Declaration, Text, Keyword.Declaration),
              'option'),
 
             # URI LITERALS - single and double quoted
