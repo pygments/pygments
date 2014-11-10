@@ -148,30 +148,30 @@ class CmdLineTest(unittest.TestCase):
     def test_errors(self):
         # input file not found
         e = self.check_failure('-lpython', 'nonexistent.py')
-        self.assertIn('Error: cannot read infile', e)
-        self.assertIn('nonexistent.py', e)
+        self.assertTrue('Error: cannot read infile' in e)
+        self.assertTrue('nonexistent.py' in e)
 
         # lexer not found
         e = self.check_failure('-lfooo', TESTFILE)
-        self.assertIn('Error: no lexer for alias', e)
+        self.assertTrue('Error: no lexer for alias' in e)
 
         # formatter not found
         e = self.check_failure('-lpython', '-ffoo', TESTFILE)
-        self.assertIn('Error: no formatter found for name', e)
+        self.assertTrue('Error: no formatter found for name' in e)
 
         # output file not writable
         e = self.check_failure('-o', os.path.join('nonexistent', 'dir', 'out.html'),
                                '-lpython', TESTFILE)
-        self.assertIn('Error: cannot open outfile', e)
-        self.assertIn('out.html', e)
+        self.assertTrue('Error: cannot open outfile' in e)
+        self.assertTrue('out.html' in e)
 
         # unknown filter
         e = self.check_failure('-F', 'foo', TESTFILE)
-        self.assertIn('Error: filter \'foo\' not found', e)
+        self.assertTrue('Error: filter \'foo\' not found' in e)
 
     def test_exception(self):
         # unexpected exception while highlighting
         # (we can force that by closing stdout)
         c, e = run_cmdline_with_closed_stdout('-lpython', TESTFILE)
         self.assertEqual(c, 1)
-        self.assertIn('*** Error while highlighting:', e)
+        self.assertTrue('*** Error while highlighting:' in e)
