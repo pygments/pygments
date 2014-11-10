@@ -331,10 +331,13 @@ def main(args=sys.argv):
     opts.pop('-F', None)
 
     # select lexer
-    lexer = opts.pop('-l', None)
-    if lexer:
+    lexer = None
+
+    # given by name?
+    lexername = opts.pop('-l', None)
+    if lexername:
         try:
-            lexer = get_lexer_by_name(lexer, **parsed_opts)
+            lexer = get_lexer_by_name(lexername, **parsed_opts)
         except (OptionError, ClassNotFound) as err:
             print('Error:', err, file=sys.stderr)
             return 1
@@ -461,12 +464,16 @@ def main(args=sys.argv):
         right = escapeinside[1]
         lexer = LatexEmbeddedLexer(left, right, lexer)
 
+    # process filters
+    for fname, fopts in F_opts:
+        try:
+            lexer.add_filter(fname, **fopts)
+        except ClassNotFound as err:
+            print('Error:', err, file=sys.stderr)
+            return 1
+
     # ... and do it!
     try:
-        # process filters
-        for fname, fopts in F_opts:
-            lexer.add_filter(fname, **fopts)
-
         if '-s' not in opts:
             # process whole input as per normal...
             highlight(code, lexer, fmter, outfile)
@@ -494,7 +501,6 @@ def main(args=sys.argv):
                 return 0
 
     except Exception:
-        raise
         import traceback
         info = traceback.format_exception(*sys.exc_info())
         msg = info[-1].strip()

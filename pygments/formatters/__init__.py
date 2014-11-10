@@ -75,7 +75,7 @@ def get_formatter_by_name(_alias, **options):
     """
     cls = find_formatter_class(_alias)
     if cls is None:
-        raise ClassNotFound("No formatter found for name %r" % _alias)
+        raise ClassNotFound("no formatter found for name %r" % _alias)
     return cls(**options)
 
 
@@ -95,7 +95,7 @@ def get_formatter_for_filename(fn, **options):
         for filename in cls.filenames:
             if _fn_matches(fn, filename):
                 return cls(**options)
-    raise ClassNotFound("No formatter found for file name %r" % fn)
+    raise ClassNotFound("no formatter found for file name %r" % fn)
 
 
 class _automodule(types.ModuleType):
