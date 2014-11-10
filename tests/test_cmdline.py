@@ -175,3 +175,11 @@ class CmdLineTest(unittest.TestCase):
         c, e = run_cmdline_with_closed_stdout('-lpython', TESTFILE)
         self.assertEqual(c, 1)
         self.assertIn('*** Error while highlighting:', e)
+
+        # same with -v: should reraise the exception
+        try:
+            run_cmdline_with_closed_stdout('-lpython', '-v', TESTFILE)
+        except Exception:
+            pass
+        else:
+            self.fail('exception not reraised')

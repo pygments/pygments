@@ -30,7 +30,7 @@ from pygments.styles import get_all_styles, get_style_by_name
 
 USAGE = """\
 Usage: %s [-l <lexer> | -g] [-F <filter>[:<options>]] [-f <formatter>]
-          [-O <options>] [-P <option=value>] [-s] [-o <outfile>] [<infile>]
+          [-O <options>] [-P <option=value>] [-s] [-v] [-o <outfile>] [<infile>]
 
        %s -S <style> -f <formatter> [-a <arg>] [-O <options>] [-P <option=value>]
        %s -L [<which> ...]
@@ -89,6 +89,9 @@ The -s option processes lines one at a time until EOF, rather than
 waiting to process the entire file.  This only works for stdin, and
 is intended for streaming input such as you get from 'tail -f'.
 Example usage: "tail -f sql.log | pygmentize -s -l sql"
+
+The -v option prints a detailed traceback on unhandled exceptions,
+which is useful for debugging and bug reports.
 
 The -h option prints this help.
 The -V option prints the package version.
@@ -207,7 +210,7 @@ def main(args=sys.argv):
     usage = USAGE % ((args[0],) * 6)
 
     try:
-        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:hVHgs")
+        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:vhVHgs")
     except getopt.GetoptError:
         print(usage, file=sys.stderr)
         return 2
@@ -501,6 +504,18 @@ def main(args=sys.argv):
                 return 0
 
     except Exception:
+        if '-v' in opts:
+            print(file=sys.stderr)
+            print('*' * 65, file=sys.stderr)
+            print('An unhandled exception occurred while highlighting.',
+                  file=sys.stderr)
+            print('Please report the whole traceback to the issue tracker at',
+                  file=sys.stderr)
+            print('<https://bitbucket.org/birkenfeld/pygments-main/issues>.',
+                  file=sys.stderr)
+            print('*' * 65, file=sys.stderr)
+            print(file=sys.stderr)
+            raise
         import traceback
         info = traceback.format_exception(*sys.exc_info())
         msg = info[-1].strip()
@@ -510,6 +525,8 @@ def main(args=sys.argv):
         print(file=sys.stderr)
         print('*** Error while highlighting:', file=sys.stderr)
         print(msg, file=sys.stderr)
+        print('*** If this is a bug you want to report, please rerun with -v.',
+              file=sys.stderr)
         return 1
 
     return 0
