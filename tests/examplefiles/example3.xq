@@ -121,3 +121,37 @@ declare %public function local:slightly-annotated() {
 	return
 		$nothing
 };
+
+declare function local:merge-simple($a as xs:string+, $b as xs:string+) as xs:string+ {
+	($a, $b)	
+};
+
+(: higher order function example 1 :)
+declare function local:apply($func, $value) {
+	$func($value)
+};
+
+(: higher order function example 2 :)
+declare function local:apply-all($func, $list) {
+	$list ! $func(.)
+};
+
+(: higher order function example 3 :)
+declare function local:apply-all-long($func as function(xs:string) as xs:string, $list) {
+	$list ! $func(.)
+};
+
+(: higher order function example 4 :)
+declare function local:merge($func as function(xs:string+, xs:string+) as xs:string+, $a as xs:string+, $b as xs:string+) as xs:string+ {
+	$func($a, $b)
+};
+
+let $to-upper := upper-case#1
+let $to-upper-long as function(xs:string) as xs:string := upper-case#1
+return
+    <case>
+    {
+        local:apply-all($to-upper, ("Hello", "world!")) ! <upper>{.}</upper>,
+        local:apply-all-long(lower-case#1, ("Hello", "world!")) ! <lower>{.}</lower>
+    }
+    </case>

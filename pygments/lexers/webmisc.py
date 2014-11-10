@@ -364,6 +364,10 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'ascending|descending|default', Keyword, '#push'),
             (r'external', Keyword),
             (r'collation', Keyword, 'uritooperator'),
+
+            # support for current context on rhs of Simple Map Operator
+            (r'\.', Operator),
+
             # finally catch all string literals and stay in operator state
             (stringdouble, String.Double),
             (stringsingle, String.Single),
@@ -411,7 +415,7 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'varname': [
             (r'\(:', Comment, 'comment'),
-            (qname, Name.Variable, 'operator'),
+            (r'(' + qname + ')(\()?', bygroups(Name.Variable, Punctuation), 'operator'),
         ],
         'singletype': [
             (r'\(:', Comment, 'comment'),
@@ -457,6 +461,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'case|as', Keyword, 'itemtype'),
             (r'(\))(\s*)(as)', bygroups(Operator, Text, Keyword), 'itemtype'),
             (ncname + r':\*', Keyword.Type, 'operator'),
+            (r'(function)(\()', bygroups(Keyword.Type, Punctuation)),
             (qname, Keyword.Type, 'occurrenceindicator'),
         ],
         'kindtest': [
@@ -736,6 +741,7 @@ class XQueryLexer(ExtendedRegexLexer):
             # STANDALONE QNAMES
             (qname + r'(?=\s*\{)', Name.Tag, 'qname_braren'),
             (qname + r'(?=\s*\([^:])', Name.Function, 'qname_braren'),
+            (r'(' + qname + ')(#)([0-9]+)', bygroups(Name.Function, Keyword.Type, Number.Integer)),
             (qname, Name.Tag, 'operator'),
         ]
     }
