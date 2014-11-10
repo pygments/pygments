@@ -122,6 +122,16 @@ declare %public function local:slightly-annotated() {
 		$nothing
 };
 
+declare function local:ordered() {
+	for $hit in doc("/db/doc-with-indexes.xml")//tei:p[other:query(., $search-expression)]
+	let $score as xs:float := other:score($hit)
+	order by $score descending
+	return (
+		<p>Score: {$score}:</p>,
+		other:summarize($hit, <config width="40"/>)
+	)
+};
+
 declare function local:merge-simple($a as xs:string+, $b as xs:string+) as xs:string+ {
 	($a, $b)	
 };
