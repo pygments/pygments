@@ -53,4 +53,4 @@ test:
 	@$(PYTHON) tests/run.py $(TEST)
 
 test-coverage:
-	@$(PYTHON) tests/run.py -C $(TEST)
+	@$(PYTHON) tests/run.py --with-coverage --cover-package=pygments $(TEST)

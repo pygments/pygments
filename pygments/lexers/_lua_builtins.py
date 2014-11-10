@@ -143,7 +143,8 @@ MODULES = {'basic': ('_G',
            'table.remove',
            'table.sort')}
 
-if __name__ == '__main__':
+
+if __name__ == '__main__':  # pragma: no cover
     import re
     try:
         from urllib import urlopen

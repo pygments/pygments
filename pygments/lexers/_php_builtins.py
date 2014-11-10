@@ -4672,7 +4672,8 @@ MODULES = {'.NET': ('dotnet_load',),
            'xdiff_string_patch',
            'xdiff_string_rabdiff')}
 
-if __name__ == '__main__':
+
+if __name__ == '__main__':  # pragma: no cover
     import glob
     import os
     import pprint

@@ -132,7 +132,7 @@ def allexcept(*args):
     return u''.join(globals()[cat] for cat in newcats)
 
 
-def _handle_runs(char_list):
+def _handle_runs(char_list):  # pragma: no cover
     buf = []
     for c in char_list:
         if len(c) == 1:
@@ -149,7 +149,7 @@ def _handle_runs(char_list):
             yield u'%s-%s' % (a, b)
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     import unicodedata
 
     # we need Py3 for the determination of the XID_* properties

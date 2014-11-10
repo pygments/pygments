@@ -86,6 +86,6 @@ def highlight(code, lexer, formatter, outfile=None):
     return format(lex(code, lexer), formatter, outfile)
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     from pygments.cmdline import main
     sys.exit(main(sys.argv))
