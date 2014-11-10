@@ -1,5 +1,16 @@
 xquery version "3.0";
 
+declare namespace other = "http://other";
+
+declare variable $local:straight-var1 := 'one';
+
+declare %private variable $local:private-var := 'secret';
+declare %public variable $local:public-var := 'not-secret';
+declare %other:annotation variable $local:some-var := 'anything';
+
+declare variable $local:straight-var2 := 'two';
+
+
 (: Simple Map Operator example :)
 declare function local:word-count($elms as element()*) as xs:integer {
 	sum($elms ! count(tokenize(., '\s+')))

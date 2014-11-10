@@ -397,6 +397,11 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'preserve|no-preserve', Keyword),
             (r',', Punctuation),
         ],
+        'annotationname':[
+            (r'\(:', Comment, 'comment'),
+            (qname, Name.Decorator),
+            (r'(\s+)(variable)(\s+)(\$)', bygroups(Text, Keyword, Text, Name.Variable), 'varname')
+        ],
         'varname': [
             (r'\(:', Comment, 'comment'),
             (qname, Name.Variable, 'operator'),
@@ -625,6 +630,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(for|let|some|every)(\s+)(\$)',
              bygroups(Keyword, Text, Name.Variable), 'varname'),
             (r'\$', Name.Variable, 'varname'),
+            (r'(declare)(\s+)(\%)', bygroups(Keyword, Text, Name.Decorator), 'annotationname'),
             (r'(declare)(\s+)(variable)(\s+)(\$)',
              bygroups(Keyword, Text, Keyword, Text, Name.Variable), 'varname'),
 
