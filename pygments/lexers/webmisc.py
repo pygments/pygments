@@ -400,7 +400,14 @@ class XQueryLexer(ExtendedRegexLexer):
         'annotationname':[
             (r'\(:', Comment, 'comment'),
             (qname, Name.Decorator),
-            (r'(\s+)(variable)(\s+)(\$)', bygroups(Text, Keyword, Text, Name.Variable), 'varname')
+            (r'(\()(' + stringdouble + ')', bygroups(Punctuation, String.Double)),
+            (r'(\()(' + stringsingle + ')', bygroups(Punctuation, String.Single)),
+            (r'(\,)(\s+)(' + stringdouble + ')', bygroups(Punctuation, Text, String.Double)),
+            (r'(\,)(\s+)(' + stringsingle + ')', bygroups(Punctuation, Text, String.Single)),
+            (r'\)', Punctuation),
+            (r'(\s+)(\%)', bygroups(Text, Name.Decorator), 'annotationname'),
+            (r'(\s+)(variable)(\s+)(\$)', bygroups(Text, Keyword, Text, Name.Variable), 'varname'),
+            (r'(\s+)(function)(\s+)', bygroups(Text, Keyword, Text), 'root')
         ],
         'varname': [
             (r'\(:', Comment, 'comment'),
@@ -630,9 +637,11 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(for|let|some|every)(\s+)(\$)',
              bygroups(Keyword, Text, Name.Variable), 'varname'),
             (r'\$', Name.Variable, 'varname'),
-            (r'(declare)(\s+)(\%)', bygroups(Keyword, Text, Name.Decorator), 'annotationname'),
             (r'(declare)(\s+)(variable)(\s+)(\$)',
              bygroups(Keyword, Text, Keyword, Text, Name.Variable), 'varname'),
+
+            # ANNOTATED GLOBAL VARIABLES AND FUNCTIONS
+            (r'(declare)(\s+)(\%)', bygroups(Keyword, Text, Name.Decorator), 'annotationname'),
 
             # ITEMTYPE
             (r'(\))(\s+)(as)', bygroups(Operator, Text, Keyword), 'itemtype'),
