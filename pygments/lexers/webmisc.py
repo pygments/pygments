@@ -339,7 +339,7 @@ class XQueryLexer(ExtendedRegexLexer):
              Operator.Word, 'root'),
             (r'return|satisfies|to|union|where|preserve\s+strip',
              Keyword, 'root'),
-            (r'(>=|>>|>|<=|<<|<|-|\*|!=|\+|\|\||\||:=|=)',
+            (r'(>=|>>|>|<=|<<|<|-|\*|!=|\+|\|\||\||:=|=|!)',
              operator_root_callback),
             (r'(::|;|\[|//|/|,)',
              punctuation_root_callback),
