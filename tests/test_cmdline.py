@@ -10,7 +10,9 @@
 from __future__ import print_function
 
 import io
+import os
 import sys
+import tempfile
 import unittest
 
 from pygments import highlight
@@ -111,3 +113,15 @@ class CmdLineTest(unittest.TestCase):
         self.assertEqual(o, output)
         self.assertEqual(e, "")
         self.assertEqual(c, 0)
+
+    def test_outfile(self):
+        # test that output file works with and without encoding
+        fd, name = tempfile.mkstemp()
+        os.close(fd)
+        for opts in [['-fhtml', '-o', name, TESTFILE],
+                     ['-flatex', '-o', name, TESTFILE],
+                     ['-fhtml', '-o', name, '-O', 'encoding=utf-8', TESTFILE]]:
+            try:
+                self.assertEqual(run_cmdline(*opts)[0], 0)
+            finally:
+                os.unlink(name)
