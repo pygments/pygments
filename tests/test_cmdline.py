@@ -47,6 +47,19 @@ def run_cmdline(*args):
     return (ret, out, err)
 
 
+def run_cmdline_with_closed_stdout(*args):
+    saved_stdout, saved_stderr = sys.stdout, sys.stderr
+    sys.stdout, sys.stderr = StringIO(), StringIO()
+    sys.stdout.buffer = sys.stdout
+    sys.stdout.close()
+    try:
+        ret = cmdline_main(['pygmentize'] + list(args))
+        err = sys.stderr.getvalue()
+    finally:
+        sys.stdout, sys.stderr = saved_stdout, saved_stderr
+    return ret, err
+
+
 class CmdLineTest(unittest.TestCase):
 
     def test_L_opt(self):
@@ -125,3 +138,40 @@ class CmdLineTest(unittest.TestCase):
                 self.assertEqual(run_cmdline(*opts)[0], 0)
             finally:
                 os.unlink(name)
+
+    def check_failure(self, *cmdline):
+        c, o, e = run_cmdline(*cmdline)
+        self.assertEqual(c, 1)
+        self.assertEqual(o, '')
+        return e
+
+    def test_errors(self):
+        # input file not found
+        e = self.check_failure('-lpython', 'nonexistent.py')
+        self.assertIn('Error: cannot read infile', e)
+        self.assertIn('nonexistent.py', e)
+
+        # lexer not found
+        e = self.check_failure('-lfooo', TESTFILE)
+        self.assertIn('Error: no lexer for alias', e)
+
+        # formatter not found
+        e = self.check_failure('-lpython', '-ffoo', TESTFILE)
+        self.assertIn('Error: no formatter found for name', e)
+
+        # output file not writable
+        e = self.check_failure('-o', os.path.join('nonexistent', 'dir', 'out.html'),
+                               '-lpython', TESTFILE)
+        self.assertIn('Error: cannot open outfile', e)
+        self.assertIn('out.html', e)
+
+        # unknown filter
+        e = self.check_failure('-F', 'foo', TESTFILE)
+        self.assertIn('Error: filter \'foo\' not found', e)
+
+    def test_exception(self):
+        # unexpected exception while highlighting
+        # (we can force that by closing stdout)
+        c, e = run_cmdline_with_closed_stdout('-lpython', TESTFILE)
+        self.assertEqual(c, 1)
+        self.assertIn('*** Error while highlighting:', e)
