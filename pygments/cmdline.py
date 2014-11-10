@@ -330,62 +330,6 @@ def main(args=sys.argv):
     F_opts = _parse_filters(F_opts)
     opts.pop('-F', None)
 
-    # select formatter
-    outfn = opts.pop('-o', None)
-    fmter = opts.pop('-f', None)
-    if fmter:
-        try:
-            fmter = get_formatter_by_name(fmter, **parsed_opts)
-        except (OptionError, ClassNotFound) as err:
-            print('Error:', err, file=sys.stderr)
-            return 1
-
-    if outfn:
-        if not fmter:
-            try:
-                fmter = get_formatter_for_filename(outfn, **parsed_opts)
-            except (OptionError, ClassNotFound) as err:
-                print('Error:', err, file=sys.stderr)
-                return 1
-        try:
-            outfile = open(outfn, 'wb')
-        except Exception as err:
-            print('Error: cannot open outfile:', err, file=sys.stderr)
-            return 1
-    else:
-        if not fmter:
-            fmter = TerminalFormatter(**parsed_opts)
-        if sys.version_info > (3,):
-            # Python 3: we have to use .buffer to get a binary stream
-            outfile = sys.stdout.buffer
-        else:
-            outfile = sys.stdout
-
-    # determine output encoding if not explicitly selected
-    if not outencoding:
-        if outfn:
-            # output file? -> encoding pass-through
-            fmter.encoding = inencoding
-        else:
-            # else use terminal encoding
-            fmter.encoding = terminal_encoding(sys.stdout)
-
-    # provide coloring under Windows, if possible
-    if not outfn and sys.platform in ('win32', 'cygwin') and \
-       fmter.name in ('Terminal', 'Terminal256'):
-        # unfortunately colorama doesn't support binary streams on Py3
-        if sys.version_info > (3,):
-            import io
-            outfile = io.TextIOWrapper(outfile, encoding=fmter.encoding)
-            fmter.encoding = None
-        try:
-            import colorama.initialise
-        except ImportError:
-            pass
-        else:
-            outfile = colorama.initialise.wrap_stream(
-                outfile, convert=None, strip=None, autoreset=False, wrap=True)
-
     # select lexer
     lexer = opts.pop('-l', None)
     if lexer:
@@ -452,6 +396,62 @@ def main(args=sys.argv):
             except ClassNotFound:
                 lexer = TextLexer(**parsed_opts)
 
+    # select formatter
+    outfn = opts.pop('-o', None)
+    fmter = opts.pop('-f', None)
+    if fmter:
+        try:
+            fmter = get_formatter_by_name(fmter, **parsed_opts)
+        except (OptionError, ClassNotFound) as err:
+            print('Error:', err, file=sys.stderr)
+            return 1
+
+    if outfn:
+        if not fmter:
+            try:
+                fmter = get_formatter_for_filename(outfn, **parsed_opts)
+            except (OptionError, ClassNotFound) as err:
+                print('Error:', err, file=sys.stderr)
+                return 1
+        try:
+            outfile = open(outfn, 'wb')
+        except Exception as err:
+            print('Error: cannot open outfile:', err, file=sys.stderr)
+            return 1
+    else:
+        if not fmter:
+            fmter = TerminalFormatter(**parsed_opts)
+        if sys.version_info > (3,):
+            # Python 3: we have to use .buffer to get a binary stream
+            outfile = sys.stdout.buffer
+        else:
+            outfile = sys.stdout
+
+    # determine output encoding if not explicitly selected
+    if not outencoding:
+        if outfn:
+            # output file? use lexer encoding for now (can still be None)
+            fmter.encoding = inencoding
+        else:
+            # else use terminal encoding
+            fmter.encoding = terminal_encoding(sys.stdout)
+
+    # provide coloring under Windows, if possible
+    if not outfn and sys.platform in ('win32', 'cygwin') and \
+       fmter.name in ('Terminal', 'Terminal256'):
+        # unfortunately colorama doesn't support binary streams on Py3
+        if sys.version_info > (3,):
+            import io
+            outfile = io.TextIOWrapper(outfile, encoding=fmter.encoding)
+            fmter.encoding = None
+        try:
+            import colorama.initialise
+        except ImportError:
+            pass
+        else:
+            outfile = colorama.initialise.wrap_stream(
+                outfile, convert=None, strip=None, autoreset=False, wrap=True)
+
     # When using the LaTeX formatter and the option `escapeinside` is
     # specified, we need a special lexer which collects escaped text
     # before running the chosen language lexer.
@@ -494,6 +494,7 @@ def main(args=sys.argv):
                 return 0
 
     except Exception:
+        raise
         import traceback
         info = traceback.format_exception(*sys.exc_info())
         msg = info[-1].strip()
