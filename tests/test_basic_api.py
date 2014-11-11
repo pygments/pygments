@@ -12,7 +12,7 @@ from __future__ import print_function
 import random
 import unittest
 
-from pygments import lexers, formatters, filters, format
+from pygments import lexers, formatters, lex, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatters.img import FontNotFound
@@ -252,6 +252,23 @@ def test_styles():
     # minimal style test
     from pygments.formatters import HtmlFormatter
     HtmlFormatter(style="pastie")
+
+
+def test_bare_class_handler():
+    from pygments.formatters import HtmlFormatter
+    from pygments.lexers import PythonLexer
+    try:
+        lex('test\n', PythonLexer)
+    except TypeError as e:
+        assert 'lex() argument must be a lexer instance' in str(e)
+    else:
+        assert False, 'nothing raised'
+    try:
+        format([], HtmlFormatter)
+    except TypeError as e:
+        assert 'format() argument must be a formatter instance' in str(e)
+    else:
+        assert False, 'nothing raised'
 
 
 class FiltersTest(unittest.TestCase):
