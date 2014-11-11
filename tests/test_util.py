@@ -10,7 +10,7 @@
 import re
 import unittest
 
-from pygments import util
+from pygments import util, console
 
 
 class FakeLexer(object):
@@ -39,7 +39,6 @@ class UtilTest(unittest.TestCase):
         equals(util.get_list_opt({}, 'a', [1]), [1])
         equals(util.get_list_opt({}, 'a', '1 2'), ['1', '2'])
         raises(util.OptionError, util.get_list_opt, {}, 'a', 1)
-
 
     def test_docstring_headline(self):
         def f1():
@@ -157,3 +156,20 @@ class UtilTest(unittest.TestCase):
         # keeps first
         x = util.duplicates_removed(('a', 'b', 'a'))
         self.assertEqual(['a', 'b'], x)
+
+
+class ConsoleTest(unittest.TestCase):
+
+    def test_ansiformat(self):
+        f = console.ansiformat
+        c = console.codes
+        all_attrs = f('+*_blue_*+', 'text')
+        self.assertTrue(c['blue'] in all_attrs and c['blink'] in all_attrs
+                        and c['bold'] in all_attrs and c['underline'] in all_attrs
+                        and c['reset'] in all_attrs)
+        self.assertRaises(KeyError, f, '*mauve*', 'text')
+
+    def test_functions(self):
+        self.assertEqual(console.reset_color(), console.codes['reset'])
+        self.assertEqual(console.colorize('blue', 'text'),
+                         console.codes['blue'] + 'text' + console.codes['reset'])
