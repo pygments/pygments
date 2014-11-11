@@ -156,6 +156,8 @@ class CmdLineTest(unittest.TestCase):
         self.assertTrue('Python' in o)
         o = self.check_success("-H", "filter", "raiseonerror")
         self.assertTrue('raiseonerror', o)
+        e = self.check_failure("-H", "lexer", "foobar")
+        self.assertTrue('not found' in e)
 
     def test_S_opt(self):
         o = self.check_success("-S", "default", "-f", "html", "-O", "linenos=1")
@@ -178,7 +180,7 @@ class CmdLineTest(unittest.TestCase):
 
     def test_invalid_opts(self):
         for opts in [("-L", "-lpy"), ("-L", "-fhtml"), ("-L", "-Ox"),
-                     ("-a",), ("-Sst", "-lpy"), ("-H",),
+                     ("-a", "arg"), ("-Sst", "-lpy"), ("-H",),
                      ("-H", "formatter"), ("-H", "foo", "bar"), ("-s",)]:
             self.check_failure(*opts, code=2)
 

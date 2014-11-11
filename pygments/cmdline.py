@@ -146,8 +146,10 @@ def _print_help(what, name):
             cls = find_filter_class(name)
             print("Help on the %s filter:" % name)
             print(dedent(cls.__doc__))
+        return 0
     except (AttributeError, ValueError):
         print("%s not found!" % what, file=sys.stderr)
+        return 1
 
 
 def _print_list(what):
@@ -250,8 +252,7 @@ def main_inner(popts, args, usage):
             print(usage, file=sys.stderr)
             return 2
 
-        _print_help(what, name)
-        return 0
+        return _print_help(what, name)
 
     # parse -O options
     parsed_opts = _parse_options(O_opts)
