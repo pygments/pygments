@@ -19,7 +19,7 @@ from pygments import __version__, highlight
 from pygments.util import ClassNotFound, OptionError, docstring_headline, \
     guess_decode, guess_decode_from_terminal, terminal_encoding
 from pygments.lexers import get_all_lexers, get_lexer_by_name, guess_lexer, \
-    get_lexer_for_filename, find_lexer_class, TextLexer
+    get_lexer_for_filename, find_lexer_class_for_filename, TextLexer
 from pygments.formatters.latex import LatexEmbeddedLexer, LatexFormatter
 from pygments.formatters import get_all_formatters, get_formatter_by_name, \
     get_formatter_for_filename, find_formatter_class, \
@@ -103,7 +103,7 @@ def _parse_options(o_strs):
     if not o_strs:
         return opts
     for o_str in o_strs:
-        if not o_str:
+        if not o_str.strip():
             continue
         o_args = o_str.split(',')
         for o_arg in o_args:
@@ -135,7 +135,7 @@ def _parse_filters(f_strs):
 def _print_help(what, name):
     try:
         if what == 'lexer':
-            cls = find_lexer_class(name)
+            cls = get_lexer_by_name(name)
             print("Help on the %s lexer:" % cls.name)
             print(dedent(cls.__doc__))
         elif what == 'formatter':
@@ -146,7 +146,7 @@ def _print_help(what, name):
             cls = find_filter_class(name)
             print("Help on the %s filter:" % name)
             print(dedent(cls.__doc__))
-    except AttributeError:
+    except (AttributeError, ValueError):
         print("%s not found!" % what, file=sys.stderr)
 
 
@@ -274,13 +274,9 @@ def main_inner(popts, args, usage):
     # handle ``pygmentize -N``
     infn = opts.pop('-N', None)
     if infn is not None:
-        try:
-            lexer = get_lexer_for_filename(infn, **parsed_opts)
-        except ClassNotFound as err:
-            lexer = TextLexer()
-        except OptionError as err:
-            print('Error:', err, file=sys.stderr)
-            return 1
+        lexer = find_lexer_class_for_filename(infn)
+        if lexer is None:
+            lexer = TextLexer
 
         print(lexer.aliases[0])
         return 0
@@ -432,7 +428,7 @@ def main_inner(popts, args, usage):
 
     # provide coloring under Windows, if possible
     if not outfn and sys.platform in ('win32', 'cygwin') and \
-       fmter.name in ('Terminal', 'Terminal256'):
+       fmter.name in ('Terminal', 'Terminal256'):  # pragma: no cover
         # unfortunately colorama doesn't support binary streams on Py3
         if sys.version_info > (3,):
             import io
@@ -472,7 +468,7 @@ def main_inner(popts, args, usage):
         if not lexer:
             print('Error: when using -s a lexer has to be selected with -l',
                   file=sys.stderr)
-            return 1
+            return 2
         # line by line processing of stdin (eg: for 'tail -f')...
         try:
             while 1:
@@ -488,7 +484,8 @@ def main_inner(popts, args, usage):
                 highlight(line, lexer, fmter, outfile)
                 if hasattr(outfile, 'flush'):
                     outfile.flush()
-        except KeyboardInterrupt:
+            return 0
+        except KeyboardInterrupt:  # pragma: no cover
             return 0
 
 
