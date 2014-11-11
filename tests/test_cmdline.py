@@ -156,10 +156,19 @@ class CmdLineTest(unittest.TestCase):
         self.assertTrue('Error: filter \'foo\' not found' in e)
 
     def test_exception(self):
-        # unexpected exception while highlighting
-        cmdline.highlight = None  # override callable
+        cmdline.highlight = None  # override callable to provoke TypeError
         try:
+            # unexpected exception while highlighting
             e = self.check_failure('-lpython', TESTFILE)
+            self.assertTrue('*** Error while highlighting:' in e)
+            self.assertTrue('TypeError' in e)
+
+            # same with -v: should reraise the exception
+            try:
+                self.check_failure('-lpython', '-v', TESTFILE)
+            except Exception:
+                pass
+            else:
+                self.fail('exception not reraised')
         finally:
             cmdline.highlight = highlight
-        self.assertTrue('*** Error while highlighting:' in e)
