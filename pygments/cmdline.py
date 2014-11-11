@@ -432,8 +432,8 @@ def main_inner(popts, args, usage):
        fmter.name in ('Terminal', 'Terminal256'):
         # unfortunately colorama doesn't support binary streams on Py3
         if sys.version_info > (3,):
-            import io
-            outfile = io.TextIOWrapper(outfile, encoding=fmter.encoding)
+            from pygments.util import UnclosingTextIOWrapper
+            outfile = UnclosingTextIOWrapper(outfile, encoding=fmter.encoding)
             fmter.encoding = None
         try:
             import colorama.initialise
