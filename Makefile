@@ -50,7 +50,7 @@ reindent:
 	@$(PYTHON) scripts/reindent.py -r -B .
 
 test:
-	@$(PYTHON) tests/run.py $(TEST)
+	@$(PYTHON) tests/run.py -d $(TEST)
 
 test-coverage:
-	@$(PYTHON) tests/run.py --with-coverage --cover-package=pygments $(TEST)
+	@$(PYTHON) tests/run.py -d --with-coverage --cover-package=pygments $(TEST)
