@@ -362,7 +362,12 @@ else:
     u_prefix = ''
     iteritems = dict.items
     itervalues = dict.values
-    from io import StringIO, BytesIO
+    from io import StringIO, BytesIO, TextIOWrapper
+
+    class UnclosingTextIOWrapper(TextIOWrapper):
+        # Don't close underlying buffer on destruction.
+        def close(self):
+            pass
 
 
 def add_metaclass(metaclass):
