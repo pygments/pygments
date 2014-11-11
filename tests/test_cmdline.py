@@ -113,7 +113,7 @@ class CmdLineTest(unittest.TestCase):
     def test_stream_opt(self):
         o = self.check_success('-lpython', '-s', '-fterminal', stdin=TESTCODE)
         o = re.sub(r'\x1b\[.*?m', '', o)
-        self.assertEqual(o, TESTCODE)
+        self.assertEqual(o.replace('\r\n', '\n'), TESTCODE)
 
     def test_L_opt(self):
         o = self.check_success("-L")
@@ -172,9 +172,9 @@ class CmdLineTest(unittest.TestCase):
 
     def test_N_opt(self):
         o = self.check_success("-N", "test.py")
-        self.assertEqual('python\n', o)
+        self.assertEqual('python', o.strip())
         o = self.check_success("-N", "test.unknown")
-        self.assertEqual('text\n', o)
+        self.assertEqual('text', o.strip())
 
     def test_invalid_opts(self):
         for opts in [("-L", "-lpy"), ("-L", "-fhtml"), ("-L", "-Ox"),
