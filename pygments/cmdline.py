@@ -386,6 +386,20 @@ def main_inner(popts, args, usage):
             except ClassNotFound:
                 lexer = TextLexer(**parsed_opts)
 
+    else:  # -s option needs a lexer with -l
+        if not lexer:
+            print('Error: when using -s a lexer has to be selected with -l',
+                  file=sys.stderr)
+            return 2
+
+    # process filters
+    for fname, fopts in F_opts:
+        try:
+            lexer.add_filter(fname, **fopts)
+        except ClassNotFound as err:
+            print('Error:', err, file=sys.stderr)
+            return 1
+
     # select formatter
     outfn = opts.pop('-o', None)
     fmter = opts.pop('-f', None)
@@ -451,24 +465,12 @@ def main_inner(popts, args, usage):
         right = escapeinside[1]
         lexer = LatexEmbeddedLexer(left, right, lexer)
 
-    # process filters
-    for fname, fopts in F_opts:
-        try:
-            lexer.add_filter(fname, **fopts)
-        except ClassNotFound as err:
-            print('Error:', err, file=sys.stderr)
-            return 1
-
     # ... and do it!
     if '-s' not in opts:
         # process whole input as per normal...
         highlight(code, lexer, fmter, outfile)
         return 0
     else:
-        if not lexer:
-            print('Error: when using -s a lexer has to be selected with -l',
-                  file=sys.stderr)
-            return 2
         # line by line processing of stdin (eg: for 'tail -f')...
         try:
             while 1:
