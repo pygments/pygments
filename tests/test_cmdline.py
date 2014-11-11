@@ -46,7 +46,7 @@ def run_cmdline(*args, **kwds):
     new_stdin.write(kwds.get('stdin', ''))
     new_stdin.seek(0, 0)
     try:
-        ret = cmdline.main(["pygmentize"] + list(args))
+        ret = cmdline.main(['pygmentize'] + list(args))
     finally:
         sys.stdin = saved_stdin
         sys.stdout = saved_stdout
@@ -83,7 +83,7 @@ class CmdLineTest(unittest.TestCase):
 
         output = highlight(code, PythonLexer(), HtmlFormatter())
 
-        o = self.check_success("-lpython", "-fhtml", filename)
+        o = self.check_success('-lpython', '-fhtml', filename)
         self.assertEqual(o, output)
 
     def test_stdin(self):
@@ -116,51 +116,51 @@ class CmdLineTest(unittest.TestCase):
         self.assertEqual(o.replace('\r\n', '\n'), TESTCODE)
 
     def test_h_opt(self):
-        o = self.check_success("-h")
+        o = self.check_success('-h')
         self.assertTrue('Usage:' in o)
 
     def test_L_opt(self):
-        o = self.check_success("-L")
-        self.assertTrue("Lexers" in o and "Formatters" in o and
-                        "Filters" in o and "Styles" in o)
-        o = self.check_success("-L", "lexer")
-        self.assertTrue("Lexers" in o and "Formatters" not in o)
-        self.check_success("-L", "lexers")
+        o = self.check_success('-L')
+        self.assertTrue('Lexers' in o and 'Formatters' in o and
+                        'Filters' in o and 'Styles' in o)
+        o = self.check_success('-L', 'lexer')
+        self.assertTrue('Lexers' in o and 'Formatters' not in o)
+        self.check_success('-L', 'lexers')
 
     def test_O_opt(self):
         filename = TESTFILE
-        o = self.check_success("-Ofull=1,linenos=true,foo=bar",
-                               "-fhtml", filename)
-        self.assertTrue("<html" in o)
+        o = self.check_success('-Ofull=1,linenos=true,foo=bar',
+                               '-fhtml', filename)
+        self.assertTrue('<html' in o)
         self.assertTrue('class="linenos"' in o)
 
         # "foobar" is invalid for a bool option
-        e = self.check_failure("-Ostripnl=foobar", TESTFILE)
+        e = self.check_failure('-Ostripnl=foobar', TESTFILE)
         self.assertTrue('Error: Invalid value' in e)
-        e = self.check_failure("-Ostripnl=foobar", "-lpy")
+        e = self.check_failure('-Ostripnl=foobar', '-lpy')
         self.assertTrue('Error: Invalid value' in e)
 
     def test_P_opt(self):
         filename = TESTFILE
-        o = self.check_success("-Pfull", "-Ptitle=foo, bar=baz=,",
-                               "-fhtml", filename)
-        self.assertTrue("<title>foo, bar=baz=,</title>" in o)
+        o = self.check_success('-Pfull', '-Ptitle=foo, bar=baz=,',
+                               '-fhtml', filename)
+        self.assertTrue('<title>foo, bar=baz=,</title>' in o)
 
     def test_F_opt(self):
         filename = TESTFILE
-        o = self.check_success("-Fhighlight:tokentype=Name.Blubb,"
-                               "names=TESTFILE filename",
-                               "-fhtml", filename)
+        o = self.check_success('-Fhighlight:tokentype=Name.Blubb,'
+                               'names=TESTFILE filename',
+                               '-fhtml', filename)
         self.assertTrue('<span class="n-Blubb' in o)
 
     def test_H_opt(self):
-        o = self.check_success("-H", "formatter", "html")
+        o = self.check_success('-H', 'formatter', 'html')
         self.assertTrue('HTML' in o)
-        o = self.check_success("-H", "lexer", "python")
+        o = self.check_success('-H', 'lexer', 'python')
         self.assertTrue('Python' in o)
-        o = self.check_success("-H", "filter", "raiseonerror")
+        o = self.check_success('-H', 'filter', 'raiseonerror')
         self.assertTrue('raiseonerror', o)
-        e = self.check_failure("-H", "lexer", "foobar")
+        e = self.check_failure('-H', 'lexer', 'foobar')
         self.assertTrue('not found' in e)
 
     def test_S_opt(self):
@@ -178,9 +178,9 @@ class CmdLineTest(unittest.TestCase):
         self.check_failure('-S', 'default', '-f', 'foobar')
 
     def test_N_opt(self):
-        o = self.check_success("-N", "test.py")
+        o = self.check_success('-N', 'test.py')
         self.assertEqual('python', o.strip())
-        o = self.check_success("-N", "test.unknown")
+        o = self.check_success('-N', 'test.unknown')
         self.assertEqual('text', o.strip())
 
     def test_invalid_opts(self):
