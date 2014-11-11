@@ -301,12 +301,7 @@ def main_inner(popts, args, usage):
             print(err, file=sys.stderr)
             return 1
 
-        arg = a_opt or ''
-        try:
-            print(fmter.get_style_defs(arg))
-        except Exception as err:
-            print('Error:', err, file=sys.stderr)
-            return 1
+        print(fmter.get_style_defs(a_opt or ''))
         return 0
 
     # if no -S is given, -a is not allowed
@@ -341,7 +336,7 @@ def main_inner(popts, args, usage):
         if '-s' in opts:
             print('Error: -s option not usable when input file specified',
                   file=sys.stderr)
-            return 1
+            return 2
 
         infn = args[0]
         try:

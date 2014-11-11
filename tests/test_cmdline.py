@@ -115,6 +115,10 @@ class CmdLineTest(unittest.TestCase):
         o = re.sub(r'\x1b\[.*?m', '', o)
         self.assertEqual(o.replace('\r\n', '\n'), TESTCODE)
 
+    def test_h_opt(self):
+        o = self.check_success("-h")
+        self.assertTrue('Usage:' in o)
+
     def test_L_opt(self):
         o = self.check_success("-L")
         self.assertTrue("Lexers" in o and "Formatters" in o and
@@ -160,7 +164,7 @@ class CmdLineTest(unittest.TestCase):
         self.assertTrue('not found' in e)
 
     def test_S_opt(self):
-        o = self.check_success("-S", "default", "-f", "html", "-O", "linenos=1")
+        o = self.check_success('-S', 'default', '-f', 'html', '-O', 'linenos=1')
         lines = o.splitlines()
         for line in lines:
             # every line is for a token class
@@ -171,6 +175,7 @@ class CmdLineTest(unittest.TestCase):
                 self.assertTrue(parts[-4] == '}')
                 self.assertTrue(parts[-3] == '/*')
                 self.assertTrue(parts[-1] == '*/')
+        self.check_failure('-S', 'default', '-f', 'foobar')
 
     def test_N_opt(self):
         o = self.check_success("-N", "test.py")
@@ -179,9 +184,21 @@ class CmdLineTest(unittest.TestCase):
         self.assertEqual('text', o.strip())
 
     def test_invalid_opts(self):
-        for opts in [("-L", "-lpy"), ("-L", "-fhtml"), ("-L", "-Ox"),
-                     ("-a", "arg"), ("-Sst", "-lpy"), ("-H",),
-                     ("-H", "formatter"), ("-H", "foo", "bar"), ("-s",)]:
+        for opts in [
+            ('-X',),
+            ('-L', '-lpy'),
+            ('-L', '-fhtml'),
+            ('-L', '-Ox'),
+            ('-S', 'default', '-l', 'py', '-f', 'html'),
+            ('-S', 'default'),
+            ('-a', 'arg'),
+            ('-H',),
+            (TESTFILE, TESTFILE),
+            ('-H', 'formatter'),
+            ('-H', 'foo', 'bar'),
+            ('-s',),
+            ('-s', TESTFILE),
+        ]:
             self.check_failure(*opts, code=2)
 
     def test_errors(self):
@@ -197,6 +214,10 @@ class CmdLineTest(unittest.TestCase):
         # formatter not found
         e = self.check_failure('-lpython', '-ffoo', TESTFILE)
         self.assertTrue('Error: no formatter found for name' in e)
+
+        # formatter for outfile not found
+        e = self.check_failure('-ofoo.foo', TESTFILE)
+        self.assertTrue('Error: no formatter found for file name' in e)
 
         # output file not writable
         e = self.check_failure('-o', os.path.join('nonexistent', 'dir', 'out.html'),
