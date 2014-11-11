@@ -11,32 +11,44 @@ from __future__ import print_function
 
 import io
 import os
+import re
 import sys
 import tempfile
 import unittest
 
-from pygments import highlight, cmdline
-from pygments.util import StringIO, BytesIO
-
 import support
+from pygments import cmdline, highlight
+from pygments.util import BytesIO, StringIO
+
 
 TESTFILE, TESTDIR = support.location(__file__)
+TESTCODE = '''\
+def func(args):
+    pass
+'''
 
 
-def run_cmdline(*args):
+def run_cmdline(*args, **kwds):
+    saved_stdin = sys.stdin
     saved_stdout = sys.stdout
     saved_stderr = sys.stderr
     if sys.version_info > (3,):
+        stdin_buffer = BytesIO()
         stdout_buffer = BytesIO()
         stderr_buffer = BytesIO()
+        new_stdin = sys.stdin = io.TextIOWrapper(stdin_buffer, 'utf-8')
         new_stdout = sys.stdout = io.TextIOWrapper(stdout_buffer, 'utf-8')
         new_stderr = sys.stderr = io.TextIOWrapper(stderr_buffer, 'utf-8')
     else:
+        stdin_buffer = new_stdin = sys.stdin = StringIO()
         stdout_buffer = new_stdout = sys.stdout = StringIO()
         stderr_buffer = new_stderr = sys.stderr = StringIO()
+    new_stdin.write(kwds.get('stdin', ''))
+    new_stdin.seek(0, 0)
     try:
         ret = cmdline.main(["pygmentize"] + list(args))
     finally:
+        sys.stdin = saved_stdin
         sys.stdout = saved_stdout
         sys.stderr = saved_stderr
     new_stdout.flush()
@@ -48,54 +60,18 @@ def run_cmdline(*args):
 
 class CmdLineTest(unittest.TestCase):
 
-    def test_L_opt(self):
-        c, o, e = run_cmdline("-L")
-        self.assertEqual(c, 0)
-        self.assertTrue("Lexers" in o and "Formatters" in o and
-                        "Filters" in o and "Styles" in o)
-        c, o, e = run_cmdline("-L", "lexer")
-        self.assertEqual(c, 0)
-        self.assertTrue("Lexers" in o and "Formatters" not in o)
-        c, o, e = run_cmdline("-L", "lexers")
-        self.assertEqual(c, 0)
+    def check_success(self, *cmdline, **kwds):
+        code, out, err = run_cmdline(*cmdline, **kwds)
+        self.assertEqual(code, 0)
+        self.assertEqual(err, '')
+        return out
 
-    def test_O_opt(self):
-        filename = TESTFILE
-        c, o, e = run_cmdline("-Ofull=1,linenos=true,foo=bar",
-                              "-fhtml", filename)
-        self.assertEqual(c, 0)
-        self.assertTrue("<html" in o)
-        self.assertTrue('class="linenos"' in o)
-
-    def test_P_opt(self):
-        filename = TESTFILE
-        c, o, e = run_cmdline("-Pfull", "-Ptitle=foo, bar=baz=,",
-                              "-fhtml", filename)
-        self.assertEqual(c, 0)
-        self.assertTrue("<title>foo, bar=baz=,</title>" in o)
-
-    def test_F_opt(self):
-        filename = TESTFILE
-        c, o, e = run_cmdline("-Fhighlight:tokentype=Name.Blubb,"
-                              "names=TESTFILE filename",
-                              "-fhtml", filename)
-        self.assertEqual(c, 0)
-        self.assertTrue('<span class="n-Blubb' in o)
-
-    def test_H_opt(self):
-        c, o, e = run_cmdline("-H", "formatter", "html")
-        self.assertEqual(c, 0)
-        self.assertTrue('HTML' in o)
-
-    def test_S_opt(self):
-        c, o, e = run_cmdline("-S", "default", "-f", "html", "-O", "linenos=1")
-        self.assertEqual(c, 0)
-
-    def test_invalid_opts(self):
-        for opts in [("-L", "-lpy"), ("-L", "-fhtml"), ("-L", "-Ox"),
-                     ("-a",), ("-Sst", "-lpy"), ("-H",),
-                     ("-H", "formatter")]:
-            self.assertTrue(run_cmdline(*opts)[0] == 2)
+    def check_failure(self, *cmdline, **kwds):
+        expected_code = kwds.pop('code', 1)
+        code, out, err = run_cmdline(*cmdline, **kwds)
+        self.assertEqual(code, expected_code)
+        self.assertEqual(out, '')
+        return err
 
     def test_normal(self):
         # test that cmdline gives the same output as library api
@@ -107,11 +83,20 @@ class CmdLineTest(unittest.TestCase):
 
         output = highlight(code, PythonLexer(), HtmlFormatter())
 
-        c, o, e = run_cmdline("-lpython", "-fhtml", filename)
-
+        o = self.check_success("-lpython", "-fhtml", filename)
         self.assertEqual(o, output)
-        self.assertEqual(e, "")
-        self.assertEqual(c, 0)
+
+    def test_stdin(self):
+        o = self.check_success('-lpython', '-fhtml', stdin=TESTCODE)
+        o = re.sub('<[^>]*>', '', o)
+        # rstrip is necessary since HTML inserts a \n after the last </div>
+        self.assertEqual(o.rstrip(), TESTCODE.rstrip())
+
+        # guess if no lexer given
+        o = self.check_success('-fhtml', stdin=TESTCODE)
+        o = re.sub('<[^>]*>', '', o)
+        # rstrip is necessary since HTML inserts a \n after the last </div>
+        self.assertEqual(o.rstrip(), TESTCODE.rstrip())
 
     def test_outfile(self):
         # test that output file works with and without encoding
@@ -121,15 +106,81 @@ class CmdLineTest(unittest.TestCase):
                      ['-flatex', '-o', name, TESTFILE],
                      ['-fhtml', '-o', name, '-O', 'encoding=utf-8', TESTFILE]]:
             try:
-                self.assertEqual(run_cmdline(*opts)[0], 0)
+                self.check_success(*opts)
             finally:
                 os.unlink(name)
 
-    def check_failure(self, *cmdline):
-        c, o, e = run_cmdline(*cmdline)
-        self.assertEqual(c, 1)
-        self.assertEqual(o, '')
-        return e
+    def test_stream_opt(self):
+        o = self.check_success('-lpython', '-s', '-fterminal', stdin=TESTCODE)
+        o = re.sub(r'\x1b\[.*?m', '', o)
+        self.assertEqual(o, TESTCODE)
+
+    def test_L_opt(self):
+        o = self.check_success("-L")
+        self.assertTrue("Lexers" in o and "Formatters" in o and
+                        "Filters" in o and "Styles" in o)
+        o = self.check_success("-L", "lexer")
+        self.assertTrue("Lexers" in o and "Formatters" not in o)
+        self.check_success("-L", "lexers")
+
+    def test_O_opt(self):
+        filename = TESTFILE
+        o = self.check_success("-Ofull=1,linenos=true,foo=bar",
+                               "-fhtml", filename)
+        self.assertTrue("<html" in o)
+        self.assertTrue('class="linenos"' in o)
+
+        # "foobar" is invalid for a bool option
+        e = self.check_failure("-Ostripnl=foobar", TESTFILE)
+        self.assertTrue('Error: Invalid value' in e)
+        e = self.check_failure("-Ostripnl=foobar", "-lpy")
+        self.assertTrue('Error: Invalid value' in e)
+
+    def test_P_opt(self):
+        filename = TESTFILE
+        o = self.check_success("-Pfull", "-Ptitle=foo, bar=baz=,",
+                               "-fhtml", filename)
+        self.assertTrue("<title>foo, bar=baz=,</title>" in o)
+
+    def test_F_opt(self):
+        filename = TESTFILE
+        o = self.check_success("-Fhighlight:tokentype=Name.Blubb,"
+                               "names=TESTFILE filename",
+                               "-fhtml", filename)
+        self.assertTrue('<span class="n-Blubb' in o)
+
+    def test_H_opt(self):
+        o = self.check_success("-H", "formatter", "html")
+        self.assertTrue('HTML' in o)
+        o = self.check_success("-H", "lexer", "python")
+        self.assertTrue('Python' in o)
+        o = self.check_success("-H", "filter", "raiseonerror")
+        self.assertTrue('raiseonerror', o)
+
+    def test_S_opt(self):
+        o = self.check_success("-S", "default", "-f", "html", "-O", "linenos=1")
+        lines = o.splitlines()
+        for line in lines:
+            # every line is for a token class
+            parts = line.split()
+            self.assertTrue(parts[0].startswith('.'))
+            self.assertTrue(parts[1] == '{')
+            if parts[0] != '.hll':
+                self.assertTrue(parts[-4] == '}')
+                self.assertTrue(parts[-3] == '/*')
+                self.assertTrue(parts[-1] == '*/')
+
+    def test_N_opt(self):
+        o = self.check_success("-N", "test.py")
+        self.assertEqual('python\n', o)
+        o = self.check_success("-N", "test.unknown")
+        self.assertEqual('text\n', o)
+
+    def test_invalid_opts(self):
+        for opts in [("-L", "-lpy"), ("-L", "-fhtml"), ("-L", "-Ox"),
+                     ("-a",), ("-Sst", "-lpy"), ("-H",),
+                     ("-H", "formatter"), ("-H", "foo", "bar"), ("-s",)]:
+            self.check_failure(*opts, code=2)
 
     def test_errors(self):
         # input file not found
@@ -172,3 +223,7 @@ class CmdLineTest(unittest.TestCase):
                 self.fail('exception not reraised')
         finally:
             cmdline.highlight = highlight
+
+    def test_parse_opts(self):
+        self.assertEqual(cmdline._parse_options(['  ', 'keyonly,key = value ']),
+                         {'keyonly': True, 'key': 'value'})
