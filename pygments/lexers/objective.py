@@ -279,6 +279,7 @@ class LogosLexer(ObjectiveCppLexer):
             return 1.0
         return 0
 
+
 class SwiftLexer(RegexLexer):
     """
     For `Swift <https://developer.apple.com/swift/>`_ source.
@@ -303,84 +304,89 @@ class SwiftLexer(RegexLexer):
             include('keywords'),
 
             # Global Types
-            (r'(Array|AutoreleasingUnsafeMutablePointer|BidirectionalReverseView'
-             r'|Bit|Bool|CFunctionPointer|COpaquePointer|CVaListPointer'
-             r'|Character|ClosedInterval|CollectionOfOne|ContiguousArray'
-             r'|Dictionary|DictionaryGenerator|DictionaryIndex|Double'
-             r'|EmptyCollection|EmptyGenerator|EnumerateGenerator'
-             r'|EnumerateSequence|FilterCollectionView'
-             r'|FilterCollectionViewIndex|FilterGenerator|FilterSequenceView'
-             r'|Float|Float80|FloatingPointClassification|GeneratorOf'
-             r'|GeneratorOfOne|GeneratorSequence|HalfOpenInterval|HeapBuffer'
-             r'|HeapBufferStorage|ImplicitlyUnwrappedOptional|IndexingGenerator'
-             r'|Int|Int16|Int32|Int64|Int8|LazyBidirectionalCollection'
-             r'|LazyForwardCollection|LazyRandomAccessCollection'
-             r'|LazySequence|MapCollectionView|MapSequenceGenerator'
-             r'|MapSequenceView|MirrorDisposition|ObjectIdentifier|OnHeap'
-             r'|Optional|PermutationGenerator|QuickLookObject'
-             r'|RandomAccessReverseView|Range|RangeGenerator|RawByte|Repeat'
-             r'|ReverseBidirectionalIndex|ReverseRandomAccessIndex|SequenceOf'
-             r'|SinkOf|Slice|StaticString|StrideThrough|StrideThroughGenerator'
-             r'|StrideTo|StrideToGenerator|String|UInt|UInt16|UInt32|UInt64'
-             r'|UInt8|UTF16|UTF32|UTF8|UnicodeDecodingResult|UnicodeScalar'
-             r'|Unmanaged|UnsafeBufferPointer|UnsafeBufferPointerGenerator'
-             r'|UnsafeMutableBufferPointer|UnsafeMutablePointer|UnsafePointer'
-             r'|Zip2|ZipGenerator2'
-             # Protocols
-             r'|AbsoluteValuable|AnyObject|ArrayLiteralConvertible'
-             r'|BidirectionalIndexType|BitwiseOperationsType'
-             r'|BooleanLiteralConvertible|BooleanType|CVarArgType'
-             r'|CollectionType|Comparable|DebugPrintable'
-             r'|DictionaryLiteralConvertible|Equatable'
-             r'|ExtendedGraphemeClusterLiteralConvertible'
-             r'|ExtensibleCollectionType|FloatLiteralConvertible'
-             r'|FloatingPointType|ForwardIndexType|GeneratorType|Hashable'
-             r'|IntegerArithmeticType|IntegerLiteralConvertible|IntegerType'
-             r'|IntervalType|MirrorType|MutableCollectionType|MutableSliceable'
-             r'|NilLiteralConvertible|OutputStreamType|Printable'
-             r'|RandomAccessIndexType|RangeReplaceableCollectionType'
-             r'|RawOptionSetType|RawRepresentable|Reflectable|SequenceType'
-             r'|SignedIntegerType|SignedNumberType|SinkType|Sliceable'
-             r'|Streamable|Strideable|StringInterpolationConvertible'
-             r'|StringLiteralConvertible|UnicodeCodecType'
-             r'|UnicodeScalarLiteralConvertible|UnsignedIntegerType'
-             r'|_ArrayBufferType|_BidirectionalIndexType|_CocoaStringType'
-             r'|_CollectionType|_Comparable|_ExtensibleCollectionType'
-             r'|_ForwardIndexType|_Incrementable|_IntegerArithmeticType'
-             r'|_IntegerType|_ObjectiveCBridgeable|_RandomAccessIndexType'
-             r'|_RawOptionSetType|_SequenceType|_Sequence_Type'
-             r'|_SignedIntegerType|_SignedNumberType|_Sliceable|_Strideable'
-             r'|_SwiftNSArrayRequiredOverridesType|_SwiftNSArrayType'
-             r'|_SwiftNSCopyingType|_SwiftNSDictionaryRequiredOverridesType'
-             r'|_SwiftNSDictionaryType|_SwiftNSEnumeratorType'
-             r'|_SwiftNSFastEnumerationType|_SwiftNSStringRequiredOverridesType'
-             r'|_SwiftNSStringType|_UnsignedIntegerType'
-             # Variables
-             r'|C_ARGC|C_ARGV|Process'
-             # Typealiases
-             r'|Any|AnyClass|BooleanLiteralType|CBool|CChar|CChar16|CChar32'
-             r'|CDouble|CFloat|CInt|CLong|CLongLong|CShort|CSignedChar'
-             r'|CUnsignedInt|CUnsignedLong|CUnsignedShort|CWideChar'
-             r'|ExtendedGraphemeClusterType|Float32|Float64|FloatLiteralType'
-             r'|IntMax|IntegerLiteralType|StringLiteralType|UIntMax|UWord'
-             r'|UnicodeScalarType|Void|Word'
-             # Foundation/Cocoa
-             r'|NSErrorPointer|NSObjectProtocol|Selector)\b', Name.Builtin),
+            (words((
+                'Array', 'AutoreleasingUnsafeMutablePointer', 'BidirectionalReverseView',
+                'Bit', 'Bool', 'CFunctionPointer', 'COpaquePointer', 'CVaListPointer',
+                'Character', 'ClosedInterval', 'CollectionOfOne', 'ContiguousArray',
+                'Dictionary', 'DictionaryGenerator', 'DictionaryIndex', 'Double',
+                'EmptyCollection', 'EmptyGenerator', 'EnumerateGenerator',
+                'EnumerateSequence', 'FilterCollectionView',
+                'FilterCollectionViewIndex', 'FilterGenerator', 'FilterSequenceView',
+                'Float', 'Float80', 'FloatingPointClassification', 'GeneratorOf',
+                'GeneratorOfOne', 'GeneratorSequence', 'HalfOpenInterval', 'HeapBuffer',
+                'HeapBufferStorage', 'ImplicitlyUnwrappedOptional', 'IndexingGenerator',
+                'Int', 'Int16', 'Int32', 'Int64', 'Int8', 'LazyBidirectionalCollection',
+                'LazyForwardCollection', 'LazyRandomAccessCollection',
+                'LazySequence', 'MapCollectionView', 'MapSequenceGenerator',
+                'MapSequenceView', 'MirrorDisposition', 'ObjectIdentifier', 'OnHeap',
+                'Optional', 'PermutationGenerator', 'QuickLookObject',
+                'RandomAccessReverseView', 'Range', 'RangeGenerator', 'RawByte', 'Repeat',
+                'ReverseBidirectionalIndex', 'ReverseRandomAccessIndex', 'SequenceOf',
+                'SinkOf', 'Slice', 'StaticString', 'StrideThrough', 'StrideThroughGenerator',
+                'StrideTo', 'StrideToGenerator', 'String', 'UInt', 'UInt16', 'UInt32',
+                'UInt64', 'UInt8', 'UTF16', 'UTF32', 'UTF8', 'UnicodeDecodingResult',
+                'UnicodeScalar', 'Unmanaged', 'UnsafeBufferPointer',
+                'UnsafeBufferPointerGenerator', 'UnsafeMutableBufferPointer',
+                'UnsafeMutablePointer', 'UnsafePointer', 'Zip2', 'ZipGenerator2',
+                # Protocols
+                'AbsoluteValuable', 'AnyObject', 'ArrayLiteralConvertible',
+                'BidirectionalIndexType', 'BitwiseOperationsType',
+                'BooleanLiteralConvertible', 'BooleanType', 'CVarArgType',
+                'CollectionType', 'Comparable', 'DebugPrintable',
+                'DictionaryLiteralConvertible', 'Equatable',
+                'ExtendedGraphemeClusterLiteralConvertible',
+                'ExtensibleCollectionType', 'FloatLiteralConvertible',
+                'FloatingPointType', 'ForwardIndexType', 'GeneratorType', 'Hashable',
+                'IntegerArithmeticType', 'IntegerLiteralConvertible', 'IntegerType',
+                'IntervalType', 'MirrorType', 'MutableCollectionType', 'MutableSliceable',
+                'NilLiteralConvertible', 'OutputStreamType', 'Printable',
+                'RandomAccessIndexType', 'RangeReplaceableCollectionType',
+                'RawOptionSetType', 'RawRepresentable', 'Reflectable', 'SequenceType',
+                'SignedIntegerType', 'SignedNumberType', 'SinkType', 'Sliceable',
+                'Streamable', 'Strideable', 'StringInterpolationConvertible',
+                'StringLiteralConvertible', 'UnicodeCodecType',
+                'UnicodeScalarLiteralConvertible', 'UnsignedIntegerType',
+                '_ArrayBufferType', '_BidirectionalIndexType', '_CocoaStringType',
+                '_CollectionType', '_Comparable', '_ExtensibleCollectionType',
+                '_ForwardIndexType', '_Incrementable', '_IntegerArithmeticType',
+                '_IntegerType', '_ObjectiveCBridgeable', '_RandomAccessIndexType',
+                '_RawOptionSetType', '_SequenceType', '_Sequence_Type',
+                '_SignedIntegerType', '_SignedNumberType', '_Sliceable', '_Strideable',
+                '_SwiftNSArrayRequiredOverridesType', '_SwiftNSArrayType',
+                '_SwiftNSCopyingType', '_SwiftNSDictionaryRequiredOverridesType',
+                '_SwiftNSDictionaryType', '_SwiftNSEnumeratorType',
+                '_SwiftNSFastEnumerationType', '_SwiftNSStringRequiredOverridesType',
+                '_SwiftNSStringType', '_UnsignedIntegerType',
+                # Variables
+                'C_ARGC', 'C_ARGV', 'Process',
+                # Typealiases
+                'Any', 'AnyClass', 'BooleanLiteralType', 'CBool', 'CChar', 'CChar16',
+                'CChar32', 'CDouble', 'CFloat', 'CInt', 'CLong', 'CLongLong', 'CShort',
+                'CSignedChar', 'CUnsignedInt', 'CUnsignedLong', 'CUnsignedShort',
+                'CWideChar', 'ExtendedGraphemeClusterType', 'Float32', 'Float64',
+                'FloatLiteralType', 'IntMax', 'IntegerLiteralType', 'StringLiteralType',
+                'UIntMax', 'UWord', 'UnicodeScalarType', 'Void', 'Word',
+                # Foundation/Cocoa
+                'NSErrorPointer', 'NSObjectProtocol', 'Selector'), suffix=r'\b'),
+             Name.Builtin),
             # Functions
-            (r'(abs|advance|alignof|alignofValue|assert|assertionFailure'
-             r'|contains|count|countElements|debugPrint|debugPrintln|distance'
-             r'|dropFirst|dropLast|dump|enumerate|equal|extend|fatalError'
-             r'|filter|find|first|getVaList|indices|insert|isEmpty|join|last'
-             r'|lazy|lexicographicalCompare|map|max|maxElement|min|minElement'
-             r'|numericCast|overlaps|partition|precondition|preconditionFailure'
-             r'|prefix|print|println|reduce|reflect|removeAll|removeAtIndex'
-             r'|removeLast|removeRange|reverse|sizeof|sizeofValue|sort|sorted'
-             r'|splice|split|startsWith|stride|strideof|strideofValue|suffix'
-             r'|swap|toDebugString|toString|transcode|underestimateCount'
-             r'|unsafeAddressOf|unsafeBitCast|unsafeDowncast'
-             r'|withExtendedLifetime|withUnsafeMutablePointer'
-             r'|withUnsafeMutablePointers|withUnsafePointer|withUnsafePointers'
-             r'|withVaList)\b', Name.Builtin.Pseudo),
+            (words((
+                'abs', 'advance', 'alignof', 'alignofValue', 'assert', 'assertionFailure',
+                'contains', 'count', 'countElements', 'debugPrint', 'debugPrintln',
+                'distance', 'dropFirst', 'dropLast', 'dump', 'enumerate', 'equal',
+                'extend', 'fatalError', 'filter', 'find', 'first', 'getVaList', 'indices',
+                'insert', 'isEmpty', 'join', 'last', 'lazy', 'lexicographicalCompare',
+                'map', 'max', 'maxElement', 'min', 'minElement', 'numericCast', 'overlaps',
+                'partition', 'precondition', 'preconditionFailure', 'prefix', 'print',
+                'println', 'reduce', 'reflect', 'removeAll', 'removeAtIndex', 'removeLast',
+                'removeRange', 'reverse', 'sizeof', 'sizeofValue', 'sort', 'sorted',
+                'splice', 'split', 'startsWith', 'stride', 'strideof', 'strideofValue',
+                'suffix', 'swap', 'toDebugString', 'toString', 'transcode',
+                'underestimateCount', 'unsafeAddressOf', 'unsafeBitCast', 'unsafeDowncast',
+                'withExtendedLifetime', 'withUnsafeMutablePointer',
+                'withUnsafeMutablePointers', 'withUnsafePointer', 'withUnsafePointers',
+                'withVaList'), suffix=r'\b'),
+             Name.Builtin.Pseudo),
 
             # Implicit Block Variables
             (r'\$\d+', Name.Variable),
@@ -406,16 +412,22 @@ class SwiftLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name)
         ],
         'keywords': [
-            (r'(break|case|continue|default|do|else|fallthrough|for|if|in'
-             r'|return|switch|where|while)\b', Keyword),
+            (words((
+                'break', 'case', 'continue', 'default', 'do', 'else',
+                'fallthrough', 'for', 'if', 'in', 'return', 'switch', 'where',
+                'while'), suffix=r'\b'),
+             Keyword),
             (r'@availability\([^)]+\)', Keyword.Reserved),
-            (r'(associativity|convenience|dynamic|didSet|final|get|infix|inout'
-             r'|lazy|left|mutating|none|nonmutating|optional|override|postfix'
-             r'|precedence|prefix|Protocol|required|right|set|Type|unowned|weak'
-             r'|willSet|@(availability|autoclosure|noreturn'
-             r'|NSApplicationMain|NSCopying|NSManaged|objc'
-             r'|UIApplicationMain|IBAction|IBDesignable|IBInspectable'
-             r'|IBOutlet))\b',Keyword.Reserved),
+            (words((
+                'associativity', 'convenience', 'dynamic', 'didSet', 'final',
+                'get', 'infix', 'inout', 'lazy', 'left', 'mutating', 'none',
+                'nonmutating', 'optional', 'override', 'postfix', 'precedence',
+                'prefix', 'Protocol', 'required', 'right', 'set', 'Type',
+                'unowned', 'weak', 'willSet', '@availability', '@autoclosure',
+                '@noreturn', '@NSApplicationMain', '@NSCopying', '@NSManaged',
+                '@objc', '@UIApplicationMain', '@IBAction', '@IBDesignable',
+                '@IBInspectable', '@IBOutlet'), suffix=r'\b'),
+             Keyword.Reserved),
             (r'(as|dynamicType|false|is|nil|self|Self|super|true|__COLUMN__'
              r'|__FILE__|__FUNCTION__|__LINE__|_)\b', Keyword.Constant),
             (r'import\b', Keyword.Declaration, 'module'),
@@ -425,9 +437,11 @@ class SwiftLexer(RegexLexer):
              bygroups(Keyword.Declaration, Text, Name.Function)),
             (r'(var|let)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration,
              Text, Name.Variable)),
-            (r'(class|deinit|enum|extension|func|import|init|internal|let'
-             r'|operator|private|protocol|public|static|struct|subscript'
-             r'|typealias|var)\b', Keyword.Declaration)
+            (words((
+                'class', 'deinit', 'enum', 'extension', 'func', 'import', 'init',
+                'internal', 'let', 'operator', 'private', 'protocol', 'public',
+                'static', 'struct', 'subscript', 'typealias', 'var'), suffix=r'\b'),
+             Keyword.Declaration)
         ],
         'comment': [
             (r':param: [a-zA-Z_]\w*|:returns?:|(FIXME|MARK|TODO):',
