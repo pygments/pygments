@@ -360,7 +360,7 @@ class LatexFormatter(Formatter):
                         start += value[i]
 
                     value = value[len(start):]
-                    start = escape_tex(start, self.commandprefix)
+                    start = escape_tex(start, cp)
 
                     # ... but do not escape inside comment.
                     value = start + value
@@ -370,26 +370,26 @@ class LatexFormatter(Formatter):
                     in_math = False
                     for i, part in enumerate(parts):
                         if not in_math:
-                            parts[i] = escape_tex(part, self.commandprefix)
+                            parts[i] = escape_tex(part, cp)
                         in_math = not in_math
                     value = '$'.join(parts)
                 elif self.escapeinside:
                     text = value
                     value = ''
-                    while len(text) > 0:
+                    while text:
                         a, sep1, text = text.partition(self.left)
-                        if len(sep1) > 0:
+                        if sep1:
                             b, sep2, text = text.partition(self.right)
-                            if len(sep2) > 0:
-                                value += escape_tex(a, self.commandprefix) + b
+                            if sep2:
+                                value += escape_tex(a, cp) + b
                             else:
-                                value += escape_tex(a + sep1 + b, self.commandprefix)
+                                value += escape_tex(a + sep1 + b, cp)
                         else:
-                            value = value + escape_tex(a, self.commandprefix)
+                            value += escape_tex(a, cp)
                 else:
-                    value = escape_tex(value, self.commandprefix)
+                    value = escape_tex(value, cp)
             elif ttype not in Token.Escape:
-                value = escape_tex(value, self.commandprefix)
+                value = escape_tex(value, cp)
             styles = []
             while ttype is not Token:
                 try:
@@ -423,8 +423,7 @@ class LatexFormatter(Formatter):
 
 
 class LatexEmbeddedLexer(Lexer):
-    r"""
-
+    """
     This lexer takes one lexer as argument, the lexer for the language
     being formatted, and the left and right delimiters for escaped text.
 
