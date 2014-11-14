@@ -588,7 +588,7 @@ class LassoLexer(RegexLexer):
                 bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
             (r"(self)(\s*->\s*)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
-            (r'(\.\.?)([a-z_][\w.]*(=(?!=))?)',
+            (r'(\.\.?\s*)([a-z_][\w.]*(=(?!=))?)',
                 bygroups(Name.Builtin.Pseudo, Name.Other.Member)),
             (r'(->\\?\s*|&\s*)([a-z_][\w.]*(=(?!=))?)',
                 bygroups(Operator, Name.Other.Member)),
