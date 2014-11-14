@@ -522,7 +522,7 @@ class LassoLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^#!.+lasso9\b', Comment.Preproc, 'lasso'),
+            (r'^#![ \S]+lasso9\b', Comment.Preproc, 'lasso'),
             (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
             (r'\[noprocess\]', Comment.Preproc, ('delimiters', 'noprocess')),
             (r'\[', Comment.Preproc, ('delimiters', 'squarebrackets')),
@@ -672,7 +672,7 @@ class LassoLexer(RegexLexer):
             (r'\\', String.Double),
         ],
         'escape': [
-            (r'\\(U[\da-f]{8}|u[\da-f]{4}|x[\da-f]{1,2}|[0-7]{1,3}|:[^:]+:|'
+            (r'\\(U[\da-f]{8}|u[\da-f]{4}|x[\da-f]{1,2}|[0-7]{1,3}|:[^:\n\r]+:|'
              r'[abefnrtv?"\'\\]|$)', String.Escape),
         ],
         'signature': [
