@@ -88,10 +88,10 @@ one.
 Adding and testing a new lexer
 ==============================
 
-To make pygments aware of your new lexer, you have to perform the following
+To make Pygments aware of your new lexer, you have to perform the following
 steps:
 
-First, change to the current directory containing the pygments source code:
+First, change to the current directory containing the Pygments source code:
 
 .. code-block:: console
 
@@ -123,7 +123,7 @@ Now you can use pygmentize to render your example to HTML:
 
     $ ./pygmentize -O full -f html -o /tmp/example.html tests/examplefiles/example.diff
 
-Note that this explicitely calls the ``pygmentize`` in the current directory
+Note that this explicitly calls the ``pygmentize`` in the current directory
 by preceding it with ``./``. This ensures your modifications are used.
 Otherwise a possibly already installed, unmodified version without your new
 lexer would have been called from the system search path (``$PATH``).
@@ -239,7 +239,7 @@ output stream marked as `Comment.Multiline` and continues lexing with the rules
 defined in the ``'comment'`` state.
 
 If there wasn't an asterisk after the slash, the `RegexLexer` checks if it's a
-singleline comment (i.e. followed by a second slash).  If this also wasn't the
+Singleline comment (i.e. followed by a second slash).  If this also wasn't the
 case it must be a single slash, which is not a comment starter (the separate
 regex for a single slash must also be given, else the slash would be marked as
 an error token).

@@ -213,7 +213,7 @@ class LiveScriptLexer(RegexLexer):
 
     .. _LiveScript: http://gkz.github.com/LiveScript/
 
-    New in Pygments 1.6.
+    .. versionadded:: 1.6
     """
 
     name = 'LiveScript'
