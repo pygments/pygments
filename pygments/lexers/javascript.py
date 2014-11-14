@@ -586,7 +586,7 @@ class LassoLexer(RegexLexer):
             # names
             (r'\$[a-z_][\w.]*', Name.Variable),
             (r'#([a-z_][\w.]*|\d+)', Name.Variable.Instance),
-            (r"(\.)('[a-z_][\w.]*')",
+            (r"(\.\s*)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
             (r"(self)(\s*->\s*)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Operator, Name.Variable.Class)),
