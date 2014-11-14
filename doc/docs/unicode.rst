@@ -18,7 +18,7 @@ data using this encoding.
 
 You can override the encoding using the `encoding` or `inencoding` lexer
 options.  If you have the `chardet`_ library installed and set the encoding to
-``chardet`` if will ananlyse the text and use the encoding it thinks is the
+``chardet`` if will analyse the text and use the encoding it thinks is the
 right one automatically:
 
 .. sourcecode:: python
