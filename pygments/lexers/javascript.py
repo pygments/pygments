@@ -576,7 +576,7 @@ class LassoLexer(RegexLexer):
             (r'\d*\.\d+(e[+-]?\d+)?', Number.Float),
             (r'0x[\da-f]+', Number.Hex),
             (r'\d+', Number.Integer),
-            (r'([+-]?)(infinity|NaN)\b', bygroups(Operator, Number)),
+            (r'(infinity|NaN)\b', Number),
             (r"'", String.Single, 'singlestring'),
             (r'"', String.Double, 'doublestring'),
             (r'`[^`]*`', String.Backtick),
@@ -593,7 +593,7 @@ class LassoLexer(RegexLexer):
             (r'(->\\?\s*|&\s*)([a-z_][\w.]*(=(?!=))?)',
                 bygroups(Operator, Name.Other.Member)),
             (r'(self|inherited)\b', Name.Builtin.Pseudo),
-            (r'-[a-z_][\w.]*', Name.Attribute),
+            (r'-(?!infinity)[a-z_][\w.]*', Name.Attribute),
             (r'::\s*[a-z_][\w.]*', Name.Label),
             (r'(error_(code|msg)_\w+|Error_AddError|Error_ColumnRestriction|'
              r'Error_DatabaseConnectionUnavailable|Error_DatabaseTimeout|'
