@@ -8,7 +8,7 @@ Write your own filter
 
 Writing own filters is very easy. All you have to do is to subclass
 the `Filter` class and override the `filter` method. Additionally a
-filter is instanciated with some keyword arguments you can use to
+filter is instantiated with some keyword arguments you can use to
 adjust the behavior of your filter.
 
 

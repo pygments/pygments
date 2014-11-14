@@ -27,7 +27,7 @@ Programming languages
 * Coq
 * Cryptol (incl. Literate Cryptol)
 * `Cython <http://cython.org>`_
-* `D <http://digitalmars.com/d>`_
+* `D <http://dlang.org>`_
 * Dart
 * Delphi
 * Dylan
@@ -45,6 +45,7 @@ Programming languages
 * Io
 * Java
 * JavaScript
+* Lasso
 * LLVM
 * Logtalk
 * `Lua <http://www.lua.org>`_
@@ -97,8 +98,8 @@ Template languages
 * `Genshi <http://genshi.edgewall.org>`_ (the Trac template language)
 * JSP (Java Server Pages)
 * `Myghty <http://www.myghty.org>`_ (the HTML::Mason based framework)
-* `Mako <http://www.makotemplates.org/>`_ (the Myghty successor)
-* `Smarty <http://smarty.php.net>`_ templates (PHP templating)
+* `Mako <http://www.makotemplates.org>`_ (the Myghty successor)
+* `Smarty <http://www.smarty.net>`_ templates (PHP templating)
 * Tea
 
 Other markup
