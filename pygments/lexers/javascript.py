@@ -541,9 +541,11 @@ class LassoLexer(RegexLexer):
             (r'[^[<]+', Other),
         ],
         'nosquarebrackets': [
+            (r'\[noprocess\]', Comment.Preproc, 'noprocess'),
+            (r'\[', Other),
             (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
-            (r'<', Other),
-            (r'[^<]+', Other),
+            (r'<(!--.*?-->)?', Other),
+            (r'[^[<]+', Other),
         ],
         'noprocess': [
             (r'\[/noprocess\]', Comment.Preproc, '#pop'),
