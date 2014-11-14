@@ -625,7 +625,8 @@ class LassoLexer(RegexLexer):
             (r'(true|false|none|minimal|full|all|void)\b', Keyword.Constant),
             (r'(local|var|variable|global|data(?=\s))\b', Keyword.Declaration),
             (r'(array|date|decimal|duration|integer|map|pair|string|tag|xml|'
-             r'null|bytes|list|queue|set|stack|staticarray|tie)\b', Keyword.Type),
+             r'null|boolean|bytes|keyword|list|locale|queue|set|stack|'
+             r'staticarray)\b', Keyword.Type),
             (r'([a-z_][\w.]*)(\s+)(in)\b', bygroups(Name, Text, Keyword)),
             (r'(let|into)(\s+)([a-z_][\w.]*)', bygroups(Keyword, Text, Name)),
             (r'require\b', Keyword, 'requiresection'),
