@@ -18,7 +18,7 @@ __all__ = ['VCTreeStatusLexer', 'PyPyLogLexer']
 
 class VCTreeStatusLexer(RegexLexer):
     """
-    For colorizing output of version control status commans, like "hg
+    For colorizing output of version control status commands, like "hg
     status" or "svn status".
 
     .. versionadded:: 2.0

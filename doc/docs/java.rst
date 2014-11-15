@@ -2,18 +2,18 @@
 Use Pygments in Java
 =====================
 
-Thanks to `Jython <http://www.jython.org>`__ it is possible to use Pygments in
+Thanks to `Jython <http://www.jython.org>`_ it is possible to use Pygments in
 Java.
 
-This page is a simple tutorial to get an idea of how this is working. You can
-then look at the `Jython documentation <http://www.jython.org/docs/>`__ for more
-advanced use.
+This page is a simple tutorial to get an idea of how this works. You can
+then look at the `Jython documentation <http://www.jython.org/docs/>`_ for more
+advanced uses.
 
 Since version 1.5, Pygments is deployed on `Maven Central
-<http://repo1.maven.org/maven2/org/pygments/pygments/>`__ as a JAR so is Jython
-which makes it a lot easier to create the Java project.
+<http://repo1.maven.org/maven2/org/pygments/pygments/>`_ as a JAR, as is Jython
+which makes it a lot easier to create a Java project.
 
-Here is an example of a `Maven <http://www.maven.org>`__ ``pom.xml`` file for a
+Here is an example of a `Maven <http://www.maven.org>`_ ``pom.xml`` file for a
 project running Pygments:
 
 .. sourcecode:: xml
