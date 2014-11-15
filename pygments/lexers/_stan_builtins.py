@@ -10,7 +10,8 @@
     :license: BSD, see LICENSE for details.
 """
 
-KEYWORDS = (   'else',
+KEYWORDS = (
+    'else',
     'for',
     'if',
     'in',
@@ -20,9 +21,11 @@ KEYWORDS = (   'else',
     'print',
     'reject',
     'return',
-    'while')
+    'while'
+)
 
-TYPES = (   'cholesky_factor_corr',
+TYPES = (
+    'cholesky_factor_corr',
     'cholesky_factor_cov',
     'corr_matrix',
     'cov_matrix',
@@ -35,9 +38,11 @@ TYPES = (   'cholesky_factor_corr',
     'simplex',
     'unit_vector',
     'vector',
-    'void')
+    'void'
+)
 
-FUNCTIONS = (   'Phi',
+FUNCTIONS = (
+    'Phi',
     'Phi_approx',
     'abs',
     'acos',
@@ -367,9 +372,11 @@ FUNCTIONS = (   'Phi',
     'weibull_log',
     'weibull_rng',
     'wishart_log',
-    'wishart_rng')
+    'wishart_rng'
+)
 
-DISTRIBUTIONS = (   'bernoulli',
+DISTRIBUTIONS = (
+    'bernoulli',
     'bernoulli_logit',
     'beta',
     'beta_binomial',
@@ -418,9 +425,11 @@ DISTRIBUTIONS = (   'bernoulli',
     'uniform',
     'von_mises',
     'weibull',
-    'wishart')
+    'wishart'
+)
 
-RESERVED = (   'alignas',
+RESERVED = (
+    'alignas',
     'alignof',
     'and',
     'and_eq',
@@ -505,5 +514,6 @@ RESERVED = (   'alignas',
     'volatile',
     'wchar_t',
     'xor',
-    'xor_eq')
+    'xor_eq'
+)
 
