@@ -31,7 +31,7 @@ Currently, **all lexers** support these options:
 
     If this option is set to ``"guess"``, a simple UTF-8 vs. Latin-1
     detection is used, if it is set to ``"chardet"``, the
-    `chardet library <http://chardet.feedparser.org/>`__ is used to
+    `chardet library <http://chardet.feedparser.org/>`_ is used to
     guess the encoding of the input.
 
     .. versionadded:: 0.6

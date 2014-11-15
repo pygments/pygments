@@ -89,7 +89,7 @@ The `is_token_subtype()` function in the `pygments.token` module can be used to
 test if a token type is a subtype of another (such as `Name.Tag` and `Name`).
 (This is the same as ``Name.Tag in Name``. The overloaded `in` operator was newly
 introduced in Pygments 0.7, the function still exists for backwards
-compatiblity.)
+compatibility.)
 
 With Pygments 0.7, it's also possible to convert strings to token types (for example
 if you want to supply a token from the command line):
@@ -160,7 +160,7 @@ Name Tokens
     other languages constants are uppercase by definition (Ruby).
 
 `Name.Decorator`
-    Token type for decorators. Decorators are synatic elements in the Python
+    Token type for decorators. Decorators are syntactic elements in the Python
     language. Similar syntax elements exist in C# and Java.
 
 `Name.Entity`
