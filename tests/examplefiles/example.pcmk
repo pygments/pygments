@@ -1,0 +1,40 @@
+node 167906355: sle12-a
+node 167906357: sle12-c
+primitive fs1 Filesystem \
+	params device="/dev/nfs-vg/fs1" directory="/srv/nfs" fstype=ext3 \
+	op monitor interval=10s
+primitive nfs-server nfsserver \
+	params nfs_shared_infodir="/srv/nfs/state" nfs_ip=10.2.12.100 \
+	op monitor interval=0 trace_ra=1
+primitive nfs-vg LVM \
+	params volgrpname=nfs-vg
+primitive p_drbd_nfs ocf:linbit:drbd \
+	params drbd_resource=nfs \
+	op monitor interval=15 role=Master \
+	op monitor interval=30 role=Slave \
+	op start interval=0 timeout=300 \
+	op stop interval=0 timeout=120
+primitive s-libvirt stonith:external/libvirt \
+	params hostlist="sle12-a sle12-c" hypervisor_uri="qemu+ssh://hex-10.suse.de/system?keyfile=/root/.ssh/xen" reset_method=reboot \
+	op monitor interval=5m timeout=60s
+primitive virtual-ip IPaddr2 \
+	params ip=10.2.12.100
+group nfs-disk nfs-vg fs1
+group nfs-srv virtual-ip nfs-server
+ms ms_drbd_nfs p_drbd_nfs \
+	meta notify=true clone-max=2
+location nfs-pref virtual-ip 100: sle12-a
+colocation c-nfs inf: nfs-server fs1
+colocation vg-with-drbd inf: nfs-vg ms_drbd_nfs:Master
+order drbd-before-vg inf: ms_drbd_nfs:promote nfs-vg:start
+order o-nfs inf: fs1 nfs-server
+property cib-bootstrap-options: \
+	dc-version=1.1.12-ad083a8 \
+	cluster-infrastructure=corosync \
+	cluster-name=sle12-test3l-public \
+	no-quorum-policy=ignore \
+	startup-fencing=false \
+	last-lrm-refresh=1415877622 \
+	maintenance-mode=false
+op_defaults op-options: \
+	timeout=120s
