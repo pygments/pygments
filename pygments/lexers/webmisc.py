@@ -365,6 +365,9 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'external', Keyword),
             (r'collation', Keyword, 'uritooperator'),
 
+            # eXist specific XQUF
+            (r'(into|following|preceding|with)', Keyword, 'root'),
+
             # support for current context on rhs of Simple Map Operator
             (r'\.', Operator),
 
@@ -434,7 +437,7 @@ class XQueryLexer(ExtendedRegexLexer):
             # Marklogic specific type?
             (r'(processing-instruction)(\s*)(\()',
              bygroups(Keyword, Text, Punctuation),
-             ('occurrenceindicator', 'kindtestforpi')),
+             ('occurrenceindicator', 'kindtestforpi')),            
             (r'(item)(\s*)(\()(\s*)(\))(?=[*+?])',
              bygroups(Keyword, Text, Punctuation, Text, Punctuation),
              'occurrenceindicator'),
@@ -726,10 +729,15 @@ class XQueryLexer(ExtendedRegexLexer):
 
             (r'then|else', Keyword),
 
+            # eXist specific XQUF
+            (r'(update)(\s*)(insert|delete|replace|value|rename)', bygroups(Keyword, Text, Keyword)),
+            (r'(into|following|preceding|with)', Keyword),
+
             # Marklogic specific
             (r'(try)(\s*)', bygroups(Keyword, Text), 'root'),
             (r'(catch)(\s*)(\()(\$)',
              bygroups(Keyword, Text, Punctuation, Name.Variable), 'varname'),
+
 
             (r'(@'+qname+')', Name.Attribute),
             (r'(@'+ncname+')', Name.Attribute),
