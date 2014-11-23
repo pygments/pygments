@@ -441,7 +441,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(item)(\s*)(\()(\s*)(\))(?=[*+?])',
              bygroups(Keyword, Text, Punctuation, Text, Punctuation),
              'occurrenceindicator'),
-            (r'\(\#', Punctuation, 'pragma'),
+            (r'(\(\#)(\s*)', bygroups(Punctuation, Text), 'pragma'),
             (r';', Punctuation, '#pop'),
             (r'then|else', Keyword, '#pop'),
             (r'(at)(\s+)(' + stringdouble + ')',
@@ -708,7 +708,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(xquery)(\s+)(version)',
              bygroups(Keyword.Pseudo, Text, Keyword.Pseudo), 'xqueryversion'),
 
-            (r'(\(#)', Punctuation, 'pragma'),
+            (r'(\(#)(\s*)', bygroups(Punctuation, Text), 'pragma'),
 
             # sometimes return can occur in root state
             (r'return', Keyword),
