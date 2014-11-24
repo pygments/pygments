@@ -594,7 +594,8 @@ class LassoLexer(RegexLexer):
                 bygroups(Name.Builtin.Pseudo, Name.Other.Member)),
             (r'(->\\?\s*|&\s*)([a-z_][\w.]*(=(?!=))?)',
                 bygroups(Operator, Name.Other.Member)),
-            (r'(self|inherited|currentcapture|givenblock)\b', Name.Builtin.Pseudo),
+            (r'(?<!->)(self|inherited|currentcapture|givenblock)\b',
+                Name.Builtin.Pseudo),
             (r'-(?!infinity)[a-z_][\w.]*', Name.Attribute),
             (r'::\s*[a-z_][\w.]*', Name.Label),
             (r'(error_(code|msg)_\w+|Error_AddError|Error_ColumnRestriction|'
