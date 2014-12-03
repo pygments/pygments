@@ -36,9 +36,6 @@ class RustLexer(RegexLexer):
             (r'//(.*?)\n', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
 
-            # Lifetime
-            (r"""'static""", Name.Builtin),
-            (r"""'[a-zA-Z_]\w*""", Name.Attribute),
             # Macro parameters
             (r"""\$([a-zA-Z_]\w*|\(,?|\),?|,?)""", Comment.Preproc),
             # Keywords
@@ -104,6 +101,10 @@ class RustLexer(RegexLexer):
             # String Literal
             (r'"', String, 'string'),
             (r'r(#*)".*?"\1', String.Raw),
+
+            # Lifetime
+            (r"""'static""", Name.Builtin),
+            (r"""'[a-zA-Z_]\w*""", Name.Attribute),
 
             # Operators and Punctuation
             (r'[{}()\[\],.;]', Punctuation),
