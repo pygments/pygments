@@ -130,7 +130,7 @@ class RustLexer(RegexLexer):
             (r'[*/]', Comment.Multiline),
         ],
         'number_lit': [
-            (r'[ui](8|16|32|64)', Keyword, '#pop'),
+            (r'[ui](8|16|32|64)?', Keyword, '#pop'),
             (r'f(32|64)', Keyword, '#pop'),
             default('#pop'),
         ],
