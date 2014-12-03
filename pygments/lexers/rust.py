@@ -10,7 +10,7 @@
 """
 
 from pygments.lexer import RegexLexer, include, bygroups, words, default
-from pygments.token import Comment, Operator, Keyword, Name, String, \
+from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
 __all__ = ['RustLexer']
@@ -37,14 +37,15 @@ class RustLexer(RegexLexer):
             (r'/\*', Comment.Multiline, 'comment'),
 
             # Lifetime
-            (r"""'[a-zA-Z_]\w*""", Name.Label),
+            (r"""'static""", Name.Builtin),
+            (r"""'[a-zA-Z_]\w*""", Name.Attribute),
             # Macro parameters
             (r"""\$([a-zA-Z_]\w*|\(,?|\),?|,?)""", Comment.Preproc),
             # Keywords
             (words((
-                'as', 'box', 'break', 'continue', 'do', 'else', 'enum', 'extern',
+                'as', 'box', 'do', 'else', 'enum', 'extern',  # break and continue are in labels
                 'fn', 'for', 'if', 'impl', 'in', 'loop', 'match', 'mut', 'priv',
-                'proc', 'pub', 'ref', 'return', 'static', '\'static', 'struct',
+                'proc', 'pub', 'ref', 'return', 'static', 'struct',
                 'trait', 'true', 'type', 'unsafe', 'while'), suffix=r'\b'),
              Keyword),
             (words(('alignof', 'be', 'const', 'offsetof', 'pure', 'sizeof',
@@ -84,10 +85,8 @@ class RustLexer(RegexLexer):
                 'Port', 'Chan', 'SharedChan', 'spawn', 'drop'), suffix=r'\b'),
              Name.Builtin),
             (r'(ImmutableTuple\d+|Tuple\d+)\b', Name.Builtin),
-            # Borrowed pointer
-            (r'(&)(\'[A-Za-z_]\w*)?', bygroups(Operator, Name)),
             # Labels
-            (r'\'[A-Za-z_]\w*:', Name.Label),
+            (r'(break|continue)(\s*)(\'[A-Za-z_]\w*)?', bygroups(Keyword, Text.Whitespace, Name.Label)),
             # Character Literal
             (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
