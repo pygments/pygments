@@ -85,7 +85,10 @@ class RustLexer(RegexLexer):
             # Labels
             (r'(break|continue)(\s*)(\'[A-Za-z_]\w*)?', bygroups(Keyword, Text.Whitespace, Name.Label)),
             # Character Literal
-            (r"""'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
+            (r"""'(\\['"\\nrt]|\\x[0-7][0-9a-fA-F]|\\0"""
+             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
+             String.Char),
+            (r"""b'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\0"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|.)'""",
              String.Char),
             # Binary Literal
@@ -99,8 +102,9 @@ class RustLexer(RegexLexer):
              r'\.[0-9_]*|[eE][+\-]?[0-9_]+)', Number.Float, 'number_lit'),
             (r'[0-9][0-9_]*', Number.Integer, 'number_lit'),
             # String Literal
+            (r'b"', String, 'bytestring'),
             (r'"', String, 'string'),
-            (r'r(#*)".*?"\1', String.Raw),
+            (r'b?r(#*)".*?"\1', String),
 
             # Lifetime
             (r"""'static""", Name.Builtin),
@@ -136,10 +140,14 @@ class RustLexer(RegexLexer):
         ],
         'string': [
             (r'"', String, '#pop'),
-            (r"""\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
+            (r"""\\['"\\nrt]|\\x[0-7][0-9a-fA-F]|\\0"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}""", String.Escape),
             (r'[^\\"]+', String),
             (r'\\', String),
+        ],
+        'bytestring': [
+            (r"""\\x[89a-fA-F][0-9a-fA-F]""", String.Escape),
+            include('string'),
         ],
         'macro{': [
             (r'\{', Operator, '#push'),
