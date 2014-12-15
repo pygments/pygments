@@ -32,7 +32,6 @@ FORMATTERS = {
     'TestcaseFormatter': ('pygments.formatters.other', 'Testcase', ('testcase',), (), 'Format tokens as appropriate for a new testcase.')
 }
 
-
 if __name__ == '__main__':  # pragma: no cover
     import sys
     import os
