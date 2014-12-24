@@ -171,8 +171,8 @@ class CommonLispLexer(RegexLexer):
     .. versionadded:: 0.9
     """
     name = 'Common Lisp'
-    aliases = ['common-lisp', 'cl', 'lisp', 'elisp', 'emacs', 'emacs-lisp']
-    filenames = ['*.cl', '*.lisp', '*.el']  # use for Elisp too
+    aliases = ['common-lisp', 'cl', 'lisp']
+    filenames = ['*.cl', '*.lisp']
     mimetypes = ['text/x-common-lisp']
 
     flags = re.IGNORECASE | re.MULTILINE
