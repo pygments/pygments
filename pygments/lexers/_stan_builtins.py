@@ -4,7 +4,7 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This file contains the names of functions for Stan used by
-    ``pygments.lexers.math.StanLexer. This is for Stan language version 2.4.0.
+    ``pygments.lexers.math.StanLexer. This is for Stan language version 2.5.0.
 
     :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -16,10 +16,12 @@ KEYWORDS = (
     'if',
     'in',
     'increment_log_prob',
+    'integrate_ode',
     'lp__',
     'print',
+    'reject',
     'return',
-    'while',
+    'while'
 )
 
 TYPES = (
@@ -36,7 +38,7 @@ TYPES = (
     'simplex',
     'unit_vector',
     'vector',
-    'void',
+    'void'
 )
 
 FUNCTIONS = (
@@ -45,6 +47,8 @@ FUNCTIONS = (
     'abs',
     'acos',
     'acosh',
+    'append_col',
+    'append_row',
     'asin',
     'asinh',
     'atan',
@@ -144,6 +148,11 @@ FUNCTIONS = (
     'fmax',
     'fmin',
     'fmod',
+    'frechet_ccdf_log',
+    'frechet_cdf',
+    'frechet_cdf_log',
+    'frechet_log',
+    'frechet_rng',
     'gamma_ccdf_log',
     'gamma_cdf',
     'gamma_cdf_log',
@@ -152,6 +161,7 @@ FUNCTIONS = (
     'gamma_q',
     'gamma_rng',
     'gaussian_dlm_obs_log',
+    'get_lp',
     'gumbel_ccdf_log',
     'gumbel_cdf',
     'gumbel_cdf_log',
@@ -182,6 +192,8 @@ FUNCTIONS = (
     'inv_wishart_rng',
     'inverse',
     'inverse_spd',
+    'is_inf',
+    'is_nan',
     'lbeta',
     'lgamma',
     'lkj_corr_cholesky_log',
@@ -252,6 +264,7 @@ FUNCTIONS = (
     'normal_log',
     'normal_rng',
     'not_a_number',
+    'num_elements',
     'ordered_logistic_log',
     'ordered_logistic_rng',
     'owens_t',
@@ -260,6 +273,11 @@ FUNCTIONS = (
     'pareto_cdf_log',
     'pareto_log',
     'pareto_rng',
+    'pareto_type_2_ccdf_log',
+    'pareto_type_2_cdf',
+    'pareto_type_2_cdf_log',
+    'pareto_type_2_log',
+    'pareto_type_2_rng',
     'pi',
     'poisson_ccdf_log',
     'poisson_cdf',
@@ -354,7 +372,7 @@ FUNCTIONS = (
     'weibull_log',
     'weibull_rng',
     'wishart_log',
-    'wishart_rng',
+    'wishart_rng'
 )
 
 DISTRIBUTIONS = (
@@ -372,6 +390,7 @@ DISTRIBUTIONS = (
     'double_exponential',
     'exp_mod_normal',
     'exponential',
+    'frechet',
     'gamma',
     'gaussian_dlm_obs',
     'gumbel',
@@ -396,6 +415,7 @@ DISTRIBUTIONS = (
     'normal',
     'ordered_logistic',
     'pareto',
+    'pareto_type_2',
     'poisson',
     'poisson_log',
     'rayleigh',
@@ -405,7 +425,7 @@ DISTRIBUTIONS = (
     'uniform',
     'von_mises',
     'weibull',
-    'wishart',
+    'wishart'
 )
 
 RESERVED = (
@@ -494,5 +514,6 @@ RESERVED = (
     'volatile',
     'wchar_t',
     'xor',
-    'xor_eq',
+    'xor_eq'
 )
+

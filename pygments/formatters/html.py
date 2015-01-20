@@ -36,20 +36,10 @@ _escape_html_table = {
     ord("'"): u'&#39;',
 }
 
+
 def escape_html(text, table=_escape_html_table):
     """Escape &, <, > as well as single and double quotes for HTML."""
     return text.translate(table)
-
-def get_random_id():
-    """Return a random id for javascript fields."""
-    from random import random
-    from time import time
-    try:
-        from hashlib import sha1 as sha
-    except ImportError:
-        import sha
-        sha = sha.new
-    return sha('%s|%s' % (random(), time())).hexdigest()
 
 
 def _get_ttype_class(ttype):
