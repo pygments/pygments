@@ -68,14 +68,31 @@ class HtmlFormatterTest(unittest.TestCase):
             pass
 
     def test_all_options(self):
-        for optdict in [dict(nowrap=True),
-                        dict(linenos=True),
-                        dict(linenos=True, full=True),
-                        dict(linenos=True, full=True, noclasses=True)]:
-
+        def check(optdict):
             outfile = StringIO()
             fmt = HtmlFormatter(**optdict)
             fmt.format(tokensource, outfile)
+
+        for optdict in [
+            dict(nowrap=True),
+            dict(linenos=True, full=True),
+            dict(linenos=True, linespans='L'),
+            dict(hl_lines=[1, 5, 10, 'xxx']),
+            dict(hl_lines=[1, 5, 10], noclasses=True),
+        ]:
+            check(optdict)
+
+        for linenos in [False, 'table', 'inline']:
+            for noclasses in [False, True]:
+                for linenospecial in [0, 5]:
+                    for anchorlinenos in [False, True]:
+                        optdict = dict(
+                            linenos=linenos,
+                            noclasses=noclasses,
+                            linenospecial=linenospecial,
+                            anchorlinenos=anchorlinenos,
+                        )
+                        check(optdict)
 
     def test_linenos(self):
         optdict = dict(linenos=True)
