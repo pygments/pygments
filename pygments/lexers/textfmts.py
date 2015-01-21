@@ -102,7 +102,7 @@ class GettextLexer(RegexLexer):
             (r'^(")([A-Za-z-]+:)(.*")$',
              bygroups(String, Name.Property, String)),
             (r'^".*"$', String),
-            (r'^(msgid|msgid_plural|msgstr)(\s+)(".*")$',
+            (r'^(msgid|msgid_plural|msgstr|msgctxt)(\s+)(".*")$',
              bygroups(Name.Variable, Text, String)),
             (r'^(msgstr\[)(\d)(\])(\s+)(".*")$',
              bygroups(Name.Variable, Number.Integer, Name.Variable, Text, String)),
