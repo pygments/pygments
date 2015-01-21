@@ -29,7 +29,7 @@ def simplefilter(f):
     Decorator that converts a function into a filter::
 
         @simplefilter
-        def lowercase(lexer, stream, options):
+        def lowercase(self, lexer, stream, options):
             for ttype, value in stream:
                 yield ttype, value.lower()
     """
