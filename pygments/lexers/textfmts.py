@@ -39,7 +39,7 @@ class IrcLogsLexer(RegexLexer):
                     (?:\d{1,4})
                  [T ])?                # Date/time separator: T or space
                 (?: \d?\d [:.])*       # Time as :/.-separated groups of 1 or 2 digits
-                    (?: \d?\d [:.])
+                    (?: \d?\d)
             )
           (?: \]|\))?\s+               # Closing bracket or paren for the timestamp
         |
