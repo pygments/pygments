@@ -32,6 +32,7 @@ Programming languages
 * Delphi
 * Dylan
 * Erlang
+* `Ezhil <http://ezhillang.org>`_ Ezhil - A Tamil programming language
 * Factor
 * Fancy
 * Fortran
