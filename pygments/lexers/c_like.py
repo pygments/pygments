@@ -426,20 +426,20 @@ class ArduinoLexer(CppLexer):
     mimetypes = ['text/x-arduino']
 
     # Language constants
-    constants = [ 'DIGITAL_MESSAGE', 'FIRMATA_STRING', 'ANALOG_MESSAGE', 
+    constants = set(( 'DIGITAL_MESSAGE', 'FIRMATA_STRING', 'ANALOG_MESSAGE', 
                     'REPORT_DIGITAL', 'REPORT_ANALOG', 'INPUT_PULLUP', 
                     'SET_PIN_MODE', 'INTERNAL2V56', 'SYSTEM_RESET', 'LED_BUILTIN',
                     'INTERNAL1V1', 'SYSEX_START', 'INTERNAL', 'EXTERNAL', 
-                    'DEFAULT', 'OUTPUT', 'INPUT', 'HIGH', 'LOW' ]
+                    'DEFAULT', 'OUTPUT', 'INPUT', 'HIGH', 'LOW' ))
 
     # Language sketch main structure functions
-    structure = [ 'setup', 'loop' ]
+    structure = set(( 'setup', 'loop' ))
 
     # Language variable types
-    storage = [ 'boolean', 'const', 'byte', 'word', 'string', 'String', 'array' ]
+    storage = set(( 'boolean', 'const', 'byte', 'word', 'string', 'String', 'array' ))
 
     # Language shipped functions and class ( )
-    functions = [ 'KeyboardController', 'MouseController', 'SoftwareSerial', 
+    functions = set(( 'KeyboardController', 'MouseController', 'SoftwareSerial', 
             'EthernetServer', 'EthernetClient', 'LiquidCrystal', 
             'RobotControl', 'GSMVoiceCall', 'EthernetUDP', 'EsploraTFT', 
             'HttpClient', 'RobotMotor', 'WiFiClient', 'GSMScanner', 
@@ -511,7 +511,7 @@ class ArduinoLexer(CppLexer):
             'seek', 'fill', 'size', 'turn', 'stop', 'home', 'find', 'char', 
             'byte', 'step', 'word', 'long', 'tone', 'sqrt', 'RSSI', 'SSID', 
             'end', 'bit', 'tan', 'cos', 'sin', 'pow', 'map', 'abs', 'max', 
-            'min', 'int', 'get', 'run', 'put' ]
+            'min', 'int', 'get', 'run', 'put' ))
     
 
     def get_tokens_unprocessed(self, text):
