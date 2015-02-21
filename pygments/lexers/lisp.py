@@ -2053,16 +2053,12 @@ class EmacsLispLexer(RegexLexer):
             # single-line comment
             (r';.*$', Comment.Single),
 
-            # encoding comment (?)
-            (r'#\d*Y.*$', Comment.Special),
-
             # strings and characters
             (r'"', String, 'string'),
             (r'\?([^\\]|\\.)', String.Char),
             # quoting
             (r":" + symbol, Name.Builtin),
             (r"::" + symbol, String.Symbol),
-            (r":#" + symbol, String.Symbol),
             (r"'" + symbol, String.Symbol),
             (r"'", Operator),
             (r"`", Operator),
@@ -2096,12 +2092,6 @@ class EmacsLispLexer(RegexLexer):
 
             # radix rational
             (r'#\d+r[+-]?[0-9a-zA-Z]+(/[0-9a-zA-Z]+)?', Number),
-
-            # array
-            (r'(#\d+a)(\()', bygroups(Literal.Other, Punctuation), 'body'),
-
-            # structure
-            (r'(#s)(\()', bygroups(Literal.Other, Punctuation), 'body'),
 
             # reference
             (r'#\d+=', Operator),
