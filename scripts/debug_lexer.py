@@ -144,7 +144,7 @@ def main(fn, lexer=None, options={}):
         reprs = list(map(repr, tok))
         print('   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0], end=' ')
         if debug_lexer:
-            print(' ' + ' ' * (29-len(reprs[0])) + ' : '.join(state), end=' ')
+            print(' ' + ' ' * (29-len(reprs[0])) + ' : '.join(state) if state else '', end=' ')
         print()
 
     for type, val in lx.get_tokens(text):
