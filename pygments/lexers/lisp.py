@@ -1479,12 +1479,13 @@ class NewLispLexer(RegexLexer):
         ],
     }
 
+
 class EmacsLispLexer(RegexLexer):
     """
     An ELisp lexer, parsing a stream and outputting the tokens
     needed to highlight elisp code.
 
-    .. versionadded:: 2.0
+    .. versionadded:: 2.1
     """
     name = 'EmacsLisp'
     aliases = ['emacs', 'elisp']
@@ -1496,13 +1497,13 @@ class EmacsLispLexer(RegexLexer):
     # couple of useful regexes
 
     # characters that are not macro-characters and can be used to begin a symbol
-    nonmacro = r'\\.|[\w!$%&*+-/<=>?@\[\]^{}~]'
+    nonmacro = r'\\.|[\w!$%&*+-/<=>?@^{}~|]'
     constituent = nonmacro + '|[#.:]'
     terminated = r'(?=[ "()\'\n,;`])'  # whitespace or terminating macro characters
 
     # symbol token, reverse-engineered from hyperspec
     # Take a deep breath...
-    symbol = r'(\|[^|]+\||(?:%s)(?:%s)*)' % (nonmacro, constituent)
+    symbol = r'((?:%s)(?:%s)*)' % (nonmacro, constituent)
 
     macros = set((
         'atomic-change-group', 'case', 'block', 'cl-block', 'cl-callf', 'cl-callf2',
@@ -2056,7 +2057,8 @@ class EmacsLispLexer(RegexLexer):
             (r'#\d*Y.*$', Comment.Special),
 
             # strings and characters
-            (r'"(\\.|\\\n|[^"\\])*"', String),
+            (r'"', String, 'string'),
+            (r'\?([^\\]|\\.)', String.Char),
             # quoting
             (r":" + symbol, Name.Builtin),
             (r"::" + symbol, String.Symbol),
@@ -2071,39 +2073,29 @@ class EmacsLispLexer(RegexLexer):
             (r'[-+]?(\d*\.\d+([defls][-+]?\d+)?|\d+(\.\d*)?[defls][-+]?\d+)'
                 + terminated, Number.Float),
 
-            # sharpsign strings and characters
-            (r"#\\." + terminated, String.Char),
-            (r"#\\" + symbol, String.Char),
-
-            # vector
-            (r'#\(', Operator, 'body'),
-
-            # bitstring
-            (r'#\d*\*[01]*', Literal.Other),
+            # vectors
+            (r'\[|\]', Punctuation),
 
             # uninterned symbol
             (r'#:' + symbol, String.Symbol),
 
-            # read-time and load-time evaluation
-            (r'#[.,]', Operator),
+            # read syntax for char tables
+            (r'#\^\^?', Operator),
 
             # function shorthand
             (r'#\'', Name.Function),
 
             # binary rational
-            (r'#b[+-]?[01]+(/[01]+)?', Number.Bin),
+            (r'#[bB][+-]?[01]+(/[01]+)?', Number.Bin),
 
             # octal rational
-            (r'#o[+-]?[0-7]+(/[0-7]+)?', Number.Oct),
+            (r'#[oO][+-]?[0-7]+(/[0-7]+)?', Number.Oct),
 
             # hex rational
-            (r'#x[+-]?[0-9a-f]+(/[0-9a-f]+)?', Number.Hex),
+            (r'#[xX][+-]?[0-9a-fA-F]+(/[0-9a-fA-F]+)?', Number.Hex),
 
             # radix rational
-            (r'#\d+r[+-]?[0-9a-z]+(/[0-9a-z]+)?', Number),
-
-            # complex
-            (r'(#c)(\()', bygroups(Number, Punctuation), 'body'),
+            (r'#\d+r[+-]?[0-9a-zA-Z]+(/[0-9a-zA-Z]+)?', Number),
 
             # array
             (r'(#\d+a)(\()', bygroups(Literal.Other, Punctuation), 'body'),
@@ -2111,18 +2103,12 @@ class EmacsLispLexer(RegexLexer):
             # structure
             (r'(#s)(\()', bygroups(Literal.Other, Punctuation), 'body'),
 
-            # path
-            (r'#p?"(\\.|[^"])*"', Literal.Other),
-
             # reference
             (r'#\d+=', Operator),
             (r'#\d+#', Operator),
 
-            # read-time conditional
-            (r'#[+-]', Operator),
-
             # special operators that should have been parsed already
-            (r'(,@|,|\.)', Operator),
+            (r'(,@|,|\.|:)', Operator),
 
             # special constants
             (r'(t|nil)' + terminated, Name.Constant),
@@ -2132,7 +2118,16 @@ class EmacsLispLexer(RegexLexer):
             (symbol, Name.Variable),
 
             # parentheses
+            (r'#\(', Operator, 'body'),
             (r'\(', Punctuation, 'body'),
             (r'\)', Punctuation, '#pop'),
+        ],
+        'string': [
+            (r'[^"\\`]+', String),
+            (r'`%s\'' % symbol, String.Symbol),
+            (r'`', String),
+            (r'\\.', String),
+            (r'\\\n', String),
+            (r'"', String, '#pop'),
         ],
     }
