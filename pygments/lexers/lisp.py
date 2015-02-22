@@ -1497,9 +1497,9 @@ class EmacsLispLexer(RegexLexer):
     # couple of useful regexes
 
     # characters that are not macro-characters and can be used to begin a symbol
-    nonmacro = r'\\.|[\w!$%&*+-/<=>?@^{}~|]'
-    constituent = nonmacro + '|[#.:]'
-    terminated = r'(?=[ "()\'\n,;`])'  # whitespace or terminating macro characters
+    nonmacro = r'\\.|[a-zA-Z_!$%&*+-/<=>?@^{}~|]'
+    constituent = nonmacro + '|[0-9#.:]'
+    terminated = r'(?=[ "()\]\'\n,;`])'  # whitespace or terminating macro characters
 
     # symbol token, reverse-engineered from hyperspec
     # Take a deep breath...
