@@ -38,6 +38,7 @@ STYLE_MAP = {
     'igor':     'igor::IgorStyle',
     'paraiso-light': 'paraiso_light::ParaisoLightStyle',
     'paraiso-dark': 'paraiso_dark::ParaisoDarkStyle',
+    'lovelace': 'lovelace::LovelaceStyle',
 }
 
 
