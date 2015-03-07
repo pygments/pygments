@@ -216,8 +216,11 @@ class Python3Lexer(RegexLexer):
             'assert', 'break', 'continue', 'del', 'elif', 'else', 'except',
             'finally', 'for', 'global', 'if', 'lambda', 'pass', 'raise',
             'nonlocal', 'return', 'try', 'while', 'yield', 'yield from', 'as',
-            'with', 'True', 'False', 'None'), suffix=r'\b'),
+            'with'), suffix=r'\b'),
          Keyword),
+        (words((
+            'True', 'False', 'None'), suffix=r'\b'),
+         Keyword.Constant),
     ]
     tokens['builtins'] = [
         (words((
