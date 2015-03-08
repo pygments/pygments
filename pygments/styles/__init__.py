@@ -39,6 +39,8 @@ STYLE_MAP = {
     'paraiso-light': 'paraiso_light::ParaisoLightStyle',
     'paraiso-dark': 'paraiso_dark::ParaisoDarkStyle',
     'lovelace': 'lovelace::LovelaceStyle',
+    'algol':    'algol::AlgolStyle',
+    'algol_nu': 'algol_nu::Algol_NuStyle',
 }
 
 
