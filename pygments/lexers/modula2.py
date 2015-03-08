@@ -1564,5 +1564,3 @@ class Modula2Lexer(RegexLexer):
 
             # return result
             yield index, token, value
-
-# end of modula2.py
