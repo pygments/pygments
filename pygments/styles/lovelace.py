@@ -14,6 +14,7 @@ from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
     Number, Operator, Punctuation, Generic, Whitespace
 
+
 class LovelaceStyle(Style):
     """
     The style used in Lovelace interactive learning environment. Tries to avoid
@@ -30,7 +31,7 @@ class LovelaceStyle(Style):
     _LABEL_CYAN =    '#289870'
     _EXCEPT_YELLOW = '#908828'
 
-    default_style = '#222222'
+    default_style =  '#222222'
 
     styles = {
         Whitespace:          '#a89028',
@@ -48,7 +49,7 @@ class LovelaceStyle(Style):
         Operator.Word:       _OW_PURPLE,
 
         Punctuation:         '#888888',
-        
+
         Name.Attribute:      _NAME_GREEN,
         Name.Builtin:        _NAME_GREEN,
         Name.Builtin.Pseudo: 'italic',
