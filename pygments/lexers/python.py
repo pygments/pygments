@@ -41,7 +41,8 @@ class PythonLexer(RegexLexer):
             (r'^(\s*)([rRuU]{,2}"""(?:.|\n)*?""")', bygroups(Text, String.Doc)),
             (r"^(\s*)([rRuU]{,2}'''(?:.|\n)*?''')", bygroups(Text, String.Doc)),
             (r'[^\S\n]+', Text),
-            (r'#.*$', Comment),
+            (r'\A#!.+$', Comment.Hashbang),
+            (r'#.*$', Comment.Single),
             (r'[]{}:(),;[]', Punctuation),
             (r'\\\n', Text),
             (r'\\', Text),
@@ -216,8 +217,11 @@ class Python3Lexer(RegexLexer):
             'assert', 'break', 'continue', 'del', 'elif', 'else', 'except',
             'finally', 'for', 'global', 'if', 'lambda', 'pass', 'raise',
             'nonlocal', 'return', 'try', 'while', 'yield', 'yield from', 'as',
-            'with', 'True', 'False', 'None'), suffix=r'\b'),
+            'with'), suffix=r'\b'),
          Keyword),
+        (words((
+            'True', 'False', 'None'), suffix=r'\b'),
+         Keyword.Constant),
     ]
     tokens['builtins'] = [
         (words((
