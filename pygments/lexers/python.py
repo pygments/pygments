@@ -246,7 +246,7 @@ class Python3Lexer(RegexLexer):
             'ImportWarning', 'IndentationError', 'IndexError', 'KeyError',
             'KeyboardInterrupt', 'LookupError', 'MemoryError', 'NameError',
             'NotImplementedError', 'OSError', 'OverflowError',
-            'PendingDeprecationWarning', 'ReferenceError',
+            'PendingDeprecationWarning', 'ReferenceError', 'ResourceWarning',
             'RuntimeError', 'RuntimeWarning', 'StopIteration',
             'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError',
             'TypeError', 'UnboundLocalError', 'UnicodeDecodeError',
