@@ -414,7 +414,7 @@ class MqlLexer(CppLexer):
 
 class ArduinoLexer(CppLexer):
     """
-    For `Arduino® <https://arduino.cc/>`_ source.
+    For `Arduino(tm) <https://arduino.cc/>`_ source.
 
     This is an extension of the CppLexer, as the Arduino® Language is a superset
     of C++
