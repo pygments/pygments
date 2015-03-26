@@ -9,11 +9,11 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include
+from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 
-__all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer']
+__all__ = ['BrainfuckLexer', 'BefungeLexer', 'CAmkESLexer', 'RedcodeLexer']
 
 
 class BrainfuckLexer(RegexLexer):
@@ -74,6 +74,64 @@ class BefungeLexer(RegexLexer):
             (r'[pg&~=@iotsy]', Keyword),          # Misc
             (r'[()A-Z]', Comment),                # Fingerprints
             (r'\s+', Text),                       # Whitespace doesn't matter
+        ],
+    }
+
+
+class CAmkESLexer(RegexLexer):
+    """
+    Basic lexer for the input language for the
+    `CAmkES <https://sel4.systems/CAmkES/>`_ component platform.
+    """
+    name = 'CAmkES'
+    aliases = ['camkes', 'idl4']
+    filenames = ['*.camkes', '*.idl4']
+
+    tokens = {
+        'root':[
+            # C pre-processor directive
+            (r'^\s*#.*\n', Comment.Preproc),
+
+            # Whitespace, comments
+            (r'\s+', Text),
+            (r'/\*(.|\n)*?\*/', Comment),
+            (r'//.*\n', Comment),
+
+            (r'[\[\(\){},\.;=\]]', Punctuation),
+
+            (words(('assembly', 'attribute', 'component', 'composition',
+                    'configuration', 'connection', 'connector', 'consumes',
+                    'control', 'dataport', 'Dataport', 'emits', 'event',
+                    'Event', 'from', 'group', 'hardware', 'has', 'interface',
+                    'Interface', 'maybe', 'procedure', 'Procedure', 'provides',
+                    'template', 'to', 'uses'), suffix=r'\b'), Keyword),
+
+            (words(('bool', 'boolean', 'Buf', 'char', 'character', 'double',
+                    'float', 'in', 'inout', 'int', 'int16_6', 'int32_t',
+                    'int64_t', 'int8_t', 'integer', 'mutex', 'out', 'real',
+                    'refin', 'semaphore', 'signed', 'string', 'uint16_t',
+                    'uint32_t', 'uint64_t', 'uint8_t', 'uintptr_t', 'unsigned',
+                    'void'), suffix=r'\b'), Keyword.Type),
+
+            # Recognised attributes
+            (r'[a-zA-Z_]\w*_(priority|domain|buffer)', Keyword.Reserved),
+            (words(('dma_pool', 'from_access', 'to_access'), suffix=r'\b'),
+                Keyword.Reserved),
+
+            # CAmkES-level include
+            (r'import\s+(<[^>]*>|"[^"]*");', Comment.Preproc),
+
+            # C-level include
+            (r'include\s+(<[^>]*>|"[^"]*");', Comment.Preproc),
+
+            # Literals
+            (r'0[xX][\da-fA-F]+', Number.Hex),
+            (r'-?[\d]+', Number),
+            (r'-?[\d]+\.[\d]+', Number.Float),
+            (r'"[^"]*"', String),
+
+            # Identifiers
+            (r'[a-zA-Z_]\w*', Name),
         ],
     }
 
