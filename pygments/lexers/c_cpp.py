@@ -202,7 +202,7 @@ class CppLexer(CFamilyLexer):
                 'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
                 'private', 'protected', 'public', 'reinterpret_cast',
                 'restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
-                'typeid', 'typename', 'using', 'virtual',
+                'try', 'typeid', 'typename', 'using', 'virtual',
                 'constexpr', 'nullptr', 'decltype', 'thread_local',
                 'alignas', 'alignof', 'static_assert', 'noexcept', 'override',
                 'final'), suffix=r'\b'), Keyword),
