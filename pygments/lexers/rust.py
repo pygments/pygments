@@ -18,14 +18,14 @@ __all__ = ['RustLexer']
 
 class RustLexer(RegexLexer):
     """
-    Lexer for the Rust programming language (version 0.9).
+    Lexer for the Rust programming language (version 1.0).
 
     .. versionadded:: 1.6
     """
     name = 'Rust'
     filenames = ['*.rs']
     aliases = ['rust']
-    mimetypes = ['text/x-rustsrc']
+    mimetypes = ['application/x-rust']
 
     tokens = {
         'root': [
