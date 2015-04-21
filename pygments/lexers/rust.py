@@ -32,8 +32,11 @@ class RustLexer(RegexLexer):
             # Whitespace and Comments
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
-            (r'//[/!](.*?)\n', Comment.Doc),
+            (r'//!.*?\n', String.Doc),
+            (r'///(\n|[^/].*?\n)', String.Doc),
             (r'//(.*?)\n', Comment.Single),
+            (r'/\*\*(\n|[^/*])', String.Doc, 'doccomment'),
+            (r'/\*!', String.Doc, 'doccomment'),
             (r'/\*', Comment.Multiline, 'comment'),
 
             # Macro parameters
@@ -135,6 +138,12 @@ class RustLexer(RegexLexer):
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline),
+        ],
+        'doccomment': [
+            (r'[^*/]+', String.Doc),
+            (r'/\*', String.Doc, '#push'),
+            (r'\*/', String.Doc, '#pop'),
+            (r'[*/]', String.Doc),
         ],
         'number_lit': [
             (r'[ui](8|16|32|64|size)', Keyword, '#pop'),
