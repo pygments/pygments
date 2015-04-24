@@ -36,7 +36,7 @@ class JavascriptLexer(RegexLexer):
 
     name = 'JavaScript'
     aliases = ['js', 'javascript']
-    filenames = ['*.js', ]
+    filenames = ['*.js', '*.jsm', ]
     mimetypes = ['application/javascript', 'application/x-javascript',
                  'text/x-javascript', 'text/javascript', ]
 
