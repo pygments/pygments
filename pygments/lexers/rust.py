@@ -69,12 +69,13 @@ class RustLexer(RegexLexer):
 
                 # Reexported types and traits
                 'Box',
+                'ToOwned',
                 'Clone',
                 'PartialEq', 'PartialOrd', 'Eq', 'Ord',
                 'AsRef', 'AsMut', 'Into', 'From',
-                'DoubleEndedIterator',
-                'ExactSizeIterator',
-                'Iterator', 'Extend',
+                'Default',
+                'Iterator', 'Extend', 'IntoIterator',
+                'DoubleEndedIterator', 'ExactSizeIterator',
                 'Option',
                 'Some', 'None',
                 'Result',
