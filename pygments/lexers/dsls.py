@@ -13,10 +13,11 @@ import re
 
 from pygments.lexer import RegexLexer, bygroups, words, include, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Literal
+    Number, Punctuation, Literal, Whitespace
 
 __all__ = ['ProtoBufLexer', 'BroLexer', 'PuppetLexer', 'RslLexer',
-           'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer']
+           'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer',
+           'CrmshLexer']
 
 
 class ProtoBufLexer(RegexLexer):
@@ -512,3 +513,70 @@ class PanLexer(RegexLexer):
             include('root'),
         ],
     }
+
+
+class CrmshLexer(RegexLexer):
+    """
+    Lexer for `crmsh <http://crmsh.github.io/>`_ configuration files
+    for Pacemaker clusters.
+
+    .. versionadded:: 1.0
+    """
+    name = 'Crmsh'
+    aliases = ['crmsh', 'pcmk']
+    filenames = ['*.crmsh', '*.pcmk']
+    mimetypes = []
+
+    elem = (r'node|primitive|group|clone|ms|location|colocation|order|'
+        r'fencing_topology|'
+        r'rsc_ticket|rsc_template|property|rsc_defaults|op_defaults|'
+        r'acl_target|acl_group|user|role')
+    sub = (r'params|meta|operations|op|rule|attributes|utilization')
+    acl = (r'read|write|deny')
+    acl_mod = (r'tag|ref|xpath')
+    bin_rel=(r'and|or')
+    un_ops=(r'defined|not_defined')
+    bin_ops=(r'lt|gt|lte|gte|eq|ne')
+    val_qual=(r'string|version|number')
+    date_exp=(r'in_range|date|spec')
+    rsc_role_action=(r'Master|Started|Slave|Stopped|'
+        r'start|promote|demote|stop')
+
+    tokens = {
+        'root': [
+            # attr=value (nvpair)
+            (r'([\w#$-]+)(=)("(?:""|[^"])*"|\S+)',
+                bygroups(Name.Attribute, Punctuation, String)),
+            # need this construct, otherwise numeric node ids
+            # are matched as scores
+            # elem id:
+            (r'(%s)(\s+)([\w#$-]+)(:)' % elem,
+                bygroups(Keyword, Whitespace, Name, Punctuation)),
+            # scores
+            (r'([0-9]+|[+-]?inf):', Number),
+            # keywords (elements and other)
+            (r'(%s|%s|%s)(?![\w#$-])' % (elem,sub,acl), Keyword),
+            # binary operators
+            (r'(?:%s:)?%s(?![\w#$-])' % (val_qual,bin_ops), \
+                Operator.Word),
+            # other operators
+            (r'(%s|%s|%s)(?![\w#$-])' % (bin_rel,un_ops,date_exp), \
+                Operator.Word),
+            # builtin attributes (e.g. #uname)
+            (r'#[a-z]+(?![\w#$-])', Name.Builtin),
+            # rsc_id[:(role|action)]
+            (r'([\w#$-]+)(?:(:)(%s))?' % rsc_role_action, \
+                bygroups(Name, Punctuation, Operator.Word)),
+            # acl_mod:blah
+            (r'(%s)(:)("(?:""|[^"])*"|\S+)' % acl_mod, \
+                bygroups(Operator.Word, Punctuation, Name)),
+            # ids, and everything else not matched above
+            (r'([\w#$-]+)(?![\w#$-])', Name),
+            # punctuation
+            (r'(\\(?=\n)|[[\](){}/:])', Punctuation),
+            (r'#.*\n', Comment),
+            (r'\s+|\n', Whitespace),
+        ],
+    }
+
+# vim:ts=4:sw=4:et:
