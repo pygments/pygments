@@ -1,5 +1,7 @@
 node 167906355: sle12-a
-node 167906357: sle12-c
+node 167906357: sle12-c \
+	description="The second node" \
+	utilization memory=64
 primitive fs1 Filesystem \
 	params device="/dev/nfs-vg/fs1" directory="/srv/nfs" fstype=ext3 \
 	op monitor interval=10s
@@ -19,6 +21,24 @@ primitive s-libvirt stonith:external/libvirt \
 	op monitor interval=5m timeout=60s
 primitive virtual-ip IPaddr2 \
 	params ip=10.2.12.100
+primitive xen0 @vm_scheme1 xmfile=/etc/xen/vm/xen0
+primitive very-primitive Dummy \
+  params 3: rule #uname eq node1 interface=eth1 \
+  params 2: rule #uname string:eq node2 interface=eth2 port=8888 \
+  params 1: interface=eth0 port=9999 \
+  operations $id-ref=those_other_ops
+fencing_topology poison-pill power
+fencing_topology \
+    node-a: poison-pill power \
+	node-b: ipmi serial
+role nfs_admin \
+    write meta:nfs-server:target-role \
+    write meta:nfs-server:is-managed \
+    write location:nfs-server \
+    read ref:nfs-server
+acl_target joe \
+        nfs_admin
+tag nfs: nfs-server nfs-vg
 group nfs-disk nfs-vg fs1
 group nfs-srv virtual-ip nfs-server
 ms ms_drbd_nfs p_drbd_nfs \
