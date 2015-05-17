@@ -145,7 +145,7 @@ Regex Flags
 
 You can either define regex flags locally in the regex (``r'(?x)foo bar'``) or
 globally by adding a `flags` attribute to your lexer class.  If no attribute is
-defined, it defaults to `re.MULTILINE`.  For more informations about regular
+defined, it defaults to `re.MULTILINE`.  For more information about regular
 expression flags see the page about `regular expressions`_ in the Python
 documentation.
 
