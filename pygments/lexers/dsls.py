@@ -165,9 +165,9 @@ class ThriftLexer(RegexLexer):
              Keyword.Reserved),
         ],
         'numbers': [
+            (r'[+-]?0x[0-9A-Fa-f]+', Number.Hex),
+            (r'[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?', Number.Float),
             (r'[+-]?[0-9]+', Number.Integer),
-            (r'[+-]?"0x"[0-9A-Fa-f]+', Number.Hex),
-            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+', Number.Float),
         ],
     }
 
