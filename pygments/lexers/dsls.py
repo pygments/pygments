@@ -539,8 +539,8 @@ class CrmshLexer(RegexLexer):
     acl = words(('read', 'write', 'deny'), suffix=r'(?![\w#$-])')
     bin_rel = words(('and', 'or'), suffix=r'(?![\w#$-])')
     un_ops = words(('defined', 'not_defined'), suffix=r'(?![\w#$-])')
-    date_exp = words(('in_range', 'date', 'spec'), suffix=r'(?![\w#$-])')
-    acl_mod = (r'(?:tag|ref|xpath)')
+    date_exp = words(('in_range', 'date', 'spec', 'in'), suffix=r'(?![\w#$-])')
+    acl_mod = (r'(?:tag|ref|reference|attribute|type|xpath)')
     bin_ops = (r'(?:lt|gt|lte|gte|eq|ne)')
     val_qual = (r'(?:string|version|number)')
     rsc_role_action=(r'(?:Master|Started|Slave|Stopped|'
@@ -548,6 +548,7 @@ class CrmshLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'^#.*\n?', Comment),
             # attr=value (nvpair)
             (r'([\w#$-]+)(=)("(?:""|[^"])*"|\S+)',
                 bygroups(Name.Attribute, Punctuation, String)),
@@ -572,17 +573,14 @@ class CrmshLexer(RegexLexer):
             # builtin attributes (e.g. #uname)
             (r'#[a-z]+(?![\w#$-])', Name.Builtin),
             # acl_mod:blah
-            (r'(%s)(:)("(?:""|[^"])*"|\S+)' % acl_mod, \
+            (r'(%s)(:)("(?:""|[^"])*"|\S+)' % acl_mod,
                 bygroups(Keyword, Punctuation, Name)),
             # rsc_id[:(role|action)]
             # NB: this matches all other identifiers
-            (r'([\w#$-]+)(?:(:)(%s))?(?![\w#$-])' % rsc_role_action, \
+            (r'([\w#$-]+)(?:(:)(%s))?(?![\w#$-])' % rsc_role_action,
                 bygroups(Name, Punctuation, Operator.Word)),
             # punctuation
             (r'(\\(?=\n)|[[\](){}/:@])', Punctuation),
-            (r'#.*\n', Comment),
             (r'\s+|\n', Whitespace),
         ],
     }
-
-# vim:ts=4:sw=4:et:
