@@ -29,6 +29,12 @@ class RustLexer(RegexLexer):
 
     tokens = {
         'root': [
+            # rust allows a file to start with a shebang, but if the first line
+            # starts with #![ then it’s not a shebang but a crate attribute.
+            (r'#![^[\r\n].*$', Comment.Preproc),
+            default('base'),
+        ],
+        'base': [
             # Whitespace and Comments
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
