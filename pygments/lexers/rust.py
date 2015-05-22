@@ -25,7 +25,7 @@ class RustLexer(RegexLexer):
     name = 'Rust'
     filenames = ['*.rs']
     aliases = ['rust']
-    mimetypes = ['application/x-rust']
+    mimetypes = ['text/rust']
 
     tokens = {
         'root': [
