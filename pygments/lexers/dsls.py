@@ -97,8 +97,8 @@ class ThriftLexer(RegexLexer):
         'root': [
             include('whitespace'),
             include('comments'),
-            (r'\".*?\"', String),
-            (r'\'.*?\'', String),
+            (r'"', String.Double, 'dqs'),
+            (r'\'', String.Single, 'sqs'),
             (r'(namespace)(\s+)',
                 bygroups(Keyword.Namespace, Text.Whitespace), 'namespace'),
             (r'(enum|union|struct|service|exception)(\s+)',
@@ -122,6 +122,19 @@ class ThriftLexer(RegexLexer):
             (r'//.*?\n', Comment),
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
         ],
+        'string': [
+            (r'\\([\\nrt"\'])', String.Escape), # escape characters
+            (r'[^\\"\\\'\n]+', String),         # all other characters
+            (r'\\', String),                    # literal backslash
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            include('string')
+        ],
+        'sqs': [
+            (r"'", String, '#pop'),
+            include('string')
+        ],
         'namespace': [
             (r'[a-z\*](\.[a-zA-Z_0-9]|[a-zA-Z_0-9])*', Name.Namespace, '#pop'),
             default('#pop'),
@@ -131,13 +144,17 @@ class ThriftLexer(RegexLexer):
             default('#pop'),
         ],
         'keywords': [
+            (r'(async|oneway|extends|throws|required|optional)\b', Keyword),
+            (r'(true|false)\b', Keyword.Constant),
+            (r'(const|typedef)\b', Keyword.Declaration),
             (words((
-                'async', 'oneway', 'extends', 'throws', 'required',
-                'optional'), suffix=r'\b'),
-             Keyword),
-            (words((
-                'typedef', 'const'), suffix=r'\b'),
-             Keyword.Declaration),
+                'cpp_namespace', 'cpp_include', 'cpp_type', 'java_package',
+                'cocoa_prefix', 'csharp_namespace', 'delphi_namespace',
+                'php_namespace', 'py_module', 'perl_package',
+                'ruby_namespace', 'smalltalk_category', 'smalltalk_prefix',
+                'xsd_all', 'xsd_optional', 'xsd_nillable', 'xsd_namespace',
+                'xsd_attrs', 'include'), suffix=r'\b'),
+             Keyword.Namespace),
             (words((
                 'void', 'bool', 'byte', 'i16', 'i32', 'i64', 'double',
                 'string', 'binary', 'void', 'map', 'list', 'set', 'slist',
@@ -165,8 +182,8 @@ class ThriftLexer(RegexLexer):
              Keyword.Reserved),
         ],
         'numbers': [
+            (r'[+-]?(\d+\.\d+([eE][+-]?\d+)?|\.?\d+[eE][+-]?\d+)', Number.Float),
             (r'[+-]?0x[0-9A-Fa-f]+', Number.Hex),
-            (r'[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?', Number.Float),
             (r'[+-]?[0-9]+', Number.Integer),
         ],
     }
