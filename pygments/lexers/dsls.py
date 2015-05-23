@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexer import RegexLexer, bygroups, words, include, default, \
-    this, using
+    this, using, combined
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Literal
 
@@ -97,8 +97,8 @@ class ThriftLexer(RegexLexer):
         'root': [
             include('whitespace'),
             include('comments'),
-            (r'"', String.Double, 'dqs'),
-            (r'\'', String.Single, 'sqs'),
+            (r'"', String.Double, combined('stringescape', 'dqs')),
+            (r'\'', String.Single, combined('stringescape', 'sqs')),
             (r'(namespace)(\s+)',
                 bygroups(Keyword.Namespace, Text.Whitespace), 'namespace'),
             (r'(enum|union|struct|service|exception)(\s+)',
@@ -122,18 +122,16 @@ class ThriftLexer(RegexLexer):
             (r'//.*?\n', Comment),
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
         ],
-        'string': [
-            (r'\\([\\nrt"\'])', String.Escape), # escape characters
-            (r'[^\\"\\\'\n]+', String),         # all other characters
-            (r'\\', String),                    # literal backslash
+        'stringescape': [
+            (r'\\([\\nrt"\'])', String.Escape),
         ],
         'dqs': [
-            (r'"', String, '#pop'),
-            include('string')
+            (r'"', String.Double, '#pop'),
+            (r'[^\\"\n]+', String.Double),
         ],
         'sqs': [
-            (r"'", String, '#pop'),
-            include('string')
+            (r"'", String.String, '#pop'),
+            (r'[^\\\'\n]+', String.Single),
         ],
         'namespace': [
             (r'[a-z\*](\.[a-zA-Z_0-9]|[a-zA-Z_0-9])*', Name.Namespace, '#pop'),
