@@ -130,7 +130,7 @@ class ThriftLexer(RegexLexer):
             (r'[^\\"\n]+', String.Double),
         ],
         'sqs': [
-            (r"'", String.String, '#pop'),
+            (r"'", String.Single, '#pop'),
             (r'[^\\\'\n]+', String.Single),
         ],
         'namespace': [
