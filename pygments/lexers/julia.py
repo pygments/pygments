@@ -91,7 +91,7 @@ class JuliaLexer(RegexLexer):
 
             # names
             (r'@[\w.]+', Name.Decorator),
-            (ur'[a-zA-Z_\u00A1-\uFFFF][a-zA-Z_0-9\u00A1-\uFFFF]*!*', Name),
+            (ur'[a-zA-Z_\u00A1-\U0010FFFF][a-zA-Z_0-9\u00A1-\U0010FFFF]*!*', Name),
 
             # numbers
             (r'(\d+(_\d+)+\.\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
