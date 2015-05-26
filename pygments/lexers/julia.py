@@ -30,7 +30,7 @@ class JuliaLexer(RegexLexer):
     filenames = ['*.jl']
     mimetypes = ['text/x-julia', 'application/x-julia']
 
-    flags = re.UNICODE
+    flags = re.MULTILINE | re.UNICODE
 
     builtins = [
         'exit', 'whos', 'edit', 'load', 'is', 'isa', 'isequal', 'typeof', 'tuple',
