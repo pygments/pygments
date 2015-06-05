@@ -731,9 +731,9 @@ class QmlLexer(RegexLexer):
     # JavascriptLexer above.
 
     name = 'QML'
-    aliases = ['qml']
-    filenames = ['*.qml']
-    mimetypes = ['application/x-qml']
+    aliases = ['qml', 'qbs']
+    filenames = ['*.qml', '*.qbs']
+    mimetypes = ['application/x-qml', 'application/x-qt.qbs+qml']
 
     # pasted from JavascriptLexer, with some additions
     flags = re.DOTALL | re.MULTILINE
