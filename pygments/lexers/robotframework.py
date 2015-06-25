@@ -262,7 +262,7 @@ class TestCaseSetting(Setting):
 
 class KeywordSetting(TestCaseSetting):
     _keyword_settings = ('teardown',)
-    _other_settings = ('documentation', 'arguments', 'return', 'timeout')
+    _other_settings = ('documentation', 'arguments', 'return', 'timeout', 'tags')
 
 
 class Variable(Tokenizer):
