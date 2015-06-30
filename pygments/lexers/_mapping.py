@@ -144,7 +144,7 @@ LEXERS = {
     'GroffLexer': ('pygments.lexers.markup', 'Groff', ('groff', 'nroff', 'man'), ('*.[1234567]', '*.man'), ('application/x-troff', 'text/troff')),
     'GroovyLexer': ('pygments.lexers.jvm', 'Groovy', ('groovy',), ('*.groovy',), ('text/x-groovy',)),
     'HamlLexer': ('pygments.lexers.html', 'Haml', ('haml',), ('*.haml',), ('text/x-haml',)),
-    'HandlebarsHtmlLexer': ('pygments.lexers.templates', 'HTML+Handlebars', ('html+handlebars',), ('*.handlebars', '*.hbs'), ('text/html+handlebars', 'text/x-handlebars-template')),
+    'HandlebarsHtmlLexer': ('pygments.lexers.templates', 'HTML+Handlebars', ('html+handlebars', 'hbs'), ('*.handlebars', '*.hbs'), ('text/html+handlebars', 'text/x-handlebars-template')),
     'HandlebarsLexer': ('pygments.lexers.templates', 'Handlebars', ('handlebars',), (), ()),
     'HaskellLexer': ('pygments.lexers.haskell', 'Haskell', ('haskell', 'hs'), ('*.hs',), ('text/x-haskell',)),
     'HaxeLexer': ('pygments.lexers.haxe', 'Haxe', ('hx', 'haxe', 'hxsl'), ('*.hx', '*.hxsl'), ('text/haxe', 'text/x-haxe', 'text/x-hx')),
