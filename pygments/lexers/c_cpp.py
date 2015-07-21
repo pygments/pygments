@@ -87,15 +87,17 @@ class CFamilyLexer(RegexLexer):
             (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
              r'([a-zA-Z_]\w*)'             # method name
              r'(\s*\([^;]*?\))'            # signature
-             r'(' + _ws + r')?(\{)',
+             r'([^;]*)?'
+             r'(\{)',
              bygroups(using(this), Name.Function, using(this), using(this),
-                      Punctuation),
+                      Keyword, Punctuation),
              'function'),
             # function declarations
             (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
              r'([a-zA-Z_]\w*)'             # method name
              r'(\s*\([^;]*?\))'            # signature
-             r'(' + _ws + r')?(;)',
+             r'([^;]*)?'
+             r'(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
             default('statement'),
