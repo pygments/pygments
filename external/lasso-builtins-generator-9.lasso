@@ -53,8 +53,8 @@ database_initialize
 // This forces all possible available types and methods to be registered
 local(srcs =
 	(:
-		dir(sys_masterHomePath + 'LassoLibraries/builtins/')->eachFilePath,
-		dir(sys_masterHomePath + 'LassoLibraries/lassoserver/')->eachFilePath
+		dir(sys_masterHomePath + '/LassoLibraries/builtins/')->eachFilePath,
+		dir(sys_masterHomePath + '/LassoLibraries/lassoserver/')->eachFilePath
 	)
 )
 
@@ -107,7 +107,7 @@ do {
 }
 with trait in #traitsList
 do {
-	with method in tie(#trait->getType->provides, #trait->getType->requires)
+	with method in #trait->getType->provides
 	where #method->typeName == #trait		// skip inherited methods
 	let name = #method->methodName
 	where not #name->asString->endsWith('=')		// skip setter methods
@@ -149,9 +149,9 @@ do {
 	#f->writeString(#i->second)
 	with t in (#i->first)
 	let ts = #t->asString
+	order by #ts
 	do {
-		#ts->lowercase
-		#f->writeString("        '"+#ts+"',\n")
+		#f->writeString("        '"+#ts->lowercase&asString+"',\n")
 	}
 }
 
