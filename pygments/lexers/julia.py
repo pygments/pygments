@@ -30,6 +30,8 @@ class JuliaLexer(RegexLexer):
     filenames = ['*.jl']
     mimetypes = ['text/x-julia', 'application/x-julia']
 
+    flags = re.MULTILINE | re.UNICODE
+
     builtins = [
         'exit', 'whos', 'edit', 'load', 'is', 'isa', 'isequal', 'typeof', 'tuple',
         'ntuple', 'uid', 'hash', 'finalizer', 'convert', 'promote', 'subtype',
@@ -89,7 +91,7 @@ class JuliaLexer(RegexLexer):
 
             # names
             (r'@[\w.]+', Name.Decorator),
-            (r'[a-zA-Z_]\w*', Name),
+            (ur'[a-zA-Z_\u00A1-\U0010FFFF][a-zA-Z_0-9\u00A1-\U0010FFFF]*!*', Name),
 
             # numbers
             (r'(\d+(_\d+)+\.\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
