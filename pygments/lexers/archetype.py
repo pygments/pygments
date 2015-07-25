@@ -90,8 +90,8 @@ class AtomsLexer(RegexLexer):
         ],
         'any_code': [
             include('archetype_id'),
-            (r'[a-z_][\w.]*[0-9]+', Name.Decorator),                # if it is a code
-            (r'[a-z_][\w.]*', Name.Class),                          # if it is tuple with attribute names
+            (r'[a-z_]\w*[0-9.]+(@[^\]]+)?', Name.Decorator),        # if it is a code
+            (r'[a-z_]\w*', Name.Class),                             # if it is tuple with attribute names
             (r'[0-9]+', Text),                                      # if it is an integer, i.e. Xpath child index
             (r'\|', Punctuation, 'code_rubric'),
             (r'\]', Punctuation, '#pop'),
@@ -168,7 +168,7 @@ class CadlLexer(AtomsLexer):
         ],
         'root': [
             include('whitespace'),
-            (r'(cardinality|existence|occurrences|group|include|exclude|allow_archetype|use_archetype)\W', Keyword.Type),
+            (r'(cardinality|existence|occurrences|group|include|exclude|allow_archetype|use_archetype|use_node)\W', Keyword.Type),
             (r'(and|or|not|there_exists|xor|implies|for_all)\W', Keyword.Type),
             (r'(after|before|closed)\W', Keyword.Type),
             (r'(not)\W', Operator),
