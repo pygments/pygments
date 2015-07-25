@@ -92,6 +92,7 @@ class AtomsLexer(RegexLexer):
             include('archetype_id'),
             (r'[a-z_][\w.]*[0-9]+', Name.Decorator),                # if it is a code
             (r'[a-z_][\w.]*', Name.Class),                          # if it is tuple with attribute names
+            (r'[0-9]+', Text),                                      # if it is an integer, i.e. Xpath child index
             (r'\|', Punctuation, 'code_rubric'),
             (r'\]', Punctuation, '#pop'),
             (r'\s*,\s*', Punctuation),                              # handle use_archetype statement
