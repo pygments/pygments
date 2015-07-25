@@ -46,9 +46,9 @@ class AtomsLexer(RegexLexer):
             (r'\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{4}|Z)?', Literal.Date),             # ISO 8601 time
             (r'P((\d*(\.\d+)?[YyMmWwDd]){1,3}(T(\d*(\.\d+)?[HhMmSs]){,3})?|T(\d*(\.\d+)?[HhMmSs]){,3})', Literal.Date),      # ISO 8601 duration
             (r'[+-]?(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+', Number.Float),
-            (r'[+-]?(\d+)*\.\d+', Number.Float),
+            (r'[+-]?(\d+)*\.\d+%?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'[+-]?\d+', Number.Integer),
+            (r'[+-]?\d+%?', Number.Integer),
         ],
         'values': [
             include('ordered_values'),
@@ -88,9 +88,10 @@ class AtomsLexer(RegexLexer):
             (r'\+/-', Punctuation),                                 # handle +/-
             (r'\s*', Text),
         ],
-        'id_code': [
+        'any_code': [
             include('archetype_id'),
-            (r'[a-z_][\w.]*', Name.Decorator),
+            (r'[a-z_][\w.]*[0-9]+', Name.Decorator),                # if it is a code
+            (r'[a-z_][\w.]*', Name.Class),                          # if it is tuple with attribute names
             (r'\|', Punctuation, 'code_rubric'),
             (r'\]', Punctuation, '#pop'),
             (r'\s*,\s*', Punctuation),                              # handle use_archetype statement
@@ -119,10 +120,11 @@ class OdinLexer(AtomsLexer):
     tokens = {
         'path': [
             (r'>', Punctuation, '#pop'),
-            (r'[a-z_]\w*', Name.Class),                             # attribute name
+            (r'[a-z_]\w*', Name.Class),                         # attribute name
             (r'/', Punctuation),
             (r'\[', Punctuation, 'key'),
             (r'\s*,\s*', Punctuation, '#pop'),
+            (r'\s+', Text, '#pop'),
         ],
         'key': [
             include('values'),
@@ -160,7 +162,7 @@ class CadlLexer(AtomsLexer):
         'path': [
             (r'[a-z_]\w*', Name.Class),                             # attribute name
             (r'/', Punctuation),
-            (r'\[', Punctuation, 'id_code'),
+            (r'\[', Punctuation, 'any_code'),
             (r'\s*', Punctuation, '#pop'),
         ],
         'root': [
@@ -176,14 +178,14 @@ class CadlLexer(AtomsLexer):
             (r'(\{)(\s*\^[^}]+\^\s*)(\})', bygroups (Punctuation, String.Regex, Punctuation)), # regex in slot or as string constraint
             (r'/', Punctuation, 'path'),  
             (r'(\{)((?:\d+\.\.)?(?:\d+|\*))((?:\s*;\s*(?:ordered|unordered|unique)){,2})(\})', bygroups (Punctuation, Number, Number, Punctuation)), # for cardinality etc
-            (r'\[\{', Punctuation),                                     # [{ is start of a tuple
+            (r'\[\{', Punctuation),                                     # [{ is start of a tuple value
             (r'\}\]', Punctuation),                            
             (r'\{', Punctuation),
             (r'\}', Punctuation),
             include('constraint_values'),
             (r'[A-Z]\w+(<[A-Z]\w+([A-Za-z_<>]*)?>)?',  Name.Class),     # type name
             (r'[a-z_]\w*', Name.Class),                                 # attribute name
-            (r'\[', Punctuation, 'id_code'),                            
+            (r'\[', Punctuation, 'any_code'),                            
             (r'(~|//|\\\\|\+|-|/|\*|\^|!=|=|<=|>=|<|>]?)', Operator),
             (r'\(', Punctuation),
             (r'\)', Punctuation),
