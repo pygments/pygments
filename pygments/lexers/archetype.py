@@ -17,7 +17,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include, bygroups, using
+from pygments.lexer import RegexLexer, include, bygroups, using, default
 from pygments.token import Text, Comment, Name, Literal, Number, String, \
     Punctuation, Keyword, Operator, Generic
 
@@ -86,7 +86,7 @@ class AtomsLexer(RegexLexer):
         ],
         'uri': [
             (r'[,>\s]', Punctuation, '#pop'),                       # effective URI terminators
-            (r'[^>\s,]*', Literal),
+            (r'[^>\s,]+', Literal),
         ],
         'interval': [
             (r'\|', Punctuation, '#pop'),
@@ -94,7 +94,7 @@ class AtomsLexer(RegexLexer):
             (r'\.\.', Punctuation),
             (r'[<>=] *', Punctuation),
             (r'\+/-', Punctuation),                                 # handle +/-
-            (r'\s*', Text),
+            (r'\s+', Text),
         ],
         'any_code': [
             include('archetype_id'),
@@ -107,7 +107,7 @@ class AtomsLexer(RegexLexer):
         ],
         'code_rubric': [
             (r'\|', Punctuation, '#pop'),
-            (r'[^|]*', String),
+            (r'[^|]+', String),
         ],
         'adl14_code_constraint': [
             (r'\]', Punctuation, '#pop'),
@@ -144,7 +144,7 @@ class OdinLexer(AtomsLexer):
         ],
         'type_cast': [
             (r'\)', Punctuation, '#pop'),
-            (r'[^)]*',  Name.Class),
+            (r'[^)]+',  Name.Class),
         ],
         'root': [
             include('whitespace'),
@@ -178,7 +178,7 @@ class CadlLexer(AtomsLexer):
             (r'[a-z_]\w*', Name.Class),                                 # attribute name
             (r'/', Punctuation),
             (r'\[', Punctuation, 'any_code'),
-            (r'\s*', Punctuation, '#pop'),
+            (r'\s+', Punctuation, '#pop'),
         ],
         'root': [
             include('whitespace'),
@@ -239,17 +239,17 @@ class AdlLexer(AtomsLexer):
              r'component_terminologies|revision_history)[ \t]*\n', Generic.Heading),
             (r'^(definition)[ \t]*\n', Generic.Heading, 'cadl_section'),
             (r'^([ \t]*|[ \t]+.*)\n', using(OdinLexer)),
-            (r'^([^"]*")(>[ \t]*\n)', bygroups(String, Punctuation)),
-            (r'^.*\n', String),
-            ('', Text, '#pop'),
+            (r'^([^"]*")(>[ \t]*\n)', bygroups(String.X, Punctuation)),
+            (r'^.*\n', String.Y),
+            default('#pop'),
         ],
         'cadl_section': [
             (r'^([ \t]*|[ \t]+.*)\n', using(CadlLexer)),
-            ('', Text, '#pop'),
+            default('#pop'),
         ],
         'rules_section': [
             (r'^[ \t]+.*\n', using(CadlLexer)),
-            ('', Text, '#pop'),
+            default('#pop'),
         ],
         'metadata': [
             (r'\)', Punctuation, '#pop'),
@@ -260,7 +260,8 @@ class AdlLexer(AtomsLexer):
             (r'\w+', Name.Class),
             (r'"', String, 'string'),
             (r'=', Operator),
-            (r'[ \t]*', Text),
+            (r'[ \t]+', Text),
+            default('#pop'),
         ],
         'root': [
             (r'^(archetype|template|template_overlay|operational_template|'
