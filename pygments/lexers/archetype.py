@@ -26,7 +26,9 @@ __all__ = ['OdinLexer', 'CadlLexer', 'AdlLexer']
 
 class AtomsLexer(RegexLexer):
     """
-    Lexer for Values used in ADL and ODIN
+    Lexer for Values used in ADL and ODIN.
+
+    .. versionadded:: 2.1
     """
 
     tokens = {
@@ -118,7 +120,9 @@ class AtomsLexer(RegexLexer):
 
 class OdinLexer(AtomsLexer):
     """
-    Lexer for ODIN syntax
+    Lexer for ODIN syntax.
+
+    .. versionadded:: 2.1
     """
     name = 'ODIN'
     aliases = ['odin']
@@ -161,7 +165,9 @@ class OdinLexer(AtomsLexer):
 
 class CadlLexer(AtomsLexer):
     """
-    Lexer for cADL syntax
+    Lexer for cADL syntax.
+
+    .. versionadded:: 2.1
     """
     name = 'cADL'
     aliases = ['cadl']
@@ -212,7 +218,9 @@ class CadlLexer(AtomsLexer):
 
 class AdlLexer(AtomsLexer):
     """
-    Lexer for ADL syntax
+    Lexer for ADL syntax.
+
+    .. versionadded:: 2.1
     """
 
     name = 'ADL'
