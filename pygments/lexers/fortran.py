@@ -164,6 +164,8 @@ class FortranLexer(RegexLexer):
 class FortranFixedLexer(RegexLexer):
     """
     Lexer for fixed format Fortran.
+
+    .. versionadded:: 2.1
     """
     name = 'FortranFixed'
     aliases = ['fortranfixed']
