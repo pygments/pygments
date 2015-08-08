@@ -239,8 +239,8 @@ class AdlLexer(AtomsLexer):
              r'component_terminologies|revision_history)[ \t]*\n', Generic.Heading),
             (r'^(definition)[ \t]*\n', Generic.Heading, 'cadl_section'),
             (r'^([ \t]*|[ \t]+.*)\n', using(OdinLexer)),
-            (r'^([^"]*")(>[ \t]*\n)', bygroups(String.X, Punctuation)),
-            (r'^.*\n', String.Y),
+            (r'^([^"]*")(>[ \t]*\n)', bygroups(String, Punctuation)),
+            (r'^.*\n', String),
             default('#pop'),
         ],
         'cadl_section': [
