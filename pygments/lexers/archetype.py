@@ -232,7 +232,7 @@ class CadlLexer(AtomsLexer):
             (r'\}', Punctuation),
             include('constraint_values'),
             # type name
-            (r'[A-Z]\w+(<[A-Z]\w+([A-Za-z_<>]*)?>)?',  Name.Class),
+            (r'[A-Z]\w+(<[A-Z]\w+([A-Za-z_<>]*)>)?',  Name.Class),
             # attribute name
             (r'[a-z_]\w*', Name.Class),
             (r'\[', Punctuation, 'any_code'),
