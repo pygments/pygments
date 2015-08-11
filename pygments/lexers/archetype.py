@@ -4,9 +4,10 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Archetype-related syntaxes, including:
-        ODIN syntax <https://github.com/openEHR/odin>.
-        ADL syntax <http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf>.
-        cADL sub-syntax of ADL
+
+    - ODIN syntax <https://github.com/openEHR/odin>
+    - ADL syntax <http://www.openehr.org/releases/trunk/architecture/am/adl2.pdf>
+    - cADL sub-syntax of ADL
 
     For uses of this syntax, see the openEHR archetypes <http://www.openEHR.org/ckm>
 
@@ -40,17 +41,22 @@ class AtomsLexer(RegexLexer):
         ],
         'archetype_id': [
             (r'[ \t]*([a-zA-Z]\w+(\.[a-zA-Z]\w+)*::)?[a-zA-Z]\w+(-[a-zA-Z]\w+){2}'
-             r'\.\w+[\w-]*\.v\d+(\.\d+){,2}((-[a-z]+)(\.\d+)?)?', Name.Decorator),   # archetype id
+             r'\.\w+[\w-]*\.v\d+(\.\d+){,2}((-[a-z]+)(\.\d+)?)?', Name.Decorator),
         ],
         'date_constraints': [
-            (r'[Xx?YyMmDdHhSs\d]{2,4}([:-][Xx?YyMmDdHhSs\d]{2}){2}', Literal.Date),  # ISO 8601-based date/time constraints
-            (r'(P[YyMmWwDd]+(T[HhMmSs]+)?|PT[HhMmSs]+)/?', Literal.Date),            # ISO 8601-based duration constraints + optional trailing slash
+            # ISO 8601-based date/time constraints
+            (r'[Xx?YyMmDdHhSs\d]{2,4}([:-][Xx?YyMmDdHhSs\d]{2}){2}', Literal.Date),
+            # ISO 8601-based duration constraints + optional trailing slash
+            (r'(P[YyMmWwDd]+(T[HhMmSs]+)?|PT[HhMmSs]+)/?', Literal.Date),
         ],
         'ordered_values': [
-            (r'\d{4}-\d{2}-\d{2}T?', Literal.Date),                                  # ISO 8601 date with optional 'T' ligature
-            (r'\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{4}|Z)?', Literal.Date),              # ISO 8601 time
+            # ISO 8601 date with optional 'T' ligature
+            (r'\d{4}-\d{2}-\d{2}T?', Literal.Date),
+            # ISO 8601 time
+            (r'\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{4}|Z)?', Literal.Date),
+            # ISO 8601 duration
             (r'P((\d*(\.\d+)?[YyMmWwDd]){1,3}(T(\d*(\.\d+)?[HhMmSs]){,3})?|'
-             r'T(\d*(\.\d+)?[HhMmSs]){,3})', Literal.Date),                          # ISO 8601 duration
+             r'T(\d*(\.\d+)?[HhMmSs]){,3})', Literal.Date),
             (r'[+-]?(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+', Number.Float),
             (r'[+-]?(\d+)*\.\d+%?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
@@ -62,16 +68,19 @@ class AtomsLexer(RegexLexer):
             (r'"', String, 'string'),
             (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
             (r'[a-z][a-z0-9+.-]*:', Literal, 'uri'),
+            # term code
             (r'(\[)(\w[\w-]*(?:\([^)\n]+\))?)(::)(\w[\w-]*)(\])',
-             bygroups(Punctuation, Name.Decorator, Punctuation, Name.Decorator, Punctuation)),  # term code
+             bygroups(Punctuation, Name.Decorator, Punctuation, Name.Decorator, Punctuation)),
             (r'\|', Punctuation, 'interval'),
-            (r'\.\.\.', Punctuation),                                                # list continuation
+            # list continuation
+            (r'\.\.\.', Punctuation),
         ],
         'constraint_values': [
             (r'(\[)(\w[\w-]*(?:\([^)\n]+\))?)(::)',
              bygroups(Punctuation, Name.Decorator, Punctuation), 'adl14_code_constraint'),
+            # ADL 1.4 ordinal constraint
             (r'(\d*)(\|)(\[\w[\w-]*::\w[\w-]*\])((?:[,;])?)',
-             bygroups(Number, Punctuation, Name.Decorator, Punctuation)),  # ADL 1.4 ordinal constraint
+             bygroups(Number, Punctuation, Name.Decorator, Punctuation)),
             include('date_constraints'),
             include('values'),
         ],
@@ -81,11 +90,14 @@ class AtomsLexer(RegexLexer):
             ('"', String, '#pop'),
             (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|'
              r'u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"]+', String),                                   # all other characters
-            (r'\\', String),                                        # stray backslash
+            # all other characters
+            (r'[^\\"]+', String),
+            # stray backslash
+            (r'\\', String),
         ],
         'uri': [
-            (r'[,>\s]', Punctuation, '#pop'),                       # effective URI terminators
+            # effective URI terminators
+            (r'[,>\s]', Punctuation, '#pop'),
             (r'[^>\s,]+', Literal),
         ],
         'interval': [
@@ -93,17 +105,22 @@ class AtomsLexer(RegexLexer):
             include('ordered_values'),
             (r'\.\.', Punctuation),
             (r'[<>=] *', Punctuation),
-            (r'\+/-', Punctuation),                                 # handle +/-
+            # handle +/-
+            (r'\+/-', Punctuation),
             (r'\s+', Text),
         ],
         'any_code': [
             include('archetype_id'),
-            (r'[a-z_]\w*[0-9.]+(@[^\]]+)?', Name.Decorator),        # if it is a code
-            (r'[a-z_]\w*', Name.Class),                             # if it is tuple with attribute names
-            (r'[0-9]+', Text),                                      # if it is an integer, i.e. Xpath child index
+            # if it is a code
+            (r'[a-z_]\w*[0-9.]+(@[^\]]+)?', Name.Decorator),
+            # if it is tuple with attribute names
+            (r'[a-z_]\w*', Name.Class),
+            # if it is an integer, i.e. Xpath child index
+            (r'[0-9]+', Text),
             (r'\|', Punctuation, 'code_rubric'),
             (r'\]', Punctuation, '#pop'),
-            (r'\s*,\s*', Punctuation),                              # handle use_archetype statement
+            # handle use_archetype statement
+            (r'\s*,\s*', Punctuation),
         ],
         'code_rubric': [
             (r'\|', Punctuation, '#pop'),
@@ -132,7 +149,8 @@ class OdinLexer(AtomsLexer):
     tokens = {
         'path': [
             (r'>', Punctuation, '#pop'),
-            (r'[a-z_]\w*', Name.Class),                         # attribute name
+            # attribute name
+            (r'[a-z_]\w*', Name.Class),
             (r'/', Punctuation),
             (r'\[', Punctuation, 'key'),
             (r'\s*,\s*', Punctuation, '#pop'),
@@ -150,9 +168,12 @@ class OdinLexer(AtomsLexer):
             include('whitespace'),
             (r'([Tt]rue|[Ff]alse)', Literal),
             include('values'),
-            (r'/', Punctuation, 'path'),                        # x-ref path
-            (r'\[', Punctuation, 'key'),                        # x-ref path starting with key
-            (r'[a-z_]\w*', Name.Class),                         # attribute name
+            # x-ref path
+            (r'/', Punctuation, 'path'),
+            # x-ref path starting with key
+            (r'\[', Punctuation, 'key'),
+            # attribute name
+            (r'[a-z_]\w*', Name.Class),
             (r'=', Operator),
             (r'\(', Punctuation, 'type_cast'),
             (r',', Punctuation),
@@ -175,7 +196,8 @@ class CadlLexer(AtomsLexer):
 
     tokens = {
         'path': [
-            (r'[a-z_]\w*', Name.Class),                                 # attribute name
+            # attribute name
+            (r'[a-z_]\w*', Name.Class),
             (r'/', Punctuation),
             (r'\[', Punctuation, 'any_code'),
             (r'\s+', Punctuation, '#pop'),
@@ -188,30 +210,40 @@ class CadlLexer(AtomsLexer):
             (r'(after|before|closed)\W', Keyword.Type),
             (r'(not)\W', Operator),
             (r'(matches|is_in)\W', Operator),
-            (u'(\u2208|\u2209)', Operator),                             # is_in / not is_in char
+            # is_in / not is_in char
+            (u'(\u2208|\u2209)', Operator),
+            # there_exists / not there_exists / for_all / and / or
             (u'(\u2203|\u2204|\u2200|\u2227|\u2228|\u22BB|\223C)',
-             Operator),                                                 # there_exists / not there_exists / for_all / and / or
+             Operator),
+            # regex in slot or as string constraint
             (r'(\{)(\s*/[^}]+/\s*)(\})',
-             bygroups(Punctuation, String.Regex, Punctuation)),         # regex in slot or as string constraint
+             bygroups(Punctuation, String.Regex, Punctuation)),
+            # regex in slot or as string constraint
             (r'(\{)(\s*\^[^}]+\^\s*)(\})',
-             bygroups(Punctuation, String.Regex, Punctuation)),         # regex in slot or as string constraint
+             bygroups(Punctuation, String.Regex, Punctuation)),
             (r'/', Punctuation, 'path'),
+            # for cardinality etc
             (r'(\{)((?:\d+\.\.)?(?:\d+|\*))((?:\s*;\s*(?:ordered|unordered|unique)){,2})(\})',
-             bygroups(Punctuation, Number, Number, Punctuation)),       # for cardinality etc
-            (r'\[\{', Punctuation),                                     # [{ is start of a tuple value
+             bygroups(Punctuation, Number, Number, Punctuation)),
+            # [{ is start of a tuple value
+            (r'\[\{', Punctuation),
             (r'\}\]', Punctuation),
             (r'\{', Punctuation),
             (r'\}', Punctuation),
             include('constraint_values'),
-            (r'[A-Z]\w+(<[A-Z]\w+([A-Za-z_<>]*)?>)?',  Name.Class),     # type name
-            (r'[a-z_]\w*', Name.Class),                                 # attribute name
+            # type name
+            (r'[A-Z]\w+(<[A-Z]\w+([A-Za-z_<>]*)?>)?',  Name.Class),
+            # attribute name
+            (r'[a-z_]\w*', Name.Class),
             (r'\[', Punctuation, 'any_code'),
             (r'(~|//|\\\\|\+|-|/|\*|\^|!=|=|<=|>=|<|>]?)', Operator),
             (r'\(', Punctuation),
             (r'\)', Punctuation),
-            (r',', Punctuation),                                        # for lists of values
+            # for lists of values
+            (r',', Punctuation),
             (r'"', String, 'string'),
-            (r';', Punctuation),                                        # for assumed value
+            # for assumed value
+            (r';', Punctuation),
         ],
     }
 
@@ -229,12 +261,14 @@ class AdlLexer(AtomsLexer):
 
     tokens = {
         'whitespace': [
-            (r'\s*\n', Text),                                           # blank line ends
-            (r'^[ \t]*--.*$', Comment),                                 # comment-only line
+            # blank line ends
+            (r'\s*\n', Text),
+            # comment-only line
+            (r'^[ \t]*--.*$', Comment),
         ],
         'odin_section': [
-            # repeating the following two rules from the root state enable multi-line strings that start in the
-            # first column to be dealt with
+            # repeating the following two rules from the root state enable multi-line strings
+            # that start in the first column to be dealt with
             (r'^(language|description|ontology|terminology|annotations|'
              r'component_terminologies|revision_history)[ \t]*\n', Generic.Heading),
             (r'^(definition)[ \t]*\n', Generic.Heading, 'cadl_section'),
@@ -255,8 +289,10 @@ class AdlLexer(AtomsLexer):
             (r'\)', Punctuation, '#pop'),
             (r';', Punctuation),
             (r'([Tt]rue|[Ff]alse)', Literal),
-            (r'\d+(\.\d+)*', Literal),                                  # numbers and version ids
-            (r'(\d|[a-fA-F])+(-(\d|[a-fA-F])+){3,}', Literal),          # Guids
+            # numbers and version ids
+            (r'\d+(\.\d+)*', Literal),
+            # Guids
+            (r'(\d|[a-fA-F])+(-(\d|[a-fA-F])+){3,}', Literal),
             (r'\w+', Name.Class),
             (r'"', String, 'string'),
             (r'=', Operator),
