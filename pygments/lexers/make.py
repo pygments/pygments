@@ -173,6 +173,7 @@ class CMakeLexer(RegexLexer):
             (r'\(', Punctuation, '#push'),
             (r'\)', Punctuation, '#pop'),
             (r'(\$\{)(.+?)(\})', bygroups(Operator, Name.Variable, Operator)),
+            (r'(\$ENV\{)(.+?)(\})', bygroups(Operator, Name.Variable, Operator)),
             (r'(\$<)(.+?)(>)', bygroups(Operator, Name.Variable, Operator)),
             (r'(?s)".*?"', String.Double),
             (r'\\\S+', String),
