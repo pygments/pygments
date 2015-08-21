@@ -59,7 +59,7 @@ class SparqlLexer(RegexLexer):
             (r'[+\-]?\d*\.\d+', Number.Float),
             (r'[+\-]?\d*(:?\.\d+)?E[+\-]?\d+', Number.Float),
             (r'[+\-]?\d+', Number.Integer),
-            (r'(\|\||&&|=|\*|\-|\+|<|>|<=|>=|!=)', Operator),
+            (r'(\|\||&&|=|\*|\-|\+|/|!|<|>|<=|>=|!=)', Operator),
             (r'[(){}.;,:^\[\]]', Punctuation),
             (r'#[^\n]+', Comment),
             (r'"""', String, 'triple-double-quoted-string'),
