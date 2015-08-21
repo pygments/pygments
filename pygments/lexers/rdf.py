@@ -44,7 +44,7 @@ class SparqlLexer(RegexLexer):
              bygroups(Keyword, Whitespace, Name.Namespace, Whitespace,
                       Punctuation)),
             (r'\?[a-z_]\w*', Name.Variable),
-            (r'<([^<>"{}|^`\x91-\x93\x00-\x20])*>', Name.Label),
+            (r'<([^<>"{}|^`\x5b-\x5d\x00-\x20])*>', Name.Label),
             (r'([a-z][\w-]*)(\:)([a-z][\w-]*)',
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
             (r'(str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
