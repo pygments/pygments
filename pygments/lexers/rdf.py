@@ -20,7 +20,7 @@ __all__ = ['SparqlLexer']
 
 class SparqlLexer(RegexLexer):
     """
-    Lexer for `SPARQL <http://www.w3.org/TR/rdf-sparql-query/>` query language.
+    Lexer for `SPARQL <http://www.w3.org/TR/rdf-sparql-query/>`_ query language.
 
     .. versionadded:: 2.0
     """
@@ -28,29 +28,25 @@ class SparqlLexer(RegexLexer):
     aliases = ['sparql']
     filenames = ['*.rq', '*.sparql']
     mimetypes = ['application/sparql-query']
-
-    flags = re.IGNORECASE
     
-    EXPONENT = r'e[+-]?\d+'
-
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r'(select|construct|describe|ask|where|filter|group\s+by|minus|'
-             r'distinct|reduced|from named|from|order\s+by|desc|asc|limit|'
+            (r'(?i)(select|construct|describe|ask|where|filter|group\s+by|minus|'
+             r'distinct|reduced|from\s+named|from|order\s+by|desc|asc|limit|'
              r'offset|bindings|load|clear|drop|create|add|move|copy|'
              r'insert\s+data|delete\s+data|delete\s+where|delete|insert|'
-             r'using named|using|graph|default|named|all|optional|service|'
-             r'silent|bind|union|not in|in|as|a)\b', Keyword),
-            (r'(prefix|base)(\s+)([a-z][\w-]*)(\s*)(\:)',
-             bygroups(Keyword, Whitespace, Name.Namespace, Whitespace,
-                      Punctuation)),
-            (r'\?[a-z_]\w*', Name.Variable),
+             r'using\s+named|using|graph|default|named|all|optional|service|'
+             r'silent|bind|union|not\s+in|in|as)\b', Keyword),
+            (r'(a)\b', Keyword),
+            (r'(?i)(prefix|base)(\s+)([\w-]*)(\:)',
+             bygroups(Keyword, Whitespace, Name.Namespace, Punctuation)),
+            (r'[?$][\w-]+', Name.Variable),
             (r'<([^<>\s])*>', Name.Label),
-            (r'_:([^\s]+)', Name.Label), # simplified bnode name rule
-            (r'([a-z][\w-]*)(\:)([a-z][\w-]*)',
+            (r'_:([\w-]+)', Name.Label),
+            (r'([\w-]*)(\:)([\w-]+)',
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
-            (r'(str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
+            (r'(?i)(str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
              r'ceil|floor|round|concat|strlen|ucase|lcase|encode_for_uri|'
              r'contains|strstarts|strends|strbefore|strafter|year|month|day|'
              r'hours|minutes|seconds|timezone|tz|now|md5|sha1|sha256|sha384|'
@@ -60,7 +56,7 @@ class SparqlLexer(RegexLexer):
              Name.Function),
             (r'(true|false)', Literal),
             (r'[+\-]?(\d+\.\d*e[+-]?\d+|\.?\d+e[+-]?\d+)', Number.Float),
-            (r'[+\-]?\d*\.\d+', Number.Float),
+            (r'[+\-]?(\d+\.\d*|\.\d+)', Number.Float),
             (r'[+\-]?\d+', Number.Integer),
             (r'(\|\||&&|=|\*|\-|\+|/|!=|<=|>=|!|<|>)', Operator),
             (r'[(){}.;,:^\[\]]', Punctuation),
