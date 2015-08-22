@@ -6,18 +6,35 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 
 SELECT ?person (COUNT(?nick) AS ?nickCount) {
+    ?person foaf:firstName "Freddy" .
+    ?person foaf:lastName "Smith" .
+    # predicate-object list
     ?person foaf:nick ?nick ;
-      foaf:lastName "Smith" ;
-      foaf:age "21"^^xsd:int ;
+      foaf:age "21"^^xsd:int ; # typed literal
       ex:title 'Mr' ; # single-quoted string
+      ex:width 2 ; # integer
       ex:height 1.80 ; # float
-      ex:distanceToSun +1.4e8 ; # float with exponent
+      ex:distanceToSun 1.4e8 ; # float with exponent
       ex:ownsACat true ;
-      dcterms:description "Someone with a cat called \"cat\"."@en .
+      # some other float values
+      ex:float1 .125 ;
+      ex:float2 +2.5e10 ;
+      ex:float3 2.5e+10 ;
+      ex:float4 -1.e-10 ;
+      ex:float5 .0e1 ;
+      ex:float6 5e11 ;
+      ex:catName "Kitty", "Kitty_" ; # object list
+      ex:catAge ?catage ;
+      dcterms:description "Someone with a cat called \"cat\"."@en . # language tag
+    ?person foaf:knows _:b0 .
+    _:b0 foaf:knows [ _:b1 a foaf:Person; foaf:name "Jonny" . ] .
     OPTIONAL { ?person foaf:isPrimaryTopicOf ?page }
     OPTIONAL { ?person foaf:name ?name
                { ?person foaf:depiction ?img }
                UNION
                { ?person foaf:firstName ?firstN } }
     FILTER ( bound(?page) || bound(?img) || bound(?firstN) )
-} GROUP BY ?person ORDER BY ?img 
+    FILTER ( ?catage < 101 && ?catage > 9 && ?catage >= 10 && ?catage <= 100 && ?catage != 20 )
+} 
+GROUP BY ?person 
+ORDER BY ?img ASC(?firstN) DESC(?page)
