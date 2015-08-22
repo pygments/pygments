@@ -20,7 +20,7 @@ __all__ = ['SparqlLexer']
 
 class SparqlLexer(RegexLexer):
     """
-    Lexer for `SPARQL <http://www.w3.org/TR/rdf-sparql-query/>`_ query language.
+    Lexer for `SPARQL <http://www.w3.org/TR/rdf-sparql-query/>` query language.
 
     .. versionadded:: 2.0
     """
@@ -30,6 +30,8 @@ class SparqlLexer(RegexLexer):
     mimetypes = ['application/sparql-query']
 
     flags = re.IGNORECASE
+    
+    EXPONENT = r'e[+-]?\d+'
 
     tokens = {
         'root': [
@@ -39,12 +41,13 @@ class SparqlLexer(RegexLexer):
              r'offset|bindings|load|clear|drop|create|add|move|copy|'
              r'insert\s+data|delete\s+data|delete\s+where|delete|insert|'
              r'using named|using|graph|default|named|all|optional|service|'
-             r'silent|bind|union|not in|in|as|a)', Keyword),
+             r'silent|bind|union|not in|in|as|a)\b', Keyword),
             (r'(prefix|base)(\s+)([a-z][\w-]*)(\s*)(\:)',
              bygroups(Keyword, Whitespace, Name.Namespace, Whitespace,
                       Punctuation)),
             (r'\?[a-z_]\w*', Name.Variable),
-            (r'<([^<>"{}|^`\x5b-\x5d\x00-\x20])*>', Name.Label),
+            (r'<([^<>\s])*>', Name.Label),
+            (r'_:([^\s]+)', Name.Label), # simplified bnode name rule
             (r'([a-z][\w-]*)(\:)([a-z][\w-]*)',
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
             (r'(str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
@@ -56,10 +59,10 @@ class SparqlLexer(RegexLexer):
              r'count|sum|min|max|avg|sample|group_concat|separator)\b',
              Name.Function),
             (r'(true|false)', Literal),
+            (r'[+\-]?(\d+\.\d*e[+-]?\d+|\.?\d+e[+-]?\d+)', Number.Float),
             (r'[+\-]?\d*\.\d+', Number.Float),
-            (r'[+\-]?\d*(:?\.\d+)?E[+\-]?\d+', Number.Float),
             (r'[+\-]?\d+', Number.Integer),
-            (r'(\|\||&&|=|\*|\-|\+|/|!|<|>|<=|>=|!=)', Operator),
+            (r'(\|\||&&|=|\*|\-|\+|/|!=|<=|>=|!|<|>)', Operator),
             (r'[(){}.;,:^\[\]]', Punctuation),
             (r'#[^\n]+', Comment),
             (r'"""', String, 'triple-double-quoted-string'),
@@ -91,7 +94,7 @@ class SparqlLexer(RegexLexer):
             (r'.', String, '#pop'),
         ],
         'end-of-string': [
-            (r'(@)([a-z]+(:?-[a-z0-9]+)*)',
+            (r'(@)([a-z]+(?:-[a-z0-9]+)*)',
              bygroups(Operator, Name.Function), '#pop:2'),
             (r'\^\^', Operator, '#pop:2'),
             default('#pop:2'),
