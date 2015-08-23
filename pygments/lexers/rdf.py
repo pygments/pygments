@@ -28,44 +28,121 @@ class SparqlLexer(RegexLexer):
     aliases = ['sparql']
     filenames = ['*.rq', '*.sparql']
     mimetypes = ['application/sparql-query']
-    
+
+    flags = re.UNICODE
+
+    # character group definitions ::
+
+    PN_CHARS_BASE_GRP = (u'a-zA-Z'
+                         u'\u00c0-\u00d6'
+                         u'\u00d8-\u00f6'
+                         u'\u00f8-\u02ff'
+                         u'\u0370-\u037d'
+                         u'\u037f-\u1fff'
+                         u'\u200c-\u200d'
+                         u'\u2070-\u218f'
+                         u'\u2c00-\u2fef'
+                         u'\u3001-\ud7ff'
+                         u'\uf900-\ufdcf'
+                         u'\ufdf0-\ufffd'
+                         u'\U00010000-\U000effff')
+
+    PN_CHARS_U_GRP = PN_CHARS_BASE_GRP
+
+    PN_CHARS_GRP = (PN_CHARS_U_GRP +
+                    r'\-' +
+                    r'0-9' +
+                    u'\u00b7' +
+                    u'\u0300-\u036f' +
+                    u'\u203f-\u2040')
+
+    HEX_GRP = '0-9A-Fa-f'
+
+    PN_LOCAL_ESC_CHARS_GRP = r' _~.\-!$&""()*+,;=/?#@%'
+
+    # terminal productions ::
+
+    PN_CHARS_BASE = '[' + PN_CHARS_BASE_GRP + ']'
+
+    PN_CHARS_U = '[' + PN_CHARS_U_GRP + ']'
+
+    PN_CHARS = '[' + PN_CHARS_GRP + ']'
+
+    HEX = '[' + HEX_GRP + ']'
+
+    PN_LOCAL_ESC_CHARS = '[' + PN_LOCAL_ESC_CHARS_GRP + ']'
+
+    IRIREF = r'<(?:[^<>"{}|^`\x5b-\x5d\x00-\x20])*>'
+
+    BLANK_NODE_LABEL = '_:[0-9' + PN_CHARS_U_GRP + '](?:[' + PN_CHARS_GRP + '.]*' + PN_CHARS + ')?'
+
+    PN_PREFIX = PN_CHARS_BASE + '(?:[' + PN_CHARS_GRP + '.]*' + PN_CHARS + ')?'
+
+    VARNAME = '[0-9' + PN_CHARS_U_GRP + '][' + PN_CHARS_U_GRP + u'0-9\u00b7\u0300-\u036f\u203f-\u2040]*'
+
+    PERCENT = '%' + HEX + HEX
+
+    PN_LOCAL_ESC = r'\\' + PN_LOCAL_ESC_CHARS
+
+    PLX = '(?:' + PERCENT + ')|(?:' + PN_LOCAL_ESC + ')'
+
+    PN_LOCAL = ('(?:[' + PN_CHARS_U_GRP + ':0-9' + ']|' + PLX + ')' +
+                '(?:(?:[' + PN_CHARS_GRP + '.:]|' + PLX + ')*(?:[' + PN_CHARS_GRP + ':]|' + PLX + '))?')
+
+    EXPONENT = r'[eE][+-]?\d+'
+
+    # Lexer token definitions ::
+
     tokens = {
         'root': [
-            (r'\s+', Whitespace),
-            (r'(?i)(select|construct|describe|ask|where|filter|group\s+by|minus|'
+            (r'\s+', Text),
+            # keywords ::
+            (r'((?i)select|construct|describe|ask|where|filter|group\s+by|minus|'
              r'distinct|reduced|from\s+named|from|order\s+by|desc|asc|limit|'
              r'offset|bindings|load|clear|drop|create|add|move|copy|'
              r'insert\s+data|delete\s+data|delete\s+where|delete|insert|'
              r'using\s+named|using|graph|default|named|all|optional|service|'
-             r'silent|bind|union|not\s+in|in|as)\b', Keyword),
+             r'silent|bind|union|not\s+in|in|as|having|to|prefix|base)\b', Keyword),
             (r'(a)\b', Keyword),
-            (r'(?i)(prefix|base)(\s+)([\w-]*)(\:)',
-             bygroups(Keyword, Whitespace, Name.Namespace, Punctuation)),
-            (r'[?$][\w-]+', Name.Variable),
-            (r'<([^<>\s])*>', Name.Label),
-            (r'_:([\w-]+)', Name.Label),
-            (r'([\w-]*)(\:)([\w-]+)',
+            # IRIs ::
+            ('(' + IRIREF + ')', Name.Label),
+            # blank nodes ::
+            ('(' + BLANK_NODE_LABEL + ')', Name.Label),
+            #  # variables ::
+            ('[?$]' + VARNAME, Name.Variable),
+            # prefixed names ::
+            (r'(' + PN_PREFIX + ')?(\:)(' + PN_LOCAL + ')?',
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
-            (r'(?i)(str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
+            # function names ::
+            (r'((?i)str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
              r'ceil|floor|round|concat|strlen|ucase|lcase|encode_for_uri|'
              r'contains|strstarts|strends|strbefore|strafter|year|month|day|'
              r'hours|minutes|seconds|timezone|tz|now|md5|sha1|sha256|sha384|'
              r'sha512|coalesce|if|strlang|strdt|sameterm|isiri|isuri|isblank|'
-             r'isliteral|isnumeric|regex|substr|replace|exists|not exists|'
+             r'isliteral|isnumeric|regex|substr|replace|exists|not\s+exists|'
              r'count|sum|min|max|avg|sample|group_concat|separator)\b',
              Name.Function),
-            (r'(true|false)', Literal),
-            (r'[+\-]?(\d+\.\d*e[+-]?\d+|\.?\d+e[+-]?\d+)', Number.Float),
+            # boolean literals ::
+            (r'(true|false)', Keyword.Constant),
+            # double literals ::
+            (r'[+\-]?(\d+\.\d*' + EXPONENT + '|\.?\d+' + EXPONENT + ')', Number.Float),
+            # decimal literals ::
             (r'[+\-]?(\d+\.\d*|\.\d+)', Number.Float),
+            # integer literals ::
             (r'[+\-]?\d+', Number.Integer),
+            # operators ::
             (r'(\|\||&&|=|\*|\-|\+|/|!=|<=|>=|!|<|>)', Operator),
+            # punctuation characters ::
             (r'[(){}.;,:^\[\]]', Punctuation),
-            (r'#[^\n]+', Comment),
+            # line comments ::
+            (r'#[^\n]*', Comment),
+            # strings ::
             (r'"""', String, 'triple-double-quoted-string'),
             (r'"', String, 'single-double-quoted-string'),
             (r"'''", String, 'triple-single-quoted-string'),
             (r"'", String, 'single-single-quoted-string'),
         ],
+        # TODO: string escapes, e.g. \uXXXX
         'triple-double-quoted-string': [
             (r'"""', String, 'end-of-string'),
             (r'[^\\]+', String),
@@ -90,7 +167,7 @@ class SparqlLexer(RegexLexer):
             (r'.', String, '#pop'),
         ],
         'end-of-string': [
-            (r'(@)([a-z]+(?:-[a-z0-9]+)*)',
+            (r'(@)([a-zA-Z]+(?:-[a-zA-Z0-9]+)*)',
              bygroups(Operator, Name.Function), '#pop:2'),
             (r'\^\^', Operator, '#pop:2'),
             default('#pop:2'),

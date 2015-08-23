@@ -1,11 +1,14 @@
 # This is a test SPARQL query
 
+BASE <http://pygments.org/examples/sparql.rq>
+
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX ex: <http://example.org/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 
 SELECT ?person (COUNT(?nick) AS ?nickCount) {
+    <#jonny> foaf:knows ?person .
     ?person a foaf:Person .
     ?person foaf:firstName "Freddy" .
     ?person foaf:lastName "Smith" .
@@ -25,6 +28,7 @@ SELECT ?person (COUNT(?nick) AS ?nickCount) {
       ex:float5 .0e1 ;
       ex:float6 5e11 ;
       ex:float7 1. ;
+      ex:aUnicodeÀExample "somestring" ;
       ex:catName "Kitty", "Kitty_" ; # object list
       ex:catAge ?catage ;
       dcterms:description "Someone with a cat called \"cat\"."@en . # language tag
