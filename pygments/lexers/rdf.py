@@ -29,8 +29,6 @@ class SparqlLexer(RegexLexer):
     filenames = ['*.rq', '*.sparql']
     mimetypes = ['application/sparql-query']
 
-    flags = re.UNICODE
-
     # character group definitions ::
 
     PN_CHARS_BASE_GRP = (u'a-zA-Z'
@@ -47,7 +45,7 @@ class SparqlLexer(RegexLexer):
                          u'\ufdf0-\ufffd'
                          u'\U00010000-\U000effff')
 
-    PN_CHARS_U_GRP = PN_CHARS_BASE_GRP
+    PN_CHARS_U_GRP = (PN_CHARS_BASE_GRP + '_')
 
     PN_CHARS_GRP = (PN_CHARS_U_GRP +
                     r'\-' +
@@ -72,7 +70,7 @@ class SparqlLexer(RegexLexer):
 
     PN_LOCAL_ESC_CHARS = '[' + PN_LOCAL_ESC_CHARS_GRP + ']'
 
-    IRIREF = r'<(?:[^<>"{}|^`\x5b-\x5d\x00-\x20])*>'
+    IRIREF = r'<(?:[^<>"{}|^`\\\x00-\x20])*>'
 
     BLANK_NODE_LABEL = '_:[0-9' + PN_CHARS_U_GRP + '](?:[' + PN_CHARS_GRP + '.]*' + PN_CHARS + ')?'
 
