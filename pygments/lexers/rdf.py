@@ -29,54 +29,41 @@ class SparqlLexer(RegexLexer):
     filenames = ['*.rq', '*.sparql']
     mimetypes = ['application/sparql-query']
 
-    # character group definitions ::
-
-    PN_CHARS_BASE_GRP = (u'a-zA-Z'
-                         u'\u00c0-\u00d6'
-                         u'\u00d8-\u00f6'
-                         u'\u00f8-\u02ff'
-                         u'\u0370-\u037d'
-                         u'\u037f-\u1fff'
-                         u'\u200c-\u200d'
-                         u'\u2070-\u218f'
-                         u'\u2c00-\u2fef'
-                         u'\u3001-\ud7ff'
-                         u'\uf900-\ufdcf'
-                         u'\ufdf0-\ufffd'
-                         u'\U00010000-\U000effff')
-
-    PN_CHARS_U_GRP = (PN_CHARS_BASE_GRP + '_')
-
-    PN_CHARS_GRP = (PN_CHARS_U_GRP +
-                    r'\-' +
-                    r'0-9' +
-                    u'\u00b7' +
-                    u'\u0300-\u036f' +
-                    u'\u203f-\u2040')
-
-    HEX_GRP = '0-9A-Fa-f'
-
-    PN_LOCAL_ESC_CHARS_GRP = r' _~.\-!$&""()*+,;=/?#@%'
-
     # terminal productions ::
 
-    PN_CHARS_BASE = '[' + PN_CHARS_BASE_GRP + ']'
+    PN_CHARS_BASE = (u'(?:[a-zA-Z'
+                     u'\u00c0-\u00d6'
+                     u'\u00d8-\u00f6'
+                     u'\u00f8-\u02ff'
+                     u'\u0370-\u037d'
+                     u'\u037f-\u1fff'
+                     u'\u200c-\u200d'
+                     u'\u2070-\u218f'
+                     u'\u2c00-\u2fef'
+                     u'\u3001-\ud7ff'
+                     u'\uf900-\ufdcf'
+                     u'\ufdf0-\ufffd]|'
+                     u'[^\u0000-\uffff]|'
+                     u'[\ud800-\udbff][\udc00-\udfff])')
 
-    PN_CHARS_U = '[' + PN_CHARS_U_GRP + ']'
+    PN_CHARS_U = '(?:' + PN_CHARS_BASE + '|_)'
 
-    PN_CHARS = '[' + PN_CHARS_GRP + ']'
+    PN_CHARS = ('(?:' + PN_CHARS_U + r'|[\-0-9' +
+                u'\u00b7' +
+                u'\u0300-\u036f' +
+                u'\u203f-\u2040])')
 
-    HEX = '[' + HEX_GRP + ']'
+    HEX = '[0-9A-Fa-f]'
 
-    PN_LOCAL_ESC_CHARS = '[' + PN_LOCAL_ESC_CHARS_GRP + ']'
+    PN_LOCAL_ESC_CHARS = r'[ _~.\-!$&""()*+,;=/?#@%]'
 
     IRIREF = r'<(?:[^<>"{}|^`\\\x00-\x20])*>'
 
-    BLANK_NODE_LABEL = '_:[0-9' + PN_CHARS_U_GRP + '](?:[' + PN_CHARS_GRP + '.]*' + PN_CHARS + ')?'
+    BLANK_NODE_LABEL = '_:(?:' + PN_CHARS_U + '|[0-9])(?:(?:' + PN_CHARS + '|\.)*' + PN_CHARS + ')?'
 
-    PN_PREFIX = PN_CHARS_BASE + '(?:[' + PN_CHARS_GRP + '.]*' + PN_CHARS + ')?'
+    PN_PREFIX = PN_CHARS_BASE + '(?:(?:' + PN_CHARS + '|\.)*' + PN_CHARS + ')?'
 
-    VARNAME = '[0-9' + PN_CHARS_U_GRP + '][' + PN_CHARS_U_GRP + u'0-9\u00b7\u0300-\u036f\u203f-\u2040]*'
+    VARNAME = '(?:' + PN_CHARS_U + '|[0-9])(?:' + PN_CHARS_U + u'|[0-9\u00b7\u0300-\u036f\u203f-\u2040])*'
 
     PERCENT = '%' + HEX + HEX
 
@@ -84,8 +71,8 @@ class SparqlLexer(RegexLexer):
 
     PLX = '(?:' + PERCENT + ')|(?:' + PN_LOCAL_ESC + ')'
 
-    PN_LOCAL = ('(?:[' + PN_CHARS_U_GRP + ':0-9' + ']|' + PLX + ')' +
-                '(?:(?:[' + PN_CHARS_GRP + '.:]|' + PLX + ')*(?:[' + PN_CHARS_GRP + ':]|' + PLX + '))?')
+    PN_LOCAL = ('(?:(?:' + PN_CHARS_U + '|[:0-9])|' + PLX + ')' +
+                '(?:(?:(?:' + PN_CHARS + '|[.:])|' + PLX + ')*(?:(?:' + PN_CHARS + '|:)|' + PLX + '))?')
 
     EXPONENT = r'[eE][+-]?\d+'
 
