@@ -123,7 +123,8 @@ class PraatLexer(ExtendedRegexLexer):
 
     tokens = {
         'root': [
-            (r'#.*?$',         Comment.Single),
+            (r'(\s+)(#.*?$)',  bygroups(Text, Comment.Single)),
+            (r'^#.*?$',        Comment.Single),
             (r';[^\n]*',       Comment.Single),
             (r'\s+',           Text),
 
@@ -232,10 +233,10 @@ class PraatLexer(ExtendedRegexLexer):
                 bygroups(Name.Builtin, String.Interpol),
                 ('object_attributes', 'string_interpolated')),
 
-            (r'\.?[a-z][a-zA-Z0-9_.]*\$?', Text),
-            (r'\[',                        Text,            'comma_list'),
-            (r"'(?=.*')",                  String.Interpol, 'string_interpolated'),
-            (r'\]',                        Text),
+            (r'\.?[a-z][a-zA-Z0-9_.]*(\$|#)?', Text),
+            (r'\[',                            Text,            'comma_list'),
+            (r"'(?=.*')",                      String.Interpol, 'string_interpolated'),
+            (r'\]',                            Text),
         ],
         'operator': [
             (r'([+\/*<>=!-]=?|[&*|][&*|]?|\^|<>)', Operator),
