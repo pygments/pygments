@@ -8,225 +8,287 @@
     :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+#from __future__ import print_function
 
 import re
 
-from pygments.lexer import RegexLexer, words, bygroups, default, include
+from pygments.lexer import ExtendedRegexLexer, words, bygroups, default, include
 from pygments.token import *
 
 __all__ = ['PraatLexer']
 
 
-class PraatLexer(RegexLexer):
+class PraatLexer(ExtendedRegexLexer):
     """
-    For `Praat <http://www.praat.org>` scripts.
+    For `Praat <http://www.praat.org>`_ scripts.
     """
+
+    # The comma list is a comma-delimited list of arguments
+    # Every time a comma is found, comma_list is recuersively put
+    # back on the stack. To exit, we need to go all the way up to the
+    # first caller and then pop again if that caller was not root.
+    def exit_comma_list(lexer, match, ctx):
+        yield match.start(), Text, match.group(0)
+        ctx.pos = match.end()
+        while ctx.stack:
+            if ctx.stack[-1] == 'comma_list':
+                ctx.stack.pop()
+            elif ctx.stack[-1] != 'root':
+                ctx.stack.pop()
+            else:
+                break
 
     name = 'Praat'
     aliases = ['praat']
     filenames = ['*.praat', '*.proc', '*.psc']
 
+    keywords = [
+        'if', 'then', 'else', 'elsif', 'elif', 'endif', 'fi', 'for', 'from', 'to', 'endfor', 'endproc',
+        'while', 'endwhile', 'repeat', 'until', 'select', 'plus', 'minus', 'demo', 'assert', 'stopwatch',
+        'nocheck', 'nowarn', 'noprogress', 'editor', 'endeditor', 'clearinfo'
+    ]
+
+    functions_string = [
+        'backslashTrigraphsToUnicode', 'chooseDirectory', 'chooseReadFile',
+        'chooseWriteFile', 'date', 'demoKey', 'do', 'environment', 'extractLine', 'extractWord',
+        'fixed', 'info', 'left', 'mid', 'percent', 'readFile', 'replace', 'replace_regex', 'right',
+        'selected', 'string', 'unicodeToBackslashTrigraphs',
+    ]
+
+    functions_numeric = [
+        'abs', 'appendFile', 'appendFileLine', 'appendInfo', 'appendInfoLine', 'arccos', 'arccosh',
+        'arcsin', 'arcsinh', 'arctan', 'arctan2', 'arctanh', 'barkToHertz', 'beginPause',
+        'beginSendPraat', 'besselI', 'besselK', 'beta', 'beta2', 'binomialP', 'binomialQ', 'boolean',
+        'ceiling', 'chiSquareP', 'chiSquareQ', 'choice', 'comment', 'cos', 'cosh', 'createDirectory',
+        'deleteFile', 'demoClicked', 'demoClickedIn', 'demoCommandKeyPressed',
+        'demoExtraControlKeyPressed', 'demoInput', 'demoKeyPressed',
+        'demoOptionKeyPressed', 'demoShiftKeyPressed', 'demoShow', 'demoWaitForInput',
+        'demoWindowTitle', 'demoX', 'demoY', 'differenceLimensToPhon', 'do', 'editor', 'endPause',
+        'endSendPraat', 'endsWith', 'erb', 'erbToHertz', 'erf', 'erfc', 'exitScript', 'exp',
+        'extractNumber', 'fileReadable', 'fisherP', 'fisherQ', 'floor', 'gaussP', 'gaussQ',
+        'hertzToBark', 'hertzToErb', 'hertzToMel', 'hertzToSemitones', 'imax', 'imin',
+        'incompleteBeta', 'incompleteGammaP', 'index', 'index_regex', 'invBinomialP',
+        'invBinomialQ', 'invChiSquareQ', 'invFisherQ', 'invGaussQ', 'invSigmoid', 'invStudentQ',
+        'length', 'ln', 'lnBeta', 'lnGamma', 'log10', 'log2', 'max', 'melToHertz', 'min', 'minusObject',
+        'natural', 'number', 'numberOfColumns', 'numberOfRows', 'numberOfSelected',
+        'objectsAreIdentical', 'option', 'optionMenu', 'pauseScript',
+        'phonToDifferenceLimens', 'plusObject', 'positive', 'randomBinomial', 'randomGauss',
+        'randomInteger', 'randomPoisson', 'randomUniform', 'real', 'readFile', 'removeObject',
+        'rindex', 'rindex_regex', 'round', 'runScript', 'runSystem', 'runSystem_nocheck',
+        'selectObject', 'selected', 'semitonesToHertz', 'sentencetext', 'sigmoid', 'sin', 'sinc',
+        'sincpi', 'sinh', 'soundPressureToPhon', 'sqrt', 'startsWith', 'studentP', 'studentQ', 'tan',
+        'tanh', 'variableExists', 'word', 'writeFile', 'writeFileLine', 'writeInfo',
+        'writeInfoLine',
+    ]
+
+    functions_array = [
+        'linear', 'randomGauss', 'randomInteger', 'randomUniform', 'zero',
+    ]
+
+    objects = [
+        'Activation', 'AffineTransform', 'AmplitudeTier', 'Art', 'Artword', 'Autosegment',
+        'BarkFilter', 'BarkSpectrogram', 'CCA', 'Categories', 'Cepstrogram', 'Cepstrum',
+        'Cepstrumc', 'ChebyshevSeries', 'ClassificationTable', 'Cochleagram', 'Collection',
+        'ComplexSpectrogram', 'Configuration', 'Confusion', 'ContingencyTable', 'Corpus',
+        'Correlation', 'Covariance', 'CrossCorrelationTable', 'CrossCorrelationTables', 'DTW',
+        'DataModeler', 'Diagonalizer', 'Discriminant', 'Dissimilarity', 'Distance',
+        'Distributions', 'DurationTier', 'EEG', 'ERP', 'ERPTier', 'EditCostsTable',
+        'EditDistanceTable', 'Eigen', 'Excitation', 'Excitations', 'ExperimentMFC', 'FFNet',
+        'FeatureWeights', 'FileInMemory', 'FilesInMemory', 'Formant', 'FormantFilter',
+        'FormantGrid', 'FormantModeler', 'FormantPoint', 'FormantTier', 'GaussianMixture', 'HMM',
+        'HMM_Observation', 'HMM_ObservationSequence', 'HMM_State', 'HMM_StateSequence',
+        'Harmonicity', 'ISpline', 'Index', 'Intensity', 'IntensityTier', 'IntervalTier', 'KNN',
+        'KlattGrid', 'KlattTable', 'LFCC', 'LPC', 'Label', 'LegendreSeries', 'LinearRegression',
+        'LogisticRegression', 'LongSound', 'Ltas', 'MFCC', 'MSpline', 'ManPages', 'Manipulation',
+        'Matrix', 'MelFilter', 'MelSpectrogram', 'MixingMatrix', 'Movie', 'Network', 'OTGrammar',
+        'OTHistory', 'OTMulti', 'PCA', 'PairDistribution', 'ParamCurve', 'Pattern', 'Permutation',
+        'Photo', 'Pitch', 'PitchModeler', 'PitchTier', 'PointProcess', 'Polygon', 'Polynomial',
+        'PowerCepstrogram', 'PowerCepstrum', 'Procrustes', 'RealPoint', 'RealTier', 'ResultsMFC',
+        'Roots', 'SPINET', 'SSCP', 'SVD', 'Salience', 'ScalarProduct', 'Similarity', 'SimpleString',
+        'SortedSetOfString', 'Sound', 'Speaker', 'Spectrogram', 'Spectrum', 'SpectrumTier',
+        'SpeechSynthesizer', 'SpellingChecker', 'Strings', 'StringsIndex', 'Table',
+        'TableOfReal', 'TextGrid', 'TextInterval', 'TextPoint', 'TextTier', 'Tier', 'Transition',
+        'VocalTract', 'VocalTractTier', 'Weight', 'WordList',
+    ]
+
+    variables_numeric = [
+        'macintosh', 'windows', 'unix', 'praatVersion', 'pi', 'e', 'undefined',
+    ]
+
+    variables_string = [
+        'praatVersion', 'tab', 'shellDirectory', 'homeDirectory',
+        'preferencesDirectory', 'newline', 'temporaryDirectory',
+        'defaultDirectory',
+    ]
+
     tokens = {
         'root': [
-            (r'\A\#!.+?$', Comment.Hashbang),
-            (r'\#.*?$', Comment.Single),
-            (r';[^\n]*', Comment.Single),
-            (r'^\.\.\.', Text),
-            (r'^\s+\.\.\.', Text),
-            (r'\s+', Text),
-            (r'\bprocedure\b', Keyword, 'procedure-definition'),
-            (r'\bcall\b', Keyword, 'procedure-call'),
-            (r'@', Name.Function, 'procedure-call'),
-            (words((
-                'writeInfo', 'writeInfoLine', 'appendInfo', 'appendInfoLine', 
-                'info$', 'writeFile', 'writeFileLine', 'appendFile', 
-                'appendFileLine', 'abs', 'round', 'floor', 'ceiling', 'min', 
-                'max', 'imin', 'imax', 'sqrt', 'sin', 'cos', 'tan', 'arcsin', 
-                'arccos', 'arctan', 'arctan2', 'sinc', 'sincpi', 'exp', 'ln', 
-                'lnBeta', 'lnGamma', 'log10', 'log2', 'sinh', 'cosh', 'tanh', 
-                'arcsinh', 'arccosh', 'arctanh', 'sigmoid', 'invSigmoid', 
-                'erf', 'erfc', 'randomUniform', 'randomInteger', 'randomGauss', 
-                'randomPoisson', 'randomBinomial', 'gaussP', 'gaussQ', 
-                'invGaussQ', 'incompleteGammaP', 'incompleteBeta', 
-                'chiSquareP', 'chiSquareQ', 'invChiSquareQ', 'studentP', 
-                'studentQ', 'invStudentQ', 'fisherP', 'fisherQ', 'invFisherQ', 
-                'binomialP', 'binomialQ', 'invBinomialP', 'invBinomialQ', 
-                'hertzToBark', 'barkToHerz', 'hertzToMel', 'melToHertz', 
-                'hertzToSemitones', 'semitonesToHerz', 'erb', 'hertzToErb', 
-                'erbToHertz', 'phonToDifferenceLimens', 'string$',
-                'differenceLimensToPhon', 'soundPressureToPhon', 'beta', 
-                'beta2', 'besselI', 'besselK', 'numberOfColumns', 'number',
-                'numberOfRows', 'selected$', 'selected', 'numberOfSelected', 
-                'variableExists', 'index', 'rindex', 'startsWith', 'endsWith', 
-                'index_regex', 'rindex_regex', 'replace_regex$', 'length', 
-                'extractWord$', 'extractLine$', 'extractNumber', 'left$',  
-                'right$', 'mid$', 'replace$', 'date$', 'fixed$', 'percent$', 
-                'zero#', 'linear#', 'randomUniform#', 'randomInteger#', 
-                'randomGauss#', 'beginPause', 'endPause', 'do', 'do$', 'editor', 
-                'demoShow', 'demoWindowTitle', 'demoInput', 'demoWaitForInput', 
-                'demoClicked', 'demoClickedIn', 'demoX', 'demoY', 
-                'demoKeyPressed', 'demoKey$', 'demoExtraControlKeyPressed', 
-                'demoShiftKeyPressed', 'demoCommandKeyPressed', 
-                'demoOptionKeyPressed', 'environment$', 'chooseReadFile$', 
-                'chooseDirectory$', 'createDirectory', 'fileReadable', 
-                'deleteFile', 'selectObject', 'removeObject', 'plusObject', 
-                'minusObject', 'runScript', 'exitScript', 'beginSendPraat', 
-                'endSendPraat', 'objectsAreIdentical',
-                # These functions belong to the new-style forms, but so far they
-                # only exist for pause menus, not initial forms. Placed here
-                # while a better solution comes along.
-                'comment', 'natural', 'real', 'positive', 'word', 'sentence'
-                'text', 'boolean', 'choice', 'option', 'optionMenu'),
-                prefix=r'\b', suffix=r'(?=\s*[:(])'),
-                Name.Function, 'function'),
-            (words((
-                'if', 'then', 'else', 'elsif', 'elif', 'endif', 'fi', 'for',
-                'from', 'to', 'endfor', 'endproc', 'while', 'endwhile', 'repeat',
-                'until', 'select', 'plus', 'minus', 'demo', 'assert',
-                'asserterror', 'stopwatch', 'nocheck', 'nowarn', 'noprogress',
-                'editor', 'endeditor', 'clearinfo'),
-                prefix=r'\b', suffix=r'\b'),
-                Keyword),
-            (r'(\bform\b)(\s+)([^\n]+)', bygroups(Keyword, Text, String), 'old-form'),
-            (r'(print(?:line|tab)?|echo|exit|pause|send(?:praat|socket)|include|execute|system(?:_nocheck)?)(\s+)',
-                bygroups(Keyword, Text), 'string-unquoted'),
-            (r'(goto|label)(\s+)(\w+)', bygroups(Keyword, Text, Name.Label)),  
-            include('operator'),
-            include('variable-name'),
+            (r'#.*?$',         Comment.Single),
+            (r';[^\n]*',       Comment.Single),
+            (r'\s+',           Text),
+
+            (r'\bprocedure\b', Keyword,       'procedure_definition'),
+            (r'\bcall\b',      Keyword,       'procedure_call'),
+            (r'@',             Name.Function, 'procedure_call'),
+
+            include('function_call'),
+
+            (words(keywords, suffix=r'\b'), Keyword),
+
+            (r'(\bform\b)(\s+)([^\n]+)',
+                bygroups(Keyword, Text, String), 'old_form'),
+
+            (r'(print(?:line|tab)?|echo|exit|asserterror|pause|send(?:praat|socket)|include|execute|system(?:_nocheck)?)(\s+)',
+                bygroups(Keyword, Text), 'string_unquoted'),
+
+            (r'(goto|label)(\s+)(\w+)', bygroups(Keyword, Text, Name.Label)),
+
+            include('variable_name'),
             include('number'),
+
             (r'"', String, 'string'),
-            (words((
-                'Activation', 'AffineTransform', 'AmplitudeTier', 'Art', 
-                'Artword', 'Autosegment', 'BarkFilter', 'CCA', 'Categories', 
-                'Cepstrum', 'Cepstrumc', 'ChebyshevSeries', 
-                'ClassificationTable', 'Cochleagram', 'Collection', 
-                'Configuration', 'Confusion', 'ContingencyTable', 'Corpus', 
-                'Correlation', 'Covariance', 'CrossCorrelationTable', 
-                'CrossCorrelationTables', 'DTW', 'Diagonalizer', 
-                'Discriminant', 'Dissimilarity', 'Distance', 'Distributions', 
-                'DurationTier', 'EEG', 'ERP', 'ERPTier', 'Eigen', 'Excitation', 
-                'Excitations', 'ExperimentMFC', 'FFNet', 'FeatureWeights', 
-                'Formant', 'FormantFilter', 'FormantGrid', 'FormantPoint', 
-                'FormantTier', 'GaussianMixture', 'HMM', 'HMM_Observation', 
-                'HMM_ObservationSequence', 'HMM_State', 'HMM_StateSequence', 
-                'Harmonicity', 'ISpline', 'Index', 'Intensity', 
-                'IntensityTier', 'IntervalTier', 'KNN', 'KlattGrid', 
-                'KlattTable', 'LFCC', 'LPC', 'Label', 'LegendreSeries', 
-                'LinearRegression', 'LogisticRegression', 'LongSound', 'Ltas', 
-                'MFCC', 'MSpline', 'ManPages', 'Manipulation', 'Matrix', 
-                'MelFilter', 'MixingMatrix', 'Movie', 'Network', 'OTGrammar', 
-                'OTHistory', 'OTMulti', 'PCA', 'PairDistribution', 
-                'ParamCurve', 'Pattern', 'Permutation', 'Pitch', 'PitchTier', 
-                'PointProcess', 'Polygon', 'Polynomial', 'Procrustes', 
-                'RealPoint', 'RealTier', 'ResultsMFC', 'Roots', 'SPINET', 
-                'SSCP', 'SVD', 'Salience', 'ScalarProduct', 'Similarity', 
-                'SimpleString', 'SortedSetOfString', 'Sound', 'Speaker', 
-                'Spectrogram', 'Spectrum', 'SpectrumTier', 'SpeechSynthesizer', 
-                'SpellingChecker', 'Strings', 'StringsIndex', 'Table', 
-                'TableOfReal', 'TextGrid', 'TextInterval', 'TextPoint', 
-                'TextTier', 'Tier', 'Transition', 'VocalTract', 'Weight', 
-                'WordList'), 
-                suffix=r'(?=\s+\S+\n)'),
-                Name.Class, 'string-unquoted'),
-            (r'\bObject_', Name.Builtin),
-            (r'(\b[A-Z][^.:\n"]+\.{3})', Keyword, 'old-arguments'),
-            (r'\b[A-Z][^.:\n"]+:', Keyword, 'comma-list'),
-            (r'\b[A-Z][^\n]+', Keyword),
-            (r'(\.{3}|\)|\(|,|\$)', Text),
+
+            (words((objects), suffix=r'(?=\s+\S+\n)'), Name.Class, 'string_unquoted'),
+
+            (r'(\b[A-Z][^.:\n"]+\.{3})', Keyword, 'old_arguments'),
+            (r'\b[A-Z][^.:\n"]+:',       Keyword, 'comma_list'),
+            (r'\b[A-Z][^\n]+',           Keyword),
+            (r'(\.{3}|\)|\(|,|\$)',      Text),
         ],
-        'old-arguments': [
-            include('variable-name'),
-            include('operator'),
-            include('number'),
-            (r'"', String, 'string'),
-            (r'^', String, '#pop'),
-            (r'[A-Z]', Text),
+        'procedure_call': [
+            (r'\s+', Text),
+            (r'([\w.]+)(:|\s*\()',
+                bygroups(Name.Function, Text), '#pop'),
+            (r'([\w.]+)', Name.Function, ('#pop', 'old_arguments')),
+        ],
+        'procedure_definition': [
             (r'\s', Text),
+            (r'([\w.]+)(\s*?[(:])',
+                bygroups(Name.Function, Text), '#pop'),
+            (r'([\w.]+)([^\n]*)',
+                bygroups(Name.Function, Text), '#pop'),
+        ],
+        'function_call': [
+            (words(functions_string , suffix=r'\$(?=\s*[:(])'), Name.Function, 'function'),
+            (words(functions_array  , suffix=r'#(?=\s*[:(])'),  Name.Function, 'function'),
+            (words(functions_numeric, suffix=r'(?=\s*[:(])'),   Name.Function, 'function'),
         ],
         'function': [
-            (r'\s+', Text),
-            (r':', Text, ('comma-list', '#pop')),
-            (r'\s*\(', Text, ('comma-list', '#pop')),
-            (r'\)', Text, '#pop'),
-            default('#pop'),
+            (r'\s+',   Text),
+            (r':',     Text, 'comma_list'),
+            (r'\s*\(', Text, ('#pop', 'comma_list')),
+            (r'\)',    Text, '#pop'),
         ],
-        'procedure-call': [
+        'comma_list': [
+            (r'\n\s*\.{3}', Text),
+
+            (r'\n', exit_comma_list),
+
             (r'\s+', Text),
-            (r'[\w.]+', Name.Function),
-            (r':', Text, '#pop'),
-            (r'\s*\(', Text, '#pop'),
-            default('#pop'),
+            (r'"',   String, 'string'),
+            (r'\b(if|then|else|fi|endif)\b', Keyword),
+
+            include('function_call'),
+            include('variable_name'),
+            include('operator'),
+            include('number'),
+
+            (r',', Text, 'comma_list'),
+            (r'(\)|\]|^)', Text, '#pop'),
         ],
-        'procedure-definition': [
-            (r'\s', Text),
-            (r'([\w.]+)(\s*?[(:])', bygroups(Name.Function, Text), '#pop'),
-            (r'([\w.]+)([^\n]*)', bygroups(Name.Function, Text), '#pop'),
-            default('#pop'),
-        ],
-        'comma-list': [
-            (r'\s+', Text),
-            (r',', Text, '#push'),
-            (r'(\)|^)', Text, '#pop'),
-            default('#pop'),
+        'old_arguments': [
+            (r'\n', Text, '#pop'),
+
+            include('variable_name'),
+            include('operator'),
+            include('number'),
+
+            (r'"',     String, 'string'),
+            (r'[A-Z]', Text),
+            (r'\s',    Text),
         ],
         'number': [
-            (r'[+-]?\d+', Number),
-            (r'(?<=\d)(\.\d+)', Number),
-            (r'[eE][+-]?\d+', Number),
+            (r'\b\d+(\.\d*)?([eE][-+]?\d+)?%?', Number),
+        ],
+        'object_attributes': [
+            (r'\.?(n(col|row)|[xy]min|[xy]max|[nd][xy])\b', Name.Builtin, '#pop'),
+            (r'(\.?(?:col|row)\$)(\[)',
+                bygroups(Name.Builtin, Text), 'variable_name'),
+            (r'(\$?)(\[)',
+                bygroups(Name.Builtin, Text), 'comma_list'),
+        ],
+        'variable_name': [
+            include('operator'),
+            include('number'),
+
+            (r'\b_', Generic.Error),
+
+            (words(variables_string,  suffix=r'\$'), Name.Variable.Global),
+            (words(variables_numeric, suffix=r'\b'), Name.Variable.Global),
+
+            (r'\bObject_\w+', Name.Builtin, 'object_attributes'),
+
+            (r"\b(Object_)(')",
+                bygroups(Name.Builtin, String.Interpol),
+                ('object_attributes', 'string_interpolated')),
+
+            (r'\.?[a-z][a-zA-Z0-9_.]*\$?', Text),
+            (r'\[',                        Text,            'comma_list'),
+            (r"'(?=.*')",                  String.Interpol, 'string_interpolated'),
+            (r'\]',                        Text),
         ],
         'operator': [
-            (r'([+/*<>=!-]=?|[%^|]|<>)', Operator),
-            (r'\b(and|or|not)\b', Operator.Word),
+            (r'([+\/*<>=!-]=?|[&*|][&*|]?|\^|<>)', Operator),
+            (r'\b(and|or|not|div|mod)\b',          Operator.Word),
         ],
-        'variable-name': [
-            (words((
-                'macintosh', 'windows', 'unix', 'praatVersion', 'praatVersion$',
-                'pi', 'undefined', 'newline$', 'tab$', 'shellDirectory$',
-                'homeDirectory$', 'preferencesDirectory$',
-                'temporaryDirectory$', 'defaultDirectory$'),
-                prefix=r'\b', suffix=r'\b',),
-                Name.Builtin),
-            (r"\.?[a-z][a-zA-Z0-9_.]*\$?", Text),
-            (r"\[", Text, '#push'),
-            (r"'(?=.*')", String.Interpol, 'string-interpolated'),
-            (r"\]", Text, '#pop'),
-        ],
-        'string-interpolated': [
+        'string_interpolated': [
             (r'\.?[_a-z][a-zA-Z0-9_.]*(?:\$|#|:[0-9]+)?', String.Interpol),
-            (r"'", String.Interpol, '#pop'),
+            (r"'",          String.Interpol, '#pop'),
         ],
-        'string-unquoted': [
-            (r'\s', Text),
-            (r"'(?=.*')", String.Interpol, ('#pop', 'string-interpolated')),
-            (r"'", String),
-            (r'\S+(?=\n)', String, '#pop'),
-            default('#pop'),
+        'string_unquoted': [
+            (r'\n\s*\.{3}', Text),
+            (r'\n',         Text,            '#pop'),
+            (r'\s',         Text),
+            (r"'(?=.*')",   String.Interpol, 'string_interpolated'),
+            (r"'",          String),
+            (r"[^'\n]+",    String),
         ],
         'string': [
-            (r"[^'\"]+", String),
-            (r"'(?=.*')", String.Interpol, 'string-interpolated'),
-            (r"'", String),
-            (r'"', String, '#pop'),
+            (r'\n\s*\.{3}', Text),
+            (r'"',          String,          '#pop'),
+            (r"'(?=.*')",   String.Interpol, 'string_interpolated'),
+            (r"'",          String),
+            (r'[^\'"\n]+',  String),
         ],
-        'old-form': [
+        'old_form': [
             (r'\s+', Text),
-            (r'(optionmenu|choice)(\s+\S+:\s+)([0-9]+)',
-                bygroups(Keyword, Text, Number)),
-            (r'(option|button)(\s+)([+-]?\d+(?:(?:\.\d*)?(?:[eE][+-]?\d+)?)?\b)',
-                bygroups(Keyword, Text, Number)),
-            (r'(option|button)(\s+)',
-                bygroups(Keyword, Text), 'string-unquoted'),
-            (r'(sentence|text)(\s+\S+)',
-                bygroups(Keyword, Text), 'string-unquoted'),
-            (r'(word)(\s+\S+\s*)(\S+)?(\s.*)?',
-                bygroups(Keyword, Text, String, Text)),
+
+            (r'(optionmenu|choice)([ \t]+\S+:[ \t]+)',
+              bygroups(Keyword, Text), 'number'),
+
+            (r'(option|button)([ \t]+)',
+              bygroups(Keyword, Text), 'number'),
+
+            (r'(option|button)([ \t]+)',
+              bygroups(Keyword, Text), 'string_unquoted'),
+
+            (r'(sentence|text)([ \t]+\S+)',
+              bygroups(Keyword, Text), 'string_unquoted'),
+
+            (r'(word)([ \t]+\S+[ \t]*)(\S+)?([ \t]+.*)?',
+              bygroups(Keyword, Text, String, Generic.Error)),
+
             (r'(boolean)(\s+\S+\s*)(0|1|"?(?:yes|no)"?)',
-                bygroups(Keyword, Text, Name.Variable)),
-            (r'(real|natural|positive|integer)(\s+\S+\s*)([+-]?\d+(?:(?:\.\d*)?(?:[eE][+-]?\d+)?)?\b)', 
-                bygroups(Keyword, Text, Number)),
-            (r'(comment)(\s+)(.*)', 
-                bygroups(Keyword, Text, String)),
-            (r'(endform)', 
-                bygroups(Keyword), "#pop"),
-        ],
+              bygroups(Keyword, Text, Name.Variable)),
+
+            # Ideally processing of the number would happend in the 'number'
+            # but that doesn't seem to work
+            (r'(real|natural|positive|integer)([ \t]+\S+[ \t]*)([+-]?\d+(\.\d*)?([eE][-+]?\d+)?%?)',
+              bygroups(Keyword, Text, Operator, Number)),
+
+            (r'(comment)(\s+)',
+              bygroups(Keyword, Text), 'string_unquoted'),
+
+            (r'\bendform\b', Keyword, '#pop'),
+        ]
     }

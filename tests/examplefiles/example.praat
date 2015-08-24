@@ -1,4 +1,5 @@
 form Highlighter test
+  sentence Blank
   sentence My_sentence This should all be a string
   text My_text This should also all be a string
   word My_word Only the first word is a string, the rest is invalid
@@ -17,18 +18,18 @@ include /path/to/file
 runScript: "/path/to/file"
 execute /path/to/file
 
-stopwatch
-
-# old-style procedure call
-call oldStyle "quoted" 2 unquoted string
-assert oldStyle.local = 1
-
-# New-style procedure call with parens
-@newStyle("quoted", 2, "quoted string")
-if praatVersion >= 5364 
-  # New-style procedure call with colon
-  @newStyle: "quoted", 2, "quoted string"
-endif
+# Predefined variables
+a  = praatVersion
+a  = e
+a  = pi
+a$ = homeDirectory$ + tab$ + newline$
+a$ = temporaryDirectory$
+a$ = praatVersion$
+a$ = shellDirectory$
+a$ = homeDirectory$
+a$ = preferencesDirectory$
+a$ = defaultDirectory$
+nocheck selectObject: undefined
 
 # if-block with built-in variables
 if windows
@@ -39,6 +40,26 @@ else macintosh == 1
   exit We are on Mac
 endif
 
+string$ = "Strings can be 'interpolated'"
+string$ = "But don't interpolate everything!"
+
+rows   = Object_'table'.nrow
+value$ = Object_'table'$[25, "f0"]
+fixed  = Object_10.xmin
+fixed  = Object_foo.xmin
+
+# old-style procedure call
+call oldStyle "quoted" 2 unquoted string
+assert oldStyle.local = 1
+
+# New-style procedure call with parens
+@newStyle("quoted", 2, "quoted string")
+if praatVersion >= 5364
+  # New-style procedure call with colon
+  @newStyle: "quoted", 2, "quoted string"
+endif
+
+
 # inline if with inline comment
 var = if macintosh = 1 then 0 else 1 fi ; This is an inline comment
 
@@ -46,6 +67,7 @@ var = if macintosh = 1 then 0 else 1 fi ; This is an inline comment
 # and paren-style function calls and variable interpolation
 n = numberOfSelected("Sound")
 for i from newStyle.local to n
+  name = selected$(extractWord$(selected$(), " "))
   sound'i' = selected("Sound", i)
   sound[i] = sound'i'
 endfor
@@ -58,7 +80,7 @@ for i from 1 to n
   select Sound 'sound$'
   selectObject(sound[i])
   selectObject: sound
-  
+
   # Pause commands
   beginPause("Viewing " + sound$)
   if i > 1
@@ -68,7 +90,7 @@ for i from 1 to n
   else
     button = endPause("Stop",
       ...if i = total_sounds then "Finish" else "Next" fi,
-      ...2, 1)  
+      ...2, 1)
   endif
   editor_name$ = if total_textgrids then "TextGrid " else "Sound " fi + name$
   nocheck editor Sound 'editor_name$'
@@ -77,17 +99,17 @@ for i from 1 to n
   editor_id = editor: editor_name$
     Close
   endeditor
-  
+
   # New-style standalone command call
   Rename: "SomeName"
 
   # Command call with assignment
   duration = Get total duration
-  
+
   # Multi-line command with modifier
   pitch = noprogress To Pitch (ac): 0, 75, 15, "no",
     ...0.03, 0.45, 0.01, 0.35, 0.14, 600
-    
+
   # do-style command with assignment
   minimum = do("Get minimum...", 0, 0, "Hertz", "Parabolic")
 
@@ -96,9 +118,9 @@ for i from 1 to n
     ..."file subject speaker
     ...f0 f1 f2 f3 " +
     ..."duration response"
-  
+
   removeObject: pitch, table
-    
+
   # Picture window commands
   selectObject: sound
   # do-style command
@@ -108,7 +130,7 @@ for i from 1 to n
   Draw inner box
   Text bottom: "yes", sound$
   Erase all
-  
+
   # Demo window commands
   demo Erase all
   demo Select inner viewport... 0 100 0 100
@@ -121,6 +143,7 @@ for i from 1 to n
 endfor
 
 # An old-style sendpraat block
+# All these lines should be a string!
 sendpraat Praat
   ...'newline$' Create Sound as pure tone... "tone" 1 0 0.4 44100 440 0.2 0.01 0.01
   ...'newline$' Play
@@ -134,10 +157,42 @@ beginSendPraat: "Praat"
 endSendPraat: "duration"
 appendInfoLine: "The generated sound lasted for ", duration, "seconds"
 
+# Number types
+a =   10%
+a =  -10
+a =  +10
+a =   10.4
+a =  294e12
+a =    2.94e12
+
+# Operators
+a = 2 ^ -6
+a = -(1+1)^6
+a = 4^3 ^ 2
+a = 54 div 5.1
+a = 54.3 mod 5
+a = 3 ** 8 - 7
+a = 3 / (8 + 7)
+a = (7 * (3 + 5)) / ((2 + 3) - 1)
+
+# Logical operators
+assert (a =   b) and c
+assert  a == (b  or  c)
+assert  a <=  b  not c
+assert  a >=  b     !c
+assert  a !=  b  &   c
+assert  a !=  b  &&  c
+assert  a <>  b  ||  c
+assert  a <   b  |   c
+assert  a >   b
+assert "hello" =  "he" + "llo"
+assert "hello" == "hello world" - " world"
+
+stopwatch
 time = stopwatch
 clearinfo
-echo This script took 
-print 'time' seconds to 
+echo This script took
+print 'time' seconds to
 printline execute.
 
 # Old-style procedure declaration
@@ -152,7 +207,11 @@ procedure newStyle (.str1$, .num, .str2$)
 endproc
 
 # New-style procedure declaration with colon
-procedure newStyle: .str1$, .num, .str2$
+procedure _new_style: .str1$, .num, .str2$
   # Command with "local" variable
-  newStyle.local = Get total duration
+  # Initial underscores in variables not allowed (unless interpolated)
+  _new_style.local = Get total duration
 endproc
+
+asserterror Unknown symbol:'newline$'« _
+assert '_new_style.local'
