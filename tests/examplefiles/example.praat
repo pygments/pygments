@@ -31,6 +31,9 @@ a$ = preferencesDirectory$
 a$ = defaultDirectory$
 nocheck selectObject: undefined
 
+# Arrays are not comments
+a# = zero# (5, 6)
+
 # if-block with built-in variables
 if windows
   # We are on Windows
@@ -58,7 +61,6 @@ if praatVersion >= 5364
   # New-style procedure call with colon
   @newStyle: "quoted", 2, "quoted string"
 endif
-
 
 # inline if with inline comment
 var = if macintosh = 1 then 0 else 1 fi ; This is an inline comment
@@ -215,3 +217,4 @@ endproc
 
 asserterror Unknown symbol:'newline$'« _
 assert '_new_style.local'
+
