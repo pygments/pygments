@@ -127,7 +127,6 @@ class SparqlLexer(RegexLexer):
             (r"'''", String, 'triple-single-quoted-string'),
             (r"'", String, 'single-single-quoted-string'),
         ],
-        # TODO: string escapes, e.g. \uXXXX
         'triple-double-quoted-string': [
             (r'"""', String, 'end-of-string'),
             (r'[^\\]+', String),
@@ -141,7 +140,7 @@ class SparqlLexer(RegexLexer):
         'triple-single-quoted-string': [
             (r"'''", String, 'end-of-string'),
             (r'[^\\]+', String),
-            (r'\\', String, 'string-escape'),
+            (r'\\', String.Escape, 'string-escape'),
         ],
         'single-single-quoted-string': [
             (r"'", String, 'end-of-string'),
@@ -149,7 +148,9 @@ class SparqlLexer(RegexLexer):
             (r'\\', String, 'string-escape'),
         ],
         'string-escape': [
-            (r'.', String, '#pop'),
+            (r'u' + HEX + '{4}', String.Escape, '#pop'),
+            (r'U' + HEX + '{8}', String.Escape, '#pop'),
+            (r'.', String.Escape, '#pop'),
         ],
         'end-of-string': [
             (r'(@)([a-zA-Z]+(?:-[a-zA-Z0-9]+)*)',
