@@ -20,6 +20,7 @@ SELECT ?person (COUNT(?nick) AS ?nickCount) {
       ex:height 1.80 ; # float
       ex:distanceToSun 1.4e8 ; # float with exponent
       ex:ownsACat true ;
+      ex:catName "Kitty", "Kitty_" ; # object list
       # some other float values
       ex:float1 .125 ;
       ex:float2 +2.5e10 ;
@@ -30,7 +31,7 @@ SELECT ?person (COUNT(?nick) AS ?nickCount) {
       ex:float7 1. ;
       ex:À "" ;
       ex:豈 "" ;
-      ex:catName "Kitty", "Kitty_" ; # object list
+      ex:escape "\n\u00c0\U00010000";
       ex:catAge ?catage ;
       dcterms:description "Someone with a cat called \"cat\"."@en . # language tag
     ?person foaf:knows _:b0 .
