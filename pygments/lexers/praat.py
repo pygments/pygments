@@ -182,7 +182,7 @@ class PraatLexer(ExtendedRegexLexer):
             (r'\)',    Text, '#pop'),
         ],
         'comma_list': [
-            (r'\n\s*\.{3}', Text),
+            (r'\s*\n\s*\.{3}', Text),
 
             (r'\s*\n', exit_comma_list),
 
@@ -196,7 +196,7 @@ class PraatLexer(ExtendedRegexLexer):
             include('number'),
 
             (r',', Text, 'comma_list'),
-            (r'(\)|\]|^)', Text, '#pop'),
+            (r'(\)|\]|^)', exit_comma_list),
         ],
         'old_arguments': [
             (r'\n', Text, '#pop'),
