@@ -122,7 +122,8 @@ for i from 1 to n
     ...f0 f1 f2 f3 " +
     ..."duration response"
 
-  removeObject: pitch, table
+  removeObject: pitch, table 
+    # comment
 
   # Picture window commands
   selectObject: sound
@@ -144,6 +145,12 @@ for i from 1 to n
   demo Erase all
   demo Text: 50, "centre", 50, "half", "Finished"
 endfor
+
+switch$ = if switch == 1 then "a" else
+  ...     if switch == 2 then "b" else
+  ...     if switch == 3 then "c" else
+  ...     if switch == 4 then "d" else
+  ...     "default" fi fi fi fi
 
 # An old-style sendpraat block
 # All these lines should be a string!

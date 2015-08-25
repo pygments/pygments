@@ -35,6 +35,7 @@ class PraatLexer(ExtendedRegexLexer):
                 ctx.stack.pop()
             elif ctx.stack[-1] != 'root':
                 ctx.stack.pop()
+                #break
             else:
                 break
 
@@ -183,7 +184,7 @@ class PraatLexer(ExtendedRegexLexer):
         'comma_list': [
             (r'\n\s*\.{3}', Text),
 
-            (r'\n', exit_comma_list),
+            (r'\s*\n', exit_comma_list),
 
             (r'\s+', Text),
             (r'"',   String, 'string'),
