@@ -228,9 +228,13 @@ class PraatLexer(ExtendedRegexLexer):
             (words(variables_numeric, suffix=r'\b'), Name.Variable.Global),
 
             (r'\bObject_\w+', Name.Builtin, 'object_attributes'),
+            (words(objects, prefix=r'\b', suffix=r'_\w+'), Name.Builtin, 'object_attributes'),
 
             (r"\b(Object_)(')",
                 bygroups(Name.Builtin, String.Interpol),
+                ('object_attributes', 'string_interpolated')),
+            (words(objects, prefix=r'\b', suffix=r"(_)(')"),
+                bygroups(Name.Builtin, Name.Builtin, String.Interpol),
                 ('object_attributes', 'string_interpolated')),
 
             (r'\.?[a-z][a-zA-Z0-9_.]*(\$|#)?', Text),
@@ -265,30 +269,30 @@ class PraatLexer(ExtendedRegexLexer):
             (r'\s+', Text),
 
             (r'(optionmenu|choice)([ \t]+\S+:[ \t]+)',
-              bygroups(Keyword, Text), 'number'),
+                bygroups(Keyword, Text), 'number'),
 
             (r'(option|button)([ \t]+)',
-              bygroups(Keyword, Text), 'number'),
+                bygroups(Keyword, Text), 'number'),
 
             (r'(option|button)([ \t]+)',
-              bygroups(Keyword, Text), 'string_unquoted'),
+                bygroups(Keyword, Text), 'string_unquoted'),
 
             (r'(sentence|text)([ \t]+\S+)',
-              bygroups(Keyword, Text), 'string_unquoted'),
+                bygroups(Keyword, Text), 'string_unquoted'),
 
             (r'(word)([ \t]+\S+[ \t]*)(\S+)?([ \t]+.*)?',
-              bygroups(Keyword, Text, String, Generic.Error)),
+                bygroups(Keyword, Text, String, Generic.Error)),
 
             (r'(boolean)(\s+\S+\s*)(0|1|"?(?:yes|no)"?)',
-              bygroups(Keyword, Text, Name.Variable)),
+                bygroups(Keyword, Text, Name.Variable)),
 
             # Ideally processing of the number would happend in the 'number'
             # but that doesn't seem to work
             (r'(real|natural|positive|integer)([ \t]+\S+[ \t]*)([+-]?\d+(\.\d*)?([eE][-+]?\d+)?%?)',
-              bygroups(Keyword, Text, Operator, Number)),
+                bygroups(Keyword, Text, Operator, Number)),
 
             (r'(comment)(\s+)',
-              bygroups(Keyword, Text), 'string_unquoted'),
+                bygroups(Keyword, Text), 'string_unquoted'),
 
             (r'\bendform\b', Keyword, '#pop'),
         ]
