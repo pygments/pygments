@@ -23,21 +23,13 @@ class PraatLexer(ExtendedRegexLexer):
     For `Praat <http://www.praat.org>`_ scripts.
     """
 
-    # The comma list is a comma-delimited list of arguments
-    # Every time a comma is found, comma_list is recuersively put
-    # back on the stack. To exit, we need to go all the way up to the
-    # first caller and then pop again if that caller was not root.
-    def exit_comma_list(lexer, match, ctx):
-        yield match.start(), Text, match.group(0)
+    # Attempt to pop twice without popping out of range
+    def safe_pop2(lexer, match, ctx):
+        yield match.start(), Punctuation, match.group(0)
         ctx.pos = match.end()
-        while ctx.stack:
-            if ctx.stack[-1] == 'comma_list':
-                ctx.stack.pop()
-            elif ctx.stack[-1] != 'root':
-                ctx.stack.pop()
-                #break
-            else:
-                break
+        ctx.stack.pop()
+        if ctx.stack and ctx.stack[-1] != 'root':
+            ctx.stack.pop()
 
     name = 'Praat'
     aliases = ['praat']
@@ -152,10 +144,16 @@ class PraatLexer(ExtendedRegexLexer):
 
             (words((objects), suffix=r'(?=\s+\S+\n)'), Name.Class, 'string_unquoted'),
 
-            (r'(\b[A-Z][^.:\n"]+\.{3})', Keyword, 'old_arguments'),
-            (r'\b[A-Z][^.:\n"]+:',       Keyword, 'comma_list'),
-            (r'\b[A-Z][^\n]+',           Keyword),
-            (r'(\.{3}|\)|\(|,|\$)',      Text),
+            (r'\b[A-Z]', Keyword, 'command'),
+            (r'(\.{3}|[)(,])', Punctuation),
+            (r'.', Generic.Error),
+        ],
+        'command': [
+            (r'( ?[\w()-]+ ?)', Keyword),
+            (r"'(?=.*')", String.Interpol, 'string_interpolated'),
+            (r'\.{3}', Keyword, 'old_arguments'),
+            (r':', Keyword, 'comma_list'),
+            (r'[\s\n]', Text, '#pop'),
         ],
         'procedure_call': [
             (r'\s+', Text),
@@ -177,14 +175,13 @@ class PraatLexer(ExtendedRegexLexer):
         ],
         'function': [
             (r'\s+',   Text),
-            (r':',     Text, 'comma_list'),
-            (r'\s*\(', Text, ('#pop', 'comma_list')),
-            (r'\)',    Text, '#pop'),
+            (r':',     Punctuation, 'comma_list'),
+            (r'\s*\(', Punctuation, ('#pop', 'comma_list')),
         ],
         'comma_list': [
-            (r'\s*\n\s*\.{3}', Text),
+            (r'(\s*\n\s*)(\.{3})', bygroups(Text, Punctuation)),
 
-            (r'\s*\n', exit_comma_list),
+            (r'(\s*[])\n])', safe_pop2),
 
             (r'\s+', Text),
             (r'"',   String, 'string'),
@@ -195,8 +192,7 @@ class PraatLexer(ExtendedRegexLexer):
             include('operator'),
             include('number'),
 
-            (r',', Text, 'comma_list'),
-            (r'(\)|\]|^)', exit_comma_list),
+            (r',', Punctuation),
         ],
         'old_arguments': [
             (r'\n', Text, '#pop'),
@@ -205,9 +201,8 @@ class PraatLexer(ExtendedRegexLexer):
             include('operator'),
             include('number'),
 
-            (r'"',     String, 'string'),
-            (r'[A-Z]', Text),
-            (r'\s',    Text),
+            (r'"', String, 'string'),
+            (r'[^\n]', Text),
         ],
         'number': [
             (r'\b\d+(\.\d*)?([eE][-+]?\d+)?%?', Number),
@@ -223,8 +218,6 @@ class PraatLexer(ExtendedRegexLexer):
             include('operator'),
             include('number'),
 
-            (r'\b_', Generic.Error),
-
             (words(variables_string,  suffix=r'\$'), Name.Variable.Global),
             (words(variables_numeric, suffix=r'\b'), Name.Variable.Global),
 
@@ -239,28 +232,29 @@ class PraatLexer(ExtendedRegexLexer):
                 ('object_attributes', 'string_interpolated')),
 
             (r'\.?[a-z][a-zA-Z0-9_.]*(\$|#)?', Text),
-            (r'\[',                            Text,            'comma_list'),
-            (r"'(?=.*')",                      String.Interpol, 'string_interpolated'),
-            (r'\]',                            Text),
+            (r'[\[\]]', Punctuation, 'comma_list'),
+            (r"'(?=.*')", String.Interpol, 'string_interpolated'),
         ],
         'operator': [
             (r'([+\/*<>=!-]=?|[&*|][&*|]?|\^|<>)', Operator),
             (r'\b(and|or|not|div|mod)\b',          Operator.Word),
         ],
         'string_interpolated': [
-            (r'\.?[_a-z][a-zA-Z0-9_.]*(?:\$|#|:[0-9]+)?', String.Interpol),
+            (r'\.?[_a-z][a-zA-Z0-9_.]*[\$#]?(?:\[[a-zA-Z0-9,]+\])?(:[0-9]+)?', String.Interpol),
             (r"'",          String.Interpol, '#pop'),
         ],
         'string_unquoted': [
-            (r'\n\s*\.{3}', Text),
-            (r'\n',         Text,            '#pop'),
-            (r'\s',         Text),
-            (r"'(?=.*')",   String.Interpol, 'string_interpolated'),
-            (r"'",          String),
-            (r"[^'\n]+",    String),
+            (r'(\n\s*)(\.{3})', bygroups(Text, Punctuation)),
+
+            (r'\n',       Text,            '#pop'),
+            (r'\s',       Text),
+            (r"'(?=.*')", String.Interpol, 'string_interpolated'),
+            (r"'",        String),
+            (r"[^'\n]+",  String),
         ],
         'string': [
-            (r'\n\s*\.{3}', Text),
+            (r'(\n\s*)(\.{3})', bygroups(Text, Punctuation)),
+
             (r'"',          String,          '#pop'),
             (r"'(?=.*')",   String.Interpol, 'string_interpolated'),
             (r"'",          String),
@@ -289,7 +283,7 @@ class PraatLexer(ExtendedRegexLexer):
 
             # Ideally processing of the number would happend in the 'number'
             # but that doesn't seem to work
-            (r'(real|natural|positive|integer)([ \t]+\S+[ \t]*)([+-]?\d+(\.\d*)?([eE][-+]?\d+)?%?)',
+            (r'(real|natural|positive|integer)([ \t]+\S+[ \t]*)([+-]?)(\d+(?:\.\d*)?(?:[eE][-+]?\d+)?%?)',
                 bygroups(Keyword, Text, Operator, Number)),
 
             (r'(comment)(\s+)',
