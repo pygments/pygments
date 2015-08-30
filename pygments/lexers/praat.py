@@ -8,7 +8,6 @@
     :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-#from __future__ import print_function
 
 import re
 
@@ -22,14 +21,6 @@ class PraatLexer(ExtendedRegexLexer):
     """
     For `Praat <http://www.praat.org>`_ scripts.
     """
-
-    # Attempt to pop twice without popping out of range
-    def safe_pop2(lexer, match, ctx):
-        yield match.start(), Punctuation, match.group(0)
-        ctx.pos = match.end()
-        ctx.stack.pop()
-        if ctx.stack and ctx.stack[-1] != 'root':
-            ctx.stack.pop()
 
     name = 'Praat'
     aliases = ['praat']
@@ -152,7 +143,7 @@ class PraatLexer(ExtendedRegexLexer):
             (r'( ?[\w()-]+ ?)', Keyword),
             (r"'(?=.*')", String.Interpol, 'string_interpolated'),
             (r'\.{3}', Keyword, 'old_arguments'),
-            (r':', Keyword, 'comma_list'),
+            (r':', Keyword, ('#pop', 'comma_list')),
             (r'[\s\n]', Text, '#pop'),
         ],
         'procedure_call': [
@@ -175,13 +166,13 @@ class PraatLexer(ExtendedRegexLexer):
         ],
         'function': [
             (r'\s+',   Text),
-            (r':',     Punctuation, 'comma_list'),
+            (r':',     Punctuation, ('#pop', 'comma_list')),
             (r'\s*\(', Punctuation, ('#pop', 'comma_list')),
         ],
         'comma_list': [
             (r'(\s*\n\s*)(\.{3})', bygroups(Text, Punctuation)),
 
-            (r'(\s*[])\n])', safe_pop2),
+            (r'(\s*[])\n])', Text, '#pop'),
 
             (r'\s+', Text),
             (r'"',   String, 'string'),
@@ -212,7 +203,7 @@ class PraatLexer(ExtendedRegexLexer):
             (r'(\.?(?:col|row)\$)(\[)',
                 bygroups(Name.Builtin, Text), 'variable_name'),
             (r'(\$?)(\[)',
-                bygroups(Name.Builtin, Text), 'comma_list'),
+                bygroups(Name.Builtin, Text), ('#pop', 'comma_list')),
         ],
         'variable_name': [
             include('operator'),
