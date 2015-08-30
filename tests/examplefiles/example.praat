@@ -56,6 +56,7 @@ Text... 1 Right 0.2 Half many----hyphens
 Text... 1 Right -0.4 Bottom aحبيبa
 Text... 1 Right -0.6 Bottom 日本
 Draw circle (mm)... 0.5 0.5 i
+x=1
 
 rows   = Object_'table'.nrow
 value$ = Table_'table'$[25, "f0"]

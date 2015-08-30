@@ -142,7 +142,7 @@ class PraatLexer(ExtendedRegexLexer):
         'command': [
             (r'( ?[\w()-]+ ?)', Keyword),
             (r"'(?=.*')", String.Interpol, 'string_interpolated'),
-            (r'\.{3}', Keyword, 'old_arguments'),
+            (r'\.{3}', Keyword, ('#pop', 'old_arguments')),
             (r':', Keyword, ('#pop', 'comma_list')),
             (r'[\s\n]', Text, '#pop'),
         ],
