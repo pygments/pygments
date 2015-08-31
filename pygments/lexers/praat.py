@@ -11,13 +11,13 @@
 
 import re
 
-from pygments.lexer import ExtendedRegexLexer, words, bygroups, default, include
+from pygments.lexer import RegexLexer, words, bygroups, default, include
 from pygments.token import *
 
 __all__ = ['PraatLexer']
 
 
-class PraatLexer(ExtendedRegexLexer):
+class PraatLexer(RegexLexer):
     """
     For `Praat <http://www.praat.org>`_ scripts.
     """
@@ -137,7 +137,6 @@ class PraatLexer(ExtendedRegexLexer):
 
             (r'\b[A-Z]', Keyword, 'command'),
             (r'(\.{3}|[)(,])', Punctuation),
-            (r'.', Generic.Error),
         ],
         'command': [
             (r'( ?[\w()-]+ ?)', Keyword),
@@ -267,7 +266,7 @@ class PraatLexer(ExtendedRegexLexer):
                 bygroups(Keyword, Text), 'string_unquoted'),
 
             (r'(word)([ \t]+\S+[ \t]*)(\S+)?([ \t]+.*)?',
-                bygroups(Keyword, Text, String, Generic.Error)),
+                bygroups(Keyword, Text, String, Error)),
 
             (r'(boolean)(\s+\S+\s*)(0|1|"?(?:yes|no)"?)',
                 bygroups(Keyword, Text, Name.Variable)),
