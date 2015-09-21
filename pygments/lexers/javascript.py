@@ -87,6 +87,7 @@ class JavascriptLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'`(\\\\|\\`|[^`])*`', String.Backtick),
         ]
     }
 
