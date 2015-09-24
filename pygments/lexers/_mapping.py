@@ -112,6 +112,7 @@ LEXERS = {
     'DylanLidLexer': ('pygments.lexers.dylan', 'DylanLID', ('dylan-lid', 'lid'), ('*.lid', '*.hdp'), ('text/x-dylan-lid',)),
     'ECLLexer': ('pygments.lexers.ecl', 'ECL', ('ecl',), ('*.ecl',), ('application/x-ecl',)),
     'ECLexer': ('pygments.lexers.c_like', 'eC', ('ec',), ('*.ec', '*.eh'), ('text/x-echdr', 'text/x-ecsrc')),
+    'EarlGreyLexer': ('pygments.lexers.javascript', 'Earl Grey', ('Earl-Grey', 'earl-grey', 'earlgrey', 'eg'), ('*.eg',), ('text/x-earl-grey',)),
     'EbnfLexer': ('pygments.lexers.parsers', 'EBNF', ('ebnf',), ('*.ebnf',), ('text/x-ebnf',)),
     'EiffelLexer': ('pygments.lexers.eiffel', 'Eiffel', ('eiffel',), ('*.e',), ('text/x-eiffel',)),
     'ElixirConsoleLexer': ('pygments.lexers.erlang', 'Elixir iex session', ('iex',), (), ('text/x-elixir-shellsession',)),
