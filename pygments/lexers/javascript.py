@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, default, using, this
+from pygments.lexer import RegexLexer, include, bygroups, default, using, this, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Other
 from pygments.util import get_bool_opt, iteritems
@@ -19,7 +19,7 @@ import pygments.unistring as uni
 
 __all__ = ['JavascriptLexer', 'KalLexer', 'LiveScriptLexer', 'DartLexer',
            'TypeScriptLexer', 'LassoLexer', 'ObjectiveJLexer',
-           'CoffeeScriptLexer', 'MaskLexer']
+           'CoffeeScriptLexer', 'MaskLexer', 'EarlGreyLexer']
 
 JS_IDENT_START = ('(?:[$_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') +
                   ']|\\\\u[a-fA-F0-9]{4})')
@@ -1195,5 +1195,189 @@ class MaskLexer(RegexLexer):
         'string-double-pop2': [
             (r'"', String.Single, '#pop:2'),
             include('string-base')
+        ],
+    }
+
+class EarlGreyLexer(RegexLexer):
+    """
+    For `Earl-Grey`_ source code.
+
+    .. _Earl-Grey: https://breuleux.github.io/earl-grey/
+
+    .. versionadded: 2.1
+    """
+
+    name = 'Earl Grey'
+    aliases = ['Earl-Grey', 'earl-grey', 'earlgrey', 'eg']
+    filenames = ['*.eg']
+    mimetypes = ['text/x-earl-grey']
+
+    # flags = re.DOTALL
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'[^\S\n]+', Text),
+            (r';;.*\n', Comment),
+            (r'[\[\]\{\}\:\(\)\,\;]', Punctuation),
+            (r'\\\n', Text),
+            (r'\\', Text),
+            include('errors'),
+            (words((
+                'with', 'where', 'when', 'and', 'not', 'or', 'in',
+                'as', 'of', 'is'),
+                prefix=r'(?<=\s|\[)', suffix=r'(?![\w\$\-])'),
+             Operator.Word),
+            (r'[\*@]?->', Name.Function),
+            (r'([+*/~^<>%&|?!]+)|([\.#\-](?=\s))|@@+(?=\s)|=+', Operator),
+            (r'(?<![\w\$\-])(var|let)(?:[^\w\$])', Keyword.Declaration),
+            include('keywords'),
+            include('builtins'),
+            include('assignment'),
+            include('nested'),
+            (r'(?<=[\s\[\{\(,;])\.([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)', String.Symbol),
+            (r'"', String, 'dqs'),
+            (r'\'', String, 'sqs'),
+            (r'"""', String, 'tdqs'),
+            include('control'),
+            include('name'),
+            include('tuple'),
+            include('numbers'),
+            include('import_paths'),
+        ],
+        'import_paths': [
+            (r'(?<=[\s:;,])(\.{1,3}(?:[\w\-]*/)*)(\w(?:[\w\-]*\w)*)(?=[\s;,])',
+             bygroups(Text.Whitespace, Text)),
+        ],
+        'assignment': [
+            (r'(\.)?([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?=\s+\=\s)',
+             bygroups(Punctuation, Name.Variable))
+        ],
+        'errors': [
+            (words(('Error', 'TypeError', 'ReferenceError'),
+                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-\.])'),
+             Name.Exception),
+            (r'''(?x)
+                (?<![\w\$])
+                E\.[\w\$](?:[\w\$\-]*[\w\$])?
+                (?:\.[\w\$](?:[\w\$\-]*[\w\$])?)*
+                (?=[\(\{\[\?\!\s])''',
+             Name.Exception),
+        ],
+        'control': [
+            (r'''(?x)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
+                (?!\n)\s+
+                (?!and|as|each\*|each|in|is|mod|of|or|when|where|with)
+                (?=(?:[+\-*/~^<>%&|?!@#.])?[a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)''',
+             Keyword.Control),
+            (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?!\n)\s+(?=[\'"\d\{\[\(])', Keyword.Control),
+            (r'''(?x)
+                (?:
+                    ^(?:\s+)?|
+                    \s(?:=|=>|->|%|with|where|each|each\*|where|with)\s+|
+                    \S+(?<![+\-*/~^<>%&|?!@#.])\s+
+                )
+                (?!(?:and|as|each\*|each|in|is|mod|not|of|or|when|where|with)\\s)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
+                (\:\s+)
+                (?:
+                    (?=$\n?)|
+                    (?=[+\-*/~^<>=%&|?!#][a-zA-Z$0-9_])|
+                    (?!(?:and|as|each\*|each|in|is|mod|of|or|when|where|with):?\\s)
+                    (?=@?[a-zA-Z$0-9_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)|
+                    (?=\..*?(?=[\s;,]))|
+                    (?=(?:\\"{3}|[\"\\\']).*(?:\"{3}|[\"\\\']))|
+                    (?=\d(?:[\.\w]*\d)?)
+                )''',
+             bygroups(Keyword.Control, Punctuation))
+        ],
+        'nested': [
+            (r'''(?x)
+                (?<!\s)\.
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
+                (?![\[{(:])''',
+             Text),
+            (r'''(?x)
+                (?<!\s)\.
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
+                (?=[\[{(:])''',
+             Name.Attribute),
+            (r'''(?x)
+                (?<!\s)\.
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
+                \s(?=with)''',
+             Name.Attribute),
+        ],
+        'keywords': [
+            (words((
+                'each', 'each*', 'mod', 'await', 'break', 'chain',
+                'continue', 'elif', 'expr-value', 'if', 'match',
+                'return', 'yield', 'pass', 'else', 'require', 'var',
+                'let', 'async', 'method', 'gen'),
+                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-\.])'),
+             Keyword.Pseudo),
+            (words(('this', 'self', '@'),
+                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-])'),
+             Keyword.Constant),
+            (words((
+                'Function', 'Object', 'Array', 'String', 'Number',
+                'Boolean', 'ErrorFactory', 'ENode', 'Promise'),
+                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-])'),
+             Keyword.Type),
+        ],
+        'builtins': [
+            (words((
+                'send', 'object', 'keys', 'items', 'enumerate', 'zip',
+                'product', 'neighbours', 'predicate', 'equal',
+                'nequal', 'contains', 'repr', 'clone', 'range',
+                'getChecker', 'get-checker', 'getProperty', 'get-property',
+                'getProjector', 'get-projector', 'consume', 'take',
+                'promisify', 'spawn', 'constructor'),
+                prefix=r'(?<![\w\-#\.])', suffix=r'(?![\w\-\.])'),
+             Name.Builtin),
+            (words((
+                'true', 'false', 'null', 'undefined'),
+                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-\.])'),
+             Name.Constant),
+        ],
+        'name': [
+            (r'@[a-zA-Z_][a-zA-Z_\-0-9]*', Name.Variable.Instance),
+            (r'[a-zA-Z_][a-zA-Z_\-0-9]*', Name)
+        ],
+        'tuple': [
+            (r'#[a-zA-Z_][a-zA-Z_\-0-9]*(?=[\s\{\(])', Name.Namespace)
+        ],
+        'interpoling_string': [
+            (r'\}', String.Interpol, '#pop'),
+            include('root')
+        ],
+        'strings': [
+            (r'[^\\\'"]', String),
+            (r'[\'"\\]', String),
+            (r'\n', String) # All strings are multiline in EG
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            (r'\\\\|\\"|\\\n', String.Escape),
+            include('strings')
+        ],
+        'sqs': [
+            (r"'", String, '#pop'),
+            (r"\\\\|\\'|\\\n", String.Escape),
+            (r'\{', String.Interpol, 'interpoling_string'),
+            include('strings')
+        ],
+        'tdqs': [
+            (r'"""', String, '#pop'),
+            include('strings')
+        ],
+        'numbers': [
+            (r'\d+\.\d*([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+', Number.Float),
+            (r'8r[0-7]+', Number.Oct),
+            (r'2r[01]+', Number.Bin),
+            (r'16r[a-fA-F0-9]+', Number.Hex),
+            (r'([3-79]|[1-2][0-9]|3[0-6])r[a-zA-Z\d]+(\.[a-zA-Z\d]+)?', Number.Radix),
+            (r'\d+', Number.Integer)
         ],
     }
