@@ -1234,15 +1234,16 @@ class EarlGreyLexer(RegexLexer):
             include('builtins'),
             include('assignment'),
             include('nested'),
-            (r'(?<=[\s\[\{\(,;])\.([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)', String.Symbol),
+            (r'(?<=[\s\[\{\(,;])\.([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?=[\s\]\}\),;])',
+             String.Symbol),
             (r'"', String, 'dqs'),
             (r'\'', String, 'sqs'),
             (r'"""', String, 'tdqs'),
             include('control'),
-            include('name'),
             include('tuple'),
-            include('numbers'),
             include('import_paths'),
+            include('name'),
+            include('numbers'),
         ],
         'import_paths': [
             (r'(?<=[\s:;,])(\.{1,3}(?:[\w\-]*/)*)(\w(?:[\w\-]*\w)*)(?=[\s;,])',
@@ -1293,20 +1294,20 @@ class EarlGreyLexer(RegexLexer):
         ],
         'nested': [
             (r'''(?x)
-                (?<!\s)\.
+                (?<!\s)(\.)
                 ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
-                (?![\[{(:])''',
-             Text),
+                (?=[\}\]\)\.,;:\s])''',
+             bygroups(Punctuation, Name.Field)),
             (r'''(?x)
-                (?<!\s)\.
+                (?<=[a-zA-Z$0-9_\]\}\)])(\.)
                 ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
-                (?=[\[{(:])''',
-             Name.Attribute),
+                (?=[\[\{\(:])''',
+             bygroups(Punctuation, Name.Function)),
             (r'''(?x)
-                (?<!\s)\.
+                (?<=[a-zA-Z$0-9_\]\}\)])(\.)
                 ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
-                \s(?=with)''',
-             Name.Attribute),
+                \s+(?=with)''',
+             bygroups(Punctuation, Name.Function)),
         ],
         'keywords': [
             (words((
@@ -1341,8 +1342,8 @@ class EarlGreyLexer(RegexLexer):
              Name.Constant),
         ],
         'name': [
-            (r'@[a-zA-Z_][a-zA-Z_\-0-9]*', Name.Variable.Instance),
-            (r'[a-zA-Z_][a-zA-Z_\-0-9]*', Name)
+            (r'@([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)', Name.Variable.Instance),
+            (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)', Name.Symbol)
         ],
         'tuple': [
             (r'#[a-zA-Z_][a-zA-Z_\-0-9]*(?=[\s\{\(])', Name.Namespace)
