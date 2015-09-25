@@ -11,7 +11,8 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, default, using, this, words
+from pygments.lexer import RegexLexer, include, bygroups, default, using, \
+    this, words, combined
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Other
 from pygments.util import get_bool_opt, iteritems
@@ -1212,10 +1213,10 @@ class EarlGreyLexer(RegexLexer):
     filenames = ['*.eg']
     mimetypes = ['text/x-earl-grey']
 
-    # flags = re.DOTALL
     tokens = {
         'root': [
             (r'\n', Text),
+            include('control'),
             (r'[^\S\n]+', Text),
             (r';;.*\n', Comment),
             (r'[\[\]\{\}\:\(\)\,\;]', Punctuation),
@@ -1228,22 +1229,36 @@ class EarlGreyLexer(RegexLexer):
                 prefix=r'(?<=\s|\[)', suffix=r'(?![\w\$\-])'),
              Operator.Word),
             (r'[\*@]?->', Name.Function),
-            (r'([+*/~^<>%&|?!]+)|([\.#\-](?=\s))|@@+(?=\s)|=+', Operator),
+            (r'([+*/~^<>&|?!]+)|([#\-](?=\s))|@@+(?=\s)|=+', Operator),
             (r'(?<![\w\$\-])(var|let)(?:[^\w\$])', Keyword.Declaration),
             include('keywords'),
             include('builtins'),
             include('assignment'),
-            include('nested'),
+            (r'''(?x)
+                (?:()([a-zA-Z$_](?:[a-zA-Z$0-9_\-]*[a-zA-Z$0-9_])?)|
+                   (?<=[\s\{\[\(])(\.)([a-zA-Z$_](?:[a-zA-Z$0-9_\-]*[a-zA-Z$0-9_])?))
+                (?=.*%)''',
+             bygroups(Punctuation, Name.Tag, Punctuation, Name.Class.Start), 'dbs'),
+            (r'[rR]?`', String.Backtick, 'bt'),
+            (r'[rR]?```', String.Backtick, 'tbt'),
             (r'(?<=[\s\[\{\(,;])\.([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?=[\s\]\}\),;])',
              String.Symbol),
-            (r'"', String, 'dqs'),
-            (r'\'', String, 'sqs'),
-            (r'"""', String, 'tdqs'),
-            include('control'),
+            include('nested'),
+            (r'(?:[rR]|[rR]\.[gmi]{1,3})?"', String, combined('stringescape', 'dqs')),
+            (r'(?:[rR]|[rR]\.[gmi]{1,3})?\'', String, combined('stringescape', 'sqs')),
+            (r'"""', String, combined('stringescape', 'tdqs')),
             include('tuple'),
             include('import_paths'),
             include('name'),
             include('numbers'),
+        ],
+        'dbs': [
+            (r'(\.)([a-zA-Z$_](?:[a-zA-Z$0-9_\-]*[a-zA-Z$0-9_])?)(?=[\[\.\s])',
+             bygroups(Punctuation, Name.Class.DBS)),
+            (r'(\[)([\^#][a-zA-Z$_](?:[a-zA-Z$0-9_\-]*[a-zA-Z$0-9_])?)(\])',
+             bygroups(Punctuation, Name.Entity.DBS, Punctuation)),
+            (r'\s+', Text),
+            (r'%', Operator.DBS, '#pop'),
         ],
         'import_paths': [
             (r'(?<=[\s:;,])(\.{1,3}(?:[\w\-]*/)*)(\w(?:[\w\-]*\w)*)(?=[\s;,])',
@@ -1274,25 +1289,24 @@ class EarlGreyLexer(RegexLexer):
             (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?!\n)\s+(?=[\'"\d\{\[\(])', Keyword.Control),
             (r'''(?x)
                 (?:
-                    ^(?:\s+)?|
-                    \s(?:=|=>|->|%|with|where|each|each\*|where|with)\s+|
-                    \S+(?<![+\-*/~^<>%&|?!@#.])\s+
-                )
-                (?!(?:and|as|each\*|each|in|is|mod|not|of|or|when|where|with)\\s)
-                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
-                (\:\s+)
-                (?:
-                    (?=$\n?)|
-                    (?=[+\-*/~^<>=%&|?!#][a-zA-Z$0-9_])|
-                    (?!(?:and|as|each\*|each|in|is|mod|of|or|when|where|with):?\\s)
-                    (?=@?[a-zA-Z$0-9_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)|
-                    (?=\..*?(?=[\s;,]))|
-                    (?=(?:\\"{3}|[\"\\\']).*(?:\"{3}|[\"\\\']))|
-                    (?=\d(?:[\.\w]*\d)?)
-                )''',
-             bygroups(Keyword.Control, Punctuation))
+                    (?<=[%=])|
+                    (?<=[=\-]>)|
+                    (?<=with|each|with)|
+                    (?<=each\*|where)
+                )(\s+)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_\-]*[a-zA-Z$0-9_])?)(:)''',
+             bygroups(Text, Keyword.Control, Punctuation)),
+            (r'''(?x)
+                (?<![+\-*/~^<>%&|?!@#.])(\s+)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(:)''',
+             bygroups(Text, Keyword.Control, Punctuation)),
         ],
         'nested': [
+            (r'''(?x)
+                (?<=[a-zA-Z$0-9_\]\}\)])(\.)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
+                (?=\s+with(?:\s|\n))''',
+             bygroups(Punctuation, Name.Function)),
             (r'''(?x)
                 (?<!\s)(\.)
                 ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
@@ -1302,11 +1316,6 @@ class EarlGreyLexer(RegexLexer):
                 (?<=[a-zA-Z$0-9_\]\}\)])(\.)
                 ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
                 (?=[\[\{\(:])''',
-             bygroups(Punctuation, Name.Function)),
-            (r'''(?x)
-                (?<=[a-zA-Z$0-9_\]\}\)])(\.)
-                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
-                \s+(?=with)''',
              bygroups(Punctuation, Name.Function)),
         ],
         'keywords': [
@@ -1346,11 +1355,15 @@ class EarlGreyLexer(RegexLexer):
             (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)', Name.Symbol)
         ],
         'tuple': [
-            (r'#[a-zA-Z_][a-zA-Z_\-0-9]*(?=[\s\{\(])', Name.Namespace)
+            (r'#[a-zA-Z_][a-zA-Z_\-0-9]*(?=[\s\{\(,;\n])', Name.Namespace)
         ],
         'interpoling_string': [
             (r'\}', String.Interpol, '#pop'),
             include('root')
+        ],
+        'stringescape': [
+            (r'\\([\\abfnrtv"\']|\n|N\{.*?\}|u[a-fA-F0-9]{4}|'
+             r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
         'strings': [
             (r'[^\\\'"]', String),
@@ -1370,7 +1383,19 @@ class EarlGreyLexer(RegexLexer):
         ],
         'tdqs': [
             (r'"""', String, '#pop'),
-            include('strings')
+            include('strings'),
+        ],
+        'bt': [
+            (r'`', String.Backtick, '#pop'),
+            (r'(?<!`)\n', String.Backtick),
+            (r'\^|\^=', String.Escape),
+            (r'.+', String.Backtick),
+        ],
+        'tbt': [
+            (r'```', String.Backtick, '#pop'),
+            (r'\n', String.Backtick),
+            (r'\^|\^=', String.Escape),
+            (r'[^\`]+', String.Backtick),
         ],
         'numbers': [
             (r'\d+\.\d*([eE][+-]?[0-9]+)?', Number.Float),
