@@ -10,7 +10,8 @@
     :license: BSD, see LICENSE for details.
 """
 
-KEYWORDS = (   'else',
+KEYWORDS = (
+    'else',
     'for',
     'if',
     'in',
@@ -22,7 +23,8 @@ KEYWORDS = (   'else',
     'return',
     'while')
 
-TYPES = (   'cholesky_factor_corr',
+TYPES = (
+    'cholesky_factor_corr',
     'cholesky_factor_cov',
     'corr_matrix',
     'cov_matrix',
@@ -38,7 +40,8 @@ TYPES = (   'cholesky_factor_corr',
     'vector',
     'void')
 
-FUNCTIONS = (   'Phi',
+FUNCTIONS = (
+    'Phi',
     'Phi_approx',
     'abs',
     'acos',
