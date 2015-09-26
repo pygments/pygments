@@ -4,14 +4,13 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This file contains the names of functions for Stan used by
-    ``pygments.lexers.math.StanLexer. This is for Stan language version 2.7.0
+    ``pygments.lexers.math.StanLexer. This is for Stan language version 2.8.0.
 
     :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-KEYWORDS = (
-    'else',
+KEYWORDS = (   'else',
     'for',
     'if',
     'in',
@@ -21,11 +20,9 @@ KEYWORDS = (
     'print',
     'reject',
     'return',
-    'while'
-)
+    'while')
 
-TYPES = (
-    'cholesky_factor_corr',
+TYPES = (   'cholesky_factor_corr',
     'cholesky_factor_cov',
     'corr_matrix',
     'cov_matrix',
@@ -39,11 +36,9 @@ TYPES = (
     'simplex',
     'unit_vector',
     'vector',
-    'void'
-)
+    'void')
 
-FUNCTIONS = (
-    'Phi',
+FUNCTIONS = (   'Phi',
     'Phi_approx',
     'abs',
     'acos',
@@ -105,6 +100,11 @@ FUNCTIONS = (
     'cos',
     'cosh',
     'crossprod',
+    'csr_extract_u',
+    'csr_extract_v',
+    'csr_extract_w',
+    'csr_matrix_times_vector',
+    'csr_to_dense_matrix',
     'cumulative_sum',
     'determinant',
     'diag_matrix',
@@ -187,6 +187,7 @@ FUNCTIONS = (
     'inv_gamma_log',
     'inv_gamma_rng',
     'inv_logit',
+    'inv_phi',
     'inv_sqrt',
     'inv_square',
     'inv_wishart_log',
@@ -379,11 +380,9 @@ FUNCTIONS = (
     'weibull_rng',
     'wiener_log',
     'wishart_log',
-    'wishart_rng'
-)
+    'wishart_rng')
 
-DISTRIBUTIONS = (
-    'bernoulli',
+DISTRIBUTIONS = (   'bernoulli',
     'bernoulli_logit',
     'beta',
     'beta_binomial',
@@ -433,11 +432,9 @@ DISTRIBUTIONS = (
     'von_mises',
     'weibull',
     'wiener',
-    'wishart'
-)
+    'wishart')
 
-RESERVED = (
-    'alignas',
+RESERVED = (   'alignas',
     'alignof',
     'and',
     'and_eq',
@@ -522,6 +519,5 @@ RESERVED = (
     'volatile',
     'wchar_t',
     'xor',
-    'xor_eq'
-)
+    'xor_eq')
 

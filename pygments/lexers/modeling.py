@@ -332,6 +332,8 @@ class StanLexer(RegexLexer):
             # Special names ending in __, like lp__
             (r'[A-Za-z]\w*__\b', Name.Builtin.Pseudo),
             (r'(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
+            # user-defined functions
+            (r'[A-Za-z]\w*(?=\s*\()]', Name.Function),
             # Regular variable names
             (r'[A-Za-z]\w*\b', Name),
             # Real Literals
