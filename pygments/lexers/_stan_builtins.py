@@ -438,9 +438,11 @@ DISTRIBUTIONS = (
     'von_mises',
     'weibull',
     'wiener',
-    'wishart')
+    'wishart'
+)
 
-RESERVED = (   'alignas',
+RESERVED = (
+    'alignas',
     'alignof',
     'and',
     'and_eq',
