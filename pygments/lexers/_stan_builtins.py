@@ -21,7 +21,8 @@ KEYWORDS = (
     'print',
     'reject',
     'return',
-    'while')
+    'while'
+)
 
 TYPES = (
     'cholesky_factor_corr',
@@ -383,9 +384,11 @@ FUNCTIONS = (
     'weibull_rng',
     'wiener_log',
     'wishart_log',
-    'wishart_rng')
+    'wishart_rng'
+)
 
-DISTRIBUTIONS = (   'bernoulli',
+DISTRIBUTIONS = (
+    'bernoulli',
     'bernoulli_logit',
     'beta',
     'beta_binomial',
@@ -522,5 +525,6 @@ RESERVED = (   'alignas',
     'volatile',
     'wchar_t',
     'xor',
-    'xor_eq')
+    'xor_eq'
+)
 
