@@ -1229,6 +1229,8 @@ class EarlGreyLexer(RegexLexer):
                 prefix=r'(?<=\s|\[)', suffix=r'(?![\w\$\-])'),
              Operator.Word),
             (r'[\*@]?->', Name.Function),
+            (r'[+\-*/~^<>%&|?!@#.]*=', Operator.Word),
+            (r'\.{2,3}', Operator.Word), # Range Operator
             (r'([+*/~^<>&|?!]+)|([#\-](?=\s))|@@+(?=\s)|=+', Operator),
             (r'(?<![\w\$\-])(var|let)(?:[^\w\$])', Keyword.Declaration),
             include('keywords'),
@@ -1265,7 +1267,7 @@ class EarlGreyLexer(RegexLexer):
              bygroups(Text.Whitespace, Text)),
         ],
         'assignment': [
-            (r'(\.)?([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?=\s+\=\s)',
+            (r'(\.)?([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?=\s+[+\-*/~^<>%&|?!@#.]*\=\s)',
              bygroups(Punctuation, Name.Variable))
         ],
         'errors': [
@@ -1352,7 +1354,7 @@ class EarlGreyLexer(RegexLexer):
         ],
         'name': [
             (r'@([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)', Name.Variable.Instance),
-            (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)', Name.Symbol)
+            (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(\+\+|\-\-)?', bygroups(Name.Symbol, Operator.Word))
         ],
         'tuple': [
             (r'#[a-zA-Z_][a-zA-Z_\-0-9]*(?=[\s\{\(,;\n])', Name.Namespace)
@@ -1398,7 +1400,7 @@ class EarlGreyLexer(RegexLexer):
             (r'[^\`]+', String.Backtick),
         ],
         'numbers': [
-            (r'\d+\.\d*([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+\.(?!\.)\d*([eE][+-]?[0-9]+)?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+', Number.Float),
             (r'8r[0-7]+', Number.Oct),
             (r'2r[01]+', Number.Bin),
