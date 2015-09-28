@@ -10,6 +10,7 @@
 """
 
 import sys
+import shlex
 
 from pygments.formatter import Formatter
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
@@ -79,8 +80,8 @@ class FontManager(object):
             from commands import getstatusoutput
         except ImportError:
             from subprocess import getstatusoutput
-        exit, out = getstatusoutput('fc-list "%s:style=%s" file' %
-                                    (name, style))
+        exit, out = getstatusoutput('fc-list %s file' % 
+                                    shlex.quote("%s:style=%s" % (name, style)))
         if not exit:
             lines = out.splitlines()
             if lines:
