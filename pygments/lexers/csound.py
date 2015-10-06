@@ -22,7 +22,7 @@ class CsoundLexer(RegexLexer):
         
         'macro call': [
             (r'(\$\w+\.?)(\()', bygroups(Comment.Preproc, Punctuation), 'function macro call'),
-            (r'\$\w+(\.?|\b)', Comment.Preproc)
+            (r'\$\w+(\.|\b)', Comment.Preproc)
         ],
         'function macro call': [
             (r"((?:\\['\)]|[^'\)])+)(')", bygroups(Comment.Preproc, Punctuation)),
@@ -110,7 +110,7 @@ class CsoundScoreLexer(CsoundLexer):
         'single-line string': [
             (r'"', String, '#pop'),
             (r'[^\\"]+', String)
-        ],
+        ]
     }
 
 
@@ -127,7 +127,7 @@ class CsoundOrchestraLexer(CsoundLexer):
     filenames = ['*.orc']
 
     user_defined_opcodes = set()
-
+    
     def opcode_name_callback(lexer, match):
         opcode = match.group(0)
         lexer.user_defined_opcodes.add(opcode)
@@ -237,17 +237,13 @@ class CsoundOrchestraLexer(CsoundLexer):
             (r',', Punctuation, '#pop'),
             include('partial expression')
         ],
-
-        'escaped character': [
-            (r'\\([\\aAbBnNrRtT"]|[0-7]{1,3})', String.Escape)
-        ],
+        
         'single-line string': [
             include('macro call'),
             (r'"', String, '#pop'),
             # From https://github.com/csound/csound/blob/develop/Opcodes/fout.c#L1405
             (r'%\d*(\.\d+)?[cdhilouxX]', String.Interpol),
-            (r'%[!%nNrRtT]|[~^]', String.Escape),
-            include('escaped character'),
+            (r'%[!%nNrRtT]|[~^]|\\([\\aAbBnNrRtT"]|[0-7]{1,3})', String.Escape),
             (r'[^\\"~$%\^\n]+', String),
             (r'[\\"~$%\^\n]', String)
         ],
