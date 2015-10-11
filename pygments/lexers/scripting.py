@@ -1155,7 +1155,7 @@ class JclLexer(RegexLexer):
              r'setup|signoff|xeq|xmit)\b', Keyword, 'option'),
         ],
         'option': [
-            (r'\n', Text, 'root'),
+            #(r'\n', Text, 'root'),
             (r'\*', Name.Builtin),
             (r'[\[\](){}<>;,]', Punctuation),
             (r'[-+*/=&%]', Operator),
@@ -1164,7 +1164,7 @@ class JclLexer(RegexLexer):
             (r'\.[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r"'", String, 'option_string'),
-            (r'\s+', Whitespace, 'option_comment'),
+            (r'[ \t]+', Whitespace, 'option_comment'),
             (r'\.', Punctuation),
         ],
         'option_string': [
@@ -1174,7 +1174,7 @@ class JclLexer(RegexLexer):
             (r"'", String, '#pop'),
         ],
         'option_comment': [
-            (r'\n', Text, 'root'),
+            #(r'\n', Text, 'root'),
             (r'.+', Comment.Single),
         ]
     }
