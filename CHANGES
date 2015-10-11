@@ -7,6 +7,46 @@ pull request numbers to the requests at
 <https://bitbucket.org/birkenfeld/pygments-main/pull-requests/merged>.
 
 
+Version 2.1
+-----------
+(not released yet)
+
+- Added lexers:
+
+  * Emacs Lisp (PR#431)
+  * Arduino (PR#442)
+  * Modula-2 with multi-dialect support (#1090)
+  * Fortran fixed format (PR#213)
+  * Archetype Definition language (PR#483)
+
+- Added styles:
+
+  * Lovelace (PR#456)
+  * Algol and Algol-nu (#1090)
+
+- Updated autopygmentize script (PR#445)
+
+- Fixed style inheritance for non-standard token types in HTML output.
+
+- Added support for async/await to Python 3 lexer.
+
+
+Version 2.0.3
+-------------
+(not released yet)
+
+- Fix highlighting of certain IRC logs formats (#1076).
+
+
+Version 2.0.2
+-------------
+(released Jan 20, 2015)
+
+- Fix Python tracebacks getting duplicated in the console lexer (#1068).
+
+- Backquote-delimited identifiers are now recognized in F# (#1062).
+
+
 Version 2.0.1
 -------------
 (released Nov 10, 2014)

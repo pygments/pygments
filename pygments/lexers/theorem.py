@@ -5,7 +5,7 @@
 
     Lexers for theorem-proving languages.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -395,11 +395,13 @@ class LeanLexer(RegexLexer):
                  'options', 'precedence', 'postfix', 'prefix', 'calc_trans', 'calc_subst', 'calc_refl',
                  'infix', 'infixl', 'infixr', 'notation', 'eval', 'check', 'exit', 'coercion', 'end',
                  'private', 'using', 'namespace', 'including', 'instance', 'section', 'context',
-                 'protected', 'expose', 'export', 'set_option', 'add_rewrite', 'extends')
+                 'protected', 'expose', 'export', 'set_option', 'add_rewrite', 'extends',
+                 'open', 'example', 'constant', 'constants', 'print', 'opaque', 'reducible', 'irreducible'
+    )
 
     keywords2 = (
-        'forall', 'exists', 'fun', 'Pi', 'obtain', 'from', 'have', 'show', 'assume', 'take',
-        'let', 'if', 'else', 'then', 'by', 'in', 'with', 'begin', 'proof', 'qed', 'calc'
+        'forall', 'fun', 'Pi', 'obtain', 'from', 'have', 'show', 'assume', 'take',
+        'let', 'if', 'else', 'then', 'by', 'in', 'with', 'begin', 'proof', 'qed', 'calc', 'match'
     )
 
     keywords3 = (
@@ -407,46 +409,30 @@ class LeanLexer(RegexLexer):
         'Type', 'Prop',
     )
 
-    keywords4 = (
-        # Tactics
-        'apply', 'and_then', 'or_else', 'append', 'interleave', 'par', 'fixpoint', 'repeat',
-        'at_most', 'discard', 'focus_at', 'rotate', 'try_for', 'now', 'assumption', 'eassumption',
-        'state', 'intro', 'generalize', 'exact', 'unfold', 'beta', 'trace', 'focus', 'repeat1',
-        'determ', 'destruct', 'try', 'auto', 'intros'
-    )
-
     operators = (
-        '!=', '#', '&', '&&', '*', '+', '-', '/', '@', '!',
+        '!=', '#', '&', '&&', '*', '+', '-', '/', '@', '!', '`',
         '-.', '->', '.', '..', '...', '::', ':>', ';', ';;', '<',
         '<-', '=', '==', '>', '_', '`', '|', '||', '~', '=>', '<=', '>=',
         '/\\', '\\/', u'∀', u'Π', u'λ', u'↔', u'∧', u'∨', u'≠', u'≤', u'≥',
-        u'¬', u'⁻¹', u'⬝', u'▸', u'→', u'∃', u'ℕ', u'ℤ', u'≈', u'×'
+        u'¬', u'⁻¹', u'⬝', u'▸', u'→', u'∃', u'ℕ', u'ℤ', u'≈', u'×', u'⌞', u'⌟', u'≡',
+        u'⟨', u'⟩'
     )
 
-    word_operators = ('and', 'or', 'not', 'iff', 'eq')
-
     punctuation = ('(', ')', ':', '{', '}', '[', ']', u'⦃', u'⦄', ':=', ',')
-
-    primitives = ('unit', 'int', 'bool', 'string', 'char', 'list',
-                  'array', 'prod', 'sum', 'pair', 'real', 'nat', 'num', 'path')
 
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'\b(false|true)\b|\(\)|\[\]', Name.Builtin.Pseudo),
             (r'/-', Comment, 'comment'),
             (r'--.*?$', Comment.Single),
             (words(keywords1, prefix=r'\b', suffix=r'\b'), Keyword.Namespace),
             (words(keywords2, prefix=r'\b', suffix=r'\b'), Keyword),
             (words(keywords3, prefix=r'\b', suffix=r'\b'), Keyword.Type),
-            (words(keywords4, prefix=r'\b', suffix=r'\b'), Keyword),
             (words(operators), Name.Builtin.Pseudo),
-            (words(word_operators, prefix=r'\b', suffix=r'\b'), Name.Builtin.Pseudo),
             (words(punctuation), Operator),
-            (words(primitives, prefix=r'\b', suffix=r'\b'), Keyword.Type),
             (u"[A-Za-z_\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f]"
              u"[A-Za-z_'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079"
-             u"\u207f-\u2089\u2090-\u209c\u2100-\u214f]*", Name),
+             u"\u207f-\u2089\u2090-\u209c\u2100-\u214f0-9]*", Name),
             (r'\d+', Number.Integer),
             (r'"', String.Double, 'string'),
             (r'[~?][a-z][\w\']*:', Name.Variable)

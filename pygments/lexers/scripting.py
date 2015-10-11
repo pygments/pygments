@@ -5,7 +5,7 @@
 
     Lexer for scripting and embedded languages.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -14,11 +14,12 @@ import re
 from pygments.lexer import RegexLexer, include, bygroups, default, combined, \
     words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error, Whitespace
+    Number, Punctuation, Error, Whitespace, Other
 from pygments.util import get_bool_opt, get_list_opt, iteritems
 
 __all__ = ['LuaLexer', 'MoonScriptLexer', 'ChaiscriptLexer', 'LSLLexer',
-           'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer', 'HybrisLexer']
+           'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer', 'HybrisLexer',
+           'EasytrieveLexer', 'JclLexer']
 
 
 class LuaLexer(RegexLexer):
@@ -921,3 +922,275 @@ class HybrisLexer(RegexLexer):
             (r'[\w.]+\*?', Name.Namespace, '#pop')
         ],
     }
+
+
+class EasytrieveLexer(RegexLexer):
+    """
+    Easytrieve Plus is a programming language for extracting, filtering and
+    converting sequential data. Furthermore it can layout data for reports.
+    It is mainly used on mainframe platforms and can access several of the
+    mainframe's native file formats. It is somewhat comparable to awk.
+
+    .. versionadded:: 2.1
+    """
+    name = 'Easytrieve'
+    aliases = ['easytrieve']
+    filenames = ['*.ezt', '*.mac']
+    mimetypes = ['text/x-easytrieve']
+    flags = 0
+
+    # Note: We cannot use r'\b' at the start and end of keywords because
+    # Easytrieve Plus delimiter characters are:
+    #
+    #   * space ( )
+    #   * apostrophe (')
+    #   * period (.)
+    #   * comma (,)
+    #   * paranthesis ( and )
+    #   * colon (:)
+    #
+    # Additionally words end once a '*' appears, indicatins a comment.
+    _DELIMITERS = r' \'.,():\n'
+    _DELIMITERS_OR_COMENT = _DELIMITERS + '*'
+    _DELIMITER_PATTERN = '[' + _DELIMITERS + ']'
+    _DELIMITER_PATTERN_CAPTURE = '(' + _DELIMITER_PATTERN + ')'
+    _NON_DELIMITER_OR_COMMENT_PATTERN = '[^' + _DELIMITERS_OR_COMENT + ']'
+    _OPERATORS_PATTERN = ur'[.+\-/=\[\](){}<>;,&%¬]'
+    _KEYWORDS = [
+        'AFTER-BREAK', 'AFTER-LINE', 'AFTER-SCREEN', 'AIM', 'AND', 'ATTR',
+        'BEFORE', 'BEFORE-BREAK', 'BEFORE-LINE', 'BEFORE-SCREEN', 'BUSHU',
+        'BY', 'CALL', 'CASE', 'CHECKPOINT', 'CHKP', 'CHKP-STATUS', 'CLEAR',
+        'CLOSE', 'COL', 'COLOR', 'COMMIT', 'CONTROL', 'COPY', 'CURSOR', 'D',
+        'DECLARE', 'DEFAULT', 'DEFINE', 'DELETE', 'DENWA', 'DISPLAY', 'DLI',
+        'DO', 'DUPLICATE', 'E', 'ELSE', 'ELSE-IF', 'END', 'END-CASE',
+        'END-DO', 'END-IF', 'END-PROC', 'ENDPAGE', 'ENDTABLE', 'ENTER', 'EOF',
+        'EQ', 'ERROR', 'EXIT', 'EXTERNAL', 'EZLIB', 'F1', 'F10', 'F11', 'F12',
+        'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19', 'F2', 'F20', 'F21',
+        'F22', 'F23', 'F24', 'F25', 'F26', 'F27', 'F28', 'F29', 'F3', 'F30',
+        'F31', 'F32', 'F33', 'F34', 'F35', 'F36', 'F4', 'F5', 'F6', 'F7',
+        'F8', 'F9', 'FETCH', 'FILE-STATUS', 'FILL', 'FINAL', 'FIRST',
+        'FIRST-DUP', 'FOR', 'GE', 'GET', 'GO', 'GOTO', 'GQ', 'GR', 'GT',
+        'HEADING', 'HEX', 'HIGH-VALUES', 'IDD', 'IDMS', 'IF', 'IN', 'INSERT',
+        'JUSTIFY', 'KANJI-DATE', 'KANJI-DATE-LONG', 'KANJI-TIME', 'KEY',
+        'KEY-PRESSED', 'KOKUGO', 'KUN', 'LAST-DUP', 'LE', 'LEVEL', 'LIKE',
+        'LINE', 'LINE-COUNT', 'LINE-NUMBER', 'LINK', 'LIST', 'LOW-VALUES',
+        'LQ', 'LS', 'LT', 'MACRO', 'MASK', 'MATCHED', 'MEND', 'MESSAGE',
+        'MOVE', 'MSTART', 'NE', 'NEWPAGE', 'NOMASK', 'NOPRINT', 'NOT',
+        'NOTE', 'NOVERIFY', 'NQ', 'NULL', 'OF', 'OR', 'OTHERWISE', 'PA1',
+        'PA2', 'PA3', 'PAGE-COUNT', 'PAGE-NUMBER', 'PARM-REGISTER',
+        'PATH-ID', 'PATTERN', 'PERFORM', 'POINT', 'POS', 'PRIMARY', 'PRINT',
+        'PROCEDURE', 'PROGRAM', 'PUT', 'READ', 'RECORD', 'RECORD-COUNT',
+        'RECORD-LENGTH', 'REFRESH', 'RELEASE', 'RENUM', 'REPEAT', 'REPORT',
+        'REPORT-INPUT', 'RESHOW', 'RESTART', 'RETRIEVE', 'RETURN-CODE',
+        'ROLLBACK', 'ROW', 'S', 'SCREEN', 'SEARCH', 'SECONDARY', 'SELECT',
+        'SEQUENCE', 'SIZE', 'SKIP', 'SOKAKU', 'SORT', 'SQL', 'STOP', 'SUM',
+        'SYSDATE', 'SYSDATE-LONG', 'SYSIN', 'SYSIPT', 'SYSLST', 'SYSPRINT',
+        'SYSSNAP', 'SYSTIME', 'TALLY', 'TERM-COLUMNS', 'TERM-NAME',
+        'TERM-ROWS', 'TERMINATION', 'TITLE', 'TO', 'TRANSFER', 'TRC',
+        'UNIQUE', 'UNTIL', 'UPDATE', 'UPPERCASE', 'USER', 'USERID', 'VALUE',
+        'VERIFY', 'W', 'WHEN', 'WHILE', 'WORK', 'WRITE', 'X', 'XDM', 'XRST'
+    ]
+
+    tokens = {
+        'root': [
+            (r'\*.*\n', Comment.Single),
+            (r'\n+', Whitespace),
+            # Macro argument
+            (r'&' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+\.', Name.Variable, 'after_macro_argument'),
+            # Macro call
+            (r'%' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Variable),
+            (r'(FILE|MACRO|REPORT)(\s+)',
+             bygroups(Keyword.Declaration, Whitespace), 'after_declaration'),
+            (r'(JOB|PARM)' + r'(' + _DELIMITER_PATTERN + r')',
+             bygroups(Keyword.Declaration, Operator)),
+            (words(_KEYWORDS, suffix=_DELIMITER_PATTERN_CAPTURE),
+             bygroups(Keyword.Reserved, Operator)),
+            (_OPERATORS_PATTERN, Operator),
+            # Procedure declaration
+            (r'(' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+)(\s*)(\.?)(\s*)(PROC)(\s*\n)',
+             bygroups(Name.Function, Whitespace, Operator, Whitespace, Keyword.Declaration, Whitespace)),
+            (r'[0-9]+\.[0-9]*', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String),
+            (r'\s+', Whitespace),
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
+         ],
+        'after_declaration': [
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Function),
+            ('', Whitespace, '#pop')
+        ],
+        'after_macro_argument': [
+            (r'\*.*\n', Comment.Single, '#pop'),
+            (r'\s+', Whitespace, '#pop'),
+            (_OPERATORS_PATTERN, Operator, '#pop'),
+            (r"'(''|[^'])*'", String, '#pop'),
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
+        ],
+    }
+    _COMMENT_LINE_REGEX = re.compile(r'^\s*\*')
+    _MACRO_HEADER_REGEX = re.compile(r'^\s*MACRO')
+
+    def analyse_text(text):
+        """
+        Perform a structural analysis for basic Easytrieve constructs.
+        """
+        result = 0.0
+        lines = text.split('\n')
+        hasEndProc = False
+        hasHeaderComment = False
+        hasFile = False
+        hasJob = False
+        hasProc = False
+        hasParm = False
+        hasReport = False
+
+        def isCommentLine(line):
+            return EasytrieveLexer._COMMENT_LINE_REGEX.match(lines[0]) is not None
+
+        def isEmptyLine(line):
+            return not bool(line.strip())
+
+        # Remove possible empty lines and header comments.
+        while lines and (isEmptyLine(lines[0]) or isCommentLine(lines[0])):
+            if not isEmptyLine(lines[0]):
+                hasHeaderComment = True
+            del lines[0]
+
+        if EasytrieveLexer._MACRO_HEADER_REGEX.match(lines[0]):
+            # Looks like an Easytrieve macro.
+            result = 0.4
+            if hasHeaderComment:
+                result += 0.4
+        else:
+            # Scan the source for lines starting with indicators.
+            for line in lines:
+                words = line.split()
+                if (len(words) >= 2):
+                    firstWord = words[0]
+                    if not hasReport:
+                        if not hasJob:
+                            if not hasFile:
+                                if not hasParm:
+                                    if firstWord == 'PARM':
+                                        hasParm = True
+                                if firstWord == 'FILE':
+                                    hasFile = True
+                            if firstWord == 'JOB':
+                                hasJob = True
+                        elif firstWord == 'PROC':
+                            hasProc = True
+                        elif firstWord == 'END-PROC':
+                            hasEndProc = True
+                        elif firstWord == 'REPORT':
+                            hasReport = True
+
+            # Weight the findings.
+            if hasJob and (hasProc == hasEndProc):
+                if hasHeaderComment:
+                    result += 0.1
+                if hasParm:
+                    if hasProc:
+                        # Found PARM, JOB and PROC/END-PROC:
+                        # pretty sure this is Easytrieve.
+                        result += 0.8
+                    else:
+                        # Found PARAM and  JOB: probably this is Easytrieve
+                        result += 0.5
+                else:
+                    # Found JOB and possibly other keywords: might be Easytrieve
+                    result += 0.11
+                    if hasParm:
+                        # Note: PARAM is not a proper English word, so this is
+                        # regarded a much better indicator for Easytrieve than
+                        # the other words.
+                        result += 0.2
+                    if hasFile:
+                        result += 0.01
+                    if hasReport:
+                        result += 0.01
+        assert 0.0 <= result <= 1.0
+        return result
+
+
+class JclLexer(RegexLexer):
+    """
+    `Job Control Language (JCL) <http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/BOOKS/IEA2B570/CCONTENTS>`_
+    is a scripting language used on mainframe platforms to instruct the system
+    on how to run a batch job or start a subsystem. It is somewhat
+    comparable to MS DOS batch and Unix shell scripts.
+
+    .. versionadded:: 2.1
+    """
+    name = 'JCL'
+    aliases = ['jcl']
+    filenames = ['*.jcl']
+    mimetypes = ['text/x-jcl']
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'//\*.*\n', Comment.Single),
+            (r'//', Keyword.Pseudo, 'statement'),
+            (r'/\*', Keyword.Pseudo, 'jes2_statement'),
+            # TODO: JES3 statement
+            (r'.*\n', Other)  # Input text or inline code in any language.
+        ],
+        'statement': [
+            (r'\s*\n', Whitespace, '#pop'),
+            (r'([a-z][a-z_0-9]*)(\s+)(exec|job)(\s*)',
+             bygroups(Name.Label, Whitespace, Keyword.Reserved, Whitespace),
+             'option'),
+            (r'[a-z][a-z_0-9]*', Name.Variable, 'statement_command'),
+            (r'\s+', Whitespace, 'statement_command'),
+        ],
+        'statement_command': [
+            (r'\s+(command|cntl|dd|endctl|endif|else|include|jcllib|'
+             r'output|pend|proc|set|then|xmit)\s+', Keyword.Reserved, 'option'),
+            include('option')
+        ],
+        'jes2_statement': [
+            (r'\s*\n', Whitespace, '#pop'),
+            (r'\$', Keyword, 'option'),
+            (r'\b(jobparam|message|netacct|notify|output|priority|route|'
+             r'setup|signoff|xeq|xmit)\b', Keyword, 'option'),
+        ],
+        'option': [
+            #(r'\n', Text, 'root'),
+            (r'\*', Name.Builtin),
+            (r'[\[\](){}<>;,]', Punctuation),
+            (r'[-+*/=&%]', Operator),
+            (r'[a-z_][a-z_0-9]*', Name),
+            (r'[0-9]+\.[0-9]*', Number.Float),
+            (r'\.[0-9]+', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'", String, 'option_string'),
+            (r'[ \t]+', Whitespace, 'option_comment'),
+            (r'\.', Punctuation),
+        ],
+        'option_string': [
+            (r"(\n)(//)", bygroups(Text, Keyword.Pseudo)),
+            (r"''", String),
+            (r"[^']", String),
+            (r"'", String, '#pop'),
+        ],
+        'option_comment': [
+            #(r'\n', Text, 'root'),
+            (r'.+', Comment.Single),
+        ]
+    }
+
+    _JOB_HEADER_PATTERN = re.compile(r'^//[a-z#$@][a-z0-9#$@]{0,7}\s+job(\s+.*)?$', re.IGNORECASE)
+
+    def analyse_text(text):
+        """
+        Recognize JCL job by header.
+        """
+        result = 0.0
+        lines = text.split('\n')
+        if len(lines) > 0:
+            if JclLexer._JOB_HEADER_PATTERN.match(lines[0]):
+                result = 1.0
+        assert 0.0 <= result <= 1.0
+        return result
+
+

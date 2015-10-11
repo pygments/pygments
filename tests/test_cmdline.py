@@ -3,7 +3,7 @@
     Command line test
     ~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -151,7 +151,7 @@ class CmdLineTest(unittest.TestCase):
         o = self.check_success('-Fhighlight:tokentype=Name.Blubb,'
                                'names=TESTFILE filename',
                                '-fhtml', filename)
-        self.assertTrue('<span class="n-Blubb' in o)
+        self.assertTrue('<span class="n n-Blubb' in o)
 
     def test_H_opt(self):
         o = self.check_success('-H', 'formatter', 'html')
