@@ -3,7 +3,7 @@
     Basic Shell Tests
     ~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -61,3 +61,29 @@ class BashTest(unittest.TestCase):
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
 
+    def testShortVariableNames(self):
+        fragment = u'x="$"\ny="$_"\nz="$abc"\n'
+        tokens = [
+            # single lone $
+            (Token.Name.Variable, u'x'),
+            (Token.Operator, u'='),
+            (Token.Literal.String.Double, u'"'),
+            (Token.Text, u'$'),
+            (Token.Literal.String.Double, u'"'),
+            (Token.Text, u'\n'),
+            # single letter shell var
+            (Token.Name.Variable, u'y'),
+            (Token.Operator, u'='),
+            (Token.Literal.String.Double, u'"'),
+            (Token.Name.Variable, u'$_'),
+            (Token.Literal.String.Double, u'"'),
+            (Token.Text, u'\n'),
+            # multi-letter user var
+            (Token.Name.Variable, u'z'),
+            (Token.Operator, u'='),
+            (Token.Literal.String.Double, u'"'),
+            (Token.Name.Variable, u'$abc'),
+            (Token.Literal.String.Double, u'"'),
+            (Token.Text, u'\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))

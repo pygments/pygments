@@ -3,17 +3,15 @@
     Tests for other lexers
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-
 import glob
 import os
 import unittest
 
 from pygments.lexers import guess_lexer
-from pygments.lexers.scripting import RexxLexer
-
+from pygments.lexers.scripting import EasytrieveLexer, JclLexer, RexxLexer
 
 def _exampleFilePath(filename):
     return os.path.join(os.path.dirname(__file__), 'examplefiles', filename)
@@ -36,7 +34,24 @@ class AnalyseTextTest(unittest.TestCase):
                 self.assertEqual(guessedLexer.name, lexer.name)
 
     def testCanRecognizeAndGuessExampleFiles(self):
-        self._testCanRecognizeAndGuessExampleFiles(RexxLexer)
+        LEXERS_TO_TEST = [
+            EasytrieveLexer,
+            JclLexer,
+            RexxLexer,
+        ]
+        for lexerToTest in LEXERS_TO_TEST:
+            self._testCanRecognizeAndGuessExampleFiles(lexerToTest)
+
+
+class EasyTrieveLexerTest(unittest.TestCase):
+    def testCanGuessFromText(self):
+        self.assertLess(0, EasytrieveLexer.analyse_text('MACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text('\nMACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text(' \nMACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text(' \n MACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text('*\nMACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text(
+            '*\n *\n\n \n*\n MACRO'))
 
 
 class RexxLexerTest(unittest.TestCase):
