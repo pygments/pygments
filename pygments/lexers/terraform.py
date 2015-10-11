@@ -39,8 +39,8 @@ class TerraformLexer(RegexLexer):
             (r'\s*#.*\n', Comment.Single),
             (r'(.*?)(\s*)(=)',
              bygroups(Name.Attribute, Text, Operator)),
-            (r'\bvariable|resource|provider|provisioner|module\b',Keyword.Reserved,'function'),
-            (r'\bingress|egress|listener|default|connection\b',Keyword.Declaration),
+            (r'\b(variable|resource|provider|provisioner|module)\b',Keyword.Reserved,'function'),
+            (r'\b(ingress|egress|listener|default|connection)\b',Keyword.Declaration),
             ('\$\{',String.Interpol,'var_builtin'),
        ],
        'function':[
@@ -50,7 +50,7 @@ class TerraformLexer(RegexLexer):
         ],
         'var_builtin':[
                 (r'\$\{', String.Interpol, '#push'),
-                (r'\bconcat|file|join|lookup|element\b',Name.Builtin),
+                (r'\b(concat|file|join|lookup|element)\b',Name.Builtin),
                 include ('string'),
                 include ('punctuation'),
                 (r'\s+', Text),
