@@ -14,7 +14,6 @@ from __future__ import print_function
 import re
 import sys
 import time
-import itertools
 
 from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
