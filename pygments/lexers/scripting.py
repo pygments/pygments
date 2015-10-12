@@ -955,7 +955,7 @@ class EasytrieveLexer(RegexLexer):
     _DELIMITER_PATTERN = '[' + _DELIMITERS + ']'
     _DELIMITER_PATTERN_CAPTURE = '(' + _DELIMITER_PATTERN + ')'
     _NON_DELIMITER_OR_COMMENT_PATTERN = '[^' + _DELIMITERS_OR_COMENT + ']'
-    _OPERATORS_PATTERN = ur'[.+\-/=\[\](){}<>;,&%¬]'
+    _OPERATORS_PATTERN = u'[.+\\-/=\\[\\](){}<>;,&%¬]'
     _KEYWORDS = [
         'AFTER-BREAK', 'AFTER-LINE', 'AFTER-SCREEN', 'AIM', 'AND', 'ATTR',
         'BEFORE', 'BEFORE-BREAK', 'BEFORE-LINE', 'BEFORE-SCREEN', 'BUSHU',
