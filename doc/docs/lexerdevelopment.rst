@@ -345,15 +345,14 @@ There are a few more things you can do with states:
   `PythonLexer`'s string literal processing.
 
 - If you want your lexer to start lexing in a different state you can modify the
-  stack by overloading the `get_tokens_unprocessed()` method::
+  stack by overriding the `get_tokens_unprocessed()` method::
 
       from pygments.lexer import RegexLexer
 
       class ExampleLexer(RegexLexer):
           tokens = {...}
 
-          def get_tokens_unprocessed(self, text):
-              stack = ['root', 'otherstate']
+          def get_tokens_unprocessed(self, text, stack=('root', 'otherstate')):
               for item in RegexLexer.get_tokens_unprocessed(text, stack):
                   yield item
 
