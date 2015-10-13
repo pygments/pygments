@@ -18,7 +18,8 @@ from pygments.lexers.shell import BashLexer
 
 __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
-           'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer']
+           'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
+           'TerraformLexer']
 
 
 class IniLexer(RegexLexer):
@@ -542,5 +543,77 @@ class DockerLexer(RegexLexer):
             (r'#.*', Comment),
             (r'RUN', Keyword), # Rest of line falls through
             (r'(.*\\\n)*.+', using(BashLexer)),
+        ],
+    }
+
+
+class TerraformLexer(RegexLexer):
+    """
+    Lexer for `terraformi .tf files <https://www.terraform.io/>`_
+
+    .. versionadded:: 2.1
+    """
+
+    name = 'Terraform'
+    aliases = ['terraform', 'tf']
+    filenames = ['*.tf']
+    mimetypes = ['application/x-tf', 'application/x-terraform']
+
+    tokens = {
+       'root': [
+            include('string'),
+            include('punctuation'),
+            include('curly'),
+            include('basic'),
+            include('whitespace'),
+            (r'[0-9]+', Number),
+       ],
+       'basic': [
+            (words(('true', 'false'), prefix=r'\b', suffix=r'\b'), Keyword.Type),
+            (r'\s*/\*', Comment.Multiline, 'comment'),
+            (r'\s*#.*\n', Comment.Single),
+            (r'(.*?)(\s*)(=)', bygroups(Name.Attribute, Text, Operator)),
+            (words(('variable', 'resource', 'provider', 'provisioner', 'module'),
+                   prefix=r'\b', suffix=r'\b'), Keyword.Reserved, 'function'),
+            (words(('ingress', 'egress', 'listener', 'default', 'connection'),
+                   prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
+            ('\$\{', String.Interpol, 'var_builtin'),
+       ],
+       'function': [
+            (r'(\s+)(".*")(\s+)', bygroups(Text, String, Text)),
+            include('punctuation'),
+            include('curly'),
+        ],
+        'var_builtin': [
+            (r'\$\{', String.Interpol, '#push'),
+            (words(('concat', 'file', 'join', 'lookup', 'element'),
+                   prefix=r'\b', suffix=r'\b'), Name.Builtin),
+            include('string'),
+            include('punctuation'),
+            (r'\s+', Text),
+            (r'\}', String.Interpol, '#pop'),
+        ],
+        'string':[
+            (r'(".*")', bygroups(String.Double)),
+        ],
+        'punctuation':[
+            (r'[\[\]\(\),.]', Punctuation),
+        ],
+        # Keep this seperate from punctuation - we sometimes want to use different
+        # Tokens for { }
+        'curly':[
+            (r'\{', Text.Punctuation),
+            (r'\}', Text.Punctuation),
+        ],
+        'comment': [
+            (r'[^*/]', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline)
+        ],
+        'whitespace': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text),
         ],
     }
