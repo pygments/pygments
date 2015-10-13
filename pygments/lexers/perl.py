@@ -5,7 +5,7 @@
 
     Lexers for Perl and related languages.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -46,6 +46,7 @@ class PerlLexer(RegexLexer):
             (r'\$(\\\\|\\[^\\]|[^\\$])*\$[egimosx]*', String.Regex, '#pop'),
         ],
         'root': [
+            (r'\A\#!.+?$', Comment.Hashbang),
             (r'\#.*?$', Comment.Single),
             (r'^=[a-zA-Z0-9]+\s+.*?\n=cut', Comment.Multiline),
             (words((

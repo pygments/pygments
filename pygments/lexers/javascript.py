@@ -5,7 +5,7 @@
 
     Lexers for JavaScript and related languages.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -36,7 +36,7 @@ class JavascriptLexer(RegexLexer):
 
     name = 'JavaScript'
     aliases = ['js', 'javascript']
-    filenames = ['*.js', ]
+    filenames = ['*.js', '*.jsm', ]
     mimetypes = ['application/javascript', 'application/x-javascript',
                  'text/x-javascript', 'text/javascript', ]
 
@@ -60,7 +60,7 @@ class JavascriptLexer(RegexLexer):
             (r'\n', Text, '#pop')
         ],
         'root': [
-            (r'\A#! ?/.*?\n', Comment),  # shebang lines are recognized by node.js
+            (r'\A#! ?/.*?\n', Comment.Hashbang),  # recognized by node.js
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
