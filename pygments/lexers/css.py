@@ -475,8 +475,9 @@ class ScssLexer(RegexLexer):
             (r'(@media)(\s+)', bygroups(Keyword, Text), 'value'),
             (r'@[\w-]+', Keyword, 'selector'),
             (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
-            (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
-            (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
+            # TODO: broken, and prone to infinite loops.
+            #(r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
+            #(r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
             default('selector'),
         ],
 
