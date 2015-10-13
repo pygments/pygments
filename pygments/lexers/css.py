@@ -13,12 +13,12 @@ import re
 import copy
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, include, bygroups, \
-    default, words
+    default, words, inherit
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 from pygments.util import iteritems
 
-__all__ = ['CssLexer', 'SassLexer', 'ScssLexer']
+__all__ = ['CssLexer', 'SassLexer', 'ScssLexer', 'LessCssLexer']
 
 
 class CssLexer(RegexLexer):
@@ -27,8 +27,8 @@ class CssLexer(RegexLexer):
     """
 
     name = 'CSS'
-    aliases = ['css', 'less']
-    filenames = ['*.css', '*.less']
+    aliases = ['css']
+    filenames = ['*.css']
     mimetypes = ['text/css']
 
     tokens = {
@@ -497,3 +497,27 @@ class ScssLexer(RegexLexer):
         tokens[group] = copy.copy(common)
     tokens['value'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
     tokens['selector'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
+
+
+class LessCssLexer(CssLexer):
+    """
+    For `LESS <http://lesscss.org/>`_ styleshets.
+
+    .. versionadded:: 2.1
+    """
+
+    name = 'LessCss'
+    aliases = ['less']
+    filenames = ['*.less']
+    mimetypes = ['text/x-less-css']
+
+    tokens = {
+        'root': [
+            (r'@\w+', Name.Variable),
+            inherit,
+        ],
+        'content': [
+            (r'{', Punctuation, '#push'),
+            inherit,
+        ],
+    }
