@@ -221,7 +221,7 @@ class PraatLexer(RegexLexer):
                 bygroups(Name.Builtin, Name.Builtin, String.Interpol),
                 ('object_attributes', 'string_interpolated')),
 
-            (r'\.?[a-z][a-zA-Z0-9_.]*(\$|#)?', Text),
+            (r'\.?_?[a-z][a-zA-Z0-9_.]*(\$|#)?', Text),
             (r'[\[\]]', Punctuation, 'comma_list'),
             (r"'(?=.*')", String.Interpol, 'string_interpolated'),
         ],
@@ -266,7 +266,7 @@ class PraatLexer(RegexLexer):
                 bygroups(Keyword, Text), 'string_unquoted'),
 
             (r'(word)([ \t]+\S+[ \t]*)(\S+)?([ \t]+.*)?',
-                bygroups(Keyword, Text, String, Error)),
+                bygroups(Keyword, Text, String, Text)),
 
             (r'(boolean)(\s+\S+\s*)(0|1|"?(?:yes|no)"?)',
                 bygroups(Keyword, Text, Name.Variable)),
