@@ -5,7 +5,7 @@
 
     Lexers for Python and related languages.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -41,7 +41,8 @@ class PythonLexer(RegexLexer):
             (r'^(\s*)([rRuU]{,2}"""(?:.|\n)*?""")', bygroups(Text, String.Doc)),
             (r"^(\s*)([rRuU]{,2}'''(?:.|\n)*?''')", bygroups(Text, String.Doc)),
             (r'[^\S\n]+', Text),
-            (r'#.*$', Comment),
+            (r'\A#!.+$', Comment.Hashbang),
+            (r'#.*$', Comment.Single),
             (r'[]{}:(),;[]', Punctuation),
             (r'\\\n', Text),
             (r'\\', Text),
@@ -155,10 +156,11 @@ class PythonLexer(RegexLexer):
              r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
         'strings': [
+            # the old style '%s' % (...) string formatting
             (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
              '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
+            # backslashes, quotes and formatting signs must be parsed one at a time
             (r'[^\\\'"%\n]+', String),
-            # quotes, percents and backslashes must be parsed one at a time
             (r'[\'"\\]', String),
             # unhandled string formatting sign
             (r'%', String)
@@ -213,11 +215,14 @@ class Python3Lexer(RegexLexer):
     tokens = PythonLexer.tokens.copy()
     tokens['keywords'] = [
         (words((
-            'assert', 'break', 'continue', 'del', 'elif', 'else', 'except',
-            'finally', 'for', 'global', 'if', 'lambda', 'pass', 'raise',
-            'nonlocal', 'return', 'try', 'while', 'yield', 'yield from', 'as',
-            'with', 'True', 'False', 'None'), suffix=r'\b'),
+            'assert', 'async', 'await', 'break', 'continue', 'del', 'elif',
+            'else', 'except', 'finally', 'for', 'global', 'if', 'lambda', 'pass',
+            'raise', 'nonlocal', 'return', 'try', 'while', 'yield', 'yield from',
+            'as', 'with'), suffix=r'\b'),
          Keyword),
+        (words((
+            'True', 'False', 'None'), suffix=r'\b'),
+         Keyword.Constant),
     ]
     tokens['builtins'] = [
         (words((
@@ -241,7 +246,7 @@ class Python3Lexer(RegexLexer):
             'ImportWarning', 'IndentationError', 'IndexError', 'KeyError',
             'KeyboardInterrupt', 'LookupError', 'MemoryError', 'NameError',
             'NotImplementedError', 'OSError', 'OverflowError',
-            'PendingDeprecationWarning', 'ReferenceError',
+            'PendingDeprecationWarning', 'ReferenceError', 'ResourceWarning',
             'RuntimeError', 'RuntimeWarning', 'StopIteration',
             'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError',
             'TypeError', 'UnboundLocalError', 'UnicodeDecodeError',
@@ -267,6 +272,7 @@ class Python3Lexer(RegexLexer):
     tokens['backtick'] = []
     tokens['name'] = [
         (r'@\w+', Name.Decorator),
+        (r'@', Operator),  # new matrix multiplication operator
         (uni_name, Name),
     ]
     tokens['funcname'] = [
@@ -288,13 +294,21 @@ class Python3Lexer(RegexLexer):
         (uni_name, Name.Namespace),
         default('#pop'),
     ]
-    # don't highlight "%s" substitutions
     tokens['strings'] = [
-        (r'[^\\\'"%\n]+', String),
-        # quotes, percents and backslashes must be parsed one at a time
+        # the old style '%s' % (...) string formatting (still valid in Py3)
+        (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
+         '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
+        # the new style '{}'.format(...) string formatting
+        (r'\{'
+         '((\w+)((\.\w+)|(\[[^\]]+\]))*)?' # field name
+         '(\![sra])?'                      # conversion
+         '(\:(.?[<>=\^])?[-+ ]?#?0?(\d+)?,?(\.\d+)?[bcdeEfFgGnosxX%]?)?'
+         '\}', String.Interpol),
+        # backslashes, quotes and formatting signs must be parsed one at a time
+        (r'[^\\\'"%\{\n]+', String),
         (r'[\'"\\]', String),
         # unhandled string formatting sign
-        (r'%', String)
+        (r'%|(\{{1,2})', String)
         # newlines are an error (use "nl" state)
     ]
 
@@ -378,6 +392,7 @@ class PythonConsoleLexer(Lexer):
                         tb = 0
                         for i, t, v in tblexer.get_tokens_unprocessed(curtb):
                             yield tbindex+i, t, v
+                        curtb = ''
                 else:
                     yield match.start(), Generic.Output, line
         if curcode:

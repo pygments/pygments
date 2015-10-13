@@ -1,14 +1,16 @@
 syntax: glob
+*.egg
 *.pyc
 *.pyo
-*.egg
+.idea/
+.ropeproject
+.tags
+.tox
+Pygments.egg-info/*
+TAGS
 build/*
 dist/*
 doc/_build
-Pygments.egg-info/*
-.ropeproject
-tests/examplefiles/output
-.idea/
-.tags
 tests/.coverage
 tests/cover
+tests/examplefiles/output
