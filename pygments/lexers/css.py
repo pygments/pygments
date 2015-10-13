@@ -5,7 +5,7 @@
 
     Lexers for CSS and related stylesheet formats.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -484,6 +484,7 @@ class ScssLexer(RegexLexer):
             (r'[^\s:="\[]+', Name.Attribute),
             (r'#\{', String.Interpol, 'interpolation'),
             (r'[ \t]*:', Operator, 'value'),
+            default('#pop'),
         ],
 
         'inline-comment': [
