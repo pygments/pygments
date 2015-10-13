@@ -159,3 +159,16 @@ var wideOpen = 0o777,
   clique_y = 0O660,
   zeroOct = 0o0,
   minPosOct = 0O1;
+
+private module M3 {
+  private proc foo() {
+
+  }
+
+  private iter bar() {
+
+  }
+
+  private var x: int;
+
+}
