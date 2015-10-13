@@ -5,7 +5,7 @@
 
     Base lexer classes.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -14,7 +14,6 @@ from __future__ import print_function
 import re
 import sys
 import time
-import itertools
 
 from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name

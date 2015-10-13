@@ -5,7 +5,7 @@
 
     Formatter for terminal output with ANSI sequences.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -101,51 +101,35 @@ class TerminalFormatter(Formatter):
 
     def _write_lineno(self, outfile):
         self._lineno += 1
-        outfile.write("\n%04d: " % self._lineno)
+        outfile.write("%s%04d: " % (self._lineno != 1 and '\n' or '', self._lineno))
 
-    def _format_unencoded_with_lineno(self, tokensource, outfile):
-        self._write_lineno(outfile)
-
-        for ttype, value in tokensource:
-            if value.endswith("\n"):
-                self._write_lineno(outfile)
-                value = value[:-1]
-            color = self.colorscheme.get(ttype)
-            while color is None:
-                ttype = ttype[:-1]
-                color = self.colorscheme.get(ttype)
-            if color:
-                color = color[self.darkbg]
-                spl = value.split('\n')
-                for line in spl[:-1]:
-                    self._write_lineno(outfile)
-                    if line:
-                        outfile.write(ansiformat(color, line[:-1]))
-                if spl[-1]:
-                    outfile.write(ansiformat(color, spl[-1]))
-            else:
-                outfile.write(value)
-
-        outfile.write("\n")
+    def _get_color(self, ttype):
+        # self.colorscheme is a dict containing usually generic types, so we
+        # have to walk the tree of dots.  The base Token type must be a key,
+        # even if it's empty string, as in the default above.
+        colors = self.colorscheme.get(ttype)
+        while colors is None:
+            ttype = ttype.parent
+            colors = self.colorscheme.get(ttype)
+        return colors[self.darkbg]
 
     def format_unencoded(self, tokensource, outfile):
         if self.linenos:
-            self._format_unencoded_with_lineno(tokensource, outfile)
-            return
+            self._write_lineno(outfile)
 
         for ttype, value in tokensource:
-            color = self.colorscheme.get(ttype)
-            while color is None:
-                ttype = ttype[:-1]
-                color = self.colorscheme.get(ttype)
-            if color:
-                color = color[self.darkbg]
-                spl = value.split('\n')
-                for line in spl[:-1]:
-                    if line:
-                        outfile.write(ansiformat(color, line))
-                    outfile.write('\n')
-                if spl[-1]:
-                    outfile.write(ansiformat(color, spl[-1]))
-            else:
-                outfile.write(value)
+            color = self._get_color(ttype)
+
+            for line in value.splitlines(True):
+                if color:
+                    outfile.write(ansiformat(color, line.rstrip('\n')))
+                else:
+                    outfile.write(line.rstrip('\n'))
+                if line.endswith('\n'):
+                    if self.linenos:
+                        self._write_lineno(outfile)
+                    else:
+                        outfile.write('\n')
+
+        if self.linenos:
+            outfile.write("\n")

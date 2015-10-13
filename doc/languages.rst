@@ -86,7 +86,6 @@ Programming languages
 * Visual FoxPro
 * XQuery
 * Zephir
-  </ul>
 
 Template languages
 ------------------
