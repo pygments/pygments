@@ -215,10 +215,10 @@ class Python3Lexer(RegexLexer):
     tokens = PythonLexer.tokens.copy()
     tokens['keywords'] = [
         (words((
-            'assert', 'break', 'continue', 'del', 'elif', 'else', 'except',
-            'finally', 'for', 'global', 'if', 'lambda', 'pass', 'raise',
-            'nonlocal', 'return', 'try', 'while', 'yield', 'yield from', 'as',
-            'with'), suffix=r'\b'),
+            'assert', 'async', 'await', 'break', 'continue', 'del', 'elif',
+            'else', 'except', 'finally', 'for', 'global', 'if', 'lambda', 'pass',
+            'raise', 'nonlocal', 'return', 'try', 'while', 'yield', 'yield from',
+            'as', 'with'), suffix=r'\b'),
          Keyword),
         (words((
             'True', 'False', 'None'), suffix=r'\b'),
@@ -272,6 +272,7 @@ class Python3Lexer(RegexLexer):
     tokens['backtick'] = []
     tokens['name'] = [
         (r'@\w+', Name.Decorator),
+        (r'@', Operator),  # new matrix multiplication operator
         (uni_name, Name),
     ]
     tokens['funcname'] = [
