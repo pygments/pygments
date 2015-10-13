@@ -14,7 +14,7 @@ import re
 from pygments.lexer import Lexer, RegexLexer, bygroups, combined, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
-from pygments.util import shebang_matches
+from pygments.util import shebang_matches, unirange
 
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer']
 
@@ -29,6 +29,8 @@ class JuliaLexer(RegexLexer):
     aliases = ['julia', 'jl']
     filenames = ['*.jl']
     mimetypes = ['text/x-julia', 'application/x-julia']
+
+    flags = re.MULTILINE | re.UNICODE
 
     builtins = [
         'exit', 'whos', 'edit', 'load', 'is', 'isa', 'isequal', 'typeof', 'tuple',
@@ -89,7 +91,8 @@ class JuliaLexer(RegexLexer):
 
             # names
             (r'@[\w.]+', Name.Decorator),
-            (r'[a-zA-Z_]\w*', Name),
+            (u'(?:[a-zA-Z_\u00A1-\uffff]|%s)(?:[a-zA-Z_0-9\u00A1-\uffff]|%s)*!*' %
+             ((unirange(0x10000, 0x10ffff),)*2), Name),
 
             # numbers
             (r'(\d+(_\d+)+\.\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
