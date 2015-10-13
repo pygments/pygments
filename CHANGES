@@ -16,6 +16,13 @@ Version 2.1
   * Emacs Lisp (PR#431)
   * Arduino (PR#442)
   * Modula-2 with multi-dialect support (#1090)
+  * Fortran fixed format (PR#213)
+  * Archetype Definition language (PR#483)
+  * Terraform (PR#432)
+  * Jcl, Easytrieve (PR#208)
+  * ParaSail (PR#381)
+  * Boogie (PR#420)
+  * Turtle (PR#425)
 
 - Added styles:
 
@@ -26,6 +33,10 @@ Version 2.1
 
 - Fixed style inheritance for non-standard token types in HTML output.
 
+- Added support for async/await to Python 3 lexer.
+
+- Rewrote linenos option for TerminalFormatter (it's better, but slightly
+  different output than before).
 
 Version 2.0.3
 -------------

@@ -27,8 +27,8 @@ class CssLexer(RegexLexer):
     """
 
     name = 'CSS'
-    aliases = ['css']
-    filenames = ['*.css']
+    aliases = ['css', 'less']
+    filenames = ['*.css', '*.less']
     mimetypes = ['text/css']
 
     tokens = {
@@ -484,6 +484,7 @@ class ScssLexer(RegexLexer):
             (r'[^\s:="\[]+', Name.Attribute),
             (r'#\{', String.Interpol, 'interpolation'),
             (r'[ \t]*:', Operator, 'value'),
+            default('#pop'),
         ],
 
         'inline-comment': [
