@@ -27,8 +27,8 @@ class CssLexer(RegexLexer):
     """
 
     name = 'CSS'
-    aliases = ['css']
-    filenames = ['*.css']
+    aliases = ['css', 'less']
+    filenames = ['*.css', '*.less']
     mimetypes = ['text/css']
 
     tokens = {
