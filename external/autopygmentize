@@ -1,6 +1,6 @@
 #!/bin/bash
 # Best effort auto-pygmentization with transparent decompression
-# (c) Reuben Thomas 2012-2013
+# by Reuben Thomas 2008-2015
 # This program is in the public domain.
 
 # Strategy: first see if pygmentize can find a lexer; if not, ask file; if that finds nothing, fail
@@ -18,6 +18,7 @@ if [[ "$lexer" == text ]]; then
     unset lexer
     case $(file --mime-type --uncompress $file_common_opts "$file") in
         application/xml|image/svg+xml) lexer=xml;;
+        application/javascript) lexer=javascript;;
         text/html) lexer=html;;
         text/troff) lexer=nroff;;
         text/x-asm) lexer=nasm;;
@@ -43,11 +44,13 @@ if [[ "$lexer" == text ]]; then
         text/x-tcl) lexer=tcl;;
         text/x-tex|text/x-texinfo) lexer=latex;; # FIXME: texinfo really needs its own lexer
         
-        # Types that file outputs which pygmentize didn't support as of file 5.11, pygments 1.6rc1
+        # Types that file outputs which pygmentize didn't support as of file 5.20, pygments 2.0
         # text/calendar
+        # text/inf
         # text/PGP
         # text/rtf
         # text/texmacs
+        # text/vnd.graphviz
         # text/x-bcpl
         # text/x-info
         # text/x-m4
@@ -74,8 +77,7 @@ if [[ -n "$lexer" ]]; then
         application/x-bzip2) concat=bzcat;;
         application/x-xz)    concat=xzcat;;
     esac
-    # FIXME: Specify input encoding rather than output encoding https://bitbucket.org/birkenfeld/pygments-main/issue/800
-    exec $concat "$file" | pygmentize -f terminal256 -O style=native,encoding=$encoding,outencoding=UTF-8 $PYGMENTIZE_OPTS $options -l $lexer
+    exec $concat "$file" | pygmentize -O inencoding=$encoding $PYGMENTIZE_OPTS $options -l $lexer
 fi
 
 exit 1

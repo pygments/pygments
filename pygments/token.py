@@ -179,6 +179,7 @@ STANDARD_TYPES = {
     Punctuation:                   'p',
 
     Comment:                       'c',
+    Comment.Hashbang:              'ch',
     Comment.Multiline:             'cm',
     Comment.Preproc:               'cp',
     Comment.Single:                'c1',
