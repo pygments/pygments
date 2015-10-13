@@ -5,7 +5,7 @@
 
     Formatter for HTML output.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -140,7 +140,7 @@ class HtmlFormatter(Formatter):
 
     When `tagsfile` is set to the path of a ctags index file, it is used to
     generate hyperlinks from names to their definition.  You must enable
-    `anchorlines` and run ctags with the `-n` option for this to work.  The
+    `lineanchors` and run ctags with the `-n` option for this to work.  The
     `python-ctags` module from PyPI must be installed to use this feature;
     otherwise a `RuntimeError` will be raised.
 
@@ -428,6 +428,15 @@ class HtmlFormatter(Formatter):
             return self.classprefix + ttypeclass
         return ''
 
+    def _get_css_classes(self, ttype):
+        """Return the css classes of this token type prefixed with
+        the classprefix option."""
+        cls = self._get_css_class(ttype)
+        while ttype not in STANDARD_TYPES:
+            ttype = ttype.parent
+            cls = self._get_css_class(ttype) + ' ' + cls
+        return cls
+
     def _create_stylesheet(self):
         t2c = self.ttype2class = {Token: ''}
         c2s = self.class2style = {}
@@ -711,7 +720,7 @@ class HtmlFormatter(Formatter):
                     cclass = getcls(ttype)
                 cspan = cclass and '<span style="%s">' % c2s[cclass][0] or ''
             else:
-                cls = self._get_css_class(ttype)
+                cls = self._get_css_classes(ttype)
                 cspan = cls and '<span class="%s">' % cls or ''
 
             parts = value.translate(escape_table).split('\n')
