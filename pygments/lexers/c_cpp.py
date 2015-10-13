@@ -5,7 +5,7 @@
 
     Lexers for C/C++ languages.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -28,8 +28,10 @@ class CFamilyLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+
+    # The trailing ?, rather than *, avoids a geometric performance drop here.
     #: only one /* */ style comment
-    _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
+    _ws1 = r'\s*(?:/[*].*?[*]/\s*)?'
 
     tokens = {
         'whitespace': [
@@ -202,7 +204,7 @@ class CppLexer(CFamilyLexer):
                 'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
                 'private', 'protected', 'public', 'reinterpret_cast',
                 'restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
-                'typeid', 'typename', 'using', 'virtual',
+                'try', 'typeid', 'typename', 'using', 'virtual',
                 'constexpr', 'nullptr', 'decltype', 'thread_local',
                 'alignas', 'alignof', 'static_assert', 'noexcept', 'override',
                 'final'), suffix=r'\b'), Keyword),

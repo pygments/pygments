@@ -5,7 +5,7 @@
 
     Pygments lexers.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -88,7 +88,7 @@ def get_lexer_by_name(_alias, **options):
             return _lexer_cache[name](**options)
     # continue with lexers from setuptools entrypoints
     for cls in find_plugin_lexers():
-        if _alias in cls.aliases:
+        if _alias.lower() in cls.aliases:
             return cls(**options)
     raise ClassNotFound('no lexer for alias %r found' % _alias)
 

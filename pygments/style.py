@@ -5,7 +5,7 @@
 
     Basic style object.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -40,7 +40,7 @@ class StyleMeta(type):
                     continue
                 ndef = _styles.get(token.parent, None)
                 styledefs = obj.styles.get(token, '').split()
-                if  not ndef or token is None:
+                if not ndef or token is None:
                     ndef = ['', 0, 0, 0, '', '', 0, 0, 0]
                 elif 'noinherit' in styledefs and token is not Token:
                     ndef = _styles[Token][:]

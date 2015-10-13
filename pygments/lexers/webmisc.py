@@ -5,7 +5,7 @@
 
     Lexers for misc. web stuff.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -731,9 +731,9 @@ class QmlLexer(RegexLexer):
     # JavascriptLexer above.
 
     name = 'QML'
-    aliases = ['qml']
-    filenames = ['*.qml']
-    mimetypes = ['application/x-qml']
+    aliases = ['qml', 'qbs']
+    filenames = ['*.qml', '*.qbs']
+    mimetypes = ['application/x-qml', 'application/x-qt.qbs+qml']
 
     # pasted from JavascriptLexer, with some additions
     flags = re.DOTALL | re.MULTILINE
