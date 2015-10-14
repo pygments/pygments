@@ -42,10 +42,10 @@ class LexerMeta(type):
     static methods which always return float values.
     """
 
-    def __new__(cls, name, bases, d):
+    def __new__(mcs, name, bases, d):
         if 'analyse_text' in d:
             d['analyse_text'] = make_analysator(d['analyse_text'])
-        return type.__new__(cls, name, bases, d)
+        return type.__new__(mcs, name, bases, d)
 
 
 @add_metaclass(LexerMeta)
@@ -188,7 +188,7 @@ class Lexer(object):
             text += '\n'
 
         def streamer():
-            for i, t, v in self.get_tokens_unprocessed(text):
+            for _, t, v in self.get_tokens_unprocessed(text):
                 yield t, v
         stream = streamer()
         if not unfiltered:
@@ -245,7 +245,7 @@ class DelegatingLexer(Lexer):
 #
 
 
-class include(str):
+class include(str):  # pylint: disable=invalid-name
     """
     Indicates that a state should include rules from another state.
     """
@@ -259,10 +259,10 @@ class _inherit(object):
     def __repr__(self):
         return 'inherit'
 
-inherit = _inherit()
+inherit = _inherit()  # pylint: disable=invalid-name
 
 
-class combined(tuple):
+class combined(tuple):  # pylint: disable=invalid-name
     """
     Indicates a state combined from multiple states.
     """
@@ -319,8 +319,8 @@ def bygroups(*args):
                 if data is not None:
                     if ctx:
                         ctx.pos = match.start(i + 1)
-                    for item in action(lexer, _PseudoMatch(match.start(i + 1),
-                                       data), ctx):
+                    for item in action(
+                        lexer, _PseudoMatch(match.start(i + 1), data), ctx):
                         if item:
                             yield item
         if ctx:

@@ -10,7 +10,7 @@
 """
 
 from pygments.lexer import RegexLexer, words, bygroups, re, include
-from pygments.token import *
+from pygments.token import Text, Operator, Keyword, Name, Comment
 
 __all__ = ['RoboconfGraphLexer', 'RoboconfInstancesLexer']
 
