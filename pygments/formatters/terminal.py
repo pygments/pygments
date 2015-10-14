@@ -49,6 +49,7 @@ TERMINAL_COLORS = {
     Generic.Inserted:   ('darkgreen',  'green'),
     Generic.Heading:    ('**',         '**'),
     Generic.Subheading: ('*purple*',   '*fuchsia*'),
+    Generic.Prompt:     ('**',         '**'),
     Generic.Error:      ('red',        'red'),
 
     Error:              ('_red_',      '_red_'),
