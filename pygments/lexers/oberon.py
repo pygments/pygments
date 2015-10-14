@@ -22,7 +22,7 @@ class ComponentPascalLexer(RegexLexer):
     """
     For `Component Pascal <http://www.oberon.ch/pdf/CP-Lang.pdf>`_ source code.
 
-    .. versionadded:: 0.1
+    .. versionadded:: 2.1
     """
     name = 'Component Pascal'
     aliases = ['componentpascal', 'cp']
@@ -79,8 +79,8 @@ class ComponentPascalLexer(RegexLexer):
             # Assignment Symbol
             (r':=', Operator),
             # Range Constructor
-            (r'\.\.', Operator), 
-            (r'\$', Operator), 
+            (r'\.\.', Operator),
+            (r'\$', Operator),
         ],
         'identifiers': [
             (r'([a-zA-Z_\$][\w\$]*)', Name),

@@ -118,7 +118,7 @@ class BoogieLexer(RegexLexer):
     """
     For `Boogie <https://boogie.codeplex.com/>`_ source code.
 
-    .. versionadded:: 2.0
+    .. versionadded:: 2.1
     """
     name = 'Boogie'
     aliases = ['boogie']

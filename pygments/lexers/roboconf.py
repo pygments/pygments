@@ -14,6 +14,7 @@ from pygments.token import *
 
 __all__ = ['RoboconfGraphLexer', 'RoboconfInstancesLexer']
 
+
 class RoboconfGraphLexer(RegexLexer):
     """
     Lexer for `Roboconf <http://roboconf.net/en/roboconf.html>`_ graph files.
@@ -45,6 +46,7 @@ class RoboconfGraphLexer(RegexLexer):
             (r'.*\n', Text)
         ]
     }
+
 
 class RoboconfInstancesLexer(RegexLexer):
     """

@@ -28,6 +28,10 @@ Version 2.1
   * Test Anything Protocol (PR#428)
   * Shen (PR#385)
   * Component Pascal (PR#437)
+  * SuperCollider (PR#472)
+  * Shell consoles (Tcsh, PowerShell, MSDOS) (PR#479)
+
+
 
 - Added styles:
 
@@ -49,6 +53,8 @@ Version 2.1
 
 - Combined BashSessionLexer and ShellSessionLexer, new version should support
   the prompt styles of either.
+
+- Added option to pygmentize to show a full traceback on exceptions.
 
 
 Version 2.0.3

@@ -103,7 +103,7 @@ class TurtleLexer(RegexLexer):
     """
     Lexer for `Turtle <http://www.w3.org/TR/turtle/>`_ data language.
 
-    .. versionadded:: 2.0
+    .. versionadded:: 2.1
     """
     name = 'Turtle'
     aliases = ['turtle']

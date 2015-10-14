@@ -2126,6 +2126,8 @@ class EmacsLispLexer(RegexLexer):
 class ShenLexer(RegexLexer):
     """
     Lexer for `Shen <http://shenlanguage.org/>`_ source code.
+
+    .. versionadded:: 2.1
     """
     name = 'Shen'
     aliases = ['shen']
@@ -2241,7 +2243,7 @@ class ShenLexer(RegexLexer):
             if self._relevant(token):
                 break
             yield index, token, value
-        
+       
         if declaration == 'datatype':
             prev_was_colon = False
             token = Keyword.Type if token == Literal else token
