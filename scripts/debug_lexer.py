@@ -110,24 +110,24 @@ def main(fn, lexer=None, options={}):
             if lxcls is None:
                 raise AssertionError('no lexer found for file %r' % fn)
     debug_lexer = False
-    if profile:
-        # does not work for e.g. ExtendedRegexLexers
-        if lxcls.__bases__ == (RegexLexer,):
-            # yes we can!  (change the metaclass)
-            lxcls.__class__ = ProfilingRegexLexerMeta
-            lxcls.__bases__ = (ProfilingRegexLexer,)
-            lxcls._prof_sort_index = profsort
-    else:
-        if lxcls.__bases__ == (RegexLexer,):
-            lxcls.__bases__ = (DebuggingRegexLexer,)
-            debug_lexer = True
-        elif lxcls.__bases__ == (DebuggingRegexLexer,):
-            # already debugged before
-            debug_lexer = True
-        else:
-            # HACK: ExtendedRegexLexer subclasses will only partially work here.
-            lxcls.__bases__ = (DebuggingRegexLexer,)
-            debug_lexer = True
+    # if profile:
+    #     # does not work for e.g. ExtendedRegexLexers
+    #     if lxcls.__bases__ == (RegexLexer,):
+    #         # yes we can!  (change the metaclass)
+    #         lxcls.__class__ = ProfilingRegexLexerMeta
+    #         lxcls.__bases__ = (ProfilingRegexLexer,)
+    #         lxcls._prof_sort_index = profsort
+    # else:
+    #     if lxcls.__bases__ == (RegexLexer,):
+    #         lxcls.__bases__ = (DebuggingRegexLexer,)
+    #         debug_lexer = True
+    #     elif lxcls.__bases__ == (DebuggingRegexLexer,):
+    #         # already debugged before
+    #         debug_lexer = True
+    #     else:
+    #         # HACK: ExtendedRegexLexer subclasses will only partially work here.
+    #         lxcls.__bases__ = (DebuggingRegexLexer,)
+    #         debug_lexer = True
 
     lx = lxcls(**options)
     lno = 1
@@ -144,18 +144,15 @@ def main(fn, lexer=None, options={}):
         reprs = list(map(repr, tok))
         print('   ' + reprs[1] + ' ' + ' ' * (29-len(reprs[1])) + reprs[0], end=' ')
         if debug_lexer:
-            print(' ' + ' ' * (29-len(reprs[0])) + ' : '.join(state), end=' ')
+            print(' ' + ' ' * (29-len(reprs[0])) + ' : '.join(state) if state else '', end=' ')
         print()
 
     for type, val in lx.get_tokens(text):
         lno += val.count('\n')
-        if type == Error:
+        if type == Error and not ignerror:
             print('Error parsing', fn, 'on line', lno)
-            print('Previous tokens' + (debug_lexer and ' and states' or '') + ':')
-            if showall:
-                for tok, state in map(None, tokens, states):
-                    show_token(tok, state)
-            else:
+            if not showall:
+                print('Previous tokens' + (debug_lexer and ' and states' or '') + ':')
                 for i in range(max(len(tokens) - num, 0), len(tokens)):
                     if debug_lexer:
                         show_token(tokens[i], states[i])
@@ -175,9 +172,8 @@ def main(fn, lexer=None, options={}):
                 states.append(lx.ctx.stack[:])
             else:
                 states.append(None)
-    if showall:
-        for tok, state in zip(tokens, states):
-            show_token(tok, state)
+        if showall:
+            show_token((type, val), states[-1] if debug_lexer else None)
     return 0
 
 
@@ -201,6 +197,7 @@ Debugging lexing errors:
     -n N            show the last N tokens on error
     -a              always show all lexed tokens (default is only
                     to show them when an error occurs)
+    -e              do not stop on error tokens
 
 Profiling:
 
@@ -212,6 +209,7 @@ Profiling:
 
 num = 10
 showall = False
+ignerror = False
 lexer = None
 options = {}
 profile = False
@@ -219,12 +217,14 @@ profsort = 4
 
 if __name__ == '__main__':
     import getopt
-    opts, args = getopt.getopt(sys.argv[1:], 'n:l:apO:s:h')
+    opts, args = getopt.getopt(sys.argv[1:], 'n:l:aepO:s:h')
     for opt, val in opts:
         if opt == '-n':
             num = int(val)
         elif opt == '-a':
             showall = True
+        elif opt == '-e':
+            ignerror = True
         elif opt == '-l':
             lexer = val
         elif opt == '-p':
