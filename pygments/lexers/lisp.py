@@ -2287,6 +2287,8 @@ class ShenLexer(RegexLexer):
 class CPSALexer(SchemeLexer):
     """
     A CPSA lexer based on the CPSA language as of version 2.2.12
+
+    .. versionadded:: 2.1
     """
     name = 'CPSA'
     aliases = ['cpsa']
@@ -2295,15 +2297,15 @@ class CPSALexer(SchemeLexer):
 
     # list of known keywords and builtins taken form vim 6.4 scheme.vim
     # syntax file.
-    keywords = [
+    _keywords = (
         'herald', 'vars', 'defmacro', 'include', 'defprotocol', 'defrole',
         'defskeleton', 'defstrand', 'deflistener', 'non-orig', 'uniq-orig',
         'pen-non-orig', 'precedes', 'trace', 'send', 'recv', 'name', 'text',
-        'skey', 'akey', 'data', 'mesg'
-    ]
-    builtins = [
-        'cat', 'enc', 'hash', 'privk', 'pubk', 'invk', 'ltk', 'gen', 'exp'
-    ]
+        'skey', 'akey', 'data', 'mesg',
+    )
+    _builtins = (
+        'cat', 'enc', 'hash', 'privk', 'pubk', 'invk', 'ltk', 'gen', 'exp',
+    )
 
     # valid names for identifiers
     # well, names can only not consist fully of numbers
@@ -2338,10 +2340,7 @@ class CPSALexer(SchemeLexer):
             (r"('|#|`|,@|,|\.)", Operator),
 
             # highlight the keywords
-            ('(%s)' % '|'.join([
-                re.escape(entry) + ' ' for entry in keywords]),
-                Keyword
-            ),
+            (words(_keywords, suffix=r'\b'), Keyword),
 
             # first variable in a quoted string like
             # '(this is syntactic sugar)
@@ -2349,10 +2348,7 @@ class CPSALexer(SchemeLexer):
             (r"(?<=#\()" + valid_name, Name.Variable),
 
             # highlight the builtins
-            ("(?<=\()(%s)" % '|'.join([
-                re.escape(entry) + ' ' for entry in builtins]),
-                Name.Builtin
-            ),
+            (words(_builtins, prefix=r'(?<=\()', suffix=r'\b'), Name.Builtin),
 
             # the remaining functions
             (r'(?<=\()' + valid_name, Name.Function),
