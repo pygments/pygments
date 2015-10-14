@@ -1,9 +1,25 @@
+# -*- coding: utf-8 -*-
+"""
+    pygments.lexers.roboconf
+    ~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexers for Roboconf DSL.
+
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 from pygments.lexer import RegexLexer, words, bygroups, re, include
 from pygments.token import *
 
 __all__ = ['RoboconfGraphLexer', 'RoboconfInstancesLexer']
 
 class RoboconfGraphLexer(RegexLexer):
+    """
+    Lexer for `Roboconf <http://roboconf.net/en/roboconf.html>`_ graph files.
+
+    .. versadded:: 2.1
+    """
     name = 'Roboconf Graph'
     aliases = ['roboconf-graph']
     filenames = ['*.graph']
@@ -31,6 +47,11 @@ class RoboconfGraphLexer(RegexLexer):
     }
 
 class RoboconfInstancesLexer(RegexLexer):
+    """
+    Lexer for `Roboconf <http://roboconf.net/en/roboconf.html>`_ instances files.
+
+    .. versadded:: 2.1
+    """
     name = 'Roboconf Instances'
     aliases = ['roboconf-instances']
     filenames = ['*.instances']
