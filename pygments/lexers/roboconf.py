@@ -36,7 +36,9 @@ class RoboconfGraphLexer(RegexLexer):
 
             # Keywords
             (words(('facet', 'import'), suffix=r'\s*\b', prefix=r'\b'), Keyword),
-            (words(('installer', 'extends', 'exports', 'imports', 'facets', 'children'), suffix=r'\s*:?', prefix=r'\b'), Name),
+            (words((
+                'installer', 'extends', 'exports', 'imports', 'facets',
+                'children'), suffix=r'\s*:?', prefix=r'\b'), Name),
 
             # Comments
             (r'#.*\n', Comment),
