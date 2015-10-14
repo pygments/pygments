@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.supercollider
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for SuperCollider
 
@@ -19,7 +19,7 @@ __all__ = ['SuperColliderLexer']
 
 class SuperColliderLexer(RegexLexer):
     """
-    For SuperCollider source code.
+    For `SuperCollider <http://supercollider.github.io/>`_ source code.
 
     .. versionadded:: 2.1
     """
