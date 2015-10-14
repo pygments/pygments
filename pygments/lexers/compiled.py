@@ -18,6 +18,7 @@ from pygments.lexers.go import GoLexer
 from pygments.lexers.rust import RustLexer
 from pygments.lexers.c_like import ECLexer, ValaLexer, CudaLexer
 from pygments.lexers.pascal import DelphiLexer, Modula2Lexer, AdaLexer
+from pygments.lexers.oberon import ComponentPascalLexer
 from pygments.lexers.business import CobolLexer, CobolFreeformatLexer
 from pygments.lexers.fortran import FortranLexer
 from pygments.lexers.prolog import PrologLexer
