@@ -2188,9 +2188,9 @@ class ShenLexer(RegexLexer):
         ],
 
         'root' : [
-            (r'(?ms)\\\*.*?\*\\', Comment.Multiline), # \* ... *\
+            (r'(?s)\\\*.*?\*\\', Comment.Multiline), # \* ... *\
             (r'\\\\.*', Comment.Single), # \\ ...
-            (r'(?ms)\s+', Text),
+            (r'\s+', Text),
             (r'_{5,}', Punctuation),
             (r'={5,}', Punctuation),
             (r'(;|:=|\||--?>|<--?)', Punctuation),
