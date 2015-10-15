@@ -1409,13 +1409,13 @@ class EarlGreyLexer(RegexLexer):
         'bt': [
             (r'`', String.Backtick, '#pop'),
             (r'(?<!`)\n', String.Backtick),
-            (r'\^|\^=', String.Escape),
+            (r'\^=?', String.Escape),
             (r'.+', String.Backtick),
         ],
         'tbt': [
             (r'```', String.Backtick, '#pop'),
             (r'\n', String.Backtick),
-            (r'\^|\^=', String.Escape),
+            (r'\^=?', String.Escape),
             (r'[^\`]+', String.Backtick),
         ],
         'numbers': [
