@@ -155,11 +155,11 @@ class LogtalkLexer(RegexLexer):
             # Term creation and decomposition
             (r'(functor|arg|copy_term|numbervars|term_variables)(?=[(])', Keyword),
             # Evaluable functors
-            (r'(rem|m(ax|in|od)|abs|sign)(?=[(])', Keyword),
+            (r'(div|rem|m(ax|in|od)|abs|sign)(?=[(])', Keyword),
             (r'float(_(integer|fractional)_part)?(?=[(])', Keyword),
-            (r'(floor|truncate|round|ceiling)(?=[(])', Keyword),
+            (r'(floor|t(an|runcate)|round|ceiling)(?=[(])', Keyword),
             # Other arithmetic functors
-            (r'(cos|a(cos|sin|tan)|exp|log|s(in|qrt))(?=[(])', Keyword),
+            (r'(cos|a(cos|sin|tan|tan2)|exp|log|s(in|qrt)|xor)(?=[(])', Keyword),
             # Term testing
             (r'(var|atom(ic)?|integer|float|c(allable|ompound)|n(onvar|umber)|'
              r'ground|acyclic_term)(?=[(])', Keyword),
@@ -212,7 +212,7 @@ class LogtalkLexer(RegexLexer):
             (r'(==|\\==|@=<|@<|@>=|@>)', Operator),
             # Evaluable functors
             (r'(//|[-+*/])', Operator),
-            (r'\b(e|pi|mod|rem)\b', Operator),
+            (r'\b(e|pi|div|mod|rem)\b', Operator),
             # Other arithemtic functors
             (r'\b\*\*\b', Operator),
             # DCG rules

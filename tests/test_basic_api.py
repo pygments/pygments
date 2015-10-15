@@ -98,13 +98,10 @@ def test_lexer_options():
         inst = cls(stripall=True)
         ensure(inst.get_tokens('   \n  b\n\n\n'), 'b\n')
         # some lexers require full lines in input
-        if cls.__name__ not in (
-                'PythonConsoleLexer', 'RConsoleLexer', 'RubyConsoleLexer',
-                'SqliteConsoleLexer', 'MatlabSessionLexer', 'ErlangShellLexer',
-                'BashSessionLexer', 'LiterateHaskellLexer', 'LiterateAgdaLexer',
-                'PostgresConsoleLexer', 'ElixirConsoleLexer', 'JuliaConsoleLexer',
-                'RobotFrameworkLexer', 'DylanConsoleLexer', 'ShellSessionLexer',
-                'LiterateIdrisLexer', 'LiterateCryptolLexer'):
+        if ('ConsoleLexer' not in cls.__name__ and
+            'SessionLexer' not in cls.__name__ and
+            not cls.__name__.startswith('Literate') and
+            cls.__name__ not in ('ErlangShellLexer', 'RobotFrameworkLexer')):
             inst = cls(ensurenl=False)
             ensure(inst.get_tokens('a\nb'), 'a\nb')
             inst = cls(ensurenl=False, stripall=True)
