@@ -19,11 +19,12 @@ from pygments import __version__, highlight
 from pygments.util import ClassNotFound, OptionError, docstring_headline, \
     guess_decode, guess_decode_from_terminal, terminal_encoding
 from pygments.lexers import get_all_lexers, get_lexer_by_name, guess_lexer, \
-    get_lexer_for_filename, find_lexer_class_for_filename, TextLexer
+    get_lexer_for_filename, find_lexer_class_for_filename
+from pygments.lexers.special import TextLexer
 from pygments.formatters.latex import LatexEmbeddedLexer, LatexFormatter
 from pygments.formatters import get_all_formatters, get_formatter_by_name, \
-    get_formatter_for_filename, find_formatter_class, \
-    TerminalFormatter  # pylint:disable-msg=E0611
+    get_formatter_for_filename, find_formatter_class
+from pygments.formatters.terminal import TerminalFormatter
 from pygments.filters import get_all_filters, find_filter_class
 from pygments.styles import get_all_styles, get_style_by_name
 
@@ -247,7 +248,7 @@ def main_inner(popts, args, usage):
             print(usage, file=sys.stderr)
             return 2
 
-        what, name = args
+        what, name = args  # pylint: disable=unbalanced-tuple-unpacking
         if what not in ('lexer', 'formatter', 'filter'):
             print(usage, file=sys.stderr)
             return 2
@@ -269,7 +270,7 @@ def main_inner(popts, args, usage):
     opts.pop('-P', None)
 
     # encodings
-    inencoding  = parsed_opts.get('inencoding', parsed_opts.get('encoding'))
+    inencoding = parsed_opts.get('inencoding', parsed_opts.get('encoding'))
     outencoding = parsed_opts.get('outencoding', parsed_opts.get('encoding'))
 
     # handle ``pygmentize -N``
