@@ -35,16 +35,17 @@ class IgorLexer(RegexLexer):
     flowControl = (
         'if', 'else', 'elseif', 'endif', 'for', 'endfor', 'strswitch', 'switch',
         'case', 'default', 'endswitch', 'do', 'while', 'try', 'catch', 'endtry',
-        'break', 'continue', 'return',
+        'break', 'continue', 'return', 'AbortOnRTE', 'AbortOnValue'
     )
     types = (
         'variable', 'string', 'constant', 'strconstant', 'NVAR', 'SVAR', 'WAVE',
-        'STRUCT', 'dfref'
+        'STRUCT', 'dfref', 'funcref', 'char', 'uchar', 'int16', 'uint16', 'int32',
+        'uint32', 'float', 'double'
     )
     keywords = (
-        'override', 'ThreadSafe', 'static',  'FuncFit', 'Proc', 'Picture',
-        'Prompt', 'DoPrompt', 'macro', 'window', 'graph', 'function', 'end',
-        'Structure', 'EndStructure', 'EndMacro', 'Menu', 'SubMenu',
+        'override', 'ThreadSafe', 'MultiThread', 'static',  'Proc',
+        'Picture', 'Prompt', 'DoPrompt', 'macro', 'window', 'function', 'end',
+        'Structure', 'EndStructure', 'EndMacro', 'Menu', 'SubMenu'
     )
     operations = (
         'Abort', 'AddFIFOData', 'AddFIFOVectData', 'AddMovieAudio',
@@ -161,7 +162,7 @@ class IgorLexer(RegexLexer):
         'CreationDate', 'csc', 'DataFolderExists', 'DataFolderRefsEqual',
         'DataFolderRefStatus', 'date2secs', 'datetime', 'DateToJulian',
         'Dawson', 'DDEExecute', 'DDEInitiate', 'DDEPokeString', 'DDEPokeWave',
-        'DDERequestWave', 'DDEStatus', 'DDETerminate', 'deltax', 'digamma',
+        'DDERequestWave', 'DDEStatus', 'DDETerminate', 'defined', 'deltax', 'digamma',
         'DimDelta', 'DimOffset', 'DimSize', 'ei', 'enoise', 'equalWaves', 'erf',
         'erfc', 'exists', 'exp', 'expInt', 'expNoise', 'factorial', 'fakedata',
         'faverage', 'faverageXY', 'FindDimLabel', 'FindListItem', 'floor',
@@ -223,7 +224,7 @@ class IgorLexer(RegexLexer):
         'ThreadGroupWait', 'ThreadProcessorCount', 'ThreadReturnValue', 'ticks',
         'trunc', 'Variance', 'vcsr', 'WaveCRC', 'WaveDims', 'WaveExists',
         'WaveMax', 'WaveMin', 'WaveRefsEqual', 'WaveType', 'WhichListItem',
-        'WinType', 'WNoise', 'x', 'x2pnt', 'xcsr', 'y', 'z', 'zcsr', 'ZernikeR',
+        'WinType', 'WNoise', 'x2pnt', 'xcsr', 'zcsr', 'ZernikeR',
     )
     functions += (
         'AddListItem', 'AnnotationInfo', 'AnnotationList', 'AxisInfo',

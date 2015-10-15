@@ -297,6 +297,10 @@ Comments
 `Comment`
     Token type for any comment.
 
+`Comment.Hashbang`
+    Token type for hashbang comments (i.e. first lines of files that start with
+     ``#!``).
+
 `Comment.Multiline`
     Token type for multiline comments.
 
