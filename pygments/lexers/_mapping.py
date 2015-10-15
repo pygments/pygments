@@ -171,7 +171,7 @@ LEXERS = {
     'Inform6Lexer': ('pygments.lexers.int_fiction', 'Inform 6', ('inform6', 'i6'), ('*.inf',), ()),
     'Inform6TemplateLexer': ('pygments.lexers.int_fiction', 'Inform 6 template', ('i6t',), ('*.i6t',), ()),
     'Inform7Lexer': ('pygments.lexers.int_fiction', 'Inform 7', ('inform7', 'i7'), ('*.ni', '*.i7x'), ()),
-    'IniLexer': ('pygments.lexers.configs', 'INI', ('ini', 'cfg', 'dosini'), ('*.ini', '*.cfg'), ('text/x-ini',)),
+    'IniLexer': ('pygments.lexers.configs', 'INI', ('ini', 'cfg', 'dosini'), ('*.ini', '*.cfg', '*.inf'), ('text/x-ini', 'text/inf')),
     'IoLexer': ('pygments.lexers.iolang', 'Io', ('io',), ('*.io',), ('text/x-iosrc',)),
     'IokeLexer': ('pygments.lexers.jvm', 'Ioke', ('ioke', 'ik'), ('*.ik',), ('text/x-iokesrc',)),
     'IrcLogsLexer': ('pygments.lexers.textfmts', 'IRC logs', ('irc',), ('*.weechatlog',), ('text/x-irclog',)),
