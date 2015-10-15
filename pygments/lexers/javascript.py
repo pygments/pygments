@@ -37,9 +37,9 @@ class JavascriptLexer(RegexLexer):
 
     name = 'JavaScript'
     aliases = ['js', 'javascript']
-    filenames = ['*.js', '*.jsm', ]
+    filenames = ['*.js', '*.jsm']
     mimetypes = ['application/javascript', 'application/x-javascript',
-                 'text/x-javascript', 'text/javascript', ]
+                 'text/x-javascript', 'text/javascript']
 
     flags = re.DOTALL | re.UNICODE | re.MULTILINE
 
@@ -65,12 +65,13 @@ class JavascriptLexer(RegexLexer):
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
-             r'(<<|>>>?|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
+             r'(<<|>>>?|=>|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
+            (r'\.\.\.', Punctuation),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|void|yield|'
-             r'this)\b', Keyword, 'slashstartsregex'),
+             r'this|of)\b', Keyword, 'slashstartsregex'),
             (r'(var|let|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
             (r'(abstract|boolean|byte|char|class|const|debugger|double|enum|export|'
              r'extends|final|float|goto|implements|import|int|interface|long|native|'
@@ -78,17 +79,34 @@ class JavascriptLexer(RegexLexer):
              r'transient|volatile)\b', Keyword.Reserved),
             (r'(true|false|null|NaN|Infinity|undefined)\b', Keyword.Constant),
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
-             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+             r'Number|Object|Packages|RegExp|String|Promise|Proxy|sun|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
-             r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
-             r'window)\b', Name.Builtin),
+             r'Error|eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|'
+             r'document|this|window)\b', Name.Builtin),
             (JS_IDENT, Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0b[01]+', Number.Bin),
+            (r'0o[0-7]+', Number.Oct),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-        ]
+            (r'`', String.Backtick, 'interp'),
+        ],
+        'interp': [
+            (r'`', String.Backtick, '#pop'),
+            (r'\\\\', String.Backtick),
+            (r'\\`', String.Backtick),
+            (r'\${', String.Interpol, 'interp-inside'),
+            (r'\$', String.Backtick),
+            (r'[^`\\$]+', String.Backtick),
+        ],
+        'interp-inside': [
+            # TODO: should this include single-line comments and allow nesting strings?
+            (r'}', String.Interpol, '#pop'),
+            include('root'),
+        ],
+            #(\\\\|\\`|[^`])*`', String.Backtick),
     }
 
 
@@ -162,7 +180,8 @@ class KalLexer(RegexLexer):
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
              r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
-             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window|'
+             r'eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|document|'
+             r'window|'
              r'print)\b',
              Name.Builtin),
             (r'[$a-zA-Z_][\w.$]*\s*(:|[+\-*/]?\=)?\b', Name.Variable),
@@ -1209,7 +1228,7 @@ class EarlGreyLexer(RegexLexer):
     """
 
     name = 'Earl Grey'
-    aliases = ['Earl-Grey', 'earl-grey', 'earlgrey', 'eg']
+    aliases = ['earl-grey', 'earlgrey', 'eg']
     filenames = ['*.eg']
     mimetypes = ['text/x-earl-grey']
 
