@@ -4,7 +4,7 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This file contains the names of functions for Stan used by
-    ``pygments.lexers.math.StanLexer. This is for Stan language version 2.7.0
+    ``pygments.lexers.math.StanLexer. This is for Stan language version 2.8.0.
 
     :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -39,8 +39,7 @@ TYPES = (
     'simplex',
     'unit_vector',
     'vector',
-    'void'
-)
+    'void')
 
 FUNCTIONS = (
     'Phi',
@@ -105,6 +104,11 @@ FUNCTIONS = (
     'cos',
     'cosh',
     'crossprod',
+    'csr_extract_u',
+    'csr_extract_v',
+    'csr_extract_w',
+    'csr_matrix_times_vector',
+    'csr_to_dense_matrix',
     'cumulative_sum',
     'determinant',
     'diag_matrix',
@@ -187,6 +191,7 @@ FUNCTIONS = (
     'inv_gamma_log',
     'inv_gamma_rng',
     'inv_logit',
+    'inv_phi',
     'inv_sqrt',
     'inv_square',
     'inv_wishart_log',
