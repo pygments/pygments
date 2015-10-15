@@ -69,6 +69,6 @@ class FunctionFilter(Filter):
         Filter.__init__(self, **options)
 
     def filter(self, lexer, stream):
-        # pylint: disable-msg=E1102
+        # pylint: disable=not-callable
         for ttype, value in self.function(lexer, stream, self.options):
             yield ttype, value
