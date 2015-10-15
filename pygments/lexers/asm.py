@@ -286,7 +286,8 @@ class LlvmLexer(RegexLexer):
              r'|lshr|ashr|and|or|xor|icmp|fcmp'
 
              r'|phi|call|trunc|zext|sext|fptrunc|fpext|uitofp|sitofp|fptoui'
-             r'|fptosi|inttoptr|ptrtoint|bitcast|select|va_arg|ret|br|switch'
+             r'|fptosi|inttoptr|ptrtoint|bitcast|addrspacecast'
+             r'|select|va_arg|ret|br|switch'
              r'|invoke|unwind|unreachable'
              r'|indirectbr|landingpad|resume'
 
