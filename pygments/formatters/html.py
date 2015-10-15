@@ -140,7 +140,7 @@ class HtmlFormatter(Formatter):
 
     When `tagsfile` is set to the path of a ctags index file, it is used to
     generate hyperlinks from names to their definition.  You must enable
-    `anchorlines` and run ctags with the `-n` option for this to work.  The
+    `lineanchors` and run ctags with the `-n` option for this to work.  The
     `python-ctags` module from PyPI must be installed to use this feature;
     otherwise a `RuntimeError` will be raised.
 

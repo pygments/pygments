@@ -61,6 +61,7 @@ class CypherLexer(RegexLexer):
         'relations': [
             (r'(-\[)(.*?)(\]->)', bygroups(Operator, using(this), Operator)),
             (r'(<-\[)(.*?)(\]-)', bygroups(Operator, using(this), Operator)),
+            (r'(-\[)(.*?)(\]-)', bygroups(Operator, using(this), Operator)),
             (r'-->|<--|\[|\]', Operator),
             (r'<|>|<>|=|<=|=>|\(|\)|\||:|,|;', Punctuation),
             (r'[.*{}]', Punctuation),

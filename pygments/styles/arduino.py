@@ -16,7 +16,8 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 class ArduinoStyle(Style):
     """
-    The Arduino® language style. This style is designed to highlight the Arduino source code, so exepect the best results with it.
+    The Arduino® language style. This style is designed to highlight the
+    Arduino source code, so exepect the best results with it.
     """
 
     background_color = "#ffffff"
