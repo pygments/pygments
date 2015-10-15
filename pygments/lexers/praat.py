@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.praat
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Praat
 
@@ -20,6 +20,8 @@ __all__ = ['PraatLexer']
 class PraatLexer(RegexLexer):
     """
     For `Praat <http://www.praat.org>`_ scripts.
+
+    .. versionadded:: 2.1
     """
 
     name = 'Praat'
