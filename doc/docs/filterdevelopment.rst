@@ -58,7 +58,7 @@ You can also use the `simplefilter` decorator from the `pygments.filter` module:
 
 
     @simplefilter
-    def uncolor(lexer, stream, options):
+    def uncolor(self, lexer, stream, options):
         class_too = get_bool_opt(options, 'classtoo')
         for ttype, value in stream:
             if ttype is Name.Function or (class_too and
@@ -67,4 +67,5 @@ You can also use the `simplefilter` decorator from the `pygments.filter` module:
             yield ttype, value
 
 The decorator automatically subclasses an internal filter class and uses the
-decorated function for filtering.
+decorated function as a method for filtering.  (That's why there is a `self`
+argument that you probably won't end up using in the method.)

@@ -102,7 +102,6 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 * `BzrFruit <http://repo.or.cz/w/bzrfruit.git>`_, a Bazaar branch viewer
 * `QBzr <http://bazaar-vcs.org/QBzr>`_, a cross-platform Qt-based GUI front end for Bazaar
 * `BitBucket <http://bitbucket.org/>`_, a Mercurial and Git hosting site
-* `GitHub <http://github.com/>`_, a site offering secure Git hosting and collaborative development
 * `Review Board <http://www.review-board.org/>`_, a collaborative code reviewing tool
 * `skeletonz <http://orangoo.com/skeletonz/>`_, a Python powered content management system
 * `Diamanda <http://code.google.com/p/diamanda/>`_, a Django powered wiki system with support for Pygments
