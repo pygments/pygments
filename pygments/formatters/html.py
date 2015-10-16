@@ -711,7 +711,7 @@ class HtmlFormatter(Formatter):
         tagsfile = self.tagsfile
 
         lspan = ''
-        line = ''
+        line = []
         for ttype, value in tokensource:
             if nocls:
                 cclass = getcls(ttype)
@@ -742,30 +742,31 @@ class HtmlFormatter(Formatter):
             for part in parts[:-1]:
                 if line:
                     if lspan != cspan:
-                        line += (lspan and '</span>') + cspan + part + \
-                                (cspan and '</span>') + lsep
+                        line.extend(((lspan and '</span>'), cspan, part,
+                                (cspan and '</span>'), lsep))
                     else: # both are the same
-                        line += part + (lspan and '</span>') + lsep
-                    yield 1, line
-                    line = ''
+                        line.extend((part, (lspan and '</span>'), lsep))
+                    yield 1, ''.join(line)
+                    line = []
                 elif part:
-                    yield 1, cspan + part + (cspan and '</span>') + lsep
+                    yield 1, ''.join((cspan, part, (cspan and '</span>'), lsep))
                 else:
                     yield 1, lsep
             # for the last line
             if line and parts[-1]:
                 if lspan != cspan:
-                    line += (lspan and '</span>') + cspan + parts[-1]
+                    line.extend(((lspan and '</span>'), cspan, parts[-1]))
                     lspan = cspan
                 else:
-                    line += parts[-1]
+                    line.append(parts[-1])
             elif parts[-1]:
-                line = cspan + parts[-1]
+                line = [cspan, parts[-1]]
                 lspan = cspan
             # else we neither have to open a new span nor set lspan
 
         if line:
-            yield 1, line + (lspan and '</span>') + lsep
+            line.extend(((lspan and '</span>'), lsep))
+            yield 1, ''.join(line)
 
     def _lookup_ctag(self, token):
         entry = ctags.TagEntry()
