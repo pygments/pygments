@@ -274,6 +274,8 @@ class AdlLexer(AtomsLexer):
             (r'^(definition)[ \t]*\n', Generic.Heading, 'cadl_section'),
             (r'^([ \t]*|[ \t]+.*)\n', using(OdinLexer)),
             (r'^([^"]*")(>[ \t]*\n)', bygroups(String, Punctuation)),
+            # template overlay delimiter
+            (r'^----------*\n', Text, '#pop'),
             (r'^.*\n', String),
             default('#pop'),
         ],
@@ -300,7 +302,7 @@ class AdlLexer(AtomsLexer):
             default('#pop'),
         ],
         'root': [
-            (r'^(archetype|template|template_overlay|operational_template|'
+            (r'^(archetype|template_overlay|operational_template|template|'
              r'speciali[sz]e)', Generic.Heading),
             (r'^(language|description|ontology|terminology|annotations|'
              r'component_terminologies|revision_history)[ \t]*\n',
