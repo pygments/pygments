@@ -111,6 +111,9 @@ model {
   print("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_~@#$%^&*`'-+={}[].,;: ");
   print("Hello, world!");
   print("");
+
+  // reject statement
+  reject("I just don't like it");
   
 }
 generated quantities {

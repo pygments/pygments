@@ -5,13 +5,14 @@
 
     Lexers for JavaScript and related languages.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, default, using, this
+from pygments.lexer import RegexLexer, include, bygroups, default, using, \
+    this, words, combined
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Other
 from pygments.util import get_bool_opt, iteritems
@@ -19,7 +20,7 @@ import pygments.unistring as uni
 
 __all__ = ['JavascriptLexer', 'KalLexer', 'LiveScriptLexer', 'DartLexer',
            'TypeScriptLexer', 'LassoLexer', 'ObjectiveJLexer',
-           'CoffeeScriptLexer', 'MaskLexer']
+           'CoffeeScriptLexer', 'MaskLexer', 'EarlGreyLexer']
 
 JS_IDENT_START = ('(?:[$_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') +
                   ']|\\\\u[a-fA-F0-9]{4})')
@@ -36,9 +37,9 @@ class JavascriptLexer(RegexLexer):
 
     name = 'JavaScript'
     aliases = ['js', 'javascript']
-    filenames = ['*.js', ]
+    filenames = ['*.js', '*.jsm']
     mimetypes = ['application/javascript', 'application/x-javascript',
-                 'text/x-javascript', 'text/javascript', ]
+                 'text/x-javascript', 'text/javascript']
 
     flags = re.DOTALL | re.UNICODE | re.MULTILINE
 
@@ -60,16 +61,17 @@ class JavascriptLexer(RegexLexer):
             (r'\n', Text, '#pop')
         ],
         'root': [
-            (r'\A#! ?/.*?\n', Comment),  # shebang lines are recognized by node.js
+            (r'\A#! ?/.*?\n', Comment.Hashbang),  # recognized by node.js
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
-             r'(<<|>>>?|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
+             r'(<<|>>>?|=>|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
+            (r'\.\.\.', Punctuation),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|void|yield|'
-             r'this)\b', Keyword, 'slashstartsregex'),
+             r'this|of)\b', Keyword, 'slashstartsregex'),
             (r'(var|let|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
             (r'(abstract|boolean|byte|char|class|const|debugger|double|enum|export|'
              r'extends|final|float|goto|implements|import|int|interface|long|native|'
@@ -77,17 +79,34 @@ class JavascriptLexer(RegexLexer):
              r'transient|volatile)\b', Keyword.Reserved),
             (r'(true|false|null|NaN|Infinity|undefined)\b', Keyword.Constant),
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
-             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+             r'Number|Object|Packages|RegExp|String|Promise|Proxy|sun|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
-             r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
-             r'window)\b', Name.Builtin),
+             r'Error|eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|'
+             r'document|this|window)\b', Name.Builtin),
             (JS_IDENT, Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'0b[01]+', Number.Bin),
+            (r'0o[0-7]+', Number.Oct),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-        ]
+            (r'`', String.Backtick, 'interp'),
+        ],
+        'interp': [
+            (r'`', String.Backtick, '#pop'),
+            (r'\\\\', String.Backtick),
+            (r'\\`', String.Backtick),
+            (r'\${', String.Interpol, 'interp-inside'),
+            (r'\$', String.Backtick),
+            (r'[^`\\$]+', String.Backtick),
+        ],
+        'interp-inside': [
+            # TODO: should this include single-line comments and allow nesting strings?
+            (r'}', String.Interpol, '#pop'),
+            include('root'),
+        ],
+            #(\\\\|\\`|[^`])*`', String.Backtick),
     }
 
 
@@ -161,7 +180,8 @@ class KalLexer(RegexLexer):
             (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
              r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
-             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window|'
+             r'eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|document|'
+             r'window|'
              r'print)\b',
              Name.Builtin),
             (r'[$a-zA-Z_][\w.$]*\s*(:|[+\-*/]?\=)?\b', Name.Variable),
@@ -1199,5 +1219,216 @@ class MaskLexer(RegexLexer):
         'string-double-pop2': [
             (r'"', String.Single, '#pop:2'),
             include('string-base')
+        ],
+    }
+
+class EarlGreyLexer(RegexLexer):
+    """
+    For `Earl-Grey`_ source code.
+
+    .. _Earl-Grey: https://breuleux.github.io/earl-grey/
+
+    .. versionadded: 2.1
+    """
+
+    name = 'Earl Grey'
+    aliases = ['earl-grey', 'earlgrey', 'eg']
+    filenames = ['*.eg']
+    mimetypes = ['text/x-earl-grey']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            include('control'),
+            (r'[^\S\n]+', Text),
+            (r';;.*\n', Comment),
+            (r'[\[\]\{\}\:\(\)\,\;]', Punctuation),
+            (r'\\\n', Text),
+            (r'\\', Text),
+            include('errors'),
+            (words((
+                'with', 'where', 'when', 'and', 'not', 'or', 'in',
+                'as', 'of', 'is'),
+                prefix=r'(?<=\s|\[)', suffix=r'(?![\w\$\-])'),
+             Operator.Word),
+            (r'[\*@]?->', Name.Function),
+            (r'[+\-*/~^<>%&|?!@#.]*=', Operator.Word),
+            (r'\.{2,3}', Operator.Word), # Range Operator
+            (r'([+*/~^<>&|?!]+)|([#\-](?=\s))|@@+(?=\s)|=+', Operator),
+            (r'(?<![\w\$\-])(var|let)(?:[^\w\$])', Keyword.Declaration),
+            include('keywords'),
+            include('builtins'),
+            include('assignment'),
+            (r'''(?x)
+                (?:()([a-zA-Z$_](?:[a-zA-Z$0-9_\-]*[a-zA-Z$0-9_])?)|
+                   (?<=[\s\{\[\(])(\.)([a-zA-Z$_](?:[a-zA-Z$0-9_\-]*[a-zA-Z$0-9_])?))
+                (?=.*%)''',
+             bygroups(Punctuation, Name.Tag, Punctuation, Name.Class.Start), 'dbs'),
+            (r'[rR]?`', String.Backtick, 'bt'),
+            (r'[rR]?```', String.Backtick, 'tbt'),
+            (r'(?<=[\s\[\{\(,;])\.([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?=[\s\]\}\),;])',
+             String.Symbol),
+            include('nested'),
+            (r'(?:[rR]|[rR]\.[gmi]{1,3})?"', String, combined('stringescape', 'dqs')),
+            (r'(?:[rR]|[rR]\.[gmi]{1,3})?\'', String, combined('stringescape', 'sqs')),
+            (r'"""', String, combined('stringescape', 'tdqs')),
+            include('tuple'),
+            include('import_paths'),
+            include('name'),
+            include('numbers'),
+        ],
+        'dbs': [
+            (r'(\.)([a-zA-Z$_](?:[a-zA-Z$0-9_\-]*[a-zA-Z$0-9_])?)(?=[\[\.\s])',
+             bygroups(Punctuation, Name.Class.DBS)),
+            (r'(\[)([\^#][a-zA-Z$_](?:[a-zA-Z$0-9_\-]*[a-zA-Z$0-9_])?)(\])',
+             bygroups(Punctuation, Name.Entity.DBS, Punctuation)),
+            (r'\s+', Text),
+            (r'%', Operator.DBS, '#pop'),
+        ],
+        'import_paths': [
+            (r'(?<=[\s:;,])(\.{1,3}(?:[\w\-]*/)*)(\w(?:[\w\-]*\w)*)(?=[\s;,])',
+             bygroups(Text.Whitespace, Text)),
+        ],
+        'assignment': [
+            (r'(\.)?([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?=\s+[+\-*/~^<>%&|?!@#.]*\=\s)',
+             bygroups(Punctuation, Name.Variable))
+        ],
+        'errors': [
+            (words(('Error', 'TypeError', 'ReferenceError'),
+                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-\.])'),
+             Name.Exception),
+            (r'''(?x)
+                (?<![\w\$])
+                E\.[\w\$](?:[\w\$\-]*[\w\$])?
+                (?:\.[\w\$](?:[\w\$\-]*[\w\$])?)*
+                (?=[\(\{\[\?\!\s])''',
+             Name.Exception),
+        ],
+        'control': [
+            (r'''(?x)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
+                (?!\n)\s+
+                (?!and|as|each\*|each|in|is|mod|of|or|when|where|with)
+                (?=(?:[+\-*/~^<>%&|?!@#.])?[a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)''',
+             Keyword.Control),
+            (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?!\n)\s+(?=[\'"\d\{\[\(])', Keyword.Control),
+            (r'''(?x)
+                (?:
+                    (?<=[%=])|
+                    (?<=[=\-]>)|
+                    (?<=with|each|with)|
+                    (?<=each\*|where)
+                )(\s+)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_\-]*[a-zA-Z$0-9_])?)(:)''',
+             bygroups(Text, Keyword.Control, Punctuation)),
+            (r'''(?x)
+                (?<![+\-*/~^<>%&|?!@#.])(\s+)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(:)''',
+             bygroups(Text, Keyword.Control, Punctuation)),
+        ],
+        'nested': [
+            (r'''(?x)
+                (?<=[a-zA-Z$0-9_\]\}\)])(\.)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
+                (?=\s+with(?:\s|\n))''',
+             bygroups(Punctuation, Name.Function)),
+            (r'''(?x)
+                (?<!\s)(\.)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
+                (?=[\}\]\)\.,;:\s])''',
+             bygroups(Punctuation, Name.Field)),
+            (r'''(?x)
+                (?<=[a-zA-Z$0-9_\]\}\)])(\.)
+                ([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)
+                (?=[\[\{\(:])''',
+             bygroups(Punctuation, Name.Function)),
+        ],
+        'keywords': [
+            (words((
+                'each', 'each*', 'mod', 'await', 'break', 'chain',
+                'continue', 'elif', 'expr-value', 'if', 'match',
+                'return', 'yield', 'pass', 'else', 'require', 'var',
+                'let', 'async', 'method', 'gen'),
+                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-\.])'),
+             Keyword.Pseudo),
+            (words(('this', 'self', '@'),
+                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-])'),
+             Keyword.Constant),
+            (words((
+                'Function', 'Object', 'Array', 'String', 'Number',
+                'Boolean', 'ErrorFactory', 'ENode', 'Promise'),
+                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-])'),
+             Keyword.Type),
+        ],
+        'builtins': [
+            (words((
+                'send', 'object', 'keys', 'items', 'enumerate', 'zip',
+                'product', 'neighbours', 'predicate', 'equal',
+                'nequal', 'contains', 'repr', 'clone', 'range',
+                'getChecker', 'get-checker', 'getProperty', 'get-property',
+                'getProjector', 'get-projector', 'consume', 'take',
+                'promisify', 'spawn', 'constructor'),
+                prefix=r'(?<![\w\-#\.])', suffix=r'(?![\w\-\.])'),
+             Name.Builtin),
+            (words((
+                'true', 'false', 'null', 'undefined'),
+                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-\.])'),
+             Name.Constant),
+        ],
+        'name': [
+            (r'@([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)', Name.Variable.Instance),
+            (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(\+\+|\-\-)?', bygroups(Name.Symbol, Operator.Word))
+        ],
+        'tuple': [
+            (r'#[a-zA-Z_][a-zA-Z_\-0-9]*(?=[\s\{\(,;\n])', Name.Namespace)
+        ],
+        'interpoling_string': [
+            (r'\}', String.Interpol, '#pop'),
+            include('root')
+        ],
+        'stringescape': [
+            (r'\\([\\abfnrtv"\']|\n|N\{.*?\}|u[a-fA-F0-9]{4}|'
+             r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
+        ],
+        'strings': [
+            (r'[^\\\'"]', String),
+            (r'[\'"\\]', String),
+            (r'\n', String) # All strings are multiline in EG
+        ],
+        'dqs': [
+            (r'"', String, '#pop'),
+            (r'\\\\|\\"|\\\n', String.Escape),
+            include('strings')
+        ],
+        'sqs': [
+            (r"'", String, '#pop'),
+            (r"\\\\|\\'|\\\n", String.Escape),
+            (r'\{', String.Interpol, 'interpoling_string'),
+            include('strings')
+        ],
+        'tdqs': [
+            (r'"""', String, '#pop'),
+            include('strings'),
+        ],
+        'bt': [
+            (r'`', String.Backtick, '#pop'),
+            (r'(?<!`)\n', String.Backtick),
+            (r'\^=?', String.Escape),
+            (r'.+', String.Backtick),
+        ],
+        'tbt': [
+            (r'```', String.Backtick, '#pop'),
+            (r'\n', String.Backtick),
+            (r'\^=?', String.Escape),
+            (r'[^\`]+', String.Backtick),
+        ],
+        'numbers': [
+            (r'\d+\.(?!\.)\d*([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+', Number.Float),
+            (r'8r[0-7]+', Number.Oct),
+            (r'2r[01]+', Number.Bin),
+            (r'16r[a-fA-F0-9]+', Number.Hex),
+            (r'([3-79]|[1-2][0-9]|3[0-6])r[a-zA-Z\d]+(\.[a-zA-Z\d]+)?', Number.Radix),
+            (r'\d+', Number.Integer)
         ],
     }
