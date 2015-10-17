@@ -9,10 +9,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import RegexLexer, words, bygroups, default, include
-from pygments.token import *
+from pygments.lexer import RegexLexer, words, bygroups, include
+from pygments.token import Name, Text, Comment, Keyword, String, Punctuation, Number, \
+    Operator
 
 __all__ = ['PraatLexer']
 
@@ -29,42 +28,45 @@ class PraatLexer(RegexLexer):
     filenames = ['*.praat', '*.proc', '*.psc']
 
     keywords = [
-        'if', 'then', 'else', 'elsif', 'elif', 'endif', 'fi', 'for', 'from', 'to', 'endfor', 'endproc',
-        'while', 'endwhile', 'repeat', 'until', 'select', 'plus', 'minus', 'demo', 'assert', 'stopwatch',
-        'nocheck', 'nowarn', 'noprogress', 'editor', 'endeditor', 'clearinfo'
+        'if', 'then', 'else', 'elsif', 'elif', 'endif', 'fi', 'for', 'from', 'to',
+        'endfor', 'endproc', 'while', 'endwhile', 'repeat', 'until', 'select', 'plus',
+        'minus', 'demo', 'assert', 'stopwatch', 'nocheck', 'nowarn', 'noprogress',
+        'editor', 'endeditor', 'clearinfo',
     ]
 
     functions_string = [
         'backslashTrigraphsToUnicode', 'chooseDirectory', 'chooseReadFile',
-        'chooseWriteFile', 'date', 'demoKey', 'do', 'environment', 'extractLine', 'extractWord',
-        'fixed', 'info', 'left', 'mid', 'percent', 'readFile', 'replace', 'replace_regex', 'right',
-        'selected', 'string', 'unicodeToBackslashTrigraphs',
+        'chooseWriteFile', 'date', 'demoKey', 'do', 'environment', 'extractLine',
+        'extractWord', 'fixed', 'info', 'left', 'mid', 'percent', 'readFile', 'replace',
+        'replace_regex', 'right', 'selected', 'string', 'unicodeToBackslashTrigraphs',
     ]
 
     functions_numeric = [
-        'abs', 'appendFile', 'appendFileLine', 'appendInfo', 'appendInfoLine', 'arccos', 'arccosh',
-        'arcsin', 'arcsinh', 'arctan', 'arctan2', 'arctanh', 'barkToHertz', 'beginPause',
-        'beginSendPraat', 'besselI', 'besselK', 'beta', 'beta2', 'binomialP', 'binomialQ', 'boolean',
-        'ceiling', 'chiSquareP', 'chiSquareQ', 'choice', 'comment', 'cos', 'cosh', 'createDirectory',
-        'deleteFile', 'demoClicked', 'demoClickedIn', 'demoCommandKeyPressed',
+        'abs', 'appendFile', 'appendFileLine', 'appendInfo', 'appendInfoLine', 'arccos',
+        'arccosh', 'arcsin', 'arcsinh', 'arctan', 'arctan2', 'arctanh', 'barkToHertz',
+        'beginPause', 'beginSendPraat', 'besselI', 'besselK', 'beta', 'beta2',
+        'binomialP', 'binomialQ', 'boolean', 'ceiling', 'chiSquareP', 'chiSquareQ',
+        'choice', 'comment', 'cos', 'cosh', 'createDirectory', 'deleteFile',
+        'demoClicked', 'demoClickedIn', 'demoCommandKeyPressed',
         'demoExtraControlKeyPressed', 'demoInput', 'demoKeyPressed',
         'demoOptionKeyPressed', 'demoShiftKeyPressed', 'demoShow', 'demoWaitForInput',
-        'demoWindowTitle', 'demoX', 'demoY', 'differenceLimensToPhon', 'do', 'editor', 'endPause',
-        'endSendPraat', 'endsWith', 'erb', 'erbToHertz', 'erf', 'erfc', 'exitScript', 'exp',
-        'extractNumber', 'fileReadable', 'fisherP', 'fisherQ', 'floor', 'gaussP', 'gaussQ',
-        'hertzToBark', 'hertzToErb', 'hertzToMel', 'hertzToSemitones', 'imax', 'imin',
-        'incompleteBeta', 'incompleteGammaP', 'index', 'index_regex', 'invBinomialP',
-        'invBinomialQ', 'invChiSquareQ', 'invFisherQ', 'invGaussQ', 'invSigmoid', 'invStudentQ',
-        'length', 'ln', 'lnBeta', 'lnGamma', 'log10', 'log2', 'max', 'melToHertz', 'min', 'minusObject',
-        'natural', 'number', 'numberOfColumns', 'numberOfRows', 'numberOfSelected',
-        'objectsAreIdentical', 'option', 'optionMenu', 'pauseScript',
-        'phonToDifferenceLimens', 'plusObject', 'positive', 'randomBinomial', 'randomGauss',
-        'randomInteger', 'randomPoisson', 'randomUniform', 'real', 'readFile', 'removeObject',
-        'rindex', 'rindex_regex', 'round', 'runScript', 'runSystem', 'runSystem_nocheck',
-        'selectObject', 'selected', 'semitonesToHertz', 'sentencetext', 'sigmoid', 'sin', 'sinc',
-        'sincpi', 'sinh', 'soundPressureToPhon', 'sqrt', 'startsWith', 'studentP', 'studentQ', 'tan',
-        'tanh', 'variableExists', 'word', 'writeFile', 'writeFileLine', 'writeInfo',
-        'writeInfoLine',
+        'demoWindowTitle', 'demoX', 'demoY', 'differenceLimensToPhon', 'do', 'editor',
+        'endPause', 'endSendPraat', 'endsWith', 'erb', 'erbToHertz', 'erf', 'erfc',
+        'exitScript', 'exp', 'extractNumber', 'fileReadable', 'fisherP', 'fisherQ',
+        'floor', 'gaussP', 'gaussQ', 'hertzToBark', 'hertzToErb', 'hertzToMel',
+        'hertzToSemitones', 'imax', 'imin', 'incompleteBeta', 'incompleteGammaP', 'index',
+        'index_regex', 'invBinomialP', 'invBinomialQ', 'invChiSquareQ', 'invFisherQ',
+        'invGaussQ', 'invSigmoid', 'invStudentQ', 'length', 'ln', 'lnBeta', 'lnGamma',
+        'log10', 'log2', 'max', 'melToHertz', 'min', 'minusObject', 'natural', 'number',
+        'numberOfColumns', 'numberOfRows', 'numberOfSelected', 'objectsAreIdentical',
+        'option', 'optionMenu', 'pauseScript', 'phonToDifferenceLimens', 'plusObject',
+        'positive', 'randomBinomial', 'randomGauss', 'randomInteger', 'randomPoisson',
+        'randomUniform', 'real', 'readFile', 'removeObject', 'rindex', 'rindex_regex',
+        'round', 'runScript', 'runSystem', 'runSystem_nocheck', 'selectObject',
+        'selected', 'semitonesToHertz', 'sentencetext', 'sigmoid', 'sin', 'sinc',
+        'sincpi', 'sinh', 'soundPressureToPhon', 'sqrt', 'startsWith', 'studentP',
+        'studentQ', 'tan', 'tanh', 'variableExists', 'word', 'writeFile', 'writeFileLine',
+        'writeInfo', 'writeInfoLine',
     ]
 
     functions_array = [
@@ -72,29 +74,32 @@ class PraatLexer(RegexLexer):
     ]
 
     objects = [
-        'Activation', 'AffineTransform', 'AmplitudeTier', 'Art', 'Artword', 'Autosegment',
-        'BarkFilter', 'BarkSpectrogram', 'CCA', 'Categories', 'Cepstrogram', 'Cepstrum',
-        'Cepstrumc', 'ChebyshevSeries', 'ClassificationTable', 'Cochleagram', 'Collection',
-        'ComplexSpectrogram', 'Configuration', 'Confusion', 'ContingencyTable', 'Corpus',
-        'Correlation', 'Covariance', 'CrossCorrelationTable', 'CrossCorrelationTables', 'DTW',
-        'DataModeler', 'Diagonalizer', 'Discriminant', 'Dissimilarity', 'Distance',
-        'Distributions', 'DurationTier', 'EEG', 'ERP', 'ERPTier', 'EditCostsTable',
-        'EditDistanceTable', 'Eigen', 'Excitation', 'Excitations', 'ExperimentMFC', 'FFNet',
-        'FeatureWeights', 'FileInMemory', 'FilesInMemory', 'Formant', 'FormantFilter',
-        'FormantGrid', 'FormantModeler', 'FormantPoint', 'FormantTier', 'GaussianMixture', 'HMM',
+        'Activation', 'AffineTransform', 'AmplitudeTier', 'Art', 'Artword',
+        'Autosegment', 'BarkFilter', 'BarkSpectrogram', 'CCA', 'Categories',
+        'Cepstrogram', 'Cepstrum', 'Cepstrumc', 'ChebyshevSeries', 'ClassificationTable',
+        'Cochleagram', 'Collection', 'ComplexSpectrogram', 'Configuration', 'Confusion',
+        'ContingencyTable', 'Corpus', 'Correlation', 'Covariance',
+        'CrossCorrelationTable', 'CrossCorrelationTables', 'DTW', 'DataModeler',
+        'Diagonalizer', 'Discriminant', 'Dissimilarity', 'Distance', 'Distributions',
+        'DurationTier', 'EEG', 'ERP', 'ERPTier', 'EditCostsTable', 'EditDistanceTable',
+        'Eigen', 'Excitation', 'Excitations', 'ExperimentMFC', 'FFNet', 'FeatureWeights',
+        'FileInMemory', 'FilesInMemory', 'Formant', 'FormantFilter', 'FormantGrid',
+        'FormantModeler', 'FormantPoint', 'FormantTier', 'GaussianMixture', 'HMM',
         'HMM_Observation', 'HMM_ObservationSequence', 'HMM_State', 'HMM_StateSequence',
-        'Harmonicity', 'ISpline', 'Index', 'Intensity', 'IntensityTier', 'IntervalTier', 'KNN',
-        'KlattGrid', 'KlattTable', 'LFCC', 'LPC', 'Label', 'LegendreSeries', 'LinearRegression',
-        'LogisticRegression', 'LongSound', 'Ltas', 'MFCC', 'MSpline', 'ManPages', 'Manipulation',
-        'Matrix', 'MelFilter', 'MelSpectrogram', 'MixingMatrix', 'Movie', 'Network', 'OTGrammar',
-        'OTHistory', 'OTMulti', 'PCA', 'PairDistribution', 'ParamCurve', 'Pattern', 'Permutation',
-        'Photo', 'Pitch', 'PitchModeler', 'PitchTier', 'PointProcess', 'Polygon', 'Polynomial',
-        'PowerCepstrogram', 'PowerCepstrum', 'Procrustes', 'RealPoint', 'RealTier', 'ResultsMFC',
-        'Roots', 'SPINET', 'SSCP', 'SVD', 'Salience', 'ScalarProduct', 'Similarity', 'SimpleString',
-        'SortedSetOfString', 'Sound', 'Speaker', 'Spectrogram', 'Spectrum', 'SpectrumTier',
-        'SpeechSynthesizer', 'SpellingChecker', 'Strings', 'StringsIndex', 'Table',
-        'TableOfReal', 'TextGrid', 'TextInterval', 'TextPoint', 'TextTier', 'Tier', 'Transition',
-        'VocalTract', 'VocalTractTier', 'Weight', 'WordList',
+        'Harmonicity', 'ISpline', 'Index', 'Intensity', 'IntensityTier', 'IntervalTier',
+        'KNN', 'KlattGrid', 'KlattTable', 'LFCC', 'LPC', 'Label', 'LegendreSeries',
+        'LinearRegression', 'LogisticRegression', 'LongSound', 'Ltas', 'MFCC', 'MSpline',
+        'ManPages', 'Manipulation', 'Matrix', 'MelFilter', 'MelSpectrogram',
+        'MixingMatrix', 'Movie', 'Network', 'OTGrammar', 'OTHistory', 'OTMulti', 'PCA',
+        'PairDistribution', 'ParamCurve', 'Pattern', 'Permutation', 'Photo', 'Pitch',
+        'PitchModeler', 'PitchTier', 'PointProcess', 'Polygon', 'Polynomial',
+        'PowerCepstrogram', 'PowerCepstrum', 'Procrustes', 'RealPoint', 'RealTier',
+        'ResultsMFC', 'Roots', 'SPINET', 'SSCP', 'SVD', 'Salience', 'ScalarProduct',
+        'Similarity', 'SimpleString', 'SortedSetOfString', 'Sound', 'Speaker',
+        'Spectrogram', 'Spectrum', 'SpectrumTier', 'SpeechSynthesizer', 'SpellingChecker',
+        'Strings', 'StringsIndex', 'Table', 'TableOfReal', 'TextGrid', 'TextInterval',
+        'TextPoint', 'TextTier', 'Tier', 'Transition', 'VocalTract', 'VocalTractTier',
+        'Weight', 'WordList',
     ]
 
     variables_numeric = [
@@ -123,10 +128,11 @@ class PraatLexer(RegexLexer):
             (words(keywords, suffix=r'\b'), Keyword),
 
             (r'(\bform\b)(\s+)([^\n]+)',
-                bygroups(Keyword, Text, String), 'old_form'),
+             bygroups(Keyword, Text, String), 'old_form'),
 
-            (r'(print(?:line|tab)?|echo|exit|asserterror|pause|send(?:praat|socket)|include|execute|system(?:_nocheck)?)(\s+)',
-                bygroups(Keyword, Text), 'string_unquoted'),
+            (r'(print(?:line|tab)?|echo|exit|asserterror|pause|send(?:praat|socket)|'
+             r'include|execute|system(?:_nocheck)?)(\s+)',
+             bygroups(Keyword, Text), 'string_unquoted'),
 
             (r'(goto|label)(\s+)(\w+)', bygroups(Keyword, Text, Name.Label)),
 
@@ -150,20 +156,20 @@ class PraatLexer(RegexLexer):
         'procedure_call': [
             (r'\s+', Text),
             (r'([\w.]+)(:|\s*\()',
-                bygroups(Name.Function, Text), '#pop'),
+             bygroups(Name.Function, Text), '#pop'),
             (r'([\w.]+)', Name.Function, ('#pop', 'old_arguments')),
         ],
         'procedure_definition': [
             (r'\s', Text),
             (r'([\w.]+)(\s*?[(:])',
-                bygroups(Name.Function, Text), '#pop'),
+             bygroups(Name.Function, Text), '#pop'),
             (r'([\w.]+)([^\n]*)',
-                bygroups(Name.Function, Text), '#pop'),
+             bygroups(Name.Function, Text), '#pop'),
         ],
         'function_call': [
-            (words(functions_string , suffix=r'\$(?=\s*[:(])'), Name.Function, 'function'),
-            (words(functions_array  , suffix=r'#(?=\s*[:(])'),  Name.Function, 'function'),
-            (words(functions_numeric, suffix=r'(?=\s*[:(])'),   Name.Function, 'function'),
+            (words(functions_string, suffix=r'\$(?=\s*[:(])'), Name.Function, 'function'),
+            (words(functions_array, suffix=r'#(?=\s*[:(])'), Name.Function, 'function'),
+            (words(functions_numeric, suffix=r'(?=\s*[:(])'), Name.Function, 'function'),
         ],
         'function': [
             (r'\s+',   Text),
@@ -202,9 +208,9 @@ class PraatLexer(RegexLexer):
         'object_attributes': [
             (r'\.?(n(col|row)|[xy]min|[xy]max|[nd][xy])\b', Name.Builtin, '#pop'),
             (r'(\.?(?:col|row)\$)(\[)',
-                bygroups(Name.Builtin, Text), 'variable_name'),
+             bygroups(Name.Builtin, Text), 'variable_name'),
             (r'(\$?)(\[)',
-                bygroups(Name.Builtin, Text), ('#pop', 'comma_list')),
+             bygroups(Name.Builtin, Text), ('#pop', 'comma_list')),
         ],
         'variable_name': [
             include('operator'),
@@ -214,14 +220,15 @@ class PraatLexer(RegexLexer):
             (words(variables_numeric, suffix=r'\b'), Name.Variable.Global),
 
             (r'\bObject_\w+', Name.Builtin, 'object_attributes'),
-            (words(objects, prefix=r'\b', suffix=r'_\w+'), Name.Builtin, 'object_attributes'),
+            (words(objects, prefix=r'\b', suffix=r'_\w+'),
+             Name.Builtin, 'object_attributes'),
 
             (r"\b(Object_)(')",
-                bygroups(Name.Builtin, String.Interpol),
-                ('object_attributes', 'string_interpolated')),
+             bygroups(Name.Builtin, String.Interpol),
+             ('object_attributes', 'string_interpolated')),
             (words(objects, prefix=r'\b', suffix=r"(_)(')"),
-                bygroups(Name.Builtin, Name.Builtin, String.Interpol),
-                ('object_attributes', 'string_interpolated')),
+             bygroups(Name.Builtin, Name.Builtin, String.Interpol),
+             ('object_attributes', 'string_interpolated')),
 
             (r'\.?_?[a-z][a-zA-Z0-9_.]*(\$|#)?', Text),
             (r'[\[\]]', Punctuation, 'comma_list'),
@@ -232,7 +239,8 @@ class PraatLexer(RegexLexer):
             (r'\b(and|or|not|div|mod)\b',          Operator.Word),
         ],
         'string_interpolated': [
-            (r'\.?[_a-z][a-zA-Z0-9_.]*[\$#]?(?:\[[a-zA-Z0-9,]+\])?(:[0-9]+)?', String.Interpol),
+            (r'\.?[_a-z][a-zA-Z0-9_.]*[\$#]?(?:\[[a-zA-Z0-9,]+\])?(:[0-9]+)?',
+             String.Interpol),
             (r"'",          String.Interpol, '#pop'),
         ],
         'string_unquoted': [
@@ -256,30 +264,31 @@ class PraatLexer(RegexLexer):
             (r'\s+', Text),
 
             (r'(optionmenu|choice)([ \t]+\S+:[ \t]+)',
-                bygroups(Keyword, Text), 'number'),
+             bygroups(Keyword, Text), 'number'),
 
             (r'(option|button)([ \t]+)',
-                bygroups(Keyword, Text), 'number'),
+             bygroups(Keyword, Text), 'number'),
 
             (r'(option|button)([ \t]+)',
-                bygroups(Keyword, Text), 'string_unquoted'),
+             bygroups(Keyword, Text), 'string_unquoted'),
 
             (r'(sentence|text)([ \t]+\S+)',
-                bygroups(Keyword, Text), 'string_unquoted'),
+             bygroups(Keyword, Text), 'string_unquoted'),
 
             (r'(word)([ \t]+\S+[ \t]*)(\S+)?([ \t]+.*)?',
-                bygroups(Keyword, Text, String, Text)),
+             bygroups(Keyword, Text, String, Text)),
 
             (r'(boolean)(\s+\S+\s*)(0|1|"?(?:yes|no)"?)',
-                bygroups(Keyword, Text, Name.Variable)),
+             bygroups(Keyword, Text, Name.Variable)),
 
             # Ideally processing of the number would happend in the 'number'
             # but that doesn't seem to work
-            (r'(real|natural|positive|integer)([ \t]+\S+[ \t]*)([+-]?)(\d+(?:\.\d*)?(?:[eE][-+]?\d+)?%?)',
-                bygroups(Keyword, Text, Operator, Number)),
+            (r'(real|natural|positive|integer)([ \t]+\S+[ \t]*)([+-]?)(\d+(?:\.\d*)?'
+             r'(?:[eE][-+]?\d+)?%?)',
+             bygroups(Keyword, Text, Operator, Number)),
 
             (r'(comment)(\s+)',
-                bygroups(Keyword, Text), 'string_unquoted'),
+             bygroups(Keyword, Text), 'string_unquoted'),
 
             (r'\bendform\b', Keyword, '#pop'),
         ]
