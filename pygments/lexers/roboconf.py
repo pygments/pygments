@@ -19,7 +19,7 @@ class RoboconfGraphLexer(RegexLexer):
     """
     Lexer for `Roboconf <http://roboconf.net/en/roboconf.html>`_ graph files.
 
-    .. versadded:: 2.1
+    .. versionadded:: 2.1
     """
     name = 'Roboconf Graph'
     aliases = ['roboconf-graph']
@@ -54,7 +54,7 @@ class RoboconfInstancesLexer(RegexLexer):
     """
     Lexer for `Roboconf <http://roboconf.net/en/roboconf.html>`_ instances files.
 
-    .. versadded:: 2.1
+    .. versionadded:: 2.1
     """
     name = 'Roboconf Instances'
     aliases = ['roboconf-instances']
