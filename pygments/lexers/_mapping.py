@@ -363,7 +363,7 @@ LEXERS = {
     'SwiftLexer': ('pygments.lexers.objective', 'Swift', ('swift',), ('*.swift',), ('text/x-swift',)),
     'SwigLexer': ('pygments.lexers.c_like', 'SWIG', ('swig',), ('*.swg', '*.i'), ('text/swig',)),
     'SystemVerilogLexer': ('pygments.lexers.hdl', 'systemverilog', ('systemverilog', 'sv'), ('*.sv', '*.svh'), ('text/x-systemverilog',)),
-    'TAPLexer': ('pygments.lexers.tap', 'TAP', ('tap',), ('*.tap',), ()),
+    'TAPLexer': ('pygments.lexers.testing', 'TAP', ('tap',), ('*.tap',), ()),
     'Tads3Lexer': ('pygments.lexers.int_fiction', 'TADS 3', ('tads3',), ('*.t',), ()),
     'TclLexer': ('pygments.lexers.tcl', 'Tcl', ('tcl',), ('*.tcl', '*.rvt'), ('text/x-tcl', 'text/x-script.tcl', 'application/x-tcl')),
     'TcshLexer': ('pygments.lexers.shell', 'Tcsh', ('tcsh', 'csh'), ('*.tcsh', '*.csh'), ('application/x-csh',)),
