@@ -7,16 +7,17 @@
 
 """
 
-import re
-
 from pygments.lexer import RegexLexer, words, include
-from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, String, Text
+from pygments.token import Comment, Keyword, Name, Number, Punctuation, String, Text
 
 __all__ = ['ElmLexer']
+
 
 class ElmLexer(RegexLexer):
     """
     For `Elm <http://elm-lang.org/>`_ source code.
+
+    .. versionadded:: 2.1
     """
 
     name = 'Elm'
@@ -116,4 +117,3 @@ class ElmLexer(RegexLexer):
             (r'.*\n', Name.Entity),
         ],
     }
-

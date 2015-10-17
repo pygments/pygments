@@ -7,16 +7,18 @@
 
 """
 
-import re
-
 from pygments.lexer import RegexLexer, words, include
-from pygments.token import Comment, Error, Keyword, Name, Number, Operator, Punctuation, String, Text
+from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, \
+    String, Text
 
 __all__ = ['JLexer']
+
 
 class JLexer(RegexLexer):
     """
     For `J <http://jsoftware.com/>`_ source code.
+
+    .. versionadded:: 2.1
     """
 
     name = 'J'
@@ -44,7 +46,8 @@ class JLexer(RegexLexer):
 
             # Definitions
             (r'0\s+:\s*0|noun\s+define\s*$', Name.Entity, 'nounDefinition'),
-            (r'\b(([1-4]|13)\s+:\s*0)|((adverb|conjunction|dyad|monad|verb)\s+define)\b', Name.Function, 'explicitDefinition'),
+            (r'\b(([1-4]|13)\s+:\s*0)|((adverb|conjunction|dyad|monad|verb)\s+define)\b',
+             Name.Function, 'explicitDefinition'),
 
             # Flow Control
             (words(('for_', 'goto_', 'label_'), suffix=validName+'\.'), Name.Label),
@@ -128,7 +131,7 @@ class JLexer(RegexLexer):
 
         'parentheses': [
             (r'\)', Punctuation, '#pop'),
-            #include('nounDefinition'),
+            # include('nounDefinition'),
             include('explicitDefinition'),
             include('root'),
         ],
