@@ -43,8 +43,8 @@ class ComponentPascalLexer(RegexLexer):
             include('identifiers'),
         ],
         'whitespace': [
-            (r'\n+', Text), # blank lines
-            (r'\s+', Text), # whitespace
+            (r'\n+', Text),  # blank lines
+            (r'\s+', Text),  # whitespace
         ],
         'comments': [
             (r'\(\*([^\$].*?)\*\)', Comment.Multiline),
@@ -56,13 +56,13 @@ class ComponentPascalLexer(RegexLexer):
         'numliterals': [
             (r'[0-9A-F]+X\b', Number.Hex),                 # char code
             (r'[0-9A-F]+[HL]\b', Number.Hex),              # hexadecimal number
-            (r'[0-9]+\.[0-9]+E[+-][0-9]+', Number.Float), # real number
-            (r'[0-9]+\.[0-9]+', Number.Float),            # real number
-            (r'[0-9]+', Number.Integer),                  # decimal whole number
+            (r'[0-9]+\.[0-9]+E[+-][0-9]+', Number.Float),  # real number
+            (r'[0-9]+\.[0-9]+', Number.Float),             # real number
+            (r'[0-9]+', Number.Integer),                   # decimal whole number
         ],
         'strings': [
-            (r"'[^\n']*'", String), # single quoted string
-            (r'"[^\n"]*"', String), # double quoted string
+            (r"'[^\n']*'", String),  # single quoted string
+            (r'"[^\n"]*"', String),  # double quoted string
         ],
         'operators': [
             # Arithmetic Operators
@@ -97,7 +97,7 @@ class ComponentPascalLexer(RegexLexer):
                 'HALT', 'IF', 'IMPORT', 'IN', 'INC', 'INCL', 'IS', 'LEN', 'LIMITED',
                 'LONG', 'LOOP', 'MAX', 'MIN', 'MOD', 'MODULE', 'NEW', 'ODD', 'OF',
                 'OR', 'ORD', 'OUT', 'POINTER', 'PROCEDURE', 'RECORD', 'REPEAT', 'RETURN',
-                'SHORT','SHORTCHAR', 'SHORTINT', 'SIZE', 'THEN', 'TYPE', 'TO', 'UNTIL',
+                'SHORT', 'SHORTCHAR', 'SHORTINT', 'SIZE', 'THEN', 'TYPE', 'TO', 'UNTIL',
                 'VAR', 'WHILE', 'WITH'
                 ), suffix=r'\b'), Keyword.Reserved),
             (r'(TRUE|FALSE|NIL|INF)\b', Keyword.Constant),
