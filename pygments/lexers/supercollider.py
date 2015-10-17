@@ -13,9 +13,10 @@ import re
 
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Other
+    Number, Punctuation
 
 __all__ = ['SuperColliderLexer']
+
 
 class SuperColliderLexer(RegexLexer):
     """
