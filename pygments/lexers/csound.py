@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+    pygments.lexers.csound
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexers for CSound languages.
+
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
 
 import re
 
