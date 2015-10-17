@@ -181,7 +181,7 @@ class CLexer(CFamilyLexer):
     def analyse_text(text):
         if re.search('^\s*#include [<"]', text, re.MULTILINE):
             return 0.1
-        if re.search('^\s*#ifdef ', text, re.MULTILINE):
+        if re.search('^\s*#ifn?def ', text, re.MULTILINE):
             return 0.1
 
 
