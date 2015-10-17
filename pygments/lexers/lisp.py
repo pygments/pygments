@@ -269,8 +269,8 @@ class CommonLispLexer(RegexLexer):
             # decimal numbers
             (r'[-+]?\d+\.?' + terminated, Number.Integer),
             (r'[-+]?\d+/\d+' + terminated, Number),
-            (r'[-+]?(\d*\.\d+([defls][-+]?\d+)?|\d+(\.\d*)?[defls][-+]?\d+)'
-                + terminated, Number.Float),
+            (r'[-+]?(\d*\.\d+([defls][-+]?\d+)?|\d+(\.\d*)?[defls][-+]?\d+)' +
+             terminated, Number.Float),
 
             # sharpsign strings and characters
             (r"#\\." + terminated, String.Char),
@@ -1550,7 +1550,8 @@ class EmacsLispLexer(RegexLexer):
         'with-syntax-table', 'with-temp-buffer', 'with-temp-file',
         'with-temp-message', 'with-timeout', 'with-tramp-connection-property',
         'with-tramp-file-property', 'with-tramp-progress-reporter',
-        'with-wrapper-hook', 'load-time-value', 'locally', 'macrolet', 'progv', 'return-from'
+        'with-wrapper-hook', 'load-time-value', 'locally', 'macrolet', 'progv',
+        'return-from',
     ))
 
     special_forms = set((
@@ -2066,8 +2067,8 @@ class EmacsLispLexer(RegexLexer):
             # decimal numbers
             (r'[-+]?\d+\.?' + terminated, Number.Integer),
             (r'[-+]?\d+/\d+' + terminated, Number),
-            (r'[-+]?(\d*\.\d+([defls][-+]?\d+)?|\d+(\.\d*)?[defls][-+]?\d+)'
-                + terminated, Number.Float),
+            (r'[-+]?(\d*\.\d+([defls][-+]?\d+)?|\d+(\.\d*)?[defls][-+]?\d+)' +
+             terminated, Number.Float),
 
             # vectors
             (r'\[|\]', Punctuation),
@@ -2189,9 +2190,9 @@ class ShenLexer(RegexLexer):
             (r'(?s).', String),
         ],
 
-        'root' : [
-            (r'(?s)\\\*.*?\*\\', Comment.Multiline), # \* ... *\
-            (r'\\\\.*', Comment.Single), # \\ ...
+        'root': [
+            (r'(?s)\\\*.*?\*\\', Comment.Multiline),  # \* ... *\
+            (r'\\\\.*', Comment.Single),              # \\ ...
             (r'\s+', Text),
             (r'_{5,}', Punctuation),
             (r'={5,}', Punctuation),
@@ -2223,8 +2224,8 @@ class ShenLexer(RegexLexer):
             if self._relevant(token):
                 if opening_paren and token == Keyword and value in self.DECLARATIONS:
                     declaration = value
-                    for index, token, value \
-                        in self._process_declaration(declaration, tokens):
+                    for index, token, value in \
+                            self._process_declaration(declaration, tokens):
                         yield index, token, value
                 opening_paren = value == '(' and token == Punctuation
 
@@ -2243,7 +2244,7 @@ class ShenLexer(RegexLexer):
             if self._relevant(token):
                 break
             yield index, token, value
-       
+
         if declaration == 'datatype':
             prev_was_colon = False
             token = Keyword.Type if token == Literal else token
@@ -2259,7 +2260,7 @@ class ShenLexer(RegexLexer):
             yield index, token, value
         elif declaration == 'define':
             token = Name.Function if token == Literal else token
-            yield index, token , value
+            yield index, token, value
             for index, token, value in tokens:
                 if self._relevant(token):
                     break
@@ -2272,13 +2273,13 @@ class ShenLexer(RegexLexer):
                 yield index, token, value
         else:
             token = Name.Function if token == Literal else token
-            yield index, token , value
+            yield index, token, value
 
         raise StopIteration
 
     def _process_signature(self, tokens):
         for index, token, value in tokens:
-            if token == Literal and value ==  '}':
+            if token == Literal and value == '}':
                 yield index, Punctuation, value
                 raise StopIteration
             elif token in (Literal, Name.Function):
@@ -2315,7 +2316,7 @@ class CPSALexer(SchemeLexer):
     valid_name = r'[a-zA-Z0-9!$%&*+,/:<=>?@^_~|-]+'
 
     tokens = {
-        'root' : [
+        'root': [
             # the comments - always starting with semicolon
             # and going to the end of the line
             (r';.*$', Comment.Single),
@@ -2328,7 +2329,7 @@ class CPSALexer(SchemeLexer):
             (r'-?\d+', Number.Integer),
             # support for uncommon kinds of numbers -
             # have to figure out what the characters mean
-            #(r'(#e|#i|#b|#o|#d|#x)[\d.]+', Number),
+            # (r'(#e|#i|#b|#o|#d|#x)[\d.]+', Number),
 
             # strings, symbols and characters
             (r'"(\\\\|\\"|[^"])*"', String),
