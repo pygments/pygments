@@ -70,7 +70,8 @@ class AtomsLexer(RegexLexer):
             (r'[a-z][a-z0-9+.-]*:', Literal, 'uri'),
             # term code
             (r'(\[)(\w[\w-]*(?:\([^)\n]+\))?)(::)(\w[\w-]*)(\])',
-             bygroups(Punctuation, Name.Decorator, Punctuation, Name.Decorator, Punctuation)),
+             bygroups(Punctuation, Name.Decorator, Punctuation, Name.Decorator,
+                      Punctuation)),
             (r'\|', Punctuation, 'interval'),
             # list continuation
             (r'\.\.\.', Punctuation),
@@ -223,7 +224,8 @@ class CadlLexer(AtomsLexer):
              bygroups(Punctuation, String.Regex, Punctuation)),
             (r'/', Punctuation, 'path'),
             # for cardinality etc
-            (r'(\{)((?:\d+\.\.)?(?:\d+|\*))((?:\s*;\s*(?:ordered|unordered|unique)){,2})(\})',
+            (r'(\{)((?:\d+\.\.)?(?:\d+|\*))'
+             r'((?:\s*;\s*(?:ordered|unordered|unique)){,2})(\})',
              bygroups(Punctuation, Number, Number, Punctuation)),
             # [{ is start of a tuple value
             (r'\[\{', Punctuation),
@@ -267,8 +269,8 @@ class AdlLexer(AtomsLexer):
             (r'^[ \t]*--.*$', Comment),
         ],
         'odin_section': [
-            # repeating the following two rules from the root state enable multi-line strings
-            # that start in the first column to be dealt with
+            # repeating the following two rules from the root state enable multi-line
+            # strings that start in the first column to be dealt with
             (r'^(language|description|ontology|terminology|annotations|'
              r'component_terminologies|revision_history)[ \t]*\n', Generic.Heading),
             (r'^(definition)[ \t]*\n', Generic.Heading, 'cadl_section'),
