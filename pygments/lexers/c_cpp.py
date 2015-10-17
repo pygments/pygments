@@ -65,8 +65,7 @@ class CFamilyLexer(RegexLexer):
                     'restricted', 'return', 'sizeof', 'static', 'struct',
                     'switch', 'typedef', 'union', 'volatile', 'while'),
                    suffix=r'\b'), Keyword),
-            (r'(bool|int|long|float|short|double|char|unsigned|signed|void|'
-             r'[a-z_][a-z0-9_]*_t)\b',
+            (r'(bool|int|long|float|short|double|char|unsigned|signed|void)\b',
              Keyword.Type),
             (words(('inline', '_inline', '__inline', 'naked', 'restrict',
                     'thread', 'typename'), suffix=r'\b'), Keyword.Reserved),
@@ -139,22 +138,26 @@ class CFamilyLexer(RegexLexer):
         ]
     }
 
-    stdlib_types = ['size_t', 'ssize_t', 'off_t', 'wchar_t', 'ptrdiff_t',
-                    'sig_atomic_t', 'fpos_t', 'clock_t', 'time_t', 'va_list',
-                    'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t', 'mbstate_t',
-                    'wctrans_t', 'wint_t', 'wctype_t']
-    c99_types = ['_Bool', '_Complex', 'int8_t', 'int16_t', 'int32_t', 'int64_t',
-                 'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t',
-                 'int_least16_t', 'int_least32_t', 'int_least64_t',
-                 'uint_least8_t', 'uint_least16_t', 'uint_least32_t',
-                 'uint_least64_t', 'int_fast8_t', 'int_fast16_t', 'int_fast32_t',
-                 'int_fast64_t', 'uint_fast8_t', 'uint_fast16_t', 'uint_fast32_t',
-                 'uint_fast64_t', 'intptr_t', 'uintptr_t', 'intmax_t',
-                 'uintmax_t']
+    stdlib_types = set((
+        'size_t', 'ssize_t', 'off_t', 'wchar_t', 'ptrdiff_t', 'sig_atomic_t', 'fpos_t',
+        'clock_t', 'time_t', 'va_list', 'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t',
+        'mbstate_t', 'wctrans_t', 'wint_t', 'wctype_t'))
+    c99_types = set((
+        '_Bool', '_Complex', 'int8_t', 'int16_t', 'int32_t', 'int64_t', 'uint8_t',
+        'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t', 'int_least16_t',
+        'int_least32_t', 'int_least64_t', 'uint_least8_t', 'uint_least16_t',
+        'uint_least32_t', 'uint_least64_t', 'int_fast8_t', 'int_fast16_t', 'int_fast32_t',
+        'int_fast64_t', 'uint_fast8_t', 'uint_fast16_t', 'uint_fast32_t', 'uint_fast64_t',
+        'intptr_t', 'uintptr_t', 'intmax_t', 'uintmax_t'))
+    linux_types = set((
+        'clockid_t', 'cpu_set_t', 'cpumask_t', 'dev_t', 'gid_t', 'id_t', 'ino_t', 'key_t',
+        'mode_t', 'nfds_t', 'pid_t', 'rlim_t', 'sig_t', 'sighandler_t', 'siginfo_t',
+        'sigset_t', 'sigval_t', 'socklen_t', 'timer_t', 'uid_t'))
 
     def __init__(self, **options):
         self.stdlibhighlighting = get_bool_opt(options, 'stdlibhighlighting', True)
         self.c99highlighting = get_bool_opt(options, 'c99highlighting', True)
+        self.platformhighlighting = get_bool_opt(options, 'platformhighlighting', True)
         RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
@@ -164,6 +167,8 @@ class CFamilyLexer(RegexLexer):
                 if self.stdlibhighlighting and value in self.stdlib_types:
                     token = Keyword.Type
                 elif self.c99highlighting and value in self.c99_types:
+                    token = Keyword.Type
+                elif self.platformhighlighting and value in self.linux_types:
                     token = Keyword.Type
             yield index, token, value
 
