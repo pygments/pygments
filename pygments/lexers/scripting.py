@@ -878,25 +878,29 @@ class HybrisLexer(RegexLexer):
              bygroups(Keyword.Namespace, Text), 'import'),
             (words((
                 'gc_collect', 'gc_mm_items', 'gc_mm_usage', 'gc_collect_threshold',
-                'urlencode', 'urldecode', 'base64encode', 'base64decode', 'sha1', 'crc32', 'sha2',
-                'md5', 'md5_file', 'acos', 'asin', 'atan', 'atan2', 'ceil', 'cos', 'cosh', 'exp',
-                'fabs', 'floor', 'fmod', 'log', 'log10', 'pow', 'sin', 'sinh', 'sqrt', 'tan', 'tanh',
-                'isint', 'isfloat', 'ischar', 'isstring', 'isarray', 'ismap', 'isalias', 'typeof',
-                'sizeof', 'toint', 'tostring', 'fromxml', 'toxml', 'binary', 'pack', 'load', 'eval',
-                'var_names', 'var_values', 'user_functions', 'dyn_functions', 'methods', 'call',
-                'call_method', 'mknod', 'mkfifo', 'mount', 'umount2', 'umount', 'ticks', 'usleep',
-                'sleep', 'time', 'strtime', 'strdate', 'dllopen', 'dlllink', 'dllcall', 'dllcall_argv',
-                'dllclose', 'env', 'exec', 'fork', 'getpid', 'wait', 'popen', 'pclose', 'exit', 'kill',
-                'pthread_create', 'pthread_create_argv', 'pthread_exit', 'pthread_join', 'pthread_kill',
-                'smtp_send', 'http_get', 'http_post', 'http_download', 'socket', 'bind', 'listen',
-                'accept', 'getsockname', 'getpeername', 'settimeout', 'connect', 'server', 'recv',
-                'send', 'close', 'print', 'println', 'printf', 'input', 'readline', 'serial_open',
-                'serial_fcntl', 'serial_get_attr', 'serial_get_ispeed', 'serial_get_ospeed',
-                'serial_set_attr', 'serial_set_ispeed', 'serial_set_ospeed', 'serial_write',
-                'serial_read', 'serial_close', 'xml_load', 'xml_parse', 'fopen', 'fseek', 'ftell',
-                'fsize', 'fread', 'fwrite', 'fgets', 'fclose', 'file', 'readdir', 'pcre_replace', 'size',
-                'pop', 'unmap', 'has', 'keys', 'values', 'length', 'find', 'substr', 'replace', 'split',
-                'trim', 'remove', 'contains', 'join'), suffix=r'\b'),
+                'urlencode', 'urldecode', 'base64encode', 'base64decode', 'sha1', 'crc32',
+                'sha2', 'md5', 'md5_file', 'acos', 'asin', 'atan', 'atan2', 'ceil', 'cos',
+                'cosh', 'exp', 'fabs', 'floor', 'fmod', 'log', 'log10', 'pow', 'sin',
+                'sinh', 'sqrt', 'tan', 'tanh', 'isint', 'isfloat', 'ischar', 'isstring',
+                'isarray', 'ismap', 'isalias', 'typeof', 'sizeof', 'toint', 'tostring',
+                'fromxml', 'toxml', 'binary', 'pack', 'load', 'eval', 'var_names',
+                'var_values', 'user_functions', 'dyn_functions', 'methods', 'call',
+                'call_method', 'mknod', 'mkfifo', 'mount', 'umount2', 'umount', 'ticks',
+                'usleep', 'sleep', 'time', 'strtime', 'strdate', 'dllopen', 'dlllink',
+                'dllcall', 'dllcall_argv', 'dllclose', 'env', 'exec', 'fork', 'getpid',
+                'wait', 'popen', 'pclose', 'exit', 'kill', 'pthread_create',
+                'pthread_create_argv', 'pthread_exit', 'pthread_join', 'pthread_kill',
+                'smtp_send', 'http_get', 'http_post', 'http_download', 'socket', 'bind',
+                'listen', 'accept', 'getsockname', 'getpeername', 'settimeout', 'connect',
+                'server', 'recv', 'send', 'close', 'print', 'println', 'printf', 'input',
+                'readline', 'serial_open', 'serial_fcntl', 'serial_get_attr',
+                'serial_get_ispeed', 'serial_get_ospeed', 'serial_set_attr',
+                'serial_set_ispeed', 'serial_set_ospeed', 'serial_write', 'serial_read',
+                'serial_close', 'xml_load', 'xml_parse', 'fopen', 'fseek', 'ftell',
+                'fsize', 'fread', 'fwrite', 'fgets', 'fclose', 'file', 'readdir',
+                'pcre_replace', 'size', 'pop', 'unmap', 'has', 'keys', 'values',
+                'length', 'find', 'substr', 'replace', 'split', 'trim', 'remove',
+                'contains', 'join'), suffix=r'\b'),
              Name.Builtin),
             (words((
                 'MethodReference', 'Runner', 'Dll', 'Thread', 'Pipe', 'Process',
@@ -996,7 +1000,8 @@ class EasytrieveLexer(RegexLexer):
             (r'\*.*\n', Comment.Single),
             (r'\n+', Whitespace),
             # Macro argument
-            (r'&' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+\.', Name.Variable, 'after_macro_argument'),
+            (r'&' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+\.', Name.Variable,
+             'after_macro_argument'),
             # Macro call
             (r'%' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Variable),
             (r'(FILE|MACRO|REPORT)(\s+)',
@@ -1008,12 +1013,14 @@ class EasytrieveLexer(RegexLexer):
             (_OPERATORS_PATTERN, Operator),
             # Procedure declaration
             (r'(' + _NON_DELIMITER_OR_COMMENT_PATTERN + r'+)(\s*)(\.?)(\s*)(PROC)(\s*\n)',
-             bygroups(Name.Function, Whitespace, Operator, Whitespace, Keyword.Declaration, Whitespace)),
+             bygroups(Name.Function, Whitespace, Operator, Whitespace,
+                      Keyword.Declaration, Whitespace)),
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r"'(''|[^'])*'", String),
             (r'\s+', Whitespace),
-            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
+            # Everything else just belongs to a name
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)
          ],
         'after_declaration': [
             (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Function),
@@ -1024,7 +1031,8 @@ class EasytrieveLexer(RegexLexer):
             (r'\s+', Whitespace, '#pop'),
             (_OPERATORS_PATTERN, Operator, '#pop'),
             (r"'(''|[^'])*'", String, '#pop'),
-            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)  # Everything else just belongs to a name
+            # Everything else just belongs to a name
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)
         ],
     }
     _COMMENT_LINE_REGEX = re.compile(r'^\s*\*')
@@ -1155,7 +1163,7 @@ class JclLexer(RegexLexer):
              r'setup|signoff|xeq|xmit)\b', Keyword, 'option'),
         ],
         'option': [
-            #(r'\n', Text, 'root'),
+            # (r'\n', Text, 'root'),
             (r'\*', Name.Builtin),
             (r'[\[\](){}<>;,]', Punctuation),
             (r'[-+*/=&%]', Operator),
@@ -1174,12 +1182,13 @@ class JclLexer(RegexLexer):
             (r"'", String, '#pop'),
         ],
         'option_comment': [
-            #(r'\n', Text, 'root'),
+            # (r'\n', Text, 'root'),
             (r'.+', Comment.Single),
         ]
     }
 
-    _JOB_HEADER_PATTERN = re.compile(r'^//[a-z#$@][a-z0-9#$@]{0,7}\s+job(\s+.*)?$', re.IGNORECASE)
+    _JOB_HEADER_PATTERN = re.compile(r'^//[a-z#$@][a-z0-9#$@]{0,7}\s+job(\s+.*)?$',
+                                     re.IGNORECASE)
 
     def analyse_text(text):
         """
@@ -1192,5 +1201,3 @@ class JclLexer(RegexLexer):
                 result = 1.0
         assert 0.0 <= result <= 1.0
         return result
-
-

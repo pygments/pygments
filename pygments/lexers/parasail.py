@@ -11,11 +11,9 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-     this, combined, inherit, do_insertions, default
-from pygments.util import get_bool_opt, get_list_opt
+from pygments.lexer import RegexLexer, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-     Number, Punctuation, Literal
+    Number, Punctuation, Literal
 
 __all__ = ['ParaSailLexer']
 
@@ -56,7 +54,7 @@ class ParaSailLexer(RegexLexer):
             # Literals
             (r'"[^"]*"', String),
             (r'\\[\'ntrf"0]', String.Escape),
-            (r'#[a-zA-Z]\w*', Literal),       #Enumeration
+            (r'#[a-zA-Z]\w*', Literal),       # Enumeration
             include('numbers'),
             (r"'[^']'", String.Char),
             (r'[a-zA-Z]\w*', Name),
@@ -69,13 +67,13 @@ class ParaSailLexer(RegexLexer):
              Punctuation),
             (r'\n+', Text),
         ],
-        'numbers' : [
-            (r'\d[0-9_]*#[0-9a-fA-F][0-9a-fA-F_]*#', Number.Hex), # any base
-            (r'0[xX][0-9a-fA-F][0-9a-fA-F_]*', Number.Hex),       # C-like hex
-            (r'0[bB][01][01_]*', Number.Bin),                     # C-like bin
-            (r'\d[0-9_]*\.\d[0-9_]*[eE][+-]\d[0-9_]*',            # float exp
-            Number.Float),
-            (r'\d[0-9_]*\.\d[0-9_]*', Number.Float),              # float
-            (r'\d[0-9_]*', Number.Integer),                       # integer
+        'numbers': [
+            (r'\d[0-9_]*#[0-9a-fA-F][0-9a-fA-F_]*#', Number.Hex),  # any base
+            (r'0[xX][0-9a-fA-F][0-9a-fA-F_]*', Number.Hex),        # C-like hex
+            (r'0[bB][01][01_]*', Number.Bin),                      # C-like bin
+            (r'\d[0-9_]*\.\d[0-9_]*[eE][+-]\d[0-9_]*',             # float exp
+             Number.Float),
+            (r'\d[0-9_]*\.\d[0-9_]*', Number.Float),               # float
+            (r'\d[0-9_]*', Number.Integer),                        # integer
         ],
     }

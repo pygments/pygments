@@ -106,7 +106,7 @@ class JavascriptLexer(RegexLexer):
             (r'}', String.Interpol, '#pop'),
             include('root'),
         ],
-            #(\\\\|\\`|[^`])*`', String.Backtick),
+        # (\\\\|\\`|[^`])*`', String.Backtick),
     }
 
 
@@ -1222,6 +1222,7 @@ class MaskLexer(RegexLexer):
         ],
     }
 
+
 class EarlGreyLexer(RegexLexer):
     """
     For `Earl-Grey`_ source code.
@@ -1253,7 +1254,7 @@ class EarlGreyLexer(RegexLexer):
              Operator.Word),
             (r'[\*@]?->', Name.Function),
             (r'[+\-*/~^<>%&|?!@#.]*=', Operator.Word),
-            (r'\.{2,3}', Operator.Word), # Range Operator
+            (r'\.{2,3}', Operator.Word),  # Range Operator
             (r'([+*/~^<>&|?!]+)|([#\-](?=\s))|@@+(?=\s)|=+', Operator),
             (r'(?<![\w\$\-])(var|let)(?:[^\w\$])', Keyword.Declaration),
             include('keywords'),
@@ -1266,8 +1267,8 @@ class EarlGreyLexer(RegexLexer):
              bygroups(Punctuation, Name.Tag, Punctuation, Name.Class.Start), 'dbs'),
             (r'[rR]?`', String.Backtick, 'bt'),
             (r'[rR]?```', String.Backtick, 'tbt'),
-            (r'(?<=[\s\[\{\(,;])\.([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?=[\s\]\}\),;])',
-             String.Symbol),
+            (r'(?<=[\s\[\{\(,;])\.([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)'
+             r'(?=[\s\]\}\),;])', String.Symbol),
             include('nested'),
             (r'(?:[rR]|[rR]\.[gmi]{1,3})?"', String, combined('stringescape', 'dqs')),
             (r'(?:[rR]|[rR]\.[gmi]{1,3})?\'', String, combined('stringescape', 'sqs')),
@@ -1290,12 +1291,13 @@ class EarlGreyLexer(RegexLexer):
              bygroups(Text.Whitespace, Text)),
         ],
         'assignment': [
-            (r'(\.)?([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?=\s+[+\-*/~^<>%&|?!@#.]*\=\s)',
+            (r'(\.)?([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)'
+             r'(?=\s+[+\-*/~^<>%&|?!@#.]*\=\s)',
              bygroups(Punctuation, Name.Variable))
         ],
         'errors': [
             (words(('Error', 'TypeError', 'ReferenceError'),
-                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-\.])'),
+                   prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-\.])'),
              Name.Exception),
             (r'''(?x)
                 (?<![\w\$])
@@ -1311,7 +1313,8 @@ class EarlGreyLexer(RegexLexer):
                 (?!and|as|each\*|each|in|is|mod|of|or|when|where|with)
                 (?=(?:[+\-*/~^<>%&|?!@#.])?[a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)''',
              Keyword.Control),
-            (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?!\n)\s+(?=[\'"\d\{\[\(])', Keyword.Control),
+            (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(?!\n)\s+(?=[\'"\d\{\[\(])',
+             Keyword.Control),
             (r'''(?x)
                 (?:
                     (?<=[%=])|
@@ -1352,7 +1355,7 @@ class EarlGreyLexer(RegexLexer):
                 prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-\.])'),
              Keyword.Pseudo),
             (words(('this', 'self', '@'),
-                prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-])'),
+                   prefix=r'(?<![\w\$\-\.])', suffix=r'(?![\w\$\-])'),
              Keyword.Constant),
             (words((
                 'Function', 'Object', 'Array', 'String', 'Number',
@@ -1377,7 +1380,8 @@ class EarlGreyLexer(RegexLexer):
         ],
         'name': [
             (r'@([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)', Name.Variable.Instance),
-            (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(\+\+|\-\-)?', bygroups(Name.Symbol, Operator.Word))
+            (r'([a-zA-Z$_](?:[a-zA-Z$0-9_-]*[a-zA-Z$0-9_])?)(\+\+|\-\-)?',
+             bygroups(Name.Symbol, Operator.Word))
         ],
         'tuple': [
             (r'#[a-zA-Z_][a-zA-Z_\-0-9]*(?=[\s\{\(,;\n])', Name.Namespace)
@@ -1393,7 +1397,7 @@ class EarlGreyLexer(RegexLexer):
         'strings': [
             (r'[^\\\'"]', String),
             (r'[\'"\\]', String),
-            (r'\n', String) # All strings are multiline in EG
+            (r'\n', String)  # All strings are multiline in EG
         ],
         'dqs': [
             (r'"', String, '#pop'),

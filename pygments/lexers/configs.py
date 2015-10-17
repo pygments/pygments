@@ -541,7 +541,7 @@ class DockerLexer(RegexLexer):
              bygroups(Name.Keyword, Whitespace, Keyword)),
             (r'^(%s)\b(.*)' % (_keywords,), bygroups(Keyword, String)),
             (r'#.*', Comment),
-            (r'RUN', Keyword), # Rest of line falls through
+            (r'RUN', Keyword),  # Rest of line falls through
             (r'(.*\\\n)*.+', using(BashLexer)),
         ],
     }
@@ -549,7 +549,7 @@ class DockerLexer(RegexLexer):
 
 class TerraformLexer(RegexLexer):
     """
-    Lexer for `terraformi .tf files <https://www.terraform.io/>`_
+    Lexer for `terraformi .tf files <https://www.terraform.io/>`_.
 
     .. versionadded:: 2.1
     """
@@ -560,29 +560,29 @@ class TerraformLexer(RegexLexer):
     mimetypes = ['application/x-tf', 'application/x-terraform']
 
     tokens = {
-       'root': [
-            include('string'),
-            include('punctuation'),
-            include('curly'),
-            include('basic'),
-            include('whitespace'),
-            (r'[0-9]+', Number),
-       ],
-       'basic': [
-            (words(('true', 'false'), prefix=r'\b', suffix=r'\b'), Keyword.Type),
-            (r'\s*/\*', Comment.Multiline, 'comment'),
-            (r'\s*#.*\n', Comment.Single),
-            (r'(.*?)(\s*)(=)', bygroups(Name.Attribute, Text, Operator)),
-            (words(('variable', 'resource', 'provider', 'provisioner', 'module'),
-                   prefix=r'\b', suffix=r'\b'), Keyword.Reserved, 'function'),
-            (words(('ingress', 'egress', 'listener', 'default', 'connection'),
-                   prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
-            ('\$\{', String.Interpol, 'var_builtin'),
-       ],
-       'function': [
-            (r'(\s+)(".*")(\s+)', bygroups(Text, String, Text)),
-            include('punctuation'),
-            include('curly'),
+        'root': [
+             include('string'),
+             include('punctuation'),
+             include('curly'),
+             include('basic'),
+             include('whitespace'),
+             (r'[0-9]+', Number),
+        ],
+        'basic': [
+             (words(('true', 'false'), prefix=r'\b', suffix=r'\b'), Keyword.Type),
+             (r'\s*/\*', Comment.Multiline, 'comment'),
+             (r'\s*#.*\n', Comment.Single),
+             (r'(.*?)(\s*)(=)', bygroups(Name.Attribute, Text, Operator)),
+             (words(('variable', 'resource', 'provider', 'provisioner', 'module'),
+                    prefix=r'\b', suffix=r'\b'), Keyword.Reserved, 'function'),
+             (words(('ingress', 'egress', 'listener', 'default', 'connection'),
+                    prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
+             ('\$\{', String.Interpol, 'var_builtin'),
+        ],
+        'function': [
+             (r'(\s+)(".*")(\s+)', bygroups(Text, String, Text)),
+             include('punctuation'),
+             include('curly'),
         ],
         'var_builtin': [
             (r'\$\{', String.Interpol, '#push'),
@@ -593,15 +593,15 @@ class TerraformLexer(RegexLexer):
             (r'\s+', Text),
             (r'\}', String.Interpol, '#pop'),
         ],
-        'string':[
+        'string': [
             (r'(".*")', bygroups(String.Double)),
         ],
-        'punctuation':[
+        'punctuation': [
             (r'[\[\]\(\),.]', Punctuation),
         ],
         # Keep this seperate from punctuation - we sometimes want to use different
         # Tokens for { }
-        'curly':[
+        'curly': [
             (r'\{', Text.Punctuation),
             (r'\}', Text.Punctuation),
         ],

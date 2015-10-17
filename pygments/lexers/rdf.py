@@ -59,11 +59,13 @@ class SparqlLexer(RegexLexer):
 
     IRIREF = r'<(?:[^<>"{}|^`\\\x00-\x20])*>'
 
-    BLANK_NODE_LABEL = '_:(?:' + PN_CHARS_U + '|[0-9])(?:(?:' + PN_CHARS + '|\.)*' + PN_CHARS + ')?'
+    BLANK_NODE_LABEL = '_:(?:' + PN_CHARS_U + '|[0-9])(?:(?:' + PN_CHARS + '|\.)*' + \
+                       PN_CHARS + ')?'
 
     PN_PREFIX = PN_CHARS_BASE + '(?:(?:' + PN_CHARS + '|\.)*' + PN_CHARS + ')?'
 
-    VARNAME = '(?:' + PN_CHARS_U + '|[0-9])(?:' + PN_CHARS_U + u'|[0-9\u00b7\u0300-\u036f\u203f-\u2040])*'
+    VARNAME = '(?:' + PN_CHARS_U + '|[0-9])(?:' + PN_CHARS_U + \
+              u'|[0-9\u00b7\u0300-\u036f\u203f-\u2040])*'
 
     PERCENT = '%' + HEX + HEX
 
@@ -72,7 +74,8 @@ class SparqlLexer(RegexLexer):
     PLX = '(?:' + PERCENT + ')|(?:' + PN_LOCAL_ESC + ')'
 
     PN_LOCAL = ('(?:(?:' + PN_CHARS_U + '|[:0-9])|' + PLX + ')' +
-                '(?:(?:(?:' + PN_CHARS + '|[.:])|' + PLX + ')*(?:(?:' + PN_CHARS + '|:)|' + PLX + '))?')
+                '(?:(?:(?:' + PN_CHARS + '|[.:])|' + PLX + ')*(?:(?:' +
+                PN_CHARS + '|:)|' + PLX + '))?')
 
     EXPONENT = r'[eE][+-]?\d+'
 
@@ -247,7 +250,8 @@ class TurtleLexer(RegexLexer):
              bygroups(Operator, Generic.Emph), '#pop:2'),
 
             (r'(\^\^)%(IRIREF)s' % patterns, bygroups(Operator, Generic.Emph), '#pop:2'),
-            (r'(\^\^)%(PrefixedName)s' % patterns, bygroups(Operator, Generic.Emph, Generic.Emph), '#pop:2'),
+            (r'(\^\^)%(PrefixedName)s' % patterns,
+             bygroups(Operator, Generic.Emph, Generic.Emph), '#pop:2'),
 
             default('#pop:2'),
 
