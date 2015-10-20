@@ -196,7 +196,7 @@ class ImageFormatter(Formatter):
         bold and italic fonts will be generated.  This really should be a
         monospace font to look sane.
 
-        Default: "Bitstream Vera Sans Mono" on Windows, Courier New on *nix
+        Default: "Bitstream Vera Sans Mono" on Windows, Courier New on \*nix
 
     `font_size`
         The font size in points to be used.
