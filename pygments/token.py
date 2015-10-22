@@ -139,6 +139,7 @@ STANDARD_TYPES = {
     Name.Entity:                   'ni',
     Name.Exception:                'ne',
     Name.Function:                 'nf',
+    Name.Function.Magic:           'fm',
     Name.Property:                 'py',
     Name.Label:                    'nl',
     Name.Namespace:                'nn',
@@ -148,6 +149,7 @@ STANDARD_TYPES = {
     Name.Variable.Class:           'vc',
     Name.Variable.Global:          'vg',
     Name.Variable.Instance:        'vi',
+    Name.Variable.Magic:           'vm',
 
     Literal:                       'l',
     Literal.Date:                  'ld',
