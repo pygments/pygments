@@ -9,17 +9,17 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
+import copy, re
 
 from pygments.lexer import RegexLexer, bygroups, default, include, using, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, \
     String, Text
 from pygments.lexers._csound_builtins import OPCODES
+from pygments.lexers.html import HtmlLexer, XmlLexer
 from pygments.lexers.python import PythonLexer
 from pygments.lexers.scripting import LuaLexer
 
-# The CsoundDocumentLexer casuses a Pygments test to fail.
-__all__ = ['CsoundScoreLexer', 'CsoundOrchestraLexer']  # , 'CsoundDocumentLexer']
+__all__ = ['CsoundScoreLexer', 'CsoundOrchestraLexer', 'CsoundDocumentLexer']
 
 newline = (r'((?:;|//).*)*(\n)', bygroups(Comment.Single, Text))
 
@@ -309,49 +309,44 @@ class CsoundOrchestraLexer(CsoundLexer):
     }
 
 
-# Below is a lexer for Csound documents, but it causes a Pygments test to fail.
+class CsoundDocumentLexer(XmlLexer):
+    """
+    For `Csound <http://csound.github.io>`_ documents.
 
-# import copy
-# from pygments.lexers.html import HtmlLexer, XmlLexer
-#
-# class CsoundDocumentLexer(XmlLexer):
-#     """
-#     For `Csound <http://csound.github.io>`_ documents.
-#     """
-#
-#     name = 'Csound Document'
-#     aliases = ['csound']
-#     filenames = ['*.csd']
-#
-#     tokens = copy.deepcopy(XmlLexer.tokens)
-#     for i, item in enumerate(tokens['root']):
-#         if len(item) > 2 and item[2] == 'tag':
-#             (tokens['root']).insert(i, (r'(<)(\s*)(CsInstruments)(\s*)',
-#                                         bygroups(Name.Tag, Text, Name.Tag, Text),
-#                                         ('orchestra content', 'tag')))
-#             (tokens['root']).insert(i, (r'(<)(\s*)(CsScore)(\s*)',
-#                                         bygroups(Name.Tag, Text, Name.Tag, Text),
-#                                         ('score content', 'tag')))
-#             (tokens['root']).insert(i, (r'(<)(\s*)(html)(\s*)',
-#                                         bygroups(Name.Tag, Text, Name.Tag, Text),
-#                                         ('HTML', 'tag')))
-#             break
-#
-#     tokens['orchestra content'] = [
-#         (r'(<)(\s*)(/)(\s*)(CsInstruments)(\s*)(>)',
-#          bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag),
-#          '#pop'),
-#         (r'.+?(?=<\s*/\s*CsInstruments\s*>)', using(CsoundOrchestraLexer))
-#     ]
-#     tokens['score content'] = [
-#         (r'(<)(\s*)(/)(\s*)(CsScore)(\s*)(>)',
-#          bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag),
-#          '#pop'),
-#         (r'.+?(?=<\s*/\s*CsScore\s*>)', using(CsoundScoreLexer))
-#     ]
-#     tokens['HTML'] = [
-#         (r'(<)(\s*)(/)(\s*)(html)(\s*)(>)',
-#          bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag),
-#          '#pop'),
-#         (r'.+?(?=<\s*/\s*html\s*>)', using(HtmlLexer))
-#     ]
+    
+    """
+
+    name = 'Csound Document'
+    aliases = []
+    filenames = ['*.csd']
+    mimetypes = []
+
+    tokens = copy.deepcopy(XmlLexer.tokens)
+    for i, item in enumerate(tokens['root']):
+        if len(item) > 2 and item[2] == 'tag':
+            (tokens['root']).insert(i, (r'(<)(\s*)(CsInstruments)(\s*)',
+                                    bygroups(Name.Tag, Text, Name.Tag, Text),
+                                    ('orchestra content', 'tag')))
+            (tokens['root']).insert(i, (r'(<)(\s*)(CsScore)(\s*)',
+                                    bygroups(Name.Tag, Text, Name.Tag, Text),
+                                    ('score content', 'tag')))
+            (tokens['root']).insert(i, (r'(<)(\s*)(html)(\s*)',
+                                    bygroups(Name.Tag, Text, Name.Tag, Text),
+                                    ('HTML', 'tag')))
+            break
+
+    tokens['orchestra content'] = [
+        (r'(<)(\s*)(/)(\s*)(CsInstruments)(\s*)(>)',
+         bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag), '#pop'),
+        (r'.+?(?=<\s*/\s*CsInstruments\s*>)', using(CsoundOrchestraLexer))
+    ]
+    tokens['score content'] = [
+        (r'(<)(\s*)(/)(\s*)(CsScore)(\s*)(>)',
+         bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag), '#pop'),
+        (r'.+?(?=<\s*/\s*CsScore\s*>)', using(CsoundScoreLexer))
+    ]
+    tokens['HTML'] = [
+        (r'(<)(\s*)(/)(\s*)(html)(\s*)(>)',
+         bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag), '#pop'),
+        (r'.+?(?=<\s*/\s*html\s*>)', using(HtmlLexer))
+    ]
