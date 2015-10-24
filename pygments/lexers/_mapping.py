@@ -90,6 +90,7 @@ LEXERS = {
     'CrmshLexer': ('pygments.lexers.dsls', 'Crmsh', ('crmsh', 'pcmk'), ('*.crmsh', '*.pcmk'), ()),
     'CrocLexer': ('pygments.lexers.d', 'Croc', ('croc',), ('*.croc',), ('text/x-crocsrc',)),
     'CryptolLexer': ('pygments.lexers.haskell', 'Cryptol', ('cryptol', 'cry'), ('*.cry',), ('text/x-cryptol',)),
+    'CsoundDocumentLexer': ('pygments.lexers.csound', 'Csound Document', (), ('*.csd',), ()),
     'CsoundOrchestraLexer': ('pygments.lexers.csound', 'Csound Orchestra', (), ('*.orc',), ()),
     'CsoundScoreLexer': ('pygments.lexers.csound', 'Csound Score', (), ('*.sco',), ()),
     'CssDjangoLexer': ('pygments.lexers.templates', 'CSS+Django/Jinja', ('css+django', 'css+jinja'), (), ('text/css+django', 'text/css+jinja')),
