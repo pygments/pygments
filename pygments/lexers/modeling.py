@@ -284,8 +284,8 @@ class StanLexer(RegexLexer):
     """Pygments Lexer for Stan models.
 
     The Stan modeling language is specified in the *Stan Modeling Language
-    User's Guide and Reference Manual, v2.7.0*,
-    `pdf <https://github.com/stan-dev/stan/releases/download/v2.7.0/stan-reference-2.7.0.pdf>`__.
+    User's Guide and Reference Manual, v2.8.0*,
+    `pdf <https://github.com/stan-dev/stan/releases/download/v2.8.8/stan-reference-2.8.0.pdf>`__.
 
     .. versionadded:: 1.6
     """
@@ -332,6 +332,8 @@ class StanLexer(RegexLexer):
             # Special names ending in __, like lp__
             (r'[A-Za-z]\w*__\b', Name.Builtin.Pseudo),
             (r'(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
+            # user-defined functions
+            (r'[A-Za-z]\w*(?=\s*\()]', Name.Function),
             # Regular variable names
             (r'[A-Za-z]\w*\b', Name),
             # Real Literals

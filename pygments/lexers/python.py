@@ -35,6 +35,19 @@ class PythonLexer(RegexLexer):
     filenames = ['*.py', '*.pyw', '*.sc', 'SConstruct', 'SConscript', '*.tac', '*.sage']
     mimetypes = ['text/x-python', 'application/x-python']
 
+    def innerstring_rules(ttype):
+        return [
+            # the old style '%s' % (...) string formatting
+            (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
+             '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
+            # backslashes, quotes and formatting signs must be parsed one at a time
+            (r'[^\\\'"%\n]+', ttype),
+            (r'[\'"\\]', ttype),
+            # unhandled string formatting sign
+            (r'%', ttype),
+            # newlines are an error (use "nl" state)
+        ]
+
     tokens = {
         'root': [
             (r'\n', Text),
@@ -57,14 +70,14 @@ class PythonLexer(RegexLexer):
              'import'),
             include('builtins'),
             include('backtick'),
-            ('(?:[rR]|[uU][rR]|[rR][uU])"""', String, 'tdqs'),
-            ("(?:[rR]|[uU][rR]|[rR][uU])'''", String, 'tsqs'),
-            ('(?:[rR]|[uU][rR]|[rR][uU])"', String, 'dqs'),
-            ("(?:[rR]|[uU][rR]|[rR][uU])'", String, 'sqs'),
-            ('[uU]?"""', String, combined('stringescape', 'tdqs')),
-            ("[uU]?'''", String, combined('stringescape', 'tsqs')),
-            ('[uU]?"', String, combined('stringescape', 'dqs')),
-            ("[uU]?'", String, combined('stringescape', 'sqs')),
+            ('(?:[rR]|[uU][rR]|[rR][uU])"""', String.Double, 'tdqs'),
+            ("(?:[rR]|[uU][rR]|[rR][uU])'''", String.Single, 'tsqs'),
+            ('(?:[rR]|[uU][rR]|[rR][uU])"', String.Double, 'dqs'),
+            ("(?:[rR]|[uU][rR]|[rR][uU])'", String.Single, 'sqs'),
+            ('[uU]?"""', String.Double, combined('stringescape', 'tdqs')),
+            ("[uU]?'''", String.Single, combined('stringescape', 'tsqs')),
+            ('[uU]?"', String.Double, combined('stringescape', 'dqs')),
+            ("[uU]?'", String.Single, combined('stringescape', 'sqs')),
             include('name'),
             include('numbers'),
         ],
@@ -155,39 +168,27 @@ class PythonLexer(RegexLexer):
             (r'\\([\\abfnrtv"\']|\n|N\{.*?\}|u[a-fA-F0-9]{4}|'
              r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
-        'strings': [
-            # the old style '%s' % (...) string formatting
-            (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
-             '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
-            # backslashes, quotes and formatting signs must be parsed one at a time
-            (r'[^\\\'"%\n]+', String),
-            (r'[\'"\\]', String),
-            # unhandled string formatting sign
-            (r'%', String)
-            # newlines are an error (use "nl" state)
-        ],
-        'nl': [
-            (r'\n', String)
-        ],
+        'strings-single': innerstring_rules(String.Single),
+        'strings-double': innerstring_rules(String.Double),
         'dqs': [
-            (r'"', String, '#pop'),
+            (r'"', String.Double, '#pop'),
             (r'\\\\|\\"|\\\n', String.Escape),  # included here for raw strings
-            include('strings')
+            include('strings-double')
         ],
         'sqs': [
-            (r"'", String, '#pop'),
+            (r"'", String.Single, '#pop'),
             (r"\\\\|\\'|\\\n", String.Escape),  # included here for raw strings
-            include('strings')
+            include('strings-single')
         ],
         'tdqs': [
-            (r'"""', String, '#pop'),
-            include('strings'),
-            include('nl')
+            (r'"""', String.Double, '#pop'),
+            include('strings-double'),
+            (r'\n', String.Double)
         ],
         'tsqs': [
-            (r"'''", String, '#pop'),
-            include('strings'),
-            include('nl')
+            (r"'''", String.Single, '#pop'),
+            include('strings-single'),
+            (r'\n', String.Single)
         ],
     }
 
@@ -549,7 +550,7 @@ class CythonLexer(RegexLexer):
                 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'property',
                 'range', 'raw_input', 'reduce', 'reload', 'repr', 'reversed',
                 'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod',
-                'str', 'sum', 'super', 'tuple', 'type', 'unichr', 'unicode',
+                'str', 'sum', 'super', 'tuple', 'type', 'unichr', 'unicode', 'unsigned',
                 'vars', 'xrange', 'zip'), prefix=r'(?<!\.)', suffix=r'\b'),
              Name.Builtin),
             (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True|NULL'
@@ -557,13 +558,14 @@ class CythonLexer(RegexLexer):
             (words((
                 'ArithmeticError', 'AssertionError', 'AttributeError',
                 'BaseException', 'DeprecationWarning', 'EOFError', 'EnvironmentError',
-                'Exception', 'FloatingPointError', 'FutureWarning', 'GeneratorExit', 'IOError',
-                'ImportError', 'ImportWarning', 'IndentationError', 'IndexError', 'KeyError',
-                'KeyboardInterrupt', 'LookupError', 'MemoryError', 'NameError',
-                'NotImplemented', 'NotImplementedError', 'OSError', 'OverflowError',
-                'OverflowWarning', 'PendingDeprecationWarning', 'ReferenceError',
-                'RuntimeError', 'RuntimeWarning', 'StandardError', 'StopIteration',
-                'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError',
+                'Exception', 'FloatingPointError', 'FutureWarning', 'GeneratorExit',
+                'IOError', 'ImportError', 'ImportWarning', 'IndentationError',
+                'IndexError', 'KeyError', 'KeyboardInterrupt', 'LookupError',
+                'MemoryError', 'NameError', 'NotImplemented', 'NotImplementedError',
+                'OSError', 'OverflowError', 'OverflowWarning',
+                'PendingDeprecationWarning', 'ReferenceError', 'RuntimeError',
+                'RuntimeWarning', 'StandardError', 'StopIteration', 'SyntaxError',
+                'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError',
                 'TypeError', 'UnboundLocalError', 'UnicodeDecodeError',
                 'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError',
                 'UnicodeWarning', 'UserWarning', 'ValueError', 'Warning',

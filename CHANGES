@@ -18,17 +18,53 @@ Version 2.1
   * Modula-2 with multi-dialect support (#1090)
   * Fortran fixed format (PR#213)
   * Archetype Definition language (PR#483)
+  * Terraform (PR#432)
+  * Jcl, Easytrieve (PR#208)
+  * ParaSail (PR#381)
+  * Boogie (PR#420)
+  * Turtle (PR#425)
+  * Fish Shell (PR#422)
+  * Roboconf (PR#449)
+  * Test Anything Protocol (PR#428)
+  * Shen (PR#385)
+  * Component Pascal (PR#437)
+  * SuperCollider (PR#472)
+  * Shell consoles (Tcsh, PowerShell, MSDOS) (PR#479)
+  * Elm and J (PR#452)
+  * Crmsh (PR#440)
+  * Praat (PR#492)
+  * CSound (PR#494)
 
 - Added styles:
 
   * Lovelace (PR#456)
   * Algol and Algol-nu (#1090)
 
+- Added formatters:
+
+  * IRC (PR#458)
+  * True color (24-bit) terminal ANSI sequences (#1142)
+    (formatter alias: "16m")
+
+- Improved performance of the HTML formatter for long lines (PR#504).
+
 - Updated autopygmentize script (PR#445)
 
 - Fixed style inheritance for non-standard token types in HTML output.
 
 - Added support for async/await to Python 3 lexer.
+
+- Rewrote linenos option for TerminalFormatter (it's better, but slightly
+  different output than before).  (#1147)
+
+- Javascript lexer now supports most of ES6.  (#1100)
+
+- Cocoa builtins updated for iOS 8.1 (PR#433)
+
+- Combined BashSessionLexer and ShellSessionLexer, new version should support
+  the prompt styles of either.
+
+- Added option to pygmentize to show a full traceback on exceptions.
 
 
 Version 2.0.3
