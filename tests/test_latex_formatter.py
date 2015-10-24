@@ -44,7 +44,7 @@ class LatexFormatterTest(unittest.TestCase):
             po.stdout.close()
         except OSError:
             # latex not available
-            pass
+            raise support.SkipTest
         else:
             if ret:
                 print(output)
