@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
-__all__ = ['GAPLexer', 'MathematicaLexer', 'MuPADLexer']
+__all__ = ['GAPLexer', 'MathematicaLexer', 'MuPADLexer', 'BCLexer']
 
 
 class GAPLexer(RegexLexer):
@@ -178,6 +178,40 @@ class MuPADLexer(RegexLexer):
             (r'\.[0-9]+(?:e[0-9]+)?', Number),
             (r'.', Text)
         ],
+        'comment': [
+            (r'[^*/]', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline)
+        ]
+    }
+
+
+class BCLexer(RegexLexer):
+    """
+    A `BC <https://www.gnu.org/software/bc/>`_ lexer.
+    Contributed by Hiroaki Itoh <https://bitbucket.org/hhsprings>.
+
+    .. versionadded:: 2.1
+    """
+    name = 'BC'
+    aliases = ['bc']
+    filenames = ['*.bc']
+
+    tokens = {
+        'root': [
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'"(?:[^"\\]|\\.)*"', String),
+            (r'[{}();,]', Punctuation),
+            (r'(if|else|while|for|break|continue|halt|'
+             r'return|define|auto|print|'
+             r'read|length|scale|sqrt|limits|quit|warranty)\b', Keyword),
+            (r'\+\+|--|\|\||&&|'
+             r'([-<>+*%\^/!=])=?', Operator),
+            (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
+            (r'\.[0-9]+(?:e[0-9]+)?', Number),
+            (r'.', Text)
+            ],
         'comment': [
             (r'[^*/]', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
