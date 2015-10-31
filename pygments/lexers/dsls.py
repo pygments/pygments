@@ -11,13 +11,14 @@
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups, words, include, default
+from pygments.lexer import RegexLexer, bygroups, words, include, default, \
+    this, using, combined
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Literal, Whitespace
 
 __all__ = ['ProtoBufLexer', 'BroLexer', 'PuppetLexer', 'RslLexer',
            'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer',
-           'CrmshLexer']
+           'CrmshLexer', 'ThriftLexer']
 
 
 class ProtoBufLexer(RegexLexer):
@@ -78,6 +79,111 @@ class ProtoBufLexer(RegexLexer):
         'type': [
             (r'[a-zA-Z_]\w*', Name, '#pop'),
             default('#pop'),
+        ],
+    }
+
+
+class ThriftLexer(RegexLexer):
+    """
+    For `Thrift <https://thrift.apache.org/>`__ interface definitions.
+
+    .. versionadded:: 2.1
+    """
+    name = 'Thrift'
+    aliases = ['thrift']
+    filenames = ['*.thrift']
+    mimetypes = ['application/x-thrift']
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            include('comments'),
+            (r'"', String.Double, combined('stringescape', 'dqs')),
+            (r'\'', String.Single, combined('stringescape', 'sqs')),
+            (r'(namespace)(\s+)',
+                bygroups(Keyword.Namespace, Text.Whitespace), 'namespace'),
+            (r'(enum|union|struct|service|exception)(\s+)',
+                bygroups(Keyword.Declaration, Text.Whitespace), 'class'),
+            (r'((?:(?:[^\W\d]|\$)[\w.\[\]$<>]*\s+)+?)'  # return arguments
+             r'((?:[^\W\d]|\$)[\w$]*)'                  # method name
+             r'(\s*)(\()',                              # signature start
+             bygroups(using(this), Name.Function, Text, Operator)),
+            include('keywords'),
+            include('numbers'),
+            (r'[&=]', Operator),
+            (r'[:;\,\{\}\(\)\<>\[\]]', Punctuation),
+            (r'[a-zA-Z_](\.[a-zA-Z_0-9]|[a-zA-Z_0-9])*', Name),
+        ],
+        'whitespace': [
+            (r'\n', Text.Whitespace),
+            (r'\s+', Text.Whitespace),
+        ],
+        'comments': [
+            (r'#.*$', Comment),
+            (r'//.*?\n', Comment),
+            (r'/\*[\w\W]*?\*/', Comment.Multiline),
+        ],
+        'stringescape': [
+            (r'\\([\\nrt"\'])', String.Escape),
+        ],
+        'dqs': [
+            (r'"', String.Double, '#pop'),
+            (r'[^\\"\n]+', String.Double),
+        ],
+        'sqs': [
+            (r"'", String.Single, '#pop'),
+            (r'[^\\\'\n]+', String.Single),
+        ],
+        'namespace': [
+            (r'[a-z\*](\.[a-zA-Z_0-9]|[a-zA-Z_0-9])*', Name.Namespace, '#pop'),
+            default('#pop'),
+        ],
+        'class': [
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
+            default('#pop'),
+        ],
+        'keywords': [
+            (r'(async|oneway|extends|throws|required|optional)\b', Keyword),
+            (r'(true|false)\b', Keyword.Constant),
+            (r'(const|typedef)\b', Keyword.Declaration),
+            (words((
+                'cpp_namespace', 'cpp_include', 'cpp_type', 'java_package',
+                'cocoa_prefix', 'csharp_namespace', 'delphi_namespace',
+                'php_namespace', 'py_module', 'perl_package',
+                'ruby_namespace', 'smalltalk_category', 'smalltalk_prefix',
+                'xsd_all', 'xsd_optional', 'xsd_nillable', 'xsd_namespace',
+                'xsd_attrs', 'include'), suffix=r'\b'),
+             Keyword.Namespace),
+            (words((
+                'void', 'bool', 'byte', 'i16', 'i32', 'i64', 'double',
+                'string', 'binary', 'void', 'map', 'list', 'set', 'slist',
+                'senum'), suffix=r'\b'),
+             Keyword.Type),
+            (words((
+                'BEGIN', 'END', '__CLASS__', '__DIR__', '__FILE__',
+                '__FUNCTION__', '__LINE__', '__METHOD__', '__NAMESPACE__',
+                'abstract', 'alias', 'and', 'args', 'as', 'assert', 'begin',
+                'break', 'case', 'catch', 'class', 'clone', 'continue',
+                'declare', 'def', 'default', 'del', 'delete', 'do', 'dynamic',
+                'elif', 'else', 'elseif', 'elsif', 'end', 'enddeclare',
+                'endfor', 'endforeach', 'endif', 'endswitch', 'endwhile',
+                'ensure', 'except', 'exec', 'finally', 'float', 'for',
+                'foreach', 'function', 'global', 'goto', 'if', 'implements',
+                'import', 'in', 'inline', 'instanceof', 'interface', 'is',
+                'lambda', 'module', 'native', 'new', 'next', 'nil', 'not',
+                'or', 'pass', 'public', 'print', 'private', 'protected',
+                'raise', 'redo', 'rescue', 'retry', 'register', 'return',
+                'self', 'sizeof', 'static', 'super', 'switch', 'synchronized',
+                'then', 'this', 'throw', 'transient', 'try', 'undef',
+                'unless', 'unsigned', 'until', 'use', 'var', 'virtual',
+                'volatile', 'when', 'while', 'with', 'xor', 'yield'),
+                prefix=r'\b', suffix=r'\b'),
+             Keyword.Reserved),
+        ],
+        'numbers': [
+            (r'[+-]?(\d+\.\d+([eE][+-]?\d+)?|\.?\d+[eE][+-]?\d+)', Number.Float),
+            (r'[+-]?0x[0-9A-Fa-f]+', Number.Hex),
+            (r'[+-]?[0-9]+', Number.Integer),
         ],
     }
 
