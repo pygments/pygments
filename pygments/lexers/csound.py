@@ -12,10 +12,14 @@
 import re
 
 from pygments.lexer import RegexLexer, bygroups, default, include, using, words
-from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, String, Text, Whitespace
+from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, \
+    String, Text
+from pygments.lexers._csound_builtins import OPCODES
+from pygments.lexers.python import PythonLexer
+from pygments.lexers.scripting import LuaLexer
 
 # The CsoundDocumentLexer casuses a Pygments test to fail.
-__all__ = ['CsoundScoreLexer', 'CsoundOrchestraLexer']#, 'CsoundDocumentLexer']
+__all__ = ['CsoundScoreLexer', 'CsoundOrchestraLexer']  # , 'CsoundDocumentLexer']
 
 newline = (r'((?:;|//).*)*(\n)', bygroups(Comment.Single, Text))
 
@@ -28,21 +32,22 @@ class CsoundLexer(RegexLexer):
             (r'\\\n', Text),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline)
         ],
-        
+
         'macro call': [
-            (r'(\$\w+\.?)(\()', bygroups(Comment.Preproc, Punctuation), 'function macro call'),
+            (r'(\$\w+\.?)(\()', bygroups(Comment.Preproc, Punctuation),
+             'function macro call'),
             (r'\$\w+(\.|\b)', Comment.Preproc)
         ],
         'function macro call': [
             (r"((?:\\['\)]|[^'\)])+)(')", bygroups(Comment.Preproc, Punctuation)),
             (r"([^'\)]+)(\))", bygroups(Comment.Preproc, Punctuation), '#pop')
         ],
-        
+
         'whitespace or macro call': [
             include('whitespace'),
             include('macro call')
         ],
-        
+
         'preprocessor directives': [
             (r'#(e(nd(if)?|lse)|ifn?def|undef)\b|##', Comment.Preproc),
             (r'#include\b', Comment.Preproc, 'include'),
@@ -57,7 +62,8 @@ class CsoundLexer(RegexLexer):
 
         'macro name': [
             include('whitespace'),
-            (r'(\w+)(\()', bygroups(Comment.Preproc, Text), 'function macro argument list'),
+            (r'(\w+)(\()', bygroups(Comment.Preproc, Text),
+             'function macro argument list'),
             (r'\w+', Comment.Preproc, 'object macro definition after name')
         ],
         'object macro definition after name': [
@@ -70,7 +76,8 @@ class CsoundLexer(RegexLexer):
         ],
         'function macro argument list': [
             (r"(\w+)(['#])", bygroups(Comment.Preproc, Punctuation)),
-            (r'(\w+)(\))', bygroups(Comment.Preproc, Punctuation), 'function macro definition after name')
+            (r'(\w+)(\))', bygroups(Comment.Preproc, Punctuation),
+             'function macro definition after name')
         ],
         'function macro definition after name': [
             (r'[ \t]+', Text),
@@ -86,6 +93,8 @@ class CsoundLexer(RegexLexer):
 class CsoundScoreLexer(CsoundLexer):
     """
     For `Csound <http://csound.github.io>`_ scores.
+
+    .. versionadded:: 2.1
     """
 
     name = 'Csound Score'
@@ -108,7 +117,7 @@ class CsoundScoreLexer(CsoundLexer):
             newline + ('#pop',),
             include('partial statement')
         ],
-        
+
         'root': [
             newline,
             include('whitespace or macro call'),
@@ -123,20 +132,18 @@ class CsoundScoreLexer(CsoundLexer):
     }
 
 
-from pygments.lexers._csound_builtins import OPCODES
-from pygments.lexers.python import PythonLexer
-from pygments.lexers.scripting import LuaLexer
-
 class CsoundOrchestraLexer(CsoundLexer):
     """
     For `Csound <http://csound.github.io>`_ orchestras.
+
+    .. versionadded:: 2.1
     """
 
     name = 'Csound Orchestra'
     filenames = ['*.orc']
 
     user_defined_opcodes = set()
-    
+
     def opcode_name_callback(lexer, match):
         opcode = match.group(0)
         lexer.user_defined_opcodes.add(opcode)
@@ -173,13 +180,19 @@ class CsoundOrchestraLexer(CsoundLexer):
             (r'[](),?:[]', Punctuation),
             (words((
                 # Keywords
-                'do', 'else', 'elseif', 'endif', 'enduntil', 'fi', 'if', 'ithen', 'kthen', 'od', 'then', 'until', 'while',
+                'do', 'else', 'elseif', 'endif', 'enduntil', 'fi', 'if', 'ithen', 'kthen',
+                'od', 'then', 'until', 'while',
                 # Opcodes that act as control structures
                 'return', 'timout'
                 ), prefix=r'\b', suffix=r'\b'), Keyword),
-            (words(('goto', 'igoto', 'kgoto', 'rigoto', 'tigoto'), prefix=r'\b', suffix=r'\b'), Keyword, 'goto label'),
-            (words(('cggoto', 'cigoto', 'cingoto', 'ckgoto', 'cngoto'), prefix=r'\b', suffix=r'\b'), Keyword, ('goto label', 'goto expression')),
-            (words(('loop_ge', 'loop_gt', 'loop_le', 'loop_lt'), prefix=r'\b', suffix=r'\b'), Keyword, ('goto label', 'goto expression', 'goto expression', 'goto expression')),
+            (words(('goto', 'igoto', 'kgoto', 'rigoto', 'tigoto'),
+                   prefix=r'\b', suffix=r'\b'), Keyword, 'goto label'),
+            (words(('cggoto', 'cigoto', 'cingoto', 'ckgoto', 'cngoto'),
+                   prefix=r'\b', suffix=r'\b'), Keyword,
+             ('goto label', 'goto expression')),
+            (words(('loop_ge', 'loop_gt', 'loop_le', 'loop_lt'),
+                   prefix=r'\b', suffix=r'\b'), Keyword,
+             ('goto label', 'goto expression', 'goto expression', 'goto expression')),
             (r'\bscoreline(_i)?\b', Name.Builtin, 'scoreline opcode'),
             (r'\bpyl?run[it]?\b', Name.Builtin, 'python opcode'),
             (r'\blua_(exec|opdef)\b', Name.Builtin, 'lua opcode'),
@@ -196,7 +209,8 @@ class CsoundOrchestraLexer(CsoundLexer):
             newline,
             include('whitespace or macro call'),
             (r'\binstr\b', Keyword, ('instrument block', 'instrument name list')),
-            (r'\bopcode\b', Keyword, ('opcode block', 'opcode parameter list', 'opcode types', 'opcode types', 'opcode name')),
+            (r'\bopcode\b', Keyword, ('opcode block', 'opcode parameter list',
+                                      'opcode types', 'opcode types', 'opcode name')),
             include('label'),
             default('expression')
         ],
@@ -246,7 +260,7 @@ class CsoundOrchestraLexer(CsoundLexer):
             (r',', Punctuation, '#pop'),
             include('partial expression')
         ],
-        
+
         'single-line string': [
             include('macro call'),
             (r'"', String, '#pop'),
@@ -299,33 +313,45 @@ class CsoundOrchestraLexer(CsoundLexer):
 
 # import copy
 # from pygments.lexers.html import HtmlLexer, XmlLexer
-# 
+#
 # class CsoundDocumentLexer(XmlLexer):
 #     """
 #     For `Csound <http://csound.github.io>`_ documents.
 #     """
-# 
+#
 #     name = 'Csound Document'
 #     aliases = ['csound']
 #     filenames = ['*.csd']
-# 
+#
 #     tokens = copy.deepcopy(XmlLexer.tokens)
 #     for i, item in enumerate(tokens['root']):
 #         if len(item) > 2 and item[2] == 'tag':
-#             (tokens['root']).insert(i, (r'(<)(\s*)(CsInstruments)(\s*)', bygroups(Name.Tag, Text, Name.Tag, Text), ('orchestra content', 'tag')))
-#             (tokens['root']).insert(i, (r'(<)(\s*)(CsScore)(\s*)', bygroups(Name.Tag, Text, Name.Tag, Text), ('score content', 'tag')))
-#             (tokens['root']).insert(i, (r'(<)(\s*)(html)(\s*)', bygroups(Name.Tag, Text, Name.Tag, Text), ('HTML', 'tag')))
+#             (tokens['root']).insert(i, (r'(<)(\s*)(CsInstruments)(\s*)',
+#                                         bygroups(Name.Tag, Text, Name.Tag, Text),
+#                                         ('orchestra content', 'tag')))
+#             (tokens['root']).insert(i, (r'(<)(\s*)(CsScore)(\s*)',
+#                                         bygroups(Name.Tag, Text, Name.Tag, Text),
+#                                         ('score content', 'tag')))
+#             (tokens['root']).insert(i, (r'(<)(\s*)(html)(\s*)',
+#                                         bygroups(Name.Tag, Text, Name.Tag, Text),
+#                                         ('HTML', 'tag')))
 #             break
-# 
+#
 #     tokens['orchestra content'] = [
-#         (r'(<)(\s*)(/)(\s*)(CsInstruments)(\s*)(>)', bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag), '#pop'),
+#         (r'(<)(\s*)(/)(\s*)(CsInstruments)(\s*)(>)',
+#          bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag),
+#          '#pop'),
 #         (r'.+?(?=<\s*/\s*CsInstruments\s*>)', using(CsoundOrchestraLexer))
 #     ]
 #     tokens['score content'] = [
-#         (r'(<)(\s*)(/)(\s*)(CsScore)(\s*)(>)', bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag), '#pop'),
+#         (r'(<)(\s*)(/)(\s*)(CsScore)(\s*)(>)',
+#          bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag),
+#          '#pop'),
 #         (r'.+?(?=<\s*/\s*CsScore\s*>)', using(CsoundScoreLexer))
 #     ]
 #     tokens['HTML'] = [
-#         (r'(<)(\s*)(/)(\s*)(html)(\s*)(>)', bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag), '#pop'),
+#         (r'(<)(\s*)(/)(\s*)(html)(\s*)(>)',
+#          bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag),
+#          '#pop'),
 #         (r'.+?(?=<\s*/\s*html\s*>)', using(HtmlLexer))
 #     ]
