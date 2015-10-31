@@ -372,7 +372,7 @@ else:
     class UnclosingTextIOWrapper(TextIOWrapper):
         # Don't close underlying buffer on destruction.
         def close(self):
-            pass
+            self.flush()
 
 
 def add_metaclass(metaclass):

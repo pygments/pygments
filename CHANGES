@@ -66,6 +66,9 @@ Version 2.1
 
 - Added option to pygmentize to show a full traceback on exceptions.
 
+- Fixed incomplete output on Windows and Python 3 (e.g. when using iPython
+  Notebook).  (#1153)
+
 
 Version 2.0.3
 -------------
