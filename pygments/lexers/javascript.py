@@ -511,6 +511,8 @@ class TypeScriptLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
+            # Match stuff like: Decorators
+            (r'@\w+', Keyword.Declaration),
         ]
     }
 
