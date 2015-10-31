@@ -10,7 +10,7 @@
 """
 
 from pygments.lexers.lisp import SchemeLexer, CommonLispLexer, RacketLexer, \
-    NewLispLexer
+    NewLispLexer, ShenLexer
 from pygments.lexers.haskell import HaskellLexer, LiterateHaskellLexer, \
     KokaLexer
 from pygments.lexers.theorem import CoqLexer
