@@ -234,3 +234,26 @@ class CLexerTest(unittest.TestCase):
             (Token.Text, u'\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(textwrap.dedent(fragment))))
+
+    def testPreprocFile(self):
+        fragment = u'#include <foo>\n'
+        tokens = [
+            (Token.Comment.Preproc, u'#'),
+            (Token.Comment.Preproc, u'include'),
+            (Token.Text, u' '),
+            (Token.Comment.PreprocFile, u'<foo>'),
+            (Token.Comment.Preproc, u'\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def testPreprocFile2(self):
+        fragment = u'#include "foo.h"\n'
+        tokens = [
+            (Token.Comment.Preproc, u'#'),
+            (Token.Comment.Preproc, u'include'),
+            (Token.Text, u' '),
+            (Token.Comment.PreprocFile, u'"foo.h"'),
+            (Token.Comment.Preproc, u'\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+

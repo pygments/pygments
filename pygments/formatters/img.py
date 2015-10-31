@@ -15,6 +15,8 @@ from pygments.formatter import Formatter
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
     get_choice_opt, xrange
 
+import subprocess
+
 # Import this carefully
 try:
     from PIL import Image, ImageDraw, ImageFont
@@ -75,14 +77,11 @@ class FontManager(object):
             self._create_nix()
 
     def _get_nix_font_path(self, name, style):
-        try:
-            from commands import getstatusoutput
-        except ImportError:
-            from subprocess import getstatusoutput
-        exit, out = getstatusoutput('fc-list "%s:style=%s" file' %
-                                    (name, style))
-        if not exit:
-            lines = out.splitlines()
+        proc = subprocess.Popen(['fc-list', "%s:style=%s" % (name, style), 'file'],
+                                stdout=subprocess.PIPE, stderr=None)
+        stdout, _ = proc.communicate()
+        if proc.returncode == 0:
+            lines = stdout.splitlines()
             if lines:
                 path = lines[0].strip().strip(':')
                 return path
@@ -197,7 +196,7 @@ class ImageFormatter(Formatter):
         bold and italic fonts will be generated.  This really should be a
         monospace font to look sane.
 
-        Default: "Bitstream Vera Sans Mono"
+        Default: "Bitstream Vera Sans Mono" on Windows, Courier New on \*nix
 
     `font_size`
         The font size in points to be used.

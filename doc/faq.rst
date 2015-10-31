@@ -12,8 +12,7 @@ processed version (in different formats) containing syntax highlighting markup.
 
 Its features include:
 
-* a wide range of common languages and markup formats is supported (look here
-  for a list)
+* a wide range of common :doc:`languages and markup formats <languages>` is supported
 * new languages and formats are added easily
 * a number of output formats is available, including:
 
