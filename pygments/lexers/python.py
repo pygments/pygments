@@ -419,8 +419,10 @@ class PythonTracebackLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^Traceback \(most recent call last\):\n',
-             Generic.Traceback, 'intb'),
+            # Cover both (most recent call last) and (innermost last)
+            # The optional ^C allows us to catch keyboard interrupt signals.
+            (r'^(\^C)?(Traceback.*\n)',
+             bygroups(Text, Generic.Traceback), 'intb'),
             # SyntaxError starts with this.
             (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
             (r'^.*\n', Other),
