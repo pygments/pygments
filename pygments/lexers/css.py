@@ -13,12 +13,12 @@ import re
 import copy
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, include, bygroups, \
-    default, words
+    default, words, inherit
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 from pygments.util import iteritems
 
-__all__ = ['CssLexer', 'SassLexer', 'ScssLexer']
+__all__ = ['CssLexer', 'SassLexer', 'ScssLexer', 'LessCssLexer']
 
 
 class CssLexer(RegexLexer):
@@ -475,8 +475,9 @@ class ScssLexer(RegexLexer):
             (r'(@media)(\s+)', bygroups(Keyword, Text), 'value'),
             (r'@[\w-]+', Keyword, 'selector'),
             (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
-            (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
-            (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
+            # TODO: broken, and prone to infinite loops.
+            #(r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
+            #(r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
             default('selector'),
         ],
 
@@ -497,3 +498,27 @@ class ScssLexer(RegexLexer):
         tokens[group] = copy.copy(common)
     tokens['value'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
     tokens['selector'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
+
+
+class LessCssLexer(CssLexer):
+    """
+    For `LESS <http://lesscss.org/>`_ styleshets.
+
+    .. versionadded:: 2.1
+    """
+
+    name = 'LessCss'
+    aliases = ['less']
+    filenames = ['*.less']
+    mimetypes = ['text/x-less-css']
+
+    tokens = {
+        'root': [
+            (r'@\w+', Name.Variable),
+            inherit,
+        ],
+        'content': [
+            (r'{', Punctuation, '#push'),
+            inherit,
+        ],
+    }
