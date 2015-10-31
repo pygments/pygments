@@ -9,6 +9,13 @@
     :license: BSD, see LICENSE for details.
 """
 
+from pygments.lexer import RegexLexer, bygroups, include, combined
+from pygments.token import Text, Comment, Operator, Keyword, Punctuation, \
+    Name, String, Number
+
+__all__ = ['QVToLexer']
+
+
 class QVToLexer(RegexLexer):
     """
     For the `QVT Operational Mapping language <http://www.omg.org/spec/QVT/1.1/>`_.
