@@ -77,20 +77,20 @@ class Modula2Lexer(RegexLexer):
     A dialect option may be embedded in a source file in form of a dialect
     tag, a specially formatted comment that specifies a dialect option.
 
-    Dialect Tag EBNF:
+    Dialect Tag EBNF::
 
-    dialectTag :
-        OpeningCommentDelim Prefix dialectOption ClosingCommentDelim ;
+       dialectTag :
+           OpeningCommentDelim Prefix dialectOption ClosingCommentDelim ;
 
-    dialectOption :
-        'm2pim' | 'm2iso' | 'm2r10' | 'objm2' |
-        'm2iso+aglet' | 'm2pim+gm2' | 'm2iso+p1' | 'm2iso+xds' ;
+       dialectOption :
+           'm2pim' | 'm2iso' | 'm2r10' | 'objm2' |
+           'm2iso+aglet' | 'm2pim+gm2' | 'm2iso+p1' | 'm2iso+xds' ;
 
-    Prefix : '!' ;
+       Prefix : '!' ;
 
-    OpeningCommentDelim : '(*' ;
+       OpeningCommentDelim : '(*' ;
 
-    ClosingCommentDelim : '*)' ;
+       ClosingCommentDelim : '*)' ;
 
     No whitespace is permitted between the tokens of a dialect tag.
 
@@ -103,9 +103,9 @@ class Modula2Lexer(RegexLexer):
 
     Examples:
 
-    `(*!m2r10*) DEFINITION MODULE Foobar; ...`
+    ``(*!m2r10*) DEFINITION MODULE Foobar; ...``
         Use Modula2 R10 dialect to render this source file.
-    `(*!m2pim+gm2*) DEFINITION MODULE Bazbam; ...`
+    ``(*!m2pim+gm2*) DEFINITION MODULE Bazbam; ...``
         Use PIM dialect with GNU extensions to render this source file.
 
 
@@ -128,7 +128,7 @@ class Modula2Lexer(RegexLexer):
 
     Example:
 
-    `$ pygmentize -O full,style=algol -f latex -o /path/to/output /path/to/input`
+    ``$ pygmentize -O full,style=algol -f latex -o /path/to/output /path/to/input``
         Render input file in Algol publication mode to LaTeX output.
 
 
@@ -151,7 +151,7 @@ class Modula2Lexer(RegexLexer):
 
     Example:
 
-    `$ pygmentize -O full,dialect=m2r10,treat_stdlib_adts_as_builtins=Off ...`
+    ``$ pygmentize -O full,dialect=m2r10,treat_stdlib_adts_as_builtins=Off ...``
         Render standard library ADTs as ordinary library types.
 
     .. versionadded:: 1.3
@@ -203,14 +203,14 @@ class Modula2Lexer(RegexLexer):
         'plain_number_literals': [
             #
             # Base-10, real number with exponent
-            (r'[0-9]+(\'[0-9]+)*' # integral part \
-             r'\.[0-9]+(\'[0-9]+)*' # fractional part \
-             r'[eE][+-]?[0-9]+(\'[0-9]+)*', # exponent \
+            (r'[0-9]+(\'[0-9]+)*'  # integral part
+             r'\.[0-9]+(\'[0-9]+)*'  # fractional part
+             r'[eE][+-]?[0-9]+(\'[0-9]+)*',  # exponent
              Number.Float),
             #
             # Base-10, real number without exponent
-            (r'[0-9]+(\'[0-9]+)*' # integral part \
-             r'\.[0-9]+(\'[0-9]+)*', # fractional part \
+            (r'[0-9]+(\'[0-9]+)*'  # integral part
+             r'\.[0-9]+(\'[0-9]+)*',  # fractional part
              Number.Float),
             #
             # Base-10, whole number
@@ -235,52 +235,52 @@ class Modula2Lexer(RegexLexer):
             # Dot Product Operator
             (r'\*\.', Operator),
             # Array Concatenation Operator
-            (r'\+>', Operator), # M2R10 + ObjM2
+            (r'\+>', Operator),  # M2R10 + ObjM2
             # Inequality Operator
-            (r'<>', Operator), # ISO + PIM
+            (r'<>', Operator),  # ISO + PIM
             # Less-Or-Equal, Subset
             (r'<=', Operator),
             # Greater-Or-Equal, Superset
             (r'>=', Operator),
             # Identity Operator
-            (r'==', Operator), # M2R10 + ObjM2
+            (r'==', Operator),  # M2R10 + ObjM2
             # Type Conversion Operator
-            (r'::', Operator), # M2R10 + ObjM2
+            (r'::', Operator),  # M2R10 + ObjM2
             # Assignment Symbol
             (r':=', Operator),
             # Postfix Increment Mutator
-            (r'\+\+', Operator), # M2R10 + ObjM2
+            (r'\+\+', Operator),  # M2R10 + ObjM2
             # Postfix Decrement Mutator
-            (r'--', Operator), # M2R10 + ObjM2
+            (r'--', Operator),  # M2R10 + ObjM2
         ],
         'unigraph_operators': [
             # Arithmetic Operators
             (r'[+-]', Operator),
             (r'[*/]', Operator),
             # ISO 80000-2 compliant Set Difference Operator
-            (r'\\', Operator), # M2R10 + ObjM2
+            (r'\\', Operator),  # M2R10 + ObjM2
             # Relational Operators
             (r'[=#<>]', Operator),
             # Dereferencing Operator
             (r'\^', Operator),
             # Dereferencing Operator Synonym
-            (r'@', Operator), # ISO
+            (r'@', Operator),  # ISO
             # Logical AND Operator Synonym
-            (r'&', Operator), # PIM + ISO
+            (r'&', Operator),  # PIM + ISO
             # Logical NOT Operator Synonym
-            (r'~', Operator), # PIM + ISO
+            (r'~', Operator),  # PIM + ISO
             # Smalltalk Message Prefix
-            (r'`', Operator), # ObjM2
+            (r'`', Operator),  # ObjM2
         ],
         'digraph_punctuation': [
             # Range Constructor
             (r'\.\.', Punctuation),
             # Opening Chevron Bracket
-            (r'<<', Punctuation), # M2R10 + ISO
+            (r'<<', Punctuation),  # M2R10 + ISO
             # Closing Chevron Bracket
-            (r'>>', Punctuation), # M2R10 + ISO
+            (r'>>', Punctuation),  # M2R10 + ISO
             # Blueprint Punctuation
-            (r'->', Punctuation), # M2R10 + ISO
+            (r'->', Punctuation),  # M2R10 + ISO
             # Distinguish |# and # in M2 R10
             (r'\|#', Punctuation),
             # Distinguish ## and # in M2 R10
@@ -292,23 +292,23 @@ class Modula2Lexer(RegexLexer):
             # Common Punctuation
             (r'[\(\)\[\]{},.:;\|]', Punctuation),
             # Case Label Separator Synonym
-            (r'!', Punctuation), # ISO
+            (r'!', Punctuation),  # ISO
             # Blueprint Punctuation
-            (r'\?', Punctuation), # M2R10 + ObjM2
+            (r'\?', Punctuation),  # M2R10 + ObjM2
         ],
         'comments': [
             # Single Line Comment
-            (r'^//.*?\n', Comment.Single), # M2R10 + ObjM2
+            (r'^//.*?\n', Comment.Single),  # M2R10 + ObjM2
             # Block Comment
             (r'\(\*([^$].*?)\*\)', Comment.Multiline),
             # Template Block Comment
-            (r'/\*(.*?)\*/', Comment.Multiline), # M2R10 + ObjM2
+            (r'/\*(.*?)\*/', Comment.Multiline),  # M2R10 + ObjM2
         ],
         'pragmas': [
             # ISO Style Pragmas
-            (r'<\*.*?\*>', Comment.Preproc), # ISO, M2R10 + ObjM2
+            (r'<\*.*?\*>', Comment.Preproc),  # ISO, M2R10 + ObjM2
             # Pascal Style Pragmas
-            (r'\(\*\$.*?\*\)', Comment.Preproc), # PIM
+            (r'\(\*\$.*?\*\)', Comment.Preproc),  # PIM
         ],
         'root': [
             include('whitespace'),
@@ -316,8 +316,8 @@ class Modula2Lexer(RegexLexer):
             include('pragmas'),
             include('comments'),
             include('identifiers'),
-            include('suffixed_number_literals'), # PIM + ISO
-            include('prefixed_number_literals'), # M2R10 + ObjM2
+            include('suffixed_number_literals'),  # PIM + ISO
+            include('prefixed_number_literals'),  # M2R10 + ObjM2
             include('plain_number_literals'),
             include('string_literals'),
             include('digraph_punctuation'),
@@ -634,7 +634,7 @@ class Modula2Lexer(RegexLexer):
         'CloseOutput', 'ReadString', 'ReadInt', 'ReadCard', 'ReadWrd',
         'WriteInt', 'WriteCard', 'WriteOct', 'WriteHex', 'WriteWrd',
         'ReadReal', 'WriteReal', 'WriteFixPt', 'WriteRealOct', 'sqrt', 'exp',
-        'ln', 'sin', 'cos', 'arctan', 'entier','ALLOCATE', 'DEALLOCATE',
+        'ln', 'sin', 'cos', 'arctan', 'entier', 'ALLOCATE', 'DEALLOCATE',
     )
 
     # PIM Modula-2 Standard Library Variables Dataset
@@ -707,7 +707,7 @@ class Modula2Lexer(RegexLexer):
         'LongRealIO', 'BCDIO', 'LongBCDIO', 'CardMath', 'LongCardMath',
         'IntMath', 'LongIntMath', 'RealMath', 'LongRealMath', 'BCDMath',
         'LongBCDMath', 'FileIO', 'FileSystem', 'Storage', 'IOSupport',
-   )
+    )
 
     # Modula-2 R10 Standard Library Types Dataset
     m2r10_stdlib_type_identifiers = (
@@ -733,7 +733,6 @@ class Modula2Lexer(RegexLexer):
 
 #  D i a l e c t s
 
-
     # Dialect modes
     dialects = (
         'unknown',
@@ -746,39 +745,39 @@ class Modula2Lexer(RegexLexer):
     # Lexemes to Mark as Errors Database
     lexemes_to_reject_db = {
         # Lexemes to reject for unknown dialect
-        'unknown' : (
+        'unknown': (
             # LEAVE THIS EMPTY
         ),
         # Lexemes to reject for PIM Modula-2
-        'm2pim' : (
+        'm2pim': (
             pim_lexemes_to_reject,
         ),
         # Lexemes to reject for ISO Modula-2
-        'm2iso' : (
+        'm2iso': (
             iso_lexemes_to_reject,
         ),
         # Lexemes to reject for Modula-2 R10
-        'm2r10' : (
+        'm2r10': (
             m2r10_lexemes_to_reject,
         ),
         # Lexemes to reject for Objective Modula-2
-        'objm2' : (
+        'objm2': (
             objm2_lexemes_to_reject,
         ),
         # Lexemes to reject for Aglet Modula-2
-        'm2iso+aglet' : (
+        'm2iso+aglet': (
             iso_lexemes_to_reject,
         ),
         # Lexemes to reject for GNU Modula-2
-        'm2pim+gm2' : (
+        'm2pim+gm2': (
             pim_lexemes_to_reject,
         ),
         # Lexemes to reject for p1 Modula-2
-        'm2iso+p1' : (
+        'm2iso+p1': (
             iso_lexemes_to_reject,
         ),
         # Lexemes to reject for XDS Modula-2
-        'm2iso+xds' : (
+        'm2iso+xds': (
             iso_lexemes_to_reject,
         ),
     }
@@ -786,7 +785,7 @@ class Modula2Lexer(RegexLexer):
     # Reserved Words Database
     reserved_words_db = {
         # Reserved words for unknown dialect
-        'unknown' : (
+        'unknown': (
             common_reserved_words,
             pim_additional_reserved_words,
             iso_additional_reserved_words,
@@ -794,53 +793,53 @@ class Modula2Lexer(RegexLexer):
         ),
 
         # Reserved words for PIM Modula-2
-        'm2pim' : (
+        'm2pim': (
             common_reserved_words,
             pim_additional_reserved_words,
         ),
 
         # Reserved words for Modula-2 R10
-        'm2iso' : (
+        'm2iso': (
             common_reserved_words,
             iso_additional_reserved_words,
         ),
 
         # Reserved words for ISO Modula-2
-        'm2r10' : (
+        'm2r10': (
             common_reserved_words,
             m2r10_additional_reserved_words,
         ),
 
         # Reserved words for Objective Modula-2
-        'objm2' : (
+        'objm2': (
             common_reserved_words,
             m2r10_additional_reserved_words,
             objm2_additional_reserved_words,
         ),
 
         # Reserved words for Aglet Modula-2 Extensions
-        'm2iso+aglet' : (
+        'm2iso+aglet': (
             common_reserved_words,
             iso_additional_reserved_words,
             aglet_additional_reserved_words,
         ),
 
         # Reserved words for GNU Modula-2 Extensions
-        'm2pim+gm2' : (
+        'm2pim+gm2': (
             common_reserved_words,
             pim_additional_reserved_words,
             gm2_additional_reserved_words,
         ),
 
         # Reserved words for p1 Modula-2 Extensions
-        'm2iso+p1' : (
+        'm2iso+p1': (
             common_reserved_words,
             iso_additional_reserved_words,
             p1_additional_reserved_words,
         ),
 
         # Reserved words for XDS Modula-2 Extensions
-        'm2iso+xds' : (
+        'm2iso+xds': (
             common_reserved_words,
             iso_additional_reserved_words,
             xds_additional_reserved_words,
@@ -850,7 +849,7 @@ class Modula2Lexer(RegexLexer):
     # Builtins Database
     builtins_db = {
         # Builtins for unknown dialect
-        'unknown' : (
+        'unknown': (
             common_builtins,
             pim_additional_builtins,
             iso_additional_builtins,
@@ -858,53 +857,53 @@ class Modula2Lexer(RegexLexer):
         ),
 
         # Builtins for PIM Modula-2
-        'm2pim' : (
+        'm2pim': (
             common_builtins,
             pim_additional_builtins,
         ),
 
         # Builtins for ISO Modula-2
-        'm2iso' : (
+        'm2iso': (
             common_builtins,
             iso_additional_builtins,
         ),
 
         # Builtins for ISO Modula-2
-        'm2r10' : (
+        'm2r10': (
             common_builtins,
             m2r10_additional_builtins,
         ),
 
         # Builtins for Objective Modula-2
-        'objm2' : (
+        'objm2': (
             common_builtins,
             m2r10_additional_builtins,
             objm2_additional_builtins,
         ),
 
         # Builtins for Aglet Modula-2 Extensions
-        'm2iso+aglet' : (
+        'm2iso+aglet': (
             common_builtins,
             iso_additional_builtins,
             aglet_additional_builtins,
         ),
 
         # Builtins for GNU Modula-2 Extensions
-        'm2pim+gm2' : (
+        'm2pim+gm2': (
             common_builtins,
             pim_additional_builtins,
             gm2_additional_builtins,
         ),
 
         # Builtins for p1 Modula-2 Extensions
-        'm2iso+p1' : (
+        'm2iso+p1': (
             common_builtins,
             iso_additional_builtins,
             p1_additional_builtins,
         ),
 
         # Builtins for XDS Modula-2 Extensions
-        'm2iso+xds' : (
+        'm2iso+xds': (
             common_builtins,
             iso_additional_builtins,
             xds_additional_builtins,
@@ -914,7 +913,7 @@ class Modula2Lexer(RegexLexer):
     # Pseudo-Module Builtins Database
     pseudo_builtins_db = {
         # Builtins for unknown dialect
-        'unknown' : (
+        'unknown': (
             common_pseudo_builtins,
             pim_additional_pseudo_builtins,
             iso_additional_pseudo_builtins,
@@ -922,53 +921,53 @@ class Modula2Lexer(RegexLexer):
         ),
 
         # Builtins for PIM Modula-2
-        'm2pim' : (
+        'm2pim': (
             common_pseudo_builtins,
             pim_additional_pseudo_builtins,
         ),
 
         # Builtins for ISO Modula-2
-        'm2iso' : (
+        'm2iso': (
             common_pseudo_builtins,
             iso_additional_pseudo_builtins,
         ),
 
         # Builtins for ISO Modula-2
-        'm2r10' : (
+        'm2r10': (
             common_pseudo_builtins,
             m2r10_additional_pseudo_builtins,
         ),
 
         # Builtins for Objective Modula-2
-        'objm2' : (
+        'objm2': (
             common_pseudo_builtins,
             m2r10_additional_pseudo_builtins,
             objm2_additional_pseudo_builtins,
         ),
 
         # Builtins for Aglet Modula-2 Extensions
-        'm2iso+aglet' : (
+        'm2iso+aglet': (
             common_pseudo_builtins,
             iso_additional_pseudo_builtins,
             aglet_additional_pseudo_builtins,
         ),
 
         # Builtins for GNU Modula-2 Extensions
-        'm2pim+gm2' : (
+        'm2pim+gm2': (
             common_pseudo_builtins,
             pim_additional_pseudo_builtins,
             gm2_additional_pseudo_builtins,
         ),
 
         # Builtins for p1 Modula-2 Extensions
-        'm2iso+p1' : (
+        'm2iso+p1': (
             common_pseudo_builtins,
             iso_additional_pseudo_builtins,
             p1_additional_pseudo_builtins,
         ),
 
         # Builtins for XDS Modula-2 Extensions
-        'm2iso+xds' : (
+        'm2iso+xds': (
             common_pseudo_builtins,
             iso_additional_pseudo_builtins,
             xds_additional_pseudo_builtins,
@@ -978,46 +977,46 @@ class Modula2Lexer(RegexLexer):
     # Standard Library ADTs Database
     stdlib_adts_db = {
         # Empty entry for unknown dialect
-        'unknown' : (
+        'unknown': (
             # LEAVE THIS EMPTY
         ),
         # Standard Library ADTs for PIM Modula-2
-        'm2pim' : (
+        'm2pim': (
             # No first class library types
         ),
 
         # Standard Library ADTs for ISO Modula-2
-        'm2iso' : (
+        'm2iso': (
             # No first class library types
         ),
 
         # Standard Library ADTs for Modula-2 R10
-        'm2r10' : (
+        'm2r10': (
             m2r10_stdlib_adt_identifiers,
         ),
 
         # Standard Library ADTs for Objective Modula-2
-        'objm2' : (
+        'objm2': (
             m2r10_stdlib_adt_identifiers,
         ),
 
         # Standard Library ADTs for Aglet Modula-2
-        'm2iso+aglet' : (
+        'm2iso+aglet': (
             # No first class library types
         ),
 
         # Standard Library ADTs for GNU Modula-2
-        'm2pim+gm2' : (
+        'm2pim+gm2': (
             # No first class library types
         ),
 
         # Standard Library ADTs for p1 Modula-2
-        'm2iso+p1' : (
+        'm2iso+p1': (
             # No first class library types
         ),
 
         # Standard Library ADTs for XDS Modula-2
-        'm2iso+xds' : (
+        'm2iso+xds': (
             # No first class library types
         ),
     }
@@ -1025,49 +1024,49 @@ class Modula2Lexer(RegexLexer):
     # Standard Library Modules Database
     stdlib_modules_db = {
         # Empty entry for unknown dialect
-        'unknown' : (
+        'unknown': (
             # LEAVE THIS EMPTY
         ),
         # Standard Library Modules for PIM Modula-2
-        'm2pim' : (
+        'm2pim': (
             pim_stdlib_module_identifiers,
         ),
 
         # Standard Library Modules for ISO Modula-2
-        'm2iso' : (
+        'm2iso': (
             iso_stdlib_module_identifiers,
         ),
 
         # Standard Library Modules for Modula-2 R10
-        'm2r10' : (
+        'm2r10': (
             m2r10_stdlib_blueprint_identifiers,
             m2r10_stdlib_module_identifiers,
             m2r10_stdlib_adt_identifiers,
         ),
 
         # Standard Library Modules for Objective Modula-2
-        'objm2' : (
+        'objm2': (
             m2r10_stdlib_blueprint_identifiers,
             m2r10_stdlib_module_identifiers,
         ),
 
         # Standard Library Modules for Aglet Modula-2
-        'm2iso+aglet' : (
+        'm2iso+aglet': (
             iso_stdlib_module_identifiers,
         ),
 
         # Standard Library Modules for GNU Modula-2
-        'm2pim+gm2' : (
+        'm2pim+gm2': (
             pim_stdlib_module_identifiers,
         ),
 
         # Standard Library Modules for p1 Modula-2
-        'm2iso+p1' : (
+        'm2iso+p1': (
             iso_stdlib_module_identifiers,
         ),
 
         # Standard Library Modules for XDS Modula-2
-        'm2iso+xds' : (
+        'm2iso+xds': (
             iso_stdlib_module_identifiers,
         ),
     }
@@ -1075,46 +1074,46 @@ class Modula2Lexer(RegexLexer):
     # Standard Library Types Database
     stdlib_types_db = {
         # Empty entry for unknown dialect
-        'unknown' : (
+        'unknown': (
             # LEAVE THIS EMPTY
         ),
         # Standard Library Types for PIM Modula-2
-        'm2pim' : (
+        'm2pim': (
             pim_stdlib_type_identifiers,
         ),
 
         # Standard Library Types for ISO Modula-2
-        'm2iso' : (
+        'm2iso': (
             iso_stdlib_type_identifiers,
         ),
 
         # Standard Library Types for Modula-2 R10
-        'm2r10' : (
+        'm2r10': (
             m2r10_stdlib_type_identifiers,
         ),
 
         # Standard Library Types for Objective Modula-2
-        'objm2' : (
+        'objm2': (
             m2r10_stdlib_type_identifiers,
         ),
 
         # Standard Library Types for Aglet Modula-2
-        'm2iso+aglet' : (
+        'm2iso+aglet': (
             iso_stdlib_type_identifiers,
         ),
 
         # Standard Library Types for GNU Modula-2
-        'm2pim+gm2' : (
+        'm2pim+gm2': (
             pim_stdlib_type_identifiers,
         ),
 
         # Standard Library Types for p1 Modula-2
-        'm2iso+p1' : (
+        'm2iso+p1': (
             iso_stdlib_type_identifiers,
         ),
 
         # Standard Library Types for XDS Modula-2
-        'm2iso+xds' : (
+        'm2iso+xds': (
             iso_stdlib_type_identifiers,
         ),
     }
@@ -1122,46 +1121,46 @@ class Modula2Lexer(RegexLexer):
     # Standard Library Procedures Database
     stdlib_procedures_db = {
         # Empty entry for unknown dialect
-        'unknown' : (
+        'unknown': (
             # LEAVE THIS EMPTY
         ),
         # Standard Library Procedures for PIM Modula-2
-        'm2pim' : (
+        'm2pim': (
             pim_stdlib_proc_identifiers,
         ),
 
         # Standard Library Procedures for ISO Modula-2
-        'm2iso' : (
+        'm2iso': (
             iso_stdlib_proc_identifiers,
         ),
 
         # Standard Library Procedures for Modula-2 R10
-        'm2r10' : (
+        'm2r10': (
             m2r10_stdlib_proc_identifiers,
         ),
 
         # Standard Library Procedures for Objective Modula-2
-        'objm2' : (
+        'objm2': (
             m2r10_stdlib_proc_identifiers,
         ),
 
         # Standard Library Procedures for Aglet Modula-2
-        'm2iso+aglet' : (
+        'm2iso+aglet': (
             iso_stdlib_proc_identifiers,
         ),
 
         # Standard Library Procedures for GNU Modula-2
-        'm2pim+gm2' : (
+        'm2pim+gm2': (
             pim_stdlib_proc_identifiers,
         ),
 
         # Standard Library Procedures for p1 Modula-2
-        'm2iso+p1' : (
+        'm2iso+p1': (
             iso_stdlib_proc_identifiers,
         ),
 
         # Standard Library Procedures for XDS Modula-2
-        'm2iso+xds' : (
+        'm2iso+xds': (
             iso_stdlib_proc_identifiers,
         ),
     }
@@ -1169,46 +1168,46 @@ class Modula2Lexer(RegexLexer):
     # Standard Library Variables Database
     stdlib_variables_db = {
         # Empty entry for unknown dialect
-        'unknown' : (
+        'unknown': (
             # LEAVE THIS EMPTY
         ),
         # Standard Library Variables for PIM Modula-2
-        'm2pim' : (
+        'm2pim': (
             pim_stdlib_var_identifiers,
         ),
 
         # Standard Library Variables for ISO Modula-2
-        'm2iso' : (
+        'm2iso': (
             iso_stdlib_var_identifiers,
         ),
 
         # Standard Library Variables for Modula-2 R10
-        'm2r10' : (
+        'm2r10': (
             m2r10_stdlib_var_identifiers,
         ),
 
         # Standard Library Variables for Objective Modula-2
-        'objm2' : (
+        'objm2': (
             m2r10_stdlib_var_identifiers,
         ),
 
         # Standard Library Variables for Aglet Modula-2
-        'm2iso+aglet' : (
+        'm2iso+aglet': (
             iso_stdlib_var_identifiers,
         ),
 
         # Standard Library Variables for GNU Modula-2
-        'm2pim+gm2' : (
+        'm2pim+gm2': (
             pim_stdlib_var_identifiers,
         ),
 
         # Standard Library Variables for p1 Modula-2
-        'm2iso+p1' : (
+        'm2iso+p1': (
             iso_stdlib_var_identifiers,
         ),
 
         # Standard Library Variables for XDS Modula-2
-        'm2iso+xds' : (
+        'm2iso+xds': (
             iso_stdlib_var_identifiers,
         ),
     }
@@ -1216,46 +1215,46 @@ class Modula2Lexer(RegexLexer):
     # Standard Library Constants Database
     stdlib_constants_db = {
         # Empty entry for unknown dialect
-        'unknown' : (
+        'unknown': (
             # LEAVE THIS EMPTY
         ),
         # Standard Library Constants for PIM Modula-2
-        'm2pim' : (
+        'm2pim': (
             pim_stdlib_const_identifiers,
         ),
 
         # Standard Library Constants for ISO Modula-2
-        'm2iso' : (
+        'm2iso': (
             iso_stdlib_const_identifiers,
         ),
 
         # Standard Library Constants for Modula-2 R10
-        'm2r10' : (
+        'm2r10': (
             m2r10_stdlib_const_identifiers,
         ),
 
         # Standard Library Constants for Objective Modula-2
-        'objm2' : (
+        'objm2': (
             m2r10_stdlib_const_identifiers,
         ),
 
         # Standard Library Constants for Aglet Modula-2
-        'm2iso+aglet' : (
+        'm2iso+aglet': (
             iso_stdlib_const_identifiers,
         ),
 
         # Standard Library Constants for GNU Modula-2
-        'm2pim+gm2' : (
+        'm2pim+gm2': (
             pim_stdlib_const_identifiers,
         ),
 
         # Standard Library Constants for p1 Modula-2
-        'm2iso+p1' : (
+        'm2iso+p1': (
             iso_stdlib_const_identifiers,
         ),
 
         # Standard Library Constants for XDS Modula-2
-        'm2iso+xds' : (
+        'm2iso+xds': (
             iso_stdlib_const_identifiers,
         ),
     }
@@ -1264,10 +1263,6 @@ class Modula2Lexer(RegexLexer):
 
     # initialise a lexer instance
     def __init__(self, **options):
-        #
-        # Alias for unknown dialect
-        global UNKNOWN
-        UNKNOWN = self.dialects[0]
         #
         # check dialect options
         #
@@ -1281,8 +1276,8 @@ class Modula2Lexer(RegexLexer):
         #
         # Fallback Mode (DEFAULT)
         else:
-              # no valid dialect option
-              self.set_dialect(UNKNOWN)
+            # no valid dialect option
+            self.set_dialect('unknown')
         #
         self.dialect_set_by_tag = False
         #
@@ -1298,8 +1293,8 @@ class Modula2Lexer(RegexLexer):
         #
         # Check option flags
         #
-        self.treat_stdlib_adts_as_builtins = \
-          get_bool_opt(options, 'treat_stdlib_adts_as_builtins', True)
+        self.treat_stdlib_adts_as_builtins = get_bool_opt(
+            options, 'treat_stdlib_adts_as_builtins', True)
         #
         # call superclass initialiser
         RegexLexer.__init__(self, **options)
@@ -1307,12 +1302,12 @@ class Modula2Lexer(RegexLexer):
     # Set lexer to a specified dialect
     def set_dialect(self, dialect_id):
         #
-        #if __debug__:
+        # if __debug__:
         #    print 'entered set_dialect with arg: ', dialect_id
         #
         # check dialect name against known dialects
         if dialect_id not in self.dialects:
-            dialect = UNKNOWN # default
+            dialect = 'unknown'  # default
         else:
             dialect = dialect_id
         #
@@ -1389,7 +1384,7 @@ class Modula2Lexer(RegexLexer):
         self.variables = variables_set
         self.constants = constants_set
         #
-        #if __debug__:
+        # if __debug__:
         #    print 'exiting set_dialect'
         #    print ' self.dialect: ', self.dialect
         #    print ' self.lexemes_to_reject: ', self.lexemes_to_reject
@@ -1409,7 +1404,7 @@ class Modula2Lexer(RegexLexer):
     # matching name is returned, otherwise dialect id 'unknown' is returned
     def get_dialect_from_dialect_tag(self, dialect_tag):
         #
-        #if __debug__:
+        # if __debug__:
         #    print 'entered get_dialect_from_dialect_tag with arg: ', dialect_tag
         #
         # constants
@@ -1422,37 +1417,37 @@ class Modula2Lexer(RegexLexer):
         #
         # check comment string for dialect indicator
         if len(dialect_tag) > (left_tag_delim_len + right_tag_delim_len) \
-          and dialect_tag.startswith(left_tag_delim) \
-          and dialect_tag.endswith(right_tag_delim):
+           and dialect_tag.startswith(left_tag_delim) \
+           and dialect_tag.endswith(right_tag_delim):
             #
-            #if __debug__:
+            # if __debug__:
             #    print 'dialect tag found'
             #
             # extract dialect indicator
             indicator = dialect_tag[indicator_start:indicator_end]
             #
-            #if __debug__:
+            # if __debug__:
             #    print 'extracted: ', indicator
             #
             # check against known dialects
             for index in range(1, len(self.dialects)):
                 #
-                #if __debug__:
+                # if __debug__:
                 #    print 'dialects[', index, ']: ', self.dialects[index]
                 #
                 if indicator == self.dialects[index]:
                     #
-                    #if __debug__:
+                    # if __debug__:
                     #    print 'matching dialect found'
                     #
                     # indicator matches known dialect
                     return indicator
             else:
                 # indicator does not match any dialect
-                return UNKNOWN # default
+                return 'unknown'  # default
         else:
             # invalid indicator string
-            return UNKNOWN # default
+            return 'unknown'  # default
 
     # intercept the token stream, modify token attributes and return them
     def get_tokens_unprocessed(self, text):
@@ -1461,7 +1456,7 @@ class Modula2Lexer(RegexLexer):
             # check for dialect tag if dialect has not been set by tag
             if not self.dialect_set_by_tag and token == Comment.Special:
                 indicated_dialect = self.get_dialect_from_dialect_tag(value)
-                if indicated_dialect != UNKNOWN:
+                if indicated_dialect != 'unknown':
                     # token is a dialect indicator
                     # reset reserved words and builtins
                     self.set_dialect(indicated_dialect)
@@ -1510,7 +1505,7 @@ class Modula2Lexer(RegexLexer):
             elif token in Number:
                 #
                 # mark prefix number literals as error for PIM and ISO dialects
-                if self.dialect not in (UNKNOWN, 'm2r10', 'objm2'):
+                if self.dialect not in ('unknown', 'm2r10', 'objm2'):
                     if "'" in value or value[0:2] in ('0b', '0x', '0u'):
                         token = Error
                 #
@@ -1529,7 +1524,7 @@ class Modula2Lexer(RegexLexer):
                 #
                 # mark single line comment as error for PIM and ISO dialects
                 if token is Comment.Single:
-                    if self.dialect not in [UNKNOWN, 'm2r10', 'objm2']:
+                    if self.dialect not in ('unknown', 'm2r10', 'objm2'):
                         token = Error
                 #
                 if token is Comment.Preproc:
@@ -1539,11 +1534,11 @@ class Modula2Lexer(RegexLexer):
                         token = Error
                     # mark PIM pragma as comment for other dialects
                     elif value.startswith('(*$') and \
-                       self.dialect != UNKNOWN and \
-                       not self.dialect.startswith('m2pim'):
+                            self.dialect != 'unknown' and \
+                            not self.dialect.startswith('m2pim'):
                         token = Comment.Multiline
             #
-            else: # token is neither Name nor Comment
+            else:  # token is neither Name nor Comment
                 #
                 # mark lexemes matching the dialect's error token set as errors
                 if value in self.lexemes_to_reject:

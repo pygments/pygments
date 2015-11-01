@@ -13,15 +13,18 @@ import re
 
 __all__ = ['get_filetype_from_buffer']
 
+
 modeline_re = re.compile(r'''
     (?: vi | vim | ex ) (?: [<=>]? \d* )? :
     .* (?: ft | filetype | syn | syntax ) = ( [^:\s]+ )
 ''', re.VERBOSE)
 
+
 def get_filetype_from_line(l):
     m = modeline_re.search(l)
     if m:
         return m.group(1)
+
 
 def get_filetype_from_buffer(buf, max_lines=5):
     """
@@ -32,7 +35,7 @@ def get_filetype_from_buffer(buf, max_lines=5):
         ret = get_filetype_from_line(l)
         if ret:
             return ret
-    for l in lines[max_lines:0:-1]:
+    for l in lines[max_lines:-1:-1]:
         ret = get_filetype_from_line(l)
         if ret:
             return ret

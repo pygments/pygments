@@ -46,13 +46,13 @@ def lex(code, lexer):
     except TypeError as err:
         if isinstance(err.args[0], str) and \
            ('unbound method get_tokens' in err.args[0] or
-                'missing 1 required positional argument' in err.args[0]):
+            'missing 1 required positional argument' in err.args[0]):
             raise TypeError('lex() argument must be a lexer instance, '
                             'not a class')
         raise
 
 
-def format(tokens, formatter, outfile=None):
+def format(tokens, formatter, outfile=None):  # pylint: disable=redefined-builtin
     """
     Format a tokenlist ``tokens`` with the formatter ``formatter``.
 
@@ -70,7 +70,7 @@ def format(tokens, formatter, outfile=None):
     except TypeError as err:
         if isinstance(err.args[0], str) and \
            ('unbound method format' in err.args[0] or
-                'missing 1 required positional argument' in err.args[0]):
+            'missing 1 required positional argument' in err.args[0]):
             raise TypeError('format() argument must be a formatter instance, '
                             'not a class')
         raise
