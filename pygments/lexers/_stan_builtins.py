@@ -4,7 +4,7 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This file contains the names of functions for Stan used by
-    ``pygments.lexers.math.StanLexer. This is for Stan language version 2.5.0.
+    ``pygments.lexers.math.StanLexer. This is for Stan language version 2.8.0.
 
     :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -35,11 +35,11 @@ TYPES = (
     'positive_ordered',
     'real',
     'row_vector',
+    'row_vectormatrix',
     'simplex',
     'unit_vector',
     'vector',
-    'void'
-)
+    'void')
 
 FUNCTIONS = (
     'Phi',
@@ -104,6 +104,11 @@ FUNCTIONS = (
     'cos',
     'cosh',
     'crossprod',
+    'csr_extract_u',
+    'csr_extract_v',
+    'csr_extract_w',
+    'csr_matrix_times_vector',
+    'csr_to_dense_matrix',
     'cumulative_sum',
     'determinant',
     'diag_matrix',
@@ -186,6 +191,7 @@ FUNCTIONS = (
     'inv_gamma_log',
     'inv_gamma_rng',
     'inv_logit',
+    'inv_phi',
     'inv_sqrt',
     'inv_square',
     'inv_wishart_log',
@@ -200,7 +206,6 @@ FUNCTIONS = (
     'lkj_corr_cholesky_rng',
     'lkj_corr_log',
     'lkj_corr_rng',
-    'lkj_cov_log',
     'lmgamma',
     'log',
     'log10',
@@ -214,6 +219,7 @@ FUNCTIONS = (
     'log_diff_exp',
     'log_falling_factorial',
     'log_inv_logit',
+    'log_mix',
     'log_rising_factorial',
     'log_softmax',
     'log_sum_exp',
@@ -236,6 +242,7 @@ FUNCTIONS = (
     'min',
     'modified_bessel_first_kind',
     'modified_bessel_second_kind',
+    'multi_gp_cholesky_log',
     'multi_gp_log',
     'multi_normal_cholesky_log',
     'multi_normal_cholesky_rng',
@@ -248,6 +255,9 @@ FUNCTIONS = (
     'multinomial_rng',
     'multiply_log',
     'multiply_lower_tri_self_transpose',
+    'neg_binomial_2_ccdf_log',
+    'neg_binomial_2_cdf',
+    'neg_binomial_2_cdf_log',
     'neg_binomial_2_log',
     'neg_binomial_2_log_log',
     'neg_binomial_2_log_rng',
@@ -284,6 +294,7 @@ FUNCTIONS = (
     'poisson_cdf_log',
     'poisson_log',
     'poisson_log_log',
+    'poisson_log_rng',
     'poisson_rng',
     'positive_infinity',
     'pow',
@@ -371,6 +382,7 @@ FUNCTIONS = (
     'weibull_cdf_log',
     'weibull_log',
     'weibull_rng',
+    'wiener_log',
     'wishart_log',
     'wishart_rng'
 )
@@ -400,10 +412,10 @@ DISTRIBUTIONS = (
     'inv_wishart',
     'lkj_corr',
     'lkj_corr_cholesky',
-    'lkj_cov',
     'logistic',
     'lognormal',
     'multi_gp',
+    'multi_gp_cholesky',
     'multi_normal',
     'multi_normal_cholesky',
     'multi_normal_prec',
@@ -425,6 +437,7 @@ DISTRIBUTIONS = (
     'uniform',
     'von_mises',
     'weibull',
+    'wiener',
     'wishart'
 )
 
