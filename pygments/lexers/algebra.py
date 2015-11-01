@@ -65,7 +65,7 @@ class GAPLexer(RegexLexer):
             (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
             (r'\.[0-9]+(?:e[0-9]+)?', Number),
             (r'.', Text)
-        ]
+        ],
     }
 
 
@@ -183,14 +183,13 @@ class MuPADLexer(RegexLexer):
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline)
-        ]
+        ],
     }
 
 
 class BCLexer(RegexLexer):
     """
     A `BC <https://www.gnu.org/software/bc/>`_ lexer.
-    Contributed by Hiroaki Itoh <https://bitbucket.org/hhsprings>.
 
     .. versionadded:: 2.1
     """
@@ -203,19 +202,19 @@ class BCLexer(RegexLexer):
             (r'/\*', Comment.Multiline, 'comment'),
             (r'"(?:[^"\\]|\\.)*"', String),
             (r'[{}();,]', Punctuation),
-            (r'(if|else|while|for|break|continue|halt|'
-             r'return|define|auto|print|'
-             r'read|length|scale|sqrt|limits|quit|warranty)\b', Keyword),
+            (words(('if', 'else', 'while', 'for', 'break', 'continue',
+                    'halt', 'return', 'define', 'auto', 'print', 'read',
+                    'length', 'scale', 'sqrt', 'limits', 'quit',
+                    'warranty'), suffix=r'\b'), Keyword),
             (r'\+\+|--|\|\||&&|'
              r'([-<>+*%\^/!=])=?', Operator),
             (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
             (r'\.[0-9]+(?:e[0-9]+)?', Number),
             (r'.', Text)
-            ],
+        ],
         'comment': [
             (r'[^*/]', Comment.Multiline),
-            (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline)
-        ]
+        ],
     }
