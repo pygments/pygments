@@ -88,7 +88,7 @@ class CFamilyLexer(RegexLexer):
             (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
              r'([a-zA-Z_]\w*)'             # method name
              r'(\s*\([^;]*?\))'            # signature
-             r'(' + _ws + r')?(\{)',
+             r'([^;{]*)?(\{)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),
@@ -96,7 +96,7 @@ class CFamilyLexer(RegexLexer):
             (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
              r'([a-zA-Z_]\w*)'             # method name
              r'(\s*\([^;]*?\))'            # signature
-             r'(' + _ws + r')?(;)',
+             r'([^;]*)?(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation)),
             default('statement'),
@@ -123,6 +123,7 @@ class CFamilyLexer(RegexLexer):
             (r'\\', String),  # stray backslash
         ],
         'macro': [
+            (r'(include)(' + _ws1 + ')([^\n]+)', bygroups(Comment.Preproc, Text, Comment.PreprocFile)),
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
             (r'//.*?\n', Comment.Single, '#pop'),
