@@ -12,6 +12,7 @@
 #   endop   <http://www.csounds.com/manual/html/endop.html
 #   goto    <http://www.csounds.com/manual/html/goto.html>
 #   igoto   <http://www.csounds.com/manual/html/igoto.html>
+#   instr   <http://www.csounds.com/manual/html/instr.html>
 #   kgoto   <http://www.csounds.com/manual/html/kgoto.html>
 #   loop_ge <http://www.csounds.com/manual/html/loop_ge.html>
 #   loop_gt <http://www.csounds.com/manual/html/loop_gt.html>
@@ -463,7 +464,7 @@ OPCODES = set((
     'ins',
     'insglobal',
     'insremot',
-    'instr',
+   #'instr',
     'int',
     'integ',
     'interp',
