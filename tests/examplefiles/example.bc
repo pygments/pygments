@@ -1,45 +1,20 @@
-scale = 20
+/*
+ * Calculate the Greatest Common Divisor of a and b.
+ */
+define gcd(a, b) {
+    auto tmp;
 
-/* Uses the fact that e^x = (e^(x/2))^2
-   When x is small enough, we use the series:
-     e^x = 1 + x + x^2/2! + x^3/3! + ...
-*/
-
-define e(x) {
-  auto  a, d, e, f, i, m, v, z
-
-  /* Check the sign of x. */
-  if (x<0) {
-    m = 1
-    x = -x
-  } 
-
-  /* Precondition x. */
-  z = scale;
-  scale = 4 + z + .44*x;
-  while (x > 1) {
-    f += 1;
-    x /= 2;
-  }
-
-  /* Initialize the variables. */
-  v = 1+x
-  a = x
-  d = 1
-
-  for (i=2; 1; i++) {
-    e = (a *= x) / (d *= i)
-    if (e == 0) {
-      if (f>0) while (f--)  v = v*v;
-      scale = z
-      if (m) return (1/v);
-      return (v/1);
+    /*
+     * Euclidean algorithm
+     */
+    while (b != 0) {
+        tmp = a % b;
+        a = b;
+        b = tmp;
     }
-    v += e
-  }
+    return a;
 }
-
-"e(2)=" ; e(2)
+"gcd(225, 150) = " ; gcd(225, 150)
 
 /* assign operators */
 a = 10
