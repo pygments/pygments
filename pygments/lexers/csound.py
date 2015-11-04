@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-import copy, re
+import re
 
 from pygments.lexer import RegexLexer, bygroups, default, include, using, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, \
@@ -323,7 +323,7 @@ class CsoundDocumentLexer(XmlLexer):
     filenames = ['*.csd']
     mimetypes = []
 
-    tokens = copy.deepcopy(XmlLexer.tokens)
+    tokens = XmlLexer.tokens
     for i, item in enumerate(tokens['root']):
         if len(item) > 2 and item[2] == 'tag':
             (tokens['root']).insert(i, (r'(<)(\s*)(CsInstruments)(\s*)',
