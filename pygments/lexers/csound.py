@@ -98,6 +98,7 @@ class CsoundScoreLexer(CsoundLexer):
     """
 
     name = 'Csound Score'
+    aliases = ['csound-score', 'csound-sco']
     filenames = ['*.sco']
 
     tokens = {
@@ -140,6 +141,7 @@ class CsoundOrchestraLexer(CsoundLexer):
     """
 
     name = 'Csound Orchestra'
+    aliases = ['csound', 'csound-orc']
     filenames = ['*.orc']
 
     user_defined_opcodes = set()
@@ -317,7 +319,7 @@ class CsoundDocumentLexer(XmlLexer):
     """
 
     name = 'Csound Document'
-    aliases = []
+    aliases = ['csound-document', 'csound-csd']
     filenames = ['*.csd']
     mimetypes = []
 
