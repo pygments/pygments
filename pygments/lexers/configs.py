@@ -13,13 +13,13 @@ import re
 
 from pygments.lexer import RegexLexer, default, words, bygroups, include, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace
+    Number, Punctuation, Whitespace, Literal
 from pygments.lexers.shell import BashLexer
 
 __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
-           'TerraformLexer']
+           'TerraformLexer', 'TermcapLexer', 'TerminfoLexer']
 
 
 class IniLexer(RegexLexer):
@@ -615,5 +615,97 @@ class TerraformLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text),
+        ],
+    }
+
+
+class TermcapLexer(RegexLexer):
+    """
+    Lexer for termcap database source.
+
+    This is very simple and minimal.
+
+    .. versionadded:: 2.1
+    """
+    name = 'Termcap'
+    aliases = ['termcap',]
+
+    filenames = ['termcap', 'termcap.src',]
+    mimetypes = []
+
+    # NOTE:
+    #   * multiline with trailing backslash
+    #   * separator is ':'
+    #   * to embed colon as data, we must use \072
+    #   * space after separator is not allowed (mayve)
+    tokens = {
+        'root': [
+            (r'^#.*$', Comment),
+            (r'^[^\s#:\|]+', Name.Tag, 'names'),
+        ],
+        'names': [
+            (r'\n', Text, '#pop'),
+            (r':', Punctuation, 'defs'),
+            (r'\|', Punctuation),
+            (r'[^:\|]+', Name.Attribute),
+        ],
+        'defs': [
+            (r'\\\n[ \t]*', Text),
+            (r'\n[ \t]*', Text, '#pop:2'),
+            (r'(#)([0-9]+)', bygroups(Operator, Number)),
+            (r'=', Operator, 'data'),
+            (r':', Punctuation),
+            (r'[^\s:=#]+', Name.Class),
+        ],
+        'data': [
+            (r'\\072', Literal),
+            (r':', Punctuation, '#pop'),
+            (r'.', Literal),
+        ],
+    }
+
+
+class TerminfoLexer(RegexLexer):
+    """
+    Lexer for terminfo database source.
+
+    This is very simple and minimal.
+
+    .. versionadded:: 2.1
+    """
+    name = 'Terminfo'
+    aliases = ['terminfo',]
+
+    filenames = ['terminfo', 'terminfo.src',]
+    mimetypes = []
+
+    # NOTE:
+    #   * multiline with leading whitespace
+    #   * separator is ','
+    #   * to embed comma as data, we can use \,
+    #   * space after separator is allowed
+    tokens = {
+        'root': [
+            (r'^#.*$', Comment),
+            (r'^[^\s#,\|]+', Name.Tag, 'names'),
+        ],
+        'names': [
+            (r'\n', Text, '#pop'),
+            (r'(,)([ \t]*)', bygroups(Punctuation, Text), 'defs'),
+            (r'\|', Punctuation),
+            (r'[^,\|]+', Name.Attribute),
+        ],
+        'defs': [
+            (r'\n[ \t]+', Text),
+            (r'\n', Text, '#pop:2'),
+            (r'(#)([0-9]+)', bygroups(Operator, Number)),
+            (r'=', Operator, 'data'),
+            (r'(,)([ \t]*)', bygroups(Punctuation, Text)),
+            (r'[^\s,=#]+', Name.Class),
+        ],
+        'data': [
+            (r'\\[,\\]', Literal),
+            (r'(,)([ \t]*)', bygroups(Punctuation, Text), '#pop'),
+            (r'.', Literal),
         ],
     }
