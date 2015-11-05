@@ -9,17 +9,60 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
+from pygments.lexer import RegexLexer, bygroups
+from pygments.token import Punctuation, Text, Comment, Operator, \
+    Keyword, Name, Literal
 
-from pygments.lexer import RegexLexer, DelegatingLexer, \
-    include, bygroups, using, words
-from pygments.token import Punctuation, Other, Text, Comment, Operator, \
-    Keyword, Name, String, Number, Whitespace, Literal
-
-__all__ = ['AbnfLexer']
+__all__ = ['BnfLexer', 'AbnfLexer']
 
 
-# EBNF shold be moved here, i think.
+class BnfLexer(RegexLexer):
+    """
+    This lexer is for grammer notations which are similar to
+    original BNF.
+
+    In order to maximize a number of targets of this lexer,
+    let's decide some designs:
+
+    * We don't distinct `Terminal Symbol`.
+
+    * We do assume that `NonTerminal Symbol` are always enclosed
+      with arrow brackets.
+
+    * We do assume that `NonTerminal Symbol` may include
+      any printable characters except arrow brackets and
+      space (no `spaces`, just space, i.e., ASCII \x020).
+      This assumption is for `RBNF <http://www.rfc-base.org/txt/rfc-5511.txt>`_.
+
+    * We do assume that target notation doesn't support comment.
+
+    * We don't distinct any operators and punctuation except
+      `::=`.
+
+    Though these desision making might cause too minimal highlighting
+    and you might be disappointed, but it is reasonable for us.
+
+    .. versionadded:: 2.1
+    """
+
+    name = 'BNF'
+    aliases = ['bnf']
+    filenames = ['*.bnf']
+    mimetypes = ['text/x-bnf']
+
+    tokens = {
+        'root': [
+            (r'(<)([ -;=?-~]+)(>)',
+             bygroups(Punctuation, Name.Class, Punctuation)),
+
+            # an only operator
+            (r'::=', Operator),
+
+            # fallback
+            (r'.', Text),
+        ],
+    }
+
 
 class AbnfLexer(RegexLexer):
     """
