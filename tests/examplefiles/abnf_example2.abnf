@@ -1,0 +1,7 @@
+crlf        =  %d13.10
+
+command     =  "command string"
+
+char-line = %x0D.0A *(%x20-7E) %x0D.0A
+
+oldrule     =/ additional-alternatives
