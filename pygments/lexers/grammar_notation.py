@@ -88,7 +88,7 @@ class AbnfLexer(RegexLexer):
         txt = match.group(0)
         if txt in self._core_rules:
             # Strictly speaking, these are not keyword but
-            # is called `Core Rule'.
+            # are called `Core Rule'.
             yield match.start(), Keyword, txt
         else:
             yield match.start(), Name.Class, txt
