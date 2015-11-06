@@ -18,7 +18,7 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
     Other, Keyword, Operator
 
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
-           'CObjdumpLexer', 'LlvmLexer', 'NasmLexer', 'NasmObjdumpLexer',
+           'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'NasmLexer', 'NasmObjdumpLexer',
            'Ca65Lexer']
 
 
@@ -198,6 +198,115 @@ class CObjdumpLexer(DelegatingLexer):
         super(CObjdumpLexer, self).__init__(CLexer, ObjdumpLexer, **options)
 
 
+class HsailLexer(RegexLexer):
+    """
+    For HSAIL assembly code.
+    """
+    name = 'HSAIL'
+    aliases = ['hsail', 'hsa']
+    filenames = ['*.hsa']
+    mimetypes = ['text/x-hsail']
+
+    string = r'"[^"]*?"'
+    identifier = r'[a-zA-Z_][a-zA-Z0-9_.]*'
+    # Registers
+    register_number = r'[0-9]+'
+    register = r'(\$(c|s|d|q)' + register_number + ')'
+    # Qualifiers
+    alignQual = r'(align\(\d+\))'
+    widthQual = r'(width\((\d+|all)\))'
+    allocQual = r'(alloc\(agent\))'
+    # Instruction Modifiers
+    roundingMod = (r'((_ftz)?(_up|_down|_zero|_near))')
+    datatypeMod =  (r'_(' 
+                    # baseTypes
+                    r'u8|s8|u16|s16|u32|s32|u64|s64'
+                    r'|b1|b8|b16|b32|b64|b128'
+                    r'|f16|f32|f64' 
+                    # packedTypes
+                    r'|u8x4| s8x4| u16x2| s16x2| u8x8| s8x8| u16x4| s16x4| u32x2| s32x2| u8x16| s8x16| u16x8| s16x8| u32x4| s32x4| u64x2| s64x2'
+                    r'|f16x2| f16x4| f16x8'
+                    r'|f32x2| f32x4'
+                    r'|f64x2'
+                    # opaqueType
+                    r'|roimg| woimg| rwimg'
+                    r'|samp'
+                    r'|sig32| sig64'
+                    r')')
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            include('comments'),
+
+            (r'@' + identifier + ':', Name.Label),
+
+            (register, Name.Variable.Anonymous),
+            
+            include('keyword'),
+            
+            (r'&' + identifier, Name.Variable.Global),
+            (r'%' + identifier, Name.Variable),
+            
+            (r'0[xX][a-fA-F0-9]+', Number),
+            (r'-?\d+(?:[.]\d+)?(?:[eE][-+]?\d+(?:[.]\d+)?)?', Number),
+
+            (r'[=<>{}\[\]()*.,:;!]|x\b', Punctuation)
+        ],
+        'whitespace': [
+            (r'(\n|\s)+', Text),
+        ],
+        'comments': [
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'//.*?\n', Comment.Singleline),
+        ],
+        'keyword': [
+            # Types
+            (r'kernarg'+datatypeMod,
+             Keyword.Type),
+        
+            # Regular keywords
+            (r'(\$full|\$base'
+             r'|\$small|\$large'
+             r'|\$default|\$zero|\$near)', Keyword),
+            (r'(module|extension'
+             r'|prog|indirect|signature|decl'
+             r'|kernel|function'
+             r'|enablebreakexceptions|enabledetectexceptions|maxdynamicgroupsize|maxflatgridsize|maxflatworkgroupsize|requireddim|requiredgridsize|requiredworkgroupsize|requirenopartialworkgroups'
+             r')\b', Keyword),
+
+             # instructions
+             (roundingMod, Keyword), 
+             (datatypeMod, Keyword), 
+             (r'_(' + alignQual + '|' + widthQual + ')', Keyword), 
+             (r'_kernarg', Keyword), 
+             # instruction0
+             (r'(nop|imagefence)\b', Keyword), 
+             # instruction1
+             (r'(cleardetectexcept|clock|cuid|debugtrap|dim|getdetectexcept|groupbaseptr|kernargbaseptr|laneid|maxcuid|maxwaveid|packetid|setdetectexcept|waveid|workitemflatabsid|workitemflatid|nullptr'
+             # instruction2
+             r'|abs|bitrev|currentworkgroupsize|currentworkitemflatid|fract|ncos|neg|nexp2|nlog2|nrcp|nrsqrt|nsin|nsqrt|gridgroups|gridsize|not|sqrt|workgroupid|workgroupsize|workitemabsid|workitemid'
+             r'|ceil|floor|rint|trunc'
+             # instruction3
+             r'|add|bitmask|borrow|carry|copysign|div|rem|sub|shl|shr|and|or|xor|unpackhi|unpacklo'
+             r'|max|min'
+             # instruction4
+             r'|fma|mad|bitextract|bitselect|shuffle|cmov|bitalign|bytealign|lerp|nfma'
+             r'|mul|mulhi|mul24hi|mul24|mad24|mad24hi|bitinsert|combine|expand|lda|mov'
+             r'|pack|unpack|packcvt|unpackcvt|sad|sementp|ftos|stof'
+             r'|cmp|ld|st'
+             r'|_eq|_ne|_lt|_le|_gt|_ge|_equ|_neu|_ltu|_leu|_gtu|_geu|_num|_nan|_seq|_sne|_slt|_sle|_sgt|_sge|_snum|_snan|_sequ|_sneu|_sltu|_sleu|_sgtu|_sgeu'
+             r'|atomic|_ld|_st|_cas|_add|_and|_exch|_max|_min|_or|_sub|_wrapdec|_wrapinc|_xor'
+             r'|ret|cvt'
+             r'|_global'
+             r')', Keyword),
+             
+              
+            # Integer types
+            (r'i[1-9]\d*', Keyword)
+        ]
+    }
+    
 class LlvmLexer(RegexLexer):
     """
     For LLVM assembly code.
