@@ -213,8 +213,8 @@ class BCLexer(RegexLexer):
             (r'.', Text)
         ],
         'comment': [
-            (r'[^*/]', Comment.Multiline),
+            (r'[^*/]+', Comment.Multiline),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[*/]', Comment.Multiline)
+            (r'[*/]+', Comment.Multiline)
         ],
     }
