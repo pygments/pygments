@@ -40,13 +40,14 @@ class PkgConfigLexer(RegexLexer):
             (r'^(\w+)(=)', bygroups(Name.Attribute, Operator)),
 
             # keyword lines
-            (r'^([\w\.]+)(:)',
+            (r'^([\w.]+)(:)',
              bygroups(Name.Tag, Punctuation), 'spvalue'),
 
             # variable references
             include('interp'),
 
             # fallback
+            (r'[^${}#=:\n.]+', Text),
             (r'.', Text),
         ],
         'interp': [
@@ -67,6 +68,7 @@ class PkgConfigLexer(RegexLexer):
             (r'\n', Text, '#pop'),
 
             # fallback
+            (r'[^${}#\n]+', Text),
             (r'.', Text),
         ],
     }
