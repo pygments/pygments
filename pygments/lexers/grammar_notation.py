@@ -59,6 +59,7 @@ class BnfLexer(RegexLexer):
             (r'::=', Operator),
 
             # fallback
+            (r'[^<>:=]+', Text),  # for performance
             (r'.', Text),
         ],
     }
@@ -99,7 +100,8 @@ class AbnfLexer(RegexLexer):
             (r';.*$', Comment.Single),
 
             # quoted
-            (r'(%[si])?"', Literal, 'quoted-termination'),
+            #   double quote itself in this state, it is as '%x22'.
+            (r'(%[si])?"[^"]*"', Literal),
 
             # binary (but i have never seen...)
             (r'%b[01]+\-[01]+\b', Literal),  # range
@@ -129,11 +131,7 @@ class AbnfLexer(RegexLexer):
             (r'[\[\]()]', Punctuation),
 
             # fallback
+            (r'\s+', Text),
             (r'.', Text),
         ],
-        'quoted-termination': [
-            # double quote itself in this state, it is as '%x22'.
-            (r'"', Literal, '#pop'),
-            (r'.', Literal),
-        ]
     }
