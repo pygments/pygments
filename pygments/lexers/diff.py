@@ -136,10 +136,12 @@ class WDiffLexer(RegexLexer):
     ins_cl = r"\+\}"
     del_op = r"\[\-"
     del_cl = r"\-\]"
+    normal = r'[^{}[\]+-]+'  # for performance
     tokens = {
         'root': [
             (ins_op, Generic.Inserted, 'inserted'),
             (del_op, Generic.Deleted, 'deleted'),
+            (normal, Text),
             (r'.', Text),
         ],
         'inserted': [
@@ -148,6 +150,7 @@ class WDiffLexer(RegexLexer):
             (del_cl, Generic.Inserted, '#pop'),
 
             (ins_cl, Generic.Inserted, '#pop'),
+            (normal, Generic.Inserted),
             (r'.', Generic.Inserted),
         ],
         'deleted': [
@@ -156,6 +159,7 @@ class WDiffLexer(RegexLexer):
             (ins_cl, Generic.Deleted, '#pop'),
 
             (del_cl, Generic.Deleted, '#pop'),
+            (normal, Generic.Deleted),
             (r'.', Generic.Deleted),
         ],
     }
