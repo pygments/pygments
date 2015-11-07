@@ -660,6 +660,7 @@ class TermcapLexer(RegexLexer):
         'data': [
             (r'\\072', Literal),
             (r':', Punctuation, '#pop'),
+            (r'[^:\\]+', Literal),  # for performance
             (r'.', Literal),
         ],
     }
@@ -706,6 +707,7 @@ class TerminfoLexer(RegexLexer):
         'data': [
             (r'\\[,\\]', Literal),
             (r'(,)([ \t]*)', bygroups(Punctuation, Text), '#pop'),
+            (r'[^\\,]+', Literal),  # for performance
             (r'.', Literal),
         ],
     }
