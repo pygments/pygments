@@ -204,7 +204,7 @@ class HsailLexer(RegexLexer):
     """
     name = 'HSAIL'
     aliases = ['hsail', 'hsa']
-    filenames = ['*.hsa']
+    filenames = ['*.hsail']
     mimetypes = ['text/x-hsail']
 
     string = r'"[^"]*?"'
@@ -233,11 +233,18 @@ class HsailLexer(RegexLexer):
                     r'|samp'
                     r'|sig32| sig64'
                     r')')
-
+                    
+    # Numeric Constant
+    float = r'((\d+\.)|(\d*\.\d+))[eE][+-]?\d+'
+    hexfloat = r'0[xX](([0-9a-fA-F]+\.[0-9a-fA-F]*)|([0-9a-fA-F]*\.[0-9a-fA-F]+))[pP][+-]?\d+'
+    ieeefloat= r'0((h|H)[0-9a-fA-F]{4}|(f|F)[0-9a-fA-F]{8}|(d|D)[0-9a-fA-F]{16})'
+    
     tokens = {
         'root': [
             include('whitespace'),
             include('comments'),
+            
+            (string, String),
 
             (r'@' + identifier + ':', Name.Label),
 
@@ -248,8 +255,11 @@ class HsailLexer(RegexLexer):
             (r'&' + identifier, Name.Variable.Global),
             (r'%' + identifier, Name.Variable),
             
-            (r'0[xX][a-fA-F0-9]+', Number),
-            (r'-?\d+(?:[.]\d+)?(?:[eE][-+]?\d+(?:[.]\d+)?)?', Number),
+            (hexfloat, Number.Hex),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (ieeefloat, Number.Float),
+            (float, Number.Float),
+            ('\d+', Number.Integer),
 
             (r'[=<>{}\[\]()*.,:;!]|x\b', Punctuation)
         ],
@@ -270,6 +280,7 @@ class HsailLexer(RegexLexer):
              r'|\$small|\$large'
              r'|\$default|\$zero|\$near)', Keyword),
             (r'(module|extension'
+             r'|pragma'
              r'|prog|indirect|signature|decl'
              r'|kernel|function'
              r'|enablebreakexceptions|enabledetectexceptions|maxdynamicgroupsize|maxflatgridsize|maxflatworkgroupsize|requireddim|requiredgridsize|requiredworkgroupsize|requirenopartialworkgroups'
@@ -280,17 +291,12 @@ class HsailLexer(RegexLexer):
              (datatypeMod, Keyword), 
              (r'_(' + alignQual + '|' + widthQual + ')', Keyword), 
              (r'_kernarg', Keyword), 
-             # instruction0
              (r'(nop|imagefence)\b', Keyword), 
-             # instruction1
              (r'(cleardetectexcept|clock|cuid|debugtrap|dim|getdetectexcept|groupbaseptr|kernargbaseptr|laneid|maxcuid|maxwaveid|packetid|setdetectexcept|waveid|workitemflatabsid|workitemflatid|nullptr'
-             # instruction2
              r'|abs|bitrev|currentworkgroupsize|currentworkitemflatid|fract|ncos|neg|nexp2|nlog2|nrcp|nrsqrt|nsin|nsqrt|gridgroups|gridsize|not|sqrt|workgroupid|workgroupsize|workitemabsid|workitemid'
              r'|ceil|floor|rint|trunc'
-             # instruction3
              r'|add|bitmask|borrow|carry|copysign|div|rem|sub|shl|shr|and|or|xor|unpackhi|unpacklo'
              r'|max|min'
-             # instruction4
              r'|fma|mad|bitextract|bitselect|shuffle|cmov|bitalign|bytealign|lerp|nfma'
              r'|mul|mulhi|mul24hi|mul24|mad24|mad24hi|bitinsert|combine|expand|lda|mov'
              r'|pack|unpack|packcvt|unpackcvt|sad|sementp|ftos|stof'
@@ -298,7 +304,25 @@ class HsailLexer(RegexLexer):
              r'|_eq|_ne|_lt|_le|_gt|_ge|_equ|_neu|_ltu|_leu|_gtu|_geu|_num|_nan|_seq|_sne|_slt|_sle|_sgt|_sge|_snum|_snan|_sequ|_sneu|_sltu|_sleu|_sgtu|_sgeu'
              r'|atomic|_ld|_st|_cas|_add|_and|_exch|_max|_min|_or|_sub|_wrapdec|_wrapinc|_xor'
              r'|ret|cvt'
-             r'|_global'
+             r'|_readonly|_kernarg|_global'
+             
+             r'|br|cbr|sbr'           
+             r'_scacq|_screl|_scar|_rlx'
+             r'_wave|_wg|_agent|_system'
+             r'|ldimage|stimage'
+             r'|_v2|_v3|_v4'
+             r'|_1d|_2d|_3d|_1da|_2da|_1db|_2ddepth|_2dadepth'
+             r'|_width|_height|_depth|_array|_channelorder|_channeltype'
+             r'|querysampler|_coord|_filter|_addressing'
+             r'|barrier|wavebarrier'
+             r'|initfbar|joinfbar|waitfbar|arrivefbar|leavefbar|releasefbar|ldf'
+             r'|activelaneid|activelanecount|activelanemask|activelanepermute'
+             r'|call|scall|icall'
+             r'|alloca|packetcompletionsig'
+             r'|addqueuewriteindex|casqueuewriteindex|ldqueuereadindex|stqueuereadindex'
+             r'|readonly|global|private|group|spill|arg'
+             r'|_upi|_downi|_zeroi|_neari|_upi_sat|_downi_sat|_zeroi_sat|_neari_sat|_supi|_sdowni|_szeroi|_sneari|_supi_sat|_sdowni_sat|_szeroi_sat|_sneari_sat'
+             r'|_pp|_ps|_sp|_ss|_s|_p|_pp_sat|_ps_sat|_sp_sat|_ss_sat|_s_sat|_p_sat'
              r')', Keyword),
              
               
