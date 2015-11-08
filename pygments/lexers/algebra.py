@@ -208,13 +208,14 @@ class BCLexer(RegexLexer):
                     'warranty'), suffix=r'\b'), Keyword),
             (r'\+\+|--|\|\||&&|'
              r'([-<>+*%\^/!=])=?', Operator),
-            (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
-            (r'\.[0-9]+(?:e[0-9]+)?', Number),
+            # bc doesn't support exponential
+            (r'[0-9]+(\.[0-9]*)?', Number),
+            (r'\.[0-9]+', Number),
             (r'.', Text)
         ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[*/]+', Comment.Multiline)
+            (r'[*/]', Comment.Multiline)
         ],
     }
