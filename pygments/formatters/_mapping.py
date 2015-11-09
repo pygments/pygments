@@ -66,13 +66,20 @@ if __name__ == '__main__':  # pragma: no cover
     # extract useful sourcecode from this file
     with open(__file__) as fp:
         content = fp.read()
+        # replace crnl to nl for Windows.
+        #
+        # Note that, originally, contributers should keep nl of master
+        # repository, for example by using some kind of automatic
+        # management EOL, like `EolExtension
+        #  <https://www.mercurial-scm.org/wiki/EolExtension>`.
+        content = content.replace("\r\n", "\n")
     header = content[:content.find('FORMATTERS = {')]
     footer = content[content.find("if __name__ == '__main__':"):]
 
     # write new file
     with open(__file__, 'wb') as fp:
-        fp.write(header.replace("\r\n", "\n"))
+        fp.write(header)
         fp.write('FORMATTERS = {\n    %s\n}\n\n' % ',\n    '.join(found_formatters))
-        fp.write(footer.replace("\r\n", "\n"))
+        fp.write(footer)
 
     print ('=== %d formatters processed.' % len(found_formatters))
