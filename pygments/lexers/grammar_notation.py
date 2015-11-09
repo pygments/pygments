@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, bygroups
+from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Punctuation, Text, Comment, Operator, \
     Keyword, Name, Literal
 
@@ -24,14 +24,13 @@ class BnfLexer(RegexLexer):
     In order to maximize a number of targets of this lexer,
     let's decide some designs:
 
-    * We don't distinct `Terminal Symbol`.
+    * We don't distinguish `Terminal Symbol`.
 
     * We do assume that `NonTerminal Symbol` are always enclosed
       with arrow brackets.
 
     * We do assume that `NonTerminal Symbol` may include
-      any printable characters except arrow brackets and
-      space (no `spaces`, just space, i.e., ASCII \x020).
+      any printable characters except arrow brackets and ASCII 0x20.
       This assumption is for `RBNF <http://www.rfc-base.org/txt/rfc-5511.txt>`_.
 
     * We do assume that target notation doesn't support comment.
@@ -59,7 +58,7 @@ class BnfLexer(RegexLexer):
             (r'::=', Operator),
 
             # fallback
-            (r'[^<>:=]+', Text),  # for performance
+            (r'[^<>:]+', Text),  # for performance
             (r'.', Text),
         ],
     }
@@ -83,16 +82,7 @@ class AbnfLexer(RegexLexer):
     _core_rules = (
         'ALPHA', 'BIT', 'CHAR', 'CR', 'CRLF', 'CTL', 'DIGIT',
         'DQUOTE', 'HEXDIG', 'HTAB', 'LF', 'LWSP', 'OCTET',
-        'SP', 'VCHAR', 'WSP',)
-
-    def nonterminal_cb(self, match):
-        txt = match.group(0)
-        if txt in self._core_rules:
-            # Strictly speaking, these are not keyword but
-            # are called `Core Rule'.
-            yield match.start(), Keyword, txt
-        else:
-            yield match.start(), Name.Class, txt
+        'SP', 'VCHAR', 'WSP')
 
     tokens = {
         'root': [
@@ -121,8 +111,12 @@ class AbnfLexer(RegexLexer):
             (r'\b[0-9]+', Operator),
             (r'\*', Operator),
 
+            # Strictly speaking, these are not keyword but
+            # are called `Core Rule'.
+            (words(_core_rules, suffix=r'\b'), Keyword),
+
             # nonterminals (ALPHA *(ALPHA / DIGIT / "-"))
-            (r'[a-zA-Z][a-zA-Z0-9-]+\b', nonterminal_cb),
+            (r'[a-zA-Z][a-zA-Z0-9-]+\b', Name.Class),
 
             # operators
             (r'(=/|=|/)', Operator),
