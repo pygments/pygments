@@ -70,9 +70,9 @@ if __name__ == '__main__':  # pragma: no cover
     footer = content[content.find("if __name__ == '__main__':"):]
 
     # write new file
-    with open(__file__, 'w') as fp:
-        fp.write(header)
+    with open(__file__, 'wb') as fp:
+        fp.write(header.replace("\r\n", "\n"))
         fp.write('FORMATTERS = {\n    %s\n}\n\n' % ',\n    '.join(found_formatters))
-        fp.write(footer)
+        fp.write(footer.replace("\r\n", "\n"))
 
     print ('=== %d formatters processed.' % len(found_formatters))
