@@ -9,8 +9,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
 from pygments.lexer import RegexLexer, bygroups, include, words
 from pygments.token import Text, Comment, Operator, Name, \
     Punctuation, String, Keyword
@@ -51,8 +49,8 @@ class PkgConfigLexer(RegexLexer):
             (r'.', Text),
         ],
         'interp': [
-            # you can escape literal "${" as "$${"
-            (r'\$\$\{', Text),
+            # you can escape literal "$" as "$$"
+            (r'\$\$', Text),
 
             # variable references
             (r'\$\{', String.Interpol, 'curly'),
