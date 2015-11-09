@@ -35,7 +35,7 @@ class BnfLexer(RegexLexer):
 
     * We do assume that target notation doesn't support comment.
 
-    * We don't distinct any operators and punctuation except
+    * We don't distinguish any operators and punctuation except
       `::=`.
 
     Though these desision making might cause too minimal highlighting
