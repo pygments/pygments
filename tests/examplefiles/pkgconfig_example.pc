@@ -3,7 +3,7 @@ prefix=/usr/local/opt/site/private # define variable `prefix`
 exec_prefix=${prefix} # using variable reference
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
-just_for_test=$${this is not a part of variable reference} # escape with `$${`
+just_for_test=$${this is not a part of variable reference} # escape with `$$`
 
 Name: YAPHatchPotchGen
 Description: Yet Another Portable HatchPotch GENerator.
