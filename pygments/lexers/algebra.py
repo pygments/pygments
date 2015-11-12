@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
-__all__ = ['GAPLexer', 'MathematicaLexer', 'MuPADLexer']
+__all__ = ['GAPLexer', 'MathematicaLexer', 'MuPADLexer', 'BCLexer']
 
 
 class GAPLexer(RegexLexer):
@@ -65,7 +65,7 @@ class GAPLexer(RegexLexer):
             (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
             (r'\.[0-9]+(?:e[0-9]+)?', Number),
             (r'.', Text)
-        ]
+        ],
     }
 
 
@@ -183,5 +183,39 @@ class MuPADLexer(RegexLexer):
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline)
-        ]
+        ],
+    }
+
+
+class BCLexer(RegexLexer):
+    """
+    A `BC <https://www.gnu.org/software/bc/>`_ lexer.
+
+    .. versionadded:: 2.1
+    """
+    name = 'BC'
+    aliases = ['bc']
+    filenames = ['*.bc']
+
+    tokens = {
+        'root': [
+            (r'/\*', Comment.Multiline, 'comment'),
+            (r'"(?:[^"\\]|\\.)*"', String),
+            (r'[{}();,]', Punctuation),
+            (words(('if', 'else', 'while', 'for', 'break', 'continue',
+                    'halt', 'return', 'define', 'auto', 'print', 'read',
+                    'length', 'scale', 'sqrt', 'limits', 'quit',
+                    'warranty'), suffix=r'\b'), Keyword),
+            (r'\+\+|--|\|\||&&|'
+             r'([-<>+*%\^/!=])=?', Operator),
+            # bc doesn't support exponential
+            (r'[0-9]+(\.[0-9]*)?', Number),
+            (r'\.[0-9]+', Number),
+            (r'.', Text)
+        ],
+        'comment': [
+            (r'[^*/]+', Comment.Multiline),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline)
+        ],
     }
