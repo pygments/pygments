@@ -322,7 +322,13 @@ class CsoundDocumentLexer(RegexLexer):
     aliases = ['csound-document', 'csound-csd']
     filenames = ['*.csd']
 
-    # These tokens are based on those in XmlLexer in pygments/lexers/html.py
+    # These tokens are based on those in XmlLexer in pygments/lexers/html.py. Making
+    # CsoundDocumentLexer a subclass of XmlLexer rather than RegexLexer may seem like a
+    # better idea, since Csound Document files look like XML files. However, Csound
+    # Documents can contain Csound comments (preceded by //, for example) before and
+    # after the root element, unescaped bitwise AND & and less than < operators, etc. In
+    # other words, while Csound Document files look like XML files, they may not actually
+    # be XML files.
     tokens = {
         'root': [
             newline,
