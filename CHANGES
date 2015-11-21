@@ -34,6 +34,11 @@ Version 2.1
   * Crmsh (PR#440)
   * Praat (PR#492)
   * CSound (PR#494)
+  * Ezhil (PR#443)
+  * Thrift (PR#469)
+  * QVT Operational (PR#204)
+  * Hexdump (PR#508)
+  * CAmkES Configuration (PR#462)
 
 - Added styles:
 
@@ -65,6 +70,13 @@ Version 2.1
   the prompt styles of either.
 
 - Added option to pygmentize to show a full traceback on exceptions.
+
+- Fixed incomplete output on Windows and Python 3 (e.g. when using iPython
+  Notebook).  (#1153)
+
+- Allowed more traceback styles in Python console lexer. (PR#253)
+
+- Added decorators to TypeScript. (PR#509)
 
 
 Version 2.0.3
