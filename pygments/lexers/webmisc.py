@@ -437,7 +437,7 @@ class XQueryLexer(ExtendedRegexLexer):
             # Marklogic specific type?
             (r'(processing-instruction)(\s*)(\()',
              bygroups(Keyword, Text, Punctuation),
-             ('occurrenceindicator', 'kindtestforpi')),            
+             ('occurrenceindicator', 'kindtestforpi')),
             (r'(item)(\s*)(\()(\s*)(\))(?=[*+?])',
              bygroups(Keyword, Text, Punctuation, Text, Punctuation),
              'occurrenceindicator'),
@@ -833,10 +833,11 @@ class CirruLexer(RegexLexer):
     Syntax rules of Cirru can be found at:
     http://cirru.org/
 
-    * using ``()`` to markup blocks, but limited in the same line
-    * using ``""`` to markup strings, allow ``\`` to escape
-    * using ``$`` as a shorthand for ``()`` till indentation end or ``)``
-    * using indentations for create nesting
+    * using ``()`` for expressions, but restricted in a same line
+    * using ``""`` for strings, with ``\`` for escaping chars
+    * using ``$`` as folding operator
+    * using ``,`` as unfolding operator
+    * using indentations for nested blocks
 
     .. versionadded:: 2.0
     """
@@ -857,16 +858,16 @@ class CirruLexer(RegexLexer):
             (r'.', String.Escape, '#pop'),
         ],
         'function': [
+            (r'\,', Operator, '#pop'),
             (r'[^\s"()]+', Name.Function, '#pop'),
             (r'\)', Operator, '#pop'),
             (r'(?=\n)', Text, '#pop'),
             (r'\(', Operator, '#push'),
             (r'"', String, ('#pop', 'string')),
             (r'[ ]+', Text.Whitespace),
-            (r'\,', Operator, '#pop'),
         ],
         'line': [
-            (r'\$', Operator, 'function'),
+            (r'(?<!\w)\$(?!\w)', Operator, 'function'),
             (r'\(', Operator, 'function'),
             (r'\)', Operator),
             (r'\n', Text, '#pop'),
