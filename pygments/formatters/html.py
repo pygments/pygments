@@ -321,6 +321,12 @@ class HtmlFormatter(Formatter):
 
         .. versionadded:: 1.6
 
+    `filename`
+        A string used to generate a filename when rendering <pre> blocks,
+        for example if displaying source code.
+
+        .. versionadded:: 2.1
+
 
     **Subclassing the HTML formatter**
 
@@ -388,6 +394,7 @@ class HtmlFormatter(Formatter):
         self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
         self.tagsfile = self._decodeifneeded(options.get('tagsfile', ''))
         self.tagurlformat = self._decodeifneeded(options.get('tagurlformat', ''))
+        self.filename = self._decodeifneeded(options.get('filename', ''))
 
         if self.tagsfile:
             if not ctags:
@@ -691,6 +698,9 @@ class HtmlFormatter(Formatter):
         if self.noclasses:
             style.append('line-height: 125%')
         style = '; '.join(style)
+
+        if self.filename:
+            yield 0, ('<span class="filename">' + self.filename + '</span>')
 
         yield 0, ('<pre' + (style and ' style="%s"' % style) + '>')
         for tup in inner:
