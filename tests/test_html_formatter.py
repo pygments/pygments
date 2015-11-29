@@ -192,3 +192,11 @@ class HtmlFormatterTest(unittest.TestCase):
             fmt.format(tokensource, outfile)
             self.assertTrue('<a href="test_html_formatter.py#L-165">test_ctags</a>'
                             in outfile.getvalue())
+
+    def test_filename(self):
+        optdict = dict(filename="test.py")
+        outfile = StringIO()
+        fmt = HtmlFormatter(**optdict)
+        fmt.format(tokensource, outfile)
+        html = outfile.getvalue()
+        self.assertTrue(re.search("<span class=\"filename\">test.py</span><pre>", html))
