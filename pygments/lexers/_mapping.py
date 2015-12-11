@@ -17,8 +17,8 @@ from __future__ import print_function
 
 LEXERS = {
     'ABAPLexer': ('pygments.lexers.business', 'ABAP', ('abap',), ('*.abap',), ('text/x-abap',)),
-    'AbnfLexer': ('pygments.lexers.grammar_notation', 'ABNF', ('abnf',), ('*.abnf',), ('text/x-abnf',)),
     'APLLexer': ('pygments.lexers.apl', 'APL', ('apl',), ('*.apl',), ()),
+    'AbnfLexer': ('pygments.lexers.grammar_notation', 'ABNF', ('abnf',), ('*.abnf',), ('text/x-abnf',)),
     'ActionScript3Lexer': ('pygments.lexers.actionscript', 'ActionScript 3', ('as3', 'actionscript3'), ('*.as',), ('application/x-actionscript3', 'text/x-actionscript3', 'text/actionscript3')),
     'ActionScriptLexer': ('pygments.lexers.actionscript', 'ActionScript', ('as', 'actionscript'), ('*.as',), ('application/x-actionscript', 'text/x-actionscript', 'text/actionscript')),
     'AdaLexer': ('pygments.lexers.pascal', 'Ada', ('ada', 'ada95', 'ada2005'), ('*.adb', '*.ads', '*.ada'), ('text/x-ada',)),
@@ -412,6 +412,7 @@ LEXERS = {
     'XmlSmartyLexer': ('pygments.lexers.templates', 'XML+Smarty', ('xml+smarty',), (), ('application/xml+smarty',)),
     'XsltLexer': ('pygments.lexers.html', 'XSLT', ('xslt',), ('*.xsl', '*.xslt', '*.xpl'), ('application/xsl+xml', 'application/xslt+xml')),
     'XtendLexer': ('pygments.lexers.jvm', 'Xtend', ('xtend',), ('*.xtend',), ('text/x-xtend',)),
+    'XtlangLexer': ('pygments.lexers.lisp', 'xtlang', ('extempore',), ('*.xtm',), ()),
     'YamlJinjaLexer': ('pygments.lexers.templates', 'YAML+Jinja', ('yaml+jinja', 'salt', 'sls'), ('*.sls',), ('text/x-yaml+jinja', 'text/x-sls')),
     'YamlLexer': ('pygments.lexers.data', 'YAML', ('yaml',), ('*.yaml', '*.yml'), ('text/x-yaml',)),
     'ZephirLexer': ('pygments.lexers.php', 'Zephir', ('zephir',), ('*.zep',), ()),
