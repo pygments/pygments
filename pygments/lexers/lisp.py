@@ -18,7 +18,8 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.lexers.python import PythonLexer
 
 __all__ = ['SchemeLexer', 'CommonLispLexer', 'HyLexer', 'RacketLexer',
-           'NewLispLexer', 'EmacsLispLexer', 'ShenLexer', 'CPSALexer']
+           'NewLispLexer', 'EmacsLispLexer', 'ShenLexer', 'CPSALexer',
+           'XtlangLexer']
 
 
 class SchemeLexer(RegexLexer):
@@ -2363,3 +2364,206 @@ class CPSALexer(SchemeLexer):
             (r'(\[|\])', Punctuation),
         ],
     }
+
+class XtlangLexer(RegexLexer):
+    """An xtlang lexer for the Extempore programming environment
+
+    http://extempore.moso.com.au
+
+    This is a mixture of Scheme and xtlang, really. Keyword lists are
+    taken from the Extempore Emacs mode
+    (https://github.com/extemporelang/extempore-emacs-mode)
+
+    """
+    name = 'xtlang'
+    aliases = ['extempore']
+    filenames = ['*.xtm']
+    mimetypes = []
+
+    common_keywords = (
+        'lambda', 'define', 'if', 'else', 'cond', 'and',
+        'or', 'let', 'begin', 'set!', 'map', 'for-each'
+    )
+    scheme_keywords = (
+        'do', 'delay', 'quasiquote', 'unquote', 'unquote-splicing', 'eval',
+        'case', 'let*', 'letrec', 'quote', 'let*', 'letrec'
+    )
+    xtlang_bind_keywords = (
+        'bind-func', 'bind-val', 'bind-lib', 'bind-type', 'bind-alias',
+        'bind-poly', 'bind-dylib', 'bind-lib-func', 'bind-lib-val'
+    )
+    xtlang_keywords = (
+        'letz', 'memzone', 'cast', 'convert', 'dotimes', 'doloop'
+    )
+    common_functions = (
+        '*', '+', '-', '/', '<', '<=', '=', '>', '>=', '%', 'abs', 'acos',
+        'angle', 'append', 'apply', 'asin', 'assoc', 'assq', 'assv',
+        'atan', 'boolean?', 'caaaar', 'caaadr', 'caaar', 'caadar',
+        'caaddr', 'caadr', 'caar', 'cadaar', 'cadadr', 'cadar',
+        'caddar', 'cadddr', 'caddr', 'cadr', 'car', 'cdaaar',
+        'cdaadr', 'cdaar', 'cdadar', 'cdaddr', 'cdadr', 'cdar',
+        'cddaar', 'cddadr', 'cddar', 'cdddar', 'cddddr', 'cdddr',
+        'cddr', 'cdr', 'ceiling', 'cons', 'cos', 'floor', 'length',
+        'list', 'log', 'max', 'member', 'min', 'modulo', 'not',
+        'reverse', 'round', 'sin', 'sqrt', 'substring', 'tan',
+        'println', 'random', 'null?', 'callback', 'now'
+    )
+    scheme_functions = (
+        'call-with-current-continuation', 'call-with-input-file',
+        'call-with-output-file', 'call-with-values', 'call/cc',
+        'char->integer', 'char-alphabetic?', 'char-ci<=?', 'char-ci<?',
+        'char-ci=?', 'char-ci>=?', 'char-ci>?', 'char-downcase',
+        'char-lower-case?', 'char-numeric?', 'char-ready?',
+        'char-upcase', 'char-upper-case?', 'char-whitespace?',
+        'char<=?', 'char<?', 'char=?', 'char>=?', 'char>?', 'char?',
+        'close-input-port', 'close-output-port', 'complex?',
+        'current-input-port', 'current-output-port', 'denominator',
+        'display', 'dynamic-wind', 'eof-object?', 'eq?', 'equal?',
+        'eqv?', 'even?', 'exact->inexact', 'exact?', 'exp', 'expt',
+        'force', 'gcd', 'imag-part', 'inexact->exact', 'inexact?',
+        'input-port?', 'integer->char', 'integer?',
+        'interaction-environment', 'lcm', 'list->string',
+        'list->vector', 'list-ref', 'list-tail', 'list?', 'load',
+        'magnitude', 'make-polar', 'make-rectangular', 'make-string',
+        'make-vector', 'memq', 'memv', 'negative?', 'newline',
+        'null-environment', 'number->string', 'number?',
+        'numerator', 'odd?', 'open-input-file', 'open-output-file',
+        'output-port?', 'pair?', 'peek-char', 'port?', 'positive?',
+        'procedure?', 'quotient', 'rational?', 'rationalize', 'read',
+        'read-char', 'real-part', 'real?',
+        'remainder', 'scheme-report-environment', 'set-car!', 'set-cdr!',
+        'string', 'string->list', 'string->number', 'string->symbol',
+        'string-append', 'string-ci<=?', 'string-ci<?', 'string-ci=?',
+        'string-ci>=?', 'string-ci>?', 'string-copy', 'string-fill!',
+        'string-length', 'string-ref', 'string-set!', 'string<=?',
+        'string<?', 'string=?', 'string>=?', 'string>?', 'string?',
+        'symbol->string', 'symbol?', 'transcript-off', 'transcript-on',
+        'truncate', 'values', 'vector', 'vector->list', 'vector-fill!',
+        'vector-length', 'vector?',
+        'with-input-from-file', 'with-output-to-file', 'write',
+        'write-char', 'zero?'
+    )
+    xtlang_functions = (
+        'printf', 'toString', 'afill!', 'pfill!', 'tfill!', 'tbind', 'vfill!',
+        'array-fill!', 'pointer-fill!', 'tuple-fill!', 'vector-fill!', 'free',
+        'array', 'tuple', 'list', '~', 'cset!', 'cref', '&', 'bor',
+        'ang-names', '<<', '>>', 'nil', 'printf', 'sprintf', 'null', 'now',
+        'pset!', 'pref-ptr', 'vset!', 'vref', 'aset!', 'aref', 'aref-ptr',
+        'tset!', 'tref', 'tref-ptr', 'salloc', 'halloc', 'zalloc', 'alloc',
+        'schedule', 'exp', 'log', 'sin', 'cos', 'tan', 'asin', 'acos', 'atan',
+        'sqrt', 'expt', 'floor', 'ceiling', 'truncate', 'round',
+        'llvm_printf', 'push_zone', 'pop_zone', 'memzone', 'callback',
+        'llvm_sprintf', 'make-array', 'array-set!', 'array-ref',
+        'array-ref-ptr', 'pointer-set!', 'pointer-ref', 'pointer-ref-ptr',
+        'stack-alloc', 'heap-alloc', 'zone-alloc', 'make-tuple', 'tuple-set!',
+        'tuple-ref', 'tuple-ref-ptr', 'closure-set!', 'closure-ref', 'pref',
+        'pdref', 'impc_null', 'bitcast', 'void', 'ifret', 'ret->', 'clrun->',
+        'make-env-zone', 'make-env', '<>', 'dtof', 'ftod', 'i1tof',
+        'i1tod', 'i1toi8', 'i1toi32', 'i1toi64', 'i8tof', 'i8tod',
+        'i8toi1', 'i8toi32', 'i8toi64', 'i32tof', 'i32tod', 'i32toi1',
+        'i32toi8', 'i32toi64', 'i64tof', 'i64tod', 'i64toi1',
+        'i64toi8', 'i64toi32',
+    )
+
+    # valid names for Scheme identifiers (names cannot consist fully
+    # of numbers, but this should be good enough for now)
+    valid_scheme_name = r'[\w!$%&*+,/:<=>?@^~|-]+'
+
+    # valid characters in xtlang names & types
+    valid_xtlang_name = r'[\w._!-]+'
+    valid_xtlang_type = r'[]{}[\w_<>,*/|!-]+'
+
+    tokens = {
+        # keep track of when we're exiting the xtlang form
+        'xtlang': [
+            (r'\(', Punctuation, '#push'),
+            (r'\)', Punctuation, '#pop'),
+
+            (r'(?<=bind-func\s)' + valid_xtlang_name, Name.Function),
+            (r'(?<=bind-val\s)' + valid_xtlang_name, Name.Function),
+            (r'(?<=bind-type\s)' + valid_xtlang_name, Name.Function),
+            (r'(?<=bind-alias\s)' + valid_xtlang_name, Name.Function),
+            (r'(?<=bind-poly\s)' + valid_xtlang_name, Name.Function),
+            (r'(?<=bind-lib\s)' + valid_xtlang_name, Name.Function),
+            (r'(?<=bind-dylib\s)' + valid_xtlang_name, Name.Function),
+            (r'(?<=bind-lib-func\s)' + valid_xtlang_name, Name.Function),
+            (r'(?<=bind-lib-val\s)' + valid_xtlang_name, Name.Function),
+
+            # type annotations
+            (r':' + valid_xtlang_type, Keyword.Type),
+
+            # types
+            (r'(<' + valid_xtlang_type + r'>|\|' + valid_xtlang_type + r'\||/' + valid_xtlang_type + r'/|' + valid_xtlang_type + r'\*)\**',
+             Keyword.Type),
+
+            # keywords
+            (words(xtlang_keywords, prefix=r'(?<=\()'), Keyword),
+
+            # builtins
+            (words(xtlang_functions, prefix=r'(?<=\()'), Name.Function),
+
+            include('common'),
+
+            # variables
+            (valid_xtlang_name, Name.Variable),
+        ],
+        'scheme': [
+            # quoted symbols
+            (r"'" + valid_scheme_name, String.Symbol),
+
+            # char literals
+            (r"#\\([()/'\"._!§$%& ?=+-]|[a-zA-Z0-9]+)", String.Char),
+
+            # special operators
+            (r"('|#|`|,@|,|\.)", Operator),
+
+            # keywords
+            (words(scheme_keywords, prefix=r'(?<=\()'), Keyword),
+
+            # builtins
+            (words(scheme_functions, prefix=r'(?<=\()'), Name.Function),
+
+            include('common'),
+
+            # variables
+            (valid_scheme_name, Name.Variable),
+        ],
+        # common to both xtlang and Scheme
+        'common': [
+            # comments
+            (r';.*$', Comment.Single),
+
+            # whitespaces - usually not relevant
+            (r'\s+', Text),
+
+            # numbers
+            (r'-?\d+\.\d+', Number.Float),
+            (r'-?\d+', Number.Integer),
+
+            # binary/oct/hex literals
+            (r'(#b|#o|#x)[\d.]+', Number),
+
+            # strings
+            (r'"(\\\\|\\"|[^"])*"', String),
+
+            # true/false constants
+            (r'(#t|#f)', Name.Constant),
+
+            # keywords
+            (words(common_keywords, prefix=r'(?<=\()'), Keyword),
+
+            # builtins
+            (words(common_functions, prefix=r'(?<=\()'), Name.Function),
+
+            # the famous parentheses!
+            (r'(\(|\))', Punctuation),
+        ],
+        'root': [
+            # go into xtlang mode
+            (words(xtlang_bind_keywords, prefix=r'(?<=\()', suffix=r'\b'), Keyword, 'xtlang'),
+
+            include('scheme')
+        ],
+    }
+
+    # TODO stash the current changes, see how "+" was done before. also, look at the diff!
