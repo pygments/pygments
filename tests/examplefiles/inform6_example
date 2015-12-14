@@ -8,8 +8,8 @@ Switches d2SDq;
 Constant Story "Informal Testing";
 Constant Headline "^Not a game.^";!% This is a comment, not ICL.
 
-Release 2;
-Serial "140308";
+Release 3;
+Serial "151213";
 Version 5;
 
 Ifndef TARGET_ZCODE;
@@ -174,7 +174,8 @@ Extend 'wave' replace * -> NewWave;
 
 Extend only 'feel' 'touch' replace * noun -> Feel;
 
-[ TestSub a b o;
+[ TestSub "a\
+           " b o "@@98"; ! Not an escape sequence.
     string 25 low_string;
     print "Test what?> ";
     table->0 = 260;
