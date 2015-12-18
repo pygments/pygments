@@ -5,12 +5,15 @@
 
     Basic style object.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.token import Token, STANDARD_TYPES
 from pygments.util import add_metaclass
+from pygments.console import codes
+
+ansilist = ['#ansi'+x for x in codes.keys()]
 
 
 class StyleMeta(type):
@@ -22,6 +25,8 @@ class StyleMeta(type):
                 obj.styles[token] = ''
 
         def colorformat(text):
+            if text in ansilist:
+                return text
             if text[0:1] == '#':
                 col = text[1:]
                 if len(col) == 6:
