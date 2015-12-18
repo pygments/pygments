@@ -43,7 +43,8 @@ class CoqLexer(RegexLexer):
         'Proposition', 'Fact', 'Remark', 'Example', 'Proof', 'Goal', 'Save',
         'Qed', 'Defined', 'Hint', 'Resolve', 'Rewrite', 'View', 'Search',
         'Show', 'Print', 'Printing', 'All', 'Graph', 'Projections', 'inside',
-        'outside', 'Check',
+        'outside', 'Check', 'Global', 'Instance', 'Class',
+        'Universe', 'Polymorphic', 'Monomorphic'
     )
     keywords2 = (
         # Gallina
