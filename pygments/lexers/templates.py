@@ -2178,9 +2178,10 @@ class TwigHtmlLexer(DelegatingLexer):
 		
 class Angular2Lexer(RegexLexer):
     """
-    Generic `angular <http://handlebarsjs.com/>` template lexer.
+    Generic `angular2 <link missing>` template lexer.
 
-    Highlights only the Angular template tags (stuff between `{{` and `}}`).
+    Highlights only the Angular template tags (stuff between `{{` and `}}` and 
+    special attributes: '(event)=', '[property]=', '[(twoWayBinding)]=').
     Everything else is left for a delegating lexer.
 
     .. versionadded:: 2.0
