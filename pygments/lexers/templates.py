@@ -44,7 +44,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer',
            'LassoCssLexer', 'LassoJavascriptLexer', 'HandlebarsLexer',
            'HandlebarsHtmlLexer', 'YamlJinjaLexer', 'LiquidLexer',
-           'TwigLexer', 'TwigHtmlLexer']
+           'TwigLexer', 'TwigHtmlLexer', 'Angular2Lexer', 'Angular2HtmlLexer']
 
 
 class ErbLexer(Lexer):
@@ -2174,3 +2174,70 @@ class TwigHtmlLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(TwigHtmlLexer, self).__init__(HtmlLexer, TwigLexer, **options)
+
+		
+class Angular2Lexer(RegexLexer):
+    """
+    Generic `angular <http://handlebarsjs.com/>` template lexer.
+
+    Highlights only the Angular template tags (stuff between `{{` and `}}`).
+    Everything else is left for a delegating lexer.
+
+    .. versionadded:: 2.0
+    """
+
+    name = "Angular2"
+    aliases = ['ng2']
+
+    tokens = {
+        'root': [
+            (r'[^{([*]+', Other),
+
+			# {{meal.name}}
+            (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'ngExpression'),
+			
+			# (click)="deleteOrder()"; [value]="test"; [(twoWayTest)]="foo.bar"
+            (r'([([]+)([\w:.-]+)([\])]+)(\s*)((=)(\s*))?',
+             bygroups(Punctuation, Name.Attribute, Punctuation, Operator, Operator), 'attr'),
+			# *ngIf="..."
+            (r'(\*)([\w:.-]+)(\s*)((=)(\s*))?',
+             bygroups(Punctuation, Name.Attribute, Punctuation, Operator), 'attr'),
+        ],
+		
+		'ngExpression': [
+			(r'\s+(\|\s+)?', Text),
+            (r'\}\}', Comment.Preproc, '#pop'),
+			
+			# Literals
+            (r':?(true|false)', String.Boolean),
+            (r':?"(\\\\|\\"|[^"])*"', String.Double),
+            (r":?'(\\\\|\\'|[^'])*'", String.Single),
+            (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
+             r"0[xX][0-9a-fA-F]+[Ll]?", Number),
+			 
+			# Variabletext
+            (r'[a-zA-Z][\w-]*', Name.Variable),
+            (r'\.[\w-]+', Name.Variable),
+		],
+        'attr': [
+            ('".*?"', String, '#pop'),
+            ("'.*?'", String, '#pop'),
+            (r'[^\s>]+', String, '#pop'),
+        ],
+    }
+
+
+class Angular2HtmlLexer(DelegatingLexer):
+    """
+    Subclass of the `Angular2Lexer` that highlights unlexed data with the
+    `HtmlLexer`.
+
+    .. versionadded:: 2.0
+    """
+
+    name = "HTML + Angular2"
+    aliases = ["html+ng2"]
+    filenames = ['*.ng2']
+
+    def __init__(self, **options):
+        super(Angular2HtmlLexer, self).__init__(HtmlLexer, Angular2Lexer, **options)
