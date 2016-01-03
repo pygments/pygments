@@ -2175,7 +2175,7 @@ class TwigHtmlLexer(DelegatingLexer):
     def __init__(self, **options):
         super(TwigHtmlLexer, self).__init__(HtmlLexer, TwigLexer, **options)
 
-		
+        
 class Angular2Lexer(RegexLexer):
     """
     Generic `angular2 <link missing>` template lexer.
@@ -2194,32 +2194,32 @@ class Angular2Lexer(RegexLexer):
         'root': [
             (r'[^{([*#]+', Other),
 
-			# {{meal.name}}
+            # {{meal.name}}
             (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'ngExpression'),
-			
-			# (click)="deleteOrder()"; [value]="test"; [(twoWayTest)]="foo.bar"
+            
+            # (click)="deleteOrder()"; [value]="test"; [(twoWayTest)]="foo.bar"
             (r'([([]+)([\w:.-]+)([\])]+)(\s*)((=)(\s*))?',
              bygroups(Punctuation, Name.Attribute, Punctuation, Operator, Operator), 'attr'),
-			# *ngIf="..."; #f="ngForm"
+            # *ngIf="..."; #f="ngForm"
             (r'([*#])([\w:.-]+)(\s*)((=)(\s*))?',
              bygroups(Punctuation, Name.Attribute, Punctuation, Operator), 'attr'),
         ],
-		
-		'ngExpression': [
-			(r'\s+(\|\s+)?', Text),
+        
+        'ngExpression': [
+            (r'\s+(\|\s+)?', Text),
             (r'\}\}', Comment.Preproc, '#pop'),
-			
-			# Literals
+            
+            # Literals
             (r':?(true|false)', String.Boolean),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
-			 
-			# Variabletext
+             
+            # Variabletext
             (r'[a-zA-Z][\w-]*(\(.*\))?', Name.Variable),
             (r'\.[\w-]+(\(.*\))?', Name.Variable),
-		],
+        ],
         'attr': [
             ('".*?"', String, '#pop'),
             ("'.*?'", String, '#pop'),
