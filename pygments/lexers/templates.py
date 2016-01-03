@@ -2192,7 +2192,7 @@ class Angular2Lexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[^{([*]+', Other),
+            (r'[^{([*#]+', Other),
 
 			# {{meal.name}}
             (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'ngExpression'),
@@ -2200,8 +2200,8 @@ class Angular2Lexer(RegexLexer):
 			# (click)="deleteOrder()"; [value]="test"; [(twoWayTest)]="foo.bar"
             (r'([([]+)([\w:.-]+)([\])]+)(\s*)((=)(\s*))?',
              bygroups(Punctuation, Name.Attribute, Punctuation, Operator, Operator), 'attr'),
-			# *ngIf="..."
-            (r'(\*)([\w:.-]+)(\s*)((=)(\s*))?',
+			# *ngIf="..."; #f="ngForm"
+            (r'([*#])([\w:.-]+)(\s*)((=)(\s*))?',
              bygroups(Punctuation, Name.Attribute, Punctuation, Operator), 'attr'),
         ],
 		
@@ -2217,8 +2217,8 @@ class Angular2Lexer(RegexLexer):
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
 			 
 			# Variabletext
-            (r'[a-zA-Z][\w-]*', Name.Variable),
-            (r'\.[\w-]+', Name.Variable),
+            (r'[a-zA-Z][\w-]*(\(.*\))?', Name.Variable),
+            (r'\.[\w-]+(\(.*\))?', Name.Variable),
 		],
         'attr': [
             ('".*?"', String, '#pop'),
