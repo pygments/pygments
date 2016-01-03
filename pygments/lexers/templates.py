@@ -2198,11 +2198,16 @@ class Angular2Lexer(RegexLexer):
             (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'ngExpression'),
             
             # (click)="deleteOrder()"; [value]="test"; [(twoWayTest)]="foo.bar"
-            (r'([([]+)([\w:.-]+)([\])]+)(\s*)((=)(\s*))?',
-             bygroups(Punctuation, Name.Attribute, Punctuation, Operator, Operator), 'attr'),
+            (r'([([]+)([\w:.-]+)([\])]+)(\s*)(=)(\s*)',
+             bygroups(Punctuation, Name.Attribute, Punctuation, Text, Operator, Text), 'attr'),
+            (r'([([]+)([\w:.-]+)([\])]+)(\s*)',
+             bygroups(Punctuation, Name.Attribute, Punctuation, Text)),
+             
             # *ngIf="..."; #f="ngForm"
-            (r'([*#])([\w:.-]+)(\s*)((=)(\s*))?',
+            (r'([*#])([\w:.-]+)(\s*)(=)(\s*)',
              bygroups(Punctuation, Name.Attribute, Punctuation, Operator), 'attr'),
+            (r'([*#])([\w:.-]+)(\s*)',
+             bygroups(Punctuation, Name.Attribute, Punctuation)),
         ],
         
         'ngExpression': [
@@ -2219,6 +2224,9 @@ class Angular2Lexer(RegexLexer):
             # Variabletext
             (r'[a-zA-Z][\w-]*(\(.*\))?', Name.Variable),
             (r'\.[\w-]+(\(.*\))?', Name.Variable),
+            
+            # inline If
+            (r'(\?)(\s*)([^}\s]+)(\s*)(:)(\s*)([^}\s]+)(\s*)', bygroups(Operator, Text, String, Text, Operator, Text, String, Text)),
         ],
         'attr': [
             ('".*?"', String, '#pop'),
