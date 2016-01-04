@@ -244,7 +244,7 @@ class ABAPLexer(RegexLexer):
     """
     name = 'ABAP'
     aliases = ['abap']
-    filenames = ['*.abap']
+    filenames = ['*.abap', '*.ABAP']
     mimetypes = ['text/x-abap']
 
     flags = re.IGNORECASE | re.MULTILINE
