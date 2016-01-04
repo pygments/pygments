@@ -51,20 +51,22 @@ Version 2.1
   * True color (24-bit) terminal ANSI sequences (#1142)
     (formatter alias: "16m")
 
+- New "filename" option for HTML formatter (PR#527).
+
 - Improved performance of the HTML formatter for long lines (PR#504).
 
-- Updated autopygmentize script (PR#445)
+- Updated autopygmentize script (PR#445).
 
 - Fixed style inheritance for non-standard token types in HTML output.
 
 - Added support for async/await to Python 3 lexer.
 
 - Rewrote linenos option for TerminalFormatter (it's better, but slightly
-  different output than before).  (#1147)
+  different output than before) (#1147).
 
-- Javascript lexer now supports most of ES6.  (#1100)
+- Javascript lexer now supports most of ES6 (#1100).
 
-- Cocoa builtins updated for iOS 8.1 (PR#433)
+- Cocoa builtins updated for iOS 8.1 (PR#433).
 
 - Combined BashSessionLexer and ShellSessionLexer, new version should support
   the prompt styles of either.
@@ -72,11 +74,11 @@ Version 2.1
 - Added option to pygmentize to show a full traceback on exceptions.
 
 - Fixed incomplete output on Windows and Python 3 (e.g. when using iPython
-  Notebook).  (#1153)
+  Notebook) (#1153).
 
-- Allowed more traceback styles in Python console lexer. (PR#253)
+- Allowed more traceback styles in Python console lexer (PR#253).
 
-- Added decorators to TypeScript. (PR#509)
+- Added decorators to TypeScript (PR#509).
 
 
 Version 2.0.3
