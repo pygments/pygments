@@ -285,6 +285,7 @@ class Inform6Lexer(RegexLexer):
             include('_whitespace'),
             (r';', Punctuation, '#pop'),
             (r'\*', Punctuation),
+            (r'"', String.Double, 'plain-string'),
             (_name, Name.Variable)
         ],
         # Array
