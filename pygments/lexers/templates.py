@@ -2178,13 +2178,13 @@ class TwigHtmlLexer(DelegatingLexer):
         
 class Angular2Lexer(RegexLexer):
     """
-    Generic `angular2 <link missing>` template lexer.
+    Generic `angular2 <http://victorsavkin.com/post/119943127151/angular-2-template-syntax>` template lexer.
 
     Highlights only the Angular template tags (stuff between `{{` and `}}` and 
     special attributes: '(event)=', '[property]=', '[(twoWayBinding)]=').
     Everything else is left for a delegating lexer.
 
-    .. versionadded:: 2.0
+    .. versionadded:: 2.1a0
     """
 
     name = "Angular2"
