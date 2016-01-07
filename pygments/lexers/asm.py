@@ -450,7 +450,8 @@ class TasmLexer(RegexLexer):
             include('punctuation'),
             (register, Name.Builtin),
             (identifier, Name.Variable),
-            (r'\\\s*;.*[\r\n]', Text), # Do not match newline when it's preceeded by a
+            # Do not match newline when it's preceeded by a backslash
+            (r'(\\\s*)(;.*)([\r\n])', bygroups(Text, Comment.Single, Text)),
             (r'[\r\n]+', Text, '#pop'),
             include('whitespace')
         ],
@@ -460,8 +461,8 @@ class TasmLexer(RegexLexer):
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'whitespace': [
-            (r'\n', Text),
-            (r'\\\n', Text),
+            (r'[\n\r]', Text),
+            (r'\\[\n\r]', Text),
             (r'[ \t]+', Text),
             (r';.*', Comment.Single)
         ],
