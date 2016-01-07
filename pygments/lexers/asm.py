@@ -19,7 +19,7 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
 
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
            'CObjdumpLexer', 'LlvmLexer', 'NasmLexer', 'NasmObjdumpLexer',
-           'Ca65Lexer']
+           'TasmLexer', 'Ca65Lexer']
 
 
 class GasLexer(RegexLexer):
@@ -309,7 +309,6 @@ class LlvmLexer(RegexLexer):
         ]
     }
 
-
 class NasmLexer(RegexLexer):
     """
     For Nasm (Intel) assembly code.
@@ -395,6 +394,85 @@ class NasmObjdumpLexer(ObjdumpLexer):
     mimetypes = ['text/x-nasm-objdump']
 
     tokens = _objdump_lexer_tokens(NasmLexer)
+
+
+class TasmLexer(RegexLexer):
+    """
+    For Tasm (Turbo Assembler) assembly code.
+    """
+    name = 'TASM'
+    aliases = ['tasm']
+    filenames = ['*.asm', '*.ASM', '*.tasm']
+    mimetypes = ['text/x-tasm']
+
+    identifier = r'[@a-z$._?][\w$.?#@~]*'
+    hexn = r'(?:0x[0-9a-f]+|$0[0-9a-f]*|[0-9]+[0-9a-f]*h)'
+    octn = r'[0-7]+q'
+    binn = r'[01]+b'
+    decn = r'[0-9]+'
+    floatn = decn + r'\.e?' + decn
+    string = r'"(\\"|[^"\n])*"|' + r"'(\\'|[^'\n])*'|" + r"`(\\`|[^`\n])*`"
+    declkw = r'(?:res|d)[bwdqt]|times'
+    register = (r'r[0-9][0-5]?[bwd]|'
+                r'[a-d][lh]|[er]?[a-d]x|[er]?[sb]p|[er]?[sd]i|[c-gs]s|st[0-7]|'
+                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]')
+    wordop = r'seg|wrt|strict'
+    type = r'byte|[dq]?word'
+    directives = (r'BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'
+                  r'ORG|ALIGN|STRUC|ENDSTRUC|ENDS|COMMON|CPU|GROUP|UPPERCASE|INCLUDE|'
+                  r'EXPORT|LIBRARY|MODULE|PROC|ENDP|USES|ARG|DATASEG|UDATASEG|END|IDEAL|'
+                  r'P386|MODEL|ASSUME|CODESEG|SIZE')
+    # T[A-Z][a-z] is more of a convention. Lexer should filter out STRUC definitions
+    # and then 'add' them to datatype somehow.
+    datatype = (r'db|dd|dw|T[A-Z][a-z]+')
+
+    flags = re.IGNORECASE | re.MULTILINE
+    tokens = {
+        'root': [
+            (r'^\s*%', Comment.Preproc, 'preproc'),
+            include('whitespace'),
+            (identifier + ':', Name.Label),
+            (directives, Keyword, 'instruction-args'),
+            (r'(%s)(\s+)(%s)' % (identifier, datatype),
+                bygroups(Name.Constant, Keyword.Declaration, Keyword.Declaration),
+                'instruction-args'),
+            (declkw, Keyword.Declaration, 'instruction-args'),
+            (identifier, Name.Function, 'instruction-args'),
+            (r'[\r\n]+', Text)
+        ],
+        'instruction-args': [
+            (string, String),
+            (hexn, Number.Hex),
+            (octn, Number.Oct),
+            (binn, Number.Bin),
+            (floatn, Number.Float),
+            (decn, Number.Integer),
+            include('punctuation'),
+            (register, Name.Builtin),
+            (identifier, Name.Variable),
+            (r'\\\s*;.*[\r\n]', Text), # Do not match newline when it's preceeded by a
+            (r'[\r\n]+', Text, '#pop'),
+            include('whitespace')
+        ],
+        'preproc': [
+            (r'[^;\n]+', Comment.Preproc),
+            (r';.*?\n', Comment.Single, '#pop'),
+            (r'\n', Comment.Preproc, '#pop'),
+        ],
+        'whitespace': [
+            (r'\n', Text),
+            (r'\\\n', Text),
+            (r'[ \t]+', Text),
+            (r';.*', Comment.Single)
+        ],
+        'punctuation': [
+            (r'[,():\[\]]+', Punctuation),
+            (r'[&|^<>+*=/%~-]+', Operator),
+            (r'[$]+', Keyword.Constant),
+            (wordop, Operator.Word),
+            (type, Keyword.Type)
+        ],
+    }
 
 
 class Ca65Lexer(RegexLexer):
