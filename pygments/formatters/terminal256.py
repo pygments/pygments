@@ -29,7 +29,7 @@ import sys
 from pygments.formatter import Formatter
 
 
-__all__ = ['Terminal256Formatter']
+__all__ = ['Terminal256Formatter', 'TerminalTrueColorFormatter']
 
 
 class EscapeSequence:
@@ -56,6 +56,18 @@ class EscapeSequence:
             attrs.append("04")
         return self.escape(attrs)
 
+    def true_color_string(self):
+        attrs = []
+        if self.fg:
+            attrs.extend(("38", "2", str(self.fg[0]), str(self.fg[1]), str(self.fg[2])))
+        if self.bg:
+            attrs.extend(("48", "2", str(self.bg[0]), str(self.bg[1]), str(self.bg[2])))
+        if self.bold:
+            attrs.append("01")
+        if self.underline:
+            attrs.append("04")
+        return self.escape(attrs)
+
     def reset_string(self):
         attrs = []
         if self.fg is not None:
@@ -68,9 +80,9 @@ class EscapeSequence:
 
 
 class Terminal256Formatter(Formatter):
-    r"""
+    """
     Format tokens with ANSI color sequences, for output in a 256-color
-    terminal or console. Like in `TerminalFormatter` color sequences
+    terminal or console.  Like in `TerminalFormatter` color sequences
     are terminated at newlines, so that paging the output works correctly.
 
     The formatter takes colors from a style defined by the `style` option
@@ -221,3 +233,49 @@ class Terminal256Formatter(Formatter):
 
             if not_found:
                 outfile.write(value)
+
+
+class TerminalTrueColorFormatter(Terminal256Formatter):
+    r"""
+    Format tokens with ANSI color sequences, for output in a true-color
+    terminal or console.  Like in `TerminalFormatter` color sequences
+    are terminated at newlines, so that paging the output works correctly.
+
+    .. versionadded:: 2.1
+
+    Options accepted:
+
+    `style`
+        The style to use, can be a string or a Style subclass (default:
+        ``'default'``).
+    """
+    name = 'TerminalTrueColor'
+    aliases = ['terminal16m', 'console16m', '16m']
+    filenames = []
+
+    def _build_color_table(self):
+        pass
+
+    def _color_tuple(self, color):
+        try:
+            rgb = int(str(color), 16)
+        except ValueError:
+            return None
+        r = (rgb >> 16) & 0xff
+        g = (rgb >> 8) & 0xff
+        b = rgb & 0xff
+        return (r, g, b)
+
+    def _setup_styles(self):
+        for ttype, ndef in self.style:
+            escape = EscapeSequence()
+            if ndef['color']:
+                escape.fg = self._color_tuple(ndef['color'])
+            if ndef['bgcolor']:
+                escape.bg = self._color_tuple(ndef['bgcolor'])
+            if self.usebold and ndef['bold']:
+                escape.bold = True
+            if self.useunderline and ndef['underline']:
+                escape.underline = True
+            self.style_string[str(ttype)] = (escape.true_color_string(),
+                                             escape.reset_string())

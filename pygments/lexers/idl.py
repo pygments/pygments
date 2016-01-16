@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexer import RegexLexer, words
-from pygments.token import Text, Comment, Operator, Keyword, Name, Number
+from pygments.token import Text, Comment, Operator, Keyword, Name, Number, String
 
 __all__ = ['IDLLexer']
 
@@ -256,7 +256,14 @@ class IDLLexer(RegexLexer):
             (r'\+\+|--|->|\+|-|##|#|\*|/|<|>|&&|\^|~|\|\|\?|:', Operator),
             (r'\b(mod=|lt=|le=|eq=|ne=|ge=|gt=|not=|and=|or=|xor=)', Operator),
             (r'\b(mod|lt|le|eq|ne|ge|gt|not|and|or|xor)\b', Operator),
-            (r'\b[0-9](L|B|S|UL|ULL|LL)?\b', Number),
+            (r'"[^\"]*"', String.Double),
+            (r"'[^\']*'", String.Single),
+            (r'\b[\+\-]?([0-9]*\.[0-9]+|[0-9]+\.[0-9]*)(D|E)?([\+\-]?[0-9]+)?\b', Number.Float),
+            (r'\b\'[\+\-]?[0-9A-F]+\'X(U?(S?|L{1,2})|B)\b', Number.Hex),
+            (r'\b\'[\+\-]?[0-7]+\'O(U?(S?|L{1,2})|B)\b', Number.Oct),
+            (r'\b[\+\-]?[0-9]+U?L{1,2}\b', Number.Integer.Long),
+            (r'\b[\+\-]?[0-9]+U?S?\b', Number.Integer),
+            (r'\b[\+\-]?[0-9]+B\b', Number),
             (r'.', Text),
         ]
     }

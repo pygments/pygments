@@ -13,12 +13,14 @@ import re
 
 from pygments.lexer import RegexLexer, default, words, bygroups, include, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace
+    Number, Punctuation, Whitespace, Literal
 from pygments.lexers.shell import BashLexer
 
 __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
-           'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer']
+           'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
+           'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
+           'PkgConfigLexer', 'PacmanConfLexer']
 
 
 class IniLexer(RegexLexer):
@@ -28,8 +30,8 @@ class IniLexer(RegexLexer):
 
     name = 'INI'
     aliases = ['ini', 'cfg', 'dosini']
-    filenames = ['*.ini', '*.cfg']
-    mimetypes = ['text/x-ini']
+    filenames = ['*.ini', '*.cfg', '*.inf']
+    mimetypes = ['text/x-ini', 'text/inf']
 
     tokens = {
         'root': [
@@ -540,7 +542,286 @@ class DockerLexer(RegexLexer):
              bygroups(Name.Keyword, Whitespace, Keyword)),
             (r'^(%s)\b(.*)' % (_keywords,), bygroups(Keyword, String)),
             (r'#.*', Comment),
-            (r'RUN', Keyword), # Rest of line falls through
+            (r'RUN', Keyword),  # Rest of line falls through
             (r'(.*\\\n)*.+', using(BashLexer)),
+        ],
+    }
+
+
+class TerraformLexer(RegexLexer):
+    """
+    Lexer for `terraformi .tf files <https://www.terraform.io/>`_.
+
+    .. versionadded:: 2.1
+    """
+
+    name = 'Terraform'
+    aliases = ['terraform', 'tf']
+    filenames = ['*.tf']
+    mimetypes = ['application/x-tf', 'application/x-terraform']
+
+    tokens = {
+        'root': [
+             include('string'),
+             include('punctuation'),
+             include('curly'),
+             include('basic'),
+             include('whitespace'),
+             (r'[0-9]+', Number),
+        ],
+        'basic': [
+             (words(('true', 'false'), prefix=r'\b', suffix=r'\b'), Keyword.Type),
+             (r'\s*/\*', Comment.Multiline, 'comment'),
+             (r'\s*#.*\n', Comment.Single),
+             (r'(.*?)(\s*)(=)', bygroups(Name.Attribute, Text, Operator)),
+             (words(('variable', 'resource', 'provider', 'provisioner', 'module'),
+                    prefix=r'\b', suffix=r'\b'), Keyword.Reserved, 'function'),
+             (words(('ingress', 'egress', 'listener', 'default', 'connection'),
+                    prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
+             ('\$\{', String.Interpol, 'var_builtin'),
+        ],
+        'function': [
+             (r'(\s+)(".*")(\s+)', bygroups(Text, String, Text)),
+             include('punctuation'),
+             include('curly'),
+        ],
+        'var_builtin': [
+            (r'\$\{', String.Interpol, '#push'),
+            (words(('concat', 'file', 'join', 'lookup', 'element'),
+                   prefix=r'\b', suffix=r'\b'), Name.Builtin),
+            include('string'),
+            include('punctuation'),
+            (r'\s+', Text),
+            (r'\}', String.Interpol, '#pop'),
+        ],
+        'string': [
+            (r'(".*")', bygroups(String.Double)),
+        ],
+        'punctuation': [
+            (r'[\[\]\(\),.]', Punctuation),
+        ],
+        # Keep this seperate from punctuation - we sometimes want to use different
+        # Tokens for { }
+        'curly': [
+            (r'\{', Text.Punctuation),
+            (r'\}', Text.Punctuation),
+        ],
+        'comment': [
+            (r'[^*/]', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline)
+        ],
+        'whitespace': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text),
+        ],
+    }
+
+
+class TermcapLexer(RegexLexer):
+    """
+    Lexer for termcap database source.
+
+    This is very simple and minimal.
+
+    .. versionadded:: 2.1
+    """
+    name = 'Termcap'
+    aliases = ['termcap',]
+
+    filenames = ['termcap', 'termcap.src',]
+    mimetypes = []
+
+    # NOTE:
+    #   * multiline with trailing backslash
+    #   * separator is ':'
+    #   * to embed colon as data, we must use \072
+    #   * space after separator is not allowed (mayve)
+    tokens = {
+        'root': [
+            (r'^#.*$', Comment),
+            (r'^[^\s#:\|]+', Name.Tag, 'names'),
+        ],
+        'names': [
+            (r'\n', Text, '#pop'),
+            (r':', Punctuation, 'defs'),
+            (r'\|', Punctuation),
+            (r'[^:\|]+', Name.Attribute),
+        ],
+        'defs': [
+            (r'\\\n[ \t]*', Text),
+            (r'\n[ \t]*', Text, '#pop:2'),
+            (r'(#)([0-9]+)', bygroups(Operator, Number)),
+            (r'=', Operator, 'data'),
+            (r':', Punctuation),
+            (r'[^\s:=#]+', Name.Class),
+        ],
+        'data': [
+            (r'\\072', Literal),
+            (r':', Punctuation, '#pop'),
+            (r'[^:\\]+', Literal),  # for performance
+            (r'.', Literal),
+        ],
+    }
+
+
+class TerminfoLexer(RegexLexer):
+    """
+    Lexer for terminfo database source.
+
+    This is very simple and minimal.
+
+    .. versionadded:: 2.1
+    """
+    name = 'Terminfo'
+    aliases = ['terminfo',]
+
+    filenames = ['terminfo', 'terminfo.src',]
+    mimetypes = []
+
+    # NOTE:
+    #   * multiline with leading whitespace
+    #   * separator is ','
+    #   * to embed comma as data, we can use \,
+    #   * space after separator is allowed
+    tokens = {
+        'root': [
+            (r'^#.*$', Comment),
+            (r'^[^\s#,\|]+', Name.Tag, 'names'),
+        ],
+        'names': [
+            (r'\n', Text, '#pop'),
+            (r'(,)([ \t]*)', bygroups(Punctuation, Text), 'defs'),
+            (r'\|', Punctuation),
+            (r'[^,\|]+', Name.Attribute),
+        ],
+        'defs': [
+            (r'\n[ \t]+', Text),
+            (r'\n', Text, '#pop:2'),
+            (r'(#)([0-9]+)', bygroups(Operator, Number)),
+            (r'=', Operator, 'data'),
+            (r'(,)([ \t]*)', bygroups(Punctuation, Text)),
+            (r'[^\s,=#]+', Name.Class),
+        ],
+        'data': [
+            (r'\\[,\\]', Literal),
+            (r'(,)([ \t]*)', bygroups(Punctuation, Text), '#pop'),
+            (r'[^\\,]+', Literal),  # for performance
+            (r'.', Literal),
+        ],
+    }
+
+
+class PkgConfigLexer(RegexLexer):
+    """
+    Lexer for `pkg-config
+    <http://www.freedesktop.org/wiki/Software/pkg-config/>`_
+    (see also `manual page <http://linux.die.net/man/1/pkg-config>`_).
+
+    .. versionadded:: 2.1
+    """
+
+    name = 'PkgConfig'
+    aliases = ['pkgconfig',]
+    filenames = ['*.pc',]
+    mimetypes = []
+
+    tokens = {
+        'root': [
+            (r'#.*$', Comment.Single),
+
+            # variable definitions
+            (r'^(\w+)(=)', bygroups(Name.Attribute, Operator)),
+
+            # keyword lines
+            (r'^([\w.]+)(:)',
+             bygroups(Name.Tag, Punctuation), 'spvalue'),
+
+            # variable references
+            include('interp'),
+
+            # fallback
+            (r'[^${}#=:\n.]+', Text),
+            (r'.', Text),
+        ],
+        'interp': [
+            # you can escape literal "$" as "$$"
+            (r'\$\$', Text),
+
+            # variable references
+            (r'\$\{', String.Interpol, 'curly'),
+        ],
+        'curly': [
+            (r'\}', String.Interpol, '#pop'),
+            (r'\w+', Name.Attribute),
+        ],
+        'spvalue': [
+            include('interp'),
+
+            (r'#.*$', Comment.Single, '#pop'),
+            (r'\n', Text, '#pop'),
+
+            # fallback
+            (r'[^${}#\n]+', Text),
+            (r'.', Text),
+        ],
+    }
+
+
+class PacmanConfLexer(RegexLexer):
+    """
+    Lexer for `pacman.conf
+    <https://www.archlinux.org/pacman/pacman.conf.5.html>`_.
+
+    Actually, IniLexer works almost fine for this format,
+    but it yield error token. It is because pacman.conf has
+    a form without assignment like:
+
+        UseSyslog
+        Color
+        TotalDownload
+        CheckSpace
+        VerbosePkgLists
+
+    These are flags to switch on.
+
+    .. versionadded:: 2.1
+    """
+
+    name = 'PacmanConf'
+    aliases = ['pacmanconf',]
+    filenames = ['pacman.conf',]
+    mimetypes = []
+
+    tokens = {
+        'root': [
+            # comment
+            (r'#.*$', Comment.Single),
+
+            # section header
+            (r'^\s*\[.*?\]\s*$', Keyword),
+
+            # variable definitions
+            # (Leading space is allowed...)
+            (r'(\w+)(\s*)(=)',
+             bygroups(Name.Attribute, Text, Operator)),
+
+            # flags to on
+            (r'^(\s*)(\w+)(\s*)$',
+             bygroups(Text, Name.Attribute, Text)),
+
+            # built-in special values
+            (words((
+                '$repo',  # repository
+                '$arch',  # architecture
+                '%o',     # outfile
+                '%u',     # url
+                ), suffix=r'\b'),
+             Name.Variable),
+            
+            # fallback
+            (r'.', Text),
         ],
     }

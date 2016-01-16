@@ -46,10 +46,10 @@ class ChapelLexer(RegexLexer):
                 'continue', 'delete', 'dmapped', 'do', 'domain', 'else', 'enum',
                 'export', 'extern', 'for', 'forall', 'if', 'index', 'inline',
                 'iter', 'label', 'lambda', 'let', 'local', 'new', 'noinit', 'on',
-                'otherwise', 'pragma', 'private', 'public', 'reduce', 'return',
-                'scan', 'select', 'serial', 'single', 'sparse', 'subdomain',
-                'sync', 'then', 'use', 'when', 'where', 'while', 'with', 'yield',
-                'zip'), suffix=r'\b'),
+                'otherwise', 'pragma', 'private', 'public', 'reduce',
+                'require', 'return', 'scan', 'select', 'serial', 'single',
+                'sparse', 'subdomain', 'sync', 'then', 'use', 'when', 'where',
+                'while', 'with', 'yield', 'zip'), suffix=r'\b'),
              Keyword),
             (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
             (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text),
@@ -77,7 +77,8 @@ class ChapelLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
 
             # strings
-            (r'["\'](\\\\|\\"|[^"\'])*["\']', String),
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'(\\\\|\\'|[^'])*'", String),
 
             # tokens
             (r'(=|\+=|-=|\*=|/=|\*\*=|%=|&=|\|=|\^=|&&=|\|\|=|<<=|>>=|'

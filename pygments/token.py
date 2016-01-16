@@ -182,6 +182,7 @@ STANDARD_TYPES = {
     Comment.Hashbang:              'ch',
     Comment.Multiline:             'cm',
     Comment.Preproc:               'cp',
+    Comment.PreprocFile:           'cpf',
     Comment.Single:                'c1',
     Comment.Special:               'cs',
 
