@@ -8,6 +8,9 @@
     Pygments style by Miikka Salminen (https://github.com/miikkas)
     A desaturated, somewhat subdued style created for the Lovelace interactive
     learning environment.
+
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style
