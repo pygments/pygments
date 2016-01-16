@@ -446,7 +446,7 @@ class TypeScriptLexer(RegexLexer):
     """
 
     name = 'TypeScript'
-    aliases = ['ts']
+    aliases = ['ts', 'typescript']
     filenames = ['*.ts']
     mimetypes = ['text/x-typescript']
 
