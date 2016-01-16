@@ -1780,8 +1780,6 @@ class LassoJavascriptLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = LassoLexer.analyse_text(text) - 0.05
-        if 'function' in text:
-            rv += 0.2
         return rv
 
 
