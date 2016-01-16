@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""
+    pygments.lexers._csound_builtins
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
 
 # Opcodes in Csound 6.05 from
 #   csound --list-opcodes
