@@ -41,7 +41,7 @@ class CssLexer(RegexLexer):
             (r'\{', Punctuation, 'content'),
             (r'\:[\w-]+', Name.Decorator),
             (r'\.[\w-]+', Name.Class),
-            (r'\#[\w-]+', Name.Function),
+            (r'\#[\w-]+', Name.Namespace),
             (r'@[\w-]+', Keyword, 'atrule'),
             (r'[\w-]+', Name.Tag),
             (r'[~^*!%&$\[\]()<>|+=@:;,./?-]', Operator),
@@ -120,7 +120,7 @@ class CssLexer(RegexLexer):
                 'upper-alpha', 'upper-latin', 'upper-roman', 'uppercase', 'url',
                 'visible', 'w-resize', 'wait', 'wider', 'x-fast', 'x-high', 'x-large', 'x-loud',
                 'x-low', 'x-small', 'x-soft', 'xx-large', 'xx-small', 'yes'), suffix=r'\b'),
-             Keyword),
+             Name.Builtin),
             (words((
                 'indigo', 'gold', 'firebrick', 'indianred', 'yellow', 'darkolivegreen',
                 'darkseagreen', 'mediumvioletred', 'mediumorchid', 'chartreuse',
