@@ -83,7 +83,7 @@ class FontManager(object):
         if proc.returncode == 0:
             lines = stdout.splitlines()
             if lines:
-                path = lines[0].strip().strip(':')
+                path = lines[0].decode().strip().strip(':')
                 return path
 
     def _create_nix(self):

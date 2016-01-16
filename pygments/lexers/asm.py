@@ -87,7 +87,7 @@ class GasLexer(RegexLexer):
             (r'#.*?\n', Comment)
         ],
         'punctuation': [
-            (r'[-*,.():]+', Punctuation)
+            (r'[-*,.()\[\]!:]+', Punctuation)
         ]
     }
 
