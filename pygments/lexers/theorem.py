@@ -43,7 +43,8 @@ class CoqLexer(RegexLexer):
         'Proposition', 'Fact', 'Remark', 'Example', 'Proof', 'Goal', 'Save',
         'Qed', 'Defined', 'Hint', 'Resolve', 'Rewrite', 'View', 'Search',
         'Show', 'Print', 'Printing', 'All', 'Graph', 'Projections', 'inside',
-        'outside', 'Check',
+        'outside', 'Check', 'Global', 'Instance', 'Class', 'Existing',
+        'Universe', 'Polymorphic', 'Monomorphic', 'Context'
     )
     keywords2 = (
         # Gallina
@@ -64,12 +65,16 @@ class CoqLexer(RegexLexer):
         'unfold', 'change', 'cutrewrite', 'simpl', 'have', 'suff', 'wlog',
         'suffices', 'without', 'loss', 'nat_norm', 'assert', 'cut', 'trivial',
         'revert', 'bool_congr', 'nat_congr', 'symmetry', 'transitivity', 'auto',
-        'split', 'left', 'right', 'autorewrite', 'tauto',
+        'split', 'left', 'right', 'autorewrite', 'tauto', 'setoid_rewrite',
+        'intuition', 'eauto', 'eapply', 'econstructor', 'etransitivity',
+        'constructor', 'erewrite', 'red', 'cbv', 'lazy', 'vm_compute',
+        'native_compute', 'subst',
     )
     keywords5 = (
         # Terminators
         'by', 'done', 'exact', 'reflexivity', 'tauto', 'romega', 'omega',
         'assumption', 'solve', 'contradiction', 'discriminate',
+        'congruence',
     )
     keywords6 = (
         # Control
@@ -87,15 +92,13 @@ class CoqLexer(RegexLexer):
         '->', r'\.', r'\.\.', ':', '::', ':=', ':>', ';', ';;', '<', '<-',
         '<->', '=', '>', '>]', r'>\}', r'\?', r'\?\?', r'\[', r'\[<', r'\[>',
         r'\[\|', ']', '_', '`', r'\{', r'\{<', r'\|', r'\|]', r'\}', '~', '=>',
-        r'/\\', r'\\/',
+        r'/\\', r'\\/', r'\{\|', r'\|\}',
         u'Π', u'λ',
     )
     operators = r'[!$%&*+\./:<=>?@^|~-]'
-    word_operators = ('and', 'asr', 'land', 'lor', 'lsl', 'lxor', 'mod', 'or')
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
-    primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list',
-                  'array')
+    primitives = ('unit', 'nat', 'bool', 'string', 'ascii', 'list')
 
     tokens = {
         'root': [
@@ -108,11 +111,10 @@ class CoqLexer(RegexLexer):
             (words(keywords4, prefix=r'\b', suffix=r'\b'), Keyword),
             (words(keywords5, prefix=r'\b', suffix=r'\b'), Keyword.Pseudo),
             (words(keywords6, prefix=r'\b', suffix=r'\b'), Keyword.Reserved),
-            (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
-            (r'\b([A-Z][\w\']*)', Name.Class),
+            # (r'\b([A-Z][\w\']*)(\.)', Name.Namespace, 'dotted'),
+            (r'\b([A-Z][\w\']*)', Name),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
-            (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
 
             (r"[^\W\d][\w']*", Name),
@@ -130,7 +132,7 @@ class CoqLexer(RegexLexer):
 
             (r'"', String.Double, 'string'),
 
-            (r'[~?][a-z][\w\']*:', Name.Variable),
+            (r'[~?][a-z][\w\']*:', Name),
         ],
         'comment': [
             (r'[^(*)]+', Comment),

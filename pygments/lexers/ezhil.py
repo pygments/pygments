@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.ezhil
-    ~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Pygments lexers for Ezhil language.
     

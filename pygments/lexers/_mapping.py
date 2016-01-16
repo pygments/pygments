@@ -16,9 +16,9 @@
 from __future__ import print_function
 
 LEXERS = {
-    'ABAPLexer': ('pygments.lexers.business', 'ABAP', ('abap',), ('*.abap',), ('text/x-abap',)),
-    'AbnfLexer': ('pygments.lexers.grammar_notation', 'ABNF', ('abnf',), ('*.abnf',), ('text/x-abnf',)),
+    'ABAPLexer': ('pygments.lexers.business', 'ABAP', ('abap',), ('*.abap', '*.ABAP'), ('text/x-abap',)),
     'APLLexer': ('pygments.lexers.apl', 'APL', ('apl',), ('*.apl',), ()),
+    'AbnfLexer': ('pygments.lexers.grammar_notation', 'ABNF', ('abnf',), ('*.abnf',), ('text/x-abnf',)),
     'ActionScript3Lexer': ('pygments.lexers.actionscript', 'ActionScript 3', ('as3', 'actionscript3'), ('*.as',), ('application/x-actionscript3', 'text/x-actionscript3', 'text/actionscript3')),
     'ActionScriptLexer': ('pygments.lexers.actionscript', 'ActionScript', ('as', 'actionscript'), ('*.as',), ('application/x-actionscript', 'text/x-actionscript', 'text/actionscript')),
     'AdaLexer': ('pygments.lexers.pascal', 'Ada', ('ada', 'ada95', 'ada2005'), ('*.adb', '*.ads', '*.ada'), ('text/x-ada',)),
@@ -346,7 +346,7 @@ LEXERS = {
     'RtsLexer': ('pygments.lexers.trafficscript', 'TrafficScript', ('rts', 'trafficscript'), ('*.rts',), ()),
     'RubyConsoleLexer': ('pygments.lexers.ruby', 'Ruby irb session', ('rbcon', 'irb'), (), ('text/x-ruby-shellsession',)),
     'RubyLexer': ('pygments.lexers.ruby', 'Ruby', ('rb', 'ruby', 'duby'), ('*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec', '*.rbx', '*.duby', 'Gemfile'), ('text/x-ruby', 'application/x-ruby')),
-    'RustLexer': ('pygments.lexers.rust', 'Rust', ('rust',), ('*.rs',), ('text/rust',)),
+    'RustLexer': ('pygments.lexers.rust', 'Rust', ('rust',), ('*.rs', '*.rs.in'), ('text/rust',)),
     'SLexer': ('pygments.lexers.r', 'S', ('splus', 's', 'r'), ('*.S', '*.R', '.Rhistory', '.Rprofile', '.Renviron'), ('text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r', 'text/x-R', 'text/x-r-history', 'text/x-r-profile')),
     'SMLLexer': ('pygments.lexers.ml', 'Standard ML', ('sml',), ('*.sml', '*.sig', '*.fun'), ('text/x-standardml', 'application/x-standardml')),
     'SassLexer': ('pygments.lexers.css', 'Sass', ('sass',), ('*.sass',), ('text/x-sass',)),
@@ -390,7 +390,7 @@ LEXERS = {
     'TurtleLexer': ('pygments.lexers.rdf', 'Turtle', ('turtle',), ('*.ttl',), ('text/turtle', 'application/x-turtle')),
     'TwigHtmlLexer': ('pygments.lexers.templates', 'HTML+Twig', ('html+twig',), ('*.twig',), ('text/html+twig',)),
     'TwigLexer': ('pygments.lexers.templates', 'Twig', ('twig',), (), ('application/x-twig',)),
-    'TypeScriptLexer': ('pygments.lexers.javascript', 'TypeScript', ('ts',), ('*.ts',), ('text/x-typescript',)),
+    'TypeScriptLexer': ('pygments.lexers.javascript', 'TypeScript', ('ts', 'typescript'), ('*.ts',), ('text/x-typescript',)),
     'UrbiscriptLexer': ('pygments.lexers.urbi', 'UrbiScript', ('urbiscript',), ('*.u',), ('application/x-urbiscript',)),
     'VCTreeStatusLexer': ('pygments.lexers.console', 'VCTreeStatus', ('vctreestatus',), (), ()),
     'VGLLexer': ('pygments.lexers.dsls', 'VGL', ('vgl',), ('*.rpf',), ()),
