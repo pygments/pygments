@@ -89,6 +89,7 @@ Who uses Pygments?
 
 This is an (incomplete) list of projects and sites known to use the Pygments highlighter.
 
+* `Wikipedia <http://en.wikipedia.org>`_
 * `Pygments API <http://pygments.appspot.com/>`_, a HTTP POST interface to Pygments
 * `The Sphinx documentation builder <http://sphinx.pocoo.org/>`_, for embedded source examples
 * `rst2pdf <http://code.google.com/p/rst2pdf/>`_, a reStructuredText to PDF converter
