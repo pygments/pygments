@@ -280,7 +280,7 @@ class IgorLexer(RegexLexer):
             # Built-in functions.
             (words(functions, prefix=r'\b', suffix=r'\b'), Name.Function),
             # Compiler directives.
-            (r'^#(include|pragma|define|undef|if|ifdef|ifndef|elif|else|endif)',
+            (r'^#(include|pragma|define|undef|ifdef|ifndef|if|elif|else|endif)',
              Name.Decorator),
             (r'[^a-z"/]+$', Text),
             (r'.', Text),
