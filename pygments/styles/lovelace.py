@@ -62,11 +62,13 @@ class LovelaceStyle(Style):
         Name.Entity:         _ESCAPE_LIME,
         Name.Exception:      _EXCEPT_YELLOW,
         Name.Function:       _FUN_BROWN,
+        Name.Function.Magic: _DOC_ORANGE,
         Name.Label:          _LABEL_CYAN,
         Name.Namespace:      _LABEL_CYAN,
         Name.Tag:            _KW_BLUE,
         Name.Variable:       '#b04040',
         Name.Variable.Global:_EXCEPT_YELLOW,
+        Name.Variable.Magic: _DOC_ORANGE,
 
         String:              _STR_RED,
         String.Char:         _OW_PURPLE,

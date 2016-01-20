@@ -174,6 +174,10 @@ Name Tokens
 `Name.Function`
     Token type for function names.
 
+`Name.Function.Magic`
+    same as `Name.Function` but for function names that have an implicit use in
+    a language (e.g. ``__init__`` method in Python).
+
 `Name.Label`
     Token type for label names (e.g. in languages that support ``goto``).
 
@@ -200,6 +204,10 @@ Name Tokens
 
 `Name.Variable.Instance`
     same as `Name.Variable` but for instance variables.
+
+`Name.Variable.Magic`
+    same as `Name.Variable` but for variable names that have an implicit use in
+    a language (e.g. ``__doc__`` in Python).
 
 
 Literals
