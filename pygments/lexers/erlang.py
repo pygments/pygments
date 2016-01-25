@@ -119,6 +119,10 @@ class ErlangLexer(RegexLexer):
 
             # Erlang script shebang
             (r'\A#!.+\n', Comment.Hashbang),
+
+            # EEP 43: Maps
+            # http://www.erlang.org/eeps/eep-0043.html
+            (r'#\{', Punctuation, 'map_key'),
         ],
         'string': [
             (escape_re, String.Escape),
@@ -133,6 +137,17 @@ class ErlangLexer(RegexLexer):
             (r'(record)(\s*)(\()('+macro_re+r')',
              bygroups(Name.Entity, Text, Punctuation, Name.Label), '#pop'),
             (atom_re, Name.Entity, '#pop'),
+        ],
+        'map_key': [
+            include('root'),
+            (r'=>', Punctuation, 'map_val'),
+            (r':=', Punctuation, 'map_val'),
+            (r'\}', Punctuation, '#pop'),
+        ],
+        'map_val': [
+            include('root'),
+            (r',', Punctuation, '#pop'),
+            (r'(?=\})', Punctuation, '#pop'),
         ],
     }
 
