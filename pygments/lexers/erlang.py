@@ -82,7 +82,11 @@ class ErlangLexer(RegexLexer):
 
     variable_re = r'(?:[A-Z_]\w*)'
 
-    escape_re = r'(?:\\(?:[bdefnrstv\'"\\/]|[0-7][0-7]?[0-7]?|\^[a-zA-Z]))'
+    esc_char_re = r'[bdefnrstv\'"\\]'
+    esc_octal_re = r'[0-7][0-7]?[0-7]?'
+    esc_hex_re = r'(?:x[0-9a-fA-F]{2}|x\{[0-9a-fA-F]+\})'
+    esc_ctrl_re = r'\^[a-zA-Z]'
+    escape_re = r'(?:\\(?:'+esc_char_re+r'|'+esc_octal_re+r'|'+esc_hex_re+r'|'+esc_ctrl_re+r'))'
 
     macro_re = r'(?:'+variable_re+r'|'+atom_re+r')'
 

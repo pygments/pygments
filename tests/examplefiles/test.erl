@@ -152,6 +152,14 @@ a_binary() ->
 a_list_comprehension() ->
     [X*2 || X <- [1,2,3]].
 
+escape_sequences() ->
+    [ "\b\d\e\f\n\r\s\t\v\'\"\\"
+    , "\1\12\123" % octal
+    , "\x01"      % short hex
+    , "\x{fff}"   % long hex
+    , "\^a\^A"    % control characters
+    ].
+
 map(Fun, [H|T]) ->
     [Fun(H) | map(Fun, T)];
 
