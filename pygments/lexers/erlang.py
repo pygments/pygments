@@ -116,6 +116,9 @@ class ErlangLexer(RegexLexer):
             (r'\?'+macro_re, Name.Constant),
             (r'\$(?:'+escape_re+r'|\\[ %]|[^\\])', String.Char),
             (r'#'+atom_re+r'(:?\.'+atom_re+r')?', Name.Label),
+
+            # Erlang script shebang
+            (r'\A#!.+\n', Comment.Hashbang),
         ],
         'string': [
             (escape_re, String.Escape),
