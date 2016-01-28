@@ -441,18 +441,17 @@ class ArduinoLexer(CppLexer):
         'LOW', 'INPUT', 'OUTPUT', 'INPUT_PULLUP', 'LED_BUILTIN', 'true', 'false',
         'void', 'boolean', 'char', 'unsigned char', 'byte', 'int', 'unsigned int',
         'word', 'long', 'unsigned long', 'short', 'float', 'double', 'string', 'String',
-        'array', 'char()', 'byte()', 'int()', 'word()', 'long()', 'float()', 'static',
-        'volatile', 'const', 'sizeof()', 'boolean', 'byte', 'word', 'string', 'String',
-        'array', 'int', 'float', 'private', 'char', 'virtual', 'operator', 'sizeof',
-        'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t', 'int8_t', 'int16_t', 'int32_t',
-        'int64_t', 'dynamic_cast', 'typedef', 'const_cast', 'const', 'struct',
-        'static_cast', 'union', 'unsigned', 'long', 'volatile', 'static', 'protected',
-        'bool', 'public', 'friend', 'auto', 'void', 'enum', 'extern', 'class', 'short',
-        'reinterpret_cast', 'double', 'register', 'explicit', 'signed', 'inline',
-        'delete', '_Bool', 'complex', '_Complex', '_Imaginary', 'atomic_bool',
-        'atomic_char', 'atomic_schar', 'atomic_uchar', 'atomic_short', 'atomic_ushort',
-        'atomic_int', 'atomic_uint', 'atomic_long', 'atomic_ulong', 'atomic_llong',
-        'atomic_ullong', 'PROGMEM'))
+        'array', 'static', 'volatile', 'const', 'boolean', 'byte', 'word', 'string',
+        'String', 'array', 'int', 'float', 'private', 'char', 'virtual', 'operator',
+        'sizeof', 'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t', 'int8_t', 'int16_t',
+        'int32_t', 'int64_t', 'dynamic_cast', 'typedef', 'const_cast', 'const',
+        'struct', 'static_cast', 'union', 'unsigned', 'long', 'volatile', 'static',
+        'protected', 'bool', 'public', 'friend', 'auto', 'void', 'enum', 'extern',
+        'class', 'short', 'reinterpret_cast', 'double', 'register', 'explicit',
+        'signed', 'inline', 'delete', '_Bool', 'complex', '_Complex', '_Imaginary',
+        'atomic_bool', 'atomic_char', 'atomic_schar', 'atomic_uchar', 'atomic_short',
+        'atomic_ushort', 'atomic_int', 'atomic_uint', 'atomic_long', 'atomic_ulong',
+        'atomic_llong', 'atomic_ullong', 'PROGMEM'))
 
     # Language shipped functions and class ( )
     functions = set((
