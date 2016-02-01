@@ -4,7 +4,7 @@
  * by Brad Chamberlain and Steve Deitz
  * 07/13/2006 in Knoxville airport while waiting for flight home from
  *            HPLS workshop
- * compiles and runs with chpl compiler version 1.7.0
+ * compiles and runs with chpl compiler version 1.12.0
  * for more information, contact: chapel_info@cray.com
  * 
  *
@@ -71,10 +71,13 @@ proc computeAction(bottleNum) {
 // Modules...
 module M1 {
   var x = 10;
+
+  var y = 13.0;
 }
 
 module M2 {
-  use M1;
+  use M1 except y;
+  use M1 only y;
   proc main() {
     writeln("M2 -> M1 -> x " + x);
   }
@@ -148,10 +151,10 @@ class IntPair {
 var ip = new IntPair(17,2);
 write(ip);
 
-var targetDom: {1..10},
+var targetDom = {1..10},
   target: [targetDom] int;
 coforall i in targetDom with (ref target) {
-  targetDom[i] = i ** 3;
+  target[i] = i ** 3;
 }
 
 var wideOpen = 0o777,
@@ -166,7 +169,9 @@ private module M3 {
   }
 
   private iter bar() {
-
+    for i in 1..10 {
+      yield i;
+    }
   }
 
   private var x: int;
