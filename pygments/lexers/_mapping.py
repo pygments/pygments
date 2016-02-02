@@ -26,6 +26,7 @@ LEXERS = {
     'AgdaLexer': ('pygments.lexers.haskell', 'Agda', ('agda',), ('*.agda',), ('text/x-agda',)),
     'AlloyLexer': ('pygments.lexers.dsls', 'Alloy', ('alloy',), ('*.als',), ('text/x-alloy',)),
     'AmbientTalkLexer': ('pygments.lexers.ambient', 'AmbientTalk', ('at', 'ambienttalk', 'ambienttalk/2'), ('*.at',), ('text/x-ambienttalk',)),
+    'AmplLexer': ('pygments.lexers.ampl', 'Ampl', ('ampl',), ('*.run',), ()),
     'AntlrActionScriptLexer': ('pygments.lexers.parsers', 'ANTLR With ActionScript Target', ('antlr-as', 'antlr-actionscript'), ('*.G', '*.g'), ()),
     'AntlrCSharpLexer': ('pygments.lexers.parsers', 'ANTLR With C# Target', ('antlr-csharp', 'antlr-c#'), ('*.G', '*.g'), ()),
     'AntlrCppLexer': ('pygments.lexers.parsers', 'ANTLR With CPP Target', ('antlr-cpp',), ('*.G', '*.g'), ()),
