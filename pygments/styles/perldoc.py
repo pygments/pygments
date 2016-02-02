@@ -41,7 +41,7 @@ class PerldocStyle(Style):
         Operator.Word:          '#8B008B',
 
         Keyword:                '#8B008B bold',
-        Keyword.Type:           '#a7a7a7',
+        Keyword.Type:           '#00688B',
 
         Name.Class:             '#008b45 bold',
         Name.Exception:         '#008b45 bold',
