@@ -97,17 +97,17 @@ class CSharpLexer(RegexLexer):
                  Comment.Preproc),
                 (r'\b(extern)(\s+)(alias)\b', bygroups(Keyword, Text,
                  Keyword)),
-                (r'(abstract|as|async|await|base|break|case|catch|'
+                (r'(abstract|as|async|await|base|break|by|case|catch|'
                  r'checked|const|continue|default|delegate|'
                  r'do|else|enum|event|explicit|extern|false|finally|'
                  r'fixed|for|foreach|goto|if|implicit|in|interface|'
-                 r'internal|is|lock|new|null|operator|'
+                 r'internal|is|let|lock|new|null|on|operator|'
                  r'out|override|params|private|protected|public|readonly|'
                  r'ref|return|sealed|sizeof|stackalloc|static|'
                  r'switch|this|throw|true|try|typeof|'
                  r'unchecked|unsafe|virtual|void|while|'
                  r'get|set|new|partial|yield|add|remove|value|alias|ascending|'
-                 r'descending|from|group|into|orderby|select|where|'
+                 r'descending|from|group|into|orderby|select|thenby|where|'
                  r'join|equals)\b', Keyword),
                 (r'(global)(::)', bygroups(Keyword, Punctuation)),
                 (r'(bool|byte|char|decimal|double|dynamic|float|int|long|object|'

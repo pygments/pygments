@@ -877,7 +877,7 @@ class GenshiMarkupLexer(RegexLexer):
             # yield style and script blocks as Other
             (r'<\s*(script|style)\s*.*?>.*?<\s*/\1\s*>', Other),
             (r'<\s*py:[a-zA-Z0-9]+', Name.Tag, 'pytag'),
-            (r'<\s*[a-zA-Z0-9:]+', Name.Tag, 'tag'),
+            (r'<\s*[a-zA-Z0-9:.]+', Name.Tag, 'tag'),
             include('variable'),
             (r'[<$]', Other),
         ],

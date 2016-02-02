@@ -82,9 +82,13 @@ class FontManager(object):
         stdout, _ = proc.communicate()
         if proc.returncode == 0:
             lines = stdout.splitlines()
-            if lines:
-                path = lines[0].decode().strip().strip(':')
-                return path
+            for line in lines:
+                if line.startswith('Fontconfig warning:'):
+                    continue
+                path = line.decode().strip().strip(':')
+                if path:
+                    return path
+            return None
 
     def _create_nix(self):
         for name in STYLES['NORMAL']:

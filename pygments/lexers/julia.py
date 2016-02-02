@@ -132,14 +132,23 @@ class JuliaLexer(RegexLexer):
         'string': [
             (r'"', String, '#pop'),
             (r'\\\\|\\"|\\\n', String.Escape),  # included here for raw strings
-            (r'\$(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?',
-                String.Interpol),
-            (r'[^\\"$]+', String),
-            # quotes, dollar signs, and backslashes must be parsed one at a time
-            (r'["\\]', String),
-            # unhandled string formatting sign
-            (r'\$', String)
+            # Interpolation is defined as "$" followed by the shortest full
+            # expression, which is something we can't parse.
+            # Include the most common cases here: $word, and $(paren'd expr).
+            (r'\$[a-zA-Z_]+', String.Interpol),
+            (r'\$\(', String.Interpol, 'in-intp'),
+            # @printf and @sprintf formats
+            (r'%[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?[hlL]?[diouxXeEfFgGcrs%]',
+             String.Interpol),
+            (r'[^$%"\\]+', String),
+            # unhandled special signs
+            (r'[$%"\\]', String),
         ],
+        'in-intp': [
+            (r'[^()]+', String.Interpol),
+            (r'\(', String.Interpol, '#push'),
+            (r'\)', String.Interpol, '#pop'),
+        ]
     }
 
     def analyse_text(text):
