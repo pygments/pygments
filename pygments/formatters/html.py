@@ -702,7 +702,9 @@ class HtmlFormatter(Formatter):
         if self.filename:
             yield 0, ('<span class="filename">' + self.filename + '</span>')
 
-        yield 0, ('<pre' + (style and ' style="%s"' % style) + '>')
+        # the empty span here is to keep leading empty lines from being
+        # ignored by HTML parsers
+        yield 0, ('<pre' + (style and ' style="%s"' % style) + '><span></span>')
         for tup in inner:
             yield tup
         yield 0, '</pre>'
