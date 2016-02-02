@@ -31,6 +31,7 @@ Programming languages
 * Dart
 * Delphi
 * Dylan
+* `Elm <http://elm-lang.org/>`_
 * Erlang
 * `Ezhil <http://ezhillang.org>`_ Ezhil - A Tamil programming language
 * Factor
