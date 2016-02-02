@@ -235,7 +235,7 @@ class CppLexer(CFamilyLexer):
     }
 
     def analyse_text(text):
-        if re.search('#include <[a-z]+>', text):
+        if re.search('#include <[a-z_]+>', text):
             return 0.2
         if re.search('using namespace ', text):
             return 0.4
