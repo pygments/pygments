@@ -216,6 +216,8 @@ class CppLexer(CFamilyLexer):
                 'final'), suffix=r'\b'), Keyword),
             (r'char(16_t|32_t)\b', Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            # C++11 raw strings
+            (r'R"\(', String, 'rawstring'),
             inherit,
         ],
         'root': [
@@ -231,6 +233,11 @@ class CppLexer(CFamilyLexer):
             (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
+        ],
+        'rawstring': [
+            (r'\)"', String, '#pop'),
+            (r'[^)]+', String),
+            (r'\)', String),
         ],
     }
 
