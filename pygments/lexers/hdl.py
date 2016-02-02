@@ -108,8 +108,8 @@ class VerilogLexer(RegexLexer):
                 'trior', 'tri0', 'tri1', 'trireg', 'uwire', 'wire', 'wand', 'wo'
                 'shortreal', 'real', 'realtime'), suffix=r'\b'),
              Keyword.Type),
-            ('[a-zA-Z_]\w*:(?!:)', Name.Label),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*:(?!:)', Name.Label),
+            (r'\$?[a-zA-Z_]\w*', Name),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -250,8 +250,8 @@ class SystemVerilogLexer(RegexLexer):
                 'trior', 'tri0', 'tri1', 'trireg', 'uwire', 'wire', 'wand', 'wo'
                 'shortreal', 'real', 'realtime'), suffix=r'\b'),
              Keyword.Type),
-            ('[a-zA-Z_]\w*:(?!:)', Name.Label),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*:(?!:)', Name.Label),
+            (r'\$?[a-zA-Z_]\w*', Name),
         ],
         'classname': [
             (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
