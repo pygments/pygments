@@ -39,7 +39,9 @@ class IniLexer(RegexLexer):
             (r'[;#].*', Comment.Single),
             (r'\[.*?\]$', Keyword),
             (r'(.*?)([ \t]*)(=)([ \t]*)(.*(?:\n[ \t].+)*)',
-             bygroups(Name.Attribute, Text, Operator, Text, String))
+             bygroups(Name.Attribute, Text, Operator, Text, String)),
+            # standalone option, supported by some INI parsers
+            (r'(.+?)$', Name.Attribute),
         ]
     }
 
