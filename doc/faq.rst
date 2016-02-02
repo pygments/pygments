@@ -115,7 +115,8 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 * `wxHTMLPygmentizer <http://colinbarnette.net/projects/wxHTMLPygmentizer>`_ is
   a GUI utility, used to make code-colorization easier
 * `Postmarkup <http://code.google.com/p/postmarkup/>`_, a BBCode to XHTML generator
-* `WpPygments <http://blog.mirotin.net/?page_id=49>`_, a highlighter plugin for WordPress
+* `WpPygments <http://blog.mirotin.net/?page_id=49>`_, and `WPygments
+  <https://github.com/capynet/WPygments>`_, highlighter plugins for WordPress
 * `Siafoo <http://siafoo.net>`_, a tool for sharing and storing useful code and programming experience
 * `D source <http://www.dsource.org/>`_, a community for the D programming language
 * `dpaste.com <http://dpaste.com/>`_, another Django pastebin
@@ -125,7 +126,12 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 * `PasteBox <http://p.boxnet.eu/>`_, a pastebin focused on privacy
 * `hilite.me <http://www.hilite.me/>`_, a site to highlight code snippets
 * `patx.me <http://patx.me/paste>`_, a pastebin
-* `Fluidic <https://github.com/richsmith/fluidic>`_, an experiment in integrating shells with a GUI
+* `Fluidic <https://github.com/richsmith/fluidic>`_, an experiment in
+  integrating shells with a GUI
+* `pygments.rb <https://github.com/tmm1/pygments.rb>`_, a pygments wrapper for Ruby
+* `Clygments <https://github.com/bfontaine/clygments>`_, a pygments wrapper for
+  Clojure
+* `PHPygments <https://github.com/capynet/PHPygments>`_, a pygments wrapper for PHP
 
 
 If you have a project or web site using Pygments, drop me a line, and I'll add a
