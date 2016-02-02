@@ -125,6 +125,8 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 * `PasteBox <http://p.boxnet.eu/>`_, a pastebin focused on privacy
 * `hilite.me <http://www.hilite.me/>`_, a site to highlight code snippets
 * `patx.me <http://patx.me/paste>`_, a pastebin
+* `Fluidic <https://github.com/richsmith/fluidic>`_, an experiment in integrating shells with a GUI
+
 
 If you have a project or web site using Pygments, drop me a line, and I'll add a
 link here.
