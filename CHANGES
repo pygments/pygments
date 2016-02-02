@@ -7,6 +7,31 @@ pull request numbers to the requests at
 <https://bitbucket.org/birkenfeld/pygments-main/pull-requests/merged>.
 
 
+Version 2.2
+-----------
+(in development)
+
+- Added lexers:
+
+  * AMPL
+  * TypoScript (#1173)
+
+- Added `lexers.find_lexer_class_by_name()` (#1203)
+
+
+Version 2.1.1
+-------------
+(in development)
+
+- Fixed Jython compatibility (#1205)
+- Fixed HTML formatter output with leading empty lines (#1111)
+- Added a mapping table for LaTeX encodings and added utf8 (#1152)
+- Fixed image formatter font searching on Macs (#1188)
+- Fixed deepcopy-ing of Token instances (#1168)
+- Fixed Julia string interpolation (#1170)
+- Many smaller fixes to various lexers
+
+
 Version 2.1
 -----------
 (released Jan 17, 2016)

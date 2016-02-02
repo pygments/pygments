@@ -216,6 +216,8 @@ class CppLexer(CFamilyLexer):
                 'final'), suffix=r'\b'), Keyword),
             (r'char(16_t|32_t)\b', Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            # C++11 raw strings
+            (r'R"\(', String, 'rawstring'),
             inherit,
         ],
         'root': [
@@ -232,10 +234,15 @@ class CppLexer(CFamilyLexer):
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
         ],
+        'rawstring': [
+            (r'\)"', String, '#pop'),
+            (r'[^)]+', String),
+            (r'\)', String),
+        ],
     }
 
     def analyse_text(text):
-        if re.search('#include <[a-z]+>', text):
+        if re.search('#include <[a-z_]+>', text):
             return 0.2
         if re.search('using namespace ', text):
             return 0.4

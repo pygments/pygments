@@ -90,28 +90,23 @@ Who uses Pygments?
 This is an (incomplete) list of projects and sites known to use the Pygments highlighter.
 
 * `Wikipedia <http://en.wikipedia.org>`_
-* `Pygments API <http://pygments.appspot.com/>`_, a HTTP POST interface to Pygments
+* `BitBucket <http://bitbucket.org/>`_, a Mercurial and Git hosting site
 * `The Sphinx documentation builder <http://sphinx.pocoo.org/>`_, for embedded source examples
 * `rst2pdf <http://code.google.com/p/rst2pdf/>`_, a reStructuredText to PDF converter
-* `Zine <http://zine.pocoo.org/>`_, a Python blogging system
+* `Codecov <http://codecov.io/>`_, a code coverage CI service
 * `Trac <http://trac.edgewall.org/>`_, the universal project management tool
-* `Bruce <http://r1chardj0n3s.googlepages.com/bruce>`_, a reStructuredText presentation tool
 * `AsciiDoc <http://www.methods.co.nz/asciidoc/>`_, a text-based documentation generator
 * `ActiveState Code <http://code.activestate.com/>`_, the Python Cookbook successor
 * `ViewVC <http://viewvc.org/>`_, a web-based version control repository browser
 * `BzrFruit <http://repo.or.cz/w/bzrfruit.git>`_, a Bazaar branch viewer
 * `QBzr <http://bazaar-vcs.org/QBzr>`_, a cross-platform Qt-based GUI front end for Bazaar
-* `BitBucket <http://bitbucket.org/>`_, a Mercurial and Git hosting site
 * `Review Board <http://www.review-board.org/>`_, a collaborative code reviewing tool
-* `skeletonz <http://orangoo.com/skeletonz/>`_, a Python powered content management system
 * `Diamanda <http://code.google.com/p/diamanda/>`_, a Django powered wiki system with support for Pygments
 * `Progopedia <http://progopedia.ru/>`_ (`English <http://progopedia.com/>`_),
   an encyclopedia of programming languages
-* `Postmarkup <http://code.google.com/p/postmarkup/>`_, a BBCode to XHTML generator
-* `Language Comparison <http://michaelsilver.us/lc>`_, a site that compares different programming languages
-* `BPython <http://www.noiseforfree.com/bpython/>`_, a curses-based intelligent Python shell
-* `Challenge-You! <http://challenge-you.appspot.com/>`_, a site offering programming challenges
+* `Bruce <http://r1chardj0n3s.googlepages.com/bruce>`_, a reStructuredText presentation tool
 * `PIDA <http://pida.co.uk/>`_, a universal IDE written in Python
+* `BPython <http://www.noiseforfree.com/bpython/>`_, a curses-based intelligent Python shell
 * `PuDB <http://pypi.python.org/pypi/pudb>`_, a console Python debugger
 * `XWiki <http://www.xwiki.org/>`_, a wiki-based development framework in Java, using Jython
 * `roux <http://ananelson.com/software/roux/>`_, a script for running R scripts
@@ -119,23 +114,25 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 * `hurl <http://hurl.it/>`_, a web service for making HTTP requests
 * `wxHTMLPygmentizer <http://colinbarnette.net/projects/wxHTMLPygmentizer>`_ is
   a GUI utility, used to make code-colorization easier
-* `WpPygments <http://blog.mirotin.net/?page_id=49>`_, a highlighter plugin for WordPress
-* `LodgeIt <http://paste.pocoo.org/>`_, a pastebin with XMLRPC support and diffs
-* `SpammCan <http://chrisarndt.de/projects/spammcan/>`_, a pastebin (demo see
-  `here <http://paste.chrisarndt.de/>`_)
-* `WowAce.com pastes <http://www.wowace.com/paste/>`_, a pastebin
+* `Postmarkup <http://code.google.com/p/postmarkup/>`_, a BBCode to XHTML generator
+* `WpPygments <http://blog.mirotin.net/?page_id=49>`_, and `WPygments
+  <https://github.com/capynet/WPygments>`_, highlighter plugins for WordPress
 * `Siafoo <http://siafoo.net>`_, a tool for sharing and storing useful code and programming experience
 * `D source <http://www.dsource.org/>`_, a community for the D programming language
-* `dumpz.org <http://dumpz.org/>`_, a pastebin
 * `dpaste.com <http://dpaste.com/>`_, another Django pastebin
-* `PylonsHQ Pasties <http://pylonshq.com/pasties/new>`_, a pastebin
 * `Django snippets <http://www.djangosnippets.org/>`_, a pastebin for Django code
 * `Fayaa <http://www.fayaa.com/code/>`_, a Chinese pastebin
 * `Incollo.com <http://incollo.com>`_, a free collaborative debugging tool
 * `PasteBox <http://p.boxnet.eu/>`_, a pastebin focused on privacy
-* `xinotes.org <http://www.xinotes.org/>`_, a site to share notes, code snippets etc.
 * `hilite.me <http://www.hilite.me/>`_, a site to highlight code snippets
 * `patx.me <http://patx.me/paste>`_, a pastebin
+* `Fluidic <https://github.com/richsmith/fluidic>`_, an experiment in
+  integrating shells with a GUI
+* `pygments.rb <https://github.com/tmm1/pygments.rb>`_, a pygments wrapper for Ruby
+* `Clygments <https://github.com/bfontaine/clygments>`_, a pygments wrapper for
+  Clojure
+* `PHPygments <https://github.com/capynet/PHPygments>`_, a pygments wrapper for PHP
+
 
 If you have a project or web site using Pygments, drop me a line, and I'll add a
 link here.

@@ -89,6 +89,21 @@ Functions from :mod:`pygments.lexers`:
 
     .. versionadded:: 0.6
 
+.. function:: find_lexer_class_by_name(alias)
+
+    Return the `Lexer` subclass that has `alias` in its aliases list, without
+    instantiating it.
+
+    Will raise :exc:`pygments.util.ClassNotFound` if no lexer with that alias is
+    found.
+
+    .. versionadded:: 2.2
+
+.. function:: find_lexer_class(name)
+
+    Return the `Lexer` subclass that with the *name* attribute as given by
+    the *name* argument.
+
 
 .. module:: pygments.formatters
 
