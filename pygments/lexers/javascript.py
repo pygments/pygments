@@ -516,6 +516,10 @@ class TypeScriptLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        if '<INCLUDE_TYPOSCRIPT' not in text:
+            return 0.01  # rank about TypoScript lexer
+
 
 class LassoLexer(RegexLexer):
     """
