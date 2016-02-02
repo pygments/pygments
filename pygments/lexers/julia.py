@@ -65,7 +65,7 @@ class JuliaLexer(RegexLexer):
                 bygroups(Keyword, Name.Function), 'funcname'),
 
             # types
-            (r'(type|typealias|abstract)((?:\s|\\\s)+)',
+            (r'(type|typealias|abstract|immutable)((?:\s|\\\s)+)',
                 bygroups(Keyword, Name.Class), 'typename'),
 
             # operators
