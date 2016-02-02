@@ -251,7 +251,7 @@ class VelocityLexer(RegexLexer):
         'funcparams': [
             (r'\$\{?', Punctuation, 'variable'),
             (r'\s+', Text),
-            (r',', Punctuation),
+            (r'[,:]', Punctuation),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r"0[xX][0-9a-fA-F]+[Ll]?", Number),
@@ -259,6 +259,8 @@ class VelocityLexer(RegexLexer):
             (r'(true|false|null)\b', Keyword.Constant),
             (r'\(', Punctuation, '#push'),
             (r'\)', Punctuation, '#pop'),
+            (r'\{', Punctuation, '#push'),
+            (r'\}', Punctuation, '#pop'),
             (r'\[', Punctuation, '#push'),
             (r'\]', Punctuation, '#pop'),
         ]
@@ -875,7 +877,7 @@ class GenshiMarkupLexer(RegexLexer):
             # yield style and script blocks as Other
             (r'<\s*(script|style)\s*.*?>.*?<\s*/\1\s*>', Other),
             (r'<\s*py:[a-zA-Z0-9]+', Name.Tag, 'pytag'),
-            (r'<\s*[a-zA-Z0-9:]+', Name.Tag, 'tag'),
+            (r'<\s*[a-zA-Z0-9:.]+', Name.Tag, 'tag'),
             include('variable'),
             (r'[<$]', Other),
         ],

@@ -26,6 +26,7 @@ LEXERS = {
     'AgdaLexer': ('pygments.lexers.haskell', 'Agda', ('agda',), ('*.agda',), ('text/x-agda',)),
     'AlloyLexer': ('pygments.lexers.dsls', 'Alloy', ('alloy',), ('*.als',), ('text/x-alloy',)),
     'AmbientTalkLexer': ('pygments.lexers.ambient', 'AmbientTalk', ('at', 'ambienttalk', 'ambienttalk/2'), ('*.at',), ('text/x-ambienttalk',)),
+    'AmplLexer': ('pygments.lexers.ampl', 'Ampl', ('ampl',), ('*.run',), ()),
     'AntlrActionScriptLexer': ('pygments.lexers.parsers', 'ANTLR With ActionScript Target', ('antlr-as', 'antlr-actionscript'), ('*.G', '*.g'), ()),
     'AntlrCSharpLexer': ('pygments.lexers.parsers', 'ANTLR With C# Target', ('antlr-csharp', 'antlr-c#'), ('*.G', '*.g'), ()),
     'AntlrCppLexer': ('pygments.lexers.parsers', 'ANTLR With CPP Target', ('antlr-cpp',), ('*.G', '*.g'), ()),
@@ -46,7 +47,7 @@ LEXERS = {
     'BBCodeLexer': ('pygments.lexers.markup', 'BBCode', ('bbcode',), (), ('text/x-bbcode',)),
     'BCLexer': ('pygments.lexers.algebra', 'BC', ('bc',), ('*.bc',), ()),
     'BaseMakefileLexer': ('pygments.lexers.make', 'Base Makefile', ('basemake',), (), ()),
-    'BashLexer': ('pygments.lexers.shell', 'Bash', ('bash', 'sh', 'ksh', 'shell'), ('*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass', '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'PKGBUILD'), ('application/x-sh', 'application/x-shellscript')),
+    'BashLexer': ('pygments.lexers.shell', 'Bash', ('bash', 'sh', 'ksh', 'shell'), ('*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass', '*.exheres-0', '*.exlib', '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'PKGBUILD'), ('application/x-sh', 'application/x-shellscript')),
     'BashSessionLexer': ('pygments.lexers.shell', 'Bash Session', ('console', 'shell-session'), ('*.sh-session', '*.shell-session'), ('application/x-shell-session', 'application/x-sh-session')),
     'BatchLexer': ('pygments.lexers.shell', 'Batchfile', ('bat', 'batch', 'dosbatch', 'winbatch'), ('*.bat', '*.cmd'), ('application/x-dos-batch',)),
     'BefungeLexer': ('pygments.lexers.esoteric', 'Befunge', ('befunge',), ('*.befunge',), ('application/x-befunge',)),
@@ -391,6 +392,9 @@ LEXERS = {
     'TwigHtmlLexer': ('pygments.lexers.templates', 'HTML+Twig', ('html+twig',), ('*.twig',), ('text/html+twig',)),
     'TwigLexer': ('pygments.lexers.templates', 'Twig', ('twig',), (), ('application/x-twig',)),
     'TypeScriptLexer': ('pygments.lexers.javascript', 'TypeScript', ('ts', 'typescript'), ('*.ts',), ('text/x-typescript',)),
+    'TypoScriptCssDataLexer': ('pygments.lexers.typoscript', 'TypoScriptCssData', ('typoscriptcssdata',), (), ()),
+    'TypoScriptHtmlDataLexer': ('pygments.lexers.typoscript', 'TypoScriptHtmlData', ('typoscripthtmldata',), (), ()),
+    'TypoScriptLexer': ('pygments.lexers.typoscript', 'TypoScript', ('typoscript',), ('*.ts', '*.txt'), ('text/x-typoscript',)),
     'UrbiscriptLexer': ('pygments.lexers.urbi', 'UrbiScript', ('urbiscript',), ('*.u',), ('application/x-urbiscript',)),
     'VCTreeStatusLexer': ('pygments.lexers.console', 'VCTreeStatus', ('vctreestatus',), (), ()),
     'VGLLexer': ('pygments.lexers.dsls', 'VGL', ('vgl',), ('*.rpf',), ()),
@@ -458,7 +462,7 @@ if __name__ == '__main__':  # pragma: no cover
     footer = content[content.find("if __name__ == '__main__':"):]
 
     # write new file
-    with open(__file__, 'wb') as fp:
+    with open(__file__, 'w') as fp:
         fp.write(header)
         fp.write('LEXERS = {\n    %s,\n}\n\n' % ',\n    '.join(found_lexers))
         fp.write(footer)

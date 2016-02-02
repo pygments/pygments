@@ -213,6 +213,26 @@ class Python3Lexer(RegexLexer):
 
     uni_name = "[%s][%s]*" % (uni.xid_start, uni.xid_continue)
 
+    def innerstring_rules(ttype):
+        return [
+            # the old style '%s' % (...) string formatting (still valid in Py3)
+            (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
+             '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
+            # the new style '{}'.format(...) string formatting
+            (r'\{'
+             '((\w+)((\.\w+)|(\[[^\]]+\]))*)?' # field name
+             '(\![sra])?'                      # conversion
+             '(\:(.?[<>=\^])?[-+ ]?#?0?(\d+)?,?(\.\d+)?[bcdeEfFgGnosxX%]?)?'
+             '\}', String.Interpol),
+
+            # backslashes, quotes and formatting signs must be parsed one at a time
+            (r'[^\\\'"%\{\n]+', ttype),
+            (r'[\'"\\]', ttype),
+            # unhandled string formatting sign
+            (r'%|(\{{1,2})', ttype)
+            # newlines are an error (use "nl" state)
+        ]
+
     tokens = PythonLexer.tokens.copy()
     tokens['keywords'] = [
         (words((
@@ -295,23 +315,8 @@ class Python3Lexer(RegexLexer):
         (uni_name, Name.Namespace),
         default('#pop'),
     ]
-    tokens['strings'] = [
-        # the old style '%s' % (...) string formatting (still valid in Py3)
-        (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
-         '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
-        # the new style '{}'.format(...) string formatting
-        (r'\{'
-         '((\w+)((\.\w+)|(\[[^\]]+\]))*)?' # field name
-         '(\![sra])?'                      # conversion
-         '(\:(.?[<>=\^])?[-+ ]?#?0?(\d+)?,?(\.\d+)?[bcdeEfFgGnosxX%]?)?'
-         '\}', String.Interpol),
-        # backslashes, quotes and formatting signs must be parsed one at a time
-        (r'[^\\\'"%\{\n]+', String),
-        (r'[\'"\\]', String),
-        # unhandled string formatting sign
-        (r'%|(\{{1,2})', String)
-        # newlines are an error (use "nl" state)
-    ]
+    tokens['strings-single'] = innerstring_rules(String.Single)
+    tokens['strings-double'] = innerstring_rules(String.Double)
 
     def analyse_text(text):
         return shebang_matches(text, r'pythonw?3(\.\d)?')
