@@ -11,7 +11,8 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, default, using, this
+from pygments.lexer import RegexLexer, include, bygroups, default, using, \
+    this, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Other
 from pygments.util import get_bool_opt, get_list_opt, iteritems
@@ -162,13 +163,14 @@ class PhpLexer(RegexLexer):
              r'FALSE|print|for|require|continue|foreach|require_once|'
              r'declare|return|default|static|do|switch|die|stdClass|'
              r'echo|else|TRUE|elseif|var|empty|if|xor|enddeclare|include|'
-             r'virtual|endfor|include_once|while|endforeach|global|__FILE__|'
-             r'endif|list|__LINE__|endswitch|new|__sleep|endwhile|not|'
-             r'array|__wakeup|E_ALL|NULL|final|php_user_filter|interface|'
+             r'virtual|endfor|include_once|while|endforeach|global|'
+             r'endif|list|endswitch|new|endwhile|not|'
+             r'array|E_ALL|NULL|final|php_user_filter|interface|'
              r'implements|public|private|protected|abstract|clone|try|'
              r'catch|throw|this|use|namespace|trait|yield|'
              r'finally)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
+            include('magicconstants'),
             (r'\$\{\$+' + _ident_inner + '\}', Name.Variable),
             (r'\$+' + _ident_inner, Name.Variable),
             (_ident_inner, Name.Other),
@@ -182,11 +184,29 @@ class PhpLexer(RegexLexer):
             (r'`([^`\\]*(?:\\.[^`\\]*)*)`', String.Backtick),
             (r'"', String.Double, 'string'),
         ],
+        'magicfuncs': [
+            # source: http://php.net/manual/en/language.oop5.magic.php
+            (words((
+                '__construct', '__destruct', '__call', '__callStatic', '__get', '__set',
+                '__isset', '__unset', '__sleep', '__wakeup', '__toString', '__invoke',
+                '__set_state', '__clone', '__debugInfo',), suffix=r'\b'),
+             Name.Function.Magic),
+        ],
+        'magicconstants': [
+            # source: http://php.net/manual/en/language.constants.predefined.php
+            (words((
+                '__LINE__', '__FILE__', '__DIR__', '__FUNCTION__', '__CLASS__',
+                '__TRAIT__', '__METHOD__', '__NAMESPACE__',),
+                suffix=r'\b'),
+             Name.Constant),
+        ],
         'classname': [
             (_ident_inner, Name.Class, '#pop')
         ],
         'functionname': [
-            (_ident_inner, Name.Function, '#pop')
+            include('magicfuncs'),
+            (_ident_inner, Name.Function, '#pop'),
+            default('#pop')
         ],
         'string': [
             (r'"', String.Double, '#pop'),
