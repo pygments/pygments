@@ -505,6 +505,30 @@ function &byref() {
     return $x;
 }
 
+// Test highlighting of magic methods and variables
+class MagicClass {
+  public $magic_str;
+  public $ordinary_str;
+
+  public function __construct($some_var) {
+    $this->magic_str = __FILE__;
+    $this->ordinary_str = $some_var;
+  }
+
+  public function __toString() {
+    return $this->magic_str;
+  }
+
+  public function nonMagic() {
+    return $this->ordinary_str;
+  }
+}
+
+$magic = new MagicClass(__DIR__);
+__toString();
+$magic->nonMagic();
+$magic->__toString();
+
      echo <<<EOF
 
      Test the heredocs...
