@@ -1488,7 +1488,7 @@ class EmacsLispLexer(RegexLexer):
     .. versionadded:: 2.1
     """
     name = 'EmacsLisp'
-    aliases = ['emacs', 'elisp']
+    aliases = ['emacs', 'elisp', 'emacs-lisp']
     filenames = ['*.el']
     mimetypes = ['text/x-elisp', 'application/x-elisp']
 
