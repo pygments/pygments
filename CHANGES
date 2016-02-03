@@ -30,6 +30,8 @@ Version 2.1.1
 - Fixed deepcopy-ing of Token instances (#1168)
 - Fixed Julia string interpolation (#1170)
 - Fixed statefulness of HttpLexer between get_tokens calls
+- Added new token types and lexing for magic methods and variables in Python
+  and PHP.
 - Many smaller fixes to various lexers
 
 
