@@ -170,7 +170,7 @@ class PhpLexer(RegexLexer):
              r'catch|throw|this|use|namespace|trait|yield|'
              r'finally)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
-            include('magicvars'),
+            include('magicconstants'),
             (r'\$\{\$+' + _ident_inner + '\}', Name.Variable),
             (r'\$+' + _ident_inner, Name.Variable),
             (_ident_inner, Name.Other),
@@ -192,13 +192,13 @@ class PhpLexer(RegexLexer):
                 '__set_state', '__clone', '__debugInfo',), suffix=r'\b'),
              Name.Function.Magic),
         ],
-        'magicvars': [
+        'magicconstants': [
             # source: http://php.net/manual/en/language.constants.predefined.php
             (words((
                 '__LINE__', '__FILE__', '__DIR__', '__FUNCTION__', '__CLASS__',
                 '__TRAIT__', '__METHOD__', '__NAMESPACE__',),
                 suffix=r'\b'),
-             Name.Variable.Magic),
+             Name.Constant),
         ],
         'classname': [
             (_ident_inner, Name.Class, '#pop')
