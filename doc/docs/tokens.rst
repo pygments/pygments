@@ -223,11 +223,19 @@ Literals
 `String`
     For any string literal.
 
+`String.Affix`
+    Token type for affixes that further specify the type of the string they're
+    attached to (e.g. the prefixes ``r`` and ``u8`` in ``r"foo"`` and ``u8"foo"``). 
+
 `String.Backtick`
     Token type for strings enclosed in backticks.
 
 `String.Char`
     Token type for single characters (e.g. Java, C).
+
+`String.Delimiter`
+    Token type for delimiting identifiers in "heredoc", raw and other similar
+    strings (e.g. the word ``END`` in Perl code ``print <<'END';``).
 
 `String.Doc`
     Token type for documentation strings (for example Python).

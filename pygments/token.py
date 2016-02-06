@@ -163,8 +163,10 @@ STANDARD_TYPES = {
     Literal.Date:                  'ld',
 
     String:                        's',
+    String.Affix:                  'sa',
     String.Backtick:               'sb',
     String.Char:                   'sc',
+    String.Delimiter:              'dl',
     String.Doc:                    'sd',
     String.Double:                 's2',
     String.Escape:                 'se',
