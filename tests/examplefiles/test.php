@@ -535,5 +535,10 @@ $magic->__toString();
 
      EOF;
 
+echo <<<"some_delimiter"
+more heredoc testing
+continues on this line
+some_delimiter;
+
 ?>
 
