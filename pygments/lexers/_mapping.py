@@ -9,7 +9,7 @@
 
     Do not alter the LEXERS dictionary by hand.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2014, 2016 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -145,6 +145,7 @@ LEXERS = {
     'FantomLexer': ('pygments.lexers.fantom', 'Fantom', ('fan',), ('*.fan',), ('application/x-fantom',)),
     'FelixLexer': ('pygments.lexers.felix', 'Felix', ('felix', 'flx'), ('*.flx', '*.flxh'), ('text/x-felix',)),
     'FishShellLexer': ('pygments.lexers.shell', 'Fish', ('fish', 'fishshell'), ('*.fish', '*.load'), ('application/x-fish',)),
+    'FlatlineLexer': ('pygments.lexers.dsls', 'Flatline', ('flatline',), (), ()),
     'FortranFixedLexer': ('pygments.lexers.fortran', 'FortranFixed', ('fortranfixed',), ('*.f', '*.F'), ()),
     'FortranLexer': ('pygments.lexers.fortran', 'Fortran', ('fortran',), ('*.f03', '*.f90', '*.F03', '*.F90'), ('text/x-fortran',)),
     'FoxProLexer': ('pygments.lexers.foxpro', 'FoxPro', ('foxpro', 'vfp', 'clipper', 'xbase'), ('*.PRG', '*.prg'), ()),

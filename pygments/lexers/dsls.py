@@ -5,7 +5,7 @@
 
     Lexers for various domain-specific languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -18,7 +18,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 
 __all__ = ['ProtoBufLexer', 'BroLexer', 'PuppetLexer', 'RslLexer',
            'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer',
-           'CrmshLexer', 'ThriftLexer']
+           'CrmshLexer', 'ThriftLexer', 'FlatlineLexer']
 
 
 class ProtoBufLexer(RegexLexer):
@@ -690,5 +690,79 @@ class CrmshLexer(RegexLexer):
             # punctuation
             (r'(\\(?=\n)|[[\](){}/:@])', Punctuation),
             (r'\s+|\n', Whitespace),
+        ],
+    }
+
+class FlatlineLexer(RegexLexer):
+    """
+    Lexer for `Flatline <https://github.com/bigmlcom/flatline>`_ expressions
+
+    .. versionadded::2.2
+    """
+    name = 'Flatline'
+    aliases = ['flatline']
+    filenames = []
+    mimetypes = ['text/plain']
+
+    special_forms = ('let')
+
+    builtins = (
+        "!=","*","+","-","<","<=","=",">",">=","abs","acos","all","all-but",
+        "all-with-defaults","all-with-numeric-default","and","asin","atan",
+        "avg","avg-window","bin-center","bin-count","call","category-count",
+        "ceil","cond","cond-window","cons","cos","cosh","count","diff-window",
+        "div","ensure-value","ensure-weighted-value","epoch","epoch-day",
+        "epoch-fields","epoch-hour","epoch-millisecond","epoch-minute",
+        "epoch-month","epoch-second","epoch-weekday","epoch-year","exp","f",
+        "field","field-prop","fields","filter","first","floor","head","if",
+        "in","integer","language","length","levenshtein","linear-regression",
+        "list","ln","log","log10","map","matches","matches?","max","maximum",
+        "md5","mean","median","min","minimum","missing","missing-count",
+        "missing?","missing_count","mod","mode","normalize","not","nth",
+        "occurrences","or","percentile","percentile-label","population",
+        "population-fraction","pow","preferred","preferred?","quantile-label",
+        "rand","rand-int","random-value","re-quote","real","replace",
+        "replace-first","rest","round","row-number","segment-label","sha1",
+        "sha256","sin","sinh","sqrt","square","standard-deviation",
+        "standard_deviation","str","subs","sum","sum-squares","sum-window",
+        "sum_squares","summary","summary-no","summary-str","tail","tan",
+        "tanh","to-degrees","to-radians","variance","vectorize",
+        "weighted-random-value","window","winnow","within-percentiles?",
+        "z-score"
+    )
+
+    valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
+
+    tokens = {
+        'root': [
+            # whitespaces - usually not relevant
+            (r'[,\s]+', Text),
+
+            # numbers
+            (r'-?\d+\.\d+', Number.Float),
+            (r'-?\d+', Number.Integer),
+            (r'0x-?[abcdef\d]+', Number.Hex),
+
+            # strings, symbols and characters
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"\\(.|[a-z]+)", String.Char),
+
+            # expression template placeholder
+            (r'_', String.Symbol),
+
+            # highlight the special forms
+            (words(special_forms, suffix=' '), Keyword),
+
+            # highlight the builtins
+            (words(builtins, suffix=' '), Name.Builtin),
+
+            # the remaining functions
+            (r'(?<=\()' + valid_name, Name.Function),
+
+            # find the remaining variables
+            (valid_name, Name.Variable),
+
+            # parentheses
+            (r'(\(|\))', Punctuation),
         ],
     }
