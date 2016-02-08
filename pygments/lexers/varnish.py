@@ -30,7 +30,7 @@ class VCLLexer(RegexLexer):
 
     tokens = {
         'time': [
-            (r'\d+(s|d|w|h|m)',Literal.Date)
+            (r'\d+[sdwhm]',Literal.Date)
             ],
         'probe': [
             (r'(\s*\.\w+)(\s*=\s*)([^;]*)(;)',
