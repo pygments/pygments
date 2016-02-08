@@ -148,8 +148,8 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r'\$\d+', Name.Variable),
             (r'([0-9]*\.[0-9]*|[0-9]+)(e[+-]?[0-9]+)?', Number.Float),
             (r'[0-9]+', Number.Integer),
-            (r"(E|U&)?'(''|[^'])*'", String.Single),
-            (r'(U&)?"(""|[^"])*"', String.Name),  # quoted identifier
+            (r"(E|U&)?'", String.Single, 'string'),
+            (r'(U&)?"', String.Name, 'quoted-ident'),  # quoted identifier
             (r'(?s)(\$[^$]*\$)(.*?)(\1)', language_callback),
             (r'[a-z_]\w*', Name),
 
@@ -163,6 +163,16 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[^/*]+', Comment.Multiline),
             (r'[/*]', Comment.Multiline)
+        ],
+        'string': [
+            (r"[^']+", String.Single),
+            (r"''", String.Single),
+            (r"'", String.Single, '#pop'),
+        ],
+        'quoted-ident': [
+            (r'[^"]+', String.Name),
+            (r'""', String.Name),
+            (r'"', String.Name, '#pop'),
         ],
     }
 
