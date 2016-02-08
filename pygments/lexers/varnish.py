@@ -14,14 +14,11 @@ import re
 from pygments.lexer import RegexLexer, include, bygroups, using, this, inherit, words, \
     default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
-
-from pygments.lexers.c_cpp import CLexer, CppLexer
-from pygments.lexers import _mql_builtins
+    Number, Punctuation, Literal
 
 __all__ = ['VCLLexer', 'VCLSnippetLexer']
 
-class VCLLexer(CLexer):
+class VCLLexer(RegexLexer):
     """
     For Varnish Configuration Language (VCL).
 
@@ -33,7 +30,7 @@ class VCLLexer(CLexer):
 
     tokens = {
         'time': [
-            (r'\d+(s|d|w|h|m)',Number)
+            (r'\d+(s|d|w|h|m)',Literal.Date)
             ],
         'probe': [
             (r'(\s*\.\w+)(\s*=\s*)([^;]*)(;)',
@@ -42,11 +39,11 @@ class VCLLexer(CLexer):
         ],
         'backend': [
             include('whitespace'),
-            (r'(\s*)(\.host|\.port)(\s*=\s*)([^;]*)(\s*;)',
-            bygroups(Punctuation, Name.Attribute, Operator, using(this), Punctuation)),
-            (r'(\s*\.probe)(\s*=\s*)(\w+)(;)',
+            (r'(\.host|\.port)(\s*=\s*)([^;]*)(\s*;)',
+            bygroups(Name.Attribute, Operator, using(this), Punctuation)),
+            (r'(\.probe)(\s*=\s*)(\w+)(;)',
             bygroups(Name.Attribute,Operator,Name.Variable.Global,Punctuation)),
-            (r'(\s*\.probe)(\s*=\s*)({)',
+            (r'(\.probe)(\s*=\s*)({)',
             bygroups(Name.Attribute,Operator,Punctuation),'probe'),
             (r'{',Punctuation,'#push'),
             (r'}',Punctuation,'#pop')
@@ -54,16 +51,16 @@ class VCLLexer(CLexer):
         'statements': [
             include('time'),
             (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r'\s*(hash_data)(\()(.+)(\)\s*;\s*$)',
+            (r'(hash_data)(\()(.+)(\)\s*;\s*$)',
             bygroups(Keyword, Punctuation, using(this), Punctuation)),
-            (r'(\s*set\s)([^\s]+)(\s*=\s*)(.+)(\s*;\s*)($|#.*$|//.*$|/\*.*$)',
+            (r'(set\s)([^\s]+)(\s*=\s*)(.+)(\s*;\s*)($|#.*$|//.*$|/\*.*$)',
             bygroups(Keyword, Name.Variable, Punctuation, using(this), Punctuation, using(this))),
-            (r'(\s*unset\s)(\s*[^\s]+)(\s*;)',
+            (r'(unset\s)(\s*[^\s]+)(\s*;)',
             bygroups(Keyword, Name.Variable, Punctuation)),
-            (r'(\s*regsub\s*)(\()(.*)(,)(.*)(,)(.*)(\))',
+            (r'(regsub\s*)(\()(.*)(,)(.*)(,)(.*)(\))',
             bygroups(Keyword, Punctuation, using(this), Punctuation,
             using(this), Punctuation, using(this), Punctuation)),
-            (r'(\s*regsuball\s*)(\()(.*)(,)(.*)(,)(.*)(\))',
+            (r'(regsuball\s*)(\()(.*)(,)(.*)(,)(.*)(\))',
             bygroups(Keyword, Punctuation, using(this), Punctuation,
             using(this), Punctuation, using(this), Punctuation)),
             (r'(import\s)(\w+)(;\s*)$',
@@ -75,16 +72,16 @@ class VCLLexer(CLexer):
             (words(('if','else','elsif','synth',
                     'synthetic'), suffix=r'\b'),Keyword),
             (words(('true','false')),Name.Builtin),
-            (r'(\s*call \s*)([^\s;]+)(;)',
+            (r'(call \s*)([^\s;]+)(;)',
             bygroups(Keyword,Name.Variable.Global,Punctuation)),
-            (r'obj.ttl',Name.Variable),
+            (r'obj\.ttl',Name.Variable),
             (r'(req|bereq|obj|resp|beresp)\.http\.[^\s]+',Name.Variable),
             (r'(req|bereq)\.(url|method|xid)',Name.Variable),
             (r'(resp|beresp|obj)\.(status|reason)',Name.Variable),
             (r'(beresp|obj)\.(ttl|grace)',Name.Variable),
-            (r'(backend )(\w*)(\s*{)',
+            (r'(backend)(\s+\w+)(\s*{)',
             bygroups(Keyword, Name.Variable.Global, Punctuation), 'backend'),
-            (r'(\s*probe )(\s*\w+\s)({)',
+            (r'(probe )(\s*\w+\s)({)',
             bygroups(Keyword,Name.Variable.Global,Punctuation),'probe'),
             (r'[();]', Punctuation),
             (r'(client|server)\.(ip|identity)',Name.Variable),
@@ -100,7 +97,7 @@ class VCLLexer(CLexer):
             (r'\s*\}\s*',Punctuation,'#pop') 
         ],
         'comment': [
-            (r'[^*/]', Comment.Multiline),
+            (r'[^*/]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline)
@@ -140,7 +137,7 @@ class VCLLexer(CLexer):
             include('whitespace'),
             include('comments'),
             include('returns'),
-            (r'(sub )(\w+)(\s*{)',
+            (r'(sub\s+)([a-zA-Z]\w*)(\s*{)',
                 bygroups(Keyword, Name.Function, Punctuation),'sub'),
             include('statements'),
             (r'\s+', Text)
