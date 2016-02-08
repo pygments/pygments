@@ -13,7 +13,7 @@ from pygments.token import Token, STANDARD_TYPES
 from pygments.util import add_metaclass
 from pygments.console import codes
 
-ansilist = ['#ansi'+x for x in codes.keys()]
+ansilist = ['#ansi'+x for x in codes.keys() if x]
 
 
 class StyleMeta(type):
