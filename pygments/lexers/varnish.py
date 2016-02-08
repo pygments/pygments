@@ -109,12 +109,11 @@ class VCLLexer(RegexLexer):
         ],
         'string': [
             (r'"', String, '#pop'),
-            (r'[^\\"\n]+', String),  # all other characters
+            (r'[^"\n]+', String),  # all other characters
 
             ],
         'multistring': [
             (r'[^"}]', String),
-            (r'{"', String, '#push'),
             (r'"}', String, '#pop'),
             (r'["}]', String)
         ],
