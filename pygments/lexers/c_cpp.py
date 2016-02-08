@@ -218,9 +218,9 @@ class CppLexer(CFamilyLexer):
             (r'char(16_t|32_t)\b', Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             # C++11 raw strings
-            (r'(R)(")([^\\()\s]{,16})(\((?:.|\n)*?\))(\3)(")',
-             bygroups(String.Affix, String, String.Delimiter, String,
-                      String.Delimiter, String)),
+            (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
+             bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
+                      String, String.Delimiter, String)),
             # C++11 UTF-8/16/32 strings
             (r'(u8|u|U)(")', bygroups(String.Affix, String), 'string'),
             inherit,
