@@ -90,7 +90,7 @@ Here a small overview of all allowed styles:
     don't render text as bold (to prevent subtokens being highlighted bold)
 ``italic``
     render text italic
-``noitalic``
+``noitalic``\x1b[38;5;124
     don't render text as italic
 ``underline``
     render text underlined
@@ -143,3 +143,44 @@ a way to iterate over all styles:
 
     >>> from pygments.styles import get_all_styles
     >>> styles = list(get_all_styles())
+
+
+.. _AnsiTerminalStyle:
+
+Terminal Styles
+===============
+
+.. versionadded:: 2.2
+
+Custom styles used with `Terminal256` formatter can also defines foreground
+colors using ansi-color. to do so use the `#ansigreen`, `#ansired` or any other
+colors defined in ``pygments.style.ansilist``. Foreground ANSI colors will be
+mapped to the corresponding `escape codes 30 to 37
+<https://en.wikipedia.org/wiki/ANSI_escape_code#Colors>`_  thus respecting any
+custom color mapping and themes provided by many terminal emulators. 
+
+See following example where the color of the string `"hello world"` is governed
+by the escape sequence `\x1b34;01m` (Ansi Blue) instead of an extended
+foreground color.
+
+.. sourcecode:: pycon
+
+    >>> from pygments import highlight
+    >>> from pygments.style import Style
+    >>> from pygments.token import Token
+    >>> from pygments.lexers import Python3Lexer
+    >>> from pygments.formatters import Terminal256Formatter
+
+    >>> class MyStyle(Style):
+    >>>
+    >>>     styles = {
+    >>>         Token.String:     '#ansiblue',
+    >>>     }
+
+    >>> code = 'print("Hello World")'
+    >>> result = highlight(code, Python3Lexer(), Terminal256Formatter(style=MyStyle))
+    >>> print(result.encode())
+    b'print(\x1b[34;01m"\x1b[39m\x1b[34;01mHello World\x1b[39m\x1b[34;01m"\x1b[39m)\n'
+
+Style that use `#ansi*` foreground colors do not currently work with formatters
+others than ``Terminal256``.

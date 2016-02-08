@@ -94,6 +94,13 @@ class Terminal256Formatter(Formatter):
     and converts them to nearest ANSI 256-color escape sequences. Bold and
     underline attributes from the style are preserved (and displayed).
 
+    .. versionadded:: 2.2
+    
+    If the used style defined foreground colors in the form `#ansi*`, then
+    `Terminal256Formatter` will map these to non extended foreground color.
+
+    See AnsiTerminalStyle_ for more informations. 
+
     .. versionadded:: 0.9
 
     Options accepted:
