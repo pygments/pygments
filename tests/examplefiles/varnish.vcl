@@ -23,6 +23,14 @@ include "foo.vcl";
 
 import std;
 
+sub vcl_init {
+	new b = director.foo();
+}
+
+sub vcl_recv {
+	ban(req.url ~ "foo");
+	rollback();
+}
 sub vcl_recv {
     if (req.method == "PRI") {
 	/* We do not support SPDY or HTTP/2.0 */
@@ -96,6 +104,7 @@ sub vcl_miss {
 }
 
 sub vcl_deliver {
+    set resp.http.x-storage = storage.s0.free;
     return (deliver);
 }
 

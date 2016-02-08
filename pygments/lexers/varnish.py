@@ -52,8 +52,9 @@ class VCLLexer(RegexLexer):
             (r'}',Punctuation,'#pop')
         ],
         'statements': [
-            (r'\d+[sdwhm]',Literal.Date),
-            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'\d+[sdwhmy]',Literal.Date),
+            (r'\d+ms',Literal.Date),
+            (r'[~!^&*+=|<>/-]', Operator),
             (r'(hash_data)(\()(.+)(\)\s*;\s*$)',
             bygroups(Keyword, Punctuation, using(this), Punctuation)),
             (r'(set\s)([^\s]+)(\s*=\s*)(.+)(\s*;\s*)($|#.*$|//.*$|/\*.*$)',
@@ -72,18 +73,27 @@ class VCLLexer(RegexLexer):
                     'vcl_hit','vcl_miss','vcl_deliver','vcl_synth','vcl_backend_fetch',
                     'vcl_backend_response','vcl_backend_error','vcl_init','vcl_fini'),
                     suffix=r'\b'),Name.Function),
-            (words(('if','else','elsif','synth',
+            (words(('if','else','elsif','elif','synth',
                     'synthetic'), suffix=r'\b'),Keyword),
+            (r'(new\s+)(\w+)(\s*=)(.*)(;)',
+            bygroups(Keyword.Namespace,Name.Variable.Global,Punctuation,Text,Punctuation)),
+            (r'(rollback\s*)(\(\s*\)\s*;)',
+            bygroups(Keyword,Punctuation)),
+            (r'storage\.\w+\.\w+\b', Name.Variable),
+            (r'(local|remote)\.ip\b', Name.Variable),
+            (r'now\b', Name.Variable),
             (words(('true','false')),Name.Builtin),
             (r'(call \s*)([^\s;]+)(;)',
             bygroups(Keyword,Name.Variable.Global,Punctuation)),
             (r'obj\.ttl',Name.Variable),
-            (r'(req|bereq|obj|resp|beresp)\.http\.[^\s]+\b',Name.Variable),
-            (r'(req|bereq)\.(url|method|xid)\b',Name.Variable),
+            (r'(req_top|req|bereq|obj|resp|beresp)\.http\.[^\s]+\b',Name.Variable),
+            (r'(req_top|req|bereq)\.(url|method|xid)\b',Name.Variable),
             (r'(resp|beresp|obj)\.(status|reason)\b',Name.Variable),
             (r'(beresp|obj)\.(ttl|grace)\b',Name.Variable),
             (r'(backend)(\s+\w+)(\s*{)',
             bygroups(Keyword, Name.Variable.Global, Punctuation), 'backend'),
+            (r'(ban\s*)(\()(.*)(\)\s*;)',
+            bygroups(Keyword,Punctuation,using(this),Punctuation)),
             (r'(probe\s)(\s*\w+\s)({)',
             bygroups(Keyword,Name.Variable.Global,Punctuation),'probe'),
             (r'(acl\s)(\s*\w+\s)({)',
@@ -161,7 +171,8 @@ class VCLSnippetLexer(VCLLexer):
     tokens = {
         'snippetspre': [
             (r'\<variable\>', Name.Variable),
-            (r'\<value\>', Name.Variable)
+            (r'\<value\>', Name.Variable),
+            (r'\.\.\.+', Comment)
             ],
         'snippetspost': [
             (r'(req|bereq|obj|resp|beresp|client|server)(\.http)?\.\*\b',Name.Variable),
