@@ -90,7 +90,7 @@ Here a small overview of all allowed styles:
     don't render text as bold (to prevent subtokens being highlighted bold)
 ``italic``
     render text italic
-``noitalic``\x1b[38;5;124
+``noitalic``
     don't render text as italic
 ``underline``
     render text underlined
