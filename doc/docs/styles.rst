@@ -182,5 +182,9 @@ foreground color.
     >>> print(result.encode())
     b'print(\x1b[34;01m"\x1b[39m\x1b[34;01mHello World\x1b[39m\x1b[34;01m"\x1b[39m)\n'
 
-Style that use `#ansi*` foreground colors do not currently work with formatters
-others than ``Terminal256``.
+Style that use `#ansi*` foreground colors might not correctly work with
+formatters others than ``Terminal256``. `HtmlFormatter` is capable of handling
+some `#ansi*` code and will map to the corresponding HTML/CSS color. That is to
+say, `#ansiblue` will be converted to `color:blue` , `#ansired` to `color:red`.
+The behavior is undefined for argument like `#ansireset`, `#ansiunderline`,
+`#ansibold`... etc.
