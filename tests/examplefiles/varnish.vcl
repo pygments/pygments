@@ -8,6 +8,20 @@ vcl 4.0;
 backend foo { .host = "192.168.1.1"; }
 
 probe blatti { .url = "foo"; }
+probe fooy {
+	.url = "beh";
+
+}
+
+acl foo {
+	"192.168.1.1";
+	"192.168.0.0"/24;
+	! "192.168.0.1";
+}
+
+include "foo.vcl";
+
+import std;
 
 sub vcl_recv {
     if (req.method == "PRI") {
