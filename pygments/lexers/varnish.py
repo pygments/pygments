@@ -64,7 +64,7 @@ class VCLLexer(RegexLexer):
             bygroups(Name.Attribute,Operator,Name.Variable.Global,Punctuation)),
             (r'(\.probe)(\s*=\s*)({)',
             bygroups(Name.Attribute,Operator,Punctuation),'probe'),
-            (r'(\..*\b)(\s*=\s*)([^;]*)(\s*;)',
+            (r'(\.\w+\b)(\s*=\s*)([^;]*)(\s*;)',
             bygroups(Name.Attribute, Operator, using(this), Punctuation)),
             (r'{',Punctuation,'#push'),
             (r'}',Punctuation,'#pop')
@@ -73,9 +73,12 @@ class VCLLexer(RegexLexer):
             (r'(\d\.)?\d+[sdwhmy]',Literal.Date),
             (r'(\d\.)?\d+ms',Literal.Date),
             (r'[~!^&*+=|<>/-]', Operator),
-            (r'[,]', Punctuation),
-            (r'(set\s)([^\s]+)(\s*=\s*)(.+)(\s*;\s*)($|#.*$|//.*$|/\*.*$)',
-            bygroups(Keyword, Name.Variable, Punctuation, using(this), Punctuation, using(this))),
+            (r'[,]+', Punctuation),
+            (r'(hash|lookup|ok|deliver|miss|fetch|pass|pipe|purge|retry|restart)\b', Name.Constant),
+            (r'(synth)(\(.*\))', bygroups(Keyword,using(this))),
+            (r'(return\s)(\(.*\)\s*;)', bygroups(Keyword, using(this))),
+            (r'(set\s)([^\s]+)(\s*=\s*)(.+)(\s*;)',
+            bygroups(Keyword, Name.Variable, Punctuation, using(this), Punctuation)),
             (r'(unset\s)(\s*[^\s]+)(\s*;)',
             bygroups(Keyword, Name.Variable, Punctuation)),
             (r'(import\s)(\w+)(;)',
@@ -92,13 +95,12 @@ class VCLLexer(RegexLexer):
             bygroups(Keyword,Punctuation)),
             (r'storage\.\w+\.\w+\b', Name.Variable),
             (r'(local|remote)\.ip\b', Name.Variable),
-            (r'now\b', Name.Variable),
             (words(('true','false')),Name.Builtin),
             (r'(call \s*)([^\s;]+)(;)',
             bygroups(Keyword,Name.Variable.Global,Punctuation)),
             (r'obj\.(ttl|hits)',Name.Variable),
             (r'\d+\b', Number),
-            (r'(req_top|req|bereq|obj|resp|beresp)\.http\.[^\s]+\b',Name.Variable),
+            (r'(req_top|req|bereq|obj|resp|beresp)\.http\.\w+\b',Name.Variable),
             (r'(req_top|req|bereq)\.(restarts|backend_hint|url|method|xid)\b',Name.Variable),
             (r'(resp|beresp|obj)\.(status|reason)\b',Name.Variable),
             (r'(beresp|obj)\.(ttl|grace)\b',Name.Variable),
@@ -110,6 +112,7 @@ class VCLLexer(RegexLexer):
             bygroups(Keyword,Name.Variable.Global,Punctuation),'acl'),
             (r'[();]', Punctuation),
             (r'(client|server)\.(ip|identity)\b',Name.Variable),
+            (r'(now|req|req_top|storage|client|server|remote|local|resp|beresp|bereq|obj)\b', Name.Variable),
             (r'(vcl )(4.0)(;)$',
             bygroups(Keyword.Reserved,Name.Constant,Punctuation)),
             (r'(include\s+)("[^"]+"\s*)(;)',
@@ -124,10 +127,9 @@ class VCLLexer(RegexLexer):
         'sub': [
             include('whitespace'),
             include('comments'),
-            include('returns'),
             include('statements'),
             (r'{',Punctuation,'#push'),
-            (r'}',Punctuation,'#pop') 
+            (r'}',Punctuation,'#pop')
         ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
@@ -157,18 +159,9 @@ class VCLLexer(RegexLexer):
             (r'\s+', Text),
             (r'\\\n', Text)  # line continuation
         ],
-        'returns': [
-            (r'(return\s)(\()(hash|lookup|ok|deliver|miss|fetch|pass|pipe|purge|retry|restart)(\)\s*;$)',
-            bygroups(Keyword, Punctuation, Name.Constant, Punctuation)),
-            (r'(return\s)(\()(\s*synth\s*)(\()(\s*\d+\s*)(,)([^)]+)(\)\s*\)\s*;)',
-            bygroups(Keyword, Punctuation, Keyword, Punctuation,Number,Punctuation,using(this),Punctuation)),
-            (r'(return\s)(\()(\s*synth\s*)(\()(\s*\d+\s*)(\)\s*\)\s*;)',
-            bygroups(Keyword, Punctuation, Keyword, Punctuation,Number,Punctuation))
-        ],
         'root': [
             include('whitespace'),
             include('comments'),
-            include('returns'),
             (r'(sub\s+)([a-zA-Z]\w*)(\s*{)',
                 bygroups(Keyword, Name.Function, Punctuation),'sub'),
             include('statements'),
