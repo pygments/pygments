@@ -186,12 +186,12 @@ class VCLSnippetLexer(VCLLexer):
         'snippetspre': [
             (r'\<variable\>', Name.Variable),
             (r'\<value\>', Name.Variable),
+            (r'(req|bereq|obj|resp|beresp|client|server)(\.http)?\.\*(\b|$)',Name.Variable),
             (r'\.\.\.+', Comment)
             ],
         'snippetspost': [
-            (r'(req|bereq|obj|resp|beresp|client|server)(\.http)?\.\*\b',Name.Variable),
-            (r'(req|bereq|obj|resp|beresp|client|server)\b',Name.Variable),
-            (r'(backend\b)', Keyword.Reserved)
+            (r'(req|bereq|obj|resp|beresp|client|server)(\b|$)',Name.Variable),
+            (r'(backend)(\b|$)', Keyword.Reserved)
         ],
         'root': [
             include('snippetspre'),
