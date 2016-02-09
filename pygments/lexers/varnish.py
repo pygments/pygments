@@ -70,8 +70,8 @@ class VCLLexer(RegexLexer):
             (r'}',Punctuation,'#pop')
         ],
         'statements': [
-            (r'\d+[sdwhmy]',Literal.Date),
-            (r'\d+ms',Literal.Date),
+            (r'(\d\.)?\d+[sdwhmy]',Literal.Date),
+            (r'(\d\.)?\d+ms',Literal.Date),
             (r'[~!^&*+=|<>/-]', Operator),
             (r'[,]', Punctuation),
             (r'(set\s)([^\s]+)(\s*=\s*)(.+)(\s*;\s*)($|#.*$|//.*$|/\*.*$)',
