@@ -44,24 +44,28 @@ class VCLLexer(RegexLexer):
 
     tokens = {
         'probe': [
-            (r'(\s*\.\w+)(\s*=\s*)([^;]*)(;)',
-            bygroups(Name.Attribute, Operator, using(this), Punctuation)),
-            (r'\s*}', Punctuation, '#pop')
-        ],
-        'acl': [
             include('whitespace'),
+            include('comments'),
             (r'(\.\w+)(\s*=\s*)([^;]*)(;)',
             bygroups(Name.Attribute, Operator, using(this), Punctuation)),
             (r'}', Punctuation, '#pop')
         ],
+        'acl': [
+            include('whitespace'),
+            include('comments'),
+            (r'[!/]+',Operator),
+            (r';',Punctuation),
+            (r'\d+',Number),
+            (r'}', Punctuation, '#pop')
+        ],
         'backend': [
             include('whitespace'),
-            (r'(\.host|\.port)(\s*=\s*)([^;]*)(\s*;)',
-            bygroups(Name.Attribute, Operator, using(this), Punctuation)),
             (r'(\.probe)(\s*=\s*)(\w+)(;)',
             bygroups(Name.Attribute,Operator,Name.Variable.Global,Punctuation)),
             (r'(\.probe)(\s*=\s*)({)',
             bygroups(Name.Attribute,Operator,Punctuation),'probe'),
+            (r'(\..*\b)(\s*=\s*)([^;]*)(\s*;)',
+            bygroups(Name.Attribute, Operator, using(this), Punctuation)),
             (r'{',Punctuation,'#push'),
             (r'}',Punctuation,'#pop')
         ],
@@ -69,28 +73,21 @@ class VCLLexer(RegexLexer):
             (r'\d+[sdwhmy]',Literal.Date),
             (r'\d+ms',Literal.Date),
             (r'[~!^&*+=|<>/-]', Operator),
-            (r'(hash_data)(\()(.+)(\)\s*;\s*$)',
-            bygroups(Keyword, Punctuation, using(this), Punctuation)),
+            (r'[,]', Punctuation),
             (r'(set\s)([^\s]+)(\s*=\s*)(.+)(\s*;\s*)($|#.*$|//.*$|/\*.*$)',
             bygroups(Keyword, Name.Variable, Punctuation, using(this), Punctuation, using(this))),
             (r'(unset\s)(\s*[^\s]+)(\s*;)',
             bygroups(Keyword, Name.Variable, Punctuation)),
-            (r'(regsub\s*)(\()(.*)(,)(.*)(,)(.*)(\))',
-            bygroups(Keyword, Punctuation, using(this), Punctuation,
-            using(this), Punctuation, using(this), Punctuation)),
-            (r'(regsuball\s*)(\()(.*)(,)(.*)(,)(.*)(\))',
-            bygroups(Keyword, Punctuation, using(this), Punctuation,
-            using(this), Punctuation, using(this), Punctuation)),
-            (r'(import\s)(\w+)(;\s*)$',
+            (r'(import\s)(\w+)(;)',
             bygroups(Keyword.Namespace, Name.Variable.Global, Punctuation)),
             (words(('vcl_recv','vcl_pipe','vcl_pass','vcl_hash','vcl_purge',
                     'vcl_hit','vcl_miss','vcl_deliver','vcl_synth','vcl_backend_fetch',
                     'vcl_backend_response','vcl_backend_error','vcl_init','vcl_fini'),
                     suffix=r'\b'),Name.Function),
-            (words(('if','else','elsif','elif','synth',
-                    'synthetic'), suffix=r'\b'),Keyword),
+            (words(('hash_data','regsub','regsuball','if','else','elsif','elif','synth',
+                    'synthetic','ban'), suffix=r'\b'),Keyword),
             (r'(new\s+)(\w+)(\s*=)(.*)(;)',
-            bygroups(Keyword.Namespace,Name.Variable.Global,Punctuation,Text,Punctuation)),
+            bygroups(Keyword.Namespace,Name.Variable.Global,Punctuation,using(this),Punctuation)),
             (r'(rollback\s*)(\(\s*\)\s*;)',
             bygroups(Keyword,Punctuation)),
             (r'storage\.\w+\.\w+\b', Name.Variable),
@@ -99,15 +96,14 @@ class VCLLexer(RegexLexer):
             (words(('true','false')),Name.Builtin),
             (r'(call \s*)([^\s;]+)(;)',
             bygroups(Keyword,Name.Variable.Global,Punctuation)),
-            (r'obj\.ttl',Name.Variable),
+            (r'obj\.(ttl|hits)',Name.Variable),
+            (r'\d+\b', Number),
             (r'(req_top|req|bereq|obj|resp|beresp)\.http\.[^\s]+\b',Name.Variable),
-            (r'(req_top|req|bereq)\.(url|method|xid)\b',Name.Variable),
+            (r'(req_top|req|bereq)\.(restarts|backend_hint|url|method|xid)\b',Name.Variable),
             (r'(resp|beresp|obj)\.(status|reason)\b',Name.Variable),
             (r'(beresp|obj)\.(ttl|grace)\b',Name.Variable),
             (r'(backend)(\s+\w+)(\s*{)',
             bygroups(Keyword, Name.Variable.Global, Punctuation), 'backend'),
-            (r'(ban\s*)(\()(.*)(\)\s*;)',
-            bygroups(Keyword,Punctuation,using(this),Punctuation)),
             (r'(probe\s)(\s*\w+\s)({)',
             bygroups(Keyword,Name.Variable.Global,Punctuation),'probe'),
             (r'(acl\s)(\s*\w+\s)({)',
@@ -117,7 +113,13 @@ class VCLLexer(RegexLexer):
             (r'(vcl )(4.0)(;)$',
             bygroups(Keyword.Reserved,Name.Constant,Punctuation)),
             (r'(include\s+)("[^"]+"\s*)(;)',
-            bygroups(Keyword,String,Punctuation))
+            bygroups(Keyword,String,Punctuation)),
+            ( r'([a-zA-Z_]\w*)'
+              r'(\.)'
+              r'([a-zA-Z_]\w*)'
+              r'(\s*\(.*\))',
+            bygroups(Name.Function,Punctuation,Name.Function,using(this))),
+            ('[a-zA-Z_]\w*', Name)
             ],
         'sub': [
             include('whitespace'),
@@ -156,7 +158,7 @@ class VCLLexer(RegexLexer):
             (r'\\\n', Text)  # line continuation
         ],
         'returns': [
-            (r'(return\s)(\()(hash|lookup|ok|deliver|miss|fetch|pass|pipe)(\)\s*;$)',
+            (r'(return\s)(\()(hash|lookup|ok|deliver|miss|fetch|pass|pipe|purge|retry|restart)(\)\s*;$)',
             bygroups(Keyword, Punctuation, Name.Constant, Punctuation)),
             (r'(return\s)(\()(\s*synth\s*)(\()(\s*\d+\s*)(,)([^)]+)(\)\s*\)\s*;)',
             bygroups(Keyword, Punctuation, Keyword, Punctuation,Number,Punctuation,using(this),Punctuation)),
