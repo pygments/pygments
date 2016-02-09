@@ -28,6 +28,20 @@ class VCLLexer(RegexLexer):
     filenames = [ '*.vcl' ]
     mimetypes = ['text/x-vclsrc']
 
+    def analyse_text(text):
+        # If the very first line is 'vcl 4.0;' it's pretty much guaranteed
+        # that this is VCL
+        if re.search('^vcl 4\.0;\n', text):
+            return 1.0
+
+        # Skip over comments and blank lines
+        # This is accurate enough that returning 0.9 is reasonable.
+        # Almost no VCL files start without some comments.
+        if re.search('^((\s+)|(#[^\n]*\n)|(\n)|(\s*//[^\n]*\n)|(/\*[^*/]*\*/))*vcl 4\.0;', text):
+            return 0.9
+
+        return 0.0
+
     tokens = {
         'probe': [
             (r'(\s*\.\w+)(\s*=\s*)([^;]*)(;)',
@@ -100,7 +114,7 @@ class VCLLexer(RegexLexer):
             bygroups(Keyword,Name.Variable.Global,Punctuation),'acl'),
             (r'[();]', Punctuation),
             (r'(client|server)\.(ip|identity)\b',Name.Variable),
-            (r'^(vcl )(4.0)(;)$',
+            (r'(vcl )(4.0)(;)$',
             bygroups(Keyword.Reserved,Name.Constant,Punctuation)),
             (r'(include\s+)("[^"]+"\s*)(;)',
             bygroups(Keyword,String,Punctuation))
