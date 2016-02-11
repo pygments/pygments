@@ -72,51 +72,24 @@ class VCLLexer(RegexLexer):
         'statements': [
             (r'(\d\.)?\d+[sdwhmy]',Literal.Date),
             (r'(\d\.)?\d+ms',Literal.Date),
-            (r'[~!^&*+=|<>/-]', Operator),
-            (r'[,]+', Punctuation),
-            (r'(hash|lookup|ok|deliver|miss|fetch|pass|pipe|purge|retry|restart)\b', Name.Constant),
-            (r'(synth)(\(.*\))', bygroups(Keyword,using(this))),
-            (r'(return\s)(\(.*\)\s*;)', bygroups(Keyword, using(this))),
-            (r'(set\s)([^\s]+)(\s*=\s*)(.+)(\s*;)',
-            bygroups(Keyword, Name.Variable, Punctuation, using(this), Punctuation)),
-            (r'(unset\s)(\s*[^\s]+)(\s*;)',
-            bygroups(Keyword, Name.Variable, Punctuation)),
-            (r'(import\s)(\w+)(;)',
-            bygroups(Keyword.Namespace, Name.Variable.Global, Punctuation)),
-            (words(('vcl_recv','vcl_pipe','vcl_pass','vcl_hash','vcl_purge',
-                    'vcl_hit','vcl_miss','vcl_deliver','vcl_synth','vcl_backend_fetch',
-                    'vcl_backend_response','vcl_backend_error','vcl_init','vcl_fini'),
-                    suffix=r'\b'),Name.Function),
-            (words(('hash_data','regsub','regsuball','if','else','elsif','elif','synth',
-                    'synthetic','ban'), suffix=r'\b'),Keyword),
-            (r'(new\s+)(\w+)(\s*=)(.*)(;)',
-            bygroups(Keyword.Namespace,Name.Variable.Global,Punctuation,using(this),Punctuation)),
-            (r'(rollback\s*)(\(\s*\)\s*;)',
-            bygroups(Keyword,Punctuation)),
-            (r'storage\.\w+\.\w+\b', Name.Variable),
-            (r'(local|remote)\.ip\b', Name.Variable),
-            (words(('true','false')),Name.Builtin),
-            (r'(call \s*)([^\s;]+)(;)',
-            bygroups(Keyword,Name.Variable.Global,Punctuation)),
-            (r'obj\.(ttl|hits)',Name.Variable),
-            (r'\d+\b', Number),
-            (r'(req_top|req|bereq|obj|resp|beresp)\.http\.\w+\b',Name.Variable),
-            (r'(req_top|req|bereq)\.(restarts|backend_hint|url|method|xid)\b',Name.Variable),
-            (r'(resp|beresp|obj)\.(status|reason)\b',Name.Variable),
-            (r'(beresp|obj)\.(ttl|grace)\b',Name.Variable),
-            (r'(backend)(\s+\w+)(\s*{)',
-            bygroups(Keyword, Name.Variable.Global, Punctuation), 'backend'),
-            (r'(probe\s)(\s*\w+\s)({)',
-            bygroups(Keyword,Name.Variable.Global,Punctuation),'probe'),
-            (r'(acl\s)(\s*\w+\s)({)',
-            bygroups(Keyword,Name.Variable.Global,Punctuation),'acl'),
+            (r'(vcl_pass|vcl_hash|vcl_hit|vcl_init|vcl_backend_fetch|vcl_pipe|vcl_backend_response|vcl_synth|vcl_deliver|vcl_backend_error|vcl_fini|vcl_recv|vcl_purge|vcl_miss)\b', Name.Function),
+            (r'(pipe|retry|hash|synth|deliver|purge|abandon|lookup|pass|fail|ok|miss|fetch|restart)\b', Name.Constant),
+            (r'(beresp|obj|resp|req|req_top|bereq)\.http\.[a-zA-Z_-]+\b', Name.Variable),
+(words(( 'obj.status', 'req.hash_always_miss', 'beresp.backend', 'req.esi_level', 'req.can_gzip', 'beresp.ttl', 'obj.uncacheable', 'req.ttl', 'obj.hits', 'client.identity', 'req.hash_ignore_busy', 'obj.reason', 'req.xid', 'req_top.proto', 'beresp.age', 'obj.proto', 'obj.age', 'local.ip', 'beresp.uncacheable', 'req.method', 'beresp.backend.ip', 'now', 'obj.grace', 'req.restarts', 'beresp.keep', 'req.proto', 'resp.proto', 'bereq.xid', 'bereq.between_bytes_timeout', 'req.esi', 'bereq.first_byte_timeout', 'bereq.method', 'bereq.connect_timeout', 'beresp.do_gzip',  'resp.status', 'beresp.do_gunzip', 'beresp.storage_hint', 'resp.is_streaming', 'beresp.do_stream', 'req_top.method', 'bereq.backend', 'beresp.backend.name', 'beresp.status', 'req.url', 'obj.keep', 'obj.ttl', 'beresp.reason', 'bereq.retries', 'resp.reason', 'bereq.url', 'beresp.do_esi', 'beresp.proto', 'client.ip', 'bereq.proto', 'server.hostname', 'remote.ip', 'req.backend_hint', 'server.identity', 'req_top.url', 'beresp.grace', 'beresp.was_304', 'server.ip', 'bereq.uncacheable','now'),suffix=r'(\b|$)'), Name.Variable),
+            (r'[!%&+*-,/<.}{>=|~]+', Operator),
             (r'[();]', Punctuation),
-            (r'(client|server)\.(ip|identity)\b',Name.Variable),
-            (r'(now|req|req_top|storage|client|server|remote|local|resp|beresp|bereq|obj)\b', Name.Variable),
-            (r'(vcl )(4.0)(;)$',
-            bygroups(Keyword.Reserved,Name.Constant,Punctuation)),
-            (r'(include\s+)("[^"]+"\s*)(;)',
-            bygroups(Keyword,String,Punctuation)),
+
+            (r'[,]+', Punctuation),
+            (words(('include','hash_data','regsub','regsuball','if','else','elsif','elif','synth', 'synthetic','ban','synth','return','set','unset','import','include','new','rollback','call'), suffix=r'\b'),Keyword),
+            (r'storage\.\w+\.\w+\b', Name.Variable),
+            (words(('true','false')),Name.Builtin),
+            (r'\d+\b', Number),
+            (r'(backend)(\s+\w+)(\s*{)', bygroups(Keyword, Name.Variable.Global, Punctuation), 'backend'),
+            (r'(probe\s)(\s*\w+\s)({)', bygroups(Keyword,Name.Variable.Global,Punctuation),'probe'),
+            (r'(acl\s)(\s*\w+\s)({)', bygroups(Keyword,Name.Variable.Global,Punctuation),'acl'),
+            (r'(vcl )(4.0)(;)$', bygroups(Keyword.Reserved,Name.Constant,Punctuation)),
+            (r'(sub\s+)([a-zA-Z]\w*)(\s*{)',
+                bygroups(Keyword, Name.Function, Punctuation)),
             ( r'([a-zA-Z_]\w*)'
               r'(\.)'
               r'([a-zA-Z_]\w*)'
@@ -124,13 +97,6 @@ class VCLLexer(RegexLexer):
             bygroups(Name.Function,Punctuation,Name.Function,using(this))),
             ('[a-zA-Z_]\w*', Name)
             ],
-        'sub': [
-            include('whitespace'),
-            include('comments'),
-            include('statements'),
-            (r'{',Punctuation,'#push'),
-            (r'}',Punctuation,'#pop')
-        ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
@@ -162,8 +128,6 @@ class VCLLexer(RegexLexer):
         'root': [
             include('whitespace'),
             include('comments'),
-            (r'(sub\s+)([a-zA-Z]\w*)(\s*{)',
-                bygroups(Keyword, Name.Function, Punctuation),'sub'),
             include('statements'),
             (r'\s+', Text)
         ],
@@ -177,15 +141,17 @@ class VCLSnippetLexer(VCLLexer):
     name = 'VCLSnippets'
     aliases = ['vclsnippets', 'vclsnippet']
     mimetypes = ['text/x-vclsnippet']
+    filenames = [ ]
+    
+    def analyse_text(text):
+        return 0.0
+
     tokens = {
         'snippetspre': [
-            (r'\<variable\>', Name.Variable),
-            (r'\<value\>', Name.Variable),
-            (r'(req|bereq|obj|resp|beresp|client|server)(\.http)?\.\*(\b|$)',Name.Variable),
-            (r'\.\.\.+', Comment)
+            (r'\.\.\.+', Comment),
+            (r'(bereq|req|req_top|resp|beresp|obj|client|server|local|remote|storage)($|\.\*)',Name.Variable)
             ],
         'snippetspost': [
-            (r'(req|bereq|obj|resp|beresp|client|server)(\b|$)',Name.Variable),
             (r'(backend)(\b|$)', Keyword.Reserved)
         ],
         'root': [
