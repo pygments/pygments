@@ -50,11 +50,20 @@ class EscapeSequence:
         attrs = []
         if self.fg is not None:
             if self.fg in ansilist:
-                attrs.append(codes[self.fg[5:]][2:-1])
+                esc = codes[self.fg[5:]]
+                if ';01m' in esc:
+                    self.bold = True
+                # extract fg color code.
+                attrs.append(esc[2:4])
             else :
                 attrs.extend(("38", "5", "%i" % self.fg))
         if self.bg is not None:
-            attrs.extend(("48", "5", "%i" % self.bg))
+            if self.bg in ansilist:
+                esc = codes[self.bg[5:]]
+                # extract fg color code, add 10 for bg.
+                attrs.append(str(int(esc[2:4])+10))
+            else :
+                attrs.extend(("48", "5", "%i" % self.bg))
         if self.bold:
             attrs.append("01")
         if self.underline:
@@ -201,9 +210,14 @@ class Terminal256Formatter(Formatter):
     def _setup_styles(self):
         for ttype, ndef in self.style:
             escape = EscapeSequence()
-            if ndef['color']:
+            # get foreground from ansicolor if set
+            if ndef['ansicolor']:
+                escape.fg = self._color_index(ndef['ansicolor'])
+            elif ndef['color']:
                 escape.fg = self._color_index(ndef['color'])
-            if ndef['bgcolor']:
+            if ndef['bgansicolor']:
+                escape.bg = self._color_index(ndef['bgansicolor'])
+            elif ndef['bgcolor']:
                 escape.bg = self._color_index(ndef['bgcolor'])
             if self.usebold and ndef['bold']:
                 escape.bold = True
