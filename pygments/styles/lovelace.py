@@ -71,7 +71,9 @@ class LovelaceStyle(Style):
         Name.Variable.Magic: _DOC_ORANGE,
 
         String:              _STR_RED,
+        String.Affix:        '#444444',
         String.Char:         _OW_PURPLE,
+        String.Delimiter:    _DOC_ORANGE,
         String.Doc:          'italic '+_DOC_ORANGE,
         String.Escape:       _ESCAPE_LIME,
         String.Interpol:     'underline',
