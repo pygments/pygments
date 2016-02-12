@@ -20,23 +20,6 @@ from pygments.token import Token, Text, STANDARD_TYPES
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
     StringIO, string_types, iteritems
 
-
-_deansify_map = {
-        '#darkyellow':'#brown',
-        '#darkteal': '#turquoise',
-        '#fusia': '#fushia'
-}
-
-
-
-def _deansify(color):
-    if color.startswith('#ansi'):
-        color = color[5:]
-    else:
-        color = '#%s'% color
-
-    return _deansify_map.get(color,  color)
-
 try:
     import ctags
 except ImportError:
@@ -461,7 +444,7 @@ class HtmlFormatter(Formatter):
             name = self._get_css_class(ttype)
             style = ''
             if ndef['color']:
-                style += 'color: %s; ' % _deansify(ndef['color'])
+                style += 'color: #%s; ' % ndef['color']
             if ndef['bold']:
                 style += 'font-weight: bold; '
             if ndef['italic']:
@@ -469,7 +452,7 @@ class HtmlFormatter(Formatter):
             if ndef['underline']:
                 style += 'text-decoration: underline; '
             if ndef['bgcolor']:
-                style += 'background-color: %s; ' % _deansify(ndef['bgcolor'])
+                style += 'background-color: #%s; ' % ndef['bgcolor']
             if ndef['border']:
                 style += 'border: 1px solid #%s; ' % ndef['border']
             if style:
