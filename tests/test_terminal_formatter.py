@@ -10,11 +10,17 @@
 from __future__ import print_function
 
 import unittest
+import sys
 import re
 
 from pygments.util import StringIO
 from pygments.lexers.sql import PlPgsqlLexer
-from pygments.formatters import TerminalFormatter
+from pygments.formatters import TerminalFormatter,Terminal256Formatter, HtmlFormatter, LatexFormatter
+
+from pygments.style import Style
+from pygments.token import Token
+from pygments.lexers import Python3Lexer
+from pygments import highlight
 
 DEMO_TEXT = '''\
 -- comment
@@ -49,3 +55,56 @@ class TerminalFormatterTest(unittest.TestCase):
 
         for a, b in zip(DEMO_TEXT.splitlines(), plain.splitlines()):
             self.assertTrue(a in b)
+
+
+
+
+
+
+class MyStyle(Style):
+
+    styles = {
+        Token.Comment:    '#ansidarkgray',
+        Token.String:     '#ansiblue bg:#ansidarkred', 
+        Token.Number    : '#ansigreen bg:#ansidarkgreen', 
+        Token.Number.Hex: '#ansidarkgreen bg:#ansired', 
+    }
+
+
+
+code = '''
+# this should be a comment
+print("Hello World")
+async def function(a,b,c, *d, **kwarg:Bool)->Bool:
+    pass
+    return 123, 0xb3e3
+
+'''
+
+
+termtest = lambda x: highlight(x, Python3Lexer(), Terminal256Formatter(style=MyStyle))
+if sys.version_info > (2,7):
+    class Terminal256FormatterTest(unittest.TestCase):
+
+
+        def test_style_html(self):
+            style = HtmlFormatter(style=MyStyle).get_style_defs()
+            self.assertIn('#555555',style, "ansigray for comment not html css style")
+
+        def test_tex_works(self):
+            """check tex Formatter don't crash"""
+            highlight(code, Python3Lexer(), LatexFormatter(style=MyStyle))
+
+        def test_html_works(self):
+            highlight(code, Python3Lexer(), HtmlFormatter(style=MyStyle))
+
+        def test_256esc_seq(self):
+            """
+            test that a few escape sequences are actualy used when using #ansi<> color codes
+            """
+            self.assertIn('32;41',termtest('0x123'))
+            self.assertIn('32;42',termtest('123'))
+            self.assertIn('30;01',termtest('#comment'))
+            self.assertIn('34;41',termtest('"String"'))
+
+        
