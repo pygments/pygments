@@ -109,6 +109,8 @@ def main(fn, lexer=None, options={}):
             lxcls = find_lexer_class(name)
             if lxcls is None:
                 raise AssertionError('no lexer found for file %r' % fn)
+        print('Using lexer: %s (%s.%s)' % (lxcls.name, lxcls.__module__,
+                                           lxcls.__name__))
     debug_lexer = False
     # if profile:
     #     # does not work for e.g. ExtendedRegexLexers
