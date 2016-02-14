@@ -66,7 +66,8 @@ class Scanner(object):
 
     def test(self, pattern):
         """Apply a pattern on the current position and check
-        if it patches. Doesn't touch pos."""
+        if it patches. Doesn't touch pos.
+        """
         return self.check(pattern) is not None
 
     def scan(self, pattern):
