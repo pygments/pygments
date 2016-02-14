@@ -143,3 +143,62 @@ a way to iterate over all styles:
 
     >>> from pygments.styles import get_all_styles
     >>> styles = list(get_all_styles())
+
+
+.. _AnsiTerminalStyle:
+
+Terminal Styles
+===============
+
+.. versionadded:: 2.2
+
+Custom styles used with `Terminal256` formatter can also defines colors using
+ansi-color. To do so use the `#ansigreen`, `#ansired` or any other colors
+defined in ``pygments.style.ansilist``. Foreground ANSI colors will be mapped
+to the corresponding `escape codes 30 to 37
+<https://en.wikipedia.org/wiki/ANSI_escape_code#Colors>`_  thus respecting any
+custom color mapping and themes provided by many terminal emulators. Light
+variant are treated for foreground color with and extra bold flag.
+`bg:#ansi<color>` will also be respected, except the light variant will be the
+same shade as their light variant.
+
+See following example where the color of the string `"hello world"` is governed
+by the escape sequence `\x1b34;01m` (Ansi Blue, Bold, `41` beeing red background)
+instead of an extended foreground & background color.
+
+.. sourcecode:: pycon
+
+    >>> from pygments import highlight
+    >>> from pygments.style import Style
+    >>> from pygments.token import Token
+    >>> from pygments.lexers import Python3Lexer
+    >>> from pygments.formatters import Terminal256Formatter
+
+    >>> class MyStyle(Style):
+            styles = {
+                Token.String:     '#ansiblue bg:#ansired',
+            }
+
+    >>> code = 'print("Hello World")'
+    >>> result = highlight(code, Python3Lexer(), Terminal256Formatter(style=MyStyle))
+    >>> print(result.encode())
+    b'print(\x1b[34;41;01m"\x1b[39;49;00m\x1b[34;41;01mHello World\x1b[39;49;00m\x1b[34;41;01m"\x1b[39;49;00m)\n'
+
+Style that use `#ansi*` colors might not correctly work with
+formatters others than ``Terminal256``. `HtmlFormatter` is capable of handling
+some `#ansi*` code and will map to a fixed HTML/CSS color. For example,
+`#ansiblue` will be converted to `color:#0000ff` , `#ansired` to `color:#ff0000`.
+
+By definition of Ansi color the following color are considered "light" colors,
+and will be rendered by most terminal as bold:
+
+    - "darkgray", "red", "green", "yellow", "blue", "fuchsia", "turquoise",
+      "white"
+
+
+The following are considered "dark" color and will be rendered as non-bold:
+  
+    - "black", "darkred", "darkgreen", "brown", "darkblue", "purple", "teal",
+      "lightgray"
+
+Exact behavior might depends on the terminal emulator you are using, and its settings.
