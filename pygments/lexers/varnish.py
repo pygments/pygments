@@ -169,6 +169,10 @@ class VCLSnippetLexer(VCLLexer):
     mimetypes = ['text/x-vclsnippet']
     filenames = []
 
+    def analyse_text(text):
+        # override method inherited from VCLLexer
+        return 0
+
     tokens = {
         'snippetspre': [
             (r'\.\.\.+', Comment),
