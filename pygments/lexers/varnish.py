@@ -45,7 +45,7 @@ class VCLLexer(RegexLexer):
             include('comments'),
             (r'(\.\w+)(\s*=\s*)([^;]*)(;)',
              bygroups(Name.Attribute, Operator, using(this), Punctuation)),
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
         ],
         'acl': [
             include('whitespace'),
@@ -53,18 +53,18 @@ class VCLLexer(RegexLexer):
             (r'[!/]+', Operator),
             (r';', Punctuation),
             (r'\d+', Number),
-            (r'}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
         ],
         'backend': [
             include('whitespace'),
             (r'(\.probe)(\s*=\s*)(\w+)(;)',
              bygroups(Name.Attribute, Operator, Name.Variable.Global, Punctuation)),
-            (r'(\.probe)(\s*=\s*)({)',
+            (r'(\.probe)(\s*=\s*)(\{)',
              bygroups(Name.Attribute, Operator, Punctuation), 'probe'),
             (r'(\.\w+\b)(\s*=\s*)([^;]*)(\s*;)',
              bygroups(Name.Attribute, Operator, using(this), Punctuation)),
-            (r'{', Punctuation, '#push'),
-            (r'}', Punctuation, '#pop'),
+            (r'\{', Punctuation, '#push'),
+            (r'\}', Punctuation, '#pop'),
         ],
         'statements': [
             (r'(\d\.)?\d+[sdwhmy]', Literal.Date),
@@ -91,9 +91,9 @@ class VCLLexer(RegexLexer):
                 'resp.reason', 'bereq.url', 'beresp.do_esi', 'beresp.proto', 'client.ip',
                 'bereq.proto', 'server.hostname', 'remote.ip', 'req.backend_hint',
                 'server.identity', 'req_top.url', 'beresp.grace', 'beresp.was_304',
-                'server.ip', 'bereq.uncacheable', 'now'), suffix=r'(\b|$)'),
+                'server.ip', 'bereq.uncacheable', 'now'), suffix=r'\b'),
              Name.Variable),
-            (r'[!%&+*-,/<.}{>=|~]+', Operator),
+            (r'[!%&+*\-,/<.}{>=|~]+', Operator),
             (r'[();]', Punctuation),
 
             (r'[,]+', Punctuation),
@@ -105,15 +105,15 @@ class VCLLexer(RegexLexer):
             (r'storage\.\w+\.\w+\b', Name.Variable),
             (words(('true', 'false')), Name.Builtin),
             (r'\d+\b', Number),
-            (r'(backend)(\s+\w+)(\s*{)',
+            (r'(backend)(\s+\w+)(\s*\{)',
              bygroups(Keyword, Name.Variable.Global, Punctuation), 'backend'),
-            (r'(probe\s)(\s*\w+\s)({)',
+            (r'(probe\s)(\s*\w+\s)(\{)',
              bygroups(Keyword, Name.Variable.Global, Punctuation), 'probe'),
-            (r'(acl\s)(\s*\w+\s)({)',
+            (r'(acl\s)(\s*\w+\s)(\{)',
              bygroups(Keyword, Name.Variable.Global, Punctuation), 'acl'),
             (r'(vcl )(4.0)(;)$',
              bygroups(Keyword.Reserved, Name.Constant, Punctuation)),
-            (r'(sub\s+)([a-zA-Z]\w*)(\s*{)',
+            (r'(sub\s+)([a-zA-Z]\w*)(\s*\{)',
                 bygroups(Keyword, Name.Function, Punctuation)),
             (r'([a-zA-Z_]\w*)'
              r'(\.)'
@@ -139,12 +139,12 @@ class VCLLexer(RegexLexer):
         ],
         'multistring': [
             (r'[^"}]', String),
-            (r'"}', String, '#pop'),
+            (r'"\}', String, '#pop'),
             (r'["}]', String),
         ],
         'whitespace': [
             (r'L?"', String, 'string'),
-            (r'{"', String, 'multistring'),
+            (r'\{"', String, 'multistring'),
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text),  # line continuation
@@ -176,7 +176,7 @@ class VCLSnippetLexer(VCLLexer):
              r'storage)($|\.\*)', Name.Variable),
         ],
         'snippetspost': [
-            (r'(backend)(\b|$)', Keyword.Reserved),
+            (r'(backend)\b', Keyword.Reserved),
         ],
         'root': [
             include('snippetspre'),

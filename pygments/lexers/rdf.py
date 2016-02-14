@@ -42,8 +42,7 @@ class SparqlLexer(RegexLexer):
                          u'\u2c00-\u2fef'
                          u'\u3001-\ud7ff'
                          u'\uf900-\ufdcf'
-                         u'\ufdf0-\ufffd'
-                         u'\U00010000-\U000effff')
+                         u'\ufdf0-\ufffd')
 
     PN_CHARS_U_GRP = (PN_CHARS_BASE_GRP + '_')
 
@@ -56,7 +55,7 @@ class SparqlLexer(RegexLexer):
 
     HEX_GRP = '0-9A-Fa-f'
 
-    PN_LOCAL_ESC_CHARS_GRP = r' _~.\-!$&""()*+,;=/?#@%'
+    PN_LOCAL_ESC_CHARS_GRP = r' _~.\-!$&"()*+,;=/?#@%'
 
     # terminal productions ::
 
@@ -191,7 +190,7 @@ class TurtleLexer(RegexLexer):
     flags = re.IGNORECASE
 
     patterns = {
-        'PNAME_NS': r'((?:[a-zA-Z][\w-]*)?\:)',  # Simplified character range
+        'PNAME_NS': r'((?:[a-z][\w-]*)?\:)',  # Simplified character range
         'IRIREF': r'(<[^<>"{}|^`\\\x00-\x20]*>)'
     }
 
@@ -258,8 +257,7 @@ class TurtleLexer(RegexLexer):
             (r'.', String, '#pop'),
         ],
         'end-of-string': [
-
-            (r'(@)([a-zA-Z]+(:?-[a-zA-Z0-9]+)*)',
+            (r'(@)([a-z]+(:?-[a-z0-9]+)*)',
              bygroups(Operator, Generic.Emph), '#pop:2'),
 
             (r'(\^\^)%(IRIREF)s' % patterns, bygroups(Operator, Generic.Emph), '#pop:2'),

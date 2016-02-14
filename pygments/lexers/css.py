@@ -476,8 +476,8 @@ class ScssLexer(RegexLexer):
             (r'@[\w-]+', Keyword, 'selector'),
             (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
             # TODO: broken, and prone to infinite loops.
-            #(r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
-            #(r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
+            # (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
+            # (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
             default('selector'),
         ],
 
@@ -518,7 +518,7 @@ class LessCssLexer(CssLexer):
             inherit,
         ],
         'content': [
-            (r'{', Punctuation, '#push'),
+            (r'\{', Punctuation, '#push'),
             inherit,
         ],
     }

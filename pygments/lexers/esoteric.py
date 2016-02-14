@@ -90,7 +90,7 @@ class CAmkESLexer(RegexLexer):
     filenames = ['*.camkes', '*.idl4']
 
     tokens = {
-        'root':[
+        'root': [
             # C pre-processor directive
             (r'^\s*#.*\n', Comment.Preproc),
 
@@ -99,7 +99,7 @@ class CAmkESLexer(RegexLexer):
             (r'/\*(.|\n)*?\*/', Comment),
             (r'//.*\n', Comment),
 
-            (r'[\[\(\){},\.;=\]]', Punctuation),
+            (r'[\[(){},.;=\]]', Punctuation),
 
             (words(('assembly', 'attribute', 'component', 'composition',
                     'configuration', 'connection', 'connector', 'consumes',
