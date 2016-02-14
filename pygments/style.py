@@ -33,7 +33,7 @@ _ansimap = {
     '#ansiturquoise': '00ffff',
     '#ansiwhite': 'ffffff',
 }
-ansilist = set(_ansimap)
+ansicolors = set(_ansimap)
 
 
 class StyleMeta(type):
@@ -45,7 +45,7 @@ class StyleMeta(type):
                 obj.styles[token] = ''
 
         def colorformat(text):
-            if text in ansilist:
+            if text in ansicolors:
                 return text
             if text[0:1] == '#':
                 col = text[1:]
