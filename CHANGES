@@ -17,7 +17,7 @@ Version 2.2
   * TypoScript (#1173)
   * Varnish config (PR#554)
 
-- Added `lexers.find_lexer_class_by_name()` (#1203)
+- Added `lexers.find_lexer_class_by_name()`. (#1203)
 
 - Added new token types and lexing for magic methods and variables in Python
   and PHP.
@@ -27,6 +27,9 @@ Version 2.2
 
 - Added a new token type for heredoc (and similar) string delimiters and
   lexing for them in C++, Perl, PHP, Postgresql and Ruby lexers.
+
+- Styles can now define colors with ANSI colors for use in the 256-color
+  terminal formatter. (PR#531)
 
 
 Version 2.1.1

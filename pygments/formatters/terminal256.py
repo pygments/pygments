@@ -55,14 +55,14 @@ class EscapeSequence:
                     self.bold = True
                 # extract fg color code.
                 attrs.append(esc[2:4])
-            else :
+            else:
                 attrs.extend(("38", "5", "%i" % self.fg))
         if self.bg is not None:
             if self.bg in ansilist:
                 esc = codes[self.bg[5:]]
                 # extract fg color code, add 10 for bg.
                 attrs.append(str(int(esc[2:4])+10))
-            else :
+            else:
                 attrs.extend(("48", "5", "%i" % self.bg))
         if self.bold:
             attrs.append("01")
@@ -103,14 +103,12 @@ class Terminal256Formatter(Formatter):
     and converts them to nearest ANSI 256-color escape sequences. Bold and
     underline attributes from the style are preserved (and displayed).
 
-    .. versionadded:: 2.2
-    
-    If the used style defined foreground colors in the form `#ansi*`, then
-    `Terminal256Formatter` will map these to non extended foreground color.
-
-    See AnsiTerminalStyle_ for more informations. 
-
     .. versionadded:: 0.9
+
+    .. versionchanged:: 2.2
+       If the used style defines foreground colors in the form ``#ansi*``, then
+       `Terminal256Formatter` will map these to non extended foreground color.
+       See :ref:`AnsiTerminalStyle` for more information.
 
     Options accepted:
 
@@ -190,8 +188,8 @@ class Terminal256Formatter(Formatter):
 
     def _color_index(self, color):
         index = self.best_match.get(color, None)
-        if color in ansilist: 
-            # strip the `#ansi` part an look up code
+        if color in ansilist:
+            # strip the `#ansi` part and look up code
             index = color
             self.best_match[color] = index
         if index is None:

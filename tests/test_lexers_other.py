@@ -13,28 +13,9 @@ import unittest
 from pygments.lexers import guess_lexer
 from pygments.lexers.scripting import EasytrieveLexer, JclLexer, RexxLexer
 
+
 def _exampleFilePath(filename):
     return os.path.join(os.path.dirname(__file__), 'examplefiles', filename)
-
-_MAX_LENGTH = 80
-
-def safe_repr(obj, short=False):
-    try:
-        result = repr(obj)
-    except Exception:
-        result = object.__repr__(obj)
-    if not short or len(result) < _MAX_LENGTH:
-        return result
-    return result[:_MAX_LENGTH] + ' [truncated]...'
-
-
-class MyTestCase(unittest.TestCase):
-    ### Assert less is 2.7+ only.
-    def assertLess(self, a, b, msg=None):
-        """Just like self.assertTrue(a < b), but with a nicer default message."""
-        if not a < b:
-            standardMsg = '%s not less than %s' % (safe_repr(a), safe_repr(b))
-            self.fail(self._formatMessage(msg, standardMsg))
 
 
 class AnalyseTextTest(unittest.TestCase):
@@ -48,8 +29,8 @@ class AnalyseTextTest(unittest.TestCase):
                     text = fp.read().decode('utf-8')
                 probability = lexer.analyse_text(text)
                 self.assertTrue(probability > 0,
-                    '%s must recognize %r' % (
-                    lexer.name, exampleFilePath))
+                                '%s must recognize %r' % (
+                                    lexer.name, exampleFilePath))
                 guessedLexer = guess_lexer(text)
                 self.assertEqual(guessedLexer.name, lexer.name)
 
@@ -62,27 +43,27 @@ class AnalyseTextTest(unittest.TestCase):
         for lexerToTest in LEXERS_TO_TEST:
             self._testCanRecognizeAndGuessExampleFiles(lexerToTest)
 
-class EasyTrieveLexerTest(MyTestCase):
+
+class EasyTrieveLexerTest(unittest.TestCase):
     def testCanGuessFromText(self):
-        self.assertLess(0, EasytrieveLexer.analyse_text('MACRO'))
-        self.assertLess(0, EasytrieveLexer.analyse_text('\nMACRO'))
-        self.assertLess(0, EasytrieveLexer.analyse_text(' \nMACRO'))
-        self.assertLess(0, EasytrieveLexer.analyse_text(' \n MACRO'))
-        self.assertLess(0, EasytrieveLexer.analyse_text('*\nMACRO'))
-        self.assertLess(0, EasytrieveLexer.analyse_text(
+        self.assertTrue(EasytrieveLexer.analyse_text('MACRO'))
+        self.assertTrue(EasytrieveLexer.analyse_text('\nMACRO'))
+        self.assertTrue(EasytrieveLexer.analyse_text(' \nMACRO'))
+        self.assertTrue(EasytrieveLexer.analyse_text(' \n MACRO'))
+        self.assertTrue(EasytrieveLexer.analyse_text('*\nMACRO'))
+        self.assertTrue(EasytrieveLexer.analyse_text(
             '*\n *\n\n \n*\n MACRO'))
 
 
 class RexxLexerTest(unittest.TestCase):
     def testCanGuessFromText(self):
-        self.assertAlmostEqual(0.01,
-            RexxLexer.analyse_text('/* */'))
+        self.assertAlmostEqual(0.01, RexxLexer.analyse_text('/* */'))
         self.assertAlmostEqual(1.0,
-            RexxLexer.analyse_text('''/* Rexx */
+                               RexxLexer.analyse_text('''/* Rexx */
                 say "hello world"'''))
         val = RexxLexer.analyse_text('/* */\n'
-                'hello:pRoceduRe\n'
-                '  say "hello world"')
+                                     'hello:pRoceduRe\n'
+                                     '  say "hello world"')
         self.assertTrue(val > 0.5, val)
         val = RexxLexer.analyse_text('''/* */
                 if 1 > 0 then do
