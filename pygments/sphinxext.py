@@ -57,6 +57,7 @@ FILTERDOC = '''
 
 '''
 
+
 class PygmentsDoc(Directive):
     """
     A directive to collect all lexers/formatters/filters and generate
