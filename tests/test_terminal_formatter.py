@@ -81,30 +81,38 @@ async def function(a,b,c, *d, **kwarg:Bool)->Bool:
 
 '''
 
+class MyTest(unittest.TestCase):
+
+    def assertIn(self, member, container, msg=None):
+        """Just like self.assertTrue(a in b), but with a nicer default message."""
+        if member not in container:
+            standardMsg = '%s not found in %s' % (safe_repr(member),
+                                                  safe_repr(container))
+            self.fail(self._formatMessage(msg, standardMsg))
+
 
 termtest = lambda x: highlight(x, Python3Lexer(), Terminal256Formatter(style=MyStyle))
-if sys.version_info > (2,7):
-    class Terminal256FormatterTest(unittest.TestCase):
+class Terminal256FormatterTest(MyTest):
 
 
-        def test_style_html(self):
-            style = HtmlFormatter(style=MyStyle).get_style_defs()
-            self.assertIn('#555555',style, "ansigray for comment not html css style")
+    def test_style_html(self):
+        style = HtmlFormatter(style=MyStyle).get_style_defs()
+        self.assertIn('#555555',style, "ansigray for comment not html css style")
 
-        def test_tex_works(self):
-            """check tex Formatter don't crash"""
-            highlight(code, Python3Lexer(), LatexFormatter(style=MyStyle))
+    def test_tex_works(self):
+        """check tex Formatter don't crash"""
+        highlight(code, Python3Lexer(), LatexFormatter(style=MyStyle))
 
-        def test_html_works(self):
-            highlight(code, Python3Lexer(), HtmlFormatter(style=MyStyle))
+    def test_html_works(self):
+        highlight(code, Python3Lexer(), HtmlFormatter(style=MyStyle))
 
-        def test_256esc_seq(self):
-            """
-            test that a few escape sequences are actualy used when using #ansi<> color codes
-            """
-            self.assertIn('32;41',termtest('0x123'))
-            self.assertIn('32;42',termtest('123'))
-            self.assertIn('30;01',termtest('#comment'))
-            self.assertIn('34;41',termtest('"String"'))
+    def test_256esc_seq(self):
+        """
+        test that a few escape sequences are actualy used when using #ansi<> color codes
+        """
+        self.assertIn('32;41',termtest('0x123'))
+        self.assertIn('32;42',termtest('123'))
+        self.assertIn('30;01',termtest('#comment'))
+        self.assertIn('34;41',termtest('"String"'))
 
         

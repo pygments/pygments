@@ -15,26 +15,26 @@ from pygments.util import add_metaclass
 
 
 _ansimap = {
-        ## 
-        '#ansiblack': '000000',
-        '#ansidarkred': '7f0000',
-        '#ansidarkgreen': '007f00',
-        '#ansibrown': '7f7fe0',
-        '#ansidarkblue': '00007f',
-        '#ansipurple': '7f007f',
-        '#ansiteal': '007f7f',
-        '#ansilightgray': 'e5e5e5',
-        ### normal
-        '#ansidarkgray': '555555',
-        '#ansired': 'ff0000',
-        '#ansigreen': '00ff00',
-        '#ansiyellow': 'ffff00',
-        '#ansiblue': '0000ff',
-        '#ansifuchsia': 'ff00ff',
-        '#ansiturquoise': '00ffff',
-        '#ansiwhite': 'ffffff',
-        }
-ansilist = list(_ansimap.keys())
+    ## 
+    '#ansiblack': '000000',
+    '#ansidarkred': '7f0000',
+    '#ansidarkgreen': '007f00',
+    '#ansibrown': '7f7fe0',
+    '#ansidarkblue': '00007f',
+    '#ansipurple': '7f007f',
+    '#ansiteal': '007f7f',
+    '#ansilightgray': 'e5e5e5',
+    ### normal
+    '#ansidarkgray': '555555',
+    '#ansired': 'ff0000',
+    '#ansigreen': '00ff00',
+    '#ansiyellow': 'ffff00',
+    '#ansiblue': '0000ff',
+    '#ansifuchsia': 'ff00ff',
+    '#ansiturquoise': '00ffff',
+    '#ansiwhite': 'ffffff',
+    }
+ansilist = set(_ansimap.keys())
 
 class StyleMeta(type):
 
@@ -55,13 +55,7 @@ class StyleMeta(type):
                     return col[0]*2 + col[1]*2 + col[2]*2
             elif text == '':
                 return ''
-            didyoumean = ''
-            if 'ansi' in text:
-                import difflib
-                possibility = difflib.get_close_matches(text, ansilist, 1)
-                if possibility:
-                    didyoumean = '. Did you mean {} ?'.format(possibility[0])
-            assert False, "wrong color format %r%s" % (text, didyoumean)
+            assert False, "wrong color format %r" % text
 
         _styles = obj._styles = {}
 
