@@ -204,7 +204,7 @@ class RstLexer(RegexLexer):
              bygroups(Text, Operator, using(this, state='inline'))),
             # Sourcecode directives
             (r'^( *\.\.)(\s*)((?:source)?code(?:-block)?)(::)([ \t]*)([^\n]+)'
-             r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*|)\n)+)',
+             r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*)?\n)+)',
              _handle_sourcecode),
             # A directive
             (r'^( *\.\.)(\s*)([\w:-]+?)(::)(?:([ \t]*)(.*))',
@@ -230,7 +230,7 @@ class RstLexer(RegexLexer):
             (r'^(\S.*(?<!::)\n)((?:(?: +.*)\n)+)',
              bygroups(using(this, state='inline'), using(this, state='inline'))),
             # Code blocks
-            (r'(::)(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\3.*|)\n)+)',
+            (r'(::)(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\3.*)?\n)+)',
              bygroups(String.Escape, Text, String, String, Text, String)),
             include('inline'),
         ],

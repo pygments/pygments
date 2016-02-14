@@ -1020,11 +1020,11 @@ class EasytrieveLexer(RegexLexer):
             (r"'(''|[^'])*'", String),
             (r'\s+', Whitespace),
             # Everything else just belongs to a name
-            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name),
          ],
         'after_declaration': [
             (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Function),
-            ('', Whitespace, '#pop')
+            default('#pop'),
         ],
         'after_macro_argument': [
             (r'\*.*\n', Comment.Single, '#pop'),
@@ -1032,7 +1032,7 @@ class EasytrieveLexer(RegexLexer):
             (_OPERATORS_PATTERN, Operator, '#pop'),
             (r"'(''|[^'])*'", String, '#pop'),
             # Everything else just belongs to a name
-            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name),
         ],
     }
     _COMMENT_LINE_REGEX = re.compile(r'^\s*\*')
@@ -1122,7 +1122,8 @@ class EasytrieveLexer(RegexLexer):
 
 class JclLexer(RegexLexer):
     """
-    `Job Control Language (JCL) <http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/BOOKS/IEA2B570/CCONTENTS>`_
+    `Job Control Language (JCL)
+    <http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/BOOKS/IEA2B570/CCONTENTS>`_
     is a scripting language used on mainframe platforms to instruct the system
     on how to run a batch job or start a subsystem. It is somewhat
     comparable to MS DOS batch and Unix shell scripts.
@@ -1145,10 +1146,10 @@ class JclLexer(RegexLexer):
         ],
         'statement': [
             (r'\s*\n', Whitespace, '#pop'),
-            (r'([a-z][a-z_0-9]*)(\s+)(exec|job)(\s*)',
+            (r'([a-z]\w*)(\s+)(exec|job)(\s*)',
              bygroups(Name.Label, Whitespace, Keyword.Reserved, Whitespace),
              'option'),
-            (r'[a-z][a-z_0-9]*', Name.Variable, 'statement_command'),
+            (r'[a-z]\w*', Name.Variable, 'statement_command'),
             (r'\s+', Whitespace, 'statement_command'),
         ],
         'statement_command': [
@@ -1167,10 +1168,10 @@ class JclLexer(RegexLexer):
             (r'\*', Name.Builtin),
             (r'[\[\](){}<>;,]', Punctuation),
             (r'[-+*/=&%]', Operator),
-            (r'[a-z_][a-z_0-9]*', Name),
-            (r'[0-9]+\.[0-9]*', Number.Float),
-            (r'\.[0-9]+', Number.Float),
-            (r'[0-9]+', Number.Integer),
+            (r'[a-z_]\w*', Name),
+            (r'\d+\.\d*', Number.Float),
+            (r'\.\d+', Number.Float),
+            (r'\d+', Number.Integer),
             (r"'", String, 'option_string'),
             (r'[ \t]+', Whitespace, 'option_comment'),
             (r'\.', Punctuation),

@@ -2135,49 +2135,52 @@ class ShenLexer(RegexLexer):
     filenames = ['*.shen']
     mimetypes = ['text/x-shen', 'application/x-shen']
 
-    DECLARATIONS = re.findall(r'\S+', """
-        datatype define defmacro defprolog defcc synonyms declare package
-        type function
-    """)
+    DECLARATIONS = (
+        'datatype', 'define', 'defmacro', 'defprolog', 'defcc',
+        'synonyms', 'declare', 'package', 'type', 'function',
+    )
 
-    SPECIAL_FORMS = re.findall(r'\S+', """
-        lambda get let if cases cond put time freeze value load $
-        protect or and not do output prolog? trap-error error
-        make-string /. set @p @s @v
-    """)
+    SPECIAL_FORMS = (
+        'lambda', 'get', 'let', 'if', 'cases', 'cond', 'put', 'time', 'freeze',
+        'value', 'load', '$', 'protect', 'or', 'and', 'not', 'do', 'output',
+        'prolog?', 'trap-error', 'error', 'make-string', '/.', 'set', '@p',
+        '@s', '@v',
+    )
 
-    BUILTINS = re.findall(r'\S+', """
-        == = * + - / < > >= <= <-address <-vector abort absvector
-        absvector? address-> adjoin append arity assoc bind boolean?
-        bound? call cd close cn compile concat cons cons? cut destroy
-        difference element? empty? enable-type-theory error-to-string
-        eval eval-kl exception explode external fail fail-if file
-        findall fix fst fwhen gensym get-time hash hd hdstr hdv head
-        identical implementation in include include-all-but inferences
-        input input+ integer? intern intersection is kill language
-        length limit lineread loaded macro macroexpand map mapcan
-        maxinferences mode n->string nl nth null number? occurrences
-        occurs-check open os out port porters pos pr preclude
-        preclude-all-but print profile profile-results ps quit read
-        read+ read-byte read-file read-file-as-bytelist
-        read-file-as-string read-from-string release remove return
-        reverse run save set simple-error snd specialise spy step
-        stinput stoutput str string->n string->symbol string? subst
-        symbol? systemf tail tc tc? thaw tl tlstr tlv track tuple?
-        undefmacro unify unify! union unprofile unspecialise untrack
-        variable? vector vector-> vector? verified version warn when
-        write-byte write-to-file y-or-n?
-    """)
+    BUILTINS = (
+        '==', '=', '*', '+', '-', '/', '<', '>', '>=', '<=', '<-address',
+        '<-vector', 'abort', 'absvector', 'absvector?', 'address->', 'adjoin',
+        'append', 'arity', 'assoc', 'bind', 'boolean?', 'bound?', 'call', 'cd',
+        'close', 'cn', 'compile', 'concat', 'cons', 'cons?', 'cut', 'destroy',
+        'difference', 'element?', 'empty?', 'enable-type-theory',
+        'error-to-string', 'eval', 'eval-kl', 'exception', 'explode', 'external',
+        'fail', 'fail-if', 'file', 'findall', 'fix', 'fst', 'fwhen', 'gensym',
+        'get-time', 'hash', 'hd', 'hdstr', 'hdv', 'head', 'identical',
+        'implementation', 'in', 'include', 'include-all-but', 'inferences',
+        'input', 'input+', 'integer?', 'intern', 'intersection', 'is', 'kill',
+        'language', 'length', 'limit', 'lineread', 'loaded', 'macro', 'macroexpand',
+        'map', 'mapcan', 'maxinferences', 'mode', 'n->string', 'nl', 'nth', 'null',
+        'number?', 'occurrences', 'occurs-check', 'open', 'os', 'out', 'port',
+        'porters', 'pos', 'pr', 'preclude', 'preclude-all-but', 'print', 'profile',
+        'profile-results', 'ps', 'quit', 'read', 'read+', 'read-byte', 'read-file',
+        'read-file-as-bytelist', 'read-file-as-string', 'read-from-string',
+        'release', 'remove', 'return', 'reverse', 'run', 'save', 'set',
+        'simple-error', 'snd', 'specialise', 'spy', 'step', 'stinput', 'stoutput',
+        'str', 'string->n', 'string->symbol', 'string?', 'subst', 'symbol?',
+        'systemf', 'tail', 'tc', 'tc?', 'thaw', 'tl', 'tlstr', 'tlv', 'track',
+        'tuple?', 'undefmacro', 'unify', 'unify!', 'union', 'unprofile',
+        'unspecialise', 'untrack', 'variable?', 'vector', 'vector->', 'vector?',
+        'verified', 'version', 'warn', 'when', 'write-byte', 'write-to-file',
+        'y-or-n?',
+    )
 
-    BUILTINS_ANYWHERE = re.findall(r'\S+', """
-        where skip >> _ ! <e> <!>
-    """)
+    BUILTINS_ANYWHERE = ('where', 'skip', '>>', '_', '!', '<e>', '<!>')
 
     MAPPINGS = dict((s, Keyword) for s in DECLARATIONS)
     MAPPINGS.update((s, Name.Builtin) for s in BUILTINS)
     MAPPINGS.update((s, Keyword) for s in SPECIAL_FORMS)
 
-    valid_symbol_chars = r'[\w!$%*+,<=>?/.\'@&#:_-]'
+    valid_symbol_chars = r'[\w!$%*+,<=>?/.\'@&#:-]'
     valid_name = '%s+' % valid_symbol_chars
     symbol_name = r'[a-z!$%%*+,<=>?/.\'@&#_-]%s*' % valid_symbol_chars
     variable = r'[A-Z]%s*' % valid_symbol_chars
@@ -2313,7 +2316,7 @@ class CPSALexer(SchemeLexer):
     # valid names for identifiers
     # well, names can only not consist fully of numbers
     # but this should be good enough for now
-    valid_name = r'[a-zA-Z0-9!$%&*+,/:<=>?@^_~|-]+'
+    valid_name = r'[\w!$%&*+,/:<=>?@^~|-]+'
 
     tokens = {
         'root': [
@@ -2334,7 +2337,7 @@ class CPSALexer(SchemeLexer):
             # strings, symbols and characters
             (r'"(\\\\|\\"|[^"])*"', String),
             (r"'" + valid_name, String.Symbol),
-            (r"#\\([()/'\"._!§$%& ?=+-]{1}|[a-zA-Z0-9]+)", String.Char),
+            (r"#\\([()/'\"._!§$%& ?=+-]|[a-zA-Z0-9]+)", String.Char),
 
             # constants
             (r'(#t|#f)', Name.Constant),

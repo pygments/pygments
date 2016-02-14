@@ -127,7 +127,7 @@ class ErlangLexer(RegexLexer):
         'string': [
             (escape_re, String.Escape),
             (r'"', String, '#pop'),
-            (r'~[0-9.*]*[~#+bBcdefginpPswWxX]', String.Interpol),
+            (r'~[0-9.*]*[~#+BPWXb-ginpswx]', String.Interpol),
             (r'[^"\\~]+', String),
             (r'~', String),
         ],
@@ -240,11 +240,11 @@ class ElixirLexer(RegexLexer):
     KEYWORD_OPERATOR = ('not', 'and', 'or', 'when', 'in')
     BUILTIN = (
         'case', 'cond', 'for', 'if', 'unless', 'try', 'receive', 'raise',
-        'quote', 'unquote', 'unquote_splicing', 'throw', 'super'
+        'quote', 'unquote', 'unquote_splicing', 'throw', 'super',
     )
     BUILTIN_DECLARATION = (
         'def', 'defp', 'defmodule', 'defprotocol', 'defmacro', 'defmacrop',
-        'defdelegate', 'defexception', 'defstruct', 'defimpl', 'defcallback'
+        'defdelegate', 'defexception', 'defstruct', 'defimpl', 'defcallback',
     )
 
     BUILTIN_NAMESPACE = ('import', 'require', 'use', 'alias')
@@ -263,7 +263,7 @@ class ElixirLexer(RegexLexer):
     OPERATORS1 = ('<', '>', '+', '-', '*', '/', '!', '^', '&')
 
     PUNCTUATION = (
-        '\\\\', '<<', '>>', '=>', '(', ')', ':', ';', ',', '[', ']'
+        '\\\\', '<<', '>>', '=>', '(', ')', ':', ';', ',', '[', ']',
     )
 
     def get_tokens_unprocessed(self, text):
