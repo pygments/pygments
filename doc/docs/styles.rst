@@ -152,19 +152,19 @@ Terminal Styles
 
 .. versionadded:: 2.2
 
-Custom styles used with `Terminal256` formatter can also defines colors using
-ansi-color. To do so use the `#ansigreen`, `#ansired` or any other colors
-defined in ``pygments.style.ansilist``. Foreground ANSI colors will be mapped
-to the corresponding `escape codes 30 to 37
-<https://en.wikipedia.org/wiki/ANSI_escape_code#Colors>`_  thus respecting any
-custom color mapping and themes provided by many terminal emulators. Light
-variant are treated for foreground color with and extra bold flag.
-`bg:#ansi<color>` will also be respected, except the light variant will be the
-same shade as their light variant.
+Custom styles used with the 256-color terminal formatter can also map colors to
+use the 8 default ANSI colors.  To do so, use ``#ansigreen``, ``#ansired`` or
+any other colors defined in :attr:`pygments.style.ansilist`.  Foreground ANSI
+colors will be mapped to the corresponding `escape codes 30 to 37
+<https://en.wikipedia.org/wiki/ANSI_escape_code#Colors>`_ thus respecting any
+custom color mapping and themes provided by many terminal emulators.  Light
+variants are treated as foreground color with and an added bold flag.
+``bg:#ansi<color>`` will also be respected, except the light variant will be the
+same shade as their dark variant.
 
-See following example where the color of the string `"hello world"` is governed
-by the escape sequence `\x1b34;01m` (Ansi Blue, Bold, `41` beeing red background)
-instead of an extended foreground & background color.
+See the following example where the color of the string ``"hello world"`` is
+governed by the escape sequence ``\x1b[34;01m`` (Ansi Blue, Bold, 41 being red
+background) instead of an extended foreground & background color.
 
 .. sourcecode:: pycon
 
@@ -182,23 +182,20 @@ instead of an extended foreground & background color.
     >>> code = 'print("Hello World")'
     >>> result = highlight(code, Python3Lexer(), Terminal256Formatter(style=MyStyle))
     >>> print(result.encode())
-    b'print(\x1b[34;41;01m"\x1b[39;49;00m\x1b[34;41;01mHello World\x1b[39;49;00m\x1b[34;41;01m"\x1b[39;49;00m)\n'
+    b'\x1b[34;41;01m"\x1b[39;49;00m\x1b[34;41;01mHello World\x1b[39;49;00m\x1b[34;41;01m"\x1b[39;49;00m'
 
-Style that use `#ansi*` colors might not correctly work with
-formatters others than ``Terminal256``. `HtmlFormatter` is capable of handling
-some `#ansi*` code and will map to a fixed HTML/CSS color. For example,
-`#ansiblue` will be converted to `color:#0000ff` , `#ansired` to `color:#ff0000`.
+Colors specified using ``#ansi*`` are converted to a default set of RGB colors
+when used with formatters other than the terminal-256 formatter.
 
-By definition of Ansi color the following color are considered "light" colors,
-and will be rendered by most terminal as bold:
+By definition of ANSI, the following colors are considered "light" colors, and
+will be rendered by most terminals as bold:
 
-    - "darkgray", "red", "green", "yellow", "blue", "fuchsia", "turquoise",
-      "white"
+- "darkgray", "red", "green", "yellow", "blue", "fuchsia", "turquoise", "white"
 
+The following are considered "dark" colors and will be rendered as non-bold:
 
-The following are considered "dark" color and will be rendered as non-bold:
-  
-    - "black", "darkred", "darkgreen", "brown", "darkblue", "purple", "teal",
-      "lightgray"
+- "black", "darkred", "darkgreen", "brown", "darkblue", "purple", "teal",
+  "lightgray"
 
-Exact behavior might depends on the terminal emulator you are using, and its settings.
+Exact behavior might depends on the terminal emulator you are using, and its
+settings.

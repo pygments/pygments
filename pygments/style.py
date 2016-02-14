@@ -12,10 +12,9 @@
 from pygments.token import Token, STANDARD_TYPES
 from pygments.util import add_metaclass
 
-
-
+# Default mapping of #ansixxx to RGB colors.
 _ansimap = {
-    ## 
+    # dark
     '#ansiblack': '000000',
     '#ansidarkred': '7f0000',
     '#ansidarkgreen': '007f00',
@@ -24,7 +23,7 @@ _ansimap = {
     '#ansipurple': '7f007f',
     '#ansiteal': '007f7f',
     '#ansilightgray': 'e5e5e5',
-    ### normal
+    # normal
     '#ansidarkgray': '555555',
     '#ansired': 'ff0000',
     '#ansigreen': '00ff00',
@@ -33,8 +32,9 @@ _ansimap = {
     '#ansifuchsia': 'ff00ff',
     '#ansiturquoise': '00ffff',
     '#ansiwhite': 'ffffff',
-    }
-ansilist = set(_ansimap.keys())
+}
+ansilist = set(_ansimap)
+
 
 class StyleMeta(type):
 
@@ -104,12 +104,11 @@ class StyleMeta(type):
 
     def style_for_token(cls, token):
         t = cls._styles[token]
-        ansicolor = None
+        ansicolor = bgansicolor = None
         color = t[0]
         if color.startswith('#ansi'):
             ansicolor = color
             color = _ansimap[color]
-        bgansicolor = None
         bgcolor = t[4]
         if bgcolor.startswith('#ansi'):
             bgansicolor = bgcolor
@@ -126,8 +125,7 @@ class StyleMeta(type):
             'sans':         bool(t[7]) or None,
             'mono':         bool(t[8]) or None,
             'ansicolor':    ansicolor,
-            'bgansicolor':    bgansicolor,
-        
+            'bgansicolor':  bgansicolor,
         }
 
     def list_styles(cls):
