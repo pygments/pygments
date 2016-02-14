@@ -9,13 +9,24 @@
 import glob
 import os
 import unittest
-import sys
 
 from pygments.lexers import guess_lexer
 from pygments.lexers.scripting import EasytrieveLexer, JclLexer, RexxLexer
 
 def _exampleFilePath(filename):
     return os.path.join(os.path.dirname(__file__), 'examplefiles', filename)
+
+_MAX_LENGTH = 80
+
+def safe_repr(obj, short=False):
+    try:
+        result = repr(obj)
+    except Exception:
+        result = object.__repr__(obj)
+    if not short or len(result) < _MAX_LENGTH:
+        return result
+    return result[:_MAX_LENGTH] + ' [truncated]...'
+
 
 class MyTestCase(unittest.TestCase):
     ### Assert less is 2.7+ only.
