@@ -27,6 +27,8 @@
 import sys
 
 from pygments.formatter import Formatter
+from pygments.console import codes
+from pygments.style import ansilist
 
 
 __all__ = ['Terminal256Formatter', 'TerminalTrueColorFormatter']
@@ -47,9 +49,21 @@ class EscapeSequence:
     def color_string(self):
         attrs = []
         if self.fg is not None:
-            attrs.extend(("38", "5", "%i" % self.fg))
+            if self.fg in ansilist:
+                esc = codes[self.fg[5:]]
+                if ';01m' in esc:
+                    self.bold = True
+                # extract fg color code.
+                attrs.append(esc[2:4])
+            else :
+                attrs.extend(("38", "5", "%i" % self.fg))
         if self.bg is not None:
-            attrs.extend(("48", "5", "%i" % self.bg))
+            if self.bg in ansilist:
+                esc = codes[self.bg[5:]]
+                # extract fg color code, add 10 for bg.
+                attrs.append(str(int(esc[2:4])+10))
+            else :
+                attrs.extend(("48", "5", "%i" % self.bg))
         if self.bold:
             attrs.append("01")
         if self.underline:
@@ -88,6 +102,13 @@ class Terminal256Formatter(Formatter):
     The formatter takes colors from a style defined by the `style` option
     and converts them to nearest ANSI 256-color escape sequences. Bold and
     underline attributes from the style are preserved (and displayed).
+
+    .. versionadded:: 2.2
+    
+    If the used style defined foreground colors in the form `#ansi*`, then
+    `Terminal256Formatter` will map these to non extended foreground color.
+
+    See AnsiTerminalStyle_ for more informations. 
 
     .. versionadded:: 0.9
 
@@ -169,6 +190,10 @@ class Terminal256Formatter(Formatter):
 
     def _color_index(self, color):
         index = self.best_match.get(color, None)
+        if color in ansilist: 
+            # strip the `#ansi` part an look up code
+            index = color
+            self.best_match[color] = index
         if index is None:
             try:
                 rgb = int(str(color), 16)
@@ -185,9 +210,14 @@ class Terminal256Formatter(Formatter):
     def _setup_styles(self):
         for ttype, ndef in self.style:
             escape = EscapeSequence()
-            if ndef['color']:
+            # get foreground from ansicolor if set
+            if ndef['ansicolor']:
+                escape.fg = self._color_index(ndef['ansicolor'])
+            elif ndef['color']:
                 escape.fg = self._color_index(ndef['color'])
-            if ndef['bgcolor']:
+            if ndef['bgansicolor']:
+                escape.bg = self._color_index(ndef['bgansicolor'])
+            elif ndef['bgcolor']:
                 escape.bg = self._color_index(ndef['bgcolor'])
             if self.usebold and ndef['bold']:
                 escape.bold = True
