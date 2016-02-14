@@ -17,6 +17,14 @@ from pygments.lexers.scripting import EasytrieveLexer, JclLexer, RexxLexer
 def _exampleFilePath(filename):
     return os.path.join(os.path.dirname(__file__), 'examplefiles', filename)
 
+class MyTestCase(unittest.TestCase):
+    ### Assert less is 2.7+ only.
+    def assertLess(self, a, b, msg=None):
+        """Just like self.assertTrue(a < b), but with a nicer default message."""
+        if not a < b:
+            standardMsg = '%s not less than %s' % (safe_repr(a), safe_repr(b))
+            self.fail(self._formatMessage(msg, standardMsg))
+
 
 class AnalyseTextTest(unittest.TestCase):
     def _testCanRecognizeAndGuessExampleFiles(self, lexer):
@@ -43,16 +51,15 @@ class AnalyseTextTest(unittest.TestCase):
         for lexerToTest in LEXERS_TO_TEST:
             self._testCanRecognizeAndGuessExampleFiles(lexerToTest)
 
-if sys.version_info > (2,7,):
-    class EasyTrieveLexerTest(unittest.TestCase):
-        def testCanGuessFromText(self):
-            self.assertLess(0, EasytrieveLexer.analyse_text('MACRO'))
-            self.assertLess(0, EasytrieveLexer.analyse_text('\nMACRO'))
-            self.assertLess(0, EasytrieveLexer.analyse_text(' \nMACRO'))
-            self.assertLess(0, EasytrieveLexer.analyse_text(' \n MACRO'))
-            self.assertLess(0, EasytrieveLexer.analyse_text('*\nMACRO'))
-            self.assertLess(0, EasytrieveLexer.analyse_text(
-                '*\n *\n\n \n*\n MACRO'))
+class EasyTrieveLexerTest(MyTestCase):
+    def testCanGuessFromText(self):
+        self.assertLess(0, EasytrieveLexer.analyse_text('MACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text('\nMACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text(' \nMACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text(' \n MACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text('*\nMACRO'))
+        self.assertLess(0, EasytrieveLexer.analyse_text(
+            '*\n *\n\n \n*\n MACRO'))
 
 
 class RexxLexerTest(unittest.TestCase):
