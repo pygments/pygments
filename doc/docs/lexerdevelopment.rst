@@ -95,7 +95,9 @@ To prepare your new lexer for inclusion in the Pygments distribution, so that it
 will be found when passing filenames or lexer aliases from the command line, you
 have to perform the following steps.
 
-First, change to the current directory containing the Pygments source code:
+First, change to the current directory containing the Pygments source code.  You
+will need to have either an unpacked source tarball, or (preferably) a copy
+cloned from BitBucket.
 
 .. code-block:: console
 
