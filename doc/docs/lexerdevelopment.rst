@@ -88,8 +88,12 @@ one.
 Adding and testing a new lexer
 ==============================
 
-To make Pygments aware of your new lexer, you have to perform the following
-steps:
+Using a lexer that is not part of Pygments can be done via the Python API.  You
+can import and instantiate the lexer, and pass it to :func:`pygments.highlight`.
+
+To prepare your new lexer for inclusion in the Pygments distribution, so that it
+will be found when passing filenames or lexer aliases from the command line, you
+have to perform the following steps.
 
 First, change to the current directory containing the Pygments source code:
 
@@ -101,11 +105,13 @@ Select a matching module under ``pygments/lexers``, or create a new module for
 your lexer class.
 
 Next, make sure the lexer is known from outside of the module.  All modules in
-the ``pygments.lexers`` specify ``__all__``. For example, ``esoteric.py`` sets::
+the ``pygments.lexers`` package specify ``__all__``. For example,
+``esoteric.py`` sets::
 
     __all__ = ['BrainfuckLexer', 'BefungeLexer', ...]
 
-Simply add the name of your lexer class to this list.
+Add the name of your lexer class to this list (or create the list if your lexer
+is the only class in the module).
 
 Finally the lexer can be made publicly known by rebuilding the lexer mapping:
 
