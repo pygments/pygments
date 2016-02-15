@@ -28,7 +28,7 @@ import sys
 
 from pygments.formatter import Formatter
 from pygments.console import codes
-from pygments.style import ansilist
+from pygments.style import ansicolors
 
 
 __all__ = ['Terminal256Formatter', 'TerminalTrueColorFormatter']
@@ -49,7 +49,7 @@ class EscapeSequence:
     def color_string(self):
         attrs = []
         if self.fg is not None:
-            if self.fg in ansilist:
+            if self.fg in ansicolors:
                 esc = codes[self.fg[5:]]
                 if ';01m' in esc:
                     self.bold = True
@@ -58,7 +58,7 @@ class EscapeSequence:
             else:
                 attrs.extend(("38", "5", "%i" % self.fg))
         if self.bg is not None:
-            if self.bg in ansilist:
+            if self.bg in ansicolors:
                 esc = codes[self.bg[5:]]
                 # extract fg color code, add 10 for bg.
                 attrs.append(str(int(esc[2:4])+10))
@@ -188,7 +188,7 @@ class Terminal256Formatter(Formatter):
 
     def _color_index(self, color):
         index = self.best_match.get(color, None)
-        if color in ansilist:
+        if color in ansicolors:
             # strip the `#ansi` part and look up code
             index = color
             self.best_match[color] = index
