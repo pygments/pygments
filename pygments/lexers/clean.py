@@ -49,18 +49,23 @@ class CleanLexer(ExtendedRegexLexer):
             ctx.stack = ctx.stack + ['fromimportfunctype']
         ctx.pos = match.end()
 
-    def store_indent(lexer, match, ctx):
+    @staticmethod
+    def indent_len(text):
         # Tabs are four spaces:
         # https://svn.cs.ru.nl/repos/clean-platform/trunk/doc/STANDARDS.txt
-        ctx.indent = len(match.group(0).replace('\t', '    '))
+        text = text.replace('\n', '')
+        return len(text.replace('\t', '    ')), len(text)
+
+    def store_indent(lexer, match, ctx):
+        ctx.indent, _ = CleanLexer.indent_len(match.group(0))
         ctx.pos = match.end()
         yield match.start(), Text, match.group(0)
 
     def check_indent1(lexer, match, ctx):
-        indent = len(match.group(0)) - 1
+        indent, reallen = CleanLexer.indent_len(match.group(0))
         if indent > ctx.indent:
             yield match.start(), Whitespace, match.group(0)
-            ctx.pos = match.start() + indent + 1
+            ctx.pos = match.start() + reallen + 1
         else:
             ctx.indent = 0
             ctx.pos = match.start()
@@ -68,23 +73,20 @@ class CleanLexer(ExtendedRegexLexer):
             yield match.start(), Whitespace, match.group(0)[1:]
 
     def check_indent2(lexer, match, ctx):
-        indent = len(match.group(0)) - 1
+        indent, reallen = CleanLexer.indent_len(match.group(0))
         if indent > ctx.indent:
             yield match.start(), Whitespace, match.group(0)
-            ctx.pos = match.start() + indent + 1
+            ctx.pos = match.start() + reallen + 1
         else:
             ctx.indent = 0
             ctx.pos = match.start()
             ctx.stack = ctx.stack[:-2]
-            yield match.start(), Whitespace, match.group(0)[1:]
-            if match.group(0) == '\n\n':
-                ctx.pos = ctx.pos + 1
 
     def check_indent3(lexer, match, ctx):
-        indent = len(match.group(0)) - 1
+        indent, reallen = CleanLexer.indent_len(match.group(0))
         if indent > ctx.indent:
             yield match.start(), Whitespace, match.group(0)
-            ctx.pos = match.start() + indent + 1
+            ctx.pos = match.start() + reallen + 1
         else:
             ctx.indent = 0
             ctx.pos = match.start()
@@ -126,7 +128,7 @@ class CleanLexer(ExtendedRegexLexer):
 
             # Function definitions
             (r'(?=\{\|)', Whitespace, 'genericfunction'),
-            (r'(?<=\n)(\s*)([\w`$()=\-<>~*\^|+&%]+)((?:\s+[\w])*)(\s*)(::)',
+            (r'(?<=\n)([ \t]*)([\w`$()=\-<>~*\^|+&%]+)((?:\s+[\w])*)(\s*)(::)',
              bygroups(store_indent, Name.Function, Keyword.Type, Whitespace,
                       Punctuation),
              'functiondefargs'),
