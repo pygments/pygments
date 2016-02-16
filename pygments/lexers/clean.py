@@ -27,8 +27,7 @@ class CleanLexer(ExtendedRegexLexer):
 
     def __init__(self, *args, **kwargs):
         super(CleanLexer, self).__init__(*args, **kwargs)
-        global stored_indent
-        stored_indent = 0
+        self.stored_indent = 0
 
     def check_class_not_import(lexer, match, ctx):
         if match.group(0) == 'import':
@@ -47,33 +46,30 @@ class CleanLexer(ExtendedRegexLexer):
         ctx.pos = match.end()
 
     def store_indent(lexer, match, ctx):
-        global stored_indent
         # Tabs are four spaces: 
         # https://svn.cs.ru.nl/repos/clean-platform/trunk/doc/STANDARDS.txt
-        stored_indent = len(match.group(0).replace('\t','    '))
+        self.stored_indent = len(match.group(0).replace('\t','    '))
         ctx.pos = match.end()
         yield match.start(), Text, match.group(0)
 
     def check_indent1(lexer, match, ctx):
-        global stored_indent
         indent = len(match.group(0)) - 1
-        if indent > stored_indent:
+        if indent > self.stored_indent:
             yield match.start(), Whitespace, match.group(0)
             ctx.pos = match.start() + indent + 1
         else:
-            stored_indent = 0
+            self.stored_indent = 0
             ctx.pos = match.start()
             ctx.stack = ctx.stack[:-1]
             yield match.start(), Whitespace, match.group(0)[1:]
 
     def check_indent2(lexer, match, ctx):
-        global stored_indent
         indent = len(match.group(0)) - 1
-        if indent > stored_indent:
+        if indent > self.stored_indent:
             yield match.start(), Whitespace, match.group(0)
             ctx.pos = match.start() + indent + 1
         else:
-            stored_indent = 0
+            self.stored_indent = 0
             ctx.pos = match.start()
             ctx.stack = ctx.stack[:-2]
             yield match.start(), Whitespace, match.group(0)[1:]
@@ -81,13 +77,12 @@ class CleanLexer(ExtendedRegexLexer):
                 ctx.pos = ctx.pos + 1
 
     def check_indent3(lexer, match, ctx):
-        global stored_indent
         indent = len(match.group(0)) - 1
-        if indent > stored_indent:
+        if indent > self.stored_indent:
             yield match.start(), Whitespace, match.group(0)
             ctx.pos = match.start() + indent + 1
         else:
-            stored_indent = 0
+            self.stored_indent = 0
             ctx.pos = match.start()
             ctx.stack = ctx.stack[:-3]
             yield match.start(), Whitespace, match.group(0)[1:]
