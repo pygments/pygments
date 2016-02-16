@@ -135,6 +135,7 @@ class CleanLexer(ExtendedRegexLexer):
 
             # Type definitions
             (r'(?<=\n)([ \t]*)(::)', bygroups(store_indent, Punctuation), 'typedef'),
+            (r'^([ \t]*)(::)', bygroups(store_indent, Punctuation), 'typedef'),
 
             # Literals
             (r'\'\\?.(?<!\\)\'', String.Char),
