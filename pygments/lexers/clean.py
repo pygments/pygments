@@ -9,8 +9,10 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import ExtendedRegexLexer, bygroups, words, include, default
-from pygments.token import Comment, Keyword, Literal, Name, Number, Operator, Punctuation, String, Text, Whitespace
+from pygments.lexer import ExtendedRegexLexer, LexerContext,\
+        bygroups, words, include, default
+from pygments.token import Comment, Keyword, Literal, Name, Number, Operator,\
+        Punctuation, String, Text, Whitespace
 
 __all__ = ['CleanLexer']
 
@@ -27,7 +29,11 @@ class CleanLexer(ExtendedRegexLexer):
 
     def __init__(self, *args, **kwargs):
         super(CleanLexer, self).__init__(*args, **kwargs)
-        self.stored_indent = 0
+
+    def get_tokens_unprocessed(self, text=None, context=None):
+        ctx = LexerContext(text, 0)
+        ctx.indent = 0
+        return ExtendedRegexLexer.get_tokens_unprocessed(self, text, context=ctx)
 
     def check_class_not_import(lexer, match, ctx):
         if match.group(0) == 'import':
@@ -48,28 +54,28 @@ class CleanLexer(ExtendedRegexLexer):
     def store_indent(lexer, match, ctx):
         # Tabs are four spaces: 
         # https://svn.cs.ru.nl/repos/clean-platform/trunk/doc/STANDARDS.txt
-        lexer.stored_indent = len(match.group(0).replace('\t','    '))
+        ctx.indent = len(match.group(0).replace('\t','    '))
         ctx.pos = match.end()
         yield match.start(), Text, match.group(0)
 
     def check_indent1(lexer, match, ctx):
         indent = len(match.group(0)) - 1
-        if indent > lexer.stored_indent:
+        if indent > ctx.indent:
             yield match.start(), Whitespace, match.group(0)
             ctx.pos = match.start() + indent + 1
         else:
-            lexer.stored_indent = 0
+            ctx.indent = 0
             ctx.pos = match.start()
             ctx.stack = ctx.stack[:-1]
             yield match.start(), Whitespace, match.group(0)[1:]
 
     def check_indent2(lexer, match, ctx):
         indent = len(match.group(0)) - 1
-        if indent > lexer.stored_indent:
+        if indent > ctx.indent:
             yield match.start(), Whitespace, match.group(0)
             ctx.pos = match.start() + indent + 1
         else:
-            lexer.stored_indent = 0
+            ctx.indent = 0
             ctx.pos = match.start()
             ctx.stack = ctx.stack[:-2]
             yield match.start(), Whitespace, match.group(0)[1:]
@@ -78,11 +84,11 @@ class CleanLexer(ExtendedRegexLexer):
 
     def check_indent3(lexer, match, ctx):
         indent = len(match.group(0)) - 1
-        if indent > lexer.stored_indent:
+        if indent > ctx.indent:
             yield match.start(), Whitespace, match.group(0)
             ctx.pos = match.start() + indent + 1
         else:
-            lexer.stored_indent = 0
+            ctx.indent = 0
             ctx.pos = match.start()
             ctx.stack = ctx.stack[:-3]
             yield match.start(), Whitespace, match.group(0)[1:]
@@ -136,10 +142,10 @@ class CleanLexer(ExtendedRegexLexer):
             (r'\'\\?.(?<!\\)\'', String.Char),
             (r'\'\\\d+\'', String.Char),
             (r'\'\\\\\'', String.Char), # (special case for '\\')
-            (r'[\+\-~]?\s*\d+\.\d+(E[+-~]?\d+)?\b', Number.Float),
-            (r'[\+\-~]?\s*0[0-7]\b', Number.Oct),
-            (r'[\+\-~]?\s*0x[0-9a-fA-F]\b', Number.Hex),
-            (r'[\+\-~]?\s*\d+\b', Number.Integer),
+            (r'[\+\-~]?\s\d+\.\d+(E[+-~]?\d+)?\b', Number.Float),
+            (r'[\+\-~]?\s0[0-7]\b', Number.Oct),
+            (r'[\+\-~]?\s0x[0-9a-fA-F]\b', Number.Hex),
+            (r'[\+\-~]?\s\d+\b', Number.Integer),
             (r'"', String.Double, 'doubleqstring'),
             (words(('True', 'False'), prefix=r'(?<=\s)', suffix=r'(?=\s)'), Literal),
 
@@ -196,11 +202,11 @@ class CleanLexer(ExtendedRegexLexer):
             (r'[\w`]+', Name.Class),
             (r'\n', Whitespace, '#pop'),
             (r',', Punctuation),
-            (r'\s', Whitespace)
+            (r'[^\S\n]+', Whitespace)
         ],
         'singlecomment': [
             (r'(.)(?=\n)', skip),
-            (r'.+', Comment)
+            (r'.+(?!\n)', Comment)
         ],
         'doubleqstring': [
             (r'[^\\"]+', String.Double),
