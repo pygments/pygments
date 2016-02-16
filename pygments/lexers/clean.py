@@ -48,28 +48,28 @@ class CleanLexer(ExtendedRegexLexer):
     def store_indent(lexer, match, ctx):
         # Tabs are four spaces: 
         # https://svn.cs.ru.nl/repos/clean-platform/trunk/doc/STANDARDS.txt
-        self.stored_indent = len(match.group(0).replace('\t','    '))
+        lexer.stored_indent = len(match.group(0).replace('\t','    '))
         ctx.pos = match.end()
         yield match.start(), Text, match.group(0)
 
     def check_indent1(lexer, match, ctx):
         indent = len(match.group(0)) - 1
-        if indent > self.stored_indent:
+        if indent > lexer.stored_indent:
             yield match.start(), Whitespace, match.group(0)
             ctx.pos = match.start() + indent + 1
         else:
-            self.stored_indent = 0
+            lexer.stored_indent = 0
             ctx.pos = match.start()
             ctx.stack = ctx.stack[:-1]
             yield match.start(), Whitespace, match.group(0)[1:]
 
     def check_indent2(lexer, match, ctx):
         indent = len(match.group(0)) - 1
-        if indent > self.stored_indent:
+        if indent > lexer.stored_indent:
             yield match.start(), Whitespace, match.group(0)
             ctx.pos = match.start() + indent + 1
         else:
-            self.stored_indent = 0
+            lexer.stored_indent = 0
             ctx.pos = match.start()
             ctx.stack = ctx.stack[:-2]
             yield match.start(), Whitespace, match.group(0)[1:]
@@ -78,11 +78,11 @@ class CleanLexer(ExtendedRegexLexer):
 
     def check_indent3(lexer, match, ctx):
         indent = len(match.group(0)) - 1
-        if indent > self.stored_indent:
+        if indent > lexer.stored_indent:
             yield match.start(), Whitespace, match.group(0)
             ctx.pos = match.start() + indent + 1
         else:
-            self.stored_indent = 0
+            lexer.stored_indent = 0
             ctx.pos = match.start()
             ctx.stack = ctx.stack[:-3]
             yield match.start(), Whitespace, match.group(0)[1:]
