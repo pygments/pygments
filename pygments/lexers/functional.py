@@ -17,6 +17,5 @@ from pygments.lexers.theorem import CoqLexer
 from pygments.lexers.erlang import ErlangLexer, ErlangShellLexer, \
     ElixirConsoleLexer, ElixirLexer
 from pygments.lexers.ml import SMLLexer, OcamlLexer, OpaLexer
-from pygments.lexers.clean import CleanLexer
 
 __all__ = []

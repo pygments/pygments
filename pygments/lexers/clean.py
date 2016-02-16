@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.make
+    pygments.lexers.clean
     ~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for Makefiles and similar.
+    Lexer for the Clean language.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2016 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import ExtendedRegexLexer, bygroups, words, include
-from pygments.token import *
+from pygments.lexer import ExtendedRegexLexer, bygroups, words, include, default
+from pygments.token import Comment, Keyword, Literal, Name, Number, Operator, Punctuation, String, Text, Whitespace
 
 __all__ = ['CleanLexer']
 
@@ -120,7 +120,7 @@ class CleanLexer(ExtendedRegexLexer):
             (words(('class','instance','where','with','let','let!','with','in',
                 'case','of','infix','infixr','infixl','generic','derive',
                 'otherwise', 'code', 'inline'), 
-                prefix=r'(?s)^', suffix=r'(?=\s)'), Keyword),
+                prefix=r'^', suffix=r'(?=\s)'), Keyword),
 
             # Function definitions
             (r'(?=\{\|)', Whitespace, 'genericfunction'),
@@ -136,10 +136,10 @@ class CleanLexer(ExtendedRegexLexer):
             (r'\'\\?.(?<!\\)\'', String.Char),
             (r'\'\\\d+\'', String.Char),
             (r'\'\\\\\'', String.Char), # (special case for '\\')
-            (r'[\+\-~]?\s*?\d+\.\d+(E[+-~]?\d+)?\b', Number.Float),
-            (r'[\+\-~]?\s*?0[0-7]\b', Number.Oct),
-            (r'[\+\-~]?\s*?0x[0-9a-fA-F]\b', Number.Hex),
-            (r'[\+\-~]?\s*?\d+\b', Number.Integer),
+            (r'[\+\-~]?\s*\d+\.\d+(E[+-~]?\d+)?\b', Number.Float),
+            (r'[\+\-~]?\s*0[0-7]\b', Number.Oct),
+            (r'[\+\-~]?\s*0x[0-9a-fA-F]\b', Number.Hex),
+            (r'[\+\-~]?\s*\d+\b', Number.Integer),
             (r'"', String.Double, 'doubleqstring'),
             (words(('True', 'False'), prefix=r'(?<=\s)', suffix=r'(?=\s)'), Literal),
 
@@ -176,18 +176,18 @@ class CleanLexer(ExtendedRegexLexer):
             include('common'),
             (r'[{(\[]', Punctuation, 'combtype'),
             (r',', Punctuation, '#pop'),
-            (r':;\.#]', Punctuation),
+            (r'[:;\.#]', Punctuation),
             (r'\n', Whitespace, '#pop:2'),
-            (r'\s', Whitespace),
-            (r'.', Keyword.Type)
+            (r'[^\S\n]+', Whitespace),
+            (r'\S+', Keyword.Type)
         ],
         'combtype': [
             include('common'),
             (r'[})\]]', Punctuation, '#pop'),
             (r'[{(\[]', Punctuation, '#pop'),
-            (r',:;\.#]', Punctuation),
-            (r'\s', Whitespace),
-            (r'.', Keyword.Type)
+            (r'[,:;\.#]', Punctuation),
+            (r'\s+', Whitespace),
+            (r'\S+', Keyword.Type)
         ],
         'import': [
             include('common'),
@@ -200,12 +200,12 @@ class CleanLexer(ExtendedRegexLexer):
         ],
         'singlecomment': [
             (r'(.)(?=\n)', skip),
-            (r'.', Comment)
+            (r'.+', Comment)
         ],
         'doubleqstring': [
-            (r'[^\\\'"]+', String.Double),
+            (r'[^\\"]+', String.Double),
             (r'"', String.Double, '#pop'),
-            (r'\\.|\'', String.Double)
+            (r'\\.', String.Double)
         ],
         'typedef': [
             include('common'),
@@ -264,7 +264,7 @@ class CleanLexer(ExtendedRegexLexer):
             include('common'),
             (r'[\w`\$\(\)=\-<>~*\^\|\+&%]+', Name.Function),
             (r'(?=\{\|)', Punctuation, 'genericfunction'),
-            (r'', Text, '#pop')
+            default('#pop')
         ]
     }
 
