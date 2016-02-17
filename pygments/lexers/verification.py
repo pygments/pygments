@@ -96,7 +96,7 @@ class SilverLexer(RegexLexer):
             (r'[!%&*+=|?:<>/-]', Operator),
             (r"([{}():;,.])", Punctuation),
             # Identifier
-            (r'[a-zA-Z_$0-9]\w*', Name),
+            (r'[\w$]\w*', Name),
         ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),

@@ -211,7 +211,7 @@ class HsailLexer(RegexLexer):
     mimetypes = ['text/x-hsail']
 
     string = r'"[^"]*?"'
-    identifier = r'[a-zA-Z_][a-zA-Z0-9_.]*'
+    identifier = r'[a-zA-Z_][\w.]*'
     # Registers
     register_number = r'[0-9]+'
     register = r'(\$(c|s|d|q)' + register_number + ')'
