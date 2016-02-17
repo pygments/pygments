@@ -11,7 +11,7 @@
 
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error, Whitespace
+    Number, Punctuation, Error
 
 __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'CAmkESLexer']
 
