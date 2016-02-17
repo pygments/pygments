@@ -1,0 +1,206 @@
+domain Option__Node {
+    unique function Option__Node__Some(): Option__Node
+    unique function Option__Node__None(): Option__Node
+
+    function variantOfOptionNode(self: Ref): Option__Node
+
+    function isOptionNode(self: Ref): Bool
+
+    axiom ax_variantOfOptionNodeChoices {
+        forall x: Ref :: { variantOfOptionNode(x) }
+            (variantOfOptionNode(x) == Option__Node__Some() || variantOfOptionNode(x) == Option__Node__None())
+    }
+
+    axiom ax_isCounterState {
+        forall x: Ref ::  { variantOfOptionNode(x) }
+            isOptionNode(x) == (variantOfOptionNode(x) == Option__Node__Some() ||
+                variantOfOptionNode(x) == Option__Node__None())
+    }
+}
+
+predicate validOption(this: Ref) {
+    isOptionNode(this) &&
+    variantOfOptionNode(this) == Option__Node__Some() ==> (
+        acc(this.Option__Node__Some__1, write) &&
+        acc(validNode(this.Option__Node__Some__1))
+    )
+}
+
+field Option__Node__Some__1: Ref
+
+field Node__v: Int
+field Node__next: Ref
+
+predicate validNode(this: Ref) {
+    acc(this.Node__v) &&
+    acc(this.Node__next) &&
+    acc(validOption(this.Node__next))
+}
+
+
+function length(this: Ref): Int
+    requires acc(validNode(this), write)
+    ensures result >= 1
+{
+    (unfolding acc(validNode(this), write) in
+        unfolding acc(validOption(this.Node__next)) in
+        (variantOfOptionNode(this.Node__next) == Option__Node__None()) ? 
+            1 : 1 + length(this.Node__next.Option__Node__Some__1)
+    )
+}
+
+function itemAt(this: Ref, i: Int): Int
+    requires acc(validNode(this), write)
+    requires 0 <= i && i < length(this)
+{
+    unfolding acc(validNode(this), write) in unfolding acc(validOption(this.Node__next)) in (
+        (i == 0) ?
+            this.Node__v:
+            (variantOfOptionNode(this.Node__next) == Option__Node__Some()) ? 
+                itemAt(this.Node__next.Option__Node__Some__1, i-1) : this.Node__v
+    )
+}
+
+function sum(this$1: Ref): Int
+    requires acc(validNode(this$1), write)
+{
+    (unfolding acc(validNode(this$1), write) in unfolding acc(validOption(this$1.Node__next)) in 
+        (variantOfOptionNode(this$1.Node__next) == Option__Node__None()) ? this$1.Node__v : this$1.Node__v + sum(this$1.Node__next.Option__Node__Some__1))
+}
+
+method append(this: Ref, val: Int)
+    requires acc(validNode(this), write)
+    ensures acc(validNode(this), write) /* POST1 */
+    ensures length(this) == (old(length(this)) + 1) /* POST2 */
+    ensures (forall i: Int :: (0 <= i && i < old(length(this))) ==> (itemAt(this, i) == old(itemAt(this, i)))) /* POST3 */
+    ensures itemAt(this, length(this) - 1) == val /* POST4 */
+    ensures true ==> true
+{
+    var tmp_node: Ref
+    var tmp_option: Ref
+
+    unfold acc(validNode(this), write)
+    unfold acc(validOption(this.Node__next), write)
+
+    if (variantOfOptionNode(this.Node__next) == Option__Node__None()) {
+        tmp_node := new(Node__next, Node__v)
+        tmp_node.Node__next := null
+        tmp_node.Node__v := val
+
+        assume variantOfOptionNode(tmp_node.Node__next) == Option__Node__None()
+        fold acc(validOption(tmp_node.Node__next))
+        fold acc(validNode(tmp_node), write)
+
+        tmp_option := new(Option__Node__Some__1)
+        tmp_option.Option__Node__Some__1 := tmp_node
+        assume variantOfOptionNode(tmp_option) == Option__Node__Some()
+        fold acc(validOption(tmp_option))
+
+        this.Node__next := tmp_option
+
+ 
+        unfold validOption(tmp_option)
+        assert length(tmp_node) == 1 /* TODO: Required by Silicon, POST2 fails otherwise */
+        assert itemAt(tmp_node, 0) == val /* TODO: Required by Silicon, POST4 fails otherwise */
+        fold validOption(tmp_option)
+    } else {
+        append(this.Node__next.Option__Node__Some__1, val)
+        fold acc(validOption(this.Node__next), write)
+    }
+
+    fold acc(validNode(this), write)
+}
+
+method prepend(tail: Ref, val: Int) returns (res: Ref)
+    requires acc(validNode(tail))
+    ensures acc(validNode(res))
+    //ensures acc(validNode(tail))
+    ensures length(res) == old(length(tail)) + 1
+
+    ensures (forall i: Int :: (1 <= i && i < length(res)) ==> (itemAt(res, i) == old(itemAt(tail, i-1)))) /* POST3 */
+    ensures itemAt(res, 0) == val
+{
+    var tmp_option: Ref
+
+    res := new(Node__v, Node__next)
+    res.Node__v := val
+
+    tmp_option := new(Option__Node__Some__1)
+    tmp_option.Option__Node__Some__1 := tail
+    assume variantOfOptionNode(tmp_option) == Option__Node__Some()
+
+    res.Node__next := tmp_option
+
+    assert acc(validNode(tail))
+    fold acc(validOption(res.Node__next))
+    fold acc(validNode(res))
+}
+
+method length_iter(list: Ref) returns (len: Int)
+    requires acc(validNode(list), write)
+    ensures old(length(list)) == len
+    // TODO we have to preserve this property
+    // ensures acc(validNode(list))
+{
+    var curr: Ref := list
+    var tmp: Ref := list
+
+    len := 1
+
+    unfold acc(validNode(curr))
+    unfold acc(validOption(curr.Node__next))
+    while(variantOfOptionNode(curr.Node__next) == Option__Node__Some())
+        invariant acc(curr.Node__v)
+        invariant acc(curr.Node__next)
+        invariant (variantOfOptionNode(curr.Node__next) == Option__Node__Some() ==> (
+            acc(curr.Node__next.Option__Node__Some__1, write) &&
+            acc(validNode(curr.Node__next.Option__Node__Some__1))
+        ))
+        invariant (variantOfOptionNode(curr.Node__next) == Option__Node__Some() ==> len + length(curr.Node__next.Option__Node__Some__1) == old(length(list)))
+        invariant (variantOfOptionNode(curr.Node__next) == Option__Node__None() ==> len == old(length(list)))
+    {
+        assert acc(validNode(curr.Node__next.Option__Node__Some__1))
+        len := len + 1
+        tmp := curr
+        curr := curr.Node__next.Option__Node__Some__1
+        unfold acc(validNode(curr))
+        unfold acc(validOption(curr.Node__next))
+    }
+}
+
+method t1()
+{
+    var l: Ref
+
+    l := new(Node__v, Node__next)
+    l.Node__next := null
+    l.Node__v := 1
+    assume variantOfOptionNode(l.Node__next) == Option__Node__None()
+
+    fold validOption(l.Node__next)
+    fold validNode(l)
+
+    assert length(l) == 1
+    assert itemAt(l, 0) == 1
+
+    append(l, 7)
+    assert itemAt(l, 1) == 7
+    assert itemAt(l, 0) == 1
+    assert length(l) == 2
+
+    l := prepend(l, 10)
+    assert itemAt(l, 2) == 7
+    assert itemAt(l, 1) == 1
+    assert itemAt(l, 0) == 10
+    assert length(l) == 3
+
+    //assert sum(l) == 18
+}
+
+method t2(l: Ref) returns (res: Ref)
+    requires acc(validNode(l), write)
+    ensures acc(validNode(res), write)
+    ensures length(res) > old(length(l))
+{
+    res := prepend(l, 10)
+}
