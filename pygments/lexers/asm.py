@@ -245,7 +245,7 @@ class HsailLexer(RegexLexer):
 
             (string, String),
 
-            (r'@' + identifier + ':', Name.Label),
+            (r'@' + identifier + ':?', Name.Label),
 
             (register, Name.Variable.Anonymous),
 
@@ -326,8 +326,7 @@ class HsailLexer(RegexLexer):
                 '_downi_sat', '_zeroi_sat', '_neari_sat', '_supi', '_sdowni',
                 '_szeroi', '_sneari', '_supi_sat', '_sdowni_sat', '_szeroi_sat',
                 '_sneari_sat', '_pp', '_ps', '_sp', '_ss', '_s', '_p', '_pp_sat',
-                '_ps_sat', '_sp_sat', '_ss_sat', '_s_sat', '_p_sat'),
-                   suffix=r'\b'), Keyword),
+                '_ps_sat', '_sp_sat', '_ss_sat', '_s_sat', '_p_sat')), Keyword),
 
             # Integer types
             (r'i[1-9]\d*', Keyword)
