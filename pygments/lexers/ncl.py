@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.ncl
-    ~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
-    Lexers for NCL languages (NCAR Command Language).
+    Lexers for NCAR Command Language.
 
-    :copyright: Copyright 2006-2014 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,7 +22,7 @@ class NCLLexer(RegexLexer):
     """
     Lexer for NCL code.
 
-    .. versionadded:: 0.10
+    .. versionadded:: 2.2
     """
     name = 'NCL'
     aliases = ['ncl']
@@ -59,11 +59,11 @@ class NCLLexer(RegexLexer):
              Keyword.Type),
 
             # Operators
-            (r'(\^|\*|\+|-|\/|<|>)', Operator),
+            (r'[\^*+\-/<>]', Operator),
 
             # punctuation:
-            (r'\[|\]|\(|\)|:|@|\$|\.|,', Punctuation),
-            (r'=|:', Punctuation),
+            (r'[\[\]():@$.,]', Punctuation),
+            (r'[=:]', Punctuation),
 
             # Intrinsics
             (words((
