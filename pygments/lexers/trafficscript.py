@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-
     pygments.lexers.trafficscript
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -9,12 +8,14 @@
     :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 import re
 
 from pygments.lexer import RegexLexer
 from pygments.token import String, Number, Name, Keyword, Operator, Text, Comment
 
 __all__ = ['RtsLexer']
+
 
 class RtsLexer(RegexLexer):
     """

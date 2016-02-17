@@ -29,8 +29,8 @@ SELECT ?person (COUNT(?nick) AS ?nickCount) {
       ex:float5 .0e1 ;
       ex:float6 5e11 ;
       ex:float7 1. ;
-      ex:À "" ;
-      ex:豈 "" ;
+      ex:aUnicodeÀExample "somestring" ;
+      ex:catName "Kitty", "Kitty_" ; # object list
       ex:escape "\n\u00c0\U00010000";
       ex:catAge ?catage ;
       dcterms:description "Someone with a cat called \"cat\"."@en . # language tag

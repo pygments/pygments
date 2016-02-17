@@ -174,6 +174,10 @@ Name Tokens
 `Name.Function`
     Token type for function names.
 
+`Name.Function.Magic`
+    same as `Name.Function` but for special function names that have an implicit use
+    in a language (e.g. ``__init__`` method in Python).
+
 `Name.Label`
     Token type for label names (e.g. in languages that support ``goto``).
 
@@ -201,6 +205,10 @@ Name Tokens
 `Name.Variable.Instance`
     same as `Name.Variable` but for instance variables.
 
+`Name.Variable.Magic`
+    same as `Name.Variable` but for special variable names that have an implicit use
+    in a language (e.g. ``__doc__`` in Python).
+
 
 Literals
 ========
@@ -215,11 +223,19 @@ Literals
 `String`
     For any string literal.
 
+`String.Affix`
+    Token type for affixes that further specify the type of the string they're
+    attached to (e.g. the prefixes ``r`` and ``u8`` in ``r"foo"`` and ``u8"foo"``). 
+
 `String.Backtick`
     Token type for strings enclosed in backticks.
 
 `String.Char`
     Token type for single characters (e.g. Java, C).
+
+`String.Delimiter`
+    Token type for delimiting identifiers in "heredoc", raw and other similar
+    strings (e.g. the word ``END`` in Perl code ``print <<'END';``).
 
 `String.Doc`
     Token type for documentation strings (for example Python).

@@ -27,3 +27,14 @@ Bash completion
 
 The source distribution contains a file ``external/pygments.bashcomp`` that
 sets up completion for the ``pygmentize`` command in bash.
+
+Wrappers for other languages
+----------------------------
+
+These libraries provide Pygments highlighting for users of other languages
+than Python:
+
+* `pygments.rb <https://github.com/tmm1/pygments.rb>`_, a pygments wrapper for Ruby
+* `Clygments <https://github.com/bfontaine/clygments>`_, a pygments wrapper for
+  Clojure
+* `PHPygments <https://github.com/capynet/PHPygments>`_, a pygments wrapper for PHP

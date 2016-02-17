@@ -321,6 +321,12 @@ class HtmlFormatter(Formatter):
 
         .. versionadded:: 1.6
 
+    `filename`
+        A string used to generate a filename when rendering <pre> blocks,
+        for example if displaying source code.
+
+        .. versionadded:: 2.1
+
 
     **Subclassing the HTML formatter**
 
@@ -388,6 +394,7 @@ class HtmlFormatter(Formatter):
         self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
         self.tagsfile = self._decodeifneeded(options.get('tagsfile', ''))
         self.tagurlformat = self._decodeifneeded(options.get('tagurlformat', ''))
+        self.filename = self._decodeifneeded(options.get('filename', ''))
 
         if self.tagsfile:
             if not ctags:
@@ -521,7 +528,7 @@ class HtmlFormatter(Formatter):
                     cssfilename = os.path.join(os.path.dirname(filename),
                                                self.cssfile)
                 except AttributeError:
-                    print('Note: Cannot determine output file name, ' \
+                    print('Note: Cannot determine output file name, '
                           'using current directory as base for the CSS file name',
                           file=sys.stderr)
                     cssfilename = self.cssfile
@@ -530,21 +537,21 @@ class HtmlFormatter(Formatter):
                 if not os.path.exists(cssfilename) or not self.noclobber_cssfile:
                     cf = open(cssfilename, "w")
                     cf.write(CSSFILE_TEMPLATE %
-                            {'styledefs': self.get_style_defs('body')})
+                             {'styledefs': self.get_style_defs('body')})
                     cf.close()
             except IOError as err:
                 err.strerror = 'Error writing CSS file: ' + err.strerror
                 raise
 
             yield 0, (DOC_HEADER_EXTERNALCSS %
-                      dict(title     = self.title,
-                           cssfile   = self.cssfile,
-                           encoding  = self.encoding))
+                      dict(title=self.title,
+                           cssfile=self.cssfile,
+                           encoding=self.encoding))
         else:
             yield 0, (DOC_HEADER %
-                      dict(title     = self.title,
-                           styledefs = self.get_style_defs('body'),
-                           encoding  = self.encoding))
+                      dict(title=self.title,
+                           styledefs=self.get_style_defs('body'),
+                           encoding=self.encoding))
 
         for t, line in inner:
             yield t, line
@@ -623,35 +630,35 @@ class HtmlFormatter(Formatter):
         if self.noclasses:
             if sp:
                 for t, line in lines:
-                    if num%sp == 0:
+                    if num % sp == 0:
                         style = 'background-color: #ffffc0; padding: 0 5px 0 5px'
                     else:
                         style = 'background-color: #f0f0f0; padding: 0 5px 0 5px'
                     yield 1, '<span style="%s">%*s </span>' % (
-                        style, mw, (num%st and ' ' or num)) + line
+                        style, mw, (num % st and ' ' or num)) + line
                     num += 1
             else:
                 for t, line in lines:
                     yield 1, ('<span style="background-color: #f0f0f0; '
                               'padding: 0 5px 0 5px">%*s </span>' % (
-                              mw, (num%st and ' ' or num)) + line)
+                                  mw, (num % st and ' ' or num)) + line)
                     num += 1
         elif sp:
             for t, line in lines:
                 yield 1, '<span class="lineno%s">%*s </span>' % (
-                    num%sp == 0 and ' special' or '', mw,
-                    (num%st and ' ' or num)) + line
+                    num % sp == 0 and ' special' or '', mw,
+                    (num % st and ' ' or num)) + line
                 num += 1
         else:
             for t, line in lines:
                 yield 1, '<span class="lineno">%*s </span>' % (
-                    mw, (num%st and ' ' or num)) + line
+                    mw, (num % st and ' ' or num)) + line
                 num += 1
 
     def _wrap_lineanchors(self, inner):
         s = self.lineanchors
-        i = self.linenostart - 1 # subtract 1 since we have to increment i
-                                 # *before* yielding
+        # subtract 1 since we have to increment i *before* yielding
+        i = self.linenostart - 1
         for t, line in inner:
             if t:
                 i += 1
@@ -672,14 +679,14 @@ class HtmlFormatter(Formatter):
     def _wrap_div(self, inner):
         style = []
         if (self.noclasses and not self.nobackground and
-            self.style.background_color is not None):
+                self.style.background_color is not None):
             style.append('background: %s' % (self.style.background_color,))
         if self.cssstyles:
             style.append(self.cssstyles)
         style = '; '.join(style)
 
-        yield 0, ('<div' + (self.cssclass and ' class="%s"' % self.cssclass)
-                  + (style and (' style="%s"' % style)) + '>')
+        yield 0, ('<div' + (self.cssclass and ' class="%s"' % self.cssclass) +
+                  (style and (' style="%s"' % style)) + '>')
         for tup in inner:
             yield tup
         yield 0, '</div>\n'
@@ -692,7 +699,12 @@ class HtmlFormatter(Formatter):
             style.append('line-height: 125%')
         style = '; '.join(style)
 
-        yield 0, ('<pre' + (style and ' style="%s"' % style) + '>')
+        if self.filename:
+            yield 0, ('<span class="filename">' + self.filename + '</span>')
+
+        # the empty span here is to keep leading empty lines from being
+        # ignored by HTML parsers
+        yield 0, ('<pre' + (style and ' style="%s"' % style) + '><span></span>')
         for tup in inner:
             yield tup
         yield 0, '</pre>'
@@ -743,8 +755,8 @@ class HtmlFormatter(Formatter):
                 if line:
                     if lspan != cspan:
                         line.extend(((lspan and '</span>'), cspan, part,
-                                (cspan and '</span>'), lsep))
-                    else: # both are the same
+                                     (cspan and '</span>'), lsep))
+                    else:  # both are the same
                         line.extend((part, (lspan and '</span>'), lsep))
                     yield 1, ''.join(line)
                     line = []
@@ -785,7 +797,7 @@ class HtmlFormatter(Formatter):
         for i, (t, value) in enumerate(tokensource):
             if t != 1:
                 yield t, value
-            if i + 1 in hls: # i + 1 because Python indexes start at 0
+            if i + 1 in hls:  # i + 1 because Python indexes start at 0
                 if self.noclasses:
                     style = ''
                     if self.style.highlight_color is not None:

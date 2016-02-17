@@ -34,10 +34,10 @@ def simplefilter(f):
                 yield ttype, value.lower()
     """
     return type(f.__name__, (FunctionFilter,), {
-                'function':     f,
-                '__module__':   getattr(f, '__module__'),
-                '__doc__':      f.__doc__
-            })
+        '__module__': getattr(f, '__module__'),
+        '__doc__': f.__doc__,
+        'function': f,
+    })
 
 
 class Filter(object):
