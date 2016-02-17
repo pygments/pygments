@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+
 class _TokenType(tuple):
     parent = None
 
@@ -52,30 +53,30 @@ class _TokenType(tuple):
         return self
 
 
-Token       = _TokenType()
+Token = _TokenType()
 
 # Special token types
-Text        = Token.Text
-Whitespace  = Text.Whitespace
-Escape      = Token.Escape
-Error       = Token.Error
+Text = Token.Text
+Whitespace = Text.Whitespace
+Escape = Token.Escape
+Error = Token.Error
 # Text that doesn't belong to this lexer (e.g. HTML in PHP)
-Other       = Token.Other
+Other = Token.Other
 
 # Common token types for source code
-Keyword     = Token.Keyword
-Name        = Token.Name
-Literal     = Token.Literal
-String      = Literal.String
-Number      = Literal.Number
+Keyword = Token.Keyword
+Name = Token.Name
+Literal = Token.Literal
+String = Literal.String
+Number = Literal.Number
 Punctuation = Token.Punctuation
-Operator    = Token.Operator
-Comment     = Token.Comment
+Operator = Token.Operator
+Comment = Token.Comment
 
 # Generic types for non-source code
-Generic     = Token.Generic
+Generic = Token.Generic
 
-# String and some others are not direct childs of Token.
+# String and some others are not direct children of Token.
 # alias them:
 Token.Token = Token
 Token.String = String
@@ -163,8 +164,10 @@ STANDARD_TYPES = {
     Literal.Date:                  'ld',
 
     String:                        's',
+    String.Affix:                  'sa',
     String.Backtick:               'sb',
     String.Char:                   'sc',
+    String.Delimiter:              'dl',
     String.Doc:                    'sd',
     String.Double:                 's2',
     String.Escape:                 'se',

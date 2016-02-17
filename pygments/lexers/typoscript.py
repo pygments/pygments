@@ -44,11 +44,11 @@ class TypoScriptCssDataLexer(RegexLexer):
             # marker: ###MARK###
             (r'(.*)(###\w+###)(.*)', bygroups(String, Name.Constant, String)),
             # constant: {$some.constant}
-            (r'(\{)(\$)((?:[\w\-_]+\.)*)([\w\-_]+)(\})',
+            (r'(\{)(\$)((?:[\w\-]+\.)*)([\w\-]+)(\})',
              bygroups(String.Symbol, Operator, Name.Constant,
                       Name.Constant, String.Symbol)),  # constant
             # constant: {register:somevalue}
-            (r'(.*)(\{)([\w\-_]+)(\s*:\s*)([\w\-_]+)(\})(.*)',
+            (r'(.*)(\{)([\w\-]+)(\s*:\s*)([\w\-]+)(\})(.*)',
              bygroups(String, String.Symbol, Name.Constant, Operator,
                       Name.Constant, String.Symbol, String)),  # constant
             # whitespace
@@ -58,8 +58,8 @@ class TypoScriptCssDataLexer(RegexLexer):
             (r'(?<!(#|\'|"))(?:#(?!(?:[a-fA-F0-9]{6}|[a-fA-F0-9]{3}))[^\n#]+|//[^\n]*)',
              Comment),
             # other
-            (r'[<>,:=\.\*%+\|]', String),
-            (r'[\w"_\-!\/&;\(\)\{\}]+', String),
+            (r'[<>,:=.*%+|]', String),
+            (r'[\w"\-!/&;(){}]+', String),
         ]
     }
 
@@ -79,22 +79,22 @@ class TypoScriptHtmlDataLexer(RegexLexer):
             # INCLUDE_TYPOSCRIPT
             (r'(INCLUDE_TYPOSCRIPT)', Name.Class),
             # Language label or extension resource FILE:... or LLL:... or EXT:...
-            (r'(EXT|FILE|LLL):[^\}\n"]*', String),
+            (r'(EXT|FILE|LLL):[^}\n"]*', String),
             # marker: ###MARK###
             (r'(.*)(###\w+###)(.*)', bygroups(String, Name.Constant, String)),
             # constant: {$some.constant}
-            (r'(\{)(\$)((?:[\w\-_]+\.)*)([\w\-_]+)(\})',
+            (r'(\{)(\$)((?:[\w\-]+\.)*)([\w\-]+)(\})',
              bygroups(String.Symbol, Operator, Name.Constant,
                       Name.Constant, String.Symbol)),  # constant
             # constant: {register:somevalue}
-            (r'(.*)(\{)([\w\-_]+)(\s*:\s*)([\w\-_]+)(\})(.*)',
+            (r'(.*)(\{)([\w\-]+)(\s*:\s*)([\w\-]+)(\})(.*)',
              bygroups(String, String.Symbol, Name.Constant, Operator,
                       Name.Constant, String.Symbol, String)),  # constant
             # whitespace
             (r'\s+', Text),
             # other
-            (r'[<>,:=\.\*%+\|]', String),
-            (r'[\w"_\-!\/&;\(\)\{\}#]+', String),
+            (r'[<>,:=.*%+|]', String),
+            (r'[\w"\-!/&;(){}#]+', String),
         ]
     }
 
@@ -138,38 +138,38 @@ class TypoScriptLexer(RegexLexer):
              r'version)([^\]]*)(\])',
              bygroups(String.Symbol, Name.Constant, Text, String.Symbol)),
             # Functions
-            (r'(?=[\w\-_])(HTMLparser|HTMLparser_tags|addParams|cache|encapsLines|'
+            (r'(?=[\w\-])(HTMLparser|HTMLparser_tags|addParams|cache|encapsLines|'
              r'filelink|if|imageLinkWrap|imgResource|makelinks|numRows|numberFormat|'
              r'parseFunc|replacement|round|select|split|stdWrap|strPad|tableStyle|'
-             r'tags|textStyle|typolink)(?![\w\-_])', Name.Function),
+             r'tags|textStyle|typolink)(?![\w\-])', Name.Function),
             # Toplevel objects and _*
             (r'(?:(=?\s*<?\s+|^\s*))(cObj|field|config|content|constants|FEData|'
              r'file|frameset|includeLibs|lib|page|plugin|register|resources|sitemap|'
-             r'sitetitle|styles|temp|tt_[^:\.\n\s]*|types|xmlnews|INCLUDE_TYPOSCRIPT|'
-             r'_CSS_DEFAULT_STYLE|_DEFAULT_PI_VARS|_LOCAL_LANG)(?![\w\-_])',
+             r'sitetitle|styles|temp|tt_[^:.\s]*|types|xmlnews|INCLUDE_TYPOSCRIPT|'
+             r'_CSS_DEFAULT_STYLE|_DEFAULT_PI_VARS|_LOCAL_LANG)(?![\w\-])',
              bygroups(Operator, Name.Builtin)),
             # Content objects
-            (r'(?=[\w\-_])(CASE|CLEARGIF|COA|COA_INT|COBJ_ARRAY|COLUMNS|CONTENT|'
+            (r'(?=[\w\-])(CASE|CLEARGIF|COA|COA_INT|COBJ_ARRAY|COLUMNS|CONTENT|'
              r'CTABLE|EDITPANEL|FILE|FILES|FLUIDTEMPLATE|FORM|HMENU|HRULER|HTML|'
              r'IMAGE|IMGTEXT|IMG_RESOURCE|LOAD_REGISTER|MEDIA|MULTIMEDIA|OTABLE|'
              r'PAGE|QTOBJECT|RECORDS|RESTORE_REGISTER|SEARCHRESULT|SVG|SWFOBJECT|'
-             r'TEMPLATE|TEXT|USER|USER_INT)(?![\w\-_])', Name.Class),
+             r'TEMPLATE|TEXT|USER|USER_INT)(?![\w\-])', Name.Class),
             # Menu states
-            (r'(?=[\w\-_])(ACT|ACTIFSUB|ACTIFSUBRO|ACTRO|CUR|CURIFSUB|CURIFSUBRO|'
-             r'CURRO|IFSUB|IFSUBRO|NO|SPC|USERDEF1|USERDEF1RO|USERDEF2|USERDEF2RO|'
-             r'USR|USRRO)', Name.Class),
+            (r'(?=[\w\-])(ACTIFSUBRO|ACTIFSUB|ACTRO|ACT|CURIFSUBRO|CURIFSUB|CURRO|'
+             r'CUR|IFSUBRO|IFSUB|NO|SPC|USERDEF1RO|USERDEF1|USERDEF2RO|USERDEF2|'
+             r'USRRO|USR)', Name.Class),
             # Menu objects
-            (r'(?=[\w\-_])(GMENU|GMENU_FOLDOUT|GMENU_LAYERS|IMGMENU|IMGMENUITEM|'
-             r'JSMENU|JSMENUITEM|TMENU|TMENUITEM|TMENU_LAYERS)', Name.Class),
+            (r'(?=[\w\-])(GMENU_FOLDOUT|GMENU_LAYERS|GMENU|IMGMENUITEM|IMGMENU|'
+             r'JSMENUITEM|JSMENU|TMENUITEM|TMENU_LAYERS|TMENU)', Name.Class),
             # PHP objects
-            (r'(?=[\w\-_])(PHP_SCRIPT(_EXT|_INT)?)', Name.Class),
-            (r'(?=[\w\-_])(userFunc)(?![\w\-_])', Name.Function),
+            (r'(?=[\w\-])(PHP_SCRIPT(_EXT|_INT)?)', Name.Class),
+            (r'(?=[\w\-])(userFunc)(?![\w\-])', Name.Function),
         ],
         'whitespace': [
             (r'\s+', Text),
         ],
         'html':[
-            (r'<[^\s][^\n>]*>', using(TypoScriptHtmlDataLexer)),
+            (r'<\S[^\n>]*>', using(TypoScriptHtmlDataLexer)),
             (r'&[^;\n]*;', String),
             (r'(_CSS_DEFAULT_STYLE)(\s*)(\()(?s)(.*(?=\n\)))',
               bygroups(Name.Class, Text, String.Symbol, using(TypoScriptCssDataLexer))),
@@ -182,28 +182,28 @@ class TypoScriptLexer(RegexLexer):
         ],
         'label': [
             # Language label or extension resource FILE:... or LLL:... or EXT:...
-            (r'(EXT|FILE|LLL):[^\}\n"]*', String),
+            (r'(EXT|FILE|LLL):[^}\n"]*', String),
             # Path to a resource
-            (r'(?![^\w\-_])([\w\-_]+(?:/[\w\-_]+)+/?)([^\s]*\n)',
+            (r'(?![^\w\-])([\w\-]+(?:/[\w\-]+)+/?)(\S*\n)',
              bygroups(String, String)),
         ],
         'punctuation': [
-            (r'[,\.]', Punctuation),
+            (r'[,.]', Punctuation),
         ],
         'operator': [
-            (r'[<>,:=\.\*%+\|]', Operator),
+            (r'[<>,:=.*%+|]', Operator),
         ],
         'structure': [
             # Brackets and braces
-            (r'[\{\}\(\)\[\]\\\\]', String.Symbol),
+            (r'[{}()\[\]\\]', String.Symbol),
         ],
         'constant': [
             # Constant: {$some.constant}
-            (r'(\{)(\$)((?:[\w\-_]+\.)*)([\w\-_]+)(\})',
+            (r'(\{)(\$)((?:[\w\-]+\.)*)([\w\-]+)(\})',
                 bygroups(String.Symbol, Operator, Name.Constant,
                          Name.Constant, String.Symbol)),  # constant
             # Constant: {register:somevalue}
-            (r'(\{)([\w\-_]+)(\s*:\s*)([\w\-_]+)(\})',
+            (r'(\{)([\w\-]+)(\s*:\s*)([\w\-]+)(\})',
                 bygroups(String.Symbol, Name.Constant, Operator,
                          Name.Constant, String.Symbol)),  # constant
             # Hex color: #ff0077
@@ -216,7 +216,7 @@ class TypoScriptLexer(RegexLexer):
             (r'(\s*#\s*\n)', Comment),
         ],
         'other': [
-            (r'[\w"\-_!\/&;]+', Text),
+            (r'[\w"\-!/&;]+', Text),
         ],
     }
 

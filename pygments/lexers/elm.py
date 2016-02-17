@@ -46,7 +46,7 @@ class ElmLexer(RegexLexer):
         'root': [
 
             # Comments
-            (r'{-', Comment.Multiline, 'comment'),
+            (r'\{-', Comment.Multiline, 'comment'),
             (r'--.*', Comment.Single),
 
             # Whitespace
@@ -86,20 +86,20 @@ class ElmLexer(RegexLexer):
             (validName, Name.Variable),
 
             # Parens
-            (r'[,\(\)\[\]{}]', Punctuation),
+            (r'[,()\[\]{}]', Punctuation),
 
         ],
 
         'comment': [
-            (r'-(?!})', Comment.Multiline),
-            (r'{-', Comment.Multiline, 'comment'),
+            (r'-(?!\})', Comment.Multiline),
+            (r'\{-', Comment.Multiline, 'comment'),
             (r'[^-}]', Comment.Multiline),
-            (r'-}', Comment.Multiline, '#pop'),
+            (r'-\}', Comment.Multiline, '#pop'),
         ],
 
         'doublequote': [
-            (r'\\u[0-9a-fA-F]\{4}', String.Escape),
-            (r'\\[nrfvb\\\"]', String.Escape),
+            (r'\\u[0-9a-fA-F]{4}', String.Escape),
+            (r'\\[nrfvb\\"]', String.Escape),
             (r'[^"]', String),
             (r'"', String, '#pop'),
         ],
