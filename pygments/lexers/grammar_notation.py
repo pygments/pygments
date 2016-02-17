@@ -137,8 +137,9 @@ class JsgfLexer(RegexLexer):
     """
     For `JSpeech Grammar Format <https://www.w3.org/TR/jsgf/>`_
     grammars.
-    """
 
+    .. versionadded:: 2.2
+    """
     name = 'JSGF'
     aliases = ['jsgf']
     filenames = ['*.jsgf']
