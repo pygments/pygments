@@ -1,0 +1,28 @@
+#JSGF V1.0 UTF-8 en;
+
+grammar org.pygments.example;
+
+// comment /*
+/*
+  multi-line
+  comment
+  /* without nesting
+  @example doesn't mean anything here.
+*/
+/**/
+
+/**
+  * A silly @example grammar.
+  *
+  * @author David Corbett
+  * @version 1
+* @see <org.pygments.example.en>
+  * @example hello world
+    @example hello ","
+  *
+  **@blah
+  **world
+  */
+public <sentence> = (/1/<en> | / 0.8f /<fr> |/0/<VOID>""""{}{})*<NULL>;
+<org.pygments.example.fr> = bonjour {hello} [,] "le monde" {world};
+<en> = (/56/hello|/3.14e3/"\"hello\"") {hello} {{ {\\//\} } world {world} !+ ;
