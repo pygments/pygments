@@ -2390,7 +2390,7 @@ class XtlangLexer(RegexLexer):
     )
     scheme_keywords = (
         'do', 'delay', 'quasiquote', 'unquote', 'unquote-splicing', 'eval',
-        'case', 'let*', 'letrec', 'quote', 'let*', 'letrec',
+        'case', 'let*', 'letrec', 'quote',
     )
     xtlang_bind_keywords = (
         'bind-func', 'bind-val', 'bind-lib', 'bind-type', 'bind-alias',
@@ -2474,8 +2474,8 @@ class XtlangLexer(RegexLexer):
     valid_scheme_name = r'[\w!$%&*+,/:<=>?@^~|-]+'
 
     # valid characters in xtlang names & types
-    valid_xtlang_name = r'[\w._!-]+'
-    valid_xtlang_type = r'[]{}[\w_<>,*/|!-]+'
+    valid_xtlang_name = r'[\w.!-]+'
+    valid_xtlang_type = r'[]{}[\w<>,*/|!-]+'
 
     tokens = {
         # keep track of when we're exiting the xtlang form
