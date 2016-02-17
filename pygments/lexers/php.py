@@ -138,7 +138,9 @@ class PhpLexer(RegexLexer):
         ],
         'php': [
             (r'\?>', Comment.Preproc, '#pop'),
-            (r'<<<([\'"]?)(' + _ident_inner + r')\1\n.*?\n\s*\2;?\n', String),
+            (r'(<<<)([\'"]?)(' + _ident_inner + r')(\2\n.*?\n\s*)(\3)(;?)(\n)',
+             bygroups(String, String, String.Delimiter, String, String.Delimiter,
+                      Punctuation, Text)),
             (r'\s+', Text),
             (r'#.*?\n', Comment.Single),
             (r'//.*?\n', Comment.Single),

@@ -111,8 +111,8 @@ class ThriftLexer(RegexLexer):
             include('keywords'),
             include('numbers'),
             (r'[&=]', Operator),
-            (r'[:;\,\{\}\(\)\<>\[\]]', Punctuation),
-            (r'[a-zA-Z_](\.[a-zA-Z_0-9]|[a-zA-Z_0-9])*', Name),
+            (r'[:;,{}()<>\[\]]', Punctuation),
+            (r'[a-zA-Z_](\.\w|\w)*', Name),
         ],
         'whitespace': [
             (r'\n', Text.Whitespace),
@@ -135,7 +135,7 @@ class ThriftLexer(RegexLexer):
             (r'[^\\\'\n]+', String.Single),
         ],
         'namespace': [
-            (r'[a-z\*](\.[a-zA-Z_0-9]|[a-zA-Z_0-9])*', Name.Namespace, '#pop'),
+            (r'[a-z*](\.\w|\w)*', Name.Namespace, '#pop'),
             default('#pop'),
         ],
         'class': [
