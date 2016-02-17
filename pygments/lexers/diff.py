@@ -118,12 +118,12 @@ class WDiffLexer(RegexLexer):
     * if target files of wdiff contain "[-", "-]", "{+", "+}",
       especially they are unbalanced, this lexer will get confusing.
 
-    .. versionadded:: 2.1
+    .. versionadded:: 2.2
     """
 
     name = 'WDiff'
-    aliases = ['wdiff',]
-    filenames = ['*.wdiff',]
+    aliases = ['wdiff']
+    filenames = ['*.wdiff']
     mimetypes = []
 
     flags = re.MULTILINE | re.DOTALL
