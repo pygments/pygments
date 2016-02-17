@@ -11,9 +11,9 @@
 
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error, Whitespace
+    Number, Punctuation, Error
 
-__all__ = ['BrainfuckLexer', 'BefungeLexer', 'BoogieLexer', 'RedcodeLexer', 'CAmkESLexer']
+__all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'CAmkESLexer']
 
 
 class BrainfuckLexer(RegexLexer):
@@ -90,7 +90,7 @@ class CAmkESLexer(RegexLexer):
     filenames = ['*.camkes', '*.idl4']
 
     tokens = {
-        'root':[
+        'root': [
             # C pre-processor directive
             (r'^\s*#.*\n', Comment.Preproc),
 
@@ -99,21 +99,25 @@ class CAmkESLexer(RegexLexer):
             (r'/\*(.|\n)*?\*/', Comment),
             (r'//.*\n', Comment),
 
-            (r'[\[\(\){},\.;=\]]', Punctuation),
+            (r'[\[(){},.;\]]', Punctuation),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
 
             (words(('assembly', 'attribute', 'component', 'composition',
                     'configuration', 'connection', 'connector', 'consumes',
-                    'control', 'dataport', 'Dataport', 'emits', 'event',
-                    'Event', 'from', 'group', 'hardware', 'has', 'interface',
-                    'Interface', 'maybe', 'procedure', 'Procedure', 'provides',
-                    'template', 'to', 'uses'), suffix=r'\b'), Keyword),
+                    'control', 'dataport', 'Dataport', 'Dataports', 'emits',
+                    'event', 'Event', 'Events', 'export', 'from', 'group',
+                    'hardware', 'has', 'interface', 'Interface', 'maybe',
+                    'procedure', 'Procedure', 'Procedures', 'provides',
+                    'template', 'thread', 'threads', 'to', 'uses', 'with'),
+                   suffix=r'\b'), Keyword),
 
             (words(('bool', 'boolean', 'Buf', 'char', 'character', 'double',
                     'float', 'in', 'inout', 'int', 'int16_6', 'int32_t',
                     'int64_t', 'int8_t', 'integer', 'mutex', 'out', 'real',
-                    'refin', 'semaphore', 'signed', 'string', 'uint16_t',
-                    'uint32_t', 'uint64_t', 'uint8_t', 'uintptr_t', 'unsigned',
-                    'void'), suffix=r'\b'), Keyword.Type),
+                    'refin', 'semaphore', 'signed', 'string', 'struct',
+                    'uint16_t', 'uint32_t', 'uint64_t', 'uint8_t', 'uintptr_t',
+                    'unsigned', 'void'),
+                   suffix=r'\b'), Keyword.Type),
 
             # Recognised attributes
             (r'[a-zA-Z_]\w*_(priority|domain|buffer)', Keyword.Reserved),
@@ -131,6 +135,7 @@ class CAmkESLexer(RegexLexer):
             (r'-?[\d]+', Number),
             (r'-?[\d]+\.[\d]+', Number.Float),
             (r'"[^"]*"', String),
+            (r'[Tt]rue|[Ff]alse', Name.Builtin),
 
             # Identifiers
             (r'[a-zA-Z_]\w*', Name),
@@ -170,50 +175,5 @@ class RedcodeLexer(RegexLexer):
             (r'[.,]', Punctuation),  # mode
             #  Numbers
             (r'[-+]?\d+', Number.Integer),
-        ],
-    }
-
-
-class BoogieLexer(RegexLexer):
-    """
-    For `Boogie <https://boogie.codeplex.com/>`_ source code.
-
-    .. versionadded:: 2.1
-    """
-    name = 'Boogie'
-    aliases = ['boogie']
-    filenames = ['*.bpl']
-
-    tokens = {
-        'root': [
-            # Whitespace and Comments
-            (r'\n', Whitespace),
-            (r'\s+', Whitespace),
-            (r'//[/!](.*?)\n', Comment.Doc),
-            (r'//(.*?)\n', Comment.Single),
-            (r'/\*', Comment.Multiline, 'comment'),
-
-            (words((
-                'axiom', 'break', 'call', 'ensures', 'else', 'exists', 'function',
-                'forall', 'if', 'invariant', 'modifies', 'procedure',  'requires',
-                'then', 'var', 'while'),
-             suffix=r'\b'), Keyword),
-            (words(('const',), suffix=r'\b'), Keyword.Reserved),
-
-            (words(('bool', 'int', 'ref'), suffix=r'\b'), Keyword.Type),
-            include('numbers'),
-            (r"(>=|<=|:=|!=|==>|&&|\|\||[+/\-=>*<\[\]])", Operator),
-            (r"([{}():;,.])", Punctuation),
-            # Identifier
-            (r'[a-zA-Z_]\w*', Name),
-        ],
-        'comment': [
-            (r'[^*/]+', Comment.Multiline),
-            (r'/\*', Comment.Multiline, '#push'),
-            (r'\*/', Comment.Multiline, '#pop'),
-            (r'[*/]', Comment.Multiline),
-        ],
-        'numbers': [
-            (r'[0-9]+', Number.Integer),
         ],
     }

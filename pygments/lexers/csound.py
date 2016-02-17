@@ -9,19 +9,19 @@
     :license: BSD, see LICENSE for details.
 """
 
-import copy, re
+import re
 
 from pygments.lexer import RegexLexer, bygroups, default, include, using, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, \
     String, Text
 from pygments.lexers._csound_builtins import OPCODES
-from pygments.lexers.html import HtmlLexer, XmlLexer
+from pygments.lexers.html import HtmlLexer
 from pygments.lexers.python import PythonLexer
 from pygments.lexers.scripting import LuaLexer
 
 __all__ = ['CsoundScoreLexer', 'CsoundOrchestraLexer', 'CsoundDocumentLexer']
 
-newline = (r'((?:;|//).*)*(\n)', bygroups(Comment.Single, Text))
+newline = (r'((?:(?:;|//).*)*)(\n)', bygroups(Comment.Single, Text))
 
 
 class CsoundLexer(RegexLexer):
@@ -98,6 +98,7 @@ class CsoundScoreLexer(CsoundLexer):
     """
 
     name = 'Csound Score'
+    aliases = ['csound-score', 'csound-sco']
     filenames = ['*.sco']
 
     tokens = {
@@ -140,6 +141,7 @@ class CsoundOrchestraLexer(CsoundLexer):
     """
 
     name = 'Csound Orchestra'
+    aliases = ['csound', 'csound-orc']
     filenames = ['*.orc']
 
     user_defined_opcodes = set()
@@ -175,7 +177,7 @@ class CsoundOrchestraLexer(CsoundLexer):
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+', Number.Integer),
             (r'"', String, 'single-line string'),
-            (r'{{', String, 'multi-line string'),
+            (r'\{\{', String, 'multi-line string'),
             (r'[+\-*/%^!=&|<>#~¬]', Operator),
             (r'[](),?:[]', Punctuation),
             (words((
@@ -271,82 +273,94 @@ class CsoundOrchestraLexer(CsoundLexer):
             (r'[\\"~$%\^\n]', String)
         ],
         'multi-line string': [
-            (r'}}', String, '#pop'),
-            (r'[^\}]+|\}(?!\})', String)
+            (r'\}\}', String, '#pop'),
+            (r'[^}]+|\}(?!\})', String)
         ],
 
         'scoreline opcode': [
             include('whitespace or macro call'),
-            (r'{{', String, 'scoreline'),
+            (r'\{\{', String, 'scoreline'),
             default('#pop')
         ],
         'scoreline': [
-            (r'}}', String, '#pop'),
-            (r'([^\}]+)|\}(?!\})', using(CsoundScoreLexer))
+            (r'\}\}', String, '#pop'),
+            (r'([^}]+)|\}(?!\})', using(CsoundScoreLexer))
         ],
 
         'python opcode': [
             include('whitespace or macro call'),
-            (r'{{', String, 'python'),
+            (r'\{\{', String, 'python'),
             default('#pop')
         ],
         'python': [
-            (r'}}', String, '#pop'),
-            (r'([^\}]+)|\}(?!\})', using(PythonLexer))
+            (r'\}\}', String, '#pop'),
+            (r'([^}]+)|\}(?!\})', using(PythonLexer))
         ],
 
         'lua opcode': [
             include('whitespace or macro call'),
             (r'"', String, 'single-line string'),
-            (r'{{', String, 'lua'),
+            (r'\{\{', String, 'lua'),
             (r',', Punctuation),
             default('#pop')
         ],
         'lua': [
-            (r'}}', String, '#pop'),
-            (r'([^\}]+)|\}(?!\})', using(LuaLexer))
+            (r'\}\}', String, '#pop'),
+            (r'([^}]+)|\}(?!\})', using(LuaLexer))
         ]
     }
 
 
-class CsoundDocumentLexer(XmlLexer):
+class CsoundDocumentLexer(RegexLexer):
     """
     For `Csound <http://csound.github.io>`_ documents.
 
-    
+    .. versionadded:: 2.1
     """
 
     name = 'Csound Document'
-    aliases = []
+    aliases = ['csound-document', 'csound-csd']
     filenames = ['*.csd']
-    mimetypes = []
 
-    tokens = copy.deepcopy(XmlLexer.tokens)
-    for i, item in enumerate(tokens['root']):
-        if len(item) > 2 and item[2] == 'tag':
-            (tokens['root']).insert(i, (r'(<)(\s*)(CsInstruments)(\s*)',
-                                    bygroups(Name.Tag, Text, Name.Tag, Text),
-                                    ('orchestra content', 'tag')))
-            (tokens['root']).insert(i, (r'(<)(\s*)(CsScore)(\s*)',
-                                    bygroups(Name.Tag, Text, Name.Tag, Text),
-                                    ('score content', 'tag')))
-            (tokens['root']).insert(i, (r'(<)(\s*)(html)(\s*)',
-                                    bygroups(Name.Tag, Text, Name.Tag, Text),
-                                    ('HTML', 'tag')))
-            break
-
-    tokens['orchestra content'] = [
-        (r'(<)(\s*)(/)(\s*)(CsInstruments)(\s*)(>)',
-         bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag), '#pop'),
-        (r'.+?(?=<\s*/\s*CsInstruments\s*>)', using(CsoundOrchestraLexer))
-    ]
-    tokens['score content'] = [
-        (r'(<)(\s*)(/)(\s*)(CsScore)(\s*)(>)',
-         bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag), '#pop'),
-        (r'.+?(?=<\s*/\s*CsScore\s*>)', using(CsoundScoreLexer))
-    ]
-    tokens['HTML'] = [
-        (r'(<)(\s*)(/)(\s*)(html)(\s*)(>)',
-         bygroups(Name.Tag, Text, Name.Tag, Text, Name.Tag, Text, Name.Tag), '#pop'),
-        (r'.+?(?=<\s*/\s*html\s*>)', using(HtmlLexer))
-    ]
+    # These tokens are based on those in XmlLexer in pygments/lexers/html.py. Making
+    # CsoundDocumentLexer a subclass of XmlLexer rather than RegexLexer may seem like a
+    # better idea, since Csound Document files look like XML files. However, Csound
+    # Documents can contain Csound comments (preceded by //, for example) before and
+    # after the root element, unescaped bitwise AND & and less than < operators, etc. In
+    # other words, while Csound Document files look like XML files, they may not actually
+    # be XML files.
+    tokens = {
+        'root': [
+            newline,
+            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'[^<&;/]+', Text),
+            (r'<\s*CsInstruments', Name.Tag, ('orchestra', 'tag')),
+            (r'<\s*CsScore', Name.Tag, ('score', 'tag')),
+            (r'<\s*[hH][tT][mM][lL]', Name.Tag, ('HTML', 'tag')),
+            (r'<\s*[\w:.-]+', Name.Tag, 'tag'),
+            (r'<\s*/\s*[\w:.-]+\s*>', Name.Tag)
+        ],
+        'orchestra': [
+            (r'<\s*/\s*CsInstruments\s*>', Name.Tag, '#pop'),
+            (r'(.|\n)+?(?=<\s*/\s*CsInstruments\s*>)', using(CsoundOrchestraLexer))
+        ],
+        'score': [
+            (r'<\s*/\s*CsScore\s*>', Name.Tag, '#pop'),
+            (r'(.|\n)+?(?=<\s*/\s*CsScore\s*>)', using(CsoundScoreLexer))
+        ],
+        'HTML': [
+            (r'<\s*/\s*[hH][tT][mM][lL]\s*>', Name.Tag, '#pop'),
+            (r'(.|\n)+?(?=<\s*/\s*[hH][tT][mM][lL]\s*>)', using(HtmlLexer))
+        ],
+        'tag': [
+            (r'\s+', Text),
+            (r'[\w.:-]+\s*=', Name.Attribute, 'attr'),
+            (r'/?\s*>', Name.Tag, '#pop')
+        ],
+        'attr': [
+            (r'\s+', Text),
+            (r'".*?"', String, '#pop'),
+            (r"'.*?'", String, '#pop'),
+            (r'[^\s>]+', String, '#pop')
+        ]
+    }

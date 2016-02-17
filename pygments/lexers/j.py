@@ -5,6 +5,8 @@
 
     Lexer for the J programming language.
 
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer, words, include
@@ -46,7 +48,7 @@ class JLexer(RegexLexer):
 
             # Definitions
             (r'0\s+:\s*0|noun\s+define\s*$', Name.Entity, 'nounDefinition'),
-            (r'\b(([1-4]|13)\s+:\s*0)|((adverb|conjunction|dyad|monad|verb)\s+define)\b',
+            (r'(([1-4]|13)\s+:\s*0|(adverb|conjunction|dyad|monad|verb)\s+define)\b',
              Name.Function, 'explicitDefinition'),
 
             # Flow Control

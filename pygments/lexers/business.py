@@ -57,9 +57,9 @@ class CobolLexer(RegexLexer):
         ],
         'core': [
             # Figurative constants
-            (r'(^|(?<=[^0-9a-z_\-]))(ALL\s+)?'
+            (r'(^|(?<=[^\w\-]))(ALL\s+)?'
              r'((ZEROES)|(HIGH-VALUE|LOW-VALUE|QUOTE|SPACE|ZERO)(S)?)'
-             r'\s*($|(?=[^0-9a-z_\-]))',
+             r'\s*($|(?=[^\w\-]))',
              Name.Constant),
 
             # Reserved words STATEMENTS and other bolds
@@ -79,8 +79,8 @@ class CobolLexer(RegexLexer):
                 'RETURN', 'REWRITE', 'SCREEN', 'SD', 'SEARCH', 'SECTION', 'SET',
                 'SORT', 'START', 'STOP', 'STRING', 'SUBTRACT', 'SUPPRESS',
                 'TERMINATE', 'THEN', 'UNLOCK', 'UNSTRING', 'USE', 'VALIDATE',
-                'WORKING-STORAGE', 'WRITE'), prefix=r'(^|(?<=[^0-9a-z_\-]))',
-                suffix=r'\s*($|(?=[^0-9a-z_\-]))'),
+                'WORKING-STORAGE', 'WRITE'), prefix=r'(^|(?<=[^\w\-]))',
+                suffix=r'\s*($|(?=[^\w\-]))'),
              Keyword.Reserved),
 
             # Reserved words
@@ -89,33 +89,33 @@ class CobolLexer(RegexLexer):
                 'ALPHABET', 'ALPHABETIC', 'ALPHABETIC-LOWER', 'ALPHABETIC-UPPER',
                 'ALPHANUMERIC', 'ALPHANUMERIC-EDITED', 'ALSO', 'ALTER', 'ALTERNATE'
                 'ANY', 'ARE', 'AREA', 'AREAS', 'ARGUMENT-NUMBER', 'ARGUMENT-VALUE', 'AS',
-                'ASCENDING', 'ASSIGN', 'AT', 'AUTO', 'AUTO-SKIP', 'AUTOMATIC', 'AUTOTERMINATE',
-                'BACKGROUND-COLOR', 'BASED', 'BEEP', 'BEFORE', 'BELL',
+                'ASCENDING', 'ASSIGN', 'AT', 'AUTO', 'AUTO-SKIP', 'AUTOMATIC',
+                'AUTOTERMINATE', 'BACKGROUND-COLOR', 'BASED', 'BEEP', 'BEFORE', 'BELL',
                 'BLANK', 'BLINK', 'BLOCK', 'BOTTOM', 'BY', 'BYTE-LENGTH', 'CHAINING',
-                'CHARACTER', 'CHARACTERS', 'CLASS', 'CODE', 'CODE-SET', 'COL', 'COLLATING',
-                'COLS', 'COLUMN', 'COLUMNS', 'COMMA', 'COMMAND-LINE', 'COMMIT', 'COMMON',
-                'CONSTANT', 'CONTAINS', 'CONTENT', 'CONTROL',
+                'CHARACTER', 'CHARACTERS', 'CLASS', 'CODE', 'CODE-SET', 'COL',
+                'COLLATING', 'COLS', 'COLUMN', 'COLUMNS', 'COMMA', 'COMMAND-LINE',
+                'COMMIT', 'COMMON', 'CONSTANT', 'CONTAINS', 'CONTENT', 'CONTROL',
                 'CONTROLS', 'CONVERTING', 'COPY', 'CORR', 'CORRESPONDING', 'COUNT', 'CRT',
-                'CURRENCY', 'CURSOR', 'CYCLE', 'DATE', 'DAY', 'DAY-OF-WEEK', 'DE', 'DEBUGGING',
-                'DECIMAL-POINT', 'DECLARATIVES', 'DEFAULT', 'DELIMITED',
+                'CURRENCY', 'CURSOR', 'CYCLE', 'DATE', 'DAY', 'DAY-OF-WEEK', 'DE',
+                'DEBUGGING', 'DECIMAL-POINT', 'DECLARATIVES', 'DEFAULT', 'DELIMITED',
                 'DELIMITER', 'DEPENDING', 'DESCENDING', 'DETAIL', 'DISK',
                 'DOWN', 'DUPLICATES', 'DYNAMIC', 'EBCDIC',
                 'ENTRY', 'ENVIRONMENT-NAME', 'ENVIRONMENT-VALUE', 'EOL', 'EOP',
                 'EOS', 'ERASE', 'ERROR', 'ESCAPE', 'EXCEPTION',
-                'EXCLUSIVE', 'EXTEND', 'EXTERNAL',
-                'FILE-ID', 'FILLER', 'FINAL', 'FIRST', 'FIXED', 'FLOAT-LONG', 'FLOAT-SHORT',
-                'FOOTING', 'FOR', 'FOREGROUND-COLOR', 'FORMAT', 'FROM', 'FULL', 'FUNCTION',
-                'FUNCTION-ID', 'GIVING', 'GLOBAL', 'GROUP',
+                'EXCLUSIVE', 'EXTEND', 'EXTERNAL', 'FILE-ID', 'FILLER', 'FINAL',
+                'FIRST', 'FIXED', 'FLOAT-LONG', 'FLOAT-SHORT',
+                'FOOTING', 'FOR', 'FOREGROUND-COLOR', 'FORMAT', 'FROM', 'FULL',
+                'FUNCTION', 'FUNCTION-ID', 'GIVING', 'GLOBAL', 'GROUP',
                 'HEADING', 'HIGHLIGHT', 'I-O', 'ID',
                 'IGNORE', 'IGNORING', 'IN', 'INDEX', 'INDEXED', 'INDICATE',
-                'INITIAL', 'INITIALIZED', 'INPUT',
-                'INTO', 'INTRINSIC', 'INVALID', 'IS', 'JUST', 'JUSTIFIED', 'KEY', 'LABEL',
+                'INITIAL', 'INITIALIZED', 'INPUT', 'INTO', 'INTRINSIC', 'INVALID',
+                'IS', 'JUST', 'JUSTIFIED', 'KEY', 'LABEL',
                 'LAST', 'LEADING', 'LEFT', 'LENGTH', 'LIMIT', 'LIMITS', 'LINAGE',
                 'LINAGE-COUNTER', 'LINE', 'LINES', 'LOCALE', 'LOCK',
-                'LOWLIGHT', 'MANUAL', 'MEMORY', 'MINUS', 'MODE',
-                'MULTIPLE', 'NATIONAL', 'NATIONAL-EDITED', 'NATIVE',
-                'NEGATIVE', 'NEXT', 'NO', 'NULL', 'NULLS', 'NUMBER', 'NUMBERS', 'NUMERIC',
-                'NUMERIC-EDITED', 'OBJECT-COMPUTER', 'OCCURS', 'OF', 'OFF', 'OMITTED', 'ON', 'ONLY',
+                'LOWLIGHT', 'MANUAL', 'MEMORY', 'MINUS', 'MODE', 'MULTIPLE',
+                'NATIONAL', 'NATIONAL-EDITED', 'NATIVE', 'NEGATIVE', 'NEXT', 'NO',
+                'NULL', 'NULLS', 'NUMBER', 'NUMBERS', 'NUMERIC', 'NUMERIC-EDITED',
+                'OBJECT-COMPUTER', 'OCCURS', 'OF', 'OFF', 'OMITTED', 'ON', 'ONLY',
                 'OPTIONAL', 'ORDER', 'ORGANIZATION', 'OTHER', 'OUTPUT', 'OVERFLOW',
                 'OVERLINE', 'PACKED-DECIMAL', 'PADDING', 'PAGE', 'PARAGRAPH',
                 'PLUS', 'POINTER', 'POSITION', 'POSITIVE', 'PRESENT', 'PREVIOUS',
@@ -137,40 +137,42 @@ class CobolLexer(RegexLexer):
                 'UNSIGNED-INT', 'UNSIGNED-LONG', 'UNSIGNED-SHORT', 'UNTIL', 'UP',
                 'UPDATE', 'UPON', 'USAGE', 'USING', 'VALUE', 'VALUES', 'VARYING',
                 'WAIT', 'WHEN', 'WITH', 'WORDS', 'YYYYDDD', 'YYYYMMDD'),
-                prefix=r'(^|(?<=[^0-9a-z_\-]))', suffix=r'\s*($|(?=[^0-9a-z_\-]))'),
+                prefix=r'(^|(?<=[^\w\-]))', suffix=r'\s*($|(?=[^\w\-]))'),
              Keyword.Pseudo),
 
             # inactive reserved words
             (words((
-                'ACTIVE-CLASS', 'ALIGNED', 'ANYCASE', 'ARITHMETIC', 'ATTRIBUTE', 'B-AND',
-                'B-NOT', 'B-OR', 'B-XOR', 'BIT', 'BOOLEAN', 'CD', 'CENTER', 'CF', 'CH', 'CHAIN', 'CLASS-ID',
-                'CLASSIFICATION', 'COMMUNICATION', 'CONDITION', 'DATA-POINTER',
-                'DESTINATION', 'DISABLE', 'EC', 'EGI', 'EMI', 'ENABLE', 'END-RECEIVE',
-                'ENTRY-CONVENTION', 'EO', 'ESI', 'EXCEPTION-OBJECT', 'EXPANDS', 'FACTORY',
-                'FLOAT-BINARY-16', 'FLOAT-BINARY-34', 'FLOAT-BINARY-7',
-                'FLOAT-DECIMAL-16', 'FLOAT-DECIMAL-34', 'FLOAT-EXTENDED', 'FORMAT',
-                'FUNCTION-POINTER', 'GET', 'GROUP-USAGE', 'IMPLEMENTS', 'INFINITY',
-                'INHERITS', 'INTERFACE', 'INTERFACE-ID', 'INVOKE', 'LC_ALL', 'LC_COLLATE',
+                'ACTIVE-CLASS', 'ALIGNED', 'ANYCASE', 'ARITHMETIC', 'ATTRIBUTE',
+                'B-AND', 'B-NOT', 'B-OR', 'B-XOR', 'BIT', 'BOOLEAN', 'CD', 'CENTER',
+                'CF', 'CH', 'CHAIN', 'CLASS-ID', 'CLASSIFICATION', 'COMMUNICATION',
+                'CONDITION', 'DATA-POINTER', 'DESTINATION', 'DISABLE', 'EC', 'EGI',
+                'EMI', 'ENABLE', 'END-RECEIVE', 'ENTRY-CONVENTION', 'EO', 'ESI',
+                'EXCEPTION-OBJECT', 'EXPANDS', 'FACTORY', 'FLOAT-BINARY-16',
+                'FLOAT-BINARY-34', 'FLOAT-BINARY-7', 'FLOAT-DECIMAL-16',
+                'FLOAT-DECIMAL-34', 'FLOAT-EXTENDED', 'FORMAT', 'FUNCTION-POINTER',
+                'GET', 'GROUP-USAGE', 'IMPLEMENTS', 'INFINITY', 'INHERITS',
+                'INTERFACE', 'INTERFACE-ID', 'INVOKE', 'LC_ALL', 'LC_COLLATE',
                 'LC_CTYPE', 'LC_MESSAGES', 'LC_MONETARY', 'LC_NUMERIC', 'LC_TIME',
-                'LINE-COUNTER', 'MESSAGE', 'METHOD', 'METHOD-ID', 'NESTED', 'NONE', 'NORMAL',
-                'OBJECT', 'OBJECT-REFERENCE', 'OPTIONS', 'OVERRIDE', 'PAGE-COUNTER', 'PF', 'PH',
-                'PROPERTY', 'PROTOTYPE', 'PURGE', 'QUEUE', 'RAISE', 'RAISING', 'RECEIVE',
-                'RELATION', 'REPLACE', 'REPRESENTS-NOT-A-NUMBER', 'RESET', 'RESUME', 'RETRY',
-                'RF', 'RH', 'SECONDS', 'SEGMENT', 'SELF', 'SEND', 'SOURCES', 'STATEMENT', 'STEP',
-                'STRONG', 'SUB-QUEUE-1', 'SUB-QUEUE-2', 'SUB-QUEUE-3', 'SUPER', 'SYMBOL',
-                'SYSTEM-DEFAULT', 'TABLE', 'TERMINAL', 'TEXT', 'TYPEDEF', 'UCS-4', 'UNIVERSAL',
-                'USER-DEFAULT', 'UTF-16', 'UTF-8', 'VAL-STATUS', 'VALID', 'VALIDATE',
-                'VALIDATE-STATUS'),
-                prefix=r'(^|(?<=[^0-9a-z_\-]))', suffix=r'\s*($|(?=[^0-9a-z_\-]))'),
+                'LINE-COUNTER', 'MESSAGE', 'METHOD', 'METHOD-ID', 'NESTED', 'NONE',
+                'NORMAL', 'OBJECT', 'OBJECT-REFERENCE', 'OPTIONS', 'OVERRIDE',
+                'PAGE-COUNTER', 'PF', 'PH', 'PROPERTY', 'PROTOTYPE', 'PURGE',
+                'QUEUE', 'RAISE', 'RAISING', 'RECEIVE', 'RELATION', 'REPLACE',
+                'REPRESENTS-NOT-A-NUMBER', 'RESET', 'RESUME', 'RETRY', 'RF', 'RH',
+                'SECONDS', 'SEGMENT', 'SELF', 'SEND', 'SOURCES', 'STATEMENT',
+                'STEP', 'STRONG', 'SUB-QUEUE-1', 'SUB-QUEUE-2', 'SUB-QUEUE-3',
+                'SUPER', 'SYMBOL', 'SYSTEM-DEFAULT', 'TABLE', 'TERMINAL', 'TEXT',
+                'TYPEDEF', 'UCS-4', 'UNIVERSAL', 'USER-DEFAULT', 'UTF-16', 'UTF-8',
+                'VAL-STATUS', 'VALID', 'VALIDATE', 'VALIDATE-STATUS'),
+                   prefix=r'(^|(?<=[^\w\-]))', suffix=r'\s*($|(?=[^\w\-]))'),
              Error),
 
             # Data Types
-            (r'(^|(?<=[^0-9a-z_\-]))'
+            (r'(^|(?<=[^\w\-]))'
              r'(PIC\s+.+?(?=(\s|\.\s))|PICTURE\s+.+?(?=(\s|\.\s))|'
              r'(COMPUTATIONAL)(-[1-5X])?|(COMP)(-[1-5X])?|'
              r'BINARY-C-LONG|'
              r'BINARY-CHAR|BINARY-DOUBLE|BINARY-LONG|BINARY-SHORT|'
-             r'BINARY)\s*($|(?=[^0-9a-z_\-]))', Keyword.Type),
+             r'BINARY)\s*($|(?=[^\w\-]))', Keyword.Type),
 
             # Operators
             (r'(\*\*|\*|\+|-|/|<=|>=|<|>|==|/=|=)', Operator),
@@ -180,7 +182,7 @@ class CobolLexer(RegexLexer):
             (r'([(),;:&%.])', Punctuation),
 
             # Intrinsics
-            (r'(^|(?<=[^0-9a-z_\-]))(ABS|ACOS|ANNUITY|ASIN|ATAN|BYTE-LENGTH|'
+            (r'(^|(?<=[^\w\-]))(ABS|ACOS|ANNUITY|ASIN|ATAN|BYTE-LENGTH|'
              r'CHAR|COMBINED-DATETIME|CONCATENATE|COS|CURRENT-DATE|'
              r'DATE-OF-INTEGER|DATE-TO-YYYYMMDD|DAY-OF-INTEGER|DAY-TO-YYYYDDD|'
              r'EXCEPTION-(?:FILE|LOCATION|STATEMENT|STATUS)|EXP10|EXP|E|'
@@ -192,13 +194,13 @@ class CobolLexer(RegexLexer):
              r'STANDARD-DEVIATION|STORED-CHAR-LENGTH|SUBSTITUTE(?:-CASE)?|'
              r'SUM|TAN|TEST-DATE-YYYYMMDD|TEST-DAY-YYYYDDD|TRIM|'
              r'UPPER-CASE|VARIANCE|WHEN-COMPILED|YEAR-TO-YYYY)\s*'
-             r'($|(?=[^0-9a-z_\-]))', Name.Function),
+             r'($|(?=[^\w\-]))', Name.Function),
 
             # Booleans
-            (r'(^|(?<=[^0-9a-z_\-]))(true|false)\s*($|(?=[^0-9a-z_\-]))', Name.Builtin),
+            (r'(^|(?<=[^\w\-]))(true|false)\s*($|(?=[^\w\-]))', Name.Builtin),
             # Comparing Operators
-            (r'(^|(?<=[^0-9a-z_\-]))(equal|equals|ne|lt|le|gt|ge|'
-             r'greater|less|than|not|and|or)\s*($|(?=[^0-9a-z_\-]))', Operator.Word),
+            (r'(^|(?<=[^\w\-]))(equal|equals|ne|lt|le|gt|ge|'
+             r'greater|less|than|not|and|or)\s*($|(?=[^\w\-]))', Operator.Word),
         ],
 
         # \"[^\"\n]*\"|\'[^\'\n]*\'
@@ -244,7 +246,7 @@ class ABAPLexer(RegexLexer):
     """
     name = 'ABAP'
     aliases = ['abap']
-    filenames = ['*.abap']
+    filenames = ['*.abap', '*.ABAP']
     mimetypes = ['text/x-abap']
 
     flags = re.IGNORECASE | re.MULTILINE
@@ -439,15 +441,15 @@ class OpenEdgeLexer(RegexLexer):
     filenames = ['*.p', '*.cls']
     mimetypes = ['text/x-openedge', 'application/x-openedge']
 
-    types = (r'(?i)(^|(?<=[^0-9a-z_\-]))(CHARACTER|CHAR|CHARA|CHARAC|CHARACT|CHARACTE|'
+    types = (r'(?i)(^|(?<=[^\w\-]))(CHARACTER|CHAR|CHARA|CHARAC|CHARACT|CHARACTE|'
              r'COM-HANDLE|DATE|DATETIME|DATETIME-TZ|'
              r'DECIMAL|DEC|DECI|DECIM|DECIMA|HANDLE|'
              r'INT64|INTEGER|INT|INTE|INTEG|INTEGE|'
-             r'LOGICAL|LONGCHAR|MEMPTR|RAW|RECID|ROWID)\s*($|(?=[^0-9a-z_\-]))')
+             r'LOGICAL|LONGCHAR|MEMPTR|RAW|RECID|ROWID)\s*($|(?=[^\w\-]))')
 
     keywords = words(OPENEDGEKEYWORDS,
-                     prefix=r'(?i)(^|(?<=[^0-9a-z_\-]))',
-                     suffix=r'\s*($|(?=[^0-9a-z_\-]))')
+                     prefix=r'(?i)(^|(?<=[^\w\-]))',
+                     suffix=r'\s*($|(?=[^\w\-]))')
 
     tokens = {
         'root': [

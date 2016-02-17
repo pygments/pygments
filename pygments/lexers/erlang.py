@@ -82,7 +82,11 @@ class ErlangLexer(RegexLexer):
 
     variable_re = r'(?:[A-Z_]\w*)'
 
-    escape_re = r'(?:\\(?:[bdefnrstv\'"\\/]|[0-7][0-7]?[0-7]?|\^[a-zA-Z]))'
+    esc_char_re = r'[bdefnrstv\'"\\]'
+    esc_octal_re = r'[0-7][0-7]?[0-7]?'
+    esc_hex_re = r'(?:x[0-9a-fA-F]{2}|x\{[0-9a-fA-F]+\})'
+    esc_ctrl_re = r'\^[a-zA-Z]'
+    escape_re = r'(?:\\(?:'+esc_char_re+r'|'+esc_octal_re+r'|'+esc_hex_re+r'|'+esc_ctrl_re+r'))'
 
     macro_re = r'(?:'+variable_re+r'|'+atom_re+r')'
 
@@ -112,11 +116,18 @@ class ErlangLexer(RegexLexer):
             (r'\?'+macro_re, Name.Constant),
             (r'\$(?:'+escape_re+r'|\\[ %]|[^\\])', String.Char),
             (r'#'+atom_re+r'(:?\.'+atom_re+r')?', Name.Label),
+
+            # Erlang script shebang
+            (r'\A#!.+\n', Comment.Hashbang),
+
+            # EEP 43: Maps
+            # http://www.erlang.org/eeps/eep-0043.html
+            (r'#\{', Punctuation, 'map_key'),
         ],
         'string': [
             (escape_re, String.Escape),
             (r'"', String, '#pop'),
-            (r'~[0-9.*]*[~#+bBcdefginpPswWxX]', String.Interpol),
+            (r'~[0-9.*]*[~#+BPWXb-ginpswx]', String.Interpol),
             (r'[^"\\~]+', String),
             (r'~', String),
         ],
@@ -126,6 +137,17 @@ class ErlangLexer(RegexLexer):
             (r'(record)(\s*)(\()('+macro_re+r')',
              bygroups(Name.Entity, Text, Punctuation, Name.Label), '#pop'),
             (atom_re, Name.Entity, '#pop'),
+        ],
+        'map_key': [
+            include('root'),
+            (r'=>', Punctuation, 'map_val'),
+            (r':=', Punctuation, 'map_val'),
+            (r'\}', Punctuation, '#pop'),
+        ],
+        'map_val': [
+            include('root'),
+            (r',', Punctuation, '#pop'),
+            (r'(?=\})', Punctuation, '#pop'),
         ],
     }
 
@@ -218,11 +240,11 @@ class ElixirLexer(RegexLexer):
     KEYWORD_OPERATOR = ('not', 'and', 'or', 'when', 'in')
     BUILTIN = (
         'case', 'cond', 'for', 'if', 'unless', 'try', 'receive', 'raise',
-        'quote', 'unquote', 'unquote_splicing', 'throw', 'super'
+        'quote', 'unquote', 'unquote_splicing', 'throw', 'super',
     )
     BUILTIN_DECLARATION = (
         'def', 'defp', 'defmodule', 'defprotocol', 'defmacro', 'defmacrop',
-        'defdelegate', 'defexception', 'defstruct', 'defimpl', 'defcallback'
+        'defdelegate', 'defexception', 'defstruct', 'defimpl', 'defcallback',
     )
 
     BUILTIN_NAMESPACE = ('import', 'require', 'use', 'alias')
@@ -241,7 +263,7 @@ class ElixirLexer(RegexLexer):
     OPERATORS1 = ('<', '>', '+', '-', '*', '/', '!', '^', '&')
 
     PUNCTUATION = (
-        '\\\\', '<<', '>>', '=>', '(', ')', ':', ';', ',', '[', ']'
+        '\\\\', '<<', '>>', '=>', '(', ')', ':', ';', ',', '[', ']',
     )
 
     def get_tokens_unprocessed(self, text):

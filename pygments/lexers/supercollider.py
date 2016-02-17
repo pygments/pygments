@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, words
+from pygments.lexer import RegexLexer, include, words, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
@@ -43,7 +43,7 @@ class SuperColliderLexer(RegexLexer):
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
-            (r'', Text, '#pop')
+            default('#pop'),
         ],
         'badregex': [
             (r'\n', Text, '#pop')
@@ -79,8 +79,8 @@ class SuperColliderLexer(RegexLexer):
                 'thisFunctionDef', 'thisFunction', 'thisMethod', 'thisProcess',
                 'thisThread', 'this'), suffix=r'\b'),
              Name.Builtin),
-            (r'[$a-zA-Z_][a-zA-Z0-9_]*', Name.Other),
-            (r'\\?[$a-zA-Z_][a-zA-Z0-9_]*', String.Symbol),
+            (r'[$a-zA-Z_]\w*', Name.Other),
+            (r'\\?[$a-zA-Z_]\w*', String.Symbol),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
