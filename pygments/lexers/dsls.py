@@ -693,42 +693,43 @@ class CrmshLexer(RegexLexer):
         ],
     }
 
+
 class FlatlineLexer(RegexLexer):
     """
-    Lexer for `Flatline <https://github.com/bigmlcom/flatline>`_ expressions
+    Lexer for `Flatline <https://github.com/bigmlcom/flatline>`_ expressions.
 
-    .. versionadded::2.2
+    .. versionadded:: 2.2
     """
     name = 'Flatline'
     aliases = ['flatline']
     filenames = []
-    mimetypes = ['text/plain']
+    mimetypes = ['text/x-flatline']
 
-    special_forms = ('let')
+    special_forms = ('let',)
 
     builtins = (
-        "!=","*","+","-","<","<=","=",">",">=","abs","acos","all","all-but",
-        "all-with-defaults","all-with-numeric-default","and","asin","atan",
-        "avg","avg-window","bin-center","bin-count","call","category-count",
-        "ceil","cond","cond-window","cons","cos","cosh","count","diff-window",
-        "div","ensure-value","ensure-weighted-value","epoch","epoch-day",
-        "epoch-fields","epoch-hour","epoch-millisecond","epoch-minute",
-        "epoch-month","epoch-second","epoch-weekday","epoch-year","exp","f",
-        "field","field-prop","fields","filter","first","floor","head","if",
-        "in","integer","language","length","levenshtein","linear-regression",
-        "list","ln","log","log10","map","matches","matches?","max","maximum",
-        "md5","mean","median","min","minimum","missing","missing-count",
-        "missing?","missing_count","mod","mode","normalize","not","nth",
-        "occurrences","or","percentile","percentile-label","population",
-        "population-fraction","pow","preferred","preferred?","quantile-label",
-        "rand","rand-int","random-value","re-quote","real","replace",
-        "replace-first","rest","round","row-number","segment-label","sha1",
-        "sha256","sin","sinh","sqrt","square","standard-deviation",
-        "standard_deviation","str","subs","sum","sum-squares","sum-window",
-        "sum_squares","summary","summary-no","summary-str","tail","tan",
-        "tanh","to-degrees","to-radians","variance","vectorize",
-        "weighted-random-value","window","winnow","within-percentiles?",
-        "z-score"
+        "!=", "*", "+", "-", "<", "<=", "=", ">", ">=", "abs", "acos", "all",
+        "all-but", "all-with-defaults", "all-with-numeric-default", "and",
+        "asin", "atan", "avg", "avg-window", "bin-center", "bin-count", "call",
+        "category-count", "ceil", "cond", "cond-window", "cons", "cos", "cosh",
+        "count", "diff-window", "div", "ensure-value", "ensure-weighted-value",
+        "epoch", "epoch-day", "epoch-fields", "epoch-hour", "epoch-millisecond",
+        "epoch-minute", "epoch-month", "epoch-second", "epoch-weekday",
+        "epoch-year", "exp", "f", "field", "field-prop", "fields", "filter",
+        "first", "floor", "head", "if", "in", "integer", "language", "length",
+        "levenshtein", "linear-regression", "list", "ln", "log", "log10", "map",
+        "matches", "matches?", "max", "maximum", "md5", "mean", "median", "min",
+        "minimum", "missing", "missing-count", "missing?", "missing_count",
+        "mod", "mode", "normalize", "not", "nth", "occurrences", "or",
+        "percentile", "percentile-label", "population", "population-fraction",
+        "pow", "preferred", "preferred?", "quantile-label", "rand", "rand-int",
+        "random-value", "re-quote", "real", "replace", "replace-first", "rest",
+        "round", "row-number", "segment-label", "sha1", "sha256", "sin", "sinh",
+        "sqrt", "square", "standard-deviation", "standard_deviation", "str",
+        "subs", "sum", "sum-squares", "sum-window", "sum_squares", "summary",
+        "summary-no", "summary-str", "tail", "tan", "tanh", "to-degrees",
+        "to-radians", "variance", "vectorize", "weighted-random-value", "window",
+        "winnow", "within-percentiles?", "z-score",
     )
 
     valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
@@ -741,7 +742,7 @@ class FlatlineLexer(RegexLexer):
             # numbers
             (r'-?\d+\.\d+', Number.Float),
             (r'-?\d+', Number.Integer),
-            (r'0x-?[abcdef\d]+', Number.Hex),
+            (r'0x-?[a-f\d]+', Number.Hex),
 
             # strings, symbols and characters
             (r'"(\\\\|\\"|[^"])*"', String),
