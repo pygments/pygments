@@ -18,12 +18,12 @@ from textwrap import dedent
 from pygments import __version__, highlight
 from pygments.util import ClassNotFound, OptionError, docstring_headline, \
     guess_decode, guess_decode_from_terminal, terminal_encoding
-from pygments.lexers import get_all_lexers, get_lexer_by_name, load_lexer_from_file, guess_lexer, \
-    get_lexer_for_filename, find_lexer_class_for_filename
+from pygments.lexers import get_all_lexers, get_lexer_by_name, guess_lexer, \
+    load_lexer_from_file, get_lexer_for_filename, find_lexer_class_for_filename
 from pygments.lexers.special import TextLexer
 from pygments.formatters.latex import LatexEmbeddedLexer, LatexFormatter
 from pygments.formatters import get_all_formatters, get_formatter_by_name, \
-    get_formatter_for_filename, find_formatter_class
+    load_formatter_from_file, get_formatter_for_filename, find_formatter_class
 from pygments.formatters.terminal import TerminalFormatter
 from pygments.filters import get_all_filters, find_filter_class
 from pygments.styles import get_all_styles, get_style_by_name
@@ -56,6 +56,13 @@ plain text if this fails (this can work for stdin).
 Likewise, <formatter> is a formatter name, and will be guessed from
 the extension of the output file name. If no output file is given,
 the terminal formatter will be used by default.
+
+The additional option --load-from-file allows custom lexers and formatters
+to be loaded from a .py file relative to the current working directory.
+For example, ``-l ./customlexer.py --load-from-file``. The file should
+contain a CustomLexer or CustomFormatter class which matches the Pygments
+lexer and formatter definitions. Users should be very careful not to use
+this option with untrusted files, because it will eval() them.
 
 With the -O option, you can give the lexer and formatter a comma-
 separated list of options, e.g. ``-O bg=light,python=cool``.
@@ -314,6 +321,11 @@ def main_inner(popts, args, usage):
     F_opts = _parse_filters(F_opts)
     opts.pop('-F', None)
 
+    allow_custom_lexer_formatter = False
+    # --load-from-file: allow custom lexers and formatters
+    if opts.pop('--load-from-file', None) is not None:
+        allow_custom_lexer_formatter = True
+
     # select lexer
     lexer = None
 
@@ -321,14 +333,16 @@ def main_inner(popts, args, usage):
     lexername = opts.pop('-l', None)
     if lexername:
         # custom lexer, located relative to user's cwd
-        if lexername[-3:] == '.py':
+        if allow_custom_lexer_formatter and lexername[-3:] == '.py':
             try:
                 lexer = load_lexer_from_file(lexername, **parsed_opts)
             except IOError as err:
-                print('Error: cannot read %s:' % lexername, err, file=sys.stderr)
+                print('Error: cannot read %s:' % lexername, err,
+                      file=sys.stderr)
                 return 1
             except ImportError as err:
-                print('Error: no CustomLexer class found in %s' % lexername, file=sys.stderr)
+                print('Error: no CustomLexer class found in %s' % lexername,
+                      file=sys.stderr)
                 return 1
             except Exception as err:
                 print('Error:', err, file=sys.stderr)
@@ -416,14 +430,15 @@ def main_inner(popts, args, usage):
     fmter = opts.pop('-f', None)
     if fmter:
         # custom formatter, located relative to user's cwd
-        if fmter[-3:] == '.py':
+        if allow_custom_lexer_formatter and fmter[-3:] == '.py':
             try:
                 fmter = load_formatter_from_file(fmter, **parsed_opts)
             except IOError as err:
                 print('Error: cannot read %s:' % fmter, err, file=sys.stderr)
                 return 1
             except ImportError as err:
-                print('Error: no CustomFormatter class found in %s' % fmter, file=sys.stderr)
+                print('Error: no CustomFormatter class found in %s' % fmter,
+                      file=sys.stderr)
                 return 1
             except Exception as err:
                 print('Error:', err, file=sys.stderr)
@@ -523,7 +538,8 @@ def main(args=sys.argv):
     usage = USAGE % ((args[0],) * 6)
 
     try:
-        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:vhVHgs")
+        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:vhVHgs",
+                                    ["load-from-file"])
     except getopt.GetoptError:
         print(usage, file=sys.stderr)
         return 2
