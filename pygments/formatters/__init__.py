@@ -14,6 +14,7 @@ import sys
 import types
 import fnmatch
 from os.path import basename
+from imp import load_source
 
 from pygments.formatters._mapping import FORMATTERS
 from pygments.plugin import find_plugin_formatters
@@ -77,6 +78,26 @@ def get_formatter_by_name(_alias, **options):
     if cls is None:
         raise ClassNotFound("no formatter found for name %r" % _alias)
     return cls(**options)
+
+
+def load_formatter_from_file(filename, **options):
+    """Load a formatter from a file.
+
+    This method expects a file located relative to the current working
+    directory, which contains a class named CustomFormatter.
+
+    Users should be very careful with the input, because this method
+    is equivalent to running eval on the input file.
+
+    Raises IOError if the file is not found/unreadable
+    Raises ImportError if the file doesn't have a CustomFormatter class
+    Raises whatever errors could happen when we eval(file)
+    """
+    # Load file as if calling import _ as customformatter
+    load_source('customformatter', filename)
+    # Instantiate the CustomFormatter from that file
+    from customformatter import CustomFormatter
+    return CustomFormatter(**options)
 
 
 def get_formatter_for_filename(fn, **options):
