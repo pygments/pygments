@@ -71,8 +71,12 @@ Functions from :mod:`pygments.lexers`:
     The lexer is given the `options` at its instantiation.
 
     :exc:`IOError` is raised if the file is not found or unreadable
+
     :exc:`ImportError` is raised if the file doesn't have a CustomLexer class
-    :exc:`Exception` for any other error raised when evaluating filename
+
+    Additionally, arbitrary exceptions could occur when evaluating the file
+
+    .. versionadded:: ?
 
 .. function:: guess_lexer(text, **options)
 
@@ -146,9 +150,12 @@ Functions from :mod:`pygments.formatters`:
     The formatter is given the `options` at its instantiation.
 
     :exc:`IOError` is raised if the file is not found or unreadable
-    :exc:`ImportError` is raised if the file doesn't have a CustomFormatter class
-    :exc:`Exception` for any other error raised when evaluating filename
 
+    :exc:`ImportError` is raised if the file doesn't have a CustomFormatter class
+
+    Additionally, arbitrary exceptions could occur when evaluating the file
+
+    .. versionadded:: ?
 
 .. module:: pygments.styles
 
