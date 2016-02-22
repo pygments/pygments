@@ -18,7 +18,7 @@ from textwrap import dedent
 from pygments import __version__, highlight
 from pygments.util import ClassNotFound, OptionError, docstring_headline, \
     guess_decode, guess_decode_from_terminal, terminal_encoding
-from pygments.lexers import get_all_lexers, get_lexer_by_name, guess_lexer, \
+from pygments.lexers import get_all_lexers, get_lexer_by_name, load_lexer_from_file, guess_lexer, \
     get_lexer_for_filename, find_lexer_class_for_filename
 from pygments.lexers.special import TextLexer
 from pygments.formatters.latex import LatexEmbeddedLexer, LatexFormatter
@@ -320,11 +320,25 @@ def main_inner(popts, args, usage):
     # given by name?
     lexername = opts.pop('-l', None)
     if lexername:
-        try:
-            lexer = get_lexer_by_name(lexername, **parsed_opts)
-        except (OptionError, ClassNotFound) as err:
-            print('Error:', err, file=sys.stderr)
-            return 1
+        # custom lexer, located relative to user's cwd
+        if lexername[-3:] == '.py':
+            try:
+                lexer = load_lexer_from_file(lexername, **parsed_opts)
+            except IOError as err:
+                print('Error: cannot read %s:' % lexername, err, file=sys.stderr)
+                return 1
+            except ImportError as err:
+                print('Error: no CustomLexer class found in %s' % lexername, file=sys.stderr)
+                return 1
+            except Exception as err:
+                print('Error:', err, file=sys.stderr)
+                return 1
+        else:
+            try:
+                lexer = get_lexer_by_name(lexername, **parsed_opts)
+            except (OptionError, ClassNotFound) as err:
+                print('Error:', err, file=sys.stderr)
+                return 1
 
     # read input code
     code = None
@@ -401,11 +415,25 @@ def main_inner(popts, args, usage):
     outfn = opts.pop('-o', None)
     fmter = opts.pop('-f', None)
     if fmter:
-        try:
-            fmter = get_formatter_by_name(fmter, **parsed_opts)
-        except (OptionError, ClassNotFound) as err:
-            print('Error:', err, file=sys.stderr)
-            return 1
+        # custom formatter, located relative to user's cwd
+        if fmter[-3:] == '.py':
+            try:
+                fmter = load_formatter_from_file(fmter, **parsed_opts)
+            except IOError as err:
+                print('Error: cannot read %s:' % fmter, err, file=sys.stderr)
+                return 1
+            except ImportError as err:
+                print('Error: no CustomFormatter class found in %s' % fmter, file=sys.stderr)
+                return 1
+            except Exception as err:
+                print('Error:', err, file=sys.stderr)
+                return 1
+        else:
+            try:
+                fmter = get_formatter_by_name(fmter, **parsed_opts)
+            except (OptionError, ClassNotFound) as err:
+                print('Error:', err, file=sys.stderr)
+                return 1
 
     if outfn:
         if not fmter:
