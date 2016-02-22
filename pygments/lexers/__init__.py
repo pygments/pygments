@@ -14,6 +14,7 @@ import sys
 import types
 import fnmatch
 from os.path import basename
+from imp import load_source
 
 from pygments.lexers._mapping import LEXERS
 from pygments.modeline import get_filetype_from_buffer
@@ -114,6 +115,19 @@ def get_lexer_by_name(_alias, **options):
             return cls(**options)
     raise ClassNotFound('no lexer for alias %r found' % _alias)
 
+def load_lexer_from_file(filename, **options):
+    """Load a lexer from a file.
+
+    This method expects a file located relative to the current working
+    directory, which contains a class named CustomLexer.
+
+    Raises ? under ? conditions
+    """
+    # Load file as if calling import _ as customlexer
+    load_source('customlexer', filename)
+    # Instantiate the CustomLexer from that file
+    from customlexer import CustomLexer
+    return CustomLexer(**options)
 
 def find_lexer_class_for_filename(_fn, code=None):
     """Get a lexer for a filename.
