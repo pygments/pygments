@@ -88,8 +88,38 @@ one.
 Adding and testing a new lexer
 ==============================
 
-To make Pygments aware of your new lexer, you have to perform the following
-steps:
+The easiest way to use a new lexer is to use Pygments' support for loading
+the lexer from a file relative to your current directory.
+
+First, change the name of your lexer class to CustomLexer:
+
+.. code-block:: python
+
+    from pygments.lexer import RegexLexer
+    from pygments.token import *
+
+    class CustomLexer(RegexLexer):
+        """All your lexer code goes here!"""
+
+Then you can load the lexer from the command line with the additional
+flag ``--load-from-file``:
+
+.. code-block:: console
+
+    $ pygmentize -l your_lexer_file.py --load-from-file
+
+Or, using the Python API:
+
+.. code-block:: python
+
+    your_lexer = load_lexer_from_file(filename, **options)
+
+When loading custom lexers and formatters, be extremely careful to use only
+trusted files; Pygments will perform the equivalent of ``eval`` on them.
+
+For more complicated tasks, you should add your lexer to Pygments. If you
+want to make Pygments aware of your new lexer, you have to perform the
+following steps:
 
 First, change to the current directory containing the Pygments source code:
 
