@@ -80,24 +80,38 @@ def get_formatter_by_name(_alias, **options):
     return cls(**options)
 
 
-def load_formatter_from_file(filename, **options):
+def load_formatter_from_file(filename, formattername="CustomFormatter",
+                             **options):
     """Load a formatter from a file.
 
     This method expects a file located relative to the current working
-    directory, which contains a class named CustomFormatter.
+    directory, which contains a class named CustomFormatter. By default,
+    it expects the Formatter to be named CustomFormatter; you can specify
+    your own class name as the second argument to this function.
 
     Users should be very careful with the input, because this method
     is equivalent to running eval on the input file.
 
-    Raises IOError if the file is not found/unreadable
-    Raises ImportError if the file doesn't have a CustomFormatter class
-    Raises whatever errors could happen when we eval(file)
+    Raises ClassNotFound if there are any problems importing the Formatter
     """
-    # Load file as if calling import _ as customformatter
-    load_source('customformatter', filename)
-    # Instantiate the CustomFormatter from that file
-    from customformatter import CustomFormatter
-    return CustomFormatter(**options)
+    try:
+        # Load file as if calling import
+        customformatter = load_source('pygments.formatters.Custom_%s' %
+                                      formattername, filename)
+
+        if not hasattr(customformatter, formattername):
+            raise ClassNotFound('no valid %s class found in %s' %
+                                (formattername, filename))
+
+        # Instantiate the CustomLexer from that file
+        formatter_class = getattr(customformatter, formattername)
+        return formatter_class(**options)
+    except IOError as err:
+        raise ClassNotFound('cannot read %s' % filename)
+    except ClassNotFound as err:
+        raise err
+    except Exception as err:
+        raise ClassNotFound('error when loading custom formatter: %s' % err)
 
 
 def get_formatter_for_filename(fn, **options):

@@ -31,7 +31,7 @@ from pygments.styles import get_all_styles, get_style_by_name
 
 USAGE = """\
 Usage: %s [-l <lexer> | -g] [-F <filter>[:<options>]] [-f <formatter>]
-          [-O <options>] [-P <option=value>] [-s] [-v] [-o <outfile>] [<infile>]
+          [-O <options>] [-P <option=value>] [-s] [-v] [-x] [-o <outfile>] [<infile>]
 
        %s -S <style> -f <formatter> [-a <arg>] [-O <options>] [-P <option=value>]
        %s -L [<which> ...]
@@ -57,12 +57,13 @@ Likewise, <formatter> is a formatter name, and will be guessed from
 the extension of the output file name. If no output file is given,
 the terminal formatter will be used by default.
 
-The additional option --load-from-file allows custom lexers and formatters
-to be loaded from a .py file relative to the current working directory.
-For example, ``-l ./customlexer.py --load-from-file``. The file should
-contain a CustomLexer or CustomFormatter class which matches the Pygments
-lexer and formatter definitions. Users should be very careful not to use
-this option with untrusted files, because it will eval() them.
+The additional option -x allows custom lexers and formatters to be
+loaded from a .py file relative to the current working directory. For
+example, ``-l ./customlexer.py -x``. By default, this option expects a
+file with a class named CustomLexer or CustomFormatter; you can also
+specify your own class name with a colon (``-l ./lexer.py:MyLexer``).
+Users should be very careful not to use this option with untrusted files,
+because it will import and run them.
 
 With the -O option, you can give the lexer and formatter a comma-
 separated list of options, e.g. ``-O bg=light,python=cool``.
@@ -322,8 +323,8 @@ def main_inner(popts, args, usage):
     opts.pop('-F', None)
 
     allow_custom_lexer_formatter = False
-    # --load-from-file: allow custom lexers and formatters
-    if opts.pop('--load-from-file', None) is not None:
+    # -x: allow custom (eXternal) lexers and formatters
+    if opts.pop('-x', None) is not None:
         allow_custom_lexer_formatter = True
 
     # select lexer
@@ -333,18 +334,15 @@ def main_inner(popts, args, usage):
     lexername = opts.pop('-l', None)
     if lexername:
         # custom lexer, located relative to user's cwd
-        if allow_custom_lexer_formatter and lexername[-3:] == '.py':
+        if allow_custom_lexer_formatter and '.py' in lexername:
             try:
-                lexer = load_lexer_from_file(lexername, **parsed_opts)
-            except IOError as err:
-                print('Error: cannot read %s:' % lexername, err,
-                      file=sys.stderr)
-                return 1
-            except ImportError as err:
-                print('Error: no CustomLexer class found in %s' % lexername,
-                      file=sys.stderr)
-                return 1
-            except Exception as err:
+                if ':' in lexername:
+                    filename, name = lexername.rsplit(':', 1)
+                    lexer = load_lexer_from_file(filename, name,
+                                                 **parsed_opts)
+                else:
+                    lexer = load_lexer_from_file(lexername, **parsed_opts)
+            except ClassNotFound as err:
                 print('Error:', err, file=sys.stderr)
                 return 1
         else:
@@ -430,17 +428,15 @@ def main_inner(popts, args, usage):
     fmter = opts.pop('-f', None)
     if fmter:
         # custom formatter, located relative to user's cwd
-        if allow_custom_lexer_formatter and fmter[-3:] == '.py':
+        if allow_custom_lexer_formatter and '.py' in fmter:
             try:
-                fmter = load_formatter_from_file(fmter, **parsed_opts)
-            except IOError as err:
-                print('Error: cannot read %s:' % fmter, err, file=sys.stderr)
-                return 1
-            except ImportError as err:
-                print('Error: no CustomFormatter class found in %s' % fmter,
-                      file=sys.stderr)
-                return 1
-            except Exception as err:
+                if ':' in fmter:
+                    file, fmtername = fmter.rsplit(':', 1)
+                    fmter = load_formatter_from_file(file, fmtername,
+                                                         **parsed_opts)
+                else:
+                    fmter = load_formatter_from_file(fmter, **parsed_opts)
+            except ClassNotFound as err:
                 print('Error:', err, file=sys.stderr)
                 return 1
         else:
@@ -538,8 +534,7 @@ def main(args=sys.argv):
     usage = USAGE % ((args[0],) * 6)
 
     try:
-        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:vhVHgs",
-                                    ["load-from-file"])
+        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:vhVHgsx")
     except getopt.GetoptError:
         print(usage, file=sys.stderr)
         return 2

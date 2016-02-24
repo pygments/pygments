@@ -17,7 +17,6 @@ from pygments import unistring as uni
 
 line_re = re.compile('.*?\n')
 
-
 class CustomLexer(RegexLexer):
     """
     For `Python <http://www.python.org>`_ source code.
@@ -224,3 +223,6 @@ class CustomLexer(RegexLexer):
         return shebang_matches(text, r'pythonw?(2(\.\d)?)?') or \
             'import ' in text[:1000]
 
+
+class LexerWrapper(CustomLexer):
+    name="PythonLexerWrapper"
