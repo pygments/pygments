@@ -111,8 +111,27 @@ class CmdLineTest(unittest.TestCase):
                 os.unlink(name)
 
     def test_load_from_file(self):
-        o = self.check_success('-l', TESTDIR + '/support/python_lexer.py',
-                               '-f', 'html', '--load-from-file', stdin=TESTCODE)
+        lexer_file = os.path.join(TESTDIR, 'support', 'python_lexer.py')
+        formatter_file = os.path.join(TESTDIR, 'support', 'html_formatter.py')
+
+        # By default, use CustomLexer
+        o = self.check_success('-l', lexer_file, '-f', 'html',
+                               '-x', stdin=TESTCODE)
+        o = re.sub('<[^>]*>', '', o)
+        # rstrip is necessary since HTML inserts a \n after the last </div>
+        self.assertEqual(o.rstrip(), TESTCODE.rstrip())
+
+        # If user specifies a name, use it
+        o = self.check_success('-f', 'html', '-x', '-l',
+                               lexer_file + ':LexerWrapper', stdin=TESTCODE)
+        o = re.sub('<[^>]*>', '', o)
+        # rstrip is necessary since HTML inserts a \n after the last </div>
+        self.assertEqual(o.rstrip(), TESTCODE.rstrip())
+
+        # Should also work for formatters
+        o = self.check_success('-lpython', '-f',
+                               formatter_file + ':HtmlFormatterWrapper',
+                               '-x', stdin=TESTCODE)
         o = re.sub('<[^>]*>', '', o)
         # rstrip is necessary since HTML inserts a \n after the last </div>
         self.assertEqual(o.rstrip(), TESTCODE.rstrip())
@@ -224,13 +243,13 @@ class CmdLineTest(unittest.TestCase):
 
         # lexer file is missing/unreadable
         e = self.check_failure('-l', 'nonexistent.py',
-                               '--load-from-file', TESTFILE)
+                               '-x', TESTFILE)
         self.assertTrue('Error: cannot read' in e)
 
         # lexer file is malformed
         e = self.check_failure('-l', 'support/empty.py',
-                               '--load-from-file', TESTFILE)
-        self.assertTrue('Error: no CustomLexer class found' in e)
+                               '-x', TESTFILE)
+        self.assertTrue('Error: no valid CustomLexer class found' in e)
 
         # formatter not found
         e = self.check_failure('-lpython', '-ffoo', TESTFILE)
@@ -246,13 +265,13 @@ class CmdLineTest(unittest.TestCase):
 
         # formatter file is missing/unreadable
         e = self.check_failure('-f', 'nonexistent.py',
-                               '--load-from-file', TESTFILE)
+                               '-x', TESTFILE)
         self.assertTrue('Error: cannot read' in e)
 
         # formatter file is malformed
         e = self.check_failure('-f', 'support/empty.py',
-                               '--load-from-file', TESTFILE)
-        self.assertTrue('Error: no CustomFormatter class found' in e)
+                               '-x', TESTFILE)
+        self.assertTrue('Error: no valid CustomFormatter class found' in e)
 
         # output file not writable
         e = self.check_failure('-o', os.path.join('nonexistent', 'dir', 'out.html'),

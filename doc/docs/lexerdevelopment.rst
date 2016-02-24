@@ -102,17 +102,27 @@ First, change the name of your lexer class to CustomLexer:
         """All your lexer code goes here!"""
 
 Then you can load the lexer from the command line with the additional
-flag ``--load-from-file``:
+flag ``-x``:
 
 .. code-block:: console
 
-    $ pygmentize -l your_lexer_file.py --load-from-file
+    $ pygmentize -l your_lexer_file.py -x
+
+To specify a class name other than CustomLexer, append it with a colon:
+
+.. code-block:: console
+
+    $ pygmentize -l your_lexer.py:SomeLexer -x
 
 Or, using the Python API:
 
 .. code-block:: python
 
+    # For a lexer named CustomLexer
     your_lexer = load_lexer_from_file(filename, **options)
+
+    # For a lexer named MyNewLexer
+    your_named_lexer = load_lexer_from_file(filename, "MyNewLexer", **options)
 
 When loading custom lexers and formatters, be extremely careful to use only
 trusted files; Pygments will perform the equivalent of ``eval`` on them.

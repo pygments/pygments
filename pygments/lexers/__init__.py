@@ -116,24 +116,37 @@ def get_lexer_by_name(_alias, **options):
     raise ClassNotFound('no lexer for alias %r found' % _alias)
 
 
-def load_lexer_from_file(filename, **options):
+def load_lexer_from_file(filename, lexername="CustomLexer", **options):
     """Load a lexer from a file.
 
     This method expects a file located relative to the current working
-    directory, which contains a class named CustomLexer.
+    directory, which contains a Lexer class. By default, it expects the
+    Lexer to be name CustomLexer; you can specify your own class name
+    as the second argument to this function.
 
     Users should be very careful with the input, because this method
     is equivalent to running eval on the input file.
 
-    Raises IOError if the file is not found/unreadable
-    Raises ImportError if the file doesn't have a CustomLexer class
-    Raises whatever errors could happen when we eval(file)
+    Raises ClassNotFound if there are any problems importing the Lexer
     """
-    # Load file as if calling import _ as customlexer
-    load_source('customlexer', filename)
-    # Instantiate the CustomLexer from that file
-    from customlexer import CustomLexer
-    return CustomLexer(**options)
+    try:
+        # Load file as if calling import
+        customlexer = load_source('pygments.lexers.Custom_%s' % lexername,
+                                  filename)
+
+        if not hasattr(customlexer, lexername):
+            raise ClassNotFound('no valid %s class found in %s' %
+                                (lexername, filename))
+
+        # Instantiate the CustomLexer from that file
+        lexer_class = getattr(customlexer, lexername)
+        return lexer_class(**options)
+    except IOError as err:
+        raise ClassNotFound('cannot read %s' % filename)
+    except ClassNotFound as err:
+        raise err
+    except Exception as err:
+        raise ClassNotFound('error when loading custom lexer: %s' % err)
 
 
 def find_lexer_class_for_filename(_fn, code=None):
