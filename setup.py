@@ -24,22 +24,16 @@ try:
     from setuptools import setup, find_packages
     have_setuptools = True
 except ImportError:
-    try:
-        import ez_setup
-        ez_setup.use_setuptools()
-        from setuptools import setup, find_packages
-        have_setuptools = True
-    except ImportError:
-        from distutils.core import setup
-        def find_packages(*args, **kwargs):
-            return [
-                'pygments',
-                'pygments.lexers',
-                'pygments.formatters',
-                'pygments.styles',
-                'pygments.filters',
-            ]
-        have_setuptools = False
+    from distutils.core import setup
+    def find_packages(*args, **kwargs):
+        return [
+            'pygments',
+            'pygments.lexers',
+            'pygments.formatters',
+            'pygments.styles',
+            'pygments.filters',
+        ]
+    have_setuptools = False
 
 if have_setuptools:
     add_keywords = dict(
