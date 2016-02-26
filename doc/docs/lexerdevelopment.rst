@@ -88,8 +88,47 @@ one.
 Adding and testing a new lexer
 ==============================
 
-Using a lexer that is not part of Pygments can be done via the Python API.  You
-can import and instantiate the lexer, and pass it to :func:`pygments.highlight`.
+The easiest way to use a new lexer is to use Pygments' support for loading
+the lexer from a file relative to your current directory.
+
+First, change the name of your lexer class to CustomLexer:
+
+.. code-block:: python
+
+    from pygments.lexer import RegexLexer
+    from pygments.token import *
+
+    class CustomLexer(RegexLexer):
+        """All your lexer code goes here!"""
+
+Then you can load the lexer from the command line with the additional
+flag ``-x``:
+
+.. code-block:: console
+
+    $ pygmentize -l your_lexer_file.py -x
+
+To specify a class name other than CustomLexer, append it with a colon:
+
+.. code-block:: console
+
+    $ pygmentize -l your_lexer.py:SomeLexer -x
+
+Or, using the Python API:
+
+.. code-block:: python
+
+    # For a lexer named CustomLexer
+    your_lexer = load_lexer_from_file(filename, **options)
+
+    # For a lexer named MyNewLexer
+    your_named_lexer = load_lexer_from_file(filename, "MyNewLexer", **options)
+
+When loading custom lexers and formatters, be extremely careful to use only
+trusted files; Pygments will perform the equivalent of ``eval`` on them.
+
+If you only want to use your lexer with the Pygments API, you can import and
+instantiate the lexer yourself, then pass it to :func:`pygments.highlight`.
 
 To prepare your new lexer for inclusion in the Pygments distribution, so that it
 will be found when passing filenames or lexer aliases from the command line, you
@@ -107,11 +146,13 @@ Select a matching module under ``pygments/lexers``, or create a new module for
 your lexer class.
 
 Next, make sure the lexer is known from outside of the module.  All modules in
+the ``pygments.lexers`` specify ``__all__``. For example, ``esoteric.py`` sets::
 the ``pygments.lexers`` package specify ``__all__``. For example,
 ``esoteric.py`` sets::
 
     __all__ = ['BrainfuckLexer', 'BefungeLexer', ...]
 
+Simply add the name of your lexer class to this list.
 Add the name of your lexer class to this list (or create the list if your lexer
 is the only class in the module).
 

@@ -79,6 +79,39 @@ def get_formatter_by_name(_alias, **options):
     return cls(**options)
 
 
+def load_formatter_from_file(filename, formattername="CustomFormatter",
+                             **options):
+    """Load a formatter from a file.
+
+    This method expects a file located relative to the current working
+    directory, which contains a class named CustomFormatter. By default,
+    it expects the Formatter to be named CustomFormatter; you can specify
+    your own class name as the second argument to this function.
+
+    Users should be very careful with the input, because this method
+    is equivalent to running eval on the input file.
+
+    Raises ClassNotFound if there are any problems importing the Formatter
+    """
+    try:
+        # This empty dict will contain the namespace for the exec'd file
+        custom_namespace = {}
+        exec(open(filename, 'r'), custom_namespace)
+        # Retrieve the class `formattername` from that namespace
+        if not formattername in custom_namespace:
+            raise ClassNotFound('no valid %s class found in %s' %
+                                (formattername, filename))
+        formatter_class = custom_namespace[formattername]
+        # And finally instantiate it with the options
+        return formatter_class(**options)
+    except IOError as err:
+        raise ClassNotFound('cannot read %s' % filename)
+    except ClassNotFound as err:
+        raise err
+    except Exception as err:
+        raise ClassNotFound('error when loading custom formatter: %s' % err)
+
+
 def get_formatter_for_filename(fn, **options):
     """Lookup and instantiate a formatter by filename pattern.
 
