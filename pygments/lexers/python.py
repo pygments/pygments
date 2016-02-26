@@ -39,7 +39,7 @@ class PythonLexer(RegexLexer):
         return [
             # the old style '%s' % (...) string formatting
             (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
-             '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
+             '[hlL]?[E-GXc-giorsux%]', String.Interpol),
             # backslashes, quotes and formatting signs must be parsed one at a time
             (r'[^\\\'"%\n]+', ttype),
             (r'[\'"\\]', ttype),
@@ -51,8 +51,10 @@ class PythonLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\n', Text),
-            (r'^(\s*)([rRuU]{,2}"""(?:.|\n)*?""")', bygroups(Text, String.Doc)),
-            (r"^(\s*)([rRuU]{,2}'''(?:.|\n)*?''')", bygroups(Text, String.Doc)),
+            (r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',
+             bygroups(Text, String.Affix, String.Doc)),
+            (r"^(\s*)([rRuUbB]{,2})('''(?:.|\n)*?''')",
+             bygroups(Text, String.Affix, String.Doc)),
             (r'[^\S\n]+', Text),
             (r'\A#!.+$', Comment.Hashbang),
             (r'#.*$', Comment.Single),
@@ -69,15 +71,25 @@ class PythonLexer(RegexLexer):
             (r'(import)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Text),
              'import'),
             include('builtins'),
+            include('magicfuncs'),
+            include('magicvars'),
             include('backtick'),
-            ('(?:[rR]|[uU][rR]|[rR][uU])"""', String.Double, 'tdqs'),
-            ("(?:[rR]|[uU][rR]|[rR][uU])'''", String.Single, 'tsqs'),
-            ('(?:[rR]|[uU][rR]|[rR][uU])"', String.Double, 'dqs'),
-            ("(?:[rR]|[uU][rR]|[rR][uU])'", String.Single, 'sqs'),
-            ('[uU]?"""', String.Double, combined('stringescape', 'tdqs')),
-            ("[uU]?'''", String.Single, combined('stringescape', 'tsqs')),
-            ('[uU]?"', String.Double, combined('stringescape', 'dqs')),
-            ("[uU]?'", String.Single, combined('stringescape', 'sqs')),
+            ('([rR]|[uUbB][rR]|[rR][uUbB])(""")',
+             bygroups(String.Affix, String.Double), 'tdqs'),
+            ("([rR]|[uUbB][rR]|[rR][uUbB])(''')",
+             bygroups(String.Affix, String.Single), 'tsqs'),
+            ('([rR]|[uUbB][rR]|[rR][uUbB])(")',
+             bygroups(String.Affix, String.Double), 'dqs'),
+            ("([rR]|[uUbB][rR]|[rR][uUbB])(')",
+             bygroups(String.Affix, String.Single), 'sqs'),
+            ('([uUbB]?)(""")', bygroups(String.Affix, String.Double),
+             combined('stringescape', 'tdqs')),
+            ("([uUbB]?)(''')", bygroups(String.Affix, String.Single),
+             combined('stringescape', 'tsqs')),
+            ('([uUbB]?)(")', bygroups(String.Affix, String.Double),
+             combined('stringescape', 'dqs')),
+            ("([uUbB]?)(')", bygroups(String.Affix, String.Single),
+             combined('stringescape', 'sqs')),
             include('name'),
             include('numbers'),
         ],
@@ -123,6 +135,37 @@ class PythonLexer(RegexLexer):
                 'ZeroDivisionError'), prefix=r'(?<!\.)', suffix=r'\b'),
              Name.Exception),
         ],
+        'magicfuncs': [
+            (words((
+                '__abs__', '__add__', '__and__', '__call__', '__cmp__', '__coerce__',
+                '__complex__', '__contains__', '__del__', '__delattr__', '__delete__',
+                '__delitem__', '__delslice__', '__div__', '__divmod__', '__enter__',
+                '__eq__', '__exit__', '__float__', '__floordiv__', '__ge__', '__get__',
+                '__getattr__', '__getattribute__', '__getitem__', '__getslice__', '__gt__',
+                '__hash__', '__hex__', '__iadd__', '__iand__', '__idiv__', '__ifloordiv__',
+                '__ilshift__', '__imod__', '__imul__', '__index__', '__init__',
+                '__instancecheck__', '__int__', '__invert__', '__iop__', '__ior__',
+                '__ipow__', '__irshift__', '__isub__', '__iter__', '__itruediv__',
+                '__ixor__', '__le__', '__len__', '__long__', '__lshift__', '__lt__',
+                '__missing__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__',
+                '__nonzero__', '__oct__', '__op__', '__or__', '__pos__', '__pow__',
+                '__radd__', '__rand__', '__rcmp__', '__rdiv__', '__rdivmod__', '__repr__',
+                '__reversed__', '__rfloordiv__', '__rlshift__', '__rmod__', '__rmul__',
+                '__rop__', '__ror__', '__rpow__', '__rrshift__', '__rshift__', '__rsub__',
+                '__rtruediv__', '__rxor__', '__set__', '__setattr__', '__setitem__',
+                '__setslice__', '__str__', '__sub__', '__subclasscheck__', '__truediv__',
+                '__unicode__', '__xor__'), suffix=r'\b'),
+             Name.Function.Magic),
+        ],
+        'magicvars': [
+            (words((
+                '__bases__', '__class__', '__closure__', '__code__', '__defaults__',
+                '__dict__', '__doc__', '__file__', '__func__', '__globals__',
+                '__metaclass__', '__module__', '__mro__', '__name__', '__self__',
+                '__slots__', '__weakref__'),
+                suffix=r'\b'),
+             Name.Variable.Magic),
+        ],
         'numbers': [
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
@@ -140,7 +183,9 @@ class PythonLexer(RegexLexer):
             ('[a-zA-Z_]\w*', Name),
         ],
         'funcname': [
-            ('[a-zA-Z_]\w*', Name.Function, '#pop')
+            include('magicfuncs'),
+            ('[a-zA-Z_]\w*', Name.Function, '#pop'),
+            default('#pop'),
         ],
         'classname': [
             ('[a-zA-Z_]\w*', Name.Class, '#pop')
@@ -217,16 +262,16 @@ class Python3Lexer(RegexLexer):
         return [
             # the old style '%s' % (...) string formatting (still valid in Py3)
             (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
-             '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
+             '[hlL]?[E-GXc-giorsux%]', String.Interpol),
             # the new style '{}'.format(...) string formatting
             (r'\{'
-             '((\w+)((\.\w+)|(\[[^\]]+\]))*)?' # field name
-             '(\![sra])?'                      # conversion
-             '(\:(.?[<>=\^])?[-+ ]?#?0?(\d+)?,?(\.\d+)?[bcdeEfFgGnosxX%]?)?'
+             '((\w+)((\.\w+)|(\[[^\]]+\]))*)?'  # field name
+             '(\![sra])?'                       # conversion
+             '(\:(.?[<>=\^])?[-+ ]?#?0?(\d+)?,?(\.\d+)?[E-GXb-gnosx%]?)?'
              '\}', String.Interpol),
 
             # backslashes, quotes and formatting signs must be parsed one at a time
-            (r'[^\\\'"%\{\n]+', ttype),
+            (r'[^\\\'"%{\n]+', ttype),
             (r'[\'"\\]', ttype),
             # unhandled string formatting sign
             (r'%|(\{{1,2})', ttype)
@@ -282,6 +327,38 @@ class Python3Lexer(RegexLexer):
             'PermissionError', 'ProcessLookupError', 'TimeoutError'),
             prefix=r'(?<!\.)', suffix=r'\b'),
          Name.Exception),
+    ]
+    tokens['magicfuncs'] = [
+        (words((
+            '__abs__', '__add__', '__aenter__', '__aexit__', '__aiter__', '__and__',
+            '__anext__', '__await__', '__bool__', '__bytes__', '__call__',
+            '__complex__', '__contains__', '__del__', '__delattr__', '__delete__',
+            '__delitem__', '__dir__', '__divmod__', '__enter__', '__eq__', '__exit__',
+            '__float__', '__floordiv__', '__format__', '__ge__', '__get__',
+            '__getattr__', '__getattribute__', '__getitem__', '__gt__', '__hash__',
+            '__iadd__', '__iand__', '__ifloordiv__', '__ilshift__', '__imatmul__',
+            '__imod__', '__import__', '__imul__', '__index__', '__init__',
+            '__instancecheck__', '__int__', '__invert__', '__ior__', '__ipow__',
+            '__irshift__', '__isub__', '__iter__', '__itruediv__', '__ixor__',
+            '__le__', '__len__', '__length_hint__', '__lshift__', '__lt__',
+            '__matmul__', '__missing__', '__mod__', '__mul__', '__ne__', '__neg__',
+            '__new__', '__next__', '__or__', '__pos__', '__pow__', '__prepare__',
+            '__radd__', '__rand__', '__rdivmod__', '__repr__', '__reversed__',
+            '__rfloordiv__', '__rlshift__', '__rmatmul__', '__rmod__', '__rmul__',
+            '__ror__', '__round__', '__rpow__', '__rrshift__', '__rshift__',
+            '__rsub__', '__rtruediv__', '__rxor__', '__set__', '__setattr__',
+            '__setitem__', '__str__', '__sub__', '__subclasscheck__', '__truediv__',
+            '__xor__'), suffix=r'\b'),
+         Name.Function.Magic),
+    ]
+    tokens['magicvars'] = [
+        (words((
+            '__annotations__', '__bases__', '__class__', '__closure__', '__code__',
+            '__defaults__', '__dict__', '__doc__', '__file__', '__func__',
+            '__globals__', '__kwdefaults__', '__module__', '__mro__', '__name__',
+            '__objclass__', '__qualname__', '__self__', '__slots__', '__weakref__'),
+            suffix=r'\b'),
+         Name.Variable.Magic),
     ]
     tokens['numbers'] = [
         (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
@@ -633,7 +710,7 @@ class CythonLexer(RegexLexer):
         ],
         'strings': [
             (r'%(\([a-zA-Z0-9]+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
-             '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
+             '[hlL]?[E-GXc-giorsux%]', String.Interpol),
             (r'[^\\\'"%\n]+', String),
             # quotes, percents and backslashes must be parsed one at a time
             (r'[\'"\\]', String),
@@ -704,18 +781,20 @@ class DgLexer(RegexLexer):
             (words((
                 'bool', 'bytearray', 'bytes', 'classmethod', 'complex', 'dict', 'dict\'',
                 'float', 'frozenset', 'int', 'list', 'list\'', 'memoryview', 'object',
-                'property', 'range', 'set', 'set\'', 'slice', 'staticmethod', 'str', 'super',
-                'tuple', 'tuple\'', 'type'), prefix=r'(?<!\.)', suffix=r'(?![\'\w])'),
+                'property', 'range', 'set', 'set\'', 'slice', 'staticmethod', 'str',
+                'super', 'tuple', 'tuple\'', 'type'),
+                   prefix=r'(?<!\.)', suffix=r'(?![\'\w])'),
              Name.Builtin),
             (words((
                 '__import__', 'abs', 'all', 'any', 'bin', 'bind', 'chr', 'cmp', 'compile',
                 'complex', 'delattr', 'dir', 'divmod', 'drop', 'dropwhile', 'enumerate',
-                'eval', 'exhaust', 'filter', 'flip', 'foldl1?', 'format', 'fst', 'getattr',
-                'globals', 'hasattr', 'hash', 'head', 'hex', 'id', 'init', 'input',
-                'isinstance', 'issubclass', 'iter', 'iterate', 'last', 'len', 'locals',
-                'map', 'max', 'min', 'next', 'oct', 'open', 'ord', 'pow', 'print', 'repr',
-                'reversed', 'round', 'setattr', 'scanl1?', 'snd', 'sorted', 'sum', 'tail',
-                'take', 'takewhile', 'vars', 'zip'), prefix=r'(?<!\.)', suffix=r'(?![\'\w])'),
+                'eval', 'exhaust', 'filter', 'flip', 'foldl1?', 'format', 'fst',
+                'getattr', 'globals', 'hasattr', 'hash', 'head', 'hex', 'id', 'init',
+                'input', 'isinstance', 'issubclass', 'iter', 'iterate', 'last', 'len',
+                'locals', 'map', 'max', 'min', 'next', 'oct', 'open', 'ord', 'pow',
+                'print', 'repr', 'reversed', 'round', 'setattr', 'scanl1?', 'snd',
+                'sorted', 'sum', 'tail', 'take', 'takewhile', 'vars', 'zip'),
+                   prefix=r'(?<!\.)', suffix=r'(?![\'\w])'),
              Name.Builtin),
             (r"(?<!\.)(self|Ellipsis|NotImplemented|None|True|False)(?!['\w])",
              Name.Builtin.Pseudo),
@@ -741,7 +820,7 @@ class DgLexer(RegexLexer):
         ],
         'string': [
             (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
-             '[hlL]?[diouxXeEfFgGcrs%]', String.Interpol),
+             '[hlL]?[E-GXc-giorsux%]', String.Interpol),
             (r'[^\\\'"%\n]+', String),
             # quotes, percents and backslashes must be parsed one at a time
             (r'[\'"\\]', String),

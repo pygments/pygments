@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups, include, words, using
+from pygments.lexer import RegexLexer, bygroups, include, words, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
 
@@ -191,16 +191,15 @@ class FortranFixedLexer(RegexLexer):
             (r'(.{5})', Name.Label, 'cont-char'),
             (r'.*\n', using(FortranLexer)),
         ],
-
         'cont-char': [
             (' ', Text, 'code'),
             ('0', Comment, 'code'),
-            ('.', Generic.Strong, 'code')
+            ('.', Generic.Strong, 'code'),
         ],
-
         'code': [
             (r'(.{66})(.*)(\n)',
              bygroups(_lex_fortran, Comment, Text), 'root'),
             (r'(.*)(\n)', bygroups(_lex_fortran, Text), 'root'),
-            (r'', Text, 'root')]
+            default('root'),
+        ]
     }
