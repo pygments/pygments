@@ -14,7 +14,6 @@ import sys
 import types
 import fnmatch
 from os.path import basename
-from imp import load_source
 
 from pygments.formatters._mapping import FORMATTERS
 from pygments.plugin import find_plugin_formatters
@@ -95,16 +94,15 @@ def load_formatter_from_file(filename, formattername="CustomFormatter",
     Raises ClassNotFound if there are any problems importing the Formatter
     """
     try:
-        # Load file as if calling import
-        customformatter = load_source('pygments.formatters.Custom_%s' %
-                                      formattername, filename)
-
-        if not hasattr(customformatter, formattername):
+        # This empty dict will contain the namespace for the exec'd file
+        custom_namespace = {}
+        exec(open(filename, 'r'), custom_namespace)
+        # Retrieve the class `formattername` from that namespace
+        if not formattername in custom_namespace:
             raise ClassNotFound('no valid %s class found in %s' %
                                 (formattername, filename))
-
-        # Instantiate the CustomLexer from that file
-        formatter_class = getattr(customformatter, formattername)
+        formatter_class = custom_namespace[formattername]
+        # And finally instantiate it with the options
         return formatter_class(**options)
     except IOError as err:
         raise ClassNotFound('cannot read %s' % filename)
