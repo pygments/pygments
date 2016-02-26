@@ -83,7 +83,7 @@ class FontManager(object):
         if proc.returncode == 0:
             lines = stdout.splitlines()
             for line in lines:
-                if line.startswith('Fontconfig warning:'):
+                if line.startswith(b'Fontconfig warning:'):
                     continue
                 path = line.decode().strip().strip(':')
                 if path:
