@@ -14,7 +14,6 @@ import sys
 import types
 import fnmatch
 from os.path import basename
-from imp import load_source
 
 from pygments.lexers._mapping import LEXERS
 from pygments.modeline import get_filetype_from_buffer
@@ -130,16 +129,15 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
     Raises ClassNotFound if there are any problems importing the Lexer
     """
     try:
-        # Load file as if calling import
-        customlexer = load_source('pygments.lexers.Custom_%s' % lexername,
-                                  filename)
-
-        if not hasattr(customlexer, lexername):
+        # This empty dict will contain the namespace for the exec'd file
+        custom_namespace = {}
+        exec(open(filename, 'r'), custom_namespace)
+        # Retrieve the class `lexername` from that namespace
+        if not lexername in custom_namespace:
             raise ClassNotFound('no valid %s class found in %s' %
                                 (lexername, filename))
-
-        # Instantiate the CustomLexer from that file
-        lexer_class = getattr(customlexer, lexername)
+        lexer_class = custom_namespace[lexername]
+        # And finally instantiate it with the options
         return lexer_class(**options)
     except IOError as err:
         raise ClassNotFound('cannot read %s' % filename)
