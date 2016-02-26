@@ -1,0 +1,62 @@
+module &__llvm_hsail_module:1:0:$full:$large:$near;
+
+prog kernel &mmul2d(
+	kernarg_u64 %__arg_p0,
+	kernarg_u64 %__arg_p1,
+	kernarg_u64 %__arg_p2,
+	kernarg_u64 %__arg_p3)
+{
+	pragma "AMD RTI", "ARGSTART:mmul2d";
+	pragma "AMD RTI", "version:3:1:104";
+	pragma "AMD RTI", "device:generic";
+	pragma "AMD RTI", "uniqueid:1025";
+	pragma "AMD RTI", "function:1:0";
+	pragma "AMD RTI", "memory:64bitABI";
+	pragma "AMD RTI", "privateid:1";
+	pragma "AMD RTI", "ARGEND:mmul2d";
+	// BB#0:                                // %top
+	mov_f64	$d1, 0.0E+0;
+	gridsize_u32	$s0, 0;
+	workitemabsid_u32	$s1, 1;
+	workitemabsid_u32	$s2, 0;
+	cvt_u64_u32	$d0, $s2;
+	cvt_u64_u32	$d3, $s1;
+	cvt_u64_u32	$d4, $s0;
+	ld_kernarg_align(8)_width(all)_u64	$d2, [%__arg_p2];
+	ld_kernarg_align(8)_width(all)_u64	$d6, [%__arg_p1];
+	ld_kernarg_align(8)_width(all)_u64	$d5, [%__arg_p3];
+	ld_kernarg_align(8)_width(all)_u64	$d7, [%__arg_p0];
+	cmp_lt_b1_s64	$c0, $d5, 1;
+	cbr_b1	$c0, @BB0_3;
+	// BB#1:                                // %L.preheader
+	mul_u64	$d1, $d5, $d3;
+	shl_u64	$d1, $d1, 3;
+	shl_u64	$d8, $d0, 3;
+	add_u64	$d8, $d7, $d8;
+	add_u64	$d6, $d6, $d1;
+	shl_u64	$d7, $d4, 3;
+	mov_f64	$d1, 0D0000000000000000;
+
+@BB0_2:
+	// %L
+	add_u64	$d9, $d8, $d7;
+	ld_global_f64	$d8, [$d8];
+	ld_global_f64	$d10, [$d6];
+	mul_f64	$d8, $d8, $d10;
+	add_f64	$d1, $d1, $d8;
+	add_u64	$d6, $d6, 8;
+	add_u64	$d5, $d5, 18446744073709551615;
+	cmp_ne_b1_s64	$c0, $d5, 0;
+	mov_b64	$d8, $d9;
+	cbr_b1	$c0, @BB0_2;
+
+@BB0_3:
+	// %L.7
+	mul_u64	$d3, $d3, $d4;
+	add_u64	$d0, $d3, $d0;
+	shl_u64	$d0, $d0, 3;
+	add_u64	$d0, $d2, $d0;
+	st_global_f64	$d1, [$d0];
+	ret;
+};
+

@@ -6,6 +6,39 @@ Issue numbers refer to the tracker at
 pull request numbers to the requests at
 <https://bitbucket.org/birkenfeld/pygments-main/pull-requests/merged>.
 
+Version 2.2
+-----------
+(in development)
+
+- Added lexers:
+
+  * AMPL
+  * TypoScript (#1173)
+  * Varnish config (PR#554)
+  * Clean (PR#503)
+  * WDiff (PR#513)
+  * Flatline (PR#551)
+  * Silver (PR#537)
+  * HSAIL (PR#518)
+  * JSGF (PR#546)
+  * NCAR command language (PR#536)
+  * Extempore (PR#530)
+
+- Added `lexers.find_lexer_class_by_name()`. (#1203)
+
+- Added new token types and lexing for magic methods and variables in Python
+  and PHP.
+
+- Added a new token type for string affixes and lexing for them in Python, C++
+  and Postgresql lexers.
+
+- Added a new token type for heredoc (and similar) string delimiters and
+  lexing for them in C++, Perl, PHP, Postgresql and Ruby lexers.
+
+- Styles can now define colors with ANSI colors for use in the 256-color
+  terminal formatter. (PR#531)
+
+
 Version 2.1.2
 -------------
 (in development)

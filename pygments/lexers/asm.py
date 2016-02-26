@@ -11,15 +11,16 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using, DelegatingLexer
+from pygments.lexer import RegexLexer, include, bygroups, using, words, \
+    DelegatingLexer
 from pygments.lexers.c_cpp import CppLexer, CLexer
 from pygments.lexers.d import DLexer
 from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
     Other, Keyword, Operator
 
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
-           'CObjdumpLexer', 'LlvmLexer', 'NasmLexer', 'NasmObjdumpLexer',
-           'Ca65Lexer']
+           'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'NasmLexer',
+           'NasmObjdumpLexer', 'Ca65Lexer']
 
 
 class GasLexer(RegexLexer):
@@ -198,6 +199,141 @@ class CObjdumpLexer(DelegatingLexer):
         super(CObjdumpLexer, self).__init__(CLexer, ObjdumpLexer, **options)
 
 
+class HsailLexer(RegexLexer):
+    """
+    For HSAIL assembly code.
+
+    .. versionadded:: 2.2
+    """
+    name = 'HSAIL'
+    aliases = ['hsail', 'hsa']
+    filenames = ['*.hsail']
+    mimetypes = ['text/x-hsail']
+
+    string = r'"[^"]*?"'
+    identifier = r'[a-zA-Z_][\w.]*'
+    # Registers
+    register_number = r'[0-9]+'
+    register = r'(\$(c|s|d|q)' + register_number + ')'
+    # Qualifiers
+    alignQual = r'(align\(\d+\))'
+    widthQual = r'(width\((\d+|all)\))'
+    allocQual = r'(alloc\(agent\))'
+    # Instruction Modifiers
+    roundingMod = (r'((_ftz)?(_up|_down|_zero|_near))')
+    datatypeMod = (r'_('
+                   # packedTypes
+                   r'u8x4|s8x4|u16x2|s16x2|u8x8|s8x8|u16x4|s16x4|u32x2|s32x2|'
+                   r'u8x16|s8x16|u16x8|s16x8|u32x4|s32x4|u64x2|s64x2|'
+                   r'f16x2|f16x4|f16x8|f32x2|f32x4|f64x2|'
+                   # baseTypes
+                   r'u8|s8|u16|s16|u32|s32|u64|s64|'
+                   r'b128|b8|b16|b32|b64|b1|'
+                   r'f16|f32|f64|'
+                   # opaqueType
+                   r'roimg|woimg|rwimg|samp|sig32|sig64)')
+
+    # Numeric Constant
+    float = r'((\d+\.)|(\d*\.\d+))[eE][+-]?\d+'
+    hexfloat = r'0[xX](([0-9a-fA-F]+\.[0-9a-fA-F]*)|([0-9a-fA-F]*\.[0-9a-fA-F]+))[pP][+-]?\d+'
+    ieeefloat = r'0((h|H)[0-9a-fA-F]{4}|(f|F)[0-9a-fA-F]{8}|(d|D)[0-9a-fA-F]{16})'
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            include('comments'),
+
+            (string, String),
+
+            (r'@' + identifier + ':?', Name.Label),
+
+            (register, Name.Variable.Anonymous),
+
+            include('keyword'),
+
+            (r'&' + identifier, Name.Variable.Global),
+            (r'%' + identifier, Name.Variable),
+
+            (hexfloat, Number.Hex),
+            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (ieeefloat, Number.Float),
+            (float, Number.Float),
+            ('\d+', Number.Integer),
+
+            (r'[=<>{}\[\]()*.,:;!]|x\b', Punctuation)
+        ],
+        'whitespace': [
+            (r'(\n|\s)+', Text),
+        ],
+        'comments': [
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'//.*?\n', Comment.Singleline),
+        ],
+        'keyword': [
+            # Types
+            (r'kernarg' + datatypeMod, Keyword.Type),
+
+            # Regular keywords
+            (r'\$(full|base|small|large|default|zero|near)', Keyword),
+            (words((
+                'module', 'extension', 'pragma', 'prog', 'indirect', 'signature',
+                'decl', 'kernel', 'function', 'enablebreakexceptions',
+                'enabledetectexceptions', 'maxdynamicgroupsize', 'maxflatgridsize',
+                'maxflatworkgroupsize', 'requireddim', 'requiredgridsize',
+                'requiredworkgroupsize', 'requirenopartialworkgroups'),
+                   suffix=r'\b'), Keyword),
+
+            # instructions
+            (roundingMod, Keyword),
+            (datatypeMod, Keyword),
+            (r'_(' + alignQual + '|' + widthQual + ')', Keyword),
+            (r'_kernarg', Keyword),
+            (r'(nop|imagefence)\b', Keyword),
+            (words((
+                'cleardetectexcept', 'clock', 'cuid', 'debugtrap', 'dim',
+                'getdetectexcept', 'groupbaseptr', 'kernargbaseptr', 'laneid',
+                'maxcuid', 'maxwaveid', 'packetid', 'setdetectexcept', 'waveid',
+                'workitemflatabsid', 'workitemflatid', 'nullptr', 'abs', 'bitrev',
+                'currentworkgroupsize', 'currentworkitemflatid', 'fract', 'ncos',
+                'neg', 'nexp2', 'nlog2', 'nrcp', 'nrsqrt', 'nsin', 'nsqrt',
+                'gridgroups', 'gridsize', 'not', 'sqrt', 'workgroupid',
+                'workgroupsize', 'workitemabsid', 'workitemid', 'ceil', 'floor',
+                'rint', 'trunc', 'add', 'bitmask', 'borrow', 'carry', 'copysign',
+                'div', 'rem', 'sub', 'shl', 'shr', 'and', 'or', 'xor', 'unpackhi',
+                'unpacklo', 'max', 'min', 'fma', 'mad', 'bitextract', 'bitselect',
+                'shuffle', 'cmov', 'bitalign', 'bytealign', 'lerp', 'nfma', 'mul',
+                'mulhi', 'mul24hi', 'mul24', 'mad24', 'mad24hi', 'bitinsert',
+                'combine', 'expand', 'lda', 'mov', 'pack', 'unpack', 'packcvt',
+                'unpackcvt', 'sad', 'sementp', 'ftos', 'stof', 'cmp', 'ld', 'st',
+                '_eq', '_ne', '_lt', '_le', '_gt', '_ge', '_equ', '_neu', '_ltu',
+                '_leu', '_gtu', '_geu', '_num', '_nan', '_seq', '_sne', '_slt',
+                '_sle', '_sgt', '_sge', '_snum', '_snan', '_sequ', '_sneu', '_sltu',
+                '_sleu', '_sgtu', '_sgeu', 'atomic', '_ld', '_st', '_cas', '_add',
+                '_and', '_exch', '_max', '_min', '_or', '_sub', '_wrapdec',
+                '_wrapinc', '_xor', 'ret', 'cvt', '_readonly', '_kernarg', '_global',
+                'br', 'cbr', 'sbr', '_scacq', '_screl', '_scar', '_rlx', '_wave',
+                '_wg', '_agent', '_system', 'ldimage', 'stimage', '_v2', '_v3', '_v4',
+                '_1d', '_2d', '_3d', '_1da', '_2da', '_1db', '_2ddepth', '_2dadepth',
+                '_width', '_height', '_depth', '_array', '_channelorder',
+                '_channeltype', 'querysampler', '_coord', '_filter', '_addressing',
+                'barrier', 'wavebarrier', 'initfbar', 'joinfbar', 'waitfbar',
+                'arrivefbar', 'leavefbar', 'releasefbar', 'ldf', 'activelaneid',
+                'activelanecount', 'activelanemask', 'activelanepermute', 'call',
+                'scall', 'icall', 'alloca', 'packetcompletionsig',
+                'addqueuewriteindex', 'casqueuewriteindex', 'ldqueuereadindex',
+                'stqueuereadindex', 'readonly', 'global', 'private', 'group',
+                'spill', 'arg', '_upi', '_downi', '_zeroi', '_neari', '_upi_sat',
+                '_downi_sat', '_zeroi_sat', '_neari_sat', '_supi', '_sdowni',
+                '_szeroi', '_sneari', '_supi_sat', '_sdowni_sat', '_szeroi_sat',
+                '_sneari_sat', '_pp', '_ps', '_sp', '_ss', '_s', '_p', '_pp_sat',
+                '_ps_sat', '_sp_sat', '_ss_sat', '_s_sat', '_p_sat')), Keyword),
+
+            # Integer types
+            (r'i[1-9]\d*', Keyword)
+        ]
+    }
+
+
 class LlvmLexer(RegexLexer):
     """
     For LLVM assembly code.
@@ -240,69 +376,48 @@ class LlvmLexer(RegexLexer):
         ],
         'keyword': [
             # Regular keywords
-            (r'(begin|end'
-             r'|true|false'
-             r'|declare|define'
-             r'|global|constant'
-
-             r'|private|linker_private|internal|available_externally|linkonce'
-             r'|linkonce_odr|weak|weak_odr|appending|dllimport|dllexport'
-             r'|common|default|hidden|protected|extern_weak|external'
-             r'|thread_local|zeroinitializer|undef|null|to|tail|target|triple'
-             r'|datalayout|volatile|nuw|nsw|nnan|ninf|nsz|arcp|fast|exact|inbounds'
-             r'|align|addrspace|section|alias|module|asm|sideeffect|gc|dbg'
-             r'|linker_private_weak'
-             r'|attributes|blockaddress|initialexec|localdynamic|localexec'
-             r'|prefix|unnamed_addr'
-
-             r'|ccc|fastcc|coldcc|x86_stdcallcc|x86_fastcallcc|arm_apcscc'
-             r'|arm_aapcscc|arm_aapcs_vfpcc|ptx_device|ptx_kernel'
-             r'|intel_ocl_bicc|msp430_intrcc|spir_func|spir_kernel'
-             r'|x86_64_sysvcc|x86_64_win64cc|x86_thiscallcc'
-
-             r'|cc|c'
-
-             r'|signext|zeroext|inreg|sret|nounwind|noreturn|noalias|nocapture'
-             r'|byval|nest|readnone|readonly'
-             r'|inlinehint|noinline|alwaysinline|optsize|ssp|sspreq|noredzone'
-             r'|noimplicitfloat|naked'
-             r'|builtin|cold|nobuiltin|noduplicate|nonlazybind|optnone'
-             r'|returns_twice|sanitize_address|sanitize_memory|sanitize_thread'
-             r'|sspstrong|uwtable|returned'
-
-             r'|type|opaque'
-
-             r'|eq|ne|slt|sgt|sle'
-             r'|sge|ult|ugt|ule|uge'
-             r'|oeq|one|olt|ogt|ole'
-             r'|oge|ord|uno|ueq|une'
-             r'|x'
-             r'|acq_rel|acquire|alignstack|atomic|catch|cleanup|filter'
-             r'|inteldialect|max|min|monotonic|nand|personality|release'
-             r'|seq_cst|singlethread|umax|umin|unordered|xchg'
-
-             # instructions
-             r'|add|fadd|sub|fsub|mul|fmul|udiv|sdiv|fdiv|urem|srem|frem|shl'
-             r'|lshr|ashr|and|or|xor|icmp|fcmp'
-
-             r'|phi|call|trunc|zext|sext|fptrunc|fpext|uitofp|sitofp|fptoui'
-             r'|fptosi|inttoptr|ptrtoint|bitcast|addrspacecast'
-             r'|select|va_arg|ret|br|switch'
-             r'|invoke|unwind|unreachable'
-             r'|indirectbr|landingpad|resume'
-
-             r'|malloc|alloca|free|load|store|getelementptr'
-
-             r'|extractelement|insertelement|shufflevector|getresult'
-             r'|extractvalue|insertvalue'
-
-             r'|atomicrmw|cmpxchg|fence'
-
-             r')\b', Keyword),
+            (words((
+                'begin', 'end', 'true', 'false', 'declare', 'define', 'global',
+                'constant', 'private', 'linker_private', 'internal',
+                'available_externally', 'linkonce', 'linkonce_odr', 'weak',
+                'weak_odr', 'appending', 'dllimport', 'dllexport', 'common',
+                'default', 'hidden', 'protected', 'extern_weak', 'external',
+                'thread_local', 'zeroinitializer', 'undef', 'null', 'to', 'tail',
+                'target', 'triple', 'datalayout', 'volatile', 'nuw', 'nsw', 'nnan',
+                'ninf', 'nsz', 'arcp', 'fast', 'exact', 'inbounds', 'align',
+                'addrspace', 'section', 'alias', 'module', 'asm', 'sideeffect',
+                'gc', 'dbg', 'linker_private_weak', 'attributes', 'blockaddress',
+                'initialexec', 'localdynamic', 'localexec', 'prefix', 'unnamed_addr',
+                'ccc', 'fastcc', 'coldcc', 'x86_stdcallcc', 'x86_fastcallcc',
+                'arm_apcscc', 'arm_aapcscc', 'arm_aapcs_vfpcc', 'ptx_device',
+                'ptx_kernel', 'intel_ocl_bicc', 'msp430_intrcc', 'spir_func',
+                'spir_kernel', 'x86_64_sysvcc', 'x86_64_win64cc', 'x86_thiscallcc',
+                'cc', 'c', 'signext', 'zeroext', 'inreg', 'sret', 'nounwind',
+                'noreturn', 'noalias', 'nocapture', 'byval', 'nest', 'readnone',
+                'readonly', 'inlinehint', 'noinline', 'alwaysinline', 'optsize', 'ssp',
+                'sspreq', 'noredzone', 'noimplicitfloat', 'naked', 'builtin', 'cold',
+                'nobuiltin', 'noduplicate', 'nonlazybind', 'optnone', 'returns_twice',
+                'sanitize_address', 'sanitize_memory', 'sanitize_thread', 'sspstrong',
+                'uwtable', 'returned', 'type', 'opaque', 'eq', 'ne', 'slt', 'sgt',
+                'sle', 'sge', 'ult', 'ugt', 'ule', 'uge', 'oeq', 'one', 'olt', 'ogt',
+                'ole', 'oge', 'ord', 'uno', 'ueq', 'une', 'x', 'acq_rel', 'acquire',
+                'alignstack', 'atomic', 'catch', 'cleanup', 'filter', 'inteldialect',
+                'max', 'min', 'monotonic', 'nand', 'personality', 'release', 'seq_cst',
+                'singlethread', 'umax', 'umin', 'unordered', 'xchg', 'add', 'fadd',
+                'sub', 'fsub', 'mul', 'fmul', 'udiv', 'sdiv', 'fdiv', 'urem', 'srem',
+                'frem', 'shl', 'lshr', 'ashr', 'and', 'or', 'xor', 'icmp', 'fcmp',
+                'phi', 'call', 'trunc', 'zext', 'sext', 'fptrunc', 'fpext', 'uitofp',
+                'sitofp', 'fptoui', 'fptosi', 'inttoptr', 'ptrtoint', 'bitcast',
+                'addrspacecast', 'select', 'va_arg', 'ret', 'br', 'switch', 'invoke',
+                'unwind', 'unreachable', 'indirectbr', 'landingpad', 'resume',
+                'malloc', 'alloca', 'free', 'load', 'store', 'getelementptr',
+                'extractelement', 'insertelement', 'shufflevector', 'getresult',
+                'extractvalue', 'insertvalue', 'atomicrmw', 'cmpxchg', 'fence'),
+                   suffix=r'\b'), Keyword),
 
             # Types
-            (r'void|half|float|double|x86_fp80|fp128|ppc_fp128|label|metadata',
-             Keyword.Type),
+            (words(('void', 'half', 'float', 'double', 'x86_fp80', 'fp128',
+                    'ppc_fp128', 'label', 'metadata')), Keyword.Type),
 
             # Integer types
             (r'i[1-9]\d*', Keyword)

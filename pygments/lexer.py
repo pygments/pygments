@@ -319,8 +319,8 @@ def bygroups(*args):
                 if data is not None:
                     if ctx:
                         ctx.pos = match.start(i + 1)
-                    for item in action(
-                        lexer, _PseudoMatch(match.start(i + 1), data), ctx):
+                    for item in action(lexer,
+                                       _PseudoMatch(match.start(i + 1), data), ctx):
                         if item:
                             yield item
         if ctx:
