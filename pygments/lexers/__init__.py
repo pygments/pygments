@@ -22,7 +22,7 @@ from pygments.util import ClassNotFound, itervalues, guess_decode
 
 
 __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
-           'guess_lexer'] + list(LEXERS)
+           'guess_lexer', 'load_lexer_from_file'] + list(LEXERS)
 
 _lexer_cache = {}
 _pattern_cache = {}
