@@ -20,7 +20,7 @@ from pygments.plugin import find_plugin_formatters
 from pygments.util import ClassNotFound, itervalues
 
 __all__ = ['get_formatter_by_name', 'get_formatter_for_filename',
-           'get_all_formatters'] + list(FORMATTERS)
+           'get_all_formatters', 'load_formatter_from_file'] + list(FORMATTERS)
 
 _formatter_cache = {}  # classes by name
 _pattern_cache = {}
