@@ -146,13 +146,11 @@ Select a matching module under ``pygments/lexers``, or create a new module for
 your lexer class.
 
 Next, make sure the lexer is known from outside of the module.  All modules in
-the ``pygments.lexers`` specify ``__all__``. For example, ``esoteric.py`` sets::
 the ``pygments.lexers`` package specify ``__all__``. For example,
 ``esoteric.py`` sets::
 
     __all__ = ['BrainfuckLexer', 'BefungeLexer', ...]
 
-Simply add the name of your lexer class to this list.
 Add the name of your lexer class to this list (or create the list if your lexer
 is the only class in the module).
 
