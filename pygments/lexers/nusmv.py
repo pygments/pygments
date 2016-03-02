@@ -28,7 +28,11 @@ class NuSMVLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'--.*\n', Comment),
+            # Comments
+            (r'(?s)\/\-\-.*?\-\-/', Comment), # multiline comments
+            (r'(?<![\w\d\$#])--.*\n', Comment), # Comment that cannot be a name
+
+            # Reserved
             ((r'\b(MODULE|DEFINE|MDEFINE|CONSTANTS|VAR|IVAR|FROZENVAR|INIT'
                 r'|TRANS|INVAR|SPEC|CTLSPEC|LTLSPEC|PSLSPEC|COMPUTE|NAME'
                 r'|INVARSPEC|FAIRNESS|JUSTICE|COMPASSION|ISA|ASSIGN|CONSTRAINT'
@@ -42,12 +46,26 @@ class NuSMVLexer(RegexLexer):
             ((r'\b(EX|AX|EF|AF|EG|AG|E|F|O|G|H|X|Y|Z|A|U|S|V|T|BU|EBF|ABF|EBG'
                 r'|ABG|next|mod|union|in|xor|xnor)\b'), Operator.Word),
             (r'\b(TRUE|FALSE)\b', Keyword.Constant),
-            (r'\-?\d+\b', Number.Integer),
-            (r'0[su][bBoOdDhH]\d*_[\da-fA-F]+', Number.Integer),
-            (r'\w[\w\d\$#-]*', Name.Variable),
-            (r'\s+', Text.Whitespace),
+            
+            # Operators
             (r':=', Operator),
             (r'[&\|\+\-\*/<>!=]', Operator),
+
+            # Literals
+            (r'\-?\d+\b', Number.Integer),
+            (r'0[su][bB]\d*_[\da-fA-F_]+', Number.Bin),
+            (r'0[su][oO]\d*_[\da-fA-F_]+', Number.Oct),
+            (r'0[su][dD]\d*_[\da-fA-F_]+', Number.Dec),
+            (r'0[su][hH]\d*_[\da-fA-F_]+', Number.Hex),
+
+            # Names
+            (r'\w[\w\d\$#-]*', Name.Variable),
+
+            # Other comments
+            (r'--.*\n', Comment),
+
+            # Whitespace, punctuation and the rest
+            (r'\s+', Text.Whitespace),
             (r'[\(\)\[\]\{\};\?:\.,]', Punctuation),
             (r'.', Generic.Error),
         ]
