@@ -39,7 +39,7 @@ class NuSMVLexer(RegexLexer):
                 'COMPASSION','ISA','ASSIGN','CONSTRAINT','SIMPWFF','CTLWFF',
                 'LTLWFF','PSLWFF','COMPWFF','IN','MIN','MAX','MIRROR','PRED',
                 'PREDICATES'), suffix=r'(?![\w$#-])'), Keyword.Declaration),
-            (r'\bprocess\b', Keyword),
+            (r'process(?![\w$#-])', Keyword),
             (words(('array','of','boolean','integer','real','word'),
                 suffix=r'(?![\w$#-])'), Keyword.Type),
             (words(('case','esac'), suffix=r'(?![\w$#-])'), Keyword),
