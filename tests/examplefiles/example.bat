@@ -99,6 +99,10 @@ goto fail
 rem "comment comment"^
 goto fail
 rem comment comment^
+if "1==1" equ "1==1" goto comments4
+goto fail
+:comments4
+rem comment"comment^
 set /a _passed+=1
 GOTO :EOF
 goto :fail
