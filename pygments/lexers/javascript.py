@@ -1487,7 +1487,7 @@ class JuttleLexer(RegexLexer):
             (r'(import|return|continue|if|else)\b', Keyword, 'slashstartsregex'),
             (r'(var|const|function|reducer|sub|input)\b', Keyword.Declaration, 'slashstartsregex'),
             (r'(batch|emit|filter|head|join|keep|pace|pass|put|read|reduce|remove|'
-             r'sequence|skip|sort|split|tail|unbatch|uniq|write)\b', Keyword.Reserved),
+             r'sequence|skip|sort|split|tail|unbatch|uniq|view|write)\b', Keyword.Reserved),
             (r'(true|false|null|Infinity)\b', Keyword.Constant),
             (r'(Array|Date|Juttle|Math|Number|Object|RegExp|String)\b', Name.Builtin),
             (JS_IDENT, Name.Other),
