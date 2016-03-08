@@ -10,7 +10,6 @@
 """
 
 import re
-from string import ascii_letters, digits
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, default, words
 from pygments.token import Name, Comment, String, Error, Number, Text, Keyword, Punctuation
@@ -31,8 +30,8 @@ class BibTeXLexer(ExtendedRegexLexer):
     mimetypes = ["text/x-bibtex"]
     flags = re.IGNORECASE
 
-    NAME_CHARS = ascii_letters + '@!$&*+-./:;<>?[\\]^_`|~\x7f'
-    IDENTIFIER = '[{0}][{1}]*'.format(re.escape(NAME_CHARS), re.escape(NAME_CHARS + digits))
+    ALLOWED_CHARS = r'@!$&*+\-./:;<>?\[\\\]^`|~'
+    IDENTIFIER = '[{0}][{1}]*'.format('a-z_' + ALLOWED_CHARS, r'\w' + ALLOWED_CHARS)
 
     def open_brace_callback(self, match, ctx):
         opening_brace = match.group()
@@ -63,11 +62,11 @@ class BibTeXLexer(ExtendedRegexLexer):
         ],
         'opening-brace': [
             include('whitespace'),
-            (r'[\{\(]', open_brace_callback, '#pop'),
+            (r'[{(]', open_brace_callback, '#pop'),
         ],
         'closing-brace': [
             include('whitespace'),
-            (r'[\}\)]', close_brace_callback, '#pop'),
+            (r'[})]', close_brace_callback, '#pop'),
         ],
         'command-body': [
             include('whitespace'),
@@ -134,11 +133,11 @@ class BSTLexer(RegexLexer):
         ],
         'group': [
             include('whitespace'),
-            ('{', Punctuation, ('#pop', 'group-end', 'body')),
+            (r'\{', Punctuation, ('#pop', 'group-end', 'body')),
         ],
         'group-end': [
             include('whitespace'),
-            ('}', Punctuation, '#pop'),
+            (r'\}', Punctuation, '#pop'),
         ],
         'body': [
             include('whitespace'),
@@ -147,7 +146,7 @@ class BSTLexer(RegexLexer):
             (r'[^#\"\{\}\s]+', Name.Variable),
             (r'"[^\"]*"', String),
             (r'#-?\d+', Number),
-            ('{', Punctuation, ('group-end', 'body')),
+            (r'\{', Punctuation, ('group-end', 'body')),
             default('#pop'),
         ],
         'whitespace': [
