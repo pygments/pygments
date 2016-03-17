@@ -61,10 +61,11 @@ class CFamilyLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
-            (words(('auto', 'break', 'case', 'const', 'continue', 'default', 'do',
-                    'else', 'enum', 'extern', 'for', 'goto', 'if', 'register',
-                    'restricted', 'return', 'sizeof', 'static', 'struct',
-                    'switch', 'typedef', 'union', 'volatile', 'while'),
+            (words(('asm', 'auto', 'break', 'case', 'const', 'continue',
+                    'default', 'do', 'else', 'enum', 'extern', 'for', 'goto',
+                    'if', 'register', 'restricted', 'return', 'sizeof',
+                    'static', 'struct', 'switch', 'typedef', 'union',
+                    'volatile', 'while'),
                    suffix=r'\b'), Keyword),
             (r'(bool|int|long|float|short|double|char|unsigned|signed|void)\b',
              Keyword.Type),
@@ -208,7 +209,7 @@ class CppLexer(CFamilyLexer):
     tokens = {
         'statements': [
             (words((
-                'asm', 'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
+                'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
                 'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
                 'private', 'protected', 'public', 'reinterpret_cast',
                 'restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
