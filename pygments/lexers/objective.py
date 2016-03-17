@@ -298,7 +298,7 @@ class SwiftLexer(RegexLexer):
             (r'\s+', Text),
             (r'//', Comment.Single, 'comment-single'),
             (r'/\*', Comment.Multiline, 'comment-multi'),
-            (r'#(if|elseif|else|endif)\b', Comment.Preproc, 'preproc'),
+            (r'#(if|elseif|else|endif|available)\b', Comment.Preproc, 'preproc'),
 
             # Keywords
             include('keywords'),
@@ -413,23 +413,26 @@ class SwiftLexer(RegexLexer):
         ],
         'keywords': [
             (words((
-                'break', 'case', 'continue', 'default', 'do', 'else',
-                'fallthrough', 'for', 'if', 'in', 'return', 'switch', 'where',
-                'while'), suffix=r'\b'),
+                'as', 'break', 'case', 'catch', 'continue', 'default', 'defer',
+                'do', 'else', 'fallthrough', 'for', 'guard', 'if', 'in', 'is',
+                'repeat', 'return', '#selector', 'switch', 'throw', 'try',
+                'where', 'while'), suffix=r'\b'),
              Keyword),
             (r'@availability\([^)]+\)', Keyword.Reserved),
             (words((
                 'associativity', 'convenience', 'dynamic', 'didSet', 'final',
-                'get', 'infix', 'inout', 'lazy', 'left', 'mutating', 'none',
-                'nonmutating', 'optional', 'override', 'postfix', 'precedence',
-                'prefix', 'Protocol', 'required', 'right', 'set', 'Type',
-                'unowned', 'weak', 'willSet', '@availability', '@autoclosure',
-                '@noreturn', '@NSApplicationMain', '@NSCopying', '@NSManaged',
-                '@objc', '@UIApplicationMain', '@IBAction', '@IBDesignable',
+                'get', 'indirect', 'infix', 'inout', 'lazy', 'left', 'mutating',
+                'none', 'nonmutating', 'optional', 'override', 'postfix',
+                'precedence', 'prefix', 'Protocol', 'required', 'rethrows',
+                'right', 'set', 'throws', 'Type', 'unowned', 'weak', 'willSet',
+                '@availability', '@autoclosure', '@noreturn',
+                '@NSApplicationMain', '@NSCopying', '@NSManaged', '@objc',
+                '@UIApplicationMain', '@IBAction', '@IBDesignable',
                 '@IBInspectable', '@IBOutlet'), suffix=r'\b'),
              Keyword.Reserved),
             (r'(as|dynamicType|false|is|nil|self|Self|super|true|__COLUMN__'
-             r'|__FILE__|__FUNCTION__|__LINE__|_)\b', Keyword.Constant),
+             r'|__FILE__|__FUNCTION__|__LINE__|_'
+             r'|#(?:file|line|column|function))\b', Keyword.Constant),
             (r'import\b', Keyword.Declaration, 'module'),
             (r'(class|enum|extension|struct|protocol)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Text, Name.Class)),
