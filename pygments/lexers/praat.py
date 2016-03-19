@@ -204,6 +204,7 @@ class PraatLexer(RegexLexer):
             (r'[^\n]', Text),
         ],
         'number': [
+            (r'\n', Text, '#pop'),
             (r'\b\d+(\.\d*)?([eE][-+]?\d+)?%?', Number),
         ],
         'object_attributes': [
