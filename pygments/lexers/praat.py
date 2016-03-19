@@ -268,9 +268,6 @@ class PraatLexer(RegexLexer):
              bygroups(Keyword, Text), 'number'),
 
             (r'(option|button)([ \t]+)',
-             bygroups(Keyword, Text), 'number'),
-
-            (r'(option|button)([ \t]+)',
              bygroups(Keyword, Text), 'string_unquoted'),
 
             (r'(sentence|text)([ \t]+\S+)',
