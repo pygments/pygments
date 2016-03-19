@@ -190,6 +190,7 @@ class PraatLexer(RegexLexer):
             include('operator'),
             include('number'),
 
+            (r'[()]', Text),
             (r',', Punctuation),
         ],
         'old_arguments': [
