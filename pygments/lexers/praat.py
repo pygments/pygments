@@ -168,8 +168,8 @@ class PraatLexer(RegexLexer):
         ],
         'function_call': [
             (words(functions_string, suffix=r'\$(?=\s*[:(])'), Name.Function, 'function'),
-            (words(functions_array, suffix=r'#(?=\s*[:(])'), Name.Function, 'function'),
-            (words(functions_numeric, suffix=r'(?=\s*[:(])'), Name.Function, 'function'),
+            (words(functions_array, suffix=r'#(?=\s*[:(])'),   Name.Function, 'function'),
+            (words(functions_numeric, suffix=r'(?=\s*[:(])'),  Name.Function, 'function'),
         ],
         'function': [
             (r'\s+',   Text),
@@ -235,8 +235,8 @@ class PraatLexer(RegexLexer):
             (r"'(?=.*')", String.Interpol, 'string_interpolated'),
         ],
         'operator': [
-            (r'([+\/*<>=!-]=?|[&*|][&*|]?|\^|<>)', Operator),
-            (r'\b(and|or|not|div|mod)\b',          Operator.Word),
+            (r'([+\/*<>=!-]=?|[&*|][&*|]?|\^|<>)',       Operator),
+            (r'(?<![\w.])(and|or|not|div|mod)(?![\w.])', Operator.Word),
         ],
         'string_interpolated': [
             (r'\.?[_a-z][\w.]*[$#]?(?:\[[a-zA-Z0-9,]+\])?(:[0-9]+)?',
