@@ -11,7 +11,7 @@
 
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
-    Punctuation, String, Text    
+    Punctuation, String, Text
 
 __all__ = ['WhileyLexer']
 
@@ -63,7 +63,7 @@ class WhileyLexer(RegexLexer):
              bygroups(Keyword.Namespace, Text, Punctuation, Text, Keyword.Namespace)),
             (r'(import)(\s+)([a-zA-Z_]\w*)([^\S\n]+)(from)\b',
              bygroups(Keyword.Namespace, Text, Name, Text, Keyword.Namespace)),
-            (r'package|import\b', Keyword.Namespace),
+            (r'(package|import)\b', Keyword.Namespace),
 
             # standard library: https://github.com/Whiley/WhileyLibs/
             (words((
@@ -81,6 +81,8 @@ class WhileyLexer(RegexLexer):
 
             # decimal literal
             (r'[0-9]+\.[0-9]+', Number.Float),
+            # match "1." but not ranges like "3..5"
+            (r'[0-9]+\.(?!\.)', Number.Float),
 
             # integer literal
             (r'0x[0-9a-fA-F]+', Number.Hex),
@@ -96,7 +98,11 @@ class WhileyLexer(RegexLexer):
 
             # operators and punctuation
             (r'[{}()\[\],.;]', Punctuation),
-            (r'[+\-*/%&|<>^!~@=:?]', Operator),
+            (r'[+\-*/%&|<>^!~@=:?'
+            # unicode operators
+             r'\u2200\u2203\u2205\u2282\u2286\u2283\u2287'
+             r'\u222A\u2229\u2264\u2265\u2208\u2227\u2228'
+             r']', Operator),
 
             # identifier
             (r'[a-zA-Z_]\w*', Name),
@@ -104,6 +110,7 @@ class WhileyLexer(RegexLexer):
         'string': [
             (r'"', String, '#pop'),
             (r'\\[btnfr]', String.Escape),
+            (r'\\u[0-9a-fA-F]{4}', String.Escape),
             (r'\\.', String),
             (r'[^\\"]+', String),
         ],
