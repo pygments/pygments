@@ -26,6 +26,7 @@ Programming languages
 * Common Lisp
 * Coq
 * Cryptol (incl. Literate Cryptol)
+* `Crystal <http://crystal-lang.org>`_
 * `Cython <http://cython.org>`_
 * `D <http://dlang.org>`_
 * Dart
