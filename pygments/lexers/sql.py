@@ -41,17 +41,19 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
-from pygments.token import Punctuation, \
+from pygments.token import Punctuation, Whitespace, Error, \
     Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.lexers import get_lexer_by_name, ClassNotFound
 from pygments.util import iteritems
 
 from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
     PSEUDO_TYPES, PLPGSQL_KEYWORDS
+from pygments.lexers import _tsql_builtins
 
 
 __all__ = ['PostgresLexer', 'PlPgsqlLexer', 'PostgresConsoleLexer',
-           'SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'RqlLexer']
+           'SqlLexer', 'TransactSqlLexer', 'MySqlLexer',
+           'SqliteConsoleLexer', 'RqlLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -469,6 +471,57 @@ class SqlLexer(RegexLexer):
             (r'"(""|[^"])*"', String.Symbol),  # not a real string literal in ANSI SQL
             (r'[a-z_][\w$]*', Name),  # allow $s in strings for Oracle
             (r'[;:()\[\],.]', Punctuation)
+        ],
+        'multiline-comments': [
+            (r'/\*', Comment.Multiline, 'multiline-comments'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[^/*]+', Comment.Multiline),
+            (r'[/*]', Comment.Multiline)
+        ]
+    }
+
+
+class TransactSqlLexer(RegexLexer):
+    """
+    Transact-SQL (T-SQL) is Microsoft's and Sybase's proprietary extension to
+    SQL.
+
+    The list of keywords includes ODBC and keywords reserved for future use..
+    """
+
+    name = 'Transact-SQL'
+    aliases = ['tsql', 't-sql']
+    filenames = ['*.sql']
+    mimetypes = ['text/x-tsql']
+
+    flags = re.IGNORECASE | re.UNICODE
+    tokens = {
+        'root': [
+            (r'\s+', Whitespace),
+            (r'--.*?\n', Comment.Single),
+            (r'/\*', Comment.Multiline, 'multiline-comments'),
+            (r'(-=|-)', Operator),  # HACK: For some reason these operators do not work as part of OPERATORS.
+            (words(_tsql_builtins.OPERATORS), Operator),
+            (words(_tsql_builtins.OPERATOR_WORDS, suffix=r'\b'), Operator.Word),
+            (words(_tsql_builtins.TYPES, suffix=r'\b'), Name.Class),
+            (words(_tsql_builtins.FUNCTIONS, suffix=r'\b'), Name.Function),
+            (r'(goto)(\s+)(\w+\b)', bygroups(Keyword, Whitespace, Name.Label)),
+            (words(_tsql_builtins.KEYWORDS, suffix=r'\b'), Keyword),
+            (r'(\[)([^]]+)(\])', bygroups(Operator, Name, Operator)),
+            (r'0x[0-9a-f]+', Number.Hex),
+            (r'[0-9]*\.?[0-9]+(e[+-]?[0-9]+)?', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String.Single),
+            (r'"(""|[^"])*"', String.Symbol),
+            (r'[;(),.]', Punctuation),
+            # Below we use \w even for the first "real" character because
+            # tokens starting with a digit have already been recognized
+            # as Number above.
+            (r'@@\w+', Name.Builtin),
+            (r'@\w+', Name.Variable),
+            (r'(\w+)(:)', bygroups(Name.Label, Punctuation)),
+            (r'#?#?\w+', Name),
+            (r'\?', Name.Variable.Magic),  # Parameter for prepared statements
         ],
         'multiline-comments': [
             (r'/\*', Comment.Multiline, 'multiline-comments'),
