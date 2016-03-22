@@ -29,8 +29,10 @@ declare @TextToFind nvarchar(100) = N'some
 text across
 multiple lines';
 
-set @TextToFind = 'hello' + ' world';
+set @TextToFind varchar(32) = 'hello' + ' world';
 set @TextTiFind += '!';
+
+declare @Count int = 17 * (3 - 5);
 
 delete from
     [server].[database].[schema].[table]
