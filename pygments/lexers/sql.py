@@ -494,13 +494,13 @@ class TransactSqlLexer(RegexLexer):
     filenames = ['*.sql']
     mimetypes = ['text/x-tsql']
 
+    # Use re.UNICODE to allow non ASCII letters in names.
     flags = re.IGNORECASE | re.UNICODE
     tokens = {
         'root': [
             (r'\s+', Whitespace),
             (r'--.*?\n', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'(-=|-)', Operator),  # HACK: For some reason these operators do not work as part of OPERATORS.
             (words(_tsql_builtins.OPERATORS), Operator),
             (words(_tsql_builtins.OPERATOR_WORDS, suffix=r'\b'), Operator.Word),
             (words(_tsql_builtins.TYPES, suffix=r'\b'), Name.Class),
@@ -520,8 +520,8 @@ class TransactSqlLexer(RegexLexer):
             (r'@@\w+', Name.Builtin),
             (r'@\w+', Name.Variable),
             (r'(\w+)(:)', bygroups(Name.Label, Punctuation)),
-            (r'#?#?\w+', Name),
-            (r'\?', Name.Variable.Magic),  # Parameter for prepared statements
+            (r'#?#?\w+', Name),  # names for temp tables and anything else
+            (r'\?', Name.Variable.Magic),  # parameter for prepared statements
         ],
         'multiline-comments': [
             (r'/\*', Comment.Multiline, 'multiline-comments'),
