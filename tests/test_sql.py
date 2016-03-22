@@ -6,12 +6,10 @@
     :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import io
-import os.path
 import unittest
 
 from pygments.lexers.sql import TransactSqlLexer
-from pygments.token import Comment, Error, Name, Number, Whitespace
+from pygments.token import Comment, Name, Number, Whitespace
 
 
 class TransactSqlLexerTest(unittest.TestCase):
@@ -65,12 +63,3 @@ class TransactSqlLexerTest(unittest.TestCase):
             (Comment.Multiline, '*/'),
             (Comment.Multiline, '*/'),
         ))
-
-    def test_can_lex_example_file(self):
-        tests_path = os.path.dirname(__file__)
-        example_path = os.path.join(tests_path, 'examplefiles', 'test_transact-sql.txt')
-
-        with io.open(example_path, 'r', encoding='utf-8') as example_file:
-            example_code = example_file.read()
-        for token_type, token_value in self.lexer.get_tokens(example_code):
-            self.assertNotEqual(Error, token_type, 'token_value=%r' % token_value)
