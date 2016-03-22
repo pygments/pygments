@@ -48,6 +48,10 @@ class TransactSqlLexerTest(unittest.TestCase):
             ((Number.Float, '1e2'), (Number.Float, '.1e2'))
         )
 
+    def test_can_lex_integer(self):
+        self._assertAreTokensOfType(
+            '1 23 456', Number.Integer)
+
     def test_can_lex_names(self):
         self._assertAreTokensOfType(
             u'thingy thingy123 _thingy _ _123 Ähnliches Müll #temp1 ##temp2', Name)
