@@ -1,8 +1,4 @@
 -- Example Transact-SQL file.
---
--- We cannot use "*.sql" as file suffix because then the automatic tests for
--- the ANSI SQL lexer would attempt to read it and in turn detect errors in
--- it which would cause a test case to fail.
 
 -- Single line comment
 /* A comment 
