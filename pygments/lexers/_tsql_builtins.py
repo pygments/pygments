@@ -3,18 +3,13 @@
     pygments.lexers._tsql_builtins
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    This file contains the names of functions for Transact-SQL used by
-    ``pygments.lexers.sql.TransactSqlLexer. These lists describe SQL Server
-    2012 and have been manually collected from:
+    These are manually translated lists from https://msdn.microsoft.com.
 
-    * https://msdn.microsoft.com/en-us/library/ms189822.aspx
-    * https://msdn.microsoft.com/en-us/library/ms174318.aspx
-    * https://msdn.microsoft.com/en-us/library/ms187752.aspx
-
-    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
+# See https://msdn.microsoft.com/en-us/library/ms174986.aspx.
 OPERATORS = (
     '!<',
     '!=',
@@ -766,8 +761,10 @@ _KEYWORDS_ODBC = (
     'zone',
 )
 
+# See https://msdn.microsoft.com/en-us/library/ms189822.aspx.
 KEYWORDS = sorted(set(_KEYWORDS_FUTURE + _KEYWORDS_ODBC + _KEYWORDS_SERVER))
 
+# See https://msdn.microsoft.com/en-us/library/ms187752.aspx.
 TYPES = (
     'bigint',
     'binary',
@@ -804,6 +801,7 @@ TYPES = (
     'xml',
 )
 
+# See https://msdn.microsoft.com/en-us/library/ms174318.aspx.
 FUNCTIONS = (
     '$partition',
     'abs',
