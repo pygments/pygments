@@ -64,3 +64,5 @@ BEGIN CATCH
    print 'cannot perform transaction; rolling back';
    ROLLBACK TRAN
 END CATCH
+
+-- Comment at end without newline.
