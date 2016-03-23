@@ -25,8 +25,8 @@ line_re = re.compile('.*?\n')
 
 
 CRYSTAL_OPERATORS = [
-    '!', '!=', '!~', '%', '&', '&&', '*', '**', '+', '-', '/', '<', '<<', '<=', '<=>', '=',
-    '==', '===', '=~', '>', '>=', '>>', '[]', '[]=', '[]?', '^', '|', '||', '~'
+    '!=', '!~', '!', '%', '&&', '&', '**', '*', '+', '-', '/', '<=>', '<<', '<=', '<',
+    '===', '==', '=~', '=', '>=', '>>', '>', '[]=', '[]?', '[]', '^', '||', '|', '~'
 ]
 
 
@@ -268,19 +268,20 @@ class CrystalLexer(ExtendedRegexLexer):
             # there so that you can use the ternary operator.
             # stupid example:
             #   x>=0?n[x]:""
-            (r'(0o[0-7]+(?:_[0-7]+)*(?:_?[iu][0-9]+)?)(\s*)([/?])?',
+            (r'(0o[0-7]+(?:_[0-7]+)*(?:_?[iu][0-9]+)?)\b(\s*)([/?])?',
              bygroups(Number.Oct, Text, Operator)),
-            (r'(0x[0-9A-Fa-f]+(?:_[0-9A-Fa-f]+)*(?:_?[iu][0-9]+)?)(\s*)([/?])?',
+            (r'(0x[0-9A-Fa-f]+(?:_[0-9A-Fa-f]+)*(?:_?[iu][0-9]+)?)\b(\s*)([/?])?',
              bygroups(Number.Hex, Text, Operator)),
-            (r'(0b[01]+(?:_[01]+)*(?:_?[iu][0-9]+)?)(\s*)([/?])?',
+            (r'(0b[01]+(?:_[01]+)*(?:_?[iu][0-9]+)?)\b(\s*)([/?])?',
              bygroups(Number.Bin, Text, Operator)),
-            (r'((?:0|[1-9][\d_]*)(?:\.\d[\d_]*)(?:e[+-]?[0-9]+)?(?:_?[f][0-9]+)?)(\s*)([/?])?',
+            # 3 separate expressions for floats because any of the 3 optional parts makes it a float
+            (r'((?:0(?![0-9])|[1-9][\d_]*)(?:\.\d[\d_]*)(?:e[+-]?[0-9]+)?(?:_?[f][0-9]+)?)(\s*)([/?])?',
              bygroups(Number.Float, Text, Operator)),
-            (r'((?:0|[1-9][\d_]*)(?:\.\d[\d_]*)?(?:e[+-]?[0-9]+)(?:_?[f][0-9]+)?)(\s*)([/?])?',
+            (r'((?:0(?![0-9])|[1-9][\d_]*)(?:\.\d[\d_]*)?(?:e[+-]?[0-9]+)(?:_?[f][0-9]+)?)(\s*)([/?])?',
              bygroups(Number.Float, Text, Operator)),
-            (r'((?:0|[1-9][\d_]*)(?:\.\d[\d_]*)?(?:e[+-]?[0-9]+)?(?:_?[f][0-9]+))(\s*)([/?])?',
+            (r'((?:0(?![0-9])|[1-9][\d_]*)(?:\.\d[\d_]*)?(?:e[+-]?[0-9]+)?(?:_?[f][0-9]+))(\s*)([/?])?',
              bygroups(Number.Float, Text, Operator)),
-            (r'(0|[1-9][\d]*(?:_\d+)*(?:_?[iu][0-9]+)?)(\s*)([/?])?',
+            (r'(0\b|[1-9][\d]*(?:_\d+)*(?:_?[iu][0-9]+)?)\b(\s*)([/?])?',
              bygroups(Number.Integer, Text, Operator)),
             # Names
             (r'@@[a-zA-Z_]\w*', Name.Variable.Class),
@@ -307,8 +308,9 @@ class CrystalLexer(ExtendedRegexLexer):
              bygroups(Operator, Name.Operator)),
             (r'(\.|::)([a-zA-Z_]\w*[!?]?|[*%&^`~+\-/\[<>=])',
              bygroups(Operator, Name)),
-            (r'[a-zA-Z_]\w*[!?]?', Name),
-            (r'(\[|\]\??|\*\*|<<?|>>?|>=|<=|<=>|=~|={3}|'
+            # Names can end with [!?] unless it's "!="
+            (r'[a-zA-Z_]\w*(?:[!?](?!=))?', Name),
+            (r'(\[|\]\??|\*\*|<=>?|>=|<<?|>>?|=~|===|'
              r'!~|&&?|\|\||\.{1,3})', Operator),
             (r'[-+/*%=<>&!^|~]=?', Operator),
             (r'[(){};,/?:\\]', Punctuation),
