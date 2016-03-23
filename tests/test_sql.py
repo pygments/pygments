@@ -9,7 +9,7 @@
 import unittest
 
 from pygments.lexers.sql import TransactSqlLexer
-from pygments.token import Comment, Name, Number, Whitespace
+from pygments.token import Comment, Name, Number, Punctuation, Whitespace
 
 
 class TransactSqlLexerTest(unittest.TestCase):
@@ -42,11 +42,16 @@ class TransactSqlLexerTest(unittest.TestCase):
 
     def test_can_lex_float(self):
         self._assertAreTokensOfType(
-            '1.2 1.2e3 1.2e+3 1.2e-3 1e2', Number.Float)
+            '1. 1.e1 .1 1.2 1.2e3 1.2e+3 1.2e-3 1e2', Number.Float)
         self._assertTokensMatch(
             '1e2.1e2',
             ((Number.Float, '1e2'), (Number.Float, '.1e2'))
         )
+
+    def test_can_reject_almost_float(self):
+        self._assertTokensMatch(
+            '.e1',
+            ((Punctuation, '.'), (Name, 'e1')))
 
     def test_can_lex_integer(self):
         self._assertAreTokensOfType(

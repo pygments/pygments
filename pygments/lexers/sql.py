@@ -509,8 +509,12 @@ class TransactSqlLexer(RegexLexer):
             (words(_tsql_builtins.KEYWORDS, suffix=r'\b'), Keyword),
             (r'(\[)([^]]+)(\])', bygroups(Operator, Name, Operator)),
             (r'0x[0-9a-f]+', Number.Hex),
-            (r'[0-9]*\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),  # e.g. 1.23e45
-            (r'[0-9]+e[+-]?[0-9]+', Number.Float),  # e.g. 123e45
+            # Float variant 1, for example: 1., 1.e2, 1.2e3
+            (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),
+            # Float variant 2, for example: .1, .1e2
+            (r'\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),
+            # Float variant 3, for example: 123e45
+            (r'[0-9]+e[+-]?[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r"'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Symbol),

@@ -46,7 +46,11 @@ select
     123.45 as "float 1",
     -1.23e45 as "float 2"
     +1.23E+45 as "float 3",
-    -1.23e-45 as "float 4";
+    -1.23e-45 as "float 4",
+    1. as "float 5",
+    .1 as "float 6",
+    1.e2 as "float 7",
+    .1e2 as "float 8";
 
 Select @@Error, $PARTITion.RangePF1(10);
 
