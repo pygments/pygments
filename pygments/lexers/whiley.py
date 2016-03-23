@@ -55,7 +55,7 @@ class WhileyLexer(RegexLexer):
              ), suffix=r'\b'), Keyword.Declaration),
             # "constant" & "type" are not keywords unless used in declarations
             (r'(constant|type)(\s+)([a-zA-Z_]\w*)(\s+)(is)\b',
-             bygroups(Keyword.Declaration, Text, Name, Text, Keyword)),
+             bygroups(Keyword.Declaration, Text, Name, Text, Keyword.Reserved)),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(bool|byte|int|real|any|void)\b', Keyword.Type),
             # "from" is not a keyword unless used with import
