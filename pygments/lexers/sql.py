@@ -151,7 +151,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'--.*?\n', Comment.Single),
+            (r'--.*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'(' + '|'.join(s.replace(" ", "\s+")
                              for s in DATATYPES + PSEUDO_TYPES)
@@ -378,7 +378,7 @@ class SqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'--.*?\n', Comment.Single),
+            (r'--.*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (words((
                 'ABORT', 'ABS', 'ABSOLUTE', 'ACCESS', 'ADA', 'ADD', 'ADMIN', 'AFTER', 'AGGREGATE',
@@ -492,7 +492,7 @@ class MySqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(#|--\s+).*?\n', Comment.Single),
+            (r'(#|--\s+).*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'[0-9]+', Number.Integer),
             (r'[0-9]*\.[0-9]+(e[+-][0-9]+)', Number.Float),
