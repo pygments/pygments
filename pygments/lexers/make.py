@@ -90,7 +90,7 @@ class BaseMakefileLexer(RegexLexer):
              bygroups(Keyword, Text), 'export'),
             (r'export\s+', Keyword),
             # assignment
-            (r'([\w${}.-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n)+|.*\n)',
+            (r'([\w${}().-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n)+|.*\n)',
              bygroups(Name.Variable, Text, Operator, Text, using(BashLexer))),
             # strings
             (r'(?s)"(\\\\|\\.|[^"\\])*"', String.Double),
