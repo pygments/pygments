@@ -324,6 +324,7 @@ LEXERS = {
     'QVToLexer': ('pygments.lexers.qvt', 'QVTO', ('qvto', 'qvt'), ('*.qvto',), ()),
     'QmlLexer': ('pygments.lexers.webmisc', 'QML', ('qml', 'qbs'), ('*.qml', '*.qbs'), ('application/x-qml', 'application/x-qt.qbs+qml')),
     'RConsoleLexer': ('pygments.lexers.r', 'RConsole', ('rconsole', 'rout'), ('*.Rout',), ()),
+    'RNCCompactLexer': ('pygments.lexers.rnc', 'Relax-NG Compact', ('rnc', 'rng-compact'), ('*.rnc',), ()),
     'RPMSpecLexer': ('pygments.lexers.installers', 'RPMSpec', ('spec',), ('*.spec',), ('text/x-rpm-spec',)),
     'RacketLexer': ('pygments.lexers.lisp', 'Racket', ('racket', 'rkt'), ('*.rkt', '*.rktd', '*.rktl'), ('text/x-racket', 'application/x-racket')),
     'RagelCLexer': ('pygments.lexers.parsers', 'Ragel in C Host', ('ragel-c',), ('*.rl',), ()),
