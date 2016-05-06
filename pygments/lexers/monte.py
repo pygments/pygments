@@ -117,9 +117,9 @@ class MonteLexer(RegexLexer):
             (words(_keywords, prefix="\\b", suffix="\\b"), token.Keyword),
 
             # Literals
-            ("[+-]?0x[0-9a-fo=A-F]+", token.Number.Hex),
-            (r"[+-]?[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?", token.Number.Float),
-            ("[+-]?[0-9]+", token.Number.Integer),
+            ("[+-]?0x[_0-9a-fA-F]+", token.Number.Hex),
+            (r"[+-]?[_0-9]+\.[_0-9]*([eE][+-]?[_0-9]+)?", token.Number.Float),
+            ("[+-]?[_0-9]+", token.Number.Integer),
             ("'", token.String.Double, "char"),
             ('"', token.String.Double, "string"),
 
