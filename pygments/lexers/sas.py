@@ -195,7 +195,6 @@ class SASLexer(RegexLexer):
             (r'\\\\|\\"|\\\n', String.Escape),
             # AFAIK, macro variables are not evaluated in single quotes
             # (r'&', Name.Variable, 'validvar'),
-            # (r'&', String.Interpol, 'validvar'),
             (r'[^$\'\\]+', String),
             (r'[$\'\\]', String),
         ],
@@ -203,7 +202,6 @@ class SASLexer(RegexLexer):
             (r'"', String, '#pop'),
             (r'\\\\|\\"|\\\n', String.Escape),
             (r'&', Name.Variable, 'validvar'),
-            (r'&', String.Interpol, 'validvar'),
             (r'[^$&"\\]+', String),
             (r'[$"\\]', String),
         ],
