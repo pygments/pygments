@@ -455,8 +455,6 @@ class StataLexer(RegexLexer):
             (r'\\\\|\\"|\\\n', String.Escape),
             (r'\$', Name.Variable.Global, 'var_validglobal'),
             (r'`', Name.Variable, 'var_validlocal'),
-            (r'\$', String.Interpol, 'var_validglobal'),
-            (r'`', String.Interpol, 'var_validlocal'),
             (r'[^$\$`"\\]+', String),
             (r'[$"\\]', String),
         ],
@@ -465,8 +463,6 @@ class StataLexer(RegexLexer):
             (r'\\\\|\\"|\\\n', String.Escape),
             (r'\$', Name.Variable.Global, 'var_validglobal'),
             (r'`', Name.Variable, 'var_validlocal'),
-            (r'\$', String.Interpol, 'var_validglobal'),
-            (r'`', String.Interpol, 'var_validlocal'),
             (r'[^$\$`"\\]+', String),
             (r'[$"\\]', String),
         ],
@@ -487,7 +483,8 @@ class StataLexer(RegexLexer):
         'keywords': [
             (words(builtins_functions, prefix = r'\b', suffix = r'\('),
              Name.Function),
-            (words(builtins_base, prefix = r'\b', suffix = r'\b'), Keyword),
+            (words(builtins_base, prefix = r'(^\s*|\s)', suffix = r'\b'),
+             Keyword),
         ],
         # http://www.stata.com/help.cgi?operators
         # 'operators': [
