@@ -11,15 +11,17 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, combined, \
-    do_insertions, words
+from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
+    words, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
 from pygments.util import shebang_matches, unirange
 
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer']
 
-line_re = re.compile('.*?\n')
+allowed_variable = (
+    ur'(?:[a-zA-Z_\u00A1-\uffff]|%s)(?:[a-zA-Z_0-9\u00A1-\uffff]|%s)*!*' %
+    ((unirange(0x10000, 0x10ffff),) * 2))
 
 
 class JuliaLexer(RegexLexer):
@@ -28,6 +30,7 @@ class JuliaLexer(RegexLexer):
 
     .. versionadded:: 1.6
     """
+
     name = 'Julia'
     aliases = ['julia', 'jl']
     filenames = ['*.jl']
@@ -35,59 +38,148 @@ class JuliaLexer(RegexLexer):
 
     flags = re.MULTILINE | re.UNICODE
 
-    builtins = (
-        'exit', 'whos', 'edit', 'load', 'is', 'isa', 'isequal', 'typeof', 'tuple',
-        'ntuple', 'uid', 'hash', 'finalizer', 'convert', 'promote', 'subtype',
-        'typemin', 'typemax', 'realmin', 'realmax', 'sizeof', 'eps', 'promote_type',
-        'method_exists', 'applicable', 'invoke', 'dlopen', 'dlsym', 'system',
-        'error', 'throw', 'assert', 'new', 'Inf', 'Nan', 'pi', 'im',
-    )
-
-    keywords = (
-        'begin', 'while', 'for', 'in', 'return', 'break', 'continue',
-        'macro', 'quote', 'let', 'if', 'elseif', 'else', 'try', 'catch', 'end',
-        'bitstype', 'ccall', 'do', 'using', 'module', 'import', 'export',
-        'importall', 'baremodule', 'immutable',
-    )
-
-    types = (
-        'Bool', 'Int', 'Int8', 'Int16', 'Int32', 'Int64', 'Uint', 'Uint8', 'Uint16',
-        'Uint32', 'Uint64', 'Float32', 'Float64', 'Complex64', 'Complex128', 'Any',
-        'Nothing', 'None',
-    )
-
     tokens = {
         'root': [
             (r'\n', Text),
             (r'[^\S\n]+', Text),
             (r'#=', Comment.Multiline, "blockcomment"),
             (r'#.*$', Comment),
-            (r'[\[\]{}:(),;@]', Punctuation),
-            (r'\\\n', Text),
-            (r'\\', Text),
+            (r'[\[\]{}(),;]', Punctuation),
 
             # keywords
+            (r'in\b', Keyword.Pseudo),
+            (r'(true|false)\b', Keyword.Constant),
             (r'(local|global|const)\b', Keyword.Declaration),
-            (words(keywords, suffix=r'\b'), Keyword),
-            (words(types, suffix=r'\b'), Keyword.Type),
+            (words([
+                'function', 'type', 'typealias', 'abstract', 'immutable',
+                'baremodule', 'begin', 'bitstype', 'break', 'catch', 'ccall',
+                'continue', 'do', 'else', 'elseif', 'end', 'export', 'finally',
+                'for', 'if', 'import', 'importall', 'let', 'macro', 'module',
+                'quote', 'return', 'try', 'using', 'while'],
+                suffix=r'\b'), Keyword),
 
+            # NOTE
+            # Patterns below work only for definition sites and thus hardly reliable.
+            #
             # functions
-            (r'(function)((?:\s|\\\s)+)',
-             bygroups(Keyword, Name.Function), 'funcname'),
-
+            # (r'(function)(\s+)(' + allowed_variable + ')',
+            #  bygroups(Keyword, Text, Name.Function)),
+            #
             # types
-            (r'(type|typealias|abstract|immutable)((?:\s|\\\s)+)',
-             bygroups(Keyword, Name.Class), 'typename'),
+            # (r'(type|typealias|abstract|immutable)(\s+)(' + allowed_variable + ')',
+            #  bygroups(Keyword, Text, Name.Class)),
 
-            # operators
-            (r'==|!=|<=|>=|->|&&|\|\||::|<:|[-~+/*%=<>&^|.?!$]', Operator),
-            (r'\.\*|\.\^|\.\\|\.\/|\\', Operator),
+            # type names
+            (words([
+                'ANY', 'ASCIIString', 'AbstractArray', 'AbstractChannel',
+                'AbstractFloat', 'AbstractMatrix', 'AbstractRNG',
+                'AbstractSparseArray', 'AbstractSparseMatrix',
+                'AbstractSparseVector', 'AbstractString', 'AbstractVecOrMat',
+                'AbstractVector', 'Any', 'ArgumentError', 'Array',
+                'AssertionError', 'Associative', 'Base64DecodePipe',
+                'Base64EncodePipe', 'Bidiagonal', 'BigFloat', 'BigInt',
+                'BitArray', 'BitMatrix', 'BitVector', 'Bool', 'BoundsError',
+                'Box', 'BufferStream', 'CapturedException', 'CartesianIndex',
+                'CartesianRange', 'Cchar', 'Cdouble', 'Cfloat', 'Channel',
+                'Char', 'Cint', 'Cintmax_t', 'Clong', 'Clonglong',
+                'ClusterManager', 'Cmd', 'Coff_t', 'Colon', 'Complex',
+                'Complex128', 'Complex32', 'Complex64', 'CompositeException',
+                'Condition', 'Cptrdiff_t', 'Cshort', 'Csize_t', 'Cssize_t',
+                'Cstring', 'Cuchar', 'Cuint', 'Cuintmax_t', 'Culong',
+                'Culonglong', 'Cushort', 'Cwchar_t', 'Cwstring', 'DataType',
+                'Date', 'DateTime', 'DenseArray', 'DenseMatrix',
+                'DenseVecOrMat', 'DenseVector', 'Diagonal', 'Dict',
+                'DimensionMismatch', 'Dims', 'DirectIndexString', 'Display',
+                'DivideError', 'DomainError', 'EOFError', 'EachLine', 'Enum',
+                'Enumerate', 'ErrorException', 'Exception', 'Expr',
+                'Factorization', 'FileMonitor', 'FileOffset', 'Filter',
+                'Float16', 'Float32', 'Float64', 'FloatRange', 'Function',
+                'GenSym', 'GlobalRef', 'GotoNode', 'HTML', 'Hermitian', 'IO',
+                'IOBuffer', 'IOStream', 'IPv4', 'IPv6', 'InexactError',
+                'InitError', 'Int', 'Int128', 'Int16', 'Int32', 'Int64', 'Int8',
+                'IntSet', 'Integer', 'InterruptException', 'IntrinsicFunction',
+                'InvalidStateException', 'Irrational', 'KeyError', 'LabelNode',
+                'LambdaStaticData', 'LinSpace', 'LineNumberNode', 'LoadError',
+                'LocalProcess', 'LowerTriangular', 'MIME', 'Matrix',
+                'MersenneTwister', 'Method', 'MethodError', 'MethodTable',
+                'Module', 'NTuple', 'NewvarNode', 'NullException', 'Nullable',
+                'Number', 'ObjectIdDict', 'OrdinalRange', 'OutOfMemoryError',
+                'OverflowError', 'Pair', 'ParseError', 'PartialQuickSort',
+                'Pipe', 'PollingFileWatcher', 'ProcessExitedException',
+                'ProcessGroup', 'Ptr', 'QuoteNode', 'RandomDevice', 'Range',
+                'Rational', 'RawFD', 'ReadOnlyMemoryError', 'Real',
+                'ReentrantLock', 'Ref', 'Regex', 'RegexMatch',
+                'RemoteException', 'RemoteRef', 'RepString', 'RevString',
+                'RopeString', 'RoundingMode', 'SegmentationFault',
+                'SerializationState', 'Set', 'SharedArray', 'SharedMatrix',
+                'SharedVector', 'Signed', 'SimpleVector', 'SparseMatrixCSC',
+                'StackOverflowError', 'StatStruct', 'StepRange', 'StridedArray',
+                'StridedMatrix', 'StridedVecOrMat', 'StridedVector', 'SubArray',
+                'SubString', 'SymTridiagonal', 'Symbol', 'SymbolNode',
+                'Symmetric', 'SystemError', 'TCPSocket', 'Task', 'Text',
+                'TextDisplay', 'Timer', 'TopNode', 'Tridiagonal', 'Tuple',
+                'Type', 'TypeConstructor', 'TypeError', 'TypeName', 'TypeVar',
+                'UDPSocket', 'UInt', 'UInt128', 'UInt16', 'UInt32', 'UInt64',
+                'UInt8', 'UTF16String', 'UTF32String', 'UTF8String',
+                'UndefRefError', 'UndefVarError', 'UnicodeError', 'UniformScaling',
+                'Union', 'UnitRange', 'Unsigned', 'UpperTriangular', 'Val',
+                'Vararg', 'VecOrMat', 'Vector', 'VersionNumber', 'Void', 'WString',
+                'WeakKeyDict', 'WeakRef', 'WorkerConfig', 'Zip'], suffix=r'\b'),
+                Keyword.Type),
 
             # builtins
-            (words(builtins, suffix=r'\b'), Name.Builtin),
+            (words([
+                'ARGS', 'CPU_CORES', 'C_NULL', 'DevNull', 'ENDIAN_BOM', 'ENV',
+                'I', 'Inf', 'Inf16', 'Inf32', 'Inf64', 'InsertionSort',
+                'JULIA_HOME', 'LOAD_PATH', 'MergeSort', 'NaN', 'NaN16', 'NaN32',
+                'NaN64', 'OS_NAME', 'QuickSort', 'RoundDown', 'RoundFromZero',
+                'RoundNearest', 'RoundNearestTiesAway', 'RoundNearestTiesUp',
+                'RoundToZero', 'RoundUp', 'STDERR', 'STDIN', 'STDOUT',
+                'VERSION', 'WORD_SIZE', 'catalan', 'e', 'eu', 'eulergamma',
+                'golden', 'im', 'nothing', 'pi', 'γ', 'π', 'φ'],
+                suffix=r'\b'), Name.Builtin),
 
-            # backticks
-            (r'`(?s).*?`', String.Backtick),
+            # operators
+            # see: https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm
+            (words([
+                # prec-assignment
+                '=', ':=', '+=', '-=', '*=', '/=', '//=', './/=', '.*=', './=',
+                '\=', '.\=', '^=', '.^=', '÷=', '.÷=', '%=', '.%=', '|=', '&=',
+                '$=', '=>', '<<=', '>>=', '>>>=', '~', '.+=', '.-=',
+                # prec-conditional
+                '?',
+                # prec-arrow
+                '--', '-->',
+                # prec-lazy-or
+                '||',
+                # prec-lazy-and
+                '&&',
+                # prec-comparison
+                '>', '<', '>=', '≥', '<=', '≤', '==', '===', '≡', '!=', '≠',
+                '!==', '≢', '.>', '.<', '.>=', '.≥', '.<=', '.≤', '.==', '.!=',
+                '.≠', '.=', '.!', '<:', '>:', '∈', '∉', '∋', '∌', '⊆', '⊈', '⊂',
+                '⊄', '⊊',
+                # prec-pipe
+                '|>', '<|',
+                # prec-colon
+                ':',
+                # prec-plus
+                '+', '-', '.+', '.-', '|', '∪', '$',
+                # prec-bitshift
+                '<<', '>>', '>>>', '.<<', '.>>', '.>>>',
+                # prec-times
+                '*', '/', './', '÷', '.÷', '%', '⋅', '.%', '.*', '\\', '.\\', '&', '∩',
+                # prec-rational
+                '//', './/',
+                # prec-power
+                '^', '.^',
+                # prec-decl
+                '::',
+                # prec-dot
+                '.',
+                # unary op
+                '+', '-', '!', '~', '√', '∛', '∜'
+            ]), Operator),
 
             # chars
             (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|"
@@ -97,13 +189,19 @@ class JuliaLexer(RegexLexer):
             (r'(?<=[.\w)\]])\'+', Operator),
 
             # strings
-            (r'(?:[IL])"', String, 'string'),
-            (r'[E]?"', String, combined('stringescape', 'string')),
+            (r'"""', String, 'tqstring'),
+            (r'"', String, 'string'),
+
+            # regular expressions
+            (r'r"""', String.Regex, 'tqregex'),
+            (r'r"', String.Regex, 'regex'),
+
+            # backticks
+            (r'`', String.Backtick, 'command'),
 
             # names
-            (r'@[\w.]+', Name.Decorator),
-            (u'(?:[a-zA-Z_\u00A1-\uffff]|%s)(?:[a-zA-Z_0-9\u00A1-\uffff]|%s)*!*' %
-             ((unirange(0x10000, 0x10ffff),)*2), Name),
+            (allowed_variable, Name),
+            (r'@' + allowed_variable, Name.Decorator),
 
             # numbers
             (r'(\d+(_\d+)+\.\d*|\d*\.\d+(_\d+)+)([eEf][+-]?[0-9]+)?', Number.Float),
@@ -120,45 +218,59 @@ class JuliaLexer(RegexLexer):
             (r'\d+', Number.Integer)
         ],
 
-        'funcname': [
-            ('[a-zA-Z_]\w*', Name.Function, '#pop'),
-            ('\([^\s\w{]{1,2}\)', Operator, '#pop'),
-            ('[^\s\w{]{1,2}', Operator, '#pop'),
-        ],
-
-        'typename': [
-            ('[a-zA-Z_]\w*', Name.Class, '#pop'),
-        ],
-
-        'stringescape': [
-            (r'\\([\\abfnrtv"\']|\n|N\{.*?\}|u[a-fA-F0-9]{4}|'
-             r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape),
-        ],
         "blockcomment": [
             (r'[^=#]', Comment.Multiline),
             (r'#=', Comment.Multiline, '#push'),
             (r'=#', Comment.Multiline, '#pop'),
             (r'[=#]', Comment.Multiline),
         ],
+
         'string': [
             (r'"', String, '#pop'),
-            (r'\\\\|\\"|\\\n', String.Escape),  # included here for raw strings
+            # FIXME: This escape pattern is not perfect.
+            (r'\\([\\"\'\$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
             # Interpolation is defined as "$" followed by the shortest full
             # expression, which is something we can't parse.
             # Include the most common cases here: $word, and $(paren'd expr).
-            (r'\$[a-zA-Z_]+', String.Interpol),
-            (r'\$\(', String.Interpol, 'in-intp'),
+            (r'\$' + allowed_variable, String.Interpol),
+            # (r'\$[a-zA-Z_]+', String.Interpol),
+            (r'(\$)(\()', bygroups(String.Interpol, Punctuation), 'in-intp'),
             # @printf and @sprintf formats
             (r'%[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?[hlL]?[E-GXc-giorsux%]',
              String.Interpol),
-            (r'[^$%"\\]+', String),
-            # unhandled special signs
-            (r'[$%"\\]', String),
+            (r'.|\s', String),
         ],
+
+        'tqstring': [
+            (r'"""', String, '#pop'),
+            (r'\\([\\"\'\$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
+            (r'\$' + allowed_variable, String.Interpol),
+            (r'(\$)(\()', bygroups(String.Interpol, Punctuation), 'in-intp'),
+            (r'.|\s', String),
+        ],
+
+        'regex': [
+            (r'"', String.Regex, '#pop'),
+            (r'\\"', String.Regex),
+            (r'.|\s', String.Regex),
+        ],
+
+        'tqregex': [
+            (r'"""', String.Regex, '#pop'),
+            (r'.|\s', String.Regex),
+        ],
+
+        'command': [
+            (r'`', String.Backtick, '#pop'),
+            (r'\$' + allowed_variable, String.Interpol),
+            (r'(\$)(\()', bygroups(String.Interpol, Punctuation), 'in-intp'),
+            (r'.|\s', String.Backtick)
+        ],
+
         'in-intp': [
-            (r'[^()]+', String.Interpol),
-            (r'\(', String.Interpol, '#push'),
-            (r'\)', String.Interpol, '#pop'),
+            (r'\(', Punctuation, '#push'),
+            (r'\)', Punctuation, '#pop'),
+            include('root'),
         ]
     }
 
@@ -177,27 +289,26 @@ class JuliaConsoleLexer(Lexer):
 
     def get_tokens_unprocessed(self, text):
         jllexer = JuliaLexer(**self.options)
-
+        start = 0
         curcode = ''
         insertions = []
+        output = False
+        error = False
 
-        for match in line_re.finditer(text):
-            line = match.group()
-
+        for line in text.splitlines(True):
             if line.startswith('julia>'):
-                insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, line[:6])]))
+                insertions.append((len(curcode), [(0, Generic.Prompt, line[:6])]))
                 curcode += line[6:]
-
-            elif line.startswith('      '):
-
-                idx = len(curcode)
-
-                # without is showing error on same line as before...?
-                line = "\n" + line
-                token = (0, Generic.Traceback, line)
-                insertions.append((idx, [token]))
-
+                output = False
+                error = False
+            elif line.startswith('help?>') or line.startswith('shell>'):
+                yield start, Generic.Prompt, line[:6]
+                yield start + 6, Text, line[6:]
+                output = False
+                error = False
+            elif line.startswith('      ') and not output:
+                insertions.append((len(curcode), [(0, Text, line[:6])]))
+                curcode += line[6:]
             else:
                 if curcode:
                     for item in do_insertions(
@@ -205,10 +316,15 @@ class JuliaConsoleLexer(Lexer):
                         yield item
                     curcode = ''
                     insertions = []
+                if line.startswith('ERROR: ') or error:
+                    yield start, Generic.Error, line
+                    error = True
+                else:
+                    yield start, Generic.Output, line
+                output = True
+            start += len(line)
 
-                yield match.start(), Generic.Output, line
-
-        if curcode:  # or item:
+        if curcode:
             for item in do_insertions(
                     insertions, jllexer.get_tokens_unprocessed(curcode)):
                 yield item
