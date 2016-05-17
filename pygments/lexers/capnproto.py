@@ -32,27 +32,26 @@ class CapnProtoLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\bstruct\b', Keyword.Declaration),
-            (words(('union', 'enum', 'const', 'interface', 'annotation'),
+            (r'\s+', Text),
+            (words(('struct', 'union', 'enum', 'const', 'interface', 'annotation'),
                 suffix=r'\b'),
-                Keyword),
+                Keyword.Declaration),
             (r'(using|import)\b', Keyword.Namespace),
-            (r':(Void|Bool|U?Int(8|16|32|64)|Float(32|64)|Text|Data|'\
-                    'List\(\s*[.a-zA-Z0-9()]*\s*\)|AnyPointer|Capability|'\
-                    'union|group)',
-                Keyword.Type),
+            (r':(Void|Bool|U?Int(8|16|32|64)|Float(32|64)|Text|Data|'
+             r'List\(\s*[.a-zA-Z0-9()]*\s*\)|AnyPointer|Capability|'
+             r'union|group)', Keyword.Type),
             (r':[.a-zA-Z0-9()]+', Name),
             (r'\b(true|false|void)\b', Keyword.Constant),
-            (r'@(0x[a-fA-F0-9]+|\d+)', Keyword),
+            (r'@(0x[a-fA-F0-9]+|\d+)', Keyword.Constant),
             (r'0x[a-fA-F0-9]+', Number.Hex),
             (r'\d+\.\d+', Number.Float),
             (r'\d+', Number.Integer),
             (r'"', String, 'string'),
             (r'0x"[^"]+"', String),
             (r'#.*$', Comment),
+            (r'[A-Z]\w*', Name.Class),
             (r'\w+', Name),
             (r'[{}()\[\],.;=$]', Punctuation),
-            (r'\s+', Text),
         ],
         'string': [
             (r'"', String, '#pop'),
