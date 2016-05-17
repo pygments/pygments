@@ -32,23 +32,23 @@ class CapnProtoLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\b(struct)\b(?:([A-Za-z]+))?', bygroups(Keyword.Declaration,
-                Name)),
+            (r'\bstruct\b', Keyword.Declaration),
             (words(('union', 'enum', 'const', 'interface', 'annotation'),
                 suffix=r'\b'),
                 Keyword),
             (r'(using|import)\b', Keyword.Namespace),
             (r':(Void|Bool|U?Int(8|16|32|64)|Float(32|64)|Text|Data|'\
-                    'List\([.a-zA-Z0-9()]*\)|AnyPointer|Capability|'\
+                    'List\(\s*[.a-zA-Z0-9()]*\s*\)|AnyPointer|Capability|'\
                     'union|group)',
                 Keyword.Type),
             (r':[.a-zA-Z0-9()]+', Name),
             (r'\b(true|false|void)\b', Keyword.Constant),
             (r'@(0x[a-fA-F0-9]+|\d+)', Keyword),
-            (r'0x\h+', Number.Hex),
+            (r'0x[a-fA-F0-9]+', Number.Hex),
             (r'\d+\.\d+', Number.Float),
             (r'\d+', Number.Integer),
             (r'"', String, 'string'),
+            (r'0x"[^"]+"', String),
             (r'#.*$', Comment),
             (r'\w+', Name),
             (r'[{}()\[\],.;=$]', Punctuation),
