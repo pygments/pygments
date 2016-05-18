@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+    Number, Punctuation, Literal
 
 __all__ = ['CapnProtoLexer']
 
@@ -30,36 +30,50 @@ class CapnProtoLexer(RegexLexer):
 
     flags = re.MULTILINE | re.UNICODE
 
+
     tokens = {
         'root': [
-            (r'(\s|\ufeff)+', Text),
-            (r'(struct|union|enum|const|interface|annotation)(\s+)([A-Z]\w*)',
-                bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(using|import)\b', Keyword.Namespace),
-            (r':(Void|Bool|U?Int(8|16|32|64)|Float(32|64)|Text|Data|'
-             r'List|AnyPointer|Capability|'
-             r'union|group)', Keyword.Type),
-            (r':[.a-zA-Z0-9]+', Name),
-            (r'\b(true|false|void)\b', Keyword.Constant),
-            (r'@(0x[a-fA-F0-9]+|\d+)', Keyword.Constant),
-            (r'0x"[^"]+"', String),
-            (r'0x[a-fA-F0-9]+', Number.Hex),
-            (r'\d+\.\d*([eE][+-]?\d+)?', Number.Float),
-            (r'\d+([eE][+-]?\d+)?', Number.Float),
-            (r'\d+', Number.Integer),
-            (r'"', String, 'string'),
-            (r'#.*$', Comment),
-            (r'\w+', Name),
-            (r'[!$%&*+-./<=>?@^|~]+', Operator),
-            (r'[{}()\[\],;]', Punctuation),
+            (r'#.*?$', Comment.Single),
+            (r'@[0-9a-zA-Z]*', Name.Decorator),
+            (r'=', Literal, 'expression'),
+            (r':', Name.Class, 'type'),
+            (r'\$', Name.Attribute, 'annotation'),
+            (r'(struct|enum|interface|union|import|using|const|annotation|extends|in|of|on|as|with|from|fixed)\b',
+                Keyword),
+            (r'[a-zA-Z0-9_.]+', Name),
+            (r'[^#@=:$a-zA-Z0-9_]+', Text),
         ],
-        'string': [
-            (r'"', String, '#pop'),
-            (r'[^\\"]+', String),
-            (r'\\[abfnrtv\'"\\]', String.Escape),
-            # hex
-            (r'\\x[a-fA-F0-9]{2}', String.Escape),
-            # octal
-            (r'\\[0-7]{3}', String.Escape),
+        'type': [
+            (r'[^][=;,(){}$]+', Name.Class),
+            (r'[[(]', Name.Class, 'parentype'),
+            (r'', Name.Class, '#pop')
+        ],
+        'parentype': [
+            (r'[^][;()]+', Name.Class),
+            (r'[[(]', Name.Class, '#push'),
+            (r'[])]', Name.Class, '#pop'),
+            (r'', Name.Class, '#pop')
+        ],
+        'expression': [
+            (r'[^][;,(){}$]+', Literal),
+            (r'[[(]', Literal, 'parenexp'),
+            (r'', Literal, '#pop')
+        ],
+        'parenexp': [
+            (r'[^][;()]+', Literal),
+            (r'[[(]', Literal, '#push'),
+            (r'[])]', Literal, '#pop'),
+            (r'', Literal, '#pop')
+        ],
+        'annotation': [
+            (r'[^][;,(){}=:]+', Name.Attribute),
+            (r'[[(]', Name.Attribute, 'annexp'),
+            (r'', Name.Attribute, '#pop')
+        ],
+        'annexp': [
+            (r'[^][;()]+', Name.Attribute),
+            (r'[[(]', Name.Attribute, '#push'),
+            (r'[])]', Name.Attribute, '#pop'),
+            (r'', Name.Attribute, '#pop')
         ],
     }
