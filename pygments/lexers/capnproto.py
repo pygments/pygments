@@ -32,30 +32,34 @@ class CapnProtoLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
-            (words(('struct', 'union', 'enum', 'const', 'interface', 'annotation'),
-                suffix=r'\b'),
-                Keyword.Declaration),
+            (r'(\s|\ufeff)+', Text),
+            (r'(struct|union|enum|const|interface|annotation)(\s+)([A-Z]\w*)',
+                bygroups(Keyword.Declaration, Text, Name.Class)),
             (r'(using|import)\b', Keyword.Namespace),
             (r':(Void|Bool|U?Int(8|16|32|64)|Float(32|64)|Text|Data|'
-             r'List\(\s*[.a-zA-Z0-9()]*\s*\)|AnyPointer|Capability|'
+             r'List|AnyPointer|Capability|'
              r'union|group)', Keyword.Type),
-            (r':[.a-zA-Z0-9()]+', Name),
+            (r':[.a-zA-Z0-9]+', Name),
             (r'\b(true|false|void)\b', Keyword.Constant),
             (r'@(0x[a-fA-F0-9]+|\d+)', Keyword.Constant),
             (r'0x"[^"]+"', String),
             (r'0x[a-fA-F0-9]+', Number.Hex),
-            (r'\d+(\.\d*)?([eE][+-]?\d+)?', Number.Float),
+            (r'\d+\.\d*([eE][+-]?\d+)?', Number.Float),
+            (r'\d+([eE][+-]?\d+)?', Number.Float),
             (r'\d+', Number.Integer),
             (r'"', String, 'string'),
             (r'#.*$', Comment),
-            (r'[A-Z]\w*', Name.Class),
             (r'\w+', Name),
-            (r'[{}()\[\],.;=$]', Punctuation),
+            (r'[!$%&*+-./<=>?@^|~]+', Operator),
+            (r'[{}()\[\],;]', Punctuation),
         ],
         'string': [
             (r'"', String, '#pop'),
             (r'[^\\"]+', String),
-            (r'\\"', String.Escape),
+            (r'\\[abfnrtv\'"\\]', String.Escape),
+            # hex
+            (r'\\x[a-fA-F0-9]{2}', String.Escape),
+            # octal
+            (r'\\[0-7]{3}', String.Escape),
         ],
     }
