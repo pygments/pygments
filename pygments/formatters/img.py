@@ -119,11 +119,11 @@ class FontManager(object):
                     self.fonts[style] = self.fonts['NORMAL']
 
     def _get_mac_font_path(self, font_map, name, style):
-        return font_map.get(' '.join([name, style]).strip().lower())
+        return font_map.get(' '.join((name, style)).strip().lower())
 
     def _create_mac(self):
         font_map = {}
-        for font_dir in ('{}/Library/Fonts/'.format(getenv("HOME")), '/Library/Fonts/', '/System/Library/Fonts/'):
+        for font_dir in (join(getenv("HOME"), 'Library/Fonts/'), '/Library/Fonts/', '/System/Library/Fonts/'):
             font_map.update(
                 ((splitext(f)[0].lower(), join(font_dir, f))
                     for f in listdir(font_dir) if f.lower().endswith('ttf')))
