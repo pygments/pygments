@@ -772,6 +772,8 @@ class FlatlineLexer(RegexLexer):
 class SnowballLexer(ExtendedRegexLexer):
     """
     Lexer for `Snowball <http://snowballstem.org/>`_ source code.
+
+    .. versionadded:: 2.2
     """
 
     name = 'Snowball'
