@@ -247,10 +247,10 @@ class YamlLexer(ExtendedRegexLexer):
         # tags, anchors, aliases
         'descriptors': [
             # a full-form tag
-            (r'!<[\w;/?:@&=+$,.!~*\'()\[\]%-]+>', Keyword.Type),
+            (r'!<[\w#;/?:@&=+$,.!~*\'()\[\]%-]+>', Keyword.Type),
             # a tag in the form '!', '!suffix' or '!handle!suffix'
-            (r'!(?:[\w-]+)?'
-             r'(?:![\w;/?:@&=+$,.!~*\'()\[\]%-]+)?', Keyword.Type),
+            (r'!(?:[\w-]+!)?'
+             r'[\w#;/?:@&=+$,.!~*\'()\[\]%-]+', Keyword.Type),
             # an anchor
             (r'&[\w-]+', Name.Label),
             # an alias
