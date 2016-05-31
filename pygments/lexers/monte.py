@@ -12,19 +12,22 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments import token
+from pygments.token import Comment, Error, Keyword, Name, Number, Operator, \
+    Punctuation, String, Whitespace
 from pygments.lexer import RegexLexer, include, words
+
+__all__ = ['MonteLexer']
 
 
 # `var` handled separately
 # `interface` handled separately
-_declarations = ["bind", "def", "fn", "object"]
-_methods = ["method", "to"]
+_declarations = ['bind', 'def', 'fn', 'object']
+_methods = ['method', 'to']
 _keywords = [
-    "as", "break", "catch", "continue", "else", "escape", "exit", "exports",
-    "extends", "finally", "for", "guards", "if", "implements", "import",
-    "in", "match", "meta", "pass", "return", "switch", "try", "via", "when",
-    "while",
+    'as', 'break', 'catch', 'continue', 'else', 'escape', 'exit', 'exports',
+    'extends', 'finally', 'for', 'guards', 'if', 'implements', 'import',
+    'in', 'match', 'meta', 'pass', 'return', 'switch', 'try', 'via', 'when',
+    'while',
 ]
 _operators = [
     # Unary
@@ -41,170 +44,168 @@ _operators = [
     '.', '<-', '->',
 ]
 _escape_chars = [
-    (r'\\x[0-9a-fA-F]{2}', token.String.Escape),
-    (r'\\u[0-9a-fA-F]{4}', token.String.Escape),
-    (r'\\U[0-9a-fA-F]{8}', token.String.Escape),
-    (r'\\"', token.String.Escape),
-    (r"\\'", token.String.Escape),
-    (r"\\\\", token.String.Escape),
-    (r"\\b", token.String.Escape),
-    (r"\\f", token.String.Escape),
-    (r"\\t", token.String.Escape),
-    (r"\\n", token.String.Escape),
-    (r"\\r", token.String.Escape),
+    (r'\\x[0-9a-fA-F]{2}', String.Escape),
+    (r'\\u[0-9a-fA-F]{4}', String.Escape),
+    (r'\\U[0-9a-fA-F]{8}', String.Escape),
+    (r'\\"', String.Escape),
+    (r"\\'", String.Escape),
+    (r'\\\\', String.Escape),
+    (r'\\b', String.Escape),
+    (r'\\f', String.Escape),
+    (r'\\t', String.Escape),
+    (r'\\n', String.Escape),
+    (r'\\r', String.Escape),
 ]
-_char = _escape_chars + [('.', token.String.Char)]
-_identifier = "[_a-zA-Z][_0-9a-zA-Z]*"
+_char = _escape_chars + [('.', String.Char)]
+_identifier = '[_a-zA-Z][_0-9a-zA-Z]*'
 
 _constants = [
     # Void constants
-    "null",
+    'null',
     # Bool constants
-    "false", "true",
+    'false', 'true',
     # Double constants
-    "Infinity", "NaN",
+    'Infinity', 'NaN',
     # Special objects
-    "M", "Ref", "throw", "traceln",
+    'M', 'Ref', 'throw', 'traceln',
 ]
 
 _guards = [
-    "Any", "Binding", "Bool", "Bytes", "Char", "DeepFrozen", "Double",
-    "Empty", "Int", "List", "Map", "Near", "NullOk", "Same", "Selfless",
-    "Set", "Str", "SubrangeGuard", "Transparent", "Void",
+    'Any', 'Binding', 'Bool', 'Bytes', 'Char', 'DeepFrozen', 'Double',
+    'Empty', 'Int', 'List', 'Map', 'Near', 'NullOk', 'Same', 'Selfless',
+    'Set', 'Str', 'SubrangeGuard', 'Transparent', 'Void',
 ]
 
 _safeScope = [
-    "_accumulateList", "_accumulateMap", "_auditedBy", "_bind",
-    "_booleanFlow", "_comparer", "_equalizer", "_iterForever", "_loop",
-    "_makeBytes", "_makeDouble", "_makeFinalSlot", "_makeInt", "_makeList",
-    "_makeMap", "_makeMessageDesc", "_makeOrderedSpace", "_makeParamDesc",
-    "_makeProtocolDesc", "_makeSourceSpan", "_makeString", "_makeVarSlot",
-    "_makeVerbFacet", "_mapExtract", "_matchSame", "_quasiMatcher",
-    "_slotToBinding", "_splitList", "_suchThat", "_switchFailed",
-    "_validateFor", "b__quasiParser", "eval", "import", "m__quasiParser",
-    "makeBrandPair", "makeLazySlot", "safeScope", "simple__quasiParser",
+    '_accumulateList', '_accumulateMap', '_auditedBy', '_bind',
+    '_booleanFlow', '_comparer', '_equalizer', '_iterForever', '_loop',
+    '_makeBytes', '_makeDouble', '_makeFinalSlot', '_makeInt', '_makeList',
+    '_makeMap', '_makeMessageDesc', '_makeOrderedSpace', '_makeParamDesc',
+    '_makeProtocolDesc', '_makeSourceSpan', '_makeString', '_makeVarSlot',
+    '_makeVerbFacet', '_mapExtract', '_matchSame', '_quasiMatcher',
+    '_slotToBinding', '_splitList', '_suchThat', '_switchFailed',
+    '_validateFor', 'b__quasiParser', 'eval', 'import', 'm__quasiParser',
+    'makeBrandPair', 'makeLazySlot', 'safeScope', 'simple__quasiParser',
 ]
 
 class MonteLexer(RegexLexer):
-    name = "Monte"
-    aliases = ["monte"]
-    filenames = ["*.mt"]
+    name = 'Monte'
+    aliases = ['monte']
+    filenames = ['*.mt']
 
     tokens = {
-        "root": [
+        'root': [
             # Comments
-            (r"#[^\n]*\n", token.Comment),
+            (r'#[^\n]*\n', Comment),
 
             # Docstrings
             # Apologies for the non-greedy matcher here.
-            (r"/\*\*.*?\*/", token.String.Doc),
+            (r'/\*\*.*?\*/', String.Doc),
 
             # `var` declarations
-            (r'\bvar\b', token.Keyword.Declaration, "var"),
+            (r'\bvar\b', Keyword.Declaration, 'var'),
 
             # `interface` declarations
-            (r'\binterface\b', token.Keyword.Declaration, "interface"),
+            (r'\binterface\b', Keyword.Declaration, 'interface'),
 
             # method declarations
-            (words(_methods, prefix="\\b", suffix="\\b"),
-                token.Keyword, "method"),
+            (words(_methods, prefix='\\b', suffix='\\b'),
+                Keyword, 'method'),
 
             # All other declarations
-            (words(_declarations, prefix="\\b", suffix="\\b"),
-                token.Keyword.Declaration),
+            (words(_declarations, prefix='\\b', suffix='\\b'),
+                Keyword.Declaration),
 
             # Keywords
-            (words(_keywords, prefix="\\b", suffix="\\b"), token.Keyword),
+            (words(_keywords, prefix='\\b', suffix='\\b'), Keyword),
 
             # Literals
-            ("[+-]?0x[_0-9a-fA-F]+", token.Number.Hex),
-            (r"[+-]?[_0-9]+\.[_0-9]*([eE][+-]?[_0-9]+)?", token.Number.Float),
-            ("[+-]?[_0-9]+", token.Number.Integer),
-            ("'", token.String.Double, "char"),
-            ('"', token.String.Double, "string"),
+            ('[+-]?0x[_0-9a-fA-F]+', Number.Hex),
+            (r'[+-]?[_0-9]+\.[_0-9]*([eE][+-]?[_0-9]+)?', Number.Float),
+            ('[+-]?[_0-9]+', Number.Integer),
+            ("'", String.Double, 'char'),
+            ('"', String.Double, 'string'),
 
             # Quasiliterals
-            ('`', token.String.Backtick, "ql"),
+            ('`', String.Backtick, 'ql'),
 
             # Operators
-            (words(_operators), token.Operator),
+            (words(_operators), Operator),
 
             # Verb operators
-            (_identifier + '=', token.Operator.Word),
+            (_identifier + '=', Operator.Word),
 
             # Safe scope constants
-            (words(_constants, prefix="\\b", suffix="\\b"),
-                token.Keyword.Pseudo),
+            (words(_constants, prefix='\\b', suffix='\\b'),
+                Keyword.Pseudo),
 
             # Safe scope guards
-            (words(_guards, prefix="\\b", suffix="\\b"), token.Keyword.Type),
+            (words(_guards, prefix='\\b', suffix='\\b'), Keyword.Type),
 
             # All other safe scope names
-            (words(_safeScope, prefix="\\b", suffix="\\b"),
-                token.Name.Builtin),
+            (words(_safeScope, prefix='\\b', suffix='\\b'),
+                Name.Builtin),
 
             # Identifiers
-            (_identifier, token.Name),
+            (_identifier, Name),
 
             # Punctuation
-            (r"\(|\)|\{|\}|\[|\]|:|,", token.Punctuation),
+            (r'\(|\)|\{|\}|\[|\]|:|,', Punctuation),
 
             # Whitespace
-            (" +", token.Whitespace),
+            (' +', Whitespace),
 
             # Definite lexer errors
-            ("=", token.Error),
+            ('=', Error),
         ],
-        "char": [
+        'char': [
             # It is definitely an error to have a char of width == 0.
-            ("'", token.Error, "root"),
-        ] + [t + ("charEnd",) for t in _escape_chars] + [
-            (".", token.String.Char, "charEnd"),
+            ("'", Error, 'root'),
+        ] + [t + ('charEnd',) for t in _escape_chars] + [
+            ('.', String.Char, 'charEnd'),
         ],
-        "charEnd": [
-            ("'", token.String.Char, "root"),
+        'charEnd': [
+            ("'", String.Char, 'root'),
             # It is definitely an error to have a char of width > 1.
-            ('.', token.Error),
+            ('.', Error),
         ],
         # The state of things coming into an interface.
-        "interface": [
-            (" +", token.Whitespace),
-            (_identifier, token.Name.Class, "#pop"),
-            include("root"),
+        'interface': [
+            (' +', Whitespace),
+            (_identifier, Name.Class, '#pop'),
+            include('root'),
         ],
         # The state of things coming into a method.
-        "method": [
-            (" +", token.Whitespace),
-            (_identifier, token.Name.Function, "#pop"),
-            include("root"),
+        'method': [
+            (' +', Whitespace),
+            (_identifier, Name.Function, '#pop'),
+            include('root'),
         ],
-        "string": [
-            ('"', token.String.Double, "root"),
+        'string': [
+            ('"', String.Double, 'root'),
         ] + _escape_chars + [
-            ("\n", token.String.Double),
-            (".", token.String.Double),
+            ('\n', String.Double),
+            ('.', String.Double),
         ],
-        "ql": [
-            ('`', token.String.Backtick, "root"),
+        'ql': [
+            ('`', String.Backtick, 'root'),
         ] + [(r'\$' + t[0], t[1]) for t in _escape_chars] + [
-            (r'\$\$', token.String.Escape),
-            (r'@@', token.String.Escape),
-            (r'\$\{', token.String.Interpol, "qlNest"),
-            (r'@\{', token.String.Interpol, "qlNest"),
-            (r'\$' + _identifier, token.Name),
-            ('@' + _identifier, token.Name),
-            ('.', token.String.Backtick),
+            (r'\$\$', String.Escape),
+            (r'@@', String.Escape),
+            (r'\$\{', String.Interpol, 'qlNest'),
+            (r'@\{', String.Interpol, 'qlNest'),
+            (r'\$' + _identifier, Name),
+            ('@' + _identifier, Name),
+            ('.', String.Backtick),
         ],
-        "qlNest": [
-            (r'\}', token.String.Interpol, "#pop"),
-            include("root"),
+        'qlNest': [
+            (r'\}', String.Interpol, '#pop'),
+            include('root'),
         ],
         # The state of things immediately following `var`.
-        "var": [
-            (" +", token.Whitespace),
-            (_identifier, token.Name.Variable, "#pop"),
-            include("root"),
+        'var': [
+            (' +', Whitespace),
+            (_identifier, Name.Variable, '#pop'),
+            include('root'),
         ],
     }
-
-__all__ = "MonteLexer",
