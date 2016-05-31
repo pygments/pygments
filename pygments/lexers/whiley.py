@@ -37,8 +37,8 @@ class WhileyLexer(RegexLexer):
             (r'//.*', Comment.Single),
             # don't parse empty comment as doc comment
             (r'/\*\*/', Comment.Multiline),
-            (r'(?ms)/\*\*.*?\*/', String.Doc),
-            (r'(?ms)/\*.*?\*/', Comment.Multiline),
+            (r'(?s)/\*\*.*?\*/', String.Doc),
+            (r'(?s)/\*.*?\*/', Comment.Multiline),
 
             # Keywords
             (words((
@@ -98,11 +98,11 @@ class WhileyLexer(RegexLexer):
 
             # operators and punctuation
             (r'[{}()\[\],.;]', Punctuation),
-            (r'[+\-*/%&|<>^!~@=:?'
+            (u'[+\\-*/%&|<>^!~@=:?'
             # unicode operators
-             r'\u2200\u2203\u2205\u2282\u2286\u2283\u2287'
-             r'\u222A\u2229\u2264\u2265\u2208\u2227\u2228'
-             r']', Operator),
+             u'\u2200\u2203\u2205\u2282\u2286\u2283\u2287'
+             u'\u222A\u2229\u2264\u2265\u2208\u2227\u2228'
+             u']', Operator),
 
             # identifier
             (r'[a-zA-Z_]\w*', Name),
