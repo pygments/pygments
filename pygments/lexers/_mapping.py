@@ -70,6 +70,7 @@ LEXERS = {
     'CSharpLexer': ('pygments.lexers.dotnet', 'C#', ('csharp', 'c#'), ('*.cs',), ('text/x-csharp',)),
     'Ca65Lexer': ('pygments.lexers.asm', 'ca65 assembler', ('ca65',), ('*.s',), ()),
     'CadlLexer': ('pygments.lexers.archetype', 'cADL', ('cadl',), ('*.cadl',), ()),
+    'CapDLLexer': ('pygments.lexers.esoteric', 'CapDL', ('capdl',), ('*.cdl',), ()),
     'CbmBasicV2Lexer': ('pygments.lexers.basic', 'CBM BASIC V2', ('cbmbas',), ('*.bas',), ()),
     'CeylonLexer': ('pygments.lexers.jvm', 'Ceylon', ('ceylon',), ('*.ceylon',), ('text/x-ceylon',)),
     'Cfengine3Lexer': ('pygments.lexers.configs', 'CFEngine3', ('cfengine3', 'cf3'), ('*.cf',), ()),
