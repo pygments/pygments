@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.smv
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for the SMV languages.
 
@@ -10,8 +10,8 @@
 """
 
 from pygments.lexer import RegexLexer, words
-from pygments.token import Comment, Generic, Keyword, Name, Number, Operator, \
-        Punctuation, Text
+from pygments.token import Comment, Generic, Keyword, Name, Number, \
+    Operator, Punctuation, Text
 
 __all__ = ['NuSMVLexer']
 
