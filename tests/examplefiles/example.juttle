@@ -1,0 +1,110 @@
+/* Block comment */
+/*
+    Multiline block
+    comment
+*/
+
+// inline comment
+function juttleFunction(arg) {
+    if (arg == null) {
+        return null;
+    }
+    else if (arg == 0) {
+        return 'zero';
+    }
+    else if (arg == 1) {
+        return "one";
+    }
+    else {
+        return 1.1;
+    }
+}
+
+reducer juttleReducer(field) {
+    var x = 0;
+    function update() {
+        x = *field;
+    }
+
+    function result() {
+        return x;
+    }
+}
+
+sub myemit(limit) {
+    emit -limit limit
+}
+
+input test: text -default 'input';
+const object = {
+    xyz: 123,
+    name: 'something'
+};
+
+const array = [
+    :2016-01-01:,
+    :2016-01-01T01:00:00:,
+    :2016-01-01T01:00:00.000:,
+    :2016-01-01T01:00:00.000Z:,
+    :2016-01-01T01:00:00.000-0800:,
+    :2016-01-01T01:00:00.000-08:00:,
+    :00:00:01:,
+    :00:00:00.001:,
+    :now:,
+    :beginning:,
+    :end:,
+    :forever:,
+    :yesterday:,
+    :today:,
+    :tomorrow:,
+    :1:,
+    :1.1:,
+    :1s:,
+    :1 second:,
+    :1 seconds:,
+    :100ms:,
+    :100 millisecond:,
+    :100 milliseconds:,
+    :1d:,
+    :1 day:,
+    :1 days:,
+    :.2h:,
+    :1.2h:,
+    :.2 hour:,
+    :1.2 hours:,
+    :.5d:,
+    :1.5d:,
+    :.5 day:,
+    :1.5 days:,
+    :5m:,
+    :5 minutes:,
+    :10w:,
+    :10 weeks:,
+    :10M:,
+    :10 months:,
+    :100y:,
+    :100 years:,
+    :1 year and 2 months and 2 days:
+];
+
+emit
+  | batch :10 minutes:
+  | filter x=true
+  | head 1
+  | join
+  | keep x
+  | pace -every :1 minute:
+  | pass
+  | put y=false
+  | remove z
+  | sequence
+  | skip 1
+  | sort field -desc
+  | split field
+  | tail 10
+  | unbatch
+  | uniq field
+;
+
+read adapter -last :day: 'search' AND field~/pattern/ OR field == 'string'
+  | write adapter

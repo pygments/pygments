@@ -66,8 +66,8 @@ if [[ "$lexer" == text ]]; then
 fi
 
 encoding=$(file --mime-encoding --uncompress $file_common_opts "$file")
-if [[ $encoding == "us-asciibinarybinary" ]]; then
-	encoding="us-ascii"
+if [[ $encoding == "binary" ]]; then
+    encoding="latin1"
 fi
 
 if [[ -n "$lexer" ]]; then
