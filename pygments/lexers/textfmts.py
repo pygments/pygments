@@ -122,6 +122,11 @@ class HttpLexer(RegexLexer):
 
     flags = re.DOTALL
 
+    def get_tokens_unprocessed(self, text, stack=('root',)):
+        """Reset the content-type state."""
+        self.content_type = None
+        return RegexLexer.get_tokens_unprocessed(self, text, stack)
+
     def header_callback(self, match):
         if match.group(1).lower() == 'content-type':
             content_type = match.group(5).strip()

@@ -11,12 +11,15 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, combined, do_insertions
+from pygments.lexer import Lexer, RegexLexer, bygroups, combined, \
+    do_insertions, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
 from pygments.util import shebang_matches, unirange
 
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer']
+
+line_re = re.compile('.*?\n')
 
 
 class JuliaLexer(RegexLexer):
@@ -32,13 +35,26 @@ class JuliaLexer(RegexLexer):
 
     flags = re.MULTILINE | re.UNICODE
 
-    builtins = [
+    builtins = (
         'exit', 'whos', 'edit', 'load', 'is', 'isa', 'isequal', 'typeof', 'tuple',
         'ntuple', 'uid', 'hash', 'finalizer', 'convert', 'promote', 'subtype',
         'typemin', 'typemax', 'realmin', 'realmax', 'sizeof', 'eps', 'promote_type',
         'method_exists', 'applicable', 'invoke', 'dlopen', 'dlsym', 'system',
         'error', 'throw', 'assert', 'new', 'Inf', 'Nan', 'pi', 'im',
-    ]
+    )
+
+    keywords = (
+        'begin', 'while', 'for', 'in', 'return', 'break', 'continue',
+        'macro', 'quote', 'let', 'if', 'elseif', 'else', 'try', 'catch', 'end',
+        'bitstype', 'ccall', 'do', 'using', 'module', 'import', 'export',
+        'importall', 'baremodule', 'immutable',
+    )
+
+    types = (
+        'Bool', 'Int', 'Int8', 'Int16', 'Int32', 'Int64', 'Uint', 'Uint8', 'Uint16',
+        'Uint32', 'Uint64', 'Float32', 'Float64', 'Complex64', 'Complex128', 'Any',
+        'Nothing', 'None',
+    )
 
     tokens = {
         'root': [
@@ -46,34 +62,29 @@ class JuliaLexer(RegexLexer):
             (r'[^\S\n]+', Text),
             (r'#=', Comment.Multiline, "blockcomment"),
             (r'#.*$', Comment),
-            (r'[]{}:(),;[@]', Punctuation),
+            (r'[\[\]{}:(),;@]', Punctuation),
             (r'\\\n', Text),
             (r'\\', Text),
 
             # keywords
-            (r'(begin|while|for|in|return|break|continue|'
-             r'macro|quote|let|if|elseif|else|try|catch|end|'
-             r'bitstype|ccall|do|using|module|import|export|'
-             r'importall|baremodule|immutable)\b', Keyword),
             (r'(local|global|const)\b', Keyword.Declaration),
-            (r'(Bool|Int|Int8|Int16|Int32|Int64|Uint|Uint8|Uint16|Uint32|Uint64'
-             r'|Float32|Float64|Complex64|Complex128|Any|Nothing|None)\b',
-                Keyword.Type),
+            (words(keywords, suffix=r'\b'), Keyword),
+            (words(types, suffix=r'\b'), Keyword.Type),
 
             # functions
             (r'(function)((?:\s|\\\s)+)',
-                bygroups(Keyword, Name.Function), 'funcname'),
+             bygroups(Keyword, Name.Function), 'funcname'),
 
             # types
-            (r'(type|typealias|abstract)((?:\s|\\\s)+)',
-                bygroups(Keyword, Name.Class), 'typename'),
+            (r'(type|typealias|abstract|immutable)((?:\s|\\\s)+)',
+             bygroups(Keyword, Name.Class), 'typename'),
 
             # operators
             (r'==|!=|<=|>=|->|&&|\|\||::|<:|[-~+/*%=<>&^|.?!$]', Operator),
             (r'\.\*|\.\^|\.\\|\.\/|\\', Operator),
 
             # builtins
-            ('(' + '|'.join(builtins) + r')\b',  Name.Builtin),
+            (words(builtins, suffix=r'\b'), Name.Builtin),
 
             # backticks
             (r'`(?s).*?`', String.Backtick),
@@ -116,12 +127,12 @@ class JuliaLexer(RegexLexer):
         ],
 
         'typename': [
-            ('[a-zA-Z_]\w*', Name.Class, '#pop')
+            ('[a-zA-Z_]\w*', Name.Class, '#pop'),
         ],
 
         'stringescape': [
             (r'\\([\\abfnrtv"\']|\n|N\{.*?\}|u[a-fA-F0-9]{4}|'
-             r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
+             r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape),
         ],
         "blockcomment": [
             (r'[^=#]', Comment.Multiline),
@@ -132,21 +143,27 @@ class JuliaLexer(RegexLexer):
         'string': [
             (r'"', String, '#pop'),
             (r'\\\\|\\"|\\\n', String.Escape),  # included here for raw strings
-            (r'\$(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?',
-                String.Interpol),
-            (r'[^\\"$]+', String),
-            # quotes, dollar signs, and backslashes must be parsed one at a time
-            (r'["\\]', String),
-            # unhandled string formatting sign
-            (r'\$', String)
+            # Interpolation is defined as "$" followed by the shortest full
+            # expression, which is something we can't parse.
+            # Include the most common cases here: $word, and $(paren'd expr).
+            (r'\$[a-zA-Z_]+', String.Interpol),
+            (r'\$\(', String.Interpol, 'in-intp'),
+            # @printf and @sprintf formats
+            (r'%[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?[hlL]?[E-GXc-giorsux%]',
+             String.Interpol),
+            (r'[^$%"\\]+', String),
+            # unhandled special signs
+            (r'[$%"\\]', String),
         ],
+        'in-intp': [
+            (r'[^()]+', String.Interpol),
+            (r'\(', String.Interpol, '#push'),
+            (r'\)', String.Interpol, '#pop'),
+        ]
     }
 
     def analyse_text(text):
         return shebang_matches(text, r'julia')
-
-
-line_re  = re.compile('.*?\n')
 
 
 class JuliaConsoleLexer(Lexer):

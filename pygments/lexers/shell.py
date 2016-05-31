@@ -35,6 +35,7 @@ class BashLexer(RegexLexer):
     name = 'Bash'
     aliases = ['bash', 'sh', 'ksh', 'shell']
     filenames = ['*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass',
+                 '*.exheres-0', '*.exlib',
                  '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'PKGBUILD']
     mimetypes = ['application/x-sh', 'application/x-shellscript']
 
@@ -49,7 +50,7 @@ class BashLexer(RegexLexer):
             (r'\$\(\(', Keyword, 'math'),
             (r'\$\(', Keyword, 'paren'),
             (r'\$\{#?', String.Interpol, 'curly'),
-            (r'\$[a-fA-F_][a-fA-F0-9_]*', Name.Variable),  # user variable
+            (r'\$[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),  # user variable
             (r'\$(?:\d+|[#$?!_*@-])', Name.Variable),      # builtin
             (r'\$', Text),
         ],
@@ -213,16 +214,16 @@ class BatchLexer(RegexLexer):
                        (_nl, _punct, _ws, _nl))
     _number = r'(?:-?(?:0[0-7]+|0x[\da-f]+|\d+)%s)' % _token_terminator
     _opword = r'(?:equ|geq|gtr|leq|lss|neq)'
-    _string = r'(?:"[^%s"]*"?)' % _nl
+    _string = r'(?:"[^%s"]*(?:"|(?=[%s])))' % (_nl, _nl)
     _variable = (r'(?:(?:%%(?:\*|(?:~[a-z]*(?:\$[^:]+:)?)?\d|'
                  r'[^%%:%s]+(?::(?:~(?:-?\d+)?(?:,(?:-?\d+)?)?|(?:[^%%%s^]|'
                  r'\^[^%%%s])[^=%s]*=(?:[^%%%s^]|\^[^%%%s])*)?)?%%))|'
                  r'(?:\^?![^!:%s]+(?::(?:~(?:-?\d+)?(?:,(?:-?\d+)?)?|(?:'
                  r'[^!%s^]|\^[^!%s])[^=%s]*=(?:[^!%s^]|\^[^!%s])*)?)?\^?!))' %
                  (_nl, _nl, _nl, _nl, _nl, _nl, _nl, _nl, _nl, _nl, _nl, _nl))
-    _core_token = r'(?:(?:(?:\^[%s]?)?[^%s%s%s])+)' % (_nl, _nl, _punct, _ws)
-    _core_token_compound = r'(?:(?:(?:\^[%s]?)?[^%s%s%s)])+)' % (_nl, _nl,
-                                                                 _punct, _ws)
+    _core_token = r'(?:(?:(?:\^[%s]?)?[^"%s%s%s])+)' % (_nl, _nl, _punct, _ws)
+    _core_token_compound = r'(?:(?:(?:\^[%s]?)?[^"%s%s%s)])+)' % (_nl, _nl,
+                                                                  _punct, _ws)
     _token = r'(?:[%s]+|%s)' % (_punct, _core_token)
     _token_compound = r'(?:[%s]+|%s)' % (_punct, _core_token_compound)
     _stoken = (r'(?:[%s]+|(?:%s|%s|%s)+)' %
@@ -451,9 +452,9 @@ class BatchLexer(RegexLexer):
              bygroups(String.Double, using(this, state='string'), Text,
                       Punctuation)),
             (r'"', String.Double, ('#pop', 'for2', 'string')),
-            (r"('(?:%s|[\w\W])*?')([%s%s]*)(\))" % (_variable, _nl, _ws),
+            (r"('(?:%%%%|%s|[\w\W])*?')([%s%s]*)(\))" % (_variable, _nl, _ws),
              bygroups(using(this, state='sqstring'), Text, Punctuation)),
-            (r'(`(?:%s|[\w\W])*?`)([%s%s]*)(\))' % (_variable, _nl, _ws),
+            (r'(`(?:%%%%|%s|[\w\W])*?`)([%s%s]*)(\))' % (_variable, _nl, _ws),
              bygroups(using(this, state='bqstring'), Text, Punctuation)),
             include('for2')
         ],

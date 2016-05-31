@@ -191,6 +191,14 @@ class XQueryLexer(ExtendedRegexLexer):
         lexer.xquery_parse_state.append('operator')
         ctx.pos = match.end()
 
+    def pushstate_operator_map_callback(lexer, match, ctx):
+        yield match.start(), Keyword, match.group(1)
+        yield match.start(), Text, match.group(2)
+        yield match.start(), Punctuation, match.group(3)
+        ctx.stack = ['root']
+        lexer.xquery_parse_state.append('operator')
+        ctx.pos = match.end()
+
     def pushstate_operator_root_validate(lexer, match, ctx):
         yield match.start(), Keyword, match.group(1)
         yield match.start(), Text, match.group(2)
@@ -338,11 +346,11 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'and|or', Operator.Word, 'root'),
             (r'(eq|ge|gt|le|lt|ne|idiv|intersect|in)(?=\b)',
              Operator.Word, 'root'),
-            (r'return|satisfies|to|union|where|preserve\s+strip',
+            (r'return|satisfies|to|union|where|count|preserve\s+strip',
              Keyword, 'root'),
             (r'(>=|>>|>|<=|<<|<|-|\*|!=|\+|\|\||\||:=|=|!)',
              operator_root_callback),
-            (r'(::|;|\[|//|/|,)',
+            (r'(::|:|;|\[|//|/|,)',
              punctuation_root_callback),
             (r'(castable|cast)(\s+)(as)\b',
              bygroups(Keyword, Text, Keyword), 'singletype'),
@@ -356,13 +364,18 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(\))(\s*)(as)',
              bygroups(Punctuation, Text, Keyword), 'itemtype'),
             (r'\$', Name.Variable, 'varname'),
-            (r'(for|let)(\s+)(\$)',
+            (r'(for|let|previous|next)(\s+)(\$)',
              bygroups(Keyword, Text, Name.Variable), 'varname'),
+            (r'(for)(\s+)(tumbling|sliding)(\s+)(window)(\s+)(\$)',
+             bygroups(Keyword, Text, Keyword, Text, Keyword, Text, Name.Variable), 'varname'),
             # (r'\)|\?|\]', Punctuation, '#push'),
             (r'\)|\?|\]', Punctuation),
             (r'(empty)(\s+)(greatest|least)', bygroups(Keyword, Text, Keyword)),
             (r'ascending|descending|default', Keyword, '#push'),
+            (r'(allowing)(\s+)(empty)', bygroups(Keyword, Text, Keyword)),
             (r'external', Keyword),
+            (r'(start|when|end)', Keyword, 'root'),
+            (r'(only)(\s+)(end)', bygroups(Keyword, Text, Keyword), 'root'),
             (r'collation', Keyword, 'uritooperator'),
 
             # eXist specific XQUF
@@ -421,6 +434,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(' + qname + ')(\()?', bygroups(Name, Punctuation), 'operator'),
         ],
         'singletype': [
+            include('whitespace'),
             (r'\(:', Comment, 'comment'),
             (ncname + r'(:\*)', Name.Variable, 'operator'),
             (qname, Name.Variable, 'operator'),
@@ -437,7 +451,7 @@ class XQueryLexer(ExtendedRegexLexer):
             # Marklogic specific type?
             (r'(processing-instruction)(\s*)(\()',
              bygroups(Keyword, Text, Punctuation),
-             ('occurrenceindicator', 'kindtestforpi')),            
+             ('occurrenceindicator', 'kindtestforpi')),
             (r'(item)(\s*)(\()(\s*)(\))(?=[*+?])',
              bygroups(Keyword, Text, Punctuation, Text, Punctuation),
              'occurrenceindicator'),
@@ -448,7 +462,7 @@ class XQueryLexer(ExtendedRegexLexer):
              bygroups(Keyword, Text, String.Double), 'namespacedecl'),
             (r'(at)(\s+)(' + stringsingle + ')',
              bygroups(Keyword, Text, String.Single), 'namespacedecl'),
-            (r'except|intersect|in|is|return|satisfies|to|union|where',
+            (r'except|intersect|in|is|return|satisfies|to|union|where|count',
              Keyword, 'root'),
             (r'and|div|eq|ge|gt|le|lt|ne|idiv|mod|or', Operator.Word, 'root'),
             (r':=|=|,|>=|>>|>|\[|\(|<=|<<|<|-|!=|\|\||\|', Operator, 'root'),
@@ -464,7 +478,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'case|as', Keyword, 'itemtype'),
             (r'(\))(\s*)(as)', bygroups(Operator, Text, Keyword), 'itemtype'),
             (ncname + r':\*', Keyword.Type, 'operator'),
-            (r'(function)(\()', bygroups(Keyword.Type, Punctuation)),
+            (r'(function|map|array)(\()', bygroups(Keyword.Type, Punctuation)),
             (qname, Keyword.Type, 'occurrenceindicator'),
         ],
         'kindtest': [
@@ -555,6 +569,7 @@ class XQueryLexer(ExtendedRegexLexer):
             (qname, Name.Tag),
         ],
         'xmlspace_decl': [
+            include('whitespace'),
             (r'\(:', Comment, 'comment'),
             (r'preserve|strip', Keyword, '#pop'),
         ],
@@ -617,13 +632,15 @@ class XQueryLexer(ExtendedRegexLexer):
              bygroups(Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
             (r'(declare)(\s+)(default)(\s+)(order)',
              bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
+            (r'(declare)(\s+)(context)(\s+)(item)',
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
             (ncname + ':\*', Name, 'operator'),
             ('\*:'+ncname, Name.Tag, 'operator'),
             ('\*', Name.Tag, 'operator'),
             (stringdouble, String.Double, 'operator'),
             (stringsingle, String.Single, 'operator'),
 
-            (r'(\})', popstate_callback),
+            (r'(\}|\])', popstate_callback),
 
             # NAMESPACE DECL
             (r'(declare)(\s+)(default)(\s+)(collation)',
@@ -644,6 +661,8 @@ class XQueryLexer(ExtendedRegexLexer):
             # VARNAMEs
             (r'(for|let|some|every)(\s+)(\$)',
              bygroups(Keyword, Text, Name.Variable), 'varname'),
+            (r'(for)(\s+)(tumbling|sliding)(\s+)(window)(\s+)(\$)',
+             bygroups(Keyword, Text, Keyword, Text, Keyword, Text, Name.Variable), 'varname'),
             (r'\$', Name.Variable, 'varname'),
             (r'(declare)(\s+)(variable)(\s+)(\$)',
              bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Name.Variable), 'varname'),
@@ -677,8 +696,8 @@ class XQueryLexer(ExtendedRegexLexer):
              pushstate_operator_root_validate_withmode),
             (r'(validate)(\s*)(\{)', pushstate_operator_root_validate),
             (r'(typeswitch)(\s*)(\()', bygroups(Keyword, Text, Punctuation)),
-            (r'(typeswitch)(\s*)(\()', bygroups(Keyword, Text, Punctuation)),
-            (r'(element|attribute)(\s*)(\{)',
+            (r'(switch)(\s*)(\()', bygroups(Keyword, Text, Punctuation)),
+            (r'(element|attribute|namespace)(\s*)(\{)',
              pushstate_operator_root_construct_callback),
 
             (r'(document|text|processing-instruction|comment)(\s*)(\{)',
@@ -690,17 +709,20 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(element)(\s+)(?=' + qname + r')',
              bygroups(Keyword, Text), 'element_qname'),
             # PROCESSING_INSTRUCTION
-            (r'(processing-instruction)(\s+)(' + ncname + r')(\s*)(\{)',
+            (r'(processing-instruction|namespace)(\s+)(' + ncname + r')(\s*)(\{)',
              bygroups(Keyword, Text, Name.Variable, Text, Punctuation),
              'operator'),
 
             (r'(declare|define)(\s+)(function)',
              bygroups(Keyword.Declaration, Text, Keyword.Declaration)),
 
-            (r'(\{)', pushstate_operator_root_callback),
+            (r'(\{|\[)', pushstate_operator_root_callback),
 
             (r'(unordered|ordered)(\s*)(\{)',
              pushstate_operator_order_callback),
+
+            (r'(map|array)(\s*)(\{)',
+             pushstate_operator_map_callback),
 
             (r'(declare)(\s+)(ordering)',
              bygroups(Keyword.Declaration, Text, Keyword.Declaration), 'declareordering'),
@@ -739,10 +761,11 @@ class XQueryLexer(ExtendedRegexLexer):
              bygroups(Keyword, Text, Punctuation, Name.Variable), 'varname'),
 
 
-            (r'(@'+qname+')', Name.Attribute),
-            (r'(@'+ncname+')', Name.Attribute),
-            (r'@\*:'+ncname, Name.Attribute),
-            (r'(@)', Name.Attribute),
+            (r'(@'+qname+')', Name.Attribute, 'operator'),
+            (r'(@'+ncname+')', Name.Attribute, 'operator'),
+            (r'@\*:'+ncname, Name.Attribute, 'operator'),
+            (r'@\*', Name.Attribute, 'operator'),
+            (r'(@)', Name.Attribute, 'operator'),
 
             (r'//|/|\+|-|;|,|\(|\)', Punctuation),
 
@@ -833,10 +856,11 @@ class CirruLexer(RegexLexer):
     Syntax rules of Cirru can be found at:
     http://cirru.org/
 
-    * using ``()`` to markup blocks, but limited in the same line
-    * using ``""`` to markup strings, allow ``\`` to escape
-    * using ``$`` as a shorthand for ``()`` till indentation end or ``)``
-    * using indentations for create nesting
+    * using ``()`` for expressions, but restricted in a same line
+    * using ``""`` for strings, with ``\`` for escaping chars
+    * using ``$`` as folding operator
+    * using ``,`` as unfolding operator
+    * using indentations for nested blocks
 
     .. versionadded:: 2.0
     """
@@ -857,16 +881,16 @@ class CirruLexer(RegexLexer):
             (r'.', String.Escape, '#pop'),
         ],
         'function': [
+            (r'\,', Operator, '#pop'),
             (r'[^\s"()]+', Name.Function, '#pop'),
             (r'\)', Operator, '#pop'),
             (r'(?=\n)', Text, '#pop'),
             (r'\(', Operator, '#push'),
             (r'"', String, ('#pop', 'string')),
             (r'[ ]+', Text.Whitespace),
-            (r'\,', Operator, '#pop'),
         ],
         'line': [
-            (r'\$', Operator, 'function'),
+            (r'(?<!\w)\$(?!\w)', Operator, 'function'),
             (r'\(', Operator, 'function'),
             (r'\)', Operator),
             (r'\n', Text, '#pop'),

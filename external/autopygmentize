@@ -40,6 +40,7 @@ if [[ "$lexer" == text ]]; then
         text/x-po) lexer=po;;
         text/x-python) lexer=python;;
         text/x-ruby) lexer=ruby;;
+        text/x-crystal) lexer=crystal;;
         text/x-shellscript) lexer=sh;;
         text/x-tcl) lexer=tcl;;
         text/x-tex|text/x-texinfo) lexer=latex;; # FIXME: texinfo really needs its own lexer
@@ -66,8 +67,8 @@ if [[ "$lexer" == text ]]; then
 fi
 
 encoding=$(file --mime-encoding --uncompress $file_common_opts "$file")
-if [[ $encoding == "us-asciibinarybinary" ]]; then
-	encoding="us-ascii"
+if [[ $encoding == "binary" ]]; then
+    encoding="latin1"
 fi
 
 if [[ -n "$lexer" ]]; then
