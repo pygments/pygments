@@ -205,5 +205,7 @@ for /f "tokens=2 delims==" %%G in ( 'assoc %+;/p extension'),%'
 ) &>nul ver
 if errorlevel 0 if not errorlevel 1 set /a _passed+=1
 goto :eof
+FOR /F %%a IN ('%%c%%') DO %%a
+rem %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x% %x%
 :/?
 goto :fail
