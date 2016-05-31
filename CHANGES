@@ -6,10 +6,65 @@ Issue numbers refer to the tracker at
 pull request numbers to the requests at
 <https://bitbucket.org/birkenfeld/pygments-main/pull-requests/merged>.
 
+Version 2.2
+-----------
+(in development)
+
+- Added lexers:
+
+  * AMPL
+  * TypoScript (#1173)
+  * Varnish config (PR#554)
+  * Clean (PR#503)
+  * WDiff (PR#513)
+  * Flatline (PR#551)
+  * Silver (PR#537)
+  * HSAIL (PR#518)
+  * JSGF (PR#546)
+  * NCAR command language (PR#536)
+  * Extempore (PR#530)
+
+- Added `lexers.find_lexer_class_by_name()`. (#1203)
+
+- Added new token types and lexing for magic methods and variables in Python
+  and PHP.
+
+- Added a new token type for string affixes and lexing for them in Python, C++
+  and Postgresql lexers.
+
+- Added a new token type for heredoc (and similar) string delimiters and
+  lexing for them in C++, Perl, PHP, Postgresql and Ruby lexers.
+
+- Styles can now define colors with ANSI colors for use in the 256-color
+  terminal formatter. (PR#531)
+
+- Improved the CSS lexer. (#1083, #1130)
+
+
+Version 2.1.2
+-------------
+(in development)
+
+- Fixed Python 3 regression in image formatter (#1215)
+
+
+Version 2.1.1
+-------------
+(relased Feb 14, 2016)
+
+- Fixed Jython compatibility (#1205)
+- Fixed HTML formatter output with leading empty lines (#1111)
+- Added a mapping table for LaTeX encodings and added utf8 (#1152)
+- Fixed image formatter font searching on Macs (#1188)
+- Fixed deepcopy-ing of Token instances (#1168)
+- Fixed Julia string interpolation (#1170)
+- Fixed statefulness of HttpLexer between get_tokens calls
+- Many smaller fixes to various lexers
+
 
 Version 2.1
 -----------
-(not released yet)
+(released Jan 17, 2016)
 
 - Added lexers:
 
@@ -79,11 +134,6 @@ Version 2.1
 - Allowed more traceback styles in Python console lexer (PR#253).
 
 - Added decorators to TypeScript (PR#509).
-
-
-Version 2.0.3
--------------
-(not released yet)
 
 - Fix highlighting of certain IRC logs formats (#1076).
 

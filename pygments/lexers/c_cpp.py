@@ -50,8 +50,9 @@ class CFamilyLexer(RegexLexer):
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
-            (r'L?"', String, 'string'),
-            (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
+            (r'(L?)(")', bygroups(String.Affix, String), 'string'),
+            (r"(L?)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
+             bygroups(String.Affix, String.Char, String.Char, String.Char)),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
@@ -60,10 +61,11 @@ class CFamilyLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
-            (words(('auto', 'break', 'case', 'const', 'continue', 'default', 'do',
-                    'else', 'enum', 'extern', 'for', 'goto', 'if', 'register',
-                    'restricted', 'return', 'sizeof', 'static', 'struct',
-                    'switch', 'typedef', 'union', 'volatile', 'while'),
+            (words(('asm', 'auto', 'break', 'case', 'const', 'continue',
+                    'default', 'do', 'else', 'enum', 'extern', 'for', 'goto',
+                    'if', 'register', 'restricted', 'return', 'sizeof',
+                    'static', 'struct', 'switch', 'typedef', 'union',
+                    'volatile', 'while'),
                    suffix=r'\b'), Keyword),
             (r'(bool|int|long|float|short|double|char|unsigned|signed|void)\b',
              Keyword.Type),
@@ -123,7 +125,8 @@ class CFamilyLexer(RegexLexer):
             (r'\\', String),  # stray backslash
         ],
         'macro': [
-            (r'(include)(' + _ws1 + ')([^\n]+)', bygroups(Comment.Preproc, Text, Comment.PreprocFile)),
+            (r'(include)(' + _ws1 + r')([^\n]+)',
+             bygroups(Comment.Preproc, Text, Comment.PreprocFile)),
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
             (r'//.*?\n', Comment.Single, '#pop'),
@@ -206,7 +209,7 @@ class CppLexer(CFamilyLexer):
     tokens = {
         'statements': [
             (words((
-                'asm', 'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
+                'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
                 'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
                 'private', 'protected', 'public', 'reinterpret_cast',
                 'restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
@@ -216,6 +219,12 @@ class CppLexer(CFamilyLexer):
                 'final'), suffix=r'\b'), Keyword),
             (r'char(16_t|32_t)\b', Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            # C++11 raw strings
+            (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
+             bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
+                      String, String.Delimiter, String)),
+            # C++11 UTF-8/16/32 strings
+            (r'(u8|u|U)(")', bygroups(String.Affix, String), 'string'),
             inherit,
         ],
         'root': [
@@ -235,7 +244,7 @@ class CppLexer(CFamilyLexer):
     }
 
     def analyse_text(text):
-        if re.search('#include <[a-z]+>', text):
+        if re.search('#include <[a-z_]+>', text):
             return 0.2
         if re.search('using namespace ', text):
             return 0.4

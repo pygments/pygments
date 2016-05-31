@@ -50,36 +50,47 @@ class LuaLexer(RegexLexer):
     filenames = ['*.lua', '*.wlua']
     mimetypes = ['text/x-lua', 'application/x-lua']
 
+    _comment_multiline = r'(?:--\[(?P<level>=*)\[[\w\W]*?\](?P=level)\])'
+    _comment_single = r'(?:--.*$)'
+    _space = r'(?:\s+)'
+    _s = r'(?:%s|%s|%s)' % (_comment_multiline, _comment_single, _space)
+    _name = r'(?:[^\W\d]\w*)'
+
     tokens = {
         'root': [
-            # lua allows a file to start with a shebang
-            (r'#!(.*?)$', Comment.Preproc),
+            # Lua allows a file to start with a shebang.
+            (r'#!.*', Comment.Preproc),
             default('base'),
         ],
+        'ws': [
+            (_comment_multiline, Comment.Multiline),
+            (_comment_single, Comment.Single),
+            (_space, Text),
+        ],
         'base': [
-            (r'(?s)--\[(=*)\[.*?\]\1\]', Comment.Multiline),
-            ('--.*$', Comment.Single),
+            include('ws'),
 
+            (r'(?i)0x[\da-f]*(\.[\da-f]*)?(p[+-]?\d+)?', Number.Hex),
             (r'(?i)(\d*\.\d+|\d+\.\d*)(e[+-]?\d+)?', Number.Float),
             (r'(?i)\d+e[+-]?\d+', Number.Float),
-            ('(?i)0x[0-9a-f]*', Number.Hex),
             (r'\d+', Number.Integer),
 
-            (r'\n', Text),
-            (r'[^\S\n]', Text),
             # multiline strings
             (r'(?s)\[(=*)\[.*?\]\1\]', String),
 
-            (r'(==|~=|<=|>=|\.\.\.|\.\.|[=+\-*/%^<>#])', Operator),
+            (r'::', Punctuation, 'label'),
+            (r'\.{3}', Punctuation),
+            (r'[=<>|~&+\-*/%#^]+|\.\.', Operator),
             (r'[\[\]{}().,:;]', Punctuation),
             (r'(and|or|not)\b', Operator.Word),
 
             ('(break|do|else|elseif|end|for|if|in|repeat|return|then|until|'
-             r'while)\b', Keyword),
+             r'while)\b', Keyword.Reserved),
+            (r'goto\b', Keyword.Reserved, 'goto'),
             (r'(local)\b', Keyword.Declaration),
             (r'(true|false|nil)\b', Keyword.Constant),
 
-            (r'(function)\b', Keyword, 'funcname'),
+            (r'(function)\b', Keyword.Reserved, 'funcname'),
 
             (r'[A-Za-z_]\w*(\.[A-Za-z_]\w*)?', Name),
 
@@ -88,31 +99,38 @@ class LuaLexer(RegexLexer):
         ],
 
         'funcname': [
-            (r'\s+', Text),
-            ('(?:([A-Za-z_]\w*)(\.))?([A-Za-z_]\w*)',
-             bygroups(Name.Class, Punctuation, Name.Function), '#pop'),
+            include('ws'),
+            (r'[.:]', Punctuation),
+            (r'%s(?=%s*[.:])' % (_name, _s), Name.Class),
+            (_name, Name.Function, '#pop'),
             # inline function
             ('\(', Punctuation, '#pop'),
         ],
 
-        # if I understand correctly, every character is valid in a lua string,
-        # so this state is only for later corrections
-        'string': [
-            ('.', String)
+        'goto': [
+            include('ws'),
+            (_name, Name.Label, '#pop'),
+        ],
+
+        'label': [
+            include('ws'),
+            (r'::', Punctuation, '#pop'),
+            (_name, Name.Label),
         ],
 
         'stringescape': [
-            (r'''\\([abfnrtv\\"']|\d{1,3})''', String.Escape)
+            (r'\\([abfnrtv\\"\']|[\r\n]{1,2}|z\s*|x[0-9a-fA-F]{2}|\d{1,3}|'
+             r'u\{[0-9a-fA-F]+\})', String.Escape),
         ],
 
         'sqs': [
-            ("'", String, '#pop'),
-            include('string')
+            (r"'", String.Single, '#pop'),
+            (r"[^\\']+", String.Single),
         ],
 
         'dqs': [
-            ('"', String, '#pop'),
-            include('string')
+            (r'"', String.Double, '#pop'),
+            (r'[^\\"]+', String.Double),
         ]
     }
 
@@ -1020,11 +1038,11 @@ class EasytrieveLexer(RegexLexer):
             (r"'(''|[^'])*'", String),
             (r'\s+', Whitespace),
             # Everything else just belongs to a name
-            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name),
          ],
         'after_declaration': [
             (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name.Function),
-            ('', Whitespace, '#pop')
+            default('#pop'),
         ],
         'after_macro_argument': [
             (r'\*.*\n', Comment.Single, '#pop'),
@@ -1032,7 +1050,7 @@ class EasytrieveLexer(RegexLexer):
             (_OPERATORS_PATTERN, Operator, '#pop'),
             (r"'(''|[^'])*'", String, '#pop'),
             # Everything else just belongs to a name
-            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name)
+            (_NON_DELIMITER_OR_COMMENT_PATTERN + r'+', Name),
         ],
     }
     _COMMENT_LINE_REGEX = re.compile(r'^\s*\*')
@@ -1122,7 +1140,8 @@ class EasytrieveLexer(RegexLexer):
 
 class JclLexer(RegexLexer):
     """
-    `Job Control Language (JCL) <http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/BOOKS/IEA2B570/CCONTENTS>`_
+    `Job Control Language (JCL)
+    <http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/BOOKS/IEA2B570/CCONTENTS>`_
     is a scripting language used on mainframe platforms to instruct the system
     on how to run a batch job or start a subsystem. It is somewhat
     comparable to MS DOS batch and Unix shell scripts.
@@ -1145,10 +1164,10 @@ class JclLexer(RegexLexer):
         ],
         'statement': [
             (r'\s*\n', Whitespace, '#pop'),
-            (r'([a-z][a-z_0-9]*)(\s+)(exec|job)(\s*)',
+            (r'([a-z]\w*)(\s+)(exec|job)(\s*)',
              bygroups(Name.Label, Whitespace, Keyword.Reserved, Whitespace),
              'option'),
-            (r'[a-z][a-z_0-9]*', Name.Variable, 'statement_command'),
+            (r'[a-z]\w*', Name.Variable, 'statement_command'),
             (r'\s+', Whitespace, 'statement_command'),
         ],
         'statement_command': [
@@ -1167,10 +1186,10 @@ class JclLexer(RegexLexer):
             (r'\*', Name.Builtin),
             (r'[\[\](){}<>;,]', Punctuation),
             (r'[-+*/=&%]', Operator),
-            (r'[a-z_][a-z_0-9]*', Name),
-            (r'[0-9]+\.[0-9]*', Number.Float),
-            (r'\.[0-9]+', Number.Float),
-            (r'[0-9]+', Number.Integer),
+            (r'[a-z_]\w*', Name),
+            (r'\d+\.\d*', Number.Float),
+            (r'\.\d+', Number.Float),
+            (r'\d+', Number.Integer),
             (r"'", String, 'option_string'),
             (r'[ \t]+', Whitespace, 'option_comment'),
             (r'\.', Punctuation),

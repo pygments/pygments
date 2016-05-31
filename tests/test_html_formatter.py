@@ -116,7 +116,7 @@ class HtmlFormatterTest(unittest.TestCase):
         fmt = HtmlFormatter(**optdict)
         fmt.format(tokensource, outfile)
         html = outfile.getvalue()
-        self.assertTrue(re.search("<pre><a name=\"foo-1\">", html))
+        self.assertTrue(re.search("<pre><span></span><a name=\"foo-1\">", html))
 
     def test_lineanchors_with_startnum(self):
         optdict = dict(lineanchors="foo", linenostart=5)
@@ -124,7 +124,7 @@ class HtmlFormatterTest(unittest.TestCase):
         fmt = HtmlFormatter(**optdict)
         fmt.format(tokensource, outfile)
         html = outfile.getvalue()
-        self.assertTrue(re.search("<pre><a name=\"foo-5\">", html))
+        self.assertTrue(re.search("<pre><span></span><a name=\"foo-5\">", html))
 
     def test_valid_output(self):
         # test all available wrappers

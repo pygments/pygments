@@ -39,8 +39,10 @@ class IniLexer(RegexLexer):
             (r'[;#].*', Comment.Single),
             (r'\[.*?\]$', Keyword),
             (r'(.*?)([ \t]*)(=)([ \t]*)(.*(?:\n[ \t].+)*)',
-             bygroups(Name.Attribute, Text, Operator, Text, String))
-        ]
+             bygroups(Name.Attribute, Text, Operator, Text, String)),
+            # standalone option, supported by some INI parsers
+            (r'(.+?)$', Name.Attribute),
+        ],
     }
 
     def analyse_text(text):
@@ -598,7 +600,7 @@ class TerraformLexer(RegexLexer):
             (r'(".*")', bygroups(String.Double)),
         ],
         'punctuation': [
-            (r'[\[\]\(\),.]', Punctuation),
+            (r'[\[\](),.]', Punctuation),
         ],
         # Keep this seperate from punctuation - we sometimes want to use different
         # Tokens for { }
@@ -629,9 +631,8 @@ class TermcapLexer(RegexLexer):
     .. versionadded:: 2.1
     """
     name = 'Termcap'
-    aliases = ['termcap',]
-
-    filenames = ['termcap', 'termcap.src',]
+    aliases = ['termcap']
+    filenames = ['termcap', 'termcap.src']
     mimetypes = []
 
     # NOTE:
@@ -642,13 +643,13 @@ class TermcapLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^#.*$', Comment),
-            (r'^[^\s#:\|]+', Name.Tag, 'names'),
+            (r'^[^\s#:|]+', Name.Tag, 'names'),
         ],
         'names': [
             (r'\n', Text, '#pop'),
             (r':', Punctuation, 'defs'),
             (r'\|', Punctuation),
-            (r'[^:\|]+', Name.Attribute),
+            (r'[^:|]+', Name.Attribute),
         ],
         'defs': [
             (r'\\\n[ \t]*', Text),
@@ -676,9 +677,8 @@ class TerminfoLexer(RegexLexer):
     .. versionadded:: 2.1
     """
     name = 'Terminfo'
-    aliases = ['terminfo',]
-
-    filenames = ['terminfo', 'terminfo.src',]
+    aliases = ['terminfo']
+    filenames = ['terminfo', 'terminfo.src']
     mimetypes = []
 
     # NOTE:
@@ -689,13 +689,13 @@ class TerminfoLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^#.*$', Comment),
-            (r'^[^\s#,\|]+', Name.Tag, 'names'),
+            (r'^[^\s#,|]+', Name.Tag, 'names'),
         ],
         'names': [
             (r'\n', Text, '#pop'),
             (r'(,)([ \t]*)', bygroups(Punctuation, Text), 'defs'),
             (r'\|', Punctuation),
-            (r'[^,\|]+', Name.Attribute),
+            (r'[^,|]+', Name.Attribute),
         ],
         'defs': [
             (r'\n[ \t]+', Text),
@@ -724,8 +724,8 @@ class PkgConfigLexer(RegexLexer):
     """
 
     name = 'PkgConfig'
-    aliases = ['pkgconfig',]
-    filenames = ['*.pc',]
+    aliases = ['pkgconfig']
+    filenames = ['*.pc']
     mimetypes = []
 
     tokens = {
@@ -791,8 +791,8 @@ class PacmanConfLexer(RegexLexer):
     """
 
     name = 'PacmanConf'
-    aliases = ['pacmanconf',]
-    filenames = ['pacman.conf',]
+    aliases = ['pacmanconf']
+    filenames = ['pacman.conf']
     mimetypes = []
 
     tokens = {
@@ -820,7 +820,7 @@ class PacmanConfLexer(RegexLexer):
                 '%u',     # url
                 ), suffix=r'\b'),
              Name.Variable),
-            
+
             # fallback
             (r'.', Text),
         ],

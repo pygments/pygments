@@ -209,3 +209,29 @@ for (a x i) (.log console x i)
 
 set a 0
 while (< a 10) (+= a 1) (.log console a)
+
+-- WebAssembly variable names
+
+-- ":(c) 2015 Andreas Rossberg"
+
+module
+  export :even $even
+  export "odd" $odd
+
+  func $even (param $n i32) (result i32)
+    if (i32.eq (get_local $n) (i32.const 0))
+      i32.const 1
+      call $odd (i32.sub (get_local $n) (i32.const 1))
+
+  func $odd (param $n i32) (result i32)
+    store_global $scratch (get_local $n)
+    if (i32.eq (get_local $n) (i32.const 0)
+      i32.const 0
+      call $even (i32.sub (get_local $n) (i32.const 1))
+
+  global $scratch i32
+
+assert_eq (invoke :even (i32.const 13)) (i32.const 0)
+assert_eq (invoke :even (i32.const 20)) (i32.const 1)
+assert_eq (invoke :odd (i32.const 13)) (i32.const 1)
+assert_eq (invoke :odd (i32.const 20)) (i32.const 0)
