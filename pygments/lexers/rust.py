@@ -18,7 +18,7 @@ __all__ = ['RustLexer']
 
 class RustLexer(RegexLexer):
     """
-    Lexer for the Rust programming language (version 1.0).
+    Lexer for the Rust programming language (version 1.10).
 
     .. versionadded:: 1.6
     """
@@ -49,17 +49,21 @@ class RustLexer(RegexLexer):
             (r"""\$([a-zA-Z_]\w*|\(,?|\),?|,?)""", Comment.Preproc),
             # Keywords
             (words((
-                'as', 'box', 'crate', 'do', 'else', 'enum', 'extern',  # break and continue are in labels
-                'fn', 'for', 'if', 'impl', 'in', 'loop', 'match', 'mut', 'priv',
-                'proc', 'pub', 'ref', 'return', 'static', 'struct',
-                'trait', 'true', 'type', 'unsafe', 'while'), suffix=r'\b'),
+                'as', 'box', 'const', 'crate', 'else', 'extern',
+                'for', 'if', 'impl', 'in', 'loop', 'match', 'move',
+                'mut', 'pub', 'ref', 'return', 'static', 'super',
+                'trait', 'unsafe', 'use', 'where', 'while'), suffix=r'\b'),
              Keyword),
-            (words(('alignof', 'be', 'const', 'offsetof', 'pure', 'sizeof',
-                    'typeof', 'once', 'unsized', 'yield'), suffix=r'\b'),
+            (words(('abstract', 'alignof', 'become', 'do', 'final', 'macro',
+                    'offsetof', 'override', 'priv', 'proc', 'pure', 'sizeof',
+                    'typeof', 'unsized', 'virtual', 'yield'), suffix=r'\b'),
              Keyword.Reserved),
-            (r'(mod|use)\b', Keyword.Namespace),
             (r'(true|false)\b', Keyword.Constant),
+            (r'mod\b', Keyword, 'modname'),
             (r'let\b', Keyword.Declaration),
+            (r'fn\b', Keyword, 'funcname'),
+            (r'(struct|enum|type|union)\b', Keyword, 'typename'),
+            (r'(default)(\s+)(type|fn)\b', bygroups(Keyword, Text, Keyword)),
             (words(('u8', 'u16', 'u32', 'u64', 'i8', 'i16', 'i32', 'i64', 'usize',
                     'isize', 'f32', 'f64', 'str', 'bool'), suffix=r'\b'),
              Keyword.Type),
@@ -88,11 +92,11 @@ class RustLexer(RegexLexer):
                 'Ok', 'Err',
                 'SliceConcatExt',
                 'String', 'ToString',
-                'Vec',
-                ), suffix=r'\b'),
+                'Vec'), suffix=r'\b'),
              Name.Builtin),
             # Labels
-            (r'(break|continue)(\s*)(\'[A-Za-z_]\w*)?', bygroups(Keyword, Text.Whitespace, Name.Label)),
+            (r'(break|continue)(\s*)(\'[A-Za-z_]\w*)?',
+             bygroups(Keyword, Text.Whitespace, Name.Label)),
             # Character Literal
             (r"""'(\\['"\\nrt]|\\x[0-7][0-9a-fA-F]|\\0"""
              r"""|\\u\{[0-9a-fA-F]{1,6}\}|.)'""",
@@ -147,6 +151,21 @@ class RustLexer(RegexLexer):
             (r'/\*', String.Doc, '#push'),
             (r'\*/', String.Doc, '#pop'),
             (r'[*/]', String.Doc),
+        ],
+        'modname': [
+            (r'\s+', Text),
+            (r'[a-zA-Z_]\w*', Name.Namespace, '#pop'),
+            default('#pop'),
+        ],
+        'funcname': [
+            (r'\s+', Text),
+            (r'[a-zA-Z_]\w*', Name.Function, '#pop'),
+            default('#pop'),
+        ],
+        'typename': [
+            (r'\s+', Text),
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
+            default('#pop'),
         ],
         'number_lit': [
             (r'[ui](8|16|32|64|size)', Keyword, '#pop'),

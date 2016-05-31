@@ -168,8 +168,8 @@ class PraatLexer(RegexLexer):
         ],
         'function_call': [
             (words(functions_string, suffix=r'\$(?=\s*[:(])'), Name.Function, 'function'),
-            (words(functions_array, suffix=r'#(?=\s*[:(])'), Name.Function, 'function'),
-            (words(functions_numeric, suffix=r'(?=\s*[:(])'), Name.Function, 'function'),
+            (words(functions_array, suffix=r'#(?=\s*[:(])'),   Name.Function, 'function'),
+            (words(functions_numeric, suffix=r'(?=\s*[:(])'),  Name.Function, 'function'),
         ],
         'function': [
             (r'\s+',   Text),
@@ -190,6 +190,7 @@ class PraatLexer(RegexLexer):
             include('operator'),
             include('number'),
 
+            (r'[()]', Text),
             (r',', Punctuation),
         ],
         'old_arguments': [
@@ -203,6 +204,7 @@ class PraatLexer(RegexLexer):
             (r'[^\n]', Text),
         ],
         'number': [
+            (r'\n', Text, '#pop'),
             (r'\b\d+(\.\d*)?([eE][-+]?\d+)?%?', Number),
         ],
         'object_attributes': [
@@ -235,8 +237,8 @@ class PraatLexer(RegexLexer):
             (r"'(?=.*')", String.Interpol, 'string_interpolated'),
         ],
         'operator': [
-            (r'([+\/*<>=!-]=?|[&*|][&*|]?|\^|<>)', Operator),
-            (r'\b(and|or|not|div|mod)\b',          Operator.Word),
+            (r'([+\/*<>=!-]=?|[&*|][&*|]?|\^|<>)',       Operator),
+            (r'(?<![\w.])(and|or|not|div|mod)(?![\w.])', Operator.Word),
         ],
         'string_interpolated': [
             (r'\.?[_a-z][\w.]*[$#]?(?:\[[a-zA-Z0-9,]+\])?(:[0-9]+)?',
@@ -264,9 +266,6 @@ class PraatLexer(RegexLexer):
             (r'\s+', Text),
 
             (r'(optionmenu|choice)([ \t]+\S+:[ \t]+)',
-             bygroups(Keyword, Text), 'number'),
-
-            (r'(option|button)([ \t]+)',
              bygroups(Keyword, Text), 'number'),
 
             (r'(option|button)([ \t]+)',
