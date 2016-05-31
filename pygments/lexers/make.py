@@ -102,7 +102,7 @@ class BaseMakefileLexer(RegexLexer):
             (r'\$\(', Keyword, 'expansion'),
         ],
         'expansion': [
-            (r'[^$a-zA-Z_)]+', Text),
+            (r'[^$a-zA-Z_()]+', Text),
             (r'[a-zA-Z_]+', Name.Variable),
             (r'\$', Keyword),
             (r'\(', Keyword, '#push'),
