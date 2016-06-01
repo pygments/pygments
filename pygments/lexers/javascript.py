@@ -1016,6 +1016,12 @@ class CoffeeScriptLexer(RegexLexer):
     filenames = ['*.coffee']
     mimetypes = ['text/coffeescript']
 
+
+    _operator_re = (
+        r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
+        r'\|\||\\(?=\n)|'
+        r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?')
+
     flags = re.DOTALL
     tokens = {
         'commentsandwhitespace': [
@@ -1034,17 +1040,17 @@ class CoffeeScriptLexer(RegexLexer):
             (r'///', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
+            # This isn't really guarding against mishighlighting well-formed
+            # code, just the ability to infinite-loop between root and
+            # slashstartsregex.
+            (r'/', Operator),
             default('#pop'),
         ],
         'root': [
-            # this next expr leads to infinite loops root -> slashstartsregex
-            # (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
-             r'\|\||\\(?=\n)|'
-             r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&|^/])=?',
-             Operator, 'slashstartsregex'),
-            (r'(?:\([^()]*\))?\s*[=-]>', Name.Function),
+            (r'^(?=\s|/)', Text, 'slashstartsregex'),
+            (_operator_re, Operator, 'slashstartsregex'),
+            (r'(?:\([^()]*\))?\s*[=-]>', Name.Function, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(?<![.$])(for|own|in|of|while|until|'
@@ -1065,7 +1071,7 @@ class CoffeeScriptLexer(RegexLexer):
             (r'@[$a-zA-Z_][\w.:$]*\s*[:=]\s', Name.Variable.Instance,
              'slashstartsregex'),
             (r'@', Name.Other, 'slashstartsregex'),
-            (r'@?[$a-zA-Z_][\w$]*', Name.Other, 'slashstartsregex'),
+            (r'@?[$a-zA-Z_][\w$]*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
