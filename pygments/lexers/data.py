@@ -14,9 +14,9 @@ import re
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, LexerContext, \
     include, bygroups, inherit
 from pygments.token import Text, Comment, Keyword, Name, String, Number, \
-    Punctuation, Literal
+    Punctuation, Literal, Error
 
-__all__ = ['YamlLexer', 'JsonLexer', 'JsonLdLexer']
+__all__ = ['YamlLexer', 'JsonLexer', 'JsonBareObjectLexer', 'JsonLdLexer']
 
 
 class YamlLexerContext(LexerContext):
@@ -507,6 +507,27 @@ class JsonLexer(RegexLexer):
             include('value'),
         ],
     }
+
+
+class JsonBareObjectLexer(JsonLexer):
+    """
+    For JSON data structures (with missing object curly braces).
+
+    .. versionadded:: 2.2
+    """
+
+    name = 'JSONBareObject'
+    aliases = ['json-object']
+    filenames = []
+    mimetypes = ['application/json-object']
+
+    tokens = {
+        'root': [
+            (r'\}', Error),
+            include('objectvalue'),
+        ],
+    }
+
 
 class JsonLdLexer(JsonLexer):
     """
