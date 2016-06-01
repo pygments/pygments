@@ -85,3 +85,16 @@ class JsonBareObjectTest(unittest.TestCase):
             (Token.Text, '\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def testClosingCurlyInValue(self):
+        fragment = '"": ""}\n'
+        tokens = [
+            (Token.Name.Tag, '""'),
+            (Token.Punctuation, ':'),
+            (Token.Text, ' '),
+            (Token.Literal.String.Double, '""'),
+            (Token.Error, '}'),
+            (Token.Text, '\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
