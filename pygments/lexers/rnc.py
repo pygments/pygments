@@ -19,6 +19,8 @@ __all__ = ['RNCCompactLexer']
 class RNCCompactLexer(RegexLexer):
     """
     For `RelaxNG-compact <http://relaxng.org>`_ syntax.
+
+    .. versionadded:: 2.2
     """
 
     name = 'Relax-NG Compact'
@@ -27,30 +29,32 @@ class RNCCompactLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'namespace', Keyword.Namespace),
-            (r'(default|datatypes)', Keyword.Declaration),
+            (r'namespace\b', Keyword.Namespace),
+            (r'(?:default|datatypes)\b', Keyword.Declaration),
             (r'##.*$', Comment.Preproc),
             (r'#.*$', Comment.Single),
             (r'"[^"]*"', String.Double),
-            (r'(element|attribute|mixed)', Keyword.Declaration, 'variable'),
-            (r'(text|xsd:[^ ]+)', Keyword.Type, 'maybe_xsdattributes'),
-            (r'[,?&*=|]', Operator),
+            # TODO single quoted strings and escape sequences outside of
+            # double-quoted strings
+            (r'(?:element|attribute|mixed)\b', Keyword.Declaration, 'variable'),
+            (r'(text\b|xsd:[^ ]+)', Keyword.Type, 'maybe_xsdattributes'),
+            (r'[,?&*=|~]|>>', Operator),
             (r'[(){}]', Punctuation),
             (r'.', Text),
-            ],
+        ],
 
         # a variable has been declared using `element` or `attribute`
         'variable': [
             (r'[^{]+', Name.Variable),
             (r'\{', Punctuation, '#pop'),
-            ],
+        ],
 
         # after an xsd:<datatype> declaration there may be attributes
         'maybe_xsdattributes': [
             (r'\{', Punctuation, 'xsdattributes'),
             (r'\}', Punctuation, '#pop'),
             (r'.', Text),
-            ],
+        ],
 
         # attributes take the form { key1 = value1 key2 = value2 ... }
         'xsdattributes': [
@@ -59,5 +63,5 @@ class RNCCompactLexer(RegexLexer):
             (r'"[^"]*"', String.Double),
             (r'\}', Punctuation, '#pop'),
             (r'.', Text),
-            ]
+        ],
     }
