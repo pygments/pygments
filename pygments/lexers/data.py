@@ -476,7 +476,7 @@ class JsonLexer(RegexLexer):
             # comma terminates the attribute but expects more
             (r',', Punctuation, '#pop'),
             # a closing bracket terminates the entire object, so pop twice
-            (r'\}', Punctuation, ('#pop', '#pop')),
+            (r'\}', Punctuation, '#pop:2'),
         ],
 
         # a json object - { attr, attr, ... }
@@ -525,6 +525,10 @@ class JsonBareObjectLexer(JsonLexer):
         'root': [
             (r'\}', Error),
             include('objectvalue'),
+        ],
+        'objectattribute': [
+            (r'\}', Error),
+            inherit,
         ],
     }
 
