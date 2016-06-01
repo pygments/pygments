@@ -10,7 +10,7 @@
 import unittest
 
 from pygments.token import Token
-from pygments.lexers import BashLexer
+from pygments.lexers import BashLexer, BashSessionLexer
 
 
 class BashTest(unittest.TestCase):
@@ -116,6 +116,27 @@ class BashTest(unittest.TestCase):
             (Token.Literal.Number, u'2'),
             (Token.Text, u' '),
             (Token.Comment.Single, u'# comment\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+class BashSessionTest(unittest.TestCase):
+
+    def setUp(self):
+        self.lexer = BashSessionLexer()
+        self.maxDiff = None
+
+    def testNeedsName(self):
+        fragment = u'$ echo \\\nhi\nhi\n'
+        tokens = [
+            (Token.Text, u''),
+            (Token.Generic.Prompt, u'$'),
+            (Token.Text, u' '),
+            (Token.Name.Builtin, u'echo'),
+            (Token.Text, u' '),
+            (Token.Literal.String.Escape, u'\\\n'),
+            (Token.Text, u'hi'),
+            (Token.Text, u'\n'),
+            (Token.Generic.Output, u'hi\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
 
