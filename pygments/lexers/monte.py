@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2016 Corbin Simpson. All rights reserved.
-# Licensed under the BSD license; see LICENSE for details.
-
 """
     pygments.lexers.monte
     ~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Monte programming language.
 
-    :copyright: Copyright 2016 Corbin Simpson and the Pygments team; see AUTHORS.
+    :copyright: Copyright 2016 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -43,20 +40,10 @@ _operators = [
     # Calls and sends
     '.', '<-', '->',
 ]
-_escape_chars = [
-    (r'\\x[0-9a-fA-F]{2}', String.Escape),
-    (r'\\u[0-9a-fA-F]{4}', String.Escape),
-    (r'\\U[0-9a-fA-F]{8}', String.Escape),
-    (r'\\"', String.Escape),
-    (r"\\'", String.Escape),
-    (r'\\\\', String.Escape),
-    (r'\\b', String.Escape),
-    (r'\\f', String.Escape),
-    (r'\\t', String.Escape),
-    (r'\\n', String.Escape),
-    (r'\\r', String.Escape),
-]
-_char = _escape_chars + [('.', String.Char)]
+_escape_pattern = (
+    r'(?:\\x[0-9a-fA-F]{2}|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|'
+    r'\\["\'\\bftnr])')
+#_char = _escape_chars + [('.', String.Char)]
 _identifier = '[_a-zA-Z][_0-9a-zA-Z]*'
 
 _constants = [
@@ -89,6 +76,11 @@ _safeScope = [
 ]
 
 class MonteLexer(RegexLexer):
+    """
+    Lexer for the `Monte <https://monte.readthedocs.io/>`_ programming language.
+
+    .. versionadded:: 2.2
+    """
     name = 'Monte'
     aliases = ['monte']
     filenames = ['*.mt']
@@ -110,11 +102,11 @@ class MonteLexer(RegexLexer):
 
             # method declarations
             (words(_methods, prefix='\\b', suffix='\\b'),
-                Keyword, 'method'),
+             Keyword, 'method'),
 
             # All other declarations
             (words(_declarations, prefix='\\b', suffix='\\b'),
-                Keyword.Declaration),
+             Keyword.Declaration),
 
             # Keywords
             (words(_keywords, prefix='\\b', suffix='\\b'), Keyword),
@@ -137,14 +129,14 @@ class MonteLexer(RegexLexer):
 
             # Safe scope constants
             (words(_constants, prefix='\\b', suffix='\\b'),
-                Keyword.Pseudo),
+             Keyword.Pseudo),
 
             # Safe scope guards
             (words(_guards, prefix='\\b', suffix='\\b'), Keyword.Type),
 
             # All other safe scope names
             (words(_safeScope, prefix='\\b', suffix='\\b'),
-                Name.Builtin),
+             Name.Builtin),
 
             # Identifiers
             (_identifier, Name),
@@ -161,11 +153,11 @@ class MonteLexer(RegexLexer):
         'char': [
             # It is definitely an error to have a char of width == 0.
             ("'", Error, 'root'),
-        ] + [t + ('charEnd',) for t in _escape_chars] + [
+            (_escape_pattern, String.Escape, 'charEnd'),
             ('.', String.Char, 'charEnd'),
         ],
         'charEnd': [
-            ("'", String.Char, 'root'),
+            ("'", String.Char, '#pop:2'),
             # It is definitely an error to have a char of width > 1.
             ('.', Error),
         ],
@@ -183,13 +175,13 @@ class MonteLexer(RegexLexer):
         ],
         'string': [
             ('"', String.Double, 'root'),
-        ] + _escape_chars + [
-            ('\n', String.Double),
+            (_escape_pattern, String.Escape),
+            (r'\n', String.Double),
             ('.', String.Double),
         ],
         'ql': [
             ('`', String.Backtick, 'root'),
-        ] + [(r'\$' + t[0], t[1]) for t in _escape_chars] + [
+            (r'\$' + _escape_pattern, String.Escape),
             (r'\$\$', String.Escape),
             (r'@@', String.Escape),
             (r'\$\{', String.Interpol, 'qlNest'),
