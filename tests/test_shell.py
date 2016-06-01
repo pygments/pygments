@@ -87,3 +87,35 @@ class BashTest(unittest.TestCase):
             (Token.Text, u'\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def testArrayNums(self):
+        fragment = u'a=(1 2 3)\n'
+        tokens = [
+            (Token.Name.Variable, u'a'),
+            (Token.Operator, u'='),
+            (Token.Operator, u'('),
+            (Token.Literal.Number, u'1'),
+            (Token.Text, u' '),
+            (Token.Literal.Number, u'2'),
+            (Token.Text, u' '),
+            (Token.Literal.Number, u'3'),
+            (Token.Operator, u')'),
+            (Token.Text, u'\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def testEndOfLineNums(self):
+        fragment = u'a=1\nb=2 # comment\n'
+        tokens = [
+            (Token.Name.Variable, u'a'),
+            (Token.Operator, u'='),
+            (Token.Literal.Number, u'1'),
+            (Token.Text, u'\n'),
+            (Token.Name.Variable, u'b'),
+            (Token.Operator, u'='),
+            (Token.Literal.Number, u'2'),
+            (Token.Text, u' '),
+            (Token.Comment.Single, u'# comment\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
