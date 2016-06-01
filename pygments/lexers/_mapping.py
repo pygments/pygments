@@ -154,6 +154,7 @@ LEXERS = {
     'FelixLexer': ('pygments.lexers.felix', 'Felix', ('felix', 'flx'), ('*.flx', '*.flxh'), ('text/x-felix',)),
     'FishShellLexer': ('pygments.lexers.shell', 'Fish', ('fish', 'fishshell'), ('*.fish', '*.load'), ('application/x-fish',)),
     'FlatlineLexer': ('pygments.lexers.dsls', 'Flatline', ('flatline',), (), ('text/x-flatline',)),
+    'ForthLexer': ('pygments.lexers.forth', 'Forth', ('forth',), ('*.frt', '*.fs'), ('application/x-forth',)),
     'FortranFixedLexer': ('pygments.lexers.fortran', 'FortranFixed', ('fortranfixed',), ('*.f', '*.F'), ()),
     'FortranLexer': ('pygments.lexers.fortran', 'Fortran', ('fortran',), ('*.f03', '*.f90', '*.F03', '*.F90'), ('text/x-fortran',)),
     'FoxProLexer': ('pygments.lexers.foxpro', 'FoxPro', ('foxpro', 'vfp', 'clipper', 'xbase'), ('*.PRG', '*.prg'), ()),
