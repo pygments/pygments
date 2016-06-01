@@ -1,0 +1,527 @@
+;----------------------------------------------------------------------------;
+; Does A* pathfinding for rockraiders and vehicles
+;
+; Copyright 2015 Ruben De Smet
+;
+; Redistribution and use in source and binary forms, with or without
+; modification, are permitted provided that the following conditions are
+; met:
+; 
+;     (1) Redistributions of source code must retain the above copyright
+;         notice, this list of conditions and the following disclaimer. 
+; 
+;     (2) Redistributions in binary form must reproduce the above copyright
+;         notice, this list of conditions and the following disclaimer in
+;         the documentation and/or other materials provided with the
+;         distribution.  
+;         
+;     (3) The name of the author may not be used to
+;         endorse or promote products derived from this software without
+;         specific prior written permission.
+; 
+; THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+; IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+; WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+; DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+; INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+; (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+; SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+; HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+; STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+; IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+; POSSIBILITY OF SUCH DAMAGE.
+;
+;----------------------------------------------------------------------------;
+
+IDEAL
+P386
+MODEL FLAT, C
+ASSUME cs:_TEXT,ds:FLAT,es:FLAT,fs:FLAT,gs:FLAT
+
+INCLUDE "ASTAR.INC"
+INCLUDE "READLVL.INC"
+INCLUDE "DEBUG.INC"
+
+STRUC TPriorityField
+    heuristic dd ?
+    distance dd ?
+    x db ?
+    y db ?
+    fromx db ?
+    fromy db ?
+ENDS
+
+STRUC TField
+    distance dd ?
+    x db ?
+    y db ?
+ENDS
+
+CODESEG 
+
+PROC getPath
+        USES ecx
+        ARG @@tgtx:dword, \
+            @@tgty:dword \
+        RETURNS eax, ebx ; eax contains x, ebx contains y
+
+        call getLevelWidth
+        imul eax, [@@tgty]
+        add eax, [@@tgtx]
+        imul eax, SIZE TField
+        add eax, offset backtraceGraph        
+        mov ecx, eax
+
+        xor eax, eax
+        xor ebx, ebx
+
+        mov al, [(TField ptr ecx).x]
+        mov bl, [(TField ptr ecx).y]
+
+        ret
+ENDP getPath
+
+PROC findPath
+        ; eax will contain a 1 when a path has been found
+        ;                    0 otherwise.
+        ARG @@srcx:dword, \
+            @@srcy:dword, \
+            @@tgtx:dword, \
+            @@tgty:dword, \
+            @@type:dword \
+            RETURNS eax
+
+        ; Check whether the target field is "allowed" for
+        ; the selected vehicle or rock raider
+        call getField, [@@tgtx], [@@tgty]
+        mov al, [byte ptr eax]
+        and eax, 0FFh
+
+        add eax, offset actionTable
+        mov eax, [eax]
+        and eax, [@@type]               ; TODO: for now, rock raider is hard coded
+        jnz @canGoToTarget
+
+        mov eax, 0
+        ret
+@canGoToTarget:
+
+        call cleanData
+        mov eax, [@@type]
+        mov [currentType], eax
+
+        mov eax, [@@srcx]
+        mov [currentOpen.x], al
+        mov eax, [@@srcy]
+        mov [currentOpen.y], al
+
+        call distance, [@@srcx], [@@srcy], [@@tgtx], [@@tgty] 
+        ; eax <- distance
+        call addOpen, [@@srcx], [@@srcy], eax, 0
+
+@openListNotEmpty:
+        call popOpen
+        cmp eax, 0
+        je @openListEmpty
+
+        call addToMap
+
+        call addClosed
+
+        mov eax, [@@tgtx]
+        cmp [currentOpen.x], al
+        jne @nextOpen
+        mov eax, [@@tgty]
+        cmp [currentOpen.y], al
+        jne @nextOpen
+
+        jmp @routeFound
+
+        @nextOpen:
+        call addNeighbours, [@@tgtx], [@@tgty]
+
+        jmp @openListNotEmpty
+
+@openListEmpty:
+        mov eax, 0
+        ret
+
+@routeFound:
+        mov eax, 1
+        ret
+ENDP findPath
+
+PROC addToMap
+        USES eax, ecx
+
+        call getLevelWidth
+        xor ecx, ecx
+        mov cl, [currentOpen.y]
+        imul eax, ecx
+        mov cl, [currentOpen.x]
+        add eax, ecx
+        imul eax, SIZE TField
+        add eax, offset backtraceGraph
+
+        mov ecx, [currentOpen.distance]
+        cmp [(TField ptr eax).distance], ecx
+        jbe @dontAdd
+
+        mov [(TField ptr eax).distance], ecx
+        mov cl, [currentOpen.fromx]
+        mov [(TField ptr eax).x], cl
+        mov cl, [currentOpen.fromy]
+        mov [(TField ptr eax).y], cl
+
+@dontAdd:
+        ret
+ENDP addToMap
+
+; Is closed checks whether the field considered is "closed" for being added to the open list.
+; So, it also checks whether we can go on the selected field.
+PROC isClosed
+        USES ebx, ecx, edx
+        ARG @@x:dword, \
+            @@y:dword RETURNS eax
+
+        ; Check bounds first:
+
+        call getLevelWidth
+        cmp [@@x], eax
+        ja notWithinBounds ; ja considers -1 > 10
+
+        call getLevelHeight
+        cmp [@@y], eax
+        ja notWithinBounds
+
+        ; Check whether this field is "allowed" for
+        ; the selected vehicle or rock raider
+        call getField, [@@x], [@@y]
+        mov al, [byte ptr eax]
+        and eax, 0FFh
+
+        add eax, offset actionTable
+        mov eax, [eax]
+        and eax, [currentType]               ; TODO: for now, rock raider is hard coded
+        jnz @canGoHere
+
+
+        inc eax ; mov eax, 1
+        ret
+
+@canGoHere:
+        
+        ; Getting here means the field is okay to walk/fly/whatever on
+
+        xor ecx, ecx
+        mov cx, [closedlistSize]
+        cmp cx, 0 ; If empty, return 0
+        jne @closedNotEmpty
+
+        mov eax, 0
+        ret
+
+@closedNotEmpty:
+        mov ebx, offset closedlist
+
+@loopClosed:
+        mov edx, [@@x]
+        cmp [(TField ptr ebx).x], dl
+        jne @nextClosed
+        mov edx, [@@y]
+        cmp [(TField ptr ebx).y], dl
+        jne @nextClosed
+
+        ; If reached here, yep, contained in closed list
+        mov eax, 1
+        ret
+
+    @nextClosed:
+        add ebx, SIZE TField
+        dec ecx
+        jnz @loopClosed
+
+        mov eax, 0
+        ret
+
+notWithinBounds:
+        mov eax, 1
+        ret
+ENDP isClosed
+
+PROC addNeighbours
+        USES eax, ebx, ecx, edx
+        ARG @@tgtx:dword, \
+            @@tgty:dword
+        ; Push all neighbours of currentOpen on openList
+
+        xor ebx, ebx
+        xor ecx, ecx
+        
+        mov bl, [currentOpen.x]
+        mov cl, [currentOpen.y]
+        mov edx, [currentOpen.distance]
+        inc edx ; Next distance is one more.
+
+        ; Up
+        dec ecx
+        call isClosed, ebx, ecx
+        cmp eax, 0
+        jne @noUp
+        call distance, ebx, ecx, [@@tgtx], [@@tgty]
+        add eax, edx
+        call addOpen, ebx, ecx, eax, edx
+        @noUp:
+        inc ecx
+
+        ; Right
+        inc ebx
+        call isClosed, ebx, ecx
+        cmp eax, 0
+        jne @noRight
+        call distance, ebx, ecx, [@@tgtx], [@@tgty]
+        add eax, edx
+        call addOpen, ebx, ecx, eax, edx
+        @noRight:
+        dec ebx
+
+        ; Left
+        dec ebx
+        call isClosed, ebx, ecx
+        cmp eax, 0
+        jne @noLeft
+        call distance, ebx, ecx, [@@tgtx], [@@tgty]
+        add eax, edx
+        call addOpen, ebx, ecx, eax, edx
+        @noLeft:
+        inc ebx
+
+        ; Down
+        inc ecx
+        call isClosed, ebx, ecx
+        cmp eax, 0
+        jne @noDown
+        call distance, ebx, ecx, [@@tgtx], [@@tgty]
+        add eax, edx
+        call addOpen, ebx, ecx, eax, edx
+        @noDown:
+        dec ecx
+
+        ret
+ENDP addNeighbours
+
+PROC popOpen
+        ARG RETURNS eax
+        USES ebx, ecx, edx, esi, edi
+        ; eax contains the smallest current heuristic
+        ; ebx contains the index of that field
+
+        cmp [openlistSize], 0           ; If empty, return 0
+        jne @goForth
+
+        mov eax, 0
+        ret
+
+@goForth:
+
+        mov eax, 0FFFFFFFFh             ; Longest distance possible in 32 bits.
+        xor ebx, ebx
+        xor ecx, ecx                    ; ecx contains the current index
+
+@searchFurther:
+        mov edx, ecx
+        imul edx, SIZE TPriorityField
+        cmp [(TPriorityField ptr (openlist + edx)).heuristic], eax
+        ja @notBetter
+        ; Better guess found, put right values in eax and ebx
+        mov eax, [(TPriorityField ptr (openlist + edx)).heuristic]
+        mov ebx, ecx
+
+@notBetter:
+
+        inc ecx
+        cmp cx, [openlistSize]
+        jne @searchFurther
+
+        ; By now, we have found the right item to pop from the priorityqueue.
+
+        ; Move the correct item in currentOpen
+        mov ecx, SIZE TPriorityField
+        mov esi, ebx
+        imul esi, ecx
+        add esi, offset openlist
+
+        mov edi, offset currentOpen
+        rep movsb
+
+        ; Now make the remove the thing from the vector
+
+        xor ecx, ecx
+        mov cx, [openlistSize]
+        sub ecx, ebx
+        dec ecx
+        imul ecx, SIZE TPriorityField
+        mov edi, esi
+        sub edi, SIZE TPriorityField
+        rep movsb
+
+        dec [openlistSize]
+        mov eax, 1
+        ret
+ENDP popOpen
+
+PROC addClosed
+        USES eax, ebx
+
+        xor ebx, ebx
+        xor eax, eax
+
+        mov bx, [closedlistSize]
+        imul ebx, SIZE TField        
+        add ebx, offset closedlist ; ebx contains the target TField
+
+        mov al, [currentOpen.x]
+        mov [(TField ptr ebx).x], al
+        mov al, [currentOpen.y]
+        mov [(TField ptr ebx).y], al
+        mov eax, [currentOpen.distance]
+        mov [(TField ptr ebx).distance], eax
+
+        inc [closedlistSize]
+        cmp [closedlistSize], CLOSED_LIST_SIZE_MAX
+        jne @noProblemWithClosedVector
+
+        xor eax, eax
+        mov ax, [closedlistSize]
+        call crash, offset closedOutOfMemory, eax
+
+@noProblemWithClosedVector:
+        ret
+ENDP addClosed
+
+PROC addOpen
+        USES eax, ebx
+        ARG @@x:dword, \
+            @@y:dword, \
+            @@priority:dword, \
+            @@distance:dword
+
+        xor eax, eax
+        mov ax, [openlistSize]
+        imul eax, SIZE TPriorityField
+        add eax, offset openlist
+
+        mov ebx, [@@x]
+        mov [(TPriorityField ptr eax).x], bl
+        mov ebx, [@@y]
+        mov [(TPriorityField ptr eax).y], bl
+
+        mov bl, [currentOpen.x]
+        mov [(TPriorityField ptr eax).fromx], bl
+        mov bl, [currentOpen.y]
+        mov [(TPriorityField ptr eax).fromy], bl
+
+        mov ebx, [@@priority]
+        mov [(TPriorityField ptr eax).heuristic], ebx
+        mov ebx, [@@distance]
+        mov [(TPriorityField ptr eax).distance], ebx
+
+        inc [openlistSize]
+        cmp [openlistSize], OPEN_LIST_SIZE_MAX
+        jne @noProblem
+
+        xor eax, eax
+        mov ax, [openlistSize]
+        call crash, offset openOutOfMemory, eax
+
+@noProblem:
+        ret
+ENDP
+
+PROC distance
+        USES ebx
+        ARG @@srcx:dword, \
+            @@srcy:dword, \
+            @@tgtx:dword, \
+            @@tgty:dword \
+        RETURNS eax
+
+        mov eax, [@@srcx]
+        sub eax, [@@tgtx]
+
+        jns @noSignChangex
+        neg eax
+
+        @noSignChangex:
+
+        mov ebx, [@@srcy]
+        sub ebx, [@@tgty]
+
+        jns @noSignChangey
+        neg ebx
+
+        @noSignChangey:
+        add eax, ebx
+        ret
+ENDP distance
+
+PROC cleanData
+        USES eax, ecx
+        mov [openlistSize], 0
+        mov [closedlistSize], 0
+
+        mov [currentOpen.x], -1
+        mov [currentOpen.y], -1
+        mov [currentOpen.distance], 0
+
+        call getLevelWidth
+        mov ecx, eax
+        call getLevelHeight
+        imul ecx, eax
+
+        mov eax, offset backtraceGraph
+@fieldIter:
+        mov [(TField ptr eax).distance], 0ffffffffh ; Set to approximately +inf
+        mov [(TField ptr eax).x], 0
+        mov [(TField ptr eax).y], 0
+        add eax, SIZE TField
+        dec ecx
+        jnz @fieldIter
+
+        ret
+ENDP cleanData
+
+DATASEG
+
+openOutOfMemory   db "Out of openlistSize memory. Hi dev: Please increase$"
+closedOutOfMemory db "Out of closedlistSize memory. Hi dev: Please increase$"
+
+; power | discover | walking | sailing | flying
+actionTable db  00001101b, \ ;EMPTY
+                00001101b, \ ;RUBBLE
+                00000000b, \ ;GRAVEL
+                00000000b, \ ;LOOSE ROCK
+                00000000b, \ ;HARD ROCK
+                00000000b, \ ;MASSIVE ROCK
+                00000000b, \ ;KRISTAL SOURCE
+                00000000b, \ ;OREROCK
+                00001011b, \ ;WATER
+                00001001b, \ ;LAVA
+                00001101b, \ ;SNAIL HOLE
+                00001101b, \ ;EROSION
+                00011101b, \ ;POWER PATH
+                00011101b, \ ;BUILDING POWER PATH
+                00011000b  \ ;BUILDING
+
+UDATASEG
+
+currentType      dd ?
+currentOpen      TPriorityField ?
+
+openlist         TPriorityField OPEN_LIST_SIZE_MAX dup(?)
+openlistSize     dw ?
+closedlist       TField CLOSED_LIST_SIZE_MAX       dup(?)
+closedlistSize   dw ?
+backtraceGraph   TField MAX_LEVEL_SIZE             dup(?)
+
+END
