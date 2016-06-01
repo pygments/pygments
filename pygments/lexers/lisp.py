@@ -1407,7 +1407,7 @@ class NewLispLexer(RegexLexer):
 
     name = 'NewLisp'
     aliases = ['newlisp']
-    filenames = ['*.lsp', '*.nl']
+    filenames = ['*.lsp', '*.nl', '*.kif']
     mimetypes = ['text/x-newlisp', 'application/x-newlisp']
 
     flags = re.IGNORECASE | re.MULTILINE | re.UNICODE
