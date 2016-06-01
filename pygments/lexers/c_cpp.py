@@ -46,8 +46,10 @@ class CFamilyLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text),  # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'//(\n|[\w\W]*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*][\w\W]*?[*](\\\n)?/', Comment.Multiline),
+            # Open until EOF, so no ending delimeter
+            (r'/(\\\n)?[*][\w\W]*', Comment.Multiline),
         ],
         'statements': [
             (r'(L?)(")', bygroups(String.Affix, String), 'string'),
