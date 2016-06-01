@@ -46,7 +46,7 @@ class ForthLexer(RegexLexer):
             (r'(:|variable|constant|value|buffer:)(\s+)',
              bygroups(Keyword.Namespace, Text), 'worddef'),
             # strings are rather simple
-            (r'([\.sc]")(\s+?)', bygroups(String, Text), 'stringdef'),
+            (r'([.sc]")(\s+?)', bygroups(String, Text), 'stringdef'),
             # keywords from the various wordsets
             # *** Wordset BLOCK
             (r'(blk|block|buffer|evaluate|flush|load|save-buffers|update|'
@@ -141,22 +141,37 @@ class ForthLexer(RegexLexer):
             r'forget|'
             # Forth 2012
             r'defer|defer@|defer!|action-of|begin-structure|field:|buffer:|'
+            r'parse-name|buffer:|traverse-wordlist|n>r|nr>|2value|fvalue|'
+            r'name>interpret|name>compile|name>string|'
             r'cfield:|end-structure)'+delimiter, Keyword),
 
             # Numbers
-            (r'(\$[0-9A-Fa-f]+)', Number.Hex),
+            (r'(\$[0-9A-F]+)', Number.Hex),
             (r'(\#|%|&|\-|\+)?[0-9]+', Number.Integer),
+            (r'(\#|%|&|\-|\+)?[0-9.]+', Keyword.Type),
             # amforth specific
             (r'(@i|!i|@e|!e|pause|noop|turnkey|sleep|'
-             r'itype|icompare|sp@|sp!|rp@|rp!|up@|up!)' + delimiter,
-             Keyword.Type),
+             r'itype|icompare|sp@|sp!|rp@|rp!|up@|up!|'
+             r'>a|a>|a@|a!|a@+|a@-|>b|b>|b@|b!|b@+|b@-|'
+             r'find-name|1ms|'
+             r'sp0|rp0|\(evaluate\)|int-trap|int!)' + delimiter,
+             Name.Constant),
+            # a proposal
+            (r'(do-recognizer|r:fail|recognizer:|get-recognizers|'
+             r'set-recognizers|r:float|r>comp|r>int|r>post|'
+             r'r:name|r:word|r:dnum|r:num|recognizer|forth-recognizer|'
+             r'rec:num|rec:float|rec:word)' + delimiter, Name.Decorator),
+            # defining words. The next word is a new command name
+            (r'(Evalue|Rvalue|Uvalue|Edefer|Rdefer|Udefer)(\s+)',
+             bygroups(Keyword.Namespace, Text), 'worddef'),
+
             (valid_name, Name.Function),      # Anything else is executed
 
         ],
         'worddef': [
-            (r'[\S]*', Name.Class, '#pop')
+            (r'\S+', Name.Class, '#pop'),
         ],
         'stringdef': [
-            (r'[^"]*', String, '#pop')
+            (r'[^"]+', String, '#pop'),
         ],
     }
