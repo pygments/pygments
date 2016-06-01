@@ -1,0 +1,11 @@
+﻿<div>
+    <p>{{order.DueTime | date:'d. MMMM yyyy HH:mm'}}</p>
+    <p>Status: {{order.OrderState}}</p>
+    <button (click)="deleteOrder()" *ngIf="cancelable" [value]="test" [(twoWayTest)]="foo.bar">Remove</button>
+    <ul>
+        <li *ngFor="#meal of order.Positions">
+            {{meal.Name}}
+        </li>
+    </ul>
+    <p>Preis: <b>{{order.TotalPrice | currency:'EUR':true:'1.2-2'}}</b></p>
+</div>

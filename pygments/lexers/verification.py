@@ -88,13 +88,14 @@ class SilverLexer(RegexLexer):
                 'assume', 'goto', 'while', 'if', 'elseif', 'else', 'fresh',
                 'constraining', 'Seq', 'Set', 'Multiset', 'union', 'intersection',
                 'setminus', 'subset', 'unfolding', 'in', 'old', 'forall', 'exists',
-                'acc', 'wildcard', 'write', 'none', 'epsilon', 'perm', 'unique'),
+                'acc', 'wildcard', 'write', 'none', 'epsilon', 'perm', 'unique',
+                'apply', 'package', 'folding', 'label'),
              suffix=r'\b'), Keyword),
             (words(('Int', 'Perm', 'Bool', 'Ref'), suffix=r'\b'), Keyword.Type),
             include('numbers'),
 
-            (r'[!%&*+=|?:<>/-]', Operator),
-            (r"([{}():;,.])", Punctuation),
+            (r'[!%&*+=|?:<>/\-\[\]]', Operator),
+            (r'([{}():;,.])', Punctuation),
             # Identifier
             (r'[\w$]\w*', Name),
         ],
