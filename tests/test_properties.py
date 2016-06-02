@@ -29,3 +29,12 @@ class PropertiesTest(unittest.TestCase):
             (Token.Text, '\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def test_leading_whitespace_comments(self):
+        fragment = '    # comment\n'
+        tokens = [
+            (Token.Text, '    '),
+            (Token.Comment, '# comment'),
+            (Token.Text, '\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
