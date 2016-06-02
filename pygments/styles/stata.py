@@ -25,7 +25,6 @@ class StataStyle(Style):
     styles = {
         Whitespace:            '#bbbbbb',
         Comment:               'italic #008800',
-        # Comment:               'italic #898989',
         String:                '#7a2424',
         Number:                '#2c2cff',
         Operator:              '',
@@ -34,7 +33,5 @@ class StataStyle(Style):
         Name.Function:         '#2c2cff',
         Name.Variable:         'bold #35baba',
         Name.Variable.Global:  'bold #b5565e',
-        # Name.Variable:         'bold #7EC0EE',
-        # Name.Variable.Global:  'bold #BE646C',
         Error:                 'bg:#e3d2d2 #a61717'
     }

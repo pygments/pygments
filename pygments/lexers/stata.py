@@ -8,8 +8,8 @@
 """
 
 from pygments.lexer import RegexLexer, include, words
-from pygments.token import Comment, Keyword, Name, Number, String, Text
-# Operator
+from pygments.token import Comment, Keyword, Name, Number, \
+    String, Text, Operator
 
 __all__ = ['StataLexer']
 
@@ -487,13 +487,10 @@ class StataLexer(RegexLexer):
              Keyword),
         ],
         # http://www.stata.com/help.cgi?operators
-        # 'operators': [
-        #     (r'-|==|<=|>=|<|>|&|!=', Operator),
-        #     (r'\*|\+|\^|/|!|~|==|~=', Operator)
-        # ],
-        # 'builtin_symbols': [
-        #     (r'(_n|_N|_rc|_m|_merge|_all)', Keyword.Constant),
-        # ],
+        'operators': [
+            (r'-|==|<=|>=|<|>|&|!=', Operator),
+            (r'\*|\+|\^|/|!|~|==|~=', Operator)
+        ],
         # Stata numbers
         'numbers': [
             # decimal number
