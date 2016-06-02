@@ -46,6 +46,10 @@ def test_example_files():
         if not os.path.isfile(absfn):
             continue
 
+        extension = os.getenv('TEST_EXT')
+        if extension and not absfn.endswith(extension):
+            continue
+
         print(absfn)
         with open(absfn, 'rb') as f:
             code = f.read()
