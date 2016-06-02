@@ -9,7 +9,7 @@
 
 import unittest
 
-from pygments.lexers import PythonLexer
+from pygments.lexers import PythonLexer, Python3Lexer
 from pygments.token import Token
 
 
@@ -46,5 +46,68 @@ class PythonTest(unittest.TestCase):
             (Token.Text, '        '),
             (Token.Keyword, 'pass'),
             (Token.Text, '\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+
+class Python3Test(unittest.TestClass):
+    def setUp(self):
+        self.lexer = Python3Lexer
+        
+    def testNeedsName(self):
+        """
+        Tests that '@' is recognized as an Operator
+        """
+        fragment = u'S = (H @ beta - r).T @ inv(H @ V @ H.T) @ (H @ beta - r)\n'
+        tokens = [
+            (Token.Name, u'S'),
+            (Token.Text, u' '),
+            (Token.Operator, u'='),
+            (Token.Text, u' '),
+            (Token.Punctuation, u'('),
+            (Token.Name, u'H'),
+            (Token.Text, u' '),
+            (Token.Operator, u'@'),
+            (Token.Text, u' '),
+            (Token.Name, u'beta'),
+            (Token.Text, u' '),
+            (Token.Operator, u'-'),
+            (Token.Text, u' '),
+            (Token.Name, u'r'),
+            (Token.Punctuation, u')'),
+            (Token.Operator, u'.'),
+            (Token.Name, u'T'),
+            (Token.Text, u' '),
+            (Token.Operator, u'@'),
+            (Token.Text, u' '),
+            (Token.Name, u'inv'),
+            (Token.Punctuation, u'('),
+            (Token.Name, u'H'),
+            (Token.Text, u' '),
+            (Token.Operator, u'@'),
+            (Token.Text, u' '),
+            (Token.Name, u'V'),
+            (Token.Text, u' '),
+            (Token.Operator, u'@'),
+            (Token.Text, u' '),
+            (Token.Name, u'H'),
+            (Token.Operator, u'.'),
+            (Token.Name, u'T'),
+            (Token.Punctuation, u')'),
+            (Token.Text, u' '),
+            (Token.Operator, u'@'),
+            (Token.Text, u' '),
+            (Token.Punctuation, u'('),
+            (Token.Name, u'H'),
+            (Token.Text, u' '),
+            (Token.Operator, u'@'),
+            (Token.Text, u' '),
+            (Token.Name, u'beta'),
+            (Token.Text, u' '),
+            (Token.Operator, u'-'),
+            (Token.Text, u' '),
+            (Token.Name, u'r'),
+            (Token.Punctuation, u')'),
+            (Token.Text, u'\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
