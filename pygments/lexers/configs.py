@@ -100,6 +100,8 @@ class PropertiesLexer(RegexLexer):
     """
     Lexer for configuration files in Java's properties format.
 
+    Note: trailing whitespace counts as part of the value as per spec
+
     .. versionadded:: 1.4
     """
 
@@ -110,10 +112,10 @@ class PropertiesLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
-            (r'^ *[#!].*$', Comment),
+            (r'(^ *)([#!].*)', bygroups(Text, Comment)),
             (r'(.*?)([ \t]*)([=:])([ \t]*)(.*(?:(?<=\\)\n.*)*)',
              bygroups(Name.Attribute, Text, Operator, Text, String)),
+            (r'\s', Text),
         ],
     }
 
