@@ -50,9 +50,9 @@ class PythonTest(unittest.TestCase):
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
 
 
-class Python3Test(unittest.TestClass):
+class Python3Test(unittest.TestCase):
     def setUp(self):
-        self.lexer = Python3Lexer
+        self.lexer = Python3Lexer()
         
     def testNeedsName(self):
         """
