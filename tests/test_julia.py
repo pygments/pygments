@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    Python Tests
+    Julia Tests
     ~~~~~~~~~~~~
 
     :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
@@ -13,7 +13,7 @@ from pygments.lexers import JuliaLexer
 from pygments.token import Token
 
 
-class Julia(unittest.TestCase):
+class JuliaTests(unittest.TestCase):
     def setUp(self):
         self.lexer = JuliaLexer()
 
