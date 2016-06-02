@@ -111,7 +111,7 @@ class PropertiesLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(?:[;#]|//).*$', Comment),
+            (r'(?:[;#!]|//).*$', Comment),
             (r'(.*?)([ \t]*)([=:])([ \t]*)(.*(?:(?<=\\)\n.*)*)',
              bygroups(Name.Attribute, Text, Operator, Text, String)),
         ],
