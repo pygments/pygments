@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-
 """
     pygments.lexers.sas
     ~~~~~~~~~~~~~~~~~~~
 
     Lexer for SAS.
+
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
@@ -16,13 +18,14 @@ __all__ = ['SASLexer']
 
 class SASLexer(RegexLexer):
     """
-    For `SAS <http://www.sas.com/>` files.
+    For `SAS <http://www.sas.com/>`_ files.
 
-    Syntax from syntax/sas.vim by James Kidd <james.kidd@covance.com>
+    .. versionadded:: 2.2
     """
+    # Syntax from syntax/sas.vim by James Kidd <james.kidd@covance.com>
 
     name      = 'SAS'
-    aliases   = ['SAS', 'sas']
+    aliases   = ['sas']
     filenames = ['*.SAS', '*.sas']
     mimetypes = ['text/x-sas', 'text/sas', 'application/x-sas']
     flags     = re.IGNORECASE | re.MULTILINE
