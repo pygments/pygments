@@ -25,7 +25,6 @@ class SasStyle(Style):
     styles = {
         Whitespace:            '#bbbbbb',
         Comment:               'italic #008800',
-        # Comment:               'italic #898989',
         String:                '#800080',
         Number:                'bold #2e8b57',
         Other:                 'bg:#ffffe0',
