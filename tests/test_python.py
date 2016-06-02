@@ -17,7 +17,11 @@ class PythonTest(unittest.TestCase):
     def setUp(self):
         self.lexer = PythonLexer()
 
-    def testNeedsName(self):
+    def test_cls_builtin(self):
+        """
+        Tests that a cls token gets interpreted as a Token.Name.Builtin.Pseudo
+
+        """
         fragment = 'class TestClass():\n    @classmethod\n    def hello(cls):\n        pass\n'
         tokens = [
             (Token.Keyword, 'class'),
