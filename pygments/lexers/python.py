@@ -116,7 +116,7 @@ class PythonLexer(RegexLexer):
                 'unichr', 'unicode', 'vars', 'xrange', 'zip'),
                 prefix=r'(?<!\.)', suffix=r'\b'),
              Name.Builtin),
-            (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True'
+            (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True|cls'
              r')\b', Name.Builtin.Pseudo),
             (words((
                 'ArithmeticError', 'AssertionError', 'AttributeError',
@@ -303,7 +303,7 @@ class Python3Lexer(RegexLexer):
             'sum', 'super', 'tuple', 'type', 'vars', 'zip'), prefix=r'(?<!\.)',
             suffix=r'\b'),
          Name.Builtin),
-        (r'(?<!\.)(self|Ellipsis|NotImplemented)\b', Name.Builtin.Pseudo),
+        (r'(?<!\.)(self|Ellipsis|NotImplemented|cls)\b', Name.Builtin.Pseudo),
         (words((
             'ArithmeticError', 'AssertionError', 'AttributeError',
             'BaseException', 'BufferError', 'BytesWarning', 'DeprecationWarning',
