@@ -112,6 +112,7 @@ class PropertiesLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'^(\w+)([ \t])(\w+\s*)$', bygroups(Name.Attribute, Text, String)),
             (r'(^ *)([#!].*)', bygroups(Text, Comment)),
             (r'(.*?)([ \t]*)([=:])([ \t]*)(.*(?:(?<=\\)\n.*)*)',
              bygroups(Name.Attribute, Text, Operator, Text, String)),
