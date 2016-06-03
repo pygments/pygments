@@ -1,0 +1,109 @@
+/* Stemmer for Esperanto in UTF-8 */
+
+strings ()
+
+integers ()
+
+booleans ( foreign )
+
+routines (
+    apostrophe
+    canonical_form
+    correlative
+    interjection
+    short_word
+    standard_suffix
+    unuj
+)
+
+externals ( stem )
+
+groupings ( vowel aiou ao ou )
+
+stringdef a' decimal '225'
+stringdef e' hex 'E9'
+stringdef i' hex 'ED'
+stringdef o' hex ' f3'
+stringdef u' hex 'fa '
+
+stringdef cx hex '0109'
+stringdef gx hex '011D'
+stringdef hx hex '0125'
+stringdef jx hex '0135'
+stringdef sx hex '015D'
+stringdef ux hex '016D'
+
+define canonical_form as repeat (
+    [substring]
+    among (
+stringescapes //
+        '/a'/' (<- 'a' set foreign)
+        '/e'/' (<- 'e' set foreign)
+        '/i'/' (<- 'i' set foreign)
+        '/o'/' (<- 'o' set foreign)
+        '/u'/' (<- 'u' set foreign)
+stringescapes `'
+        'cx' (<- '`cx'')
+        'gx' (<- '`gx'')
+        'hx' (<- '`hx'')
+        'jx' (<- '`jx'')
+        'sx' (<- '`sx'')
+        'ux' (<- '`ux'')
+        '' (next)
+    )
+)
+
+backwardmode (
+    stringescapes { }
+
+    define apostrophe as (
+        (['un{'}'] atlimit <- 'unu') or
+        (['l{'}'] atlimit <- 'la') or
+        (['{'}'] <- 'o')
+    )
+
+    define vowel 'aeiou'
+    define aiou vowel - 'e'
+    define ao 'ao'
+    define ou 'ou'
+
+    define short_word as not (loop (maxint * 0 + 4 / 2) gopast vowel)
+
+    define interjection as (
+        among ('adia{ux}' 'aha' 'amen' 'hola' 'hura' 'mia{ux}' 'muu' 'oho')
+        atlimit
+    )
+
+    define correlative as (
+        []
+        // Ignore -al, -am, etc. since they can't be confused with suffixes.
+        test (
+            ('a' or (try 'n'] 'e') or (try 'n' try 'j'] ou))
+            'i'
+            try ('k' or 't' or '{cx}' or 'nen')
+            atlimit
+        )
+        delete
+    )
+
+    define unuj as (
+        [try 'n' 'j'] 'unu' atlimit delete
+    )
+
+    define standard_suffix as (
+        [
+        try ((try 'n' try 'j' ao) or (try 's' aiou) or (try 'n' 'e'))
+        try '-' try 'a{ux}'
+        ] delete
+    )
+)
+
+define stem as (
+    do canonical_form
+    not foreign
+    backwards (
+        do apostrophe
+        short_word or interjection or
+        correlative or unuj or do standard_suffix
+    )
+)

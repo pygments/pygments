@@ -20,7 +20,7 @@ import pygments.unistring as uni
 
 __all__ = ['JavascriptLexer', 'KalLexer', 'LiveScriptLexer', 'DartLexer',
            'TypeScriptLexer', 'LassoLexer', 'ObjectiveJLexer',
-           'CoffeeScriptLexer', 'MaskLexer', 'EarlGreyLexer']
+           'CoffeeScriptLexer', 'MaskLexer', 'EarlGreyLexer', 'JuttleLexer']
 
 JS_IDENT_START = ('(?:[$_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') +
                   ']|\\\\u[a-fA-F0-9]{4})')
@@ -1016,6 +1016,12 @@ class CoffeeScriptLexer(RegexLexer):
     filenames = ['*.coffee']
     mimetypes = ['text/coffeescript']
 
+
+    _operator_re = (
+        r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
+        r'\|\||\\(?=\n)|'
+        r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?')
+
     flags = re.DOTALL
     tokens = {
         'commentsandwhitespace': [
@@ -1034,17 +1040,17 @@ class CoffeeScriptLexer(RegexLexer):
             (r'///', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
+            # This isn't really guarding against mishighlighting well-formed
+            # code, just the ability to infinite-loop between root and
+            # slashstartsregex.
+            (r'/', Operator),
             default('#pop'),
         ],
         'root': [
-            # this next expr leads to infinite loops root -> slashstartsregex
-            # (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
-             r'\|\||\\(?=\n)|'
-             r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&|^/])=?',
-             Operator, 'slashstartsregex'),
-            (r'(?:\([^()]*\))?\s*[=-]>', Name.Function),
+            (r'^(?=\s|/)', Text, 'slashstartsregex'),
+            (_operator_re, Operator, 'slashstartsregex'),
+            (r'(?:\([^()]*\))?\s*[=-]>', Name.Function, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(?<![.$])(for|own|in|of|while|until|'
@@ -1065,7 +1071,7 @@ class CoffeeScriptLexer(RegexLexer):
             (r'@[$a-zA-Z_][\w.:$]*\s*[:=]\s', Name.Variable.Instance,
              'slashstartsregex'),
             (r'@', Name.Other, 'slashstartsregex'),
-            (r'@?[$a-zA-Z_][\w$]*', Name.Other, 'slashstartsregex'),
+            (r'@?[$a-zA-Z_][\w$]*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -1437,4 +1443,64 @@ class EarlGreyLexer(RegexLexer):
             (r'([3-79]|[12][0-9]|3[0-6])r[a-zA-Z\d]+(\.[a-zA-Z\d]+)?', Number.Radix),
             (r'\d+', Number.Integer)
         ],
+    }
+
+class JuttleLexer(RegexLexer):
+    """
+    For `Juttle`_ source code.
+
+    .. _Juttle: https://github.com/juttle/juttle
+
+    """
+
+    name = 'Juttle'
+    aliases = ['juttle', 'juttle']
+    filenames = ['*.juttle']
+    mimetypes = ['application/juttle', 'application/x-juttle',
+                 'text/x-juttle', 'text/juttle']
+
+    flags = re.DOTALL | re.UNICODE | re.MULTILINE
+
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline)
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'(?=/)', Text, ('#pop', 'badregex')),
+            default('#pop')
+        ],
+        'badregex': [
+            (r'\n', Text, '#pop')
+        ],
+        'root': [
+            (r'^(?=\s|/)', Text, 'slashstartsregex'),
+            include('commentsandwhitespace'),
+            (r':\d{2}:\d{2}:\d{2}(\.\d*)?:', String.Moment),
+            (r':(now|beginning|end|forever|yesterday|today|tomorrow|(\d+(\.\d*)?|\.\d+)(ms|[smhdwMy])?):', String.Moment),
+            (r':\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d*)?)?(Z|[+-]\d{2}:\d{2}|[+-]\d{4})?:', String.Moment),
+            (r':((\d+(\.\d*)?|\.\d+)[ ]+)?(millisecond|second|minute|hour|day|week|month|year)[s]?'
+             r'(([ ]+and[ ]+(\d+[ ]+)?(millisecond|second|minute|hour|day|week|month|year)[s]?)'
+             r'|[ ]+(ago|from[ ]+now))*:', String.Moment),
+            (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
+             r'(==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+            (r'(import|return|continue|if|else)\b', Keyword, 'slashstartsregex'),
+            (r'(var|const|function|reducer|sub|input)\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(batch|emit|filter|head|join|keep|pace|pass|put|read|reduce|remove|'
+             r'sequence|skip|sort|split|tail|unbatch|uniq|view|write)\b', Keyword.Reserved),
+            (r'(true|false|null|Infinity)\b', Keyword.Constant),
+            (r'(Array|Date|Juttle|Math|Number|Object|RegExp|String)\b', Name.Builtin),
+            (JS_IDENT, Name.Other),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single)
+        ]
+
     }

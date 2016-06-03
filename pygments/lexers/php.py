@@ -224,7 +224,7 @@ class PhpLexer(RegexLexer):
                       String.Interpol)),
             (r'(\$\{)(\S+)(\})',
              bygroups(String.Interpol, Name.Variable, String.Interpol)),
-            (r'[${\\]+', String.Double)
+            (r'[${\\]', String.Double)
         ],
     }
 
