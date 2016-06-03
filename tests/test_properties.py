@@ -71,3 +71,19 @@ class PropertiesTest(unittest.TestCase):
             (Token.Literal.String, 'value\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def test_just_key(self):
+        fragment = 'justkey\n'
+        tokens = [
+            (Token.Name.Attribute, 'justkey'),
+            (Token.Text, '\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def test_just_key_with_space(self):
+        fragment = 'just\\ key\n'
+        tokens = [
+            (Token.Name.Attribute, 'just\\ key'),
+            (Token.Text, '\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
