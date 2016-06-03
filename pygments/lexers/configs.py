@@ -115,6 +115,8 @@ class PropertiesLexer(RegexLexer):
             (r'^(\w+)([ \t])(\w+\s*)$', bygroups(Name.Attribute, Text, String)),
             (r'^\w+(\\[ \t]\w*)*$', Name.Attribute),
             (r'(^ *)([#!].*)', bygroups(Text, Comment)),
+            # More controversial comments
+            (r'(^ *)((?:;|//).*)', bygroups(Text, Comment)),
             (r'(.*?)([ \t]*)([=:])([ \t]*)(.*(?:(?<=\\)\n.*)*)',
              bygroups(Name.Attribute, Text, Operator, Text, String)),
             (r'\s', Text),
