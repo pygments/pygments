@@ -116,7 +116,7 @@ class CleanLexer(ExtendedRegexLexer):
             (r'(?s)/\*.*?\*/', Comment.Multi),
 
             # Modules, imports, etc.
-            (r'\b((?:implementation|definition|system)\s+)?(module)(\s+)([\w`]+)',
+            (r'\b((?:implementation|definition|system)\s+)?(module)(\s+)([\w`\.]+)',
                 bygroups(Keyword.Namespace, Keyword.Namespace, Text, Name.Class)),
             (r'(?<=\n)import(?=\s)', Keyword.Namespace, 'import'),
             (r'(?<=\n)from(?=\s)', Keyword.Namespace, 'fromimport'),
@@ -128,7 +128,7 @@ class CleanLexer(ExtendedRegexLexer):
 
             # Function definitions
             (r'(?=\{\|)', Whitespace, 'genericfunction'),
-            (r'(?<=\n)([ \t]*)([\w`$()=\-<>~*\^|+&%]+)((?:\s+[\w])*)(\s*)(::)',
+            (r'(?<=\n)([ \t]*)([\w`$()=\-<>~*\^|+&%]+)((?:\s+\w)*)(\s*)(::)',
              bygroups(store_indent, Name.Function, Keyword.Type, Whitespace,
                       Punctuation),
              'functiondefargs'),
@@ -149,8 +149,12 @@ class CleanLexer(ExtendedRegexLexer):
             (words(('True', 'False'), prefix=r'(?<=\s)', suffix=r'(?=\s)'),
              Literal),
 
+            # Qualified names
+            (r'(\')([\w\.]+)(\'\.)',
+                bygroups(Punctuation, Name.Namespace, Punctuation)),
+
             # Everything else is some name
-            (r'([\w`$%]+\.?)*[\w`$%]+', Name),
+            (r'([\w`$%\/\?@]+\.?)*[\w`$%\/\?@]+', Name),
 
             # Punctuation
             (r'[{}()\[\],:;.#]', Punctuation),
@@ -167,13 +171,14 @@ class CleanLexer(ExtendedRegexLexer):
         ],
         'fromimport': [
             include('common'),
-            (r'([\w`]+)', check_class_not_import),
+            (r'([\w`\.]+)', check_class_not_import),
             (r'\n', Whitespace, '#pop'),
             (r'\s', Whitespace),
         ],
         'fromimportfunc': [
             include('common'),
-            (r'([\w`$()=\-<>~*\^|+&%]+)', check_instance_class),
+            (r'(::)\s+([^,\s]+)', bygroups(Punctuation, Keyword.Type)),
+            (r'([\w`$()=\-<>~*\^|+&%\/]+)', check_instance_class),
             (r',', Punctuation),
             (r'\n', Whitespace, '#pop'),
             (r'\s', Whitespace),
@@ -199,7 +204,7 @@ class CleanLexer(ExtendedRegexLexer):
             include('common'),
             (words(('from', 'import', 'as', 'qualified'),
                    prefix='(?<=\s)', suffix='(?=\s)'), Keyword.Namespace),
-            (r'[\w`]+', Name.Class),
+            (r'[\w`\.]+', Name.Class),
             (r'\n', Whitespace, '#pop'),
             (r',', Punctuation),
             (r'[^\S\n]+', Whitespace),
@@ -230,7 +235,7 @@ class CleanLexer(ExtendedRegexLexer):
             (r'->', Punctuation),
             (r'(\s+of\s+)(\{)', bygroups(Keyword, Punctuation), 'genericftypes'),
             (r'\s', Whitespace),
-            (r'[\w`]+', Keyword.Type),
+            (r'[\w`\[\]{}!]+', Keyword.Type),
             (r'[*()]', Punctuation),
         ],
         'genericftypes': [
@@ -263,12 +268,20 @@ class CleanLexer(ExtendedRegexLexer):
             (r'\n(\s*)', check_indent3),
             (r'^(?=\S)', Whitespace, '#pop:3'),
             (r'[,&]', Punctuation),
-            (r'[\w`$()=\-<>~*\^|+&%]', Name.Function, 'functionname'),
-            (r'\s', Whitespace),
+            (r'\[', Punctuation, 'functiondefuniquneq'),
+            (r'[\w`$()=\-<>~*\^|+&%\/{}\[\]@]', Name.Function, 'functionname'),
+            (r'\s+', Whitespace),
+        ],
+        'functiondefuniquneq': [
+            include('common'),
+            (r'[a-z]+', Keyword.Type),
+            (r'\s+', Whitespace),
+            (r'<=|,', Punctuation),
+            (r'\]', Punctuation, '#pop')
         ],
         'functionname': [
             include('common'),
-            (r'[\w`$()=\-<>~*\^|+&%]+', Name.Function),
+            (r'[\w`$()=\-<>~*\^|+&%\/]+', Name.Function),
             (r'(?=\{\|)', Punctuation, 'genericfunction'),
             default('#pop'),
         ]
