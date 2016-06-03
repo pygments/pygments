@@ -74,7 +74,7 @@ class SuperColliderLexer(RegexLexer):
             (words(('true', 'false', 'nil', 'inf'), suffix=r'\b'), Keyword.Constant),
             (words((
                 'Array', 'Boolean', 'Date', 'Error', 'Function', 'Number',
-                'Object', 'Packages', 'RegExp', 'String', 'Error',
+                'Object', 'Packages', 'RegExp', 'String',
                 'isFinite', 'isNaN', 'parseFloat', 'parseInt', 'super',
                 'thisFunctionDef', 'thisFunction', 'thisMethod', 'thisProcess',
                 'thisThread', 'this'), suffix=r'\b'),

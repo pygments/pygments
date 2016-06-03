@@ -17,7 +17,7 @@ class WhileyTest(unittest.TestCase):
     def setUp(self):
         self.lexer = WhileyLexer()
 
-    def testNeedsName(self):
+    def testWhileyOperator(self):
         fragment = u'123 \u2200 x\n'
         tokens = [
             (Token.Literal.Number.Integer, u'123'),
