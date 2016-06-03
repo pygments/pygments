@@ -55,6 +55,9 @@ test:
 test-coverage:
 	@$(PYTHON) tests/run.py -d --with-coverage --cover-package=pygments --cover-erase $(TEST)
 
+test-examplefiles:
+	nosetests tests/test_examplefiles.py
+
 tox-test:
 	@tox -- $(TEST)
 
