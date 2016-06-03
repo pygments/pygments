@@ -38,3 +38,36 @@ class PropertiesTest(unittest.TestCase):
             (Token.Text, '\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def test_escaped_space_in_key(self):
+        fragment = 'key = value\n'
+        tokens = [
+            (Token.Name.Attribute, 'key'),
+            (Token.Text, ' '),
+            (Token.Operator, '='),
+            (Token.Text, ' '),
+            (Token.Literal.String, 'value'),
+            (Token.Text, '\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def test_escaped_space_in_value(self):
+        fragment = 'key = doubleword\\ value\n'
+        tokens = [
+            (Token.Name.Attribute, 'key'),
+            (Token.Text, ' '),
+            (Token.Operator, '='),
+            (Token.Text, ' '),
+            (Token.Literal.String, 'doubleword\\ value'),
+            (Token.Text, '\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def testNeedsName(self):
+        fragment = 'key value\n'
+        tokens = [
+            (Token.Name.Attribute, 'key'),
+            (Token.Text, ' '),
+            (Token.Literal.String, 'value\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
