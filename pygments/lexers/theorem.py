@@ -394,7 +394,7 @@ class LeanLexer(RegexLexer):
         'import', 'abbreviation', 'opaque_hint', 'tactic_hint', 'definition',
         'renaming', 'inline', 'hiding', 'exposing', 'parameter', 'parameters',
         'conjecture', 'hypothesis', 'lemma', 'corollary', 'variable', 'variables',
-        'print', 'theorem', 'axiom', 'inductive', 'structure', 'universe', 'alias',
+        'theorem', 'axiom', 'inductive', 'structure', 'universe', 'alias',
         'help', 'options', 'precedence', 'postfix', 'prefix', 'calc_trans',
         'calc_subst', 'calc_refl', 'infix', 'infixl', 'infixr', 'notation', 'eval',
         'check', 'exit', 'coercion', 'end', 'private', 'using', 'namespace',

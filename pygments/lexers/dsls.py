@@ -156,7 +156,7 @@ class ThriftLexer(RegexLexer):
              Keyword.Namespace),
             (words((
                 'void', 'bool', 'byte', 'i16', 'i32', 'i64', 'double',
-                'string', 'binary', 'void', 'map', 'list', 'set', 'slist',
+                'string', 'binary', 'map', 'list', 'set', 'slist',
                 'senum'), suffix=r'\b'),
              Keyword.Type),
             (words((

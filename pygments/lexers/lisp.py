@@ -2496,7 +2496,7 @@ class XtlangLexer(RegexLexer):
         'write-char', 'zero?',
     )
     xtlang_functions = (
-        'printf', 'toString', 'afill!', 'pfill!', 'tfill!', 'tbind', 'vfill!',
+        'toString', 'afill!', 'pfill!', 'tfill!', 'tbind', 'vfill!',
         'array-fill!', 'pointer-fill!', 'tuple-fill!', 'vector-fill!', 'free',
         'array', 'tuple', 'list', '~', 'cset!', 'cref', '&', 'bor',
         'ang-names', '<<', '>>', 'nil', 'printf', 'sprintf', 'null', 'now',

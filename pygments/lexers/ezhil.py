@@ -41,8 +41,8 @@ class EzhilLexer(RegexLexer):
                     'பட்டியல்','பின்இணை','வரிசைப்படுத்து',
                     'எடு','தலைகீழ்','நீட்டிக்க','நுழைக்க','வை',
                     'கோப்பை_திற','கோப்பை_எழுது','கோப்பை_மூடு',
-                    'pi','sin','cos','tan','sqrt','hypot','pow','exp','log','log10'
-                    'min','max','exit',
+                    'pi','sin','cos','tan','sqrt','hypot','pow','exp','log',
+                    'log10','exit',
                     ), suffix=r'\b'), Name.Builtin),
             (r'(True|False)\b', Keyword.Constant),
             (r'[^\S\n]+', Text),

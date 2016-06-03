@@ -100,7 +100,7 @@ class CleanLexer(ExtendedRegexLexer):
         ctx.pos = match.end()
         yield match.start(), Comment, match.group(0)
 
-    keywords = ('class', 'instance', 'where', 'with', 'let', 'let!', 'with',
+    keywords = ('class', 'instance', 'where', 'with', 'let', 'let!',
                 'in', 'case', 'of', 'infix', 'infixr', 'infixl', 'generic',
                 'derive', 'otherwise', 'code', 'inline')
 

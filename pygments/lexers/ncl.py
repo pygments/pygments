@@ -45,7 +45,7 @@ class NCLLexer(RegexLexer):
                 'begin', 'break', 'continue', 'create', 'defaultapp', 'do',
                 'else', 'end', 'external', 'exit', 'False', 'file', 'function',
                 'getvalues', 'graphic', 'group', 'if', 'list', 'load', 'local',
-                'new', '_Missing', 'Missing', 'new', 'noparent', 'procedure',
+                'new', '_Missing', 'Missing', 'noparent', 'procedure',
                 'quit', 'QUIT', 'Quit', 'record', 'return', 'setvalues', 'stop',
                 'then', 'while'), prefix=r'\b', suffix=r'\s*\b'),
              Keyword),
