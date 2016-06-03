@@ -63,7 +63,7 @@ class PropertiesTest(unittest.TestCase):
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
 
-    def testNeedsName(self):
+    def test_space_delimited_kv_pair(self):
         fragment = 'key value\n'
         tokens = [
             (Token.Name.Attribute, 'key'),
