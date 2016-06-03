@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     Julia Tests
-    ~~~~~~~~~~~~
+    ~~~~~~~~~~~
 
     :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -27,7 +27,7 @@ class JuliaTests(unittest.TestCase):
             (Token.Text, u' '),
             (Token.Operator, u'='),
             (Token.Text, u' '),
-            (Token.Name, u'\u221a'),
+            (Token.Operator, u'\u221a'),
             (Token.Punctuation, u'('),
             (Token.Punctuation, u'('),
             (Token.Literal.Number.Integer, u'1'),
@@ -41,8 +41,7 @@ class JuliaTests(unittest.TestCase):
             (Token.Punctuation, u'('),
             (Token.Name, u'count'),
             (Token.Text, u' '),
-            (Token.Operator, u'.'),
-            (Token.Operator, u'^'),
+            (Token.Operator, u'.^'),
             (Token.Text, u' '),
             (Token.Literal.Number.Integer, u'2'),
             (Token.Punctuation, u')'),
@@ -51,8 +50,7 @@ class JuliaTests(unittest.TestCase):
             (Token.Text, u' '),
             (Token.Name, u'mu'),
             (Token.Text, u' '),
-            (Token.Operator, u'.'),
-            (Token.Operator, u'^'),
+            (Token.Operator, u'.^'),
             (Token.Literal.Number.Integer, u'2'),
             (Token.Punctuation, u')'),
             (Token.Text, u'\n'),
