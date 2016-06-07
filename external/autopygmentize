@@ -66,19 +66,26 @@ if [[ "$lexer" == text ]]; then
     esac
 fi
 
+# Find a preprocessor for compressed files
+concat=cat
+case $(file $file_common_opts --mime-type "$file") in
+    application/x-gzip)  concat=zcat;;
+    application/x-bzip2) concat=bzcat;;
+    application/x-xz)    concat=xzcat;;
+esac
+
+# Find a reader: either a suitable lexer, or hd for binary files
+reader=""
 encoding=$(file --mime-encoding --uncompress $file_common_opts "$file")
 if [[ $encoding == "binary" ]]; then
-    encoding="latin1"
+    reader=hd
+elif [[ -n "$lexer" ]]; then
+    reader="pygmentize -O inencoding=$encoding $PYGMENTIZE_OPTS $options -l $lexer"
 fi
 
-if [[ -n "$lexer" ]]; then
-    concat=cat
-    case $(file $file_common_opts --mime-type "$file") in
-        application/x-gzip)  concat=zcat;;
-        application/x-bzip2) concat=bzcat;;
-        application/x-xz)    concat=xzcat;;
-    esac
-    exec $concat "$file" | pygmentize -O inencoding=$encoding $PYGMENTIZE_OPTS $options -l $lexer
+# If we found a reader, run it
+if [[ -n "$reader" ]]; then
+    exec $concat "$file" | $reader
 fi
 
 exit 1
