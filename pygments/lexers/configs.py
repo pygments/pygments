@@ -462,7 +462,7 @@ class NginxConfLexer(RegexLexer):
     """
     name = 'Nginx configuration file'
     aliases = ['nginx']
-    filenames = []
+    filenames = ['nginx.conf']
     mimetypes = ['text/x-nginx-conf']
 
     tokens = {
