@@ -59,10 +59,10 @@ class NCLLexer(RegexLexer):
              Keyword.Type),
 
             # Operators
-            (r'[\^*+\-/<>]', Operator),
+            (r'[\%^*+\-/<>]', Operator),
 
             # punctuation:
-            (r'[\[\]():@$.,\\{}]', Punctuation),
+            (r'[\[\]():@$!&.,\\{}]', Punctuation),
             (r'[=:]', Punctuation),
 
             # Intrinsics
