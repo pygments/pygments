@@ -43,7 +43,7 @@ class NCLLexer(RegexLexer):
             # Statements
             (words((
                 'begin', 'break', 'continue', 'create', 'defaultapp', 'do',
-                'else', 'end', 'external', 'exit', 'False', 'file', 'function',
+                'else', 'end', 'external', 'exit', 'True', 'False', 'file', 'function',
                 'getvalues', 'graphic', 'group', 'if', 'list', 'load', 'local',
                 'new', '_Missing', 'Missing', 'new', 'noparent', 'procedure',
                 'quit', 'QUIT', 'Quit', 'record', 'return', 'setvalues', 'stop',
