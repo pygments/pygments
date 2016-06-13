@@ -35,7 +35,7 @@ class NCLLexer(RegexLexer):
             (r';.*\n', Comment),
             include('strings'),
             include('core'),
-            (r'[a-z][\w$]*', Name),
+            (r'[a-zA-Z_]\w*', Name),
             include('nums'),
             (r'[\s]+', Text),
         ],
@@ -62,7 +62,7 @@ class NCLLexer(RegexLexer):
             (r'[\^*+\-/<>]', Operator),
 
             # punctuation:
-            (r'[\[\]():@$.,]', Punctuation),
+            (r'[\[\]():@$.,]\\{}', Punctuation),
             (r'[=:]', Punctuation),
 
             # Intrinsics
