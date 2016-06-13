@@ -877,7 +877,8 @@ class NCLLexer(RegexLexer):
              Name.Builtin),
 
             # Booleans
-            (r'True|False', Name.Builtin),             # Comparing Operators
+            (r'\.(True|False)\.', Name.Builtin),
+            # Comparing Operators
             (r'\.(eq|ne|lt|le|gt|ge|not|and|or|xor)\.', Operator.Word),
         ],
 
