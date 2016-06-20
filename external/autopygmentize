@@ -83,17 +83,19 @@ if [[ $encoding == "binary" ]]; then
         prereader="hd" # preferred
     fi
     lexer=hexdump
+    encoding=latin1
 fi
 if [[ -n "$lexer" ]]; then
     reader="pygmentize -O inencoding=$encoding $PYGMENTIZE_OPTS $options -l $lexer"
 fi
-if [[ -n "$prereader" ]]; then
-    reader="$prereader | $reader"
-fi
 
 # If we found a reader, run it
 if [[ -n "$reader" ]]; then
-    exec $concat "$file" | $reader
+    if [[ -n "$prereader" ]]; then
+        exec $concat "$file" | $prereader | $reader
+    else
+        exec $concat "$file" | $reader
+    fi
 fi
 
 exit 1
