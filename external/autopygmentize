@@ -74,13 +74,21 @@ case $(file $file_common_opts --mime-type "$file") in
     application/x-xz)    concat=xzcat;;
 esac
 
-# Find a reader: either a suitable lexer, or hd for binary files
-reader=""
+# Find a suitable lexer, preceded by a hex dump for binary files
+prereader=""
 encoding=$(file --mime-encoding --uncompress $file_common_opts "$file")
 if [[ $encoding == "binary" ]]; then
-    reader=hd
-elif [[ -n "$lexer" ]]; then
+    prereader="od -x" # POSIX fallback
+    if [[ -n $(which hd) ]]; then
+        prereader="hd" # preferred
+    fi
+    lexer=hexdump
+fi
+if [[ -n "$lexer" ]]; then
     reader="pygmentize -O inencoding=$encoding $PYGMENTIZE_OPTS $options -l $lexer"
+fi
+if [[ -n "$prereader" ]]; then
+    reader="$prereader | $reader"
 fi
 
 # If we found a reader, run it
