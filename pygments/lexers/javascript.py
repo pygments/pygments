@@ -548,7 +548,7 @@ class LassoLexer(RegexLexer):
             (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
             (r'\[noprocess\]', Comment.Preproc, ('delimiters', 'noprocess')),
             (r'\[', Comment.Preproc, ('delimiters', 'squarebrackets')),
-            (r'<\?(LassoScript|lasso|=)', Comment.Preproc,
+            (r'<\?(lasso(script)?|=)', Comment.Preproc,
                 ('delimiters', 'anglebrackets')),
             (r'<(!--.*?-->)?', Other, 'delimiters'),
             (r'\s+', Other),
@@ -607,7 +607,7 @@ class LassoLexer(RegexLexer):
 
             # names
             (r'\$[a-z_][\w.]*', Name.Variable),
-            (r'#([a-z_][\w.]*|\d+)', Name.Variable.Instance),
+            (r'#([a-z_][\w.]*|\d+\b)', Name.Variable.Instance),
             (r"(\.\s*)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
             (r"(self)(\s*->\s*)('[a-z_][\w.]*')",
@@ -658,20 +658,20 @@ class LassoLexer(RegexLexer):
              r'Database_TableNames|Define_Tag|Define_Type|Email_Batch|'
              r'Encode_Set|HTML_Comment|Handle|Handle_Error|Header|If|Inline|'
              r'Iterate|LJAX_Target|Link|Link_CurrentAction|Link_CurrentGroup|'
-             r'Link_CurrentRecord|Link_Detail|Link_FirstGroup|'
-             r'Link_FirstRecord|Link_LastGroup|Link_LastRecord|Link_NextGroup|'
-             r'Link_NextRecord|Link_PrevGroup|Link_PrevRecord|Log|Loop|'
-             r'NoProcess|Output_None|Portal|Private|Protect|Records|Referer|'
-             r'Referrer|Repeating|ResultSet|Rows|Search_Args|Search_Arguments|'
-             r'Select|Sort_Args|Sort_Arguments|Thread_Atomic|Value_List|While|'
-             r'Abort|Case|Else|If_Empty|If_False|If_Null|If_True|Loop_Abort|'
-             r'Loop_Continue|Loop_Count|Params|Params_Up|Return|Return_Value|'
-             r'Run_Children|SOAP_DefineTag|SOAP_LastRequest|SOAP_LastResponse|'
-             r'Tag_Name|ascending|average|by|define|descending|do|equals|'
-             r'frozen|group|handle_failure|import|in|into|join|let|match|max|'
-             r'min|on|order|parent|protected|provide|public|require|returnhome|'
-             r'skip|split_thread|sum|take|thread|to|trait|type|where|with|'
-             r'yield|yieldhome)\b',
+             r'Link_CurrentRecord|Link_Detail|Link_FirstGroup|Link_FirstRecord|'
+             r'Link_LastGroup|Link_LastRecord|Link_NextGroup|Link_NextRecord|'
+             r'Link_PrevGroup|Link_PrevRecord|Log|Loop|Output_None|Portal|'
+             r'Private|Protect|Records|Referer|Referrer|Repeating|ResultSet|'
+             r'Rows|Search_Args|Search_Arguments|Select|Sort_Args|'
+             r'Sort_Arguments|Thread_Atomic|Value_List|While|Abort|Case|Else|'
+             r'Fail_If|Fail_IfNot|Fail|If_Empty|If_False|If_Null|If_True|'
+             r'Loop_Abort|Loop_Continue|Loop_Count|Params|Params_Up|Return|'
+             r'Return_Value|Run_Children|SOAP_DefineTag|SOAP_LastRequest|'
+             r'SOAP_LastResponse|Tag_Name|ascending|average|by|define|'
+             r'descending|do|equals|frozen|group|handle_failure|import|in|into|'
+             r'join|let|match|max|min|on|order|parent|protected|provide|public|'
+             r'require|returnhome|skip|split_thread|sum|take|thread|to|trait|'
+             r'type|where|with|yield|yieldhome)\b',
                 bygroups(Punctuation, Keyword)),
 
             # other
