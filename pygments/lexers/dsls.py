@@ -36,7 +36,7 @@ class ProtoBufLexer(RegexLexer):
     tokens = {
         'root': [
             (r'[ \t]+', Text),
-            (r'[,;{}\[\]()]', Punctuation),
+            (r'[,;{}\[\]()<>]', Punctuation),
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
             (words((
