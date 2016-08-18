@@ -44,7 +44,7 @@ class DelphiLexer(Lexer):
     """
     name = 'Delphi'
     aliases = ['delphi', 'pas', 'pascal', 'objectpascal']
-    filenames = ['*.pas']
+    filenames = ['*.pas', '*.dpr']
     mimetypes = ['text/x-pascal']
 
     TURBO_PASCAL_KEYWORDS = (
