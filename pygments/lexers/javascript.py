@@ -53,7 +53,7 @@ class JavascriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuy]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
@@ -64,9 +64,14 @@ class JavascriptLexer(RegexLexer):
             (r'\A#! ?/.*?\n', Comment.Hashbang),  # recognized by node.js
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
+            (r'(\.\d+|[0-9]+\.[0-9]*)([eE][-+]?[0-9]+)?', Number.Float),
+            (r'0[bB][01]+', Number.Bin),
+            (r'0[oO][0-7]+', Number.Oct),
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'\.\.\.|=>', Punctuation),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
-             r'(<<|>>>?|=>|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
-            (r'\.\.\.', Punctuation),
+             r'(<<|>>>?|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
@@ -84,11 +89,6 @@ class JavascriptLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|'
              r'document|this|window)\b', Name.Builtin),
             (JS_IDENT, Name.Other),
-            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
-            (r'0b[01]+', Number.Bin),
-            (r'0o[0-7]+', Number.Oct),
-            (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r'`', String.Backtick, 'interp'),
