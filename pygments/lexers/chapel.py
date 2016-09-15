@@ -52,7 +52,7 @@ class ChapelLexer(RegexLexer):
                 'then', 'use', 'when', 'where', 'while', 'with', 'yield',
                 'zip'), suffix=r'\b'),
              Keyword),
-            (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
+            (r'proc\s+)', bygroups(Keyword, Text), 'procname'),
             (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text),
              'classname'),
 
@@ -96,6 +96,6 @@ class ChapelLexer(RegexLexer):
             (r'[a-zA-Z_][\w$]*', Name.Class, '#pop'),
         ],
         'procname': [
-            (r'[\+\-\*\/\!\~\%\<\>\=\&\^\|a-zA-Z]*', Name.Function, '#pop'),
+            (r'(\w+|\~\w+|[+*/!~%<>=&^|\-]{0,2}|)', Name.Function, '#pop'),
         ],
     }
