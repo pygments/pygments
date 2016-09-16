@@ -96,7 +96,7 @@ class ChapelLexer(RegexLexer):
             (r'[a-zA-Z_][\w$]*', Name.Class, '#pop'),
         ],
         'procname': [
-            (r'([a-zA-Z_][\w$]+|\~[a-zA-Z_][\w$]+|[+*/!~%<>=&^|\-]{1,2})(\s|[(])',
-             bygroups(Name.Function, Text), '#pop'),
+            (r'([a-zA-Z_][\w$]+|\~[a-zA-Z_][\w$]+|[+*/!~%<>=&^|\-]{1,2})',
+             Name.Function, '#pop'),
         ],
     }
