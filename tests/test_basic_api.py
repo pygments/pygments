@@ -161,8 +161,8 @@ def test_formatter_public_api():
 
         try:
             inst = formatter(opt1="val1")
-        except (ImportError, FontNotFound):
-            raise support.SkipTest
+        except (ImportError, FontNotFound) as e:
+            raise support.SkipTest(e)
 
         try:
             inst.get_style_defs()
@@ -209,9 +209,9 @@ def test_formatter_unicode_handling():
     def verify(formatter):
         try:
             inst = formatter(encoding=None)
-        except (ImportError, FontNotFound):
+        except (ImportError, FontNotFound) as e:
             # some dependency or font not installed
-            raise support.SkipTest
+            raise support.SkipTest(e)
 
         if formatter.name != 'Raw tokens':
             out = format(tokens, inst)

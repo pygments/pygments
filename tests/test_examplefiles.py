@@ -89,7 +89,7 @@ def test_example_files():
 
 def check_lexer(lx, fn):
     if os.name == 'java' and fn in BAD_FILES_FOR_JYTHON:
-        raise support.SkipTest
+        raise support.SkipTest('%s is a known bad file on Jython' % fn)
     absfn = os.path.join(TESTDIR, 'examplefiles', fn)
     with open(absfn, 'rb') as fp:
         text = fp.read()
