@@ -11,6 +11,7 @@
 
 from __future__ import print_function
 
+import os
 import sys
 import getopt
 from textwrap import dedent
@@ -25,6 +26,7 @@ from pygments.formatters.latex import LatexEmbeddedLexer, LatexFormatter
 from pygments.formatters import get_all_formatters, get_formatter_by_name, \
     get_formatter_for_filename, find_formatter_class
 from pygments.formatters.terminal import TerminalFormatter
+from pygments.formatters.terminal256 import Terminal256Formatter
 from pygments.filters import get_all_filters, find_filter_class
 from pygments.styles import get_all_styles, get_style_by_name
 
@@ -421,7 +423,10 @@ def main_inner(popts, args, usage):
             return 1
     else:
         if not fmter:
-            fmter = TerminalFormatter(**parsed_opts)
+            if os.environ.get('TERM') and '256' in os.environ.get('TERM'):
+                fmter = Terminal256Formatter(**parsed_opts)
+            else:
+                fmter = TerminalFormatter(**parsed_opts)
         if sys.version_info > (3,):
             # Python 3: we have to use .buffer to get a binary stream
             outfile = sys.stdout.buffer
