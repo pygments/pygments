@@ -160,6 +160,7 @@ Other markup
 * TeX
 * tcsh
 * Vim Script
+* Web IDL
 * Windows batch files
 * XML
 * XSLT
