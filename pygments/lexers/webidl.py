@@ -49,8 +49,8 @@ class WebIDLLexer(RegexLexer):
         'common': [
             (r'\s+', Text),
             (r'(?s)/\*.*?\*/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single),
-            (r'^#.*?\n', Comment.Preproc),
+            (r'//.*', Comment.Single),
+            (r'^#.*', Comment.Preproc),
         ],
         'root': [
             include('common'),
