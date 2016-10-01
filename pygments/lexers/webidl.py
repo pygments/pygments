@@ -205,7 +205,7 @@ class WebIDLLexer(RegexLexer):
             include('common'),
             (_identifier, Name.Function),
             (r'\(', Punctuation, 'argument_list'),
-            default('#pop'),
+            (r';', Punctuation, '#pop:2'),
         ],
         'iterable_maplike_setlike_rest': [
             include('common'),
