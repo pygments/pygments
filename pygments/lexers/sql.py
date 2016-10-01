@@ -59,7 +59,14 @@ line_re  = re.compile('.*?\n')
 
 language_re = re.compile(r"\s+LANGUAGE\s+'?(\w+)'?", re.IGNORECASE)
 
-do_re = re.compile(r'\bDO\b', re.IGNORECASE) 
+do_re = re.compile(r'\bDO\b', re.IGNORECASE)
+
+# Regular expressions for analyse_text()
+name_between_bracket_re = re.compile(r'\[[a-zA-Z_]\w*\]')
+name_between_backtick_re = re.compile(r'`[a-zA-Z_]\w*`')
+tsql_go_re = re.compile(r'\bgo\b', re.IGNORECASE)
+tsql_declare_re = re.compile(r'\bdeclare\s+@', re.IGNORECASE)
+tsql_variable_re = re.compile(r'@[a-zA-Z_]\w*\b')
 
 
 def language_callback(lexer, match):
@@ -82,7 +89,7 @@ def language_callback(lexer, match):
                 lexer.text[max(0, match.start()-25):match.start()]))
             if m:
                 l = lexer._get_lexer('plpgsql')
-    
+
     # 1 = $, 2 = delimiter, 3 = $
     yield (match.start(1), String, match.group(1))
     yield (match.start(2), String.Delimiter, match.group(2))
@@ -480,6 +487,9 @@ class SqlLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        return 0.01
+
 
 class TransactSqlLexer(RegexLexer):
     """
@@ -535,6 +545,29 @@ class TransactSqlLexer(RegexLexer):
             (r'[/*]', Comment.Multiline)
         ]
     }
+
+    def analyse_text(text):
+        rating = 0
+        if tsql_declare_re.search(text):
+            # Found T-SQL variable declaration.
+            rating = 1.0
+        else:
+            name_between_backtick_count = len(
+                name_between_backtick_re.findall((text)))
+            name_between_bracket_count = len(
+                name_between_bracket_re.findall(text))
+            if name_between_bracket_count >= 2 * name_between_backtick_count:
+                # Found at least twice as many [name] as `name`.
+                rating += 0.5
+            elif name_between_bracket_count > name_between_backtick_count:
+                rating += 0.2
+            elif name_between_bracket_count > 0:
+                rating += 0.1
+            if tsql_variable_re.search(text) is not None:
+                rating += 0.1
+            if tsql_go_re.search(text) is not None:
+                rating += 0.1
+        return rating
 
 
 class MySqlLexer(RegexLexer):
@@ -608,6 +641,21 @@ class MySqlLexer(RegexLexer):
             (r'[/*]', Comment.Multiline)
         ]
     }
+
+    def analyse_text(text):
+        rating = 0
+        name_between_backtick_count = len(
+            name_between_backtick_re.findall((text)))
+        name_between_bracket_count = len(
+            name_between_bracket_re.findall(text))
+        if name_between_backtick_count >= 2 * name_between_bracket_count:
+            # Found at least twice as many `name` as [name].
+            rating += 0.5
+        elif name_between_backtick_count > name_between_bracket_count:
+            rating += 0.2
+        elif name_between_backtick_count > 0:
+            rating += 0.1
+        return rating
 
 
 class SqliteConsoleLexer(Lexer):
