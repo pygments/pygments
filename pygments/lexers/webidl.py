@@ -18,7 +18,7 @@ __all__ = ['WebIDLLexer']
 _builtin_types = (
     # primitive types
     'byte', 'octet', 'boolean',
-    r'(?:unsigned\s+)?(?:short|long|long\s+long)',
+    r'(?:unsigned\s+)?(?:short|long(?:\s+long)?)',
     r'(?:unrestricted\s+)?(?:float|double)',
     # string types
     'DOMString', 'ByteString', 'USVString',
