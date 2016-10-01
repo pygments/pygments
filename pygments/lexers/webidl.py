@@ -33,6 +33,7 @@ _builtin_types = (
     'any', 'void', 'object', 'RegExp',
 )
 _identifier = r'_?[A-Za-z][0-9A-Z_a-z-]*'
+_keyword_suffix = r'(?![\w-])'
 _string = r'"[^"]*"'
 
 class WebIDLLexer(RegexLexer):
@@ -54,13 +55,13 @@ class WebIDLLexer(RegexLexer):
         'root': [
             include('common'),
             (r'\[', Punctuation, 'extended_attributes'),
-            (r'partial', Keyword),
-            (r'typedef', Keyword, ('typedef', 'type')),
-            (r'interface', Keyword, 'interface_rest'),
-            (r'enum', Keyword, 'enum_rest'),
-            (r'callback', Keyword, 'callback_rest'),
-            (r'dictionary', Keyword, 'dictionary_rest'),
-            (r'namespace', Keyword, 'namespace_rest'),
+            (r'partial' + _keyword_suffix, Keyword),
+            (r'typedef' + _keyword_suffix, Keyword, ('typedef', 'type')),
+            (r'interface' + _keyword_suffix, Keyword, 'interface_rest'),
+            (r'enum' + _keyword_suffix, Keyword, 'enum_rest'),
+            (r'callback' + _keyword_suffix, Keyword, 'callback_rest'),
+            (r'dictionary' + _keyword_suffix, Keyword, 'dictionary_rest'),
+            (r'namespace' + _keyword_suffix, Keyword, 'namespace_rest'),
             (_identifier, Name.Class, 'implements_rest'),
         ],
         'extended_attributes': [
@@ -90,7 +91,7 @@ class WebIDLLexer(RegexLexer):
         ],
         'argument': [
             include('common'),
-            (r'optional', Keyword),
+            (r'optional' + _keyword_suffix, Keyword),
             (r'\[', Punctuation, 'extended_attributes'),
             (r',', Punctuation, '#pop'),
             (r'\)', Punctuation, '#pop:2'),
@@ -112,14 +113,14 @@ class WebIDLLexer(RegexLexer):
         'type': [
             include('common'),
             ('|'.join(_builtin_types), Keyword.Type, 'type_null'),
-            (words(('sequence', 'Promise', 'FrozenArray')),
-             Keyword.Type, 'type_identifier'),
+            (words(('sequence', 'Promise', 'FrozenArray'),
+                   suffix=_keyword_suffix), Keyword.Type, 'type_identifier'),
             (_identifier, Name.Class, 'type_identifier'),
             (r'\(', Punctuation, 'union_type'),
         ],
         'union_type': [
             include('common'),
-            (r'or', Keyword),
+            (r'or' + _keyword_suffix, Keyword),
             (r'\)', Punctuation, ('#pop', 'type_null')),
             default('type'),
         ],
@@ -138,8 +139,8 @@ class WebIDLLexer(RegexLexer):
         ],
         'const_value': [
             include('common'),
-            (words(('true', 'false', '-Infinity', 'Infinity', 'NaN', 'null')),
-             Keyword.Constant, '#pop'),
+            (words(('true', 'false', '-Infinity', 'Infinity', 'NaN', 'null'),
+                   suffix=_keyword_suffix), Keyword.Constant, '#pop'),
             (r'-?(?:(?:[0-9]+\.[0-9]*|[0-9]*\.[0-9]+)(?:[Ee][+-]?[0-9]+)?' +
              r'|[0-9]+[Ee][+-]?[0-9]+)', Number.Float, '#pop'),
             (r'-?[1-9][0-9]*', Number.Integer, '#pop'),
@@ -160,9 +161,10 @@ class WebIDLLexer(RegexLexer):
         'namespace_body': [
             include('common'),
             (r'\[', Punctuation, 'extended_attributes'),
-            (r'readonly', Keyword),
-            (r'attribute', Keyword, ('attribute_rest', 'type')),
-            (r'const', Keyword, ('const_rest', 'type')),
+            (r'readonly' + _keyword_suffix, Keyword),
+            (r'attribute' + _keyword_suffix,
+             Keyword, ('attribute_rest', 'type')),
+            (r'const' + _keyword_suffix, Keyword, ('const_rest', 'type')),
             (r'\}', Punctuation, '#pop'),
             default(('operation_rest', 'type')),
         ],
@@ -174,12 +176,12 @@ class WebIDLLexer(RegexLexer):
             (r';', Punctuation, '#pop'),
         ],
         'interface_body': [
-            (r'iterable|maplike|setlike', Keyword,
-             'iterable_maplike_setlike_rest'),
-            (words(('setter', 'getter', 'creator', 'deleter',
-                    'legacycaller', 'inherit', 'static',
-                    'stringifier', 'jsonifier')), Keyword),
-            (r'serializer', Keyword, 'serializer_rest'),
+            (words(('iterable', 'maplike', 'setlike'), suffix=_keyword_suffix),
+             Keyword, 'iterable_maplike_setlike_rest'),
+            (words(('setter', 'getter', 'creator', 'deleter', 'legacycaller',
+                    'inherit', 'static', 'stringifier', 'jsonifier'),
+                   suffix=_keyword_suffix), Keyword),
+            (r'serializer' + _keyword_suffix, Keyword, 'serializer_rest'),
             (r';', Punctuation),
             include('namespace_body'),
         ],
@@ -230,14 +232,15 @@ class WebIDLLexer(RegexLexer):
         ],
         'serialization_pattern_map': [
             include('common'),
-            (words('getter', 'inherit', 'attribute'), Keyword),
+            (words(('getter', 'inherit', 'attribute'),
+                   suffix=_keyword_suffix), Keyword),
             (r',', Punctuation),
             (_identifier, Name.Variable),
             (r'}', Punctuation, '#pop:2'),
         ],
         'serialization_pattern_list': [
             include('common'),
-            (words('getter', 'attribute'), Keyword),
+            (words(('getter', 'attribute'), suffix=_keyword_suffix), Keyword),
             (r',', Punctuation),
             (_identifier, Name.Variable),
             (r']', Punctuation, '#pop:2'),
@@ -256,7 +259,8 @@ class WebIDLLexer(RegexLexer):
         ],
         'callback_rest': [
             include('common'),
-            (r'interface', Keyword, ('#pop', 'interface_rest')),
+            (r'interface' + _keyword_suffix,
+             Keyword, ('#pop', 'interface_rest')),
             (_identifier, Name.Class),
             (r'=', Punctuation, ('operation', 'type')),
             (r';', Punctuation, '#pop'),
@@ -271,7 +275,7 @@ class WebIDLLexer(RegexLexer):
         'dictionary_body': [
             include('common'),
             (r'\[', Punctuation, 'extended_attributes'),
-            (r'required', Keyword),
+            (r'required' + _keyword_suffix, Keyword),
             (r'\}', Punctuation, '#pop'),
             default(('dictionary_item', 'type')),
         ],
@@ -283,7 +287,7 @@ class WebIDLLexer(RegexLexer):
         ],
         'implements_rest': [
             include('common'),
-            (r'implements', Keyword),
+            (r'implements' + _keyword_suffix, Keyword),
             (_identifier, Name.Class),
             (r';', Punctuation, '#pop'),
         ],
