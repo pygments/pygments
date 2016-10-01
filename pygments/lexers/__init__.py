@@ -149,8 +149,8 @@ def find_lexer_class_for_filename(_fn, code=None):
         # gets turned into 0.0.  Run scripts/detect_missing_analyse_text.py
         # to find lexers which need it overridden.
         if code:
-            return cls.analyse_text(code) + bonus
-        return cls.priority + bonus
+            return cls.analyse_text(code) + bonus, cls.__name__
+        return cls.priority + bonus, cls.__name__
 
     if matches:
         matches.sort(key=get_rating)
