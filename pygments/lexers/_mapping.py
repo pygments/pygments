@@ -422,6 +422,7 @@ LEXERS = {
     'TypoScriptHtmlDataLexer': ('pygments.lexers.typoscript', 'TypoScriptHtmlData', ('typoscripthtmldata',), (), ()),
     'TypoScriptLexer': ('pygments.lexers.typoscript', 'TypoScript', ('typoscript',), ('*.ts', '*.txt'), ('text/x-typoscript',)),
     'UrbiscriptLexer': ('pygments.lexers.urbi', 'UrbiScript', ('urbiscript',), ('*.u',), ('application/x-urbiscript',)),
+    'VBScriptLexer': ('pygments.lexers.basic', 'VBScript', (), ('*.vbs', '*.VBS'), ()),
     'VCLLexer': ('pygments.lexers.varnish', 'VCL', ('vcl',), ('*.vcl',), ('text/x-vclsrc',)),
     'VCLSnippetLexer': ('pygments.lexers.varnish', 'VCLSnippets', ('vclsnippets', 'vclsnippet'), (), ('text/x-vclsnippet',)),
     'VCTreeStatusLexer': ('pygments.lexers.console', 'VCTreeStatus', ('vctreestatus',), (), ()),
