@@ -112,7 +112,8 @@ class WebIDLLexer(RegexLexer):
         ],
         'type': [
             include('common'),
-            ('|'.join(_builtin_types), Keyword.Type, 'type_null'),
+            (r'(?:' + r'|'.join(_builtin_types) + r')' + _keyword_suffix,
+             Keyword.Type, 'type_null'),
             (words(('sequence', 'Promise', 'FrozenArray'),
                    suffix=_keyword_suffix), Keyword.Type, 'type_identifier'),
             (_identifier, Name.Class, 'type_identifier'),
