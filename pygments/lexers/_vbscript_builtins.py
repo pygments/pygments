@@ -10,6 +10,8 @@
     :license: BSD, see LICENSE for details.
 """
 KEYWORDS = [
+    'ByRef',
+    'ByVal',
     # dim: special rule
     'call',
     'case',
@@ -190,6 +192,8 @@ OPERATOR_WORDS = [
 ]
 
 BUILTIN_CONSTANTS = [
+    'False',
+    'True',
     'vbAbort',
     'vbAbortRetryIgnore',
     'vbApplicationModal',
