@@ -1,0 +1,1124 @@
+--
+-- Shuttle Digital Autopilot
+--         by Sergey Berezin (berez@cs.cmu.edu)
+--
+MODULE cont_3eo_mode_select(start,smode5,vel,q_bar,apogee_alt_LT_alt_ref,
+                         h_dot_LT_hdot_reg2,alpha_n_GRT_alpha_reg2,
+                         delta_r_GRT_del_r_usp,v_horiz_dnrng_LT_0,
+                         high_rate_sep,meco_confirmed)
+
+VAR cont_3EO_start: boolean;
+    RTLS_abort_declared: boolean;
+    region_selected : boolean;
+    m_mode: {mm102, mm103, mm601};
+    r: {reg-1, reg0, reg1, reg2, reg3, reg102};
+    step : {1,2,3,4,5,6,7,8,9,10, exit, undef};
+
+ASSIGN
+ init(cont_3EO_start) := FALSE;
+ init(m_mode) := {mm102, mm103};
+ init(region_selected) := FALSE;
+ init(RTLS_abort_declared) := FALSE;
+ init(r) := reg-1;
+ init(step) := undef;
+
+ next(step) := 
+   case
+     step = 1 & m_mode = mm102 : exit;
+     step = 1 : 2;
+     step = 2 & smode5 : 5;
+     step = 2 & vel = GRT_vi_3eo_max: exit;
+     step = 2 : 3;
+     step = 3 & vel = LEQ_vi_3eo_min : 6;
+     step = 3 : 4;
+     step = 4 & apogee_alt_LT_alt_ref: exit;
+     step = 4 : 6;
+     step = 5 : 6;
+     step = 6 & r = reg0 : exit;
+     step = 6 : 7;
+     step = 7 : 8;
+     step = 8 & q_bar = GRT_qbar_reg3 & !high_rate_sep : 10;
+     step = 8 : 9;
+     step = 9 : 10;
+     step = 10: exit;
+     next(start): 1;
+     step = exit : undef;
+     TRUE: step;
+   esac;
+
+ next(cont_3EO_start) :=
+   case 
+     step = 1 & m_mode = mm102 : TRUE;
+     step = 10 & meco_confirmed : TRUE;
+     TRUE : cont_3EO_start;
+   esac;
+
+ next(r) :=
+   case
+     step = 1 & m_mode = mm102 : reg102;
+     step = 2 & !smode5 & vel = GRT_vi_3eo_max: reg0;
+     step = 4 & apogee_alt_LT_alt_ref: reg0;
+     step = 5 & v_horiz_dnrng_LT_0 & delta_r_GRT_del_r_usp : reg0;
+     step = 8 & q_bar = GRT_qbar_reg3 & !high_rate_sep : reg3;
+     step = 9: case
+                 (h_dot_LT_hdot_reg2 & alpha_n_GRT_alpha_reg2 &
+                  q_bar = GRT_qbar_reg1) | high_rate_sep :     reg2;
+                 TRUE : reg1;
+               esac;
+     next(step) = 1 : reg-1;
+     TRUE: r;
+   esac;
+
+ next(RTLS_abort_declared) :=
+   case
+     step = 10 & meco_confirmed & m_mode = mm103 : TRUE;
+     TRUE: RTLS_abort_declared;
+   esac;
+
+ next(m_mode) :=
+   case
+     step = 10 & meco_confirmed & m_mode = mm103 : mm601;
+     TRUE: m_mode;
+   esac;
+
+ next(region_selected) :=
+   case
+     next(step) = 1 : FALSE;
+     next(step) = exit : TRUE;
+     TRUE : region_selected;
+   esac;
+
+MODULE cont_3eo_guide(start,cont_3EO_start, mode_select_completed, et_sep_cmd,
+           h_dot_LT_0, q_bar_a_GRT_qbar_max_sep, m_mode, r0,
+           cont_minus_z_compl, t_nav-t_et_sep_GRT_dt_min_z_102, 
+           ABS_q_orb_GRT_q_minus_z_max, ABS_r_orb_GRT_r_minus_z_max,
+           excess_OMS_propellant, q_bar_a_LT_qbar_oms_dump,
+           entry_mnvr_couter_LE_0, rcs_all_jet_inhibit, 
+           alt_GRT_alt_min_102_dump, t_nav-t_gmtlo_LT_t_dmp_last,
+           pre_sep, cond_18, q_orb_LT_0, ABS_alf_err_LT_alf_sep_err,
+           cond_20b, cond_21, ABS_beta_n_GRT_beta_max, cond_24, cond_26, 
+           cond_27, cond_29, mm602_OK)
+VAR
+    step: {1,a1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
+           b20, c20, d20, 21,22,23,24,25,26,27,28,29,exit, undef};
+    call_RTLS_abort_task : boolean;
+    first3: boolean; -- indicates if it is the first pass
+    first8: boolean;
+    first27: boolean;
+    s_unconv : boolean;
+    mode_2_indicator : boolean;
+    et_sep_man_initiate : boolean;
+    emerg_sep : boolean;
+    cont_3eo_pr_delay : {minus_z_reg1, minus_z_reg2, 
+                minus_z_reg3, minus_z_reg4, minus_z_reg102, 0, 5};
+    etsep_y_drift : {undef, minus_z_reg1, minus_z_reg2, 
+                minus_z_reg3, minus_z_reg4, minus_z_reg102, 0};
+    fwd_rcs_dump_enable : boolean;
+    fcs_accept_icnct : boolean;
+    oms_rcs_i_c_inh_ena_cmd : boolean;
+    orbiter_dump_ena : boolean;
+    frz_3eo : boolean;
+    high_rate_sep: boolean;
+    entry_gains : boolean;
+    cont_sep_cplt : boolean;
+    pch_cmd_reg4 : boolean;
+    alpha_ok : boolean;
+    r :  {reg-1, reg0, reg1, reg2, reg3, reg4, reg102};
+    early_sep : boolean;
+--------------------------------------------
+----- Additional Variables -----------------
+--------------------------------------------
+    rtls_lo_f_d_delay : {undef, 0};
+    wcb2 : {undef, reg1_0, reg2_neg4, wcb2_3eo, reg4_0, 
+            reg102_undef, post_sep_0};
+    q_gcb_i : {undef, quat_reg1, quat_reg2, quat_reg3, quat_reg4, 
+               quat_reg102_undef, quat_entry_M50_to_cmdbody};
+    oms_nz_lim : {undef, oms_nz_lim_3eo, oms_nz_lim_iload, oms_nz_lim_std};
+    contingency_nz_lim : {undef, contingency_nz_lim_3eo, 
+                   contingency_nz_lim_iload, contingency_nz_lim_std};
+    
+
+
+ASSIGN
+ init(entry_gains) := FALSE;
+ init(frz_3eo) := FALSE;
+ init(cont_3eo_pr_delay) := 5;
+ init(etsep_y_drift) := undef;
+ init(r) := reg-1;
+ init(step) := undef;
+ init(call_RTLS_abort_task) := FALSE;
+ init(first3) := TRUE;
+ init(first8) := TRUE;
+ init(first27) := TRUE;
+ init(cont_sep_cplt) := FALSE;
+ init(et_sep_man_initiate) := FALSE;
+ init(alpha_ok) := FALSE;
+ init(pch_cmd_reg4) := FALSE;
+
+-- Assumed initializations:
+
+ init(rtls_lo_f_d_delay) := undef;
+ init(wcb2) := undef;
+ init(q_gcb_i) := undef;
+ init(oms_nz_lim) := undef;
+ init(contingency_nz_lim) := undef;
+ init(oms_rcs_i_c_inh_ena_cmd) := FALSE;
+ init(orbiter_dump_ena) := FALSE;
+-- init(early_sep) := FALSE;
+
+-------------
+
+ next(step) := nextstep;
+
+ next(r) :=
+   case
+     step = a1 & (cont_3EO_start | mode_select_completed) : r0;
+     step = 21 & cond_21 : reg4;
+     step = 23 & ABS_beta_n_GRT_beta_max & !high_rate_sep : reg1;
+     TRUE : r;
+   esac;
+
+ next(first3) :=
+   case
+     step = 3 & cont_3EO_start : FALSE;
+     TRUE : first3;
+   esac;
+
+ next(first8) :=
+   case
+     step = 8 & excess_OMS_propellant & cont_3EO_start : FALSE;
+     TRUE : first8;
+   esac;
+
+ next(first27) :=
+   case
+     step = 27 : FALSE;
+     TRUE: first27;
+   esac;
+
+ next(s_unconv) :=
+   case
+     step = 3 : FALSE;
+     TRUE : s_unconv;
+   esac;
+
+ next(call_RTLS_abort_task) := 
+   case
+     step = 3 : TRUE;
+     TRUE : call_RTLS_abort_task;
+   esac;
+
+ next(mode_2_indicator) :=
+   case
+     step = 4 : TRUE;
+     TRUE : mode_2_indicator;
+   esac;
+
+ next(et_sep_man_initiate) :=
+   case
+     step = 5 & h_dot_LT_0 & q_bar_a_GRT_qbar_max_sep & m_mode != mm102 : TRUE;
+     step = 14 & pre_sep : TRUE;
+     step = 19 & q_orb_LT_0 : TRUE;
+     step = d20 : TRUE;
+     step = 26 & cond_26 : TRUE;
+     step = 29 & cond_29 : TRUE;
+     TRUE : et_sep_man_initiate;
+   esac;
+
+ next(emerg_sep) :=
+   case
+     next(step) = 1 : FALSE;
+     step = 5 & h_dot_LT_0 & q_bar_a_GRT_qbar_max_sep  & m_mode != mm102: TRUE;
+     TRUE : emerg_sep;
+   esac;
+
+ next(cont_3eo_pr_delay) :=
+   case
+     next(step) = 1 : 5;
+     step = 5 & h_dot_LT_0 & q_bar_a_GRT_qbar_max_sep & m_mode != mm102 : 
+                                                              minus_z_reg3;
+     step = 7 & !cont_minus_z_compl & r = reg102 & 
+        t_nav-t_et_sep_GRT_dt_min_z_102 &
+        (ABS_q_orb_GRT_q_minus_z_max | ABS_r_orb_GRT_r_minus_z_max) : 0;
+     step = 14 & pre_sep : minus_z_reg102;
+     step = 19 & q_orb_LT_0 : minus_z_reg4;
+     step = d20 : minus_z_reg3;
+     step = 26 & cond_26 : minus_z_reg2;
+     step = 27 & first27 : minus_z_reg1;
+     TRUE : cont_3eo_pr_delay;
+   esac;
+
+ next(etsep_y_drift) :=
+   case
+     step = 5 & h_dot_LT_0 & q_bar_a_GRT_qbar_max_sep & m_mode != mm102 : 
+                                                              minus_z_reg3;
+     step = 7 & !cont_minus_z_compl & r = reg102 & 
+        t_nav-t_et_sep_GRT_dt_min_z_102 &
+        (ABS_q_orb_GRT_q_minus_z_max | ABS_r_orb_GRT_r_minus_z_max) : 0;
+     step = 14 & pre_sep : minus_z_reg102;
+     step = 19 & q_orb_LT_0 : minus_z_reg4;
+     step = d20 : minus_z_reg3;
+     step = 26 & cond_26 : minus_z_reg2;
+     step = 27 & first27 : minus_z_reg1;
+    TRUE : etsep_y_drift;
+   esac;
+
+ next(fwd_rcs_dump_enable) :=
+   case
+     step = 8 & excess_OMS_propellant & first8 : FALSE;
+     TRUE : fwd_rcs_dump_enable;
+   esac;
+
+ next(fcs_accept_icnct) :=
+   case
+     step = 9 & q_bar_a_LT_qbar_oms_dump & r != reg102 : TRUE;
+     TRUE : fcs_accept_icnct;
+   esac;
+
+ next(oms_rcs_i_c_inh_ena_cmd) :=
+   case
+--     next(step) = 1 & oms_rcs_i_c_inh_ena_cmd : {0,1};
+     next(step) = 1 & oms_rcs_i_c_inh_ena_cmd : FALSE; -- Assumed initialization
+     step = 9 & q_bar_a_LT_qbar_oms_dump & r != reg102 : TRUE;
+     TRUE : oms_rcs_i_c_inh_ena_cmd;
+   esac;
+
+ next(orbiter_dump_ena) :=
+   case
+     next(start) = TRUE : FALSE;                      -- Assumed initialization
+     step = 9 & q_bar_a_LT_qbar_oms_dump & r != reg102 : TRUE;
+     step = 13 & alt_GRT_alt_min_102_dump & t_nav-t_gmtlo_LT_t_dmp_last : TRUE;
+     TRUE : orbiter_dump_ena;
+   esac;
+
+ next(frz_3eo) :=
+   case
+     next(step) = 1 : FALSE;
+     step = 10 & entry_mnvr_couter_LE_0 & !rcs_all_jet_inhibit : FALSE;
+     step = 28 & !et_sep_man_initiate : TRUE;
+     TRUE : frz_3eo;
+   esac;
+
+ next(high_rate_sep) :=
+   case
+     step = 10 & entry_mnvr_couter_LE_0 & !rcs_all_jet_inhibit : FALSE;
+     step = 25 : TRUE;
+     TRUE : high_rate_sep;
+   esac;
+
+ next(entry_gains) :=
+   case
+     next(step) = 1 : FALSE;
+     step = 10 & entry_mnvr_couter_LE_0 & !rcs_all_jet_inhibit : TRUE;
+     TRUE : entry_gains;
+   esac;
+
+ next(cont_sep_cplt) :=
+   case
+     next(step) = 1 : FALSE;
+     step = 12 & mm602_OK : TRUE;
+     TRUE : cont_sep_cplt;
+   esac;
+
+ next(pch_cmd_reg4) := 
+   case
+     next(step) = 1 : FALSE;
+     step = 18 & !pch_cmd_reg4 & cond_18 : TRUE;
+     TRUE : pch_cmd_reg4;
+   esac;
+
+ next(alpha_ok) :=
+   case
+     next(step) = 1 : FALSE;
+     step = 20 & ABS_alf_err_LT_alf_sep_err : TRUE;
+     TRUE : alpha_ok;
+   esac;
+
+ next(early_sep) :=
+   case
+     step = 27 & first27 : 
+                 case 
+                   cond_27 : TRUE; 
+                   TRUE : FALSE; 
+                 esac;
+     TRUE : early_sep;
+   esac; 
+
+--------------------------------------------
+----- Additional Variables -----------------
+--------------------------------------------
+
+ next(rtls_lo_f_d_delay) :=
+   case
+     next(start) = TRUE : undef;          -- Assumed initialization
+     step = 8 & first8 & excess_OMS_propellant : 0;
+     TRUE : rtls_lo_f_d_delay;
+   esac;
+
+ next(wcb2) :=
+   case
+     next(start) = TRUE : undef;          -- Assumed initialization
+     step = 10 & entry_mnvr_couter_LE_0 : post_sep_0;
+     step = 12 : case
+                   r = reg4 : reg4_0;
+                   TRUE : wcb2_3eo;
+                 esac;
+     step = 14 & pre_sep : reg102_undef;
+     step = 15 : case
+                   r = reg4 : reg4_0;
+                   TRUE : wcb2_3eo;
+                 esac;
+     step = 25 : reg2_neg4;
+     TRUE : wcb2;
+   esac;
+
+ next(q_gcb_i) :=
+   case
+     next(start) = TRUE : undef;          -- Assumed initialization
+     step = 11 : quat_entry_M50_to_cmdbody;
+     step = 14 & pre_sep : quat_reg102_undef;
+     step = 16 : case 
+                   r = reg4 : quat_reg4;
+                   TRUE : quat_reg3;
+                 esac;
+     step = 22 : quat_reg2;
+
+-- Without this step the value "quat_reg2" would remain in "reg1":
+--     step = 23  & ABS_beta_n_GRT_beta_max & !high_rate_sep : undef;
+ 
+     TRUE : q_gcb_i;
+   esac;
+
+ next(oms_nz_lim) :=
+   case
+     next(start) = TRUE : undef;          -- Assumed initialization
+     step = 9 & q_bar_a_LT_qbar_oms_dump & r != reg102 : oms_nz_lim_3eo;
+     step = 12 & mm602_OK : oms_nz_lim_std;
+     TRUE : oms_nz_lim;
+   esac;
+
+ next(contingency_nz_lim) :=
+   case
+     next(start) = TRUE : undef;          -- Assumed initialization
+     step = 9 & q_bar_a_LT_qbar_oms_dump & r != reg102 : 
+                                        contingency_nz_lim_3eo;
+     step = 12 & mm602_OK : contingency_nz_lim_std;
+     TRUE : contingency_nz_lim;
+   esac;
+
+DEFINE
+ finished := step = exit;
+ idle := step = undef;
+
+ start_cont_3eo_mode_select := 
+   case
+     step = 1 & !cont_3EO_start : TRUE;
+     TRUE : FALSE;
+   esac;
+
+  nextstep :=
+    case
+     step = 1 : a1;
+     step = a1 : case
+                   (cont_3EO_start | mode_select_completed) : 2;
+                   TRUE : step;
+                 esac;
+     step = 2 : case 
+                  !cont_3EO_start : exit;
+                  first3 : 3;
+                  TRUE: 4;
+                esac;
+     step = 3 : 4;
+     step = 4 : case
+                  et_sep_cmd : 7;
+                  TRUE : 5;
+                esac;
+     step = 5 : case
+                  h_dot_LT_0 & q_bar_a_GRT_qbar_max_sep & 
+                                          m_mode != mm102 : exit;
+                  TRUE : 6;
+                esac;
+     step = 6 : 
+         case
+           r = reg102 : 13;
+           r in {reg3, reg4} : 15;
+           r = reg2 : 22;
+           r = reg1 : 27;
+           TRUE : exit;
+         esac;
+     step = 7 : case
+                  cont_minus_z_compl : 8;
+                  TRUE : exit;
+                esac;
+     step = 8 : case
+                  excess_OMS_propellant & first8 : 9;
+                  TRUE : 10;
+                esac;
+     step = 9 : exit;
+    step = 10 : case
+                  !entry_mnvr_couter_LE_0 | rcs_all_jet_inhibit : exit;
+                  TRUE : 11;
+                esac;
+    step = 11 : 12;
+    step = 12 : exit;
+    step = 13 : 14;
+    step = 14 : exit;
+    step = 15 : 16;
+    step = 16 : 17;
+    step = 17 : case
+                  r = reg4 : 18;
+                  TRUE : 20;
+                esac;
+    step = 18 : case
+                  pch_cmd_reg4 | cond_18 : 19;
+                  TRUE : exit;
+                esac;
+    step = 19 : exit;
+    step = 20 : case
+                  ABS_alf_err_LT_alf_sep_err : b20;
+                  TRUE : c20;
+                esac;
+    step = b20 : case
+                   cond_20b : d20;
+                   TRUE : exit;
+                 esac;
+    step = c20 : case
+                   alpha_ok : d20;
+                   TRUE : 21;
+                 esac;
+    step = d20 : exit;
+    TRUE : nextstep21;
+  esac;
+
+ nextstep21 :=
+  case
+    step = 21 : case
+                  cond_21 : 15;
+                  TRUE : exit;
+                esac;
+    step = 22 : 23;
+    step = 23 : case
+                  ABS_beta_n_GRT_beta_max & !high_rate_sep : 27;
+                  TRUE : 24;
+                esac;
+    step = 24 : case
+                  cond_24 | high_rate_sep : 25;
+                  TRUE : exit;
+                esac;
+    step = 25 : 26;
+    step = 26 : exit;
+    step = 27 : 28;
+    step = 28 : case
+                  !et_sep_man_initiate : 29;
+                  TRUE : exit;
+                esac;
+    step = 29 : exit;
+    start : 1;
+    step = exit : undef;
+    TRUE : step;
+   esac;
+
+ post_sep_mode := step in {7,8,9,10,11,12};
+
+------------------------------------------------------------------
+------------------------------------------------------------------
+
+MODULE main
+VAR
+    smode5: boolean;
+    vel : {GRT_vi_3eo_max, GRT_vi_3eo_min, LEQ_vi_3eo_min};
+    q_bar: {GRT_qbar_reg3, GRT_qbar_reg1, LEQ_qbar_reg1};
+    q_bar_a_GRT_qbar_max_sep : boolean;
+    q_bar_a_LT_qbar_oms_dump : boolean;
+    apogee_alt_LT_alt_ref : boolean;
+    h_dot_LT_hdot_reg2 : boolean;
+    h_dot_LT_0 : boolean;
+    alpha_n_GRT_alpha_reg2 : boolean;
+    delta_r_GRT_del_r_usp : boolean;
+    v_horiz_dnrng_LT_0: boolean;
+    meco_confirmed: boolean;
+    et_sep_cmd : boolean;
+    cont_minus_z_compl : boolean;
+    t_nav-t_et_sep_GRT_dt_min_z_102 : boolean;
+    ABS_q_orb_GRT_q_minus_z_max : boolean;
+    ABS_r_orb_GRT_r_minus_z_max : boolean;
+    excess_OMS_propellant : boolean;
+    entry_mnvr_couter_LE_0 : boolean;
+    rcs_all_jet_inhibit : boolean;
+    alt_GRT_alt_min_102_dump : boolean;
+    t_nav-t_gmtlo_LT_t_dmp_last : boolean;
+    pre_sep : boolean;
+    cond_18 : boolean;
+    q_orb_LT_0 : boolean;
+    ABS_alf_err_LT_alf_sep_err : boolean;
+    cond_20b : boolean;
+    cond_21 : boolean;
+    ABS_beta_n_GRT_beta_max : boolean;
+    cond_24 : boolean;
+    cond_26 : boolean;
+    cond_27 : boolean;
+    cond_29 : boolean;
+    mm602_OK : boolean;
+    start_guide : boolean;
+    mated_coast_mnvr : boolean;
+
+    cs: cont_3eo_mode_select(cg.start_cont_3eo_mode_select,
+                        smode5,vel,q_bar,apogee_alt_LT_alt_ref,
+                         h_dot_LT_hdot_reg2,alpha_n_GRT_alpha_reg2,
+                         delta_r_GRT_del_r_usp,v_horiz_dnrng_LT_0,
+                         cg.high_rate_sep,meco_confirmed);
+
+    cg: cont_3eo_guide(start_guide,
+           cs.cont_3EO_start, cs.region_selected, et_sep_cmd,
+           h_dot_LT_0, q_bar_a_GRT_qbar_max_sep, cs.m_mode, cs.r,
+           cont_minus_z_compl, t_nav-t_et_sep_GRT_dt_min_z_102, 
+           ABS_q_orb_GRT_q_minus_z_max, ABS_r_orb_GRT_r_minus_z_max,
+           excess_OMS_propellant, q_bar_a_LT_qbar_oms_dump,
+           entry_mnvr_couter_LE_0, rcs_all_jet_inhibit, 
+           alt_GRT_alt_min_102_dump, t_nav-t_gmtlo_LT_t_dmp_last,
+           pre_sep, cond_18, q_orb_LT_0, ABS_alf_err_LT_alf_sep_err,
+           cond_20b, cond_21, ABS_beta_n_GRT_beta_max, cond_24, cond_26, 
+           cond_27, cond_29, mm602_OK);
+
+ASSIGN
+ init(start_guide) := FALSE;
+ init(mated_coast_mnvr) := FALSE;
+
+ next(entry_mnvr_couter_LE_0) := 
+    case
+      !entry_mnvr_couter_LE_0 : {FALSE, TRUE};
+      TRUE : TRUE;
+    esac;
+
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+ next(start_guide) :=
+   case
+     start_guide : FALSE;
+     !cg.idle  : FALSE;
+     TRUE : {FALSE, TRUE};
+   esac;
+
+ next(smode5) := 
+   case
+     fixed_values : smode5;
+     cg.idle : { FALSE, TRUE };
+     TRUE : smode5;
+   esac;
+
+ next(vel) :=
+   case
+     fixed_values :  vel;
+     cg.idle : {GRT_vi_3eo_max, GRT_vi_3eo_min, LEQ_vi_3eo_min};
+     TRUE : vel;
+   esac;
+
+ next(q_bar) := 
+   case
+     fixed_values : q_bar;
+     cg.idle : {GRT_qbar_reg3, GRT_qbar_reg1, LEQ_qbar_reg1};
+     TRUE : q_bar;
+   esac;
+
+ next(q_bar_a_GRT_qbar_max_sep) := 
+   case
+     fixed_values : q_bar_a_GRT_qbar_max_sep;
+     cg.idle : { FALSE, TRUE };
+     TRUE : q_bar_a_GRT_qbar_max_sep;
+   esac;
+
+ next(apogee_alt_LT_alt_ref) := 
+   case
+     fixed_values : apogee_alt_LT_alt_ref;
+     cg.idle : { FALSE, TRUE };
+     TRUE : apogee_alt_LT_alt_ref;
+   esac;
+
+ next(h_dot_LT_hdot_reg2) := 
+   case
+     fixed_values : h_dot_LT_hdot_reg2;
+     cg.idle : { FALSE, TRUE };
+     TRUE : h_dot_LT_hdot_reg2;
+   esac;
+
+ next(h_dot_LT_0) := 
+   case
+     fixed_values :  h_dot_LT_0;
+     cg.idle : { FALSE, TRUE };
+     TRUE : h_dot_LT_0;
+   esac;
+
+ next(alpha_n_GRT_alpha_reg2) :=  
+   case
+     fixed_values : alpha_n_GRT_alpha_reg2;
+     cg.idle : { FALSE, TRUE };
+     TRUE : alpha_n_GRT_alpha_reg2;
+   esac;
+
+ next(delta_r_GRT_del_r_usp) :=   
+   case
+     fixed_values : delta_r_GRT_del_r_usp;
+     cg.idle : { FALSE, TRUE };
+     TRUE : delta_r_GRT_del_r_usp;
+   esac;
+
+ next(v_horiz_dnrng_LT_0) :=   
+   case
+     fixed_values : v_horiz_dnrng_LT_0;
+     cg.idle : { FALSE, TRUE };
+     TRUE : v_horiz_dnrng_LT_0;
+   esac;
+
+ next(meco_confirmed) := 
+   case
+     fixed_values : meco_confirmed;
+     meco_confirmed : TRUE;
+     cg.idle : { FALSE, TRUE };
+     TRUE : meco_confirmed;
+   esac;
+
+ next(et_sep_cmd) := 
+   case
+     fixed_values : et_sep_cmd;
+     et_sep_cmd : TRUE;
+     cg.idle : { FALSE, TRUE };
+     TRUE : et_sep_cmd;
+   esac;
+
+ next(cont_minus_z_compl) := 
+   case
+     fixed_values : cont_minus_z_compl;
+     cg.idle : { FALSE, TRUE };
+     TRUE : cont_minus_z_compl;
+   esac;
+
+ next(t_nav-t_et_sep_GRT_dt_min_z_102) := 
+   case
+     fixed_values : t_nav-t_et_sep_GRT_dt_min_z_102;
+     cg.idle : { FALSE, TRUE };
+     TRUE : t_nav-t_et_sep_GRT_dt_min_z_102;
+   esac;
+
+ next(ABS_q_orb_GRT_q_minus_z_max) :=
+   case
+     fixed_values : ABS_q_orb_GRT_q_minus_z_max;
+     cg.idle : { FALSE, TRUE };
+     TRUE : ABS_q_orb_GRT_q_minus_z_max;
+   esac;
+
+ next(ABS_r_orb_GRT_r_minus_z_max) :=
+   case
+     fixed_values : ABS_r_orb_GRT_r_minus_z_max;
+     cg.idle : { FALSE, TRUE };
+     TRUE : ABS_r_orb_GRT_r_minus_z_max;
+   esac;
+
+ next(excess_OMS_propellant) :=
+   case
+     fixed_values : excess_OMS_propellant;
+     cg.idle & excess_OMS_propellant : { FALSE, TRUE };
+     TRUE : excess_OMS_propellant;
+   esac;
+
+ next(q_bar_a_LT_qbar_oms_dump) :=
+   case
+     fixed_values : q_bar_a_LT_qbar_oms_dump;
+     cg.idle : { FALSE, TRUE };
+     TRUE : q_bar_a_LT_qbar_oms_dump;
+   esac;
+
+ next(rcs_all_jet_inhibit) :=
+   case
+     fixed_values : rcs_all_jet_inhibit;
+     cg.idle : { FALSE, TRUE };
+     TRUE : rcs_all_jet_inhibit;
+   esac;
+
+ next(alt_GRT_alt_min_102_dump) :=
+   case
+     fixed_values : alt_GRT_alt_min_102_dump;
+     cg.idle : { FALSE, TRUE };
+     TRUE : alt_GRT_alt_min_102_dump;
+   esac;
+
+ next(t_nav-t_gmtlo_LT_t_dmp_last) :=
+   case
+     fixed_values : t_nav-t_gmtlo_LT_t_dmp_last;
+     cg.idle : { FALSE, TRUE };
+     TRUE : t_nav-t_gmtlo_LT_t_dmp_last;
+   esac;
+
+ next(pre_sep) :=
+   case
+     fixed_values : pre_sep;
+     cg.idle : { FALSE, TRUE };
+     TRUE : pre_sep;
+   esac;
+
+ next(cond_18) :=
+   case
+     fixed_values : cond_18;
+     cg.idle : { FALSE, TRUE };
+     TRUE : cond_18;
+   esac;
+
+ next(q_orb_LT_0) :=
+   case
+     fixed_values : q_orb_LT_0;
+     cg.idle : { FALSE, TRUE };
+     TRUE : q_orb_LT_0;
+   esac;
+
+ next(ABS_alf_err_LT_alf_sep_err) :=
+   case
+     fixed_values : ABS_alf_err_LT_alf_sep_err;
+     cg.idle : { FALSE, TRUE };
+     TRUE : ABS_alf_err_LT_alf_sep_err;
+   esac;
+
+ next(cond_20b) :=
+   case
+     fixed_values : cond_20b;
+     cg.idle : { FALSE, TRUE };
+     TRUE : cond_20b;
+   esac;
+
+ next(cond_21) :=
+   case
+     fixed_values : cond_21;
+     cg.idle : { FALSE, TRUE };
+     TRUE : cond_21;
+   esac;
+
+ next(ABS_beta_n_GRT_beta_max) :=
+   case
+     fixed_values : ABS_beta_n_GRT_beta_max;
+     cg.idle : { FALSE, TRUE };
+     TRUE : ABS_beta_n_GRT_beta_max;
+   esac;
+
+ next(cond_24) :=
+   case
+     fixed_values : cond_24;
+     cg.idle : { FALSE, TRUE };
+     TRUE : cond_24;
+   esac;
+
+ next(cond_26) :=
+   case
+     fixed_values : cond_26;
+     cg.idle : { FALSE, TRUE };
+     TRUE : cond_26;
+   esac;
+
+ next(cond_27) :=
+   case
+     fixed_values : cond_27;
+     cg.idle : { FALSE, TRUE };
+     TRUE : cond_27;
+   esac;
+
+ next(cond_29) :=
+   case
+     fixed_values : cond_29;
+     cg.idle : { FALSE, TRUE };
+     TRUE : cond_29;
+   esac;
+
+ next(mm602_OK) :=
+   case
+     fixed_values : mm602_OK;
+     cg.idle : { FALSE, TRUE };
+     TRUE :  mm602_OK;
+   esac;
+
+ next(mated_coast_mnvr) :=
+   case
+     next(cg.step) = 1 : FALSE;
+     cg.step = 6 & cg.r in {reg1, reg2, reg3, reg4, reg102} : TRUE;
+     TRUE : mated_coast_mnvr; 
+   esac;
+
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+DEFINE
+  fixed_values := FALSE;
+
+  output_ok :=
+    case
+      cg.q_gcb_i = undef | cg.wcb2 = undef | 
+      cg.cont_3eo_pr_delay = 5 | 
+      cg.etsep_y_drift = undef :
+        case
+          !mated_coast_mnvr: 1;
+          TRUE : undef;
+        esac;
+      !mated_coast_mnvr: toint(cg.q_gcb_i = quat_entry_M50_to_cmdbody & 
+                         cg.wcb2 = post_sep_0); 
+-- reg1 never happens?
+--      cg.r = reg1 : (cg.q_gcb_i = quat_reg1 & cg.wcb2 = reg1_0 &
+--                   cg.cont_3eo_pr_delay = minus_z_reg1 &
+--                    cg.etsep_y_drift = minus_z_reg1) | cg.emerg_sep;
+      cg.r = reg2 : toint((cg.q_gcb_i = quat_reg2 & cg.wcb2 = reg2_neg4 &
+                    cg.cont_3eo_pr_delay = minus_z_reg2 & 
+                    cg.etsep_y_drift = minus_z_reg2) | cg.emerg_sep);
+
+      cg.r = reg3 : toint((cg.q_gcb_i = quat_reg3 & cg.wcb2 = wcb2_3eo &
+                    cg.cont_3eo_pr_delay = minus_z_reg3 & 
+                    cg.etsep_y_drift = minus_z_reg3) | cg.emerg_sep);
+      cg.r = reg4 : toint((cg.q_gcb_i = quat_reg4 & cg.wcb2 = reg4_0 &
+                    cg.cont_3eo_pr_delay = minus_z_reg4 & 
+                    cg.etsep_y_drift = minus_z_reg4) | cg.emerg_sep);
+      cg.r = reg102 : toint((cg.q_gcb_i = quat_reg102_undef & 
+                       cg.wcb2 = reg102_undef &
+                       cg.cont_3eo_pr_delay = minus_z_reg102 & 
+                       cg.etsep_y_drift = minus_z_reg102) | cg.emerg_sep);
+      TRUE : 0;
+    esac;
+
+---------------------------------------------------------------------
+-------- Specifications ---------------------------------------------
+---------------------------------------------------------------------
+
+-- Contingency Guide terminates
+
+SPEC AG(!cg.idle -> AF(cg.finished))
+
+-- Contingency guide can be executed infinitely often
+
+SPEC AG( (cg.idle | cg.finished) -> 
+  EF(!(cg.idle | cg.finished) & EF(cg.finished)))
+
+-- Contingency mode select task works fine
+
+SPEC AG(cs.cont_3EO_start & cs.region_selected -> 
+         ((cs.m_mode = mm102 | meco_confirmed) &
+                       cs.r != reg-1 & cs.r != reg0))
+
+-- Bad (initial) value never happens again once region is computed
+-- unless we restart the task
+
+--SPEC AG(cs.r != reg-1 -> !E[!cg.start_cont_3eo_mode_select U 
+--               cs.r = reg-1 & !cg.start_cont_3eo_mode_select])
+
+-- Comment out each of the regions and see if this is still true
+-- (Check, if ALL of the regions can happen)
+
+--SPEC AG(cs.r in {reg-1
+--                 ,reg0
+--                 ,reg1
+--                 ,reg2
+--                 ,reg3
+--                 ,reg102
+--                 })
+
+-- Comment out each of the regions and see if this is still true
+-- (Check, if ALL of the regions can happen)
+
+--SPEC AG(cg.r in {reg-1
+--                 ,reg0
+--                 ,reg1
+--                 ,reg2
+--                 ,reg3
+--                 ,reg4
+--                 ,reg102
+--                 })
+
+-- Mode_select starts at the next step after its "start" bit is set:
+
+--SPEC AG(!cg.start_cont_3eo_mode_select -> 
+--        AX(cg.start_cont_3eo_mode_select & cs.step in {exit, undef} -> 
+--                 AX(cs.step = 1 & !cs.region_selected)))
+
+-- During major mode 103, the inertial velocity is monitored.
+-- Below an I-loaded velocity, a MECO would constitute a contingency
+-- abort. (Must NOT be in SMODE=5 (??))
+
+SPEC AG(cg.start_cont_3eo_mode_select & cs.m_mode = mm103 & 
+        vel = LEQ_vi_3eo_min & meco_confirmed & !smode5 -> 
+            A[!cs.region_selected U cs.region_selected & cs.cont_3EO_start])
+
+-- Above a certain inertial velocity (in mode 103), the 3E/O field
+-- is blanked, indicating that a MECO at this point would not require
+-- an OPS 6 contingency abort.
+
+SPEC AG(cs.region_selected -> 
+         (cs.m_mode = mm103 & vel = GRT_vi_3eo_max -> !cs.cont_3EO_start))
+
+-- Between the two velocities, an apogee altitude - velocity curve is 
+-- constructed based on the current inertial velocity. If the apogee
+-- altitude is above this curve, a contingency abort capability is
+-- still required and a 3E/O region index will be calculated. 
+-- Otherwise, the 3E/O field is blanked out and no further contingency
+-- abort calculations will be performed. (Must NOT be in SMODE=5 (??))
+
+SPEC AG(cg.start_cont_3eo_mode_select & cs.m_mode = mm103 & 
+        vel = GRT_vi_3eo_min & meco_confirmed & !smode5 ->
+           A[!cs.region_selected U cs.region_selected & 
+              apogee_alt_LT_alt_ref = !cs.cont_3EO_start])
+
+-- For an RTLS trajectory (SMODE=5), a check is made on the downrange
+-- velocity to see if the vehicle is heading away from the landing site.
+-- If this is the case, a 3E/O region index is calculated. If the vehicle
+-- is heading back to the landing site, and the current range to the MECO
+-- R-V line is greater than an I-loaded value, a 3E/O region index is
+-- calculated. Otherwise, an intact abort is possible and the 3E/O field
+-- is blanked.
+
+SPEC AG(cg.start_cont_3eo_mode_select & smode5 &  meco_confirmed &
+        (!v_horiz_dnrng_LT_0 | !delta_r_GRT_del_r_usp) -> 
+          A[!cs.region_selected U cs.region_selected & cs.cont_3EO_start])
+
+-- If this task is called prior to SRB separation [mm102], the 3E/O region
+-- index is set to 102 and the 3E/O contingency flag is set.
+
+SPEC AG(cs.m_mode = mm102 & cg.start_cont_3eo_mode_select -> 
+               AX (A [ !cs.region_selected U cs.region_selected & 
+                                cs.r = reg102 & cs.cont_3EO_start]))
+
+-- After SRB separation, on every pass that the 3E/O region index is
+-- calculated, a check is made to see if MECO confirmed has occured.  If
+-- so, a check is made to see if the major mode is 103. If so, an RTLS is
+-- automatically invoked to transition to major mode 601.
+
+SPEC AG(!cs.region_selected & cs.m_mode = mm103 & meco_confirmed ->
+        A[!cs.region_selected U cs.region_selected & cs.r != reg0 -> 
+              cs.m_mode = mm601 & cs.RTLS_abort_declared])
+
+-- Once the 3E/O contingency flag has been set, this task is no longer
+-- executed.
+
+SPEC AG(cs.cont_3EO_start -> AG(!cg.start_cont_3eo_mode_select))
+
+-- If MECO confirmed occurs in MM103 and an OPS 6 contingency abort
+-- procedure is still required, contingency 3E/O guidance sets the
+-- CONT_3EO_START flag ON. Contingency 3E/O guidance then switches
+-- from its display support function into an actual auto guidance
+-- steering process. [...] Contingency 3E/O guidance sets the RTLS abort
+-- declared flag and the MSC performs the transition from from major mode
+-- 103 to 601.
+
+SPEC AG(!cg.idle & !cg.finished & !cs.region_selected & cs.m_mode = mm103 -> 
+       A[ !cg.finished U cg.finished & cs.region_selected & 
+           (cs.cont_3EO_start -> cs.m_mode = mm601 & cs.RTLS_abort_declared) ])
+
+-- If MECO confirmed occurs in a major mode 601 and a contingency abort
+-- procedure is still required, contingency 3E/O guidance sets the
+-- CONT_3EO_START flag ON. [...] Contingency 3E/O guidance then commands
+-- 3E/O auto maneuvers in major mode 601. [What are these maneuvers??]
+
+SPEC AG(cg.finished & cs.m_mode = mm601 & !et_sep_cmd &
+         meco_confirmed  & cs.cont_3EO_start -> 
+           cg.q_gcb_i in {quat_reg1, quat_reg2, quat_reg3, quat_reg4, undef}
+           | cg.emerg_sep)
+
+-- If MECO confirmed occurs in a first stage (MM102) [...], contingency
+-- 3E/O guidance will command a fast ET separation during SRB tailoff in
+-- major mode 102. CONT 3E/O GUID will then command maneuver post-sep in
+-- MM601 (???). [ I'm not sure what indicates fast ET sep.: emerg_sep or
+-- early_sep, or what? ]
+
+SPEC AG(cg.finished & cs.m_mode = mm102 & meco_confirmed & pre_sep ->
+                                    cg.emerg_sep | et_sep_cmd
+                                     | cg.et_sep_man_initiate
+                                     | cg.early_sep
+                                                       )
+
+---------------------------------------------
+-- Invariants from Murphi code --------------
+---------------------------------------------
+
+--SPEC AG(cg.finished -> (output_ok != 0 | (output_ok = undef & 
+--                          (cg.emerg_sep | !cg.cont_sep_cplt))))
+
+--SPEC AG(!cg.finished & !cg.idle -> !mated_coast_mnvr | !et_sep_cmd)
+
+-- Stronger version !!!
+
+SPEC AG(cg.finished -> output_ok != 0)
+
+-- Contingency Guidance shall command an ET separation 
+-- [under certain conditions :-].
+
+SPEC AG(cs.cont_3EO_start & cg.finished & 
+           (cg.r = reg1 -> cond_29) & 
+           (cg.r = reg2 -> cond_24 & cond_26) &
+           (cg.r = reg3 -> cg.alpha_ok &
+               (ABS_alf_err_LT_alf_sep_err -> cond_20b)) &
+           (cg.r = reg4 -> cond_18 & q_orb_LT_0) &
+           (cg.r = reg102 -> pre_sep) ->
+                     et_sep_cmd | cg.et_sep_man_initiate
+                     | cg.early_sep 
+                     | cg.emerg_sep
+                                      )
+
+-- Contingency Guidance shall command at most one interconnected OMS dump.
+
+SPEC AG(cg.finished & cg.oms_rcs_i_c_inh_ena_cmd -> 
+        AG(!cg.oms_rcs_i_c_inh_ena_cmd -> AG(!cg.oms_rcs_i_c_inh_ena_cmd)))
+
+-- Contingency Guidance shall command a transition to glide RTLS
+-- (flight mode 602)
+
+SPEC AG(cg.finished & cs.m_mode = mm601 -> 
+                 --cg.cont_sep_cplt | cg.emerg_sep |
+                                cg.call_RTLS_abort_task)
+
+-- Paper, p. 28, unstated assumption 2: at step 6 the region is
+-- among 102, 1-4.
+
+SPEC AG(cg.step = 6 -> cg.r in {reg102, reg1, reg2, reg3, reg4})
+
+-- The transition to mode 602 shall not occur until the entry maneuver
+-- has been calculated
+
+SPEC !E[cg.q_gcb_i = undef U cg.cont_sep_cplt & cg.q_gcb_i = undef]
+
+-- The entry maneuver calculations shall not commence until the OMS/RCS
+-- interconnect, if any, is complete (??? What does it exactly mean???)
+-- !!!
+--SPEC AG(cg.oms_rcs_i_c_inh_ena_cmd -> 
+--          !E[cg.oms_rcs_i_c_inh_ena_cmd U 
+--              cg.q_gcb_i != undef & cg.oms_rcs_i_c_inh_ena_cmd])
+
+SPEC AG(cg.oms_rcs_i_c_inh_ena_cmd -> 
+          !E[rcs_all_jet_inhibit U 
+              cg.q_gcb_i != undef & rcs_all_jet_inhibit])
+
+-- The OMS dump shall not be considered until the -Z translation is complete.
+
+SPEC !E[!cont_minus_z_compl & cg.r != reg102 U cg.orbiter_dump_ena]
+
+-- Completion of -Z translation shall not be checked until ET separation
+-- has been commanded
+
+SPEC !E[!et_sep_cmd U cg.step = 7]
+
+-- ET separation shall be commanded if and only if an abort maneuver
+-- region is assigned [and again there are *certain conditions*].
+
+SPEC AG(cg.finished & cs.cont_3EO_start & 
+                  (cg.r = reg1 -> cond_29) & 
+                  (cg.r = reg2 -> cond_24 & cond_26) &
+                  (cg.r = reg3 -> cg.alpha_ok &
+                     (ABS_alf_err_LT_alf_sep_err -> cond_20b)) &
+                  (cg.r = reg4 -> cond_18 & q_orb_LT_0) &
+                  (cg.r = reg102 -> pre_sep) -> 
+          (cg.et_sep_man_initiate | et_sep_cmd
+                 <-> cg.r in {reg1, reg2, reg3, reg4, reg102}))
+
+-- The assigned region can not change arbitrarily.
+
+-- Regions 1 and 2 may interchange, but will not switch to any other region:
+
+SPEC AG(cg.finished & cs.cont_3EO_start & cg.r in {reg1,reg2} -> 
+                                AG(cg.finished -> cg.r in {reg1,reg2}))
+
+-- Regions 3 and 4 may interchange, but will not switch to any other region:
+
+SPEC AG(cg.finished & cs.cont_3EO_start & cg.r in {reg3,reg4} -> 
+         AG(cg.finished -> cg.r in {reg3,reg4}))
+
+-- Region 102 never changes:
+
+SPEC AG(cg.finished & cg.r = reg102 -> AG(cg.finished -> cg.r = reg102))
