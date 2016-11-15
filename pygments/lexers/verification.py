@@ -69,7 +69,7 @@ class SilverLexer(RegexLexer):
     """
     name = 'Silver'
     aliases = ['silver']
-    filenames = ['*.sil']
+    filenames = ['*.sil', '*.vpr']
 
     tokens = {
         'root': [
