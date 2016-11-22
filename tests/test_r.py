@@ -48,6 +48,15 @@ class RTest(unittest.TestCase):
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
 
+    def testName3(self):
+        # Internal backticks can be escaped
+        fragment = u'`.1 \` blah`'
+        tokens = [
+            (Name, u'`.1 \` blah`'),
+            (Token.Text, u'\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
     def testCustomOperator(self):
         fragment = u'7 % and % 8'
         tokens = [
