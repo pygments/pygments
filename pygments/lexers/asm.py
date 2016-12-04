@@ -54,7 +54,7 @@ class GasLexer(RegexLexer):
             (number, Number.Integer),
             (r'[\r\n]+', Text, '#pop'),
 
-            (r'#.*?$', Comment, '#pop'),
+            (r'[;#].*?$', Comment, '#pop'),
 
             include('punctuation'),
             include('whitespace')
@@ -78,14 +78,14 @@ class GasLexer(RegexLexer):
             ('$'+number, Number.Integer),
             (r"$'(.|\\')'", String.Char),
             (r'[\r\n]+', Text, '#pop'),
-            (r'#.*?$', Comment, '#pop'),
+            (r'[;#].*?$', Comment, '#pop'),
             include('punctuation'),
             include('whitespace')
         ],
         'whitespace': [
             (r'\n', Text),
             (r'\s+', Text),
-            (r'#.*?\n', Comment)
+            (r'[;#].*?\n', Comment)
         ],
         'punctuation': [
             (r'[-*,.()\[\]!:]+', Punctuation)
