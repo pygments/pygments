@@ -27,6 +27,38 @@ class RustLexer(RegexLexer):
     aliases = ['rust']
     mimetypes = ['text/rust']
 
+    keyword_types = (
+            words(('u8', 'u16', 'u32', 'u64', 'i8', 'i16', 'i32', 'i64',
+                  'usize', 'isize', 'f32', 'f64', 'str', 'bool'),
+                  suffix=r'\b'),
+            Keyword.Type)
+
+    builtin_types = (words((
+        # Reexported core operators
+        'Copy', 'Send', 'Sized', 'Sync',
+        'Drop', 'Fn', 'FnMut', 'FnOnce',
+
+        # Reexported functions
+        'drop',
+
+        # Reexported types and traits
+        'Box',
+        'ToOwned',
+        'Clone',
+        'PartialEq', 'PartialOrd', 'Eq', 'Ord',
+        'AsRef', 'AsMut', 'Into', 'From',
+        'Default',
+        'Iterator', 'Extend', 'IntoIterator',
+        'DoubleEndedIterator', 'ExactSizeIterator',
+        'Option',
+        'Some', 'None',
+        'Result',
+        'Ok', 'Err',
+        'SliceConcatExt',
+        'String', 'ToString',
+        'Vec'), suffix=r'\b'),
+        Name.Builtin)
+
     tokens = {
         'root': [
             # rust allows a file to start with a shebang, but if the first line
@@ -64,36 +96,14 @@ class RustLexer(RegexLexer):
             (r'fn\b', Keyword, 'funcname'),
             (r'(struct|enum|type|union)\b', Keyword, 'typename'),
             (r'(default)(\s+)(type|fn)\b', bygroups(Keyword, Text, Keyword)),
-            (words(('u8', 'u16', 'u32', 'u64', 'i8', 'i16', 'i32', 'i64', 'usize',
-                    'isize', 'f32', 'f64', 'str', 'bool'), suffix=r'\b'),
-             Keyword.Type),
+            keyword_types,
             (r'self\b', Name.Builtin.Pseudo),
             # Prelude (taken from Rust’s src/libstd/prelude.rs)
-            (words((
-                # Reexported core operators
-                'Copy', 'Send', 'Sized', 'Sync',
-                'Drop', 'Fn', 'FnMut', 'FnOnce',
-
-                # Reexported functions
-                'drop',
-
-                # Reexported types and traits
-                'Box',
-                'ToOwned',
-                'Clone',
-                'PartialEq', 'PartialOrd', 'Eq', 'Ord',
-                'AsRef', 'AsMut', 'Into', 'From',
-                'Default',
-                'Iterator', 'Extend', 'IntoIterator',
-                'DoubleEndedIterator', 'ExactSizeIterator',
-                'Option',
-                'Some', 'None',
-                'Result',
-                'Ok', 'Err',
-                'SliceConcatExt',
-                'String', 'ToString',
-                'Vec'), suffix=r'\b'),
-             Name.Builtin),
+            builtin_types,
+            # Path seperators, so types don't catch them.
+            (r'::\b', Text),
+            # Types in positions.
+            (r'(?::|->)', Text, 'typename'),
             # Labels
             (r'(break|continue)(\s*)(\'[A-Za-z_]\w*)?',
              bygroups(Keyword, Text.Whitespace, Name.Label)),
@@ -112,7 +122,8 @@ class RustLexer(RegexLexer):
             (r'0[xX][0-9a-fA-F_]+', Number.Hex, 'number_lit'),
             # Decimal Literal
             (r'[0-9][0-9_]*(\.[0-9_]+[eE][+\-]?[0-9_]+|'
-             r'\.[0-9_]*(?!\.)|[eE][+\-]?[0-9_]+)', Number.Float, 'number_lit'),
+             r'\.[0-9_]*(?!\.)|[eE][+\-]?[0-9_]+)', Number.Float,
+             'number_lit'),
             (r'[0-9][0-9_]*', Number.Integer, 'number_lit'),
             # String Literal
             (r'b"', String, 'bytestring'),
@@ -164,6 +175,9 @@ class RustLexer(RegexLexer):
         ],
         'typename': [
             (r'\s+', Text),
+            (r'&', Keyword.Pseudo),
+            builtin_types,
+            keyword_types,
             (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
             default('#pop'),
         ],
