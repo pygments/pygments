@@ -142,7 +142,7 @@ class CsoundOrchestraLexer(CsoundLexer):
 
     name = 'Csound Orchestra'
     aliases = ['csound', 'csound-orc']
-    filenames = ['*.orc']
+    filenames = ['*.orc', '*.udo']
 
     user_defined_opcodes = set()
 
