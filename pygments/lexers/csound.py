@@ -25,7 +25,6 @@ newline = (r'((?:(?:;|//).*)*)(\n)', bygroups(Comment.Single, Text))
 
 
 class CsoundLexer(RegexLexer):
-    # Subclasses must define a 'single-line string' state.
     tokens = {
         'whitespace': [
             (r'[ \t]+', Text),
@@ -57,7 +56,7 @@ class CsoundLexer(RegexLexer):
 
         'include': [
             include('whitespace'),
-            (r'"', String, 'single-line string')
+            (r'([^ \t]).*?\1', String, '#pop')
         ],
 
         'macro name': [
