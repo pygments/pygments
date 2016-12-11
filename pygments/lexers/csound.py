@@ -92,7 +92,7 @@ class CsoundLexer(RegexLexer):
 
 class CsoundScoreLexer(CsoundLexer):
     """
-    For `Csound <http://csound.github.io>`_ scores.
+    For `Csound <https://csound.github.io>`_ scores.
 
     .. versionadded:: 2.1
     """
@@ -135,7 +135,7 @@ class CsoundScoreLexer(CsoundLexer):
 
 class CsoundOrchestraLexer(CsoundLexer):
     """
-    For `Csound <http://csound.github.io>`_ orchestras.
+    For `Csound <https://csound.github.io>`_ orchestras.
 
     .. versionadded:: 2.1
     """
@@ -334,7 +334,7 @@ class CsoundOrchestraLexer(CsoundLexer):
 
 class CsoundDocumentLexer(RegexLexer):
     """
-    For `Csound <http://csound.github.io>`_ documents.
+    For `Csound <https://csound.github.io>`_ documents.
 
     .. versionadded:: 2.1
     """
