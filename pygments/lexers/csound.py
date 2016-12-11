@@ -33,9 +33,9 @@ class CsoundLexer(RegexLexer):
         ],
 
         'macro use': [
-            (r'(\$\w+\.?)(\()', bygroups(Comment.Preproc, Punctuation),
+            (r'(\$[A-Z_a-z]\w*\.?)(\()', bygroups(Comment.Preproc, Punctuation),
              'function macro use'),
-            (r'\$\w+(\.|\b)', Comment.Preproc)
+            (r'\$[A-Z_a-z]\w*(\.|\b)', Comment.Preproc)
         ],
         'function macro use': [
             (r"((?:\\['\)]|[^'\)])+)(')", bygroups(Comment.Preproc, Punctuation)),
@@ -49,8 +49,8 @@ class CsoundLexer(RegexLexer):
 
         'preprocessor directives': [
             (r'#(e(nd(if)?|lse)|ifn?def|undef)\b|##', Comment.Preproc),
-            (r'#include\b', Comment.Preproc, 'include'),
-            (r'#[ \t]*define\b', Comment.Preproc, 'macro name'),
+            (r'#include', Comment.Preproc, 'include'),
+            (r'#[ \t]*define', Comment.Preproc, 'macro name'),
             (r'@+[ \t]*\d*', Comment.Preproc)
         ],
 
@@ -61,9 +61,9 @@ class CsoundLexer(RegexLexer):
 
         'macro name': [
             include('whitespace'),
-            (r'(\w+)(\()', bygroups(Comment.Preproc, Text),
+            (r'([A-Z_a-z]\w*)(\()', bygroups(Comment.Preproc, Text),
              'function macro parameter list'),
-            (r'\w+', Comment.Preproc, 'object macro definition after name')
+            (r'[A-Z_a-z]\w*', Comment.Preproc, 'object macro definition after name')
         ],
         'object macro definition after name': [
             include('whitespace'),
@@ -74,8 +74,9 @@ class CsoundLexer(RegexLexer):
             (r'#', Punctuation, '#pop:3')
         ],
         'function macro parameter list': [
-            (r"(\w+)(['#])", bygroups(Comment.Preproc, Punctuation)),
-            (r'(\w+)(\))', bygroups(Comment.Preproc, Punctuation),
+            include('whitespace'),
+            (r"([A-Z_a-z]\w*)(['#])", bygroups(Comment.Preproc, Punctuation)),
+            (r'([A-Z_a-z]\w*)(\))', bygroups(Comment.Preproc, Punctuation),
              'function macro definition after parameter list')
         ],
         'function macro definition after parameter list': [
