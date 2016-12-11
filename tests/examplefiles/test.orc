@@ -11,6 +11,7 @@ nchnls_i = 1
 sr = 44100
 0dbfs = 1
 ksmps = 10
+A4 = 440
 
 // The control rate kr = sr / ksmps can be omitted when the number of audio
 // samples in a control period (ksmps) is set, but kr may appear in older
@@ -78,9 +79,8 @@ instr TestOscillator
   outc(anOscillator(0dbfs, 110))
 endin
 
-// Python can be executed in Csound
-// <http://www.csounds.com/manual/html/pyrun.html>. So can Lua
-// <http://www.csounds.com/manual/html/lua.html>.
+// You can execute Python <https://csound.github.io/docs/manual/pyrun.html> and
+// Lua <https://csound.github.io/docs/manual/lua.html> in Csound.
 pyruni {{
 import random
 
@@ -104,13 +104,13 @@ def get_number_from_pool(n, p):
 #define A_HZ #440#
 
 // This is a function-like macro:
-#define OSCIL_MACRO(VOLUME'FREQUENCY'TABLE) #oscil $VOLUME, $FREQUENCY, $TABLE#
+#define OSCIL_MACRO(VOLUME' FREQUENCY' TABLE) #oscil $VOLUME, $FREQUENCY, $TABLE#
 
 // Bodies of macros are enclosed in # and can contain newlines. The arguments of
 // function-like macros are separated by single-quotes. Uses of macros are
 // prefixed with a dollar sign.
 instr TestMacro
-  aSignal $OSCIL_MACRO(1'$A_HZ'1)
+  aSignal $OSCIL_MACRO(1' $A_HZ' 1)
   // Not unlike PHP, macros expand in double-quoted strings.
   prints "The frequency of the oscillator is $A_HZ Hz.\n"
   out aSignal
@@ -127,7 +127,7 @@ instr TestBitwiseNOT
 endin
 
 // Csound uses # for bitwise XOR, which the Csound manual calls bitwise
-// non-equivalence <http://www.csounds.com/manual/html/opnonequiv.html>.
+// non-equivalence <https://csound.github.io/docs/manual/opnonequiv.html>.
 instr TestBitwiseXOR
   print 0 # 0
   print 0 # 1
@@ -176,10 +176,8 @@ loop_lt_label:
   od
 endin
 
-// The prints and printks opcodes
-// <https://github.com/csound/csound/blob/develop/OOps/ugrw1.c#L831>, arguably
-// the primary methods of logging output, treat certain sequences of characters
-// different from printf in C.
+// The prints and printks opcodes, arguably the primary methods of logging
+// output, treat certain sequences of characters different from printf in C.
 instr TestPrints
   // ^ prints an ESCAPE character (U+001B), not a CIRCUMFLEX ACCENT character
   // (U+005E). ^^ prints a CIRCUMFLEX ACCENT.
@@ -200,26 +198,22 @@ endin
 
 // The arguments of function-like macros can be separated by # instead of '.
 // These two lines define the same macro.
-#define OSCIL_MACRO(VOLUME'FREQUENCY'TABLE) #oscil $VOLUME, $FREQUENCY, $TABLE#
-#define OSCIL_MACRO(VOLUME#FREQUENCY#TABLE) #oscil $VOLUME, $FREQUENCY, $TABLE#
+#define OSCIL_MACRO(VOLUME' FREQUENCY' TABLE) #oscil $VOLUME, $FREQUENCY, $TABLE#
+#define OSCIL_MACRO(VOLUME# FREQUENCY# TABLE) #oscil $VOLUME, $FREQUENCY, $TABLE#
 
 // Uses of macros can optionally be suffixed with a period.
 instr TestMacroPeriodSuffix
-  aSignal $OSCIL_MACRO.(1'$A_HZ'1)
+  aSignal $OSCIL_MACRO.(1' $A_HZ' 1)
   prints "The frequency of the oscillator is $A_HZ.Hz.\n"
   out aSignal
 endin
 
 // Csound has @ and @@ operator-like macros that, when followed by a literal
 // non-negative integer, expand to the next power of 2 and the next power of 2
-// plus 1:
+// plus 1 <https://csound.github.io/docs/manual/ScoreEval.html>:
 //    @x = 2^(ceil(log2(x + 1))), x >= 0
 //   @@0 = 2
 //   @@x = 2^(ceil(log2(x))) + 1, x > 0
-// These macros are in
-// <https://github.com/csound/csound/blob/develop/Engine/csound_orc.l#L542> (and
-// <https://github.com/csound/csound/blob/develop/Engine/csound_sco.lex#L202>)
-// and are described at <http://www.csounds.com/manual/html/ScoreEval.html>.
 instr TestAt
   prints "%d  %2d  %2d\n", 0, @0, @@0
   prints "%d  %2d  %2d\n", 1, @1, @@1
@@ -250,7 +244,7 @@ i "TestOscillator" 2 2
 i "TestBitwiseNOT" 0 1
 i "TestBitwiseXOR" 0 1
 i "TestGoto" 0 1
-i "TestMacroPeriodSuffix" 4 1
+i "TestMacroPeriodSuffix" 0 1
 i "TestAt" 0 1
 i "MacroAbuse" 0 1
 e
