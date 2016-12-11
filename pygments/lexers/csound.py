@@ -3,7 +3,7 @@
     pygments.lexers.csound
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for CSound languages.
+    Lexers for Csound languages.
 
     :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
