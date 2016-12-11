@@ -4,7 +4,7 @@ i "TestOscillator" 2 2
 i "TestBitwiseNOT" 0 1
 i "TestBitwiseXOR" 0 1
 i "TestGoto" 0 1
-i "TestMacroPeriodSuffix" 4 1
+i "TestMacroPeriodSuffix" 0 1
 i "TestAt" 0 1
 i "MacroAbuse" 0 1
 e

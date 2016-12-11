@@ -14,7 +14,7 @@ import re
 from pygments.lexer import RegexLexer, bygroups, default, include, using, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, \
     String, Text
-from pygments.lexers._csound_builtins import OPCODES
+from pygments.lexers._csound_builtins import OPCODES, DEPRECATED_OPCODES
 from pygments.lexers.html import HtmlLexer
 from pygments.lexers.python import PythonLexer
 from pygments.lexers.scripting import LuaLexer
@@ -104,8 +104,8 @@ class CsoundScoreLexer(CsoundLexer):
     tokens = {
         'partial statement': [
             include('preprocessor directives'),
-            (r'\d+e[+-]?\d+|(\d+\.\d*|\d*\.\d+)(e[+-]?\d+)?', Number.Float),
-            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'\d+[Ee][+-]?\d+|(\d+\.\d*|\d*\.\d+)([Ee][+-]?\d+)?', Number.Float),
+            (r'0[Xx][0-9A-Fa-f]+', Number.Hex),
             (r'\d+', Number.Integer),
             (r'"', String, 'single-line string'),
             (r'[+\-*/%^!=<>|&#~.]', Operator),
@@ -152,9 +152,12 @@ class CsoundOrchestraLexer(CsoundLexer):
         yield match.start(), Name.Function, opcode
 
     def name_callback(lexer, match):
-        name = match.group(0)
-        if re.match('p\d+$', name) or name in OPCODES:
+        name = match.group(1)
+        if name in OPCODES or name in DEPRECATED_OPCODES:
             yield match.start(), Name.Builtin, name
+            if match.group(2):
+                yield match.start(2), Punctuation, match.group(2)
+                yield match.start(3), Keyword.Type, match.group(3)
         elif name in lexer.user_defined_opcodes:
             yield match.start(), Name.Function, name
         else:
@@ -167,14 +170,14 @@ class CsoundOrchestraLexer(CsoundLexer):
 
     tokens = {
         'label': [
-            (r'\b(\w+)(:)', bygroups(Name.Label, Punctuation))
+            (r'^([ \t]*)(\w+)(:)', bygroups(Text, Name.Label, Punctuation))
         ],
 
         'partial expression': [
             include('preprocessor directives'),
-            (r'\b(0dbfs|k(r|smps)|nchnls(_i)?|sr)\b', Name.Variable.Global),
-            (r'\d+e[+-]?\d+|(\d+\.\d*|\d*\.\d+)(e[+-]?\d+)?', Number.Float),
-            (r'0[xX][a-fA-F0-9]+', Number.Hex),
+            (r'\b(0dbfs|A4|k(r|smps)|nchnls(_i)?|sr)\b', Name.Variable.Global),
+            (r'\d+[Ee][+-]?\d+|(\d+\.\d*|\d*\.\d+)([Ee][+-]?\d+)?', Number.Float),
+            (r'0[Xx][0-9A-Fa-f]+', Number.Hex),
             (r'\d+', Number.Integer),
             (r'"', String, 'single-line string'),
             (r'\{\{', String, 'multi-line string'),
@@ -185,20 +188,24 @@ class CsoundOrchestraLexer(CsoundLexer):
                 'do', 'else', 'elseif', 'endif', 'enduntil', 'fi', 'if', 'ithen', 'kthen',
                 'od', 'then', 'until', 'while',
                 # Opcodes that act as control structures
-                'return', 'timout'
+                'return', 'rireturn'
                 ), prefix=r'\b', suffix=r'\b'), Keyword),
-            (words(('goto', 'igoto', 'kgoto', 'rigoto', 'tigoto'),
+            (words(('goto', 'igoto', 'kgoto', 'reinit', 'rigoto', 'tigoto'),
                    prefix=r'\b', suffix=r'\b'), Keyword, 'goto label'),
-            (words(('cggoto', 'cigoto', 'cingoto', 'ckgoto', 'cngoto'),
+            (words(('cggoto', 'cigoto', 'cingoto', 'ckgoto', 'cngoto', 'cnkgoto'),
                    prefix=r'\b', suffix=r'\b'), Keyword,
              ('goto label', 'goto expression')),
+            (r'\btimout\b', Keyword,
+             ('goto label', 'goto expression', 'goto expression')),
             (words(('loop_ge', 'loop_gt', 'loop_le', 'loop_lt'),
                    prefix=r'\b', suffix=r'\b'), Keyword,
              ('goto label', 'goto expression', 'goto expression', 'goto expression')),
             (r'\bscoreline(_i)?\b', Name.Builtin, 'scoreline opcode'),
+            (r'\bprintk?s\b', Name.Builtin, 'prints opcode'),
             (r'\bpyl?run[it]?\b', Name.Builtin, 'python opcode'),
             (r'\blua_(exec|opdef)\b', Name.Builtin, 'lua opcode'),
-            (r'\b[a-zA-Z_]\w*\b', name_callback)
+            (r'\bp\d+\b', Name.Builtin),
+            (r'\b([A-Z_a-z]\w*)(?:(:)([A-Za-z]))?\b', name_callback)
         ],
 
         'expression': [
@@ -219,8 +226,8 @@ class CsoundOrchestraLexer(CsoundLexer):
 
         'instrument name list': [
             include('whitespace or macro use'),
-            (r'\d+|\+?[a-zA-Z_]\w*', Name.Function),
-            (r',', Punctuation),
+            (r'\d+|[A-Z_a-z]\w*', Name.Function),
+            (r'[+,]', Punctuation),
             newline + ('#pop',)
         ],
         'instrument block': [
@@ -233,7 +240,7 @@ class CsoundOrchestraLexer(CsoundLexer):
 
         'opcode name': [
             include('whitespace or macro use'),
-            (r'[a-zA-Z_]\w*', opcode_name_callback, '#pop')
+            (r'[A-Z_a-z]\w*', opcode_name_callback, '#pop')
         ],
         'opcode types': [
             include('whitespace or macro use'),
@@ -266,11 +273,10 @@ class CsoundOrchestraLexer(CsoundLexer):
         'single-line string': [
             include('macro use'),
             (r'"', String, '#pop'),
-            # From https://github.com/csound/csound/blob/develop/Opcodes/fout.c#L1405
-            (r'%\d*(\.\d+)?[cdhilouxX]', String.Interpol),
-            (r'%[!%nNrRtT]|[~^]|\\([\\aAbBnNrRtT"]|[0-7]{1,3})', String.Escape),
-            (r'[^\\"~$%\^\n]+', String),
-            (r'[\\"~$%\^\n]', String)
+            # https://github.com/csound/csound/search?q=unquote_string+path%3AEngine+filename%3Acsound_orc_compile.c
+            (r'\\([\\abnrt"]|[0-7]{1,3})', String.Escape),
+            (r'[^\\"$\n]+', String),
+            (r'[\\"$\n]', String)
         ],
         'multi-line string': [
             (r'\}\}', String, '#pop'),
@@ -285,6 +291,21 @@ class CsoundOrchestraLexer(CsoundLexer):
         'scoreline': [
             (r'\}\}', String, '#pop'),
             (r'([^}]+)|\}(?!\})', using(CsoundScoreLexer))
+        ],
+
+        'prints opcode': [
+            include('whitespace or macro use'),
+            (r'"', String, 'prints'),
+            default('#pop')
+        ],
+        'prints': [
+            include('macro use'),
+            (r'"', String, '#pop'),
+            # https://github.com/csound/csound/search?q=sprints1+path%3AOpcodes+filename%3Afout.c
+            (r'%\d*(\.\d+)?[cdhilouxX]', String.Interpol),
+            (r'%[!%nNrRtT]|[~^]|\\([\\aAbBnNrRtT"]|[0-7]{1,3})', String.Escape),
+            (r'[^\\"~$%\^\n]+', String),
+            (r'[\\"~$%\^\n]', String)
         ],
 
         'python opcode': [
