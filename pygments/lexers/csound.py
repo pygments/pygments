@@ -61,7 +61,7 @@ class CsoundLexer(RegexLexer):
 
         'macro name': [
             include('whitespace'),
-            (r'([A-Z_a-z]\w*)(\()', bygroups(Comment.Preproc, Text),
+            (r'([A-Z_a-z]\w*)(\()', bygroups(Comment.Preproc, Punctuation),
              'function macro parameter list'),
             (r'[A-Z_a-z]\w*', Comment.Preproc, 'object macro definition after name')
         ],
