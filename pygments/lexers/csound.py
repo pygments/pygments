@@ -32,19 +32,19 @@ class CsoundLexer(RegexLexer):
             (r'/[*](.|\n)*?[*]/', Comment.Multiline)
         ],
 
-        'macro call': [
+        'macro use': [
             (r'(\$\w+\.?)(\()', bygroups(Comment.Preproc, Punctuation),
-             'function macro call'),
+             'function macro use'),
             (r'\$\w+(\.|\b)', Comment.Preproc)
         ],
-        'function macro call': [
+        'function macro use': [
             (r"((?:\\['\)]|[^'\)])+)(')", bygroups(Comment.Preproc, Punctuation)),
             (r"([^'\)]+)(\))", bygroups(Comment.Preproc, Punctuation), '#pop')
         ],
 
-        'whitespace or macro call': [
+        'whitespace or macro use': [
             include('whitespace'),
-            include('macro call')
+            include('macro use')
         ],
 
         'preprocessor directives': [
@@ -62,7 +62,7 @@ class CsoundLexer(RegexLexer):
         'macro name': [
             include('whitespace'),
             (r'(\w+)(\()', bygroups(Comment.Preproc, Text),
-             'function macro argument list'),
+             'function macro parameter list'),
             (r'\w+', Comment.Preproc, 'object macro definition after name')
         ],
         'object macro definition after name': [
@@ -73,12 +73,12 @@ class CsoundLexer(RegexLexer):
             (r'(\\#|[^#])+', Comment.Preproc),
             (r'#', Punctuation, '#pop:3')
         ],
-        'function macro argument list': [
+        'function macro parameter list': [
             (r"(\w+)(['#])", bygroups(Comment.Preproc, Punctuation)),
             (r'(\w+)(\))', bygroups(Comment.Preproc, Punctuation),
-             'function macro definition after name')
+             'function macro definition after parameter list')
         ],
-        'function macro definition after name': [
+        'function macro definition after parameter list': [
             (r'[ \t]+', Text),
             (r'#', Punctuation, 'function macro replacement text')
         ],
@@ -113,14 +113,14 @@ class CsoundScoreLexer(CsoundLexer):
         ],
 
         'statement': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             newline + ('#pop',),
             include('partial statement')
         ],
 
         'root': [
             newline,
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'[{}]', Punctuation, 'statement'),
             (r'[abefimq-tv-z]|[nN][pP]?', Keyword, 'statement')
         ],
@@ -201,14 +201,14 @@ class CsoundOrchestraLexer(CsoundLexer):
         ],
 
         'expression': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             newline + ('#pop',),
             include('partial expression')
         ],
 
         'root': [
             newline,
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'\binstr\b', Keyword, ('instrument block', 'instrument name list')),
             (r'\bopcode\b', Keyword, ('opcode block', 'opcode parameter list',
                                       'opcode types', 'opcode types', 'opcode name')),
@@ -217,53 +217,53 @@ class CsoundOrchestraLexer(CsoundLexer):
         ],
 
         'instrument name list': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'\d+|\+?[a-zA-Z_]\w*', Name.Function),
             (r',', Punctuation),
             newline + ('#pop',)
         ],
         'instrument block': [
             newline,
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'\bendin\b', Keyword, '#pop'),
             include('label'),
             default('expression')
         ],
 
         'opcode name': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'[a-zA-Z_]\w*', opcode_name_callback, '#pop')
         ],
         'opcode types': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'0|[]afijkKoOpPStV[]+', Keyword.Type, '#pop'),
             (r',', Punctuation)
         ],
         'opcode parameter list': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             newline + ('#pop',)
         ],
         'opcode block': [
             newline,
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'\bendop\b', Keyword, '#pop'),
             include('label'),
             default('expression')
         ],
 
         'goto label': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'\w+', Name.Label, '#pop'),
             default('#pop')
         ],
         'goto expression': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r',', Punctuation, '#pop'),
             include('partial expression')
         ],
 
         'single-line string': [
-            include('macro call'),
+            include('macro use'),
             (r'"', String, '#pop'),
             # From https://github.com/csound/csound/blob/develop/Opcodes/fout.c#L1405
             (r'%\d*(\.\d+)?[cdhilouxX]', String.Interpol),
@@ -277,7 +277,7 @@ class CsoundOrchestraLexer(CsoundLexer):
         ],
 
         'scoreline opcode': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'\{\{', String, 'scoreline'),
             default('#pop')
         ],
@@ -287,7 +287,7 @@ class CsoundOrchestraLexer(CsoundLexer):
         ],
 
         'python opcode': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'\{\{', String, 'python'),
             default('#pop')
         ],
@@ -297,7 +297,7 @@ class CsoundOrchestraLexer(CsoundLexer):
         ],
 
         'lua opcode': [
-            include('whitespace or macro call'),
+            include('whitespace or macro use'),
             (r'"', String, 'single-line string'),
             (r'\{\{', String, 'lua'),
             (r',', Punctuation),
