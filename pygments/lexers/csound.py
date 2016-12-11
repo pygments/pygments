@@ -5,7 +5,7 @@
 
     Lexers for Csound languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
