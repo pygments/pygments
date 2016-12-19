@@ -34,3 +34,8 @@ charl = ['"', 'a', '\ESC', '\'', ' ']
 type family Fam (a :: Type) = r :: Type where
   Fam Int = True
   Fam a = False
+
+-- type literals
+type IntChar = '[Int, Char]
+type Falsy = 'False
+type Falsy = '(10, 20, 30)

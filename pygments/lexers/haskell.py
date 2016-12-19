@@ -63,6 +63,9 @@ class HaskellLexer(RegexLexer):
             (r'^[_' + uni.Ll + r'][\w\']*', Name.Function),
             (r"'?[_" + uni.Ll + r"][\w']*", Name),
             (r"('')?[" + uni.Lu + r"][\w\']*", Keyword.Type),
+            (r"(')[" + uni.Lu + r"][\w\']*", Keyword.Type),
+            (r"(')\[[^\]]*\]", Keyword.Type), # tuples and lists get special treatment in GHC
+            (r"(')\([^\)]*\)", Keyword.Type), # ..
             #  Operators
             (r'\\(?![:!#$%&*+.\\/<=>?@^|~-]+)', Name.Function),  # lambda operator
             (r'(<-|::|->|=>|=)(?![:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word),  # specials
