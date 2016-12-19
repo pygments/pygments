@@ -39,7 +39,7 @@ class HaskellLexer(RegexLexer):
     flags = re.MULTILINE | re.UNICODE
 
     reserved = ('case', 'class', 'data', 'default', 'deriving', 'do', 'else',
-                'if', 'in', 'infix[lr]?', 'instance',
+                'family', 'if', 'in', 'infix[lr]?', 'instance',
                 'let', 'newtype', 'of', 'then', 'type', 'where', '_')
     ascii = ('NUL', 'SOH', '[SE]TX', 'EOT', 'ENQ', 'ACK',
              'BEL', 'BS', 'HT', 'LF', 'VT', 'FF', 'CR', 'S[OI]', 'DLE',
