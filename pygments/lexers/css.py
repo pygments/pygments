@@ -206,6 +206,23 @@ _keyword_values = (
     'zoom-out',
 )
 
+# https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+_psuedo_classes = (
+    'active', 'any', 'checked', 'default', 'dir', 'disabled', 'empty',
+    'enabled', 'first', 'first-child', 'first-of-type', 'fullscreen', 'focus',
+    'hover', 'indeterminate', 'in-range', 'invalid', 'lang', 'last-child',
+    'last-of-type', 'left', 'link', 'not', 'nth-child', 'nth-last-child',
+    'nth-last-of-type', 'nth-of-type', 'only-child', 'only-of-type',
+    'optional', 'out-of-range', 'read-only', 'read-write', 'required', 'right',
+    'root', 'scope', 'target', 'valid', 'visited',
+)
+
+# https://developer.mozilla.org/en-US/docs/Web/CSS/pseudo-elements
+_pseodu_elements = (
+    'after', 'before', 'first-letter', 'first-line', 'selection', 'backdrop',
+    'placeholder', 'marker', 'spelling-error', 'grammar-error',
+)
+
 # List of extended color keywords obtained from:
 # https://drafts.csswg.org/css-color/#named-colors
 _color_keywords = (
@@ -302,30 +319,14 @@ class CssLexer(RegexLexer):
     mimetypes = ['text/css']
 
     tokens = {
-        'root': [
-            include('basics'),
-        ],
-        'basics': [
-            (r'\s+', Text),
-            (r'/\*(?:.|\n)*?\*/', Comment),
-            (r'\{', Punctuation, 'content'),
-            (r'(\:{1,2})([\w-]+)', bygroups(Punctuation, Name.Decorator)),
-            (r'(\.)([\w-]+)', bygroups(Punctuation, Name.Class)),
-            (r'(\#)([\w-]+)', bygroups(Punctuation, Name.Namespace)),
-            (r'(@)([\w-]+)', bygroups(Punctuation, Keyword), 'atrule'),
-            (r'[\w-]+', Name.Tag),
-            (r'[~^*!%&$\[\]()<>|+=@:;,./?-]', Operator),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single)
-        ],
-        'atrule': [
-            (r'\{', Punctuation, 'atcontent'),
-            (r';', Punctuation, '#pop'),
-            include('basics'),
-        ],
-        'atcontent': [
-            include('basics'),
-            (r'\}', Punctuation, '#pop:2'),
+        'keywords': [
+            (words(_vendor_prefixes,), Name.Builtin.Pseudo),
+            (words(_css_properties, suffix=r'\b'), Keyword),
+            (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
+            (words(_color_keywords, suffix=r'\b'), Keyword.Constant),
+            (words(_psuedo_classes, suffix=r'\b'), Keyword.Pseudo),
+            (words(_pseodu_elements, suffix=r'\b'), Keyword.Pseudo),
+            (words(_functional_notation_keyword_values + ('url',), suffix=r'\b'), Name.Builtin),
         ],
         'content': [
             (r'\s+', Text),
@@ -341,72 +342,26 @@ class CssLexer(RegexLexer):
 
             (r'/\*(?:.|\n)*?\*/', Comment),
         ],
-        'value-start': [
-            (r'\s+', Text),
-            (words(_vendor_prefixes,), Name.Builtin.Pseudo),
-            include('urls'),
-            (r'('+r'|'.join(_functional_notation_keyword_values)+r')(\()',
-             bygroups(Name.Builtin, Punctuation), 'function-start'),
-            (r'([a-zA-Z_][\w-]+)(\()',
-             bygroups(Name.Function, Punctuation), 'function-start'),
-            (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
-            (words(_other_keyword_values, suffix=r'\b'), Keyword.Constant),
-            (words(_color_keywords, suffix=r'\b'), Keyword.Constant),
-            # for transition-property etc.
-            (words(_css_properties, suffix=r'\b'), Keyword),
-            (r'\!important', Comment.Preproc),
-            (r'/\*(?:.|\n)*?\*/', Comment),
-
-            include('numeric-values'),
-
-            (r'[~^*!%&<>|+=@:./?-]+', Operator),
-            (r'[\[\](),]+', Punctuation),
+        'literals': [
+            (r'\#[a-fA-F0-9]{3}', Number.Hex),
+            (r'\#[a-fA-F0-9]{6}', Number.Hex),
+            (r'[+\-]?[0-9]*[.][0-9]+', Number.Float),
+            (r'[+\-]?[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z_][\w-]*', Name),
-            (r';', Punctuation, '#pop'),
-            (r'\}', Punctuation, '#pop:2'),
-        ],
-        'function-start': [
-            (r'\s+', Text),
-            include('urls'),
-            (words(_vendor_prefixes,), Keyword.Pseudo),
-            (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
-            (words(_other_keyword_values, suffix=r'\b'), Keyword.Constant),
-            (words(_color_keywords, suffix=r'\b'), Keyword.Constant),
-
-            # function-start may be entered recursively
-            (r'(' + r'|'.join(_functional_notation_keyword_values) + r')(\()',
-             bygroups(Name.Builtin, Punctuation), 'function-start'),
-            (r'([a-zA-Z_][\w-]+)(\()',
-             bygroups(Name.Function, Punctuation), 'function-start'),
-
-            (r'/\*(?:.|\n)*?\*/', Comment),
-            include('numeric-values'),
-            (r'[*+/-]', Operator),
-            (r'[,]', Punctuation),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z_-]\w*', Name),
-            (r'\)', Punctuation, '#pop'),
-        ],
-        'urls': [
-            (r'(url)(\()(".*?")(\))', bygroups(Name.Builtin, Punctuation,
-                                               String.Double, Punctuation)),
-            (r"(url)(\()('.*?')(\))", bygroups(Name.Builtin, Punctuation,
-                                               String.Single, Punctuation)),
-            (r'(url)(\()(.*?)(\))', bygroups(Name.Builtin, Punctuation,
-                                             String.Other, Punctuation)),
-        ],
-        'numeric-values': [
-            (r'\#[a-zA-Z0-9]{1,6}', Number.Hex),
-            (r'[+\-]?[0-9]*[.][0-9]+', Number.Float, 'numeric-end'),
-            (r'[+\-]?[0-9]+', Number.Integer, 'numeric-end'),
-        ],
-        'numeric-end': [
             (words(_all_units, suffix=r'\b'), Keyword.Type),
             (r'%', Keyword.Type),
-            default('#pop'),
+        ],
+        'root': [
+            include('keywords'),
+            include('literals'),
+            (r'\![\w-]+', Comment.Preproc),
+            (r'@[\w-]+', Keyword.Namespace),
+            (r'\s+', Text.Whitespace),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+            (r'[:{}(),;[\]]', Punctuation),
+            (r'[#\.]?[\w-]+', Name.Tag),
+            (r'(\+|-|\*|/|==|!=|<=|>=|<|>|=|&)', Operator),
         ],
     }
 
@@ -704,14 +659,3 @@ class LessCssLexer(CssLexer):
     aliases = ['less']
     filenames = ['*.less']
     mimetypes = ['text/x-less-css']
-
-    tokens = {
-        'root': [
-            (r'@\w+', Name.Variable),
-            inherit,
-        ],
-        'content': [
-            (r'\{', Punctuation, '#push'),
-            inherit,
-        ],
-    }
