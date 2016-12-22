@@ -307,6 +307,24 @@ _time_units = (
 _all_units = _angle_units + _frequency_units + _length_units + \
     _resolution_units + _time_units
 
+# http://sass-lang.com/documentation/Sass/Script/Functions.html
+_sass_functions = (
+    'rgb', 'rgba', 'red', 'green', 'blue', 'mix', 'hsl', 'hsla', 'hue',
+    'saturation', 'lightness', 'adjust-hue', 'lighten', 'darken', 'saturate',
+    'desaturate', 'grayscale', 'complement', 'invert', 'alpha', 'rgba',
+    'opacify', 'transparentize', 'adjust-color', 'scale-color', 'change-color',
+    'ie-hex-str', 'unquote', 'quote', 'str-length', 'str-insert', 'str-index',
+    'str-slice', 'to-upper-case', 'to-lower-case', 'percentage', 'round',
+    'ceil', 'floor', 'abs', 'min', 'max', 'random', 'length', 'nth', 'set-nth',
+    'join', 'append', 'zip', 'index', 'list-separator', 'map-get', 'map-merge',
+    'map-remove', 'map-keys', 'map-values', 'map-has-key', 'keywords',
+    'selector-nest', 'selector-append', 'selector-extend', 'selector-replace',
+    'selector-unify', 'is-superselector', 'simple-selectors', 'selector-parse',
+    'feature-exists', 'variable-exists', 'global-variable-exists',
+    'function-exists', 'mixin-exists', 'inspect', 'type-of', 'unit',
+    'unitless', 'comparable', 'call', 'if', 'unique-id',
+)
+
 
 class CssLexer(RegexLexer):
     """
@@ -598,7 +616,7 @@ class SassLexer(ExtendedRegexLexer):
     tokens['selector'].append((r'\n', Text, 'root'))
 
 
-class ScssLexer(RegexLexer):
+class ScssLexer(CssLexer):
     """
     For SCSS stylesheets.
     """
@@ -608,44 +626,22 @@ class ScssLexer(RegexLexer):
     filenames = ['*.scss']
     mimetypes = ['text/x-scss']
 
-    flags = re.IGNORECASE | re.DOTALL
     tokens = {
+        'keywords': CssLexer.tokens['keywords'] + [
+            (words(_sass_functions, suffix=r'\b'), Name.Builtin),
+        ],
+        'literals': CssLexer.tokens['literals'] + [
+            (r'\$[\w-]+', Name.Variable),
+            (r'#{', String.Interpol, 'interpol'),
+        ],
         'root': [
-            (r'\s+', Text),
             (r'//.*?\n', Comment.Single),
-            (r'/\*.*?\*/', Comment.Multiline),
-            (r'@import', Keyword, 'value'),
-            (r'@for', Keyword, 'for'),
-            (r'@(debug|warn|if|while)', Keyword, 'value'),
-            (r'(@mixin)( [\w-]+)', bygroups(Keyword, Name.Function), 'value'),
-            (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
-            (r'@extend', Keyword, 'selector'),
-            (r'(@media)(\s+)', bygroups(Keyword, Text), 'value'),
-            (r'@[\w-]+', Keyword, 'selector'),
-            (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
-            # TODO: broken, and prone to infinite loops.
-            # (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
-            # (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
-            default('selector'),
-        ],
-
-        'attr': [
-            (r'[^\s:="\[]+', Name.Attribute),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r'[ \t]*:', Operator, 'value'),
-            default('#pop'),
-        ],
-
-        'inline-comment': [
-            (r"(\\#|#(?=[^{])|\*(?=[^/])|[^#*])+", Comment.Multiline),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r"\*/", Comment, '#pop'),
+        ] + CssLexer.tokens['root'],
+        'interpol': [
+            (r'}', String.Interpol, '#pop'),
+            include('root'),
         ],
     }
-    for group, common in iteritems(common_sass_tokens):
-        tokens[group] = copy.copy(common)
-    tokens['value'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
-    tokens['selector'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
 
 
 class LessCssLexer(CssLexer):
