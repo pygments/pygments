@@ -102,7 +102,7 @@ class HLSLShaderLexer(RegexLexer):
             (r'0[xX][0-9a-fA-F]*', Number.Hex),
             (r'0[0-7]*', Number.Oct),
             (r'[1-9][0-9]*', Number.Integer),
-			(r'"', String, 'string'),
+            (r'"', String, 'string'),
             (words((
                 'asm','asm_fragment','break','case','cbuffer','centroid','class',
                 'column_major','compile','compile_fragment','const','continue',
