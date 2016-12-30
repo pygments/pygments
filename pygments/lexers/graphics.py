@@ -102,6 +102,7 @@ class HLSLShaderLexer(RegexLexer):
             (r'0[xX][0-9a-fA-F]*', Number.Hex),
             (r'0[0-7]*', Number.Oct),
             (r'[1-9][0-9]*', Number.Integer),
+			(r'"', String, 'string'),
             (words((
                 'asm','asm_fragment','break','case','cbuffer','centroid','class',
                 'column_major','compile','compile_fragment','const','continue',
@@ -216,6 +217,14 @@ class HLSLShaderLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name),
             (r'\\$', Comment.Preproc),  # backslash at end of line -- usually macro continuation
             (r'\s+', Text),
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|'
+             r'u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8}|[0-7]{1,3})', String.Escape),
+            (r'[^\\"\n]+', String),  # all other characters
+            (r'\\\n', String),  # line continuation
+            (r'\\', String),  # stray backslash
         ],
     }
 
