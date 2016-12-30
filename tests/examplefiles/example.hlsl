@@ -155,3 +155,14 @@ void main(
 
 	o_rgb = diffuseColor * diffuseLight;
 }
+
+[domain("quad")]
+void ds(
+	in float edgeFactors[4] : SV_TessFactor,
+	in float insideFactors[2] : SV_InsideTessFactor,
+	in OutputPatch<VData, 4> inp,
+	in float2 uv : SV_DomainLocation,
+	out float4 o_pos : SV_Position)
+{
+	o_pos = lerp(lerp(inp[0].pos, inp[1].pos, uv.x), lerp(inp[2].pos, inp[3].pos, uv.x), uv.y);
+}
