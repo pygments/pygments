@@ -52,7 +52,7 @@ class PerlLexer(RegexLexer):
             (words((
                 'case', 'continue', 'do', 'else', 'elsif', 'for', 'foreach',
                 'if', 'last', 'my', 'next', 'our', 'redo', 'reset', 'then',
-                'unless', 'until', 'while', 'use', 'print', 'new', 'BEGIN',
+                'unless', 'until', 'while', 'print', 'new', 'BEGIN',
                 'CHECK', 'INIT', 'END', 'return'), suffix=r'\b'),
              Keyword),
             (r'(format)(\s+)(\w+)(\s*)(=)(\s*\n)',
@@ -94,10 +94,10 @@ class PerlLexer(RegexLexer):
                 'getservbyport', 'getservent', 'getsockname', 'getsockopt', 'glob', 'gmtime',
                 'goto', 'grep', 'hex', 'import', 'index', 'int', 'ioctl', 'join', 'keys', 'kill', 'last',
                 'lc', 'lcfirst', 'length', 'link', 'listen', 'local', 'localtime', 'log', 'lstat',
-                'map', 'mkdir', 'msgctl', 'msgget', 'msgrcv', 'msgsnd', 'my', 'next', 'no', 'oct', 'open',
-                'opendir', 'ord', 'our', 'pack', 'package', 'pipe', 'pop', 'pos', 'printf',
+                'map', 'mkdir', 'msgctl', 'msgget', 'msgrcv', 'msgsnd', 'my', 'next', 'oct', 'open',
+                'opendir', 'ord', 'our', 'pack', 'pipe', 'pop', 'pos', 'printf',
                 'prototype', 'push', 'quotemeta', 'rand', 'read', 'readdir',
-                'readline', 'readlink', 'readpipe', 'recv', 'redo', 'ref', 'rename', 'require',
+                'readline', 'readlink', 'readpipe', 'recv', 'redo', 'ref', 'rename',
                 'reverse', 'rewinddir', 'rindex', 'rmdir', 'scalar', 'seek', 'seekdir',
                 'select', 'semctl', 'semget', 'semop', 'send', 'setgrent', 'sethostent', 'setnetent',
                 'setpgrp', 'setpriority', 'setprotoent', 'setpwent', 'setservent',
@@ -131,8 +131,14 @@ class PerlLexer(RegexLexer):
             (r'(q|qq|qw|qr|qx)\[', String.Other, 'sb-string'),
             (r'(q|qq|qw|qr|qx)\<', String.Other, 'lt-string'),
             (r'(q|qq|qw|qr|qx)([\W_])(.|\n)*?\2', String.Other),
-            (r'package\s+', Keyword, 'modulename'),
-            (r'sub\s+', Keyword, 'funcname'),
+            (r'(package)(\s+)([a-zA-Z_]\w*(?:::[a-zA-Z_]\w*)*)',
+             bygroups(Keyword, Text, Name.Namespace)),
+            (r'(use|require|no)(\s+)([a-zA-Z_]\w*(?:::[a-zA-Z_]\w*)*)',
+             bygroups(Keyword, Text, Name.Namespace)),
+            (r'(sub)(\s+)', bygroups(Keyword, Text), 'funcname'),
+            (words((
+                'no', 'package', 'require', 'use'), suffix=r'\b'),
+             Keyword),
             (r'(\[\]|\*\*|::|<<|>>|>=|<=>|<=|={3}|!=|=~|'
              r'!~|&&?|\|\||\.{1,3})', Operator),
             (r'[-+/*%=<>&^|!\\~]=?', Operator),
@@ -152,13 +158,11 @@ class PerlLexer(RegexLexer):
             (r'[\w:]+', Name.Variable, '#pop'),
         ],
         'name': [
-            (r'\w+::', Name.Namespace),
+            (r'[a-zA-Z_]\w*(::[a-zA-Z_]\w*)*(::)?(?=\s*->)', Name.Namespace, '#pop'),
+            (r'[a-zA-Z_]\w*(::[a-zA-Z_]\w*)*::', Name.Namespace, '#pop'),
             (r'[\w:]+', Name, '#pop'),
             (r'[A-Z_]+(?=\W)', Name.Constant, '#pop'),
             (r'(?=\W)', Text, '#pop'),
-        ],
-        'modulename': [
-            (r'[a-zA-Z_]\w*', Name.Namespace, '#pop')
         ],
         'funcname': [
             (r'[a-zA-Z_]\w*[!?]?', Name.Function),
