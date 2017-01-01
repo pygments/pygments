@@ -10,7 +10,7 @@
 import time
 import unittest
 
-from pygments.token import String
+from pygments.token import Keyword, Name, String, Text
 from pygments.lexers.perl import PerlLexer
 
 
@@ -135,3 +135,23 @@ class RunawayRegexTest(unittest.TestCase):
     def test_substitution_with_parenthesis(self):
         self.assert_single_token(r's(aaa)', String.Regex)
         self.assert_fast_tokenization('s(' + '\\'*999)
+
+    ### Namespaces/modules
+
+    def test_package_statement(self):
+        self.assert_tokens(['package', ' ', 'Foo'], [Keyword, Text, Name.Namespace])
+        self.assert_tokens(['package', '  ', 'Foo::Bar'], [Keyword, Text, Name.Namespace])
+
+    def test_use_statement(self):
+        self.assert_tokens(['use', ' ', 'Foo'], [Keyword, Text, Name.Namespace])
+        self.assert_tokens(['use', '  ', 'Foo::Bar'], [Keyword, Text, Name.Namespace])
+
+    def test_no_statement(self):
+        self.assert_tokens(['no', ' ', 'Foo'], [Keyword, Text, Name.Namespace])
+        self.assert_tokens(['no', '  ', 'Foo::Bar'], [Keyword, Text, Name.Namespace])
+
+    def test_require_statement(self):
+        self.assert_tokens(['require', ' ', 'Foo'], [Keyword, Text, Name.Namespace])
+        self.assert_tokens(['require', '  ', 'Foo::Bar'], [Keyword, Text, Name.Namespace])
+        self.assert_tokens(['require', ' ', '"Foo/Bar.pm"'], [Keyword, Text, String])
+
