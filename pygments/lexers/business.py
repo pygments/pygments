@@ -256,6 +256,7 @@ class ABAPLexer(RegexLexer):
             (r'\s+', Text),
             (r'^\*.*$', Comment.Single),
             (r'\".*?\n', Comment.Single),
+            (r'##\w+', Comment.Special),
         ],
         'variable-names': [
             (r'<\S+>', Name.Variable),
@@ -265,7 +266,7 @@ class ABAPLexer(RegexLexer):
             include('common'),
             # function calls
             (r'(CALL\s+(?:BADI|CUSTOMER-FUNCTION|FUNCTION))(\s+)(\'?\S+\'?)',
-             bygroups(Keyword, Text, Name.Function)),
+             bygroups(Keyword, Text, String)),
             (r'(CALL\s+(?:DIALOG|SCREEN|SUBSCREEN|SELECTION-SCREEN|'
              r'TRANSACTION|TRANSFORMATION))\b',
              Keyword),
@@ -284,6 +285,12 @@ class ABAPLexer(RegexLexer):
              bygroups(Text, Name.Variable, Operator, Name.Function)),
             # call methodnames returning style
             (r'(?<=(=|-)>)([\w\-~]+)(?=\()', Name.Function),
+            
+            #text elements
+            (r'(TEXT)(-)(\d{3})',
+             bygroups(Keyword, Punctuation, Number.Integer)),
+            (r'(TEXT)(-)(\w{3})',
+             bygroups(Keyword, Punctuation, Name.Variable)),
 
             # keywords with dashes in them.
             # these need to be first, because for instance the -ID part
@@ -301,13 +308,13 @@ class ABAPLexer(RegexLexer):
              r'OUTPUT-LENGTH|PRINT-CONTROL|'
              r'SELECT-OPTIONS|START-OF-SELECTION|SUBTRACT-CORRESPONDING|'
              r'SYNTAX-CHECK|SYSTEM-EXCEPTIONS|'
-             r'TYPE-POOL|TYPE-POOLS'
+             r'TYPE-POOL|TYPE-POOLS|NO-DISPLAY'
              r')\b', Keyword),
 
             # keyword kombinations
-            (r'CREATE\s+(PUBLIC|PRIVATE|DATA|OBJECT)|'
-             r'((PUBLIC|PRIVATE|PROTECTED)\s+SECTION|'
-             r'(TYPE|LIKE)(\s+(LINE\s+OF|REF\s+TO|'
+            (r'(?<![-\>])(CREATE\s+(PUBLIC|PRIVATE|DATA|OBJECT)|'
+             r'(PUBLIC|PRIVATE|PROTECTED)\s+SECTION|'
+             r'(TYPE|LIKE)\s+((LINE\s+OF|REF\s+TO|'
              r'(SORTED|STANDARD|HASHED)\s+TABLE\s+OF))?|'
              r'FROM\s+(DATABASE|MEMORY)|CALL\s+METHOD|'
              r'(GROUP|ORDER) BY|HAVING|SEPARATED BY|'
@@ -343,10 +350,14 @@ class ABAPLexer(RegexLexer):
              r'(BEGIN|END)\s+OF|'
              r'DELETE(\s+ADJACENT\s+DUPLICATES\sFROM)?|'
              r'COMPARING(\s+ALL\s+FIELDS)?|'
-             r'INSERT(\s+INITIAL\s+LINE\s+INTO|\s+LINES\s+OF)?|'
+             r'(INSERT|APPEND)(\s+INITIAL\s+LINE\s+(IN)?TO|\s+LINES\s+OF)?|'
              r'IN\s+((BYTE|CHARACTER)\s+MODE|PROGRAM)|'
              r'END-OF-(DEFINITION|PAGE|SELECTION)|'
              r'WITH\s+FRAME(\s+TITLE)|'
+             r'REPLACE (ALL OCCURRENCES|FIRST OCCURENCE) OF (SUBSTRING|REGEX)?|'
+             r'FIND\s+(SUBSTRING|REGEX)?|'
+             r'(RESPECTING|IGNORING)\s+CASE|'
+             r'IN\s+UPDATE\s+TASK|'
 
              # simple kombinations
              r'AND\s+(MARK|RETURN)|CLIENT\s+SPECIFIED|CORRESPONDING\s+FIELDS\s+OF|'
@@ -355,38 +366,39 @@ class ABAPLexer(RegexLexer):
              r'MODIFY\s+SCREEN|NESTING\s+LEVEL|NO\s+INTERVALS|OF\s+STRUCTURE|'
              r'RADIOBUTTON\s+GROUP|RANGE\s+OF|REF\s+TO|SUPPRESS DIALOG|'
              r'TABLE\s+OF|UPPER\s+CASE|TRANSPORTING\s+NO\s+FIELDS|'
-             r'VALUE\s+CHECK|VISIBLE\s+LENGTH|HEADER\s+LINE)\b', Keyword),
+             r'VALUE\s+CHECK|VISIBLE\s+LENGTH|HEADER\s+LINE|COMMON\s+PART)\b', Keyword),
 
             # single word keywords.
-            (r'(^|(?<=(\s|\.)))(ABBREVIATED|ADD|ALIASES|APPEND|ASSERT|'
+            (r'(^|(?<=(\s|\.)))(ABBREVIATED|ABSTRACT|ADD|ALIASES|AS|ASSERT|'
              r'ASSIGN(ING)?|AT(\s+FIRST)?|'
              r'BACK|BLOCK|BREAK-POINT|'
              r'CASE|CATCH|CHANGING|CHECK|CLASS|CLEAR|COLLECT|COLOR|COMMIT|'
              r'CREATE|COMMUNICATION|COMPONENTS?|COMPUTE|CONCATENATE|CONDENSE|'
-             r'CONSTANTS|CONTEXTS|CONTINUE|CONTROLS|'
+             r'CONSTANTS|CONTEXTS|CONTINUE|CONTROLS|COUNTRY|'
              r'DATA|DECIMALS|DEFAULT|DEFINE|DEFINITION|DEFERRED|DEMAND|'
-             r'DETAIL|DIRECTORY|DIVIDE|DO|'
-             r'ELSE(IF)?|ENDAT|ENDCASE|ENDCLASS|ENDDO|ENDFORM|ENDFUNCTION|'
-             r'ENDIF|ENDLOOP|ENDMETHOD|ENDMODULE|ENDSELECT|ENDTRY|'
-             r'ENHANCEMENT|EVENTS|EXCEPTIONS|EXIT|EXPORT|EXPORTING|EXTRACT|'
-             r'FETCH|FIELDS?|FIND|FOR|FORM|FORMAT|FREE|FROM|'
+             r'DETAIL|DIRECTORY|DIVIDE|DO|DUMMY|'
+             r'ELSE(IF)?|ENDAT|ENDCASE|ENDCATCH|ENDCLASS|ENDDO|ENDFORM|ENDFUNCTION|'
+             r'ENDIF|ENDINTERFACE|ENDLOOP|ENDMETHOD|ENDMODULE|ENDSELECT|ENDTRY|ENDWHILE|'
+             r'ENHANCEMENT|EVENTS|EXACT|EXCEPTIONS?|EXIT|EXPORT|EXPORTING|EXTRACT|'
+             r'FETCH|FIELDS?|FOR|FORM|FORMAT|FREE|FROM|FUNCTION|'
              r'HIDE|'
              r'ID|IF|IMPORT|IMPLEMENTATION|IMPORTING|IN|INCLUDE|INCLUDING|'
              r'INDEX|INFOTYPES|INITIALIZATION|INTERFACE|INTERFACES|INTO|'
-             r'LENGTH|LINES|LOAD|LOCAL|'
+             r'LANGUAGE|LEAVE|LENGTH|LINES|LOAD|LOCAL|'
              r'JOIN|'
              r'KEY|'
-             r'MAXIMUM|MESSAGE|METHOD[S]?|MINIMUM|MODULE|MODIFY|MOVE|MULTIPLY|'
+             r'NEXT|'
+             r'MAXIMUM|MESSAGE|METHOD[S]?|MINIMUM|MODULE|MODIFIER|MODIFY|MOVE|MULTIPLY|'
              r'NODES|'
-             r'OBLIGATORY|OF|OFF|ON|OVERLAY|'
-             r'PACK|PARAMETERS|PERCENTAGE|POSITION|PROGRAM|PROVIDE|PUBLIC|PUT|'
-             r'RAISE|RAISING|RANGES|READ|RECEIVE|REFRESH|REJECT|REPORT|RESERVE|'
-             r'RESUME|RETRY|RETURN|RETURNING|RIGHT|ROLLBACK|'
+             r'OBLIGATORY|OBJECT|OF|OFF|ON|OTHERS|OVERLAY|'
+             r'PACK|PARAMETERS|PERCENTAGE|POSITION|PROGRAM|PROVIDE|PUBLIC|PUT|PF\d\d|'
+             r'RAISE|RAISING|RANGE|RANGES|READ|RECEIVE|REDEFINITION|REFRESH|REJECT|REPORT|RESERVE|'
+             r'RESUME|RETRY|RETURN|RETURNING|RIGHT|ROLLBACK|REPLACE|'
              r'SCROLL|SEARCH|SELECT|SHIFT|SINGLE|SKIP|SORT|SPLIT|STATICS|STOP|'
-             r'SUBMIT|SUBTRACT|SUM|SUMMARY|SUMMING|SUPPLY|'
-             r'TABLE|TABLES|TIMES|TITLE|TO|TOP-OF-PAGE|TRANSFER|TRANSLATE|TRY|TYPES|'
+             r'SIZE|SUBMIT|SUBTRACT|SUM(?!\()|SUMMARY|SUMMING|SUPPLY|'
+             r'TABLE|TABLES|TIMES|TITLE|\??TO|TOP-OF-PAGE|TRANSFER|TRANSLATE|TRY|TYPES|'
              r'ULINE|UNDER|UNPACK|UPDATE|USING|'
-             r'VALUE|VALUES|VIA|'
+             r'VALUE|VALUES|VIA|VARY|VARYING|'
              r'WAIT|WHEN|WHERE|WHILE|WITH|WINDOW|WRITE)\b', Keyword),
 
             # builtins
@@ -413,18 +425,20 @@ class ABAPLexer(RegexLexer):
 
             # operators which look like variable names before
             # parsing variable names.
-            (r'(?<=(\s|.))(AND|EQ|NE|GT|LT|GE|LE|CO|CN|CA|NA|CS|NOT|NS|CP|NP|'
+            (r'(?<=(\s|.))(AND|OR|EQ|NE|GT|LT|GE|LE|CO|CN|CA|NA|CS|NOT|NS|CP|NP|'
              r'BYTE-CO|BYTE-CN|BYTE-CA|BYTE-NA|BYTE-CS|BYTE-NS|'
-             r'IS\s+(NOT\s+)?(INITIAL|ASSIGNED|REQUESTED|BOUND))\b', Operator),
+             r'IS\s+(NOT\s+)?(INITIAL|ASSIGNED|REQUESTED|BOUND))\b', Operator.Word),
 
             include('variable-names'),
 
-            # standard oparators after variable names,
+            # standard operators after variable names,
             # because < and > are part of field symbols.
-            (r'[?*<>=\-+]', Operator),
+            (r'[?*<>=\-+&]', Operator),
             (r"'(''|[^'])*'", String.Single),
             (r"`([^`])*`", String.Single),
-            (r'[/;:()\[\],.]', Punctuation)
+            (r"([\|\}])([^\{\}\|]*?)([\|\{])", bygroups(Punctuation, String.Single, Punctuation)),
+            (r'[/;:()\[\],.]', Punctuation),
+            (r'(!)(\w+)', bygroups(Operator, Name)),
         ],
     }
 
