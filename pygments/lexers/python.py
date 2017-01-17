@@ -362,6 +362,7 @@ class Python3Lexer(RegexLexer):
     ]
     tokens['numbers'] = [
         (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+        (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
         (r'0[oO][0-7]+', Number.Oct),
         (r'0[bB][01]+', Number.Bin),
         (r'0[xX][a-fA-F0-9]+', Number.Hex),
