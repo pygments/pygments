@@ -156,8 +156,8 @@ class FortranLexer(RegexLexer):
 
         'nums': [
             (r'\d+(?![.e])(_[a-z]\w+)?', Number.Integer),
-            (r'[+-]?\d*\.\d+(e[-+]?\d+)?(_[a-z]\w+)?', Number.Float),
-            (r'[+-]?\d+\.\d*(e[-+]?\d+)?(_[a-z]\w+)?', Number.Float),
+            (r'[+-]?\d*\.\d+([ed][-+]?\d+)?(_[a-z]\w+)?', Number.Float),
+            (r'[+-]?\d+\.\d*([ed][-+]?\d+)?(_[a-z]\w+)?', Number.Float),
         ],
     }
 
