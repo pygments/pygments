@@ -378,7 +378,7 @@ LEXERS = {
     'ScilabLexer': ('pygments.lexers.matlab', 'Scilab', ('scilab',), ('*.sci', '*.sce', '*.tst'), ('text/scilab',)),
     'ScssLexer': ('pygments.lexers.css', 'SCSS', ('scss',), ('*.scss',), ('text/x-scss',)),
     'ShenLexer': ('pygments.lexers.lisp', 'Shen', ('shen',), ('*.shen',), ('text/x-shen', 'application/x-shen')),
-    'SilverLexer': ('pygments.lexers.verification', 'Silver', ('silver',), ('*.sil',), ()),
+    'SilverLexer': ('pygments.lexers.verification', 'Silver', ('silver',), ('*.sil', '*.vpr'), ()),
     'SlimLexer': ('pygments.lexers.webmisc', 'Slim', ('slim',), ('*.slim',), ('text/x-slim',)),
     'SmaliLexer': ('pygments.lexers.dalvik', 'Smali', ('smali',), ('*.smali',), ('text/smali',)),
     'SmalltalkLexer': ('pygments.lexers.smalltalk', 'Smalltalk', ('smalltalk', 'squeak', 'st'), ('*.st',), ('text/x-smalltalk',)),
