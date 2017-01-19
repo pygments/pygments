@@ -265,8 +265,8 @@ class ABAPLexer(RegexLexer):
         'root': [
             include('common'),
             # function calls
-            (r'(CALL\s+(?:BADI|CUSTOMER-FUNCTION|FUNCTION))(\s+)(\'?\S+\'?)',
-             bygroups(Keyword, Text, String)),
+            (r'CALL\s+(?:BADI|CUSTOMER-FUNCTION|FUNCTION)',
+             Keyword),
             (r'(CALL\s+(?:DIALOG|SCREEN|SUBSCREEN|SELECTION-SCREEN|'
              r'TRANSACTION|TRANSFORMATION))\b',
              Keyword),
