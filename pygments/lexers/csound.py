@@ -181,7 +181,7 @@ class CsoundOrchestraLexer(CsoundLexer):
             (r'\d+', Number.Integer),
             (r'"', String, 'single-line string'),
             (r'\{\{', String, 'multi-line string'),
-            (r'[+\-*/%^!=&|<>#~Â¬]', Operator),
+            (r'[+\-*/%^!=&|<>#~¬]', Operator),
             (r'[](),?:[]', Punctuation),
             (words((
                 # Keywords
@@ -301,8 +301,8 @@ class CsoundOrchestraLexer(CsoundLexer):
         'prints': [
             include('macro use'),
             (r'"', String, '#pop'),
-            # https://github.com/csound/csound/search?q=sprints1+path%3AOpcodes+filename%3Afout.c
-            (r'%\d*(\.\d+)?[cdhilouxX]', String.Interpol),
+            # https://github.com/csound/csound/search?q=printksset_+path%3AOOps+filename%3Augrw1.c
+            (r'%\d*(\.\d+)?[cdfhilouxX]', String.Interpol),
             (r'%[!%nNrRtT]|[~^]|\\([\\aAbBnNrRtT"]|[0-7]{1,3})', String.Escape),
             (r'[^\\"~$%\^\n]+', String),
             (r'[\\"~$%\^\n]', String)
