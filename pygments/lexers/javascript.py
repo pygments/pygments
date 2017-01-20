@@ -511,9 +511,26 @@ class TypeScriptLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'`', String.Backtick, 'interp'),
             # Match stuff like: Decorators
             (r'@\w+', Keyword.Declaration),
-        ]
+        ],
+
+        # The 'interp*' rules match those in JavascriptLexer. Changes made
+        # there should be reflected here as well.
+        'interp': [
+            (r'`', String.Backtick, '#pop'),
+            (r'\\\\', String.Backtick),
+            (r'\\`', String.Backtick),
+            (r'\$\{', String.Interpol, 'interp-inside'),
+            (r'\$', String.Backtick),
+            (r'[^`\\$]+', String.Backtick),
+        ],
+        'interp-inside': [
+            # TODO: should this include single-line comments and allow nesting strings?
+            (r'\}', String.Interpol, '#pop'),
+            include('root'),
+        ],
     }
 
 
