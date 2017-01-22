@@ -5,7 +5,7 @@
 
     Lexers for various domain-specific languages.
 
-    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -581,7 +581,7 @@ class PanLexer(RegexLexer):
                 'if', 'for', 'with', 'else', 'type', 'bind', 'while', 'valid', 'final',
                 'prefix', 'unique', 'object', 'foreach', 'include', 'template',
                 'function', 'variable', 'structure', 'extensible', 'declaration'),
-                   prefix=r'\b', suffix=r'\s*\b'),
+                prefix=r'\b', suffix=r'\s*\b'),
              Keyword),
             (words((
                 'file_contents', 'format', 'index', 'length', 'match', 'matches',
@@ -593,7 +593,7 @@ class PanLexer(RegexLexer):
                 'is_number', 'is_property', 'is_resource', 'is_string', 'to_boolean',
                 'to_double', 'to_long', 'to_string', 'clone', 'delete', 'exists',
                 'path_exists', 'if_exists', 'return', 'value'),
-                   prefix=r'\b', suffix=r'\s*\b'),
+                prefix=r'\b', suffix=r'\s*\b'),
              Name.Builtin),
             (r'#.*', Comment),
             (r'\\[\w\W]', String.Escape),
