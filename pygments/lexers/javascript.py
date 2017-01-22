@@ -366,9 +366,10 @@ class DartLexer(RegexLexer):
             (r'\b(assert|break|case|catch|continue|default|do|else|finally|for|'
              r'if|in|is|new|return|super|switch|this|throw|try|while)\b',
              Keyword),
-            (r'\b(abstract|const|extends|factory|final|get|implements|'
-             r'native|operator|set|static|typedef|var)\b', Keyword.Declaration),
-            (r'\b(bool|double|Dynamic|int|num|Object|String|void)\b', Keyword.Type),
+            (r'\b(abstract|async|await|const|extends|factory|final|get|'
+             r'implements|native|operator|set|static|sync|typedef|var|with|'
+             r'yield)\b', Keyword.Declaration),
+            (r'\b(bool|double|dynamic|int|num|Object|String|void)\b', Keyword.Type),
             (r'\b(false|null|true)\b', Keyword.Constant),
             (r'[~!%^&*+=|?:<>/-]|as\b', Operator),
             (r'[a-zA-Z_$]\w*:', Name.Label),
