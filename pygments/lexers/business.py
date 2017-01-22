@@ -285,8 +285,8 @@ class ABAPLexer(RegexLexer):
              bygroups(Text, Name.Variable, Operator, Name.Function)),
             # call methodnames returning style
             (r'(?<=(=|-)>)([\w\-~]+)(?=\()', Name.Function),
-            
-            #text elements
+
+            # text elements
             (r'(TEXT)(-)(\d{3})',
              bygroups(Keyword, Punctuation, Number.Integer)),
             (r'(TEXT)(-)(\w{3})',
@@ -372,7 +372,7 @@ class ABAPLexer(RegexLexer):
 
             # single word keywords.
             (r'(^|(?<=(\s|\.)))(ABBREVIATED|ABSTRACT|ADD|ALIASES|ALIGN|ALPHA|'
-             r'AS|ASSERT|ASSIGN(ING)?|AT(\s+FIRST)?|'
+             r'ASSERT|AS|ASSIGN(ING)?|AT(\s+FIRST)?|'
              r'BACK|BLOCK|BREAK-POINT|'
              r'CASE|CATCH|CHANGING|CHECK|CLASS|CLEAR|COLLECT|COLOR|COMMIT|'
              r'CREATE|COMMUNICATION|COMPONENTS?|COMPUTE|CONCATENATE|CONDENSE|'
@@ -394,14 +394,14 @@ class ABAPLexer(RegexLexer):
              r'NODES|NUMBER|'
              r'OBLIGATORY|OBJECT|OF|OFF|ON|OTHERS|OVERLAY|'
              r'PACK|PAD|PARAMETERS|PERCENTAGE|POSITION|PROGRAM|PROVIDE|PUBLIC|PUT|PF\d\d|'
-             r'RAISE|RAISING|RANGE|RANGES|READ|RECEIVE|REDEFINITION|REFRESH|REJECT|REPORT|RESERVE|'
+             r'RAISE|RAISING|RANGES?|READ|RECEIVE|REDEFINITION|REFRESH|REJECT|REPORT|RESERVE|'
              r'RESUME|RETRY|RETURN|RETURNING|RIGHT|ROLLBACK|REPLACE|'
              r'SCROLL|SEARCH|SELECT|SHIFT|SIGN|SINGLE|SIZE|SKIP|SORT|SPLIT|STATICS|STOP|'
              r'STYLE|SUBMATCHES|SUBMIT|SUBTRACT|SUM(?!\()|SUMMARY|SUMMING|SUPPLY|'
-             r'TABLE|TABLES|TIME|TIMES|TIMESTAMP|TIMEZONE|TITLE|\??TO|'
+             r'TABLE|TABLES|TIMESTAMP|TIMES?|TIMEZONE|TITLE|\??TO|'
              r'TOP-OF-PAGE|TRANSFER|TRANSLATE|TRY|TYPES|'
              r'ULINE|UNDER|UNPACK|UPDATE|USING|'
-             r'VALUE|VALUES|VIA|VARY|VARYING|'
+             r'VALUE|VALUES|VIA|VARYING|VARY|'
              r'WAIT|WHEN|WHERE|WIDTH|WHILE|WITH|WINDOW|WRITE|XSD|ZERO)\b', Keyword),
 
             # builtins
@@ -439,7 +439,8 @@ class ABAPLexer(RegexLexer):
             (r'[?*<>=\-+&]', Operator),
             (r"'(''|[^'])*'", String.Single),
             (r"`([^`])*`", String.Single),
-            (r"([\|\}])([^\{\}\|]*?)([\|\{])", bygroups(Punctuation, String.Single, Punctuation)),
+            (r"([\|\}])([^\{\}\|]*?)([\|\{])",
+             bygroups(Punctuation, String.Single, Punctuation)),
             (r'[/;:()\[\],.]', Punctuation),
             (r'(!)(\w+)', bygroups(Operator, Name)),
         ],
