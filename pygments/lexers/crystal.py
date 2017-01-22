@@ -5,23 +5,20 @@
 
     Lexer for Crystal.
 
-    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, include, \
-    bygroups, default, LexerContext, do_insertions, words
+from pygments.lexer import ExtendedRegexLexer, include, \
+    bygroups, default, LexerContext, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error, Generic
-from pygments.util import shebang_matches
+    Number, Punctuation, Error
 
 __all__ = ['CrystalLexer']
 
 line_re = re.compile('.*?\n')
-
-
 
 
 CRYSTAL_OPERATORS = [
@@ -33,6 +30,8 @@ CRYSTAL_OPERATORS = [
 class CrystalLexer(ExtendedRegexLexer):
     """
     For `Crystal <http://crystal-lang.org>`_ source code.
+
+    .. versionadded:: 2.2
     """
 
     name = 'Crystal'
@@ -48,9 +47,9 @@ class CrystalLexer(ExtendedRegexLexer):
 
         start = match.start(1)
         yield start, Operator, match.group(1)        # <<-?
-        yield match.start(2), String.Heredoc, match.group(2)   # quote ", ', `
-        yield match.start(3), String.Delimiter, match.group(3) # heredoc name
-        yield match.start(4), String.Heredoc, match.group(4)   # quote again
+        yield match.start(2), String.Heredoc, match.group(2)    # quote ", ', `
+        yield match.start(3), String.Delimiter, match.group(3)  # heredoc name
+        yield match.start(4), String.Heredoc, match.group(4)    # quote again
 
         heredocstack = ctx.__dict__.setdefault('heredocstack', [])
         outermost = not bool(heredocstack)
@@ -211,17 +210,21 @@ class CrystalLexer(ExtendedRegexLexer):
             # macros
             (words('''
                 debugger record pp assert_responds_to spawn parallel
-                getter setter property delegate def_hash def_equals def_equals_and_hash forward_missing_to
+                getter setter property delegate def_hash def_equals def_equals_and_hash
+                forward_missing_to
             '''.split(), suffix=r'\b'), Name.Builtin.Pseudo),
             (r'getter[!?]|property[!?]|__(DIR|FILE|LINE)__\b', Name.Builtin.Pseudo),
             # builtins
             # http://crystal-lang.org/api/toplevel.html
             (words('''
                 Object Value Struct Reference Proc Class Nil Symbol Enum Void
-                Bool Number Int Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64 Float Float32 Float64 Char String
+                Bool Number Int Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64
+                Float Float32 Float64 Char String
                 Pointer Slice Range Exception Regex
-                Mutex StaticArray Array Hash Set Tuple Deque Box Process File Dir Time Channel Concurrent Scheduler
-                abort at_exit caller delay exit fork future get_stack_top gets lazy loop main p print printf puts
+                Mutex StaticArray Array Hash Set Tuple Deque Box Process File
+                Dir Time Channel Concurrent Scheduler
+                abort at_exit caller delay exit fork future get_stack_top gets
+                lazy loop main p print printf puts
                 raise rand read_line sleep sprintf system with_color
             '''.split(), prefix=r'(?<!\.)', suffix=r'\b'), Name.Builtin),
             # normal heredocs
@@ -301,7 +304,8 @@ class CrystalLexer(ExtendedRegexLexer):
             (r'\{%', String.Interpol, 'in-macro-control'),
             (r'\{\{', String.Interpol, 'in-macro-expr'),
             # attributes
-            (r'(@\[)(\s*)([A-Z]\w*)', bygroups(Operator, Text, Name.Decorator), 'in-attr'),
+            (r'(@\[)(\s*)([A-Z]\w*)',
+             bygroups(Operator, Text, Name.Decorator), 'in-attr'),
             # this is needed because Crystal attributes can look
             # like keywords (class) or like this: ` ?!?
             (words(CRYSTAL_OPERATORS, prefix=r'(\.|::)'),
@@ -325,7 +329,8 @@ class CrystalLexer(ExtendedRegexLexer):
         ],
         'classname': [
             (r'[A-Z_]\w*', Name.Class),
-            (r'(\()(\s*)([A-Z_]\w*)(\s*)(\))', bygroups(Punctuation, Text, Name.Class, Text, Punctuation)),
+            (r'(\()(\s*)([A-Z_]\w*)(\s*)(\))',
+             bygroups(Punctuation, Text, Name.Class, Text, Punctuation)),
             default('#pop')
         ],
         'in-intp': [
