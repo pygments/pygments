@@ -5,7 +5,7 @@
 
     Lexers for PHP and related languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -224,7 +224,7 @@ class PhpLexer(RegexLexer):
                       String.Interpol)),
             (r'(\$\{)(\S+)(\})',
              bygroups(String.Interpol, Name.Variable, String.Interpol)),
-            (r'[${\\]+', String.Double)
+            (r'[${\\]', String.Double)
         ],
     }
 

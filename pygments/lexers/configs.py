@@ -5,7 +5,7 @@
 
     Lexers for configuration file formats.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -100,6 +100,8 @@ class PropertiesLexer(RegexLexer):
     """
     Lexer for configuration files in Java's properties format.
 
+    Note: trailing whitespace counts as part of the value as per spec
+
     .. versionadded:: 1.4
     """
 
@@ -110,10 +112,14 @@ class PropertiesLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
-            (r'(?:[;#]|//).*$', Comment),
+            (r'^(\w+)([ \t])(\w+\s*)$', bygroups(Name.Attribute, Text, String)),
+            (r'^\w+(\\[ \t]\w*)*$', Name.Attribute),
+            (r'(^ *)([#!].*)', bygroups(Text, Comment)),
+            # More controversial comments
+            (r'(^ *)((?:;|//).*)', bygroups(Text, Comment)),
             (r'(.*?)([ \t]*)([=:])([ \t]*)(.*(?:(?<=\\)\n.*)*)',
              bygroups(Name.Attribute, Text, Operator, Text, String)),
+            (r'\s', Text),
         ],
     }
 
@@ -456,7 +462,7 @@ class NginxConfLexer(RegexLexer):
     """
     name = 'Nginx configuration file'
     aliases = ['nginx']
-    filenames = []
+    filenames = ['nginx.conf']
     mimetypes = ['text/x-nginx-conf']
 
     tokens = {

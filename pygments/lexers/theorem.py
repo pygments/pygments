@@ -5,7 +5,7 @@
 
     Lexers for theorem-proving languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -394,7 +394,7 @@ class LeanLexer(RegexLexer):
         'import', 'abbreviation', 'opaque_hint', 'tactic_hint', 'definition',
         'renaming', 'inline', 'hiding', 'exposing', 'parameter', 'parameters',
         'conjecture', 'hypothesis', 'lemma', 'corollary', 'variable', 'variables',
-        'print', 'theorem', 'axiom', 'inductive', 'structure', 'universe', 'alias',
+        'theorem', 'axiom', 'inductive', 'structure', 'universe', 'alias',
         'help', 'options', 'precedence', 'postfix', 'prefix', 'calc_trans',
         'calc_subst', 'calc_refl', 'infix', 'infixl', 'infixr', 'notation', 'eval',
         'check', 'exit', 'coercion', 'end', 'private', 'using', 'namespace',
@@ -415,15 +415,16 @@ class LeanLexer(RegexLexer):
     )
 
     operators = (
-        '!=', '#', '&', '&&', '*', '+', '-', '/', '@', '!', '`',
-        '-.', '->', '.', '..', '...', '::', ':>', ';', ';;', '<',
-        '<-', '=', '==', '>', '_', '|', '||', '~', '=>', '<=', '>=',
-        '/\\', '\\/', u'∀', u'Π', u'λ', u'↔', u'∧', u'∨', u'≠', u'≤', u'≥',
+        u'!=', u'#', u'&', u'&&', u'*', u'+', u'-', u'/', u'@', u'!', u'`',
+        u'-.', u'->', u'.', u'..', u'...', u'::', u':>', u';', u';;', u'<',
+        u'<-', u'=', u'==', u'>', u'_', u'|', u'||', u'~', u'=>', u'<=', u'>=',
+        u'/\\', u'\\/', u'∀', u'Π', u'λ', u'↔', u'∧', u'∨', u'≠', u'≤', u'≥',
         u'¬', u'⁻¹', u'⬝', u'▸', u'→', u'∃', u'ℕ', u'ℤ', u'≈', u'×', u'⌞',
         u'⌟', u'≡', u'⟨', u'⟩',
     )
 
-    punctuation = ('(', ')', ':', '{', '}', '[', ']', u'⦃', u'⦄', ':=', ',')
+    punctuation = (u'(', u')', u':', u'{', u'}', u'[', u']', u'⦃', u'⦄',
+                   u':=', u',')
 
     tokens = {
         'root': [
