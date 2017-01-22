@@ -14,7 +14,7 @@
     Contributed by Thomas Beale <https://github.com/wolandscat>,
     <https://bitbucket.org/thomas_beale>.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
