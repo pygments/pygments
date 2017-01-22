@@ -140,7 +140,7 @@ class CleanLexer(ExtendedRegexLexer):
             # Literals
             (r'\'\\?.(?<!\\)\'', String.Char),
             (r'\'\\\d+\'', String.Char),
-            (r'\'\\\\\'', String.Char), # (special case for '\\')
+            (r'\'\\\\\'', String.Char),  # (special case for '\\')
             (r'[+\-~]?\s*\d+\.\d+(E[+\-~]?\d+)?\b', Number.Float),
             (r'[+\-~]?\s*0[0-7]\b', Number.Oct),
             (r'[+\-~]?\s*0x[0-9a-fA-F]\b', Number.Hex),
