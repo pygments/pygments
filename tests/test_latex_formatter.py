@@ -3,7 +3,7 @@
     Pygments LaTeX formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -42,9 +42,9 @@ class LatexFormatterTest(unittest.TestCase):
             ret = po.wait()
             output = po.stdout.read()
             po.stdout.close()
-        except OSError:
+        except OSError as e:
             # latex not available
-            raise support.SkipTest
+            raise support.SkipTest(e)
         else:
             if ret:
                 print(output)
