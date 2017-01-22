@@ -43,6 +43,7 @@ STYLE_MAP = {
     'algol_nu': 'algol_nu::Algol_NuStyle',
     'arduino':  'arduino::ArduinoStyle',
     'rainbow_dash': 'rainbow_dash::RainbowDashStyle',
+    'abap':     'abap::AbapStyle',
 }
 
 

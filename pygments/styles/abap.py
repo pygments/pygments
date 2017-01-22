@@ -1,6 +1,18 @@
+# -*- coding: utf-8 -*-
+"""
+    pygments.styles.abap
+    ~~~~~~~~~~~~~~~~~~~~
+
+    ABAP workbench like style.
+
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic
+    Number, Operator
+
 
 class AbapStyle(Style):
     default_style = ""
@@ -12,6 +24,6 @@ class AbapStyle(Style):
         Name:                   '#000',
         Number:                 '#3af',
         String:                 '#5a2',
-        
-        Error:                  '#F00'
+
+        Error:                  '#F00',
     }
