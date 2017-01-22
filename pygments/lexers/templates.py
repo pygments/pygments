@@ -5,7 +5,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -1814,8 +1814,9 @@ class HandlebarsLexer(RegexLexer):
             (r'\}\}', Comment.Preproc, '#pop'),
 
             # Handlebars
-            (r'([#/]*)(each|if|unless|else|with|log|in)', bygroups(Keyword,
+            (r'([#/]*)(each|if|unless|else|with|log|in(line)?)', bygroups(Keyword,
              Keyword)),
+            (r'#\*inline', Keyword),
 
             # General {{#block}}
             (r'([#/])([\w-]+)', bygroups(Name.Function, Name.Function)),
@@ -1823,11 +1824,37 @@ class HandlebarsLexer(RegexLexer):
             # {{opt=something}}
             (r'([\w-]+)(=)', bygroups(Name.Attribute, Operator)),
 
+            # Partials {{> ...}}
+            (r'(>)(\s*)(@partial-block)', bygroups(Keyword, Text, Keyword)),
+            (r'(#?>)(\s*)([\w-]+)', bygroups(Keyword, Text, Name.Variable)),
+            (r'(>)(\s*)(\()', bygroups(Keyword, Text, Punctuation),
+             'dynamic-partial'),
+
+            include('generic'),
+        ],
+        'dynamic-partial': [
+            (r'\s+', Text),
+            (r'\)', Punctuation, '#pop'),
+
+            (r'(lookup)(\s+)(\.|this)(\s+)', bygroups(Keyword, Text,
+                                                      Name.Variable, Text)),
+            (r'(lookup)(\s+)([^\s]+)', bygroups(Keyword, Text,
+                                                using(this, state='variable'))),
+            (r'[\w-]+', Name.Function),
+
+            include('generic'),
+        ],
+        'variable': [
+            (r'[a-zA-Z][\w-]*', Name.Variable),
+            (r'\.[\w-]+', Name.Variable),
+            (r'(this\/|\.\/|(\.\.\/)+)[\w-]+', Name.Variable),
+        ],
+        'generic': [
+            include('variable'),
+
             # borrowed from DjangoLexer
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z][\w-]*', Name.Variable),
-            (r'\.[\w-]+', Name.Variable),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ]
@@ -2175,16 +2202,18 @@ class TwigHtmlLexer(DelegatingLexer):
     def __init__(self, **options):
         super(TwigHtmlLexer, self).__init__(HtmlLexer, TwigLexer, **options)
 
-        
+
 class Angular2Lexer(RegexLexer):
     """
-    Generic `angular2 <http://victorsavkin.com/post/119943127151/angular-2-template-syntax>` template lexer.
+    Generic
+    `angular2 <http://victorsavkin.com/post/119943127151/angular-2-template-syntax>`_
+    template lexer.
 
-    Highlights only the Angular template tags (stuff between `{{` and `}}` and 
+    Highlights only the Angular template tags (stuff between `{{` and `}}` and
     special attributes: '(event)=', '[property]=', '[(twoWayBinding)]=').
     Everything else is left for a delegating lexer.
 
-    .. versionadded:: 2.1a0
+    .. versionadded:: 2.1
     """
 
     name = "Angular2"
@@ -2196,37 +2225,39 @@ class Angular2Lexer(RegexLexer):
 
             # {{meal.name}}
             (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'ngExpression'),
-            
+
             # (click)="deleteOrder()"; [value]="test"; [(twoWayTest)]="foo.bar"
             (r'([([]+)([\w:.-]+)([\])]+)(\s*)(=)(\s*)',
-             bygroups(Punctuation, Name.Attribute, Punctuation, Text, Operator, Text), 'attr'),
+             bygroups(Punctuation, Name.Attribute, Punctuation, Text, Operator, Text),
+             'attr'),
             (r'([([]+)([\w:.-]+)([\])]+)(\s*)',
              bygroups(Punctuation, Name.Attribute, Punctuation, Text)),
-             
+
             # *ngIf="..."; #f="ngForm"
             (r'([*#])([\w:.-]+)(\s*)(=)(\s*)',
              bygroups(Punctuation, Name.Attribute, Punctuation, Operator), 'attr'),
             (r'([*#])([\w:.-]+)(\s*)',
              bygroups(Punctuation, Name.Attribute, Punctuation)),
         ],
-        
+
         'ngExpression': [
             (r'\s+(\|\s+)?', Text),
             (r'\}\}', Comment.Preproc, '#pop'),
-            
+
             # Literals
             (r':?(true|false)', String.Boolean),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
-             
+
             # Variabletext
             (r'[a-zA-Z][\w-]*(\(.*\))?', Name.Variable),
             (r'\.[\w-]+(\(.*\))?', Name.Variable),
-            
+
             # inline If
-            (r'(\?)(\s*)([^}\s]+)(\s*)(:)(\s*)([^}\s]+)(\s*)', bygroups(Operator, Text, String, Text, Operator, Text, String, Text)),
+            (r'(\?)(\s*)([^}\s]+)(\s*)(:)(\s*)([^}\s]+)(\s*)',
+             bygroups(Operator, Text, String, Text, Operator, Text, String, Text)),
         ],
         'attr': [
             ('".*?"', String, '#pop'),
