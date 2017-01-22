@@ -2202,16 +2202,18 @@ class TwigHtmlLexer(DelegatingLexer):
     def __init__(self, **options):
         super(TwigHtmlLexer, self).__init__(HtmlLexer, TwigLexer, **options)
 
-        
+
 class Angular2Lexer(RegexLexer):
     """
-    Generic `angular2 <http://victorsavkin.com/post/119943127151/angular-2-template-syntax>` template lexer.
+    Generic
+    `angular2 <http://victorsavkin.com/post/119943127151/angular-2-template-syntax>`_
+    template lexer.
 
-    Highlights only the Angular template tags (stuff between `{{` and `}}` and 
+    Highlights only the Angular template tags (stuff between `{{` and `}}` and
     special attributes: '(event)=', '[property]=', '[(twoWayBinding)]=').
     Everything else is left for a delegating lexer.
 
-    .. versionadded:: 2.1a0
+    .. versionadded:: 2.1
     """
 
     name = "Angular2"
@@ -2223,37 +2225,39 @@ class Angular2Lexer(RegexLexer):
 
             # {{meal.name}}
             (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'ngExpression'),
-            
+
             # (click)="deleteOrder()"; [value]="test"; [(twoWayTest)]="foo.bar"
             (r'([([]+)([\w:.-]+)([\])]+)(\s*)(=)(\s*)',
-             bygroups(Punctuation, Name.Attribute, Punctuation, Text, Operator, Text), 'attr'),
+             bygroups(Punctuation, Name.Attribute, Punctuation, Text, Operator, Text),
+             'attr'),
             (r'([([]+)([\w:.-]+)([\])]+)(\s*)',
              bygroups(Punctuation, Name.Attribute, Punctuation, Text)),
-             
+
             # *ngIf="..."; #f="ngForm"
             (r'([*#])([\w:.-]+)(\s*)(=)(\s*)',
              bygroups(Punctuation, Name.Attribute, Punctuation, Operator), 'attr'),
             (r'([*#])([\w:.-]+)(\s*)',
              bygroups(Punctuation, Name.Attribute, Punctuation)),
         ],
-        
+
         'ngExpression': [
             (r'\s+(\|\s+)?', Text),
             (r'\}\}', Comment.Preproc, '#pop'),
-            
+
             # Literals
             (r':?(true|false)', String.Boolean),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
-             
+
             # Variabletext
             (r'[a-zA-Z][\w-]*(\(.*\))?', Name.Variable),
             (r'\.[\w-]+(\(.*\))?', Name.Variable),
-            
+
             # inline If
-            (r'(\?)(\s*)([^}\s]+)(\s*)(:)(\s*)([^}\s]+)(\s*)', bygroups(Operator, Text, String, Text, Operator, Text, String, Text)),
+            (r'(\?)(\s*)([^}\s]+)(\s*)(:)(\s*)([^}\s]+)(\s*)',
+             bygroups(Operator, Text, String, Text, Operator, Text, String, Text)),
         ],
         'attr': [
             ('".*?"', String, '#pop'),
