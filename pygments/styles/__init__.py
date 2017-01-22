@@ -41,7 +41,8 @@ STYLE_MAP = {
     'lovelace': 'lovelace::LovelaceStyle',
     'algol':    'algol::AlgolStyle',
     'algol_nu': 'algol_nu::Algol_NuStyle',
-    'arduino':  'arduino::ArduinoStyle'
+    'arduino':  'arduino::ArduinoStyle',
+    'rainbow_dash': 'rainbow_dash::RainbowDashStyle'
 }
 
 
