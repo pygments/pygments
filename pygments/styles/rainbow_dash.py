@@ -7,7 +7,7 @@
 
     .. _theme: http://sanssecours.github.io/Rainbow-Dash.tmbundle
 
-    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
