@@ -29,7 +29,7 @@ import sys
 
 from pygments.util import StringIO, BytesIO
 
-__version__ = '2.2a0'
+__version__ = '2.2.0'
 __docformat__ = 'restructuredtext'
 
 __all__ = ['lex', 'format', 'highlight']
