@@ -5,7 +5,7 @@
 
     Lexers for data file format.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -14,9 +14,9 @@ import re
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, LexerContext, \
     include, bygroups, inherit
 from pygments.token import Text, Comment, Keyword, Name, String, Number, \
-    Punctuation, Literal
+    Punctuation, Literal, Error
 
-__all__ = ['YamlLexer', 'JsonLexer', 'JsonLdLexer']
+__all__ = ['YamlLexer', 'JsonLexer', 'JsonBareObjectLexer', 'JsonLdLexer']
 
 
 class YamlLexerContext(LexerContext):
@@ -247,10 +247,10 @@ class YamlLexer(ExtendedRegexLexer):
         # tags, anchors, aliases
         'descriptors': [
             # a full-form tag
-            (r'!<[\w;/?:@&=+$,.!~*\'()\[\]%-]+>', Keyword.Type),
+            (r'!<[\w#;/?:@&=+$,.!~*\'()\[\]%-]+>', Keyword.Type),
             # a tag in the form '!', '!suffix' or '!handle!suffix'
-            (r'!(?:[\w-]+)?'
-             r'(?:![\w;/?:@&=+$,.!~*\'()\[\]%-]+)?', Keyword.Type),
+            (r'!(?:[\w-]+!)?'
+             r'[\w#;/?:@&=+$,.!~*\'()\[\]%-]+', Keyword.Type),
             # an anchor
             (r'&[\w-]+', Name.Label),
             # an alias
@@ -476,7 +476,7 @@ class JsonLexer(RegexLexer):
             # comma terminates the attribute but expects more
             (r',', Punctuation, '#pop'),
             # a closing bracket terminates the entire object, so pop twice
-            (r'\}', Punctuation, ('#pop', '#pop')),
+            (r'\}', Punctuation, '#pop:2'),
         ],
 
         # a json object - { attr, attr, ... }
@@ -507,6 +507,31 @@ class JsonLexer(RegexLexer):
             include('value'),
         ],
     }
+
+
+class JsonBareObjectLexer(JsonLexer):
+    """
+    For JSON data structures (with missing object curly braces).
+
+    .. versionadded:: 2.2
+    """
+
+    name = 'JSONBareObject'
+    aliases = ['json-object']
+    filenames = []
+    mimetypes = ['application/json-object']
+
+    tokens = {
+        'root': [
+            (r'\}', Error),
+            include('objectvalue'),
+        ],
+        'objectattribute': [
+            (r'\}', Error),
+            inherit,
+        ],
+    }
+
 
 class JsonLdLexer(JsonLexer):
     """

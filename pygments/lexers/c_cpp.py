@@ -5,7 +5,7 @@
 
     Lexers for C/C++ languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -46,8 +46,10 @@ class CFamilyLexer(RegexLexer):
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text),  # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'//(\n|[\w\W]*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*][\w\W]*?[*](\\\n)?/', Comment.Multiline),
+            # Open until EOF, so no ending delimeter
+            (r'/(\\\n)?[*][\w\W]*', Comment.Multiline),
         ],
         'statements': [
             (r'(L?)(")', bygroups(String.Affix, String), 'string'),
@@ -61,10 +63,11 @@ class CFamilyLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
-            (words(('auto', 'break', 'case', 'const', 'continue', 'default', 'do',
-                    'else', 'enum', 'extern', 'for', 'goto', 'if', 'register',
-                    'restricted', 'return', 'sizeof', 'static', 'struct',
-                    'switch', 'typedef', 'union', 'volatile', 'while'),
+            (words(('asm', 'auto', 'break', 'case', 'const', 'continue',
+                    'default', 'do', 'else', 'enum', 'extern', 'for', 'goto',
+                    'if', 'register', 'restricted', 'return', 'sizeof',
+                    'static', 'struct', 'switch', 'typedef', 'union',
+                    'volatile', 'while'),
                    suffix=r'\b'), Keyword),
             (r'(bool|int|long|float|short|double|char|unsigned|signed|void)\b',
              Keyword.Type),
@@ -208,7 +211,7 @@ class CppLexer(CFamilyLexer):
     tokens = {
         'statements': [
             (words((
-                'asm', 'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
+                'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
                 'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
                 'private', 'protected', 'public', 'reinterpret_cast',
                 'restrict', 'static_cast', 'template', 'this', 'throw', 'throws',

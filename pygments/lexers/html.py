@@ -5,7 +5,7 @@
 
     Lexers for HTML, XML and related markup.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -23,7 +23,7 @@ from pygments.lexers.css import CssLexer, _indentation, _starts_block
 from pygments.lexers.ruby import RubyLexer
 
 __all__ = ['HtmlLexer', 'DtdLexer', 'XmlLexer', 'XsltLexer', 'HamlLexer',
-           'ScamlLexer', 'JadeLexer']
+           'ScamlLexer', 'PugLexer']
 
 
 class HtmlLexer(RegexLexer):
@@ -492,19 +492,19 @@ class ScamlLexer(ExtendedRegexLexer):
     }
 
 
-class JadeLexer(ExtendedRegexLexer):
+class PugLexer(ExtendedRegexLexer):
     """
-    For Jade markup.
-    Jade is a variant of Scaml, see:
+    For Pug markup.
+    Pug is a variant of Scaml, see:
     http://scalate.fusesource.org/documentation/scaml-reference.html
 
     .. versionadded:: 1.4
     """
 
-    name = 'Jade'
-    aliases = ['jade']
-    filenames = ['*.jade']
-    mimetypes = ['text/x-jade']
+    name = 'Pug'
+    aliases = ['pug', 'jade']
+    filenames = ['*.pug', '*.jade']
+    mimetypes = ['text/x-pug', 'text/x-jade']
 
     flags = re.IGNORECASE
     _dot = r'.'
@@ -599,3 +599,4 @@ class JadeLexer(ExtendedRegexLexer):
             (r'\n', Text, 'root'),
         ],
     }
+JadeLexer = PugLexer  # compat

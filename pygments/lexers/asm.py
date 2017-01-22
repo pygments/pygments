@@ -5,7 +5,7 @@
 
     Lexers for assembly languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -20,7 +20,7 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
 
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
            'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'NasmLexer',
-           'NasmObjdumpLexer', 'Ca65Lexer']
+           'NasmObjdumpLexer', 'TasmLexer', 'Ca65Lexer']
 
 
 class GasLexer(RegexLexer):
@@ -54,8 +54,6 @@ class GasLexer(RegexLexer):
             (number, Number.Integer),
             (r'[\r\n]+', Text, '#pop'),
 
-            (r'#.*?$', Comment, '#pop'),
-
             include('punctuation'),
             include('whitespace')
         ],
@@ -78,14 +76,14 @@ class GasLexer(RegexLexer):
             ('$'+number, Number.Integer),
             (r"$'(.|\\')'", String.Char),
             (r'[\r\n]+', Text, '#pop'),
-            (r'#.*?$', Comment, '#pop'),
+
             include('punctuation'),
             include('whitespace')
         ],
         'whitespace': [
             (r'\n', Text),
             (r'\s+', Text),
-            (r'#.*?\n', Comment)
+            (r'[;#].*?\n', Comment)
         ],
         'punctuation': [
             (r'[-*,.()\[\]!:]+', Punctuation)
@@ -281,7 +279,7 @@ class HsailLexer(RegexLexer):
                 'enabledetectexceptions', 'maxdynamicgroupsize', 'maxflatgridsize',
                 'maxflatworkgroupsize', 'requireddim', 'requiredgridsize',
                 'requiredworkgroupsize', 'requirenopartialworkgroups'),
-                   suffix=r'\b'), Keyword),
+                suffix=r'\b'), Keyword),
 
             # instructions
             (roundingMod, Keyword),
@@ -412,12 +410,24 @@ class LlvmLexer(RegexLexer):
                 'unwind', 'unreachable', 'indirectbr', 'landingpad', 'resume',
                 'malloc', 'alloca', 'free', 'load', 'store', 'getelementptr',
                 'extractelement', 'insertelement', 'shufflevector', 'getresult',
-                'extractvalue', 'insertvalue', 'atomicrmw', 'cmpxchg', 'fence'),
-                   suffix=r'\b'), Keyword),
+                'extractvalue', 'insertvalue', 'atomicrmw', 'cmpxchg', 'fence',
+                'allocsize', 'amdgpu_cs', 'amdgpu_gs', 'amdgpu_kernel', 'amdgpu_ps',
+                'amdgpu_vs', 'any', 'anyregcc', 'argmemonly', 'avr_intrcc',
+                'avr_signalcc', 'caller', 'catchpad', 'catchret', 'catchswitch',
+                'cleanuppad', 'cleanupret', 'comdat', 'convergent', 'cxx_fast_tlscc',
+                'deplibs', 'dereferenceable', 'dereferenceable_or_null', 'distinct',
+                'exactmatch', 'externally_initialized', 'from', 'ghccc', 'hhvm_ccc',
+                'hhvmcc', 'ifunc', 'inaccessiblemem_or_argmemonly', 'inaccessiblememonly',
+                'inalloca', 'jumptable', 'largest', 'local_unnamed_addr', 'minsize',
+                'musttail', 'noduplicates', 'none', 'nonnull', 'norecurse', 'notail',
+                'preserve_allcc', 'preserve_mostcc', 'prologue', 'safestack', 'samesize',
+                'source_filename', 'swiftcc', 'swifterror', 'swiftself', 'webkit_jscc',
+                'within', 'writeonly', 'x86_intrcc', 'x86_vectorcallcc'),
+                suffix=r'\b'), Keyword),
 
             # Types
             (words(('void', 'half', 'float', 'double', 'x86_fp80', 'fp128',
-                    'ppc_fp128', 'label', 'metadata')), Keyword.Type),
+                    'ppc_fp128', 'label', 'metadata', 'token')), Keyword.Type),
 
             # Integer types
             (r'i[1-9]\d*', Keyword)
@@ -510,6 +520,86 @@ class NasmObjdumpLexer(ObjdumpLexer):
     mimetypes = ['text/x-nasm-objdump']
 
     tokens = _objdump_lexer_tokens(NasmLexer)
+
+
+class TasmLexer(RegexLexer):
+    """
+    For Tasm (Turbo Assembler) assembly code.
+    """
+    name = 'TASM'
+    aliases = ['tasm']
+    filenames = ['*.asm', '*.ASM', '*.tasm']
+    mimetypes = ['text/x-tasm']
+
+    identifier = r'[@a-z$._?][\w$.?#@~]*'
+    hexn = r'(?:0x[0-9a-f]+|$0[0-9a-f]*|[0-9]+[0-9a-f]*h)'
+    octn = r'[0-7]+q'
+    binn = r'[01]+b'
+    decn = r'[0-9]+'
+    floatn = decn + r'\.e?' + decn
+    string = r'"(\\"|[^"\n])*"|' + r"'(\\'|[^'\n])*'|" + r"`(\\`|[^`\n])*`"
+    declkw = r'(?:res|d)[bwdqt]|times'
+    register = (r'r[0-9][0-5]?[bwd]|'
+                r'[a-d][lh]|[er]?[a-d]x|[er]?[sb]p|[er]?[sd]i|[c-gs]s|st[0-7]|'
+                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]')
+    wordop = r'seg|wrt|strict'
+    type = r'byte|[dq]?word'
+    directives = (r'BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'
+                  r'ORG|ALIGN|STRUC|ENDSTRUC|ENDS|COMMON|CPU|GROUP|UPPERCASE|INCLUDE|'
+                  r'EXPORT|LIBRARY|MODULE|PROC|ENDP|USES|ARG|DATASEG|UDATASEG|END|IDEAL|'
+                  r'P386|MODEL|ASSUME|CODESEG|SIZE')
+    # T[A-Z][a-z] is more of a convention. Lexer should filter out STRUC definitions
+    # and then 'add' them to datatype somehow.
+    datatype = (r'db|dd|dw|T[A-Z][a-z]+')
+
+    flags = re.IGNORECASE | re.MULTILINE
+    tokens = {
+        'root': [
+            (r'^\s*%', Comment.Preproc, 'preproc'),
+            include('whitespace'),
+            (identifier + ':', Name.Label),
+            (directives, Keyword, 'instruction-args'),
+            (r'(%s)(\s+)(%s)' % (identifier, datatype),
+                bygroups(Name.Constant, Keyword.Declaration, Keyword.Declaration),
+                'instruction-args'),
+            (declkw, Keyword.Declaration, 'instruction-args'),
+            (identifier, Name.Function, 'instruction-args'),
+            (r'[\r\n]+', Text)
+        ],
+        'instruction-args': [
+            (string, String),
+            (hexn, Number.Hex),
+            (octn, Number.Oct),
+            (binn, Number.Bin),
+            (floatn, Number.Float),
+            (decn, Number.Integer),
+            include('punctuation'),
+            (register, Name.Builtin),
+            (identifier, Name.Variable),
+            # Do not match newline when it's preceeded by a backslash
+            (r'(\\\s*)(;.*)([\r\n])', bygroups(Text, Comment.Single, Text)),
+            (r'[\r\n]+', Text, '#pop'),
+            include('whitespace')
+        ],
+        'preproc': [
+            (r'[^;\n]+', Comment.Preproc),
+            (r';.*?\n', Comment.Single, '#pop'),
+            (r'\n', Comment.Preproc, '#pop'),
+        ],
+        'whitespace': [
+            (r'[\n\r]', Text),
+            (r'\\[\n\r]', Text),
+            (r'[ \t]+', Text),
+            (r';.*', Comment.Single)
+        ],
+        'punctuation': [
+            (r'[,():\[\]]+', Punctuation),
+            (r'[&|^<>+*=/%~-]+', Operator),
+            (r'[$]+', Keyword.Constant),
+            (wordop, Operator.Word),
+            (type, Keyword.Type)
+        ],
+    }
 
 
 class Ca65Lexer(RegexLexer):
