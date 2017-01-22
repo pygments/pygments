@@ -361,7 +361,7 @@ There are a few more things you can do with states:
           tokens = {...}
 
           def get_tokens_unprocessed(self, text, stack=('root', 'otherstate')):
-              for item in RegexLexer.get_tokens_unprocessed(text, stack):
+              for item in RegexLexer.get_tokens_unprocessed(self, text, stack):
                   yield item
 
   Some lexers like the `PhpLexer` use this to make the leading ``<?php``
