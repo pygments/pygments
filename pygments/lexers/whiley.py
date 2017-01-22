@@ -5,7 +5,7 @@
 
     Lexers for the Whiley language.
 
-    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -19,6 +19,8 @@ __all__ = ['WhileyLexer']
 class WhileyLexer(RegexLexer):
     """
     Lexer for the Whiley programming language.
+
+    .. versionadded:: 2.2
     """
     name = 'Whiley'
     filenames = ['*.whiley']
@@ -47,12 +49,10 @@ class WhileyLexer(RegexLexer):
                 'requires', 'ensures', 'where', 'assert', 'assume',
                 'all', 'no', 'some', 'in', 'is', 'new',
                 'throw', 'try', 'catch', 'debug', 'skip', 'fail',
-                'finite', 'total',
-             ), suffix=r'\b'), Keyword.Reserved),
+                'finite', 'total'), suffix=r'\b'), Keyword.Reserved),
             (words((
                 'function', 'method', 'public', 'private', 'protected',
-                'export', 'native',
-             ), suffix=r'\b'), Keyword.Declaration),
+                'export', 'native'), suffix=r'\b'), Keyword.Declaration),
             # "constant" & "type" are not keywords unless used in declarations
             (r'(constant|type)(\s+)([a-zA-Z_]\w*)(\s+)(is)\b',
              bygroups(Keyword.Declaration, Text, Name, Text, Keyword.Reserved)),
@@ -73,8 +73,7 @@ class WhileyLexer(RegexLexer):
                 'uint', 'nat',
 
                 # whiley.lang.Any
-                'toString',
-             ), suffix=r'\b'), Name.Builtin),
+                'toString'), suffix=r'\b'), Name.Builtin),
 
             # byte literal
             (r'[01]+b', Number.Bin),
@@ -99,7 +98,7 @@ class WhileyLexer(RegexLexer):
             # operators and punctuation
             (r'[{}()\[\],.;]', Punctuation),
             (u'[+\\-*/%&|<>^!~@=:?'
-            # unicode operators
+             # unicode operators
              u'\u2200\u2203\u2205\u2282\u2286\u2283\u2287'
              u'\u222A\u2229\u2264\u2265\u2208\u2227\u2228'
              u']', Operator),

@@ -5,7 +5,7 @@
 
     Lexers for JavaScript and related languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -53,7 +53,7 @@ class JavascriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuy]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
@@ -64,9 +64,14 @@ class JavascriptLexer(RegexLexer):
             (r'\A#! ?/.*?\n', Comment.Hashbang),  # recognized by node.js
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
+            (r'(\.\d+|[0-9]+\.[0-9]*)([eE][-+]?[0-9]+)?', Number.Float),
+            (r'0[bB][01]+', Number.Bin),
+            (r'0[oO][0-7]+', Number.Oct),
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'\.\.\.|=>', Punctuation),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
-             r'(<<|>>>?|=>|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
-            (r'\.\.\.', Punctuation),
+             r'(<<|>>>?|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
@@ -84,11 +89,6 @@ class JavascriptLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|'
              r'document|this|window)\b', Name.Builtin),
             (JS_IDENT, Name.Other),
-            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
-            (r'0b[01]+', Number.Bin),
-            (r'0o[0-7]+', Number.Oct),
-            (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r'`', String.Backtick, 'interp'),
@@ -366,9 +366,10 @@ class DartLexer(RegexLexer):
             (r'\b(assert|break|case|catch|continue|default|do|else|finally|for|'
              r'if|in|is|new|return|super|switch|this|throw|try|while)\b',
              Keyword),
-            (r'\b(abstract|const|extends|factory|final|get|implements|'
-             r'native|operator|set|static|typedef|var)\b', Keyword.Declaration),
-            (r'\b(bool|double|Dynamic|int|num|Object|String|void)\b', Keyword.Type),
+            (r'\b(abstract|async|await|const|extends|factory|final|get|'
+             r'implements|native|operator|set|static|sync|typedef|var|with|'
+             r'yield)\b', Keyword.Declaration),
+            (r'\b(bool|double|dynamic|int|num|Object|String|void)\b', Keyword.Type),
             (r'\b(false|null|true)\b', Keyword.Constant),
             (r'[~!%^&*+=|?:<>/-]|as\b', Operator),
             (r'[a-zA-Z_$]\w*:', Name.Label),
@@ -511,9 +512,26 @@ class TypeScriptLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'`', String.Backtick, 'interp'),
             # Match stuff like: Decorators
             (r'@\w+', Keyword.Declaration),
-        ]
+        ],
+
+        # The 'interp*' rules match those in JavascriptLexer. Changes made
+        # there should be reflected here as well.
+        'interp': [
+            (r'`', String.Backtick, '#pop'),
+            (r'\\\\', String.Backtick),
+            (r'\\`', String.Backtick),
+            (r'\$\{', String.Interpol, 'interp-inside'),
+            (r'\$', String.Backtick),
+            (r'[^`\\$]+', String.Backtick),
+        ],
+        'interp-inside': [
+            # TODO: should this include single-line comments and allow nesting strings?
+            (r'\}', String.Interpol, '#pop'),
+            include('root'),
+        ],
     }
 
 

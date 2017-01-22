@@ -5,7 +5,7 @@
 
     Lexer for the Monte programming language.
 
-    :copyright: Copyright 2016 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -43,7 +43,7 @@ _operators = [
 _escape_pattern = (
     r'(?:\\x[0-9a-fA-F]{2}|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|'
     r'\\["\'\\bftnr])')
-#_char = _escape_chars + [('.', String.Char)]
+# _char = _escape_chars + [('.', String.Char)]
 _identifier = '[_a-zA-Z][_0-9a-zA-Z]*'
 
 _constants = [
@@ -74,6 +74,7 @@ _safeScope = [
     '_validateFor', 'b__quasiParser', 'eval', 'import', 'm__quasiParser',
     'makeBrandPair', 'makeLazySlot', 'safeScope', 'simple__quasiParser',
 ]
+
 
 class MonteLexer(RegexLexer):
     """
