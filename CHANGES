@@ -24,6 +24,10 @@ Version 2.2
   * NCAR command language (PR#536)
   * Extempore (PR#530)
   * Cap'n Proto (PR#595)
+  * Whiley (PR#573)
+  * Monte (PR#592)
+  * Crystal (PR#576)
+  * Snowball (PR#589)
 
 - Added `lexers.find_lexer_class_by_name()`. (#1203)
 
@@ -40,6 +44,10 @@ Version 2.2
   terminal formatter. (PR#531)
 
 - Improved the CSS lexer. (#1083, #1130)
+
+- Added "Rainbow Dash" style. (PR#623)
+
+- Delay loading `pkg_resources`, which takes a long while to import. (PR#690)
 
 
 Version 2.1.2

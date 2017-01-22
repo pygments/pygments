@@ -5,7 +5,7 @@
 
     Lexer for Intermediate Verification Languages (IVLs).
 
-    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

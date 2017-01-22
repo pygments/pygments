@@ -4,7 +4,7 @@
     ~~~~~~~~~~~~~~~~~~~~~
 
     Pygments lexers for Ezhil language.
-    
+
     :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
@@ -15,6 +15,7 @@ from pygments.token import Keyword, Text, Comment, Name
 from pygments.token import String, Number, Punctuation, Operator
 
 __all__ = ['EzhilLexer']
+
 
 class EzhilLexer(RegexLexer):
     """
@@ -62,7 +63,7 @@ class EzhilLexer(RegexLexer):
             (r'(?u)\d+', Number.Integer),
         ]
     }
-    
+
     def __init__(self, **options):
         super(EzhilLexer, self).__init__(**options)
         self.encoding = options.get('encoding', 'utf-8')

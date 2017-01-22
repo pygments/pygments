@@ -279,7 +279,7 @@ class HsailLexer(RegexLexer):
                 'enabledetectexceptions', 'maxdynamicgroupsize', 'maxflatgridsize',
                 'maxflatworkgroupsize', 'requireddim', 'requiredgridsize',
                 'requiredworkgroupsize', 'requirenopartialworkgroups'),
-                   suffix=r'\b'), Keyword),
+                suffix=r'\b'), Keyword),
 
             # instructions
             (roundingMod, Keyword),
@@ -423,7 +423,7 @@ class LlvmLexer(RegexLexer):
                 'preserve_allcc', 'preserve_mostcc', 'prologue', 'safestack', 'samesize',
                 'source_filename', 'swiftcc', 'swifterror', 'swiftself', 'webkit_jscc',
                 'within', 'writeonly', 'x86_intrcc', 'x86_vectorcallcc'),
-                   suffix=r'\b'), Keyword),
+                suffix=r'\b'), Keyword),
 
             # Types
             (words(('void', 'half', 'float', 'double', 'x86_fp80', 'fp128',
@@ -433,6 +433,7 @@ class LlvmLexer(RegexLexer):
             (r'i[1-9]\d*', Keyword)
         ]
     }
+
 
 class NasmLexer(RegexLexer):
     """

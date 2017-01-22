@@ -11,9 +11,8 @@
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups, words
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Literal
+from pygments.lexer import RegexLexer
+from pygments.token import Text, Comment, Keyword, Name, Literal
 
 __all__ = ['CapnProtoLexer']
 
@@ -30,7 +29,6 @@ class CapnProtoLexer(RegexLexer):
 
     flags = re.MULTILINE | re.UNICODE
 
-
     tokens = {
         'root': [
             (r'#.*?$', Comment.Single),
@@ -38,8 +36,9 @@ class CapnProtoLexer(RegexLexer):
             (r'=', Literal, 'expression'),
             (r':', Name.Class, 'type'),
             (r'\$', Name.Attribute, 'annotation'),
-            (r'(struct|enum|interface|union|import|using|const|annotation|extends|in|of|on|as|with|from|fixed)\b',
-                Keyword),
+            (r'(struct|enum|interface|union|import|using|const|annotation|'
+             r'extends|in|of|on|as|with|from|fixed)\b',
+             Keyword),
             (r'[a-zA-Z0-9_.]+', Name),
             (r'[^#@=:$a-zA-Z0-9_]+', Text),
         ],
