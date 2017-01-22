@@ -518,13 +518,9 @@ class TypeScriptLexer(RegexLexer):
 
     def analyse_text(text):
         if re.search('^(import.+(from\s+)?["\']|'
-                     '(export)?\s*(interface|class|function)\s+)',
+                     '(export\s*)?(interface|class|function)\s+)',
                      text, re.MULTILINE):
             return 1.0
-        else:
-            # Slightly lower than TypoScript, since we have more we can look
-            # for in TypeScript content.
-            return 0.8
 
 
 class LassoLexer(RegexLexer):
