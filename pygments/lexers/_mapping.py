@@ -289,7 +289,7 @@ LEXERS = {
     'NesCLexer': ('pygments.lexers.c_like', 'nesC', ('nesc',), ('*.nc',), ('text/x-nescsrc',)),
     'NewLispLexer': ('pygments.lexers.lisp', 'NewLisp', ('newlisp',), ('*.lsp', '*.nl', '*.kif'), ('text/x-newlisp', 'application/x-newlisp')),
     'NewspeakLexer': ('pygments.lexers.smalltalk', 'Newspeak', ('newspeak',), ('*.ns2',), ('text/x-newspeak',)),
-    'NginxConfLexer': ('pygments.lexers.configs', 'Nginx configuration file', ('nginx',), (), ('text/x-nginx-conf',)),
+    'NginxConfLexer': ('pygments.lexers.configs', 'Nginx configuration file', ('nginx',), ('nginx.conf',), ('text/x-nginx-conf',)),
     'NimrodLexer': ('pygments.lexers.nimrod', 'Nimrod', ('nim', 'nimrod'), ('*.nim', '*.nimrod'), ('text/x-nim',)),
     'NitLexer': ('pygments.lexers.nit', 'Nit', ('nit',), ('*.nit',), ()),
     'NixLexer': ('pygments.lexers.nix', 'Nix', ('nixos', 'nix'), ('*.nix',), ('text/x-nix',)),
