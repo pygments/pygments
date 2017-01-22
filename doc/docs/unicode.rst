@@ -55,4 +55,4 @@ encoding is handled differently, see :doc:`the command line docs <cmdline>`.
    options dict with lexers and formatters, and still have different input and
    output encodings.
 
-.. _chardet: http://chardet.feedparser.org/
+.. _chardet: https://chardet.github.io/

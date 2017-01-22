@@ -5,7 +5,7 @@
 
     Lexers for Varnish configuration
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -91,14 +91,14 @@ class VCLLexer(RegexLexer):
                 'resp.reason', 'bereq.url', 'beresp.do_esi', 'beresp.proto', 'client.ip',
                 'bereq.proto', 'server.hostname', 'remote.ip', 'req.backend_hint',
                 'server.identity', 'req_top.url', 'beresp.grace', 'beresp.was_304',
-                'server.ip', 'bereq.uncacheable', 'now'), suffix=r'\b'),
+                'server.ip', 'bereq.uncacheable'), suffix=r'\b'),
              Name.Variable),
             (r'[!%&+*\-,/<.}{>=|~]+', Operator),
             (r'[();]', Punctuation),
 
             (r'[,]+', Punctuation),
-            (words(('include', 'hash_data', 'regsub', 'regsuball', 'if', 'else',
-                    'elsif', 'elif', 'synth', 'synthetic', 'ban', 'synth',
+            (words(('hash_data', 'regsub', 'regsuball', 'if', 'else',
+                    'elsif', 'elif', 'synth', 'synthetic', 'ban',
                     'return', 'set', 'unset', 'import', 'include', 'new',
                     'rollback', 'call'), suffix=r'\b'),
              Keyword),
@@ -121,13 +121,13 @@ class VCLLexer(RegexLexer):
              r'(\s*\(.*\))',
              bygroups(Name.Function, Punctuation, Name.Function, using(this))),
             ('[a-zA-Z_]\w*', Name),
-            ],
+        ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline),
-            ],
+        ],
         'comments': [
             (r'#.*$', Comment),
             (r'/\*', Comment.Multiline, 'comment'),

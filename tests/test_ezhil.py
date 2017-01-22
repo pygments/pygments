@@ -94,7 +94,8 @@ class EzhilTest(unittest.TestCase):
 முடி\n"""
         tokens = [
             (Token.Comment.Single,
-             u'# (C) \u0bae\u0bc1\u0ba4\u0bcd\u0ba4\u0bc8\u0baf\u0bbe \u0b85\u0ba3\u0bcd\u0ba3\u0bbe\u0bae\u0bb2\u0bc8 2013, 2015\n'),
+             u'# (C) \u0bae\u0bc1\u0ba4\u0bcd\u0ba4\u0bc8\u0baf\u0bbe \u0b85'
+             u'\u0ba3\u0bcd\u0ba3\u0bbe\u0bae\u0bb2\u0bc8 2013, 2015\n'),
             (Token.Keyword,u'நிரல்பாகம்'),
             (Token.Text, u'  '),
             (Token.Name, u'gcd'),

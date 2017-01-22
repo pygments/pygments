@@ -5,7 +5,7 @@
 
     Lexers for Python and related languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -116,7 +116,7 @@ class PythonLexer(RegexLexer):
                 'unichr', 'unicode', 'vars', 'xrange', 'zip'),
                 prefix=r'(?<!\.)', suffix=r'\b'),
              Name.Builtin),
-            (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True'
+            (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True|cls'
              r')\b', Name.Builtin.Pseudo),
             (words((
                 'ArithmeticError', 'AssertionError', 'AttributeError',
@@ -303,7 +303,7 @@ class Python3Lexer(RegexLexer):
             'sum', 'super', 'tuple', 'type', 'vars', 'zip'), prefix=r'(?<!\.)',
             suffix=r'\b'),
          Name.Builtin),
-        (r'(?<!\.)(self|Ellipsis|NotImplemented)\b', Name.Builtin.Pseudo),
+        (r'(?<!\.)(self|Ellipsis|NotImplemented|cls)\b', Name.Builtin.Pseudo),
         (words((
             'ArithmeticError', 'AssertionError', 'AttributeError',
             'BaseException', 'BufferError', 'BytesWarning', 'DeprecationWarning',
@@ -362,6 +362,7 @@ class Python3Lexer(RegexLexer):
     ]
     tokens['numbers'] = [
         (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
+        (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
         (r'0[oO][0-7]+', Number.Oct),
         (r'0[bB][01]+', Number.Bin),
         (r'0[xX][a-fA-F0-9]+', Number.Hex),
