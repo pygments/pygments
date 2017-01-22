@@ -433,7 +433,7 @@ def main_inner(popts, args, usage):
                 if ':' in fmter:
                     file, fmtername = fmter.rsplit(':', 1)
                     fmter = load_formatter_from_file(file, fmtername,
-                                                         **parsed_opts)
+                                                     **parsed_opts)
                 else:
                     fmter = load_formatter_from_file(fmter, **parsed_opts)
             except ClassNotFound as err:

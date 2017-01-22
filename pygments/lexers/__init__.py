@@ -126,14 +126,16 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
     Users should be very careful with the input, because this method
     is equivalent to running eval on the input file.
 
-    Raises ClassNotFound if there are any problems importing the Lexer
+    Raises ClassNotFound if there are any problems importing the Lexer.
+
+    .. versionadded:: 2.2
     """
     try:
         # This empty dict will contain the namespace for the exec'd file
         custom_namespace = {}
-        exec(open(filename, 'r'), custom_namespace)
+        exec(open(filename, 'rb').read(), custom_namespace)
         # Retrieve the class `lexername` from that namespace
-        if not lexername in custom_namespace:
+        if lexername not in custom_namespace:
             raise ClassNotFound('no valid %s class found in %s' %
                                 (lexername, filename))
         lexer_class = custom_namespace[lexername]
@@ -142,7 +144,7 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
     except IOError as err:
         raise ClassNotFound('cannot read %s' % filename)
     except ClassNotFound as err:
-        raise err
+        raise
     except Exception as err:
         raise ClassNotFound('error when loading custom lexer: %s' % err)
 
