@@ -9,9 +9,8 @@
     :license: BSD, see LICENSE for details.
 """
 
+import os
 import sys
-from os import listdir, getenv
-from os.path import splitext, join
 
 from pygments.formatter import Formatter
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
@@ -119,14 +118,15 @@ class FontManager(object):
                     self.fonts[style] = self.fonts['NORMAL']
 
     def _get_mac_font_path(self, font_map, name, style):
-        return font_map.get(' '.join((name, style)).strip().lower())
+        return font_map.get((name + ' ' + style).strip().lower())
 
     def _create_mac(self):
         font_map = {}
-        for font_dir in (join(getenv("HOME"), 'Library/Fonts/'), '/Library/Fonts/', '/System/Library/Fonts/'):
+        for font_dir in (os.path.join(os.getenv("HOME"), 'Library/Fonts/'),
+                         '/Library/Fonts/', '/System/Library/Fonts/'):
             font_map.update(
-                ((splitext(f)[0].lower(), join(font_dir, f))
-                    for f in listdir(font_dir) if f.lower().endswith('ttf')))
+                ((os.path.splitext(f)[0].lower(), os.path.join(font_dir, f))
+                    for f in os.listdir(font_dir) if f.lower().endswith('ttf')))
 
         for name in STYLES['NORMAL']:
             path = self._get_mac_font_path(font_map, self.font_name, name)
