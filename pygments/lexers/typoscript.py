@@ -115,6 +115,9 @@ class TypoScriptLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
+    # Slightly higher than TypeScript (which is 0).
+    priority = 0.1
+
     tokens = {
         'root': [
             include('comment'),
@@ -223,3 +226,7 @@ class TypoScriptLexer(RegexLexer):
     def analyse_text(text):
         if '<INCLUDE_TYPOSCRIPT:' in text:
             return 1.0
+        else:
+            # Slightly higher than TypeScript, since there's less to rely
+            # on in TypoScript content.
+            return 0.9
