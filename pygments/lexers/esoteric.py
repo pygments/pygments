@@ -14,7 +14,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 
 __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'CAmkESLexer',
-    'CapDLLexer', 'AheuiLexer']
+           'CapDLLexer', 'AheuiLexer']
 
 
 class BrainfuckLexer(RegexLexer):
@@ -155,14 +155,15 @@ class CapDLLexer(RegexLexer):
     shadow type names, but these instances are currently incorrectly
     highlighted as types. Supporting this would need a stateful lexer that is
     considered unnecessarily complex for now.
+
+    .. versionadded:: 2.2
     """
     name = 'CapDL'
     aliases = ['capdl']
     filenames = ['*.cdl']
 
     tokens = {
-        'root':[
-
+        'root': [
             # C pre-processor directive
             (r'^\s*#.*\n', Comment.Preproc),
 
@@ -171,7 +172,7 @@ class CapDLLexer(RegexLexer):
             (r'/\*(.|\n)*?\*/', Comment),
             (r'(//|--).*\n', Comment),
 
-            (r'[<>\[\(\)\{\},:;=\]]', Punctuation),
+            (r'[<>\[(){},:;=\]]', Punctuation),
             (r'\.\.', Punctuation),
 
             (words(('arch', 'arm11', 'caps', 'child_of', 'ia32', 'irq', 'maps',
@@ -187,7 +188,7 @@ class CapDLLexer(RegexLexer):
                     'prio', 'sp', 'R', 'RG', 'RX', 'RW', 'RWG', 'RWX', 'W',
                     'WG', 'WX', 'level', 'masked', 'master_reply', 'paddr',
                     'ports', 'reply', 'uncached'), suffix=r'\b'),
-                    Keyword.Reserved),
+             Keyword.Reserved),
 
             # Literals
             (r'0[xX][\da-fA-F]+', Number.Hex),
@@ -197,9 +198,10 @@ class CapDLLexer(RegexLexer):
                     'ipc_buffer_slot'), suffix=r'\b'), Number),
 
             # Identifiers
-            (r'[a-zA-Z_][-_@\.\w]*', Name),
+            (r'[a-zA-Z_][-@\.\w]*', Name),
         ],
     }
+
 
 class RedcodeLexer(RegexLexer):
     """

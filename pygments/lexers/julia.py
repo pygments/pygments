@@ -231,7 +231,7 @@ class JuliaLexer(RegexLexer):
         'string': [
             (r'"', String, '#pop'),
             # FIXME: This escape pattern is not perfect.
-            (r'\\([\\"\'\$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
+            (r'\\([\\"\'$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
             # Interpolation is defined as "$" followed by the shortest full
             # expression, which is something we can't parse.
             # Include the most common cases here: $word, and $(paren'd expr).
@@ -246,7 +246,7 @@ class JuliaLexer(RegexLexer):
 
         'tqstring': [
             (r'"""', String, '#pop'),
-            (r'\\([\\"\'\$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
+            (r'\\([\\"\'$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
             (r'\$' + allowed_variable, String.Interpol),
             (r'(\$)(\()', bygroups(String.Interpol, Punctuation), 'in-intp'),
             (r'.|\s', String),

@@ -44,7 +44,7 @@ _escape_pattern = (
     r'(?:\\x[0-9a-fA-F]{2}|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|'
     r'\\["\'\\bftnr])')
 # _char = _escape_chars + [('.', String.Char)]
-_identifier = '[_a-zA-Z][_0-9a-zA-Z]*'
+_identifier = r'[_a-zA-Z]\w*'
 
 _constants = [
     # Void constants

@@ -439,7 +439,7 @@ class ABAPLexer(RegexLexer):
             (r'[?*<>=\-+&]', Operator),
             (r"'(''|[^'])*'", String.Single),
             (r"`([^`])*`", String.Single),
-            (r"([\|\}])([^\{\}\|]*?)([\|\{])",
+            (r"([|}])([^{}|]*?)([|{])",
              bygroups(Punctuation, String.Single, Punctuation)),
             (r'[/;:()\[\],.]', Punctuation),
             (r'(!)(\w+)', bygroups(Operator, Name)),
