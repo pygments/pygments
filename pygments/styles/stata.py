@@ -6,6 +6,9 @@
     Style inspired by Stata's do-file editor. Note this is not meant
     to be a complete style. It's merely meant to mimic Stata's do file
     editor syntax highlighting.
+
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style
