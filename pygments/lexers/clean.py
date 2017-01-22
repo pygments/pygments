@@ -116,7 +116,7 @@ class CleanLexer(ExtendedRegexLexer):
             (r'(?s)/\*.*?\*/', Comment.Multi),
 
             # Modules, imports, etc.
-            (r'\b((?:implementation|definition|system)\s+)?(module)(\s+)([\w`\.]+)',
+            (r'\b((?:implementation|definition|system)\s+)?(module)(\s+)([\w`.]+)',
                 bygroups(Keyword.Namespace, Keyword.Namespace, Text, Name.Class)),
             (r'(?<=\n)import(?=\s)', Keyword.Namespace, 'import'),
             (r'(?<=\n)from(?=\s)', Keyword.Namespace, 'fromimport'),
@@ -150,11 +150,11 @@ class CleanLexer(ExtendedRegexLexer):
              Literal),
 
             # Qualified names
-            (r'(\')([\w\.]+)(\'\.)',
+            (r'(\')([\w.]+)(\'\.)',
                 bygroups(Punctuation, Name.Namespace, Punctuation)),
 
             # Everything else is some name
-            (r'([\w`$%\/\?@]+\.?)*[\w`$%\/\?@]+', Name),
+            (r'([\w`$%/?@]+\.?)*[\w`$%/?@]+', Name),
 
             # Punctuation
             (r'[{}()\[\],:;.#]', Punctuation),
@@ -171,14 +171,14 @@ class CleanLexer(ExtendedRegexLexer):
         ],
         'fromimport': [
             include('common'),
-            (r'([\w`\.]+)', check_class_not_import),
+            (r'([\w`.]+)', check_class_not_import),
             (r'\n', Whitespace, '#pop'),
             (r'\s', Whitespace),
         ],
         'fromimportfunc': [
             include('common'),
-            (r'(::)\s+([^,\s]+)', bygroups(Punctuation, Keyword.Type)),
-            (r'([\w`$()=\-<>~*\^|+&%\/]+)', check_instance_class),
+            (r'(::)(\s+)([^,\s]+)', bygroups(Punctuation, Text, Keyword.Type)),
+            (r'([\w`$()=\-<>~*\^|+&%/]+)', check_instance_class),
             (r',', Punctuation),
             (r'\n', Whitespace, '#pop'),
             (r'\s', Whitespace),
@@ -204,7 +204,7 @@ class CleanLexer(ExtendedRegexLexer):
             include('common'),
             (words(('from', 'import', 'as', 'qualified'),
                    prefix='(?<=\s)', suffix='(?=\s)'), Keyword.Namespace),
-            (r'[\w`\.]+', Name.Class),
+            (r'[\w`.]+', Name.Class),
             (r'\n', Whitespace, '#pop'),
             (r',', Punctuation),
             (r'[^\S\n]+', Whitespace),
@@ -269,7 +269,7 @@ class CleanLexer(ExtendedRegexLexer):
             (r'^(?=\S)', Whitespace, '#pop:3'),
             (r'[,&]', Punctuation),
             (r'\[', Punctuation, 'functiondefuniquneq'),
-            (r'[\w`$()=\-<>~*\^|+&%\/{}\[\]@]', Name.Function, 'functionname'),
+            (r'[\w`$()=\-<>~*\^|+&%/{}\[\]@]', Name.Function, 'functionname'),
             (r'\s+', Whitespace),
         ],
         'functiondefuniquneq': [
@@ -281,7 +281,7 @@ class CleanLexer(ExtendedRegexLexer):
         ],
         'functionname': [
             include('common'),
-            (r'[\w`$()=\-<>~*\^|+&%\/]+', Name.Function),
+            (r'[\w`$()=\-<>~*\^|+&%/]+', Name.Function),
             (r'(?=\{\|)', Punctuation, 'genericfunction'),
             default('#pop'),
         ]

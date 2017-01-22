@@ -1838,8 +1838,8 @@ class HandlebarsLexer(RegexLexer):
 
             (r'(lookup)(\s+)(\.|this)(\s+)', bygroups(Keyword, Text,
                                                       Name.Variable, Text)),
-            (r'(lookup)(\s+)([^\s]+)', bygroups(Keyword, Text,
-                                                using(this, state='variable'))),
+            (r'(lookup)(\s+)(\S+)', bygroups(Keyword, Text,
+                                             using(this, state='variable'))),
             (r'[\w-]+', Name.Function),
 
             include('generic'),

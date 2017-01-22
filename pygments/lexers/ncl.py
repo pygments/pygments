@@ -62,7 +62,7 @@ class NCLLexer(RegexLexer):
             (r'[\%^*+\-/<>]', Operator),
 
             # punctuation:
-            (r'[\[\]():@$!&\|.,\\{}]', Punctuation),
+            (r'[\[\]():@$!&|.,\\{}]', Punctuation),
             (r'[=:]', Punctuation),
 
             # Intrinsics

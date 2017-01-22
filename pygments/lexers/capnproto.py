@@ -11,7 +11,7 @@
 
 import re
 
-from pygments.lexer import RegexLexer
+from pygments.lexer import RegexLexer, default
 from pygments.token import Text, Comment, Keyword, Name, Literal
 
 __all__ = ['CapnProtoLexer']
@@ -39,40 +39,40 @@ class CapnProtoLexer(RegexLexer):
             (r'(struct|enum|interface|union|import|using|const|annotation|'
              r'extends|in|of|on|as|with|from|fixed)\b',
              Keyword),
-            (r'[a-zA-Z0-9_.]+', Name),
-            (r'[^#@=:$a-zA-Z0-9_]+', Text),
+            (r'[\w.]+', Name),
+            (r'[^#@=:$\w]+', Text),
         ],
         'type': [
             (r'[^][=;,(){}$]+', Name.Class),
             (r'[[(]', Name.Class, 'parentype'),
-            (r'', Name.Class, '#pop')
+            default('#pop'),
         ],
         'parentype': [
             (r'[^][;()]+', Name.Class),
             (r'[[(]', Name.Class, '#push'),
             (r'[])]', Name.Class, '#pop'),
-            (r'', Name.Class, '#pop')
+            default('#pop'),
         ],
         'expression': [
             (r'[^][;,(){}$]+', Literal),
             (r'[[(]', Literal, 'parenexp'),
-            (r'', Literal, '#pop')
+            default('#pop'),
         ],
         'parenexp': [
             (r'[^][;()]+', Literal),
             (r'[[(]', Literal, '#push'),
             (r'[])]', Literal, '#pop'),
-            (r'', Literal, '#pop')
+            default('#pop'),
         ],
         'annotation': [
             (r'[^][;,(){}=:]+', Name.Attribute),
             (r'[[(]', Name.Attribute, 'annexp'),
-            (r'', Name.Attribute, '#pop')
+            default('#pop'),
         ],
         'annexp': [
             (r'[^][;()]+', Name.Attribute),
             (r'[[(]', Name.Attribute, '#push'),
             (r'[])]', Name.Attribute, '#pop'),
-            (r'', Name.Attribute, '#pop')
+            default('#pop'),
         ],
     }

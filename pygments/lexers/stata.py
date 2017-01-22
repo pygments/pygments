@@ -17,6 +17,7 @@ from pygments.lexers._stata_builtins import builtins_base, builtins_functions
 
 __all__ = ['StataLexer']
 
+
 class StataLexer(RegexLexer):
     """
     For `Stata <http://www.stata.com/>`_ do files.
@@ -43,8 +44,8 @@ class StataLexer(RegexLexer):
         ],
         # Global and local macros; regular and special strings
         'vars-strings': [
-            (r'\$[a-zA-Z_0-9\{]', Name.Variable.Global, 'var_validglobal'),
-            (r'`[a-zA-Z_0-9]{0,31}\'', Name.Variable),
+            (r'\$[\w{]', Name.Variable.Global, 'var_validglobal'),
+            (r'`\w{0,31}\'', Name.Variable),
             (r'"', String, 'string_dquote'),
             (r'`"', String, 'string_mquote'),
         ],
@@ -54,7 +55,7 @@ class StataLexer(RegexLexer):
             (r'\\\\|\\"|\\\n', String.Escape),
             (r'\$', Name.Variable.Global, 'var_validglobal'),
             (r'`', Name.Variable, 'var_validlocal'),
-            (r'[^$\$`"\\]+', String),
+            (r'[^$`"\\]+', String),
             (r'[$"\\]', String),
         ],
         'string_mquote': [
@@ -62,14 +63,15 @@ class StataLexer(RegexLexer):
             (r'\\\\|\\"|\\\n', String.Escape),
             (r'\$', Name.Variable.Global, 'var_validglobal'),
             (r'`', Name.Variable, 'var_validlocal'),
-            (r'[^$\$`"\\]+', String),
+            (r'[^$`"\\]+', String),
             (r'[$"\\]', String),
         ],
         'var_validglobal': [
-            (r'\{?[a-zA-Z0-9_]{0,32}\}?', Name.Variable.Global, '#pop'),
+            (r'\{\w{0,32}\}', Name.Variable.Global, '#pop'),
+            (r'\w{1,32}', Name.Variable.Global, '#pop'),
         ],
         'var_validlocal': [
-            (r'[a-zA-Z0-9_]{0,31}\'', Name.Variable, '#pop'),
+            (r'\w{0,31}\'', Name.Variable, '#pop'),
         ],
         # * only OK at line start, // OK anywhere
         'comments': [

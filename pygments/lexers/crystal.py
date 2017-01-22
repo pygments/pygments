@@ -277,12 +277,16 @@ class CrystalLexer(ExtendedRegexLexer):
              bygroups(Number.Hex, Text, Operator)),
             (r'(0b[01]+(?:_[01]+)*(?:_?[iu][0-9]+)?)\b(\s*)([/?])?',
              bygroups(Number.Bin, Text, Operator)),
-            # 3 separate expressions for floats because any of the 3 optional parts makes it a float
-            (r'((?:0(?![0-9])|[1-9][\d_]*)(?:\.\d[\d_]*)(?:e[+-]?[0-9]+)?(?:_?[f][0-9]+)?)(\s*)([/?])?',
+            # 3 separate expressions for floats because any of the 3 optional
+            # parts makes it a float
+            (r'((?:0(?![0-9])|[1-9][\d_]*)(?:\.\d[\d_]*)(?:e[+-]?[0-9]+)?'
+             r'(?:_?f[0-9]+)?)(\s*)([/?])?',
              bygroups(Number.Float, Text, Operator)),
-            (r'((?:0(?![0-9])|[1-9][\d_]*)(?:\.\d[\d_]*)?(?:e[+-]?[0-9]+)(?:_?[f][0-9]+)?)(\s*)([/?])?',
+            (r'((?:0(?![0-9])|[1-9][\d_]*)(?:\.\d[\d_]*)?(?:e[+-]?[0-9]+)'
+             r'(?:_?f[0-9]+)?)(\s*)([/?])?',
              bygroups(Number.Float, Text, Operator)),
-            (r'((?:0(?![0-9])|[1-9][\d_]*)(?:\.\d[\d_]*)?(?:e[+-]?[0-9]+)?(?:_?[f][0-9]+))(\s*)([/?])?',
+            (r'((?:0(?![0-9])|[1-9][\d_]*)(?:\.\d[\d_]*)?(?:e[+-]?[0-9]+)?'
+             r'(?:_?f[0-9]+))(\s*)([/?])?',
              bygroups(Number.Float, Text, Operator)),
             (r'(0\b|[1-9][\d]*(?:_\d+)*(?:_?[iu][0-9]+)?)\b(\s*)([/?])?',
              bygroups(Number.Integer, Text, Operator)),
