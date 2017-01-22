@@ -410,12 +410,24 @@ class LlvmLexer(RegexLexer):
                 'unwind', 'unreachable', 'indirectbr', 'landingpad', 'resume',
                 'malloc', 'alloca', 'free', 'load', 'store', 'getelementptr',
                 'extractelement', 'insertelement', 'shufflevector', 'getresult',
-                'extractvalue', 'insertvalue', 'atomicrmw', 'cmpxchg', 'fence'),
+                'extractvalue', 'insertvalue', 'atomicrmw', 'cmpxchg', 'fence',
+                'allocsize', 'amdgpu_cs', 'amdgpu_gs', 'amdgpu_kernel', 'amdgpu_ps',
+                'amdgpu_vs', 'any', 'anyregcc', 'argmemonly', 'avr_intrcc',
+                'avr_signalcc', 'caller', 'catchpad', 'catchret', 'catchswitch',
+                'cleanuppad', 'cleanupret', 'comdat', 'convergent', 'cxx_fast_tlscc',
+                'deplibs', 'dereferenceable', 'dereferenceable_or_null', 'distinct',
+                'exactmatch', 'externally_initialized', 'from', 'ghccc', 'hhvm_ccc',
+                'hhvmcc', 'ifunc', 'inaccessiblemem_or_argmemonly', 'inaccessiblememonly',
+                'inalloca', 'jumptable', 'largest', 'local_unnamed_addr', 'minsize',
+                'musttail', 'noduplicates', 'none', 'nonnull', 'norecurse', 'notail',
+                'preserve_allcc', 'preserve_mostcc', 'prologue', 'safestack', 'samesize',
+                'source_filename', 'swiftcc', 'swifterror', 'swiftself', 'webkit_jscc',
+                'within', 'writeonly', 'x86_intrcc', 'x86_vectorcallcc'),
                    suffix=r'\b'), Keyword),
 
             # Types
             (words(('void', 'half', 'float', 'double', 'x86_fp80', 'fp128',
-                    'ppc_fp128', 'label', 'metadata')), Keyword.Type),
+                    'ppc_fp128', 'label', 'metadata', 'token')), Keyword.Type),
 
             # Integer types
             (r'i[1-9]\d*', Keyword)
