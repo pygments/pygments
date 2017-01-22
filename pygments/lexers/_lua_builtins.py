@@ -9,12 +9,11 @@
 
     Do not edit the MODULES dict by hand.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from __future__ import print_function
-
 
 MODULES = {'basic': ('_G',
            '_VERSION',
@@ -22,47 +21,59 @@ MODULES = {'basic': ('_G',
            'collectgarbage',
            'dofile',
            'error',
-           'getfenv',
            'getmetatable',
            'ipairs',
            'load',
            'loadfile',
-           'loadstring',
            'next',
            'pairs',
            'pcall',
            'print',
            'rawequal',
            'rawget',
+           'rawlen',
            'rawset',
            'select',
-           'setfenv',
            'setmetatable',
            'tonumber',
            'tostring',
            'type',
-           'unpack',
            'xpcall'),
+ 'bit32': ('bit32.arshift',
+           'bit32.band',
+           'bit32.bnot',
+           'bit32.bor',
+           'bit32.btest',
+           'bit32.bxor',
+           'bit32.extract',
+           'bit32.lrotate',
+           'bit32.lshift',
+           'bit32.replace',
+           'bit32.rrotate',
+           'bit32.rshift'),
  'coroutine': ('coroutine.create',
+               'coroutine.isyieldable',
                'coroutine.resume',
                'coroutine.running',
                'coroutine.status',
                'coroutine.wrap',
                'coroutine.yield'),
  'debug': ('debug.debug',
-           'debug.getfenv',
            'debug.gethook',
            'debug.getinfo',
            'debug.getlocal',
            'debug.getmetatable',
            'debug.getregistry',
            'debug.getupvalue',
-           'debug.setfenv',
+           'debug.getuservalue',
            'debug.sethook',
            'debug.setlocal',
            'debug.setmetatable',
            'debug.setupvalue',
-           'debug.traceback'),
+           'debug.setuservalue',
+           'debug.traceback',
+           'debug.upvalueid',
+           'debug.upvaluejoin'),
  'io': ('io.close',
         'io.flush',
         'io.input',
@@ -71,17 +82,20 @@ MODULES = {'basic': ('_G',
         'io.output',
         'io.popen',
         'io.read',
+        'io.stderr',
+        'io.stdin',
+        'io.stdout',
         'io.tmpfile',
         'io.type',
         'io.write'),
  'math': ('math.abs',
           'math.acos',
           'math.asin',
-          'math.atan2',
           'math.atan',
+          'math.atan2',
           'math.ceil',
-          'math.cosh',
           'math.cos',
+          'math.cosh',
           'math.deg',
           'math.exp',
           'math.floor',
@@ -89,29 +103,34 @@ MODULES = {'basic': ('_G',
           'math.frexp',
           'math.huge',
           'math.ldexp',
-          'math.log10',
           'math.log',
           'math.max',
+          'math.maxinteger',
           'math.min',
+          'math.mininteger',
           'math.modf',
           'math.pi',
           'math.pow',
           'math.rad',
           'math.random',
           'math.randomseed',
-          'math.sinh',
           'math.sin',
+          'math.sinh',
           'math.sqrt',
+          'math.tan',
           'math.tanh',
-          'math.tan'),
- 'modules': ('module',
-             'require',
+          'math.tointeger',
+          'math.type',
+          'math.ult'),
+ 'modules': ('package.config',
              'package.cpath',
              'package.loaded',
              'package.loadlib',
              'package.path',
              'package.preload',
-             'package.seeall'),
+             'package.searchers',
+             'package.searchpath',
+             'require'),
  'os': ('os.clock',
         'os.date',
         'os.difftime',
@@ -133,19 +152,37 @@ MODULES = {'basic': ('_G',
             'string.len',
             'string.lower',
             'string.match',
+            'string.pack',
+            'string.packsize',
             'string.rep',
             'string.reverse',
             'string.sub',
+            'string.unpack',
             'string.upper'),
  'table': ('table.concat',
            'table.insert',
-           'table.maxn',
+           'table.move',
+           'table.pack',
            'table.remove',
-           'table.sort')}
-
+           'table.sort',
+           'table.unpack'),
+ 'utf8': ('utf8.char',
+          'utf8.charpattern',
+          'utf8.codepoint',
+          'utf8.codes',
+          'utf8.len',
+          'utf8.offset')}
 
 if __name__ == '__main__':  # pragma: no cover
     import re
+    import sys
+
+    # urllib ends up wanting to import a module called 'math' -- if
+    # pygments/lexers is in the path, this ends badly.
+    for i in range(len(sys.path)-1, -1, -1):
+        if sys.path[i].endswith('/lexers'):
+            del sys.path[i]
+
     try:
         from urllib import urlopen
     except ImportError:
@@ -196,7 +233,7 @@ if __name__ == '__main__':  # pragma: no cover
 
     def get_newest_version():
         f = urlopen('http://www.lua.org/manual/')
-        r = re.compile(r'^<A HREF="(\d\.\d)/">Lua \1</A>')
+        r = re.compile(r'^<A HREF="(\d\.\d)/">(Lua )?\1</A>')
         for line in f:
             m = r.match(line)
             if m is not None:
@@ -204,7 +241,7 @@ if __name__ == '__main__':  # pragma: no cover
 
     def get_lua_functions(version):
         f = urlopen('http://www.lua.org/manual/%s/' % version)
-        r = re.compile(r'^<A HREF="manual.html#pdf-(.+)">\1</A>')
+        r = re.compile(r'^<A HREF="manual.html#pdf-(?!lua|LUA)([^:]+)">\1</A>')
         functions = []
         for line in f:
             m = r.match(line)
@@ -236,15 +273,22 @@ if __name__ == '__main__':  # pragma: no cover
 
     def run():
         version = get_newest_version()
-        print('> Downloading function index for Lua %s' % version)
-        functions = get_lua_functions(version)
-        print('> %d functions found:' % len(functions))
+        functions = set()
+        for v in ('5.2', version):
+            print('> Downloading function index for Lua %s' % v)
+            f = get_lua_functions(v)
+            print('> %d functions found, %d new:' %
+                  (len(f), len(set(f) - functions)))
+            functions |= set(f)
+
+        functions = sorted(functions)
 
         modules = {}
         for full_function_name in functions:
             print('>> %s' % full_function_name)
             m = get_function_module(full_function_name)
             modules.setdefault(m, []).append(full_function_name)
+        modules = {k: tuple(v) for k, v in modules.iteritems()}
 
         regenerate(__file__, modules)
 

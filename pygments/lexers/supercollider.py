@@ -5,7 +5,7 @@
 
     Lexer for SuperCollider
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -74,7 +74,7 @@ class SuperColliderLexer(RegexLexer):
             (words(('true', 'false', 'nil', 'inf'), suffix=r'\b'), Keyword.Constant),
             (words((
                 'Array', 'Boolean', 'Date', 'Error', 'Function', 'Number',
-                'Object', 'Packages', 'RegExp', 'String', 'Error',
+                'Object', 'Packages', 'RegExp', 'String',
                 'isFinite', 'isNaN', 'parseFloat', 'parseInt', 'super',
                 'thisFunctionDef', 'thisFunction', 'thisMethod', 'thisProcess',
                 'thisThread', 'this'), suffix=r'\b'),

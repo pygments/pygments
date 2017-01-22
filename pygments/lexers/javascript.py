@@ -5,7 +5,7 @@
 
     Lexers for JavaScript and related languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -20,7 +20,7 @@ import pygments.unistring as uni
 
 __all__ = ['JavascriptLexer', 'KalLexer', 'LiveScriptLexer', 'DartLexer',
            'TypeScriptLexer', 'LassoLexer', 'ObjectiveJLexer',
-           'CoffeeScriptLexer', 'MaskLexer', 'EarlGreyLexer']
+           'CoffeeScriptLexer', 'MaskLexer', 'EarlGreyLexer', 'JuttleLexer']
 
 JS_IDENT_START = ('(?:[$_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') +
                   ']|\\\\u[a-fA-F0-9]{4})')
@@ -53,7 +53,7 @@ class JavascriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuy]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
@@ -64,9 +64,14 @@ class JavascriptLexer(RegexLexer):
             (r'\A#! ?/.*?\n', Comment.Hashbang),  # recognized by node.js
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
+            (r'(\.\d+|[0-9]+\.[0-9]*)([eE][-+]?[0-9]+)?', Number.Float),
+            (r'0[bB][01]+', Number.Bin),
+            (r'0[oO][0-7]+', Number.Oct),
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'\.\.\.|=>', Punctuation),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
-             r'(<<|>>>?|=>|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
-            (r'\.\.\.', Punctuation),
+             r'(<<|>>>?|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
@@ -84,11 +89,6 @@ class JavascriptLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|'
              r'document|this|window)\b', Name.Builtin),
             (JS_IDENT, Name.Other),
-            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
-            (r'0b[01]+', Number.Bin),
-            (r'0o[0-7]+', Number.Oct),
-            (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r'`', String.Backtick, 'interp'),
@@ -366,9 +366,10 @@ class DartLexer(RegexLexer):
             (r'\b(assert|break|case|catch|continue|default|do|else|finally|for|'
              r'if|in|is|new|return|super|switch|this|throw|try|while)\b',
              Keyword),
-            (r'\b(abstract|const|extends|factory|final|get|implements|'
-             r'native|operator|set|static|typedef|var)\b', Keyword.Declaration),
-            (r'\b(bool|double|Dynamic|int|num|Object|String|void)\b', Keyword.Type),
+            (r'\b(abstract|async|await|const|extends|factory|final|get|'
+             r'implements|native|operator|set|static|sync|typedef|var|with|'
+             r'yield)\b', Keyword.Declaration),
+            (r'\b(bool|double|dynamic|int|num|Object|String|void)\b', Keyword.Type),
             (r'\b(false|null|true)\b', Keyword.Constant),
             (r'[~!%^&*+=|?:<>/-]|as\b', Operator),
             (r'[a-zA-Z_$]\w*:', Name.Label),
@@ -511,9 +512,26 @@ class TypeScriptLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'`', String.Backtick, 'interp'),
             # Match stuff like: Decorators
             (r'@\w+', Keyword.Declaration),
-        ]
+        ],
+
+        # The 'interp*' rules match those in JavascriptLexer. Changes made
+        # there should be reflected here as well.
+        'interp': [
+            (r'`', String.Backtick, '#pop'),
+            (r'\\\\', String.Backtick),
+            (r'\\`', String.Backtick),
+            (r'\$\{', String.Interpol, 'interp-inside'),
+            (r'\$', String.Backtick),
+            (r'[^`\\$]+', String.Backtick),
+        ],
+        'interp-inside': [
+            # TODO: should this include single-line comments and allow nesting strings?
+            (r'\}', String.Interpol, '#pop'),
+            include('root'),
+        ],
     }
 
 
@@ -545,12 +563,7 @@ class LassoLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^#![ \S]+lasso9\b', Comment.Preproc, 'lasso'),
-            (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
-            (r'\[noprocess\]', Comment.Preproc, ('delimiters', 'noprocess')),
-            (r'\[', Comment.Preproc, ('delimiters', 'squarebrackets')),
-            (r'<\?(LassoScript|lasso|=)', Comment.Preproc,
-                ('delimiters', 'anglebrackets')),
-            (r'<(!--.*?-->)?', Other, 'delimiters'),
+            (r'(?=\[|<)', Other, 'delimiters'),
             (r'\s+', Other),
             default(('delimiters', 'lassofile')),
         ],
@@ -558,14 +571,14 @@ class LassoLexer(RegexLexer):
             (r'\[no_square_brackets\]', Comment.Preproc, 'nosquarebrackets'),
             (r'\[noprocess\]', Comment.Preproc, 'noprocess'),
             (r'\[', Comment.Preproc, 'squarebrackets'),
-            (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
+            (r'<\?(lasso(script)?|=)', Comment.Preproc, 'anglebrackets'),
             (r'<(!--.*?-->)?', Other),
             (r'[^[<]+', Other),
         ],
         'nosquarebrackets': [
             (r'\[noprocess\]', Comment.Preproc, 'noprocess'),
             (r'\[', Other),
-            (r'<\?(LassoScript|lasso|=)', Comment.Preproc, 'anglebrackets'),
+            (r'<\?(lasso(script)?|=)', Comment.Preproc, 'anglebrackets'),
             (r'<(!--.*?-->)?', Other),
             (r'[^[<]+', Other),
         ],
@@ -607,7 +620,7 @@ class LassoLexer(RegexLexer):
 
             # names
             (r'\$[a-z_][\w.]*', Name.Variable),
-            (r'#([a-z_][\w.]*|\d+)', Name.Variable.Instance),
+            (r'#([a-z_][\w.]*|\d+\b)', Name.Variable.Instance),
             (r"(\.\s*)('[a-z_][\w.]*')",
                 bygroups(Name.Builtin.Pseudo, Name.Variable.Class)),
             (r"(self)(\s*->\s*)('[a-z_][\w.]*')",
@@ -658,20 +671,20 @@ class LassoLexer(RegexLexer):
              r'Database_TableNames|Define_Tag|Define_Type|Email_Batch|'
              r'Encode_Set|HTML_Comment|Handle|Handle_Error|Header|If|Inline|'
              r'Iterate|LJAX_Target|Link|Link_CurrentAction|Link_CurrentGroup|'
-             r'Link_CurrentRecord|Link_Detail|Link_FirstGroup|'
-             r'Link_FirstRecord|Link_LastGroup|Link_LastRecord|Link_NextGroup|'
-             r'Link_NextRecord|Link_PrevGroup|Link_PrevRecord|Log|Loop|'
-             r'NoProcess|Output_None|Portal|Private|Protect|Records|Referer|'
-             r'Referrer|Repeating|ResultSet|Rows|Search_Args|Search_Arguments|'
-             r'Select|Sort_Args|Sort_Arguments|Thread_Atomic|Value_List|While|'
-             r'Abort|Case|Else|If_Empty|If_False|If_Null|If_True|Loop_Abort|'
-             r'Loop_Continue|Loop_Count|Params|Params_Up|Return|Return_Value|'
-             r'Run_Children|SOAP_DefineTag|SOAP_LastRequest|SOAP_LastResponse|'
-             r'Tag_Name|ascending|average|by|define|descending|do|equals|'
-             r'frozen|group|handle_failure|import|in|into|join|let|match|max|'
-             r'min|on|order|parent|protected|provide|public|require|returnhome|'
-             r'skip|split_thread|sum|take|thread|to|trait|type|where|with|'
-             r'yield|yieldhome)\b',
+             r'Link_CurrentRecord|Link_Detail|Link_FirstGroup|Link_FirstRecord|'
+             r'Link_LastGroup|Link_LastRecord|Link_NextGroup|Link_NextRecord|'
+             r'Link_PrevGroup|Link_PrevRecord|Log|Loop|Output_None|Portal|'
+             r'Private|Protect|Records|Referer|Referrer|Repeating|ResultSet|'
+             r'Rows|Search_Args|Search_Arguments|Select|Sort_Args|'
+             r'Sort_Arguments|Thread_Atomic|Value_List|While|Abort|Case|Else|'
+             r'Fail_If|Fail_IfNot|Fail|If_Empty|If_False|If_Null|If_True|'
+             r'Loop_Abort|Loop_Continue|Loop_Count|Params|Params_Up|Return|'
+             r'Return_Value|Run_Children|SOAP_DefineTag|SOAP_LastRequest|'
+             r'SOAP_LastResponse|Tag_Name|ascending|average|by|define|'
+             r'descending|do|equals|frozen|group|handle_failure|import|in|into|'
+             r'join|let|match|max|min|on|order|parent|protected|provide|public|'
+             r'require|returnhome|skip|split_thread|sum|take|thread|to|trait|'
+             r'type|where|with|yield|yieldhome)\b',
                 bygroups(Punctuation, Keyword)),
 
             # other
@@ -1016,6 +1029,12 @@ class CoffeeScriptLexer(RegexLexer):
     filenames = ['*.coffee']
     mimetypes = ['text/coffeescript']
 
+
+    _operator_re = (
+        r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
+        r'\|\||\\(?=\n)|'
+        r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?')
+
     flags = re.DOTALL
     tokens = {
         'commentsandwhitespace': [
@@ -1034,17 +1053,17 @@ class CoffeeScriptLexer(RegexLexer):
             (r'///', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
+            # This isn't really guarding against mishighlighting well-formed
+            # code, just the ability to infinite-loop between root and
+            # slashstartsregex.
+            (r'/', Operator),
             default('#pop'),
         ],
         'root': [
-            # this next expr leads to infinite loops root -> slashstartsregex
-            # (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
-             r'\|\||\\(?=\n)|'
-             r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&|^/])=?',
-             Operator, 'slashstartsregex'),
-            (r'(?:\([^()]*\))?\s*[=-]>', Name.Function),
+            (r'^(?=\s|/)', Text, 'slashstartsregex'),
+            (_operator_re, Operator, 'slashstartsregex'),
+            (r'(?:\([^()]*\))?\s*[=-]>', Name.Function, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),
             (r'(?<![.$])(for|own|in|of|while|until|'
@@ -1065,7 +1084,7 @@ class CoffeeScriptLexer(RegexLexer):
             (r'@[$a-zA-Z_][\w.:$]*\s*[:=]\s', Name.Variable.Instance,
              'slashstartsregex'),
             (r'@', Name.Other, 'slashstartsregex'),
-            (r'@?[$a-zA-Z_][\w$]*', Name.Other, 'slashstartsregex'),
+            (r'@?[$a-zA-Z_][\w$]*', Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
@@ -1437,4 +1456,64 @@ class EarlGreyLexer(RegexLexer):
             (r'([3-79]|[12][0-9]|3[0-6])r[a-zA-Z\d]+(\.[a-zA-Z\d]+)?', Number.Radix),
             (r'\d+', Number.Integer)
         ],
+    }
+
+class JuttleLexer(RegexLexer):
+    """
+    For `Juttle`_ source code.
+
+    .. _Juttle: https://github.com/juttle/juttle
+
+    """
+
+    name = 'Juttle'
+    aliases = ['juttle', 'juttle']
+    filenames = ['*.juttle']
+    mimetypes = ['application/juttle', 'application/x-juttle',
+                 'text/x-juttle', 'text/juttle']
+
+    flags = re.DOTALL | re.UNICODE | re.MULTILINE
+
+    tokens = {
+        'commentsandwhitespace': [
+            (r'\s+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline)
+        ],
+        'slashstartsregex': [
+            include('commentsandwhitespace'),
+            (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
+             r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'(?=/)', Text, ('#pop', 'badregex')),
+            default('#pop')
+        ],
+        'badregex': [
+            (r'\n', Text, '#pop')
+        ],
+        'root': [
+            (r'^(?=\s|/)', Text, 'slashstartsregex'),
+            include('commentsandwhitespace'),
+            (r':\d{2}:\d{2}:\d{2}(\.\d*)?:', String.Moment),
+            (r':(now|beginning|end|forever|yesterday|today|tomorrow|(\d+(\.\d*)?|\.\d+)(ms|[smhdwMy])?):', String.Moment),
+            (r':\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d*)?)?(Z|[+-]\d{2}:\d{2}|[+-]\d{4})?:', String.Moment),
+            (r':((\d+(\.\d*)?|\.\d+)[ ]+)?(millisecond|second|minute|hour|day|week|month|year)[s]?'
+             r'(([ ]+and[ ]+(\d+[ ]+)?(millisecond|second|minute|hour|day|week|month|year)[s]?)'
+             r'|[ ]+(ago|from[ ]+now))*:', String.Moment),
+            (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
+             r'(==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
+            (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            (r'[})\].]', Punctuation),
+            (r'(import|return|continue|if|else)\b', Keyword, 'slashstartsregex'),
+            (r'(var|const|function|reducer|sub|input)\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(batch|emit|filter|head|join|keep|pace|pass|put|read|reduce|remove|'
+             r'sequence|skip|sort|split|tail|unbatch|uniq|view|write)\b', Keyword.Reserved),
+            (r'(true|false|null|Infinity)\b', Keyword.Constant),
+            (r'(Array|Date|Juttle|Math|Number|Object|RegExp|String)\b', Name.Builtin),
+            (JS_IDENT, Name.Other),
+            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r"'(\\\\|\\'|[^'])*'", String.Single)
+        ]
+
     }

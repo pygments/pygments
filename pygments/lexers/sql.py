@@ -34,24 +34,26 @@
     The ``tests/examplefiles`` contains a few test files with data to be
     parsed by these lexers.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
-from pygments.token import Punctuation, \
+from pygments.token import Punctuation, Whitespace, Error, \
     Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.lexers import get_lexer_by_name, ClassNotFound
 from pygments.util import iteritems
 
 from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
     PSEUDO_TYPES, PLPGSQL_KEYWORDS
+from pygments.lexers import _tsql_builtins
 
 
 __all__ = ['PostgresLexer', 'PlPgsqlLexer', 'PostgresConsoleLexer',
-           'SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'RqlLexer']
+           'SqlLexer', 'TransactSqlLexer', 'MySqlLexer',
+           'SqliteConsoleLexer', 'RqlLexer']
 
 line_re  = re.compile('.*?\n')
 
@@ -151,7 +153,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'--.*?\n', Comment.Single),
+            (r'--.*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'(' + '|'.join(s.replace(" ", "\s+")
                              for s in DATATYPES + PSEUDO_TYPES)
@@ -378,7 +380,7 @@ class SqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'--.*?\n', Comment.Single),
+            (r'--.*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (words((
                 'ABORT', 'ABS', 'ABSOLUTE', 'ACCESS', 'ADA', 'ADD', 'ADMIN', 'AFTER', 'AGGREGATE',
@@ -479,6 +481,62 @@ class SqlLexer(RegexLexer):
     }
 
 
+class TransactSqlLexer(RegexLexer):
+    """
+    Transact-SQL (T-SQL) is Microsoft's and Sybase's proprietary extension to
+    SQL.
+
+    The list of keywords includes ODBC and keywords reserved for future use..
+    """
+
+    name = 'Transact-SQL'
+    aliases = ['tsql', 't-sql']
+    filenames = ['*.sql']
+    mimetypes = ['text/x-tsql']
+
+    # Use re.UNICODE to allow non ASCII letters in names.
+    flags = re.IGNORECASE | re.UNICODE
+    tokens = {
+        'root': [
+            (r'\s+', Whitespace),
+            (r'--(?m).*?$\n?', Comment.Single),
+            (r'/\*', Comment.Multiline, 'multiline-comments'),
+            (words(_tsql_builtins.OPERATORS), Operator),
+            (words(_tsql_builtins.OPERATOR_WORDS, suffix=r'\b'), Operator.Word),
+            (words(_tsql_builtins.TYPES, suffix=r'\b'), Name.Class),
+            (words(_tsql_builtins.FUNCTIONS, suffix=r'\b'), Name.Function),
+            (r'(goto)(\s+)(\w+\b)', bygroups(Keyword, Whitespace, Name.Label)),
+            (words(_tsql_builtins.KEYWORDS, suffix=r'\b'), Keyword),
+            (r'(\[)([^]]+)(\])', bygroups(Operator, Name, Operator)),
+            (r'0x[0-9a-f]+', Number.Hex),
+            # Float variant 1, for example: 1., 1.e2, 1.2e3
+            (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),
+            # Float variant 2, for example: .1, .1e2
+            (r'\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),
+            # Float variant 3, for example: 123e45
+            (r'[0-9]+e[+-]?[0-9]+', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String.Single),
+            (r'"(""|[^"])*"', String.Symbol),
+            (r'[;(),.]', Punctuation),
+            # Below we use \w even for the first "real" character because
+            # tokens starting with a digit have already been recognized
+            # as Number above.
+            (r'@@\w+', Name.Builtin),
+            (r'@\w+', Name.Variable),
+            (r'(\w+)(:)', bygroups(Name.Label, Punctuation)),
+            (r'#?#?\w+', Name),  # names for temp tables and anything else
+            (r'\?', Name.Variable.Magic),  # parameter for prepared statements
+        ],
+        'multiline-comments': [
+            (r'/\*', Comment.Multiline, 'multiline-comments'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[^/*]+', Comment.Multiline),
+            (r'[/*]', Comment.Multiline)
+        ]
+    }
+
+
 class MySqlLexer(RegexLexer):
     """
     Special lexer for MySQL.
@@ -492,7 +550,7 @@ class MySqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(#|--\s+).*?\n', Comment.Single),
+            (r'(#|--\s+).*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'[0-9]+', Number.Integer),
             (r'[0-9]*\.[0-9]+(e[+-][0-9]+)', Number.Float),
