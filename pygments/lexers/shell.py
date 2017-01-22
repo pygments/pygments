@@ -5,7 +5,7 @@
 
     Lexers for various shells.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -68,7 +68,7 @@ class BashLexer(RegexLexer):
             (r'\A#!.+\n', Comment.Hashbang),
             (r'#.*\n', Comment.Single),
             (r'\\[\w\W]', String.Escape),
-            (r'(\b\w+)(\s*)(=)', bygroups(Name.Variable, Text, Operator)),
+            (r'(\b\w+)(\s*)(\+?=)', bygroups(Name.Variable, Text, Operator)),
             (r'[\[\]{}()=]', Operator),
             (r'<<<', Operator),  # here-string
             (r'<<-?\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
@@ -478,13 +478,16 @@ class BatchLexer(RegexLexer):
                       using(this, state='variable')), '#pop'),
             (r'(exist%s)(%s%s)' % (_token_terminator, _space, _stoken),
              bygroups(Keyword, using(this, state='text')), '#pop'),
-            (r'(%s%s?)(==)(%s?%s)' % (_stoken, _space, _space, _stoken),
-             bygroups(using(this, state='text'), Operator,
-                      using(this, state='text')), '#pop'),
             (r'(%s%s)(%s)(%s%s)' % (_number, _space, _opword, _space, _number),
              bygroups(using(this, state='arithmetic'), Operator.Word,
                       using(this, state='arithmetic')), '#pop'),
-            (r'(%s%s)(%s)(%s%s)' % (_stoken, _space, _opword, _space, _stoken),
+            (_stoken, using(this, state='text'), ('#pop', 'if2')),
+        ],
+        'if2': [
+            (r'(%s?)(==)(%s?%s)' % (_space, _space, _stoken),
+             bygroups(using(this, state='text'), Operator,
+                      using(this, state='text')), '#pop'),
+            (r'(%s)(%s)(%s%s)' % (_space, _opword, _space, _stoken),
              bygroups(using(this, state='text'), Operator.Word,
                       using(this, state='text')), '#pop')
         ],
