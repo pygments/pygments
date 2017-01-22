@@ -48,7 +48,7 @@ else:
 
 setup(
     name = 'Pygments',
-    version = '2.2',
+    version = '2.2.0',
     url = 'http://pygments.org/',
     license = 'BSD License',
     author = 'Georg Brandl',
@@ -56,7 +56,7 @@ setup(
     description = 'Pygments is a syntax highlighting package written in Python.',
     long_description = __doc__,
     keywords = 'syntax highlighting',
-    packages = find_packages(exclude=['ez_setup']),
+    packages = find_packages(),
     platforms = 'any',
     zip_safe = False,
     include_package_data = True,
