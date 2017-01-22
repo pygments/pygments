@@ -29,6 +29,10 @@ Version 2.2
   * Crystal (PR#576)
   * Snowball (PR#589)
 
+- Added the ability to load lexer and formatter classes directly from files
+  with the `-x` command line option and the `lexers.load_lexer_from_file()`
+  and `formatters.load_formatter_from_file()` functions. (PR#559)
+
 - Added `lexers.find_lexer_class_by_name()`. (#1203)
 
 - Added new token types and lexing for magic methods and variables in Python

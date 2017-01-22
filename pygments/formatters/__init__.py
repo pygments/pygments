@@ -91,14 +91,16 @@ def load_formatter_from_file(filename, formattername="CustomFormatter",
     Users should be very careful with the input, because this method
     is equivalent to running eval on the input file.
 
-    Raises ClassNotFound if there are any problems importing the Formatter
+    Raises ClassNotFound if there are any problems importing the Formatter.
+
+    .. versionadded:: 2.2
     """
     try:
         # This empty dict will contain the namespace for the exec'd file
         custom_namespace = {}
-        exec(open(filename, 'r'), custom_namespace)
+        exec(open(filename, 'rb').read(), custom_namespace)
         # Retrieve the class `formattername` from that namespace
-        if not formattername in custom_namespace:
+        if formattername not in custom_namespace:
             raise ClassNotFound('no valid %s class found in %s' %
                                 (formattername, filename))
         formatter_class = custom_namespace[formattername]
@@ -107,7 +109,7 @@ def load_formatter_from_file(filename, formattername="CustomFormatter",
     except IOError as err:
         raise ClassNotFound('cannot read %s' % filename)
     except ClassNotFound as err:
-        raise err
+        raise
     except Exception as err:
         raise ClassNotFound('error when loading custom formatter: %s' % err)
 
