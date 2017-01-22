@@ -21,10 +21,8 @@
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using
-from pygments.token import Keyword, Text, Comment, Name, String, Number, \
+from pygments.token import Text, Comment, Name, String, Number, \
     Operator, Punctuation
-from pygments.lexer import DelegatingLexer
-from pygments.lexers.web import HtmlLexer, CssLexer
 
 __all__ = ['TypoScriptLexer', 'TypoScriptCssDataLexer', 'TypoScriptHtmlDataLexer']
 
@@ -168,14 +166,14 @@ class TypoScriptLexer(RegexLexer):
         'whitespace': [
             (r'\s+', Text),
         ],
-        'html':[
+        'html': [
             (r'<\S[^\n>]*>', using(TypoScriptHtmlDataLexer)),
             (r'&[^;\n]*;', String),
             (r'(_CSS_DEFAULT_STYLE)(\s*)(\()(?s)(.*(?=\n\)))',
-              bygroups(Name.Class, Text, String.Symbol, using(TypoScriptCssDataLexer))),
+             bygroups(Name.Class, Text, String.Symbol, using(TypoScriptCssDataLexer))),
         ],
         'literal': [
-            (r'0x[0-9A-Fa-f]+t?',Number.Hex),
+            (r'0x[0-9A-Fa-f]+t?', Number.Hex),
             # (r'[0-9]*\.[0-9]+([eE][0-9]+)?[fd]?\s*(?:[^=])', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'(###\w+###)', Name.Constant),

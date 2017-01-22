@@ -121,13 +121,13 @@ class VCLLexer(RegexLexer):
              r'(\s*\(.*\))',
              bygroups(Name.Function, Punctuation, Name.Function, using(this))),
             ('[a-zA-Z_]\w*', Name),
-            ],
+        ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline),
-            ],
+        ],
         'comments': [
             (r'#.*$', Comment),
             (r'/\*', Comment.Multiline, 'comment'),

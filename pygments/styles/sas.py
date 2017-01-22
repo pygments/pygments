@@ -6,6 +6,9 @@
     Style inspired by SAS' enhanced program editor. Note This is not
     meant to be a complete style. It's merely meant to mimic SAS'
     program editor syntax highlighting.
+
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style

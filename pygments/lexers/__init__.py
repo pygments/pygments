@@ -72,7 +72,7 @@ def find_lexer_class(name):
             return cls
 
 
-def find_lexer_class_by_name(alias):
+def find_lexer_class_by_name(_alias):
     """Lookup a lexer class by alias.
 
     Like `get_lexer_by_name`, but does not instantiate the class.
