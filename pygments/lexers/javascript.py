@@ -448,7 +448,7 @@ class TypeScriptLexer(RegexLexer):
 
     name = 'TypeScript'
     aliases = ['ts', 'typescript']
-    filenames = ['*.ts']
+    filenames = ['*.ts', '*.tsx']
     mimetypes = ['text/x-typescript']
 
     flags = re.DOTALL | re.MULTILINE
@@ -533,6 +533,12 @@ class TypeScriptLexer(RegexLexer):
             include('root'),
         ],
     }
+
+    def analyse_text(text):
+        if re.search('^(import.+(from\s+)?["\']|'
+                     '(export\s*)?(interface|class|function)\s+)',
+                     text, re.MULTILINE):
+            return 1.0
 
 
 class LassoLexer(RegexLexer):
