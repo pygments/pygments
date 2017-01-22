@@ -5,7 +5,7 @@
 
     Lexers for configuration file formats.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -462,7 +462,7 @@ class NginxConfLexer(RegexLexer):
     """
     name = 'Nginx configuration file'
     aliases = ['nginx']
-    filenames = []
+    filenames = ['nginx.conf']
     mimetypes = ['text/x-nginx-conf']
 
     tokens = {
