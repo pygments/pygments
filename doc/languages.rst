@@ -26,11 +26,13 @@ Programming languages
 * Common Lisp
 * Coq
 * Cryptol (incl. Literate Cryptol)
+* `Crystal <http://crystal-lang.org>`_
 * `Cython <http://cython.org>`_
 * `D <http://dlang.org>`_
 * Dart
 * Delphi
 * Dylan
+* `Elm <http://elm-lang.org/>`_
 * Erlang
 * `Ezhil <http://ezhillang.org>`_ Ezhil - A Tamil programming language
 * Factor

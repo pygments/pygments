@@ -6,6 +6,57 @@ Issue numbers refer to the tracker at
 pull request numbers to the requests at
 <https://bitbucket.org/birkenfeld/pygments-main/pull-requests/merged>.
 
+Version 2.2.0
+-------------
+(release Jan 22, 2017)
+
+- Added lexers:
+
+  * AMPL
+  * TypoScript (#1173)
+  * Varnish config (PR#554)
+  * Clean (PR#503)
+  * WDiff (PR#513)
+  * Flatline (PR#551)
+  * Silver (PR#537)
+  * HSAIL (PR#518)
+  * JSGF (PR#546)
+  * NCAR command language (PR#536)
+  * Extempore (PR#530)
+  * Cap'n Proto (PR#595)
+  * Whiley (PR#573)
+  * Monte (PR#592)
+  * Crystal (PR#576)
+  * Snowball (PR#589)
+  * CapDL (PR#579)
+  * NuSMV (PR#564)
+  * SAS, Stata (PR#593)
+
+- Added the ability to load lexer and formatter classes directly from files
+  with the `-x` command line option and the `lexers.load_lexer_from_file()`
+  and `formatters.load_formatter_from_file()` functions. (PR#559)
+
+- Added `lexers.find_lexer_class_by_name()`. (#1203)
+
+- Added new token types and lexing for magic methods and variables in Python
+  and PHP.
+
+- Added a new token type for string affixes and lexing for them in Python, C++
+  and Postgresql lexers.
+
+- Added a new token type for heredoc (and similar) string delimiters and
+  lexing for them in C++, Perl, PHP, Postgresql and Ruby lexers.
+
+- Styles can now define colors with ANSI colors for use in the 256-color
+  terminal formatter. (PR#531)
+
+- Improved the CSS lexer. (#1083, #1130)
+
+- Added "Rainbow Dash" style. (PR#623)
+
+- Delay loading `pkg_resources`, which takes a long while to import. (PR#690)
+
+
 Version 2.1.3
 -------------
 (released Mar 2, 2016)

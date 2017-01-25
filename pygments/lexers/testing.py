@@ -5,7 +5,7 @@
 
     Lexers for testing languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -147,7 +147,7 @@ class TAPLexer(RegexLexer):
             (r'^TAP version \d+\n', Name.Namespace),
 
             # Specify a plan with a plan line.
-            (r'^1..\d+', Keyword.Declaration, 'plan'),
+            (r'^1\.\.\d+', Keyword.Declaration, 'plan'),
 
             # A test failure
             (r'^(not ok)([^\S\n]*)(\d*)',

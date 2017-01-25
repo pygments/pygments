@@ -1,0 +1,77 @@
+This is an example BibTeX file.
+This text is a comment.
+
+@preamble{"%%% example BibTeX file"}
+
+@Preamble{"\newcommand{\noopsort}[1]{} "
+        "\newcommand{\noopsort}[1]{} "}
+
+@String{SCI = "Science"}
+
+@STRING{JFernandez = "Fernandez, Julio M."}
+@StRiNg{HGaub = "Gaub, Hermann E."}
+@string{MGautel = "Gautel, Mathias"}
+@String{FOesterhelt = "Oesterhelt, Filipp"}
+@String{MRief = "Rief, Matthias"}
+
+@Article{rief97b,
+       author =       MRief #" and "# MGautel #" and "# FOesterhelt
+                          #" and "# JFernandez #" and "# HGaub,
+       title =        "Reversible Unfolding of Individual Titin
+                          Immunoglobulin Domains by {AFM}",
+       journal =      SCI,
+       volume =       276,
+       number =       5315,
+       pages =        "1109--1112",
+       year =         1997,
+       doi =          "10.1126/science.276.5315.1109",
+       URL =          "http://www.sciencemag.org/cgi/content/abstract/276/5315/1109",
+       eprint =       "http://www.sciencemag.org/cgi/reprint/276/5315/1109.pdf",
+}
+
+
+Parens can be used instead of braces:
+
+@ARTICLE(ruckenstein-diffusion,
+    author = "Liu, Hongquin and Ruckenstein, Eli",
+    language = "english",
+    title = "Predicting the Diffusion Coefficient in Supercritical Fluids",
+    journal = "Ind. Eng. Chem. Res.",
+    volume = "36",
+    year = "1997",
+    pages = "888-895"
+)
+
+@book{
+    viktorov-methods,
+    author = "Викторов, Михаил Маркович",
+    publisher = "Л.: <<Химия>>",
+    title = "Методы вычисления физико-химических величин и прикладные расчёты",
+    language = "russian",
+    year = "1977",
+    isbn = "000-0000000000",
+}
+
+@comment{jackson-commented-out,
+    author = "Jackson, P\'eter",
+    publisher = "Some Publisher",
+    language = "english",
+    title = "Some Title",
+    series = "Some series",
+    booktitle = "Commented Out",
+    number = "3",
+    edition = "Second",
+    year = "1933",
+    pages = "44--59"
+}
+
+@booklet{test-booklet,
+    author = "de Last, Jr., First Middle",
+    language = "english",
+    title = "Just a booklet",
+    year = 2006,
+    month = jan,
+    address = "Moscow",
+    howpublished = "Published by Foo"
+}
+

@@ -34,34 +34,39 @@
     The ``tests/examplefiles`` contains a few test files with data to be
     parsed by these lexers.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
-from pygments.token import Punctuation, \
+from pygments.token import Punctuation, Whitespace, Error, \
     Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.lexers import get_lexer_by_name, ClassNotFound
 from pygments.util import iteritems
 
 from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
     PSEUDO_TYPES, PLPGSQL_KEYWORDS
+from pygments.lexers import _tsql_builtins
 
 
 __all__ = ['PostgresLexer', 'PlPgsqlLexer', 'PostgresConsoleLexer',
-           'SqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'RqlLexer']
+           'SqlLexer', 'TransactSqlLexer', 'MySqlLexer',
+           'SqliteConsoleLexer', 'RqlLexer']
 
 line_re  = re.compile('.*?\n')
 
 language_re = re.compile(r"\s+LANGUAGE\s+'?(\w+)'?", re.IGNORECASE)
 
+do_re = re.compile(r'\bDO\b', re.IGNORECASE) 
+
 
 def language_callback(lexer, match):
     """Parse the content of a $-string using a lexer
 
-    The lexer is chosen looking for a nearby LANGUAGE.
+    The lexer is chosen looking for a nearby LANGUAGE or assumed as
+    plpgsql if inside a DO statement and no LANGUAGE has been found.
     """
     l = None
     m = language_re.match(lexer.text[match.end():match.end()+100])
@@ -72,15 +77,26 @@ def language_callback(lexer, match):
             lexer.text[max(0, match.start()-100):match.start()]))
         if m:
             l = lexer._get_lexer(m[-1].group(1))
-
+        else:
+            m = list(do_re.finditer(
+                lexer.text[max(0, match.start()-25):match.start()]))
+            if m:
+                l = lexer._get_lexer('plpgsql')
+    
+    # 1 = $, 2 = delimiter, 3 = $
+    yield (match.start(1), String, match.group(1))
+    yield (match.start(2), String.Delimiter, match.group(2))
+    yield (match.start(3), String, match.group(3))
+    # 4 = string contents
     if l:
-        yield (match.start(1), String, match.group(1))
-        for x in l.get_tokens_unprocessed(match.group(2)):
+        for x in l.get_tokens_unprocessed(match.group(4)):
             yield x
-        yield (match.start(3), String, match.group(3))
-
     else:
-        yield (match.start(), String, match.group())
+        yield (match.start(4), String, match.group(4))
+    # 5 = $, 6 = delimiter, 7 = $
+    yield (match.start(5), String, match.group(5))
+    yield (match.start(6), String.Delimiter, match.group(6))
+    yield (match.start(7), String, match.group(7))
 
 
 class PostgresBase(object):
@@ -137,7 +153,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'--.*?\n', Comment.Single),
+            (r'--.*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'(' + '|'.join(s.replace(" ", "\s+")
                              for s in DATATYPES + PSEUDO_TYPES)
@@ -148,9 +164,10 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r'\$\d+', Name.Variable),
             (r'([0-9]*\.[0-9]*|[0-9]+)(e[+-]?[0-9]+)?', Number.Float),
             (r'[0-9]+', Number.Integer),
-            (r"(E|U&)?'", String.Single, 'string'),
-            (r'(U&)?"', String.Name, 'quoted-ident'),  # quoted identifier
-            (r'(?s)(\$[^$]*\$)(.*?)(\1)', language_callback),
+            (r"((?:E|U&)?)(')", bygroups(String.Affix, String.Single), 'string'),
+            # quoted identifier
+            (r'((?:U&)?)(")', bygroups(String.Affix, String.Name), 'quoted-ident'),
+            (r'(?s)(\$)([^$]*)(\$)(.*?)(\$)(\2)(\$)', language_callback),
             (r'[a-z_]\w*', Name),
 
             # psql variable in SQL
@@ -363,7 +380,7 @@ class SqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'--.*?\n', Comment.Single),
+            (r'--.*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (words((
                 'ABORT', 'ABS', 'ABSOLUTE', 'ACCESS', 'ADA', 'ADD', 'ADMIN', 'AFTER', 'AGGREGATE',
@@ -464,6 +481,62 @@ class SqlLexer(RegexLexer):
     }
 
 
+class TransactSqlLexer(RegexLexer):
+    """
+    Transact-SQL (T-SQL) is Microsoft's and Sybase's proprietary extension to
+    SQL.
+
+    The list of keywords includes ODBC and keywords reserved for future use..
+    """
+
+    name = 'Transact-SQL'
+    aliases = ['tsql', 't-sql']
+    filenames = ['*.sql']
+    mimetypes = ['text/x-tsql']
+
+    # Use re.UNICODE to allow non ASCII letters in names.
+    flags = re.IGNORECASE | re.UNICODE
+    tokens = {
+        'root': [
+            (r'\s+', Whitespace),
+            (r'--(?m).*?$\n?', Comment.Single),
+            (r'/\*', Comment.Multiline, 'multiline-comments'),
+            (words(_tsql_builtins.OPERATORS), Operator),
+            (words(_tsql_builtins.OPERATOR_WORDS, suffix=r'\b'), Operator.Word),
+            (words(_tsql_builtins.TYPES, suffix=r'\b'), Name.Class),
+            (words(_tsql_builtins.FUNCTIONS, suffix=r'\b'), Name.Function),
+            (r'(goto)(\s+)(\w+\b)', bygroups(Keyword, Whitespace, Name.Label)),
+            (words(_tsql_builtins.KEYWORDS, suffix=r'\b'), Keyword),
+            (r'(\[)([^]]+)(\])', bygroups(Operator, Name, Operator)),
+            (r'0x[0-9a-f]+', Number.Hex),
+            # Float variant 1, for example: 1., 1.e2, 1.2e3
+            (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),
+            # Float variant 2, for example: .1, .1e2
+            (r'\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),
+            # Float variant 3, for example: 123e45
+            (r'[0-9]+e[+-]?[0-9]+', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (r"'(''|[^'])*'", String.Single),
+            (r'"(""|[^"])*"', String.Symbol),
+            (r'[;(),.]', Punctuation),
+            # Below we use \w even for the first "real" character because
+            # tokens starting with a digit have already been recognized
+            # as Number above.
+            (r'@@\w+', Name.Builtin),
+            (r'@\w+', Name.Variable),
+            (r'(\w+)(:)', bygroups(Name.Label, Punctuation)),
+            (r'#?#?\w+', Name),  # names for temp tables and anything else
+            (r'\?', Name.Variable.Magic),  # parameter for prepared statements
+        ],
+        'multiline-comments': [
+            (r'/\*', Comment.Multiline, 'multiline-comments'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[^/*]+', Comment.Multiline),
+            (r'[/*]', Comment.Multiline)
+        ]
+    }
+
+
 class MySqlLexer(RegexLexer):
     """
     Special lexer for MySQL.
@@ -477,7 +550,7 @@ class MySqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(#|--\s+).*?\n', Comment.Single),
+            (r'(#|--\s+).*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (r'[0-9]+', Number.Integer),
             (r'[0-9]*\.[0-9]+(e[+-][0-9]+)', Number.Float),

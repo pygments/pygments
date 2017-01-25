@@ -1,3 +1,12 @@
+#
+# Regression tests
+#
+
+%TAG ! tag:example.com:foo/
+---
+test: !foo/bar {a: 'asdf'}
+test2: fred
+...
 
 #
 # Examples from the Preview section of the YAML specification

@@ -5,7 +5,7 @@
 
     Lexer for the J programming language.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -48,7 +48,7 @@ class JLexer(RegexLexer):
 
             # Definitions
             (r'0\s+:\s*0|noun\s+define\s*$', Name.Entity, 'nounDefinition'),
-            (r'\b(([1-4]|13)\s+:\s*0)|((adverb|conjunction|dyad|monad|verb)\s+define)\b',
+            (r'(([1-4]|13)\s+:\s*0|(adverb|conjunction|dyad|monad|verb)\s+define)\b',
              Name.Function, 'explicitDefinition'),
 
             # Flow Control
@@ -75,8 +75,8 @@ class JLexer(RegexLexer):
                 'fetch', 'file2url', 'fixdotdot', 'fliprgb', 'getargs',
                 'getenv', 'hfd', 'inv', 'inverse', 'iospath',
                 'isatty', 'isutf8', 'items', 'leaf', 'list',
-                'nameclass', 'namelist', 'namelist', 'names', 'nc',
-                'nl', 'on', 'pick', 'pick', 'rows',
+                'nameclass', 'namelist', 'names', 'nc',
+                'nl', 'on', 'pick', 'rows',
                 'script', 'scriptd', 'sign', 'sminfo', 'smoutput',
                 'sort', 'split', 'stderr', 'stdin', 'stdout',
                 'table', 'take', 'timespacex', 'timex', 'tmoutput',

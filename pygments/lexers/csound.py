@@ -5,11 +5,11 @@
 
     Lexers for CSound languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import copy, re
+import re
 
 from pygments.lexer import RegexLexer, bygroups, default, include, using, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, \
@@ -21,7 +21,7 @@ from pygments.lexers.scripting import LuaLexer
 
 __all__ = ['CsoundScoreLexer', 'CsoundOrchestraLexer', 'CsoundDocumentLexer']
 
-newline = (r'((?:;|//).*)*(\n)', bygroups(Comment.Single, Text))
+newline = (r'((?:(?:;|//).*)*)(\n)', bygroups(Comment.Single, Text))
 
 
 class CsoundLexer(RegexLexer):
@@ -177,7 +177,7 @@ class CsoundOrchestraLexer(CsoundLexer):
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (r'\d+', Number.Integer),
             (r'"', String, 'single-line string'),
-            (r'{{', String, 'multi-line string'),
+            (r'\{\{', String, 'multi-line string'),
             (r'[+\-*/%^!=&|<>#~¬]', Operator),
             (r'[](),?:[]', Punctuation),
             (words((
@@ -273,40 +273,40 @@ class CsoundOrchestraLexer(CsoundLexer):
             (r'[\\"~$%\^\n]', String)
         ],
         'multi-line string': [
-            (r'}}', String, '#pop'),
-            (r'[^\}]+|\}(?!\})', String)
+            (r'\}\}', String, '#pop'),
+            (r'[^}]+|\}(?!\})', String)
         ],
 
         'scoreline opcode': [
             include('whitespace or macro call'),
-            (r'{{', String, 'scoreline'),
+            (r'\{\{', String, 'scoreline'),
             default('#pop')
         ],
         'scoreline': [
-            (r'}}', String, '#pop'),
-            (r'([^\}]+)|\}(?!\})', using(CsoundScoreLexer))
+            (r'\}\}', String, '#pop'),
+            (r'([^}]+)|\}(?!\})', using(CsoundScoreLexer))
         ],
 
         'python opcode': [
             include('whitespace or macro call'),
-            (r'{{', String, 'python'),
+            (r'\{\{', String, 'python'),
             default('#pop')
         ],
         'python': [
-            (r'}}', String, '#pop'),
-            (r'([^\}]+)|\}(?!\})', using(PythonLexer))
+            (r'\}\}', String, '#pop'),
+            (r'([^}]+)|\}(?!\})', using(PythonLexer))
         ],
 
         'lua opcode': [
             include('whitespace or macro call'),
             (r'"', String, 'single-line string'),
-            (r'{{', String, 'lua'),
+            (r'\{\{', String, 'lua'),
             (r',', Punctuation),
             default('#pop')
         ],
         'lua': [
-            (r'}}', String, '#pop'),
-            (r'([^\}]+)|\}(?!\})', using(LuaLexer))
+            (r'\}\}', String, '#pop'),
+            (r'([^}]+)|\}(?!\})', using(LuaLexer))
         ]
     }
 
@@ -315,7 +315,7 @@ class CsoundDocumentLexer(RegexLexer):
     """
     For `Csound <http://csound.github.io>`_ documents.
 
-    
+    .. versionadded:: 2.1
     """
 
     name = 'Csound Document'

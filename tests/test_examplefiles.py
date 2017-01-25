@@ -3,7 +3,7 @@
     Pygments tests with example files
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -46,6 +46,10 @@ def test_example_files():
         if not os.path.isfile(absfn):
             continue
 
+        extension = os.getenv('TEST_EXT')
+        if extension and not absfn.endswith(extension):
+            continue
+
         print(absfn)
         with open(absfn, 'rb') as f:
             code = f.read()
@@ -85,7 +89,7 @@ def test_example_files():
 
 def check_lexer(lx, fn):
     if os.name == 'java' and fn in BAD_FILES_FOR_JYTHON:
-        raise support.SkipTest
+        raise support.SkipTest('%s is a known bad file on Jython' % fn)
     absfn = os.path.join(TESTDIR, 'examplefiles', fn)
     with open(absfn, 'rb') as fp:
         text = fp.read()
