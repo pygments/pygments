@@ -1,0 +1,186 @@
+(field "another field" 2)
+(f "000001" -2)
+
+(missing? "a field" 23)
+
+(random-value "age")
+(weighted-random-value "000001")
+
+(if (missing? "00000") (random-value "000000") (f "000000"))
+
+(ensure-value "000000")
+(ensure-weighted-value "000000")
+
+(normalize "000001")
+(normalize "length" 8 23)
+
+(z-score "a numeric field")
+(z-score 23)
+
+(field-prop string "00023" name)
+(field-prop numeric "00023" summary missing_count)
+
+(category-count "species" "Iris-versicolor")
+(category-count "species" (f "000004"))
+(bin-count "age" (f "bin-selector"))
+(bin-center "000003" 3)
+(bin-center (field "field-selector") 4)
+
+(let (v (f "age"))
+  (cond (< v 2) "baby"
+        (< v 10) "child"
+        (< v 20) "teenager"
+        "adult"))
+
+(segment-label "000000" "baby" 2 "child" 10 "teenager" 20 "adult")
+(segment-label 0 "1st fourth" "2nd fourth" "3rd fourth" "4th fourth")
+
+(let (max (maximum 0)
+          min (minimum 0)
+          step (/ (- max min) 4))
+  (segment-label 0 "1st fourth" (+ min step)
+                 "2nd fourth" (+ min step step)
+                 "3rd fourth" (+ min step step step)
+                 "4th fourth"))
+
+(contains-items? "000000" "blue" "green" "darkblue")
+
+(<= (percentile "age" 0.5) (f "age") (percentile "age" 0.95))
+
+(within-percentiles? "age" 0.5 0.95)
+
+(percentile-label "000023" "1st" "2nd" "3rd" "4th")
+
+(cond (within-percentiles? "000023" 0 0.25) "1st"
+      (within-percentiles? "000023" 0.25 0.5) "2nd"
+      (within-percentiles? "000023" 0.5 0.75) "3rd"
+      "4th")
+
+(str 1 "hello " (field "a"))
+(str "value_" (+ 3 4) "/" (name "000001"))
+
+(length "abc")
+(length "")
+
+(levenshtein (f 0) "a random string")
+(if (< (levenshtein (f 0) "bluething") 5) "bluething" (f 0))
+
+(occurrences "howdy woman, howdy" "howdy")
+(occurrences "howdy woman" "Man" true)
+(occurrences "howdy man" "Man" true)
+(occurrences "hola, Holas" "hola" true "es")
+
+(md5 "a text")
+(sha1 "a text")
+(sha256 "")
+
+(matches? (field "name") ".*\\sHal\\s.*")
+(matches? (field "name") "(?i).*\\shal\\s.*")
+
+(if (matches? (f "result") (re-quote (f "target"))) "GOOD" "MISS")
+(matches? (f "name") (str "^" (re-quote (f "salutation")) "\\s *$"))
+
+(replace "Almost Pig Latin" "\\b(\\w)(\\w+)\\b" "$2$1ay")
+(replace-first "swap first two words" "(\\w+)(\\s+)(\\w+)" "$3$2$1")
+
+(language "this is an English phrase")
+
+(< (field 0) (field 1))
+(<= (field 0 -1) (field 0) (field 0 1))
+(> (field "date") "07-14-1969")
+(>= 23 (f "000004" -2))
+
+(= "Dante" (field "Author"))
+(= 1300 (field "Year"))
+(= (field "Year" -2) (field "Year" -1) (field "Year"))
+(!= (field "00033" -1) (field "00033" 1))
+
+(and (= 3 (field 1)) (= "meh" (f "a")) (< (f "pregnancies") 5))
+(not true)
+
+(linear-regression 1 1 2 2 3 3 4 4)
+(linear-regression 2.0 3.1 2.3 3.3 24.3 45.2)
+
+(epoch-fields (f "milliseconds"))
+(epoch-year (* 1000 (f "seconds")))
+
+(/ (f "a-datetime-string") 1000)
+(/ (epoch (f "a-datetime-string")) 1000)
+
+(epoch-fields (epoch "1969-14-07T06:00:12"))
+(epoch-hour (epoch "11~22~30" "hh~mm~ss"))
+
+(let (x (+ (window "a" -10 10))
+        a (/ (* x 3) 4.34)
+        y (if (< a 10) "Good" "Bad"))
+  (list x (str (f 10) "-" y) a y))
+
+(list (let (z (f 0)) (* 2 (* z z) (log z)))
+      (let (pi 3.141592653589793 r (f "radius")) (* 4 pi r r)))
+
+(if (< (field "age") 18) "non-adult" "adult")
+
+(if (= "oh" (field "000000")) "OH")
+
+(if (> (field "000001") (mean "000001"))
+  "above average"
+  (if (< (field "000001") (mean "000001"))
+    "below average"
+    "mediocre"))
+
+(cond (> (f "000001") (mean "000001")) "above average"
+      (= (f "000001") (mean "000001")) "below average"
+      "mediocre")
+
+(cond (or (= "a" (f 0)) (= "a+" (f 0))) 1
+      (or (= "b" (f 0)) (= "b+" (f 0))) 0
+      (or (= "c" (f 0)) (= "c+" (f 0))) -1)
+
+(cond (< (f "age") 2) "baby"
+      (and (<= 2 (f "age") 10) (= "F" (f "sex"))) "girl"
+      (and (<= 2 (f "age") 10) (= "M" (f "sex"))) "boy"
+      (< 10 (f "age") 20) "teenager"
+      "adult")
+
+(list (field "age")
+      (field "weight" -1)
+      (population "age"))
+
+(list 1.23
+      (if (< (field "age") 10) "child" "adult")
+      (field 3))
+
+(head (cons x lst))
+(tail (cons x lst))
+
+(count (list (f 1) (f 2)))
+(mode (list a b b c b a c c c))
+(max (list -1 2 -2 0.38))
+(min (list -1.3 2 1))
+(avg (list -1 -2 1 2 0.8 -0.8))
+
+(in 3 (1 2 3 2))
+(in "abc" (1 2 3))
+(in (f "size") ("X" "XXL"))
+
+(< _ 3)
+(+ (f "000001" _) 3)
+(< -18 _ (f 3))
+
+(map (* 2 _) (list (f 0 -1) (f 0) (f 0 1)))
+
+(all-but "id" "000023")
+(fields "000003" 3 "a field" "another" "0002a3b-3")
+
+(all-with-defaults "species" "Iris-versicolor"
+                   "petal-width" 2.8
+                   "000002" 0)
+
+(all-with-numeric-default "median")
+(all-with-numeric-default 0)
+
+(window "000001" -1 2)
+(filter (< _ 99.9) (map (+ 32 (* 1.8 _)) (window "Temp" -2 0)))
+
+(let (now (f "epoch"))
+  (avg (cond-window "temperature" (< (- (f "epoch") now) 240))))

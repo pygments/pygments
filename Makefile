@@ -4,7 +4,7 @@
 #
 # Combines scripts for common tasks.
 #
-# :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+# :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
 # :license: BSD, see LICENSE for details.
 #
 
@@ -54,6 +54,9 @@ test:
 
 test-coverage:
 	@$(PYTHON) tests/run.py -d --with-coverage --cover-package=pygments --cover-erase $(TEST)
+
+test-examplefiles:
+	nosetests tests/test_examplefiles.py
 
 tox-test:
 	@tox -- $(TEST)

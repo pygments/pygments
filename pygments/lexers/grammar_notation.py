@@ -5,15 +5,17 @@
 
     Lexers for grammer notations like BNF.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, bygroups, words
-from pygments.token import Punctuation, Text, Comment, Operator, \
-    Keyword, Name, Literal
+import re
 
-__all__ = ['BnfLexer', 'AbnfLexer']
+from pygments.lexer import RegexLexer, bygroups, include, this, using, words
+from pygments.token import Comment, Keyword, Literal, Name, Number, \
+    Operator, Punctuation, String, Text
+
+__all__ = ['BnfLexer', 'AbnfLexer', 'JsgfLexer']
 
 
 class BnfLexer(RegexLexer):
@@ -127,5 +129,85 @@ class AbnfLexer(RegexLexer):
             # fallback
             (r'\s+', Text),
             (r'.', Text),
+        ],
+    }
+
+
+class JsgfLexer(RegexLexer):
+    """
+    For `JSpeech Grammar Format <https://www.w3.org/TR/jsgf/>`_
+    grammars.
+
+    .. versionadded:: 2.2
+    """
+    name = 'JSGF'
+    aliases = ['jsgf']
+    filenames = ['*.jsgf']
+    mimetypes = ['application/jsgf', 'application/x-jsgf', 'text/jsgf']
+
+    flags = re.MULTILINE | re.UNICODE
+
+    tokens = {
+        'root': [
+            include('comments'),
+            include('non-comments'),
+        ],
+        'comments': [
+            (r'/\*\*(?!/)', Comment.Multiline, 'documentation comment'),
+            (r'/\*[\w\W]*?\*/', Comment.Multiline),
+            (r'//.*', Comment.Single),
+        ],
+        'non-comments': [
+            ('\A#JSGF[^;]*', Comment.Preproc),
+            (r'\s+', Text),
+            (r';', Punctuation),
+            (r'[=|()\[\]*+]', Operator),
+            (r'/[^/]+/', Number.Float),
+            (r'"', String.Double, 'string'),
+            (r'\{', String.Other, 'tag'),
+            (words(('import', 'public'), suffix=r'\b'), Keyword.Reserved),
+            (r'grammar\b', Keyword.Reserved, 'grammar name'),
+            (r'(<)(NULL|VOID)(>)',
+             bygroups(Punctuation, Name.Builtin, Punctuation)),
+            (r'<', Punctuation, 'rulename'),
+            (r'\w+|[^\s;=|()\[\]*+/"{<\w]+', Text),
+        ],
+        'string': [
+            (r'"', String.Double, '#pop'),
+            (r'\\.', String.Escape),
+            (r'[^\\"]+', String.Double),
+        ],
+        'tag': [
+            (r'\}', String.Other, '#pop'),
+            (r'\\.', String.Escape),
+            (r'[^\\}]+', String.Other),
+        ],
+        'grammar name': [
+            (r';', Punctuation, '#pop'),
+            (r'\s+', Text),
+            (r'\.', Punctuation),
+            (r'[^;\s.]+', Name.Namespace),
+        ],
+        'rulename': [
+            (r'>', Punctuation, '#pop'),
+            (r'\*', Punctuation),
+            (r'\s+', Text),
+            (r'([^.>]+)(\s*)(\.)', bygroups(Name.Namespace, Text, Punctuation)),
+            (r'[^.>]+', Name.Constant),
+        ],
+        'documentation comment': [
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'(^\s*\*?\s*)(@(?:example|see)\s+)'
+             r'([\w\W]*?(?=(?:^\s*\*?\s*@|\*/)))',
+             bygroups(Comment.Multiline, Comment.Special,
+                      using(this, state='example'))),
+            (r'(^\s*\*?\s*)(@\S*)',
+             bygroups(Comment.Multiline, Comment.Special)),
+            (r'[^*\n@]+|\w|\W', Comment.Multiline),
+        ],
+        'example': [
+            (r'\n\s*\*', Comment.Multiline),
+            include('non-comments'),
+            (r'.', Comment.Multiline),
         ],
     }

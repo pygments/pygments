@@ -5,7 +5,7 @@
 
     Contains built-in styles.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -41,6 +41,9 @@ STYLE_MAP = {
     'lovelace': 'lovelace::LovelaceStyle',
     'algol':    'algol::AlgolStyle',
     'algol_nu': 'algol_nu::Algol_NuStyle',
+    'arduino':  'arduino::ArduinoStyle',
+    'rainbow_dash': 'rainbow_dash::RainbowDashStyle',
+    'abap':     'abap::AbapStyle',
 }
 
 

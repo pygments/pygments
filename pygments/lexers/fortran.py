@@ -5,13 +5,13 @@
 
     Lexers for Fortran languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups, include, words, using
+from pygments.lexer import RegexLexer, bygroups, include, words, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
 
@@ -156,8 +156,8 @@ class FortranLexer(RegexLexer):
 
         'nums': [
             (r'\d+(?![.e])(_[a-z]\w+)?', Number.Integer),
-            (r'[+-]?\d*\.\d+(e[-+]?\d+)?(_[a-z]\w+)?', Number.Float),
-            (r'[+-]?\d+\.\d*(e[-+]?\d+)?(_[a-z]\w+)?', Number.Float),
+            (r'[+-]?\d*\.\d+([ed][-+]?\d+)?(_[a-z]\w+)?', Number.Float),
+            (r'[+-]?\d+\.\d*([ed][-+]?\d+)?(_[a-z]\w+)?', Number.Float),
         ],
     }
 
@@ -191,16 +191,15 @@ class FortranFixedLexer(RegexLexer):
             (r'(.{5})', Name.Label, 'cont-char'),
             (r'.*\n', using(FortranLexer)),
         ],
-
         'cont-char': [
             (' ', Text, 'code'),
             ('0', Comment, 'code'),
-            ('.', Generic.Strong, 'code')
+            ('.', Generic.Strong, 'code'),
         ],
-
         'code': [
             (r'(.{66})(.*)(\n)',
              bygroups(_lex_fortran, Comment, Text), 'root'),
             (r'(.*)(\n)', bygroups(_lex_fortran, Text), 'root'),
-            (r'', Text, 'root')]
+            default('root'),
+        ]
     }

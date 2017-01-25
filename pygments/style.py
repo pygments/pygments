@@ -5,12 +5,35 @@
 
     Basic style object.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.token import Token, STANDARD_TYPES
 from pygments.util import add_metaclass
+
+# Default mapping of #ansixxx to RGB colors.
+_ansimap = {
+    # dark
+    '#ansiblack': '000000',
+    '#ansidarkred': '7f0000',
+    '#ansidarkgreen': '007f00',
+    '#ansibrown': '7f7fe0',
+    '#ansidarkblue': '00007f',
+    '#ansipurple': '7f007f',
+    '#ansiteal': '007f7f',
+    '#ansilightgray': 'e5e5e5',
+    # normal
+    '#ansidarkgray': '555555',
+    '#ansired': 'ff0000',
+    '#ansigreen': '00ff00',
+    '#ansiyellow': 'ffff00',
+    '#ansiblue': '0000ff',
+    '#ansifuchsia': 'ff00ff',
+    '#ansiturquoise': '00ffff',
+    '#ansiwhite': 'ffffff',
+}
+ansicolors = set(_ansimap)
 
 
 class StyleMeta(type):
@@ -22,6 +45,8 @@ class StyleMeta(type):
                 obj.styles[token] = ''
 
         def colorformat(text):
+            if text in ansicolors:
+                return text
             if text[0:1] == '#':
                 col = text[1:]
                 if len(col) == 6:
@@ -79,16 +104,28 @@ class StyleMeta(type):
 
     def style_for_token(cls, token):
         t = cls._styles[token]
+        ansicolor = bgansicolor = None
+        color = t[0]
+        if color.startswith('#ansi'):
+            ansicolor = color
+            color = _ansimap[color]
+        bgcolor = t[4]
+        if bgcolor.startswith('#ansi'):
+            bgansicolor = bgcolor
+            bgcolor = _ansimap[bgcolor]
+
         return {
-            'color':        t[0] or None,
+            'color':        color or None,
             'bold':         bool(t[1]),
             'italic':       bool(t[2]),
             'underline':    bool(t[3]),
-            'bgcolor':      t[4] or None,
+            'bgcolor':      bgcolor or None,
             'border':       t[5] or None,
             'roman':        bool(t[6]) or None,
             'sans':         bool(t[7]) or None,
             'mono':         bool(t[8]) or None,
+            'ansicolor':    ansicolor,
+            'bgansicolor':  bgansicolor,
         }
 
     def list_styles(cls):
