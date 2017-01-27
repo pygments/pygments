@@ -5,7 +5,7 @@
 
     Lexers for Pascal family languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -44,7 +44,7 @@ class DelphiLexer(Lexer):
     """
     name = 'Delphi'
     aliases = ['delphi', 'pas', 'pascal', 'objectpascal']
-    filenames = ['*.pas']
+    filenames = ['*.pas', '*.dpr']
     mimetypes = ['text/x-pascal']
 
     TURBO_PASCAL_KEYWORDS = (
