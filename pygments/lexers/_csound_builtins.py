@@ -7,44 +7,33 @@
     :license: BSD, see LICENSE for details.
 """
 
-# Opcodes in Csound 6.05 from
-#   csound --list-opcodes
-# except
-#   cggoto  <http://www.csounds.com/manual/html/cggoto.html>
-#   cigoto  <http://www.csounds.com/manual/html/cigoto.html>
-#   cingoto (undocumented)
-#   ckgoto  <http://www.csounds.com/manual/html/ckgoto.html>
-#   cngoto  <http://www.csounds.com/manual/html/cngoto.html>
-#   endin   <http://www.csounds.com/manual/html/endin.html
-#   endop   <http://www.csounds.com/manual/html/endop.html
-#   goto    <http://www.csounds.com/manual/html/goto.html>
-#   igoto   <http://www.csounds.com/manual/html/igoto.html>
-#   instr   <http://www.csounds.com/manual/html/instr.html>
-#   kgoto   <http://www.csounds.com/manual/html/kgoto.html>
-#   loop_ge <http://www.csounds.com/manual/html/loop_ge.html>
-#   loop_gt <http://www.csounds.com/manual/html/loop_gt.html>
-#   loop_le <http://www.csounds.com/manual/html/loop_le.html>
-#   loop_lt <http://www.csounds.com/manual/html/loop_lt.html>
-#   opcode  <http://www.csounds.com/manual/html/opcode.html>
-#   return  <http://www.csounds.com/manual/html/return.html>
-#   rigoto  <http://www.csounds.com/manual/html/rigoto.html>
-#   tigoto  <http://www.csounds.com/manual/html/tigoto.html>
-#   timout  <http://www.csounds.com/manual/html/timout.html>
-# which are treated as keywords; the scoreline opcodes
-#   scoreline <http://www.csounds.com/manual/html/scoreline.html>
-#   scoreline_i <http://www.csounds.com/manual/html/scoreline_i.html>
-# which allow Csound Score highlighting; the pyrun opcodes
-# <http://www.csounds.com/manual/html/pyrun.html> 
-#   pylrun
-#   pylruni
-#   pylrunt
-#   pyrun
-#   pyruni
-#   pyrunt
-# which allow Python highlighting; and the Lua opcodes
-#   lua_exec  <http://www.csounds.com/manual/html/lua_exec.html>
-#   lua_opdef <http://www.csounds.com/manual/html/lua_opdef.html>
-# which allow Lua highlighting.
+# Opcodes in Csound 6.08.0 at commit a1159a1 from
+#   csound --list-opcodes3
+# except for
+#   cggoto   <https://csound.github.io/docs/manual/cggoto.html>
+#   cigoto   <https://csound.github.io/docs/manual/cigoto.html>
+#   cingoto  (undocumented)
+#   ckgoto   <https://csound.github.io/docs/manual/ckgoto.html>
+#   cngoto   <https://csound.github.io/docs/manual/cngoto.html>
+#   cnkgoto  (undocumented)
+#   endin    <https://csound.github.io/docs/manual/endin.html
+#   endop    <https://csound.github.io/docs/manual/endop.html
+#   goto     <https://csound.github.io/docs/manual/goto.html>
+#   igoto    <https://csound.github.io/docs/manual/igoto.html>
+#   instr    <https://csound.github.io/docs/manual/instr.html>
+#   kgoto    <https://csound.github.io/docs/manual/kgoto.html>
+#   loop_ge  <https://csound.github.io/docs/manual/loop_ge.html>
+#   loop_gt  <https://csound.github.io/docs/manual/loop_gt.html>
+#   loop_le  <https://csound.github.io/docs/manual/loop_le.html>
+#   loop_lt  <https://csound.github.io/docs/manual/loop_lt.html>
+#   opcode   <https://csound.github.io/docs/manual/opcode.html>
+#   return   <https://csound.github.io/docs/manual/return.html>
+#   rireturn <https://csound.github.io/docs/manual/rireturn.html>
+#   rigoto   <https://csound.github.io/docs/manual/rigoto.html>
+#   tigoto   <https://csound.github.io/docs/manual/tigoto.html>
+#   timout   <https://csound.github.io/docs/manual/timout.html>
+# which are treated as keywords in csound.py.
+
 OPCODES = set((
     'ATSadd',
     'ATSaddnz',
@@ -133,8 +122,10 @@ OPCODES = set((
     'MixerSetLevel',
     'MixerSetLevel_i',
     'OSCinit',
+    'OSCinitM',
     'OSClisten',
     'OSCsend',
+    'S',
     'a',
     'abs',
     'active',
@@ -151,7 +142,6 @@ OPCODES = set((
     'ampmidid',
     'areson',
     'aresonk',
-    'array',
     'atone',
     'atonek',
     'atonex',
@@ -163,9 +153,7 @@ OPCODES = set((
     'bbcuts',
     'betarand',
     'bexprnd',
-    'bformdec',
     'bformdec1',
-    'bformenc',
     'bformenc1',
     'binit',
     'biquad',
@@ -192,9 +180,11 @@ OPCODES = set((
     'cent',
     'centroid',
     'ceps',
+    'cepsinv',
    #'cggoto',
     'chanctrl',
     'changed',
+    'changed2',
     'chani',
     'chano',
     'chebyshevpoly',
@@ -219,18 +209,18 @@ OPCODES = set((
     'clockon',
     'cmplxprod',
    #'cngoto',
+   #'cnkgoto',
     'comb',
     'combinv',
     'compilecsd',
     'compileorc',
     'compilestr',
     'compress',
+    'compress2',
     'connect',
     'control',
     'convle',
     'convolve',
-    'copy2ftab',
-    'copy2ttab',
     'copya2ftab',
     'copyf2array',
     'cos',
@@ -273,6 +263,8 @@ OPCODES = set((
     'dcblock',
     'dcblock2',
     'dconv',
+    'dct',
+    'dctinv',
     'delay',
     'delay1',
     'delayk',
@@ -286,6 +278,7 @@ OPCODES = set((
     'deltapxw',
     'denorm',
     'diff',
+    'directory',
     'diskgrain',
     'diskin',
     'diskin2',
@@ -338,6 +331,7 @@ OPCODES = set((
     'filelen',
     'filenchnls',
     'filepeak',
+    'filescal',
     'filesr',
     'filevalid',
     'fillarray',
@@ -385,6 +379,7 @@ OPCODES = set((
     'fprints',
     'frac',
     'fractalnoise',
+    'framebuffer',
     'freeverb',
     'ftchnls',
     'ftconv',
@@ -400,6 +395,7 @@ OPCODES = set((
     'ftmorf',
     'ftresize',
     'ftresizei',
+    'ftsamplebank',
     'ftsave',
     'ftsavek',
     'ftsr',
@@ -416,7 +412,9 @@ OPCODES = set((
     'gendyx',
     'getcfg',
     'getcol',
+    'getftargs',
     'getrow',
+    'getseed',
     'gogobel',
    #'goto',
     'grain',
@@ -432,7 +430,6 @@ OPCODES = set((
     'hdf5write',
     'hilbert',
     'hrtfearly',
-    'hrtfer',
     'hrtfmove',
     'hrtfmove2',
     'hrtfreverb',
@@ -442,7 +439,6 @@ OPCODES = set((
     'hvs2',
     'hvs3',
     'i',
-    'iceps',
    #'igoto',
     'ihold',
     'imagecreate',
@@ -483,9 +479,7 @@ OPCODES = set((
     'jspline',
     'k',
    #'kgoto',
-    'ktableseg',
     'lenarray',
-    'lentab',
     'lfo',
     'limit',
     'line',
@@ -533,9 +527,9 @@ OPCODES = set((
     'lpshold',
     'lpsholdp',
     'lpslot',
-   #'lua_exec',
+    'lua_exec',
     'lua_ikopcall',
-   #'lua_opdef',
+    'lua_opdef',
     'mac',
     'maca',
     'madsr',
@@ -553,12 +547,12 @@ OPCODES = set((
     'maxaccum',
     'maxalloc',
     'maxarray',
-    'maxtab',
     'mclock',
     'mdelay',
     'median',
     'mediank',
     'metro',
+    'mfb',
     'midglobal',
     'midic14',
     'midic21',
@@ -590,13 +584,13 @@ OPCODES = set((
     'minaccum',
     'minarray',
     'mincer',
-    'mintab',
     'mirror',
     'mode',
     'modmatrix',
     'monitor',
     'moog',
     'moogladder',
+    'moogladder2',
     'moogvcf',
     'moogvcf2',
     'moscil',
@@ -604,12 +598,19 @@ OPCODES = set((
     'mp3in',
     'mp3len',
     'mp3nchnls',
+    'mp3scal',
     'mp3sr',
     'mpulse',
     'mrtmsg',
     'multitap',
     'mute',
+    'mvchpf',
+    'mvclpf1',
+    'mvclpf2',
+    'mvclpf3',
+    'mvclpf4',
     'mxadsr',
+    'nchnls_hw',
     'nestedap',
     'nlalp',
     'nlfilt',
@@ -626,12 +627,14 @@ OPCODES = set((
     'nstance',
     'nstrnum',
     'ntrpol',
+    'nxtpow2',
     'octave',
     'octcps',
     'octmidi',
     'octmidib',
     'octmidinn',
     'octpch',
+    'olabuffer',
    #'opcode',
     'oscbnk',
     'oscil',
@@ -684,12 +687,14 @@ OPCODES = set((
     'pan',
     'pan2',
     'pareq',
+    'part2txt',
     'partials',
     'partikkel',
     'partikkelget',
     'partikkelset',
     'partikkelsync',
     'passign',
+    'paulstretch',
     'pcauchy',
     'pchbend',
     'pchmidi',
@@ -723,8 +728,6 @@ OPCODES = set((
     'pol2rect',
     'polyaft',
     'polynomial',
-    'pop',
-    'pop_f',
     'port',
     'portk',
     'poscil',
@@ -732,6 +735,7 @@ OPCODES = set((
     'pow',
     'powershape',
     'powoftwo',
+    'pows',
     'prealloc',
     'prepiano',
     'print',
@@ -751,8 +755,6 @@ OPCODES = set((
     'ptableiw',
     'ptablew',
     'ptrack',
-    'push',
-    'push_f',
     'puts',
     'pvadd',
     'pvbufread',
@@ -885,12 +887,12 @@ OPCODES = set((
     'pylexec',
     'pylexeci',
     'pylexect',
-   #'pylrun',
-   #'pylruni',
-   #'pylrunt',
-   #'pyrun',
-   #'pyruni',
-   #'pyrunt',
+    'pylrun',
+    'pylruni',
+    'pylrunt',
+    'pyrun',
+    'pyruni',
+    'pyrunt',
     'qinf',
     'qnan',
     'r2c',
@@ -934,7 +936,7 @@ OPCODES = set((
     'rfft',
     'rifft',
    #'rigoto',
-    'rireturn',
+   #'rireturn',
     'rms',
     'rnd',
     'rnd31',
@@ -947,7 +949,6 @@ OPCODES = set((
     'sandpaper',
     'scale',
     'scalearray',
-    'scalet',
     'scanhammer',
     'scans',
     'scantable',
@@ -956,8 +957,8 @@ OPCODES = set((
     'schedkwhennamed',
     'schedule',
     'schedwhen',
-   #'scoreline',
-   #'scoreline_i',
+    'scoreline',
+    'scoreline_i',
     'seed',
     'sekere',
     'semitone',
@@ -1019,7 +1020,6 @@ OPCODES = set((
     'slider8table',
     'slider8tablef',
     'sliderKawai',
-    'sndload',
     'sndloop',
     'sndwarp',
     'sndwarpst',
@@ -1028,28 +1028,16 @@ OPCODES = set((
     'socksend',
     'socksends',
     'soundin',
-    'soundout',
-    'soundouts',
     'space',
     'spat3d',
     'spat3di',
     'spat3dt',
     'spdist',
-    'specaddm',
-    'specdiff',
-    'specdisp',
-    'specfilt',
-    'spechist',
-    'specptrk',
-    'specscal',
-    'specsum',
-    'spectrum',
     'splitrig',
     'sprintf',
     'sprintfk',
     'spsend',
     'sqrt',
-    'stack',
     'statevar',
     'stix',
     'strcat',
@@ -1086,7 +1074,6 @@ OPCODES = set((
     'subinstrinit',
     'sum',
     'sumarray',
-    'sumtab',
     'svfilter',
     'syncgrain',
     'syncloop',
@@ -1096,7 +1083,7 @@ OPCODES = set((
     'tab',
     'tab2pvs',
     'tab_i',
-    'tabgen',
+    'tabifd',
     'table',
     'table3',
     'table3kt',
@@ -1122,15 +1109,12 @@ OPCODES = set((
     'tablewkt',
     'tablexkt',
     'tablexseg',
-    'tabmap',
-    'tabmap_i',
     'tabmorph',
     'tabmorpha',
     'tabmorphak',
     'tabmorphi',
     'tabplay',
     'tabrec',
-    'tabslice',
     'tabsum',
     'tabw',
     'tabw_i',
@@ -1210,6 +1194,7 @@ OPCODES = set((
     'unirand',
     'unwrap',
     'upsamp',
+    'urandom',
     'urd',
     'vactrol',
     'vadd',
@@ -1220,11 +1205,6 @@ OPCODES = set((
     'valpass',
     'vaset',
     'vbap',
-    'vbap16',
-    'vbap4',
-    'vbap4move',
-    'vbap8',
-    'vbap8move',
     'vbapg',
     'vbapgmove',
     'vbaplsinit',
@@ -1326,7 +1306,6 @@ OPCODES = set((
     'xscansmap',
     'xscanu',
     'xtratim',
-    'xyin',
     'zacl',
     'zakinit',
     'zamod',
@@ -1343,4 +1322,46 @@ OPCODES = set((
     'zkr',
     'zkw',
     'zkwm'
+))
+
+DEPRECATED_OPCODES = set((
+    'array',
+    'bformdec',
+    'bformenc',
+    'copy2ftab',
+    'copy2ttab',
+    'hrtfer',
+    'ktableseg',
+    'lentab',
+    'maxtab',
+    'mintab',
+    'pop',
+    'pop_f',
+    'push',
+    'push_f',
+    'scalet',
+    'sndload',
+    'soundout',
+    'soundouts',
+    'specaddm',
+    'specdiff',
+    'specdisp',
+    'specfilt',
+    'spechist',
+    'specptrk',
+    'specscal',
+    'specsum',
+    'spectrum',
+    'stack',
+    'sumtab',
+    'tabgen',
+    'tabmap',
+    'tabmap_i',
+    'tabslice',
+    'vbap16',
+    'vbap4',
+    'vbap4move',
+    'vbap8',
+    'vbap8move',
+    'xyin'
 ))
