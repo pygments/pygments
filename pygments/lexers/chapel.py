@@ -5,7 +5,7 @@
 
     Lexer for the Chapel language.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -52,7 +52,7 @@ class ChapelLexer(RegexLexer):
                 'then', 'use', 'when', 'where', 'while', 'with', 'yield',
                 'zip'), suffix=r'\b'),
              Keyword),
-            (r'(proc)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'procname'),
+            (r'(proc)((?:\s)+)', bygroups(Keyword, Text), 'procname'),
             (r'(class|module|record|union)(\s+)', bygroups(Keyword, Text),
              'classname'),
 
@@ -96,6 +96,7 @@ class ChapelLexer(RegexLexer):
             (r'[a-zA-Z_][\w$]*', Name.Class, '#pop'),
         ],
         'procname': [
-            (r'[a-zA-Z_][\w$]*', Name.Function, '#pop'),
+            (r'([a-zA-Z_][\w$]+|\~[a-zA-Z_][\w$]+|[+*/!~%<>=&^|\-]{1,2})',
+             Name.Function, '#pop'),
         ],
     }
