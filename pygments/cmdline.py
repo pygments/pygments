@@ -423,7 +423,7 @@ def main_inner(popts, args, usage):
             return 1
     else:
         if not fmter:
-            if os.environ.get('TERM') and '256' in os.environ.get('TERM'):
+            if '256' in os.environ.get('TERM', ''):
                 fmter = Terminal256Formatter(**parsed_opts)
             else:
                 fmter = TerminalFormatter(**parsed_opts)
