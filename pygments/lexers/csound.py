@@ -64,7 +64,7 @@ class CsoundLexer(RegexLexer):
             (r'#', Punctuation, ('#pop', 'macro body'))
         ],
         'macro body': [
-            (r'(?:\\(?!#)|[^#\\]|\n)+', Comment.Preproc), # TODO
+            (r'(?:\\(?!#)|[^#\\]|\n)+', Comment.Preproc),
             (r'\\#', Comment.Preproc),
             (r'(?<!\\)#', Punctuation, '#pop')
         ],
@@ -80,8 +80,8 @@ class CsoundLexer(RegexLexer):
             (r'\$[A-Z_a-z]\w*(?:\.|\b)', Comment.Preproc)
         ],
         'macro parameter value list': [
-            (r'(?:[^\'#"{()]|\{(?!\{))+', Comment.Preproc), # TODO
-            (r"['#]", Keyword),
+            (r'(?:[^\'#"{()]|\{(?!\{))+', Comment.Preproc),
+            (r"['#]", Punctuation),
             # Csound’s preprocessor can’t handle right parentheses in parameter values
             # <https://github.com/csound/csound/issues/721>. For example,
             #   $MACRO((value))
@@ -106,7 +106,7 @@ class CsoundLexer(RegexLexer):
             include('braced string')
         ],
         'macro parameter value parenthetical': [
-            (r'[^\\()]+', Comment.Preproc), # TODO
+            (r'[^\\()]+', Comment.Preproc),
             (r'\(', Comment.Preproc, '#push'),
             (r'\\\)', Comment.Preproc, '#pop'),
             (r'\)', Error, '#pop')
@@ -309,18 +309,18 @@ class CsoundOrchestraLexer(CsoundLexer):
 
         'quoted string': [
             (r'"', String, '#pop'),
-            (r'[^\\"$%]', String),
+            (r'[^\\"$%)]+', String),
             include('macro uses'),
             include('escape sequences'),
             include('format specifiers'),
-            (r'[\\$%]', String)
+            (r'[\\$%)]', String)
         ],
         'braced string': [
             (r'\}\}', String, '#pop'),
-            (r'[^\\}]|\}(?!\})', String),
+            (r'(?:[^\\%)}]|\}(?!\}))+', String),
             include('escape sequences'),
             include('format specifiers'),
-            (r'[\\%]', String)
+            (r'[\\%)]', String)
         ],
         'escape sequences': [
             # https://github.com/csound/csound/search?q=unquote_string+path%3AEngine+filename%3Acsound_orc_compile.c
