@@ -31,8 +31,8 @@ class AutohotkeyLexer(RegexLexer):
         'root': [
             (r'^(\s*)(/\*)', bygroups(Text, Comment.Multiline), 'incomment'),
             (r'^(\s*)(\()', bygroups(Text, Generic), 'incontinuation'),
-            (r'\s+;.*?$', Comment.Singleline),
-            (r'^;.*?$', Comment.Singleline),
+            (r'\s+;.*?$', Comment.Single),
+            (r'^;.*?$', Comment.Single),
             (r'[]{}(),;[]', Punctuation),
             (r'(in|is|and|or|not)\b', Operator.Word),
             (r'\%[a-zA-Z_#@$][\w#@$]*\%', Name.Variable),

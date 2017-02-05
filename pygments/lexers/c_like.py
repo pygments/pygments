@@ -105,7 +105,7 @@ class ClayLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s', Text),
-            (r'//.*?$', Comment.Singleline),
+            (r'//.*?$', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'\b(public|private|import|as|record|variant|instance'
              r'|define|overload|default|external|alias'
