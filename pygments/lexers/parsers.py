@@ -12,7 +12,7 @@
 import re
 
 from pygments.lexer import RegexLexer, DelegatingLexer, \
-    include, bygroups, using
+    include, bygroups, using, default
 from pygments.token import Punctuation, Other, Text, Comment, Operator, \
     Keyword, Name, String, Number, Whitespace
 from pygments.lexers.jvm import JavaLexer
@@ -26,11 +26,11 @@ from pygments.lexers.perl import PerlLexer
 
 __all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
            'RagelCppLexer', 'RagelObjectiveCLexer', 'RagelRubyLexer',
-           'RagelJavaLexer', 'AntlrLexer', 'AntlrPythonLexer',
+           'RagelJavaLexer', 'AntlrLexer', 'Antlr4Lexer', 'AntlrPythonLexer',
            'AntlrPerlLexer', 'AntlrRubyLexer', 'AntlrCppLexer',
            # 'AntlrCLexer',
            'AntlrCSharpLexer', 'AntlrObjectiveCLexer',
-           'AntlrJavaLexer', 'AntlrActionScriptLexer',
+           'AntlrJavaLexer', 'Antlr4JavaLexer', 'AntlrActionScriptLexer',
            'TreetopLexer', 'EbnfLexer']
 
 
@@ -331,7 +331,7 @@ class AntlrLexer(RegexLexer):
 
     .. versionadded:: 1.1
 
-    .. _ANTLR: http://www.antlr.org/
+    .. _ANTLR: http://www.antlr3.org/
     """
 
     name = 'ANTLR'
@@ -515,6 +515,344 @@ class AntlrLexer(RegexLexer):
     def analyse_text(text):
         return re.search(r'^\s*grammar\s+[a-zA-Z0-9]+\s*;', text, re.M)
 
+
+class Antlr4Lexer(RegexLexer):
+    """
+    Generic `ANTLR 4`_ Lexer.
+    Should not be called directly, instead
+    use DelegatingLexer for your target language.
+
+    .. versionadded:: 2.2.1
+
+    .. _ANTLR 4: http://www.antlr.org/
+    """
+
+    name = 'ANTLR 4'
+    aliases = ['antlr4']
+    filenames = []
+
+    # The structure of this lexer is designed heavily upon ANTLRv4Parser.g4
+
+    _comma = '\s*,\s*'
+
+    _id = r'[A-Za-z]\w*'
+    # matches a list of _id, e.g. '_id, _id'
+    _id_list = _id + r'(?:' + _comma + _id + ')*'
+    # same as above, but allow a comma after the last _id
+    _id_list_trailing_comma = _id_list + '(?:' + _comma + ')?'
+
+    _token_mods = 'fragment'
+    _rule_mods = 'public|protected|private|' + _token_mods
+
+    _TOKEN_REF = r'[A-Z]\w*'
+    _RULE_REF = r'[a-z]\w*'
+
+    _s_string_literal = r"'(?:\\\\|\\'|[^'])*'"
+    _d_string_literal = r'"(?:\\\\|\\"|[^"])*"'
+
+    _escapes = r'\\(?:[nrbtf\]\-\\]|u\d{4})'
+
+    _INT = r'[0-9]+'
+
+    _sep_slot = object()
+
+    def _sep_ids(bygroup_tuple, sep=u'.', id_class=Name.Class):
+        """
+        A helper callback to handle `_id`s separated by something.
+        The :bygroup_tuple: should be like the tuple for bygroups, but with
+        _sep_slot wherever the group for the joined `_id`s is.
+        :param sep: the separator for the `_id`s
+        """
+        split_pattern = re.compile(r'(\s*)(' + re.escape(sep) + r')(\s*)')
+
+        def callback(lexer, match):
+            global _sep_slot
+            for i in range(len(bygroup_tuple)):
+                group_index = i + 1
+                g = bygroup_tuple[i]
+                text = match.group(group_index)
+                index = match.start(group_index)
+                if g == Antlr4Lexer._sep_slot:
+                    text_index = 0
+                    m = split_pattern.search(text, text_index)
+                    while m is not None:
+                        identifier = text[text_index:m.start()]
+                        yield (index + text_index, id_class, identifier)
+
+                        ws = m.group(1)
+                        if ws:
+                            yield (index + m.start(1), Whitespace, ws)
+
+                        punc = m.group(2)
+                        if punc:
+                            yield (index + m.start(2), Punctuation, punc)
+
+                        ws = m.group(3)
+                        if ws:
+                            yield (index + m.start(3), Whitespace, ws)
+
+                        text_index = m.end()
+                        m = split_pattern.search(text, text_index)
+                    # yield last identifier, if any
+                    if text_index != len(text):
+                        yield (index + text_index, id_class, text[text_index:])
+                else:
+                    yield (index, g, text)
+
+        return callback
+
+    # really weird scoping rules by python require this default argument setup
+    def _host_code(bounding_chars, dsl=_d_string_literal,
+                   ssl=_s_string_literal):
+        return (r'(' + r'|'.join((  # keep host code in largest possible chunks
+            # exclude unsafe characters
+            r'[^$' + re.escape(bounding_chars) + r'\'"/]+',
+
+            # strings and comments may safely contain unsafe characters
+            dsl,  # double quote string
+            ssl,  # single quote string
+            r'//.*$\n?',  # single line comment
+            r'/\*(.|\n)*?\*/',  # multi-line javadoc-style comment
+
+            # regular expression: There's no reason for it to start
+            # with a * and this stops confusion with comments.
+            r'/(?!\*)(\\\\|\\/|[^/])*/',
+
+            # Now that we've handled regex and javadoc comments
+            # it's safe to let / through.
+            r'/',
+        )) + r')+', Other)
+
+    tokens = {
+        'whitespace': [
+            (r'\s+', Whitespace),
+        ],
+        'comments': [
+            (r'//.*$', Comment),
+            (r'/\*(.|\n)*?\*/', Comment.Multiline),
+        ],
+        'options-block': [
+            (r'(options)(\s*)(\{)', bygroups(Keyword, Whitespace, Punctuation),
+             'options')
+        ],
+        'root': [
+            include('whitespace'),
+            include('comments'),
+
+            (r'(lexer|parser)?(\s*)(grammar)(\s+)(' + _id + ')(;)',
+             bygroups(Keyword, Whitespace, Keyword, Whitespace, Name.Class,
+                      Punctuation)),
+            include('options-block'),
+            (r'(import)(\s+)(' + _id_list + r')(\s*)(;)',
+             _sep_ids((Keyword, Whitespace, _sep_slot, Whitespace, Punctuation),
+                      sep=u',')),
+            (r'(tokens)(\s*)(\{)(\s*)(' + _id_list_trailing_comma +
+             r')(\s*)(\})',
+             _sep_ids(
+                 (Keyword, Whitespace, Punctuation, Whitespace, _sep_slot,
+                  Whitespace, Punctuation), sep=u','
+             )),
+            (r'(channels)(\s*)(\{)(\s*)(' + _id_list_trailing_comma +
+             r')(\s*)(\})',
+             _sep_ids(
+                 (Keyword, Whitespace, Punctuation, Whitespace, _sep_slot,
+                  Whitespace, Punctuation), sep=u','
+             )),
+            (r'\@', Punctuation, 'action'),
+
+            (r'(mode)(\s+)(' + _id + ')(\s*)(;)',
+             bygroups(Keyword, Whitespace, Name.Class, Whitespace,
+                      Punctuation)),
+            (r'((?:(?:' + _token_mods + r')\s+)*)(' + _TOKEN_REF + ')(\s*)(:)',
+             _sep_ids((_sep_slot, Name.Class, Whitespace, Punctuation),
+                      sep=u' ', id_class=Keyword),
+             'token'),
+            (r'((?:(?:' + _rule_mods + r')\s+)*)(' + _RULE_REF + ')',
+             _sep_ids((_sep_slot, Name.Class), sep=u' ', id_class=Keyword),
+             'rule-prequel'),
+        ],
+        'options': [
+            include('whitespace'),
+            include('comments'),
+
+            ('(' + _id + ')' + r'(\s*)(=)(\s*)',
+             bygroups(Name.Variable, Whitespace, Operator, Whitespace),
+             'option-value'),
+            (r'\}', Punctuation, '#pop')
+        ],
+        'option-value': [
+            include('whitespace'),
+
+            # matches text like 'Identifer.Identifier;'
+            ('(' + _id +
+             r'(?:\s*\.\s*' + _id + ')*' +
+             r')(\s*)(;)',
+             _sep_ids((_sep_slot, Whitespace, Punctuation)),
+             '#pop'),
+            # String literal
+            ('(' + _s_string_literal + ')(\s*)(;)',
+             bygroups(String, Whitespace, Punctuation), '#pop'),
+            # Actions
+            (r'\{', Punctuation, 'action-block'),
+            # Int literal
+            ('(' + _INT + ')(\s*)(;)',
+             bygroups(Number.Integer, Whitespace, Punctuation), '#pop'),
+            # end of option value
+            (';', Punctuation, '#pop')
+        ],
+        'action': [
+            include('whitespace'),
+
+            (r'(?:(' + _id + r')(\s*)(::)(\s*))?(\s*)(' + _id + r')(\s*)(\{)',
+             bygroups(Name.Class, Whitespace, Punctuation, Whitespace,
+                      Whitespace, Name.Variable, Whitespace, Punctuation),
+             ('#pop', 'action-block'))
+        ],
+        'action-block': [
+            _host_code('{}'),
+
+            (r'(\$[a-zA-Z]+)(\.?)(text|value)?',
+             bygroups(Name.Variable, Punctuation, Name.Property)),
+            (r'\{', Punctuation, '#push'),
+            (r'\}', Punctuation, '#pop'),
+        ],
+        'arg-block': [
+            _host_code('[]'),
+
+            (r'\[', Punctuation, '#push'),
+            (r'\]', Punctuation, '#pop'),
+        ],
+        'rule-prequel': [
+            include('whitespace'),
+            include('comments'),
+
+            (r'\[', Punctuation, 'arg-block'),
+            (r'(returns)(\s*)(\[)', bygroups(Keyword, Whitespace, Punctuation),
+             'arg-block'),
+            (r'(throws)(\s+)(' + _id_list + ')',
+             _sep_ids((Keyword, Whitespace, _sep_slot), sep=u',')),
+            (r'(locals)(\s*)(\[)', bygroups(Keyword, Whitespace, Punctuation),
+             'arg-block'),
+            (r'(locals)(\s*)(\[)', bygroups(Keyword, Whitespace, Punctuation),
+             'arg-block'),
+            (r'(\@)(' + _id + r')(\s*)(\{)',
+             bygroups(Punctuation, Name.Label, Whitespace, Punctuation),
+             'action-block'),
+            include('options-block'),
+            (r':', Punctuation, ('#pop', 'rule'))
+        ],
+        'rule-token-shared': [
+            include('whitespace'),
+            include('comments'),
+
+            (_TOKEN_REF, Name.Variable, 'post-ref'),
+            (r'(' + _s_string_literal + r')(..)(' + _s_string_literal + r')',
+             bygroups(String, Operator, String), 'post-ref'),
+            (_s_string_literal, String, 'post-ref'),
+            (r'\[', Punctuation, ('post-ref', 'charset')),
+            (r'\.', Punctuation, 'post-ref'),
+            (r'~', Operator),
+            (r'\(', Punctuation),
+            (r'\)', Punctuation, 'post-paren'),
+            (r'\|', Operator),
+            (r'\{', Punctuation, ('predicate-close', 'action-block'))
+        ],
+        'charset': [
+            (r'(?:(' + _escapes + r')|(.))(-)' +
+             r'(?:(' + _escapes + r')|(.))',
+             bygroups(String.Escape, String.Regex, Operator, String.Escape,
+                      String.Regex)),
+
+            (r'(?:(' + _escapes + r')|([^\]]))',
+             bygroups(String.Escape, String.Symbol)),
+
+            (r'\]', Punctuation, '#pop'),
+        ],
+        'predicate-close': [
+            (r'(\?)(\<)',
+             bygroups(Operator, Punctuation), ('#pop', 'rule-element-options')),
+            (r'\?', Operator, '#pop'),
+
+            default('#pop')
+        ],
+        'rule': [
+            include('rule-token-shared'),
+
+            (_RULE_REF, Name.Variable.Class, 'post-ref'),
+            # swap rule for rule-catch
+            (r';', Punctuation, ('#pop', 'rule-catch'))
+        ],
+        'repeaters': [
+            include('whitespace'),
+            include('comments'),
+            (r'\?', Operator),
+            (r'[*+]\??', Operator)
+        ],
+        'post-paren': [
+            include('repeaters'),
+
+            default('#pop')
+        ],
+        'post-ref': [
+            include('repeaters'),
+
+            (r'\<', Punctuation, 'rule-element-options'),
+            default('#pop')
+        ],
+        'rule-element-options': [
+            include('whitespace'),
+
+            ('(' + _id + ')' + r'(\s*)(=)(\s*)',
+             bygroups(Name.Variable, Whitespace, Operator, Whitespace),
+             'rule-element-option-value'),
+            (_id, Name.Variable),
+            (r',', Punctuation),
+            (r'\>', Punctuation, '#pop')
+        ],
+        'rule-element-option-value': [
+            (_id, Name.Class, '#pop'),
+            (_s_string_literal, String, '#pop'),
+            (r'\{', Punctuation, ('#pop', 'action-block'))
+        ],
+        'rule-catch': [
+            include('whitespace'),
+            include('comments'),
+
+            (r'(catch)(\s*)(\[)', bygroups(Keyword, Whitespace, Punctuation),
+             # switch to arg-block, then follow it with (\{) + action-block
+             ('rule-catch-action-block', 'arg-block')),
+            default('#pop')
+        ],
+        'rule-catch-action-block': [
+            include('whitespace'),
+            include('comments'),
+
+            # swap for action-block
+            (r'\{', Punctuation, ('#pop', 'action-block'))
+        ],
+        'token': [
+            include('rule-token-shared'),
+
+            (r'-\>', Operator, 'token-command'),
+            (r';', Punctuation, '#pop')
+        ],
+        'token-command': [
+            include('whitespace'),
+            include('comments'),
+
+            (r'skip|more|popMode', Name.Function),
+            (r'(mode|pushMode|type|channel)(\s*)' +
+             r'(\()' + r'(\s*)(?:(' + _id + ')|(' + _INT + r'))(\s*)' + r'(\))',
+             bygroups(Name.Function, Whitespace, Punctuation, Whitespace,
+                      Name.Constant, Number.Integer, Whitespace, Punctuation)),
+            (r',', Punctuation),
+            default('#pop')
+        ]
+    }
+
+    def analyse_text(text):
+        return re.search(r'^\s*grammar\s+[a-zA-Z0-9]+\s*;', text, re.M)
+
 # http://www.antlr.org/wiki/display/ANTLR3/Code+Generation+Targets
 
 # TH: I'm not aware of any language features of C++ that will cause
@@ -637,6 +975,26 @@ class AntlrJavaLexer(DelegatingLexer):
     def analyse_text(text):
         # Antlr language is Java by default
         return AntlrLexer.analyse_text(text) and 0.9
+
+
+class Antlr4JavaLexer(DelegatingLexer):
+    """
+    `ANTLR 4`_ with Java Target
+
+    .. versionadded:: 2.2.1
+    """
+
+    name = 'ANTLR 4 With Java Target'
+    aliases = ['antlr4-java']
+    filenames = ['*.G4', '*.g4']
+
+    def __init__(self, **options):
+        super(Antlr4JavaLexer, self).__init__(JavaLexer, Antlr4Lexer,
+                                             **options)
+
+    def analyse_text(text):
+        # Antlr language is Java by default
+        return Antlr4Lexer.analyse_text(text) and 0.9
 
 
 class AntlrRubyLexer(DelegatingLexer):

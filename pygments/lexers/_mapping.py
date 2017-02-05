@@ -30,6 +30,8 @@ LEXERS = {
     'AmplLexer': ('pygments.lexers.ampl', 'Ampl', ('ampl',), ('*.run',), ()),
     'Angular2HtmlLexer': ('pygments.lexers.templates', 'HTML + Angular2', ('html+ng2',), ('*.ng2',), ()),
     'Angular2Lexer': ('pygments.lexers.templates', 'Angular2', ('ng2',), (), ()),
+    'Antlr4JavaLexer': ('pygments.lexers.parsers', 'ANTLR 4 With Java Target', ('antlr4-java',), ('*.G4', '*.g4'), ()),
+    'Antlr4Lexer': ('pygments.lexers.parsers', 'ANTLR 4', ('antlr4',), (), ()),
     'AntlrActionScriptLexer': ('pygments.lexers.parsers', 'ANTLR With ActionScript Target', ('antlr-as', 'antlr-actionscript'), ('*.G', '*.g'), ()),
     'AntlrCSharpLexer': ('pygments.lexers.parsers', 'ANTLR With C# Target', ('antlr-csharp', 'antlr-c#'), ('*.G', '*.g'), ()),
     'AntlrCppLexer': ('pygments.lexers.parsers', 'ANTLR With CPP Target', ('antlr-cpp',), ('*.G', '*.g'), ()),
