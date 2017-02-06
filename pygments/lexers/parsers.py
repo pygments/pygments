@@ -564,6 +564,7 @@ class Antlr4Lexer(RegexLexer):
         :param sep: the separator for the `_id`s
         """
         split_pattern = re.compile(r'(\s*)(' + re.escape(sep) + r')(\s*)')
+        sep_class = Whitespace if sep.isspace() else Punctuation
 
         def callback(lexer, match):
             global _sep_slot
@@ -583,9 +584,9 @@ class Antlr4Lexer(RegexLexer):
                         if ws:
                             yield (index + m.start(1), Whitespace, ws)
 
-                        punc = m.group(2)
-                        if punc:
-                            yield (index + m.start(2), Punctuation, punc)
+                        separator = m.group(2)
+                        if separator:
+                            yield (index + m.start(2), sep_class, separator)
 
                         ws = m.group(3)
                         if ws:
@@ -596,7 +597,7 @@ class Antlr4Lexer(RegexLexer):
                     # yield last identifier, if any
                     if text_index != len(text):
                         yield (index + text_index, id_class, text[text_index:])
-                else:
+                elif text and index != -1:
                     yield (index, g, text)
 
         return callback
@@ -628,8 +629,8 @@ class Antlr4Lexer(RegexLexer):
             (r'\s+', Whitespace),
         ],
         'comments': [
-            (r'//.*$', Comment),
-            (r'/\*(.|\n)*?\*/', Comment.Multiline),
+            (r'//.*?(?:\r|\r\n|\n)', Comment),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
         ],
         'options-block': [
             (r'(options)(\s*)(\{)', bygroups(Keyword, Whitespace, Punctuation),
@@ -663,10 +664,9 @@ class Antlr4Lexer(RegexLexer):
             (r'(mode)(\s+)(' + _id + ')(\s*)(;)',
              bygroups(Keyword, Whitespace, Name.Class, Whitespace,
                       Punctuation)),
-            (r'((?:(?:' + _token_mods + r')\s+)*)(' + _TOKEN_REF + ')(\s*)(:)',
-             _sep_ids((_sep_slot, Name.Class, Whitespace, Punctuation),
-                      sep=u' ', id_class=Keyword),
-             'token'),
+            (r'((?:(?:' + _token_mods + r')\s+)*)(' + _TOKEN_REF + ')',
+             _sep_ids((_sep_slot, Name.Class), sep=u' ', id_class=Keyword),
+             'token-prequel'),
             (r'((?:(?:' + _rule_mods + r')\s+)*)(' + _RULE_REF + ')',
              _sep_ids((_sep_slot, Name.Class), sep=u' ', id_class=Keyword),
              'rule-prequel'),
@@ -746,7 +746,7 @@ class Antlr4Lexer(RegexLexer):
             include('comments'),
 
             (_TOKEN_REF, Name.Variable, 'post-ref'),
-            (r'(' + _s_string_literal + r')(..)(' + _s_string_literal + r')',
+            (r'(' + _s_string_literal + r')(\.\.)(' + _s_string_literal + r')',
              bygroups(String, Operator, String), 'post-ref'),
             (_s_string_literal, String, 'post-ref'),
             (r'\[', Punctuation, ('post-ref', 'charset')),
@@ -829,6 +829,12 @@ class Antlr4Lexer(RegexLexer):
 
             # swap for action-block
             (r'\{', Punctuation, ('#pop', 'action-block'))
+        ],
+        'token-prequel': [
+            include('whitespace'),
+            include('comments'),
+
+            (r':', Punctuation, ('#pop', 'token'))
         ],
         'token': [
             include('rule-token-shared'),
