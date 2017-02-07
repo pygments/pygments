@@ -15,6 +15,7 @@ from pygments.lexer import RegexLexer, DelegatingLexer, \
     include, bygroups, using, default
 from pygments.token import Punctuation, Other, Text, Comment, Operator, \
     Keyword, Name, String, Number, Whitespace
+from pygments.util import Future
 from pygments.lexers.jvm import JavaLexer
 from pygments.lexers.c_cpp import CLexer, CppLexer
 from pygments.lexers.objective import ObjectiveCLexer
@@ -602,27 +603,30 @@ class Antlr4Lexer(RegexLexer):
 
         return callback
 
-    # really weird scoping rules by python require this default argument setup
-    def _host_code(bounding_chars, dsl=_d_string_literal,
-                   ssl=_s_string_literal):
-        return (r'(' + r'|'.join((  # keep host code in largest possible chunks
-            # exclude unsafe characters
-            r'[^$' + re.escape(bounding_chars) + r'\'"/]+',
+    class HostCode(Future):
+        def __init__(self, bounding_chars):
+            self.bounding_chars = bounding_chars
 
-            # strings and comments may safely contain unsafe characters
-            dsl,  # double quote string
-            ssl,  # single quote string
-            r'//.*$\n?',  # single line comment
-            r'/\*(.|\n)*?\*/',  # multi-line javadoc-style comment
+        def get(self):
+            # keep host code in largest possible chunks
+            return r'(' + r'|'.join((
+                # exclude unsafe characters
+                r'[^$' + re.escape(self.bounding_chars) + r'\'"/]+',
 
-            # regular expression: There's no reason for it to start
-            # with a * and this stops confusion with comments.
-            r'/(?!\*)(\\\\|\\/|[^/])*/',
+                # strings and comments may safely contain unsafe characters
+                Antlr4Lexer._d_string_literal,  # double quote string
+                Antlr4Lexer._s_string_literal,  # single quote string
+                r'//.*$\n?',  # single line comment
+                r'/\*(.|\n)*?\*/',  # multi-line javadoc-style comment
 
-            # Now that we've handled regex and javadoc comments
-            # it's safe to let / through.
-            r'/',
-        )) + r')+', Other)
+                # regular expression: There's no reason for it to start
+                # with a * and this stops confusion with comments.
+                r'/(?!\*)(\\\\|\\/|[^/])*/',
+
+                # Now that we've handled regex and javadoc comments
+                # it's safe to let / through.
+                r'/',
+            )) + r')+'
 
     tokens = {
         'whitespace': [
@@ -709,7 +713,7 @@ class Antlr4Lexer(RegexLexer):
              ('#pop', 'action-block'))
         ],
         'action-block': [
-            _host_code('{}'),
+            (HostCode('{}'), Other),
 
             (r'(\$[a-zA-Z]+)(\.?)(text|value)?',
              bygroups(Name.Variable, Punctuation, Name.Property)),
@@ -717,7 +721,7 @@ class Antlr4Lexer(RegexLexer):
             (r'\}', Punctuation, '#pop'),
         ],
         'arg-block': [
-            _host_code('[]'),
+            (HostCode('[]'), Other),
 
             (r'\[', Punctuation, '#push'),
             (r'\]', Punctuation, '#pop'),
