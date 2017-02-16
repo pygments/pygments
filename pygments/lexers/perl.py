@@ -489,7 +489,7 @@ class Perl6Lexer(ExtendedRegexLexer):
         'common': [
             (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + r'])(?P=first_char)*)',
              brackets_callback(Comment.Multiline)),
-            (r'#[^\n]*$', Comment.Singleline),
+            (r'#[^\n]*$', Comment.Single),
             (r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline),
             (r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline),
             (r'^=.*?\n\s*?\n', Comment.Multiline),
@@ -558,7 +558,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             # make sure that '#' characters in quotes aren't treated as comments
             (r"(?<!\\)'(\\\\|\\[^\\]|[^'\\])*'", String.Regex),
             (r'(?<!\\)"(\\\\|\\[^\\]|[^"\\])*"', String.Regex),
-            (r'#.*?$', Comment.Singleline),
+            (r'#.*?$', Comment.Single),
             (r'\{', embedded_perl6_callback),
             ('.+?', String.Regex),
         ],

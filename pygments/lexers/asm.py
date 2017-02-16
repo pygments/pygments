@@ -265,7 +265,7 @@ class HsailLexer(RegexLexer):
         ],
         'comments': [
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'//.*?\n', Comment.Singleline),
+            (r'//.*?\n', Comment.Single),
         ],
         'keyword': [
             # Types
