@@ -239,7 +239,7 @@ class RebolLexer(RegexLexer):
         if re.match(r'^\s*REBOL\s*\[', text, re.IGNORECASE):
             # The code starts with REBOL header
             return 1.0
-        elif re.search(r'\s*REBOL\s*[', text, re.IGNORECASE):
+        elif re.search(r'\s*REBOL\s*\[', text, re.IGNORECASE):
             # The code contains REBOL header but also some text before it
             return 0.5
 
