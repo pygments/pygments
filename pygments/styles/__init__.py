@@ -44,6 +44,8 @@ STYLE_MAP = {
     'arduino':  'arduino::ArduinoStyle',
     'rainbow_dash': 'rainbow_dash::RainbowDashStyle',
     'abap':     'abap::AbapStyle',
+    'solarized-dark': 'solarized::SolarizedDarkStyle',
+    'solarized-light': 'solarized::SolarizedLightStyle',
 }
 
 
