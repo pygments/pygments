@@ -5,7 +5,7 @@
 
     Pygments lexers.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,7 +22,7 @@ from pygments.util import ClassNotFound, itervalues, guess_decode
 
 
 __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
-           'guess_lexer'] + list(LEXERS)
+           'guess_lexer', 'load_lexer_from_file'] + list(LEXERS)
 
 _lexer_cache = {}
 _pattern_cache = {}
@@ -72,7 +72,7 @@ def find_lexer_class(name):
             return cls
 
 
-def find_lexer_class_by_name(alias):
+def find_lexer_class_by_name(_alias):
     """Lookup a lexer class by alias.
 
     Like `get_lexer_by_name`, but does not instantiate the class.
@@ -115,6 +115,40 @@ def get_lexer_by_name(_alias, **options):
     raise ClassNotFound('no lexer for alias %r found' % _alias)
 
 
+def load_lexer_from_file(filename, lexername="CustomLexer", **options):
+    """Load a lexer from a file.
+
+    This method expects a file located relative to the current working
+    directory, which contains a Lexer class. By default, it expects the
+    Lexer to be name CustomLexer; you can specify your own class name
+    as the second argument to this function.
+
+    Users should be very careful with the input, because this method
+    is equivalent to running eval on the input file.
+
+    Raises ClassNotFound if there are any problems importing the Lexer.
+
+    .. versionadded:: 2.2
+    """
+    try:
+        # This empty dict will contain the namespace for the exec'd file
+        custom_namespace = {}
+        exec(open(filename, 'rb').read(), custom_namespace)
+        # Retrieve the class `lexername` from that namespace
+        if lexername not in custom_namespace:
+            raise ClassNotFound('no valid %s class found in %s' %
+                                (lexername, filename))
+        lexer_class = custom_namespace[lexername]
+        # And finally instantiate it with the options
+        return lexer_class(**options)
+    except IOError as err:
+        raise ClassNotFound('cannot read %s' % filename)
+    except ClassNotFound as err:
+        raise
+    except Exception as err:
+        raise ClassNotFound('error when loading custom lexer: %s' % err)
+
+
 def find_lexer_class_for_filename(_fn, code=None):
     """Get a lexer for a filename.
 
@@ -149,8 +183,8 @@ def find_lexer_class_for_filename(_fn, code=None):
         # gets turned into 0.0.  Run scripts/detect_missing_analyse_text.py
         # to find lexers which need it overridden.
         if code:
-            return cls.analyse_text(code) + bonus
-        return cls.priority + bonus
+            return cls.analyse_text(code) + bonus, cls.__name__
+        return cls.priority + bonus, cls.__name__
 
     if matches:
         matches.sort(key=get_rating)

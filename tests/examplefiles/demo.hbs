@@ -10,3 +10,25 @@
 {{else}}
   <button {{action expand}}>Show More...</button>
 {{/if}}
+
+{{> myPartial}}
+{{> myPartial var="value" }}
+{{> myPartial var=../value}}
+{{> (myPartial)}}
+{{> (myPartial) var="value"}}
+{{> (lookup . "myPartial")}}
+{{> ( lookup . "myPartial" ) var="value" }}
+{{> (lookup ../foo "myPartial") var="value" }}
+{{> @partial-block}}
+
+{{#>myPartial}}
+...
+{{/myPartial}}
+
+{{#*inline "myPartial"}}
+...
+{{/inline}}
+
+{{../name}}
+{{./name}}
+{{this/name}}

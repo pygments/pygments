@@ -5,7 +5,7 @@
 
     Lexers for other C-like languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -105,7 +105,7 @@ class ClayLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s', Text),
-            (r'//.*?$', Comment.Singleline),
+            (r'//.*?$', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'\b(public|private|import|as|record|variant|instance'
              r'|define|overload|default|external|alias'
