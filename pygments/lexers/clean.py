@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import ExtendedRegexLexer, words, include
+from pygments.lexer import ExtendedRegexLexer, words, include, bygroups
 from pygments.token import Comment, Error, Keyword, Literal, Name, Number, \
     Operator, Punctuation, String, Whitespace
 
@@ -103,7 +103,8 @@ class CleanLexer(ExtendedRegexLexer):
         ],
         'delimiters': [
             (r'[,;(){}\[\]]', Punctuation),
-            (r'\'[\w`.]+\'', Name.Class),
+            (r'(\')([\w`.]+)(\')',
+                bygroups(Punctuation, Name.Class, Punctuation)),
         ],
         'names': [
             (r'\b' + lowerId, Name),
