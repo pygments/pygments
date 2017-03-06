@@ -71,10 +71,8 @@ class CleanLexer(ExtendedRegexLexer):
             (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword),
         ],
         'module': [
-            include('comments'),
             (words(modulewords, prefix=r'\b', suffix=r'\b'), Keyword.Namespace),
             (r'\bmodule\b', Keyword.Namespace, 'module.name'),
-            include('whitespace'),
         ],
         'module.name': [
             include('whitespace'),
@@ -92,10 +90,9 @@ class CleanLexer(ExtendedRegexLexer):
             (r'[+~-]?0x[\da-fA-F]+\b', Number.Hex),
             (r'True|False', Literal),
             (r'"', String.Double, 'literals.stringd'),
-            #(r'\[\'', Literal.
         ],
         'literals.stringd': [
-            (r'[^\\"$\n]+', String.Double),
+            (r'[^\\"\n]+', String.Double),
             (r'"', String.Double, '#pop'),
             (r'\\.', String.Double),
             (r'[$\n]', Error, '#pop'),
@@ -105,7 +102,8 @@ class CleanLexer(ExtendedRegexLexer):
             (r'\b_+\b', Operator),
         ],
         'delimiters': [
-            (r'[,;(){}\[\]]', Punctuation)
+            (r'[,;(){}\[\]]', Punctuation),
+            (r'\'[\w`.]+\'', Name.Class),
         ],
         'names': [
             (r'\b' + lowerId, Name),
