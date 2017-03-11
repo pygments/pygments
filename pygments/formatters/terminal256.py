@@ -35,11 +35,12 @@ __all__ = ['Terminal256Formatter', 'TerminalTrueColorFormatter']
 
 
 class EscapeSequence:
-    def __init__(self, fg=None, bg=None, bold=False, underline=False):
+    def __init__(self, fg=None, bg=None, bold=False, underline=False, italic=False):
         self.fg = fg
         self.bg = bg
         self.bold = bold
         self.underline = underline
+        self.italic = italic
 
     def escape(self, attrs):
         if len(attrs):
@@ -68,6 +69,8 @@ class EscapeSequence:
             attrs.append("01")
         if self.underline:
             attrs.append("04")
+        if self.italic:
+            attrs.append("03")
         return self.escape(attrs)
 
     def true_color_string(self):
@@ -80,6 +83,8 @@ class EscapeSequence:
             attrs.append("01")
         if self.underline:
             attrs.append("04")
+        if self.italic:
+            attrs.append("03")
         return self.escape(attrs)
 
     def reset_string(self):
@@ -88,7 +93,7 @@ class EscapeSequence:
             attrs.append("39")
         if self.bg is not None:
             attrs.append("49")
-        if self.bold or self.underline:
+        if self.bold or self.underline or self.italic:
             attrs.append("00")
         return self.escape(attrs)
 
@@ -135,6 +140,7 @@ class Terminal256Formatter(Formatter):
 
         self.usebold = 'nobold' not in options
         self.useunderline = 'nounderline' not in options
+        self.useitalic = 'noitalic' not in options
 
         self._build_color_table()  # build an RGB-to-256 color conversion table
         self._setup_styles()  # convert selected style's colors to term. colors
@@ -227,6 +233,8 @@ class Terminal256Formatter(Formatter):
                 escape.bold = True
             if self.useunderline and ndef['underline']:
                 escape.underline = True
+            if self.useitalic and ndef['italic']:
+                escape.italic = True
             self.style_string[str(ttype)] = (escape.color_string(),
                                              escape.reset_string())
 
@@ -311,5 +319,7 @@ class TerminalTrueColorFormatter(Terminal256Formatter):
                 escape.bold = True
             if self.useunderline and ndef['underline']:
                 escape.underline = True
+            if self.useitalic and ndef['italic']:
+                escape.italic = True
             self.style_string[str(ttype)] = (escape.true_color_string(),
                                              escape.reset_string())
