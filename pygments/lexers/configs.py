@@ -584,7 +584,7 @@ class TerraformLexer(RegexLexer):
              (r'(.*?)(\s*)(=)', bygroups(Name.Attribute, Text, Operator)),
              (words(('variable', 'resource', 'provider', 'provisioner', 'module'),
                     prefix=r'\b', suffix=r'\b'), Keyword.Reserved, 'function'),
-             (words(('ingress', 'egress', 'listener', 'default', 'connection'),
+             (words(('ingress', 'egress', 'listener', 'default', 'connection', 'alias'),
                     prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
              ('\$\{', String.Interpol, 'var_builtin'),
         ],
