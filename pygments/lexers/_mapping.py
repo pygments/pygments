@@ -235,6 +235,7 @@ LEXERS = {
     'KconfigLexer': ('pygments.lexers.configs', 'Kconfig', ('kconfig', 'menuconfig', 'linux-config', 'kernel-config'), ('Kconfig', '*Config.in*', 'external.in*', 'standard-modules.in'), ('text/x-kconfig',)),
     'KokaLexer': ('pygments.lexers.haskell', 'Koka', ('koka',), ('*.kk', '*.kki'), ('text/x-koka',)),
     'KotlinLexer': ('pygments.lexers.jvm', 'Kotlin', ('kotlin',), ('*.kt',), ('text/x-kotlin',)),
+    'KuinLexer': ('pygments.lexers.kuin', 'Kuin', ('kuin',), ('*.kn',), ('text/x-kuin',)),
     'LSLLexer': ('pygments.lexers.scripting', 'LSL', ('lsl',), ('*.lsl',), ('text/x-lsl',)),
     'LassoCssLexer': ('pygments.lexers.templates', 'CSS+Lasso', ('css+lasso',), (), ('text/css+lasso',)),
     'LassoHtmlLexer': ('pygments.lexers.templates', 'HTML+Lasso', ('html+lasso',), (), ('text/html+lasso', 'application/x-httpd-lasso', 'application/x-httpd-lasso[89]')),

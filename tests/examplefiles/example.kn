@@ -1,0 +1,37 @@
+{ Quine in Kuin. @tatt61880 }
+func main()
+    func quine(str: []char)
+        var s: []char :: ""
+        foreach c(str)
+            switch(c)
+            case '\n'
+                do s :~ "\\n\" ~\n    | \""
+            case '\\', '"'
+                do s :~ "\\\{c}"
+            default
+                do s :~ c.toStr()
+            end switch
+        end foreach
+        do cui@print(str ~ s ~ "\"\n    do quine(str)\nend func\n")
+    end func
+    const str: []char :: "" ~
+    | "{ Quine in Kuin. @tatt61880 }\n" ~
+    | "func main()\n" ~
+    | "    func quine(str: []char)\n" ~
+    | "        var s: []char :: \"\"\n" ~
+    | "        foreach c(str)\n" ~
+    | "            switch(c)\n" ~
+    | "            case '\\n'\n" ~
+    | "                do s :~ \"\\\\n\\\" ~\\n    | \\\"\"\n" ~
+    | "            case '\\\\', '\"'\n" ~
+    | "                do s :~ \"\\\\\\{c}\"\n" ~
+    | "            default\n" ~
+    | "                do s :~ c.toStr()\n" ~
+    | "            end switch\n" ~
+    | "        end foreach\n" ~
+    | "        do cui@print(str ~ s ~ \"\\\"\\n    do quine(str)\\nend func\\n\")\n" ~
+    | "    end func\n" ~
+    | "    const str: []char :: \"\" ~\n" ~
+    | "    | \""
+    do quine(str)
+end func
