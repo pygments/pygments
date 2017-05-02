@@ -111,3 +111,22 @@ class Python3Test(unittest.TestCase):
             (Token.Text, u'\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def test_pep_515(self):
+        """
+        Tests that the lexer can parse numeric literals with underscores
+        """
+        fragments = (
+            (Token.Literal.Number.Integer, u'1_000_000'),
+            (Token.Literal.Number.Float, u'1_000.000_001'),
+            (Token.Literal.Number.Hex, u'0xCAFE_F00D'),
+            (Token.Literal.Number.Bin, u'0b_0011_1111_0100_1110'),
+            (Token.Literal.Number.Oct, u'0o_777_123'),
+        )
+
+        for token, fragment in fragments:
+            tokens = [
+                (token, fragment),
+                (Token.Text, u'\n'),
+            ]
+            self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
