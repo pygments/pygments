@@ -119,6 +119,7 @@ class Python3Test(unittest.TestCase):
         fragments = (
             (Token.Literal.Number.Integer, u'1_000_000'),
             (Token.Literal.Number.Float, u'1_000.000_001'),
+            (Token.Literal.Number.Float, u'1_000e1_000j'),
             (Token.Literal.Number.Hex, u'0xCAFE_F00D'),
             (Token.Literal.Number.Bin, u'0b_0011_1111_0100_1110'),
             (Token.Literal.Number.Oct, u'0o_777_123'),

@@ -397,7 +397,7 @@ class Python3Lexer(RegexLexer):
     tokens['strings-double'] = innerstring_rules(String.Double)
     tokens['numbers'] = [
         (r'(\d(?:_?\d)*\.(?:\d(?:_?\d)*)?|(?:\d(?:_?\d)*)?\.\d(?:_?\d)*)([eE][+-]?\d(?:_?\d)*)?', Number.Float),
-        (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
+        (r'\d(?:_?\d)*[eE][+-]?\d(?:_?\d)*j?', Number.Float),
         (r'0[oO](?:_?[0-7])+', Number.Oct),
         (r'0[bB](?:_?[01])+', Number.Bin),
         (r'0[xX](?:_?[a-fA-F0-9])+', Number.Hex),
