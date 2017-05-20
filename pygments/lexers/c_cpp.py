@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, include, bygroups, using, \
     this, inherit, default, words
 from pygments.util import get_bool_opt
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
+    Number, Punctuation, Error, Literal
 
 __all__ = ['CLexer', 'CppLexer']
 
@@ -55,9 +55,12 @@ class CFamilyLexer(RegexLexer):
             (r'(L?)(")', bygroups(String.Affix, String), 'string'),
             (r"(L?)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
-            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
-            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[FfLl]?', Number.Float),
+            (r'(\d+\.\d*|\.\d+)[FfLl]?|\d+[fF]', Number.Float),
+            # Hexidecimal floating-point literal
+            (r'(?i)0x([0-9a-f]+\.[0-9a-f]*|\.?[0-9a-f]+)p[+-]?\d+[fl]?',
+             Number.Float),
+            (r'0[Xx][0-9A-Fa-f]+[LlUu]*', Number.Hex),
             (r'0[0-7]+[LlUu]*', Number.Oct),
             (r'\d+[LlUu]*', Number.Integer),
             (r'\*/', Error),
@@ -168,7 +171,7 @@ class CFamilyLexer(RegexLexer):
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in \
-                RegexLexer.get_tokens_unprocessed(self, text):
+                super(CFamilyLexer, self).get_tokens_unprocessed(text):
             if token is Name:
                 if self.stdlibhighlighting and value in self.stdlib_types:
                     token = Keyword.Type
@@ -208,6 +211,35 @@ class CppLexer(CFamilyLexer):
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
     priority = 0.1
 
+    def get_tokens_unprocessed(self, text):
+        """Include user-defined literal suffixes in literals"""
+        prev = None
+        for index, token, value in super(CppLexer, self).get_tokens_unprocessed(text):
+            # Handle any token already held back
+            if prev is not None:
+                if token in Name or token in Keyword:
+                    # Either one of these, after a literal without
+                    # whitespace in between, is interpreted as a user-
+                    # defined literal suffix.
+                    prev["value"] += value
+
+                    # C++14 duration literals
+                    if (value in ('h', 'min', 's', 'ms', 'us', 'ns')
+                          and prev["token"] in Number):
+                        prev["token"] = Literal.Date
+
+                    yield prev["index"], prev["token"], prev["value"]
+                    prev = None
+                    continue
+                else:
+                    yield prev["index"], prev["token"], prev["value"]
+                    prev = None
+            # Hold this token back if it's a literal
+            if token in Literal:
+                prev = {"index": index, "token": token, "value": value}
+            else:
+                yield index, token, value
+
     tokens = {
         'statements': [
             (words((
@@ -222,11 +254,28 @@ class CppLexer(CFamilyLexer):
             (r'char(16_t|32_t)\b', Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             # C++11 raw strings
-            (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
-             bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
-                      String, String.Delimiter, String)),
+            (r'(u8|u|U|L)?(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\4)(")',
+             bygroups(String.Affix, String.Affix, String,
+                      String.Delimiter, String.Delimiter, String,
+                      String.Delimiter, String)),
             # C++11 UTF-8/16/32 strings
             (r'(u8|u|U)(")', bygroups(String.Affix, String), 'string'),
+            # C++11 UTF-16/32 chars and C++17 UTF-8 chars
+            (r"(u8|u|U)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
+             bygroups(String.Affix, String.Char, String.Char, String.Char)),
+            # C++14 numeric literals with digit separator
+            (r"(\d+('\d+)*\.(\d+('\d+)*)?|\.\d+('\d+)*|\d+('\d+)*)[eE][+-]?\d+('\d+)*",
+             Number.Float),
+            # Include complex literals in the no-decimal-point version
+            (r"(?i)(\d+\.(\d+('\d+)*)?|\.\d+('\d+)*|\d+('\d+)*(f|i|if|il))",
+             Number.Float),
+            (r"(?i)0x([0-9a-f]+('[0-9a-f]+)*\.([0-9a-f]+('[0-9a-f]+)*)?|\.?[0-9a-f]+('[0-9a-f]+)*)p[+-]?\d+('\d+)*",
+             Number.Float),
+            (r"0[Xx][0-9A-Fa-f]+('[0-9A-Fa-f]+)*", Number.Hex),
+            (r"0[0-7]+('[0-7]+)*", Number.Oct),
+            (r"\d+('\d+)*", Number.Integer),
+            # C++14 binary integer literal (suffixes handled elsewhere)
+            (r"0[bB](0|1)+('(0|1)+)*", Number.Bin),
             inherit,
         ],
         'root': [
