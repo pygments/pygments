@@ -1,10 +1,22 @@
-f 1 0 16384 10 1
-i "N_a_M_e_" 0 2
-i "TestOscillator" 2 2
-i "TestBitwiseNOT" 0 1
-i "TestBitwiseXOR" 0 1
-i "TestGoto" 0 1
-i "TestMacroPeriodSuffix" 4 1
-i "TestAt" 0 1
-i "MacroAbuse" 0 1
-e
+/*
+ * comment
+ */
+; comment
+// comment
+a b C e f i q s t v x y
+z
+np0 nP1 Np2 NP3
+m/**/label;
+n label
+123 0123456789
+0xabcdef0123456789 0XABCDEF
+1e2 3e+4 5e-6 7E8 9E+0 1E-2 3. 4.56 .789
+"characters$MACRO."
+{ 1 I
+  { 2 J
+    { 3 K
+      $I $J $K
+    }
+  }
+}
+#include "score.sco"
