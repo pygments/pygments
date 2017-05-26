@@ -84,7 +84,7 @@ class CsoundOrchestraTest(unittest.TestCase):
 
     def testUserDefinedOpcodes(self):
         fragment = dedent('''\
-            opcode/**/aUDO,/**/0,/**/aik//
+            opcode/**/aUDO,/**/i[],/**/aik//
               aUDO
             endop
         ''')
@@ -94,7 +94,7 @@ class CsoundOrchestraTest(unittest.TestCase):
             (Name.Function, u'aUDO'),
             (Punctuation, u','),
             (Comment.Multiline, u'/**/'),
-            (Keyword.Type, u'0'),
+            (Keyword.Type, u'i[]'),
             (Punctuation, u','),
             (Comment.Multiline, u'/**/'),
             (Keyword.Type, u'aik'),

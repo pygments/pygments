@@ -302,7 +302,10 @@ class CsoundOrchestraLexer(CsoundLexer):
         ],
         'opcode type signatures': [
             include('whitespace and macro uses'),
-            (r'\b(?:0|[afijkKoOpPStV\[\]]+)\b', Keyword.Type),
+
+            # https://github.com/csound/csound/search?q=XIDENT+path%3AEngine+filename%3Acsound_orc.lex
+            (r'0|[afijkKoOpPStV\[\]]+', Keyword.Type),
+
             (r',', Punctuation),
             (r'\n', Text, '#pop')
         ],
