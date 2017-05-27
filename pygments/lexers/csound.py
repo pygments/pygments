@@ -146,7 +146,7 @@ class CsoundScoreLexer(CsoundLexer):
             include('whitespace and macro uses'),
             include('preprocessor directives'),
 
-            (r'[abCefiqstvxy]', Keyword),
+            (r'[abCdefiqstvxy]', Keyword),
             # There is also a w statement that is generated internally and should not be
             # used; see https://github.com/csound/csound/issues/750.
 
