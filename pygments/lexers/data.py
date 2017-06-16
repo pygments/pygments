@@ -205,7 +205,7 @@ class YamlLexer(ExtendedRegexLexer):
              bygroups(Text, Number), 'ignored-line'),
         ],
 
-        # the %YAG directive
+        # the %TAG directive
         'tag-directive': [
             # a tag handle and the corresponding prefix
             (r'([ ]+)(!|![\w-]*!)'
@@ -218,7 +218,7 @@ class YamlLexer(ExtendedRegexLexer):
         'indentation': [
             # trailing whitespaces are ignored
             (r'[ ]*$', something(Text), '#pop:2'),
-            # whitespaces preceeding block collection indicators
+            # whitespaces preceding block collection indicators
             (r'[ ]+(?=[?:-](?:[ ]|$))', save_indent(Text)),
             # block collection indicators
             (r'[?:-](?=[ ]|$)', set_indent(Punctuation.Indicator)),
