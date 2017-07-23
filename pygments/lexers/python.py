@@ -262,7 +262,7 @@ class Python3Lexer(RegexLexer):
         return [
             # the old style '%s' % (...) string formatting (still valid in Py3)
             (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
-             '[hlL]?[E-GXc-giorsux%]', String.Interpol),
+             '[hlL]?[E-GXc-giorsaux%]', String.Interpol),
             # the new style '{}'.format(...) string formatting
             (r'\{'
              '((\w+)((\.\w+)|(\[[^\]]+\]))*)?'  # field name
