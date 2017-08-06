@@ -119,9 +119,11 @@ class CsoundOrchestraTest(unittest.TestCase):
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
         fragment = '0xabcdef0123456789 0XABCDEF'
         tokens = [
-            (Number.Hex, u'0xabcdef0123456789'),
+            (Keyword.Type, u'0x'),
+            (Number.Hex, u'abcdef0123456789'),
             (Text, u' '),
-            (Number.Hex, u'0XABCDEF'),
+            (Keyword.Type, u'0X'),
+            (Number.Hex, u'ABCDEF'),
             (Text, u'\n')
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
@@ -436,18 +438,21 @@ class CsoundOrchestraTest(unittest.TestCase):
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
 
     def testFunctionLikeMacros(self):
-        fragment = '$MACRO.(((x\\))\' "x)\\)x\\))"# {{x\\))x)\\)}})'
+        fragment = "$MACRO.(((x#y\\)))' \"(#'x)\\)x\\))\"# {{x\\))x)\\)(#'}});"
         tokens = [
             (Comment.Preproc, u'$MACRO.'),
             (Punctuation, u'('),
             (Comment.Preproc, u'('),
             (Comment.Preproc, u'('),
-            (Comment.Preproc, u'x'),
-            (Comment.Preproc, u'\\)'),
-            (Error, u')'),
+            (Comment.Preproc, u'x#y\\)'),
+            (Comment.Preproc, u')'),
+            (Comment.Preproc, u')'),
             (Punctuation, u"'"),
             (Comment.Preproc, u' '),
             (String, u'"'),
+            (Error, u'('),
+            (Error, u'#'),
+            (Error, u"'"),
             (String, u'x'),
             (Error, u')'),
             (Comment.Preproc, u'\\)'),
@@ -464,8 +469,12 @@ class CsoundOrchestraTest(unittest.TestCase):
             (String, u'x'),
             (Error, u')'),
             (Comment.Preproc, u'\\)'),
+            (Error, u'('),
+            (Error, u'#'),
+            (Error, u"'"),
             (String, u'}}'),
             (Punctuation, u')'),
+            (Comment.Single, u';'),
             (Text, u'\n')
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))

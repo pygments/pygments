@@ -7,7 +7,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-# Opcodes in Csound 6.09.0 at commit 73a8df5 from
+# Opcodes in Csound 6.09.1 at commit 0815e64 from
 #   csound --list-opcodes3
 # except for
 #   cggoto   https://csound.github.io/docs/manual/cggoto.html
@@ -115,19 +115,6 @@ FLvkeybd
 FLvslidBnk
 FLvslidBnk2
 FLxyin
-MixerClear
-MixerGetLevel
-MixerReceive
-MixerSend
-MixerSetLevel
-MixerSetLevel_i
-OSCinit
-OSCinitM
-OSClisten
-OSCraw
-OSCsend
-OSCsendA
-OSCsend_lo
 JackoAudioIn
 JackoAudioInConnect
 JackoAudioOut
@@ -143,6 +130,19 @@ JackoOn
 JackoTransport
 K35_hpf
 K35_lpf
+MixerClear
+MixerGetLevel
+MixerReceive
+MixerSend
+MixerSetLevel
+MixerSetLevel_i
+OSCinit
+OSCinitM
+OSClisten
+OSCraw
+OSCsend
+OSCsendA
+OSCsend_lo
 S
 STKBandedWG
 STKBeeThree
@@ -404,9 +404,12 @@ fluidOut
 fluidProgramSelect
 fluidSetInterpMethod
 fmanal
+fmax
 fmb3
 fmbell
+fmin
 fmmetal
+fmod
 fmpercfl
 fmrhode
 fmvoice
@@ -488,6 +491,7 @@ hsboscil
 hvs1
 hvs2
 hvs3
+hypot
 i
 ihold
 imagecreate
@@ -1333,7 +1337,6 @@ stsend
 subinstr
 subinstrinit
 sum
-sumTableFilter
 sumarray
 svfilter
 syncgrain
@@ -1341,7 +1344,6 @@ syncloop
 syncphasor
 system
 system_i
-systime
 tab
 tab2pvs
 tab_i
@@ -1466,7 +1468,6 @@ vaget
 valpass
 vaset
 vbap
-vbap1move
 vbapg
 vbapgmove
 vbaplsinit

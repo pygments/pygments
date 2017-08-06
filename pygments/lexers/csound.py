@@ -82,34 +82,25 @@ class CsoundLexer(RegexLexer):
         'macro parameter value list': [
             (r'(?:[^\'#"{()]|\{(?!\{))+', Comment.Preproc),
             (r"['#]", Punctuation),
-            # Csound’s preprocessor can’t handle right parentheses in parameter values
-            # <https://github.com/csound/csound/issues/721>. For example,
-            #   $MACRO((value))
-            # passes (value, not (value), to MACRO. The workaround for this implemented in
-            # https://github.com/csound/csound/commit/3e0b441b55fd8e07d70b0908da8165b889feb883
-            # is to require escaping right parentheses. Because this is not required by
-            # the C preprocessor, it is likely to be unexpected, so use a different token
-            # type for parentheses in macro parameter values.
             (r'"', String, 'macro parameter value quoted string'),
             (r'\{\{', String, 'macro parameter value braced string'),
             (r'\(', Comment.Preproc, 'macro parameter value parenthetical'),
             (r'\)', Punctuation, '#pop')
         ],
         'macro parameter value quoted string': [
-            (r'\\\)', Comment.Preproc),
-            (r'\)', Error),
+            (r"\\[#'()]", Comment.Preproc),
+            (r"[#'()]", Error),
             include('quoted string')
         ],
         'macro parameter value braced string': [
-            (r'\\\)', Comment.Preproc),
-            (r'\)', Error),
+            (r"\\[#'()]", Comment.Preproc),
+            (r"[#'()]", Error),
             include('braced string')
         ],
         'macro parameter value parenthetical': [
-            (r'[^\\()]+', Comment.Preproc),
+            (r'(?:[^\\()]|\\\))+', Comment.Preproc),
             (r'\(', Comment.Preproc, '#push'),
-            (r'\\\)', Comment.Preproc, '#pop'),
-            (r'\)', Error, '#pop')
+            (r'\)', Comment.Preproc, '#pop')
         ],
 
         'whitespace and macro uses': [
@@ -119,7 +110,7 @@ class CsoundLexer(RegexLexer):
 
         'numbers': [
             (r'\d+[Ee][+-]?\d+|(\d+\.\d*|\d*\.\d+)([Ee][+-]?\d+)?', Number.Float),
-            (r'0[Xx][0-9A-Fa-f]+', Number.Hex),
+            (r'(0[Xx])([0-9A-Fa-f]+)', bygroups(Keyword.Type, Number.Hex)),
             (r'\d+', Number.Integer)
         ],
 
@@ -230,7 +221,7 @@ class CsoundOrchestraLexer(CsoundLexer):
         elif name in lexer.user_defined_opcodes:
             yield match.start(), Name.Function, name
         else:
-            nameMatch = re.search(r'^(g?[aikSw])(\w+)', name)
+            nameMatch = re.search(r'^(g?[afikSw])(\w+)', name)
             if nameMatch:
                 yield nameMatch.start(1), Keyword.Type, nameMatch.group(1)
                 yield nameMatch.start(2), Name, nameMatch.group(2)
