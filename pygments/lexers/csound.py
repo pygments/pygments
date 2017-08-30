@@ -420,7 +420,7 @@ class CsoundDocumentLexer(RegexLexer):
 
             (r'<\s*CsInstruments', Name.Tag, ('orchestra', 'tag')),
             (r'<\s*CsScore', Name.Tag, ('score', 'tag')),
-            (r'<\s*[hH][tT][mM][lL]', Name.Tag, ('HTML', 'tag')),
+            (r'<\s*[Hh][Tt][Mm][Ll]', Name.Tag, ('HTML', 'tag')),
 
             (r'<\s*[\w:.-]+', Name.Tag, 'tag'),
             (r'<\s*/\s*[\w:.-]+\s*>', Name.Tag)
@@ -435,8 +435,8 @@ class CsoundDocumentLexer(RegexLexer):
             (r'(.|\n)+?(?=<\s*/\s*CsScore\s*>)', using(CsoundScoreLexer))
         ],
         'HTML': [
-            (r'<\s*/\s*[hH][tT][mM][lL]\s*>', Name.Tag, '#pop'),
-            (r'(.|\n)+?(?=<\s*/\s*[hH][tT][mM][lL]\s*>)', using(HtmlLexer))
+            (r'<\s*/\s*[Hh][Tt][Mm][Ll]\s*>', Name.Tag, '#pop'),
+            (r'(.|\n)+?(?=<\s*/\s*[Hh][Tt][Mm][Ll]\s*>)', using(HtmlLexer))
         ],
 
         'tag': [
