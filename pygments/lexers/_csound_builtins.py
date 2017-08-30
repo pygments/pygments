@@ -27,6 +27,7 @@
 #   loop_le  https://csound.github.io/docs/manual/loop_le.html
 #   loop_lt  https://csound.github.io/docs/manual/loop_lt.html
 #   opcode   https://csound.github.io/docs/manual/opcode.html
+#   reinit   https://csound.github.io/docs/manual/reinit.html
 #   return   https://csound.github.io/docs/manual/return.html
 #   rireturn https://csound.github.io/docs/manual/rireturn.html
 #   rigoto   https://csound.github.io/docs/manual/rigoto.html
@@ -1173,7 +1174,6 @@ readks
 readscore
 readscratch
 rect2pol
-reinit
 release
 remoteport
 remove
