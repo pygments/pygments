@@ -28,9 +28,9 @@ class CleanLexer(ExtendedRegexLexer):
     filenames = ['*.icl', '*.dcl']
 
     keywords = (
-        'case', 'ccall', 'class', 'code', 'derive', 'export', 'foreign',
-        'from', 'generic', 'if', 'import', 'in', 'infix', 'infixl', 'infixr',
-        'inline', 'instance', 'let', 'of', 'otherwise', 'qualified', 'special',
+        'case', 'ccall', 'class', 'code', 'code inline', 'derive', 'export',
+        'foreign', 'from', 'generic', 'if', 'import', 'in', 'infix', 'infixl',
+        'infixr', 'instance', 'let', 'of', 'otherwise', 'qualified', 'special',
         'stdcall', 'where', 'with')
 
     modulewords = ('implementation', 'definition', 'system')
