@@ -140,6 +140,8 @@ class GLShaderLexer(RegexLexer):
                 'namespace', 'using'),
                 prefix=r'\b', suffix=r'\b'),
              Keyword.Reserved),
+            # All names beginning with "gl_" are reserved.
+            (r'gl_\w*', Name.Builtin),
             (r'[a-zA-Z_]\w*', Name),
             (r'\.', Punctuation),
             (r'\s+', Text),
