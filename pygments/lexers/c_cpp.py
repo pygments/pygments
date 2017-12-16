@@ -240,6 +240,10 @@ class CppLexer(CFamilyLexer):
             else:
                 yield index, token, value
 
+        # Make sure there isn't a literal at the end of the stream
+        if prev:
+          yield prev["index"], prev["token"], prev["value"]
+
     tokens = {
         'statements': [
             (words((
