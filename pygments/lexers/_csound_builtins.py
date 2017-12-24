@@ -7,32 +7,47 @@
     :license: BSD, see LICENSE for details.
 """
 
-# Opcodes in Csound 6.09.1 at commit 0815e64 from
-#   csound --list-opcodes3
+# Opcodes in Csound 6.10.0 at commit 71eedf01f9c8db6c9fbfdd59888eb3d5ef52f7a0 using
+#   python -c " 
+#   import re, subprocess 
+#   output = subprocess.Popen(['csound', '--list-opcodes0'], stderr=subprocess.PIPE).communicate()[1] 
+#   opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^Usage:', output, re.M).start()].split() 
+#   output = subprocess.Popen(['csound', '--list-opcodes2'], stderr=subprocess.PIPE).communicate()[1] 
+#   all_opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^Usage:', output, re.M).start()].split() 
+#   deprecated_opcodes = [opcode for opcode in all_opcodes if opcode not in opcodes] 
+#   print '''OPCODES = set(\''' 
+#   {} 
+#   \'''.split()) 
+#    
+#   DEPRECATED_OPCODES = set(\''' 
+#   {} 
+#   \'''.split()) 
+#   '''.format('\n'.join(opcodes), '\n'.join(deprecated_opcodes)) 
+#   " 
 # except for
-#   cggoto   https://csound.github.io/docs/manual/cggoto.html
-#   cigoto   https://csound.github.io/docs/manual/cigoto.html
+#   cggoto   csound.com/docs/manual/cggoto.html
+#   cigoto   csound.com/docs/manual/cigoto.html
 #   cingoto  (undocumented)
-#   ckgoto   https://csound.github.io/docs/manual/ckgoto.html
-#   cngoto   https://csound.github.io/docs/manual/cngoto.html
+#   ckgoto   csound.com/docs/manual/ckgoto.html
+#   cngoto   csound.com/docs/manual/cngoto.html
 #   cnkgoto  (undocumented)
-#   endin    https://csound.github.io/docs/manual/endin.html
-#   endop    https://csound.github.io/docs/manual/endop.html
-#   goto     https://csound.github.io/docs/manual/goto.html
-#   igoto    https://csound.github.io/docs/manual/igoto.html
-#   instr    https://csound.github.io/docs/manual/instr.html
-#   kgoto    https://csound.github.io/docs/manual/kgoto.html
-#   loop_ge  https://csound.github.io/docs/manual/loop_ge.html
-#   loop_gt  https://csound.github.io/docs/manual/loop_gt.html
-#   loop_le  https://csound.github.io/docs/manual/loop_le.html
-#   loop_lt  https://csound.github.io/docs/manual/loop_lt.html
-#   opcode   https://csound.github.io/docs/manual/opcode.html
-#   reinit   https://csound.github.io/docs/manual/reinit.html
-#   return   https://csound.github.io/docs/manual/return.html
-#   rireturn https://csound.github.io/docs/manual/rireturn.html
-#   rigoto   https://csound.github.io/docs/manual/rigoto.html
-#   tigoto   https://csound.github.io/docs/manual/tigoto.html
-#   timout   https://csound.github.io/docs/manual/timout.html
+#   endin    csound.com/docs/manual/endin.html
+#   endop    csound.com/docs/manual/endop.html
+#   goto     csound.com/docs/manual/goto.html
+#   igoto    csound.com/docs/manual/igoto.html
+#   instr    csound.com/docs/manual/instr.html
+#   kgoto    csound.com/docs/manual/kgoto.html
+#   loop_ge  csound.com/docs/manual/loop_ge.html
+#   loop_gt  csound.com/docs/manual/loop_gt.html
+#   loop_le  csound.com/docs/manual/loop_le.html
+#   loop_lt  csound.com/docs/manual/loop_lt.html
+#   opcode   csound.com/docs/manual/opcode.html
+#   reinit   csound.com/docs/manual/reinit.html
+#   return   csound.com/docs/manual/return.html
+#   rireturn csound.com/docs/manual/rireturn.html
+#   rigoto   csound.com/docs/manual/rigoto.html
+#   tigoto   csound.com/docs/manual/tigoto.html
+#   timout   csound.com/docs/manual/timout.html
 # which are treated as keywords in csound.py.
 
 OPCODES = set('''
@@ -138,12 +153,9 @@ MixerSend
 MixerSetLevel
 MixerSetLevel_i
 OSCinit
-OSCinitM
 OSClisten
 OSCraw
 OSCsend
-OSCsendA
-OSCsend_lo
 S
 STKBandedWG
 STKBeeThree
@@ -242,9 +254,11 @@ chn_k
 chnclear
 chnexport
 chnget
+chngetks
 chnmix
 chnparams
 chnset
+chnsetks
 chuap
 clear
 clfilt
@@ -821,6 +835,7 @@ midinoteonpch
 midion
 midion2
 midiout
+midiout_i
 midipgm
 midipitchbend
 midipolyaftertouch
@@ -1302,6 +1317,7 @@ sprintf
 sprintfk
 spsend
 sqrt
+squinewave
 statevar
 stix
 strcat
@@ -1605,10 +1621,6 @@ ktableseg
 lentab
 maxtab
 mintab
-pop
-pop_f
-push
-push_f
 scalet
 sndload
 soundout
@@ -1622,7 +1634,6 @@ specptrk
 specscal
 specsum
 spectrum
-stack
 sumtab
 tabgen
 tabmap
