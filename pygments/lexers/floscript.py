@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.python
+    pygments.lexers.floscript
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for FloScript 
