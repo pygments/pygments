@@ -59,6 +59,7 @@ LEXERS = {
     'BlitzBasicLexer': ('pygments.lexers.basic', 'BlitzBasic', ('blitzbasic', 'b3d', 'bplus'), ('*.bb', '*.decls'), ('text/x-bb',)),
     'BlitzMaxLexer': ('pygments.lexers.basic', 'BlitzMax', ('blitzmax', 'bmax'), ('*.bmx',), ('text/x-bmx',)),
     'BnfLexer': ('pygments.lexers.grammar_notation', 'BNF', ('bnf',), ('*.bnf',), ('text/x-bnf',)),
+    'BoaLexer': ('pygments.lexers.boa', 'Boa', ('boa',), ('*.boa',), ()),
     'BooLexer': ('pygments.lexers.dotnet', 'Boo', ('boo',), ('*.boo',), ('text/x-boo',)),
     'BoogieLexer': ('pygments.lexers.verification', 'Boogie', ('boogie',), ('*.bpl',), ()),
     'BrainfuckLexer': ('pygments.lexers.esoteric', 'Brainfuck', ('brainfuck', 'bf'), ('*.bf', '*.b'), ('application/x-brainfuck',)),

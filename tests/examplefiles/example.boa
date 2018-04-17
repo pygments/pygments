@@ -1,0 +1,18 @@
+# Computes Number of Public Methods (NPM) for each project, per-type
+# Output is: NPM[ProjectID][TypeName] = NPM value
+p: Project = input;
+NPM: output sum[string][string] of int;
+
+visit(p, visitor {
+	# only look at the latest snapshot
+	before n: CodeRepository -> {
+		snapshot := getsnapshot(n);
+		foreach (i: int; def(snapshot[i]))
+			visit(snapshot[i]);
+		stop;
+	}
+	before node: Declaration ->
+		if (node.kind == TypeKind.CLASS)
+			foreach (i: int; has_modifier_public(node.methods[i]))
+				NPM[p.id][node.name] << 1;
+});
