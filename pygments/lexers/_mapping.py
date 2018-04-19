@@ -278,6 +278,7 @@ LEXERS = {
     'MonkeyLexer': ('pygments.lexers.basic', 'Monkey', ('monkey',), ('*.monkey',), ('text/x-monkey',)),
     'MonteLexer': ('pygments.lexers.monte', 'Monte', ('monte',), ('*.mt',), ()),
     'MoonScriptLexer': ('pygments.lexers.scripting', 'MoonScript', ('moon', 'moonscript'), ('*.moon',), ('text/x-moonscript', 'application/x-moonscript')),
+    'MoselLexer': ('pygments.lexers.mosel', 'Mosel', ('mosel',), ('*.mos',), ()),
     'MozPreprocCssLexer': ('pygments.lexers.markup', 'CSS+mozpreproc', ('css+mozpreproc',), ('*.css.in',), ()),
     'MozPreprocHashLexer': ('pygments.lexers.markup', 'mozhashpreproc', ('mozhashpreproc',), (), ()),
     'MozPreprocJavascriptLexer': ('pygments.lexers.markup', 'Javascript+mozpreproc', ('javascript+mozpreproc',), ('*.js.in',), ()),
