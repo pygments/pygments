@@ -8,22 +8,22 @@
 """
 
 # Opcodes in Csound 6.11.0 at commit 25b2e8e53bc924526eaad34e0768a5e866638e94 using
-python -c "
-import re, subprocess
-output = subprocess.Popen(['csound', '--list-opcodes0'], stderr=subprocess.PIPE).communicate()[1]
-opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^(?:WARNING|Usage):', output, re.M).start()].split()
-output = subprocess.Popen(['csound', '--list-opcodes2'], stderr=subprocess.PIPE).communicate()[1]
-all_opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^(?:WARNING|Usage):', output, re.M).start()].split()
-deprecated_opcodes = [opcode for opcode in all_opcodes if opcode not in opcodes]
-print '''OPCODES = set(\'''
-{}
-\'''.split())
-
-DEPRECATED_OPCODES = set(\'''
-{}
-\'''.split())
-'''.format('\n'.join(opcodes), '\n'.join(deprecated_opcodes))
-"
+# 	python -c "
+# 	import re, subprocess
+# 	output = subprocess.Popen(['csound', '--list-opcodes0'], stderr=subprocess.PIPE).communicate()[1]
+# 	opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^(?:WARNING|Usage):', output, re.M).start()].split()
+# 	output = subprocess.Popen(['csound', '--list-opcodes2'], stderr=subprocess.PIPE).communicate()[1]
+# 	all_opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^(?:WARNING|Usage):', output, re.M).start()].split()
+# 	deprecated_opcodes = [opcode for opcode in all_opcodes if opcode not in opcodes]
+# 	print '''OPCODES = set(\'''
+# 	{}
+# 	\'''.split())
+# 
+# 	DEPRECATED_OPCODES = set(\'''
+# 	{}
+# 	\'''.split())
+# 	'''.format('\n'.join(opcodes), '\n'.join(deprecated_opcodes))
+# 	"
 # except for
 #   cggoto   csound.com/docs/manual/cggoto.html
 #   cigoto   csound.com/docs/manual/cigoto.html
