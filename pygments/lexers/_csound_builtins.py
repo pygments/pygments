@@ -3,27 +3,27 @@
     pygments.lexers._csound_builtins
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2018 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-# Opcodes in Csound 6.10.0 at commit 71eedf01f9c8db6c9fbfdd59888eb3d5ef52f7a0 using
-#   python -c " 
-#   import re, subprocess 
-#   output = subprocess.Popen(['csound', '--list-opcodes0'], stderr=subprocess.PIPE).communicate()[1] 
-#   opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^Usage:', output, re.M).start()].split() 
-#   output = subprocess.Popen(['csound', '--list-opcodes2'], stderr=subprocess.PIPE).communicate()[1] 
-#   all_opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^Usage:', output, re.M).start()].split() 
-#   deprecated_opcodes = [opcode for opcode in all_opcodes if opcode not in opcodes] 
-#   print '''OPCODES = set(\''' 
-#   {} 
-#   \'''.split()) 
-#    
-#   DEPRECATED_OPCODES = set(\''' 
-#   {} 
-#   \'''.split()) 
-#   '''.format('\n'.join(opcodes), '\n'.join(deprecated_opcodes)) 
-#   " 
+# Opcodes in Csound 6.11.0 at commit 25b2e8e53bc924526eaad34e0768a5e866638e94 using
+python -c "
+import re, subprocess
+output = subprocess.Popen(['csound', '--list-opcodes0'], stderr=subprocess.PIPE).communicate()[1]
+opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^(?:WARNING|Usage):', output, re.M).start()].split()
+output = subprocess.Popen(['csound', '--list-opcodes2'], stderr=subprocess.PIPE).communicate()[1]
+all_opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^(?:WARNING|Usage):', output, re.M).start()].split()
+deprecated_opcodes = [opcode for opcode in all_opcodes if opcode not in opcodes]
+print '''OPCODES = set(\'''
+{}
+\'''.split())
+
+DEPRECATED_OPCODES = set(\'''
+{}
+\'''.split())
+'''.format('\n'.join(opcodes), '\n'.join(deprecated_opcodes))
+"
 # except for
 #   cggoto   csound.com/docs/manual/cggoto.html
 #   cigoto   csound.com/docs/manual/cigoto.html
@@ -153,9 +153,11 @@ MixerSend
 MixerSetLevel
 MixerSetLevel_i
 OSCinit
+OSCinitM
 OSClisten
 OSCraw
 OSCsend
+OSCsend_lo
 S
 STKBandedWG
 STKBeeThree
@@ -205,6 +207,7 @@ atonek
 atonex
 babo
 balance
+balance2
 bamboo
 barmodel
 bbcutm
@@ -765,6 +768,8 @@ loopxseg
 lorenz
 loscil
 loscil3
+loscil3phs
+loscilphs
 loscilx
 lowpass2
 lowres
@@ -1064,7 +1069,6 @@ pvsftr
 pvsftw
 pvsfwrite
 pvsgain
-pvsgendy
 pvshift
 pvsifd
 pvsin
@@ -1302,7 +1306,6 @@ sndwarpst
 sockrecv
 sockrecvs
 socksend
-socksend_k
 socksends
 sorta
 sortd
@@ -1403,38 +1406,6 @@ tan
 tanh
 taninv
 taninv2
-tb0
-tb0_init
-tb1
-tb10
-tb10_init
-tb11
-tb11_init
-tb12
-tb12_init
-tb13
-tb13_init
-tb14
-tb14_init
-tb15
-tb15_init
-tb1_init
-tb2
-tb2_init
-tb3
-tb3_init
-tb4
-tb4_init
-tb5
-tb5_init
-tb6
-tb6_init
-tb7
-tb7_init
-tb8
-tb8_init
-tb9
-tb9_init
 tbvcf
 tempest
 tempo
@@ -1621,6 +1592,10 @@ ktableseg
 lentab
 maxtab
 mintab
+pop
+pop_f
+push
+push_f
 scalet
 sndload
 soundout
@@ -1634,11 +1609,44 @@ specptrk
 specscal
 specsum
 spectrum
+stack
 sumtab
 tabgen
 tabmap
 tabmap_i
 tabslice
+tb0
+tb0_init
+tb1
+tb10
+tb10_init
+tb11
+tb11_init
+tb12
+tb12_init
+tb13
+tb13_init
+tb14
+tb14_init
+tb15
+tb15_init
+tb1_init
+tb2
+tb2_init
+tb3
+tb3_init
+tb4
+tb4_init
+tb5
+tb5_init
+tb6
+tb6_init
+tb7
+tb7_init
+tb8
+tb8_init
+tb9
+tb9_init
 vbap16
 vbap4
 vbap4move
