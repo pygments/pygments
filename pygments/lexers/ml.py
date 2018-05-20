@@ -767,7 +767,6 @@ class OpaLexer(RegexLexer):
         ],
     }
 
-<<<<<<< b60392ca0b026308d61c2f533109e2afd8b8d780
 class ReasonLexer(RegexLexer):
     """
     For the ReasonML language (https://reasonml.github.io/).
@@ -797,7 +796,67 @@ class ReasonLexer(RegexLexer):
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
     word_operators = ('and', 'asr', 'land', 'lor', 'lsl', 'lsr', 'lxor', 'mod', 'or')
-=======
+
+    prefix_syms = r'[!?~]'
+    infix_syms = r'[=<>@^|&+\*/$%-]'
+    primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
+
+    tokens = {
+        'escape-sequence': [
+            (r'\\[\\"\'ntbr]', String.Escape),
+            (r'\\[0-9]{3}', String.Escape),
+            (r'\\x[0-9a-fA-F]{2}', String.Escape),
+        ],
+        'root': [
+            (r'\s+', Text),
+            (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
+            (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
+            (r'\b([A-Z][\w\']*)', Name.Class),
+            (r'//.*?\n', Comment.Single),
+            (r'\/\*(?![\/])', Comment.Multiline, 'comment'),
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
+            (r'(%s)' % '|'.join(keyopts[::-1]), Operator.Word),
+            (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
+            (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
+            (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
+
+            (r"[^\W\d][\w']*", Name),
+
+            (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
+            (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
+            (r'0[oO][0-7][0-7_]*', Number.Oct),
+            (r'0[bB][01][01_]*', Number.Bin),
+            (r'\d[\d_]*', Number.Integer),
+
+            (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
+                 String.Char),
+            (r"'.'", String.Char),
+
+            (r"'", Keyword),
+        ],
+        'comment': [
+            (r'[^\/*]+', Comment.Multiline),
+            (r'\/\*', Comment.Multiline, '#push'),
+            (r'\*\/', Comment.Multiline, '#pop'),
+            (r'[\*]', Comment.Multiline),
+        ],
+        'string': [
+            (r'[^\\"]+', String.Double),
+            include('escape-sequence'),
+            (r'\\\n', String.Double),
+            (r'"', String.Double, '#pop'),
+        ],
+        'dotted': [
+            (r'\s+', Text),
+            (r'\.', Punctuation),
+            (r'[A-Z][\w\']*(?=\s*\.)', Name.Namespace),
+            (r'[A-Z][\w\']*', Name.Class, '#pop'),
+            (r'[a-z_][\w\']*', Name, '#pop'),
+            default('#pop'),
+        ],
+    }
+
+
 class FStarLexer(RegexLexer):
     """
     For the F* language.
@@ -830,7 +889,7 @@ class FStarLexer(RegexLexer):
     )
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
->>>>>>> A lexer for F*, an ML dialect for program verification
+
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
@@ -843,17 +902,6 @@ class FStarLexer(RegexLexer):
         ],
         'root': [
             (r'\s+', Text),
-<<<<<<< b60392ca0b026308d61c2f533109e2afd8b8d780
-            (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
-            (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
-            (r'\b([A-Z][\w\']*)', Name.Class),
-            (r'//.*?\n', Comment.Single),
-            (r'\/\*(?![\/])', Comment.Multiline, 'comment'),
-            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
-            (r'(%s)' % '|'.join(keyopts[::-1]), Operator.Word),
-            (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
-            (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
-=======
             (r'false|true|False|True|\(\)|\[\]', Name.Builtin.Pseudo),
             (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name.Class),
@@ -861,7 +909,6 @@ class FStarLexer(RegexLexer):
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
->>>>>>> A lexer for F*, an ML dialect for program verification
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
 
             (r"[^\W\d][\w']*", Name),
@@ -875,23 +922,12 @@ class FStarLexer(RegexLexer):
             (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
              String.Char),
             (r"'.'", String.Char),
-<<<<<<< b60392ca0b026308d61c2f533109e2afd8b8d780
-            (r"'", Keyword),
-=======
             (r"'", Keyword),  # a stray quote is another syntax element
->>>>>>> A lexer for F*, an ML dialect for program verification
+            (r"`", Keyword),  # for infix applications
 
             (r'"', String.Double, 'string'),
 
             (r'[~?][a-z][\w\']*:', Name.Variable),
-<<<<<<< b60392ca0b026308d61c2f533109e2afd8b8d780
-        ],
-        'comment': [
-            (r'[^\/*]+', Comment.Multiline),
-            (r'\/\*', Comment.Multiline, '#push'),
-            (r'\*\/', Comment.Multiline, '#pop'),
-            (r'[\*]', Comment.Multiline),
-=======
             (r'`[a-z][a-zA-Z0-9_\']*`', Text), # infix application
         ],
         'comment': [
@@ -902,7 +938,6 @@ class FStarLexer(RegexLexer):
         ],
         'single_comment': [
             (r'^\/\/.+$', Comment),
->>>>>>> A lexer for F*, an ML dialect for program verification
         ],
         'string': [
             (r'[^\\"]+', String.Double),
@@ -919,7 +954,3 @@ class FStarLexer(RegexLexer):
             default('#pop'),
         ],
     }
-<<<<<<< b60392ca0b026308d61c2f533109e2afd8b8d780
-=======
-
->>>>>>> A lexer for F*, an ML dialect for program verification
