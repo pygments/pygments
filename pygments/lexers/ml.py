@@ -833,11 +833,11 @@ class FStarLexer(RegexLexer):
              String.Char),
             (r"'.'", String.Char),
             (r"'", Keyword),  # a stray quote is another syntax element
+            (r"`", Keyword),  # for infix applications
 
             (r'"', String.Double, 'string'),
 
             (r'[~?][a-z][\w\']*:', Name.Variable),
-            (r'`[a-z][a-zA-Z0-9_\']*`', Text), # infix application
         ],
         'comment': [
             (r'[^(*)]+', Comment),
