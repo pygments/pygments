@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, include, bygroups, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 
-__all__ = ['SMLLexer', 'OcamlLexer', 'OpaLexer', 'ReasonLexer']
+__all__ = ['SMLLexer', 'OcamlLexer', 'OpaLexer', 'ReasonLexer', 'FStarLexer']
 
 
 class SMLLexer(RegexLexer):
@@ -767,6 +767,7 @@ class OpaLexer(RegexLexer):
         ],
     }
 
+<<<<<<< b60392ca0b026308d61c2f533109e2afd8b8d780
 class ReasonLexer(RegexLexer):
     """
     For the ReasonML language (https://reasonml.github.io/).
@@ -780,11 +781,11 @@ class ReasonLexer(RegexLexer):
     mimetypes = ['text/x-reasonml']
 
     keywords = (
-    'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto', 
-    'else', 'end', 'exception', 'external', 'false', 'for', 'fun', 'esfun', 
-    'function', 'functor', 'if', 'in', 'include', 'inherit', 'initializer', 'lazy', 
-    'let', 'switch', 'module', 'pub', 'mutable', 'new', 'nonrec', 'object', 'of', 
-    'open', 'pri', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try', 
+    'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto',
+    'else', 'end', 'exception', 'external', 'false', 'for', 'fun', 'esfun',
+    'function', 'functor', 'if', 'in', 'include', 'inherit', 'initializer', 'lazy',
+    'let', 'switch', 'module', 'pub', 'mutable', 'new', 'nonrec', 'object', 'of',
+    'open', 'pri', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
     'type', 'val', 'virtual', 'when', 'while', 'with'
     )
     keyopts = (
@@ -796,6 +797,40 @@ class ReasonLexer(RegexLexer):
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
     word_operators = ('and', 'asr', 'land', 'lor', 'lsl', 'lsr', 'lxor', 'mod', 'or')
+=======
+class FStarLexer(RegexLexer):
+    """
+    For the F* language.
+
+    .. versionadded:: 2.3
+    """
+
+    name = 'FStar'
+    aliases = ['fstar']
+    filenames = ['*.fst', '*.fsti']
+    mimetypes = ['text/x-fstar']
+
+    keywords = (
+        'abstract', 'attributes', 'noeq', 'unopteq', 'and', 'assert', 'assume',
+        'begin', 'by', 'default', 'effect', 'else', 'end', 'ensures',
+        'exception', 'exists', 'false', 'forall', 'fun', 'function', 'if',
+        'in', 'include', 'inline', 'inline_for_extraction', 'irreducible', 'let',
+        'logic', 'match', 'module', 'mutable', 'new', 'new_effect', 'noextract',
+        'of', 'open', 'opaque', 'private', 'range_of', 'rec', 'reifiable',
+        'reify', 'reflectable', 'requires', 'set_range_of', 'sub_effect',
+        'synth', 'then', 'total', 'true', 'try', 'type', 'unfold', 'unfoldable',
+        'val', 'when', 'with',
+    )
+    keyopts = (
+        r'~', r'-', r'/\\', r'\\/', r'<:', r'<@', r'\(\|', r'\|\)', r'#', r'u#',
+        r'&', r'\(\)', r'\(', r'\)', r',', r'~>', r'->', r'<--', r'<-', r'<==>',
+        r'==>', r'\.', r'\?\.', r'\?', r'\.\[', r'\.\(\|', r'\.\(', r'\.\[\|',
+        r'\{:pattern', r':', r'::', r':=', r';;', r';', r'=', r'%\[', r'!\{',
+        r'\[@', r'\[', r'\[\|', r'\|>', r'\]', r'\|\]', r'\{', r'\|', r'\}', r'\$'
+    )
+
+    operators = r'[!$%&*+\./:<=>?@^|~-]'
+>>>>>>> A lexer for F*, an ML dialect for program verification
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
@@ -808,6 +843,7 @@ class ReasonLexer(RegexLexer):
         ],
         'root': [
             (r'\s+', Text),
+<<<<<<< b60392ca0b026308d61c2f533109e2afd8b8d780
             (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
             (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name.Class),
@@ -817,6 +853,15 @@ class ReasonLexer(RegexLexer):
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator.Word),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
+=======
+            (r'false|true|False|True|\(\)|\[\]', Name.Builtin.Pseudo),
+            (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
+            (r'\b([A-Z][\w\']*)', Name.Class),
+            (r'\(\*(?![)])', Comment, 'comment'),
+            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
+            (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
+            (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
+>>>>>>> A lexer for F*, an ML dialect for program verification
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
 
             (r"[^\W\d][\w']*", Name),
@@ -830,17 +875,34 @@ class ReasonLexer(RegexLexer):
             (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
              String.Char),
             (r"'.'", String.Char),
+<<<<<<< b60392ca0b026308d61c2f533109e2afd8b8d780
             (r"'", Keyword),
+=======
+            (r"'", Keyword),  # a stray quote is another syntax element
+>>>>>>> A lexer for F*, an ML dialect for program verification
 
             (r'"', String.Double, 'string'),
 
             (r'[~?][a-z][\w\']*:', Name.Variable),
+<<<<<<< b60392ca0b026308d61c2f533109e2afd8b8d780
         ],
         'comment': [
             (r'[^\/*]+', Comment.Multiline),
             (r'\/\*', Comment.Multiline, '#push'),
             (r'\*\/', Comment.Multiline, '#pop'),
             (r'[\*]', Comment.Multiline),
+=======
+            (r'`[a-z][a-zA-Z0-9_\']*`', Text), # infix application
+        ],
+        'comment': [
+            (r'[^(*)]+', Comment),
+            (r'\(\*', Comment, '#push'),
+            (r'\*\)', Comment, '#pop'),
+            (r'[(*)]', Comment),
+        ],
+        'single_comment': [
+            (r'^\/\/.+$', Comment),
+>>>>>>> A lexer for F*, an ML dialect for program verification
         ],
         'string': [
             (r'[^\\"]+', String.Double),
@@ -857,3 +919,7 @@ class ReasonLexer(RegexLexer):
             default('#pop'),
         ],
     }
+<<<<<<< b60392ca0b026308d61c2f533109e2afd8b8d780
+=======
+
+>>>>>>> A lexer for F*, an ML dialect for program verification
