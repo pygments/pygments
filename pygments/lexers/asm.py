@@ -21,7 +21,7 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
            'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'NasmLexer',
            'NasmObjdumpLexer', 'TasmLexer', 'Ca65Lexer', 'Dasm16Lexer',
-           'M68kAsmLexer']
+           'M68kLexer']
 
 
 class GasLexer(RegexLexer):
