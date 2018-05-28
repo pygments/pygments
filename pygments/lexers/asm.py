@@ -788,7 +788,7 @@ class M68kLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(;|\*).*', Comment.Single),
+            (r'(\*[^a-zA-Z]|;).*', Comment.Single),
             (r'([a-zA-Z0-9]+:)', Name.Label),
             (r'(#[a-zA-Z0-9]+)', Name.Label),
             (
@@ -828,6 +828,6 @@ class M68kLexer(RegexLexer):
             (r"'[^'\n]*.", String.Char),
             (r'\#?\$?(0x)?[0-9a-f]+\b', Number.Integer),
             (r'[a-z_.@$][\w.@$]*', Name),
-            (r'[#,.:()=\+\-\\\[\]]', Punctuation),
+            (r'[#,.:()=\+\-\*\/\\\[\]]', Punctuation),
             (r'\s+', Text),
         ]}
