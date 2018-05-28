@@ -828,6 +828,6 @@ class M68kLexer(RegexLexer):
             (r"'[^'\n]*.", String.Char),
             (r'\#?\$?(0x)?[0-9a-f]+\b', Number.Integer),
             (r'[a-z_.@$][\w.@$]*', Name),
-            (r'[#,.:()=\+\-\*\/\\\[\]]', Punctuation),
+            (r'[#,.:()=\+\-\*\/<>&!\\\[\]]', Punctuation),
             (r'\s+', Text),
         ]}
