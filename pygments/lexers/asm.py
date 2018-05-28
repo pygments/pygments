@@ -20,7 +20,8 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
 
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
            'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'NasmLexer',
-           'NasmObjdumpLexer', 'TasmLexer', 'Ca65Lexer', 'Dasm16Lexer']
+           'NasmObjdumpLexer', 'TasmLexer', 'Ca65Lexer', 'Dasm16Lexer',
+           'M68kAsmLexer']
 
 
 class GasLexer(RegexLexer):
@@ -774,3 +775,59 @@ class Dasm16Lexer(RegexLexer):
             (r';.*?\n', Comment)
         ],
     }
+
+
+class M68kLexer(RegexLexer):
+    """All your lexer code goes here!"""
+
+    name = 'M68k Assembly'
+    aliases = ['m68k']
+    filenames = ['*.s', '*.asm', '*.i']
+
+    flags = re.IGNORECASE
+
+    tokens = {
+        'root': [
+            (r'(;|\*).*', Comment.Single),
+            (r'([a-zA-Z0-9]+:)', Name.Label),
+            (r'(#[a-zA-Z0-9]+)', Name.Label),
+            (
+                r'(align|blk|bss|'
+                r'bss|cargs|clrfo|clrso|cnop|code|code|'
+                r'comm|comment|cseg|data|data|dc|dcb|'
+                r'dr|dsb|ds|dseg|echo|'
+                r'einline|else|end|endc|endif|endm|endr|equ|equ|'
+                r'erem|even|fail|fequ|fo|idnt|'
+                r'if|ifeq|ifne|ifgt|ifge|iflt|ifle|ifb|ifnb|ifc|ifnc|ifd|'
+                r'ifnd|ifmacrod|ifmacrond|incin|incdir|include|inline|list|'
+                r'llen|macro|mexit|nolist|nopage|nref|odd|offset|org|output|'
+                r'page|plen|printt|printv|publicrem|rept|rorg|rs|rsreset|'
+                r'rsset|section|set|setfo|setso|so|spc|text|ttl|weak|xdef|'
+                r'xref)\b', Operator
+            ),
+            (
+                r'(abcd|add|adda|addi|addq|addx|and|andi|asl|asr|bcc|bchg|'
+                r'bclr|bcs|beq|bfchg|bfset|bftst|bge|bgt|bhi|ble|bls|blt|'
+                r'bmi|bne|bpl|bra|bset|bsr|btst|bvc|bvs|callm|cas|chk|chk2|'
+                r'cinv|cinva|clr|cmp|cmp2|cmpa|cmpi|cmpm|cpush|cpushp|dbcs|'
+                r'dbeq|dbf|dbgt|dbls|dbmi|dbne|divs|divsl|divu|divul|eor|'
+                r'eori|exg|ext|fmovem|frestore|fsave|illegal|jmp|jsr|lea|'
+                r'linea|linef|link|lsl|lsr|move|move16|movea|movec|movem|'
+                r'movep|moveq|moves|muls|mulu|nbcd|neg|negx|nop|not|or|'
+                r'ori|pack|pbas|pbbs|pbcs|pea|pflush|pmove|pmovefd|prestore|'
+                r'psbs|psgs|ptestr|ptrapac|ptrapgs|ptrapic|reset|rol|ror|'
+                r'roxl|roxr|rte|rtm|rts|sbcd|scc|scs|seq|sf|sge|sgt|sle|'
+                r'slt|sne|spl|st|stop|sub|suba|subi|subq|subx|svs|swap|'
+                r'tas|trap|traplt|tst|unlk|unpk)\b', Keyword
+            ),
+            # (r'[-+~*/^&|!<>=]', Operator),
+            (r'_(c|f)', Operator),
+            (r'\.(b|l|p|q|s|w|x)', Operator),
+            (r'((a|d)[0-7]|pc)', Operator),
+            (r'"[^"\n]*.', String),
+            (r"'[^'\n]*.", String.Char),
+            (r'[a-z_.@$][\w.@$]*', Name),
+            (r'\#?\$?(0x)?[\da-f]+', Number.Integer),
+            (r'[#,.:()=\+\-\\\[\]]', Punctuation),
+            (r'\s+', Text),
+        ]}
