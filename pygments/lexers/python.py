@@ -180,15 +180,15 @@ class PythonLexer(RegexLexer):
         ],
         'name': [
             (r'@[\w.]+', Name.Decorator),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'funcname': [
             include('magicfuncs'),
-            ('[a-zA-Z_]\w*', Name.Function, '#pop'),
+            (r'[a-zA-Z_]\w*', Name.Function, '#pop'),
             default('#pop'),
         ],
         'classname': [
-            ('[a-zA-Z_]\w*', Name.Class, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'import': [
             (r'(?:[ \t]|\\\n)+', Text),
@@ -265,10 +265,10 @@ class Python3Lexer(RegexLexer):
              '[hlL]?[E-GXc-giorsux%]', String.Interpol),
             # the new style '{}'.format(...) string formatting
             (r'\{'
-             '((\w+)((\.\w+)|(\[[^\]]+\]))*)?'  # field name
-             '(\![sra])?'                       # conversion
-             '(\:(.?[<>=\^])?[-+ ]?#?0?(\d+)?,?(\.\d+)?[E-GXb-gnosx%]?)?'
-             '\}', String.Interpol),
+             r'((\w+)((\.\w+)|(\[[^\]]+\]))*)?'  # field name
+             r'(\![sra])?'                       # conversion
+             r'(\:(.?[<>=\^])?[-+ ]?#?0?(\d+)?,?(\.\d+)?[E-GXb-gnosx%]?)?'
+             r'\}', String.Interpol),
 
             # backslashes, quotes and formatting signs must be parsed one at a time
             (r'[^\\\'"%{\n]+', ttype),
@@ -671,10 +671,10 @@ class CythonLexer(RegexLexer):
         ],
         'name': [
             (r'@\w+', Name.Decorator),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'funcname': [
-            ('[a-zA-Z_]\w*', Name.Function, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Function, '#pop')
         ],
         'cdef': [
             (r'(public|readonly|extern|api|inline)\b', Keyword.Reserved),
@@ -691,7 +691,7 @@ class CythonLexer(RegexLexer):
             (r'.', Text),
         ],
         'classname': [
-            ('[a-zA-Z_]\w*', Name.Class, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'import': [
             (r'(\s+)(as)(\s+)', bygroups(Text, Keyword, Text)),
