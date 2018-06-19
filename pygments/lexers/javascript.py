@@ -535,8 +535,8 @@ class TypeScriptLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.search('^(import.+(from\s+)?["\']|'
-                     '(export\s*)?(interface|class|function)\s+)',
+        if re.search(r'^(import.+(from\s+)?["\']|'
+                     r'(export\s*)?(interface|class|function)\s+)',
                      text, re.MULTILINE):
             return 1.0
 
@@ -1015,7 +1015,7 @@ class ObjectiveJLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.search('^\s*@import\s+[<"]', text, re.MULTILINE):
+        if re.search(r'^\s*@import\s+[<"]', text, re.MULTILINE):
             # special directive found in most Objective-J files
             return True
         return False

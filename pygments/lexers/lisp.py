@@ -139,7 +139,7 @@ class SchemeLexer(RegexLexer):
             (r"(?<=#\()" + valid_name, Name.Variable),
 
             # highlight the builtins
-            ("(?<=\()(%s)" % '|'.join(re.escape(entry) + ' ' for entry in builtins),
+            (r"(?<=\()(%s)" % '|'.join(re.escape(entry) + ' ' for entry in builtins),
              Name.Builtin),
 
             # the remaining functions
@@ -321,7 +321,7 @@ class CommonLispLexer(RegexLexer):
             (r'#\d+#', Operator),
 
             # read-time comment
-            (r'#+nil' + terminated + '\s*\(', Comment.Preproc, 'commented-form'),
+            (r'#+nil' + terminated + r'\s*\(', Comment.Preproc, 'commented-form'),
 
             # read-time conditional
             (r'#[+-]', Operator),
@@ -333,7 +333,7 @@ class CommonLispLexer(RegexLexer):
             (r'(t|nil)' + terminated, Name.Constant),
 
             # functions and variables
-            (r'\*' + symbol + '\*', Name.Variable.Global),
+            (r'\*' + symbol + r'\*', Name.Variable.Global),
             (symbol, Name.Variable),
 
             # parentheses
@@ -2154,7 +2154,7 @@ class EmacsLispLexer(RegexLexer):
             (r'(t|nil)' + terminated, Name.Constant),
 
             # functions and variables
-            (r'\*' + symbol + '\*', Name.Variable.Global),
+            (r'\*' + symbol + r'\*', Name.Variable.Global),
             (symbol, Name.Variable),
 
             # parentheses
