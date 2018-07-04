@@ -347,7 +347,10 @@ class PostgresConsoleLexer(Lexer):
             # Emit the output lines
             out_token = Generic.Output
             while 1:
-                line = next(lines)
+                try:
+                    line = next(lines)
+                except StopIteration:
+                    return
                 mprompt = re_prompt.match(line)
                 if mprompt is not None:
                     # push the line back to have it processed by the prompt
