@@ -1807,7 +1807,8 @@ class HandlebarsLexer(RegexLexer):
 
 				# HTML Escaping open {{{expression
             (r'(\{\{\{)(\s*)', bygroups(Comment.Special, Text), 'tag'),
-				# {{blockOpen {{#blockOpen {{/blockClose with optional ~
+
+				# {{blockOpen {{#blockOpen {{/blockClose with optional tilde ~
             (r'(\{\{)([#~/]+)([^\s}]*)', bygroups(Comment.Preproc, Number.Attribute,Number.Attribute), 'tag'),
             (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'tag'),
         ],
