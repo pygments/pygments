@@ -1802,27 +1802,25 @@ class HandlebarsLexer(RegexLexer):
         'root': [
             (r'[^{]+', Other),
 
+				# Comment start {{!  }} or {{!-- 
             (r'\{\{!.*\}\}', Comment),
 
+				# HTML Escaping open {{{expression
             (r'(\{\{\{)(\s*)', bygroups(Comment.Special, Text), 'tag'),
+				# {{blockOpen {{#blockOpen {{/blockClose with optional ~
+            (r'(\{\{)([#~/]+)([^\s}]*)', bygroups(Comment.Preproc, Number.Attribute,Number.Attribute), 'tag'),
             (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'tag'),
         ],
 
         'tag': [
             (r'\s+', Text),
+				# HTML Escaping close }}}
             (r'\}\}\}', Comment.Special, '#pop'),
-            (r'\}\}', Comment.Preproc, '#pop'),
-
-            # Handlebars
-            (r'([#/]*)(each|if|unless|else|with|log|in(line)?)', bygroups(Keyword,
-             Keyword)),
-            (r'#\*inline', Keyword),
-
-            # General {{#block}}
-            (r'([#/])([\w-]+)', bygroups(Name.Function, Name.Function)),
+				# blockClose}}, includes optional tilde ~
+            (r'(~?)(\}\})', bygroups(Number, Comment.Preproc), '#pop'),
 
             # {{opt=something}}
-            (r'([\w-]+)(=)', bygroups(Name.Attribute, Operator)),
+            (r'([^\s}]+)(=)', bygroups(Name.Attribute, Operator)),
 
             # Partials {{> ...}}
             (r'(>)(\s*)(@partial-block)', bygroups(Keyword, Text, Keyword)),
@@ -1845,7 +1843,7 @@ class HandlebarsLexer(RegexLexer):
             include('generic'),
         ],
         'variable': [
-            (r'[a-zA-Z][\w-]*', Name.Variable),
+            (r'[()/@a-zA-Z][\w-]*', Name.Variable),
             (r'\.[\w-]+', Name.Variable),
             (r'(this\/|\.\/|(\.\.\/)+)[\w-]+', Name.Variable),
         ],
