@@ -1400,7 +1400,7 @@ class RacketLexer(RegexLexer):
 
 class NewLispLexer(RegexLexer):
     """
-    For `newLISP. <www.newlisp.org>`_ source code (version 10.3.0).
+    For `newLISP. <http://www.newlisp.org/>`_ source code (version 10.3.0).
 
     .. versionadded:: 1.5
     """

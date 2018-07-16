@@ -421,7 +421,7 @@ class RdLexer(RegexLexer):
     This is a very minimal implementation, highlighting little more
     than the macros. A description of Rd syntax is found in `Writing R
     Extensions <http://cran.r-project.org/doc/manuals/R-exts.html>`_
-    and `Parsing Rd files <developer.r-project.org/parseRd.pdf>`_.
+    and `Parsing Rd files <http://developer.r-project.org/parseRd.pdf>`_.
 
     .. versionadded:: 1.6
     """
