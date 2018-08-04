@@ -12,26 +12,47 @@
 from pygments.token import Token, STANDARD_TYPES
 from pygments.util import add_metaclass
 
-# Default mapping of #ansixxx to RGB colors.
+# Default mapping of ansixxx to RGB colors.
 _ansimap = {
     # dark
-    '#ansiblack': '000000',
-    '#ansidarkred': '7f0000',
-    '#ansidarkgreen': '007f00',
-    '#ansibrown': '7f7fe0',
-    '#ansidarkblue': '00007f',
-    '#ansipurple': '7f007f',
-    '#ansiteal': '007f7f',
-    '#ansilightgray': 'e5e5e5',
+    'ansiblack': '000000',
+    'ansired': '7f0000',
+    'ansigreen': '007f00',
+    'ansiyellow': '7f7fe0',
+    'ansiblue': '00007f',
+    'ansimagenta': '7f007f',
+    'ansicyan': '007f7f',
+    'ansigray': 'e5e5e5',
     # normal
-    '#ansidarkgray': '555555',
-    '#ansired': 'ff0000',
-    '#ansigreen': '00ff00',
-    '#ansiyellow': 'ffff00',
-    '#ansiblue': '0000ff',
-    '#ansifuchsia': 'ff00ff',
-    '#ansiturquoise': '00ffff',
-    '#ansiwhite': 'ffffff',
+    '#ansibrightblack': '555555',
+    'ansibrightred': 'ff0000',
+    'ansibrightgreen': '00ff00',
+    'ansibrightyellow': 'ffff00',
+    'ansibrightblue': '0000ff',
+    'ansibrightmagenta': 'ff00ff',
+    'ansibrightcyan': '00ffff',
+    'ansiwhite': 'ffffff',
+}
+# mapping of deprecated #ansixxx colors to new color names
+_deprecated_ansicolors = {
+    # dark
+    '#ansiblack': 'ansiblack',
+    '#ansidarkred': 'ansired',
+    '#ansidarkgreen': 'ansigreen',
+    '#ansibrown': 'ansiyellow',
+    '#ansidarkblue': 'ansiblue',
+    '#ansipurple': 'ansimagenta',
+    '#ansiteal': 'ansicyan',
+    '#ansilightgray': 'ansigray',
+    # normal
+    '#ansidarkgray': 'ansibrightblack',
+    '#ansired': 'ansibrightred',
+    '#ansigreen': 'ansibrightgreen',
+    '#ansiyellow': 'ansibrightyellow',
+    '#ansiblue': 'ansibrightblue',
+    '#ansifuchsia': 'ansibrightmagenta',
+    '#ansiturquoise': 'ansibrightcyan',
+    '#ansiwhite': 'ansiwhite',
 }
 ansicolors = set(_ansimap)
 
@@ -106,11 +127,15 @@ class StyleMeta(type):
         t = cls._styles[token]
         ansicolor = bgansicolor = None
         color = t[0]
-        if color.startswith('#ansi'):
+        if color in _deprecated_ansicolors:
+            color = _deprecated_ansicolors[color]
+        if color in ansicolors:
             ansicolor = color
             color = _ansimap[color]
         bgcolor = t[4]
-        if bgcolor.startswith('#ansi'):
+        if bgcolor in _deprecated_ansicolors:
+            bgcolor = _deprecated_ansicolors[color]
+        if bgcolor in ansicolors:
             bgansicolor = bgcolor
             bgcolor = _ansimap[bgcolor]
 

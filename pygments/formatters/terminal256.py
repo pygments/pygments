@@ -110,6 +110,12 @@ class Terminal256Formatter(Formatter):
        `Terminal256Formatter` will map these to non extended foreground color.
        See :ref:`AnsiTerminalStyle` for more information.
 
+    .. versionchanged:: 2.3
+       The ansi color names have been updated with names that are easier to
+       understand and align with colornames of other projects and terminals.
+       See :ref:`NewAnsiColorNames` for more information.
+    
+
     Options accepted:
 
     `style`
@@ -189,7 +195,7 @@ class Terminal256Formatter(Formatter):
     def _color_index(self, color):
         index = self.best_match.get(color, None)
         if color in ansicolors:
-            # strip the `#ansi` part and look up code
+            # strip the `ansi/#ansi` part and look up code
             index = color
             self.best_match[color] = index
         if index is None:
