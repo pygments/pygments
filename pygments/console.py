@@ -24,7 +24,7 @@ codes["overline"] = esc + "06m"
 
 dark_colors = ["black", "red", "green", "yellow", "blue",
                "magenta", "cyan", "gray"]
-light_colors = ["brightblack", "brightgreen", "brightgreen", "brightyellow", "brightblue",
+light_colors = ["brightblack", "brightred", "brightgreen", "brightyellow", "brightblue",
                 "brightmagenta", "brightcyan", "white"]
 
 x = 30
