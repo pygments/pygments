@@ -50,7 +50,7 @@ class EscapeSequence:
         attrs = []
         if self.fg is not None:
             if self.fg in ansicolors:
-                esc = codes[self.fg[5:]]
+                esc = codes[self.fg.lstrip('ansi')]
                 if ';01m' in esc:
                     self.bold = True
                 # extract fg color code.
@@ -59,7 +59,7 @@ class EscapeSequence:
                 attrs.extend(("38", "5", "%i" % self.fg))
         if self.bg is not None:
             if self.bg in ansicolors:
-                esc = codes[self.bg[5:]]
+                esc = codes[self.bg.lstrip('ansi')]
                 # extract fg color code, add 10 for bg.
                 attrs.append(str(int(esc[2:4])+10))
             else:
