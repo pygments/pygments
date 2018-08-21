@@ -24,7 +24,7 @@ _ansimap = {
     'ansicyan': '007f7f',
     'ansigray': 'e5e5e5',
     # normal
-    '#ansibrightblack': '555555',
+    'ansibrightblack': '555555',
     'ansibrightred': 'ff0000',
     'ansibrightgreen': '00ff00',
     'ansibrightyellow': 'ffff00',
