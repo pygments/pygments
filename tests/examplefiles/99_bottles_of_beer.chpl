@@ -195,5 +195,12 @@ prototype module X {
   proc int.add() { }
 
   g();
+
+  override proc test() throws {
+    var a = new borrowed IntPair();
+    var b = new owned IntPair();
+    var c = new shared IntPair();
+    throw new unmanaged Error();
+  }
 }
 
