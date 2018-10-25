@@ -7,13 +7,13 @@
     :license: BSD, see LICENSE for details.
 """
 
-# Opcodes in Csound 6.11.0 at commit 25b2e8e53bc924526eaad34e0768a5e866638e94 using
+# Opcodes in Csound 6.12.0 at commit 6ca322bd31f1ca907c008616b40a5f237ff449db using
 #   python -c "
 #   import re, subprocess
 #   output = subprocess.Popen(['csound', '--list-opcodes0'], stderr=subprocess.PIPE).communicate()[1]
-#   opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^(?:WARNING|Usage):', output, re.M).start()].split()
+#   opcodes = output[re.search(r'^$', output, re.M).end():re.search(r'^\d+ opcodes$', output, re.M).start()].split()
 #   output = subprocess.Popen(['csound', '--list-opcodes2'], stderr=subprocess.PIPE).communicate()[1]
-#   all_opcodes = output[re.search(r'^\d+ opcodes$', output, re.M).end():re.search(r'^(?:WARNING|Usage):', output, re.M).start()].split()
+#   all_opcodes = output[re.search(r'^$', output, re.M).end():re.search(r'^\d+ opcodes$', output, re.M).start()].split()
 #   deprecated_opcodes = [opcode for opcode in all_opcodes if opcode not in opcodes]
 #   print '''OPCODES = set(\'''
 #   {}
@@ -152,6 +152,8 @@ MixerReceive
 MixerSend
 MixerSetLevel
 MixerSetLevel_i
+OSCbundle
+OSCcount
 OSCinit
 OSCinitM
 OSClisten
@@ -212,6 +214,8 @@ bamboo
 barmodel
 bbcutm
 bbcuts
+beadsynt
+beosc
 betarand
 bexprnd
 bformdec1
@@ -221,8 +225,8 @@ biquad
 biquada
 birnd
 bpf
+bpfcos
 bqrez
-buchla
 butbp
 butbr
 buthp
@@ -326,6 +330,7 @@ dcblock2
 dconv
 dct
 dctinv
+deinterleave
 delay
 delay1
 delayk
@@ -389,7 +394,9 @@ fareyleni
 faustaudio
 faustcompile
 faustctl
+faustdsp
 faustgen
+faustplay
 fft
 fftinv
 ficlose
@@ -411,16 +418,6 @@ flashtxt
 flooper
 flooper2
 floor
-fluidAllOut
-fluidCCi
-fluidCCk
-fluidControl
-fluidEngine
-fluidLoad
-fluidNote
-fluidOut
-fluidProgramSelect
-fluidSetInterpMethod
 fmanal
 fmax
 fmb3
@@ -451,6 +448,7 @@ frac
 fractalnoise
 framebuffer
 freeverb
+ftaudio
 ftchnls
 ftconv
 ftcps
@@ -464,11 +462,13 @@ ftloadk
 ftlptim
 ftmorf
 ftom
+ftprint
 ftresize
 ftresizei
 ftsamplebank
 ftsave
 ftsavek
+ftslice
 ftsr
 gain
 gainslider
@@ -485,6 +485,7 @@ getcfg
 getcol
 getftargs
 getrow
+getrowlin
 getseed
 gogobel
 grain
@@ -540,6 +541,7 @@ insglobal
 insremot
 int
 integ
+interleave
 interp
 invalue
 inx
@@ -734,6 +736,7 @@ lenarray
 lfo
 limit
 limit1
+lincos
 line
 linen
 linenr
@@ -868,11 +871,6 @@ mp3in
 mp3len
 mp3nchnls
 mp3scal
-mp3scal_check
-mp3scal_load
-mp3scal_load2
-mp3scal_play
-mp3scal_play2
 mp3sr
 mpulse
 mrtmsg
@@ -1019,6 +1017,7 @@ prealloc
 prepiano
 print
 print_type
+printarray
 printf
 printf_i
 printk
@@ -1197,6 +1196,7 @@ release
 remoteport
 remove
 repluck
+reshapearray
 reson
 resonk
 resonr
@@ -1275,7 +1275,6 @@ sfpreset
 shaker
 shiftin
 shiftout
-signalflowgraph
 signum
 sin
 sinh
@@ -1283,6 +1282,7 @@ sininv
 sinsyn
 sleighbells
 slicearray
+slicearray_i
 slider16
 slider16f
 slider16table
@@ -1364,6 +1364,7 @@ syncphasor
 system
 system_i
 tab
+tab2array
 tab2pvs
 tab_i
 tabifd
@@ -1398,6 +1399,7 @@ tabmorphak
 tabmorphi
 tabplay
 tabrec
+tabrowlin
 tabsum
 tabw
 tabw_i
@@ -1431,6 +1433,8 @@ trfilter
 trhighest
 trigger
 trigseq
+trim
+trim_i
 trirand
 trlowest
 trmix
