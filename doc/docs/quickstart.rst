@@ -39,7 +39,7 @@ Here is a small example for highlighting Python code:
     from pygments.formatters import HtmlFormatter
 
     code = 'print "Hello World"'
-    print highlight(code, PythonLexer(), HtmlFormatter())
+    print(highlight(code, PythonLexer(), HtmlFormatter()))
 
 which prints something like this:
 
