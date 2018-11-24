@@ -5,7 +5,7 @@
 
     Lexers for Lispy languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -2327,13 +2327,13 @@ class ShenLexer(RegexLexer):
             token = Name.Function if token == Literal else token
             yield index, token, value
 
-        raise StopIteration
+        return
 
     def _process_signature(self, tokens):
         for index, token, value in tokens:
             if token == Literal and value == '}':
                 yield index, Punctuation, value
-                raise StopIteration
+                return
             elif token in (Literal, Name.Function):
                 token = Name.Variable if value.istitle() else Keyword.Type
             yield index, token, value

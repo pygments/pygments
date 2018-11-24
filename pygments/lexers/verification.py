@@ -5,7 +5,7 @@
 
     Lexer for Intermediate Verification Languages (IVLs).
 
-    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -69,7 +69,7 @@ class SilverLexer(RegexLexer):
     """
     name = 'Silver'
     aliases = ['silver']
-    filenames = ['*.sil']
+    filenames = ['*.sil', '*.vpr']
 
     tokens = {
         'root': [
@@ -89,7 +89,7 @@ class SilverLexer(RegexLexer):
                 'constraining', 'Seq', 'Set', 'Multiset', 'union', 'intersection',
                 'setminus', 'subset', 'unfolding', 'in', 'old', 'forall', 'exists',
                 'acc', 'wildcard', 'write', 'none', 'epsilon', 'perm', 'unique',
-                'apply', 'package', 'folding', 'label'),
+                'apply', 'package', 'folding', 'label', 'forperm'),
              suffix=r'\b'), Keyword),
             (words(('Int', 'Perm', 'Bool', 'Ref'), suffix=r'\b'), Keyword.Type),
             include('numbers'),

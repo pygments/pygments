@@ -22,14 +22,14 @@
     .. _Pygments tip:
        http://bitbucket.org/birkenfeld/pygments-main/get/tip.zip#egg=Pygments-dev
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import sys
 
 from pygments.util import StringIO, BytesIO
 
-__version__ = '2.2a0'
+__version__ = '2.2.0'
 __docformat__ = 'restructuredtext'
 
 __all__ = ['lex', 'format', 'highlight']
