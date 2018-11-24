@@ -5,15 +5,14 @@
 
     Lexers for the Cap'n Proto schema language.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups, words
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Literal
+from pygments.lexer import RegexLexer, default
+from pygments.token import Text, Comment, Keyword, Name, Literal
 
 __all__ = ['CapnProtoLexer']
 
@@ -30,7 +29,6 @@ class CapnProtoLexer(RegexLexer):
 
     flags = re.MULTILINE | re.UNICODE
 
-
     tokens = {
         'root': [
             (r'#.*?$', Comment.Single),
@@ -38,42 +36,43 @@ class CapnProtoLexer(RegexLexer):
             (r'=', Literal, 'expression'),
             (r':', Name.Class, 'type'),
             (r'\$', Name.Attribute, 'annotation'),
-            (r'(struct|enum|interface|union|import|using|const|annotation|extends|in|of|on|as|with|from|fixed)\b',
-                Keyword),
-            (r'[a-zA-Z0-9_.]+', Name),
-            (r'[^#@=:$a-zA-Z0-9_]+', Text),
+            (r'(struct|enum|interface|union|import|using|const|annotation|'
+             r'extends|in|of|on|as|with|from|fixed)\b',
+             Keyword),
+            (r'[\w.]+', Name),
+            (r'[^#@=:$\w]+', Text),
         ],
         'type': [
             (r'[^][=;,(){}$]+', Name.Class),
             (r'[[(]', Name.Class, 'parentype'),
-            (r'', Name.Class, '#pop')
+            default('#pop'),
         ],
         'parentype': [
             (r'[^][;()]+', Name.Class),
             (r'[[(]', Name.Class, '#push'),
             (r'[])]', Name.Class, '#pop'),
-            (r'', Name.Class, '#pop')
+            default('#pop'),
         ],
         'expression': [
             (r'[^][;,(){}$]+', Literal),
             (r'[[(]', Literal, 'parenexp'),
-            (r'', Literal, '#pop')
+            default('#pop'),
         ],
         'parenexp': [
             (r'[^][;()]+', Literal),
             (r'[[(]', Literal, '#push'),
             (r'[])]', Literal, '#pop'),
-            (r'', Literal, '#pop')
+            default('#pop'),
         ],
         'annotation': [
             (r'[^][;,(){}=:]+', Name.Attribute),
             (r'[[(]', Name.Attribute, 'annexp'),
-            (r'', Name.Attribute, '#pop')
+            default('#pop'),
         ],
         'annexp': [
             (r'[^][;()]+', Name.Attribute),
             (r'[[(]', Name.Attribute, '#push'),
             (r'[])]', Name.Attribute, '#pop'),
-            (r'', Name.Attribute, '#pop')
+            default('#pop'),
         ],
     }

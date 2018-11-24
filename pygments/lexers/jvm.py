@@ -5,7 +5,7 @@
 
     Pygments lexers for JVM languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -801,7 +801,7 @@ class ClojureLexer(RegexLexer):
 
     # TODO / should divide keywords/symbols into namespace/rest
     # but that's hard, so just pretend / is part of the name
-    valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
+    valid_name = r'(?!#)[\w!$%*+<=>?/.#|-]+'
 
     tokens = {
         'root': [

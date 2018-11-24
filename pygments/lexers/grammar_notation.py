@@ -5,7 +5,7 @@
 
     Lexers for grammer notations like BNF.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import RegexLexer, bygroups, include, this, using, words
 from pygments.token import Comment, Keyword, Literal, Name, Number, \
-     Operator, Punctuation, String, Text
+    Operator, Punctuation, String, Text
 
 __all__ = ['BnfLexer', 'AbnfLexer', 'JsgfLexer']
 

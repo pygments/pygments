@@ -62,6 +62,18 @@ Functions from :mod:`pygments.lexers`:
     Will raise :exc:`pygments.util.ClassNotFound` if not lexer for that mimetype
     is found.
 
+.. function:: load_lexer_from_file(filename, lexername="CustomLexer", **options)
+
+    Return a `Lexer` subclass instance loaded from the provided file, relative
+    to the current directory. The file is expected to contain a Lexer class
+    named `lexername` (by default, CustomLexer). Users should be very careful with
+    the input, because this method is equivalent to running eval on the input file.
+    The lexer is given the `options` at its instantiation.
+
+    :exc:`ClassNotFound` is raised if there are any errors loading the Lexer
+
+    .. versionadded:: 2.2
+
 .. function:: guess_lexer(text, **options)
 
     Return a `Lexer` subclass instance that's guessed from the text in
@@ -125,6 +137,17 @@ Functions from :mod:`pygments.formatters`:
     Will raise :exc:`pygments.util.ClassNotFound` if no formatter for that filename
     is found.
 
+.. function:: load_formatter_from_file(filename, formattername="CustomFormatter", **options)
+
+    Return a `Formatter` subclass instance loaded from the provided file, relative
+    to the current directory. The file is expected to contain a Formatter class
+    named ``formattername`` (by default, CustomFormatter). Users should be very
+    careful with the input, because this method is equivalent to running eval
+    on the input file. The formatter is given the `options` at its instantiation.
+
+    :exc:`ClassNotFound` is raised if there are any errors loading the Formatter
+
+    .. versionadded:: 2.2
 
 .. module:: pygments.styles
 
