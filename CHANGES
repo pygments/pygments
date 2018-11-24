@@ -18,6 +18,8 @@ Version 2.3.0
 - Added Python 3.7 support (PR#772)
 - Fix incorrect token type in SCSS for single-quote strings (#1322)
 - Use `terminal256` formatter if `TERM` contains `256` (PR#666)
+- Fix incorrect handling of GitHub style fences in Markdown (PR#741, #1389)
+- Fix `%a` not being highlighted in Python3 strings (PR#727)
 
 Version 2.2.0
 -------------
