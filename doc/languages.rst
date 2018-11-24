@@ -37,6 +37,7 @@ Programming languages
 * `Ezhil <http://ezhillang.org>`_ Ezhil - A Tamil programming language
 * Factor
 * Fancy
+* `Fennel <https://fennel-lang.org/>`_
 * Fortran
 * F#
 * GAP
@@ -44,6 +45,7 @@ Programming languages
 * GL shaders
 * Groovy
 * `Haskell <http://www.haskell.org>`_ (incl. Literate Haskell)
+* HLSL
 * IDL
 * Io
 * Java
