@@ -6,6 +6,19 @@ Issue numbers refer to the tracker at
 pull request numbers to the requests at
 <https://bitbucket.org/birkenfeld/pygments-main/pull-requests/merged>.
 
+Version 2.3.0
+-------------
+(not yet released)
+
+- Added lexers:
+
+  * Fennel (PR#783)
+  * HLSL (PR#675)
+
+- Added Python 3.7 support (PR#772)
+- Fix incorrect token type in SCSS for single-quote strings (#1322)
+- Use `terminal256` formatter if `TERM` contains `256` (PR#666)
+
 Version 2.2.0
 -------------
 (release Jan 22, 2017)
