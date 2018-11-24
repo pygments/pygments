@@ -56,7 +56,7 @@ can be produced by:
 
 .. sourcecode:: python
 
-    print HtmlFormatter().get_style_defs('.highlight')
+    print(HtmlFormatter().get_style_defs('.highlight'))
 
 The argument to :func:`get_style_defs` is used as an additional CSS selector:
 the output may look like this:
