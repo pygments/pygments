@@ -125,7 +125,7 @@ _css_properties = (
     'wrap-flow', 'wrap-inside', 'wrap-through', 'writing-mode', 'z-index',
 )
 
-# List of keyword values obtained from: 
+# List of keyword values obtained from:
 # http://cssvalues.com/
 _keyword_values = (
     'absolute', 'alias', 'all', 'all-petite-caps', 'all-scroll',
@@ -263,7 +263,7 @@ _time_units = (
     's', 'ms',
 )
 _all_units = _angle_units + _frequency_units + _length_units + \
-             _resolution_units + _time_units
+    _resolution_units + _time_units
 
 
 class CssLexer(RegexLexer):
@@ -322,16 +322,18 @@ class CssLexer(RegexLexer):
             include('urls'),
             (r'('+r'|'.join(_functional_notation_keyword_values)+r')(\()',
              bygroups(Name.Builtin, Punctuation), 'function-start'),
-            (r'([a-zA-Z_][\w-]+)(\()', bygroups(Name.Function, Punctuation), 'function-start'),
+            (r'([a-zA-Z_][\w-]+)(\()',
+             bygroups(Name.Function, Punctuation), 'function-start'),
             (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
             (words(_other_keyword_values, suffix=r'\b'), Keyword.Constant),
             (words(_color_keywords, suffix=r'\b'), Keyword.Constant),
-            (words(_css_properties, suffix=r'\b'), Keyword), # for transition-property etc.
+            # for transition-property etc.
+            (words(_css_properties, suffix=r'\b'), Keyword),
             (r'\!important', Comment.Preproc),
             (r'/\*(?:.|\n)*?\*/', Comment),
 
             include('numeric-values'),
-            
+
             (r'[~^*!%&<>|+=@:./?-]+', Operator),
             (r'[\[\](),]+', Punctuation),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
@@ -351,7 +353,8 @@ class CssLexer(RegexLexer):
             # function-start may be entered recursively
             (r'(' + r'|'.join(_functional_notation_keyword_values) + r')(\()',
              bygroups(Name.Builtin, Punctuation), 'function-start'),
-            (r'([a-zA-Z_][\w-]+)(\()', bygroups(Name.Function, Punctuation), 'function-start'),
+            (r'([a-zA-Z_][\w-]+)(\()',
+             bygroups(Name.Function, Punctuation), 'function-start'),
 
             (r'/\*(?:.|\n)*?\*/', Comment),
             include('numeric-values'),
@@ -373,8 +376,8 @@ class CssLexer(RegexLexer):
         'numeric-values': [
             (r'\#[a-zA-Z0-9]{1,6}', Number.Hex),
             (r'[+\-]?[0-9]*[.][0-9]+', Number.Float, 'numeric-end'),
-            (r'[+\-]?[0-9]+', Number.Integer, 'numeric-end'),            
-        ],        
+            (r'[+\-]?[0-9]+', Number.Integer, 'numeric-end'),
+        ],
         'numeric-end': [
             (words(_all_units, suffix=r'\b'), Keyword.Type),
             (r'%', Keyword.Type),
@@ -466,9 +469,9 @@ common_sass_tokens = {
     ],
 
     'string-single': [
-        (r"(\\.|#(?=[^\n{])|[^\n'#])+", String.Double),
+        (r"(\\.|#(?=[^\n{])|[^\n'#])+", String.Single),
         (r'#\{', String.Interpol, 'interpolation'),
-        (r"'", String.Double, '#pop'),
+        (r"'", String.Single, '#pop'),
     ],
 
     'string-url': [
