@@ -308,14 +308,7 @@ class PostgresConsoleLexer(Lexer):
             # and continue until the end of command is detected
             curcode = ''
             insertions = []
-            while 1:
-                try:
-                    line = next(lines)
-                except StopIteration:
-                    # allow the emission of partially collected items
-                    # the repl loop will be broken below
-                    break
-
+            for line in lines:
                 # Identify a shell prompt in case of psql commandline example
                 if line.startswith('$') and not curcode:
                     lexer = get_lexer_by_name('console', **self.options)
@@ -346,8 +339,7 @@ class PostgresConsoleLexer(Lexer):
 
             # Emit the output lines
             out_token = Generic.Output
-            while 1:
-                line = next(lines)
+            for line in lines:
                 mprompt = re_prompt.match(line)
                 if mprompt is not None:
                     # push the line back to have it processed by the prompt
@@ -363,6 +355,8 @@ class PostgresConsoleLexer(Lexer):
                     yield (mmsg.start(2), out_token, mmsg.group(2))
                 else:
                     yield (0, out_token, line)
+            else:
+                return
 
 
 class SqlLexer(RegexLexer):
