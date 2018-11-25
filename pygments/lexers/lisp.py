@@ -2620,11 +2620,14 @@ class XtlangLexer(RegexLexer):
         ],
     }
 
+
 class FennelLexer(RegexLexer):
-    """A lexer for the Fennel programming language <https://fennel-lang.org>
+    """A lexer for the `Fennel programming language <https://fennel-lang.org>`_.
 
     Fennel compiles to Lua, so all the Lua builtins are recognized as well
     as the special forms that are particular to the Fennel compiler.
+
+    .. versionadded:: 2.3
     """
     name = 'Fennel'
     aliases = ['fennel', 'fnl']

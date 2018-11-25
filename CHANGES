@@ -8,22 +8,28 @@ pull request numbers to the requests at
 
 Version 2.3.0
 -------------
-(not yet released)
+(released Nov 25, 2018)
 
 - Added lexers:
 
   * Fennel (PR#783)
   * HLSL (PR#675)
 
-- Added Python 3.7 support (PR#772)
+- Updated lexers:
+
+  * Dockerfile (PR#714)
+
+- Minimum Python versions changed to 2.7 and 3.5
+- Added support for Python 3.7 generator changes (PR#772)
 - Fix incorrect token type in SCSS for single-quote strings (#1322)
 - Use `terminal256` formatter if `TERM` contains `256` (PR#666)
 - Fix incorrect handling of GitHub style fences in Markdown (PR#741, #1389)
 - Fix `%a` not being highlighted in Python3 strings (PR#727)
 
+
 Version 2.2.0
 -------------
-(release Jan 22, 2017)
+(released Jan 22, 2017)
 
 - Added lexers:
 
