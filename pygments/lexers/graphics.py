@@ -79,7 +79,7 @@ class HLSLShaderLexer(RegexLexer):
     """
     HLSL (Microsoft Direct3D Shader) lexer.
 
-    .. versionadded:: 2.2
+    .. versionadded:: 2.3
     """
     name = 'HLSL'
     aliases = ['hlsl']
