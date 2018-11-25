@@ -29,23 +29,26 @@ class CleanLexer(ExtendedRegexLexer):
 
     keywords = (
         'case', 'ccall', 'class', 'code', 'code inline', 'derive', 'export',
-        'foreign', 'from', 'generic', 'if', 'import', 'in', 'infix', 'infixl',
-        'infixr', 'instance', 'let', 'of', 'otherwise', 'qualified', 'special',
-        'stdcall', 'where', 'with')
+        'foreign', 'generic', 'if', 'in', 'infix', 'infixl', 'infixr',
+        'instance', 'let', 'of', 'otherwise', 'special', 'stdcall', 'where',
+        'with')
 
     modulewords = ('implementation', 'definition', 'system')
 
-    lowerId = r'[a-z][\w\d`]*'
-    upperId = r'[A-Z][\w\d`]*'
+    lowerId = r'[a-z`][\w\d`]*'
+    upperId = r'[A-Z`][\w\d`]*'
     funnyId = r'[~@#\$%\^?!+\-*<>\\/|&=:]+'
     scoreUpperId = r'_' + upperId
     scoreLowerId = r'_' + lowerId
+    moduleId = r'[a-zA-Z_][a-zA-Z0-9_.`]+'
+    classId = '|'.join([lowerId, upperId, funnyId])
 
     tokens = {
         'root': [
             include('comments'),
             include('keywords'),
             include('module'),
+            include('import'),
             include('whitespace'),
             include('literals'),
             include('operators'),
@@ -76,11 +79,70 @@ class CleanLexer(ExtendedRegexLexer):
         ],
         'module.name': [
             include('whitespace'),
+            (moduleId, Name.Class, '#pop'),
+        ],
+        'import': [
+            (r'\b(import)\b(\s*)', bygroups(Keyword, Whitespace), 'import.module'),
+            (r'\b(from)\b(\s*)\b(' + moduleId + r')\b(\s*)\b(import)\b',
+                bygroups(Keyword, Whitespace, Name.Class, Whitespace, Keyword),
+                'import.what'),
+        ],
+        'import.module': [
+            (r'\b(qualified)\b(\s*)', bygroups(Keyword, Whitespace)),
+            (r'(\s*)\b(as)\b', bygroups(Whitespace, Keyword), ('#pop', 'import.module.as')),
+            (moduleId, Name.Class),
+            (r'(\s*)(,)(\s*)', bygroups(Whitespace, Punctuation, Whitespace)),
+            (r'\s*', Whitespace, '#pop'),
+        ],
+        'import.module.as': [
+            include('whitespace'),
             (lowerId, Name.Class, '#pop'),
             (upperId, Name.Class, '#pop'),
-            (funnyId, Name.Class, '#pop'),
-            (scoreLowerId, Name.Class, '#pop'),
-            (scoreUpperId, Name.Class, '#pop'),
+        ],
+        'import.what': [
+            (r'\b(class)\b(\s+)(' + classId + r')',
+                bygroups(Keyword, Whitespace, Name.Class), 'import.what.class'),
+            (r'\b(instance)(\s+)(' + classId + r')(\s+)',
+                bygroups(Keyword, Whitespace, Name.Class, Whitespace), 'import.what.instance'),
+            (r'(::)(\s*)\b(' + upperId + r')\b',
+                bygroups(Punctuation, Whitespace, Name.Class), 'import.what.type'),
+            (r'\b(generic)\b(\s+)\b(' + lowerId + '|' + upperId + r')\b',
+                bygroups(Keyword, Whitespace, Name)),
+            include('names'),
+            (r'(,)(\s+)', bygroups(Punctuation, Whitespace)),
+            (r'$', Whitespace, '#pop'),
+            include('whitespace'),
+        ],
+        'import.what.class': [
+            (r',', Punctuation, '#pop'),
+            (r'\(', Punctuation, 'import.what.class.members'),
+            (r'$', Whitespace, '#pop:2'),
+            include('whitespace'),
+        ],
+        'import.what.class.members': [
+            (r',', Punctuation),
+            (r'\.\.', Punctuation),
+            (r'\)', Punctuation, '#pop'),
+            include('names'),
+        ],
+        'import.what.instance': [
+            (r'[,)]', Punctuation, '#pop'),
+            (r'\(', Punctuation, 'import.what.instance'),
+            (r'$', Whitespace, '#pop:2'),
+            include('whitespace'),
+            include('names'),
+        ],
+        'import.what.type': [
+            (r',', Punctuation, '#pop'),
+            (r'[({]', Punctuation, 'import.what.type.consesandfields'),
+            (r'$', Whitespace, '#pop:2'),
+            include('whitespace'),
+        ],
+        'import.what.type.consesandfields': [
+            (r',', Punctuation),
+            (r'\.\.', Punctuation),
+            (r'[)}]', Punctuation, '#pop'),
+            include('names'),
         ],
         'literals': [
             (r'\'([^\'\\]|\\(x[\da-fA-F]+|\d+|.))\'', Literal.Char),
@@ -107,10 +169,10 @@ class CleanLexer(ExtendedRegexLexer):
                 bygroups(Punctuation, Name.Class, Punctuation)),
         ],
         'names': [
-            (r'\b' + lowerId, Name),
+            (lowerId, Name),
             (scoreLowerId, Name),
-            (r'\b' + funnyId, Name.Function),
-            (r'\b' + upperId, Name.Class),
+            (funnyId, Name.Function),
+            (upperId, Name.Class),
             (scoreUpperId, Name.Class),
         ]
     }
