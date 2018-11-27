@@ -361,12 +361,12 @@ class Python3Lexer(RegexLexer):
          Name.Variable.Magic),
     ]
     tokens['numbers'] = [
-        (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-        (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
-        (r'0[oO][0-7]+', Number.Oct),
-        (r'0[bB][01]+', Number.Bin),
-        (r'0[xX][a-fA-F0-9]+', Number.Hex),
-        (r'\d+', Number.Integer)
+        (r'(\d(?:_?\d)*\.(?:\d(?:_?\d)*)?|(?:\d(?:_?\d)*)?\.\d(?:_?\d)*)([eE][+-]?\d(?:_?\d)*)?', Number.Float),
+        (r'\d(?:_?\d)*[eE][+-]?\d(?:_?\d)*j?', Number.Float),
+        (r'0[oO](?:_?[0-7])+', Number.Oct),
+        (r'0[bB](?:_?[01])+', Number.Bin),
+        (r'0[xX](?:_?[a-fA-F0-9])+', Number.Hex),
+        (r'\d(?:_?\d)*', Number.Integer)
     ]
     tokens['backtick'] = []
     tokens['name'] = [
@@ -395,14 +395,6 @@ class Python3Lexer(RegexLexer):
     ]
     tokens['strings-single'] = innerstring_rules(String.Single)
     tokens['strings-double'] = innerstring_rules(String.Double)
-    tokens['numbers'] = [
-        (r'(\d(?:_?\d)*\.(?:\d(?:_?\d)*)?|(?:\d(?:_?\d)*)?\.\d(?:_?\d)*)([eE][+-]?\d(?:_?\d)*)?', Number.Float),
-        (r'\d(?:_?\d)*[eE][+-]?\d(?:_?\d)*j?', Number.Float),
-        (r'0[oO](?:_?[0-7])+', Number.Oct),
-        (r'0[bB](?:_?[01])+', Number.Bin),
-        (r'0[xX](?:_?[a-fA-F0-9])+', Number.Hex),
-        (r'\d(?:_?\d)*', Number.Integer)
-    ]
 
 
     def analyse_text(text):
