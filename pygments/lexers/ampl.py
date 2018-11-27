@@ -3,7 +3,7 @@
     pygments.lexers.ampl
     ~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for the ampl language. <http://ampl.com/>
+    Lexers for the AMPL language.
 
     :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -18,7 +18,7 @@ __all__ = ['AmplLexer']
 
 class AmplLexer(RegexLexer):
     """
-    For AMPL source code.
+    For `AMPL <http://ampl.com/>`_ source code.
 
     .. versionadded:: 2.2
     """

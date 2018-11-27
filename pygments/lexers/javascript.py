@@ -1500,8 +1500,10 @@ class JuttleLexer(RegexLexer):
             (r'^(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r':\d{2}:\d{2}:\d{2}(\.\d*)?:', String.Moment),
-            (r':(now|beginning|end|forever|yesterday|today|tomorrow|(\d+(\.\d*)?|\.\d+)(ms|[smhdwMy])?):', String.Moment),
-            (r':\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d*)?)?(Z|[+-]\d{2}:\d{2}|[+-]\d{4})?:', String.Moment),
+            (r':(now|beginning|end|forever|yesterday|today|tomorrow|'
+             r'(\d+(\.\d*)?|\.\d+)(ms|[smhdwMy])?):', String.Moment),
+            (r':\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d*)?)?'
+             r'(Z|[+-]\d{2}:\d{2}|[+-]\d{4})?:', String.Moment),
             (r':((\d+(\.\d*)?|\.\d+)[ ]+)?(millisecond|second|minute|hour|day|week|month|year)[s]?'
              r'(([ ]+and[ ]+(\d+[ ]+)?(millisecond|second|minute|hour|day|week|month|year)[s]?)'
              r'|[ ]+(ago|from[ ]+now))*:', String.Moment),

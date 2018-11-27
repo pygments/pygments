@@ -19,7 +19,7 @@ from pygments.lexers.python import PythonLexer
 
 __all__ = ['SchemeLexer', 'CommonLispLexer', 'HyLexer', 'RacketLexer',
            'NewLispLexer', 'EmacsLispLexer', 'ShenLexer', 'CPSALexer',
-           'XtlangLexer']
+           'XtlangLexer', 'FennelLexer']
 
 
 class SchemeLexer(RegexLexer):
@@ -2327,13 +2327,13 @@ class ShenLexer(RegexLexer):
             token = Name.Function if token == Literal else token
             yield index, token, value
 
-        raise StopIteration
+        return
 
     def _process_signature(self, tokens):
         for index, token, value in tokens:
             if token == Literal and value == '}':
                 yield index, Punctuation, value
-                raise StopIteration
+                return
             elif token in (Literal, Name.Function):
                 token = Name.Variable if value.istitle() else Keyword.Type
             yield index, token, value
@@ -2618,4 +2618,76 @@ class XtlangLexer(RegexLexer):
 
             include('scheme')
         ],
+    }
+
+
+class FennelLexer(RegexLexer):
+    """A lexer for the `Fennel programming language <https://fennel-lang.org>`_.
+
+    Fennel compiles to Lua, so all the Lua builtins are recognized as well
+    as the special forms that are particular to the Fennel compiler.
+
+    .. versionadded:: 2.3
+    """
+    name = 'Fennel'
+    aliases = ['fennel', 'fnl']
+    filenames = ['*.fnl']
+
+    # these two lists are taken from fennel-mode.el:
+    # https://gitlab.com/technomancy/fennel-mode
+    # this list is current as of Fennel version 0.1.0.
+    special_forms = (
+        u'require-macros', u'eval-compiler',
+        u'do', u'values', u'if', u'when', u'each', u'for', u'fn', u'lambda',
+        u'λ', u'set', u'global', u'var', u'local', u'let', u'tset', u'doto',
+        u'set-forcibly!', u'defn', u'partial', u'while', u'or', u'and', u'true',
+        u'false', u'nil', u'.', u'+', u'..', u'^', u'-', u'*', u'%', u'/', u'>',
+        u'<', u'>=', u'<=', u'=', u'~=', u'#', u'...', u':', u'->', u'->>',
+    )
+
+    # Might be nicer to use the list from _lua_builtins.py but it's unclear how?
+    builtins = (
+        u'_G', u'_VERSION', u'arg', u'assert', u'bit32', u'collectgarbage',
+        u'coroutine', u'debug', u'dofile', u'error', u'getfenv',
+        u'getmetatable', u'io', u'ipairs', u'load', u'loadfile', u'loadstring',
+        u'math', u'next', u'os', u'package', u'pairs', u'pcall', u'print',
+        u'rawequal', u'rawget', u'rawlen', u'rawset', u'require', u'select',
+        u'setfenv', u'setmetatable', u'string', u'table', u'tonumber',
+        u'tostring', u'type', u'unpack', u'xpcall'
+    )
+
+    # based on the scheme definition, but disallowing leading digits and commas
+    valid_name = r'[a-zA-Z_!$%&*+/:<=>?@^~|-][\w!$%&*+/:<=>?@^~|\.-]*'
+
+    tokens = {
+        'root': [
+            # the only comment form is a semicolon; goes to the end of the line
+            (r';.*$', Comment.Single),
+
+            (r'[,\s]+', Text),
+            (r'-?\d+\.\d+', Number.Float),
+            (r'-?\d+', Number.Integer),
+
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'(\\\\|\\'|[^'])*'", String),
+
+            # these are technically strings, but it's worth visually
+            # distinguishing them because their intent is different
+            # from regular strings.
+            (r':' + valid_name, String.Symbol),
+
+            # special forms are keywords
+            (words(special_forms, suffix=' '), Keyword),
+            # lua standard library are builtins
+            (words(builtins, suffix=' '), Name.Builtin),
+            # special-case the vararg symbol
+            (r'\.\.\.', Name.Variable),
+            # regular identifiers
+            (valid_name, Name.Variable),
+
+            # all your normal paired delimiters for your programming enjoyment
+            (r'(\(|\))', Punctuation),
+            (r'(\[|\])', Punctuation),
+            (r'(\{|\})', Punctuation),
+        ]
     }
