@@ -227,6 +227,9 @@ class CsoundOrchestraLexer(CsoundLexer):
                 yield nameMatch.start(2), Name, nameMatch.group(2)
             else:
                 yield match.start(), Name, name
+                if match.group(2):
+                    yield match.start(2), Punctuation, match.group(2)
+                    yield match.start(3), Name, match.group(3)
 
     tokens = {
         'root': [
