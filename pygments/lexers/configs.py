@@ -592,7 +592,7 @@ class TerraformLexer(RegexLexer):
                     prefix=r'\b', suffix=r'\b'), Keyword.Reserved, 'function'),
              (words(('ingress', 'egress', 'listener', 'default', 'connection', 'alias'),
                     prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
-             ('\$\{', String.Interpol, 'var_builtin'),
+             (r'\$\{', String.Interpol, 'var_builtin'),
         ],
         'function': [
              (r'(\s+)(".*")(\s+)', bygroups(Text, String, Text)),
