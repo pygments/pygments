@@ -50,9 +50,9 @@ class RTest(unittest.TestCase):
 
     def testName3(self):
         # Internal backticks can be escaped
-        fragment = u'`.1 \` blah`'
+        fragment = u'`.1 \\` blah`'
         tokens = [
-            (Name, u'`.1 \` blah`'),
+            (Name, u'`.1 \\` blah`'),
             (Token.Text, u'\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
