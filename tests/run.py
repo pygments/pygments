@@ -16,6 +16,7 @@ from __future__ import print_function
 
 import os
 import sys
+import warnings
 
 # only find tests in this directory
 if os.path.dirname(__file__):
@@ -30,6 +31,11 @@ except ImportError:
 
 # make sure the current source is first on sys.path
 sys.path.insert(0, '..')
+
+# make FutureWarnings (coming from Regex syntax most likely) and
+# DeprecationWarnings (coming from invalid escapes due to non-raw strings)
+# an error
+warnings.filterwarnings("error", category=DeprecationWarning)
 
 if '--with-coverage' not in sys.argv:
     # if running with coverage, pygments should not be imported before coverage

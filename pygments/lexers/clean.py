@@ -203,7 +203,7 @@ class CleanLexer(ExtendedRegexLexer):
         'import': [
             include('common'),
             (words(('from', 'import', 'as', 'qualified'),
-                   prefix='(?<=\s)', suffix='(?=\s)'), Keyword.Namespace),
+                   prefix=r'(?<=\s)', suffix=r'(?=\s)'), Keyword.Namespace),
             (r'[\w`.]+', Name.Class),
             (r'\n', Whitespace, '#pop'),
             (r',', Punctuation),

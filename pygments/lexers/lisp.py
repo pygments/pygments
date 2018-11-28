@@ -1249,7 +1249,7 @@ class RacketLexer(RegexLexer):
     _opening_parenthesis = r'[([{]'
     _closing_parenthesis = r'[)\]}]'
     _delimiters = r'()[\]{}",\'`;\s'
-    _symbol = r'(?u)(?:\|[^|]*\||\\[\w\W]|[^|\\%s]+)+' % _delimiters
+    _symbol = r'(?:\|[^|]*\||\\[\w\W]|[^|\\%s]+)+' % _delimiters
     _exact_decimal_prefix = r'(?:#e)?(?:#d)?(?:#e)?'
     _exponent = r'(?:[defls][-+]?\d+)'
     _inexact_simple_no_hashes = r'(?:\d+(?:/\d+|\.\d*)?|\.\d+)'
@@ -1301,16 +1301,16 @@ class RacketLexer(RegexLexer):
              (_inexact_simple, _delimiters), Number.Float, '#pop'),
 
             # #b
-            (r'(?i)(#[ei])?#b%s' % _symbol, Number.Bin, '#pop'),
+            (r'(?iu)(#[ei])?#b%s' % _symbol, Number.Bin, '#pop'),
 
             # #o
-            (r'(?i)(#[ei])?#o%s' % _symbol, Number.Oct, '#pop'),
+            (r'(?iu)(#[ei])?#o%s' % _symbol, Number.Oct, '#pop'),
 
             # #x
-            (r'(?i)(#[ei])?#x%s' % _symbol, Number.Hex, '#pop'),
+            (r'(?iu)(#[ei])?#x%s' % _symbol, Number.Hex, '#pop'),
 
             # #i is always inexact, i.e. float
-            (r'(?i)(#d)?#i%s' % _symbol, Number.Float, '#pop'),
+            (r'(?iu)(#d)?#i%s' % _symbol, Number.Float, '#pop'),
 
             # Strings and characters
             (r'#?"', String.Double, ('#pop', 'string')),
@@ -1323,7 +1323,7 @@ class RacketLexer(RegexLexer):
             (r'#(true|false|[tTfF])', Name.Constant, '#pop'),
 
             # Keyword argument names (e.g. #:keyword)
-            (r'#:%s' % _symbol, Keyword.Declaration, '#pop'),
+            (r'(?u)#:%s' % _symbol, Keyword.Declaration, '#pop'),
 
             # Reader extensions
             (r'(#lang |#!)(\S+)',

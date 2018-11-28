@@ -155,7 +155,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r'\s+', Text),
             (r'--.*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'(' + '|'.join(s.replace(" ", "\s+")
+            (r'(' + '|'.join(s.replace(" ", r"\s+")
                              for s in DATATYPES + PSEUDO_TYPES)
              + r')\b', Name.Builtin),
             (words(KEYWORDS, suffix=r'\b'), Keyword),
@@ -499,7 +499,7 @@ class TransactSqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r'--(?m).*?$\n?', Comment.Single),
+            (r'(?m)--.*?$\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (words(_tsql_builtins.OPERATORS), Operator),
             (words(_tsql_builtins.OPERATOR_WORDS, suffix=r'\b'), Operator.Word),
