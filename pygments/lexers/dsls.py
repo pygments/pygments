@@ -688,7 +688,7 @@ class CrmshLexer(RegexLexer):
             (r'([\w#$-]+)(?:(:)(%s))?(?![\w#$-])' % rsc_role_action,
              bygroups(Name, Punctuation, Operator.Word)),
             # punctuation
-            (r'(\\(?=\n)|[[\](){}/:@])', Punctuation),
+            (r'(\\(?=\n)|[\[\](){}/:@])', Punctuation),
             (r'\s+|\n', Whitespace),
         ],
     }
