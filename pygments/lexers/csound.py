@@ -153,7 +153,7 @@ class CsoundOrchestraLexer(CsoundLexer):
 
     def name_callback(lexer, match):
         name = match.group(0)
-        if re.match('p\d+$', name) or name in OPCODES:
+        if re.match(r'p\d+$', name) or name in OPCODES:
             yield match.start(), Name.Builtin, name
         elif name in lexer.user_defined_opcodes:
             yield match.start(), Name.Function, name

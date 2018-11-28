@@ -233,8 +233,8 @@ class AsymptoteLexer(RegexLexer):
              r'bounds|coord|frame|guide|horner|int|linefit|marginT|pair|pen|'
              r'picture|position|real|revolution|slice|splitface|ticksgridT|'
              r'tickvalues|tree|triple|vertex|void)\b', Keyword.Type),
-            ('[a-zA-Z_]\w*:(?!:)', Name.Label),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*:(?!:)', Name.Label),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'root': [
             include('whitespace'),
@@ -334,9 +334,9 @@ class GnuplotLexer(RegexLexer):
             (_shortened_many('pwd$', 're$read', 'res$et', 'scr$eendump',
                              'she$ll', 'test$'),
              Keyword, 'noargs'),
-            ('([a-zA-Z_]\w*)(\s*)(=)',
+            (r'([a-zA-Z_]\w*)(\s*)(=)',
              bygroups(Name.Variable, Text, Operator), 'genericargs'),
-            ('([a-zA-Z_]\w*)(\s*\(.*?\)\s*)(=)',
+            (r'([a-zA-Z_]\w*)(\s*\(.*?\)\s*)(=)',
              bygroups(Name.Function, Text, Operator), 'genericargs'),
             (r'@[a-zA-Z_]\w*', Name.Constant),  # macros
             (r';', Keyword),
@@ -382,7 +382,7 @@ class GnuplotLexer(RegexLexer):
             (r'(\d+\.\d*|\.\d+)', Number.Float),
             (r'-?\d+', Number.Integer),
             ('[,.~!%^&*+=|?:<>/-]', Operator),
-            ('[{}()\[\]]', Punctuation),
+            (r'[{}()\[\]]', Punctuation),
             (r'(eq|ne)\b', Operator.Word),
             (r'([a-zA-Z_]\w*)(\s*)(\()',
              bygroups(Name.Function, Text, Punctuation)),
