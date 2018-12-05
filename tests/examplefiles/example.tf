@@ -198,6 +198,7 @@ resource "aws_db_instance" "timeout_example" {
   engine_version    = "5.6.17"
   instance_class    = "db.t1.micro"
   name              = "mydb"
+
   timeouts {
     create = "60m"
     delete = "2h"
