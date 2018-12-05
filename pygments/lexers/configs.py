@@ -574,6 +574,8 @@ class TerraformLexer(RegexLexer):
     filenames = ['*.tf']
     mimetypes = ['application/x-tf', 'application/x-terraform']
 
+    embedded_keywords = ('ingress', 'egress', 'listener', 'default', 'connection', 'alias', 'tags', 'lifecycle', 'timeout')
+
     tokens = {
         'root': [
              include('string'),
@@ -590,8 +592,7 @@ class TerraformLexer(RegexLexer):
              (r'(.*?)(\s*)(=)', bygroups(Name.Attribute, Text, Operator)),
              (words(('variable', 'resource', 'provider', 'provisioner', 'module'),
                     prefix=r'\b', suffix=r'\b'), Keyword.Reserved, 'function'),
-             (words(('ingress', 'egress', 'listener', 'default', 'connection', 'alias'),
-                    prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
+             (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
              (r'\$\{', String.Interpol, 'var_builtin'),
         ],
         'function': [
