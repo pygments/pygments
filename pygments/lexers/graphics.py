@@ -46,28 +46,102 @@ class GLShaderLexer(RegexLexer):
             (r'0[0-7]*', Number.Oct),
             (r'[1-9][0-9]*', Number.Integer),
             (words((
-                'attribute', 'const', 'uniform', 'varying', 'centroid', 'break',
-                'continue', 'do', 'for', 'while', 'if', 'else', 'in', 'out',
-                'inout', 'float', 'int', 'void', 'bool', 'true', 'false',
-                'invariant', 'discard', 'return', 'mat2', 'mat3' 'mat4',
-                'mat2x2', 'mat3x2', 'mat4x2', 'mat2x3', 'mat3x3', 'mat4x3',
-                'mat2x4', 'mat3x4', 'mat4x4', 'vec2', 'vec3', 'vec4',
-                'ivec2', 'ivec3', 'ivec4', 'bvec2', 'bvec3', 'bvec4',
-                'sampler1D', 'sampler2D', 'sampler3D' 'samplerCube',
-                'sampler1DShadow', 'sampler2DShadow', 'struct'),
+                # Storage qualifiers
+                'attribute', 'const', 'uniform', 'varying',
+                'buffer', 'shared', 'in', 'out',
+                # Layout qualifiers
+                'layout',
+                # Interpolation qualifiers
+                'flat', 'smooth', 'noperspective',
+                # Auxiliary qualifiers
+                'centroid', 'sample', 'patch',
+                # Parameter qualifiers. Some double as Storage qualifiers
+                'inout',
+                # Precision qualifiers
+                'lowp', 'mediump', 'highp', 'precision',
+                # Invariance qualifiers
+                'invariant',
+                # Precise qualifiers
+                'precise',
+                # Memory qualifiers
+                'coherent', 'volatile', 'restrict', 'readonly', 'writeonly',
+                # Statements
+                'break', 'continue', 'do', 'for', 'while', 'switch',
+                'case', 'default', 'if', 'else', 'subroutine',
+                'discard', 'return', 'struct'),
                 prefix=r'\b', suffix=r'\b'),
              Keyword),
             (words((
-                'asm', 'class', 'union', 'enum', 'typedef', 'template', 'this',
-                'packed', 'goto', 'switch', 'default', 'inline', 'noinline',
-                'volatile', 'public', 'static', 'extern', 'external', 'interface',
-                'long', 'short', 'double', 'half', 'fixed', 'unsigned', 'lowp',
-                'mediump', 'highp', 'precision', 'input', 'output',
-                'hvec2', 'hvec3', 'hvec4', 'dvec2', 'dvec3', 'dvec4',
-                'fvec2', 'fvec3', 'fvec4', 'sampler2DRect', 'sampler3DRect',
-                'sampler2DRectShadow', 'sizeof', 'cast', 'namespace', 'using'),
+                # Boolean values
+                'true', 'false'),
                 prefix=r'\b', suffix=r'\b'),
-             Keyword),  # future use
+             Keyword.Constant),
+            (words((
+                # Miscellaneous types
+                'void', 'atomic_uint',
+                # Floating-point scalars and vectors
+                'float', 'vec2', 'vec3', 'vec4',
+                'double', 'dvec2', 'dvec3', 'dvec4',
+                # Integer scalars and vectors
+                'int', 'ivec2', 'ivec3', 'ivec4',
+                'uint', 'uvec2', 'uvec3', 'uvec4',
+                # Boolean scalars and vectors
+                'bool', 'bvec2', 'bvec3', 'bvec4',
+                # Matrices
+                'mat2', 'mat3', 'mat4', 'dmat2', 'dmat3', 'dmat4',
+                'mat2x2', 'mat2x3', 'mat2x4', 'dmat2x2', 'dmat2x3', 'dmat2x4',
+                'mat3x2', 'mat3x3', 'mat3x4', 'dmat3x2', 'dmat3x3',
+                'dmat3x4', 'mat4x2', 'mat4x3', 'mat4x4', 'dmat4x2', 'dmat4x3', 'dmat4x4',
+                # Floating-point samplers
+                'sampler1D', 'sampler2D', 'sampler3D', 'samplerCube',
+                'sampler1DArray', 'sampler2DArray', 'samplerCubeArray',
+                'sampler2DRect', 'samplerBuffer',
+                'sampler2DMS', 'sampler2DMSArray',
+                # Shadow samplers
+                'sampler1DShadow', 'sampler2DShadow', 'samplerCubeShadow',
+                'sampler1DArrayShadow', 'sampler2DArrayShadow',
+                'samplerCubeArrayShadow', 'sampler2DRectShadow',
+                # Signed integer samplers
+                'isampler1D', 'isampler2D', 'isampler3D', 'isamplerCube',
+                'isampler1DArray', 'isampler2DArray', 'isamplerCubeArray',
+                'isampler2DRect', 'isamplerBuffer',
+                'isampler2DMS', 'isampler2DMSArray',
+                # Unsigned integer samplers
+                'usampler1D', 'usampler2D', 'usampler3D', 'usamplerCube',
+                'usampler1DArray', 'usampler2DArray', 'usamplerCubeArray',
+                'usampler2DRect', 'usamplerBuffer',
+                'usampler2DMS', 'usampler2DMSArray',
+                # Floating-point image types
+                'image1D', 'image2D', 'image3D', 'imageCube',
+                'image1DArray', 'image2DArray', 'imageCubeArray',
+                'image2DRect', 'imageBuffer',
+                'image2DMS', 'image2DMSArray',
+                # Signed integer image types
+                'iimage1D', 'iimage2D', 'iimage3D', 'iimageCube',
+                'iimage1DArray', 'iimage2DArray', 'iimageCubeArray',
+                'iimage2DRect', 'iimageBuffer',
+                'iimage2DMS', 'iimage2DMSArray',
+                # Unsigned integer image types
+                'uimage1D', 'uimage2D', 'uimage3D', 'uimageCube',
+                'uimage1DArray', 'uimage2DArray', 'uimageCubeArray',
+                'uimage2DRect', 'uimageBuffer',
+                'uimage2DMS', 'uimage2DMSArray'),
+                prefix=r'\b', suffix=r'\b'),
+             Keyword.Type),
+            (words((
+                # Reserved for future use.
+                'common', 'partition', 'active', 'asm', 'class',
+                'union', 'enum', 'typedef', 'template', 'this',
+                'resource', 'goto', 'inline', 'noinline', 'public',
+                'static', 'extern', 'external', 'interface', 'long',
+                'short', 'half', 'fixed', 'unsigned', 'superp', 'input',
+                'output', 'hvec2', 'hvec3', 'hvec4', 'fvec2', 'fvec3',
+                'fvec4', 'sampler3DRect', 'filter', 'sizeof', 'cast',
+                'namespace', 'using'),
+                prefix=r'\b', suffix=r'\b'),
+             Keyword.Reserved),
+            # All names beginning with "gl_" are reserved.
+            (r'gl_\w*', Name.Builtin),
             (r'[a-zA-Z_]\w*', Name),
             (r'\.', Punctuation),
             (r'\s+', Text),
