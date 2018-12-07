@@ -100,7 +100,7 @@ class HtmlFormatterTest(unittest.TestCase):
         fmt = HtmlFormatter(**optdict)
         fmt.format(tokensource, outfile)
         html = outfile.getvalue()
-        self.assertTrue(re.search("<pre>\s+1\s+2\s+3", html))
+        self.assertTrue(re.search(r"<pre>\s+1\s+2\s+3", html))
 
     def test_linenos_with_startnum(self):
         optdict = dict(linenos=True, linenostart=5)
@@ -108,7 +108,7 @@ class HtmlFormatterTest(unittest.TestCase):
         fmt = HtmlFormatter(**optdict)
         fmt.format(tokensource, outfile)
         html = outfile.getvalue()
-        self.assertTrue(re.search("<pre>\s+5\s+6\s+7", html))
+        self.assertTrue(re.search(r"<pre>\s+5\s+6\s+7", html))
 
     def test_lineanchors(self):
         optdict = dict(lineanchors="foo")
