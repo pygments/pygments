@@ -104,7 +104,7 @@ class LuaLexer(RegexLexer):
             (r'%s(?=%s*[.:])' % (_name, _s), Name.Class),
             (_name, Name.Function, '#pop'),
             # inline function
-            ('\(', Punctuation, '#pop'),
+            (r'\(', Punctuation, '#pop'),
         ],
 
         'goto': [
@@ -696,8 +696,8 @@ class AppleScriptLexer(RegexLexer):
             (r'[-+]?\d+', Number.Integer),
         ],
         'comment': [
-            ('\(\*', Comment.Multiline, '#push'),
-            ('\*\)', Comment.Multiline, '#pop'),
+            (r'\(\*', Comment.Multiline, '#push'),
+            (r'\*\)', Comment.Multiline, '#pop'),
             ('[^*(]+', Comment.Multiline),
             ('[*(]', Comment.Multiline),
         ],
