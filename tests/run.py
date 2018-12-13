@@ -16,10 +16,18 @@ from __future__ import print_function
 
 import os
 import sys
+import warnings
 
 # only find tests in this directory
 if os.path.dirname(__file__):
     os.chdir(os.path.dirname(__file__))
+
+# make FutureWarnings (coming from Regex syntax most likely) and
+# DeprecationWarnings due to non-raw strings an error
+warnings.filterwarnings("error", module=r"pygments\..*",
+                        category=FutureWarning)
+warnings.filterwarnings("error", module=r".*pygments.*",
+                        category=DeprecationWarning)
 
 
 try:

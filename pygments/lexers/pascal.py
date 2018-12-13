@@ -593,8 +593,8 @@ class AdaLexer(RegexLexer):
         ],
         'end': [
             ('(if|case|record|loop|select)', Keyword.Reserved),
-            ('"[^"]+"|[\w.]+', Name.Function),
-            ('\s+', Text),
+            (r'"[^"]+"|[\w.]+', Name.Function),
+            (r'\s+', Text),
             (';', Punctuation, '#pop'),
         ],
         'type_def': [
@@ -628,11 +628,11 @@ class AdaLexer(RegexLexer):
         ],
         'package': [
             ('body', Keyword.Declaration),
-            ('is\s+new|renames', Keyword.Reserved),
+            (r'is\s+new|renames', Keyword.Reserved),
             ('is', Keyword.Reserved, '#pop'),
             (';', Punctuation, '#pop'),
-            ('\(', Punctuation, 'package_instantiation'),
-            ('([\w.]+)', Name.Class),
+            (r'\(', Punctuation, 'package_instantiation'),
+            (r'([\w.]+)', Name.Class),
             include('root'),
         ],
         'package_instantiation': [

@@ -35,7 +35,7 @@ class GasLexer(RegexLexer):
     #: optional Comment or Whitespace
     string = r'"(\\"|[^"])*"'
     char = r'[\w$.@-]'
-    identifier = r'(?:[a-zA-Z$_]' + char + '*|\.' + char + '+)'
+    identifier = r'(?:[a-zA-Z$_]' + char + r'*|\.' + char + '+)'
     number = r'(?:0[xX][a-zA-Z0-9]+|\d+)'
 
     tokens = {
@@ -53,6 +53,7 @@ class GasLexer(RegexLexer):
             ('@' + identifier, Name.Attribute),
             (number, Number.Integer),
             (r'[\r\n]+', Text, '#pop'),
+            (r'[;#].*?\n', Comment, '#pop'),
 
             include('punctuation'),
             include('whitespace')
@@ -76,6 +77,7 @@ class GasLexer(RegexLexer):
             ('$'+number, Number.Integer),
             (r"$'(.|\\')'", String.Char),
             (r'[\r\n]+', Text, '#pop'),
+            (r'[;#].*?\n', Comment, '#pop'),
 
             include('punctuation'),
             include('whitespace')
@@ -256,7 +258,7 @@ class HsailLexer(RegexLexer):
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (ieeefloat, Number.Float),
             (float, Number.Float),
-            ('\d+', Number.Integer),
+            (r'\d+', Number.Integer),
 
             (r'[=<>{}\[\]()*.,:;!]|x\b', Punctuation)
         ],
@@ -350,7 +352,7 @@ class LlvmLexer(RegexLexer):
             include('whitespace'),
 
             # Before keywords, because keywords are valid label names :(...
-            (identifier + '\s*:', Name.Label),
+            (identifier + r'\s*:', Name.Label),
 
             include('keyword'),
 
