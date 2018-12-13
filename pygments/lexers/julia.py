@@ -146,7 +146,7 @@ class JuliaLexer(RegexLexer):
             (words([
                 # prec-assignment
                 u'=', u':=', u'+=', u'-=', u'*=', u'/=', u'//=', u'.//=', u'.*=', u'./=',
-                u'\=', u'.\=', u'^=', u'.^=', u'÷=', u'.÷=', u'%=', u'.%=', u'|=', u'&=',
+                u'\\=', u'.\\=', u'^=', u'.^=', u'÷=', u'.÷=', u'%=', u'.%=', u'|=', u'&=',
                 u'$=', u'=>', u'<<=', u'>>=', u'>>>=', u'~', u'.+=', u'.-=',
                 # prec-conditional
                 u'?',
@@ -181,7 +181,7 @@ class JuliaLexer(RegexLexer):
                 # prec-dot
                 u'.',
                 # unary op
-                u'+', u'-', u'!', u'~', u'√', u'∛', u'∜'
+                u'+', u'-', u'!', u'√', u'∛', u'∜'
             ]), Operator),
 
             # chars
