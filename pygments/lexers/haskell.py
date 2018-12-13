@@ -677,10 +677,10 @@ class KokaLexer(RegexLexer):
     symbols = r'[$%&*+@!/\\^~=.:\-?|<>]+'
 
     # symbol boundary: an operator keyword should not be followed by any of these
-    sboundary = '(?!'+symbols+')'
+    sboundary = '(?!' + symbols + ')'
 
     # name boundary: a keyword should not be followed by any of these
-    boundary = '(?![\w/])'
+    boundary = r'(?![\w/])'
 
     # koka token abstractions
     tokenType = Name.Attribute
