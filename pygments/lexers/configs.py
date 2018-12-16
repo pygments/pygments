@@ -15,6 +15,7 @@ from pygments.lexer import RegexLexer, default, words, bygroups, include, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace, Literal
 from pygments.lexers.shell import BashLexer
+from pygments.lexers.data import JsonLexer
 
 __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
@@ -539,20 +540,25 @@ class DockerLexer(RegexLexer):
     filenames = ['Dockerfile', '*.docker']
     mimetypes = ['text/x-dockerfile-config']
 
-    _keywords = (r'(?:FROM|MAINTAINER|CMD|EXPOSE|ENV|ADD|ENTRYPOINT|'
-                 r'VOLUME|WORKDIR)')
-
+    _keywords = (r'(?:FROM|MAINTAINER|EXPOSE|WORKDIR|USER|STOPSIGNAL)')
+    _bash_keywords = (r'(?:RUN|CMD|ENTRYPOINT|ENV|ARG|LABEL|ADD|COPY)')
+    _lb = r'(?:\s*\\?\s*)' # dockerfile line break regex
     flags = re.IGNORECASE | re.MULTILINE
 
     tokens = {
         'root': [
-            (r'^(ONBUILD)(\s+)(%s)\b' % (_keywords,),
-             bygroups(Name.Keyword, Whitespace, Keyword)),
-            (r'^(%s)\b(.*)' % (_keywords,), bygroups(Keyword, String)),
             (r'#.*', Comment),
-            (r'RUN', Keyword),  # Rest of line falls through
+            (r'(ONBUILD)(%s)' % (_lb,), bygroups(Keyword, using(BashLexer))),
+            (r'(HEALTHCHECK)((%s--\w+=\w+%s)*)' % (_lb, _lb),
+                bygroups(Keyword, using(BashLexer))),
+            (r'(VOLUME|ENTRYPOINT|CMD|SHELL)(%s)(\[.*?\])' % (_lb,),
+                bygroups(Keyword, using(BashLexer), using(JsonLexer))),
+            (r'(LABEL|ENV|ARG)((%s\w+=\w+%s)*)' % (_lb, _lb),
+                bygroups(Keyword, using(BashLexer))),
+            (r'(%s|VOLUME)\b(.*)' % (_keywords), bygroups(Keyword, String)),
+            (r'(%s)' % (_bash_keywords,), Keyword),
             (r'(.*\\\n)*.+', using(BashLexer)),
-        ],
+        ]
     }
 
 
@@ -584,9 +590,9 @@ class TerraformLexer(RegexLexer):
              (r'(.*?)(\s*)(=)', bygroups(Name.Attribute, Text, Operator)),
              (words(('variable', 'resource', 'provider', 'provisioner', 'module'),
                     prefix=r'\b', suffix=r'\b'), Keyword.Reserved, 'function'),
-             (words(('ingress', 'egress', 'listener', 'default', 'connection'),
+             (words(('ingress', 'egress', 'listener', 'default', 'connection', 'alias'),
                     prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
-             ('\$\{', String.Interpol, 'var_builtin'),
+             (r'\$\{', String.Interpol, 'var_builtin'),
         ],
         'function': [
              (r'(\s+)(".*")(\s+)', bygroups(Text, String, Text)),
