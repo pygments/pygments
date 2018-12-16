@@ -64,7 +64,7 @@ class LimboLexer(RegexLexer):
             (r'(byte|int|big|real|string|array|chan|list|adt'
              r'|fn|ref|of|module|self|type)\b', Keyword.Type),
             (r'(con|iota|nil)\b', Keyword.Constant),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'statement' : [
             include('whitespace'),

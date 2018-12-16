@@ -80,7 +80,7 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
         self.assertEndsWith(result, expected+self.foot, msg)
 
     def test_escape_characters(self):
-        t = u'\ {{'
+        t = u'\\ {{'
         result = self.format_rtf(t)
         expected = (r'\\ \{\{')
         if not result.endswith(self.foot):

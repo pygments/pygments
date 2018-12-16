@@ -126,7 +126,7 @@ class QVToLexer(RegexLexer):
             (r'[^\\\'"\n]+', String),
             # quotes, percents and backslashes must be parsed one at a time
             (r'[\'"\\]', String),
-            ],
+        ],
         'stringescape': [
             (r'\\([\\btnfr"\']|u[0-3][0-7]{2}|u[0-7]{1,2})', String.Escape)
         ],
@@ -134,15 +134,15 @@ class QVToLexer(RegexLexer):
             (r'"', String, '#pop'),
             (r'\\\\|\\"', String.Escape),
             include('strings')
-            ],
+        ],
         'sqs': [  # single-quoted string
             (r"'", String, '#pop'),
             (r"\\\\|\\'", String.Escape),
             include('strings')
-            ],
+        ],
         'name': [
-            ('[a-zA-Z_]\w*', Name),
-            ],
+            (r'[a-zA-Z_]\w*', Name),
+        ],
         # numbers: excerpt taken from the python lexer
         'numbers': [
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),

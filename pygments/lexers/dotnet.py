@@ -58,7 +58,7 @@ class CSharpLexer(RegexLexer):
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
     levels = {
-        'none': '@?[_a-zA-Z]\w*',
+        'none': r'@?[_a-zA-Z]\w*',
         'basic': ('@?[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' +
                   '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
                                     'Cf', 'Mn', 'Mc') + ']*'),
@@ -171,7 +171,7 @@ class NemerleLexer(RegexLexer):
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
     levels = {
-        'none': '@?[_a-zA-Z]\w*',
+        'none': r'@?[_a-zA-Z]\w*',
         'basic': ('@?[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' +
                   '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
                                     'Cf', 'Mn', 'Mc') + ']*'),
@@ -352,13 +352,13 @@ class BooLexer(RegexLexer):
             ('[*/]', Comment.Multiline)
         ],
         'funcname': [
-            ('[a-zA-Z_]\w*', Name.Function, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Function, '#pop')
         ],
         'classname': [
-            ('[a-zA-Z_]\w*', Name.Class, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'namespace': [
-            ('[a-zA-Z_][\w.]*', Name.Namespace, '#pop')
+            (r'[a-zA-Z_][\w.]*', Name.Namespace, '#pop')
         ]
     }
 
@@ -413,7 +413,7 @@ class VbNetLexer(RegexLexer):
                 'Static', 'Step', 'Stop', 'SyncLock', 'Then', 'Throw', 'To',
                 'True', 'Try', 'TryCast', 'Wend', 'Using', 'When', 'While',
                 'Widening', 'With', 'WithEvents', 'WriteOnly'),
-                   prefix='(?<!\.)', suffix=r'\b'), Keyword),
+                   prefix=r'(?<!\.)', suffix=r'\b'), Keyword),
             (r'(?<!\.)End\b', Keyword, 'end'),
             (r'(?<!\.)(Dim|Const)\b', Keyword, 'dim'),
             (r'(?<!\.)(Function|Sub|Property)(\s+)',
@@ -574,10 +574,10 @@ class FSharpLexer(RegexLexer):
         'virtual', 'volatile',
     ]
     keyopts = [
-        '!=', '#', '&&', '&', '\(', '\)', '\*', '\+', ',', '-\.',
-        '->', '-', '\.\.', '\.', '::', ':=', ':>', ':', ';;', ';', '<-',
-        '<\]', '<', '>\]', '>', '\?\?', '\?', '\[<', '\[\|', '\[', '\]',
-        '_', '`', '\{', '\|\]', '\|', '\}', '~', '<@@', '<@', '=', '@>', '@@>',
+        '!=', '#', '&&', '&', r'\(', r'\)', r'\*', r'\+', ',', r'-\.',
+        '->', '-', r'\.\.', r'\.', '::', ':=', ':>', ':', ';;', ';', '<-',
+        r'<\]', '<', r'>\]', '>', r'\?\?', r'\?', r'\[<', r'\[\|', r'\[', r'\]',
+        '_', '`', r'\{', r'\|\]', r'\|', r'\}', '~', '<@@', '<@', '=', '@>', '@@>',
     ]
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'

@@ -50,7 +50,7 @@ class EscapeSequence:
         attrs = []
         if self.fg is not None:
             if self.fg in ansicolors:
-                esc = codes[self.fg[5:]]
+                esc = codes[self.fg.replace('ansi','')]
                 if ';01m' in esc:
                     self.bold = True
                 # extract fg color code.
@@ -59,7 +59,7 @@ class EscapeSequence:
                 attrs.extend(("38", "5", "%i" % self.fg))
         if self.bg is not None:
             if self.bg in ansicolors:
-                esc = codes[self.bg[5:]]
+                esc = codes[self.bg.replace('ansi','')]
                 # extract fg color code, add 10 for bg.
                 attrs.append(str(int(esc[2:4])+10))
             else:
@@ -109,6 +109,12 @@ class Terminal256Formatter(Formatter):
        If the used style defines foreground colors in the form ``#ansi*``, then
        `Terminal256Formatter` will map these to non extended foreground color.
        See :ref:`AnsiTerminalStyle` for more information.
+
+    .. versionchanged:: 2.4
+       The ansi color names have been updated with names that are easier to
+       understand and align with colornames of other projects and terminals.
+       See :ref:`NewAnsiColorNames` for more information.
+
 
     Options accepted:
 
@@ -189,7 +195,7 @@ class Terminal256Formatter(Formatter):
     def _color_index(self, color):
         index = self.best_match.get(color, None)
         if color in ansicolors:
-            # strip the `#ansi` part and look up code
+            # strip the `ansi/#ansi` part and look up code
             index = color
             self.best_match[color] = index
         if index is None:

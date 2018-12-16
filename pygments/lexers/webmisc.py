@@ -438,7 +438,7 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'varname': [
             (r'\(:', Comment, 'comment'),
-            (r'(' + qname + ')(\()?', bygroups(Name, Punctuation), 'operator'),
+            (r'(' + qname + r')(\()?', bygroups(Name, Punctuation), 'operator'),
         ],
         'singletype': [
             include('whitespace'),
@@ -643,9 +643,9 @@ class XQueryLexer(ExtendedRegexLexer):
              bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
             (r'(declare)(\s+)(context)(\s+)(item)',
              bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
-            (ncname + ':\*', Name, 'operator'),
-            ('\*:'+ncname, Name.Tag, 'operator'),
-            ('\*', Name.Tag, 'operator'),
+            (ncname + r':\*', Name, 'operator'),
+            (r'\*:'+ncname, Name.Tag, 'operator'),
+            (r'\*', Name.Tag, 'operator'),
             (stringdouble, String.Double, 'operator'),
             (stringsingle, String.Single, 'operator'),
 
@@ -661,7 +661,8 @@ class XQueryLexer(ExtendedRegexLexer):
 
             # NAMESPACE KEYWORD
             (r'(declare)(\s+)(default)(\s+)(element|function)',
-             bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'namespacekeyword'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration),
+             'namespacekeyword'),
             (r'(import)(\s+)(schema|module)',
              bygroups(Keyword.Pseudo, Text, Keyword.Pseudo), 'namespacekeyword'),
             (r'(declare)(\s+)(copy-namespaces)',
@@ -861,7 +862,7 @@ class QmlLexer(RegexLexer):
 
 
 class CirruLexer(RegexLexer):
-    """
+    r"""
     Syntax rules of Cirru can be found at:
     http://cirru.org/
 

@@ -72,11 +72,14 @@ class HaskellLexer(RegexLexer):
             (r':[:!#$%&*+.\\/<=>?@^|~-]*', Keyword.Type),  # Constructor operators
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),  # Other operators
             #  Numbers
-            (r'\d+[eE][+-]?\d+', Number.Float),
-            (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
-            (r'0[oO][0-7]+', Number.Oct),
-            (r'0[xX][\da-fA-F]+', Number.Hex),
-            (r'\d+', Number.Integer),
+            (r'0[xX]_*[\da-fA-F](_*[\da-fA-F])*_*[pP][+-]?\d(_*\d)*', Number.Float),
+            (r'0[xX]_*[\da-fA-F](_*[\da-fA-F])*\.[\da-fA-F](_*[\da-fA-F])*(_*[pP][+-]?\d(_*\d)*)?', Number.Float),
+            (r'\d(_*\d)*_*[eE][+-]?\d(_*\d)*', Number.Float),
+            (r'\d(_*\d)*\.\d(_*\d)*(_*[eE][+-]?\d(_*\d)*)?', Number.Float),
+            (r'0[bB]_*[01](_*[01])*', Number.Bin),
+            (r'0[oO]_*[0-7](_*[0-7])*', Number.Oct),
+            (r'0[xX]_*[\da-fA-F](_*[\da-fA-F])*', Number.Hex),
+            (r'\d(_*\d)*', Number.Integer),
             #  Character/String Literals
             (r"'", String.Char, 'character'),
             (r'"', String, 'string'),
@@ -677,10 +680,10 @@ class KokaLexer(RegexLexer):
     symbols = r'[$%&*+@!/\\^~=.:\-?|<>]+'
 
     # symbol boundary: an operator keyword should not be followed by any of these
-    sboundary = '(?!'+symbols+')'
+    sboundary = '(?!' + symbols + ')'
 
     # name boundary: a keyword should not be followed by any of these
-    boundary = '(?![\w/])'
+    boundary = r'(?![\w/])'
 
     # koka token abstractions
     tokenType = Name.Attribute
