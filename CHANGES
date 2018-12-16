@@ -27,6 +27,9 @@ Version 2.3.1
   * SLexer (PR#680)
   * YAML (PR#762, PR#724)
 
+- Fix invalid string escape sequences
+- Fix `FutureWarning` introduced by regex changes in Python 3.7
+
 Version 2.3.0
 -------------
 (released Nov 25, 2018)
