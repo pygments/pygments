@@ -110,11 +110,11 @@ class Terminal256Formatter(Formatter):
        `Terminal256Formatter` will map these to non extended foreground color.
        See :ref:`AnsiTerminalStyle` for more information.
 
-    .. versionchanged:: 2.3
+    .. versionchanged:: 2.4
        The ansi color names have been updated with names that are easier to
        understand and align with colornames of other projects and terminals.
        See :ref:`NewAnsiColorNames` for more information.
-    
+
 
     Options accepted:
 
