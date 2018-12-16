@@ -203,10 +203,10 @@ settings.
 
 .. _NewAnsiColorNames:
 
-.. versionchanged:: 2.3
+.. versionchanged:: 2.4
 
 The definition of the ansi color names has changed.
-New names are easier to understand and align to the colors used in other projects. 
+New names are easier to understand and align to the colors used in other projects.
 
 
 +-------------------------+--------------------------+
@@ -218,17 +218,17 @@ New names are easier to understand and align to the colors used in other project
 |  ``ansiyellow``         |      ``#ansibrown``      |
 |  ``ansiblue``           |      ``#ansidarkblue``   |
 |  ``ansimagenta``        |      ``#ansipurple``     |
-|  ``ansicyan``           |      ``#ansiteal``       | 
-|  ``ansigray``           |      ``#ansilightgray``  | 
+|  ``ansicyan``           |      ``#ansiteal``       |
+|  ``ansigray``           |      ``#ansilightgray``  |
 |  ``ansibrightblack``    |      ``#ansidarkgray``   |
 |  ``ansibrightred``      |      ``#ansired``        |
 |  ``ansibrightgreen``    |      ``#ansigreen``      |
-|  ``ansibrightyellow``   |      ``#ansiyellow``     | 
+|  ``ansibrightyellow``   |      ``#ansiyellow``     |
 |  ``ansibrightblue``     |      ``#ansiblue``       |
 |  ``ansibrightmagenta``  |      ``#ansifuchsia``    |
 |  ``ansibrightcyan``     |      ``#ansiturquoise``  |
 |  ``ansiwhite``          |      ``#ansiwhite``      |
 +=========================+==========================+
 
-Old ansi color names are deprecated but will still work. 
+Old ansi color names are deprecated but will still work.
 
