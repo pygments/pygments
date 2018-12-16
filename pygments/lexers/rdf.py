@@ -97,7 +97,7 @@ class SparqlLexer(RegexLexer):
         'root': [
             (r'\s+', Text),
             # keywords ::
-            (r'((?i)select|construct|describe|ask|where|filter|group\s+by|minus|'
+            (r'(?i)(select|construct|describe|ask|where|filter|group\s+by|minus|'
              r'distinct|reduced|from\s+named|from|order\s+by|desc|asc|limit|'
              r'offset|bindings|load|clear|drop|create|add|move|copy|'
              r'insert\s+data|delete\s+data|delete\s+where|delete|insert|'
@@ -111,10 +111,10 @@ class SparqlLexer(RegexLexer):
             #  # variables ::
             ('[?$]' + VARNAME, Name.Variable),
             # prefixed names ::
-            (r'(' + PN_PREFIX + ')?(\:)(' + PN_LOCAL + ')?',
+            (r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + r')?',
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
             # function names ::
-            (r'((?i)str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
+            (r'(?i)(str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
              r'ceil|floor|round|concat|strlen|ucase|lcase|encode_for_uri|'
              r'contains|strstarts|strends|strbefore|strafter|year|month|day|'
              r'hours|minutes|seconds|timezone|tz|now|md5|sha1|sha256|sha384|'
@@ -125,7 +125,7 @@ class SparqlLexer(RegexLexer):
             # boolean literals ::
             (r'(true|false)', Keyword.Constant),
             # double literals ::
-            (r'[+\-]?(\d+\.\d*' + EXPONENT + '|\.?\d+' + EXPONENT + ')', Number.Float),
+            (r'[+\-]?(\d+\.\d*' + EXPONENT + r'|\.?\d+' + EXPONENT + ')', Number.Float),
             # decimal literals ::
             (r'[+\-]?(\d+\.\d*|\.\d+)', Number.Float),
             # integer literals ::

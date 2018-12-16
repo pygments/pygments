@@ -205,7 +205,7 @@ class YamlLexer(ExtendedRegexLexer):
              bygroups(Text, Number), 'ignored-line'),
         ],
 
-        # the %YAG directive
+        # the %TAG directive
         'tag-directive': [
             # a tag handle and the corresponding prefix
             (r'([ ]+)(!|![\w-]*!)'
@@ -218,7 +218,7 @@ class YamlLexer(ExtendedRegexLexer):
         'indentation': [
             # trailing whitespaces are ignored
             (r'[ ]*$', something(Text), '#pop:2'),
-            # whitespaces preceeding block collection indicators
+            # whitespaces preceding block collection indicators
             (r'[ ]+(?=[?:-](?:[ ]|$))', save_indent(Text)),
             # block collection indicators
             (r'[?:-](?=[ ]|$)', set_indent(Punctuation.Indicator)),
@@ -232,6 +232,9 @@ class YamlLexer(ExtendedRegexLexer):
             (r'[ ]*(?=#|$)', something(Text), '#pop'),
             # whitespaces separating tokens
             (r'[ ]+', Text),
+            # key with colon
+            (r'([^,:?\[\]{}\n]+)(:)(?=[ ]|$)',
+             bygroups(Name.Tag, set_indent(Punctuation, implicit=True))),
             # tags, anchors and aliases,
             include('descriptors'),
             # block collections and scalars
@@ -250,7 +253,7 @@ class YamlLexer(ExtendedRegexLexer):
             (r'!<[\w#;/?:@&=+$,.!~*\'()\[\]%-]+>', Keyword.Type),
             # a tag in the form '!', '!suffix' or '!handle!suffix'
             (r'!(?:[\w-]+!)?'
-             r'[\w#;/?:@&=+$,.!~*\'()\[\]%-]+', Keyword.Type),
+             r'[\w#;/?:@&=+$,.!~*\'()\[\]%-]*', Keyword.Type),
             # an anchor
             (r'&[\w-]+', Name.Label),
             # an alias
@@ -308,6 +311,9 @@ class YamlLexer(ExtendedRegexLexer):
 
         # a flow mapping indicated by '{' and '}'
         'flow-mapping': [
+            # key with colon
+            (r'([^,:?\[\]{}\n]+)(:)(?=[ ]|$)',
+             bygroups(Name.Tag, Punctuation)),
             # include flow collection rules
             include('flow-collection'),
             # the closing indicator

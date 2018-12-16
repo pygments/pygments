@@ -102,12 +102,12 @@ class RebolLexer(RegexLexer):
             yield match.start(), Generic.Heading, word
         elif re.match("to-.*", word):
             yield match.start(), Keyword, word
-        elif re.match('(\+|-|\*|/|//|\*\*|and|or|xor|=\?|=|==|<>|<|>|<=|>=)$',
+        elif re.match(r'(\+|-|\*|/|//|\*\*|and|or|xor|=\?|=|==|<>|<|>|<=|>=)$',
                       word):
             yield match.start(), Operator, word
-        elif re.match(".*\?$", word):
+        elif re.match(r".*\?$", word):
             yield match.start(), Keyword, word
-        elif re.match(".*\!$", word):
+        elif re.match(r".*\!$", word):
             yield match.start(), Keyword.Type, word
         elif re.match("'.*", word):
             yield match.start(), Name.Variable.Instance, word  # lit-word
@@ -297,10 +297,10 @@ class RedLexer(RegexLexer):
             yield match.start(), Keyword.Namespace, word
         elif re.match("to-.*", word):
             yield match.start(), Keyword, word
-        elif re.match('(\+|-\*\*|-|\*\*|//|/|\*|and|or|xor|=\?|===|==|=|<>|<=|>=|'
-                      '<<<|>>>|<<|>>|<|>%)$', word):
+        elif re.match(r'(\+|-\*\*|-|\*\*|//|/|\*|and|or|xor|=\?|===|==|=|<>|<=|>=|'
+                      r'<<<|>>>|<<|>>|<|>%)$', word):
             yield match.start(), Operator, word
-        elif re.match(".*\!$", word):
+        elif re.match(r".*\!$", word):
             yield match.start(), Keyword.Type, word
         elif re.match("'.*", word):
             yield match.start(), Name.Variable.Instance, word  # lit-word
