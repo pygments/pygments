@@ -39,6 +39,16 @@ provider "aws" {
 */
 
 
+resource "aws_route53_record" "test" {
+  zone_id  = "zone"
+  name      = "name"
+  type        = "A"
+  alias {
+    name     = "alias name"
+  }
+}
+
+
 # Single line comment
 resource "aws_instance" "example" {
     ami = "ami-408c7f28"

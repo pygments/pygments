@@ -48,6 +48,7 @@ class JuliaLexer(RegexLexer):
 
             # keywords
             (r'in\b', Keyword.Pseudo),
+            (r'isa\b', Keyword.Pseudo),
             (r'(true|false)\b', Keyword.Constant),
             (r'(local|global|const)\b', Keyword.Declaration),
             (words([
@@ -55,7 +56,8 @@ class JuliaLexer(RegexLexer):
                 'baremodule', 'begin', 'bitstype', 'break', 'catch', 'ccall',
                 'continue', 'do', 'else', 'elseif', 'end', 'export', 'finally',
                 'for', 'if', 'import', 'importall', 'let', 'macro', 'module',
-                'quote', 'return', 'try', 'using', 'while'],
+                'mutable', 'primitive', 'quote', 'return', 'struct', 'try',
+                'using', 'while'],
                 suffix=r'\b'), Keyword),
 
             # NOTE
@@ -146,7 +148,7 @@ class JuliaLexer(RegexLexer):
             (words([
                 # prec-assignment
                 u'=', u':=', u'+=', u'-=', u'*=', u'/=', u'//=', u'.//=', u'.*=', u'./=',
-                u'\=', u'.\=', u'^=', u'.^=', u'÷=', u'.÷=', u'%=', u'.%=', u'|=', u'&=',
+                u'\\=', u'.\\=', u'^=', u'.^=', u'÷=', u'.÷=', u'%=', u'.%=', u'|=', u'&=',
                 u'$=', u'=>', u'<<=', u'>>=', u'>>>=', u'~', u'.+=', u'.-=',
                 # prec-conditional
                 u'?',
@@ -181,7 +183,7 @@ class JuliaLexer(RegexLexer):
                 # prec-dot
                 u'.',
                 # unary op
-                u'+', u'-', u'!', u'~', u'√', u'∛', u'∜'
+                u'+', u'-', u'!', u'√', u'∛', u'∜'
             ]), Operator),
 
             # chars
