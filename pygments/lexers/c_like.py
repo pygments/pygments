@@ -20,7 +20,7 @@ from pygments.lexers.c_cpp import CLexer, CppLexer
 from pygments.lexers import _mql_builtins
 
 __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
-           'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer']
+           'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer', 'CharmciLexer']
 
 
 class PikeLexer(CppLexer):
@@ -539,3 +539,17 @@ class ArduinoLexer(CppLexer):
                 yield index, Name.Function, value
             else:
                 yield index, token, value
+
+class CharmciLexer(CppLexer):
+    name = 'Charmci'
+    aliases = ['charmci']
+    filenames = ['*.ci']
+
+    tokens = {
+        'statements': [
+            (r'(module)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (words(('mainmodule','mainchare','chare','array','group','nodegroup','message','conditional')), Keyword),
+            (words(('entry','aggregate','threaded','sync','exclusive','nokeep','notrace','immediate','expedited','inline','local','python','accel','readwrite','writeonly','accelblock','memcritical','packed','varsize','initproc','initnode','initcall','stacksize','createhere','createhome','reductiontarget','iget','nocopy','mutable','migratable','readonly')), Keyword),
+            inherit,
+        ],
+    }
