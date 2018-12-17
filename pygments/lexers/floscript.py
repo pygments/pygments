@@ -3,7 +3,7 @@
     pygments.lexers.floscript
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexer for FloScript 
+    Lexer for FloScript
 
     :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -23,12 +23,14 @@ __all__ = ['FloScriptLexer',]
 class FloScriptLexer(RegexLexer):
     """
     For `FloScript <https://github.com/ioflo/ioflo>`_ configuration language source code.
+
+    .. versionadded:: 2.4
     """
 
     name = 'FloScript'
-    aliases = ['floscript|flo']
+    aliases = ['floscript', 'flo']
     filenames = ['*.flo']
-    
+
     def innerstring_rules(ttype):
         return [
             # the old style '%s' % (...) string formatting
@@ -47,13 +49,13 @@ class FloScriptLexer(RegexLexer):
         'root': [
             (r'\n', Text),
             (r'[^\S\n]+', Text),
-            
+
             (r'[]{}:(),;[]', Punctuation),
             (r'\\\n', Text),
             (r'\\', Text),
             (r'(to|by|with|from|per|for|cum|qua|via|as|at|in|of|on|re|is|if|be|into|and|not)\b', Operator.Word),
             (r'!=|==|<<|>>|[-~+/*%=<>&^|.]', Operator),
-            (r'(load|init|server|logger|log|loggee|first|over|under|next|done|timeout|repeat|native|benter|enter|recur|exit|precur|renter|rexit|print|put|inc|copy|set|aux|rear|raze|go|let|do|bid|ready|start|stop|run|abort|use|flo|give|take)\b', Name.Builtin), 
+            (r'(load|init|server|logger|log|loggee|first|over|under|next|done|timeout|repeat|native|benter|enter|recur|exit|precur|renter|rexit|print|put|inc|copy|set|aux|rear|raze|go|let|do|bid|ready|start|stop|run|abort|use|flo|give|take)\b', Name.Builtin),
 			(r'(frame|framer|house)\b', Keyword),
             ('"', String, 'string'),
 
@@ -74,12 +76,12 @@ class FloScriptLexer(RegexLexer):
             (r'\d+L', Number.Integer.Long),
             (r'\d+j?', Number.Integer)
         ],
-        
+
         'name': [
             (r'@[\w.]+', Name.Decorator),
             (r'[a-zA-Z_]\w*', Name),
         ],
 
-        
-        
+
+
     }
