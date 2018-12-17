@@ -66,7 +66,7 @@ class ProtoBufLexer(RegexLexer):
             (r'[+-=]', Operator),
             (r'([a-zA-Z_][\w.]*)([ \t]*)(=)',
              bygroups(Name.Attribute, Text, Operator)),
-            ('[a-zA-Z_][\w.]*', Name),
+            (r'[a-zA-Z_][\w.]*', Name),
         ],
         'package': [
             (r'[a-zA-Z_]\w*', Name.Namespace, '#pop'),
@@ -300,7 +300,7 @@ class PuppetLexer(RegexLexer):
         ],
 
         'names': [
-            ('[a-zA-Z_]\w*', Name.Attribute),
+            (r'[a-zA-Z_]\w*', Name.Attribute),
             (r'(\$\S+)(\[)(\S+)(\])', bygroups(Name.Variable, Punctuation,
                                                String, Punctuation)),
             (r'\$\S+', Name.Variable),
@@ -688,7 +688,7 @@ class CrmshLexer(RegexLexer):
             (r'([\w#$-]+)(?:(:)(%s))?(?![\w#$-])' % rsc_role_action,
              bygroups(Name, Punctuation, Operator.Word)),
             # punctuation
-            (r'(\\(?=\n)|[[\](){}/:@])', Punctuation),
+            (r'(\\(?=\n)|[\[\](){}/:@])', Punctuation),
             (r'\s+|\n', Whitespace),
         ],
     }

@@ -187,13 +187,13 @@ class SmartyLexer(RegexLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('\{if\s+.*?\}.*?\{/if\}', text):
+        if re.search(r'\{if\s+.*?\}.*?\{/if\}', text):
             rv += 0.15
-        if re.search('\{include\s+file=.*?\}', text):
+        if re.search(r'\{include\s+file=.*?\}', text):
             rv += 0.15
-        if re.search('\{foreach\s+.*?\}.*?\{/foreach\}', text):
+        if re.search(r'\{foreach\s+.*?\}.*?\{/foreach\}', text):
             rv += 0.15
-        if re.search('\{\$.*?\}', text):
+        if re.search(r'\{\$.*?\}', text):
             rv += 0.01
         return rv
 
@@ -421,18 +421,18 @@ class MyghtyLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PythonLexer), Name.Tag)),
             (r'(<&[^|])(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
-            (r'(<&\|)(.*?)(,.*?)?(&>)(?s)',
+            (r'(?s)(<&\|)(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
             (r'</&>', Name.Tag),
-            (r'(<%!?)(.*?)(%>)(?s)',
+            (r'(?s)(<%!?)(.*?)(%>)',
              bygroups(Name.Tag, using(PythonLexer), Name.Tag)),
             (r'(?<=^)#[^\n]*(\n|\Z)', Comment),
             (r'(?<=^)(%)([^\n]*)(\n|\Z)',
@@ -538,20 +538,20 @@ class MasonLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(<%doc>)(.*?)(</%doc>)(?s)',
+            (r'(?s)(<%doc>)(.*?)(</%doc>)',
              bygroups(Name.Tag, Comment.Multiline, Name.Tag)),
-            (r'(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PerlLexer), Name.Tag)),
-            (r'(<&[^|])(.*?)(,.*?)?(&>)(?s)',
+            (r'(?s)(<&[^|])(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
-            (r'(<&\|)(.*?)(,.*?)?(&>)(?s)',
+            (r'(?s)(<&\|)(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
             (r'</&>', Name.Tag),
-            (r'(<%!?)(.*?)(%>)(?s)',
+            (r'(?s)(<%!?)(.*?)(%>)',
              bygroups(Name.Tag, using(PerlLexer), Name.Tag)),
             (r'(?<=^)#[^\n]*(\n|\Z)', Comment),
             (r'(?<=^)(%)([^\n]*)(\n|\Z)',
@@ -607,7 +607,7 @@ class MakoLexer(RegexLexer):
             (r'(</%)([\w.:]+)(>)',
              bygroups(Comment.Preproc, Name.Builtin, Comment.Preproc)),
             (r'<%(?=([\w.:]+))', Comment.Preproc, 'ondeftags'),
-            (r'(<%(?:!?))(.*?)(%>)(?s)',
+            (r'(?s)(<%(?:!?))(.*?)(%>)',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
             (r'(\$\{)(.*?)(\})',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
@@ -759,7 +759,7 @@ class CheetahLexer(RegexLexer):
             # TODO support other Python syntax like $foo['bar']
             (r'(\$)([a-zA-Z_][\w.]*\w)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer))),
-            (r'(\$\{!?)(.*?)(\})(?s)',
+            (r'(?s)(\$\{!?)(.*?)(\})',
              bygroups(Comment.Preproc, using(CheetahPythonLexer),
                       Comment.Preproc)),
             (r'''(?sx)
@@ -942,9 +942,9 @@ class HtmlGenshiLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('\$\{.*?\}', text) is not None:
+        if re.search(r'\$\{.*?\}', text) is not None:
             rv += 0.2
-        if re.search('py:(.*?)=["\']', text) is not None:
+        if re.search(r'py:(.*?)=["\']', text) is not None:
             rv += 0.2
         return rv + HtmlLexer.analyse_text(text) - 0.01
 
@@ -967,9 +967,9 @@ class GenshiLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('\$\{.*?\}', text) is not None:
+        if re.search(r'\$\{.*?\}', text) is not None:
             rv += 0.2
-        if re.search('py:(.*?)=["\']', text) is not None:
+        if re.search(r'py:(.*?)=["\']', text) is not None:
             rv += 0.2
         return rv + XmlLexer.analyse_text(text) - 0.01
 
@@ -1627,7 +1627,7 @@ class SspLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('val \w+\s*:', text):
+        if re.search(r'val \w+\s*:', text):
             rv += 0.6
         if looks_like_xml(text):
             rv += 0.2
@@ -1955,7 +1955,7 @@ class LiquidLexer(RegexLexer):
 
         'output': [
             include('whitespace'),
-            ('\}\}', Punctuation, '#pop'),  # end of output
+            (r'\}\}', Punctuation, '#pop'),  # end of output
 
             (r'\|', Punctuation, 'filters')
         ],

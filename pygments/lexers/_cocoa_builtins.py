@@ -41,23 +41,23 @@ if __name__ == '__main__':  # pragma: no cover
 
             headerFilePath = frameworkHeadersDir + f
             content = open(headerFilePath).read()
-            res = re.findall('(?<=@interface )\w+', content)
+            res = re.findall(r'(?<=@interface )\w+', content)
             for r in res:
                 all_interfaces.add(r)
 
-            res = re.findall('(?<=@protocol )\w+', content)
+            res = re.findall(r'(?<=@protocol )\w+', content)
             for r in res:
                 all_protocols.add(r)
 
-            res = re.findall('(?<=typedef enum )\w+', content)
+            res = re.findall(r'(?<=typedef enum )\w+', content)
             for r in res:
                 all_primitives.add(r)
 
-            res = re.findall('(?<=typedef struct )\w+', content)
+            res = re.findall(r'(?<=typedef struct )\w+', content)
             for r in res:
                 all_primitives.add(r)
 
-            res = re.findall('(?<=typedef const struct )\w+', content)
+            res = re.findall(r'(?<=typedef const struct )\w+', content)
             for r in res:
                 all_primitives.add(r)
 
