@@ -61,10 +61,10 @@ class TerminalFormatterTest(unittest.TestCase):
 
 class MyStyle(Style):
     styles = {
-        Token.Comment:    '#ansidarkgray',
-        Token.String:     '#ansiblue bg:#ansidarkred',
-        Token.Number:     '#ansigreen bg:#ansidarkgreen',
-        Token.Number.Hex: '#ansidarkgreen bg:#ansired',
+        Token.Comment:    'ansibrightblack',
+        Token.String:     'ansibrightblue bg:ansired',
+        Token.Number:     'ansibrightgreen bg:ansigreen',
+        Token.Number.Hex: 'ansigreen bg:ansibrightred',
     }
 
 
@@ -90,7 +90,7 @@ async def function(a,b,c, *d, **kwarg:Bool)->Bool:
 
     def test_256esc_seq(self):
         """
-        test that a few escape sequences are actualy used when using #ansi<> color codes
+        test that a few escape sequences are actualy used when using ansi<> color codes
         """
         def termtest(x):
             return highlight(x, Python3Lexer(),

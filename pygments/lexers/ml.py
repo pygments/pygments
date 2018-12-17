@@ -43,7 +43,7 @@ class SMLLexer(RegexLexer):
 
     symbolicid_reserved = set((
         # Core
-        ':', '\|', '=', '=>', '->', '#',
+        ':', r'\|', '=', '=>', '->', '#',
         # Modules
         ':>',
     ))
