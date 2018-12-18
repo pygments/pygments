@@ -111,9 +111,9 @@ class Terminal256Formatter(Formatter):
        See :ref:`AnsiTerminalStyle` for more information.
 
     .. versionchanged:: 2.4
-       The ansi color names have been updated with names that are easier to
+       The ANSI color names have been updated with names that are easier to
        understand and align with colornames of other projects and terminals.
-       See :ref:`NewAnsiColorNames` for more information.
+       See :ref:`this table <new-ansi-color-names>` for more information.
 
 
     Options accepted:

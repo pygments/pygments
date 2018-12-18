@@ -201,34 +201,32 @@ The following are considered "dark" colors and will be rendered as non-bold:
 Exact behavior might depends on the terminal emulator you are using, and its
 settings.
 
-.. _NewAnsiColorNames:
+.. _new-ansi-color-names:
 
 .. versionchanged:: 2.4
 
-The definition of the ansi color names has changed.
+The definition of the ANSI color names has changed.
 New names are easier to understand and align to the colors used in other projects.
 
+===================== ====================
+New names             Pygments up to 2.3
+===================== ====================
+``ansiblack``         ``#ansiblack``
+``ansired``           ``#ansidarkred``
+``ansigreen``         ``#ansidarkgreen``
+``ansiyellow``        ``#ansibrown``
+``ansiblue``          ``#ansidarkblue``
+``ansimagenta``       ``#ansipurple``
+``ansicyan``          ``#ansiteal``
+``ansigray``          ``#ansilightgray``
+``ansibrightblack``   ``#ansidarkgray``
+``ansibrightred``     ``#ansired``
+``ansibrightgreen``   ``#ansigreen``
+``ansibrightyellow``  ``#ansiyellow``
+``ansibrightblue``    ``#ansiblue``
+``ansibrightmagenta`` ``#ansifuchsia``
+``ansibrightcyan``    ``#ansiturquoise``
+``ansiwhite``         ``#ansiwhite``
+===================== ====================
 
-+-------------------------+--------------------------+
-|   New names             |      Pygments 2.2        |
-+=======================+============================+
-|  ``ansiblack``          |      ``#ansiblack``      |
-|  ``ansired``            |      ``#ansidarkred``    |
-|  ``ansigreen``          |      ``#ansidarkgreen``  |
-|  ``ansiyellow``         |      ``#ansibrown``      |
-|  ``ansiblue``           |      ``#ansidarkblue``   |
-|  ``ansimagenta``        |      ``#ansipurple``     |
-|  ``ansicyan``           |      ``#ansiteal``       |
-|  ``ansigray``           |      ``#ansilightgray``  |
-|  ``ansibrightblack``    |      ``#ansidarkgray``   |
-|  ``ansibrightred``      |      ``#ansired``        |
-|  ``ansibrightgreen``    |      ``#ansigreen``      |
-|  ``ansibrightyellow``   |      ``#ansiyellow``     |
-|  ``ansibrightblue``     |      ``#ansiblue``       |
-|  ``ansibrightmagenta``  |      ``#ansifuchsia``    |
-|  ``ansibrightcyan``     |      ``#ansiturquoise``  |
-|  ``ansiwhite``          |      ``#ansiwhite``      |
-+=========================+==========================+
-
-Old ansi color names are deprecated but will still work.
-
+Old ANSI color names are deprecated but will still work.
