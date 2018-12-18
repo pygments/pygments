@@ -541,6 +541,10 @@ class ArduinoLexer(CppLexer):
                 yield index, token, value
 
 class CharmciLexer(CppLexer):
+    """
+    For `Charm++ <https://charm.cs.illinois.edu>`_ interface files (.ci).
+    """
+
     name = 'Charmci'
     aliases = ['charmci']
     filenames = ['*.ci']
