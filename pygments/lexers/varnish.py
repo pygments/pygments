@@ -36,7 +36,7 @@ class VCLLexer(RegexLexer):
         # Skip over comments and blank lines
         # This is accurate enough that returning 0.9 is reasonable.
         # Almost no VCL files start without some comments.
-        elif '\nvcl 4\.0;' in text[:1000]:
+        elif '\nvcl 4.0;' in text[:1000]:
             return 0.9
 
     tokens = {
@@ -120,7 +120,7 @@ class VCLLexer(RegexLexer):
              r'([a-zA-Z_]\w*)'
              r'(\s*\(.*\))',
              bygroups(Name.Function, Punctuation, Name.Function, using(this))),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
