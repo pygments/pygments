@@ -4688,7 +4688,7 @@ if __name__ == '__main__':  # pragma: no cover
     PHP_MANUAL_URL     = 'http://us3.php.net/distributions/manual/php_manual_en.tar.gz'
     PHP_MANUAL_DIR     = './php-chunked-xhtml/'
     PHP_REFERENCE_GLOB = 'ref.*'
-    PHP_FUNCTION_RE    = '<a href="function\..*?\.html">(.*?)</a>'
+    PHP_FUNCTION_RE    = r'<a href="function\..*?\.html">(.*?)</a>'
     PHP_MODULE_RE      = '<title>(.*?) Functions</title>'
 
     def get_php_functions():

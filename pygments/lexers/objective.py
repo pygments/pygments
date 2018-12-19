@@ -87,26 +87,26 @@ def objective(baselexer):
             ],
             'oc_classname': [
                 # interface definition that inherits
-                ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?(\s*)(\{)',
+                (r'([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?(\s*)(\{)',
                  bygroups(Name.Class, Text, Name.Class, Text, Punctuation),
                  ('#pop', 'oc_ivars')),
-                ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?',
+                (r'([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?',
                  bygroups(Name.Class, Text, Name.Class), '#pop'),
                 # interface definition for a category
-                ('([a-zA-Z$_][\w$]*)(\s*)(\([a-zA-Z$_][\w$]*\))(\s*)(\{)',
+                (r'([a-zA-Z$_][\w$]*)(\s*)(\([a-zA-Z$_][\w$]*\))(\s*)(\{)',
                  bygroups(Name.Class, Text, Name.Label, Text, Punctuation),
                  ('#pop', 'oc_ivars')),
-                ('([a-zA-Z$_][\w$]*)(\s*)(\([a-zA-Z$_][\w$]*\))',
+                (r'([a-zA-Z$_][\w$]*)(\s*)(\([a-zA-Z$_][\w$]*\))',
                  bygroups(Name.Class, Text, Name.Label), '#pop'),
                 # simple interface / implementation
-                ('([a-zA-Z$_][\w$]*)(\s*)(\{)',
+                (r'([a-zA-Z$_][\w$]*)(\s*)(\{)',
                  bygroups(Name.Class, Text, Punctuation), ('#pop', 'oc_ivars')),
-                ('([a-zA-Z$_][\w$]*)', Name.Class, '#pop')
+                (r'([a-zA-Z$_][\w$]*)', Name.Class, '#pop')
             ],
             'oc_forward_classname': [
-                ('([a-zA-Z$_][\w$]*)(\s*,\s*)',
+                (r'([a-zA-Z$_][\w$]*)(\s*,\s*)',
                  bygroups(Name.Class, Text), 'oc_forward_classname'),
-                ('([a-zA-Z$_][\w$]*)(\s*;?)',
+                (r'([a-zA-Z$_][\w$]*)(\s*;?)',
                  bygroups(Name.Class, Text), '#pop')
             ],
             'oc_ivars': [
@@ -244,17 +244,17 @@ class LogosLexer(ObjectiveCppLexer):
             inherit,
         ],
         'logos_init_directive': [
-            ('\s+', Text),
+            (r'\s+', Text),
             (',', Punctuation, ('logos_init_directive', '#pop')),
-            ('([a-zA-Z$_][\w$]*)(\s*)(=)(\s*)([^);]*)',
+            (r'([a-zA-Z$_][\w$]*)(\s*)(=)(\s*)([^);]*)',
              bygroups(Name.Class, Text, Punctuation, Text, Text)),
-            ('([a-zA-Z$_][\w$]*)', Name.Class),
-            ('\)', Punctuation, '#pop'),
+            (r'([a-zA-Z$_][\w$]*)', Name.Class),
+            (r'\)', Punctuation, '#pop'),
         ],
         'logos_classname': [
-            ('([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?',
+            (r'([a-zA-Z$_][\w$]*)(\s*:\s*)([a-zA-Z$_][\w$]*)?',
              bygroups(Name.Class, Text, Name.Class), '#pop'),
-            ('([a-zA-Z$_][\w$]*)', Name.Class, '#pop')
+            (r'([a-zA-Z$_][\w$]*)', Name.Class, '#pop')
         ],
         'root': [
             (r'(%subclass)(\s+)', bygroups(Keyword, Text),

@@ -63,3 +63,9 @@ tox-test:
 
 tox-test-coverage:
 	@tox -- --with-coverage --cover-package=pygments --cover-erase $(TEST)
+
+RLMODULES = pygments.lexers
+
+regexlint:
+	@if [ -z "$(REGEXLINT)" ]; then echo "Please set REGEXLINT=checkout path"; exit 1; fi
+	PYTHONPATH=`pwd`:$(REGEXLINT) $(REGEXLINT)/regexlint/cmdline.py $(RLMODULES)

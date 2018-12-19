@@ -39,7 +39,7 @@ Here is a small example for highlighting Python code:
     from pygments.formatters import HtmlFormatter
 
     code = 'print "Hello World"'
-    print highlight(code, PythonLexer(), HtmlFormatter())
+    print(highlight(code, PythonLexer(), HtmlFormatter()))
 
 which prints something like this:
 
@@ -56,7 +56,7 @@ can be produced by:
 
 .. sourcecode:: python
 
-    print HtmlFormatter().get_style_defs('.highlight')
+    print(HtmlFormatter().get_style_defs('.highlight'))
 
 The argument to :func:`get_style_defs` is used as an additional CSS selector:
 the output may look like this:
