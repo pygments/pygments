@@ -245,7 +245,7 @@ class ValaLexer(RegexLexer):
                 'ulong', 'unichar', 'ushort'), suffix=r'\b'),
              Keyword.Type),
             (r'(true|false|null)\b', Name.Builtin),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'root': [
             include('whitespace'),
@@ -344,7 +344,7 @@ class SwigLexer(CppLexer):
             # SWIG directives
             (r'(%[a-z_][a-z0-9_]*)', Name.Function),
             # Special variables
-            ('\$\**\&?\w+', Name),
+            (r'\$\**\&?\w+', Name),
             # Stringification / additional preprocessor directives
             (r'##*[a-zA-Z_]\w*', Comment.Preproc),
             inherit,

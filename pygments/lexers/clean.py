@@ -5,14 +5,13 @@
 
     Lexer for the Clean language.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import ExtendedRegexLexer, LexerContext, \
-    bygroups, words, include, default
-from pygments.token import Comment, Keyword, Literal, Name, Number, Operator, \
-    Punctuation, String, Text, Whitespace
+from pygments.lexer import ExtendedRegexLexer, words, include, bygroups
+from pygments.token import Comment, Error, Keyword, Literal, Name, Number, \
+    Operator, Punctuation, String, Whitespace
 
 __all__ = ['CleanLexer']
 
@@ -28,261 +27,152 @@ class CleanLexer(ExtendedRegexLexer):
     aliases = ['clean']
     filenames = ['*.icl', '*.dcl']
 
-    def get_tokens_unprocessed(self, text=None, context=None):
-        ctx = LexerContext(text, 0)
-        ctx.indent = 0
-        return ExtendedRegexLexer.get_tokens_unprocessed(self, text, context=ctx)
+    keywords = (
+        'case', 'ccall', 'class', 'code', 'code inline', 'derive', 'export',
+        'foreign', 'generic', 'if', 'in', 'infix', 'infixl', 'infixr',
+        'instance', 'let', 'of', 'otherwise', 'special', 'stdcall', 'where',
+        'with')
 
-    def check_class_not_import(lexer, match, ctx):
-        if match.group(0) == 'import':
-            yield match.start(), Keyword.Namespace, match.group(0)
-            ctx.stack = ctx.stack[:-1] + ['fromimportfunc']
-        else:
-            yield match.start(), Name.Class, match.group(0)
-        ctx.pos = match.end()
+    modulewords = ('implementation', 'definition', 'system')
 
-    def check_instance_class(lexer, match, ctx):
-        if match.group(0) == 'instance' or match.group(0) == 'class':
-            yield match.start(), Keyword, match.group(0)
-        else:
-            yield match.start(), Name.Function, match.group(0)
-            ctx.stack = ctx.stack + ['fromimportfunctype']
-        ctx.pos = match.end()
-
-    @staticmethod
-    def indent_len(text):
-        # Tabs are four spaces:
-        # https://svn.cs.ru.nl/repos/clean-platform/trunk/doc/STANDARDS.txt
-        text = text.replace('\n', '')
-        return len(text.replace('\t', '    ')), len(text)
-
-    def store_indent(lexer, match, ctx):
-        ctx.indent, _ = CleanLexer.indent_len(match.group(0))
-        ctx.pos = match.end()
-        yield match.start(), Text, match.group(0)
-
-    def check_indent1(lexer, match, ctx):
-        indent, reallen = CleanLexer.indent_len(match.group(0))
-        if indent > ctx.indent:
-            yield match.start(), Whitespace, match.group(0)
-            ctx.pos = match.start() + reallen + 1
-        else:
-            ctx.indent = 0
-            ctx.pos = match.start()
-            ctx.stack = ctx.stack[:-1]
-            yield match.start(), Whitespace, match.group(0)[1:]
-
-    def check_indent2(lexer, match, ctx):
-        indent, reallen = CleanLexer.indent_len(match.group(0))
-        if indent > ctx.indent:
-            yield match.start(), Whitespace, match.group(0)
-            ctx.pos = match.start() + reallen + 1
-        else:
-            ctx.indent = 0
-            ctx.pos = match.start()
-            ctx.stack = ctx.stack[:-2]
-
-    def check_indent3(lexer, match, ctx):
-        indent, reallen = CleanLexer.indent_len(match.group(0))
-        if indent > ctx.indent:
-            yield match.start(), Whitespace, match.group(0)
-            ctx.pos = match.start() + reallen + 1
-        else:
-            ctx.indent = 0
-            ctx.pos = match.start()
-            ctx.stack = ctx.stack[:-3]
-            yield match.start(), Whitespace, match.group(0)[1:]
-            if match.group(0) == '\n\n':
-                ctx.pos = ctx.pos + 1
-
-    def skip(lexer, match, ctx):
-        ctx.stack = ctx.stack[:-1]
-        ctx.pos = match.end()
-        yield match.start(), Comment, match.group(0)
-
-    keywords = ('class', 'instance', 'where', 'with', 'let', 'let!',
-                'in', 'case', 'of', 'infix', 'infixr', 'infixl', 'generic',
-                'derive', 'otherwise', 'code', 'inline')
+    lowerId = r'[a-z`][\w\d`]*'
+    upperId = r'[A-Z`][\w\d`]*'
+    funnyId = r'[~@#\$%\^?!+\-*<>\\/|&=:]+'
+    scoreUpperId = r'_' + upperId
+    scoreLowerId = r'_' + lowerId
+    moduleId = r'[a-zA-Z_][a-zA-Z0-9_.`]+'
+    classId = '|'.join([lowerId, upperId, funnyId])
 
     tokens = {
-        'common': [
-            (r';', Punctuation, '#pop'),
-            (r'//', Comment, 'singlecomment'),
-        ],
         'root': [
-            # Comments
-            (r'//.*\n', Comment.Single),
-            (r'(?s)/\*\*.*?\*/', Comment.Special),
-            (r'(?s)/\*.*?\*/', Comment.Multi),
-
-            # Modules, imports, etc.
-            (r'\b((?:implementation|definition|system)\s+)?(module)(\s+)([\w`.]+)',
-                bygroups(Keyword.Namespace, Keyword.Namespace, Text, Name.Class)),
-            (r'(?<=\n)import(?=\s)', Keyword.Namespace, 'import'),
-            (r'(?<=\n)from(?=\s)', Keyword.Namespace, 'fromimport'),
-
-            # Keywords
-            # We cannot use (?s)^|(?<=\s) as prefix, so need to repeat this
-            (words(keywords, prefix=r'(?<=\s)', suffix=r'(?=\s)'), Keyword),
-            (words(keywords, prefix=r'^', suffix=r'(?=\s)'), Keyword),
-
-            # Function definitions
-            (r'(?=\{\|)', Whitespace, 'genericfunction'),
-            (r'(?<=\n)([ \t]*)([\w`$()=\-<>~*\^|+&%]+)((?:\s+\w)*)(\s*)(::)',
-             bygroups(store_indent, Name.Function, Keyword.Type, Whitespace,
-                      Punctuation),
-             'functiondefargs'),
-
-            # Type definitions
-            (r'(?<=\n)([ \t]*)(::)', bygroups(store_indent, Punctuation), 'typedef'),
-            (r'^([ \t]*)(::)', bygroups(store_indent, Punctuation), 'typedef'),
-
-            # Literals
-            (r'\'\\?.(?<!\\)\'', String.Char),
-            (r'\'\\\d+\'', String.Char),
-            (r'\'\\\\\'', String.Char),  # (special case for '\\')
-            (r'[+\-~]?\s*\d+\.\d+(E[+\-~]?\d+)?\b', Number.Float),
-            (r'[+\-~]?\s*0[0-7]\b', Number.Oct),
-            (r'[+\-~]?\s*0x[0-9a-fA-F]\b', Number.Hex),
-            (r'[+\-~]?\s*\d+\b', Number.Integer),
-            (r'"', String.Double, 'doubleqstring'),
-            (words(('True', 'False'), prefix=r'(?<=\s)', suffix=r'(?=\s)'),
-             Literal),
-
-            # Qualified names
-            (r'(\')([\w.]+)(\'\.)',
-                bygroups(Punctuation, Name.Namespace, Punctuation)),
-
-            # Everything else is some name
-            (r'([\w`$%/?@]+\.?)*[\w`$%/?@]+', Name),
-
-            # Punctuation
-            (r'[{}()\[\],:;.#]', Punctuation),
-            (r'[+\-=!<>|&~*\^/]', Operator),
-            (r'\\\\', Operator),
-
-            # Lambda expressions
-            (r'\\.*?(->|\.|=)', Name.Function),
-
-            # Whitespace
-            (r'\s', Whitespace),
-
-            include('common'),
+            include('comments'),
+            include('keywords'),
+            include('module'),
+            include('import'),
+            include('whitespace'),
+            include('literals'),
+            include('operators'),
+            include('delimiters'),
+            include('names'),
         ],
-        'fromimport': [
-            include('common'),
-            (r'([\w`.]+)', check_class_not_import),
-            (r'\n', Whitespace, '#pop'),
-            (r'\s', Whitespace),
-        ],
-        'fromimportfunc': [
-            include('common'),
-            (r'(::)(\s+)([^,\s]+)', bygroups(Punctuation, Text, Keyword.Type)),
-            (r'([\w`$()=\-<>~*\^|+&%/]+)', check_instance_class),
-            (r',', Punctuation),
-            (r'\n', Whitespace, '#pop'),
-            (r'\s', Whitespace),
-        ],
-        'fromimportfunctype': [
-            include('common'),
-            (r'[{(\[]', Punctuation, 'combtype'),
-            (r',', Punctuation, '#pop'),
-            (r'[:;.#]', Punctuation),
-            (r'\n', Whitespace, '#pop:2'),
-            (r'[^\S\n]+', Whitespace),
-            (r'\S+', Keyword.Type),
-        ],
-        'combtype': [
-            include('common'),
-            (r'[})\]]', Punctuation, '#pop'),
-            (r'[{(\[]', Punctuation, '#pop'),
-            (r'[,:;.#]', Punctuation),
+        'whitespace': [
             (r'\s+', Whitespace),
-            (r'\S+', Keyword.Type),
+        ],
+        'comments': [
+            (r'//.*\n', Comment.Single),
+            (r'/\*', Comment.Multi, 'comments.in'),
+            (r'/\*\*', Comment.Special, 'comments.in'),
+        ],
+        'comments.in': [
+            (r'\*\/', Comment.Multi, '#pop'),
+            (r'/\*', Comment.Multi, '#push'),
+            (r'[^*/]+', Comment.Multi),
+            (r'\*(?!/)', Comment.Multi),
+            (r'/', Comment.Multi),
+        ],
+        'keywords': [
+            (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword),
+        ],
+        'module': [
+            (words(modulewords, prefix=r'\b', suffix=r'\b'), Keyword.Namespace),
+            (r'\bmodule\b', Keyword.Namespace, 'module.name'),
+        ],
+        'module.name': [
+            include('whitespace'),
+            (moduleId, Name.Class, '#pop'),
         ],
         'import': [
-            include('common'),
-            (words(('from', 'import', 'as', 'qualified'),
-                   prefix='(?<=\s)', suffix='(?=\s)'), Keyword.Namespace),
-            (r'[\w`.]+', Name.Class),
-            (r'\n', Whitespace, '#pop'),
+            (r'\b(import)\b(\s*)', bygroups(Keyword, Whitespace), 'import.module'),
+            (r'\b(from)\b(\s*)\b(' + moduleId + r')\b(\s*)\b(import)\b',
+                bygroups(Keyword, Whitespace, Name.Class, Whitespace, Keyword),
+                'import.what'),
+        ],
+        'import.module': [
+            (r'\b(qualified)\b(\s*)', bygroups(Keyword, Whitespace)),
+            (r'(\s*)\b(as)\b', bygroups(Whitespace, Keyword), ('#pop', 'import.module.as')),
+            (moduleId, Name.Class),
+            (r'(\s*)(,)(\s*)', bygroups(Whitespace, Punctuation, Whitespace)),
+            (r'\s*', Whitespace, '#pop'),
+        ],
+        'import.module.as': [
+            include('whitespace'),
+            (lowerId, Name.Class, '#pop'),
+            (upperId, Name.Class, '#pop'),
+        ],
+        'import.what': [
+            (r'\b(class)\b(\s+)(' + classId + r')',
+                bygroups(Keyword, Whitespace, Name.Class), 'import.what.class'),
+            (r'\b(instance)(\s+)(' + classId + r')(\s+)',
+                bygroups(Keyword, Whitespace, Name.Class, Whitespace), 'import.what.instance'),
+            (r'(::)(\s*)\b(' + upperId + r')\b',
+                bygroups(Punctuation, Whitespace, Name.Class), 'import.what.type'),
+            (r'\b(generic)\b(\s+)\b(' + lowerId + '|' + upperId + r')\b',
+                bygroups(Keyword, Whitespace, Name)),
+            include('names'),
+            (r'(,)(\s+)', bygroups(Punctuation, Whitespace)),
+            (r'$', Whitespace, '#pop'),
+            include('whitespace'),
+        ],
+        'import.what.class': [
+            (r',', Punctuation, '#pop'),
+            (r'\(', Punctuation, 'import.what.class.members'),
+            (r'$', Whitespace, '#pop:2'),
+            include('whitespace'),
+        ],
+        'import.what.class.members': [
             (r',', Punctuation),
-            (r'[^\S\n]+', Whitespace),
+            (r'\.\.', Punctuation),
+            (r'\)', Punctuation, '#pop'),
+            include('names'),
         ],
-        'singlecomment': [
-            (r'(.)(?=\n)', skip),
-            (r'.+(?!\n)', Comment),
+        'import.what.instance': [
+            (r'[,)]', Punctuation, '#pop'),
+            (r'\(', Punctuation, 'import.what.instance'),
+            (r'$', Whitespace, '#pop:2'),
+            include('whitespace'),
+            include('names'),
         ],
-        'doubleqstring': [
-            (r'[^\\"]+', String.Double),
+        'import.what.type': [
+            (r',', Punctuation, '#pop'),
+            (r'[({]', Punctuation, 'import.what.type.consesandfields'),
+            (r'$', Whitespace, '#pop:2'),
+            include('whitespace'),
+        ],
+        'import.what.type.consesandfields': [
+            (r',', Punctuation),
+            (r'\.\.', Punctuation),
+            (r'[)}]', Punctuation, '#pop'),
+            include('names'),
+        ],
+        'literals': [
+            (r'\'([^\'\\]|\\(x[\da-fA-F]+|\d+|.))\'', Literal.Char),
+            (r'[+~-]?0[0-7]+\b', Number.Oct),
+            (r'[+~-]?\d+\.\d+(E[+-]?\d+)?', Number.Float),
+            (r'[+~-]?\d+\b', Number.Integer),
+            (r'[+~-]?0x[\da-fA-F]+\b', Number.Hex),
+            (r'True|False', Literal),
+            (r'"', String.Double, 'literals.stringd'),
+        ],
+        'literals.stringd': [
+            (r'[^\\"\n]+', String.Double),
             (r'"', String.Double, '#pop'),
             (r'\\.', String.Double),
+            (r'[$\n]', Error, '#pop'),
         ],
-        'typedef': [
-            include('common'),
-            (r'[\w`]+', Keyword.Type),
-            (r'[:=|(),\[\]{}!*]', Punctuation),
-            (r'->', Punctuation),
-            (r'\n(?=[^\s|])', Whitespace, '#pop'),
-            (r'\s', Whitespace),
-            (r'.', Keyword.Type),
+        'operators': [
+            (r'[-~@#\$%\^?!+*<>\\/|&=:\.]+', Operator),
+            (r'\b_+\b', Operator),
         ],
-        'genericfunction': [
-            include('common'),
-            (r'\{\|', Punctuation),
-            (r'\|\}', Punctuation, '#pop'),
-            (r',', Punctuation),
-            (r'->', Punctuation),
-            (r'(\s+of\s+)(\{)', bygroups(Keyword, Punctuation), 'genericftypes'),
-            (r'\s', Whitespace),
-            (r'[\w`\[\]{}!]+', Keyword.Type),
-            (r'[*()]', Punctuation),
+        'delimiters': [
+            (r'[,;(){}\[\]]', Punctuation),
+            (r'(\')([\w`.]+)(\')',
+                bygroups(Punctuation, Name.Class, Punctuation)),
         ],
-        'genericftypes': [
-            include('common'),
-            (r'[\w`]+', Keyword.Type),
-            (r',', Punctuation),
-            (r'\s', Whitespace),
-            (r'\}', Punctuation, '#pop'),
-        ],
-        'functiondefargs': [
-            include('common'),
-            (r'\n(\s*)', check_indent1),
-            (r'[!{}()\[\],:;.#]', Punctuation),
-            (r'->', Punctuation, 'functiondefres'),
-            (r'^(?=\S)', Whitespace, '#pop'),
-            (r'\S', Keyword.Type),
-            (r'\s', Whitespace),
-        ],
-        'functiondefres': [
-            include('common'),
-            (r'\n(\s*)', check_indent2),
-            (r'^(?=\S)', Whitespace, '#pop:2'),
-            (r'[!{}()\[\],:;.#]', Punctuation),
-            (r'\|', Punctuation, 'functiondefclasses'),
-            (r'\S', Keyword.Type),
-            (r'\s', Whitespace),
-        ],
-        'functiondefclasses': [
-            include('common'),
-            (r'\n(\s*)', check_indent3),
-            (r'^(?=\S)', Whitespace, '#pop:3'),
-            (r'[,&]', Punctuation),
-            (r'\[', Punctuation, 'functiondefuniquneq'),
-            (r'[\w`$()=\-<>~*\^|+&%/{}\[\]@]', Name.Function, 'functionname'),
-            (r'\s+', Whitespace),
-        ],
-        'functiondefuniquneq': [
-            include('common'),
-            (r'[a-z]+', Keyword.Type),
-            (r'\s+', Whitespace),
-            (r'<=|,', Punctuation),
-            (r'\]', Punctuation, '#pop')
-        ],
-        'functionname': [
-            include('common'),
-            (r'[\w`$()=\-<>~*\^|+&%/]+', Name.Function),
-            (r'(?=\{\|)', Punctuation, 'genericfunction'),
-            default('#pop'),
+        'names': [
+            (lowerId, Name),
+            (scoreLowerId, Name),
+            (funnyId, Name.Function),
+            (upperId, Name.Class),
+            (scoreUpperId, Name.Class),
         ]
     }
