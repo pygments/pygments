@@ -23,6 +23,14 @@ variable "aws_amis" {
 }
 
 
+resource "aws_internet_gateway" "base_igw" {
+  vpc_id = "${aws_vpc.something.id}"
+  tags {
+    Name = "igw-${var.something}-${var.something}"
+  }
+}
+
+
 
 
 
@@ -169,4 +177,32 @@ resource "aws_instance" "web" {
     ]
   }
 }
+
+
+
+resource "aws_autoscaling_group" "bar" {
+  name                 = "terraform-asg-example"
+  launch_configuration = "${aws_launch_configuration.as_conf.name}"
+  min_size             = 1
+  max_size             = 2
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+
+resource "aws_db_instance" "timeout_example" {
+  allocated_storage = 10
+  engine            = "mysql"
+  engine_version    = "5.6.17"
+  instance_class    = "db.t1.micro"
+  name              = "mydb"
+
+  timeouts {
+    create = "60m"
+    delete = "2h"
+  }
+}
+
 
