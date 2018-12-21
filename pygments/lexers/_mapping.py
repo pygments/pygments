@@ -385,7 +385,7 @@ LEXERS = {
     'ShenLexer': ('pygments.lexers.lisp', 'Shen', ('shen',), ('*.shen',), ('text/x-shen', 'application/x-shen')),
     'SilverLexer': ('pygments.lexers.verification', 'Silver', ('silver',), ('*.sil', '*.vpr'), ()),
     'SlimLexer': ('pygments.lexers.webmisc', 'Slim', ('slim',), ('*.slim',), ('text/x-slim',)),
-    'SlurmBashLexer': ('pygments.lexers.shell', 'Slurm', ('slurm', 'sbatch'), ('*.sl',), ('application/x-sh', 'application/x-shellscript')),
+    'SlurmBashLexer': ('pygments.lexers.shell', 'Slurm', ('slurm', 'sbatch'), ('*.sl',), ()),
     'SmaliLexer': ('pygments.lexers.dalvik', 'Smali', ('smali',), ('*.smali',), ('text/smali',)),
     'SmalltalkLexer': ('pygments.lexers.smalltalk', 'Smalltalk', ('smalltalk', 'squeak', 'st'), ('*.st',), ('text/x-smalltalk',)),
     'SmartyLexer': ('pygments.lexers.templates', 'Smarty', ('smarty',), ('*.tpl',), ('application/x-smarty',)),
