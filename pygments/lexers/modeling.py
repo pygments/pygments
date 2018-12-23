@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+    Number, Punctuation, Whitespace
 
 from pygments.lexers.html import HtmlLexer
 from pygments.lexers import _stan_builtins
@@ -326,14 +326,14 @@ class StanLexer(RegexLexer):
             (r'(%s)\b' % r'|'.join(_stan_builtins.TYPES), Keyword.Type),
              # < should be punctuation, but elsewhere I can't tell if it is in
              # a range constraint
-            (r'(<)\s*(upper|lower)\s*(=)', bygroups(Operator, Keyword, Punctuation)),
-            (r'(,)\s*(upper)\s*(=)', bygroups(Punctuation, Keyword, Punctuation)),
+            (r'(<)(\s*)(upper|lower)(\s*)(=)', bygroups(Operator, Whitespace, Keyword, Whitespace, Punctuation)),
+            (r'(,)(\s*)(upper)(\s*)(=)', bygroups(Punctuation, Whitespace, Keyword, Whitespace, Punctuation)),
             # Punctuation
             (r"[;,\[\]()]", Punctuation),
             # Builtin
             (r'(%s)(?=\s*\()' % '|'.join(_stan_builtins.FUNCTIONS), Name.Builtin),
-            (r'(~)\s*(%s)(?=\s*\()' % '|'.join(_stan_builtins.DISTRIBUTIONS),
-                bygroups(Operator, Name.Builtin)),
+            (r'(~)(\s*)(%s)(?=\s*\()' % '|'.join(_stan_builtins.DISTRIBUTIONS),
+                bygroups(Operator, Whitespace, Name.Builtin)),
             # Special names ending in __, like lp__
             (r'[A-Za-z]\w*__\b', Name.Builtin.Pseudo),
             (r'(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
