@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import RegexLexer, default, words, bygroups, include, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace, Literal
+    Number, Punctuation, Whitespace, Literal, Generic
 from pygments.lexers.shell import BashLexer
 from pygments.lexers.data import JsonLexer
 
@@ -21,7 +21,8 @@ __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
-           'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer']
+           'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
+           'SingularityLexer']
 
 
 class IniLexer(RegexLexer):
@@ -933,4 +934,36 @@ class TOMLLexer(RegexLexer):
             (r'=', Operator)
 
         ]
+    }
+
+
+class SingularityLexer(RegexLexer):
+    """
+    Lexer for `Singularity definition files
+    <https://www.sylabs.io/guides/3.0/user-guide/definition_files.html>`_.
+
+    .. versionadded:: 2.6
+    """
+
+    name = 'Singularity'
+    aliases = ['singularity']
+    filenames = ['*.def', 'Singularity']
+    flags = re.IGNORECASE | re.MULTILINE | re.DOTALL
+
+    _headers = r'^(\s)*(bootstrap|from|osversion|mirrorurl|include|registry|namespace|includecmd)(:)'
+    _section = r'^%(?:pre|post|setup|environment|help|labels|test|runscript|files|startscript)\b'
+    _appsect = r'^%app(?:install|help|run|labels|env|test|files)\b'
+
+    tokens = {
+        'root': [
+            (_section, Generic.Heading, 'script'),
+            (_appsect, Generic.Heading, 'script'),
+            (_headers, bygroups(Text, Keyword, Text)),
+            (r'\s*#.*?\n', Comment),
+            (r'\b(([0-9]+\.?[0-9]*)|(\.[0-9]+))\b', Number),
+            (r'(?!^\s*%).', Text),
+        ],
+        'script': [
+            (r'(.+?(?=^\s*%))|(.*)', using(BashLexer), '#pop'),
+        ],
     }

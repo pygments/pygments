@@ -396,6 +396,7 @@ LEXERS = {
     'ShExCLexer': ('pygments.lexers.rdf', 'ShExC', ('shexc', 'shex'), ('*.shex',), ('text/shex',)),
     'ShenLexer': ('pygments.lexers.lisp', 'Shen', ('shen',), ('*.shen',), ('text/x-shen', 'application/x-shen')),
     'SilverLexer': ('pygments.lexers.verification', 'Silver', ('silver',), ('*.sil', '*.vpr'), ()),
+    'SingularityLexer': ('pygments.lexers.configs', 'Singularity', ('singularity',), ('*.def', 'Singularity'), ()),
     'SlashLexer': ('pygments.lexers.slash', 'Slash', ('slash',), ('*.sl',), ()),
     'SlimLexer': ('pygments.lexers.webmisc', 'Slim', ('slim',), ('*.slim',), ('text/x-slim',)),
     'SlurmBashLexer': ('pygments.lexers.shell', 'Slurm', ('slurm', 'sbatch'), ('*.sl',), ()),
