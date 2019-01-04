@@ -388,6 +388,7 @@ LEXERS = {
     'SlurmBashLexer': ('pygments.lexers.shell', 'Slurm', ('slurm', 'sbatch'), ('*.sl',), ()),
     'SmaliLexer': ('pygments.lexers.dalvik', 'Smali', ('smali',), ('*.smali',), ('text/smali',)),
     'SmalltalkLexer': ('pygments.lexers.smalltalk', 'Smalltalk', ('smalltalk', 'squeak', 'st'), ('*.st',), ('text/x-smalltalk',)),
+    'SmartGameFormatLexer': ('pygments.lexers.sgf', 'SmartGameFormat', ('sgf',), ('*.sgf',), ()),
     'SmartyLexer': ('pygments.lexers.templates', 'Smarty', ('smarty',), ('*.tpl',), ('application/x-smarty',)),
     'SnobolLexer': ('pygments.lexers.snobol', 'Snobol', ('snobol',), ('*.snobol',), ('text/x-snobol',)),
     'SnowballLexer': ('pygments.lexers.dsls', 'Snowball', ('snowball',), ('*.sbl',), ()),
