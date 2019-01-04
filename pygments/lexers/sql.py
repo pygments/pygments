@@ -550,7 +550,11 @@ class TransactSqlLexer(RegexLexer):
                 name_between_backtick_re.findall((text)))
             name_between_bracket_count = len(
                 name_between_bracket_re.findall(text))
-            if name_between_bracket_count >= 2 * name_between_backtick_count:
+            # We need to check if there are any names using
+            # backticks or brackets, as otherwise both are 0
+            # and 0 >= 2 * 0, so we would always assume it's true
+            dialect_name_count = name_between_backtick_count + name_between_bracket_count
+            if dialect_name_count >= 1 and name_between_bracket_count >= 2 * name_between_backtick_count:
                 # Found at least twice as many [name] as `name`.
                 rating += 0.5
             elif name_between_bracket_count > name_between_backtick_count:
@@ -642,7 +646,9 @@ class MySqlLexer(RegexLexer):
             name_between_backtick_re.findall((text)))
         name_between_bracket_count = len(
             name_between_bracket_re.findall(text))
-        if name_between_backtick_count >= 2 * name_between_bracket_count:
+        # Same logic as above in the TSQL analysis
+        dialect_name_count = name_between_backtick_count + name_between_bracket_count
+        if dialect_name_count >= 1 and name_between_backtick_count >= 2 * name_between_bracket_count:
             # Found at least twice as many `name` as [name].
             rating += 0.5
         elif name_between_backtick_count > name_between_bracket_count:
