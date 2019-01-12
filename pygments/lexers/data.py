@@ -233,7 +233,7 @@ class YamlLexer(ExtendedRegexLexer):
             # whitespaces separating tokens
             (r'[ ]+', Text),
             # key with colon
-            (r'([^,:?\[\]{}\n]+)(:)(?=[ ]|$)',
+            (r'''([^,:?\[\]{}"'\n]+)(:)(?=[ ]|$)''',
              bygroups(Name.Tag, set_indent(Punctuation, implicit=True))),
             # tags, anchors and aliases,
             include('descriptors'),
@@ -312,7 +312,7 @@ class YamlLexer(ExtendedRegexLexer):
         # a flow mapping indicated by '{' and '}'
         'flow-mapping': [
             # key with colon
-            (r'([^,:?\[\]{}\n]+)(:)(?=[ ]|$)',
+            (r'''([^,:?\[\]{}"'\n]+)(:)(?=[ ]|$)''',
              bygroups(Name.Tag, Punctuation)),
             # include flow collection rules
             include('flow-collection'),
