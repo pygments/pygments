@@ -4698,18 +4698,19 @@ if __name__ == '__main__':  # pragma: no cover
 
         for file in get_php_references():
             module = ''
-            for line in open(file):
-                if not module:
-                    search = module_re.search(line)
-                    if search:
-                        module = search.group(1)
-                        modules[module] = []
+            with open(file) as f:
+                for line in f:
+                    if not module:
+                        search = module_re.search(line)
+                        if search:
+                            module = search.group(1)
+                            modules[module] = []
 
-                elif 'href="function.' in line:
-                    for match in function_re.finditer(line):
-                        fn = match.group(1)
-                        if '-&gt;' not in fn and '::' not in fn and fn not in modules[module]:
-                            modules[module].append(fn)
+                    elif 'href="function.' in line:
+                        for match in function_re.finditer(line):
+                            fn = match.group(1)
+                            if '-&gt;' not in fn and '::' not in fn and fn not in modules[module]:
+                                modules[module].append(fn)
 
             if module:
                 # These are dummy manual pages, not actual functions
@@ -4726,9 +4727,8 @@ if __name__ == '__main__':  # pragma: no cover
 
     def get_php_references():
         download = urlretrieve(PHP_MANUAL_URL)
-        tar = tarfile.open(download[0])
-        tar.extractall()
-        tar.close()
+        with tarfile.open(download[0]) as tar:
+            tar.extractall()
         for file in glob.glob("%s%s" % (PHP_MANUAL_DIR, PHP_REFERENCE_GLOB)):
             yield file
         os.remove(download[0])
