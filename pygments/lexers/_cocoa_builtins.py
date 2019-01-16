@@ -40,7 +40,8 @@ if __name__ == '__main__':  # pragma: no cover
                 continue
 
             headerFilePath = frameworkHeadersDir + f
-            content = open(headerFilePath).read()
+            with open(headerFilePath) as f:
+                content = f.read()
             res = re.findall(r'(?<=@interface )\w+', content)
             for r in res:
                 all_interfaces.add(r)
