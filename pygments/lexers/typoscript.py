@@ -132,7 +132,7 @@ class TypoScriptLexer(RegexLexer):
         ],
         'keywords': [
             # Conditions
-            (r'(\[)(?i)(browser|compatVersion|dayofmonth|dayofweek|dayofyear|'
+            (r'(?i)(\[)(browser|compatVersion|dayofmonth|dayofweek|dayofyear|'
              r'device|ELSE|END|GLOBAL|globalString|globalVar|hostname|hour|IP|'
              r'language|loginUser|loginuser|minute|month|page|PIDinRootline|'
              r'PIDupinRootline|system|treeLevel|useragent|userFunc|usergroup|'
@@ -172,7 +172,7 @@ class TypoScriptLexer(RegexLexer):
         'html': [
             (r'<\S[^\n>]*>', using(TypoScriptHtmlDataLexer)),
             (r'&[^;\n]*;', String),
-            (r'(_CSS_DEFAULT_STYLE)(\s*)(\()(?s)(.*(?=\n\)))',
+            (r'(?s)(_CSS_DEFAULT_STYLE)(\s*)(\()(.*(?=\n\)))',
              bygroups(Name.Class, Text, String.Symbol, using(TypoScriptCssDataLexer))),
         ],
         'literal': [
