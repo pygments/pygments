@@ -208,7 +208,7 @@ class PerlLexer(RegexLexer):
     def analyse_text(text):
         if shebang_matches(text, r'perl'):
             return True
-        if re.search('(?:my|our)\s+[$@%(]', text):
+        if re.search(r'(?:my|our)\s+[$@%(]', text):
             return 0.9
 
 
@@ -226,7 +226,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    PERL6_IDENTIFIER_RANGE = "['\w:-]"
+    PERL6_IDENTIFIER_RANGE = r"['\w:-]"
 
     PERL6_KEYWORDS = (
         'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
@@ -495,7 +495,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'^=.*?\n\s*?\n', Comment.Multiline),
             (r'(regex|token|rule)(\s*' + PERL6_IDENTIFIER_RANGE + '+:sym)',
              bygroups(Keyword, Name), 'token-sym-brackets'),
-            (r'(regex|token|rule)(?!' + PERL6_IDENTIFIER_RANGE + ')(\s*' + PERL6_IDENTIFIER_RANGE + '+)?',
+            (r'(regex|token|rule)(?!' + PERL6_IDENTIFIER_RANGE + r')(\s*' + PERL6_IDENTIFIER_RANGE + '+)?',
              bygroups(Keyword, Name), 'pre-token'),
             # deal with a special case in the Perl 6 grammar (role q { ... })
             (r'(role)(\s+)(q)(\s*)', bygroups(Keyword, Text, Name, Text)),
@@ -591,21 +591,21 @@ class Perl6Lexer(ExtendedRegexLexer):
         rating = False
 
         # check for my/our/has declarations
-        if re.search("(?:my|our|has)\s+(?:" + Perl6Lexer.PERL6_IDENTIFIER_RANGE +
-                     "+\s+)?[$@%&(]", text):
+        if re.search(r"(?:my|our|has)\s+(?:" + Perl6Lexer.PERL6_IDENTIFIER_RANGE +
+                     r"+\s+)?[$@%&(]", text):
             rating = 0.8
             saw_perl_decl = True
 
         for line in lines:
             line = re.sub('#.*', '', line)
-            if re.match('^\s*$', line):
+            if re.match(r'^\s*$', line):
                 continue
 
             # match v6; use v6; use v6.0; use v6.0.0;
-            if re.match('^\s*(?:use\s+)?v6(?:\.\d(?:\.\d)?)?;', line):
+            if re.match(r'^\s*(?:use\s+)?v6(?:\.\d(?:\.\d)?)?;', line):
                 return True
             # match class, module, role, enum, grammar declarations
-            class_decl = re.match('^\s*(?:(?P<scope>my|our)\s+)?(?:module|class|role|enum|grammar)', line)
+            class_decl = re.match(r'^\s*(?:(?P<scope>my|our)\s+)?(?:module|class|role|enum|grammar)', line)
             if class_decl:
                 if saw_perl_decl or class_decl.group('scope') is not None:
                     return True
