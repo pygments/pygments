@@ -346,7 +346,7 @@ LEXERS = {
     'Python3Lexer': ('pygments.lexers.python', 'Python 3', ('python3', 'py3'), (), ('text/x-python3', 'application/x-python3')),
     'Python3TracebackLexer': ('pygments.lexers.python', 'Python 3.0 Traceback', ('py3tb',), ('*.py3tb',), ('text/x-python3-traceback',)),
     'PythonConsoleLexer': ('pygments.lexers.python', 'Python console session', ('pycon',), (), ('text/x-python-doctest',)),
-    'PythonLexer': ('pygments.lexers.python', 'Python', ('python', 'py', 'sage'), ('*.py', '*.pyw', '*.sc', 'SConstruct', 'SConscript', '*.tac', '*.sage'), ('text/x-python', 'application/x-python')),
+    'PythonLexer': ('pygments.lexers.python', 'Python', ('python', 'py', 'sage'), ('*.py', '*.pyw', '*.sage', '*.sc', 'SConstruct', 'SConscript', '*.bzl', 'BUCK', 'BUILD', 'BUILD.bazel', '*.tac'), ('text/x-python', 'application/x-python')),
     'PythonTracebackLexer': ('pygments.lexers.python', 'Python Traceback', ('pytb',), ('*.pytb',), ('text/x-python-traceback',)),
     'QBasicLexer': ('pygments.lexers.basic', 'QBasic', ('qbasic', 'basic'), ('*.BAS', '*.bas'), ('text/basic',)),
     'QVToLexer': ('pygments.lexers.qvt', 'QVTO', ('qvto', 'qvt'), ('*.qvto',), ()),

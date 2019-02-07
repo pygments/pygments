@@ -32,7 +32,23 @@ class PythonLexer(RegexLexer):
 
     name = 'Python'
     aliases = ['python', 'py', 'sage']
-    filenames = ['*.py', '*.pyw', '*.sc', 'SConstruct', 'SConscript', '*.tac', '*.sage']
+    filenames = [
+        '*.py',
+        '*.pyw',
+        # Sage
+        '*.sage',
+        # SCons
+        '*.sc',
+        'SConstruct',
+        'SConscript',
+        # Skylark/Starlark (used by Bazel, Buck, and Pants)
+        '*.bzl',
+        'BUCK',
+        'BUILD',
+        'BUILD.bazel',
+        # Twisted Application infrastructure
+        '*.tac',
+    ]
     mimetypes = ['text/x-python', 'application/x-python']
 
     def innerstring_rules(ttype):
