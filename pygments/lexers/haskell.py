@@ -12,12 +12,12 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
-    default, include
+    default, include, inherit
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
 from pygments import unistring as uni
 
-__all__ = ['HaskellLexer', 'IdrisLexer', 'AgdaLexer', 'CryptolLexer',
+__all__ = ['HaskellLexer', 'HspecLexer', 'IdrisLexer', 'AgdaLexer', 'CryptolLexer',
            'LiterateHaskellLexer', 'LiterateIdrisLexer', 'LiterateAgdaLexer',
            'LiterateCryptolLexer', 'KokaLexer']
 
@@ -153,6 +153,28 @@ class HaskellLexer(RegexLexer):
             (r'x[\da-fA-F]+', String.Escape, '#pop'),
             (r'\d+', String.Escape, '#pop'),
             (r'\s+\\', String.Escape, '#pop'),
+        ],
+    }
+
+
+class HspecLexer(HaskellLexer):
+    """
+    A Haskell lexer with support for Hspec constructs.
+
+    .. versionadded:: 2.4.0
+    """
+
+    name = 'Hspec'
+    aliases = ['hspec']
+    filenames = []
+    mimetypes = []
+
+    tokens = {
+        'root': [
+            (r'(it\s*)("[^"]*")', bygroups(Text, String.Doc)),
+            (r'(describe\s*)("[^"]*")', bygroups(Text, String.Doc)),
+            (r'(context\s*)("[^"]*")', bygroups(Text, String.Doc)),
+            inherit,
         ],
     }
 

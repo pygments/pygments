@@ -245,7 +245,7 @@ class AheuiLexer(RegexLexer):
 
     Aheui_ is esoteric language based on Korean alphabets.
 
-    .. _Aheui:: http://aheui.github.io/
+    .. _Aheui: http://aheui.github.io/
 
     """
 

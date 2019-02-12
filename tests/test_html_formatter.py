@@ -132,9 +132,8 @@ class HtmlFormatterTest(unittest.TestCase):
                             outencoding='utf-8')
 
         handle, pathname = tempfile.mkstemp('.html')
-        tfile = os.fdopen(handle, 'w+b')
-        fmt.format(tokensource, tfile)
-        tfile.close()
+        with os.fdopen(handle, 'w+b') as tfile:
+            fmt.format(tokensource, tfile)
         catname = os.path.join(TESTDIR, 'dtds', 'HTML4.soc')
         try:
             import subprocess
@@ -173,9 +172,8 @@ class HtmlFormatterTest(unittest.TestCase):
                             cssstyles=u'div:before { content: \'bäz\' }',
                             encoding='utf-8')
         handle, pathname = tempfile.mkstemp('.html')
-        tfile = os.fdopen(handle, 'w+b')
-        fmt.format(tokensource, tfile)
-        tfile.close()
+        with os.fdopen(handle, 'w+b') as tfile:
+            fmt.format(tokensource, tfile)
 
     def test_ctags(self):
         try:

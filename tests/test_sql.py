@@ -8,7 +8,10 @@
 """
 import unittest
 
-from pygments.lexers.sql import TransactSqlLexer
+from pygments.lexers.sql import name_between_bracket_re, \
+    name_between_backtick_re, tsql_go_re, tsql_declare_re, \
+    tsql_variable_re, MySqlLexer, SqlLexer, TransactSqlLexer
+
 from pygments.token import Comment, Name, Number, Punctuation, Whitespace
 
 
@@ -72,3 +75,44 @@ class TransactSqlLexerTest(unittest.TestCase):
             (Comment.Multiline, '*/'),
             (Comment.Multiline, '*/'),
         ))
+
+
+class SqlAnalyzeTextTest(unittest.TestCase):
+    def test_can_match_analyze_text_res(self):
+        self.assertEqual(['`a`', '`bc`'],
+            name_between_backtick_re.findall('select `a`, `bc` from some'))
+        self.assertEqual(['[a]', '[bc]'],
+            name_between_bracket_re.findall('select [a], [bc] from some'))
+        self.assertTrue(tsql_declare_re.search('--\nDeClaRe @some int;'))
+        self.assertTrue(tsql_go_re.search('select 1\ngo\n--'))
+        self.assertTrue(tsql_variable_re.search(
+            'create procedure dbo.usp_x @a int, @b int'))
+
+    def test_can_analyze_text(self):
+        mysql_lexer = MySqlLexer()
+        sql_lexer = SqlLexer()
+        tsql_lexer = TransactSqlLexer()
+        code_to_expected_lexer_map = {
+            'select `a`, `bc` from some': mysql_lexer,
+            'select a, bc from some': sql_lexer,
+            'select [a], [bc] from some': tsql_lexer,
+            '-- `a`, `bc`\nselect [a], [bc] from some': tsql_lexer,
+            '-- `a`, `bc`\nselect [a], [bc] from some; go': tsql_lexer,
+        }
+        sql_lexers = set(code_to_expected_lexer_map.values())
+        for code, expected_lexer in code_to_expected_lexer_map.items():
+            ratings_and_lexers = list((lexer.analyse_text(code), lexer.name) for lexer in sql_lexers)
+            best_rating, best_lexer_name  = sorted(ratings_and_lexers, reverse=True)[0]
+            expected_rating = expected_lexer.analyse_text(code)
+            message = (
+                'lexer must be %s (rating %.2f) instead of '
+                '%s (rating %.2f) for analyse_text() on code:\n%s') % (
+                expected_lexer.name,
+                expected_rating,
+                best_lexer_name,
+                best_rating,
+                code
+            )
+            self.assertEqual(
+                expected_lexer.name, best_lexer_name, message
+            )
