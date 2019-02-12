@@ -478,3 +478,14 @@ class CsoundOrchestraTest(unittest.TestCase):
             (Text, u'\n')
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+
+    def testName(self):
+        fragment = 'kG:V'
+        tokens = [
+            (Keyword.Type, 'k'),
+            (Name, 'G'),
+            (Punctuation, ':'),
+            (Name, 'V'),
+            (Text, '\n')
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
