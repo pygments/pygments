@@ -453,6 +453,10 @@ class TypeScriptLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
+    # Higher priority than the TypoScriptLexer, as TypeScript is far more
+    # common these days
+    priority = 0.5
+
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Text),
