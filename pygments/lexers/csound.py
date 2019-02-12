@@ -227,9 +227,13 @@ class CsoundOrchestraLexer(CsoundLexer):
                 yield nameMatch.start(2), Name, nameMatch.group(2)
             else:
                 yield match.start(), Name, name
-                if match.group(2):
-                    yield match.start(2), Punctuation, match.group(2)
-                    yield match.start(3), Name, match.group(3)
+
+            # If there's a trailing :V, for example, we want to keep this around
+            # and emit it as well, otherwise this lexer will not pass round-trip
+            # testing
+            if match.group(2):
+                yield match.start(2), Punctuation, match.group(2)
+                yield match.start(3), Name, match.group(3)
 
     tokens = {
         'root': [
