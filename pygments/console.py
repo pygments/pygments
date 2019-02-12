@@ -5,7 +5,7 @@
 
     Format colored console output.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,10 +22,10 @@ codes["underline"] = esc + "04m"
 codes["blink"] = esc + "05m"
 codes["overline"] = esc + "06m"
 
-dark_colors = ["black", "darkred", "darkgreen", "brown", "darkblue",
-               "purple", "teal", "lightgray"]
-light_colors = ["darkgray", "red", "green", "yellow", "blue",
-                "fuchsia", "turquoise", "white"]
+dark_colors = ["black", "red", "green", "yellow", "blue",
+               "magenta", "cyan", "gray"]
+light_colors = ["brightblack", "brightred", "brightgreen", "brightyellow", "brightblue",
+                "brightmagenta", "brightcyan", "white"]
 
 x = 30
 for d, l in zip(dark_colors, light_colors):
@@ -35,9 +35,6 @@ for d, l in zip(dark_colors, light_colors):
 
 del d, l, x
 
-codes["darkteal"] = codes["turquoise"]
-codes["darkyellow"] = codes["brown"]
-codes["fuscia"] = codes["fuchsia"]
 codes["white"] = codes["bold"]
 
 

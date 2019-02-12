@@ -5,7 +5,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -44,7 +44,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer',
            'LassoCssLexer', 'LassoJavascriptLexer', 'HandlebarsLexer',
            'HandlebarsHtmlLexer', 'YamlJinjaLexer', 'LiquidLexer',
-           'TwigLexer', 'TwigHtmlLexer']
+           'TwigLexer', 'TwigHtmlLexer', 'Angular2Lexer', 'Angular2HtmlLexer']
 
 
 class ErbLexer(Lexer):
@@ -187,13 +187,13 @@ class SmartyLexer(RegexLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('\{if\s+.*?\}.*?\{/if\}', text):
+        if re.search(r'\{if\s+.*?\}.*?\{/if\}', text):
             rv += 0.15
-        if re.search('\{include\s+file=.*?\}', text):
+        if re.search(r'\{include\s+file=.*?\}', text):
             rv += 0.15
-        if re.search('\{foreach\s+.*?\}.*?\{/foreach\}', text):
+        if re.search(r'\{foreach\s+.*?\}.*?\{/foreach\}', text):
             rv += 0.15
-        if re.search('\{\$.*?\}', text):
+        if re.search(r'\{\$.*?\}', text):
             rv += 0.01
         return rv
 
@@ -375,7 +375,7 @@ class DjangoLexer(RegexLexer):
             (r'\.\w+', Name.Variable),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
-            (r'([{}()\[\]+\-*/,:~]|[><=]=?)', Operator),
+            (r'([{}()\[\]+\-*/%,:~]|[><=]=?|!=)', Operator),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ],
@@ -421,18 +421,18 @@ class MyghtyLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PythonLexer), Name.Tag)),
             (r'(<&[^|])(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
-            (r'(<&\|)(.*?)(,.*?)?(&>)(?s)',
+            (r'(?s)(<&\|)(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
             (r'</&>', Name.Tag),
-            (r'(<%!?)(.*?)(%>)(?s)',
+            (r'(?s)(<%!?)(.*?)(%>)',
              bygroups(Name.Tag, using(PythonLexer), Name.Tag)),
             (r'(?<=^)#[^\n]*(\n|\Z)', Comment),
             (r'(?<=^)(%)([^\n]*)(\n|\Z)',
@@ -538,20 +538,20 @@ class MasonLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(<%doc>)(.*?)(</%doc>)(?s)',
+            (r'(?s)(<%doc>)(.*?)(</%doc>)',
              bygroups(Name.Tag, Comment.Multiline, Name.Tag)),
-            (r'(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PerlLexer), Name.Tag)),
-            (r'(<&[^|])(.*?)(,.*?)?(&>)(?s)',
+            (r'(?s)(<&[^|])(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
-            (r'(<&\|)(.*?)(,.*?)?(&>)(?s)',
+            (r'(?s)(<&\|)(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
             (r'</&>', Name.Tag),
-            (r'(<%!?)(.*?)(%>)(?s)',
+            (r'(?s)(<%!?)(.*?)(%>)',
              bygroups(Name.Tag, using(PerlLexer), Name.Tag)),
             (r'(?<=^)#[^\n]*(\n|\Z)', Comment),
             (r'(?<=^)(%)([^\n]*)(\n|\Z)',
@@ -607,7 +607,7 @@ class MakoLexer(RegexLexer):
             (r'(</%)([\w.:]+)(>)',
              bygroups(Comment.Preproc, Name.Builtin, Comment.Preproc)),
             (r'<%(?=([\w.:]+))', Comment.Preproc, 'ondeftags'),
-            (r'(<%(?:!?))(.*?)(%>)(?s)',
+            (r'(?s)(<%(?:!?))(.*?)(%>)',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
             (r'(\$\{)(.*?)(\})',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
@@ -759,7 +759,7 @@ class CheetahLexer(RegexLexer):
             # TODO support other Python syntax like $foo['bar']
             (r'(\$)([a-zA-Z_][\w.]*\w)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer))),
-            (r'(\$\{!?)(.*?)(\})(?s)',
+            (r'(?s)(\$\{!?)(.*?)(\})',
              bygroups(Comment.Preproc, using(CheetahPythonLexer),
                       Comment.Preproc)),
             (r'''(?sx)
@@ -942,9 +942,9 @@ class HtmlGenshiLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('\$\{.*?\}', text) is not None:
+        if re.search(r'\$\{.*?\}', text) is not None:
             rv += 0.2
-        if re.search('py:(.*?)=["\']', text) is not None:
+        if re.search(r'py:(.*?)=["\']', text) is not None:
             rv += 0.2
         return rv + HtmlLexer.analyse_text(text) - 0.01
 
@@ -967,9 +967,9 @@ class GenshiLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('\$\{.*?\}', text) is not None:
+        if re.search(r'\$\{.*?\}', text) is not None:
             rv += 0.2
-        if re.search('py:(.*?)=["\']', text) is not None:
+        if re.search(r'py:(.*?)=["\']', text) is not None:
             rv += 0.2
         return rv + XmlLexer.analyse_text(text) - 0.01
 
@@ -1627,7 +1627,7 @@ class SspLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('val \w+\s*:', text):
+        if re.search(r'val \w+\s*:', text):
             rv += 0.6
         if looks_like_xml(text):
             rv += 0.2
@@ -1814,8 +1814,9 @@ class HandlebarsLexer(RegexLexer):
             (r'\}\}', Comment.Preproc, '#pop'),
 
             # Handlebars
-            (r'([#/]*)(each|if|unless|else|with|log|in)', bygroups(Keyword,
+            (r'([#/]*)(each|if|unless|else|with|log|in(line)?)', bygroups(Keyword,
              Keyword)),
+            (r'#\*inline', Keyword),
 
             # General {{#block}}
             (r'([#/])([\w-]+)', bygroups(Name.Function, Name.Function)),
@@ -1823,11 +1824,37 @@ class HandlebarsLexer(RegexLexer):
             # {{opt=something}}
             (r'([\w-]+)(=)', bygroups(Name.Attribute, Operator)),
 
+            # Partials {{> ...}}
+            (r'(>)(\s*)(@partial-block)', bygroups(Keyword, Text, Keyword)),
+            (r'(#?>)(\s*)([\w-]+)', bygroups(Keyword, Text, Name.Variable)),
+            (r'(>)(\s*)(\()', bygroups(Keyword, Text, Punctuation),
+             'dynamic-partial'),
+
+            include('generic'),
+        ],
+        'dynamic-partial': [
+            (r'\s+', Text),
+            (r'\)', Punctuation, '#pop'),
+
+            (r'(lookup)(\s+)(\.|this)(\s+)', bygroups(Keyword, Text,
+                                                      Name.Variable, Text)),
+            (r'(lookup)(\s+)(\S+)', bygroups(Keyword, Text,
+                                             using(this, state='variable'))),
+            (r'[\w-]+', Name.Function),
+
+            include('generic'),
+        ],
+        'variable': [
+            (r'[a-zA-Z][\w-]*', Name.Variable),
+            (r'\.[\w-]+', Name.Variable),
+            (r'(this\/|\.\/|(\.\.\/)+)[\w-]+', Name.Variable),
+        ],
+        'generic': [
+            include('variable'),
+
             # borrowed from DjangoLexer
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z][\w-]*', Name.Variable),
-            (r'\.[\w-]+', Name.Variable),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ]
@@ -1928,7 +1955,7 @@ class LiquidLexer(RegexLexer):
 
         'output': [
             include('whitespace'),
-            ('\}\}', Punctuation, '#pop'),  # end of output
+            (r'\}\}', Punctuation, '#pop'),  # end of output
 
             (r'\|', Punctuation, 'filters')
         ],
@@ -2174,3 +2201,83 @@ class TwigHtmlLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super(TwigHtmlLexer, self).__init__(HtmlLexer, TwigLexer, **options)
+
+
+class Angular2Lexer(RegexLexer):
+    """
+    Generic
+    `angular2 <http://victorsavkin.com/post/119943127151/angular-2-template-syntax>`_
+    template lexer.
+
+    Highlights only the Angular template tags (stuff between `{{` and `}}` and
+    special attributes: '(event)=', '[property]=', '[(twoWayBinding)]=').
+    Everything else is left for a delegating lexer.
+
+    .. versionadded:: 2.1
+    """
+
+    name = "Angular2"
+    aliases = ['ng2']
+
+    tokens = {
+        'root': [
+            (r'[^{([*#]+', Other),
+
+            # {{meal.name}}
+            (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'ngExpression'),
+
+            # (click)="deleteOrder()"; [value]="test"; [(twoWayTest)]="foo.bar"
+            (r'([([]+)([\w:.-]+)([\])]+)(\s*)(=)(\s*)',
+             bygroups(Punctuation, Name.Attribute, Punctuation, Text, Operator, Text),
+             'attr'),
+            (r'([([]+)([\w:.-]+)([\])]+)(\s*)',
+             bygroups(Punctuation, Name.Attribute, Punctuation, Text)),
+
+            # *ngIf="..."; #f="ngForm"
+            (r'([*#])([\w:.-]+)(\s*)(=)(\s*)',
+             bygroups(Punctuation, Name.Attribute, Punctuation, Operator), 'attr'),
+            (r'([*#])([\w:.-]+)(\s*)',
+             bygroups(Punctuation, Name.Attribute, Punctuation)),
+        ],
+
+        'ngExpression': [
+            (r'\s+(\|\s+)?', Text),
+            (r'\}\}', Comment.Preproc, '#pop'),
+
+            # Literals
+            (r':?(true|false)', String.Boolean),
+            (r':?"(\\\\|\\"|[^"])*"', String.Double),
+            (r":?'(\\\\|\\'|[^'])*'", String.Single),
+            (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
+             r"0[xX][0-9a-fA-F]+[Ll]?", Number),
+
+            # Variabletext
+            (r'[a-zA-Z][\w-]*(\(.*\))?', Name.Variable),
+            (r'\.[\w-]+(\(.*\))?', Name.Variable),
+
+            # inline If
+            (r'(\?)(\s*)([^}\s]+)(\s*)(:)(\s*)([^}\s]+)(\s*)',
+             bygroups(Operator, Text, String, Text, Operator, Text, String, Text)),
+        ],
+        'attr': [
+            ('".*?"', String, '#pop'),
+            ("'.*?'", String, '#pop'),
+            (r'[^\s>]+', String, '#pop'),
+        ],
+    }
+
+
+class Angular2HtmlLexer(DelegatingLexer):
+    """
+    Subclass of the `Angular2Lexer` that highlights unlexed data with the
+    `HtmlLexer`.
+
+    .. versionadded:: 2.0
+    """
+
+    name = "HTML + Angular2"
+    aliases = ["html+ng2"]
+    filenames = ['*.ng2']
+
+    def __init__(self, **options):
+        super(Angular2HtmlLexer, self).__init__(HtmlLexer, Angular2Lexer, **options)

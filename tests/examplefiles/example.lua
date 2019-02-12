@@ -247,4 +247,28 @@ function AucAdvanced.Debug.Assert(test, message)
 	return DebugLib.Assert(addonName, test, message)
 end
 
+--[==[
+Here follow further tests of Lua syntax.
+]]==]
+---[[
+local t = {
+        [ [[
+x
+]==] \]]]=1|2; a={b={c={}}},
+        1, 1., 1.2, .2, 1e3, 1.e3, 1.2e3, .2e3, 1.2e+3, 1.2E-3;
+        0xA, 0Xa, 0xA., 0x.F, 0xA.F, 0xA.Fp1, 0xA.FP+1, 0Xa.fp-1;
+}
 
+function t.f()
+        goto eof
+        os.exit()
+        :: eof ::
+end
+
+function t . a --[==[x]==] .b --[==[y]==] --
+-- () end
+           . c : d (file)
+        return '.\a.\b.\f.\n.\r.\t.\v.\\.\".\'.\
+.\z    
+  	 .\0.\00.\000.\0000.\xFa.\u{1}.\u{1234}'
+end

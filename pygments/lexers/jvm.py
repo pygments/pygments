@@ -5,7 +5,7 @@
 
     Pygments lexers for JVM languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -21,7 +21,7 @@ from pygments import unistring as uni
 __all__ = ['JavaLexer', 'ScalaLexer', 'GosuLexer', 'GosuTemplateLexer',
            'GroovyLexer', 'IokeLexer', 'ClojureLexer', 'ClojureScriptLexer',
            'KotlinLexer', 'XtendLexer', 'AspectJLexer', 'CeylonLexer',
-           'PigLexer', 'GoloLexer', 'JasminLexer']
+           'PigLexer', 'GoloLexer', 'JasminLexer', 'SarlLexer']
 
 
 class JavaLexer(RegexLexer):
@@ -257,7 +257,7 @@ class ScalaLexer(RegexLexer):
              u'\ua77d-\ua77e\ua780\ua782\ua784\ua786\ua78b\uff21-\uff3a]')
 
     idrest = u'%s(?:%s|[0-9])*(?:(?<=_)%s)?' % (letter, letter, op)
-    letter_letter_digit = u'%s(?:%s|\d)*' % (letter, letter)
+    letter_letter_digit = u'%s(?:%s|\\d)*' % (letter, letter)
 
     tokens = {
         'root': [
@@ -689,7 +689,7 @@ class IokeLexer(RegexLexer):
             # functions
             (u'(generateMatchMethod|aliasMethod|\u03bb|\u028E|fnx|fn|method|'
              u'dmacro|dlecro|syntax|macro|dlecrox|lecrox|lecro|syntax)'
-             u'(?![\w!:?])', Name.Function),
+             u'(?![\\w!:?])', Name.Function),
 
             # Numbers
             (r'-?0[xX][0-9a-fA-F]+', Number.Hex),
@@ -801,7 +801,7 @@ class ClojureLexer(RegexLexer):
 
     # TODO / should divide keywords/symbols into namespace/rest
     # but that's hard, so just pretend / is part of the name
-    valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
+    valid_name = r'(?!#)[\w!$%*+<=>?/.#|-]+'
 
     tokens = {
         'root': [
@@ -1258,7 +1258,7 @@ class GoloLexer(RegexLexer):
             (r'-?\d[\d_]*L', Number.Integer.Long),
             (r'-?\d[\d_]*', Number.Integer),
 
-            ('`?[a-zA-Z_][\w$]*', Name),
+            (r'`?[a-zA-Z_][\w$]*', Name),
             (r'@[a-zA-Z_][\w$.]*', Name.Decorator),
 
             (r'"""', String, combined('stringescape', 'triplestring')),
@@ -1571,3 +1571,57 @@ class JasminLexer(RegexLexer):
                      re.MULTILINE):
             score += 0.6
         return score
+
+
+class SarlLexer(RegexLexer):
+	"""
+	For `SARL <http://www.sarl.io>`_ source code.
+	
+	.. versionadded:: 2.4
+	"""
+	
+	name = 'SARL'
+	aliases = ['sarl']
+	filenames = ['*.sarl']
+	mimetypes = ['text/x-sarl']
+	
+	flags = re.MULTILINE | re.DOTALL
+	
+	tokens = {
+		'root': [
+			# method names
+			(r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments
+			 r'([a-zA-Z_$][\w$]*)'                      # method name
+			 r'(\s*)(\()',                             # signature start
+			 bygroups(using(this), Name.Function, Text, Operator)),
+			(r'[^\S\n]+', Text),
+			(r'//.*?\n', Comment.Single),
+			(r'/\*.*?\*/', Comment.Multiline),
+			(r'@[a-zA-Z_][\w.]*', Name.Decorator),
+			(r'(as|break|case|catch|default|do|else|extends|extension|finally|fires|for|if|implements|instanceof|new|on|requires|return|super|switch|throw|throws|try|typeof|uses|while|with)\b',
+			 Keyword),
+			(r'(abstract|def|dispatch|final|native|override|private|protected|public|static|strictfp|synchronized|transient|val|var|volatile)\b', Keyword.Declaration),
+			 (r'(boolean|byte|char|double|float|int|long|short|void)\b',
+			  Keyword.Type),
+			 (r'(package)(\s+)', bygroups(Keyword.Namespace, Text)),
+			 (r'(false|it|null|occurrence|this|true|void)\b', Keyword.Constant),
+			 (r'(agent|annotation|artifact|behavior|capacity|class|enum|event|interface|skill|space)(\s+)', bygroups(Keyword.Declaration, Text),
+			  'class'),
+			 (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+			 (r'"(\\\\|\\"|[^"])*"', String),
+			 (r"'(\\\\|\\'|[^'])*'", String),
+			 (r'[a-zA-Z_]\w*:', Name.Label),
+			 (r'[a-zA-Z_$]\w*', Name),
+			 (r'[~^*!%&\[\](){}<>\|+=:;,./?-]', Operator),
+			 (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
+			 (r'0x[0-9a-fA-F]+', Number.Hex),
+			 (r'[0-9]+L?', Number.Integer),
+			 (r'\n', Text)
+		],
+		'class': [
+			(r'[a-zA-Z_]\w*', Name.Class, '#pop')
+		],
+		'import': [
+			(r'[\w.]+\*?', Name.Namespace, '#pop')
+		],
+	}

@@ -5,7 +5,7 @@
 
     Lexers for Python and related languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -116,7 +116,7 @@ class PythonLexer(RegexLexer):
                 'unichr', 'unicode', 'vars', 'xrange', 'zip'),
                 prefix=r'(?<!\.)', suffix=r'\b'),
              Name.Builtin),
-            (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True'
+            (r'(?<!\.)(self|None|Ellipsis|NotImplemented|False|True|cls'
              r')\b', Name.Builtin.Pseudo),
             (words((
                 'ArithmeticError', 'AssertionError', 'AttributeError',
@@ -124,10 +124,10 @@ class PythonLexer(RegexLexer):
                 'Exception', 'FloatingPointError', 'FutureWarning', 'GeneratorExit',
                 'IOError', 'ImportError', 'ImportWarning', 'IndentationError',
                 'IndexError', 'KeyError', 'KeyboardInterrupt', 'LookupError',
-                'MemoryError', 'NameError', 'NotImplemented', 'NotImplementedError',
+                'MemoryError', 'ModuleNotFoundError', 'NameError', 'NotImplemented', 'NotImplementedError',
                 'OSError', 'OverflowError', 'OverflowWarning', 'PendingDeprecationWarning',
-                'ReferenceError', 'RuntimeError', 'RuntimeWarning', 'StandardError',
-                'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError',
+                'RecursionError', 'ReferenceError', 'RuntimeError', 'RuntimeWarning', 'StandardError',
+                'StopIteration', 'StopAsyncIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError',
                 'SystemExit', 'TabError', 'TypeError', 'UnboundLocalError',
                 'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeError',
                 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning',
@@ -180,15 +180,15 @@ class PythonLexer(RegexLexer):
         ],
         'name': [
             (r'@[\w.]+', Name.Decorator),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'funcname': [
             include('magicfuncs'),
-            ('[a-zA-Z_]\w*', Name.Function, '#pop'),
+            (r'[a-zA-Z_]\w*', Name.Function, '#pop'),
             default('#pop'),
         ],
         'classname': [
-            ('[a-zA-Z_]\w*', Name.Class, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'import': [
             (r'(?:[ \t]|\\\n)+', Text),
@@ -262,13 +262,13 @@ class Python3Lexer(RegexLexer):
         return [
             # the old style '%s' % (...) string formatting (still valid in Py3)
             (r'%(\(\w+\))?[-#0 +]*([0-9]+|[*])?(\.([0-9]+|[*]))?'
-             '[hlL]?[E-GXc-giorsux%]', String.Interpol),
+             '[hlL]?[E-GXc-giorsaux%]', String.Interpol),
             # the new style '{}'.format(...) string formatting
             (r'\{'
-             '((\w+)((\.\w+)|(\[[^\]]+\]))*)?'  # field name
-             '(\![sra])?'                       # conversion
-             '(\:(.?[<>=\^])?[-+ ]?#?0?(\d+)?,?(\.\d+)?[E-GXb-gnosx%]?)?'
-             '\}', String.Interpol),
+             r'((\w+)((\.\w+)|(\[[^\]]+\]))*)?'  # field name
+             r'(\![sra])?'                       # conversion
+             r'(\:(.?[<>=\^])?[-+ ]?#?0?(\d+)?,?(\.\d+)?[E-GXb-gnosx%]?)?'
+             r'\}', String.Interpol),
 
             # backslashes, quotes and formatting signs must be parsed one at a time
             (r'[^\\\'"%{\n]+', ttype),
@@ -303,7 +303,7 @@ class Python3Lexer(RegexLexer):
             'sum', 'super', 'tuple', 'type', 'vars', 'zip'), prefix=r'(?<!\.)',
             suffix=r'\b'),
          Name.Builtin),
-        (r'(?<!\.)(self|Ellipsis|NotImplemented)\b', Name.Builtin.Pseudo),
+        (r'(?<!\.)(self|Ellipsis|NotImplemented|cls)\b', Name.Builtin.Pseudo),
         (words((
             'ArithmeticError', 'AssertionError', 'AttributeError',
             'BaseException', 'BufferError', 'BytesWarning', 'DeprecationWarning',
@@ -361,11 +361,12 @@ class Python3Lexer(RegexLexer):
          Name.Variable.Magic),
     ]
     tokens['numbers'] = [
-        (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?', Number.Float),
-        (r'0[oO][0-7]+', Number.Oct),
-        (r'0[bB][01]+', Number.Bin),
-        (r'0[xX][a-fA-F0-9]+', Number.Hex),
-        (r'\d+', Number.Integer)
+        (r'(\d(?:_?\d)*\.(?:\d(?:_?\d)*)?|(?:\d(?:_?\d)*)?\.\d(?:_?\d)*)([eE][+-]?\d(?:_?\d)*)?', Number.Float),
+        (r'\d(?:_?\d)*[eE][+-]?\d(?:_?\d)*j?', Number.Float),
+        (r'0[oO](?:_?[0-7])+', Number.Oct),
+        (r'0[bB](?:_?[01])+', Number.Bin),
+        (r'0[xX](?:_?[a-fA-F0-9])+', Number.Hex),
+        (r'\d(?:_?\d)*', Number.Integer)
     ]
     tokens['backtick'] = []
     tokens['name'] = [
@@ -394,6 +395,7 @@ class Python3Lexer(RegexLexer):
     ]
     tokens['strings-single'] = innerstring_rules(String.Single)
     tokens['strings-double'] = innerstring_rules(String.Double)
+
 
     def analyse_text(text):
         return shebang_matches(text, r'pythonw?3(\.\d)?')
@@ -670,10 +672,10 @@ class CythonLexer(RegexLexer):
         ],
         'name': [
             (r'@\w+', Name.Decorator),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'funcname': [
-            ('[a-zA-Z_]\w*', Name.Function, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Function, '#pop')
         ],
         'cdef': [
             (r'(public|readonly|extern|api|inline)\b', Keyword.Reserved),
@@ -690,7 +692,7 @@ class CythonLexer(RegexLexer):
             (r'.', Text),
         ],
         'classname': [
-            ('[a-zA-Z_]\w*', Name.Class, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'import': [
             (r'(\s+)(as)(\s+)', bygroups(Text, Keyword, Text)),
