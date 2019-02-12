@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
+u"""
     pygments.styles.paraiso_light
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

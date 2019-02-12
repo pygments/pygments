@@ -185,7 +185,8 @@ def main(argv):
                 print("Checking %s..." % fn)
 
             try:
-                lines = open(fn, 'rb').read().decode('utf-8').splitlines()
+                with open(fn, 'rb') as f:
+                    lines = f.read().decode('utf-8').splitlines()
             except (IOError, OSError) as err:
                 print("%s: cannot open: %s" % (fn, err))
                 num += 1
