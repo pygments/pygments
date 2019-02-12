@@ -80,7 +80,7 @@ LEXERS = {
     'Cfengine3Lexer': ('pygments.lexers.configs', 'CFEngine3', ('cfengine3', 'cf3'), ('*.cf',), ()),
     'ChaiscriptLexer': ('pygments.lexers.scripting', 'ChaiScript', ('chai', 'chaiscript'), ('*.chai',), ('text/x-chaiscript', 'application/x-chaiscript')),
     'ChapelLexer': ('pygments.lexers.chapel', 'Chapel', ('chapel', 'chpl'), ('*.chpl',), ()),
-    'CharmciLexer': ('pygments.lexers.c_like', 'Charmci', ('charmci',), ('*.ci',), ('text/x-c++hdr', 'text/x-c++src')),
+    'CharmciLexer': ('pygments.lexers.c_like', 'Charmci', ('charmci',), ('*.ci',), ()),
     'CheetahHtmlLexer': ('pygments.lexers.templates', 'HTML+Cheetah', ('html+cheetah', 'html+spitfire', 'htmlcheetah'), (), ('text/html+cheetah', 'text/html+spitfire')),
     'CheetahJavascriptLexer': ('pygments.lexers.templates', 'JavaScript+Cheetah', ('js+cheetah', 'javascript+cheetah', 'js+spitfire', 'javascript+spitfire'), (), ('application/x-javascript+cheetah', 'text/x-javascript+cheetah', 'text/javascript+cheetah', 'application/x-javascript+spitfire', 'text/x-javascript+spitfire', 'text/javascript+spitfire')),
     'CheetahLexer': ('pygments.lexers.templates', 'Cheetah', ('cheetah', 'spitfire'), ('*.tmpl', '*.spt'), ('application/x-cheetah', 'application/x-spitfire')),
