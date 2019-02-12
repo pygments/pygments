@@ -3,7 +3,7 @@
     Pygments RTF formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -80,7 +80,7 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
         self.assertEndsWith(result, expected+self.foot, msg)
 
     def test_escape_characters(self):
-        t = u'\ {{'
+        t = u'\\ {{'
         result = self.format_rtf(t)
         expected = (r'\\ \{\{')
         if not result.endswith(self.foot):

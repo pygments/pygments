@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-
 """
     pygments.lexers.sas
     ~~~~~~~~~~~~~~~~~~~
 
     Lexer for SAS.
+
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
@@ -14,15 +16,17 @@ from pygments.token import Comment, Keyword, Name, Number, String, Text, \
 
 __all__ = ['SASLexer']
 
+
 class SASLexer(RegexLexer):
     """
-    For `SAS <http://www.sas.com/>` files.
+    For `SAS <http://www.sas.com/>`_ files.
 
-    Syntax from syntax/sas.vim by James Kidd <james.kidd@covance.com>
+    .. versionadded:: 2.2
     """
+    # Syntax from syntax/sas.vim by James Kidd <james.kidd@covance.com>
 
     name      = 'SAS'
-    aliases   = ['SAS', 'sas']
+    aliases   = ['sas']
     filenames = ['*.SAS', '*.sas']
     mimetypes = ['text/x-sas', 'text/sas', 'application/x-sas']
     flags     = re.IGNORECASE | re.MULTILINE
@@ -31,8 +35,8 @@ class SASLexer(RegexLexer):
         "bquote", "nrbquote", "cmpres", "qcmpres", "compstor", "datatyp",
         "display", "do", "else", "end", "eval", "global", "goto", "if",
         "index", "input", "keydef", "label", "left", "length", "let",
-        "local", "lowcase", "macro", "mend", "nrbquote", "nrquote",
-        "nrstr", "put", "qcmpres", "qleft", "qlowcase", "qscan",
+        "local", "lowcase", "macro", "mend", "nrquote",
+        "nrstr", "put", "qleft", "qlowcase", "qscan",
         "qsubstr", "qsysfunc", "qtrim", "quote", "qupcase", "scan",
         "str", "substr", "superq", "syscall", "sysevalf", "sysexec",
         "sysfunc", "sysget", "syslput", "sysprod", "sysrc", "sysrput",
@@ -73,8 +77,8 @@ class SASLexer(RegexLexer):
         "compress", "cos", "cosh", "css", "curobs", "cv", "daccdb",
         "daccdbsl", "daccsl", "daccsyd", "dacctab", "dairy", "date",
         "datejul", "datepart", "datetime", "day", "dclose", "depdb",
-        "depdbsl", "depdbsl", "depsl", "depsl", "depsyd", "depsyd",
-        "deptab", "deptab", "dequote", "dhms", "dif", "digamma",
+        "depdbsl", "depsl", "depsyd",
+        "deptab", "dequote", "dhms", "dif", "digamma",
         "dim", "dinfo", "dnum", "dopen", "doptname", "doptnum",
         "dread", "dropnote", "dsname", "erf", "erfc", "exist", "exp",
         "fappend", "fclose", "fcol", "fdelete", "fetch", "fetchobs",
@@ -133,7 +137,7 @@ class SASLexer(RegexLexer):
         ],
         # Special highlight for proc, data, quit, run
         'proc-data': [
-            (r'(^|;)\s*(proc [a-zA-Z0-9_]+|data|run|quit)[\s;\n]',
+            (r'(^|;)\s*(proc \w+|data|run|quit)[\s;]',
              Keyword.Reserved),
         ],
         # Special highlight cards and datalines
@@ -151,7 +155,6 @@ class SASLexer(RegexLexer):
             (r'NOTE(:|-).*', Generic, '#pop'),
             (r'WARNING(:|-).*', Generic.Emph, '#pop'),
             (r'ERROR(:|-).*', Generic.Error, '#pop'),
-            (r'(?!(WARNING|NOTE|ERROR))+', Text, '#pop'),
             include('general'),
         ],
         'general': [
@@ -185,8 +188,8 @@ class SASLexer(RegexLexer):
         ],
         # Strings and user-defined variables and macros (order matters)
         'vars-strings': [
-            (r'&[a-zA-Z_][a-zA-Z0-9_]{0,31}\.?', Name.Variable),
-            (r'%[a-zA-Z_][a-zA-Z0-9_]{0,31}', Name.Function),
+            (r'&[a-z_]\w{0,31}\.?', Name.Variable),
+            (r'%[a-z_]\w{0,31}', Name.Function),
             (r'\'', String, 'string_squote'),
             (r'"', String, 'string_dquote'),
         ],
@@ -206,11 +209,11 @@ class SASLexer(RegexLexer):
             (r'[$"\\]', String),
         ],
         'validvar': [
-            (r'[a-zA-Z_][a-zA-Z0-9_]{0,31}\.?', Name.Variable, '#pop'),
+            (r'[a-z_]\w{0,31}\.?', Name.Variable, '#pop'),
         ],
         # SAS numbers and special variables
         'numbers': [
-            (r'\b[+-]?([0-9]+(\.[0-9]+)?|\.[0-9]+|\.)([eE][+-]?[0-9]+)?[i]?\b',
+            (r'\b[+-]?([0-9]+(\.[0-9]+)?|\.[0-9]+|\.)(E[+-]?[0-9]+)?i?\b',
              Number),
         ],
         'special': [

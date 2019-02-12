@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# yapf: disable
 """
     pygments.lexers.stata
     ~~~~~~~~~~~~~~~~~~~~~
@@ -31,11 +30,11 @@ class StataLexer(RegexLexer):
     # - http://github.com/isagalaev/highlight.js/blob/master/src/languages/stata.js
     # - http://github.com/jpitblado/vim-stata/blob/master/syntax/stata.vim
 
-    name = 'Stata'
-    aliases = ['stata', 'do']
+    name      = 'Stata'
+    aliases   = ['stata', 'do']
     filenames = ['*.do', '*.ado']
     mimetypes = ['text/x-stata', 'text/stata', 'application/x-stata']
-    flags = re.MULTILINE | re.DOTALL
+    flags     = re.MULTILINE | re.DOTALL
 
     tokens = {
         'root': [

@@ -5,7 +5,7 @@
 
     Lexers for PHP and related languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -173,7 +173,7 @@ class PhpLexer(RegexLexer):
              r'finally)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
             include('magicconstants'),
-            (r'\$\{\$+' + _ident_inner + '\}', Name.Variable),
+            (r'\$\{\$+' + _ident_inner + r'\}', Name.Variable),
             (r'\$+' + _ident_inner, Name.Variable),
             (_ident_inner, Name.Other),
             (r'(\d+\.\d*|\d*\.\d+)(e[+-]?[0-9]+)?', Number.Float),
@@ -214,7 +214,7 @@ class PhpLexer(RegexLexer):
             (r'"', String.Double, '#pop'),
             (r'[^{$"\\]+', String.Double),
             (r'\\([nrt"$\\]|[0-7]{1,3}|x[0-9a-f]{1,2})', String.Escape),
-            (r'\$' + _ident_inner + '(\[\S+?\]|->' + _ident_inner + ')?',
+            (r'\$' + _ident_inner + r'(\[\S+?\]|->' + _ident_inner + ')?',
              String.Interpol),
             (r'(\{\$\{)(.*?)(\}\})',
              bygroups(String.Interpol, using(this, _startinline=True),
@@ -224,7 +224,7 @@ class PhpLexer(RegexLexer):
                       String.Interpol)),
             (r'(\$\{)(\S+)(\})',
              bygroups(String.Interpol, Name.Variable, String.Interpol)),
-            (r'[${\\]+', String.Double)
+            (r'[${\\]', String.Double)
         ],
     }
 

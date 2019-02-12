@@ -1,5 +1,13 @@
 implementation module StdGeneric
 
+/**
+ * NOTE: this is a collection of different tricky parts of Clean modules (even
+ * though the file is simply called StdGeneric.icl). The code is taken from:
+ *
+ * - StdGeneric (StdEnv)
+ * - Graphics.Scalable.Image (Platform)
+ */
+
 import StdInt, StdMisc, StdClass, StdFunc
 
 generic bimap a b :: Bimap .a .b
@@ -90,3 +98,37 @@ where
 		| otherwise
 			= [ ConsRight : doit (i - (n/2)) (n - (n/2)) ]
 			  	 							 	
+:: NoAttr          m = NoAttr
+:: DashAttr        m = { dash        :: ![Int]    }
+:: FillAttr        m = { fill        :: !SVGColor }
+:: LineEndMarker   m = { endmarker   :: !Image m  }
+:: LineMidMarker   m = { midmarker   :: !Image m  }
+:: LineStartMarker m = { startmarker :: !Image m  }
+:: MaskAttr        m = { mask        :: !Image m  }
+:: OpacityAttr     m = { opacity     :: !Real     }
+:: StrokeAttr      m = { stroke      :: !SVGColor }
+:: StrokeWidthAttr m = { strokewidth :: !Span     }
+:: XRadiusAttr     m = { xradius     :: !Span     }
+:: YRadiusAttr     m = { yradius     :: !Span     }
+
+
+instance tuneImage NoAttr          where tuneImage image _    = image
+instance tuneImage DashAttr        where tuneImage image attr = Attr` (BasicImageAttr` (BasicImgDashAttr attr.DashAttr.dash)) image
+instance tuneImage FillAttr        where tuneImage image attr = Attr` (BasicImageAttr` (BasicImgFillAttr attr.FillAttr.fill)) image
+instance tuneImage LineEndMarker   where tuneImage image attr = Attr` (LineMarkerAttr` {LineMarkerAttr | markerImg = attr.LineEndMarker.endmarker, markerPos = LineMarkerEnd}) image
+instance tuneImage LineMidMarker   where tuneImage image attr = Attr` (LineMarkerAttr` {LineMarkerAttr | markerImg = attr.LineMidMarker.midmarker, markerPos = LineMarkerMid}) image
+instance tuneImage LineStartMarker where tuneImage image attr = Attr` (LineMarkerAttr` {LineMarkerAttr | markerImg = attr.LineStartMarker.startmarker, markerPos = LineMarkerStart}) image
+instance tuneImage MaskAttr        where tuneImage image attr = Attr` (MaskAttr` attr.MaskAttr.mask) image
+instance tuneImage OpacityAttr     where tuneImage image attr = Attr` (BasicImageAttr` (BasicImgFillOpacityAttr attr.OpacityAttr.opacity)) image
+instance tuneImage StrokeAttr      where tuneImage image attr = Attr` (BasicImageAttr` (BasicImgStrokeAttr      attr.StrokeAttr.stroke)) image
+instance tuneImage StrokeWidthAttr where tuneImage image attr = Attr` (BasicImageAttr` (BasicImgStrokeWidthAttr attr.StrokeWidthAttr.strokewidth)) image
+instance tuneImage XRadiusAttr     where tuneImage image attr = Attr` (BasicImageAttr` (BasicImgXRadiusAttr     attr.XRadiusAttr.xradius)) image
+instance tuneImage YRadiusAttr     where tuneImage image attr = Attr` (BasicImageAttr` (BasicImgYRadiusAttr     attr.YRadiusAttr.yradius)) image
+
+instance tuneImage DraggableAttr   where tuneImage image attr = Attr` (HandlerAttr` (ImgEventhandlerDraggableAttr   attr)) image
+instance tuneImage OnClickAttr     where tuneImage image attr = Attr` (HandlerAttr` (ImgEventhandlerOnClickAttr     attr)) image
+instance tuneImage OnMouseDownAttr where tuneImage image attr = Attr` (HandlerAttr` (ImgEventhandlerOnMouseDownAttr attr)) image
+instance tuneImage OnMouseMoveAttr where tuneImage image attr = Attr` (HandlerAttr` (ImgEventhandlerOnMouseMoveAttr attr)) image
+instance tuneImage OnMouseOutAttr  where tuneImage image attr = Attr` (HandlerAttr` (ImgEventhandlerOnMouseOutAttr  attr)) image
+instance tuneImage OnMouseOverAttr where tuneImage image attr = Attr` (HandlerAttr` (ImgEventhandlerOnMouseOverAttr attr)) image
+instance tuneImage OnMouseUpAttr   where tuneImage image attr = Attr` (HandlerAttr` (ImgEventhandlerOnMouseUpAttr   attr)) image

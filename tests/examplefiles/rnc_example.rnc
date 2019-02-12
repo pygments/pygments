@@ -1,0 +1,33 @@
+# This is a sample RNC file from the tutorial for the 2003 Working Draft
+# http://relaxng.org/compact-tutorial-20030326.html
+
+element html {
+  element head {
+    element title { text }
+  },
+  element body {
+    element table {
+      attribute class { "addressBook" },
+      element tr {
+        attribute class { "card" },
+        element td {
+          attribute class { "name" },
+          mixed {
+            element span {
+              attribute class { "givenName" },
+              text
+            }?,
+            element span {
+              attribute class { "familyName" },
+              text
+            }?
+          }
+        },
+        element td {
+          attribute class { "email" },
+          text
+        }
+      }+
+    }
+  }
+}

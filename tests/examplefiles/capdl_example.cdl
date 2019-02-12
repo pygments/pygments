@@ -1,0 +1,64 @@
+#ifdef ARCH_ARM
+arch arm11
+#else
+arch ia32
+#endif
+
+objects {
+  my_ep = ep /* A synchronous endpoint */
+
+  /* Two thread control blocks */
+  tcb1 = tcb
+  tcb2 = tcb
+
+  /* Four frames of physical memory */
+  frame1 = frame (4k)
+  frame2 = frame (4k)
+  frame3 = frame (4k)
+  frame4 = frame (4k)
+
+  /* Two page tables */
+  pt1 = pt
+  pt2 = pt
+
+  /* Two page directories */
+  pd1 = pd
+  pd2 = pd
+
+  /* Two capability nodes */
+  cnode1 = cnode (2 bits)
+  cnode2 = cnode (3 bits)
+}
+caps {
+  cnode1 {
+    0x1: frame1 (RW) /* read/write */
+    0x2: my_ep (R)   /* read-only */
+  }
+  cnode2 {
+    0x1: my_ep (W)   /* write-only */
+  }
+  tcb1 {
+    vspace: pd1
+    ipc_buffer_slot: frame1
+    cspace: cnode1
+  }
+  pd1 {
+    0x10: pt1
+  }
+  pt1 {
+    0x8: frame1 (RW)
+    0x9: frame2 (R)
+  }
+  tcb2 {
+    vspace: pd2
+    ipc_buffer_slot: frame3
+    cspace: cnode2
+  }
+  pd2 {
+    0x10: pt2
+  }
+  pt2 {
+    0x10: frame3 (RW)
+    0x12: frame4 (R)
+  }
+}

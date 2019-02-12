@@ -5,7 +5,7 @@
 
     Lexers for assembly languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -20,7 +20,7 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
 
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
            'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'NasmLexer',
-           'NasmObjdumpLexer', 'Ca65Lexer']
+           'NasmObjdumpLexer', 'TasmLexer', 'Ca65Lexer']
 
 
 class GasLexer(RegexLexer):
@@ -35,7 +35,7 @@ class GasLexer(RegexLexer):
     #: optional Comment or Whitespace
     string = r'"(\\"|[^"])*"'
     char = r'[\w$.@-]'
-    identifier = r'(?:[a-zA-Z$_]' + char + '*|\.' + char + '+)'
+    identifier = r'(?:[a-zA-Z$_]' + char + r'*|\.' + char + '+)'
     number = r'(?:0[xX][a-zA-Z0-9]+|\d+)'
 
     tokens = {
@@ -53,8 +53,7 @@ class GasLexer(RegexLexer):
             ('@' + identifier, Name.Attribute),
             (number, Number.Integer),
             (r'[\r\n]+', Text, '#pop'),
-
-            (r'#.*?$', Comment, '#pop'),
+            (r'[;#].*?\n', Comment, '#pop'),
 
             include('punctuation'),
             include('whitespace')
@@ -78,14 +77,15 @@ class GasLexer(RegexLexer):
             ('$'+number, Number.Integer),
             (r"$'(.|\\')'", String.Char),
             (r'[\r\n]+', Text, '#pop'),
-            (r'#.*?$', Comment, '#pop'),
+            (r'[;#].*?\n', Comment, '#pop'),
+
             include('punctuation'),
             include('whitespace')
         ],
         'whitespace': [
             (r'\n', Text),
             (r'\s+', Text),
-            (r'#.*?\n', Comment)
+            (r'[;#].*?\n', Comment)
         ],
         'punctuation': [
             (r'[-*,.()\[\]!:]+', Punctuation)
@@ -258,7 +258,7 @@ class HsailLexer(RegexLexer):
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
             (ieeefloat, Number.Float),
             (float, Number.Float),
-            ('\d+', Number.Integer),
+            (r'\d+', Number.Integer),
 
             (r'[=<>{}\[\]()*.,:;!]|x\b', Punctuation)
         ],
@@ -267,7 +267,7 @@ class HsailLexer(RegexLexer):
         ],
         'comments': [
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'//.*?\n', Comment.Singleline),
+            (r'//.*?\n', Comment.Single),
         ],
         'keyword': [
             # Types
@@ -281,7 +281,7 @@ class HsailLexer(RegexLexer):
                 'enabledetectexceptions', 'maxdynamicgroupsize', 'maxflatgridsize',
                 'maxflatworkgroupsize', 'requireddim', 'requiredgridsize',
                 'requiredworkgroupsize', 'requirenopartialworkgroups'),
-                   suffix=r'\b'), Keyword),
+                suffix=r'\b'), Keyword),
 
             # instructions
             (roundingMod, Keyword),
@@ -352,7 +352,7 @@ class LlvmLexer(RegexLexer):
             include('whitespace'),
 
             # Before keywords, because keywords are valid label names :(...
-            (identifier + '\s*:', Name.Label),
+            (identifier + r'\s*:', Name.Label),
 
             include('keyword'),
 
@@ -377,47 +377,68 @@ class LlvmLexer(RegexLexer):
         'keyword': [
             # Regular keywords
             (words((
-                'begin', 'end', 'true', 'false', 'declare', 'define', 'global',
-                'constant', 'private', 'linker_private', 'internal',
-                'available_externally', 'linkonce', 'linkonce_odr', 'weak',
-                'weak_odr', 'appending', 'dllimport', 'dllexport', 'common',
-                'default', 'hidden', 'protected', 'extern_weak', 'external',
-                'thread_local', 'zeroinitializer', 'undef', 'null', 'to', 'tail',
-                'target', 'triple', 'datalayout', 'volatile', 'nuw', 'nsw', 'nnan',
-                'ninf', 'nsz', 'arcp', 'fast', 'exact', 'inbounds', 'align',
-                'addrspace', 'section', 'alias', 'module', 'asm', 'sideeffect',
-                'gc', 'dbg', 'linker_private_weak', 'attributes', 'blockaddress',
-                'initialexec', 'localdynamic', 'localexec', 'prefix', 'unnamed_addr',
-                'ccc', 'fastcc', 'coldcc', 'x86_stdcallcc', 'x86_fastcallcc',
-                'arm_apcscc', 'arm_aapcscc', 'arm_aapcs_vfpcc', 'ptx_device',
-                'ptx_kernel', 'intel_ocl_bicc', 'msp430_intrcc', 'spir_func',
-                'spir_kernel', 'x86_64_sysvcc', 'x86_64_win64cc', 'x86_thiscallcc',
-                'cc', 'c', 'signext', 'zeroext', 'inreg', 'sret', 'nounwind',
-                'noreturn', 'noalias', 'nocapture', 'byval', 'nest', 'readnone',
-                'readonly', 'inlinehint', 'noinline', 'alwaysinline', 'optsize', 'ssp',
-                'sspreq', 'noredzone', 'noimplicitfloat', 'naked', 'builtin', 'cold',
-                'nobuiltin', 'noduplicate', 'nonlazybind', 'optnone', 'returns_twice',
-                'sanitize_address', 'sanitize_memory', 'sanitize_thread', 'sspstrong',
-                'uwtable', 'returned', 'type', 'opaque', 'eq', 'ne', 'slt', 'sgt',
-                'sle', 'sge', 'ult', 'ugt', 'ule', 'uge', 'oeq', 'one', 'olt', 'ogt',
-                'ole', 'oge', 'ord', 'uno', 'ueq', 'une', 'x', 'acq_rel', 'acquire',
-                'alignstack', 'atomic', 'catch', 'cleanup', 'filter', 'inteldialect',
-                'max', 'min', 'monotonic', 'nand', 'personality', 'release', 'seq_cst',
-                'singlethread', 'umax', 'umin', 'unordered', 'xchg', 'add', 'fadd',
-                'sub', 'fsub', 'mul', 'fmul', 'udiv', 'sdiv', 'fdiv', 'urem', 'srem',
-                'frem', 'shl', 'lshr', 'ashr', 'and', 'or', 'xor', 'icmp', 'fcmp',
-                'phi', 'call', 'trunc', 'zext', 'sext', 'fptrunc', 'fpext', 'uitofp',
-                'sitofp', 'fptoui', 'fptosi', 'inttoptr', 'ptrtoint', 'bitcast',
-                'addrspacecast', 'select', 'va_arg', 'ret', 'br', 'switch', 'invoke',
-                'unwind', 'unreachable', 'indirectbr', 'landingpad', 'resume',
-                'malloc', 'alloca', 'free', 'load', 'store', 'getelementptr',
-                'extractelement', 'insertelement', 'shufflevector', 'getresult',
-                'extractvalue', 'insertvalue', 'atomicrmw', 'cmpxchg', 'fence'),
-                   suffix=r'\b'), Keyword),
+                'acq_rel', 'acquire', 'add', 'addrspace', 'addrspacecast', 'afn', 'alias',
+                'aliasee', 'align', 'alignLog2', 'alignstack', 'alloca', 'allocsize', 'allOnes',
+                'alwaysinline', 'amdgpu_cs', 'amdgpu_es', 'amdgpu_gs', 'amdgpu_hs',
+                'amdgpu_kernel', 'amdgpu_ls', 'amdgpu_ps', 'amdgpu_vs', 'and', 'any',
+                'anyregcc', 'appending', 'arcp', 'argmemonly', 'args', 'arm_aapcs_vfpcc',
+                'arm_aapcscc', 'arm_apcscc', 'ashr', 'asm', 'atomic', 'atomicrmw', 'attributes',
+                'available_externally', 'avr_intrcc', 'avr_signalcc', 'bit', 'bitcast',
+                'bitMask', 'blockaddress', 'br', 'branchFunnel', 'builtin', 'byArg', 'byte',
+                'byteArray', 'byval', 'c', 'call', 'callee', 'caller', 'calls', 'catch',
+                'catchpad', 'catchret', 'catchswitch', 'cc', 'ccc', 'cleanup', 'cleanuppad',
+                'cleanupret', 'cmpxchg', 'cold', 'coldcc', 'comdat', 'common', 'constant',
+                'contract', 'convergent', 'critical', 'cxx_fast_tlscc', 'datalayout', 'declare',
+                'default', 'define', 'deplibs', 'dereferenceable', 'dereferenceable_or_null',
+                'distinct', 'dllexport', 'dllimport', 'double', 'dso_local', 'dso_preemptable',
+                'dsoLocal', 'eq', 'exact', 'exactmatch', 'extern_weak', 'external',
+                'externally_initialized', 'extractelement', 'extractvalue', 'fadd', 'false',
+                'fast', 'fastcc', 'fcmp', 'fdiv', 'fence', 'filter', 'flags', 'float', 'fmul',
+                'fp128', 'fpext', 'fptosi', 'fptoui', 'fptrunc', 'frem', 'from', 'fsub',
+                'funcFlags', 'function', 'gc', 'getelementptr', 'ghccc', 'global', 'guid', 'gv',
+                'half', 'hash', 'hhvm_ccc', 'hhvmcc', 'hidden', 'hot', 'hotness', 'icmp',
+                'ifunc', 'inaccessiblemem_or_argmemonly', 'inaccessiblememonly', 'inalloca',
+                'inbounds', 'indir', 'indirectbr', 'info', 'initialexec', 'inline',
+                'inlineBits', 'inlinehint', 'inrange', 'inreg', 'insertelement', 'insertvalue',
+                'insts', 'intel_ocl_bicc', 'inteldialect', 'internal', 'inttoptr', 'invoke',
+                'jumptable', 'kind', 'label', 'landingpad', 'largest', 'linkage', 'linkonce',
+                'linkonce_odr', 'live', 'load', 'local_unnamed_addr', 'localdynamic',
+                'localexec', 'lshr', 'max', 'metadata', 'min', 'minsize', 'module', 'monotonic',
+                'msp430_intrcc', 'mul', 'musttail', 'naked', 'name', 'nand', 'ne', 'nest',
+                'ninf', 'nnan', 'noalias', 'nobuiltin', 'nocapture', 'nocf_check',
+                'noduplicate', 'noduplicates', 'noimplicitfloat', 'noinline', 'none',
+                'nonlazybind', 'nonnull', 'norecurse', 'noRecurse', 'noredzone', 'noreturn',
+                'notail', 'notEligibleToImport', 'nounwind', 'nsw', 'nsz', 'null', 'nuw', 'oeq',
+                'offset', 'oge', 'ogt', 'ole', 'olt', 'one', 'opaque', 'optforfuzzing',
+                'optnone', 'optsize', 'or', 'ord', 'path', 'personality', 'phi', 'ppc_fp128',
+                'prefix', 'preserve_allcc', 'preserve_mostcc', 'private', 'prologue',
+                'protected', 'ptrtoint', 'ptx_device', 'ptx_kernel', 'readnone', 'readNone',
+                'readonly', 'readOnly', 'reassoc', 'refs', 'relbf', 'release', 'resByArg',
+                'resume', 'ret', 'returnDoesNotAlias', 'returned', 'returns_twice', 'safestack',
+                'samesize', 'sanitize_address', 'sanitize_hwaddress', 'sanitize_memory',
+                'sanitize_thread', 'sdiv', 'section', 'select', 'seq_cst', 'sext', 'sge', 'sgt',
+                'shadowcallstack', 'shl', 'shufflevector', 'sideeffect', 'signext', 'single',
+                'singleImpl', 'singleImplName', 'sitofp', 'sizeM1', 'sizeM1BitWidth', 'sle',
+                'slt', 'source_filename', 'speculatable', 'spir_func', 'spir_kernel', 'srem',
+                'sret', 'ssp', 'sspreq', 'sspstrong', 'store', 'strictfp', 'sub', 'summaries',
+                'summary', 'swiftcc', 'swifterror', 'swiftself', 'switch', 'syncscope', 'tail',
+                'target', 'thread_local', 'to', 'token', 'triple', 'true', 'trunc', 'type',
+                'typeCheckedLoadConstVCalls', 'typeCheckedLoadVCalls', 'typeid', 'typeIdInfo',
+                'typeTestAssumeConstVCalls', 'typeTestAssumeVCalls', 'typeTestRes', 'typeTests',
+                'udiv', 'ueq', 'uge', 'ugt', 'uitofp', 'ule', 'ult', 'umax', 'umin', 'undef',
+                'une', 'uniformRetVal', 'uniqueRetVal', 'unknown', 'unnamed_addr', 'uno',
+                'unordered', 'unreachable', 'unsat', 'unwind', 'urem', 'uselistorder',
+                'uselistorder_bb', 'uwtable', 'va_arg', 'variable', 'vFuncId',
+                'virtualConstProp', 'void', 'volatile', 'weak', 'weak_odr', 'webkit_jscc',
+                'win64cc', 'within', 'wpdRes', 'wpdResolutions', 'writeonly', 'x',
+                'x86_64_sysvcc', 'x86_fastcallcc', 'x86_fp80', 'x86_intrcc', 'x86_mmx',
+                'x86_regcallcc', 'x86_stdcallcc', 'x86_thiscallcc', 'x86_vectorcallcc', 'xchg',
+                'xor', 'zeroext', 'zeroinitializer', 'zext'),
+                suffix=r'\b'), Keyword),
 
             # Types
             (words(('void', 'half', 'float', 'double', 'x86_fp80', 'fp128',
-                    'ppc_fp128', 'label', 'metadata')), Keyword.Type),
+                    'ppc_fp128', 'label', 'metadata', 'token')), Keyword.Type),
 
             # Integer types
             (r'i[1-9]\d*', Keyword)
@@ -510,6 +531,86 @@ class NasmObjdumpLexer(ObjdumpLexer):
     mimetypes = ['text/x-nasm-objdump']
 
     tokens = _objdump_lexer_tokens(NasmLexer)
+
+
+class TasmLexer(RegexLexer):
+    """
+    For Tasm (Turbo Assembler) assembly code.
+    """
+    name = 'TASM'
+    aliases = ['tasm']
+    filenames = ['*.asm', '*.ASM', '*.tasm']
+    mimetypes = ['text/x-tasm']
+
+    identifier = r'[@a-z$._?][\w$.?#@~]*'
+    hexn = r'(?:0x[0-9a-f]+|$0[0-9a-f]*|[0-9]+[0-9a-f]*h)'
+    octn = r'[0-7]+q'
+    binn = r'[01]+b'
+    decn = r'[0-9]+'
+    floatn = decn + r'\.e?' + decn
+    string = r'"(\\"|[^"\n])*"|' + r"'(\\'|[^'\n])*'|" + r"`(\\`|[^`\n])*`"
+    declkw = r'(?:res|d)[bwdqt]|times'
+    register = (r'r[0-9][0-5]?[bwd]|'
+                r'[a-d][lh]|[er]?[a-d]x|[er]?[sb]p|[er]?[sd]i|[c-gs]s|st[0-7]|'
+                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]')
+    wordop = r'seg|wrt|strict'
+    type = r'byte|[dq]?word'
+    directives = (r'BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'
+                  r'ORG|ALIGN|STRUC|ENDSTRUC|ENDS|COMMON|CPU|GROUP|UPPERCASE|INCLUDE|'
+                  r'EXPORT|LIBRARY|MODULE|PROC|ENDP|USES|ARG|DATASEG|UDATASEG|END|IDEAL|'
+                  r'P386|MODEL|ASSUME|CODESEG|SIZE')
+    # T[A-Z][a-z] is more of a convention. Lexer should filter out STRUC definitions
+    # and then 'add' them to datatype somehow.
+    datatype = (r'db|dd|dw|T[A-Z][a-z]+')
+
+    flags = re.IGNORECASE | re.MULTILINE
+    tokens = {
+        'root': [
+            (r'^\s*%', Comment.Preproc, 'preproc'),
+            include('whitespace'),
+            (identifier + ':', Name.Label),
+            (directives, Keyword, 'instruction-args'),
+            (r'(%s)(\s+)(%s)' % (identifier, datatype),
+                bygroups(Name.Constant, Keyword.Declaration, Keyword.Declaration),
+                'instruction-args'),
+            (declkw, Keyword.Declaration, 'instruction-args'),
+            (identifier, Name.Function, 'instruction-args'),
+            (r'[\r\n]+', Text)
+        ],
+        'instruction-args': [
+            (string, String),
+            (hexn, Number.Hex),
+            (octn, Number.Oct),
+            (binn, Number.Bin),
+            (floatn, Number.Float),
+            (decn, Number.Integer),
+            include('punctuation'),
+            (register, Name.Builtin),
+            (identifier, Name.Variable),
+            # Do not match newline when it's preceeded by a backslash
+            (r'(\\\s*)(;.*)([\r\n])', bygroups(Text, Comment.Single, Text)),
+            (r'[\r\n]+', Text, '#pop'),
+            include('whitespace')
+        ],
+        'preproc': [
+            (r'[^;\n]+', Comment.Preproc),
+            (r';.*?\n', Comment.Single, '#pop'),
+            (r'\n', Comment.Preproc, '#pop'),
+        ],
+        'whitespace': [
+            (r'[\n\r]', Text),
+            (r'\\[\n\r]', Text),
+            (r'[ \t]+', Text),
+            (r';.*', Comment.Single)
+        ],
+        'punctuation': [
+            (r'[,():\[\]]+', Punctuation),
+            (r'[&|^<>+*=/%~-]+', Operator),
+            (r'[$]+', Keyword.Constant),
+            (wordop, Operator.Word),
+            (type, Keyword.Type)
+        ],
+    }
 
 
 class Ca65Lexer(RegexLexer):

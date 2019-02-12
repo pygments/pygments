@@ -5,7 +5,7 @@
 
     Formatter for HTML output.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -535,10 +535,9 @@ class HtmlFormatter(Formatter):
             # write CSS file only if noclobber_cssfile isn't given as an option.
             try:
                 if not os.path.exists(cssfilename) or not self.noclobber_cssfile:
-                    cf = open(cssfilename, "w")
-                    cf.write(CSSFILE_TEMPLATE %
-                             {'styledefs': self.get_style_defs('body')})
-                    cf.close()
+                    with open(cssfilename, "w") as cf:
+                        cf.write(CSSFILE_TEMPLATE %
+                                 {'styledefs': self.get_style_defs('body')})
             except IOError as err:
                 err.strerror = 'Error writing CSS file: ' + err.strerror
                 raise
