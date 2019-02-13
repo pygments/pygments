@@ -175,11 +175,11 @@ class HttpLexer(RegexLexer):
     tokens = {
         'root': [
             (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE|PATCH)( +)([^ ]+)( +)'
-             r'(HTTP)(/)(1\.[01])(\r?\n|\Z)',
+             r'(HTTP)(/)(1\.[01]|2|3)(\r?\n|\Z)',
              bygroups(Name.Function, Text, Name.Namespace, Text,
                       Keyword.Reserved, Operator, Number, Text),
              'headers'),
-            (r'(HTTP)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|\Z)',
+            (r'(HTTP)(/)(1\.[01]|2|3)( +)(\d{3})( +)([^\r\n]+)(\r?\n|\Z)',
              bygroups(Keyword.Reserved, Operator, Number, Text, Number,
                       Text, Name.Exception, Text),
              'headers'),
