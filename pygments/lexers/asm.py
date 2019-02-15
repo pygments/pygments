@@ -787,47 +787,180 @@ class M68kLexer(RegexLexer):
     flags = re.IGNORECASE
 
     tokens = {
-        'root': [
-            (r'(\*[^a-zA-Z]|;).*', Comment.Single),
-            (r'([a-zA-Z0-9]+:)', Name.Label),
-            (r'(#[a-zA-Z0-9]+)', Name.Label),
-            (
-                r'(align|blk|bss|'
-                r'bss|cargs|clrfo|clrso|cnop|code|code|'
-                r'comm|comment|cseg|data|data|dc|dcb|'
-                r'dr|dsb|ds|dseg|echo|'
-                r'einline|else|end|endc|endif|endm|endr|equ|equ|'
-                r'erem|even|fail|fequ|fo|idnt|'
-                r'if|ifeq|ifne|ifgt|ifge|iflt|ifle|ifb|ifnb|ifc|ifnc|ifd|'
-                r'ifnd|ifmacrod|ifmacrond|incin|incdir|include|inline|list|'
-                r'llen|macro|mexit|nolist|nopage|nref|odd|offset|org|output|'
-                r'page|plen|printt|printv|publicrem|rept|rorg|rs|rsreset|'
-                r'rsset|section|set|setfo|setso|so|spc|text|ttl|weak|xdef|'
-                r'xref)\b', Operator
-            ),
-            (
-                r'(abcd|add|adda|addi|addq|addx|and|andi|asl|asr|bcc|bchg|'
-                r'bclr|bcs|beq|bfchg|bfset|bftst|bge|bgt|bhi|ble|bls|blt|'
-                r'bmi|bne|bpl|bra|bset|bsr|btst|bvc|bvs|callm|cas|chk|chk2|'
-                r'cinv|cinva|clr|cmp|cmp2|cmpa|cmpi|cmpm|cpush|cpushp|dbcs|'
-                r'dbeq|dbf|dbgt|dbls|dbmi|dbne|divs|divsl|divu|divul|eor|'
-                r'eori|exg|ext|fmovem|frestore|fsave|illegal|jmp|jsr|lea|'
-                r'linea|linef|link|lsl|lsr|move|move16|movea|movec|movem|'
-                r'movep|moveq|moves|muls|mulu|nbcd|neg|negx|nop|not|or|'
-                r'ori|pack|pbas|pbbs|pbcs|pea|pflush|pmove|pmovefd|prestore|'
-                r'psbs|psgs|ptestr|ptrapac|ptrapgs|ptrapic|reset|rol|ror|'
-                r'roxl|roxr|rte|rtm|rts|sbcd|scc|scs|seq|sf|sge|sgt|sle|'
-                r'slt|sne|spl|st|stop|sub|suba|subi|subq|subx|svs|swap|'
-                r'tas|trap|traplt|tst|unlk|unpk)\b', Keyword
-            ),
-            # (r'[-+~*/^&|!<>=]', Operator),
-            (r'_(c|f)', Operator),
-            (r'\.(b|l|p|q|s|w|x)', Operator),
-            (r'((a|d)[0-7]|pc)', Operator),
-            (r'"[^"\n]*.', String),
-            (r"'[^'\n]*.", String.Char),
-            (r'\#?\$?(0x)?[0-9a-f]+\b', Number.Integer),
-            (r'[a-z_.@$][\w.@$]*', Name),
+        'comments': [
+            (r'\s*;(\n|.*)', Comment),
+            (r'\*+(\n|\s+.*)', Comment),
+        ],
+        'noncode': [
+            (r'(\n|\s)+', Text),
+            include('comments'),
+        ],
+        'strings': [
+            (r'"[^"\n]*', String),
+            (r"'[^'\n]*", String.Char),
+        ],
+        'symbols': [
+            (r'[a-zA-Z0-9\+\-\(\)&]+(\/[0-9]+)?', String),
+            # Macro symbols
+            (r'\\([0-9]|@!|@\?|@@|@|\#|\?[0-9]|\.|\+|\-)', Name.Variable),
+            (r'\\\$?[\._a-zA-Z0-9]+', Name.Variable),
+        ],
+        'numbers': [
+            (r'\-?\%?\#?\$?(0x)?[0-9a-f]+\b', Number.Integer),
+        ],
+        'argument': [
+            include('strings'),
+            include('numbers'),
+            include('symbols'),
+            (r'[.,]', Punctuation),
+            include('comments'),
+        ],
+        'decompiled_addresses': [
+            (r'[0-9a-f]+:(\s[0-9a-f]{2,4})+', Number),
+        ],
+        'directives_no_arguments': [
+            (words(('bss', 'bss_c', 'bss_f', 'clrfo', 'clrso', 'code',
+                    'code_c', 'code_f', 'cseg', 'data', 'data_c', 'data_f',
+                    'comment', 'dseg', 'einline', 'else', 'end', 'endc',
+                    'endif', 'endm', 'endr', 'erem', 'even', 'inline', 'list',
+                    'mexit', 'nolist', 'nopage', 'odd', 'page', 'rem',
+                    'rsreset', 'rsset', 'text')), Keyword)
+        ],
+        'directives_typed_single_argument': [
+            (r'(blk|ds|dc|dcb)(\.[bdlqswx])(\s+)',
+                bygroups(Keyword, Keyword, Text), 'argument'),
+            (r'(dr)(\.[bwl])(\s+)',
+                bygroups(Keyword, Keyword, Text), 'argument'),
+        ],
+        'directives_untyped_single_argument': [
+            (r'\b(align|echo|fail|if|ifb|ifeq|ifge|'
+             r'ifgt|ifle|iflt|ifnb|ifne|incdir|'
+             r'include|llen|offset|org|output|plen|'
+             r'rept|rorg|setfo|setso|spc)\b(\s+)',
+                bygroups(Keyword, Text), 'argument'),
+        ],
+        'directives_untyped_multiple_arguments': [
+            (r'\b(ifc|ifnc|incbin|printt|cnop|printv)\b(\s+)',
+                bygroups(Keyword, Text), 'argument'),
+        ],
+        'directives_symbol_definitions': [
+            (r'([\._a-zA-Z0-9\\@\!\?]+|\\[0-9])(\s+)(=|[f]?equ)'
+             r'(\.[sdxp])?(\s+)',
+                bygroups(Name.Variable, Text, Keyword, Keyword, Text),
+                'argument'),
+            (r'([\._a-zA-Z0-9\\@\!\?]+|\\[0-9])(\s+)(fo|rs|so)(\.[bwlqsdxp])?'
+             r'(\s+)',
+                bygroups(Name.Variable, Text, Keyword, Keyword, Text),
+                'argument'),
+            (r'([\._a-zA-Z0-9\\@\!\?]+|\\[0-9])(\s+)(set)(\s+)',
+                bygroups(Name.Variable, Text, Keyword, Text), 'argument'),
+            (r'([\._a-zA-Z0-9\\@\!\?]+|\\[0-9])(\s*)(ttl)',
+                bygroups(Name.Variable, Text, Keyword), 'argument'),
+        ],
+        'directives_section': [
+            (r'(section)(\s+)([\._a-zA-Z0-9]+)(,)?(code|text|data|bss)?'
+             r'(,)?(chip|fast)?',
+
+                bygroups(Keyword, Text, Name.Variable,
+                         Punctuation, String, Punctuation, String)),
+        ],
+        'directives_macro': [
+            (r'(macro)(\s+)([\._a-zA-Z0-9]+)',
+                bygroups(Keyword, Text, Name.Variable)),
+            (r'([\._a-zA-Z0-9]+)(\s+)(macro)',
+                bygroups(Name.Variable, Text, Keyword)),
+        ],
+        'directives_symbol_arguments': [
+            (r'\b(cargs|comm|idnt|ifd|ifmacron?d|ifnd|nref|public|ttl|weak|'
+             r'xdef|xref)\b(\s+)'
+             r'([#\._a-zA-Z0-9,\+\-]+)(\\[0-9]|\\@!|'
+             r'\\@\?|\\@@|\\@|\\\#|\\\?[0-9]|'
+             r'\\\.|\\\+|\\\-|\\\$?[\._a-zA-Z0-9])?',
+                bygroups(Keyword, Text, Name.Variable, Name.Variable)),
+            (r'\b(jumperr|jumpptr|load)\b(\s+)([#\._a-zA-Z0-9,]+)',
+                bygroups(Keyword, Text, Name.Variable)),
+        ],
+        'registers': [
+            (r'd0|d1|d2|d3|d4|d5|d6|d7|a0|a1|a2|a3|a4|a5|a6|a7|fp0|fp1|fp2|fp3|'
+             r'fp4|fp5|fp6|fp7|pc|sr|ccr|sfc|dfc|usp|vbr|cacr|caar|msp|isp|tc|'
+             r'itt0|itt1|dtt0|dtt1|mmusr|urp|srp|fpcr|fpsr|fpiar|sp',
+             Name.Variable),
+        ],
+        'instruction_args': [
+            include('comments'),
+            include('registers'),
             (r'[#,.:()=\+\-\*\/<>&!\\\[\]]', Punctuation),
-            (r'\s+', Text),
-        ]}
+            (r'\#?\$?(0x)?[0-9a-f]+\b', Number.Integer),
+            (r'[\._a-zA-Z0-9]+', Name.Label),
+            (r"'[^']*.", String.Char),
+        ],
+        'mnemonics_no_arguments': [
+            (r'(illegal|linef|nop|reset|rte|'
+             r'rtr|rts|stop|trapv)', Keyword),
+        ],
+        'mnemonics_untyped': [
+            (r'(jmp|jsr|trap)(\s+)',
+                bygroups(Keyword, Text), 'instruction_args'),
+        ],
+        'mnemonics_typed': [
+            (r'\b(abcd|add|adda|addi|addq|addx|and|andi|asl|asr|bhs|blo|bhi|'
+             r'bls|bcc|bcs|bne|beq|bvc|bvs|bpl|bmi|bge|blt|bgt|ble|bra|'
+             r'bsr|bchg|bclr|bset|btst|bfchg|bfclr|bfexts|bfextu|bfffo|'
+             r'bfins|bfset|bftst|bkpt|callm|cas|cas2|chk|chk2|clr|cmp|'
+             r'cmpa|cmpi|cmpm|cmp2|cinvl|cinvp|cinva|cpushl|cpushp|'
+             r'cpusha|dbt|dbf|dbhi|dbls|dbcc|dbcs|dbne|dbeq|dbvc|dbvs|'
+             r'dbpl|dbmi|dbge|dblt|dbgt|dble|dbra|divs|divsl|divu|divul|'
+             r'eor|eori|exg|ext|extb|fabs|fsabs|fdabs|facos|fadd|fsadd|'
+             r'fdadd|fasin|fatan|fatanh|fbf|fbeq|fbogt|fboge|fbolt|'
+             r'fbole|fbogl|fbor|fbun|fbueq|fbugt|fbuge|fbult|fbule|'
+             r'fbne|fbt|fbsf|fbseq|fbgt|fbge|fblt|fble|fbgl|fbgle|'
+             r'fbngle|fbngl|fbnle|fbnlt|fbnge|fbngt|fbsne|fbst|fcmp|'
+             r'fcos|fcosh|fdbf|fdbeq|fdbogt|fdboge|fdbolt|fdbole|fdbogl|'
+             r'fdbor|fdbun|fdbueq|fdbugt|fdbuge|fdbult|fdbule|fdbne|'
+             r'fdbt|fdbsf|fdbseq|fdbgt|fdbge|fdblt|fdble|fdbgl|fdbgle|'
+             r'fdbngle|fdbngl|fdbnle|fdbnlt|fdbnge|fdbngt|fdbsne|fdbst|'
+             r'fdiv|fsdiv|fddiv|fetox|fetoxm1|fgetexp|fgetman|fint|'
+             r'fintrz|flog10|flog2|flogn|flognp1|fmod|fmove|fsmove|'
+             r'fdmove|fmovecr|fmovem|fmul|fsmul|fdmul|fneg|fsneg|fdneg|'
+             r'fnop|frem|frestore|fsave|fscale|fsgldiv|fsglmul|fsin|'
+             r'fsincos|fsinh|fsqrt|fssqrt|fdsqrt|fsf|fseq|fsogt|fsoge|'
+             r'fsolt|fsole|fsogl|fsor|fsun|fsueq|fsugt|fsuge|fsult|'
+             r'fsule|fsne|fst|fssf|fsseq|fsgt|fsge|fslt|fsle|fsgl|'
+             r'fsgle|fsngle|fsngl|fsnle|fsnlt|fsnge|fsngt|fssne|fsst|'
+             r'fsub|fssub|fdsub|ftan|ftanh|ftentox|ftrapf|ftrapeq|'
+             r'ftrapogt|ftrapoge|ftrapolt|ftrapole|ftrapogl|ftrapor|'
+             r'ftrapun|ftrapueq|ftrapugt|ftrapuge|ftrapult|ftrapule|'
+             r'ftrapne|ftrapt|ftrapsf|ftrapseq|ftrapgt|ftrapge|'
+             r'ftraplt|ftraple|ftrapgl|ftrapgle|ftrapngle|ftrapngl|'
+             r'ftrapnle|ftrapnlt|ftrapnge|ftrapngt|ftrapsne|ftrapst|'
+             r'ftst|ftwotox|halt|lea|link|lpstop|lsl|'
+             r'lsr|move|movea|movec|movem|movep|moveq|moves|move16|'
+             r'muls|mulu|nbcd|neg|negx|not|or|ori|pack|pea|pflush|'
+             r'pflusha|pflushan|pflushn|ploadr|ploadw|plpar|plpaw|'
+             r'pmove|pmovefd|ptestr|ptestw|pulse|rems|remu|rol|'
+             r'ror|roxl|roxr|rtd|rtm|sbcd|st|sf|shi|sls|'
+             r'scc|shs|scs|slo|sne|seq|svc|svs|spl|smi|sge|slt|sgt|'
+             r'sle|sub|suba|subi|subq|subx|swap|tas|'
+             r'trapt|trapf|traphi|trapls|trapcc|traphs|trapcs|traplo|'
+             r'trapne|trapeq|trapvc|trapvs|trappl|trapmi|trapge|'
+             r'traplt|trapgt|traple|tst|unlk|unpk)(\.[bwsl])?\b(\s+)',
+             bygroups(Keyword, Keyword, Text),
+             'instruction_args'),
+        ],
+        'root': [
+            include('noncode'),
+            include('decompiled_addresses'),
+            (r'[\.a-zA-Z0-9]+:', Name.Label),
+            include('directives_no_arguments'),
+            include('directives_typed_single_argument'),
+            include('directives_untyped_single_argument'),
+            include('directives_untyped_multiple_arguments'),
+            include('directives_section'),
+            include('directives_macro'),
+            include('directives_symbol_arguments'),
+            include('directives_symbol_definitions'),
+            include('mnemonics_no_arguments'),
+            include('mnemonics_untyped'),
+            include('mnemonics_typed'),
+        ]
+    }
