@@ -789,7 +789,7 @@ class M68kLexer(RegexLexer):
     tokens = {
         'comments': [
             (r'\s*;(\n|.*)', Comment),
-            (r'\*+(\n|\s+.*)', Comment),
+            (r'\*+(\n|\s+.*|\-+.*)', Comment),
         ],
         'noncode': [
             (r'(\n|\s)+', Text),
@@ -800,7 +800,7 @@ class M68kLexer(RegexLexer):
             (r"'[^'\n]*", String.Char),
         ],
         'symbols': [
-            (r'[a-zA-Z0-9\+\-\(\)&]+(\/[0-9]+)?', String),
+            (r'[_a-zA-Z0-9\+\-\(\)&]+(\/[0-9]+)?', String),
             # Macro symbols
             (r'\\([0-9]|@!|@\?|@@|@|\#|\?[0-9]|\.|\+|\-)', Name.Variable),
             (r'\\\$?[\._a-zA-Z0-9]+', Name.Variable),
@@ -902,6 +902,10 @@ class M68kLexer(RegexLexer):
             (r'(jmp|jsr|trap)(\s+)',
                 bygroups(Keyword, Text), 'instruction_args'),
         ],
+        'macro_calls': [
+            (r'([\._a-zA-Z0-9\\@\!\?]+|\\[0-9])(\s+)',
+                bygroups(Name.Variable, Text), 'argument'),
+        ],
         'mnemonics_typed': [
             (r'\b(abcd|add|adda|addi|addq|addx|and|andi|asl|asr|bhs|blo|bhi|'
              r'bls|bcc|bcs|bne|beq|bvc|bvs|bpl|bmi|bge|blt|bgt|ble|bra|'
@@ -962,5 +966,6 @@ class M68kLexer(RegexLexer):
             include('mnemonics_no_arguments'),
             include('mnemonics_untyped'),
             include('mnemonics_typed'),
+            include('macro_calls'),
         ]
     }

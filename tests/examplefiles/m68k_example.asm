@@ -8,6 +8,7 @@
     ; Indented comment
     * Indented comment
 *********** We love titles ***********
+*------ This is found sometimes in Amiga includes ------------------
 
 ; This should mark asterisks ar comment but not the line after them
 
@@ -240,7 +241,13 @@ SYMBOL1  SET     \-
 SYMBOL1  SET     \SYMBOL2
 SYMBOL1  SET     \$SYMBOL2
 SOFFSET     SET     \2
+LIB_BASE        EQU -LIB_VECTSIZE ; Testing underscores in symbol names
         ENDM
+
+; Generally speaking macros are called with this syntax
+    MACRONAME  ARG
+    MACRONAME  ARG1,ARG2
+    MACRONAME  ARG1_WITH_UNDERSCORE,ARG2_WITH_UNDERSCORE
 
 *********** VASM directives with symbol as arguments ***********
 
@@ -508,6 +515,16 @@ Spr:
     dc.w %0000011111000000,%0000000000000000
     dc.w %0000000000000000,%0000000000000000
     dc.w 0,0
+
+*********** Structures the Amiga way ***********
+
+   STRUCTURE    AS,0
+    APTR    AS_FIELD1
+    APTR    AS_FIELD2
+    APTR    AS_FIELD3
+    UBYTE   AS_FIELD4
+    UBYTE   AS_PAD
+    LABEL   AS_SIZE ;word aligned
 
 
 *********** VDA disassembled code ***********
