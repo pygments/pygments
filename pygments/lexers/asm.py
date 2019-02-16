@@ -800,7 +800,7 @@ class M68kLexer(RegexLexer):
             (r"'[^'\n]*", String.Char),
         ],
         'symbols': [
-            (r'[_a-zA-Z0-9\+\-\(\)&]+(\/[0-9]+)?', String),
+            (r'[_a-zA-Z0-9*/+\-\ (\)&]+(\/[0-9]+)?', String),
             # Macro symbols
             (r'\\([0-9]|@!|@\?|@@|@|\#|\?[0-9]|\.|\+|\-)', Name.Variable),
             (r'\\\$?[\._a-zA-Z0-9]+', Name.Variable),
@@ -808,7 +808,7 @@ class M68kLexer(RegexLexer):
         'numbers': [
             (r'\-?\%?\#?\$?(0x)?[0-9a-f]+\b', Number.Integer),
         ],
-        'argument': [
+        'macro_argument': [
             include('strings'),
             include('numbers'),
             include('symbols'),
@@ -828,34 +828,35 @@ class M68kLexer(RegexLexer):
         ],
         'directives_typed_single_argument': [
             (r'(blk|ds|dc|dcb)(\.[bdlqswx])(\s+)',
-                bygroups(Keyword, Keyword, Text), 'argument'),
+                bygroups(Keyword, Keyword, Text), 'macro_argument'),
             (r'(dr)(\.[bwl])(\s+)',
-                bygroups(Keyword, Keyword, Text), 'argument'),
+                bygroups(Keyword, Keyword, Text), 'macro_argument'),
         ],
         'directives_untyped_single_argument': [
+            (r'offset', Keyword, 'macro_argument'),
             (r'\b(align|echo|fail|if|ifb|ifeq|ifge|'
              r'ifgt|ifle|iflt|ifnb|ifne|incdir|'
              r'include|llen|offset|org|output|plen|'
              r'rept|rorg|setfo|setso|spc)\b(\s+)',
-                bygroups(Keyword, Text), 'argument'),
+                bygroups(Keyword, Text), 'macro_argument'),
         ],
         'directives_untyped_multiple_arguments': [
             (r'\b(ifc|ifnc|incbin|printt|cnop|printv)\b(\s+)',
-                bygroups(Keyword, Text), 'argument'),
+                bygroups(Keyword, Text), 'macro_argument'),
         ],
         'directives_symbol_definitions': [
             (r'([\._a-zA-Z0-9\\@\!\?]+|\\[0-9])(\s+)(=|[f]?equ)'
              r'(\.[sdxp])?(\s+)',
                 bygroups(Name.Variable, Text, Keyword, Keyword, Text),
-                'argument'),
+                'macro_argument'),
             (r'([\._a-zA-Z0-9\\@\!\?]+|\\[0-9])(\s+)(fo|rs|so)(\.[bwlqsdxp])?'
              r'(\s+)',
                 bygroups(Name.Variable, Text, Keyword, Keyword, Text),
-                'argument'),
+                'macro_argument'),
             (r'([\._a-zA-Z0-9\\@\!\?]+|\\[0-9])(\s+)(set)(\s+)',
-                bygroups(Name.Variable, Text, Keyword, Text), 'argument'),
+                bygroups(Name.Variable, Text, Keyword, Text), 'macro_argument'),
             (r'([\._a-zA-Z0-9\\@\!\?]+|\\[0-9])(\s*)(ttl)',
-                bygroups(Name.Variable, Text, Keyword), 'argument'),
+                bygroups(Name.Variable, Text, Keyword), 'macro_argument'),
         ],
         'directives_section': [
             (r'(section)(\s+)([\._a-zA-Z0-9]+)(,)?(code|text|data|bss)?'
@@ -904,7 +905,7 @@ class M68kLexer(RegexLexer):
         ],
         'macro_calls': [
             (r'([\._a-zA-Z0-9\\@\!\?]+|\\[0-9])(\s+)',
-                bygroups(Name.Variable, Text), 'argument'),
+                bygroups(Name.Variable, Text), 'macro_argument'),
         ],
         'mnemonics_typed': [
             (r'\b(abcd|add|adda|addi|addq|addx|and|andi|asl|asr|bhs|blo|bhi|'
@@ -954,7 +955,7 @@ class M68kLexer(RegexLexer):
         'root': [
             include('noncode'),
             include('decompiled_addresses'),
-            (r'[\.a-zA-Z0-9]+:', Name.Label),
+            (r'[\._a-zA-Z0-9]+:', Name.Label),
             include('directives_no_arguments'),
             include('directives_typed_single_argument'),
             include('directives_untyped_single_argument'),

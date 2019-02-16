@@ -1,4 +1,5 @@
 ; Part of this file comes from http://coppershade.org/asmskool/Tut22.S
+; For vasm syntax see here http://sun.hasenbraten.de/vasm/release/vasm_4.html
 
 ; WARNING: I arbitrarily cut the files to get many different cases
 ; of M68k code. This file is not supposed to work if compiled.
@@ -10,14 +11,17 @@
 *********** We love titles ***********
 *------ This is found sometimes in Amiga includes ------------------
 
-; This should mark asterisks ar comment but not the line after them
+; The code after *3 shouldn't be a comment!
+    move.l #Screen+ScrBpl*3*plotY+plotX/8,BLTDPTH(a6)
+
+; This should mark asterisks as comment but not the line after them
 
 **
 section SomeSection
 
-
+; Labels and decompiler addresses
 Label:
-
+0000007e:
 
 *********** VASM directives without arguments ***********
 
@@ -53,80 +57,144 @@ page
 rem
 rsreset
 rsset
-text
+text ; Directives can have inline comments
+    text ; Indented directive with comment
+    text * Indented directive with star comment
 
-*********** VASM typed directives with a single argument ***********
+*********** VASM typed directives with a fixed number of arguments ***********
 
-blk.b 5
-blk.b 5,456
-blk.d 5,456
-blk.l 5,456
-blk.q 5,456
-blk.s 5,456
-blk.w 5,456
-blk.x 5,456
-dc.b "somestring"
-dc.b 'somestring'
-dc.b SomeLabel
-dc.b 123,456
-dc.b 3
+; blk.b <exp>[,<fill>]
+blk.b 56
+blk.b 56,456
+blk.b Expression
+blk.b Somesymbol+1
+blk.b Somesymbol*4
+blk.b Somesymbol*4,234 ; These expressions drive me up the wall
+
+; blk.d <exp>[,<fill>]
+blk.d 56
+blk.d 56,456
+
+; blk.q <exp>[,<fill>]
+blk.q 56
+blk.q 56,456
+
+; blk.s <exp>[,<fill>]
+blk.s 56
+blk.s 56,456
+
+; blk.w <exp>[,<fill>]
+blk.w 56
+blk.w 56,456
+
+; blk.x <exp>[,<fill>]
+blk.x 56
+blk.x 56,456
+
+; dcb.b <exp>[,<fill>]
+dcb.b 234
+dcb.b 234,567
+
+; dcb.d <exp>[,<fill>]
+dcb.d 234
+dcb.d 234,567
+
+; dcb.l <exp>[,<fill>]
+dcb.l 234
+dcb.l 234,567
+
+; dcb.q <exp>[,<fill>]
+dcb.q 234
+dcb.q 234,567
+
+; dcb.s <exp>[,<fill>]
+dcb.s 234
+dcb.s 234,567
+
+; dcb.w <exp>[,<fill>]
+dcb.w 234
+dcb.w 234,567
+
+; dcb.x <exp>[,<fill>]
+dcb.x 234
+dcb.x 234,567
+
+; ds.b <exp>
+ds.b 1234
+
+; ds.d <exp>
+ds.d 1234
+
+; ds.l <exp>
+ds.l 1234
+
+; ds.q <exp>
+ds.q 1234
+
+; ds.s <exp>
+ds.s 1234
+
+; ds.w <exp>
+ds.w 1234
+
+; ds.x <exp>
+ds.x 1234
+
+ds.x 1234 ; Testing comments after arguments
+    ds.x 1234 ; Indented directive
+
+*********** VASM untyped directives with a fixed number of arguments ***********
+
+; offset [<expression>]
+offset
+offset ; offset is special as it supports [0,1] arguments
+offset 1234
+offset 1234 ; so I test every combination
+
+align 2
+align 2 ; align <bitcount>
+echo "Somestring" ; echo <string>
+fail "ARGH!" ; fail <message>
+if 1; if <expression>
+ifb 123; ifb <expression>
+ifeq 1; ifeq <expression>
+ifge 1; ifge <expression>
+ifgt 1; ifgt <expression>
+ifle 1; ifle <expression>
+iflt 1; iflt <expression>
+ifnb \1; ifnb <operand>
+ifne \1; ifne <operand>
+incdir "some/path" ; incdir <path>
+include "somefile.asm" ; include <file>
+llen 123 ; llen <len>
+org 123 ; org <expression>
+output "someoutput" ; output <name>
+plen 123 ; plen <len>
+rept 123 ; rept <expression>
+rorg 123 ; rorg <expression>
+setfo 123 ; setfo <expression>
+setso 123 ; setso <expression>
+spc 123 ; spc <lines>
+spc 123 ; Testing comments after arguments
+    spc 123 ; Indented directive
+
+*********** VASM untyped directives with a multiple arguments ***********
+
+dr.b 1
+dr.b 1,2
+dr.l 1,2
+dr.w 1,2
 dc.d 123,456
 dc.l 123,456
 dc.q 123,456
 dc.s 123,456
 dc.w 123,456
 dc.x 123,456
-dcb.b 234
-dcb.b 234.567
-dcb.d 234.567
-dcb.l 234.567
-dcb.q 234.567
-dcb.s 234.567
-dcb.w 234.567
-dcb.x 234.567
-dr.b 1
-dr.b 1,2
-dr.l 1,2
-dr.w 1,2
-ds.b 1234
-ds.d 1234
-ds.l 1234
-ds.q 1234
-ds.s 1234
-ds.w 1234
-ds.x 1234
-ds.x 1234 ; Testing comments after arguments
-
-*********** VASM untyped directives with a single argument ***********
-
-align 2
-echo "Somestring"
-fail "ARGH!"
-if 1
-ifb 123
-ifeq 1
-ifge 1
-ifgt 1
-ifle 1
-iflt 1
-ifnb 321
-ifne 1
-incdir "some/path"
-include "somefile.asm"
-llen 123
-offset 1234
-org 123
-output "someoutput"
-plen 123
-rept 123
-rorg 123
-setfo 123
-setso 123
-spc 123
-spc 123 ; Testing comments after arguments
-
-*********** VASM untyped directives with a multiple arguments ***********
-
+dc.b "somestring"
+dc.b 'somestring'
+dc.b SomeLabel
+dc.b 123,456
+dc.b 3
 ifc "string1","string2"
 ifnc "string1","string2"
 incbin "somefile.bin"
@@ -138,6 +206,7 @@ cnop 30,2
 printv 123
 printv 123,456
 printv 123,456 ; Testing comments after arguments
+    printv 123,456 ; Indented directive
 
 *********** VASM directives for symbol definitions ***********
 
@@ -180,6 +249,7 @@ ABCDF =.d 123
 ABCDF =.p 123
 ABCDF =.s 123
 ABCDF =.x 123
+    ABCDF =.x 123 ; Indented directive
 Name ttl ; This is not a proper definition, but the keyword follows the argument
 
 *********** VASM directive for sections ***********
@@ -195,16 +265,11 @@ section Mysec,data
 section Mysec,bss
 section Mysec,code,chip
 section Mysec,code,fast
+    section Mysec,code,fast ; Indented directive
 
 ; Here "chip" and "fast" should be coloured like variables, not keywords
 chip equ 1
 fast equ 3
-
-; Here the second and third arguments shouldn't be coloured, as they are wrong
-section Mysec,date ; <--- SHOULD FAIL
-section Mysec,date,chip ; <--- SHOULD FAIL
-section Mysec,data,chop ; <--- SHOULD FAIL
-
 
 ; Check that comments do now get used from later lines
 fast equ 3
@@ -224,6 +289,7 @@ section Mysec ; <--- This should be correct
 
 ; Standard VASM syntax
 macro structure
+    macro structure
 
 ; Amiga syntax
 STRUCTURE   MACRO       ; structure name, initial offset
@@ -245,9 +311,10 @@ LIB_BASE        EQU -LIB_VECTSIZE ; Testing underscores in symbol names
         ENDM
 
 ; Generally speaking macros are called with this syntax
-    MACRONAME  ARG
-    MACRONAME  ARG1,ARG2
-    MACRONAME  ARG1_WITH_UNDERSCORE,ARG2_WITH_UNDERSCORE
+MACRONAME  ARG
+MACRONAME  ARG1,ARG2
+MACRONAME  ARG1_WITH_UNDERSCORE,ARG2_WITH_UNDERSCORE
+MACRONAME  ARG ; Indented directive
 
 *********** VASM directives with symbol as arguments ***********
 
@@ -269,13 +336,13 @@ xdef ABCDEF
 xdef ABCDEF,FEDCBA
 xref ABCDEF
 xref ABCDEF,FEDCBA
+    xref ABCDEF,FEDCBA ; Indented directive
 
 *********** VASM ignored directives ***********
 
 load Something
 jumpptr Something
 jumperr Something
-
 
 *********** Motorola 68k instructions without arguments ***********
 
