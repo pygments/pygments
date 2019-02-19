@@ -163,9 +163,9 @@ class StataLexer(RegexLexer):
         ],
         # Stata formats
         'format': [
-            (r'%-?\d{1,2}(\.\d{1,2})?[gfe]c?', Name.Format),
-            (r'%(21x|16H|16L|8H|8L)', Name.Format),
-            (r'%-?(tc|tC|td|tw|tm|tq|th|ty|tg).{0,32}', Name.Format),
-            (r'%[-~]?\d{1,4}s', Name.Format),
+            (r'%-?\d{1,2}(\.\d{1,2})?[gfe]c?', Name.Other),
+            (r'%(21x|16H|16L|8H|8L)', Name.Other),
+            (r'%-?(tc|tC|td|tw|tm|tq|th|ty|tg)\S{0,32}', Name.Other),
+            (r'%[-~]?\d{1,4}s', Name.Other),
         ]
     }

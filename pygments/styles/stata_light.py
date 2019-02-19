@@ -30,7 +30,7 @@ class StataLightStyle(Style):
         Number:                '#2c2cff',
         Operator:              '',
         Name.Function:         '#2c2cff',
-        Name.Format:           '#be646c',
+        Name.Other:            '#be646c',
         Keyword:               'bold #353580',
         Keyword.Constant:      '',
         Comment:               'italic #008800',
