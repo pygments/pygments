@@ -31,7 +31,7 @@ class StataDarkStyle(Style):
         Number:                '#4FB8CC',
         Operator:              '',
         Name.Function:         '#6a6aff',
-        Name.Format:           '#e2828e',
+        Name.Other:            '#e2828e',
         Keyword:               'bold #7686bb',
         Keyword.Constant:      '',
         Comment:               'italic #777777',
