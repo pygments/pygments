@@ -15,7 +15,8 @@ from pygments.lexer import RegexLexer, include, bygroups, default, using, \
     this, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Other
-from pygments.util import get_bool_opt, get_list_opt, iteritems
+from pygments.util import get_bool_opt, get_list_opt, iteritems, \
+    shebang_matches
 
 __all__ = ['ZephirLexer', 'PhpLexer']
 
@@ -261,6 +262,8 @@ class PhpLexer(RegexLexer):
             yield index, token, value
 
     def analyse_text(text):
+        if shebang_matches(text, r'php'):
+            return True
         rv = 0.0
         if re.search(r'<\?(?!xml)', text):
             rv += 0.3
