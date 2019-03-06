@@ -108,7 +108,7 @@ class TypoScriptLexer(RegexLexer):
 
     name = 'TypoScript'
     aliases = ['typoscript']
-    filenames = ['*.ts', '*.txt']
+    filenames = ['*.typoscript']
     mimetypes = ['text/x-typoscript']
 
     flags = re.DOTALL | re.MULTILINE
@@ -220,7 +220,3 @@ class TypoScriptLexer(RegexLexer):
             (r'[\w"\-!/&;]+', Text),
         ],
     }
-
-    def analyse_text(text):
-        if '<INCLUDE_TYPOSCRIPT:' in text:
-            return 1.0
