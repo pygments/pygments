@@ -5,7 +5,7 @@
 
     Lexers for ML family languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -43,7 +43,7 @@ class SMLLexer(RegexLexer):
 
     symbolicid_reserved = set((
         # Core
-        ':', '\|', '=', '=>', '->', '#',
+        ':', r'\|', '=', '=>', '->', '#',
         # Modules
         ':>',
     ))

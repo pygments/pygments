@@ -14,17 +14,15 @@
     `TypoScriptHtmlDataLexer`
         Lexer that highlights markers, constants and registers within html tags.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using
-from pygments.token import Keyword, Text, Comment, Name, String, Number, \
+from pygments.token import Text, Comment, Name, String, Number, \
     Operator, Punctuation
-from pygments.lexer import DelegatingLexer
-from pygments.lexers.web import HtmlLexer, CssLexer
 
 __all__ = ['TypoScriptLexer', 'TypoScriptCssDataLexer', 'TypoScriptHtmlDataLexer']
 
@@ -110,10 +108,13 @@ class TypoScriptLexer(RegexLexer):
 
     name = 'TypoScript'
     aliases = ['typoscript']
-    filenames = ['*.ts', '*.txt']
+    filenames = ['*.typoscript']
     mimetypes = ['text/x-typoscript']
 
     flags = re.DOTALL | re.MULTILINE
+
+    # Slightly higher than TypeScript (which is 0).
+    priority = 0.0
 
     tokens = {
         'root': [
@@ -131,7 +132,7 @@ class TypoScriptLexer(RegexLexer):
         ],
         'keywords': [
             # Conditions
-            (r'(\[)(?i)(browser|compatVersion|dayofmonth|dayofweek|dayofyear|'
+            (r'(?i)(\[)(browser|compatVersion|dayofmonth|dayofweek|dayofyear|'
              r'device|ELSE|END|GLOBAL|globalString|globalVar|hostname|hour|IP|'
              r'language|loginUser|loginuser|minute|month|page|PIDinRootline|'
              r'PIDupinRootline|system|treeLevel|useragent|userFunc|usergroup|'
@@ -168,14 +169,14 @@ class TypoScriptLexer(RegexLexer):
         'whitespace': [
             (r'\s+', Text),
         ],
-        'html':[
+        'html': [
             (r'<\S[^\n>]*>', using(TypoScriptHtmlDataLexer)),
             (r'&[^;\n]*;', String),
-            (r'(_CSS_DEFAULT_STYLE)(\s*)(\()(?s)(.*(?=\n\)))',
-              bygroups(Name.Class, Text, String.Symbol, using(TypoScriptCssDataLexer))),
+            (r'(?s)(_CSS_DEFAULT_STYLE)(\s*)(\()(.*(?=\n\)))',
+             bygroups(Name.Class, Text, String.Symbol, using(TypoScriptCssDataLexer))),
         ],
         'literal': [
-            (r'0x[0-9A-Fa-f]+t?',Number.Hex),
+            (r'0x[0-9A-Fa-f]+t?', Number.Hex),
             # (r'[0-9]*\.[0-9]+([eE][0-9]+)?[fd]?\s*(?:[^=])', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'(###\w+###)', Name.Constant),
@@ -219,7 +220,3 @@ class TypoScriptLexer(RegexLexer):
             (r'[\w"\-!/&;]+', Text),
         ],
     }
-
-    def analyse_text(text):
-        if '<INCLUDE_TYPOSCRIPT:' in text:
-            return 1.0

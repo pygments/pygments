@@ -5,7 +5,7 @@
 
     Lexers for the Julia language.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -48,6 +48,7 @@ class JuliaLexer(RegexLexer):
 
             # keywords
             (r'in\b', Keyword.Pseudo),
+            (r'isa\b', Keyword.Pseudo),
             (r'(true|false)\b', Keyword.Constant),
             (r'(local|global|const)\b', Keyword.Declaration),
             (words([
@@ -55,7 +56,8 @@ class JuliaLexer(RegexLexer):
                 'baremodule', 'begin', 'bitstype', 'break', 'catch', 'ccall',
                 'continue', 'do', 'else', 'elseif', 'end', 'export', 'finally',
                 'for', 'if', 'import', 'importall', 'let', 'macro', 'module',
-                'quote', 'return', 'try', 'using', 'while'],
+                'mutable', 'primitive', 'quote', 'return', 'struct', 'try',
+                'using', 'while'],
                 suffix=r'\b'), Keyword),
 
             # NOTE
@@ -146,7 +148,7 @@ class JuliaLexer(RegexLexer):
             (words([
                 # prec-assignment
                 u'=', u':=', u'+=', u'-=', u'*=', u'/=', u'//=', u'.//=', u'.*=', u'./=',
-                u'\=', u'.\=', u'^=', u'.^=', u'÷=', u'.÷=', u'%=', u'.%=', u'|=', u'&=',
+                u'\\=', u'.\\=', u'^=', u'.^=', u'÷=', u'.÷=', u'%=', u'.%=', u'|=', u'&=',
                 u'$=', u'=>', u'<<=', u'>>=', u'>>>=', u'~', u'.+=', u'.-=',
                 # prec-conditional
                 u'?',
@@ -181,7 +183,7 @@ class JuliaLexer(RegexLexer):
                 # prec-dot
                 u'.',
                 # unary op
-                u'+', u'-', u'!', u'~', u'√', u'∛', u'∜'
+                u'+', u'-', u'!', u'√', u'∛', u'∜'
             ]), Operator),
 
             # chars
@@ -231,7 +233,7 @@ class JuliaLexer(RegexLexer):
         'string': [
             (r'"', String, '#pop'),
             # FIXME: This escape pattern is not perfect.
-            (r'\\([\\"\'\$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
+            (r'\\([\\"\'$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
             # Interpolation is defined as "$" followed by the shortest full
             # expression, which is something we can't parse.
             # Include the most common cases here: $word, and $(paren'd expr).
@@ -246,7 +248,7 @@ class JuliaLexer(RegexLexer):
 
         'tqstring': [
             (r'"""', String, '#pop'),
-            (r'\\([\\"\'\$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
+            (r'\\([\\"\'$nrbtfav]|(x|u|U)[a-fA-F0-9]+|\d+)', String.Escape),
             (r'\$' + allowed_variable, String.Interpol),
             (r'(\$)(\()', bygroups(String.Interpol, Punctuation), 'in-intp'),
             (r'.|\s', String),

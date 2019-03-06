@@ -16,7 +16,7 @@ functions {
 data {
   // valid name
   int abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_abc;
-  // all types should be highlighed
+  // all types should be highlighted
   int a3;
   real foo[2];
   vector[3] bar;
@@ -48,7 +48,7 @@ transformed data {
   thud <- -12309865;
   // ./ and .* should be recognized as operators
   grault2 <- grault .* garply ./ garply;
-  // ' and \ should be regognized as operators
+  // ' and \ should be recognized as operators
   qux2 <- qux' \ bar;
   
 }
