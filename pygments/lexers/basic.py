@@ -523,7 +523,7 @@ class VBScriptLexer(RegexLexer):
             (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),
             (r'\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),  # Float variant 2, for example: .1, .1e2
             (r'[0-9]+e[+-]?[0-9]+', Number.Float),  # Float variant 3, for example: 123e45
-            ('\d+', Number.Integer),
+            (r'\d+', Number.Integer),
             ('#.+#', String),  # date or time value
             (r'(dim)(\s+)([a-z_][a-z0-9_]*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Variable), 'dim_more'),
