@@ -5,7 +5,7 @@
 
     Lexers for Matlab and related languages.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -134,9 +134,9 @@ class MatlabLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.match('^\s*%', text, re.M):  # comment
+        if re.match(r'^\s*%', text, re.M):  # comment
             return 0.2
-        elif re.match('^!\w+', text, re.M):  # system cmd
+        elif re.match(r'^!\w+', text, re.M):  # system cmd
             return 0.2
 
 

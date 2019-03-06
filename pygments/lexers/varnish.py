@@ -5,7 +5,7 @@
 
     Lexers for Varnish configuration
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -36,7 +36,7 @@ class VCLLexer(RegexLexer):
         # Skip over comments and blank lines
         # This is accurate enough that returning 0.9 is reasonable.
         # Almost no VCL files start without some comments.
-        elif '\nvcl 4\.0;' in text[:1000]:
+        elif '\nvcl 4.0;' in text[:1000]:
             return 0.9
 
     tokens = {
@@ -120,14 +120,14 @@ class VCLLexer(RegexLexer):
              r'([a-zA-Z_]\w*)'
              r'(\s*\(.*\))',
              bygroups(Name.Function, Punctuation, Name.Function, using(this))),
-            ('[a-zA-Z_]\w*', Name),
-            ],
+            (r'[a-zA-Z_]\w*', Name),
+        ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline),
-            ],
+        ],
         'comments': [
             (r'#.*$', Comment),
             (r'/\*', Comment.Multiline, 'comment'),

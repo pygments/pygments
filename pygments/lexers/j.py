@@ -5,7 +5,7 @@
 
     Lexer for the J programming language.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -52,13 +52,13 @@ class JLexer(RegexLexer):
              Name.Function, 'explicitDefinition'),
 
             # Flow Control
-            (words(('for_', 'goto_', 'label_'), suffix=validName+'\.'), Name.Label),
+            (words(('for_', 'goto_', 'label_'), suffix=validName+r'\.'), Name.Label),
             (words((
                 'assert', 'break', 'case', 'catch', 'catchd',
                 'catcht', 'continue', 'do', 'else', 'elseif',
                 'end', 'fcase', 'for', 'if', 'return',
                 'select', 'throw', 'try', 'while', 'whilst',
-                ), suffix='\.'), Name.Label),
+                ), suffix=r'\.'), Name.Label),
 
             # Variable Names
             (validName, Name.Variable),

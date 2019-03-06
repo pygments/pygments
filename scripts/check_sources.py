@@ -7,7 +7,7 @@
     Make sure each Python file has a correct file header
     including copyright and license information.
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -36,7 +36,7 @@ def checker(*suffixes, **kwds):
 
 
 name_mail_re = r'[\w ]+(<.*?>)?'
-copyright_re = re.compile(r'^    :copyright: Copyright 2006-2015 by '
+copyright_re = re.compile(r'^    :copyright: Copyright 2006-2017 by '
                           r'the Pygments team, see AUTHORS\.$', re.UNICODE)
 copyright_2_re = re.compile(r'^                %s(, %s)*[,.]$' %
                             (name_mail_re, name_mail_re), re.UNICODE)
@@ -185,7 +185,8 @@ def main(argv):
                 print("Checking %s..." % fn)
 
             try:
-                lines = open(fn, 'rb').read().decode('utf-8').splitlines()
+                with open(fn, 'rb') as f:
+                    lines = f.read().decode('utf-8').splitlines()
             except (IOError, OSError) as err:
                 print("%s: cannot open: %s" % (fn, err))
                 num += 1

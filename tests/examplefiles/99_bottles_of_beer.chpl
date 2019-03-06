@@ -177,3 +177,30 @@ private module M3 {
   private var x: int;
 
 }
+prototype module X {
+
+  proc f() throws {
+    throw new Error();
+  }
+
+  proc g() {
+    try {
+      f();
+      try! f();
+    } catch e {
+      writeln("Caught ", e);
+    }
+  }
+
+  proc int.add() { }
+
+  g();
+
+  override proc test() throws {
+    var a = new borrowed IntPair();
+    var b = new owned IntPair();
+    var c = new shared IntPair();
+    throw new unmanaged Error();
+  }
+}
+

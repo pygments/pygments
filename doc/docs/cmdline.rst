@@ -99,6 +99,23 @@ The ``-N`` option guesses a lexer name for a given filename, so that ::
 will print out ``python``.  It won't highlight anything yet.  If no specific
 lexer is known for that filename, ``text`` is printed.
 
+Custom Lexers and Formatters
+----------------------------
+
+.. versionadded:: 2.2
+
+The ``-x`` flag enables custom lexers and formatters to be loaded
+from files relative to the current directory. Create a file with a class named
+CustomLexer or CustomFormatter, then specify it on the command line::
+
+    $ pygmentize -l your_lexer.py -f your_formatter.py -x
+
+You can also specify the name of your class with a colon::
+
+    $ pygmentize -l your_lexer.py:SomeLexer -x
+
+For more information, see :doc:`the Pygments documentation on Lexer development
+<lexerdevelopment>`.
 
 Getting help
 ------------
