@@ -538,12 +538,6 @@ class TypeScriptLexer(RegexLexer):
         ],
     }
 
-    def analyse_text(text):
-        if re.search(r'^(import.+(from\s+)?["\']|'
-                     r'(export\s*)?(interface|class|function)\s+)',
-                     text, re.MULTILINE):
-            return 1.0
-
 
 class LassoLexer(RegexLexer):
     """
