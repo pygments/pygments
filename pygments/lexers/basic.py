@@ -506,7 +506,7 @@ class VBScriptLexer(RegexLexer):
     """
     VBScript is scripting language that is modeled on Visual Basic.
 
-    .. versionadded:: 2.2
+    .. versionadded:: 2.4
     """
     name = 'VBScript'
     aliases = []
