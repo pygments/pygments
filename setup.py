@@ -48,7 +48,7 @@ else:
 
 setup(
     name = 'Pygments',
-    version = '2.2.0',
+    version = '2.3.1',
     url = 'http://pygments.org/',
     license = 'BSD License',
     author = 'Georg Brandl',
@@ -60,6 +60,7 @@ setup(
     platforms = 'any',
     zip_safe = False,
     include_package_data = True,
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
     classifiers = [
         'License :: OSI Approved :: BSD License',
         'Intended Audience :: Developers',
@@ -68,7 +69,11 @@ setup(
         'Development Status :: 6 - Mature',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Operating System :: OS Independent',
         'Topic :: Text Processing :: Filters',
         'Topic :: Utilities',

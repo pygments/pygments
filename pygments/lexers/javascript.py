@@ -453,6 +453,10 @@ class TypeScriptLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
+    # Higher priority than the TypoScriptLexer, as TypeScript is far more
+    # common these days
+    priority = 0.5
+
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Text),
@@ -533,12 +537,6 @@ class TypeScriptLexer(RegexLexer):
             include('root'),
         ],
     }
-
-    def analyse_text(text):
-        if re.search('^(import.+(from\s+)?["\']|'
-                     '(export\s*)?(interface|class|function)\s+)',
-                     text, re.MULTILINE):
-            return 1.0
 
 
 class LassoLexer(RegexLexer):
@@ -1015,7 +1013,7 @@ class ObjectiveJLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.search('^\s*@import\s+[<"]', text, re.MULTILINE):
+        if re.search(r'^\s*@import\s+[<"]', text, re.MULTILINE):
             # special directive found in most Objective-J files
             return True
         return False
@@ -1500,8 +1498,10 @@ class JuttleLexer(RegexLexer):
             (r'^(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r':\d{2}:\d{2}:\d{2}(\.\d*)?:', String.Moment),
-            (r':(now|beginning|end|forever|yesterday|today|tomorrow|(\d+(\.\d*)?|\.\d+)(ms|[smhdwMy])?):', String.Moment),
-            (r':\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d*)?)?(Z|[+-]\d{2}:\d{2}|[+-]\d{4})?:', String.Moment),
+            (r':(now|beginning|end|forever|yesterday|today|tomorrow|'
+             r'(\d+(\.\d*)?|\.\d+)(ms|[smhdwMy])?):', String.Moment),
+            (r':\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d*)?)?'
+             r'(Z|[+-]\d{2}:\d{2}|[+-]\d{4})?:', String.Moment),
             (r':((\d+(\.\d*)?|\.\d+)[ ]+)?(millisecond|second|minute|hour|day|week|month|year)[s]?'
              r'(([ ]+and[ ]+(\d+[ ]+)?(millisecond|second|minute|hour|day|week|month|year)[s]?)'
              r'|[ ]+(ago|from[ ]+now))*:', String.Moment),

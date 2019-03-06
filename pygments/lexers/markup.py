@@ -536,10 +536,9 @@ class MarkdownLexer(RegexLexer):
         # no lexer for this language. handle it like it was a code block
         if lexer is None:
             yield match.start(4), String, code
-            return
-
-        for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
-            yield item
+        else:
+            for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
+                yield item
 
         yield match.start(5), String        , match.group(5)
 

@@ -20,6 +20,7 @@ Programming languages
 * BrainFuck
 * C, C++
 * C#
+* `Charm++ CI <http://charmplusplus.org/>`_
 * Clojure
 * CoffeeScript
 * ColdFusion
@@ -37,6 +38,8 @@ Programming languages
 * `Ezhil <http://ezhillang.org>`_ Ezhil - A Tamil programming language
 * Factor
 * Fancy
+* `Fennel <https://fennel-lang.org/>`_
+* `FloScript <http://ioflo.com/>`_
 * Fortran
 * F#
 * GAP
@@ -44,6 +47,8 @@ Programming languages
 * GL shaders
 * Groovy
 * `Haskell <http://www.haskell.org>`_ (incl. Literate Haskell)
+* HLSL
+* `HSpec <http://hackage.haskell.org/package/hspec>`_
 * IDL
 * Io
 * Java
@@ -79,6 +84,8 @@ Programming languages
 * Scala
 * Scheme
 * Scilab
+* `SGF <https://www.red-bean.com/sgf/>`_
+* `Slurm <https://slurm.schedmd.com/overview.html>`_
 * Smalltalk
 * SNOBOL
 * Tcl
