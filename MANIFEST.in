@@ -1,0 +1,6 @@
+include pygmentize
+include external/*
+include Makefile CHANGES LICENSE AUTHORS TODO
+recursive-include tests *
+recursive-include doc *
+recursive-include scripts *

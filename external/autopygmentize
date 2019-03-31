@@ -1,0 +1,101 @@
+#!/bin/bash
+# Best effort auto-pygmentization with transparent decompression
+# by Reuben Thomas 2008-2016
+# This program is in the public domain.
+
+# Strategy: first see if pygmentize can find a lexer; if not, ask file; if that finds nothing, fail
+# Set the environment variable PYGMENTIZE_OPTS or pass options before the file path to configure pygments.
+
+# This program can be used as a .lessfilter for the less pager to auto-color less's output
+
+file="${!#}"              # last argument
+options=${@:1:$(($#-1))}  # handle others args as options to pass to pygmentize
+
+file_common_opts="--brief --dereference"
+
+lexer=$(pygmentize -N "$file")
+if [[ "$lexer" == text ]]; then
+    unset lexer
+    case $(file --mime-type --uncompress $file_common_opts "$file") in
+        application/xml|image/svg+xml) lexer=xml;;
+        application/javascript) lexer=javascript;;
+        text/html) lexer=html;;
+        text/troff) lexer=nroff;;
+        text/x-asm) lexer=nasm;;
+        text/x-awk) lexer=awk;;
+        text/x-c) lexer=c;;
+        text/x-c++) lexer=cpp;;
+        text/x-crystal) lexer=crystal;;
+        text/x-diff) lexer=diff;;
+        text/x-fortran) lexer=fortran;;
+        text/x-gawk) lexer=gawk;;
+        text/x-java) lexer=java;;
+        text/x-lisp) lexer=common-lisp;;
+        text/x-lua) lexer=lua;;
+        text/x-makefile) lexer=make;;
+        text/x-msdos-batch) lexer=bat;;
+        text/x-nawk) lexer=nawk;;
+        text/x-pascal) lexer=pascal;;
+        text/x-perl) lexer=perl;;
+        text/x-php) lexer=php;;
+        text/x-po) lexer=po;;
+        text/x-python) lexer=python;;
+        text/x-ruby) lexer=ruby;;
+        text/x-shellscript) lexer=sh;;
+        text/x-tcl) lexer=tcl;;
+        text/x-tex|text/x-texinfo) lexer=latex;; # FIXME: texinfo really needs its own lexer
+        
+        # Types that file outputs which pygmentize didn't support as of file 5.20, pygments 2.0
+        # text/calendar
+        # text/inf
+        # text/PGP
+        # text/rtf
+        # text/texmacs
+        # text/vnd.graphviz
+        # text/x-bcpl
+        # text/x-info
+        # text/x-m4
+        # text/x-vcard
+        # text/x-xmcd
+        
+        text/plain)  # special filenames. TODO: insert more
+            case $(basename "$file") in
+                .zshrc) lexer=sh;;
+            esac
+            ;;
+    esac
+fi
+
+# Find a preprocessor for compressed files
+concat=cat
+case $(file $file_common_opts --mime-type "$file") in
+    application/x-gzip)  concat=zcat;;
+    application/x-bzip2) concat=bzcat;;
+    application/x-xz)    concat=xzcat;;
+esac
+
+# Find a suitable lexer, preceded by a hex dump for binary files
+prereader=""
+encoding=$(file --mime-encoding --uncompress $file_common_opts "$file")
+if [[ $encoding == "binary" ]]; then
+    prereader="od -x" # POSIX fallback
+    if [[ -n $(which hd) ]]; then
+        prereader="hd" # preferred
+    fi
+    lexer=hexdump
+    encoding=latin1
+fi
+if [[ -n "$lexer" ]]; then
+    reader="pygmentize -O inencoding=$encoding $PYGMENTIZE_OPTS $options -l $lexer"
+fi
+
+# If we found a reader, run it
+if [[ -n "$reader" ]]; then
+    if [[ -n "$prereader" ]]; then
+        exec $concat "$file" | $prereader | $reader
+    else
+        exec $concat "$file" | $reader
+    fi
+fi
+
+exit 1

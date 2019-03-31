@@ -1,0 +1,34 @@
+FROM alpine:3.5
+MAINTAINER First O'Last
+
+# comment
+run echo \
+  123 $bar
+RUN apk --update add rsync dumb-init
+
+# Test env with both syntax
+ENV FOO = "BAR"
+ENV FOO \
+	"BAR"
+
+COPY foo "bar"
+COPY foo \
+	"bar"
+
+HEALTHCHECK \
+    --interval=5m --timeout=3s \
+    CMD curl -f http://localhost/ || exit 1
+
+# ONBUILD keyword, then with linebreak
+ONBUILD ADD . /app/src
+ONBUILD \
+	RUN echo 123 $bar
+
+# Potential JSON array parsing, mixed with linebreaks
+VOLUME \
+    /foo
+VOLUME \
+    ["/bar"]
+VOLUME ["/bar"]
+VOLUME /foo
+CMD ["foo", "bar"]
