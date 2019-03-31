@@ -21,7 +21,7 @@ __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
-           'PkgConfigLexer', 'PacmanConfLexer']
+           'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer']
 
 
 class IniLexer(RegexLexer):
@@ -837,4 +837,81 @@ class PacmanConfLexer(RegexLexer):
             # fallback
             (r'.', Text),
         ],
+    }
+
+
+class AugeasLexer(RegexLexer):
+    name = 'Augeas'
+    aliases = ['augeas']
+    filenames = ['*.aug']
+
+    tokens = {
+        'root': [
+            (r'(module)(\s*)([^\s=]+)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(let)(\s*)([^\s=]+)', bygroups(Keyword.Declaration, Text, Name.Variable)),
+            (r'(del|store|value|counter|seq|key|label|autoload|incl|excl|transform|test|get|put)(\s+)', bygroups(Name.Builtin, Text)),
+            (r'(\()([^\:]+)(\:)(unit|string|regexp|lens|tree|filter)(\))', bygroups(Punctuation, Name.Variable, Punctuation, Keyword.Type, Punctuation)),
+            (r'\(\*', Comment.Multiline, 'comment'),
+            (r'[\+=\|\.\*\;\?-]', Operator),
+            (r'[\[\]\(\)\{\}]', Operator),
+            (r'"', String.Double, 'string'),
+            (r'\/', String.Regex, 'regex'),
+            (r'([A-Z]\w*)(\.)(\w+)', bygroups(Name.Namespace, Punctuation, Name.Variable)),
+            (r'.', Name.Variable),
+            (r'\s', Text),
+        ],
+        'string': [
+            (r'\\.', String.Escape),
+            (r'[^"]', String.Double),
+            (r'"', String.Double, '#pop'),
+        ],
+        'regex': [
+            (r'\\.', String.Escape),
+            (r'[^\/]', String.Regex),
+            (r'\/', String.Regex, '#pop'),
+        ],
+        'comment': [
+            (r'[^*\)]', Comment.Multiline),
+            (r'\(\*', Comment.Multiline, '#push'),
+            (r'\*\)', Comment.Multiline, '#pop'),
+            (r'[\*\)]', Comment.Multiline)
+        ],
+    }
+
+
+class TOMLLexer(RegexLexer):
+    """
+    Lexer for TOML, a simple language for config files
+    """
+
+    name = 'TOML'
+    aliases = ['toml']
+    filenames = ['*.toml']
+
+    tokens = {
+        'root': [
+
+            # Basics, comments, strings
+            (r'\s+', Text),
+            (r'#.*?$', Comment.Single),
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'(true|false)$', Keyword.Constant),
+            ('[a-zA-Z_][a-zA-Z0-9_\-]*', Name),
+
+            # Datetime
+            (r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z', Number.Integer),
+
+            # Numbers
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
+            (r'\-?\d+', Number.Integer),
+
+            # Punctuation
+            (r'[]{}:(),;[]', Punctuation),
+            (r'\.', Punctuation),
+
+            # Operators
+            (r'=', Operator)
+
+        ]
     }
