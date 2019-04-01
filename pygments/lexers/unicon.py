@@ -24,7 +24,7 @@ class UniconLexer(RegexLexer):
     """
     For Unicon source code.
 
-    .. versionadded:: 2.?
+    .. versionadded:: 2.4
     """
 
     name = 'Unicon'
@@ -311,7 +311,7 @@ class UcodeLexer(RegexLexer):
     """
     Lexer for Icon ucode files
 
-    .. versionadded:: 2.?
+    .. versionadded:: 2.4
     """
     name = 'ucode'
     aliases = ['ucode']
