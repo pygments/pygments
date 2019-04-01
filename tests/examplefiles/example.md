@@ -46,6 +46,9 @@ this sentence @tweets a person about a #topic.
 [google](https://google.com/some/path.html)
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
+[reference link][id]
+[id]: http://example.com/
+
 ```
   * this is just unformated
       __text__
