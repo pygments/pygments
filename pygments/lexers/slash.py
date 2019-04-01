@@ -173,6 +173,8 @@ class SlashLanguageLexer(ExtendedRegexLexer):
 class SlashLexer(DelegatingLexer):
     """
     Lexer for the Slash programming language.
+
+    .. versionadded:: 2.4
     """
 
     name = 'Slash'

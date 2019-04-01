@@ -841,6 +841,11 @@ class PacmanConfLexer(RegexLexer):
 
 
 class AugeasLexer(RegexLexer):
+    """
+    Lexer for Augeas
+
+    .. versionadded:: 2.4
+    """
     name = 'Augeas'
     aliases = ['augeas']
     filenames = ['*.aug']
@@ -882,6 +887,8 @@ class AugeasLexer(RegexLexer):
 class TOMLLexer(RegexLexer):
     """
     Lexer for TOML, a simple language for config files
+
+    .. versionadded:: 2.4
     """
 
     name = 'TOML'
