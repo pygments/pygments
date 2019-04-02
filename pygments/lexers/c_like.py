@@ -549,6 +549,8 @@ class CharmciLexer(CppLexer):
     aliases = ['charmci']
     filenames = ['*.ci']
 
+    mimetypes = []
+
     tokens = {
         'statements': [
             (r'(module)(\s+)', bygroups(Keyword, Text), 'classname'),
