@@ -69,7 +69,7 @@ Programming languages
 * Octave
 * OCaml
 * PHP
-* `Perl <http://perl.org>`_
+* `Perl 5 <http://perl.org>`_ and `Perl 6 <https://perl6.org>`_
 * PovRay
 * PostScript
 * PowerShell

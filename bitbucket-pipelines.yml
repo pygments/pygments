@@ -9,13 +9,13 @@ pipelines:
           - pip install -r requirements.txt
           - tox -e py27
     - step:
-        name: Test on Python 3.4
-        image: python:3.4
+        name: Test on Python 3.5
+        image: python:3.5
         caches:
           - pip
         script:
           - pip install -r requirements.txt
-          - tox -e py34
+          - tox -e py35
     - step:
         name: Test on Python 3.6
         image: python:3.6
