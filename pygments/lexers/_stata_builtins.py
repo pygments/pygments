@@ -15,7 +15,7 @@ builtins_special = (
 )
 
 builtins_base = (
-    "if", "else", "else\s+if", "in", "foreach", "for", "forv", "forva",
+    "if", "else", "in", "foreach", "for", "forv", "forva",
     "forval", "forvalu", "forvalue", "forvalues", "by", "bys",
     "bysort", "quietly", "qui", "about", "ac",
     "ac_7", "acprplot", "acprplot_7", "adjust", "ado", "adopath",
