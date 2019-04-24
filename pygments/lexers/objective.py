@@ -66,7 +66,7 @@ def objective(baselexer):
                     'copy', 'retain', 'assign', 'unsafe_unretained', 'atomic', 'nonatomic',
                     'readonly', 'readwrite', 'setter', 'getter', 'typeof', 'in',
                     'out', 'inout', 'release', 'class', '@dynamic', '@optional',
-                    '@required', '@autoreleasepool'), suffix=r'\b'),
+                    '@required', '@autoreleasepool', '@import'), suffix=r'\b'),
                  Keyword),
                 (words(('id', 'instancetype', 'Class', 'IMP', 'SEL', 'BOOL',
                         'IBOutlet', 'IBAction', 'unichar'), suffix=r'\b'),
