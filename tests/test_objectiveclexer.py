@@ -69,12 +69,23 @@ class ObjectiveCLexerTest(unittest.TestCase):
         ]
         self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
 
-    def testLieralNumberBoolExpression(self):
+    def testLiteralNumberBoolExpression(self):
         fragment = u'@(YES);\n'
         expected = [
             (Token.Literal, u'@('),
             (Token.Name.Builtin, u'YES'),
             (Token.Literal, u')'),
+            (Token.Punctuation, u';'),
+            (Token.Text, u'\n'),
+        ]
+        self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
+
+    def testModuleImport(self):
+        fragment = u'@import ModuleA;\n'
+        expected = [
+            (Token.Keyword, u'@import'),
+            (Token.Text, u' '),
+            (Token.Name, u'ModuleA'),
             (Token.Punctuation, u';'),
             (Token.Text, u'\n'),
         ]
