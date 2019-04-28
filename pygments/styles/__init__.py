@@ -46,6 +46,10 @@ STYLE_MAP = {
     'abap':     'abap::AbapStyle',
     'solarized-dark': 'solarized::SolarizedDarkStyle',
     'solarized-light': 'solarized::SolarizedLightStyle',
+    'sas':         'sas::SasStyle',
+    'stata':       'stata_light::StataLightStyle',
+    'stata-light': 'stata_light::StataLightStyle',
+    'stata-dark':  'stata_dark::StataDarkStyle',
 }
 
 

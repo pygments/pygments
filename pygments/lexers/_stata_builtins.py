@@ -10,6 +10,10 @@
 """
 
 
+builtins_special = (
+    "if", "in", "using", "replace", "by", "gen", "generate"
+)
+
 builtins_base = (
     "if", "else", "in", "foreach", "for", "forv", "forva",
     "forval", "forvalu", "forvalue", "forvalues", "by", "bys",
@@ -66,7 +70,7 @@ builtins_base = (
     "doedit", "dotplot", "dotplot_7", "dprobit", "drawnorm",
     "drop", "ds", "ds_util", "dstdize", "duplicates", "durbina",
     "dwstat", "dydx", "e", "ed", "edi", "edit", "egen",
-    "eivreg", "emdef", "en", "enc", "enco", "encod", "encode",
+    "eivreg", "emdef", "end", "en", "enc", "enco", "encod", "encode",
     "eq", "erase", "ereg", "ereg_lf", "ereg_p", "ereg_sw",
     "ereghet", "ereghet_glf", "ereghet_glf_sh", "ereghet_gp",
     "ereghet_ilf", "ereghet_ilf_sh", "ereghet_ip", "eret",
@@ -415,5 +419,3 @@ builtins_functions = (
     "weekly", "wofd", "word", "wordcount", "year", "yearly",
     "yh", "ym", "yofd", "yq", "yw"
 )
-
-
