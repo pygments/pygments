@@ -1,0 +1,15 @@
+name = "TOML sample file"
+
+[section]
+key = "value"
+literal_string = 'C:\test'
+other_string = '''value'''
+list = [1, 2, 3]
+nested_list = [ [1, 2], [3, 4] ]
+float_variable = 13.37
+
+  [section.nested]
+  boolean_variable = false
+  date_variable = 1969-97-24T16:50:35-00:00
+
+# Comment
