@@ -657,9 +657,11 @@ class Dasm16Lexer(RegexLexer):
     Simple lexer for DCPU-16 Assembly
 
     Check http://0x10c.com/doc/dcpu-16.txt
+
+    .. versionadded:: 2.4
     """
-    name = 'dasm16'
-    aliases = ['DASM16']
+    name = 'DASM16'
+    aliases = ['dasm16']
     filenames = ['*.dasm16', '*.dasm']
     mimetypes = ['text/x-dasm16']
 
