@@ -14,6 +14,7 @@ Programming languages
 * AppleScript
 * Assembly (various)
 * Asymptote
+* `Augeas <http://augeas.net>`_
 * Awk
 * Befunge
 * Boo
@@ -31,6 +32,7 @@ Programming languages
 * `Cython <http://cython.org>`_
 * `D <http://dlang.org>`_
 * Dart
+* DCPU-16
 * Delphi
 * Dylan
 * `Elm <http://elm-lang.org/>`_
@@ -85,10 +87,12 @@ Programming languages
 * Scheme
 * Scilab
 * `SGF <https://www.red-bean.com/sgf/>`_
+* `Slash <https://github.com/arturadib/Slash-A>`_
 * `Slurm <https://slurm.schedmd.com/overview.html>`_
 * Smalltalk
 * SNOBOL
 * Tcl
+* `TOML <https://github.com/toml-lang/toml>`_
 * Vala
 * Verilog
 * VHDL

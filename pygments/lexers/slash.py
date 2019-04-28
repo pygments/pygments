@@ -3,7 +3,8 @@
     pygments.lexers.slash
     ~~~~~~~~~~~~~~~~~~~~~
 
-    Lexer for the Slash programming language.
+    Lexer for the `Slash <https://github.com/arturadib/Slash-A>`_ programming
+    language.
 
     :copyright: Copyright 2012 by GitHub, Inc
     :license: BSD, see LICENSE for details.
@@ -173,6 +174,8 @@ class SlashLanguageLexer(ExtendedRegexLexer):
 class SlashLexer(DelegatingLexer):
     """
     Lexer for the Slash programming language.
+
+    .. versionadded:: 2.4
     """
 
     name = 'Slash'
