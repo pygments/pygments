@@ -894,12 +894,19 @@ class TOMLLexer(RegexLexer):
             # Basics, comments, strings
             (r'\s+', Text),
             (r'#.*?$', Comment.Single),
+            # Basic string
             (r'"(\\\\|\\"|[^"])*"', String),
+            # Literal string
+            (r'\'[^\']*\'', String),
             (r'(true|false)$', Keyword.Constant),
             ('[a-zA-Z_][a-zA-Z0-9_\-]*', Name),
 
+            (r'\[.*?\]$', Keyword),
+
             # Datetime
-            (r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z', Number.Integer),
+            # TODO this needs to be expanded, as TOML is rather flexible:
+            # https://github.com/toml-lang/toml#offset-date-time
+            (r'\d{4}-\d{2}-\d{2}(?:T| )\d{2}:\d{2}:\d{2}(?:Z|[-+]\d{2}:\d{2})', Number.Integer),
 
             # Numbers
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
