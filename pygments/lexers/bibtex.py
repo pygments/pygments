@@ -5,14 +5,16 @@
 
     Lexers for BibTeX bibliography data and styles
 
-    :copyright: Copyright 2005-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, default, words
-from pygments.token import Name, Comment, String, Error, Number, Text, Keyword, Punctuation
+from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, default, \
+    words
+from pygments.token import Name, Comment, String, Error, Number, Text, \
+    Keyword, Punctuation
 
 __all__ = ['BibTeXLexer', 'BSTLexer']
 
@@ -57,7 +59,8 @@ class BibTeXLexer(ExtendedRegexLexer):
             ('@comment', Comment),
             ('@preamble', Name.Class, ('closing-brace', 'value', 'opening-brace')),
             ('@string', Name.Class, ('closing-brace', 'field', 'opening-brace')),
-            ('@' + IDENTIFIER, Name.Class, ('closing-brace', 'command-body', 'opening-brace')),
+            ('@' + IDENTIFIER, Name.Class,
+             ('closing-brace', 'command-body', 'opening-brace')),
             ('.+', Comment),
         ],
         'opening-brace': [
@@ -98,12 +101,12 @@ class BibTeXLexer(ExtendedRegexLexer):
         'quoted-string': [
             (r'\{', String, 'braced-string'),
             ('"', String, '#pop'),
-            ('[^\{\"]+', String),
+            (r'[^\{\"]+', String),
         ],
         'braced-string': [
             (r'\{', String, '#push'),
             (r'\}', String, '#pop'),
-            ('[^\{\}]+', String),
+            (r'[^\{\}]+', String),
         ],
         'whitespace': [
             (r'\s+', Text),
@@ -127,7 +130,8 @@ class BSTLexer(RegexLexer):
         'root': [
             include('whitespace'),
             (words(['read', 'sort']), Keyword),
-            (words(['execute', 'integers', 'iterate', 'reverse', 'strings']), Keyword, ('group')),
+            (words(['execute', 'integers', 'iterate', 'reverse', 'strings']),
+             Keyword, ('group')),
             (words(['function', 'macro']), Keyword, ('group', 'group')),
             (words(['entry']), Keyword, ('group', 'group', 'group')),
         ],
@@ -150,7 +154,7 @@ class BSTLexer(RegexLexer):
             default('#pop'),
         ],
         'whitespace': [
-            ('\s+', Text),
+            (r'\s+', Text),
             ('%.*?$', Comment.SingleLine),
         ],
     }

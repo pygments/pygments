@@ -16,7 +16,7 @@
       formats that PIL supports and ANSI sequences
     * it is usable as a command-line tool and as a library
 
-    :copyright: Copyright 2006-2015 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -48,7 +48,7 @@ else:
 
 setup(
     name = 'Pygments',
-    version = '2.2',
+    version = '2.3.1',
     url = 'http://pygments.org/',
     license = 'BSD License',
     author = 'Georg Brandl',
@@ -56,10 +56,11 @@ setup(
     description = 'Pygments is a syntax highlighting package written in Python.',
     long_description = __doc__,
     keywords = 'syntax highlighting',
-    packages = find_packages(exclude=['ez_setup']),
+    packages = find_packages(),
     platforms = 'any',
     zip_safe = False,
     include_package_data = True,
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
     classifiers = [
         'License :: OSI Approved :: BSD License',
         'Intended Audience :: Developers',
@@ -68,7 +69,11 @@ setup(
         'Development Status :: 6 - Mature',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Operating System :: OS Independent',
         'Topic :: Text Processing :: Filters',
         'Topic :: Utilities',
