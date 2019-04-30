@@ -16,6 +16,7 @@ Programming languages
 * Asymptote
 * `Augeas <http://augeas.net>`_
 * Awk
+* BBC Basic
 * Befunge
 * Boo
 * BrainFuck
@@ -72,6 +73,7 @@ Programming languages
 * OCaml
 * PHP
 * `Perl 5 <http://perl.org>`_ and `Perl 6 <https://perl6.org>`_
+* `Pony <https://www.ponylang.io/>`_
 * PovRay
 * PostScript
 * PowerShell

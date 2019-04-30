@@ -2,7 +2,7 @@
 """
     pygments.lexers.pony
     ~~~~~~~~~~~~~~~~~~~~
- 
+
     Lexers for Pony and related languages.
 
     :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
@@ -19,14 +19,16 @@ __all__ = ['PonyLexer']
 class PonyLexer(RegexLexer):
     """
     For Pony source code.
+
+    .. versionadded:: 2.4
     """
-    
+
     name = 'Pony'
     aliases = ['pony']
     filenames = ['*.pony']
-    
+
     _caps = r'(iso|trn|ref|val|box|tag)'
-    
+
     tokens = {
         'root': [
             (r'\n', Text),
