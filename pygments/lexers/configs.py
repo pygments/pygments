@@ -855,10 +855,10 @@ class AugeasLexer(RegexLexer):
             (r'(module)(\s*)([^\s=]+)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
             (r'(let)(\s*)([^\s=]+)', bygroups(Keyword.Declaration, Text, Name.Variable)),
             (r'(del|store|value|counter|seq|key|label|autoload|incl|excl|transform|test|get|put)(\s+)', bygroups(Name.Builtin, Text)),
-            (r'(\()([^\:]+)(\:)(unit|string|regexp|lens|tree|filter)(\))', bygroups(Punctuation, Name.Variable, Punctuation, Keyword.Type, Punctuation)),
+            (r'(\()([^:]+)(\:)(unit|string|regexp|lens|tree|filter)(\))', bygroups(Punctuation, Name.Variable, Punctuation, Keyword.Type, Punctuation)),
             (r'\(\*', Comment.Multiline, 'comment'),
-            (r'[\+=\|\.\*\;\?-]', Operator),
-            (r'[\[\]\(\)\{\}]', Operator),
+            (r'[*+\-.;=?|]', Operator),
+            (r'[()\[\]{}]', Operator),
             (r'"', String.Double, 'string'),
             (r'\/', String.Regex, 'regex'),
             (r'([A-Z]\w*)(\.)(\w+)', bygroups(Name.Namespace, Punctuation, Name.Variable)),
@@ -872,14 +872,14 @@ class AugeasLexer(RegexLexer):
         ],
         'regex': [
             (r'\\.', String.Escape),
-            (r'[^\/]', String.Regex),
+            (r'[^/]', String.Regex),
             (r'\/', String.Regex, '#pop'),
         ],
         'comment': [
-            (r'[^*\)]', Comment.Multiline),
+            (r'[^*)]', Comment.Multiline),
             (r'\(\*', Comment.Multiline, '#push'),
             (r'\*\)', Comment.Multiline, '#pop'),
-            (r'[\*\)]', Comment.Multiline)
+            (r'[)*]', Comment.Multiline)
         ],
     }
 
@@ -905,9 +905,10 @@ class TOMLLexer(RegexLexer):
             # Basic string
             (r'"(\\\\|\\"|[^"])*"', String),
             # Literal string
+            (r'\'\'\'(.*)\'\'\'', String),
             (r'\'[^\']*\'', String),
             (r'(true|false)$', Keyword.Constant),
-            ('[a-zA-Z_][a-zA-Z0-9_\-]*', Name),
+            (r'[a-zA-Z_][\w\-]*', Name),
 
             (r'\[.*?\]$', Keyword),
             # Datetime
@@ -918,7 +919,9 @@ class TOMLLexer(RegexLexer):
             # Numbers
             (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
             (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
-            (r'\-?\d+', Number.Integer),
+            # Handle +-inf, +-infinity, +-nan
+            (r'[+-]?(?:(inf(?:inity)?)|nan)', Number.Float),
+            (r'[+-]?\d+', Number.Integer),
 
             # Punctuation
             (r'[]{}:(),;[]', Punctuation),
