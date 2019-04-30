@@ -910,7 +910,6 @@ class TOMLLexer(RegexLexer):
             ('[a-zA-Z_][a-zA-Z0-9_\-]*', Name),
 
             (r'\[.*?\]$', Keyword),
-
             # Datetime
             # TODO this needs to be expanded, as TOML is rather flexible:
             # https://github.com/toml-lang/toml#offset-date-time
