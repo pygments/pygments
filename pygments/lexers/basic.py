@@ -550,7 +550,7 @@ class VBScriptLexer(RegexLexer):
             (r'[a-z_][a-z0-9_]*', Name),
             (r'\b_\n', Operator),
             (words(r'(),.:'), Punctuation),
-            ('.+(\n)?', Error)
+            (r'.+(\n)?', Error)
         ],
         'dim_more': [
             (r'(\s*)(,)(\s*)([a-z_][a-z0-9]*)', bygroups(Whitespace, Punctuation, Whitespace, Name.Variable)),
@@ -570,7 +570,7 @@ class BBCBasicLexer(RegexLexer):
     BBC Basic was supplied on the BBC Micro, and later Acorn RISC OS.
     It is also used by BBC Basic For Windows.
 
-    .. versionadded:: 2.4????
+    .. versionadded:: 2.4
     """
     base_keywords = ['OTHERWISE', 'AND', 'DIV', 'EOR', 'MOD', 'OR', 'ERROR',
                      'LINE', 'OFF', 'STEP', 'SPC', 'TAB', 'ELSE', 'THEN',
@@ -620,9 +620,9 @@ class BBCBasicLexer(RegexLexer):
             (r':', Comment.Preproc),
 
             # Some special cases to make functions come out nicer
-            (r'(DEF)(\s*)(FN|PROC)([A-Za-z_@][A-Za-z0-9_@]*)',
+            (r'(DEF)(\s*)(FN|PROC)([A-Za-z_@][\w@]*)',
              bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration, Name.Function)),
-            (r'(FN|PROC)([A-Za-z_@][A-Za-z0-9_@]*)',
+            (r'(FN|PROC)([A-Za-z_@][\w@]*)',
              bygroups(Keyword, Name.Function)),
 
             (r'(GOTO|GOSUB|THEN|RESTORE)(\s*)(\d+)',
@@ -644,7 +644,7 @@ class BBCBasicLexer(RegexLexer):
             (r'[+-]?[0-9]+E[+-]?[0-9]+', Number.Float),
             (r'[+-]?\d+', Number.Integer),
 
-            (r'([A-Za-z_@][A-Za-z0-9_@]*[%$]?)', Name.Variable),
+            (r'([A-Za-z_@][\w@]*[%$]?)', Name.Variable),
             (r'([+\-]=|[$!|?+\-*/%^=><();]|>=|<=|<>|<<|>>|>>>|,)', Operator),
         ],
         'string': [
