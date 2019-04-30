@@ -1,0 +1,181 @@
+# This is a TOML document comment
+
+title = "TOML example file" # This is an inline comment
+
+[examples]
+# Examples taken from https://github.com/toml-lang/toml/blob/master/README.md
+key = "value"
+bare_key = "value"
+bare-key = "value"
+1234 = "value"
+"127.0.0.1" = "value"
+"character encoding" = "value"
+"ʎǝʞ" = "value"
+'key2' = "value"
+'quoted "value"' = "value"
+name = "Orange"
+physical.color = "orange"
+physical.shape = "round"
+site."google.com" = true
+a.b.c = 1
+a.d = 2
+
+[strings]
+str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
+str1 = """
+Roses are red
+Violets are blue"""
+str2 = "Roses are red\nViolets are blue"
+str3 = "Roses are red\r\nViolets are blue"
+
+  [strings.equivalents]
+  str1 = "The quick brown fox jumps over the lazy dog."
+  str2 = """
+The quick brown \
+
+
+    fox jumps over \
+      the lazy dog."""
+  str3 = """\
+         The quick brown \
+         fox jumps over \
+         the lazy dog.\
+         """
+
+  [strings.literal]
+  winpath  = 'C:\Users\nodejs\templates'
+  winpath2 = '\\ServerX\admin$\system32\'
+  quoted   = 'Tom "Dubs" Preston-Werner'
+  regex    = '<\i\c*\s*>'
+
+  [strings.multiline]
+  regex2 = '''I [dw]on't need \d{2} apples'''
+  lines  = '''
+The first newline is
+trimmed in raw strings.
+   All other whitespace
+   is preserved.
+'''
+
+[integers]
+int1 = +99
+int2 = 42
+int3 = 0
+int4 = -17
+int5 = 1_000
+int6 = 5_349_221
+int7 = 1_2_3_4_5 # discouraged format
+# hexadecimal with prefix `0x`
+hex1 = 0xDEADBEEF
+hex2 = 0xdeadbeef
+hex3 = 0xdead_beef
+# octal with prefix `0o`
+oct1 = 0o01234567
+oct2 = 0o755 # useful for Unix file permissions
+# binary with prefix `0b`
+bin1 = 0b11010110
+
+[floats]
+# fractional
+flt1 = +1.0
+flt2 = 3.1415
+flt3 = -0.01
+# exponent
+flt4 = 5e+22
+flt5 = 1e6
+flt6 = -2E-2
+# both
+flt7 = 6.626e-34
+# with underscores, for readability
+flt8 = 224_617.445_991_228
+# infinity
+sf1 = inf  # positive infinity
+sf2 = +inf # positive infinity
+sf3 = -inf # negative infinity
+# not a number
+sf4 = nan  # actual sNaN/qNaN encoding is implementation specific
+sf5 = +nan # same as `nan`
+sf6 = -nan # valid, actual encoding is implementation specific
+# plus/minus zero
+sf0_1 = +0.0
+sf0_2 = -0.0
+
+[booleans]
+bool1 = true
+bool2 = false
+
+[datetime.offset]
+odt1 = 1979-05-27T07:32:00Z
+odt2 = 1979-05-27T00:32:00-07:00
+odt3 = 1979-05-27T00:32:00.999999-07:00
+odt4 = 1979-05-27 07:32:00Z
+
+[datetime.local]
+ldt1 = 1979-05-27T07:32:00
+ldt2 = 1979-05-27T00:32:00.999999
+
+[date.local]
+ld1 = 1979-05-27
+
+[time.local]
+lt1 = 07:32:00
+lt2 = 00:32:00.999999
+
+[arrays]
+arr1 = [ 1, 2, 3 ]
+arr2 = [ "red", "yellow", "green" ]
+arr3 = [ [ 1, 2 ], [3, 4, 5] ]
+arr4 = [ "all", 'strings', """are the same""", '''type''']
+arr5 = [ [ 1, 2 ], ["a", "b", "c"] ]
+arr6 = [ 1, 2.0 ] # INVALID
+arr7 = [
+  1, 2, 3
+]
+arr8 = [
+  1,
+  2, # this is ok
+]
+
+["inline tables"]
+name = { first = "Tom", last = "Preston-Werner" }
+point = { x = 1, y = 2 }
+animal = { type.name = "pug" }
+
+["arrays of tables"]
+points = [ { x = 1, y = 2, z = 3 },
+           { x = 7, y = 8, z = 9 },
+           { x = 2, y = 4, z = 8 } ]
+
+  [products]
+
+    [[products]]
+    name = "Hammer"
+    sku = 738594937
+
+    [[products]]
+
+    [[products]]
+    name = "Nail"
+    sku = 284758393
+    color = "gray"
+
+  [fruits]
+
+    [[fruit]]
+      name = "apple"
+
+      [fruit.physical]
+        color = "red"
+        shape = "round"
+
+      [[fruit.variety]]
+        name = "red delicious"
+
+      [[fruit.variety]]
+        name = "granny smith"
+
+    [[fruit]]
+      name = "banana"
+
+      [[fruit.variety]]
+        name = "plantain"
