@@ -45,6 +45,7 @@ Programming languages
 * `Fennel <https://fennel-lang.org/>`_
 * `FloScript <http://ioflo.com/>`_
 * Fortran
+* `FreeFEM++ <https://freefem.org/>`_
 * F#
 * GAP
 * Gherkin (Cucumber)
