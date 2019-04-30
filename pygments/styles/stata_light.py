@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.styles.stata
-    ~~~~~~~~~~~~~~~~~~~~~
+    pygments.styles.stata_light
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Style inspired by Stata's do-file editor. Note this is not meant
-    to be a complete style. It's merely meant to mimic Stata's do file
-    editor syntax highlighting.
+    Light Style inspired by Stata's do-file editor. Note this is not
+    meant to be a complete style, just for Stata's file formats.
 
     :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -13,28 +12,28 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-    Number, Operator, Whitespace
+    Number, Operator, Whitespace, Text
 
 
-class StataStyle(Style):
+class StataLightStyle(Style):
     """
-    Style inspired by Stata's do-file editor. Note this is not meant
-    to be a complete style. It's merely meant to mimic Stata's do file
-    editor syntax highlighting.
+    Light mode style inspired by Stata's do-file editor. This is not
+    meant to be a complete style, just for use with Stata.
     """
 
     default_style = ''
-
     styles = {
+        Text:                  '#111111',
         Whitespace:            '#bbbbbb',
-        Comment:               'italic #008800',
+        Error:                 'bg:#e3d2d2 #a61717',
         String:                '#7a2424',
         Number:                '#2c2cff',
         Operator:              '',
+        Name.Function:         '#2c2cff',
+        Name.Other:            '#be646c',
         Keyword:               'bold #353580',
         Keyword.Constant:      '',
-        Name.Function:         '#2c2cff',
+        Comment:               'italic #008800',
         Name.Variable:         'bold #35baba',
         Name.Variable.Global:  'bold #b5565e',
-        Error:                 'bg:#e3d2d2 #a61717'
     }

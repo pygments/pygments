@@ -20,7 +20,7 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
 
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
            'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'NasmLexer',
-           'NasmObjdumpLexer', 'TasmLexer', 'Ca65Lexer']
+           'NasmObjdumpLexer', 'TasmLexer', 'Ca65Lexer', 'Dasm16Lexer']
 
 
 class GasLexer(RegexLexer):
@@ -650,3 +650,109 @@ class Ca65Lexer(RegexLexer):
         # comments in GAS start with "#"
         if re.match(r'^\s*;', text, re.MULTILINE):
             return 0.9
+
+
+class Dasm16Lexer(RegexLexer):
+    """
+    Simple lexer for DCPU-16 Assembly
+
+    Check http://0x10c.com/doc/dcpu-16.txt
+
+    .. versionadded:: 2.4
+    """
+    name = 'DASM16'
+    aliases = ['dasm16']
+    filenames = ['*.dasm16', '*.dasm']
+    mimetypes = ['text/x-dasm16']
+
+    INSTRUCTIONS = [
+        'SET',
+        'ADD', 'SUB',
+        'MUL', 'MLI',
+        'DIV', 'DVI',
+        'MOD', 'MDI',
+        'AND', 'BOR', 'XOR',
+        'SHR', 'ASR', 'SHL',
+        'IFB', 'IFC', 'IFE', 'IFN', 'IFG', 'IFA', 'IFL', 'IFU',
+        'ADX', 'SBX',
+        'STI', 'STD',
+        'JSR',
+        'INT', 'IAG', 'IAS', 'RFI', 'IAQ', 'HWN', 'HWQ', 'HWI',
+    ]
+
+    REGISTERS = [
+        'A', 'B', 'C',
+        'X', 'Y', 'Z',
+        'I', 'J',
+        'SP', 'PC', 'EX',
+        'POP', 'PEEK', 'PUSH'
+    ]
+
+    # Regexes yo
+    char = r'[a-zA-Z$._0-9@]'
+    identifier = r'(?:[a-zA-Z$_]' + char + '*|\.' + char + '+)'
+    number = r'[+-]?(?:0[xX][a-zA-Z0-9]+|\d+)'
+    binary_number = r'0b[01_]+'
+    instruction = r'(?i)(' + '|'.join(INSTRUCTIONS) + ')'
+    single_char = r"'\\?" + char + "'"
+    string = r'"(\\"|[^"])*"'
+
+    def guess_identifier(lexer, match):
+        ident = match.group(0)
+        klass = Name.Variable if ident.upper() in lexer.REGISTERS else Name.Label
+        yield match.start(), klass, ident
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            (':' + identifier, Name.Label),
+            (identifier + ':', Name.Label),
+            (instruction, Name.Function, 'instruction-args'),
+            (r'\.' + identifier, Name.Function, 'data-args'),
+            (r'[\r\n]+', Text)
+        ],
+
+        'numeric' : [
+            (binary_number, Number.Integer),
+            (number, Number.Integer),
+            (single_char, String),
+        ],
+
+        'arg' : [
+            (identifier, guess_identifier),
+            include('numeric')
+        ],
+
+        'deref' : [
+            (r'\+', Punctuation),
+            (r'\]', Punctuation, '#pop'),
+            include('arg'),
+            include('whitespace')
+        ],
+
+        'instruction-line' : [
+            (r'[\r\n]+', Text, '#pop'),
+            (r';.*?$', Comment, '#pop'),
+            include('whitespace')
+        ],
+
+        'instruction-args': [
+            (r',', Punctuation),
+            (r'\[', Punctuation, 'deref'),
+            include('arg'),
+            include('instruction-line')
+        ],
+
+        'data-args' : [
+            (r',', Punctuation),
+            include('numeric'),
+            (string, String),
+            include('instruction-line')
+        ],
+
+        'whitespace': [
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r';.*?\n', Comment)
+        ],
+    }
