@@ -95,6 +95,7 @@ Programming languages
 * Smalltalk
 * SNOBOL
 * Tcl
+* `Tera Term language <https://ttssh2.osdn.jp/>`_
 * `TOML <https://github.com/toml-lang/toml>`_
 * Vala
 * Verilog
