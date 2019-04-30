@@ -18,6 +18,7 @@ Programming languages
 * Awk
 * BBC Basic
 * Befunge
+* `Boa <http://boa.cs.iastate.edu/docs/index.php>`_
 * Boo
 * BrainFuck
 * C, C++
