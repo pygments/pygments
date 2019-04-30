@@ -20,7 +20,7 @@ from pygments.lexers.c_cpp import CLexer, CppLexer
 from pygments.lexers import _mql_builtins
 
 __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
-           'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer']
+           'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer', 'CharmciLexer']
 
 
 class PikeLexer(CppLexer):
@@ -245,7 +245,7 @@ class ValaLexer(RegexLexer):
                 'ulong', 'unichar', 'ushort'), suffix=r'\b'),
              Keyword.Type),
             (r'(true|false|null)\b', Name.Builtin),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'root': [
             include('whitespace'),
@@ -344,7 +344,7 @@ class SwigLexer(CppLexer):
             # SWIG directives
             (r'(%[a-z_][a-z0-9_]*)', Name.Function),
             # Special variables
-            ('\$\**\&?\w+', Name),
+            (r'\$\**\&?\w+', Name),
             # Stringification / additional preprocessor directives
             (r'##*[a-zA-Z_]\w*', Comment.Preproc),
             inherit,
@@ -539,3 +539,23 @@ class ArduinoLexer(CppLexer):
                 yield index, Name.Function, value
             else:
                 yield index, token, value
+
+class CharmciLexer(CppLexer):
+    """
+    For `Charm++ <https://charm.cs.illinois.edu>`_ interface files (.ci).
+    """
+
+    name = 'Charmci'
+    aliases = ['charmci']
+    filenames = ['*.ci']
+
+    mimetypes = []
+
+    tokens = {
+        'statements': [
+            (r'(module)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (words(('mainmodule','mainchare','chare','array','group','nodegroup','message','conditional')), Keyword),
+            (words(('entry','aggregate','threaded','sync','exclusive','nokeep','notrace','immediate','expedited','inline','local','python','accel','readwrite','writeonly','accelblock','memcritical','packed','varsize','initproc','initnode','initcall','stacksize','createhere','createhome','reductiontarget','iget','nocopy','mutable','migratable','readonly')), Keyword),
+            inherit,
+        ],
+    }

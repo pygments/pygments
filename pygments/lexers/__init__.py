@@ -133,7 +133,8 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
     try:
         # This empty dict will contain the namespace for the exec'd file
         custom_namespace = {}
-        exec(open(filename, 'rb').read(), custom_namespace)
+        with open(filename, 'rb') as f:
+            exec(f.read(), custom_namespace)
         # Retrieve the class `lexername` from that namespace
         if lexername not in custom_namespace:
             raise ClassNotFound('no valid %s class found in %s' %

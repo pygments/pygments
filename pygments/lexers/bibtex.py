@@ -101,12 +101,12 @@ class BibTeXLexer(ExtendedRegexLexer):
         'quoted-string': [
             (r'\{', String, 'braced-string'),
             ('"', String, '#pop'),
-            ('[^\{\"]+', String),
+            (r'[^\{\"]+', String),
         ],
         'braced-string': [
             (r'\{', String, '#push'),
             (r'\}', String, '#pop'),
-            ('[^\{\}]+', String),
+            (r'[^\{\}]+', String),
         ],
         'whitespace': [
             (r'\s+', Text),
@@ -154,7 +154,7 @@ class BSTLexer(RegexLexer):
             default('#pop'),
         ],
         'whitespace': [
-            ('\s+', Text),
+            (r'\s+', Text),
             ('%.*?$', Comment.SingleLine),
         ],
     }

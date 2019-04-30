@@ -59,7 +59,14 @@ line_re  = re.compile('.*?\n')
 
 language_re = re.compile(r"\s+LANGUAGE\s+'?(\w+)'?", re.IGNORECASE)
 
-do_re = re.compile(r'\bDO\b', re.IGNORECASE) 
+do_re = re.compile(r'\bDO\b', re.IGNORECASE)
+
+# Regular expressions for analyse_text()
+name_between_bracket_re = re.compile(r'\[[a-zA-Z_]\w*\]')
+name_between_backtick_re = re.compile(r'`[a-zA-Z_]\w*`')
+tsql_go_re = re.compile(r'\bgo\b', re.IGNORECASE)
+tsql_declare_re = re.compile(r'\bdeclare\s+@', re.IGNORECASE)
+tsql_variable_re = re.compile(r'@[a-zA-Z_]\w*\b')
 
 
 def language_callback(lexer, match):
@@ -82,7 +89,7 @@ def language_callback(lexer, match):
                 lexer.text[max(0, match.start()-25):match.start()]))
             if m:
                 l = lexer._get_lexer('plpgsql')
-    
+
     # 1 = $, 2 = delimiter, 3 = $
     yield (match.start(1), String, match.group(1))
     yield (match.start(2), String.Delimiter, match.group(2))
@@ -155,7 +162,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r'\s+', Text),
             (r'--.*\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
-            (r'(' + '|'.join(s.replace(" ", "\s+")
+            (r'(' + '|'.join(s.replace(" ", r"\s+")
                              for s in DATATYPES + PSEUDO_TYPES)
              + r')\b', Name.Builtin),
             (words(KEYWORDS, suffix=r'\b'), Keyword),
@@ -308,14 +315,7 @@ class PostgresConsoleLexer(Lexer):
             # and continue until the end of command is detected
             curcode = ''
             insertions = []
-            while 1:
-                try:
-                    line = next(lines)
-                except StopIteration:
-                    # allow the emission of partially collected items
-                    # the repl loop will be broken below
-                    break
-
+            for line in lines:
                 # Identify a shell prompt in case of psql commandline example
                 if line.startswith('$') and not curcode:
                     lexer = get_lexer_by_name('console', **self.options)
@@ -346,8 +346,7 @@ class PostgresConsoleLexer(Lexer):
 
             # Emit the output lines
             out_token = Generic.Output
-            while 1:
-                line = next(lines)
+            for line in lines:
                 mprompt = re_prompt.match(line)
                 if mprompt is not None:
                     # push the line back to have it processed by the prompt
@@ -363,6 +362,8 @@ class PostgresConsoleLexer(Lexer):
                     yield (mmsg.start(2), out_token, mmsg.group(2))
                 else:
                     yield (0, out_token, line)
+            else:
+                return
 
 
 class SqlLexer(RegexLexer):
@@ -480,6 +481,9 @@ class SqlLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        return 0.01
+
 
 class TransactSqlLexer(RegexLexer):
     """
@@ -499,7 +503,7 @@ class TransactSqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r'--(?m).*?$\n?', Comment.Single),
+            (r'(?m)--.*?$\n?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (words(_tsql_builtins.OPERATORS), Operator),
             (words(_tsql_builtins.OPERATOR_WORDS, suffix=r'\b'), Operator.Word),
@@ -535,6 +539,33 @@ class TransactSqlLexer(RegexLexer):
             (r'[/*]', Comment.Multiline)
         ]
     }
+
+    def analyse_text(text):
+        rating = 0
+        if tsql_declare_re.search(text):
+            # Found T-SQL variable declaration.
+            rating = 1.0
+        else:
+            name_between_backtick_count = len(
+                name_between_backtick_re.findall((text)))
+            name_between_bracket_count = len(
+                name_between_bracket_re.findall(text))
+            # We need to check if there are any names using
+            # backticks or brackets, as otherwise both are 0
+            # and 0 >= 2 * 0, so we would always assume it's true
+            dialect_name_count = name_between_backtick_count + name_between_bracket_count
+            if dialect_name_count >= 1 and name_between_bracket_count >= 2 * name_between_backtick_count:
+                # Found at least twice as many [name] as `name`.
+                rating += 0.5
+            elif name_between_bracket_count > name_between_backtick_count:
+                rating += 0.2
+            elif name_between_bracket_count > 0:
+                rating += 0.1
+            if tsql_variable_re.search(text) is not None:
+                rating += 0.1
+            if tsql_go_re.search(text) is not None:
+                rating += 0.1
+        return rating
 
 
 class MySqlLexer(RegexLexer):
@@ -608,6 +639,23 @@ class MySqlLexer(RegexLexer):
             (r'[/*]', Comment.Multiline)
         ]
     }
+
+    def analyse_text(text):
+        rating = 0
+        name_between_backtick_count = len(
+            name_between_backtick_re.findall((text)))
+        name_between_bracket_count = len(
+            name_between_bracket_re.findall(text))
+        # Same logic as above in the TSQL analysis
+        dialect_name_count = name_between_backtick_count + name_between_bracket_count
+        if dialect_name_count >= 1 and name_between_backtick_count >= 2 * name_between_bracket_count:
+            # Found at least twice as many `name` as [name].
+            rating += 0.5
+        elif name_between_backtick_count > name_between_bracket_count:
+            rating += 0.2
+        elif name_between_backtick_count > 0:
+            rating += 0.1
+        return rating
 
 
 class SqliteConsoleLexer(Lexer):

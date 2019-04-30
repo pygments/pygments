@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+    Number, Punctuation, Whitespace
 
 from pygments.lexers.html import HtmlLexer
 from pygments.lexers import _stan_builtins
@@ -284,8 +284,8 @@ class StanLexer(RegexLexer):
     """Pygments Lexer for Stan models.
 
     The Stan modeling language is specified in the *Stan Modeling Language
-    User's Guide and Reference Manual, v2.8.0*,
-    `pdf <https://github.com/stan-dev/stan/releases/download/v2.8.8/stan-reference-2.8.0.pdf>`__.
+    User's Guide and Reference Manual, v2.17.0*,
+    `pdf <https://github.com/stan-dev/stan/releases/download/v2.17.0/stan-reference-2.17.0.pdf>`__.
 
     .. versionadded:: 1.6
     """
@@ -316,19 +316,24 @@ class StanLexer(RegexLexer):
                         'parameters', r'transformed\s+parameters',
                         'model', r'generated\s+quantities')),
              bygroups(Keyword.Namespace, Text, Punctuation)),
+            # target keyword
+            (r'target\s*\+=', Keyword),
             # Reserved Words
             (r'(%s)\b' % r'|'.join(_stan_builtins.KEYWORDS), Keyword),
             # Truncation
             (r'T(?=\s*\[)', Keyword),
             # Data types
             (r'(%s)\b' % r'|'.join(_stan_builtins.TYPES), Keyword.Type),
+             # < should be punctuation, but elsewhere I can't tell if it is in
+             # a range constraint
+            (r'(<)(\s*)(upper|lower)(\s*)(=)', bygroups(Operator, Whitespace, Keyword, Whitespace, Punctuation)),
+            (r'(,)(\s*)(upper)(\s*)(=)', bygroups(Punctuation, Whitespace, Keyword, Whitespace, Punctuation)),
             # Punctuation
-            (r"[;:,\[\]()]", Punctuation),
+            (r"[;,\[\]()]", Punctuation),
             # Builtin
-            (r'(%s)(?=\s*\()'
-             % r'|'.join(_stan_builtins.FUNCTIONS
-                         + _stan_builtins.DISTRIBUTIONS),
-             Name.Builtin),
+            (r'(%s)(?=\s*\()' % '|'.join(_stan_builtins.FUNCTIONS), Name.Builtin),
+            (r'(~)(\s*)(%s)(?=\s*\()' % '|'.join(_stan_builtins.DISTRIBUTIONS),
+                bygroups(Operator, Whitespace, Name.Builtin)),
             # Special names ending in __, like lp__
             (r'[A-Za-z]\w*__\b', Name.Builtin.Pseudo),
             (r'(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
@@ -337,17 +342,18 @@ class StanLexer(RegexLexer):
             # Regular variable names
             (r'[A-Za-z]\w*\b', Name),
             # Real Literals
-            (r'-?[0-9]+(\.[0-9]+)?[eE]-?[0-9]+', Number.Float),
-            (r'-?[0-9]*\.[0-9]*', Number.Float),
+            (r'[0-9]+(\.[0-9]*)?([eE][+-]?[0-9]+)?', Number.Float),
+            (r'\.[0-9]+([eE][+-]?[0-9]+)?', Number.Float),
             # Integer Literals
-            (r'-?[0-9]+', Number.Integer),
+            (r'[0-9]+', Number.Integer),
             # Assignment operators
-            # SLexer makes these tokens Operators.
-            (r'<-|~', Operator),
+            (r'<-|(?:\+|-|\.?/|\.?\*|=)?=|~', Operator),
             # Infix, prefix and postfix operators (and = )
-            (r"\+|-|\.?\*|\.?/|\\|'|\^|==?|!=?|<=?|>=?|\|\||&&", Operator),
+            (r"\+|-|\.?\*|\.?/|\\|'|\^|!=?|<=?|>=?|\|\||&&|%|\?|:", Operator),
             # Block delimiters
             (r'[{}]', Punctuation),
+            # Distribution |
+            (r'\|', Punctuation)
         ]
     }
 

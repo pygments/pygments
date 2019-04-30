@@ -15,12 +15,13 @@ from pygments.lexer import RegexLexer, default, words, bygroups, include, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace, Literal
 from pygments.lexers.shell import BashLexer
+from pygments.lexers.data import JsonLexer
 
 __all__ = ['IniLexer', 'RegeditLexer', 'PropertiesLexer', 'KconfigLexer',
            'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
-           'PkgConfigLexer', 'PacmanConfLexer']
+           'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer']
 
 
 class IniLexer(RegexLexer):
@@ -539,20 +540,25 @@ class DockerLexer(RegexLexer):
     filenames = ['Dockerfile', '*.docker']
     mimetypes = ['text/x-dockerfile-config']
 
-    _keywords = (r'(?:FROM|MAINTAINER|CMD|EXPOSE|ENV|ADD|ENTRYPOINT|'
-                 r'VOLUME|WORKDIR)')
-
+    _keywords = (r'(?:FROM|MAINTAINER|EXPOSE|WORKDIR|USER|STOPSIGNAL)')
+    _bash_keywords = (r'(?:RUN|CMD|ENTRYPOINT|ENV|ARG|LABEL|ADD|COPY)')
+    _lb = r'(?:\s*\\?\s*)' # dockerfile line break regex
     flags = re.IGNORECASE | re.MULTILINE
 
     tokens = {
         'root': [
-            (r'^(ONBUILD)(\s+)(%s)\b' % (_keywords,),
-             bygroups(Name.Keyword, Whitespace, Keyword)),
-            (r'^(%s)\b(.*)' % (_keywords,), bygroups(Keyword, String)),
             (r'#.*', Comment),
-            (r'RUN', Keyword),  # Rest of line falls through
+            (r'(ONBUILD)(%s)' % (_lb,), bygroups(Keyword, using(BashLexer))),
+            (r'(HEALTHCHECK)((%s--\w+=\w+%s)*)' % (_lb, _lb),
+                bygroups(Keyword, using(BashLexer))),
+            (r'(VOLUME|ENTRYPOINT|CMD|SHELL)(%s)(\[.*?\])' % (_lb,),
+                bygroups(Keyword, using(BashLexer), using(JsonLexer))),
+            (r'(LABEL|ENV|ARG)((%s\w+=\w+%s)*)' % (_lb, _lb),
+                bygroups(Keyword, using(BashLexer))),
+            (r'(%s|VOLUME)\b(.*)' % (_keywords), bygroups(Keyword, String)),
+            (r'(%s)' % (_bash_keywords,), Keyword),
             (r'(.*\\\n)*.+', using(BashLexer)),
-        ],
+        ]
     }
 
 
@@ -567,6 +573,8 @@ class TerraformLexer(RegexLexer):
     aliases = ['terraform', 'tf']
     filenames = ['*.tf']
     mimetypes = ['application/x-tf', 'application/x-terraform']
+
+    embedded_keywords = ('ingress', 'egress', 'listener', 'default', 'connection', 'alias', 'tags', 'lifecycle', 'timeouts')
 
     tokens = {
         'root': [
@@ -584,9 +592,8 @@ class TerraformLexer(RegexLexer):
              (r'(.*?)(\s*)(=)', bygroups(Name.Attribute, Text, Operator)),
              (words(('variable', 'resource', 'provider', 'provisioner', 'module'),
                     prefix=r'\b', suffix=r'\b'), Keyword.Reserved, 'function'),
-             (words(('ingress', 'egress', 'listener', 'default', 'connection', 'alias'),
-                    prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
-             ('\$\{', String.Interpol, 'var_builtin'),
+             (words(embedded_keywords, prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
+             (r'\$\{', String.Interpol, 'var_builtin'),
         ],
         'function': [
              (r'(\s+)(".*")(\s+)', bygroups(Text, String, Text)),
@@ -830,4 +837,98 @@ class PacmanConfLexer(RegexLexer):
             # fallback
             (r'.', Text),
         ],
+    }
+
+
+class AugeasLexer(RegexLexer):
+    """
+    Lexer for `Augeas <http://augeas.net>`_.
+
+    .. versionadded:: 2.4
+    """
+    name = 'Augeas'
+    aliases = ['augeas']
+    filenames = ['*.aug']
+
+    tokens = {
+        'root': [
+            (r'(module)(\s*)([^\s=]+)', bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(let)(\s*)([^\s=]+)', bygroups(Keyword.Declaration, Text, Name.Variable)),
+            (r'(del|store|value|counter|seq|key|label|autoload|incl|excl|transform|test|get|put)(\s+)', bygroups(Name.Builtin, Text)),
+            (r'(\()([^:]+)(\:)(unit|string|regexp|lens|tree|filter)(\))', bygroups(Punctuation, Name.Variable, Punctuation, Keyword.Type, Punctuation)),
+            (r'\(\*', Comment.Multiline, 'comment'),
+            (r'[*+\-.;=?|]', Operator),
+            (r'[()\[\]{}]', Operator),
+            (r'"', String.Double, 'string'),
+            (r'\/', String.Regex, 'regex'),
+            (r'([A-Z]\w*)(\.)(\w+)', bygroups(Name.Namespace, Punctuation, Name.Variable)),
+            (r'.', Name.Variable),
+            (r'\s', Text),
+        ],
+        'string': [
+            (r'\\.', String.Escape),
+            (r'[^"]', String.Double),
+            (r'"', String.Double, '#pop'),
+        ],
+        'regex': [
+            (r'\\.', String.Escape),
+            (r'[^/]', String.Regex),
+            (r'\/', String.Regex, '#pop'),
+        ],
+        'comment': [
+            (r'[^*)]', Comment.Multiline),
+            (r'\(\*', Comment.Multiline, '#push'),
+            (r'\*\)', Comment.Multiline, '#pop'),
+            (r'[)*]', Comment.Multiline)
+        ],
+    }
+
+
+class TOMLLexer(RegexLexer):
+    """
+    Lexer for `TOML <https://github.com/toml-lang/toml>`_, a simple language
+    for config files.
+
+    .. versionadded:: 2.4
+    """
+
+    name = 'TOML'
+    aliases = ['toml']
+    filenames = ['*.toml']
+
+    tokens = {
+        'root': [
+
+            # Basics, comments, strings
+            (r'\s+', Text),
+            (r'#.*?$', Comment.Single),
+            # Basic string
+            (r'"(\\\\|\\"|[^"])*"', String),
+            # Literal string
+            (r'\'\'\'(.*)\'\'\'', String),
+            (r'\'[^\']*\'', String),
+            (r'(true|false)$', Keyword.Constant),
+            (r'[a-zA-Z_][\w\-]*', Name),
+
+            (r'\[.*?\]$', Keyword),
+            # Datetime
+            # TODO this needs to be expanded, as TOML is rather flexible:
+            # https://github.com/toml-lang/toml#offset-date-time
+            (r'\d{4}-\d{2}-\d{2}(?:T| )\d{2}:\d{2}:\d{2}(?:Z|[-+]\d{2}:\d{2})', Number.Integer),
+
+            # Numbers
+            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
+            (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
+            # Handle +-inf, +-infinity, +-nan
+            (r'[+-]?(?:(inf(?:inity)?)|nan)', Number.Float),
+            (r'[+-]?\d+', Number.Integer),
+
+            # Punctuation
+            (r'[]{}:(),;[]', Punctuation),
+            (r'\.', Punctuation),
+
+            # Operators
+            (r'=', Operator)
+
+        ]
     }

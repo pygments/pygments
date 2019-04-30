@@ -36,7 +36,7 @@ class CFamilyLexer(RegexLexer):
     tokens = {
         'whitespace': [
             # preprocessor directives: without whitespace
-            ('^#if\s+0', Comment.Preproc, 'if0'),
+            (r'^#if\s+0', Comment.Preproc, 'if0'),
             ('^#', Comment.Preproc, 'macro'),
             # or with whitespace
             ('^(' + _ws1 + r')(#if\s+0)',
@@ -84,7 +84,7 @@ class CFamilyLexer(RegexLexer):
                 prefix=r'__', suffix=r'\b'), Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
             (r'([a-zA-Z_]\w*)(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'root': [
             include('whitespace'),
@@ -190,9 +190,9 @@ class CLexer(CFamilyLexer):
     priority = 0.1
 
     def analyse_text(text):
-        if re.search('^\s*#include [<"]', text, re.MULTILINE):
+        if re.search(r'^\s*#include [<"]', text, re.MULTILINE):
             return 0.1
-        if re.search('^\s*#ifn?def ', text, re.MULTILINE):
+        if re.search(r'^\s*#ifn?def ', text, re.MULTILINE):
             return 0.1
 
 
