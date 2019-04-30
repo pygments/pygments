@@ -14,12 +14,15 @@ Programming languages
 * AppleScript
 * Assembly (various)
 * Asymptote
+* `Augeas <http://augeas.net>`_
 * Awk
+* BBC Basic
 * Befunge
 * Boo
 * BrainFuck
 * C, C++
 * C#
+* `Charm++ CI <http://charmplusplus.org/>`_
 * Clojure
 * CoffeeScript
 * ColdFusion
@@ -30,6 +33,7 @@ Programming languages
 * `Cython <http://cython.org>`_
 * `D <http://dlang.org>`_
 * Dart
+* DCPU-16
 * Delphi
 * Dylan
 * `Elm <http://elm-lang.org/>`_
@@ -37,6 +41,8 @@ Programming languages
 * `Ezhil <http://ezhillang.org>`_ Ezhil - A Tamil programming language
 * Factor
 * Fancy
+* `Fennel <https://fennel-lang.org/>`_
+* `FloScript <http://ioflo.com/>`_
 * Fortran
 * F#
 * GAP
@@ -44,6 +50,8 @@ Programming languages
 * GL shaders
 * Groovy
 * `Haskell <http://www.haskell.org>`_ (incl. Literate Haskell)
+* HLSL
+* `HSpec <http://hackage.haskell.org/package/hspec>`_
 * IDL
 * Io
 * Java
@@ -64,7 +72,8 @@ Programming languages
 * Octave
 * OCaml
 * PHP
-* `Perl <http://perl.org>`_
+* `Perl 5 <http://perl.org>`_ and `Perl 6 <https://perl6.org>`_
+* `Pony <https://www.ponylang.io/>`_
 * PovRay
 * PostScript
 * PowerShell
@@ -79,9 +88,13 @@ Programming languages
 * Scala
 * Scheme
 * Scilab
+* `SGF <https://www.red-bean.com/sgf/>`_
+* `Slash <https://github.com/arturadib/Slash-A>`_
+* `Slurm <https://slurm.schedmd.com/overview.html>`_
 * Smalltalk
 * SNOBOL
 * Tcl
+* `TOML <https://github.com/toml-lang/toml>`_
 * Vala
 * Verilog
 * VHDL

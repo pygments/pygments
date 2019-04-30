@@ -28,6 +28,13 @@ def func(args):
 '''
 
 
+def _decode_output(text):
+    try:
+        return text.decode('utf-8')
+    except UnicodeEncodeError:  # implicit encode on Python 2 with data loss
+        return text
+
+
 def run_cmdline(*args, **kwds):
     saved_stdin = sys.stdin
     saved_stdout = sys.stdout
@@ -53,9 +60,9 @@ def run_cmdline(*args, **kwds):
         sys.stderr = saved_stderr
     new_stdout.flush()
     new_stderr.flush()
-    out, err = stdout_buffer.getvalue().decode('utf-8'), \
-        stderr_buffer.getvalue().decode('utf-8')
-    return (ret, out, err)
+    out, err = stdout_buffer.getvalue(), \
+        stderr_buffer.getvalue()
+    return (ret, _decode_output(out), _decode_output(err))
 
 
 class CmdLineTest(unittest.TestCase):

@@ -1,0 +1,156 @@
+10REM >EIRC
+20REM The simplest IRC client you can write. Maybe.
+30REM (C) Justin Fletcher, 1998
+40:
+50END=PAGE+1024*16
+60REM Change these if you wish
+70host$="irc.stealth.net"
+80port=6667
+90nick$="eirc"
+100ourchan$="#acorn"
+110:
+120REM Start connecting to a host
+130SYS "ESocket_ConnectToHost",host$,port TO handle
+140REPEAT
+150 SYS "ESocket_CheckState",handle TO state
+160 IF state<-1 THENSYS "ESocket_Forget",handle:SYS "ESocket_DecodeState",state TO a$:ERROR 1,"Failed ("+a$+")"
+170UNTIL state=4
+180:
+190REM We are now connected
+200PRINT"Connected"
+210:
+220REM Log on to the server
+230SYS "ESocket_SendLine",handle,"USER "+nick$+" x x :"+nick$
+240SYS "ESocket_SendLine",handle,"NICK "+nick$
+250SYS "ESocket_SendLine",handle,"JOIN "+ourchan$
+260REM Install a monitor so that we don't waste time
+270SYS "ESocket_Monitor",0,handle TO monitor
+280SYS "ESocket_ResetMonitor",monitor,0 TO polladdr%
+290:
+300REM If we crash, we should tidy up after ourselves
+310ON ERROR SYS "XESocket_Forget",handle:SYS "XESocket_Forget",monitor:ERROR EXT ERR,REPORT$+" at line "+STR$ERL
+320:
+330REM Memory buffer for our data
+340bufsize%=1024
+350DIM buf% bufsize%
+360:
+370input$="":REM The input line
+380REPEAT
+390 REM In a taskwindow we should yield until there is data
+400 SYS "OS_UpCall",6,polladdr%
+410 IF !polladdr%<>0 THEN
+420  REM Reset the monitor for the time being
+430  SYS "ESocket_ResetMonitor",monitor,0 TO polladdr%
+440  REPEAT
+450   REM Read lines from the connection until this buffer is empty
+460   SYS "ESocket_ReadLine",handle,buf%,bufsize%,%100 TO ,str,len
+470   IF str<>0 AND $str<>"" THEN
+480    line$=$str
+490    IF LEFT$(line$,4)="PING" THEN
+500     REM Ping's must be replied to immediately
+510     SYS "ESocket_SendLine",handle,"PONG "+MID$(line$,6)
+520    ELSE
+530     REM Extract source info
+540     from$=MID$(LEFT$(line$,INSTR(line$+" "," ")-1),2)
+550     line$=MID$(line$,INSTR(line$+" "," ")+1)
+560     uid$=LEFT$(from$,INSTR(from$+"!","!")-1)
+570     com$=LEFT$(line$,INSTR(line$+" "," ")-1)
+580     line$=MID$(line$,INSTR(line$+" "," ")+1)
+590     REM remove the input line
+600     IF input$<>"" THENFORI=1TOLEN(input$):VDU127:NEXT
+610     CASE FNupper(com$) OF
+620      WHEN "PRIVMSG"
+630       REM Extract the destination
+640       chan$=LEFT$(line$,INSTR(line$+" "," ")-1)
+650       line$=MID$(line$,INSTR(line$+" "," ")+2):REM Skip :
+660       IF LEFT$(line$,1)=CHR$1 THEN
+670        REM CTCP, so respond to it
+680        line$=MID$(line$,2,LEN(line$)-2)
+690        com$=LEFT$(line$,INSTR(line$+" "," ")-1)
+700        line$=MID$(line$,INSTR(line$+" "," ")+1)
+710        CASE FNupper(com$) OF
+720         WHEN "PING"
+730          REM Ping lag timing
+740          line$="PONG "+line$
+750          PRINTuid$;" pinged us"
+760         WHEN "VERSION"
+770          REM Version checking
+780          line$="VERSION EIRC 1.00 (c) Justin Fletcher"
+790          PRINTuid$;" wanted our version"
+800         WHEN "ACTION"
+810          PRINT"* ";uid$;" ";line$
+820          line$=""
+830         OTHERWISE
+840          REM everything else is an error
+850          line$="ERRMSG "+com$+" not understood"
+860          PRINT"CTCP '";com$;"' from ";uid$;" (";line$;")"
+870        ENDCASE
+880        IF line$<>"" THEN
+890         SYS "ESocket_SendLine",handle,"NOTICE "+uid$+" :"+CHR$1+line$+CHR$1
+900        ENDIF
+910       ELSE
+920        REM Somebody said something...
+930        PRINT"<";uid$;"> ";FNsafe(line$)
+940       ENDIF
+950      WHEN "JOIN"
+960       REM We (or someone else) has joined the channel
+970       chan$=LEFT$(line$,INSTR(line$+" "," ")):REM Skip :
+980       IF LEFT$(chan$,1)=":" THENchan$=MID$(chan$,2)
+990       PRINTuid$;" has joined ";chan$
+1000      WHEN "PART"
+1010       REM Someone else has left the channel
+1020       chan$=LEFT$(line$,INSTR(line$+" "," ")-1)
+1030       IF LEFT$(chan$,1)=":" THENchan$=MID$(chan$,2)
+1040       PRINTuid$;" has left ";chan$
+1050      WHEN "QUIT"
+1060       REM Someone else has quit IRC
+1070       PRINTuid$;" quit IRC"
+1080      OTHERWISE
+1090       REM Some unknown command
+1100       PRINTuid$;":";com$;":";FNsafe(line$)
+1110     ENDCASE
+1120     REM Re-display our input line
+1130     PRINTinput$;
+1140    ENDIF
+1150   ENDIF
+1160  UNTIL str=0
+1170 ENDIF
+1180 b$=INKEY$(0)
+1190 IF b$<>"" THEN
+1200  CASE b$ OF
+1210   WHEN CHR$13
+1220    SYS "ESocket_SendLine",handle,"PRIVMSG "+ourchan$+" :"+input$
+1230    REM Remove the line
+1240    IF input$<>"" THENFORI=1TOLEN(input$):VDU127:NEXT
+1250    REM We said it...
+1260    PRINT"<"+nick$+"> ";input$
+1270    input$=""
+1280   WHEN CHR$127,CHR$8
+1290    REM Backspace
+1300    IF input$<>"" THENVDU127
+1310    input$=LEFT$(input$)
+1320   OTHERWISE
+1330    REM Ad to current input
+1340    input$+=b$
+1350    PRINTb$;
+1360  ENDCASE
+1370 ENDIF
+1380 REM Has the socket closed
+1390 SYS "ESocket_Closed",handle,%0 TO closed
+1400UNTIL closed
+1410SYS "ESocket_Forget",handle
+1420SYS "ESocket_Forget",monitor
+1430END
+1440:
+1450DEFFNupper(a$):LOCAL c$,b$,I
+1460FORI=1TOLEN(a$)
+1470c$=MID$(a$,I,1):IF c$>="a"ANDc$<="z"THENc$=CHR$(ASC(c$)-32)
+1480b$+=c$:NEXT:=b$
+1490
+1500REM Remove control codes
+1510DEFFNsafe(line$)
+1520LOCAL I
+1530FORI=1TOLEN(line$)
+1540 IF MID$(line$,I,1)<" " THENMID$(line$,I,1)="*"
+1550NEXT
+1560=line$

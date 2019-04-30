@@ -1,0 +1,283 @@
+#
+# $Id: button.icn,v 1.7 2006-07-09 23:43:07 rparlett Exp $
+#
+# This file is in the public domain.
+#
+# Author: Robert Parlett (parlett@dial.pipex.com)
+#
+
+package gui
+link graphics
+
+$include "guih.icn"
+
+
+#
+# This is the parent class of the button classes, including
+# checkboxes.
+#
+# A {Button} produces a BUTTON_PRESS_EVENT when the button is
+# depressed, and code BUTTON_RELEASE_EVENT when it is released,
+# as well as an ACTION_EVENT.
+# 
+# By default, when a button holds the keyboard focus a dashed
+# line appears just within the button.  Then, when return is
+# pressed an ACTION_EVENT is generated.  The method
+# {Dialog.set_initial_focus()} can be used to have the button
+# have the focus when the dialog is first displayed.
+#
+# Buttons also repeatedly produce a BUTTON_HELD_EVENT whilst they
+# are held down, rather like a repeating keyboard press.  The
+# delay between the initial repeat event and subsequent repeat
+# events is set in the parent dialog (see above).
+#
+class Button : Toggle : Component(
+   is_down,                 #               
+   is_held,                 #               
+   is_checked_flag,         #                       
+   label,
+   img_up,                  #              
+   img_down,                #                
+   img_w,                   #             
+   img_h,                   #             
+   parent_check_box_group,  #
+   parent_button_group,     #                           
+   repeat_delay,
+   no_keyboard_flag,        #
+   toggles_flag
+   )
+
+   method set_parent_button_group(x)
+      return self.parent_button_group := x
+   end
+
+   #
+   # Invoking this method disables the keyboard control over the
+   # button described above.  No dashed line will ever appear in
+   # the button display and return will have no effect on the
+   # button even if it has the focus.
+   #
+   method set_no_keyboard()
+      self.no_keyboard_flag := 1
+      self.accepts_focus_flag := &null
+   end
+   
+   #
+   # Clear the no keyboard behaviour (the default)
+   #
+   method clear_no_keyboard()
+      self.no_keyboard_flag := &null
+      self.accepts_focus_flag := 1
+   end
+
+   method tick()
+      if dispatcher.curr_time_of_day() > self.repeat_delay then
+         fire(BUTTON_HELD_EVENT)
+   end
+
+   method go_down()
+      self.is_down := 1
+      set_ticker(self.parent_dialog.repeat_rate)
+   end
+
+   method go_up()
+      self.is_down := &null
+      stop_ticker()
+   end
+
+   method handle_press(e)
+      local b
+      if self.in_region() then {
+         go_down()
+         self.repeat_delay := dispatcher.curr_time_of_day() + self.parent_dialog.repeat_delay
+         self.is_held := 1
+         every b := !(\self.parent_button_group).buttons do {
+            if b.is_unhidden() then {
+               b.is_held := 1
+               b.repeat_delay := self.repeat_delay
+            }
+         }
+         self.invalidate()
+         fire(BUTTON_PRESS_EVENT, e)
+      }
+   end
+
+   method handle_drag(e)
+      if \self.is_held then {
+         #
+         # Button held down; toggle on/off as it goes over the button 
+         #
+         if self.in_region() then {
+            if /self.is_down then {
+               go_down()
+               invalidate()
+            }
+         } else {
+            if \self.is_down then {
+               go_up()
+               invalidate()
+            }
+         }
+      }
+   end
+
+   method handle_release(e)
+      if \self.is_held then {
+         self.is_held := &null
+         if \self.is_down then {
+            go_up()
+            fire(BUTTON_RELEASE_EVENT, e)
+            on_action(e)
+         }
+      }
+   end
+
+   method on_action(e)
+      if \self.toggles_flag then {
+         if \self.parent_check_box_group then
+            self.parent_check_box_group.set_which_one(self)
+         else
+            self.toggle_is_checked()
+      }
+      self.invalidate()
+      fire(ACTION_EVENT, e)
+   end
+
+   method handle_accel(e)
+      self.Component.handle_accel(e)
+      on_action(e)
+   end
+
+   method handle_default(e)
+      if \self.has_focus then {
+         if /self.no_keyboard_flag & e == ("\r" | "\l" | " ") then {
+            on_action(e)
+         }
+      }
+   end
+
+   method handle_event(e)
+      if e === (&lpress | &rpress | &mpress) then {
+         handle_press(e)
+      } else if e === (&ldrag | &rdrag | &mdrag) then {
+         handle_drag(e)
+      } else if e === (&lrelease | &rrelease | &mrelease) then {
+         handle_release(e)
+      } else 
+         handle_default(e)
+   end
+
+   #
+   # Set the up/down images (if any) to the strings provided,
+   # which should be in Icon image format.
+   # The two images must have the same dimensions.
+   # @param x   The up image
+   # @param y   The down image
+   #
+   method set_imgs(x, y)
+      self.img_up := x
+      self.img_w := img_width(x) = img_width(y) | fatal("Image widths differ")
+      self.img_h := img_height(x) = img_height(y) | fatal("Image heights differ")
+
+      self.img_down := y
+
+      return
+   end
+
+   #
+   # Set the image (if any) to the given string, which should be in Icon image
+   # format.
+   # @param x   The image
+   #
+   method set_img(x)
+      self.img_up := self.img_down := x
+      self.img_w := img_width(x)
+      self.img_h := img_height(x)
+      return x
+   end
+
+   #
+   # Toggle the checked status of the button.  This method, and
+   # the following two methods, may be
+   # inappropriate for non-toggle styles of button.
+   #
+   method toggle_is_checked()
+      self.Toggle.toggle_is_checked()
+      self.invalidate()
+   end
+
+   #
+   # Set the status to checked.
+   #
+   method set_is_checked()
+      self.Toggle.set_is_checked()
+      self.invalidate()
+   end
+
+   #
+   # Set the status to unchecked.
+   #
+   method clear_is_checked()
+      self.Toggle.clear_is_checked()
+      self.invalidate()
+   end
+
+   #
+   # Set the button so that when it is pressed, it toggles
+   # between two states, as indicated by the is_checked
+   # flag.
+   #
+   # Instances of Checkbox have this flag on by default, but 
+   # TextButton and IconButton do not.  When the flag is on,
+   # the latter classes indicate their checked status by
+   # showing the button as being "down".
+   #
+   method set_toggles()
+      self.toggles_flag := 1
+      self.invalidate()
+   end
+
+   #
+   # Clear the toggles flag.
+   #
+   method clear_toggles()
+      self.toggles_flag := &null
+      self.invalidate()
+   end
+
+   #
+   # Set the label of the button, if any.
+   # @param x   The label
+   #
+   method set_label(x)
+      self.label := x
+      self.invalidate()
+      return x
+   end
+
+   method set_one(attr, val)
+      case attr of {
+         "label" : set_label(string_val(attr, val))
+         "is_checked" :
+            if test_flag(attr, val) then
+               set_is_checked()
+            else
+               clear_is_checked()
+         "toggles" :
+            if test_flag(attr, val) then
+               set_toggles()
+            else
+               clear_toggles()
+         "no_keyboard" :
+            if test_flag(attr, val) then
+               set_no_keyboard()
+            else
+               clear_no_keyboard()
+         default: self.Component.set_one(attr, val)
+      }
+   end
+
+   initially()
+      self.Component.initially()
+      self.accepts_focus_flag := 1
+end

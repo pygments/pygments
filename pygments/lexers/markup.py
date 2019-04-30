@@ -536,10 +536,9 @@ class MarkdownLexer(RegexLexer):
         # no lexer for this language. handle it like it was a code block
         if lexer is None:
             yield match.start(4), String, code
-            return
-
-        for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
-            yield item
+        else:
+            for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
+                yield item
 
         yield match.start(5), String        , match.group(5)
 
@@ -583,6 +582,11 @@ class MarkdownLexer(RegexLexer):
             (r'[@#][\w/:]+', Name.Entity),
             # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
             (r'(!?\[)([^]]+)(\])(\()([^)]+)(\))', bygroups(Text, Name.Tag, Text, Text, Name.Attribute, Text)),
+            # reference-style links, e.g.:
+            #   [an example][id]
+            #   [id]: http://example.com/
+            (r'(\[)([^]]+)(\])(\[)([^]]*)(\])', bygroups(Text, Name.Tag, Text, Text, Name.Label, Text)),
+            (r'^(\s*\[)([^]]*)(\]:\s*)(.+)', bygroups(Text, Name.Label, Text, Name.Attribute)),
 
             # general text, must come last!
             (r'[^\\\s]+', Text),

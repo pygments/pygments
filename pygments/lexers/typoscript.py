@@ -108,13 +108,13 @@ class TypoScriptLexer(RegexLexer):
 
     name = 'TypoScript'
     aliases = ['typoscript']
-    filenames = ['*.ts', '*.txt']
+    filenames = ['*.typoscript']
     mimetypes = ['text/x-typoscript']
 
     flags = re.DOTALL | re.MULTILINE
 
     # Slightly higher than TypeScript (which is 0).
-    priority = 0.1
+    priority = 0.0
 
     tokens = {
         'root': [
@@ -132,7 +132,7 @@ class TypoScriptLexer(RegexLexer):
         ],
         'keywords': [
             # Conditions
-            (r'(\[)(?i)(browser|compatVersion|dayofmonth|dayofweek|dayofyear|'
+            (r'(?i)(\[)(browser|compatVersion|dayofmonth|dayofweek|dayofyear|'
              r'device|ELSE|END|GLOBAL|globalString|globalVar|hostname|hour|IP|'
              r'language|loginUser|loginuser|minute|month|page|PIDinRootline|'
              r'PIDupinRootline|system|treeLevel|useragent|userFunc|usergroup|'
@@ -172,7 +172,7 @@ class TypoScriptLexer(RegexLexer):
         'html': [
             (r'<\S[^\n>]*>', using(TypoScriptHtmlDataLexer)),
             (r'&[^;\n]*;', String),
-            (r'(_CSS_DEFAULT_STYLE)(\s*)(\()(?s)(.*(?=\n\)))',
+            (r'(?s)(_CSS_DEFAULT_STYLE)(\s*)(\()(.*(?=\n\)))',
              bygroups(Name.Class, Text, String.Symbol, using(TypoScriptCssDataLexer))),
         ],
         'literal': [
@@ -220,7 +220,3 @@ class TypoScriptLexer(RegexLexer):
             (r'[\w"\-!/&;]+', Text),
         ],
     }
-
-    def analyse_text(text):
-        if '<INCLUDE_TYPOSCRIPT:' in text:
-            return 1.0

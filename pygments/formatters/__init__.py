@@ -98,7 +98,8 @@ def load_formatter_from_file(filename, formattername="CustomFormatter",
     try:
         # This empty dict will contain the namespace for the exec'd file
         custom_namespace = {}
-        exec(open(filename, 'rb').read(), custom_namespace)
+        with open(filename, 'rb') as f:
+            exec(f.read(), custom_namespace)
         # Retrieve the class `formattername` from that namespace
         if formattername not in custom_namespace:
             raise ClassNotFound('no valid %s class found in %s' %
