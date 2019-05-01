@@ -73,9 +73,11 @@ class StyleMeta(type):
                 if len(col) == 6:
                     return col
                 elif len(col) == 3:
-                    return col[0]*2 + col[1]*2 + col[2]*2
+                    return col[0] * 2 + col[1] * 2 + col[2] * 2
             elif text == '':
                 return ''
+            elif text.startswith('var') or text.startswith('calc'):
+                return text
             assert False, "wrong color format %r" % text
 
         _styles = obj._styles = {}
