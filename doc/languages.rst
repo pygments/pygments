@@ -201,6 +201,11 @@ Template languages
 * Tea
 * `Twig <http://twig.sensiolabs.org/>`_
 
+Log files
+---------
+
+* Linux kernel log (dmesg)
+
 Other markup
 ------------
 
