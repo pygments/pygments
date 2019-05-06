@@ -7,27 +7,29 @@
     :license: BSD, see LICENSE for details.
 """
 
-import unittest
+import pytest
 
 from pygments.lexers import CppLexer
 from pygments.token import Token
 
 
-class CppTest(unittest.TestCase):
-    def setUp(self):
-        self.lexer = CppLexer()
+@pytest.fixture(scope='module')
+def lexer():
+    yield CppLexer()
 
-    def testGoodComment(self):
-        fragment = u'/* foo */\n'
-        tokens = [
-            (Token.Comment.Multiline, u'/* foo */'),
-            (Token.Text, u'\n'),
-        ]
-        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
 
-    def testOpenComment(self):
-        fragment = u'/* foo\n'
-        tokens = [
-            (Token.Comment.Multiline, u'/* foo\n'),
-        ]
-        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+def test_good_comment(lexer):
+    fragment = u'/* foo */\n'
+    tokens = [
+        (Token.Comment.Multiline, u'/* foo */'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_open_comment(lexer):
+    fragment = u'/* foo\n'
+    tokens = [
+        (Token.Comment.Multiline, u'/* foo\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
