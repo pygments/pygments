@@ -124,10 +124,6 @@ class RunawayRegexTest(unittest.TestCase):
         self.assert_single_token(r's<aaa>', String.Regex)
         self.assert_fast_tokenization('s<' + '\\'*999)
 
-    def test_substitution_with_angle_bracket(self):
-        self.assert_single_token(r's<aaa>', String.Regex)
-        self.assert_fast_tokenization('s<' + '\\'*999)
-
     def test_substitution_with_square_bracket(self):
         self.assert_single_token(r's[aaa]', String.Regex)
         self.assert_fast_tokenization('s[' + '\\'*999)
@@ -154,4 +150,3 @@ class RunawayRegexTest(unittest.TestCase):
         self.assert_tokens(['require', ' ', 'Foo'], [Keyword, Text, Name.Namespace])
         self.assert_tokens(['require', '  ', 'Foo::Bar'], [Keyword, Text, Name.Namespace])
         self.assert_tokens(['require', ' ', '"Foo/Bar.pm"'], [Keyword, Text, String])
-

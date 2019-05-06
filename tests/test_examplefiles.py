@@ -20,7 +20,7 @@ from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
 from pygments.token import Error
 from pygments.util import ClassNotFound
 
-STORE_OUTPUT = False
+STORE_OUTPUT = True
 
 STATS = {}
 
@@ -34,7 +34,7 @@ BAD_FILES_FOR_JYTHON = ('Object.st', 'all.nit', 'genclass.clj',
 
 
 def get_example_files():
-    # TODO: move this to a fixture
+    # TODO: move stats to a fixture
     # global STATS
     # STATS = {}
     outdir = os.path.join(TESTDIR, 'examplefiles', 'output')
@@ -53,28 +53,7 @@ def get_example_files():
             continue
 
         print(absfn)
-        with open(absfn, 'rb') as f:
-            code = f.read()
-        try:
-            code = code.decode('utf-8')
-        except UnicodeError:
-            code = code.decode('latin1')
-
-        lx = None
-        if '_' in fn:
-            try:
-                lx = get_lexer_by_name(fn.split('_')[0])
-            except ClassNotFound:
-                pass
-        if lx is None:
-            try:
-                lx = get_lexer_for_filename(absfn, code=code)
-            except ClassNotFound:
-                raise AssertionError('file %r has no registered extension, '
-                                     'nor is of the form <lexer>_filename '
-                                     'for overriding, thus no lexer found.'
-                                     % fn)
-        yield lx, fn
+        yield fn
 
     # N = 7
     # stats = list(STATS.items())
@@ -89,14 +68,34 @@ def get_example_files():
     #     print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
 
 
-@pytest.mark.parametrize('what', get_example_files())
-def test_examplefile(what):
-    lx, fn = what
-    if os.name == 'java' and fn in BAD_FILES_FOR_JYTHON:
-        pytest.skip('%s is a known bad file on Jython' % fn)
-    absfn = os.path.join(TESTDIR, 'examplefiles', fn)
-    with open(absfn, 'rb') as fp:
-        text = fp.read()
+@pytest.mark.parametrize('filename', get_example_files())
+def test_examplefile(filename):
+    if os.name == 'java' and filename in BAD_FILES_FOR_JYTHON:
+        pytest.skip('%s is a known bad file on Jython' % filename)
+
+    absfn = os.path.join(TESTDIR, 'examplefiles', filename)
+    with open(absfn, 'rb') as f:
+        text = f.read()
+    try:
+        utext = text.decode('utf-8')
+    except UnicodeError:
+        utext = text.decode('latin1')
+
+    lx = None
+    if '_' in filename:
+        try:
+            lx = get_lexer_by_name(filename.split('_')[0])
+        except ClassNotFound:
+            pass
+    if lx is None:
+        try:
+            lx = get_lexer_for_filename(absfn, code=utext)
+        except ClassNotFound:
+            raise AssertionError('file %r has no registered extension, '
+                                 'nor is of the form <lexer>_filename '
+                                 'for overriding, thus no lexer found.'
+                                 % filename)
+
     text = text.replace(b'\r\n', b'\n')
     text = text.strip(b'\n') + b'\n'
     try:
@@ -126,7 +125,7 @@ def test_examplefile(what):
     # check output against previous run if enabled
     if STORE_OUTPUT:
         # no previous output -- store it
-        outfn = os.path.join(TESTDIR, 'examplefiles', 'output', fn)
+        outfn = os.path.join(TESTDIR, 'examplefiles', 'output', filename)
         if not os.path.isfile(outfn):
             with open(outfn, 'wb') as fp:
                 pickle.dump(tokens, fp)

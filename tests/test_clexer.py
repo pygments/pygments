@@ -8,7 +8,6 @@
 """
 
 import unittest
-import os
 import textwrap
 
 from pygments.token import Text, Number, Token

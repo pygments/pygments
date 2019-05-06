@@ -9,15 +9,16 @@
 
 import unittest
 
-from pygments.token import Text, Name, Operator, Keyword, Number, Punctuation, String
+from pygments.token import Text, Name, Keyword, Punctuation, String
 from pygments.lexers import KotlinLexer
+
 
 class KotlinTest(unittest.TestCase):
 
     def setUp(self):
         self.lexer = KotlinLexer()
         self.maxDiff = None
-    
+
     def testCanCopeWithBackTickNamesInFunctions(self):
         fragment = u'fun `wo bble`'
         tokens = [
@@ -37,7 +38,7 @@ class KotlinTest(unittest.TestCase):
             (Text, u'\n')
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
-    
+
     def testCanCopeWithDestructuring(self):
         fragment = u'val (a, b) = '
         tokens = [
@@ -55,7 +56,7 @@ class KotlinTest(unittest.TestCase):
             (Text, u'\n')
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
-    
+
     def testCanCopeGenericsInDestructuring(self):
         fragment = u'val (a: List<Something>, b: Set<Wobble>) ='
         tokens = [
@@ -122,7 +123,7 @@ class KotlinTest(unittest.TestCase):
     def testShouldCopeWithMultilineComments(self):
         fragment = u'"""\nthis\nis\na\ncomment"""'
         tokens = [
-            (String, u'"""\nthis\nis\na\ncomment"""'), 
+            (String, u'"""\nthis\nis\na\ncomment"""'),
             (Text, u'\n')
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))

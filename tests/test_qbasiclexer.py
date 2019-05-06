@@ -7,8 +7,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-import glob
-import os
 import unittest
 
 from pygments.token import Token
