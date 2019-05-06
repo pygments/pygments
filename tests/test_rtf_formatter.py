@@ -8,13 +8,13 @@
 """
 
 import unittest
-from string_asserts import StringTests
 
 from pygments.util import StringIO
 from pygments.formatters import RtfFormatter
 from pygments.lexers.special import TextLexer
 
-class RtfFormatterTest(StringTests, unittest.TestCase):
+
+class RtfFormatterTest(unittest.TestCase):
     foot = (r'\par' '\n' r'}')
 
     def _escape(self, string):
@@ -57,7 +57,7 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
                u"\t(WARNING: Partial Output of Result!)".format(
                    expected = expected,
                    result = result[:len(expected)]))
-        self.assertStartsWith(result, expected, msg)
+        self.assertTrue(result.startswith(expected), msg)
 
     def test_rtf_footer(self):
         t = u''
@@ -68,7 +68,7 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
                u"\t(WARNING: Partial Output of Result!)".format(
                    expected = self._escape(expected),
                    result = self._escape(result[-len(expected):])))
-        self.assertEndsWith(result, expected, msg)
+        self.assertTrue(result.endswith(expected), msg)
 
     def test_ascii_characters(self):
         t = u'a b c d ~'
@@ -77,16 +77,16 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
         if not result.endswith(self.foot):
             return(unittest.skip('RTF Footer incorrect'))
         msg = self._build_message(t=t, result=result, expected=expected)
-        self.assertEndsWith(result, expected+self.foot, msg)
+        self.assertTrue(result.endswith(expected+self.foot), msg)
 
     def test_escape_characters(self):
         t = u'\\ {{'
         result = self.format_rtf(t)
-        expected = (r'\\ \{\{')
+        expected = r'\\ \{\{'
         if not result.endswith(self.foot):
             return(unittest.skip('RTF Footer incorrect'))
         msg = self._build_message(t=t, result=result, expected=expected)
-        self.assertEndsWith(result, expected+self.foot, msg)
+        self.assertTrue(result.endswith(expected+self.foot), msg)
 
     def test_single_characters(self):
         t = u'â € ¤ каждой'
@@ -96,7 +96,7 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
         if not result.endswith(self.foot):
             return(unittest.skip('RTF Footer incorrect'))
         msg = self._build_message(t=t, result=result, expected=expected)
-        self.assertEndsWith(result, expected+self.foot, msg)
+        self.assertTrue(result.endswith(expected+self.foot), msg)
 
     def test_double_characters(self):
         t = u'က 힣 ↕ ↕︎ 鼖'
@@ -106,4 +106,4 @@ class RtfFormatterTest(StringTests, unittest.TestCase):
         if not result.endswith(self.foot):
             return(unittest.skip('RTF Footer incorrect'))
         msg = self._build_message(t=t, result=result, expected=expected)
-        self.assertEndsWith(result, expected+self.foot, msg)
+        self.assertTrue(result.endswith(expected+self.foot), msg)

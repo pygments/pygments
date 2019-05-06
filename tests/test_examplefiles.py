@@ -14,11 +14,11 @@ import pprint
 import difflib
 import pickle
 
+import pytest
+
 from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
 from pygments.token import Error
 from pygments.util import ClassNotFound
-
-import support
 
 STORE_OUTPUT = False
 
@@ -32,9 +32,11 @@ TESTDIR = os.path.dirname(__file__)
 BAD_FILES_FOR_JYTHON = ('Object.st', 'all.nit', 'genclass.clj',
                         'ragel-cpp_rlscan')
 
-def test_example_files():
-    global STATS
-    STATS = {}
+
+def get_example_files():
+    # TODO: move this to a fixture
+    # global STATS
+    # STATS = {}
     outdir = os.path.join(TESTDIR, 'examplefiles', 'output')
     if STORE_OUTPUT and not os.path.isdir(outdir):
         os.makedirs(outdir)
@@ -72,24 +74,26 @@ def test_example_files():
                                      'nor is of the form <lexer>_filename '
                                      'for overriding, thus no lexer found.'
                                      % fn)
-        yield check_lexer, lx, fn
+        yield lx, fn
 
-    N = 7
-    stats = list(STATS.items())
-    stats.sort(key=lambda x: x[1][1])
-    print('\nExample files that took longest absolute time:')
-    for fn, t in stats[-N:]:
-        print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
-    print()
-    stats.sort(key=lambda x: x[1][2])
-    print('\nExample files that took longest relative time:')
-    for fn, t in stats[-N:]:
-        print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
+    # N = 7
+    # stats = list(STATS.items())
+    # stats.sort(key=lambda x: x[1][1])
+    # print('\nExample files that took longest absolute time:')
+    # for fn, t in stats[-N:]:
+    #     print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
+    # print()
+    # stats.sort(key=lambda x: x[1][2])
+    # print('\nExample files that took longest relative time:')
+    # for fn, t in stats[-N:]:
+    #     print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
 
 
-def check_lexer(lx, fn):
+@pytest.mark.parametrize('what', get_example_files())
+def test_examplefile(what):
+    lx, fn = what
     if os.name == 'java' and fn in BAD_FILES_FOR_JYTHON:
-        raise support.SkipTest('%s is a known bad file on Jython' % fn)
+        pytest.skip('%s is a known bad file on Jython' % fn)
     absfn = os.path.join(TESTDIR, 'examplefiles', fn)
     with open(absfn, 'rb') as fp:
         text = fp.read()
