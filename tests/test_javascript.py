@@ -9,6 +9,8 @@
 
 import unittest
 
+import pytest
+
 from pygments.lexers import CoffeeScriptLexer
 from pygments.token import Token
 
@@ -36,11 +38,10 @@ COFFEE_SLASH_GOLDEN = [
     ('a = 1 + /d/.test(a)', True),
 ]
 
-def test_coffee_slashes():
-    for input_str, slashes_are_regex_here in COFFEE_SLASH_GOLDEN:
-        yield coffee_runner, input_str, slashes_are_regex_here
 
-def coffee_runner(input_str, slashes_are_regex_here):
+@pytest.mark.parametrize('golden', COFFEE_SLASH_GOLDEN)
+def test_coffee_slashes(golden):
+    input_str, slashes_are_regex_here = golden
     lex = CoffeeScriptLexer()
     output = list(lex.get_tokens(input_str))
     print(output)
@@ -48,6 +49,7 @@ def coffee_runner(input_str, slashes_are_regex_here):
         if '/' in s:
             is_regex = t is Token.String.Regex
             assert is_regex == slashes_are_regex_here, (t, s)
+
 
 class CoffeeTest(unittest.TestCase):
     def setUp(self):

@@ -14,16 +14,15 @@ import os
 import re
 import unittest
 import tempfile
-from os.path import join, dirname, isfile
+from os import path
 
 from pygments.util import StringIO
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.formatters.html import escape_html
 
-import support
-
-TESTFILE, TESTDIR = support.location(__file__)
+TESTDIR = path.dirname(path.abspath(__file__))
+TESTFILE = path.join(TESTDIR, 'test_html_formatter.py')
 
 with io.open(TESTFILE, encoding='utf-8') as fp:
     tokensource = list(PythonLexer().get_tokens(fp.read()))
@@ -48,22 +47,23 @@ class HtmlFormatterTest(unittest.TestCase):
         # CSS should be in /tmp directory
         fmt1 = HtmlFormatter(full=True, cssfile='fmt1.css', outencoding='utf-8')
         # CSS should be in TESTDIR (TESTDIR is absolute)
-        fmt2 = HtmlFormatter(full=True, cssfile=join(TESTDIR, 'fmt2.css'),
+        fmt2 = HtmlFormatter(full=True, cssfile=path.join(TESTDIR, 'fmt2.css'),
                              outencoding='utf-8')
         tfile = tempfile.NamedTemporaryFile(suffix='.html')
         fmt1.format(tokensource, tfile)
         try:
             fmt2.format(tokensource, tfile)
-            self.assertTrue(isfile(join(TESTDIR, 'fmt2.css')))
+            self.assertTrue(path.isfile(path.join(TESTDIR, 'fmt2.css')))
         except IOError:
             # test directory not writable
             pass
         tfile.close()
 
-        self.assertTrue(isfile(join(dirname(tfile.name), 'fmt1.css')))
-        os.unlink(join(dirname(tfile.name), 'fmt1.css'))
+        self.assertTrue(path.isfile(path.join(path.dirname(tfile.name),
+                                              'fmt1.css')))
+        os.unlink(path.join(path.dirname(tfile.name), 'fmt1.css'))
         try:
-            os.unlink(join(TESTDIR, 'fmt2.css'))
+            os.unlink(path.join(TESTDIR, 'fmt2.css'))
         except OSError:
             pass
 

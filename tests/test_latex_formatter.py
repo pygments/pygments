@@ -12,13 +12,15 @@ from __future__ import print_function
 import os
 import unittest
 import tempfile
+from os import path
+
+import pytest
 
 from pygments.formatters import LatexFormatter
 from pygments.lexers import PythonLexer
 
-import support
-
-TESTFILE, TESTDIR = support.location(__file__)
+TESTDIR = path.dirname(path.abspath(__file__))
+TESTFILE = path.join(TESTDIR, 'test_latex_formatter.py')
 
 
 class LatexFormatterTest(unittest.TestCase):
@@ -44,7 +46,7 @@ class LatexFormatterTest(unittest.TestCase):
             po.stdout.close()
         except OSError as e:
             # latex not available
-            raise support.SkipTest(e)
+            pytest.skip(str(e))
         else:
             if ret:
                 print(output)

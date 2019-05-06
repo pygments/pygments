@@ -15,13 +15,14 @@ import re
 import sys
 import tempfile
 import unittest
+from os import path
 
-import support
 from pygments import cmdline, highlight
 from pygments.util import BytesIO, StringIO
 
+TESTDIR = path.dirname(path.abspath(__file__))
+TESTFILE = path.join(TESTDIR, 'test_cmdline.py')
 
-TESTFILE, TESTDIR = support.location(__file__)
 TESTCODE = '''\
 def func(args):
     pass
@@ -254,7 +255,7 @@ class CmdLineTest(unittest.TestCase):
         self.assertTrue('Error: cannot read' in e)
 
         # lexer file is malformed
-        e = self.check_failure('-l', 'support/empty.py',
+        e = self.check_failure('-l', path.join(TESTDIR, 'support', 'empty.py'),
                                '-x', TESTFILE)
         self.assertTrue('Error: no valid CustomLexer class found' in e)
 
@@ -276,7 +277,7 @@ class CmdLineTest(unittest.TestCase):
         self.assertTrue('Error: cannot read' in e)
 
         # formatter file is malformed
-        e = self.check_failure('-f', 'support/empty.py',
+        e = self.check_failure('-f', path.join(TESTDIR, 'support', 'empty.py'),
                                '-x', TESTFILE)
         self.assertTrue('Error: no valid CustomFormatter class found' in e)
 
