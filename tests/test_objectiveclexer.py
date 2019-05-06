@@ -8,7 +8,6 @@
 """
 
 import unittest
-import os
 
 from pygments.token import Token
 from pygments.lexers import ObjectiveCLexer

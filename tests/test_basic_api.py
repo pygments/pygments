@@ -91,7 +91,7 @@ def test_lexer_options(cls):
     def ensure(tokens, output):
         concatenated = ''.join(token[1] for token in tokens)
         assert concatenated == output, \
-            '%s: %r != %r' % (lexer, concatenated, output)
+            '%s: %r != %r' % (cls, concatenated, output)
 
     inst = cls(stripnl=False)
     ensure(inst.get_tokens('a\nb'), 'a\nb\n')
@@ -111,18 +111,15 @@ def test_lexer_options(cls):
 
 def test_get_lexers():
     # test that the lexers functions work
-    def verify(func, args):
-        x = func(opt='val', *args)
-        assert isinstance(x, lexers.PythonLexer)
-        assert x.options["opt"] == "val"
-
     for func, args in [(lexers.get_lexer_by_name, ("python",)),
                        (lexers.get_lexer_for_filename, ("test.py",)),
                        (lexers.get_lexer_for_mimetype, ("text/x-python",)),
                        (lexers.guess_lexer, ("#!/usr/bin/python -O\nprint",)),
                        (lexers.guess_lexer_for_filename, ("a.py", "<%= @foo %>"))
                        ]:
-        verify(func, args)
+        x = func(opt='val', *args)
+        assert isinstance(x, lexers.PythonLexer)
+        assert x.options["opt"] == "val"
 
     for cls, (_, lname, aliases, _, mimetypes) in lexers.LEXERS.items():
         assert cls == lexers.find_lexer_class(lname).__name__

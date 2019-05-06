@@ -49,7 +49,7 @@ pylint:
 reindent:
 	@$(PYTHON) scripts/reindent.py -r -B .
 
-TEST = test
+TEST = tests
 
 test:
 	@$(PYTHON) `which py.test` $(TEST)

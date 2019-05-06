@@ -9,7 +9,7 @@
 
 import unittest
 
-from pygments.token import Operator, Number, Text, Token
+from pygments.token import Token
 from pygments.lexers import SmartyLexer
 
 
@@ -37,4 +37,3 @@ class SmartyTest(unittest.TestCase):
             (Token.Other, u'\n'),
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
-
