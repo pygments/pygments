@@ -7,74 +7,78 @@
     :license: BSD, see LICENSE for details.
 """
 
-import unittest
+import pytest
 
 from pygments.token import Token
 from pygments.lexers import ObjectiveCLexer
 
 
-class ObjectiveCLexerTest(unittest.TestCase):
+@pytest.fixture(scope='module')
+def lexer():
+    yield ObjectiveCLexer()
 
-    def setUp(self):
-        self.lexer = ObjectiveCLexer()
 
-    def testLiteralNumberInt(self):
-        fragment = u'@(1);\n'
-        expected = [
-            (Token.Literal, u'@('),
-            (Token.Literal.Number.Integer, u'1'),
-            (Token.Literal, u')'),
-            (Token.Punctuation, u';'),
-            (Token.Text, u'\n'),
-        ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
+def test_literal_number_int(lexer):
+    fragment = u'@(1);\n'
+    expected = [
+        (Token.Literal, u'@('),
+        (Token.Literal.Number.Integer, u'1'),
+        (Token.Literal, u')'),
+        (Token.Punctuation, u';'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == expected
 
-    def testLiteralNumberExpression(self):
-        fragment = u'@(1+2);\n'
-        expected = [
-            (Token.Literal, u'@('),
-            (Token.Literal.Number.Integer, u'1'),
-            (Token.Operator, u'+'),
-            (Token.Literal.Number.Integer, u'2'),
-            (Token.Literal, u')'),
-            (Token.Punctuation, u';'),
-            (Token.Text, u'\n'),
-        ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
 
-    def testLiteralNumberNestedExpression(self):
-        fragment = u'@(1+(2+3));\n'
-        expected = [
-            (Token.Literal, u'@('),
-            (Token.Literal.Number.Integer, u'1'),
-            (Token.Operator, u'+'),
-            (Token.Punctuation, u'('),
-            (Token.Literal.Number.Integer, u'2'),
-            (Token.Operator, u'+'),
-            (Token.Literal.Number.Integer, u'3'),
-            (Token.Punctuation, u')'),
-            (Token.Literal, u')'),
-            (Token.Punctuation, u';'),
-            (Token.Text, u'\n'),
-        ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
+def test_literal_number_expression(lexer):
+    fragment = u'@(1+2);\n'
+    expected = [
+        (Token.Literal, u'@('),
+        (Token.Literal.Number.Integer, u'1'),
+        (Token.Operator, u'+'),
+        (Token.Literal.Number.Integer, u'2'),
+        (Token.Literal, u')'),
+        (Token.Punctuation, u';'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == expected
 
-    def testLiteralNumberBool(self):
-        fragment = u'@NO;\n'
-        expected = [
-            (Token.Literal.Number, u'@NO'),
-            (Token.Punctuation, u';'),
-            (Token.Text, u'\n'),
-        ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
 
-    def testLieralNumberBoolExpression(self):
-        fragment = u'@(YES);\n'
-        expected = [
-            (Token.Literal, u'@('),
-            (Token.Name.Builtin, u'YES'),
-            (Token.Literal, u')'),
-            (Token.Punctuation, u';'),
-            (Token.Text, u'\n'),
-        ]
-        self.assertEqual(expected, list(self.lexer.get_tokens(fragment)))
+def test_literal_number_nested_expression(lexer):
+    fragment = u'@(1+(2+3));\n'
+    expected = [
+        (Token.Literal, u'@('),
+        (Token.Literal.Number.Integer, u'1'),
+        (Token.Operator, u'+'),
+        (Token.Punctuation, u'('),
+        (Token.Literal.Number.Integer, u'2'),
+        (Token.Operator, u'+'),
+        (Token.Literal.Number.Integer, u'3'),
+        (Token.Punctuation, u')'),
+        (Token.Literal, u')'),
+        (Token.Punctuation, u';'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == expected
+
+
+def test_literal_number_bool(lexer):
+    fragment = u'@NO;\n'
+    expected = [
+        (Token.Literal.Number, u'@NO'),
+        (Token.Punctuation, u';'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == expected
+
+
+def test_literal_number_bool_expression(lexer):
+    fragment = u'@(YES);\n'
+    expected = [
+        (Token.Literal, u'@('),
+        (Token.Name.Builtin, u'YES'),
+        (Token.Literal, u')'),
+        (Token.Punctuation, u';'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == expected

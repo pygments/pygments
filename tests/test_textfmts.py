@@ -3,38 +3,36 @@
     Basic Tests for textfmts
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import unittest
+import pytest
 
 from pygments.token import Token
 from pygments.lexers.textfmts import HttpLexer
 
 
-class RubyTest(unittest.TestCase):
+@pytest.fixture(scope='module')
+def lexer():
+    yield HttpLexer()
 
-    def setUp(self):
-        self.lexer = HttpLexer()
-        self.maxDiff = None
 
-    def testApplicationXml(self):
-        fragment = u'GET / HTTP/1.0\nContent-Type: application/xml\n\n<foo>\n'
-        tokens = [
-            (Token.Name.Tag, u'<foo'),
-            (Token.Name.Tag, u'>'),
-            (Token.Text, u'\n'),
-        ]
-        self.assertEqual(
-            tokens, list(self.lexer.get_tokens(fragment))[-len(tokens):])
+def test_application_xml(lexer):
+    fragment = u'GET / HTTP/1.0\nContent-Type: application/xml\n\n<foo>\n'
+    tokens = [
+        (Token.Name.Tag, u'<foo'),
+        (Token.Name.Tag, u'>'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment))[-len(tokens):] == tokens
 
-    def testApplicationCalendarXml(self):
-        fragment = u'GET / HTTP/1.0\nContent-Type: application/calendar+xml\n\n<foo>\n'
-        tokens = [
-            (Token.Name.Tag, u'<foo'),
-            (Token.Name.Tag, u'>'),
-            (Token.Text, u'\n'),
-        ]
-        self.assertEqual(
-            tokens, list(self.lexer.get_tokens(fragment))[-len(tokens):])
+
+def test_application_calendar_xml(lexer):
+    fragment = u'GET / HTTP/1.0\nContent-Type: application/calendar+xml\n\n<foo>\n'
+    tokens = [
+        (Token.Name.Tag, u'<foo'),
+        (Token.Name.Tag, u'>'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment))[-len(tokens):] == tokens

@@ -3,78 +3,68 @@
     Tests for other lexers
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 import glob
 import os
-import unittest
+
+import pytest
 
 from pygments.lexers import guess_lexer
 from pygments.lexers.scripting import EasytrieveLexer, JclLexer, RexxLexer
 
 
-def _exampleFilePath(filename):
+def _example_file_path(filename):
     return os.path.join(os.path.dirname(__file__), 'examplefiles', filename)
 
 
-class AnalyseTextTest(unittest.TestCase):
-    def _testCanRecognizeAndGuessExampleFiles(self, lexer):
-        assert lexer is not None
-
-        for pattern in lexer.filenames:
-            exampleFilesPattern = _exampleFilePath(pattern)
-            for exampleFilePath in glob.glob(exampleFilesPattern):
-                with open(exampleFilePath, 'rb') as fp:
-                    text = fp.read().decode('utf-8')
-                probability = lexer.analyse_text(text)
-                self.assertTrue(probability > 0,
-                                '%s must recognize %r' % (
-                                    lexer.name, exampleFilePath))
-                guessedLexer = guess_lexer(text)
-                self.assertEqual(guessedLexer.name, lexer.name)
-
-    def testCanRecognizeAndGuessExampleFiles(self):
-        LEXERS_TO_TEST = [
-            EasytrieveLexer,
-            JclLexer,
-            RexxLexer,
-        ]
-        for lexerToTest in LEXERS_TO_TEST:
-            self._testCanRecognizeAndGuessExampleFiles(lexerToTest)
+@pytest.mark.parametrize('lexer', [
+    EasytrieveLexer,
+    JclLexer,
+    RexxLexer,
+])
+def test_can_recognize_and_guess_example_files(lexer):
+    for pattern in lexer.filenames:
+        exampleFilesPattern = _example_file_path(pattern)
+        for exampleFilePath in glob.glob(exampleFilesPattern):
+            with open(exampleFilePath, 'rb') as fp:
+                text = fp.read().decode('utf-8')
+            probability = lexer.analyse_text(text)
+            assert probability > 0, '%s must recognize %r' % (
+                lexer.name, exampleFilePath)
+            guessedLexer = guess_lexer(text)
+            assert guessedLexer.name == lexer.name
 
 
-class EasyTrieveLexerTest(unittest.TestCase):
-    def testCanGuessFromText(self):
-        self.assertTrue(EasytrieveLexer.analyse_text('MACRO'))
-        self.assertTrue(EasytrieveLexer.analyse_text('\nMACRO'))
-        self.assertTrue(EasytrieveLexer.analyse_text(' \nMACRO'))
-        self.assertTrue(EasytrieveLexer.analyse_text(' \n MACRO'))
-        self.assertTrue(EasytrieveLexer.analyse_text('*\nMACRO'))
-        self.assertTrue(EasytrieveLexer.analyse_text(
-            '*\n *\n\n \n*\n MACRO'))
+def test_easytrieve_can_guess_from_text():
+    assert EasytrieveLexer.analyse_text('MACRO')
+    assert EasytrieveLexer.analyse_text('\nMACRO')
+    assert EasytrieveLexer.analyse_text(' \nMACRO')
+    assert EasytrieveLexer.analyse_text(' \n MACRO')
+    assert EasytrieveLexer.analyse_text('*\nMACRO')
+    assert EasytrieveLexer.analyse_text('*\n *\n\n \n*\n MACRO')
 
 
-class RexxLexerTest(unittest.TestCase):
-    def testCanGuessFromText(self):
-        self.assertAlmostEqual(0.01, RexxLexer.analyse_text('/* */'))
-        self.assertAlmostEqual(1.0,
-                               RexxLexer.analyse_text('''/* Rexx */
-                say "hello world"'''))
-        val = RexxLexer.analyse_text('/* */\n'
-                                     'hello:pRoceduRe\n'
-                                     '  say "hello world"')
-        self.assertTrue(val > 0.5, val)
-        val = RexxLexer.analyse_text('''/* */
-                if 1 > 0 then do
-                    say "ok"
-                end
-                else do
-                    say "huh?"
-                end''')
-        self.assertTrue(val > 0.2, val)
-        val = RexxLexer.analyse_text('''/* */
-                greeting = "hello world!"
-                parse value greeting "hello" name "!"
-                say name''')
-        self.assertTrue(val > 0.2, val)
+def test_rexx_can_guess_from_text():
+    assert RexxLexer.analyse_text('/* */') == pytest.approx(0.01)
+    assert RexxLexer.analyse_text('''/* Rexx */
+            say "hello world"''') == pytest.approx(1.0)
+    val = RexxLexer.analyse_text('/* */\n'
+                                 'hello:pRoceduRe\n'
+                                 '  say "hello world"')
+    assert val > 0.5
+    val = RexxLexer.analyse_text('''/* */
+            if 1 > 0 then do
+                say "ok"
+            end
+            else do
+                say "huh?"
+            end''')
+    assert val > 0.2
+    val = RexxLexer.analyse_text('''/* */
+            greeting = "hello world!"
+            parse value greeting "hello" name "!"
+            say name''')
+    assert val > 0.2

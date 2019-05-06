@@ -3,14 +3,13 @@
     Pygments basic API tests
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from __future__ import print_function
 
 import random
-import unittest
 from os import path
 
 import pytest
@@ -253,7 +252,7 @@ def test_bare_class_handler():
         assert False, 'nothing raised'
 
 
-class FiltersTest(unittest.TestCase):
+class TestFilters(object):
 
     def test_basic(self):
         filters_args = [
@@ -272,19 +271,18 @@ class FiltersTest(unittest.TestCase):
             with open(TESTFILE, 'rb') as fp:
                 text = fp.read().decode('utf-8')
             tokens = list(lx.get_tokens(text))
-            self.assertTrue(all(isinstance(t[1], text_type)
-                                for t in tokens),
-                            '%s filter did not return Unicode' % x)
+            assert all(isinstance(t[1], text_type) for t in tokens), \
+                '%s filter did not return Unicode' % x
             roundtext = ''.join([t[1] for t in tokens])
             if x not in ('whitespace', 'keywordcase', 'gobble'):
                 # these filters change the text
-                self.assertEqual(roundtext, text,
-                                 "lexer roundtrip with %s filter failed" % x)
+                assert roundtext == text, \
+                    "lexer roundtrip with %s filter failed" % x
 
     def test_raiseonerror(self):
         lx = lexers.PythonLexer()
         lx.add_filter('raiseonerror', excclass=RuntimeError)
-        self.assertRaises(RuntimeError, list, lx.get_tokens('$'))
+        assert pytest.raises(RuntimeError, list, lx.get_tokens('$'))
 
     def test_whitespace(self):
         lx = lexers.PythonLexer()
@@ -292,7 +290,7 @@ class FiltersTest(unittest.TestCase):
         with open(TESTFILE, 'rb') as fp:
             text = fp.read().decode('utf-8')
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
-        self.assertFalse(' ' in lxtext)
+        assert ' ' not in lxtext
 
     def test_keywordcase(self):
         lx = lexers.PythonLexer()
@@ -300,15 +298,15 @@ class FiltersTest(unittest.TestCase):
         with open(TESTFILE, 'rb') as fp:
             text = fp.read().decode('utf-8')
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
-        self.assertTrue('Def' in lxtext and 'Class' in lxtext)
+        assert 'Def' in lxtext and 'Class' in lxtext
 
     def test_codetag(self):
         lx = lexers.PythonLexer()
         lx.add_filter('codetagify')
         text = u'# BUG: text'
         tokens = list(lx.get_tokens(text))
-        self.assertEqual('# ', tokens[0][1])
-        self.assertEqual('BUG', tokens[1][1])
+        assert '# ' == tokens[0][1]
+        assert 'BUG' == tokens[1][1]
 
     def test_codetag_boundary(self):
         # ticket #368
@@ -316,4 +314,4 @@ class FiltersTest(unittest.TestCase):
         lx.add_filter('codetagify')
         text = u'# DEBUG: text'
         tokens = list(lx.get_tokens(text))
-        self.assertEqual('# DEBUG: text', tokens[0][1])
+        assert '# DEBUG: text' == tokens[0][1]
