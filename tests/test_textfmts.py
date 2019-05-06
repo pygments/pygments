@@ -9,7 +9,7 @@
 
 import unittest
 
-from pygments.token import Operator, Number, Text, Token
+from pygments.token import Token
 from pygments.lexers.textfmts import HttpLexer
 
 
@@ -38,4 +38,3 @@ class RubyTest(unittest.TestCase):
         ]
         self.assertEqual(
             tokens, list(self.lexer.get_tokens(fragment))[-len(tokens):])
-

@@ -10,7 +10,7 @@
 from __future__ import unicode_literals
 import unittest
 
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
+from pygments.token import Text, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 from pygments.lexers import CrystalLexer
 
@@ -122,7 +122,7 @@ class CrystalTest(unittest.TestCase):
             (Text, '\n')
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
-    
+
     def testArrayAccess(self):
         fragment = '[5][5]?\n'
         tokens = [
