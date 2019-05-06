@@ -322,10 +322,16 @@ class HtmlFormatter(Formatter):
         .. versionadded:: 1.6
 
     `filename`
-        A string used to generate a filename when rendering <pre> blocks,
+        A string used to generate a filename when rendering ``<pre>`` blocks,
         for example if displaying source code.
 
         .. versionadded:: 2.1
+
+    `wrapcode`
+        Wrap the code inside ``<pre>`` blocks using ``<code>``, as recommended
+        by the HTML5 specification.
+
+        .. versionadded:: 2.4
 
 
     **Subclassing the HTML formatter**
@@ -395,6 +401,7 @@ class HtmlFormatter(Formatter):
         self.tagsfile = self._decodeifneeded(options.get('tagsfile', ''))
         self.tagurlformat = self._decodeifneeded(options.get('tagurlformat', ''))
         self.filename = self._decodeifneeded(options.get('filename', ''))
+        self.wrapcode = get_bool_opt(options, 'wrapcode', False)
 
         if self.tagsfile:
             if not ctags:
@@ -708,6 +715,12 @@ class HtmlFormatter(Formatter):
             yield tup
         yield 0, '</pre>'
 
+    def _wrap_code(self, inner):
+        yield 0, '<code>'
+        for tup in inner:
+            yield tup
+        yield 0, '</code>'
+
     def _format_lines(self, tokensource):
         """
         Just format the tokens, without any wrapping tags.
@@ -814,7 +827,10 @@ class HtmlFormatter(Formatter):
         individual lines, in custom generators. See docstring
         for `format`. Can be overridden.
         """
-        return self._wrap_div(self._wrap_pre(source))
+        if self.wrapcode:
+            return self._wrap_div(self._wrap_pre(self._wrap_code(source)))
+        else:
+            return self._wrap_div(self._wrap_pre(source))
 
     def format_unencoded(self, tokensource, outfile):
         """
