@@ -690,7 +690,7 @@ class Dasm16Lexer(RegexLexer):
 
     # Regexes yo
     char = r'[a-zA-Z$._0-9@]'
-    identifier = r'(?:[a-zA-Z$_]' + char + '*|\.' + char + '+)'
+    identifier = r'(?:[a-zA-Z$_]' + char + r'*|\.' + char + '+)'
     number = r'[+-]?(?:0[xX][a-zA-Z0-9]+|\d+)'
     binary_number = r'0b[01_]+'
     instruction = r'(?i)(' + '|'.join(INSTRUCTIONS) + ')'
