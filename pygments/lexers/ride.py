@@ -31,7 +31,7 @@ class RideLexer(RegexLexer):
 
     builtinOps = (
         '||', '|', '>=', '>', '==',
-        '=', '<=', '::', ':', '!=', '/',
+        '=', '<=', '<', '::', ':', '!=', '/',
         '.', '->', '-', '+', '*', '&&', '%',
     )
 
@@ -125,7 +125,8 @@ class RideLexer(RegexLexer):
 
     reservedWords = words((
         'match', 'case', 'else', 'if',
-        'let', 'then'
+        'let', 'then',
+        '@Callable', '@Verifier', '@Default'
         ), suffix=r'\b')
 
     tokens = {
