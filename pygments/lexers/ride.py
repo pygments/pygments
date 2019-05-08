@@ -124,7 +124,7 @@ class RideLexer(RegexLexer):
             )
 
     reservedWords = words((
-        'match', 'case', 'else', 'if',
+        'match', 'case', 'else', 'func', 'if',
         'let', 'then',
         '@Callable', '@Verifier', '@Default'
         ), suffix=r'\b')
