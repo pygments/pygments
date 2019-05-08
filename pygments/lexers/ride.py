@@ -27,7 +27,7 @@ class RideLexer(RegexLexer):
     filenames = ['*.ride']
     mimetypes = ['text/x-ride']
 
-    validName = r'[a-z_][a-zA-Z0-9_\']*'
+    validName = r'[a-zA-Z_][a-zA-Z0-9_\']*'
 
     builtinOps = (
         '||', '|', '>=', '>', '==',
