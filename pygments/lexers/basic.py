@@ -510,7 +510,7 @@ class VBScriptLexer(RegexLexer):
     .. versionadded:: 2.4
     """
     name = 'VBScript'
-    aliases = []
+    aliases = ['vbscript']
     filenames = ['*.vbs', '*.VBS']
     flags = re.IGNORECASE
 
