@@ -1,4 +1,14 @@
 # -*- coding: utf-8 -*-
+"""
+    pygments.lexers.boa
+    ~~~~~~~~~~~~~~~~~~~~
+
+    Lexers for the Boa language.
+
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 import re
 
 from pygments.lexer import RegexLexer, words
@@ -11,7 +21,9 @@ line_re = re.compile('.*?\n')
 
 class BoaLexer(RegexLexer):
     """
-    http://boa.cs.iastate.edu/docs/
+    Lexer for the `Boa <http://boa.cs.iastate.edu/docs/>`_ language.
+
+    .. versionadded:: 2.4
     """
     name = 'Boa'
     aliases = ['boa']
