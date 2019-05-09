@@ -541,16 +541,13 @@ class VbNetAspxLexer(DelegatingLexer):
 # Very close to functional.OcamlLexer
 class FSharpLexer(RegexLexer):
     """
-    For the F# language (version 3.0).
-
-    AAAAACK Strings
-    http://research.microsoft.com/en-us/um/cambridge/projects/fsharp/manual/spec.html#_Toc335818775
+    For the `F# language <https://fsharp.org/>`_ (version 3.0).
 
     .. versionadded:: 1.5
     """
 
-    name = 'FSharp'
-    aliases = ['fsharp']
+    name = 'F#'
+    aliases = ['fsharp', 'f#']
     filenames = ['*.fs', '*.fsi']
     mimetypes = ['text/x-fsharp']
 
