@@ -8,7 +8,7 @@ pull request numbers to the requests at
 
 Version 2.4.0
 -------------
-(not released yet)
+(released May 8, 2019)
 
 - Added lexers:
 
@@ -36,18 +36,22 @@ Version 2.4.0
   * LLVM (PR#792)
   * Makefiles (PR#766)
   * PHP (#1482)
+  * Rust
   * SQL (PR#672)
   * Stan (PR#774)
   * Stata (PR#800)
   * Terraform (PR#787)
+  * YAML
 
 - Add solarized style (PR#708)
 - Add support for Markdown reference-style links (PR#753)
+- Add license information to generated HTML/CSS files (#1496)
 - Change ANSI color names (PR#777)
 - Fix catastrophic backtracking in the bash lexer (#1494)
 - Fix documentation failing to build using Sphinx 2.0 (#1501)
 - Fix incorrect links in the Lisp and R lexer documentation (PR#775)
 - Fix rare unicode errors on Python 2.7 (PR#798, #1492)
+- Fix lexers popping from an empty stack (#1506)
 - TypoScript uses ``.typoscript`` now (#1498)
 - Updated Trove classifiers and ``pip`` requirements (PR#799)
 

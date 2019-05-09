@@ -442,7 +442,7 @@ LEXERS = {
     'UcodeLexer': ('pygments.lexers.unicon', 'ucode', ('ucode',), ('*.u', '*.u1', '*.u2'), ()),
     'UniconLexer': ('pygments.lexers.unicon', 'Unicon', ('unicon',), ('*.icn',), ('text/unicon',)),
     'UrbiscriptLexer': ('pygments.lexers.urbi', 'UrbiScript', ('urbiscript',), ('*.u',), ('application/x-urbiscript',)),
-    'VBScriptLexer': ('pygments.lexers.basic', 'VBScript', (), ('*.vbs', '*.VBS'), ()),
+    'VBScriptLexer': ('pygments.lexers.basic', 'VBScript', ('vbscript',), ('*.vbs', '*.VBS'), ()),
     'VCLLexer': ('pygments.lexers.varnish', 'VCL', ('vcl',), ('*.vcl',), ('text/x-vclsrc',)),
     'VCLSnippetLexer': ('pygments.lexers.varnish', 'VCLSnippets', ('vclsnippets', 'vclsnippet'), (), ('text/x-vclsnippet',)),
     'VCTreeStatusLexer': ('pygments.lexers.console', 'VCTreeStatus', ('vctreestatus',), (), ()),
