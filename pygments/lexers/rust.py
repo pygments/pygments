@@ -29,7 +29,7 @@ class RustLexer(RegexLexer):
 
     keyword_types = (
         words(('u8', 'u16', 'u32', 'u64', 'i8', 'i16', 'i32', 'i64',
-               'usize', 'isize', 'f32', 'f64', 'str', 'bool'),
+               'i128', 'u128', 'usize', 'isize', 'f32', 'f64', 'str', 'bool'),
               suffix=r'\b'),
         Keyword.Type)
 
