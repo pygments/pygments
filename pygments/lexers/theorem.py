@@ -98,7 +98,6 @@ class CoqLexer(RegexLexer):
     operators = r'[!$%&*+\./:<=>?@^|~-]'
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
-    primitives = ('unit', 'nat', 'bool', 'string', 'ascii', 'list')
 
     tokens = {
         'root': [
@@ -115,7 +114,6 @@ class CoqLexer(RegexLexer):
             (r'\b([A-Z][\w\']*)', Name),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
-            (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
 
             (r"[^\W\d][\w']*", Name),
 
