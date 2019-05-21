@@ -14,8 +14,11 @@ Programming languages
 * AppleScript
 * Assembly (various)
 * Asymptote
+* `Augeas <http://augeas.net>`_
 * Awk
+* BBC Basic
 * Befunge
+* `Boa <http://boa.cs.iastate.edu/docs/index.php>`_
 * Boo
 * BrainFuck
 * C, C++
@@ -31,6 +34,7 @@ Programming languages
 * `Cython <http://cython.org>`_
 * `D <http://dlang.org>`_
 * Dart
+* DCPU-16
 * Delphi
 * Dylan
 * `Elm <http://elm-lang.org/>`_
@@ -41,6 +45,7 @@ Programming languages
 * `Fennel <https://fennel-lang.org/>`_
 * `FloScript <http://ioflo.com/>`_
 * Fortran
+* `FreeFEM++ <https://freefem.org/>`_
 * F#
 * GAP
 * Gherkin (Cucumber)
@@ -70,6 +75,7 @@ Programming languages
 * OCaml
 * PHP
 * `Perl 5 <http://perl.org>`_ and `Perl 6 <https://perl6.org>`_
+* `Pony <https://www.ponylang.io/>`_
 * PovRay
 * PostScript
 * PowerShell
@@ -85,10 +91,13 @@ Programming languages
 * Scheme
 * Scilab
 * `SGF <https://www.red-bean.com/sgf/>`_
+* `Slash <https://github.com/arturadib/Slash-A>`_
 * `Slurm <https://slurm.schedmd.com/overview.html>`_
 * Smalltalk
 * SNOBOL
 * Tcl
+* `Tera Term language <https://ttssh2.osdn.jp/>`_
+* `TOML <https://github.com/toml-lang/toml>`_
 * Vala
 * Verilog
 * VHDL

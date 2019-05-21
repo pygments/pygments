@@ -268,3 +268,10 @@ class TurtleLexer(RegexLexer):
 
         ],
     }
+
+    # Turtle and Tera Term macro files share the same file extension
+    # but each has a recognizable and distinct syntax.
+    def analyse_text(text):
+        for t in ('@base ', 'BASE ', '@prefix ', 'PREFIX '):
+            if re.search(r'^\s*%s' % t, text):
+                return 0.80

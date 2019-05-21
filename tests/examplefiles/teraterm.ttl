@@ -1,0 +1,34 @@
+messagebox "text \\not escaped \nescaped n" "other\n\rthing"
+messagebox "goto label /* a string */ ; same string"
+a=10
+b=  'abc'#$41'def'
+c =#65   /* multiline comment * / * / *//*
+comment */ d = 10   ; inline comment /* still inline */
+e = d + 20 - (($a * 2) / 4) << 3 % (2 >> 1) + result
+
+
+:thing
+
+strcompare c "thing"
+if result = 1 then
+    goto label_
+elseif result > -1 then
+    goto 10
+elseif d > (1+2*3)/7 then
+    messagebox "thing"
+else
+    messagebox "done"
+endif
+
+if abc messagebox "thing1" "title"
+
+
+; Invalid syntax
+bad = "no closing double quote
+bad = 'no closing single quote
+garbage
+...
+...
+...
+
+endgarbage

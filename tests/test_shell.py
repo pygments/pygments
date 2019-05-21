@@ -10,7 +10,7 @@
 import unittest
 
 from pygments.token import Token
-from pygments.lexers import BashLexer, BashSessionLexer
+from pygments.lexers import BashLexer, BashSessionLexer, MSDOSSessionLexer
 
 
 class BashTest(unittest.TestCase):
@@ -140,3 +140,20 @@ class BashSessionTest(unittest.TestCase):
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
 
+class MSDOSSessionTest(unittest.TestCase):
+
+    def setUp(self):
+        self.lexer = MSDOSSessionLexer()
+
+    def testGtOnlyPrompt(self):
+        fragment = u'> py\nhi\n'
+        tokens = [
+            (Token.Text, u''),
+            (Token.Generic.Prompt, u'>'),
+            (Token.Text, u' '),
+            (Token.Text, u'py'),
+            (Token.Text, u''),
+            (Token.Text, u'\n'),
+            (Token.Generic.Output, u'hi\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))

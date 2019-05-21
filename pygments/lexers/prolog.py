@@ -31,7 +31,6 @@ class PrologLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^#.*', Comment.Single),
             (r'/\*', Comment.Multiline, 'nested-comment'),
             (r'%.*', Comment.Single),
             # character literal
