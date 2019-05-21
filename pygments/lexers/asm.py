@@ -468,9 +468,11 @@ class NasmLexer(RegexLexer):
                 r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]')
     wordop = r'seg|wrt|strict'
     type = r'byte|[dq]?word'
-    directives = (r'BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'
+    # Directives must be followed by whitespace, otherwise CPU will match
+    # cpuid for instance.
+    directives = (r'(?:BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'
                   r'ORG|ALIGN|STRUC|ENDSTRUC|COMMON|CPU|GROUP|UPPERCASE|IMPORT|'
-                  r'EXPORT|LIBRARY|MODULE')
+                  r'EXPORT|LIBRARY|MODULE)\s+')
 
     flags = re.IGNORECASE | re.MULTILINE
     tokens = {
