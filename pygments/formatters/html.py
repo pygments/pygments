@@ -803,13 +803,7 @@ class HtmlFormatter(Formatter):
             # else we neither have to open a new span nor set lspan
 
         if line:
-            # If we're in nowrap mode, we try to make the output compact and
-            # omit the trailing newspace, this makes it easier to consume the
-            # HTML elsewhere
-            if self.nowrap:
-                line.append(lspan and '</span>')
-            else:
-                line.extend((lspan and '</span>', lsep))
+            line.extend(((lspan and '</span>'), lsep))
             yield 1, ''.join(line)
 
     def _lookup_ctag(self, token):
