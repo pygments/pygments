@@ -90,13 +90,13 @@ async def function(a,b,c, *d, **kwarg:Bool)->Bool:
 
     def test_256esc_seq(self):
         """
-        test that a few escape sequences are actualy used when using ansi<> color codes
+        test that a few escape sequences are actually used when using ansi<> color codes
         """
         def termtest(x):
             return highlight(x, Python3Lexer(),
                              Terminal256Formatter(style=MyStyle))
 
-        self.assertTrue('32;41' in termtest('0x123'))
-        self.assertTrue('32;42' in termtest('123'))
-        self.assertTrue('30;01' in termtest('#comment'))
-        self.assertTrue('34;41' in termtest('"String"'))
+        self.assertTrue('32;101' in termtest('0x123'))
+        self.assertTrue('92;42' in termtest('123'))
+        self.assertTrue('90' in termtest('#comment'))
+        self.assertTrue('94;41' in termtest('"String"'))
