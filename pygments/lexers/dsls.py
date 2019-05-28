@@ -40,9 +40,9 @@ class ProtoBufLexer(RegexLexer):
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
             (words((
-                'import', 'option', 'optional', 'required', 'repeated', 'default',
-                'packed', 'ctype', 'extensions', 'to', 'max', 'rpc', 'returns',
-                'oneof'), prefix=r'\b', suffix=r'\b'),
+                'import', 'option', 'optional', 'required', 'repeated',
+                'reserved', 'default', 'packed', 'ctype', 'extensions', 'to',
+                'max', 'rpc', 'returns', 'oneof'), prefix=r'\b', suffix=r'\b'),
              Keyword),
             (words((
                 'int32', 'int64', 'uint32', 'uint64', 'sint32', 'sint64',
