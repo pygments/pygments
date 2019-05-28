@@ -5,7 +5,7 @@
 
     Lexers for Haskell and related languages.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -73,7 +73,8 @@ class HaskellLexer(RegexLexer):
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),  # Other operators
             #  Numbers
             (r'0[xX]_*[\da-fA-F](_*[\da-fA-F])*_*[pP][+-]?\d(_*\d)*', Number.Float),
-            (r'0[xX]_*[\da-fA-F](_*[\da-fA-F])*\.[\da-fA-F](_*[\da-fA-F])*(_*[pP][+-]?\d(_*\d)*)?', Number.Float),
+            (r'0[xX]_*[\da-fA-F](_*[\da-fA-F])*\.[\da-fA-F](_*[\da-fA-F])*'
+             r'(_*[pP][+-]?\d(_*\d)*)?', Number.Float),
             (r'\d(_*\d)*_*[eE][+-]?\d(_*\d)*', Number.Float),
             (r'\d(_*\d)*\.\d(_*\d)*(_*[eE][+-]?\d(_*\d)*)?', Number.Float),
             (r'0[bB]_*[01](_*[01])*', Number.Bin),
@@ -443,8 +444,8 @@ class CryptolLexer(RegexLexer):
             (r'[A-Z]\w*', Keyword.Type),
             (r'(_[\w\']+|[a-z][\w\']*)', Name.Function),
             # TODO: these don't match the comments in docs, remove.
-            #(r'--(?![!#$%&*+./<=>?@^|_~:\\]).*?$', Comment.Single),
-            #(r'{-', Comment.Multiline, 'comment'),
+            # (r'--(?![!#$%&*+./<=>?@^|_~:\\]).*?$', Comment.Single),
+            # (r'{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
             # (HACK, but it makes sense to push two instances, believe me)

@@ -5,7 +5,7 @@
 
     Lexers for modeling languages.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -326,8 +326,10 @@ class StanLexer(RegexLexer):
             (r'(%s)\b' % r'|'.join(_stan_builtins.TYPES), Keyword.Type),
              # < should be punctuation, but elsewhere I can't tell if it is in
              # a range constraint
-            (r'(<)(\s*)(upper|lower)(\s*)(=)', bygroups(Operator, Whitespace, Keyword, Whitespace, Punctuation)),
-            (r'(,)(\s*)(upper)(\s*)(=)', bygroups(Punctuation, Whitespace, Keyword, Whitespace, Punctuation)),
+            (r'(<)(\s*)(upper|lower)(\s*)(=)',
+             bygroups(Operator, Whitespace, Keyword, Whitespace, Punctuation)),
+            (r'(,)(\s*)(upper)(\s*)(=)',
+             bygroups(Punctuation, Whitespace, Keyword, Whitespace, Punctuation)),
             # Punctuation
             (r"[;,\[\]()]", Punctuation),
             # Builtin

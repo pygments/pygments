@@ -5,7 +5,7 @@
 
     Lexers for Igor Pro.
 
-    :copyright: Copyright 2006-2018 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

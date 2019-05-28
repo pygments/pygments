@@ -5,7 +5,7 @@
 
     Lexers for other C-like languages.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -412,6 +412,7 @@ class MqlLexer(CppLexer):
         ],
     }
 
+
 class ArduinoLexer(CppLexer):
     """
     For `Arduino(tm) <https://arduino.cc/>`_ source.
@@ -514,16 +515,15 @@ class ArduinoLexer(CppLexer):
         'peek', 'beep', 'rect', 'line', 'open', 'seek', 'fill', 'size', 'turn', 'stop',
         'home', 'find', 'step', 'tone', 'sqrt', 'RSSI', 'SSID', 'end', 'bit', 'tan',
         'cos', 'sin', 'pow', 'map', 'abs', 'max', 'min', 'get', 'run', 'put',
-        'isAlphaNumeric', 'isAlpha', 'isAscii', 'isWhitespace', 'isControl', 'isDigit', 
-        'isGraph', 'isLowerCase', 'isPrintable', 'isPunct', 'isSpace', 'isUpperCase', 
-        'isHexadecimalDigit'))    
+        'isAlphaNumeric', 'isAlpha', 'isAscii', 'isWhitespace', 'isControl', 'isDigit',
+        'isGraph', 'isLowerCase', 'isPrintable', 'isPunct', 'isSpace', 'isUpperCase',
+        'isHexadecimalDigit'))
 
     # do not highlight
     suppress_highlight = set((
-        'namespace', 'template', 'mutable', 'using', 'asm', 'typeid', 
-        'typename', 'this', 'alignof', 'constexpr', 'decltype', 'noexcept', 
+        'namespace', 'template', 'mutable', 'using', 'asm', 'typeid',
+        'typename', 'this', 'alignof', 'constexpr', 'decltype', 'noexcept',
         'static_assert', 'thread_local', 'restrict'))
-
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in CppLexer.get_tokens_unprocessed(self, text):
@@ -540,9 +540,12 @@ class ArduinoLexer(CppLexer):
             else:
                 yield index, token, value
 
+
 class CharmciLexer(CppLexer):
     """
     For `Charm++ <https://charm.cs.illinois.edu>`_ interface files (.ci).
+
+    .. versionadded:: 2.4
     """
 
     name = 'Charmci'
@@ -554,8 +557,15 @@ class CharmciLexer(CppLexer):
     tokens = {
         'statements': [
             (r'(module)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (words(('mainmodule','mainchare','chare','array','group','nodegroup','message','conditional')), Keyword),
-            (words(('entry','aggregate','threaded','sync','exclusive','nokeep','notrace','immediate','expedited','inline','local','python','accel','readwrite','writeonly','accelblock','memcritical','packed','varsize','initproc','initnode','initcall','stacksize','createhere','createhome','reductiontarget','iget','nocopy','mutable','migratable','readonly')), Keyword),
+            (words(('mainmodule', 'mainchare', 'chare', 'array', 'group',
+                    'nodegroup', 'message', 'conditional')), Keyword),
+            (words(('entry', 'aggregate', 'threaded', 'sync', 'exclusive',
+                    'nokeep', 'notrace', 'immediate', 'expedited', 'inline',
+                    'local', 'python', 'accel', 'readwrite', 'writeonly',
+                    'accelblock', 'memcritical', 'packed', 'varsize',
+                    'initproc', 'initnode', 'initcall', 'stacksize',
+                    'createhere', 'createhome', 'reductiontarget', 'iget',
+                    'nocopy', 'mutable', 'migratable', 'readonly')), Keyword),
             inherit,
         ],
     }

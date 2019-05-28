@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-u"""
+"""
     pygments.styles.arduino
     ~~~~~~~~~~~~~~~~~~~~~~~
 
     Arduino® Syntax highlighting style.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic, Whitespace
+    Number, Operator, Generic, Whitespace
 
 
 class ArduinoStyle(Style):
