@@ -5,20 +5,16 @@
 
     Lexer for FloScript
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
-    default, words, combined, do_insertions
-from pygments.util import get_bool_opt, shebang_matches
+from pygments.lexer import RegexLexer, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic, Other, Error
-from pygments import unistring as uni
+    Number, Punctuation
 
-__all__ = ['FloScriptLexer',]
+__all__ = ['FloScriptLexer']
+
 
 class FloScriptLexer(RegexLexer):
     """
@@ -44,7 +40,6 @@ class FloScriptLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ]
 
-
     tokens = {
         'root': [
             (r'\n', Text),
@@ -53,15 +48,19 @@ class FloScriptLexer(RegexLexer):
             (r'[]{}:(),;[]', Punctuation),
             (r'\\\n', Text),
             (r'\\', Text),
-            (r'(to|by|with|from|per|for|cum|qua|via|as|at|in|of|on|re|is|if|be|into|and|not)\b', Operator.Word),
+            (r'(to|by|with|from|per|for|cum|qua|via|as|at|in|of|on|re|is|if|be|into|'
+             r'and|not)\b', Operator.Word),
             (r'!=|==|<<|>>|[-~+/*%=<>&^|.]', Operator),
-            (r'(load|init|server|logger|log|loggee|first|over|under|next|done|timeout|repeat|native|benter|enter|recur|exit|precur|renter|rexit|print|put|inc|copy|set|aux|rear|raze|go|let|do|bid|ready|start|stop|run|abort|use|flo|give|take)\b', Name.Builtin),
-			(r'(frame|framer|house)\b', Keyword),
+            (r'(load|init|server|logger|log|loggee|first|over|under|next|done|timeout|'
+             r'repeat|native|benter|enter|recur|exit|precur|renter|rexit|print|put|inc|'
+             r'copy|set|aux|rear|raze|go|let|do|bid|ready|start|stop|run|abort|use|flo|'
+             r'give|take)\b', Name.Builtin),
+            (r'(frame|framer|house)\b', Keyword),
             ('"', String, 'string'),
 
             include('name'),
             include('numbers'),
-        	(r'#.+$', Comment.Singleline),
+            (r'#.+$', Comment.Singleline),
         ],
         'string': [
             ('[^"]+', String),
@@ -81,7 +80,4 @@ class FloScriptLexer(RegexLexer):
             (r'@[\w.]+', Name.Decorator),
             (r'[a-zA-Z_]\w*', Name),
         ],
-
-
-
     }

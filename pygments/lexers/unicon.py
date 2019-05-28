@@ -1,24 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.icon
-    ~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.unicon
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Icon and Unicon languages, including ucode VM.
 
-    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, include, bygroups, words, \
-    using, this, default
-from pygments.util import get_bool_opt, get_list_opt
+from pygments.lexer import RegexLexer, include, bygroups, words, using, this
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
-from pygments.scanner import Scanner
+    Number, Punctuation
 
 __all__ = ['IconLexer', 'UcodeLexer', 'UniconLexer']
+
 
 class UniconLexer(RegexLexer):
     """
@@ -69,44 +67,44 @@ class UniconLexer(RegexLexer):
              Keyword.Reserved),
             (words((
                 'Abort', 'abs', 'acos', 'Active', 'Alert', 'any', 'Any', 'Arb',
-                'Arbno', 'args', 'array', 'asin', 'atan', 'atanh', 'Attrib', 
-                'Bal', 'bal', 'Bg', 'Break', 'Breakx', 
+                'Arbno', 'args', 'array', 'asin', 'atan', 'atanh', 'Attrib',
+                'Bal', 'bal', 'Bg', 'Break', 'Breakx',
                 'callout', 'center', 'char', 'chdir', 'chmod', 'chown', 'chroot',
                 'classname', 'Clip', 'Clone', 'close', 'cofail', 'collect',
-                'Color', 'ColorValue', 'condvar', 'constructor', 'copy', 
-                'CopyArea', 'cos', 'Couple', 'crypt', 'cset', 'ctime', 
+                'Color', 'ColorValue', 'condvar', 'constructor', 'copy',
+                'CopyArea', 'cos', 'Couple', 'crypt', 'cset', 'ctime',
                 'dbcolumns', 'dbdriver', 'dbkeys', 'dblimits', 'dbproduct',
                 'dbtables', 'delay', 'delete', 'detab', 'display', 'DrawArc',
                 'DrawCircle', 'DrawCube', 'DrawCurve', 'DrawCylinder',
                 'DrawDisk', 'DrawImage', 'DrawLine', 'DrawPoint', 'DrawPolygon',
                 'DrawRectangle', 'DrawSegment', 'DrawSphere', 'DrawString',
-                'DrawTorus', 'dtor', 
+                'DrawTorus', 'dtor',
                 'entab', 'EraseArea', 'errorclear', 'Event', 'eventmask',
-                'EvGet', 'EvSend', 'exec', 'exit', 'exp', 'Eye', 
+                'EvGet', 'EvSend', 'exec', 'exit', 'exp', 'Eye',
                 'Fail', 'fcntl', 'fdup', 'Fence', 'fetch', 'Fg', 'fieldnames',
                 'filepair', 'FillArc', 'FillCircle', 'FillPolygon',
-                'FillRectangle', 'find', 'flock', 'flush', 'Font', 'fork', 
-                'FreeColor', 'FreeSpace', 'function', 
+                'FillRectangle', 'find', 'flock', 'flush', 'Font', 'fork',
+                'FreeColor', 'FreeSpace', 'function',
                 'get', 'getch', 'getche', 'getegid', 'getenv', 'geteuid',
                 'getgid', 'getgr', 'gethost', 'getpgrp', 'getpid', 'getppid',
                 'getpw', 'getrusage', 'getserv', 'GetSpace', 'gettimeofday',
-                'getuid', 'globalnames', 'GotoRC', 'GotoXY', 'gtime', 'hardlink', 
-                'iand', 'icom', 'IdentityMatrix', 'image', 'InPort', 'insert', 
-                'Int86', 'integer', 'ioctl', 'ior', 'ishift', 'istate', 'ixor', 
-                'kbhit', 'key', 'keyword', 'kill', 
+                'getuid', 'globalnames', 'GotoRC', 'GotoXY', 'gtime', 'hardlink',
+                'iand', 'icom', 'IdentityMatrix', 'image', 'InPort', 'insert',
+                'Int86', 'integer', 'ioctl', 'ior', 'ishift', 'istate', 'ixor',
+                'kbhit', 'key', 'keyword', 'kill',
                 'left', 'Len', 'list', 'load', 'loadfunc', 'localnames',
-                'lock', 'log', 'Lower', 'lstat', 
+                'lock', 'log', 'Lower', 'lstat',
                 'many', 'map', 'match', 'MatrixMode', 'max', 'member',
-                'membernames', 'methodnames', 'methods', 'min', 'mkdir', 'move', 
+                'membernames', 'methodnames', 'methods', 'min', 'mkdir', 'move',
                 'MultMatrix', 'mutex',
-                'name', 'NewColor', 'Normals', 'NotAny', 'numeric', 
-                'open', 'opencl', 'oprec', 'ord', 'OutPort', 
+                'name', 'NewColor', 'Normals', 'NotAny', 'numeric',
+                'open', 'opencl', 'oprec', 'ord', 'OutPort',
                 'PaletteChars', 'PaletteColor', 'PaletteKey', 'paramnames',
                 'parent', 'Pattern', 'Peek', 'Pending', 'pipe', 'Pixel',
                 'PlayAudio', 'Poke', 'pop', 'PopMatrix', 'Pos', 'pos',
                 'proc', 'pull', 'push', 'PushMatrix', 'PushRotate', 'PushScale',
-                'PushTranslate', 'put', 
-                'QueryPointer', 
+                'PushTranslate', 'put',
+                'QueryPointer',
                 'Raise', 'read', 'ReadImage', 'readlink', 'reads', 'ready',
                 'real', 'receive', 'Refresh', 'Rem', 'remove', 'rename',
                 'repl', 'reverse', 'right', 'rmdir', 'Rotate', 'Rpos',
@@ -114,7 +112,7 @@ class UniconLexer(RegexLexer):
                 'save', 'Scale', 'seek', 'select', 'send', 'seq',
                 'serial', 'set', 'setenv', 'setgid', 'setgrent',
                 'sethostent', 'setpgrp', 'setpwent', 'setservent',
-                 'setuid', 'signal', 'sin', 'sort', 'sortf', 'Span',
+                'setuid', 'signal', 'sin', 'sort', 'sortf', 'Span',
                 'spawn', 'sql', 'sqrt', 'stat', 'staticnames', 'stop',
                 'StopAudio', 'string', 'structure', 'Succeed', 'Swi',
                 'symlink', 'sys_errstr', 'system', 'syswrite',
@@ -128,7 +126,7 @@ class UniconLexer(RegexLexer):
                 'WinEditRegion', 'WinFontDialog', 'WinMenuBar', 'WinOpenDialog',
                 'WinPlayMedia', 'WinSaveDialog', 'WinScrollBar', 'WinSelectDialog',
                 'write', 'WriteImage', 'writes', 'WSection',
-                'WSync'), prefix=r'\b', suffix=r'\b'), 
+                'WSync'), prefix=r'\b', suffix=r'\b'),
              Name.Function),
             include('numbers'),
             (r'<@|<<@|>@|>>@|\.>|\->', Operator),
@@ -167,9 +165,10 @@ class UniconLexer(RegexLexer):
         ],
     }
 
+
 class IconLexer(RegexLexer):
     """
-    Lexer for Icon
+    Lexer for Icon.
 
     .. versionadded:: 1.6
     """
@@ -214,42 +213,42 @@ class IconLexer(RegexLexer):
              Keyword.Reserved),
             (words((
                 'abs', 'acos', 'Active', 'Alert', 'any',
-                'args', 'array', 'asin', 'atan', 'atanh', 'Attrib', 
+                'args', 'array', 'asin', 'atan', 'atanh', 'Attrib',
                 'bal', 'Bg',
                 'callout', 'center', 'char', 'chdir', 'chmod', 'chown', 'chroot',
                 'Clip', 'Clone', 'close', 'cofail', 'collect',
-                'Color', 'ColorValue', 'condvar', 'copy', 
-                'CopyArea', 'cos', 'Couple', 'crypt', 'cset', 'ctime', 
+                'Color', 'ColorValue', 'condvar', 'copy',
+                'CopyArea', 'cos', 'Couple', 'crypt', 'cset', 'ctime',
                 'delay', 'delete', 'detab', 'display', 'DrawArc',
                 'DrawCircle', 'DrawCube', 'DrawCurve', 'DrawCylinder',
                 'DrawDisk', 'DrawImage', 'DrawLine', 'DrawPoint', 'DrawPolygon',
                 'DrawRectangle', 'DrawSegment', 'DrawSphere', 'DrawString',
-                'DrawTorus', 'dtor', 
+                'DrawTorus', 'dtor',
                 'entab', 'EraseArea', 'errorclear', 'Event', 'eventmask',
-                'EvGet', 'EvSend', 'exec', 'exit', 'exp', 'Eye', 
+                'EvGet', 'EvSend', 'exec', 'exit', 'exp', 'Eye',
                 'fcntl', 'fdup', 'fetch', 'Fg', 'fieldnames',
                 'FillArc', 'FillCircle', 'FillPolygon',
                 'FillRectangle', 'find', 'flock', 'flush', 'Font',
-                'FreeColor', 'FreeSpace', 'function', 
+                'FreeColor', 'FreeSpace', 'function',
                 'get', 'getch', 'getche', 'getenv',
                 'GetSpace', 'gettimeofday',
-                'getuid', 'globalnames', 'GotoRC', 'GotoXY', 'gtime', 'hardlink', 
-                'iand', 'icom', 'IdentityMatrix', 'image', 'InPort', 'insert', 
-                'Int86', 'integer', 'ioctl', 'ior', 'ishift', 'istate', 'ixor', 
-                'kbhit', 'key', 'keyword', 'kill', 
+                'getuid', 'globalnames', 'GotoRC', 'GotoXY', 'gtime', 'hardlink',
+                'iand', 'icom', 'IdentityMatrix', 'image', 'InPort', 'insert',
+                'Int86', 'integer', 'ioctl', 'ior', 'ishift', 'istate', 'ixor',
+                'kbhit', 'key', 'keyword', 'kill',
                 'left', 'Len', 'list', 'load', 'loadfunc', 'localnames',
-                'lock', 'log', 'Lower', 'lstat', 
+                'lock', 'log', 'Lower', 'lstat',
                 'many', 'map', 'match', 'MatrixMode', 'max', 'member',
-                'membernames', 'methodnames', 'methods', 'min', 'mkdir', 'move', 
+                'membernames', 'methodnames', 'methods', 'min', 'mkdir', 'move',
                 'MultMatrix', 'mutex',
-                'name', 'NewColor', 'Normals', 'numeric', 
-                'open', 'opencl', 'oprec', 'ord', 'OutPort', 
+                'name', 'NewColor', 'Normals', 'numeric',
+                'open', 'opencl', 'oprec', 'ord', 'OutPort',
                 'PaletteChars', 'PaletteColor', 'PaletteKey', 'paramnames',
                 'parent', 'Pattern', 'Peek', 'Pending', 'pipe', 'Pixel',
                 'Poke', 'pop', 'PopMatrix', 'Pos', 'pos',
                 'proc', 'pull', 'push', 'PushMatrix', 'PushRotate', 'PushScale',
-                'PushTranslate', 'put', 
-                'QueryPointer', 
+                'PushTranslate', 'put',
+                'QueryPointer',
                 'Raise', 'read', 'ReadImage', 'readlink', 'reads', 'ready',
                 'real', 'receive', 'Refresh', 'Rem', 'remove', 'rename',
                 'repl', 'reverse', 'right', 'rmdir', 'Rotate', 'Rpos',
@@ -270,7 +269,7 @@ class IconLexer(RegexLexer):
                 'WinEditRegion', 'WinFontDialog', 'WinMenuBar', 'WinOpenDialog',
                 'WinPlayMedia', 'WinSaveDialog', 'WinScrollBar', 'WinSelectDialog',
                 'write', 'WriteImage', 'writes', 'WSection',
-                'WSync'), prefix=r'\b', suffix=r'\b'), 
+                'WSync'), prefix=r'\b', suffix=r'\b'),
              Name.Function),
             include('numbers'),
             (r'\*\*|\+\+|\-\-|\.|\=|\~\=|<\=|>\=|\=\=|\~\=\=|<<|<<\=|>>|>>\=', Operator),
@@ -307,9 +306,10 @@ class IconLexer(RegexLexer):
         ],
     }
 
+
 class UcodeLexer(RegexLexer):
     """
-    Lexer for Icon ucode files
+    Lexer for Icon ucode files.
 
     .. versionadded:: 2.4
     """
@@ -387,4 +387,4 @@ class UcodeLexer(RegexLexer):
             (r'\s+\b', Text),
             (r'[\w-]+', Text),
         ],
-}
+    }

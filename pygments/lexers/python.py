@@ -5,7 +5,7 @@
 
     Lexers for Python and related languages.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -361,7 +361,8 @@ class Python3Lexer(RegexLexer):
          Name.Variable.Magic),
     ]
     tokens['numbers'] = [
-        (r'(\d(?:_?\d)*\.(?:\d(?:_?\d)*)?|(?:\d(?:_?\d)*)?\.\d(?:_?\d)*)([eE][+-]?\d(?:_?\d)*)?', Number.Float),
+        (r'(\d(?:_?\d)*\.(?:\d(?:_?\d)*)?|(?:\d(?:_?\d)*)?\.\d(?:_?\d)*)'
+         r'([eE][+-]?\d(?:_?\d)*)?', Number.Float),
         (r'\d(?:_?\d)*[eE][+-]?\d(?:_?\d)*j?', Number.Float),
         (r'0[oO](?:_?[0-7])+', Number.Oct),
         (r'0[bB](?:_?[01])+', Number.Bin),

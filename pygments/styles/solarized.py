@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 """
     pygments.styles.solarized
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Solarized by Camil Staps
 
     A Pygments style for the Solarized themes (licensed under MIT).
     See: https://github.com/altercation/solarized
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style
 from pygments.token import Comment, Error, Generic, Keyword, Name, Number, \
-        Operator, String, Token
+    Operator, String, Token
 
 
 def make_style(colors):
@@ -118,6 +118,7 @@ class SolarizedDarkStyle(Style):
     styles = make_style(DARK_COLORS)
     background_color = DARK_COLORS['base03']
     highlight_color = DARK_COLORS['base02']
+
 
 class SolarizedLightStyle(SolarizedDarkStyle):
     """

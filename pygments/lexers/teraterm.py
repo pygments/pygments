@@ -5,7 +5,7 @@
 
     Lexer for Tera Term macro files.
 
-    :copyright: Copyright 2006-2018 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Text, Comment, Operator, Name, String, \
-                           Number, Keyword
+    Number, Keyword
 
 __all__ = ['TeraTermLexer']
 
