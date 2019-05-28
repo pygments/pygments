@@ -18,7 +18,7 @@ from os.path import basename
 from pygments.lexers._mapping import LEXERS
 from pygments.modeline import get_filetype_from_buffer
 from pygments.plugin import find_plugin_lexers
-from pygments.util import ClassNotFound, itervalues, guess_decode
+from pygments.util import ClassNotFound, itervalues, guess_decode, text_type
 
 
 __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
@@ -288,6 +288,13 @@ def guess_lexer_for_filename(_fn, _text, **options):
 
 def guess_lexer(_text, **options):
     """Guess a lexer by strong distinctions in the text (eg, shebang)."""
+
+    if not isinstance(_text, text_type):
+        inencoding = options.get('inencoding', options.get('encoding'))
+        if inencoding:
+            _text = _text.decode(inencoding or 'utf8')
+        else:
+            _text, _ = guess_decode(_text)
 
     # try to get a vim modeline first
     ft = get_filetype_from_buffer(_text)
