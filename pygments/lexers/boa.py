@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.boa
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Boa language.
 
@@ -12,7 +12,8 @@
 import re
 
 from pygments.lexer import RegexLexer, words
-from pygments.token import *
+from pygments.token import String, Comment, Keyword, Name, Number, Text, \
+    Operator, Punctuation
 
 __all__ = ['BoaLexer']
 
@@ -30,44 +31,53 @@ class BoaLexer(RegexLexer):
     filenames = ['*.boa']
 
     reserved = words(
-        ('input', 'output', 'of', 'weight', 'before', 'after', 'stop', 'ifall', 'foreach', 'exists', 'function',
-         'break', 'switch', 'case', 'visitor', 'default', 'return', 'visit', 'while', 'if', 'else'),
+        ('input', 'output', 'of', 'weight', 'before', 'after', 'stop',
+         'ifall', 'foreach', 'exists', 'function', 'break', 'switch', 'case',
+         'visitor', 'default', 'return', 'visit', 'while', 'if', 'else'),
         suffix=r'\b', prefix=r'\b')
     keywords = words(
-        ('bottom', 'collection', 'maximum', 'mean', 'minimum', 'set', 'sum', 'top', 'string', 'int', 'bool', 'float',
-         'time', 'false', 'true', 'array', 'map', 'stack', 'enum', 'type'), suffix=r'\b', prefix=r'\b')
+        ('bottom', 'collection', 'maximum', 'mean', 'minimum', 'set', 'sum',
+         'top', 'string', 'int', 'bool', 'float', 'time', 'false', 'true',
+         'array', 'map', 'stack', 'enum', 'type'), suffix=r'\b', prefix=r'\b')
     classes = words(
-        ('Project', 'ForgeKind', 'CodeRepository', 'Revision', 'RepositoryKind', 'ChangedFile', 'FileKind', 'ASTRoot',
-         'Namespace', 'Declaration', 'Type', 'Method', 'Variable', 'Statement', 'Expression', 'Modifier',
-         'StatementKind', 'ExpressionKind', 'ModifierKind', 'Visibility', 'TypeKind', 'Person', 'ChangeKind'),
+        ('Project', 'ForgeKind', 'CodeRepository', 'Revision', 'RepositoryKind',
+         'ChangedFile', 'FileKind', 'ASTRoot', 'Namespace', 'Declaration', 'Type',
+         'Method', 'Variable', 'Statement', 'Expression', 'Modifier',
+         'StatementKind', 'ExpressionKind', 'ModifierKind', 'Visibility',
+         'TypeKind', 'Person', 'ChangeKind'),
         suffix=r'\b', prefix=r'\b')
-    operators = ('->', ':=', ':', '=', '<<', '!', '++', '||', '&&', '+', '-', '*', ">", "<")
+    operators = ('->', ':=', ':', '=', '<<', '!', '++', '||',
+                 '&&', '+', '-', '*', ">", "<")
     string_sep = ('`', '\"')
     built_in_functions = words(
         (
             # Array functions
             'new', 'sort',
             # Date & Time functions
-            'yearof', 'dayofyear', 'hourof', 'minuteof', 'secondof', 'now', 'addday', 'addmonth', 'addweek', 'addyear',
-            'dayofmonth', 'dayofweek', 'dayofyear', 'formattime', 'trunctoday', 'trunctohour', 'trunctominute',
+            'yearof', 'dayofyear', 'hourof', 'minuteof', 'secondof', 'now',
+            'addday', 'addmonth', 'addweek', 'addyear', 'dayofmonth', 'dayofweek',
+            'dayofyear', 'formattime', 'trunctoday', 'trunctohour', 'trunctominute',
             'trunctomonth', 'trunctosecond', 'trunctoyear',
             # Map functions
             'clear', 'haskey', 'keys', 'lookup', 'remove', 'values',
             # Math functions
-            'abs', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'cos', 'cosh', 'exp', 'floor',
-            'highbit', 'isfinite', 'isinf', 'isnan', 'isnormal', 'log', 'log10', 'max', 'min', 'nrand', 'pow', 'rand',
-            'round', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'trunc',
+            'abs', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh',
+            'ceil', 'cos', 'cosh', 'exp', 'floor', 'highbit', 'isfinite', 'isinf',
+            'isnan', 'isnormal', 'log', 'log10', 'max', 'min', 'nrand', 'pow',
+            'rand', 'round', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'trunc',
             # Other functions
             'def', 'hash', 'len',
             # Set functions
             'add', 'contains', 'remove',
             # String functions
-            'format', 'lowercase', 'match', 'matchposns', 'matchstrs', 'regex', 'split', 'splitall', 'splitn',
-            'strfind', 'strreplace', 'strrfind', 'substring', 'trim', 'uppercase',
+            'format', 'lowercase', 'match', 'matchposns', 'matchstrs', 'regex',
+            'split', 'splitall', 'splitn', 'strfind', 'strreplace', 'strrfind',
+            'substring', 'trim', 'uppercase',
             # Type Conversion functions
             'bool', 'float', 'int', 'string', 'time',
             # Domain-Specific functions
-            'getast', 'getsnapshot', 'hasfiletype', 'isfixingrevision', 'iskind', 'isliteral',
+            'getast', 'getsnapshot', 'hasfiletype', 'isfixingrevision', 'iskind',
+            'isliteral',
         ),
         prefix=r'\b',
         suffix=r'\(')
