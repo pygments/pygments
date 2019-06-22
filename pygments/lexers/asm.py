@@ -455,6 +455,10 @@ class NasmLexer(RegexLexer):
     filenames = ['*.asm', '*.ASM']
     mimetypes = ['text/x-nasm']
 
+    # Tasm uses the same file endings, but TASM is not as common as NASM, so
+    # we prioritize NASM higher by default
+    priority = 1.0
+
     identifier = r'[a-z$._?][\w$.?#@~]*'
     hexn = r'(?:0x[0-9a-f]+|$0[0-9a-f]*|[0-9]+[0-9a-f]*h)'
     octn = r'[0-7]+q'
@@ -519,6 +523,11 @@ class NasmLexer(RegexLexer):
             (type, Keyword.Type)
         ],
     }
+
+    def analyse_text(text):
+        # Probably TASM
+        if re.match(r'PROC', text, re.IGNORECASE):
+            return False
 
 
 class NasmObjdumpLexer(ObjdumpLexer):
@@ -613,6 +622,11 @@ class TasmLexer(RegexLexer):
             (type, Keyword.Type)
         ],
     }
+
+    def analyse_text(text):
+        # See above
+        if re.match(r'PROC', text, re.I):
+            return True
 
 
 class Ca65Lexer(RegexLexer):
