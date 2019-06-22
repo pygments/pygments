@@ -10,8 +10,14 @@ Version 2.4.2
 -------------
 (released May 28, 2019)
 
+- Updated lexers:
+
+  * Erlang, Elxir shells (PR#823, #1521)
+
 - Fix encoding error when guessing lexer with given ``encoding`` option
   (#1438)
+- Bump ``NasmLexer`` priority over ``TasmLexer`` for ``.asm`` files
+  (fixes #1326)
 
 
 Version 2.4.1
