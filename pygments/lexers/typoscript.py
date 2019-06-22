@@ -113,9 +113,6 @@ class TypoScriptLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    # Slightly higher than TypeScript (which is 0).
-    priority = 0.0
-
     tokens = {
         'root': [
             include('comment'),
