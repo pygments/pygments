@@ -60,7 +60,7 @@ class ZigLexer(RegexLexer):
         Keyword)
 
     other_keywords = (
-        words(('fn', 'use', 'test'), suffix=r'\b'),
+        words(('fn', 'usingnamespace', 'test'), suffix=r'\b'),
         Keyword)
 
     constant_keywords = (
