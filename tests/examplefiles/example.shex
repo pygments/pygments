@@ -1,0 +1,20 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ex: <http://pygments.example/#>
+
+ex:Lexer {
+  rdfs:label xsd:string;
+  skos:altLabel xsd:string*;
+  ex:filenames xsd:string+;
+  ex:mimetypes xsd:string+;
+  ex:priority xsd:decimal MinInclusive 0.0 MaxExclusive 1.0; # seems to be the de facto range of currently defined priorities
+  ex:lexes @ex:Language*;
+}
+
+ex:Language {
+  schema:description rdf:langString*;
+  schema:url IRI?;
+}
