@@ -9,7 +9,7 @@
 
 import unittest
 
-from pygments.lexers import JsonLexer, JsonBareObjectLexer
+from pygments.lexers import JsonLexer, JsonBareObjectLexer, YamlLexer
 from pygments.token import Token
 
 
@@ -98,3 +98,20 @@ class JsonBareObjectTest(unittest.TestCase):
         ]
         self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
 
+class YamlTest(unittest.TestCase):
+    def setUp(self):
+        self.lexer = YamlLexer()
+
+    def testColonInComment(self):
+        # Bug #1528: This previously parsed 'token # innocent' as a tag
+        fragment = u'here: token # innocent: comment\n'
+        tokens = [
+            (Token.Name.Tag, u'here'),
+            (Token.Punctuation, u':'),
+            (Token.Text, u' '),
+            (Token.Literal.Scalar.Plain, u'token'),
+            (Token.Text, u' '),
+            (Token.Comment.Single, u'# innocent: comment'),
+            (Token.Text, u'\n'),
+        ]
+        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
