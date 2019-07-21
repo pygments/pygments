@@ -366,12 +366,12 @@ class ShExCLexer(RegexLexer):
             # blank nodes ::
             ('(' + BLANK_NODE_LABEL + ')', Name.Label),
             # prefixed names ::
-            (r'(' + PN_PREFIX + ')?(\:)(' + PN_LOCAL + ')?',
+            (r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + ')?',
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
             # boolean literals ::
             (r'(true|false)', Keyword.Constant),
             # double literals ::
-            (r'[+\-]?(\d+\.\d*' + EXPONENT + '|\.?\d+' + EXPONENT + ')', Number.Float),
+            (r'[+\-]?(\d+\.\d*' + EXPONENT + r'|\.?\d+' + EXPONENT + ')', Number.Float),
             # decimal literals ::
             (r'[+\-]?(\d+\.\d*|\.\d+)', Number.Float),
             # integer literals ::
