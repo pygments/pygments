@@ -355,7 +355,7 @@ class ShExCLexer(RegexLexer):
         'root': [
             (r'\s+', Text),
             # keywords ::
-            (r'((?i)base|prefix|start|external|'
+            (r'(?i)(base|prefix|start|external|'
              r'literal|iri|bnode|nonliteral|length|minlength|maxlength|'
              r'mininclusive|minexclusive|maxinclusive|maxexclusive|'
              r'totaldigits|fractiondigits|'
@@ -379,7 +379,7 @@ class ShExCLexer(RegexLexer):
             # operators ::
             (r'[@|$&=*+?^\-~]', Operator),
             # operator keywords ::
-            (r'((?i)and|or|not)\b', Operator.Word),
+            (r'(?i)(and|or|not)\b', Operator.Word),
             # punctuation characters ::
             (r'[(){}.;,:^\[\]]', Punctuation),
             # line comments ::
