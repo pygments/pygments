@@ -1,0 +1,81 @@
+// Let's test comment
+import Base@0 open
+
+T List {A : Type}
+| cons {head : A, tail : List(A)}
+| nil
+
+head : {~T : Type, default : T, case list : List(T)} -> T
+| cons => list.head
+| nil  => default
+
+get_unit_kind {unit : Word} ((unit .>> 30) .& 0b00000011)
+get_unit_side {unit : Word} ((unit .>> 28) .& 0b00000011)
+
+check_age : Output
+  let age = 30;
+  if age .< 18:
+    print("boring teenager") // inline comment
+  else:
+    print("respect your elders!")
+
+get_first : {pair: [:Word, Word]} -> Word 
+  get [a,b] = pair
+  a
+
+form_pair : {pair1: [:Word, Word], pair2: [:Word, Word]} -> [:Word, Word]
+  [fst(pair1), snd(pair2)];
+
+operations 
+  let add = (3 + 2);
+  let min = (3 - 2)
+  let or  = (true .| false)
+  let and = (true .& true)
+  let eql = (3 .= 3)
+  let gth = (6 .> 7)
+  let lth = (6 .< 7)
+  let div = (10 / 5)
+  let exp = (2 ^ 3)
+  let mod = (10 % 5)
+  mod
+
+circle: {mlen : Ind, srad : !Word} -> !{pos : V2} -> List(V2)
+  dup srad = srad
+  let isin = {cen, siz, pos} (V2.sqr_dist(cen, pos) .< srad)
+  dup size = #((Num.sqrt(srad) * 2) + 1)
+  V2.area(mlen, #[size,size], #isin)
+
+T Vector3D
+| v3 {x : Word, y : Word, z : Word}
+
+get_x : {v : Vector3D} -> Word
+  case/Vector3D v
+  | v3 => x
+  : Word
+
+list_example : List(Word)
+  tail(~Word, Word$[1, 2, 3])
+
+square_example : {x : Word} -> Word
+  cpy x = x
+  x * x
+
+get_fst : {p : [:Word, String]} -> Word
+  fst(p)
+
+get_snd : {p: [:Word, String]} -> String 
+  snd(p)
+
+print_example 
+  print(get_snd([3, "hello, nerd"]))
+
+!fact*n : ! {i : Word} -> Word
+  cpy i = i
+  if i .= 0:
+    1
+  else:
+    i * fact(i - 1)
+  * 0
+
+!try_fact : !Word
+  <fact*100>(12)
