@@ -33,12 +33,12 @@ class FormalityLexer(RegexLexer):
     builtinOps = (
         '~', '.|', '.&', '^', '.^', '.>>', '.<<', '.<', '.>', '.=',
         '+', '*', '/', '%', '**', '.&', '.|', '.!', ':', '-',
-        '->', '=>', '!', '#', '$', '@'
+        '->', '=>', '!', '#', '$', '@', '==', '::', '?'
     )
 
     reservedWords = words((
         'let', 'dup', 'cpy', 'get', 'fst', 'snd', 'import',
-        'open', 'if', 'else', 'then', 'case', 'T'
+        'if', 'else', 'then', 'case', 'T', 'rewrite', 'halt'
         ), suffix=r'\b')
 
     tokens = {

@@ -1,5 +1,5 @@
 // Let's test comment
-import Base@0 open
+import Base@0
 
 T List {A : Type}
 | cons {head : A, tail : List(A)}
@@ -79,3 +79,29 @@ print_example
 
 !try_fact : !Word
   <fact*100>(12)
+
+Associative : {A : Type, f : A -> A -> A} -> Type
+   {x : A, y : A, z : A} -> f(f(x,y),z) == f(x,f(y,z))
+
+proof : {b : Bool} -> not(not(b)) == b
+  ?
+
+#map*N : {~A : Type, ~B : Type, f : !A -> B} -> ! {case list : List(A)} -> List(B)
+| cons => cons(~B, f(list.head), map(list.tail))
+| nil  => nil(~B)
+halt: nil(~B)
+
+#map.example : !List(Word)
+  <map*(~Word, ~Word, #{x} x + 1)>(Word$[1,2,3,4])
+
+// ∀ n . n < n+1
+#less_than_succ*N : !{n : Nat, bound : Bound(n, N)} -> Less(n, succ(n))
+  (case/Bound bound
+  | bound_succ => {e}
+    let r0 = cong_unstep(~i, ~N, ~e)
+    let r1 = less_than_succ(n, k :: rewrite x in Bound(n, x) with r0)
+    let r2 = less_succ(~n, ~succ(n), r1)
+    r2
+  | bound_zero => {e} less_zero(~zero)
+  : {e : i == step(N)} -> Less(n, succ(n)))(refl(~step(N)))
+  * absurd(absurd_bound(n, bound), ~Less(n, succ(n)))
