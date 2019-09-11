@@ -45,6 +45,7 @@ Programming languages
 * Fancy
 * `Fennel <https://fennel-lang.org/>`_
 * `FloScript <http://ioflo.com/>`_
+* `Formality <https://docs.formality-lang.org/en/latest/>`_
 * Fortran
 * `FreeFEM++ <https://freefem.org/>`_
 * F#
