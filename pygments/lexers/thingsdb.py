@@ -10,7 +10,7 @@
 """
 
 import re
-from pygments.lexer import RegexLexer, include, default, bygroups
+from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Comment, Keyword, Name, Number, String, Text, \
     Operator, Punctuation, Whitespace
 
@@ -42,7 +42,7 @@ class ThingsDBLexer(RegexLexer):
         ],
         'root': [
             include('comments'),
-            default('expression'),
+            include('expression'),
         ],
         'expression': [
             include('whitespace'),
@@ -60,7 +60,7 @@ class ThingsDBLexer(RegexLexer):
             (r'#[0-9]+', Comment.Preproc),
             include('names'),
             (r'[()\[\],.;]', Punctuation),
-            (r'\|', Operator, 'closure'),
+            # (r'\|', Operator, 'closure'),
             (r'[+\-*/%&|<>^!~@=:?]', Operator),
             (r'\{', Punctuation, 'block'),
         ],
