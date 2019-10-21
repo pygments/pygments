@@ -26,49 +26,39 @@ class ThingsDBLexer(RegexLexer):
     filenames = ['*.ti']
 
     tokens = {
-        'whitespace': [
-            (r'\n', Whitespace),
-            (r'\s+', Whitespace),
-        ],
-        'comments': [
-            (r'//(.*?)\n', Comment.Single),
-            (r'/\*', Comment.Multiline, 'comment'),
-        ],
-        'comment': [
-            (r'[^*/]+', Comment.Multiline),
-            (r'/\*', Comment.Multiline, '#push'),
-            (r'\*/', Comment.Multiline, '#pop'),
-            (r'[*/]', Comment.Multiline),
-        ],
         'root': [
-            include('comments'),
             include('expression'),
         ],
         'expression': [
+            include('comments'),
             include('whitespace'),
-            (r'[!]', Operator),
+
+            # numbers
             (r'[-+]?0b[01]+', Number.Bin),
             (r'[-+]?0o[0-8]+', Number.Octal),
             (r'([-+]?0x[0-9a-fA-F]+)', Number.Hex),
             (r'[-+]?[0-9]+', Number.Integer),
-            (r'(true|false|nil)\b', Keyword.Constant),
             (r'[-+]?((inf|nan)([^0-9A-Za-z_]|$)|[0-9]*\.[0-9]+(e[+-][0-9]+)?)',
             Number.Float),
+
+            # strings
             (r'(?:"(?:[^"]*)")+', String.Double),
             (r"(?:'(?:[^']*)')+", String.Single),
+
+            # literals
+            (r'(true|false|nil)\b', Keyword.Constant),
+
+            # regular expressions
             (r'(/[^/\\]*(?:\\.[^/\\]*)*/i?)', String.Regex),
+
+            # thing id's
             (r'#[0-9]+', Comment.Preproc),
+
+            # name, assignments and functions
             include('names'),
-            (r'[()\[\],.;]', Punctuation),
-            # (r'\|', Operator, 'closure'),
+
+            (r'[(){}\[\],;]', Punctuation),
             (r'[+\-*/%&|<>^!~@=:?]', Operator),
-            (r'\{', Punctuation, 'block'),
-        ],
-        'closure': [
-            include('whitespace'),
-            (r'[A-Za-z_][0-9A-Za-z_]*', Name.Variable),
-            (',', Punctuation),
-            (r'\|', Operator, '#pop'),
         ],
         'names': [
             (r'(\.)'
@@ -97,29 +87,30 @@ class ThingsDBLexer(RegexLexer):
              'arguments'),
             (r'(\.[A-Za-z_][0-9A-Za-z_]*)'
              r'(\s*)(=)',
-             bygroups(Name.Attribute, Text, Operator),
-             'expression'),
+             bygroups(Name.Attribute, Text, Operator)),
             (r'\.[A-Za-z_][0-9A-Za-z_]*', Name.Attribute),
             (r'([A-Za-z_][0-9A-Za-z_]*)(\s*)(=)',
-            bygroups(Name.Variable, Text, Operator),
-            'expression'),
+            bygroups(Name.Variable, Text, Operator)),
             (r'[A-Za-z_][0-9A-Za-z_]*', Name.Variable),
         ],
-        'chain': [
-            include('names'),
-            (r'[.]', Punctuation, 'chain'),
-            (';', Punctuation, '#pop'),
+        'whitespace': [
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
+        ],
+        'comments': [
+            (r'//(.*?)\n', Comment.Single),
+            (r'/\*', Comment.Multiline, 'comment'),
+        ],
+        'comment': [
+            (r'[^*/]+', Comment.Multiline),
+            (r'/\*', Comment.Multiline, '#push'),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
         ],
         'arguments': [
             include('expression'),
             (',', Punctuation),
             (r'\(', Punctuation, '#push'),
             (r'\)', Punctuation, '#pop'),
-        ],
-        'block': [
-            include('comments'),
-            include('expression'),
-            (r'\{', Punctuation, '#push'),
-            (r'\}', Punctuation, '#pop'),
         ],
     }
