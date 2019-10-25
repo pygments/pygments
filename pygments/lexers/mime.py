@@ -20,9 +20,13 @@ __all__ = ["MIMELexer"]
 
 
 class MIMELexer(RegexLexer):
-    """Lexer for Multipurpose Internet Mail Extensions (MIME) data. It assumes
-    that the given data contains both header and body. If no valid header is
-    found, it would treat entire data as body.
+    """
+    Lexer for Multipurpose Internet Mail Extensions (MIME) data. This lexer is
+    designed to process the nested mulitpart data.
+
+    It assumes that the given data contains both header and body (and is
+    splitted by empty line). If no valid header is found, then the entire data
+    would be treated as body.
 
     Additional options accepted:
 
@@ -31,12 +35,12 @@ class MIMELexer(RegexLexer):
         would treated as unlimited. (default: -1)
 
     `Content-Type`
-        Treat this data as specific content type. Useful when header is
-        missing, or it would try to parse from header. (default: None)
+        Treat the data as specific content type. Useful when header is
+        missing, or this lexer would try to parse from header. (default: None)
 
     `Content-Transfer-Encoding`
-        Treat this data as specific encoding. Or it would try to parse from
-        header by default. (default: None)
+        Treat the data as specific encoding. Or this lexer would try to parse
+        from header by default. (default: None)
     """
 
     name = "MIME"
