@@ -51,10 +51,9 @@ class MIMELexer(RegexLexer):
 
     def __init__(self, **options):
         RegexLexer.__init__(self, **options)
-        self.content_type = options.get("Content_Type")
         self.boundary = options.get("boundary")
         self.content_transfer_encoding = options.get("Content_Transfer_Encoding")
-
+        self.content_type = options.get("Content_Type", "text/plain")
         self.max_nested_level = get_int_opt(options, "MIME-max-level", -1)
 
     def analyse_text(text):
@@ -194,7 +193,8 @@ class MIMELexer(RegexLexer):
                 r"|message)/([\w-]+))",
                 store_content_type,
             ),
-            (r"boundary=(?:\"([\w=-]+)\"|([\w=-]+)\b)", store_boundary),
+            (r"boundary=(?:\"([\w'()+,.\/:? =-]+)\"|([\w'()+,.\/:? =-]+)\b)",
+             store_boundary),
         ],
         "content-transfer-encoding": [
             include("header"),
