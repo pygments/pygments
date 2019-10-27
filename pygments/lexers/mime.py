@@ -195,6 +195,8 @@ class MIMELexer(RegexLexer):
             ),
             (r"boundary=(?:\"([\w'()+,.\/:? =-]+)\"|([\w'()+,.\/:? =-]+)\b)",
              store_boundary),
+            (r'\S+', Text),
+            (r'[ \t]+', Whitespace),
         ],
         "content-transfer-encoding": [
             include("header"),
