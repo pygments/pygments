@@ -36,7 +36,13 @@ class MIMELexer(RegexLexer):
 
     `Content-Type`
         Treat the data as specific content type. Useful when header is
-        missing, or this lexer would try to parse from header. (default: None)
+        missing, or this lexer would try to parse from header. (default:
+        `text/plain`)
+
+    `Multipart-Boundary`
+        Set the default multipart boundary delimiter. This option is only used
+        when `Content-Type` is `multipart` and header is missing. This lexer
+        would try to parse from header by default. (default: None)
 
     `Content-Transfer-Encoding`
         Treat the data as specific encoding. Or this lexer would try to parse
@@ -51,7 +57,7 @@ class MIMELexer(RegexLexer):
 
     def __init__(self, **options):
         RegexLexer.__init__(self, **options)
-        self.boundary = options.get("boundary")
+        self.boundary = options.get("Multipart-Boundary")
         self.content_transfer_encoding = options.get("Content_Transfer_Encoding")
         self.content_type = options.get("Content_Type", "text/plain")
         self.max_nested_level = get_int_opt(options, "MIME-max-level", -1)
