@@ -11,9 +11,9 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, do_insertions
+from pygments.lexer import RegexLexer, include
 from pygments.lexers import get_lexer_for_mimetype
-from pygments.token import Text, Whitespace, Name, String, Comment, Other
+from pygments.token import Text, Name, String, Operator, Comment, Other
 from pygments.util import get_int_opt, ClassNotFound
 
 __all__ = ["MIMELexer"]
@@ -76,7 +76,7 @@ class MIMELexer(RegexLexer):
 
         if field.lower() in self.attention_headers:
             yield match.start(1), Name.Tag, field + ":"
-            yield match.start(2), Whitespace, match.group(2)
+            yield match.start(2), Text.Whitespace, match.group(2)
 
             pos = match.end(2)
             body = match.group(3)
@@ -85,7 +85,7 @@ class MIMELexer(RegexLexer):
 
         else:
             yield match.start(1), Comment.Special, field + ":"
-            yield match.start(2), Whitespace, match.group(2)
+            yield match.start(2), Text.Whitespace, match.group(2)
             yield match.start(3), Comment.Multiline, match.group(3)
 
     def get_body_tokens(self, match):
@@ -152,27 +152,27 @@ class MIMELexer(RegexLexer):
         self.content_type = match.group(1)
 
         prefix_len = match.start(1) - match.start(0)
-        yield match.start(0), Whitespace, match.group(0)[:prefix_len]
+        yield match.start(0), Text.Whitespace, match.group(0)[:prefix_len]
         yield match.start(1), Name.Label, match.group(2)
         yield match.end(2), String.Delimiter, "/"
         yield match.start(3), Name.Label, match.group(3)
 
-    def store_boundary(self, match):
-        if match.group(1):
-            prefix_len = match.start(1) - match.start(0)
-            yield match.start(0), Text, match.group(0)[:prefix_len]
-            yield match.start(1), String.Delimiter, match.group(1)
-            yield match.end(1), Text, '"'
-            self.boundary = match.group(1)
-        else:
-            prefix_len = match.start(2) - match.start(0)
-            yield match.start(0), Text, match.group(0)[:prefix_len]
-            yield match.start(2), String.Delimiter, match.group(2)
-            self.boundary = match.group(2)
+    def get_content_type_subtokens(self, match):
+        yield match.start(1), Text, match.group(1)
+        yield match.start(2), Text.Whitespace, match.group(2)
+        yield match.start(3), Name.Attribute, match.group(3)
+        yield match.start(4), Operator, match.group(4)
+        yield match.start(5), String, match.group(5)
+
+        if match.group(3).lower() == "boundary":
+            boundary = match.group(5).strip()
+            if boundary[0] == '"' and boundary[-1] == '"':
+                boundary = boundary[1:-1]
+            self.boundary = boundary
 
     def store_content_transfer_encoding(self, match):
         self.content_transfer_encoding = match.group(0).lower()
-        yield match.start(0), Text, match.group(0)
+        yield match.start(0), Name.Constant, match.group(0)
 
     attention_headers = {"content-type", "content-transfer-encoding"}
 
@@ -183,8 +183,8 @@ class MIMELexer(RegexLexer):
         ],
         "header": [
             # folding
-            (r"\n[ \t]", Whitespace),
-            (r"\n(?![ \t])", Whitespace, "#pop"),
+            (r"\n[ \t]", Text.Whitespace),
+            (r"\n(?![ \t])", Text.Whitespace, "#pop"),
         ],
         "content-type": [
             include("header"),
@@ -193,10 +193,9 @@ class MIMELexer(RegexLexer):
                 r"|message)/([\w-]+))",
                 store_content_type,
             ),
-            (r"boundary=(?:\"([\w'()+,.\/:? =-]+)\"|([\w'()+,.\/:? =-]+)\b)",
-             store_boundary),
-            (r'\S+', Text),
-            (r'[ \t]+', Whitespace),
+            (r'(;)((?:[ \t]|\n[ \t])*)([\w:-]+)(=)([\s\S]*?)(?=;|\n(?![ \t]))',
+             get_content_type_subtokens),
+            (r';[ \t]*\n(?![ \t])', Text, '#pop'),
         ],
         "content-transfer-encoding": [
             include("header"),
