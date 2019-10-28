@@ -46,7 +46,7 @@ STYLES = {
 }
 
 # A sane default for modern systems
-DEFAULT_FONT_NAME_NIX = 'Bitstream Vera Sans Mono'
+DEFAULT_FONT_NAME_NIX = 'DejaVu Sans Mono'
 DEFAULT_FONT_NAME_WIN = 'Courier New'
 DEFAULT_FONT_NAME_MAC = 'Courier New'
 
