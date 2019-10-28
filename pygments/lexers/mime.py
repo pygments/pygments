@@ -56,7 +56,7 @@ class MIMELexer(RegexLexer):
                  "multipart/alternative"]
 
     def __init__(self, **options):
-        RegexLexer.__init__(self, **options)
+        super(MIMELexer, self).__init__(**options)
         self.boundary = options.get("Multipart-Boundary")
         self.content_transfer_encoding = options.get("Content_Transfer_Encoding")
         self.content_type = options.get("Content_Type", "text/plain")
@@ -90,9 +90,9 @@ class MIMELexer(RegexLexer):
                 yield pos + i, t, v
 
         else:
-            yield match.start(1), Comment.Special, field + ":"
+            yield match.start(1), Comment, field + ":"
             yield match.start(2), Text.Whitespace, match.group(2)
-            yield match.start(3), Comment.Multiline, match.group(3)
+            yield match.start(3), Comment, match.group(3)
 
     def get_body_tokens(self, match):
         pos_body_start = match.start()
