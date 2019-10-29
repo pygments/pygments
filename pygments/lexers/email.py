@@ -43,7 +43,7 @@ class EmailHeaderLexer(RegexLexer):
 
     tokens = {
         "root": [
-            (r"^(?:[A-WYZ]|X400)[\w\-]*:", Name.Tag, ("header")),
+            (r"^(?:[A-WYZ]|X400)[\w\-]*:", Name.Tag, "header"),
             (r"^(X-(?:\w[\w\-]*:))([\s\S]*?\n)(?![ \t])", get_x_header_tokens),
         ],
         "header": [
@@ -120,6 +120,10 @@ class EmailHeaderLexer(RegexLexer):
                     String.Affix
                 )
             ),
+
+            # others
+            (r'[\s]+', Text.Whitespace),
+            (r'[\S]', Text),
         ],
     }
 

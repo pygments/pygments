@@ -90,13 +90,17 @@ class MIMELexer(RegexLexer):
                 yield pos + i, t, v
 
         else:
-            yield match.start(1), Comment, field + ":"
-            yield match.start(2), Text.Whitespace, match.group(2)
-            yield match.start(3), Comment, match.group(3)
+            yield match.start(), Comment, match.group()
 
     def get_body_tokens(self, match):
         pos_body_start = match.start()
         entire_body = match.group()
+
+        # skip first newline
+        if entire_body[0] =='\n':
+            yield pos_body_start, Text.Whitespace, '\n'
+            pos_body_start = pos_body_start + 1
+            entire_body = entire_body[1:]
 
         # if it is not a mulitpart
         if not self.content_type.startswith("multipart") or not self.boundary:
@@ -108,9 +112,19 @@ class MIMELexer(RegexLexer):
         bdry_pattern = r"^--%s(--)?\n" % re.escape(self.boundary)
         bdry_matcher = re.compile(bdry_pattern, re.MULTILINE)
 
+        # some data has prefix text before first boundary
+        m = bdry_matcher.search(entire_body)
+        if m:
+            pos_part_start = pos_body_start + m.end()
+            pos_iter_start = lpos_end = m.end()
+            yield pos_body_start, Other, entire_body[:m.start()]
+            yield pos_body_start + lpos_end, String.Delimiter, m.group()
+        else:
+            pos_part_start = pos_body_start
+            pos_iter_start = 0
+
         # process tokens of each body part
-        pos_part_start = pos_body_start
-        for m in bdry_matcher.finditer(entire_body):
+        for m in bdry_matcher.finditer(entire_body, pos_iter_start):
             # bodypart
             lpos_start = pos_part_start - pos_body_start
             lpos_end = m.start()
@@ -119,10 +133,10 @@ class MIMELexer(RegexLexer):
                 yield pos_part_start + i, t, v
 
             # boundary
-            yield pos_body_start + m.start(), String.Delimiter, m.group()
+            yield pos_body_start + lpos_end, String.Delimiter, m.group()
             pos_part_start = pos_body_start + m.end()
 
-        # check for tailing context
+        # some data has suffix text after last boundary
         lpos_start = pos_part_start - pos_body_start
         if lpos_start != len(entire_body):
             yield pos_part_start, Other, entire_body[lpos_start:]
