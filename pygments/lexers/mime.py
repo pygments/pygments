@@ -117,7 +117,7 @@ class MIMELexer(RegexLexer):
         if m:
             pos_part_start = pos_body_start + m.end()
             pos_iter_start = lpos_end = m.end()
-            yield pos_body_start, Other, entire_body[:m.start()]
+            yield pos_body_start, Text, entire_body[:m.start()]
             yield pos_body_start + lpos_end, String.Delimiter, m.group()
         else:
             pos_part_start = pos_body_start
@@ -139,7 +139,7 @@ class MIMELexer(RegexLexer):
         # some data has suffix text after last boundary
         lpos_start = pos_part_start - pos_body_start
         if lpos_start != len(entire_body):
-            yield pos_part_start, Other, entire_body[lpos_start:]
+            yield pos_part_start, Text, entire_body[lpos_start:]
 
     def get_bodypart_tokens(self, text):
         # return if:
