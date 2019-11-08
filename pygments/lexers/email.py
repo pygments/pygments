@@ -108,7 +108,7 @@ class EmailHeaderLexer(RegexLexer):
 
             # RFC-2047 encoded string
             (
-                r"(=\?)([\w-]+)(\?)([BQ])(\?)([\[\w!\"#$%&\'()*+,-./:;<=>@[\\"
+                r"(=\?)([\w-]+)(\?)([BbQq])(\?)([\[\w!\"#$%&\'()*+,-./:;<=>@[\\"
                 r"\]^_`{|}~]+)(\?=)",
                 bygroups(
                     String.Affix,
