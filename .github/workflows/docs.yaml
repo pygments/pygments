@@ -1,0 +1,28 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Sphinx build
+      run: |
+        pip install Sphinx
+        cd doc
+        make html
+        echo -e 'pygments.org\nwww.pygments.org' > _build/html/CNAME
+        echo 'Automated deployment of docs for GitHub pages.' > _build/html/README
+    - uses: peaceiris/actions-gh-pages@v2.5.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        EXTERNAL_REPOSITORY: pygments/pygments.github.io
+        PUBLISH_BRANCH: master
+        PUBLISH_DIR: ./doc/_build/html
