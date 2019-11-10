@@ -339,6 +339,20 @@ def test_include_directives(lexer):
         assert list(lexer.get_tokens(fragment)) == tokens
 
 
+def test_includestr_directives(lexer):
+    fragment = '#includestr/**/"$MACRO..udo"'
+    tokens = [
+        (Comment.Preproc, u'#includestr'),
+        (Comment.Multiline, u'/**/'),
+        (String, u'"'),
+        (Comment.Preproc, u'$MACRO.'),
+        (String, u'.udo'),
+        (String, u'"'),
+        (Text, u'\n')
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
 def test_object_like_macro_definitions(lexer):
     fragment = dedent('''\
         # \tdefine MACRO#macro_body#

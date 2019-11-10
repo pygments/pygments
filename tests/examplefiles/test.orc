@@ -56,6 +56,7 @@ lua_exec {{
 
 #include/**/"file.udo"
 #include/**/|file.udo|
+#includestr/**/"$MACRO..udo"
 
 #ifdef MACRO
 #else
