@@ -212,28 +212,25 @@ class CsoundOrchestraLexer(CsoundLexer):
         yield match.start(), Name.Function, opcode
 
     def name_callback(lexer, match):
+        type_annotation_token = Keyword.Type
+
         name = match.group(1)
         if name in OPCODES or name in DEPRECATED_OPCODES:
             yield match.start(), Name.Builtin, name
-            if match.group(2):
-                yield match.start(2), Punctuation, match.group(2)
-                yield match.start(3), Keyword.Type, match.group(3)
         elif name in lexer.user_defined_opcodes:
             yield match.start(), Name.Function, name
         else:
-            nameMatch = re.search(r'^(g?[afikSw])(\w+)', name)
-            if nameMatch:
-                yield nameMatch.start(1), Keyword.Type, nameMatch.group(1)
-                yield nameMatch.start(2), Name, nameMatch.group(2)
+            type_annotation_token = Name
+            name_match = re.search(r'^(g?[afikSw])(\w+)', name)
+            if name_match:
+                yield name_match.start(1), Keyword.Type, name_match.group(1)
+                yield name_match.start(2), Name, name_match.group(2)
             else:
                 yield match.start(), Name, name
 
-            # If there's a trailing :V, for example, we want to keep this around
-            # and emit it as well, otherwise this lexer will not pass round-trip
-            # testing
-            if match.group(2):
-                yield match.start(2), Punctuation, match.group(2)
-                yield match.start(3), Name, match.group(3)
+        if match.group(2):
+            yield match.start(2), Punctuation, match.group(2)
+            yield match.start(3), type_annotation_token, match.group(3)
 
     tokens = {
         'root': [
