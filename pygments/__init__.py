@@ -17,10 +17,10 @@
     * it is usable as a command-line tool and as a library
     * ... and it highlights even Brainfuck!
 
-    The `Pygments tip`_ is installable with ``easy_install Pygments==dev``.
+    The `Pygments master branch`_ is installable with ``easy_install Pygments==dev``.
 
-    .. _Pygments tip:
-       http://bitbucket.org/birkenfeld/pygments-main/get/tip.zip#egg=Pygments-dev
+    .. _Pygments master branch:
+       https://github.com/pygments/pygments/archive/master.zip#egg=Pygments-dev
 
     :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.

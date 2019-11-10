@@ -136,7 +136,7 @@ have to perform the following steps.
 
 First, change to the current directory containing the Pygments source code.  You
 will need to have either an unpacked source tarball, or (preferably) a copy
-cloned from BitBucket.
+cloned from GitHub.
 
 .. code-block:: console
 
@@ -611,7 +611,7 @@ possibility to influence the position.
 There are not really any simple examples for lexer callbacks, but you can see
 them in action e.g. in the `SMLLexer` class in `ml.py`_.
 
-.. _ml.py: http://bitbucket.org/birkenfeld/pygments-main/src/tip/pygments/lexers/ml.py
+.. _ml.py: https://github.com/pygments/pygments/blob/master/pygments/lexers/ml.py
 
 
 The ExtendedRegexLexer class
@@ -667,7 +667,7 @@ For example, this is how the hypothetical lexer above would be written with the
 This might sound confusing (and it can really be). But it is needed, and for an
 example look at the Ruby lexer in `ruby.py`_.
 
-.. _ruby.py: https://bitbucket.org/birkenfeld/pygments-main/src/tip/pygments/lexers/ruby.py
+.. _ruby.py: https://github.com/pygments/pygments/blob/master/pygments/lexers/ruby.py
 
 
 Handling Lists of Keywords

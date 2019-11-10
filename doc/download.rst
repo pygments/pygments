@@ -18,17 +18,15 @@ manager as usual.
 Development sources
 -------------------
 
-We're using the `Mercurial <http://selenic.com/mercurial>`_ version control
-system.  You can get the development source using this command::
+We're using the Git version control system.  You can get the development source
+using this command::
 
-    hg clone http://bitbucket.org/birkenfeld/pygments-main pygments
+    git clone https://github.com/pygments/pygments
 
-Development takes place at `Bitbucket
-<http://bitbucket.org/birkenfeld/pygments-main>`_, you can browse the source
-online `here <http://bitbucket.org/birkenfeld/pygments-main/src>`_.
+Development takes place at `GitHub <https://github.com/pygments/pygments>`_.
 
 The latest changes in the development source code are listed in the `changelog
-<http://bitbucket.org/birkenfeld/pygments-main/src/tip/CHANGES>`_.
+<https://github.com/pygments/pygments/blob/master/CHANGES>`_.
 
 .. Documentation
    -------------
@@ -36,6 +34,6 @@ The latest changes in the development source code are listed in the `changelog
 .. XXX todo
 
    You can download the <a href="/docs/">documentation</a> either as
-      a bunch of rst files from the Mercurial repository, see above, or
+      a bunch of rst files from the Git repository, see above, or
       as a tar.gz containing rendered HTML files:</p>
       <p><a href="/docs/download/pygmentsdocs.tar.gz">pygmentsdocs.tar.gz</a></p>
