@@ -18,6 +18,7 @@ jobs:
         pip install Sphinx
         cd doc
         make html
+        touch _build/html/.nojekyll
         echo -e 'pygments.org\nwww.pygments.org' > _build/html/CNAME
         echo 'Automated deployment of docs for GitHub pages.' > _build/html/README
     - uses: peaceiris/actions-gh-pages@v2.5.0
