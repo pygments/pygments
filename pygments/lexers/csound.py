@@ -122,7 +122,7 @@ class CsoundLexer(RegexLexer):
 
 class CsoundScoreLexer(CsoundLexer):
     """
-    For `Csound <https://csound.github.io>`_ scores.
+    For `Csound <https://csound.com>`_ scores.
 
     .. versionadded:: 2.1
     """
@@ -144,7 +144,7 @@ class CsoundScoreLexer(CsoundLexer):
             (r'z', Keyword.Constant),
             # z is a constant equal to 800,000,000,000. 800 billion seconds is about
             # 25,367.8 years. See also
-            # https://csound.github.io/docs/manual/ScoreTop.html and
+            # https://csound.com/docs/manual/ScoreTop.html and
             # https://github.com/csound/csound/search?q=stof+path%3AEngine+filename%3Asread.c.
 
             (r'([nNpP][pP])(\d+)', bygroups(Keyword, Number.Integer)),
@@ -195,7 +195,7 @@ class CsoundScoreLexer(CsoundLexer):
 
 class CsoundOrchestraLexer(CsoundLexer):
     """
-    For `Csound <https://csound.github.io>`_ orchestras.
+    For `Csound <https://csound.com>`_ orchestras.
 
     .. versionadded:: 2.1
     """
@@ -328,13 +328,13 @@ class CsoundOrchestraLexer(CsoundLexer):
             (r'\\(?:[\\abnrt"]|[0-7]{1,3})', String.Escape)
         ],
         # Format specifiers are highlighted in all strings, even though only
-        #   fprintks        https://csound.github.io/docs/manual/fprintks.html
-        #   fprints         https://csound.github.io/docs/manual/fprints.html
-        #   printf/printf_i https://csound.github.io/docs/manual/printf.html
-        #   printks         https://csound.github.io/docs/manual/printks.html
-        #   prints          https://csound.github.io/docs/manual/prints.html
-        #   sprintf         https://csound.github.io/docs/manual/sprintf.html
-        #   sprintfk        https://csound.github.io/docs/manual/sprintfk.html
+        #   fprintks        https://csound.com/docs/manual/fprintks.html
+        #   fprints         https://csound.com/docs/manual/fprints.html
+        #   printf/printf_i https://csound.com/docs/manual/printf.html
+        #   printks         https://csound.com/docs/manual/printks.html
+        #   prints          https://csound.com/docs/manual/prints.html
+        #   sprintf         https://csound.com/docs/manual/sprintf.html
+        #   sprintfk        https://csound.com/docs/manual/sprintfk.html
         # work with strings that contain format specifiers. In addition, these
         # opcodes’ handling of format specifiers is inconsistent:
         #   - fprintks, fprints, printks, and prints do accept %a and %A
@@ -403,7 +403,7 @@ class CsoundOrchestraLexer(CsoundLexer):
 
 class CsoundDocumentLexer(RegexLexer):
     """
-    For `Csound <https://csound.github.io>`_ documents.
+    For `Csound <https://csound.com>`_ documents.
 
     .. versionadded:: 2.1
     """
