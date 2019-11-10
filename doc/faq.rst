@@ -62,9 +62,9 @@ Please see the :doc:`documentation on styles <docs/styles>`.
 How can I report a bug or suggest a feature?
 --------------------------------------------
 
-Please report bugs and feature wishes in the tracker at Bitbucket.
+Please report bugs and feature wishes in the tracker at GitHub.
 
-You can also e-mail the author or use IRC, see the contact details.
+You can also e-mail the authors, see the contact details.
 
 I want this support for this language!
 --------------------------------------

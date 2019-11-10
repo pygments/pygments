@@ -26,15 +26,9 @@ Like every open-source project, we are always looking for volunteers to help us
 with programming. Python knowledge is required, but don't fear: Python is a very
 clear and easy to learn language.
 
-Development takes place on `Bitbucket
-<https://bitbucket.org/birkenfeld/pygments-main>`_, where the Mercurial
-repository, tickets and pull requests can be viewed.
+Development takes place on `GitHub <https://github.com/pygments/pygments>`_.
 
-Our primary communication instrument is the IRC channel **#pocoo** on the
-Freenode network. To join it, let your IRC client connect to
-``irc.freenode.net`` and do ``/join #pocoo``.
-
-If you found a bug, just open a ticket in the Bitbucket tracker. Be sure to log
+If you found a bug, just open a ticket in the GitHub tracker. Be sure to log
 in to be notified when the issue is fixed -- development is not fast-paced as
 the library is quite stable.  You can also send an e-mail to the developers, see
 below.
