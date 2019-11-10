@@ -35,6 +35,7 @@ class CsoundLexer(RegexLexer):
 
         'preprocessor directives': [
             (r'#(?:e(?:nd(?:if)?|lse)\b|##)|@@?[ \t]*\d+', Comment.Preproc),
+            (r'#includestr', Comment.Preproc, 'includestr directive'),
             (r'#include', Comment.Preproc, 'include directive'),
             (r'#[ \t]*define', Comment.Preproc, 'define directive'),
             (r'#(?:ifn?def|undef)\b', Comment.Preproc, 'macro directive')
@@ -43,6 +44,10 @@ class CsoundLexer(RegexLexer):
         'include directive': [
             include('whitespace'),
             (r'([^ \t]).*?\1', String, '#pop')
+        ],
+        'includestr directive': [
+            include('whitespace'),
+            (r'"', String, ('#pop', 'quoted string'))
         ],
 
         'define directive': [
@@ -114,6 +119,13 @@ class CsoundLexer(RegexLexer):
             (r'\d+', Number.Integer)
         ],
 
+        'quoted string': [
+            (r'"', String, '#pop'),
+            (r'[^"$]+', String),
+            include('macro uses'),
+            (r'[$]', String)
+        ],
+
         'braced string': [
             # Do nothing. This must be defined in subclasses.
         ]
@@ -162,13 +174,6 @@ class CsoundScoreLexer(CsoundLexer):
             include('whitespace and macro uses'),
             (r'[A-Z_a-z]\w*', Name.Label),
             (r'\n', Text, '#pop')
-        ],
-
-        'quoted string': [
-            (r'"', String, '#pop'),
-            (r'[^"$]+', String),
-            include('macro uses'),
-            (r'[$]', String)
         ],
 
         'loop after left brace': [
@@ -368,6 +373,7 @@ class CsoundOrchestraLexer(CsoundLexer):
 
         'Csound score opcode': [
             include('whitespace and macro uses'),
+            (r'"', String, 'quoted string'),
             (r'\{\{', String, 'Csound score'),
             (r'\n', Text, '#pop')
         ],
@@ -378,6 +384,7 @@ class CsoundOrchestraLexer(CsoundLexer):
 
         'Python opcode': [
             include('whitespace and macro uses'),
+            (r'"', String, 'quoted string'),
             (r'\{\{', String, 'Python'),
             (r'\n', Text, '#pop')
         ],
@@ -388,6 +395,7 @@ class CsoundOrchestraLexer(CsoundLexer):
 
         'Lua opcode': [
             include('whitespace and macro uses'),
+            (r'"', String, 'quoted string'),
             (r'\{\{', String, 'Lua'),
             (r'\n', Text, '#pop')
         ],

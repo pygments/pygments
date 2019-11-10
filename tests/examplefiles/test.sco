@@ -20,3 +20,4 @@ n label
   }
 }
 #include "score.sco"
+#includestr/**/"$MACRO..sco"
