@@ -300,7 +300,7 @@ class ApacheConfLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(#.*?)$', Comment),
+            (r'#(.*\\\n)+.*$|(#.*?)$', Comment),
             (r'(<[^\s>]+)(?:(\s+)(.*))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
             (r'([a-z]\w*)(\s+)',
@@ -319,7 +319,7 @@ class ApacheConfLexer(RegexLexer):
              r'os|productonly|full|emerg|alert|crit|error|warn|'
              r'notice|info|debug|registry|script|inetd|standalone|'
              r'user|group)\b', Keyword),
-            (r'"([^"\\]*(?:\\.[^"\\]*)*)"', String.Double),
+            (r'"([^"\\]*(?:\\(.|[\n])[^"\\]*)*)"', String.Double),
             (r'[^\s"\\]+', Text)
         ],
     }
