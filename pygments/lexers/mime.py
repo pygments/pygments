@@ -47,6 +47,8 @@ class MIMELexer(RegexLexer):
     `Content-Transfer-Encoding`
         Treat the data as specific encoding. Or this lexer would try to parse
         from header by default. (default: None)
+
+    .. versionadded:: 2.5
     """
 
     name = "MIME"

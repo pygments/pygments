@@ -20,6 +20,8 @@ __all__ = ["EmailLexer"]
 class EmailHeaderLexer(RegexLexer):
     """
     Sub-lexer for raw E-mail. This lexer only process header part of e-mail.
+
+    .. versionadded:: 2.5
     """
 
     def __init__(self, **options):
@@ -137,6 +139,8 @@ class EmailLexer(DelegatingLexer):
     `highlight-X-header`
         Highlight the fields of ``X-`` user-defined email header. (default:
         ``False``).
+
+    .. versionadded:: 2.5
     """
 
     name = "E-mail"
