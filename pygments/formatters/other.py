@@ -116,13 +116,13 @@ class RawTokenFormatter(Formatter):
         flush()
 
 TESTCASE_BEFORE = u'''\
-    def testNeedsName(self):
+    def testNeedsName(lexer):
         fragment = %r
         tokens = [
 '''
 TESTCASE_AFTER = u'''\
         ]
-        self.assertEqual(tokens, list(self.lexer.get_tokens(fragment)))
+        assert list(lexer.get_tokens(fragment)) == tokens
 '''
 
 
