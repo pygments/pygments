@@ -389,7 +389,7 @@ class Python3Lexer(RegexLexer):
         default('#pop')  # all else: go back
     ]
     tokens['fromimport'] = [
-        (r'(\s+)(import)\b', bygroups(Text, Keyword), '#pop'),
+        (r'(\s+)(import)\b', bygroups(Text, Keyword.Namespace), '#pop'),
         (r'\.', Name.Namespace),
         (uni_name, Name.Namespace),
         default('#pop'),
