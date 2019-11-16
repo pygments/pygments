@@ -48,7 +48,7 @@ STYLES = {
 # A sane default for modern systems
 DEFAULT_FONT_NAME_NIX = 'DejaVu Sans Mono'
 DEFAULT_FONT_NAME_WIN = 'Courier New'
-DEFAULT_FONT_NAME_MAC = 'Courier New'
+DEFAULT_FONT_NAME_MAC = 'Menlo'
 
 
 class PilNotAvailable(ImportError):
@@ -237,7 +237,8 @@ class ImageFormatter(Formatter):
         bold and italic fonts will be generated.  This really should be a
         monospace font to look sane.
 
-        Default: "Bitstream Vera Sans Mono" on Windows, Courier New on \\*nix
+        Default: "Courier New" on Windows, "Menlo" on Mac OS, and
+                 "DejaVu Sans Mono" on \\*nix
 
     `font_size`
         The font size in points to be used.
