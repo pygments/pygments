@@ -23,6 +23,7 @@ Version 2.5.0
 - Bump ``NasmLexer`` priority over ``TasmLexer`` for ``.asm`` files
   (fixes #1326)
 - Default font in the ``ImageFormatter`` has been updated (#928, PR#1245)
+- Test suite switched to py.test, removed nose dependency (#1490)
 
 
 Version 2.4.2
@@ -99,7 +100,6 @@ Version 2.4.0
 - Fix lexers popping from an empty stack (#1506)
 - TypoScript uses ``.typoscript`` now (#1498)
 - Updated Trove classifiers and ``pip`` requirements (PR#799)
-- Test suite switched to py.test, removed nose dependency (#1490)
 
 
 
