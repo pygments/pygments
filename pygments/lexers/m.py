@@ -17,8 +17,9 @@ __all__ = ['MLexer']
 
 class MLexer(RegexLexer):
 	name = "M"
-	aliases = ['m','mumps','MUMPS']
+	aliases = ['m','mumps']
 	filenames = ['*.mumps']
+	mimetypes = ['text/mumps']
 
 	keywords = (
 		'BREAK','CLOSE','DO','ELSE','FOR','GOTO','HALT','HANG','IF','JOB',
