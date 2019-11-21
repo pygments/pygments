@@ -34,11 +34,11 @@ class MLexer(RegexLexer):
 			(r'^(?:\w|%)+',Name.Function,'func'),
 			(r'\"',String,'string'),
 			(r'\+|-|\*|/|\\|#|\*\*|!|&|=|_|\[|]|]]|\'|<|<=|>=|\?|@',Operator),
+			(r'(\s+)(d|D|DO)(\s)([\w%]+?)(\(.*?\))',bygroups(Whitespace,Keyword,Whitespace,Name.Function,Text)),
 			(words(keywords, prefix=r'\b', suffix=r'\b'), Keyword),
+			(r'([\w%$]+?)(\^)',bygroups(Name.Function,Punctuation),'tagroutinecall'),
 			(r'(?<!\$)\$\w+',Name.Function),
-			(r'([\w%$]+)(\^)',bygroups(Name.Function,Punctuation),'tagroutinecall'),
 			(r'\$\$\w+',Name.Function),
-			(r'(\s)(\w*)(\(.*\))(\s)',bygroups(Whitespace,Name.Function,Text,Whitespace)),
 			(r'\.',Punctuation),
 			(r'\s+',Whitespace),
 			(r'.',Text)
