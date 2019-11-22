@@ -1,4 +1,6 @@
-# comment
+# Based on examples included the RFC files.
+# It doesn't show cases for every token parsed by the lexer.
+
 require ["fileinto", "envelope"];
 
 if address :is "to" "demo@example.org" {
@@ -8,11 +10,9 @@ if address :is "to" "demo@example.org" {
 } elsif (exists "X-Cron-Env",
           header :regex    ["subject"] [".* A",
                                         ".* B"]) {
-  addflag "Important";
+  addflag "Cron";
   stop;
 } else {
-  # The rest goes into INBOX
-  # default is "implicit keep", we do it explicitly here
   keep;
 }
 
@@ -30,8 +30,7 @@ if header :contains "subject" "lunch" {
 
 if virustest :value "eq" :comparator "i;ascii-numeric" "0" {
   fileinto "Unscanned";
-
-/* Infected with high probability (value range in 1-5) */
+  /* Infected with high probability (value range in 1-5) */
 }
 
 if envelope :detail "to" "spam"{
