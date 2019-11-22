@@ -46,6 +46,7 @@ class PythonLexer(RegexLexer):
         'BUCK',
         'BUILD',
         'BUILD.bazel',
+        'WORKSPACE',
         # Twisted Application infrastructure
         '*.tac',
     ]
