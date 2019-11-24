@@ -177,7 +177,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Pygments.tex', u'Pygments Documentation',
+  ('docs/index', 'Pygments.tex', u'Pygments Documentation',
    u'Pygments authors', 'manual'),
 ]
 
@@ -207,7 +207,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'pygments', u'Pygments Documentation',
+    ('docs/index', 'pygments', u'Pygments Documentation',
      [u'Pygments authors'], 1)
 ]
 
