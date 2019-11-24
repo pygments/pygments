@@ -78,4 +78,16 @@ function highlight_now() {
     var out = document.getElementById("hlcode");
     out.innerHTML = pyodide.runPython('pygments.highlight(code, lexer, fmter)');
     document.location.hash = "#try";
+    document.getElementById("hlcodedl").style.display = "block";
+}
+
+function download_code() {
+    var element = document.createElement('a');
+    var hlcode = document.getElementById("hlcode").innerHTML;
+    element.setAttribute("href", "data:text/html;charset=utf-8," + encodeURIComponent(hlcode));
+    element.setAttribute("download", "highlighted.html");
+    element.style.display = "none";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
 }

@@ -13,16 +13,18 @@ jobs:
     - uses: actions/setup-python@v1
       with:
         python-version: 3.7
+    - name: Sphinx install
+      run: pip install Sphinx
     - name: Sphinx build
       run: |
-        pip install Sphinx
         cd doc
         WEBSITE_BUILD=1 make dirhtml
         cp -a ../external/pyodide _build/dirhtml/_static
         touch _build/dirhtml/.nojekyll
         echo -e 'pygments.org\nwww.pygments.org' > _build/dirhtml/CNAME
         echo 'Automated deployment of docs for GitHub pages.' > _build/dirhtml/README
-    - uses: peaceiris/actions-gh-pages@v2.5.0
+    - name: Deploy to repo
+      uses: peaceiris/actions-gh-pages@v2.5.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         EXTERNAL_REPOSITORY: pygments/pygments.github.io
