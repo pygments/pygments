@@ -9,7 +9,7 @@
 
 import pytest
 
-from pygments.token import Text, Name, Operator, Keyword, Number
+from pygments.token import Text, Name, Punctuation, Keyword, Number
 from pygments.lexers import JavaLexer
 
 
@@ -18,23 +18,23 @@ def lexer():
     yield JavaLexer()
 
 
-def testEnhancedFor(lexer):
+def test_enhanced_for(lexer):
     fragment = u'label:\nfor(String var2: var1) {}\n'
     tokens = [
         (Name.Label, u'label:'),
         (Text, u'\n'),
         (Keyword, u'for'),
-        (Operator, u'('),
+        (Punctuation, u'('),
         (Name, u'String'),
         (Text, u' '),
         (Name, u'var2'),
-        (Operator, u':'),
+        (Punctuation, u':'),
         (Text, u' '),
         (Name, u'var1'),
-        (Operator, u')'),
+        (Punctuation, u')'),
         (Text, u' '),
-        (Operator, u'{'),
-        (Operator, u'}'),
+        (Punctuation, u'{'),
+        (Punctuation, u'}'),
         (Text, u'\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens

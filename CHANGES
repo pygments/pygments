@@ -39,6 +39,8 @@ Version 2.5.0
 - Add LICENSE file to wheel builds
 - Emacs Lisp: add more string functions
 - Java: support ``var`` contextual keyword
+- Java: make structural punctuation (braces, parens, colon, comma)
+  ``Punctuation``, not ``Operator`` (#987)
 - Ruby: support squiggly heredocs
 - Dart: support ``@`` annotations
 - GAS: accept registers in directive arguments
