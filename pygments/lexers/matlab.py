@@ -99,6 +99,12 @@ class MatlabLexer(RegexLexer):
             # operators requiring escape for re:
             (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
 
+            # numbers (must come before punctuation to handle `.5`; cannot use
+            # `\b` due to e.g. `5. + .5`).
+            (r'(?<!\w)((\d+\.\d*)|(\d*\.\d+))([eEf][+-]?\d+)?(?!\w)', Number.Float),
+            (r'\b\d+[eEf][+-]?[0-9]+\b', Number.Float),
+            (r'\b\d+\b', Number.Integer),
+
             # punctuation:
             (r'\[|\]|\(|\)|\{|\}|:|@|\.|,', Punctuation),
             (r'=|:|;', Punctuation),
@@ -106,10 +112,6 @@ class MatlabLexer(RegexLexer):
             # quote can be transpose, instead of string:
             # (not great, but handles common cases...)
             (r'(?<=[\w)\].])\'+', Operator),
-
-            (r'(\d+\.\d*|\d*\.\d+)([eEf][+-]?[0-9]+)?', Number.Float),
-            (r'\d+[eEf][+-]?[0-9]+', Number.Float),
-            (r'\d+', Number.Integer),
 
             (r'(?<![\w)\].])\'', String, 'string'),
             (r'[a-zA-Z_]\w*', Name),
@@ -134,9 +136,15 @@ class MatlabLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.match(r'^\s*%', text, re.M):  # comment
+        # function declaration.
+        if next(line for line in text.splitlines()
+                if not re.match(r'^\s*%', text)).strip().startswith('function'):
+            return 1.
+        # comment
+        elif re.match(r'^\s*%', text, re.M):
             return 0.2
-        elif re.match(r'^!\w+', text, re.M):  # system cmd
+        # system cmd
+        elif re.match(r'^!\w+', text, re.M):
             return 0.2
 
 
