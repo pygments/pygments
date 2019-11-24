@@ -522,7 +522,8 @@ class ImageFormatter(Formatter):
         rectw = self.image_pad + self.line_number_width - self.line_number_pad
         draw.rectangle([(0, 0), (rectw, recth)],
                        fill=self.line_number_bg)
-        draw.line([(rectw, 0), (rectw, recth)], fill=self.line_number_fg)
+        if self.line_number_separator:
+            draw.line([(rectw, 0), (rectw, recth)], fill=self.line_number_fg)
         del draw
 
     def format(self, tokensource, outfile):
