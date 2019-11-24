@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.sieve
-    ~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Sieve file format.
 
