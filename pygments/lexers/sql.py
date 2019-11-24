@@ -212,7 +212,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     mimetypes = ['text/x-plpgsql']
 
     flags = re.IGNORECASE
-    tokens = dict((k, l[:]) for (k, l) in iteritems(PostgresLexer.tokens))
+    tokens = {k: l[:] for (k, l) in iteritems(PostgresLexer.tokens)}
 
     # extend the keywords list
     for i, pattern in enumerate(tokens['root']):
@@ -246,7 +246,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     aliases = []    # not public
 
     flags = re.IGNORECASE
-    tokens = dict((k, l[:]) for (k, l) in iteritems(PostgresLexer.tokens))
+    tokens = {k: l[:] for (k, l) in iteritems(PostgresLexer.tokens)}
 
     tokens['root'].append(
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
@@ -547,7 +547,7 @@ class TransactSqlLexer(RegexLexer):
             rating = 1.0
         else:
             name_between_backtick_count = len(
-                name_between_backtick_re.findall((text)))
+                name_between_backtick_re.findall(text))
             name_between_bracket_count = len(
                 name_between_bracket_re.findall(text))
             # We need to check if there are any names using
@@ -643,7 +643,7 @@ class MySqlLexer(RegexLexer):
     def analyse_text(text):
         rating = 0
         name_between_backtick_count = len(
-            name_between_backtick_re.findall((text)))
+            name_between_backtick_re.findall(text))
         name_between_bracket_count = len(
             name_between_bracket_re.findall(text))
         # Same logic as above in the TSQL analysis

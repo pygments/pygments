@@ -481,10 +481,10 @@ class CryptolLexer(RegexLexer):
         ],
     }
 
-    EXTRA_KEYWORDS = set(('join', 'split', 'reverse', 'transpose', 'width',
-                          'length', 'tail', '<<', '>>', '<<<', '>>>', 'const',
-                          'reg', 'par', 'seq', 'ASSERT', 'undefined', 'error',
-                          'trace'))
+    EXTRA_KEYWORDS = {'join', 'split', 'reverse', 'transpose', 'width',
+                      'length', 'tail', '<<', '>>', '<<<', '>>>', 'const',
+                      'reg', 'par', 'seq', 'ASSERT', 'undefined', 'error',
+                      'trace'}
 
     def get_tokens_unprocessed(self, text):
         stack = ['root']
