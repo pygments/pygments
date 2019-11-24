@@ -314,7 +314,7 @@ class ZeekLexer(RegexLexer):
             (r'([-+=&|]{2}|[+=!><-]=)', Operator),
             (r'\b(in|as|is|of)\b', Operator.Word),
             (r'\??\$', Operator),
-            # Technically, colons are often used for punctuation/sepration.
+            # Technically, colons are often used for punctuation/separation.
             # E.g. field name/type separation.
             (r'[?:]', Operator),
         ],
