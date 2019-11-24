@@ -37,6 +37,7 @@ class GasLexer(RegexLexer):
     char = r'[\w$.@-]'
     identifier = r'(?:[a-zA-Z$_]' + char + r'*|\.' + char + '+)'
     number = r'(?:0[xX][a-zA-Z0-9]+|\d+)'
+    register = '%' + identifier
 
     tokens = {
         'root': [
@@ -52,6 +53,7 @@ class GasLexer(RegexLexer):
             (string, String),
             ('@' + identifier, Name.Attribute),
             (number, Number.Integer),
+            (register, Name.Variable),
             (r'[\r\n]+', Text, '#pop'),
             (r'[;#].*?\n', Comment, '#pop'),
 
@@ -72,7 +74,7 @@ class GasLexer(RegexLexer):
             (identifier, Name.Constant),
             (number, Number.Integer),
             # Registers
-            ('%' + identifier, Name.Variable),
+            (register, Name.Variable),
             # Numeric constants
             ('$'+number, Number.Integer),
             (r"$'(.|\\')'", String.Char),
