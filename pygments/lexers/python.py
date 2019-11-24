@@ -341,7 +341,9 @@ class Python3Lexer(RegexLexer):
             'BrokenPipeError', 'ConnectionAbortedError', 'ConnectionRefusedError',
             'ConnectionResetError', 'FileExistsError', 'FileNotFoundError',
             'InterruptedError', 'IsADirectoryError', 'NotADirectoryError',
-            'PermissionError', 'ProcessLookupError', 'TimeoutError'),
+            'PermissionError', 'ProcessLookupError', 'TimeoutError',
+            # others new in Python 3
+            'StopAsyncIteration'),
             prefix=r'(?<!\.)', suffix=r'\b'),
          Name.Exception),
     ]
@@ -413,7 +415,6 @@ class Python3Lexer(RegexLexer):
     ]
     tokens['strings-single'] = innerstring_rules(String.Single)
     tokens['strings-double'] = innerstring_rules(String.Double)
-
 
     def analyse_text(text):
         return shebang_matches(text, r'pythonw?3(\.\d)?')
