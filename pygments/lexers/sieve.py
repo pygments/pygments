@@ -58,9 +58,9 @@ class SieveLexer(RegexLexer):
              String),
             # text block:
             (r'text:',
-             Name.Tag, 'vacation'),
+             Name.Tag, 'text'),
         ],
-        'vacation': [
+        'text': [
             (r'[^.]+',
              String),
             (r'^\.',
