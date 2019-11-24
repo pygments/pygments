@@ -1,7 +1,6 @@
-#!/usr/bin/env python2
-
 import sys
 import pygments.cmdline
+
 try:
     sys.exit(pygments.cmdline.main(sys.argv))
 except KeyboardInterrupt:

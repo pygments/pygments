@@ -21,31 +21,7 @@ are:
 :license: BSD, see LICENSE for details.
 """
 
-try:
-    from setuptools import setup, find_packages
-    have_setuptools = True
-except ImportError:
-    from distutils.core import setup
-    def find_packages(*args, **kwargs):
-        return [
-            'pygments',
-            'pygments.lexers',
-            'pygments.formatters',
-            'pygments.styles',
-            'pygments.filters',
-        ]
-    have_setuptools = False
-
-if have_setuptools:
-    add_keywords = dict(
-        entry_points = {
-            'console_scripts': ['pygmentize = pygments.cmdline:main'],
-        },
-    )
-else:
-    add_keywords = dict(
-        scripts = ['pygmentize'],
-    )
+from setuptools import setup, find_packages
 
 setup(
     name = 'Pygments',
@@ -58,6 +34,9 @@ setup(
     long_description = __doc__,
     keywords = 'syntax highlighting',
     packages = find_packages(),
+    entry_points = {
+        'console_scripts': ['pygmentize = pygments.cmdline:main'],
+    },
     platforms = 'any',
     zip_safe = False,
     include_package_data = True,
@@ -82,5 +61,4 @@ setup(
         'Topic :: Text Processing :: Filters',
         'Topic :: Utilities',
     ],
-    **add_keywords
 )
