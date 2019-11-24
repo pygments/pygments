@@ -134,7 +134,7 @@ def test_end_of_line_nums(lexer_bash):
     assert list(lexer_bash.get_tokens(fragment)) == tokens
 
 
-def test_needs_name(lexer_session):
+def test_newline_in_echo(lexer_session):
     fragment = u'$ echo \\\nhi\nhi\n'
     tokens = [
         (Token.Text, u''),
@@ -162,3 +162,20 @@ def test_msdos_gt_only(lexer_msdos):
         (Token.Generic.Output, u'hi\n'),
     ]
     assert list(lexer_msdos.get_tokens(fragment)) == tokens
+
+def test_virtualenv(lexer_session):
+    fragment = u'(env) [~/project]$ foo -h\n'
+    tokens = [
+        (Token.Text, u''),
+        (Token.Generic.Prompt.VirtualEnv, u'(env)'),
+        (Token.Text, u''),
+        (Token.Text, u' '),
+        (Token.Text, u''),
+        (Token.Generic.Prompt, u'[~/project]$'),
+        (Token.Text, u' '),
+        (Token.Text, u'foo'),
+        (Token.Text, u' '),
+        (Token.Text, u'-h'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer_session.get_tokens(fragment)) == tokens
