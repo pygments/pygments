@@ -104,6 +104,7 @@ Programming languages
 * Visual Basic.NET
 * Visual FoxPro
 * XQuery
+* `Zeek <https://www.zeek.org>`_
 * Zephir
 
 Template languages
