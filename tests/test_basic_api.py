@@ -113,7 +113,7 @@ def test_get_lexers():
     for func, args in [(lexers.get_lexer_by_name, ("python",)),
                        (lexers.get_lexer_for_filename, ("test.py",)),
                        (lexers.get_lexer_for_mimetype, ("text/x-python",)),
-                       (lexers.guess_lexer, ("#!/usr/bin/python -O\nprint",)),
+                       (lexers.guess_lexer, ("#!/usr/bin/python3 -O\nprint",)),
                        (lexers.guess_lexer_for_filename, ("a.py", "<%= @foo %>"))
                        ]:
         x = func(opt='val', *args)

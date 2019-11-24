@@ -19,38 +19,26 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
-           'Python3Lexer', 'Python3TracebackLexer', 'CythonLexer',
-           'DgLexer', 'NumPyLexer']
+           'Python2Lexer', 'Python2TracebackLexer',
+           'CythonLexer', 'DgLexer', 'NumPyLexer']
 
 line_re = re.compile('.*?\n')
 
 
-class PythonLexer(RegexLexer):
+class Python2Lexer(RegexLexer):
     """
-    For `Python <http://www.python.org>`_ source code.
+    For `Python 2.x <http://www.python.org>`_ source code.
+
+    .. versionchanged:: 2.5
+       This class has been renamed from ``PythonLexer``.  ``PythonLexer`` now
+       refers to the Python 3 variant.  File name patterns like ``*.py`` have
+       been moved to Python 3 as well.
     """
 
-    name = 'Python'
-    aliases = ['python', 'py', 'sage']
-    filenames = [
-        '*.py',
-        '*.pyw',
-        # Sage
-        '*.sage',
-        # SCons
-        '*.sc',
-        'SConstruct',
-        'SConscript',
-        # Skylark/Starlark (used by Bazel, Buck, and Pants)
-        '*.bzl',
-        'BUCK',
-        'BUILD',
-        'BUILD.bazel',
-        'WORKSPACE',
-        # Twisted Application infrastructure
-        '*.tac',
-    ]
-    mimetypes = ['text/x-python', 'application/x-python']
+    name = 'Python 2.x'
+    aliases = ['python2', 'py2']
+    filenames = []  # now taken over by PythonLexer (3.x)
+    mimetypes = ['text/x-python2', 'application/x-python2']
 
     def innerstring_rules(ttype):
         return [
@@ -259,17 +247,39 @@ class PythonLexer(RegexLexer):
             'import ' in text[:1000]
 
 
-class Python3Lexer(RegexLexer):
+class PythonLexer(RegexLexer):
     """
-    For `Python <http://www.python.org>`_ source code (version 3.0).
+    For `Python <http://www.python.org>`_ source code (version 3.x).
 
     .. versionadded:: 0.10
+
+    .. versionchanged:: 2.5
+       This is now the default ``PythonLexer``.  It is still available as the
+       alias ``Python3Lexer``.
     """
 
-    name = 'Python 3'
-    aliases = ['python3', 'py3']
-    filenames = []  # Nothing until Python 3 gets widespread
-    mimetypes = ['text/x-python3', 'application/x-python3']
+    name = 'Python'
+    aliases = ['python', 'py', 'sage', 'python3', 'py3']
+    filenames = [
+        '*.py',
+        '*.pyw',
+        # Sage
+        '*.sage',
+        # SCons
+        '*.sc',
+        'SConstruct',
+        'SConscript',
+        # Skylark/Starlark (used by Bazel, Buck, and Pants)
+        '*.bzl',
+        'BUCK',
+        'BUILD',
+        'BUILD.bazel',
+        'WORKSPACE',
+        # Twisted Application infrastructure
+        '*.tac',
+    ]
+    mimetypes = ['text/x-python', 'application/x-python',
+                 'text/x-python3', 'application/x-python3']
 
     flags = re.MULTILINE | re.UNICODE
 
@@ -295,7 +305,7 @@ class Python3Lexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ]
 
-    tokens = PythonLexer.tokens.copy()
+    tokens = Python2Lexer.tokens.copy()
     tokens['keywords'] = [
         (words((
             'assert', 'async', 'await', 'break', 'continue', 'del', 'elif',
@@ -420,6 +430,9 @@ class Python3Lexer(RegexLexer):
         return shebang_matches(text, r'pythonw?3(\.\d)?')
 
 
+Python3Lexer = PythonLexer
+
+
 class PythonConsoleLexer(Lexer):
     """
     For Python console output or doctests, such as:
@@ -437,25 +450,27 @@ class PythonConsoleLexer(Lexer):
     Additional options:
 
     `python3`
-        Use Python 3 lexer for code.  Default is ``False``.
+        Use Python 3 lexer for code.  Default is ``True``.
 
         .. versionadded:: 1.0
+        .. versionchanged:: 2.5
+           Now defaults to ``True``.
     """
     name = 'Python console session'
     aliases = ['pycon']
     mimetypes = ['text/x-python-doctest']
 
     def __init__(self, **options):
-        self.python3 = get_bool_opt(options, 'python3', False)
+        self.python3 = get_bool_opt(options, 'python3', True)
         Lexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
         if self.python3:
-            pylexer = Python3Lexer(**self.options)
-            tblexer = Python3TracebackLexer(**self.options)
-        else:
             pylexer = PythonLexer(**self.options)
             tblexer = PythonTracebackLexer(**self.options)
+        else:
+            pylexer = Python2Lexer(**self.options)
+            tblexer = Python2TracebackLexer(**self.options)
 
         curcode = ''
         insertions = []
@@ -508,17 +523,21 @@ class PythonConsoleLexer(Lexer):
                 yield tbindex+i, t, v
 
 
-class PythonTracebackLexer(RegexLexer):
+class Python2TracebackLexer(RegexLexer):
     """
     For Python tracebacks.
 
     .. versionadded:: 0.7
+
+    .. versionchanged:: 2.5
+       This class has been renamed from ``PythonTracebackLexer``.
+       ``PythonTracebackLexer`` now refers to the Python 3 variant.
     """
 
-    name = 'Python Traceback'
-    aliases = ['pytb']
-    filenames = ['*.pytb']
-    mimetypes = ['text/x-python-traceback']
+    name = 'Python 2.x Traceback'
+    aliases = ['py2tb']
+    filenames = ['*.py2tb']
+    mimetypes = ['text/x-python2-traceback']
 
     tokens = {
         'root': [
@@ -527,6 +546,50 @@ class PythonTracebackLexer(RegexLexer):
             (r'^(\^C)?(Traceback.*\n)',
              bygroups(Text, Generic.Traceback), 'intb'),
             # SyntaxError starts with this.
+            (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
+            (r'^.*\n', Other),
+        ],
+        'intb': [
+            (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
+             bygroups(Text, Name.Builtin, Text, Number, Text, Name, Text)),
+            (r'^(  File )("[^"]+")(, line )(\d+)(\n)',
+             bygroups(Text, Name.Builtin, Text, Number, Text)),
+            (r'^(    )(.+)(\n)',
+             bygroups(Text, using(Python2Lexer), Text)),
+            (r'^([ \t]*)(\.\.\.)(\n)',
+             bygroups(Text, Comment, Text)),  # for doctests...
+            (r'^([^:]+)(: )(.+)(\n)',
+             bygroups(Generic.Error, Text, Name, Text), '#pop'),
+            (r'^([a-zA-Z_]\w*)(:?\n)',
+             bygroups(Generic.Error, Text), '#pop')
+        ],
+    }
+
+
+class PythonTracebackLexer(RegexLexer):
+    """
+    For Python 3.x tracebacks, with support for chained exceptions.
+
+    .. versionadded:: 1.0
+
+    .. versionchanged:: 2.5
+       This is now the default ``PythonTracebackLexer``.  It is still available
+       as the alias ``Python3TracebackLexer``.
+    """
+
+    name = 'Python Traceback'
+    aliases = ['pytb', 'py3tb']
+    filenames = ['*.pytb', '*.py3tb']
+    mimetypes = ['text/x-python-traceback', 'text/x-python3-traceback']
+
+    tokens = {
+        'root': [
+            (r'\n', Text),
+            (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
+            (r'^During handling of the above exception, another '
+             r'exception occurred:\n\n', Generic.Traceback),
+            (r'^The above exception was the direct cause of the '
+             r'following exception:\n\n', Generic.Traceback),
             (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
             (r'^.*\n', Other),
         ],
@@ -547,43 +610,7 @@ class PythonTracebackLexer(RegexLexer):
     }
 
 
-class Python3TracebackLexer(RegexLexer):
-    """
-    For Python 3.0 tracebacks, with support for chained exceptions.
-
-    .. versionadded:: 1.0
-    """
-
-    name = 'Python 3.0 Traceback'
-    aliases = ['py3tb']
-    filenames = ['*.py3tb']
-    mimetypes = ['text/x-python3-traceback']
-
-    tokens = {
-        'root': [
-            (r'\n', Text),
-            (r'^Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
-            (r'^During handling of the above exception, another '
-             r'exception occurred:\n\n', Generic.Traceback),
-            (r'^The above exception was the direct cause of the '
-             r'following exception:\n\n', Generic.Traceback),
-            (r'^(?=  File "[^"]+", line \d+)', Generic.Traceback, 'intb'),
-        ],
-        'intb': [
-            (r'^(  File )("[^"]+")(, line )(\d+)(, in )(.+)(\n)',
-             bygroups(Text, Name.Builtin, Text, Number, Text, Name, Text)),
-            (r'^(  File )("[^"]+")(, line )(\d+)(\n)',
-             bygroups(Text, Name.Builtin, Text, Number, Text)),
-            (r'^(    )(.+)(\n)',
-             bygroups(Text, using(Python3Lexer), Text)),
-            (r'^([ \t]*)(\.\.\.)(\n)',
-             bygroups(Text, Comment, Text)),  # for doctests...
-            (r'^([^:]+)(: )(.+)(\n)',
-             bygroups(Generic.Error, Text, Name, Text), '#pop'),
-            (r'^([a-zA-Z_]\w*)(:?\n)',
-             bygroups(Generic.Error, Text), '#pop')
-        ],
-    }
+Python3TracebackLexer = PythonTracebackLexer
 
 
 class CythonLexer(RegexLexer):
@@ -954,6 +981,6 @@ class NumPyLexer(PythonLexer):
                 yield index, token, value
 
     def analyse_text(text):
-        return (shebang_matches(text, r'pythonw?(2(\.\d)?)?') or
+        return (shebang_matches(text, r'pythonw?(3(\.\d)?)?') or
                 'import ' in text[:1000]) \
             and ('import numpy' in text or 'from numpy import' in text)
