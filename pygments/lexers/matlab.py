@@ -79,7 +79,7 @@ class MatlabLexer(RegexLexer):
             (r'^!.*', String.Other),
             (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'%.*$', Comment),
-            (r'^\s*function', Keyword, 'deffunc'),
+            (r'^\s*function\b', Keyword, 'deffunc'),
 
             # from 'iskeyword' on version 7.11 (R2010):
             (words((
@@ -536,7 +536,7 @@ class OctaveLexer(RegexLexer):
         'root': [
             # We should look into multiline comments
             (r'[%#].*$', Comment),
-            (r'^\s*function', Keyword, 'deffunc'),
+            (r'^\s*function\b', Keyword, 'deffunc'),
 
             # from 'iskeyword' on hg changeset 8cc154f45e37
             (words((
@@ -609,7 +609,7 @@ class ScilabLexer(RegexLexer):
     tokens = {
         'root': [
             (r'//.*?$', Comment.Single),
-            (r'^\s*function', Keyword, 'deffunc'),
+            (r'^\s*function\b', Keyword, 'deffunc'),
 
             (words((
                 '__FILE__', '__LINE__', 'break', 'case', 'catch', 'classdef', 'continue', 'do', 'else',
