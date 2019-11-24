@@ -99,8 +99,8 @@ class MIMELexer(RegexLexer):
         entire_body = match.group()
 
         # skip first newline
-        if entire_body[0] =='\n':
-            yield pos_body_start, Text.Whitespace, '\n'
+        if entire_body[0] == '\n':
+            yield pos_body_start, Text.Whitespace, u'\n'
             pos_body_start = pos_body_start + 1
             entire_body = entire_body[1:]
 
@@ -176,7 +176,7 @@ class MIMELexer(RegexLexer):
         prefix_len = match.start(1) - match.start(0)
         yield match.start(0), Text.Whitespace, match.group(0)[:prefix_len]
         yield match.start(1), Name.Label, match.group(2)
-        yield match.end(2), String.Delimiter, "/"
+        yield match.end(2), String.Delimiter, u"/"
         yield match.start(3), Name.Label, match.group(3)
 
     def get_content_type_subtokens(self, match):
