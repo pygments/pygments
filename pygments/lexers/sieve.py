@@ -46,7 +46,7 @@ class SieveLexer(RegexLexer):
             (r'(?i)set',
              Keyword.Declaration),
             # number:
-            (r'([0-9.]+)(?i)([KMG])?',
+            (r'([0-9.]+)([kmgKMG])?',
              bygroups(Literal.Number, Literal.Number)),
             # comment:
             (r'#.*$',
