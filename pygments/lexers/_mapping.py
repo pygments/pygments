@@ -305,6 +305,7 @@ LEXERS = {
     'NimrodLexer': ('pygments.lexers.nimrod', 'Nimrod', ('nim', 'nimrod'), ('*.nim', '*.nimrod'), ('text/x-nim',)),
     'NitLexer': ('pygments.lexers.nit', 'Nit', ('nit',), ('*.nit',), ()),
     'NixLexer': ('pygments.lexers.nix', 'Nix', ('nixos', 'nix'), ('*.nix',), ('text/x-nix',)),
+    'NotmuchLexer': ('pygments.lexers.textfmts', 'Notmuch', ('notmuch',), (), ()),
     'NuSMVLexer': ('pygments.lexers.smv', 'NuSMV', ('nusmv',), ('*.smv',), ()),
     'NumPyLexer': ('pygments.lexers.python', 'NumPy', ('numpy',), (), ()),
     'ObjdumpLexer': ('pygments.lexers.asm', 'objdump', ('objdump',), ('*.objdump',), ('text/x-objdump',)),
