@@ -540,14 +540,16 @@ class DockerLexer(RegexLexer):
     filenames = ['Dockerfile', '*.docker']
     mimetypes = ['text/x-dockerfile-config']
 
-    _keywords = (r'(?:FROM|MAINTAINER|EXPOSE|WORKDIR|USER|STOPSIGNAL)')
+    _keywords = (r'(?:MAINTAINER|EXPOSE|WORKDIR|USER|STOPSIGNAL)')
     _bash_keywords = (r'(?:RUN|CMD|ENTRYPOINT|ENV|ARG|LABEL|ADD|COPY)')
-    _lb = r'(?:\s*\\?\s*)' # dockerfile line break regex
+    _lb = r'(?:\s*\\?\s*)'  # dockerfile line break regex
     flags = re.IGNORECASE | re.MULTILINE
 
     tokens = {
         'root': [
             (r'#.*', Comment),
+            (r'(FROM)([ \t]*)(\S*)([ \t]*)(?:(AS)([ \t]*)(\S*))?',
+             bygroups(Keyword, Text, String, Text, Keyword, Text, String)),
             (r'(ONBUILD)(%s)' % (_lb,), bygroups(Keyword, using(BashLexer))),
             (r'(HEALTHCHECK)((%s--\w+=\w+%s)*)' % (_lb, _lb),
                 bygroups(Keyword, using(BashLexer))),
