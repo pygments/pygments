@@ -16,7 +16,9 @@
 
 <h1>Demo - Try it out!</h1>
 <p>The highlighting here is performed in-browser using
-    a WebAssembly translation of Pygments.</p>
+    a WebAssembly translation of Pygments, courtesy of
+    <a href="https://github.com/iodide-project/pyodide">Pyodide</a>.</p>
+<p>Your content is neither sent over the web nor stored anywhere.</p>
 
 <div id="try">
     <h2>Enter code and select a language</h2>
@@ -32,10 +34,10 @@
             </select></p>
         <p><label for="file">Upload a file here:</label> &nbsp;
 	    <input type="file" id="file" onchange="new_file()"> &nbsp; or enter code below:</p>
-	    <p><textarea id="code" rows="1" cols="60"></textarea></p>
-	    <p style="text-align: right">
-                <input type="button" value="Highlight!" onclick="highlight()" id="hlbtn" disabled>
-	        &nbsp;&nbsp;&nbsp; <input type="reset" value="Reset"></p>
+	<p><textarea id="code" rows="1" cols="60"></textarea></p>
+	<p style="text-align: right">
+            <input type="button" value="Highlight!" onclick="highlight()" id="hlbtn" disabled>
+	    &nbsp;&nbsp;&nbsp; <input type="reset" value="Reset"></p>
     </form>
     <div id="loading">
         <p><img src="{{ pathto("_static/spinner.gif", 1) }}" style="vertical-align: middle"></p>

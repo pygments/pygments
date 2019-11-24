@@ -82,12 +82,19 @@ function highlight_now() {
 }
 
 function download_code() {
-    var element = document.createElement('a');
+    var filename = "highlighted.html";
     var hlcode = document.getElementById("hlcode").innerHTML;
-    element.setAttribute("href", "data:text/html;charset=utf-8," + encodeURIComponent(hlcode));
-    element.setAttribute("download", "highlighted.html");
-    element.style.display = "none";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    var blob = new Blob([hlcode], {type: 'text/html'});
+    if (window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveBlob(blob, filename);
+    }
+    else{
+        var elem = window.document.createElement('a');
+        elem.href = window.URL.createObjectURL(blob);
+        elem.download = filename;
+        document.body.appendChild(elem);
+        elem.click();
+        document.body.removeChild(elem);
+        window.URL.revokeObjectURL(elem.href);
+    }
 }
