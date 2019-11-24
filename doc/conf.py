@@ -129,7 +129,10 @@ html_sidebars = {'index': ['indexsidebar.html', 'searchbox.html']}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-#html_additional_pages = {}
+if os.environ.get('WEBSITE_BUILD'):
+    html_additional_pages = {
+        'demo': 'demo.html',
+    }
 
 # If false, no module index is generated.
 #html_domain_indices = True
@@ -217,3 +220,11 @@ man_pages = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 #intersphinx_mapping = {'http://docs.python.org/': None}
+
+
+def pg_context(app, pagename, templatename, ctx, event_arg):
+    ctx['demo_active'] = bool(os.environ.get('WEBSITE_BUILD'))
+
+
+def setup(app):
+    app.connect('html-page-context', pg_context)
