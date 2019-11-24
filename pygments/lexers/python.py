@@ -907,7 +907,7 @@ class NumPyLexer(PythonLexer):
     mimetypes = []
     filenames = []
 
-    EXTRA_KEYWORDS = set((
+    EXTRA_KEYWORDS = {
         'abs', 'absolute', 'accumulate', 'add', 'alen', 'all', 'allclose',
         'alltrue', 'alterdot', 'amax', 'amin', 'angle', 'any', 'append',
         'apply_along_axis', 'apply_over_axes', 'arange', 'arccos', 'arccosh',
@@ -972,7 +972,7 @@ class NumPyLexer(PythonLexer):
         'typename', 'uniform', 'union1d', 'unique', 'unique1d', 'unravel_index',
         'unwrap', 'vander', 'var', 'vdot', 'vectorize', 'view', 'vonmises',
         'vsplit', 'vstack', 'weibull', 'where', 'who', 'zeros', 'zeros_like'
-    ))
+    }
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in \

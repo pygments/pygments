@@ -125,8 +125,8 @@ class FontManager(object):
         for font_dir in (os.path.join(os.getenv("HOME"), 'Library/Fonts/'),
                          '/Library/Fonts/', '/System/Library/Fonts/'):
             font_map.update(
-                ((os.path.splitext(f)[0].lower(), os.path.join(font_dir, f))
-                    for f in os.listdir(font_dir) if f.lower().endswith('ttf')))
+                (os.path.splitext(f)[0].lower(), os.path.join(font_dir, f))
+                for f in os.listdir(font_dir) if f.lower().endswith('ttf'))
 
         for name in STYLES['NORMAL']:
             path = self._get_mac_font_path(font_map, self.font_name, name)
