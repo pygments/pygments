@@ -1,6 +1,6 @@
 #!/bin/bash
 # Best effort auto-pygmentization with transparent decompression
-# by Reuben Thomas 2008-2016
+# by Reuben Thomas 2008-2019
 # This program is in the public domain.
 
 # Strategy: first see if pygmentize can find a lexer; if not, ask file; if that finds nothing, fail
@@ -15,7 +15,7 @@ file_common_opts="--brief --dereference"
 
 lexer=$(pygmentize -N "$file")
 if [[ "$lexer" == text ]]; then
-    unset lexer
+    # Try to do better than just "text"
     case $(file --mime-type --uncompress $file_common_opts "$file") in
         application/xml|image/svg+xml) lexer=xml;;
         application/javascript) lexer=javascript;;
@@ -66,36 +66,42 @@ if [[ "$lexer" == text ]]; then
     esac
 fi
 
-# Find a preprocessor for compressed files
+# Find a concatenator for compressed files
 concat=cat
 case $(file $file_common_opts --mime-type "$file") in
-    application/x-gzip)  concat=zcat;;
+    application/gzip)    concat=zcat;;
     application/x-bzip2) concat=bzcat;;
     application/x-xz)    concat=xzcat;;
 esac
 
-# Find a suitable lexer, preceded by a hex dump for binary files
+# Find a suitable reader, preceded by a hex dump for binary files,
+# or fmt for text with very long lines
 prereader=""
+reader=cat
 encoding=$(file --mime-encoding --uncompress $file_common_opts "$file")
-if [[ $encoding == "binary" ]]; then
-    prereader="od -x" # POSIX fallback
-    if [[ -n $(which hd) ]]; then
-        prereader="hd" # preferred
-    fi
-    lexer=hexdump
-    encoding=latin1
-fi
-if [[ -n "$lexer" ]]; then
+# FIXME: need a way to switch between hex and text view, as file often
+# misdiagnoses files when they contain a few control characters
+# if [[ $encoding == "binary" ]]; then
+#     prereader="od -x" # POSIX fallback
+#     if [[ -n $(which hd) ]]; then
+#         prereader=hd # preferred
+#     fi
+#     lexer=hexdump
+#     encoding=latin1
+#el
+# FIXME: Using fmt does not work well for system logs
+# if [[ "$lexer" == "text" ]]; then
+#    if file "$file" | grep -ql "text, with very long lines"; then
+#        reader=fmt
+#    fi
+# fi
+if [[ "$lexer" != "text" ]]; then
     reader="pygmentize -O inencoding=$encoding $PYGMENTIZE_OPTS $options -l $lexer"
 fi
 
-# If we found a reader, run it
-if [[ -n "$reader" ]]; then
-    if [[ -n "$prereader" ]]; then
-        exec $concat "$file" | $prereader | $reader
-    else
-        exec $concat "$file" | $reader
-    fi
+# Run the reader
+if [[ -n "$prereader" ]]; then
+    exec $concat "$file" | $prereader | $reader
+else
+    exec $concat "$file" | $reader
 fi
-
-exit 1
