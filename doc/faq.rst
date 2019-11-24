@@ -132,8 +132,9 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 * `Clygments <https://github.com/bfontaine/clygments>`_, a pygments wrapper for
   Clojure
 * `PHPygments <https://github.com/capynet/PHPygments>`_, a pygments wrapper for PHP
-
+* `Spyder <https://www.spyder-ide.org/>`_, the Scientific Python Development
+  Environment, uses pygments for the multi-language syntax highlighting in its
+  `editor <https://docs.spyder-ide.org/editor.html>`_.
 
 If you have a project or web site using Pygments, drop me a line, and I'll add a
 link here.
-
