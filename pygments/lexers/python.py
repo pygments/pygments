@@ -263,6 +263,8 @@ class PythonLexer(RegexLexer):
     filenames = [
         '*.py',
         '*.pyw',
+        # Jython
+        '*.jy',
         # Sage
         '*.sage',
         # SCons
