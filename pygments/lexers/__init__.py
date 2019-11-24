@@ -20,9 +20,13 @@ from pygments.modeline import get_filetype_from_buffer
 from pygments.plugin import find_plugin_lexers
 from pygments.util import ClassNotFound, itervalues, guess_decode, text_type
 
+COMPAT = {
+    'Python3Lexer': 'PythonLexer',
+    'Python3TracebackLexer': 'PythonTracebackLexer',
+}
 
 __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
-           'guess_lexer', 'load_lexer_from_file'] + list(LEXERS)
+           'guess_lexer', 'load_lexer_from_file'] + list(LEXERS) + list(COMPAT)
 
 _lexer_cache = {}
 _pattern_cache = {}
@@ -327,6 +331,8 @@ class _automodule(types.ModuleType):
             cls = _lexer_cache[info[1]]
             setattr(self, name, cls)
             return cls
+        if name in COMPAT:
+            return getattr(self, COMPAT[name])
         raise AttributeError(name)
 
 
