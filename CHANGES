@@ -30,6 +30,17 @@ Version 2.5.0
 - Reduce ``TeraTerm`` lexer score -- it used to match nearly all languages
   (#1256)
 - Treat ``Skylark``/``Starlark`` files as Python files (PR#1259)
+- Fix Matlab recognition of ``function`` keyword
+- Add LICENSE file to wheel builds
+- Emacs Lisp: add more string functions
+- Java: support ``var`` contextual keyword
+- Ruby: support squiggly heredocs
+- Dart: support ``@`` annotations
+- GAS: accept registers in directive arguments
+- Dockerfile: accept ``FROM ... AS`` syntax
+- Velocity: support silent reference syntax
+- Agda: fix lambda highlighting
+- Image formatter: actually respect ``line_number_separator`` option
 
 
 Version 2.4.2
