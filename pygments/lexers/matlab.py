@@ -72,6 +72,8 @@ class MatlabLexer(RegexLexer):
              "hilb", "invhilb", "magic", "pascal", "rosser", "toeplitz", "vander",
              "wilkinson")
 
+    _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\'
+
     tokens = {
         'root': [
             # line starting with '!' is sent as a system command.  not sure what
@@ -94,10 +96,16 @@ class MatlabLexer(RegexLexer):
             # line continuation with following comment:
             (r'\.\.\..*$', Comment),
 
+            # command form:
+            # "How MATLAB Recognizes Command Syntax" specifies that an operator
+            # is recognized if it is either surrounded by spaces or by no
+            # spaces on both sides; only the former case matters for us.  (This
+            # allows distinguishing `cd ./foo` from `cd ./ foo`.)
+            (r'(?:^|(?<=;))\s*\w+\s+(?!=|\(|(%s)\s+)' % _operators, Name,
+             'commandargs'),
+
             # operators:
-            (r'-|==|~=|<|>|<=|>=|&&|&|~|\|\|?', Operator),
-            # operators requiring escape for re:
-            (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
+            (_operators, Operator),
 
             # numbers (must come before punctuation to handle `.5`; cannot use
             # `\b` due to e.g. `5. + .5`).
@@ -117,9 +125,6 @@ class MatlabLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name),
             (r'.', Text),
         ],
-        'string': [
-            (r'[^\']*\'', String, '#pop')
-        ],
         'blockcomment': [
             (r'^\s*%\}', Comment.Multiline, '#pop'),
             (r'^.*\n', Comment.Multiline),
@@ -133,12 +138,22 @@ class MatlabLexer(RegexLexer):
             # function with no args
             (r'(\s*)([a-zA-Z_]\w*)', bygroups(Text, Name.Function), '#pop'),
         ],
+        'string': [
+            (r"[^']*'", String, '#pop'),
+        ],
+        'commandargs': [
+            ("'[^']*'", String),
+            ("[^';\n]+", String),
+            (";?\n?", Punctuation, '#pop'),
+        ]
     }
 
     def analyse_text(text):
         # function declaration.
-        if next(line for line in text.splitlines()
-                if not re.match(r'^\s*%', text)).strip().startswith('function'):
+        first_non_comment = next((line for line in text.splitlines()
+                                  if not re.match(r'^\s*%', text)), '').strip()
+        if (first_non_comment.startswith('function')
+                and '{' not in first_non_comment):
             return 1.
         # comment
         elif re.match(r'^\s*%', text, re.M):
