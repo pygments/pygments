@@ -222,10 +222,9 @@ class RstLexer(RegexLexer):
                       Punctuation, Text, using(this, state='inline'))),
             # Comments
             (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment.Preproc),
-            # Field list
-            (r'^( *)(:[a-zA-Z-]+:)(\s*)$', bygroups(Text, Name.Class, Text)),
-            (r'^( *)(:.*?:)([ \t]+)(.*?)$',
-             bygroups(Text, Name.Class, Text, Name.Function)),
+            # Field list marker
+            (r'^( *)(:(?:\\\\|\\:|[^:\n])+:(?=\s))([ \t]*)',
+             bygroups(Text, Name.Class, Text)),
             # Definition list
             (r'^(\S.*(?<!::)\n)((?:(?: +.*)\n)+)',
              bygroups(using(this, state='inline'), using(this, state='inline'))),
