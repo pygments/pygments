@@ -9,17 +9,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-python@v1
+    - name: Setup Python
+      uses: actions/setup-python@v1
       with:
         python-version: 3.7
+    - name: Checkout Pygments
+      uses: actions/checkout@v1
+    - name: Checkout Pyodide
+      run: git clone https://github.com/pygments/pyodide-artifacts
     - name: Sphinx install
       run: pip install Sphinx
     - name: Sphinx build
       run: |
         cd doc
         WEBSITE_BUILD=1 make dirhtml
-        cp -a ../external/pyodide _build/dirhtml/_static
+        cp -a ../pyodide-artifacts/pyodide _build/dirhtml/_static
         touch _build/dirhtml/.nojekyll
         echo -e 'pygments.org\nwww.pygments.org' > _build/dirhtml/CNAME
         echo 'Automated deployment of docs for GitHub pages.' > _build/dirhtml/README
