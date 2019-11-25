@@ -1,4 +1,5 @@
 form Highlighter test
+  # This is a regular comment
   sentence Blank
   sentence My_sentence This should all be a string
   text My_text This should also all be a string
@@ -7,15 +8,36 @@ form Highlighter test
   boolean Text no
   boolean Quoted "yes"
   comment This should be a string
-  optionmenu Choice: 1
+  optionmenu Drop-down: 1
     option Foo
-    option Bar
+    option 100
+  choice Radio: 1
+    option Foo
     option 100
   real left_Range -123.6
   positive right_Range_max 3.3
   integer Int 4
   natural Nat 4
 endform
+
+beginPause: "Highlighter test"
+  sentence: "Blank", ""
+  sentence: "My sentence", "This should all be a string"
+  text: "My text", "This should also all be a string"
+  word: "My word", "Only the first word is a string, the rest is discarded"
+  boolean: "Binary", 1
+  comment: "This should be a string"
+  optionMenu: "Drop-down", 1
+    option: "Foo"
+    option: "100"
+  choice: "Choice", 1
+    option: "Foo"
+    option: "100"
+  real: "left Range", -123.6
+  positive: "right Range max", 3.3
+  integer: "Int", 4
+  natural: "Nat", 4
+button = endPause("Cancel", "OK", 1, 2)
 
 # Periods do not establish boundaries for keywords
 form.var = 10
@@ -30,8 +52,7 @@ execute /path/to/file
 
 # Predefined variables
 a  = praatVersion
-a  = e
-a  = pi
+a  = e + pi * ( all+right) / left mod average + (mono - stereo)
 a$ = homeDirectory$ + tab$ + newline$
 a$ = temporaryDirectory$
 a$ = praatVersion$
@@ -40,6 +61,9 @@ a$ = homeDirectory$
 a$ = preferencesDirectory$
 a$ = defaultDirectory$
 nocheck selectObject: undefined
+# Not predefined variables
+a$ = e$
+a$ = pi$
 
 # Arrays are not comments
 a# = zero# (5, 6)
@@ -59,9 +83,43 @@ else macintosh == 1
   exit We are on Mac
 endif
 
-string$ = "Strings can be 'interpolated'"
+# Interpolation with precision digits
+echo unquoted 'a:3'
+echo unquoted 'a.a:3'
+echo unquoted 'a[1]:3'
+echo unquoted 'a1:3'
+
+appendInfoLine: "quoted 'a:3'"
+appendInfoLine: "quoted 'a.a:3'"
+appendInfoLine: "quoted 'a[1]:3'"
+appendInfoLine: "quoted 'a1:3'"
+
+# Interpolations are not recursive
+echo unquoted 'a'1':3'
+appendInfoLine: "quoted 'a'1':3'"
+
+# Interpolation without precision digits
+echo unquoted 'var' numeric
+echo unquoted 'var$' string
+echo unquoted 'var["a"]' numeric hash
+echo unquoted 'var$["a"]' string hash
+echo unquoted 'var[1]' numeric indexed variable
+echo unquoted 'var$[1]' string indexed variable
+
+appendInfoLine: "quoted 'var' numeric"
+appendInfoLine: "quoted 'var$' string"
+appendInfoLine: "quoted 'var["a"]' numeric hash"
+appendInfoLine: "quoted 'var$["a"]' string hash"
+appendInfoLine: "quoted 'var[1]' numeric indexed variable"
+appendInfoLine: "quoted 'var$[1]' string indexed variable"
+
+# Indeces in interpolations must be literal
+echo 'var[a]'
+echo 'var[a$]'
+
 string$ = "But don't interpolate everything!"
-string$(10)
+string$ = "interpolatin' " + "across" + " strings ain't cool either"
+string$(10) ; This is a function
 
 repeat
   string$ = string$ - right$(string$)
@@ -77,6 +135,12 @@ value$ = Table_'table'$[25, "f0"]
 fixed  = Sound_10.xmin
 fixed  = Object_foo.xmin
 fixed  = Procrustes_foo.nx
+var["vaa"] = 1 ; Hash
+
+# Special two-word keyword
+select all
+# Keyword with a predefined variable
+select  all
 
 # old-style procedure call
 call oldStyle "quoted" 2 unquoted string
@@ -103,7 +167,7 @@ endfor
 
 i = 1
 while i < n
-  i++
+  i += 1
   # Different styles of object selection
   select sound'i'
   sound = selected()
@@ -153,7 +217,7 @@ while i < n
     ..."duration response"
 
   # Function call with trailing space
-  removeObject: pitch, table 
+  removeObject: pitch, table
 
   # Picture window commands
   selectObject: sound
@@ -251,7 +315,7 @@ procedure newStyle (.str1$, .num, .str2$)
   .local = Get total duration
   .local = Get 'some' duration
   .local = Get 'some[1]' value... hello 10 p[i]
-  .local = Get 'some[1,3]' value: "hello", 10, 'p[i]'
+  .local = Get 'some[1,3]' value: "hello", 10, p[i]
   .local = Get 'some$' duration
   .local = Get 'some$[1]' duration
 endproc
