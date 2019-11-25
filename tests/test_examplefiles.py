@@ -20,7 +20,10 @@ from pygments.lexers import get_lexer_for_filename, get_lexer_by_name
 from pygments.token import Error
 from pygments.util import ClassNotFound
 
-STORE_OUTPUT = True
+# You can set this to True to store the exact token type output of example
+# files in tests/examplefiles/output, and on the next run the test will
+# want them to stay the same.  In the repository, this should stay False.
+STORE_OUTPUT = False
 
 STATS = {}
 
