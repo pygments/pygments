@@ -16,7 +16,7 @@ from pygments.lexer import ExtendedRegexLexer, RegexLexer, bygroups, words, \
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Literal, Whitespace
 
-__all__ = ['ProtoBufLexer', 'ZeekLexer', 'BroLexer', 'PuppetLexer', 'RslLexer',
+__all__ = ['ProtoBufLexer', 'ZeekLexer', 'PuppetLexer', 'RslLexer',
            'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer',
            'CrmshLexer', 'ThriftLexer', 'FlatlineLexer', 'SnowballLexer']
 
@@ -195,8 +195,8 @@ class ZeekLexer(RegexLexer):
     .. versionadded:: 2.5
     """
     name = 'Zeek'
-    aliases = ['zeek']
-    filenames = ['*.zeek']
+    aliases = ['zeek', 'bro']
+    filenames = ['*.zeek', '*.bro']
 
     _hex = r'[0-9a-fA-F]'
     _float = r'((\d*\.?\d+)|(\d+\.?\d*))([eE][-+]?\d+)?'
@@ -345,16 +345,7 @@ class ZeekLexer(RegexLexer):
     }
 
 
-class BroLexer(ZeekLexer):
-    """
-    For `Zeek <https://www.zeek.org/>`_ scripts.
-    Note, this is equivalent to ZeekLexer (Bro is the old name for Zeek).
-
-    .. versionadded:: 1.5
-    """
-    name = 'Bro'
-    aliases = ['bro']
-    filenames = ['*.bro']
+BroLexer = ZeekLexer
 
 
 class PuppetLexer(RegexLexer):

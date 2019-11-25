@@ -65,7 +65,6 @@ LEXERS = {
     'BooLexer': ('pygments.lexers.dotnet', 'Boo', ('boo',), ('*.boo',), ('text/x-boo',)),
     'BoogieLexer': ('pygments.lexers.verification', 'Boogie', ('boogie',), ('*.bpl',), ()),
     'BrainfuckLexer': ('pygments.lexers.esoteric', 'Brainfuck', ('brainfuck', 'bf'), ('*.bf', '*.b'), ('application/x-brainfuck',)),
-    'BroLexer': ('pygments.lexers.dsls', 'Bro', ('bro',), ('*.bro',), ()),
     'BugsLexer': ('pygments.lexers.modeling', 'BUGS', ('bugs', 'winbugs', 'openbugs'), ('*.bug',), ()),
     'CAmkESLexer': ('pygments.lexers.esoteric', 'CAmkES', ('camkes', 'idl4'), ('*.camkes', '*.idl4'), ()),
     'CLexer': ('pygments.lexers.c_cpp', 'C', ('c',), ('*.c', '*.h', '*.idc'), ('text/x-chdr', 'text/x-csrc')),
@@ -474,7 +473,7 @@ LEXERS = {
     'XtlangLexer': ('pygments.lexers.lisp', 'xtlang', ('extempore',), ('*.xtm',), ()),
     'YamlJinjaLexer': ('pygments.lexers.templates', 'YAML+Jinja', ('yaml+jinja', 'salt', 'sls'), ('*.sls',), ('text/x-yaml+jinja', 'text/x-sls')),
     'YamlLexer': ('pygments.lexers.data', 'YAML', ('yaml',), ('*.yaml', '*.yml'), ('text/x-yaml',)),
-    'ZeekLexer': ('pygments.lexers.dsls', 'Zeek', ('zeek',), ('*.zeek',), ()),
+    'ZeekLexer': ('pygments.lexers.dsls', 'Zeek', ('zeek', 'bro'), ('*.zeek', '*.bro'), ()),
     'ZephirLexer': ('pygments.lexers.php', 'Zephir', ('zephir',), ('*.zep',), ()),
     'ZigLexer': ('pygments.lexers.zig', 'Zig', ('zig',), ('*.zig',), ('text/zig',)),
 }
