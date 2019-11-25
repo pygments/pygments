@@ -26,7 +26,7 @@ class ResourceLexer(RegexLexer):
     """
     name = 'ResourceBundle'
     aliases = ['resource', 'resourcebundle']
-    filenames = ['*.txt']
+    filenames = []
 
     _types = (':table', ':array', ':string', ':bin', ':import', ':intvector',
               ':int', ':alias')
