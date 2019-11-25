@@ -10,7 +10,7 @@
 """
 
 from pygments.formatter import Formatter
-from pygments.util import OptionError, get_choice_opt
+from pygments.util import get_choice_opt
 from pygments.token import Token
 from pygments.console import colorize
 
@@ -87,14 +87,17 @@ class RawTokenFormatter(Formatter):
         if self.compress == 'gz':
             import gzip
             outfile = gzip.GzipFile('', 'wb', 9, outfile)
+
             def write(text):
                 outfile.write(text.encode())
             flush = outfile.flush
         elif self.compress == 'bz2':
             import bz2
             compressor = bz2.BZ2Compressor(9)
+
             def write(text):
                 outfile.write(compressor.compress(text.encode()))
+
             def flush():
                 outfile.write(compressor.flush())
                 outfile.flush()
@@ -114,6 +117,7 @@ class RawTokenFormatter(Formatter):
             for ttype, value in tokensource:
                 write("%s\t%r\n" % (ttype, value))
         flush()
+
 
 TESTCASE_BEFORE = u'''\
     def testNeedsName(lexer):
