@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+    pygments.lexers.scdoc
+    ~~~~~~~~~~~~~~~~~~~~~
+
+    Lexer for scdoc, a simple man page generator.
+
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 import re
 
 from pygments.lexer import RegexLexer, include, bygroups, \
