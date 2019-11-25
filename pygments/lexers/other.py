@@ -27,8 +27,8 @@ from pygments.lexers.graphics import PostScriptLexer, GnuplotLexer, \
 from pygments.lexers.business import ABAPLexer, OpenEdgeLexer, \
     GoodDataCLLexer, MaqlLexer
 from pygments.lexers.automation import AutoItLexer, AutohotkeyLexer
-from pygments.lexers.dsls import ProtoBufLexer, ZeekLexer, BroLexer, \
-    PuppetLexer, MscgenLexer, VGLLexer
+from pygments.lexers.dsls import ProtoBufLexer, BroLexer, PuppetLexer, \
+    MscgenLexer, VGLLexer
 from pygments.lexers.basic import CbmBasicV2Lexer
 from pygments.lexers.pawn import SourcePawnLexer, PawnLexer
 from pygments.lexers.ecl import ECLLexer
