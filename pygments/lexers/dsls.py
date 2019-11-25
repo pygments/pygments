@@ -213,7 +213,7 @@ class ZeekLexer(RegexLexer):
             include('literals'),
             include('operators'),
             include('punctuation'),
-            (r'\b((?:[A-Za-z_][A-Za-z_0-9]*)(?:::(?:[A-Za-z_][A-Za-z_0-9]*))*)(?=\s*\()',
+            (r'((?:[A-Za-z_]\w*)(?:::(?:[A-Za-z_]\w*))*)(?=\s*\()',
                 Name.Function),
             include('identifiers'),
         ],
@@ -229,8 +229,8 @@ class ZeekLexer(RegexLexer):
         ],
 
         'directives': [
-            (r'(@(load-plugin|load-sigs|load|unload))\b.*$', Comment.Preproc),
-            (r'(@(DEBUG|DIR|FILENAME|deprecated|if|ifdef|ifndef|else|endif))\b', Comment.Preproc),
+            (r'@(load-plugin|load-sigs|load|unload)\b.*$', Comment.Preproc),
+            (r'@(DEBUG|DIR|FILENAME|deprecated|if|ifdef|ifndef|else|endif)\b', Comment.Preproc),
             (r'(@prefixes)\s*(\+?=).*$', Comment.Preproc),
         ],
 
@@ -250,19 +250,19 @@ class ZeekLexer(RegexLexer):
                     'function', 'hook', 'event',
                     'addr', 'bool', 'count', 'double', 'file', 'int', 'interval',
                     'pattern', 'port', 'string', 'subnet', 'time'),
-                prefix=r'\b', suffix=r'\b'),
+                suffix=r'\b'),
              Keyword.Type),
 
-            (r'\b(opaque)(\s+)(of)(\s+)((?:[A-Za-z_][A-Za-z_0-9]*)(?:::(?:[A-Za-z_][A-Za-z_0-9]*))*)\b',
+            (r'(opaque)(\s+)(of)(\s+)((?:[A-Za-z_]\w*)(?:::(?:[A-Za-z_]\w*))*)\b',
                 bygroups(Keyword.Type, Text, Operator.Word, Text, Keyword.Type)),
 
-            (r'\b(type)(\s+)((?:[A-Za-z_][A-Za-z_0-9]*)(?:::(?:[A-Za-z_][A-Za-z_0-9]*))*)(\s*)(:)(\s*)\b(record|enum)\b',
+            (r'(type)(\s+)((?:[A-Za-z_]\w*)(?:::(?:[A-Za-z_]\w*))*)(\s*)(:)(\s*)\b(record|enum)\b',
                 bygroups(Keyword, Text, Name.Class, Text, Operator, Text, Keyword.Type)),
 
-            (r'\b(type)(\s+)((?:[A-Za-z_][A-Za-z_0-9]*)(?:::(?:[A-Za-z_][A-Za-z_0-9]*))*)(\s*)(:)',
+            (r'(type)(\s+)((?:[A-Za-z_]\w*)(?:::(?:[A-Za-z_]\w*))*)(\s*)(:)',
                 bygroups(Keyword, Text, Name, Text, Operator)),
 
-            (r'\b(redef)(\s+)(record|enum)(\s+)((?:[A-Za-z_][A-Za-z_0-9]*)(?:::(?:[A-Za-z_][A-Za-z_0-9]*))*)\b',
+            (r'(redef)(\s+)(record|enum)(\s+)((?:[A-Za-z_]\w*)(?:::(?:[A-Za-z_]\w*))*)\b',
                 bygroups(Keyword, Text, Keyword.Type, Text, Name.Class)),
         ],
 
@@ -272,11 +272,11 @@ class ZeekLexer(RegexLexer):
                     'switch', 'default', 'case',
                     'add', 'delete',
                     'when', 'timeout', 'schedule'),
-                prefix=r'\b', suffix=r'\b'),
+                suffix=r'\b'),
              Keyword),
-            (r'\b(print)\b', Keyword),
-            (r'\b(global|local|const|option)\b', Keyword.Declaration),
-            (r'\b(module)(\s+)(([A-Za-z_][A-Za-z_0-9]*)(?:::([A-Za-z_][A-Za-z_0-9]*))*)\b',
+            (r'(print)\b', Keyword),
+            (r'(global|local|const|option)\b', Keyword.Declaration),
+            (r'(module)(\s+)(([A-Za-z_]\w*)(?:::([A-Za-z_]\w*))*)\b',
                 bygroups(Keyword.Namespace, Text, Name.Namespace)),
         ],
 
@@ -288,22 +288,22 @@ class ZeekLexer(RegexLexer):
             # operator.
             (r'/(?=.*/)', String.Regex, 'regex'),
 
-            (r'\b(T|F)\b', Keyword.Constant),
+            (r'(T|F)\b', Keyword.Constant),
 
             # Port
-            (r'\b\d{1,5}/(udp|tcp|icmp|unknown)\b', Number),
+            (r'\d{1,5}/(udp|tcp|icmp|unknown)\b', Number),
 
             # IPv4 Address
-            (r'\b(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{1,2})\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{1,2})\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{1,2})\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{1,2})\b', Number),
+            (r'(\d{1,3}.){3}(\d{1,3})\b', Number),
 
-            # IPv6 Address (not 100% correct: that takes more effort)
-            (r'\[([0-9a-fA-F]{0,4}:){2,7}([0-9a-fA-F]{0,4})?((25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{1,2})\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{1,2})\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{1,2})\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{1,2}))?\]', Number),
+            # IPv6 Address
+            (r'\[([0-9a-fA-F]{0,4}:){2,7}([0-9a-fA-F]{0,4})?((\d{1,3}.){3}(\d{1,3}))?\]', Number),
 
             # Numeric
-            (r'\b0[xX]' + _hex + r'+\b', Number.Hex),
-            (r'\b' + _float + r'\s*(day|hr|min|sec|msec|usec)s?\b', Number.Float),
-            (r'\b' + _float + r'\b', Number.Float),
-            (r'\b(\d+)\b', Number.Integer),
+            (r'0[xX]' + _hex + r'+\b', Number.Hex),
+            (_float + r'\s*(day|hr|min|sec|msec|usec)s?\b', Number.Float),
+            (_float + r'\b', Number.Float),
+            (r'(\d+)\b', Number.Integer),
 
             # Hostnames
             (_h + r'(\.' + _h + r')+', String),
@@ -312,16 +312,17 @@ class ZeekLexer(RegexLexer):
         'operators': [
             (r'[!%*/+<=>~|&^-]', Operator),
             (r'([-+=&|]{2}|[+=!><-]=)', Operator),
-            (r'\b(in|as|is|of)\b', Operator.Word),
+            (r'(in|as|is|of)\b', Operator.Word),
             (r'\??\$', Operator),
-            # Technically, colons are often used for punctuation/separation.
-            # E.g. field name/type separation.
-            (r'[?:]', Operator),
         ],
 
         'punctuation': [
-            (r'\?\$', Punctuation),
-            (r'[{}()\[\],;:.]', Punctuation),
+            (r'[{}()\[\],;.]', Punctuation),
+            # The "ternary if", which uses '?' and ':', could instead be
+            # treated as an Operator, but colons are more frequently used to
+            # separate field/identifier names from their types, so the (often)
+            # less-prominent Punctuation is used even with '?' for consistency.
+            (r'[?:]', Punctuation),
         ],
 
         'identifiers': [
