@@ -14,6 +14,9 @@ Version 2.5.0
   * Email (PR#1246)
   * Erlang, Elxir shells (PR#823, #1521)
   * Zig (PR#820)
+  * Zeek (new name for Bro) (PR#1264)
+  * Notmuch (PR#1269)
+  * Scdoc (PR#1268)
 
 - Updated lexers:
 
@@ -23,10 +26,12 @@ Version 2.5.0
   * Handlebars (PR#773)
   * Python3 (PR#1255)
   * YAML (#1528)
+  * Matlab (PR#1271)
+  * Logtalk (PR#1261)
 
 - Added styles:
 
-  * Inkpot (#1276)
+  * Inkpot (PR#1276)
 
 - The ``PythonLexer`` class is now an alias for the former ``Python3Lexer``.
   The old ``PythonLexer`` is available as ``Python2Lexer``.  Same change has
@@ -53,6 +58,7 @@ Version 2.5.0
 - Velocity: support silent reference syntax
 - Agda: fix lambda highlighting
 - Python: recognize ``.jy`` filenames (#976)
+- Shell sessions: recognize Virtualenv prompt (PR#1266)
 - Image formatter: actually respect ``line_number_separator`` option
 
 
