@@ -84,11 +84,14 @@ class MatlabLexer(RegexLexer):
             (r'^\s*function\b', Keyword, 'deffunc'),
 
             # from 'iskeyword' on version 7.11 (R2010):
-            (words((
-                'break', 'case', 'catch', 'classdef', 'continue', 'else', 'elseif',
-                'end', 'enumerated', 'events', 'for', 'function', 'global', 'if',
-                'methods', 'otherwise', 'parfor', 'persistent', 'properties',
-                'return', 'spmd', 'switch', 'try', 'while'), suffix=r'\b'),
+            # Check that there is no preceding dot, as keywords are valid field
+            # names.
+            (words(('break', 'case', 'catch', 'classdef', 'continue', 'else',
+                    'elseif', 'end', 'enumerated', 'events', 'for', 'function',
+                    'global', 'if', 'methods', 'otherwise', 'parfor',
+                    'persistent', 'properties', 'return', 'spmd', 'switch',
+                    'try', 'while'),
+                   prefix=r'(?<!\.)', suffix=r'\b'),
              Keyword),
 
             ("(" + "|".join(elfun + specfun + elmat) + r')\b',  Name.Builtin),
