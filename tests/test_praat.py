@@ -95,9 +95,7 @@ def test_broken_unquoted_string(lexer):
         (Token.Text, u'\n'),
         (Token.Punctuation, u'...'),
         (Token.Text, u' '),
-        (Token.Literal.String.Interpol, u"'"),
-        (Token.Literal.String.Interpol, u'interpolated'),
-        (Token.Literal.String.Interpol, u"'"),
+        (Token.Literal.String.Interpol, u"'interpolated'"),
         (Token.Text, u' '),
         (Token.Literal.String, u'string'),
         (Token.Text, u'\n'),
@@ -130,6 +128,78 @@ def test_inline_if(lexer):
         (Token.Literal.Number, u'0'),
         (Token.Text, u' '),
         (Token.Keyword, u'fi'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_interpolation_boundary(lexer):
+    fragment = u'"\'" + "\'"'
+    tokens = [
+        (Token.Literal.String, u'"'),
+        (Token.Literal.String, u"'"),
+        (Token.Literal.String, u'"'),
+        (Token.Text, u' '),
+        (Token.Operator, u'+'),
+        (Token.Text, u' '),
+        (Token.Literal.String, u'"'),
+        (Token.Literal.String, u"'"),
+        (Token.Literal.String, u'"'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_interpolated_numeric_indexed(lexer):
+    fragment = u"'a[3]'"
+    tokens = [
+        (Token.Literal.String.Interpol, u"'a[3]'"),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_interpolated_numeric_hash(lexer):
+    fragment = u"'a[\"b\"]'"
+    tokens = [
+        (Token.Literal.String.Interpol, u"'a[\"b\"]'"),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_interpolated_string_indexed(lexer):
+    fragment = u"'a$[3]'"
+    tokens = [
+        (Token.Literal.String.Interpol, u"'a$[3]'"),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_interpolated_string_hash(lexer):
+    fragment = u"'a$[\"b\"]'"
+    tokens = [
+        (Token.Literal.String.Interpol, u"'a$[\"b\"]'"),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_interpolated_numeric_with_precision(lexer):
+    fragment = u"'a:3'"
+    tokens = [
+        (Token.Literal.String.Interpol, u"'a:3'"),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_interpolated_indexed_numeric_with_precision(lexer):
+    fragment = u"'a[3]:3'"
+    tokens = [
+        (Token.Literal.String.Interpol, u"'a[3]:3'"),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_interpolated_local_numeric_with_precision(lexer):
+    fragment = u"'a.a:3'"
+    tokens = [
+        (Token.Literal.String.Interpol, u"'a.a:3'"),
         (Token.Text, u'\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
