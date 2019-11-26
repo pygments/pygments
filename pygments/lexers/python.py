@@ -243,7 +243,7 @@ class Python2Lexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return shebang_matches(text, r'pythonw?(2(\.\d)?)?') or \
+        return shebang_matches(text, r'pythonw?2(\.\d)?') or \
             'import ' in text[:1000]
 
 
@@ -429,7 +429,7 @@ class PythonLexer(RegexLexer):
     tokens['strings-double'] = innerstring_rules(String.Double)
 
     def analyse_text(text):
-        return shebang_matches(text, r'pythonw?3(\.\d)?')
+        return shebang_matches(text, r'pythonw?(3(\.\d)?)?')
 
 
 Python3Lexer = PythonLexer
