@@ -8,27 +8,35 @@ pull request numbers to the requests at
 
 Version 2.5.0
 -------------
+(released November 26, 2019)
 
 - Added lexers:
 
   * Email (PR#1246)
   * Erlang, Elxir shells (PR#823, #1521)
-  * Zig (PR#820)
-  * Zeek (new name for Bro) (PR#1264)
-  * Notmuch (PR#1269)
-  * Scdoc (PR#1268)
-  * Solidity
+  * Notmuch (PR#1264)
+  * `Scdoc <https://git.sr.ht/~sircmpwn/scdoc>`_ (PR#1268)
+  * `Solidity <https://solidity.readthedocs.io/>`_ (#1214)
+  * `Zeek <https://www.zeek.org>`_ (new name for Bro) (PR#1269)
+  * `Zig <https://ziglang.org/>`_ (PR#820)
 
 - Updated lexers:
 
   * Apache2 Configuration (PR#1251)
   * Bash sessions (#1253)
   * CSound (PR#1250)
+  * Dart
+  * Dockerfile
+  * Emacs Lisp
   * Handlebars (PR#773)
-  * Python3 (PR#1255)
-  * YAML (#1528)
-  * Matlab (PR#1271)
+  * Java (#1101, #987)
   * Logtalk (PR#1261)
+  * Matlab (PR#1271)
+  * Praat (PR#1277)
+  * Python3 (PR#1255)
+  * Ruby
+  * YAML (#1528)
+  * Velocity
 
 - Added styles:
 
@@ -46,22 +54,22 @@ Version 2.5.0
 - Reduce ``TeraTerm`` lexer score -- it used to match nearly all languages
   (#1256)
 - Treat ``Skylark``/``Starlark`` files as Python files (PR#1259)
-- Fix Matlab recognition of ``function`` keyword
-- Add LICENSE file to wheel builds
-- Emacs Lisp: add more string functions
-- Java: support ``var`` contextual keyword
-- Java: make structural punctuation (braces, parens, colon, comma)
-  ``Punctuation``, not ``Operator`` (#987)
-- Ruby: support squiggly heredocs
-- Dart: support ``@`` annotations
-- GAS: accept registers in directive arguments
-- Dockerfile: accept ``FROM ... AS`` syntax
-- Velocity: support silent reference syntax
-- Agda: fix lambda highlighting
-- Python: recognize ``.jy`` filenames (#976)
-- Python: recogniez ``f`` string prefix (#1156)
-- Shell sessions: recognize Virtualenv prompt (PR#1266)
 - Image formatter: actually respect ``line_number_separator`` option
+
+- Add LICENSE file to wheel builds
+- Agda: fix lambda highlighting
+- Dart: support ``@`` annotations
+- Dockerfile: accept ``FROM ... AS`` syntax
+- Emacs Lisp: add more string functions
+- GAS: accept registers in directive arguments
+- Java: make structural punctuation (braces, parens, colon, comma) ``Punctuation``, not ``Operator`` (#987)
+- Java: support ``var`` contextual keyword (#1101)
+- Matlab: Fix recognition of ``function`` keyword (PR#1271)
+- Python: recognize ``.jy`` filenames (#976)
+- Python: recognize ``f`` string prefix (#1156)
+- Ruby: support squiggly heredocs
+- Shell sessions: recognize Virtualenv prompt (PR#1266)
+- Velocity: support silent reference syntax
 
 
 Version 2.4.2

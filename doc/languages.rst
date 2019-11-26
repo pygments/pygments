@@ -38,6 +38,7 @@ Programming languages
 * Delphi
 * Dylan
 * `Elm <http://elm-lang.org/>`_
+* Email
 * Erlang
 * `Ezhil <http://ezhillang.org>`_ Ezhil - A Tamil programming language
 * Factor
@@ -69,6 +70,7 @@ Programming languages
 * MuPad
 * Nemerle
 * Nimrod
+* Notmuch
 * Objective-C
 * Objective-J
 * Octave
@@ -88,6 +90,7 @@ Programming languages
 * Rust
 * S, S-Plus, R
 * Scala
+* `Scdoc <https://git.sr.ht/~sircmpwn/scdoc>`_
 * Scheme
 * Scilab
 * `SGF <https://www.red-bean.com/sgf/>`_
@@ -95,6 +98,7 @@ Programming languages
 * `Slurm <https://slurm.schedmd.com/overview.html>`_
 * Smalltalk
 * SNOBOL
+* `Solidity <https://solidity.readthedocs.io/>`_
 * Tcl
 * `Tera Term language <https://ttssh2.osdn.jp/>`_
 * `TOML <https://github.com/toml-lang/toml>`_
@@ -106,6 +110,7 @@ Programming languages
 * XQuery
 * `Zeek <https://www.zeek.org>`_
 * Zephir
+* `Zig <https://ziglang.org/>`_
 
 Template languages
 ------------------
