@@ -25,7 +25,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'Pygments',
-    version = '2.4.2',
+    version = '2.5.0',
     url = 'http://pygments.org/',
     license = 'BSD License',
     author = 'Georg Brandl',
