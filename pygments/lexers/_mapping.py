@@ -405,6 +405,7 @@ LEXERS = {
     'SmartyLexer': ('pygments.lexers.templates', 'Smarty', ('smarty',), ('*.tpl',), ('application/x-smarty',)),
     'SnobolLexer': ('pygments.lexers.snobol', 'Snobol', ('snobol',), ('*.snobol',), ('text/x-snobol',)),
     'SnowballLexer': ('pygments.lexers.dsls', 'Snowball', ('snowball',), ('*.sbl',), ()),
+    'SolidityLexer': ('pygments.lexers.solidity', 'Solidity', ('solidity',), ('*.sol',), ()),
     'SourcePawnLexer': ('pygments.lexers.pawn', 'SourcePawn', ('sp',), ('*.sp',), ('text/x-sourcepawn',)),
     'SourcesListLexer': ('pygments.lexers.installers', 'Debian Sourcelist', ('sourceslist', 'sources.list', 'debsources'), ('sources.list',), ()),
     'SparqlLexer': ('pygments.lexers.rdf', 'SPARQL', ('sparql',), ('*.rq', '*.sparql'), ('application/sparql-query',)),
