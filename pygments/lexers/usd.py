@@ -56,10 +56,11 @@ class UsdLexer(lexer.RegexLexer):
                 )),
                 ('#.*?$', token.Comment.Single),
                 (',', token.Generic),
+                (';', token.Generic),  # ";"s are allowed to combine separate metadata lines
                 ('=', token.Operator),
                 ('[+-]?([0-9]*[.])?[0-9]+', token.Number),
                 (r'".*"', token.String),
-                (r'<([\w/]+|[\w/]+\.\w+)>', token.Name.Namespace),
+                (r'<(\.\./)*([\w/]+|[\w/]+\.\w+[\w:]*)>', token.Name.Namespace),
                 (r'@.*@', token.String.Interpol),
                 (r'\(.*"[.\\n]*".*\)', token.String.Doc),
                 (r'\A#usda .+$', token.Comment.Hashbang),
