@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""The module that contains a lexer that parses Pixar's Universal Scene Description file format."""
+"""The module that parses Pixar's Universal Scene Description file format."""
 
 from pygments import lexer
 from pygments import token
@@ -22,7 +22,7 @@ _PUNCTUATION = [
 
 
 def _keywords(words, type_):
-    """Declare the given words as full-match tokens."""
+    """list[tuple[:class:`pygments.lexer.words`, :class:`pygments.token._TokenType`]]."""
     return [(lexer.words(words, prefix=r"\b", suffix=r"\b"), type_)]
 
 
