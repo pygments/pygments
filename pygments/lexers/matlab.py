@@ -124,7 +124,7 @@ class MatlabLexer(RegexLexer):
             # (not great, but handles common cases...)
             (r'(?<=[\w)\].])\'+', Operator),
 
-            (r'"[^"]*"', String),
+            (r'"(""|[^"])*"', String),
 
             (r'(?<![\w)\].])\'', String, 'string'),
             (r'[a-zA-Z_]\w*', Name),
