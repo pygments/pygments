@@ -102,6 +102,7 @@ Programming languages
 * Tcl
 * `Tera Term language <https://ttssh2.osdn.jp/>`_
 * `TOML <https://github.com/toml-lang/toml>`_
+* `USD <https://graphics.pixar.com/usd/docs/index.html>`_
 * Vala
 * Verilog
 * VHDL
