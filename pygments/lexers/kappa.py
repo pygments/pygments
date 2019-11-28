@@ -124,7 +124,7 @@ class KappaLexer(RegexLexer):
             (r'/\*', Comment.Multiline, 'comment'),
             # bond data
             (r'\]', Dec_Ag_Sign_Site_Bd_d, '#pop'),
-            (r'(' + ident + ')(\.)(' + ident + ')', bygroups(Dec_Ag_Sign_Site_Bd_s, Dec_Ag_Sign_Site_Bd_d, Dec_Ag_Sign_Site_Bd_a)),
+            (r'(' + ident + r')(\.)(' + ident + r')', bygroups(Dec_Ag_Sign_Site_Bd_s, Dec_Ag_Sign_Site_Bd_d, Dec_Ag_Sign_Site_Bd_a)),
             (r'\s+', Dec_Ag_Sign_Site_Bd_d),
             (r',', Dec_Ag_Sign_Site_Bd_d)
         ],
