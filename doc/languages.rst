@@ -165,6 +165,10 @@ Other markup
 * XSLT
 * YAML
 
+Other languages
+---------------
+* `Kappa <http://kappalanguage.org>`_ (biochemical signaling simulation via graph transformation)
+
 ... that's all?
 ---------------
 

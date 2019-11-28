@@ -51,6 +51,9 @@ STYLE_MAP = {
     'stata-light': 'stata_light::StataLightStyle',
     'stata-dark':  'stata_dark::StataDarkStyle',
     'inkpot':      'inkpot::InkPotStyle',
+    'kappa':               'kappa_styles::KaSimInBrowserStyle',
+    'kasim-in-browser':    'kappa_styles::KaSimInBrowserStyle',
+    'kappa-edit-notation': 'kappa_styles::EditNotationDeltasStyle',
 }
 
 

@@ -1,0 +1,58 @@
+/*** some glorious header
+spanning multiple lines ***/
+
+
+%agent: A(x[~x.~B], c[_1._C, x2._C])				// in-line comment
+%agent: ~B(~x[x.A])
+%agent: _C(_1{u p}[c.A] /*some comment*/ x2{~a _p _55}[c.A])
+%agent: ~9(c{=1 / +=5})
+%token: Bob
+
+
+'99' A(x[.]),~B(~x[.]) -> A(x[1]),~B(~x[1]) @ 'on_rate' * [tan] 3
+
+A(x[1/.]),~B(~x[1/.]) @ 'off_rate'
+
+A(x[_],c[.]),_C(_1{u}[.]) -> A(x[_],c[2]),_C(_1{u}[2])
+       @ 'on_rate'
+
+_C(_1{u}[1]),A(c[1]) -> _C(_1[.]{p}),A(c[.]) @ 'mod_rate'
+_C(_1{u/p}) @ 'mod_rate'
+
+'a.c' A(x[.],c[.]),_C(_1{p}[.],x2[.]{~a}) ->
+      A(x[.],c[1]),_C(_1{p}[.],x2[1]{~a}) @ 'on_rate'
+
+A(x[.],c[1]),_C(_1{p},x2{~a}[1]) ->
+         A(x[.],c[.]),_C(_1{p},x2{_p}[.]) @ 'mod_rate'
+
+~9()+ @ 1.0 {'mod_rate'}
+
+~9()- @ .1 { 'mod_rate' * 'on_rate' }
+
+~9(c{=1}) -> ~9(c{+=1}) @ 'on_rate' * 'off_rate' / 'mod_rate' {1.0}
+
+~9(c{=1 / +=1}) @ 1
+
+A() -> . | 1 Bob @ 1
+
+%var: 'on_rate' 1.0E-3
+%var: 'off_rate' 0.1
+%var: 'mod_rate' 1
+%obs: 'AB' |A(x[~x.~B])|
+%obs: 'Cuu' |_C(_1{u},x2{~a})|
+%var: 'n_ab' 1000 * [tan] 3
+%obs: 'n_c' 0
+%var: 'C' |_C()|
+%init: 'n_ab' A(),~B()
+%init: 'n_c' _C()
+%init: 5 ~9()
+%init: 55 Bob
+
+%mod: alarm 10.0 do $ADD 10^2 * |~9()| _C();
+%mod: [T] > 50 do $SNAPSHOT "my_snap.ka";
+%mod: [E] > 1 do $STOP ;
+/* open1 /* open2 close 2*/
+close */
+/* bla blaa */
+/* bla / bla */
+/* bla * bla */
