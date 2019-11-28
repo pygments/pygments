@@ -23,7 +23,7 @@ class KappaLexer(RegexLexer):
             (r'/\*', Comment.Multiline, 'comment'),
             (r'\s+', Whitespace),
             # agent name
-            (r'(' + ident + ')(\()', bygroups(Agent_Name, Agent_Decor), 'agent_rule'),
+            (r'(' + ident + r')(\()', bygroups(Agent_Name, Agent_Decor), 'agent_rule'),
             # various keywords
             (r'(%agent:)(\s*)(' + ident + ')(\()', bygroups(Dec_Keyword, Whitespace, Dec_Ag_Name, Dec_Ag_Decor),
              'agent_declaration'),
