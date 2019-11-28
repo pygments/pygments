@@ -25,20 +25,20 @@ class KappaLexer(RegexLexer):
             # agent name
             (r'(' + ident + r')(\()', bygroups(Agent_Name, Agent_Decor), 'agent_rule'),
             # various keywords
-            (r'(%agent:)(\s*)(' + ident + ')(\()', bygroups(Dec_Keyword, Whitespace, Dec_Ag_Name, Dec_Ag_Decor),
+            (r'(%agent:)(\s*)(' + ident + r')(\()', bygroups(Dec_Keyword, Whitespace, Dec_Ag_Name, Dec_Ag_Decor),
              'agent_declaration'),
-            (r'(%token:)(\s*)(' + ident + ')', bygroups(Dec_Keyword, Whitespace, String)),
+            (r'(%token:)(\s*)(' + ident + r')', bygroups(Dec_Keyword, Whitespace, String)),
             (words(('obs', 'init', 'var', 'plot', 'def'),
                    prefix='%', suffix=':'), Misc_Keyword),
             (words(('?', ':', 'log', 'sin', 'cos', 'tan', 'exp', 'int', 'mod', 'sqrt', 'pi', 'max', 'min'),
-                   prefix='\[\s*', suffix='\s*\]'), Misc_Func),
+                   prefix=r'\[\s*', suffix=r'\s*\]'), Misc_Func),
             # perturbation language
             (r'%mod:', Pert_Keyword),
             (r';', Pert_Keyword),
             (words(('INF', 'inf', 'alarm'),
                    prefix=r'\b', suffix=r'\b'), Pert_Constructs),
             (words(('true', 'false', 'not', 'E', 'E+', 'T', 'Tsim', 'Emax', 'Tmax'),
-                   prefix='\[\s*', suffix='\s*\]'), Pert_Constructs),
+                   prefix=r'\[\s*', suffix=r'\s*\]'), Pert_Constructs),
             (words(('do', 'repeat'),
                    prefix=r'\b', suffix=r'\b'), Pert_Decor),
             (words(('APPLY', 'DEL', 'ADD', 'SNAPSHOT', 'STOP', 'DIN', 'TRACK', 'UPDATE', 'PRINT', 'PRINTF', 'RUN',
@@ -72,21 +72,21 @@ class KappaLexer(RegexLexer):
             # bond states
             (r'(\[\s*)(\d+|_|#|\.)(\s*\])',                                          # [99]
              bygroups(Site_Bond_Decor, Site_Bond_State, Site_Bond_Decor)),
-            (r'(\[\s*)(' + ident + ')(.)(' + ident + ')(\s*\])',                     # [site.Agent]
+            (r'(\[\s*)(' + ident + r')(.)(' + ident + r')(\s*\])',                     # [site.Agent]
              bygroups(Site_Bond_Decor, Site_Bond_State_Site, Site_Bond_Decor, Site_Bond_State_Agent, Site_Bond_Decor)),
             (r'(\[\s*)(\d+|_|#|\.)(\s*/\s*)(\d+|\.)(\s*\])',                         # [99/56]
              bygroups(Site_Bond_Oper_Decor, Site_Bond_Oper_State, Site_Bond_Oper_Decor, Site_Bond_Oper_State, Site_Bond_Oper_Decor)),
-            (r'(\[\s*)(' + ident + ')(.)(' + ident + ')(\s*/\s*)(\d+|\.)(\s*\])',    # [site.Agent/.]
+            (r'(\[\s*)(' + ident + r')(.)(' + ident + r')(\s*/\s*)(\d+|\.)(\s*\])',    # [site.Agent/.]
              bygroups(Site_Bond_Oper_Decor, Site_Bond_Oper_State_Site, Site_Bond_Oper_Decor, Site_Bond_Oper_State_Agent, Site_Bond_Oper_Decor, Site_Bond_Oper_State, Site_Bond_Oper_Decor)),
              # internal states
-            (r'({\s*)(' + ident + '|#)(\s*})',                                       # {ph}
+            (r'({\s*)(' + ident + r'|#)(\s*})',                                       # {ph}
              bygroups(Site_Int_Decor, Site_Int_State, Site_Int_Decor)),
-            (r'({\s*)(' + ident + '|#)(\s*/\s*)(' + ident + ')(\s*})',               # {ph/un}
+            (r'({\s*)(' + ident + r'|#)(\s*/\s*)(' + ident + r')(\s*})',               # {ph/un}
              bygroups(Site_Int_Oper_Decor, Site_Int_Oper_State, Site_Int_Oper_Decor, Site_Int_Oper_State, Site_Int_Oper_Decor)),
             # counter states
             (r'({\s*(?:>=|>|=)\s*)(\d+)(\s*})',                                     # {>55}
              bygroups(Site_Count_Decor, Site_Count_State, Site_Count_Decor)),
-            (r'({\s*=\s*)(' + ident + ')(\s*})',                                    # {=x}
+            (r'({\s*=\s*)(' + ident + r')(\s*})',                                    # {=x}
              bygroups(Site_Count_Decor, Site_Count_State, Site_Count_Decor)),
             (r'({\s*[-+]=\s*)(-?\d+)(\s*})',                                        # {+= -55}
              bygroups(Site_Count_Oper_Decor, Site_Count_Oper_State, Site_Count_Oper_Decor)),
