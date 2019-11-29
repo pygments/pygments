@@ -35,7 +35,7 @@ setup(
     description = 'Pygments is a syntax highlighting package written in Python.',
     long_description = __doc__,
     keywords = 'syntax highlighting',
-    packages = find_packages(exclude=['tests']),
+    packages = find_packages(include=['pygments', 'pygments.*']),
     entry_points = {
         'console_scripts': ['pygmentize = pygments.cmdline:main'],
     },
