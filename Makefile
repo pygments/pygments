@@ -24,7 +24,7 @@ check:
 		   -i docs/build -i pygments/formatters/_mapping.py -i pygments/unistring.py
 
 clean: clean-pyc
-	-rm -rf build
+	-rm -rf build tests/examplefiles/output
 	-rm -f codetags.html
 
 clean-pyc:
