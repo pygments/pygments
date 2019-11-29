@@ -23,9 +23,11 @@ are:
 
 from setuptools import setup, find_packages
 
+from pygments import __version__
+
 setup(
     name = 'Pygments',
-    version = '2.5.2',
+    version = __version__,
     url = 'http://pygments.org/',
     license = 'BSD License',
     author = 'Georg Brandl',
