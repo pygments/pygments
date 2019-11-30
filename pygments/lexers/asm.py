@@ -55,9 +55,9 @@ class GasLexer(RegexLexer):
             (number, Number.Integer),
             (register, Name.Variable),
             (r'[\r\n]+', Text, '#pop'),
-            (r'([;#]|//).*?\n', Comment, '#pop'),
-            (r'/[*].*?[*]/', Comment),
-            (r'/[*].*?\n[\w\W]*?[*]/', Comment, '#pop'),
+            (r'([;#]|//).*?\n', Comment.Single, '#pop'),
+            (r'/[*].*?[*]/', Comment.Multiline),
+            (r'/[*].*?\n[\w\W]*?[*]/', Comment.Multiline, '#pop'),
 
             include('punctuation'),
             include('whitespace')
@@ -81,9 +81,9 @@ class GasLexer(RegexLexer):
             ('$'+number, Number.Integer),
             (r"$'(.|\\')'", String.Char),
             (r'[\r\n]+', Text, '#pop'),
-            (r'([;#]|//).*?\n', Comment, '#pop'),
-            (r'/[*].*?[*]/', Comment),
-            (r'/[*].*?\n[\w\W]*?[*]/', Comment, '#pop'),
+            (r'([;#]|//).*?\n', Comment.Single, '#pop'),
+            (r'/[*].*?[*]/', Comment.Multiline),
+            (r'/[*].*?\n[\w\W]*?[*]/', Comment.Multiline, '#pop'),
 
             include('punctuation'),
             include('whitespace')
@@ -91,8 +91,8 @@ class GasLexer(RegexLexer):
         'whitespace': [
             (r'\n', Text),
             (r'\s+', Text),
-            (r'([;#]|//).*?\n', Comment),
-            (r'/[*][\w\W]*?[*]/', Comment)
+            (r'([;#]|//).*?\n', Comment.Single),
+            (r'/[*][\w\W]*?[*]/', Comment.Multiline)
         ],
         'punctuation': [
             (r'[-*,.()\[\]!:]+', Punctuation)
