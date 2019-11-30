@@ -201,11 +201,6 @@ Template languages
 * Tea
 * `Twig <http://twig.sensiolabs.org/>`_
 
-Log files
----------
-
-* Linux kernel log (dmesg)
-
 Other markup
 ------------
 
@@ -240,6 +235,7 @@ Other markup
 * JSON, JSON-LD
 * Lean theorem prover
 * Lighttpd config files
+* Linux kernel log (dmesg)
 * LLVM assembly
 * LSL scripts
 * Makefiles
