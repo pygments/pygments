@@ -10,8 +10,8 @@
 """
 
 from pygments.lexer import RegexLexer, words
-from pygments.token import Comment, Generic, Keyword, Name, Number, \
-    Operator, Punctuation, Text
+from pygments.token import Comment, Keyword, Name, Number, Operator, \
+    Punctuation, Text
 
 __all__ = ['NuSMVLexer']
 
