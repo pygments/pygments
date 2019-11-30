@@ -214,13 +214,13 @@ class PerlLexer(RegexLexer):
 
 class Perl6Lexer(ExtendedRegexLexer):
     """
-    For `Perl 6 <http://www.perl6.org>`_ source code.
+    For `Raku <http://www.raku.org>`_ (a.k.a. Perl 6) source code.
 
     .. versionadded:: 2.0
     """
 
     name = 'Perl6'
-    aliases = ['perl6', 'pl6']
+    aliases = ['perl6', 'pl6', 'raku']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
                  '*.6pm', '*.p6m', '*.pm6', '*.t']
     mimetypes = ['text/x-perl6', 'application/x-perl6']
