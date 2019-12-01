@@ -18,43 +18,42 @@ __all__ = ['RustLexer']
 
 class RustLexer(RegexLexer):
     """
-    Lexer for the Rust programming language (version 1.10).
+    Lexer for the Rust programming language (version 1.40).
 
     .. versionadded:: 1.6
     """
     name = 'Rust'
     filenames = ['*.rs', '*.rs.in']
     aliases = ['rust', 'rs']
-    mimetypes = ['text/rust']
+    mimetypes = ['text/rust', 'text/x-rust']
 
-    keyword_types = (
-        words(('u8', 'u16', 'u32', 'u64', 'i8', 'i16', 'i32', 'i64',
-               'i128', 'u128', 'usize', 'isize', 'f32', 'f64', 'str', 'bool'),
-              suffix=r'\b'),
-        Keyword.Type)
+    keyword_types = (words((
+        'u8', 'u16', 'u32', 'u64', 'u128', 'i8', 'i16', 'i32', 'i64', 'i128',
+        'usize', 'isize', 'f32', 'f64', 'char', 'str', 'bool',
+    ), suffix=r'\b'), Keyword.Type)
 
     builtin_types = (words((
-        # Reexported core operators
-        'Copy', 'Send', 'Sized', 'Sync',
+        'Send', 'Sized', 'Sync', 'Unpin',
         'Drop', 'Fn', 'FnMut', 'FnOnce',
-
-        # Reexported types and traits
-        'Box',
-        'ToOwned',
-        'Clone',
-        'PartialEq', 'PartialOrd', 'Eq', 'Ord',
         'AsRef', 'AsMut', 'Into', 'From',
-        'Default',
-        'Iterator', 'Extend', 'IntoIterator',
-        'DoubleEndedIterator', 'ExactSizeIterator',
-        'Option',
-        'Some', 'None',
-        'Result',
-        'Ok', 'Err',
-        'SliceConcatExt',
-        'String', 'ToString',
-        'Vec'), suffix=r'\b'),
-        Name.Builtin)
+        'Iterator', 'Extend', 'IntoIterator', 'DoubleEndedIterator',
+        'ExactSizeIterator', 'Option', 'Result',
+        'Box', 'ToOwned', 'String', 'ToString', 'Vec',
+        'Clone', 'Copy', 'Default', 'Eq', 'Hash', 'Ord', 'PartialEq',
+        'PartialOrd', 'Eq', 'Ord',
+    ), suffix=r'\b'), Name.Builtin)
+
+    builtin_funcs_macros = (words((
+        'drop', 'Some', 'None', 'Ok', 'Err',
+        'asm!', 'assert!', 'assert_eq!', 'assert_ne!', 'cfg!', 'column!',
+        'compile_error!', 'concat!', 'concat_idents!', 'dbg!', 'debug_assert!',
+        'debug_assert_eq!', 'debug_assert_ne!', 'env!', 'eprint!', 'eprintln!',
+        'file!', 'format_args!', 'format_args_nl!', 'global_asm!', 'include!',
+        'include_bytes!', 'include_str!', 'line!', 'log_syntax!',
+        'module_path!', 'option_env!', 'panic!', 'print!', 'println!',
+        'stringify!', 'thread_local!', 'todo!', 'trace_macros!',
+        'unimplemented!', 'unreachable!', 'vec!', 'write!', 'writeln!',
+    ), suffix=r'\b'), Name.Builtin)
 
     tokens = {
         'root': [
@@ -78,11 +77,11 @@ class RustLexer(RegexLexer):
             (r"""\$([a-zA-Z_]\w*|\(,?|\),?|,?)""", Comment.Preproc),
             # Keywords
             (words((
-                'as', 'async', 'await', 'box', 'const', 'crate', 'else',
+                'as', 'async', 'await', 'box', 'const', 'crate', 'dyn', 'else',
                 'extern', 'for', 'if', 'impl', 'in', 'loop', 'match', 'move',
                 'mut', 'pub', 'ref', 'return', 'static', 'super', 'trait',
-                'try', 'unsafe', 'use', 'where', 'while'), suffix=r'\b'),
-             Keyword),
+                'try', 'unsafe', 'use', 'where', 'while', 'macro_rules!',
+            ), suffix=r'\b'), Keyword),
             (words(('abstract', 'alignof', 'become', 'do', 'final', 'macro',
                     'offsetof', 'override', 'priv', 'proc', 'pure', 'sizeof',
                     'typeof', 'unsized', 'virtual', 'yield'), suffix=r'\b'),
@@ -94,9 +93,10 @@ class RustLexer(RegexLexer):
             (r'(struct|enum|type|union)\b', Keyword, 'typename'),
             (r'(default)(\s+)(type|fn)\b', bygroups(Keyword, Text, Keyword)),
             keyword_types,
-            (r'self\b', Name.Builtin.Pseudo),
+            (r'[sS]elf\b', Name.Builtin.Pseudo),
             # Prelude (taken from Rust's src/libstd/prelude.rs)
             builtin_types,
+            builtin_funcs_macros,
             # Path seperators, so types don't catch them.
             (r'::\b', Text),
             # Types in positions.
@@ -104,49 +104,48 @@ class RustLexer(RegexLexer):
             # Labels
             (r'(break|continue)(\s*)(\'[A-Za-z_]\w*)?',
              bygroups(Keyword, Text.Whitespace, Name.Label)),
-            # Character Literal
+
+            # Character literals
             (r"""'(\\['"\\nrt]|\\x[0-7][0-9a-fA-F]|\\0"""
              r"""|\\u\{[0-9a-fA-F]{1,6}\}|.)'""",
              String.Char),
             (r"""b'(\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\0"""
              r"""|\\u\{[0-9a-fA-F]{1,6}\}|.)'""",
              String.Char),
-            # Binary Literal
+
+            # Binary literals
             (r'0b[01_]+', Number.Bin, 'number_lit'),
-            # Octal Literal
+            # Octal literals
             (r'0o[0-7_]+', Number.Oct, 'number_lit'),
-            # Hexadecimal Literal
+            # Hexadecimal literals
             (r'0[xX][0-9a-fA-F_]+', Number.Hex, 'number_lit'),
-            # Decimal Literal
+            # Decimal literals
             (r'[0-9][0-9_]*(\.[0-9_]+[eE][+\-]?[0-9_]+|'
              r'\.[0-9_]*(?!\.)|[eE][+\-]?[0-9_]+)', Number.Float,
              'number_lit'),
             (r'[0-9][0-9_]*', Number.Integer, 'number_lit'),
-            # String Literal
+
+            # String literals
             (r'b"', String, 'bytestring'),
             (r'"', String, 'string'),
             (r'b?r(#*)".*?"\1', String),
 
-            # Lifetime
-            (r"""'static""", Name.Builtin),
-            (r"""'[a-zA-Z_]\w*""", Name.Attribute),
+            # Lifetime names
+            (r"'(static|_)", Name.Builtin),
+            (r"'[a-zA-Z_]\w*", Name.Attribute),
 
             # Operators and Punctuation
+            (r'\.\.=?', Operator),
             (r'[{}()\[\],.;]', Punctuation),
             (r'[+\-*/%&|<>^!~@=:?]', Operator),
 
-            # Identifier
+            # Identifiers
             (r'[a-zA-Z_]\w*', Name),
+            # Raw identifiers
+            (r'r#[a-zA-Z_]\w*', Name),
 
             # Attributes
             (r'#!?\[', Comment.Preproc, 'attribute['),
-            # Macros
-            (r'([A-Za-z_]\w*)(!)(\s*)([A-Za-z_]\w*)?(\s*)(\{)',
-             bygroups(Comment.Preproc, Punctuation, Whitespace, Name,
-                      Whitespace, Punctuation), 'macro{'),
-            (r'([A-Za-z_]\w*)(!)(\s*)([A-Za-z_]\w*)?(\()',
-             bygroups(Comment.Preproc, Punctuation, Whitespace, Name,
-                      Punctuation), 'macro('),
         ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
@@ -193,14 +192,6 @@ class RustLexer(RegexLexer):
         'bytestring': [
             (r"""\\x[89a-fA-F][0-9a-fA-F]""", String.Escape),
             include('string'),
-        ],
-        'macro{': [
-            (r'\{', Operator, '#push'),
-            (r'\}', Operator, '#pop'),
-        ],
-        'macro(': [
-            (r'\(', Operator, '#push'),
-            (r'\)', Operator, '#pop'),
         ],
         'attribute_common': [
             (r'"', String, 'string'),
