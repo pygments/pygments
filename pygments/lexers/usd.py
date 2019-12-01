@@ -30,7 +30,7 @@ class UsdLexer(lexer.RegexLexer):
     """
     A lexer that parses Pixar's Universal Scene Description file format.
 
-    .. versionadded:: 2.5.0
+    .. versionadded:: 2.6.0
     """
 
     name = 'USD'
