@@ -6,6 +6,67 @@
     upAxis = "Z"
 )
 
+class "name"
+{
+    def Sphere "MySphere"
+    {
+    }
+}
+
+class "inherited" (
+    inherits = </name>
+)
+{
+    over "MySphere"
+    {
+        double radius = 3
+    }
+}
+
+def "RedSphere" (
+    assetInfo = {
+        asset identifier = @./some_file.usd@
+        string name = "Sphere"
+    }
+    specializes = </inherited/MySphere>
+)
+{
+    color3f[] primvars:displayColor = [(0.8, 0, 0)]
+}
+
+def "GreenSphere" (
+    assetInfo = {
+        string name = "Sphere"
+    }
+    specializes = </inherited/MySphere>
+)
+{
+    color3f[] primvars:displayColor = [(0, 1, 0)]
+}
+
+
+def Scope "variant_thing" (
+    variants = {
+        string shadingVariant = "Red"
+    }
+    add variantSets = "shadingVariant"
+)
+{
+    variantSet "shadingVariant" = {
+        "Green" (
+            references = </GreenSphere>
+			payload = @./something_that/doesnt/exist.usd@
+        ) {
+
+        }
+        "Red" (
+            references = </RedSphere>
+        ) {
+
+        }
+    }
+}
+
 def Xform "Rocks" (
     kind = "component"
 )
