@@ -49,7 +49,6 @@ SPECIAL_NAMES = [
 ]
 
 TYPES = [
-    "\w+\[\]",
     "asset",
     "bool",
     "color3d",

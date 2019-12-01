@@ -82,6 +82,7 @@ class UsdLexer(lexer.RegexLexer):
             _keywords(_usd_builtins.COMMON_ATTRIBUTES, token.Name.Attribute) +
             [(r"\b\w+:[\w:]+\b", token.Name.Attribute)] +  # more attributes
             _keywords(_usd_builtins.OPERATORS, token.Operator) +
+            [(type_ + r'\[\]', token.Keyword.Type) for type_ in _usd_builtins.TYPES] +
             _keywords(_usd_builtins.TYPES, token.Keyword.Type) +
             _PUNCTUATION +
             [
