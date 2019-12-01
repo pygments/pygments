@@ -57,25 +57,25 @@ class UsdTest(unittest.TestCase):
                 self._get(code),
             )
 
-    # def test_attribute(self):
-    #     normal = 'double foo = 8.0'
-    #
-    #     custom = 'custom double foo = 8.0'
-    #     underscore = 'custom double foo_asfd = 8.0'
-    #     underscore_no_custom = 'double foo_asfd = 8.0'
-    #     array = 'double[] foo_asfd = [10.1, 12.0, 13]'
-    #     namespaced = 'double[] primvar:foo_thing = [10.1, 12.0, 13]'
-    #
-    #     timeSamples = textwrap.dedent(
-    #         '''\
-    #         custom int[] foo = [8, 10, 14]
-    #         custom int[] foo.timeSamples = {
-    #             1: [8, 0, 14],
-    #             2: [-8, 0, 14],
-    #         }
-    #         '''
-    #     )
-    #
+    def test_attribute(self):
+        normal = 'double foo = 8.0'
+
+        custom = 'custom double foo = 8.0'
+        underscore = 'custom double foo_asfd = 8.0'
+        underscore_no_custom = 'double foo_asfd = 8.0'
+        array = 'double[] foo_asfd = [10.1, 12.0, 13]'
+        namespaced = 'double[] primvar:foo_thing = [10.1, 12.0, 13]'
+
+        timeSamples = textwrap.dedent(
+            '''\
+            custom int[] foo = [8, 10, 14]
+            custom int[] foo.timeSamples = {
+                1: [8, 0, 14],
+                2: [-8, 0, 14],
+            }
+            '''
+        )
+
     # def test_namespace_attribute(self):
     #     raise NotImplementedError()
     #
