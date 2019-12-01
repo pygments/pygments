@@ -27,7 +27,7 @@ class UsdTest(unittest.TestCase):
         self.assertEqual(expected, self._get(code))
 
     def test_asset_path_uri(self):
-        code = r'@file://SPECIALIZED(syntax_here)?with_arbitrary@#)(%*&)\characters.tar.gz@'
+        code = r'@file://SPECI__Z-_ALIZED(syntax_here)?with_arbitrary@#)(%*&)\characters.tar.gz@'
         expected = [
             (token.String.Interpol, code),
             (token.Text, '\n'),
