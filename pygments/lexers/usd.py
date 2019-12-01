@@ -3,8 +3,7 @@
 
 """The module that parses Pixar's Universal Scene Description file format."""
 
-from pygments import lexer
-from pygments import token
+from pygments import lexer, token
 
 from . import _usd_builtins
 
@@ -85,38 +84,44 @@ class UsdLexer(lexer.RegexLexer):
                     token.Name.Attribute,
                     token.Whitespace,
                     token.Generic,
-                )),
-                ('(\w+)(\s+)(\w+)(\s*)(=)', lexer.bygroups(
+                ),
+            ),
+            (
+                "{}(\s+){}(\s*)(=)".format(
+                    _TYPE, _BASE_ATTRIBUTE
+                ),
+                lexer.bygroups(
                     token.Keyword.Type,
                     token.Whitespace,
                     token.Name.Attribute,
                     token.Whitespace,
                     token.Generic,
-                )),
-            ] +
-            _keywords(_usd_builtins.KEYWORDS, token.Keyword) +
-            _keywords(_usd_builtins.SPECIAL_NAMES, token.Name.Attribute) +
-            _keywords(_usd_builtins.COMMON_ATTRIBUTES, token.Name.Attribute) +
-            [(r"\b\w+:[\w:]+\b", token.Name.Attribute)] +  # more attributes
-            _keywords(_usd_builtins.OPERATORS, token.Operator) +
-            [(type_ + r'\[\]', token.Keyword.Type) for type_ in _usd_builtins.TYPES] +
-            _keywords(_usd_builtins.TYPES, token.Keyword.Type) +
-            _PUNCTUATION +
-            [
-                ('#.*?$', token.Comment.Single),
-                (',', token.Generic),
-                (';', token.Generic),  # ";"s are allowed to combine separate metadata lines
-                ('=', token.Operator),
-                ('[+-]?([0-9]*[.])?[0-9]+', token.Number),
-                (r"'''(?:.|\n)*?'''", token.String),
-                (r'"""(?:.|\n)*?"""', token.String),
-                (r"'.*'", token.String),
-                (r'".*"', token.String),
-                (r'<(\.\./)*([\w/]+|[\w/]+\.\w+[\w:]*)>', token.Name.Namespace),
-                (r'@.*@', token.String.Interpol),
-                (r'\(.*"[.\\n]*".*\)', token.String.Doc),
-                (r'\A#usda .+$', token.Comment.Hashbang),
-                (r'\s+', token.Text),
-                (r'[\w+|:|\.]', token.Generic),
-            ],
+                ),
+            ),
+        ]
+        + _keywords(_usd_builtins.KEYWORDS, token.Keyword)
+        + _keywords(_usd_builtins.SPECIAL_NAMES, token.Name.Attribute)
+        + _keywords(_usd_builtins.COMMON_ATTRIBUTES, token.Name.Attribute)
+        + [(r"\b\w+:[\w:]+\b", token.Name.Attribute)]
+        + _keywords(_usd_builtins.OPERATORS, token.Operator)  # more attributes
+        + [(type_ + r"\[\]", token.Keyword.Type) for type_ in _usd_builtins.TYPES]
+        + _keywords(_usd_builtins.TYPES, token.Keyword.Type)
+        + _PUNCTUATION
+        + [
+            ("#.*?$", token.Comment.Single),
+            (",", token.Generic),
+            (";", token.Generic),  # ";"s are allowed to combine separate metadata lines
+            ("=", token.Operator),
+            ("[+-]?([0-9]*[.])?[0-9]+", token.Number),
+            (r"'''(?:.|\n)*?'''", token.String),
+            (r'"""(?:.|\n)*?"""', token.String),
+            (r"'.*'", token.String),
+            (r'".*"', token.String),
+            (r"<(\.\./)*([\w/]+|[\w/]+\.\w+[\w:]*)>", token.Name.Namespace),
+            (r"@.*@", token.String.Interpol),
+            (r'\(.*"[.\\n]*".*\)', token.String.Doc),
+            (r"\A#usda .+$", token.Comment.Hashbang),
+            (r"\s+", token.Text),
+            (r"[\w|_|:|\.]+", token.Generic),
+        ],
     }
