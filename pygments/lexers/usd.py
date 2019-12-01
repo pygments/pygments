@@ -114,7 +114,7 @@ class UsdLexer(lexer.RegexLexer):
             (",", token.Generic),
             (";", token.Generic),  # ";"s are allowed to combine separate metadata lines
             ("=", token.Operator),
-            ("[+-]?([0-9]*[.])?[0-9]+", token.Number),
+            ("[-]?([0-9]*[.])?[0-9]+", token.Number),
             (r"'''(?:.|\n)*?'''", token.String),
             (r'"""(?:.|\n)*?"""', token.String),
             (r"'.*'", token.String),
