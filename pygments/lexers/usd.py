@@ -27,6 +27,7 @@ def _keywords(words, type_):
 
 _TYPE = "(\w+(?:\[\])?)"
 _BASE_ATTRIBUTE = r"([\w_]+(?:\:[\w_]+)*)(?:(\.)(timeSamples))?"
+_WHITESPACE = r"([ \t]+)"
 
 
 class UsdLexer(lexer.RegexLexer):
@@ -43,8 +44,8 @@ class UsdLexer(lexer.RegexLexer):
     tokens = {
         "root": [
             (
-                "(custom)(\s+)(uniform)(\s+){}(\s+){}(\s*)(=)".format(
-                    _TYPE, _BASE_ATTRIBUTE
+                "(custom){_WHITESPACE}(uniform)(\s+){}(\s+){}(\s*)(=)".format(
+                    _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
                 ),
                 lexer.bygroups(
                     token.Keyword.Token,
@@ -61,7 +62,9 @@ class UsdLexer(lexer.RegexLexer):
                 ),
             ),
             (
-                "(custom)(\s+){}(\s+){}(\s*)(=)".format(_TYPE, _BASE_ATTRIBUTE),
+                "(custom){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
+                    _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
+                ),
                 lexer.bygroups(
                     token.Keyword.Token,
                     token.Whitespace,
@@ -75,7 +78,9 @@ class UsdLexer(lexer.RegexLexer):
                 ),
             ),
             (
-                "(uniform)(\s+){}(\s+){}(\s*)(=)".format(_TYPE, _BASE_ATTRIBUTE),
+                "(uniform){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
+                    _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
+                ),
                 lexer.bygroups(
                     token.Keyword.Token,
                     token.Whitespace,
@@ -89,7 +94,9 @@ class UsdLexer(lexer.RegexLexer):
                 ),
             ),
             (
-                "{}(\s+){}(\s*)(=)".format(_TYPE, _BASE_ATTRIBUTE),
+                "{}{_WHITESPACE}{}(\s*)(=)".format(
+                    _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
+                ),
                 lexer.bygroups(
                     token.Keyword.Type,
                     token.Whitespace,
