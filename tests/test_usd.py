@@ -10,53 +10,62 @@ from pygments import lexers, token
 
 
 class _Common(unittest.TestCase):
+    """A basic class that makes it easier to write unittests."""
+
     def setUp(self):
+        """Create a fresh USD lexer class before each test runs."""
         self.lexer = lexers.UsdLexer()
 
     def _get(self, code):
+        """Tokenize the code into its unique parts.
+
+        :param code: The USD source code to split up.
+        :type code: str
+
+        :returns: The tokenized pieces.
+        :rtype: list[:class:`pygments.token._TokenType]
+
+        """
         return list(self.lexer.get_tokens(code))
 
 
 class Features(_Common):
+    """Test that different features of USD highlight as expected."""
+
     def test_asset_path(self):
-        code = "@/some/path/to/a/file/foo.usda@"
-        expected = [
-            (token.String.Interpol, code),
-            (token.Text, "\n"),
-        ]
+        """Check that a regular file path highlights correctly."""
+        for path in [
+            "@./some/path/to/a/file/foo.usda@",
+            "@/some/path/to/a/file/foo.usda@",
+            "@some/path/to/a/file/foo.usda@",
+            r"@file://SPECI__Z-_ALIZED(syntax_here)?with_arbitrary@#)(%*&)\characters.tar.gz@",
+        ]:
+            expected = [
+                (token.String.Interpol, path),
+                (token.Text, "\n"),
+            ]
 
-        self.assertEqual(expected, self._get(code))
-
-    def test_asset_path_uri(self):
-        code = r"@file://SPECI__Z-_ALIZED(syntax_here)?with_arbitrary@#)(%*&)\characters.tar.gz@"
-        expected = [
-            (token.String.Interpol, code),
-            (token.Text, "\n"),
-        ]
-
-        self.assertEqual(expected, self._get(code))
+            self.assertEqual(expected, self._get(path))
 
     def test_target_absolute(self):
+        """Check that SdfPath syntax examples work correctly."""
         for code in [
-            "</some/path/here>",
+            # Absolute paths
             "</some/another_one/here>",
             "</some/path/here.property_name>",
-        ]:
-            self.assertEqual(
-                [(token.Name.Namespace, code), (token.Text, "\n")], self._get(code),
-            )
+            "</some/path/here>",
 
-    def test_target_relative(self):
-        for code in [
-            "<../some/path/here>",
+            # Relative paths
             "<../some/another_one/here>",
             "<../some/path/here.property_name>",
+            "<../some/path/here>",
         ]:
             self.assertEqual(
                 [(token.Name.Namespace, code), (token.Text, "\n")], self._get(code),
             )
 
     def test_attribute(self):
+        """Test different attribute syntax styles."""
         normal = "double foo = 8.0"
 
         self.assertEqual(
@@ -272,6 +281,7 @@ class Features(_Common):
         )
 
     def test_string_priority(self):
+        """Make sure that no other rules override a string match."""
         code = textwrap.dedent(
             '''\
             """
@@ -288,6 +298,7 @@ class Features(_Common):
         )
 
     def test_numbers(self):
+        """Check that different number representations work."""
         code = "8 8.0123312132, -4 -14.123"
 
         self.assertEqual(
@@ -306,6 +317,7 @@ class Features(_Common):
         )
 
     def test_composition_arcs(self):
+        """Test composition arc syntax highlighting."""
         code = textwrap.dedent(
             """
             def Xform "BottleMedical" (
@@ -410,6 +422,7 @@ class Features(_Common):
         )
 
     def test_string_single_line(self):
+        """Check a single string for the correct highlight."""
         code = '"Some \'text"'
 
         self.assertEqual(
@@ -421,6 +434,7 @@ class Features(_Common):
         )
 
     def test_string_multiple_line(self):
+        """Check that different multi-line strings work correctly."""
         code1 = textwrap.dedent(
             u'''\
             """
@@ -466,7 +480,10 @@ class Features(_Common):
 
 
 class EdgeCases(_Common):
+    """Any bugs / weird cases that deserve special attention."""
+
     def test_metadata(self):
+        """Make sure metadata [the stuff inside ()s] don't match as Attributes."""
         code = textwrap.dedent(
             """
             float[] primvars:skel:jointWeights = [1] (
