@@ -39,6 +39,44 @@ class UsdLexer(lexer.RegexLexer):
 
     tokens = {
         'root':
+            [
+                ('(custom)(\s+)(uniform)(\s+)(\w+)(\s+)(\w+)(\s*)(=)', lexer.bygroups(
+                    token.Keyword.Token,
+                    token.Whitespace,
+                    token.Keyword.Token,
+                    token.Whitespace,
+                    token.Keyword.Type,
+                    token.Whitespace,
+                    token.Name.Attribute,
+                    token.Whitespace,
+                    token.Generic,
+                )),
+                ('(custom)(\s+)(\w+)(\s+)(\w+)(\s*)(=)', lexer.bygroups(
+                    token.Keyword.Token,
+                    token.Whitespace,
+                    token.Keyword.Type,
+                    token.Whitespace,
+                    token.Name.Attribute,
+                    token.Whitespace,
+                    token.Generic,
+                )),
+                ('(uniform)(\s+)(\w+)(\s+)(\w+)(\s*)(=)', lexer.bygroups(
+                    token.Keyword.Token,
+                    token.Whitespace,
+                    token.Keyword.Type,
+                    token.Whitespace,
+                    token.Name.Attribute,
+                    token.Whitespace,
+                    token.Generic,
+                )),
+                ('(\w+)(\s+)(\w+)(\s*)(=)', lexer.bygroups(
+                    token.Keyword.Type,
+                    token.Whitespace,
+                    token.Name.Attribute,
+                    token.Whitespace,
+                    token.Generic,
+                )),
+            ] +
             _keywords(_usd_builtins.KEYWORDS, token.Keyword) +
             _keywords(_usd_builtins.SPECIAL_NAMES, token.Name.Attribute) +
             _keywords(_usd_builtins.COMMON_ATTRIBUTES, token.Name.Attribute) +
@@ -47,13 +85,6 @@ class UsdLexer(lexer.RegexLexer):
             _keywords(_usd_builtins.TYPES, token.Keyword.Type) +
             _PUNCTUATION +
             [
-                ('(\w+)(\s+)(\w+)(\s+)(=)', lexer.bygroups(
-                    token.Keyword.Type,
-                    token.Whitespace,
-                    token.Name.Attribute,
-                    token.Whitespace,
-                    token.Generic,
-                )),
                 ('#.*?$', token.Comment.Single),
                 (',', token.Generic),
                 (';', token.Generic),  # ";"s are allowed to combine separate metadata lines
