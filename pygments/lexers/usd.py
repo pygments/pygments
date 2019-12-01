@@ -44,7 +44,7 @@ class UsdLexer(lexer.RegexLexer):
     tokens = {
         "root": [
             (
-                "(custom){_WHITESPACE}(uniform)(\s+){}(\s+){}(\s*)(=)".format(
+                r"(custom){_WHITESPACE}(uniform)(\s+){}(\s+){}(\s*)(=)".format(
                     _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
                 ),
                 lexer.bygroups(
@@ -62,7 +62,7 @@ class UsdLexer(lexer.RegexLexer):
                 ),
             ),
             (
-                "(custom){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
+                r"(custom){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
                     _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
                 ),
                 lexer.bygroups(
@@ -78,7 +78,7 @@ class UsdLexer(lexer.RegexLexer):
                 ),
             ),
             (
-                "(uniform){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
+                r"(uniform){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
                     _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
                 ),
                 lexer.bygroups(
@@ -94,7 +94,7 @@ class UsdLexer(lexer.RegexLexer):
                 ),
             ),
             (
-                "{}{_WHITESPACE}{}(\s*)(=)".format(
+                r"{}{_WHITESPACE}{}(\s*)(=)".format(
                     _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
                 ),
                 lexer.bygroups(
