@@ -9,13 +9,15 @@ import unittest
 from pygments import lexers, token
 
 
-class UsdTest(unittest.TestCase):
+class _Common(unittest.TestCase):
     def setUp(self):
         self.lexer = lexers.UsdLexer()
 
     def _get(self, code):
         return list(self.lexer.get_tokens(code))
 
+
+class UsdTest(_Common):
     def test_asset_path(self):
         code = "@/some/path/to/a/file/foo.usda@"
         expected = [
@@ -460,4 +462,48 @@ class UsdTest(unittest.TestCase):
                 (token.Text, '\n'),
             ],
             self._get(code3),
+        )
+
+
+class EdgeCases(_Common):
+    def test_metadata(self):
+        code = textwrap.dedent(
+            """
+            float[] primvars:skel:jointWeights = [1] (
+                elementSize = 1
+                interpolation = "constant"
+            )
+            """
+        )
+
+        self.assertEqual(
+            [
+                (token.Token.Keyword.Type, u'float[]'),
+                (token.Token.Text.Whitespace, u' '),
+                (token.Token.Name.Attribute, u'primvars:skel:jointWeights'),
+                (token.Token.Text.Whitespace, u' '),
+                (token.Token.Operator, u'='),
+                (token.Token.Text, u' '),
+                (token.Token.Punctuation, u'['),
+                (token.Token.Literal.Number, u'1'),
+                (token.Token.Punctuation, u']'),
+                (token.Token.Text, u' '),
+                (token.Token.Punctuation, u'('),
+                (token.Token.Text, u'\n    '),
+                (token.Token.Generic, u'elementSize'),
+                (token.Token.Text, u' '),
+                (token.Token.Operator, u'='),
+                (token.Token.Text, u' '),
+                (token.Token.Keyword.Type, u'1'),
+                (token.Token.Text.Whitespace, u'\n    '),
+                (token.Token.Generic, u'interpolation'),
+                (token.Token.Text.Whitespace, u' '),
+                (token.Token.Operator, u'='),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.String, u'"constant"'),
+                (token.Token.Text, u'\n'),
+                (token.Token.Punctuation, u')'),
+                (token.Token.Text, u'\n'),
+            ],
+            self._get(code),
         )
