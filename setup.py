@@ -23,9 +23,11 @@ are:
 
 from setuptools import setup, find_packages
 
+from pygments import __version__
+
 setup(
     name = 'Pygments',
-    version = '2.5.1',
+    version = __version__,
     url = 'http://pygments.org/',
     license = 'BSD License',
     author = 'Georg Brandl',
@@ -33,7 +35,7 @@ setup(
     description = 'Pygments is a syntax highlighting package written in Python.',
     long_description = __doc__,
     keywords = 'syntax highlighting',
-    packages = find_packages(include=['pygments']),
+    packages = find_packages(include=['pygments', 'pygments.*']),
     entry_points = {
         'console_scripts': ['pygmentize = pygments.cmdline:main'],
     },

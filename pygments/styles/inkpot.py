@@ -5,14 +5,13 @@
 
     A highlighting style for Pygments, inspired by the Inkpot theme for VIM.
 
-    :copyright: Copyright 2018 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.style import Style
-from pygments.token import Text, Other, \
-     Keyword, Name, Comment, String, Error, \
-     Number, Operator, Generic, Whitespace, Punctuation
+from pygments.token import Text, Other, Keyword, Name, Comment, String, \
+    Error, Number, Operator, Generic, Whitespace, Punctuation
 
 
 class InkPotStyle(Style):

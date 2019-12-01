@@ -5,7 +5,7 @@ Release checklist
 * ``make check``
 * LATER when configured properly: ``make pylint``
 * ``tox``
-* Update version info in ``setup.py/__init__.py``
+* Update version in ``pygments/__init__.py``
 * Check setup.py metadata: long description, trove classifiers
 * Update release date/code name in ``CHANGES``
 * ``git commit``
@@ -15,10 +15,9 @@ Release checklist
 * ``twine upload dist/Pygments-$NEWVER*``
 * Check PyPI release page for obvious errors
 * ``git tag -a``
-* Merge default into stable if this was a ``x.y.0``
-* Update homepage (release info), regenerate docs (+printable!)
-* Add new version/milestone to tracker categories
-* Write announcement and send to mailing list/python-announce
-* Update version info, add new ``CHANGES`` entry for next version
+* Add new ``CHANGES`` heading for next version
 * ``git commit``
-* ``git push``
+* ``git push``, ``git push --tags``
+* Add new release on https://github.com/pygments/pygments/releases
+* Add new milestone on https://github.com/pygments/pygments/milestones
+* Write announcement and send to mailing list/python-announce

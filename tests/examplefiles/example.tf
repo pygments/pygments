@@ -1,27 +1,38 @@
+terraform {
+  backend "consul" {
+    address = "demo.consul.io"
+    path    = "tfdocs"
+  }
+}
+
+module "consul" {
+  source  = "hashicorp/consul/aws"
+  servers = 3
+}
+
 variable "key_name" {
-    description = "Name of the SSH keypair to use in AWS."
+  description = "Name of the SSH keypair to use in AWS."
 }
 
 variable "key_path" {
-    description = "Path to the private portion of the SSH key specified."
+  description = "Path to the private portion of the SSH key specified."
 }
 
 variable "aws_region" {
-    description = "AWS region to launch servers."
-    default = "us-west-2"
-    somevar = true
+  description = "AWS region to launch servers."
+  default = "us-west-2"
+  somevar = true
 }
 
 # Ubuntu Precise 12.04 LTS (x64)
 variable "aws_amis" {
-    default = {
-        eu-west-1 = "ami-b1cf19c6"
-        us-east-1 = "ami-de7ab6b6"
-        us-west-1 = "ami-3f75767a"
-        us-west-2 = "ami-21f78e11"
-    }
+  default = {
+    eu-west-1 = "ami-b1cf19c6"
+    us-east-1 = "ami-de7ab6b6"
+    us-west-1 = "ami-3f75767a"
+    us-west-2 = "ami-21f78e11"
+  }
 }
-
 
 resource "aws_internet_gateway" "base_igw" {
   vpc_id = "${aws_vpc.something.id}"
@@ -30,15 +41,10 @@ resource "aws_internet_gateway" "base_igw" {
   }
 }
 
-
-
-
-
-
 provider "aws" {
-    access_key = "${myvar}" 
-    secret_key = "your aws secret key"
-    region = "us-east-1"
+  access_key = "${myvar}"
+  secret_key = "your aws secret key"
+  region = "us-east-1"
 }
 /* multiline
 
@@ -49,19 +55,18 @@ provider "aws" {
 
 resource "aws_route53_record" "test" {
   zone_id  = "zone"
-  name      = "name"
-  type        = "A"
+  name     = "name"
+  type     = "A"
   alias {
-    name     = "alias name"
+    name = "alias name"
   }
 }
 
-
 # Single line comment
 resource "aws_instance" "example" {
-    ami = "ami-408c7f28"
-    instance_type = "t1.micro"
-    key_name      = "your-aws-key-name"
+  ami           = "ami-408c7f28"
+  instance_type = "t1.micro"
+  key_name      = "your-aws-key-name"
 }
 
 # Create our Heroku application. Heroku will
@@ -73,53 +78,50 @@ resource "heroku_app" "web" {}
 resource "dnsimple_record" "web" {
   domain = "${var.dnsimple_domain}"
 
-
   # heroku_hostname is a computed attribute on the heroku
   # application we can use to determine the hostname
   value = "${heroku_app.web.heroku_hostname}"
 
   type = "CNAME"
-  ttl = 3600
+  ttl  = 3600
 }
 
 # The Heroku domain, which will be created and added
 # to the heroku application after we have assigned the domain
 # in DNSimple
 resource "heroku_domain" "foobar" {
-    app = "${heroku_app.web.name}"
-    hostname = "${dnsimple_record.web.hostname}" 
+  app      = "${heroku_app.web.name}"
+  hostname = "${dnsimple_record.web.hostname}"
 }
-
 
 # Specify the provider and access details
 provider "aws" {
-    region = "${var.aws_region}" 
-    value = ${file("path.txt")} 
+  region = "${var.aws_region}"
+  value  = "${file("path.txt")}"
 }
 
 # Our default security group to access
 # the instances over SSH and HTTP
 resource "aws_security_group" "default" {
-    name = "terraform_example"
-    description = "Used in the terraform"
+  name        = "terraform_example"
+  description = "Used in the terraform"
 
-    # SSH access from anywhere
-    ingress {
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
+  # SSH access from anywhere
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-    # HTTP access from anywhere
-    ingress {
-        from_port = 80
-        to_port = 80
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
+  # HTTP access from anywhere
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
-
 
 resource "aws_elb" "web" {
   name = "terraform-example-elb"
@@ -128,16 +130,15 @@ resource "aws_elb" "web" {
   availability_zones = ["${aws_instance.web.availability_zone}"]
 
   listener {
-    instance_port = 80
+    instance_port     = 80
     instance_protocol = "http"
-    lb_port = 80
-    lb_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
   }
 
   # The instance is registered automatically
   instances = ["${aws_instance.web.id}"]
 }
-
 
 resource "aws_instance" "web" {
   # The connection block tells our provisioner how to
@@ -166,19 +167,37 @@ resource "aws_instance" "web" {
   # Our Security group to allow HTTP and SSH access
   security_groups = ["${aws_security_group.default.name}"]
 
+  tags {
+    Name = "web-small"
+  }
+
   # We run a remote provisioner on the instance after creating it.
   # In this case, we just install nginx and start it. By default,
   # this should be on port 80
   provisioner "remote-exec" {
     inline = [
-        "sudo apt-get -y update",
-        "sudo apt-get -y install nginx",
-        "sudo service nginx start"
+      "sudo apt-get -y update",
+      "sudo apt-get -y install nginx",
+      "sudo service nginx start"
     ]
   }
 }
 
+data "template_file" "iam_policy" {
+  count = 5
 
+  vars {
+    region = "us-west-1"
+  }
+
+  config {
+    name = "hashicorp/vpc-prod"
+  }
+}
+
+output "web_public_ip" {
+  value = ["${aws_instance.web.public_ip}"]
+}
 
 resource "aws_autoscaling_group" "bar" {
   name                 = "terraform-asg-example"
@@ -190,7 +209,6 @@ resource "aws_autoscaling_group" "bar" {
     create_before_destroy = true
   }
 }
-
 
 resource "aws_db_instance" "timeout_example" {
   allocated_storage = 10
@@ -204,5 +222,3 @@ resource "aws_db_instance" "timeout_example" {
     delete = "2h"
   }
 }
-
-
