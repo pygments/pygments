@@ -109,7 +109,7 @@ class UsdLexer(lexer.RegexLexer):
             ),
         ]
         + _keywords(_usd_builtins.KEYWORDS, token.Keyword.Tokens)
-        + _keywords(_usd_builtins.SPECIAL_NAMES, token.Name.Attribute)
+        + _keywords(_usd_builtins.SPECIAL_NAMES, token.Name.Builtins)
         + _keywords(_usd_builtins.COMMON_ATTRIBUTES, token.Name.Attribute)
         + [(r"\b\w+:[\w:]+\b", token.Name.Attribute)]
         + _keywords(_usd_builtins.OPERATORS, token.Operator)  # more attributes

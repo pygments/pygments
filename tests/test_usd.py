@@ -336,7 +336,7 @@ class UsdTest(_Common):
                 (token.Token.Text, u" "),
                 (token.Token.Punctuation, u"("),
                 (token.Token.Text, u"\n    "),
-                (token.Token.Name.Attribute, u"kind"),
+                (token.Token.Name.Builtins, u"kind"),
                 (token.Token.Text, u" "),
                 (token.Token.Operator, u"="),
                 (token.Token.Text, u" "),
