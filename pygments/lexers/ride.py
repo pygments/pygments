@@ -17,9 +17,10 @@ __all__ = ['RideLexer']
 
 class RideLexer(RegexLexer):
     """
-    For `Ride <https://docs.wavesplatform.com/en/ride/about-ride.html>`_ source code.
+    For `Ride <https://docs.wavesplatform.com/en/ride/about-ride.html>`_
+    source code.
 
-    .. versionadded:: 0.1
+    .. versionadded:: 2.6
     """
 
     name = 'Ride'
@@ -30,164 +31,72 @@ class RideLexer(RegexLexer):
     validName = r'[a-zA-Z_][a-zA-Z0-9_\']*'
 
     builtinOps = (
-        '||', '|', '>=', '>', '==',
+        '||', '|', '>=', '>', '==', '!',
         '=', '<=', '<', '::', ':', '!=', '/',
         '.', '->', '-', '+', '*', '&&', '%',
     )
 
     typesName = (
-  'Unit',
-  'Int',
-  'Boolean',
-  'ByteVector',
-  'String',
-  'Address',
-  'Alias',
-  'Transfer',
-  'AssetPair',
-  'DataEntry',
-  'Order',
-  'Transaction',
-  'GenesisTransaction',
-  'PaymentTransaction',
-  'ReissueTransaction',
-  'BurnTransaction',
-  'MassTransferTransaction',
-  'ExchangeTransaction',
-  'TransferTransaction',
-  'SetAssetScriptTransaction',
-  'InvokeScriptTransaction',
-  'IssueTransaction',
-  'LeaseTransaction',
-  'LeaseCancelTransaction',
-  'CreateAliasTransaction',
-  'SetScriptTransaction',
-  'SponsorFeeTransaction',
-  'DataTransaction',
-  'WriteSet',
-  'AttachedPayment',
-  'ScriptTransfer',
-  'TransferSet',
-  'ScriptResult',
-  'Invocation',
-  'Asset',
-  'BlockInfo',
-  'Issue',
-  'Reissue',
-  'Burn',
-  'NOALG',
-  'MD5',
-  'SHA1',
-  'SHA224',
-  'SHA256',
-  'SHA384',
-  'SHA512',
-  'SHA3224',
-  'SHA3256',
-  'SHA3384',
-  'SHA3512',
+        'Unit', 'Int', 'Boolean', 'ByteVector', 'String', 'Address', 'Alias',
+        'Transfer', 'AssetPair', 'DataEntry', 'Order', 'Transaction',
+        'GenesisTransaction', 'PaymentTransaction', 'ReissueTransaction',
+        'BurnTransaction', 'MassTransferTransaction', 'ExchangeTransaction',
+        'TransferTransaction', 'SetAssetScriptTransaction',
+        'InvokeScriptTransaction', 'IssueTransaction', 'LeaseTransaction',
+        'LeaseCancelTransaction', 'CreateAliasTransaction',
+        'SetScriptTransaction', 'SponsorFeeTransaction', 'DataTransaction',
+        'WriteSet', 'AttachedPayment', 'ScriptTransfer', 'TransferSet',
+        'ScriptResult', 'Invocation', 'Asset', 'BlockInfo', 'Issue', 'Reissue',
+        'Burn', 'NOALG', 'MD5', 'SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512',
+        'SHA3224', 'SHA3256', 'SHA3384', 'SHA3512',
     )
 
     functionsName = (
-  'fraction',
-  'size',
-  'toBytes',
-  'take',
-  'drop',
-  'takeRight',
-  'dropRight',
-  'toString',
-  'isDefined',
-  'extract',
-  'throw',
-  'getElement',
-  'value',
-  'cons',
-  'ensure',
-  'toUtf8String',
-  'toInt',
-  'indexOf',
-  'split',
-  'parseInt',
-  'parseIntValue',
-  'keccak256',
-  'blake2b256',
-  'sha256',
-  'sigVerify',
-  'toBase58String',
-  'fromBase58String',
-  'toBase64String',
-  'fromBase64String',
-  'transactionById',
-  'transactionHeightById',
-  'getInteger',
-  'getBoolean',
-  'getBinary',
-  'getString',
-  'addressFromPublicKey',
-  'addressFromString',
-  'addressFromRecipient',
-  'assetBalance',
-  'wavesBalance',
-  'getIntegerValue',
-  'getBooleanValue',
-  'getBinaryValue',
-  'getStringValue',
-  'addressFromStringValue',
-  'assetInfo',
-  'rsaVerify',
-  'checkMerkleProof',
-            )
+        'fraction', 'size', 'toBytes', 'take', 'drop', 'takeRight', 'dropRight',
+        'toString', 'isDefined', 'extract', 'throw', 'getElement', 'value',
+        'cons', 'ensure', 'toUtf8String', 'toInt', 'indexOf', 'split',
+        'parseInt', 'parseIntValue', 'keccak256', 'blake2b256', 'sha256',
+        'sigVerify', 'toBase58String', 'fromBase58String', 'toBase64String',
+        'fromBase64String', 'transactionById', 'transactionHeightById',
+        'getInteger', 'getBoolean', 'getBinary', 'getString',
+        'addressFromPublicKey', 'addressFromString', 'addressFromRecipient',
+        'assetBalance', 'wavesBalance', 'getIntegerValue', 'getBooleanValue',
+        'getBinaryValue', 'getStringValue', 'addressFromStringValue',
+        'assetInfo', 'rsaVerify', 'checkMerkleProof',
+    )
 
     reservedWords = words((
         'match', 'case', 'else', 'func', 'if',
-        'let', 'then',
-        '@Callable', '@Verifier', '@Default'
-        ), suffix=r'\b')
+        'let', 'then', '@Callable', '@Verifier', '@Default'
+    ), suffix=r'\b')
 
     tokens = {
         'root': [
-
             # Comments
             (r'#.*', Comment.Single),
-
             # Whitespace
             (r'\s+', Text),
-
             # Strings
             (r'"', String, 'doublequote'),
             (r'utf8\'', String, 'utf8quote'),
             (r'base(58|64|16)\'', String, 'singlequote'),
-
             # Keywords
             (reservedWords, Keyword.Reserved),
-
             # Types
-            (words((typesName)), Keyword.Type),
-
-#            # Main
-#            (specialName, Keyword.Reserved),
-
+            (words(typesName), Keyword.Type),
+            # Main
+            # (specialName, Keyword.Reserved),
             # Prefix Operators
-            (words((builtinOps), prefix=r'\(', suffix=r'\)'), Name.Function),
-
+            (words(builtinOps, prefix=r'\(', suffix=r'\)'), Name.Function),
             # Infix Operators
-            (words((builtinOps)), Name.Function),
-
-            (words((functionsName)), Name.Function),
-
+            (words(builtinOps), Name.Function),
+            (words(functionsName), Name.Function),
             # Numbers
             include('numbers'),
-
             # Variable Names
             (validName, Name.Variable),
-
             # Parens
             (r'[,()\[\]{}]', Punctuation),
-
-        ],
-
-        'comment': [
         ],
 
         'doublequote': [
