@@ -26,7 +26,7 @@ def _keywords(words, type_):
 
 
 _TYPE = "(\w+(?:\[\])?)"
-_BASE_ATTRIBUTE = r"([\w_]+(?:\:[\w_]+)?)"
+_BASE_ATTRIBUTE = r"([\w_]+(?:\:[\w_]+)*(?:\.timeSamples)?)"
 
 
 class UsdLexer(lexer.RegexLexer):
@@ -55,13 +55,11 @@ class UsdLexer(lexer.RegexLexer):
                     token.Whitespace,
                     token.Name.Attribute,
                     token.Whitespace,
-                    token.Generic,
+                    token.Operator,
                 ),
             ),
             (
-                "(custom)(\s+){}(\s+){}(\s*)(=)".format(
-                    _TYPE, _BASE_ATTRIBUTE
-                ),
+                "(custom)(\s+){}(\s+){}(\s*)(=)".format(_TYPE, _BASE_ATTRIBUTE),
                 lexer.bygroups(
                     token.Keyword.Token,
                     token.Whitespace,
@@ -69,13 +67,11 @@ class UsdLexer(lexer.RegexLexer):
                     token.Whitespace,
                     token.Name.Attribute,
                     token.Whitespace,
-                    token.Generic,
+                    token.Operator,
                 ),
             ),
             (
-                "(uniform)(\s+){}(\s+){}(\s*)(=)".format(
-                    _TYPE, _BASE_ATTRIBUTE
-                ),
+                "(uniform)(\s+){}(\s+){}(\s*)(=)".format(_TYPE, _BASE_ATTRIBUTE),
                 lexer.bygroups(
                     token.Keyword.Token,
                     token.Whitespace,
@@ -83,23 +79,21 @@ class UsdLexer(lexer.RegexLexer):
                     token.Whitespace,
                     token.Name.Attribute,
                     token.Whitespace,
-                    token.Generic,
+                    token.Operator,
                 ),
             ),
             (
-                "{}(\s+){}(\s*)(=)".format(
-                    _TYPE, _BASE_ATTRIBUTE
-                ),
+                "{}(\s+){}(\s*)(=)".format(_TYPE, _BASE_ATTRIBUTE),
                 lexer.bygroups(
                     token.Keyword.Type,
                     token.Whitespace,
                     token.Name.Attribute,
                     token.Whitespace,
-                    token.Generic,
+                    token.Operator,
                 ),
             ),
         ]
-        + _keywords(_usd_builtins.KEYWORDS, token.Keyword)
+        + _keywords(_usd_builtins.KEYWORDS, token.Keyword.Tokens)
         + _keywords(_usd_builtins.SPECIAL_NAMES, token.Name.Attribute)
         + _keywords(_usd_builtins.COMMON_ATTRIBUTES, token.Name.Attribute)
         + [(r"\b\w+:[\w:]+\b", token.Name.Attribute)]

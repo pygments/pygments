@@ -66,7 +66,7 @@ class UsdTest(unittest.TestCase):
                 (token.Token.Text.Whitespace, ' '),
                 (token.Token.Name.Attribute, 'foo'),
                 (token.Token.Text.Whitespace, ' '),
-                (token.Token.Generic, '='),
+                (token.Token.Operator, '='),
                 (token.Token.Text, ' '),
                 (token.Token.Literal.Number, '8.0'),
                 (token.Token.Text, '\n'),
@@ -84,7 +84,7 @@ class UsdTest(unittest.TestCase):
                 (token.Token.Text.Whitespace, ' '),
                 (token.Token.Name.Attribute, 'foo'),
                 (token.Token.Text.Whitespace, ' '),
-                (token.Token.Generic, '='),
+                (token.Token.Operator, '='),
                 (token.Token.Text, ' '),
                 (token.Token.Literal.Number, '8.0'),
                 (token.Token.Text, '\n'),
@@ -102,7 +102,7 @@ class UsdTest(unittest.TestCase):
                 (token.Token.Text.Whitespace, ' '),
                 (token.Token.Name.Attribute, 'foo'),
                 (token.Token.Text.Whitespace, ' '),
-                (token.Token.Generic, '='),
+                (token.Token.Operator, '='),
                 (token.Token.Text, ' '),
                 (token.Token.Literal.Number, '8.0'),
                 (token.Token.Text, '\n'),
@@ -122,7 +122,7 @@ class UsdTest(unittest.TestCase):
                 (token.Token.Text.Whitespace, ' '),
                 (token.Token.Name.Attribute, 'foo'),
                 (token.Token.Text.Whitespace, ' '),
-                (token.Token.Generic, '='),
+                (token.Token.Operator, '='),
                 (token.Token.Text, ' '),
                 (token.Token.Literal.Number, '8.0'),
                 (token.Token.Text, '\n'),
@@ -140,7 +140,7 @@ class UsdTest(unittest.TestCase):
                 (token.Token.Text.Whitespace, ' '),
                 (token.Token.Name.Attribute, 'foo_underscore_name'),
                 (token.Token.Text.Whitespace, ' '),
-                (token.Token.Generic, '='),
+                (token.Token.Operator, '='),
                 (token.Token.Text, ' '),
                 (token.Token.Literal.Number, '8.0'),
                 (token.Token.Text, '\n'),
@@ -156,7 +156,7 @@ class UsdTest(unittest.TestCase):
                 (token.Token.Text.Whitespace, ' '),
                 (token.Token.Name.Attribute, 'foo_underscore_name'),
                 (token.Token.Text.Whitespace, ' '),
-                (token.Token.Generic, '='),
+                (token.Token.Operator, '='),
                 (token.Token.Text, ' '),
                 (token.Token.Punctuation, '['),
                 (token.Token.Literal.Number, '10.1'),
@@ -172,17 +172,103 @@ class UsdTest(unittest.TestCase):
             self._get(array),
         )
 
-        # namespaced = 'double[] primvar:foo_thing = [10.1, 12.0, 13]'
-        #
-        # timeSamples = textwrap.dedent(
-        #     '''\
-        #     custom int[] foo = [8, 10, 14]
-        #     custom int[] foo.timeSamples = {
-        #         1: [8, 0, 14],
-        #         2: [-8, 0, 14],
-        #     }
-        #     '''
-        # )
+        namespaced = 'double[] primvar:foo_thing = [10.1, 12.0, 13]'
+
+        self.assertEqual(
+            [
+                (token.Token.Keyword.Type, 'double[]'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Name.Attribute, 'primvar:foo_thing'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Operator, '='),
+                (token.Token.Text, ' '),
+                (token.Token.Punctuation, '['),
+                (token.Token.Literal.Number, '10.1'),
+                (token.Token.Generic, ','),
+                (token.Token.Text, ' '),
+                (token.Token.Literal.Number, '12.0'),
+                (token.Token.Generic, ','),
+                (token.Token.Text, ' '),
+                (token.Token.Literal.Number, '13'),
+                (token.Token.Punctuation, ']'),
+                (token.Token.Text, '\n'),
+            ],
+            self._get(namespaced),
+        )
+
+        timesamples = textwrap.dedent(
+            '''\
+            custom int[] foo = [8, 10, 14]
+            custom int[] foo.timeSamples = {
+                1: [8, 0, 14],
+                2: [-8, 0, 14],
+            }
+            '''
+        )
+
+        self.assertEqual(
+            [
+                (token.Token.Keyword.Token, u'custom'),
+                (token.Token.Text.Whitespace, u' '),
+                (token.Token.Keyword.Type, u'int[]'),
+                (token.Token.Text.Whitespace, u' '),
+                (token.Token.Name.Attribute, u'foo'),
+                (token.Token.Text.Whitespace, u' '),
+                (token.Token.Operator, u'='),
+                (token.Token.Text, u' '),
+                (token.Token.Punctuation, u'['),
+                (token.Token.Literal.Number, u'8'),
+                (token.Token.Generic, u','),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.Number, u'10'),
+                (token.Token.Generic, u','),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.Number, u'14'),
+                (token.Token.Punctuation, u']'),
+                (token.Token.Text, u'\n'),
+                (token.Token.Keyword.Token, u'custom'),
+                (token.Token.Text.Whitespace, u' '),
+                (token.Token.Keyword.Type, u'int[]'),
+                (token.Token.Text.Whitespace, u' '),
+                (token.Token.Name.Attribute, u'foo.timeSamples'),
+                (token.Token.Text.Whitespace, u' '),
+                (token.Token.Operator, u'='),
+                (token.Token.Text, u' '),
+                (token.Token.Punctuation, u'{'),
+                (token.Token.Text, u'\n    '),
+                (token.Token.Literal.Number, u'1'),
+                (token.Token.Generic, u':'),
+                (token.Token.Text, u' '),
+                (token.Token.Punctuation, u'['),
+                (token.Token.Literal.Number, u'8'),
+                (token.Token.Generic, u','),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.Number, u'0'),
+                (token.Token.Generic, u','),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.Number, u'14'),
+                (token.Token.Punctuation, u']'),
+                (token.Token.Generic, u','),
+                (token.Token.Text, u'\n    '),
+                (token.Token.Literal.Number, u'2'),
+                (token.Token.Generic, u':'),
+                (token.Token.Text, u' '),
+                (token.Token.Punctuation, u'['),
+                (token.Token.Literal.Number, u'-8'),
+                (token.Token.Generic, u','),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.Number, u'0'),
+                (token.Token.Generic, u','),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.Number, u'14'),
+                (token.Token.Punctuation, u']'),
+                (token.Token.Generic, u','),
+                (token.Token.Text, u'\n'),
+                (token.Token.Punctuation, u'}'),
+                (token.Token.Text, u'\n'),
+            ],
+            self._get(timesamples),
+        )
 
     # def test_string_priority(self):
     #     raise NotImplementedError()
