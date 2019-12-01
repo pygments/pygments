@@ -26,7 +26,7 @@ def _keywords(words, type_):
 
 
 _TYPE = "(\w+(?:\[\])?)"
-_BASE_ATTRIBUTE = r"([\w_]+(?:\:[\w_]+)*(?:\.timeSamples)?)"
+_BASE_ATTRIBUTE = r"([\w_]+(?:\:[\w_]+)*)(?:(\.)(timeSamples))?"
 
 
 class UsdLexer(lexer.RegexLexer):
@@ -54,6 +54,8 @@ class UsdLexer(lexer.RegexLexer):
                     token.Keyword.Type,
                     token.Whitespace,
                     token.Name.Attribute,
+                    token.Generic,
+                    token.Name.Keyword.Tokens,
                     token.Whitespace,
                     token.Operator,
                 ),
@@ -66,6 +68,8 @@ class UsdLexer(lexer.RegexLexer):
                     token.Keyword.Type,
                     token.Whitespace,
                     token.Name.Attribute,
+                    token.Generic,
+                    token.Name.Keyword.Tokens,
                     token.Whitespace,
                     token.Operator,
                 ),
@@ -78,6 +82,8 @@ class UsdLexer(lexer.RegexLexer):
                     token.Keyword.Type,
                     token.Whitespace,
                     token.Name.Attribute,
+                    token.Generic,
+                    token.Name.Keyword.Tokens,
                     token.Whitespace,
                     token.Operator,
                 ),
@@ -88,6 +94,8 @@ class UsdLexer(lexer.RegexLexer):
                     token.Keyword.Type,
                     token.Whitespace,
                     token.Name.Attribute,
+                    token.Generic,
+                    token.Name.Keyword.Tokens,
                     token.Whitespace,
                     token.Operator,
                 ),
