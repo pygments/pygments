@@ -194,7 +194,7 @@ class UsdTest(unittest.TestCase):
         )
 
         timesamples = textwrap.dedent(
-            """\ 
+            """\
             custom int[] foo = [8, 10, 14]
             custom int[] foo.timeSamples = {
                 1: [8, 0, 14],
@@ -394,11 +394,57 @@ class UsdTest(unittest.TestCase):
             self._get(code),
         )
 
-    # def test_metadata(self):
-    #     raise NotImplementedError()
-    #
-    # def test_string_single_line(self):
-    #     raise NotImplementedError()
-    #
-    # def test_string_multiple_line(self):
-    #     raise NotImplementedError()
+    def test_string_single_line(self):
+        code = '"Some \'text"'
+
+        self.assertEqual(
+            [
+                (token.Token.Literal.String, code),
+                (token.Token.Text, u'\n')
+            ],
+            self._get(code),
+        )
+
+    def test_string_multiple_line(self):
+        code1 = textwrap.dedent(
+            u'''\
+            """
+            Some text multiline
+            """'''
+        )
+
+        self.assertEqual(
+            [
+                (token.Token.Literal.String, code1),
+                (token.Text, '\n'),
+            ],
+            self._get(code1),
+        )
+
+        code2 = textwrap.dedent(
+            u'''\
+            """Some text multiline
+            """'''
+        )
+
+        self.assertEqual(
+            [
+                (token.Token.Literal.String, code2),
+                (token.Text, '\n'),
+            ],
+            self._get(code2),
+        )
+
+        code3 = textwrap.dedent(
+            u'''\
+            """
+            Some text multiline"""'''
+        )
+
+        self.assertEqual(
+            [
+                (token.Token.Literal.String, code3),
+                (token.Text, '\n'),
+            ],
+            self._get(code3),
+        )
