@@ -25,7 +25,7 @@ def _keywords(words, type_):
     return [(lexer.words(words, prefix=r"\b", suffix=r"\b"), type_)]
 
 
-_TYPE = "(\w+(?:\[\])?)"
+_TYPE = r"(\w+(?:\[\])?)"
 _BASE_ATTRIBUTE = r"([\w_]+(?:\:[\w_]+)*)(?:(\.)(timeSamples))?"
 _WHITESPACE = r"([ \t]+)"
 
