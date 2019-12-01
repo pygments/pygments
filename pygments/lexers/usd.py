@@ -26,6 +26,10 @@ def _keywords(words, type_):
     return [(lexer.words(words, prefix=r"\b", suffix=r"\b"), type_)]
 
 
+_TYPE = "(\w+(?:\[\])?)"
+_BASE_ATTRIBUTE = r"([\w_]+(?:\:[\w_]+)?)"
+
+
 class UsdLexer(lexer.RegexLexer):
     """
     A lexer that parses Pixar's Universal Scene Description file format.
@@ -33,14 +37,17 @@ class UsdLexer(lexer.RegexLexer):
     .. versionadded:: 2.6.0
     """
 
-    name = 'USD'
-    aliases = ['usd', 'usda']
-    filenames = ['*.usd', '*.usda']
+    name = "USD"
+    aliases = ["usd", "usda"]
+    filenames = ["*.usd", "*.usda"]
 
     tokens = {
-        'root':
-            [
-                ('(custom)(\s+)(uniform)(\s+)(\w+)(\s+)(\w+)(\s*)(=)', lexer.bygroups(
+        "root": [
+            (
+                "(custom)(\s+)(uniform)(\s+){}(\s+){}(\s*)(=)".format(
+                    _TYPE, _BASE_ATTRIBUTE
+                ),
+                lexer.bygroups(
                     token.Keyword.Token,
                     token.Whitespace,
                     token.Keyword.Token,
@@ -50,8 +57,13 @@ class UsdLexer(lexer.RegexLexer):
                     token.Name.Attribute,
                     token.Whitespace,
                     token.Generic,
-                )),
-                ('(custom)(\s+)(\w+)(\s+)(\w+)(\s*)(=)', lexer.bygroups(
+                ),
+            ),
+            (
+                "(custom)(\s+){}(\s+){}(\s*)(=)".format(
+                    _TYPE, _BASE_ATTRIBUTE
+                ),
+                lexer.bygroups(
                     token.Keyword.Token,
                     token.Whitespace,
                     token.Keyword.Type,
@@ -59,8 +71,13 @@ class UsdLexer(lexer.RegexLexer):
                     token.Name.Attribute,
                     token.Whitespace,
                     token.Generic,
-                )),
-                ('(uniform)(\s+)(\w+)(\s+)(\w+)(\s*)(=)', lexer.bygroups(
+                ),
+            ),
+            (
+                "(uniform)(\s+){}(\s+){}(\s*)(=)".format(
+                    _TYPE, _BASE_ATTRIBUTE
+                ),
+                lexer.bygroups(
                     token.Keyword.Token,
                     token.Whitespace,
                     token.Keyword.Type,
