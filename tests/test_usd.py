@@ -269,8 +269,21 @@ class UsdTest(unittest.TestCase):
             self._get(timesamples),
         )
 
-    # def test_string_priority(self):
-    #     raise NotImplementedError()
+    def test_string_priority(self):
+        code = textwrap.dedent(
+            '''\
+            """
+            custom int[] foo = [8, 10, 14]
+            """'''
+        )
+
+        self.assertEqual(
+            [
+                (token.Token.Literal.String, u'"""\ncustom int[] foo = [8, 10, 14]\n"""'),
+                (token.Token.Text, u'\n'),
+            ],
+            self._get(code),
+        )
 
     def test_numbers(self):
         code = "8 8.0123312132, -4 -14.123"
