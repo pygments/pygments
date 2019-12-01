@@ -60,22 +60,133 @@ class UsdTest(unittest.TestCase):
     def test_attribute(self):
         normal = 'double foo = 8.0'
 
-        custom = 'custom double foo = 8.0'
-        underscore = 'custom double foo_asfd = 8.0'
-        underscore_no_custom = 'double foo_asfd = 8.0'
-        array = 'double[] foo_asfd = [10.1, 12.0, 13]'
-        namespaced = 'double[] primvar:foo_thing = [10.1, 12.0, 13]'
-
-        timeSamples = textwrap.dedent(
-            '''\
-            custom int[] foo = [8, 10, 14]
-            custom int[] foo.timeSamples = {
-                1: [8, 0, 14],
-                2: [-8, 0, 14],
-            }
-            '''
+        self.assertEqual(
+            [
+                (token.Token.Keyword.Type, 'double'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Name.Attribute, 'foo'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Generic, '='),
+                (token.Token.Text, ' '),
+                (token.Token.Literal.Number, '8.0'),
+                (token.Token.Text, '\n'),
+            ],
+            self._get(normal),
         )
 
+        custom = 'custom double foo = 8.0'
+
+        self.assertEqual(
+            [
+                (token.Token.Keyword.Token, 'custom'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Keyword.Type, 'double'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Name.Attribute, 'foo'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Generic, '='),
+                (token.Token.Text, ' '),
+                (token.Token.Literal.Number, '8.0'),
+                (token.Token.Text, '\n'),
+            ],
+            self._get(custom),
+        )
+
+        uniform = 'uniform double foo = 8.0'
+
+        self.assertEqual(
+            [
+                (token.Token.Keyword.Token, 'uniform'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Keyword.Type, 'double'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Name.Attribute, 'foo'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Generic, '='),
+                (token.Token.Text, ' '),
+                (token.Token.Literal.Number, '8.0'),
+                (token.Token.Text, '\n'),
+            ],
+            self._get(uniform),
+        )
+
+        custom_uniform = 'custom uniform double foo = 8.0'
+
+        self.assertEqual(
+            [
+                (token.Token.Keyword.Token, 'custom'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Keyword.Token, 'uniform'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Keyword.Type, 'double'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Name.Attribute, 'foo'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Generic, '='),
+                (token.Token.Text, ' '),
+                (token.Token.Literal.Number, '8.0'),
+                (token.Token.Text, '\n'),
+            ],
+            self._get(custom_uniform),
+        )
+
+        underscore = 'custom double foo_underscore_name = 8.0'
+
+        self.assertEqual(
+            [
+                (token.Token.Keyword.Token, 'custom'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Keyword.Type, 'double'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Name.Attribute, 'foo_underscore_name'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Generic, '='),
+                (token.Token.Text, ' '),
+                (token.Token.Literal.Number, '8.0'),
+                (token.Token.Text, '\n'),
+            ],
+            self._get(underscore),
+        )
+
+        array = 'double[] foo_underscore_name = [10.1, 12.0, 13]'
+
+        self.assertEqual(
+            [
+                (token.Token.Keyword.Type, 'double[]'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Name.Attribute, 'foo_underscore_name'),
+                (token.Token.Text.Whitespace, ' '),
+                (token.Token.Generic, '='),
+                (token.Token.Text, ' '),
+                (token.Token.Punctuation, '['),
+                (token.Token.Literal.Number, '10.1'),
+                (token.Token.Generic, ','),
+                (token.Token.Text, ' '),
+                (token.Token.Literal.Number, '12.0'),
+                (token.Token.Generic, ','),
+                (token.Token.Text, ' '),
+                (token.Token.Literal.Number, '13'),
+                (token.Token.Punctuation, ']'),
+                (token.Token.Text, '\n'),
+            ],
+            self._get(array),
+        )
+
+        # namespaced = 'double[] primvar:foo_thing = [10.1, 12.0, 13]'
+        #
+        # timeSamples = textwrap.dedent(
+        #     '''\
+        #     custom int[] foo = [8, 10, 14]
+        #     custom int[] foo.timeSamples = {
+        #         1: [8, 0, 14],
+        #         2: [-8, 0, 14],
+        #     }
+        #     '''
+        # )
+
+    # def test_string_priority(self):
+    #     raise NotImplementedError()
+    #
     # def test_namespace_attribute(self):
     #     raise NotImplementedError()
     #
