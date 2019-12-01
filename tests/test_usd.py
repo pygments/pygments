@@ -17,7 +17,7 @@ class _Common(unittest.TestCase):
         return list(self.lexer.get_tokens(code))
 
 
-class UsdTest(_Common):
+class Features(_Common):
     def test_asset_path(self):
         code = "@/some/path/to/a/file/foo.usda@"
         expected = [
