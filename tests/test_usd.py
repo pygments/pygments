@@ -290,112 +290,110 @@ class UsdTest(unittest.TestCase):
             self._get(code),
         )
 
-    # def test_variant_set(self):
-    #     code = textwrap.dedent(
-    #         """
-    #         def Xform "BottleMedical" (
-    #             kind = "prop"
-    #             payload = @./BottleMedical_payload.usd@</BottleMedical>
-    #             variants = {
-    #                 string modelingVariant = "LiquidBottleLg"
-    #                 string shadingComplexity = "full"
-    #             }
-    #             add variantSets = ["modelingVariant", "shadingComplexity"]
-    #         )
-    #         {
-    #             variantSet "modelingVariant" = {
-    #                 "ALL_VARIANTS" {
-    #                 }
-    #             }
-    #         }
-    #         """
-    #     )
-    #     import pprint
-    #
-    #     pprint.pprint(self._get(code), indent=4)
-    #     raise ValueError(self._get(code))
-    #
-    #     self.assertEqual(
-    #         [   (Token.Keyword.Tokens, u'def'),
-    #             (Token.Text, u' '),
-    #             (Token.Generic, u'Xform'),
-    #             (Token.Text, u' '),
-    #             (Token.Literal.String, u'"BottleMedical"'),
-    #             (Token.Text, u' '),
-    #             (Token.Punctuation, u'('),
-    #             (Token.Text, u'\n    '),
-    #             (Token.Name.Attribute, u'kind'),
-    #             (Token.Text, u' '),
-    #             (Token.Operator, u'='),
-    #             (Token.Text, u' '),
-    #             (Token.Literal.String, u'"prop"'),
-    #             (Token.Text, u'\n    '),
-    #             (Token.Keyword.Tokens, u'payload'),
-    #             (Token.Text, u' '),
-    #             (Token.Operator, u'='),
-    #             (Token.Text, u' '),
-    #             (Token.Literal.String.Interpol, u'@./BottleMedical_payload.usd@'),
-    #             (Token.Name.Namespace, u'</BottleMedical>'),
-    #             (Token.Text, u'\n    '),
-    #             (Token.Keyword.Tokens, u'variants'),
-    #             (Token.Text, u' '),
-    #             (Token.Operator, u'='),
-    #             (Token.Text, u' '),
-    #             (Token.Punctuation, u'{'),
-    #             (Token.Text, u'\n        '),
-    #             (Token.Keyword.Type, u'string'),
-    #             (Token.Text.Whitespace, u' '),
-    #             (Token.Name.Attribute, u'modelingVariant'),
-    #             (Token.Text.Whitespace, u' '),
-    #             (Token.Operator, u'='),
-    #             (Token.Text, u' '),
-    #             (Token.Literal.String, u'"LiquidBottleLg"'),
-    #             (Token.Text, u'\n        '),
-    #             (Token.Keyword.Type, u'string'),
-    #             (Token.Text.Whitespace, u' '),
-    #             (Token.Name.Attribute, u'shadingComplexity'),
-    #             (Token.Text.Whitespace, u' '),
-    #             (Token.Operator, u'='),
-    #             (Token.Text, u' '),
-    #             (Token.Literal.String, u'"full"'),
-    #             (Token.Text, u'\n    '),
-    #             (Token.Punctuation, u'}'),
-    #             (Token.Text, u'\n    '),
-    #             (Token.Keyword.Type, u'add'),
-    #             (Token.Text.Whitespace, u' '),
-    #             (Token.Name.Attribute, u'variantSets'),
-    #             (Token.Text.Whitespace, u' '),
-    #             (Token.Operator, u'='),
-    #             (Token.Text, u' '),
-    #             (Token.Punctuation, u'['),
-    #             (Token.Literal.String, u'"modelingVariant", "shadingComplexity"'),
-    #             (Token.Punctuation, u']'),
-    #             (Token.Text, u'\n'),
-    #             (Token.Punctuation, u')'),
-    #             (Token.Text, u'\n'),
-    #             (Token.Punctuation, u'{'),
-    #             (Token.Text, u'\n    '),
-    #             (Token.Keyword.Tokens, u'variantSet'),
-    #             (Token.Text, u' '),
-    #             (Token.Literal.String, u'"modelingVariant"'),
-    #             (Token.Text, u' '),
-    #             (Token.Operator, u'='),
-    #             (Token.Text, u' '),
-    #             (Token.Punctuation, u'{'),
-    #             (Token.Text, u'\n        '),
-    #             (Token.Literal.String, u'"ALL_VARIANTS"'),
-    #             (Token.Text, u' '),
-    #             (Token.Punctuation, u'{'),
-    #             (Token.Text, u'\n        '),
-    #             (Token.Punctuation, u'}'),
-    #             (Token.Text, u'\n    '),
-    #             (Token.Punctuation, u'}'),
-    #             (Token.Text, u'\n'),
-    #             (Token.Punctuation, u'}'),
-    #             (Token.Text, u'\n')],
-    #         self._get(code),
-    #     )
-    #
+    def test_composition_arcs(self):
+        code = textwrap.dedent(
+            """
+            def Xform "BottleMedical" (
+                kind = "prop"
+                payload = @./BottleMedical_payload.usd@</BottleMedical>
+                variants = {
+                    string modelingVariant = "LiquidBottleLg"
+                    string shadingComplexity = "full"
+                }
+                add variantSets = ["modelingVariant", "shadingComplexity"]
+            )
+            {
+                variantSet "modelingVariant" = {
+                    "ALL_VARIANTS" {
+                    }
+                }
+            }
+            """
+        )
+
+        self.assertEqual(
+            [
+                (token.Token.Keyword.Tokens, u"def"),
+                (token.Token.Text, u" "),
+                (token.Token.Generic, u"Xform"),
+                (token.Token.Text, u" "),
+                (token.Token.Literal.String, u'"BottleMedical"'),
+                (token.Token.Text, u" "),
+                (token.Token.Punctuation, u"("),
+                (token.Token.Text, u"\n    "),
+                (token.Token.Name.Attribute, u"kind"),
+                (token.Token.Text, u" "),
+                (token.Token.Operator, u"="),
+                (token.Token.Text, u" "),
+                (token.Token.Literal.String, u'"prop"'),
+                (token.Token.Text, u"\n    "),
+                (token.Token.Keyword.Tokens, u"payload"),
+                (token.Token.Text, u" "),
+                (token.Token.Operator, u"="),
+                (token.Token.Text, u" "),
+                (token.Token.Literal.String.Interpol, u"@./BottleMedical_payload.usd@"),
+                (token.Token.Name.Namespace, u"</BottleMedical>"),
+                (token.Token.Text, u"\n    "),
+                (token.Token.Keyword.Tokens, u"variants"),
+                (token.Token.Text, u" "),
+                (token.Token.Operator, u"="),
+                (token.Token.Text, u" "),
+                (token.Token.Punctuation, u"{"),
+                (token.Token.Text, u"\n        "),
+                (token.Token.Keyword.Type, u"string"),
+                (token.Token.Text.Whitespace, u" "),
+                (token.Token.Name.Attribute, u"modelingVariant"),
+                (token.Token.Text.Whitespace, u" "),
+                (token.Token.Operator, u"="),
+                (token.Token.Text, u" "),
+                (token.Token.Literal.String, u'"LiquidBottleLg"'),
+                (token.Token.Text, u"\n        "),
+                (token.Token.Keyword.Type, u"string"),
+                (token.Token.Text.Whitespace, u" "),
+                (token.Token.Name.Attribute, u"shadingComplexity"),
+                (token.Token.Text.Whitespace, u" "),
+                (token.Token.Operator, u"="),
+                (token.Token.Text, u" "),
+                (token.Token.Literal.String, u'"full"'),
+                (token.Token.Text, u"\n    "),
+                (token.Token.Punctuation, u"}"),
+                (token.Token.Text, u"\n    "),
+                (token.Token.Keyword.Type, u"add"),
+                (token.Token.Text.Whitespace, u" "),
+                (token.Token.Name.Attribute, u"variantSets"),
+                (token.Token.Text.Whitespace, u" "),
+                (token.Token.Operator, u"="),
+                (token.Token.Text, u" "),
+                (token.Token.Punctuation, u"["),
+                (token.Token.Literal.String, u'"modelingVariant", "shadingComplexity"'),
+                (token.Token.Punctuation, u"]"),
+                (token.Token.Text, u"\n"),
+                (token.Token.Punctuation, u")"),
+                (token.Token.Text, u"\n"),
+                (token.Token.Punctuation, u"{"),
+                (token.Token.Text, u"\n    "),
+                (token.Token.Keyword.Tokens, u"variantSet"),
+                (token.Token.Text, u" "),
+                (token.Token.Literal.String, u'"modelingVariant"'),
+                (token.Token.Text, u" "),
+                (token.Token.Operator, u"="),
+                (token.Token.Text, u" "),
+                (token.Token.Punctuation, u"{"),
+                (token.Token.Text, u"\n        "),
+                (token.Token.Literal.String, u'"ALL_VARIANTS"'),
+                (token.Token.Text, u" "),
+                (token.Token.Punctuation, u"{"),
+                (token.Token.Text, u"\n        "),
+                (token.Token.Punctuation, u"}"),
+                (token.Token.Text, u"\n    "),
+                (token.Token.Punctuation, u"}"),
+                (token.Token.Text, u"\n"),
+                (token.Token.Punctuation, u"}"),
+                (token.Token.Text, u"\n"),
+            ],
+            self._get(code),
+        )
+
     # def test_metadata(self):
     #     raise NotImplementedError()
     #
