@@ -32,8 +32,8 @@ class RideLexer(RegexLexer):
 
     builtinOps = (
         '||', '|', '>=', '>', '==', '!',
-        '=', '<=', '<', '::', ':', '!=', '/',
-        '.', '->', '-', '+', '*', '&&', '%',
+        '=', '<=', '<', '::', ':+', ':', '!=', '/',
+        '.', '=>', '-', '+', '*', '&&', '%', '++',
     )
 
     typesName = (
@@ -48,13 +48,15 @@ class RideLexer(RegexLexer):
         'WriteSet', 'AttachedPayment', 'ScriptTransfer', 'TransferSet',
         'ScriptResult', 'Invocation', 'Asset', 'BlockInfo', 'Issue', 'Reissue',
         'Burn', 'NOALG', 'MD5', 'SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512',
-        'SHA3224', 'SHA3256', 'SHA3384', 'SHA3512',
+        'SHA3224', 'SHA3256', 'SHA3384', 'SHA3512', 'BinaryEntry',
+        'BooleanEntry' , 'IntEntry', 'StringEntry', 'List', 'Ceiling',
+        'Down', 'Floor', 'HalfDown', 'HalfEven', 'HalfUp', 'Up',
     )
 
     functionsName = (
         'fraction', 'size', 'toBytes', 'take', 'drop', 'takeRight', 'dropRight',
         'toString', 'isDefined', 'extract', 'throw', 'getElement', 'value',
-        'cons', 'ensure', 'toUtf8String', 'toInt', 'indexOf', 'split',
+        'cons', 'toUtf8String', 'toInt', 'indexOf', 'lastIndexOf', 'split',
         'parseInt', 'parseIntValue', 'keccak256', 'blake2b256', 'sha256',
         'sigVerify', 'toBase58String', 'fromBase58String', 'toBase64String',
         'fromBase64String', 'transactionById', 'transactionHeightById',
@@ -62,12 +64,18 @@ class RideLexer(RegexLexer):
         'addressFromPublicKey', 'addressFromString', 'addressFromRecipient',
         'assetBalance', 'wavesBalance', 'getIntegerValue', 'getBooleanValue',
         'getBinaryValue', 'getStringValue', 'addressFromStringValue',
-        'assetInfo', 'rsaVerify', 'checkMerkleProof',
+        'assetInfo', 'rsaVerify', 'checkMerkleProof', 'median',
+        'valueOrElse', 'valueOrErrorMessage', 'contains', 'log', 'pow',
+        'toBase16String', 'fromBase16String', 'blockInfoByHeight',
+        'transferTransactionById', 'nil', 'this', 'unit', 'height',
+        'lastBlock', 'Buy', 'Sell', 'CEILING', 'FLOOR', 'DOWN', 'HALFDOWN',
+        'HALFEVEN', 'HALFUP', 'UP', 'NOALG', 'MD5', 'SHA1', 'SHA224','SHA256',
+        'SHA384', 'SHA512', 'SHA3224', 'SHA3256', 'SHA3384', 'SHA3512',
     )
 
     reservedWords = words((
         'match', 'case', 'else', 'func', 'if',
-        'let', 'then', '@Callable', '@Verifier', '@Default'
+        'let', 'then', '@Callable', '@Verifier',
     ), suffix=r'\b')
 
     tokens = {
@@ -82,6 +90,8 @@ class RideLexer(RegexLexer):
             (r'base(58|64|16)\'', String, 'singlequote'),
             # Keywords
             (reservedWords, Keyword.Reserved),
+            (r'{-#.*?#-}', Keyword.Reserved),
+            (r'FOLD<\d+>', Keyword.Reserved),
             # Types
             (words(typesName), Keyword.Type),
             # Main
