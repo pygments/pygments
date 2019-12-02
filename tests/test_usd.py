@@ -23,7 +23,7 @@ class _Common(unittest.TestCase):
         :type code: str
 
         :returns: The tokenized pieces.
-        :rtype: list[:class:`pygments.token._TokenType]
+        :rtype: list[:class:`pygments.token._TokenType`]
 
         """
         return list(self.lexer.get_tokens(code))
