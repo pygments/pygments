@@ -36,6 +36,13 @@ class RideLexer(RegexLexer):
         '.', '=>', '-', '+', '*', '&&', '%', '++',
     )
 
+    globalVariablesName = (
+        'NOALG', 'MD5', 'SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512',
+        'SHA3224', 'SHA3256', 'SHA3384', 'SHA3512', 'nil', 'this', 'unit',
+        'height', 'lastBlock', 'Buy', 'Sell', 'CEILING', 'FLOOR', 'DOWN',
+        'HALFDOWN', 'HALFEVEN', 'HALFUP', 'UP',
+    )
+
     typesName = (
         'Unit', 'Int', 'Boolean', 'ByteVector', 'String', 'Address', 'Alias',
         'Transfer', 'AssetPair', 'DataEntry', 'Order', 'Transaction',
@@ -47,9 +54,9 @@ class RideLexer(RegexLexer):
         'SetScriptTransaction', 'SponsorFeeTransaction', 'DataTransaction',
         'WriteSet', 'AttachedPayment', 'ScriptTransfer', 'TransferSet',
         'ScriptResult', 'Invocation', 'Asset', 'BlockInfo', 'Issue', 'Reissue',
-        'Burn', 'NOALG', 'MD5', 'SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512',
-        'SHA3224', 'SHA3256', 'SHA3384', 'SHA3512', 'BinaryEntry',
-        'BooleanEntry' , 'IntEntry', 'StringEntry', 'List', 'Ceiling',
+        'Burn', 'NoAlg', 'Md5', 'Sha1', 'Sha224', 'Sha256', 'Sha384', 'Sha512',
+        'Sha3224', 'Sha3256', 'Sha3384', 'Sha3512', 'BinaryEntry',
+        'BooleanEntry' , 'IntegerEntry', 'StringEntry', 'List', 'Ceiling',
         'Down', 'Floor', 'HalfDown', 'HalfEven', 'HalfUp', 'Up',
     )
 
@@ -67,10 +74,7 @@ class RideLexer(RegexLexer):
         'assetInfo', 'rsaVerify', 'checkMerkleProof', 'median',
         'valueOrElse', 'valueOrErrorMessage', 'contains', 'log', 'pow',
         'toBase16String', 'fromBase16String', 'blockInfoByHeight',
-        'transferTransactionById', 'nil', 'this', 'unit', 'height',
-        'lastBlock', 'Buy', 'Sell', 'CEILING', 'FLOOR', 'DOWN', 'HALFDOWN',
-        'HALFEVEN', 'HALFUP', 'UP', 'NOALG', 'MD5', 'SHA1', 'SHA224','SHA256',
-        'SHA384', 'SHA512', 'SHA3224', 'SHA3256', 'SHA3384', 'SHA3512',
+        'transferTransactionById',
     )
 
     reservedWords = words((
@@ -100,6 +104,7 @@ class RideLexer(RegexLexer):
             (words(builtinOps, prefix=r'\(', suffix=r'\)'), Name.Function),
             # Infix Operators
             (words(builtinOps), Name.Function),
+            (words(globalVariablesName), Name.Function),
             (words(functionsName), Name.Function),
             # Numbers
             include('numbers'),
