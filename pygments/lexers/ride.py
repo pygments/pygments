@@ -94,7 +94,7 @@ class RideLexer(RegexLexer):
             (r'base(58|64|16)\'', String, 'singlequote'),
             # Keywords
             (reservedWords, Keyword.Reserved),
-            (r'{-#.*?#-}', Keyword.Reserved),
+            (r'\{-#.*?#-\}', Keyword.Reserved),
             (r'FOLD<\d+>', Keyword.Reserved),
             # Types
             (words(typesName), Keyword.Type),
