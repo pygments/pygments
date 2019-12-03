@@ -32,8 +32,15 @@ class RideLexer(RegexLexer):
 
     builtinOps = (
         '||', '|', '>=', '>', '==', '!',
-        '=', '<=', '<', '::', ':', '!=', '/',
-        '.', '->', '-', '+', '*', '&&', '%',
+        '=', '<=', '<', '::', ':+', ':', '!=', '/',
+        '.', '=>', '-', '+', '*', '&&', '%', '++',
+    )
+
+    globalVariablesName = (
+        'NOALG', 'MD5', 'SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512',
+        'SHA3224', 'SHA3256', 'SHA3384', 'SHA3512', 'nil', 'this', 'unit',
+        'height', 'lastBlock', 'Buy', 'Sell', 'CEILING', 'FLOOR', 'DOWN',
+        'HALFDOWN', 'HALFEVEN', 'HALFUP', 'UP',
     )
 
     typesName = (
@@ -47,14 +54,16 @@ class RideLexer(RegexLexer):
         'SetScriptTransaction', 'SponsorFeeTransaction', 'DataTransaction',
         'WriteSet', 'AttachedPayment', 'ScriptTransfer', 'TransferSet',
         'ScriptResult', 'Invocation', 'Asset', 'BlockInfo', 'Issue', 'Reissue',
-        'Burn', 'NOALG', 'MD5', 'SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512',
-        'SHA3224', 'SHA3256', 'SHA3384', 'SHA3512',
+        'Burn', 'NoAlg', 'Md5', 'Sha1', 'Sha224', 'Sha256', 'Sha384', 'Sha512',
+        'Sha3224', 'Sha3256', 'Sha3384', 'Sha3512', 'BinaryEntry',
+        'BooleanEntry' , 'IntegerEntry', 'StringEntry', 'List', 'Ceiling',
+        'Down', 'Floor', 'HalfDown', 'HalfEven', 'HalfUp', 'Up',
     )
 
     functionsName = (
         'fraction', 'size', 'toBytes', 'take', 'drop', 'takeRight', 'dropRight',
         'toString', 'isDefined', 'extract', 'throw', 'getElement', 'value',
-        'cons', 'ensure', 'toUtf8String', 'toInt', 'indexOf', 'split',
+        'cons', 'toUtf8String', 'toInt', 'indexOf', 'lastIndexOf', 'split',
         'parseInt', 'parseIntValue', 'keccak256', 'blake2b256', 'sha256',
         'sigVerify', 'toBase58String', 'fromBase58String', 'toBase64String',
         'fromBase64String', 'transactionById', 'transactionHeightById',
@@ -62,12 +71,15 @@ class RideLexer(RegexLexer):
         'addressFromPublicKey', 'addressFromString', 'addressFromRecipient',
         'assetBalance', 'wavesBalance', 'getIntegerValue', 'getBooleanValue',
         'getBinaryValue', 'getStringValue', 'addressFromStringValue',
-        'assetInfo', 'rsaVerify', 'checkMerkleProof',
+        'assetInfo', 'rsaVerify', 'checkMerkleProof', 'median',
+        'valueOrElse', 'valueOrErrorMessage', 'contains', 'log', 'pow',
+        'toBase16String', 'fromBase16String', 'blockInfoByHeight',
+        'transferTransactionById',
     )
 
     reservedWords = words((
         'match', 'case', 'else', 'func', 'if',
-        'let', 'then', '@Callable', '@Verifier', '@Default'
+        'let', 'then', '@Callable', '@Verifier',
     ), suffix=r'\b')
 
     tokens = {
@@ -82,6 +94,8 @@ class RideLexer(RegexLexer):
             (r'base(58|64|16)\'', String, 'singlequote'),
             # Keywords
             (reservedWords, Keyword.Reserved),
+            (r'{-#.*?#-}', Keyword.Reserved),
+            (r'FOLD<\d+>', Keyword.Reserved),
             # Types
             (words(typesName), Keyword.Type),
             # Main
@@ -90,6 +104,7 @@ class RideLexer(RegexLexer):
             (words(builtinOps, prefix=r'\(', suffix=r'\)'), Name.Function),
             # Infix Operators
             (words(builtinOps), Name.Function),
+            (words(globalVariablesName), Name.Function),
             (words(functionsName), Name.Function),
             # Numbers
             include('numbers'),
