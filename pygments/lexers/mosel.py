@@ -27,25 +27,29 @@ class MoselLexer(RegexLexer):
             (r'!.*?\n', Comment.Single),
             (r'\(!(.|\n)*?!\)', Comment.Multiline),
             (words((
-                'and', 'array', 'as',
-                'boolean', 'break',
-                'case', 'count', 'counter',
-                'declarations', 'div', 'do', 'dynamic',
-                'elif', 'else', 'end-', 'end', 'evaluation', 'exit',
-                'false', 'forall', 'forward', 'from', 'function',
-                'if', 'imports', 'in', 'include', 'initialisations', 'initializations', 'integer', 'inter', 'is_binary', 'is_continuous', 'is_free', 'is_integer', 'is_partint', 'is_semcont', 'is_semint', 'is_sos1', 'is_sos2',
-                'linctr', 'list',
-                'max', 'min', 'mod', 'model', 'mpvar',
-                'next', 'not', 'of', 'options', 'or',
+                'and', 'as', 'break',
+                'case', 'count',
+                'declarations', 'do', 'dynamic',
+                'elif', 'else', 'end-', 'end', 'evaluation',
+                'false', 'forall', 'forward', 'from', 'function', 'hashmap',
+                'if', 'imports', 'include', 'initialisations', 'initializations', 'inter',
+                'max', 'min', 'model',
+                'namespace', 'next', 'not', 'nsgroup', 'nssearch', 'of', 'options', 'or',
                 'package', 'parameters', 'procedure',
-                'public', 'prod', 'range', 'real', 'record', 'repeat', 'requirements',
-                'set', 'string', 'sum',
+                'public', 'prod', 'record', 'repeat', 'requirements', 'return',
+                'sum',
                 'then', 'to', 'true',
                 'union', 'until', 'uses',
                 'version',
                 'while', 'with'),  prefix=r'\b', suffix=r'\b'), Keyword.Builtin),
-            (r'(integer|is_binary|real)', Keyword.Type),
-            (r'(\+|\-|\*|/|=|<=|>=|==|\||\^|<|>|<>|\.\.|:=|:)', Operator),
+            (words((
+                'range', 'array', 'set', 'list', 'mpvar', 'mpproblem', 'linctr', 'nlctr', 'integer',
+                'string', 'real', 'boolean', 'text', 'time', 'date', 'datetime', 'returned', 'Model',
+                'Mosel', 'counter', 'xmldoc',
+                'is_sos1', 'is_sos2', 'is_integer', 'is_binary', 'is_continuous',
+                'is_free', 'is_semcont', 'is_semint', 'is_partint'
+                )), Keyword.Type),
+            (r'(\+|\-|\*|/|=|<=|>=|==|\||\^|<|>|<>|\.\.|\.|:=|:|::|in|mod|div)', Operator),
             (r'[()\[\]{},;:]+', Punctuation),
             (words((
                 # core functions
@@ -62,7 +66,11 @@ class MoselLexer(RegexLexer):
                 'setcoeff', 'sethidden', 'setioerr', 'setname', 'setparam', 'setrandseed', 'settype', 'sin', 'splithead', 'splittail', 'sqrt', 'strfmt', 'substr',
                 'timestamp',
                 'unpublish',
-                'write', 'writeln'
+                'write', 'writeln',
+                '_', 'asproc', 'cutelt', 'cutfirst', 'cutlast', 'datablock', 'fwrite', 'fwriteln', 'fwrite_',
+                'fwriteln_', 'getelt', 'isdynamic', 'isfinite', 'isinf', 'isnan',  'localsetparam', 'memoryuse',
+                'newmuid', 'restoreparam', 'setmatherr', 'setrange', 'versionnum', 'versionstr', 'write_', 'writeln_',
+                'maximize', 'minimize', 'maximise', 'minimise',
 
                 # mmxpress_functions
                 'addmipsol',
@@ -74,7 +82,6 @@ class MoselLexer(RegexLexer):
                 'getbstat', 'getdualray', 'getiis', 'getiissense', 'getiistype', 'getinfcause', 'getinfeas', 'getlb', 'getloadedlinctrs', 'getloadedmpvars', 'getname', 'getprimalray', 'getprobstat', 'getrange', 'getsensrng', 'getsize', 'getsol', 'getub', 'getvars',
                 'implies', 'indicator', 'isiisvalid', 'isintegral', 'loadbasis',
                 'loadmipsol', 'loadprob',
-                'maximize', 'minimize',
                 'postsolve',
                 'readbasis', 'readdirs', 'readsol', 'refinemipsol', 'rejectintsol', 'repairinfeas', 'resetbasis', 'resetiis', 'resetsol',
                 'savebasis', 'savemipsol', 'savesol', 'savestate', 'selectsol', 'setbstat', 'setcallback', 'setcbcutoff', 'setgndata', 'setlb', 'setmipdir', 'setmodcut', 'setsol', 'setub', 'setucbdata', 'stopoptimize',
@@ -114,9 +121,6 @@ class MoselLexer(RegexLexer):
                 'untar', 'unzip',
                 'ziplist',
 
-                 # mmsystem_parameters
-                'datefmt', 'datetimefmt', 'monthnames', 'sys_endparse', 'sys_fillchar', 'sys_pid', 'sys_qtype', 'sys_regcache', 'sys_sepchar',
-    
                 # mmjobs_instance_mgmt_functions
                 'clearaliases', 'connect',
                 'disconnect',
@@ -132,7 +136,7 @@ class MoselLexer(RegexLexer):
                 'reset', 'resetmodpar', 'run',
                 'setcontrol', 'setdefstream', 'setmodpar', 'setworkdir', 'stop',
                 'unload',
-    
+
                 # mmjobs_synchornization_functions
                 'dropnextevent',
                 'getclass', 'getfromgid', 'getfromid', 'getfromuid', 'getnextevent', 'getvalue',
@@ -140,10 +144,7 @@ class MoselLexer(RegexLexer):
                 'nullevent',
                 'peeknextevent',
                 'send', 'setgid', 'setuid',
-                'wait', 'waitfor',
-
-                # 'mmjobs_parameters', 
-                'conntmpl', 'defaultnode', 'fsrvdelay', 'fsrvnbiter', 'fsrvport', 'jobid', 'keepalive', 'nodenumber', 'parentnumber'
+                'wait', 'waitfor'
             ),  prefix=r'\b', suffix=r'\b'), Name.Function),
             (r'(\d+\.(?!\.)\d*|\.(?!.)\d+)([eE][+-]?\d+)?', Number.Float),
             (r'\d+([eE][+-]?\d+)?', Number.Integer),
