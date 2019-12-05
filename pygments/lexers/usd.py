@@ -3,26 +3,28 @@
 
 """The module that parses Pixar's Universal Scene Description file format."""
 
-from pygments import lexer, token
-
-from . import _usd_builtins
+from pygments._usd_builtins import COMMON_ATTRIBUTES, KEYWORDS, OPERATORS, \
+    SPECIAL_NAMES, TYPES
+from pygments.lexer import RegexLexer, bygroups, words
+from pygments.token import Comment, Generic, Keyword, Name, Number, Operator, \
+    Punctuation, String, Text, Whitespace
 
 __all__ = ["UsdLexer"]
 
 
 _PUNCTUATION = [
-    (r"\(", token.Punctuation),
-    (r"\)", token.Punctuation),
-    (r"\[", token.Punctuation),
-    (r"\]", token.Punctuation),
-    ("{", token.Punctuation),
-    ("}", token.Punctuation),
+    (r"\(", Punctuation),
+    (r"\)", Punctuation),
+    (r"\[", Punctuation),
+    (r"\]", Punctuation),
+    ("{", Punctuation),
+    ("}", Punctuation),
 ]
 
 
 def _keywords(words, type_):
     """list[tuple[:class:`pygments.lexer.words`, :class:`pygments.token._TokenType`]]."""
-    return [(lexer.words(words, prefix=r"\b", suffix=r"\b"), type_)]
+    return [(words(words, prefix=r"\b", suffix=r"\b"), type_)]
 
 
 _TYPE = r"(\w+(?:\[\])?)"
@@ -30,7 +32,7 @@ _BASE_ATTRIBUTE = r"([\w_]+(?:\:[\w_]+)*)(?:(\.)(timeSamples))?"
 _WHITESPACE = r"([ \t]+)"
 
 
-class UsdLexer(lexer.RegexLexer):
+class UsdLexer(RegexLexer):
     """
     A lexer that parses Pixar's Universal Scene Description file format.
 
@@ -47,90 +49,90 @@ class UsdLexer(lexer.RegexLexer):
                 r"(custom){_WHITESPACE}(uniform)(\s+){}(\s+){}(\s*)(=)".format(
                     _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
                 ),
-                lexer.bygroups(
-                    token.Keyword.Token,
-                    token.Whitespace,
-                    token.Keyword.Token,
-                    token.Whitespace,
-                    token.Keyword.Type,
-                    token.Whitespace,
-                    token.Name.Attribute,
-                    token.Generic,
-                    token.Name.Keyword.Tokens,
-                    token.Whitespace,
-                    token.Operator,
+                bygroups(
+                    Keyword.Token,
+                    Whitespace,
+                    Keyword.Token,
+                    Whitespace,
+                    Keyword.Type,
+                    Whitespace,
+                    Name.Attribute,
+                    Generic,
+                    Name.Keyword.Tokens,
+                    Whitespace,
+                    Operator,
                 ),
             ),
             (
                 r"(custom){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
                     _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
                 ),
-                lexer.bygroups(
-                    token.Keyword.Token,
-                    token.Whitespace,
-                    token.Keyword.Type,
-                    token.Whitespace,
-                    token.Name.Attribute,
-                    token.Generic,
-                    token.Name.Keyword.Tokens,
-                    token.Whitespace,
-                    token.Operator,
+                bygroups(
+                    Keyword.Token,
+                    Whitespace,
+                    Keyword.Type,
+                    Whitespace,
+                    Name.Attribute,
+                    Generic,
+                    Name.Keyword.Tokens,
+                    Whitespace,
+                    Operator,
                 ),
             ),
             (
                 r"(uniform){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
                     _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
                 ),
-                lexer.bygroups(
-                    token.Keyword.Token,
-                    token.Whitespace,
-                    token.Keyword.Type,
-                    token.Whitespace,
-                    token.Name.Attribute,
-                    token.Generic,
-                    token.Name.Keyword.Tokens,
-                    token.Whitespace,
-                    token.Operator,
+                bygroups(
+                    Keyword.Token,
+                    Whitespace,
+                    Keyword.Type,
+                    Whitespace,
+                    Name.Attribute,
+                    Generic,
+                    Name.Keyword.Tokens,
+                    Whitespace,
+                    Operator,
                 ),
             ),
             (
                 r"{}{_WHITESPACE}{}(\s*)(=)".format(
                     _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
                 ),
-                lexer.bygroups(
-                    token.Keyword.Type,
-                    token.Whitespace,
-                    token.Name.Attribute,
-                    token.Generic,
-                    token.Name.Keyword.Tokens,
-                    token.Whitespace,
-                    token.Operator,
+                bygroups(
+                    Keyword.Type,
+                    Whitespace,
+                    Name.Attribute,
+                    Generic,
+                    Name.Keyword.Tokens,
+                    Whitespace,
+                    Operator,
                 ),
             ),
         ]
-        + _keywords(_usd_builtins.KEYWORDS, token.Keyword.Tokens)
-        + _keywords(_usd_builtins.SPECIAL_NAMES, token.Name.Builtins)
-        + _keywords(_usd_builtins.COMMON_ATTRIBUTES, token.Name.Attribute)
-        + [(r"\b\w+:[\w:]+\b", token.Name.Attribute)]
-        + _keywords(_usd_builtins.OPERATORS, token.Operator)  # more attributes
-        + [(type_ + r"\[\]", token.Keyword.Type) for type_ in _usd_builtins.TYPES]
-        + _keywords(_usd_builtins.TYPES, token.Keyword.Type)
+        + _keywords(KEYWORDS, Keyword.Tokens)
+        + _keywords(SPECIAL_NAMES, Name.Builtins)
+        + _keywords(COMMON_ATTRIBUTES, Name.Attribute)
+        + [(r"\b\w+:[\w:]+\b", Name.Attribute)]
+        + _keywords(OPERATORS, Operator)  # more attributes
+        + [(type_ + r"\[\]", Keyword.Type) for type_ in TYPES]
+        + _keywords(TYPES, Keyword.Type)
         + _PUNCTUATION
         + [
-            ("#.*?$", token.Comment.Single),
-            (",", token.Generic),
-            (";", token.Generic),  # ";"s are allowed to combine separate metadata lines
-            ("=", token.Operator),
-            ("[-]?([0-9]*[.])?[0-9]+", token.Number),
-            (r"'''(?:.|\n)*?'''", token.String),
-            (r'"""(?:.|\n)*?"""', token.String),
-            (r"'.*'", token.String),
-            (r'".*"', token.String),
-            (r"<(\.\./)*([\w/]+|[\w/]+\.\w+[\w:]*)>", token.Name.Namespace),
-            (r"@.*@", token.String.Interpol),
-            (r'\(.*"[.\\n]*".*\)', token.String.Doc),
-            (r"\A#usda .+$", token.Comment.Hashbang),
-            (r"\s+", token.Text),
-            (r"[\w|_|:|\.]+", token.Generic),
+            ("#.*?$", Comment.Single),
+            (",", Generic),
+            (";", Generic),  # ";"s are allowed to combine separate metadata lines
+            ("=", Operator),
+            ("[-]?([0-9]*[.])?[0-9]+", Number),
+            (r"'''(?:.|\n)*?'''", String),
+            (r'"""(?:.|\n)*?"""', String),
+            (r"'.*'", String),
+            (r'".*"', String),
+            (r"<(\.\./)*([\w/]+|[\w/]+\.\w+[\w:]*)>", Name.Namespace),
+            (r"@.*@", String.Interpol),
+            (r'\(.*"[.\\n]*".*\)', String.Doc),
+            (r"\A#usda .+$", Comment.Hashbang),
+            (r"\s+", Text),
+            (r"[\w|_|:|\.]+", Generic),
         ],
     }
