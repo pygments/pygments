@@ -292,7 +292,7 @@ class Features(_Common):
 
         self.assertEqual(
             [
-                (Literal.String, u'"""\ncustom int[] foo = [8, 10, 14]\n"""'),
+                (String, u'"""\ncustom int[] foo = [8, 10, 14]\n"""'),
                 (Whitespace, u"\n"),
             ],
             self._get(code),
@@ -353,7 +353,7 @@ class Features(_Common):
                 (Whitespace, u" "),
                 (Text, u"Xform"),
                 (Whitespace, u" "),
-                (Literal.String, u'"BottleMedical"'),
+                (String, u'"BottleMedical"'),
                 (Whitespace, u" "),
                 (Punctuation, u"("),
                 (Whitespace, u"\n    "),
@@ -361,13 +361,13 @@ class Features(_Common):
                 (Whitespace, u" "),
                 (Operator, u"="),
                 (Whitespace, u" "),
-                (Literal.String, u'"prop"'),
+                (String, u'"prop"'),
                 (Whitespace, u"\n    "),
                 (Keyword.Tokens, u"payload"),
                 (Whitespace, u" "),
                 (Operator, u"="),
                 (Whitespace, u" "),
-                (Literal.String.Interpol, u"@./BottleMedical_payload.usd@"),
+                (String.Interpol, u"@./BottleMedical_payload.usd@"),
                 (Name.Namespace, u"</BottleMedical>"),
                 (Whitespace, u"\n    "),
                 (Keyword.Tokens, u"variants"),
@@ -382,7 +382,7 @@ class Features(_Common):
                 (Whitespace, u" "),
                 (Operator, u"="),
                 (Whitespace, u" "),
-                (Literal.String, u'"LiquidBottleLg"'),
+                (String, u'"LiquidBottleLg"'),
                 (Whitespace, u"\n        "),
                 (Keyword.Type, u"string"),
                 (Whitespace, u" "),
@@ -390,7 +390,7 @@ class Features(_Common):
                 (Whitespace, u" "),
                 (Operator, u"="),
                 (Whitespace, u" "),
-                (Literal.String, u'"full"'),
+                (String, u'"full"'),
                 (Whitespace, u"\n    "),
                 (Punctuation, u"}"),
                 (Whitespace, u"\n    "),
@@ -401,10 +401,10 @@ class Features(_Common):
                 (Operator, u"="),
                 (Whitespace, u" "),
                 (Punctuation, u"["),
-                (Literal.String, u'"modelingVariant"'),
+                (String, u'"modelingVariant"'),
                 (Punctuation, u","),
                 (Whitespace, u" "),
-                (Literal.String, u'"shadingComplexity"'),
+                (String, u'"shadingComplexity"'),
                 (Punctuation, u"]"),
                 (Whitespace, u"\n"),
                 (Punctuation, u")"),
@@ -413,13 +413,13 @@ class Features(_Common):
                 (Whitespace, u"\n    "),
                 (Keyword.Tokens, u"variantSet"),
                 (Whitespace, u" "),
-                (Literal.String, u'"modelingVariant"'),
+                (String, u'"modelingVariant"'),
                 (Whitespace, u" "),
                 (Operator, u"="),
                 (Whitespace, u" "),
                 (Punctuation, u"{"),
                 (Whitespace, u"\n        "),
-                (Literal.String, u'"ALL_VARIANTS"'),
+                (String, u'"ALL_VARIANTS"'),
                 (Whitespace, u" "),
                 (Punctuation, u"{"),
                 (Whitespace, u"\n        "),
@@ -438,7 +438,7 @@ class Features(_Common):
         code = '"Some \'text"'
 
         self.assertEqual(
-            [(Literal.String, code), (Whitespace, u"\n")], self._get(code),
+            [(String, code), (Whitespace, u"\n")], self._get(code),
         )
 
     def test_string_multiple_line(self):
@@ -451,7 +451,7 @@ class Features(_Common):
         )
 
         self.assertEqual(
-            [(Literal.String, code1), (Whitespace, "\n"),], self._get(code1),
+            [(String, code1), (Whitespace, "\n"),], self._get(code1),
         )
 
         code2 = textwrap.dedent(
@@ -461,7 +461,7 @@ class Features(_Common):
         )
 
         self.assertEqual(
-            [(Literal.String, code2), (Whitespace, "\n"),], self._get(code2),
+            [(String, code2), (Whitespace, "\n"),], self._get(code2),
         )
 
         code3 = textwrap.dedent(
@@ -471,7 +471,7 @@ class Features(_Common):
         )
 
         self.assertEqual(
-            [(Literal.String, code3), (Whitespace, "\n"),], self._get(code3),
+            [(String, code3), (Whitespace, "\n"),], self._get(code3),
         )
 
 
@@ -513,7 +513,7 @@ class EdgeCases(_Common):
                 (Whitespace, u" "),
                 (Operator, u"="),
                 (Whitespace, u" "),
-                (Literal.String, u'"constant"'),
+                (String, u'"constant"'),
                 (Whitespace, u"\n"),
                 (Punctuation, u")"),
                 (Whitespace, u"\n"),
@@ -527,13 +527,13 @@ class EdgeCases(_Common):
 
         self.assertEqual(
             [
-                (Literal.String.Interpol, u"@firststring@"),
+                (String.Interpol, u"@firststring@"),
                 (Whitespace, u" "),
                 (Text, u"something"),
                 (Whitespace, u" "),
                 (Text, u"else"),
                 (Whitespace, u" "),
-                (Literal.String.Interpol, u"@secondstring@"),
+                (String.Interpol, u"@secondstring@"),
                 (Whitespace, u"\n"),
             ],
             self._get(at_sign),
@@ -543,13 +543,13 @@ class EdgeCases(_Common):
 
         self.assertEqual(
             [
-                (Literal.String, u"'firststring'"),
+                (String, u"'firststring'"),
                 (Whitespace, u" "),
                 (Text, u"something"),
                 (Whitespace, u" "),
                 (Text, u"else"),
                 (Whitespace, u" "),
-                (Literal.String, u"'secondstring'"),
+                (String, u"'secondstring'"),
                 (Whitespace, u"\n"),
             ],
             self._get(single),
@@ -559,13 +559,13 @@ class EdgeCases(_Common):
 
         self.assertEqual(
             [
-                (Literal.String, u"'firststring'"),
+                (String, u"'firststring'"),
                 (Whitespace, u" "),
                 (Text, u"something"),
                 (Whitespace, u" "),
                 (Text, u"else"),
                 (Whitespace, u" "),
-                (Literal.String, u"'secondstring'"),
+                (String, u"'secondstring'"),
                 (Whitespace, u"\n"),
             ],
             self._get(double),
