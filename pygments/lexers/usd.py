@@ -6,7 +6,7 @@ from pygments.lexer import RegexLexer, bygroups
 from pygments.lexer import words as words_
 from pygments.lexers._usd_builtins import COMMON_ATTRIBUTES, KEYWORDS, \
     OPERATORS, SPECIAL_NAMES, TYPES
-from pygments.token import Comment, Generic, Keyword, Name, Number, Operator, \
+from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
 
 __all__ = ["UsdLexer"]
@@ -47,7 +47,7 @@ class UsdLexer(RegexLexer):
                     Keyword.Type,
                     Whitespace,
                     Name.Attribute,
-                    Generic,
+                    Text,
                     Name.Keyword.Tokens,
                     Whitespace,
                     Operator,
@@ -63,7 +63,7 @@ class UsdLexer(RegexLexer):
                     Keyword.Type,
                     Whitespace,
                     Name.Attribute,
-                    Generic,
+                    Text,
                     Name.Keyword.Tokens,
                     Whitespace,
                     Operator,
@@ -79,7 +79,7 @@ class UsdLexer(RegexLexer):
                     Keyword.Type,
                     Whitespace,
                     Name.Attribute,
-                    Generic,
+                    Text,
                     Name.Keyword.Tokens,
                     Whitespace,
                     Operator,
@@ -93,7 +93,7 @@ class UsdLexer(RegexLexer):
                     Keyword.Type,
                     Whitespace,
                     Name.Attribute,
-                    Generic,
+                    Text,
                     Name.Keyword.Tokens,
                     Whitespace,
                     Operator,
@@ -110,8 +110,8 @@ class UsdLexer(RegexLexer):
         + [(r"[\(\)\[\]{}]", Punctuation)]
         + [
             ("#.*?$", Comment.Single),
-            (",", Generic),
-            (";", Generic),  # ";"s are allowed to combine separate metadata lines
+            (",", Punctuation),
+            (";", Punctuation),  # ";"s are allowed to combine separate metadata lines
             ("=", Operator),
             ("[-]?([0-9]*[.])?[0-9]+", Number),
             (r"'''(?:.|\n)*?'''", String),
@@ -123,6 +123,6 @@ class UsdLexer(RegexLexer):
             (r'\(.*"[.\\n]*".*\)', String.Doc),
             (r"\A#usda .+$", Comment.Hashbang),
             (r"\s+", Text),
-            (r"[\w_:\.]+", Generic),
+            (r"[\w_:\.]+", Text),
         ],
     }
