@@ -12,16 +12,6 @@ from pygments.token import Comment, Generic, Keyword, Name, Number, Operator, \
 __all__ = ["UsdLexer"]
 
 
-_PUNCTUATION = [
-    (r"\(", Punctuation),
-    (r"\)", Punctuation),
-    (r"\[", Punctuation),
-    (r"\]", Punctuation),
-    ("{", Punctuation),
-    ("}", Punctuation),
-]
-
-
 def _keywords(words, type_):
     """list[tuple[:class:`pygments.lexer.words`, :class:`pygments.token._TokenType`]]."""
     return [(words_(words, prefix=r"\b", suffix=r"\b"), type_)]
@@ -117,7 +107,7 @@ class UsdLexer(RegexLexer):
         + _keywords(OPERATORS, Operator)  # more attributes
         + [(type_ + r"\[\]", Keyword.Type) for type_ in TYPES]
         + _keywords(TYPES, Keyword.Type)
-        + _PUNCTUATION
+        + [(r"[\(\)\[\]{}]", Punctuation)],
         + [
             ("#.*?$", Comment.Single),
             (",", Generic),
