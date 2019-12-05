@@ -123,6 +123,6 @@ class UsdLexer(RegexLexer):
             (r'\(.*"[.\\n]*".*\)', String.Doc),
             (r"\A#usda .+$", Comment.Hashbang),
             (r"\s+", Text),
-            (r"[\w|_|:|\.]+", Generic),
+            (r"[\w_:\.]+", Generic),
         ],
     }
