@@ -107,7 +107,7 @@ class UsdLexer(RegexLexer):
         + _keywords(OPERATORS, Operator)  # more attributes
         + [(type_ + r"\[\]", Keyword.Type) for type_ in TYPES]
         + _keywords(TYPES, Keyword.Type)
-        + [(r"[\(\)\[\]{}]", Punctuation)],
+        + [(r"[\(\)\[\]{}]", Punctuation)]
         + [
             ("#.*?$", Comment.Single),
             (",", Generic),
