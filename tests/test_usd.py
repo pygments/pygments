@@ -38,7 +38,7 @@ class Features(_Common):
             "@./some/path/to/a/file/foo.usda@",
             "@/some/path/to/a/file/foo.usda@",
             "@some/path/to/a/file/foo.usda@",
-            r"@file://SPECI__Z-_ALIZED(syntax_here)?with_arbitrary@#)(%*&)\characters.tar.gz@",
+            r"@file://SPECI__Z-_ALIZED(syntax_here)?with_arbitrary#)(%*&)\characters.tar.gz@",
         ]:
             expected = [
                 (token.String.Interpol, path),
@@ -392,7 +392,10 @@ class Features(_Common):
                 (token.Token.Operator, u"="),
                 (token.Token.Text, u" "),
                 (token.Token.Punctuation, u"["),
-                (token.Token.Literal.String, u'"modelingVariant", "shadingComplexity"'),
+                (token.Token.Literal.String, u'"modelingVariant"'),
+                (token.Token.Generic, u','),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.String, u'"shadingComplexity"'),
                 (token.Token.Punctuation, u"]"),
                 (token.Token.Text, u"\n"),
                 (token.Token.Punctuation, u")"),
@@ -523,4 +526,54 @@ class EdgeCases(_Common):
                 (token.Token.Text, u'\n'),
             ],
             self._get(code),
+        )
+
+    def test_outer_match(self):
+        """Make sure that text between located between quotes and @@s are not matched."""
+        at_sign = "@firststring@ something else @secondstring@"
+
+        self.assertEqual(
+            [
+                (token.Token.Literal.String.Interpol, u'@firststring@'),
+                (token.Token.Text, u' '),
+                (token.Token.Generic, u'something'),
+                (token.Token.Text, u' '),
+                (token.Token.Generic, u'else'),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.String.Interpol, u'@secondstring@'),
+                (token.Token.Text, u'\n'),
+            ],
+            self._get(at_sign)
+        )
+
+        single = "'firststring' something else 'secondstring'"
+
+        self.assertEqual(
+            [
+                (token.Token.Literal.String, u"'firststring'"),
+                (token.Token.Text, u' '),
+                (token.Token.Generic, u'something'),
+                (token.Token.Text, u' '),
+                (token.Token.Generic, u'else'),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.String, u"'secondstring'"),
+                (token.Token.Text, u'\n'),
+            ],
+            self._get(single)
+        )
+
+        double = "'firststring' something else 'secondstring'"
+
+        self.assertEqual(
+            [
+                (token.Token.Literal.String, u"'firststring'"),
+                (token.Token.Text, u' '),
+                (token.Token.Generic, u'something'),
+                (token.Token.Text, u' '),
+                (token.Token.Generic, u'else'),
+                (token.Token.Text, u' '),
+                (token.Token.Literal.String, u"'secondstring'"),
+                (token.Token.Text, u'\n'),
+            ],
+            self._get(double)
         )
