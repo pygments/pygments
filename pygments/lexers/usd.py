@@ -122,7 +122,8 @@ class UsdLexer(RegexLexer):
             (r"@.*?@", String.Interpol),
             (r'\(.*"[.\\n]*".*\)', String.Doc),
             (r"\A#usda .+$", Comment.Hashbang),
-            (r"\s+", Text),
-            (r"[\w_:\.]+", Text),
+            (r"\s+", Whitespace),
+            (r"[\w_]+", Text),
+            (r"[_:\.]+", Punctuation),
         ],
     }
