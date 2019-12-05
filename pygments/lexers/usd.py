@@ -1,11 +1,11 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """The module that parses Pixar's Universal Scene Description file format."""
 
-from pygments._usd_builtins import COMMON_ATTRIBUTES, KEYWORDS, OPERATORS, \
-    SPECIAL_NAMES, TYPES
-from pygments.lexer import RegexLexer, bygroups, words
+from pygments.lexer import RegexLexer, bygroups
+from pygments.lexer import words as words_
+from pygments.lexers._usd_builtins import COMMON_ATTRIBUTES, KEYWORDS, \
+    OPERATORS, SPECIAL_NAMES, TYPES
 from pygments.token import Comment, Generic, Keyword, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
 
@@ -24,7 +24,7 @@ _PUNCTUATION = [
 
 def _keywords(words, type_):
     """list[tuple[:class:`pygments.lexer.words`, :class:`pygments.token._TokenType`]]."""
-    return [(words(words, prefix=r"\b", suffix=r"\b"), type_)]
+    return [(words_(words, prefix=r"\b", suffix=r"\b"), type_)]
 
 
 _TYPE = r"(\w+(?:\[\])?)"
