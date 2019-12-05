@@ -300,7 +300,7 @@ class Features(_Common):
 
     def test_numbers(self):
         """Check that different number representations work."""
-        code = "8 8.0123312132, -4 -14.123"
+        code = "8 8.0123312132, -4 -14.123 1e10 0.1e10 10.123e+10 0.123e-14"
 
         self.assertEqual(
             [
@@ -312,6 +312,14 @@ class Features(_Common):
                 (Literal.Number, u"-4"),
                 (Text, u" "),
                 (Literal.Number, u"-14.123"),
+                (Text, u"\n"),
+                (Literal.Number, u"1e10"),
+                (Text, u"\n"),
+                (Literal.Number, u"0.1e10"),
+                (Text, u"\n"),
+                (Literal.Number, u"10.123e+10"),
+                (Text, u"\n"),
+                (Literal.Number, u"0.123e-14"),
                 (Text, u"\n"),
             ],
             self._get(code),

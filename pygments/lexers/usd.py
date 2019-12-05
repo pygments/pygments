@@ -113,7 +113,7 @@ class UsdLexer(RegexLexer):
             (",", Punctuation),
             (";", Punctuation),  # ";"s are allowed to combine separate metadata lines
             ("=", Operator),
-            ("[-]?([0-9]*[.])?[0-9]+", Number),
+            ("[-]?([0-9]*[.])?[0-9]+(?:e[+-]\d+)?", Number),
             (r"'''(?:.|\n)*?'''", String),
             (r'"""(?:.|\n)*?"""', String),
             (r"'.*?'", String),
