@@ -179,9 +179,9 @@ class HttpLexer(RegexLexer):
              bygroups(Name.Function, Text, Name.Namespace, Text,
                       Keyword.Reserved, Operator, Number, Text),
              'headers'),
-            (r'(HTTP)(/)(1\.[01]|2|3)( +)(\d{3})( +)([^\r\n]+)(\r?\n|\Z)',
-             bygroups(Keyword.Reserved, Operator, Number, Text, Number,
-                      Text, Name.Exception, Text),
+            (r'(HTTP)(/)(1\.[01]|2|3)( +)(\d{3})(?:( +)([^\r\n]+))?(\r?\n|\Z)',
+             bygroups(Keyword.Reserved, Operator, Number, Text, Number, Text,
+                      Name.Exception, Text),
              'headers'),
         ],
         'headers': [
