@@ -49,8 +49,8 @@ class MoselLexer(RegexLexer):
                 'is_sos1', 'is_sos2', 'is_integer', 'is_binary', 'is_continuous',
                 'is_free', 'is_semcont', 'is_semint', 'is_partint'
                 )), Keyword.Type),
-            (r'(\+|\-|\*|/|=|<=|>=|==|\||\^|<|>|<>|\.\.|\.|:=|:|::|in|mod|div)', Operator),
-            (r'[()\[\]{},;:]+', Punctuation),
+            (r'(\+|\-|\*|/|=|<=|>=|\||\^|<|>|<>|\.\.|\.|:=|::|:|in|mod|div)', Operator),
+            (r'[()\[\]{},;]+', Punctuation),
             (words((
                 # core functions
                 '_',
