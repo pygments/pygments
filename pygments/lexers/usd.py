@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+    pygments.lexers.usd
+    ~~~~~~~~~~~~~~~~~~~
 
-"""The module that parses Pixar's Universal Scene Description file format."""
+    The module that parses Pixar's Universal Scene Description file format.
+
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.lexer import words as words_
@@ -13,7 +20,6 @@ __all__ = ["UsdLexer"]
 
 
 def _keywords(words, type_):
-    """list[tuple[:class:`pygments.lexer.words`, :class:`pygments.token._TokenType`]]."""
     return [(words_(words, prefix=r"\b", suffix=r"\b"), type_)]
 
 
@@ -26,7 +32,7 @@ class UsdLexer(RegexLexer):
     """
     A lexer that parses Pixar's Universal Scene Description file format.
 
-    .. versionadded:: 2.6.0
+    .. versionadded:: 2.6
     """
 
     name = "USD"
@@ -35,80 +41,35 @@ class UsdLexer(RegexLexer):
 
     tokens = {
         "root": [
-            (
-                r"(custom){_WHITESPACE}(uniform)(\s+){}(\s+){}(\s*)(=)".format(
-                    _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
-                ),
-                bygroups(
-                    Keyword.Token,
-                    Whitespace,
-                    Keyword.Token,
-                    Whitespace,
-                    Keyword.Type,
-                    Whitespace,
-                    Name.Attribute,
-                    Text,
-                    Name.Keyword.Tokens,
-                    Whitespace,
-                    Operator,
-                ),
-            ),
-            (
-                r"(custom){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
-                    _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
-                ),
-                bygroups(
-                    Keyword.Token,
-                    Whitespace,
-                    Keyword.Type,
-                    Whitespace,
-                    Name.Attribute,
-                    Text,
-                    Name.Keyword.Tokens,
-                    Whitespace,
-                    Operator,
-                ),
-            ),
-            (
-                r"(uniform){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
-                    _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
-                ),
-                bygroups(
-                    Keyword.Token,
-                    Whitespace,
-                    Keyword.Type,
-                    Whitespace,
-                    Name.Attribute,
-                    Text,
-                    Name.Keyword.Tokens,
-                    Whitespace,
-                    Operator,
-                ),
-            ),
-            (
-                r"{}{_WHITESPACE}{}(\s*)(=)".format(
-                    _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE
-                ),
-                bygroups(
-                    Keyword.Type,
-                    Whitespace,
-                    Name.Attribute,
-                    Text,
-                    Name.Keyword.Tokens,
-                    Whitespace,
-                    Operator,
-                ),
-            ),
-        ]
-        + _keywords(KEYWORDS, Keyword.Tokens)
-        + _keywords(SPECIAL_NAMES, Name.Builtins)
-        + _keywords(COMMON_ATTRIBUTES, Name.Attribute)
-        + [(r"\b\w+:[\w:]+\b", Name.Attribute)]
-        + _keywords(OPERATORS, Operator)  # more attributes
-        + [(type_ + r"\[\]", Keyword.Type) for type_ in TYPES]
-        + _keywords(TYPES, Keyword.Type)
-        + [(r"[\(\)\[\]{}]", Punctuation)]
-        + [
+            (r"(custom){_WHITESPACE}(uniform)(\s+){}(\s+){}(\s*)(=)".format(
+                _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE),
+             bygroups(Keyword.Token, Whitespace, Keyword.Token, Whitespace,
+                      Keyword.Type, Whitespace, Name.Attribute, Text,
+                      Name.Keyword.Tokens, Whitespace, Operator)),
+            (r"(custom){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
+                _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE),
+             bygroups(Keyword.Token, Whitespace, Keyword.Type, Whitespace,
+                      Name.Attribute, Text, Name.Keyword.Tokens, Whitespace,
+                      Operator)),
+            (r"(uniform){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
+                _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE),
+             bygroups(Keyword.Token, Whitespace, Keyword.Type, Whitespace,
+                      Name.Attribute, Text, Name.Keyword.Tokens, Whitespace,
+                      Operator)),
+            (r"{}{_WHITESPACE}{}(\s*)(=)".format(
+                _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE),
+             bygroups(Keyword.Type, Whitespace, Name.Attribute, Text,
+                      Name.Keyword.Tokens, Whitespace, Operator)),
+        ] +
+        _keywords(KEYWORDS, Keyword.Tokens) +
+        _keywords(SPECIAL_NAMES, Name.Builtins) +
+        _keywords(COMMON_ATTRIBUTES, Name.Attribute) +
+        [(r"\b\w+:[\w:]+\b", Name.Attribute)] +
+        _keywords(OPERATORS, Operator) +  # more attributes
+        [(type_ + r"\[\]", Keyword.Type) for type_ in TYPES] +
+        _keywords(TYPES, Keyword.Type) +
+        [
+            (r"[\(\)\[\]{}]", Punctuation),
             ("#.*?$", Comment.Single),
             (",", Punctuation),
             (";", Punctuation),  # ";"s are allowed to combine separate metadata lines
