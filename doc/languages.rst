@@ -162,6 +162,7 @@ Programming languages
 * `Tera Term language <https://ttssh2.osdn.jp/>`_
 * TypeScript
 * TypoScript
+* `USD <https://graphics.pixar.com/usd/docs/index.html>`_
 * Unicon
 * Urbiscript
 * Vala
