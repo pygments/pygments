@@ -422,7 +422,7 @@ class KernelLogLexer(RegexLexer):
         ],
         'warn': [
             include('base'),
-            (r'.+', Generic.Strong, '#pop')
+            (r'.+\n', Generic.Strong, '#pop')
         ],
         'error': [
             include('base'),
