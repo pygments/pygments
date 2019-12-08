@@ -577,7 +577,7 @@ class AdaLexer(RegexLexer):
             (r'\n+', Text),
         ],
         'numbers': [
-            (r'[0-9_]+#[0-9a-f]+#', Number.Hex),
+            (r'[0-9_]+#[0-9a-f_\.]+#', Number.Hex),
             (r'[0-9_]+\.[0-9_]*', Number.Float),
             (r'[0-9_]+', Number.Integer),
         ],
