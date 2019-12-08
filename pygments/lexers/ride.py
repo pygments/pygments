@@ -56,7 +56,7 @@ class RideLexer(RegexLexer):
         'ScriptResult', 'Invocation', 'Asset', 'BlockInfo', 'Issue', 'Reissue',
         'Burn', 'NoAlg', 'Md5', 'Sha1', 'Sha224', 'Sha256', 'Sha384', 'Sha512',
         'Sha3224', 'Sha3256', 'Sha3384', 'Sha3512', 'BinaryEntry',
-        'BooleanEntry' , 'IntegerEntry', 'StringEntry', 'List', 'Ceiling',
+        'BooleanEntry', 'IntegerEntry', 'StringEntry', 'List', 'Ceiling',
         'Down', 'Floor', 'HalfDown', 'HalfEven', 'HalfUp', 'Up',
     )
 

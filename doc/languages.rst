@@ -99,6 +99,7 @@ Programming languages
 * Monkey
 * `Monte <https://monte.readthedocs.io/>`_
 * MoonScript
+* Mosel
 * MuPad
 * NASM
 * Nemerle
@@ -134,6 +135,7 @@ Programming languages
 * `Red <https://www.red-lang.org>`_
 * Redcode
 * Rexx
+* Ride
 * `Ruby <https://www.ruby-lang.org>`_ (incl. irb sessions)
 * `Rust <https://rust-lang.org>`_
 * S, S-Plus, R
@@ -265,6 +267,7 @@ Other markup
 * `Thrift <https://thrift.apache.org/>`_
 * `TOML <https://github.com/toml-lang/toml>`_
 * Treetop grammars
+* USD (Universal Scene Description)
 * Varnish configs
 * VGL
 * Vim Script
