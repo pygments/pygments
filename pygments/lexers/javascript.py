@@ -259,11 +259,11 @@ class LiveScriptLexer(RegexLexer):
             (r'//', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'/', Operator, '#pop'),
             default('#pop'),
         ],
         'root': [
-            # this next expr leads to infinite loops root -> slashstartsregex
-            # (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            (r'^(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'(?:\([^()]+\))?[ ]*[~-]{1,2}>|'
              r'(?:\(?[^()\n]+\)?)?[ ]*<[~-]{1,2}', Name.Function),
@@ -1060,7 +1060,7 @@ class CoffeeScriptLexer(RegexLexer):
             # This isn't really guarding against mishighlighting well-formed
             # code, just the ability to infinite-loop between root and
             # slashstartsregex.
-            (r'/', Operator),
+            (r'/', Operator, '#pop'),
             default('#pop'),
         ],
         'root': [

@@ -64,9 +64,6 @@ def test_lexer_classes(cls):
 
 @pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
 def test_random_input(cls):
-    if cls.name in ['XQuery', 'Opa', 'Zephir']:   # XXX temporary
-        return
-
     inst = cls()
     try:
         tokens = list(inst.get_tokens(test_content))

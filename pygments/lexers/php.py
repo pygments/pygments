@@ -50,13 +50,14 @@ class ZephirLexer(RegexLexer):
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
              r'([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'/', Operator, '#pop'),
             default('#pop')
         ],
         'badregex': [
             (r'\n', Text, '#pop')
         ],
         'root': [
-            (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            (r'^(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
              r'(<<|>>>?|==?|!=?|->|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),

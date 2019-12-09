@@ -235,6 +235,7 @@ Other markup
 * JSON, JSON-LD
 * Lean theorem prover
 * Lighttpd config files
+* Linux kernel log (dmesg)
 * LLVM assembly
 * LSL scripts
 * Makefiles
