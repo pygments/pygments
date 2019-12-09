@@ -30,7 +30,7 @@ class IniLexer(RegexLexer):
     """
 
     name = 'INI'
-    aliases = ['ini', 'cfg', 'dosini']
+    aliases = ['ini', 'cfg', 'dosini', 'conf-windows']
     filenames = ['*.ini', '*.cfg', '*.inf']
     mimetypes = ['text/x-ini', 'text/inf']
 
@@ -153,7 +153,7 @@ class KconfigLexer(RegexLexer):
     """
 
     name = 'Kconfig'
-    aliases = ['kconfig', 'menuconfig', 'linux-config', 'kernel-config']
+    aliases = ['kconfig', 'menuconfig', 'linux-config', 'kernel-config', 'conf']
     # Adjust this if new kconfig file names appear in your environment
     filenames = ['Kconfig', '*Config.in*', 'external.in*',
                  'standard-modules.in']
