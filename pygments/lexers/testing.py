@@ -17,7 +17,7 @@ __all__ = ['GherkinLexer', 'TAPLexer']
 
 class GherkinLexer(RegexLexer):
     """
-    For `Gherkin <http://github.com/aslakhellesoy/gherkin/>` syntax.
+    For `Gherkin <https://github.com/aslakhellesoy/gherkin/>` syntax.
 
     .. versionadded:: 1.2
     """

@@ -91,7 +91,7 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 
 * `Wikipedia <http://en.wikipedia.org>`_
 * `BitBucket <http://bitbucket.org/>`_, a Mercurial and Git hosting site
-* `The Sphinx documentation builder <http://sphinx.pocoo.org/>`_, for embedded source examples
+* `The Sphinx documentation builder <https://sphinx-doc.org/>`_, for embedded source examples
 * `rst2pdf <http://code.google.com/p/rst2pdf/>`_, a reStructuredText to PDF converter
 * `Codecov <http://codecov.io/>`_, a code coverage CI service
 * `Trac <http://trac.edgewall.org/>`_, the universal project management tool
@@ -107,7 +107,7 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 * `Bruce <http://r1chardj0n3s.googlepages.com/bruce>`_, a reStructuredText presentation tool
 * `PIDA <http://pida.co.uk/>`_, a universal IDE written in Python
 * `BPython <http://www.noiseforfree.com/bpython/>`_, a curses-based intelligent Python shell
-* `PuDB <http://pypi.python.org/pypi/pudb>`_, a console Python debugger
+* `PuDB <https://pypi.python.org/pypi/pudb>`_, a console Python debugger
 * `XWiki <http://www.xwiki.org/>`_, a wiki-based development framework in Java, using Jython
 * `roux <http://ananelson.com/software/roux/>`_, a script for running R scripts
   and creating beautiful output including graphs

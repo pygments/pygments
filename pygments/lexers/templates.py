@@ -323,7 +323,7 @@ class VelocityXmlLexer(DelegatingLexer):
 class DjangoLexer(RegexLexer):
     """
     Generic `django <http://www.djangoproject.com/documentation/templates/>`_
-    and `jinja <http://wsgiarea.pocoo.org/jinja/>`_ template lexer.
+    and `jinja <https://jinja.pocoo.org/jinja/>`_ template lexer.
 
     It just highlights django/jinja code between the preprocessor directives,
     other data is left untouched by the lexer.

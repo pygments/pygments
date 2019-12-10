@@ -1135,7 +1135,7 @@ class CoffeeScriptLexer(RegexLexer):
 
 class MaskLexer(RegexLexer):
     """
-    For `Mask <http://github.com/atmajs/MaskJS>`__ markup.
+    For `Mask <https://github.com/atmajs/MaskJS>`__ markup.
 
     .. versionadded:: 2.0
     """
