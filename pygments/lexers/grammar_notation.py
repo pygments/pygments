@@ -230,6 +230,8 @@ class PegLexer(RegexLexer):
     * A single `a-z` character immediately before a string, or
       multiple `a-z` characters following a string, are part of the
       string (e.g., `r"..."` or `"..."ilmsuxa`).
+
+    .. versionadded:: 2.6
     """
 
     name = 'PEG'
