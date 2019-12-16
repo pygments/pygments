@@ -33,7 +33,8 @@ class SieveLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'[\s();,{}\[\]]', Punctuation),
+            (r'\s+', Text),
+            (r'[();,{}\[\]]', Punctuation),
             # import:
             (r'(?i)require',
              Keyword.Namespace),
