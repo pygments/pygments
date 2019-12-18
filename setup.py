@@ -28,7 +28,7 @@ from pygments import __version__
 setup(
     name = 'Pygments',
     version = __version__,
-    url = 'http://pygments.org/',
+    url = 'https://pygments.org/',
     license = 'BSD License',
     author = 'Georg Brandl',
     author_email = 'georg@python.org',
