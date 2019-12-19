@@ -11,8 +11,8 @@ Programming languages
 * ActionScript
 * Ada
 * Agda (incl. literate)
-* `Alloy <http://alloy.mit.edu>`_
-* `AMPL <http://ampl.com>`_
+* `Alloy <https://alloytools.org/>`_
+* `AMPL <https://ampl.com/>`_
 * ANTLR
 * APL
 * AppleScript
@@ -24,13 +24,13 @@ Programming languages
 * BBC Basic
 * Befunge
 * BlitzBasic
-* `Boa <http://boa.cs.iastate.edu/docs/index.php>`_
+* `Boa <https://boa.cs.iastate.edu/docs/>`_
 * Boo
 * `Boogie <https://boogie.codeplex.com/>`_
 * BrainFuck
 * C, C++ (incl. dialects like Arduino)
 * C#
-* `Chapel <http://chapel.cray.com>`_
+* `Chapel <https://chapel-lang.org/>`_
 * `Charm++ CI <http://charmplusplus.org/>`_
 * Cirru
 * Clay
@@ -61,19 +61,19 @@ Programming languages
 * Fancy
 * Fantom
 * `Fennel <https://fennel-lang.org/>`_
-* `FloScript <http://ioflo.com/>`_
+* `FloScript <https://ioflo.com/>`_
 * Fortran
 * `FreeFEM++ <https://freefem.org/>`_
 * F#
 * GAP
 * Gherkin (Cucumber)
 * GLSL shaders
-* `Golo <http://golo-lang.org/>`_
+* `Golo <https://golo-lang.org/>`_
 * Gosu
 * Groovy
-* `Haskell <http://www.haskell.org>`_ (incl. Literate Haskell)
+* `Haskell <https://www.haskell.org/>`_ (incl. Literate Haskell)
 * HLSL
-* `HSpec <http://hackage.haskell.org/package/hspec>`_
+* `HSpec <https://hackage.haskell.org/package/hspec>`_
 * Hy
 * IDL
 * Idris (incl. Literate Idris)
@@ -106,7 +106,7 @@ Programming languages
 * NesC
 * NewLISP
 * Nimrod
-* `Nit <http://nitlanguage.org>`_
+* `Nit <https://nitlanguage.org/>`_
 * Notmuch
 * NuSMV
 * Objective-C
@@ -115,7 +115,7 @@ Programming languages
 * OCaml
 * Opa
 * OpenCOBOL
-* `ParaSail <http://www.parasail-lang.org>`_
+* `ParaSail <https://www.parasail-lang.org/>`_
 * Pawn
 * PHP
 * `Perl 5 <https://perl.org>`_
@@ -126,10 +126,10 @@ Programming languages
 * PowerShell
 * `Praat <http://www.praat.org>`_
 * Prolog
-* `Python <https://python.org>`_ 2.x and 3.x (incl. console sessions and
+* `Python <https://python.org/>`_ 2.x and 3.x (incl. console sessions and
   tracebacks)
 * QBasic
-* `Racket <http://racket-lang.org/>`_
+* `Racket <https://racket-lang.org/>`_
 * `Raku <https://www.raku.org/>`_ a.k.a. Perl 6
 * `REBOL <http://www.rebol.com>`_
 * `Red <https://www.red-lang.org>`_
@@ -151,7 +151,7 @@ Programming languages
 * `Slurm <https://slurm.schedmd.com/overview.html>`_
 * Smalltalk
 * SNOBOL
-* `Snowball <http://snowballstem.org/>`_
+* `Snowball <https://snowballstem.org/>`_
 * `Solidity <https://solidity.readthedocs.io/>`_
 * SourcePawn
 * `Stan <https://mc-stan.org/>`_
@@ -159,7 +159,7 @@ Programming languages
 * Stata
 * Swift
 * Swig
-* `SuperCollider <http://supercollider.github.io/>`_
+* `SuperCollider <https://supercollider.github.io/>`_
 * Tcl
 * `Tera Term language <https://ttssh2.osdn.jp/>`_
 * TypeScript
@@ -174,7 +174,7 @@ Programming languages
 * Visual Basic.NET
 * Visual FoxPro
 * `Whiley <http://whiley.org/>`_
-* `Xtend <http://xtend-lang.org/>`_
+* `Xtend <https://www.eclipse.org/xtend/>`_
 * XQuery
 * `Zeek <https://www.zeek.org>`_
 * Zephir
@@ -194,12 +194,12 @@ Template languages
 * Handlebars
 * JSP (Java Server Pages)
 * Liquid
-* `Myghty <http://www.myghty.org>`_ (the HTML::Mason based framework)
+* `Myghty <https://pypi.org/project/Myghty/>`_ (the HTML::Mason based framework)
 * `Mako <https://www.makotemplates.org>`_ (the Myghty successor)
 * Slim
 * `Smarty <https://www.smarty.net>`_ templates (PHP templating)
 * Tea
-* `Twig <http://twig.sensiolabs.org/>`_
+* `Twig <https://twig.symfony.com/>`_
 
 Other markup
 ------------
@@ -244,11 +244,11 @@ Other markup
 * MySQL
 * NCAR command language
 * Nginx config files
-* `Nix language <http://nixos.org/nix/>`_
+* `Nix language <https://nixos.org/nix/>`_
 * NSIS scripts
 * Notmuch
 * POV-Ray scenes
-* `Puppet <http://puppetlabs.com/>`_
+* `Puppet <https://puppet.com/>`_
 * QML
 * Ragel
 * Redcode

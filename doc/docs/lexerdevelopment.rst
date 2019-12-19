@@ -197,7 +197,7 @@ defined, it defaults to `re.MULTILINE`.  For more information about regular
 expression flags see the page about `regular expressions`_ in the Python
 documentation.
 
-.. _regular expressions: http://docs.python.org/library/re.html#regular-expression-syntax
+.. _regular expressions: https://docs.python.org/library/re.html#regular-expression-syntax
 
 
 Scanning multiple tokens at once

@@ -27,9 +27,9 @@
 
     Look at the `directive documentation`_ to get all the gory details.
 
-    .. _Docutils: http://docutils.sf.net/
+    .. _Docutils: https://docutils.sourceforge.io/
     .. _directive documentation:
-       http://docutils.sourceforge.net/docs/howto/rst-directives.html
+       https://docutils.sourceforge.io/docs/howto/rst-directives.html
 
     :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
