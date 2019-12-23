@@ -40,3 +40,17 @@ def test_multiline_argument(lexer):
             (Token.Text, '\n'),
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_directive_no_args(lexer):
+    fragment = 'Example\nServerName localhost'
+    tokens = [
+            (Token.Name.Builtin, 'Example'),
+            (Token.Text, ''),
+            (Token.Text, '\n'),
+            (Token.Name.Builtin, 'ServerName'),
+            (Token.Text, ' '),
+            (Token.Text, 'localhost'),
+            (Token.Text, ''),
+            (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
