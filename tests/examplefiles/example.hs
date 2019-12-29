@@ -39,3 +39,6 @@ type family Fam (a :: Type) = r :: Type where
 type IntChar = '[Int, Char]
 type Falsy = 'False
 type Falsy = '(10, 20, 30)
+type EmptyList = '[]
+type TypeCons = 1 ': '[]
+type Times = 1 '* 2
