@@ -259,6 +259,7 @@ Other markup
 * Rql
 * RSL
 * Scdoc
+* Sieve
 * SPARQL
 * SQL, also MySQL, SQLite
 * Squid configuration
