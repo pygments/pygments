@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, include, bygroups, default, combined, \
     words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error, Whitespace, Other
-from pygments.util import get_bool_opt, get_list_opt, iteritems
+from pygments.util import get_bool_opt, get_list_opt
 
 __all__ = ['LuaLexer', 'MoonScriptLexer', 'ChaiscriptLexer', 'LSLLexer',
            'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer', 'HybrisLexer',
@@ -142,7 +142,7 @@ class LuaLexer(RegexLexer):
         self._functions = set()
         if self.func_name_highlighting:
             from pygments.lexers._lua_builtins import MODULES
-            for mod, func in iteritems(MODULES):
+            for mod, func in MODULES.items():
                 if mod not in self.disabled_modules:
                     self._functions.update(func)
         RegexLexer.__init__(self, **options)

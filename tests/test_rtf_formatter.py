@@ -7,7 +7,8 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.util import StringIO
+from io import StringIO
+
 from pygments.formatters import RtfFormatter
 from pygments.lexers.special import TextLexer
 

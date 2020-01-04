@@ -11,7 +11,6 @@ import re
 import random
 
 from pygments import unistring as uni
-from pygments.util import unichr
 
 
 def test_cats_exist_and_compilable():
@@ -39,7 +38,7 @@ def test_spot_check_types():
     random.seed(0)
     for i in range(1000):
         o = random.randint(0, 65535)
-        c = unichr(o)
+        c = chr(o)
         if o > 0xd800 and o <= 0xdfff and not uni.Cs:
             continue  # Bah, Jython.
         print(hex(o))

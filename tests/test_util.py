@@ -193,17 +193,6 @@ def test_guess_decode_from_terminal():
     assert s == (u'\xff', 'utf-8')
 
 
-def test_add_metaclass():
-    class Meta(type):
-        pass
-
-    @util.add_metaclass(Meta)
-    class Cls:
-        pass
-
-    assert type(Cls) is Meta
-
-
 def test_console_ansiformat():
     f = console.ansiformat
     c = console.codes

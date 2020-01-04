@@ -10,6 +10,7 @@
 from __future__ import print_function
 
 import random
+from io import StringIO, BytesIO
 from os import path
 
 import pytest
@@ -18,12 +19,12 @@ from pygments import lexers, formatters, lex, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatters.img import FontNotFound
-from pygments.util import text_type, StringIO, BytesIO, xrange, ClassNotFound
+from pygments.util import ClassNotFound
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_basic_api.py')
 
-test_content = [chr(i) for i in xrange(33, 128)] * 5
+test_content = [chr(i) for i in range(33, 128)] * 5
 random.shuffle(test_content)
 test_content = ''.join(test_content) + '\n'
 
@@ -75,7 +76,7 @@ def test_random_input(cls):
     for token in tokens:
         assert isinstance(token, tuple)
         assert isinstance(token[0], _TokenType)
-        assert isinstance(token[1], text_type)
+        assert isinstance(token[1], str)
         txt += token[1]
     assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \
         (cls.name, test_content, txt)
@@ -176,7 +177,7 @@ def test_formatter_encodings():
     fmt = HtmlFormatter()
     tokens = [(Text, u"ä")]
     out = format(tokens, fmt)
-    assert type(out) is text_type
+    assert type(out) is str
     assert u"ä" in out
 
     # encoding option
@@ -206,7 +207,7 @@ def test_formatter_unicode_handling(cls):
     if cls.name != 'Raw tokens':
         out = format(tokens, inst)
         if cls.unicodeoutput:
-            assert type(out) is text_type, '%s: %r' % (cls, out)
+            assert type(out) is str, '%s: %r' % (cls, out)
 
         inst = cls(encoding='utf-8')
         out = format(tokens, inst)
@@ -272,7 +273,7 @@ class TestFilters(object):
             with open(TESTFILE, 'rb') as fp:
                 text = fp.read().decode('utf-8')
             tokens = list(lx.get_tokens(text))
-            assert all(isinstance(t[1], text_type) for t in tokens), \
+            assert all(isinstance(t[1], str) for t in tokens), \
                 '%s filter did not return Unicode' % x
             roundtext = ''.join([t[1] for t in tokens])
             if x not in ('whitespace', 'keywordcase', 'gobble'):

@@ -26,8 +26,7 @@
     :license: BSD, see LICENSE for details.
 """
 import sys
-
-from pygments.util import StringIO, BytesIO
+from io import StringIO, BytesIO
 
 __version__ = '2.5.2'
 __docformat__ = 'restructuredtext'

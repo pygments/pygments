@@ -27,7 +27,6 @@ import re
 
 from pygments.lexer import Lexer
 from pygments.token import Token
-from pygments.util import text_type
 
 __all__ = ['RobotFrameworkLexer']
 
@@ -80,7 +79,7 @@ class RobotFrameworkLexer(Lexer):
             for value, token in row_tokenizer.tokenize(row):
                 for value, token in var_tokenizer.tokenize(value, token):
                     if value:
-                        yield index, token, text_type(value)
+                        yield index, token, str(value)
                         index += len(value)
 
 

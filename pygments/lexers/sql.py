@@ -44,7 +44,6 @@ from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
 from pygments.token import Punctuation, Whitespace, Text, Comment, Operator, \
     Keyword, Name, String, Number, Generic
 from pygments.lexers import get_lexer_by_name, ClassNotFound
-from pygments.util import iteritems
 
 from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
     PSEUDO_TYPES, PLPGSQL_KEYWORDS
@@ -212,7 +211,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     mimetypes = ['text/x-plpgsql']
 
     flags = re.IGNORECASE
-    tokens = {k: l[:] for (k, l) in iteritems(PostgresLexer.tokens)}
+    tokens = {k: l[:] for (k, l) in PostgresLexer.tokens.items()}
 
     # extend the keywords list
     for i, pattern in enumerate(tokens['root']):
@@ -246,7 +245,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     aliases = []    # not public
 
     flags = re.IGNORECASE
-    tokens = {k: l[:] for (k, l) in iteritems(PostgresLexer.tokens)}
+    tokens = {k: l[:] for (k, l) in PostgresLexer.tokens.items()}
 
     tokens['root'].append(
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
