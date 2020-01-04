@@ -289,7 +289,7 @@ def duplicates_removed(it, already_seen=()):
     return lst
 
 
-class Future(object):
+class Future:
     """Generic class to defer some work.
 
     Handled specially in RegexLexerMeta, to support regex string construction at

@@ -59,7 +59,7 @@ class FontNotFound(Exception):
     """When there are no usable fonts specified"""
 
 
-class FontManager(object):
+class FontManager:
     """
     Manages a set of fonts: normal, italic, bold, etc...
     """

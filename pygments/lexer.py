@@ -251,7 +251,7 @@ class include(str):  # pylint: disable=invalid-name
     pass
 
 
-class _inherit(object):
+class _inherit:
     """
     Indicates the a state should inherit from its superclass.
     """
@@ -274,7 +274,7 @@ class combined(tuple):  # pylint: disable=invalid-name
         pass
 
 
-class _PseudoMatch(object):
+class _PseudoMatch:
     """
     A pseudo match object constructed from a string.
     """
@@ -327,11 +327,12 @@ def bygroups(*args):
     return callback
 
 
-class _This(object):
+class _This:
     """
     Special singleton used for indicating the caller class.
     Used by ``using``.
     """
+
 this = _This()
 
 
@@ -674,7 +675,7 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
                     break
 
 
-class LexerContext(object):
+class LexerContext:
     """
     A helper object that holds lexer position data.
     """

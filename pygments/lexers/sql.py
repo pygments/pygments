@@ -105,7 +105,7 @@ def language_callback(lexer, match):
     yield (match.start(7), String, match.group(7))
 
 
-class PostgresBase(object):
+class PostgresBase:
     """Base class for Postgres-related lexers.
 
     This is implemented as a mixin to avoid the Lexer metaclass kicking in.
@@ -270,7 +270,7 @@ re_message = re.compile(
     r'FATAL|HINT|DETAIL|CONTEXT|LINE [0-9]+):)(.*?\n)')
 
 
-class lookahead(object):
+class lookahead:
     """Wrap an iterator and allow pushing back an item."""
     def __init__(self, x):
         self.iter = iter(x)

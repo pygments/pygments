@@ -83,7 +83,7 @@ class RobotFrameworkLexer(Lexer):
                         index += len(value)
 
 
-class VariableTokenizer(object):
+class VariableTokenizer:
 
     def tokenize(self, string, token):
         var = VariableSplitter(string, identifiers='$@%&')
@@ -110,7 +110,7 @@ class VariableTokenizer(object):
             yield value, token
 
 
-class RowTokenizer(object):
+class RowTokenizer:
 
     def __init__(self):
         self._table = UnknownTable()
@@ -158,7 +158,7 @@ class RowTokenizer(object):
                 yield value, token
 
 
-class RowSplitter(object):
+class RowSplitter:
     _space_splitter = re.compile('( {2,})')
     _pipe_splitter = re.compile(r'((?:^| +)\|(?: +|$))')
 
@@ -184,7 +184,7 @@ class RowSplitter(object):
         yield rest
 
 
-class Tokenizer(object):
+class Tokenizer:
     _tokens = None
 
     def __init__(self):
@@ -291,7 +291,7 @@ class KeywordCall(Tokenizer):
         return GherkinTokenizer().tokenize(value, KEYWORD)
 
 
-class GherkinTokenizer(object):
+class GherkinTokenizer:
     _gherkin_prefix = re.compile('^(Given|When|Then|And) ', re.IGNORECASE)
 
     def tokenize(self, value, token):
@@ -319,7 +319,7 @@ class ForLoop(Tokenizer):
         return token
 
 
-class _Table(object):
+class _Table:
     _tokenizer_class = None
 
     def __init__(self, prev_tokenizer=None):

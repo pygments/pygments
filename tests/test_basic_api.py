@@ -254,7 +254,7 @@ def test_bare_class_handler():
         assert False, 'nothing raised'
 
 
-class TestFilters(object):
+class TestFilters:
 
     def test_basic(self):
         filters_args = [

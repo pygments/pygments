@@ -863,7 +863,7 @@ def find_colors(code):
     return default_token, color_map
 
 
-class StyleWriter(object):
+class StyleWriter:
 
     def __init__(self, code, name):
         self.code = code

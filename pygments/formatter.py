@@ -23,7 +23,7 @@ def _lookup_style(style):
     return style
 
 
-class Formatter(object):
+class Formatter:
     """
     Converts a token stream to text.
 
