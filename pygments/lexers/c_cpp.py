@@ -199,7 +199,7 @@ class CLexer(CFamilyLexer):
         'statements': [
             (words((
                 '_Alignas', '_Alignof', '_Noreturn', '_Generic', '_Thread_local', 
-                '_Bool', '_Complex'), suffix=r'\b'), Keyword),
+                '_Bool', '_Complex', '_Static_assert', '_Imaginary', '_Atomic'), suffix=r'\b'), Keyword),
             inherit
         ]
     }
