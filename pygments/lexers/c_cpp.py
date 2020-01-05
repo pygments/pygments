@@ -55,11 +55,17 @@ class CFamilyLexer(RegexLexer):
             (r'(L?)(")', bygroups(String.Affix, String), 'string'),
             (r"(L?)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
-            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
-            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
-            (r'0[0-7]+[LlUu]*', Number.Oct),
-            (r'\d+[LlUu]*', Number.Integer),
+
+             # Hexadecimal floating-point literals (C11, C++17)
+            (r'0[xX]([0-9a-fA-F](\'?[0-9a-fA-F])*\.[0-9a-fA-F](\'?[0-9a-fA-F])*|\.[0-9a-fA-F](\'?[0-9a-fA-F])*|[0-9a-fA-F](\'?[0-9a-fA-F])*)[pP][+-]?[0-9a-fA-F](\'?[0-9a-fA-F])*[lL]?', Number.Float),
+            (r'0[xX](([0-9a-fA-F](\'?[0-9a-fA-F])*\.[0-9a-fA-F](\'?[0-9a-fA-F])*|\.[0-9a-fA-F](\'?[0-9a-fA-F])*)[lL]?)', Number.Float),
+
+            (r'(\d(\'?\d)*\.\d(\'?\d)*|\.\d(\'?\d)*|\d(\'?\d)*)[eE][+-]?\d(\'?\d)*[fFlL]?', Number.Float),
+            (r'((\d(\'?\d)*\.\d(\'?\d)*|\.\d(\'?\d)*)[fFlL]?)|(\d(\'?\d)*[fFlL])', Number.Float),
+            (r'0[xX][0-9a-fA-F](\'?[0-9a-fA-F])*(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Hex),
+            (r'0[bB][01](\'?[01])*(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Bin),
+            (r'0(\'?[0-7])+(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Oct),
+            (r'\d(\'?\d)*(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Integer),
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
@@ -149,7 +155,7 @@ class CFamilyLexer(RegexLexer):
         'clock_t', 'time_t', 'va_list', 'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t',
         'mbstate_t', 'wctrans_t', 'wint_t', 'wctype_t'}
     c99_types = {
-        '_Bool', '_Complex', 'int8_t', 'int16_t', 'int32_t', 'int64_t', 'uint8_t',
+        'int8_t', 'int16_t', 'int32_t', 'int64_t', 'uint8_t',
         'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t', 'int_least16_t',
         'int_least32_t', 'int_least64_t', 'uint_least8_t', 'uint_least16_t',
         'uint_least32_t', 'uint_least64_t', 'int_fast8_t', 'int_fast16_t', 'int_fast32_t',
@@ -189,6 +195,15 @@ class CLexer(CFamilyLexer):
     mimetypes = ['text/x-chdr', 'text/x-csrc']
     priority = 0.1
 
+    tokens = {
+        'statements': [
+            (words((
+                '_Alignas', '_Alignof', '_Noreturn', '_Generic', '_Thread_local', 
+                '_Bool', '_Complex'), suffix=r'\b'), Keyword),
+            inherit
+        ]
+    }
+
     def analyse_text(text):
         if re.search(r'^\s*#include [<"]', text, re.MULTILINE):
             return 0.1
@@ -218,9 +233,10 @@ class CppLexer(CFamilyLexer):
                 'try', 'typeid', 'typename', 'using', 'virtual',
                 'constexpr', 'nullptr', 'decltype', 'thread_local',
                 'alignas', 'alignof', 'static_assert', 'noexcept', 'override',
-                'final'), suffix=r'\b'), Keyword),
-            (r'char(16_t|32_t)\b', Keyword.Type),
-            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+                'final', 'constinit', 'consteval', 'co_await',
+                'co_return', 'co_yield', 'requires', 'import', 'module'), suffix=r'\b'), Keyword),
+            (r'char(16_t|32_t|8_t)\b', Keyword.Type),
+            (r'(class|concept|struct|enum|union)(\s+)', bygroups(Keyword, Text), 'classname'),
             # C++11 raw strings
             (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
              bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
