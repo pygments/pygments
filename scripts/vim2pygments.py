@@ -11,8 +11,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 import sys
 import re
 from os import path

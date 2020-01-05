@@ -9,8 +9,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import division
-
 from io import StringIO
 
 from pygments.formatter import Formatter
