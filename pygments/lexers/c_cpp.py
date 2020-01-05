@@ -165,10 +165,22 @@ class CFamilyLexer(RegexLexer):
         'clockid_t', 'cpu_set_t', 'cpumask_t', 'dev_t', 'gid_t', 'id_t', 'ino_t', 'key_t',
         'mode_t', 'nfds_t', 'pid_t', 'rlim_t', 'sig_t', 'sighandler_t', 'siginfo_t',
         'sigset_t', 'sigval_t', 'socklen_t', 'timer_t', 'uid_t'}
+    c11_atomic_types = {
+        'atomic_bool', 'atomic_char', 'atomic_schar', 'atomic_uchar', 'atomic_short', 
+        'atomic_ushort', 'atomic_int', 'atomic_uint', 'atomic_long', 'atomic_ulong',
+        'atomic_llong', 'atomic_ullong', 'atomic_char16_t', 'atomic_char32_t', 'atomic_wchar_t', 
+        'atomic_int_least8_t', 'atomic_uint_least8_t', 'atomic_int_least16_t', 
+        'atomic_uint_least16_t', 'atomic_int_least32_t', 'atomic_uint_least32_t',
+        'atomic_int_least64_t', 'atomic_uint_least64_t', 'atomic_int_fast8_t', 
+        'atomic_uint_fast8_t', 'atomic_int_fast16_t', 'atomic_uint_fast16_t',
+        'atomic_int_fast32_t', 'atomic_uint_fast32_t', 'atomic_int_fast64_t',
+        'atomic_uint_fast64_t', 'atomic_intptr_t', 'atomic_uintptr_t', 'atomic_size_t',
+        'atomic_ptrdiff_t', 'atomic_intmax_t', 'atomic_uintmax_t'}
 
     def __init__(self, **options):
         self.stdlibhighlighting = get_bool_opt(options, 'stdlibhighlighting', True)
         self.c99highlighting = get_bool_opt(options, 'c99highlighting', True)
+        self.c11highlighting = get_bool_opt(options, 'c11highlighting', True)
         self.platformhighlighting = get_bool_opt(options, 'platformhighlighting', True)
         RegexLexer.__init__(self, **options)
 
@@ -179,6 +191,8 @@ class CFamilyLexer(RegexLexer):
                 if self.stdlibhighlighting and value in self.stdlib_types:
                     token = Keyword.Type
                 elif self.c99highlighting and value in self.c99_types:
+                    token = Keyword.Type
+                elif self.c11highlighting and value in self.c11_atomic_types:
                     token = Keyword.Type
                 elif self.platformhighlighting and value in self.linux_types:
                     token = Keyword.Type
