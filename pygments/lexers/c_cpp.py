@@ -218,8 +218,9 @@ class CppLexer(CFamilyLexer):
                 'try', 'typeid', 'typename', 'using', 'virtual',
                 'constexpr', 'nullptr', 'decltype', 'thread_local',
                 'alignas', 'alignof', 'static_assert', 'noexcept', 'override',
-                'final'), suffix=r'\b'), Keyword),
-            (r'char(16_t|32_t)\b', Keyword.Type),
+                'final', 'constinit', 'consteval', 'concept', 'co_await',
+                'co_return', 'co_yield', 'requires', 'import', 'module'), suffix=r'\b'), Keyword),
+            (r'char(16_t|32_t|8_t)\b', Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             # C++11 raw strings
             (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
