@@ -88,14 +88,14 @@ class CFamilyLexer(RegexLexer):
                 'identifier', 'forceinline', 'assume'),
                 prefix=r'__', suffix=r'\b'), Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
-            (r'([a-zA-Z_]\w*)(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
-            (r'[a-zA-Z_]\w*', Name),
+            (r'([a-zA-Z_$][\w$]*)(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
+            (r'[a-zA-Z_$][\w$]*', Name),
         ],
         'root': [
             include('whitespace'),
             # functions
             (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
-             r'([a-zA-Z_]\w*)'             # method name
+             r'([a-zA-Z_$][\w$]*)'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;{]*)(\{)',
              bygroups(using(this), Name.Function, using(this), using(this),
@@ -103,7 +103,7 @@ class CFamilyLexer(RegexLexer):
              'function'),
             # function declarations
             (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
-             r'([a-zA-Z_]\w*)'             # method name
+             r'([a-zA-Z_$][\w$]*)'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;]*)(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
@@ -268,7 +268,7 @@ class CppLexer(CFamilyLexer):
             (r'__(offload|blockingoffload|outer)\b', Keyword.Pseudo),
         ],
         'classname': [
-            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
+            (r'[a-zA-Z_$][\w$]*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
         ],
