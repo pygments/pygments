@@ -53,7 +53,7 @@ class CFamilyLexer(RegexLexer):
         ],
         'statements': [
             (r'(L?)(")', bygroups(String.Affix, String), 'string'),
-            (r"(L?)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
+            (r"([LuU]?|u8?)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
 
              # Hexadecimal floating-point literals (C11, C++17)
