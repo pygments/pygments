@@ -172,7 +172,12 @@ class ECLexer(CLexer):
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
             (r'(null|value|this)\b', Name.Builtin),
             inherit,
-        ]
+        ],
+        'classname': [
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
+            # template specification
+            (r'\s*(?=>)', Text, '#pop'),
+        ],
     }
 
 
