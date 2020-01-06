@@ -77,13 +77,13 @@ class CFamilyLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
+            (r'(struct|union)(\s+)', bygroups(Keyword, Text), 'class'),
             (words(('asm', 'auto', 'break', 'case', 'const', 'continue',
                     'default', 'do', 'else', 'enum', 'extern', 'for', 'goto',
-                    'if', 'register', 'restricted', 'return', 'sizeof',
-                    'static', 'switch', 'typedef', 'volatile', 'while', 
+                    'if', 'register', 'restricted', 'return', 'sizeof', 'struct',
+                    'static', 'switch', 'typedef', 'volatile', 'while', 'union',
                     'thread_local', 'alignas', 'alignof', 'static_assert', '_Pragma'),
                    suffix=r'\b'), Keyword),
-            (r'(struct|union)(\s+)', bygroups(Keyword, Text), 'class'),
             (r'(bool|int|long|float|short|double|char|unsigned|signed|void)\b',
              Keyword.Type),
             (words(('inline', '_inline', '__inline', 'naked', 'restrict',
@@ -161,6 +161,7 @@ class CFamilyLexer(RegexLexer):
             (r'[a-zA-Z_$][\w$]*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
+            default('#pop')
         ]
     }
 
@@ -255,17 +256,18 @@ class CppLexer(CFamilyLexer):
 
     tokens = {
         'statements': [
+            (r'(class|concept|typename)(\s+)', bygroups(Keyword, Text), 'class'),
             (words((
                 'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
                 'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
-                'private', 'protected', 'public', 'reinterpret_cast',
+                'private', 'protected', 'public', 'reinterpret_cast', 'class',
                 'restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
-                'try', 'typeid', 'using', 'virtual', 'constexpr', 'nullptr',
+                'try', 'typeid', 'using', 'virtual', 'constexpr', 'nullptr', 'concept',
                 'decltype', 'noexcept', 'override', 'final', 'constinit', 'consteval', 
-                'co_await', 'co_return', 'co_yield', 'requires', 'import', 'module'),
+                'co_await', 'co_return', 'co_yield', 'requires', 'import', 'module',
+                'typename'),
                suffix=r'\b'), Keyword),
             (r'char(16_t|32_t|8_t)\b', Keyword.Type),
-            (r'(class|concept|typename)(\s+)', bygroups(Keyword, Text), 'class'),
             (r'(enum)(\s+)', bygroups(Keyword, Text), 'enum'),
             # C++11 raw strings
             (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
@@ -290,6 +292,7 @@ class CppLexer(CFamilyLexer):
             (r'[a-zA-Z_$][\w$]*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
+            default('#pop')
         ]
     }
 
