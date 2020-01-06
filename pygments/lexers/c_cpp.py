@@ -61,7 +61,7 @@ class CFamilyLexer(RegexLexer):
             (r'0[xX](([0-9a-fA-F](\'?[0-9a-fA-F])*\.[0-9a-fA-F](\'?[0-9a-fA-F])*|\.[0-9a-fA-F](\'?[0-9a-fA-F])*)[lL]?)', Number.Float),
 
             (r'(\d(\'?\d)*\.\d(\'?\d)*|\.\d(\'?\d)*|\d(\'?\d)*)[eE][+-]?\d(\'?\d)*[fFlL]?', Number.Float),
-            (r'((\d(\'?\d)*\.\d(\'?\d)*|\.\d(\'?\d)*)[fFlL]?)|(\d(\'?\d)*[fFlL])', Number.Float),
+            (r'((\d(\'?\d)*\.(\d(\'?\d)*)?|\.\d(\'?\d)*)[fFlL]?)|(\d(\'?\d)*[fFlL])', Number.Float),
             (r'0[xX][0-9a-fA-F](\'?[0-9a-fA-F])*(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Hex),
             (r'0[bB][01](\'?[01])*(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Bin),
             (r'0(\'?[0-7])+(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Oct),
