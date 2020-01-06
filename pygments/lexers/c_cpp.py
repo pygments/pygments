@@ -33,6 +33,15 @@ class CFamilyLexer(RegexLexer):
     #: only one /* */ style comment
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)?'
 
+    # Hexadecimal part in an hexadecimal integer/floating-point literal.
+    # This includes decimal separators matching.
+    _hexpart = r'[0-9a-fA-F](\'?[0-9a-fA-F])*'
+    # Decimal part in an decimal integer/floating-point literal.
+    # This includes decimal separators matching.
+    _decpart = r'\d(\'?\d)*'
+    # Integer literal suffix (e.g. 'ull' or 'll').
+    _intsuffix = r'(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?'
+
     tokens = {
         'whitespace': [
             # preprocessor directives: without whitespace
@@ -57,27 +66,28 @@ class CFamilyLexer(RegexLexer):
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
 
              # Hexadecimal floating-point literals (C11, C++17)
-            (r'0[xX]([0-9a-fA-F](\'?[0-9a-fA-F])*\.[0-9a-fA-F](\'?[0-9a-fA-F])*|\.[0-9a-fA-F](\'?[0-9a-fA-F])*|[0-9a-fA-F](\'?[0-9a-fA-F])*)[pP][+-]?[0-9a-fA-F](\'?[0-9a-fA-F])*[lL]?', Number.Float),
+            (r'0[xX](' + _hexpart + '\.' + _hexpart + '|\.' + _hexpart + '|' + _hexpart + ')[pP][+-]?' + _hexpart + '[lL]?', Number.Float),
 
-            (r'(\d(\'?\d)*\.\d(\'?\d)*|\.\d(\'?\d)*|\d(\'?\d)*)[eE][+-]?\d(\'?\d)*[fFlL]?', Number.Float),
-            (r'((\d(\'?\d)*\.(\d(\'?\d)*)?|\.\d(\'?\d)*)[fFlL]?)|(\d(\'?\d)*[fFlL])', Number.Float),
-            (r'0[xX][0-9a-fA-F](\'?[0-9a-fA-F])*(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Hex),
-            (r'0[bB][01](\'?[01])*(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Bin),
-            (r'0(\'?[0-7])+(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Oct),
-            (r'\d(\'?\d)*(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?', Number.Integer),
+            (r'(' + _decpart + '\.' + _decpart + '|\.' + _decpart + '|' + _decpart + ')[eE][+-]?' + _decpart + '[fFlL]?', Number.Float),
+            (r'((' + _decpart + '\.(' + _decpart + ')?|\.' + _decpart + ')[fFlL]?)|(' + _decpart + '[fFlL])', Number.Float),
+            (r'0[xX]' + _hexpart + _intsuffix, Number.Hex),
+            (r'0[bB][01](\'?[01])*' + _intsuffix, Number.Bin),
+            (r'0(\'?[0-7])+' + _intsuffix, Number.Oct),
+            (r'' + _decpart + '' + _intsuffix, Number.Integer),
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
             (words(('asm', 'auto', 'break', 'case', 'const', 'continue',
                     'default', 'do', 'else', 'enum', 'extern', 'for', 'goto',
                     'if', 'register', 'restricted', 'return', 'sizeof',
-                    'static', 'struct', 'switch', 'typedef', 'union',
-                    'volatile', 'while'),
+                    'static', 'switch', 'typedef', 'volatile', 'while', 
+                    'thread_local', 'alignas', 'alignof', 'static_assert', '_Pragma'),
                    suffix=r'\b'), Keyword),
+            (r'(struct|union)(\s+)', bygroups(Keyword, Text), 'class'),
             (r'(bool|int|long|float|short|double|char|unsigned|signed|void)\b',
              Keyword.Type),
             (words(('inline', '_inline', '__inline', 'naked', 'restrict',
-                    'thread', 'typename'), suffix=r'\b'), Keyword.Reserved),
+                    'thread'), suffix=r'\b'), Keyword.Reserved),
             # Vector intrinsics
             (r'(__m(128i|128d|128|64))\b', Keyword.Reserved),
             # Microsoft-isms
@@ -89,7 +99,7 @@ class CFamilyLexer(RegexLexer):
                 prefix=r'__', suffix=r'\b'), Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
             (r'([a-zA-Z_$][\w$]*)(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
-            (r'[a-zA-Z_$][\w$]*', Name),
+            (r'[a-zA-Z_$][\w$]*', Name)
         ],
         'root': [
             include('whitespace'),
@@ -146,6 +156,11 @@ class CFamilyLexer(RegexLexer):
             (r'^\s*#el(?:se|if).*\n', Comment.Preproc, '#pop'),
             (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
             (r'.*?\n', Comment),
+        ],
+        'class': [
+            (r'[a-zA-Z_$][\w$]*', Name.Class, '#pop'),
+            # template specification
+            (r'\s*(?=>)', Text, '#pop'),
         ]
     }
 
@@ -212,7 +227,9 @@ class CLexer(CFamilyLexer):
         'statements': [
             (words((
                 '_Alignas', '_Alignof', '_Noreturn', '_Generic', '_Thread_local', 
-                '_Bool', '_Complex', '_Static_assert', '_Imaginary', '_Atomic'), suffix=r'\b'), Keyword),
+                '_Static_assert', '_Imaginary', 'noreturn', 'imaginary', 'complex'),
+                suffix=r'\b'), Keyword),
+            (words(('_Bool', '_Complex', '_Atomic'), suffix=r'\b'), Keyword.Type),
             inherit
         ]
     }
@@ -243,13 +260,13 @@ class CppLexer(CFamilyLexer):
                 'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
                 'private', 'protected', 'public', 'reinterpret_cast',
                 'restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
-                'try', 'typeid', 'typename', 'using', 'virtual',
-                'constexpr', 'nullptr', 'decltype', 'thread_local',
-                'alignas', 'alignof', 'static_assert', 'noexcept', 'override',
-                'final', 'constinit', 'consteval', 'co_await',
-                'co_return', 'co_yield', 'requires', 'import', 'module'), suffix=r'\b'), Keyword),
+                'try', 'typeid', 'using', 'virtual', 'constexpr', 'nullptr',
+                'decltype', 'noexcept', 'override', 'final', 'constinit', 'consteval', 
+                'co_await', 'co_return', 'co_yield', 'requires', 'import', 'module'),
+               suffix=r'\b'), Keyword),
             (r'char(16_t|32_t|8_t)\b', Keyword.Type),
-            (r'(class|concept|struct|enum|union)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(class|concept|typename)(\s+)', bygroups(Keyword, Text), 'class'),
+            (r'(enum)(\s+)', bygroups(Keyword, Text), 'enum'),
             # C++11 raw strings
             (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
              bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
@@ -267,11 +284,13 @@ class CppLexer(CFamilyLexer):
             # Offload C++ extensions, http://offload.codeplay.com/
             (r'__(offload|blockingoffload|outer)\b', Keyword.Pseudo),
         ],
-        'classname': [
+        'enum': [
+            # 'enum class' and 'enum struct' C++11 support
+            (words(('class', 'struct'), suffix=r'\b'), Keyword),
             (r'[a-zA-Z_$][\w$]*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
-        ],
+        ]
     }
 
     def analyse_text(text):
