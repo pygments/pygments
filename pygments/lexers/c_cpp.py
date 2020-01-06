@@ -77,7 +77,7 @@ class CFamilyLexer(RegexLexer):
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
-            (r'(struct|union)(\s+)', bygroups(Keyword, Text), 'class'),
+            (r'(struct|union)(\s+)', bygroups(Keyword, Text), 'classname'),
             (words(('asm', 'auto', 'break', 'case', 'const', 'continue',
                     'default', 'do', 'else', 'enum', 'extern', 'for', 'goto',
                     'if', 'register', 'restricted', 'return', 'sizeof', 'struct',
@@ -157,7 +157,7 @@ class CFamilyLexer(RegexLexer):
             (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
             (r'.*?\n', Comment),
         ],
-        'class': [
+        'classname': [
             (r'[a-zA-Z_$][\w$]*', Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
@@ -256,7 +256,7 @@ class CppLexer(CFamilyLexer):
 
     tokens = {
         'statements': [
-            (r'(class|concept|typename)(\s+)', bygroups(Keyword, Text), 'class'),
+            (r'(class|concept|typename)(\s+)', bygroups(Keyword, Text), 'classname'),
             (words((
                 'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
                 'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
@@ -268,7 +268,7 @@ class CppLexer(CFamilyLexer):
                 'typename'),
                suffix=r'\b'), Keyword),
             (r'char(16_t|32_t|8_t)\b', Keyword.Type),
-            (r'(enum)(\s+)', bygroups(Keyword, Text), 'enum'),
+            (r'(enum)(\s+)', bygroups(Keyword, Text), 'enumname'),
             # C++11 raw strings
             (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
              bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
@@ -286,7 +286,7 @@ class CppLexer(CFamilyLexer):
             # Offload C++ extensions, http://offload.codeplay.com/
             (r'__(offload|blockingoffload|outer)\b', Keyword.Pseudo),
         ],
-        'enum': [
+        'enumname': [
             # 'enum class' and 'enum struct' C++11 support
             (words(('class', 'struct'), suffix=r'\b'), Keyword),
             (r'[a-zA-Z_$][\w$]*', Name.Class, '#pop'),
