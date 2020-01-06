@@ -221,20 +221,20 @@ class CLexer(CFamilyLexer):
     Additional options accepted:
 
     `stdlibhighlighting`
-        Highlight common types found on the  C/C++ standard library (e.g. `size_t`).
+        Highlight common types found in the C/C++ standard library (e.g. `size_t`).
         (default: ``True``).
 
     `c99highlighting`
-        Highlight common types found on the C99 standard library (e.g. `int8_t`).
+        Highlight common types found in the C99 standard library (e.g. `int8_t`).
         Actually, this includes all fixed-width integer types.
         (default: ``True``).
 
     `c11highlighting`
-        Highlight atomic types found on the C11 standard library (e.g. `atomic_bool`).
+        Highlight atomic types found in the C11 standard library (e.g. `atomic_bool`).
         (default: ``True``).
 
     `platformhighlighting`
-        Highlight common types found on platform SDK headers (e.g. `clockid_t` on Linux).
+        Highlight common types found in platform SDK headers (e.g. `clockid_t` on Linux).
         (default: ``True``).
     """
     name = 'C'
@@ -268,20 +268,20 @@ class CppLexer(CFamilyLexer):
     Additional options accepted:
 
     `stdlibhighlighting`
-        Highlight common types found on the  C/C++ standard library (e.g. `size_t`).
+        Highlight common types found in the C/C++ standard library (e.g. `size_t`).
         (default: ``True``).
 
     `c99highlighting`
-        Highlight common types found on the C99 standard library (e.g. `int8_t`).
+        Highlight common types found in the C99 standard library (e.g. `int8_t`).
         Actually, this includes all fixed-width integer types.
         (default: ``True``).
 
     `c11highlighting`
-        Highlight atomic types found on the C11 standard library (e.g. `atomic_bool`).
+        Highlight atomic types found in the C11 standard library (e.g. `atomic_bool`).
         (default: ``True``).
 
     `platformhighlighting`
-        Highlight common types found on platform SDK headers (e.g. `clockid_t` on Linux).
+        Highlight common types found in platform SDK headers (e.g. `clockid_t` on Linux).
         (default: ``True``).
     """
     name = 'C++'
