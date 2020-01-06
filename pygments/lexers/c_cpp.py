@@ -42,6 +42,9 @@ class CFamilyLexer(RegexLexer):
     # Integer literal suffix (e.g. 'ull' or 'll').
     _intsuffix = r'(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?'
 
+    # Identifier regex.
+    _ident = r'[a-zA-Z_$][\w$]*'
+
     tokens = {
         'whitespace': [
             # preprocessor directives: without whitespace
@@ -61,7 +64,7 @@ class CFamilyLexer(RegexLexer):
             (r'/(\\\n)?[*][\w\W]*', Comment.Multiline),
         ],
         'statements': [
-            (r'(L?)(")', bygroups(String.Affix, String), 'string'),
+            (r'([LuU]?|u8?)(")', bygroups(String.Affix, String), 'string'),
             (r"([LuU]?|u8?)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
 
@@ -105,7 +108,7 @@ class CFamilyLexer(RegexLexer):
             include('whitespace'),
             # functions
             (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
-             r'([a-zA-Z_$][\w$]*)'             # method name
+             r'(' + _ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;{]*)(\{)',
              bygroups(using(this), Name.Function, using(this), using(this),
@@ -113,7 +116,7 @@ class CFamilyLexer(RegexLexer):
              'function'),
             # function declarations
             (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
-             r'([a-zA-Z_$][\w$]*)'             # method name
+             r'(' + _ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;]*)(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
@@ -158,7 +161,7 @@ class CFamilyLexer(RegexLexer):
             (r'.*?\n', Comment),
         ],
         'classname': [
-            (r'[a-zA-Z_$][\w$]*', Name.Class, '#pop'),
+            (_ident, Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
             default('#pop')
@@ -234,7 +237,7 @@ class CLexer(CFamilyLexer):
         (default: ``True``).
 
     `platformhighlighting`
-        Highlight common types found in platform SDK headers (e.g. `clockid_t` on Linux).
+        Highlight common types found in the platform SDK headers (e.g. `clockid_t` on Linux).
         (default: ``True``).
     """
     name = 'C'
@@ -281,7 +284,7 @@ class CppLexer(CFamilyLexer):
         (default: ``True``).
 
     `platformhighlighting`
-        Highlight common types found in platform SDK headers (e.g. `clockid_t` on Linux).
+        Highlight common types found in the platform SDK headers (e.g. `clockid_t` on Linux).
         (default: ``True``).
     """
     name = 'C++'
@@ -325,9 +328,10 @@ class CppLexer(CFamilyLexer):
             (r'__(offload|blockingoffload|outer)\b', Keyword.Pseudo),
         ],
         'enumname': [
+            include('whitespace'),
             # 'enum class' and 'enum struct' C++11 support
             (words(('class', 'struct'), suffix=r'\b'), Keyword),
-            (r'[a-zA-Z_$][\w$]*', Name.Class, '#pop'),
+            (CFamilyLexer._ident, Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
             default('#pop')
