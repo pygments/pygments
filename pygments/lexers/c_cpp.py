@@ -58,7 +58,6 @@ class CFamilyLexer(RegexLexer):
 
              # Hexadecimal floating-point literals (C11, C++17)
             (r'0[xX]([0-9a-fA-F](\'?[0-9a-fA-F])*\.[0-9a-fA-F](\'?[0-9a-fA-F])*|\.[0-9a-fA-F](\'?[0-9a-fA-F])*|[0-9a-fA-F](\'?[0-9a-fA-F])*)[pP][+-]?[0-9a-fA-F](\'?[0-9a-fA-F])*[lL]?', Number.Float),
-            (r'0[xX](([0-9a-fA-F](\'?[0-9a-fA-F])*\.[0-9a-fA-F](\'?[0-9a-fA-F])*|\.[0-9a-fA-F](\'?[0-9a-fA-F])*)[lL]?)', Number.Float),
 
             (r'(\d(\'?\d)*\.\d(\'?\d)*|\.\d(\'?\d)*|\d(\'?\d)*)[eE][+-]?\d(\'?\d)*[fFlL]?', Number.Float),
             (r'((\d(\'?\d)*\.(\d(\'?\d)*)?|\.\d(\'?\d)*)[fFlL]?)|(\d(\'?\d)*[fFlL])', Number.Float),
