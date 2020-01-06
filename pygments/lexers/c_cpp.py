@@ -314,8 +314,6 @@ class CppLexer(CFamilyLexer):
             (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
              bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
                       String, String.Delimiter, String)),
-            # C++11 UTF-8/16/32 strings
-            (r'(u8|u|U)(")', bygroups(String.Affix, String), 'string'),
             inherit,
         ],
         'root': [
