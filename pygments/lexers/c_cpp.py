@@ -71,12 +71,12 @@ class CFamilyLexer(RegexLexer):
              # Hexadecimal floating-point literals (C11, C++17)
             (r'0[xX](' + _hexpart + r'\.' + _hexpart + r'|\.' + _hexpart + r'|' + _hexpart + r')[pP][+-]?' + _hexpart + r'[lL]?', Number.Float),
 
-            (r'[+-]?(' + _decpart + r'\.' + _decpart + r'|\.' + _decpart + r'|' + _decpart + r')[eE][+-]?' + _decpart + r'[fFlL]?', Number.Float),
-            (r'[+-]?((' + _decpart + r'\.(' + _decpart + r')?|\.' + _decpart + r')[fFlL]?)|(' + _decpart + r'[fFlL])', Number.Float),
-            (r'[+-]?0[xX]' + _hexpart + _intsuffix, Number.Hex),
-            (r'[+-]?0[bB][01](\'?[01])*' + _intsuffix, Number.Bin),
-            (r'[+-]?0(\'?[0-7])+' + _intsuffix, Number.Oct),
-            (r'[+-]?' + _decpart + _intsuffix, Number.Integer),
+            (r'(-)?(' + _decpart + r'\.' + _decpart + r'|\.' + _decpart + r'|' + _decpart + r')[eE][+-]?' + _decpart + r'[fFlL]?', Number.Float),
+            (r'(-)?((' + _decpart + r'\.(' + _decpart + r')?|\.' + _decpart + r')[fFlL]?)|(' + _decpart + r'[fFlL])', Number.Float),
+            (r'(-)?0[xX]' + _hexpart + _intsuffix, Number.Hex),
+            (r'(-)?0[bB][01](\'?[01])*' + _intsuffix, Number.Bin),
+            (r'(-)?0(\'?[0-7])+' + _intsuffix, Number.Oct),
+            (r'(-)?' + _decpart + _intsuffix, Number.Integer),
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
