@@ -158,7 +158,7 @@ class WebIDLLexer(RegexLexer):
         'namespace_rest': [
             include('common'),
             (_identifier, Name.Namespace),
-            (r'{', Punctuation, 'namespace_body'),
+            (r'\{', Punctuation, 'namespace_body'),
             (r';', Punctuation, '#pop'),
         ],
         'namespace_body': [
@@ -239,7 +239,7 @@ class WebIDLLexer(RegexLexer):
                    suffix=_keyword_suffix), Keyword),
             (r',', Punctuation),
             (_identifier, Name.Variable),
-            (r'}', Punctuation, '#pop:2'),
+            (r'\}', Punctuation, '#pop:2'),
         ],
         'serialization_pattern_list': [
             include('common'),
