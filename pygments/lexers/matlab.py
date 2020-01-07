@@ -104,8 +104,8 @@ class MatlabLexer(RegexLexer):
             # is recognized if it is either surrounded by spaces or by no
             # spaces on both sides; only the former case matters for us.  (This
             # allows distinguishing `cd ./foo` from `cd ./ foo`.)
-            (r'(?:^|(?<=;))\s*\w+\s+(?!=|\(|(%s)\s+)' % _operators, Name,
-             'commandargs'),
+            (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|(%s)\s+)' % _operators,
+             bygroups(Text, Name, Text), 'commandargs'),
 
             # operators:
             (_operators, Operator),
@@ -147,9 +147,10 @@ class MatlabLexer(RegexLexer):
             (r"[^']*'", String, '#pop'),
         ],
         'commandargs': [
+            (r"[ \t]+", Text),
             ("'[^']*'", String),
-            ("[^';\n]+", String),
-            (";?\n?", Punctuation, '#pop'),
+            (r"[^';\s]+", String),
+            (";?", Punctuation, '#pop'),
         ]
     }
 

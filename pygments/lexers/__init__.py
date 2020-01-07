@@ -147,8 +147,8 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
         # And finally instantiate it with the options
         return lexer_class(**options)
     except IOError as err:
-        raise ClassNotFound('cannot read %s' % filename)
-    except ClassNotFound as err:
+        raise ClassNotFound('cannot read %s: %s' % (filename, err))
+    except ClassNotFound:
         raise
     except Exception as err:
         raise ClassNotFound('error when loading custom lexer: %s' % err)

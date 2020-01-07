@@ -49,8 +49,8 @@ def test_lexer_classes(cls):
 
     assert all(al.lower() == al for al in cls.aliases)
 
-    inst = cls(opt1="val1", opt2="val2")
     if issubclass(cls, RegexLexer):
+        inst = cls(opt1="val1", opt2="val2")
         if not hasattr(cls, '_tokens'):
             # if there's no "_tokens", the lexer has to be one with
             # multiple tokendef variants
@@ -61,9 +61,10 @@ def test_lexer_classes(cls):
             assert 'root' in cls._tokens, \
                    '%s has no root state' % cls
 
-    if cls.name in ['XQuery', 'Opa']:   # XXX temporary
-        return
 
+@pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
+def test_random_input(cls):
+    inst = cls()
     try:
         tokens = list(inst.get_tokens(test_content))
     except KeyboardInterrupt:

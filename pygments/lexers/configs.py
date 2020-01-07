@@ -303,8 +303,7 @@ class ApacheConfLexer(RegexLexer):
             (r'#(.*\\\n)+.*$|(#.*?)$', Comment),
             (r'(<[^\s>]+)(?:(\s+)(.*))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
-            (r'([a-z]\w*)(\s+)',
-             bygroups(Name.Builtin, Text), 'value'),
+            (r'[a-z]\w*', Name.Builtin, 'value'),
             (r'\.+', Text),
         ],
         'value': [

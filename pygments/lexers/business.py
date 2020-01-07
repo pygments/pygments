@@ -504,7 +504,7 @@ class OpenEdgeLexer(RegexLexer):
 class GoodDataCLLexer(RegexLexer):
     """
     Lexer for `GoodData-CL
-    <http://github.com/gooddata/GoodData-CL/raw/master/cli/src/main/resources/\
+    <https://github.com/gooddata/GoodData-CL/raw/master/cli/src/main/resources/\
 com/gooddata/processor/COMMANDS.txt>`_
     script files.
 

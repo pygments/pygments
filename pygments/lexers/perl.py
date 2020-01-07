@@ -3,7 +3,7 @@
     pygments.lexers.perl
     ~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for Perl and related languages.
+    Lexers for Perl, Raku and related languages.
 
     :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -22,7 +22,7 @@ __all__ = ['PerlLexer', 'Perl6Lexer']
 
 class PerlLexer(RegexLexer):
     """
-    For `Perl <http://www.perl.org>`_ source code.
+    For `Perl <https://www.perl.org>`_ source code.
     """
 
     name = 'Perl'
@@ -214,91 +214,189 @@ class PerlLexer(RegexLexer):
 
 class Perl6Lexer(ExtendedRegexLexer):
     """
-    For `Perl 6 <http://www.perl6.org>`_ source code.
+    For `Raku <https://www.raku.org>`_ (a.k.a. Perl 6) source code.
 
     .. versionadded:: 2.0
     """
 
     name = 'Perl6'
-    aliases = ['perl6', 'pl6']
+    aliases = ['perl6', 'pl6', 'raku']
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
-                 '*.6pm', '*.p6m', '*.pm6', '*.t']
+                 '*.6pm', '*.p6m', '*.pm6', '*.t', '*.raku', '*.rakumod',
+                 '*.rakutest', '*.rakudoc']
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
     PERL6_IDENTIFIER_RANGE = r"['\w:-]"
 
     PERL6_KEYWORDS = (
-        'BEGIN', 'CATCH', 'CHECK', 'CONTROL', 'END', 'ENTER', 'FIRST', 'INIT',
-        'KEEP', 'LAST', 'LEAVE', 'NEXT', 'POST', 'PRE', 'START', 'TEMP',
-        'UNDO', 'as', 'assoc', 'async', 'augment', 'binary', 'break', 'but',
-        'cached', 'category', 'class', 'constant', 'contend', 'continue',
-        'copy', 'deep', 'default', 'defequiv', 'defer', 'die', 'do', 'else',
-        'elsif', 'enum', 'equiv', 'exit', 'export', 'fail', 'fatal', 'for',
-        'gather', 'given', 'goto', 'grammar', 'handles', 'has', 'if', 'inline',
-        'irs', 'is', 'last', 'leave', 'let', 'lift', 'loop', 'looser', 'macro',
-        'make', 'maybe', 'method', 'module', 'multi', 'my', 'next', 'of',
-        'ofs', 'only', 'oo', 'ors', 'our', 'package', 'parsed', 'prec',
-        'proto', 'readonly', 'redo', 'ref', 'regex', 'reparsed', 'repeat',
-        'require', 'required', 'return', 'returns', 'role', 'rule', 'rw',
-        'self', 'slang', 'state', 'sub', 'submethod', 'subset', 'supersede',
-        'take', 'temp', 'tighter', 'token', 'trusts', 'try', 'unary',
-        'unless', 'until', 'use', 'warn', 'when', 'where', 'while', 'will',
+        #Phasers
+        'BEGIN','CATCH','CHECK','CLOSE','CONTROL','DOC','END','ENTER','FIRST',
+        'INIT','KEEP','LAST','LEAVE','NEXT','POST','PRE','QUIT','UNDO',
+        #Keywords
+        'anon','augment','but','class','constant','default','does','else',
+        'elsif','enum','for','gather','given','grammar','has','if','import',
+        'is','let','loop','made','make','method','module','multi','my','need',
+        'orwith','our','proceed','proto','repeat','require','return',
+        'return-rw','returns','role','rule','state','sub','submethod','subset',
+        'succeed','supersede','token','try','unit','unless','until','use',
+        'when','while','with','without',
+        #Traits
+        'export','native','repr','required','rw','symbol',
     )
 
     PERL6_BUILTINS = (
-        'ACCEPTS', 'HOW', 'REJECTS', 'VAR', 'WHAT', 'WHENCE', 'WHERE', 'WHICH',
-        'WHO', 'abs', 'acos', 'acosec', 'acosech', 'acosh', 'acotan', 'acotanh',
-        'all', 'any', 'approx', 'arity', 'asec', 'asech', 'asin', 'asinh',
-        'assuming', 'atan', 'atan2', 'atanh', 'attr', 'bless', 'body', 'by',
-        'bytes', 'caller', 'callsame', 'callwith', 'can', 'capitalize', 'cat',
-        'ceiling', 'chars', 'chmod', 'chomp', 'chop', 'chr', 'chroot',
-        'circumfix', 'cis', 'classify', 'clone', 'close', 'cmp_ok', 'codes',
-        'comb', 'connect', 'contains', 'context', 'cos', 'cosec', 'cosech',
-        'cosh', 'cotan', 'cotanh', 'count', 'defined', 'delete', 'diag',
-        'dies_ok', 'does', 'e', 'each', 'eager', 'elems', 'end', 'eof', 'eval',
-        'eval_dies_ok', 'eval_elsewhere', 'eval_lives_ok', 'evalfile', 'exists',
-        'exp', 'first', 'flip', 'floor', 'flunk', 'flush', 'fmt', 'force_todo',
-        'fork', 'from', 'getc', 'gethost', 'getlogin', 'getpeername', 'getpw',
-        'gmtime', 'graphs', 'grep', 'hints', 'hyper', 'im', 'index', 'infix',
-        'invert', 'is_approx', 'is_deeply', 'isa', 'isa_ok', 'isnt', 'iterator',
-        'join', 'key', 'keys', 'kill', 'kv', 'lastcall', 'lazy', 'lc', 'lcfirst',
-        'like', 'lines', 'link', 'lives_ok', 'localtime', 'log', 'log10', 'map',
-        'max', 'min', 'minmax', 'name', 'new', 'nextsame', 'nextwith', 'nfc',
-        'nfd', 'nfkc', 'nfkd', 'nok_error', 'nonce', 'none', 'normalize', 'not',
-        'nothing', 'ok', 'once', 'one', 'open', 'opendir', 'operator', 'ord',
-        'p5chomp', 'p5chop', 'pack', 'pair', 'pairs', 'pass', 'perl', 'pi',
-        'pick', 'plan', 'plan_ok', 'polar', 'pop', 'pos', 'postcircumfix',
-        'postfix', 'pred', 'prefix', 'print', 'printf', 'push', 'quasi',
-        'quotemeta', 'rand', 're', 'read', 'readdir', 'readline', 'reduce',
-        'reverse', 'rewind', 'rewinddir', 'rindex', 'roots', 'round',
-        'roundrobin', 'run', 'runinstead', 'sameaccent', 'samecase', 'say',
-        'sec', 'sech', 'sech', 'seek', 'shape', 'shift', 'sign', 'signature',
-        'sin', 'sinh', 'skip', 'skip_rest', 'sleep', 'slurp', 'sort', 'splice',
-        'split', 'sprintf', 'sqrt', 'srand', 'strand', 'subst', 'substr', 'succ',
-        'sum', 'symlink', 'tan', 'tanh', 'throws_ok', 'time', 'times', 'to',
-        'todo', 'trim', 'trim_end', 'trim_start', 'true', 'truncate', 'uc',
-        'ucfirst', 'undef', 'undefine', 'uniq', 'unlike', 'unlink', 'unpack',
-        'unpolar', 'unshift', 'unwrap', 'use_ok', 'value', 'values', 'vec',
-        'version_lt', 'void', 'wait', 'want', 'wrap', 'write', 'zip',
+        'ACCEPTS','abs','abs2rel','absolute','accept','accessed','acos',
+        'acosec','acosech','acosh','acotan','acotanh','acquire','act','action',
+        'actions','add','add_attribute','add_enum_value','add_fallback',
+        'add_method','add_parent','add_private_method','add_role','add_trustee',
+        'adverb','after','all','allocate','allof','allowed','alternative-names',
+        'annotations','antipair','antipairs','any','anyof','app_lifetime',
+        'append','arch','archname','args','arity','Array','asec','asech','asin',
+        'asinh','ASSIGN-KEY','ASSIGN-POS','assuming','ast','at','atan','atan2',
+        'atanh','AT-KEY','atomic-assign','atomic-dec-fetch','atomic-fetch',
+        'atomic-fetch-add','atomic-fetch-dec','atomic-fetch-inc',
+        'atomic-fetch-sub','atomic-inc-fetch','AT-POS','attributes','auth',
+        'await','backtrace','Bag','BagHash','bail-out','base','basename',
+        'base-repeating','batch','BIND-KEY','BIND-POS','bind-stderr',
+        'bind-stdin','bind-stdout','bind-udp','bits','bless','block','Bool',
+        'bool-only','bounds','break','Bridge','broken','BUILD','build-date',
+        'bytes','cache','callframe','calling-package','CALL-ME','callsame',
+        'callwith','can','cancel','candidates','cando','can-ok','canonpath',
+        'caps','caption','Capture','cas','catdir','categorize','categorize-list',
+        'catfile','catpath','cause','ceiling','cglobal','changed','Channel',
+        'chars','chdir','child','child-name','child-typename','chmod','chomp',
+        'chop','chr','chrs','chunks','cis','classify','classify-list','cleanup',
+        'clone','close','closed','close-stdin','cmp-ok','code','codes','collate',
+        'column','comb','combinations','command','comment','compiler','Complex',
+        'compose','compose_type','composer','condition','config',
+        'configure_destroy','configure_type_checking','conj','connect',
+        'constraints','construct','contains','contents','copy','cos','cosec',
+        'cosech','cosh','cotan','cotanh','count','count-only','cpu-cores',
+        'cpu-usage','CREATE','create_type','cross','cue','curdir','curupdir','d',
+        'Date','DateTime','day','daycount','day-of-month','day-of-week',
+        'day-of-year','days-in-month','declaration','decode','decoder','deepmap',
+        'default','defined','DEFINITE','delayed','DELETE-KEY','DELETE-POS',
+        'denominator','desc','DESTROY','destroyers','devnull','diag',
+        'did-you-mean','die','dies-ok','dir','dirname','dir-sep','DISTROnames',
+        'do','does','does-ok','done','done-testing','duckmap','dynamic','e',
+        'eager','earlier','elems','emit','enclosing','encode','encoder',
+        'encoding','end','ends-with','enum_from_value','enum_value_list',
+        'enum_values','enums','eof','EVAL','eval-dies-ok','EVALFILE',
+        'eval-lives-ok','exception','excludes-max','excludes-min','EXISTS-KEY',
+        'EXISTS-POS','exit','exitcode','exp','expected','explicitly-manage',
+        'expmod','extension','f','fail','fails-like','fc','feature','file',
+        'filename','find_method','find_method_qualified','finish','first','flat',
+        'flatmap','flip','floor','flunk','flush','fmt','format','formatter',
+        'freeze','from','from-list','from-loop','from-posix','full',
+        'full-barrier','get','get_value','getc','gist','got','grab','grabpairs',
+        'grep','handle','handled','handles','hardware','has_accessor','Hash',
+        'head','headers','hh-mm-ss','hidden','hides','hour','how','hyper','id',
+        'illegal','im','in','indent','index','indices','indir','infinite',
+        'infix','infix:<+>','infix:<->','install_method_cache','Instant',
+        'instead','Int','int-bounds','interval','in-timezone','invalid-str',
+        'invert','invocant','IO','IO::Notification.watch-path','is_trusted',
+        'is_type','isa','is-absolute','isa-ok','is-approx','is-deeply',
+        'is-hidden','is-initial-thread','is-int','is-lazy','is-leap-year',
+        'isNaN','isnt','is-prime','is-relative','is-routine','is-setting',
+        'is-win','item','iterator','join','keep','kept','KERNELnames','key',
+        'keyof','keys','kill','kv','kxxv','l','lang','last','lastcall','later',
+        'lazy','lc','leading','level','like','line','lines','link','List',
+        'listen','live','lives-ok','local','lock','log','log10','lookup','lsb',
+        'made','MAIN','make','Map','match','max','maxpairs','merge','message',
+        'method','method_table','methods','migrate','min','minmax','minpairs',
+        'minute','misplaced','Mix','MixHash','mkdir','mode','modified','month',
+        'move','mro','msb','multi','multiness','my','name','named','named_names',
+        'narrow','nativecast','native-descriptor','nativesizeof','new','new_type',
+        'new-from-daycount','new-from-pairs','next','nextcallee','next-handle',
+        'nextsame','nextwith','NFC','NFD','NFKC','NFKD','nl-in','nl-out',
+        'nodemap','nok','none','norm','not','note','now','nude','Num',
+        'numerator','Numeric','of','offset','offset-in-hours','offset-in-minutes',
+        'ok','old','on-close','one','on-switch','open','opened','operation',
+        'optional','ord','ords','orig','os-error','osname','out-buffer','pack',
+        'package','package-kind','package-name','packages','pair','pairs',
+        'pairup','parameter','params','parent','parent-name','parents','parse',
+        'parse-base','parsefile','parse-names','parts','pass','path','path-sep',
+        'payload','peer-host','peer-port','periods','perl','permutations','phaser',
+        'pick','pickpairs','pid','placeholder','plan','plus','polar','poll',
+        'polymod','pop','pos','positional','posix','postfix','postmatch',
+        'precomp-ext','precomp-target','pred','prefix','prematch','prepend',
+        'print','printf','print-nl','print-to','private','private_method_table',
+        'proc','produce','Promise','prompt','protect','pull-one','push',
+        'push-all','push-at-least','push-exactly','push-until-lazy','put',
+        'qualifier-type','quit','r','race','radix','rand','range','Rat','raw',
+        're','read','readchars','readonly','ready','Real','reallocate','reals',
+        'reason','rebless','receive','recv','redispatcher','redo','reduce',
+        'rel2abs','relative','release','rename','repeated','replacement',
+        'report','reserved','resolve','restore','result','resume','rethrow',
+        'reverse','right','rindex','rmdir','role','roles_to_compose','rolish',
+        'roll','rootdir','roots','rotate','rotor','round','roundrobin',
+        'routine-type','run','rwx','s','samecase','samemark','samewith','say',
+        'schedule-on','scheduler','scope','sec','sech','second','seek','self',
+        'send','Set','set_hidden','set_name','set_package','set_rw','set_value',
+        'SetHash','set-instruments','setup_finalization','shape','share','shell',
+        'shift','sibling','sigil','sign','signal','signals','signature','sin',
+        'sinh','sink','sink-all','skip','skip-at-least','skip-at-least-pull-one',
+        'skip-one','skip-rest','sleep','sleep-timer','sleep-until','Slip','slurp',
+        'slurp-rest','slurpy','snap','snapper','so','socket-host','socket-port',
+        'sort','source','source-package','spawn','SPEC','splice','split',
+        'splitdir','splitpath','sprintf','spurt','sqrt','squish','srand','stable',
+        'start','started','starts-with','status','stderr','stdout','Str',
+        'sub_signature','subbuf','subbuf-rw','subname','subparse','subst',
+        'subst-mutate','substr','substr-eq','substr-rw','subtest','succ','sum',
+        'Supply','symlink','t','tail','take','take-rw','tan','tanh','tap',
+        'target','target-name','tc','tclc','tell','then','throttle','throw',
+        'throws-like','timezone','tmpdir','to','today','todo','toggle','to-posix',
+        'total','trailing','trans','tree','trim','trim-leading','trim-trailing',
+        'truncate','truncated-to','trusts','try_acquire','trying','twigil','type',
+        'type_captures','typename','uc','udp','uncaught_handler','unimatch',
+        'uniname','uninames','uniparse','uniprop','uniprops','unique','unival',
+        'univals','unlike','unlink','unlock','unpack','unpolar','unshift',
+        'unwrap','updir','USAGE','use-ok','utc','val','value','values','VAR',
+        'variable','verbose-config','version','VMnames','volume','vow','w','wait',
+        'warn','watch','watch-path','week','weekday-of-month','week-number',
+        'week-year','WHAT','when','WHERE','WHEREFORE','WHICH','WHO',
+        'whole-second','WHY','wordcase','words','workaround','wrap','write',
+        'write-to','x','yada','year','yield','yyyy-mm-dd','z','zip','zip-latest',
+
     )
 
     PERL6_BUILTIN_CLASSES = (
-        'Abstraction', 'Any', 'AnyChar', 'Array', 'Associative', 'Bag', 'Bit',
-        'Blob', 'Block', 'Bool', 'Buf', 'Byte', 'Callable', 'Capture', 'Char', 'Class',
-        'Code', 'Codepoint', 'Comparator', 'Complex', 'Decreasing', 'Exception',
-        'Failure', 'False', 'Grammar', 'Grapheme', 'Hash', 'IO', 'Increasing',
-        'Int', 'Junction', 'KeyBag', 'KeyExtractor', 'KeyHash', 'KeySet',
-        'KitchenSink', 'List', 'Macro', 'Mapping', 'Match', 'Matcher', 'Method',
-        'Module', 'Num', 'Object', 'Ordered', 'Ordering', 'OrderingPair',
-        'Package', 'Pair', 'Positional', 'Proxy', 'Range', 'Rat', 'Regex',
-        'Role', 'Routine', 'Scalar', 'Seq', 'Set', 'Signature', 'Str', 'StrLen',
-        'StrPos', 'Sub', 'Submethod', 'True', 'UInt', 'Undef', 'Version', 'Void',
-        'Whatever', 'bit', 'bool', 'buf', 'buf1', 'buf16', 'buf2', 'buf32',
-        'buf4', 'buf64', 'buf8', 'complex', 'int', 'int1', 'int16', 'int2',
-        'int32', 'int4', 'int64', 'int8', 'num', 'rat', 'rat1', 'rat16', 'rat2',
-        'rat32', 'rat4', 'rat64', 'rat8', 'uint', 'uint1', 'uint16', 'uint2',
-        'uint32', 'uint4', 'uint64', 'uint8', 'utf16', 'utf32', 'utf8',
+        #Booleans
+        'False','True',
+        #Classes
+        'Any','Array','Associative','AST','atomicint','Attribute','Backtrace',
+        'Backtrace::Frame','Bag','Baggy','BagHash','Blob','Block','Bool','Buf',
+        'Callable','CallFrame','Cancellation','Capture','CArray','Channel','Code',
+        'compiler','Complex','ComplexStr','Cool','CurrentThreadScheduler',
+        'Cursor','Date','Dateish','DateTime','Distro','Duration','Encoding',
+        'Exception','Failure','FatRat','Grammar','Hash','HyperWhatever','Instant',
+        'Int','int16','int32','int64','int8','IntStr','IO','IO::ArgFiles',
+        'IO::CatHandle','IO::Handle','IO::Notification','IO::Path',
+        'IO::Path::Cygwin','IO::Path::QNX','IO::Path::Unix','IO::Path::Win32',
+        'IO::Pipe','IO::Socket','IO::Socket::Async','IO::Socket::INET','IO::Spec',
+        'IO::Spec::Cygwin','IO::Spec::QNX','IO::Spec::Unix','IO::Spec::Win32',
+        'IO::Special','Iterable','Iterator','Junction','Kernel','Label','List',
+        'Lock','Lock::Async','long','longlong','Macro','Map','Match',
+        'Metamodel::AttributeContainer','Metamodel::C3MRO','Metamodel::ClassHOW',
+        'Metamodel::EnumHOW','Metamodel::Finalization','Metamodel::MethodContainer',
+        'Metamodel::MROBasedMethodDispatch','Metamodel::MultipleInheritance',
+        'Metamodel::Naming','Metamodel::Primitives','Metamodel::PrivateMethodContainer',
+        'Metamodel::RoleContainer','Metamodel::Trusting','Method','Mix','MixHash',
+        'Mixy','Mu','NFC','NFD','NFKC','NFKD','Nil','Num','num32','num64',
+        'Numeric','NumStr','ObjAt','Order','Pair','Parameter','Perl','Pod::Block',
+        'Pod::Block::Code','Pod::Block::Comment','Pod::Block::Declarator',
+        'Pod::Block::Named','Pod::Block::Para','Pod::Block::Table','Pod::Heading',
+        'Pod::Item','Pointer','Positional','PositionalBindFailover','Proc',
+        'Proc::Async','Promise','Proxy','PseudoStash','QuantHash','Range','Rat',
+        'Rational','RatStr','Real','Regex','Routine','Scalar','Scheduler',
+        'Semaphore','Seq','Set','SetHash','Setty','Signature','size_t','Slip',
+        'Stash','Str','StrDistance','Stringy','Sub','Submethod','Supplier',
+        'Supplier::Preserving','Supply','Systemic','Tap','Telemetry',
+        'Telemetry::Instrument::Thread','Telemetry::Instrument::Usage',
+        'Telemetry::Period','Telemetry::Sampler','Thread','ThreadPoolScheduler',
+        'UInt','uint16','uint32','uint64','uint8','Uni','utf8','Variable',
+        'Version','VM','Whatever','WhateverCode','WrapHandle'
     )
 
     PERL6_OPERATORS = (
@@ -311,7 +409,7 @@ class Perl6Lexer(ExtendedRegexLexer):
         '~', '&', '^', 'but', 'does', '<=>', '..', '..^', '^..', '^..^',
         '!=', '==', '<', '<=', '>', '>=', '~~', '===', '!eqv',
         '&&', '||', '^^', '//', 'min', 'max', '??', '!!', 'ff', 'fff', 'so',
-        'not', '<==', '==>', '<<==', '==>>',
+        'not', '<==', '==>', '<<==', '==>>','unicmp',
     )
 
     # Perl 6 has a *lot* of possible bracketing characters

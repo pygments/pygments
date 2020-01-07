@@ -73,3 +73,40 @@ def test_custom_operator(lexer):
         (Token.Text, u'\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_indexing(lexer):
+    fragment = u'a[1]'
+    tokens = [
+        (Token.Name, u'a'),
+        (Token.Punctuation, u'['),
+        (Token.Literal.Number, u'1'),
+        (Token.Punctuation, u']'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_dot_name(lexer):
+    fragment = u'. <- 1'
+    tokens = [
+        (Token.Name, '.'),
+        (Token.Text, ' '),
+        (Token.Operator, '<-'),
+        (Token.Text, ' '),
+        (Token.Literal.Number, '1'),
+        (Token.Text, '\n')
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_dot_indexing(lexer):
+    fragment = u'.[1]'
+    tokens = [
+        (Token.Name, u'.'),
+        (Token.Punctuation, u'['),
+        (Token.Literal.Number, u'1'),
+        (Token.Punctuation, u']'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens

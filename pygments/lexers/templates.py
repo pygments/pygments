@@ -323,7 +323,7 @@ class VelocityXmlLexer(DelegatingLexer):
 class DjangoLexer(RegexLexer):
     """
     Generic `django <http://www.djangoproject.com/documentation/templates/>`_
-    and `jinja <http://wsgiarea.pocoo.org/jinja/>`_ template lexer.
+    and `jinja <https://jinja.pocoo.org/jinja/>`_ template lexer.
 
     It just highlights django/jinja code between the preprocessor directives,
     other data is left untouched by the lexer.
@@ -1802,22 +1802,23 @@ class HandlebarsLexer(RegexLexer):
         'root': [
             (r'[^{]+', Other),
 
-				# Comment start {{!  }} or {{!-- 
+            # Comment start {{!  }} or {{!--
             (r'\{\{!.*\}\}', Comment),
 
-				# HTML Escaping open {{{expression
+            # HTML Escaping open {{{expression
             (r'(\{\{\{)(\s*)', bygroups(Comment.Special, Text), 'tag'),
 
-				# {{blockOpen {{#blockOpen {{/blockClose with optional tilde ~
-            (r'(\{\{)([#~/]+)([^\s}]*)', bygroups(Comment.Preproc, Number.Attribute,Number.Attribute), 'tag'),
+            # {{blockOpen {{#blockOpen {{/blockClose with optional tilde ~
+            (r'(\{\{)([#~/]+)([^\s}]*)',
+             bygroups(Comment.Preproc, Number.Attribute, Number.Attribute), 'tag'),
             (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'tag'),
         ],
 
         'tag': [
             (r'\s+', Text),
-				# HTML Escaping close }}}
+            # HTML Escaping close }}}
             (r'\}\}\}', Comment.Special, '#pop'),
-				# blockClose}}, includes optional tilde ~
+            # blockClose}}, includes optional tilde ~
             (r'(~?)(\}\})', bygroups(Number, Comment.Preproc), '#pop'),
 
             # {{opt=something}}

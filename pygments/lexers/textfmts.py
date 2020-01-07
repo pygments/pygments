@@ -12,13 +12,13 @@
 import re
 
 from pygments.lexers import guess_lexer, get_lexer_by_name
-from pygments.lexer import RegexLexer, bygroups, default, do_insertions
+from pygments.lexer import RegexLexer, bygroups, default, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Generic, Literal, Punctuation
 from pygments.util import ClassNotFound
 
 __all__ = ['IrcLogsLexer', 'TodotxtLexer', 'HttpLexer', 'GettextLexer',
-           'NotmuchLexer']
+           'NotmuchLexer', 'KernelLogLexer']
 
 
 class IrcLogsLexer(RegexLexer):
@@ -175,13 +175,13 @@ class HttpLexer(RegexLexer):
     tokens = {
         'root': [
             (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE|PATCH)( +)([^ ]+)( +)'
-             r'(HTTP)(/)(1\.[01])(\r?\n|\Z)',
+             r'(HTTP)(/)(1\.[01]|2|3)(\r?\n|\Z)',
              bygroups(Name.Function, Text, Name.Namespace, Text,
                       Keyword.Reserved, Operator, Number, Text),
              'headers'),
-            (r'(HTTP)(/)(1\.[01])( +)(\d{3})( +)([^\r\n]+)(\r?\n|\Z)',
-             bygroups(Keyword.Reserved, Operator, Number, Text, Number,
-                      Text, Name.Exception, Text),
+            (r'(HTTP)(/)(1\.[01]|2|3)( +)(\d{3})(?:( +)([^\r\n]+))?(\r?\n|\Z)',
+             bygroups(Keyword.Reserved, Operator, Number, Text, Number, Text,
+                      Name.Exception, Text),
              'headers'),
         ],
         'headers': [
@@ -380,3 +380,52 @@ class NotmuchLexer(RegexLexer):
     def __init__(self, **options):
         self.body_lexer = options.get('body_lexer', None)
         RegexLexer.__init__(self, **options)
+
+
+class KernelLogLexer(RegexLexer):
+    """
+    For Linux Kernel log ("dmesg") output.
+
+    .. versionadded:: 2.6
+    """
+    name = 'Kernel log'
+    aliases = ['kmsg', 'dmesg']
+    filenames = ['*.kmsg', '*.dmesg']
+
+    tokens = {
+        'root': [
+            (r'^[^:]+:debug : (?=\[)', Text, 'debug'),
+            (r'^[^:]+:info  : (?=\[)', Text, 'info'),
+            (r'^[^:]+:warn  : (?=\[)', Text, 'warn'),
+            (r'^[^:]+:notice: (?=\[)', Text, 'warn'),
+            (r'^[^:]+:err   : (?=\[)', Text, 'error'),
+            (r'^[^:]+:crit  : (?=\[)', Text, 'error'),
+            (r'^(?=\[)', Text, 'unknown'),
+        ],
+        'unknown': [
+            (r'^(?=.+(warning|notice|audit|deprecated))', Text, 'warn'),
+            (r'^(?=.+(error|critical|fail|Bug))', Text, 'error'),
+            default('info'),
+        ],
+        'base': [
+            (r'\[[0-9\. ]+\] ', Number),
+            (r'(?<=\] ).+?:', Keyword),
+            (r'\n', Text, '#pop'),
+        ],
+        'debug': [
+            include('base'),
+            (r'.+\n', Comment, '#pop')
+        ],
+        'info': [
+            include('base'),
+            (r'.+\n', Text, '#pop')
+        ],
+        'warn': [
+            include('base'),
+            (r'.+\n', Generic.Strong, '#pop')
+        ],
+        'error': [
+            include('base'),
+            (r'.+\n', Generic.Error, '#pop')
+        ]
+    }

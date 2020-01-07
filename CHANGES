@@ -6,13 +6,50 @@ Since 2.5.0, issue numbers refer to the tracker at
 pull request numbers to the requests at
 <https://github.com/pygments/pygments/pulls>.
 
+
+Version 2.6
+-----------
+(not released yet)
+
+- Added lexers:
+
+  * Linux kernel logs (PR#1310)
+  * Ride (PR#1319, PR#1321)
+  * USD (PR#1290)
+  * Mosel (PR#1287, PR#1326)
+  * Sieve (PR#1257)
+
+- The 256-color/true-color terminal formatters now support the italic attribute
+  in styles (PR#1288)
+- Update Rust lexer to cover more builtins (mostly macros) and miscellaneous
+  new syntax (PR#1320)
+- Support HTTP 2/3 header (PR#1308)
+- Support missing reason in HTTP header (PR#1322)
+- Boogie/Silver: support line continuations and triggers, move contract keywords
+  to separate category (PR#1299)
+- GAS: support C-style comments (PR#1291)
+- Fix names in S lexer (PR#1330, PR#1333)
+- Fix numeric literals in Ada (PR#1334)
+- Update Perl6/Raku lexer (PR#1344)
+
+
 Version 2.5.2
 -------------
-(not released yet)
+(released November 29, 2019)
+
+- Fix incompatibility with some setuptools versions (PR#1316)
 
 - Fix lexing of ReST field lists (PR#1279)
 - Fix lexing of Matlab keywords as field names (PR#1282)
 - Recognize double-quoted strings in Matlab (PR#1278)
+- Avoid slow backtracking in Vim lexer (PR#1312)
+- Fix Scala highlighting of types (PR#1315)
+- Highlight field lists more consistently in ReST (PR#1279)
+- Fix highlighting Matlab keywords in field names (PR#1282)
+- Recognize Matlab double quoted strings (PR#1278)
+- Add some Terraform keywords
+- Update Modelica lexer to 3.4
+- Update Crystal examples
 
 
 Version 2.5.1
@@ -29,7 +66,7 @@ Version 2.5.0
 - Added lexers:
 
   * Email (PR#1246)
-  * Erlang, Elxir shells (PR#823, #1521)
+  * Erlang, Elixir shells (PR#823, #1521)
   * Notmuch (PR#1264)
   * `Scdoc <https://git.sr.ht/~sircmpwn/scdoc>`_ (PR#1268)
   * `Solidity <https://solidity.readthedocs.io/>`_ (#1214)
@@ -773,7 +810,7 @@ Version 1.4
 
 - Support ``application/javascript`` as a JavaScript mime type (#504).
 
-- Support `Offload <http://offload.codeplay.com>`_ C++ Extensions as
+- Support `Offload <https://offload.codeplay.com/>`_ C++ Extensions as
   keywords in the C++ lexer (#484).
 
 - Escape more characters in LaTeX output (#505).

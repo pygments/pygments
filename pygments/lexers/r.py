@@ -80,7 +80,7 @@ class SLexer(RegexLexer):
     mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
                  'text/x-R', 'text/x-r-history', 'text/x-r-profile']
 
-    valid_name = r'(?:`[^`\\]*(?:\\.[^`\\]*)*`)|(?:(?:[a-zA-z]|[_.][^0-9])[\w_.]*)'
+    valid_name = r'`[^`\\]*(?:\\.[^`\\]*)*`|(?:[a-zA-Z]|\.[A-Za-z_.])[\w_.]*|\.'
     tokens = {
         'comments': [
             (r'#.*$', Comment.Single),
