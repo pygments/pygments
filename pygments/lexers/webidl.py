@@ -39,6 +39,8 @@ _string = r'"[^"]*"'
 class WebIDLLexer(RegexLexer):
     """
     For Web IDL.
+
+    .. versionadded:: 2.6
     """
 
     name = 'Web IDL'
