@@ -64,8 +64,8 @@ class CFamilyLexer(RegexLexer):
             (r'/(\\\n)?[*][\w\W]*', Comment.Multiline),
         ],
         'statements': [
-            (r'([LuU]?|u8?)(")', bygroups(String.Affix, String), 'string'),
-            (r"([LuU]?|u8?)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
+            (r'([LuU]|u8)?(")', bygroups(String.Affix, String), 'string'),
+            (r"([LuU]|u8)?(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
 
              # Hexadecimal floating-point literals (C11, C++17)
@@ -310,8 +310,9 @@ class CppLexer(CFamilyLexer):
                suffix=r'\b'), Keyword),
             (r'char(16_t|32_t|8_t)\b', Keyword.Type),
             (r'(enum)(\s+)', bygroups(Keyword, Text), 'enumname'),
+
             # C++11 raw strings
-            (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
+            (r'((?:[LuU]|u8)?R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
              bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
                       String, String.Delimiter, String)),
             inherit,
