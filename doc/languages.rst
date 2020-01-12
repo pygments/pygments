@@ -274,6 +274,7 @@ Other markup
 * VGL
 * Vim Script
 * WDiff
+* Web IDL
 * Windows batch files
 * XML
 * XSLT
