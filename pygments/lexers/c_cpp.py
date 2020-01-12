@@ -126,8 +126,8 @@ class CFamilyLexer(RegexLexer):
         'statement': [
             include('whitespace'),
             include('statements'),
-            ('\}', Punctuation),
-            ('[{;]', Punctuation, '#pop'),
+            (r'\}', Punctuation),
+            (r'[{;]', Punctuation, '#pop'),
         ],
         'function': [
             include('whitespace'),
