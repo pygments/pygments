@@ -248,6 +248,7 @@ Other markup
 * `Nix language <https://nixos.org/nix/>`_
 * NSIS scripts
 * Notmuch
+* `PEG <https://bford.info/packrat/>`_
 * POV-Ray scenes
 * `Puppet <https://puppet.com/>`_
 * QML
