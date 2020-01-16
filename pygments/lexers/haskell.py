@@ -198,6 +198,7 @@ class IdrisLexer(RegexLexer):
                 'if', 'in', 'infix[lr]?', 'instance', 'rewrite', 'auto',
                 'namespace', 'codata', 'mutual', 'private', 'public', 'abstract',
                 'total', 'partial',
+                'interface', 'implementation', 'export', 'covering', 'constructor',
                 'let', 'proof', 'of', 'then', 'static', 'where', '_', 'with',
                 'pattern',  'term',  'syntax', 'prefix',
                 'postulate', 'parameters', 'record', 'dsl', 'impossible', 'implicit',
