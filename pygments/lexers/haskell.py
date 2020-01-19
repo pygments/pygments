@@ -215,7 +215,7 @@ class IdrisLexer(RegexLexer):
     tokens = {
         'root': [
             # Comments
-            (r'^(\s*)(%%%s)' % '|'.join(directives),
+            (r'^(\s*)(%%(%s))' % '|'.join(directives),
              bygroups(Text, Keyword.Reserved)),
             (r'(\s*)(--(?![!#$%&*+./<=>?@^|_~:\\]).*?)$', bygroups(Text, Comment.Single)),
             (r'(\s*)(\|{3}.*?)$', bygroups(Text, Comment.Single)),
