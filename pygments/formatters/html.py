@@ -445,6 +445,7 @@ class HtmlFormatter(Formatter):
                 self.hl_lines.add(int(lineno))
             except ValueError:
                 pass
+        self.hl_words = options.get('hl_words', {})
 
         self._create_stylesheet()
 
@@ -835,6 +836,50 @@ class HtmlFormatter(Formatter):
             else:
                 yield 1, value
 
+    def _highlight_words(self, tokensource):
+        """
+        Highlight the words specified in the `hl_words` option by
+        post-processing the token stream coming from `_format_lines`.
+        """
+        hlw = self.hl_words
+        if self.noclasses:
+            style = ''
+            if self.style.highlight_color is not None:
+                style = (' style="background-color: %s"' %
+                         (self.style.highlight_color,))
+        else:
+            style = ' class="hll"'
+
+        for i, (t, value) in enumerate(tokensource):
+            if t != 1:
+                yield t, value
+            if i + 1 in hlw:  # i + 1 because Python indexes start at 0
+                start_col, end_col = hlw[i + 1]
+                # 1 is the beginning of column no too
+                start_col = max(start_col, 1)
+                col_num = 1
+                assert end_col > start_col
+                tokens = list()
+
+                for x in value.split('</span>'):
+                    src_start = x.find('>') + 1  # code text begins after tag
+                    head, src = x[:src_start], x[src_start:]
+                    is_wrapped = bool(
+                        start_col <= col_num < end_col) or bool(
+                        start_col <= (len(src) + col_num) < end_col)
+                    includes = bool(
+                        col_num <= start_col < (len(src) + col_num)) or bool(
+                        col_num <= end_col < (len(src) + col_num))
+                    col_num += len(src)
+                    if is_wrapped or includes:
+                        src = '<span%s>%s</span>' % (style, src)
+                    tokens.append(head + src)
+
+                yield 1, '</span>'.join(tokens)
+
+            else:
+                yield 1, value
+
     def wrap(self, source, outfile):
         """
         Wrap the ``source``, which is a generator yielding
@@ -861,6 +906,8 @@ class HtmlFormatter(Formatter):
         linewise, e.g. line number generators.
         """
         source = self._format_lines(tokensource)
+        if self.hl_words:
+            source = self._highlight_words(source)
         if self.hl_lines:
             source = self._highlight_lines(source)
         if not self.nowrap:
