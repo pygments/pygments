@@ -401,7 +401,7 @@ LEXERS = {
     'ScssLexer': ('pygments.lexers.css', 'SCSS', ('scss',), ('*.scss',), ('text/x-scss',)),
     'ShExCLexer': ('pygments.lexers.rdf', 'ShExC', ('shexc', 'shex'), ('*.shex',), ('text/shex',)),
     'ShenLexer': ('pygments.lexers.lisp', 'Shen', ('shen',), ('*.shen',), ('text/x-shen', 'application/x-shen')),
-    'SieveLexer': ('pygments.lexers.sieve', 'Sieve', (), ('*.siv', '*.sieve'), ()),
+    'SieveLexer': ('pygments.lexers.sieve', 'Sieve', ('sieve',), ('*.siv', '*.sieve'), ()),
     'SilverLexer': ('pygments.lexers.verification', 'Silver', ('silver',), ('*.sil', '*.vpr'), ()),
     'SlashLexer': ('pygments.lexers.slash', 'Slash', ('slash',), ('*.sl',), ()),
     'SlimLexer': ('pygments.lexers.webmisc', 'Slim', ('slim',), ('*.slim',), ('text/x-slim',)),

@@ -30,6 +30,7 @@ class SieveLexer(RegexLexer):
     """
     name = 'Sieve'
     filenames = ['*.siv', '*.sieve']
+    aliases = ['sieve']
 
     tokens = {
         'root': [
