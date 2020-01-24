@@ -253,6 +253,8 @@ LEXERS = {
     'LiterateIdrisLexer': ('pygments.lexers.haskell', 'Literate Idris', ('lidr', 'literate-idris', 'lidris'), ('*.lidr',), ('text/x-literate-idris',)),
     'LiveScriptLexer': ('pygments.lexers.javascript', 'LiveScript', ('live-script', 'livescript'), ('*.ls',), ('text/livescript',)),
     'LlvmLexer': ('pygments.lexers.asm', 'LLVM', ('llvm',), ('*.ll',), ('text/x-llvm',)),
+    'LlvmMirBodyLexer': ('pygments.lexers.asm', 'LLVM-MIR Body', ('llvm-mir-body',), (), ()),
+    'LlvmMirLexer': ('pygments.lexers.asm', 'LLVM-MIR', ('llvm-mir',), ('*.mir',), ()),
     'LogosLexer': ('pygments.lexers.objective', 'Logos', ('logos',), ('*.x', '*.xi', '*.xm', '*.xmi'), ('text/x-logos',)),
     'LogtalkLexer': ('pygments.lexers.prolog', 'Logtalk', ('logtalk',), ('*.lgt', '*.logtalk'), ('text/x-logtalk',)),
     'LuaLexer': ('pygments.lexers.scripting', 'Lua', ('lua',), ('*.lua', '*.wlua'), ('text/x-lua', 'application/x-lua')),
