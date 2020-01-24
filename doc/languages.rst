@@ -90,6 +90,7 @@ Programming languages
 * Lasso (incl. templating)
 * Limbo
 * LiveScript
+* `LLVM MIR <https://llvm.org/docs/MIRLangRef.html>`_
 * Logtalk
 * Logos
 * `Lua <https://lua.org>`_
