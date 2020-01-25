@@ -17,26 +17,19 @@ lilypond_keywords = (
     'consists',
     'defaultchild',
     'denies',
-    #'description',
-    #'grobdescriptions',
-    'hide', # since 2.18
+    'hide',
     'include',
-    #'invalid',
     'language',
     'name',
-    #'objectid',
-    'omit', # since 2.18
+    'omit',
     'once',
     'set',
     'unset',
     'override',
     'revert',
     'remove',
-    'temporary', # since 2.18
-    #'sequential',
-    #'simultaneous',
-    #'type',
-    'undo', # since 2.18 (not mentioned in the command index)
+    'temporary',
+    'undo',
     'version',
     'score',
     'book',
@@ -50,22 +43,20 @@ lilypond_keywords = (
 )
 
 lilypond_music_commands = (
-    'absolute', # since 2.18
+    'absolute',
     'acciaccatura',
-    'accidentalStyle', # since 2.16
-    'addChordShape', # since 2.16
+    'accidentalStyle',
+    'addChordShape',
     'addInstrumentDefinition',
     'addlyrics',
     'addQuote',
     'afterGrace',
-    #'afterGraceFraction', # this is a parser variable
     'aikenHeads',
     'aikenHeadsMinor',
     'allowPageTurn',
-    'alterBroken', # since 2.18 (?)
+    'alterBroken',
     'alternative',
-    #'AncientRemoveEmptyStaffContext',
-    'appendToTag', # since 2.16
+    'appendToTag',
     'applyContext',
     'applyMusic',
     'applyOutput',
@@ -109,25 +100,18 @@ lilypond_music_commands = (
     'cavum',
     'change',
     'chordmode',
-    #'chordNameSeparator',
-    #'chordPrefixSpacer',
-    #'chordRootNamer',
-    'chordRepeats', # since 2.16
+    'chordRepeats',
     'chords',
     'clef',
     'cm',
-    'compoundMeter', # since 2.16
+    'compoundMeter',
     'compressFullBarRests',
     'context',
-    #'cr',
-    #'cresc',
-    #'crescHairpin',
-    #'crescTextCresc',
-    'crossStaff', # since 2.16
-    'cueClef',  # since 2.16
-    'cueClefUnset',  # since 2.16
+    'crossStaff',
+    'cueClef',
+    'cueClefUnset',
     'cueDuring',
-    'cueDuringWithClef',  # since 2.16
+    'cueDuringWithClef',
     'dashBar',
     'dashDash',
     'dashDot',
@@ -135,10 +119,9 @@ lilypond_music_commands = (
     'dashLarger',
     'dashPlus',
     'dashUnderscore',
-    'deadNote',  # since 2.16
-    #'decr',
+    'deadNote',
     'default',
-    'defaultNoteHeads',  # since 2.16
+    'defaultNoteHeads',
     'defaultTimeSignature',
     'defineBarLine', # since 2.18
     'deminutum',
