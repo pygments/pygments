@@ -245,6 +245,7 @@ LEXERS = {
     'LeanLexer': ('pygments.lexers.theorem', 'Lean', ('lean',), ('*.lean',), ('text/x-lean',)),
     'LessCssLexer': ('pygments.lexers.css', 'LessCss', ('less',), ('*.less',), ('text/x-less-css',)),
     'LighttpdConfLexer': ('pygments.lexers.configs', 'Lighttpd configuration file', ('lighty', 'lighttpd'), (), ('text/x-lighttpd-conf',)),
+    'LilyPondLexer': ('pygments.lexers.lilypond', 'LilyPond', ('lilypond', 'lily'), ('*.ly', '*.ily'), ()),
     'LimboLexer': ('pygments.lexers.inferno', 'Limbo', ('limbo',), ('*.b',), ('text/limbo',)),
     'LiquidLexer': ('pygments.lexers.templates', 'liquid', ('liquid',), ('*.liquid',), ()),
     'LiterateAgdaLexer': ('pygments.lexers.haskell', 'Literate Agda', ('lagda', 'literate-agda'), ('*.lagda',), ('text/x-literate-agda',)),
