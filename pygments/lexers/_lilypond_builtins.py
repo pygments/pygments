@@ -213,7 +213,7 @@ lilypond_music_commands = (
     'IJ',
     'improvisationOff',
     'improvisationOn',
-    'in\s',
+    'in',
     'inclinatum',
     'includePageLayoutFile',
     'indent',
