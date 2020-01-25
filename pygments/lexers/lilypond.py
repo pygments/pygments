@@ -1,33 +1,55 @@
+# -*- coding: utf-8 -*-
+"""
+    pygments.lexers.lilypond
+    ~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexer for LilyPond language.
+
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 import re
 
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import *
 
-from pygments.lexers._lilypond_builtins import lilypond_keywords, lilypond_music_commands, dynamics, articulations, ornaments, fermatas, instrument_scripts, repeat_scripts, ancient_scripts, modes, markupcommands, markuplistcommands, contexts, midi_instruments, scheme_values, header_variables, paper_variables, layout_variables, repeat_types, accidental_styles, clefs, break_visibility, mark_formatters
+from pygments.lexers._lilypond_builtins import lilypond_keywords, \
+    lilypond_music_commands, dynamics, articulations, ornaments, fermatas, \
+    instrument_scripts, repeat_scripts, ancient_scripts, modes, \
+    markupcommands, markuplistcommands, contexts, midi_instruments, \
+    scheme_values, header_variables, paper_variables, layout_variables, \
+    repeat_types, accidental_styles, clefs, break_visibility, mark_formatters
+
 
 __all__ = ['LilyPondLexer']
 
+
 class LilyPondLexer(RegexLexer):
+    """
+    A LilyPond lexer based on the work of Wilbert Berendsen in python-ly.
+
+    """
 
     name = 'LilyPond'
-    aliases = ['lilypond', 'lily']
-    filenames = ['*.ly', '*.ily']
+    aliases = ['lilypond', 'lily',]
+    filenames = ['*.ly', '*.ily',]
 
     tokens = {
         
         'root': [
             include('keywords'),
 
-            # articulation
+            # Articulation
             (r'[-_^][_.>|!+^-]', Name.Other),
 
-            # dynamics -- moved to _lilypond_builtins.py
-            #(r'\\[<!>]', Name.Pseudo),
-            #(r'\\\!', Name.Entity),
-            #(r'\\f{1,5}|p{1,5}', Name.Entity),
-            #(r'mf|mp|fp|spp?|sff?|sfz|rfz', Name.Entity),
-            #(r'cresc|decresc|dim|cr|decr', Name.Entity),
-            #(r'\\\<|\\\>', Name.Entity),
+            # Dynamics -- moved to _lilypond_builtins.py
+            # (r'\\[<!>]', Name.Pseudo),
+            # (r'\\\!', Name.Entity),
+            # (r'\\f{1,5}|p{1,5}', Name.Entity),
+            # (r'mf|mp|fp|spp?|sff?|sfz|rfz', Name.Entity),
+            # (r'cresc|decresc|dim|cr|decr', Name.Entity),
+            # (r'\\\<|\\\>', Name.Entity),
 
             (r'\\f[\s|\\]', Name.Entity),
             (r'\\p[\s|\\]', Name.Entity),

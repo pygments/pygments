@@ -1,23 +1,12 @@
-#
-# Copyright (c) 2008 - 2015 by Wilbert Berendsen
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-# See http://www.gnu.org/licenses/ for more information.
+# -*- coding: utf-8 -*-
+"""
+    pygments.lexers._lilypond_builtins
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-# LilyPond reserved words for auto completion and highlighting.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
 
 
 #from __future__ import unicode_literals
@@ -1029,14 +1018,15 @@ paper_variables = (
     'short-indent',
     
     # flex vertical
-    'markup-system-spacing', # the distance between a (title or top-level) markup and the system that follows it.
-    'score-markup-spacing',  # the distance between the last system of a score and the (title or top-level) markup that follows it.
-    'score-system-spacing',  # the distance between the last system of a score and the first system of the score that follows it, when no (title or top-level) markup exists between them.
-    'system-system-spacing', # the distance between two systems in the same score.
-    'markup-markup-spacing', # the distance between two (title or top-level) markups.
-    'last-bottom-spacing',   # the distance from the last system or top-level markup on a page to the bottom of the printable area (i.e. the top of the bottom margin).
-    'top-system-spacing',    # the distance from the top of the printable area (i.e. the bottom of the top margin) to the first system on a page, when there is no (title or top-level) markup between the two.
-    'top-markup-spacing',    # the distance from the top of the printable area (i.e. the bottom of the top margin) to the first (title or top-level) markup on a page, when there is no system between the two.
+
+    'markup-system-spacing',
+    'score-markup-spacing',
+    'score-system-spacing',
+    'system-system-spacing',
+    'markup-markup-spacing',
+    'last-bottom-spacing',
+    'top-system-spacing',
+    'top-markup-spacing',
     
     # line breaking
     'max-systems-per-page',
@@ -1045,12 +1035,12 @@ paper_variables = (
     'systems-per-page',
 
     # page breaking
-    'blank-after-score-page-force',  # The penalty for having a blank page after the end of one score and before the next. By default, this is smaller than blank-page-force, so that we prefer blank pages after scores to blank pages within a score.
-    'blank-last-page-force',         # The penalty for ending the score on an odd-numbered page.
-    'blank-page-force',              # The penalty for having a blank page in the middle of a score. This is not used by ly:optimal-breaking since it will never consider blank pages in the middle of a score.
-    'page-breaking',                 # The page-breaking algorithm to use. Choices are ly:minimal-breaking, ly:page-turn-breaking, and ly:optimal-breaking.
-    'page-breaking-system-system-spacing', # Tricks the page breaker into thinking that system-system-spacing is set to something different than it really is. For example, if page-breaking-system-system-spacing #'padding is set to something substantially larger than system-system-spacing #'padding, then the page-breaker will put fewer systems on each page. Default: unset.
-    'page-count',                    # The number of pages to be used for a score, unset by default.
+    'blank-after-score-page-force',
+    'blank-last-page-force',
+    'blank-page-force',
+    'page-breaking',
+    'page-breaking-system-system-spacing',
+    'page-count',
     
     # page numbering
     'auto-first-page-number',
