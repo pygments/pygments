@@ -60,9 +60,9 @@ class DLexer(RegexLexer):
              Keyword.Type),
             (r'(false|true|null)\b', Keyword.Constant),
             (words((
-                '__FILE__', '__MODULE__', '__LINE__', '__FUNCTION__', '__PRETTY_FUNCTION__'
-                '', '__DATE__', '__EOF__', '__TIME__', '__TIMESTAMP__', '__VENDOR__',
-                '__VERSION__'), suffix=r'\b'),
+                '__FILE__', '__FILE_FULL_PATH__', '__MODULE__', '__LINE__', '__FUNCTION__',
+                '__PRETTY_FUNCTION__', '__DATE__', '__EOF__', '__TIME__', '__TIMESTAMP__',
+                '__VENDOR__', '__VERSION__'), suffix=r'\b'),
              Keyword.Pseudo),
             (r'macro\b', Keyword.Reserved),
             (r'(string|wstring|dstring|size_t|ptrdiff_t)\b', Name.Builtin),
