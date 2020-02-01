@@ -899,7 +899,7 @@ class TOMLLexer(RegexLexer):
 
     name = 'TOML'
     aliases = ['toml']
-    filenames = ['*.toml']
+    filenames = ['*.toml', 'Pipfile', 'poetry.lock']
 
     tokens = {
         'root': [

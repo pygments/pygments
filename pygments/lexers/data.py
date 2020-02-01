@@ -445,7 +445,7 @@ class JsonLexer(RegexLexer):
 
     name = 'JSON'
     aliases = ['json']
-    filenames = ['*.json']
+    filenames = ['*.json', 'Pipfile.lock']
     mimetypes = ['application/json']
 
     flags = re.DOTALL
