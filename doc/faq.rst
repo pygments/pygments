@@ -135,6 +135,7 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 * `Spyder <https://www.spyder-ide.org/>`_, the Scientific Python Development
   Environment, uses pygments for the multi-language syntax highlighting in its
   `editor <https://docs.spyder-ide.org/editor.html>`_.
+* `snippet.host <https://snippet.host>`_, minimal text and code snippet hosting
 
 If you have a project or web site using Pygments, drop me a line, and I'll add a
 link here.
