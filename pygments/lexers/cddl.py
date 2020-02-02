@@ -97,7 +97,7 @@ class CddlLexer(RegexLexer):
         ".within",
     ]
 
-    _re_id = r"""(?x)
+    _re_id = r"""
         [$@A-Z_a-z]
         (?:[\-\.]*[$@0-9A-Z_a-z]|[$@0-9A-Z_a-z])*
     """
@@ -108,7 +108,7 @@ class CddlLexer(RegexLexer):
     _re_uint = r"(?:0b[01]+|0x[0-9a-fA-F]+|[1-9]\d*|0(?!\d))"
     _re_int = r"-?" + _re_uint
 
-    flags = re.UNICODE | re.MULTILINE
+    flags = re.UNICODE | re.MULTILINE | re.VERBOSE
 
     tokens = {
         "commentsandwhitespace": [(r"\s+", Text), (r";.+$", Comment.Single)],
@@ -156,7 +156,7 @@ class CddlLexer(RegexLexer):
             (r"0x[0-9a-fA-F]+", Number.Hex),  # hex
             # Float
             (
-                r"""(?x)
+                r"""
                 {int}
                 (?=(\.\d|e[+-]?\d)) # lookahead; at least one float-y thing coming?
                 (?:\.\d+)?          # fraction
