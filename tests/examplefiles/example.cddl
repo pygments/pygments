@@ -123,7 +123,7 @@ located-samples = {
 }
 
 proper-ints = 1 / 0
-invalid-int = 01
+;invalid-int = 01
 
 flt = 1.23
 flt = -1.23
@@ -299,7 +299,7 @@ group4a = ((+ a) // (b / c))
 a = 1 b = 2 c = 3
 
 byte-strings = 'hello world' / h'68656c6c6f20776f726c64' / b64'Zm-9v_YmE='
-byte-strings-w-errors = h'68656gc6c6f2077oops6f726c64' / b64'Zm+9vY/mE='
+;byte-strings-w-errors = h'68656gc6c6f2077oops6f726c64' / b64'Zm+9vY/mE='
 oneline-bstr = '<?php print(\'hello world\');  // no comment … ?>'
 multiline-bstr = '
   <?php
@@ -316,10 +316,10 @@ multiline-hex = h'
          04  ; 4
          05  ; 5
 '
-multiline-hex-err = h'
-   83         \'83\' means Array of length 3 (oops, missed the \';\')
-      01     ; 1
-'
+;multiline-hex-err = h'
+;   83         \'83\' means Array of length 3 (oops, missed the \';\')
+;      01     ; 1
+;'
 
 ; THE STANDARD "POSTLUDE"
 any = #
@@ -372,6 +372,6 @@ undefined = #7.23
 
 ; INVALID CDDL
 
-invalid_identifier- = -another_invalid
-untermindated-string = "sometimes I cannot finish my…
-next-thought = { valid: true }
+;invalid_identifier- = -another_invalid
+;untermindated-string = "sometimes I cannot finish my…
+;next-thought = { valid: true }
