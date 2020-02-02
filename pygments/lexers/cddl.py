@@ -15,6 +15,8 @@
 
 import re
 
+__all__ = ['CddlLexer']
+
 from pygments.lexer import RegexLexer, bygroups, include, words
 from pygments.token import (
     Comment,

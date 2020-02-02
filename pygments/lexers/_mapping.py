@@ -78,6 +78,7 @@ LEXERS = {
     'CapDLLexer': ('pygments.lexers.esoteric', 'CapDL', ('capdl',), ('*.cdl',), ()),
     'CapnProtoLexer': ('pygments.lexers.capnproto', "Cap'n Proto", ('capnp',), ('*.capnp',), ()),
     'CbmBasicV2Lexer': ('pygments.lexers.basic', 'CBM BASIC V2', ('cbmbas',), ('*.bas',), ()),
+    'CddlLexer': ('pygments.lexers.cddl', 'CDDL', ('cddl',), ('*.cddl',), ('text/x-cddl',)),
     'CeylonLexer': ('pygments.lexers.jvm', 'Ceylon', ('ceylon',), ('*.ceylon',), ('text/x-ceylon',)),
     'Cfengine3Lexer': ('pygments.lexers.configs', 'CFEngine3', ('cfengine3', 'cf3'), ('*.cf',), ()),
     'ChaiscriptLexer': ('pygments.lexers.scripting', 'ChaiScript', ('chai', 'chaiscript'), ('*.chai',), ('text/x-chaiscript', 'application/x-chaiscript')),
