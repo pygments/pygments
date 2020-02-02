@@ -115,8 +115,7 @@ class CddlLexer(RegexLexer):
         "root": [
             include("commentsandwhitespace"),
             # tag types
-            (r"#\d(\.{uint}|)".format(uint=_re_uint), Keyword.Type),
-            (r"#", Keyword.Type),  # any
+            (r"[#](\d\.{uint})?".format(uint=_re_uint), Keyword.Type), # type or any
             # occurence
             (
                 r"({uint}|)(\*)({uint}|)".format(uint=_re_uint),
