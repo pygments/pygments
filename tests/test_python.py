@@ -133,3 +133,28 @@ def test_pep_515(lexer3):
             (Token.Text, u'\n'),
         ]
         assert list(lexer3.get_tokens(fragment)) == tokens
+
+
+def test_walrus_operator(lexer3):
+    """
+    Tests that ':=' is recognized as an Operator
+    """
+    fragment = u'if (a := 2) > 4:'
+    tokens = [
+        (Token.Keyword, 'if'),
+        (Token.Text, ' '),
+        (Token.Punctuation, '('),
+        (Token.Name, 'a'),
+        (Token.Text, ' '),
+        (Token.Operator, ':='),
+        (Token.Text, ' '),
+        (Token.Literal.Number.Integer, '2'),
+        (Token.Punctuation, ')'),
+        (Token.Text, ' '),
+        (Token.Operator, '>'),
+        (Token.Text, ' '),
+        (Token.Literal.Number.Integer, '4'),
+        (Token.Punctuation, ':'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer3.get_tokens(fragment)) == tokens
