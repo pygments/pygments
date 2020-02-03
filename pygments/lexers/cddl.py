@@ -97,10 +97,10 @@ class CddlLexer(RegexLexer):
         ".within",
     ]
 
-    _re_id = r"""
-        [$@A-Z_a-z]
-        (?:[\-\.]*[$@0-9A-Z_a-z]|[$@0-9A-Z_a-z])*
-    """
+    _re_id = (
+        r"[$@A-Z_a-z]"
+        r"(?:[\-\.]*[$@0-9A-Z_a-z]|[$@0-9A-Z_a-z])*"
+    )
 
     # While the spec reads more like "an int must not start with 0" we use a
     # lookahead here that says "after a 0 there must be no digit". This makes the
@@ -108,14 +108,14 @@ class CddlLexer(RegexLexer):
     _re_uint = r"(?:0b[01]+|0x[0-9a-fA-F]+|[1-9]\d*|0(?!\d))"
     _re_int = r"-?" + _re_uint
 
-    flags = re.UNICODE | re.MULTILINE | re.VERBOSE
+    flags = re.UNICODE | re.MULTILINE
 
     tokens = {
         "commentsandwhitespace": [(r"\s+", Text), (r";.+$", Comment.Single)],
         "root": [
             include("commentsandwhitespace"),
             # tag types
-            (r"[#](\d\.{uint})?".format(uint=_re_uint), Keyword.Type), # type or any
+            (r"#(\d\.{uint})?".format(uint=_re_uint), Keyword.Type), # type or any
             # occurence
             (
                 r"({uint}|)(\*)({uint}|)".format(uint=_re_uint),
@@ -155,14 +155,7 @@ class CddlLexer(RegexLexer):
             (r"0x[0-9a-fA-F]+", Number.Hex),  # hex
             # Float
             (
-                r"""
-                {int}
-                (?=(\.\d|e[+-]?\d)) # lookahead; at least one float-y thing coming?
-                (?:\.\d+)?          # fraction
-                (?:e[+-]?\d+)?      # and/or exponent
-                """.format(
-                    int=_re_int
-                ),
+                r"{int}(?=(\.\d|e[+-]?\d))(?:\.\d+)?(?:e[+-]?\d+)?".format(int=_re_int),
                 Number.Float,
             ),
             # Int
