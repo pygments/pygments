@@ -133,6 +133,7 @@ Programming languages
 * QBasic
 * `Racket <https://racket-lang.org/>`_
 * `Raku <https://www.raku.org/>`_ a.k.a. Perl 6
+* `ReasonML <https://reasonml.github.io/>`_
 * `REBOL <http://www.rebol.com>`_
 * `Red <https://www.red-lang.org>`_
 * Redcode
