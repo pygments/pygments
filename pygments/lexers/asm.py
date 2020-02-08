@@ -101,9 +101,9 @@ class GasLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.match(r'^\.(text|data|section)', text, re.M):
+        if re.search(r'^\.(text|data|section)', text, re.M):
             return True
-        elif re.match(r'^\.\w+', text, re.M):
+        elif re.search(r'^\.\w+', text, re.M):
             return 0.1
 
 
@@ -883,7 +883,7 @@ class Ca65Lexer(RegexLexer):
 
     def analyse_text(self, text):
         # comments in GAS start with "#"
-        if re.match(r'^\s*;', text, re.MULTILINE):
+        if re.search(r'^\s*;', text, re.MULTILINE):
             return 0.9
 
 

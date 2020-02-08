@@ -173,7 +173,7 @@ def doctype_matches(text, regex):
     Note that this method only checks the first part of a DOCTYPE.
     eg: 'html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"'
     """
-    m = doctype_lookup_re.match(text)
+    m = doctype_lookup_re.search(text)
     if m is None:
         return False
     doctype = m.group(2)
@@ -196,7 +196,7 @@ def looks_like_xml(text):
     try:
         return _looks_like_xml_cache[key]
     except KeyError:
-        m = doctype_lookup_re.match(text)
+        m = doctype_lookup_re.search(text)
         if m is not None:
             return True
         rv = tag_re.search(text[:1000]) is not None
