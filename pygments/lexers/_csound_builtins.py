@@ -7,7 +7,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-# Opcodes in Csound 6.13.0 using:
+# Opcodes in Csound 6.14.0 using:
 #   python3 -c "
 #   import re
 #   from subprocess import Popen, PIPE
@@ -265,11 +265,19 @@ chn_k
 chnclear
 chnexport
 chnget
+chngeta
+chngeti
+chngetk
 chngetks
+chngets
 chnmix
 chnparams
 chnset
+chnseta
+chnseti
+chnsetk
 chnsetks
+chnsets
 chuap
 clear
 clfilt
@@ -467,6 +475,7 @@ ftaudio
 ftchnls
 ftconv
 ftcps
+ftexists
 ftfree
 ftgen
 ftgenonce
@@ -748,6 +757,7 @@ la_k_upper_solve_mc
 la_k_upper_solve_mr
 la_k_vc_set
 la_k_vr_set
+lastcycle
 lenarray
 lfo
 limit
@@ -838,6 +848,7 @@ mdelay
 median
 mediank
 metro
+metro2
 mfb
 midglobal
 midiarp
@@ -1192,6 +1203,7 @@ qinf
 qnan
 r2c
 rand
+randc
 randh
 randi
 random
@@ -1252,6 +1264,7 @@ scanu
 schedkwhen
 schedkwhennamed
 schedule
+schedulek
 schedwhen
 scoreline
 scoreline_i
@@ -1362,6 +1375,7 @@ strlowerk
 strrindex
 strrindexk
 strset
+strstrip
 strsub
 strsubk
 strtod

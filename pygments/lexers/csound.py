@@ -189,8 +189,8 @@ class CsoundScoreLexer(CsoundLexer):
             include('root')
         ],
 
-        # Braced strings are not allowed in Csound scores, but this is needed
-        # because the superclass includes it.
+        # Braced strings are not allowed in Csound scores, but this is needed because the
+        # superclass includes it.
         'braced string': [
             (r'\}\}', String, '#pop'),
             (r'[^}]|\}(?!\})', String)
@@ -337,8 +337,8 @@ class CsoundOrchestraLexer(CsoundLexer):
         #   prints          https://csound.com/docs/manual/prints.html
         #   sprintf         https://csound.com/docs/manual/sprintf.html
         #   sprintfk        https://csound.com/docs/manual/sprintfk.html
-        # work with strings that contain format specifiers. In addition, these
-        # opcodes’ handling of format specifiers is inconsistent:
+        # work with strings that contain format specifiers. In addition, these opcodes’
+        # handling of format specifiers is inconsistent:
         #   - fprintks, fprints, printks, and prints do accept %a and %A
         #     specifiers, but can’t accept %s specifiers.
         #   - printf, printf_i, sprintf, and sprintfk don’t accept %a and %A
