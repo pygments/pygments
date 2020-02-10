@@ -1,0 +1,72 @@
+caption: Formatting
+created: 20131205155959399
+modified: 20200201075357846
+tags: TiddlyWiki WikiText
+title: TiddlyWiki5
+type: text/vnd.tiddlywiki
+
+\define pos() <div class="cell positive">+</div>
+\define neg() <div class="cell negative">-</div>
+
+\define say-hi-using-variables()
+Hi, I'm $(name)$ and I live in $(address)$.
+\end
+
+<style>
+/* compensating the cell padding */
+.cell { margin:-1px -7px; padding:1px 7px; }
+.positive { background-color:#afa; }
+.negative { background-color:#faa; }
+</style>
+
+!Main Header
+
+Available character formatting includes:
+
+* <code>&#96;backticks&#96;</code> for `code`
+** Alternatively, <code>&#96;&#96;double backticks allows &#96;embedded&#96; backticks&#96;&#96;</code>
+ * `''bold''` for ''bold text''
+*`//italic//` for //italic text// ({{$:/core/images/italic}})
+*# `__underscore__` for __underscored text__
+
+Ordered list:
+
+# `^^superscript^^` for ^^superscripted^^ text ({{$:/core/images/superscript}})
+# `,,subscript,,` for ,,subscripted,, text ({{$:/core/images/subscript}})
+#* `~~strikethrough~~` for ~~strikethrough~~ text ({{$:/core/images/strikethrough}})
+
+<span style="font-style: italic;">''bold'' &#96;&amp;</span>
+
+!!Links
+
+Internal link: [[Code Blocks in WikiText]]
+
+External link: [[TiddlyWiki Homepage|https://tiddlywiki.com]]
+
+Image via transclusion: {{$:/core/images/underline}}
+
+Just a link: ftp://ftp.halifax.rwth-aachen.de/
+
+!!!Code
+
+```bash
+cd "$HOME/workspace"
+```
+
+!!!Table
+
+|myclass anotherClass|k
+|This is a caption |c
+|Header|Header|h
+|''Cell1'' |<<neg>> |
+|//Cell2// |<<pos>> |
+|Footer|Footer|f
+
+!Block quote
+
+<<<
+Computers are like a bicycle for our minds
+<<< Steve Jobs
+
+; Term being defined
+: Definition of that term
