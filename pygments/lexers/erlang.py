@@ -233,7 +233,7 @@ class ElixirLexer(RegexLexer):
 
     name = 'Elixir'
     aliases = ['elixir', 'ex', 'exs']
-    filenames = ['*.ex', '*.exs']
+    filenames = ['*.ex', '*.eex', '*.exs']
     mimetypes = ['text/x-elixir']
 
     KEYWORD = ('fn', 'do', 'end', 'after', 'else', 'rescue', 'catch')
