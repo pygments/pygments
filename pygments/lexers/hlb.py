@@ -30,9 +30,10 @@ class HlbLexer(RegexLexer):
     tokens = {
         'root' : [
             (u'(#.*)', bygroups(Comment.Single)),
-            (u'((\\b(0(b|B|o|O|x|X)[a-fA-F0-9]+)\\b)|(\\b(0|[1-9][0-9]*)\\b)|(\\b(true|false)\\b))', bygroups(Name.Constant)),
+            (u'((\\b(0(b|B|o|O|x|X)[a-fA-F0-9]+)\\b)|(\\b(0|[1-9][0-9]*)\\b))', bygroups(Number)),
+            (u'((\\b(true|false)\\b))', bygroups(Name.Builtin)),
             (u'(\\bstring\\b|\\bint\\b|\\bbool\\b|\\bfs\\b|\\boption\\b)', bygroups(Keyword.Type)),
-            (u'(\\b[a-zA-Z_][a-zA-Z0-9]*\\b)(\\()', bygroups(Keyword, Punctuation), 'params'),
+            (u'(\\b[a-zA-Z_][a-zA-Z0-9]*\\b)(\\()', bygroups(Name.Function, Punctuation), 'params'),
             (u'(\\{)', bygroups(Punctuation), 'block'),
             ('(\n|\r|\r\n)', Text),
             ('.', Text),
@@ -45,9 +46,11 @@ class HlbLexer(RegexLexer):
         'block' : [
             (u'(\\})', bygroups(Punctuation), '#pop'),
             (u'(#.*)', bygroups(Comment.Single)),
-            (u'((\\b(0(b|B|o|O|x|X)[a-fA-F0-9]+)\\b)|(\\b(0|[1-9][0-9]*)\\b)|(\\b(true|false)\\b))', bygroups(Name.Constant)),
+            (u'((\\b(0(b|B|o|O|x|X)[a-fA-F0-9]+)\\b)|(\\b(0|[1-9][0-9]*)\\b))', bygroups(Number)),
+            (u'((\\b(true|false)\\b))', bygroups(Name.Builtin)),
             (r'"', String, 'string'),
-            (u'(\\b(with|as|variadic)\\b)', bygroups(Name.Builtin)),
+            (u'(with)', bygroups(Keyword.Reserved)),
+            (u'(as)([\\t ]+)(\\b[a-zA-Z_][a-zA-Z0-9]*\\b)', bygroups(Keyword.Reserved, String, Name.Function)),
             (u'(\\bstring\\b|\\bint\\b|\\bbool\\b|\\bfs\\b|\\boption\\b)([\\t ]+)(\\{)', bygroups(Keyword.Type, Text, Punctuation), 'block'),
             (u'(\\b((?!(scratch|image|resolve|http|checksum|chmod|filename|git|keepGitDir|local|includePatterns|excludePatterns|followPaths|generate|frontendInput|shell|run|readonlyRootfs|env|dir|user|network|security|host|ssh|secret|mount|target|localPath|uid|gid|mode|readonly|tmpfs|sourcePath|cache|mkdir|createParents|chown|createdTime|mkfile|rm|allowNotFound|allowWildcards|copy|followSymlinks|contentsOnly|unpack|createDestPath)\\b)[a-zA-Z_][a-zA-Z0-9]*\\b))', bygroups(Name.Variable)),
             ('(\n|\r|\r\n)', Text),
@@ -55,6 +58,7 @@ class HlbLexer(RegexLexer):
         ], 
         'params' : [
             (u'(\\))', bygroups(Punctuation), '#pop'),
+            (u'(variadic)', bygroups(Keyword)),
             (u'(\\bstring\\b|\\bint\\b|\\bbool\\b|\\bfs\\b|\\boption\\b)', bygroups(Keyword.Type)),
             (u'(\\b[a-zA-Z_][a-zA-Z0-9]*\\b)', bygroups(Name.Variable)),
             ('(\n|\r|\r\n)', Text),
