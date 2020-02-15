@@ -889,6 +889,7 @@ class ExeclineLexer(RegexLexer):
             (r'(?s)"(\\.|[^"\\$])*"', String.Double),
             (r'"', String.Double, 'string'),
             (r'\s+', Text),
+            (r'[^\s{}$"\\]+', Text)
         ],
         'string': [
             (r'"', String.Double, '#pop'),
