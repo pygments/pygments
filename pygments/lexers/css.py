@@ -55,18 +55,19 @@ _css_properties = (
     'box-shadow', 'box-sizing', 'box-snap', 'box-suppress', 'break-after',
     'break-before', 'break-inside', 'caption-side', 'caret', 'caret-animation',
     'caret-color', 'caret-shape', 'chains', 'clear', 'clip', 'clip-path',
-    'clip-rule', 'color', 'color-interpolation-filters', 'column-count',
-    'column-fill', 'column-gap', 'column-rule', 'column-rule-color',
-    'column-rule-style', 'column-rule-width', 'column-span', 'column-width',
-    'columns', 'content', 'counter-increment', 'counter-reset', 'counter-set',
-    'crop', 'cue', 'cue-after', 'cue-before', 'cursor', 'direction', 'display',
-    'dominant-baseline', 'elevation', 'empty-cells', 'filter', 'flex',
-    'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink',
-    'flex-wrap', 'float', 'float-defer', 'float-offset', 'float-reference',
-    'flood-color', 'flood-opacity', 'flow', 'flow-from', 'flow-into', 'font',
-    'font-family', 'font-feature-settings', 'font-kerning',
-    'font-language-override', 'font-size', 'font-size-adjust', 'font-stretch',
-    'font-style', 'font-synthesis', 'font-variant', 'font-variant-alternates',
+    'clip-rule', 'color', 'color-adjust', 'color-interpolation-filters',
+    'column-count', 'column-fill', 'column-gap', 'column-rule',
+    'column-rule-color', 'column-rule-style', 'column-rule-width',
+    'column-span', 'column-width', 'columns', 'content', 'continue',
+    'counter-increment', 'counter-reset', 'counter-set', 'cue', 'cue-after',
+    'cue-before', 'cursor', 'direction', 'display', 'dominant-baseline',
+    'elevation', 'empty-cells', 'filter', 'flex', 'flex-basis',
+    'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap',
+    'float', 'float-defer', 'float-offset', 'float-reference', 'flood-color',
+    'flood-opacity', 'flow', 'flow-from', 'flow-into', 'font', 'font-family',
+    'font-feature-settings', 'font-kerning', 'font-language-override',
+    'font-size', 'font-size-adjust', 'font-stretch', 'font-style',
+    'font-synthesis', 'font-variant', 'font-variant-alternates',
     'font-variant-caps', 'font-variant-east-asian', 'font-variant-ligatures',
     'font-variant-numeric', 'font-variant-position', 'font-weight',
     'footnote-display', 'footnote-policy', 'glyph-orientation-vertical',
@@ -77,13 +78,15 @@ _css_properties = (
     'grid-template-columns', 'grid-template-rows', 'hanging-punctuation',
     'height', 'hyphenate-character', 'hyphenate-limit-chars',
     'hyphenate-limit-last', 'hyphenate-limit-lines', 'hyphenate-limit-zone',
-    'hyphens', 'image-orientation', 'image-resolution', 'initial-letter',
-    'initial-letter-align', 'initial-letter-wrap', 'isolation',
-    'justify-content', 'justify-items', 'justify-self', 'left',
+    'hyphens', 'image-orientation', 'image-rendering', 'image-resolution',
+    'initial-letter', 'initial-letter-align', 'initial-letter-wrap',
+    'isolation', 'justify-content', 'justify-items', 'justify-self', 'left',
     'letter-spacing', 'lighting-color', 'line-break', 'line-grid',
     'line-height', 'line-snap', 'list-style', 'list-style-image',
     'list-style-position', 'list-style-type', 'margin', 'margin-bottom',
-    'margin-left', 'margin-right', 'margin-top', 'marker-side',
+    'margin-left', 'margin-right', 'margin-top', 'marker', 'marker-end',
+    'marker-knockout-left', 'marker-knockout-right', 'marker-mid',
+    'marker-pattern', 'marker-segment', 'marker-side', 'marker-start',
     'marquee-direction', 'marquee-loop', 'marquee-speed', 'marquee-style',
     'mask', 'mask-border', 'mask-border-mode', 'mask-border-outset',
     'mask-border-repeat', 'mask-border-slice', 'mask-border-source',
@@ -91,31 +94,47 @@ _css_properties = (
     'mask-mode', 'mask-origin', 'mask-position', 'mask-repeat', 'mask-size',
     'mask-type', 'max-height', 'max-lines', 'max-width', 'min-height',
     'min-width', 'mix-blend-mode', 'motion', 'motion-offset', 'motion-path',
-    'motion-rotation', 'move-to', 'nav-down', 'nav-left', 'nav-right',
-    'nav-up', 'object-fit', 'object-position', 'offset-after', 'offset-before',
-    'offset-end', 'offset-start', 'opacity', 'order', 'orphans', 'outline',
-    'outline-color', 'outline-offset', 'outline-style', 'outline-width',
-    'overflow', 'overflow-style', 'overflow-wrap', 'overflow-x', 'overflow-y',
-    'padding', 'padding-bottom', 'padding-left', 'padding-right', 'padding-top',
-    'page', 'page-break-after', 'page-break-before', 'page-break-inside',
-    'page-policy', 'pause', 'pause-after', 'pause-before', 'perspective',
-    'perspective-origin', 'pitch', 'pitch-range', 'play-during', 'polar-angle',
-    'polar-distance', 'position', 'presentation-level', 'quotes',
-    'region-fragment', 'resize', 'rest', 'rest-after', 'rest-before',
-    'richness', 'right', 'rotation', 'rotation-point', 'ruby-align',
-    'ruby-merge', 'ruby-position', 'running', 'scroll-snap-coordinate',
-    'scroll-snap-destination', 'scroll-snap-points-x', 'scroll-snap-points-y',
-    'scroll-snap-type', 'shape-image-threshold', 'shape-inside', 'shape-margin',
-    'shape-outside', 'size', 'speak', 'speak-as', 'speak-header',
-    'speak-numeral', 'speak-punctuation', 'speech-rate', 'stress', 'string-set',
-    'tab-size', 'table-layout', 'text-align', 'text-align-last',
-    'text-combine-upright', 'text-decoration', 'text-decoration-color',
-    'text-decoration-line', 'text-decoration-skip', 'text-decoration-style',
-    'text-emphasis', 'text-emphasis-color', 'text-emphasis-position',
-    'text-emphasis-style', 'text-indent', 'text-justify', 'text-orientation',
-    'text-overflow', 'text-shadow', 'text-space-collapse', 'text-space-trim',
-    'text-spacing', 'text-transform', 'text-underline-position', 'text-wrap',
-    'top', 'transform', 'transform-origin', 'transform-style', 'transition',
+    'motion-rotation', 'nav-down', 'nav-left', 'nav-right', 'nav-up',
+    'object-fit', 'object-position', 'offset', 'offset-after', 'offset-anchor',
+    'offset-before', 'offset-distance', 'offset-end', 'offset-path',
+    'offset-position', 'offset-rotate', 'offset-start', 'opacity', 'order',
+    'orphans', 'outline', 'outline-color', 'outline-offset', 'outline-style',
+    'outline-width', 'overflow', 'overflow-style', 'overflow-wrap',
+    'overflow-x', 'overflow-y', 'padding', 'padding-bottom', 'padding-left',
+    'padding-right', 'padding-top', 'page', 'page-break-after',
+    'page-break-before', 'page-break-inside', 'pause', 'pause-after',
+    'pause-before', 'perspective', 'perspective-origin', 'pitch',
+    'pitch-range', 'place-content', 'place-items', 'place-self', 'play-during',
+    'polar-anchor', 'polar-angle', 'polar-distance', 'polar-origin',
+    'position', 'presentation-level', 'quotes', 'region-fragment', 'resize',
+    'rest', 'rest-after', 'rest-before', 'richness', 'right', 'rotation',
+    'rotation-point', 'ruby-align', 'ruby-merge', 'ruby-position', 'running',
+    'scroll-behavior', 'scroll-padding', 'scroll-padding-block',
+    'scroll-padding-block-end', 'scroll-padding-block-start',
+    'scroll-padding-bottom', 'scroll-padding-inline',
+    'scroll-padding-inline-end', 'scroll-padding-inline-start',
+    'scroll-padding-left', 'scroll-padding-right', 'scroll-padding-top',
+    'scroll-snap-align', 'scroll-snap-margin', 'scroll-snap-margin-block',
+    'scroll-snap-margin-block-end', 'scroll-snap-margin-block-start',
+    'scroll-snap-margin-bottom', 'scroll-snap-margin-inline',
+    'scroll-snap-margin-inline-end', 'scroll-snap-margin-inline-start',
+    'scroll-snap-margin-left', 'scroll-snap-margin-right',
+    'scroll-snap-margin-top', 'scroll-snap-stop', 'scroll-snap-type',
+    'shape-image-threshold', 'shape-inside', 'shape-margin', 'shape-outside',
+    'size', 'speak', 'speak-as', 'speak-header', 'speak-numeral',
+    'speak-punctuation', 'speech-rate', 'stress', 'string-set', 'stroke',
+    'stroke-alignment', 'stroke-dashadjust', 'stroke-dasharray',
+    'stroke-dashcorner', 'stroke-dashoffset', 'stroke-linecap',
+    'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke-width',
+    'tab-size', 'table-layout', 'text-align', 'text-align-all',
+    'text-align-last', 'text-combine-upright', 'text-decoration',
+    'text-decoration-color', 'text-decoration-line', 'text-decoration-skip',
+    'text-decoration-style', 'text-emphasis', 'text-emphasis-color',
+    'text-emphasis-position', 'text-emphasis-style', 'text-indent',
+    'text-justify', 'text-orientation', 'text-overflow', 'text-shadow',
+    'text-space-collapse', 'text-space-trim', 'text-spacing', 'text-transform',
+    'text-underline-position', 'text-wrap', 'top', 'transform',
+    'transform-box', 'transform-origin', 'transform-style', 'transition',
     'transition-delay', 'transition-duration', 'transition-property',
     'transition-timing-function', 'unicode-bidi', 'user-select',
     'vertical-align', 'visibility', 'voice-balance', 'voice-duration',
@@ -131,54 +150,77 @@ _keyword_values = (
     'absolute', 'alias', 'all', 'all-petite-caps', 'all-scroll',
     'all-small-caps', 'allow-end', 'alpha', 'alternate', 'alternate-reverse',
     'always', 'armenian', 'auto', 'avoid', 'avoid-column', 'avoid-page',
-    'backwards', 'balance', 'baseline', 'below', 'blink', 'block', 'bold',
-    'bolder', 'border-box', 'both', 'bottom', 'box-decoration', 'break-word',
-    'capitalize', 'cell', 'center', 'circle', 'clip', 'clone', 'close-quote',
-    'col-resize', 'collapse', 'color', 'color-burn', 'color-dodge', 'column',
+    'backwards', 'balance', 'baseline', 'below', 'bidi-override', 'blink',
+    'block', 'bold', 'bolder', 'border-box', 'both', 'bottom',
+    'box-decoration', 'break-all', 'break-word', 'capitalize', 'cell',
+    'center', 'circle', 'clip', 'clone', 'close-quote', 'col-resize',
+    'collapse', 'color', 'color-burn', 'color-dodge', 'column',
     'column-reverse', 'compact', 'condensed', 'contain', 'container',
-    'content-box', 'context-menu', 'copy', 'cover', 'crisp-edges', 'crosshair',
-    'currentColor', 'cursive', 'darken', 'dashed', 'decimal',
+    'content-box', 'contents', 'context-menu', 'copy', 'cover', 'crisp-edges',
+    'crosshair', 'currentColor', 'cursive', 'darken', 'dashed', 'decimal',
     'decimal-leading-zero', 'default', 'descendants', 'difference', 'digits',
-    'disc', 'distribute', 'dot', 'dotted', 'double', 'double-circle', 'e-resize',
-    'each-line', 'ease', 'ease-in', 'ease-in-out', 'ease-out', 'edges',
-    'ellipsis', 'end', 'ew-resize', 'exclusion', 'expanded', 'extra-condensed',
-    'extra-expanded', 'fantasy', 'fill', 'fill-box', 'filled', 'first', 'fixed',
-    'flat', 'flex', 'flex-end', 'flex-start', 'flip', 'force-end', 'forwards',
-    'from-image', 'full-width', 'geometricPrecision', 'georgian', 'groove',
-    'hanging', 'hard-light', 'help', 'hidden', 'hide', 'horizontal', 'hue',
-    'icon', 'infinite', 'inherit', 'initial', 'ink', 'inline', 'inline-block',
+    'disc', 'distribute', 'dot', 'dotted', 'double', 'double-circle',
+    'e-resize', 'each-line', 'ease', 'ease-in', 'ease-in-out', 'ease-out',
+    'edges', 'ellipsis', 'embed', 'end', 'ew-resize', 'exclusion', 'expanded',
+    'extra-condensed', 'extra-expanded', 'fantasy', 'fill', 'fill-box',
+    'filled', 'first', 'fixed', 'flat', 'flex', 'flex-end', 'flex-start',
+    'flip', 'force-end', 'forwards', 'from-image', 'full-width',
+    'geometricPrecision', 'georgian', 'groove', 'hanging', 'hard-light',
+    'help', 'hidden', 'hide', 'horizontal', 'horizontal-tb', 'hue', 'icon',
+    'infinite', 'inherit', 'initial', 'ink', 'inline', 'inline-block',
     'inline-flex', 'inline-table', 'inset', 'inside', 'inter-word', 'invert',
-    'isolate', 'italic', 'justify', 'large', 'larger', 'last', 'left',
-    'lighten', 'lighter', 'line-through', 'linear', 'list-item', 'local',
-    'loose', 'lower-alpha', 'lower-greek', 'lower-latin', 'lower-roman',
-    'lowercase', 'ltr', 'luminance', 'luminosity', 'mandatory', 'manipulation',
-    'manual', 'margin-box', 'match-parent', 'medium', 'mixed', 'monospace',
-    'move', 'multiply', 'n-resize', 'ne-resize', 'nesw-resize',
-    'no-close-quote', 'no-drop', 'no-open-quote', 'no-repeat', 'none', 'normal',
-    'not-allowed', 'nowrap', 'ns-resize', 'nw-resize', 'nwse-resize', 'objects',
-    'oblique', 'off', 'on', 'open', 'open-quote', 'optimizeLegibility',
-    'optimizeSpeed', 'outset', 'outside', 'over', 'overlay', 'overline',
-    'padding-box', 'page', 'pan-down', 'pan-left', 'pan-right', 'pan-up',
-    'pan-x', 'pan-y', 'paused', 'petite-caps', 'pixelated', 'pointer',
-    'preserve-3d', 'progress', 'proximity', 'relative', 'repeat',
-    'repeat no-repeat', 'repeat-x', 'repeat-y', 'reverse', 'ridge', 'right',
-    'round', 'row', 'row-resize', 'row-reverse', 'rtl', 'ruby', 'ruby-base',
+    'isolate', 'italic', 'justify', 'keep-all', 'large', 'larger', 'last',
+    'left', 'lighten', 'lighter', 'line-through', 'linear', 'list-item',
+    'local', 'loose', 'lower-alpha', 'lower-greek', 'lower-latin',
+    'lower-roman', 'lowercase', 'ltr', 'luminance', 'luminosity', 'mandatory',
+    'manipulation', 'manual', 'margin-box', 'match-parent', 'medium', 'middle',
+    'mixed', 'monospace', 'move', 'multiply', 'n-resize', 'ne-resize',
+    'nesw-resize', 'no-close-quote', 'no-drop', 'no-open-quote', 'no-repeat',
+    'none', 'normal', 'not-allowed', 'nowrap', 'ns-resize', 'nw-resize',
+    'nwse-resize', 'objects', 'oblique', 'off', 'on', 'open', 'open-quote',
+    'optimizeLegibility', 'optimizeSpeed', 'outset', 'outside', 'over',
+    'overlay', 'overline', 'padding-box', 'page', 'pan-down', 'pan-left',
+    'pan-right', 'pan-up', 'pan-x', 'pan-y', 'paused', 'petite-caps',
+    'pixelated', 'pointer', 'pre', 'pre-line', 'pre-wrap', 'preserve-3d',
+    'progress', 'proximity', 'relative', 'repeat', 'repeat no-repeat',
+    'repeat-x', 'repeat-y', 'reverse', 'ridge', 'right', 'round', 'row',
+    'row-resize', 'row-reverse', 'rtl', 'ruby', 'ruby-base',
     'ruby-base-container', 'ruby-text', 'ruby-text-container', 'run-in',
     'running', 's-resize', 'sans-serif', 'saturation', 'scale-down', 'screen',
-    'scroll', 'se-resize', 'semi-condensed', 'semi-expanded', 'separate',
-    'serif', 'sesame', 'show', 'sideways', 'sideways-left', 'sideways-right',
-    'slice', 'small', 'small-caps', 'smaller', 'smooth', 'snap', 'soft-light',
-    'solid', 'space', 'space-around', 'space-between', 'spaces', 'square',
-    'start', 'static', 'step-end', 'step-start', 'sticky', 'stretch', 'strict',
-    'stroke-box', 'style', 'sw-resize', 'table', 'table-caption', 'table-cell',
-    'table-column', 'table-column-group', 'table-footer-group',
-    'table-header-group', 'table-row', 'table-row-group', 'text', 'thick',
-    'thin', 'titling-caps', 'to', 'top', 'triangle', 'ultra-condensed',
-    'ultra-expanded', 'under', 'underline', 'unicase', 'unset', 'upper-alpha',
-    'upper-latin', 'upper-roman', 'uppercase', 'upright', 'use-glyph-orientation',
-    'vertical', 'vertical-text', 'view-box', 'visible', 'w-resize', 'wait',
-    'wavy', 'weight', 'weight style', 'wrap', 'wrap-reverse', 'x-large',
-    'x-small', 'xx-large', 'xx-small', 'zoom-in', 'zoom-out',
+    'scroll', 'scroll-position', 'se-resize', 'semi-condensed',
+    'semi-expanded', 'separate', 'serif', 'sesame', 'show', 'sideways',
+    'sideways-left', 'sideways-right', 'slice', 'small', 'small-caps',
+    'smaller', 'smooth', 'snap', 'soft-light', 'solid', 'space',
+    'space-around', 'space-between', 'spaces', 'square', 'start', 'static',
+    'step-end', 'step-start', 'sticky', 'stretch', 'strict', 'stroke-box',
+    'style', 'sub', 'super', 'sw-resize', 'table', 'table-caption',
+    'table-cell', 'table-column', 'table-column-group', 'table-footer-group',
+    'table-header-group', 'table-row', 'table-row-group', 'text',
+    'text-bottom', 'text-top', 'thick', 'thin', 'titling-caps', 'to', 'top',
+    'transparent', 'triangle', 'ultra-condensed', 'ultra-expanded', 'under',
+    'underline', 'unicase', 'unset', 'upper-alpha', 'upper-latin',
+    'upper-roman', 'uppercase', 'upright', 'use-glyph-orientation', 'vertical',
+    'vertical-lr', 'vertical-rl', 'vertical-text', 'view-box', 'visible',
+    'w-resize', 'wait', 'wavy', 'weight', 'weight style', 'wrap',
+    'wrap-reverse', 'x-large', 'x-small', 'xx-large', 'xx-small', 'zoom-in',
+    'zoom-out',
+)
+
+# https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+_psuedo_classes = (
+    'active', 'any', 'checked', 'default', 'dir', 'disabled', 'empty',
+    'enabled', 'first', 'first-child', 'first-of-type', 'fullscreen', 'focus',
+    'hover', 'indeterminate', 'in-range', 'invalid', 'lang', 'last-child',
+    'last-of-type', 'left', 'link', 'not', 'nth-child', 'nth-last-child',
+    'nth-last-of-type', 'nth-of-type', 'only-child', 'only-of-type',
+    'optional', 'out-of-range', 'read-only', 'read-write', 'required', 'right',
+    'root', 'scope', 'target', 'valid', 'visited',
+)
+
+# https://developer.mozilla.org/en-US/docs/Web/CSS/pseudo-elements
+_pseodu_elements = (
+    'after', 'before', 'first-letter', 'first-line', 'selection', 'backdrop',
+    'placeholder', 'marker', 'spelling-error', 'grammar-error',
 )
 
 # List of extended color keywords obtained from:
@@ -265,6 +307,24 @@ _time_units = (
 _all_units = _angle_units + _frequency_units + _length_units + \
     _resolution_units + _time_units
 
+# http://sass-lang.com/documentation/Sass/Script/Functions.html
+_sass_functions = (
+    'rgb', 'rgba', 'red', 'green', 'blue', 'mix', 'hsl', 'hsla', 'hue',
+    'saturation', 'lightness', 'adjust-hue', 'lighten', 'darken', 'saturate',
+    'desaturate', 'grayscale', 'complement', 'invert', 'alpha', 'rgba',
+    'opacify', 'transparentize', 'adjust-color', 'scale-color', 'change-color',
+    'ie-hex-str', 'unquote', 'quote', 'str-length', 'str-insert', 'str-index',
+    'str-slice', 'to-upper-case', 'to-lower-case', 'percentage', 'round',
+    'ceil', 'floor', 'abs', 'min', 'max', 'random', 'length', 'nth', 'set-nth',
+    'join', 'append', 'zip', 'index', 'list-separator', 'map-get', 'map-merge',
+    'map-remove', 'map-keys', 'map-values', 'map-has-key', 'keywords',
+    'selector-nest', 'selector-append', 'selector-extend', 'selector-replace',
+    'selector-unify', 'is-superselector', 'simple-selectors', 'selector-parse',
+    'feature-exists', 'variable-exists', 'global-variable-exists',
+    'function-exists', 'mixin-exists', 'inspect', 'type-of', 'unit',
+    'unitless', 'comparable', 'call', 'if', 'unique-id',
+)
+
 
 class CssLexer(RegexLexer):
     """
@@ -277,30 +337,14 @@ class CssLexer(RegexLexer):
     mimetypes = ['text/css']
 
     tokens = {
-        'root': [
-            include('basics'),
-        ],
-        'basics': [
-            (r'\s+', Text),
-            (r'/\*(?:.|\n)*?\*/', Comment),
-            (r'\{', Punctuation, 'content'),
-            (r'(\:{1,2})([\w-]+)', bygroups(Punctuation, Name.Decorator)),
-            (r'(\.)([\w-]+)', bygroups(Punctuation, Name.Class)),
-            (r'(\#)([\w-]+)', bygroups(Punctuation, Name.Namespace)),
-            (r'(@)([\w-]+)', bygroups(Punctuation, Keyword), 'atrule'),
-            (r'[\w-]+', Name.Tag),
-            (r'[~^*!%&$\[\]()<>|+=@:;,./?-]', Operator),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single)
-        ],
-        'atrule': [
-            (r'\{', Punctuation, 'atcontent'),
-            (r';', Punctuation, '#pop'),
-            include('basics'),
-        ],
-        'atcontent': [
-            include('basics'),
-            (r'\}', Punctuation, '#pop:2'),
+        'keywords': [
+            (words(_vendor_prefixes,), Name.Builtin.Pseudo),
+            (words(_css_properties, suffix=r'\b'), Keyword),
+            (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
+            (words(_color_keywords, suffix=r'\b'), Keyword.Constant),
+            (words(_psuedo_classes, suffix=r'\b'), Keyword.Pseudo),
+            (words(_pseodu_elements, suffix=r'\b'), Keyword.Pseudo),
+            (words(_functional_notation_keyword_values + ('url',), suffix=r'\b'), Name.Builtin),
         ],
         'content': [
             (r'\s+', Text),
@@ -316,72 +360,26 @@ class CssLexer(RegexLexer):
 
             (r'/\*(?:.|\n)*?\*/', Comment),
         ],
-        'value-start': [
-            (r'\s+', Text),
-            (words(_vendor_prefixes,), Name.Builtin.Pseudo),
-            include('urls'),
-            (r'('+r'|'.join(_functional_notation_keyword_values)+r')(\()',
-             bygroups(Name.Builtin, Punctuation), 'function-start'),
-            (r'([a-zA-Z_][\w-]+)(\()',
-             bygroups(Name.Function, Punctuation), 'function-start'),
-            (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
-            (words(_other_keyword_values, suffix=r'\b'), Keyword.Constant),
-            (words(_color_keywords, suffix=r'\b'), Keyword.Constant),
-            # for transition-property etc.
-            (words(_css_properties, suffix=r'\b'), Keyword),
-            (r'\!important', Comment.Preproc),
-            (r'/\*(?:.|\n)*?\*/', Comment),
-
-            include('numeric-values'),
-
-            (r'[~^*!%&<>|+=@:./?-]+', Operator),
-            (r'[\[\](),]+', Punctuation),
+        'literals': [
+            (r'\#[a-fA-F0-9]{3}', Number.Hex),
+            (r'\#[a-fA-F0-9]{6}', Number.Hex),
+            (r'[+\-]?[0-9]*[.][0-9]+', Number.Float),
+            (r'[+\-]?[0-9]+', Number.Integer),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z_][\w-]*', Name),
-            (r';', Punctuation, '#pop'),
-            (r'\}', Punctuation, '#pop:2'),
-        ],
-        'function-start': [
-            (r'\s+', Text),
-            include('urls'),
-            (words(_vendor_prefixes,), Keyword.Pseudo),
-            (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
-            (words(_other_keyword_values, suffix=r'\b'), Keyword.Constant),
-            (words(_color_keywords, suffix=r'\b'), Keyword.Constant),
-
-            # function-start may be entered recursively
-            (r'(' + r'|'.join(_functional_notation_keyword_values) + r')(\()',
-             bygroups(Name.Builtin, Punctuation), 'function-start'),
-            (r'([a-zA-Z_][\w-]+)(\()',
-             bygroups(Name.Function, Punctuation), 'function-start'),
-
-            (r'/\*(?:.|\n)*?\*/', Comment),
-            include('numeric-values'),
-            (r'[*+/-]', Operator),
-            (r'[,]', Punctuation),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
-            (r'[a-zA-Z_-]\w*', Name),
-            (r'\)', Punctuation, '#pop'),
-        ],
-        'urls': [
-            (r'(url)(\()(".*?")(\))', bygroups(Name.Builtin, Punctuation,
-                                               String.Double, Punctuation)),
-            (r"(url)(\()('.*?')(\))", bygroups(Name.Builtin, Punctuation,
-                                               String.Single, Punctuation)),
-            (r'(url)(\()(.*?)(\))', bygroups(Name.Builtin, Punctuation,
-                                             String.Other, Punctuation)),
-        ],
-        'numeric-values': [
-            (r'\#[a-zA-Z0-9]{1,6}', Number.Hex),
-            (r'[+\-]?[0-9]*[.][0-9]+', Number.Float, 'numeric-end'),
-            (r'[+\-]?[0-9]+', Number.Integer, 'numeric-end'),
-        ],
-        'numeric-end': [
             (words(_all_units, suffix=r'\b'), Keyword.Type),
             (r'%', Keyword.Type),
-            default('#pop'),
+        ],
+        'root': [
+            include('keywords'),
+            include('literals'),
+            (r'\![\w-]+', Comment.Preproc),
+            (r'@[\w-]+', Keyword.Namespace),
+            (r'\s+', Text.Whitespace),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+            (r'[:{}(),;[\]]', Punctuation),
+            (r'[#\.]?[\w-]+', Name.Tag),
+            (r'(\+|-|\*|/|==|!=|<=|>=|<|>|=|&)', Operator),
         ],
     }
 
@@ -618,7 +616,7 @@ class SassLexer(ExtendedRegexLexer):
     tokens['selector'].append((r'\n', Text, 'root'))
 
 
-class ScssLexer(RegexLexer):
+class ScssLexer(CssLexer):
     """
     For SCSS stylesheets.
     """
@@ -628,44 +626,22 @@ class ScssLexer(RegexLexer):
     filenames = ['*.scss']
     mimetypes = ['text/x-scss']
 
-    flags = re.IGNORECASE | re.DOTALL
     tokens = {
+        'keywords': CssLexer.tokens['keywords'] + [
+            (words(_sass_functions, suffix=r'\b'), Name.Builtin),
+        ],
+        'literals': CssLexer.tokens['literals'] + [
+            (r'\$[\w-]+', Name.Variable),
+            (r'#{', String.Interpol, 'interpol'),
+        ],
         'root': [
-            (r'\s+', Text),
             (r'//.*?\n', Comment.Single),
-            (r'/\*.*?\*/', Comment.Multiline),
-            (r'@import', Keyword, 'value'),
-            (r'@for', Keyword, 'for'),
-            (r'@(debug|warn|if|while)', Keyword, 'value'),
-            (r'(@mixin)( [\w-]+)', bygroups(Keyword, Name.Function), 'value'),
-            (r'(@include)( [\w-]+)', bygroups(Keyword, Name.Decorator), 'value'),
-            (r'@extend', Keyword, 'selector'),
-            (r'(@media)(\s+)', bygroups(Keyword, Text), 'value'),
-            (r'@[\w-]+', Keyword, 'selector'),
-            (r'(\$[\w-]*\w)([ \t]*:)', bygroups(Name.Variable, Operator), 'value'),
-            # TODO: broken, and prone to infinite loops.
-            # (r'(?=[^;{}][;}])', Name.Attribute, 'attr'),
-            # (r'(?=[^;{}:]+:[^a-z])', Name.Attribute, 'attr'),
-            default('selector'),
-        ],
-
-        'attr': [
-            (r'[^\s:="\[]+', Name.Attribute),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r'[ \t]*:', Operator, 'value'),
-            default('#pop'),
-        ],
-
-        'inline-comment': [
-            (r"(\\#|#(?=[^{])|\*(?=[^/])|[^#*])+", Comment.Multiline),
-            (r'#\{', String.Interpol, 'interpolation'),
-            (r"\*/", Comment, '#pop'),
+        ] + CssLexer.tokens['root'],
+        'interpol': [
+            (r'}', String.Interpol, '#pop'),
+            include('root'),
         ],
     }
-    for group, common in iteritems(common_sass_tokens):
-        tokens[group] = copy.copy(common)
-    tokens['value'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
-    tokens['selector'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
 
 
 class LessCssLexer(CssLexer):
@@ -679,14 +655,3 @@ class LessCssLexer(CssLexer):
     aliases = ['less']
     filenames = ['*.less']
     mimetypes = ['text/x-less-css']
-
-    tokens = {
-        'root': [
-            (r'@\w+', Name.Variable),
-            inherit,
-        ],
-        'content': [
-            (r'\{', Punctuation, '#push'),
-            inherit,
-        ],
-    }
