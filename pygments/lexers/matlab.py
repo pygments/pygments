@@ -187,6 +187,7 @@ class MatlabSessionLexer(Lexer):
 
         curcode = ''
         insertions = []
+        continuation = False
 
         for match in line_re.finditer(text):
             line = match.group()
@@ -209,7 +210,17 @@ class MatlabSessionLexer(Lexer):
                 # line = "\n" + line
                 token = (0, Generic.Traceback, line)
                 insertions.append((idx, [token]))
-
+            elif continuation:
+                # line_start is the length of the most recent prompt symbol
+                line_start = len(insertions[-1][-1][-1])
+                # Set leading spaces with the length of the prompt to be a generic prompt
+                # This keeps code aligned when prompts are removed, say with some Javascript
+                if line.startswith(' '*line_start):
+                    insertions.append((len(curcode),
+                                    [(0, Generic.Prompt, line[:line_start])]))
+                    curcode += line[line_start:]
+                else:
+                    curcode += line
             else:
                 if curcode:
                     for item in do_insertions(
@@ -219,6 +230,13 @@ class MatlabSessionLexer(Lexer):
                     insertions = []
 
                 yield match.start(), Generic.Output, line
+
+            # Does not allow continuation if a comment is included after the ellipses.
+            # Continues any line that ends with ..., even comments (lines that start with %)
+            if line.strip().endswith('...'):
+                continuation = True
+            else:
+                continuation = False
 
         if curcode:  # or item:
             for item in do_insertions(
