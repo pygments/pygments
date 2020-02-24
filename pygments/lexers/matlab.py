@@ -97,7 +97,7 @@ class MatlabLexer(RegexLexer):
             ("(" + "|".join(elfun + specfun + elmat) + r')\b',  Name.Builtin),
 
             # line continuation with following comment:
-            (r'\.\.\..*$', Comment),
+            (r'(\.\.\.)(.*)$', bygroups(Keyword, Comment)),
 
             # command form:
             # "How MATLAB Recognizes Command Syntax" specifies that an operator
