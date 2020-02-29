@@ -22,10 +22,20 @@ Version 2.6
   * USD (PR#1290)
   * WebIDL (PR#1309)
 
+- Updated lexers:
+
+  * Apache2 (PR#1378)
+  * Chapel (PR#1357)
+  * CSound (PR#1383)
+  * D (PR#1375)
+  * Idris (PR#1360)
+  * Perl6/Raku lexer (PR#1344)
+  * Python3 (PR#1382)
+  * Rust: Updated lexer to cover more builtins (mostly macros) and miscellaneous
+  new syntax (PR#1320)
+
 - The 256-color/true-color terminal formatters now support the italic attribute
   in styles (PR#1288)
-- Update Rust lexer to cover more builtins (mostly macros) and miscellaneous
-  new syntax (PR#1320)
 - Support HTTP 2/3 header (PR#1308)
 - Support missing reason in HTTP header (PR#1322)
 - Boogie/Silver: support line continuations and triggers, move contract keywords
@@ -33,9 +43,10 @@ Version 2.6
 - GAS: support C-style comments (PR#1291)
 - Fix names in S lexer (PR#1330, PR#1333)
 - Fix numeric literals in Ada (PR#1334)
-- Update Perl6/Raku lexer (PR#1344)
-- Update Chapel (PR#1357)
-- Update Idris (PR#1360)
+- Recognize ``.mjs`` files as Javascript (PR#1392)
+- Recognize ``.eex`` files as Elixir (PR#1387)
+- Fix ``re.MULTILINE`` usage (PR#1388)
+- Recognize ``pipenv`` and ``poetry`` dependency & lock files (PR#1376)
 
 
 Version 2.5.2
