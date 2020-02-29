@@ -53,6 +53,11 @@ class DLexer(RegexLexer):
                 suffix=r'\b'),
              Keyword),
             (words((
+                # Removed in 2.072
+                'typedef', ),
+                suffix=r'\b'),
+             Keyword.Removed),
+            (words((
                 'bool', 'byte', 'cdouble', 'cent', 'cfloat', 'char', 'creal',
                 'dchar', 'double', 'float', 'idouble', 'ifloat', 'int', 'ireal',
                 'long', 'real', 'short', 'ubyte', 'ucent', 'uint', 'ulong',
