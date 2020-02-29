@@ -85,6 +85,20 @@ class PythonLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ]
 
+    def fstring_rules(ttype):
+        return [
+            # Assuming that a '}' is the closing brace after format specifier.
+            # Sadly, this means that we won't detect syntax error. But it's
+            # more important to parse correct syntax correctly, than to
+            # highlight invalid syntax.
+            (r'\}', String.Interpol),
+            (r'\{', String.Interpol, 'expr-inside-fstring'),
+            # backslashes, quotes and formatting signs must be parsed one at a time
+            (r'[^\\\'"{}\n]+', ttype),
+            (r'[\'"\\]', ttype),
+            # newlines are an error (use "nl" state)
+        ]
+
     tokens = {
         'root': [
             (r'\n', Text),
@@ -92,14 +106,10 @@ class PythonLexer(RegexLexer):
              bygroups(Text, String.Affix, String.Doc)),
             (r"^(\s*)([rRuUbB]{,2})('''(?:.|\n)*?''')",
              bygroups(Text, String.Affix, String.Doc)),
-            (r'[^\S\n]+', Text),
             (r'\A#!.+$', Comment.Hashbang),
             (r'#.*$', Comment.Single),
-            (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|.]', Operator),
-            (r'[]{}:(),;[]', Punctuation),
             (r'\\\n', Text),
             (r'\\', Text),
-            (r'(in|is|and|or|not)\b', Operator.Word),
             include('keywords'),
             (r'(def)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'funcname'),
             (r'(class)((?:\s|\\\s)+)', bygroups(Keyword, Text), 'classname'),
@@ -107,29 +117,83 @@ class PythonLexer(RegexLexer):
              'fromimport'),
             (r'(import)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Text),
              'import'),
+            include('expr'),
+        ],
+        'expr': [
+            # raw f-strings
+            ('(?i)(rf|fr)(""")',
+             bygroups(String.Affix, String.Double), 'tdqf'),
+            ("(?i)(rf|fr)(''')",
+             bygroups(String.Affix, String.Single), 'tsqf'),
+            ('(?i)(rf|fr)(")',
+             bygroups(String.Affix, String.Double), 'dqf'),
+            ("(?i)(rf|fr)(')",
+             bygroups(String.Affix, String.Single), 'sqf'),
+            # non-raw f-strings
+            ('([fF])(""")', bygroups(String.Affix, String.Double),
+             combined('fstringescape', 'tdqf')),
+            ("([fF])(''')", bygroups(String.Affix, String.Single),
+             combined('fstringescape', 'tsqf')),
+            ('([fF])(")', bygroups(String.Affix, String.Double),
+             combined('fstringescape', 'dqf')),
+            ("([fF])(')", bygroups(String.Affix, String.Single),
+             combined('fstringescape', 'sqf')),
+            # raw strings
+            ('(?i)(rb|br|r)(""")',
+             bygroups(String.Affix, String.Double), 'tdqs'),
+            ("(?i)(rb|br|r)(''')",
+             bygroups(String.Affix, String.Single), 'tsqs'),
+            ('(?i)(rb|br|r)(")',
+             bygroups(String.Affix, String.Double), 'dqs'),
+            ("(?i)(rb|br|r)(')",
+             bygroups(String.Affix, String.Single), 'sqs'),
+            # non-raw strings
+            ('([uUbB]?)(""")', bygroups(String.Affix, String.Double),
+             combined('stringescape', 'tdqs')),
+            ("([uUbB]?)(''')", bygroups(String.Affix, String.Single),
+             combined('stringescape', 'tsqs')),
+            ('([uUbB]?)(")', bygroups(String.Affix, String.Double),
+             combined('stringescape', 'dqs')),
+            ("([uUbB]?)(')", bygroups(String.Affix, String.Single),
+             combined('stringescape', 'sqs')),
+            (r'[^\S\n]+', Text),
+            (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|.]', Operator),
+            (r'[]{}:(),;[]', Punctuation),
+            (r'(in|is|and|or|not)\b', Operator.Word),
+            include('expr-keywords'),
             include('builtins'),
             include('magicfuncs'),
             include('magicvars'),
-            # raw strings
-            ('(?i)(rb|br|fr|rf|r)(""")',
-             bygroups(String.Affix, String.Double), 'tdqs'),
-            ("(?i)(rb|br|fr|rf|r)(''')",
-             bygroups(String.Affix, String.Single), 'tsqs'),
-            ('(?i)(rb|br|fr|rf|r)(")',
-             bygroups(String.Affix, String.Double), 'dqs'),
-            ("(?i)(rb|br|fr|rf|r)(')",
-             bygroups(String.Affix, String.Single), 'sqs'),
-            # non-raw strings
-            ('([uUbBfF]?)(""")', bygroups(String.Affix, String.Double),
-             combined('stringescape', 'tdqs')),
-            ("([uUbBfF]?)(''')", bygroups(String.Affix, String.Single),
-             combined('stringescape', 'tsqs')),
-            ('([uUbBfF]?)(")', bygroups(String.Affix, String.Double),
-             combined('stringescape', 'dqs')),
-            ("([uUbBfF]?)(')", bygroups(String.Affix, String.Single),
-             combined('stringescape', 'sqs')),
             include('name'),
             include('numbers'),
+        ],
+        'expr-inside-fstring': [
+            (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
+            # without format specifier
+            (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
+             r'(\![sraf])?'     # conversion
+             r'}', String.Interpol, '#pop'),
+            # with format specifier
+            # we'll catch the remaining '}' in the outer scope
+            (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
+             r'(\![sraf])?'     # conversion
+             r':', String.Interpol, '#pop'),
+            (r'[^\S]+', Text),  # allow new lines
+            include('expr'),
+        ],
+        'expr-inside-fstring-inner': [
+            (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
+            (r'[])}]', Punctuation, '#pop'),
+            (r'[^\S]+', Text),  # allow new lines
+            include('expr'),
+        ],
+        'expr-keywords': [
+            # Based on https://docs.python.org/3/reference/expressions.html
+            (words((
+                'async for', 'await', 'else', 'for', 'if', 'lambda',
+                'yield', 'yield from'), suffix=r'\b'),
+             Keyword),
+            (words(('True', 'False', 'None'), suffix=r'\b'), Keyword.Constant),
         ],
         'keywords': [
             (words((
@@ -252,12 +316,29 @@ class PythonLexer(RegexLexer):
             (uni_name, Name.Namespace),
             default('#pop'),
         ],
+        'fstringescape': [
+            ('{{', String.Escape),
+            ('}}', String.Escape),
+            include('stringescape'),
+        ],
         'stringescape': [
             (r'\\([\\abfnrtv"\']|\n|N\{.*?\}|u[a-fA-F0-9]{4}|'
              r'U[a-fA-F0-9]{8}|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
         ],
+        'fstrings-single': fstring_rules(String.Single),
+        'fstrings-double': fstring_rules(String.Double),
         'strings-single': innerstring_rules(String.Single),
         'strings-double': innerstring_rules(String.Double),
+        'dqf': [
+            (r'"', String.Double, '#pop'),
+            (r'\\\\|\\"|\\\n', String.Escape),  # included here for raw strings
+            include('fstrings-double')
+        ],
+        'sqf': [
+            (r"'", String.Single, '#pop'),
+            (r"\\\\|\\'|\\\n", String.Escape),  # included here for raw strings
+            include('fstrings-single')
+        ],
         'dqs': [
             (r'"', String.Double, '#pop'),
             (r'\\\\|\\"|\\\n', String.Escape),  # included here for raw strings
@@ -267,6 +348,16 @@ class PythonLexer(RegexLexer):
             (r"'", String.Single, '#pop'),
             (r"\\\\|\\'|\\\n", String.Escape),  # included here for raw strings
             include('strings-single')
+        ],
+        'tdqf': [
+            (r'"""', String.Double, '#pop'),
+            include('fstrings-double'),
+            (r'\n', String.Double)
+        ],
+        'tsqf': [
+            (r"'''", String.Single, '#pop'),
+            include('fstrings-single'),
+            (r'\n', String.Single)
         ],
         'tdqs': [
             (r'"""', String.Double, '#pop'),
