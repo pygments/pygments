@@ -369,6 +369,7 @@ LEXERS = {
     'RagelRubyLexer': ('pygments.lexers.parsers', 'Ragel in Ruby Host', ('ragel-ruby', 'ragel-rb'), ('*.rl',), ()),
     'RawTokenLexer': ('pygments.lexers.special', 'Raw token data', ('raw',), (), ('application/x-pygments-tokens',)),
     'RdLexer': ('pygments.lexers.r', 'Rd', ('rd',), ('*.Rd',), ('text/x-r-doc',)),
+    'ReasonLexer': ('pygments.lexers.ml', 'ReasonML', ('reason', 'reasonml'), ('*.re', '*.rei'), ('text/x-reasonml',)),
     'RebolLexer': ('pygments.lexers.rebol', 'REBOL', ('rebol',), ('*.r', '*.r3', '*.reb'), ('text/x-rebol',)),
     'RedLexer': ('pygments.lexers.rebol', 'Red', ('red', 'red/system'), ('*.red', '*.reds'), ('text/x-red', 'text/x-red-system')),
     'RedcodeLexer': ('pygments.lexers.esoteric', 'Redcode', ('redcode',), ('*.cw',), ()),
