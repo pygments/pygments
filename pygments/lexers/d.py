@@ -47,11 +47,16 @@ class DLexer(RegexLexer):
                 'module', 'new', 'nothrow', 'out', 'override', 'package', 'pragma',
                 'private', 'protected', 'public', 'pure', 'ref', 'return', 'scope',
                 'shared', 'static', 'struct', 'super', 'switch', 'synchronized',
-                'template', 'this', 'throw', 'try', 'typedef', 'typeid', 'typeof',
+                'template', 'this', 'throw', 'try', 'typeid', 'typeof',
                 'union', 'unittest', 'version', 'volatile', 'while', 'with',
                 '__gshared', '__traits', '__vector', '__parameters'),
                 suffix=r'\b'),
              Keyword),
+            (words((
+                # Removed in 2.072
+                'typedef', ),
+                suffix=r'\b'),
+             Keyword.Removed),
             (words((
                 'bool', 'byte', 'cdouble', 'cent', 'cfloat', 'char', 'creal',
                 'dchar', 'double', 'float', 'idouble', 'ifloat', 'int', 'ireal',
