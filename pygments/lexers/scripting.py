@@ -1224,6 +1224,8 @@ class JclLexer(RegexLexer):
 class MiniScriptLexer(RegexLexer):
     """
     For `MiniScript <https://miniscript.org>`_ source code.
+
+    .. versionadded:: 2.6
     """
 
     name = "MiniScript"

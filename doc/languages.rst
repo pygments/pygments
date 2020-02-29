@@ -96,6 +96,7 @@ Programming languages
 * `Lua <https://lua.org>`_
 * Mathematica
 * Matlab
+* `MiniScript <https://miniscript.org>`_
 * Modelica
 * Modula-2
 * Monkey
