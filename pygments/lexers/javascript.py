@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, include, bygroups, default, using, \
     this, words, combined
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Other
-from pygments.util import get_bool_opt, iteritems
+from pygments.util import get_bool_opt
 import pygments.unistring as uni
 
 __all__ = ['JavascriptLexer', 'KalLexer', 'LiveScriptLexer', 'DartLexer',
@@ -767,9 +767,9 @@ class LassoLexer(RegexLexer):
         self._members = set()
         if self.builtinshighlighting:
             from pygments.lexers._lasso_builtins import BUILTINS, MEMBERS
-            for key, value in iteritems(BUILTINS):
+            for key, value in BUILTINS.items():
                 self._builtins.update(value)
-            for key, value in iteritems(MEMBERS):
+            for key, value in MEMBERS.items():
                 self._members.update(value)
         RegexLexer.__init__(self, **options)
 

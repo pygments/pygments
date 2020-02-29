@@ -16,8 +16,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 MODULES = {'.NET': ('dotnet_load',),
  'APC': ('apc_add',
          'apc_bin_dump',

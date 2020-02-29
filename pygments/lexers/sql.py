@@ -44,7 +44,6 @@ from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
 from pygments.token import Punctuation, Whitespace, Text, Comment, Operator, \
     Keyword, Name, String, Number, Generic
 from pygments.lexers import get_lexer_by_name, ClassNotFound
-from pygments.util import iteritems
 
 from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
     PSEUDO_TYPES, PLPGSQL_KEYWORDS
@@ -106,7 +105,7 @@ def language_callback(lexer, match):
     yield (match.start(7), String, match.group(7))
 
 
-class PostgresBase(object):
+class PostgresBase:
     """Base class for Postgres-related lexers.
 
     This is implemented as a mixin to avoid the Lexer metaclass kicking in.
@@ -212,7 +211,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     mimetypes = ['text/x-plpgsql']
 
     flags = re.IGNORECASE
-    tokens = {k: l[:] for (k, l) in iteritems(PostgresLexer.tokens)}
+    tokens = {k: l[:] for (k, l) in PostgresLexer.tokens.items()}
 
     # extend the keywords list
     for i, pattern in enumerate(tokens['root']):
@@ -246,7 +245,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     aliases = []    # not public
 
     flags = re.IGNORECASE
-    tokens = {k: l[:] for (k, l) in iteritems(PostgresLexer.tokens)}
+    tokens = {k: l[:] for (k, l) in PostgresLexer.tokens.items()}
 
     tokens['root'].append(
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
@@ -271,7 +270,7 @@ re_message = re.compile(
     r'FATAL|HINT|DETAIL|CONTEXT|LINE [0-9]+):)(.*?\n)')
 
 
-class lookahead(object):
+class lookahead:
     """Wrap an iterator and allow pushing back an item."""
     def __init__(self, x):
         self.iter = iter(x)

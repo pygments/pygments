@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, include, \
     using, this, default, words
 from pygments.token import Punctuation, \
     Text, Comment, Operator, Keyword, Name, String, Number, Literal, Other
-from pygments.util import get_choice_opt, iteritems
+from pygments.util import get_choice_opt
 from pygments import unistring as uni
 
 from pygments.lexers.html import XmlLexer
@@ -71,7 +71,7 @@ class CSharpLexer(RegexLexer):
     tokens = {}
     token_variants = True
 
-    for levelname, cs_ident in iteritems(levels):
+    for levelname, cs_ident in levels.items():
         tokens[levelname] = {
             'root': [
                 # method names
@@ -184,7 +184,7 @@ class NemerleLexer(RegexLexer):
     tokens = {}
     token_variants = True
 
-    for levelname, cs_ident in iteritems(levels):
+    for levelname, cs_ident in levels.items():
         tokens[levelname] = {
             'root': [
                 # method names

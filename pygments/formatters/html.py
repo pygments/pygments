@@ -9,16 +9,14 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 import os
 import sys
 import os.path
+from io import StringIO
 
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
-from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
-    StringIO, string_types, iteritems
+from pygments.util import get_bool_opt, get_int_opt, get_list_opt
 
 try:
     import ctags
@@ -41,11 +39,13 @@ def escape_html(text, table=_escape_html_table):
     """Escape &, <, > as well as single and double quotes for HTML."""
     return text.translate(table)
 
+
 def webify(color):
     if color.startswith('calc') or color.startswith('var'):
         return color
     else:
         return '#' + color
+
 
 def _get_ttype_class(ttype):
     fname = STANDARD_TYPES.get(ttype)
@@ -497,7 +497,7 @@ class HtmlFormatter(Formatter):
         """
         if arg is None:
             arg = ('cssclass' in self.options and '.'+self.cssclass or '')
-        if isinstance(arg, string_types):
+        if isinstance(arg, str):
             args = [arg]
         else:
             args = list(arg)
@@ -511,7 +511,7 @@ class HtmlFormatter(Formatter):
             return ', '.join(tmp)
 
         styles = [(level, ttype, cls, style)
-                  for cls, (style, ttype, level) in iteritems(self.class2style)
+                  for cls, (style, ttype, level) in self.class2style.items()
                   if cls and style]
         styles.sort()
         lines = ['%s { %s } /* %s */' % (prefix(cls), style, repr(ttype)[6:])

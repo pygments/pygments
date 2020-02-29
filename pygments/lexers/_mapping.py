@@ -13,8 +13,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 LEXERS = {
     'ABAPLexer': ('pygments.lexers.business', 'ABAP', ('abap',), ('*.abap', '*.ABAP'), ('text/x-abap',)),
     'APLLexer': ('pygments.lexers.apl', 'APL', ('apl',), ('*.apl',), ()),

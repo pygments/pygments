@@ -40,7 +40,7 @@ def simplefilter(f):
     })
 
 
-class Filter(object):
+class Filter:
     """
     Default filter. Subclass this class or use the `simplefilter`
     decorator to create own filters.

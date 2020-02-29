@@ -7,8 +7,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import unicode_literals
-
 import pytest
 
 from pygments.token import Text, Operator, Keyword, Name, String, Number, \

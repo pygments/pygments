@@ -156,10 +156,6 @@ def _handle_runs(char_list):  # pragma: no cover
 if __name__ == '__main__':  # pragma: no cover
     import unicodedata
 
-    # we need Py3 for the determination of the XID_* properties
-    if sys.version_info[:2] < (3, 3):
-        raise RuntimeError('this file must be regenerated with Python 3.3+')
-
     categories_bmp = {'xid_start': [], 'xid_continue': []}
     categories_nonbmp = {'xid_start': [], 'xid_continue': []}
 

@@ -17,7 +17,7 @@ from os.path import basename
 
 from pygments.formatters._mapping import FORMATTERS
 from pygments.plugin import find_plugin_formatters
-from pygments.util import ClassNotFound, itervalues
+from pygments.util import ClassNotFound
 
 __all__ = ['get_formatter_by_name', 'get_formatter_for_filename',
            'get_all_formatters', 'load_formatter_from_file'] + list(FORMATTERS)
@@ -45,7 +45,7 @@ def _load_formatters(module_name):
 def get_all_formatters():
     """Return a generator for all formatter classes."""
     # NB: this returns formatter classes, not info like get_all_lexers().
-    for info in itervalues(FORMATTERS):
+    for info in FORMATTERS.values():
         if info[1] not in _formatter_cache:
             _load_formatters(info[0])
         yield _formatter_cache[info[1]]
@@ -58,7 +58,7 @@ def find_formatter_class(alias):
 
     Returns None if not found.
     """
-    for module_name, name, aliases, _, _ in itervalues(FORMATTERS):
+    for module_name, name, aliases, _, _ in FORMATTERS.values():
         if alias in aliases:
             if name not in _formatter_cache:
                 _load_formatters(module_name)
@@ -121,7 +121,7 @@ def get_formatter_for_filename(fn, **options):
     Raises ClassNotFound if not found.
     """
     fn = basename(fn)
-    for modname, name, _, filenames, _ in itervalues(FORMATTERS):
+    for modname, name, _, filenames, _ in FORMATTERS.values():
         for filename in filenames:
             if _fn_matches(fn, filename):
                 if name not in _formatter_cache:

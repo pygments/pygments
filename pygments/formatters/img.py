@@ -14,7 +14,7 @@ import sys
 
 from pygments.formatter import Formatter
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
-    get_choice_opt, xrange
+    get_choice_opt
 
 import subprocess
 
@@ -59,7 +59,7 @@ class FontNotFound(Exception):
     """When there are no usable fonts specified"""
 
 
-class FontManager(object):
+class FontManager:
     """
     Manages a set of fonts: normal, italic, bold, etc...
     """
@@ -504,7 +504,7 @@ class ImageFormatter(Formatter):
         """
         if not self.line_numbers:
             return
-        for p in xrange(self.maxlineno):
+        for p in range(self.maxlineno):
             n = p + self.line_number_start
             if (n % self.line_number_step) == 0:
                 self._draw_linenumber(p, n)

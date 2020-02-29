@@ -25,7 +25,7 @@ class EndOfText(RuntimeError):
     """
 
 
-class Scanner(object):
+class Scanner:
     """
     Simple scanner
 

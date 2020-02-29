@@ -11,8 +11,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 import sys
 import re
 from os import path
@@ -863,7 +861,7 @@ def find_colors(code):
     return default_token, color_map
 
 
-class StyleWriter(object):
+class StyleWriter:
 
     def __init__(self, code, name):
         self.code = code

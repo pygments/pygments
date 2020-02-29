@@ -14,7 +14,7 @@ from pytest import raises
 from pygments import util, console
 
 
-class FakeLexer(object):
+class FakeLexer:
     def analyse(text):
         return text
     analyse = util.make_analysator(analyse)
@@ -81,7 +81,7 @@ def test_analysator_returns_boolean():
 def test_analysator_raises_exception():
     # If an analysator wrapped by make_analysator raises an exception,
     # then the wrapper will return 0.0.
-    class ErrorLexer(object):
+    class ErrorLexer:
         def analyse(text):
             raise RuntimeError('something bad happened')
         analyse = util.make_analysator(analyse)
@@ -191,17 +191,6 @@ def test_guess_decode_from_terminal():
 
     s = util.guess_decode_from_terminal(u'\xff'.encode('utf-8'), Term)
     assert s == (u'\xff', 'utf-8')
-
-
-def test_add_metaclass():
-    class Meta(type):
-        pass
-
-    @util.add_metaclass(Meta)
-    class Cls:
-        pass
-
-    assert type(Cls) is Meta
 
 
 def test_console_ansiformat():

@@ -9,13 +9,12 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import division
+from io import StringIO
 
 from pygments.formatter import Formatter
 from pygments.lexer import Lexer
 from pygments.token import Token, STANDARD_TYPES
-from pygments.util import get_bool_opt, get_int_opt, StringIO, xrange, \
-    iteritems
+from pygments.util import get_bool_opt, get_int_opt
 
 
 __all__ = ['LatexFormatter']
@@ -322,7 +321,7 @@ class LatexFormatter(Formatter):
         """
         cp = self.commandprefix
         styles = []
-        for name, definition in iteritems(self.cmd2def):
+        for name, definition in self.cmd2def.items():
             styles.append(r'\expandafter\def\csname %s@tok@%s\endcsname{%s}' %
                           (cp, name, definition))
         return STYLE_TEMPLATE % {'cp': self.commandprefix,
@@ -354,7 +353,7 @@ class LatexFormatter(Formatter):
                 if self.texcomments:
                     # Try to guess comment starting lexeme and escape it ...
                     start = value[0:1]
-                    for i in xrange(1, len(value)):
+                    for i in range(1, len(value)):
                         if start[0] != value[i]:
                             break
                         start += value[i]

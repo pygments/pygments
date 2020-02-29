@@ -10,7 +10,6 @@
 """
 
 from pygments.token import Token, STANDARD_TYPES
-from pygments.util import add_metaclass
 
 # Default mapping of ansixxx to RGB colors.
 _ansimap = {
@@ -169,8 +168,7 @@ class StyleMeta(type):
         return len(cls._styles)
 
 
-@add_metaclass(StyleMeta)
-class Style(object):
+class Style(metaclass=StyleMeta):
 
     #: overall background color (``None`` means transparent)
     background_color = '#ffffff'

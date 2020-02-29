@@ -7,17 +7,15 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 import io
 import os
 import re
 import tempfile
 from os import path
+from io import StringIO
 
 from pytest import raises
 
-from pygments.util import StringIO
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.formatters.html import escape_html
