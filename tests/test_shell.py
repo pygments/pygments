@@ -170,7 +170,7 @@ def test_msdos_gt_only(lexer_msdos):
 
 
 def test_powershell_remoting_session(lexer_powershell_session):
-    fragment = u'[Long-NetBIOS-Hostname]: PS C:\> Get-ChildItem\n'
+    fragment = u'[Long-NetBIOS-Hostname]: PS C:\\> Get-ChildItem\n'
     tokens = [
         (Token.Name.Builtin, u''),
         (Token.Generic.Prompt, u'[Long-NetBIOS-Hostname]: PS C:\\> '),
