@@ -772,7 +772,7 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     mimetypes = []
 
     _innerLexerCls = PowerShellLexer
-    _ps1rgx = re.compile(r'^((?:\[[^]]+\]: )?PS [^>]+> )(.*\n?)')
+    _ps1rgx = re.compile(r'^((?:\[[^]]+\]: )?PS [^>]+> ?)(.*\n?)')
     _ps2 = '>> '
 
 
