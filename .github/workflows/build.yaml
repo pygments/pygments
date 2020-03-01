@@ -5,11 +5,12 @@ on: [push, pull_request]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
-      max-parallel: 4
       matrix:
+        os: [ubuntu-latest, windows-latest]
         python-version: [3.5, 3.6, 3.7, 3.8, pypy3]
+      max-parallel: 4
 
     steps:
     - uses: actions/checkout@v1
@@ -24,3 +25,7 @@ jobs:
         pip install .
     - name: Test package
       run: make test TEST=-v
+      if: runner.os == 'Linux'
+    - name: Test package
+      run: py.test
+      if: runner.os == 'Windows' && ! contains(matrix['python-version'], 'pypy')
