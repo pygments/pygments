@@ -268,8 +268,11 @@ class TestFilters:
         for x, args in filters_args:
             lx = lexers.PythonLexer()
             lx.add_filter(x, **args)
-            with open(TESTFILE, 'rb') as fp:
-                text = fp.read().decode('utf-8')
+            # We don't read as binary and decode, but instead read as text, as
+            # we need consistent line endings. Otherwise we'll get \r\n on
+            # Windows
+            with open(TESTFILE, 'r', encoding='utf-8') as fp:
+                text = fp.read()
             tokens = list(lx.get_tokens(text))
             assert all(isinstance(t[1], str) for t in tokens), \
                 '%s filter did not return Unicode' % x
