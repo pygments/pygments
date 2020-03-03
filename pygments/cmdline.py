@@ -337,8 +337,17 @@ def main_inner(popts, args, usage):
         # custom lexer, located relative to user's cwd
         if allow_custom_lexer_formatter and '.py' in lexername:
             try:
+                filename = None
+                name = None
                 if ':' in lexername:
                     filename, name = lexername.rsplit(':', 1)
+
+                    if '.py' in name:
+                        # This can happen on Windows: If the lexername is
+                        # C:\lexer.py -- return to normal load path in that case
+                        name = None
+
+                if filename and name:
                     lexer = load_lexer_from_file(filename, name,
                                                  **parsed_opts)
                 else:
@@ -427,10 +436,18 @@ def main_inner(popts, args, usage):
         # custom formatter, located relative to user's cwd
         if allow_custom_lexer_formatter and '.py' in fmter:
             try:
+                filename = None
+                name = None
                 if ':' in fmter:
-                    file, fmtername = fmter.rsplit(':', 1)
-                    fmter = load_formatter_from_file(file, fmtername,
-                                                     **parsed_opts)
+                    # Same logic as above for custom lexer
+                    filename, name = fmter.rsplit(':', 1)
+
+                    if '.py' in name:
+                        name = None
+
+                if filename and name:
+                    fmter = load_formatter_from_file(filename, name,
+                                    **parsed_opts)
                 else:
                     fmter = load_formatter_from_file(fmter, **parsed_opts)
             except ClassNotFound as err:
