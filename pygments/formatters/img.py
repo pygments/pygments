@@ -164,8 +164,6 @@ class FontManager:
             return None
 
     def _create_win(self):
-        keyfound = False
-        fontfound = False
         lookuperror = None
         keynames = [ (_winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows NT\CurrentVersion\Fonts'),
                      (_winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Fonts'),
@@ -174,7 +172,6 @@ class FontManager:
         for keyname in keynames:
             try:
                 key = _winreg.OpenKey(*keyname)
-                keyfound = True
                 try:
                     path = self._lookup_win(key, self.font_name, STYLES['NORMAL'], True)
                     self.fonts['NORMAL'] = ImageFont.truetype(path, self.font_size)
@@ -194,9 +191,15 @@ class FontManager:
                     _winreg.CloseKey(key)
             except EnvironmentError:
                 pass
-        if not fontfound:
-            raise lookuperror
-        if not keyfound:
+        else:
+            # If we get here, we checked all registry keys and had no luck
+            # We can be in one of two situations now:
+            # * All key lookups failed. In this case lookuperror is None and we
+            #   will raise a generic error
+            # * At least one lookup failed with a FontNotFound error. In this
+            #   case, we will raise that as a more specific error
+            if lookuperror:
+                raise lookuperror
             raise FontNotFound('Can\'t open Windows font registry key')
 
     def get_char_size(self):
