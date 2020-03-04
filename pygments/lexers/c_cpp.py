@@ -42,8 +42,8 @@ class CFamilyLexer(RegexLexer):
     # Integer literal suffix (e.g. 'ull' or 'll').
     _intsuffix = r'(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?'
 
-    # Identifier regex.
-    _ident = r'[a-zA-Z_$][\w$]*'
+    # Identifier regex with C and C++ Universal Character Name (UCN) support.
+    _ident = r'(?:[a-zA-Z_$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})*'
 
     tokens = {
         'whitespace': [
@@ -64,19 +64,19 @@ class CFamilyLexer(RegexLexer):
             (r'/(\\\n)?[*][\w\W]*', Comment.Multiline),
         ],
         'statements': [
-            (r'([LuU]?|u8?)(")', bygroups(String.Affix, String), 'string'),
-            (r"([LuU]?|u8?)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
+            (r'([LuU]|u8)?(")', bygroups(String.Affix, String), 'string'),
+            (r"([LuU]|u8)?(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
 
              # Hexadecimal floating-point literals (C11, C++17)
             (r'0[xX](' + _hexpart + r'\.' + _hexpart + r'|\.' + _hexpart + r'|' + _hexpart + r')[pP][+-]?' + _hexpart + r'[lL]?', Number.Float),
 
-            (r'(' + _decpart + r'\.' + _decpart + r'|\.' + _decpart + r'|' + _decpart + r')[eE][+-]?' + _decpart + r'[fFlL]?', Number.Float),
-            (r'((' + _decpart + r'\.(' + _decpart + r')?|\.' + _decpart + r')[fFlL]?)|(' + _decpart + r'[fFlL])', Number.Float),
-            (r'0[xX]' + _hexpart + _intsuffix, Number.Hex),
-            (r'0[bB][01](\'?[01])*' + _intsuffix, Number.Bin),
-            (r'0(\'?[0-7])+' + _intsuffix, Number.Oct),
-            (_decpart + _intsuffix, Number.Integer),
+            (r'(-)?(' + _decpart + r'\.' + _decpart + r'|\.' + _decpart + r'|' + _decpart + r')[eE][+-]?' + _decpart + r'[fFlL]?', Number.Float),
+            (r'(-)?((' + _decpart + r'\.(' + _decpart + r')?|\.' + _decpart + r')[fFlL]?)|(' + _decpart + r'[fFlL])', Number.Float),
+            (r'(-)?0[xX]' + _hexpart + _intsuffix, Number.Hex),
+            (r'(-)?0[bB][01](\'?[01])*' + _intsuffix, Number.Bin),
+            (r'(-)?0(\'?[0-7])+' + _intsuffix, Number.Oct),
+            (r'(-)?' + _decpart + _intsuffix, Number.Integer),
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
@@ -101,13 +101,13 @@ class CFamilyLexer(RegexLexer):
                 'identifier', 'forceinline', 'assume'),
                 prefix=r'__', suffix=r'\b'), Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
-            (r'([a-zA-Z_$][\w$]*)(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
-            (r'[a-zA-Z_$][\w$]*', Name)
+            (r'(' + _ident + r')(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
+            (_ident, Name)
         ],
         'root': [
             include('whitespace'),
             # functions
-            (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
+            (r'((?:' + _ident + r'(?:[&*\s])+))'  # return arguments
              r'(' + _ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;{]*)(\{)',
@@ -115,7 +115,7 @@ class CFamilyLexer(RegexLexer):
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
+            (r'((?:' + _ident + '(?:[&*\s])+))'  # return arguments
              r'(' + _ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;]*)(;)',
@@ -126,8 +126,8 @@ class CFamilyLexer(RegexLexer):
         'statement': [
             include('whitespace'),
             include('statements'),
-            ('[{}]', Punctuation),
-            (';', Punctuation, '#pop'),
+            (r'\}', Punctuation),
+            (r'[{;]', Punctuation, '#pop'),
         ],
         'function': [
             include('whitespace'),
@@ -145,8 +145,8 @@ class CFamilyLexer(RegexLexer):
             (r'\\', String),  # stray backslash
         ],
         'macro': [
-            (r'(include)(' + _ws1 + r')([^\n]+)',
-             bygroups(Comment.Preproc, Text, Comment.PreprocFile)),
+            (r'(include)('+_ws1+r')("[^"]+")([^\n]*)', bygroups(Comment.Preproc, using(this), Comment.PreprocFile, Comment.Single)),
+            (r'(include)('+_ws1+r')(<[^>]+>)([^\n]*)', bygroups(Comment.Preproc, using(this), Comment.PreprocFile, Comment.Single)),
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
             (r'//.*?\n', Comment.Single, '#pop'),
@@ -310,8 +310,9 @@ class CppLexer(CFamilyLexer):
                suffix=r'\b'), Keyword),
             (r'char(16_t|32_t|8_t)\b', Keyword.Type),
             (r'(enum)(\s+)', bygroups(Keyword, Text), 'enumname'),
+
             # C++11 raw strings
-            (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
+            (r'((?:[LuU]|u8)?R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
              bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
                       String, String.Delimiter, String)),
             inherit,
