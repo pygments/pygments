@@ -115,7 +115,7 @@ class CFamilyLexer(RegexLexer):
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:' + _ident + '(?:[&*\s])+))'  # return arguments
+            (r'((?:' + _ident + r'(?:[&*\s])+))'  # return arguments
              r'(' + _ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;]*)(;)',
