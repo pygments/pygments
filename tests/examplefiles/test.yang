@@ -1,0 +1,1103 @@
+type action:counter64;
+leaf number { type uint16; mandatory true; }
+module ieee802-dot1ax {
+  namespace urn:ieee:std:802.1AX:yang:ieee802-dot1ax;
+
+  prefix "dot1ax";
+
+  import ieee802-types { prefix "ieee";}
+  import ietf-yang-types { prefix "yang"; }
+  import ietf-interfaces { prefix "if"; }
+  import iana-if-type { prefix "ianaif"; }
+
+  organization
+    "Institute of Electrical and Electronics Engineers";
+
+  contact
+  	"WG-URL: http://grouper.ieee.org/groups/802/1/
+    WG-EMail: stds-802-1@ieee.org
+
+    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group
+            IEEE Standards Association
+            445 Hoes Lane
+            P.O. Box 1331
+            Piscataway
+            NJ 08855-1331
+            USA
+
+    E-mail: STDS-802-1-L@LISTSERV.IEEE.ORG";
+
+  description
+    "Link Aggregation allows one or more links to be aggregated
+    together to form a Link Aggregation Group, such that a Media
+    Access Control (MAC) Client can treat the Link Aggregation Group
+    as if it were a single link. To this end, it specifies the
+    establishment of data terminal equipment (DTE) to DTE logical
+    links, consisting of N parallel instances of full duplex
+    point-to-point links operating at the same data rate.";
+
+
+  revision "2016-09-09" {
+    description
+      "Initial Version.";
+    reference
+      "IEEE 802.1AX-2008, Link Aggregation.";
+  }
+
+  // ---------------------------------------------------
+  // Configuration objects used by 802.1AX YANG module
+  // ---------------------------------------------------
+
+  container lag-system {
+    description
+      "LAG System specific configuration nodes.";
+    list aggregating-system {
+      key agg-system;
+      description
+        "List of Aggregating systems.";
+      leaf agg-system {
+        type string;
+        description
+          "The index of the aggregating system.";
+      }
+      leaf system-id {
+        type ieee:mac-address;
+        description
+          "The unique identifier for the aggregating system.";
+        reference
+          "IEEE 8021AX-2008, Clause 6.3.1.1.4";
+      }
+      leaf system-priority {
+        type uint32;
+        description
+          "The priority of the aggregating system.";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.5";
+      }
+    } // aggregating-system
+  } // lag-system
+
+  //
+  //  Aggregator Nodes
+  //
+  augment "/if:interfaces/if:interface" {
+    when "if:type = 'ianaif:ieee8023adLag' or
+          if:type = 'ianaif:ethernetCsmacd' or
+          if:type = 'ianaif:bridge'" {
+      description
+        "Applies to Ethernet interfaces or Bridge Ports.";
+      }
+    description
+      "Augment Interface with Aggregator configuration attributes.";
+    container aggregator {
+      description
+        "Contains the Aggregator configuration information which
+        provides the management controls necessary to allow an
+        instance of an Aggregator to be managed.";
+      leaf name {
+        type string {
+          length "0..255";
+        }
+        description
+          "A human-readable text string containing a locally
+          significant name for the Aggregator";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.3";
+      }
+      leaf agg-system-name {
+        type string;
+        description
+          "Used to reference the LAG system.";
+      }
+      leaf admin-state {
+        type enumeration {
+          enum up {
+            description
+              "Indicates that the operational state of the
+              Aggregator is permitted to be either up or down.";
+          }
+          enum down {
+            description
+              "Forces the operational state of the Aggregator
+              to be down.";
+          }
+        }
+        description
+          "Changes to the administrative state affect the
+          operational state of the Aggregator only, not the
+          operational state of the Aggregation Ports that are
+          attached to the Aggregator.";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.13";
+      }
+      leaf link-up-down-notification {
+        type enumeration {
+          enum enabled {
+            description
+              "Link Up and Down notifications are enabled for
+              this Aggregator.";
+          }
+          enum disabled {
+            description
+              "Link Up and Down notifications are disabled for
+              this Aggregator.";
+          }
+        }
+        description
+          "When set to enabled, Link Up and Link Down notifications
+          are enabled for this Aggregator. When set to disabled,
+          Link Up and Link Down notifications are disabled for this
+          Aggregator.";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.31";
+      }
+      leaf collector-max-delay {
+        type int16;
+        description
+          "Defines the maximum delay, in tens of microseconds,
+          that may be imposed by the Frame Collector between
+          receiving a frame from an Aggregator Parser, and
+          either delivering the frame to its MAC Client or
+          discarding the frame (see 5.2.3.1.1).";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.32";
+      }
+      container aggregator-lacp {
+        description
+          "Contains aggregator LACP operational data.";
+        leaf actor-admin-key {
+          type int16;
+          description
+            "The current administrative value of the Key for the
+            Aggregator. The administrative Key value may differ
+            from the operational Key value for the reasons
+            discussed in 5.6.2. The meaning of particular Key
+            values is of local significance.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.7";
+        }
+      } // aggregator-lacp
+    } // aggregator
+  } // augment if:interface
+
+  augment "/if:interfaces-state/if:interface" {
+    when "if:type = 'ianaif:ieee8023adLag' or
+          if:type = 'ianaif:ethernetCsmacd' or
+          if:type = 'ianaif:bridge'" {
+      description
+        "Applies to Ethernet interfaces or Bridge Ports.";
+    }
+    description
+      "Augment Interface with Aggregator operational attributes.";
+    container aggregator {
+      description
+        "Contains the Aggregator operational information which
+        provides the management controls necessary to allow an
+        instance of an Aggregator to be managed.";
+      leaf id {
+        type uint32;
+        description
+          "The unique identifier allocated to this Aggregator by
+          the local System. This attribute identifies an Aggregator
+          instance.";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.1";
+      }
+      leaf description {
+        type string {
+          length "0..255";
+        }
+        description
+          "A human-readable text string containing information
+          about the Aggregator. This string could include
+          information about the distribution algorithm in use
+          on this Aggregator; for example, (Aggregator 1, Dist
+          Alg equals Dest MAC address). The contents are vendor
+          specific.";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.2";
+      }
+      leaf aggregate-or-individual {
+        type boolean;
+        description
+          "Indicates whether the Aggregator represents an
+          Aggregate (TRUE) or an Individual link (FALSE).";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.6";
+      }
+      leaf collector-max-delay {
+        type int16;
+        description
+          "Defines the maximum delay, in tens of microseconds,
+          that may be imposed by the Frame Collector between
+          receiving a frame from an Aggregator Parser, and
+          either delivering the frame to its MAC Client or
+          discarding the frame (see 5.2.3.1.1).";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.7";
+      }
+      leaf oper-state {
+        type enumeration {
+          enum up {
+            description
+              "Indicates if one or more of the Aggregation
+              Ports that are attached to the Aggregator are
+              collecting, or both collecting and distributing,
+              and if the value of aAggAdminState for the
+              Aggregator is also UP.";
+          }
+          enum down {
+            description
+              "Indicates if none of the Aggregation Ports that
+              are attached to the Aggregator are collecting
+              and/or distributing, or if there are no
+              Aggregation Ports attached to this Aggregator,
+              then the operational state is DOWN.";
+          }
+        }
+        description
+          "Defines the operational state of the Aggregator. An
+          operational state of UP indicates that the Aggregator
+          is available for use by the MAC Client; a value of
+          DOWN indicates that the Aggregator is not available
+          for use by the MAC Client.";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.14";
+      }
+      leaf time-of-last-oper-change {
+        type yang:counter32;
+        description
+          "The value of aTimeSinceSystemReset (See IEEE Std
+          802.3 Annex F.2.1) at the time the interface entered
+          its current operational state. If the current state
+          was entered prior to the last re-initialization of
+          the local network management subsystem, then this
+          object contains a value of zero.";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.15";
+      }
+      leaf data-rate {
+        type uint64;
+        description
+          "The current data rate, in bits per second, of the
+          aggregate link. The value is calculated as N times the
+          data rate of a single link in the aggregation, where N
+          is the number of active links.";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.1.1.16";
+      }
+      container aggregator-lacp {
+        description
+          "Contains aggregator LACP operational data.";
+        leaf actor-oper-key {
+          type int16;
+          description
+            "The current operational value of the Key for the
+            Aggregator. The administrative Key value may differ
+            from the operational Key value for the reasons
+            discussed in 5.6.2. The meaning of particular Key
+            values is of local significance.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.8";
+        }
+        leaf agg-mac-address {
+          type ieee:mac-address;
+          description
+            "The MAC address assigned to the Aggregator.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.9";
+        }
+        leaf partner-system-id {
+          type ieee:mac-address;
+          description
+            "Consisting of the unique identifier for the
+            current protocol Partner of this Aggregator. A value
+            of zero indicates that there is no known Partner.
+            If the aggregation is manually configured, this
+            System ID value will be a value assigned by the
+            local System.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.10";
+        }
+        leaf partner-system-priority {
+          type uint16;
+          description
+            "Indicates the priority value associated with the
+            Partners System ID. If the aggregation is manually
+            configured, this System Priority value will be a
+            value assigned by the local System.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.11";
+        }
+        leaf partner-oper-key {
+          type int16;
+          description
+            "The current operational value of the Key for the
+            Aggregators current protocol Partner. If the
+            aggregation is manually configured, this Key value
+            will be a value assigned by the local System.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.12";
+        }
+      } // aggregator-lacp
+      container statistics {
+        description
+          "Contains the set of stats associated with the
+          Aggregator.";
+        leaf octets-tx {
+          type yang:counter64;
+          description
+            "A count of the data and padding octets transmitted
+            by this Aggregator on all Aggregation Ports that are
+            (or have been) members of the aggregation. The count
+            does not include octets transmitted by the
+            Aggregator in frames that carry LACPDUs or Marker
+            PDUs (6.3.3.1.7, 6.3.3.1.8, 6.3.3.1.9). However, it
+            includes frames discarded by the Distribution
+            function of the Aggregator (6.3.1.1.25).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.17";
+        }
+        leaf octets-rx {
+          type yang:counter64;
+          description
+            "A count of the data and padding octets received by
+            this Aggregator, from the Aggregation Ports that
+            are (or have been) members of the aggregation. The
+            count does not include octets received in frames
+            that carry LACP or Marker PDUs (6.3.3.1.2,
+            6.3.3.1.3, 6.3.3.1.4), or frames discarded by the
+            Collection function of the Aggregator (6.3.1.1.26).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.18";
+        }
+        leaf frames-tx {
+          type yang:counter64;
+          description
+            "A count of the data frames transmitted by this
+            Aggregator on all Aggregation Ports that are (or
+            have been) members of the aggregation. The count
+            does not include frames transmitted by the
+            Aggregator that carry LACP or Marker PDUs
+            (6.3.3.1.7, 6.3.3.1.8, 6.3.3.1.9). However, it
+            includes frames discarded by the Distribution
+            function of the Aggregator (6.3.1.1.25).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.19";
+        }
+        leaf frames-rx {
+          type yang:counter64;
+          description
+            "A count of the data frames received by this
+            Aggregator, from the Aggregation Ports that are
+            (or have been) members of the aggregation. The count
+            does not include frames that carry LACP or Marker
+            PDUs (6.3.3.1.2, 6.3.3.1.3, 6.3.3.1.4), or frames
+            discarded by the Collection function of the
+            Aggregator (6.3.1.1.26).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.20";
+        }
+        leaf multicast-frames-tx {
+          type yang:counter64;
+          description
+            "A count of the data frames transmitted by this
+            Aggregator on all Aggregation Ports that are (or
+            have been) members of the aggregation, to a group
+            destination address other than the broadcast
+            address. The count does not include frames
+            transmitted by the Aggregator that carry LACP or
+            Marker PDUs (6.3.3.1.7, 6.3.3.1.8, 6.3.3.1.9).
+            However, it includes frames discarded by the
+            Distribution function of the Aggregator
+            (6.3.1.1.25).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.21";
+        }
+        leaf multicast-frames-rx {
+          type yang:counter64;
+          description
+            "A count of the data frames received by this
+            Aggregator, from the Aggregation Ports that are
+            (or have been) members of the aggregation, that
+            were addressed to an active group address other than
+            the broadcast address. The count does not include
+            frames that carry LACP or Marker PDUs (6.3.3.1.2,
+            6.3.3.1.3, 6.3.3.1.4), or frames discarded by the
+            Collection function of the Aggregator (6.3.1.1.26).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.22";
+        }
+        leaf broadcast-frames-tx {
+          type yang:counter64;
+          description
+            "A count of the broadcast data frames transmitted
+            by this Aggregator on all Aggregation Ports that
+            are (or have been) members of the aggregation. The
+            count does not include frames transmitted by the
+            Aggregator that carry LACP or Marker PDUs
+            (6.3.3.1.7, 6.3.3.1.8, 6.3.3.1.9). However, it
+            includes frames discarded by the Distribution
+            function of the Aggregator (6.3.1.1.25).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.23";
+        }
+        leaf broadcast-frames-rx {
+          type yang:counter64;
+          description
+            "A count of the broadcast data frames received by this
+            Aggregator, from the Aggregation Ports that are (or
+            have been) members of the aggregation. The count does
+            not include frames that carry LACP or Marker PDUs
+            (6.3.3.1.2, 6.3.3.1.3, 6.3.3.1.4), illegal or unknown
+            protocol frames (6.3.3.1.5, 6.3.3.1.6), or frames
+            discarded by the Collection function of the Aggregator
+            (6.3.1.1.26).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.24";
+        }
+        leaf frames-discarded-on-tx {
+          type yang:counter64;
+          description
+            "A count of data frames requested to be transmitted by
+            this Aggregator that were discarded by the
+            Distribution function of the Aggregator when
+            conversations are re-allocated to different ports,
+            due to the requirement to ensure that the
+            conversations are flushed on the old ports in order to
+            maintain proper frame ordering (43A.3), or discarded
+            as a result of excessive collisions by ports that are
+            (or have been) members of the aggregation.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.25";
+        }
+        leaf frames-discarded-on-rx {
+          type yang:counter64;
+          description
+            "A count of data frames, received on all ports that
+            are (or have been) members of the aggregation, that
+            were discarded by the Collection function of the
+            Aggregator as they were received on ports whose
+            Collection function was disabled.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.26";
+        }
+        leaf frames-with-tx-errors {
+          type yang:counter64;
+          description
+            "A count of data frames requested to be transmitted by
+            this Aggregator that experienced transmission errors
+            on ports that are (or have been) members of the
+            aggregation. This count does not include frames
+            discarded due to excess collisions.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.27";
+        }
+        leaf frames-with-rx-errors {
+          type yang:counter64;
+          description
+            "A count of data frames discarded on reception by all
+            ports that are (or have been) members of the
+            aggregation, or that were discarded by the Collection
+            function of the Aggregator, or that were discarded by
+            the Aggregator due to the detection of an illegal
+            Slow Protocols PDU (6.3.3.1.6).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.28";
+        }
+        leaf unknown-protocol-frames {
+          type yang:counter64;
+          description
+            "A count of data frames discarded on reception by all
+            ports that are (or have been) members of the
+            aggregation, due to the detection of an unknown Slow
+            Protocols PDU (6.3.3.1.5)";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.1.1.29";
+        }
+      } // statistics
+    } // aggregator
+  } // augment if:interface-state
+
+  //---------------------------------------------------
+  //  Aggregation Port Nodes
+  //---------------------------------------------------
+  augment "/if:interfaces/if:interface" {
+    when "if:type = 'ianaif:ethernetCsmacd' or
+          if:type = 'ianaif:bridge'" {
+      description
+        "Applies to Ethernet interfaces or Bridge Ports.";
+      }
+    description
+      "Augment interface model with Aggregation port
+      configuration nodes.";
+    reference
+      "IEEE 802.1AX-2008, Clause 6.3.2";
+    container aggregation-port {
+      description
+        "Contains Aggregation Port configuration related nodes,
+        which provides the basic management controls necessary
+        to allow an instance of an Aggregation Port to be managed,
+        for the purposes of Link Aggregation.";
+      container aggregation-port-lacp {
+        description
+          "Contains Aggregation port LACP configuration related
+          nodes.";
+        leaf actor-system-priority {
+          type int16;
+          description
+            "Define the priority value associated with the Actors
+            System ID.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.2";
+        }
+        leaf actor-admin-key {
+          type int16;
+          description
+            "The current administrative value of the Key for the
+            Aggregation Port. The meaning of particular Key values
+            is of local significance.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.4";
+        }
+        leaf partner-admin-system-priority {
+          type int16;
+          description
+            "Defines the administrative value of priority associated
+            with the Partners System ID. The assigned value is used,
+            along with the value of port-partner-admin-system-id,
+            partner-admin-key, partner-admin-port, and
+            partner-admin-port-priority, in order to achieve
+            manually configured aggregation.;";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.6";
+        }
+        leaf partner-admin-system-id {
+          type ieee:mac-address;
+          description
+            "Represents the administrative value of the Aggregation
+            Ports protocol Partners System ID. The assigned value is
+            used, along with the value of
+            partner-admin-system-priority, partner-admin-key,
+            partner-admin-port, and partner-admin-port-priority, in
+            order to achieve manually configured aggregation.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.8";
+        }
+        leaf partner-admin-key {
+          type int16;
+          description
+            "The current administrative value of the Key for the
+            protocol Partner. The assigned value is used, along with
+            the value of port-partner-admin-system-priority,
+            partner-admin-system-id, partner-admin-port, and
+            partner-admin-port-priority, in order to achieve
+            manually configured aggregation.;";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.10";
+        }
+        leaf actor-port-priority {
+          type int16;
+          description
+            "The priority value assigned to this Aggregation Port.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.15";
+        }
+        leaf partner-admin-port {
+          type int16;
+          description
+            "The current administrative value of the port number for
+            the protocol Partner. The assigned value is used, along
+            with the value of partner-admin-system-priority,
+            partner-admin-system-id, port-partner-admin-key, and
+            partner-admin-port-priority, in order to achieve
+            manually configured aggregation.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.16";
+        }
+        leaf partner-admin-port-priority {
+          type int16;
+          description
+            "The current administrative value of the port priority
+            for the protocol Partner. The assigned value is used,
+            along with the value of partner-admin-system-priority,
+            partner-admin-system-id, partner-admin-key, and
+            partner-admin-port, in order to achieve manually
+            configured aggregation.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.18";
+        }
+        leaf actor-admin-state {
+          type bits {
+            bit lacp-activity {
+              position 0;
+              description
+                "Corresponds to LACP activity actor state.";
+            }
+            bit lacp-timeout {
+              position 1;
+              description
+                "Corresponds to LACP timeout actor state.";
+            }
+            bit aggregation {
+              position 2;
+              description
+                "Corresponds to Aggregation actor state.";
+            }
+            bit synchronization {
+              position 3;
+              description
+                "Corresponds to Synchronization actor state.";
+            }
+            bit collecting {
+              position 4;
+              description
+                "Corresponds to Collecting actor state.";
+            }
+            bit distributing {
+              position 5;
+              description
+                "Corresponds to Distributing actor state.";
+            }
+            bit defaulted {
+              position 6;
+              description
+                "Corresponds to Defaulted actor state.";
+            }
+            bit expired {
+              position 7;
+              description
+                "Corresponds to Expired actor state.";
+            }
+          }
+          description
+            "Corresponding to the administrative values of
+            Actor_State (5.4.2) as transmitted by the Actor in
+            LACPDUs. The first bit corresponds to bit 0 of
+            Actor_State (LACP_Activity), the second bit corresponds
+            to bit 1 (LACP_Timeout), the third bit corresponds to
+            bit 2 (Aggregation), the fourth bit corresponds to bit 3
+            (Synchronization), the fifth bit corresponds to bit 4
+            (Collecting), the sixth bit corresponds to bit 5
+            (Distributing), the seventh bit corresponds to bit 6
+            (Defaulted), and the eighth bit corresponds to bit 7
+            (Expired). These values allow administrative control
+            over the values of LACP_Activity, LACP_Timeout, and
+            Aggregation.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.20";
+        }
+        leaf partner-admin-state {
+          type bits {
+            bit lacp-activity {
+              position 0;
+              description
+                "Corresponds to LACP activity actor state.";
+            }
+            bit lacp-timeout {
+              position 1;
+              description
+                "Corresponds to LACP timeout actor state.";
+            }
+            bit aggregation {
+              position 2;
+              description
+                "Corresponds to Aggregation actor state.";
+            }
+            bit synchronization {
+              position 3;
+              description
+                "Corresponds to Synchronization actor state.";
+            }
+            bit collecting {
+              position 4;
+              description
+                "Corresponds to Collecting actor state.";
+            }
+            bit distributing {
+              position 5;
+              description
+                "Corresponds to Distributing actor state.";
+            }
+            bit defaulted {
+              position 6;
+              description
+                "Corresponds to Defaulted actor state.";
+            }
+            bit expired {
+              position 7;
+              description
+                "Corresponds to Expired actor state.";
+            }
+          }
+          description
+            "Corresponding to the administrative values of
+            Actor_State (5.4.2) as transmitted by the Actor in
+            LACPDUs. The first bit corresponds to bit 0 of
+            Actor_State (LACP_Activity), the second bit corresponds
+            to bit 1 (LACP_Timeout), the third bit corresponds to
+            bit 2 (Aggregation), the fourth bit corresponds to bit 3
+            (Synchronization), the fifth bit corresponds to bit 4
+            (Collecting), the sixth bit corresponds to bit 5
+            (Distributing), the seventh bit corresponds to bit 6
+            (Defaulted), and the eighth bit corresponds to bit 7
+            (Expired). The assigned value is used in order to achieve
+            manually configured aggregation.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.22";
+        }
+      } // aggregation-port-lacp
+    } // aggregation-port
+  } // augment interfaces
+
+  augment "/if:interfaces-state/if:interface" {
+    when "if:type = 'ianaif:ethernetCsmacd' or
+          if:type = 'ianaif:bridge'" {
+      description
+        "Applies to Ethernet interfaces or Bridge Ports.";
+    }
+    description
+      "Augment interface-state model with Aggregation Port
+      operational nodes.";
+    reference
+      "IEEE 802.1AX-2008, Clause 6.3.2";
+    container aggregation-port {
+      description
+        "Contains Aggregation Port operational related nodes,
+        which provides the basic management controls necessary
+        to allow an instance of an Aggregation Port to be managed,
+        for the purposes of Link Aggregation.";
+      leaf id {
+        type int16;
+        description
+          "The unique identifier allocated to this Aggregation Port
+          by the local System. This attribute identifies an
+          Aggregation Port instance among the subordinate managed
+          objects of the containing object.";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.2.1.1";
+      }
+      leaf aggregate-or-individual {
+        type boolean;
+        description
+          "Indicates whether the Aggregation Port is able to
+          Aggregate (TRUE) or is only able to operate as an
+          Individual link (FALSE).";
+        reference
+          "IEEE 802.1AX-2008, Clause 6.3.2.1.24";
+      }
+      container aggregation-port-lacp {
+        description
+          "Contains Aggregation port LACP operational related
+          nodes.";
+        leaf actor-system-id {
+          type ieee:mac-address;
+          description
+            "Defines the value of the System ID for the
+            System that contains this Aggregation Port.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.3";
+        }
+        leaf actor-oper-key {
+          type int16;
+          description
+            "The current operational value of the Key for the
+            Aggregation Port. The meaning of particular Key values
+            is of local significance.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.5";
+        }
+        leaf partner-oper-system-priority {
+          type int16;
+          description
+            "Indicates the operational value of priority associated
+            with the Partners System ID. The value of this attribute
+            may contain the manually configured value carried in
+            partner-admin-system-priority if there is no protocol
+            Partner.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.7";
+        }
+        leaf partner-oper-system-id {
+          type ieee:mac-address;
+          description
+            "Represents the current value of the Aggregation
+            Ports protocol Partners System ID. A value of zero
+            indicates that there is no known protocol Partner. The
+            value of this attribute may contain the manually
+            configured value carried in partner-admin-system-id if
+            there is no protocol Partner.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.9";
+        }
+        leaf partner-oper-key {
+          type int16;
+          description
+            "The current operational value of the Key for the
+            protocol Partner. The value of this attribute may
+            contain the manually configured value carried in
+            partner-admin-key if there is no protocol Partner.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.11";
+        }
+        leaf selected-agg-id {
+          type int16;
+          description
+            "The identifier value of the Aggregator that this
+            Aggregation Port has currently selected. Zero
+            indicates that the Aggregation Port has not selected an
+            Aggregator, either because it is in the process of
+            detaching from an Aggregator or because there is no
+            suitable Aggregator available for it to select.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.12";
+        }
+        leaf attached-agg-id {
+          type int16;
+          description
+            "The identifier value of the Aggregator to which this
+            Aggregation Port is currently attached. Zero indicates
+            that the Aggregation Port is not currently attached to
+            an Aggregator.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.13";
+        }
+        leaf actor-port {
+          type int16;
+          description
+            "The port number locally assigned to the Aggregation
+            Port. The port number is communicated in LACPDUs as the
+            Actor_Port.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.14";
+        }
+        leaf partner-oper-port {
+          type int16;
+          description
+            "The operational port number assigned to this
+            Aggregation Port by the Aggregation Ports protocol
+            Partner. The value of this attribute may contain the
+            manually configured value carried in
+            partner-admin-port if there is no protocol Partner.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.17";
+        }
+        leaf partner-oper-port-priority {
+          type int16;
+          description
+            "The priority value assigned to this Aggregation Port by
+            the Partner. The value of this attribute may contain the
+            manually configured value carried in
+            partner-admin-port-priority if there is no protocol
+            Partner.";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.19";
+        }
+        leaf actor-oper-state {
+          type bits {
+            bit lacp-activity {
+              position 0;
+              description
+                "Corresponds to LACP activity actor state.";
+            }
+            bit lacp-timeout {
+              position 1;
+              description
+                "Corresponds to LACP timeout actor state.";
+            }
+            bit aggregation {
+              position 2;
+              description
+                "Corresponds to Aggregation actor state.";
+            }
+            bit synchronization {
+              position 3;
+              description
+                "Corresponds to Synchronization actor state.";
+            }
+            bit collecting {
+              position 4;
+              description
+                "Corresponds to Collecting actor state.";
+            }
+            bit distributing {
+              position 5;
+              description
+                "Corresponds to Distributing actor state.";
+            }
+            bit defaulted {
+              position 6;
+              description
+                "Corresponds to Defaulted actor state.";
+            }
+            bit expired {
+              position 7;
+              description
+                "Corresponds to Expired actor state.";
+            }
+          }
+          description
+            "Corresponding to the operational values of
+            Actor_State (5.4.2) as transmitted by the Actor in
+            LACPDUs. The first bit corresponds to bit 0 of
+            Actor_State (LACP_Activity), the second bit corresponds
+            to bit 1 (LACP_Timeout), the third bit corresponds to
+            bit 2 (Aggregation), the fourth bit corresponds to bit 3
+            (Synchronization), the fifth bit corresponds to bit 4
+            (Collecting), the sixth bit corresponds to bit 5
+            (Distributing), the seventh bit corresponds to bit 6
+            (Defaulted), and the eighth bit corresponds to bit 7
+            (Expired).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.21";
+        }
+        leaf partner-oper-state {
+          type bits {
+            bit lacp-activity {
+              position 0;
+              description
+                "Corresponds to LACP activity actor state.";
+            }
+            bit lacp-timeout {
+              position 1;
+              description
+                "Corresponds to LACP timeout actor state.";
+            }
+            bit aggregation {
+              position 2;
+              description
+                "Corresponds to Aggregation actor state.";
+            }
+            bit synchronization {
+              position 3;
+              description
+                "Corresponds to Synchronization actor state.";
+            }
+            bit collecting {
+              position 4;
+              description
+                "Corresponds to Collecting actor state.";
+            }
+            bit distributing {
+              position 5;
+              description
+                "Corresponds to Distributing actor state.";
+            }
+            bit defaulted {
+              position 6;
+              description
+                "Corresponds to Defaulted actor state.";
+            }
+            bit expired {
+              position 7;
+              description
+                "Corresponds to Expired actor state.";
+            }
+          }
+          description
+            "Corresponding to the current values of
+            Actor_State (5.4.2) in the most recently received LACPDU
+            transmitted by the protocol Partner. The first bit
+            corresponds to bit 0 of Actor_State (LACP_Activity),
+            the second bit corresponds to bit 1 (LACP_Timeout), the
+            third bit corresponds to bit 2 (Aggregation), the fourth
+            bit corresponds to bit 3 (Synchronization), the fifth
+            bit corresponds to bit 4 (Collecting), the sixth bit
+            corresponds to bit 5 (Distributing), the seventh bit
+            corresponds to bit 6 (Defaulted), and the eighth bit
+            corresponds to bit 7 (Expired).";
+          reference
+            "IEEE 802.1AX-2008, Clause 6.3.2.1.23";
+        }
+        container aggregation-port-stats {
+          description
+            "Contains stats associated with the Aggregation Port.";
+          leaf stats-id {
+            type int16;
+            description
+              "Identifies an Aggregation Port Statistics object
+              instance among the subordinate managed objects of the
+              containing object. The value allocated to this
+              attribute shall be the same as the containing
+              aggregation-port managed object.";
+            reference
+              "IEEE 802.1AX-2008, Clause 6.3.3.1.1";
+          }
+          leaf lacp-pdu-rx {
+            type yang:counter64;
+            description
+              "The number of valid LACPDUs received on this
+              Aggregation Port.";
+            reference
+              "IEEE 802.1AX-2008, Clause 6.3.3.1.2";
+          }
+          leaf marker-pdu-rx {
+            type yang:counter64;
+            description
+              "The number of valid Marker PDUs received on this
+              Aggregation Port.";
+            reference
+              "IEEE 802.1AX-2008, Clause 6.3.3.1.3";
+          }
+          leaf marker-response-pdu-rx {
+            type yang:counter64;
+            description
+              "The number of valid Marker Response PDUs received on
+              this Aggregation Port.";
+            reference
+              "IEEE 802.1AX-2008, Clause 6.3.3.1.4";
+          }
+          leaf unknown-rx {
+            type yang:counter64;
+            description
+              "The number of frames received that either:
+              a) Carry the Slow Protocols Ethernet Type value (IEEE
+              Std 802.3 Annex 57A.4), but contain an unknown PDU, or
+              b) Are addressed to the Slow Protocols group MAC
+              Address (IEEE Std 802.3 Annex 57A.3), but do not carry
+              the Slow Protocols Ethernet Type.";
+            reference
+              "IEEE 802.1AX-2008, Clause 6.3.3.1.5";
+          }
+          leaf illegal-rx {
+            type yang:counter64;
+            description
+              "The number of frames received that carry the Slow
+              Protocols Ethernet Type value (IEEE Std 802.3 Annex
+              57A.4), but contain a badly formed PDU or an illegal
+              value of Protocol Subtype (IEEE Std 802.3 Annex
+              57A.3).";
+            reference
+              "IEEE 802.1AX-2008, Clause 6.3.3.1.6";
+          }
+          leaf lacp-pdu-tx {
+            type yang:counter64;
+            description
+              "The number of LACPDUs transmitted on this
+              Aggregation Port.";
+            reference
+              "IEEE 802.1AX-2008, Clause 6.3.3.1.7";
+          }
+          leaf marker-pdu-tx {
+            type yang:counter64;
+            description
+              "The number of Marker PDUs transmitted on this
+              Aggregation Port.";
+            reference
+              "IEEE 802.1AX-2008, Clause 6.3.3.1.8";
+          }
+          leaf marker-response-pdu-tx {
+            type yang:counter64;
+            description
+              "The number of Marker Response PDUs transmitted on
+              this Aggregation Port.";
+            reference
+              "IEEE 802.1AX-2008, Clause 6.3.3.1.9";
+          }
+        } // aggregation-port-stats
+      } // aggregation-port-lacp
+    } // aggregation-port
+  } // augment interfaces-states
+
+} // ieee802-dot1ax
