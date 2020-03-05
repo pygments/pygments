@@ -1,5 +1,4 @@
-type action:counter64;
-leaf number { type uint16; mandatory true; }
+//see https://github.com/YangModels/yang/blob/master/experimental/ieee/802.1/ieee802-dot1ax.yang
 module ieee802-dot1ax {
   namespace urn:ieee:std:802.1AX:yang:ieee802-dot1ax;
 
