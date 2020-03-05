@@ -164,31 +164,43 @@ class FontManager:
             return None
 
     def _create_win(self):
-        try:
-            key = _winreg.OpenKey(
-                _winreg.HKEY_LOCAL_MACHINE,
-                r'Software\Microsoft\Windows NT\CurrentVersion\Fonts')
-        except EnvironmentError:
+        lookuperror = None
+        keynames = [ (_winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows NT\CurrentVersion\Fonts'),
+                     (_winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Fonts'),
+                     (_winreg.HKEY_LOCAL_MACHINE, r'Software\Microsoft\Windows NT\CurrentVersion\Fonts'),
+                     (_winreg.HKEY_LOCAL_MACHINE, r'Software\Microsoft\Windows\CurrentVersion\Fonts') ]
+        for keyname in keynames:
             try:
-                key = _winreg.OpenKey(
-                    _winreg.HKEY_LOCAL_MACHINE,
-                    r'Software\Microsoft\Windows\CurrentVersion\Fonts')
+                key = _winreg.OpenKey(*keyname)
+                try:
+                    path = self._lookup_win(key, self.font_name, STYLES['NORMAL'], True)
+                    self.fonts['NORMAL'] = ImageFont.truetype(path, self.font_size)
+                    for style in ('ITALIC', 'BOLD', 'BOLDITALIC'):
+                        path = self._lookup_win(key, self.font_name, STYLES[style])
+                        if path:
+                            self.fonts[style] = ImageFont.truetype(path, self.font_size)
+                        else:
+                            if style == 'BOLDITALIC':
+                                self.fonts[style] = self.fonts['BOLD']
+                            else:
+                                self.fonts[style] = self.fonts['NORMAL']
+                    return
+                except FontNotFound as err:
+                    lookuperror = err
+                finally:
+                    _winreg.CloseKey(key)
             except EnvironmentError:
-                raise FontNotFound('Can\'t open Windows font registry key')
-        try:
-            path = self._lookup_win(key, self.font_name, STYLES['NORMAL'], True)
-            self.fonts['NORMAL'] = ImageFont.truetype(path, self.font_size)
-            for style in ('ITALIC', 'BOLD', 'BOLDITALIC'):
-                path = self._lookup_win(key, self.font_name, STYLES[style])
-                if path:
-                    self.fonts[style] = ImageFont.truetype(path, self.font_size)
-                else:
-                    if style == 'BOLDITALIC':
-                        self.fonts[style] = self.fonts['BOLD']
-                    else:
-                        self.fonts[style] = self.fonts['NORMAL']
-        finally:
-            _winreg.CloseKey(key)
+                pass
+        else:
+            # If we get here, we checked all registry keys and had no luck
+            # We can be in one of two situations now:
+            # * All key lookups failed. In this case lookuperror is None and we
+            #   will raise a generic error
+            # * At least one lookup failed with a FontNotFound error. In this
+            #   case, we will raise that as a more specific error
+            if lookuperror:
+                raise lookuperror
+            raise FontNotFound('Can\'t open Windows font registry key')
 
     def get_char_size(self):
         """
