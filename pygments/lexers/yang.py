@@ -55,6 +55,8 @@ class YangLexer(RegexLexer):
              "int8", "int16", "int32", "int64", "string", "uint8", "uint16",
              "uint32", "uint64", "union", "leafref", "identityref", "instance-identifier")
 
+    suffix_re_pattern = r'(?=[^\w\-\:])'
+
     tokens = {
         'comments': [
             (r'[^*/]', Comment),
@@ -66,16 +68,16 @@ class YangLexer(RegexLexer):
             (r'\s+', Text), #\t , \n , \r , and space characters. \S
             (r'[\{\}\;]+', Token.Punctuation),
             (r'(?<![\-\w])(and|or|not|\+|\.)(?![\-\w])', Token.Operator),
-            (words(TOP_STMTS_KEYWORDS, suffix=r'(?=[^\w\-\:])'), Token.Keyword),
-            (words(MODULE_HEADER_STMT_KEYWORDS, suffix=r'(?=[^\w\-\:])'), Token.Keyword),
-            (words(META_STMT_KEYWORDS, suffix=r'(?=[^\w\-\:])'), Token.Keyword),
-            (words(LINKAGE_STMTS_KEYWORDS, suffix=r'(?=[^\w\-\:])'), Token.Keyword),
-            (words(BODY_STMT_KEYWORDS, suffix=r'(?=[^\w\-\:])'), Token.Keyword),
-            (words(DATA_DEF_STMT_KEYWORDS, suffix=r'(?=[^\w\-\:])'), Token.Keyword),
-            (words(TYPE_STMT_KEYWORDS, suffix=r'(?=[^\w\-\:])'), Token.Keyword),
-            (words(LIST_STMT_KEYWORDS, suffix=r'(?=[^\w\-\:])'), Token.Keyword),
-            (words(TYPES, suffix=r'(?=[^\w\-\:])'), Name.Class),
-            (words(CONSTANTS_KEYWORDS, suffix=r'(?=[^\w\-\:])'), Name.Class),
+            (words(TOP_STMTS_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
+            (words(MODULE_HEADER_STMT_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
+            (words(META_STMT_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
+            (words(LINKAGE_STMTS_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
+            (words(BODY_STMT_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
+            (words(DATA_DEF_STMT_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
+            (words(TYPE_STMT_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
+            (words(LIST_STMT_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
+            (words(TYPES, suffix=suffix_re_pattern), Name.Class),
+            (words(CONSTANTS_KEYWORDS, suffix=suffix_re_pattern), Name.Class),
             (r'"[^"\\]*(?:\\.[^"\\]*)*"', String),
             (r'\'[^\'\\]*(?:\\.[^\'\\]*)*\'', String),
             (r'/\*', Comment, 'comments'),
