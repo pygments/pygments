@@ -780,11 +780,11 @@ class ReasonLexer(RegexLexer):
     mimetypes = ['text/x-reasonml']
 
     keywords = (
-    'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto',
-    'else', 'end', 'exception', 'external', 'false', 'for', 'fun', 'esfun',
-    'function', 'functor', 'if', 'in', 'include', 'inherit', 'initializer', 'lazy',
-    'let', 'switch', 'module', 'pub', 'mutable', 'new', 'nonrec', 'object', 'of',
-    'open', 'pri', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
+    'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto', 
+    'else', 'end', 'exception', 'external', 'false', 'for', 'fun', 'esfun', 
+    'function', 'functor', 'if', 'in', 'include', 'inherit', 'initializer', 'lazy', 
+    'let', 'switch', 'module', 'pub', 'mutable', 'new', 'nonrec', 'object', 'of', 
+    'open', 'pri', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try', 
     'type', 'val', 'virtual', 'when', 'while', 'with'
     )
     keyopts = (
@@ -796,7 +796,6 @@ class ReasonLexer(RegexLexer):
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
     word_operators = ('and', 'asr', 'land', 'lor', 'lsl', 'lsr', 'lxor', 'mod', 'or')
-
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
@@ -829,10 +828,13 @@ class ReasonLexer(RegexLexer):
             (r'\d[\d_]*', Number.Integer),
 
             (r"'(?:(\\[\\\"'ntbr ])|(\\[0-9]{3})|(\\x[0-9a-fA-F]{2}))'",
-                 String.Char),
+             String.Char),
             (r"'.'", String.Char),
-
             (r"'", Keyword),
+
+            (r'"', String.Double, 'string'),
+
+            (r'[~?][a-z][\w\']*:', Name.Variable),
         ],
         'comment': [
             (r'[^\/*]+', Comment.Multiline),
@@ -860,7 +862,6 @@ class ReasonLexer(RegexLexer):
 class FStarLexer(RegexLexer):
     """
     For the F* language.
-
     .. versionadded:: 2.3
     """
 
@@ -889,7 +890,6 @@ class FStarLexer(RegexLexer):
     )
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
-
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
@@ -928,7 +928,6 @@ class FStarLexer(RegexLexer):
             (r'"', String.Double, 'string'),
 
             (r'[~?][a-z][\w\']*:', Name.Variable),
-            (r'`[a-z][a-zA-Z0-9_\']*`', Text), # infix application
         ],
         'comment': [
             (r'[^(*)]+', Comment),
