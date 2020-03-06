@@ -871,16 +871,18 @@ class FStarLexer(RegexLexer):
     mimetypes = ['text/x-fstar']
 
     keywords = (
-        'abstract', 'attributes', 'noeq', 'unopteq', 'and', 'assert', 'assume',
+        'abstract', 'attributes', 'noeq', 'unopteq', 'and'
         'begin', 'by', 'default', 'effect', 'else', 'end', 'ensures',
         'exception', 'exists', 'false', 'forall', 'fun', 'function', 'if',
-        'in', 'include', 'inline', 'inline_for_extraction', 'irreducible', 'let',
+        'in', 'include', 'inline', 'inline_for_extraction', 'irreducible',
         'logic', 'match', 'module', 'mutable', 'new', 'new_effect', 'noextract',
-        'of', 'open', 'opaque', 'private', 'range_of', 'rec', 'reifiable',
+        'of', 'open', 'opaque', 'private', 'range_of', 'reifiable',
         'reify', 'reflectable', 'requires', 'set_range_of', 'sub_effect',
         'synth', 'then', 'total', 'true', 'try', 'type', 'unfold', 'unfoldable',
-        'val', 'when', 'with',
+        'val', 'when', 'with', 'not'
     )
+    decl_keywords = ('let', 'rec')
+    assume_keywords = ('assume', 'admit', 'assert', 'calc')
     keyopts = (
         r'~', r'-', r'/\\', r'\\/', r'<:', r'<@', r'\(\|', r'\|\)', r'#', r'u#',
         r'&', r'\(\)', r'\(', r'\)', r',', r'~>', r'->', r'<--', r'<-', r'<==>',
@@ -906,7 +908,10 @@ class FStarLexer(RegexLexer):
             (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name.Class),
             (r'\(\*(?![)])', Comment, 'comment'),
+            (r'^\/\/.+$', Comment),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
+            (r'\b(%s)\b' % '|'.join(assume_keywords), Name.Exception),
+            (r'\b(%s)\b' % '|'.join(decl_keywords), Keyword.Declaration),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
@@ -923,8 +928,8 @@ class FStarLexer(RegexLexer):
              String.Char),
             (r"'.'", String.Char),
             (r"'", Keyword),  # a stray quote is another syntax element
-            (r"`", Keyword),  # for infix applications
-
+            (r"\`([\w\'\.]+)\`", Operator.Word),  # for infix applications
+            (r"\`", Keyword),  # for quoting
             (r'"', String.Double, 'string'),
 
             (r'[~?][a-z][\w\']*:', Name.Variable),
@@ -934,9 +939,6 @@ class FStarLexer(RegexLexer):
             (r'\(\*', Comment, '#push'),
             (r'\*\)', Comment, '#pop'),
             (r'[(*)]', Comment),
-        ],
-        'single_comment': [
-            (r'^\/\/.+$', Comment),
         ],
         'string': [
             (r'[^\\"]+', String.Double),
