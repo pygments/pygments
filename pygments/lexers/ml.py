@@ -780,11 +780,11 @@ class ReasonLexer(RegexLexer):
     mimetypes = ['text/x-reasonml']
 
     keywords = (
-    'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto', 
-    'else', 'end', 'exception', 'external', 'false', 'for', 'fun', 'esfun', 
-    'function', 'functor', 'if', 'in', 'include', 'inherit', 'initializer', 'lazy', 
-    'let', 'switch', 'module', 'pub', 'mutable', 'new', 'nonrec', 'object', 'of', 
-    'open', 'pri', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try', 
+    'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto',
+    'else', 'end', 'exception', 'external', 'false', 'for', 'fun', 'esfun',
+    'function', 'functor', 'if', 'in', 'include', 'inherit', 'initializer', 'lazy',
+    'let', 'switch', 'module', 'pub', 'mutable', 'new', 'nonrec', 'object', 'of',
+    'open', 'pri', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
     'type', 'val', 'virtual', 'when', 'while', 'with'
     )
     keyopts = (
@@ -862,7 +862,7 @@ class ReasonLexer(RegexLexer):
 class FStarLexer(RegexLexer):
     """
     For the F* language.
-    .. versionadded:: 2.3
+    .. versionadded:: 2.6
     """
 
     name = 'FStar'
