@@ -65,6 +65,7 @@ Programming languages
 * Fortran
 * `FreeFEM++ <https://freefem.org/>`_
 * F#
+* F* <https://www.fstar-lang.org/>` _
 * GAP
 * Gherkin (Cucumber)
 * GLSL shaders
