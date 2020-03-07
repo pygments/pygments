@@ -861,8 +861,8 @@ class ReasonLexer(RegexLexer):
 
 class FStarLexer(RegexLexer):
     """
-    For the F* language.
-    .. versionadded:: 2.6
+    For the F* language (https://www.fstar-lang.org/).
+    .. versionadded:: 2.7
     """
 
     name = 'FStar'
