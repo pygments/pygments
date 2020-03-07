@@ -9,7 +9,7 @@ pull request numbers to the requests at
 
 Version 2.6
 -----------
-(not released yet)
+(released March 8, 2020)
 
 - Running Pygments on Python 2.x is no longer supported.
   (The Python 2 lexer still exists.)
@@ -53,6 +53,7 @@ Version 2.6
 - Fix ``re.MULTILINE`` usage (PR#1388)
 - Recognize ``pipenv`` and ``poetry`` dependency & lock files (PR#1376)
 - Improve font search on Windows (#1247)
+- Remove unused script block (#1401)
 
 Version 2.5.2
 -------------
