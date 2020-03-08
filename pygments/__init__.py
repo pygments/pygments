@@ -28,7 +28,7 @@
 import sys
 from io import StringIO, BytesIO
 
-__version__ = '2.5.2'
+__version__ = '2.6.0'
 __docformat__ = 'restructuredtext'
 
 __all__ = ['lex', 'format', 'highlight']
