@@ -9,14 +9,16 @@ Release checklist
 * Check setup.py metadata: long description, trove classifiers
 * Update release date/code name in ``CHANGES``
 * ``git commit``
+* Wait for the CI to finish
 * ``make clean``
 * ``python3 setup.py release bdist_wheel sdist``
+* Check the size of the generated packages. If they're significantly different from the last release, check if the repository is in a modified state and that ``make clean`` was run.
 * ``twine upload dist/Pygments-$NEWVER*``
-* Check PyPI release page for obvious errors
+* Check PyPI release page for obvious errors (like different file sizes!)
 * ``git tag -a``
 * Add new ``CHANGES`` heading for next version
 * ``git commit``
 * ``git push``, ``git push --tags``
 * Add new release on https://github.com/pygments/pygments/releases
-* Add new milestone on https://github.com/pygments/pygments/milestones
+* Add new milestone on https://github.com/pygments/pygments/milestones if needed
 * Write announcement and send to mailing list/python-announce
