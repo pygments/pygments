@@ -10,7 +10,8 @@
 """
 
 from pygments.lexer import (RegexLexer, bygroups, words)
-from pygments.token import (Text, Token, Name, String, Comment)
+from pygments.token import (Text, Token, Name, String, Comment,
+                            Number)
 
 __all__ = ['YangLexer']
 
@@ -68,6 +69,7 @@ class YangLexer(RegexLexer):
             (r'\s+', Text), #\t , \n , \r , and space characters. \S
             (r'[\{\}\;]+', Token.Punctuation),
             (r'(?<![\-\w])(and|or|not|\+|\.)(?![\-\w])', Token.Operator),
+
             (words(TOP_STMTS_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
             (words(MODULE_HEADER_STMT_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
             (words(META_STMT_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
@@ -78,14 +80,22 @@ class YangLexer(RegexLexer):
             (words(LIST_STMT_KEYWORDS, suffix=suffix_re_pattern), Token.Keyword),
             (words(TYPES, suffix=suffix_re_pattern), Name.Class),
             (words(CONSTANTS_KEYWORDS, suffix=suffix_re_pattern), Name.Class),
+
             (r'"[^"\\]*(?:\\.[^"\\]*)*"', String),
             (r'\'[^\'\\]*(?:\\.[^\'\\]*)*\'', String),
+
             (r'/\*', Comment, 'comments'),
             (r'//.*?$', Comment),
+
             #match BNF stmt for `node-identifier` with [ prefix ":"]
             (r'(?:^|(?<=[\s\{\}\;]))([^;{}\s\*\+\'\"\:\/]+)' +
              r'(:)([^;{}\s\*\+\'\"\:\/]+)(?=[\s\{\}\;])',
              bygroups(Name.Namespace, Token.Punctuation, Name.Variable)),
+
+            #match BNF stmt `date-arg-str`
+            (r'([0-9]{4}\-[0-9]{2}\-[0-9]{2})(?=[\s\{\}\;])', Name.Label),
+            (r'([0-9]+\.[0-9]+)(?=[\s\{\}\;])', Number.Float),
+            (r'([0-9]+)(?=[\s\{\}\;])', Number.Integer),
             (r'[^;\{\}\s\*\+\'"]+', Name.Variable),
         ]
     }
