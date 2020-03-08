@@ -10,7 +10,6 @@ Release checklist
 * Update release date/code name in ``CHANGES``
 * ``git commit``
 * ``make clean``
-* ``python2 setup.py release bdist_wheel``
 * ``python3 setup.py release bdist_wheel sdist``
 * ``twine upload dist/Pygments-$NEWVER*``
 * Check PyPI release page for obvious errors
