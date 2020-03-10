@@ -55,11 +55,6 @@ class CFamilyLexer(RegexLexer):
             (r'(L?)(")', bygroups(String.Affix, String), 'string'),
             (r"(L?)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
-            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
-            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
-            (r'0[0-7]+[LlUu]*', Number.Oct),
-            (r'\d+[LlUu]*', Number.Integer),
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
@@ -188,7 +183,17 @@ class CLexer(CFamilyLexer):
     filenames = ['*.c', '*.h', '*.idc']
     mimetypes = ['text/x-chdr', 'text/x-csrc']
     priority = 0.1
-
+    tokens = {
+        'statements': [
+            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
+            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
+            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
+            (r'0[0-7]+[LlUu]*', Number.Oct),
+            (r'\d+[LlUu]*', Number.Integer),
+            inherit,
+        ]
+    }
+    
     def analyse_text(text):
         if re.search(r'^\s*#include [<"]', text, re.MULTILINE):
             return 0.1
@@ -228,6 +233,12 @@ class CppLexer(CFamilyLexer):
                       String, String.Delimiter, String)),
             # C++11 UTF-8/16/32 strings
             (r'(u8|u|U)(")', bygroups(String.Affix, String), 'string'),
+            # C++14 number separators
+            (r'(\d[\d\']*\.[\d\']*|\.\d[\d\']*|\d[\d\']*)[eE][+-]?\d[\d\']*[LlUu]*', Number.Float),
+            (r'(\d[\d\']*\.[\d\']*|\.\d[\d\']*|\d[\d\']*[fF])[fF]?', Number.Float),
+            (r'0x[0-9a-fA-F\']+[LlUu]*', Number.Hex),
+            (r'0[0-7\']+[LlUu]*', Number.Oct),
+            (r'\d[\d\']*[LlUu]*', Number.Integer),
             inherit,
         ],
         'root': [
