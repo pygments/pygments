@@ -53,8 +53,11 @@ class TNTLexer(Lexer):
     def whitespace(self, start, text, required=False):
         """Tokenize whitespace."""
         end = start
-        while text[end] in self.WHITESPACE:
-            end += 1
+        try:
+            while text[end] in self.WHITESPACE:
+                end += 1
+        except IndexError:
+            end = len(text)
         if required:
             assert end != start
         if end != start:
@@ -163,66 +166,80 @@ class TNTLexer(Lexer):
     def error_till_line_end(self, start, text):
         """Mark everything from ``start`` to the end of the line as Error."""
         end = start
-        while text[end] != '\n': # there's whitespace in rules
-            end += 1
+        try:
+            while text[end] != '\n': # there's whitespace in rules
+                end += 1
+        except IndexError:
+            end = len(text)
         if end != start:
             self.cur.append((start, Error, text[start:end]))
+        end = self.whitespace(end, text)
         return end
 
     def get_tokens_unprocessed(self, text):
         """Returns a list of TNT tokens."""
         self.cur = []
-        start = end = 0
-        try:
-            while start <= end < len(text):
-                start = end = self.whitespace(start, text)
-                start = end # new anchor
-                # try line number
-                while text[end] in self.NUMBERS:
-                    end += 1
-                if end != start: # actual number present
-                    self.cur.append((start, Number.Integer, text[start:end]))
-                    # whitespace is required after a line number
-                    try:
-                        start = end = self.whitespace(end, text, True)
-                    except AssertionError:
-                        start = end = self.error_till_line_end(end, text)
-                        continue
-                # at this point it could be a comment
-                match = self.COMMENT.match(text, start)
-                if match is not None:
-                    self.cur.append((start, Comment, text[start:match.end()]))
-                    start = end = match.end()
-                    # anything after the closing bracket is invalid
-                    start = end = self.error_till_line_end(start, text)
-                    # do not attempt to process the rest
-                    continue
-                del match
-                # one formula, possibly containing subformulae
+        start = end = self.whitespace(0, text)
+        while start <= end < len(text):
+            # try line number
+            while text[end] in self.NUMBERS:
+                end += 1
+            if end != start: # actual number present
+                self.cur.append((start, Number.Integer, text[start:end]))
+                # whitespace is required after a line number
+                orig = len(self.cur)
                 try:
-                    start = end = self.formula(start, text)
-                except AssertionError: # not well-formed
-                    while text[end] not in self.WHITESPACE:
-                        end += 1
-                    self.cur.append((start, Error, text[start:end]))
-                    start = end
-                # skip whitespace after formula
-                start = end = self.whitespace(end, text)
-                # rule proving this formula a theorem
-                try:
-                    start = end = self.rule(start, text)
+                    start = end = self.whitespace(end, text, True)
                 except AssertionError:
+                    del self.cur[orig:]
+                    start = end = self.error_till_line_end(end, text)
+                    continue
+            # at this point it could be a comment
+            match = self.COMMENT.match(text, start)
+            if match is not None:
+                self.cur.append((start, Comment, text[start:match.end()]))
+                start = end = match.end()
+                # anything after the closing bracket is invalid
+                start = end = self.error_till_line_end(start, text)
+                # do not attempt to process the rest
+                continue
+            del match
+            # one formula, possibly containing subformulae
+            orig = len(self.cur)
+            try:
+                start = end = self.formula(start, text)
+            except AssertionError: # not well-formed
+                del self.cur[orig:]
+                while text[end] not in self.WHITESPACE:
+                    end += 1
+                self.cur.append((start, Error, text[start:end]))
+                start = end
+            # skip whitespace after formula
+            orig = len(self.cur)
+            try:
+                start = end = self.whitespace(end, text, True)
+            except AssertionError:
+                del self.cur[orig:]
+                start = end = self.error_till_line_end(start, text)
+                continue
+            # rule proving this formula a theorem
+            orig = len(self.cur)
+            try:
+                start = end = self.rule(start, text)
+            except AssertionError:
+                del self.cur[orig:]
+                start = end = self.error_till_line_end(start, text)
+                continue
+            # skip whitespace after rule
+            start = end = self.whitespace(end, text)
+            # line marker
+            if text[start] == '(':
+                orig = len(self.cur)
+                try:
+                    start = end = self.lineno(start, text)
+                except AssertionError:
+                    del self.cur[orig:]
                     start = end = self.error_till_line_end(start, text)
                     continue
-                # skip whitespace after rule
-                start = end = self.whitespace(end, text)
-                # line marker
-                if text[start] == '(':
-                    try:
-                        start = end = self.lineno(start, text)
-                    except AssertionError:
-                        start = end = self.error_till_line_end(start, text)
-                        continue
-        except IndexError:
-            pass
+                start = end = self.whitespace(start, text)
         return self.cur
