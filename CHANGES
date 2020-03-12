@@ -7,9 +7,19 @@ pull request numbers to the requests at
 <https://github.com/pygments/pygments/pulls>.
 
 
+Version 2.7.0
+-------------
+(not released yet)
+
+Version 2.6.1
+-------------
+(released March 8, 2020)
+
+- This release fixes a packaging issue. No functional changes.
+
 Version 2.6
 -----------
-(not released yet)
+(released March 8, 2020)
 
 - Running Pygments on Python 2.x is no longer supported.
   (The Python 2 lexer still exists.)
@@ -38,6 +48,7 @@ Version 2.6
   * Python3 (PR#1382, PR#1385)
   * Rust: Updated lexer to cover more builtins (mostly macros) and miscellaneous
   new syntax (PR#1320)
+  * SQL: Add temporal support keywords (PR#1402)
 
 - The 256-color/true-color terminal formatters now support the italic attribute
   in styles (PR#1288)
@@ -53,6 +64,7 @@ Version 2.6
 - Fix ``re.MULTILINE`` usage (PR#1388)
 - Recognize ``pipenv`` and ``poetry`` dependency & lock files (PR#1376)
 - Improve font search on Windows (#1247)
+- Remove unused script block (#1401)
 
 Version 2.5.2
 -------------
