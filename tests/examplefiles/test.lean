@@ -1,217 +1,209 @@
 /-
-Theorems/Exercises from "Logical Investigations, with the Nuprl Proof Assistant"
-by Robert L. Constable and Anne Trostle
-http://www.nuprl.org/MathLibrary/LogicalInvestigations/
+Copyright (c) 2017 Johannes Hölzl. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Johannes Hölzl
+
+Zorn's lemmas.
+
+Ported from Isabelle/HOL (written by Jacques D. Fleuriot, Tobias Nipkow, and Christian Sternagel).
 -/
-import logic
+import data.set.lattice
+noncomputable theory
 
--- 2. The Minimal Implicational Calculus
-theorem thm1 {A B : Prop} : A → B → A :=
-assume Ha Hb, Ha
+universes u
+open set classical
+local attribute [instance] decidable_inhabited
+local attribute [instance] prop_decidable
 
-theorem thm2 {A B C : Prop} : (A → B) → (A → B → C) → (A → C) :=
-assume Hab Habc Ha,
-  Habc Ha (Hab Ha)
+namespace zorn
 
-theorem thm3 {A B C : Prop} : (A → B) → (B → C) → (A → C) :=
-assume Hab Hbc Ha,
-  Hbc (Hab Ha)
+section chain
+parameters {α : Type u} {r : α → α → Prop}
+local infix ` ≺ `:50  := r
 
--- 3. False Propositions and Negation
-theorem thm4 {P Q : Prop} : ¬P → P → Q :=
-assume Hnp Hp,
-  absurd Hp Hnp
+def chain (c : set α) := pairwise_on c (λx y, x ≺ y ∨ y ≺ x)
 
-theorem thm5 {P : Prop} : P → ¬¬P :=
-assume (Hp : P) (HnP : ¬P),
-  absurd Hp HnP
+theorem chain_insert {c : set α} {a : α} (hc : chain c) (ha : ∀b∈c, b ≠ a → a ≺ b ∨ b ≺ a) :
+  chain (insert a c) :=
+forall_insert_of_forall
+  (assume x hx, forall_insert_of_forall (hc x hx) (assume hneq, (ha x hx hneq).symm))
+  (forall_insert_of_forall (assume x hx hneq, ha x hx $ assume h', hneq h'.symm) (assume h, (h rfl).rec _))
 
-theorem thm6 {P Q : Prop} : (P → Q) → (¬Q → ¬P) :=
-assume (Hpq : P → Q) (Hnq : ¬Q) (Hp : P),
-  have Hq : Q, from Hpq Hp,
-  show false, from absurd Hq Hnq
+def super_chain (c₁ c₂ : set α) := chain c₂ ∧ c₁ ⊂ c₂
 
-theorem thm7 {P Q : Prop} : (P → ¬P) → (P → Q) :=
-assume Hpnp Hp,
-  absurd Hp (Hpnp Hp)
+def is_max_chain (c : set α) := chain c ∧ ¬ (∃c', super_chain c c')
 
-theorem thm8 {P Q : Prop} : ¬(P → Q) → (P → ¬Q) :=
-assume (Hn : ¬(P → Q)) (Hp : P) (Hq : Q),
-  -- Rermak we don't even need the hypothesis Hp
-  have H : P → Q, from assume H', Hq,
-  absurd H Hn
+def succ_chain (c : set α) :=
+if h : ∃c', chain c ∧ super_chain c c' then some h else c
 
--- 4. Conjunction and Disjunction
-theorem thm9 {P : Prop} : (P ∨ ¬P) → (¬¬P → P) :=
-assume (em : P ∨ ¬P) (Hnn : ¬¬P),
-  or_elim em
-    (assume Hp, Hp)
-    (assume Hn, absurd Hn Hnn)
+theorem succ_spec {c : set α} (h : ∃c', chain c ∧ super_chain c c') :
+  super_chain c (succ_chain c) :=
+let ⟨c', hc'⟩ := h in
+have chain c ∧ super_chain c (some h),
+  from @some_spec _ (λc', chain c ∧ super_chain c c') _,
+by simp [succ_chain, dif_pos, h, this.right]
 
-theorem thm10 {P : Prop} : ¬¬(P ∨ ¬P) :=
-assume Hnem : ¬(P ∨ ¬P),
-  have Hnp : ¬P, from
-    assume Hp : P,
-      have Hem : P ∨ ¬P, from or_inl Hp,
-      absurd Hem Hnem,
-  have Hem : P ∨ ¬P, from or_inr Hnp,
-  absurd Hem Hnem
+theorem chain_succ {c : set α} (hc : chain c) : chain (succ_chain c) :=
+if h : ∃c', chain c ∧ super_chain c c' then
+  (succ_spec h).left
+else
+  by simp [succ_chain, dif_neg, h]; exact hc
 
-theorem thm11 {P Q : Prop} : ¬P ∨ ¬Q → ¬(P ∧ Q) :=
-assume (H : ¬P ∨ ¬Q) (Hn : P ∧ Q),
-  or_elim H
-    (assume Hnp : ¬P, absurd (and_elim_left Hn) Hnp)
-    (assume Hnq : ¬Q, absurd (and_elim_right Hn) Hnq)
+theorem super_of_not_max {c : set α} (hc₁ : chain c) (hc₂ : ¬ is_max_chain c) :
+  super_chain c (succ_chain c) :=
+begin
+  simp [is_max_chain, not_and_iff, not_not_iff] at hc₂,
+  exact have ∃c', super_chain c c', from hc₂.neg_resolve_left hc₁,
+  let ⟨c', hc'⟩ := this in
+  show super_chain c (succ_chain c),
+    from succ_spec ⟨c', hc₁, hc'⟩
+end
 
-theorem thm12 {P Q : Prop} : ¬(P ∨ Q) → ¬P ∧ ¬Q :=
-assume H : ¬(P ∨ Q),
-  have Hnp : ¬P, from assume Hp : P, absurd (or_inl Hp) H,
-  have Hnq : ¬Q, from assume Hq : Q, absurd (or_inr Hq) H,
-  and_intro Hnp Hnq
+theorem succ_increasing {c : set α} : c ⊆ succ_chain c :=
+if h : ∃c', chain c ∧ super_chain c c' then
+  have super_chain c (succ_chain c), from succ_spec h,
+  this.right.left
+else by simp [succ_chain, dif_neg, h, subset.refl]
 
-theorem thm13 {P Q : Prop} : ¬P ∧ ¬Q → ¬(P ∨ Q) :=
-assume (H : ¬P ∧ ¬Q) (Hn : P ∨ Q),
-  or_elim Hn
-    (assume Hp : P, absurd Hp (and_elim_left H))
-    (assume Hq : Q, absurd Hq (and_elim_right H))
+inductive chain_closure : set α → Prop
+| succ : ∀{s}, chain_closure s → chain_closure (succ_chain s)
+| union : ∀{s}, (∀a∈s, chain_closure a) → chain_closure (⋃₀ s)
 
-theorem thm14 {P Q : Prop} : ¬P ∨ Q → P → Q :=
-assume (Hor : ¬P ∨ Q) (Hp : P),
-  or_elim Hor
-    (assume Hnp : ¬P, absurd Hp Hnp)
-    (assume Hq : Q, Hq)
+theorem chain_closure_empty : chain_closure ∅ :=
+have chain_closure (⋃₀ ∅),
+  from chain_closure.union $ assume a h, h.rec _,
+by simp at this; assumption
 
-theorem thm15 {P Q : Prop} : (P → Q) → ¬¬(¬P ∨ Q) :=
-assume (Hpq : P → Q) (Hn : ¬(¬P ∨ Q)),
-  have H1 : ¬¬P ∧ ¬Q, from thm12 Hn,
-  have Hnp : ¬P, from mt Hpq (and_elim_right H1),
-  absurd Hnp (and_elim_left H1)
+theorem chain_closure_closure : chain_closure (⋃₀ chain_closure) :=
+chain_closure.union $ assume s hs, hs
 
-theorem thm16 {P Q : Prop} : (P → Q) ∧ ((P ∨ ¬P) ∨ (Q ∨ ¬Q)) → ¬P ∨ Q :=
-assume H : (P → Q) ∧ ((P ∨ ¬P) ∨ (Q ∨ ¬Q)),
-  have Hpq : P → Q, from and_elim_left H,
-  or_elim (and_elim_right H)
-    (assume Hem1 : P ∨ ¬P, or_elim Hem1
-      (assume Hp : P, or_inr (Hpq Hp))
-      (assume Hnp : ¬P, or_inl Hnp))
-    (assume Hem2 : Q ∨ ¬Q, or_elim Hem2
-      (assume Hq : Q, or_inr Hq)
-      (assume Hnq : ¬Q, or_inl (mt Hpq Hnq)))
+variables {c c₁ c₂ c₃ : set α}
 
--- 5. First-Order Logic: All and Exists
-section
-parameters {T : Type} {C : Prop} {P : T → Prop}
-theorem thm17a : (C → ∀x, P x) → (∀x, C → P x) :=
-assume H : C → ∀x, P x,
-  take x : T, assume Hc : C,
-  H Hc x
+private lemma chain_closure_succ_total_aux (hc₁ : chain_closure c₁) (hc₂ : chain_closure c₂)
+  (h : ∀{c₃}, chain_closure c₃ → c₃ ⊆ c₂ → c₂ = c₃ ∨ succ_chain c₃ ⊆ c₂) :
+  c₁ ⊆ c₂ ∨ succ_chain c₂ ⊆ c₁ :=
+begin
+  induction hc₁,
+  case _root_.zorn.chain_closure.succ c₃ hc₃ ih {
+    cases ih with ih ih,
+    { have h := h hc₃ ih,
+      cases h with h h,
+      { exact or.inr (h ▸ subset.refl _) },
+      { exact or.inl h } },
+    { exact or.inr (subset.trans ih succ_increasing) } },
+  case _root_.zorn.chain_closure.union s hs ih {
+    refine (or_of_not_implies' $ λ hn, sUnion_subset $ λ a ha, _),
+    apply (ih a ha).resolve_right,
+    apply mt (λ h, _) hn,
+    exact subset.trans h (subset_sUnion_of_mem ha) }
+end
 
-theorem thm17b : (∀x, C → P x) → (C → ∀x, P x) :=
-assume (H : ∀x, C → P x) (Hc : C),
-  take x : T,
-  H x Hc
+private lemma chain_closure_succ_total (hc₁ : chain_closure c₁) (hc₂ : chain_closure c₂) (h : c₁ ⊆ c₂) :
+  c₂ = c₁ ∨ succ_chain c₁ ⊆ c₂ :=
+begin
+  induction hc₂ generalizing c₁ hc₁ h,
+  case _root_.zorn.chain_closure.succ c₂ hc₂ ih {
+    have h₁ : c₁ ⊆ c₂ ∨ @succ_chain α r c₂ ⊆ c₁ :=
+      (chain_closure_succ_total_aux hc₁ hc₂ $ assume c₁, ih),
+    cases h₁ with h₁ h₁,
+    { have h₂ := ih hc₁ h₁,
+      cases h₂ with h₂ h₂,
+      { exact (or.inr $ h₂ ▸ subset.refl _) },
+      { exact (or.inr $ subset.trans h₂ succ_increasing) } },
+    { exact (or.inl $ subset.antisymm h₁ h) } },
+  case _root_.zorn.chain_closure.union s hs ih {
+    apply or.imp (assume h', subset.antisymm h' h) id,
+    apply classical.by_contradiction,
+    simp [not_or_iff, sUnion_subset_iff, classical.not_forall_iff, not_implies_iff],
+    intro h, cases h with h₁ h₂, cases h₂ with c₃ h₂, cases h₂ with h₂ hc₃,
+    have h := chain_closure_succ_total_aux hc₁ (hs c₃ hc₃) (assume c₄, ih _ hc₃),
+    cases h with h h,
+    { have h' := ih c₃ hc₃ hc₁ h,
+      cases h' with h' h',
+      { exact (h₂ $ h' ▸ subset.refl _) },
+      { exact (h₁ $ subset.trans h' $ subset_sUnion_of_mem hc₃) } },
+    { exact (h₂ $ subset.trans succ_increasing h) } }
+end
 
-theorem thm18a : ((∃x, P x) → C) → (∀x, P x → C) :=
-assume H : (∃x, P x) → C,
-  take x, assume Hp : P x,
-  have Hex : ∃x, P x, from exists_intro x Hp,
-  H Hex
+theorem chain_closure_total (hc₁ : chain_closure c₁) (hc₂ : chain_closure c₂) : c₁ ⊆ c₂ ∨ c₂ ⊆ c₁ :=
+have c₁ ⊆ c₂ ∨ succ_chain c₂ ⊆ c₁,
+  from chain_closure_succ_total_aux hc₁ hc₂ $ assume c₃ hc₃, chain_closure_succ_total hc₃ hc₂,
+or.imp_right (assume : succ_chain c₂ ⊆ c₁, subset.trans succ_increasing this) this
 
-theorem thm18b : (∀x, P x → C) → (∃x, P x) → C :=
-assume (H1 : ∀x, P x → C) (H2 : ∃x, P x),
-  obtain (w : T) (Hw : P w), from H2,
-  H1 w Hw
+theorem chain_closure_succ_fixpoint (hc₁ : chain_closure c₁) (hc₂ : chain_closure c₂)
+  (h_eq : succ_chain c₂ = c₂) : c₁ ⊆ c₂ :=
+begin
+  induction hc₁,
+  case _root_.zorn.chain_closure.succ c₁ hc₁ h {
+    exact or.elim (chain_closure_succ_total hc₁ hc₂ h)
+      (assume h, h ▸ h_eq.symm ▸ subset.refl c₂) id },
+  case _root_.zorn.chain_closure.union s hs ih {
+    exact (sUnion_subset $ assume c₁ hc₁, ih c₁ hc₁) }
+end
 
-theorem thm19a : (C ∨ ¬C) → (∃x : T, true) → (C → (∃x, P x)) → (∃x, C → P x) :=
-assume (Hem : C ∨ ¬C) (Hin : ∃x : T, true) (H1 : C → ∃x, P x),
-  or_elim Hem
-    (assume Hc : C,
-      obtain (w : T) (Hw : P w), from H1 Hc,
-      have Hr : C → P w, from assume Hc, Hw,
-      exists_intro w Hr)
-    (assume Hnc : ¬C,
-      obtain (w : T) (Hw : true), from Hin,
-      have Hr : C → P w, from assume Hc, absurd Hc Hnc,
-      exists_intro w Hr)
+theorem chain_closure_succ_fixpoint_iff (hc : chain_closure c) :
+  succ_chain c = c ↔ c = ⋃₀ chain_closure :=
+⟨assume h, subset.antisymm
+    (subset_sUnion_of_mem hc)
+    (chain_closure_succ_fixpoint chain_closure_closure hc h),
+  assume : c = ⋃₀{c : set α | chain_closure c},
+  subset.antisymm
+    (calc succ_chain c ⊆ ⋃₀{c : set α | chain_closure c} :
+        subset_sUnion_of_mem $ chain_closure.succ hc
+      ... = c : this.symm)
+    succ_increasing⟩
 
-theorem thm19b : (∃x, C → P x) → C → (∃x, P x) :=
-assume (H : ∃x, C → P x) (Hc : C),
-  obtain (w : T) (Hw : C → P w), from H,
-  exists_intro w (Hw Hc)
+theorem chain_chain_closure (hc : chain_closure c) : chain c :=
+begin
+  induction hc,
+  case _root_.zorn.chain_closure.succ c hc h {
+    exact chain_succ h },
+  case _root_.zorn.chain_closure.union s hs h {
+    have h : ∀c∈s, zorn.chain c := h,
+    exact assume c₁ ⟨t₁, ht₁, (hc₁ : c₁ ∈ t₁)⟩ c₂ ⟨t₂, ht₂, (hc₂ : c₂ ∈ t₂)⟩ hneq,
+      have t₁ ⊆ t₂ ∨ t₂ ⊆ t₁, from chain_closure_total (hs _ ht₁) (hs _ ht₂),
+      or.elim this
+        (assume : t₁ ⊆ t₂, h t₂ ht₂ c₁ (this hc₁) c₂ hc₂ hneq)
+        (assume : t₂ ⊆ t₁, h t₁ ht₁ c₁ hc₁ c₂ (this hc₂) hneq) }
+end
 
-theorem thm20a : (C ∨ ¬C) → (∃x : T, true) → ((¬∀x, P x) → ∃x, ¬P x) → ((∀x, P x) → C) → (∃x, P x → C) :=
-assume Hem Hin Hnf H,
-  or_elim Hem
-    (assume Hc : C,
-      obtain (w : T) (Hw : true), from Hin,
-      exists_intro w (assume H : P w, Hc))
-    (assume Hnc : ¬C,
-      have H1 : ¬(∀x, P x), from mt H Hnc,
-      have H2 : ∃x, ¬P x, from Hnf H1,
-      obtain (w : T) (Hw : ¬P w), from H2,
-      exists_intro w (assume H : P w, absurd H Hw))
+def max_chain := ⋃₀ chain_closure
 
-theorem thm20b : (∃x, P x → C) → (∀ x, P x) → C :=
-assume Hex Hall,
-  obtain (w : T) (Hw : P w → C), from Hex,
-  Hw (Hall w)
+/-- Hausdorff's maximality principle
 
-theorem thm21a : (∃x : T, true) → ((∃x, P x) ∨ C) → (∃x, P x ∨ C) :=
-assume Hin H,
-  or_elim H
-    (assume Hex : ∃x, P x,
-      obtain (w : T) (Hw : P w), from Hex,
-      exists_intro w (or_inl Hw))
-    (assume Hc  : C,
-      obtain (w : T) (Hw : true), from Hin,
-      exists_intro w (or_inr Hc))
+There exists a maximal totally ordered subset of `α`.
+Note that we do not require `α` to be partially ordered by `r`. -/
+theorem max_chain_spec : is_max_chain max_chain :=
+classical.by_contradiction $
+assume : ¬ is_max_chain (⋃₀ chain_closure),
+have super_chain (⋃₀ chain_closure) (succ_chain (⋃₀ chain_closure)),
+  from super_of_not_max (chain_chain_closure chain_closure_closure) this,
+let ⟨h₁, h₂, (h₃ : (⋃₀ chain_closure) ≠ succ_chain (⋃₀ chain_closure))⟩ := this in
+have succ_chain (⋃₀ chain_closure) = (⋃₀ chain_closure),
+  from (chain_closure_succ_fixpoint_iff chain_closure_closure).mpr rfl,
+h₃ this.symm
 
-theorem thm21b : (∃x, P x ∨ C) → ((∃x, P x) ∨ C) :=
-assume H,
-  obtain (w : T) (Hw : P w ∨ C), from H,
-  or_elim Hw
-    (assume H : P w, or_inl (exists_intro w H))
-    (assume Hc : C, or_inr Hc)
+/-- Zorn's lemma
 
-theorem thm22a : (∀x, P x) ∨ C → ∀x, P x ∨ C :=
-assume H, take x,
-  or_elim H
-    (assume Hl, or_inl (Hl x))
-    (assume Hr, or_inr Hr)
+If every chain has an upper bound, then there is a maximal element -/
+theorem zorn (h : ∀c, chain c → ∃ub, ∀a∈c, a ≺ ub) (trans : ∀{a b c}, a ≺ b → b ≺ c → a ≺ c) :
+  ∃m, ∀a, m ≺ a → a ≺ m :=
+have ∃ub, ∀a∈max_chain, a ≺ ub,
+  from h _ $ max_chain_spec.left,
+let ⟨ub, (hub : ∀a∈max_chain, a ≺ ub)⟩ := this in
+⟨ub, assume a ha,
+  have chain (insert a max_chain),
+    from chain_insert max_chain_spec.left $ assume b hb _, or.inr $ trans (hub b hb) ha,
+  have a ∈ max_chain, from
+    classical.by_contradiction $ assume h : a ∉ max_chain,
+    max_chain_spec.right $ ⟨insert a max_chain, this, ssubset_insert h⟩,
+  hub a this⟩
 
-theorem thm22b : (C ∨ ¬C) → (∀x, P x ∨ C) → ((∀x, P x) ∨ C) :=
-assume Hem H1,
-  or_elim Hem
-    (assume Hc : C,   or_inr Hc)
-    (assume Hnc : ¬C,
-      have Hx : ∀x, P x, from
-        take x,
-        have H1 : P x ∨ C, from H1 x,
-        resolve_left H1 Hnc,
-      or_inl Hx)
+end chain
 
-theorem thm23a : (∃x, P x) ∧ C → (∃x, P x ∧ C) :=
-assume H,
-  have Hex : ∃x, P x, from and_elim_left H,
-  have Hc : C, from and_elim_right H,
-  obtain (w : T) (Hw : P w), from Hex,
-  exists_intro w (and_intro Hw Hc)
+theorem zorn_weak_order {α : Type u} [weak_order α]
+  (h : ∀c:set α, @chain α (≤) c → ∃ub, ∀a∈c, a ≤ ub) : ∃m:α, ∀a, m ≤ a → a = m :=
+let ⟨m, hm⟩ := @zorn α (≤) h (assume a b c, le_trans) in
+⟨m, assume a ha, le_antisymm (hm a ha) ha⟩
 
-theorem thm23b : (∃x, P x ∧ C) → (∃x, P x) ∧ C :=
-assume H,
-  obtain (w : T) (Hw : P w ∧ C), from H,
-  have Hex : ∃x, P x, from exists_intro w (and_elim_left Hw),
-  and_intro Hex (and_elim_right Hw)
-
-theorem thm24a : (∀x, P x) ∧ C → (∀x, P x ∧ C) :=
-assume H, take x,
-  and_intro (and_elim_left H x) (and_elim_right H)
-
-theorem thm24b : (∃x : T, true) → (∀x, P x ∧ C) → (∀x, P x) ∧ C :=
-assume Hin H,
-  obtain (w : T) (Hw : true), from Hin,
-  have Hc : C, from and_elim_right (H w),
-  have Hx : ∀x, P x, from take x, and_elim_left (H x),
-  and_intro Hx Hc
-
-end -- of section
+end zorn

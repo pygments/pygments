@@ -388,69 +388,85 @@ class LeanLexer(RegexLexer):
 
     flags = re.MULTILINE | re.UNICODE
 
-    keywords1 = (
-        'import', 'abbreviation', 'opaque_hint', 'tactic_hint', 'definition',
-        'renaming', 'inline', 'hiding', 'exposing', 'parameter', 'parameters',
-        'conjecture', 'hypothesis', 'lemma', 'corollary', 'variable', 'variables',
-        'theorem', 'axiom', 'inductive', 'structure', 'universe', 'alias',
-        'help', 'options', 'precedence', 'postfix', 'prefix', 'calc_trans',
-        'calc_subst', 'calc_refl', 'infix', 'infixl', 'infixr', 'notation', 'eval',
-        'check', 'exit', 'coercion', 'end', 'private', 'using', 'namespace',
-        'including', 'instance', 'section', 'context', 'protected', 'expose',
-        'export', 'set_option', 'add_rewrite', 'extends', 'open', 'example',
-        'constant', 'constants', 'print', 'opaque', 'reducible', 'irreducible',
-    )
-
-    keywords2 = (
-        'forall', 'fun', 'Pi', 'obtain', 'from', 'have', 'show', 'assume',
-        'take', 'let', 'if', 'else', 'then', 'by', 'in', 'with', 'begin',
-        'proof', 'qed', 'calc', 'match',
-    )
-
-    keywords3 = (
-        # Sorts
-        'Type', 'Prop',
-    )
-
-    operators = (
-        u'!=', u'#', u'&', u'&&', u'*', u'+', u'-', u'/', u'@', u'!', u'`',
-        u'-.', u'->', u'.', u'..', u'...', u'::', u':>', u';', u';;', u'<',
-        u'<-', u'=', u'==', u'>', u'_', u'|', u'||', u'~', u'=>', u'<=', u'>=',
-        u'/\\', u'\\/', u'∀', u'Π', u'λ', u'↔', u'∧', u'∨', u'≠', u'≤', u'≥',
-        u'¬', u'⁻¹', u'⬝', u'▸', u'→', u'∃', u'ℕ', u'ℤ', u'≈', u'×', u'⌞',
-        u'⌟', u'≡', u'⟨', u'⟩', u'^',
-    )
-
-    punctuation = (u'(', u')', u':', u'{', u'}', u'[', u']', u'⦃', u'⦄',
-                   u':=', u',')
-
     tokens = {
         'root': [
             (r'\s+', Text),
+            (r'/--', String.Doc, 'docstring'),
             (r'/-', Comment, 'comment'),
             (r'--.*?$', Comment.Single),
-            (words(keywords1, prefix=r'\b', suffix=r'\b'), Keyword.Namespace),
-            (words(keywords2, prefix=r'\b', suffix=r'\b'), Keyword),
-            (words(keywords3, prefix=r'\b', suffix=r'\b'), Keyword.Type),
-            (words(operators), Name.Builtin.Pseudo),
-            (words(punctuation), Operator),
+            (words((
+                'import', 'renaming', 'hiding',
+                'namespace',
+                'local',
+                'private', 'protected', 'section',
+                'include', 'omit', 'section',
+                'protected', 'export',
+                'open',
+                'attribute',
+            ), prefix=r'\b', suffix=r'\b'), Keyword.Namespace),
+            (words((
+                'lemma', 'theorem', 'def', 'definition', 'example',
+                'axiom', 'axioms', 'constant', 'constants',
+                'universe', 'universes',
+                'inductive', 'coinductive', 'structure', 'extends',
+                'class', 'instance',
+
+                'noncomputable theory',
+
+                'noncomputable', 'mutual', 'meta',
+
+                'attribute',
+
+                'parameter', 'parameters',
+                'variable', 'variables',
+
+                'reserve', 'precedence',
+                'postfix', 'prefix', 'notation', 'infix', 'infixl', 'infixr',
+
+                'begin', 'by', 'end',
+
+                'set_option',
+                'run_cmd',
+            ), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
+            (r'@\[[^\]]*\]', Keyword.Declaration),
+            (words((
+                'forall', 'fun', 'Pi', 'from', 'have', 'show', 'assume', 'suffices',
+                'let', 'if', 'else', 'then', 'in', 'with', 'calc', 'match',
+                'do'
+            ), prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(('Sort', 'Prop', 'Type'), prefix=r'\b', suffix=r'\b'), Keyword.Type),
+            (words((
+                '#eval', '#check', '#reduce', '#exit',
+                '#print', '#help',
+            ), suffix=r'\b'), Keyword),
+            (words((
+                '(', ')', ':', '{', '}', '[', ']', u'⟨', u'⟩', u'‹', u'›', u'⦃', u'⦄', ':=', ',',
+            )), Operator),
             (u"[A-Za-z_\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f]"
-             u"[A-Za-z_'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079"
+             u"[.A-Za-z_'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079"
              u"\u207f-\u2089\u2090-\u209c\u2100-\u214f0-9]*", Name),
+            (r'0x[A-Za-z0-9]+', Number.Integer),
+            (r'0b[01]+', Number.Integer),
             (r'\d+', Number.Integer),
             (r'"', String.Double, 'string'),
-            (r'[~?][a-z][\w\']*:', Name.Variable)
+            (r"'(?:(\\[\\\"'nt])|(\\x[0-9a-fA-F]{2})|(\\u[0-9a-fA-F]{4})|.)'", String.Char),
+            (r'[~?][a-z][\w\']*:', Name.Variable),
+            (r'\S', Name.Builtin.Pseudo),
         ],
         'comment': [
-            # Multiline Comments
             (r'[^/-]', Comment.Multiline),
             (r'/-', Comment.Multiline, '#push'),
             (r'-/', Comment.Multiline, '#pop'),
             (r'[/-]', Comment.Multiline)
         ],
+        'docstring': [
+            (r'[^/-]', String.Doc),
+            (r'-/', String.Doc, '#pop'),
+            (r'[/-]', String.Doc)
+        ],
         'string': [
             (r'[^\\"]+', String.Double),
-            (r'\\[n"\\]', String.Escape),
+            (r"(?:(\\[\\\"'nt])|(\\x[0-9a-fA-F]{2})|(\\u[0-9a-fA-F]{4}))", String.Escape),
             ('"', String.Double, '#pop'),
         ],
     }
