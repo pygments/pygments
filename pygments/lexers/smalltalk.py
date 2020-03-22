@@ -139,7 +139,7 @@ class SmalltalkLexer(RegexLexer):
 
 class NewspeakLexer(RegexLexer):
     """
-    For `Newspeak <http://newspeaklanguage.org/>` syntax.
+    For `Newspeak <http://newspeaklanguage.org/>`_ syntax.
 
     .. versionadded:: 1.1
     """
