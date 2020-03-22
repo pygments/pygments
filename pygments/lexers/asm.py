@@ -158,7 +158,7 @@ def _objdump_lexer_tokens(asm_lexer):
 
 class ObjdumpLexer(RegexLexer):
     """
-    For the output of 'objdump -dr'
+    For the output of ``objdump -dr``.
     """
     name = 'objdump'
     aliases = ['objdump']
@@ -170,7 +170,7 @@ class ObjdumpLexer(RegexLexer):
 
 class DObjdumpLexer(DelegatingLexer):
     """
-    For the output of 'objdump -Sr on compiled D files'
+    For the output of ``objdump -Sr`` on compiled D files.
     """
     name = 'd-objdump'
     aliases = ['d-objdump']
@@ -183,7 +183,7 @@ class DObjdumpLexer(DelegatingLexer):
 
 class CppObjdumpLexer(DelegatingLexer):
     """
-    For the output of 'objdump -Sr on compiled C++ files'
+    For the output of ``objdump -Sr`` on compiled C++ files.
     """
     name = 'cpp-objdump'
     aliases = ['cpp-objdump', 'c++-objdumb', 'cxx-objdump']
@@ -196,7 +196,7 @@ class CppObjdumpLexer(DelegatingLexer):
 
 class CObjdumpLexer(DelegatingLexer):
     """
-    For the output of 'objdump -Sr on compiled C files'
+    For the output of ``objdump -Sr`` on compiled C files.
     """
     name = 'c-objdump'
     aliases = ['c-objdump']
@@ -455,7 +455,7 @@ class LlvmLexer(RegexLexer):
 
 class LlvmMirBodyLexer(RegexLexer):
     """
-    For LLVM MIR examples without the YAML wrapper
+    For LLVM MIR examples without the YAML wrapper.
 
     For more information on LLVM MIR see https://llvm.org/docs/MIRLangRef.html.
 
@@ -595,7 +595,7 @@ class LlvmMirBodyLexer(RegexLexer):
 
 class LlvmMirLexer(RegexLexer):
     """
-    Lexer for the overall LLVM MIR document format
+    Lexer for the overall LLVM MIR document format.
 
     MIR is a human readable serialization format that's used to represent LLVM's
     machine specific intermediate representation. It allows LLVM's developers to
@@ -751,7 +751,7 @@ class NasmLexer(RegexLexer):
 
 class NasmObjdumpLexer(ObjdumpLexer):
     """
-    For the output of 'objdump -d -M intel'.
+    For the output of ``objdump -d -M intel``.
 
     .. versionadded:: 2.0
     """
@@ -889,7 +889,7 @@ class Ca65Lexer(RegexLexer):
 
 class Dasm16Lexer(RegexLexer):
     """
-    Simple lexer for DCPU-16 Assembly
+    For DCPU-16 Assembly.
 
     Check http://0x10c.com/doc/dcpu-16.txt
 
