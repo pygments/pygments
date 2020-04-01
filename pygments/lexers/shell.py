@@ -854,7 +854,7 @@ class ExeclineLexer(RegexLexer):
     Lexer for Laurent Bercot's execline language
     (https://skarnet.org/software/execline).
 
-    .. versionadded:: 2.6
+    .. versionadded:: 2.7
     """
 
     name = 'execline'
