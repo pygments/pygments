@@ -23,10 +23,10 @@ def test_namespace_1(lexer):
     fragment = u'namespace urn:test:std:yang;\n'
     tokens = [
         (Token.Keyword, u'namespace'),
-        (Token.Text, u' '),
+        (Token.Text.Whitespace, u' '),
         (Token.Name.Variable, u'urn:test:std:yang'),
         (Token.Punctuation, u';'),
-        (Text, u'\n'),
+        (Token.Text.Whitespace, u'\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -37,12 +37,12 @@ def test_namespace_2(lexer):
     fragment = u'type yang:counter64;\n'
     tokens = [
         (Token.Keyword, u'type'),
-        (Token.Text, u' '),
+        (Token.Text.Whitespace, u' '),
         (Token.Name.Namespace, u'yang'),
         (Token.Punctuation, u':'),
         (Token.Name.Variable, u'counter64'),
         (Token.Punctuation, u';'),
-        (Text, u'\n'),
+        (Token.Text.Whitespace, u'\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -53,10 +53,10 @@ def test_revision_date(lexer):
     fragment = u'revision 2020-03-08{\n'
     tokens = [
         (Token.Keyword, u'revision'),
-        (Token.Text, u' '),
+        (Token.Text.Whitespace, u' '),
         (Token.Name.Label, u'2020-03-08'),
         (Token.Punctuation, u'{'),
-        (Text, u'\n'),
+        (Token.Text.Whitespace, u'\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -67,10 +67,10 @@ def test_integer_value(lexer):
     fragment = u'value 5;\n'
     tokens = [
         (Token.Keyword, u'value'),
-        (Token.Text, u' '),
+        (Token.Text.Whitespace, u' '),
         (Token.Number.Integer, u'5'),
         (Token.Punctuation, u';'),
-        (Text, u'\n'),
+        (Token.Text.Whitespace, u'\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -81,10 +81,10 @@ def test_string_value(lexer):
     fragment = u'value "5";\n'
     tokens = [
         (Token.Keyword, u'value'),
-        (Token.Text, u' '),
-        (Token.String, u'"5"'),
+        (Token.Text.Whitespace, u' '),
+        (Token.String.Double, u'"5"'),
         (Token.Punctuation, u';'),
-        (Text, u'\n'),
+        (Token.Text.Whitespace, u'\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -95,9 +95,9 @@ def test_float_value(lexer):
     fragment = u'yang-version 1.1;\n'
     tokens = [
         (Token.Keyword, u'yang-version'),
-        (Token.Text, u' '),
+        (Token.Text.Whitespace, u' '),
         (Token.Number.Float, u'1.1'),
         (Token.Punctuation, u';'),
-        (Text, u'\n'),
+        (Token.Text.Whitespace, u'\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
