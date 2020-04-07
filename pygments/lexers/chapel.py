@@ -18,7 +18,7 @@ __all__ = ['ChapelLexer']
 
 class ChapelLexer(RegexLexer):
     """
-    For `Chapel <http://chapel.cray.com/>`_ source.
+    For `Chapel <https://chapel-lang.org/>`_ source.
 
     .. versionadded:: 2.0
     """
