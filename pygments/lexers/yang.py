@@ -96,6 +96,6 @@ class YangLexer(RegexLexer):
             (words(TYPES, suffix=suffix_re_pattern), Name.Class),
             (words(CONSTANTS_KEYWORDS, suffix=suffix_re_pattern), Name.Class),
 
-            (r'[^;{}\s*+\'"]+', Name.Variable),
+            (r'[^;{}\s\'\"]+', Name.Variable),
         ]
     }
