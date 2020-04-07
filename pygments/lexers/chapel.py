@@ -48,7 +48,7 @@ class ChapelLexer(RegexLexer):
                 'defer', 'delete', 'dmapped', 'do', 'domain',
                 'else', 'enum', 'except', 'export', 'extern',
                 'for', 'forall', 'forwarding',
-                'if', 'index', 'init', 'inline',
+                'if', 'import', 'index', 'init', 'inline',
                 'label', 'lambda', 'let', 'lifetime', 'local', 'locale'
                 'new', 'noinit',
                 'on', 'only', 'otherwise', 'override', 'owned',
