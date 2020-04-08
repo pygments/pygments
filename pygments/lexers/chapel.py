@@ -18,7 +18,7 @@ __all__ = ['ChapelLexer']
 
 class ChapelLexer(RegexLexer):
     """
-    For `Chapel <http://chapel.cray.com/>`_ source.
+    For `Chapel <https://chapel-lang.org/>`_ source.
 
     .. versionadded:: 2.0
     """
@@ -48,7 +48,7 @@ class ChapelLexer(RegexLexer):
                 'defer', 'delete', 'dmapped', 'do', 'domain',
                 'else', 'enum', 'except', 'export', 'extern',
                 'for', 'forall', 'forwarding',
-                'if', 'index', 'init', 'inline',
+                'if', 'import', 'index', 'init', 'inline',
                 'label', 'lambda', 'let', 'lifetime', 'local', 'locale'
                 'new', 'noinit',
                 'on', 'only', 'otherwise', 'override', 'owned',
