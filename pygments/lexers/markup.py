@@ -681,11 +681,11 @@ class TiddlyWiki5Lexer(RegexLexer):
             # multi-line block quotes
             (r'^(<<<.*\n)([\w\W]*?)(^<<<.*$)', bygroups(String, Text, String)),
             # table header
-            (r'^(\|.*\|h)$', bygroups(Generic.Strong)),
+            (r'^(\|.*?\|h)$', bygroups(Generic.Strong)),
             # table footer or caption
-            (r'^(\|.*\|[cf])$', bygroups(Generic.Emph)),
+            (r'^(\|.*?\|[cf])$', bygroups(Generic.Emph)),
             # table class
-            (r'^(\|.*\|k)$', bygroups(Name.Tag)),
+            (r'^(\|.*?\|k)$', bygroups(Name.Tag)),
             # definitions
             (r'^(;.*)$', bygroups(Generic.Strong)),
             # text block
