@@ -150,6 +150,7 @@ LEXERS = {
     'EvoqueHtmlLexer': ('pygments.lexers.templates', 'HTML+Evoque', ('html+evoque',), ('*.html',), ('text/html+evoque',)),
     'EvoqueLexer': ('pygments.lexers.templates', 'Evoque', ('evoque',), ('*.evoque',), ('application/x-evoque',)),
     'EvoqueXmlLexer': ('pygments.lexers.templates', 'XML+Evoque', ('xml+evoque',), ('*.xml',), ('application/xml+evoque',)),
+    'ExeclineLexer': ('pygments.lexers.shell', 'execline', ('execline',), ('*.exec',), ()),
     'EzhilLexer': ('pygments.lexers.ezhil', 'Ezhil', ('ezhil',), ('*.n',), ('text/x-ezhil',)),
     'FSharpLexer': ('pygments.lexers.dotnet', 'F#', ('fsharp', 'f#'), ('*.fs', '*.fsi'), ('text/x-fsharp',)),
     'FStarLexer': ('pygments.lexers.ml', 'FStar', ('fstar',), ('*.fst', '*.fsti'), ('text/x-fstar',)),

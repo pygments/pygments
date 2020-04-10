@@ -57,6 +57,7 @@ Programming languages
 * Email
 * Erlang (incl. shell sessions)
 * `Ezhil <http://ezhillang.org>`_
+* `Execline <https://skarnet.org/software/execline>`_
 * Factor
 * Fancy
 * Fantom
