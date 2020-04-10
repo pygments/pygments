@@ -21,6 +21,8 @@ class TNTLexer(Lexer):
     Gödel, Escher, Bach, by Douglas R. Hofstadter,
     or as summarized here:
     https://github.com/Kenny2github/language-tnt/blob/master/README.md#summary-of-tnt
+
+    .. versionadded:: 2.7
     """
 
     name = 'Typographic Number Theory'

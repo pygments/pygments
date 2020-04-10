@@ -272,6 +272,7 @@ Other markup
 * Terraform
 * TeX
 * `Thrift <https://thrift.apache.org/>`_
+* `TNT <https://en.wikipedia.org/wiki/Typographical_Number_Theory>`_
 * `TOML <https://github.com/toml-lang/toml>`_
 * Treetop grammars
 * USD (Universal Scene Description)
