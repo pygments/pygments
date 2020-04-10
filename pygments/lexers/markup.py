@@ -601,7 +601,7 @@ class TiddlyWiki5Lexer(RegexLexer):
     """
     For `TiddlyWiki5 <https://tiddlywiki.com/#TiddlerFiles>`_ markup.
 
-    .. versionadded:: 2.6
+    .. versionadded:: 2.7
     """
     name = 'tiddler'
     aliases = ['tid']
