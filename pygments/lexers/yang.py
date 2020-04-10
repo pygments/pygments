@@ -18,6 +18,8 @@ __all__ = ['YangLexer']
 class YangLexer(RegexLexer):
     """
     Lexer for `YANG <https://tools.ietf.org/html/rfc7950/>`_, based on RFC7950
+
+    .. versionadded:: 2.7
     """
     name = 'YANG'
     aliases = ['yang']
