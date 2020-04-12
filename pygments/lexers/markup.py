@@ -708,8 +708,7 @@ class TiddlyWiki5Lexer(RegexLexer):
             # escape
             (r'\\.', Text),
             # created or modified date
-            (r'(\d{4})(\d{2})(\d{2})(\d{6})(\d{3})',
-            bygroups(Text, Number, Text, Number, Text)),
+            (r'\d{17}', Number.Integer),
             # italics
             (r'(\s)(//[^/]+//)((?=\W|\n))',
             bygroups(Text, Generic.Emph, Text)),
