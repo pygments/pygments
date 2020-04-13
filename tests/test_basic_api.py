@@ -264,6 +264,7 @@ class TestFilters:
             ('raiseonerror', {}),
             ('gobble', {'n': 4}),
             ('tokenmerge', {}),
+            ('symbols', {'lang': 'isabelle'}),
         ]
         for x, args in filters_args:
             lx = lexers.PythonLexer()
@@ -318,3 +319,12 @@ class TestFilters:
         text = u'# DEBUG: text'
         tokens = list(lx.get_tokens(text))
         assert '# DEBUG: text' == tokens[0][1]
+
+    def test_symbols(self):
+        lx = lexers.IsabelleLexer()
+        lx.add_filter('symbols')
+        text = u'lemma "A \\<Longrightarrow> B"'
+        tokens = list(lx.get_tokens(text))
+        assert 'lemma' == tokens[0][1]
+        assert 'A ' == tokens[3][1]
+        assert u'\U000027f9' == tokens[4][1]
