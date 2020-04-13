@@ -287,6 +287,7 @@ Other markup
 * XML
 * XSLT
 * YAML
+* YANG
 * Windows Registry files
 
 ... that's all?
