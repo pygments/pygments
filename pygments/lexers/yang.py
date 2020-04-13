@@ -34,8 +34,8 @@ class YangLexer(RegexLexer):
     LINKAGE_STMTS_KEYWORDS = ("import", "include", "revision-date")
     BODY_STMT_KEYWORDS = ("extension", "feature", "identity", "typedef",
                           "grouping", "augment", "rpc", "notification",
-                          "deviation", "action", "argument", "identity",
-                          "if-feature", "input", "output")
+                          "deviation", "action", "argument", "if-feature",
+                          "input", "output")
     DATA_DEF_STMT_KEYWORDS = ("container", "leaf-list", "leaf", "list",
                               "choice", "anydata", "anyxml", "uses",
                               "case", "config", "deviate", "must",
