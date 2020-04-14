@@ -56,7 +56,7 @@ class YangLexer(RegexLexer):
     #RFC7950 Built-In Types
     TYPES = ("binary", "bits", "boolean", "decimal64", "empty", "enumeration",
              "identityref", "instance-identifier", "int16", "int32", "int64",
-             "uint8", "leafref", "string", "uint16", "uint32", "uint64",
+             "int8", "leafref", "string", "uint16", "uint32", "uint64",
              "uint8", "union")
 
     suffix_re_pattern = r'(?=[^\w\-\:])'
