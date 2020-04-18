@@ -28,35 +28,36 @@ class YangLexer(RegexLexer):
 
     #Keywords from RFC7950 ; oriented at BNF style
     TOP_STMTS_KEYWORDS = ("module", "submodule")
-    MODULE_HEADER_STMT_KEYWORDS = ("yang-version", "namespace", "prefix", "belongs-to")
-    META_STMT_KEYWORDS = ("organization", "contact", "description",
+    MODULE_HEADER_STMT_KEYWORDS = ("belongs-to", "namespace", "prefix", "yang-version")
+    META_STMT_KEYWORDS = ("contact", "description", "organization",
                           "reference", "revision")
     LINKAGE_STMTS_KEYWORDS = ("import", "include", "revision-date")
-    BODY_STMT_KEYWORDS = ("extension", "feature", "identity", "typedef",
-                          "grouping", "augment", "rpc", "notification",
-                          "deviation", "action", "argument", "if-feature",
-                          "input", "output")
-    DATA_DEF_STMT_KEYWORDS = ("container", "leaf-list", "leaf", "list",
-                              "choice", "anydata", "anyxml", "uses",
-                              "case", "config", "deviate", "must",
-                              "when", "presence", "refine")
-    TYPE_STMT_KEYWORDS = ("type", "units", "default", "status", "bit",
-                          "enum", "error-app-tag", "error-message",
-                          "fraction-digits", "length", "min-elements",
-                          "max-elements", "modifier", "ordered-by", "path",
-                          "pattern", "position", "range", "require-instance",
-                          "value", "yin-element", "base")
+    BODY_STMT_KEYWORDS = ("action", "argument", "augment", "deviation",
+                          "extension", "feature", "grouping", "identity",
+                          "if-feature", "input", "notification", "output",
+                          "rpc", "typedef")
+    DATA_DEF_STMT_KEYWORDS = ("anydata", "anyxml", "case", "choice",
+                              "config", "container", "deviate", "leaf",
+                              "leaf-list", "list", "must", "presence",
+                              "refine", "uses", "when")
+    TYPE_STMT_KEYWORDS = ("base", "bit", "default", "enum", "error-app-tag",
+                          "error-message", "fraction-digits", "length",
+                          "max-elements", "min-elements", "modifier",
+                          "ordered-by", "path", "pattern", "position",
+                          "range", "require-instance", "status", "type",
+                          "units", "value", "yin-element")
     LIST_STMT_KEYWORDS = ("key", "mandatory", "unique")
 
     #RFC7950 other keywords
-    CONSTANTS_KEYWORDS = ("true", "false", "current", "obsolete", "deprecated",
-                          "add", "delete", "replace", "not-supported",
-                          "invert-match", "max", "min", "unbounded", "user")
+    CONSTANTS_KEYWORDS = ("add", "current", "delete", "deprecated", "false",
+                          "invert-match", "max", "min", "not-supported",
+                          "obsolete", "replace", "true", "unbounded", "user")
 
     #RFC7950 Built-In Types
     TYPES = ("binary", "bits", "boolean", "decimal64", "empty", "enumeration",
-             "int8", "int16", "int32", "int64", "string", "uint8", "uint16",
-             "uint32", "uint64", "union", "leafref", "identityref", "instance-identifier")
+             "identityref", "instance-identifier", "int16", "int32", "int64",
+             "int8", "leafref", "string", "uint16", "uint32", "uint64",
+             "uint8", "union")
 
     suffix_re_pattern = r'(?=[^\w\-\:])'
 
