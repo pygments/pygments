@@ -27,7 +27,7 @@ class PerlLexer(RegexLexer):
 
     name = 'Perl'
     aliases = ['perl', 'pl']
-    filenames = ['*.pl', '*.pm', '*.t']
+    filenames = ['*.pl', '*.pm', '*.t', '*.perl']
     mimetypes = ['text/x-perl', 'application/x-perl']
 
     flags = re.DOTALL | re.MULTILINE
