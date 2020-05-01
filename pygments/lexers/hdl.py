@@ -228,22 +228,83 @@ class SystemVerilogLexer(RegexLexer):
              Comment.Preproc),
 
             (words((
-                '$display', '$displayb', '$displayh', '$displayo', '$dumpall',
-                '$dumpfile', '$dumpflush', '$dumplimit', '$dumpoff', '$dumpon',
-                '$dumpports', '$dumpportsall', '$dumpportsflush', '$dumpportslimit',
-                '$dumpportsoff', '$dumpportson', '$dumpvars', '$fclose',
-                '$fdisplay', '$fdisplayb', '$fdisplayh', '$fdisplayo', '$feof',
-                '$ferror', '$fflush', '$fgetc', '$fgets', '$finish', '$fmonitor',
-                '$fmonitorb', '$fmonitorh', '$fmonitoro', '$fopen', '$fread',
-                '$fscanf', '$fseek', '$fstrobe', '$fstrobeb', '$fstrobeh',
-                '$fstrobeo', '$ftell', '$fwrite', '$fwriteb', '$fwriteh', '$fwriteo',
-                '$monitor', '$monitorb', '$monitorh', '$monitoro', '$monitoroff',
-                '$monitoron', '$plusargs', '$random', '$readmemb', '$readmemh',
-                '$rewind', '$sformat', '$sformatf', '$sscanf', '$strobe',
-                '$strobeb', '$strobeh', '$strobeo', '$swrite', '$swriteb',
-                '$swriteh', '$swriteo', '$test', '$ungetc', '$value$plusargs',
-                '$write', '$writeb', '$writeh', '$writememb', '$writememh',
-                '$writeo'), suffix=r'\b'),
+                # Simulation control tasks (20.2)
+                '$exit', '$finish', '$stop',
+                # Simulation time functions (20.3)
+                '$realtime', '$stime', '$time',
+                # Timescale tasks (20.4)
+                '$printtimescale', '$timeformat',
+                # Conversion functions
+                '$bitstoreal', '$bitstoshortreal', '$cast', '$itor',
+                '$realtobits', '$rtoi', '$shortrealtobits', '$signed',
+                '$unsigned',
+                # Data query functions (20.6)
+                '$bits', '$isunbounded', '$typename',
+                # Array query functions (20.7)
+                '$dimensions', '$high', '$increment', '$left', '$low', '$right',
+                '$size', '$unpacked_dimensions',
+                # Math functions (20.8)
+                '$acos', '$acosh', '$asin', '$asinh', '$atan', '$atan2',
+                '$atanh', '$ceil', '$clog2', '$cos', '$cosh', '$exp', '$floor',
+                '$hypot', '$ln', '$log10', '$pow', '$sin', '$sinh', '$sqrt',
+                '$tan', '$tanh',
+                # Bit vector system functions (20.9)
+                '$countbits', '$countones', '$isunknown', '$onehot', '$onehot0',
+                # Severity tasks (20.10)
+                '$info', '$error', '$fatal', '$warning',
+                # Assertion control tasks (20.12)
+                '$assertcontrol', '$assertfailoff', '$assertfailon',
+                '$assertkill', '$assertnonvacuouson', '$assertoff', '$asserton',
+                '$assertpassoff', '$assertpasson', '$assertvacuousoff',
+                # Sampled value system functions (20.13)
+                '$changed', '$changed_gclk', '$changing_gclk', '$falling_gclk',
+                '$fell', '$fell_gclk', '$future_gclk', '$past', '$past_gclk',
+                '$rising_gclk', '$rose', '$rose_gclk', '$sampled', '$stable',
+                '$stable_gclk', '$steady_gclk',
+                # Coverage control functions (20.14)
+                '$coverage_control', '$coverage_get', '$coverage_get_max',
+                '$coverage_merge', '$coverage_save', '$get_coverage',
+                '$load_coverage_db', '$set_coverage_db_name',
+                # Probabilistic distribution functions (20.15)
+                '$dist_chi_square', '$dist_erlang', '$dist_exponential',
+                '$dist_normal', '$dist_poisson', '$dist_t', '$dist_uniform',
+                '$random',
+                # Stochastic analysis tasks and functions (20.16)
+                '$q_add', '$q_exam', '$q_full', '$q_initialize', '$q_remove',
+                # PLA modeling tasks (20.17)
+                '$async$and$array', '$async$and$plane', '$async$nand$array',
+                '$async$nand$plane', '$async$nor$array', '$async$nor$plane',
+                '$async$or$array', '$async$or$plane', '$sync$and$array',
+                '$sync$and$plane', '$sync$nand$array', '$sync$nand$plane',
+                '$sync$nor$array', '$sync$nor$plane', '$sync$or$array',
+                '$sync$or$plane',
+                # Miscellaneous tasks and functions (20.18)
+                '$system',
+                # Display tasks (21.2)
+                '$display', '$displayb', '$displayh', '$displayo', '$monitor',
+                '$monitorb', '$monitorh', '$monitoro', '$monitoroff',
+                '$monitoron', '$strobe', '$strobeb', '$strobeh', '$strobeo',
+                '$write', '$writeb', '$writeh', '$writeo',
+                # File I/O tasks and functions (21.3)
+                '$fclose', '$fdisplay', '$fdisplayb', '$fdisplayh',
+                '$fdisplayo', '$feof', '$ferror', '$fflush', '$fgetc', '$fgets',
+                '$fmonitor', '$fmonitorb', '$fmonitorh', '$fmonitoro', '$fopen',
+                '$fread', '$fscanf', '$fseek', '$fstrobe', '$fstrobeb',
+                '$fstrobeh', '$fstrobeo', '$ftell', '$fwrite', '$fwriteb',
+                '$fwriteh', '$fwriteo', '$rewind', '$sformat', '$sformatf',
+                '$sscanf', '$swrite', '$swriteb', '$swriteh', '$swriteo',
+                '$ungetc',
+                # Memory load tasks (21.4)
+                '$readmemb', '$readmemh',
+                # Memory dump tasks (21.5)
+                '$writememb', '$writememh',
+                # Command line input (21.6)
+                '$test$plusargs', '$value$plusargs',
+                # VCD tasks (21.7)
+                '$dumpall', '$dumpfile', '$dumpflush', '$dumplimit', '$dumpoff',
+                '$dumpon', '$dumpports', '$dumpportsall', '$dumpportsflush',
+                '$dumpportslimit', '$dumpportsoff', '$dumpportson', '$dumpvars',
+                ), suffix=r'\b'),
              Name.Builtin),
 
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
