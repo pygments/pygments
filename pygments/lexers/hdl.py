@@ -311,7 +311,7 @@ class SystemVerilogLexer(RegexLexer):
             (words((
                 'byte', 'shortint', 'int', 'longint', 'integer', 'time',
                 'bit', 'logic', 'reg', 'supply0', 'supply1', 'tri', 'triand',
-                'trior', 'tri0', 'tri1', 'trireg', 'uwire', 'wire', 'wand', 'wo'
+                'trior', 'tri0', 'tri1', 'trireg', 'uwire', 'wire', 'wand', 'wor'
                 'shortreal', 'real', 'realtime'), suffix=r'\b'),
              Keyword.Type),
             (r'[a-zA-Z_]\w*:(?!:)', Name.Label),
