@@ -150,12 +150,12 @@ class SystemVerilogLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^\s*`define', Comment.Preproc, 'macro'),
-            (r'^(\s*)(package)(\s+)', bygroups(Text, Keyword.Namespace, Text)),
-            (r'^(\s*)(import)(\s+)', bygroups(Text, Keyword.Namespace, Text), 'import'),
-
-            (r'\n', Text),
             (r'\s+', Text),
+
+            (r'`define', Comment.Preproc, 'macro'),
+            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text)),
+            (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
+
             (r'\\\n', Text),  # line continuation
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
