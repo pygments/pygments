@@ -207,7 +207,7 @@ class SystemVerilogLexer(RegexLexer):
                 'expect', 'export', 'extern', 'final', 'first_match',
                 'for', 'force', 'foreach', 'forever', 'fork', 'forkjoin', 'function',
                 'generate', 'genvar', 'global', 'highz0', 'highz1', 'if', 'iff',
-                'ifnone', 'ignore_bins', 'illegal_bins', 'implies', 'implements', 'import',
+                'ifnone', 'ignore_bins', 'illegal_bins', 'implies', 'implements',
                 'incdir', 'include', 'initial', 'inout', 'input', 'inside',
                 'instance', 'interconnect', 'intersect', 'join',
                 'join_any', 'join_none', 'large', 'let', 'liblist', 'library',
