@@ -204,6 +204,12 @@ class SystemVerilogLexer(RegexLexer):
              bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
                       Name.Class)),
 
+            (r'(property)(\s+)([a-zA-Z_]\w*)',
+             bygroups(Keyword.Declaration, Text, Name.Class)),
+            (r'(endproperty\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
+             bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
+                      Name.Class)),
+
             (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
 
             (r'\\\n', Text),  # line continuation
@@ -236,7 +242,7 @@ class SystemVerilogLexer(RegexLexer):
                 'disable', 'dist', 'do', 'edge', 'else', 'end', 'endcase',
                 'endconfig', 'endfunction',
                 'endgenerate', 'endgroup',
-                'endproperty', 'endsequence',
+                'endsequence',
                 'endspecify', 'endtable', 'endtask', 'enum', 'eventually',
                 'expect', 'export', 'extern', 'final', 'first_match',
                 'for', 'force', 'foreach', 'forever', 'fork', 'forkjoin', 'function',
@@ -249,7 +255,7 @@ class SystemVerilogLexer(RegexLexer):
                 'medium', 'modport', 'nand', 'negedge', 'nettype', 'new', 'nexttime',
                 'nmos', 'nor', 'noshowcancelled', 'not', 'notif0', 'notif1', 'null',
                 'or', 'output', 'packed', 'pmos', 'posedge',
-                'priority', 'property', 'protected', 'pull0',
+                'priority', 'protected', 'pull0',
                 'pull1', 'pulldown', 'pullup', 'pulsestyle_ondetect',
                 'pulsestyle_onevent', 'pure', 'rand', 'randc', 'randcase',
                 'randsequence', 'rcmos', 'ref',
