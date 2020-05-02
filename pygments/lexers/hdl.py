@@ -210,6 +210,12 @@ class SystemVerilogLexer(RegexLexer):
              bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
                       Name.Class)),
 
+            (r'(sequence)(\s+)([a-zA-Z_]\w*)',
+             bygroups(Keyword.Declaration, Text, Name.Class)),
+            (r'(endsequence\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
+             bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
+                      Name.Class)),
+
             (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
 
             (r'\\\n', Text),  # line continuation
@@ -242,7 +248,6 @@ class SystemVerilogLexer(RegexLexer):
                 'disable', 'dist', 'do', 'edge', 'else', 'end', 'endcase',
                 'endconfig', 'endfunction',
                 'endgenerate', 'endgroup',
-                'endsequence',
                 'endspecify', 'endtable', 'endtask', 'enum', 'eventually',
                 'expect', 'export', 'extern', 'final', 'first_match',
                 'for', 'force', 'foreach', 'forever', 'fork', 'forkjoin', 'function',
@@ -261,7 +266,7 @@ class SystemVerilogLexer(RegexLexer):
                 'randsequence', 'rcmos', 'ref',
                 'reject_on', 'release', 'repeat', 'restrict', 'return', 'rnmos',
                 'rpmos', 'rtran', 'rtranif0', 'rtranif1', 's_always', 's_eventually',
-                's_nexttime', 's_until', 's_until_with', 'scalared', 'sequence',
+                's_nexttime', 's_until', 's_until_with', 'scalared',
                 'showcancelled', 'small', 'soft', 'solve',
                 'specify', 'specparam', 'static', 'strong', 'strong0',
                 'strong1', 'struct', 'super', 'sync_accept_on',
