@@ -153,7 +153,11 @@ class SystemVerilogLexer(RegexLexer):
             (r'\s+', Text),
 
             (r'`define', Comment.Preproc, 'macro'),
-            (r'(package)(\s+)', bygroups(Keyword.Namespace, Text)),
+            (r'(package)(\s+)([a-zA-Z_]\w*)',
+             bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(endpackage\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
+             bygroups(Keyword.Namespace, None, Text, Punctuation, Text,
+                      Name.Namespace)),
             (r'(import)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
 
             (r'\\\n', Text),  # line continuation
@@ -185,7 +189,7 @@ class SystemVerilogLexer(RegexLexer):
                 'coverpoint', 'cross', 'deassign', 'default', 'defparam', 'design',
                 'disable', 'dist', 'do', 'edge', 'else', 'end', 'endcase',
                 'endchecker', 'endclass', 'endclocking', 'endconfig', 'endfunction',
-                'endgenerate', 'endgroup', 'endinterface', 'endmodule', 'endpackage',
+                'endgenerate', 'endgroup', 'endinterface', 'endmodule',
                 'endprimitive', 'endprogram', 'endproperty', 'endsequence',
                 'endspecify', 'endtable', 'endtask', 'enum', 'eventually',
                 'expect', 'export', 'extends', 'extern', 'final', 'first_match',
@@ -198,7 +202,7 @@ class SystemVerilogLexer(RegexLexer):
                 'local', 'localparam', 'macromodule', 'matches',
                 'medium', 'modport', 'module', 'nand', 'negedge', 'nettype', 'new', 'nexttime',
                 'nmos', 'nor', 'noshowcancelled', 'not', 'notif0', 'notif1', 'null',
-                'or', 'output', 'package', 'packed', 'parameter', 'pmos', 'posedge',
+                'or', 'output', 'packed', 'parameter', 'pmos', 'posedge',
                 'primitive', 'priority', 'program', 'property', 'protected', 'pull0',
                 'pull1', 'pulldown', 'pullup', 'pulsestyle_ondetect',
                 'pulsestyle_onevent', 'pure', 'rand', 'randc', 'randcase',
