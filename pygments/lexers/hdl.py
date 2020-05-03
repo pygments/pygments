@@ -154,6 +154,12 @@ class SystemVerilogLexer(RegexLexer):
 
             (r'`define', Comment.Preproc, 'macro'),
 
+            (r'(package)(\s+)([a-zA-Z_]\w*)',
+             bygroups(Keyword.Namespace, Text, Name.Namespace)),
+            (r'(endpackage\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
+             bygroups(Keyword.Namespace, None, Text, Punctuation, Text,
+                      Name.Namespace)),
+
             (r'(class)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Text, Name.Class)),
             (r'(extends)(\s+)([a-zA-Z_]\w*)',
@@ -162,63 +168,13 @@ class SystemVerilogLexer(RegexLexer):
              bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
                       Name.Class)),
 
-            (r'(checker)(\s+)([a-zA-Z_]\w*)',
+            (r'(checker|clocking|covergroup|interface|module|primitive|program'
+             r'|property|sequence)'
+             r'(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endchecker\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
-                      Name.Class)),
-
-            (r'(clocking)(\s+)([a-zA-Z_]\w*)',
-             bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endclocking\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
-                      Name.Class)),
-
-            (r'(covergroup)(\s+)([a-zA-Z_]\w*)',
-             bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endgroup\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
-                      Name.Class)),
-
-            (r'(interface)(\s+)([a-zA-Z_]\w*)',
-             bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endinterface\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
-                      Name.Class)),
-
-            (r'(module)(\s+)([a-zA-Z_]\w*)',
-             bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endmodule\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
-                      Name.Class)),
-
-            (r'(package)(\s+)([a-zA-Z_]\w*)',
-             bygroups(Keyword.Namespace, Text, Name.Namespace)),
-            (r'(endpackage\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Namespace, None, Text, Punctuation, Text,
-                      Name.Namespace)),
-
-            (r'(primitive)(\s+)([a-zA-Z_]\w*)',
-             bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endprimitive\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
-                      Name.Class)),
-
-            (r'(program)(\s+)([a-zA-Z_]\w*)',
-             bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endprogram\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
-                      Name.Class)),
-
-            (r'(property)(\s+)([a-zA-Z_]\w*)',
-             bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endproperty\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
-                      Name.Class)),
-
-            (r'(sequence)(\s+)([a-zA-Z_]\w*)',
-             bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endsequence\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
+            (r'(endchecker|endclocking|endgroup|endinterface|endmodule'
+             r'|endprimitive|endprogram|endproperty|endsequence\b)'
+             r'((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
              bygroups(Keyword.Declaration, None, Text, Punctuation, Text,
                       Name.Class)),
 
