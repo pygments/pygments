@@ -204,6 +204,7 @@ class SystemVerilogLexer(RegexLexer):
 
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
+            (words(('inside', 'dist'), suffix=r'\b'), Operator.Word),
             (r'[()\[\],.;\']', Punctuation),
             (r'`[a-zA-Z_]\w*', Name.Constant),
 
@@ -215,7 +216,7 @@ class SystemVerilogLexer(RegexLexer):
                 'cmos', 'config',
                 'constraint', 'context', 'continue', 'cover',
                 'coverpoint', 'cross', 'deassign', 'default', 'defparam', 'design',
-                'disable', 'dist', 'do', 'edge', 'else', 'end', 'endcase',
+                'disable', 'do', 'edge', 'else', 'end', 'endcase',
                 'endconfig', 'endfunction',
                 'endgenerate',
                 'endspecify', 'endtable', 'endtask', 'enum', 'eventually',
@@ -223,7 +224,7 @@ class SystemVerilogLexer(RegexLexer):
                 'for', 'force', 'foreach', 'forever', 'fork', 'forkjoin', 'function',
                 'generate', 'global', 'highz0', 'highz1', 'if', 'iff',
                 'ifnone', 'ignore_bins', 'illegal_bins', 'implies', 'implements',
-                'incdir', 'include', 'initial', 'inout', 'input', 'inside',
+                'incdir', 'include', 'initial', 'inout', 'input',
                 'instance', 'interconnect', 'intersect', 'join',
                 'join_any', 'join_none', 'large', 'let', 'liblist', 'library',
                 'local', 'macromodule', 'matches',
