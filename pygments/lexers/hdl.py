@@ -110,6 +110,7 @@ class VerilogLexer(RegexLexer):
              Keyword.Type),
             (r'[a-zA-Z_]\w*:(?!:)', Name.Label),
             (r'\$?[a-zA-Z_]\w*', Name),
+            (r'\\(\S+)', Name),
         ],
         'string': [
             (r'"', String, '#pop'),
@@ -316,6 +317,7 @@ class SystemVerilogLexer(RegexLexer):
              Keyword.Type),
             (r'[a-zA-Z_]\w*:(?!:)', Name.Label),
             (r'\$?[a-zA-Z_]\w*', Name),
+            (r'\\(\S+)', Name),
         ],
         'classname': [
             (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
