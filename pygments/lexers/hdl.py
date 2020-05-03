@@ -189,12 +189,18 @@ class SystemVerilogLexer(RegexLexer):
 
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'([0-9]+)?(\'b)[01]+', Number.Bin),
-            (r'([0-9]+)?(\'o)[0-7]+', Number.Oct),
-            (r'([0-9]+)?(\'d)[0-9]+', Number.Integer),
-            (r'([0-9]+)?(\'h)[0-9a-fA-F]+', Number.Hex),
-            (r'\'[01xz]', Number),
-            (r'\d+[Ll]?', Number.Integer),
+
+            (r'([1-9][_0-9]*)?\s*\'[sS]?[bB]\s*[xXzZ?01][_xXzZ?01]*',
+             Number.Bin),
+            (r'([1-9][_0-9]*)?\s*\'[sS]?[oO]\s*[xXzZ?0-7][_xXzZ?0-7]*',
+             Number.Oct),
+            (r'([1-9][_0-9]*)?\s*\'[sS]?[dD]\s*[xXzZ?0-9][_xXzZ?0-9]*',
+             Number.Integer),
+            (r'([1-9][_0-9]*)?\s*\'[sS]?[hH]\s*[xXzZ?0-9a-fA-F][_xXzZ?0-9a-fA-F]*',
+             Number.Hex),
+
+            (r'\'[01xXzZ]', Number),
+            (r'[0-9][_0-9]*', Number.Integer),
 
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
