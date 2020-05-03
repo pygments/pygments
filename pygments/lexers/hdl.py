@@ -371,8 +371,13 @@ class SystemVerilogLexer(RegexLexer):
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'import': [
-            (r'[\w:]+\*?', Name.Namespace, '#pop')
-        ]
+            (r'([a-zA-Z_]\w*)(\s*)(::)(\s*)([a-zA-Z_]\w*)',
+             bygroups(Name.Namespace, Text, Punctuation, Text, Name.Namespace),
+             '#pop'),
+            (r'([a-zA-Z_]\w*)(\s*)(::)(\s*)(\*)',
+             bygroups(Name.Namespace, Text, Punctuation, Text, Punctuation),
+             '#pop'),
+        ],
     }
 
 
