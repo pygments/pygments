@@ -147,6 +147,12 @@ class MatlabLexer(RegexLexer):
             (r"[^']*'", String, '#pop'),
         ],
         'commandargs': [
+            # If an equal sign or other operator is encountered, this
+            # isn't a command. It might be a variable assignment or
+            # comparison operation with multiple spaces before the
+            # equal sign or operator
+            (r"=", Punctuation, '#pop'),
+            (_operators, Operator, '#pop'),
             (r"[ \t]+", Text),
             ("'[^']*'", String),
             (r"[^';\s]+", String),
