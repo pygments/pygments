@@ -207,7 +207,7 @@ class PythonLexer(RegexLexer):
         'builtins': [
             (words((
                 '__import__', 'abs', 'all', 'any', 'bin', 'bool', 'bytearray',
-                'bytes', 'chr', 'classmethod', 'cmp', 'compile', 'complex',
+                'bytes', 'chr', 'classmethod', 'compile', 'complex',
                 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'filter',
                 'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr',
                 'hash', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass',
