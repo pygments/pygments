@@ -28,18 +28,18 @@ class DevicetreeLexer(RegexLexer):
 
     tokens = {
     	'macro': [
-    		# Include preprocessor directives (C style):
-    		(r'(#include)(' + _ws + r')([^\n]+)',
-             	bygroups(Comment.Preproc, Comment.Multiline, Comment.PreprocFile)),
-    		# Define preprocessor directives (C style):
-    		(r'(#define)(' + _ws + r')([^\n]+)',
-             	bygroups(Comment.Preproc, Comment.Multiline, Comment.Preproc)),
-    		#devicetree style with file:
-            (r'[^{}]\s*(/[^*/\{]+/)(' + _ws + r')("[^\n\{]+")',
-             	bygroups(Comment.Preproc, Comment.Multiline, Comment.PreprocFile)),
+    	    # Include preprocessor directives (C style):
+    	    (r'(#include)(' + _ws + r')([^\n]+)',
+                bygroups(Comment.Preproc, Comment.Multiline, Comment.PreprocFile)),
+    	    # Define preprocessor directives (C style):
+    	    (r'(#define)(' + _ws + r')([^\n]+)',
+                bygroups(Comment.Preproc, Comment.Multiline, Comment.Preproc)),
+    	    #devicetree style with file:
+            (r'(/[^*/\{]+/)(' + _ws + r')("[^\n\{]+")',
+                bygroups(Comment.Preproc, Comment.Multiline, Comment.PreprocFile)),
             #devicetree style with property:
-            (r'[^{}]\s*(/[^*/\{]+/)(' + _ws + r')([^\n;\{]*)([;]?)',
-             	bygroups(Comment.Preproc, Comment.Multiline, Comment.Preproc, Punctuation)),
+            (r'(/[^*/\{]+/)(' + _ws + r')([^\n;\{]*)([;]?)',
+                bygroups(Comment.Preproc, Comment.Multiline, Comment.Preproc, Punctuation)),
         ],
     	'whitespace': [
             (r'\n', Text),
