@@ -42,8 +42,8 @@ endmodule : Adder
 def test_systemverilog_basic(lexer):
     """A basic SystemVerilog test.
 
-    Examine tokens emitted by the SV lexer for a trivial, but complete code
-    fragment. Not intended to stress any particular corner of the language.
+    Examine tokens emitted by the SV lexer for a trivial module.
+    Not intended to stress any particular corner of the language.
     """
     tokens = [
         (Comment.Single, '// Adder flops the sum of its inputs\n'),
