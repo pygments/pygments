@@ -340,7 +340,7 @@ class LiveScriptLexer(RegexLexer):
 
 class DartLexer(RegexLexer):
     """
-    For `Dart <http://dartlang.org/>`_ source code.
+    For `Dart <http://dart.dev/>`_ source code.
 
     .. versionadded:: 1.5
     """
@@ -361,15 +361,16 @@ class DartLexer(RegexLexer):
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'\b(class)\b(\s+)',
+            (r'\b(class|extension|mixin)\b(\s+)',
              bygroups(Keyword.Declaration, Text), 'class'),
-            (r'\b(assert|break|case|catch|continue|default|do|else|finally|for|'
-             r'if|in|is|new|return|super|switch|this|throw|try|while)\b',
+            (r'\b(as|assert|break|case|catch|const|continue|default|do|else|finally|'
+             r'for|if|in|is|new|rethrow|return|super|switch|this|throw|try|while)\b',
              Keyword),
-            (r'\b(abstract|async|await|const|extends|factory|final|get|'
-             r'implements|native|operator|set|static|sync|typedef|var|with|'
-             r'yield)\b', Keyword.Declaration),
-            (r'\b(bool|double|dynamic|int|num|Object|String|void)\b', Keyword.Type),
+            (r'\b(abstract|async|await|const|covariant|extends|external|factory|final|'
+             r'get|implements|late|native|on|operator|required|set|static|sync|typedef|'
+             r'var|with|yield)\b', Keyword.Declaration),
+            (r'\b(bool|double|dynamic|int|num|Function|Never|Null|Object|String|void)\b',
+             Keyword.Type),
             (r'\b(false|null|true)\b', Keyword.Constant),
             (r'[~!%^&*+=|?:<>/-]|as\b', Operator),
             (r'@[a-zA-Z_$]\w*', Name.Decorator),
@@ -389,7 +390,7 @@ class DartLexer(RegexLexer):
         'import_decl': [
             include('string_literal'),
             (r'\s+', Text),
-            (r'\b(as|show|hide)\b', Keyword),
+            (r'\b(as|deferred|show|hide)\b', Keyword),
             (r'[a-zA-Z_$]\w*', Name),
             (r'\,', Punctuation),
             (r'\;', Punctuation, '#pop')
