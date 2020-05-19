@@ -328,7 +328,7 @@ LEXERS = {
     'ParaSailLexer': ('pygments.lexers.parasail', 'ParaSail', ('parasail',), ('*.psi', '*.psl'), ('text/x-parasail',)),
     'PawnLexer': ('pygments.lexers.pawn', 'Pawn', ('pawn',), ('*.p', '*.pwn', '*.inc'), ('text/x-pawn',)),
     'PegLexer': ('pygments.lexers.grammar_notation', 'PEG', ('peg',), ('*.peg',), ('text/x-peg',)),
-    'Perl6Lexer': ('pygments.lexers.perl', 'Perl6', ('perl6', 'pl6', 'raku'), ('*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6', '*.6pm', '*.p6m', '*.pm6', '*.t', '*.raku', '*.rakumod', '*.rakutest', '*.rakudoc'), ('text/x-perl6', 'application/x-perl6')),
+    'RakuLexer': ('pygments.lexers.perl', 'Raku', ('perl6', 'pl6', 'raku'), ('*.pl', '*.pm', '*.nqp', '*.p6', '*.pl6', '*.pm6', '*.t', '*.raku', '*.rakumod', '*.rakutest', '*.rakudoc'), ('text/x-raku', 'application/x-raku')),
     'PerlLexer': ('pygments.lexers.perl', 'Perl', ('perl', 'pl'), ('*.pl', '*.pm', '*.t', '*.perl'), ('text/x-perl', 'application/x-perl')),
     'PhpLexer': ('pygments.lexers.php', 'PHP', ('php', 'php3', 'php4', 'php5'), ('*.php', '*.php[345]', '*.inc'), ('text/x-php',)),
     'PigLexer': ('pygments.lexers.jvm', 'Pig', ('pig',), ('*.pig',), ('text/x-pig',)),

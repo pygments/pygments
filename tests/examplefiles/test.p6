@@ -20,7 +20,7 @@ regex http-verb {
 
 # a sample comment
 
-say 'Hello from Perl 6!'
+say 'Hello from Raku!'
 
 
 #`{

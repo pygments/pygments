@@ -412,7 +412,7 @@ class RakuLexer(ExtendedRegexLexer):
         'not', '<==', '==>', '<<==', '==>>','unicmp',
     )
 
-    # Perl 6 has a *lot* of possible bracketing characters
+    # Raku has a *lot* of possible bracketing characters
     # this list was lifted from STD.pm6 (https://github.com/perl6/std)
     RAKU_BRACKETS = {
         u'\u0028': u'\u0029', u'\u003c': u'\u003e', u'\u005b': u'\u005d',
@@ -581,7 +581,7 @@ class RakuLexer(ExtendedRegexLexer):
 
     # If you're modifying these rules, be careful if you need to process '{' or '}'
     # characters. We have special logic for processing these characters (due to the fact
-    # that you can nest Perl 6 code in regex blocks), so if you need to process one of
+    # that you can nest Raku code in regex blocks), so if you need to process one of
     # them, make sure you also process the corresponding one!
     tokens = {
         'common': [
@@ -595,7 +595,7 @@ class RakuLexer(ExtendedRegexLexer):
              bygroups(Keyword, Name), 'token-sym-brackets'),
             (r'(regex|token|rule)(?!' + RAKU_IDENTIFIER_RANGE + r')(\s*' + RAKU_IDENTIFIER_RANGE + '+)?',
              bygroups(Keyword, Name), 'pre-token'),
-            # deal with a special case in the Perl 6 grammar (role q { ... })
+            # deal with a special case in the Raku grammar (role q { ... })
             (r'(role)(\s+)(q)(\s*)', bygroups(Keyword, Text, Name, Text)),
             (_build_word_match(RAKU_KEYWORDS, RAKU_IDENTIFIER_RANGE), Keyword),
             (_build_word_match(RAKU_BUILTIN_CLASSES, RAKU_IDENTIFIER_RANGE, suffix='(?::[UD])?'),
