@@ -17,7 +17,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 from pygments.util import shebang_matches
 
-__all__ = ['PerlLexer', 'RakuLexer']
+__all__ = ['PerlLexer', 'RakuConsoleLexer', 'RakuLexer']
 
 
 class PerlLexer(RegexLexer):
@@ -214,14 +214,14 @@ class PerlLexer(RegexLexer):
 
 class RakuLexer(ExtendedRegexLexer):
     """
-    For `Raku <https://www.raku.org>`_ (a.k.a. Perl 6) source code.
+    For `Raku <https://www.raku.org>`_ source code.
 
     .. versionadded:: 2.0
     """
 
     name = 'Raku'
     aliases = ['perl6', 'pl6', 'raku']
-    filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.pl6',
+    filenames = ['*.nqp', '*.p6', '*.pl6',
                  '*.pm6', '*.t', '*.raku', '*.rakumod',
                  '*.rakutest', '*.rakudoc']
     mimetypes = ['text/x-raku', 'application/x-raku']
@@ -716,3 +716,57 @@ class RakuLexer(ExtendedRegexLexer):
     def __init__(self, **options):
         super(RakuLexer, self).__init__(**options)
         self.encoding = options.get('encoding', 'utf-8')
+
+class RakuConsoleLexer(Lexer):
+    """"
+    For Raku interactive console (**raku**) output like:
+
+    .. sourcecode:: raku-console
+
+        > 1
+        1
+        > "suman"
+        suman
+        > my $var = "nepal"
+        nepal
+    """
+
+    name = 'RakuConsole'
+    aliases = ['raku-console', 'raku-repl']
+    mimetypes = ['text/x-raku-consolesession']
+
+    def get_tokens_unprocessed(self, text):
+        rakulexer = RakuLexer(**self.options)
+
+        current_code_block = ''
+        insertions = []
+
+        for match in line_re.finditer(text):
+            line = match.group()
+            if line.startswith('>'):
+                # Colorize the prompt as such,
+                # then put rest of line into current_code_block
+                insertions.append((len(current_code_block),
+                                   [(0, Generic.Prompt, line[:end])]))
+                current_code_block += line[end:]
+            else:
+                # We have reached a non-prompt line!
+                # If we have stored prompt lines, need to process them first.
+                if current_code_block:
+                    # Weave together the prompts and highlight code.
+                    for item in do_insertions(
+                            insertions, rakulexer.get_tokens_unprocessed(current_code_block)):
+                        yield item
+                    # Reset vars for next code block.
+                    current_code_block = ''
+                    insertions = []
+                # Now process the actual line itself, this is output from Raku.
+                yield match.start(), Generic.Output, line
+
+        # If we happen to end on a code block with nothing after it, need to
+        # process the last code block. This is neither elegant nor DRY so
+        # should be changed.
+        if current_code_block:
+            for item in do_insertions(
+                    insertions, rakulexer.get_tokens_unprocessed(current_code_block)):
+                yield item
