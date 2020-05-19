@@ -368,7 +368,7 @@ LEXERS = {
     'RagelLexer': ('pygments.lexers.parsers', 'Ragel', ('ragel',), (), ()),
     'RagelObjectiveCLexer': ('pygments.lexers.parsers', 'Ragel in Objective C Host', ('ragel-objc',), ('*.rl',), ()),
     'RagelRubyLexer': ('pygments.lexers.parsers', 'Ragel in Ruby Host', ('ragel-ruby', 'ragel-rb'), ('*.rl',), ()),
-    'RakuLexer': ('pygments.lexers.perl', 'Raku', ('perl6', 'pl6', 'raku'), ('*.pl', '*.pm', '*.nqp', '*.p6', '*.pl6', '*.pm6', '*.t', '*.raku', '*.rakumod', '*.rakutest', '*.rakudoc'), ('text/x-raku', 'application/x-raku')),
+    'RakuLexer': ('pygments.lexers.perl', 'Raku', ('perl6', 'pl6', 'raku'), ('*.nqp', '*.p6', '*.pl6', '*.pm6', '*.t', '*.raku', '*.rakumod', '*.rakutest', '*.rakudoc'), ('text/x-raku', 'application/x-raku')),
     'RakuConsoleLexer': ('pygments.lexers.perl', 'Raku console session', ('raku-console', 'raku-repl'), (), ('text/x-raku-consolesession',)),
     'RawTokenLexer': ('pygments.lexers.special', 'Raw token data', ('raw',), (), ('application/x-pygments-tokens',)),
     'RdLexer': ('pygments.lexers.r', 'Rd', ('rd',), ('*.Rd',), ('text/x-r-doc',)),
