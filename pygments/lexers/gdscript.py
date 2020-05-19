@@ -128,14 +128,14 @@ class GDScriptLexer(RegexLexer):
             (r'\d+j?', Number.Integer)
         ],
         'name': [
-            ('[a-zA-Z_]\w*', Name),
+            (r'[a-zA-Z_]\w*', Name),
         ],
         'funcname': [
-            ('[a-zA-Z_]\w*', Name.Function, '#pop'),
+            (r'[a-zA-Z_]\w*', Name.Function, '#pop'),
             default('#pop'),
         ],
         'classname': [
-            ('[a-zA-Z_]\w*', Name.Class, '#pop')
+            (r'[a-zA-Z_]\w*', Name.Class, '#pop')
         ],
         'stringescape': [
             (r'\\([\\abfnrtv"\']|\n|N\{.*?\}|u[a-fA-F0-9]{4}|'
