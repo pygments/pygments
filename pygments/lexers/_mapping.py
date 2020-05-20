@@ -232,7 +232,7 @@ LEXERS = {
     'JuliaLexer': ('pygments.lexers.julia', 'Julia', ('julia', 'jl'), ('*.jl',), ('text/x-julia', 'application/x-julia')),
     'JuttleLexer': ('pygments.lexers.javascript', 'Juttle', ('juttle', 'juttle'), ('*.juttle',), ('application/juttle', 'application/x-juttle', 'text/x-juttle', 'text/juttle')),
     'KalLexer': ('pygments.lexers.javascript', 'Kal', ('kal',), ('*.kal',), ('text/kal', 'application/kal')),
-    'KconfigLexer': ('pygments.lexers.configs', 'Kconfig', ('kconfig', 'menuconfig', 'linux-config', 'kernel-config'), ('Kconfig', '*Config.in*', 'external.in*', 'standard-modules.in'), ('text/x-kconfig',)),
+    'KconfigLexer': ('pygments.lexers.configs', 'Kconfig', ('kconfig', 'menuconfig', 'linux-config', 'kernel-config'), ('Kconfig*', '*Config.in*', 'external.in*', 'standard-modules.in'), ('text/x-kconfig',)),
     'KernelLogLexer': ('pygments.lexers.textfmts', 'Kernel log', ('kmsg', 'dmesg'), ('*.kmsg', '*.dmesg'), ()),
     'KokaLexer': ('pygments.lexers.haskell', 'Koka', ('koka',), ('*.kk', '*.kki'), ('text/x-koka',)),
     'KotlinLexer': ('pygments.lexers.jvm', 'Kotlin', ('kotlin',), ('*.kt',), ('text/x-kotlin',)),

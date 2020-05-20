@@ -155,7 +155,7 @@ class KconfigLexer(RegexLexer):
     name = 'Kconfig'
     aliases = ['kconfig', 'menuconfig', 'linux-config', 'kernel-config']
     # Adjust this if new kconfig file names appear in your environment
-    filenames = ['Kconfig', '*Config.in*', 'external.in*',
+    filenames = ['Kconfig*', '*Config.in*', 'external.in*',
                  'standard-modules.in']
     mimetypes = ['text/x-kconfig']
     # No re.MULTILINE, indentation-aware help text needs line-by-line handling
