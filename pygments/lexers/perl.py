@@ -731,7 +731,7 @@ class RakuConsoleLexer(Lexer):
         nepal
     """
 
-    name = 'RakuConsole'
+    name = 'Raku console session'
     aliases = ['raku-console', 'raku-repl']
     mimetypes = ['text/x-raku-consolesession']
 
