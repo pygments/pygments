@@ -718,7 +718,7 @@ class RakuLexer(ExtendedRegexLexer):
         self.encoding = options.get('encoding', 'utf-8')
 
 class RakuConsoleLexer(Lexer):
-    """"
+    """
     For Raku interactive console (**raku**) output like:
 
     .. sourcecode:: raku-console
