@@ -11,13 +11,13 @@
 
 import re
 
-from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
-    using, this, default, words
+from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, include, bygroups, \
+    using, this, default, words, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+    Number, Punctuation, Generic
 from pygments.util import shebang_matches
 
-__all__ = ['PerlLexer', 'RakuConsoleLexer', 'RakuLexer']
+__all__ = ['PerlLexer', 'RakuLexer', 'RakuConsoleLexer']
 
 
 class PerlLexer(RegexLexer):
