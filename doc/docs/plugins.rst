@@ -7,7 +7,7 @@ use the lexer/formatter/style/filter lookup functions (`lexers.get_lexer_by_name
 et al.), you can use `setuptools`_ entrypoints to add new lexers, formatters
 or styles as if they were in the Pygments core.
 
-.. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
+.. _setuptools: https://pypi.org/project/setuptools/
 
 That means you can use your highlighter modules with the `pygmentize` script,
 which relies on the mentioned functions.
@@ -82,7 +82,7 @@ This documentation doesn't explain how to use those entrypoints because this is
 covered in the `setuptools documentation`_. That page should cover everything
 you need to write a plugin.
 
-.. _setuptools documentation: http://peak.telecommunity.com/DevCenter/setuptools
+.. _setuptools documentation: https://setuptools.readthedocs.io/en/latest/
 
 
 Extending The Core

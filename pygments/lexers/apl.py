@@ -18,7 +18,7 @@ __all__ = ['APLLexer']
 
 class APLLexer(RegexLexer):
     """
-    A simple APL lexer.
+    A simple `APL <https://en.m.wikipedia.org/wiki/APL_(programming_language)>`_ lexer.
 
     .. versionadded:: 2.0
     """

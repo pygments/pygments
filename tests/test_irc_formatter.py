@@ -7,9 +7,8 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
+from io import StringIO
 
-from pygments.util import StringIO
 from pygments.lexers import PythonLexer
 from pygments.formatters import IRCFormatter
 

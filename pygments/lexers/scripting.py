@@ -15,11 +15,11 @@ from pygments.lexer import RegexLexer, include, bygroups, default, combined, \
     words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error, Whitespace, Other
-from pygments.util import get_bool_opt, get_list_opt, iteritems
+from pygments.util import get_bool_opt, get_list_opt
 
 __all__ = ['LuaLexer', 'MoonScriptLexer', 'ChaiscriptLexer', 'LSLLexer',
            'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer', 'HybrisLexer',
-           'EasytrieveLexer', 'JclLexer']
+           'EasytrieveLexer', 'JclLexer', 'MiniScriptLexer']
 
 
 class LuaLexer(RegexLexer):
@@ -142,7 +142,7 @@ class LuaLexer(RegexLexer):
         self._functions = set()
         if self.func_name_highlighting:
             from pygments.lexers._lua_builtins import MODULES
-            for mod, func in iteritems(MODULES):
+            for mod, func in MODULES.items():
                 if mod not in self.disabled_modules:
                     self._functions.update(func)
         RegexLexer.__init__(self, **options)
@@ -161,7 +161,6 @@ class LuaLexer(RegexLexer):
                     yield index + len(a) + 1, Name, b
                     continue
             yield index, token, value
-
 
 class MoonScriptLexer(LuaLexer):
     """
@@ -1220,3 +1219,57 @@ class JclLexer(RegexLexer):
                 result = 1.0
         assert 0.0 <= result <= 1.0
         return result
+
+
+class MiniScriptLexer(RegexLexer):
+    """
+    For `MiniScript <https://miniscript.org>`_ source code.
+
+    .. versionadded:: 2.6
+    """
+
+    name = "MiniScript"
+    aliases = ["ms", "miniscript"]
+    filenames = ["*.ms"]
+    mimetypes = ['text/x-minicript', 'application/x-miniscript']
+
+    tokens = {
+        'root': [
+            (r'#!(.*?)$', Comment.Preproc),
+            default('base'),
+        ],
+        'base': [
+            ('//.*$', Comment.Single),
+            (r'(?i)(\d*\.\d+|\d+\.\d*)(e[+-]?\d+)?', Number),
+            (r'(?i)\d+e[+-]?\d+', Number),
+            (r'\d+', Number),
+            (r'\n', Text),
+            (r'[^\S\n]+', Text),
+            (r'"', String, 'string_double'),
+            (r'(==|!=|<=|>=|[=+\-*/%^<>.:])', Operator),
+            (r'[;,\[\]{}()]', Punctuation),
+            (words((
+                'break', 'continue', 'else', 'end', 'for', 'function', 'if',
+                'in', 'isa', 'then', 'repeat', 'return', 'while'), suffix=r'\b'),
+             Keyword),
+            (words((
+            	'abs', 'acos', 'asin', 'atan', 'ceil', 'char', 'cos', 'floor',
+            	'log', 'round', 'rnd', 'pi', 'sign', 'sin', 'sqrt', 'str', 'tan',
+            	'hasIndex', 'indexOf', 'len', 'val', 'code', 'remove', 'lower',
+            	'upper', 'replace', 'split', 'indexes', 'values', 'join', 'sum',
+            	'sort', 'shuffle', 'push', 'pop', 'pull', 'range',
+            	'print', 'input', 'time', 'wait', 'locals', 'globals', 'outer',
+            	'yield'), suffix=r'\b'),
+             Name.Builtin),
+            (r'(true|false|null)\b', Keyword.Constant),
+            (r'(and|or|not|new)\b', Operator.Word),
+            (r'(self|super|__isa)\b', Name.Builtin.Pseudo),
+            (r'[a-zA-Z_]\w*', Name.Variable)
+        ],
+        'string_double': [
+            (r'[^"\n]+', String),
+            (r'""', String),
+            (r'"', String, '#pop'),
+            (r'\n', Text, '#pop'),  # Stray linefeed also terminates strings.
+        ]
+    }

@@ -44,7 +44,6 @@ from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
 from pygments.token import Punctuation, Whitespace, Text, Comment, Operator, \
     Keyword, Name, String, Number, Generic
 from pygments.lexers import get_lexer_by_name, ClassNotFound
-from pygments.util import iteritems
 
 from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
     PSEUDO_TYPES, PLPGSQL_KEYWORDS
@@ -106,7 +105,7 @@ def language_callback(lexer, match):
     yield (match.start(7), String, match.group(7))
 
 
-class PostgresBase(object):
+class PostgresBase:
     """Base class for Postgres-related lexers.
 
     This is implemented as a mixin to avoid the Lexer metaclass kicking in.
@@ -212,7 +211,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     mimetypes = ['text/x-plpgsql']
 
     flags = re.IGNORECASE
-    tokens = {k: l[:] for (k, l) in iteritems(PostgresLexer.tokens)}
+    tokens = {k: l[:] for (k, l) in PostgresLexer.tokens.items()}
 
     # extend the keywords list
     for i, pattern in enumerate(tokens['root']):
@@ -246,7 +245,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     aliases = []    # not public
 
     flags = re.IGNORECASE
-    tokens = {k: l[:] for (k, l) in iteritems(PostgresLexer.tokens)}
+    tokens = {k: l[:] for (k, l) in PostgresLexer.tokens.items()}
 
     tokens['root'].append(
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
@@ -271,7 +270,7 @@ re_message = re.compile(
     r'FATAL|HINT|DETAIL|CONTEXT|LINE [0-9]+):)(.*?\n)')
 
 
-class lookahead(object):
+class lookahead:
     """Wrap an iterator and allow pushing back an item."""
     def __init__(self, x):
         self.iter = iter(x)
@@ -420,7 +419,7 @@ class SqlLexer(RegexLexer):
                 'FREEZE', 'FROM', 'FULL', 'FUNCTION', 'G', 'GENERAL', 'GENERATED', 'GET',
                 'GLOBAL', 'GO', 'GOTO', 'GRANT', 'GRANTED', 'GROUP', 'GROUPING',
                 'HANDLER', 'HAVING', 'HIERARCHY', 'HOLD', 'HOST', 'IDENTITY', 'IF',
-                'IGNORE', 'ILIKE', 'IMMEDIATE', 'IMMUTABLE', 'IMPLEMENTATION', 'IMPLICIT',
+                'IGNORE', 'ILIKE', 'IMMEDIATE', 'IMMEDIATELY', 'IMMUTABLE', 'IMPLEMENTATION', 'IMPLICIT',
                 'IN', 'INCLUDING', 'INCREMENT', 'INDEX', 'INDITCATOR', 'INFIX',
                 'INHERITS', 'INITIALIZE', 'INITIALLY', 'INNER', 'INOUT', 'INPUT',
                 'INSENSITIVE', 'INSERT', 'INSTANTIABLE', 'INSTEAD', 'INTERSECT', 'INTO',
@@ -440,8 +439,8 @@ class SqlLexer(RegexLexer):
                 'OVERRIDING', 'OWNER', 'PAD', 'PARAMETER', 'PARAMETERS', 'PARAMETER_MODE',
                 'PARAMATER_NAME', 'PARAMATER_ORDINAL_POSITION',
                 'PARAMETER_SPECIFIC_CATALOG', 'PARAMETER_SPECIFIC_NAME',
-                'PARAMATER_SPECIFIC_SCHEMA', 'PARTIAL', 'PASCAL', 'PENDANT', 'PLACING',
-                'PLI', 'POSITION', 'POSTFIX', 'PRECISION', 'PREFIX', 'PREORDER',
+                'PARAMATER_SPECIFIC_SCHEMA', 'PARTIAL', 'PASCAL', 'PENDANT', 'PERIOD', 'PLACING',
+                'PLI', 'POSITION', 'POSTFIX', 'PRECEEDS', 'PRECISION', 'PREFIX', 'PREORDER',
                 'PREPARE', 'PRESERVE', 'PRIMARY', 'PRIOR', 'PRIVILEGES', 'PROCEDURAL',
                 'PROCEDURE', 'PUBLIC', 'READ', 'READS', 'RECHECK', 'RECURSIVE', 'REF',
                 'REFERENCES', 'REFERENCING', 'REINDEX', 'RELATIVE', 'RENAME',
@@ -457,9 +456,9 @@ class SqlLexer(RegexLexer):
                 'SQL', 'SQLCODE', 'SQLERROR', 'SQLEXCEPTION', 'SQLSTATE', 'SQLWARNINIG',
                 'STABLE', 'START', 'STATE', 'STATEMENT', 'STATIC', 'STATISTICS', 'STDIN',
                 'STDOUT', 'STORAGE', 'STRICT', 'STRUCTURE', 'STYPE', 'SUBCLASS_ORIGIN',
-                'SUBLIST', 'SUBSTRING', 'SUM', 'SYMMETRIC', 'SYSID', 'SYSTEM',
+                'SUBLIST', 'SUBSTRING', 'SUCCEEDS', 'SUM', 'SYMMETRIC', 'SYSID', 'SYSTEM',
                 'SYSTEM_USER', 'TABLE', 'TABLE_NAME', ' TEMP', 'TEMPLATE', 'TEMPORARY',
-                'TERMINATE', 'THAN', 'THEN', 'TIMESTAMP', 'TIMEZONE_HOUR',
+                'TERMINATE', 'THAN', 'THEN', 'TIME', 'TIMESTAMP', 'TIMEZONE_HOUR',
                 'TIMEZONE_MINUTE', 'TO', 'TOAST', 'TRAILING', 'TRANSATION',
                 'TRANSACTIONS_COMMITTED', 'TRANSACTIONS_ROLLED_BACK', 'TRANSATION_ACTIVE',
                 'TRANSFORM', 'TRANSFORMS', 'TRANSLATE', 'TRANSLATION', 'TREAT', 'TRIGGER',
@@ -468,7 +467,8 @@ class SqlLexer(RegexLexer):
                 'UNION', 'UNIQUE', 'UNKNOWN', 'UNLISTEN', 'UNNAMED', 'UNNEST', 'UNTIL',
                 'UPDATE', 'UPPER', 'USAGE', 'USER', 'USER_DEFINED_TYPE_CATALOG',
                 'USER_DEFINED_TYPE_NAME', 'USER_DEFINED_TYPE_SCHEMA', 'USING', 'VACUUM',
-                'VALID', 'VALIDATOR', 'VALUES', 'VARIABLE', 'VERBOSE', 'VERSION', 'VIEW',
+                'VALID', 'VALIDATOR', 'VALUES', 'VARIABLE', 'VERBOSE',
+                'VERSION', 'VERSIONS', 'VERSIONING', 'VIEW',
                 'VOLATILE', 'WHEN', 'WHENEVER', 'WHERE', 'WITH', 'WITHOUT', 'WORK',
                 'WRITE', 'YEAR', 'ZONE'), suffix=r'\b'),
              Keyword),

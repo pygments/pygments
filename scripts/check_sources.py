@@ -11,8 +11,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 import io
 import os
 import re
@@ -48,6 +46,9 @@ misspellings = ["developement", "adress", "verificate",  # ALLOW-MISSPELLING
 
 @checker('.py')
 def check_syntax(fn, lines):
+    if not lines:
+        yield 0, "empty file"
+        return
     if '#!/' in lines[0]:
         lines = lines[1:]
     if 'coding:' in lines[0]:

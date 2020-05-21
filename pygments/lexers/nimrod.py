@@ -43,14 +43,14 @@ class NimrodLexer(RegexLexer):
         return "|".join(newWords)
 
     keywords = [
-        'addr', 'and', 'as', 'asm', 'atomic', 'bind', 'block', 'break', 'case',
+        'addr', 'and', 'as', 'asm', 'bind', 'block', 'break', 'case',
         'cast', 'concept', 'const', 'continue', 'converter', 'defer', 'discard',
         'distinct', 'div', 'do', 'elif', 'else', 'end', 'enum', 'except',
         'export', 'finally', 'for', 'func', 'if', 'in', 'yield', 'interface',
         'is', 'isnot', 'iterator', 'let', 'macro', 'method', 'mixin', 'mod',
         'not', 'notin', 'object', 'of', 'or', 'out', 'proc', 'ptr', 'raise',
-        'ref', 'return', 'shared', 'shl', 'shr', 'static', 'template', 'try',
-        'tuple', 'type', 'when', 'while', 'with', 'without', 'xor'
+        'ref', 'return', 'shl', 'shr', 'static', 'template', 'try',
+        'tuple', 'type', 'using', 'when', 'while', 'xor'
     ]
 
     keywordsPseudo = [

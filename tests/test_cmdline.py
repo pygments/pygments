@@ -7,19 +7,17 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 import io
 import os
 import re
 import sys
 import tempfile
+from io import BytesIO
 from os import path
 
 from pytest import raises
 
 from pygments import cmdline, highlight
-from pygments.util import BytesIO, StringIO
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_cmdline.py')
@@ -41,17 +39,12 @@ def run_cmdline(*args, **kwds):
     saved_stdin = sys.stdin
     saved_stdout = sys.stdout
     saved_stderr = sys.stderr
-    if sys.version_info > (3,):
-        stdin_buffer = BytesIO()
-        stdout_buffer = BytesIO()
-        stderr_buffer = BytesIO()
-        new_stdin = sys.stdin = io.TextIOWrapper(stdin_buffer, 'utf-8')
-        new_stdout = sys.stdout = io.TextIOWrapper(stdout_buffer, 'utf-8')
-        new_stderr = sys.stderr = io.TextIOWrapper(stderr_buffer, 'utf-8')
-    else:
-        stdin_buffer = new_stdin = sys.stdin = StringIO()
-        stdout_buffer = new_stdout = sys.stdout = StringIO()
-        stderr_buffer = new_stderr = sys.stderr = StringIO()
+    stdin_buffer = BytesIO()
+    stdout_buffer = BytesIO()
+    stderr_buffer = BytesIO()
+    new_stdin = sys.stdin = io.TextIOWrapper(stdin_buffer, 'utf-8')
+    new_stdout = sys.stdout = io.TextIOWrapper(stdout_buffer, 'utf-8')
+    new_stderr = sys.stderr = io.TextIOWrapper(stderr_buffer, 'utf-8')
     new_stdin.write(kwds.get('stdin', ''))
     new_stdin.seek(0, 0)
     try:

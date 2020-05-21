@@ -66,6 +66,7 @@ class HaskellLexer(RegexLexer):
             (r"(')[" + uni.Lu + r"][\w\']*", Keyword.Type),
             (r"(')\[[^\]]*\]", Keyword.Type),  # tuples and lists get special treatment in GHC
             (r"(')\([^)]*\)", Keyword.Type),  # ..
+            (r"(')[:!#$%&*+.\\/<=>?@^|~-]+", Keyword.Type),  # promoted type operators
             #  Operators
             (r'\\(?![:!#$%&*+.\\/<=>?@^|~-]+)', Name.Function),  # lambda operator
             (r'(<-|::|->|=>|=)(?![:!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word),  # specials
@@ -197,6 +198,7 @@ class IdrisLexer(RegexLexer):
                 'if', 'in', 'infix[lr]?', 'instance', 'rewrite', 'auto',
                 'namespace', 'codata', 'mutual', 'private', 'public', 'abstract',
                 'total', 'partial',
+                'interface', 'implementation', 'export', 'covering', 'constructor',
                 'let', 'proof', 'of', 'then', 'static', 'where', '_', 'with',
                 'pattern',  'term',  'syntax', 'prefix',
                 'postulate', 'parameters', 'record', 'dsl', 'impossible', 'implicit',
@@ -213,7 +215,7 @@ class IdrisLexer(RegexLexer):
     tokens = {
         'root': [
             # Comments
-            (r'^(\s*)(%%%s)' % '|'.join(directives),
+            (r'^(\s*)(%%(%s))' % '|'.join(directives),
              bygroups(Text, Keyword.Reserved)),
             (r'(\s*)(--(?![!#$%&*+./<=>?@^|_~:\\]).*?)$', bygroups(Text, Comment.Single)),
             (r'(\s*)(\|{3}.*?)$', bygroups(Text, Comment.Single)),

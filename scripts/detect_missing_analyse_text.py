@@ -1,4 +1,3 @@
-from __future__ import print_function
 import sys
 
 from pygments.lexers import get_all_lexers, find_lexer_class

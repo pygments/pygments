@@ -9,8 +9,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 import re
 import sys
 import time
@@ -19,7 +17,7 @@ from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
 from pygments.token import Error, Text, Other, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
-    make_analysator, text_type, add_metaclass, iteritems, Future, guess_decode
+    make_analysator, Future, guess_decode
 from pygments.regexopt import regex_opt
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
@@ -48,8 +46,7 @@ class LexerMeta(type):
         return type.__new__(mcs, name, bases, d)
 
 
-@add_metaclass(LexerMeta)
-class Lexer(object):
+class Lexer(metaclass=LexerMeta):
     """
     Lexer for a specific language.
 
@@ -145,7 +142,7 @@ class Lexer(object):
         Also preprocess the text, i.e. expand tabs and strip it if
         wanted and applies registered filters.
         """
-        if not isinstance(text, text_type):
+        if not isinstance(text, str):
             if self.encoding == 'guess':
                 text, _ = guess_decode(text)
             elif self.encoding == 'chardet':
@@ -252,7 +249,7 @@ class include(str):  # pylint: disable=invalid-name
     pass
 
 
-class _inherit(object):
+class _inherit:
     """
     Indicates the a state should inherit from its superclass.
     """
@@ -275,7 +272,7 @@ class combined(tuple):  # pylint: disable=invalid-name
         pass
 
 
-class _PseudoMatch(object):
+class _PseudoMatch:
     """
     A pseudo match object constructed from a string.
     """
@@ -328,11 +325,12 @@ def bygroups(*args):
     return callback
 
 
-class _This(object):
+class _This:
     """
     Special singleton used for indicating the caller class.
     Used by ``using``.
     """
+
 this = _This()
 
 
@@ -536,7 +534,7 @@ class RegexLexerMeta(LexerMeta):
         for c in cls.__mro__:
             toks = c.__dict__.get('tokens', {})
 
-            for state, items in iteritems(toks):
+            for state, items in toks.items():
                 curitems = tokens.get(state)
                 if curitems is None:
                     # N.b. because this is assigned by reference, sufficiently
@@ -582,8 +580,7 @@ class RegexLexerMeta(LexerMeta):
         return type.__call__(cls, *args, **kwds)
 
 
-@add_metaclass(RegexLexerMeta)
-class RegexLexer(Lexer):
+class RegexLexer(Lexer, metaclass=RegexLexerMeta):
     """
     Base for simple stateful regular expression-based lexers.
     Simplifies the lexing process so that you need only
@@ -676,7 +673,7 @@ class RegexLexer(Lexer):
                     break
 
 
-class LexerContext(object):
+class LexerContext:
     """
     A helper object that holds lexer position data.
     """
@@ -850,8 +847,7 @@ class ProfilingRegexLexerMeta(RegexLexerMeta):
         return match_func
 
 
-@add_metaclass(ProfilingRegexLexerMeta)
-class ProfilingRegexLexer(RegexLexer):
+class ProfilingRegexLexer(RegexLexer, metaclass=ProfilingRegexLexerMeta):
     """Drop-in replacement for RegexLexer that does profiling of its regexes."""
 
     _prof_data = []

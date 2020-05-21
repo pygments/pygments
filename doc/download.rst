@@ -7,8 +7,8 @@ Packaged versions
 -----------------
 
 You can download it `from the Python Package Index
-<http://pypi.python.org/pypi/Pygments>`_.  For installation of packages from
-PyPI, we recommend `Pip <http://www.pip-installer.org>`_, which works on all
+<https://pypi.python.org/pypi/Pygments>`_.  For installation of packages from
+PyPI, we recommend `Pip <https://www.pip-installer.org>`_, which works on all
 major platforms.
 
 Under Linux, most distributions include a package for Pygments, usually called

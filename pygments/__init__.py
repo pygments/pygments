@@ -26,10 +26,9 @@
     :license: BSD, see LICENSE for details.
 """
 import sys
+from io import StringIO, BytesIO
 
-from pygments.util import StringIO, BytesIO
-
-__version__ = '2.5.1'
+__version__ = '2.6.1'
 __docformat__ = 'restructuredtext'
 
 __all__ = ['lex', 'format', 'highlight']
@@ -84,7 +83,3 @@ def highlight(code, lexer, formatter, outfile=None):
     """
     return format(lex(code, lexer), formatter, outfile)
 
-
-if __name__ == '__main__':  # pragma: no cover
-    from pygments.cmdline import main
-    sys.exit(main(sys.argv))

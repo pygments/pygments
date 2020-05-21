@@ -158,6 +158,9 @@ class XQueryLexer(ExtendedRegexLexer):
         # state stack
         if len(lexer.xquery_parse_state) == 0:
             ctx.stack.pop()
+            if not ctx.stack:
+                # make sure we have at least the root state on invalid inputs
+                ctx.stack = ['root']
         elif len(ctx.stack) > 1:
             ctx.stack.append(lexer.xquery_parse_state.pop())
         else:

@@ -6,13 +6,91 @@ Since 2.5.0, issue numbers refer to the tracker at
 pull request numbers to the requests at
 <https://github.com/pygments/pygments/pulls>.
 
-Version 2.5.2
+
+Version 2.7.0
 -------------
 (not released yet)
+
+- Added lexers:
+
+  * TNT (PR#1414)
+
+- Updated lexers:
+
+  * Lean (PR#1415)
+
+Version 2.6.1
+-------------
+(released March 8, 2020)
+
+- This release fixes a packaging issue. No functional changes.
+
+Version 2.6
+-----------
+(released March 8, 2020)
+
+- Running Pygments on Python 2.x is no longer supported.
+  (The Python 2 lexer still exists.)
+
+- Added lexers:
+
+  * Linux kernel logs (PR#1310)
+  * LLVM MIR (PR#1361)
+  * MiniScript (PR#1397)
+  * Mosel (PR#1287, PR#1326)
+  * Parsing Expression Grammar (PR#1336)
+  * ReasonML (PR#1386)
+  * Ride (PR#1319, PR#1321)
+  * Sieve (PR#1257)
+  * USD (PR#1290)
+  * WebIDL (PR#1309)
+
+- Updated lexers:
+
+  * Apache2 (PR#1378)
+  * Chapel (PR#1357)
+  * CSound (PR#1383)
+  * D (PR#1375, PR#1362)
+  * Idris (PR#1360)
+  * Perl6/Raku lexer (PR#1344)
+  * Python3 (PR#1382, PR#1385)
+  * Rust: Updated lexer to cover more builtins (mostly macros) and miscellaneous
+  new syntax (PR#1320)
+  * SQL: Add temporal support keywords (PR#1402)
+
+- The 256-color/true-color terminal formatters now support the italic attribute
+  in styles (PR#1288)
+- Support HTTP 2/3 header (PR#1308)
+- Support missing reason in HTTP header (PR#1322)
+- Boogie/Silver: support line continuations and triggers, move contract keywords
+  to separate category (PR#1299)
+- GAS: support C-style comments (PR#1291)
+- Fix names in S lexer (PR#1330, PR#1333)
+- Fix numeric literals in Ada (PR#1334)
+- Recognize ``.mjs`` files as Javascript (PR#1392)
+- Recognize ``.eex`` files as Elixir (PR#1387)
+- Fix ``re.MULTILINE`` usage (PR#1388)
+- Recognize ``pipenv`` and ``poetry`` dependency & lock files (PR#1376)
+- Improve font search on Windows (#1247)
+- Remove unused script block (#1401)
+
+Version 2.5.2
+-------------
+(released November 29, 2019)
+
+- Fix incompatibility with some setuptools versions (PR#1316)
 
 - Fix lexing of ReST field lists (PR#1279)
 - Fix lexing of Matlab keywords as field names (PR#1282)
 - Recognize double-quoted strings in Matlab (PR#1278)
+- Avoid slow backtracking in Vim lexer (PR#1312)
+- Fix Scala highlighting of types (PR#1315)
+- Highlight field lists more consistently in ReST (PR#1279)
+- Fix highlighting Matlab keywords in field names (PR#1282)
+- Recognize Matlab double quoted strings (PR#1278)
+- Add some Terraform keywords
+- Update Modelica lexer to 3.4
+- Update Crystal examples
 
 
 Version 2.5.1
@@ -29,7 +107,7 @@ Version 2.5.0
 - Added lexers:
 
   * Email (PR#1246)
-  * Erlang, Elxir shells (PR#823, #1521)
+  * Erlang, Elixir shells (PR#823, #1521)
   * Notmuch (PR#1264)
   * `Scdoc <https://git.sr.ht/~sircmpwn/scdoc>`_ (PR#1268)
   * `Solidity <https://solidity.readthedocs.io/>`_ (#1214)
@@ -49,7 +127,7 @@ Version 2.5.0
   * Logtalk (PR#1261)
   * Matlab (PR#1271)
   * Praat (PR#1277)
-  * Python3 (PR#1255)
+  * Python3 (PR#1255, PR#1400)
   * Ruby
   * YAML (#1528)
   * Velocity
@@ -773,7 +851,7 @@ Version 1.4
 
 - Support ``application/javascript`` as a JavaScript mime type (#504).
 
-- Support `Offload <http://offload.codeplay.com>`_ C++ Extensions as
+- Support `Offload <https://offload.codeplay.com/>`_ C++ Extensions as
   keywords in the C++ lexer (#484).
 
 - Escape more characters in LaTeX output (#505).

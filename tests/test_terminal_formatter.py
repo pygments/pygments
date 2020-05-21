@@ -7,11 +7,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 import re
+from io import StringIO
 
-from pygments.util import StringIO
 from pygments.lexers.sql import PlPgsqlLexer
 from pygments.formatters import TerminalFormatter, Terminal256Formatter, \
     HtmlFormatter, LatexFormatter

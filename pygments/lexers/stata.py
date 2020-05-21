@@ -27,8 +27,8 @@ class StataLexer(RegexLexer):
     """
     # Syntax based on
     # - http://fmwww.bc.edu/RePEc/bocode/s/synlightlist.ado
-    # - http://github.com/isagalaev/highlight.js/blob/master/src/languages/stata.js
-    # - http://github.com/jpitblado/vim-stata/blob/master/syntax/stata.vim
+    # - https://github.com/isagalaev/highlight.js/blob/master/src/languages/stata.js
+    # - https://github.com/jpitblado/vim-stata/blob/master/syntax/stata.vim
 
     name      = 'Stata'
     aliases   = ['stata', 'do']

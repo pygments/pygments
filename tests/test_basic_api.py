@@ -7,9 +7,8 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
-
 import random
+from io import StringIO, BytesIO
 from os import path
 
 import pytest
@@ -18,12 +17,12 @@ from pygments import lexers, formatters, lex, format
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
 from pygments.formatters.img import FontNotFound
-from pygments.util import text_type, StringIO, BytesIO, xrange, ClassNotFound
+from pygments.util import ClassNotFound
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_basic_api.py')
 
-test_content = [chr(i) for i in xrange(33, 128)] * 5
+test_content = [chr(i) for i in range(33, 128)] * 5
 random.shuffle(test_content)
 test_content = ''.join(test_content) + '\n'
 
@@ -49,8 +48,8 @@ def test_lexer_classes(cls):
 
     assert all(al.lower() == al for al in cls.aliases)
 
-    inst = cls(opt1="val1", opt2="val2")
     if issubclass(cls, RegexLexer):
+        inst = cls(opt1="val1", opt2="val2")
         if not hasattr(cls, '_tokens'):
             # if there's no "_tokens", the lexer has to be one with
             # multiple tokendef variants
@@ -61,9 +60,10 @@ def test_lexer_classes(cls):
             assert 'root' in cls._tokens, \
                    '%s has no root state' % cls
 
-    if cls.name in ['XQuery', 'Opa']:   # XXX temporary
-        return
 
+@pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
+def test_random_input(cls):
+    inst = cls()
     try:
         tokens = list(inst.get_tokens(test_content))
     except KeyboardInterrupt:
@@ -74,7 +74,7 @@ def test_lexer_classes(cls):
     for token in tokens:
         assert isinstance(token, tuple)
         assert isinstance(token[0], _TokenType)
-        assert isinstance(token[1], text_type)
+        assert isinstance(token[1], str)
         txt += token[1]
     assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \
         (cls.name, test_content, txt)
@@ -175,7 +175,7 @@ def test_formatter_encodings():
     fmt = HtmlFormatter()
     tokens = [(Text, u"ä")]
     out = format(tokens, fmt)
-    assert type(out) is text_type
+    assert type(out) is str
     assert u"ä" in out
 
     # encoding option
@@ -205,7 +205,7 @@ def test_formatter_unicode_handling(cls):
     if cls.name != 'Raw tokens':
         out = format(tokens, inst)
         if cls.unicodeoutput:
-            assert type(out) is text_type, '%s: %r' % (cls, out)
+            assert type(out) is str, '%s: %r' % (cls, out)
 
         inst = cls(encoding='utf-8')
         out = format(tokens, inst)
@@ -252,7 +252,7 @@ def test_bare_class_handler():
         assert False, 'nothing raised'
 
 
-class TestFilters(object):
+class TestFilters:
 
     def test_basic(self):
         filters_args = [
@@ -264,14 +264,18 @@ class TestFilters(object):
             ('raiseonerror', {}),
             ('gobble', {'n': 4}),
             ('tokenmerge', {}),
+            ('symbols', {'lang': 'isabelle'}),
         ]
         for x, args in filters_args:
             lx = lexers.PythonLexer()
             lx.add_filter(x, **args)
-            with open(TESTFILE, 'rb') as fp:
-                text = fp.read().decode('utf-8')
+            # We don't read as binary and decode, but instead read as text, as
+            # we need consistent line endings. Otherwise we'll get \r\n on
+            # Windows
+            with open(TESTFILE, 'r', encoding='utf-8') as fp:
+                text = fp.read()
             tokens = list(lx.get_tokens(text))
-            assert all(isinstance(t[1], text_type) for t in tokens), \
+            assert all(isinstance(t[1], str) for t in tokens), \
                 '%s filter did not return Unicode' % x
             roundtext = ''.join([t[1] for t in tokens])
             if x not in ('whitespace', 'keywordcase', 'gobble'):
@@ -315,3 +319,12 @@ class TestFilters(object):
         text = u'# DEBUG: text'
         tokens = list(lx.get_tokens(text))
         assert '# DEBUG: text' == tokens[0][1]
+
+    def test_symbols(self):
+        lx = lexers.IsabelleLexer()
+        lx.add_filter('symbols')
+        text = u'lemma "A \\<Longrightarrow> B"'
+        tokens = list(lx.get_tokens(text))
+        assert 'lemma' == tokens[0][1]
+        assert 'A ' == tokens[3][1]
+        assert u'\U000027f9' == tokens[4][1]

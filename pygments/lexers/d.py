@@ -47,11 +47,16 @@ class DLexer(RegexLexer):
                 'module', 'new', 'nothrow', 'out', 'override', 'package', 'pragma',
                 'private', 'protected', 'public', 'pure', 'ref', 'return', 'scope',
                 'shared', 'static', 'struct', 'super', 'switch', 'synchronized',
-                'template', 'this', 'throw', 'try', 'typedef', 'typeid', 'typeof',
+                'template', 'this', 'throw', 'try', 'typeid', 'typeof',
                 'union', 'unittest', 'version', 'volatile', 'while', 'with',
                 '__gshared', '__traits', '__vector', '__parameters'),
                 suffix=r'\b'),
              Keyword),
+            (words((
+                # Removed in 2.072
+                'typedef', ),
+                suffix=r'\b'),
+             Keyword.Removed),
             (words((
                 'bool', 'byte', 'cdouble', 'cent', 'cfloat', 'char', 'creal',
                 'dchar', 'double', 'float', 'idouble', 'ifloat', 'int', 'ireal',
@@ -60,9 +65,9 @@ class DLexer(RegexLexer):
              Keyword.Type),
             (r'(false|true|null)\b', Keyword.Constant),
             (words((
-                '__FILE__', '__MODULE__', '__LINE__', '__FUNCTION__', '__PRETTY_FUNCTION__'
-                '', '__DATE__', '__EOF__', '__TIME__', '__TIMESTAMP__', '__VENDOR__',
-                '__VERSION__'), suffix=r'\b'),
+                '__FILE__', '__FILE_FULL_PATH__', '__MODULE__', '__LINE__', '__FUNCTION__',
+                '__PRETTY_FUNCTION__', '__DATE__', '__EOF__', '__TIME__', '__TIMESTAMP__',
+                '__VENDOR__', '__VERSION__'), suffix=r'\b'),
              Keyword.Pseudo),
             (r'macro\b', Keyword.Reserved),
             (r'(string|wstring|dstring|size_t|ptrdiff_t)\b', Name.Builtin),

@@ -40,3 +40,62 @@ def test_multiline_argument(lexer):
             (Token.Text, '\n'),
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_directive_no_args(lexer):
+    fragment = 'Example\nServerName localhost'
+    tokens = [
+            (Token.Name.Builtin, 'Example'),
+            (Token.Text, ''),
+            (Token.Text, '\n'),
+            (Token.Name.Builtin, 'ServerName'),
+            (Token.Text, ' '),
+            (Token.Text, 'localhost'),
+            (Token.Text, ''),
+            (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_include_globs(lexer):
+    fragment = 'Include /etc/httpd/conf.d/*.conf'
+    tokens = [
+            (Token.Name.Builtin, 'Include'),
+            (Token.Text, ' '),
+            (Token.String.Other, '/etc/httpd/conf.d/*.conf'),
+            (Token.Text, ''),
+            (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_multi_include_globs(lexer):
+    fragment = 'Include /etc/httpd/conf.d/*/*.conf'
+    tokens = [
+            (Token.Name.Builtin, 'Include'),
+            (Token.Text, ' '),
+            (Token.String.Other, '/etc/httpd/conf.d/*/*.conf'),
+            (Token.Text, ''),
+            (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_multi_include_globs_root(lexer):
+    fragment = 'Include /*conf/*.conf'
+    tokens = [
+            (Token.Name.Builtin, 'Include'),
+            (Token.Text, ' '),
+            (Token.String.Other, '/*conf/*.conf'),
+            (Token.Text, ''),
+            (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_fix_lock_absolute_path(lexer):
+    fragment = 'LockFile /var/lock/apache2/accept.lock'
+    tokens = [
+            (Token.Name.Builtin, 'LockFile'),
+            (Token.Text, ' '),
+            (Token.String.Other, '/var/lock/apache2/accept.lock'),
+            (Token.Text, ''),
+            (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens

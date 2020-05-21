@@ -16,7 +16,6 @@ from pygments.lexer import ExtendedRegexLexer, RegexLexer, include, bygroups, \
     default, words, inherit
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
-from pygments.util import iteritems
 
 __all__ = ['CssLexer', 'SassLexer', 'ScssLexer', 'LessCssLexer']
 
@@ -612,7 +611,7 @@ class SassLexer(ExtendedRegexLexer):
             (r"\*/", Comment, '#pop'),
         ],
     }
-    for group, common in iteritems(common_sass_tokens):
+    for group, common in common_sass_tokens.items():
         tokens[group] = copy.copy(common)
     tokens['value'].append((r'\n', Text, 'root'))
     tokens['selector'].append((r'\n', Text, 'root'))
@@ -662,7 +661,7 @@ class ScssLexer(RegexLexer):
             (r"\*/", Comment, '#pop'),
         ],
     }
-    for group, common in iteritems(common_sass_tokens):
+    for group, common in common_sass_tokens.items():
         tokens[group] = copy.copy(common)
     tokens['value'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
     tokens['selector'].extend([(r'\n', Text), (r'[;{}]', Punctuation, '#pop')])
