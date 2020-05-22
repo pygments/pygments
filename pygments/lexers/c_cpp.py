@@ -33,6 +33,18 @@ class CFamilyLexer(RegexLexer):
     #: only one /* */ style comment
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)?'
 
+    # Hexadecimal part in an hexadecimal integer/floating-point literal.
+    # This includes decimal separators matching.
+    _hexpart = r'[0-9a-fA-F](\'?[0-9a-fA-F])*'
+    # Decimal part in an decimal integer/floating-point literal.
+    # This includes decimal separators matching.
+    _decpart = r'\d(\'?\d)*'
+    # Integer literal suffix (e.g. 'ull' or 'll').
+    _intsuffix = r'(([uU][lL]{0,2})|[lL]{1,2}[uU]?)?'
+
+    # Identifier regex with C and C++ Universal Character Name (UCN) support.
+    _ident = r'(?:[a-zA-Z_$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})*'
+
     tokens = {
         'whitespace': [
             # preprocessor directives: without whitespace
@@ -52,27 +64,33 @@ class CFamilyLexer(RegexLexer):
             (r'/(\\\n)?[*][\w\W]*', Comment.Multiline),
         ],
         'statements': [
-            (r'(L?)(")', bygroups(String.Affix, String), 'string'),
-            (r"(L?)(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
+            (r'([LuU]|u8)?(")', bygroups(String.Affix, String), 'string'),
+            (r"([LuU]|u8)?(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
-            (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[LlUu]*', Number.Float),
-            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
-            (r'0[0-7]+[LlUu]*', Number.Oct),
-            (r'\d+[LlUu]*', Number.Integer),
+
+             # Hexadecimal floating-point literals (C11, C++17)
+            (r'0[xX](' + _hexpart + r'\.' + _hexpart + r'|\.' + _hexpart + r'|' + _hexpart + r')[pP][+-]?' + _hexpart + r'[lL]?', Number.Float),
+
+            (r'(-)?(' + _decpart + r'\.' + _decpart + r'|\.' + _decpart + r'|' + _decpart + r')[eE][+-]?' + _decpart + r'[fFlL]?', Number.Float),
+            (r'(-)?((' + _decpart + r'\.(' + _decpart + r')?|\.' + _decpart + r')[fFlL]?)|(' + _decpart + r'[fFlL])', Number.Float),
+            (r'(-)?0[xX]' + _hexpart + _intsuffix, Number.Hex),
+            (r'(-)?0[bB][01](\'?[01])*' + _intsuffix, Number.Bin),
+            (r'(-)?0(\'?[0-7])+' + _intsuffix, Number.Oct),
+            (r'(-)?' + _decpart + _intsuffix, Number.Integer),
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
+            (r'(struct|union)(\s+)', bygroups(Keyword, Text), 'classname'),
             (words(('asm', 'auto', 'break', 'case', 'const', 'continue',
                     'default', 'do', 'else', 'enum', 'extern', 'for', 'goto',
-                    'if', 'register', 'restricted', 'return', 'sizeof',
-                    'static', 'struct', 'switch', 'typedef', 'union',
-                    'volatile', 'while'),
+                    'if', 'register', 'restricted', 'return', 'sizeof', 'struct',
+                    'static', 'switch', 'typedef', 'volatile', 'while', 'union',
+                    'thread_local', 'alignas', 'alignof', 'static_assert', '_Pragma'),
                    suffix=r'\b'), Keyword),
             (r'(bool|int|long|float|short|double|char|unsigned|signed|void)\b',
              Keyword.Type),
             (words(('inline', '_inline', '__inline', 'naked', 'restrict',
-                    'thread', 'typename'), suffix=r'\b'), Keyword.Reserved),
+                    'thread'), suffix=r'\b'), Keyword.Reserved),
             # Vector intrinsics
             (r'(__m(128i|128d|128|64))\b', Keyword.Reserved),
             # Microsoft-isms
@@ -83,22 +101,22 @@ class CFamilyLexer(RegexLexer):
                 'identifier', 'forceinline', 'assume'),
                 prefix=r'__', suffix=r'\b'), Keyword.Reserved),
             (r'(true|false|NULL)\b', Name.Builtin),
-            (r'([a-zA-Z_]\w*)(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
-            (r'[a-zA-Z_]\w*', Name),
+            (r'(' + _ident + r')(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
+            (_ident, Name)
         ],
         'root': [
             include('whitespace'),
             # functions
-            (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
-             r'([a-zA-Z_]\w*)'             # method name
+            (r'((?:' + _ident + r'(?:[&*\s])+))'  # return arguments
+             r'(' + _ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;{]*)(\{)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),
             # function declarations
-            (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
-             r'([a-zA-Z_]\w*)'             # method name
+            (r'((?:' + _ident + r'(?:[&*\s])+))'  # return arguments
+             r'(' + _ident + r')'             # method name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;]*)(;)',
              bygroups(using(this), Name.Function, using(this), using(this),
@@ -108,8 +126,8 @@ class CFamilyLexer(RegexLexer):
         'statement': [
             include('whitespace'),
             include('statements'),
-            ('[{}]', Punctuation),
-            (';', Punctuation, '#pop'),
+            (r'\}', Punctuation),
+            (r'[{;]', Punctuation, '#pop'),
         ],
         'function': [
             include('whitespace'),
@@ -127,8 +145,8 @@ class CFamilyLexer(RegexLexer):
             (r'\\', String),  # stray backslash
         ],
         'macro': [
-            (r'(include)(' + _ws1 + r')([^\n]+)',
-             bygroups(Comment.Preproc, Text, Comment.PreprocFile)),
+            (r'(include)('+_ws1+r')("[^"]+")([^\n]*)', bygroups(Comment.Preproc, using(this), Comment.PreprocFile, Comment.Single)),
+            (r'(include)('+_ws1+r')(<[^>]+>)([^\n]*)', bygroups(Comment.Preproc, using(this), Comment.PreprocFile, Comment.Single)),
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
             (r'//.*?\n', Comment.Single, '#pop'),
@@ -141,6 +159,12 @@ class CFamilyLexer(RegexLexer):
             (r'^\s*#el(?:se|if).*\n', Comment.Preproc, '#pop'),
             (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
             (r'.*?\n', Comment),
+        ],
+        'classname': [
+            (_ident, Name.Class, '#pop'),
+            # template specification
+            (r'\s*(?=>)', Text, '#pop'),
+            default('#pop')
         ]
     }
 
@@ -149,7 +173,7 @@ class CFamilyLexer(RegexLexer):
         'clock_t', 'time_t', 'va_list', 'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t',
         'mbstate_t', 'wctrans_t', 'wint_t', 'wctype_t'}
     c99_types = {
-        '_Bool', '_Complex', 'int8_t', 'int16_t', 'int32_t', 'int64_t', 'uint8_t',
+        'int8_t', 'int16_t', 'int32_t', 'int64_t', 'uint8_t',
         'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t', 'int_least16_t',
         'int_least32_t', 'int_least64_t', 'uint_least8_t', 'uint_least16_t',
         'uint_least32_t', 'uint_least64_t', 'int_fast8_t', 'int_fast16_t', 'int_fast32_t',
@@ -159,10 +183,22 @@ class CFamilyLexer(RegexLexer):
         'clockid_t', 'cpu_set_t', 'cpumask_t', 'dev_t', 'gid_t', 'id_t', 'ino_t', 'key_t',
         'mode_t', 'nfds_t', 'pid_t', 'rlim_t', 'sig_t', 'sighandler_t', 'siginfo_t',
         'sigset_t', 'sigval_t', 'socklen_t', 'timer_t', 'uid_t'}
+    c11_atomic_types = {
+        'atomic_bool', 'atomic_char', 'atomic_schar', 'atomic_uchar', 'atomic_short', 
+        'atomic_ushort', 'atomic_int', 'atomic_uint', 'atomic_long', 'atomic_ulong',
+        'atomic_llong', 'atomic_ullong', 'atomic_char16_t', 'atomic_char32_t', 'atomic_wchar_t', 
+        'atomic_int_least8_t', 'atomic_uint_least8_t', 'atomic_int_least16_t', 
+        'atomic_uint_least16_t', 'atomic_int_least32_t', 'atomic_uint_least32_t',
+        'atomic_int_least64_t', 'atomic_uint_least64_t', 'atomic_int_fast8_t', 
+        'atomic_uint_fast8_t', 'atomic_int_fast16_t', 'atomic_uint_fast16_t',
+        'atomic_int_fast32_t', 'atomic_uint_fast32_t', 'atomic_int_fast64_t',
+        'atomic_uint_fast64_t', 'atomic_intptr_t', 'atomic_uintptr_t', 'atomic_size_t',
+        'atomic_ptrdiff_t', 'atomic_intmax_t', 'atomic_uintmax_t'}
 
     def __init__(self, **options):
         self.stdlibhighlighting = get_bool_opt(options, 'stdlibhighlighting', True)
         self.c99highlighting = get_bool_opt(options, 'c99highlighting', True)
+        self.c11highlighting = get_bool_opt(options, 'c11highlighting', True)
         self.platformhighlighting = get_bool_opt(options, 'platformhighlighting', True)
         RegexLexer.__init__(self, **options)
 
@@ -174,6 +210,8 @@ class CFamilyLexer(RegexLexer):
                     token = Keyword.Type
                 elif self.c99highlighting and value in self.c99_types:
                     token = Keyword.Type
+                elif self.c11highlighting and value in self.c11_atomic_types:
+                    token = Keyword.Type
                 elif self.platformhighlighting and value in self.linux_types:
                     token = Keyword.Type
             yield index, token, value
@@ -182,12 +220,42 @@ class CFamilyLexer(RegexLexer):
 class CLexer(CFamilyLexer):
     """
     For C source code with preprocessor directives.
+
+    Additional options accepted:
+
+    `stdlibhighlighting`
+        Highlight common types found in the C/C++ standard library (e.g. `size_t`).
+        (default: ``True``).
+
+    `c99highlighting`
+        Highlight common types found in the C99 standard library (e.g. `int8_t`).
+        Actually, this includes all fixed-width integer types.
+        (default: ``True``).
+
+    `c11highlighting`
+        Highlight atomic types found in the C11 standard library (e.g. `atomic_bool`).
+        (default: ``True``).
+
+    `platformhighlighting`
+        Highlight common types found in the platform SDK headers (e.g. `clockid_t` on Linux).
+        (default: ``True``).
     """
     name = 'C'
     aliases = ['c']
     filenames = ['*.c', '*.h', '*.idc']
     mimetypes = ['text/x-chdr', 'text/x-csrc']
     priority = 0.1
+
+    tokens = {
+        'statements': [
+            (words((
+                '_Alignas', '_Alignof', '_Noreturn', '_Generic', '_Thread_local', 
+                '_Static_assert', '_Imaginary', 'noreturn', 'imaginary', 'complex'),
+                suffix=r'\b'), Keyword),
+            (words(('_Bool', '_Complex', '_Atomic'), suffix=r'\b'), Keyword.Type),
+            inherit
+        ]
+    }
 
     def analyse_text(text):
         if re.search(r'^\s*#include [<"]', text, re.MULTILINE):
@@ -199,6 +267,25 @@ class CLexer(CFamilyLexer):
 class CppLexer(CFamilyLexer):
     """
     For C++ source code with preprocessor directives.
+
+    Additional options accepted:
+
+    `stdlibhighlighting`
+        Highlight common types found in the C/C++ standard library (e.g. `size_t`).
+        (default: ``True``).
+
+    `c99highlighting`
+        Highlight common types found in the C99 standard library (e.g. `int8_t`).
+        Actually, this includes all fixed-width integer types.
+        (default: ``True``).
+
+    `c11highlighting`
+        Highlight atomic types found in the C11 standard library (e.g. `atomic_bool`).
+        (default: ``True``).
+
+    `platformhighlighting`
+        Highlight common types found in the platform SDK headers (e.g. `clockid_t` on Linux).
+        (default: ``True``).
     """
     name = 'C++'
     aliases = ['cpp', 'c++']
@@ -210,24 +297,24 @@ class CppLexer(CFamilyLexer):
 
     tokens = {
         'statements': [
+            (r'(class|concept|typename)(\s+)', bygroups(Keyword, Text), 'classname'),
             (words((
                 'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
                 'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
-                'private', 'protected', 'public', 'reinterpret_cast',
+                'private', 'protected', 'public', 'reinterpret_cast', 'class',
                 'restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
-                'try', 'typeid', 'typename', 'using', 'virtual',
-                'constexpr', 'nullptr', 'decltype', 'thread_local',
-                'alignas', 'alignof', 'static_assert', 'noexcept', 'override',
-                'final', 'constinit', 'consteval', 'concept', 'co_await',
-                'co_return', 'co_yield', 'requires', 'import', 'module'), suffix=r'\b'), Keyword),
+                'try', 'typeid', 'using', 'virtual', 'constexpr', 'nullptr', 'concept',
+                'decltype', 'noexcept', 'override', 'final', 'constinit', 'consteval', 
+                'co_await', 'co_return', 'co_yield', 'requires', 'import', 'module',
+                'typename'),
+               suffix=r'\b'), Keyword),
             (r'char(16_t|32_t|8_t)\b', Keyword.Type),
-            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(enum)(\s+)', bygroups(Keyword, Text), 'enumname'),
+
             # C++11 raw strings
-            (r'(R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
+            (r'((?:[LuU]|u8)?R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
              bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
                       String, String.Delimiter, String)),
-            # C++11 UTF-8/16/32 strings
-            (r'(u8|u|U)(")', bygroups(String.Affix, String), 'string'),
             inherit,
         ],
         'root': [
@@ -239,11 +326,15 @@ class CppLexer(CFamilyLexer):
             # Offload C++ extensions, http://offload.codeplay.com/
             (r'__(offload|blockingoffload|outer)\b', Keyword.Pseudo),
         ],
-        'classname': [
-            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
+        'enumname': [
+            include('whitespace'),
+            # 'enum class' and 'enum struct' C++11 support
+            (words(('class', 'struct'), suffix=r'\b'), Keyword),
+            (CFamilyLexer._ident, Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
-        ],
+            default('#pop')
+        ]
     }
 
     def analyse_text(text):
