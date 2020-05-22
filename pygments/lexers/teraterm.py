@@ -335,4 +335,3 @@ class TeraTermLexer(RegexLexer):
     def analyse_text(text):
         if re.search(TeraTermLexer.tokens['commands'][0][0], text):
             return 0.01
-        return 0.0
