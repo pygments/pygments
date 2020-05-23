@@ -72,7 +72,7 @@ def test_rexx_can_guess_from_text():
 
 
 @pytest.mark.parametrize("file_path, lexer", [
-    ("godot.gd", GDScriptLexer),
+    ("gdscript_example.gd", GDScriptLexer),
     ("example.gd", GAPLexer),
 ])
 def test_chooses_correct_lexer_for_example_files(file_path, lexer):
