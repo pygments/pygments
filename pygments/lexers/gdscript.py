@@ -338,3 +338,22 @@ class GDScriptLexer(RegexLexer):
             (r"\n", String.Single),
         ],
     }
+
+    def analyse_text(text):
+        score = 0.0
+
+        if re.search(
+            r"func (_ready|_init|_input|_process|_unhandled_input)", text
+        ):
+            score += 0.8
+
+        if re.search(
+            r"(extends |class_name |onready |preload|load|setget|func [^_])",
+            text
+        ):
+            score += 0.4
+
+        if re.search(r"(var|const|enum|export|signal|tool)", text):
+            score += 0.2
+
+        return min(score, 1.0)
