@@ -50,6 +50,7 @@ Programming languages
 * Dart
 * DCPU-16
 * Delphi
+* `Devicetree <https://www.devicetree.org/>`_
 * Dylan (incl. console)
 * Eiffel
 * `Elm <https://elm-lang.org/>`_
