@@ -1,4 +1,4 @@
-!% $SMALL ! This is ICL, not a comment.
+!% $LARGE ! This is ICL, not a comment.
 !% -w
 
 !% A comprehensive test of Inform6Lexer.
@@ -8,8 +8,8 @@ Switches d2SDq;
 Constant Story "Informal Testing";
 Constant Headline "^Not a game.^";!% This is a comment, not ICL.
 
-Release 3;
-Serial "151213";
+Release 4;
+Serial "200526";
 Version 5;
 
 Ifndef TARGET_ZCODE;
@@ -31,6 +31,13 @@ endif ;
 
 Replace CreatureTest;
 
+Ifdef VN_1633;
+Replace IsSeeThrough IsSeeThroughOrig;
+[ IsSeeThrough * o;
+    return o hasnt opaque || IsSeeThroughOrig(o);
+];
+Endif;
+
 Include "Parser";
 Include "VerbLib";
 
@@ -45,20 +52,21 @@ Object kitchen "Kitchen"
     print "v"; inversion; "^";
 ];
 
-Ifdef VN_1633;
-Replace IsSeeThrough IsSeeThroughOrig;
-[ IsSeeThrough * o;
-    return o hasnt opaque || IsSeeThroughOrig(o);
-];
-Endif;
-
 Abbreviate "test";
 
 Array table buffer 260;
+Ifdef TARGET_GLULX;
+Array max_latin_1 static string "@{0000ff}";
+Endif;
 
 Attribute reversed;
 Attribute opaque alias locked;
 Constant to reversed;
+
+Origsource "^~@{.inf";
+Origsource "^~@{.inf" 67;
+Origsource "^~@{.inf" 68 1;
+Origsource;
 
 Property long additive additive long alias;
 Property long long long wingspan alias alias;
@@ -69,7 +77,7 @@ Class Bird(10) has animate class Flier with wingspan 2;
 Constant Constant1;
 Constant Constant2 Constant1;
 Constant Constant3 = Constant2;
-Ifdef VN_1633; Undef Constant; Endif;
+Ifdef VN_1633; Undef Constant1; Endif;
 
 Ifdef VN_1633;
 Dictionary 'word' 1 2;
