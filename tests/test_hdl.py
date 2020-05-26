@@ -64,8 +64,7 @@ def test_systemverilog_basic(lexer):
         (Text, ' '),
         (Operator, '='),
         (Text, ' '),
-        # Note: This should be Number.Integer
-        (Number.Hex, '42'),
+        (Number.Integer, '42'),
         (Text, '\n'),
 
         (Punctuation, ')'),
@@ -81,9 +80,9 @@ def test_systemverilog_basic(lexer):
         (Punctuation, '['),
         (Name, 'N'),
         (Operator, '-'),
-        (Number.Hex, '1'),
+        (Number.Integer, '1'),
         (Operator, ':'),
-        (Number.Hex, '0'),
+        (Number.Integer, '0'),
         (Punctuation, ']'),
         (Text, ' '),
         (Name, 'y'),
@@ -108,10 +107,10 @@ def test_systemverilog_basic(lexer):
         (Punctuation, '['),
         (Name, 'N'),
         (Operator, '-'),
-        (Number.Hex, '1'),
+        (Number.Integer, '1'),
         # Note: This ':' should be Punctuation
         (Operator, ':'),
-        (Number.Hex, '0'),
+        (Number.Integer, '0'),
         (Punctuation, ']'),
         (Text, ' '),
         (Name, 'a'),
@@ -126,9 +125,9 @@ def test_systemverilog_basic(lexer):
         (Punctuation, '['),
         (Name, 'N'),
         (Operator, '-'),
-        (Number.Hex, '1'),
+        (Number.Integer, '1'),
         (Operator, ':'),
-        (Number.Hex, '0'),
+        (Number.Integer, '0'),
         (Punctuation, ']'),
         (Text, ' '),
         (Name, 'b'),
@@ -205,3 +204,140 @@ def test_systemverilog_basic(lexer):
         (Text, '\n'),
     ]
     assert list(lexer.get_tokens(SYSTEMVERILOG_BASIC_FRAGMENT)) == tokens
+
+
+# Believe it or not, SystemVerilog supports spaces before and after the base
+# specifier (ie 'b, 'd, 'h). See IEEE 1800-2017 Section 5.7.1 for examples.
+SVNUMS = """
+8'b10101010
+8 'b10101010
+8'b 10101010
+8'sb10101010
+8'Sb10101010
+8'B10101010
+8'b1010_1010
+8'b10xXzZ?10
+
+24'o01234567
+24 'o01234567
+24'o 01234567
+24'so01234567
+24'So01234567
+24'O01234567
+24'o0123_4567
+24'o01xXzZ?7
+
+32'd27182818
+32 'd27182818
+32'd 27182818
+32'sd27182818
+32'Sd27182818
+32'D27182818
+32'd2718_2818
+32'd27xXzZ?8
+
+32'hdeadbeef
+32 'hdeadbeef
+32'h deadbeef
+32'shdeadbeef
+32'Shdeadbeef
+32'Hdeadbeef
+32'hdead_beef
+32'hdexXzZ?f
+
+'0 '1 'x 'X 'z 'Z
+
+42 1234_5678
+"""
+
+def test_systemverilog_numbers(lexer):
+    """Test most types of numbers"""
+
+    tokens = [
+        (Number.Bin, "8'b10101010"),
+        (Text, '\n'),
+        (Number.Bin, "8 'b10101010"),
+        (Text, '\n'),
+        (Number.Bin, "8'b 10101010"),
+        (Text, '\n'),
+        (Number.Bin, "8'sb10101010"),
+        (Text, '\n'),
+        (Number.Bin, "8'Sb10101010"),
+        (Text, '\n'),
+        (Number.Bin, "8'B10101010"),
+        (Text, '\n'),
+        (Number.Bin, "8'b1010_1010"),
+        (Text, '\n'),
+        (Number.Bin, "8'b10xXzZ?10"),
+        (Text, '\n'),
+        (Text, '\n'),
+        (Number.Oct, "24'o01234567"),
+        (Text, '\n'),
+        (Number.Oct, "24 'o01234567"),
+        (Text, '\n'),
+        (Number.Oct, "24'o 01234567"),
+        (Text, '\n'),
+        (Number.Oct, "24'so01234567"),
+        (Text, '\n'),
+        (Number.Oct, "24'So01234567"),
+        (Text, '\n'),
+        (Number.Oct, "24'O01234567"),
+        (Text, '\n'),
+        (Number.Oct, "24'o0123_4567"),
+        (Text, '\n'),
+        (Number.Oct, "24'o01xXzZ?7"),
+        (Text, '\n'),
+        (Text, '\n'),
+        (Number.Integer, "32'd27182818"),
+        (Text, '\n'),
+        (Number.Integer, "32 'd27182818"),
+        (Text, '\n'),
+        (Number.Integer, "32'd 27182818"),
+        (Text, '\n'),
+        (Number.Integer, "32'sd27182818"),
+        (Text, '\n'),
+        (Number.Integer, "32'Sd27182818"),
+        (Text, '\n'),
+        (Number.Integer, "32'D27182818"),
+        (Text, '\n'),
+        (Number.Integer, "32'd2718_2818"),
+        (Text, '\n'),
+        (Number.Integer, "32'd27xXzZ?8"),
+        (Text, '\n'),
+        (Text, '\n'),
+        (Number.Hex, "32'hdeadbeef"),
+        (Text, '\n'),
+        (Number.Hex, "32 'hdeadbeef"),
+        (Text, '\n'),
+        (Number.Hex, "32'h deadbeef"),
+        (Text, '\n'),
+        (Number.Hex, "32'shdeadbeef"),
+        (Text, '\n'),
+        (Number.Hex, "32'Shdeadbeef"),
+        (Text, '\n'),
+        (Number.Hex, "32'Hdeadbeef"),
+        (Text, '\n'),
+        (Number.Hex, "32'hdead_beef"),
+        (Text, '\n'),
+        (Number.Hex, "32'hdexXzZ?f"),
+        (Text, '\n'),
+        (Text, '\n'),
+        (Number, "'0"),
+        (Text, ' '),
+        (Number, "'1"),
+        (Text, ' '),
+        (Number, "'x"),
+        (Text, ' '),
+        (Number, "'X"),
+        (Text, ' '),
+        (Number, "'z"),
+        (Text, ' '),
+        (Number, "'Z"),
+        (Text, '\n'),
+        (Text, '\n'),
+        (Number.Integer, '42'),
+        (Text, ' '),
+        (Number.Integer, '1234_5678'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(SVNUMS)) == tokens
