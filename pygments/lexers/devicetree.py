@@ -17,7 +17,12 @@ from pygments.token import *
 __all__ = ['DevicetreeLexer']
 
 class DevicetreeLexer(RegexLexer):
-    
+    """
+    Lexer for `Devicetree <https://www.devicetree.org/>`_ files.
+
+    .. versionadded:: 2.7
+    """
+
     name = 'Devicetree'
     aliases = ['devicetree', 'dts']
     filenames = ['*.dts', '*.dtsi']
