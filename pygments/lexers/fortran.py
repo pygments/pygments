@@ -155,10 +155,10 @@ class FortranLexer(RegexLexer):
         ],
 
         'nums': [
-            (r'\d+(?![.e])(_[a-z]\w+)?', Number.Integer),
-            (r'[+-]?\d*\.\d+([ed][-+]?\d+)?(_[a-z]\w+)?', Number.Float),
-            (r'[+-]?\d+\.\d*([ed][-+]?\d+)?(_[a-z]\w+)?', Number.Float),
-            (r'[+-]?\d+(\.\d*)?[ed][-+]?\d+(_[a-z]\w+)?', Number.Float),
+            (r'\d+(?![.e])(_([1-9]|[a-z]\w*))?', Number.Integer),
+            (r'[+-]?\d*\.\d+([ed][-+]?\d+)?(_([1-9]|[a-z]\w*))?', Number.Float),
+            (r'[+-]?\d+\.\d*([ed][-+]?\d+)?(_([1-9]|[a-z]\w*))?', Number.Float),
+            (r'[+-]?\d+(\.\d*)?[ed][-+]?\d+(_([1-9]|[a-z]\w*))?', Number.Float),
         ],
     }
 
