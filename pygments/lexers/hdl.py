@@ -223,8 +223,21 @@ class SystemVerilogLexer(RegexLexer):
                 'until_with', 'untyped', 'use', 'vectored',
                 'virtual', 'wait', 'wait_order', 'weak', 'weak0',
                 'weak1', 'while', 'wildcard', 'with', 'within',
-                'xnor', 'xor'), suffix=r'\b'),
+                'xnor', 'xor'),
+                suffix=r'\b'),
              Keyword),
+
+            (words((
+                # Variable types
+                'bit', 'byte', 'chandle', 'const', 'event', 'int', 'integer',
+                'logic', 'longint', 'real', 'realtime', 'reg', 'shortint',
+                'shortreal', 'signed', 'string', 'time', 'type', 'unsigned',
+                'var', 'void',
+                # Net types
+                'supply0', 'supply1', 'tri', 'triand', 'trior', 'trireg',
+                'tri0', 'tri1', 'uwire', 'wand', 'wire', 'wor'),
+                suffix=r'\b'),
+             Keyword.Type),
 
             (words((
                 '`__FILE__', '`__LINE__', '`begin_keywords', '`celldefine',
@@ -316,17 +329,7 @@ class SystemVerilogLexer(RegexLexer):
              Name.Builtin),
 
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (words((
-                # Variable types
-                'bit', 'byte', 'chandle', 'const', 'event', 'int', 'integer',
-                'logic', 'longint', 'real', 'realtime', 'reg', 'shortint',
-                'shortreal', 'signed', 'string', 'time', 'type', 'unsigned',
-                'var', 'void',
-                # Net types
-                'supply0', 'supply1', 'tri', 'triand', 'trior', 'trireg',
-                'tri0', 'tri1', 'uwire', 'wand', 'wire', 'wor'),
-                suffix=r'\b'),
-             Keyword.Type),
+
             (r'[a-zA-Z_]\w*:(?!:)', Name.Label),
             (r'\$?[a-zA-Z_]\w*', Name),
             (r'\\(\S+)', Name),
