@@ -179,7 +179,10 @@ class SystemVerilogLexer(RegexLexer):
             (r'[0-9][_0-9]*', Number.Integer),
 
             (r'\*/', Error),
+
             (r'[~!%^&*+=|?:<>/-]', Operator),
+            (words(('inside', 'dist'), suffix=r'\b'), Operator.Word),
+
             (r'[()\[\],.;\']', Punctuation),
             (r'`[a-zA-Z_]\w*', Name.Constant),
 
@@ -191,7 +194,7 @@ class SystemVerilogLexer(RegexLexer):
                 'checker', 'class', 'clocking', 'cmos', 'config',
                 'constraint', 'context', 'continue', 'cover', 'covergroup',
                 'coverpoint', 'cross', 'deassign', 'default', 'defparam', 'design',
-                'disable', 'dist', 'do', 'edge', 'else', 'end', 'endcase',
+                'disable', 'do', 'edge', 'else', 'end', 'endcase',
                 'endchecker', 'endclass', 'endclocking', 'endconfig', 'endfunction',
                 'endgenerate', 'endgroup', 'endinterface', 'endmodule', 'endpackage',
                 'endprimitive', 'endprogram', 'endproperty', 'endsequence',
@@ -200,7 +203,7 @@ class SystemVerilogLexer(RegexLexer):
                 'for', 'force', 'foreach', 'forever', 'fork', 'forkjoin', 'function',
                 'generate', 'genvar', 'global', 'highz0', 'highz1', 'if', 'iff',
                 'ifnone', 'ignore_bins', 'illegal_bins', 'implies', 'implements', 'import',
-                'incdir', 'include', 'initial', 'inout', 'input', 'inside',
+                'incdir', 'include', 'initial', 'inout', 'input',
                 'instance', 'interconnect', 'interface', 'intersect', 'join',
                 'join_any', 'join_none', 'large', 'let', 'liblist', 'library',
                 'local', 'localparam', 'macromodule', 'matches',
