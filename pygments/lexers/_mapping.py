@@ -190,6 +190,7 @@ LEXERS = {
     'HaskellLexer': ('pygments.lexers.haskell', 'Haskell', ('haskell', 'hs'), ('*.hs',), ('text/x-haskell',)),
     'HaxeLexer': ('pygments.lexers.haxe', 'Haxe', ('hx', 'haxe', 'hxsl'), ('*.hx', '*.hxsl'), ('text/haxe', 'text/x-haxe', 'text/x-hx')),
     'HexdumpLexer': ('pygments.lexers.hexdump', 'Hexdump', ('hexdump',), (), ()),
+    'HlbLexer': ('pygments.lexers.hlb', 'Hlb', ('hlb',), ('*.hlb',), ()),
     'HsailLexer': ('pygments.lexers.asm', 'HSAIL', ('hsail', 'hsa'), ('*.hsail',), ('text/x-hsail',)),
     'HspecLexer': ('pygments.lexers.haskell', 'Hspec', ('hspec',), (), ()),
     'HtmlDjangoLexer': ('pygments.lexers.templates', 'HTML+Django/Jinja', ('html+django', 'html+jinja', 'htmldjango'), (), ('text/html+django', 'text/html+jinja')),

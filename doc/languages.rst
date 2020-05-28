@@ -76,6 +76,7 @@ Programming languages
 * Groovy
 * `Haskell <https://www.haskell.org/>`_ (incl. Literate Haskell)
 * `Haxe <https://haxe.org>`_
+* `HLB <https://github.com/openllb/hlb>`_
 * HLSL
 * `HSpec <https://hackage.haskell.org/package/hspec>`_
 * Hy
