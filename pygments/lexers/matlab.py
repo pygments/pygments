@@ -82,6 +82,7 @@ class MatlabLexer(RegexLexer):
             (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'%.*$', Comment),
             (r'(\s*^\s*)(function)\b', bygroups(Text, Keyword), 'deffunc'),
+            (r'(\s*^\s*)(properties)\b', bygroups(Text, Keyword), 'defprops'),
 
             # from 'iskeyword' on version 9.4 (R2018a):
             # Check that there is no preceding dot, as keywords are valid field
@@ -142,6 +143,13 @@ class MatlabLexer(RegexLexer):
                       Punctuation, Whitespace), '#pop'),
             # function with no args
             (r'(\s*)([a-zA-Z_]\w*)', bygroups(Text, Name.Function), '#pop'),
+        ],
+        'defprops': [
+            (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
+            (r'%.*$', Comment),
+            (r'(?<!\.)end\b', Keyword, '#pop'),
+            (r'\w+', Name),
+            (r'\s*', Text)
         ],
         'string': [
             (r"[^']*'", String, '#pop'),
