@@ -200,3 +200,74 @@ def test_command_mode(lexer):
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+
+
+MATLAB_SAMPLE_CLASS = """
+classdef Name < dynamicprops
+    properties
+        % i am a comment
+        name1
+        name2
+    end
+    methods
+        % i am also a comment
+        function self = Name()
+            % i am a comment inside a constructor
+        end
+    end
+end
+""".strip()
+
+def test_classes_with_properties(lexer):
+    tokens = [
+        (Token.Keyword, 'classdef'),
+        (Token.Text, ' '),
+        (Token.Name, 'Name'),
+        (Token.Text, ' '),
+        (Token.Operator, '<'),
+        (Token.Text, ' '),
+        (Token.Keyword, 'dynamicprops'),
+        (Token.Text, '\n    '),
+        (Token.Keyword, 'properties'),
+        (Token.Text, '\n        '),
+        (Token.Comment, '% i am a comment'),
+        (Token.Text, '\n        '),
+        (Token.Name, 'name1'),
+        (Token.Text, '\n        '),
+        (Token.Name, 'name2'),
+        (Token.Text, '\n    '),
+        (Token.Keyword, 'end'),
+        (Token.Text, '\n    '),
+        (Token.Keyword, 'methods'),
+        (Token.Text, '\n'),
+        (Token.Text, ' '),
+        (Token.Text, ' '),
+        (Token.Text, ' '),
+        (Token.Text, ' '),
+        (Token.Text, ' '),
+        (Token.Text, ' '),
+        (Token.Text, ' '),
+        (Token.Text, ' '),
+        (Token.Comment, '% i am also a comment'),
+        (Token.Text, '\n        '),
+        (Token.Keyword, 'function'),
+        (Token.Text.Whitespace, ' '),
+        (Token.Text, 'self '),
+        (Token.Punctuation, '='),
+        (Token.Text.Whitespace, ' '),
+        (Token.Name.Function, 'Name'),
+        (Token.Punctuation, '('),
+        (Token.Punctuation, ')'),
+        (Token.Text.Whitespace, '\n            '),
+        (Token.Comment, '% i am a comment inside a constructor'),
+        (Token.Text, '\n        '),
+        (Token.Keyword, 'end'),
+        (Token.Text, '\n    '),
+        (Token.Keyword, 'end'),
+        (Token.Text, '\n'),
+        (Token.Keyword, 'end'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(MATLAB_SAMPLE_CLASS)) == tokens
+
