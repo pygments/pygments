@@ -131,8 +131,7 @@ class RustLexer(RegexLexer):
             (r'b?r(#*)".*?"\1', String),
 
             # Lifetime names
-            (r"'(static|_)", Name.Builtin),
-            (r"'[a-zA-Z_]\w*", Name.Attribute),
+            (r"'", Operator, 'lifetime'),
 
             # Operators and Punctuation
             (r'\.\.=?', Operator),
@@ -172,9 +171,15 @@ class RustLexer(RegexLexer):
         'typename': [
             (r'\s+', Text),
             (r'&', Keyword.Pseudo),
+            (r"'", Operator, 'lifetime'),
             builtin_types,
             keyword_types,
             (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
+            default('#pop'),
+        ],
+        'lifetime': [
+            (r"(static|_)", Name.Builtin),
+            (r"[a-zA-Z_]+\w*", Name.Attribute),
             default('#pop'),
         ],
         'number_lit': [
