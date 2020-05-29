@@ -86,9 +86,9 @@ class MatlabLexer(RegexLexer):
             # from 'iskeyword' on version 9.4 (R2018a):
             # Check that there is no preceding dot, as keywords are valid field
             # names.
-            (words(('break', 'case', 'catch', 'classdef', 'continue', 'else',
-                    'elseif', 'end', 'for', 'function',
-                    'global', 'if', 'otherwise', 'parfor',
+            (words(('break', 'case', 'catch', 'classdef', 'continue',
+                    'dynamicprops', 'else', 'elseif', 'end', 'for', 'function',
+                    'global', 'if', 'methods', 'otherwise', 'parfor',
                     'persistent', 'return', 'spmd', 'switch',
                     'try', 'while'),
                    prefix=r'(?<!\.)', suffix=r'\b'),
