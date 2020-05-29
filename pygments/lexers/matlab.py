@@ -81,7 +81,7 @@ class MatlabLexer(RegexLexer):
             (r'^!.*', String.Other),
             (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'%.*$', Comment),
-            (r'^\s*function\b', Keyword, 'deffunc'),
+            (r'(\s*^\s*)(function)\b', bygroups(Text, Keyword), 'deffunc'),
 
             # from 'iskeyword' on version 9.4 (R2018a):
             # Check that there is no preceding dot, as keywords are valid field
@@ -91,8 +91,8 @@ class MatlabLexer(RegexLexer):
                     'global', 'if', 'methods', 'otherwise', 'parfor',
                     'persistent', 'return', 'spmd', 'switch',
                     'try', 'while'),
-                   prefix=r'(?<!\.)', suffix=r'\b'),
-             Keyword),
+                   prefix=r'(?<!\.)(\s*)(', suffix=r')\b'),
+             bygroups(Text, Keyword)),
 
             ("(" + "|".join(elfun + specfun + elmat) + r')\b',  Name.Builtin),
 
