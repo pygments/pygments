@@ -149,7 +149,7 @@ class MatlabLexer(RegexLexer):
             (r'%.*$', Comment),
             (r'(?<!\.)end\b', Keyword, '#pop'),
             (r'\w+', Name),
-            (r'\s*', Text)
+            (r'\s+|.', Text)
         ],
         'string': [
             (r"[^']*'", String, '#pop'),
