@@ -8,7 +8,7 @@
 # :license: BSD, see LICENSE for details.
 #
 
-PYTHON ?= python
+PYTHON ?= python3
 
 export PYTHONPATH = $(shell echo "$$PYTHONPATH"):$(shell python -c 'import os; print ":".join(os.path.abspath(line.strip()) for line in file("PYTHONPATH"))' 2>/dev/null)
 
