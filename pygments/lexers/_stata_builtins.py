@@ -455,4 +455,4 @@ builtins_functions = (
     "weibullphtailabgx", "weibulltailabx", "weibulltailabgx",
     "wofd", "word", "wordbreaklocale", "wordcount",
     "year", "yearly", "yh", "ym", "yofd", "yq", "yw" 
-}
+)
