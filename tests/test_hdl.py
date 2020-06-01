@@ -343,3 +343,252 @@ def test_systemverilog_numbers(lexer):
     """Test most types of numbers"""
     tokens = list(lexer.get_tokens(SYSTEMVERILOG_NUMBERS_TEXT))
     assert tokens == SYSTEMVERILOG_NUMBERS_TOKENS
+
+
+# See 1800-2017 Table 11-2: Operator Precedence and Associativity
+# Note that the duplicates (unary/binary) have been removed,
+# ie '+', '-', '&', '|', '^', '~^', '^~'
+SYSTEMVERILOG_OPERATORS_TEXT = """
+() [] :: .
++ - ! ~ & ~& | ~| ^ ~^ ^~ ++ --
+**
+* / %
+<< >> <<< >>>
+< <= > >= inside dist
+== != === !== ==? !=?
+&&
+||
+?:
+-> <->
+= += -= *= /= %= &= ^= |= <<= >>= <<<= >>>= := :/ <=
+{} {{}}
+"""
+
+# Note: This is a inconsistent mix of operator and punctuation
+SYSTEMVERILOG_OPERATORS_TOKENS = [
+    (Punctuation,   '('),
+    (Punctuation,   ')'),
+    (Text,          ' '),
+    (Punctuation,   '['),
+    (Punctuation,   ']'),
+    (Text,          ' '),
+    # Note: This should be '::'
+    (Operator,      ':'),
+    (Operator,      ':'),
+    (Text,          ' '),
+    (Punctuation,   '.'),
+    (Text,          '\n'),
+    (Operator,      '+'),
+    (Text,          ' '),
+    (Operator,      '-'),
+    (Text,          ' '),
+    (Operator,      '!'),
+    (Text,          ' '),
+    (Operator,      '~'),
+    (Text,          ' '),
+    (Operator,      '&'),
+    (Text,          ' '),
+    # Note: This should be '~&'
+    (Operator,      '~'),
+    (Operator,      '&'),
+    (Text,          ' '),
+    (Operator,      '|'),
+    (Text,          ' '),
+    # Note: This should be '~|'
+    (Operator,      '~'),
+    (Operator,      '|'),
+    (Text,          ' '),
+    (Operator,      '^'),
+    (Text,          ' '),
+    # Note: This should be '~^'
+    (Operator,      '~'),
+    (Operator,      '^'),
+    (Text,          ' '),
+    # Note: This should be '^~'
+    (Operator,      '^'),
+    (Operator,      '~'),
+    (Text,          ' '),
+    # Note: This should be '++'
+    (Operator,      '+'),
+    (Operator,      '+'),
+    (Text,          ' '),
+    # Note: This should be '--'
+    (Operator,      '-'),
+    (Operator,      '-'),
+    (Text,          '\n'),
+    # Note: This should be '**'
+    (Operator,      '*'),
+    (Operator,      '*'),
+    (Text,          '\n'),
+    (Operator,      '*'),
+    (Text,          ' '),
+    (Operator,      '/'),
+    (Text,          ' '),
+    (Operator,      '%'),
+    (Text,          '\n'),
+    # Note: This should be '<<'
+    (Operator,      '<'),
+    (Operator,      '<'),
+    (Text,          ' '),
+    # Note: This should be '>>'
+    (Operator,      '>'),
+    (Operator,      '>'),
+    (Text,          ' '),
+    # Note: This should be '<<<'
+    (Operator,      '<'),
+    (Operator,      '<'),
+    (Operator,      '<'),
+    (Text,          ' '),
+    # Note: This should be '>>>'
+    (Operator,      '>'),
+    (Operator,      '>'),
+    (Operator,      '>'),
+    (Text,          '\n'),
+    (Operator,      '<'),
+    (Text,          ' '),
+    # Note: This should be '<='
+    (Operator,      '<'),
+    (Operator,      '='),
+    (Text,          ' '),
+    (Operator,      '>'),
+    (Text,          ' '),
+    # Note: This should be '>='
+    (Operator,      '>'),
+    (Operator,      '='),
+    (Text,          ' '),
+    (Operator.Word, 'inside'),
+    (Text,          ' '),
+    (Operator.Word, 'dist'),
+    (Text,          '\n'),
+    # Note: This should be '=='
+    (Operator,      '='),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '!='
+    (Operator,      '!'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '==='
+    (Operator,      '='),
+    (Operator,      '='),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '!=='
+    (Operator,      '!'),
+    (Operator,      '='),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '==?'
+    (Operator,      '='),
+    (Operator,      '='),
+    (Operator,      '?'),
+    (Text,          ' '),
+    # Note: This should be '!=?'
+    (Operator,      '!'),
+    (Operator,      '='),
+    (Operator,      '?'),
+    (Text,          '\n'),
+    # Note: This should be '&&'
+    (Operator,      '&'),
+    (Operator,      '&'),
+    (Text,          '\n'),
+    # Note: This should be '||'
+    (Operator,      '|'),
+    (Operator,      '|'),
+    (Text,          '\n'),
+    (Operator,      '?'),
+    (Operator,      ':'),
+    (Text,          '\n'),
+    # Note: This should be '->'
+    (Operator,      '-'),
+    (Operator,      '>'),
+    (Text,          ' '),
+    # Note: This should be '<->'
+    (Operator,      '<'),
+    (Operator,      '-'),
+    (Operator,      '>'),
+    (Text,          '\n'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '+='
+    (Operator,      '+'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '-='
+    (Operator,      '-'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '*='
+    (Operator,      '*'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '/='
+    (Operator,      '/'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '%='
+    (Operator,      '%'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '&='
+    (Operator,      '&'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '^='
+    (Operator,      '^'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '|='
+    (Operator,      '|'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '<<='
+    (Operator,      '<'),
+    (Operator,      '<'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '>>='
+    (Operator,      '>'),
+    (Operator,      '>'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '<<<='
+    (Operator,      '<'),
+    (Operator,      '<'),
+    (Operator,      '<'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be '>>>='
+    (Operator,      '>'),
+    (Operator,      '>'),
+    (Operator,      '>'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be ':='
+    (Operator,      ':'),
+    (Operator,      '='),
+    (Text,          ' '),
+    # Note: This should be ':/'
+    (Operator,      ':'),
+    (Operator,      '/'),
+    (Text,          ' '),
+    # Note: This should be '<='
+    (Operator,      '<'),
+    (Operator,      '='),
+    (Text,          '\n'),
+    (Punctuation,   '{'),
+    (Punctuation,   '}'),
+    (Text,          ' '),
+    # Note: This should be '{{'
+    (Punctuation,   '{'),
+    (Punctuation,   '{'),
+    # Note: This should be '}}'
+    (Punctuation,   '}'),
+    (Punctuation,   '}'),
+    (Text,          '\n'),
+]
+
+def test_systemverilog_operators(lexer):
+    """Test various operators"""
+    tokens = list(lexer.get_tokens(SYSTEMVERILOG_OPERATORS_TEXT))
+    assert tokens == SYSTEMVERILOG_OPERATORS_TOKENS

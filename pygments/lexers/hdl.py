@@ -179,7 +179,10 @@ class SystemVerilogLexer(RegexLexer):
             (r'[0-9][_0-9]*', Number.Integer),
 
             (r'\*/', Error),
+
             (r'[~!%^&*+=|?:<>/-]', Operator),
+            (words(('inside', 'dist'), suffix=r'\b'), Operator.Word),
+
             (r'[()\[\],.;\']', Punctuation),
             (r'`[a-zA-Z_]\w*', Name.Constant),
 
@@ -191,7 +194,7 @@ class SystemVerilogLexer(RegexLexer):
                 'checker', 'class', 'clocking', 'cmos', 'config',
                 'constraint', 'context', 'continue', 'cover', 'covergroup',
                 'coverpoint', 'cross', 'deassign', 'default', 'defparam', 'design',
-                'disable', 'dist', 'do', 'edge', 'else', 'end', 'endcase',
+                'disable', 'do', 'edge', 'else', 'end', 'endcase',
                 'endchecker', 'endclass', 'endclocking', 'endconfig', 'endfunction',
                 'endgenerate', 'endgroup', 'endinterface', 'endmodule', 'endpackage',
                 'endprimitive', 'endprogram', 'endproperty', 'endsequence',
@@ -200,7 +203,7 @@ class SystemVerilogLexer(RegexLexer):
                 'for', 'force', 'foreach', 'forever', 'fork', 'forkjoin', 'function',
                 'generate', 'genvar', 'global', 'highz0', 'highz1', 'if', 'iff',
                 'ifnone', 'ignore_bins', 'illegal_bins', 'implies', 'implements', 'import',
-                'incdir', 'include', 'initial', 'inout', 'input', 'inside',
+                'incdir', 'include', 'initial', 'inout', 'input',
                 'instance', 'interconnect', 'interface', 'intersect', 'join',
                 'join_any', 'join_none', 'large', 'let', 'liblist', 'library',
                 'local', 'localparam', 'macromodule', 'matches',
@@ -223,8 +226,21 @@ class SystemVerilogLexer(RegexLexer):
                 'until_with', 'untyped', 'use', 'vectored',
                 'virtual', 'wait', 'wait_order', 'weak', 'weak0',
                 'weak1', 'while', 'wildcard', 'with', 'within',
-                'xnor', 'xor'), suffix=r'\b'),
+                'xnor', 'xor'),
+                suffix=r'\b'),
              Keyword),
+
+            (words((
+                # Variable types
+                'bit', 'byte', 'chandle', 'const', 'event', 'int', 'integer',
+                'logic', 'longint', 'real', 'realtime', 'reg', 'shortint',
+                'shortreal', 'signed', 'string', 'time', 'type', 'unsigned',
+                'var', 'void',
+                # Net types
+                'supply0', 'supply1', 'tri', 'triand', 'trior', 'trireg',
+                'tri0', 'tri1', 'uwire', 'wand', 'wire', 'wor'),
+                suffix=r'\b'),
+             Keyword.Type),
 
             (words((
                 '`__FILE__', '`__LINE__', '`begin_keywords', '`celldefine',
@@ -316,17 +332,7 @@ class SystemVerilogLexer(RegexLexer):
              Name.Builtin),
 
             (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
-            (words((
-                # Variable types
-                'bit', 'byte', 'chandle', 'const', 'event', 'int', 'integer',
-                'logic', 'longint', 'real', 'realtime', 'reg', 'shortint',
-                'shortreal', 'signed', 'string', 'time', 'type', 'unsigned',
-                'var', 'void',
-                # Net types
-                'supply0', 'supply1', 'tri', 'triand', 'trior', 'trireg',
-                'tri0', 'tri1', 'uwire', 'wand', 'wire', 'wor'),
-                suffix=r'\b'),
-             Keyword.Type),
+
             (r'[a-zA-Z_]\w*:(?!:)', Name.Label),
             (r'\$?[a-zA-Z_]\w*', Name),
             (r'\\(\S+)', Name),
