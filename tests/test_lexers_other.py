@@ -12,8 +12,9 @@ import os
 
 import pytest
 
-from pygments.lexers import guess_lexer
-from pygments.lexers.scripting import EasytrieveLexer, JclLexer, RexxLexer
+from pygments.lexers import (
+    EasytrieveLexer, GAPLexer, GDScriptLexer, JclLexer, RexxLexer, guess_lexer
+)
 
 
 def _example_file_path(filename):
@@ -68,3 +69,14 @@ def test_rexx_can_guess_from_text():
             parse value greeting "hello" name "!"
             say name''')
     assert val > 0.2
+
+
+@pytest.mark.parametrize("file_path, lexer", [
+    ("gdscript_example.gd", GDScriptLexer),
+    ("example.gd", GAPLexer),
+])
+def test_chooses_correct_lexer_for_example_files(file_path, lexer):
+    with open(_example_file_path(file_path), "rb") as fp:
+        text = fp.read().decode("utf-8")
+    guessed_lexer = guess_lexer(text)
+    assert guessed_lexer.name == lexer.name
