@@ -67,8 +67,9 @@ Programming languages
 * Fortran
 * `FreeFEM++ <https://freefem.org/>`_
 * F#
-* F* <https://www.fstar-lang.org/>` _
+* `F* <https://www.fstar-lang.org/>`_
 * GAP
+* GDScript
 * Gherkin (Cucumber)
 * GLSL shaders
 * `Golo <https://golo-lang.org/>`_
@@ -268,6 +269,7 @@ Other markup
 * RSL
 * Scdoc
 * Sieve
+* Singularity
 * SPARQL
 * SQL, also MySQL, SQLite
 * Squid configuration
