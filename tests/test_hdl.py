@@ -592,3 +592,96 @@ def test_systemverilog_operators(lexer):
     """Test various operators"""
     tokens = list(lexer.get_tokens(SYSTEMVERILOG_OPERATORS_TEXT))
     assert tokens == SYSTEMVERILOG_OPERATORS_TOKENS
+
+
+# Most of the interesting types of class declarations
+SYSTEMVERILOG_CLASSES_TEXT = """
+class Foo;
+endclass
+
+class Bar;
+endclass : Bar
+
+class Fiz extends Buz;
+endclass : Fiz
+
+class Free #(parameter type T = byte) extends Beer #(T);
+endclass : Free
+"""
+
+SYSTEMVERILOG_CLASSES_TOKENS = [
+    (Keyword.Declaration, 'class'),
+    (Text,                ' '),
+    (Name.Class,          'Foo'),
+    (Punctuation,         ';'),
+    (Text,                '\n'),
+    (Keyword.Declaration, 'endclass'),
+    (Text,                '\n'),
+    (Text,                '\n'),
+    (Keyword.Declaration, 'class'),
+    (Text,                ' '),
+    (Name.Class,          'Bar'),
+    (Punctuation,         ';'),
+    (Text,                '\n'),
+    (Keyword.Declaration, 'endclass'),
+    (Text,                ' '),
+    (Punctuation,         ':'),
+    (Text,                ' '),
+    (Name.Class,          'Bar'),
+    (Text,                '\n'),
+    (Text,                '\n'),
+    (Keyword.Declaration, 'class'),
+    (Text,                ' '),
+    (Name.Class,          'Fiz'),
+    (Text,                ' '),
+    (Keyword.Declaration, 'extends'),
+    (Text,                ' '),
+    (Name.Class,          'Buz'),
+    (Punctuation,         ';'),
+    (Text,                '\n'),
+    (Keyword.Declaration, 'endclass'),
+    (Text,                ' '),
+    (Punctuation,         ':'),
+    (Text,                ' '),
+    (Name.Class,          'Fiz'),
+    (Text,                '\n'),
+    (Text,                '\n'),
+    (Keyword.Declaration, 'class'),
+    (Text,                ' '),
+    (Name.Class,          'Free'),
+    (Text,                ' '),
+    (Punctuation,         '#'),
+    (Punctuation,         '('),
+    (Keyword,             'parameter'),
+    (Text,                ' '),
+    (Keyword.Type,        'type'),
+    (Text,                ' '),
+    (Name,                'T'),
+    (Text,                ' '),
+    (Operator,            '='),
+    (Text,                ' '),
+    (Keyword.Type,        'byte'),
+    (Punctuation,         ')'),
+    (Text,                ' '),
+    (Keyword.Declaration, 'extends'),
+    (Text,                ' '),
+    (Name.Class,          'Beer'),
+    (Text,                ' '),
+    (Punctuation,         '#'),
+    (Punctuation,         '('),
+    (Name,                'T'),
+    (Punctuation,         ')'),
+    (Punctuation,         ';'),
+    (Text,                '\n'),
+    (Keyword.Declaration, 'endclass'),
+    (Text,                ' '),
+    (Punctuation,         ':'),
+    (Text,                ' '),
+    (Name.Class,          'Free'),
+    (Text,                '\n'),
+]
+
+def test_systemverilog_classes(lexer):
+    """Test class/extends/endclass group captures"""
+    tokens = list(lexer.get_tokens(SYSTEMVERILOG_CLASSES_TEXT))
+    assert tokens == SYSTEMVERILOG_CLASSES_TOKENS
