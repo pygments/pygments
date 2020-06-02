@@ -125,7 +125,7 @@ Programming languages
 * `ParaSail <https://www.parasail-lang.org/>`_
 * Pawn
 * PHP
-* `Perl 5 <https://perl.org>`_
+* `Perl <https://perl.org>`_
 * Pike
 * `Pony <https://www.ponylang.io/>`_
 * PovRay
@@ -137,7 +137,7 @@ Programming languages
   tracebacks)
 * QBasic
 * `Racket <https://racket-lang.org/>`_
-* `Raku <https://www.raku.org/>`_ a.k.a. Perl 6
+* `Raku <https://www.raku.org/>`_ 
 * `ReasonML <https://reasonml.github.io/>`_
 * `REBOL <http://www.rebol.com>`_
 * `Red <https://www.red-lang.org>`_

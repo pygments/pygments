@@ -11,13 +11,13 @@
 
 import re
 
-from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
-    using, this, default, words
+from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, include, bygroups, \
+    using, this, default, words, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+    Number, Punctuation, Generic
 from pygments.util import shebang_matches
 
-__all__ = ['PerlLexer', 'Perl6Lexer']
+__all__ = ['PerlLexer', 'RakuLexer', 'RakuConsoleLexer']
 
 
 class PerlLexer(RegexLexer):
@@ -212,24 +212,24 @@ class PerlLexer(RegexLexer):
             return 0.9
 
 
-class Perl6Lexer(ExtendedRegexLexer):
+class RakuLexer(ExtendedRegexLexer):
     """
-    For `Raku <https://www.raku.org>`_ (a.k.a. Perl 6) source code.
+    For `Raku <https://www.raku.org>`_ source code.
 
     .. versionadded:: 2.0
     """
 
-    name = 'Perl6'
+    name = 'Raku'
     aliases = ['perl6', 'pl6', 'raku']
-    filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
-                 '*.6pm', '*.p6m', '*.pm6', '*.t', '*.raku', '*.rakumod',
+    filenames = ['*.nqp', '*.p6', '*.pl6',
+                 '*.pm6', '*.t', '*.raku', '*.rakumod',
                  '*.rakutest', '*.rakudoc']
-    mimetypes = ['text/x-perl6', 'application/x-perl6']
+    mimetypes = ['text/x-raku', 'application/x-raku']
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
-    PERL6_IDENTIFIER_RANGE = r"['\w:-]"
+    RAKU_IDENTIFIER_RANGE = r"['\w:-]"
 
-    PERL6_KEYWORDS = (
+    RAKU_KEYWORDS = (
         #Phasers
         'BEGIN','CATCH','CHECK','CLOSE','CONTROL','DOC','END','ENTER','FIRST',
         'INIT','KEEP','LAST','LEAVE','NEXT','POST','PRE','QUIT','UNDO',
@@ -245,7 +245,7 @@ class Perl6Lexer(ExtendedRegexLexer):
         'export','native','repr','required','rw','symbol',
     )
 
-    PERL6_BUILTINS = (
+    RAKU_BUILTINS = (
         'ACCEPTS','abs','abs2rel','absolute','accept','accessed','acos',
         'acosec','acosech','acosh','acotan','acotanh','acquire','act','action',
         'actions','add','add_attribute','add_enum_value','add_fallback',
@@ -361,7 +361,7 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     )
 
-    PERL6_BUILTIN_CLASSES = (
+    RAKU_BUILTIN_CLASSES = (
         #Booleans
         'False','True',
         #Classes
@@ -399,7 +399,7 @@ class Perl6Lexer(ExtendedRegexLexer):
         'Version','VM','Whatever','WhateverCode','WrapHandle'
     )
 
-    PERL6_OPERATORS = (
+    RAKU_OPERATORS = (
         'X', 'Z', 'after', 'also', 'and', 'andthen', 'before', 'cmp', 'div',
         'eq', 'eqv', 'extra', 'ff', 'fff', 'ge', 'gt', 'le', 'leg', 'lt', 'm',
         'mm', 'mod', 'ne', 'or', 'orelse', 'rx', 's', 'tr', 'x', 'xor', 'xx',
@@ -412,9 +412,9 @@ class Perl6Lexer(ExtendedRegexLexer):
         'not', '<==', '==>', '<<==', '==>>','unicmp',
     )
 
-    # Perl 6 has a *lot* of possible bracketing characters
+    # Raku has a *lot* of possible bracketing characters
     # this list was lifted from STD.pm6 (https://github.com/perl6/std)
-    PERL6_BRACKETS = {
+    RAKU_BRACKETS = {
         u'\u0028': u'\u0029', u'\u003c': u'\u003e', u'\u005b': u'\u005d',
         u'\u007b': u'\u007d', u'\u00ab': u'\u00bb', u'\u0f3a': u'\u0f3b',
         u'\u0f3c': u'\u0f3d', u'\u169b': u'\u169c', u'\u2018': u'\u2019',
@@ -497,7 +497,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             n_chars = len(opening_chars)
             adverbs = groups.get('adverbs')
 
-            closer = Perl6Lexer.PERL6_BRACKETS.get(opening_chars[0])
+            closer = RakuLexer.RAKU_BRACKETS.get(opening_chars[0])
             text = context.text
 
             if closer is None:  # it's not a mirrored character, which means we
@@ -557,7 +557,7 @@ class Perl6Lexer(ExtendedRegexLexer):
         # the nesting level for braces so we know later when
         # we should return to the token rules.
         if len(stack) > 2 and stack[-2] == 'token':
-            context.perl6_token_nesting_level += 1
+            context.raku_token_nesting_level += 1
 
     def closing_brace_callback(lexer, match, context):
         stack = context.stack
@@ -569,44 +569,44 @@ class Perl6Lexer(ExtendedRegexLexer):
         # below a token state, it means we need to check the nesting
         # level to see if we need to return to the token state.
         if len(stack) > 2 and stack[-2] == 'token':
-            context.perl6_token_nesting_level -= 1
-            if context.perl6_token_nesting_level == 0:
+            context.raku_token_nesting_level -= 1
+            if context.raku_token_nesting_level == 0:
                 stack.pop()
 
-    def embedded_perl6_callback(lexer, match, context):
-        context.perl6_token_nesting_level = 1
+    def embedded_raku_callback(lexer, match, context):
+        context.raku_token_nesting_level = 1
         yield match.start(), Text, context.text[match.start():match.end()]
         context.pos = match.end()
         context.stack.append('root')
 
     # If you're modifying these rules, be careful if you need to process '{' or '}'
     # characters. We have special logic for processing these characters (due to the fact
-    # that you can nest Perl 6 code in regex blocks), so if you need to process one of
+    # that you can nest Raku code in regex blocks), so if you need to process one of
     # them, make sure you also process the corresponding one!
     tokens = {
         'common': [
-            (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + r'])(?P=first_char)*)',
+            (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(RAKU_BRACKETS) + r'])(?P=first_char)*)',
              brackets_callback(Comment.Multiline)),
             (r'#[^\n]*$', Comment.Single),
             (r'^(\s*)=begin\s+(\w+)\b.*?^\1=end\s+\2', Comment.Multiline),
             (r'^(\s*)=for.*?\n\s*?\n', Comment.Multiline),
             (r'^=.*?\n\s*?\n', Comment.Multiline),
-            (r'(regex|token|rule)(\s*' + PERL6_IDENTIFIER_RANGE + '+:sym)',
+            (r'(regex|token|rule)(\s*' + RAKU_IDENTIFIER_RANGE + '+:sym)',
              bygroups(Keyword, Name), 'token-sym-brackets'),
-            (r'(regex|token|rule)(?!' + PERL6_IDENTIFIER_RANGE + r')(\s*' + PERL6_IDENTIFIER_RANGE + '+)?',
+            (r'(regex|token|rule)(?!' + RAKU_IDENTIFIER_RANGE + r')(\s*' + RAKU_IDENTIFIER_RANGE + '+)?',
              bygroups(Keyword, Name), 'pre-token'),
-            # deal with a special case in the Perl 6 grammar (role q { ... })
+            # deal with a special case in the Raku grammar (role q { ... })
             (r'(role)(\s+)(q)(\s*)', bygroups(Keyword, Text, Name, Text)),
-            (_build_word_match(PERL6_KEYWORDS, PERL6_IDENTIFIER_RANGE), Keyword),
-            (_build_word_match(PERL6_BUILTIN_CLASSES, PERL6_IDENTIFIER_RANGE, suffix='(?::[UD])?'),
+            (_build_word_match(RAKU_KEYWORDS, RAKU_IDENTIFIER_RANGE), Keyword),
+            (_build_word_match(RAKU_BUILTIN_CLASSES, RAKU_IDENTIFIER_RANGE, suffix='(?::[UD])?'),
              Name.Builtin),
-            (_build_word_match(PERL6_BUILTINS, PERL6_IDENTIFIER_RANGE), Name.Builtin),
+            (_build_word_match(RAKU_BUILTINS, RAKU_IDENTIFIER_RANGE), Name.Builtin),
             # copied from PerlLexer
-            (r'[$@%&][.^:?=!~]?' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*',
+            (r'[$@%&][.^:?=!~]?' + RAKU_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*',
              Name.Variable),
             (r'\$[!/](?:<<.*?>>|<.*?>|«.*?»)*', Name.Variable.Global),
             (r'::\?\w+', Name.Variable.Global),
-            (r'[$@%&]\*' + PERL6_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*',
+            (r'[$@%&]\*' + RAKU_IDENTIFIER_RANGE + u'+(?:<<.*?>>|<.*?>|«.*?»)*',
              Name.Variable.Global),
             (r'\$(?:<.*?>)+', Name.Variable),
             (r'(?:q|qq|Q)[a-zA-Z]?\s*(?P<adverbs>:[\w\s:]+)?\s*(?P<delimiter>(?P<first_char>[^0-9a-zA-Z:\s])'
@@ -627,8 +627,8 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'(?:s|ss|tr)\s*(?::[\w\s:]+)?\s*/(?:\\\\|\\/|.)*?/(?:\\\\|\\/|.)*?/',
              String.Regex),
             (r'<[^\s=].*?\S>', String),
-            (_build_word_match(PERL6_OPERATORS), Operator),
-            (r'\w' + PERL6_IDENTIFIER_RANGE + '*', Name),
+            (_build_word_match(RAKU_OPERATORS), Operator),
+            (r'\w' + RAKU_IDENTIFIER_RANGE + '*', Name),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
         ],
@@ -644,7 +644,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r'.+?', Text),
         ],
         'token-sym-brackets': [
-            (r'(?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + '])(?P=first_char)*)',
+            (r'(?P<delimiter>(?P<first_char>[' + ''.join(RAKU_BRACKETS) + '])(?P=first_char)*)',
              brackets_callback(Name), ('#pop', 'pre-token')),
             default(('#pop', 'pre-token')),
         ],
@@ -657,7 +657,7 @@ class Perl6Lexer(ExtendedRegexLexer):
             (r"(?<!\\)'(\\\\|\\[^\\]|[^'\\])*'", String.Regex),
             (r'(?<!\\)"(\\\\|\\[^\\]|[^"\\])*"', String.Regex),
             (r'#.*?$', Comment.Single),
-            (r'\{', embedded_perl6_callback),
+            (r'\{', embedded_raku_callback),
             ('.+?', String.Regex),
         ],
     }
@@ -682,14 +682,14 @@ class Perl6Lexer(ExtendedRegexLexer):
         lines = strip_pod(lines)
         text = '\n'.join(lines)
 
-        if shebang_matches(text, r'perl6|rakudo|niecza|pugs'):
+        if shebang_matches(text, r'raku|rakudo'):
             return True
 
         saw_perl_decl = False
         rating = False
 
         # check for my/our/has declarations
-        if re.search(r"(?:my|our|has)\s+(?:" + Perl6Lexer.PERL6_IDENTIFIER_RANGE +
+        if re.search(r"(?:my|our|has)\s+(?:" + RakuLexer.RAKU_IDENTIFIER_RANGE +
                      r"+\s+)?[$@%&(]", text):
             rating = 0.8
             saw_perl_decl = True
@@ -714,5 +714,59 @@ class Perl6Lexer(ExtendedRegexLexer):
         return rating
 
     def __init__(self, **options):
-        super(Perl6Lexer, self).__init__(**options)
+        super(RakuLexer, self).__init__(**options)
         self.encoding = options.get('encoding', 'utf-8')
+
+class RakuConsoleLexer(Lexer):
+    """
+    For Raku interactive console (**raku**) output like:
+
+    .. sourcecode:: raku-console
+
+        > 1
+        1
+        > "suman"
+        suman
+        > my $var = "nepal"
+        nepal
+    """
+
+    name = 'Raku console session'
+    aliases = ['raku-console', 'raku-repl']
+    mimetypes = ['text/x-raku-consolesession']
+
+    def get_tokens_unprocessed(self, text):
+        rakulexer = RakuLexer(**self.options)
+
+        current_code_block = ''
+        insertions = []
+
+        for match in line_re.finditer(text):
+            line = match.group()
+            if line.startswith('>'):
+                # Colorize the prompt as such,
+                # then put rest of line into current_code_block
+                insertions.append((len(current_code_block),
+                                   [(0, Generic.Prompt, line[:end])]))
+                current_code_block += line[end:]
+            else:
+                # We have reached a non-prompt line!
+                # If we have stored prompt lines, need to process them first.
+                if current_code_block:
+                    # Weave together the prompts and highlight code.
+                    for item in do_insertions(
+                            insertions, rakulexer.get_tokens_unprocessed(current_code_block)):
+                        yield item
+                    # Reset vars for next code block.
+                    current_code_block = ''
+                    insertions = []
+                # Now process the actual line itself, this is output from Raku.
+                yield match.start(), Generic.Output, line
+
+        # If we happen to end on a code block with nothing after it, need to
+        # process the last code block. This is neither elegant nor DRY so
+        # should be changed.
+        if current_code_block:
+            for item in do_insertions(
+                    insertions, rakulexer.get_tokens_unprocessed(current_code_block)):
+                yield item
