@@ -191,15 +191,15 @@ class SystemVerilogLexer(RegexLexer):
                 'always_latch', 'and', 'assert', 'assign', 'assume', 'automatic',
                 'before', 'begin', 'bind', 'bins', 'binsof', 'break', 'buf',
                 'bufif0', 'bufif1', 'case', 'casex', 'casez', 'cell',
-                'checker', 'class', 'clocking', 'cmos', 'config',
+                'checker', 'clocking', 'cmos', 'config',
                 'constraint', 'context', 'continue', 'cover', 'covergroup',
                 'coverpoint', 'cross', 'deassign', 'default', 'defparam', 'design',
                 'disable', 'do', 'edge', 'else', 'end', 'endcase',
-                'endchecker', 'endclass', 'endclocking', 'endconfig', 'endfunction',
+                'endchecker', 'endclocking', 'endconfig', 'endfunction',
                 'endgenerate', 'endgroup', 'endinterface', 'endmodule', 'endpackage',
                 'endprimitive', 'endprogram', 'endproperty', 'endsequence',
                 'endspecify', 'endtable', 'endtask', 'enum', 'eventually',
-                'expect', 'export', 'extends', 'extern', 'final', 'first_match',
+                'expect', 'export', 'extern', 'final', 'first_match',
                 'for', 'force', 'foreach', 'forever', 'fork', 'forkjoin', 'function',
                 'generate', 'genvar', 'global', 'highz0', 'highz1', 'if', 'iff',
                 'ifnone', 'ignore_bins', 'illegal_bins', 'implies', 'implements', 'import',
@@ -229,6 +229,13 @@ class SystemVerilogLexer(RegexLexer):
                 'xnor', 'xor'),
                 suffix=r'\b'),
              Keyword),
+
+            (r'(class)(\s+)([a-zA-Z_]\w*)',
+             bygroups(Keyword.Declaration, Text, Name.Class)),
+            (r'(extends)(\s+)([a-zA-Z_]\w*)',
+             bygroups(Keyword.Declaration, Text, Name.Class)),
+            (r'(endclass\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
+             bygroups(Keyword.Declaration, None, Text, Punctuation, Text, Name.Class)),
 
             (words((
                 # Variable types
@@ -331,14 +338,9 @@ class SystemVerilogLexer(RegexLexer):
                 ), suffix=r'\b'),
              Name.Builtin),
 
-            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
-
             (r'[a-zA-Z_]\w*:(?!:)', Name.Label),
             (r'\$?[a-zA-Z_]\w*', Name),
             (r'\\(\S+)', Name),
-        ],
-        'classname': [
-            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
         ],
         'string': [
             (r'"', String, '#pop'),
