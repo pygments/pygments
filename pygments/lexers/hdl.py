@@ -151,7 +151,6 @@ class SystemVerilogLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^\s*`define', Comment.Preproc, 'macro'),
-            (r'^(\s*)(package)(\s+)', bygroups(Text, Keyword.Namespace, Text)),
             (r'^(\s*)(import)(\s+)', bygroups(Text, Keyword.Namespace, Text), 'import'),
 
             (r'\n', Text),
@@ -206,7 +205,7 @@ class SystemVerilogLexer(RegexLexer):
                 'coverpoint', 'cross', 'deassign', 'default', 'defparam', 'design',
                 'disable', 'do', 'edge', 'else', 'end', 'endcase',
                 'endchecker', 'endclocking', 'endconfig', 'endfunction',
-                'endgenerate', 'endgroup', 'endinterface', 'endpackage',
+                'endgenerate', 'endgroup', 'endinterface',
                 'endprimitive', 'endprogram', 'endproperty', 'endsequence',
                 'endspecify', 'endtable', 'endtask', 'enum', 'eventually',
                 'expect', 'export', 'extern', 'final', 'first_match',
@@ -219,7 +218,7 @@ class SystemVerilogLexer(RegexLexer):
                 'local', 'localparam', 'macromodule', 'matches',
                 'medium', 'modport', 'nand', 'negedge', 'nettype', 'new', 'nexttime',
                 'nmos', 'nor', 'noshowcancelled', 'not', 'notif0', 'notif1', 'null',
-                'or', 'output', 'package', 'packed', 'parameter', 'pmos', 'posedge',
+                'or', 'output', 'packed', 'parameter', 'pmos', 'posedge',
                 'primitive', 'priority', 'program', 'property', 'protected', 'pull0',
                 'pull1', 'pulldown', 'pullup', 'pulsestyle_ondetect',
                 'pulsestyle_onevent', 'pure', 'rand', 'randc', 'randcase',
@@ -246,6 +245,11 @@ class SystemVerilogLexer(RegexLexer):
              bygroups(Keyword.Declaration, Text, Name.Class)),
             (r'(endclass\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
              bygroups(Keyword.Declaration, None, Text, Punctuation, Text, Name.Class)),
+
+            (r'(package)(\s+)([a-zA-Z_]\w*)',
+             bygroups(Keyword.Declaration, Text, Name.Namespace)),
+            (r'(endpackage\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
+             bygroups(Keyword.Declaration, None, Text, Punctuation, Text, Name.Namespace)),
 
             (r'(module)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Text, Name)),
