@@ -159,7 +159,6 @@ class SystemVerilogLexer(RegexLexer):
             (r'\\\n', Text),  # line continuation
             (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            (r'[{}#@]', Punctuation),
             (r'L?"', String, 'string'),
             (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'", String.Char),
 
@@ -180,10 +179,21 @@ class SystemVerilogLexer(RegexLexer):
 
             (r'\*/', Error),
 
-            (r'[~!%^&*+=|?:<>/-]', Operator),
+            # Note that these are ordered from longest to shortest,
+            # and from top to bottom of 1800-2017 Table 11-2
+            (r'<<<=|>>>=|'
+             r'!==|!=\?|<->|<<<|<<=|===|==\?|>>>|>>=|'
+             r'::|~&|~\||~\^|\^~|\+\+|--|\*\*|<<|>>|<=|>=|==|!=|&&|\|\||->|'
+             r'\+=|-=|\*=|/=|%=|&=|\^=|\|=|:=|:/|'
+             r'[.+\-!~&|^*/%<>?:=]',
+             Operator),
             (words(('inside', 'dist'), suffix=r'\b'), Operator.Word),
 
-            (r'[()\[\],.;\']', Punctuation),
+            # Treat parentheses, and square/curly brackets as punctuation,
+            # because that is the convention for C/C++, Python, and Java.
+            # Note that this includes the streaming '{{' and '}}' operators.
+            (r'\{\{|\}\}|[@#$()\[\]{},.;\']', Punctuation),
+
             (r'`[a-zA-Z_]\w*', Name.Constant),
 
             (words((
