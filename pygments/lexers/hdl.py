@@ -206,7 +206,7 @@ class SystemVerilogLexer(RegexLexer):
                 'coverpoint', 'cross', 'deassign', 'default', 'defparam', 'design',
                 'disable', 'do', 'edge', 'else', 'end', 'endcase',
                 'endchecker', 'endclocking', 'endconfig', 'endfunction',
-                'endgenerate', 'endgroup', 'endinterface', 'endmodule', 'endpackage',
+                'endgenerate', 'endgroup', 'endinterface', 'endpackage',
                 'endprimitive', 'endprogram', 'endproperty', 'endsequence',
                 'endspecify', 'endtable', 'endtask', 'enum', 'eventually',
                 'expect', 'export', 'extern', 'final', 'first_match',
@@ -217,7 +217,7 @@ class SystemVerilogLexer(RegexLexer):
                 'instance', 'interconnect', 'interface', 'intersect', 'join',
                 'join_any', 'join_none', 'large', 'let', 'liblist', 'library',
                 'local', 'localparam', 'macromodule', 'matches',
-                'medium', 'modport', 'module', 'nand', 'negedge', 'nettype', 'new', 'nexttime',
+                'medium', 'modport', 'nand', 'negedge', 'nettype', 'new', 'nexttime',
                 'nmos', 'nor', 'noshowcancelled', 'not', 'notif0', 'notif1', 'null',
                 'or', 'output', 'package', 'packed', 'parameter', 'pmos', 'posedge',
                 'primitive', 'priority', 'program', 'property', 'protected', 'pull0',
@@ -246,6 +246,11 @@ class SystemVerilogLexer(RegexLexer):
              bygroups(Keyword.Declaration, Text, Name.Class)),
             (r'(endclass\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
              bygroups(Keyword.Declaration, None, Text, Punctuation, Text, Name.Class)),
+
+            (r'(module)(\s+)([a-zA-Z_]\w*)',
+             bygroups(Keyword.Declaration, Text, Name)),
+            (r'(endmodule\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
+             bygroups(Keyword.Declaration, None, Text, Punctuation, Text, Name)),
 
             (words((
                 # Variable types

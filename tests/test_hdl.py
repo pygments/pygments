@@ -41,7 +41,7 @@ endmodule : Adder
 
 SYSTEMVERILOG_BASIC_TOKENS = [
     (Comment.Single, '// Adder flops the sum of its inputs\n'),
-    (Keyword, 'module'),
+    (Keyword.Declaration, 'module'),
     (Text, ' '),
     (Name, 'Adder'),
     (Text, ' '),
@@ -188,10 +188,9 @@ SYSTEMVERILOG_BASIC_TOKENS = [
     (Keyword, 'end'),
     (Text, '\n'),
 
-    (Keyword, 'endmodule'),
+    (Keyword.Declaration, 'endmodule'),
     (Text, ' '),
-    # Note: This ':' should be Punctuation
-    (Operator, ':'),
+    (Punctuation, ':'),
     (Text, ' '),
     (Name, 'Adder'),
     (Text, '\n'),
