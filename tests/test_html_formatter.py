@@ -11,14 +11,15 @@ import io
 import os
 import re
 import tempfile
-from os import path
 from io import StringIO
+from os import path
 
 from pytest import raises
 
-from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.formatters.html import escape_html
+from pygments.lexers import PythonLexer
+from pygments.style import Style
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_html_formatter.py')
@@ -157,19 +158,54 @@ def test_valid_output():
     os.unlink(pathname)
 
 
-def test_get_style_defs():
+def test_get_style_defs_contains_pre_style():
+    style_defs = HtmlFormatter().get_style_defs().splitlines()
+    assert style_defs[0] == 'pre { line-height: 125%; }'
+
+
+def test_get_style_defs_contains_default_line_numbers_styles():
+    style_defs = HtmlFormatter().get_style_defs().splitlines()
+    assert style_defs[1] == (
+        'td.linenos { color: #000000; background-color: #f0f0f0; '
+        'padding-right: 10px; }'
+    )
+    assert style_defs[2] == (
+        'span.lineno { color: #000000; background-color: #f0f0f0; '
+        'padding: 0 5px 0 5px; }'
+    )
+
+
+def test_get_style_defs_contains_style_specific_line_numbers_styles():
+    class TestStyle(Style):
+        line_number_color = '#ff0000'
+        line_number_background_color = '#0000ff'
+    style_defs = HtmlFormatter(style=TestStyle).get_style_defs().splitlines()
+    assert style_defs[1] == (
+        'td.linenos { color: #ff0000; background-color: #0000ff; '
+        'padding-right: 10px; }'
+    )
+    assert style_defs[2] == (
+        'span.lineno { color: #ff0000; background-color: #0000ff; '
+        'padding: 0 5px 0 5px; }'
+    )
+
+
+def test_get_style_defs_uses_css_prefix():
     fmt = HtmlFormatter()
-    sd = fmt.get_style_defs()
-    assert sd.startswith('.')
+
+    style_defs = fmt.get_style_defs().splitlines()
+    assert style_defs[3].startswith('.')
 
     fmt = HtmlFormatter(cssclass='foo')
-    sd = fmt.get_style_defs()
-    assert sd.startswith('.foo')
-    sd = fmt.get_style_defs('.bar')
-    assert sd.startswith('.bar')
-    sd = fmt.get_style_defs(['.bar', '.baz'])
-    fl = sd.splitlines()[0]
-    assert '.bar' in fl and '.baz' in fl
+
+    style_defs = fmt.get_style_defs().splitlines()
+    assert style_defs[3].startswith('.foo')
+
+    style_defs = fmt.get_style_defs('.bar').splitlines()
+    assert style_defs[3].startswith('.bar')
+
+    line = fmt.get_style_defs(['.bar', '.baz']).splitlines()[3]
+    assert '.bar' in line and '.baz' in line
 
 
 def test_unicode_options():
