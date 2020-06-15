@@ -523,18 +523,52 @@ class HtmlFormatter(Formatter):
         if self.style.highlight_color is not None:
             lines.insert(0, '%s.hll { background-color: %s }' %
                          (prefix(''), self.style.highlight_color))
-        line_number_style = 'color: %s; background-color: %s;' % (
+
+        lines.insert(0, 'pre { %s }' % self._pre_style)
+        lines.insert(1, 'td.linenos { %s }' % self._td_linenos_style)
+        lines.insert(2, 'span.lineno { %s }' % self._span_linenos_style)
+        lines.insert(
+            3, 'td.linenos .special { %s }' % self._td_linenos_special_style
+        )
+        lines.insert(
+            4, 'span.lineno.special { %s }' % self._span_linenos_special_style
+        )
+
+        return '\n'.join(lines)
+
+    @property
+    def _pre_style(self):
+        return 'line-height: 125%;'
+
+    @property
+    def _td_linenos_style(self):
+        return 'color: %s; background-color: %s; padding-right: 10px;' % (
             self.style.line_number_color,
             self.style.line_number_background_color
         )
-        lines.insert(0, 'pre { line-height: 125%; }')
-        lines.insert(
-            1, 'td.linenos { %s padding-right: 10px; }' % line_number_style
+
+    @property
+    def _td_linenos_special_style(self):
+        # There is no padding here, because it should already be applied by
+        # the normal td.linenos style
+        return 'color: %s; background-color: %s;' % (
+            self.style.line_number_color,
+            self.style.line_number_special_background_color
         )
-        lines.insert(
-            2, 'span.lineno { %s padding: 0 5px 0 5px; }' % line_number_style
+
+    @property
+    def _span_linenos_style(self):
+        return 'color: %s; background-color: %s; padding: 0 5px 0 5px;' % (
+            self.style.line_number_color,
+            self.style.line_number_background_color
         )
-        return '\n'.join(lines)
+
+    @property
+    def _span_linenos_special_style(self):
+        return 'color: %s; background-color: %s; padding: 0 5px 0 5px;' % (
+            self.style.line_number_color,
+            self.style.line_number_special_background_color
+        )
 
     def _decodeifneeded(self, value):
         if isinstance(value, bytes):
@@ -635,15 +669,18 @@ class HtmlFormatter(Formatter):
         # content in the other cell also is wrapped in a div, some browsers in
         # some configurations seem to mess up the formatting...
         if nocls:
-            yield 0, ('<table class="%stable">' % self.cssclass +
-                      '<tr><td><div class="linenodiv" '
-                      'style="background-color: #f0f0f0; padding-right: 10px">'
-                      '<pre style="line-height: 125%">' +
-                      ls + '</pre></div></td><td class="code">')
+            yield 0, (
+                '<table class="%stable">' % self.cssclass +
+                '<tr><td style="%s">' % self._td_linenos_style +
+                '<div class="linenodiv"><pre style="%s">' % self._pre_style +
+                ls + '</pre></div></td><td class="code">'
+            )
         else:
-            yield 0, ('<table class="%stable">' % self.cssclass +
-                      '<tr><td class="linenos"><div class="linenodiv"><pre>' +
-                      ls + '</pre></div></td><td class="code">')
+            yield 0, (
+                '<table class="%stable">' % self.cssclass +
+                '<tr><td class="linenos"><div class="linenodiv"><pre>' +
+                ls + '</pre></div></td><td class="code">'
+            )
         yield 0, dummyoutfile.getvalue()
         yield 0, '</td></tr></table>'
 
@@ -659,17 +696,19 @@ class HtmlFormatter(Formatter):
             if sp:
                 for t, line in lines:
                     if num % sp == 0:
-                        style = 'background-color: #ffffc0; padding: 0 5px 0 5px'
+                        style = self._span_linenos_special_style
                     else:
-                        style = 'background-color: #f0f0f0; padding: 0 5px 0 5px'
+                        style = self._span_linenos_style
                     yield 1, '<span style="%s">%*s </span>' % (
-                        style, mw, (num % st and ' ' or num)) + line
+                        style, mw, (num % st and ' ' or num)
+                    ) + line
                     num += 1
             else:
                 for t, line in lines:
-                    yield 1, ('<span style="background-color: #f0f0f0; '
-                              'padding: 0 5px 0 5px">%*s </span>' % (
-                                  mw, (num % st and ' ' or num)) + line)
+                    style = self._span_linenos_style
+                    yield 1, '<span style="%s">%*s </span>' % (
+                        style, mw, (num % st and ' ' or num)
+                    ) + line
                     num += 1
         elif sp:
             for t, line in lines:
@@ -724,7 +763,7 @@ class HtmlFormatter(Formatter):
         if self.prestyles:
             style.append(self.prestyles)
         if self.noclasses:
-            style.append('line-height: 125%')
+            style.append(self._pre_style)
         style = '; '.join(style)
 
         if self.filename:

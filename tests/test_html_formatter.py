@@ -194,17 +194,17 @@ def test_get_style_defs_uses_css_prefix():
     fmt = HtmlFormatter()
 
     style_defs = fmt.get_style_defs().splitlines()
-    assert style_defs[3].startswith('.')
+    assert style_defs[5].startswith('.')
 
     fmt = HtmlFormatter(cssclass='foo')
 
     style_defs = fmt.get_style_defs().splitlines()
-    assert style_defs[3].startswith('.foo')
+    assert style_defs[5].startswith('.foo')
 
     style_defs = fmt.get_style_defs('.bar').splitlines()
-    assert style_defs[3].startswith('.bar')
+    assert style_defs[5].startswith('.bar')
 
-    line = fmt.get_style_defs(['.bar', '.baz']).splitlines()[3]
+    line = fmt.get_style_defs(['.bar', '.baz']).splitlines()[5]
     assert '.bar' in line and '.baz' in line
 
 

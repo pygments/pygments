@@ -200,9 +200,9 @@ def test_H_opt():
 def test_S_opt():
     o = check_success('-S', 'default', '-f', 'html', '-O', 'linenos=1')
     lines = o.splitlines()
-    for line in lines[3:]:
-        # every line is for a token class, except for the first 3 lines,
-        # which define styles for line numbers and `pre`
+    for line in lines[5:]:
+        # every line is for a token class, except for the first 5 lines,
+        # which define styles for `pre` and line numbers
         parts = line.split()
         assert parts[0].startswith('.')
         assert parts[1] == '{'
