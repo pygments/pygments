@@ -123,6 +123,7 @@ class RowTokenizer:
                         'metadata': settings,
                         'variables': variables, 'variable': variables,
                         'testcases': testcases, 'testcase': testcases,
+                        'tasks': testcases, 'task': testcases,
                         'keywords': keywords, 'keyword': keywords,
                         'userkeywords': keywords, 'userkeyword': keywords}
 
