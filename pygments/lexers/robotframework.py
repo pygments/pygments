@@ -216,7 +216,7 @@ class Comment(Tokenizer):
 class Setting(Tokenizer):
     _tokens = (SETTING, ARGUMENT)
     _keyword_settings = ('suitesetup', 'suiteprecondition', 'suiteteardown',
-                         'suitepostcondition', 'testsetup', 'tasksetup'. 'testprecondition',
+                         'suitepostcondition', 'testsetup', 'tasksetup', 'testprecondition',
                          'testteardown','taskteardown', 'testpostcondition', 'testtemplate', 'tasktemplate')
     _import_settings = ('library', 'resource', 'variables')
     _other_settings = ('documentation', 'metadata', 'forcetags', 'defaulttags',
