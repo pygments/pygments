@@ -216,11 +216,11 @@ class Comment(Tokenizer):
 class Setting(Tokenizer):
     _tokens = (SETTING, ARGUMENT)
     _keyword_settings = ('suitesetup', 'suiteprecondition', 'suiteteardown',
-                         'suitepostcondition', 'testsetup', 'testprecondition',
-                         'testteardown', 'testpostcondition', 'testtemplate')
+                         'suitepostcondition', 'testsetup', 'tasksetup'. 'testprecondition',
+                         'testteardown','taskteardown', 'testpostcondition', 'testtemplate', 'tasktemplate')
     _import_settings = ('library', 'resource', 'variables')
     _other_settings = ('documentation', 'metadata', 'forcetags', 'defaulttags',
-                       'testtimeout')
+                       'testtimeout','tasktimeout')
     _custom_tokenizer = None
 
     def __init__(self, template_setter=None):
