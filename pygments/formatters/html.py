@@ -640,11 +640,16 @@ class HtmlFormatter(Formatter):
             for i in range(fl, fl+lncount):
                 if i % st == 0:
                     if i % sp == 0:
-                        if aln:
-                            lines.append('<a href="#%s-%d" class="special">%*d</a>' %
-                                         (la, i, mw, i))
+                        if nocls:
+                            fmt = 'style="%s"' % self._td_linenos_special_style
                         else:
-                            lines.append('<span class="special">%*d</span>' % (mw, i))
+                            fmt = 'class="special"'
+                        # Replace with style if nocls
+                        if aln:
+                            lines.append('<a href="#%s-%d" %s>%*d</a>' %
+                                         (la, i, fmt, mw, i))
+                        else:
+                            lines.append('<span %s>%*d</span>' % (fmt, mw, i))
                     else:
                         if aln:
                             lines.append('<a href="#%s-%d">%*d</a>' % (la, i, mw, i))
