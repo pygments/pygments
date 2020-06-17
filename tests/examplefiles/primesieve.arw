@@ -1,0 +1,60 @@
+function
+/--> bool[] primeSieve(int max)
+| bool[] primes[max]
+| primes[0] = false
+| primes[1] = false
+| 
+| int i
+| i = 2
+| /-->
+| | primes[i] = true
+| | i = i + 1
+| \--< i < max
+|
+| int firstPrime
+| firstPrime = 1
+| /-->
+| | bool firstIsComposite
+| | /-->
+| | | firstPrime = firstPrime + 1
+| | | firstIsComposite = false
+| | | /--< firstPrime > max or firstPrime == max
+| | | | firstIsComposite = not primes[firstPrime]
+| | | \-->
+| | \--< firstIsComposite
+| | /--< firstPrime > max or firstPrime == max
+| | | primes[firstPrime] = true
+| | | int composite
+| | | composite = firstPrime * 2
+| | | /--< composite > max
+| | | | /-->
+| | | | | primes[composite] = false
+| | | | | composite = composite + firstPrime
+| | | | \--< composite < max
+| | | \-->
+| | \-->
+| \--< firstPrime < max - 1
+^ primes
+
+main
+int max
+max = 1000
+bool[] primes
+primes = primeSieve(max)
+
+print "Enter a number and I'll tell you whether or not it's prime!"
+int testNum
+testNum = input int
+
+/--< testNum < 0 or testNum > max - 1
+| /--< not primes[testNum]
+| | print "Prime"
+| \-->
+| /--< primes[testNum]
+| | print "Not prime"
+| \-->
+\-->
+
+/--< not (testNum < 0 or testNum > max - 1)
+| print "Out of bounds"
+\-->
