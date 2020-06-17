@@ -16,7 +16,7 @@ __all__ = ['ArrowLexer']
 
 TYPES = r'\b(int|bool|char)((?:\[\])*)(?=\s+)'
 IDENT = r'([a-zA-Z_][a-zA-Z0-9_]*)'
-DECL = TYPES + '(\s+)' + IDENT
+DECL = TYPES + r'(\s+)' + IDENT
 
 class ArrowLexer(RegexLexer):
     """
