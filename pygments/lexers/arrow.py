@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.tnt
+    pygments.lexers.arrow
     ~~~~~~~~~~~~~~~~~~~
 
     Lexer for Typographic Number Theory.
@@ -21,8 +21,8 @@ DECL = TYPES + r'(\s+)' + IDENT
 class ArrowLexer(RegexLexer):
     """
     Lexer for Arrow: https://pypi.org/project/py-arrow-lang/
-    Example code:
-    https://github.com/Kenny2github/py-arrow-lang#example-arrow-program
+
+    .. versionadded:: 2.7
     """
 
     name = 'Arrow'
