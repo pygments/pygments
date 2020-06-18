@@ -205,9 +205,10 @@ class HtmlFormatter(Formatter):
         `cssfile` exists.
 
     `noclasses`
-        If set to true, token ``<span>`` tags will not use CSS classes, but
-        inline styles. This is not recommended for larger pieces of code since
-        it increases output size by quite a bit (default: ``False``).
+        If set to true, token ``<span>`` tags (as well as line number elements)
+        will not use CSS classes, but inline styles. This is not recommended
+        for larger pieces of code since it increases output size by quite a bit
+        (default: ``False``).
 
     `classprefix`
         Since the token types use relatively short class names, they may clash
