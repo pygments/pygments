@@ -74,16 +74,16 @@ class RawTokenFormatter(Formatter):
         if self.error_color is not None:
             try:
                 colorize(self.error_color, '')
-            except KeyError as e:
+            except KeyError:
                 raise ValueError("Invalid color %r specified" %
-                                 self.error_color) from e
+                                 self.error_color)
 
     def format(self, tokensource, outfile):
         try:
             outfile.write(b'')
         except TypeError as e:
             raise TypeError('The raw tokens formatter needs a binary '
-                            'output file') from e
+                            'output file')
         if self.compress == 'gz':
             import gzip
             outfile = gzip.GzipFile('', 'wb', 9, outfile)

@@ -777,10 +777,8 @@ class RaiseOnErrorTokenFilter(Filter):
             # issubclass() will raise TypeError if first argument is not a class
             if not issubclass(self.exception, Exception):
                 raise TypeError
-        except TypeError as e:
-            raise OptionError(
-                'excclass option is not an exception class'
-            ) from e
+        except TypeError:
+            raise OptionError('excclass option is not an exception class')
 
     def filter(self, lexer, stream):
         for ttype, value in stream:
