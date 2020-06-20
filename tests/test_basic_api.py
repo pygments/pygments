@@ -66,10 +66,10 @@ def test_random_input(cls):
     inst = cls()
     try:
         tokens = list(inst.get_tokens(test_content))
-    except KeyboardInterrupt:
+    except KeyboardInterrupt as e:
         raise KeyboardInterrupt(
             'interrupted %s.get_tokens(): test_content=%r' %
-            (cls.__name__, test_content))
+            (cls.__name__, test_content)) from e
     txt = ""
     for token in tokens:
         assert isinstance(token, tuple)

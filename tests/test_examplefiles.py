@@ -91,11 +91,11 @@ def test_examplefile(filename):
     if lx is None:
         try:
             lx = get_lexer_for_filename(absfn, code=utext)
-        except ClassNotFound:
+        except ClassNotFound as e:
             raise AssertionError('file %r has no registered extension, '
                                  'nor is of the form <lexer>_filename '
                                  'for overriding, thus no lexer found.'
-                                 % filename)
+                                 % filename) from e
 
     text = text.replace(b'\r\n', b'\n')
     text = text.strip(b'\n') + b'\n'
