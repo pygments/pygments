@@ -182,6 +182,9 @@ class Style(metaclass=StyleMeta):
     #: line number background color
     line_number_background_color = '#f0f0f0'
 
+    #: special line number font color
+    line_number_special_color = '#000000'
+
     #: special line number background color
     line_number_special_background_color = '#ffffc0'
 

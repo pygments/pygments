@@ -436,7 +436,7 @@ class HtmlFormatter(Formatter):
         self.lineseparator = options.get('lineseparator', u'\n')
         self.lineanchors = options.get('lineanchors', '')
         self.linespans = options.get('linespans', '')
-        self.anchorlinenos = options.get('anchorlinenos', False)
+        self.anchorlinenos = get_bool_opt(options, 'anchorlinenos', False)
         self.hl_lines = set()
         for lineno in get_list_opt(options, 'hl_lines', []):
             try:
@@ -526,48 +526,32 @@ class HtmlFormatter(Formatter):
                          (prefix(''), self.style.highlight_color))
 
         lines.insert(0, 'pre { %s }' % self._pre_style)
-        lines.insert(1, 'td.linenos { %s }' % self._td_linenos_style)
-        lines.insert(2, 'span.lineno { %s }' % self._span_linenos_style)
+        lines.insert(1, 'td.linenos pre { %s }' % self._linenos_style)
+        lines.insert(2, 'span.linenos { %s }' % self._linenos_style)
         lines.insert(
-            3, 'td.linenos .special { %s }' % self._td_linenos_special_style
+            3, 'td.linenos pre.special { %s }' % self._linenos_special_style
         )
         lines.insert(
-            4, 'span.lineno.special { %s }' % self._span_linenos_special_style
+            4, 'span.linenos.special { %s }' % self._linenos_special_style
         )
 
         return '\n'.join(lines)
 
     @property
     def _pre_style(self):
-        return 'line-height: 125%;'
+        return 'line-height: 125%; margin: 0;'
 
     @property
-    def _td_linenos_style(self):
-        return 'color: %s; background-color: %s; padding-right: 10px;' % (
-            self.style.line_number_color,
-            self.style.line_number_background_color
-        )
-
-    @property
-    def _td_linenos_special_style(self):
-        # There is no padding here, because it should already be applied by
-        # the normal td.linenos style
-        return 'color: %s; background-color: %s;' % (
-            self.style.line_number_color,
-            self.style.line_number_special_background_color
-        )
-
-    @property
-    def _span_linenos_style(self):
+    def _linenos_style(self):
         return 'color: %s; background-color: %s; padding: 0 5px 0 5px;' % (
             self.style.line_number_color,
             self.style.line_number_background_color
         )
 
     @property
-    def _span_linenos_special_style(self):
+    def _linenos_special_style(self):
         return 'color: %s; background-color: %s; padding: 0 5px 0 5px;' % (
-            self.style.line_number_color,
+            self.style.line_number_special_color,
             self.style.line_number_special_background_color
         )
 
@@ -635,98 +619,79 @@ class HtmlFormatter(Formatter):
         la = self.lineanchors
         aln = self.anchorlinenos
         nocls = self.noclasses
-        if sp:
-            lines = []
 
-            for i in range(fl, fl+lncount):
-                if i % st == 0:
-                    if i % sp == 0:
-                        if nocls:
-                            fmt = 'style="%s"' % self._td_linenos_special_style
-                        else:
-                            fmt = 'class="special"'
-                        # Replace with style if nocls
-                        if aln:
-                            lines.append('<a href="#%s-%d" %s>%*d</a>' %
-                                         (la, i, fmt, mw, i))
-                        else:
-                            lines.append('<span %s>%*d</span>' % (fmt, mw, i))
-                    else:
-                        if aln:
-                            lines.append('<a href="#%s-%d">%*d</a>' % (la, i, mw, i))
-                        else:
-                            lines.append('%*d' % (mw, i))
+        lines = []
+
+        for i in range(fl, fl+lncount):
+            print_line = i % st == 0
+            special_line = sp and i % sp == 0
+
+            if print_line:
+                line = '%*d' % (mw, i)
+                if aln:
+                    line = '<a href="#%s-%d">%s</a>' % (la, i, line)
+            else:
+                line = ' ' * mw
+
+            if nocls:
+                if special_line:
+                    style = ' style="%s"' % self._linenos_special_style
                 else:
-                    lines.append('')
-            ls = '\n'.join(lines)
-        else:
-            lines = []
-            for i in range(fl, fl+lncount):
-                if i % st == 0:
-                    if aln:
-                        lines.append('<a href="#%s-%d">%*d</a>' % (la, i, mw, i))
-                    else:
-                        lines.append('%*d' % (mw, i))
+                    style = ' style="%s"' % self._linenos_style
+            else:
+                if special_line:
+                    style = ' class="special"'
                 else:
-                    lines.append('')
-            ls = '\n'.join(lines)
+                    style = ''
+
+            line = '<pre%s>%s</pre>' % (style, line)
+
+            lines.append(line)
+
+        ls = '\n'.join(lines)
 
         # in case you wonder about the seemingly redundant <div> here: since the
         # content in the other cell also is wrapped in a div, some browsers in
         # some configurations seem to mess up the formatting...
-        if nocls:
-            yield 0, (
-                '<table class="%stable">' % self.cssclass +
-                '<tr><td style="%s">' % self._td_linenos_style +
-                '<div class="linenodiv"><pre style="%s">' % self._pre_style +
-                ls + '</pre></div></td><td class="code">'
-            )
-        else:
-            yield 0, (
-                '<table class="%stable">' % self.cssclass +
-                '<tr><td class="linenos"><div class="linenodiv"><pre>' +
-                ls + '</pre></div></td><td class="code">'
-            )
+        yield 0, (
+            '<table class="%stable">' % self.cssclass +
+            '<tr><td class="linenos"><div class="linenodiv">' +
+            ls + '</div></td><td class="code">'
+        )
         yield 0, dummyoutfile.getvalue()
         yield 0, '</td></tr></table>'
 
     def _wrap_inlinelinenos(self, inner):
         # need a list of lines since we need the width of a single number :(
-        lines = list(inner)
+        inner_lines = list(inner)
         sp = self.linenospecial
         st = self.linenostep
         num = self.linenostart
-        mw = len(str(len(lines) + num - 1))
+        mw = len(str(len(inner_lines) + num - 1))
+        nocls = self.noclasses
 
-        if self.noclasses:
-            if sp:
-                for t, line in lines:
-                    if num % sp == 0:
-                        style = self._span_linenos_special_style
-                    else:
-                        style = self._span_linenos_style
-                    yield 1, '<span style="%s">%*s </span>' % (
-                        style, mw, (num % st and ' ' or num)
-                    ) + line
-                    num += 1
+        for _, inner_line in inner_lines:
+            print_line = num % st == 0
+            special_line = sp and num % sp == 0
+
+            if print_line:
+                line = '%*d' % (mw, num)
             else:
-                for t, line in lines:
-                    style = self._span_linenos_style
-                    yield 1, '<span style="%s">%*s </span>' % (
-                        style, mw, (num % st and ' ' or num)
-                    ) + line
-                    num += 1
-        elif sp:
-            for t, line in lines:
-                yield 1, '<span class="lineno%s">%*s </span>' % (
-                    num % sp == 0 and ' special' or '', mw,
-                    (num % st and ' ' or num)) + line
-                num += 1
-        else:
-            for t, line in lines:
-                yield 1, '<span class="lineno">%*s </span>' % (
-                    mw, (num % st and ' ' or num)) + line
-                num += 1
+                line = ' ' * mw
+
+            if nocls:
+                if special_line:
+                    style = ' style="%s"' % self._linenos_special_style
+                else:
+                    style = ' style="%s"' % self._linenos_style
+            else:
+                if special_line:
+                    style = ' class="linenos special"'
+                else:
+                    style = ' class="linenos"'
+
+            yield 1, '<span%s>%s</span>' % (style, line) + inner_line
+            num += 1
 
     def _wrap_lineanchors(self, inner):
         s = self.lineanchors

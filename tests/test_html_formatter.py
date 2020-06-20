@@ -95,24 +95,6 @@ def test_all_options():
                     check(optdict)
 
 
-def test_linenos():
-    optdict = dict(linenos=True)
-    outfile = StringIO()
-    fmt = HtmlFormatter(**optdict)
-    fmt.format(tokensource, outfile)
-    html = outfile.getvalue()
-    assert re.search(r"<pre>\s+1\s+2\s+3", html)
-
-
-def test_linenos_with_startnum():
-    optdict = dict(linenos=True, linenostart=5)
-    outfile = StringIO()
-    fmt = HtmlFormatter(**optdict)
-    fmt.format(tokensource, outfile)
-    html = outfile.getvalue()
-    assert re.search(r"<pre>\s+5\s+6\s+7", html)
-
-
 def test_lineanchors():
     optdict = dict(lineanchors="foo")
     outfile = StringIO()
@@ -160,18 +142,19 @@ def test_valid_output():
 
 def test_get_style_defs_contains_pre_style():
     style_defs = HtmlFormatter().get_style_defs().splitlines()
-    assert style_defs[0] == 'pre { line-height: 125%; }'
+    assert style_defs[0] == 'pre { line-height: 125%; margin: 0; }'
 
 
 def test_get_style_defs_contains_default_line_numbers_styles():
     style_defs = HtmlFormatter().get_style_defs().splitlines()
+
     assert style_defs[1] == (
-        'td.linenos { color: #000000; background-color: #f0f0f0; '
-        'padding-right: 10px; }'
+        'td.linenos pre '
+        '{ color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }'
     )
     assert style_defs[2] == (
-        'span.lineno { color: #000000; background-color: #f0f0f0; '
-        'padding: 0 5px 0 5px; }'
+        'span.linenos '
+        '{ color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }'
     )
 
 
@@ -179,14 +162,26 @@ def test_get_style_defs_contains_style_specific_line_numbers_styles():
     class TestStyle(Style):
         line_number_color = '#ff0000'
         line_number_background_color = '#0000ff'
+        line_number_special_color = '#00ff00'
+        line_number_special_background_color = '#ffffff'
+
     style_defs = HtmlFormatter(style=TestStyle).get_style_defs().splitlines()
+
     assert style_defs[1] == (
-        'td.linenos { color: #ff0000; background-color: #0000ff; '
-        'padding-right: 10px; }'
+        'td.linenos pre '
+        '{ color: #ff0000; background-color: #0000ff; padding: 0 5px 0 5px; }'
     )
     assert style_defs[2] == (
-        'span.lineno { color: #ff0000; background-color: #0000ff; '
-        'padding: 0 5px 0 5px; }'
+        'span.linenos '
+        '{ color: #ff0000; background-color: #0000ff; padding: 0 5px 0 5px; }'
+    )
+    assert style_defs[3] == (
+        'td.linenos pre.special '
+        '{ color: #00ff00; background-color: #ffffff; padding: 0 5px 0 5px; }'
+    )
+    assert style_defs[4] == (
+        'span.linenos.special '
+        '{ color: #00ff00; background-color: #ffffff; padding: 0 5px 0 5px; }'
     )
 
 
