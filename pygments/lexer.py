@@ -148,10 +148,10 @@ class Lexer(metaclass=LexerMeta):
             elif self.encoding == 'chardet':
                 try:
                     import chardet
-                except ImportError:
+                except ImportError as e:
                     raise ImportError('To enable chardet encoding guessing, '
                                       'please install the chardet library '
-                                      'from http://chardet.feedparser.org/')
+                                      'from http://chardet.feedparser.org/') from e
                 # check for BOM first
                 decoded = None
                 for bom, encoding in _encoding_map:
@@ -496,7 +496,7 @@ class RegexLexerMeta(LexerMeta):
                 rex = cls._process_regex(tdef[0], rflags, state)
             except Exception as err:
                 raise ValueError("uncompilable regex %r in state %r of %r: %s" %
-                                 (tdef[0], state, cls, err))
+                                 (tdef[0], state, cls, err)) from err
 
             token = cls._process_token(tdef[1])
 
