@@ -40,6 +40,7 @@ LEXERS = {
     'ApacheConfLexer': ('pygments.lexers.configs', 'ApacheConf', ('apacheconf', 'aconf', 'apache'), ('.htaccess', 'apache.conf', 'apache2.conf'), ('text/x-apacheconf',)),
     'AppleScriptLexer': ('pygments.lexers.scripting', 'AppleScript', ('applescript',), ('*.applescript',), ()),
     'ArduinoLexer': ('pygments.lexers.c_like', 'Arduino', ('arduino',), ('*.ino',), ('text/x-arduino',)),
+    'ArrowLexer': ('pygments.lexers.arrow', 'Arrow', ('arrow',), ('*.arw',), ()),
     'AspectJLexer': ('pygments.lexers.jvm', 'AspectJ', ('aspectj',), ('*.aj',), ('text/x-aspectj',)),
     'AsymptoteLexer': ('pygments.lexers.graphics', 'Asymptote', ('asy', 'asymptote'), ('*.asy',), ('text/x-asymptote',)),
     'AugeasLexer': ('pygments.lexers.configs', 'Augeas', ('augeas',), ('*.aug',), ()),
