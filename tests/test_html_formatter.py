@@ -14,7 +14,7 @@ import tempfile
 from io import StringIO
 from os import path
 
-from pytest import raises
+import pytest
 
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.formatters.html import escape_html
@@ -185,22 +185,32 @@ def test_get_style_defs_contains_style_specific_line_numbers_styles():
     )
 
 
-def test_get_style_defs_uses_css_prefix():
-    fmt = HtmlFormatter()
+@pytest.mark.parametrize(
+    "formatter_kwargs, style_defs_args, assert_starts_with, assert_contains",
+    [
+        [{}, [], ".", []],
+        [{"cssclass": "foo"}, [], ".foo .", []],
+        [{"cssclass": "foo"}, [".bar"], ".bar .", []],
+        [{"cssclass": "foo"}, [[".bar", ".baz"]], ".ba", [".bar .", ".baz ."]],
+    ]
+)
+def test_get_token_style_defs_uses_css_prefix(
+    formatter_kwargs, style_defs_args, assert_starts_with, assert_contains
+):
+    formatter = HtmlFormatter(**formatter_kwargs)
 
-    style_defs = fmt.get_style_defs().splitlines()
-    assert style_defs[5].startswith('.')
+    for line in formatter.get_token_style_defs(*style_defs_args):
+        assert line.startswith(assert_starts_with)
+        for s in assert_contains:
+            assert s in line
 
-    fmt = HtmlFormatter(cssclass='foo')
 
-    style_defs = fmt.get_style_defs().splitlines()
-    assert style_defs[5].startswith('.foo')
+def test_get_background_style_defs_uses_multiple_css_prefixes():
+    formatter = HtmlFormatter()
 
-    style_defs = fmt.get_style_defs('.bar').splitlines()
-    assert style_defs[5].startswith('.bar')
-
-    line = fmt.get_style_defs(['.bar', '.baz']).splitlines()[5]
-    assert '.bar' in line and '.baz' in line
+    lines = formatter.get_background_style_defs([".foo", ".bar"])
+    assert lines[0].startswith(".foo .hll, .bar .hll {")
+    assert lines[1].startswith(".foo , .bar {")
 
 
 def test_unicode_options():
@@ -218,7 +228,9 @@ def test_ctags():
         import ctags
     except ImportError:
         # we can't check without the ctags module, but at least check the exception
-        assert raises(RuntimeError, HtmlFormatter, tagsfile='support/tags')
+        assert pytest.raises(
+            RuntimeError, HtmlFormatter, tagsfile='support/tags'
+        )
     else:
         # this tagfile says that test_ctags() is on line 165, even if it isn't
         # anymore in the actual source

@@ -493,6 +493,66 @@ class HtmlFormatter(Formatter):
         highlighting style. ``arg`` can be a string or list of selectors to
         insert before the token type classes.
         """
+        style_lines = []
+
+        style_lines.extend(self.get_linenos_style_defs())
+        style_lines.extend(self.get_background_style_defs(arg))
+        style_lines.extend(self.get_token_style_defs(arg))
+
+        return '\n'.join(style_lines)
+
+    def get_token_style_defs(self, arg=None):
+        prefix = self.get_css_prefix(arg)
+
+        styles = [
+            (level, ttype, cls, style)
+            for cls, (style, ttype, level) in self.class2style.items()
+            if cls and style
+        ]
+        styles.sort()
+
+        lines = [
+            '%s { %s } /* %s */' % (prefix(cls), style, repr(ttype)[6:])
+            for (level, ttype, cls, style) in styles
+        ]
+
+        return lines
+
+    def get_background_style_defs(self, arg=None):
+        prefix = self.get_css_prefix(arg)
+        bg_color = self.style.background_color
+        hl_color = self.style.highlight_color
+
+        lines = []
+
+        if arg and not self.nobackground and bg_color is not None:
+            text_style = ''
+            if Text in self.ttype2class:
+                text_style = ' ' + self.class2style[self.ttype2class[Text]][0]
+            lines.insert(
+                0, '%s{ background: %s;%s }' % (
+                    prefix(''), bg_color, text_style
+                )
+            )
+        if hl_color is not None:
+            lines.insert(
+                0, '%s { background-color: %s }' % (prefix('hll'), hl_color)
+            )
+
+        return lines
+
+    def get_linenos_style_defs(self):
+        lines = [
+            'pre { %s }' % self._pre_style,
+            'td.linenos pre { %s }' % self._linenos_style,
+            'span.linenos { %s }' % self._linenos_style,
+            'td.linenos pre.special { %s }' % self._linenos_special_style,
+            'span.linenos.special { %s }' % self._linenos_special_style,
+        ]
+
+        return lines
+
+    def get_css_prefix(self, arg):
         if arg is None:
             arg = ('cssclass' in self.options and '.'+self.cssclass or '')
         if isinstance(arg, str):
@@ -508,34 +568,7 @@ class HtmlFormatter(Formatter):
                 tmp.append((arg and arg + ' ' or '') + cls)
             return ', '.join(tmp)
 
-        styles = [(level, ttype, cls, style)
-                  for cls, (style, ttype, level) in self.class2style.items()
-                  if cls and style]
-        styles.sort()
-        lines = ['%s { %s } /* %s */' % (prefix(cls), style, repr(ttype)[6:])
-                 for (level, ttype, cls, style) in styles]
-        if arg and not self.nobackground and \
-           self.style.background_color is not None:
-            text_style = ''
-            if Text in self.ttype2class:
-                text_style = ' ' + self.class2style[self.ttype2class[Text]][0]
-            lines.insert(0, '%s { background: %s;%s }' %
-                         (prefix(''), self.style.background_color, text_style))
-        if self.style.highlight_color is not None:
-            lines.insert(0, '%s.hll { background-color: %s }' %
-                         (prefix(''), self.style.highlight_color))
-
-        lines.insert(0, 'pre { %s }' % self._pre_style)
-        lines.insert(1, 'td.linenos pre { %s }' % self._linenos_style)
-        lines.insert(2, 'span.linenos { %s }' % self._linenos_style)
-        lines.insert(
-            3, 'td.linenos pre.special { %s }' % self._linenos_special_style
-        )
-        lines.insert(
-            4, 'span.linenos.special { %s }' % self._linenos_special_style
-        )
-
-        return '\n'.join(lines)
+        return prefix
 
     @property
     def _pre_style(self):
