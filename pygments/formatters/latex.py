@@ -227,12 +227,18 @@ class LatexFormatter(Formatter):
 
         .. versionadded:: 1.2
 
+    `escapeinstr`
+        If set to ``True``, enables escaping to LaTeX in string literals, using
+        delimiter characters provided by `escapeinside`.  (default: ``False``).
+
+        .. versionadded:: x.y
+
     `escapeinside`
         If set to a string of length 2, enables escaping to LaTeX. Text
         delimited by these 2 characters is read as LaTeX code and
-        typeset accordingly. It has no effect in string literals. It has
-        no effect in comments if `texcomments` or `mathescape` is
-        set. (default: ``''``).
+        typeset accordingly. It has no effect in string literals unless
+        `escapeinstr` is set. It has no effect in comments if `texcomments` or
+        `mathescape` is set. (default: ``''``).
 
         .. versionadded:: 2.0
 
@@ -259,6 +265,7 @@ class LatexFormatter(Formatter):
         self.commandprefix = options.get('commandprefix', 'PY')
         self.texcomments = get_bool_opt(options, 'texcomments', False)
         self.mathescape = get_bool_opt(options, 'mathescape', False)
+        self.escapeinstr = get_bool_opt(options, 'escapeinstr', False)
         self.escapeinside = options.get('escapeinside', '')
         if len(self.escapeinside) == 2:
             self.left = self.escapeinside[0]
@@ -388,6 +395,54 @@ class LatexFormatter(Formatter):
                 else:
                     value = escape_tex(value, cp)
             elif ttype not in Token.Escape:
+                #   If option `escapeinside` is enabled, and the current token
+                #   is a string, then break this string into substrings and
+                #   escapes, then process those instead.
+                if self.escapeinside and self.escapeinstr and ttype in Token.String:
+                    #   Break string into substrings and escapes. Set them as an
+                    #   aux token source.
+                    tokensource_ = []
+                    while value:
+                        a, sep1, value = value.partition(self.left)
+                        if sep1:
+                            b, sep2, value = value.partition(self.right)
+                            if sep2:
+                                tokensource_.append((ttype, a))
+                                tokensource_.append((Token.Escape, b))
+                            else:
+                                tokensource_.append((ttype, a + sep1 + b))
+                        else:
+                            tokensource_.append((ttype, a))
+                    #   Process aux token source.
+                    for ttype_, value_ in tokensource_:
+                        if ttype_ not in Token.Escape:
+                            value_ = escape_tex(value_, cp)
+                        #   Code from here till `continue` is the same as the
+                        #   code below, because it is common token processing
+                        #   routine; it may be possible to refactor them into
+                        #   one piece of code to reduce redundancy. Let others
+                        #   discuss what is the best way before doing so.
+                        styles = []
+                        while ttype_ is not Token:
+                            try:
+                                styles.append(t2n[ttype_])
+                            except KeyError:
+                                # not in current style
+                                styles.append(_get_ttype_name(ttype_))
+                            ttype_ = ttype_.parent
+                        styleval = '+'.join(reversed(styles))
+                        if styleval:
+                            spl = value_.split('\n')
+                            for line in spl[:-1]:
+                                if line:
+                                    outfile.write("\\%s{%s}{%s}" % (cp, styleval, line))
+                                outfile.write('\n')
+                            if spl[-1]:
+                                outfile.write("\\%s{%s}{%s}" % (cp, styleval, spl[-1]))
+                        else:
+                            outfile.write(value_)
+                    #   We have finished processing this token; go next one.
+                    continue
                 value = escape_tex(value, cp)
             styles = []
             while ttype is not Token:
