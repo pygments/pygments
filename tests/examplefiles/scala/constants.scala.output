@@ -1,0 +1,176 @@
+'true'        Keyword.Constant
+' '           Text
+'false'       Keyword.Constant
+' '           Text
+'null'        Keyword.Constant
+'\n'          Text
+
+'1'           Literal.Number.Integer
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'4'           Literal.Number.Integer
+'\n'          Text
+
+'1L'          Literal.Number.Integer.Long
+' '           Text
+'1l'          Literal.Number.Integer.Long
+' '           Text
+'10L'         Literal.Number.Integer.Long
+' '           Text
+'12123123L'   Literal.Number.Integer.Long
+'\n'          Text
+
+'3.0'         Literal.Number.Float
+' '           Text
+'12.345'      Literal.Number.Float
+'\n'          Text
+
+'3f'          Literal.Number.Float
+' '           Text
+'3.0f'        Literal.Number.Float
+' '           Text
+'3F'          Literal.Number.Float
+' '           Text
+'3.0F'        Literal.Number.Float
+'\n'          Text
+
+'3d'          Literal.Number.Float
+' '           Text
+'3.0d'        Literal.Number.Float
+' '           Text
+'3D'          Literal.Number.Float
+' '           Text
+'3.0D'        Literal.Number.Float
+'\n'          Text
+
+'110_222_795_799.99' Literal.Number.Float
+' '           Text
+'110.9499_999' Literal.Number.Float
+' '           Text
+'2_000.343_999e561_100' Literal.Number.Float
+'\n'          Text
+
+'1e12'        Literal.Number.Float
+' '           Text
+'1e+34'       Literal.Number.Float
+' '           Text
+'1e-56'       Literal.Number.Float
+' '           Text
+'1e12f'       Literal.Number.Float
+' '           Text
+'1e+34f'      Literal.Number.Float
+' '           Text
+'1e-56f'      Literal.Number.Float
+' '           Text
+'1e12d'       Literal.Number.Float
+' '           Text
+'1e+34d'      Literal.Number.Float
+' '           Text
+'1e-56d'      Literal.Number.Float
+'\n'          Text
+
+'1E12'        Literal.Number.Float
+' '           Text
+'1E+34'       Literal.Number.Float
+' '           Text
+'1E-56'       Literal.Number.Float
+' '           Text
+'1E12f'       Literal.Number.Float
+' '           Text
+'1E+34f'      Literal.Number.Float
+' '           Text
+'1E-56f'      Literal.Number.Float
+' '           Text
+'1E12d'       Literal.Number.Float
+' '           Text
+'1E+34d'      Literal.Number.Float
+' '           Text
+'1E-56d'      Literal.Number.Float
+'\n'          Text
+
+'.1e12'       Literal.Number.Float
+' '           Text
+'.1e+34'      Literal.Number.Float
+' '           Text
+'.1e-56'      Literal.Number.Float
+' '           Text
+'.1e12f'      Literal.Number.Float
+' '           Text
+'.1e+34f'     Literal.Number.Float
+' '           Text
+'.1e-56f'     Literal.Number.Float
+' '           Text
+'.1e12d'      Literal.Number.Float
+' '           Text
+'.1e+34d'     Literal.Number.Float
+' '           Text
+'.1e-56d'     Literal.Number.Float
+'\n'          Text
+
+'.1E12'       Literal.Number.Float
+' '           Text
+'.1E+34'      Literal.Number.Float
+' '           Text
+'.1E-56'      Literal.Number.Float
+' '           Text
+'.1E12f'      Literal.Number.Float
+' '           Text
+'.1E+34f'     Literal.Number.Float
+' '           Text
+'.1E-56f'     Literal.Number.Float
+' '           Text
+'.1E12d'      Literal.Number.Float
+' '           Text
+'.1E+34d'     Literal.Number.Float
+' '           Text
+'.1E-56d'     Literal.Number.Float
+'\n'          Text
+
+'0x'          Literal.Number.Hex
+' '           Text
+'// Can still be highlighted correctly!\n' Comment.Single
+
+'0x1234567890ABCDEF' Literal.Number.Hex
+' '           Text
+'0x1234567890abcdef' Literal.Number.Hex
+'\n'          Text
+
+'0x123_abc'   Literal.Number.Hex
+' '           Text
+'0x123_ABC'   Literal.Number.Hex
+'\n'          Text
+
+'"test"'      Literal.String
+' '           Text
+'"\\"test\\""' Literal.String
+' '           Text
+'"\'test\'"'  Literal.String
+' '           Text
+'// comment\n' Comment.Single
+
+'"""test: one ", two "", three """"""' Literal.String
+' '           Text
+'// comment\n' Comment.Single
+
+"'t'"         Literal.String.Char
+' '           Text
+'\'"\''       Literal.String.Char
+' '           Text
+"'"           Literal.String.Char
+"\\'"         Literal.String.Escape
+"'"           Literal.String.Char
+' '           Text
+"'"           Literal.String.Char
+'\\n'         Literal.String.Escape
+"'"           Literal.String.Char
+' '           Text
+"' '"         Literal.String.Char
+'\n'          Text
+
+'super'       Name.Builtin.Pseudo
+' '           Text
+'this'        Name.Builtin.Pseudo
+'\n'          Text

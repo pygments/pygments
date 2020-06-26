@@ -1,0 +1,104 @@
+'// Extends\n' Comment.Single
+
+'trait'       Keyword
+' '           Text
+'A'           Name.Class
+' '           Text
+'extends'     Keyword
+' '           Text
+'B'           Name.Class
+'\n'          Text
+
+'trait'       Keyword
+' '           Text
+'A'           Name.Class
+' '           Text
+'extends'     Keyword
+' '           Text
+'('           Punctuation
+'B'           Name.Class
+' '           Text
+'=>'          Operator
+' '           Text
+'B'           Name.Class
+')'           Punctuation
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'trait'       Keyword
+' '           Text
+'Color'       Name.Class
+'\n'          Text
+
+'object'      Keyword
+' '           Text
+'Red'         Name.Class
+' '           Text
+'extends'     Keyword
+' '           Text
+'Color'       Name.Class
+'\n\n'        Text
+
+'// Derives\n' Comment.Single
+
+'enum'        Keyword
+' '           Text
+'Tree'        Name.Class
+'['           Punctuation
+'T'           Name.Class
+']'           Punctuation
+' '           Text
+'derives'     Keyword
+' '           Text
+'Eq'          Name.Class
+','           Punctuation
+' '           Text
+'Ordering'    Name.Class
+','           Punctuation
+' '           Text
+'Show'        Name.Class
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'Branch'      Name.Class
+'['           Punctuation
+'T'           Name.Class
+']'           Punctuation
+'('           Punctuation
+'left'        Name
+':'           Punctuation
+' '           Text
+'Tree'        Name.Class
+'['           Punctuation
+'T'           Name.Class
+']'           Punctuation
+','           Punctuation
+' '           Text
+'right'       Name
+':'           Punctuation
+' '           Text
+'Tree'        Name.Class
+'['           Punctuation
+'T'           Name.Class
+']'           Punctuation
+')'           Punctuation
+'\n  '        Text
+'case'        Keyword
+' '           Text
+'Leaf'        Name.Class
+'['           Punctuation
+'T'           Name.Class
+']'           Punctuation
+'('           Punctuation
+'elem'        Name
+':'           Punctuation
+' '           Text
+'T'           Name.Class
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

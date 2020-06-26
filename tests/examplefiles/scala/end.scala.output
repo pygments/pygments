@@ -1,0 +1,332 @@
+'new'         Keyword
+' '           Text
+'Foo'         Name.Class
+':'           Punctuation
+'\n  '        Text
+'// ...\n'    Comment.Single
+
+'end'         Keyword
+' '           Text
+'new'         Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'extension'   Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'while'       Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'for'         Keyword
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'match'       Keyword
+'\n'          Text
+
+'class'       Keyword
+' '           Text
+'Foo'         Name.Class
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'Foo'         Name.Class
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'bar'         Name.Namespace
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'`bar`'       Name.Namespace
+'\n'          Text
+
+'end'         Keyword
+' '           Text
+'// test comment\n' Comment.Single
+
+'package'     Keyword
+' '           Text
+'p1'          Name.Namespace
+'.'           Punctuation
+'p2'          Name
+':'           Punctuation
+'\n  '        Text
+'abstract'    Keyword
+' '           Text
+'class'       Keyword
+' '           Text
+'C'           Name.Class
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+'\n    '      Text
+'def'         Keyword
+' '           Text
+'this'        Name.Function
+'('           Punctuation
+'x'           Name
+':'           Punctuation
+' '           Text
+'Int'         Name.Class
+')'           Punctuation
+' '           Text
+'='           Operator
+'\n      '    Text
+'this'        Name.Builtin.Pseudo
+'('           Punctuation
+')'           Punctuation
+'\n      '    Text
+'if'          Keyword
+' '           Text
+'x'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+'\n        '  Text
+'val'         Keyword.Declaration
+' '           Text
+'a'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'b'           Name
+' '           Text
+'='           Operator
+'\n          ' Text
+'x'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'Nil'         Name.Class
+'\n        '  Text
+'end'         Keyword
+' '           Text
+'val'         Keyword
+' '           Text
+'// test comment\n' Comment.Single
+
+'        '    Text
+'var'         Keyword.Declaration
+' '           Text
+'y'           Name
+' '           Text
+'='           Operator
+'\n          ' Text
+'x'           Name
+'\n        '  Text
+'end'         Keyword
+' '           Text
+'y'           Name.Namespace
+' '           Text
+'// test comment\n' Comment.Single
+
+'        '    Text
+'while'       Keyword
+' '           Text
+'y'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'do'          Keyword
+'\n          ' Text
+'println'     Name
+'('           Punctuation
+'y'           Name
+')'           Punctuation
+'\n          ' Text
+'y'           Name
+' '           Text
+'-='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n        '  Text
+'end'         Keyword
+' '           Text
+'while'       Keyword
+' '           Text
+'// test comment\n' Comment.Single
+
+'        '    Text
+'try'         Keyword
+'\n          ' Text
+'x'           Name
+' '           Text
+'match'       Keyword
+'\n            ' Text
+'case'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'=>'          Operator
+' '           Text
+'println'     Name
+'('           Punctuation
+'"0"'         Literal.String
+')'           Punctuation
+'\n            ' Text
+'case'        Keyword
+' '           Text
+'_'           Name
+' '           Text
+'=>'          Operator
+'\n          ' Text
+'end'         Keyword
+' '           Text
+'match'       Keyword
+' '           Text
+'// test comment\n' Comment.Single
+
+'        '    Text
+'finally'     Keyword
+'\n          ' Text
+'println'     Name
+'('           Punctuation
+'"done"'      Literal.String
+')'           Punctuation
+'\n        '  Text
+'end'         Keyword
+' '           Text
+'try'         Name.Namespace
+' '           Text
+'// test comment\n' Comment.Single
+
+'      '      Text
+'end'         Keyword
+' '           Text
+'if'          Keyword
+' '           Text
+'// test comment\n' Comment.Single
+
+'    '        Text
+'end'         Keyword
+' '           Text
+'this'        Name.Namespace
+' '           Text
+'// test comment\n' Comment.Single
+
+'    '        Text
+'def'         Keyword
+' '           Text
+'f'           Name.Function
+':'           Punctuation
+' '           Text
+'String'      Name.Class
+'\n  '        Text
+'end'         Keyword
+' '           Text
+'C'           Name.Class
+' '           Text
+'// test comment\n' Comment.Single
+
+'  '          Text
+'object'      Keyword
+' '           Text
+'C'           Name.Class
+':'           Punctuation
+'\n    '      Text
+'given'       Keyword
+' '           Text
+'C'           Name.Class
+' '           Text
+'='           Operator
+'\n      '    Text
+'new'         Keyword
+' '           Text
+'C'           Name.Class
+':'           Punctuation
+'\n        '  Text
+'def'         Keyword
+' '           Text
+'f'           Name.Function
+' '           Text
+'='           Operator
+' '           Text
+'"!"'         Literal.String
+'\n        '  Text
+'end'         Keyword
+' '           Text
+'f'           Name.Namespace
+' '           Text
+'// test comment\n' Comment.Single
+
+'      '      Text
+'end'         Keyword
+' '           Text
+'new'         Keyword
+' '           Text
+'// test comment\n' Comment.Single
+
+'    '        Text
+'end'         Keyword
+' '           Text
+'given'       Name.Namespace
+' '           Text
+'// test comment\n' Comment.Single
+
+'  '          Text
+'end'         Keyword
+' '           Text
+'C'           Name.Class
+' '           Text
+'// test comment\n' Comment.Single
+
+'  '          Text
+'extension'   Keyword
+' '           Text
+'('           Punctuation
+'x'           Name
+':'           Punctuation
+' '           Text
+'C'           Name.Class
+')'           Punctuation
+'\n    '      Text
+'def'         Keyword
+' '           Text
+'ff'          Name.Function
+':'           Punctuation
+' '           Text
+'String'      Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'x'           Name
+'.'           Punctuation
+'f'           Name
+' '           Text
+'++'          Operator
+' '           Text
+'x'           Name
+'.'           Punctuation
+'f'           Name
+'\n  '        Text
+'end'         Keyword
+' '           Text
+'extension'   Keyword
+' '           Text
+'// test comment\n' Comment.Single
+
+'end'         Keyword
+' '           Text
+'p2'          Name.Namespace
+' '           Text
+'// test comment\n' Comment.Single

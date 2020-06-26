@@ -1,0 +1,142 @@
+'def'         Keyword
+' '           Text
+'f'           Name.Function
+'('           Punctuation
+'x'           Name
+':'           Punctuation
+' '           Text
+'Int'         Name.Class
+','           Punctuation
+' '           Text
+'y'           Name
+':'           Punctuation
+' '           Text
+'Int'         Name.Class
+')'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'x'           Name
+' '           Text
+'match'       Keyword
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'`y`'         Name
+' '           Text
+'=>'          Operator
+' \n    '     Text
+'case'        Keyword
+'  '          Text
+'s'           Name
+' '           Text
+'@'           Operator
+' '           Text
+'Seq'         Name.Class
+'('           Punctuation
+'_'           Name
+','           Punctuation
+' '           Text
+'_'           Name
+','           Punctuation
+' '           Text
+'_'           Name
+')'           Punctuation
+' '           Text
+'=>'          Operator
+' \n    '     Text
+'case'        Keyword
+' '           Text
+'Seq'         Name.Class
+'('           Punctuation
+'first'       Name
+','           Punctuation
+' '           Text
+'tail'        Name
+' '           Text
+'@'           Operator
+' '           Text
+'_*'          Name
+')'           Punctuation
+' '           Text
+'=>'          Operator
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'first'       Name
+' '           Text
+'+:'          Operator
+' '           Text
+'tail'        Name
+' '           Text
+'=>'          Operator
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'|'           Operator
+' '           Text
+'5'           Literal.Number.Integer
+' '           Text
+'|'           Operator
+' '           Text
+'6'           Literal.Number.Integer
+' '           Text
+'=>'          Operator
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'y'           Name
+':'           Punctuation
+' '           Text
+'Number'      Name.Class
+' '           Text
+'=>'          Operator
+' '           Text
+'y'           Name
+'.'           Punctuation
+'n'           Name
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'Lit'         Name.Class
+'('           Punctuation
+'n'           Name
+')'           Punctuation
+'        '    Text
+'=>'          Operator
+' '           Text
+'n'           Name
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'IsZero'      Name.Class
+'('           Punctuation
+'u'           Name
+')'           Punctuation
+'     '       Text
+'=>'          Operator
+' '           Text
+'eval'        Name
+'('           Punctuation
+'u'           Name
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'_'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'15'          Literal.Number.Integer
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

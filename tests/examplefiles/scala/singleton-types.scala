@@ -1,0 +1,4 @@
+val x = ???
+trait Foo[T <: x.type]
+val a: x.type = ???
+val b: Foo[x.type] = ???
