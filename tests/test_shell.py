@@ -10,7 +10,7 @@
 import pytest
 
 from pygments.token import Token
-from pygments.lexers import BashLexer, BashSessionLexer, MSDOSSessionLexer
+from pygments.lexers import BashLexer, BashSessionLexer, MSDOSSessionLexer, PowerShellSessionLexer
 
 
 @pytest.fixture(scope='module')
@@ -26,6 +26,11 @@ def lexer_session():
 @pytest.fixture(scope='module')
 def lexer_msdos():
     yield MSDOSSessionLexer()
+
+
+@pytest.fixture(scope='module')
+def lexer_powershell_session():
+    yield PowerShellSessionLexer()
 
 
 def test_curly_no_escape_and_quotes(lexer_bash):
@@ -162,6 +167,29 @@ def test_msdos_gt_only(lexer_msdos):
         (Token.Generic.Output, u'hi\n'),
     ]
     assert list(lexer_msdos.get_tokens(fragment)) == tokens
+
+
+def test_powershell_session(lexer_powershell_session):
+    fragment = u'PS C:\\> Get-ChildItem\n'
+    tokens = [
+        (Token.Name.Builtin, u''),
+        (Token.Generic.Prompt, u'PS C:\\> '),
+        (Token.Name.Builtin, u'Get-ChildItem'),
+        (Token.Text, u'\n')
+    ]
+    assert list(lexer_powershell_session.get_tokens(fragment)) == tokens
+
+
+def test_powershell_remoting_session(lexer_powershell_session):
+    fragment = u'[Long-NetBIOS-Hostname]: PS C:\\> Get-ChildItem\n'
+    tokens = [
+        (Token.Name.Builtin, u''),
+        (Token.Generic.Prompt, u'[Long-NetBIOS-Hostname]: PS C:\\> '),
+        (Token.Name.Builtin, u'Get-ChildItem'),
+        (Token.Text, u'\n')
+    ]
+    assert list(lexer_powershell_session.get_tokens(fragment)) == tokens
+
 
 def test_virtualenv(lexer_session):
     fragment = u'(env) [~/project]$ foo -h\n'
