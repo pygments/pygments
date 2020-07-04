@@ -176,5 +176,17 @@ class Style(metaclass=StyleMeta):
     #: highlight background color
     highlight_color = '#ffffcc'
 
+    #: line number font color
+    line_number_color = '#000000'
+
+    #: line number background color
+    line_number_background_color = '#f0f0f0'
+
+    #: special line number font color
+    line_number_special_color = '#000000'
+
+    #: special line number background color
+    line_number_special_background_color = '#ffffc0'
+
     #: Style definitions for individual token types.
     styles = {}
