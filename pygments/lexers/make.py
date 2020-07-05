@@ -200,7 +200,7 @@ class CMakeLexer(RegexLexer):
             r'^[ \t]*CMAKE_MINIMUM_REQUIRED[ \t]*'
             r'\([ \t]*VERSION[ \t]*\d+(\.\d+)*[ \t]*'
             r'([ \t]FATAL_ERROR)?[ \t]*\)[ \t]*'
-            r'(#.*)?$'
+            r'(#[^\n]*)?$'
        )
         if re.search(exp, text, flags=re.MULTILINE | re.IGNORECASE):
             return 0.8
