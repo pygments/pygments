@@ -127,6 +127,7 @@ Programming languages
 * `PHP <https://www.php.net/>`_
 * `Perl 5 <https://perl.org>`_
 * `Pike <https://pike.lysator.liu.se/>`_
+* `Pointless <https://ptls.dev/>`_
 * `Pony <https://www.ponylang.io/>`_
 * `PovRay <http://www.povray.org/>`_
 * `PostScript <https://en.wikipedia.org/wiki/PostScript>`_
