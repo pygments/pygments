@@ -17,9 +17,9 @@ __all__ = ['PointlessLexer']
 
 class PointlessLexer(RegexLexer):
     """
-    For Pointless source code.
+    For `Pointless <https://ptls.dev>`_ source code.
 
-    https://ptls.dev
+    .. versionadded:: 2.6
     """
 
     name = 'Pointless'
