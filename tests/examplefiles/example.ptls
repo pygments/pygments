@@ -1,0 +1,377 @@
+
+import "location.ptls" as location
+import "symbols.ptls" as symbols
+
+------------------------------------------------------------------------------
+-- For tokenizer tok with chars c0, c1, c2 ... cn
+-- and funcs f0, f1, f2, ... fn
+-- return true if n >= m and all([f0(c0), f1(c1), ...])
+
+matchChars(funcs, tok) =
+  if length(pairs) < length(funcs) then false
+  else
+    pairs
+    |> map(pair => (func(char) where (func, char) = pair))
+    |> all
+  where pairs = zip(funcs, tok.chars)
+
+------------------------------------------------------------------------------
+-- New tokenizer object
+
+new(text) = Tokenizer {
+  chars    = split("", text)
+  locs     = location.fromChars("path", chars)
+  stack    = []
+  tokens   = []
+  tokenLoc = head(locs) -- where the current token started
+}
+
+------------------------------------------------------------------------------
+-- Move forward one char, push char onto stack
+
+advance(tok) =
+  tok with {
+    $.chars = tail(tok.chars)
+    $.stack = [head(tok.chars)] ++ tok.stack
+    $.locs  = tail(tok.locs)
+  }
+
+------------------------------------------------------------------------------
+-- Skip chars (don't push to stack)
+
+skipVal(tok) = advance(tok) with {
+  -- keep stack of tok before advance (leaves out current char)
+  $.stack = tok.stack
+}
+
+------------------------------------------------------------------------------
+-- Push chars to stack as long as matchChars(funcs)
+
+advanceWhile(funcs, tok) =
+  iterate(advance, tok)
+  |> dropWhile(matchChars(funcs))
+  |> head
+
+------------------------------------------------------------------------------
+-- Skip chars (don't push to stack) as long as matchChars(funcs)
+
+skipWhile(funcs, tok) =
+  iterate(skipVal, tok)
+  |> dropWhile(matchChars(funcs))
+  |> head
+
+------------------------------------------------------------------------------
+-- No more chars to parse
+
+isEOF(tok) = tok.chars == Empty
+
+------------------------------------------------------------------------------
+-- Get token string from stack of tokens
+
+tokVal(tok) =
+  tok.stack
+  |> reverse -- pushing chars reversed order - reverse again to correct
+  |> join("")
+
+------------------------------------------------------------------------------
+-- Push new token to token stack
+
+makeToken(labelFunc, tok) = tok with {
+  $.tokens   = [token] ++ tok.tokens
+  $.stack    = []                       -- clear stack
+  $.tokenLoc = head(tok.locs)           -- set loc for next token
+
+} where {
+  -- add label to token object (Name {...})
+  token = wrapObject(labelFunc(val), {value = val; loc = tok.tokenLoc})
+  val = tokVal(tok)
+}
+
+------------------------------------------------------------------------------
+-- Find matching token type for upcoming chars
+
+isBlank        = matchChars([eq("_")])
+isComment      = matchChars([eq("-"), eq("-")])
+isInt          = matchChars([inFunc(digits)])
+isFloat        = matchChars([eq("."), inFunc(digits)])
+isName         = matchChars([inFunc(lowers)])
+isLabel        = matchChars([inFunc(uppers)])
+isCustomField  = matchChars([eq("."), inFunc(alphas)])
+isLangField    = matchChars([eq("."), eq("!"), inFunc(alphas)])
+isOpSym        = matchChars([inFunc(symbols.opSymChars)])
+isWhitespace   = matchChars([eq(" ")])
+isNewline      = matchChars([eq("\n")])
+isSeparator    = matchChars([inFunc(symbols.separators)])
+isLeftSym      = matchChars([inFunc(symbols.leftSyms)])
+isRightSym     = matchChars([inFunc(symbols.rightSyms)])
+isString       = matchChars([eq("\"")])
+
+------------------------------------------------------------------------------
+-- Make a new token and push to token stack
+-- must have not isEOF(tok)
+-- throws TokenizerError
+
+getToken(tok) = cond {
+
+  case isBlank(tok)
+    tok
+    |> skipVal -- skip blank char
+    |> makeToken(const(Blank))
+
+  ----------------------------------------------------------------------------
+
+  case isComment(tok)
+    tok
+    |> advanceWhile([eq("-")]) -- take all dashes
+    |> advanceWhile([notEq("\n")]) -- comment extends to the end of line
+    |> makeToken(const(Comment))
+
+  ----------------------------------------------------------------------------
+
+  case isWhitespace(tok)
+    tok
+    |> skipWhile([eq(" ")]) -- combine repeated spaces into one token
+    |> makeToken(const(Whitespace))
+
+  ----------------------------------------------------------------------------
+
+  case isNewline(tok)
+    tok
+    |> skipWhile([eq("\n")]) -- combine repeated newlines into one token
+    |> makeToken(const(Newline))
+
+  ----------------------------------------------------------------------------
+
+  case isSeparator(tok)
+    tok
+    |> advance -- take separator char
+    |> makeToken(getIndex(symbols.separators))
+
+  ----------------------------------------------------------------------------
+
+  case isName(tok)
+    tok
+    |> advanceWhile([inFunc(alNums)]) -- take all alphanumeric chars
+    -- return matching keyword token if name is a keyword
+    |> makeToken(getDefault(symbols.keywords, Name))
+
+  ----------------------------------------------------------------------------
+
+  case isCustomField(tok)
+    tok
+    |> skipVal -- take '.'
+    |> advanceWhile([inFunc(alNums)])
+    |> makeToken(const(Field))
+
+  ----------------------------------------------------------------------------
+
+  case isLangField(tok)
+    tok
+    |> skipVal -- take '.'
+    |> advance -- take '!'
+    |> advanceWhile([inFunc(alNums)])
+    |> makeToken(const(Field))
+
+  ----------------------------------------------------------------------------
+
+  case isLabel(tok)
+    tok
+    |> advanceWhile([inFunc(alNums)]) -- take all alphanumeric chars
+    |> makeToken(const(Label))
+
+  ----------------------------------------------------------------------------
+
+  case isString(tok)
+    tok
+    |> skipVal -- skip opening '"'
+    |> getStringChars
+    |> skipVal -- skip closing '"'
+    |> makeToken(const(String))
+
+  ----------------------------------------------------------------------------
+
+  case isInt(tok)
+    tok
+    |> advanceWhile([inFunc(digits)]) -- take all leading digits
+    -- if there's a decimal point followed by more digits, take those too
+    |> (tok => if isFloat(tok) then getFloatDigits(tok) else tok)
+    |> makeToken(const(Number))
+
+  ----------------------------------------------------------------------------
+
+  case isFloat(tok)
+    tok
+    |> getFloatDigits(tok) -- get decimal point and following digits
+    |> makeToken(const(Number))
+
+  ----------------------------------------------------------------------------
+
+  case isOpSym(tok)
+    tok
+    |> advanceWhile([inFunc(symbols.opSymChars)]) -- take all operator chars
+    |> checkOpSym -- check that chars form a valid operator
+    |> makeToken(getIndex(symbols.opSyms))
+
+  ----------------------------------------------------------------------------
+  -- leftSyms and rightSyms kept separate to accomodate Sub -> Neg conversion
+
+  case isLeftSym(tok)
+    tok
+    |> advance -- take leftSym char
+    |> makeToken(getIndex(symbols.leftSyms))
+
+  ----------------------------------------------------------------------------
+
+  case isRightSym(tok)
+    tok
+    |> advance -- take rightSym char
+    |> makeToken(getIndex(symbols.rightSyms))
+
+  ----------------------------------------------------------------------------
+  -- leading chars don't form a valid token
+  -- example: a non alphaNumeric char not in any operator or symbol like '&'
+
+  else
+    tokError(tok, message)
+    where message = format("Unexpected symbol '{}'", [head(tok.chars)])
+
+} requires not isEOF(tok)
+
+------------------------------------------------------------------------------
+-- Get chars inside string
+
+getStringChars(tok) = cond {
+  case isEOF(tok)
+    -- reached end of file before closing quote
+    tokError(tok, "Unmatched quote")
+
+  case matchChars([eq("\n")], tok)
+    -- reached end of line before closing quote
+    tokError(tok, "Unmatched quote (must escape line breaks in string)")
+
+  case matchChars([eq("\\")], tok)
+    -- on backslash, move past backslash and escape char
+    getStringChars(advance(advance(tok)))
+
+  case matchChars([eq("\"")], tok)
+    tok -- stop before taking closing quote
+
+  else getStringChars(advance(tok))
+}
+
+------------------------------------------------------------------------------
+-- Get decimal point and following digits
+
+getFloatDigits(tok) =
+  tok
+  |> advance
+  |> advanceWhile([inFunc(digits)])
+
+------------------------------------------------------------------------------
+-- Check that current token chars form valid operator
+
+checkOpSym(tok) =
+  if val in symbols.opSyms then tok
+  else tokError(tok, format("Invalid operator '{}'", [val]))
+  where val = tokVal(tok)
+
+------------------------------------------------------------------------------
+-- Throw TokenizerError
+
+tokError(tok, message) = throw TokenizerError(fullMessage)
+  where fullMessage = format(
+    "{}\nTokenizer Error:\n\n{}\n{}\n\n{}",
+    [sep, message, sep, location.showLoc(tok.tokenLoc)]
+  )
+
+sep = repeat("-") |> take(79) |> join("")
+
+------------------------------------------------------------------------------
+-- Get string representation for token
+
+showTok(token) =
+  format(
+    "{>3}:{<2} [ {<12} ] {}",
+    [line, col, getLabel(token), token.value]
+  ) where (line, col) = at(0, token.loc)
+ 
+------------------------------------------------------------------------------
+
+startToks = toSet(
+  vals(symbols.opSyms)
+  ++ vals(symbols.separators)
+  ++ vals(symbols.leftSyms)
+  ++ vals(symbols.keywords)
+)
+
+endToks = toSet(
+  vals(symbols.rightSyms)
+  ++ [Name, Field, String, Number]
+)
+
+updateIsStart(isStart, token) = cond {
+  case getLabel(token) in startToks true
+  case getLabel(token) in endToks false
+  else isStart
+}
+
+------------------------------------------------------------------------------
+
+getTokens(tok) =
+  tok
+  |> iterate(getToken)
+  |> drop(1)
+  |> takeUntil(isEOF)
+  |> map(tok => head(tok.tokens))
+
+------------------------------------------------------------------------------
+
+convert(tokens) =
+  scan(updateIsStart, false, tokens)
+  |> zip(tokens)
+  |> map(convertSubExpr)
+  |> getNeighborTruples
+  |> map(convertSubPadding)
+
+------------------------------------------------------------------------------
+-- Scan tokens, keeping track of whether '-' corresponds to a negative
+-- sign or subtraction operator, depending on whether they occur at the start
+-- of an expression, and update (all '-' are initially parsed as subtraction)
+
+convertSubExpr(pair) =
+  if is(Sub, token) and isStart
+  then wrapObject(Neg, token)
+  else token
+  where (token, isStart) = pair
+
+------------------------------------------------------------------------------
+
+getNeighborTruples(tokens) =
+  zipN([tokens, [None] ++ tokens, drop(1, tokens)])
+
+------------------------------------------------------------------------------
+-- Special case: conver '-' to neg in 'a -b'
+-- for examplem:
+--   array = [1 2 -3] 
+
+convertSubPadding(triple) =
+  if is(Sub, current) and is(Whitespace, last) and is(Number, next)
+  then wrapObject(Neg, current)
+  else current
+  where (current, last, next) = triple
+
+------------------------------------------------------------------------------
+
+text = readLines |> join("\n")
+
+output =
+  try
+    new(text)
+    |> getTokens
+    |> convert
+    |> map(showTok)
+    |> eager
+    |> printLines
+
+  catch is(TokenizerError)
+    err => println(unwrap(err))
