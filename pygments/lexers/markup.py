@@ -519,9 +519,9 @@ class MarkdownLexer(RegexLexer):
         from pygments.lexers import get_lexer_by_name
 
         # section header
-        yield match.start(1), String        , match.group(1)
-        yield match.start(2), String        , match.group(2)
-        yield match.start(3), Text          , match.group(3)
+        yield match.start(1), String.Backtick, match.group(1)
+        yield match.start(2), String.Backtick, match.group(2)
+        yield match.start(3), Text           , match.group(3)
 
         # lookup lexer if wanted and existing
         lexer = None
@@ -539,7 +539,7 @@ class MarkdownLexer(RegexLexer):
             for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
                 yield item
 
-        yield match.start(5), String        , match.group(5)
+        yield match.start(5), String.Backtick, match.group(5)
 
     tokens = {
         'root': [
@@ -554,20 +554,20 @@ class MarkdownLexer(RegexLexer):
             # task list
             (r'^(\s*)([*-] )(\[[ xX]\])( .+\n)',
             bygroups(Text, Keyword, Keyword, using(this, state='inline'))),
-            # bulleted lists
+            # bulleted list
             (r'^(\s*)([*-])(\s)(.+\n)',
             bygroups(Text, Keyword, Text, using(this, state='inline'))),
-            # numbered lists
+            # numbered list
             (r'^(\s*)([0-9]+\.)( .+\n)',
             bygroups(Text, Keyword, using(this, state='inline'))),
             # quote
             (r'^(\s*>\s)(.+\n)', bygroups(Keyword, Generic.Emph)),
             # code block fenced by 3 backticks
-            (r'^(```\n[\w\W]*?^```$)', String.Backtick),
-            # code block indented with 4 spaces or 1 tab
-            (r'^(\ {4}|\t)([\w\W]*?)(\n)', bygroups(Text, String.Backtick, Text)),
+            (r'^(\s*```\n(.+\n)+\s*```$)', String.Backtick),
             # code block with language
-            (r'^(```)(\w+)(\n)([\w\W]*?)(^```$)', _handle_codeblock),
+            (r'^(\s*```)(\w+)(\n)([\w\W]*?)(^\s*```$)', _handle_codeblock),
+            # code block indented with 4 spaces or 1 tab
+            (r'(\n\n)((\ {4}|\t)(.+\n)+)', bygroups(Text, String.Backtick)),
 
             include('inline'),
         ],
@@ -575,17 +575,17 @@ class MarkdownLexer(RegexLexer):
             # escape
             (r'\\.', Text),
             # inline code
-            (r'([^`\n]*)(`[^`\n]+`)', bygroups(Text, String.Backtick)),
-            # warning: the following rules eat internal tags.
-            # eg. **foo _bar_ baz** => bar is not recognized as italics
-            # italics fenced by '*'
-            (r'([^\*]*)(\*[^\*\n]+\*)', bygroups(Text, Generic.Emph)),
-            # italics fenced by '_'
-            (r'([^\_]*)(\_[^\_\n].+\_)', bygroups(Text, Generic.Emph)),
+            (r'([^`])(`[^`\n]+`)', bygroups(Text, String.Backtick)),
+            # warning: the following rules eat outer tags.
+            # eg. **foo _bar_ baz** => foo and baz are not recognized as bold
             # bold fenced by '**'
-            (r'([^\*]*)(\*\*[^\*\n].+\*\*)', bygroups(Text, Generic.Strong)),
-            # bold fenced by '__'
-            (r'([^\_]*)(\_\_[^\_\n].+\_\_)', bygroups(Text, Generic.Strong)),
+            (r'(\*\*[^\*\n\ ][^\*\n]*\*\*)', bygroups(Generic.Strong)),
+            # # bold fenced by '__'
+            (r'(\_\_[^\_\n\ ][^\_\n]*\_\_)', bygroups(Generic.Strong)),
+            # italics fenced by '*'
+            (r'(\*[^\*\n\ ][^\*\n]*\*)', bygroups(Generic.Emph)),
+            # italics fenced by '_'
+            (r'(\_[^\_\n\ ][^\_\n]*\_)', bygroups(Generic.Emph)),
             # strikethrough
             (r'([^~]*)(~~[^~]+~~)', bygroups(Text, Generic.Deleted)),
             # mentions and topics (twitter and github stuff)
