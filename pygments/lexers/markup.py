@@ -581,9 +581,9 @@ class MarkdownLexer(RegexLexer):
             # italics fenced by '_'
             (r'([^\_]*)(\_[^\_].+\_)', bygroups(Text, Generic.Emph)),
             # bold fenced by '**'
-            (r'([^\*\*]*)(\*\*[^\*\*].+\*\*)', bygroups(Text, Generic.Strong)),
+            (r'([^\*]*)(\*\*[^\*].+\*\*)', bygroups(Text, Generic.Strong)),
             # bold fenced by '__'
-            (r'([^\_\_]*)(\_\_[^\_\_].+\_\_)', bygroups(Text, Generic.Strong)),
+            (r'([^\_]*)(\_\_[^\_].+\_\_)', bygroups(Text, Generic.Strong)),
 
             # TODO
             # # warning: the following rule eats internal tags. eg. **foo _bar_ baz** bar is not italics
