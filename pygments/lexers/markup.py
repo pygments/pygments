@@ -576,6 +576,8 @@ class MarkdownLexer(RegexLexer):
             (r'\\.', Text),
             # inline code
             (r'([^`\n]*)(`[^`]+`)', bygroups(Text, String.Backtick)),
+            # warning: the following rules for italics & bold eat internal tags.
+            # eg. **foo _bar_ baz** => bar is not recognized as italics
             # italics fenced by '*'
             (r'([^\*]*)(\*[^\*].+\*)', bygroups(Text, Generic.Emph)),
             # italics fenced by '_'
@@ -585,10 +587,6 @@ class MarkdownLexer(RegexLexer):
             # bold fenced by '__'
             (r'([^\_]*)(\_\_[^\_].+\_\_)', bygroups(Text, Generic.Strong)),
 
-            # TODO
-            # # warning: the following rule eats internal tags. eg. **foo _bar_ baz** bar is not italics
-            # (r'(\s)((\*\*|__).*\3)((?=\W|\n))', bygroups(Text, Generic.Strong, None, Text)),
-            # "proper way" (r'(\s)([*_]{2}[^*_]+[*_]{2})((?=\W|\n))', bygroups(Text, Generic.Strong, Text)),
             # strikethrough
             (r'(\s)(~~[^~]+~~)((?=\W|\n))', bygroups(Text, Generic.Deleted, Text)),
             # mentions and topics (twitter and github stuff)

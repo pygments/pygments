@@ -312,26 +312,6 @@ def test_escape_italics(lexer):
             assert token != Generic.Emph
 
 
-# def test_inline_italics(lexer):
-#     fragment = '***bold** in italics*'
-#     tokens = [
-#         (Generic.Emph, '*'),
-#         (Generic.Strong, '**bold**'),
-#         (Generic.Emph, ' in italics*'),
-#         (Token.Text, '\n'),
-#     ]
-#     assert list(lexer.get_tokens(fragment)) == tokens
-#
-#     fragment = '*in the **middle** of italics*'
-#     tokens = [
-#         (Generic.Emph, '*in the '),
-#         (Generic.Strong, '**middle**'),
-#         (Generic.Emph, ' of italics*'),
-#         (Token.Text, '\n'),
-#     ]
-#     assert list(lexer.get_tokens(fragment)) == tokens
-
-
 def test_invalid_bold(lexer):
     fragments = (
         '**no bold__',
@@ -379,23 +359,3 @@ def test_bold_fenced_by_underscore(lexer):
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
-
-
-# def test_inline_bold(lexer):
-#     fragment = '***italics* in bold**'
-#     tokens = [
-#         (Generic.Strong, '**'),
-#         (Generic.Emph, '*italics*'),
-#         (Generic.Strong, ' in bold**'),
-#         (Token.Text, '\n'),
-#     ]
-#     assert list(lexer.get_tokens(fragment)) == tokens
-#
-#     fragment = '**in the *middle* of bold**'
-#     tokens = [
-#         (Generic.Strong, '**in the '),
-#         (Generic.Emph, '*middle*'),
-#         (Generic.Strong, ' of bold**'),
-#         (Token.Text, '\n'),
-#     ]
-#     assert list(lexer.get_tokens(fragment)) == tokens
