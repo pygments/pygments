@@ -397,3 +397,23 @@ def test_task_list(lexer):
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_italic_and_bold(lexer):
+    fragment = '**bold** and *italics*'
+    tokens = [
+        (Generic.Strong, '**bold**'),
+        (Token.Text, ' and '),
+        (Generic.Emph, '*italics*'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '*italics* and **bold**'
+    tokens = [
+        (Generic.Emph, '*italics*'),
+        (Token.Text, ' and '),
+        (Generic.Strong, '**bold**'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
