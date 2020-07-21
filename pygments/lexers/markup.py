@@ -580,8 +580,6 @@ class MarkdownLexer(RegexLexer):
             # "proper way" (r'(\s)([*_]{2}[^*_]+[*_]{2})((?=\W|\n))', bygroups(Text, Generic.Strong, Text)),
             # strikethrough
             (r'(\s)(~~[^~]+~~)((?=\W|\n))', bygroups(Text, Generic.Deleted, Text)),
-            # inline code
-            (r'`[^`]+`', String.Backtick),
             # mentions and topics (twitter and github stuff)
             (r'[@#][\w/:]+', Name.Entity),
             # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
@@ -591,6 +589,8 @@ class MarkdownLexer(RegexLexer):
             #   [id]: http://example.com/
             (r'(\[)([^]]+)(\])(\[)([^]]*)(\])', bygroups(Text, Name.Tag, Text, Text, Name.Label, Text)),
             (r'^(\s*\[)([^]]*)(\]:\s*)(.+)', bygroups(Text, Name.Label, Text, Name.Attribute)),
+            # inline code
+            (r'([^`\n]*)(`[^`]+`)', bygroups(Text, String.Backtick)),
 
             # general text, must come last!
             (r'[^\\\s]+', Text),

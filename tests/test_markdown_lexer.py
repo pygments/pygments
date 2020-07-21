@@ -8,7 +8,7 @@
 """
 
 import pytest
-from pygments.token import Generic, Token
+from pygments.token import Generic, Token, String
 
 from pygments.lexers.markup import MarkdownLexer
 
@@ -165,3 +165,37 @@ def test_setext_subheading(lexer):
             (Token.Text, '\n'),
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_inline_code(lexer):
+    fragment = '`code`'
+    tokens = [
+        (String.Backtick, '`code`'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '(`code`)'
+    tokens = [
+        (Token.Text, '('),
+        (String.Backtick, '`code`'),
+        (Token.Text, ')'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = 'inline `code`!'
+    tokens = [
+        (Token.Text, 'inline '),
+        (String.Backtick, '`code`'),
+        (Token.Text, '!'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '`**code**`'
+    tokens = [
+        (String.Backtick, '`**code**`'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
