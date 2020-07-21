@@ -8,7 +8,7 @@
 """
 
 import pytest
-from pygments.token import Generic, Token, String
+from pygments.token import Generic, Token, String, Keyword
 
 from pygments.lexers.markup import MarkdownLexer
 
@@ -356,6 +356,44 @@ def test_bold_fenced_by_underscore(lexer):
         (Token.Text, '('),
         (Generic.Strong, '__bold__'),
         (Token.Text, ')'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_strikethrough(lexer):
+    fragment = '~~striked~~not striked'
+    tokens = [
+        (Generic.Deleted, '~~striked~~'),
+        (Token.Text, 'not'),
+        (Token.Text, ' '),
+        (Token.Text, 'striked'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_task_list(lexer):
+    fragment = '- [ ] sample task'
+    tokens = [
+        (Keyword, '- '),
+        (Keyword, '[ ]'),
+        (Token.Text, ' '),
+        (Token.Text, 'sample'),
+        (Token.Text, ' '),
+        (Token.Text, 'task'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '* [ ] sample task'
+    tokens = [
+        (Keyword, '* '),
+        (Keyword, '[ ]'),
+        (Token.Text, ' '),
+        (Token.Text, 'sample'),
+        (Token.Text, ' '),
+        (Token.Text, 'task'),
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens

@@ -576,7 +576,7 @@ class MarkdownLexer(RegexLexer):
             (r'\\.', Text),
             # inline code
             (r'([^`\n]*)(`[^`]+`)', bygroups(Text, String.Backtick)),
-            # warning: the following rules for italics & bold eat internal tags.
+            # warning: the following rules eat internal tags.
             # eg. **foo _bar_ baz** => bar is not recognized as italics
             # italics fenced by '*'
             (r'([^\*]*)(\*[^\*].+\*)', bygroups(Text, Generic.Emph)),
@@ -586,9 +586,8 @@ class MarkdownLexer(RegexLexer):
             (r'([^\*]*)(\*\*[^\*].+\*\*)', bygroups(Text, Generic.Strong)),
             # bold fenced by '__'
             (r'([^\_]*)(\_\_[^\_].+\_\_)', bygroups(Text, Generic.Strong)),
-
             # strikethrough
-            (r'(\s)(~~[^~]+~~)((?=\W|\n))', bygroups(Text, Generic.Deleted, Text)),
+            (r'([^~]*)(~~[^~].+~~)', bygroups(Text, Generic.Deleted)),
             # mentions and topics (twitter and github stuff)
             (r'[@#][\w/:]+', Name.Entity),
             # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
