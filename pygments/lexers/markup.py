@@ -574,11 +574,20 @@ class MarkdownLexer(RegexLexer):
         'inline': [
             # escape
             (r'\\.', Text),
-            # italics
-            (r'(\s)([*_][^*_]+[*_])(\W|\n)', bygroups(Text, Generic.Emph, Text)),
-            # bold
-            # warning: the following rule eats internal tags. eg. **foo _bar_ baz** bar is not italics
-            (r'(\s)((\*\*|__).*\3)((?=\W|\n))', bygroups(Text, Generic.Strong, None, Text)),
+            # inline code
+            (r'([^`\n]*)(`[^`]+`)', bygroups(Text, String.Backtick)),
+            # italics fenced by '*'
+            (r'([^\*]*)(\*[^\*].+\*)', bygroups(Text, Generic.Emph)),
+            # italics fenced by '_'
+            (r'([^\_]*)(\_[^\_].+\_)', bygroups(Text, Generic.Emph)),
+            # bold fenced by '**'
+            (r'([^\*\*]*)(\*\*[^\*\*].+\*\*)', bygroups(Text, Generic.Strong)),
+            # bold fenced by '__'
+            (r'([^\_\_]*)(\_\_[^\_\_].+\_\_)', bygroups(Text, Generic.Strong)),
+
+            # TODO
+            # # warning: the following rule eats internal tags. eg. **foo _bar_ baz** bar is not italics
+            # (r'(\s)((\*\*|__).*\3)((?=\W|\n))', bygroups(Text, Generic.Strong, None, Text)),
             # "proper way" (r'(\s)([*_]{2}[^*_]+[*_]{2})((?=\W|\n))', bygroups(Text, Generic.Strong, Text)),
             # strikethrough
             (r'(\s)(~~[^~]+~~)((?=\W|\n))', bygroups(Text, Generic.Deleted, Text)),
@@ -591,8 +600,6 @@ class MarkdownLexer(RegexLexer):
             #   [id]: http://example.com/
             (r'(\[)([^]]+)(\])(\[)([^]]*)(\])', bygroups(Text, Name.Tag, Text, Text, Name.Label, Text)),
             (r'^(\s*\[)([^]]*)(\]:\s*)(.+)', bygroups(Text, Name.Label, Text, Name.Attribute)),
-            # inline code
-            (r'([^`\n]*)(`[^`]+`)', bygroups(Text, String.Backtick)),
 
             # general text, must come last!
             (r'[^\\\s]+', Text),
