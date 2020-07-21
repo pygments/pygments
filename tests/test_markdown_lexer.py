@@ -199,3 +199,54 @@ def test_inline_code(lexer):
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_invalid_code_block(lexer):
+    fragments = (
+        '```code```',
+        'prefix not allowed before ```\ncode block\n```'
+        '   code',
+    )
+
+    for fragment in fragments:
+        for token, _ in lexer.get_tokens(fragment):
+            assert token != String.Backtick
+
+
+def test_code_block_fenced_by_backticks(lexer):
+    fragments = (
+        '```\ncode\n```',
+        '```\nmulti\n`line`\ncode\n```',
+    )
+    for fragment in fragments:
+        tokens = [
+            (String.Backtick, fragment),
+            (Token.Text, '\n'),
+        ]
+        assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_code_block_indented_by_spaces(lexer):
+    fragment = '    code'
+    tokens = [
+        (Token.Text, '    '),
+        (String.Backtick, 'code'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '      this is also **code**'
+    tokens = [
+        (Token.Text, '    '),
+        (String.Backtick, '  this is also **code**'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '\tcode'
+    tokens = [
+        (Token.Text, '\t'),
+        (String.Backtick, 'code'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens

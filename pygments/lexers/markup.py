@@ -562,8 +562,10 @@ class MarkdownLexer(RegexLexer):
             bygroups(Text, Keyword, using(this, state='inline'))),
             # quote
             (r'^(\s*>\s)(.+\n)', bygroups(Keyword, Generic.Emph)),
-            # text block
-            (r'^(```\n)([\w\W]*?)(^```$)', bygroups(String, Text, String)),
+            # code block fenced by 3 backticks
+            (r'^(```\n[\w\W]*?^```$)', String.Backtick),
+            # code block indented with 4 spaces or 1 tab
+            (r'^(\ {4}|\t)([\w\W]*?)(\n)', bygroups(Text, String.Backtick, Text)),
             # code block with language
             (r'^(```)(\w+)(\n)([\w\W]*?)(^```$)', _handle_codeblock),
 
