@@ -519,9 +519,9 @@ class MarkdownLexer(RegexLexer):
         from pygments.lexers import get_lexer_by_name
 
         # section header
-        yield match.start(1), String        , match.group(1)
-        yield match.start(2), String        , match.group(2)
-        yield match.start(3), Text          , match.group(3)
+        yield match.start(1), String.Backtick, match.group(1)
+        yield match.start(2), String.Backtick, match.group(2)
+        yield match.start(3), Text           , match.group(3)
 
         # lookup lexer if wanted and existing
         lexer = None
@@ -539,44 +539,55 @@ class MarkdownLexer(RegexLexer):
             for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
                 yield item
 
-        yield match.start(5), String        , match.group(5)
+        yield match.start(5), String.Backtick, match.group(5)
 
     tokens = {
         'root': [
-            # heading with pound prefix
-            (r'^(#)([^#].+\n)', bygroups(Generic.Heading, Text)),
-            (r'^(#{2,6})(.+\n)', bygroups(Generic.Subheading, Text)),
+            # heading with '#' prefix (atx-style)
+            (r'(^#[^#].+)(\n)', bygroups(Generic.Heading, Text)),
+            # subheading with '#' prefix (atx-style)
+            (r'(^#{2,6}[^#].+)(\n)', bygroups(Generic.Subheading, Text)),
+            # heading with '=' underlines (Setext-style)
+            (r'^(.+)(\n)(=+)(\n)', bygroups(Generic.Heading, Text, Generic.Heading, Text)),
+            # subheading with '-' underlines (Setext-style)
+            (r'^(.+)(\n)(-+)(\n)', bygroups(Generic.Subheading, Text, Generic.Subheading, Text)),
             # task list
             (r'^(\s*)([*-] )(\[[ xX]\])( .+\n)',
             bygroups(Text, Keyword, Keyword, using(this, state='inline'))),
-            # bulleted lists
+            # bulleted list
             (r'^(\s*)([*-])(\s)(.+\n)',
             bygroups(Text, Keyword, Text, using(this, state='inline'))),
-            # numbered lists
+            # numbered list
             (r'^(\s*)([0-9]+\.)( .+\n)',
             bygroups(Text, Keyword, using(this, state='inline'))),
             # quote
             (r'^(\s*>\s)(.+\n)', bygroups(Keyword, Generic.Emph)),
-            # text block
-            (r'^(```\n)([\w\W]*?)(^```$)', bygroups(String, Text, String)),
+            # code block fenced by 3 backticks
+            (r'^(\s*```\n(.+\n)+\s*```$)', String.Backtick),
             # code block with language
-            (r'^(```)(\w+)(\n)([\w\W]*?)(^```$)', _handle_codeblock),
+            (r'^(\s*```)(\w+)(\n)([\w\W]*?)(^\s*```$)', _handle_codeblock),
+            # code block indented with 4 spaces or 1 tab
+            (r'(\n\n)((\ {4}|\t)(.+\n)+)', bygroups(Text, String.Backtick)),
 
             include('inline'),
         ],
         'inline': [
             # escape
             (r'\\.', Text),
-            # italics
-            (r'(\s)([*_][^*_]+[*_])(\W|\n)', bygroups(Text, Generic.Emph, Text)),
-            # bold
-            # warning: the following rule eats internal tags. eg. **foo _bar_ baz** bar is not italics
-            (r'(\s)((\*\*|__).*\3)((?=\W|\n))', bygroups(Text, Generic.Strong, None, Text)),
-            # "proper way" (r'(\s)([*_]{2}[^*_]+[*_]{2})((?=\W|\n))', bygroups(Text, Generic.Strong, Text)),
-            # strikethrough
-            (r'(\s)(~~[^~]+~~)((?=\W|\n))', bygroups(Text, Generic.Deleted, Text)),
             # inline code
-            (r'`[^`]+`', String.Backtick),
+            (r'([^`])(`[^`\n]+`)', bygroups(Text, String.Backtick)),
+            # warning: the following rules eat outer tags.
+            # eg. **foo _bar_ baz** => foo and baz are not recognized as bold
+            # bold fenced by '**'
+            (r'(\*\*[^\*\n\ ][^\*\n]*\*\*)', bygroups(Generic.Strong)),
+            # # bold fenced by '__'
+            (r'(\_\_[^\_\n\ ][^\_\n]*\_\_)', bygroups(Generic.Strong)),
+            # italics fenced by '*'
+            (r'(\*[^\*\n\ ][^\*\n]*\*)', bygroups(Generic.Emph)),
+            # italics fenced by '_'
+            (r'(\_[^\_\n\ ][^\_\n]*\_)', bygroups(Generic.Emph)),
+            # strikethrough
+            (r'([^~]*)(~~[^~]+~~)', bygroups(Text, Generic.Deleted)),
             # mentions and topics (twitter and github stuff)
             (r'[@#][\w/:]+', Name.Entity),
             # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
