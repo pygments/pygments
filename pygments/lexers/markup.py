@@ -543,9 +543,14 @@ class MarkdownLexer(RegexLexer):
 
     tokens = {
         'root': [
-            # heading with pound prefix
-            (r'^(#)([^#].+\n)', bygroups(Generic.Heading, Text)),
-            (r'^(#{2,6})(.+\n)', bygroups(Generic.Subheading, Text)),
+            # heading with '#' prefix (atx-style)
+            (r'(^#[^#].+)(\n)', bygroups(Generic.Heading, Text)),
+            # subheading with '#' prefix (atx-style)
+            (r'(^#{2,6}[^#].+)(\n)', bygroups(Generic.Subheading, Text)),
+            # heading with '=' underlines (Setext-style)
+            (r'^(.+)(\n)(=+)(\n)', bygroups(Generic.Heading, Text, Generic.Heading, Text)),
+            # subheading with '-' underlines (Setext-style)
+            (r'^(.+)(\n)(-+)(\n)', bygroups(Generic.Subheading, Text, Generic.Subheading, Text)),
             # task list
             (r'^(\s*)([*-] )(\[[ xX]\])( .+\n)',
             bygroups(Text, Keyword, Keyword, using(this, state='inline'))),
