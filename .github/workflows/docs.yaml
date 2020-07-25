@@ -17,8 +17,9 @@ jobs:
       uses: actions/checkout@v1
     - name: Checkout Pyodide
       run: git clone https://github.com/pygments/pyodide-artifacts
+      # Use the current version of pygments to render the docs.
     - name: Sphinx install
-      run: pip install Sphinx
+      run: pip install Sphinx -e ./
     - name: Sphinx build
       run: |
         cd doc
