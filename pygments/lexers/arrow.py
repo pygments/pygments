@@ -3,7 +3,7 @@
     pygments.lexers.arrow
     ~~~~~~~~~~~~~~~~~~~
 
-    Lexer for Typographic Number Theory.
+    Lexer for Arrow.
 
     :copyright: Copyright 2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
