@@ -677,7 +677,8 @@ class HtmlFormatter(Formatter):
                 else:
                     style = ''
 
-            line = '<pre%s>%s</pre>' % (style, line)
+            if style:
+                line = '<span%s>%s</span>' % (style, line)
 
             lines.append(line)
 
@@ -688,8 +689,8 @@ class HtmlFormatter(Formatter):
         # some configurations seem to mess up the formatting...
         yield 0, (
             '<table class="%stable">' % self.cssclass +
-            '<tr><td class="linenos"><div class="linenodiv">' +
-            ls + '</div></td><td class="code">'
+            '<tr><td class="linenos"><div class="linenodiv"><pre>' +
+            ls + '</pre></div></td><td class="code">'
         )
         yield 0, dummyoutfile.getvalue()
         yield 0, '</td></tr></table>'
@@ -723,7 +724,10 @@ class HtmlFormatter(Formatter):
                 else:
                     style = ' class="linenos"'
 
-            yield 1, '<span%s>%s</span>' % (style, line) + inner_line
+            if style:
+                yield 1, '<span%s>%s</span>' % (style, line) + inner_line
+            else:
+                yield 1, line +  inner_line
             num += 1
 
     def _wrap_lineanchors(self, inner):
