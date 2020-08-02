@@ -508,7 +508,7 @@ class MarkdownLexer(RegexLexer):
     """
     name = 'markdown'
     aliases = ['md']
-    filenames = ['*.md']
+    filenames = ['*.md', '*.markdown']
     mimetypes = ["text/x-markdown"]
     flags = re.MULTILINE
 
