@@ -183,7 +183,7 @@ class SystemVerilogLexer(RegexLexer):
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (words(('inside', 'dist'), suffix=r'\b'), Operator.Word),
 
-            (r'[()\[\],.;\']', Punctuation),
+            (r'[()\[\],.;\'$]', Punctuation),
             (r'`[a-zA-Z_]\w*', Name.Constant),
 
             (words((
