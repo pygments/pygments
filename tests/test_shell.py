@@ -179,6 +179,24 @@ def test_powershell_session(lexer_powershell_session):
     ]
     assert list(lexer_powershell_session.get_tokens(fragment)) == tokens
 
+    fragment = u'PS> Get-ChildItem\n'
+    tokens = [
+        (Token.Name.Builtin, u''),
+        (Token.Generic.Prompt, u'PS> '),
+        (Token.Name.Builtin, u'Get-ChildItem'),
+        (Token.Text, u'\n')
+    ]
+    assert list(lexer_powershell_session.get_tokens(fragment)) == tokens
+
+    fragment = u'PS > Get-ChildItem\n'
+    tokens = [
+        (Token.Name.Builtin, u''),
+        (Token.Generic.Prompt, u'PS > '),
+        (Token.Name.Builtin, u'Get-ChildItem'),
+        (Token.Text, u'\n')
+    ]
+    assert list(lexer_powershell_session.get_tokens(fragment)) == tokens
+
 
 def test_powershell_remoting_session(lexer_powershell_session):
     fragment = u'[Long-NetBIOS-Hostname]: PS C:\\> Get-ChildItem\n'
