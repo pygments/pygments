@@ -832,7 +832,7 @@ class CythonLexer(RegexLexer):
         ],
         'keywords': [
             (words((
-                'assert', 'break', 'by', 'continue', 'ctypedef', 'del', 'elif',
+                'assert', 'async', 'await', 'break', 'by', 'continue', 'ctypedef', 'del', 'elif',
                 'else', 'except', 'except?', 'exec', 'finally', 'for', 'fused', 'gil',
                 'global', 'if', 'include', 'lambda', 'nogil', 'pass', 'print',
                 'raise', 'return', 'try', 'while', 'yield', 'as', 'with'), suffix=r'\b'),
