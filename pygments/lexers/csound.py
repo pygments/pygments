@@ -5,7 +5,7 @@
 
     Lexers for Csound languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -149,7 +149,7 @@ class CsoundScoreLexer(CsoundLexer):
             include('whitespace and macro uses'),
             include('preprocessor directives'),
 
-            (r'[abCdefiqstvxy]', Keyword),
+            (r'[aBbCdefiqstvxy]', Keyword),
             # There is also a w statement that is generated internally and should not be
             # used; see https://github.com/csound/csound/issues/750.
 
