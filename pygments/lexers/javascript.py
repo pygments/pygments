@@ -508,7 +508,7 @@ class TypeScriptLexer(RegexLexer):
             (r'(super)(\s*)(\([\w,?.$\s]+\s*\))',
              bygroups(Keyword.Reserved, Text), 'slashstartsregex'),
             # Match stuff like: function() {...}
-            (r'([a-zA-Z_?.$][\w?.$]*)\(\) \{', Name.Other, 'slashstartsregex'),
+            (r'([a-zA-Z_?.$][\w?.$]*)(?=\(\) \{)', Name.Other, 'slashstartsregex'),
             # Match stuff like: (function: return type)
             (r'([\w?.$][\w?.$]*)(\s*:\s*)([\w?.$][\w?.$]*)',
              bygroups(Name.Other, Text, Keyword.Type)),
