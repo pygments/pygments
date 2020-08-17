@@ -5,7 +5,7 @@
 
     Lexers for Csound languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -149,7 +149,7 @@ class CsoundScoreLexer(CsoundLexer):
             include('whitespace and macro uses'),
             include('preprocessor directives'),
 
-            (r'[abCdefiqstvxy]', Keyword),
+            (r'[aBbCdefiqstvxy]', Keyword),
             # There is also a w statement that is generated internally and should not be
             # used; see https://github.com/csound/csound/issues/750.
 
@@ -339,10 +339,12 @@ class CsoundOrchestraLexer(CsoundLexer):
         #   sprintfk        https://csound.com/docs/manual/sprintfk.html
         # work with strings that contain format specifiers. In addition, these opcodes’
         # handling of format specifiers is inconsistent:
-        #   - fprintks, fprints, printks, and prints do accept %a and %A
-        #     specifiers, but can’t accept %s specifiers.
-        #   - printf, printf_i, sprintf, and sprintfk don’t accept %a and %A
-        #     specifiers, but can accept %s specifiers.
+        #   - fprintks and fprints accept %a and %A specifiers, and accept %s specifiers
+        #     starting in Csound 6.15.0.
+        #   - printks and prints accept %a and %A specifiers, but don’t accept %s
+        #     specifiers.
+        #   - printf, printf_i, sprintf, and sprintfk don’t accept %a and %A specifiers,
+        #     but accept %s specifiers.
         # See https://github.com/csound/csound/issues/747 for more information.
         'format specifiers': [
             (r'%[#0\- +]*\d*(?:\.\d+)?[diuoxXfFeEgGaAcs]', String.Interpol),
