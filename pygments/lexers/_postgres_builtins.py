@@ -5,7 +5,7 @@
 
     Self-updating data files for PostgreSQL lexer.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -519,25 +519,26 @@ if __name__ == '__main__':  # pragma: no cover
 
     # One man's constant is another man's variable.
     SOURCE_URL = 'https://github.com/postgres/postgres/raw/master'
-    KEYWORDS_URL = SOURCE_URL + '/doc/src/sgml/keywords.sgml'
+    KEYWORDS_URL = SOURCE_URL + '/src/include/parser/kwlist.h'
     DATATYPES_URL = SOURCE_URL + '/doc/src/sgml/datatype.sgml'
 
     def update_myself():
-        data_file = list(urlopen(DATATYPES_URL))
+        content = urlopen(DATATYPES_URL).read().decode('utf-8', errors='ignore')
+        data_file = list(content.splitlines())
         datatypes = parse_datatypes(data_file)
         pseudos = parse_pseudos(data_file)
 
-        keywords = parse_keywords(urlopen(KEYWORDS_URL))
+        content = urlopen(KEYWORDS_URL).read().decode('utf-8', errors='ignore')
+        keywords = parse_keywords(content)
+
         update_consts(__file__, 'DATATYPES', datatypes)
         update_consts(__file__, 'PSEUDO_TYPES', pseudos)
         update_consts(__file__, 'KEYWORDS', keywords)
 
     def parse_keywords(f):
         kw = []
-        for m in re.finditer(
-                r'\s*<entry><token>([^<]+)</token></entry>\s*'
-                r'<entry>([^<]+)</entry>', f.read()):
-            kw.append(m.group(1))
+        for m in re.finditer(r'PG_KEYWORD\("(.+?)"', f):
+            kw.append(m.group(1).upper())
 
         if not kw:
             raise ValueError('no keyword found')
@@ -576,7 +577,7 @@ if __name__ == '__main__':  # pragma: no cover
     def parse_pseudos(f):
         dt = []
         re_start = re.compile(r'\s*<table id="datatype-pseudotypes-table">')
-        re_entry = re.compile(r'\s*<entry><type>([^<]+)</></entry>')
+        re_entry = re.compile(r'\s*<entry><type>(.+?)</type></entry>')
         re_end = re.compile(r'\s*</table>')
 
         f = iter(f)
@@ -599,6 +600,7 @@ if __name__ == '__main__':  # pragma: no cover
         if not dt:
             raise ValueError('pseudo datatypes not found')
 
+        dt.sort()
         return dt
 
     def update_consts(filename, constname, content):
@@ -615,7 +617,7 @@ if __name__ == '__main__':  # pragma: no cover
         new_block = format_lines(constname, content)
         data = data[:m.start()] + new_block + data[m.end():]
 
-        with open(filename, 'w') as f:
+        with open(filename, 'w', newline='\n') as f:
             f.write(data)
 
     update_myself()
