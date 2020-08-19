@@ -347,6 +347,7 @@ LEXERS = {
     'PowerShellSessionLexer': ('pygments.lexers.shell', 'PowerShell Session', ('ps1con',), (), ()),
     'PraatLexer': ('pygments.lexers.praat', 'Praat', ('praat',), ('*.praat', '*.proc', '*.psc'), ()),
     'PrologLexer': ('pygments.lexers.prolog', 'Prolog', ('prolog',), ('*.ecl', '*.prolog', '*.pro', '*.pl'), ('text/x-prolog',)),
+    'PromQLLexer': ('pygments.lexers.promql', 'PromQL', ('promql',), ('*.promql',), ()),
     'PropertiesLexer': ('pygments.lexers.configs', 'Properties', ('properties', 'jproperties'), ('*.properties',), ('text/x-java-properties',)),
     'ProtoBufLexer': ('pygments.lexers.dsls', 'Protocol Buffer', ('protobuf', 'proto'), ('*.proto',), ()),
     'PugLexer': ('pygments.lexers.html', 'Pug', ('pug', 'jade'), ('*.pug', '*.jade'), ('text/x-pug', 'text/x-jade')),
