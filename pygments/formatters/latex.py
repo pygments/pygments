@@ -446,13 +446,73 @@ class LatexEmbeddedLexer(Lexer):
         Lexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
+        # find and remove all the escape tokens (replace with an empty string)
+        escape_pos = []
+        raw_text = ''
+        for i, t, v in self._find_safe_escape_tokens(text):
+            if t is None:
+                raw_text += v
+            else:
+                escape_pos.append((i, t, v))
+
+        # run the language lexer, and reinsert the escape tokens as we go
+        for i, t, v in self._reinsert_tokens(self.lang.get_tokens_unprocessed(raw_text), escape_pos):
+            yield i, t, v
+
+    def _reinsert_tokens(self, tokens, insert):
+        """
+        Reinsert the tokens in `insert` into their positions in `tokens`,
+        splitting tokens in `tokens` if necessary.
+        """
+        insert_i = 0
+        offset = 0
+        for i, t, v in tokens:
+            if insert_i < len(insert):
+                ei, et, ev = insert[insert_i]
+                rel_pos = ei - (i + offset)
+                if rel_pos == 0:
+                    # token reinserted
+                    yield ei, et, ev
+                    offset += len(ev)
+                    yield i + offset, t, v
+                    insert_i += 1
+                    continue
+                elif rel_pos < len(v):
+                    # token splits an existing token
+                    yield i + offset, t, v[:rel_pos]
+                    yield ei, et, ev
+                    yield i + offset, t, v[rel_pos:]
+                    insert_i += 1
+                    continue
+
+            # regular token
+            yield i + offset, t, v
+
+        # trailing inserted tokens
+        while insert_i < len(insert):
+            yield insert[insert_i]
+            insert_i += 1
+
+    def _find_safe_escape_tokens(self, text):
+        """ find escape tokens that are not in strings or comments """
+        for i, t, v in self._filter_to(
+            self.lang.get_tokens_unprocessed(text),
+            lambda t: t in Token.Comment or t in Token.String
+        ):
+            if t is None:
+                for i2, t2, v2 in self._find_escape_tokens(v):
+                    yield i + i2, t2, v2
+            else:
+                yield i, None, v
+
+    def _filter_to(self, it, pred):
+        """ Keep only the tokens that match `pred`, merge the others together """
         buf = ''
         idx = 0
-        for i, t, v in self.lang.get_tokens_unprocessed(text):
-            if t in Token.Comment or t in Token.String:
+        for i, t, v in it:
+            if pred(t):
                 if buf:
-                    for x in self.get_tokens_aux(idx, buf):
-                        yield x
+                    yield idx, None, buf
                     buf = ''
                 yield i, t, v
             else:
@@ -460,16 +520,17 @@ class LatexEmbeddedLexer(Lexer):
                     idx = i
                 buf += v
         if buf:
-            for x in self.get_tokens_aux(idx, buf):
-                yield x
+            yield idx, Token.Other, buf
 
-    def get_tokens_aux(self, index, text):
+
+    def _find_escape_tokens(self, text):
+        """ Find escape tokens within text, give token=None otherwise """
+        index = 0
         while text:
             a, sep1, text = text.partition(self.left)
             if a:
-                for i, t, v in self.lang.get_tokens_unprocessed(a):
-                    yield index + i, t, v
-                    index += len(a)
+                yield index, None, a
+                index += len(a)
             if sep1:
                 b, sep2, text = text.partition(self.right)
                 if sep2:
