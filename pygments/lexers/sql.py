@@ -34,7 +34,7 @@
     The ``tests/examplefiles`` contains a few test files with data to be
     parsed by these lexers.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
