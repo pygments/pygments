@@ -5,7 +5,7 @@
 
     Self-updating data files for PostgreSQL lexer.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -36,6 +36,7 @@ KEYWORDS = (
     'ASSIGNMENT',
     'ASYMMETRIC',
     'AT',
+    'ATTACH',
     'ATTRIBUTE',
     'AUTHORIZATION',
     'BACKWARD',
@@ -49,6 +50,7 @@ KEYWORDS = (
     'BOTH',
     'BY',
     'CACHE',
+    'CALL',
     'CALLED',
     'CASCADE',
     'CASCADED',
@@ -68,12 +70,14 @@ KEYWORDS = (
     'COLLATE',
     'COLLATION',
     'COLUMN',
+    'COLUMNS',
     'COMMENT',
     'COMMENTS',
     'COMMIT',
     'COMMITTED',
     'CONCURRENTLY',
     'CONFIGURATION',
+    'CONFLICT',
     'CONNECTION',
     'CONSTRAINT',
     'CONSTRAINTS',
@@ -85,6 +89,7 @@ KEYWORDS = (
     'CREATE',
     'CROSS',
     'CSV',
+    'CUBE',
     'CURRENT',
     'CURRENT_CATALOG',
     'CURRENT_DATE',
@@ -110,7 +115,9 @@ KEYWORDS = (
     'DELETE',
     'DELIMITER',
     'DELIMITERS',
+    'DEPENDS',
     'DESC',
+    'DETACH',
     'DICTIONARY',
     'DISABLE',
     'DISCARD',
@@ -136,6 +143,7 @@ KEYWORDS = (
     'EXECUTE',
     'EXISTS',
     'EXPLAIN',
+    'EXPRESSION',
     'EXTENSION',
     'EXTERNAL',
     'EXTRACT',
@@ -155,11 +163,14 @@ KEYWORDS = (
     'FULL',
     'FUNCTION',
     'FUNCTIONS',
+    'GENERATED',
     'GLOBAL',
     'GRANT',
     'GRANTED',
     'GREATEST',
     'GROUP',
+    'GROUPING',
+    'GROUPS',
     'HANDLER',
     'HAVING',
     'HEADER',
@@ -171,7 +182,9 @@ KEYWORDS = (
     'IMMEDIATE',
     'IMMUTABLE',
     'IMPLICIT',
+    'IMPORT',
     'IN',
+    'INCLUDE',
     'INCLUDING',
     'INCREMENT',
     'INDEX',
@@ -202,8 +215,6 @@ KEYWORDS = (
     'LARGE',
     'LAST',
     'LATERAL',
-    'LC_COLLATE',
-    'LC_CTYPE',
     'LEADING',
     'LEAKPROOF',
     'LEAST',
@@ -218,10 +229,13 @@ KEYWORDS = (
     'LOCALTIMESTAMP',
     'LOCATION',
     'LOCK',
+    'LOCKED',
+    'LOGGED',
     'MAPPING',
     'MATCH',
     'MATERIALIZED',
     'MAXVALUE',
+    'METHOD',
     'MINUTE',
     'MINVALUE',
     'MODE',
@@ -232,9 +246,16 @@ KEYWORDS = (
     'NATIONAL',
     'NATURAL',
     'NCHAR',
+    'NEW',
     'NEXT',
+    'NFC',
+    'NFD',
+    'NFKC',
+    'NFKD',
     'NO',
     'NONE',
+    'NORMALIZE',
+    'NORMALIZED',
     'NOT',
     'NOTHING',
     'NOTIFY',
@@ -249,6 +270,7 @@ KEYWORDS = (
     'OFF',
     'OFFSET',
     'OIDS',
+    'OLD',
     'ON',
     'ONLY',
     'OPERATOR',
@@ -257,13 +279,16 @@ KEYWORDS = (
     'OR',
     'ORDER',
     'ORDINALITY',
+    'OTHERS',
     'OUT',
     'OUTER',
     'OVER',
     'OVERLAPS',
     'OVERLAY',
+    'OVERRIDING',
     'OWNED',
     'OWNER',
+    'PARALLEL',
     'PARSER',
     'PARTIAL',
     'PARTITION',
@@ -283,7 +308,9 @@ KEYWORDS = (
     'PRIVILEGES',
     'PROCEDURAL',
     'PROCEDURE',
+    'PROCEDURES',
     'PROGRAM',
+    'PUBLICATION',
     'QUOTE',
     'RANGE',
     'READ',
@@ -293,6 +320,7 @@ KEYWORDS = (
     'RECURSIVE',
     'REF',
     'REFERENCES',
+    'REFERENCING',
     'REFRESH',
     'REINDEX',
     'RELATIVE',
@@ -310,11 +338,15 @@ KEYWORDS = (
     'RIGHT',
     'ROLE',
     'ROLLBACK',
+    'ROLLUP',
+    'ROUTINE',
+    'ROUTINES',
     'ROW',
     'ROWS',
     'RULE',
     'SAVEPOINT',
     'SCHEMA',
+    'SCHEMAS',
     'SCROLL',
     'SEARCH',
     'SECOND',
@@ -328,13 +360,16 @@ KEYWORDS = (
     'SESSION_USER',
     'SET',
     'SETOF',
+    'SETS',
     'SHARE',
     'SHOW',
     'SIMILAR',
     'SIMPLE',
+    'SKIP',
     'SMALLINT',
     'SNAPSHOT',
     'SOME',
+    'SQL',
     'STABLE',
     'STANDALONE',
     'START',
@@ -343,25 +378,31 @@ KEYWORDS = (
     'STDIN',
     'STDOUT',
     'STORAGE',
+    'STORED',
     'STRICT',
     'STRIP',
+    'SUBSCRIPTION',
     'SUBSTRING',
+    'SUPPORT',
     'SYMMETRIC',
     'SYSID',
     'SYSTEM',
     'TABLE',
     'TABLES',
+    'TABLESAMPLE',
     'TABLESPACE',
     'TEMP',
     'TEMPLATE',
     'TEMPORARY',
     'TEXT',
     'THEN',
+    'TIES',
     'TIME',
     'TIMESTAMP',
     'TO',
     'TRAILING',
     'TRANSACTION',
+    'TRANSFORM',
     'TREAT',
     'TRIGGER',
     'TRIM',
@@ -370,6 +411,7 @@ KEYWORDS = (
     'TRUSTED',
     'TYPE',
     'TYPES',
+    'UESCAPE',
     'UNBOUNDED',
     'UNCOMMITTED',
     'UNENCRYPTED',
@@ -412,10 +454,12 @@ KEYWORDS = (
     'XMLELEMENT',
     'XMLEXISTS',
     'XMLFOREST',
+    'XMLNAMESPACES',
     'XMLPARSE',
     'XMLPI',
     'XMLROOT',
     'XMLSERIALIZE',
+    'XMLTABLE',
     'YEAR',
     'YES',
     'ZONE',
@@ -452,10 +496,12 @@ DATATYPES = (
     'line',
     'lseg',
     'macaddr',
+    'macaddr8',
     'money',
     'numeric',
     'path',
     'pg_lsn',
+    'pg_snapshot',
     'point',
     'polygon',
     'real',
@@ -483,19 +529,28 @@ DATATYPES = (
 
 PSEUDO_TYPES = (
     'any',
-    'anyelement',
     'anyarray',
-    'anynonarray',
+    'anycompatible',
+    'anycompatiblearray',
+    'anycompatiblenonarray',
+    'anycompatiblerange',
+    'anyelement',
     'anyenum',
+    'anynonarray',
     'anyrange',
     'cstring',
+    'event_trigger',
+    'fdw_handler',
+    'index_am_handler',
     'internal',
     'language_handler',
-    'fdw_handler',
+    'pg_ddl_command',
     'record',
+    'table_am_handler',
     'trigger',
+    'tsm_handler',
+    'unknown',
     'void',
-    'opaque',
 )
 
 # Remove 'trigger' from types
@@ -519,25 +574,26 @@ if __name__ == '__main__':  # pragma: no cover
 
     # One man's constant is another man's variable.
     SOURCE_URL = 'https://github.com/postgres/postgres/raw/master'
-    KEYWORDS_URL = SOURCE_URL + '/doc/src/sgml/keywords.sgml'
+    KEYWORDS_URL = SOURCE_URL + '/src/include/parser/kwlist.h'
     DATATYPES_URL = SOURCE_URL + '/doc/src/sgml/datatype.sgml'
 
     def update_myself():
-        data_file = list(urlopen(DATATYPES_URL))
+        content = urlopen(DATATYPES_URL).read().decode('utf-8', errors='ignore')
+        data_file = list(content.splitlines())
         datatypes = parse_datatypes(data_file)
         pseudos = parse_pseudos(data_file)
 
-        keywords = parse_keywords(urlopen(KEYWORDS_URL))
+        content = urlopen(KEYWORDS_URL).read().decode('utf-8', errors='ignore')
+        keywords = parse_keywords(content)
+
         update_consts(__file__, 'DATATYPES', datatypes)
         update_consts(__file__, 'PSEUDO_TYPES', pseudos)
         update_consts(__file__, 'KEYWORDS', keywords)
 
     def parse_keywords(f):
         kw = []
-        for m in re.finditer(
-                r'\s*<entry><token>([^<]+)</token></entry>\s*'
-                r'<entry>([^<]+)</entry>', f.read()):
-            kw.append(m.group(1))
+        for m in re.finditer(r'PG_KEYWORD\("(.+?)"', f):
+            kw.append(m.group(1).upper())
 
         if not kw:
             raise ValueError('no keyword found')
@@ -576,7 +632,7 @@ if __name__ == '__main__':  # pragma: no cover
     def parse_pseudos(f):
         dt = []
         re_start = re.compile(r'\s*<table id="datatype-pseudotypes-table">')
-        re_entry = re.compile(r'\s*<entry><type>([^<]+)</></entry>')
+        re_entry = re.compile(r'\s*<entry><type>(.+?)</type></entry>')
         re_end = re.compile(r'\s*</table>')
 
         f = iter(f)
@@ -599,6 +655,7 @@ if __name__ == '__main__':  # pragma: no cover
         if not dt:
             raise ValueError('pseudo datatypes not found')
 
+        dt.sort()
         return dt
 
     def update_consts(filename, constname, content):
@@ -615,7 +672,7 @@ if __name__ == '__main__':  # pragma: no cover
         new_block = format_lines(constname, content)
         data = data[:m.start()] + new_block + data[m.end():]
 
-        with open(filename, 'w') as f:
+        with open(filename, 'w', newline='\n') as f:
             f.write(data)
 
     update_myself()
