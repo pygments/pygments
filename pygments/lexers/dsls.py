@@ -42,7 +42,7 @@ class ProtoBufLexer(RegexLexer):
             (words((
                 'import', 'option', 'optional', 'required', 'repeated',
                 'reserved', 'default', 'packed', 'ctype', 'extensions', 'to',
-                'max', 'rpc', 'returns', 'oneof'), prefix=r'\b', suffix=r'\b'),
+                'max', 'rpc', 'returns', 'oneof', 'syntax'), prefix=r'\b', suffix=r'\b'),
              Keyword),
             (words((
                 'int32', 'int64', 'uint32', 'uint64', 'sint32', 'sint64',
