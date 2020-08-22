@@ -13,6 +13,7 @@ Version 2.7.0
 
 - Added lexers:
 
+  * BARE (PR#1488)
   * Devicetree (PR#1434)
   * F* (PR#1409)
   * GDScript (PR#1457)
@@ -35,12 +36,15 @@ Version 2.7.0
   * NASM (PR#1465)
   * Nim (PR#1426)
   * PowerShell Session (PR#1497)
+  * Protobuf (PR#1505)
+  * Robot (PR#1480)
   * SQL (PR#1402)
   * SystemVerilog (PR#1436, PR#1452, PR#1454, PR#1460, PR#1462, PR#1463, PR#1464)
   * TeraTerm (PR#1337)
 
 - Added a new filter for math symbols (PR#1406)
 - The Kconfig lexer will match Kconfig derivative names now (PR#1458)
+- Improved HTML formatter output (PR#1500)
 
 Version 2.6.1
 -------------
