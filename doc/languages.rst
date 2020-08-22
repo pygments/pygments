@@ -21,6 +21,7 @@ Programming languages
 * `Augeas <https://augeas.net/>`_
 * `AutoIt <https://www.autoitscript.com/site/autoit/>`_
 * `Awk <https://en.wikipedia.org/wiki/AWK>`_
+* `BARE <https://baremessages.org/>`_
 * `BBC Basic <http://www.bbcbasic.co.uk/bbcbasic.html>`_
 * `Befunge <https://github.com/catseye/Befunge-93>`_
 * `BlitzBasic <https://en.wikipedia.org/wiki/Blitz_BASIC>`_

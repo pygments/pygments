@@ -47,6 +47,7 @@ LEXERS = {
     'AutoItLexer': ('pygments.lexers.automation', 'AutoIt', ('autoit',), ('*.au3',), ('text/x-autoit',)),
     'AutohotkeyLexer': ('pygments.lexers.automation', 'autohotkey', ('ahk', 'autohotkey'), ('*.ahk', '*.ahkl'), ('text/x-autohotkey',)),
     'AwkLexer': ('pygments.lexers.textedit', 'Awk', ('awk', 'gawk', 'mawk', 'nawk'), ('*.awk',), ('application/x-awk',)),
+    'BareLexer': ('pygments.lexers.bare', 'BARE', ('bare',), ('*.bare',), ()),
     'BBCBasicLexer': ('pygments.lexers.basic', 'BBC Basic', ('bbcbasic',), ('*.bbc',), ()),
     'BBCodeLexer': ('pygments.lexers.markup', 'BBCode', ('bbcode',), (), ('text/x-bbcode',)),
     'BCLexer': ('pygments.lexers.algebra', 'BC', ('bc',), ('*.bc',), ()),
