@@ -87,6 +87,7 @@ Programming languages
 * `Igor Pro <https://www.wavemetrics.com/products/igorpro/programming>`_
 * `Io <http://iolanguage.com/>`_
 * `Jags <http://mcmc-jags.sourceforge.net/>`_
+* `Janet <https://janet-lang.org/>`_
 * `Java <https://www.oracle.com/java/>`_
 * `JavaScript <https://en.wikipedia.org/wiki/JavaScript>`_
 * `Jasmin <http://jasmin.sourceforge.net/>`_
