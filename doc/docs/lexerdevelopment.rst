@@ -101,18 +101,21 @@ First, change the name of your lexer class to CustomLexer:
     class CustomLexer(RegexLexer):
         """All your lexer code goes here!"""
 
-Then you can load the lexer from the command line with the additional
+Then you can load and test the lexer from the command line with the additional
 flag ``-x``:
 
 .. code-block:: console
 
-    $ python -m pygments -l your_lexer_file.py -x
+    $ python -m pygments -x -l your_lexer_file.py <inputfile>
 
 To specify a class name other than CustomLexer, append it with a colon:
 
 .. code-block:: console
 
-    $ python -m pygments -l your_lexer.py:SomeLexer -x
+    $ python -m pygments -x -l your_lexer.py:SomeLexer <inputfile>
+
+Use the ``-f`` flag to select a different output format than terminal
+escape sequences.
 
 Or, using the Python API:
 
