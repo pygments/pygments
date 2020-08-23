@@ -35,7 +35,8 @@ class PointlessLexer(RegexLexer):
     keywords = words([
         "if", "then", "else", "where", "with", "cond",
         "case", "and", "or", "not", "in", "as", "for",
-        "requires", "throw", "try", "catch", "when", "yield",
+        "requires", "throw", "try", "catch", "when",
+        "yield", "upval",
     ], suffix=r'\b')
 
     tokens = {
