@@ -42,6 +42,7 @@ class PointlessLexer(RegexLexer):
         'root': [
             (r'[ \n\r]+', Text),
             (r'--.*$', Comment.Single),
+            (r'"""', String, 'doubleString'),
             (r'"', String, 'string'),
             (r'[\[\](){}:;,.]', Punctuation),
             (ops, Operator),
@@ -53,9 +54,16 @@ class PointlessLexer(RegexLexer):
             (r'(export|import)\b', Keyword.Namespace),
             (r'[a-z][a-zA-Z0-9]*\b', Name.Variable)
         ],
+        'doubleString': [
+            (r'\\.', String.Escape),
+            (r'"""', String, '#pop'),
+            (r'"', String),
+            (r'[^\\"]+', String),
+        ],
         'string': [
             (r'\\.', String.Escape),
-            (r'[^\\"\n]+', String),
-            (r'"', String, '#pop')
-        ]
+            (r'"', String, '#pop'),
+            (r'\n', Error),
+            (r'[^\\"]+', String),
+        ],
     }
