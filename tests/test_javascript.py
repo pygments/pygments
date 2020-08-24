@@ -9,7 +9,7 @@
 
 import pytest
 
-from pygments.lexers import CoffeeScriptLexer
+from pygments.lexers import CoffeeScriptLexer, TypeScriptLexer
 from pygments.token import Token
 
 COFFEE_SLASH_GOLDEN = [
@@ -83,3 +83,25 @@ def test_beware_infinite_loop(lexer):
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+@pytest.fixture(scope='module')
+def ts_lexer():
+    yield TypeScriptLexer()
+
+def test_function_definition(ts_lexer):
+    fragment = u'async function main() {\n}'
+    tokens = [
+        (Token.Name.Other, u'async'),
+        (Token.Text, u' '),
+        (Token.Keyword.Declaration, u'function'),
+        (Token.Text, u' '),
+        (Token.Name.Other, u'main'),
+        (Token.Punctuation, u'('),
+        (Token.Punctuation, u')'),
+        (Token.Text, u' '),
+        (Token.Punctuation, u'{'),
+        (Token.Text, u'\n'),
+        (Token.Punctuation, u'}'),
+        (Token.Text, u'\n'),
+    ]
+    assert list(ts_lexer.get_tokens(fragment)) == tokens
