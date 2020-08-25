@@ -11,11 +11,12 @@
     :license: BSD, see LICENSE for details.
 """
 
+import datetime
+import getopt
 import io
 import os
 import re
 import sys
-import getopt
 from os.path import join, splitext, abspath
 
 
@@ -32,10 +33,11 @@ def checker(*suffixes, **kwds):
         return func
     return deco
 
-
+current_year = datetime.datetime.now().year
 name_mail_re = r'[\w ]+(<.*?>)?'
-copyright_re = re.compile(r'^    :copyright: Copyright 2006-2020 by '
-                          r'the Pygments team, see AUTHORS\.$', re.UNICODE)
+copyright_re_schema = (r'^    :copyright: Copyright 2006-%d by '
+                       r'the Pygments team, see AUTHORS\.$')
+copyright_re = re.compile(copyright_re_schema % current_year, re.UNICODE)
 copyright_2_re = re.compile(r'^                %s(, %s)*[,.]$' %
                             (name_mail_re, name_mail_re), re.UNICODE)
 is_const_re  = re.compile(r'if.*?==\s+(None|False|True)\b')
