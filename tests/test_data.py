@@ -56,6 +56,34 @@ def test_basic_json(lexer_json):
     assert list(lexer_json.get_tokens(fragment)) == tokens
 
 
+def test_json_escape_backtracking(lexer_json):
+    # This tests that an (invalid) sequence of escapes doesn't cause the lexer
+    # to fall into catastrophic backtracking. unfortunately, if it's broken
+    # this test will hang and that's how we know it's broken :(
+    fragment = r'{"\u00D0000\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\63CD'
+    tokens = (
+        [(Token.Punctuation, u'{'),
+        (Token.Error, r'"'),
+        (Token.Error, '\\'),
+        (Token.Error, r'u'),
+        (Token.Error, r'0'),
+        (Token.Error, r'0'),
+        (Token.Error, r'D'),
+        (Token.Error, r'0'),
+        (Token.Error, r'0'),
+        (Token.Error, r'0'),
+        (Token.Error, r'0')]
+        + [(Token.Error, '\\')] * 178
+        + [(Token.Error, r'6'),
+        (Token.Error, r'3'),
+        (Token.Error, r'C'),
+        (Token.Error, r'D'),
+        (Token.Text, '\n')]
+    )
+
+    assert list(lexer_json.get_tokens(fragment)) == tokens
+
+
 def test_basic_bare(lexer_bare):
     # This is the same as testBasic for JsonLexer above, except the
     # enclosing curly braces are removed.
