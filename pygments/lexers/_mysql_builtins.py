@@ -1180,11 +1180,7 @@ MYSQL_KEYWORDS = (
 
 if __name__ == '__main__':  # pragma: no cover
     import re
-
-    try:
-        from urllib import urlopen
-    except ImportError:
-        from urllib.request import urlopen
+    from urllib.request import urlopen
 
     from pygments.util import format_lines
 
@@ -1266,7 +1262,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
     def update_content(field_name, content):
-        """Overwrite thil file with content parsed from MySQL's source code."""
+        """Overwrite this file with content parsed from MySQL's source code."""
 
         with open(__file__) as f:
             data = f.read()

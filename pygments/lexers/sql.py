@@ -618,7 +618,7 @@ class MySqlLexer(RegexLexer):
 
             # Binary literals
             (r"b'[01]+'", Number.Bin),
-            (r'0b[01]+', Number.Bin),  # MySQL requires the 'b' to be lowercase.
+            (r'0b[01]+', Number.Bin),
 
             # Numeric literals
             (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),  # Mandatory integer, optional fraction and exponent
