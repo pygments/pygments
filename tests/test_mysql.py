@@ -110,9 +110,17 @@ def test_constants(lexer, text):
     assert list(lexer.get_tokens(text))[0] == (Name.Constant, text)
 
 
-@pytest.mark.parametrize('text', ('-- abc\n', '#abc\n'))
+@pytest.mark.parametrize('text', ('-- abc', '--\tabc', '#abc'))
 def test_comments_single_line(lexer, text):
-    assert list(lexer.get_tokens(text))[0] == (Comment.Single, text.strip())
+    # Test the standalone comment.
+    tokens = list(lexer.get_tokens(text))
+    assert tokens[0] == (Comment.Single, text)
+
+    # Test the comment with mixed tokens.
+    tokens = list(lexer.get_tokens('select' + text + '\nselect'))
+    assert tokens[0] == (Keyword, 'select')
+    assert tokens[1] == (Comment.Single, text)
+    assert tokens[-2] == (Keyword, 'select')
 
 
 @pytest.mark.parametrize(

@@ -608,7 +608,7 @@ class MySqlLexer(RegexLexer):
             (r'\s+', Text),
 
             # Comments
-            (r'(?:#|--\s+).*(?=\n)?', Comment.Single),
+            (r'(?:#|--\s+).*', Comment.Single),
             (r'/\*\+', Comment.Special, 'optimizer-hints'),
             (r'/\*', Comment.Multiline, 'multiline-comment'),
 
