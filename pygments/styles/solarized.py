@@ -64,6 +64,7 @@ def make_style(colors):
         Generic.Heading:     'bold',
         Generic.Subheading:  'underline',
         Generic.Inserted:    colors['green'],
+        Generic.Output:      colors['base0'],
         Generic.Prompt:      'bold ' + colors['blue'],
         Generic.Strong:      'bold',
         Generic.Traceback:   colors['blue'],
