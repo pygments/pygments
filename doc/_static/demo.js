@@ -23,9 +23,6 @@ languagePluginLoader.then(() => {
             }
         }
 
-        var ver = pyodide.runPython('pygments.__version__');
-        document.getElementById("try-version").innerText = "Pygments version: " + ver;
-
         document.getElementById("hlbtn").disabled = false;
         document.getElementById("loading").style.display = "none";
     });
