@@ -10,6 +10,7 @@
 import os
 import tempfile
 from os import path
+from io import StringIO
 
 import pytest
 
@@ -19,10 +20,20 @@ from pygments.lexers import PythonLexer
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_latex_formatter.py')
 
+with open(TESTFILE) as fp:
+    tokensource = list(PythonLexer().get_tokens(fp.read()))
+
+
+def test_correct_output():
+    hfmt = LatexFormatter(nowrap=True)
+    houtfile = StringIO()
+    hfmt.format(tokensource, houtfile)
+
+    assert r'\begin{Verbatim}' not in houtfile.getvalue()
+    assert r'\end{Verbatim}' not in houtfile.getvalue()
+
 
 def test_valid_output():
-    with open(TESTFILE) as fp:
-        tokensource = list(PythonLexer().get_tokens(fp.read()))
     fmt = LatexFormatter(full=True, encoding='latin1')
 
     handle, pathname = tempfile.mkstemp('.tex')
