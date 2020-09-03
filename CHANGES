@@ -13,10 +13,13 @@ Version 2.7.0
 
 - Added lexers:
 
+  * Arrow (PR#1481, PR#1499)
   * BARE (PR#1488)
   * Devicetree (PR#1434)
   * F* (PR#1409)
   * GDScript (PR#1457)
+  * Pointless (PR#1494)
+  * PromQL (PR#1506)
   * Singularity (PR#1285)
   * TiddlyWiki5 (PR#1390)
   * TNT (PR#1414)
@@ -24,27 +27,38 @@ Version 2.7.0
 
 - Updated lexers:
 
+  * APL (PR#1503)
   * C++ (PR#1350, which also fixes: #1222, #996, #906, #828, #1162, #1166,
     #1396)
   * Chapel (PR#1423)
+  * CMake (#1491)
+  * CSound (#1509)
+  * Cython (PR#1507)
   * Dart (PR#1449)
   * Fortran (PR#1442)
-  * HTTP (PR#1432)
+  * HTTP (PR#1432, #1520, PR#1521)
   * Inform 6 (PR#1461)
+  * JSON (#1065, PR#1528)
   * Lean (PR#1415)
   * Matlab (PR#1399)
+  * Markdown (#1492, PR#1495)
   * NASM (PR#1465)
   * Nim (PR#1426)
-  * PowerShell Session (PR#1497)
+  * PostgreSQL (PR#1513)
+  * PowerShell (PR#1497, PR#1398)
   * Protobuf (PR#1505)
   * Robot (PR#1480)
   * SQL (PR#1402)
-  * SystemVerilog (PR#1436, PR#1452, PR#1454, PR#1460, PR#1462, PR#1463, PR#1464)
+  * SystemVerilog (PR#1436, PR#1452, PR#1454, PR#1460, PR#1462, PR#1463, PR#1464, #1496, PR#1504)
   * TeraTerm (PR#1337)
+  * XML (#1502)
 
 - Added a new filter for math symbols (PR#1406)
 - The Kconfig lexer will match Kconfig derivative names now (PR#1458)
 - Improved HTML formatter output (PR#1500)
+- ``.markdown`` is now recognized as an extension for Markdown files (PR#1476)
+- Fixed line number colors for Solarized (PR#1477, #1356)
+- Improvements to exception handling (PR#1478)
 
 Version 2.6.1
 -------------
