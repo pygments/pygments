@@ -19,76 +19,76 @@ def lexer():
 
 
 def test_call(lexer):
-    fragment = u'f(1, a)\n'
+    fragment = 'f(1, a)\n'
     tokens = [
-        (Name.Function, u'f'),
-        (Punctuation, u'('),
-        (Token.Literal.Number, u'1'),
-        (Punctuation, u','),
-        (Token.Text, u' '),
-        (Token.Name, u'a'),
-        (Punctuation, u')'),
-        (Token.Text, u'\n'),
+        (Name.Function, 'f'),
+        (Punctuation, '('),
+        (Token.Literal.Number, '1'),
+        (Punctuation, ','),
+        (Token.Text, ' '),
+        (Token.Name, 'a'),
+        (Punctuation, ')'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_name1(lexer):
-    fragment = u'._a_2.c'
+    fragment = '._a_2.c'
     tokens = [
-        (Name, u'._a_2.c'),
-        (Token.Text, u'\n'),
+        (Name, '._a_2.c'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_name2(lexer):
     # Invalid names are valid if backticks are used
-    fragment = u'`.1 blah`'
+    fragment = '`.1 blah`'
     tokens = [
-        (Name, u'`.1 blah`'),
-        (Token.Text, u'\n'),
+        (Name, '`.1 blah`'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_name3(lexer):
     # Internal backticks can be escaped
-    fragment = u'`.1 \\` blah`'
+    fragment = '`.1 \\` blah`'
     tokens = [
-        (Name, u'`.1 \\` blah`'),
-        (Token.Text, u'\n'),
+        (Name, '`.1 \\` blah`'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_custom_operator(lexer):
-    fragment = u'7 % and % 8'
+    fragment = '7 % and % 8'
     tokens = [
-        (Token.Literal.Number, u'7'),
-        (Token.Text, u' '),
-        (Token.Operator, u'% and %'),
-        (Token.Text, u' '),
-        (Token.Literal.Number, u'8'),
-        (Token.Text, u'\n'),
+        (Token.Literal.Number, '7'),
+        (Token.Text, ' '),
+        (Token.Operator, '% and %'),
+        (Token.Text, ' '),
+        (Token.Literal.Number, '8'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_indexing(lexer):
-    fragment = u'a[1]'
+    fragment = 'a[1]'
     tokens = [
-        (Token.Name, u'a'),
-        (Token.Punctuation, u'['),
-        (Token.Literal.Number, u'1'),
-        (Token.Punctuation, u']'),
-        (Token.Text, u'\n'),
+        (Token.Name, 'a'),
+        (Token.Punctuation, '['),
+        (Token.Literal.Number, '1'),
+        (Token.Punctuation, ']'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_dot_name(lexer):
-    fragment = u'. <- 1'
+    fragment = '. <- 1'
     tokens = [
         (Token.Name, '.'),
         (Token.Text, ' '),
@@ -101,12 +101,12 @@ def test_dot_name(lexer):
 
 
 def test_dot_indexing(lexer):
-    fragment = u'.[1]'
+    fragment = '.[1]'
     tokens = [
-        (Token.Name, u'.'),
-        (Token.Punctuation, u'['),
-        (Token.Literal.Number, u'1'),
-        (Token.Punctuation, u']'),
-        (Token.Text, u'\n'),
+        (Token.Name, '.'),
+        (Token.Punctuation, '['),
+        (Token.Literal.Number, '1'),
+        (Token.Punctuation, ']'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens

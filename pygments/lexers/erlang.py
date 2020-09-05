@@ -504,7 +504,7 @@ class ElixirConsoleLexer(Lexer):
         insertions = []
         for match in line_re.finditer(text):
             line = match.group()
-            if line.startswith(u'** '):
+            if line.startswith('** '):
                 in_error = True
                 insertions.append((len(curcode),
                                    [(0, Generic.Error, line[:-1])]))

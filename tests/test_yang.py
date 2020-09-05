@@ -20,13 +20,13 @@ def test_namespace_1(lexer):
     """
     Namespace `urn:test:std:yang` should not be explicitly highlighted
     """
-    fragment = u'namespace urn:test:std:yang;\n'
+    fragment = 'namespace urn:test:std:yang;\n'
     tokens = [
-        (Token.Keyword, u'namespace'),
-        (Token.Text.Whitespace, u' '),
-        (Token.Name.Variable, u'urn:test:std:yang'),
-        (Token.Punctuation, u';'),
-        (Token.Text.Whitespace, u'\n'),
+        (Token.Keyword, 'namespace'),
+        (Token.Text.Whitespace, ' '),
+        (Token.Name.Variable, 'urn:test:std:yang'),
+        (Token.Punctuation, ';'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -34,15 +34,15 @@ def test_namespace_2(lexer):
     """
     namespace-prefix `yang` should be explicitly highlighted
     """
-    fragment = u'type yang:counter64;\n'
+    fragment = 'type yang:counter64;\n'
     tokens = [
-        (Token.Keyword, u'type'),
-        (Token.Text.Whitespace, u' '),
-        (Token.Name.Namespace, u'yang'),
-        (Token.Punctuation, u':'),
-        (Token.Name.Variable, u'counter64'),
-        (Token.Punctuation, u';'),
-        (Token.Text.Whitespace, u'\n'),
+        (Token.Keyword, 'type'),
+        (Token.Text.Whitespace, ' '),
+        (Token.Name.Namespace, 'yang'),
+        (Token.Punctuation, ':'),
+        (Token.Name.Variable, 'counter64'),
+        (Token.Punctuation, ';'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -50,13 +50,13 @@ def test_revision_date(lexer):
     """
     Revision-date `2020-08-03` should be explicitly highlighted
     """
-    fragment = u'revision 2020-03-08{\n'
+    fragment = 'revision 2020-03-08{\n'
     tokens = [
-        (Token.Keyword, u'revision'),
-        (Token.Text.Whitespace, u' '),
-        (Token.Name.Label, u'2020-03-08'),
-        (Token.Punctuation, u'{'),
-        (Token.Text.Whitespace, u'\n'),
+        (Token.Keyword, 'revision'),
+        (Token.Text.Whitespace, ' '),
+        (Token.Name.Label, '2020-03-08'),
+        (Token.Punctuation, '{'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -64,13 +64,13 @@ def test_integer_value(lexer):
     """
     Integer value `5` should be explicitly highlighted
     """
-    fragment = u'value 5;\n'
+    fragment = 'value 5;\n'
     tokens = [
-        (Token.Keyword, u'value'),
-        (Token.Text.Whitespace, u' '),
-        (Token.Number.Integer, u'5'),
-        (Token.Punctuation, u';'),
-        (Token.Text.Whitespace, u'\n'),
+        (Token.Keyword, 'value'),
+        (Token.Text.Whitespace, ' '),
+        (Token.Number.Integer, '5'),
+        (Token.Punctuation, ';'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -78,13 +78,13 @@ def test_string_value(lexer):
     """
     String value `"5"` should be not explicitly highlighted
     """
-    fragment = u'value "5";\n'
+    fragment = 'value "5";\n'
     tokens = [
-        (Token.Keyword, u'value'),
-        (Token.Text.Whitespace, u' '),
-        (Token.String.Double, u'"5"'),
-        (Token.Punctuation, u';'),
-        (Token.Text.Whitespace, u'\n'),
+        (Token.Keyword, 'value'),
+        (Token.Text.Whitespace, ' '),
+        (Token.String.Double, '"5"'),
+        (Token.Punctuation, ';'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -92,12 +92,12 @@ def test_float_value(lexer):
     """
     Float value `1.1` should be explicitly highlighted
     """
-    fragment = u'yang-version 1.1;\n'
+    fragment = 'yang-version 1.1;\n'
     tokens = [
-        (Token.Keyword, u'yang-version'),
-        (Token.Text.Whitespace, u' '),
-        (Token.Number.Float, u'1.1'),
-        (Token.Punctuation, u';'),
-        (Token.Text.Whitespace, u'\n'),
+        (Token.Keyword, 'yang-version'),
+        (Token.Text.Whitespace, ' '),
+        (Token.Number.Float, '1.1'),
+        (Token.Punctuation, ';'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens

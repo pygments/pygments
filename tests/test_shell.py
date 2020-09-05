@@ -34,194 +34,194 @@ def lexer_powershell_session():
 
 
 def test_curly_no_escape_and_quotes(lexer_bash):
-    fragment = u'echo "${a//["b"]/}"\n'
+    fragment = 'echo "${a//["b"]/}"\n'
     tokens = [
-        (Token.Name.Builtin, u'echo'),
-        (Token.Text, u' '),
-        (Token.Literal.String.Double, u'"'),
-        (Token.String.Interpol, u'${'),
-        (Token.Name.Variable, u'a'),
-        (Token.Punctuation, u'//['),
-        (Token.Literal.String.Double, u'"b"'),
-        (Token.Punctuation, u']/'),
-        (Token.String.Interpol, u'}'),
-        (Token.Literal.String.Double, u'"'),
-        (Token.Text, u'\n'),
+        (Token.Name.Builtin, 'echo'),
+        (Token.Text, ' '),
+        (Token.Literal.String.Double, '"'),
+        (Token.String.Interpol, '${'),
+        (Token.Name.Variable, 'a'),
+        (Token.Punctuation, '//['),
+        (Token.Literal.String.Double, '"b"'),
+        (Token.Punctuation, ']/'),
+        (Token.String.Interpol, '}'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer_bash.get_tokens(fragment)) == tokens
 
 
 def test_curly_with_escape(lexer_bash):
-    fragment = u'echo ${a//[\\"]/}\n'
+    fragment = 'echo ${a//[\\"]/}\n'
     tokens = [
-        (Token.Name.Builtin, u'echo'),
-        (Token.Text, u' '),
-        (Token.String.Interpol, u'${'),
-        (Token.Name.Variable, u'a'),
-        (Token.Punctuation, u'//['),
-        (Token.Literal.String.Escape, u'\\"'),
-        (Token.Punctuation, u']/'),
-        (Token.String.Interpol, u'}'),
-        (Token.Text, u'\n'),
+        (Token.Name.Builtin, 'echo'),
+        (Token.Text, ' '),
+        (Token.String.Interpol, '${'),
+        (Token.Name.Variable, 'a'),
+        (Token.Punctuation, '//['),
+        (Token.Literal.String.Escape, '\\"'),
+        (Token.Punctuation, ']/'),
+        (Token.String.Interpol, '}'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer_bash.get_tokens(fragment)) == tokens
 
 
 def test_parsed_single(lexer_bash):
-    fragment = u"a=$'abc\\''\n"
+    fragment = "a=$'abc\\''\n"
     tokens = [
-        (Token.Name.Variable, u'a'),
-        (Token.Operator, u'='),
-        (Token.Literal.String.Single, u"$'abc\\''"),
-        (Token.Text, u'\n'),
+        (Token.Name.Variable, 'a'),
+        (Token.Operator, '='),
+        (Token.Literal.String.Single, "$'abc\\''"),
+        (Token.Text, '\n'),
     ]
     assert list(lexer_bash.get_tokens(fragment)) == tokens
 
 
 def test_short_variable_names(lexer_bash):
-    fragment = u'x="$"\ny="$_"\nz="$abc"\n'
+    fragment = 'x="$"\ny="$_"\nz="$abc"\n'
     tokens = [
         # single lone $
-        (Token.Name.Variable, u'x'),
-        (Token.Operator, u'='),
-        (Token.Literal.String.Double, u'"'),
-        (Token.Text, u'$'),
-        (Token.Literal.String.Double, u'"'),
-        (Token.Text, u'\n'),
+        (Token.Name.Variable, 'x'),
+        (Token.Operator, '='),
+        (Token.Literal.String.Double, '"'),
+        (Token.Text, '$'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Text, '\n'),
         # single letter shell var
-        (Token.Name.Variable, u'y'),
-        (Token.Operator, u'='),
-        (Token.Literal.String.Double, u'"'),
-        (Token.Name.Variable, u'$_'),
-        (Token.Literal.String.Double, u'"'),
-        (Token.Text, u'\n'),
+        (Token.Name.Variable, 'y'),
+        (Token.Operator, '='),
+        (Token.Literal.String.Double, '"'),
+        (Token.Name.Variable, '$_'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Text, '\n'),
         # multi-letter user var
-        (Token.Name.Variable, u'z'),
-        (Token.Operator, u'='),
-        (Token.Literal.String.Double, u'"'),
-        (Token.Name.Variable, u'$abc'),
-        (Token.Literal.String.Double, u'"'),
-        (Token.Text, u'\n'),
+        (Token.Name.Variable, 'z'),
+        (Token.Operator, '='),
+        (Token.Literal.String.Double, '"'),
+        (Token.Name.Variable, '$abc'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer_bash.get_tokens(fragment)) == tokens
 
 
 def test_array_nums(lexer_bash):
-    fragment = u'a=(1 2 3)\n'
+    fragment = 'a=(1 2 3)\n'
     tokens = [
-        (Token.Name.Variable, u'a'),
-        (Token.Operator, u'='),
-        (Token.Operator, u'('),
-        (Token.Literal.Number, u'1'),
-        (Token.Text, u' '),
-        (Token.Literal.Number, u'2'),
-        (Token.Text, u' '),
-        (Token.Literal.Number, u'3'),
-        (Token.Operator, u')'),
-        (Token.Text, u'\n'),
+        (Token.Name.Variable, 'a'),
+        (Token.Operator, '='),
+        (Token.Operator, '('),
+        (Token.Literal.Number, '1'),
+        (Token.Text, ' '),
+        (Token.Literal.Number, '2'),
+        (Token.Text, ' '),
+        (Token.Literal.Number, '3'),
+        (Token.Operator, ')'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer_bash.get_tokens(fragment)) == tokens
 
 
 def test_end_of_line_nums(lexer_bash):
-    fragment = u'a=1\nb=2 # comment\n'
+    fragment = 'a=1\nb=2 # comment\n'
     tokens = [
-        (Token.Name.Variable, u'a'),
-        (Token.Operator, u'='),
-        (Token.Literal.Number, u'1'),
-        (Token.Text, u'\n'),
-        (Token.Name.Variable, u'b'),
-        (Token.Operator, u'='),
-        (Token.Literal.Number, u'2'),
-        (Token.Text, u' '),
-        (Token.Comment.Single, u'# comment\n'),
+        (Token.Name.Variable, 'a'),
+        (Token.Operator, '='),
+        (Token.Literal.Number, '1'),
+        (Token.Text, '\n'),
+        (Token.Name.Variable, 'b'),
+        (Token.Operator, '='),
+        (Token.Literal.Number, '2'),
+        (Token.Text, ' '),
+        (Token.Comment.Single, '# comment\n'),
     ]
     assert list(lexer_bash.get_tokens(fragment)) == tokens
 
 
 def test_newline_in_echo(lexer_session):
-    fragment = u'$ echo \\\nhi\nhi\n'
+    fragment = '$ echo \\\nhi\nhi\n'
     tokens = [
-        (Token.Text, u''),
-        (Token.Generic.Prompt, u'$'),
-        (Token.Text, u' '),
-        (Token.Name.Builtin, u'echo'),
-        (Token.Text, u' '),
-        (Token.Literal.String.Escape, u'\\\n'),
-        (Token.Text, u'hi'),
-        (Token.Text, u'\n'),
-        (Token.Generic.Output, u'hi\n'),
+        (Token.Text, ''),
+        (Token.Generic.Prompt, '$'),
+        (Token.Text, ' '),
+        (Token.Name.Builtin, 'echo'),
+        (Token.Text, ' '),
+        (Token.Literal.String.Escape, '\\\n'),
+        (Token.Text, 'hi'),
+        (Token.Text, '\n'),
+        (Token.Generic.Output, 'hi\n'),
     ]
     assert list(lexer_session.get_tokens(fragment)) == tokens
 
 
 def test_msdos_gt_only(lexer_msdos):
-    fragment = u'> py\nhi\n'
+    fragment = '> py\nhi\n'
     tokens = [
-        (Token.Text, u''),
-        (Token.Generic.Prompt, u'>'),
-        (Token.Text, u' '),
-        (Token.Text, u'py'),
-        (Token.Text, u''),
-        (Token.Text, u'\n'),
-        (Token.Generic.Output, u'hi\n'),
+        (Token.Text, ''),
+        (Token.Generic.Prompt, '>'),
+        (Token.Text, ' '),
+        (Token.Text, 'py'),
+        (Token.Text, ''),
+        (Token.Text, '\n'),
+        (Token.Generic.Output, 'hi\n'),
     ]
     assert list(lexer_msdos.get_tokens(fragment)) == tokens
 
 
 def test_powershell_session(lexer_powershell_session):
-    fragment = u'PS C:\\> Get-ChildItem\n'
+    fragment = 'PS C:\\> Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, u''),
-        (Token.Generic.Prompt, u'PS C:\\> '),
-        (Token.Name.Builtin, u'Get-ChildItem'),
-        (Token.Text, u'\n')
+        (Token.Name.Builtin, ''),
+        (Token.Generic.Prompt, 'PS C:\\> '),
+        (Token.Name.Builtin, 'Get-ChildItem'),
+        (Token.Text, '\n')
     ]
     assert list(lexer_powershell_session.get_tokens(fragment)) == tokens
 
-    fragment = u'PS> Get-ChildItem\n'
+    fragment = 'PS> Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, u''),
-        (Token.Generic.Prompt, u'PS> '),
-        (Token.Name.Builtin, u'Get-ChildItem'),
-        (Token.Text, u'\n')
+        (Token.Name.Builtin, ''),
+        (Token.Generic.Prompt, 'PS> '),
+        (Token.Name.Builtin, 'Get-ChildItem'),
+        (Token.Text, '\n')
     ]
     assert list(lexer_powershell_session.get_tokens(fragment)) == tokens
 
-    fragment = u'PS > Get-ChildItem\n'
+    fragment = 'PS > Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, u''),
-        (Token.Generic.Prompt, u'PS > '),
-        (Token.Name.Builtin, u'Get-ChildItem'),
-        (Token.Text, u'\n')
+        (Token.Name.Builtin, ''),
+        (Token.Generic.Prompt, 'PS > '),
+        (Token.Name.Builtin, 'Get-ChildItem'),
+        (Token.Text, '\n')
     ]
     assert list(lexer_powershell_session.get_tokens(fragment)) == tokens
 
 
 def test_powershell_remoting_session(lexer_powershell_session):
-    fragment = u'[Long-NetBIOS-Hostname]: PS C:\\> Get-ChildItem\n'
+    fragment = '[Long-NetBIOS-Hostname]: PS C:\\> Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, u''),
-        (Token.Generic.Prompt, u'[Long-NetBIOS-Hostname]: PS C:\\> '),
-        (Token.Name.Builtin, u'Get-ChildItem'),
-        (Token.Text, u'\n')
+        (Token.Name.Builtin, ''),
+        (Token.Generic.Prompt, '[Long-NetBIOS-Hostname]: PS C:\\> '),
+        (Token.Name.Builtin, 'Get-ChildItem'),
+        (Token.Text, '\n')
     ]
     assert list(lexer_powershell_session.get_tokens(fragment)) == tokens
 
 
 def test_virtualenv(lexer_session):
-    fragment = u'(env) [~/project]$ foo -h\n'
+    fragment = '(env) [~/project]$ foo -h\n'
     tokens = [
-        (Token.Text, u''),
-        (Token.Generic.Prompt.VirtualEnv, u'(env)'),
-        (Token.Text, u''),
-        (Token.Text, u' '),
-        (Token.Text, u''),
-        (Token.Generic.Prompt, u'[~/project]$'),
-        (Token.Text, u' '),
-        (Token.Text, u'foo'),
-        (Token.Text, u' '),
-        (Token.Text, u'-h'),
-        (Token.Text, u'\n'),
+        (Token.Text, ''),
+        (Token.Generic.Prompt.VirtualEnv, '(env)'),
+        (Token.Text, ''),
+        (Token.Text, ' '),
+        (Token.Text, ''),
+        (Token.Generic.Prompt, '[~/project]$'),
+        (Token.Text, ' '),
+        (Token.Text, 'foo'),
+        (Token.Text, ' '),
+        (Token.Text, '-h'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer_session.get_tokens(fragment)) == tokens

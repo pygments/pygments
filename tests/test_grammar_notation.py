@@ -19,21 +19,21 @@ def lexer_peg():
 
 
 def test_peg_basic(lexer_peg):
-    fragment = u'rule<-("terminal"/nonterminal/[cls])*\n'
+    fragment = 'rule<-("terminal"/nonterminal/[cls])*\n'
     tokens = [
-        (Token.Name.Class, u'rule'),
-        (Token.Operator, u'<-'),
-        (Token.Punctuation, u'('),
-        (Token.String.Double, u'"terminal"'),
-        (Token.Operator, u'/'),
-        (Token.Name.Class, u'nonterminal'),
-        (Token.Operator, u'/'),
-        (Token.Punctuation, u'['),
-        (Token.String, u'cls'),
-        (Token.Punctuation, u']'),
-        (Token.Punctuation, u')'),
-        (Token.Operator, u'*'),
-        (Token.Text, u'\n'),
+        (Token.Name.Class, 'rule'),
+        (Token.Operator, '<-'),
+        (Token.Punctuation, '('),
+        (Token.String.Double, '"terminal"'),
+        (Token.Operator, '/'),
+        (Token.Name.Class, 'nonterminal'),
+        (Token.Operator, '/'),
+        (Token.Punctuation, '['),
+        (Token.String, 'cls'),
+        (Token.Punctuation, ']'),
+        (Token.Punctuation, ')'),
+        (Token.Operator, '*'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer_peg.get_tokens(fragment)) == tokens
 
@@ -42,31 +42,31 @@ def test_peg_operators(lexer_peg):
     # see for example:
     # - https://github.com/gvanrossum/pegen
     # - https://nim-lang.org/docs/pegs.html
-    fragment = u"rule = 'a' | 'b'\n"
+    fragment = "rule = 'a' | 'b'\n"
     tokens = [
-        (Token.Name.Class, u'rule'),
-        (Token.Text, u' '),
-        (Token.Operator, u'='),
-        (Token.Text, u' '),
-        (Token.String.Single, u"'a'"),
-        (Token.Text, u' '),
-        (Token.Operator, u'|'),
-        (Token.Text, u' '),
-        (Token.String.Single, u"'b'"),
-        (Token.Text, u'\n'),
+        (Token.Name.Class, 'rule'),
+        (Token.Text, ' '),
+        (Token.Operator, '='),
+        (Token.Text, ' '),
+        (Token.String.Single, "'a'"),
+        (Token.Text, ' '),
+        (Token.Operator, '|'),
+        (Token.Text, ' '),
+        (Token.String.Single, "'b'"),
+        (Token.Text, '\n'),
     ]
     assert list(lexer_peg.get_tokens(fragment)) == tokens
-    fragment = u"rule: 'a' ~ 'b'\n"
+    fragment = "rule: 'a' ~ 'b'\n"
     tokens = [
-        (Token.Name.Class, u'rule'),
-        (Token.Operator, u':'),
-        (Token.Text, u' '),
-        (Token.String.Single, u"'a'"),
-        (Token.Text, u' '),
-        (Token.Operator, u'~'),
-        (Token.Text, u' '),
-        (Token.String.Single, u"'b'"),
-        (Token.Text, u'\n'),
+        (Token.Name.Class, 'rule'),
+        (Token.Operator, ':'),
+        (Token.Text, ' '),
+        (Token.String.Single, "'a'"),
+        (Token.Text, ' '),
+        (Token.Operator, '~'),
+        (Token.Text, ' '),
+        (Token.String.Single, "'b'"),
+        (Token.Text, '\n'),
     ]
     assert list(lexer_peg.get_tokens(fragment)) == tokens
 
@@ -76,19 +76,19 @@ def test_peg_modified_strings(lexer_peg):
     # - http://textx.github.io/Arpeggio/
     # - https://nim-lang.org/docs/pegs.html
     # - https://github.com/erikrose/parsimonious
-    fragment = u'~"regex" i"insensitive" "multimod"ilx ("not modified")\n'
+    fragment = '~"regex" i"insensitive" "multimod"ilx ("not modified")\n'
     tokens = [
         # can't handle parsimonious-style regex while ~ is a cut operator
-        (Token.Operator, u'~'),
-        (Token.String.Double, u'"regex"'),
-        (Token.Text, u' '),
-        (Token.String.Double, u'i"insensitive"'),
-        (Token.Text, u' '),
-        (Token.String.Double, u'"multimod"ilx'),
-        (Token.Text, u' '),
-        (Token.Punctuation, u'('),
-        (Token.String.Double, u'"not modified"'),
-        (Token.Punctuation, u')'),
-        (Token.Text, u'\n'),
+        (Token.Operator, '~'),
+        (Token.String.Double, '"regex"'),
+        (Token.Text, ' '),
+        (Token.String.Double, 'i"insensitive"'),
+        (Token.Text, ' '),
+        (Token.String.Double, '"multimod"ilx'),
+        (Token.Text, ' '),
+        (Token.Punctuation, '('),
+        (Token.String.Double, '"not modified"'),
+        (Token.Punctuation, ')'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer_peg.get_tokens(fragment)) == tokens

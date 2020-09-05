@@ -19,62 +19,62 @@ def lexer():
 
 
 def test_http_status_line(lexer):
-    fragment = u'HTTP/1.1 200 OK\n'
+    fragment = 'HTTP/1.1 200 OK\n'
     tokens = [
-        (Token.Keyword.Reserved, u'HTTP'),
-        (Token.Operator, u'/'),
-        (Token.Number, u'1.1'),
-        (Token.Text, u' '),
-        (Token.Number, u'200'),
-        (Token.Text, u' '),
-        (Token.Name.Exception, u'OK'),
-        (Token.Text, u'\n'),
+        (Token.Keyword.Reserved, 'HTTP'),
+        (Token.Operator, '/'),
+        (Token.Number, '1.1'),
+        (Token.Text, ' '),
+        (Token.Number, '200'),
+        (Token.Text, ' '),
+        (Token.Name.Exception, 'OK'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_http_status_line_without_reason_phrase(lexer):
-    fragment = u'HTTP/1.1 200\n'
+    fragment = 'HTTP/1.1 200\n'
     tokens = [
-        (Token.Keyword.Reserved, u'HTTP'),
-        (Token.Operator, u'/'),
-        (Token.Number, u'1.1'),
-        (Token.Text, u' '),
-        (Token.Number, u'200'),
-        (Token.Text, u'\n'),
+        (Token.Keyword.Reserved, 'HTTP'),
+        (Token.Operator, '/'),
+        (Token.Number, '1.1'),
+        (Token.Text, ' '),
+        (Token.Number, '200'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_http_status_line_without_reason_phrase_rfc_7230(lexer):
-    fragment = u'HTTP/1.1 200 \n'
+    fragment = 'HTTP/1.1 200 \n'
     tokens = [
-        (Token.Keyword.Reserved, u'HTTP'),
-        (Token.Operator, u'/'),
-        (Token.Number, u'1.1'),
-        (Token.Text, u' '),
-        (Token.Number, u'200'),
-        (Token.Text, u' '),
-        (Token.Text, u'\n'),
+        (Token.Keyword.Reserved, 'HTTP'),
+        (Token.Operator, '/'),
+        (Token.Number, '1.1'),
+        (Token.Text, ' '),
+        (Token.Number, '200'),
+        (Token.Text, ' '),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_application_xml(lexer):
-    fragment = u'GET / HTTP/1.0\nContent-Type: application/xml\n\n<foo>\n'
+    fragment = 'GET / HTTP/1.0\nContent-Type: application/xml\n\n<foo>\n'
     tokens = [
-        (Token.Name.Tag, u'<foo'),
-        (Token.Name.Tag, u'>'),
-        (Token.Text, u'\n'),
+        (Token.Name.Tag, '<foo'),
+        (Token.Name.Tag, '>'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment))[-len(tokens):] == tokens
 
 
 def test_application_calendar_xml(lexer):
-    fragment = u'GET / HTTP/1.0\nContent-Type: application/calendar+xml\n\n<foo>\n'
+    fragment = 'GET / HTTP/1.0\nContent-Type: application/calendar+xml\n\n<foo>\n'
     tokens = [
-        (Token.Name.Tag, u'<foo'),
-        (Token.Name.Tag, u'>'),
-        (Token.Text, u'\n'),
+        (Token.Name.Tag, '<foo'),
+        (Token.Name.Tag, '>'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment))[-len(tokens):] == tokens

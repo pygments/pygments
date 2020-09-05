@@ -19,13 +19,13 @@ def lexer():
 
 
 def test_whiley_operator(lexer):
-    fragment = u'123 \u2200 x\n'
+    fragment = '123 \u2200 x\n'
     tokens = [
-        (Token.Literal.Number.Integer, u'123'),
-        (Token.Text, u' '),
-        (Token.Operator, u'\u2200'),
-        (Token.Text, u' '),
-        (Token.Name, u'x'),
-        (Token.Text, u'\n'),
+        (Token.Literal.Number.Integer, '123'),
+        (Token.Text, ' '),
+        (Token.Operator, '\u2200'),
+        (Token.Text, ' '),
+        (Token.Name, 'x'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens

@@ -119,12 +119,12 @@ class RawTokenFormatter(Formatter):
         flush()
 
 
-TESTCASE_BEFORE = u'''\
+TESTCASE_BEFORE = '''\
     def testNeedsName(lexer):
         fragment = %r
         tokens = [
 '''
-TESTCASE_AFTER = u'''\
+TESTCASE_AFTER = '''\
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 '''
@@ -152,8 +152,8 @@ class TestcaseFormatter(Formatter):
             rawbuf.append(value)
             outbuf.append('%s(%s, %r),\n' % (indentation, ttype, value))
 
-        before = TESTCASE_BEFORE % (u''.join(rawbuf),)
-        during = u''.join(outbuf)
+        before = TESTCASE_BEFORE % (''.join(rawbuf),)
+        during = ''.join(outbuf)
         after = TESTCASE_AFTER
         if self.encoding is None:
             outfile.write(before + during + after)

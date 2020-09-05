@@ -173,20 +173,20 @@ def test_formatter_encodings():
 
     # unicode output
     fmt = HtmlFormatter()
-    tokens = [(Text, u"ä")]
+    tokens = [(Text, "ä")]
     out = format(tokens, fmt)
     assert type(out) is str
-    assert u"ä" in out
+    assert "ä" in out
 
     # encoding option
     fmt = HtmlFormatter(encoding="latin1")
-    tokens = [(Text, u"ä")]
-    assert u"ä".encode("latin1") in format(tokens, fmt)
+    tokens = [(Text, "ä")]
+    assert "ä".encode("latin1") in format(tokens, fmt)
 
     # encoding and outencoding option
     fmt = HtmlFormatter(encoding="latin1", outencoding="utf8")
-    tokens = [(Text, u"ä")]
-    assert u"ä".encode("utf8") in format(tokens, fmt)
+    tokens = [(Text, "ä")]
+    assert "ä".encode("utf8") in format(tokens, fmt)
 
 
 @pytest.mark.parametrize('cls', [getattr(formatters, name)
@@ -307,7 +307,7 @@ class TestFilters:
     def test_codetag(self):
         lx = lexers.PythonLexer()
         lx.add_filter('codetagify')
-        text = u'# BUG: text'
+        text = '# BUG: text'
         tokens = list(lx.get_tokens(text))
         assert '# ' == tokens[0][1]
         assert 'BUG' == tokens[1][1]
@@ -316,15 +316,15 @@ class TestFilters:
         # ticket #368
         lx = lexers.PythonLexer()
         lx.add_filter('codetagify')
-        text = u'# DEBUG: text'
+        text = '# DEBUG: text'
         tokens = list(lx.get_tokens(text))
         assert '# DEBUG: text' == tokens[0][1]
 
     def test_symbols(self):
         lx = lexers.IsabelleLexer()
         lx.add_filter('symbols')
-        text = u'lemma "A \\<Longrightarrow> B"'
+        text = 'lemma "A \\<Longrightarrow> B"'
         tokens = list(lx.get_tokens(text))
         assert 'lemma' == tokens[0][1]
         assert 'A ' == tokens[3][1]
-        assert u'\U000027f9' == tokens[4][1]
+        assert '\U000027f9' == tokens[4][1]

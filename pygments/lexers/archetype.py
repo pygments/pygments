@@ -212,9 +212,9 @@ class CadlLexer(AtomsLexer):
             (r'(not)\W', Operator),
             (r'(matches|is_in)\W', Operator),
             # is_in / not is_in char
-            (u'(\u2208|\u2209)', Operator),
+            ('(\u2208|\u2209)', Operator),
             # there_exists / not there_exists / for_all / and / or
-            (u'(\u2203|\u2204|\u2200|\u2227|\u2228|\u22BB|\223C)',
+            ('(\u2203|\u2204|\u2200|\u2227|\u2228|\u22BB|\223C)',
              Operator),
             # regex in slot or as string constraint
             (r'(\{)(\s*/[^}]+/\s*)(\})',
