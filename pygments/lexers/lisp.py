@@ -2692,5 +2692,8 @@ class FennelLexer(RegexLexer):
             (r'(\(|\))', Punctuation),
             (r'(\[|\])', Punctuation),
             (r'(\{|\})', Punctuation),
+
+            # the # symbol is shorthand for a lambda function
+            (r'#', Punctuation),
         ]
     }
