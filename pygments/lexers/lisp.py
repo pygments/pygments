@@ -2634,14 +2634,18 @@ class FennelLexer(RegexLexer):
 
     # these two lists are taken from fennel-mode.el:
     # https://gitlab.com/technomancy/fennel-mode
-    # this list is current as of Fennel version 0.1.0.
+    # this list is current as of Fennel version 0.6.0.
     special_forms = (
-        u'require-macros', u'eval-compiler',
-        u'do', u'values', u'if', u'when', u'each', u'for', u'fn', u'lambda',
-        u'λ', u'set', u'global', u'var', u'local', u'let', u'tset', u'doto',
-        u'set-forcibly!', u'defn', u'partial', u'while', u'or', u'and', u'true',
-        u'false', u'nil', u'.', u'+', u'..', u'^', u'-', u'*', u'%', u'/', u'>',
-        u'<', u'>=', u'<=', u'=', u'~=', u'#', u'...', u':', u'->', u'->>',
+        u'require-macros', u'eval-compiler', u'doc', u'lua', u'hashfn',
+        u'macro', u'macros', u'import-macros', u'pick-args', u'pick-values',
+        u'macroexpand', u'macrodebug', u'do', u'values', u'if', u'when',
+        u'each', u'for', u'fn', u'lambda', u'λ', u'partial', u'while',
+        u'set', u'global', u'var', u'local', u'let', u'tset', u'set-forcibly!',
+        u'doto', u'match', u'or', u'and', u'true', u'false', u'nil', u'not',
+        u'not=', u'.', u'+', u'..', u'^', u'-', u'*', u'%', u'/', u'>',
+        u'<', u'>=', u'<=', u'=', u'...', u':', u'->', u'->>', u'-?>',
+        u'-?>>', u'rshift', u'lshift', u'bor', u'band', u'bnot', u'bxor',
+        u'with-open', u'length'
     )
 
     # Might be nicer to use the list from _lua_builtins.py but it's unclear how?
@@ -2655,8 +2659,9 @@ class FennelLexer(RegexLexer):
         u'tostring', u'type', u'unpack', u'xpcall'
     )
 
-    # based on the scheme definition, but disallowing leading digits and commas
-    valid_name = r'[a-zA-Z_!$%&*+/:<=>?@^~|-][\w!$%&*+/:<=>?@^~|\.-]*'
+    # based on the scheme definition, but disallowing leading digits and
+    # commas, and @ is not allowed.
+    valid_name = r'[a-zA-Z_!$%&*+/:<=>?^~|-][\w!$%&*+/:<=>?^~|\.-]*'
 
     tokens = {
         'root': [
@@ -2668,7 +2673,6 @@ class FennelLexer(RegexLexer):
             (r'-?\d+', Number.Integer),
 
             (r'"(\\\\|\\"|[^"])*"', String),
-            (r"'(\\\\|\\'|[^'])*'", String),
 
             # these are technically strings, but it's worth visually
             # distinguishing them because their intent is different
