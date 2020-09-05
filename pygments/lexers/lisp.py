@@ -2638,27 +2638,27 @@ class FennelLexer(RegexLexer):
     # https://gitlab.com/technomancy/fennel-mode
     # this list is current as of Fennel version 0.6.0.
     special_forms = (
-        u'require-macros', u'eval-compiler', u'doc', u'lua', u'hashfn',
-        u'macro', u'macros', u'import-macros', u'pick-args', u'pick-values',
-        u'macroexpand', u'macrodebug', u'do', u'values', u'if', u'when',
-        u'each', u'for', u'fn', u'lambda', u'λ', u'partial', u'while',
-        u'set', u'global', u'var', u'local', u'let', u'tset', u'set-forcibly!',
-        u'doto', u'match', u'or', u'and', u'true', u'false', u'nil', u'not',
-        u'not=', u'.', u'+', u'..', u'^', u'-', u'*', u'%', u'/', u'>',
-        u'<', u'>=', u'<=', u'=', u'...', u':', u'->', u'->>', u'-?>',
-        u'-?>>', u'rshift', u'lshift', u'bor', u'band', u'bnot', u'bxor',
-        u'with-open', u'length'
+        'require-macros', 'eval-compiler', 'doc', 'lua', 'hashfn',
+        'macro', 'macros', 'import-macros', 'pick-args', 'pick-values',
+        'macroexpand', 'macrodebug', 'do', 'values', 'if', 'when',
+        'each', 'for', 'fn', 'lambda', 'λ', 'partial', 'while',
+        'set', 'global', 'var', 'local', 'let', 'tset', 'set-forcibly!',
+        'doto', 'match', 'or', 'and', 'true', 'false', 'nil', 'not',
+        'not=', '.', '+', '..', '^', '-', '*', '%', '/', '>',
+        '<', '>=', '<=', '=', '...', ':', '->', '->>', '-?>',
+        '-?>>', 'rshift', 'lshift', 'bor', 'band', 'bnot', 'bxor',
+        'with-open', 'length'
     )
 
     # Might be nicer to use the list from _lua_builtins.py but it's unclear how?
     builtins = (
-        u'_G', u'_VERSION', u'arg', u'assert', u'bit32', u'collectgarbage',
-        u'coroutine', u'debug', u'dofile', u'error', u'getfenv',
-        u'getmetatable', u'io', u'ipairs', u'load', u'loadfile', u'loadstring',
-        u'math', u'next', u'os', u'package', u'pairs', u'pcall', u'print',
-        u'rawequal', u'rawget', u'rawlen', u'rawset', u'require', u'select',
-        u'setfenv', u'setmetatable', u'string', u'table', u'tonumber',
-        u'tostring', u'type', u'unpack', u'xpcall'
+        '_G', '_VERSION', 'arg', 'assert', 'bit32', 'collectgarbage',
+        'coroutine', 'debug', 'dofile', 'error', 'getfenv',
+        'getmetatable', 'io', 'ipairs', 'load', 'loadfile', 'loadstring',
+        'math', 'next', 'os', 'package', 'pairs', 'pcall', 'print',
+        'rawequal', 'rawget', 'rawlen', 'rawset', 'require', 'select',
+        'setfenv', 'setmetatable', 'string', 'table', 'tonumber',
+        'tostring', 'type', 'unpack', 'xpcall'
     )
 
     # based on the scheme definition, but disallowing leading digits and
