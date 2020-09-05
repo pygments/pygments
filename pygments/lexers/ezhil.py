@@ -65,5 +65,5 @@ class EzhilLexer(RegexLexer):
     }
 
     def __init__(self, **options):
-        super(EzhilLexer, self).__init__(**options)
+        super().__init__(**options)
         self.encoding = options.get('encoding', 'utf-8')

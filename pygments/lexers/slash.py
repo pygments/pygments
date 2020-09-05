@@ -182,4 +182,4 @@ class SlashLexer(DelegatingLexer):
 
     def __init__(self, **options):
         from pygments.lexers.web import HtmlLexer
-        super(SlashLexer, self).__init__(HtmlLexer, SlashLanguageLexer, **options)
+        super().__init__(HtmlLexer, SlashLanguageLexer, **options)

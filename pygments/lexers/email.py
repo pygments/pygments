@@ -25,7 +25,7 @@ class EmailHeaderLexer(RegexLexer):
     """
 
     def __init__(self, **options):
-        super(EmailHeaderLexer, self).__init__(**options)
+        super().__init__(**options)
         self.highlight_x = get_bool_opt(options, "highlight-X-header", False)
 
     def get_x_header_tokens(self, match):
@@ -148,6 +148,4 @@ class EmailLexer(DelegatingLexer):
     mimetypes = ["message/rfc822"]
 
     def __init__(self, **options):
-        super(EmailLexer, self).__init__(
-            EmailHeaderLexer, MIMELexer, Comment, **options
-        )
+        super().__init__(EmailHeaderLexer, MIMELexer, Comment, **options)

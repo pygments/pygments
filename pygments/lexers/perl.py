@@ -714,5 +714,5 @@ class Perl6Lexer(ExtendedRegexLexer):
         return rating
 
     def __init__(self, **options):
-        super(Perl6Lexer, self).__init__(**options)
+        super().__init__(**options)
         self.encoding = options.get('encoding', 'utf-8')

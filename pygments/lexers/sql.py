@@ -124,7 +124,7 @@ class PostgresBase:
     def get_tokens_unprocessed(self, text, *args):
         # Have a copy of the entire text to be used by `language_callback`.
         self.text = text
-        yield from super(PostgresBase, self).get_tokens_unprocessed(text, *args)
+        yield from super().get_tokens_unprocessed(text, *args)
 
     def _get_lexer(self, lang):
         if lang.lower() == 'sql':
