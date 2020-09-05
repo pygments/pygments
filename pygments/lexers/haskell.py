@@ -559,8 +559,7 @@ class LiterateLexer(Lexer):
                     latex += line
             insertions.append((len(code),
                                list(lxlexer.get_tokens_unprocessed(latex))))
-        for item in do_insertions(insertions, self.baselexer.get_tokens_unprocessed(code)):
-            yield item
+        yield from do_insertions(insertions, self.baselexer.get_tokens_unprocessed(code))
 
 
 class LiterateHaskellLexer(LiterateLexer):

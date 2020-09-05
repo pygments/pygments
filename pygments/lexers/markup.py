@@ -165,8 +165,7 @@ class RstLexer(RegexLexer):
                 code += line[indention_size:]
             else:
                 code += line
-        for item in do_insertions(ins, lexer.get_tokens_unprocessed(code)):
-            yield item
+        yield from do_insertions(ins, lexer.get_tokens_unprocessed(code))
 
     # from docutils.parsers.rst.states
     closers = u'\'")]}>\u2019\u201d\xbb!?'
@@ -536,8 +535,7 @@ class MarkdownLexer(RegexLexer):
         if lexer is None:
             yield match.start(4), String, code
         else:
-            for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
-                yield item
+            yield from do_insertions([], lexer.get_tokens_unprocessed(code))
 
         yield match.start(5), String.Backtick, match.group(5)
 
@@ -645,8 +643,7 @@ class TiddlyWiki5Lexer(RegexLexer):
             yield match.start(4), String, code
             return
 
-        for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
-            yield item
+        yield from do_insertions([], lexer.get_tokens_unprocessed(code))
 
         yield match.start(5), String        , match.group(5)
 
@@ -673,8 +670,7 @@ class TiddlyWiki5Lexer(RegexLexer):
             yield match.start(3), String, code
             return
 
-        for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
-            yield item
+        yield from do_insertions([], lexer.get_tokens_unprocessed(code))
 
         yield match.start(4), String        , match.group(4)
 

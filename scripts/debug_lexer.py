@@ -52,12 +52,10 @@ class DebuggingRegexLexer(ExtendedRegexLexer):
                             ctx.pos = m.end()
                         else:
                             if not isinstance(self, ExtendedRegexLexer):
-                                for item in action(self, m):
-                                    yield item
+                                yield from action(self, m)
                                 ctx.pos = m.end()
                             else:
-                                for item in action(self, m, ctx):
-                                    yield item
+                                yield from action(self, m, ctx)
                                 if not new_state:
                                     # altered the state stack?
                                     statetokens = tokendefs[ctx.stack[-1]]

@@ -633,8 +633,7 @@ class HtmlFormatter(Formatter):
                            styledefs=self.get_style_defs('body'),
                            encoding=self.encoding))
 
-        for t, line in inner:
-            yield t, line
+        yield from inner
         yield 0, DOC_FOOTER
 
     def _wrap_tablelinenos(self, inner):
@@ -762,8 +761,7 @@ class HtmlFormatter(Formatter):
 
         yield 0, ('<div' + (self.cssclass and ' class="%s"' % self.cssclass) +
                   (style and (' style="%s"' % style)) + '>')
-        for tup in inner:
-            yield tup
+        yield from inner
         yield 0, '</div>\n'
 
     def _wrap_pre(self, inner):
@@ -780,14 +778,12 @@ class HtmlFormatter(Formatter):
         # the empty span here is to keep leading empty lines from being
         # ignored by HTML parsers
         yield 0, ('<pre' + (style and ' style="%s"' % style) + '><span></span>')
-        for tup in inner:
-            yield tup
+        yield from inner
         yield 0, '</pre>'
 
     def _wrap_code(self, inner):
         yield 0, '<code>'
-        for tup in inner:
-            yield tup
+        yield from inner
         yield 0, '</code>'
 
     def _format_lines(self, tokensource):

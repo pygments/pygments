@@ -122,8 +122,3 @@ class ZigLexer(RegexLexer):
             (r'"', String, '#pop')
         ]
     }
-
-    def get_tokens_unprocessed(self, text):
-        for index, token, value in \
-                RegexLexer.get_tokens_unprocessed(self, text):
-            yield index, token, value

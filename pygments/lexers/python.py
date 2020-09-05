@@ -660,9 +660,8 @@ class PythonConsoleLexer(Lexer):
                 curcode += line[3:]
             else:
                 if curcode:
-                    for item in do_insertions(
-                            insertions, pylexer.get_tokens_unprocessed(curcode)):
-                        yield item
+                    yield from do_insertions(
+                        insertions, pylexer.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
                 if (line.startswith(u'Traceback (most recent call last):') or
@@ -682,9 +681,8 @@ class PythonConsoleLexer(Lexer):
                 else:
                     yield match.start(), Generic.Output, line
         if curcode:
-            for item in do_insertions(insertions,
-                                      pylexer.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(insertions,
+                                     pylexer.get_tokens_unprocessed(curcode))
         if curtb:
             for i, t, v in tblexer.get_tokens_unprocessed(curtb):
                 yield tbindex+i, t, v

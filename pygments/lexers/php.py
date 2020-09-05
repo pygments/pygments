@@ -126,16 +126,14 @@ class PsyshConsoleLexer(Lexer):
                 curcode += line[3:]
             else:
                 if curcode:
-                    for item in do_insertions(
-                            insertions, phplexer.get_tokens_unprocessed(curcode)):
-                        yield item
+                    yield from do_insertions(
+                        insertions, phplexer.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
                 yield match.start(), Generic.Output, line
         if curcode:
-            for item in do_insertions(insertions,
-                                      phplexer.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(insertions,
+                                     phplexer.get_tokens_unprocessed(curcode))
 
 
 class PhpLexer(RegexLexer):

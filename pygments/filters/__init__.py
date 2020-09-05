@@ -45,8 +45,7 @@ def get_filter_by_name(filtername, **options):
 
 def get_all_filters():
     """Return a generator of all filter names."""
-    for name in FILTERS:
-        yield name
+    yield from FILTERS
     for name, _ in find_plugin_filters():
         yield name
 
@@ -88,9 +87,7 @@ class CodeTagFilter(Filter):
             if ttype in String.Doc or \
                ttype in Comment and \
                ttype not in Comment.Preproc:
-                for sttype, svalue in _replace_special(ttype, value, regex,
-                                                       Comment.Special):
-                    yield sttype, svalue
+                yield from _replace_special(ttype, value, regex, Comment.Special)
             else:
                 yield ttype, value
 
@@ -851,9 +848,8 @@ class VisibleWhitespaceFilter(Filter):
                 return wschar
 
             for ttype, value in stream:
-                for sttype, svalue in _replace_special(ttype, value, regex,
-                                                       Whitespace, replacefunc):
-                    yield sttype, svalue
+                yield from _replace_special(ttype, value, regex, Whitespace,
+                                            replacefunc)
         else:
             spaces, tabs, newlines = self.spaces, self.tabs, self.newlines
             # simpler processing

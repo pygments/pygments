@@ -229,9 +229,8 @@ class MatlabSessionLexer(Lexer):
                     curcode += line
             else:
                 if curcode:
-                    for item in do_insertions(
-                            insertions, mlexer.get_tokens_unprocessed(curcode)):
-                        yield item
+                    yield from do_insertions(
+                        insertions, mlexer.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
 
@@ -245,9 +244,8 @@ class MatlabSessionLexer(Lexer):
                 continuation = False
 
         if curcode:  # or item:
-            for item in do_insertions(
-                    insertions, mlexer.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(
+                insertions, mlexer.get_tokens_unprocessed(curcode))
 
 
 class OctaveLexer(RegexLexer):

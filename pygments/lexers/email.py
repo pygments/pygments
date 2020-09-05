@@ -36,8 +36,7 @@ class EmailHeaderLexer(RegexLexer):
             # content
             default_actions = self.get_tokens_unprocessed(
                 match.group(2), stack=("root", "header"))
-            for item in default_actions:
-                yield item
+            yield from default_actions
         else:
             # lowlight
             yield match.start(1), Comment.Special, match.group(1)

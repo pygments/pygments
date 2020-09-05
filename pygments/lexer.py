@@ -628,8 +628,7 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
                         if type(action) is _TokenType:
                             yield pos, action, m.group()
                         else:
-                            for item in action(self, m):
-                                yield item
+                            yield from action(self, m)
                     pos = m.end()
                     if new_state is not None:
                         # state transition
@@ -716,8 +715,7 @@ class ExtendedRegexLexer(RegexLexer):
                             yield ctx.pos, action, m.group()
                             ctx.pos = m.end()
                         else:
-                            for item in action(self, m, ctx):
-                                yield item
+                            yield from action(self, m, ctx)
                             if not new_state:
                                 # altered the state stack?
                                 statetokens = tokendefs[ctx.stack[-1]]
@@ -781,8 +779,7 @@ def do_insertions(insertions, tokens):
         index, itokens = next(insertions)
     except StopIteration:
         # no insertions
-        for item in tokens:
-            yield item
+        yield from tokens
         return
 
     realpos = None
@@ -856,8 +853,7 @@ class ProfilingRegexLexer(RegexLexer, metaclass=ProfilingRegexLexerMeta):
     def get_tokens_unprocessed(self, text, stack=('root',)):
         # this needs to be a stack, since using(this) will produce nested calls
         self.__class__._prof_data.append({})
-        for tok in RegexLexer.get_tokens_unprocessed(self, text, stack):
-            yield tok
+        yield from RegexLexer.get_tokens_unprocessed(self, text, stack)
         rawdata = self.__class__._prof_data.pop()
         data = sorted(((s, repr(r).strip('u\'').replace('\\\\', '\\')[:65],
                         n, 1000 * t, 1000 * t / n)

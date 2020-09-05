@@ -180,9 +180,8 @@ class ErlangShellLexer(Lexer):
                 curcode += line[end:]
             else:
                 if curcode:
-                    for item in do_insertions(insertions,
-                                              erlexer.get_tokens_unprocessed(curcode)):
-                        yield item
+                    yield from do_insertions(insertions,
+                                             erlexer.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
                 if line.startswith('*'):
@@ -190,9 +189,8 @@ class ErlangShellLexer(Lexer):
                 else:
                     yield match.start(), Generic.Output, line
         if curcode:
-            for item in do_insertions(insertions,
-                                      erlexer.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(insertions,
+                                     erlexer.get_tokens_unprocessed(curcode))
 
 
 def gen_elixir_string_rules(name, symbol, token):
@@ -520,14 +518,12 @@ class ElixirConsoleLexer(Lexer):
                     curcode += line[end:]
                 else:
                     if curcode:
-                        for item in do_insertions(
-                                insertions, exlexer.get_tokens_unprocessed(curcode)):
-                            yield item
+                        yield from do_insertions(
+                            insertions, exlexer.get_tokens_unprocessed(curcode))
                         curcode = ''
                         insertions = []
                     token = Generic.Error if in_error else Generic.Output
                     yield match.start(), token, line
         if curcode:
-            for item in do_insertions(
-                    insertions, exlexer.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(
+                insertions, exlexer.get_tokens_unprocessed(curcode))

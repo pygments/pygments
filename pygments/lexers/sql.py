@@ -117,9 +117,7 @@ class PostgresBase:
     def get_tokens_unprocessed(self, text, *args):
         # Have a copy of the entire text to be used by `language_callback`.
         self.text = text
-        for x in super(PostgresBase, self).get_tokens_unprocessed(
-                text, *args):
-            yield x
+        yield from super(PostgresBase, self).get_tokens_unprocessed(text, *args)
 
     def _get_lexer(self, lang):
         if lang.lower() == 'sql':
@@ -319,8 +317,7 @@ class PostgresConsoleLexer(Lexer):
                 # Identify a shell prompt in case of psql commandline example
                 if line.startswith('$') and not curcode:
                     lexer = get_lexer_by_name('console', **self.options)
-                    for x in lexer.get_tokens_unprocessed(line):
-                        yield x
+                    yield from lexer.get_tokens_unprocessed(line)
                     break
 
                 # Identify a psql prompt
@@ -340,9 +337,8 @@ class PostgresConsoleLexer(Lexer):
                     break
 
             # Emit the combined stream of command and prompt(s)
-            for item in do_insertions(insertions,
-                                      sql.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(insertions,
+                                     sql.get_tokens_unprocessed(curcode))
 
             # Emit the output lines
             out_token = Generic.Output
@@ -698,9 +694,8 @@ class SqliteConsoleLexer(Lexer):
                 curcode += line[8:]
             else:
                 if curcode:
-                    for item in do_insertions(insertions,
-                                              sql.get_tokens_unprocessed(curcode)):
-                        yield item
+                    yield from do_insertions(insertions,
+                                             sql.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
                 if line.startswith('SQL error: '):
@@ -708,9 +703,8 @@ class SqliteConsoleLexer(Lexer):
                 else:
                     yield (match.start(), Generic.Output, line)
         if curcode:
-            for item in do_insertions(insertions,
-                                      sql.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(insertions,
+                                     sql.get_tokens_unprocessed(curcode))
 
 
 class RqlLexer(RegexLexer):
