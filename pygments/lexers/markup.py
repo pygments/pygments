@@ -461,8 +461,7 @@ class MozPreprocXulLexer(DelegatingLexer):
     mimetypes = []
 
     def __init__(self, **options):
-        super(MozPreprocXulLexer, self).__init__(
-            XmlLexer, MozPreprocHashLexer, **options)
+        super().__init__(XmlLexer, MozPreprocHashLexer, **options)
 
 
 class MozPreprocJavascriptLexer(DelegatingLexer):
@@ -478,8 +477,7 @@ class MozPreprocJavascriptLexer(DelegatingLexer):
     mimetypes = []
 
     def __init__(self, **options):
-        super(MozPreprocJavascriptLexer, self).__init__(
-            JavascriptLexer, MozPreprocHashLexer, **options)
+        super().__init__(JavascriptLexer, MozPreprocHashLexer, **options)
 
 
 class MozPreprocCssLexer(DelegatingLexer):
@@ -495,8 +493,7 @@ class MozPreprocCssLexer(DelegatingLexer):
     mimetypes = []
 
     def __init__(self, **options):
-        super(MozPreprocCssLexer, self).__init__(
-            CssLexer, MozPreprocPercentLexer, **options)
+        super().__init__(CssLexer, MozPreprocPercentLexer, **options)
 
 
 class MarkdownLexer(RegexLexer):

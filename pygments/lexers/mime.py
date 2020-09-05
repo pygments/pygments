@@ -58,7 +58,7 @@ class MIMELexer(RegexLexer):
                  "multipart/alternative"]
 
     def __init__(self, **options):
-        super(MIMELexer, self).__init__(**options)
+        super().__init__(**options)
         self.boundary = options.get("Multipart-Boundary")
         self.content_transfer_encoding = options.get("Content_Transfer_Encoding")
         self.content_type = options.get("Content_Type", "text/plain")

@@ -178,7 +178,7 @@ class DObjdumpLexer(DelegatingLexer):
     mimetypes = ['text/x-d-objdump']
 
     def __init__(self, **options):
-        super(DObjdumpLexer, self).__init__(DLexer, ObjdumpLexer, **options)
+        super().__init__(DLexer, ObjdumpLexer, **options)
 
 
 class CppObjdumpLexer(DelegatingLexer):
@@ -191,7 +191,7 @@ class CppObjdumpLexer(DelegatingLexer):
     mimetypes = ['text/x-cpp-objdump']
 
     def __init__(self, **options):
-        super(CppObjdumpLexer, self).__init__(CppLexer, ObjdumpLexer, **options)
+        super().__init__(CppLexer, ObjdumpLexer, **options)
 
 
 class CObjdumpLexer(DelegatingLexer):
@@ -204,7 +204,7 @@ class CObjdumpLexer(DelegatingLexer):
     mimetypes = ['text/x-c-objdump']
 
     def __init__(self, **options):
-        super(CObjdumpLexer, self).__init__(CLexer, ObjdumpLexer, **options)
+        super().__init__(CLexer, ObjdumpLexer, **options)
 
 
 class HsailLexer(RegexLexer):

@@ -23,7 +23,7 @@ class YamlLexerContext(LexerContext):
     """Indentation context for the YAML lexer."""
 
     def __init__(self, *args, **kwds):
-        super(YamlLexerContext, self).__init__(*args, **kwds)
+        super().__init__(*args, **kwds)
         self.indent_stack = []
         self.indent = -1
         self.next_indent = 0
@@ -433,7 +433,7 @@ class YamlLexer(ExtendedRegexLexer):
     def get_tokens_unprocessed(self, text=None, context=None):
         if context is None:
             context = YamlLexerContext(text, 0)
-        return super(YamlLexer, self).get_tokens_unprocessed(text, context)
+        return super().get_tokens_unprocessed(text, context)
 
 
 class JsonLexer(RegexLexer):

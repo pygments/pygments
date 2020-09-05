@@ -563,7 +563,7 @@ appropriate positions. ::
 
     class HtmlPhpLexer(DelegatingLexer):
         def __init__(self, **options):
-            super(HtmlPhpLexer, self).__init__(HtmlLexer, PhpLexer, **options)
+            super().__init__(HtmlLexer, PhpLexer, **options)
 
 This procedure ensures that e.g. HTML with template tags in it is highlighted
 correctly even if the template tags are put into HTML tags or attributes.
