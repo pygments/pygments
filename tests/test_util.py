@@ -127,23 +127,6 @@ def test_xml():
     assert not util.looks_like_xml('<html>')
 
 
-def test_unirange():
-    first_non_bmp = '\U00010000'
-    r = re.compile(util.unirange(0x10000, 0x20000))
-    m = r.match(first_non_bmp)
-    assert m
-    assert m.end() == len(first_non_bmp)
-    assert not r.match('\uffff')
-    assert not r.match('xxx')
-    # Tests that end is inclusive
-    r = re.compile(util.unirange(0x10000, 0x10000) + '+')
-    # Tests that the plus works for the entire unicode point, if narrow
-    # build
-    m = r.match(first_non_bmp * 2)
-    assert m
-    assert m.end() == len(first_non_bmp) * 2
-
-
 def test_format_lines():
     lst = ['cat', 'dog']
     output = util.format_lines('var', lst)

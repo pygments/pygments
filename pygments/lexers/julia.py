@@ -15,13 +15,12 @@ from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
     words, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
-from pygments.util import shebang_matches, unirange
+from pygments.util import shebang_matches
 
 __all__ = ['JuliaLexer', 'JuliaConsoleLexer']
 
-allowed_variable = (
-    '(?:[a-zA-Z_\u00A1-\uffff]|%s)(?:[a-zA-Z_0-9\u00A1-\uffff]|%s)*!*' %
-    ((unirange(0x10000, 0x10ffff),) * 2))
+allowed_variable = \
+    '(?:[a-zA-Z_\u00A1-\U0010ffff]|%s)(?:[a-zA-Z_0-9\u00A1-\U0010ffff])*!*'
 
 
 class JuliaLexer(RegexLexer):

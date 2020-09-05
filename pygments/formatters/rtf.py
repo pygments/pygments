@@ -10,7 +10,7 @@
 """
 
 from pygments.formatter import Formatter
-from pygments.util import get_int_opt, _surrogatepair
+from pygments.util import get_int_opt, surrogatepair
 
 
 __all__ = ['RtfFormatter']
@@ -89,7 +89,7 @@ class RtfFormatter(Formatter):
             elif (2**16) <= cn:
                 # RTF limits unicode to 16 bits.
                 # Force surrogate pairs
-                buf.append('{\\u%d}{\\u%d}' % _surrogatepair(cn))
+                buf.append('{\\u%d}{\\u%d}' % surrogatepair(cn))
 
         return ''.join(buf).replace('\n', '\\par\n')
 

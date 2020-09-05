@@ -205,53 +205,13 @@ def looks_like_xml(text):
         return rv
 
 
-# Python narrow build compatibility
-
-def _surrogatepair(c):
-    # Given a unicode character code
-    # with length greater than 16 bits,
-    # return the two 16 bit surrogate pair.
+def surrogatepair(c):
+    """Given a unicode character code with length greater than 16 bits,
+    return the two 16 bit surrogate pair.
+    """
     # From example D28 of:
     # http://www.unicode.org/book/ch03.pdf
     return (0xd7c0 + (c >> 10), (0xdc00 + (c & 0x3ff)))
-
-
-def unirange(a, b):
-    """Returns a regular expression string to match the given non-BMP range."""
-    if b < a:
-        raise ValueError("Bad character range")
-    if a < 0x10000 or b < 0x10000:
-        raise ValueError("unirange is only defined for non-BMP ranges")
-
-    if sys.maxunicode > 0xffff:
-        # wide build
-        return u'[%s-%s]' % (chr(a), chr(b))
-    else:
-        # narrow build stores surrogates, and the 're' module handles them
-        # (incorrectly) as characters.  Since there is still ordering among
-        # these characters, expand the range to one that it understands.  Some
-        # background in http://bugs.python.org/issue3665 and
-        # http://bugs.python.org/issue12749
-        #
-        # Additionally, the lower constants are using chr rather than
-        # literals because jython [which uses the wide path] can't load this
-        # file if they are literals.
-        ah, al = _surrogatepair(a)
-        bh, bl = _surrogatepair(b)
-        if ah == bh:
-            return u'(?:%s[%s-%s])' % (chr(ah), chr(al), chr(bl))
-        else:
-            buf = []
-            buf.append(u'%s[%s-%s]' % (chr(ah), chr(al),
-                                       ah == bh and chr(bl) or chr(0xdfff)))
-            if ah - bh > 1:
-                buf.append(u'[%s-%s][%s-%s]' %
-                           chr(ah+1), chr(bh-1), chr(0xdc00), chr(0xdfff))
-            if ah != bh:
-                buf.append(u'%s[%s-%s]' %
-                           (chr(bh), chr(0xdc00), chr(bl)))
-
-            return u'(?:' + u'|'.join(buf) + u')'
 
 
 def format_lines(var_name, seq, raw=False, indent_level=0):

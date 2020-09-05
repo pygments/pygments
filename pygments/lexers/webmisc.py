@@ -15,7 +15,6 @@ from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
     default, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Literal
-from pygments.util import unirange
 
 from pygments.lexers.css import _indentation, _starts_block
 from pygments.lexers.html import HtmlLexer
@@ -518,8 +517,8 @@ class XQueryLexer(ExtendedRegexLexer):
         'xml_comment': [
             (r'(-->)', popstate_xmlcomment_callback),
             (r'[^-]{1,2}', Literal),
-            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
-             unirange(0x10000, 0x10ffff), Literal),
+            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]',
+             Literal),
         ],
         'processing_instruction': [
             (r'\s+', Text, 'processing_instruction_content'),
@@ -528,13 +527,13 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'processing_instruction_content': [
             (r'\?>', String.Doc, '#pop'),
-            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
-             unirange(0x10000, 0x10ffff), Literal),
+            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]',
+             Literal),
         ],
         'cdata_section': [
             (r']]>', String.Doc, '#pop'),
-            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
-             unirange(0x10000, 0x10ffff), Literal),
+            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]',
+             Literal),
         ],
         'start_tag': [
             include('whitespace'),
@@ -603,8 +602,8 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'pragmacontents': [
             (r'#\)', Punctuation, 'operator'),
-            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|' +
-             unirange(0x10000, 0x10ffff), Literal),
+            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]',
+             Literal),
             (r'(\s+)', Text),
         ],
         'occurrenceindicator': [
