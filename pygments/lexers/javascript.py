@@ -64,11 +64,14 @@ class JavascriptLexer(RegexLexer):
             (r'\A#! ?/.*?\n', Comment.Hashbang),  # recognized by node.js
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'(\.\d+|[0-9]+\.[0-9]*)([eE][-+]?[0-9]+)?', Number.Float),
-            (r'0[bB][01]+', Number.Bin),
-            (r'0[oO][0-7]+', Number.Oct),
-            (r'0[xX][0-9a-fA-F]+', Number.Hex),
-            (r'[0-9]+', Number.Integer),
+
+            # Numeric literals
+            (r'0[bB][01]+n?', Number.Bin),
+            (r'0[oO]?[0-7]+n?', Number.Oct),  # Browsers support "0o7" and "07" notations
+            (r'0[xX][0-9a-fA-F]+n?', Number.Hex),
+            (r'[0-9]+n', Number.Integer),  # Javascript BigInt requires an "n" postfix
+            (r'(\.[0-9]+|[0-9]+\.[0-9]*|[0-9]+)([eE][-+]?[0-9]+)?', Number.Float),
+
             (r'\.\.\.|=>', Punctuation),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
              r'(<<|>>>?|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
