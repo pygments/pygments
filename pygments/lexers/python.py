@@ -172,19 +172,19 @@ class PythonLexer(RegexLexer):
             # without format specifier
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
              r'(\![sraf])?'     # conversion
-             r'}', String.Interpol, '#pop'),
+             r'\}', String.Interpol, '#pop'),
             # with format specifier
             # we'll catch the remaining '}' in the outer scope
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
              r'(\![sraf])?'     # conversion
              r':', String.Interpol, '#pop'),
-            (r'[^\S]+', Text),  # allow new lines
+            (r'\s+', Text),  # allow new lines
             include('expr'),
         ],
         'expr-inside-fstring-inner': [
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
             (r'[])}]', Punctuation, '#pop'),
-            (r'[^\S]+', Text),  # allow new lines
+            (r'\s+', Text),  # allow new lines
             include('expr'),
         ],
         'expr-keywords': [
@@ -317,8 +317,8 @@ class PythonLexer(RegexLexer):
             default('#pop'),
         ],
         'fstringescape': [
-            ('{{', String.Escape),
-            ('}}', String.Escape),
+            (r'\{\{', String.Escape),
+            (r'\}\}', String.Escape),
             include('stringescape'),
         ],
         'stringescape': [

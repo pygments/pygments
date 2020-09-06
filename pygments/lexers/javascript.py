@@ -263,7 +263,7 @@ class LiveScriptLexer(RegexLexer):
             default('#pop'),
         ],
         'root': [
-            (r'^(?=\s|/)', Text, 'slashstartsregex'),
+            (r'\A(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'(?:\([^()]+\))?[ ]*[~-]{1,2}>|'
              r'(?:\(?[^()\n]+\)?)?[ ]*<[~-]{1,2}', Name.Function),
@@ -1038,7 +1038,7 @@ class CoffeeScriptLexer(RegexLexer):
     _operator_re = (
         r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
         r'\|\||\\(?=\n)|'
-        r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?')
+        r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&|\^/])=?')
 
     flags = re.DOTALL
     tokens = {
@@ -1066,7 +1066,7 @@ class CoffeeScriptLexer(RegexLexer):
         ],
         'root': [
             include('commentsandwhitespace'),
-            (r'^(?=\s|/)', Text, 'slashstartsregex'),
+            (r'\A(?=\s|/)', Text, 'slashstartsregex'),
             (_operator_re, Operator, 'slashstartsregex'),
             (r'(?:\([^()]*\))?\s*[=-]>', Name.Function, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),

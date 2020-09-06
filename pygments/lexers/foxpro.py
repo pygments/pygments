@@ -36,7 +36,7 @@ class FoxProLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r';\s*\n', Punctuation), # consume newline
+            (r';\s*\n', Punctuation),  # consume newline
             (r'(^|\n)\s*', Text, 'newline'),
 
             # Square brackets may be used for array indices

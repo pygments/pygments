@@ -32,7 +32,7 @@ _builtin_types = (
     # other
     'any', 'void', 'object', 'RegExp',
 )
-_identifier = r'_?[A-Za-z][0-9A-Z_a-z-]*'
+_identifier = r'_?[A-Za-z][\w-]*'
 _keyword_suffix = r'(?![\w-])'
 _string = r'"[^"]*"'
 
@@ -132,7 +132,8 @@ class WebIDLLexer(RegexLexer):
             default(('#pop', 'type_null'))
         ],
         'type_null': [
-            (r'\??', Punctuation, '#pop:2'),
+            (r'\?', Punctuation),
+            default('#pop:2'),
         ],
         'default_value': [
             include('common'),

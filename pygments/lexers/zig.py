@@ -102,7 +102,7 @@ class ZigLexer(RegexLexer):
 
             # Characters
             (r'\'\\\'\'', String.Escape),
-            (r'\'\\(|x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{6}|[nr\\t\'"])\'',
+            (r'\'\\(x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{6}|[nr\\t\'"])\'',
              String.Escape),
             (r'\'[^\\\']\'', String),
 

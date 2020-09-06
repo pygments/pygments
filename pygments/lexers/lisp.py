@@ -382,7 +382,7 @@ class HyLexer(RegexLexer):
     # valid names for identifiers
     # well, names can only not consist fully of numbers
     # but this should be good enough for now
-    valid_name = r'(?!#)[\w!$%*+<=>?/.#-:]+'
+    valid_name = r'(?!#)[\w!$%*+<=>?/.#:-]+'
 
     def _multi_escape(entries):
         return words(entries, suffix=' ')

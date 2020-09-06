@@ -135,7 +135,7 @@ class CrystalLexer(ExtendedRegexLexer):
                 ('\\(', '\\)', '()', 'pa'), \
                 ('<', '>', '<>', 'ab'):
             states[name+'-intp-string'] = [
-                (r'\\[' + lbrace + ']', String.Other),
+                (r'\\' + lbrace, String.Other),
                 (lbrace, String.Other, '#push'),
                 (rbrace, String.Other, '#pop'),
                 include('string-intp-escaped'),

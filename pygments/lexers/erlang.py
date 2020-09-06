@@ -207,10 +207,10 @@ def gen_elixir_string_rules(name, symbol, token):
     return states
 
 
-def gen_elixir_sigstr_rules(term, token, interpol=True):
+def gen_elixir_sigstr_rules(term, term_class, token, interpol=True):
     if interpol:
         return [
-            (r'[^#%s\\]+' % (term,), token),
+            (r'[^#%s\\]+' % (term_class,), token),
             include('escapes'),
             (r'\\.', token),
             (r'%s[a-zA-Z]*' % (term,), token, '#pop'),
@@ -218,7 +218,7 @@ def gen_elixir_sigstr_rules(term, token, interpol=True):
         ]
     else:
         return [
-            (r'[^%s\\]+' % (term,), token),
+            (r'[^%s\\]+' % (term_class,), token),
             (r'\\.', token),
             (r'%s[a-zA-Z]*' % (term,), token, '#pop'),
         ]
@@ -291,14 +291,14 @@ class ElixirLexer(RegexLexer):
     def gen_elixir_sigil_rules():
         # all valid sigil terminators (excluding heredocs)
         terminators = [
-            (r'\{', r'\}', 'cb'),
-            (r'\[', r'\]', 'sb'),
-            (r'\(', r'\)', 'pa'),
-            (r'<', r'>', 'ab'),
-            (r'/', r'/', 'slas'),
-            (r'\|', r'\|', 'pipe'),
-            ('"', '"', 'quot'),
-            ("'", "'", 'apos'),
+            (r'\{', r'\}', '}',   'cb'),
+            (r'\[', r'\]', r'\]', 'sb'),
+            (r'\(', r'\)', ')',   'pa'),
+            ('<',   '>',   '>',   'ab'),
+            ('/',   '/',   '/',   'slas'),
+            (r'\|', r'\|', '|',   'pipe'),
+            ('"',   '"',   '"',   'quot'),
+            ("'",   "'",   "'",   'apos'),
         ]
 
         # heredocs have slightly different rules
@@ -328,14 +328,15 @@ class ElixirLexer(RegexLexer):
                 include('heredoc_no_interpol'),
             ]
 
-        for lterm, rterm, name in terminators:
+        for lterm, rterm, rterm_class, name in terminators:
             states['sigils'] += [
                 (r'~[a-z]' + lterm, token, name + '-intp'),
                 (r'~[A-Z]' + lterm, token, name + '-no-intp'),
             ]
-            states[name + '-intp'] = gen_elixir_sigstr_rules(rterm, token)
+            states[name + '-intp'] = \
+                gen_elixir_sigstr_rules(rterm, rterm_class, token)
             states[name + '-no-intp'] = \
-                gen_elixir_sigstr_rules(rterm, token, interpol=False)
+                gen_elixir_sigstr_rules(rterm, rterm_class, token, interpol=False)
 
         return states
 

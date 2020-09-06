@@ -11,7 +11,8 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, words, do_insertions
+from pygments.lexer import Lexer, RegexLexer, bygroups, default, words, \
+    do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
@@ -72,7 +73,7 @@ class MatlabLexer(RegexLexer):
              "hilb", "invhilb", "magic", "pascal", "rosser", "toeplitz", "vander",
              "wilkinson")
 
-    _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\'
+    _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\.\\|\./|/|\\'
 
     tokens = {
         'root': [
@@ -104,7 +105,7 @@ class MatlabLexer(RegexLexer):
             # is recognized if it is either surrounded by spaces or by no
             # spaces on both sides; only the former case matters for us.  (This
             # allows distinguishing `cd ./foo` from `cd ./ foo`.)
-            (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|(%s)\s+)' % _operators,
+            (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|(?:%s)\s+)' % _operators,
              bygroups(Text, Name, Text), 'commandargs'),
 
             # operators:
@@ -156,7 +157,8 @@ class MatlabLexer(RegexLexer):
             (r"[ \t]+", Text),
             ("'[^']*'", String),
             (r"[^';\s]+", String),
-            (";?", Punctuation, '#pop'),
+            (";", Punctuation, '#pop'),
+            default('#pop'),
         ]
     }
 

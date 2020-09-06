@@ -59,7 +59,7 @@ class ScdocLexer(RegexLexer):
             # underlines
             (r'(\s)(_[^_]+_)(\W|\n)', bygroups(Text, Generic.Emph, Text)),
             # bold
-            (r'(\s)(\*[^\*]+\*)(\W|\n)', bygroups(Text, Generic.Strong, Text)),
+            (r'(\s)(\*[^*]+\*)(\W|\n)', bygroups(Text, Generic.Strong, Text)),
             # inline code
             (r'`[^`]+`', String.Backtick),
 

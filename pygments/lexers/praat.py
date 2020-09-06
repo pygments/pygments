@@ -214,13 +214,13 @@ class PraatLexer(RegexLexer):
             (r'\b\d+(\.\d*)?([eE][-+]?\d+)?%?', Number),
         ],
         'object_reference': [
-          include('string_interpolated'),
-          (r'([a-z][a-zA-Z0-9_]*|\d+)', Name.Builtin),
+            include('string_interpolated'),
+            (r'([a-z]\w*|\d+)', Name.Builtin),
 
-          (words(object_attributes, prefix=r'\.'), Name.Builtin, '#pop'),
+            (words(object_attributes, prefix=r'\.'), Name.Builtin, '#pop'),
 
-          (r'\$', Name.Builtin),
-          (r'\[', Text, '#pop'),
+            (r'\$', Name.Builtin),
+            (r'\[', Text, '#pop'),
         ],
         'variable_name': [
             include('operator'),
@@ -228,7 +228,7 @@ class PraatLexer(RegexLexer):
 
             (words(variables_string,  suffix=r'\$'), Name.Variable.Global),
             (words(variables_numeric,
-             suffix=r'(?=[^a-zA-Z0-9\._"\'\$#\[:\(]|\s|^|$)'),
+             suffix=r'(?=[^\w."\'$#\[:(]|\s|^|$)'),
              Name.Variable.Global),
 
             (words(objects, prefix=r'\b', suffix=r"(_)"),
@@ -245,7 +245,7 @@ class PraatLexer(RegexLexer):
             (r'(?<![\w.])(and|or|not|div|mod)(?![\w.])', Operator.Word),
         ],
         'string_interpolated': [
-            (r'\'[_a-z][^\[\]\'":]*(\[([\d,]+|"[\w\d,]+")\])?(:[0-9]+)?\'',
+            (r'\'[_a-z][^\[\]\'":]*(\[([\d,]+|"[\w,]+")\])?(:[0-9]+)?\'',
              String.Interpol),
         ],
         'string_unquoted': [

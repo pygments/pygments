@@ -204,7 +204,7 @@ class RstLexer(RegexLexer):
              bygroups(Text, Operator, using(this, state='inline'))),
             # Sourcecode directives
             (r'^( *\.\.)(\s*)((?:source)?code(?:-block)?)(::)([ \t]*)([^\n]+)'
-             r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*|)\n)+)',
+             r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*)?\n)+)',
              _handle_sourcecode),
             # A directive
             (r'^( *\.\.)(\s*)([\w:-]+?)(::)(?:([ \t]*)(.*))',
@@ -229,7 +229,7 @@ class RstLexer(RegexLexer):
             (r'^(\S.*(?<!::)\n)((?:(?: +.*)\n)+)',
              bygroups(using(this, state='inline'), using(this, state='inline'))),
             # Code blocks
-            (r'(::)(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\3.*|)\n)+)',
+            (r'(::)(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\3.*)?\n)+)',
              bygroups(String.Escape, Text, String, String, Text, String)),
             include('inline'),
         ],
@@ -579,24 +579,27 @@ class MarkdownLexer(RegexLexer):
             # warning: the following rules eat outer tags.
             # eg. **foo _bar_ baz** => foo and baz are not recognized as bold
             # bold fenced by '**'
-            (r'(\*\*[^\*\n\ ][^\*\n]*\*\*)', bygroups(Generic.Strong)),
+            (r'(\*\*[^* \n][^*\n]*\*\*)', bygroups(Generic.Strong)),
             # # bold fenced by '__'
-            (r'(\_\_[^\_\n\ ][^\_\n]*\_\_)', bygroups(Generic.Strong)),
+            (r'(\_\_[^_ \n][^_\n]*\_\_)', bygroups(Generic.Strong)),
             # italics fenced by '*'
-            (r'(\*[^\*\n\ ][^\*\n]*\*)', bygroups(Generic.Emph)),
+            (r'(\*[^* \n][^*\n]*\*)', bygroups(Generic.Emph)),
             # italics fenced by '_'
-            (r'(\_[^\_\n\ ][^\_\n]*\_)', bygroups(Generic.Emph)),
+            (r'(\_[^_ \n][^_\n]*\_)', bygroups(Generic.Emph)),
             # strikethrough
             (r'([^~]*)(~~[^~]+~~)', bygroups(Text, Generic.Deleted)),
             # mentions and topics (twitter and github stuff)
             (r'[@#][\w/:]+', Name.Entity),
             # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-            (r'(!?\[)([^]]+)(\])(\()([^)]+)(\))', bygroups(Text, Name.Tag, Text, Text, Name.Attribute, Text)),
+            (r'(!?\[)([^]]+)(\])(\()([^)]+)(\))',
+             bygroups(Text, Name.Tag, Text, Text, Name.Attribute, Text)),
             # reference-style links, e.g.:
             #   [an example][id]
             #   [id]: http://example.com/
-            (r'(\[)([^]]+)(\])(\[)([^]]*)(\])', bygroups(Text, Name.Tag, Text, Text, Name.Label, Text)),
-            (r'^(\s*\[)([^]]*)(\]:\s*)(.+)', bygroups(Text, Name.Label, Text, Name.Attribute)),
+            (r'(\[)([^]]+)(\])(\[)([^]]*)(\])',
+             bygroups(Text, Name.Tag, Text, Text, Name.Label, Text)),
+            (r'^(\s*\[)([^]]*)(\]:\s*)(.+)',
+             bygroups(Text, Name.Label, Text, Name.Attribute)),
 
             # general text, must come last!
             (r'[^\\\s]+', Text),
@@ -607,6 +610,7 @@ class MarkdownLexer(RegexLexer):
     def __init__(self, **options):
         self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
         RegexLexer.__init__(self, **options)
+
 
 class TiddlyWiki5Lexer(RegexLexer):
     """
@@ -627,15 +631,15 @@ class TiddlyWiki5Lexer(RegexLexer):
         from pygments.lexers import get_lexer_by_name
 
         # section header
-        yield match.start(1), String        , match.group(1)
-        yield match.start(2), String        , match.group(2)
-        yield match.start(3), Text          , match.group(3)
+        yield match.start(1), String, match.group(1)
+        yield match.start(2), String, match.group(2)
+        yield match.start(3), Text,   match.group(3)
 
         # lookup lexer if wanted and existing
         lexer = None
         if self.handlecodeblocks:
             try:
-                lexer = get_lexer_by_name( match.group(2).strip() )
+                lexer = get_lexer_by_name(match.group(2).strip())
             except ClassNotFound:
                 pass
         code = match.group(4)
@@ -648,7 +652,7 @@ class TiddlyWiki5Lexer(RegexLexer):
         for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
             yield item
 
-        yield match.start(5), String        , match.group(5)
+        yield match.start(5), String, match.group(5)
 
     def _handle_cssblock(self, match):
         """
@@ -657,13 +661,13 @@ class TiddlyWiki5Lexer(RegexLexer):
         from pygments.lexers import get_lexer_by_name
 
         # section header
-        yield match.start(1), String        , match.group(1)
-        yield match.start(2), String        , match.group(2)
+        yield match.start(1), String, match.group(1)
+        yield match.start(2), String, match.group(2)
 
         lexer = None
         if self.handlecodeblocks:
             try:
-                lexer = get_lexer_by_name( 'css' )
+                lexer = get_lexer_by_name('css')
             except ClassNotFound:
                 pass
         code = match.group(3)
@@ -676,7 +680,7 @@ class TiddlyWiki5Lexer(RegexLexer):
         for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
             yield item
 
-        yield match.start(4), String        , match.group(4)
+        yield match.start(4), String, match.group(4)
 
     tokens = {
         'root': [
@@ -688,7 +692,7 @@ class TiddlyWiki5Lexer(RegexLexer):
             # bulleted or numbered lists or single-line block quotes
             # (can be mixed)
             (r'^(\s*)([*#>]+)(\s*)(.+\n)',
-            bygroups(Text, Keyword, Text, using(this, state='inline'))),
+             bygroups(Text, Keyword, Text, using(this, state='inline'))),
             # multi-line block quotes
             (r'^(<<<.*\n)([\w\W]*?)(^<<<.*$)', bygroups(String, Text, String)),
             # table header
@@ -722,7 +726,7 @@ class TiddlyWiki5Lexer(RegexLexer):
             (r'\d{17}', Number.Integer),
             # italics
             (r'(\s)(//[^/]+//)((?=\W|\n))',
-            bygroups(Text, Generic.Emph, Text)),
+             bygroups(Text, Generic.Emph, Text)),
             # superscript
             (r'(\s)(\^\^[^\^]+\^\^)', bygroups(Text, Generic.Emph)),
             # subscript
@@ -731,13 +735,13 @@ class TiddlyWiki5Lexer(RegexLexer):
             (r'(\s)(__[^_]+__)', bygroups(Text, Generic.Strong)),
             # bold
             (r"(\s)(''[^']+'')((?=\W|\n))",
-            bygroups(Text, Generic.Strong, Text)),
+             bygroups(Text, Generic.Strong, Text)),
             # strikethrough
             (r'(\s)(~~[^~]+~~)((?=\W|\n))',
-            bygroups(Text, Generic.Deleted, Text)),
+             bygroups(Text, Generic.Deleted, Text)),
             # TiddlyWiki variables
             (r'<<[^>]+>>', Name.Tag),
-            (r'\$\$[^\$]+\$\$', Name.Tag),
+            (r'\$\$[^$]+\$\$', Name.Tag),
             (r'\$\([^)]+\)\$', Name.Tag),
             # TiddlyWiki style or class
             (r'^@@.*$', Name.Tag),

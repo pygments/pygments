@@ -21,7 +21,6 @@ __all__ = ['BlitzBasicLexer', 'BlitzMaxLexer', 'MonkeyLexer', 'CbmBasicV2Lexer',
            'QBasicLexer', 'VBScriptLexer', 'BBCBasicLexer']
 
 
-
 class BlitzMaxLexer(RegexLexer):
     """
     For `BlitzMax <http://blitzbasic.com>`_ source code.
@@ -526,19 +525,22 @@ class VBScriptLexer(RegexLexer):
             (r'[0-9]+e[+-]?[0-9]+', Number.Float),  # Float variant 3, for example: 123e45
             (r'\d+', Number.Integer),
             ('#.+#', String),  # date or time value
-            (r'(dim)(\s+)([a-z_][a-z0-9_]*)',
+            (r'(dim)(\s+)([a-z_]\w*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Variable), 'dim_more'),
-            (r'(function|sub)(\s+)([a-z_][a-z0-9_]*)',
+            (r'(function|sub)(\s+)([a-z_]\w*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Function)),
-            (r'(class)(\s+)([a-z_][a-z0-9_]*)', bygroups(Keyword.Declaration, Whitespace, Name.Class)),
-            (r'(const)(\s+)([a-z_][a-z0-9_]*)', bygroups(Keyword.Declaration, Whitespace, Name.Constant)),
-            (r'(end)(\s+)(class|function|if|property|sub|with)', bygroups(Keyword, Whitespace, Keyword)),
+            (r'(class)(\s+)([a-z_]\w*)',
+             bygroups(Keyword.Declaration, Whitespace, Name.Class)),
+            (r'(const)(\s+)([a-z_]\w*)',
+             bygroups(Keyword.Declaration, Whitespace, Name.Constant)),
+            (r'(end)(\s+)(class|function|if|property|sub|with)',
+             bygroups(Keyword, Whitespace, Keyword)),
             (r'(on)(\s+)(error)(\s+)(goto)(\s+)(0)',
              bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Number.Integer)),
             (r'(on)(\s+)(error)(\s+)(resume)(\s+)(next)',
              bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Keyword)),
             (r'(option)(\s+)(explicit)', bygroups(Keyword, Whitespace, Keyword)),
-            (r'(property)(\s+)(get|let|set)(\s+)([a-z_][a-z0-9_]*)',
+            (r'(property)(\s+)(get|let|set)(\s+)([a-z_]\w*)',
              bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration, Whitespace, Name.Property)),
             (r'rem\s.*[^\n]*', Comment.Single),
             (words(_vbscript_builtins.KEYWORDS, suffix=r'\b'), Keyword),
@@ -547,13 +549,14 @@ class VBScriptLexer(RegexLexer):
             (words(_vbscript_builtins.BUILTIN_CONSTANTS, suffix=r'\b'), Name.Constant),
             (words(_vbscript_builtins.BUILTIN_FUNCTIONS, suffix=r'\b'), Name.Builtin),
             (words(_vbscript_builtins.BUILTIN_VARIABLES, suffix=r'\b'), Name.Builtin),
-            (r'[a-z_][a-z0-9_]*', Name),
+            (r'[a-z_]\w*', Name),
             (r'\b_\n', Operator),
             (words(r'(),.:'), Punctuation),
             (r'.+(\n)?', Error)
         ],
         'dim_more': [
-            (r'(\s*)(,)(\s*)([a-z_][a-z0-9]*)', bygroups(Whitespace, Punctuation, Whitespace, Name.Variable)),
+            (r'(\s*)(,)(\s*)([a-z_][a-z0-9]*)',
+             bygroups(Whitespace, Punctuation, Whitespace, Name.Variable)),
             default('#pop'),
         ],
         'string': [
@@ -609,7 +612,7 @@ class BBCBasicLexer(RegexLexer):
             (r"[0-9]+", Name.Label),
             (r"(\*)([^\n]*)",
              bygroups(Keyword.Pseudo, Comment.Special)),
-            (r"", Whitespace, 'code'),
+            default('code'),
         ],
 
         'code': [

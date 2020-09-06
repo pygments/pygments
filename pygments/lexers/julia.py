@@ -145,7 +145,7 @@ class JuliaLexer(RegexLexer):
 
             # operators
             # see: https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm
-            (words([
+            (words((
                 # prec-assignment
                 u'=', u':=', u'+=', u'-=', u'*=', u'/=', u'//=', u'.//=', u'.*=', u'./=',
                 u'\\=', u'.\\=', u'^=', u'.^=', u'÷=', u'.÷=', u'%=', u'.%=', u'|=', u'&=',
@@ -169,7 +169,7 @@ class JuliaLexer(RegexLexer):
                 # prec-colon
                 u':',
                 # prec-plus
-                u'+', u'-', u'.+', u'.-', u'|', u'∪', u'$',
+                u'.+', u'.-', u'|', u'∪', u'$',
                 # prec-bitshift
                 u'<<', u'>>', u'>>>', u'.<<', u'.>>', u'.>>>',
                 # prec-times
@@ -184,7 +184,7 @@ class JuliaLexer(RegexLexer):
                 u'.',
                 # unary op
                 u'+', u'-', u'!', u'√', u'∛', u'∜'
-            ]), Operator),
+            )), Operator),
 
             # chars
             (r"'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,3}|\\u[a-fA-F0-9]{1,4}|"

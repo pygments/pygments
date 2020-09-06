@@ -142,7 +142,7 @@ class PromQLLexer(RegexLexer):
             aggregator_keywords,
             function_keywords,
             # Offsets
-            (r"[1-9][0-9]*[s|m|h|d|w|y]", String),
+            (r"[1-9][0-9]*[smhdwy]", String),
             # Numbers
             (r"-?[0-9]+\.[0-9]+", Number.Float),
             (r"-?[0-9]+", Number.Integer),
@@ -153,34 +153,28 @@ class PromQLLexer(RegexLexer):
             (r"==|!=|>=|<=|<|>", Operator),
             (r"and|or|unless", Operator.Word),
             # Metrics
-            (r"[_a-zA-Z][_a-zA-Z0-9]+", Name.Variable),
+            (r"[_a-zA-Z]\w+", Name.Variable),
             # Params
             (r'(["\'])(.*?)(["\'])', bygroups(Punctuation, String, Punctuation)),
             # Other states
             (r"\(", Operator, "function"),
             (r"\)", Operator),
-            (r"{", Punctuation, "labels"),
+            (r"\{", Punctuation, "labels"),
             (r"\[", Punctuation, "range"),
         ],
         "labels": [
-            (r"}", Punctuation, "#pop"),
+            (r"\}", Punctuation, "#pop"),
             (r"\n", Whitespace),
             (r"\s+", Whitespace),
             (r",", Punctuation),
-            (
-                r'([_a-zA-Z][_a-zA-Z0-9]*?)(\s*?)(=|!=|=~|~!)(\s*?)(")(.*?)(")',
-                bygroups(
-                    Name.Label,
-                    Whitespace,
-                    Operator,
-                    Whitespace,
-                    Punctuation,
-                    String,
-                    Punctuation,
-                ),
-            ),
+            (r'([_a-zA-Z]\w*?)(\s*?)(=~|!=|=|~!)(\s*?)(")(.*?)(")',
+             bygroups(Name.Label, Whitespace, Operator, Whitespace,
+                      Punctuation, String, Punctuation)),
         ],
-        "range": [(r"\]", Punctuation, "#pop"), (r"[1-9][0-9]*[s|m|h|d|w|y]", String)],
+        "range": [
+            (r"\]", Punctuation, "#pop"),
+            (r"[1-9][0-9]*[smhdwy]", String),
+        ],
         "function": [
             (r"\)", Operator, "#pop"),
             (r"\(", Operator, "#push"),

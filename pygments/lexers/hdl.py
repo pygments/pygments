@@ -234,8 +234,8 @@ class SystemVerilogLexer(RegexLexer):
              bygroups(Keyword.Declaration, Text, Name.Class)),
             (r'(extends)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endclass\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Declaration, None, Text, Punctuation, Text, Name.Class)),
+            (r'(endclass\b)(?:(\s*)(:)(\s*)([a-zA-Z_]\w*))?',
+             bygroups(Keyword.Declaration, Text, Punctuation, Text, Name.Class)),
 
             (words((
                 # Variable types

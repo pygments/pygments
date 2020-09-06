@@ -51,7 +51,7 @@ class SolidityLexer(RegexLexer):
                       None, Name.Variable)),
             (r'\b(enum|event|function|struct)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Type, Text.WhiteSpace, Name.Variable)),
-            (r'\b(msg|block|tx)\.([A-Za-z_][A-Za-z0-9_]*)\b', Keyword),
+            (r'\b(msg|block|tx)\.([A-Za-z_]\w*)\b', Keyword),
             (words((
                 'block', 'break', 'constant', 'constructor', 'continue',
                 'contract', 'do', 'else', 'external', 'false', 'for',
@@ -74,8 +74,8 @@ class SolidityLexer(RegexLexer):
             (r'/(\\\n)?[*][\w\W]*', Comment.Multiline)
         ],
         'constants': [
-            (r'("([\\]"|.)*?")', String.Double),
-            (r"('([\\]'|.)*?')", String.Single),
+            (r'("(\\"|.)*?")', String.Double),
+            (r"('(\\'|.)*?')", String.Single),
             (r'\b0[xX][0-9a-fA-F]+\b', Number.Hex),
             (r'\b\d+\b', Number.Decimal),
         ],
