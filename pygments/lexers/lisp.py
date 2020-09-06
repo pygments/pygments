@@ -2697,7 +2697,7 @@ class FennelLexer(RegexLexer):
 class JanetLexer(RegexLexer):
     """Lexer for the `Janet programming language <https://janet-lang.org/>`_.
 
-    .. versionadded:: 2.7.0
+    .. versionadded:: 2.7
     """
     name = "Janet"
     aliases = ["janet"]
