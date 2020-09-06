@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.pointless
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Pointless.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, bygroups, words
-from pygments.token import *
+from pygments.lexer import RegexLexer, words
+from pygments.token import Comment, Error, Keyword, Name, Number, Operator, \
+    Punctuation, String, Text
 
 __all__ = ['PointlessLexer']
 

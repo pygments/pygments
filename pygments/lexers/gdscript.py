@@ -1,36 +1,23 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.gdscript
-    ~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for GDScript.
 
-    :copyright: Copyright 2xxx by The Godot Engine Community
-    :license: BSD, see LICENSE for details.
+    Modified by Daniel J. Ramirez <djrmuv@gmail.com> based on the original
+    python.py.
 
-    modified by Daniel J. Ramirez <djrmuv@gmail.com> based on the original python.py pygment
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import (
-    RegexLexer,
-    include,
-    bygroups,
-    default,
-    words,
-    combined,
-)
-from pygments.token import (
-    Text,
-    Comment,
-    Operator,
-    Keyword,
-    Name,
-    String,
-    Number,
-    Punctuation,
-)
+from pygments.lexer import RegexLexer, include, bygroups, default, words, \
+    combined
+from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
+    Number, Punctuation
 
 __all__ = ["GDScriptLexer"]
 
