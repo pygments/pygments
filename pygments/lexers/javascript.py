@@ -70,6 +70,9 @@ class JavascriptLexer(RegexLexer):
             (r'0[oO]?[0-7]+n?', Number.Oct),  # Browsers support "0o7" and "07" notations
             (r'0[xX][0-9a-fA-F]+n?', Number.Hex),
             (r'[0-9]+n', Number.Integer),  # Javascript BigInt requires an "n" postfix
+            # Javascript doesn't have actual integer literals, so every other
+            # numeric literal is handled by the regex below (including "normal")
+            # integers
             (r'(\.[0-9]+|[0-9]+\.[0-9]*|[0-9]+)([eE][-+]?[0-9]+)?', Number.Float),
 
             (r'\.\.\.|=>', Punctuation),
