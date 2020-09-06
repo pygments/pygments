@@ -316,9 +316,8 @@ class JuliaConsoleLexer(Lexer):
                 curcode += line[6:]
             else:
                 if curcode:
-                    for item in do_insertions(
-                            insertions, jllexer.get_tokens_unprocessed(curcode)):
-                        yield item
+                    yield from do_insertions(
+                        insertions, jllexer.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
                 if line.startswith('ERROR: ') or error:
@@ -330,6 +329,5 @@ class JuliaConsoleLexer(Lexer):
             start += len(line)
 
         if curcode:
-            for item in do_insertions(
-                    insertions, jllexer.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(
+                insertions, jllexer.get_tokens_unprocessed(curcode))

@@ -17,8 +17,7 @@ def apply_filters(stream, filters, lexer=None):
     filter, otherwise the filter receives `None`.
     """
     def _apply(filter_, stream):
-        for token in filter_.filter(lexer, stream):
-            yield token
+        yield from filter_.filter(lexer, stream)
     for filter_ in filters:
         stream = _apply(filter_, stream)
     return stream
@@ -70,5 +69,4 @@ class FunctionFilter(Filter):
 
     def filter(self, lexer, stream):
         # pylint: disable=not-callable
-        for ttype, value in self.function(lexer, stream, self.options):
-            yield ttype, value
+        yield from self.function(lexer, stream, self.options)

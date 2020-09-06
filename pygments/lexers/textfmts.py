@@ -326,8 +326,7 @@ class NotmuchLexer(RegexLexer):
         except ClassNotFound:
             lexer = get_lexer_by_name('text')
 
-        for item in lexer.get_tokens_unprocessed(code):
-            yield item
+        yield from lexer.get_tokens_unprocessed(code)
 
     tokens = {
         'root': [

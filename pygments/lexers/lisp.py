@@ -2277,9 +2277,7 @@ class ShenLexer(RegexLexer):
             if self._relevant(token):
                 if opening_paren and token == Keyword and value in self.DECLARATIONS:
                     declaration = value
-                    for index, token, value in \
-                            self._process_declaration(declaration, tokens):
-                        yield index, token, value
+                    yield from self._process_declaration(declaration, tokens)
                 opening_paren = value == '(' and token == Punctuation
 
     def _process_symbols(self, tokens):
