@@ -42,11 +42,18 @@ import re
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
 from pygments.token import Punctuation, Whitespace, Text, Comment, Operator, \
-    Keyword, Name, String, Number, Generic
+    Keyword, Name, String, Number, Generic, Literal
 from pygments.lexers import get_lexer_by_name, ClassNotFound
 
 from pygments.lexers._postgres_builtins import KEYWORDS, DATATYPES, \
     PSEUDO_TYPES, PLPGSQL_KEYWORDS
+from pygments.lexers._mysql_builtins import \
+    MYSQL_CONSTANTS, \
+    MYSQL_DATATYPES, \
+    MYSQL_FUNCTIONS, \
+    MYSQL_KEYWORDS, \
+    MYSQL_OPTIMIZER_HINTS
+
 from pygments.lexers import _tsql_builtins
 
 
@@ -579,8 +586,12 @@ class TransactSqlLexer(RegexLexer):
 
 
 class MySqlLexer(RegexLexer):
-    """
-    Special lexer for MySQL.
+    """The Oracle MySQL lexer.
+
+    This lexer does not attempt to maintain strict compatibility with
+    MariaDB syntax or keywords. Although MySQL and MariaDB's common code
+    history suggests there may be significant overlap between the two,
+    compatibility between the two is not a target for this lexer.
     """
 
     name = 'MySQL'
@@ -591,63 +602,149 @@ class MySqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(#|--\s+).*\n?', Comment.Single),
-            (r'/\*', Comment.Multiline, 'multiline-comments'),
+
+            # Comments
+            (r'(?:#|--\s+).*', Comment.Single),
+            (r'/\*\+', Comment.Special, 'optimizer-hints'),
+            (r'/\*', Comment.Multiline, 'multiline-comment'),
+
+            # Hexadecimal literals
+            (r"x'([0-9a-f]{2})+'", Number.Hex),  # MySQL requires paired hex characters in this form.
+            (r'0x[0-9a-f]+', Number.Hex),
+
+            # Binary literals
+            (r"b'[01]+'", Number.Bin),
+            (r'0b[01]+', Number.Bin),
+
+            # Numeric literals
+            (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),  # Mandatory integer, optional fraction and exponent
+            (r'[0-9]*\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),  # Mandatory fraction, optional integer and exponent
+            (r'[0-9]+e[+-]?[0-9]+', Number.Float),  # Exponents with integer significands are still floats
             (r'[0-9]+', Number.Integer),
-            (r'[0-9]*\.[0-9]+(e[+-][0-9]+)', Number.Float),
-            (r"'(\\\\|\\'|''|[^'])*'", String.Single),
-            (r'"(\\\\|\\"|""|[^"])*"', String.Double),
-            (r"`(\\\\|\\`|``|[^`])*`", String.Symbol),
-            (r'[+*/<>=~!@#%^&|`?-]', Operator),
-            (r'\b(tinyint|smallint|mediumint|int|integer|bigint|date|'
-             r'datetime|time|bit|bool|tinytext|mediumtext|longtext|text|'
-             r'tinyblob|mediumblob|longblob|blob|float|double|double\s+'
-             r'precision|real|numeric|dec|decimal|timestamp|year|char|'
-             r'varchar|varbinary|varcharacter|enum|set)(\b\s*)(\()?',
-             bygroups(Keyword.Type, Text, Punctuation)),
-            (r'\b(add|all|alter|analyze|and|as|asc|asensitive|before|between|'
-             r'bigint|binary|blob|both|by|call|cascade|case|change|char|'
-             r'character|check|collate|column|condition|constraint|continue|'
-             r'convert|create|cross|current_date|current_time|'
-             r'current_timestamp|current_user|cursor|database|databases|'
-             r'day_hour|day_microsecond|day_minute|day_second|dec|decimal|'
-             r'declare|default|delayed|delete|desc|describe|deterministic|'
-             r'distinct|distinctrow|div|double|drop|dual|each|else|elseif|'
-             r'enclosed|escaped|exists|exit|explain|fetch|flush|float|float4|'
-             r'float8|for|force|foreign|from|fulltext|grant|group|having|'
-             r'high_priority|hour_microsecond|hour_minute|hour_second|if|'
-             r'ignore|in|index|infile|inner|inout|insensitive|insert|int|'
-             r'int1|int2|int3|int4|int8|integer|interval|into|is|iterate|'
-             r'join|key|keys|kill|leading|leave|left|like|limit|lines|load|'
-             r'localtime|localtimestamp|lock|long|loop|low_priority|match|'
-             r'minute_microsecond|minute_second|mod|modifies|natural|'
-             r'no_write_to_binlog|not|numeric|on|optimize|option|optionally|'
-             r'or|order|out|outer|outfile|precision|primary|procedure|purge|'
-             r'raid0|read|reads|real|references|regexp|release|rename|repeat|'
-             r'replace|require|restrict|return|revoke|right|rlike|schema|'
-             r'schemas|second_microsecond|select|sensitive|separator|set|'
-             r'show|smallint|soname|spatial|specific|sql|sql_big_result|'
-             r'sql_calc_found_rows|sql_small_result|sqlexception|sqlstate|'
-             r'sqlwarning|ssl|starting|straight_join|table|terminated|then|'
-             r'to|trailing|trigger|undo|union|unique|unlock|unsigned|update|'
-             r'usage|use|using|utc_date|utc_time|utc_timestamp|values|'
-             r'varying|when|where|while|with|write|x509|xor|year_month|'
-             r'zerofill)\b', Keyword),
-            # TODO: this list is not complete
-            (r'\b(auto_increment|engine|charset|tables)\b', Keyword.Pseudo),
-            (r'(true|false|null)', Name.Constant),
-            (r'([a-z_]\w*)(\s*)(\()',
+
+            # Date literals
+            (r"\{\s*d\s*(?P<quote>['\"])\s*\d{2}(\d{2})?.?\d{2}.?\d{2}\s*(?P=quote)\s*\}", Literal.Date),
+
+            # Time literals
+            (r"\{\s*t\s*(?P<quote>['\"])\s*(?:\d+\s+)?\d{1,2}.?\d{1,2}.?\d{1,2}(\.\d*)?\s*(?P=quote)\s*\}", Literal.Date),
+
+            # Timestamp literals
+            (
+                r"\{\s*ts\s*(?P<quote>['\"])\s*"
+                r"\d{2}(?:\d{2})?.?\d{2}.?\d{2}"  # Date part
+                r"\s+"  # Whitespace between date and time
+                r"\d{1,2}.?\d{1,2}.?\d{1,2}(\.\d*)?"  # Time part
+                r"\s*(?P=quote)\s*\}",
+                Literal.Date
+            ),
+
+            # String literals
+            (r"'", String.Single, 'single-quoted-string'),
+            (r'"', String.Double, 'double-quoted-string'),
+
+            # Variables
+            (r'@@(?:global\.|persist\.|persist_only\.|session\.)?[a-z_]+', Name.Variable),
+            (r'@[a-z0-9_$.]+', Name.Variable),
+            (r"@'", Name.Variable, 'single-quoted-variable'),
+            (r'@"', Name.Variable, 'double-quoted-variable'),
+            (r"@`", Name.Variable, 'backtick-quoted-variable'),
+            (r'\?', Name.Variable),  # For demonstrating prepared statements
+
+            # Operators
+            (r'[!%&*+/:<=>^|~-]+', Operator),
+
+            # Exceptions; these words tokenize differently in different contexts.
+            (r'\b(set)(?!\s*\()', Keyword),
+            (r'\b(character)(\s+)(set)\b', bygroups(Keyword, Text, Keyword)),
+            # In all other known cases, "SET" is tokenized by MYSQL_DATATYPES.
+
+            (words(MYSQL_CONSTANTS, prefix=r'\b', suffix=r'\b'), Name.Constant),
+            (words(MYSQL_DATATYPES, prefix=r'\b', suffix=r'\b'), Keyword.Type),
+            (words(MYSQL_KEYWORDS, prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(MYSQL_FUNCTIONS, prefix=r'\b', suffix=r'\b(\s*)(\()'),
              bygroups(Name.Function, Text, Punctuation)),
-            (r'[a-z_]\w*', Name),
-            (r'@[a-z0-9]*[._]*[a-z0-9]*', Name.Variable),
-            (r'[;:()\[\],.]', Punctuation)
+
+            # Schema object names
+            #
+            # Note: Although the first regex supports unquoted all-numeric
+            # identifiers, this will not be a problem in practice because
+            # numeric literals have already been handled above.
+            #
+            ('[0-9a-z$_\u0080-\uffff]+', Name),
+            (r'`', Name, 'schema-object-name'),
+
+            # Punctuation
+            (r'[(),.;]', Punctuation),
         ],
-        'multiline-comments': [
-            (r'/\*', Comment.Multiline, 'multiline-comments'),
+
+        # Multiline comment substates
+        # ---------------------------
+
+        'optimizer-hints': [
+            (r'[^*a-z]+', Comment.Special),
+            (r'\*/', Comment.Special, '#pop'),
+            (words(MYSQL_OPTIMIZER_HINTS, suffix=r'\b'), Comment.Preproc),
+            ('[a-z]+', Comment.Special),
+            (r'\*', Comment.Special),
+        ],
+
+        'multiline-comment': [
+            (r'[^*]+', Comment.Multiline),
             (r'\*/', Comment.Multiline, '#pop'),
-            (r'[^/*]+', Comment.Multiline),
-            (r'[/*]', Comment.Multiline)
-        ]
+            (r'\*', Comment.Multiline),
+        ],
+
+        # String substates
+        # ----------------
+
+        'single-quoted-string': [
+            (r"[^'\\]+", String.Single),
+            (r"''", String.Escape),
+            (r"""\\[0'"bnrtZ\\%_]""", String.Escape),
+            (r"'", String.Single, '#pop'),
+        ],
+
+        'double-quoted-string': [
+            (r'[^"\\]+', String.Double),
+            (r'""', String.Escape),
+            (r"""\\[0'"bnrtZ\\%_]""", String.Escape),
+            (r'"', String.Double, '#pop'),
+        ],
+
+        # Variable substates
+        # ------------------
+
+        'single-quoted-variable': [
+            (r"[^']+", Name.Variable),
+            (r"''", Name.Variable),
+            (r"'", Name.Variable, '#pop'),
+        ],
+
+        'double-quoted-variable': [
+            (r'[^"]+', Name.Variable),
+            (r'""', Name.Variable),
+            (r'"', Name.Variable, '#pop'),
+        ],
+
+        'backtick-quoted-variable': [
+            (r'[^`]+', Name.Variable),
+            (r'``', Name.Variable),
+            (r'`', Name.Variable, '#pop'),
+        ],
+
+        # Schema object name substates
+        # ----------------------------
+        #
+        # Backtick-quoted schema object names support escape characters.
+        # It may be desirable to tokenize escape sequences differently,
+        # but currently Pygments does not have an obvious token type for
+        # this unique situation (for example, "Name.Escape").
+        #
+        'schema-object-name': [
+            (r'[^`\\]+', Name),
+            (r'(?:\\\\|\\`|``)', Name),  # This could be an escaped name token type.
+            (r'`', Name, '#pop'),
+        ],
     }
 
     def analyse_text(text):
