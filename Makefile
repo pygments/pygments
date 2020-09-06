@@ -13,7 +13,8 @@ PYTHON ?= python3
 export PYTHONPATH = $(shell echo "$$PYTHONPATH"):$(shell python -c 'import os; print ":".join(os.path.abspath(line.strip()) for line in file("PYTHONPATH"))' 2>/dev/null)
 
 .PHONY: all check clean clean-pyc codetags docs mapfiles \
-	pylint reindent test test-coverage
+	pylint reindent test test-coverage test-examplefiles \
+	tox-test tox-test-coverage regexlint
 
 all: clean-pyc check test
 
