@@ -2235,9 +2235,9 @@ class Angular2Lexer(RegexLexer):
 
             # *ngIf="..."; #f="ngForm"
             (r'([*#])([\w:.-]+)(\s*)(=)(\s*)',
-             bygroups(Punctuation, Name.Attribute, Punctuation, Operator), 'attr'),
+             bygroups(Punctuation, Name.Attribute, Text, Operator, Text), 'attr'),
             (r'([*#])([\w:.-]+)(\s*)',
-             bygroups(Punctuation, Name.Attribute, Punctuation)),
+             bygroups(Punctuation, Name.Attribute, Text)),
         ],
 
         'ngExpression': [
