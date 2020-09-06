@@ -644,7 +644,7 @@ class MySqlLexer(RegexLexer):
 
             # Variables
             (r'@@(?:global\.|persist\.|persist_only\.|session\.)?[a-z_]+', Name.Variable),
-            (r'@[a-z0-9_$.]+', Name.Variable),
+            (r'@[\w$.]+', Name.Variable),
             (r"@'", Name.Variable, 'single-quoted-variable'),
             (r'@"', Name.Variable, 'double-quoted-variable'),
             (r"@`", Name.Variable, 'backtick-quoted-variable'),
