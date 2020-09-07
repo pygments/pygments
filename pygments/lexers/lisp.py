@@ -2674,7 +2674,7 @@ class FennelLexer(RegexLexer):
             (r'-?\d+\.\d+', Number.Float),
             (r'-?\d+', Number.Integer),
 
-            (r'"(\\\\|\\"|[^"\\])*"', String),
+            (r'"(\\\\|\\"|\\|[^"\\])*"', String),
 
             # these are technically strings, but it's worth visually
             # distinguishing them because their intent is different
