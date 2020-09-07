@@ -32,7 +32,7 @@ _builtin_types = (
     # other
     'any', 'void', 'object', 'RegExp',
 )
-_identifier = r'_?[A-Za-z][\w-]*'
+_identifier = r'_?[A-Za-z][a-zA-Z0-9_-]*'
 _keyword_suffix = r'(?![\w-])'
 _string = r'"[^"]*"'
 

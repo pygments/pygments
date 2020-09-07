@@ -623,10 +623,12 @@ class MySqlLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
 
             # Date literals
-            (r"\{\s*d\s*(?P<quote>['\"])\s*\d{2}(\d{2})?.?\d{2}.?\d{2}\s*(?P=quote)\s*\}", Literal.Date),
+            (r"\{\s*d\s*(?P<quote>['\"])\s*\d{2}(\d{2})?.?\d{2}.?\d{2}\s*(?P=quote)\s*\}",
+             Literal.Date),
 
             # Time literals
-            (r"\{\s*t\s*(?P<quote>['\"])\s*(?:\d+\s+)?\d{1,2}.?\d{1,2}.?\d{1,2}(\.\d*)?\s*(?P=quote)\s*\}", Literal.Date),
+            (r"\{\s*t\s*(?P<quote>['\"])\s*(?:\d+\s+)?\d{1,2}.?\d{1,2}.?\d{1,2}(\.\d*)?\s*(?P=quote)\s*\}",
+             Literal.Date),
 
             # Timestamp literals
             (
@@ -644,7 +646,7 @@ class MySqlLexer(RegexLexer):
 
             # Variables
             (r'@@(?:global\.|persist\.|persist_only\.|session\.)?[a-z_]+', Name.Variable),
-            (r'@[\w$.]+', Name.Variable),
+            (r'@[a-z0-9_$.]+', Name.Variable),
             (r"@'", Name.Variable, 'single-quoted-variable'),
             (r'@"', Name.Variable, 'double-quoted-variable'),
             (r"@`", Name.Variable, 'backtick-quoted-variable'),

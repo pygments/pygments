@@ -472,19 +472,19 @@ class LlvmMirBodyLexer(RegexLexer):
             # Attributes on basic blocks
             (words(('liveins', 'successors'), suffix=':'), Keyword),
             # Basic Block Labels
-            (r'bb\.[0-9]+(\.[\w.-]+)?( \(address-taken\))?:', Name.Label),
-            (r'bb\.[0-9]+ \(%[\w.-]+\)( \(address-taken\))?:', Name.Label),
+            (r'bb\.[0-9]+(\.[a-zA-Z0-9_.-]+)?( \(address-taken\))?:', Name.Label),
+            (r'bb\.[0-9]+ \(%[a-zA-Z0-9_.-]+\)( \(address-taken\))?:', Name.Label),
             (r'%bb\.[0-9]+(\.\w+)?', Name.Label),
             # Stack references
             (r'%stack\.[0-9]+(\.\w+\.addr)?', Name),
             # Subreg indices
             (r'%subreg\.\w+', Name),
             # Virtual registers
-            (r'%\w+ *', Name.Variable, 'vreg'),
+            (r'%[a-zA-Z0-9_]+ *', Name.Variable, 'vreg'),
             # Reference to LLVM-IR global
             include('global'),
             # Reference to Intrinsic
-            (r'intrinsic\(\@[\w.]+\)', Name.Variable.Global),
+            (r'intrinsic\(\@[a-zA-Z0-9_.]+\)', Name.Variable.Global),
             # Comparison predicates
             (words(('eq', 'ne', 'sgt', 'sge', 'slt', 'sle', 'ugt', 'uge', 'ult',
                     'ule'), prefix=r'intpred\(', suffix=r'\)'), Name.Builtin),
@@ -537,7 +537,7 @@ class LlvmMirBodyLexer(RegexLexer):
             # MIR Comments
             (r';.*', Comment),
             # If we get here, assume it's a target instruction
-            (r'\w+', Name),
+            (r'[a-zA-Z0-9_]+', Name),
             # Everything else that isn't highlighted
             (r'[(), \n]+', Text),
         ],
@@ -561,7 +561,7 @@ class LlvmMirBodyLexer(RegexLexer):
         'vreg_bank_or_class': [
             # The unassigned bank/class
             (r' *_', Name.Variable.Magic),
-            (r' *\w+', Name.Variable),
+            (r' *[a-zA-Z0-9_]+', Name.Variable),
             # The LLT if there is one
             (r' *\(', Text, 'vreg_type'),
             (r'(?=.)', Text, '#pop'),
@@ -580,8 +580,8 @@ class LlvmMirBodyLexer(RegexLexer):
                     'acquire', 'release', 'acq_rel', 'seq_cst')),
              Keyword),
             # IR references
-            (r'%ir\.[\w.-]+', Name),
-            (r'%ir-block\.[\w.-]+', Name),
+            (r'%ir\.[a-zA-Z0-9_.-]+', Name),
+            (r'%ir-block\.[a-zA-Z0-9_.-]+', Name),
             (r'[-+]', Operator),
             include('integer'),
             include('global'),
@@ -591,7 +591,7 @@ class LlvmMirBodyLexer(RegexLexer):
         ],
         'integer': [(r'-?[0-9]+', Number.Integer),],
         'float': [(r'-?[0-9]+\.[0-9]+(e[+-][0-9]+)?', Number.Float)],
-        'global': [(r'\@[\w.]+', Name.Variable.Global)],
+        'global': [(r'\@[a-zA-Z0-9_.]+', Name.Variable.Global)],
     }
 
 
@@ -935,7 +935,7 @@ class Dasm16Lexer(RegexLexer):
     ]
 
     # Regexes yo
-    char = r'[\w$@.]'
+    char = r'[a-zA-Z0-9_$@.]'
     identifier = r'(?:[a-zA-Z$_]' + char + r'*|\.' + char + '+)'
     number = r'[+-]?(?:0[xX][a-zA-Z0-9]+|\d+)'
     binary_number = r'0b[01_]+'

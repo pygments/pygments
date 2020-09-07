@@ -40,7 +40,7 @@ class CleanLexer(ExtendedRegexLexer):
     funnyId = r'[~@#$%\^?!+\-*<>\\/|&=:]+'
     scoreUpperId = r'_' + upperId
     scoreLowerId = r'_' + lowerId
-    moduleId = r'[a-zA-Z_][\w.`]+'
+    moduleId = r'[a-zA-Z_][a-zA-Z0-9_.`]+'
     classId = '|'.join([lowerId, upperId, funnyId])
 
     tokens = {

@@ -523,15 +523,15 @@ class VBScriptLexer(RegexLexer):
             (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),
             (r'\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),  # Float variant 2, for example: .1, .1e2
             (r'[0-9]+e[+-]?[0-9]+', Number.Float),  # Float variant 3, for example: 123e45
-            (r'\d+', Number.Integer),
+            (r'[0-9]+', Number.Integer),
             ('#.+#', String),  # date or time value
-            (r'(dim)(\s+)([a-z_]\w*)',
+            (r'(dim)(\s+)([a-z_][a-z0-9_]*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Variable), 'dim_more'),
-            (r'(function|sub)(\s+)([a-z_]\w*)',
+            (r'(function|sub)(\s+)([a-z_][a-z0-9_]*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Function)),
-            (r'(class)(\s+)([a-z_]\w*)',
+            (r'(class)(\s+)([a-z_][a-z0-9_]*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Class)),
-            (r'(const)(\s+)([a-z_]\w*)',
+            (r'(const)(\s+)([a-z_][a-z0-9_]*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Constant)),
             (r'(end)(\s+)(class|function|if|property|sub|with)',
              bygroups(Keyword, Whitespace, Keyword)),
@@ -540,7 +540,7 @@ class VBScriptLexer(RegexLexer):
             (r'(on)(\s+)(error)(\s+)(resume)(\s+)(next)',
              bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Keyword)),
             (r'(option)(\s+)(explicit)', bygroups(Keyword, Whitespace, Keyword)),
-            (r'(property)(\s+)(get|let|set)(\s+)([a-z_]\w*)',
+            (r'(property)(\s+)(get|let|set)(\s+)([a-z_][a-z0-9_]*)',
              bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration, Whitespace, Name.Property)),
             (r'rem\s.*[^\n]*', Comment.Single),
             (words(_vbscript_builtins.KEYWORDS, suffix=r'\b'), Keyword),
@@ -549,7 +549,7 @@ class VBScriptLexer(RegexLexer):
             (words(_vbscript_builtins.BUILTIN_CONSTANTS, suffix=r'\b'), Name.Constant),
             (words(_vbscript_builtins.BUILTIN_FUNCTIONS, suffix=r'\b'), Name.Builtin),
             (words(_vbscript_builtins.BUILTIN_VARIABLES, suffix=r'\b'), Name.Builtin),
-            (r'[a-z_]\w*', Name),
+            (r'[a-z_][a-z0-9_]*', Name),
             (r'\b_\n', Operator),
             (words(r'(),.:'), Punctuation),
             (r'.+(\n)?', Error)

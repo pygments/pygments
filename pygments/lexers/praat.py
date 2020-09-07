@@ -215,7 +215,7 @@ class PraatLexer(RegexLexer):
         ],
         'object_reference': [
             include('string_interpolated'),
-            (r'([a-z]\w*|\d+)', Name.Builtin),
+            (r'([a-z][a-zA-Z0-9_]*|\d+)', Name.Builtin),
 
             (words(object_attributes, prefix=r'\.'), Name.Builtin, '#pop'),
 
@@ -228,7 +228,7 @@ class PraatLexer(RegexLexer):
 
             (words(variables_string,  suffix=r'\$'), Name.Variable.Global),
             (words(variables_numeric,
-             suffix=r'(?=[^\w."\'$#\[:(]|\s|^|$)'),
+             suffix=r'(?=[^a-zA-Z0-9_."\'$#\[:(]|\s|^|$)'),
              Name.Variable.Global),
 
             (words(objects, prefix=r'\b', suffix=r"(_)"),

@@ -16,7 +16,7 @@ from pygments.token import Text, Operator, Keyword, Punctuation, Name, \
 __all__ = ['ArrowLexer']
 
 TYPES = r'\b(int|bool|char)((?:\[\])*)(?=\s+)'
-IDENT = r'([a-zA-Z_]\w*)'
+IDENT = r'([a-zA-Z_][a-zA-Z0-9_]*)'
 DECL = TYPES + r'(\s+)' + IDENT
 
 

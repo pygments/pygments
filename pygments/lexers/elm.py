@@ -27,7 +27,7 @@ class ElmLexer(RegexLexer):
     filenames = ['*.elm']
     mimetypes = ['text/x-elm']
 
-    validName = r'[a-z_][\w\']*'
+    validName = r'[a-z_][a-zA-Z0-9_\']*'
 
     specialName = r'^main '
 
@@ -40,7 +40,7 @@ class ElmLexer(RegexLexer):
     reservedWords = words((
         'alias', 'as', 'case', 'else', 'if', 'import', 'in',
         'let', 'module', 'of', 'port', 'then', 'type', 'where',
-        ), suffix=r'\b')
+    ), suffix=r'\b')
 
     tokens = {
         'root': [
@@ -68,7 +68,7 @@ class ElmLexer(RegexLexer):
             (reservedWords, Keyword.Reserved),
 
             # Types
-            (r'[A-Z]\w*', Keyword.Type),
+            (r'[A-Z][a-zA-Z0-9_]*', Keyword.Type),
 
             # Main
             (specialName, Keyword.Reserved),

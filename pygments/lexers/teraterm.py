@@ -52,7 +52,7 @@ class TeraTermLexer(RegexLexer):
             (r'[*/]', Comment.Multiline)
         ],
         'labels': [
-            (r'^(\s*)(:\w+)', bygroups(Text, Name.Label)),
+            (r'(?i)^(\s*)(:[a-z0-9_]+)', bygroups(Text, Name.Label)),
         ],
         'commands': [
             (
@@ -259,7 +259,7 @@ class TeraTermLexer(RegexLexer):
                 r')\b',
                 Keyword,
             ),
-            (r'(?i)(call|goto)([ \t]+)(\w+)',
+            (r'(?i)(call|goto)([ \t]+)([a-z0-9_]+)',
              bygroups(Keyword, Text, Name.Label)),
         ],
         'builtin-variables': [
@@ -295,7 +295,7 @@ class TeraTermLexer(RegexLexer):
             ),
         ],
         'user-variables': [
-            (r'(?i)[A-Z_]\w*', Name.Variable),
+            (r'(?i)[a-z_][a-z0-9_]*', Name.Variable),
         ],
         'numeric-literals': [
             (r'(-?)([0-9]+)', bygroups(Operator, Number.Integer)),
