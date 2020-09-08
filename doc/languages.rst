@@ -265,6 +265,7 @@ Other markup
 * Ragel
 * Redcode
 * ReST
+* `Rita <https://github.com/zaibacu/rita-dsl>`_
 * `Roboconf <http://roboconf.net/en/roboconf.html>`_
 * Robot Framework
 * RPM spec files
