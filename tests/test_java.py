@@ -19,23 +19,23 @@ def lexer():
 
 
 def test_enhanced_for(lexer):
-    fragment = u'label:\nfor(String var2: var1) {}\n'
+    fragment = 'label:\nfor(String var2: var1) {}\n'
     tokens = [
-        (Name.Label, u'label:'),
-        (Text, u'\n'),
-        (Keyword, u'for'),
-        (Punctuation, u'('),
-        (Name, u'String'),
-        (Text, u' '),
-        (Name, u'var2'),
-        (Punctuation, u':'),
-        (Text, u' '),
-        (Name, u'var1'),
-        (Punctuation, u')'),
-        (Text, u' '),
-        (Punctuation, u'{'),
-        (Punctuation, u'}'),
-        (Text, u'\n'),
+        (Name.Label, 'label:'),
+        (Text, '\n'),
+        (Keyword, 'for'),
+        (Punctuation, '('),
+        (Name, 'String'),
+        (Text, ' '),
+        (Name, 'var2'),
+        (Punctuation, ':'),
+        (Text, ' '),
+        (Name, 'var1'),
+        (Punctuation, ')'),
+        (Text, ' '),
+        (Punctuation, '{'),
+        (Punctuation, '}'),
+        (Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 

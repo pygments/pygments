@@ -62,7 +62,7 @@ def test_cpuid(lexer_nasm):
     # cpu id, but as a single token. See bug #1517
     fragment = 'cpuid'
     expected = [
-        (Token.Name.Function, u'cpuid'),
-        (Token.Text, u'\n'),
+        (Token.Name.Function, 'cpuid'),
+        (Token.Text, '\n'),
     ]
     assert expected == list(lexer_nasm.get_tokens(fragment))

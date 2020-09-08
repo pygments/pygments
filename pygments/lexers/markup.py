@@ -168,8 +168,8 @@ class RstLexer(RegexLexer):
         yield from do_insertions(ins, lexer.get_tokens_unprocessed(code))
 
     # from docutils.parsers.rst.states
-    closers = u'\'")]}>\u2019\u201d\xbb!?'
-    unicode_delimiters = u'\u2010\u2011\u2012\u2013\u2014\u00a0'
+    closers = '\'")]}>\u2019\u201d\xbb!?'
+    unicode_delimiters = '\u2010\u2011\u2012\u2013\u2014\u00a0'
     end_string_suffix = (r'((?=$)|(?=[-/:.,; \n\x00%s%s]))'
                          % (re.escape(unicode_delimiters),
                             re.escape(closers)))

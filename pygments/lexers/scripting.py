@@ -157,7 +157,7 @@ class LuaLexer(RegexLexer):
                 elif '.' in value:
                     a, b = value.split('.')
                     yield index, Name, a
-                    yield index + len(a), Punctuation, u'.'
+                    yield index + len(a), Punctuation, '.'
                     yield index + len(a) + 1, Name, b
                     continue
             yield index, token, value
@@ -659,18 +659,18 @@ class AppleScriptLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (u'¬\\n', String.Escape),
+            (r'¬\n', String.Escape),
             (r"'s\s+", Text),  # This is a possessive, consider moving
             (r'(--|#).*?$', Comment),
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'[(){}!,.:]', Punctuation),
-            (u'(«)([^»]+)(»)',
+            (r'(«)([^»]+)(»)',
              bygroups(Text, Name.Builtin, Text)),
             (r'\b((?:considering|ignoring)\s*)'
              r'(application responses|case|diacriticals|hyphens|'
              r'numeric strings|punctuation|white space)',
              bygroups(Keyword, Name.Builtin)),
-            (u'(-|\\*|\\+|&|≠|>=?|<=?|=|≥|≤|/|÷|\\^)', Operator),
+            (r'(-|\*|\+|&|≠|>=?|<=?|=|≥|≤|/|÷|\^)', Operator),
             (r"\b(%s)\b" % '|'.join(Operators), Operator.Word),
             (r'^(\s*(?:on|end)\s+)'
              r'(%s)' % '|'.join(StudioEvents[::-1]),
@@ -976,7 +976,7 @@ class EasytrieveLexer(RegexLexer):
     _DELIMITER_PATTERN = '[' + _DELIMITERS + ']'
     _DELIMITER_PATTERN_CAPTURE = '(' + _DELIMITER_PATTERN + ')'
     _NON_DELIMITER_OR_COMMENT_PATTERN = '[^' + _DELIMITERS_OR_COMENT + ']'
-    _OPERATORS_PATTERN = u'[.+\\-/=\\[\\](){}<>;,&%¬]'
+    _OPERATORS_PATTERN = '[.+\\-/=\\[\\](){}<>;,&%¬]'
     _KEYWORDS = [
         'AFTER-BREAK', 'AFTER-LINE', 'AFTER-SCREEN', 'AIM', 'AND', 'ATTR',
         'BEFORE', 'BEFORE-BREAK', 'BEFORE-LINE', 'BEFORE-SCREEN', 'BUSHU',

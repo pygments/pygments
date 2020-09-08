@@ -214,9 +214,9 @@ def test_get_background_style_defs_uses_multiple_css_prefixes():
 
 
 def test_unicode_options():
-    fmt = HtmlFormatter(title=u'Föö',
-                        cssclass=u'bär',
-                        cssstyles=u'div:before { content: \'bäz\' }',
+    fmt = HtmlFormatter(title='Föö',
+                        cssclass='bär',
+                        cssstyles='div:before { content: \'bäz\' }',
                         encoding='utf-8')
     handle, pathname = tempfile.mkstemp('.html')
     with os.fdopen(handle, 'w+b') as tfile:

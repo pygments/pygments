@@ -18,7 +18,7 @@ __all__ = ['QVToLexer']
 
 
 class QVToLexer(RegexLexer):
-    u"""
+    """
     For the `QVT Operational Mapping language <http://www.omg.org/spec/QVT/1.1/>`_.
 
     Reference for implementing this: «Meta Object Facility (MOF) 2.0

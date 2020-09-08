@@ -35,7 +35,7 @@ class APLLexer(RegexLexer):
             # Comment
             # =======
             # '⍝' is traditional; '#' is supported by GNU APL and NGN (but not Dyalog)
-            (u'[⍝#].*$', Comment.Single),
+            (r'[⍝#].*$', Comment.Single),
             #
             # Strings
             # =======
@@ -46,7 +46,7 @@ class APLLexer(RegexLexer):
             # ===========
             # This token type is used for diamond and parenthesis
             # but not for bracket and ; (see below)
-            (u'[⋄◇()]', Punctuation),
+            (r'[⋄◇()]', Punctuation),
             #
             # Array indexing
             # ==============
@@ -57,45 +57,45 @@ class APLLexer(RegexLexer):
             # Distinguished names
             # ===================
             # following IBM APL2 standard
-            (u'⎕[A-Za-zΔ∆⍙][A-Za-zΔ∆⍙_¯0-9]*', Name.Function),
+            (r'⎕[A-Za-zΔ∆⍙][A-Za-zΔ∆⍙_¯0-9]*', Name.Function),
             #
             # Labels
             # ======
             # following IBM APL2 standard
-            # (u'[A-Za-zΔ∆⍙][A-Za-zΔ∆⍙_¯0-9]*:', Name.Label),
+            # (r'[A-Za-zΔ∆⍙][A-Za-zΔ∆⍙_¯0-9]*:', Name.Label),
             #
             # Variables
             # =========
             # following IBM APL2 standard
-            (u'[A-Za-zΔ∆⍙][A-Za-zΔ∆⍙_¯0-9]*', Name.Variable),
+            (r'[A-Za-zΔ∆⍙][A-Za-zΔ∆⍙_¯0-9]*', Name.Variable),
             #
             # Numbers
             # =======
-            (u'¯?(0[Xx][0-9A-Fa-f]+|[0-9]*\\.?[0-9]+([Ee][+¯]?[0-9]+)?|¯|∞)'
-             u'([Jj]¯?(0[Xx][0-9A-Fa-f]+|[0-9]*\\.?[0-9]+([Ee][+¯]?[0-9]+)?|¯|∞))?',
+            (r'¯?(0[Xx][0-9A-Fa-f]+|[0-9]*\.?[0-9]+([Ee][+¯]?[0-9]+)?|¯|∞)'
+             r'([Jj]¯?(0[Xx][0-9A-Fa-f]+|[0-9]*\.?[0-9]+([Ee][+¯]?[0-9]+)?|¯|∞))?',
              Number),
             #
             # Operators
             # ==========
-            (u'[\\.\\\\\\/⌿⍀¨⍣⍨⍠⍤∘⌸&⌶@⌺⍥⍛⍢]', Name.Attribute),  # closest token type
-            (u'[+\\-×÷⌈⌊∣|⍳?*⍟○!⌹<≤=>≥≠≡≢∊⍷∪∩~∨∧⍱⍲⍴,⍪⌽⊖⍉↑↓⊂⊃⌷⍋⍒⊤⊥⍕⍎⊣⊢⍁⍂≈⌸⍯↗⊆⊇⍸√⌾…⍮]',
+            (r'[\.\\\/⌿⍀¨⍣⍨⍠⍤∘⌸&⌶@⌺⍥⍛⍢]', Name.Attribute),  # closest token type
+            (r'[+\-×÷⌈⌊∣|⍳?*⍟○!⌹<≤=>≥≠≡≢∊⍷∪∩~∨∧⍱⍲⍴,⍪⌽⊖⍉↑↓⊂⊃⌷⍋⍒⊤⊥⍕⍎⊣⊢⍁⍂≈⌸⍯↗⊆⊇⍸√⌾…⍮]',
              Operator),
             #
             # Constant
             # ========
-            (u'⍬', Name.Constant),
+            (r'⍬', Name.Constant),
             #
             # Quad symbol
             # ===========
-            (u'[⎕⍞]', Name.Variable.Global),
+            (r'[⎕⍞]', Name.Variable.Global),
             #
             # Arrows left/right
             # =================
-            (u'[←→]', Keyword.Declaration),
+            (r'[←→]', Keyword.Declaration),
             #
             # D-Fn
             # ====
-            (u'[⍺⍵⍶⍹∇:]', Name.Builtin.Pseudo),
+            (r'[⍺⍵⍶⍹∇:]', Name.Builtin.Pseudo),
             (r'[{}]', Keyword.Type),
         ],
     }

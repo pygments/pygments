@@ -646,17 +646,17 @@ class PythonConsoleLexer(Lexer):
         tb = 0
         for match in line_re.finditer(text):
             line = match.group()
-            if line.startswith(u'>>> ') or line.startswith(u'... '):
+            if line.startswith('>>> ') or line.startswith('... '):
                 tb = 0
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:4])]))
                 curcode += line[4:]
-            elif line.rstrip() == u'...' and not tb:
+            elif line.rstrip() == '...' and not tb:
                 # only a new >>> prompt can end an exception block
                 # otherwise an ellipsis in place of the traceback frames
                 # will be mishandled
                 insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, u'...')]))
+                                   [(0, Generic.Prompt, '...')]))
                 curcode += line[3:]
             else:
                 if curcode:
@@ -664,8 +664,8 @@ class PythonConsoleLexer(Lexer):
                         insertions, pylexer.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
-                if (line.startswith(u'Traceback (most recent call last):') or
-                        re.match(u'  File "[^"]+", line \\d+\\n$', line)):
+                if (line.startswith('Traceback (most recent call last):') or
+                        re.match('  File "[^"]+", line \\d+\\n$', line)):
                     tb = 1
                     curtb = line
                     tbindex = match.start()
@@ -673,7 +673,7 @@ class PythonConsoleLexer(Lexer):
                     yield match.start(), Name.Class, line
                 elif tb:
                     curtb += line
-                    if not (line.startswith(' ') or line.strip() == u'...'):
+                    if not (line.startswith(' ') or line.strip() == '...'):
                         tb = 0
                         for i, t, v in tblexer.get_tokens_unprocessed(curtb):
                             yield tbindex+i, t, v

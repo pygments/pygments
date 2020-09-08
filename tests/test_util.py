@@ -127,23 +127,6 @@ def test_xml():
     assert not util.looks_like_xml('<html>')
 
 
-def test_unirange():
-    first_non_bmp = u'\U00010000'
-    r = re.compile(util.unirange(0x10000, 0x20000))
-    m = r.match(first_non_bmp)
-    assert m
-    assert m.end() == len(first_non_bmp)
-    assert not r.match(u'\uffff')
-    assert not r.match(u'xxx')
-    # Tests that end is inclusive
-    r = re.compile(util.unirange(0x10000, 0x10000) + '+')
-    # Tests that the plus works for the entire unicode point, if narrow
-    # build
-    m = r.match(first_non_bmp * 2)
-    assert m
-    assert m.end() == len(first_non_bmp) * 2
-
-
 def test_format_lines():
     lst = ['cat', 'dog']
     output = util.format_lines('var', lst)
@@ -173,8 +156,8 @@ def test_duplicates_removed_nonconsecutive():
 
 def test_guess_decode():
     # UTF-8 should be decoded as UTF-8
-    s = util.guess_decode(u'\xff'.encode('utf-8'))
-    assert s == (u'\xff', 'utf-8')
+    s = util.guess_decode('\xff'.encode('utf-8'))
+    assert s == ('\xff', 'utf-8')
 
     # otherwise, it could be latin1 or the locale encoding...
     import locale
@@ -186,11 +169,11 @@ def test_guess_decode_from_terminal():
     class Term:
         encoding = 'utf-7'
 
-    s = util.guess_decode_from_terminal(u'\xff'.encode('utf-7'), Term)
-    assert s == (u'\xff', 'utf-7')
+    s = util.guess_decode_from_terminal('\xff'.encode('utf-7'), Term)
+    assert s == ('\xff', 'utf-7')
 
-    s = util.guess_decode_from_terminal(u'\xff'.encode('utf-8'), Term)
-    assert s == (u'\xff', 'utf-8')
+    s = util.guess_decode_from_terminal('\xff'.encode('utf-8'), Term)
+    assert s == ('\xff', 'utf-8')
 
 
 def test_console_ansiformat():

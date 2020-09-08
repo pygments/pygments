@@ -30,12 +30,12 @@ def test_comments(lexer):
         // comment
     ''')
     tokens = [
-        (Comment.Multiline, u'/*\n * comment\n */'),
-        (Text, u'\n'),
-        (Comment.Single, u'; comment'),
-        (Text, u'\n'),
-        (Comment.Single, u'// comment'),
-        (Text, u'\n')
+        (Comment.Multiline, '/*\n * comment\n */'),
+        (Text, '\n'),
+        (Comment.Single, '; comment'),
+        (Text, '\n'),
+        (Comment.Single, '// comment'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -48,38 +48,38 @@ def test_instrument_blocks(lexer):
         endin
     ''')
     tokens = [
-        (Keyword.Declaration, u'instr'),
-        (Comment.Multiline, u'/**/'),
-        (Name.Function, u'1'),
-        (Punctuation, u','),
-        (Comment.Multiline, u'/**/'),
-        (Name.Function, u'N_a_M_e_'),
-        (Punctuation, u','),
-        (Comment.Multiline, u'/**/'),
-        (Punctuation, u'+'),
-        (Name.Function, u'Name'),
-        (Comment.Multiline, u'/**/'),
-        (Comment.Single, u'//'),
-        (Text, u'\n'),
-        (Text, u'  '),
-        (Keyword.Type, u'i'),
-        (Name, u'Duration'),
-        (Text, u' '),
-        (Operator, u'='),
-        (Text, u' '),
-        (Name.Variable.Instance, u'p3'),
-        (Text, u'\n'),
-        (Text, u'  '),
-        (Name.Builtin, u'outc'),
-        (Punctuation, u':'),
-        (Keyword.Type, u'a'),
-        (Punctuation, u'('),
-        (Keyword.Type, u'a'),
-        (Name, u'Signal'),
-        (Punctuation, u')'),
-        (Text, u'\n'),
-        (Keyword.Declaration, u'endin'),
-        (Text, u'\n')
+        (Keyword.Declaration, 'instr'),
+        (Comment.Multiline, '/**/'),
+        (Name.Function, '1'),
+        (Punctuation, ','),
+        (Comment.Multiline, '/**/'),
+        (Name.Function, 'N_a_M_e_'),
+        (Punctuation, ','),
+        (Comment.Multiline, '/**/'),
+        (Punctuation, '+'),
+        (Name.Function, 'Name'),
+        (Comment.Multiline, '/**/'),
+        (Comment.Single, '//'),
+        (Text, '\n'),
+        (Text, '  '),
+        (Keyword.Type, 'i'),
+        (Name, 'Duration'),
+        (Text, ' '),
+        (Operator, '='),
+        (Text, ' '),
+        (Name.Variable.Instance, 'p3'),
+        (Text, '\n'),
+        (Text, '  '),
+        (Name.Builtin, 'outc'),
+        (Punctuation, ':'),
+        (Keyword.Type, 'a'),
+        (Punctuation, '('),
+        (Keyword.Type, 'a'),
+        (Name, 'Signal'),
+        (Punctuation, ')'),
+        (Text, '\n'),
+        (Keyword.Declaration, 'endin'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -91,22 +91,22 @@ def test_user_defined_opcodes(lexer):
         endop
     ''')
     tokens = [
-        (Keyword.Declaration, u'opcode'),
-        (Comment.Multiline, u'/**/'),
-        (Name.Function, u'aUDO'),
-        (Punctuation, u','),
-        (Comment.Multiline, u'/**/'),
-        (Keyword.Type, u'i[]'),
-        (Punctuation, u','),
-        (Comment.Multiline, u'/**/'),
-        (Keyword.Type, u'aik'),
-        (Comment.Single, u'//'),
-        (Text, u'\n'),
-        (Text, u'  '),
-        (Name.Function, u'aUDO'),
-        (Text, u'\n'),
-        (Keyword.Declaration, u'endop'),
-        (Text, u'\n')
+        (Keyword.Declaration, 'opcode'),
+        (Comment.Multiline, '/**/'),
+        (Name.Function, 'aUDO'),
+        (Punctuation, ','),
+        (Comment.Multiline, '/**/'),
+        (Keyword.Type, 'i[]'),
+        (Punctuation, ','),
+        (Comment.Multiline, '/**/'),
+        (Keyword.Type, 'aik'),
+        (Comment.Single, '//'),
+        (Text, '\n'),
+        (Text, '  '),
+        (Name.Function, 'aUDO'),
+        (Text, '\n'),
+        (Keyword.Declaration, 'endop'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -114,27 +114,27 @@ def test_user_defined_opcodes(lexer):
 def test_numbers(lexer):
     fragment = '123 0123456789'
     tokens = [
-        (Number.Integer, u'123'),
-        (Text, u' '),
-        (Number.Integer, u'0123456789'),
-        (Text, u'\n')
+        (Number.Integer, '123'),
+        (Text, ' '),
+        (Number.Integer, '0123456789'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
     fragment = '0xabcdef0123456789 0XABCDEF'
     tokens = [
-        (Keyword.Type, u'0x'),
-        (Number.Hex, u'abcdef0123456789'),
-        (Text, u' '),
-        (Keyword.Type, u'0X'),
-        (Number.Hex, u'ABCDEF'),
-        (Text, u'\n')
+        (Keyword.Type, '0x'),
+        (Number.Hex, 'abcdef0123456789'),
+        (Text, ' '),
+        (Keyword.Type, '0X'),
+        (Number.Hex, 'ABCDEF'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
     fragments = ['1e2', '3e+4', '5e-6', '7E8', '9E+0', '1E-2', '3.', '4.56', '.789']
     for fragment in fragments:
         tokens = [
             (Number.Float, fragment),
-            (Text, u'\n')
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -142,11 +142,11 @@ def test_numbers(lexer):
 def test_quoted_strings(lexer):
     fragment = '"characters$MACRO."'
     tokens = [
-        (String, u'"'),
-        (String, u'characters'),
-        (Comment.Preproc, u'$MACRO.'),
-        (String, u'"'),
-        (Text, u'\n')
+        (String, '"'),
+        (String, 'characters'),
+        (Comment.Preproc, '$MACRO.'),
+        (String, '"'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -158,10 +158,10 @@ def test_braced_strings(lexer):
         }}
     ''')
     tokens = [
-        (String, u'{{'),
-        (String, u'\ncharacters$MACRO.\n'),
-        (String, u'}}'),
-        (Text, u'\n')
+        (String, '{{'),
+        (String, '\ncharacters$MACRO.\n'),
+        (String, '}}'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -171,30 +171,30 @@ def test_escape_sequences(lexer):
         escapedCharacter = '\\' + character
         fragment = '"' + escapedCharacter + '"'
         tokens = [
-            (String, u'"'),
+            (String, '"'),
             (String.Escape, escapedCharacter),
-            (String, u'"'),
-            (Text, u'\n')
+            (String, '"'),
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
         fragment = '{{' + escapedCharacter + '}}'
         tokens = [
-            (String, u'{{'),
+            (String, '{{'),
             (String.Escape, escapedCharacter),
-            (String, u'}}'),
-            (Text, u'\n')
+            (String, '}}'),
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_operators(lexer):
-    fragments = ['+', '-', '~', u'¬', '!', '*', '/', '^', '%', '<<', '>>', '<', '>',
+    fragments = ['+', '-', '~', '¬', '!', '*', '/', '^', '%', '<<', '>>', '<', '>',
                  '<=', '>=', '==', '!=', '&', '#', '|', '&&', '||', '?', ':', '+=',
                  '-=', '*=', '/=']
     for fragment in fragments:
         tokens = [
             (Operator, fragment),
-            (Text, u'\n')
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -203,7 +203,7 @@ def test_global_value_identifiers(lexer):
     for fragment in ['0dbfs', 'A4', 'kr', 'ksmps', 'nchnls', 'nchnls_i', 'sr']:
         tokens = [
             (Name.Variable.Global, fragment),
-            (Text, u'\n')
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -214,13 +214,13 @@ def test_keywords(lexer):
     for fragment in fragments:
         tokens = [
             (Keyword, fragment),
-            (Text, u'\n')
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
     for fragment in ['return', 'rireturn']:
         tokens = [
             (Keyword.Pseudo, fragment),
-            (Text, u'\n')
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -231,13 +231,13 @@ def test_labels(lexer):
          label2:
     ''')
     tokens = [
-        (Name.Label, u'aLabel'),
-        (Punctuation, u':'),
-        (Text, u'\n'),
-        (Text, u' '),
-        (Name.Label, u'label2'),
-        (Punctuation, u':'),
-        (Text, u'\n')
+        (Name.Label, 'aLabel'),
+        (Punctuation, ':'),
+        (Text, '\n'),
+        (Text, ' '),
+        (Name.Label, 'label2'),
+        (Punctuation, ':'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -251,11 +251,11 @@ def test_printks_and_prints_escape_sequences(lexer):
             fragment = opcode + ' "' + escapedCharacter + '"'
             tokens = [
                 (Name.Builtin, opcode),
-                (Text, u' '),
-                (String, u'"'),
+                (Text, ' '),
+                (String, '"'),
                 (String.Escape, escapedCharacter),
-                (String, u'"'),
-                (Text, u'\n')
+                (String, '"'),
+                (Text, '\n')
             ]
             assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -265,64 +265,64 @@ def test_goto_statements(lexer):
         fragment = keyword + ' aLabel'
         tokens = [
             (Keyword, keyword),
-            (Text, u' '),
-            (Name.Label, u'aLabel'),
-            (Text, u'\n')
+            (Text, ' '),
+            (Name.Label, 'aLabel'),
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
     for opcode in ['reinit', 'rigoto', 'tigoto']:
         fragment = opcode + ' aLabel'
         tokens = [
             (Keyword.Pseudo, opcode),
-            (Text, u' '),
-            (Name.Label, u'aLabel'),
-            (Text, u'\n')
+            (Text, ' '),
+            (Name.Label, 'aLabel'),
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
     for opcode in ['cggoto', 'cigoto', 'cingoto', 'ckgoto', 'cngoto', 'cnkgoto']:
         fragment = opcode + ' 1==0, aLabel'
         tokens = [
             (Keyword.Pseudo, opcode),
-            (Text, u' '),
-            (Number.Integer, u'1'),
-            (Operator, u'=='),
-            (Number.Integer, u'0'),
-            (Punctuation, u','),
-            (Text, u' '),
-            (Name.Label, u'aLabel'),
-            (Text, u'\n')
+            (Text, ' '),
+            (Number.Integer, '1'),
+            (Operator, '=='),
+            (Number.Integer, '0'),
+            (Punctuation, ','),
+            (Text, ' '),
+            (Name.Label, 'aLabel'),
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
     fragment = 'timout 0, 0, aLabel'
     tokens = [
         (Keyword.Pseudo, 'timout'),
-        (Text, u' '),
-        (Number.Integer, u'0'),
-        (Punctuation, u','),
-        (Text, u' '),
-        (Number.Integer, u'0'),
-        (Punctuation, u','),
-        (Text, u' '),
-        (Name.Label, u'aLabel'),
-        (Text, u'\n')
+        (Text, ' '),
+        (Number.Integer, '0'),
+        (Punctuation, ','),
+        (Text, ' '),
+        (Number.Integer, '0'),
+        (Punctuation, ','),
+        (Text, ' '),
+        (Name.Label, 'aLabel'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
     for opcode in ['loop_ge', 'loop_gt', 'loop_le', 'loop_lt']:
         fragment = opcode + ' 0, 0, 0, aLabel'
         tokens = [
             (Keyword.Pseudo, opcode),
-            (Text, u' '),
-            (Number.Integer, u'0'),
-            (Punctuation, u','),
-            (Text, u' '),
-            (Number.Integer, u'0'),
-            (Punctuation, u','),
-            (Text, u' '),
-            (Number.Integer, u'0'),
-            (Punctuation, u','),
-            (Text, u' '),
-            (Name.Label, u'aLabel'),
-            (Text, u'\n')
+            (Text, ' '),
+            (Number.Integer, '0'),
+            (Punctuation, ','),
+            (Text, ' '),
+            (Number.Integer, '0'),
+            (Punctuation, ','),
+            (Text, ' '),
+            (Number.Integer, '0'),
+            (Punctuation, ','),
+            (Text, ' '),
+            (Name.Label, 'aLabel'),
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -331,10 +331,10 @@ def test_include_directives(lexer):
     for character in ['"', '|']:
         fragment = '#include/**/' + character + 'file.udo' + character
         tokens = [
-            (Comment.Preproc, u'#include'),
-            (Comment.Multiline, u'/**/'),
-            (String, character + u'file.udo' + character),
-            (Text, u'\n')
+            (Comment.Preproc, '#include'),
+            (Comment.Multiline, '/**/'),
+            (String, character + 'file.udo' + character),
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -342,13 +342,13 @@ def test_include_directives(lexer):
 def test_includestr_directives(lexer):
     fragment = '#includestr/**/"$MACRO..udo"'
     tokens = [
-        (Comment.Preproc, u'#includestr'),
-        (Comment.Multiline, u'/**/'),
-        (String, u'"'),
-        (Comment.Preproc, u'$MACRO.'),
-        (String, u'.udo'),
-        (String, u'"'),
-        (Text, u'\n')
+        (Comment.Preproc, '#includestr'),
+        (Comment.Multiline, '/**/'),
+        (String, '"'),
+        (Comment.Preproc, '$MACRO.'),
+        (String, '.udo'),
+        (String, '"'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -362,25 +362,25 @@ def test_object_like_macro_definitions(lexer):
         body\\##
     ''')
     tokens = [
-        (Comment.Preproc, u'# \tdefine'),
-        (Text, u' '),
-        (Comment.Preproc, u'MACRO'),
-        (Punctuation, u'#'),
-        (Comment.Preproc, u'macro_body'),
-        (Punctuation, u'#'),
-        (Text, u'\n'),
-        (Comment.Preproc, u'#define'),
-        (Comment.Multiline, u'/**/'),
-        (Text, u'\n'),
-        (Comment.Preproc, u'MACRO'),
-        (Comment.Multiline, u'/**/'),
-        (Text, u'\n'),
-        (Punctuation, u'#'),
-        (Comment.Preproc, u'\\#'),
-        (Comment.Preproc, u'macro\nbody'),
-        (Comment.Preproc, u'\\#'),
-        (Punctuation, u'#'),
-        (Text, u'\n')
+        (Comment.Preproc, '# \tdefine'),
+        (Text, ' '),
+        (Comment.Preproc, 'MACRO'),
+        (Punctuation, '#'),
+        (Comment.Preproc, 'macro_body'),
+        (Punctuation, '#'),
+        (Text, '\n'),
+        (Comment.Preproc, '#define'),
+        (Comment.Multiline, '/**/'),
+        (Text, '\n'),
+        (Comment.Preproc, 'MACRO'),
+        (Comment.Multiline, '/**/'),
+        (Text, '\n'),
+        (Punctuation, '#'),
+        (Comment.Preproc, '\\#'),
+        (Comment.Preproc, 'macro\nbody'),
+        (Comment.Preproc, '\\#'),
+        (Punctuation, '#'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -394,39 +394,39 @@ def test_function_like_macro_definitions(lexer):
         body\\##
     ''')
     tokens = [
-        (Comment.Preproc, u'#define'),
-        (Text, u' '),
-        (Comment.Preproc, u'MACRO'),
-        (Punctuation, u'('),
-        (Comment.Preproc, u'ARG1'),
-        (Punctuation, u'#'),
-        (Comment.Preproc, u'ARG2'),
-        (Punctuation, u')'),
-        (Text, u' '),
-        (Punctuation, u'#'),
-        (Comment.Preproc, u'macro_body'),
-        (Punctuation, u'#'),
-        (Text, u'\n'),
-        (Comment.Preproc, u'#define'),
-        (Comment.Multiline, u'/**/'),
-        (Text, u'\n'),
-        (Comment.Preproc, u'MACRO'),
-        (Punctuation, u'('),
-        (Comment.Preproc, u'ARG1'),
-        (Punctuation, u"'"),
-        (Comment.Preproc, u'ARG2'),
-        (Punctuation, u"'"),
-        (Text, u' '),
-        (Comment.Preproc, u'ARG3'),
-        (Punctuation, u')'),
-        (Comment.Multiline, u'/**/'),
-        (Text, u'\n'),
-        (Punctuation, u'#'),
-        (Comment.Preproc, u'\\#'),
-        (Comment.Preproc, u'macro\nbody'),
-        (Comment.Preproc, u'\\#'),
-        (Punctuation, u'#'),
-        (Text, u'\n')
+        (Comment.Preproc, '#define'),
+        (Text, ' '),
+        (Comment.Preproc, 'MACRO'),
+        (Punctuation, '('),
+        (Comment.Preproc, 'ARG1'),
+        (Punctuation, '#'),
+        (Comment.Preproc, 'ARG2'),
+        (Punctuation, ')'),
+        (Text, ' '),
+        (Punctuation, '#'),
+        (Comment.Preproc, 'macro_body'),
+        (Punctuation, '#'),
+        (Text, '\n'),
+        (Comment.Preproc, '#define'),
+        (Comment.Multiline, '/**/'),
+        (Text, '\n'),
+        (Comment.Preproc, 'MACRO'),
+        (Punctuation, '('),
+        (Comment.Preproc, 'ARG1'),
+        (Punctuation, "'"),
+        (Comment.Preproc, 'ARG2'),
+        (Punctuation, "'"),
+        (Text, ' '),
+        (Comment.Preproc, 'ARG3'),
+        (Punctuation, ')'),
+        (Comment.Multiline, '/**/'),
+        (Text, '\n'),
+        (Punctuation, '#'),
+        (Comment.Preproc, '\\#'),
+        (Comment.Preproc, 'macro\nbody'),
+        (Comment.Preproc, '\\#'),
+        (Punctuation, '#'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -436,9 +436,9 @@ def test_macro_preprocessor_directives(lexer):
         fragment = directive + ' MACRO'
         tokens = [
             (Comment.Preproc, directive),
-            (Text, u' '),
-            (Comment.Preproc, u'MACRO'),
-            (Text, u'\n')
+            (Text, ' '),
+            (Comment.Preproc, 'MACRO'),
+            (Text, '\n')
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -453,18 +453,18 @@ def test_other_preprocessor_directives(lexer):
         @@ \t67890
     ''')
     tokens = [
-        (Comment.Preproc, u'#else'),
-        (Text, u'\n'),
-        (Comment.Preproc, u'#end'),
-        (Text, u'\n'),
-        (Comment.Preproc, u'#endif'),
-        (Text, u'\n'),
-        (Comment.Preproc, u'###'),
-        (Text, u'\n'),
-        (Comment.Preproc, u'@ \t12345'),
-        (Text, u'\n'),
-        (Comment.Preproc, u'@@ \t67890'),
-        (Text, u'\n')
+        (Comment.Preproc, '#else'),
+        (Text, '\n'),
+        (Comment.Preproc, '#end'),
+        (Text, '\n'),
+        (Comment.Preproc, '#endif'),
+        (Text, '\n'),
+        (Comment.Preproc, '###'),
+        (Text, '\n'),
+        (Comment.Preproc, '@ \t12345'),
+        (Text, '\n'),
+        (Comment.Preproc, '@@ \t67890'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -472,42 +472,42 @@ def test_other_preprocessor_directives(lexer):
 def test_function_like_macros(lexer):
     fragment = "$MACRO.(((x#y\\)))' \"(#'x)\\)x\\))\"# {{x\\))x)\\)(#'}});"
     tokens = [
-        (Comment.Preproc, u'$MACRO.'),
-        (Punctuation, u'('),
-        (Comment.Preproc, u'('),
-        (Comment.Preproc, u'('),
-        (Comment.Preproc, u'x#y\\)'),
-        (Comment.Preproc, u')'),
-        (Comment.Preproc, u')'),
-        (Punctuation, u"'"),
-        (Comment.Preproc, u' '),
-        (String, u'"'),
-        (Error, u'('),
-        (Error, u'#'),
-        (Error, u"'"),
-        (String, u'x'),
-        (Error, u')'),
-        (Comment.Preproc, u'\\)'),
-        (String, u'x'),
-        (Comment.Preproc, u'\\)'),
-        (Error, u')'),
-        (String, u'"'),
-        (Punctuation, u'#'),
-        (Comment.Preproc, u' '),
-        (String, u'{{'),
-        (String, u'x'),
-        (Comment.Preproc, u'\\)'),
-        (Error, u')'),
-        (String, u'x'),
-        (Error, u')'),
-        (Comment.Preproc, u'\\)'),
-        (Error, u'('),
-        (Error, u'#'),
-        (Error, u"'"),
-        (String, u'}}'),
-        (Punctuation, u')'),
-        (Comment.Single, u';'),
-        (Text, u'\n')
+        (Comment.Preproc, '$MACRO.'),
+        (Punctuation, '('),
+        (Comment.Preproc, '('),
+        (Comment.Preproc, '('),
+        (Comment.Preproc, 'x#y\\)'),
+        (Comment.Preproc, ')'),
+        (Comment.Preproc, ')'),
+        (Punctuation, "'"),
+        (Comment.Preproc, ' '),
+        (String, '"'),
+        (Error, '('),
+        (Error, '#'),
+        (Error, "'"),
+        (String, 'x'),
+        (Error, ')'),
+        (Comment.Preproc, '\\)'),
+        (String, 'x'),
+        (Comment.Preproc, '\\)'),
+        (Error, ')'),
+        (String, '"'),
+        (Punctuation, '#'),
+        (Comment.Preproc, ' '),
+        (String, '{{'),
+        (String, 'x'),
+        (Comment.Preproc, '\\)'),
+        (Error, ')'),
+        (String, 'x'),
+        (Error, ')'),
+        (Comment.Preproc, '\\)'),
+        (Error, '('),
+        (Error, '#'),
+        (Error, "'"),
+        (String, '}}'),
+        (Punctuation, ')'),
+        (Comment.Single, ';'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 

@@ -101,8 +101,8 @@ def test_examplefile(filename):
     text = text.strip(b'\n') + b'\n'
     try:
         text = text.decode('utf-8')
-        if text.startswith(u'\ufeff'):
-            text = text[len(u'\ufeff'):]
+        if text.startswith('\ufeff'):
+            text = text[len('\ufeff'):]
     except UnicodeError:
         text = text.decode('latin1')
     ntext = []
@@ -113,13 +113,13 @@ def test_examplefile(filename):
         ntext.append(val)
         assert type != Error, \
             'lexer %s generated error token for %s: %r at position %d' % \
-            (lx, absfn, val, len(u''.join(ntext)))
+            (lx, absfn, val, len(''.join(ntext)))
         tokens.append((type, val))
     t2 = time.time()
     STATS[os.path.basename(absfn)] = (len(text),
                                       1000 * (t2 - t1), 1000 * (t2 - t1) / len(text))
-    if u''.join(ntext) != text:
-        print('\n'.join(difflib.unified_diff(u''.join(ntext).splitlines(),
+    if ''.join(ntext) != text:
+        print('\n'.join(difflib.unified_diff(''.join(ntext).splitlines(),
                                              text.splitlines())))
         raise AssertionError('round trip failed for ' + absfn)
 

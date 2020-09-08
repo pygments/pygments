@@ -197,7 +197,7 @@ def main(argv):
                 if not in_pygments_pkg and checker.only_pkg:
                     continue
                 for lno, msg in checker(fn, lines):
-                    print(u"%s:%d: %s" % (fn, lno, msg), file=out)
+                    print('%s:%d: %s' % (fn, lno, msg), file=out)
                     num += 1
     if verbose:
         print()

@@ -18,48 +18,48 @@ def lexer():
     yield IdrisLexer()
 
 def test_reserved_word(lexer):
-    fragment = u'namespace Foobar\n  links : String\n  links = "abc"'
+    fragment = 'namespace Foobar\n  links : String\n  links = "abc"'
     tokens = [
-        (Keyword.Reserved, u'namespace'),
-        (Text, u' '),
-        (Keyword.Type, u'Foobar'),
-        (Text, u'\n'),
-        (Text, u'  '),
-        (Name.Function, u'links'),
-        (Text, u' '),
-        (Operator.Word, u':'),
-        (Text, u' '),
-        (Keyword.Type, u'String'),
-        (Text, u'\n'),
-        (Text, u' '),
-        (Text, u' '),
-        (Text, u'links'),
-        (Text, u' '),
-        (Operator.Word, u'='),
-        (Text, u' '),
-        (Literal.String, u'"'),
-        (Literal.String, u'abc'),
-        (Literal.String, u'"'),
-        (Text, u'\n')
+        (Keyword.Reserved, 'namespace'),
+        (Text, ' '),
+        (Keyword.Type, 'Foobar'),
+        (Text, '\n'),
+        (Text, '  '),
+        (Name.Function, 'links'),
+        (Text, ' '),
+        (Operator.Word, ':'),
+        (Text, ' '),
+        (Keyword.Type, 'String'),
+        (Text, '\n'),
+        (Text, ' '),
+        (Text, ' '),
+        (Text, 'links'),
+        (Text, ' '),
+        (Operator.Word, '='),
+        (Text, ' '),
+        (Literal.String, '"'),
+        (Literal.String, 'abc'),
+        (Literal.String, '"'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 def test_compiler_directive(lexer):
-    fragment = u'%link C "object.o"\n%name Vect xs'
+    fragment = '%link C "object.o"\n%name Vect xs'
     tokens = [
-        (Keyword.Reserved, u'%link'),
-        (Text, u' '),
-        (Keyword.Type, u'C'),
-        (Text, u' '),
-        (Literal.String, u'"'),
-        (Literal.String, u'object.o'),
-        (Literal.String, u'"'),
-        (Text, u'\n'),
-        (Keyword.Reserved, u'%name'),
-        (Text, u' '),
-        (Keyword.Type, u'Vect'),
-        (Text, u' '),
-        (Text, u'xs'),
-        (Text, u'\n')
+        (Keyword.Reserved, '%link'),
+        (Text, ' '),
+        (Keyword.Type, 'C'),
+        (Text, ' '),
+        (Literal.String, '"'),
+        (Literal.String, 'object.o'),
+        (Literal.String, '"'),
+        (Text, '\n'),
+        (Keyword.Reserved, '%name'),
+        (Text, ' '),
+        (Keyword.Type, 'Vect'),
+        (Text, ' '),
+        (Text, 'xs'),
+        (Text, '\n')
     ]
     assert list(lexer.get_tokens(fragment)) == tokens

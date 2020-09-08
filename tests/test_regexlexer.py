@@ -48,7 +48,7 @@ def test_tuple(lexer):
 def test_multiline(lexer):
     toks = list(lexer.get_tokens_unprocessed('a\ne'))
     assert toks == [
-        (0, Text.Root, 'a'), (1, Text, u'\n'), (2, Text.Root, 'e')]
+        (0, Text.Root, 'a'), (1, Text, '\n'), (2, Text.Root, 'e')]
 
 
 def test_default(lexer):

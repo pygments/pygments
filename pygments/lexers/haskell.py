@@ -327,10 +327,10 @@ class AgdaLexer(RegexLexer):
             #  Identifiers
             (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
             (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Text), 'module'),
-            (u'\\b(Set|Prop)[\u2080-\u2089]*\\b', Keyword.Type),
+            (r'\b(Set|Prop)[\u2080-\u2089]*\b', Keyword.Type),
             #  Special Symbols
             (r'(\(|\)|\{|\})', Operator),
-            (u'(\\.{1,3}|\\||\u03BB|\u2200|\u2192|:|=|->)', Operator.Word),
+            (r'(\.{1,3}|\||\u03BB|\u2200|\u2192|:|=|->)', Operator.Word),
             #  Numbers
             (r'\d+[eE][+-]?\d+', Number.Float),
             (r'\d+\.\d+([eE][+-]?\d+)?', Number.Float),
