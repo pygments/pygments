@@ -8,6 +8,7 @@ from pygments.token import Keyword, Literal, Punctuation, Text, Operator
 def lexer():
     yield RitaLexer()
 
+
 def test_2_macros(lexer):
     text = '{WORD("Hello"), WORD("world")}->MARK("GREETING")'
     expected = [
