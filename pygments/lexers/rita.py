@@ -39,7 +39,7 @@ class RitaLexer(RegexLexer):
             (r'(\"|\')(\w|\d|[^\"\']|(\\\")|(\\\'))+?(\"|\')', Literal),
             (r'([A-Z_]+)', Keyword),
             (r'([a-z_]+)', Name),
-            (r'((->)|[!?+*|])', Operator),
+            (r'((->)|[!?+*|=])', Operator),
             (r'[\(\),\{\}]', Punctuation)
         ]
     }
