@@ -21,6 +21,7 @@ __all__ = ['RitaLexer']
 class RitaLexer(RegexLexer):
     """
     Lexer for `RITA <https://github.com/zaibacu/rita-dsl>`_
+
      .. versionadded:: 2.7
     """
     name = 'Rita'
@@ -36,7 +37,8 @@ class RitaLexer(RegexLexer):
             (r'\s+', Text),
             (r'#(.*?)\n', Comment.Single),
             (r'@(.*?)\n', Operator),  # Yes, whole line as an operator
-            (r'(\"|\')(\w|\d|[^\"\']|(\\\")|(\\\'))+?(\"|\')', Literal),
+            (r'\"(\w|\d|\s|[^\"\']|(\\\")|(\\\'))+?\"', Literal),
+            (r'\'(\w|\d|\s|[^\"\']|(\\\")|(\\\'))+?\'', Literal),
             (r'([A-Z_]+)', Keyword),
             (r'([a-z_]+)', Name),
             (r'((->)|[!?+*|=])', Operator),
