@@ -1,5 +1,7 @@
 @alias IN_LIST IL
 
+!CONFIG("case_sensitive", "N")
+
 cars = LOAD("examples/cars.txt") # Load items from file
 colors = {"red", "green", "blue", "white", "black"} # Declare items inline
 
