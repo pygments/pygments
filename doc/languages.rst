@@ -260,6 +260,7 @@ Other markup
 * Notmuch
 * `PEG <https://bford.info/packrat/>`_
 * POV-Ray scenes
+* `PromQL <https://prometheus.io/docs/prometheus/latest/querying/basics/>`_
 * `Puppet <https://puppet.com/>`_
 * QML
 * Ragel

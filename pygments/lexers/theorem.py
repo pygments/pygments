@@ -93,7 +93,7 @@ class CoqLexer(RegexLexer):
         '<->', '=', '>', '>]', r'>\}', r'\?', r'\?\?', r'\[', r'\[<', r'\[>',
         r'\[\|', ']', '_', '`', r'\{', r'\{<', r'\|', r'\|]', r'\}', '~', '=>',
         r'/\\', r'\\/', r'\{\|', r'\|\}',
-        u'Π', u'λ',
+        'Π', 'λ',
     )
     operators = r'[!$%&*+\./:<=>?@^|~-]'
     prefix_syms = r'[!?~]'
@@ -440,11 +440,11 @@ class LeanLexer(RegexLexer):
                 '#print', '#help',
             ), suffix=r'\b'), Keyword),
             (words((
-                '(', ')', ':', '{', '}', '[', ']', u'⟨', u'⟩', u'‹', u'›', u'⦃', u'⦄', ':=', ',',
+                '(', ')', ':', '{', '}', '[', ']', '⟨', '⟩', '‹', '›', '⦃', '⦄', ':=', ',',
             )), Operator),
-            (u"[A-Za-z_\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f]"
-             u"[.A-Za-z_'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079"
-             u"\u207f-\u2089\u2090-\u209c\u2100-\u214f0-9]*", Name),
+            (r'[A-Za-z_\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f]'
+             r'[.A-Za-z_\'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079'
+             r'\u207f-\u2089\u2090-\u209c\u2100-\u214f0-9]*', Name),
             (r'0x[A-Za-z0-9]+', Number.Integer),
             (r'0b[01]+', Number.Integer),
             (r'\d+', Number.Integer),

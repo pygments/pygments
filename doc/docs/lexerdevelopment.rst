@@ -20,7 +20,6 @@ containing tuples in the form ``(index, token, value)``.  Normally you don't
 need to do this since there are base lexers that do most of the work and that
 you can subclass.
 
-
 RegexLexer
 ==========
 
@@ -101,18 +100,21 @@ First, change the name of your lexer class to CustomLexer:
     class CustomLexer(RegexLexer):
         """All your lexer code goes here!"""
 
-Then you can load the lexer from the command line with the additional
+Then you can load and test the lexer from the command line with the additional
 flag ``-x``:
 
 .. code-block:: console
 
-    $ python -m pygments -l your_lexer_file.py -x
+    $ python -m pygments -x -l your_lexer_file.py <inputfile>
 
 To specify a class name other than CustomLexer, append it with a colon:
 
 .. code-block:: console
 
-    $ python -m pygments -l your_lexer.py:SomeLexer -x
+    $ python -m pygments -x -l your_lexer.py:SomeLexer <inputfile>
+
+Use the ``-f`` flag to select a different output format than terminal
+escape sequences.
 
 Or, using the Python API:
 
@@ -144,6 +146,11 @@ cloned from GitHub.
 
 Select a matching module under ``pygments/lexers``, or create a new module for
 your lexer class.
+
+.. note::
+
+  We encourage you to put your lexer class into its own module, unless it's a
+  very small derivative of an already existing lexer.
 
 Next, make sure the lexer is known from outside of the module.  All modules in
 the ``pygments.lexers`` package specify ``__all__``. For example,
@@ -556,7 +563,7 @@ appropriate positions. ::
 
     class HtmlPhpLexer(DelegatingLexer):
         def __init__(self, **options):
-            super(HtmlPhpLexer, self).__init__(HtmlLexer, PhpLexer, **options)
+            super().__init__(HtmlLexer, PhpLexer, **options)
 
 This procedure ensures that e.g. HTML with template tags in it is highlighted
 correctly even if the template tags are put into HTML tags or attributes.

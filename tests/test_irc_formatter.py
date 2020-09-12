@@ -20,4 +20,4 @@ def test_correct_output():
     houtfile = StringIO()
     hfmt.format(tokensource, houtfile)
 
-    assert u'\x0302lambda\x03 x: \x0302123\x03\n' == houtfile.getvalue()
+    assert '\x0302lambda\x03 x: \x0302123\x03\n' == houtfile.getvalue()

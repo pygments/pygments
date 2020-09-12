@@ -277,13 +277,11 @@ class DylanConsoleLexer(Lexer):
                 curcode += line[end:]
             else:
                 if curcode:
-                    for item in do_insertions(insertions,
-                                              dylexer.get_tokens_unprocessed(curcode)):
-                        yield item
+                    yield from do_insertions(insertions,
+                                             dylexer.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
                 yield match.start(), Generic.Output, line
         if curcode:
-            for item in do_insertions(insertions,
-                                      dylexer.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(insertions,
+                                     dylexer.get_tokens_unprocessed(curcode))

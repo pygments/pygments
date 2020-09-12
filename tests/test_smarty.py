@@ -19,21 +19,21 @@ def lexer():
 
 
 def test_nested_curly(lexer):
-    fragment = u'{templateFunction param={anotherFunction} param2=$something}\n'
+    fragment = '{templateFunction param={anotherFunction} param2=$something}\n'
     tokens = [
-        (Token.Comment.Preproc, u'{'),
-        (Token.Name.Function, u'templateFunction'),
-        (Token.Text, u' '),
-        (Token.Name.Attribute, u'param'),
-        (Token.Operator, u'='),
-        (Token.Comment.Preproc, u'{'),
-        (Token.Name.Attribute, u'anotherFunction'),
-        (Token.Comment.Preproc, u'}'),
-        (Token.Text, u' '),
-        (Token.Name.Attribute, u'param2'),
-        (Token.Operator, u'='),
-        (Token.Name.Variable, u'$something'),
-        (Token.Comment.Preproc, u'}'),
-        (Token.Other, u'\n'),
+        (Token.Comment.Preproc, '{'),
+        (Token.Name.Function, 'templateFunction'),
+        (Token.Text, ' '),
+        (Token.Name.Attribute, 'param'),
+        (Token.Operator, '='),
+        (Token.Comment.Preproc, '{'),
+        (Token.Name.Attribute, 'anotherFunction'),
+        (Token.Comment.Preproc, '}'),
+        (Token.Text, ' '),
+        (Token.Name.Attribute, 'param2'),
+        (Token.Operator, '='),
+        (Token.Name.Variable, '$something'),
+        (Token.Comment.Preproc, '}'),
+        (Token.Other, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens

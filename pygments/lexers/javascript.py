@@ -26,7 +26,7 @@ JS_IDENT_START = ('(?:[$_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') +
                   ']|\\\\u[a-fA-F0-9]{4})')
 JS_IDENT_PART = ('(?:[$' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
                                        'Mn', 'Mc', 'Nd', 'Pc') +
-                 u'\u200c\u200d]|\\\\u[a-fA-F0-9]{4})')
+                 '\u200c\u200d]|\\\\u[a-fA-F0-9]{4})')
 JS_IDENT = JS_IDENT_START + '(?:' + JS_IDENT_PART + ')*'
 
 
@@ -64,11 +64,17 @@ class JavascriptLexer(RegexLexer):
             (r'\A#! ?/.*?\n', Comment.Hashbang),  # recognized by node.js
             (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'(\.\d+|[0-9]+\.[0-9]*)([eE][-+]?[0-9]+)?', Number.Float),
-            (r'0[bB][01]+', Number.Bin),
-            (r'0[oO][0-7]+', Number.Oct),
-            (r'0[xX][0-9a-fA-F]+', Number.Hex),
-            (r'[0-9]+', Number.Integer),
+
+            # Numeric literals
+            (r'0[bB][01]+n?', Number.Bin),
+            (r'0[oO]?[0-7]+n?', Number.Oct),  # Browsers support "0o7" and "07" notations
+            (r'0[xX][0-9a-fA-F]+n?', Number.Hex),
+            (r'[0-9]+n', Number.Integer),  # Javascript BigInt requires an "n" postfix
+            # Javascript doesn't have actual integer literals, so every other
+            # numeric literal is handled by the regex below (including "normal")
+            # integers
+            (r'(\.[0-9]+|[0-9]+\.[0-9]*|[0-9]+)([eE][-+]?[0-9]+)?', Number.Float),
+
             (r'\.\.\.|=>', Punctuation),
             (r'\+\+|--|~|&&|\?|:|\|\||\\(?=\n)|'
              r'(<<|>>>?|==?|!=?|[-<>+*%&|^/])=?', Operator, 'slashstartsregex'),
@@ -263,7 +269,7 @@ class LiveScriptLexer(RegexLexer):
             default('#pop'),
         ],
         'root': [
-            (r'^(?=\s|/)', Text, 'slashstartsregex'),
+            (r'\A(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
             (r'(?:\([^()]+\))?[ ]*[~-]{1,2}>|'
              r'(?:\(?[^()\n]+\)?)?[ ]*<[~-]{1,2}', Name.Function),
@@ -1038,7 +1044,7 @@ class CoffeeScriptLexer(RegexLexer):
     _operator_re = (
         r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
         r'\|\||\\(?=\n)|'
-        r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&\|\^/])=?')
+        r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&|\^/])=?')
 
     flags = re.DOTALL
     tokens = {
@@ -1066,7 +1072,7 @@ class CoffeeScriptLexer(RegexLexer):
         ],
         'root': [
             include('commentsandwhitespace'),
-            (r'^(?=\s|/)', Text, 'slashstartsregex'),
+            (r'\A(?=\s|/)', Text, 'slashstartsregex'),
             (_operator_re, Operator, 'slashstartsregex'),
             (r'(?:\([^()]*\))?\s*[=-]>', Name.Function, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),

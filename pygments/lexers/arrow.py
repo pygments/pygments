@@ -1,22 +1,24 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.arrow
-    ~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Arrow.
 
-    :copyright: Copyright 2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-from pygments.lexer import RegexLexer, bygroups, include
+
+from pygments.lexer import RegexLexer, bygroups, default, include
 from pygments.token import Text, Operator, Keyword, Punctuation, Name, \
-     Whitespace, String, Number
+    String, Number
 
 __all__ = ['ArrowLexer']
 
 TYPES = r'\b(int|bool|char)((?:\[\])*)(?=\s+)'
 IDENT = r'([a-zA-Z_][a-zA-Z0-9_]*)'
 DECL = TYPES + r'(\s+)' + IDENT
+
 
 class ArrowLexer(RegexLexer):
     """
@@ -38,9 +40,9 @@ class ArrowLexer(RegexLexer):
             include('expressions'),
         ],
         'blocks': [
-            (r'(function)(\n+)(/-->)(\s*)'
-             + DECL # 4 groups
-             + r'(\()', bygroups(
+            (r'(function)(\n+)(/-->)(\s*)' +
+             DECL +  # 4 groups
+             r'(\()', bygroups(
                  Keyword.Reserved, Text, Punctuation,
                  Text, Keyword.Type, Punctuation, Text,
                  Name.Function, Punctuation
@@ -60,7 +62,7 @@ class ArrowLexer(RegexLexer):
             (r'true|false', Keyword.Constant),
             (r"'", String.Char, 'char'),
             (r'"', String.Double, 'string'),
-            (r'{', Punctuation, 'array'),
+            (r'\{', Punctuation, 'array'),
             (r'==|!=|<|>|\+|-|\*|/|%', Operator),
             (r'and|or|not|length', Operator.Word),
             (r'(input)(\s+)(int|char\[\])', bygroups(
@@ -77,7 +79,7 @@ class ArrowLexer(RegexLexer):
         'print': [
             include('expressions'),
             (r',', Punctuation),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
         'fparams': [
             (DECL, bygroups(Keyword.Type, Punctuation, Text, Name.Variable)),

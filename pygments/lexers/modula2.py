@@ -1547,15 +1547,15 @@ class Modula2Lexer(RegexLexer):
                 # substitute lexemes when in Algol mode
                 if self.algol_publication_mode:
                     if value == '#':
-                        value = u'≠'
+                        value = '≠'
                     elif value == '<=':
-                        value = u'≤'
+                        value = '≤'
                     elif value == '>=':
-                        value = u'≥'
+                        value = '≥'
                     elif value == '==':
-                        value = u'≡'
+                        value = '≡'
                     elif value == '*.':
-                        value = u'•'
+                        value = '•'
 
             # return result
             yield index, token, value

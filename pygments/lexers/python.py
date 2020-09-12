@@ -172,19 +172,19 @@ class PythonLexer(RegexLexer):
             # without format specifier
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
              r'(\![sraf])?'     # conversion
-             r'}', String.Interpol, '#pop'),
+             r'\}', String.Interpol, '#pop'),
             # with format specifier
             # we'll catch the remaining '}' in the outer scope
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
              r'(\![sraf])?'     # conversion
              r':', String.Interpol, '#pop'),
-            (r'[^\S]+', Text),  # allow new lines
+            (r'\s+', Text),  # allow new lines
             include('expr'),
         ],
         'expr-inside-fstring-inner': [
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
             (r'[])}]', Punctuation, '#pop'),
-            (r'[^\S]+', Text),  # allow new lines
+            (r'\s+', Text),  # allow new lines
             include('expr'),
         ],
         'expr-keywords': [
@@ -317,8 +317,8 @@ class PythonLexer(RegexLexer):
             default('#pop'),
         ],
         'fstringescape': [
-            ('{{', String.Escape),
-            ('}}', String.Escape),
+            (r'\{\{', String.Escape),
+            (r'\}\}', String.Escape),
             include('stringescape'),
         ],
         'stringescape': [
@@ -646,27 +646,26 @@ class PythonConsoleLexer(Lexer):
         tb = 0
         for match in line_re.finditer(text):
             line = match.group()
-            if line.startswith(u'>>> ') or line.startswith(u'... '):
+            if line.startswith('>>> ') or line.startswith('... '):
                 tb = 0
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt, line[:4])]))
                 curcode += line[4:]
-            elif line.rstrip() == u'...' and not tb:
+            elif line.rstrip() == '...' and not tb:
                 # only a new >>> prompt can end an exception block
                 # otherwise an ellipsis in place of the traceback frames
                 # will be mishandled
                 insertions.append((len(curcode),
-                                   [(0, Generic.Prompt, u'...')]))
+                                   [(0, Generic.Prompt, '...')]))
                 curcode += line[3:]
             else:
                 if curcode:
-                    for item in do_insertions(
-                            insertions, pylexer.get_tokens_unprocessed(curcode)):
-                        yield item
+                    yield from do_insertions(
+                        insertions, pylexer.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
-                if (line.startswith(u'Traceback (most recent call last):') or
-                        re.match(u'  File "[^"]+", line \\d+\\n$', line)):
+                if (line.startswith('Traceback (most recent call last):') or
+                        re.match('  File "[^"]+", line \\d+\\n$', line)):
                     tb = 1
                     curtb = line
                     tbindex = match.start()
@@ -674,7 +673,7 @@ class PythonConsoleLexer(Lexer):
                     yield match.start(), Name.Class, line
                 elif tb:
                     curtb += line
-                    if not (line.startswith(' ') or line.strip() == u'...'):
+                    if not (line.startswith(' ') or line.strip() == '...'):
                         tb = 0
                         for i, t, v in tblexer.get_tokens_unprocessed(curtb):
                             yield tbindex+i, t, v
@@ -682,9 +681,8 @@ class PythonConsoleLexer(Lexer):
                 else:
                     yield match.start(), Generic.Output, line
         if curcode:
-            for item in do_insertions(insertions,
-                                      pylexer.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(insertions,
+                                     pylexer.get_tokens_unprocessed(curcode))
         if curtb:
             for i, t, v in tblexer.get_tokens_unprocessed(curtb):
                 yield tbindex+i, t, v

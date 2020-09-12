@@ -26,7 +26,7 @@ class SlashLanguageLexer(ExtendedRegexLexer):
     def right_angle_bracket(lexer, match, ctx):
         if len(ctx.stack) > 1 and ctx.stack[-2] == "string":
             ctx.stack.pop()
-        yield match.start(), String.Interpol, u"}"
+        yield match.start(), String.Interpol, '}'
         ctx.pos = match.end()
         pass
 
@@ -182,4 +182,4 @@ class SlashLexer(DelegatingLexer):
 
     def __init__(self, **options):
         from pygments.lexers.web import HtmlLexer
-        super(SlashLexer, self).__init__(HtmlLexer, SlashLanguageLexer, **options)
+        super().__init__(HtmlLexer, SlashLanguageLexer, **options)

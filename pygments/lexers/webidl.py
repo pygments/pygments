@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.webidl
-    ~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Web IDL, including some extensions.
 
-    :copyright: Copyright 2006-2016 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -32,9 +32,10 @@ _builtin_types = (
     # other
     'any', 'void', 'object', 'RegExp',
 )
-_identifier = r'_?[A-Za-z][0-9A-Z_a-z-]*'
+_identifier = r'_?[A-Za-z][a-zA-Z0-9_-]*'
 _keyword_suffix = r'(?![\w-])'
 _string = r'"[^"]*"'
+
 
 class WebIDLLexer(RegexLexer):
     """
@@ -132,7 +133,8 @@ class WebIDLLexer(RegexLexer):
             default(('#pop', 'type_null'))
         ],
         'type_null': [
-            (r'\??', Punctuation, '#pop:2'),
+            (r'\?', Punctuation),
+            default('#pop:2'),
         ],
         'default_value': [
             include('common'),

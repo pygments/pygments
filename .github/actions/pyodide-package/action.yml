@@ -1,0 +1,5 @@
+name: 'Update Pyodide package'
+description: 'Update the WASM compiled Pygments with Pyodide'
+runs:
+  using: 'docker'
+  image: 'birkenfeld/pyodide-pygments-builder'

@@ -33,7 +33,7 @@ def test_numbers(lexer):
 
 
 def test_switch(lexer):
-    fragment = u'''\
+    fragment = '''\
     int main()
     {
         switch (0)
@@ -45,48 +45,48 @@ def test_switch(lexer):
     }
     '''
     tokens = [
-        (Token.Keyword.Type, u'int'),
-        (Token.Text, u' '),
-        (Token.Name.Function, u'main'),
-        (Token.Punctuation, u'('),
-        (Token.Punctuation, u')'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'{'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'    '),
-        (Token.Keyword, u'switch'),
-        (Token.Text, u' '),
-        (Token.Punctuation, u'('),
-        (Token.Literal.Number.Integer, u'0'),
-        (Token.Punctuation, u')'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'    '),
-        (Token.Punctuation, u'{'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'        '),
-        (Token.Keyword, u'case'),
-        (Token.Text, u' '),
-        (Token.Literal.Number.Integer, u'0'),
-        (Token.Operator, u':'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'        '),
-        (Token.Keyword, u'default'),
-        (Token.Operator, u':'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'            '),
-        (Token.Punctuation, u';'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'    '),
-        (Token.Punctuation, u'}'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'}'),
-        (Token.Text, u'\n'),
+        (Token.Keyword.Type, 'int'),
+        (Token.Text, ' '),
+        (Token.Name.Function, 'main'),
+        (Token.Punctuation, '('),
+        (Token.Punctuation, ')'),
+        (Token.Text, '\n'),
+        (Token.Punctuation, '{'),
+        (Token.Text, '\n'),
+        (Token.Text, '    '),
+        (Token.Keyword, 'switch'),
+        (Token.Text, ' '),
+        (Token.Punctuation, '('),
+        (Token.Literal.Number.Integer, '0'),
+        (Token.Punctuation, ')'),
+        (Token.Text, '\n'),
+        (Token.Text, '    '),
+        (Token.Punctuation, '{'),
+        (Token.Text, '\n'),
+        (Token.Text, '        '),
+        (Token.Keyword, 'case'),
+        (Token.Text, ' '),
+        (Token.Literal.Number.Integer, '0'),
+        (Token.Operator, ':'),
+        (Token.Text, '\n'),
+        (Token.Text, '        '),
+        (Token.Keyword, 'default'),
+        (Token.Operator, ':'),
+        (Token.Text, '\n'),
+        (Token.Text, '            '),
+        (Token.Punctuation, ';'),
+        (Token.Text, '\n'),
+        (Token.Text, '    '),
+        (Token.Punctuation, '}'),
+        (Token.Text, '\n'),
+        (Token.Punctuation, '}'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(textwrap.dedent(fragment))) == tokens
 
 
 def test_switch_space_before_colon(lexer):
-    fragment = u'''\
+    fragment = '''\
     int main()
     {
         switch (0)
@@ -98,50 +98,50 @@ def test_switch_space_before_colon(lexer):
     }
     '''
     tokens = [
-        (Token.Keyword.Type, u'int'),
-        (Token.Text, u' '),
-        (Token.Name.Function, u'main'),
-        (Token.Punctuation, u'('),
-        (Token.Punctuation, u')'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'{'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'    '),
-        (Token.Keyword, u'switch'),
-        (Token.Text, u' '),
-        (Token.Punctuation, u'('),
-        (Token.Literal.Number.Integer, u'0'),
-        (Token.Punctuation, u')'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'    '),
-        (Token.Punctuation, u'{'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'        '),
-        (Token.Keyword, u'case'),
-        (Token.Text, u' '),
-        (Token.Literal.Number.Integer, u'0'),
-        (Token.Text, u' '),
-        (Token.Operator, u':'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'        '),
-        (Token.Keyword, u'default'),
-        (Token.Text, u' '),
-        (Token.Operator, u':'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'            '),
-        (Token.Punctuation, u';'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'    '),
-        (Token.Punctuation, u'}'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'}'),
-        (Token.Text, u'\n'),
+        (Token.Keyword.Type, 'int'),
+        (Token.Text, ' '),
+        (Token.Name.Function, 'main'),
+        (Token.Punctuation, '('),
+        (Token.Punctuation, ')'),
+        (Token.Text, '\n'),
+        (Token.Punctuation, '{'),
+        (Token.Text, '\n'),
+        (Token.Text, '    '),
+        (Token.Keyword, 'switch'),
+        (Token.Text, ' '),
+        (Token.Punctuation, '('),
+        (Token.Literal.Number.Integer, '0'),
+        (Token.Punctuation, ')'),
+        (Token.Text, '\n'),
+        (Token.Text, '    '),
+        (Token.Punctuation, '{'),
+        (Token.Text, '\n'),
+        (Token.Text, '        '),
+        (Token.Keyword, 'case'),
+        (Token.Text, ' '),
+        (Token.Literal.Number.Integer, '0'),
+        (Token.Text, ' '),
+        (Token.Operator, ':'),
+        (Token.Text, '\n'),
+        (Token.Text, '        '),
+        (Token.Keyword, 'default'),
+        (Token.Text, ' '),
+        (Token.Operator, ':'),
+        (Token.Text, '\n'),
+        (Token.Text, '            '),
+        (Token.Punctuation, ';'),
+        (Token.Text, '\n'),
+        (Token.Text, '    '),
+        (Token.Punctuation, '}'),
+        (Token.Text, '\n'),
+        (Token.Punctuation, '}'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(textwrap.dedent(fragment))) == tokens
 
 
 def test_label(lexer):
-    fragment = u'''\
+    fragment = '''\
     int main()
     {
     foo:
@@ -149,31 +149,31 @@ def test_label(lexer):
     }
     '''
     tokens = [
-        (Token.Keyword.Type, u'int'),
-        (Token.Text, u' '),
-        (Token.Name.Function, u'main'),
-        (Token.Punctuation, u'('),
-        (Token.Punctuation, u')'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'{'),
-        (Token.Text, u'\n'),
-        (Token.Name.Label, u'foo'),
-        (Token.Punctuation, u':'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'  '),
-        (Token.Keyword, u'goto'),
-        (Token.Text, u' '),
-        (Token.Name, u'foo'),
-        (Token.Punctuation, u';'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'}'),
-        (Token.Text, u'\n'),
+        (Token.Keyword.Type, 'int'),
+        (Token.Text, ' '),
+        (Token.Name.Function, 'main'),
+        (Token.Punctuation, '('),
+        (Token.Punctuation, ')'),
+        (Token.Text, '\n'),
+        (Token.Punctuation, '{'),
+        (Token.Text, '\n'),
+        (Token.Name.Label, 'foo'),
+        (Token.Punctuation, ':'),
+        (Token.Text, '\n'),
+        (Token.Text, '  '),
+        (Token.Keyword, 'goto'),
+        (Token.Text, ' '),
+        (Token.Name, 'foo'),
+        (Token.Punctuation, ';'),
+        (Token.Text, '\n'),
+        (Token.Punctuation, '}'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(textwrap.dedent(fragment))) == tokens
 
 
 def test_label_space_before_colon(lexer):
-    fragment = u'''\
+    fragment = '''\
     int main()
     {
     foo :
@@ -181,32 +181,32 @@ def test_label_space_before_colon(lexer):
     }
     '''
     tokens = [
-        (Token.Keyword.Type, u'int'),
-        (Token.Text, u' '),
-        (Token.Name.Function, u'main'),
-        (Token.Punctuation, u'('),
-        (Token.Punctuation, u')'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'{'),
-        (Token.Text, u'\n'),
-        (Token.Name.Label, u'foo'),
-        (Token.Text, u' '),
-        (Token.Punctuation, u':'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'  '),
-        (Token.Keyword, u'goto'),
-        (Token.Text, u' '),
-        (Token.Name, u'foo'),
-        (Token.Punctuation, u';'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'}'),
-        (Token.Text, u'\n'),
+        (Token.Keyword.Type, 'int'),
+        (Token.Text, ' '),
+        (Token.Name.Function, 'main'),
+        (Token.Punctuation, '('),
+        (Token.Punctuation, ')'),
+        (Token.Text, '\n'),
+        (Token.Punctuation, '{'),
+        (Token.Text, '\n'),
+        (Token.Name.Label, 'foo'),
+        (Token.Text, ' '),
+        (Token.Punctuation, ':'),
+        (Token.Text, '\n'),
+        (Token.Text, '  '),
+        (Token.Keyword, 'goto'),
+        (Token.Text, ' '),
+        (Token.Name, 'foo'),
+        (Token.Punctuation, ';'),
+        (Token.Text, '\n'),
+        (Token.Punctuation, '}'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(textwrap.dedent(fragment))) == tokens
 
 
 def test_label_followed_by_statement(lexer):
-    fragment = u'''\
+    fragment = '''\
     int main()
     {
     foo:return 0;
@@ -214,52 +214,52 @@ def test_label_followed_by_statement(lexer):
     }
     '''
     tokens = [
-        (Token.Keyword.Type, u'int'),
-        (Token.Text, u' '),
-        (Token.Name.Function, u'main'),
-        (Token.Punctuation, u'('),
-        (Token.Punctuation, u')'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'{'),
-        (Token.Text, u'\n'),
-        (Token.Name.Label, u'foo'),
-        (Token.Punctuation, u':'),
-        (Token.Keyword, u'return'),
-        (Token.Text, u' '),
-        (Token.Literal.Number.Integer, u'0'),
-        (Token.Punctuation, u';'),
-        (Token.Text, u'\n'),
-        (Token.Text, u'  '),
-        (Token.Keyword, u'goto'),
-        (Token.Text, u' '),
-        (Token.Name, u'foo'),
-        (Token.Punctuation, u';'),
-        (Token.Text, u'\n'),
-        (Token.Punctuation, u'}'),
-        (Token.Text, u'\n'),
+        (Token.Keyword.Type, 'int'),
+        (Token.Text, ' '),
+        (Token.Name.Function, 'main'),
+        (Token.Punctuation, '('),
+        (Token.Punctuation, ')'),
+        (Token.Text, '\n'),
+        (Token.Punctuation, '{'),
+        (Token.Text, '\n'),
+        (Token.Name.Label, 'foo'),
+        (Token.Punctuation, ':'),
+        (Token.Keyword, 'return'),
+        (Token.Text, ' '),
+        (Token.Literal.Number.Integer, '0'),
+        (Token.Punctuation, ';'),
+        (Token.Text, '\n'),
+        (Token.Text, '  '),
+        (Token.Keyword, 'goto'),
+        (Token.Text, ' '),
+        (Token.Name, 'foo'),
+        (Token.Punctuation, ';'),
+        (Token.Text, '\n'),
+        (Token.Punctuation, '}'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(textwrap.dedent(fragment))) == tokens
 
 
 def test_preproc_file(lexer):
-    fragment = u'#include <foo>\n'
+    fragment = '#include <foo>\n'
     tokens = [
-        (Token.Comment.Preproc, u'#'),
-        (Token.Comment.Preproc, u'include'),
-        (Token.Text, u' '),
-        (Token.Comment.PreprocFile, u'<foo>'),
-        (Token.Comment.Preproc, u'\n'),
+        (Token.Comment.Preproc, '#'),
+        (Token.Comment.Preproc, 'include'),
+        (Token.Text, ' '),
+        (Token.Comment.PreprocFile, '<foo>'),
+        (Token.Comment.Preproc, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_preproc_file2(lexer):
-    fragment = u'#include "foo.h"\n'
+    fragment = '#include "foo.h"\n'
     tokens = [
-        (Token.Comment.Preproc, u'#'),
-        (Token.Comment.Preproc, u'include'),
-        (Token.Text, u' '),
-        (Token.Comment.PreprocFile, u'"foo.h"'),
-        (Token.Comment.Preproc, u'\n'),
+        (Token.Comment.Preproc, '#'),
+        (Token.Comment.Preproc, 'include'),
+        (Token.Text, ' '),
+        (Token.Comment.PreprocFile, '"foo.h"'),
+        (Token.Comment.Preproc, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens

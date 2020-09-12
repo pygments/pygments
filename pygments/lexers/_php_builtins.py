@@ -4727,8 +4727,7 @@ if __name__ == '__main__':  # pragma: no cover
         download = urlretrieve(PHP_MANUAL_URL)
         with tarfile.open(download[0]) as tar:
             tar.extractall()
-        for file in glob.glob("%s%s" % (PHP_MANUAL_DIR, PHP_REFERENCE_GLOB)):
-            yield file
+        yield from glob.glob("%s%s" % (PHP_MANUAL_DIR, PHP_REFERENCE_GLOB))
         os.remove(download[0])
 
     def regenerate(filename, modules):

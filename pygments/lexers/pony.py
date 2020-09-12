@@ -70,7 +70,7 @@ class PonyLexer(RegexLexer):
             (r'\d+', Number.Integer),
             (r'(true|false)\b', Name.Builtin),
             (r'_\d*', Name),
-            (r'_?[a-z][\w\'_]*', Name)
+            (r'_?[a-z][\w\']*', Name)
         ],
         'typename': [
             (_caps + r'?((?:\s)*)(_?[A-Z]\w*)',

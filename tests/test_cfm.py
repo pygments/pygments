@@ -19,28 +19,28 @@ def lexer():
 
 
 def test_basic_comment(lexer):
-    fragment = u'<!--- cfcomment --->'
+    fragment = '<!--- cfcomment --->'
     expected = [
-        (Token.Text, u''),
-        (Token.Comment.Multiline, u'<!---'),
-        (Token.Comment.Multiline, u' cfcomment '),
-        (Token.Comment.Multiline, u'--->'),
-        (Token.Text, u'\n'),
+        (Token.Text, ''),
+        (Token.Comment.Multiline, '<!---'),
+        (Token.Comment.Multiline, ' cfcomment '),
+        (Token.Comment.Multiline, '--->'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == expected
 
 
 def test_nested_comment(lexer):
-    fragment = u'<!--- nested <!--- cfcomment ---> --->'
+    fragment = '<!--- nested <!--- cfcomment ---> --->'
     expected = [
-        (Token.Text, u''),
-        (Token.Comment.Multiline, u'<!---'),
-        (Token.Comment.Multiline, u' nested '),
-        (Token.Comment.Multiline, u'<!---'),
-        (Token.Comment.Multiline, u' cfcomment '),
-        (Token.Comment.Multiline, u'--->'),
-        (Token.Comment.Multiline, u' '),
-        (Token.Comment.Multiline, u'--->'),
-        (Token.Text, u'\n'),
+        (Token.Text, ''),
+        (Token.Comment.Multiline, '<!---'),
+        (Token.Comment.Multiline, ' nested '),
+        (Token.Comment.Multiline, '<!---'),
+        (Token.Comment.Multiline, ' cfcomment '),
+        (Token.Comment.Multiline, '--->'),
+        (Token.Comment.Multiline, ' '),
+        (Token.Comment.Multiline, '--->'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == expected

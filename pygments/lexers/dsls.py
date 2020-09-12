@@ -14,7 +14,7 @@ import re
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, bygroups, words, \
     include, default, this, using, combined
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Literal, Whitespace
+    Number, Punctuation, Whitespace
 
 __all__ = ['ProtoBufLexer', 'ZeekLexer', 'PuppetLexer', 'RslLexer',
            'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer',
@@ -332,7 +332,7 @@ class ZeekLexer(RegexLexer):
 
         'string': [
             (r'\\.', String.Escape),
-            (r'%-?[0-9]*(\.[0-9]+)?[DTdxsefg]', String.Escape),
+            (r'%-?[0-9]*(\.[0-9]+)?[DTd-gsx]', String.Escape),
             (r'"', String, '#pop'),
             (r'.', String),
         ],

@@ -515,7 +515,11 @@ def main_inner(popts, args, usage):
     # ... and do it!
     if '-s' not in opts:
         # process whole input as per normal...
-        highlight(code, lexer, fmter, outfile)
+        try:
+            highlight(code, lexer, fmter, outfile)
+        finally:
+            if outfn:
+                outfile.close()
         return 0
     else:
         # line by line processing of stdin (eg: for 'tail -f')...
@@ -532,6 +536,9 @@ def main_inner(popts, args, usage):
             return 0
         except KeyboardInterrupt:  # pragma: no cover
             return 0
+        finally:
+            if outfn:
+                outfile.close()
 
 
 def main(args=sys.argv):

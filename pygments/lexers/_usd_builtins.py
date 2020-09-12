@@ -1,7 +1,13 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+    pygments.lexers._usd_builtins
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-"""A collection of known USD-related keywords, attributes, and types."""
+    A collection of known USD-related keywords, attributes, and types.
+
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
 
 COMMON_ATTRIBUTES = [
     "extent",

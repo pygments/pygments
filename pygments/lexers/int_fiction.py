@@ -38,10 +38,10 @@ class Inform6Lexer(RegexLexer):
     # Inform 7 maps these four character classes to their ASCII
     # equivalents. To support Inform 6 inclusions within Inform 7,
     # Inform6Lexer maps them too.
-    _dash = u'\\-\u2010-\u2014'
-    _dquote = u'"\u201c\u201d'
-    _squote = u"'\u2018\u2019"
-    _newline = u'\\n\u0085\u2028\u2029'
+    _dash = '\\-\u2010-\u2014'
+    _dquote = '"\u201c\u201d'
+    _squote = "'\u2018\u2019"
+    _newline = '\\n\u0085\u2028\u2029'
 
     tokens = {
         'root': [
@@ -858,7 +858,7 @@ class Tads3Lexer(RegexLexer):
 
     tokens = {
         'root': [
-            (u'\ufeff', Text),
+            ('\ufeff', Text),
             (r'\{', Punctuation, 'object-body'),
             (r';+', Punctuation),
             (r'(?=(argcount|break|case|catch|continue|default|definingobj|'

@@ -4,7 +4,6 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -29,3 +28,15 @@ jobs:
     - name: Test package
       run: py.test
       if: runner.os == 'Windows' && ! contains(matrix['python-version'], 'pypy')
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Check out regexlint
+      run: git clone https://github.com/pygments/regexlint
+    - name: Run regexlint
+      run: make regexlint REGEXLINT=`pwd`/regexlint

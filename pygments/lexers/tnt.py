@@ -5,15 +5,18 @@
 
     Lexer for Typographic Number Theory.
 
-    :copyright: Copyright 2019-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 import re
+
 from pygments.lexer import Lexer
 from pygments.token import Text, Comment, Operator, Keyword, Name, Number, \
-     Punctuation, Error
+    Punctuation, Error
 
 __all__ = ['TNTLexer']
+
 
 class TNTLexer(Lexer):
     """
@@ -77,18 +80,18 @@ class TNTLexer(Lexer):
 
     def term(self, start, text):
         """Tokenize a term."""
-        if text[start] == 'S': # S...S(...) or S...0
+        if text[start] == 'S':  # S...S(...) or S...0
             end = start+1
             while text[end] == 'S':
                 end += 1
             self.cur.append((start, Number.Integer, text[start:end]))
             return self.term(end, text)
-        if text[start] == '0': # the singleton 0
+        if text[start] == '0':  # the singleton 0
             self.cur.append((start, Number.Integer, text[start]))
             return start+1
-        if text[start] in self.VARIABLES: # a''...
+        if text[start] in self.VARIABLES:  # a''...
             return self.variable(start, text)
-        if text[start] == '(': # (...+...)
+        if text[start] == '(':  # (...+...)
             self.cur.append((start, Punctuation, text[start]))
             start = self.term(start+1, text)
             assert text[start] in self.OPERATORS
@@ -97,26 +100,26 @@ class TNTLexer(Lexer):
             assert text[start] == ')'
             self.cur.append((start, Punctuation, text[start]))
             return start+1
-        raise AssertionError # no matches
+        raise AssertionError  # no matches
 
     def formula(self, start, text):
         """Tokenize a formula."""
-        if text[start] in '[]': # fantasy push or pop
+        if text[start] in '[]':  # fantasy push or pop
             self.cur.append((start, Keyword, text[start]))
             return start+1
-        if text[start] in self.NEGATORS: # ~<...>
+        if text[start] in self.NEGATORS:  # ~<...>
             end = start+1
             while text[end] in self.NEGATORS:
                 end += 1
             self.cur.append((start, Operator, text[start:end]))
             return self.formula(end, text)
-        if text[start] in self.QUANTIFIERS: # Aa:<...>
+        if text[start] in self.QUANTIFIERS:  # Aa:<...>
             self.cur.append((start, Keyword.Declaration, text[start]))
             start = self.variable(start+1, text)
             assert text[start] == ':'
             self.cur.append((start, Punctuation, text[start]))
             return self.formula(start+1, text)
-        if text[start] == '<': # <...&...>
+        if text[start] == '<':  # <...&...>
             self.cur.append((start, Punctuation, text[start]))
             start = self.formula(start+1, text)
             assert text[start] in self.LOGIC
@@ -136,9 +139,9 @@ class TNTLexer(Lexer):
         """Tokenize a rule."""
         match = self.RULES.match(text, start)
         assert match is not None
-        groups = sorted(match.regs[1:]) # exclude whole match
+        groups = sorted(match.regs[1:])  # exclude whole match
         for group in groups:
-            if group[0] >= 0: # this group matched
+            if group[0] >= 0:  # this group matched
                 self.cur.append((start, Keyword, text[start:group[0]]))
                 self.cur.append((group[0], Number.Integer,
                                  text[group[0]:group[1]]))
@@ -169,7 +172,7 @@ class TNTLexer(Lexer):
         """Mark everything from ``start`` to the end of the line as Error."""
         end = start
         try:
-            while text[end] != '\n': # there's whitespace in rules
+            while text[end] != '\n':  # there's whitespace in rules
                 end += 1
         except IndexError:
             end = len(text)
@@ -186,7 +189,7 @@ class TNTLexer(Lexer):
             # try line number
             while text[end] in self.NUMBERS:
                 end += 1
-            if end != start: # actual number present
+            if end != start:  # actual number present
                 self.cur.append((start, Number.Integer, text[start:end]))
                 # whitespace is required after a line number
                 orig = len(self.cur)
@@ -210,7 +213,7 @@ class TNTLexer(Lexer):
             orig = len(self.cur)
             try:
                 start = end = self.formula(start, text)
-            except AssertionError: # not well-formed
+            except AssertionError:  # not well-formed
                 del self.cur[orig:]
                 while text[end] not in self.WHITESPACE:
                     end += 1
