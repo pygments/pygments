@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this, \
     inherit, words
-from pygments.token import Comment, Operator, Keyword, Name, Literal, Punctuation, Text
+from pygments.token import Comment, Operator, Keyword, Name, Literal, Punctuation, Text, Whitespace
 
 __all__ = ['RitaLexer']
 
@@ -33,8 +33,8 @@ class RitaLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\n', Text),
-            (r'\s+', Text),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
             (r'#(.*?)\n', Comment.Single),
             (r'@(.*?)\n', Operator),  # Yes, whole line as an operator
             (r'\"(\w|\d|\s|[^\"\']|(\\\")|(\\\'))+?\"', Literal),
