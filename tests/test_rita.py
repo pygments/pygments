@@ -1,7 +1,7 @@
 import pytest
 
 from pygments.lexers import RitaLexer
-from pygments.token import Keyword, Literal, Punctuation, Text, Operator
+from pygments.token import Keyword, Literal, Punctuation, Text, Operator, Whitespace
 
 
 @pytest.fixture(scope='session')
@@ -18,7 +18,7 @@ def test_2_macros(lexer):
         (Literal, '"Hello"'),
         (Punctuation, ')'),
         (Punctuation, ','),
-        (Text, ' '),
+        (Whitespace, ' '),
         (Keyword, 'WORD'),
         (Punctuation, '('),
         (Literal, '"world"'),
@@ -29,7 +29,7 @@ def test_2_macros(lexer):
         (Punctuation, '('),
         (Literal, '"GREETING"'),
         (Punctuation, ')'),
-        (Text, '\n')
+        (Whitespace, '\n')
 
     ]
     assert expected == list(lexer.get_tokens(text))
