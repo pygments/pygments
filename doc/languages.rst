@@ -21,6 +21,7 @@ Programming languages
 * `Augeas <https://augeas.net/>`_
 * `AutoIt <https://www.autoitscript.com/site/autoit/>`_
 * `Awk <https://en.wikipedia.org/wiki/AWK>`_
+* `BARE <https://baremessages.org/>`_
 * `BBC Basic <http://www.bbcbasic.co.uk/bbcbasic.html>`_
 * `Befunge <https://github.com/catseye/Befunge-93>`_
 * `BlitzBasic <https://en.wikipedia.org/wiki/Blitz_BASIC>`_
@@ -127,6 +128,7 @@ Programming languages
 * `PHP <https://www.php.net/>`_
 * `Perl 5 <https://perl.org>`_
 * `Pike <https://pike.lysator.liu.se/>`_
+* `Pointless <https://ptls.dev/>`_
 * `Pony <https://www.ponylang.io/>`_
 * `PovRay <http://www.povray.org/>`_
 * `PostScript <https://en.wikipedia.org/wiki/PostScript>`_
@@ -257,6 +259,7 @@ Other markup
 * Notmuch
 * `PEG <https://bford.info/packrat/>`_
 * POV-Ray scenes
+* `PromQL <https://prometheus.io/docs/prometheus/latest/querying/basics/>`_
 * `Puppet <https://puppet.com/>`_
 * QML
 * Ragel
@@ -292,6 +295,54 @@ Other markup
 * YAML
 * YANG
 * Windows Registry files
+
+
+Interactive terminal/shell sessions
+-----------------------------------
+
+To highlight an interactive terminal or shell session, prefix your code snippet
+with a specially formatted prompt.
+
+Supported shells with examples are shown below. In each example, prompt parts in
+brackets ``[any]`` represent optional parts of the prompt, and prompt parts
+without brackets or in parenthesis ``(any)`` represent required parts of the
+prompt.
+
+* **Bash Session** (console, shell-session):
+
+  .. code-block:: console
+
+     [any@any]$ ls -lh
+     [any@any]# ls -lh
+     [any@any]% ls -lh
+     $ ls -lh
+     # ls -lh
+     % ls -lh
+     > ls -lh
+
+* **MSDOS Session** (doscon):
+
+  .. code-block:: doscon
+
+     [any]> dir
+     > dir
+     More? dir
+
+* **Tcsh Session** (tcshcon):
+
+  .. code-block:: tcshcon
+
+     (any)> ls -lh
+     ? ls -lh
+
+* **PowerShell Session** (ps1con):
+
+  .. code-block:: ps1con
+
+     PS[any]> Get-ChildItem
+     PS> Get-ChildItem
+     >> Get-ChildItem
+
 
 ... that's all?
 ---------------

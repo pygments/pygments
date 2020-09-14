@@ -5,7 +5,7 @@
 
     Lexers for hardware descriptor languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -234,8 +234,8 @@ class SystemVerilogLexer(RegexLexer):
              bygroups(Keyword.Declaration, Text, Name.Class)),
             (r'(extends)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Text, Name.Class)),
-            (r'(endclass\b)((\s*)(:)(\s*)([a-zA-Z_]\w*))?',
-             bygroups(Keyword.Declaration, None, Text, Punctuation, Text, Name.Class)),
+            (r'(endclass\b)(?:(\s*)(:)(\s*)([a-zA-Z_]\w*))?',
+             bygroups(Keyword.Declaration, Text, Punctuation, Text, Name.Class)),
 
             (words((
                 # Variable types

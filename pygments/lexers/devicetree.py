@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 """
     pygments.lexers.devicetree
-    ~~~~~~~~~~~~~~~~~~~
-    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     Lexers for Devicetree language.
 
-    :copyright: Copyright 2019-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
 from pygments.lexer import RegexLexer, bygroups, include, default, words
-from pygments.token import *
+from pygments.token import Comment, Keyword, Name, Number, Operator, \
+    Punctuation, String, Text
 
 __all__ = ['DevicetreeLexer']
+
 
 class DevicetreeLexer(RegexLexer):
     """
@@ -32,21 +32,21 @@ class DevicetreeLexer(RegexLexer):
     _ws = r'\s*(?:/[*][^*/]*?[*]/\s*)*'
 
     tokens = {
-    	'macro': [
-    	    # Include preprocessor directives (C style):
-    	    (r'(#include)(' + _ws + r')([^\n]+)',
-                bygroups(Comment.Preproc, Comment.Multiline, Comment.PreprocFile)),
-    	    # Define preprocessor directives (C style):
-    	    (r'(#define)(' + _ws + r')([^\n]+)',
-                bygroups(Comment.Preproc, Comment.Multiline, Comment.Preproc)),
-    	    #devicetree style with file:
-            (r'(/[^*/\{]+/)(' + _ws + r')("[^\n\{]+")',
-                bygroups(Comment.Preproc, Comment.Multiline, Comment.PreprocFile)),
-            #devicetree style with property:
-            (r'(/[^*/\{]+/)(' + _ws + r')([^\n;\{]*)([;]?)',
-                bygroups(Comment.Preproc, Comment.Multiline, Comment.Preproc, Punctuation)),
+        'macro': [
+            # Include preprocessor directives (C style):
+            (r'(#include)(' + _ws + r')([^\n]+)',
+             bygroups(Comment.Preproc, Comment.Multiline, Comment.PreprocFile)),
+            # Define preprocessor directives (C style):
+            (r'(#define)(' + _ws + r')([^\n]+)',
+             bygroups(Comment.Preproc, Comment.Multiline, Comment.Preproc)),
+            # devicetree style with file:
+            (r'(/[^*/{]+/)(' + _ws + r')("[^\n{]+")',
+             bygroups(Comment.Preproc, Comment.Multiline, Comment.PreprocFile)),
+            # devicetree style with property:
+            (r'(/[^*/{]+/)(' + _ws + r')([^\n;{]*)([;]?)',
+             bygroups(Comment.Preproc, Comment.Multiline, Comment.Preproc, Punctuation)),
         ],
-    	'whitespace': [
+        'whitespace': [
             (r'\n', Text),
             (r'\s+', Text),
             (r'\\\n', Text),  # line continuation
@@ -59,28 +59,28 @@ class DevicetreeLexer(RegexLexer):
             (r'(L?)(")', bygroups(String.Affix, String), 'string'),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'\d+', Number.Integer),
-            (r'([^\n\s{}/*]*)(\s*)(:)', bygroups(Name.Label, Text, Punctuation)),
-            (words(('compatible', 'model', 'phandle', 'status', '#address-cells', 
-            	'#size-cells', 'reg', 'virtual-reg', 'ranges', 'dma-ranges', 
-            	'device_type', 'name'), suffix=r'\b'), Keyword.Reserved),
-			(r'([~!%^&*+=|?:<>/#-])', Operator),
+            (r'([^\s{}/*]*)(\s*)(:)', bygroups(Name.Label, Text, Punctuation)),
+            (words(('compatible', 'model', 'phandle', 'status', '#address-cells',
+                    '#size-cells', 'reg', 'virtual-reg', 'ranges', 'dma-ranges',
+                    'device_type', 'name'), suffix=r'\b'), Keyword.Reserved),
+            (r'([~!%^&*+=|?:<>/#-])', Operator),
             (r'[()\[\]{},.]', Punctuation),
-            (r'[a-zA-Z_][\w-]*(?=(?:\s*,\s*[a-zA-Z_][\w-]*|(?:' + _ws + r'))*\s*[=;])', Name),
+            (r'[a-zA-Z_][\w-]*(?=(?:\s*,\s*[a-zA-Z_][\w-]*|(?:' + _ws + r'))*\s*[=;])',
+             Name),
             (r'[a-zA-Z_]\w*', Name.Attribute),
         ],
-    	'root': [
-    		
-    	    include('whitespace'),
-    	    include('macro'),
-    	    
-    	    # Nodes
-            (r'([^/*@\n\s&]+|/)(@?)([0-9a-fA-F,]*)(' + _ws + r')(\{)',
-             bygroups( Name.Function, Operator, Number.Integer, 
+        'root': [
+            include('whitespace'),
+            include('macro'),
+
+            # Nodes
+            (r'([^/*@\s&]+|/)(@?)([0-9a-fA-F,]*)(' + _ws + r')(\{)',
+             bygroups(Name.Function, Operator, Number.Integer,
                       Comment.Multiline, Punctuation), 'node'),
 
-    	    default('statement'),
-    	],
-    	'statement': [
+            default('statement'),
+        ],
+        'statement': [
             include('whitespace'),
             include('statements'),
             (';', Punctuation, '#pop'),
@@ -88,10 +88,10 @@ class DevicetreeLexer(RegexLexer):
         'node': [
             include('whitespace'),
             include('macro'),
-            
-            (r'([^/*@\n\s&]+|/)(@?)([0-9a-fA-F,]*)(' + _ws + r')(\{)', 
-            	bygroups(Name.Function, Operator, Number.Integer,
-            	 Comment.Multiline, Punctuation), '#push'),
+
+            (r'([^/*@\s&]+|/)(@?)([0-9a-fA-F,]*)(' + _ws + r')(\{)',
+             bygroups(Name.Function, Operator, Number.Integer,
+                      Comment.Multiline, Punctuation), '#push'),
 
             include('statements'),
 
@@ -106,5 +106,4 @@ class DevicetreeLexer(RegexLexer):
             (r'\\\n', String),  # line continuation
             (r'\\', String),  # stray backslash
         ],
-
     }

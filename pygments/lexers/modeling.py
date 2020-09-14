@@ -5,7 +5,7 @@
 
     Lexers for modeling languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -38,7 +38,7 @@ class ModelicaLexer(RegexLexer):
 
     tokens = {
         'whitespace': [
-            (u'[\\s\ufeff]+', Text),
+            (r'[\s\ufeff]+', Text),
             (r'//[^\n]*\n?', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline)
         ],

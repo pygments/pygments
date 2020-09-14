@@ -5,7 +5,7 @@
 
     Lexers for assembly languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -37,7 +37,7 @@ class GasLexer(RegexLexer):
     string = r'"(\\"|[^"])*"'
     char = r'[\w$.@-]'
     identifier = r'(?:[a-zA-Z$_]' + char + r'*|\.' + char + '+)'
-    number = r'(?:0[xX][a-zA-Z0-9]+|\d+)'
+    number = r'(?:0[xX][a-fA-F0-9]+|#?-?\d+)'
     register = '%' + identifier
 
     tokens = {
@@ -178,7 +178,7 @@ class DObjdumpLexer(DelegatingLexer):
     mimetypes = ['text/x-d-objdump']
 
     def __init__(self, **options):
-        super(DObjdumpLexer, self).__init__(DLexer, ObjdumpLexer, **options)
+        super().__init__(DLexer, ObjdumpLexer, **options)
 
 
 class CppObjdumpLexer(DelegatingLexer):
@@ -191,7 +191,7 @@ class CppObjdumpLexer(DelegatingLexer):
     mimetypes = ['text/x-cpp-objdump']
 
     def __init__(self, **options):
-        super(CppObjdumpLexer, self).__init__(CppLexer, ObjdumpLexer, **options)
+        super().__init__(CppLexer, ObjdumpLexer, **options)
 
 
 class CObjdumpLexer(DelegatingLexer):
@@ -204,7 +204,7 @@ class CObjdumpLexer(DelegatingLexer):
     mimetypes = ['text/x-c-objdump']
 
     def __init__(self, **options):
-        super(CObjdumpLexer, self).__init__(CLexer, ObjdumpLexer, **options)
+        super().__init__(CLexer, ObjdumpLexer, **options)
 
 
 class HsailLexer(RegexLexer):
@@ -453,6 +453,7 @@ class LlvmLexer(RegexLexer):
         ]
     }
 
+
 class LlvmMirBodyLexer(RegexLexer):
     """
     For LLVM MIR examples without the YAML wrapper.
@@ -471,19 +472,19 @@ class LlvmMirBodyLexer(RegexLexer):
             # Attributes on basic blocks
             (words(('liveins', 'successors'), suffix=':'), Keyword),
             # Basic Block Labels
-            (r'bb\.[0-9]+(\.[0-9a-zA-Z_.-]+)?( \(address-taken\))?:', Name.Label),
-            (r'bb\.[0-9]+ \(%[0-9a-zA-Z_.-]+\)( \(address-taken\))?:', Name.Label),
+            (r'bb\.[0-9]+(\.[a-zA-Z0-9_.-]+)?( \(address-taken\))?:', Name.Label),
+            (r'bb\.[0-9]+ \(%[a-zA-Z0-9_.-]+\)( \(address-taken\))?:', Name.Label),
             (r'%bb\.[0-9]+(\.\w+)?', Name.Label),
             # Stack references
             (r'%stack\.[0-9]+(\.\w+\.addr)?', Name),
             # Subreg indices
             (r'%subreg\.\w+', Name),
             # Virtual registers
-            (r'%[0-9a-zA-Z_]+ *', Name.Variable, 'vreg'),
+            (r'%[a-zA-Z0-9_]+ *', Name.Variable, 'vreg'),
             # Reference to LLVM-IR global
             include('global'),
             # Reference to Intrinsic
-            (r'intrinsic\(\@[0-9a-zA-Z_.]+\)', Name.Variable.Global),
+            (r'intrinsic\(\@[a-zA-Z0-9_.]+\)', Name.Variable.Global),
             # Comparison predicates
             (words(('eq', 'ne', 'sgt', 'sge', 'slt', 'sle', 'ugt', 'uge', 'ult',
                     'ule'), prefix=r'intpred\(', suffix=r'\)'), Name.Builtin),
@@ -493,7 +494,7 @@ class LlvmMirBodyLexer(RegexLexer):
             # Physical registers
             (r'\$\w+', String.Single),
             # Assignment operator
-            (r'[=]', Operator),
+            (r'=', Operator),
             # gMIR Opcodes
             (r'(G_ANYEXT|G_[SZ]EXT|G_SEXT_INREG|G_TRUNC|G_IMPLICIT_DEF|G_PHI|'
              r'G_FRAME_INDEX|G_GLOBAL_VALUE|G_INTTOPTR|G_PTRTOINT|G_BITCAST|'
@@ -526,7 +527,7 @@ class LlvmMirBodyLexer(RegexLexer):
             # Flags
             (words(('killed', 'implicit')), Keyword),
             # ConstantInt values
-            (r'[i][0-9]+ +', Keyword.Type, 'constantint'),
+            (r'i[0-9]+ +', Keyword.Type, 'constantint'),
             # ConstantFloat values
             (r'(half|float|double) +', Keyword.Type, 'constantfloat'),
             # Bare immediates
@@ -536,7 +537,7 @@ class LlvmMirBodyLexer(RegexLexer):
             # MIR Comments
             (r';.*', Comment),
             # If we get here, assume it's a target instruction
-            (r'[0-9a-zA-Z_]+', Name),
+            (r'[a-zA-Z0-9_]+', Name),
             # Everything else that isn't highlighted
             (r'[(), \n]+', Text),
         ],
@@ -560,7 +561,7 @@ class LlvmMirBodyLexer(RegexLexer):
         'vreg_bank_or_class': [
             # The unassigned bank/class
             (r' *_', Name.Variable.Magic),
-            (r' *[0-9a-zA-Z_]+', Name.Variable),
+            (r' *[a-zA-Z0-9_]+', Name.Variable),
             # The LLT if there is one
             (r' *\(', Text, 'vreg_type'),
             (r'(?=.)', Text, '#pop'),
@@ -579,8 +580,8 @@ class LlvmMirBodyLexer(RegexLexer):
                     'acquire', 'release', 'acq_rel', 'seq_cst')),
              Keyword),
             # IR references
-            (r'%ir\.[0-9a-zA-Z_.-]+', Name),
-            (r'%ir-block\.[0-9a-zA-Z_.-]+', Name),
+            (r'%ir\.[a-zA-Z0-9_.-]+', Name),
+            (r'%ir-block\.[a-zA-Z0-9_.-]+', Name),
             (r'[-+]', Operator),
             include('integer'),
             include('global'),
@@ -590,8 +591,9 @@ class LlvmMirBodyLexer(RegexLexer):
         ],
         'integer': [(r'-?[0-9]+', Number.Integer),],
         'float': [(r'-?[0-9]+\.[0-9]+(e[+-][0-9]+)?', Number.Float)],
-        'global': [(r'\@[0-9a-zA-Z_.]+', Name.Variable.Global)],
+        'global': [(r'\@[a-zA-Z0-9_.]+', Name.Variable.Global)],
     }
+
 
 class LlvmMirLexer(RegexLexer):
     """
@@ -649,9 +651,18 @@ class LlvmMirLexer(RegexLexer):
             (r'.+', Text),
             (r'\n', Text),
         ],
-        'name': [ (r'[^\n]+', Name), default('#pop') ],
-        'boolean': [ (r' *(true|false)', Name.Builtin), default('#pop') ],
-        'number': [ (r' *[0-9]+', Number), default('#pop') ],
+        'name': [
+            (r'[^\n]+', Name),
+            default('#pop'),
+        ],
+        'boolean': [
+            (r' *(true|false)', Name.Builtin),
+            default('#pop'),
+        ],
+        'number': [
+            (r' *[0-9]+', Number),
+            default('#pop'),
+        ],
         'llvm_mir_body': [
             # Documents end with '...' or '---'.
             # We have to pop llvm_mir_body and llvm_mir
@@ -660,7 +671,7 @@ class LlvmMirLexer(RegexLexer):
             (r'((?:.|\n)+?)(?=\.\.\.|---)', bygroups(using(LlvmMirBodyLexer))),
             # The '...' is optional. If we didn't already find it then it isn't
             # there. There might be a '---' instead though.
-            (r'(?!\.\.\.|---)((.|\n)+)', bygroups(using(LlvmMirBodyLexer), Keyword)),
+            (r'(?!\.\.\.|---)((?:.|\n)+)', bygroups(using(LlvmMirBodyLexer))),
         ],
     }
 
@@ -924,7 +935,7 @@ class Dasm16Lexer(RegexLexer):
     ]
 
     # Regexes yo
-    char = r'[a-zA-Z$._0-9@]'
+    char = r'[a-zA-Z0-9_$@.]'
     identifier = r'(?:[a-zA-Z$_]' + char + r'*|\.' + char + '+)'
     number = r'[+-]?(?:0[xX][a-zA-Z0-9]+|\d+)'
     binary_number = r'0b[01_]+'

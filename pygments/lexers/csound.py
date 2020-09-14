@@ -241,7 +241,7 @@ class CsoundOrchestraLexer(CsoundLexer):
         'root': [
             (r'\n', Text),
 
-            (r'^([ \t]*)(\w+)(:)(?:[ \t]+|$)', bygroups(Text, Name.Label, Punctuation)),
+            (r'^([ \t]*)(\w+)(:)([ \t]+|$)', bygroups(Text, Name.Label, Punctuation, Text)),
 
             include('whitespace and macro uses'),
             include('preprocessor directives'),
@@ -347,7 +347,7 @@ class CsoundOrchestraLexer(CsoundLexer):
         #     but accept %s specifiers.
         # See https://github.com/csound/csound/issues/747 for more information.
         'format specifiers': [
-            (r'%[#0\- +]*\d*(?:\.\d+)?[diuoxXfFeEgGaAcs]', String.Interpol),
+            (r'%[#0\- +]*\d*(?:\.\d+)?[AE-GXac-giosux]', String.Interpol),
             (r'%%', String.Escape)
         ],
 

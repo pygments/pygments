@@ -5,7 +5,7 @@
 
     Lexers for data file format.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -23,7 +23,7 @@ class YamlLexerContext(LexerContext):
     """Indentation context for the YAML lexer."""
 
     def __init__(self, *args, **kwds):
-        super(YamlLexerContext, self).__init__(*args, **kwds)
+        super().__init__(*args, **kwds)
         self.indent_stack = []
         self.indent = -1
         self.next_indent = 0
@@ -433,7 +433,7 @@ class YamlLexer(ExtendedRegexLexer):
     def get_tokens_unprocessed(self, text=None, context=None):
         if context is None:
             context = YamlLexerContext(text, 0)
-        return super(YamlLexer, self).get_tokens_unprocessed(text, context)
+        return super().get_tokens_unprocessed(text, context)
 
 
 class JsonLexer(RegexLexer):
@@ -471,7 +471,7 @@ class JsonLexer(RegexLexer):
               '%(exp_part)s|%(frac_part)s)') % vars(),
              Number.Float),
             (int_part, Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r'"(\\(["\\/bfnrt]|u[a-fA-F0-9]]{4})|[^\\"])*"', String.Double),
         ],
 
 
@@ -488,7 +488,7 @@ class JsonLexer(RegexLexer):
         # a json object - { attr, attr, ... }
         'objectvalue': [
             include('whitespace'),
-            (r'"(\\\\|\\"|[^"])*"', Name.Tag, 'objectattribute'),
+            (r'"(\\(["\\/bfnrt]|u[a-fA-F0-9]]{4})|[^\\"])*"', Name.Tag, 'objectattribute'),
             (r'\}', Punctuation, '#pop'),
         ],
 

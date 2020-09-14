@@ -5,7 +5,7 @@
 
     Lexers for Ruby and related languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -58,8 +58,7 @@ class RubyLexer(ExtendedRegexLexer):
         ctx.pos = match.start(5)
         ctx.end = match.end(5)
         # this may find other heredocs
-        for i, t, v in self.get_tokens_unprocessed(context=ctx):
-            yield i, t, v
+        yield from self.get_tokens_unprocessed(context=ctx)
         ctx.pos = match.end()
 
         if outermost:
@@ -109,16 +108,17 @@ class RubyLexer(ExtendedRegexLexer):
             (r'\:@{0,2}[a-zA-Z_]\w*[!?]?', String.Symbol),
             (words(RUBY_OPERATORS, prefix=r'\:@{0,2}'), String.Symbol),
             (r":'(\\\\|\\'|[^'])*'", String.Symbol),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r':"', String.Symbol, 'simple-sym'),
             (r'([a-zA-Z_]\w*)(:)(?!:)',
              bygroups(String.Symbol, Punctuation)),  # Since Ruby 1.9
-            (r'"', String.Double, 'simple-string'),
+            (r'"', String.Double, 'simple-string-double'),
+            (r"'", String.Single, 'simple-string-single'),
             (r'(?<!\.)`', String.Backtick, 'simple-backtick'),
         ]
 
-        # double-quoted string and symbol
-        for name, ttype, end in ('string', String.Double, '"'), \
+        # quoted string and symbol
+        for name, ttype, end in ('string-double', String.Double, '"'), \
+                                ('string-single', String.Single, "'"),\
                                 ('sym', String.Symbol, '"'), \
                                 ('backtick', String.Backtick, '`'):
             states['simple-'+name] = [
@@ -421,16 +421,14 @@ class RubyConsoleLexer(Lexer):
                 curcode += line[end:]
             else:
                 if curcode:
-                    for item in do_insertions(
-                            insertions, rblexer.get_tokens_unprocessed(curcode)):
-                        yield item
+                    yield from do_insertions(
+                        insertions, rblexer.get_tokens_unprocessed(curcode))
                     curcode = ''
                     insertions = []
                 yield match.start(), Generic.Output, line
         if curcode:
-            for item in do_insertions(
-                    insertions, rblexer.get_tokens_unprocessed(curcode)):
-                yield item
+            yield from do_insertions(
+                insertions, rblexer.get_tokens_unprocessed(curcode))
 
 
 class FancyLexer(RegexLexer):

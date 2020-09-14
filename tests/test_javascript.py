@@ -3,83 +3,82 @@
     Javascript tests
     ~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import pytest
 
-from pygments.lexers import CoffeeScriptLexer
-from pygments.token import Token
-
-COFFEE_SLASH_GOLDEN = [
-    # input_str, slashes_are_regex_here
-    (r'/\\/', True),
-    (r'/\\/i', True),
-    (r'/\//', True),
-    (r'/(\s)/', True),
-    ('/a{2,8}/', True),
-    ('/b*c?d+/', True),
-    ('/(capture-match)/', True),
-    ('/(?:do-not-capture-match)/', True),
-    ('/this|or|that/', True),
-    ('/[char-set]/', True),
-    ('/[^neg-char_st]/', True),
-    ('/^.*$/', True),
-    (r'/\n(\f)\0\1\d\b\cm\u1234/', True),
-    (r'/^.?([^/\\\n\w]*)a\1+$/.something(or_other) # something more complex', True),
-    ("foo = (str) ->\n  /'|\"/.test str", True),
-    ('a = a / b / c', False),
-    ('a = a/b/c', False),
-    ('a = a/b/ c', False),
-    ('a = a /b/c', False),
-    ('a = 1 + /d/.test(a)', True),
-]
+from pygments.lexers.javascript import JavascriptLexer
+from pygments.token import Number
 
 
 @pytest.fixture(scope='module')
 def lexer():
-    yield CoffeeScriptLexer()
+    yield JavascriptLexer()
 
 
-@pytest.mark.parametrize('golden', COFFEE_SLASH_GOLDEN)
-def test_coffee_slashes(lexer, golden):
-    input_str, slashes_are_regex_here = golden
-    output = list(lexer.get_tokens(input_str))
-    print(output)
-    for t, s in output:
-        if '/' in s:
-            is_regex = t is Token.String.Regex
-            assert is_regex == slashes_are_regex_here, (t, s)
+@pytest.mark.parametrize(
+    'text',
+    (
+        '1', '1.', '.1', '1.1', '1e1', '1E1', '1e+1', '1E-1', '1.e1', '.1e1',
+        '0888',  # octal prefix with non-octal numbers
+    )
+)
+def test_float_literal_positive_matches(lexer, text):
+    """Test literals that should be tokenized as float literals."""
+    assert list(lexer.get_tokens(text))[0] == (Number.Float, text)
 
 
-def test_mixed_slashes(lexer):
-    fragment = u'a?/foo/:1/2;\n'
-    tokens = [
-        (Token.Name.Other, u'a'),
-        (Token.Operator, u'?'),
-        (Token.Literal.String.Regex, u'/foo/'),
-        (Token.Operator, u':'),
-        (Token.Literal.Number.Integer, u'1'),
-        (Token.Operator, u'/'),
-        (Token.Literal.Number.Integer, u'2'),
-        (Token.Punctuation, u';'),
-        (Token.Text, u'\n'),
-    ]
-    assert list(lexer.get_tokens(fragment)) == tokens
+@pytest.mark.parametrize('text', ('.\u0b6a', '.', '1..', '1n', '1ee', '1e', '1e-', '1e--1', '1e++1', '1e1.0'))
+def test_float_literals_negative_matches(lexer, text):
+    """Test text that should **not** be tokenized as float literals."""
+    assert list(lexer.get_tokens(text))[0] != (Number.Float, text)
 
 
-def test_beware_infinite_loop(lexer):
-    # This demonstrates the case that "This isn't really guarding" comment
-    # refers to.
-    fragment = '/a/x;\n'
-    tokens = [
-        (Token.Text, ''),
-        (Token.Operator, '/'),
-        (Token.Name.Other, 'a'),
-        (Token.Operator, '/'),
-        (Token.Name.Other, 'x'),
-        (Token.Punctuation, ';'),
-        (Token.Text, '\n'),
-    ]
-    assert list(lexer.get_tokens(fragment)) == tokens
+@pytest.mark.parametrize('text', ('0n', '123n'))
+def test_integer_literal_positive_matches(lexer, text):
+    """Test literals that should be tokenized as integer literals."""
+    assert list(lexer.get_tokens(text))[0] == (Number.Integer, text)
+
+
+@pytest.mark.parametrize('text', ('1N', '1', '1.0'))
+def test_integer_literals_negative_matches(lexer, text):
+    """Test text that should **not** be tokenized as integer literals."""
+    assert list(lexer.get_tokens(text))[0] != (Number.Integer, text)
+
+
+@pytest.mark.parametrize('text', ('0b01', '0B10n'))
+def test_binary_literal_positive_matches(lexer, text):
+    """Test literals that should be tokenized as binary literals."""
+    assert list(lexer.get_tokens(text))[0] == (Number.Bin, text)
+
+
+@pytest.mark.parametrize('text', ('0b0N', '0b', '0bb', '0b2'))
+def test_binary_literals_negative_matches(lexer, text):
+    """Test text that should **not** be tokenized as binary literals."""
+    assert list(lexer.get_tokens(text))[0] != (Number.Bin, text)
+
+
+@pytest.mark.parametrize('text', ('017', '071n', '0o11', '0O77n'))
+def test_octal_literal_positive_matches(lexer, text):
+    """Test literals that should be tokenized as octal literals."""
+    assert list(lexer.get_tokens(text))[0] == (Number.Oct, text)
+
+
+@pytest.mark.parametrize('text', ('01N', '089', '098n', '0o', '0OO', '0o88', '0O88n'))
+def test_octal_literals_negative_matches(lexer, text):
+    """Test text that should **not** be tokenized as octal literals."""
+    assert list(lexer.get_tokens(text))[0] != (Number.Oct, text)
+
+
+@pytest.mark.parametrize('text', ('0x01', '0Xefn', '0x0EF'))
+def test_hexadecimal_literal_positive_matches(lexer, text):
+    """Test literals that should be tokenized as hexadecimal literals."""
+    assert list(lexer.get_tokens(text))[0] == (Number.Hex, text)
+
+
+@pytest.mark.parametrize('text', ('0x0N', '0x', '0Xx', '0xg', '0xhn'))
+def test_hexadecimal_literals_negative_matches(lexer, text):
+    """Test text that should **not** be tokenized as hexadecimal literals."""
+    assert list(lexer.get_tokens(text))[0] != (Number.Hex, text)

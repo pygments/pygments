@@ -5,7 +5,7 @@
 
     Command line interface.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -232,7 +232,7 @@ def main_inner(popts, args, usage):
         return 0
 
     if opts.pop('-V', None) is not None:
-        print('Pygments version %s, (c) 2006-2019 by Georg Brandl.' % __version__)
+        print('Pygments version %s, (c) 2006-2020 by Georg Brandl.' % __version__)
         return 0
 
     # handle ``pygmentize -L``
@@ -515,7 +515,11 @@ def main_inner(popts, args, usage):
     # ... and do it!
     if '-s' not in opts:
         # process whole input as per normal...
-        highlight(code, lexer, fmter, outfile)
+        try:
+            highlight(code, lexer, fmter, outfile)
+        finally:
+            if outfn:
+                outfile.close()
         return 0
     else:
         # line by line processing of stdin (eg: for 'tail -f')...
@@ -532,6 +536,9 @@ def main_inner(popts, args, usage):
             return 0
         except KeyboardInterrupt:  # pragma: no cover
             return 0
+        finally:
+            if outfn:
+                outfile.close()
 
 
 def main(args=sys.argv):

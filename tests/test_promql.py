@@ -19,7 +19,7 @@ def lexer():
 
 
 def test_metric(lexer):
-    fragment = u"go_gc_duration_seconds"
+    fragment = "go_gc_duration_seconds"
     tokens = [
         (Token.Name.Variable, "go_gc_duration_seconds"),
         (Token.Text.Whitespace, "\n"),
@@ -28,7 +28,7 @@ def test_metric(lexer):
 
 
 def test_metric_one_label(lexer):
-    fragment = u'go_gc_duration_seconds{instance="localhost:9090"}'
+    fragment = 'go_gc_duration_seconds{instance="localhost:9090"}'
     tokens = [
         (Token.Name.Variable, "go_gc_duration_seconds"),
         (Token.Punctuation, "{"),
@@ -44,7 +44,7 @@ def test_metric_one_label(lexer):
 
 
 def test_metric_multiple_labels(lexer):
-    fragment = u'go_gc_duration_seconds{instance="localhost:9090",job="alertmanager"}'
+    fragment = 'go_gc_duration_seconds{instance="localhost:9090",job="alertmanager"}'
     tokens = [
         (Token.Name.Variable, "go_gc_duration_seconds"),
         (Token.Punctuation, "{"),
@@ -66,7 +66,7 @@ def test_metric_multiple_labels(lexer):
 
 
 def test_metric_multiple_labels_with_spaces(lexer):
-    fragment = u'go_gc_duration_seconds{ instance="localhost:9090",  job="alertmanager" }'
+    fragment = 'go_gc_duration_seconds{ instance="localhost:9090",  job="alertmanager" }'
     tokens = [
         (Token.Name.Variable, "go_gc_duration_seconds"),
         (Token.Punctuation, "{"),
@@ -91,7 +91,7 @@ def test_metric_multiple_labels_with_spaces(lexer):
 
 
 def test_expression_and_comment(lexer):
-    fragment = u'go_gc_duration_seconds{instance="localhost:9090"} # single comment\n'
+    fragment = 'go_gc_duration_seconds{instance="localhost:9090"} # single comment\n'
     tokens = [
         (Token.Name.Variable, "go_gc_duration_seconds"),
         (Token.Punctuation, "{"),
@@ -109,7 +109,7 @@ def test_expression_and_comment(lexer):
 
 
 def test_function_delta(lexer):
-    fragment = u'delta(cpu_temp_celsius{host="zeus"}[2h])'
+    fragment = 'delta(cpu_temp_celsius{host="zeus"}[2h])'
     tokens = [
         (Token.Keyword.Reserved, "delta"),
         (Token.Operator, "("),
@@ -131,7 +131,7 @@ def test_function_delta(lexer):
 
 
 def test_function_sum_with_args(lexer):
-    fragment = u"sum by (app, proc) (instance_memory_usage_bytes)\n"
+    fragment = 'sum by (app, proc) (instance_memory_usage_bytes)\n'
     tokens = [
         (Token.Keyword, "sum"),
         (Token.Text.Whitespace, " "),
@@ -153,7 +153,7 @@ def test_function_sum_with_args(lexer):
 
 
 def test_function_multi_line(lexer):
-    fragment = u"""label_replace(
+    fragment = """label_replace(
     sum by (instance) (
         irate(node_disk_read_bytes_total[2m])
     ) / 1024 / 1024,
@@ -229,7 +229,7 @@ def test_function_multi_line(lexer):
 
 
 def test_function_multi_line_with_offset(lexer):
-    fragment = u"""label_replace(
+    fragment = """label_replace(
     avg by(instance)
         (irate(node_cpu_seconds_total{mode = "idle"}[5m] offset 3s)
     ) * 100,

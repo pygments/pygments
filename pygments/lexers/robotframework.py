@@ -5,7 +5,7 @@
 
     Lexer for Robot Framework.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -98,16 +98,13 @@ class VariableTokenizer:
         before = string[:var.start]
         yield before, orig_token
         yield var.identifier + '{', SYNTAX
-        for value, token in self.tokenize(var.base, VARIABLE):
-            yield value, token
+        yield from self.tokenize(var.base, VARIABLE)
         yield '}', SYNTAX
         if var.index:
             yield '[', SYNTAX
-            for value, token in self.tokenize(var.index, VARIABLE):
-                yield value, token
+            yield from self.tokenize(var.index, VARIABLE)
             yield ']', SYNTAX
-        for value, token in self.tokenize(string[var.end:], orig_token):
-            yield value, token
+        yield from self.tokenize(string[var.end:], orig_token)
 
 
 class RowTokenizer:
@@ -123,6 +120,7 @@ class RowTokenizer:
                         'metadata': settings,
                         'variables': variables, 'variable': variables,
                         'testcases': testcases, 'testcase': testcases,
+                        'tasks': testcases, 'task': testcases,
                         'keywords': keywords, 'keyword': keywords,
                         'userkeywords': keywords, 'userkeyword': keywords}
 
@@ -137,9 +135,8 @@ class RowTokenizer:
             elif index == 0 and value.startswith('*'):
                 self._table = self._start_table(value)
                 heading = True
-            for value, token in self._tokenize(value, index, commented,
-                                               separator, heading):
-                yield value, token
+            yield from self._tokenize(value, index, commented,
+                                      separator, heading)
         self._table.end_row()
 
     def _start_table(self, header):
@@ -154,8 +151,7 @@ class RowTokenizer:
         elif heading:
             yield value, HEADING
         else:
-            for value, token in self._table.tokenize(value, index):
-                yield value, token
+            yield from self._table.tokenize(value, index)
 
 
 class RowSplitter:
@@ -165,14 +161,12 @@ class RowSplitter:
     def split(self, row):
         splitter = (row.startswith('| ') and self._split_from_pipes
                     or self._split_from_spaces)
-        for value in splitter(row):
-            yield value
+        yield from splitter(row)
         yield '\n'
 
     def _split_from_spaces(self, row):
         yield ''  # Start with (pseudo)separator similarly as with pipes
-        for value in self._space_splitter.split(row):
-            yield value
+        yield from self._space_splitter.split(row)
 
     def _split_from_pipes(self, row):
         _, separator, rest = self._pipe_splitter.split(row, 1)
@@ -215,11 +209,11 @@ class Comment(Tokenizer):
 class Setting(Tokenizer):
     _tokens = (SETTING, ARGUMENT)
     _keyword_settings = ('suitesetup', 'suiteprecondition', 'suiteteardown',
-                         'suitepostcondition', 'testsetup', 'testprecondition',
-                         'testteardown', 'testpostcondition', 'testtemplate')
+                         'suitepostcondition', 'testsetup', 'tasksetup', 'testprecondition',
+                         'testteardown','taskteardown', 'testpostcondition', 'testtemplate', 'tasktemplate')
     _import_settings = ('library', 'resource', 'variables')
     _other_settings = ('documentation', 'metadata', 'forcetags', 'defaulttags',
-                       'testtimeout')
+                       'testtimeout','tasktimeout')
     _custom_tokenizer = None
 
     def __init__(self, template_setter=None):
@@ -332,8 +326,7 @@ class _Table:
             self._tokenizer = self._prev_tokenizer
             yield value, SYNTAX
         else:
-            for value_and_token in self._tokenize(value, index):
-                yield value_and_token
+            yield from self._tokenize(value, index)
         self._prev_values_on_row.append(value)
 
     def _continues(self, value, index):

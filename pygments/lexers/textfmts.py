@@ -5,7 +5,7 @@
 
     Lexers for various text formats.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -175,11 +175,11 @@ class HttpLexer(RegexLexer):
     tokens = {
         'root': [
             (r'(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE|PATCH)( +)([^ ]+)( +)'
-             r'(HTTP)(/)(1\.[01]|2|3)(\r?\n|\Z)',
+             r'(HTTP)(/)(1\.[01]|2(?:\.0)?|3)(\r?\n|\Z)',
              bygroups(Name.Function, Text, Name.Namespace, Text,
                       Keyword.Reserved, Operator, Number, Text),
              'headers'),
-            (r'(HTTP)(/)(1\.[01]|2|3)( +)(\d{3})(?:( +)([^\r\n]*))?(\r?\n|\Z)',
+            (r'(HTTP)(/)(1\.[01]|2(?:\.0)?|3)( +)(\d{3})(?:( +)([^\r\n]*))?(\r?\n|\Z)',
              bygroups(Keyword.Reserved, Operator, Number, Text, Number, Text,
                       Name.Exception, Text),
              'headers'),
@@ -326,15 +326,14 @@ class NotmuchLexer(RegexLexer):
         except ClassNotFound:
             lexer = get_lexer_by_name('text')
 
-        for item in lexer.get_tokens_unprocessed(code):
-            yield item
+        yield from lexer.get_tokens_unprocessed(code)
 
     tokens = {
         'root': [
-            (r'\fmessage{\s*', Keyword, ('message', 'message-attr')),
+            (r'\fmessage\{\s*', Keyword, ('message', 'message-attr')),
         ],
         'message-attr': [
-            (r'(\s*id:\s*)([^\s]+)', bygroups(Name.Attribute, String)),
+            (r'(\s*id:\s*)(\S+)', bygroups(Name.Attribute, String)),
             (r'(\s*(?:depth|match|excluded):\s*)(\d+)',
              bygroups(Name.Attribute, Number.Integer)),
             (r'(\s*filename:\s*)(.+\n)',
@@ -342,21 +341,21 @@ class NotmuchLexer(RegexLexer):
             default('#pop'),
         ],
         'message': [
-            (r'\fmessage}\n', Keyword, '#pop'),
-            (r'\fheader{\n', Keyword, 'header'),
-            (r'\fbody{\n', Keyword, 'body'),
+            (r'\fmessage\}\n', Keyword, '#pop'),
+            (r'\fheader\{\n', Keyword, 'header'),
+            (r'\fbody\{\n', Keyword, 'body'),
         ],
         'header': [
-            (r'\fheader}\n', Keyword, '#pop'),
+            (r'\fheader\}\n', Keyword, '#pop'),
             (r'((?:Subject|From|To|Cc|Date):\s*)(.*\n)',
              bygroups(Name.Attribute, String)),
             (r'(.*)(\s*\(.*\))(\s*\(.*\)\n)',
              bygroups(Generic.Strong, Literal, Name.Tag)),
         ],
         'body': [
-            (r'\fpart{\n', Keyword, 'part'),
-            (r'\f(part|attachment){\s*', Keyword, ('part', 'part-attr')),
-            (r'\fbody}\n', Keyword, '#pop'),
+            (r'\fpart\{\n', Keyword, 'part'),
+            (r'\f(part|attachment)\{\s*', Keyword, ('part', 'part-attr')),
+            (r'\fbody\}\n', Keyword, '#pop'),
         ],
         'part-attr': [
             (r'(ID:\s*)(\d+)', bygroups(Name.Attribute, Number.Integer)),
@@ -367,10 +366,10 @@ class NotmuchLexer(RegexLexer):
             default('#pop'),
         ],
         'part': [
-            (r'\f(?:part|attachment)}\n', Keyword, '#pop'),
-            (r'\f(?:part|attachment){\s*', Keyword, ('#push', 'part-attr')),
+            (r'\f(?:part|attachment)\}\n', Keyword, '#pop'),
+            (r'\f(?:part|attachment)\{\s*', Keyword, ('#push', 'part-attr')),
             (r'^Non-text part: .*\n', Comment),
-            (r'(?s)(.*?(?=\f(?:part|attachment)}\n))', _highlight_code),
+            (r'(?s)(.*?(?=\f(?:part|attachment)\}\n))', _highlight_code),
         ],
     }
 
@@ -408,7 +407,7 @@ class KernelLogLexer(RegexLexer):
             default('info'),
         ],
         'base': [
-            (r'\[[0-9\. ]+\] ', Number),
+            (r'\[[0-9. ]+\] ', Number),
             (r'(?<=\] ).+?:', Keyword),
             (r'\n', Text, '#pop'),
         ],

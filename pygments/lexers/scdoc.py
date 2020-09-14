@@ -5,7 +5,7 @@
 
     Lexer for scdoc, a simple man page generator.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -59,7 +59,7 @@ class ScdocLexer(RegexLexer):
             # underlines
             (r'(\s)(_[^_]+_)(\W|\n)', bygroups(Text, Generic.Emph, Text)),
             # bold
-            (r'(\s)(\*[^\*]+\*)(\W|\n)', bygroups(Text, Generic.Strong, Text)),
+            (r'(\s)(\*[^*]+\*)(\W|\n)', bygroups(Text, Generic.Strong, Text)),
             # inline code
             (r'`[^`]+`', String.Backtick),
 

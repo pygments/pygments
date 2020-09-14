@@ -5,7 +5,7 @@
 
     Contains built-in styles.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -81,7 +81,6 @@ def get_style_by_name(name):
 def get_all_styles():
     """Return an generator for all styles by name,
     both builtin and plugin."""
-    for name in STYLE_MAP:
-        yield name
+    yield from STYLE_MAP
     for name, _ in find_plugin_styles():
         yield name

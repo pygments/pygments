@@ -7,15 +7,24 @@ pull request numbers to the requests at
 <https://github.com/pygments/pygments/pulls>.
 
 
-Version 2.7.0
+Version 2.8.0
 -------------
 (not released yet)
 
+Version 2.7.0
+-------------
+(released September 12, 2020)
+
 - Added lexers:
 
+  * Arrow (PR#1481, PR#1499)
+  * BARE (PR#1488)
   * Devicetree (PR#1434)
   * F* (PR#1409)
   * GDScript (PR#1457)
+  * Pointless (PR#1494)
+  * PromQL (PR#1506)
+  * PsySH (PR#1438)
   * Singularity (PR#1285)
   * TiddlyWiki5 (PR#1390)
   * TNT (PR#1414)
@@ -23,29 +32,52 @@ Version 2.7.0
 
 - Updated lexers:
 
+  * APL (PR#1503)
   * C++ (PR#1350, which also fixes: #1222, #996, #906, #828, #1162, #1166,
     #1396)
   * Chapel (PR#1423)
+  * CMake (#1491)
+  * CSound (#1509)
+  * Cython (PR#1507)
   * Dart (PR#1449)
+  * Fennel (PR#1535)
   * Fortran (PR#1442)
-  * HTTP (PR#1432)
+  * GAS (PR#1530)
+  * HTTP (PR#1432, #1520, PR#1521)
   * Inform 6 (PR#1461)
+  * Javascript (PR#1533)
+  * JSON (#1065, PR#1528)
   * Lean (PR#1415)
   * Matlab (PR#1399)
+  * Markdown (#1492, PR#1495)
+  * MySQL (#975, #1063, #1453, PR#1527)
   * NASM (PR#1465)
   * Nim (PR#1426)
+  * PostgreSQL (PR#1513)
+  * PowerShell (PR#1398, PR#1497)
+  * Protobuf (PR#1505)
+  * Robot (PR#1480)
   * SQL (PR#1402)
-  * SystemVerilog (PR#1436, PR#1452, PR#1454, PR#1460, PR#1462, PR#1463, PR#1464)
+  * SystemVerilog (PR#1436, PR#1452, PR#1454, PR#1460, PR#1462, PR#1463, PR#1464, PR#1471, #1496, PR#1504)
   * TeraTerm (PR#1337)
+  * XML (#1502)
 
 - Added a new filter for math symbols (PR#1406)
 - The Kconfig lexer will match Kconfig derivative names now (PR#1458)
+- Improved HTML formatter output (PR#1500)
+- ``.markdown`` is now recognized as an extension for Markdown files (PR#1476)
+- Fixed line number colors for Solarized (PR#1477, #1356)
+- Improvements to exception handling (PR#1478)
+- Improvements to tests (PR#1532, PR#1533, PR#1539)
+- Various code cleanups (PR#1536, PR#1537, PR#1538)
+
 
 Version 2.6.1
 -------------
 (released March 8, 2020)
 
 - This release fixes a packaging issue. No functional changes.
+
 
 Version 2.6
 -----------
@@ -77,7 +109,7 @@ Version 2.6
   * Perl6/Raku lexer (PR#1344)
   * Python3 (PR#1382, PR#1385)
   * Rust: Updated lexer to cover more builtins (mostly macros) and miscellaneous
-  new syntax (PR#1320)
+    new syntax (PR#1320)
   * SQL: Add temporal support keywords (PR#1402)
 
 - The 256-color/true-color terminal formatters now support the italic attribute
@@ -95,6 +127,7 @@ Version 2.6
 - Recognize ``pipenv`` and ``poetry`` dependency & lock files (PR#1376)
 - Improve font search on Windows (#1247)
 - Remove unused script block (#1401)
+
 
 Version 2.5.2
 -------------

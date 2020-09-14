@@ -5,7 +5,7 @@
 
     Lexer for the raw E-mail.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -25,7 +25,7 @@ class EmailHeaderLexer(RegexLexer):
     """
 
     def __init__(self, **options):
-        super(EmailHeaderLexer, self).__init__(**options)
+        super().__init__(**options)
         self.highlight_x = get_bool_opt(options, "highlight-X-header", False)
 
     def get_x_header_tokens(self, match):
@@ -36,8 +36,7 @@ class EmailHeaderLexer(RegexLexer):
             # content
             default_actions = self.get_tokens_unprocessed(
                 match.group(2), stack=("root", "header"))
-            for item in default_actions:
-                yield item
+            yield from default_actions
         else:
             # lowlight
             yield match.start(1), Comment.Special, match.group(1)
@@ -149,6 +148,4 @@ class EmailLexer(DelegatingLexer):
     mimetypes = ["message/rfc822"]
 
     def __init__(self, **options):
-        super(EmailLexer, self).__init__(
-            EmailHeaderLexer, MIMELexer, Comment, **options
-        )
+        super().__init__(EmailHeaderLexer, MIMELexer, Comment, **options)

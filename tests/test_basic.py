@@ -3,7 +3,7 @@
     Pygments Basic lexers tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -57,7 +57,7 @@ def test_can_lex_integer(lexer):
 
 
 def test_can_lex_names(lexer):
-    assert_are_tokens_of_type(lexer, u'thingy thingy123 _thingy _123', Name)
+    assert_are_tokens_of_type(lexer, 'thingy thingy123 _thingy _123', Name)
 
 
 def test_can_recover_after_unterminated_string(lexer):

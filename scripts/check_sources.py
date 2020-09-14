@@ -7,7 +7,7 @@
     Make sure each Python file has a correct file header
     including copyright and license information.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -34,7 +34,7 @@ def checker(*suffixes, **kwds):
 
 
 name_mail_re = r'[\w ]+(<.*?>)?'
-copyright_re = re.compile(r'^    :copyright: Copyright 2006-2019 by '
+copyright_re = re.compile(r'^    :copyright: Copyright 2006-2020 by '
                           r'the Pygments team, see AUTHORS\.$', re.UNICODE)
 copyright_2_re = re.compile(r'^                %s(, %s)*[,.]$' %
                             (name_mail_re, name_mail_re), re.UNICODE)
@@ -197,7 +197,7 @@ def main(argv):
                 if not in_pygments_pkg and checker.only_pkg:
                     continue
                 for lno, msg in checker(fn, lines):
-                    print(u"%s:%d: %s" % (fn, lno, msg), file=out)
+                    print('%s:%d: %s' % (fn, lno, msg), file=out)
                     num += 1
     if verbose:
         print()

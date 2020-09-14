@@ -198,7 +198,6 @@ def test_command_mode(lexer):
         (Token.Name, 'help'),
         (Token.Text, ' '),
         (Token.Literal.String, 'sin'),
-        (Token.Punctuation, ''),
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens

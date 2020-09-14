@@ -1,0 +1,30 @@
+
+-----------------------------------------------------------
+-- Print the lyrics to the song '99 bottles of beer'
+
+output =
+  range(99, 1)
+  |> map(showBeer)
+  |> printLines
+
+beerFmt = """{} of beer on the wall!
+{} of beer!
+You take one down, pass it around
+{}"""
+
+showBeer(n) =
+  format(
+    beerFmt,
+    [showBottle(n), showBottle(n), nextBeer(n - 1)]
+  )
+
+nextBeer(n) =
+  if n == 0 then "No more bottles of beer on the wall!"
+  else format("{} of beer on the wall!\n", [showBottle(n)])
+
+-----------------------------------------------------------
+-- Get appropriate singular / plural form of 'n bottle(s)'
+
+showBottle(n) =
+  format("{} {}", [n, bottleStr])
+  where bottleStr = if n == 1 then "bottle" else "bottles"

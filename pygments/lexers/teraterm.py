@@ -5,7 +5,7 @@
 
     Lexer for Tera Term macro files.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -40,7 +40,7 @@ class TeraTermLexer(RegexLexer):
             include('numeric-literals'),
             include('string-literals'),
             include('all-whitespace'),
-            (r'[^\s]', Text),
+            (r'\S', Text),
         ],
         'comments': [
             (r';[^\r\n]*', Comment.Single),
@@ -52,7 +52,7 @@ class TeraTermLexer(RegexLexer):
             (r'[*/]', Comment.Multiline)
         ],
         'labels': [
-            (r'(?i)^(\s*)(:[0-9a-z_]+)', bygroups(Text, Name.Label)),
+            (r'(?i)^(\s*)(:[a-z0-9_]+)', bygroups(Text, Name.Label)),
         ],
         'commands': [
             (
@@ -259,10 +259,8 @@ class TeraTermLexer(RegexLexer):
                 r')\b',
                 Keyword,
             ),
-            (
-                r'(?i)(call|goto)([ \t]+)([0-9a-z_]+)',
-                bygroups(Keyword, Text, Name.Label),
-            )
+            (r'(?i)(call|goto)([ \t]+)([a-z0-9_]+)',
+             bygroups(Keyword, Text, Name.Label)),
         ],
         'builtin-variables': [
             (
@@ -297,7 +295,7 @@ class TeraTermLexer(RegexLexer):
             ),
         ],
         'user-variables': [
-            (r'(?i)[A-Z_][A-Z0-9_]*', Name.Variable),
+            (r'(?i)[a-z_][a-z0-9_]*', Name.Variable),
         ],
         'numeric-literals': [
             (r'(-?)([0-9]+)', bygroups(Operator, Number.Integer)),
@@ -309,7 +307,7 @@ class TeraTermLexer(RegexLexer):
             (r'"', String.Double, 'in-double-string'),
         ],
         'in-general-string': [
-            (r'[\\][\\nt]', String.Escape),  # Only three escapes are supported.
+            (r'\\[\\nt]', String.Escape),  # Only three escapes are supported.
             (r'.', String),
         ],
         'in-single-string': [
@@ -326,7 +324,7 @@ class TeraTermLexer(RegexLexer):
             (r'[()]', String.Symbol),
         ],
         'all-whitespace': [
-            (r'[\s]+', Text),
+            (r'\s+', Text),
         ],
     }
 

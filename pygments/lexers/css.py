@@ -5,7 +5,7 @@
 
     Lexers for CSS and related stylesheet formats.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -358,7 +358,7 @@ class CssLexer(RegexLexer):
             (r'/\*(?:.|\n)*?\*/', Comment),
             include('numeric-values'),
             (r'[*+/-]', Operator),
-            (r'[,]', Punctuation),
+            (r',', Punctuation),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r"'(\\\\|\\'|[^'])*'", String.Single),
             (r'[a-zA-Z_-]\w*', Name),
@@ -396,7 +396,7 @@ common_sass_tokens = {
             'behind', 'below', 'bidi-override', 'blink', 'block', 'bold', 'bolder', 'both',
             'capitalize', 'center-left', 'center-right', 'center', 'circle',
             'cjk-ideographic', 'close-quote', 'collapse', 'condensed', 'continuous',
-            'crop', 'crosshair', 'cross', 'cursive', 'dashed', 'decimal-leading-zero',
+            'crosshair', 'cross', 'cursive', 'dashed', 'decimal-leading-zero',
             'decimal', 'default', 'digits', 'disc', 'dotted', 'double', 'e-resize', 'embed',
             'extra-condensed', 'extra-expanded', 'expanded', 'fantasy', 'far-left',
             'far-right', 'faster', 'fast', 'fixed', 'georgian', 'groove', 'hebrew', 'help',

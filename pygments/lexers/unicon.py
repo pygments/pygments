@@ -5,7 +5,7 @@
 
     Lexers for the Icon and Unicon languages, including ucode VM.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -129,17 +129,15 @@ class UniconLexer(RegexLexer):
                 'WSync'), prefix=r'\b', suffix=r'\b'),
              Name.Function),
             include('numbers'),
-            (r'<@|<<@|>@|>>@|\.>|\->', Operator),
-            (r'\*\*|\+\+|\-\-|\.|\=|\~\=|<\=|>\=|\=\=|\~\=\=|<<|<<\=|>>|>>\=', Operator),
-            (r':\=|:\=:|\->|<\->|\+:\=|\|', Operator),
-            (r'\=\=\=|\~\=\=\=', Operator),
+            (r'<@|<<@|>@|>>@|\.>|->|===|~===|\*\*|\+\+|--|\.|~==|~=|<=|>=|==|'
+             r'=|<<=|<<|>>=|>>|:=:|:=|->|<->|\+:=|\|', Operator),
             (r'"(?:[^\\"]|\\.)*"', String),
             (r"'(?:[^\\']|\\.)*'", String.Character),
             (r'[*<>+=/&!?@~\\-]', Operator),
             (r'\^', Operator),
             (r'(\w+)(\s*|[(,])', bygroups(Name, using(this))),
-            (r"([\[\]])", Punctuation),
-            (r"(<>|=>|[()|:;,.'`]|[{}]|[%]|[&?])", Punctuation),
+            (r"[\[\]]", Punctuation),
+            (r"<>|=>|[()|:;,.'`{}%&?]", Punctuation),
             (r'\n+', Text),
         ],
         'numbers': [
@@ -272,15 +270,14 @@ class IconLexer(RegexLexer):
                 'WSync'), prefix=r'\b', suffix=r'\b'),
              Name.Function),
             include('numbers'),
-            (r'\*\*|\+\+|\-\-|\.|\=|\~\=|<\=|>\=|\=\=|\~\=\=|<<|<<\=|>>|>>\=', Operator),
-            (r':\=|:\=:|<\-|<\->|\+:\=|\||\|\|', Operator),
-            (r'\=\=\=|\~\=\=\=', Operator),
+            (r'===|~===|\*\*|\+\+|--|\.|==|~==|<=|>=|=|~=|<<=|<<|>>=|>>|'
+             r':=:|:=|<->|<-|\+:=|\|\||\|', Operator),
             (r'"(?:[^\\"]|\\.)*"', String),
             (r"'(?:[^\\']|\\.)*'", String.Character),
             (r'[*<>+=/&!?@~\\-]', Operator),
             (r'(\w+)(\s*|[(,])', bygroups(Name, using(this))),
-            (r"([\[\]])", Punctuation),
-            (r"(<>|=>|[()|:;,.'`]|[{}]|[%^]|[&?])", Punctuation),
+            (r"[\[\]]", Punctuation),
+            (r"<>|=>|[()|:;,.'`{}%\^&?]", Punctuation),
             (r'\n+', Text),
         ],
         'numbers': [

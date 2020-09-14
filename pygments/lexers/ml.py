@@ -5,7 +5,7 @@
 
     Lexers for ML family languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -767,6 +767,7 @@ class OpaLexer(RegexLexer):
         ],
     }
 
+
 class ReasonLexer(RegexLexer):
     """
     For the ReasonML language (https://reasonml.github.io/).
@@ -780,18 +781,18 @@ class ReasonLexer(RegexLexer):
     mimetypes = ['text/x-reasonml']
 
     keywords = (
-    'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto',
-    'else', 'end', 'exception', 'external', 'false', 'for', 'fun', 'esfun',
-    'function', 'functor', 'if', 'in', 'include', 'inherit', 'initializer', 'lazy',
-    'let', 'switch', 'module', 'pub', 'mutable', 'new', 'nonrec', 'object', 'of',
-    'open', 'pri', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
-    'type', 'val', 'virtual', 'when', 'while', 'with'
+        'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto',
+        'else', 'end', 'exception', 'external', 'false', 'for', 'fun', 'esfun',
+        'function', 'functor', 'if', 'in', 'include', 'inherit', 'initializer', 'lazy',
+        'let', 'switch', 'module', 'pub', 'mutable', 'new', 'nonrec', 'object', 'of',
+        'open', 'pri', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
+        'type', 'val', 'virtual', 'when', 'while', 'with',
     )
     keyopts = (
         '!=', '#', '&', '&&', r'\(', r'\)', r'\*', r'\+', ',', '-',
         r'-\.', '=>', r'\.', r'\.\.', r'\.\.\.', ':', '::', ':=', ':>', ';', ';;', '<',
         '<-', '=', '>', '>]', r'>\}', r'\?', r'\?\?', r'\[', r'\[<', r'\[>',
-        r'\[\|', ']', '_', '`', r'\{', r'\{<', r'\|\|', r'\|', r'\|]', r'\}', '~'
+        r'\[\|', ']', '_', '`', r'\{', r'\{<', r'\|', r'\|\|', r'\|]', r'\}', '~'
     )
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
@@ -812,7 +813,7 @@ class ReasonLexer(RegexLexer):
             (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name.Class),
             (r'//.*?\n', Comment.Single),
-            (r'\/\*(?![\/])', Comment.Multiline, 'comment'),
+            (r'\/\*(?!/)', Comment.Multiline, 'comment'),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator.Word),
             (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
@@ -837,10 +838,10 @@ class ReasonLexer(RegexLexer):
             (r'[~?][a-z][\w\']*:', Name.Variable),
         ],
         'comment': [
-            (r'[^\/*]+', Comment.Multiline),
+            (r'[^/*]+', Comment.Multiline),
             (r'\/\*', Comment.Multiline, '#push'),
             (r'\*\/', Comment.Multiline, '#pop'),
-            (r'[\*]', Comment.Multiline),
+            (r'\*', Comment.Multiline),
         ],
         'string': [
             (r'[^\\"]+', String.Double),
@@ -885,10 +886,10 @@ class FStarLexer(RegexLexer):
     assume_keywords = ('assume', 'admit', 'assert', 'calc')
     keyopts = (
         r'~', r'-', r'/\\', r'\\/', r'<:', r'<@', r'\(\|', r'\|\)', r'#', r'u#',
-        r'&', r'\(\)', r'\(', r'\)', r',', r'~>', r'->', r'<--', r'<-', r'<==>',
-        r'==>', r'\.', r'\?\.', r'\?', r'\.\[', r'\.\(\|', r'\.\(', r'\.\[\|',
-        r'\{:pattern', r':', r'::', r':=', r';;', r';', r'=', r'%\[', r'!\{',
-        r'\[@', r'\[', r'\[\|', r'\|>', r'\]', r'\|\]', r'\{', r'\|', r'\}', r'\$'
+        r'&', r'\(', r'\)', r'\(\)', r',', r'~>', r'->', r'<-', r'<--', r'<==>',
+        r'==>', r'\.', r'\?', r'\?\.', r'\.\[', r'\.\(', r'\.\(\|', r'\.\[\|',
+        r'\{:pattern', r':', r'::', r':=', r';', r';;', r'=', r'%\[', r'!\{',
+        r'\[', r'\[@', r'\[\|', r'\|>', r'\]', r'\|\]', r'\{', r'\|', r'\}', r'\$'
     )
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
@@ -928,7 +929,7 @@ class FStarLexer(RegexLexer):
              String.Char),
             (r"'.'", String.Char),
             (r"'", Keyword),  # a stray quote is another syntax element
-            (r"\`([\w\'\.]+)\`", Operator.Word),  # for infix applications
+            (r"\`([\w\'.]+)\`", Operator.Word),  # for infix applications
             (r"\`", Keyword),  # for quoting
             (r'"', String.Double, 'string'),
 

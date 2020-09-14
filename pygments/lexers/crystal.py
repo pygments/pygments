@@ -5,7 +5,7 @@
 
     Lexer for Crystal.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -58,8 +58,7 @@ class CrystalLexer(ExtendedRegexLexer):
         ctx.pos = match.start(5)
         ctx.end = match.end(5)
         # this may find other heredocs
-        for i, t, v in self.get_tokens_unprocessed(context=ctx):
-            yield i, t, v
+        yield from self.get_tokens_unprocessed(context=ctx)
         ctx.pos = match.end()
 
         if outermost:
@@ -135,7 +134,7 @@ class CrystalLexer(ExtendedRegexLexer):
                 ('\\(', '\\)', '()', 'pa'), \
                 ('<', '>', '<>', 'ab'):
             states[name+'-intp-string'] = [
-                (r'\\[' + lbrace + ']', String.Other),
+                (r'\\' + lbrace, String.Other),
                 (lbrace, String.Other, '#push'),
                 (rbrace, String.Other, '#pop'),
                 include('string-intp-escaped'),

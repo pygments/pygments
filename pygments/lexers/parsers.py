@@ -5,7 +5,7 @@
 
     Lexers for parser generators.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -28,7 +28,6 @@ __all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
            'RagelCppLexer', 'RagelObjectiveCLexer', 'RagelRubyLexer',
            'RagelJavaLexer', 'AntlrLexer', 'AntlrPythonLexer',
            'AntlrPerlLexer', 'AntlrRubyLexer', 'AntlrCppLexer',
-           # 'AntlrCLexer',
            'AntlrCSharpLexer', 'AntlrObjectiveCLexer',
            'AntlrJavaLexer', 'AntlrActionScriptLexer',
            'TreetopLexer', 'EbnfLexer']
@@ -222,8 +221,7 @@ class RagelRubyLexer(DelegatingLexer):
     filenames = ['*.rl']
 
     def __init__(self, **options):
-        super(RagelRubyLexer, self).__init__(RubyLexer, RagelEmbeddedLexer,
-                                             **options)
+        super().__init__(RubyLexer, RagelEmbeddedLexer, **options)
 
     def analyse_text(text):
         return '@LANG: ruby' in text
@@ -241,8 +239,7 @@ class RagelCLexer(DelegatingLexer):
     filenames = ['*.rl']
 
     def __init__(self, **options):
-        super(RagelCLexer, self).__init__(CLexer, RagelEmbeddedLexer,
-                                          **options)
+        super().__init__(CLexer, RagelEmbeddedLexer, **options)
 
     def analyse_text(text):
         return '@LANG: c' in text
@@ -260,7 +257,7 @@ class RagelDLexer(DelegatingLexer):
     filenames = ['*.rl']
 
     def __init__(self, **options):
-        super(RagelDLexer, self).__init__(DLexer, RagelEmbeddedLexer, **options)
+        super().__init__(DLexer, RagelEmbeddedLexer, **options)
 
     def analyse_text(text):
         return '@LANG: d' in text
@@ -278,7 +275,7 @@ class RagelCppLexer(DelegatingLexer):
     filenames = ['*.rl']
 
     def __init__(self, **options):
-        super(RagelCppLexer, self).__init__(CppLexer, RagelEmbeddedLexer, **options)
+        super().__init__(CppLexer, RagelEmbeddedLexer, **options)
 
     def analyse_text(text):
         return '@LANG: c++' in text
@@ -296,9 +293,7 @@ class RagelObjectiveCLexer(DelegatingLexer):
     filenames = ['*.rl']
 
     def __init__(self, **options):
-        super(RagelObjectiveCLexer, self).__init__(ObjectiveCLexer,
-                                                   RagelEmbeddedLexer,
-                                                   **options)
+        super().__init__(ObjectiveCLexer, RagelEmbeddedLexer, **options)
 
     def analyse_text(text):
         return '@LANG: objc' in text
@@ -316,8 +311,7 @@ class RagelJavaLexer(DelegatingLexer):
     filenames = ['*.rl']
 
     def __init__(self, **options):
-        super(RagelJavaLexer, self).__init__(JavaLexer, RagelEmbeddedLexer,
-                                             **options)
+        super().__init__(JavaLexer, RagelEmbeddedLexer, **options)
 
     def analyse_text(text):
         return '@LANG: java' in text
@@ -515,30 +509,8 @@ class AntlrLexer(RegexLexer):
     def analyse_text(text):
         return re.search(r'^\s*grammar\s+[a-zA-Z0-9]+\s*;', text, re.M)
 
+
 # http://www.antlr.org/wiki/display/ANTLR3/Code+Generation+Targets
-
-# TH: I'm not aware of any language features of C++ that will cause
-# incorrect lexing of C files.  Antlr doesn't appear to make a distinction,
-# so just assume they're C++.  No idea how to make Objective C work in the
-# future.
-
-# class AntlrCLexer(DelegatingLexer):
-#    """
-#    ANTLR with C Target
-#
-#    .. versionadded:: 1.1
-#    """
-#
-#    name = 'ANTLR With C Target'
-#    aliases = ['antlr-c']
-#    filenames = ['*.G', '*.g']
-#
-#    def __init__(self, **options):
-#        super(AntlrCLexer, self).__init__(CLexer, AntlrLexer, **options)
-#
-#    def analyse_text(text):
-#        return re.match(r'^\s*language\s*=\s*C\s*;', text)
-
 
 class AntlrCppLexer(DelegatingLexer):
     """
@@ -552,7 +524,7 @@ class AntlrCppLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrCppLexer, self).__init__(CppLexer, AntlrLexer, **options)
+        super().__init__(CppLexer, AntlrLexer, **options)
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
@@ -571,8 +543,7 @@ class AntlrObjectiveCLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrObjectiveCLexer, self).__init__(ObjectiveCLexer,
-                                                   AntlrLexer, **options)
+        super().__init__(ObjectiveCLexer, AntlrLexer, **options)
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
@@ -591,8 +562,7 @@ class AntlrCSharpLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrCSharpLexer, self).__init__(CSharpLexer, AntlrLexer,
-                                               **options)
+        super().__init__(CSharpLexer, AntlrLexer, **options)
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
@@ -611,8 +581,7 @@ class AntlrPythonLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrPythonLexer, self).__init__(PythonLexer, AntlrLexer,
-                                               **options)
+        super().__init__(PythonLexer, AntlrLexer, **options)
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
@@ -631,8 +600,7 @@ class AntlrJavaLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrJavaLexer, self).__init__(JavaLexer, AntlrLexer,
-                                             **options)
+        super().__init__(JavaLexer, AntlrLexer, **options)
 
     def analyse_text(text):
         # Antlr language is Java by default
@@ -651,8 +619,7 @@ class AntlrRubyLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrRubyLexer, self).__init__(RubyLexer, AntlrLexer,
-                                             **options)
+        super().__init__(RubyLexer, AntlrLexer, **options)
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
@@ -671,8 +638,7 @@ class AntlrPerlLexer(DelegatingLexer):
     filenames = ['*.G', '*.g']
 
     def __init__(self, **options):
-        super(AntlrPerlLexer, self).__init__(PerlLexer, AntlrLexer,
-                                             **options)
+        super().__init__(PerlLexer, AntlrLexer, **options)
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
@@ -692,8 +658,7 @@ class AntlrActionScriptLexer(DelegatingLexer):
 
     def __init__(self, **options):
         from pygments.lexers.actionscript import ActionScriptLexer
-        super(AntlrActionScriptLexer, self).__init__(ActionScriptLexer,
-                                                     AntlrLexer, **options)
+        super().__init__(ActionScriptLexer, AntlrLexer, **options)
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
@@ -781,7 +746,7 @@ class TreetopLexer(DelegatingLexer):
     filenames = ['*.treetop', '*.tt']
 
     def __init__(self, **options):
-        super(TreetopLexer, self).__init__(RubyLexer, TreetopBaseLexer, **options)
+        super().__init__(RubyLexer, TreetopBaseLexer, **options)
 
 
 class EbnfLexer(RegexLexer):

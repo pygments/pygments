@@ -5,11 +5,11 @@
 
     Lexer for the Clean language.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import ExtendedRegexLexer, words, include, bygroups
+from pygments.lexer import ExtendedRegexLexer, words, default, include, bygroups
 from pygments.token import Comment, Error, Keyword, Literal, Name, Number, \
     Operator, Punctuation, String, Whitespace
 
@@ -35,9 +35,9 @@ class CleanLexer(ExtendedRegexLexer):
 
     modulewords = ('implementation', 'definition', 'system')
 
-    lowerId = r'[a-z`][\w\d`]*'
-    upperId = r'[A-Z`][\w\d`]*'
-    funnyId = r'[~@#\$%\^?!+\-*<>\\/|&=:]+'
+    lowerId = r'[a-z`][\w`]*'
+    upperId = r'[A-Z`][\w`]*'
+    funnyId = r'[~@#$%\^?!+\-*<>\\/|&=:]+'
     scoreUpperId = r'_' + upperId
     scoreLowerId = r'_' + lowerId
     moduleId = r'[a-zA-Z_][a-zA-Z0-9_.`]+'
@@ -92,7 +92,8 @@ class CleanLexer(ExtendedRegexLexer):
             (r'(\s*)\b(as)\b', bygroups(Whitespace, Keyword), ('#pop', 'import.module.as')),
             (moduleId, Name.Class),
             (r'(\s*)(,)(\s*)', bygroups(Whitespace, Punctuation, Whitespace)),
-            (r'\s*', Whitespace, '#pop'),
+            (r'\s+', Whitespace),
+            default('#pop'),
         ],
         'import.module.as': [
             include('whitespace'),
@@ -160,7 +161,7 @@ class CleanLexer(ExtendedRegexLexer):
             (r'[$\n]', Error, '#pop'),
         ],
         'operators': [
-            (r'[-~@#\$%\^?!+*<>\\/|&=:\.]+', Operator),
+            (r'[-~@#$%\^?!+*<>\\/|&=:.]+', Operator),
             (r'\b_+\b', Operator),
         ],
         'delimiters': [

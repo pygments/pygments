@@ -3,7 +3,7 @@
     Pygments SQL lexers tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -62,7 +62,7 @@ def test_can_lex_integer(lexer):
 
 def test_can_lex_names(lexer):
     _assert_are_tokens_of_type(lexer,
-                               u'thingy thingy123 _thingy _ _123 Ähnliches Müll #temp1 ##temp2',
+                               'thingy thingy123 _thingy _ _123 Ähnliches Müll #temp1 ##temp2',
                                Name)
 
 

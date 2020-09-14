@@ -5,19 +5,21 @@
 
     Lexers for PHP and related languages.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, default, using, \
-    this, words
+from pygments.lexer import Lexer, RegexLexer, include, bygroups, default, \
+    using, this, words, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Other
+    Number, Punctuation, Other, Generic
 from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 
-__all__ = ['ZephirLexer', 'PhpLexer']
+__all__ = ['ZephirLexer', 'PsyshConsoleLexer', 'PhpLexer']
+
+line_re = re.compile('.*?\n')
 
 
 class ZephirLexer(RegexLexer):
@@ -83,6 +85,55 @@ class ZephirLexer(RegexLexer):
             (r"'(\\\\|\\'|[^'])*'", String.Single),
         ]
     }
+
+
+class PsyshConsoleLexer(Lexer):
+    """
+    For `PsySH`_ console output, such as:
+
+    .. sourcecode:: psysh
+
+        >>> $greeting = function($name): string {
+        ...     return "Hello, {$name}";
+        ... };
+        => Closure($name): string {#2371 …3}
+        >>> $greeting('World')
+        => "Hello, World"
+
+    .. _PsySH: https://psysh.org/
+    .. versionadded:: 2.7
+    """
+    name = 'PsySH console session for PHP'
+    aliases = ['psysh']
+
+    def __init__(self, **options):
+        options['startinline'] = True
+        Lexer.__init__(self, **options)
+
+    def get_tokens_unprocessed(self, text):
+        phplexer = PhpLexer(**self.options)
+        curcode = ''
+        insertions = []
+        for match in line_re.finditer(text):
+            line = match.group()
+            if line.startswith('>>> ') or line.startswith('... '):
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, line[:4])]))
+                curcode += line[4:]
+            elif line.rstrip() == '...':
+                insertions.append((len(curcode),
+                                   [(0, Generic.Prompt, '...')]))
+                curcode += line[3:]
+            else:
+                if curcode:
+                    yield from do_insertions(
+                        insertions, phplexer.get_tokens_unprocessed(curcode))
+                    curcode = ''
+                    insertions = []
+                yield match.start(), Generic.Output, line
+        if curcode:
+            yield from do_insertions(insertions,
+                                     phplexer.get_tokens_unprocessed(curcode))
 
 
 class PhpLexer(RegexLexer):

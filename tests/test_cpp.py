@@ -21,18 +21,18 @@ def lexer():
 
 
 def test_good_comment(lexer):
-    fragment = u'/* foo */\n'
+    fragment = '/* foo */\n'
     tokens = [
-        (Token.Comment.Multiline, u'/* foo */'),
-        (Token.Text, u'\n'),
+        (Token.Comment.Multiline, '/* foo */'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_open_comment(lexer):
-    fragment = u'/* foo\n'
+    fragment = '/* foo\n'
     tokens = [
-        (Token.Comment.Multiline, u'/* foo\n'),
+        (Token.Comment.Multiline, '/* foo\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 

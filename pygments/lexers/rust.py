@@ -5,7 +5,7 @@
 
     Lexers for the Rust language.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -40,7 +40,7 @@ class RustLexer(RegexLexer):
         'ExactSizeIterator', 'Option', 'Result',
         'Box', 'ToOwned', 'String', 'ToString', 'Vec',
         'Clone', 'Copy', 'Default', 'Eq', 'Hash', 'Ord', 'PartialEq',
-        'PartialOrd', 'Eq', 'Ord',
+        'PartialOrd', 'Ord',
     ), suffix=r'\b'), Name.Builtin)
 
     builtin_funcs_macros = (words((

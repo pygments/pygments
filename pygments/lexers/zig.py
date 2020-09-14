@@ -5,7 +5,7 @@
 
     Lexers for Zig.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -102,7 +102,7 @@ class ZigLexer(RegexLexer):
 
             # Characters
             (r'\'\\\'\'', String.Escape),
-            (r'\'\\(|x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{6}|[nr\\t\'"])\'',
+            (r'\'\\(x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{6}|[nr\\t\'"])\'',
              String.Escape),
             (r'\'[^\\\']\'', String),
 
@@ -122,8 +122,3 @@ class ZigLexer(RegexLexer):
             (r'"', String, '#pop')
         ]
     }
-
-    def get_tokens_unprocessed(self, text):
-        for index, token, value in \
-                RegexLexer.get_tokens_unprocessed(self, text):
-            yield index, token, value

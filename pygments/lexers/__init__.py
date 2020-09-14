@@ -5,7 +5,7 @@
 
     Pygments lexers.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -235,8 +235,7 @@ def _iter_lexerclasses(plugins=True):
             _load_lexers(module_name)
         yield _lexer_cache[name]
     if plugins:
-        for lexer in find_plugin_lexers():
-            yield lexer
+        yield from find_plugin_lexers()
 
 
 def guess_lexer_for_filename(_fn, _text, **options):

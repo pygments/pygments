@@ -5,7 +5,7 @@
 
     Lexers for Igor Pro.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -391,15 +391,10 @@ class IgorLexer(RegexLexer):
         'WaveRefIndexedDFR', 'WaveRefsEqual', 'WaveRefWaveToList', 'WaveTextEncoding',
         'WaveType', 'WaveUnits', 'WhichListItem', 'WinList', 'WinName', 'WinRecreation',
         'WinType', 'wnoise', 'xcsr', 'XWaveName', 'XWaveRefFromTrace', 'x2pnt', 'zcsr',
-        'ZernikeR', 'zeromq_client_connect', 'zeromq_client_connect',
-        'zeromq_client_recv', 'zeromq_client_recv', 'zeromq_client_send',
-        'zeromq_client_send', 'zeromq_handler_start', 'zeromq_handler_start',
-        'zeromq_handler_stop', 'zeromq_handler_stop', 'zeromq_server_bind',
-        'zeromq_server_bind', 'zeromq_server_recv', 'zeromq_server_recv',
-        'zeromq_server_send', 'zeromq_server_send', 'zeromq_set', 'zeromq_set',
-        'zeromq_stop', 'zeromq_stop', 'zeromq_test_callfunction',
-        'zeromq_test_callfunction', 'zeromq_test_serializeWave',
-        'zeromq_test_serializeWave', 'zeta'
+        'ZernikeR', 'zeromq_client_connect', 'zeromq_client_recv',
+        'zeromq_client_send', 'zeromq_handler_start', 'zeromq_handler_stop',
+        'zeromq_server_bind', 'zeromq_server_recv', 'zeromq_server_send', 'zeromq_set',
+        'zeromq_stop', 'zeromq_test_callfunction', 'zeromq_test_serializeWave', 'zeta'
     )
 
     tokens = {

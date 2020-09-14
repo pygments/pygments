@@ -5,7 +5,7 @@
 
     The module that parses Pixar's Universal Scene Description file format.
 
-    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -24,7 +24,7 @@ def _keywords(words, type_):
 
 
 _TYPE = r"(\w+(?:\[\])?)"
-_BASE_ATTRIBUTE = r"([\w_]+(?:\:[\w_]+)*)(?:(\.)(timeSamples))?"
+_BASE_ATTRIBUTE = r"(\w+(?:\:\w+)*)(?:(\.)(timeSamples))?"
 _WHITESPACE = r"([ \t]+)"
 
 
@@ -69,7 +69,7 @@ class UsdLexer(RegexLexer):
         [(type_ + r"\[\]", Keyword.Type) for type_ in TYPES] +
         _keywords(TYPES, Keyword.Type) +
         [
-            (r"[\(\)\[\]{}]", Punctuation),
+            (r"[(){}\[\]]", Punctuation),
             ("#.*?$", Comment.Single),
             (",", Punctuation),
             (";", Punctuation),  # ";"s are allowed to combine separate metadata lines
@@ -84,7 +84,7 @@ class UsdLexer(RegexLexer):
             (r'\(.*"[.\\n]*".*\)', String.Doc),
             (r"\A#usda .+$", Comment.Hashbang),
             (r"\s+", Whitespace),
-            (r"[\w_]+", Text),
-            (r"[_:\.]+", Punctuation),
+            (r"\w+", Text),
+            (r"[_:.]+", Punctuation),
         ],
     }
