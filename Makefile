@@ -25,13 +25,11 @@ check:
 		   -i docs/build -i pygments/formatters/_mapping.py -i pygments/unistring.py
 
 clean: clean-pyc
-	-rm -rf build tests/examplefiles/output
+	-rm -rf doc/_build build Pygments.egg-info tests/examplefiles/output
 	-rm -f codetags.html
 
 clean-pyc:
-	find . -name '*.pyc' -exec rm -f {} +
-	find . -name '*.pyo' -exec rm -f {} +
-	find . -name '*~' -exec rm -f {} +
+	find . -name '__pycache__' -exec rm -rf {} +
 
 codetags:
 	@$(PYTHON) scripts/find_codetags.py -i tests/examplefiles -i scripts/pylintrc \
