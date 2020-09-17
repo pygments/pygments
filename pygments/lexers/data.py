@@ -471,7 +471,7 @@ class JsonLexer(RegexLexer):
               '%(exp_part)s|%(frac_part)s)') % vars(),
              Number.Float),
             (int_part, Number.Integer),
-            (r'"(\\(["\\/bfnrt]|u[a-fA-F0-9]]{4})|[^\\"])*"', String.Double),
+            (r'"(\\(["\\/bfnrt]|u[a-fA-F0-9]{4})|[^\\"])*"', String.Double),
         ],
 
 
@@ -488,7 +488,7 @@ class JsonLexer(RegexLexer):
         # a json object - { attr, attr, ... }
         'objectvalue': [
             include('whitespace'),
-            (r'"(\\(["\\/bfnrt]|u[a-fA-F0-9]]{4})|[^\\"])*"', Name.Tag, 'objectattribute'),
+            (r'"(\\(["\\/bfnrt]|u[a-fA-F0-9]{4})|[^\\"])*"', Name.Tag, 'objectattribute'),
             (r'\}', Punctuation, '#pop'),
         ],
 

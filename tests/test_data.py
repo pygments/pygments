@@ -29,7 +29,7 @@ def lexer_yaml():
 
 
 def test_basic_json(lexer_json):
-    fragment = '{"foo": "bar", "foo2": [1, 2, 3]}\n'
+    fragment = '{"foo": "bar", "foo2": [1, 2, 3], "\\u0123": "\\u0123"}\n'
     tokens = [
         (Token.Punctuation, '{'),
         (Token.Name.Tag, '"foo"'),
@@ -50,6 +50,12 @@ def test_basic_json(lexer_json):
         (Token.Text, ' '),
         (Token.Literal.Number.Integer, '3'),
         (Token.Punctuation, ']'),
+        (Token.Punctuation, ','),
+        (Token.Text, ' '),
+        (Token.Name.Tag, '"\\u0123"'),
+        (Token.Punctuation, ':'),
+        (Token.Text, ' '),
+        (Token.Literal.String.Double, '"\\u0123"'),
         (Token.Punctuation, '}'),
         (Token.Text, '\n'),
     ]
@@ -61,8 +67,8 @@ def test_json_escape_backtracking(lexer_json):
     # to fall into catastrophic backtracking. unfortunately, if it's broken
     # this test will hang and that's how we know it's broken :(
     fragment = r'{"\u00D0000\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\63CD'
-    tokens = (
-        [(Token.Punctuation, '{'),
+    tokens = [
+        (Token.Punctuation, '{'),
         (Token.Error, r'"'),
         (Token.Error, '\\'),
         (Token.Error, r'u'),
@@ -72,14 +78,13 @@ def test_json_escape_backtracking(lexer_json):
         (Token.Error, r'0'),
         (Token.Error, r'0'),
         (Token.Error, r'0'),
-        (Token.Error, r'0')]
-        + [(Token.Error, '\\')] * 178
-        + [(Token.Error, r'6'),
+        (Token.Error, r'0')
+    ] + [(Token.Error, '\\')] * 178 + [
+        (Token.Error, r'6'),
         (Token.Error, r'3'),
         (Token.Error, r'C'),
         (Token.Error, r'D'),
         (Token.Text, '\n')]
-    )
 
     assert list(lexer_json.get_tokens(fragment)) == tokens
 
