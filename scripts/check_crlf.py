@@ -20,11 +20,11 @@ if __name__ == '__main__':
 
         for root, dirs, files in os.walk(directory):
             for filename in files:
-                if not filename.endswith('.py'):
+                if not filename.endswith('.py') and not filename.endswith('.bashcomp'):
                     continue
 
                 with open(os.path.join(root, filename), 'rb') as f:
                     if b'\r\n' in f.read():
                         sys.exit(1)
-    
+
     sys.exit(0)
