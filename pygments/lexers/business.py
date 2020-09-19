@@ -500,6 +500,21 @@ class OpenEdgeLexer(RegexLexer):
         ],
     }
 
+    def analyse_text(text):
+        """Try to identify OpenEdge ABL based on a few common constructs."""
+        result = 0
+
+        if 'END.' in text:
+            result += 0.05
+
+        if 'END PROCEDURE.' in text:
+            result += 0.05
+
+        if 'ELSE DO:' in text:
+            result += 0.05
+
+        return result
+
 
 class GoodDataCLLexer(RegexLexer):
     """

@@ -385,3 +385,21 @@ class UcodeLexer(RegexLexer):
             (r'[\w-]+', Text),
         ],
     }
+
+    def analyse_text(text):
+        """endsuspend and endrepeat are unique to this language."""
+        result = 0
+
+        if 'endsuspend' in text:
+            result += 0.1
+
+        if 'endrepeat' in text:
+            result += 0.1
+
+        if ':=' in text:
+            result += 0.01
+
+        if 'procedure' in text and 'end' in text:
+            result += 0.01
+
+        return result

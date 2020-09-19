@@ -1430,6 +1430,10 @@ class EvoqueLexer(RegexLexer):
         ],
     }
 
+    def analyse_text(text):
+        """Evoque templates use $evoque, which is unique."""
+        if '$evoque' in text:
+            return 1
 
 class EvoqueHtmlLexer(DelegatingLexer):
     """
@@ -1446,6 +1450,9 @@ class EvoqueHtmlLexer(DelegatingLexer):
     def __init__(self, **options):
         super().__init__(HtmlLexer, EvoqueLexer, **options)
 
+    def analyse_text(text):
+        return EvoqueLexer.analyse_text(text)
+
 
 class EvoqueXmlLexer(DelegatingLexer):
     """
@@ -1461,6 +1468,9 @@ class EvoqueXmlLexer(DelegatingLexer):
 
     def __init__(self, **options):
         super().__init__(XmlLexer, EvoqueLexer, **options)
+
+    def analyse_text(text):
+        return EvoqueLexer.analyse_text(text)
 
 
 class ColdfusionLexer(RegexLexer):

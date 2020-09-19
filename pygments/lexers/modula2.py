@@ -1559,3 +1559,13 @@ class Modula2Lexer(RegexLexer):
 
             # return result
             yield index, token, value
+
+    def analyse_text(text):
+        """Not much we can go by. (* for comments is our best guess."""
+        result = 0
+        if '(*' in text and '*)' in text:
+            result += 0.01
+        if ':=' in text:
+            result += 0.01
+
+        return result

@@ -944,6 +944,15 @@ class HybrisLexer(RegexLexer):
         ],
     }
 
+    def analyse_text(text):
+        """public method and private method don't seem to be quite common
+        elsewhere."""
+        result = 0
+        if re.match(r'(?:public|private)\s+method', text):
+            result += 0.01
+        return result
+
+
 
 class EasytrieveLexer(RegexLexer):
     """

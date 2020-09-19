@@ -178,7 +178,7 @@ class SlashLexer(DelegatingLexer):
 
     name = 'Slash'
     aliases = ['slash']
-    filenames = ['*.sl']
+    filenames = ['*.sla']
 
     def __init__(self, **options):
         from pygments.lexers.web import HtmlLexer

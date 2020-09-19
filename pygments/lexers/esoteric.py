@@ -48,6 +48,15 @@ class BrainfuckLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        """It's safe to assume that any reasonable brainfuck program will have
+        more than two consecutive + signs, which is very uncommon in any
+        other programming language."""
+        if '+++++' in text or '------' in text:
+            return 0.5
+        if '+++' in text:
+            return 0.1
+
 
 class BefungeLexer(RegexLexer):
     """

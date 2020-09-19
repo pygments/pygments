@@ -132,6 +132,19 @@ class VerilogLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        """Verilog code will use one of reg/wire/assign for sure, and that
+        is not common elsewhere."""
+        result = 0
+        if 'reg' in text:
+            result += 0.1
+        if 'wire' in text:
+            result += 0.1
+        if 'assign' in text:
+            result += 0.1
+
+        return result
+
 
 class SystemVerilogLexer(RegexLexer):
     """

@@ -68,3 +68,16 @@ class ScdocLexer(RegexLexer):
             (r'.', Text),
         ],
     }
+
+    def analyse_text(text):
+        """This is very similar to markdown, save for the escape characters
+        needed for * and _."""
+        result = 0
+
+        if '\\*' in text:
+            result += 0.01
+
+        if '\\_' in text:
+            result += 0.01
+
+        return result
