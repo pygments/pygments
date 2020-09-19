@@ -726,7 +726,7 @@ class PythonTracebackLexer(RegexLexer):
              bygroups(Text, Comment, Text)),  # for doctests...
             (r'^([^:]+)(: )(.+)(\n)',
              bygroups(Generic.Error, Text, Name, Text), '#pop'),
-            (r'^([a-zA-Z_]\w*)(:?\n)',
+            (r'^([a-zA-Z_][\w.]*)(:?\n)',
              bygroups(Generic.Error, Text), '#pop')
         ],
     }
