@@ -19,6 +19,7 @@ export PYTHONPATH = $(shell echo "$$PYTHONPATH"):$(shell python -c 'import os; p
 all: clean-pyc check test
 
 check:
+	@$(PYTHON) scripts/check_crlf.py pygments build external
 	@$(PYTHON) scripts/detect_missing_analyse_text.py || true
 	@pyflakes pygments | grep -v 'but unused' || true
 	@$(PYTHON) scripts/check_sources.py -i build -i dist -i pygments/lexers/_mapping.py \
