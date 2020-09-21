@@ -520,7 +520,7 @@ class Inform6Lexer(RegexLexer):
         """We try to find a keyword which seem relatively common, unfortunately
         there is a decent overlap with Smalltalk keywords otherwise here.."""
         result = 0
-        if re.match('origsource', text, re.IGNORECASE):
+        if re.search('\borigsource\b', text, re.IGNORECASE):
             result += 0.05
 
         return result

@@ -696,16 +696,12 @@ class FSharpLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        """F# doesn't have that many unique features -- |> for matching
-        seems quite common though, in addition to let/match."""
+        """F# doesn't have that many unique features -- |> and <| are weak
+        indicators."""
         result = 0
-        if 'let' in text:
-            result += 0.05
-        if 'match' in text:
-            result += 0.05
-        if '->' in text:
-            result += 0.01
         if '|>' in text:
+            result += 0.05
+        if '<|' in text:
             result += 0.05
 
         return result

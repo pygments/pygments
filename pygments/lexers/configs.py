@@ -974,5 +974,11 @@ class SingularityLexer(RegexLexer):
     def analyse_text(text):
         """This is a quite simple script file, but there are a few keywords
         which seem unique to this language."""
-        if re.match('osversion|includecmd', text, re.IGNORECASE):
-            return 0.1
+        result = 0
+        if re.search(r'\b(?:osversion|includecmd|mirrorurl)\b', text, re.IGNORECASE):
+            result += 0.5
+
+        if re.search(SingularityLexer._section[1:], text):
+            result += 0.49
+
+        return result

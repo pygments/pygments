@@ -648,13 +648,8 @@ class OctaveLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        """Octave is quite hard to spot from a casual glance, but we'll assume
-        that most examples will have an integer vector or matrix somewhere."""
-        # A \ B is actually quite uncommon outside of Matlab/Octave
-        if re.match(r'\w+\s*\\\s*\w+',text):
-            return 0.05
-        if re.match(r'\[\s*(?:(?:\d+\s*)+;\s*)+\s*\]', text):
-            return 0.01
+        """Octave is quite hard to spot, and it looks like Matlab as well."""
+        return 0
 
 
 class ScilabLexer(RegexLexer):

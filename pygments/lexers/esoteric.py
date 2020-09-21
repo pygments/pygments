@@ -13,6 +13,8 @@ from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 
+import re
+
 __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'CAmkESLexer',
            'CapDLLexer', 'AheuiLexer']
 
@@ -49,13 +51,20 @@ class BrainfuckLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        """It's safe to assume that any reasonable brainfuck program will have
-        more than two consecutive + signs, which is very uncommon in any
-        other programming language."""
-        if '+++++' in text or '------' in text:
-            return 0.5
-        if '+++' in text:
-            return 0.1
+        """It's safe to assume that a program which mostly consists of + -
+        and < > is brainfuck."""
+        plus_minus_count = 0
+        greater_less_count = 0
+        for c in text:
+            if c == '+' or c == '-':
+                plus_minus_count += 1
+            if c == '<' or c == '>':
+                greater_less_count += 1
+
+        if plus_minus_count > (0.25 * len(text)):
+            return 1.0
+        if greater_less_count > (0.25 * len(text)):
+            return 1.0
 
 
 class BefungeLexer(RegexLexer):

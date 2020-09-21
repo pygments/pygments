@@ -174,5 +174,5 @@ class ForthLexer(RegexLexer):
     def analyse_text(text):
         """Forth uses : COMMAND ; quite a lot in a single line, so we're trying
         to find that."""
-        if re.match('\n:[^\n]+;\n', text):
+        if re.search('\n:[^\n]+;\n', text):
             return 0.1
