@@ -55,16 +55,25 @@ class BrainfuckLexer(RegexLexer):
         and < > is brainfuck."""
         plus_minus_count = 0
         greater_less_count = 0
-        for c in text:
+
+        range_to_check = max(256, len(text))
+
+        for c in text[:range_to_check]:
             if c == '+' or c == '-':
                 plus_minus_count += 1
             if c == '<' or c == '>':
                 greater_less_count += 1
 
-        if plus_minus_count > (0.25 * len(text)):
+        if plus_minus_count > (0.25 * range_to_check):
             return 1.0
-        if greater_less_count > (0.25 * len(text)):
+        if greater_less_count > (0.25 * range_to_check):
             return 1.0
+
+        result = 0
+        if '[-]' in text:
+            result += 0.5
+
+        return result
 
 
 class BefungeLexer(RegexLexer):

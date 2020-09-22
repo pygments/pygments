@@ -1563,9 +1563,20 @@ class Modula2Lexer(RegexLexer):
     def analyse_text(text):
         """Not much we can go by. (* for comments is our best guess."""
         result = 0
+
+        is_pascal_like = 0
         if '(*' in text and '*)' in text:
-            result += 0.01
+            is_pascal_like += 0.5
         if ':=' in text:
-            result += 0.01
+            is_pascal_like += 0.5
+
+        if is_pascal_like == 1:
+            # Procedure is in Modula2
+            if re.search(r'\bPROCEDURE\b', text):
+                result += 0.6
+
+            # FUNCTION is only valid in Pascal, but not in Modula2
+            if re.search(r'\bFUNCTION\b', text):
+                result = 0.0
 
         return result

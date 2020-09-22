@@ -46,3 +46,15 @@ def test_guess_lexer_hybris():
 def test_guess_lexer_forth():
     l = _guess_lexer_for_file('demo.frt')
     assert l.__class__.__name__ == 'ForthLexer'
+
+def test_guess_lexer_modula2():
+    l = _guess_lexer_for_file('modula2_test_cases.def')
+    assert l.__class__.__name__ == 'Modula2Lexer'
+
+def test_guess_lexer_unicon():
+    l = _guess_lexer_for_file('example.icn')
+    assert l.__class__.__name__ == 'UcodeLexer'
+
+def test_guess_lexer_ezhil():
+    l = _guess_lexer_for_file('ezhil_primefactors.n')
+    assert l.__class__.__name__ == 'EzhilLexer'
