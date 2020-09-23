@@ -64,6 +64,14 @@ class EzhilLexer(RegexLexer):
         ]
     }
 
+    def analyse_text(text):
+        """This language uses Tamil-script. We'll assume that if there's a
+        decent amount of Tamil-characters, it's this language. This assumption
+        is obviously horribly off if someone uses string literals in tamil
+        in another language."""
+        if len(re.findall(r'[\u0b80-\u0bff]', text)) > 10:
+            return 0.25
+
     def __init__(self, **options):
         super().__init__(**options)
         self.encoding = options.get('encoding', 'utf-8')

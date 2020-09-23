@@ -647,6 +647,10 @@ class OctaveLexer(RegexLexer):
         ],
     }
 
+    def analyse_text(text):
+        """Octave is quite hard to spot, and it looks like Matlab as well."""
+        return 0
+
 
 class ScilabLexer(RegexLexer):
     """

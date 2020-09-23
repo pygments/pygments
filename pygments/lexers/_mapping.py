@@ -413,7 +413,7 @@ LEXERS = {
     'SieveLexer': ('pygments.lexers.sieve', 'Sieve', ('sieve',), ('*.siv', '*.sieve'), ()),
     'SilverLexer': ('pygments.lexers.verification', 'Silver', ('silver',), ('*.sil', '*.vpr'), ()),
     'SingularityLexer': ('pygments.lexers.configs', 'Singularity', ('singularity',), ('*.def', 'Singularity'), ()),
-    'SlashLexer': ('pygments.lexers.slash', 'Slash', ('slash',), ('*.sl',), ()),
+    'SlashLexer': ('pygments.lexers.slash', 'Slash', ('slash',), ('*.sla',), ()),
     'SlimLexer': ('pygments.lexers.webmisc', 'Slim', ('slim',), ('*.slim',), ('text/x-slim',)),
     'SlurmBashLexer': ('pygments.lexers.shell', 'Slurm', ('slurm', 'sbatch'), ('*.sl',), ()),
     'SmaliLexer': ('pygments.lexers.dalvik', 'Smali', ('smali',), ('*.smali',), ('text/smali',)),

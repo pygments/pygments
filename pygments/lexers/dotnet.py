@@ -295,6 +295,16 @@ class NemerleLexer(RegexLexer):
 
         RegexLexer.__init__(self, **options)
 
+    def analyse_text(text):
+        """Nemerle is quite similar to Python, but @if is relatively uncommon
+        elsewhere."""
+        result = 0
+
+        if '@if' in text:
+            result += 0.1
+
+        return result
+
 
 class BooLexer(RegexLexer):
     """
@@ -684,3 +694,14 @@ class FSharpLexer(RegexLexer):
             (r'"', String),
         ],
     }
+
+    def analyse_text(text):
+        """F# doesn't have that many unique features -- |> and <| are weak
+        indicators."""
+        result = 0
+        if '|>' in text:
+            result += 0.05
+        if '<|' in text:
+            result += 0.05
+
+        return result

@@ -154,8 +154,8 @@ class CoqLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if text.startswith('(*'):
-            return True
+        if 'qed' in text and 'tauto' in text:
+            return 1
 
 
 class IsabelleLexer(RegexLexer):

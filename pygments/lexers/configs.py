@@ -970,3 +970,15 @@ class SingularityLexer(RegexLexer):
             (r'(.+?(?=^\s*%))|(.*)', using(BashLexer), '#pop'),
         ],
     }
+
+    def analyse_text(text):
+        """This is a quite simple script file, but there are a few keywords
+        which seem unique to this language."""
+        result = 0
+        if re.search(r'\b(?:osversion|includecmd|mirrorurl)\b', text, re.IGNORECASE):
+            result += 0.5
+
+        if re.search(SingularityLexer._section[1:], text):
+            result += 0.49
+
+        return result

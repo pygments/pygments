@@ -208,8 +208,18 @@ class PerlLexer(RegexLexer):
     def analyse_text(text):
         if shebang_matches(text, r'perl'):
             return True
+
+        result = 0
+
         if re.search(r'(?:my|our)\s+[$@%(]', text):
-            return 0.9
+            result += 0.9
+
+        if ':=' in text:
+            # := is not valid Perl, but it appears in unicon, so we should
+            # become less confident if we think we found Perl with :=
+            result /= 2
+
+        return result
 
 
 class Perl6Lexer(ExtendedRegexLexer):
@@ -710,6 +720,10 @@ class Perl6Lexer(ExtendedRegexLexer):
                 rating = 0.05
                 continue
             break
+
+        if ':=' in text:
+            # Same logic as above for PerlLexer
+            rating /= 2
 
         return rating
 

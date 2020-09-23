@@ -1559,3 +1559,22 @@ class Modula2Lexer(RegexLexer):
 
             # return result
             yield index, token, value
+
+    def analyse_text(text):
+        """It's Pascal-like, but does not use FUNCTION -- uses PROCEDURE
+        instead."""
+
+        # Check if this looks like Pascal, if not, bail out early
+        if not ('(*' in text and '*)' in text and ':=' in text):
+            return
+
+        result = 0
+        # Procedure is in Modula2
+        if re.search(r'\bPROCEDURE\b', text):
+            result += 0.6
+
+        # FUNCTION is only valid in Pascal, but not in Modula2
+        if re.search(r'\bFUNCTION\b', text):
+            result = 0.0
+
+        return result
