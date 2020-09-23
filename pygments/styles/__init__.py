@@ -79,7 +79,7 @@ def get_style_by_name(name):
 
 
 def get_all_styles():
-    """Return an generator for all styles by name,
+    """Return a generator for all styles by name,
     both builtin and plugin."""
     yield from STYLE_MAP
     for name, _ in find_plugin_styles():
