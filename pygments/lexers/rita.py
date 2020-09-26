@@ -37,8 +37,8 @@ class RitaLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'#(.*?)\n', Comment.Single),
             (r'@(.*?)\n', Operator),  # Yes, whole line as an operator
-            (r'\"(\w|\d|\s|[^\"\']|(\\\")|(\\\'))+?\"', Literal),
-            (r'\'(\w|\d|\s|[^\"\']|(\\\")|(\\\'))+?\'', Literal),
+            (r'"(\w|\d|\s|(\\")|[\'_\-./,\?\!])+?"', Literal),
+            (r'\'(\w|\d|\s|(\\\')|["_\-./,\?\!])+?\'', Literal),
             (r'([A-Z_]+)', Keyword),
             (r'([a-z0-9_]+)', Name),
             (r'((->)|[!?+*|=])', Operator),
