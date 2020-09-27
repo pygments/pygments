@@ -620,7 +620,7 @@ class MySqlLexer(RegexLexer):
             (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),  # Mandatory integer, optional fraction and exponent
             (r'[0-9]*\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),  # Mandatory fraction, optional integer and exponent
             (r'[0-9]+e[+-]?[0-9]+', Number.Float),  # Exponents with integer significands are still floats
-            (r'[0-9]+(?=[^0-9a-z$_\u0080-\uffff]|$)', Number.Integer),  # Integers that are not in a schema object name
+            (r'[0-9]+(?=[^0-9a-z$_\u0080-\uffff])', Number.Integer),  # Integers that are not in a schema object name
 
             # Date literals
             (r"\{\s*d\s*(?P<quote>['\"])\s*\d{2}(\d{2})?.?\d{2}.?\d{2}\s*(?P=quote)\s*\}",
