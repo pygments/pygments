@@ -107,7 +107,7 @@ CREATE TABLE basic (
 SELECT e1.`apple` AS a, `example2`.b
 FROM example1 AS e1
 JOIN example2 e2
-ON `example1`.`id` = e2.id;
+ON `example1`.`a``b` = e2.`123`;
 
 
 -- Operators

@@ -29,8 +29,13 @@ def lexer():
 
 
 @pytest.mark.parametrize('text', ('123',))
-def test_integer_literals(lexer, text):
+def test_integer_literals_positive_match(lexer, text):
     assert list(lexer.get_tokens(text))[0] == (Number.Integer, text)
+
+
+@pytest.mark.parametrize('text', ('1a', '1A', '1ひ', '1$', '1_', '1\u0080', '1\uffff'))
+def test_integer_literals_negative_match(lexer, text):
+    assert list(lexer.get_tokens(text))[0][0] != Number.Integer
 
 
 @pytest.mark.parametrize(
@@ -215,15 +220,37 @@ def test_functions(lexer, text):
 @pytest.mark.parametrize(
     'text',
     (
-        'abc_$123', '上市年限', 'ひらがな',
-        '`a`', '`上市年限`', '`ひらがな`', '`select`', '`concat(`',
-        '````', r'`\``', r'`\\`',
+        'abc_$123', '上市年限', 'ひらがな', '123_$abc', '123ひらがな',
+    ),
+)
+def test_schema_object_names_unquoted(lexer, text):
+    tokens = list(lexer.get_tokens(text))[:-1]
+    assert all(token[0] == Name for token in tokens)
+    assert ''.join(token[1] for token in tokens) == text
+
+
+@pytest.mark.parametrize(
+    'text',
+    (
+        '`a`', '`1`', '`上市年限`', '`ひらがな`', '`select`', '`concat(`',
         '`-- `', '`/*`', '`#`',
     ),
 )
-def test_schema_object_names(lexer, text):
+def test_schema_object_names_quoted(lexer, text):
     tokens = list(lexer.get_tokens(text))[:-1]
-    assert all(token[0] == Name for token in tokens)
+    assert tokens[0] == (Name.Quoted, '`')
+    assert tokens[1] == (Name.Quoted, text[1:-1])
+    assert tokens[2] == (Name.Quoted, '`')
+    assert ''.join(token[1] for token in tokens) == text
+
+
+@pytest.mark.parametrize('text', ('````', ))
+def test_schema_object_names_quoted_escaped(lexer, text):
+    """Test quoted schema object names with escape sequences."""
+    tokens = list(lexer.get_tokens(text))[:-1]
+    assert tokens[0] == (Name.Quoted, '`')
+    assert tokens[1] == (Name.Quoted.Escape, text[1:-1])
+    assert tokens[2] == (Name.Quoted, '`')
     assert ''.join(token[1] for token in tokens) == text
 
 
