@@ -10,11 +10,14 @@
 import os
 import tempfile
 from os import path
+from textwrap import dedent
 
 import pytest
 
 from pygments.formatters import LatexFormatter
-from pygments.lexers import PythonLexer
+from pygments.formatters.latex import LatexEmbeddedLexer
+from pygments.lexers import PythonLexer, PythonConsoleLexer
+from pygments.token import Token
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_latex_formatter.py')
@@ -49,3 +52,49 @@ def test_valid_output():
 
     os.unlink(pathname)
     os.chdir(old_wd)
+
+
+def test_embedded_lexer():
+    # Latex surrounded by '|' should be Escaped
+    lexer = LatexEmbeddedLexer('|', '|', PythonConsoleLexer())
+
+    # similar to gh-1516
+    src = dedent("""\
+    >>> x = 1
+    >>> y = mul(x, |$z^2$|)  # these |pipes| are untouched
+    >>> y
+    |$1 + z^2$|""")
+
+    assert list(lexer.get_tokens(src)) == [(Token.Name, ''),
+        (Token.Generic.Prompt, '>>> '),
+        (Token.Name, 'x'),
+        (Token.Text, ' '),
+        (Token.Operator, '='),
+        (Token.Text, ' '),
+        (Token.Literal.Number.Integer, '1'),
+        (Token.Text, '\n'),
+        (Token.Generic.Prompt, '>>> '),
+        (Token.Text, ''),
+        (Token.Name, 'y'),
+        (Token.Text, ' '),
+        (Token.Operator, '='),
+        (Token.Text, ' '),
+        (Token.Name, 'mul'),
+        (Token.Punctuation, '('),
+        (Token.Name, 'x'),
+        (Token.Punctuation, ','),
+        (Token.Text, ' '),
+        (Token.Escape, '$z^2$'),
+        (Token.Text, ''),
+        (Token.Punctuation, ')'),
+        (Token.Text, '  '),
+        (Token.Comment.Single, '# these |pipes| are untouched'),  # note: not Token.Escape
+        (Token.Text, '\n'),
+        (Token.Generic.Prompt, '>>> '),
+        (Token.Text, ''),
+        (Token.Name, 'y'),
+        (Token.Text, '\n'),
+        (Token.Escape, '$1 + z^2$'),
+        (Token.Text, ''),
+        (Token.Generic.Output, '\n'),
+    ]
