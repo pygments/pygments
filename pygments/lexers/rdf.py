@@ -20,7 +20,7 @@ __all__ = ['SparqlLexer', 'TurtleLexer', 'ShExCLexer']
 
 class SparqlLexer(RegexLexer):
     """
-    Lexer for `SPARQL <http://www.w3.org/TR/rdf-sparql-query/>`_ query language.
+    Lexer for `SPARQL <https://www.w3.org/TR/sparql11-query/>`_ query language.
 
     .. versionadded:: 2.0
     """
@@ -99,10 +99,10 @@ class SparqlLexer(RegexLexer):
             # keywords ::
             (r'(?i)(select|construct|describe|ask|where|filter|group\s+by|minus|'
              r'distinct|reduced|from\s+named|from|order\s+by|desc|asc|limit|'
-             r'offset|bindings|load|clear|drop|create|add|move|copy|'
-             r'insert\s+data|delete\s+data|delete\s+where|delete|insert|'
+             r'offset|values|bindings|load|into|clear|drop|create|add|move|copy|'
+             r'insert\s+data|delete\s+data|delete\s+where|with|delete|insert|'
              r'using\s+named|using|graph|default|named|all|optional|service|'
-             r'silent|bind|union|not\s+in|in|as|having|to|prefix|base)\b', Keyword),
+             r'silent|bind|undef|union|not\s+in|in|as|having|to|prefix|base)\b', Keyword),
             (r'(a)\b', Keyword),
             # IRIs ::
             ('(' + IRIREF + ')', Name.Label),
@@ -117,7 +117,7 @@ class SparqlLexer(RegexLexer):
             (r'(?i)(str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
              r'ceil|floor|round|concat|strlen|ucase|lcase|encode_for_uri|'
              r'contains|strstarts|strends|strbefore|strafter|year|month|day|'
-             r'hours|minutes|seconds|timezone|tz|now|md5|sha1|sha256|sha384|'
+             r'hours|minutes|seconds|timezone|tz|now|uuid|struuid|md5|sha1|sha256|sha384|'
              r'sha512|coalesce|if|strlang|strdt|sameterm|isiri|isuri|isblank|'
              r'isliteral|isnumeric|regex|substr|replace|exists|not\s+exists|'
              r'count|sum|min|max|avg|sample|group_concat|separator)\b',
