@@ -100,3 +100,14 @@ def test_align_and_offset_accept_hexadecimal_numbers(lexer):
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_string_byte_escape(lexer):
+    fragment = '"\\001"\n'
+    tokens = [
+        (Token.Literal.String.Double, '"'),
+        (Token.Literal.String.Escape, '\\00'),
+        (Token.Literal.String.Double, '1'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens

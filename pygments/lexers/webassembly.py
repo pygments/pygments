@@ -97,7 +97,7 @@ class WatLexer(RegexLexer):
             (r'(\([^;]|;[^\)]|[^;\(])+', Comment.Multiline),
         ],
         'string': [
-            (r'\\[\dA-Fa-f][\dA-Fa-f]*', String.Escape),
+            (r'\\[\dA-Fa-f][\dA-Fa-f]', String.Escape), # must have exactly two hex digits
             (r'\\t', String.Escape),
             (r'\\n', String.Escape),
             (r'\\r', String.Escape),
