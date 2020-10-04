@@ -3,7 +3,7 @@
     pygments.lexers.grammar_notation
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for grammer notations like BNF.
+    Lexers for grammar notations like BNF.
 
     :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -20,7 +20,7 @@ __all__ = ['BnfLexer', 'AbnfLexer', 'JsgfLexer', 'PegLexer']
 
 class BnfLexer(RegexLexer):
     """
-    This lexer is for grammer notations which are similar to
+    This lexer is for grammar notations which are similar to
     original BNF.
 
     In order to maximize a number of targets of this lexer,
