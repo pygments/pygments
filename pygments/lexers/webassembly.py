@@ -13,7 +13,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, words, bygroups
+from pygments.lexer import RegexLexer, words, bygroups, default
 from pygments.token import Text, Comment, Operator, Keyword, String, Number, Punctuation, Literal, Error, Name
 
 __all__ = ['WatLexer']
@@ -249,6 +249,6 @@ class WatLexer(RegexLexer):
             (r'(offset)(=)(0x[\dA-Fa-f](_?[\dA-Fa-f])*)', bygroups(Keyword, Operator, Number.Hex)),
             (r'(align)(=)(\d(_?\d)*)', bygroups(Keyword, Operator, Number.Integer)),
             (r'(align)(=)(0x[\dA-Fa-f](_?[\dA-Fa-f])*)', bygroups(Keyword, Operator, Number.Hex)),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ]
     }
