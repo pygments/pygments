@@ -12,7 +12,7 @@
 from io import StringIO
 
 from pygments.formatter import Formatter
-from pygments.lexer import Lexer
+from pygments.lexer import Lexer, do_insertions
 from pygments.token import Token, STANDARD_TYPES
 from pygments.util import get_bool_opt, get_int_opt
 
@@ -446,12 +446,44 @@ class LatexEmbeddedLexer(Lexer):
         Lexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
+        # find and remove all the escape tokens (replace with an empty string)
+        # this is very similar to DelegatingLexer.get_tokens_unprocessed.
+        buffered = ''
+        insertions = []
+        insertion_buf = []
+        for i, t, v in self._find_safe_escape_tokens(text):
+            if t is None:
+                if insertion_buf:
+                    insertions.append((len(buffered), insertion_buf))
+                    insertion_buf = []
+                buffered += v
+            else:
+                insertion_buf.append((i, t, v))
+        if insertion_buf:
+            insertions.append((len(buffered), insertion_buf))
+        return do_insertions(insertions,
+                             self.lang.get_tokens_unprocessed(buffered))
+
+    def _find_safe_escape_tokens(self, text):
+        """ find escape tokens that are not in strings or comments """
+        for i, t, v in self._filter_to(
+            self.lang.get_tokens_unprocessed(text),
+            lambda t: t in Token.Comment or t in Token.String
+        ):
+            if t is None:
+                for i2, t2, v2 in self._find_escape_tokens(v):
+                    yield i + i2, t2, v2
+            else:
+                yield i, None, v
+
+    def _filter_to(self, it, pred):
+        """ Keep only the tokens that match `pred`, merge the others together """
         buf = ''
         idx = 0
-        for i, t, v in self.lang.get_tokens_unprocessed(text):
-            if t in Token.Comment or t in Token.String:
+        for i, t, v in it:
+            if pred(t):
                 if buf:
-                    yield from self.get_tokens_aux(idx, buf)
+                    yield idx, None, buf
                     buf = ''
                 yield i, t, v
             else:
@@ -459,15 +491,16 @@ class LatexEmbeddedLexer(Lexer):
                     idx = i
                 buf += v
         if buf:
-            yield from self.get_tokens_aux(idx, buf)
+            yield idx, None, buf
 
-    def get_tokens_aux(self, index, text):
+    def _find_escape_tokens(self, text):
+        """ Find escape tokens within text, give token=None otherwise """
+        index = 0
         while text:
             a, sep1, text = text.partition(self.left)
             if a:
-                for i, t, v in self.lang.get_tokens_unprocessed(a):
-                    yield index + i, t, v
-                    index += len(a)
+                yield index, None, a
+                index += len(a)
             if sep1:
                 b, sep2, text = text.partition(self.right)
                 if sep2:

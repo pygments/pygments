@@ -398,18 +398,18 @@ class LlvmLexer(RegexLexer):
                 'cleanupret', 'cmpxchg', 'cold', 'coldcc', 'comdat', 'common', 'constant',
                 'contract', 'convergent', 'critical', 'cxx_fast_tlscc', 'datalayout', 'declare',
                 'default', 'define', 'deplibs', 'dereferenceable', 'dereferenceable_or_null',
-                'distinct', 'dllexport', 'dllimport', 'double', 'dso_local', 'dso_preemptable',
+                'distinct', 'dllexport', 'dllimport', 'dso_local', 'dso_preemptable',
                 'dsoLocal', 'eq', 'exact', 'exactmatch', 'extern_weak', 'external',
                 'externally_initialized', 'extractelement', 'extractvalue', 'fadd', 'false',
-                'fast', 'fastcc', 'fcmp', 'fdiv', 'fence', 'filter', 'flags', 'float', 'fmul',
-                'fp128', 'fpext', 'fptosi', 'fptoui', 'fptrunc', 'frem', 'from', 'fsub',
+                'fast', 'fastcc', 'fcmp', 'fdiv', 'fence', 'filter', 'flags', 'fmul',
+                'fpext', 'fptosi', 'fptoui', 'fptrunc', 'freeze', 'frem', 'from', 'fsub',
                 'funcFlags', 'function', 'gc', 'getelementptr', 'ghccc', 'global', 'guid', 'gv',
-                'half', 'hash', 'hhvm_ccc', 'hhvmcc', 'hidden', 'hot', 'hotness', 'icmp',
+                'hash', 'hhvm_ccc', 'hhvmcc', 'hidden', 'hot', 'hotness', 'icmp',
                 'ifunc', 'inaccessiblemem_or_argmemonly', 'inaccessiblememonly', 'inalloca',
                 'inbounds', 'indir', 'indirectbr', 'info', 'initialexec', 'inline',
                 'inlineBits', 'inlinehint', 'inrange', 'inreg', 'insertelement', 'insertvalue',
                 'insts', 'intel_ocl_bicc', 'inteldialect', 'internal', 'inttoptr', 'invoke',
-                'jumptable', 'kind', 'label', 'landingpad', 'largest', 'linkage', 'linkonce',
+                'jumptable', 'kind', 'landingpad', 'largest', 'linkage', 'linkonce',
                 'linkonce_odr', 'live', 'load', 'local_unnamed_addr', 'localdynamic',
                 'localexec', 'lshr', 'max', 'metadata', 'min', 'minsize', 'module', 'monotonic',
                 'msp430_intrcc', 'mul', 'musttail', 'naked', 'name', 'nand', 'ne', 'nest',
@@ -418,7 +418,7 @@ class LlvmLexer(RegexLexer):
                 'nonlazybind', 'nonnull', 'norecurse', 'noRecurse', 'noredzone', 'noreturn',
                 'notail', 'notEligibleToImport', 'nounwind', 'nsw', 'nsz', 'null', 'nuw', 'oeq',
                 'offset', 'oge', 'ogt', 'ole', 'olt', 'one', 'opaque', 'optforfuzzing',
-                'optnone', 'optsize', 'or', 'ord', 'path', 'personality', 'phi', 'ppc_fp128',
+                'optnone', 'optsize', 'or', 'ord', 'path', 'personality', 'phi',
                 'prefix', 'preserve_allcc', 'preserve_mostcc', 'private', 'prologue',
                 'protected', 'ptrtoint', 'ptx_device', 'ptx_kernel', 'readnone', 'readNone',
                 'readonly', 'readOnly', 'reassoc', 'refs', 'relbf', 'release', 'resByArg',
@@ -438,18 +438,19 @@ class LlvmLexer(RegexLexer):
                 'unordered', 'unreachable', 'unsat', 'unwind', 'urem', 'uselistorder',
                 'uselistorder_bb', 'uwtable', 'va_arg', 'variable', 'vFuncId',
                 'virtualConstProp', 'void', 'volatile', 'weak', 'weak_odr', 'webkit_jscc',
-                'win64cc', 'within', 'wpdRes', 'wpdResolutions', 'writeonly', 'x',
-                'x86_64_sysvcc', 'x86_fastcallcc', 'x86_fp80', 'x86_intrcc', 'x86_mmx',
+                'win64cc', 'within', 'wpdRes', 'wpdResolutions', 'writeonly',
+                'x86_64_sysvcc', 'x86_fastcallcc', 'x86_intrcc', 'x86_mmx',
                 'x86_regcallcc', 'x86_stdcallcc', 'x86_thiscallcc', 'x86_vectorcallcc', 'xchg',
                 'xor', 'zeroext', 'zeroinitializer', 'zext', 'immarg', 'willreturn'),
                 suffix=r'\b'), Keyword),
 
             # Types
-            (words(('void', 'half', 'float', 'double', 'x86_fp80', 'fp128',
-                    'ppc_fp128', 'label', 'metadata', 'token')), Keyword.Type),
+            (words(('void', 'half', 'bfloat', 'float', 'double', 'fp128',
+                    'x86_fp80', 'ppc_fp128', 'label', 'metadata', 'token')),
+                   Keyword.Type),
 
             # Integer types
-            (r'i[1-9]\d*', Keyword)
+            (r'i[1-9]\d*', Keyword.Type)
         ]
     }
 
