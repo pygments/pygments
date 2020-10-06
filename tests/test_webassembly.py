@@ -45,7 +45,9 @@ def test_comment_with_open_paren(lexer):
     fragment = '(; comment with ( open paren ;)\n'
     tokens = [
         (Token.Comment.Multiline, '(;'),
-        (Token.Comment.Multiline, ' comment with ( open paren '),
+        (Token.Comment.Multiline, ' comment with '),
+        (Token.Comment.Multiline, '('),
+        (Token.Comment.Multiline, ' open paren '),
         (Token.Comment.Multiline, ';)'),
         (Token.Text, '\n'),
     ]
@@ -55,7 +57,9 @@ def test_comment_with_semicolon(lexer):
     fragment = '(; comment with ; semicolon ;)\n'
     tokens = [
         (Token.Comment.Multiline, '(;'),
-        (Token.Comment.Multiline, ' comment with ; semicolon '),
+        (Token.Comment.Multiline, ' comment with '),
+        (Token.Comment.Multiline, ';'),
+        (Token.Comment.Multiline, ' semicolon '),
         (Token.Comment.Multiline, ';)'),
         (Token.Text, '\n'),
     ]

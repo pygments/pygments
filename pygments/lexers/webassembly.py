@@ -94,7 +94,8 @@ class WatLexer(RegexLexer):
         'nesting_comment': [
             (r'\(;', Comment.Multiline, '#push'),
             (r';\)', Comment.Multiline, '#pop'),
-            (r'(\([^;]|;[^\)]|[^;\(])+', Comment.Multiline),
+            (r'[^;(]+', Comment.Multiline),
+            (r'[;(]', Comment.Multiline),
         ],
         'string': [
             (r'\\[\dA-Fa-f][\dA-Fa-f]', String.Escape), # must have exactly two hex digits
