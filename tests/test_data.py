@@ -9,7 +9,7 @@
 
 import pytest
 
-from pygments.lexers import JsonLexer, JsonBareObjectLexer, YamlLexer
+from pygments.lexers.data import JsonLexer, JsonBareObjectLexer, JsonLdLexer, YamlLexer
 from pygments.token import Token
 
 
@@ -24,8 +24,67 @@ def lexer_bare():
 
 
 @pytest.fixture(scope='module')
+def lexer_json_ld():
+    yield JsonLdLexer()
+
+
+@pytest.fixture(scope='module')
 def lexer_yaml():
     yield YamlLexer()
+
+
+@pytest.mark.parametrize(
+    'keyword',
+    (
+        'base',
+        'container',
+        'context',
+        'direction',
+        'graph',
+        'id',
+        'import',
+        'included',
+        'index',
+        'json',
+        'language',
+        'list',
+        'nest',
+        'none',
+        'prefix',
+        'propagate',
+        'protected',
+        'reverse',
+        'set',
+        'type',
+        'value',
+        'version',
+        'vocab',
+    )
+)
+def test_json_ld_keywords_positive_match(lexer_json_ld, keyword):
+    """Validate that JSON-LD keywords are parsed correctly."""
+
+    tokens = list(lexer_json_ld.get_tokens_unprocessed('{"@%s": ""}' % keyword))
+    assert len(tokens) == 6
+    assert tokens[1][1] is Token.Name.Decorator
+    assert tokens[1][2] == '"@%s"' % keyword
+
+
+@pytest.mark.parametrize(
+    'keyword',
+    (
+        '@bogus',  # "@" does not guarantee a keyword match
+        '@bases',  # Begins with the keyword "@base"
+        'container',  # Matches "container" but has no leading "@"
+    )
+)
+def test_json_ld_keywords_negative_match(lexer_json_ld, keyword):
+    """Validate that JSON-LD non-keywords are parsed correctly."""
+
+    tokens = list(lexer_json_ld.get_tokens_unprocessed('{"%s": ""}' % keyword))
+    assert len(tokens) == 6
+    assert tokens[1][1] is Token.Name.Tag
+    assert tokens[1][2] == '"%s"' % keyword
 
 
 def test_basic_json(lexer_json):

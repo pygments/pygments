@@ -541,7 +541,7 @@ class JsonBareObjectLexer(JsonLexer):
 
 class JsonLdLexer(JsonLexer):
     """
-    For `JSON-LD <http://json-ld.org/>`_ linked data.
+    For `JSON-LD <https://json-ld.org/>`_ linked data.
 
     .. versionadded:: 2.0
     """
@@ -551,11 +551,38 @@ class JsonLdLexer(JsonLexer):
     filenames = ['*.jsonld']
     mimetypes = ['application/ld+json']
 
-    tokens = {
-        'objectvalue': [
-            (r'"@(context|id|value|language|type|container|list|set|'
-             r'reverse|index|base|vocab|graph)"', Name.Decorator,
-             'objectattribute'),
-            inherit,
-        ],
+    json_ld_keywords = {
+        '"@%s"' % keyword
+        for keyword in (
+            'base',
+            'container',
+            'context',
+            'direction',
+            'graph',
+            'id',
+            'import',
+            'included',
+            'index',
+            'json',
+            'language',
+            'list',
+            'nest',
+            'none',
+            'prefix',
+            'propagate',
+            'protected',
+            'reverse',
+            'set',
+            'type',
+            'value',
+            'version',
+            'vocab',
+        )
     }
+
+    def get_tokens_unprocessed(self, text, stack=('root',)):
+        for start, token, value in super(JsonLdLexer, self).get_tokens_unprocessed(text, stack):
+            if token is Name.Tag and value in self.json_ld_keywords:
+                yield start, Name.Decorator, value
+            else:
+                yield start, token, value
