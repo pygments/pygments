@@ -414,6 +414,7 @@ class HtmlFormatter(Formatter):
         self.tagurlformat = self._decodeifneeded(options.get('tagurlformat', ''))
         self.filename = self._decodeifneeded(options.get('filename', ''))
         self.wrapcode = get_bool_opt(options, 'wrapcode', False)
+        self.span_element_openers = {}
 
         if self.tagsfile:
             if not ctags:
@@ -455,13 +456,20 @@ class HtmlFormatter(Formatter):
         return ''
 
     def _get_css_classes(self, ttype):
-        """Return the css classes of this token type prefixed with
-        the classprefix option."""
+        """Generate the opening <span> tag for a given token type using CSS classes."""
         cls = self._get_css_class(ttype)
         while ttype not in STANDARD_TYPES:
             ttype = ttype.parent
             cls = self._get_css_class(ttype) + ' ' + cls
-        return cls
+        return cls and '<span class="%s">' % cls or ''
+
+    def _get_css_inline_styles(self, ttype):
+        """Generate the opening <span> tag for a given token type using inline CSS styles."""
+        cclass = self.ttype2class.get(ttype)
+        while cclass is None:
+            ttype = ttype.parent
+            cclass = self.ttype2class.get(ttype)
+        return cclass and '<span style="%s">' % self.class2style[cclass][0] or ''
 
     def _create_stylesheet(self):
         t2c = self.ttype2class = {Token: ''}
@@ -793,24 +801,19 @@ class HtmlFormatter(Formatter):
         """
         nocls = self.noclasses
         lsep = self.lineseparator
-        # for <span style=""> lookup only
-        getcls = self.ttype2class.get
-        c2s = self.class2style
         escape_table = _escape_html_table
         tagsfile = self.tagsfile
 
         lspan = ''
         line = []
         for ttype, value in tokensource:
-            if nocls:
-                cclass = getcls(ttype)
-                while cclass is None:
-                    ttype = ttype.parent
-                    cclass = getcls(ttype)
-                cspan = cclass and '<span style="%s">' % c2s[cclass][0] or ''
-            else:
-                cls = self._get_css_classes(ttype)
-                cspan = cls and '<span class="%s">' % cls or ''
+            try:
+                cspan = self.span_element_openers[ttype]
+            except KeyError:
+                if nocls:
+                    cspan = self.span_element_openers[ttype] = self._get_css_inline_styles(ttype)
+                else:
+                    cspan = self.span_element_openers[ttype] = self._get_css_classes(ttype)
 
             parts = value.translate(escape_table).split('\n')
 
