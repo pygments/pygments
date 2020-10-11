@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import functools
 import os
 import sys
 import os.path
@@ -794,6 +795,11 @@ class HtmlFormatter(Formatter):
         yield from inner
         yield 0, '</code>'
 
+    @functools.lru_cache(maxsize=100)
+    def _translate_parts(self, value):
+        """HTML-escape a value and split it by newlines."""
+        return value.translate(_escape_html_table).split('\n')
+
     def _format_lines(self, tokensource):
         """
         Just format the tokens, without any wrapping tags.
@@ -801,7 +807,6 @@ class HtmlFormatter(Formatter):
         """
         nocls = self.noclasses
         lsep = self.lineseparator
-        escape_table = _escape_html_table
         tagsfile = self.tagsfile
 
         lspan = ''
@@ -815,7 +820,7 @@ class HtmlFormatter(Formatter):
                 else:
                     cspan = self.span_element_openers[ttype] = self._get_css_classes(ttype)
 
-            parts = value.translate(escape_table).split('\n')
+            parts = self._translate_parts(value)
 
             if tagsfile and ttype in Token.Name:
                 filename, linenumber = self._lookup_ctag(value)
