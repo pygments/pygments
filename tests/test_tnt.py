@@ -193,4 +193,12 @@ def test_fantasy_positive_matches(lexer, text):
     """Test statements that should be tokenized as push/pop statements."""
     assert lexer.get_tokens_unprocessed(text)[0] == (0, Keyword, text[0])
 
-# full text is already done by examplefiles
+# full text is already done by examplefiles, but here's some exceptions
+
+@pytest.mark.parametrize('text', (
+    '0', 'a=b', 'premise',
+    '0 a=b premise', '1 b=a symmetry (line 0)'
+))
+def test_no_crashing(lexer, text):
+    """Test incomplete text fragments that shouldn't crash the whole lexer."""
+    assert lexer.get_tokens(text)
