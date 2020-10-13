@@ -13,7 +13,7 @@ import re
 
 from pygments.lexer import Lexer
 from pygments.token import Text, Comment, Operator, Keyword, Name, Number, \
-    Punctuation, Error
+     Punctuation, Error
 
 __all__ = ['TNTLexer']
 
@@ -54,6 +54,10 @@ class TNTLexer(Lexer):
     ''')
     LINENOS = re.compile(r'(?:[0-9]+)(?:(?:, ?|,? and )(?:[0-9]+))*')
     COMMENT = re.compile(r'\[[^\n\]]+\]')
+
+    def __init__(self, *args, **kwargs):
+        Lexer.__init__(self, *args, **kwargs)
+        self.cur = []
 
     def whitespace(self, start, text, required=False):
         """Tokenize whitespace."""
@@ -104,9 +108,6 @@ class TNTLexer(Lexer):
 
     def formula(self, start, text):
         """Tokenize a formula."""
-        if text[start] in '[]':  # fantasy push or pop
-            self.cur.append((start, Keyword, text[start]))
-            return start+1
         if text[start] in self.NEGATORS:  # ~<...>
             end = start+1
             while text[end] in self.NEGATORS:
@@ -154,7 +155,7 @@ class TNTLexer(Lexer):
         return match.end()
 
     def lineno(self, start, text):
-        """Tokenize a line marker."""
+        """Tokenize a line referral."""
         end = start
         while text[end] not in self.NUMBERS:
             end += 1
@@ -210,16 +211,21 @@ class TNTLexer(Lexer):
                     # do not attempt to process the rest
                     continue
                 del match
-                # one formula, possibly containing subformulae
-                orig = len(self.cur)
-                try:
-                    start = end = self.formula(start, text)
-                except AssertionError:  # not well-formed
-                    del self.cur[orig:]
-                    while text[end] not in self.WHITESPACE:
-                        end += 1
-                    self.cur.append((start, Error, text[start:end]))
-                    start = end
+                if text[start] in '[]':  # fantasy push or pop
+                    self.cur.append((start, Keyword, text[start]))
+                    start += 1
+                    end += 1
+                else:
+                    # one formula, possibly containing subformulae
+                    orig = len(self.cur)
+                    try:
+                        start = end = self.formula(start, text)
+                    except AssertionError:  # not well-formed
+                        del self.cur[orig:]
+                        while text[end] not in self.WHITESPACE:
+                            end += 1
+                        self.cur.append((start, Error, text[start:end]))
+                        start = end
                 # skip whitespace after formula
                 orig = len(self.cur)
                 try:
@@ -249,5 +255,9 @@ class TNTLexer(Lexer):
                         continue
                     start = end = self.whitespace(start, text)
             except IndexError:
+                try:
+                    del self.cur[orig:]
+                except NameError:
+                    pass # if orig was never defined, fine
                 self.error_till_line_end(start, text)
         return self.cur
