@@ -84,11 +84,10 @@ class FortranLexer(RegexLexer):
              Keyword.Type),
 
             # Operators
-            (r'(\*\*|\*|\+|-|\/|<|>|<=|>=|==|\/=|=)', Operator),
+            (r'(\*\*|\*|\+|-|\/|=>|<=|>=|==|=|<|>|\/=)', Operator),
 
             (r'(::)', Keyword.Declaration),
 
-            (r'[()\[\],:&%;.]', Punctuation),
             # Intrinsics
             (words((
                 'Abort', 'Abs', 'Access', 'AChar', 'ACos', 'ACosH', 'AdjustL',
@@ -147,6 +146,8 @@ class FortranLexer(RegexLexer):
             (r'\.(true|false)\.', Name.Builtin),
             # Comparing Operators
             (r'\.(eq|ne|lt|le|gt|ge|not|and|or|eqv|neqv)\.', Operator.Word),
+
+            (r'[()\[\],:&%;.]', Punctuation),
         ],
 
         'strings': [
