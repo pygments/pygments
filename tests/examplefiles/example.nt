@@ -1,0 +1,22 @@
+# comment
+#
+  # indented comment
+
+dict:
+  key1: no trailing whitespace
+  key2: trailing whitespace    
+  'single-quoted key': value
+  "double-quoted key": value
+  empty:
+
+list:
+  - value
+
+empty list:
+  -
+
+string:
+  > no trailing whitespace
+  > trailing whitespace     
+  >
+
