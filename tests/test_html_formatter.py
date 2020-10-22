@@ -150,11 +150,11 @@ def test_get_style_defs_contains_default_line_numbers_styles():
 
     assert style_defs[1] == (
         'td.linenos pre '
-        '{ color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }'
+        '{ color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[2] == (
         'span.linenos '
-        '{ color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }'
+        '{ color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }'
     )
 
 
@@ -169,19 +169,19 @@ def test_get_style_defs_contains_style_specific_line_numbers_styles():
 
     assert style_defs[1] == (
         'td.linenos pre '
-        '{ color: #ff0000; background-color: #0000ff; padding: 0 5px 0 5px; }'
+        '{ color: #ff0000; background-color: #0000ff; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[2] == (
         'span.linenos '
-        '{ color: #ff0000; background-color: #0000ff; padding: 0 5px 0 5px; }'
+        '{ color: #ff0000; background-color: #0000ff; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[3] == (
         'td.linenos pre.special '
-        '{ color: #00ff00; background-color: #ffffff; padding: 0 5px 0 5px; }'
+        '{ color: #00ff00; background-color: #ffffff; padding-left: 5px; padding-right: 5px; }'
     )
     assert style_defs[4] == (
         'span.linenos.special '
-        '{ color: #00ff00; background-color: #ffffff; padding: 0 5px 0 5px; }'
+        '{ color: #00ff00; background-color: #ffffff; padding-left: 5px; padding-right: 5px; }'
     )
 
 
