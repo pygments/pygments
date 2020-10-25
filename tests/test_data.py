@@ -7,6 +7,8 @@
     :license: BSD, see LICENSE for details.
 """
 
+import time
+
 import pytest
 
 from pygments.lexers.data import JsonLexer, JsonBareObjectLexer, JsonLdLexer, YamlLexer
@@ -134,6 +136,19 @@ def test_json_round_trip_errors(lexer_json, text):
 
     tokens = list(lexer_json.get_tokens_unprocessed(text))
     assert ''.join(t[2] for t in tokens) == text
+
+
+def test_json_escape_backtracking(lexer_json):
+    """Confirm that there is no catastrophic backtracking in the lexer.
+
+    This no longer applies because the JSON lexer doesn't use regular expressions,
+    but the test is included to ensure no loss of functionality now or in the future.
+    """
+
+    fragment = r'{"\u00D0000\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\63CD'
+    start_time = time.time()
+    list(lexer_json.get_tokens(fragment))
+    assert time.time() - start_time < 1, 'The JSON lexer may have catastrophic backtracking'
 
 
 @pytest.mark.parametrize(
