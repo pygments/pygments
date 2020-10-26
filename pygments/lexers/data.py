@@ -448,6 +448,14 @@ class JsonLexer(Lexer):
     filenames = ['*.json', 'Pipfile.lock']
     mimetypes = ['application/json']
 
+    # No validation of integers, floats, or constants is done.
+    # As long as the characters are members of the following
+    # sets, the token will be considered valid. For example,
+    #
+    #     "--1--" is parsed as an integer
+    #     "1...eee" is parsed as a float
+    #     "trustful" is parsed as a constant
+    #
     integers = set('-0123456789')
     floats = set('.eE+')
     constants = set('truefalsenull')  # true|false|null
