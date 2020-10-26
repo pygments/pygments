@@ -479,10 +479,13 @@ class JsonLexer(Lexer):
         # an object key; any other character indicates the string is a
         # regular string value.
         #
-        # The queue holds tuples of slice indices and the token type.
-        # The token type will be replaced if necessary. For example:
+        # The queue holds tuples that contain the following data:
         #
-        #     (1, 7, Name.Tag)
+        #     (start_index, token_type, text)
+        #
+        # By default the token type of text in double quotes is
+        # String.Double. The token type will be replaced if a colon
+        # is encountered after the string closes.
         #
         queue = []
 
