@@ -1020,7 +1020,7 @@ class KotlinLexer(RegexLexer):
 
     name = 'Kotlin'
     aliases = ['kotlin']
-    filenames = ['*.kt']
+    filenames = ['*.kt', '*.kts']
     mimetypes = ['text/x-kotlin']
 
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
@@ -1042,6 +1042,7 @@ class KotlinLexer(RegexLexer):
             (r'\s+', Text),
             (r'\\\n', Text),  # line continuation
             (r'//.*?\n', Comment.Single),
+            (r'^#!/.+?\n', Comment.Single),  # shebang for kotlin scripts
             (r'/[*].*?[*]/', Comment.Multiline),
             (r'""".*?"""', String),
             (r'\n', Text),
