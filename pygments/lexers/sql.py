@@ -620,7 +620,7 @@ class MySqlLexer(RegexLexer):
             (r'[0-9]+\.[0-9]*(e[+-]?[0-9]+)?', Number.Float),  # Mandatory integer, optional fraction and exponent
             (r'[0-9]*\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),  # Mandatory fraction, optional integer and exponent
             (r'[0-9]+e[+-]?[0-9]+', Number.Float),  # Exponents with integer significands are still floats
-            (r'[0-9]+', Number.Integer),
+            (r'[0-9]+(?=[^0-9a-z$_\u0080-\uffff])', Number.Integer),  # Integers that are not in a schema object name
 
             # Date literals
             (r"\{\s*d\s*(?P<quote>['\"])\s*\d{2}(\d{2})?.?\d{2}.?\d{2}\s*(?P=quote)\s*\}",
@@ -673,7 +673,7 @@ class MySqlLexer(RegexLexer):
             # numeric literals have already been handled above.
             #
             ('[0-9a-z$_\u0080-\uffff]+', Name),
-            (r'`', Name, 'schema-object-name'),
+            (r'`', Name.Quoted, 'schema-object-name'),
 
             # Punctuation
             (r'[(),.;]', Punctuation),
@@ -737,15 +737,15 @@ class MySqlLexer(RegexLexer):
         # Schema object name substates
         # ----------------------------
         #
-        # Backtick-quoted schema object names support escape characters.
-        # It may be desirable to tokenize escape sequences differently,
-        # but currently Pygments does not have an obvious token type for
-        # this unique situation (for example, "Name.Escape").
+        # "Name.Quoted" and "Name.Quoted.Escape" are non-standard but
+        # formatters will style them as "Name" by default but add
+        # additional styles based on the token name. This gives users
+        # flexibility to add custom styles as desired.
         #
         'schema-object-name': [
-            (r'[^`\\]+', Name),
-            (r'(?:\\\\|\\`|``)', Name),  # This could be an escaped name token type.
-            (r'`', Name, '#pop'),
+            (r'[^`]+', Name.Quoted),
+            (r'``', Name.Quoted.Escape),
+            (r'`', Name.Quoted, '#pop'),
         ],
     }
 
