@@ -142,7 +142,7 @@ def test_valid_output():
 
 def test_get_style_defs_contains_pre_style():
     style_defs = HtmlFormatter().get_style_defs().splitlines()
-    assert style_defs[0] == 'pre { line-height: 125%; margin: 0; }'
+    assert style_defs[0] == 'pre { line-height: 125% }'
 
 
 def test_get_style_defs_contains_default_line_numbers_styles():

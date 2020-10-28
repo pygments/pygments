@@ -581,7 +581,7 @@ class HtmlFormatter(Formatter):
 
     @property
     def _pre_style(self):
-        return 'line-height: 125%; margin: 0;'
+        return 'line-height: 125%;'
 
     @property
     def _linenos_style(self):
