@@ -19,23 +19,11 @@ def test_do_not_mistake_JSDoc_for_django_comment(lexer):
                */
               func = function(cool) {
               };
-               
+
               /**
                * @param {*} stuff
                */
               fun = function(stuff) {
               };"""
-    tokens = list(lexer.get_tokens(text))
-    assert (
-        (
-            Comment,
-            """{*} cool
-               */
-              func = function(cool) {
-              };
-               
-              /**
-               * @param {*}""",
-        )
-        not in tokens
-    )
+    tokens = lexer.get_tokens(text)
+    assert not any(t[0] == Comment for t in tokens)
