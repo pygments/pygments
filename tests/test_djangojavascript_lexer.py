@@ -10,6 +10,10 @@ def lexer():
 
 
 def test_do_not_mistake_JSDoc_for_django_comment(lexer):
+    """
+    Test to make sure the lexer doesn't mistake
+    {* ... *} to be a django comment
+    """
     text = """/**
                * @param {*} cool
                */
