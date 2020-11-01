@@ -79,6 +79,8 @@ def test_all_options():
         dict(linenos=True, linespans='L'),
         dict(hl_lines=[1, 5, 10, 'xxx']),
         dict(hl_lines=[1, 5, 10], noclasses=True),
+        dict(hl_words={1: (1, 2), 5: (4, 9), 10: (3, 7)}),
+        dict(hl_words={1: (1, 2), 5: (4, 9), 10: (3, 7)}, noclasses=True),
     ]:
         check(optdict)
 
