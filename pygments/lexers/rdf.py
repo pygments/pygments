@@ -299,7 +299,7 @@ class TurtleLexer(RegexLexer):
             (r'.', String, '#pop'),
         ],
         'end-of-string': [
-            (r'(@)([a-zA-z]+(:?-[a-zA-Z0-9]+)*)',
+            (r'(@)([a-zA-Z]+(?:-[a-zA-Z0-9]+)*)',
              bygroups(Operator, Generic.Emph), '#pop:2'),
 
             (r'(\^\^)%(IRIREF)s' % patterns, bygroups(Operator, Generic.Emph), '#pop:2'),
