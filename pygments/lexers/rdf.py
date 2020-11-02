@@ -234,10 +234,8 @@ class TurtleLexer(RegexLexer):
                 '(?:(?:[' + PN_CHARS_GRP + '.:]|' + PLX + ')*(?:[' +
                 PN_CHARS_GRP + ':]|' + PLX + '))?')
 
-    flags = re.IGNORECASE
-
     patterns = {
-        'PNAME_NS': r'((?:[a-z][\w-]*)?\:)',  # Simplified character range
+        'PNAME_NS': r'((?:[a-zA-Z][\w-]*)?\:)',  # Simplified character range
         'IRIREF': r'(<[^<>"{}|^`\\\x00-\x20]*>)'
     }
 
@@ -301,7 +299,7 @@ class TurtleLexer(RegexLexer):
             (r'.', String, '#pop'),
         ],
         'end-of-string': [
-            (r'(@)([a-z]+(:?-[a-z0-9]+)*)',
+            (r'(@)([a-zA-z]+(:?-[a-zA-Z0-9]+)*)',
              bygroups(Operator, Generic.Emph), '#pop:2'),
 
             (r'(\^\^)%(IRIREF)s' % patterns, bygroups(Operator, Generic.Emph), '#pop:2'),
