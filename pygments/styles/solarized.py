@@ -58,6 +58,7 @@ def make_style(colors):
 
         Number:              colors['cyan'],
 
+        Generic:             colors['base0'],
         Generic.Deleted:     colors['red'],
         Generic.Emph:        'italic',
         Generic.Error:       colors['red'],
