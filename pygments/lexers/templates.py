@@ -565,7 +565,7 @@ class MasonLexer(RegexLexer):
 
     def analyse_text(text):
         result = 0.0
-        if re.search(r'</%(class|doc|init)%>', text) is not None:
+        if re.search(r'</%(class|doc|init)>', text) is not None:
             result = 1.0
         elif re.search(r'<&.+&>', text, re.DOTALL) is not None:
             result = 0.11
