@@ -537,7 +537,7 @@ class MasonLexer(RegexLexer):
             (r'(?s)(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(?s)(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)',
+            (r'(?s)<%(\w+)(.*?)(>)(.*?)(</%\1\s*>)',
              bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PerlLexer), Name.Tag)),
             (r'(?s)(<&[^|])(.*?)(,.*?)?(&>)',
