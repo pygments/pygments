@@ -45,8 +45,7 @@ def test_mason_unnamed_block(lexerMason):
 def test_mason_handles_tags_correctly(lexerMason):
     fragment = "<%class>\nhas 'foo';\nhas 'bar' => (required => 1);\nhas 'baz' => (isa => 'Int', default => 17);\n</%class>\n"
     tokens = [
-        (Token.Name.Tag, 'class'),
-        (Token.Name.Tag, '>'),
+        (Token.Name.Tag, '<%class>'),
         (Token.Text, '\n'),
         (Token.Name, ''),
         (Token.Name, 'has'),
