@@ -154,7 +154,7 @@ class CoqLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if 'qed' in text and 'tauto' in text:
+        if re.search(r'[qQ]ed', text) and 'tauto' in text:
             return 1
 
 
