@@ -444,9 +444,9 @@ class JsonLexer(Lexer):
     """
 
     name = 'JSON'
-    aliases = ['json']
+    aliases = ['json', 'json-object']
     filenames = ['*.json', 'Pipfile.lock']
-    mimetypes = ['application/json']
+    mimetypes = ['application/json', 'application/json-object']
 
     # No validation of integers, floats, or constants is done.
     # As long as the characters are members of the following
@@ -637,12 +637,16 @@ class JsonBareObjectLexer(JsonLexer):
     For JSON data structures (with missing object curly braces).
 
     .. versionadded:: 2.2
+
+    .. deprecated:: 2.8.0
+
+       Behaves the same as `JsonLexer` now.
     """
 
     name = 'JSONBareObject'
-    aliases = ['json-object']
+    aliases = []
     filenames = []
-    mimetypes = ['application/json-object']
+    mimetypes = []
 
 
 class JsonLdLexer(JsonLexer):
