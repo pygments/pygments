@@ -410,6 +410,7 @@ class LeanLexer(RegexLexer):
                 'universe', 'universes',
                 'inductive', 'coinductive', 'structure', 'extends',
                 'class', 'instance',
+                'abbreviation',
 
                 'noncomputable theory',
 
@@ -434,6 +435,7 @@ class LeanLexer(RegexLexer):
                 'let', 'if', 'else', 'then', 'in', 'with', 'calc', 'match',
                 'do'
             ), prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(('sorry', 'admit'), prefix=r'\b', suffix=r'\b'), Generic.Error),
             (words(('Sort', 'Prop', 'Type'), prefix=r'\b', suffix=r'\b'), Keyword.Type),
             (words((
                 '#eval', '#check', '#reduce', '#exit',
