@@ -1481,7 +1481,7 @@ class JuttleLexer(RegexLexer):
     """
 
     name = 'Juttle'
-    aliases = ['juttle', 'juttle']
+    aliases = ['juttle']
     filenames = ['*.juttle']
     mimetypes = ['application/juttle', 'application/x-juttle',
                  'text/x-juttle', 'text/juttle']
