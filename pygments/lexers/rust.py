@@ -40,11 +40,10 @@ class RustLexer(RegexLexer):
         'ExactSizeIterator', 'Option', 'Result',
         'Box', 'ToOwned', 'String', 'ToString', 'Vec',
         'Clone', 'Copy', 'Default', 'Eq', 'Hash', 'Ord', 'PartialEq',
-        'PartialOrd', 'Ord',
+        'PartialOrd', 'Ord', 'drop', 'Some', 'None', 'Ok', 'Err',
     ), suffix=r'\b'), Name.Builtin)
 
     builtin_funcs_macros = (words((
-        'drop', 'Some', 'None', 'Ok', 'Err',
         'asm!', 'assert!', 'assert_eq!', 'assert_ne!', 'cfg!', 'column!',
         'compile_error!', 'concat!', 'concat_idents!', 'dbg!', 'debug_assert!',
         'debug_assert_eq!', 'debug_assert_ne!', 'env!', 'eprint!', 'eprintln!',
