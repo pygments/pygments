@@ -52,7 +52,7 @@ class RustLexer(RegexLexer):
         'module_path!', 'option_env!', 'panic!', 'print!', 'println!',
         'stringify!', 'thread_local!', 'todo!', 'trace_macros!',
         'unimplemented!', 'unreachable!', 'vec!', 'write!', 'writeln!',
-    )), Name.Builtin)
+    )), Name.Function.Magic)
 
     tokens = {
         'root': [
