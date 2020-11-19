@@ -32,7 +32,7 @@ class RustLexer(RegexLexer):
         'usize', 'isize', 'f32', 'f64', 'char', 'str', 'bool',
     ), suffix=r'\b'), Keyword.Type)
 
-    builtin_types = (words((
+    builtin_funcs_types = (words((
         'Send', 'Sized', 'Sync', 'Unpin',
         'Drop', 'Fn', 'FnMut', 'FnOnce',
         'AsRef', 'AsMut', 'Into', 'From',
@@ -43,7 +43,7 @@ class RustLexer(RegexLexer):
         'PartialOrd', 'Ord', 'drop', 'Some', 'None', 'Ok', 'Err',
     ), suffix=r'\b'), Name.Builtin)
 
-    builtin_funcs_macros = (words((
+    builtin_macros = (words((
         'asm!', 'assert!', 'assert_eq!', 'assert_ne!', 'cfg!', 'column!',
         'compile_error!', 'concat!', 'concat_idents!', 'dbg!', 'debug_assert!',
         'debug_assert_eq!', 'debug_assert_ne!', 'env!', 'eprint!', 'eprintln!',
@@ -94,8 +94,8 @@ class RustLexer(RegexLexer):
             keyword_types,
             (r'[sS]elf\b', Name.Builtin.Pseudo),
             # Prelude (taken from Rust's src/libstd/prelude.rs)
-            builtin_types,
-            builtin_funcs_macros,
+            builtin_funcs_types,
+            builtin_macros,
             # Path seperators, so types don't catch them.
             (r'::\b', Text),
             # Types in positions.
@@ -171,7 +171,7 @@ class RustLexer(RegexLexer):
             (r'\s+', Text),
             (r'&', Keyword.Pseudo),
             (r"'", Operator, 'lifetime'),
-            builtin_types,
+            builtin_funcs_types,
             keyword_types,
             (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
             default('#pop'),
