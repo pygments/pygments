@@ -21,7 +21,7 @@ __all__ = ['ECLLexer']
 class ECLLexer(RegexLexer):
     """
     Lexer for the declarative big-data `ECL
-    <http://hpccsystems.com/community/docs/ecl-language-reference/html>`_
+    <https://hpccsystems.com/training/documentation/ecl-language-reference/html>`_
     language.
 
     .. versionadded:: 1.5
