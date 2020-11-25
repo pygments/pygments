@@ -126,10 +126,10 @@ class ECLLexer(RegexLexer):
 
     def analyse_text(text):
         """This is very difficult to guess relative to other business languages.
-        <- in conjuction with BEGIN/END seems relatively rare though."""
+        -> in conjuction with BEGIN/END seems relatively rare though."""
         result = 0
 
-        if '<-' in text:
+        if '->' in text:
             result += 0.01
         if 'BEGIN' in text:
             result += 0.01
