@@ -317,6 +317,7 @@ LEXERS = {
     'NotmuchLexer': ('pygments.lexers.textfmts', 'Notmuch', ('notmuch',), (), ()),
     'NuSMVLexer': ('pygments.lexers.smv', 'NuSMV', ('nusmv',), ('*.smv',), ()),
     'NumPyLexer': ('pygments.lexers.python', 'NumPy', ('numpy',), (), ()),
+    'OCLLexer': ('pygments.lexers.ocl', 'OCL', ('ocl',), ('*.ocl',), ('text/ocl',)),
     'ObjdumpLexer': ('pygments.lexers.asm', 'objdump', ('objdump',), ('*.objdump',), ('text/x-objdump',)),
     'ObjectiveCLexer': ('pygments.lexers.objective', 'Objective-C', ('objective-c', 'objectivec', 'obj-c', 'objc'), ('*.m', '*.h'), ('text/x-objective-c',)),
     'ObjectiveCppLexer': ('pygments.lexers.objective', 'Objective-C++', ('objective-c++', 'objectivec++', 'obj-c++', 'objc++'), ('*.mm', '*.hh'), ('text/x-objective-c++',)),
