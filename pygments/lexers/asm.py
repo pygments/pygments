@@ -418,7 +418,7 @@ class LlvmLexer(RegexLexer):
                 'nonlazybind', 'nonnull', 'norecurse', 'noRecurse', 'noredzone', 'noreturn',
                 'notail', 'notEligibleToImport', 'nounwind', 'nsw', 'nsz', 'null', 'nuw', 'oeq',
                 'offset', 'oge', 'ogt', 'ole', 'olt', 'one', 'opaque', 'optforfuzzing',
-                'optnone', 'optsize', 'or', 'ord', 'path', 'personality', 'phi',
+                'optnone', 'optsize', 'or', 'ord', 'path', 'personality', 'phi', 'poison',
                 'prefix', 'preserve_allcc', 'preserve_mostcc', 'private', 'prologue',
                 'protected', 'ptrtoint', 'ptx_device', 'ptx_kernel', 'readnone', 'readNone',
                 'readonly', 'readOnly', 'reassoc', 'refs', 'relbf', 'release', 'resByArg',
