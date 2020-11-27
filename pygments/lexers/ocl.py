@@ -205,7 +205,6 @@ class OCLLexer(RegexLexer):
         ],
         }
 
-
     def __init__(self, **options):
         RegexLexer.__init__(self, **options)
         self.add_filter(OCLSymbolFilter())
@@ -226,3 +225,4 @@ class OCLSymbolFilter(Filter):
                 yield ttype, self.symbols[value]
             else:
                 yield ttype, value
+
