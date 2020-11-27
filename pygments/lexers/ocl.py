@@ -204,25 +204,4 @@ class OCLLexer(RegexLexer):
              ),
         ],
         }
-
-    def __init__(self, **options):
-        RegexLexer.__init__(self, **options)
-        self.add_filter(OCLSymbolFilter())
         
-class OCLSymbolFilter(Filter):
-    symbols = {
-        '->'            : '\u27f6',
-        '>='            : '≥',
-        '<='            : '≤'
-    }
-
-    def __init__(self, **options):
-        Filter.__init__(self, **options)
-
-    def filter(self, lexer, stream):
-        for ttype, value in stream:
-            if value in self.symbols:
-                yield ttype, self.symbols[value]
-            else:
-                yield ttype, value
-
