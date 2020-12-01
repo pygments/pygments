@@ -582,7 +582,7 @@ class MarkdownLexer(RegexLexer):
             # italics fenced by '_'
             (r'(\_[^_ \n][^_\n]*\_)', bygroups(Generic.Emph)),
             # strikethrough
-            (r'([^~]*)(~~[^~]+~~)', bygroups(Text, Generic.Deleted)),
+            (r'(~~[^~]+~~)', bygroups(Generic.Deleted)),
             # mentions and topics (twitter and github stuff)
             (r'[@#][\w/:]+', Name.Entity),
             # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)

@@ -559,3 +559,17 @@ def test_reference_style_links(lexer):
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_simple_text(lexer):
+    fragment = 'this is simple text'
+    tokens = [
+        (Token.Text, 'this'),
+        (Token.Text, ' '),
+        (Token.Text, 'is'),
+        (Token.Text, ' '),
+        (Token.Text, 'simple'),
+        (Token.Text, ' '),
+        (Token.Text, 'text'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
