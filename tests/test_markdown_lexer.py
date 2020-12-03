@@ -7,6 +7,8 @@
     :license: BSD, see LICENSE for details.
 """
 
+import time
+
 import pytest
 from pygments.token import Generic, Token, String, Keyword, Name
 
@@ -390,11 +392,33 @@ def test_bold_fenced_by_asterisk(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+def test_embedded_bold(lexer):
+    fragment = 'embedded**bold**in text'
+    tokens = [
+        (Token.Text, 'embedded'),
+        (Generic.Strong, '**bold**'),
+        (Token.Text, 'in'),
+        (Token.Text, ' '),
+        (Token.Text, 'text'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
 
 def test_bold_fenced_by_underscore(lexer):
     fragment = '__bold__'
     tokens = [
         (Generic.Strong, '__bold__'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_embedded_underscore_no_bold(lexer):
+    fragment = 'embedded__bold__in text'
+    tokens = [
+        (Token.Text, 'embedded__bold__in'),
+        (Token.Text, ' '),
+        (Token.Text, 'text'),
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
@@ -421,11 +445,34 @@ def test_italics_fenced_by_asterisk(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+def test_embedded_italics(lexer):
+    fragment = 'embedded*italics*in text'
+    tokens = [
+        (Token.Text, 'embedded'),
+        (Generic.Emph, '*italics*'),
+        (Token.Text, 'in'),
+        (Token.Text, ' '),
+        (Token.Text, 'text'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
 
 def test_italics_fenced_by_underscore(lexer):
     fragment = '_italics_'
     tokens = [
         (Generic.Emph, '_italics_'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_embedded_underscore_no_italics(lexer):
+    fragment = 'embedded_italics_in text'
+    tokens = [
+        (Token.Text, 'embedded_italics_in'),
+        (Token.Text, ' '),
+        (Token.Text, 'text'),
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
@@ -477,6 +524,20 @@ def test_strikethrough(lexer):
     fragment = '~~striked~~not striked'
     tokens = [
         (Generic.Deleted, '~~striked~~'),
+        (Token.Text, 'not'),
+        (Token.Text, ' '),
+        (Token.Text, 'striked'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_embedded_strikethrough(lexer):
+    fragment = 'not striked~~striked through~~not striked'
+    tokens = [
+        (Token.Text, 'not'),
+        (Token.Text, ' '),
+        (Token.Text, 'striked'),
+        (Generic.Deleted, '~~striked through~~'),
         (Token.Text, 'not'),
         (Token.Text, ' '),
         (Token.Text, 'striked'),

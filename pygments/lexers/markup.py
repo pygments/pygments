@@ -597,7 +597,7 @@ class MarkdownLexer(RegexLexer):
              bygroups(Text, Name.Label, Text, Name.Attribute)),
 
             # general text, must come last!
-            (r'[^\\\s]+', Text),
+            (r'[^\\\s`~*]+', Text),
             (r'.', Text),
         ],
     }
