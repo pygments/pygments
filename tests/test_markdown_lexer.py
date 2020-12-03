@@ -634,3 +634,11 @@ def test_simple_text(lexer):
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_long_line_perf(lexer):
+    # note, this test is weak enough to pass in pypy, so much so that in
+    # cpython it doesn't actually provide much perf regression coverage
+    fragment = "this is text\n"*1024
+    start_time = time.time()
+    assert all(x[0] == Token.Text for x in lexer.get_tokens(fragment))
+    assert time.time() - start_time < 5
