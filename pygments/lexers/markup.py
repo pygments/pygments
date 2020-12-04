@@ -558,7 +558,7 @@ class MarkdownLexer(RegexLexer):
             # quote
             (r'^(\s*>\s)(.+\n)', bygroups(Keyword, Generic.Emph)),
             # code block fenced by 3 backticks
-            (r'^(\s*```\n(.+\n)+\s*```$)', String.Backtick),
+            (r'^(\s*```\n[\w\W]*?^\s*```$)', String.Backtick),
             # code block with language
             (r'^(\s*```)(\w+)(\n)([\w\W]*?)(^\s*```$)', _handle_codeblock),
             # code block indented with 4 spaces or 1 tab
