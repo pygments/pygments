@@ -7,12 +7,26 @@ pull request numbers to the requests at
 <https://github.com/pygments/pygments/pulls>.
 
 
-Version 2.8.0
+Version 2.7.3
 -------------
 (not released yet)
 
-- Deprecate JsonBareObjectLexer, which is now identical to JsonLexer (#1600)
+- Updated lexers:
 
+  * Ada (PR#1581)
+  * Java (PR#1594, #1586)
+  * JavaScript (PR#1605, PR#1589, #1588)
+  * JSON (PR#1569 -- this is a complete rewrite)
+  * Lean (PR#1601)
+  * LLVM (PR#1612)
+  * MySQL (PR#1555, #1551)
+  * Rust (PR#1608)
+
+- Deprecate JsonBareObjectLexer, which is now identical to JsonLexer (#1600)
+- The ``ImgFormatter`` now calculates the exact character width, which fixes some issues with overlapping text (#1213, PR#1611)
+- Documentation fixes (PR#1609, #1599, #1598)
+- Fix duplicated Juttle language alias (#1604, PR#1606)
+  
 
 Version 2.7.2
 -------------
