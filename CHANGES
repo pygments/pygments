@@ -14,6 +14,7 @@ Version 2.7.3
 - Updated lexers:
 
   * Ada (PR#1581)
+  * HTML (PR#1615, #1614)
   * Java (PR#1594, #1586)
   * JavaScript (PR#1605, PR#1589, #1588)
   * JSON (PR#1569 -- this is a complete rewrite)
@@ -21,6 +22,7 @@ Version 2.7.3
   * LLVM (PR#1612)
   * MySQL (PR#1555, #1551)
   * Rust (PR#1608)
+  * Turtle (PR#1590, #1553)
 
 - Deprecate JsonBareObjectLexer, which is now identical to JsonLexer (#1600)
 - The ``ImgFormatter`` now calculates the exact character width, which fixes some issues with overlapping text (#1213, PR#1611)
