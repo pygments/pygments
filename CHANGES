@@ -11,6 +11,9 @@ Version 2.8.0
 -------------
 (not released yet)
 
+- Changed setuptools to use a declarative config through ``setup.cfg``.
+  Building Pygments now requires setuptools 39.2+.
+
 Version 2.7.3
 -------------
 (released December 6, 2020)
@@ -35,7 +38,7 @@ Version 2.7.3
 - Fixed duplicated Juttle language alias (#1604, PR#1606)
 - Added support for Kotlin scripts (PR#1587)
 - Removed CSS rule which forced margin to 0
-  
+
 
 Version 2.7.2
 -------------
