@@ -558,9 +558,9 @@ class MarkdownLexer(RegexLexer):
             # quote
             (r'^(\s*>\s)(.+\n)', bygroups(Keyword, Generic.Emph)),
             # code block fenced by 3 backticks
-            (r'^(\s*```\n[\w\W]*?^\s*```$)', String.Backtick),
+            (r'^(\s*```\n[\w\W]*?^\s*```$\n)', String.Backtick),
             # code block with language
-            (r'^(\s*```)(\w+)(\n)([\w\W]*?)(^\s*```$)', _handle_codeblock),
+            (r'^(\s*```)(\w+)(\n)([\w\W]*?)(^\s*```$\n)', _handle_codeblock),
             # code block indented with 4 spaces or 1 tab
             (r'(\n\n)((\ {4}|\t)(.+\n)+)', bygroups(Text, String.Backtick)),
 
@@ -570,7 +570,7 @@ class MarkdownLexer(RegexLexer):
             # escape
             (r'\\.', Text),
             # inline code
-            (r'([^`])(`[^`\n]+`)', bygroups(Text, String.Backtick)),
+            (r'([^`]*)(`[^`\n]+`)', bygroups(Text, String.Backtick)),
             # warning: the following rules eat outer tags.
             # eg. **foo _bar_ baz** => foo and baz are not recognized as bold
             # bold fenced by '**'
