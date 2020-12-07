@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Pygments documentation build configuration file
 #

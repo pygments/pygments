@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
     Checker for file headers
     ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -188,7 +187,7 @@ def main(argv):
             try:
                 with open(fn, 'rb') as f:
                     lines = f.read().decode('utf-8').splitlines()
-            except (IOError, OSError) as err:
+            except OSError as err:
                 print("%s: cannot open: %s" % (fn, err))
                 num += 1
                 continue

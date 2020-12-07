@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     Pygments tests with example files
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

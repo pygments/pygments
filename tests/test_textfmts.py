@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     Basic Tests for textfmts
     ~~~~~~~~~~~~~~~~~~~~~~~~

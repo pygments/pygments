@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     Pygments Basic lexers tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~

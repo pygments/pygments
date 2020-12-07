@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     Pygments basic API tests
     ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -186,7 +185,7 @@ def test_formatter_encodings():
     # encoding and outencoding option
     fmt = HtmlFormatter(encoding="latin1", outencoding="utf8")
     tokens = [(Text, "ä")]
-    assert "ä".encode("utf8") in format(tokens, fmt)
+    assert "ä".encode() in format(tokens, fmt)
 
 
 @pytest.mark.parametrize('cls', [getattr(formatters, name)
@@ -272,7 +271,7 @@ class TestFilters:
             # We don't read as binary and decode, but instead read as text, as
             # we need consistent line endings. Otherwise we'll get \r\n on
             # Windows
-            with open(TESTFILE, 'r', encoding='utf-8') as fp:
+            with open(TESTFILE, encoding='utf-8') as fp:
                 text = fp.read()
             tokens = list(lx.get_tokens(text))
             assert all(isinstance(t[1], str) for t in tokens), \
