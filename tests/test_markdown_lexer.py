@@ -352,11 +352,26 @@ def test_code_indented_with_spaces(lexer):
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
+    fragments = (
+        'sample:\n    code\nsome\n\nmore code',
+    )
+    for fragment in fragments:
+        tokens = [
+            (Token.Text, 'sample:'),
+            (Token.Text, '\n'),
+            (String.Backtick, '    code\n'),
+            (String.Backtick, '    some\n'),
+            (Token.Text, '\n'),
+            (String.Backtick, '    more code\n'),
+        ]
+        assert list(lexer.get_tokens(fragment)) == tokens
+
 
 def test_inline_code(lexer):
     fragment = 'code: `code`'
     tokens = [
-        (Token.Text, 'code: '),
+        (Token.Text, 'code:'),
+        (Token.Text, ' '),
         (String.Backtick, '`code`'),
         (Token.Text, '\n'),
     ]
@@ -422,7 +437,9 @@ def test_inline_code(lexer):
 
     fragment = 'code (`in brackets`)'
     tokens = [
-        (Token.Text, 'code ('),
+        (Token.Text, 'code'),
+        (Token.Text, ' '),
+        (Token.Text, '('),
         (String.Backtick, '`in brackets`'),
         (Token.Text, ')'),
         (Token.Text, '\n'),
@@ -451,11 +468,29 @@ def test_bold_fenced_by_asterisk(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+    fragment = '(**bold**)'
+    tokens = [
+        (Token.Text, '('),
+        (Generic.Strong, '**bold**'),
+        (Token.Text, ')'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
 
 def test_bold_fenced_by_underscore(lexer):
     fragment = '__bold__'
     tokens = [
         (Generic.Strong, '__bold__'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '(__bold__)'
+    tokens = [
+        (Token.Text, '('),
+        (Generic.Strong, '__bold__'),
+        (Token.Text, ')'),
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
@@ -482,11 +517,29 @@ def test_italics_fenced_by_asterisk(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+    fragment = '(*italics*)'
+    tokens = [
+        (Token.Text, '('),
+        (Generic.Emph, '*italics*'),
+        (Token.Text, ')'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
 
 def test_italics_fenced_by_underscore(lexer):
     fragment = '_italics_'
     tokens = [
         (Generic.Emph, '_italics_'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '(_italics_)'
+    tokens = [
+        (Token.Text, '('),
+        (Generic.Emph, '_italics_'),
+        (Token.Text, ')'),
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
