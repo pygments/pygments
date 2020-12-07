@@ -561,8 +561,6 @@ class MarkdownLexer(RegexLexer):
             (r'^(\s*```\n[\w\W]*?^\s*```$\n)', String.Backtick),
             # code block with language
             (r'^(\s*```)(\w+)(\n)([\w\W]*?)(^\s*```$\n)', _handle_codeblock),
-            # code block indented with 4 spaces or 1 tab
-            (r'(\n\n)((\ {4}|\t)(.+\n)+)', bygroups(Text, String.Backtick)),
 
             include('inline'),
         ],

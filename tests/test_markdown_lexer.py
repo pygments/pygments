@@ -329,44 +329,6 @@ def test_code_block_with_language(lexer):
         assert list(lexer.get_tokens(fragment)) == tokens
 
 
-def test_code_indented_with_spaces(lexer):
-    fragments = (
-        'sample:\n\n    code\n',
-    )
-    for fragment in fragments:
-        tokens = [
-            (Token.Text, 'sample:'),
-            (Token.Text, '\n\n'),
-            (String.Backtick, '    code\n'),
-        ]
-        assert list(lexer.get_tokens(fragment)) == tokens
-
-    fragments = (
-        'sample:\n\n\tcode\n',
-    )
-    for fragment in fragments:
-        tokens = [
-            (Token.Text, 'sample:'),
-            (Token.Text, '\n\n'),
-            (String.Backtick, '\tcode\n'),
-        ]
-        assert list(lexer.get_tokens(fragment)) == tokens
-
-    fragments = (
-        'sample:\n    code\nsome\n\nmore code',
-    )
-    for fragment in fragments:
-        tokens = [
-            (Token.Text, 'sample:'),
-            (Token.Text, '\n'),
-            (String.Backtick, '    code\n'),
-            (String.Backtick, '    some\n'),
-            (Token.Text, '\n'),
-            (String.Backtick, '    more code\n'),
-        ]
-        assert list(lexer.get_tokens(fragment)) == tokens
-
-
 def test_inline_code(lexer):
     fragment = 'code: `code`'
     tokens = [
