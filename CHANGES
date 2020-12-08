@@ -11,8 +11,31 @@ Version 2.8.0
 -------------
 (not released yet)
 
-- Deprecate JsonBareObjectLexer, which is now identical to JsonLexer (#1600)
+Version 2.7.3
+-------------
+(released December 6, 2020)
 
+- Updated lexers:
+
+  * Ada (PR#1581)
+  * HTML (PR#1615, #1614)
+  * Java (PR#1594, #1586)
+  * JavaScript (PR#1605, PR#1589, #1588)
+  * JSON (PR#1569 -- this is a complete rewrite)
+  * Lean (PR#1601)
+  * LLVM (PR#1612)
+  * Mason (PR#1592)
+  * MySQL (PR#1555, #1551)
+  * Rust (PR#1608)
+  * Turtle (PR#1590, #1553)
+
+- Deprecated JsonBareObjectLexer, which is now identical to JsonLexer (#1600)
+- The ``ImgFormatter`` now calculates the exact character width, which fixes some issues with overlapping text (#1213, PR#1611)
+- Documentation fixes (PR#1609, #1599, #1598)
+- Fixed duplicated Juttle language alias (#1604, PR#1606)
+- Added support for Kotlin scripts (PR#1587)
+- Removed CSS rule which forced margin to 0
+  
 
 Version 2.7.2
 -------------
@@ -24,15 +47,14 @@ Version 2.7.2
   * LLVM (PR#1565)
   * SPARQL (PR#1559)
 
-- Fixed Python console/traceback lexer problems with
-  custom exceptions without messages (#1548)
+- Fixed Python console/traceback lexer problems with custom exceptions without messages (#1548)
 - Allow loading ttc fonts on Mac/image formatter (#1223)
-- Improve ``analyze_text`` across a variety of lexers (PR#1549)
+- Improved ``analyze_text`` across a variety of lexers (PR#1549)
 - Removed CSS rule which forced the vertical padding to 0 for line numbers (PR#1583, #1579)
-- Fix ``TNTLexer`` crashing on unexpected EOL (#1568, PR#1570)
+- Fixed ``TNTLexer`` crashing on unexpected EOL (#1568, PR#1570)
 - ``regexlint`` can be now run locally as part of ``tox`` tests (PR#1557)
-- Fix typos (PR#1550, #1562)
-- Add Python 3.9 as a supported version (PR#1554)
+- Fixed typos (PR#1550, #1562)
+- Added Python 3.9 as a supported version (PR#1554)
 
 
 Version 2.7.1
