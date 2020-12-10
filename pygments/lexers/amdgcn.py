@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pygments.lexers.esoteric
+    pygments.lexers.AMDGCNLexer
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for esoteric languages.
+    Lexers for the AMD GCN ISA assembly.
 
     :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
