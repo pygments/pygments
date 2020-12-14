@@ -51,7 +51,7 @@ STYLE_MAP = {
     'stata-light': 'stata_light::StataLightStyle',
     'stata-dark':  'stata_dark::StataDarkStyle',
     'inkpot':      'inkpot::InkPotStyle',
-    'dracula': 'draculla:DraculaStyle'
+    'dracula': 'dracula:DraculaStyle'
 }
 
 
