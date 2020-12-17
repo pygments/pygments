@@ -95,9 +95,19 @@ class JavascriptLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|'
              r'document|this|window)\b', Name.Builtin),
             (JS_IDENT, Name.Other),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"', String.Double, 'string-double'),
+            (r"'", String.Single, 'string-single'),
             (r'`', String.Backtick, 'interp'),
+        ],
+        'string-double': [
+            (r'\\.', String.Double),
+            (r'[^\\"]+', String.Double),
+            (r'"', String.Double, '#pop'),
+        ],
+        'string-single': [
+            (r'\\.', String.Single),
+            (r"[^\\']+", String.Single),
+            (r"'", String.Single, '#pop'),
         ],
         'interp': [
             (r'`', String.Backtick, '#pop'),
@@ -112,7 +122,6 @@ class JavascriptLexer(RegexLexer):
             (r'\}', String.Interpol, '#pop'),
             include('root'),
         ],
-        # (\\\\|\\`|[^`])*`', String.Backtick),
     }
 
 
@@ -522,11 +531,21 @@ class TypeScriptLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"', String.Double, 'string-double'),
+            (r"'", String.Single, 'string-single'),
             (r'`', String.Backtick, 'interp'),
             # Match stuff like: Decorators
             (r'@\w+', Keyword.Declaration),
+        ],
+        'string-double': [
+            (r'\\.', String.Double),
+            (r'[^\\"]+', String.Double),
+            (r'"', String.Double, '#pop'),
+        ],
+        'string-single': [
+            (r'\\.', String.Single),
+            (r"[^\\']+", String.Single),
+            (r"'", String.Single, '#pop'),
         ],
 
         # The 'interp*' rules match those in JavascriptLexer. Changes made
