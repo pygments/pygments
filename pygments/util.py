@@ -175,7 +175,7 @@ def doctype_matches(text, regex):
     m = doctype_lookup_re.search(text)
     if m is None:
         return False
-    doctype = m.group(2)
+    doctype = m.group(1)
     return re.compile(regex, re.I).match(doctype.strip()) is not None
 
 
