@@ -10,13 +10,11 @@
 """
 
 import re
-import sys
 from io import TextIOWrapper
 
 
 split_path_re = re.compile(r'[/\\ ]')
 doctype_lookup_re = re.compile(r'''
-    (<\?.*?\?>)?\s*
     <!DOCTYPE\s+(
      [a-zA-Z_][a-zA-Z0-9]*
      (?: \s+      # optional in HTML5
