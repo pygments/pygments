@@ -297,7 +297,7 @@ class CppLexer(CFamilyLexer):
 
     tokens = {
         'statements': [
-            (r'(class|concept|typename)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(class|concept|typename)(\s*)', bygroups(Keyword, Text), 'classname'),
             (words((
                 'catch', 'const_cast', 'delete', 'dynamic_cast', 'explicit',
                 'export', 'friend', 'mutable', 'namespace', 'new', 'operator',
