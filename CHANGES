@@ -17,10 +17,13 @@ Version 2.7.4
 (not released yet)
 
 - Fixed infinite loop in SML lexer (#1625)
-- Fixed backtracking string regexes in JavaScript/TypeScript lexers (#1637)
+- Fixed backtracking string regexes in JavaScript/TypeScript and Modula2
+  lexers (#1637)
 - Limit recursion with nesting Ruby heredocs (#1638)
 - Fixed a few inefficient regexes for guessing lexers
 - Fixed the raw token lexer handling of Unicode (#1616)
+
+Thanks to Google's OSS-Fuzz project for finding many of these bugs.
 
 
 Version 2.7.3

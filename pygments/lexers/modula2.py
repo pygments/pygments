@@ -228,8 +228,18 @@ class Modula2Lexer(RegexLexer):
             (r'[0-9A-F]+H', Number.Hex),
         ],
         'string_literals': [
-            (r"'(\\\\|\\'|[^'])*'", String),  # single quoted string
-            (r'"(\\\\|\\"|[^"])*"', String),  # double quoted string
+            (r"'", String, 'string-single'),
+            (r'"', String, 'string-double'),
+        ],
+        'string-double': [
+            (r'\\.', String),
+            (r'[^\\"]+', String),
+            (r'"', String, '#pop'),
+        ],
+        'string-single': [
+            (r'\\.', String),
+            (r"[^\\']+", String),
+            (r"'", String, '#pop'),
         ],
         'digraph_operators': [
             # Dot Product Operator
