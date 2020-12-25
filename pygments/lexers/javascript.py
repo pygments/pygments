@@ -53,7 +53,7 @@ class JavascriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gimuy]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
@@ -160,7 +160,7 @@ class KalLexer(RegexLexer):
         'root': [
             include('commentsandwhitespace'),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex),
+             r'([gimuys]+\b|\B)', String.Regex),
             (r'\?|:|_(?=\n)|==?|!=|-(?!>)|[<>+*/-]=?',
              Operator),
             (r'\b(and|or|isnt|is|not|but|bitwise|mod|\^|xor|exists|'
@@ -474,7 +474,7 @@ class TypeScriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
@@ -1496,7 +1496,7 @@ class JuttleLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
