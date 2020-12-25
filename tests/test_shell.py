@@ -142,9 +142,8 @@ def test_end_of_line_nums(lexer_bash):
 def test_newline_in_echo(lexer_session):
     fragment = '$ echo \\\nhi\nhi\n'
     tokens = [
-        (Token.Text, ''),
-        (Token.Generic.Prompt, '$'),
-        (Token.Text, ' '),
+        (Token.Name.Builtin, ''),
+        (Token.Generic.Prompt, '$ '),
         (Token.Name.Builtin, 'echo'),
         (Token.Text, ' '),
         (Token.Literal.String.Escape, '\\\n'),
@@ -217,8 +216,7 @@ def test_virtualenv(lexer_session):
         (Token.Text, ''),
         (Token.Text, ' '),
         (Token.Text, ''),
-        (Token.Generic.Prompt, '[~/project]$'),
-        (Token.Text, ' '),
+        (Token.Generic.Prompt, '[~/project]$ '),
         (Token.Text, 'foo'),
         (Token.Text, ' '),
         (Token.Text, '-h'),
