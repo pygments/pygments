@@ -289,8 +289,8 @@ class CssLexer(RegexLexer):
             (r'(@)([\w-]+)', bygroups(Punctuation, Keyword), 'atrule'),
             (r'[\w-]+', Name.Tag),
             (r'[~^*!%&$\[\]()<>|+=@:;,./?-]', Operator),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single)
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
         ],
         'atrule': [
             (r'\{', Punctuation, 'atcontent'),
@@ -335,8 +335,8 @@ class CssLexer(RegexLexer):
 
             (r'[~^*!%&<>|+=@:./?-]+', Operator),
             (r'[\[\](),]+', Punctuation),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'[a-zA-Z_][\w-]*', Name),
             (r';', Punctuation, '#pop'),
             (r'\}', Punctuation, '#pop:2'),
@@ -359,8 +359,8 @@ class CssLexer(RegexLexer):
             include('numeric-values'),
             (r'[*+/-]', Operator),
             (r',', Punctuation),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'[a-zA-Z_-]\w*', Name),
             (r'\)', Punctuation, '#pop'),
         ],

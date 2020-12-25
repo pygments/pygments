@@ -95,19 +95,9 @@ class JavascriptLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|'
              r'document|this|window)\b', Name.Builtin),
             (JS_IDENT, Name.Other),
-            (r'"', String.Double, 'string-double'),
-            (r"'", String.Single, 'string-single'),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'`', String.Backtick, 'interp'),
-        ],
-        'string-double': [
-            (r'\\.', String.Double),
-            (r'[^\\"]+', String.Double),
-            (r'"', String.Double, '#pop'),
-        ],
-        'string-single': [
-            (r'\\.', String.Single),
-            (r"[^\\']+", String.Single),
-            (r"'", String.Single, '#pop'),
         ],
         'interp': [
             (r'`', String.Backtick, '#pop'),
@@ -531,21 +521,11 @@ class TypeScriptLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
-            (r'"', String.Double, 'string-double'),
-            (r"'", String.Single, 'string-single'),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'`', String.Backtick, 'interp'),
             # Match stuff like: Decorators
             (r'@\w+', Keyword.Declaration),
-        ],
-        'string-double': [
-            (r'\\.', String.Double),
-            (r'[^\\"]+', String.Double),
-            (r'"', String.Double, '#pop'),
-        ],
-        'string-single': [
-            (r'\\.', String.Single),
-            (r"[^\\']+", String.Single),
-            (r"'", String.Single, '#pop'),
         ],
 
         # The 'interp*' rules match those in JavascriptLexer. Changes made
@@ -894,8 +874,8 @@ class ObjectiveJLexer(RegexLexer):
             (r'(L|@)?"', String, 'string'),
             (r"(L|@)?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
              String.Char),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
@@ -1552,8 +1532,8 @@ class JuttleLexer(RegexLexer):
             (JS_IDENT, Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single)
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
         ]
 
     }

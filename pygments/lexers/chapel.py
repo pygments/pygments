@@ -88,8 +88,8 @@ class ChapelLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
 
             # strings
-            (r'"(\\\\|\\"|[^"])*"', String),
-            (r"'(\\\\|\\'|[^'])*'", String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
 
             # tokens
             (r'(=|\+=|-=|\*=|/=|\*\*=|%=|&=|\|=|\^=|&&=|\|\|=|<<=|>>=|'

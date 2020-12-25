@@ -345,8 +345,8 @@ class BooLexer(RegexLexer):
              r'rawArrayIndexing|required|typeof|unchecked|using|'
              r'yieldAll|zip)\b', Name.Builtin),
             (r'"""(\\\\|\\"|.*?)"""', String.Double),
-            (r'"(\\\\|\\"|[^"]*?)"', String.Double),
-            (r"'(\\\\|\\'|[^']*?)'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'[a-zA-Z_]\w*', Name),
             (r'(\d+\.\d*|\d*\.\d+)([fF][+-]?[0-9]+)?', Number.Float),
             (r'[0-9][0-9.]*(ms?|d|h|s)', Number),
