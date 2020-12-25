@@ -157,7 +157,7 @@ class CoqLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if 'qed' in text and 'tauto' in text:
+        if 'Qed' in text and 'Proof' in text:
             return 1
 
 
