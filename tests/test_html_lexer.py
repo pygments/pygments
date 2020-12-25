@@ -65,9 +65,7 @@ def test_long_unclosed_javascript_fragment(lexer_html):
     tokens_body = [
         (Token.Name.Other, 'alert'),
         (Token.Punctuation, '('),
-        (Token.Literal.String.Double, '"'),
-        (Token.Literal.String.Double, 'hi'),
-        (Token.Literal.String.Double, '"'),
+        (Token.Literal.String.Double, '"hi"'),
         (Token.Punctuation, ')'),
         (Token.Punctuation, ';'),
     ]

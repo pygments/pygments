@@ -37,7 +37,7 @@ class ActionScriptLexer(RegexLexer):
             (r'\s+', Text),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'/(\\\\|\\/|[^/\n])*/[gim]*', String.Regex),
+            (r'/(\\\\|\\[^\\]|[^/\\\n])*/[gim]*', String.Regex),
             (r'[~^*!%&<>|+=:;,/?\\-]+', Operator),
             (r'[{}\[\]();.]+', Punctuation),
             (words((
@@ -149,7 +149,7 @@ class ActionScript3Lexer(RegexLexer):
              bygroups(Keyword, Text, Keyword.Type, Text, Operator)),
             (r'//.*?\n', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'/(\\\\|\\/|[^\n])*/[gisx]*', String.Regex),
+            (r'/(\\\\|\\[^\\]|[^\\\n])*/[gisx]*', String.Regex),
             (r'(\.)(' + identifier + r')', bygroups(Operator, Name.Attribute)),
             (r'(case|default|for|each|in|while|do|break|return|continue|if|else|'
              r'throw|try|catch|with|new|typeof|arguments|instanceof|this|'

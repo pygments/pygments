@@ -909,7 +909,7 @@ class TOMLLexer(RegexLexer):
             (r'\s+', Text),
             (r'#.*?$', Comment.Single),
             # Basic string
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # Literal string
             (r'\'\'\'(.*)\'\'\'', String),
             (r'\'[^\']*\'', String),
