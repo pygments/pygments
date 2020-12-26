@@ -154,6 +154,31 @@ def test_newline_in_echo(lexer_session):
     assert list(lexer_session.get_tokens(fragment)) == tokens
 
 
+def test_newline_in_ls(lexer_session):
+    fragment = '$ ls \\\nhi\nhi\n'
+    tokens = [
+        (Token.Text, ''),
+        (Token.Generic.Prompt, '$ '),
+        (Token.Text, 'ls'),
+        (Token.Text, ' '),
+        (Token.Literal.String.Escape, '\\\n'),
+        (Token.Text, 'hi'),
+        (Token.Text, '\n'),
+        (Token.Generic.Output, 'hi\n'),
+    ]
+    assert list(lexer_session.get_tokens(fragment)) == tokens
+
+
+def test_comment_after_prompt(lexer_session):
+    fragment = '$# comment'
+    tokens = [
+        (Token.Comment.Single, ''),
+        (Token.Generic.Prompt, '$'),
+        (Token.Comment.Single, '# comment\n'),
+    ]
+    assert list(lexer_session.get_tokens(fragment)) == tokens
+
+
 def test_msdos_gt_only(lexer_msdos):
     fragment = '> py\nhi\n'
     tokens = [
