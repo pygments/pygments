@@ -255,7 +255,7 @@ class LiveScriptLexer(RegexLexer):
         ],
         'multilineregex': [
             include('commentsandwhitespace'),
-            (r'//([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'//([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'/', String.Regex),
             (r'[^/#]+', String.Regex)
         ],
@@ -263,7 +263,7 @@ class LiveScriptLexer(RegexLexer):
             include('commentsandwhitespace'),
             (r'//', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'/', Operator, '#pop'),
             default('#pop'),
         ],
@@ -1054,7 +1054,7 @@ class CoffeeScriptLexer(RegexLexer):
         ],
         'multilineregex': [
             (r'[^/#]+', String.Regex),
-            (r'///([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'///([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'#\{', String.Interpol, 'interpoling_string'),
             (r'[/#]', String.Regex),
         ],
@@ -1062,7 +1062,7 @@ class CoffeeScriptLexer(RegexLexer):
             include('commentsandwhitespace'),
             (r'///', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
             # This isn't really guarding against mishighlighting well-formed
             # code, just the ability to infinite-loop between root and
             # slashstartsregex.
