@@ -278,9 +278,9 @@ class CrystalLexer(ExtendedRegexLexer):
             # macro expansion
             (r'\{%', String.Interpol, 'in-macro-control'),
             (r'\{\{', String.Interpol, 'in-macro-expr'),
-            # attributes
-            (r'(@\[)(\s*)([A-Z]\w*)',
-             bygroups(Operator, Text, Name.Decorator), 'in-attr'),
+            # annotations
+            (r'(@\[)(\s*)([A-Z]\w*(::[A-Z]\w*)*)',
+             bygroups(Operator, Text, Name.Decorator), 'in-annot'),
             # this is needed because Crystal attributes can look
             # like keywords (class) or like this: ` ?!?
             (words(CRYSTAL_OPERATORS, prefix=r'(\.|::)'),
@@ -357,7 +357,7 @@ class CrystalLexer(ExtendedRegexLexer):
             (r'\}\}', String.Interpol, '#pop'),
             include('root'),
         ],
-        'in-attr': [
+        'in-annot': [
             (r'\[', Operator, '#push'),
             (r'\]', Operator, '#pop'),
             include('root'),

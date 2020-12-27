@@ -509,3 +509,21 @@ def test_escaped_bracestring(lexer):
         (Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_annotation(lexer):
+    fragment = '@[FOO::Bar::Baz(opt: "xx")]\n'
+    tokens = [
+        (Operator, '@['),
+        (Name.Decorator, 'FOO::Bar::Baz'),
+        (Punctuation, '('),
+        (String.Symbol, 'opt'),
+        (Punctuation, ':'),
+        (Text, ' '),
+        (String.Double, '"'),
+        (String.Double, 'xx'),
+        (String.Double, '"'),
+        (Punctuation, ')'),
+        (Operator, ']'),
+        (Text, '\n'),
+    ]
