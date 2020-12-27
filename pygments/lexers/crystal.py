@@ -91,8 +91,8 @@ class CrystalLexer(ExtendedRegexLexer):
     def gen_crystalstrings_rules():
         states = {}
         states['strings'] = [
-            (r'\:@{0,2}[a-zA-Z_]\w*[!?]?', String.Symbol),
-            (words(CRYSTAL_OPERATORS, prefix=r'\:@{0,2}'), String.Symbol),
+            (r'\:\w+[!?]?', String.Symbol),
+            (words(CRYSTAL_OPERATORS, prefix=r'\:'), String.Symbol),
             (r":'(\\\\|\\[^\\]|[^'\\])*'", String.Symbol),
             # This allows arbitrary text after '\ for simplicity
             (r"'(\\\\|\\'|[^']|\\[^'\\]+)'", String.Char),
@@ -269,9 +269,9 @@ class CrystalLexer(ExtendedRegexLexer):
             (r'\$-[0adFiIlpvw]', Name.Variable.Global),
             (r'::', Operator),
             include('strings'),
-            # chars
+            # https://crystal-lang.org/reference/syntax_and_semantics/literals/char.html
             (r'\?(\\[MC]-)*'  # modifiers
-             r'(\\([\\befnrtv#"\']|x[a-fA-F0-9]{1,2}|[0-7]{1,3})|\S)'
+             r'(\\([\\abefnrtv#"\']|[0-7]{1,3}|x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|u\{[a-fA-F0-9 ]+\})|\S)'
              r'(?!\w)',
              String.Char),
             (r'[A-Z][A-Z_]+\b', Name.Constant),
@@ -317,7 +317,9 @@ class CrystalLexer(ExtendedRegexLexer):
             (r'#\{', String.Interpol, 'in-intp'),
         ],
         'string-escaped': [
-            (r'\\([\\befnstv#"\']|x[a-fA-F0-9]{1,2}|[0-7]{1,3})', String.Escape)
+            # https://crystal-lang.org/reference/syntax_and_semantics/literals/string.html
+            (r'\\([\\abefnrtv#"\']|[0-7]{1,3}|x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|u\{[a-fA-F0-9 ]+\})',
+             String.Escape)
         ],
         'string-intp-escaped': [
             include('string-intp'),

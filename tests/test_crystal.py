@@ -104,6 +104,19 @@ def test_interpolation_nested_curly(lexer):
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
+def test_escaped_interpolation(lexer):
+    fragment = '"\\#{a + b}"\n'
+    # i.e. no actual interpolation
+    tokens = [
+        (String.Double, '"'),
+        (String.Escape, '\\#'),
+        (String.Double, '{a + b}'),
+        (String.Double, '"'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
 def test_operator_methods(lexer):
     fragment = '([] of Int32).[]?(5)\n'
     tokens = [
@@ -155,11 +168,39 @@ def test_numbers(lexer):
         assert next(lexer.get_tokens(fragment + '\n'))[0] == Error
 
 
+def test_symbols(lexer):
+    for fragment in [':sym_bol', ':\u3042', ':question?']:
+        assert list(lexer.get_tokens(fragment + '\n')) == \
+            [(String.Symbol, fragment), (Text, '\n')]
+
+    fragment = ':"sym bol"\n'
+    tokens = [
+        (String.Symbol, ':"'),
+        (String.Symbol, 'sym bol'),
+        (String.Symbol, '"'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
 def test_chars(lexer):
     for fragment in ["'a'", "'я'", "'\\u{1234}'", "'\n'"]:
         assert list(lexer.get_tokens(fragment + '\n')) == \
             [(String.Char, fragment), (Text, '\n')]
     assert next(lexer.get_tokens("'abc'"))[0] == Error
+
+
+def test_string_escapes(lexer):
+    for body in ['\\n', '\\a', '\\xff', '\\u1234', '\\000', '\\u{0}', '\\u{10AfF9}']:
+        fragment = '"a' + body + 'z"\n'
+        assert list(lexer.get_tokens(fragment)) == [
+            (String.Double, '"'),
+            (String.Double, 'a'),
+            (String.Escape, body),
+            (String.Double, 'z'),
+            (String.Double, '"'),
+            (Text, '\n'),
+        ]
 
 
 def test_percent_strings(lexer):
