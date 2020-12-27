@@ -234,6 +234,75 @@ def test_special_percent_strings(lexer):
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
+def test_pseudo_keywords(lexer):
+    fragment = (
+        'def f(x : T, line = __LINE__) forall T\n'
+        'if x.is_a?(String)\n'
+        'pp! x\n'
+        'end\n'
+        'end\n')
+    tokens = [
+        (Keyword, 'def'),
+        (Text, ' '),
+        (Name.Function, 'f'),
+        (Punctuation, '('),
+        (Name, 'x'),
+        (Text, ' '),
+        (Punctuation, ':'),
+        (Text, ' '),
+        (Name, 'T'),
+        (Punctuation, ','),
+        (Text, ' '),
+        (Name, 'line'),
+        (Text, ' '),
+        (Operator, '='),
+        (Text, ' '),
+        (Keyword.Pseudo, '__LINE__'),
+        (Punctuation, ')'),
+        (Text, ' '),
+        (Keyword.Pseudo, 'forall'),
+        (Text, ' '),
+        (Name, 'T'),
+        (Text, '\n'),
+        (Keyword, 'if'),
+        (Text, ' '),
+        (Name, 'x'),
+        (Keyword.Pseudo, '.is_a?'),
+        (Punctuation, '('),
+        (Name, 'String'),
+        (Punctuation, ')'),
+        (Text, '\n'),
+        (Name.Builtin.Pseudo, 'pp!'),
+        (Text, ' '),
+        (Name, 'x'),
+        (Text, '\n'),
+        (Keyword, 'end'),
+        (Text, '\n'),
+        (Keyword, 'end'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_pseudo_builtins(lexer):
+    fragment = 'record Cls do\ndef_equals s\nend\n'
+    tokens = [
+        (Name.Builtin.Pseudo, 'record'),
+        (Text, ' '),
+        (Name, 'Cls'),
+        (Text, ' '),
+        (Keyword, 'do'),
+        (Text, '\n'),
+        (Name.Builtin.Pseudo, 'def_equals'),
+        (Text, ' '),
+        (Name, 's'),
+        (Text, '\n'),
+        (Keyword, 'end'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
 def test_macro(lexer):
     fragment = (
         'def<=>(other : self) : Int\n'
@@ -251,7 +320,7 @@ def test_macro(lexer):
         (Text, ' '),
         (Punctuation, ':'),
         (Text, ' '),
-        (Keyword.Pseudo, 'self'),
+        (Keyword, 'self'),
         (Punctuation, ')'),
         (Text, ' '),
         (Punctuation, ':'),

@@ -165,10 +165,15 @@ class CrystalLexer(ExtendedRegexLexer):
             (r'#.*?$', Comment.Single),
             # keywords
             (words('''
-                abstract asm as begin break case do else elsif end ensure extend ifdef if
-                include instance_sizeof next of pointerof private protected rescue return
-                require sizeof super then typeof unless until when while with yield
+                abstract asm begin break case do else elsif end ensure extend if in
+                include next of private protected require rescue return select self super
+                then unless until when while with yield
             '''.split(), suffix=r'\b'), Keyword),
+            (words('''
+                previous_def forall out uninitialized __DIR__ __FILE__ __LINE__
+            '''.split(), prefix=r'(?<!\.)', suffix=r'\b'), Keyword.Pseudo),
+            # https://crystal-lang.org/docs/syntax_and_semantics/is_a.html
+            (r'\.(is_a\?|nil\?|responds_to\?|as\?|as\b)', Keyword.Pseudo),
             (words(['true', 'false', 'nil'], suffix=r'\b'), Keyword.Constant),
             # start of function, class and module names
             (r'(module|lib)(\s+)([a-zA-Z_]\w*(?:::[a-zA-Z_]\w*)*)',
@@ -176,23 +181,23 @@ class CrystalLexer(ExtendedRegexLexer):
             (r'(def|fun|macro)(\s+)((?:[a-zA-Z_]\w*::)*)',
              bygroups(Keyword, Text, Name.Namespace), 'funcname'),
             (r'def(?=[*%&^`~+-/\[<>=])', Keyword, 'funcname'),
-            (r'(class|struct|union|type|alias|enum)(\s+)((?:[a-zA-Z_]\w*::)*)',
+            (r'(annotation|class|struct|union|type|alias|enum)(\s+)((?:[a-zA-Z_]\w*::)*)',
              bygroups(Keyword, Text, Name.Namespace), 'classname'),
-            (r'(self|out|uninitialized)\b|(is_a|responds_to)\?', Keyword.Pseudo),
+            # https://crystal-lang.org/api/toplevel.html
+            (words('''
+                instance_sizeof offsetof pointerof sizeof typeof
+            '''.split(), prefix=r'(?<!\.)', suffix=r'\b'), Keyword.Pseudo),
             # macros
-            (words('''
-                debugger record pp assert_responds_to spawn parallel
-                getter setter property delegate def_hash def_equals def_equals_and_hash
-                forward_missing_to
-            '''.split(), suffix=r'\b'), Name.Builtin.Pseudo),
-            (r'getter[!?]|property[!?]|__(DIR|FILE|LINE)__\b', Name.Builtin.Pseudo),
+            (r'(?<!\.)(debugger\b|p!|pp!|record\b|spawn\b)', Name.Builtin.Pseudo),
             # builtins
-            # http://crystal-lang.org/api/toplevel.html
             (words('''
-                abort at_exit caller delay exit fork future get_stack_top gets
-                lazy loop main p print printf puts
-                raise rand read_line sleep sprintf system with_color
+                abort at_exit caller exit gets loop main p pp print printf puts
+                raise rand read_line sleep spawn sprintf system
             '''.split(), prefix=r'(?<!\.)', suffix=r'\b'), Name.Builtin),
+            # https://crystal-lang.org/api/Object.html#macro-summary
+            (r'(?<!\.)(((class_)?((getter|property)\b[!?]?|setter\b))|'
+             r'(def_(clone|equals|equals_and_hash|hash)|delegate|forward_missing_to)\b)',
+             Name.Builtin.Pseudo),
             # normal heredocs
             (r'(?<!\w)(<<-?)(["`\']?)([a-zA-Z_]\w*)(\2)(.*?\n)',
              heredoc_callback),
@@ -342,7 +347,7 @@ class CrystalLexer(ExtendedRegexLexer):
         'in-macro-control': [
             (r'\{%', String.Interpol, '#push'),
             (r'%\}', String.Interpol, '#pop'),
-            (r'for\b|in\b', Keyword),
+            (r'(for|verbatim)\b', Keyword),
             include('root'),
         ],
         'in-macro-expr': [
