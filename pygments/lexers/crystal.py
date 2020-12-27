@@ -219,12 +219,6 @@ class CrystalLexer(ExtendedRegexLexer):
             # builtins
             # http://crystal-lang.org/api/toplevel.html
             (words('''
-                Object Value Struct Reference Proc Class Nil Symbol Enum Void
-                Bool Number Int Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64
-                Float Float32 Float64 Char String
-                Pointer Slice Range Exception Regex
-                Mutex StaticArray Array Hash Set Tuple Deque Box Process File
-                Dir Time Channel Concurrent Scheduler
                 abort at_exit caller delay exit fork future get_stack_top gets
                 lazy loop main p print printf puts
                 raise rand read_line sleep sprintf system with_color
