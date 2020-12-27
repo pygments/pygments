@@ -344,6 +344,21 @@ def test_pseudo_builtins(lexer):
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
+def test_constant_and_module(lexer):
+    fragment = 'HTTP\nHTTP::Server.new\n'
+    tokens = [
+        (Name.Constant, 'HTTP'),
+        (Text, '\n'),
+        (Name, 'HTTP'),
+        (Operator, '::'),
+        (Name, 'Server'),
+        (Operator, '.'),
+        (Name, 'new'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
 def test_macro(lexer):
     fragment = (
         'def<=>(other : self) : Int\n'

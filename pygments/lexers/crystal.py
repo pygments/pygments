@@ -274,7 +274,7 @@ class CrystalLexer(ExtendedRegexLexer):
              r'(\\([\\abefnrtv#"\']|[0-7]{1,3}|x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|u\{[a-fA-F0-9 ]+\})|\S)'
              r'(?!\w)',
              String.Char),
-            (r'[A-Z][A-Z_]+\b', Name.Constant),
+            (r'[A-Z][A-Z_]+\b(?!::|\.)', Name.Constant),
             # macro expansion
             (r'\{%', String.Interpol, 'in-macro-control'),
             (r'\{\{', String.Interpol, 'in-macro-expr'),
