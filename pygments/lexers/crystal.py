@@ -89,22 +89,6 @@ class CrystalLexer(ExtendedRegexLexer):
             del heredocstack[:]
 
     def gen_crystalstrings_rules():
-        def intp_regex_callback(self, match, ctx):
-            yield match.start(1), String.Regex, match.group(1)  # begin
-            nctx = LexerContext(match.group(3), 0, ['interpolated-regex'])
-            for i, t, v in self.get_tokens_unprocessed(context=nctx):
-                yield match.start(3)+i, t, v
-            yield match.start(4), String.Regex, match.group(4)  # end[imsx]*
-            ctx.pos = match.end()
-
-        def intp_string_callback(self, match, ctx):
-            yield match.start(1), String.Other, match.group(1)
-            nctx = LexerContext(match.group(3), 0, ['interpolated-string'])
-            for i, t, v in self.get_tokens_unprocessed(context=nctx):
-                yield match.start(3)+i, t, v
-            yield match.start(4), String.Other, match.group(4)  # end
-            ctx.pos = match.end()
-
         states = {}
         states['strings'] = [
             (r'\:@{0,2}[a-zA-Z_]\w*[!?]?', String.Symbol),
@@ -130,35 +114,42 @@ class CrystalLexer(ExtendedRegexLexer):
                 (end, ttype, '#pop'),
             ]
 
-        # braced quoted strings
+        # https://crystal-lang.org/docs/syntax_and_semantics/literals/string.html#percent-string-literals
         for lbrace, rbrace, bracecc, name in \
                 ('\\{', '\\}', '{}', 'cb'), \
                 ('\\[', '\\]', '\\[\\]', 'sb'), \
                 ('\\(', '\\)', '()', 'pa'), \
-                ('<', '>', '<>', 'ab'):
+                ('<', '>', '<>', 'ab'), \
+                ('\\|', '\\|', '\\|\\|', 'pi'):
             states[name+'-intp-string'] = [
                 (r'\\' + lbrace, String.Other),
+            ] + (lbrace != rbrace) * [
                 (lbrace, String.Other, '#push'),
+            ] + [
                 (rbrace, String.Other, '#pop'),
                 include('string-intp-escaped'),
                 (r'[\\#' + bracecc + ']', String.Other),
                 (r'[^\\#' + bracecc + ']+', String.Other),
             ]
-            states['strings'].append((r'%' + lbrace, String.Other,
+            states['strings'].append((r'%Q?' + lbrace, String.Other,
                                       name+'-intp-string'))
             states[name+'-string'] = [
                 (r'\\[\\' + bracecc + ']', String.Other),
+            ] + (lbrace != rbrace) * [
                 (lbrace, String.Other, '#push'),
+            ] + [
                 (rbrace, String.Other, '#pop'),
                 (r'[\\#' + bracecc + ']', String.Other),
                 (r'[^\\#' + bracecc + ']+', String.Other),
             ]
-            # http://crystal-lang.org/docs/syntax_and_semantics/literals/array.html
-            states['strings'].append((r'%[wi]' + lbrace, String.Other,
+            # https://crystal-lang.org/docs/syntax_and_semantics/literals/array.html#percent-array-literals
+            states['strings'].append((r'%[qwi]' + lbrace, String.Other,
                                       name+'-string'))
             states[name+'-regex'] = [
                 (r'\\[\\' + bracecc + ']', String.Regex),
+            ] + (lbrace != rbrace) * [
                 (lbrace, String.Regex, '#push'),
+            ] + [
                 (rbrace + '[imsx]*', String.Regex, '#pop'),
                 include('string-intp'),
                 (r'[\\#' + bracecc + ']', String.Regex),
@@ -166,27 +157,6 @@ class CrystalLexer(ExtendedRegexLexer):
             ]
             states['strings'].append((r'%r' + lbrace, String.Regex,
                                       name+'-regex'))
-
-        # these must come after %<brace>!
-        states['strings'] += [
-            # %r regex
-            (r'(%r([\W_]))((?:\\\2|(?!\2).)*)(\2[imsx]*)',
-             intp_regex_callback),
-            # regular fancy strings with qsw
-            (r'(%[wi]([\W_]))((?:\\\2|(?!\2).)*)(\2)',
-             intp_string_callback),
-            # special forms of fancy strings after operators or
-            # in method calls with braces
-            (r'(?<=[-+/*%=<>&!^|~,(])(\s*)(%([\t ])(?:(?:\\\3|(?!\3).)*)\3)',
-             bygroups(Text, String.Other, None)),
-            # and because of fixed width lookbehinds the whole thing a
-            # second time for line startings...
-            (r'^(\s*)(%([\t ])(?:(?:\\\3|(?!\3).)*)\3)',
-             bygroups(Text, String.Other, None)),
-            # all regular fancy strings without qsw
-            (r'(%([\[{(<]))((?:\\\2|(?!\2).)*)(\2)',
-             intp_string_callback),
-        ]
 
         return states
 

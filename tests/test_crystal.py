@@ -162,6 +162,78 @@ def test_chars(lexer):
     assert next(lexer.get_tokens("'abc'"))[0] == Error
 
 
+def test_percent_strings(lexer):
+    fragment = (
+        '%(hello ("world"))\n'
+        '%[hello ["world"]]\n'
+        '%{hello "world"}\n'
+        '%<hello <"world">>\n'
+        '%|hello "world"|\n')
+    tokens = [
+        (String.Other, '%('),
+        (String.Other, 'hello '),
+        (String.Other, '('),
+        (String.Other, '"world"'),
+        (String.Other, ')'),
+        (String.Other, ')'),
+        (Text, '\n'),
+        (String.Other, '%['),
+        (String.Other, 'hello '),
+        (String.Other, '['),
+        (String.Other, '"world"'),
+        (String.Other, ']'),
+        (String.Other, ']'),
+        (Text, '\n'),
+        (String.Other, '%{'),
+        (String.Other, 'hello "world"'),
+        (String.Other, '}'),
+        (Text, '\n'),
+        (String.Other, '%<'),
+        (String.Other, 'hello '),
+        (String.Other, '<'),
+        (String.Other, '"world"'),
+        (String.Other, '>'),
+        (String.Other, '>'),
+        (Text, '\n'),
+        (String.Other, '%|'),
+        (String.Other, 'hello "world"'),
+        (String.Other, '|'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_special_percent_strings(lexer):
+    fragment = '%Q(hello \\n #{name})\n%q(hello \\n #{name})\n%w(foo\\nbar baz)\n'
+    tokens = [
+        (String.Other, '%Q('),
+        (String.Other, 'hello '),
+        (String.Escape, '\\n'),
+        (String.Other, ' '),
+        (String.Interpol, '#{'),
+        (Name, 'name'),
+        (String.Interpol, '}'),
+        (String.Other, ')'),
+        (Text, '\n'),
+        # The ones below have no interpolation.
+        (String.Other, '%q('),
+        (String.Other, 'hello '),
+        (String.Other, '\\'),
+        (String.Other, 'n '),
+        (String.Other, '#'),
+        (String.Other, '{name}'),
+        (String.Other, ')'),
+        (Text, '\n'),
+        (String.Other, '%w('),
+        (String.Other, 'foo'),
+        (String.Other, '\\'),
+        (String.Other, 'nbar baz'),
+        (String.Other, ')'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
 def test_macro(lexer):
     fragment = (
         'def<=>(other : self) : Int\n'
