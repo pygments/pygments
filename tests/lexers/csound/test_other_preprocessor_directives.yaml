@@ -1,0 +1,25 @@
+input: |
+  #else
+  #end
+  #endif
+  ###
+  @ 	12345
+  @@ 	67890
+tokens: |
+  '#else'       Comment.Preproc
+  '\n'          Text
+
+  '#end'        Comment.Preproc
+  '\n'          Text
+
+  '#endif'      Comment.Preproc
+  '\n'          Text
+
+  '###'         Comment.Preproc
+  '\n'          Text
+
+  '@ \t12345'   Comment.Preproc
+  '\n'          Text
+
+  '@@ \t67890'  Comment.Preproc
+  '\n'          Text

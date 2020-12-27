@@ -1,0 +1,13 @@
+input: |
+  Example
+  ServerName localhost
+tokens: |
+  'Example'     Name.Builtin
+  ''            Text
+  '\n'          Text
+
+  'ServerName'  Name.Builtin
+  ' '           Text
+  'localhost'   Text
+  ''            Text
+  '\n'          Text

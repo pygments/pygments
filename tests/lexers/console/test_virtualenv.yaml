@@ -1,0 +1,10 @@
+input: |
+  (env) [~/project]$ foo -h
+tokens: |
+  '(env)'       Generic.Prompt.VirtualEnv
+  ' '           Text
+  '[~/project]$ ' Generic.Prompt
+  'foo'         Text
+  ' '           Text
+  '-h'          Text
+  '\n'          Text

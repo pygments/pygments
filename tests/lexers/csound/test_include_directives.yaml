@@ -1,0 +1,13 @@
+input: |
+  #include/**/"file.udo"
+  #include/**/|file.udo|
+tokens: |
+  '#include'    Comment.Preproc
+  '/**/'        Comment.Multiline
+  '"file.udo"'  Literal.String
+  '\n'          Text
+
+  '#include'    Comment.Preproc
+  '/**/'        Comment.Multiline
+  '|file.udo|'  Literal.String
+  '\n'          Text

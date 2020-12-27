@@ -1,0 +1,113 @@
+input: |
+  +
+  -
+  ~
+  ¬
+  !
+  *
+  /
+  ^
+  %
+  <<
+  >>
+  <
+  >
+  <=
+  >=
+  ==
+  !=
+  &
+  #
+  |
+  &&
+  ||
+  ?
+  :
+  +=
+  -=
+  *=
+  /=
+tokens: |
+  '+'           Operator
+  '\n'          Text
+
+  '-'           Operator
+  '\n'          Text
+
+  '~'           Operator
+  '\n'          Text
+
+  '¬'           Operator
+  '\n'          Text
+
+  '!'           Operator
+  '\n'          Text
+
+  '*'           Operator
+  '\n'          Text
+
+  '/'           Operator
+  '\n'          Text
+
+  '^'           Operator
+  '\n'          Text
+
+  '%'           Operator
+  '\n'          Text
+
+  '<<'          Operator
+  '\n'          Text
+
+  '>>'          Operator
+  '\n'          Text
+
+  '<'           Operator
+  '\n'          Text
+
+  '>'           Operator
+  '\n'          Text
+
+  '<='          Operator
+  '\n'          Text
+
+  '>='          Operator
+  '\n'          Text
+
+  '=='          Operator
+  '\n'          Text
+
+  '!='          Operator
+  '\n'          Text
+
+  '&'           Operator
+  '\n'          Text
+
+  '#'           Operator
+  '\n'          Text
+
+  '|'           Operator
+  '\n'          Text
+
+  '&&'          Operator
+  '\n'          Text
+
+  '||'          Operator
+  '\n'          Text
+
+  '?'           Operator
+  '\n'          Text
+
+  ':'           Operator
+  '\n'          Text
+
+  '+='          Operator
+  '\n'          Text
+
+  '-='          Operator
+  '\n'          Text
+
+  '*='          Operator
+  '\n'          Text
+
+  '/='          Operator
+  '\n'          Text

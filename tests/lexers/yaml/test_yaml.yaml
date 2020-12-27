@@ -1,0 +1,11 @@
+# Bug #1528: This previously parsed 'token # innocent' as a tag
+input: |
+  here: token # innocent: comment
+tokens: |
+  'here'        Name.Tag
+  ':'           Punctuation
+  ' '           Text
+  'token'       Literal.Scalar.Plain
+  ' '           Text
+  '# innocent: comment' Comment.Single
+  '\n'          Text

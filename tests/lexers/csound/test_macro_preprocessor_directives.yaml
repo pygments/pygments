@@ -1,0 +1,19 @@
+input: |
+  #ifdef MACRO
+  #ifndef MACRO
+  #undef MACRO
+tokens: |
+  '#ifdef'      Comment.Preproc
+  ' '           Text
+  'MACRO'       Comment.Preproc
+  '\n'          Text
+
+  '#ifndef'     Comment.Preproc
+  ' '           Text
+  'MACRO'       Comment.Preproc
+  '\n'          Text
+
+  '#undef'      Comment.Preproc
+  ' '           Text
+  'MACRO'       Comment.Preproc
+  '\n'          Text

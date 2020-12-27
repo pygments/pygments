@@ -1,0 +1,8 @@
+input: |
+  @(YES);
+tokens: |
+  '@('          Literal
+  'YES'         Name.Builtin
+  ')'           Literal
+  ';'           Punctuation
+  '\n'          Text

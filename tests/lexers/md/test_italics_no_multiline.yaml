@@ -1,0 +1,9 @@
+input: |
+  *no
+  italics*
+tokens: |
+  '*no'         Text
+  '\n'          Text
+
+  'italics*'    Text
+  '\n'          Text

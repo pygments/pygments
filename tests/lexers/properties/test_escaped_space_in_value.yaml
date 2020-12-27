@@ -1,0 +1,9 @@
+input: |
+  key = doubleword\ value
+tokens: |
+  'key'         Name.Attribute
+  ' '           Text
+  '='           Operator
+  ' '           Text
+  'doubleword\\ value' Literal.String
+  '\n'          Text

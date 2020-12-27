@@ -1,0 +1,14 @@
+input: |
+  @STRING(SCI = "Science")
+tokens: |
+  '@STRING'     Name.Class
+  '('           Punctuation
+  'SCI'         Name.Attribute
+  ' '           Text
+  '='           Punctuation
+  ' '           Text
+  '"'           Literal.String
+  'Science'     Literal.String
+  '"'           Literal.String
+  ')'           Punctuation
+  '\n'          Text

@@ -1,0 +1,5 @@
+input: |
+  'a$["b"]'
+tokens: |
+  '\'a$["b"]\'' Literal.String.Interpol
+  '\n'          Text

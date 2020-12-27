@@ -1,0 +1,8 @@
+input: |
+  Include /*conf/*.conf
+tokens: |
+  'Include'     Name.Builtin
+  ' '           Text
+  '/*conf/*.conf' Literal.String.Other
+  ''            Text
+  '\n'          Text

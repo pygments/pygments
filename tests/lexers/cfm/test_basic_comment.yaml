@@ -1,0 +1,7 @@
+input: |
+  <!--- cfcomment --->
+tokens: |
+  '<!---'       Comment.Multiline
+  ' cfcomment ' Comment.Multiline
+  '--->'        Comment.Multiline
+  '\n'          Text

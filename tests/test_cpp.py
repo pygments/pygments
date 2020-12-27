@@ -7,34 +7,10 @@
     :license: BSD, see LICENSE for details.
 """
 
-import pytest
-
 from pygments.lexers import CppLexer, CLexer
-from pygments.token import Token
 
 from pygments.lexers import guess_lexer
 
-
-@pytest.fixture(scope='module')
-def lexer():
-    yield CppLexer()
-
-
-def test_good_comment(lexer):
-    fragment = '/* foo */\n'
-    tokens = [
-        (Token.Comment.Multiline, '/* foo */'),
-        (Token.Text, '\n'),
-    ]
-    assert list(lexer.get_tokens(fragment)) == tokens
-
-
-def test_open_comment(lexer):
-    fragment = '/* foo\n'
-    tokens = [
-        (Token.Comment.Multiline, '/* foo\n'),
-    ]
-    assert list(lexer.get_tokens(fragment)) == tokens
 
 def test_guess_c_lexer():
     code = '''

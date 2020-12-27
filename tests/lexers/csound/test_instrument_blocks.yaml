@@ -1,0 +1,41 @@
+input: |
+  instr/**/1,/**/N_a_M_e_,/**/+Name/**///
+    iDuration = p3
+    outc:a(aSignal)
+  endin
+tokens: |
+  'instr'       Keyword.Declaration
+  '/**/'        Comment.Multiline
+  '1'           Name.Function
+  ','           Punctuation
+  '/**/'        Comment.Multiline
+  'N_a_M_e_'    Name.Function
+  ','           Punctuation
+  '/**/'        Comment.Multiline
+  '+'           Punctuation
+  'Name'        Name.Function
+  '/**/'        Comment.Multiline
+  '//'          Comment.Single
+  '\n'          Text
+
+  '  '          Text
+  'i'           Keyword.Type
+  'Duration'    Name
+  ' '           Text
+  '='           Operator
+  ' '           Text
+  'p3'          Name.Variable.Instance
+  '\n'          Text
+
+  '  '          Text
+  'outc'        Name.Builtin
+  ':'           Punctuation
+  'a'           Keyword.Type
+  '('           Punctuation
+  'a'           Keyword.Type
+  'Signal'      Name
+  ')'           Punctuation
+  '\n'          Text
+
+  'endin'       Keyword.Declaration
+  '\n'          Text

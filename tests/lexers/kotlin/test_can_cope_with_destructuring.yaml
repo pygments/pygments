@@ -1,0 +1,15 @@
+input: |
+  val (a, b) = 
+tokens: |
+  'val'         Keyword
+  ' '           Text
+  '('           Punctuation
+  'a'           Name.Property
+  ','           Punctuation
+  ' '           Text
+  'b'           Name.Property
+  ')'           Punctuation
+  ' '           Text
+  '='           Punctuation
+  ' '           Text
+  '\n'          Text

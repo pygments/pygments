@@ -1,0 +1,75 @@
+input: |
+  def<=>(other : self) : Int
+  {%for field in %w(first_name middle_name last_name)%}
+  cmp={{field.id}}<=>other.{{field.id}}
+  return cmp if cmp!=0
+  {%end%}
+  0
+  end
+tokens: |
+  'def'         Keyword
+  '<=>'         Name.Function
+  '('           Punctuation
+  'other'       Name
+  ' '           Text
+  ':'           Punctuation
+  ' '           Text
+  'self'        Keyword.Pseudo
+  ')'           Punctuation
+  ' '           Text
+  ':'           Punctuation
+  ' '           Text
+  'Int'         Name.Builtin
+  '\n'          Text
+
+  '{%'          Literal.String.Interpol
+  'for'         Keyword
+  ' '           Text
+  'field'       Name
+  ' '           Text
+  'in'          Keyword
+  ' '           Text
+  '%w('         Literal.String.Other
+  'first_name middle_name last_name' Literal.String.Other
+  ')'           Literal.String.Other
+  '%}'          Literal.String.Interpol
+  '\n'          Text
+
+  'cmp'         Name
+  '='           Operator
+  '{{'          Literal.String.Interpol
+  'field'       Name
+  '.'           Operator
+  'id'          Name
+  '}}'          Literal.String.Interpol
+  '<=>'         Operator
+  'other'       Name
+  '.'           Operator
+  '{{'          Literal.String.Interpol
+  'field'       Name
+  '.'           Operator
+  'id'          Name
+  '}}'          Literal.String.Interpol
+  '\n'          Text
+
+  'return'      Keyword
+  ' '           Text
+  'cmp'         Name
+  ' '           Text
+  'if'          Keyword
+  ' '           Text
+  'cmp'         Name
+  '!='          Operator
+  '0'           Literal.Number.Integer
+  '\n'          Text
+
+  '{%'          Literal.String.Interpol
+  'end'         Keyword
+  '%}'          Literal.String.Interpol
+  '\n'          Text
+
+  '0'           Literal.Number.Integer
+  '\n'          Text
+
+  'end'         Keyword
+  '\n'          Text

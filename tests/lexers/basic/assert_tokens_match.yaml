@@ -1,0 +1,32 @@
+input: |
+  1e2.1e2
+  .e1
+  "x
+  x
+  a;bc
+  d
+tokens: |
+  '1'           Name.Label
+  'e2'          Name.Variable.Global
+  '.1'          Literal.Number.Float
+  'e2'          Name.Variable.Global
+  '\n'          Text
+
+  '.'           Operator
+  'e1'          Name.Variable.Global
+  '\n'          Text
+
+  '"'           Error
+  'x'           Name.Variable.Global
+  '\n'          Text
+
+  'x'           Name.Variable.Global
+  '\n'          Text
+
+  'a'           Name.Variable.Global
+  ';'           Punctuation
+  'bc'          Name.Variable.Global
+  '\n'          Text
+
+  'd'           Name.Variable.Global
+  '\n'          Text

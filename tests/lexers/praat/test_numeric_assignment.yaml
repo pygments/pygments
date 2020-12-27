@@ -1,0 +1,10 @@
+input: |
+  var = -15e4
+tokens: |
+  'var'         Text
+  ' '           Text
+  '='           Operator
+  ' '           Text
+  '-'           Operator
+  '15e4'        Literal.Number
+  '\n'          Text

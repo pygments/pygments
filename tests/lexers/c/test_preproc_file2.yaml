@@ -1,0 +1,8 @@
+input: |
+  #include "foo.h"
+tokens: |
+  '#'           Comment.Preproc
+  'include'     Comment.Preproc
+  ' '           Text
+  '"foo.h"'     Comment.PreprocFile
+  '\n'          Comment.Preproc

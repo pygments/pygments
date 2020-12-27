@@ -1,0 +1,121 @@
+input: |
+  "\\"
+  {{\\}}
+  "\a"
+  {{\a}}
+  "\b"
+  {{\b}}
+  "\n"
+  {{\n}}
+  "\r"
+  {{\r}}
+  "\t"
+  {{\t}}
+  "\""
+  {{\"}}
+  "\012"
+  {{\012}}
+  "\345"
+  {{\345}}
+  "\67"
+  {{\67}}
+tokens: |
+  '"'           Literal.String
+  '\\\\'        Literal.String.Escape
+  '"'           Literal.String
+  '\n'          Text
+
+  '{{'          Literal.String
+  '\\\\'        Literal.String.Escape
+  '}}'          Literal.String
+  '\n'          Text
+
+  '"'           Literal.String
+  '\\a'         Literal.String.Escape
+  '"'           Literal.String
+  '\n'          Text
+
+  '{{'          Literal.String
+  '\\a'         Literal.String.Escape
+  '}}'          Literal.String
+  '\n'          Text
+
+  '"'           Literal.String
+  '\\b'         Literal.String.Escape
+  '"'           Literal.String
+  '\n'          Text
+
+  '{{'          Literal.String
+  '\\b'         Literal.String.Escape
+  '}}'          Literal.String
+  '\n'          Text
+
+  '"'           Literal.String
+  '\\n'         Literal.String.Escape
+  '"'           Literal.String
+  '\n'          Text
+
+  '{{'          Literal.String
+  '\\n'         Literal.String.Escape
+  '}}'          Literal.String
+  '\n'          Text
+
+  '"'           Literal.String
+  '\\r'         Literal.String.Escape
+  '"'           Literal.String
+  '\n'          Text
+
+  '{{'          Literal.String
+  '\\r'         Literal.String.Escape
+  '}}'          Literal.String
+  '\n'          Text
+
+  '"'           Literal.String
+  '\\t'         Literal.String.Escape
+  '"'           Literal.String
+  '\n'          Text
+
+  '{{'          Literal.String
+  '\\t'         Literal.String.Escape
+  '}}'          Literal.String
+  '\n'          Text
+
+  '"'           Literal.String
+  '\\"'         Literal.String.Escape
+  '"'           Literal.String
+  '\n'          Text
+
+  '{{'          Literal.String
+  '\\"'         Literal.String.Escape
+  '}}'          Literal.String
+  '\n'          Text
+
+  '"'           Literal.String
+  '\\012'       Literal.String.Escape
+  '"'           Literal.String
+  '\n'          Text
+
+  '{{'          Literal.String
+  '\\012'       Literal.String.Escape
+  '}}'          Literal.String
+  '\n'          Text
+
+  '"'           Literal.String
+  '\\345'       Literal.String.Escape
+  '"'           Literal.String
+  '\n'          Text
+
+  '{{'          Literal.String
+  '\\345'       Literal.String.Escape
+  '}}'          Literal.String
+  '\n'          Text
+
+  '"'           Literal.String
+  '\\67'        Literal.String.Escape
+  '"'           Literal.String
+  '\n'          Text
+
+  '{{'          Literal.String
+  '\\67'        Literal.String.Escape
+  '}}'          Literal.String
+  '\n'          Text

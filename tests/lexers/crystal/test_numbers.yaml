@@ -1,0 +1,89 @@
+input: |
+  0
+  1
+  1_000_000
+  1u8
+  11231231231121312i64
+  0.0
+  1.0_f32
+  1_f32
+  0f64
+  1e+4
+  1e111
+  1_234.567_890
+  0b1001_0110
+  0b0u8
+  0o17
+  0o7_i32
+  0xdeadBEEF
+  01
+  0b2
+  0x129g2
+  0o12358
+tokens: |
+  '0'           Literal.Number.Integer
+  '\n'          Text
+
+  '1'           Literal.Number.Integer
+  '\n'          Text
+
+  '1_000_000'   Literal.Number.Integer
+  '\n'          Text
+
+  '1u8'         Literal.Number.Integer
+  '\n'          Text
+
+  '11231231231121312i64' Literal.Number.Integer
+  '\n'          Text
+
+  '0.0'         Literal.Number.Float
+  '\n'          Text
+
+  '1.0_f32'     Literal.Number.Float
+  '\n'          Text
+
+  '1_f32'       Literal.Number.Float
+  '\n'          Text
+
+  '0f64'        Literal.Number.Float
+  '\n'          Text
+
+  '1e+4'        Literal.Number.Float
+  '\n'          Text
+
+  '1e111'       Literal.Number.Float
+  '\n'          Text
+
+  '1_234.567_890' Literal.Number.Float
+  '\n'          Text
+
+  '0b1001_0110' Literal.Number.Bin
+  '\n'          Text
+
+  '0b0u8'       Literal.Number.Bin
+  '\n'          Text
+
+  '0o17'        Literal.Number.Oct
+  '\n'          Text
+
+  '0o7_i32'     Literal.Number.Oct
+  '\n'          Text
+
+  '0xdeadBEEF'  Literal.Number.Hex
+  '\n'          Text
+
+  '0'           Error
+  '1'           Literal.Number.Integer
+  '\n'          Text
+
+  '0'           Error
+  'b2'          Name
+  '\n'          Text
+
+  '0'           Error
+  'x129g2'      Name
+  '\n'          Text
+
+  '0'           Error
+  'o12358'      Name
+  '\n'          Text

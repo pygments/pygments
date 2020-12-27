@@ -1,0 +1,19 @@
+input: |
+  42 23.42 23. .42 023 0xdeadbeef 23e+42 42e-23
+tokens: |
+  '42'          Literal.Number.Integer
+  ' '           Text
+  '23.42'       Literal.Number.Float
+  ' '           Text
+  '23.'         Literal.Number.Float
+  ' '           Text
+  '.42'         Literal.Number.Float
+  ' '           Text
+  '023'         Literal.Number.Oct
+  ' '           Text
+  '0xdeadbeef'  Literal.Number.Hex
+  ' '           Text
+  '23e+42'      Literal.Number.Float
+  ' '           Text
+  '42e-23'      Literal.Number.Float
+  '\n'          Text

@@ -1,0 +1,24 @@
+input: |
+  code: `code`
+
+   `**code**`
+
+  (`code`)
+tokens: |
+  'code:'       Text
+  ' '           Text
+  '`code`'      Literal.String.Backtick
+  '\n'          Text
+
+  '\n'          Text
+
+  ' '           Text
+  '`**code**`'  Literal.String.Backtick
+  '\n'          Text
+
+  '\n'          Text
+
+  '('           Text
+  '`code`'      Literal.String.Backtick
+  ')'           Text
+  '\n'          Text

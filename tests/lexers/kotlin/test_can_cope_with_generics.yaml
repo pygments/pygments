@@ -1,0 +1,31 @@
+input: |
+  inline fun <reified T : ContractState> VaultService.queryBy(): Vault.Page<T> {
+tokens: |
+  'inline fun'  Keyword
+  ' '           Text
+  '<'           Punctuation
+  'reified'     Keyword
+  ' '           Text
+  'T'           Name
+  ' '           Text
+  ':'           Punctuation
+  ' '           Text
+  'ContractState' Name
+  '>'           Punctuation
+  ' '           Text
+  'VaultService' Name.Class
+  '.'           Punctuation
+  'queryBy'     Name.Function
+  '('           Punctuation
+  ')'           Punctuation
+  ':'           Punctuation
+  ' '           Text
+  'Vault'       Name
+  '.'           Punctuation
+  'Page'        Name
+  '<'           Punctuation
+  'T'           Name
+  '>'           Punctuation
+  ' '           Text
+  '{'           Punctuation
+  '\n'          Text

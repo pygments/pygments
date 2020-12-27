@@ -1,0 +1,12 @@
+# Test that multiple spaces with an equal sign doesn't get formatted to a string.
+input: |
+  x  = 100;
+tokens: |
+  'x'           Name
+  ' '           Text
+  ' '           Text
+  '='           Punctuation
+  ' '           Text
+  '100'         Literal.Number.Integer
+  ';'           Punctuation
+  '\n'          Text

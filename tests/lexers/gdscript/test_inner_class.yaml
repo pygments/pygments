@@ -1,0 +1,19 @@
+input: |
+  class InnerClass:
+  	var a = 5
+tokens: |
+  'class'       Keyword
+  ' '           Text
+  'InnerClass'  Name
+  ':'           Punctuation
+  '\n'          Text
+
+  '\t'          Text
+  'var'         Keyword
+  ' '           Text
+  'a'           Name
+  ' '           Text
+  '='           Operator
+  ' '           Text
+  '5'           Literal.Number.Integer
+  '\n'          Text

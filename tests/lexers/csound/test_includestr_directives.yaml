@@ -1,0 +1,10 @@
+input: |
+  #includestr/**/"$MACRO..udo"
+tokens: |
+  '#includestr' Comment.Preproc
+  '/**/'        Comment.Multiline
+  '"'           Literal.String
+  '$MACRO.'     Comment.Preproc
+  '.udo'        Literal.String
+  '"'           Literal.String
+  '\n'          Text

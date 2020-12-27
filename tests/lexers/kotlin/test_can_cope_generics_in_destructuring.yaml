@@ -1,0 +1,26 @@
+input: |
+  val (a: List<Something>, b: Set<Wobble>) =
+tokens: |
+  'val'         Keyword
+  ' '           Text
+  '('           Punctuation
+  'a'           Name.Property
+  ':'           Punctuation
+  ' '           Text
+  'List'        Name.Property
+  '<'           Punctuation
+  'Something'   Name
+  '>'           Punctuation
+  ','           Punctuation
+  ' '           Text
+  'b'           Name.Property
+  ':'           Punctuation
+  ' '           Text
+  'Set'         Name.Property
+  '<'           Punctuation
+  'Wobble'      Name
+  '>'           Punctuation
+  ')'           Punctuation
+  ' '           Text
+  '='           Punctuation
+  '\n'          Text

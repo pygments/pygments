@@ -1,0 +1,9 @@
+input: |
+  @ARTICLE xxx
+tokens: |
+  '@ARTICLE'    Name.Class
+  ' '           Text
+  'x'           Error
+  'x'           Error
+  'x'           Error
+  '\n'          Text
