@@ -143,14 +143,36 @@ def test_end_of_line_nums(lexer_bash):
 def test_newline_in_echo(lexer_session):
     fragment = '$ echo \\\nhi\nhi\n'
     tokens = [
-        (Token.Generic.Prompt, '$'),
-        (Token.Text, ' '),
+        (Token.Generic.Prompt, '$ '),
         (Token.Name.Builtin, 'echo'),
         (Token.Text, ' '),
         (Token.Literal.String.Escape, '\\\n'),
         (Token.Text, 'hi'),
         (Token.Text, '\n'),
         (Token.Generic.Output, 'hi\n'),
+    ]
+    assert list(lexer_session.get_tokens(fragment)) == tokens
+
+
+def test_newline_in_ls(lexer_session):
+    fragment = '$ ls \\\nhi\nhi\n'
+    tokens = [
+        (Token.Generic.Prompt, '$ '),
+        (Token.Text, 'ls'),
+        (Token.Text, ' '),
+        (Token.Literal.String.Escape, '\\\n'),
+        (Token.Text, 'hi'),
+        (Token.Text, '\n'),
+        (Token.Generic.Output, 'hi\n'),
+    ]
+    assert list(lexer_session.get_tokens(fragment)) == tokens
+
+
+def test_comment_after_prompt(lexer_session):
+    fragment = '$# comment'
+    tokens = [
+        (Token.Generic.Prompt, '$'),
+        (Token.Comment.Single, '# comment\n'),
     ]
     assert list(lexer_session.get_tokens(fragment)) == tokens
 
@@ -208,8 +230,7 @@ def test_virtualenv(lexer_session):
     tokens = [
         (Token.Generic.Prompt.VirtualEnv, '(env)'),
         (Token.Text, ' '),
-        (Token.Generic.Prompt, '[~/project]$'),
-        (Token.Text, ' '),
+        (Token.Generic.Prompt, '[~/project]$ '),
         (Token.Text, 'foo'),
         (Token.Text, ' '),
         (Token.Text, '-h'),

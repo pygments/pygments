@@ -22,6 +22,7 @@ Version 2.7.4
 - Limit recursion with nesting Ruby heredocs (#1638)
 - Fixed a few inefficient regexes for guessing lexers
 - Fixed the raw token lexer handling of Unicode (#1616)
+- Lex trailing whitespace as part of the prompt in shell lexers (#1645)
 
 Thanks to Google's OSS-Fuzz project for finding many of these bugs.
 
