@@ -23,6 +23,8 @@ Version 2.7.4
 - Fixed a few inefficient regexes for guessing lexers
 - Fixed the raw token lexer handling of Unicode (#1616)
 - Lex trailing whitespace as part of the prompt in shell lexers (#1645)
+- Add missing ONLY keyword to Fortran (#1635)
+- Add missing regex flags to JS/TS/... lexers (#1647)
 
 Thanks to Google's OSS-Fuzz project for finding many of these bugs.
 
