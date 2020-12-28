@@ -203,6 +203,18 @@ def test_string_escapes(lexer):
         ]
 
 
+def test_empty_percent_strings(lexer):
+    for body in ['%()', '%[]', '%{}', '%<>', '%||']:
+        fragment = '(' + body + ')\n'
+        assert list(lexer.get_tokens(fragment)) == [
+            (Punctuation, '('),
+            (String.Other, body[:-1]),
+            (String.Other, body[-1]),
+            (Punctuation, ')'),
+            (Text, '\n'),
+        ]
+
+
 def test_percent_strings(lexer):
     fragment = (
         '%(hello ("world"))\n'

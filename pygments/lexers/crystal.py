@@ -120,7 +120,7 @@ class CrystalLexer(ExtendedRegexLexer):
                 ('\\[', '\\]', '\\[\\]', 'sb'), \
                 ('\\(', '\\)', '()', 'pa'), \
                 ('<', '>', '<>', 'ab'), \
-                ('\\|', '\\|', '\\|\\|', 'pi'):
+                ('\\|', '\\|', '\\|', 'pi'):
             states[name+'-intp-string'] = [
                 (r'\\' + lbrace, String.Other),
             ] + (lbrace != rbrace) * [
