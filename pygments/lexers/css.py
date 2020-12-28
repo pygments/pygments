@@ -310,7 +310,7 @@ class CssLexer(RegexLexer):
             (words(_vendor_prefixes,), Keyword.Pseudo),
             (r'('+r'|'.join(_css_properties)+r')(\s*)(\:)',
              bygroups(Keyword, Text, Punctuation), 'value-start'),
-            (r'([-]*[a-zA-Z_][\w-]*)(\s*)(\:)', bygroups(Name.Variable, Text, Punctuation),
+            (r'([-]+[a-zA-Z_][\w-]*)(\s*)(\:)', bygroups(Name.Variable, Text, Punctuation),
              'value-start'),
             (r'([a-zA-Z_][\w-]*)(\s*)(\:)', bygroups(Name, Text, Punctuation),
              'value-start'),
