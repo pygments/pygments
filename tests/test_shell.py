@@ -10,7 +10,8 @@
 import pytest
 
 from pygments.token import Token
-from pygments.lexers import BashLexer, BashSessionLexer, MSDOSSessionLexer, PowerShellSessionLexer
+from pygments.lexers import BashLexer, BashSessionLexer, MSDOSSessionLexer, \
+    PowerShellSessionLexer
 
 
 @pytest.fixture(scope='module')
@@ -142,7 +143,6 @@ def test_end_of_line_nums(lexer_bash):
 def test_newline_in_echo(lexer_session):
     fragment = '$ echo \\\nhi\nhi\n'
     tokens = [
-        (Token.Text, ''),
         (Token.Generic.Prompt, '$'),
         (Token.Text, ' '),
         (Token.Name.Builtin, 'echo'),
@@ -158,11 +158,9 @@ def test_newline_in_echo(lexer_session):
 def test_msdos_gt_only(lexer_msdos):
     fragment = '> py\nhi\n'
     tokens = [
-        (Token.Text, ''),
         (Token.Generic.Prompt, '>'),
         (Token.Text, ' '),
         (Token.Text, 'py'),
-        (Token.Text, ''),
         (Token.Text, '\n'),
         (Token.Generic.Output, 'hi\n'),
     ]
@@ -172,7 +170,6 @@ def test_msdos_gt_only(lexer_msdos):
 def test_powershell_session(lexer_powershell_session):
     fragment = 'PS C:\\> Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, ''),
         (Token.Generic.Prompt, 'PS C:\\> '),
         (Token.Name.Builtin, 'Get-ChildItem'),
         (Token.Text, '\n')
@@ -181,7 +178,6 @@ def test_powershell_session(lexer_powershell_session):
 
     fragment = 'PS> Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, ''),
         (Token.Generic.Prompt, 'PS> '),
         (Token.Name.Builtin, 'Get-ChildItem'),
         (Token.Text, '\n')
@@ -190,7 +186,6 @@ def test_powershell_session(lexer_powershell_session):
 
     fragment = 'PS > Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, ''),
         (Token.Generic.Prompt, 'PS > '),
         (Token.Name.Builtin, 'Get-ChildItem'),
         (Token.Text, '\n')
@@ -201,7 +196,6 @@ def test_powershell_session(lexer_powershell_session):
 def test_powershell_remoting_session(lexer_powershell_session):
     fragment = '[Long-NetBIOS-Hostname]: PS C:\\> Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, ''),
         (Token.Generic.Prompt, '[Long-NetBIOS-Hostname]: PS C:\\> '),
         (Token.Name.Builtin, 'Get-ChildItem'),
         (Token.Text, '\n')
@@ -212,11 +206,8 @@ def test_powershell_remoting_session(lexer_powershell_session):
 def test_virtualenv(lexer_session):
     fragment = '(env) [~/project]$ foo -h\n'
     tokens = [
-        (Token.Text, ''),
         (Token.Generic.Prompt.VirtualEnv, '(env)'),
-        (Token.Text, ''),
         (Token.Text, ' '),
-        (Token.Text, ''),
         (Token.Generic.Prompt, '[~/project]$'),
         (Token.Text, ' '),
         (Token.Text, 'foo'),
