@@ -44,7 +44,7 @@ class AmbientTalkLexer(RegexLexer):
             (builtin, Name.Builtin),
             (r'(true|false|nil)\b', Keyword.Constant),
             (r'(~|lobby|jlobby|/)\.', Keyword.Constant, 'namespace'),
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r'\|', Punctuation, 'arglist'),
             (r'<:|[*^!%&<>+=,./?-]|:=', Operator),
             (r"`[a-zA-Z_]\w*", String.Symbol),

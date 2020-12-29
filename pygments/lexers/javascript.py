@@ -53,7 +53,7 @@ class JavascriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gimuy]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
@@ -95,19 +95,9 @@ class JavascriptLexer(RegexLexer):
              r'Error|eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|'
              r'document|this|window)\b', Name.Builtin),
             (JS_IDENT, Name.Other),
-            (r'"', String.Double, 'string-double'),
-            (r"'", String.Single, 'string-single'),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'`', String.Backtick, 'interp'),
-        ],
-        'string-double': [
-            (r'\\.', String.Double),
-            (r'[^\\"]+', String.Double),
-            (r'"', String.Double, '#pop'),
-        ],
-        'string-single': [
-            (r'\\.', String.Single),
-            (r"[^\\']+", String.Single),
-            (r"'", String.Single, '#pop'),
         ],
         'interp': [
             (r'`', String.Backtick, '#pop'),
@@ -170,7 +160,7 @@ class KalLexer(RegexLexer):
         'root': [
             include('commentsandwhitespace'),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex),
+             r'([gimuys]+\b|\B)', String.Regex),
             (r'\?|:|_(?=\n)|==?|!=|-(?!>)|[<>+*/-]=?',
              Operator),
             (r'\b(and|or|isnt|is|not|but|bitwise|mod|\^|xor|exists|'
@@ -265,7 +255,7 @@ class LiveScriptLexer(RegexLexer):
         ],
         'multilineregex': [
             include('commentsandwhitespace'),
-            (r'//([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'//([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'/', String.Regex),
             (r'[^/#]+', String.Regex)
         ],
@@ -273,7 +263,7 @@ class LiveScriptLexer(RegexLexer):
             include('commentsandwhitespace'),
             (r'//', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'/', Operator, '#pop'),
             default('#pop'),
         ],
@@ -484,7 +474,7 @@ class TypeScriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
@@ -531,21 +521,11 @@ class TypeScriptLexer(RegexLexer):
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
             (r'[0-9]+', Number.Integer),
-            (r'"', String.Double, 'string-double'),
-            (r"'", String.Single, 'string-single'),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'`', String.Backtick, 'interp'),
             # Match stuff like: Decorators
             (r'@\w+', Keyword.Declaration),
-        ],
-        'string-double': [
-            (r'\\.', String.Double),
-            (r'[^\\"]+', String.Double),
-            (r'"', String.Double, '#pop'),
-        ],
-        'string-single': [
-            (r'\\.', String.Single),
-            (r"[^\\']+", String.Single),
-            (r"'", String.Single, '#pop'),
         ],
 
         # The 'interp*' rules match those in JavascriptLexer. Changes made
@@ -894,8 +874,8 @@ class ObjectiveJLexer(RegexLexer):
             (r'(L|@)?"', String, 'string'),
             (r"(L|@)?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
              String.Char),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
@@ -1074,7 +1054,7 @@ class CoffeeScriptLexer(RegexLexer):
         ],
         'multilineregex': [
             (r'[^/#]+', String.Regex),
-            (r'///([gim]+\b|\B)', String.Regex, '#pop'),
+            (r'///([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'#\{', String.Interpol, 'interpoling_string'),
             (r'[/#]', String.Regex),
         ],
@@ -1082,7 +1062,7 @@ class CoffeeScriptLexer(RegexLexer):
             include('commentsandwhitespace'),
             (r'///', String.Regex, ('#pop', 'multilineregex')),
             (r'/(?! )(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
             # This isn't really guarding against mishighlighting well-formed
             # code, just the ability to infinite-loop between root and
             # slashstartsregex.
@@ -1516,7 +1496,7 @@ class JuttleLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gim]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuys]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
@@ -1552,8 +1532,8 @@ class JuttleLexer(RegexLexer):
             (JS_IDENT, Name.Other),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\\'|[^'])*'", String.Single)
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
         ]
 
     }

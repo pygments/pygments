@@ -21,7 +21,6 @@ def lexer():
 def test_basic_comment(lexer):
     fragment = '<!--- cfcomment --->'
     expected = [
-        (Token.Text, ''),
         (Token.Comment.Multiline, '<!---'),
         (Token.Comment.Multiline, ' cfcomment '),
         (Token.Comment.Multiline, '--->'),
@@ -33,7 +32,6 @@ def test_basic_comment(lexer):
 def test_nested_comment(lexer):
     fragment = '<!--- nested <!--- cfcomment ---> --->'
     expected = [
-        (Token.Text, ''),
         (Token.Comment.Multiline, '<!---'),
         (Token.Comment.Multiline, ' nested '),
         (Token.Comment.Multiline, '<!---'),

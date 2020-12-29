@@ -109,7 +109,7 @@ class CrystalLexer(ExtendedRegexLexer):
         states['strings'] = [
             (r'\:@{0,2}[a-zA-Z_]\w*[!?]?', String.Symbol),
             (words(CRYSTAL_OPERATORS, prefix=r'\:@{0,2}'), String.Symbol),
-            (r":'(\\\\|\\'|[^'])*'", String.Symbol),
+            (r":'(\\\\|\\[^\\]|[^'\\])*'", String.Symbol),
             # This allows arbitrary text after '\ for simplicity
             (r"'(\\\\|\\'|[^']|\\[^'\\]+)'", String.Char),
             (r':"', String.Symbol, 'simple-sym'),

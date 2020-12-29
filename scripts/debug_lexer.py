@@ -103,9 +103,14 @@ def main(fn, lexer=None, options={}):
             with open(fn, 'rb') as fp:
                 text = fp.read().decode('utf-8')
         except UnicodeError:
-            print('Warning: non-UTF8 input, using latin1')
-            with open(fn, 'rb') as fp:
-                text = fp.read().decode('latin1')
+            if decode_strategy == 'latin1':
+                print('Warning: non-UTF8 input, using latin1')
+                with open(fn, 'rb') as fp:
+                    text = fp.read().decode('latin1')
+            elif decode_strategy == 'utf8-ignore':
+                print('Warning: ignoring non-UTF8 bytes in input')
+                with open(fn, 'rb') as fp:
+                    text = fp.read().decode('utf-8', 'ignore')
     text = text.strip('\n') + '\n'
 
     if lexer is not None:
@@ -199,6 +204,8 @@ Selecting lexer and options:
     -l NAME         use lexer named NAME (default is to guess from
                     the given filenames)
     -g              guess lexer from content
+    -u              if input is non-utf8, use "ignore" handler instead
+                    of using latin1 encoding
     -O OPTIONSTR    use lexer options parsed from OPTIONSTR
 
 Debugging lexing errors:
@@ -225,10 +232,11 @@ options = {}
 profile = False
 profsort = 4
 guess = False
+decode_strategy = 'latin1'
 
 if __name__ == '__main__':
     import getopt
-    opts, args = getopt.getopt(sys.argv[1:], 'n:l:aepO:s:hg')
+    opts, args = getopt.getopt(sys.argv[1:], 'n:l:aepO:s:hgu')
     for opt, val in opts:
         if opt == '-n':
             num = int(val)
@@ -246,6 +254,8 @@ if __name__ == '__main__':
             options = _parse_options([val])
         elif opt == '-g':
             guess = True
+        elif opt == '-u':
+            decode_strategy = 'utf8-ignore'
         elif opt == '-h':
             print_help()
             sys.exit(0)

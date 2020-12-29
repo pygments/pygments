@@ -90,7 +90,7 @@ class GoLexer(RegexLexer):
             # -- raw_string_lit
             (r'`[^`]*`', String),
             # -- interpreted_string_lit
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # Tokens
             (r'(<<=|>>=|<<|>>|<=|>=|&\^=|&\^|\+=|-=|\*=|/=|%=|&=|\|=|&&|\|\|'
              r'|<-|\+\+|--|==|!=|:=|\.\.\.|[+\-*/%&])', Operator),

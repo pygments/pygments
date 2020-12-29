@@ -117,11 +117,11 @@ class UrbiscriptLexer(ExtendedRegexLexer):
         ],
         'string.double': [
             (r'((?:\\\\|\\"|[^"])*?)(\\B\((\d+)\)\()', blob_callback),
-            (r'(\\\\|\\"|[^"])*?"', String.Double, '#pop'),
+            (r'(\\\\|\\[^\\]|[^"\\])*?"', String.Double, '#pop'),
         ],
         'string.single': [
             (r"((?:\\\\|\\'|[^'])*?)(\\B\((\d+)\)\()", blob_callback),
-            (r"(\\\\|\\'|[^'])*?'", String.Single, '#pop'),
+            (r"(\\\\|\\[^\\]|[^'\\])*?'", String.Single, '#pop'),
         ],
         # from http://pygments.org/docs/lexerdevelopment/#changing-states
         'comment': [
