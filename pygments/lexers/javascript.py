@@ -67,7 +67,7 @@ class JavascriptLexer(RegexLexer):
 
             # Numeric literals
             (r'0[bB][01]+n?', Number.Bin),
-            (r'0[oO]?[0-7]+n?', Number.Oct),  # Browsers support "0o7" and "07" notations
+            (r'0[oO]?[0-7]+n?', Number.Oct),  # Browsers support "0o7" and "07" (< ES5) notations
             (r'0[xX][0-9a-fA-F]+n?', Number.Hex),
             (r'[0-9]+n', Number.Integer),  # Javascript BigInt requires an "n" postfix
             # Javascript doesn't have actual integer literals, so every other
@@ -82,18 +82,17 @@ class JavascriptLexer(RegexLexer):
             (r'[})\].]', Punctuation),
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|void|yield|await|async|'
-             r'this|of)\b', Keyword, 'slashstartsregex'),
-            (r'(var|let|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
-            (r'(abstract|boolean|byte|char|class|const|debugger|double|enum|export|'
-             r'extends|final|float|goto|implements|import|int|interface|long|native|'
-             r'package|private|protected|public|short|static|super|synchronized|throws|'
-             r'transient|volatile)\b', Keyword.Reserved),
+             r'this|of|static|export|import|debugger|extends|super)\b', Keyword, 'slashstartsregex'),
+            (r'(var|let|const|with|function|class)\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(abstract|boolean|byte|char|double|enum|final|float|goto'
+             r'implements|int|interface|long|native|package|private|protected'
+             r'public|short|synchronized|throws|transient|volatile)\b', Keyword.Reserved),
             (r'(true|false|null|NaN|Infinity|undefined)\b', Keyword.Constant),
-            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
-             r'Number|Object|Packages|RegExp|String|Promise|Proxy|sun|decodeURI|'
+            (r'(Array|Boolean|Date|BigInt|Error|Function|Math|'
+             r'Number|Object|RegExp|String|Promise|Proxy|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'Error|eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|'
-             r'document|this|window)\b', Name.Builtin),
+             r'document|this|window|globalThis|Symbol)\b', Name.Builtin),
             (JS_IDENT, Name.Other),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
@@ -182,13 +181,11 @@ class KalLexer(RegexLexer):
             (r'(?<![.$])(true|false|yes|no|on|off|null|nothing|none|'
              r'NaN|Infinity|undefined)\b',
              Keyword.Constant),
-            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
-             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+            (r'(Array|Boolean|Date|Error|Function|Math|'
+             r'Number|Object|RegExp|String|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'eval|isFinite|isNaN|isSafeInteger|parseFloat|parseInt|document|'
-             r'window|'
-             r'print)\b',
-             Name.Builtin),
+             r'window|globalThis|Symbol|print)\b', Name.Builtin),
             (r'[$a-zA-Z_][\w.$]*\s*(:|[+\-*/]?\=)?\b', Name.Variable),
             (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
             (r'0x[0-9a-fA-F]+', Number.Hex),
@@ -287,11 +284,11 @@ class LiveScriptLexer(RegexLexer):
             (r'(?<![.$])(true|false|yes|no|on|off|'
              r'null|NaN|Infinity|undefined|void)\b',
              Keyword.Constant),
-            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
-             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+            (r'(Array|Boolean|Date|Error|Function|Math|'
+             r'Number|Object|RegExp|String|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
-             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window)\b',
-             Name.Builtin),
+             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window|'
+             r'globalThis|Symbol|Symbol|BigInt)\b', Name.Builtin),
             (r'[$a-zA-Z_][\w.\-:$]*\s*[:=]\s', Name.Variable,
              'slashstartsregex'),
             (r'@[$a-zA-Z_][\w.\-:$]*\s*[:=]\s', Name.Variable.Instance,
@@ -490,18 +487,17 @@ class TypeScriptLexer(RegexLexer):
             (r'[})\].]', Punctuation),
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
              r'throw|try|catch|finally|new|delete|typeof|instanceof|void|of|'
-             r'this)\b', Keyword, 'slashstartsregex'),
-            (r'(var|let|with|function)\b', Keyword.Declaration, 'slashstartsregex'),
-            (r'(abstract|boolean|byte|char|class|const|debugger|double|enum|export|'
-             r'extends|final|float|goto|implements|import|int|interface|long|native|'
-             r'package|private|protected|public|short|static|super|synchronized|throws|'
-             r'transient|volatile)\b', Keyword.Reserved),
+             r'this|async|await|debugger|yield|abstract|static|import|export|'
+             r'implements|super|extends|private|protected|public|readonly)\b', Keyword, 'slashstartsregex'),
+            (r'(var|let|const|with|function|class|type|enum|interface)\b', Keyword.Declaration, 'slashstartsregex'),
+            (r'(boolean|byte|char|double|final|float|goto|int|long|native|'
+             r'package|short|synchronized|throws|transient|volatile)\b', Keyword.Reserved),
             (r'(true|false|null|NaN|Infinity|undefined)\b', Keyword.Constant),
-            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
-             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+            (r'(Array|Boolean|Date|Error|Function|Math|'
+             r'Number|Object|RegExp|String|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
-             r'window)\b', Name.Builtin),
+             r'window|globalThis|Symbol|BigInt)\b', Name.Builtin),
             # Match stuff like: module name {...}
             (r'\b(module)(\s*)(\s*[\w?.$][\w?.$]*)(\s*)',
              bygroups(Keyword.Reserved, Text, Name.Other, Text), 'slashstartsregex'),
@@ -518,9 +514,11 @@ class TypeScriptLexer(RegexLexer):
             (r'([\w?.$][\w?.$]*)(\s*:\s*)([\w?.$][\w?.$]*)',
              bygroups(Name.Other, Text, Keyword.Type)),
             (r'[$a-zA-Z_]\w*', Name.Other),
-            (r'[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?', Number.Float),
-            (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'[0-9]+', Number.Integer),
+            (r'0[bB][01]+n?', Number.Bin),
+            (r'0[oO]?[0-7]+n?', Number.Oct),  # Browsers support "0o7" and "07" (< ES5) notations
+            (r'0[xX][0-9a-fA-F]+n?', Number.Hex),
+            (r'[0-9]+n', Number.Integer),
+            (r'(\.[0-9]+|[0-9]+\.[0-9]*|[0-9]+)([eE][-+]?[0-9]+)?', Number.Float),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'`', String.Backtick, 'interp'),
@@ -912,11 +910,11 @@ class ObjectiveJLexer(RegexLexer):
              r'MIN|MAX|RAND|SQRT|E|LN2|LN10|LOG2E|LOG10E|PI|PI2|PI_2|SQRT1_2|'
              r'SQRT2)\b', Keyword.Constant),
 
-            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
-             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+            (r'(Array|Boolean|Date|Error|Function|Math|'
+             r'Number|Object|RegExp|String|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'Error|eval|isFinite|isNaN|parseFloat|parseInt|document|this|'
-             r'window)\b', Name.Builtin),
+             r'window|globalThis|Symbol)\b', Name.Builtin),
 
             (r'([$a-zA-Z_]\w*)(' + _ws + r')(?=\()',
              bygroups(Name.Function, using(this))),
@@ -1084,10 +1082,10 @@ class CoffeeScriptLexer(RegexLexer):
             (r'(?<![.$])(true|false|yes|no|on|off|null|'
              r'NaN|Infinity|undefined)\b',
              Keyword.Constant),
-            (r'(Array|Boolean|Date|Error|Function|Math|netscape|'
-             r'Number|Object|Packages|RegExp|String|sun|decodeURI|'
+            (r'(Array|Boolean|Date|Error|Function|Math|'
+             r'Number|Object|RegExp|String|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
-             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window)\b',
+             r'eval|isFinite|isNaN|parseFloat|parseInt|document|window|globalThis|Symbol)\b',
              Name.Builtin),
             (r'[$a-zA-Z_][\w.:$]*\s*[:=]\s', Name.Variable,
              'slashstartsregex'),
