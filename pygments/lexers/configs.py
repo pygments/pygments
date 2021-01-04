@@ -40,7 +40,7 @@ class IniLexer(RegexLexer):
             (r'\s+', Text),
             (r'[;#].*', Comment.Single),
             (r'\[.*?\]$', Keyword),
-            (r'(.*?)([ \t]*)(=)([ \t]*)(.*(?:\n[ \t].+)*)',
+            (r'(.*?)([ \t]*)(=)([ \t]*)([^\t\n]*)',
              bygroups(Name.Attribute, Text, Operator, Text, String)),
             # standalone option, supported by some INI parsers
             (r'(.+?)$', Name.Attribute),
