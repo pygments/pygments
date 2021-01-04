@@ -218,6 +218,7 @@ LEXERS = {
     'IsabelleLexer': ('pygments.lexers.theorem', 'Isabelle', ('isabelle',), ('*.thy',), ('text/x-isabelle',)),
     'JLexer': ('pygments.lexers.j', 'J', ('j',), ('*.ijs',), ('text/x-j',)),
     'JagsLexer': ('pygments.lexers.modeling', 'JAGS', ('jags',), ('*.jag', '*.bug'), ()),
+    'JanetLexer': ('pygments.lexers.lisp', 'Janet', ('janet',), ('*.janet',), ('text/x-janet', 'application/x-janet')),
     'JasminLexer': ('pygments.lexers.jvm', 'Jasmin', ('jasmin', 'jasminxt'), ('*.j',), ()),
     'JavaLexer': ('pygments.lexers.jvm', 'Java', ('java',), ('*.java',), ('text/x-java',)),
     'JavascriptDjangoLexer': ('pygments.lexers.templates', 'JavaScript+Django/Jinja', ('js+django', 'javascript+django', 'js+jinja', 'javascript+jinja'), (), ('application/x-javascript+django', 'application/x-javascript+jinja', 'text/x-javascript+django', 'text/x-javascript+jinja', 'text/javascript+django', 'text/javascript+jinja')),
