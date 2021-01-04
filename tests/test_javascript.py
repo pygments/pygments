@@ -91,7 +91,7 @@ def ts_lexer():
 def test_function_definition(ts_lexer):
     fragment = u'async function main() {\n}'
     tokens = [
-        (Token.Name.Other, u'async'),
+        (Token.Keyword, u'async'),
         (Token.Text, u' '),
         (Token.Keyword.Declaration, u'function'),
         (Token.Text, u' '),
