@@ -302,8 +302,10 @@ class ApacheConfLexer(RegexLexer):
         'root': [
             (r'\s+', Text),
             (r'#(.*\\\n)+.*$|(#.*?)$', Comment),
-            (r'(<[^\s>]+)(?:(\s+)(.*))?(>)',
+            (r'(<[^\s>/][^\s>]*)(?:(\s+)(.*))?(>)',
              bygroups(Name.Tag, Text, String, Name.Tag)),
+            (r'(</[^\s>]+)(>)',
+             bygroups(Name.Tag, Name.Tag)),
             (r'[a-z]\w*', Name.Builtin, 'value'),
             (r'\.+', Text),
         ],
