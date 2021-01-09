@@ -171,6 +171,7 @@ class CrystalLexer(ExtendedRegexLexer):
             '''.split(), suffix=r'\b'), Keyword),
             (words('''
                 previous_def forall out uninitialized __DIR__ __FILE__ __LINE__
+                __END_LINE__
             '''.split(), prefix=r'(?<!\.)', suffix=r'\b'), Keyword.Pseudo),
             # https://crystal-lang.org/docs/syntax_and_semantics/is_a.html
             (r'\.(is_a\?|nil\?|responds_to\?|as\?|as\b)', Keyword.Pseudo),
