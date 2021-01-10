@@ -133,9 +133,11 @@ class MatlabLexer(RegexLexer):
             # command form:
             # "How MATLAB Recognizes Command Syntax" specifies that an operator
             # is recognized if it is either surrounded by spaces or by no
-            # spaces on both sides; only the former case matters for us.  (This
-            # allows distinguishing `cd ./foo` from `cd ./ foo`.)
-            (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|(?:%s)\s+|\s)' % _operators,
+            # spaces on both sides (this allows distinguishing `cd ./foo` from
+            # `cd ./ foo`.).  Here, the regex checks that the first word in the
+            # line is not followed by <spaces> and then
+            # (equal | open-parenthesis | <operator><space> | <space>).
+            (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|%s\s|\s)' % _operators,
              bygroups(Whitespace, Name, Whitespace), 'commandargs'),
 
             include('expressions')
