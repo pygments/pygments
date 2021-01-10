@@ -177,6 +177,19 @@ def test_comment_after_prompt(lexer_session):
     assert list(lexer_session.get_tokens(fragment)) == tokens
 
 
+def test_ps2_prompt(lexer_session):
+    fragment = '$ ls\n> foo'
+    tokens = [
+        (Token.Generic.Prompt, '$ '),
+        (Token.Text, 'ls'),
+        (Token.Text, '\n'),
+        (Token.Generic.Prompt, '> '),
+        (Token.Text, 'foo'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer_session.get_tokens(fragment)) == tokens
+
+
 def test_msdos_gt_only(lexer_msdos):
     fragment = '> py\nhi\n'
     tokens = [
