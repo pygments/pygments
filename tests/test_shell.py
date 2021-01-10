@@ -205,6 +205,23 @@ def test_fake_ps2_prompt(lexer_session):
     ]
     assert list(lexer_session.get_tokens(fragment)) == tokens
 
+
+def test_prompt_in_output(lexer_session):
+    """Test that output that looks like a prompt is not detected as such."""
+    fragment = '$ cat \\\n> test.txt\nline1\n> file content, not prompt!'
+    tokens = [
+        (Token.Generic.Prompt, '$ '),
+        (Token.Text, 'cat'),
+        (Token.Text, ' '),
+        (Token.Literal.String.Escape, '\\\n'),
+        (Token.Generic.Prompt, '> '),
+        (Token.Text, 'test.txt'),
+        (Token.Text, '\n'),
+        (Token.Generic.Output, 'line1\n'),
+        (Token.Generic.Output, '> file content, not prompt!\n'),
+    ]
+    assert list(lexer_session.get_tokens(fragment)) == tokens
+
 def test_msdos_gt_only(lexer_msdos):
     fragment = '> py\nhi\n'
     tokens = [
