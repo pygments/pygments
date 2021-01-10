@@ -141,12 +141,13 @@ def test_end_of_line_nums(lexer_bash):
 
 
 def test_newline_in_echo(lexer_session):
-    fragment = '$ echo \\\nhi\nhi\n'
+    fragment = '$ echo \\\n> hi\nhi\n'
     tokens = [
         (Token.Generic.Prompt, '$ '),
         (Token.Name.Builtin, 'echo'),
         (Token.Text, ' '),
         (Token.Literal.String.Escape, '\\\n'),
+        (Token.Generic.Prompt, '> '),
         (Token.Text, 'hi'),
         (Token.Text, '\n'),
         (Token.Generic.Output, 'hi\n'),
@@ -155,12 +156,13 @@ def test_newline_in_echo(lexer_session):
 
 
 def test_newline_in_ls(lexer_session):
-    fragment = '$ ls \\\nhi\nhi\n'
+    fragment = '$ ls \\\n> hi\nhi\n'
     tokens = [
         (Token.Generic.Prompt, '$ '),
         (Token.Text, 'ls'),
         (Token.Text, ' '),
         (Token.Literal.String.Escape, '\\\n'),
+        (Token.Generic.Prompt, '> '),
         (Token.Text, 'hi'),
         (Token.Text, '\n'),
         (Token.Generic.Output, 'hi\n'),
@@ -178,17 +180,30 @@ def test_comment_after_prompt(lexer_session):
 
 
 def test_ps2_prompt(lexer_session):
-    fragment = '$ ls\n> foo'
+    fragment = '$ ls\\\n> /does/not/exist\nls: cannot access ...'
     tokens = [
         (Token.Generic.Prompt, '$ '),
         (Token.Text, 'ls'),
-        (Token.Text, '\n'),
+        (Token.Literal.String.Escape, '\\\n'),
         (Token.Generic.Prompt, '> '),
-        (Token.Text, 'foo'),
+        (Token.Text, '/does/not/exist'),
         (Token.Text, '\n'),
+        (Token.Generic.Output, 'ls: cannot access ...\n'),
     ]
     assert list(lexer_session.get_tokens(fragment)) == tokens
 
+def test_fake_ps2_prompt(lexer_session):
+    """Test that missing backslash means it's no prompt."""
+    fragment = '$ echo "> not a prompt"\n> not a prompt'
+    tokens = [
+        (Token.Generic.Prompt, '$ '),
+        (Token.Name.Builtin, 'echo'),
+        (Token.Text, ' '),
+        (Token.Literal.String.Double, '"> not a prompt"'),
+        (Token.Text, '\n'),
+        (Token.Generic.Output, '> not a prompt\n'),
+    ]
+    assert list(lexer_session.get_tokens(fragment)) == tokens
 
 def test_msdos_gt_only(lexer_msdos):
     fragment = '> py\nhi\n'
