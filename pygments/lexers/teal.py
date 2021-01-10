@@ -67,7 +67,7 @@ class TealLexer(RegexLexer):
             include('whitespace'),
             (r'"', String, 'string'),
             (r'(b(?:ase)?(?:32|64) ?)(\(?[a-zA-Z0-9+/=]+\)?)',
-             bygroups(String.Affix, String.Other)),
+                bygroups(String.Affix, String.Other)),
             (r'[A-Z2-7]{58}', Number), # address
             (r'0x[\da-fA-F]+', Number.Hex),
             (r'\d+', Number.Integer),
