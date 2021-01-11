@@ -128,7 +128,8 @@ class XQueryLexer(ExtendedRegexLexer):
 
     def popstate_tag_callback(lexer, match, ctx):
         yield match.start(), Name.Tag, match.group(1)
-        ctx.stack.append(lexer.xquery_parse_state.pop())
+        if lexer.xquery_parse_state:
+            ctx.stack.append(lexer.xquery_parse_state.pop())
         ctx.pos = match.end()
 
     def popstate_xmlcomment_callback(lexer, match, ctx):
