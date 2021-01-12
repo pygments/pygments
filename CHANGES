@@ -14,22 +14,24 @@ Version 2.8.0
 
 Version 2.7.4
 -------------
-(released January 9, 2021)
+(released January 12, 2021)
 
 - Updated lexers:
 
   - Apache configurations: Improve handling of malformed tags (#1656)
-  - Crystal (#1650)
+  - CSS: Add support for variables (#1633, #1666)
+  - Crystal (#1650, #1670)
   - Coq (#1648)
-  - Fortran: Add missing ``ONLY`` keyword (#1635)
+  - Fortran: Add missing keywords (#1635, #1665)
   - Ini (#1624)
   - JavaScript and variants (#1647 -- missing regex flags, #1651)
-  - Markdown (#1623)
+  - Markdown (#1623, #1617)
   - Shell
 
     - Lex trailing whitespace as part of the prompt (#1645)
     - Add missing ``in`` keyword (#1652)
     
+  - SQL - Fix keywords (#1668)
   - Typescript: Fix incorrect punctuation handling (#1510, #1511)
 
 - Fix infinite loop in SML lexer (#1625)
@@ -40,9 +42,10 @@ Version 2.7.4
 - Fix the raw token lexer handling of Unicode (#1616)
 - Revert a private API change in the HTML formatter (#1655) -- 
   please note that private APIs remain subject to change!
-- Add Dracula theme style (#1636)
+- Add Dracula theme style (#1631, #1636)
 - Fix several exponential/cubic-complexity regexes found by
   Ben Caller/Doyensec (#1675)
+- Fix incorrect MATLAB example (#1582)
 
 Thanks to Google's OSS-Fuzz project for finding many of these bugs.
 
