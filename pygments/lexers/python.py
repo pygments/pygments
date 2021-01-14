@@ -122,13 +122,17 @@ class PythonLexer(RegexLexer):
         'expr': [
             # raw f-strings
             ('(?i)(rf|fr)(""")',
-             bygroups(String.Affix, String.Double), 'tdqf'),
+             bygroups(String.Affix, String.Double),
+             combined('rfstringescape', 'tdqf')),
             ("(?i)(rf|fr)(''')",
-             bygroups(String.Affix, String.Single), 'tsqf'),
+             bygroups(String.Affix, String.Single),
+             combined('rfstringescape', 'tsqf')),
             ('(?i)(rf|fr)(")',
-             bygroups(String.Affix, String.Double), 'dqf'),
+             bygroups(String.Affix, String.Double),
+             combined('rfstringescape', 'dqf')),
             ("(?i)(rf|fr)(')",
-             bygroups(String.Affix, String.Single), 'sqf'),
+             bygroups(String.Affix, String.Single),
+             combined('rfstringescape', 'sqf')),
             # non-raw f-strings
             ('([fF])(""")', bygroups(String.Affix, String.Double),
              combined('fstringescape', 'tdqf')),
@@ -316,9 +320,12 @@ class PythonLexer(RegexLexer):
             (uni_name, Name.Namespace),
             default('#pop'),
         ],
-        'fstringescape': [
+        'rfstringescape': [
             (r'\{\{', String.Escape),
             (r'\}\}', String.Escape),
+        ],
+        'fstringescape': [
+            include('rfstringescape'),
             include('stringescape'),
         ],
         'stringescape': [
