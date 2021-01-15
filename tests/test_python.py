@@ -843,7 +843,7 @@ def test_fstring(lexer3):
 
 def test_raw_fstring(lexer3):
     """
-    Tests that the lexer can parse f-strings
+    Tests that the lexer can parse raw f-strings
     """
     # Just raw
     fragment = r'rf"m_\nu = x"'
