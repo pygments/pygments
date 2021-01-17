@@ -42,7 +42,7 @@ tokens: |
   ' '           Text
   ':'           Punctuation
   ' '           Text
-  'Void'        Name.Builtin
+  'Void'        Name
   '*'           Operator
   ')'           Punctuation
   ' '           Text
@@ -50,7 +50,7 @@ tokens: |
   ' '           Text
   'LibC'        Name
   '::'          Operator
-  'Int'         Name.Builtin
+  'Int'         Name
   '\n'          Text
 
   'end'         Keyword

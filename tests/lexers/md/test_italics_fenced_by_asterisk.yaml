@@ -1,5 +1,14 @@
 input: |
   *italics*
+
+  (*italics*)
 tokens: |
   '*italics*'   Generic.Emph
+  '\n'          Text
+
+  '\n'          Text
+
+  '('           Text
+  '*italics*'   Generic.Emph
+  ')'           Text
   '\n'          Text

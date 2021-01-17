@@ -1,0 +1,40 @@
+input: |
+  %(hello ("world"))
+  %[hello ["world"]]
+  %{hello "world"}
+  %<hello <"world">>
+  %|hello "world"|
+tokens: |
+  '%('          Literal.String.Other
+  'hello '      Literal.String.Other
+  '('           Literal.String.Other
+  '"world"'     Literal.String.Other
+  ')'           Literal.String.Other
+  ')'           Literal.String.Other
+  '\n'          Text
+
+  '%['          Literal.String.Other
+  'hello '      Literal.String.Other
+  '['           Literal.String.Other
+  '"world"'     Literal.String.Other
+  ']'           Literal.String.Other
+  ']'           Literal.String.Other
+  '\n'          Text
+
+  '%{'          Literal.String.Other
+  'hello "world"' Literal.String.Other
+  '}'           Literal.String.Other
+  '\n'          Text
+
+  '%<'          Literal.String.Other
+  'hello '      Literal.String.Other
+  '<'           Literal.String.Other
+  '"world"'     Literal.String.Other
+  '>'           Literal.String.Other
+  '>'           Literal.String.Other
+  '\n'          Text
+
+  '%|'          Literal.String.Other
+  'hello "world"' Literal.String.Other
+  '|'           Literal.String.Other
+  '\n'          Text

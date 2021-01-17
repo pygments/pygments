@@ -4,6 +4,8 @@ input: |
    `**code**`
 
   (`code`)
+
+  code (`in brackets`)
 tokens: |
   'code:'       Text
   ' '           Text
@@ -20,5 +22,14 @@ tokens: |
 
   '('           Text
   '`code`'      Literal.String.Backtick
+  ')'           Text
+  '\n'          Text
+
+  '\n'          Text
+
+  'code'        Text
+  ' '           Text
+  '('           Text
+  '`in brackets`' Literal.String.Backtick
   ')'           Text
   '\n'          Text

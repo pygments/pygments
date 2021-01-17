@@ -1,0 +1,8 @@
+input: |
+  "\#{a + b}"
+tokens: |
+  '"'           Literal.String.Double
+  '\\#'         Literal.String.Escape
+  '{a + b}'     Literal.String.Double
+  '"'           Literal.String.Double
+  '\n'          Text

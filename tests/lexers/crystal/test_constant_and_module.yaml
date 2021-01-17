@@ -1,0 +1,13 @@
+input: |
+  HTTP
+  HTTP::Server.new
+tokens: |
+  'HTTP'        Name.Constant
+  '\n'          Text
+
+  'HTTP'        Name
+  '::'          Operator
+  'Server'      Name
+  '.'           Operator
+  'new'         Name
+  '\n'          Text
