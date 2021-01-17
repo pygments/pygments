@@ -43,7 +43,7 @@ Contribution checklist
       can be pasted into a unittest file:
       ``python -m pygments -l lua -f testcase <<< "local a = 5"``
     * But most large snippets should instead be put as a sample file under
-      ``tests/lexers/<lexer_alias>/*.yaml``. These files are automatically
+      ``tests/lexers/<lexer_alias>/*.txt``. These files are automatically
       picked up as individual tests, asserting that the input produces the
       expected tokens.
 

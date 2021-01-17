@@ -3,7 +3,7 @@
     ~~~~~~~~~~~~~~~~~~~~~
 
     Checks that lexers output the expected tokens for each sample
-    under lexers/*/test_*.yaml.
+    under lexers/*/test_*.txt.
 
     After making a change, rather than updating the samples manually,
     run `pytest --update-goldens tests/lexers`.
@@ -24,7 +24,7 @@ import pygments.lexers
 
 
 def pytest_collect_file(parent, path):
-    if path.ext == '.yaml':
+    if path.ext == '.txt':
         return LexerTestFile.from_parent(parent, fspath=path)
 
 
