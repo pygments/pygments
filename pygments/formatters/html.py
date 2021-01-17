@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.formatters.html
     ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -628,7 +627,7 @@ class HtmlFormatter(Formatter):
                     with open(cssfilename, "w") as cf:
                         cf.write(CSSFILE_TEMPLATE %
                                  {'styledefs': self.get_style_defs('body')})
-            except IOError as err:
+            except OSError as err:
                 err.strerror = 'Error writing CSS file: ' + err.strerror
                 raise
 

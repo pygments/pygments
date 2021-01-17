@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     Pygments basic API tests
     ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -17,8 +16,7 @@ TESTDIR = path.dirname(path.abspath(__file__))
 
 
 def _guess_lexer_for_file(filename):
-    return lexers.guess_lexer(open(path.join(TESTDIR, 'examplefiles', filename),
-                                   'r', encoding='utf-8').read())
+    return lexers.guess_lexer(open(path.join(TESTDIR, 'examplefiles', filename), encoding='utf-8').read())
 
 
 @pytest.mark.skip(reason="This is identified as T-SQL")
