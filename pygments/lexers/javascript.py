@@ -99,8 +99,7 @@ class JavascriptLexer(RegexLexer):
         ],
         'interp': [
             (r'`', String.Backtick, '#pop'),
-            (r'\\\\', String.Backtick),
-            (r'\\`', String.Backtick),
+            (r'\\.', String.Backtick),
             (r'\$\{', String.Interpol, 'interp-inside'),
             (r'\$', String.Backtick),
             (r'[^`\\$]+', String.Backtick),
@@ -529,8 +528,7 @@ class TypeScriptLexer(RegexLexer):
         # there should be reflected here as well.
         'interp': [
             (r'`', String.Backtick, '#pop'),
-            (r'\\\\', String.Backtick),
-            (r'\\`', String.Backtick),
+            (r'\\.', String.Backtick),
             (r'\$\{', String.Interpol, 'interp-inside'),
             (r'\$', String.Backtick),
             (r'[^`\\$]+', String.Backtick),

@@ -36,6 +36,7 @@ Usage: %s [-l <lexer> | -g] [-F <filter>[:<options>]] [-f <formatter>]
        %s -S <style> -f <formatter> [-a <arg>] [-O <options>] [-P <option=value>]
        %s -L [<which> ...]
        %s -N <filename>
+       %s -C
        %s -H <type> <name>
        %s -h | -V
 
@@ -90,6 +91,9 @@ list everything.
 The -N option guesses and prints out a lexer name based solely on
 the given filename. It does not take input or highlight anything.
 If no specific lexer can be determined "text" is returned.
+
+The -C option is like -N, but prints out a lexer name based solely on
+a given content from standard input.
 
 The -H option prints detailed help for the object <name> of type <type>,
 where <type> is one of "lexer", "formatter" or "filter".
@@ -286,6 +290,18 @@ def main_inner(popts, args, usage):
     if infn is not None:
         lexer = find_lexer_class_for_filename(infn)
         if lexer is None:
+            lexer = TextLexer
+
+        print(lexer.aliases[0])
+        return 0
+
+    # handle ``pygmentize -C``
+    infc = opts.pop('-C', None)
+    if infc is not None:
+        inp = sys.stdin.buffer.read()
+        try:
+            lexer = guess_lexer(inp, inencoding=inencoding)
+        except ClassNotFound:
             lexer = TextLexer
 
         print(lexer.aliases[0])
@@ -544,10 +560,10 @@ def main(args=sys.argv):
     """
     Main command line entry point.
     """
-    usage = USAGE % ((args[0],) * 6)
+    usage = USAGE % ((args[0],) * 7)
 
     try:
-        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:vhVHgsx")
+        popts, args = getopt.getopt(args[1:], "l:f:F:o:O:P:LS:a:N:CvhVHgsx")
     except getopt.GetoptError:
         print(usage, file=sys.stderr)
         return 2
