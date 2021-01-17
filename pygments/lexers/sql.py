@@ -497,9 +497,6 @@ class SqlLexer(RegexLexer):
         ]
     }
 
-    def analyse_text(text):
-        return 0.01
-
 
 class TransactSqlLexer(RegexLexer):
     """

@@ -11,8 +11,14 @@ Version 2.8.0
 -------------
 (not released yet)
 
+- Added `pygmentize -C` option to guess a lexer from content
+
+- Fix escapes in JavaScript and TypeScript backtick strings (#1679, #1686)
+- Make guessing prefer Python 3 lexer
+- Do not guess MIME or SQL without reason
 - Changed setuptools to use a declarative config through ``setup.cfg``.
   Building Pygments now requires setuptools 39.2+.
+
 
 Version 2.7.4
 -------------
