@@ -1,13 +1,14 @@
-input: |
-  - foo
-  - bar
-tokens: |
-  '-'           Keyword
-  ' '           Text
-  'foo'         Text
-  '\n'          Text
+---input---
+- foo
+- bar
 
-  '-'           Keyword
-  ' '           Text
-  'bar'         Text
-  '\n'          Text
+---tokens---
+'-'           Keyword
+' '           Text
+'foo'         Text
+'\n'          Text
+
+'-'           Keyword
+' '           Text
+'bar'         Text
+'\n'          Text

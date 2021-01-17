@@ -47,16 +47,10 @@ Contribution checklist
       picked up as individual tests, asserting that the input produces the
       expected tokens.
 
-      To add a new test, create such a YAML file under a subdirectory based
-      on your lexer's main alias. Populate only the input section:
-
-      ```yaml
-      input: |
-        Your code sample
-      ```
-
-      Then run ``pytest --update-goldens tests/lexers`` to auto-populate
-      the currently expected tokens. Check that they look good and add the file.
+      To add a new test, create a file with just your code snippet under a
+      subdirectory based on your lexer's main alias. Then run
+      ``pytest --update-goldens tests/lexers`` to auto-populate the currently
+      expected tokens. Check that they look good and check in the file.
 
       Also run the same command whenever you need to update the test if the
       actual produced tokens change (assuming the change is expected).

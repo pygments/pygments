@@ -1,22 +1,23 @@
-input: |
-  "foo": "bar", "foo2": [1, 2, 3]
-tokens: |
-  '"foo"'       Name.Tag
-  ':'           Punctuation
-  ' '           Text
-  '"bar"'       Literal.String.Double
-  ','           Punctuation
-  ' '           Text
-  '"foo2"'      Name.Tag
-  ':'           Punctuation
-  ' '           Text
-  '['           Punctuation
-  '1'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '2'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '3'           Literal.Number.Integer
-  ']'           Punctuation
-  '\n'          Text
+---input---
+"foo": "bar", "foo2": [1, 2, 3]
+
+---tokens---
+'"foo"'       Name.Tag
+':'           Punctuation
+' '           Text
+'"bar"'       Literal.String.Double
+','           Punctuation
+' '           Text
+'"foo2"'      Name.Tag
+':'           Punctuation
+' '           Text
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text

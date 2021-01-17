@@ -1,8 +1,9 @@
-input: |
-  "characters$MACRO."
-tokens: |
-  '"'           Literal.String
-  'characters'  Literal.String
-  '$MACRO.'     Comment.Preproc
-  '"'           Literal.String
-  '\n'          Text
+---input---
+"characters$MACRO."
+
+---tokens---
+'"'           Literal.String
+'characters'  Literal.String
+'$MACRO.'     Comment.Preproc
+'"'           Literal.String
+'\n'          Text

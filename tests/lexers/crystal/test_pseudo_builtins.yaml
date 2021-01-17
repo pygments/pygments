@@ -1,19 +1,20 @@
-input: |
-  record Cls do
-  def_equals s
-  end
-tokens: |
-  'record'      Name.Builtin.Pseudo
-  ' '           Text
-  'Cls'         Name
-  ' '           Text
-  'do'          Keyword
-  '\n'          Text
+---input---
+record Cls do
+def_equals s
+end
 
-  'def_equals'  Name.Builtin.Pseudo
-  ' '           Text
-  's'           Name
-  '\n'          Text
+---tokens---
+'record'      Name.Builtin.Pseudo
+' '           Text
+'Cls'         Name
+' '           Text
+'do'          Keyword
+'\n'          Text
 
-  'end'         Keyword
-  '\n'          Text
+'def_equals'  Name.Builtin.Pseudo
+' '           Text
+'s'           Name
+'\n'          Text
+
+'end'         Keyword
+'\n'          Text

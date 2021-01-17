@@ -1,25 +1,26 @@
-input: |
-  * `code`
+---input---
+* `code`
 
-  - `code`
+- `code`
 
-  1. `code`
-tokens: |
-  '*'           Keyword
-  ' '           Text
-  '`code`'      Literal.String.Backtick
-  '\n'          Text
+1. `code`
 
-  '\n'          Text
+---tokens---
+'*'           Keyword
+' '           Text
+'`code`'      Literal.String.Backtick
+'\n'          Text
 
-  '-'           Keyword
-  ' '           Text
-  '`code`'      Literal.String.Backtick
-  '\n'          Text
+'\n'          Text
 
-  '\n'          Text
+'-'           Keyword
+' '           Text
+'`code`'      Literal.String.Backtick
+'\n'          Text
 
-  '1.'          Keyword
-  ' '           Text
-  '`code`'      Literal.String.Backtick
-  '\n'          Text
+'\n'          Text
+
+'1.'          Keyword
+' '           Text
+'`code`'      Literal.String.Backtick
+'\n'          Text

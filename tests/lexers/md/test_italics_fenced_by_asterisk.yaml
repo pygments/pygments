@@ -1,14 +1,15 @@
-input: |
-  *italics*
+---input---
+*italics*
 
-  (*italics*)
-tokens: |
-  '*italics*'   Generic.Emph
-  '\n'          Text
+(*italics*)
 
-  '\n'          Text
+---tokens---
+'*italics*'   Generic.Emph
+'\n'          Text
 
-  '('           Text
-  '*italics*'   Generic.Emph
-  ')'           Text
-  '\n'          Text
+'\n'          Text
+
+'('           Text
+'*italics*'   Generic.Emph
+')'           Text
+'\n'          Text

@@ -1,16 +1,17 @@
-input: |
-  export (Array, AudioStream) var streams
-tokens: |
-  'export'      Keyword
-  ' '           Text
-  '('           Punctuation
-  'Array'       Name.Builtin.Type
-  ','           Punctuation
-  ' '           Text
-  'AudioStream' Name
-  ')'           Punctuation
-  ' '           Text
-  'var'         Keyword
-  ' '           Text
-  'streams'     Name
-  '\n'          Text
+---input---
+export (Array, AudioStream) var streams
+
+---tokens---
+'export'      Keyword
+' '           Text
+'('           Punctuation
+'Array'       Name.Builtin.Type
+','           Punctuation
+' '           Text
+'AudioStream' Name
+')'           Punctuation
+' '           Text
+'var'         Keyword
+' '           Text
+'streams'     Name
+'\n'          Text

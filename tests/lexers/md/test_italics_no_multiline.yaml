@@ -1,9 +1,10 @@
-input: |
-  *no
-  italics*
-tokens: |
-  '*no'         Text
-  '\n'          Text
+---input---
+*no
+italics*
 
-  'italics*'    Text
-  '\n'          Text
+---tokens---
+'*no'         Text
+'\n'          Text
+
+'italics*'    Text
+'\n'          Text

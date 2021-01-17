@@ -1,10 +1,11 @@
 # Assures lines lead by either # or ! are recognized as a comment
-input: |
-  ! a comment
-  # also a comment
-tokens: |
-  '! a comment' Comment
-  '\n'          Text
+---input---
+! a comment
+# also a comment
 
-  '# also a comment' Comment
-  '\n'          Text
+---tokens---
+'! a comment' Comment
+'\n'          Text
+
+'# also a comment' Comment
+'\n'          Text

@@ -1,17 +1,18 @@
-input: |
-  thingy
-  thingy123
-  _thingy
-  _123
-tokens: |
-  'thingy'      Name
-  '\n'          Text.Whitespace
+---input---
+thingy
+thingy123
+_thingy
+_123
 
-  'thingy123'   Name
-  '\n'          Text.Whitespace
+---tokens---
+'thingy'      Name
+'\n'          Text.Whitespace
 
-  '_thingy'     Name
-  '\n'          Text.Whitespace
+'thingy123'   Name
+'\n'          Text.Whitespace
 
-  '_123'        Name
-  '\n'          Text.Whitespace
+'_thingy'     Name
+'\n'          Text.Whitespace
+
+'_123'        Name
+'\n'          Text.Whitespace

@@ -1,53 +1,54 @@
-input: |
-  % BibTeX standard bibliography style `plain'
+---input---
+% BibTeX standard bibliography style `plain'
 
-  INTEGERS { output.state before.all }
+INTEGERS { output.state before.all }
 
-  FUNCTION {sort.format.title}
-  { 't :=
-  "A " #2
-      "An " #3
-      "The " #4 t chop.word
-      chop.word
-  chop.word
-  sortify
-  #1 global.max$ substring$
-  }
+FUNCTION {sort.format.title}
+{ 't :=
+"A " #2
+    "An " #3
+    "The " #4 t chop.word
+    chop.word
+chop.word
+sortify
+#1 global.max$ substring$
+}
 
-  ITERATE {call.type$}
-tokens: |
-  "% BibTeX standard bibliography style `plain'" Comment
-  '\n\n'        Text
+ITERATE {call.type$}
 
-  'INTEGERS { output.state before.all }' Comment
-  '\n\n'        Text
+---tokens---
+"% BibTeX standard bibliography style `plain'" Comment
+'\n\n'        Text
 
-  'FUNCTION {sort.format.title}' Comment
-  '\n'          Text
+'INTEGERS { output.state before.all }' Comment
+'\n\n'        Text
 
-  "{ 't :="     Comment
-  '\n'          Text
+'FUNCTION {sort.format.title}' Comment
+'\n'          Text
 
-  '"A " #2'     Comment
-  '\n    '      Text
-  '"An " #3'    Comment
-  '\n    '      Text
-  '"The " #4 t chop.word' Comment
-  '\n    '      Text
-  'chop.word'   Comment
-  '\n'          Text
+"{ 't :="     Comment
+'\n'          Text
 
-  'chop.word'   Comment
-  '\n'          Text
+'"A " #2'     Comment
+'\n    '      Text
+'"An " #3'    Comment
+'\n    '      Text
+'"The " #4 t chop.word' Comment
+'\n    '      Text
+'chop.word'   Comment
+'\n'          Text
 
-  'sortify'     Comment
-  '\n'          Text
+'chop.word'   Comment
+'\n'          Text
 
-  '#1 global.max$ substring$' Comment
-  '\n'          Text
+'sortify'     Comment
+'\n'          Text
 
-  '}'           Comment
-  '\n\n'        Text
+'#1 global.max$ substring$' Comment
+'\n'          Text
 
-  'ITERATE {call.type$}' Comment
-  '\n'          Text
+'}'           Comment
+'\n\n'        Text
+
+'ITERATE {call.type$}' Comment
+'\n'          Text

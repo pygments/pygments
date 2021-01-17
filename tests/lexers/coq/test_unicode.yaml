@@ -1,14 +1,15 @@
-input: |
-  Check (α ≻ β).
-tokens: |
-  'Check'       Keyword.Namespace
-  ' '           Text
-  '('           Operator
-  'α'           Name
-  ' '           Text
-  '≻'           Name.Builtin.Pseudo
-  ' '           Text
-  'β'           Name
-  ')'           Operator
-  '.'           Operator
-  '\n'          Text
+---input---
+Check (α ≻ β).
+
+---tokens---
+'Check'       Keyword.Namespace
+' '           Text
+'('           Operator
+'α'           Name
+' '           Text
+'≻'           Name.Builtin.Pseudo
+' '           Text
+'β'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text

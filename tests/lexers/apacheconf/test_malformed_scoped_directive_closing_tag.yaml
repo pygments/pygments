@@ -1,19 +1,20 @@
-input: |
-  <VirtualHost "test">
-  </VirtualHost
-  >
-tokens: |
-  '<VirtualHost' Name.Tag
-  ' '           Text
-  '"test"'      Literal.String
-  '>'           Name.Tag
-  '\n'          Text
+---input---
+<VirtualHost "test">
+</VirtualHost
+>
 
-  '<'           Error
-  '/'           Error
-  'VirtualHost' Name.Builtin
-  ''            Text
-  '\n'          Text
+---tokens---
+'<VirtualHost' Name.Tag
+' '           Text
+'"test"'      Literal.String
+'>'           Name.Tag
+'\n'          Text
 
-  '>'           Error
-  '\n'          Text
+'<'           Error
+'/'           Error
+'VirtualHost' Name.Builtin
+''            Text
+'\n'          Text
+
+'>'           Error
+'\n'          Text

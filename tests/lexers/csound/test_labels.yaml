@@ -1,12 +1,13 @@
-input: |
-  aLabel:
-   label2:
-tokens: |
-  'aLabel'      Name.Label
-  ':'           Punctuation
-  '\n'          Text
+---input---
+aLabel:
+ label2:
 
-  ' '           Text
-  'label2'      Name.Label
-  ':'           Punctuation
-  '\n'          Text
+---tokens---
+'aLabel'      Name.Label
+':'           Punctuation
+'\n'          Text
+
+' '           Text
+'label2'      Name.Label
+':'           Punctuation
+'\n'          Text

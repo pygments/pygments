@@ -1,8 +1,9 @@
-input: |
-  Include /etc/httpd/conf.d/*.conf
-tokens: |
-  'Include'     Name.Builtin
-  ' '           Text
-  '/etc/httpd/conf.d/*.conf' Literal.String.Other
-  ''            Text
-  '\n'          Text
+---input---
+Include /etc/httpd/conf.d/*.conf
+
+---tokens---
+'Include'     Name.Builtin
+' '           Text
+'/etc/httpd/conf.d/*.conf' Literal.String.Other
+''            Text
+'\n'          Text

@@ -1,9 +1,10 @@
-input: |
-  @PREAMBLE(""}
-tokens: |
-  '@PREAMBLE'   Name.Class
-  '('           Punctuation
-  '"'           Literal.String
-  '"'           Literal.String
-  '}'           Error
-  '\n'          Text
+---input---
+@PREAMBLE(""}
+
+---tokens---
+'@PREAMBLE'   Name.Class
+'('           Punctuation
+'"'           Literal.String
+'"'           Literal.String
+'}'           Error
+'\n'          Text

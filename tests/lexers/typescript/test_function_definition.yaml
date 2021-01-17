@@ -1,17 +1,18 @@
-input: |
-  async function main() {
-  }
-tokens: |
-  'async'       Keyword
-  ' '           Text
-  'function'    Keyword.Declaration
-  ' '           Text
-  'main'        Name.Other
-  '('           Punctuation
-  ')'           Punctuation
-  ' '           Text
-  '{'           Punctuation
-  '\n'          Text
+---input---
+async function main() {
+}
 
-  '}'           Punctuation
-  '\n'          Text
+---tokens---
+'async'       Keyword
+' '           Text
+'function'    Keyword.Declaration
+' '           Text
+'main'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

@@ -1,31 +1,32 @@
-input: |
-  int main()
-  {
-  foo :
-    goto foo;
-  }
-tokens: |
-  'int'         Keyword.Type
-  ' '           Text
-  'main'        Name.Function
-  '('           Punctuation
-  ')'           Punctuation
-  '\n'          Text
+---input---
+int main()
+{
+foo :
+  goto foo;
+}
 
-  '{'           Punctuation
-  '\n'          Text
+---tokens---
+'int'         Keyword.Type
+' '           Text
+'main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
 
-  'foo'         Name.Label
-  ' '           Text
-  ':'           Punctuation
-  '\n'          Text
+'{'           Punctuation
+'\n'          Text
 
-  '  '          Text
-  'goto'        Keyword
-  ' '           Text
-  'foo'         Name
-  ';'           Punctuation
-  '\n'          Text
+'foo'         Name.Label
+' '           Text
+':'           Punctuation
+'\n'          Text
 
-  '}'           Punctuation
-  '\n'          Text
+'  '          Text
+'goto'        Keyword
+' '           Text
+'foo'         Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

@@ -1,5 +1,6 @@
-input: |
-  /* foo */
-tokens: |
-  '/* foo */'   Comment.Multiline
-  '\n'          Text
+---input---
+/* foo */
+
+---tokens---
+'/* foo */'   Comment.Multiline
+'\n'          Text

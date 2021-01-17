@@ -1,9 +1,10 @@
-input: |
-  """
-  this
-  is
-  a
-  comment"""
-tokens: |
-  '"""\nthis\nis\na\ncomment"""' Literal.String
-  '\n'          Text
+---input---
+"""
+this
+is
+a
+comment"""
+
+---tokens---
+'"""\nthis\nis\na\ncomment"""' Literal.String
+'\n'          Text

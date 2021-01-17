@@ -1,6 +1,7 @@
 # Internal backticks can be escaped
-input: |
-  `.1 \` blah`
-tokens: |
-  '`.1 \\` blah`' Name
-  '\n'          Text
+---input---
+`.1 \` blah`
+
+---tokens---
+'`.1 \\` blah`' Name
+'\n'          Text

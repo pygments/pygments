@@ -1,39 +1,40 @@
-input: |
-  $MACRO.(((x#y\)))' "(#'x)\)x\))"# {{x\))x)\)(#'}});
-tokens: |
-  '$MACRO.'     Comment.Preproc
-  '('           Punctuation
-  '('           Comment.Preproc
-  '('           Comment.Preproc
-  'x#y\\)'      Comment.Preproc
-  ')'           Comment.Preproc
-  ')'           Comment.Preproc
-  "'"           Punctuation
-  ' '           Comment.Preproc
-  '"'           Literal.String
-  '('           Error
-  '#'           Error
-  "'"           Error
-  'x'           Literal.String
-  ')'           Error
-  '\\)'         Comment.Preproc
-  'x'           Literal.String
-  '\\)'         Comment.Preproc
-  ')'           Error
-  '"'           Literal.String
-  '#'           Punctuation
-  ' '           Comment.Preproc
-  '{{'          Literal.String
-  'x'           Literal.String
-  '\\)'         Comment.Preproc
-  ')'           Error
-  'x'           Literal.String
-  ')'           Error
-  '\\)'         Comment.Preproc
-  '('           Error
-  '#'           Error
-  "'"           Error
-  '}}'          Literal.String
-  ')'           Punctuation
-  ';'           Comment.Single
-  '\n'          Text
+---input---
+$MACRO.(((x#y\)))' "(#'x)\)x\))"# {{x\))x)\)(#'}});
+
+---tokens---
+'$MACRO.'     Comment.Preproc
+'('           Punctuation
+'('           Comment.Preproc
+'('           Comment.Preproc
+'x#y\\)'      Comment.Preproc
+')'           Comment.Preproc
+')'           Comment.Preproc
+"'"           Punctuation
+' '           Comment.Preproc
+'"'           Literal.String
+'('           Error
+'#'           Error
+"'"           Error
+'x'           Literal.String
+')'           Error
+'\\)'         Comment.Preproc
+'x'           Literal.String
+'\\)'         Comment.Preproc
+')'           Error
+'"'           Literal.String
+'#'           Punctuation
+' '           Comment.Preproc
+'{{'          Literal.String
+'x'           Literal.String
+'\\)'         Comment.Preproc
+')'           Error
+'x'           Literal.String
+')'           Error
+'\\)'         Comment.Preproc
+'('           Error
+'#'           Error
+"'"           Error
+'}}'          Literal.String
+')'           Punctuation
+';'           Comment.Single
+'\n'          Text

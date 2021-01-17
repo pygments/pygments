@@ -1,178 +1,179 @@
 # Examine tokens emitted by the SV lexer for a trivial module.
 # Not intended to stress any particular corner of the language.
-input: |
-  // Adder flops the sum of its inputs
-  module Adder #(
-      parameter int N = 42
-  ) (
-      output logic [N-1:0] y,
-      output logic         co,
+---input---
+// Adder flops the sum of its inputs
+module Adder #(
+    parameter int N = 42
+) (
+    output logic [N-1:0] y,
+    output logic         co,
 
-      input  logic [N-1:0] a,
-      input  logic [N-1:0] b,
-      input  logic         ci,
+    input  logic [N-1:0] a,
+    input  logic [N-1:0] b,
+    input  logic         ci,
 
-      input  logic clk
-  );
-      always_ff @(posedge clk) begin
-          {co, y} <= a + b + ci;
-      end
-  endmodule : Adder
-tokens: |
-  '// Adder flops the sum of its inputs\n' Comment.Single
-  'module'      Keyword
-  ' '           Text
-  'Adder'       Name
-  ' '           Text
-  '#'           Punctuation
-  '('           Punctuation
-  '\n'          Text
+    input  logic clk
+);
+    always_ff @(posedge clk) begin
+        {co, y} <= a + b + ci;
+    end
+endmodule : Adder
 
-  '    '        Text
-  'parameter'   Keyword
-  ' '           Text
-  'int'         Keyword.Type
-  ' '           Text
-  'N'           Name
-  ' '           Text
-  '='           Operator
-  ' '           Text
-  '42'          Literal.Number.Integer
-  '\n'          Text
+---tokens---
+'// Adder flops the sum of its inputs\n' Comment.Single
+'module'      Keyword
+' '           Text
+'Adder'       Name
+' '           Text
+'#'           Punctuation
+'('           Punctuation
+'\n'          Text
 
-  ')'           Punctuation
-  ' '           Text
-  '('           Punctuation
-  '\n'          Text
+'    '        Text
+'parameter'   Keyword
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'N'           Name
+' '           Text
+'='           Operator
+' '           Text
+'42'          Literal.Number.Integer
+'\n'          Text
 
-  '    '        Text
-  'output'      Keyword
-  ' '           Text
-  'logic'       Keyword.Type
-  ' '           Text
-  '['           Punctuation
-  'N'           Name
-  '-'           Operator
-  '1'           Literal.Number.Integer
-  ':'           Operator
-  '0'           Literal.Number.Integer
-  ']'           Punctuation
-  ' '           Text
-  'y'           Name
-  ','           Punctuation
-  '\n'          Text
+')'           Punctuation
+' '           Text
+'('           Punctuation
+'\n'          Text
 
-  '    '        Text
-  'output'      Keyword
-  ' '           Text
-  'logic'       Keyword.Type
-  '         '   Text
-  'co'          Name
-  ','           Punctuation
-  '\n'          Text
+'    '        Text
+'output'      Keyword
+' '           Text
+'logic'       Keyword.Type
+' '           Text
+'['           Punctuation
+'N'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+':'           Operator
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'y'           Name
+','           Punctuation
+'\n'          Text
 
-  '\n'          Text
+'    '        Text
+'output'      Keyword
+' '           Text
+'logic'       Keyword.Type
+'         '   Text
+'co'          Name
+','           Punctuation
+'\n'          Text
 
-  '    '        Text
-  'input'       Keyword
-  '  '          Text
-  'logic'       Keyword.Type
-  ' '           Text
-  '['           Punctuation
-  'N'           Name
-  '-'           Operator
-  '1'           Literal.Number.Integer
-  ':'           Operator
-  '0'           Literal.Number.Integer
-  ']'           Punctuation
-  ' '           Text
-  'a'           Name
-  ','           Punctuation
-  '\n'          Text
+'\n'          Text
 
-  '    '        Text
-  'input'       Keyword
-  '  '          Text
-  'logic'       Keyword.Type
-  ' '           Text
-  '['           Punctuation
-  'N'           Name
-  '-'           Operator
-  '1'           Literal.Number.Integer
-  ':'           Operator
-  '0'           Literal.Number.Integer
-  ']'           Punctuation
-  ' '           Text
-  'b'           Name
-  ','           Punctuation
-  '\n'          Text
+'    '        Text
+'input'       Keyword
+'  '          Text
+'logic'       Keyword.Type
+' '           Text
+'['           Punctuation
+'N'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+':'           Operator
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'a'           Name
+','           Punctuation
+'\n'          Text
 
-  '    '        Text
-  'input'       Keyword
-  '  '          Text
-  'logic'       Keyword.Type
-  '         '   Text
-  'ci'          Name
-  ','           Punctuation
-  '\n'          Text
+'    '        Text
+'input'       Keyword
+'  '          Text
+'logic'       Keyword.Type
+' '           Text
+'['           Punctuation
+'N'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+':'           Operator
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text
+'b'           Name
+','           Punctuation
+'\n'          Text
 
-  '\n'          Text
+'    '        Text
+'input'       Keyword
+'  '          Text
+'logic'       Keyword.Type
+'         '   Text
+'ci'          Name
+','           Punctuation
+'\n'          Text
 
-  '    '        Text
-  'input'       Keyword
-  '  '          Text
-  'logic'       Keyword.Type
-  ' '           Text
-  'clk'         Name
-  '\n'          Text
+'\n'          Text
 
-  ')'           Punctuation
-  ';'           Punctuation
-  '\n'          Text
+'    '        Text
+'input'       Keyword
+'  '          Text
+'logic'       Keyword.Type
+' '           Text
+'clk'         Name
+'\n'          Text
 
-  '    '        Text
-  'always_ff'   Keyword
-  ' '           Text
-  '@'           Punctuation
-  '('           Punctuation
-  'posedge'     Keyword
-  ' '           Text
-  'clk'         Name
-  ')'           Punctuation
-  ' '           Text
-  'begin'       Keyword
-  '\n'          Text
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
 
-  '        '    Text
-  '{'           Punctuation
-  'co'          Name
-  ','           Punctuation
-  ' '           Text
-  'y'           Name
-  '}'           Punctuation
-  ' '           Text
-  '<'           Operator
-  '='           Operator
-  ' '           Text
-  'a'           Name
-  ' '           Text
-  '+'           Operator
-  ' '           Text
-  'b'           Name
-  ' '           Text
-  '+'           Operator
-  ' '           Text
-  'ci'          Name
-  ';'           Punctuation
-  '\n'          Text
+'    '        Text
+'always_ff'   Keyword
+' '           Text
+'@'           Punctuation
+'('           Punctuation
+'posedge'     Keyword
+' '           Text
+'clk'         Name
+')'           Punctuation
+' '           Text
+'begin'       Keyword
+'\n'          Text
 
-  '    '        Text
-  'end'         Keyword
-  '\n'          Text
+'        '    Text
+'{'           Punctuation
+'co'          Name
+','           Punctuation
+' '           Text
+'y'           Name
+'}'           Punctuation
+' '           Text
+'<'           Operator
+'='           Operator
+' '           Text
+'a'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'b'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'ci'          Name
+';'           Punctuation
+'\n'          Text
 
-  'endmodule'   Keyword
-  ' '           Text
-  ':'           Operator
-  ' '           Text
-  'Adder'       Name
-  '\n'          Text
+'    '        Text
+'end'         Keyword
+'\n'          Text
+
+'endmodule'   Keyword
+' '           Text
+':'           Operator
+' '           Text
+'Adder'       Name
+'\n'          Text

@@ -1,9 +1,10 @@
 # Integer value `5` should be explicitly highlighted
-input: |
-  value 5;
-tokens: |
-  'value'       Keyword
-  ' '           Text.Whitespace
-  '5'           Literal.Number.Integer
-  ';'           Punctuation
-  '\n'          Text.Whitespace
+---input---
+value 5;
+
+---tokens---
+'value'       Keyword
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace

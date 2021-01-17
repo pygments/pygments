@@ -1,113 +1,114 @@
-input: |
-  +
-  -
-  ~
-  ¬
-  !
-  *
-  /
-  ^
-  %
-  <<
-  >>
-  <
-  >
-  <=
-  >=
-  ==
-  !=
-  &
-  #
-  |
-  &&
-  ||
-  ?
-  :
-  +=
-  -=
-  *=
-  /=
-tokens: |
-  '+'           Operator
-  '\n'          Text
+---input---
++
+-
+~
+¬
+!
+*
+/
+^
+%
+<<
+>>
+<
+>
+<=
+>=
+==
+!=
+&
+#
+|
+&&
+||
+?
+:
++=
+-=
+*=
+/=
 
-  '-'           Operator
-  '\n'          Text
+---tokens---
+'+'           Operator
+'\n'          Text
 
-  '~'           Operator
-  '\n'          Text
+'-'           Operator
+'\n'          Text
 
-  '¬'           Operator
-  '\n'          Text
+'~'           Operator
+'\n'          Text
 
-  '!'           Operator
-  '\n'          Text
+'¬'           Operator
+'\n'          Text
 
-  '*'           Operator
-  '\n'          Text
+'!'           Operator
+'\n'          Text
 
-  '/'           Operator
-  '\n'          Text
+'*'           Operator
+'\n'          Text
 
-  '^'           Operator
-  '\n'          Text
+'/'           Operator
+'\n'          Text
 
-  '%'           Operator
-  '\n'          Text
+'^'           Operator
+'\n'          Text
 
-  '<<'          Operator
-  '\n'          Text
+'%'           Operator
+'\n'          Text
 
-  '>>'          Operator
-  '\n'          Text
+'<<'          Operator
+'\n'          Text
 
-  '<'           Operator
-  '\n'          Text
+'>>'          Operator
+'\n'          Text
 
-  '>'           Operator
-  '\n'          Text
+'<'           Operator
+'\n'          Text
 
-  '<='          Operator
-  '\n'          Text
+'>'           Operator
+'\n'          Text
 
-  '>='          Operator
-  '\n'          Text
+'<='          Operator
+'\n'          Text
 
-  '=='          Operator
-  '\n'          Text
+'>='          Operator
+'\n'          Text
 
-  '!='          Operator
-  '\n'          Text
+'=='          Operator
+'\n'          Text
 
-  '&'           Operator
-  '\n'          Text
+'!='          Operator
+'\n'          Text
 
-  '#'           Operator
-  '\n'          Text
+'&'           Operator
+'\n'          Text
 
-  '|'           Operator
-  '\n'          Text
+'#'           Operator
+'\n'          Text
 
-  '&&'          Operator
-  '\n'          Text
+'|'           Operator
+'\n'          Text
 
-  '||'          Operator
-  '\n'          Text
+'&&'          Operator
+'\n'          Text
 
-  '?'           Operator
-  '\n'          Text
+'||'          Operator
+'\n'          Text
 
-  ':'           Operator
-  '\n'          Text
+'?'           Operator
+'\n'          Text
 
-  '+='          Operator
-  '\n'          Text
+':'           Operator
+'\n'          Text
 
-  '-='          Operator
-  '\n'          Text
+'+='          Operator
+'\n'          Text
 
-  '*='          Operator
-  '\n'          Text
+'-='          Operator
+'\n'          Text
 
-  '/='          Operator
-  '\n'          Text
+'*='          Operator
+'\n'          Text
+
+'/='          Operator
+'\n'          Text

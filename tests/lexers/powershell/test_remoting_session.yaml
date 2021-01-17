@@ -1,18 +1,19 @@
-input: |
-  [Long-NetBIOS-Hostname]: PS C:\> Get-ChildItem
-tokens: |
-  '['           Punctuation
-  'Long'        Name
-  '-NetBIOS'    Name
-  '-Hostname'   Name
-  ']'           Punctuation
-  ':'           Error
-  ' '           Text
-  'PS '         Name.Builtin
-  'C'           Name
-  ':'           Error
-  '\\'          Punctuation
-  '>'           Punctuation
-  ' '           Text
-  'Get-ChildItem' Name.Builtin
-  '\n'          Text
+---input---
+[Long-NetBIOS-Hostname]: PS C:\> Get-ChildItem
+
+---tokens---
+'['           Punctuation
+'Long'        Name
+'-NetBIOS'    Name
+'-Hostname'   Name
+']'           Punctuation
+':'           Error
+' '           Text
+'PS '         Name.Builtin
+'C'           Name
+':'           Error
+'\\'          Punctuation
+'>'           Punctuation
+' '           Text
+'Get-ChildItem' Name.Builtin
+'\n'          Text

@@ -1,11 +1,12 @@
-input: |
-  var abc = 5.4
-tokens: |
-  'var'         Keyword
-  ' '           Text
-  'abc'         Name
-  ' '           Text
-  '='           Operator
-  ' '           Text
-  '5.4'         Literal.Number.Float
-  '\n'          Text
+---input---
+var abc = 5.4
+
+---tokens---
+'var'         Keyword
+' '           Text
+'abc'         Name
+' '           Text
+'='           Operator
+' '           Text
+'5.4'         Literal.Number.Float
+'\n'          Text

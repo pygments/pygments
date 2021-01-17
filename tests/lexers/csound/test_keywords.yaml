@@ -1,61 +1,62 @@
-input: |
-  do
-  else
-  elseif
-  endif
-  enduntil
-  fi
-  if
-  ithen
-  kthen
-  od
-  then
-  until
-  while
-  return
-  rireturn
-tokens: |
-  'do'          Keyword
-  '\n'          Text
+---input---
+do
+else
+elseif
+endif
+enduntil
+fi
+if
+ithen
+kthen
+od
+then
+until
+while
+return
+rireturn
 
-  'else'        Keyword
-  '\n'          Text
+---tokens---
+'do'          Keyword
+'\n'          Text
 
-  'elseif'      Keyword
-  '\n'          Text
+'else'        Keyword
+'\n'          Text
 
-  'endif'       Keyword
-  '\n'          Text
+'elseif'      Keyword
+'\n'          Text
 
-  'enduntil'    Keyword
-  '\n'          Text
+'endif'       Keyword
+'\n'          Text
 
-  'fi'          Keyword
-  '\n'          Text
+'enduntil'    Keyword
+'\n'          Text
 
-  'if'          Keyword
-  '\n'          Text
+'fi'          Keyword
+'\n'          Text
 
-  'ithen'       Keyword
-  '\n'          Text
+'if'          Keyword
+'\n'          Text
 
-  'kthen'       Keyword
-  '\n'          Text
+'ithen'       Keyword
+'\n'          Text
 
-  'od'          Keyword
-  '\n'          Text
+'kthen'       Keyword
+'\n'          Text
 
-  'then'        Keyword
-  '\n'          Text
+'od'          Keyword
+'\n'          Text
 
-  'until'       Keyword
-  '\n'          Text
+'then'        Keyword
+'\n'          Text
 
-  'while'       Keyword
-  '\n'          Text
+'until'       Keyword
+'\n'          Text
 
-  'return'      Keyword.Pseudo
-  '\n'          Text
+'while'       Keyword
+'\n'          Text
 
-  'rireturn'    Keyword.Pseudo
-  '\n'          Text
+'return'      Keyword.Pseudo
+'\n'          Text
+
+'rireturn'    Keyword.Pseudo
+'\n'          Text

@@ -1,9 +1,10 @@
-input: |
-  key = value
-tokens: |
-  'key'         Name.Attribute
-  ' '           Text
-  '='           Operator
-  ' '           Text
-  'value'       Literal.String
-  '\n'          Text
+---input---
+key = value
+
+---tokens---
+'key'         Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'value'       Literal.String
+'\n'          Text

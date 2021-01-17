@@ -1,14 +1,15 @@
-input: |
-  **bold**
+---input---
+**bold**
 
-  (**bold**)
-tokens: |
-  '**bold**'    Generic.Strong
-  '\n'          Text
+(**bold**)
 
-  '\n'          Text
+---tokens---
+'**bold**'    Generic.Strong
+'\n'          Text
 
-  '('           Text
-  '**bold**'    Generic.Strong
-  ')'           Text
-  '\n'          Text
+'\n'          Text
+
+'('           Text
+'**bold**'    Generic.Strong
+')'           Text
+'\n'          Text

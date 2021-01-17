@@ -1,19 +1,20 @@
-input: |
-  SecAction \
-    "id:'900001', \
-    phase:1, \
-    t:none, \
-    setvar:tx.critical_anomaly_score=5, \
-    setvar:tx.error_anomaly_score=4, \
-    setvar:tx.warning_anomaly_score=3, \
-    setvar:tx.notice_anomaly_score=2, \
-    nolog, \
-    pass"
-tokens: |
-  'SecAction'   Name.Builtin
-  ' '           Text
-  '\\\n'        Text
-  '  '          Text
-  '"id:\'900001\', \\\n  phase:1, \\\n  t:none, \\\n  setvar:tx.critical_anomaly_score=5, \\\n  setvar:tx.error_anomaly_score=4, \\\n  setvar:tx.warning_anomaly_score=3, \\\n  setvar:tx.notice_anomaly_score=2, \\\n  nolog, \\\n  pass"' Literal.String.Double
-  ''            Text
-  '\n'          Text
+---input---
+SecAction \
+  "id:'900001', \
+  phase:1, \
+  t:none, \
+  setvar:tx.critical_anomaly_score=5, \
+  setvar:tx.error_anomaly_score=4, \
+  setvar:tx.warning_anomaly_score=3, \
+  setvar:tx.notice_anomaly_score=2, \
+  nolog, \
+  pass"
+
+---tokens---
+'SecAction'   Name.Builtin
+' '           Text
+'\\\n'        Text
+'  '          Text
+'"id:\'900001\', \\\n  phase:1, \\\n  t:none, \\\n  setvar:tx.critical_anomaly_score=5, \\\n  setvar:tx.error_anomaly_score=4, \\\n  setvar:tx.warning_anomaly_score=3, \\\n  setvar:tx.notice_anomaly_score=2, \\\n  nolog, \\\n  pass"' Literal.String.Double
+''            Text
+'\n'          Text

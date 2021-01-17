@@ -1,17 +1,18 @@
-input: |
-  ([] of Int32).[]?(5)
-tokens: |
-  '('           Punctuation
-  '['           Operator
-  ']'           Operator
-  ' '           Text
-  'of'          Keyword
-  ' '           Text
-  'Int32'       Name
-  ')'           Punctuation
-  '.'           Operator
-  '[]?'         Name.Operator
-  '('           Punctuation
-  '5'           Literal.Number.Integer
-  ')'           Punctuation
-  '\n'          Text
+---input---
+([] of Int32).[]?(5)
+
+---tokens---
+'('           Punctuation
+'['           Operator
+']'           Operator
+' '           Text
+'of'          Keyword
+' '           Text
+'Int32'       Name
+')'           Punctuation
+'.'           Operator
+'[]?'         Name.Operator
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text

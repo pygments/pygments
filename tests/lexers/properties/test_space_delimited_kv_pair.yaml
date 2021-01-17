@@ -1,6 +1,7 @@
-input: |
-  key value
-tokens: |
-  'key'         Name.Attribute
-  ' '           Text
-  'value\n'     Literal.String
+---input---
+key value
+
+---tokens---
+'key'         Name.Attribute
+' '           Text
+'value\n'     Literal.String

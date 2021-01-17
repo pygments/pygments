@@ -1,9 +1,10 @@
-input: |
-  'x ': '[]
-tokens: |
-  "'x"          Name
-  ' '           Text
-  "':"          Keyword.Type
-  ' '           Text
-  "'[]"         Keyword.Type
-  '\n'          Text
+---input---
+'x ': '[]
+
+---tokens---
+"'x"          Name
+' '           Text
+"':"          Keyword.Type
+' '           Text
+"'[]"         Keyword.Type
+'\n'          Text

@@ -1,10 +1,11 @@
-input: |
-  > py
-  hi
-tokens: |
-  '>'           Generic.Prompt
-  ' '           Text
-  'py'          Text
-  '\n'          Text
+---input---
+> py
+hi
 
-  'hi\n'        Generic.Output
+---tokens---
+'>'           Generic.Prompt
+' '           Text
+'py'          Text
+'\n'          Text
+
+'hi\n'        Generic.Output

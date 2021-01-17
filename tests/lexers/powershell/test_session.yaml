@@ -1,27 +1,28 @@
-input: |
-  PS C:\> Get-ChildItem
+---input---
+PS C:\> Get-ChildItem
 
-  PS> Get-ChildItem
+PS> Get-ChildItem
 
-  PS > Get-ChildItem
-tokens: |
-  'PS '         Name.Builtin
-  'C'           Name
-  ':'           Error
-  '\\'          Punctuation
-  '>'           Punctuation
-  ' '           Text
-  'Get-ChildItem' Name.Builtin
-  '\n\n'        Text
+PS > Get-ChildItem
 
-  'PS'          Name
-  '>'           Punctuation
-  ' '           Text
-  'Get-ChildItem' Name.Builtin
-  '\n\n'        Text
+---tokens---
+'PS '         Name.Builtin
+'C'           Name
+':'           Error
+'\\'          Punctuation
+'>'           Punctuation
+' '           Text
+'Get-ChildItem' Name.Builtin
+'\n\n'        Text
 
-  'PS '         Name.Builtin
-  '>'           Punctuation
-  ' '           Text
-  'Get-ChildItem' Name.Builtin
-  '\n'          Text
+'PS'          Name
+'>'           Punctuation
+' '           Text
+'Get-ChildItem' Name.Builtin
+'\n\n'        Text
+
+'PS '         Name.Builtin
+'>'           Punctuation
+' '           Text
+'Get-ChildItem' Name.Builtin
+'\n'          Text

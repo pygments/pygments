@@ -1,93 +1,94 @@
 # Most of the interesting types of class declarations
-input: |
-  class Foo;
-  endclass
+---input---
+class Foo;
+endclass
 
-  class Bar;
-  endclass : Bar
+class Bar;
+endclass : Bar
 
-  class Fiz extends Buz;
-  endclass : Fiz
+class Fiz extends Buz;
+endclass : Fiz
 
-  class Free #(parameter type T = byte) extends Beer #(T);
-  endclass : Free
-tokens: |
-  'class'       Keyword.Declaration
-  ' '           Text
-  'Foo'         Name.Class
-  ';'           Punctuation
-  '\n'          Text
+class Free #(parameter type T = byte) extends Beer #(T);
+endclass : Free
 
-  'endclass'    Keyword.Declaration
-  '\n'          Text
+---tokens---
+'class'       Keyword.Declaration
+' '           Text
+'Foo'         Name.Class
+';'           Punctuation
+'\n'          Text
 
-  '\n'          Text
+'endclass'    Keyword.Declaration
+'\n'          Text
 
-  'class'       Keyword.Declaration
-  ' '           Text
-  'Bar'         Name.Class
-  ';'           Punctuation
-  '\n'          Text
+'\n'          Text
 
-  'endclass'    Keyword.Declaration
-  ' '           Text
-  ':'           Punctuation
-  ' '           Text
-  'Bar'         Name.Class
-  '\n'          Text
+'class'       Keyword.Declaration
+' '           Text
+'Bar'         Name.Class
+';'           Punctuation
+'\n'          Text
 
-  '\n'          Text
+'endclass'    Keyword.Declaration
+' '           Text
+':'           Punctuation
+' '           Text
+'Bar'         Name.Class
+'\n'          Text
 
-  'class'       Keyword.Declaration
-  ' '           Text
-  'Fiz'         Name.Class
-  ' '           Text
-  'extends'     Keyword.Declaration
-  ' '           Text
-  'Buz'         Name.Class
-  ';'           Punctuation
-  '\n'          Text
+'\n'          Text
 
-  'endclass'    Keyword.Declaration
-  ' '           Text
-  ':'           Punctuation
-  ' '           Text
-  'Fiz'         Name.Class
-  '\n'          Text
+'class'       Keyword.Declaration
+' '           Text
+'Fiz'         Name.Class
+' '           Text
+'extends'     Keyword.Declaration
+' '           Text
+'Buz'         Name.Class
+';'           Punctuation
+'\n'          Text
 
-  '\n'          Text
+'endclass'    Keyword.Declaration
+' '           Text
+':'           Punctuation
+' '           Text
+'Fiz'         Name.Class
+'\n'          Text
 
-  'class'       Keyword.Declaration
-  ' '           Text
-  'Free'        Name.Class
-  ' '           Text
-  '#'           Punctuation
-  '('           Punctuation
-  'parameter'   Keyword
-  ' '           Text
-  'type'        Keyword.Type
-  ' '           Text
-  'T'           Name
-  ' '           Text
-  '='           Operator
-  ' '           Text
-  'byte'        Keyword.Type
-  ')'           Punctuation
-  ' '           Text
-  'extends'     Keyword.Declaration
-  ' '           Text
-  'Beer'        Name.Class
-  ' '           Text
-  '#'           Punctuation
-  '('           Punctuation
-  'T'           Name
-  ')'           Punctuation
-  ';'           Punctuation
-  '\n'          Text
+'\n'          Text
 
-  'endclass'    Keyword.Declaration
-  ' '           Text
-  ':'           Punctuation
-  ' '           Text
-  'Free'        Name.Class
-  '\n'          Text
+'class'       Keyword.Declaration
+' '           Text
+'Free'        Name.Class
+' '           Text
+'#'           Punctuation
+'('           Punctuation
+'parameter'   Keyword
+' '           Text
+'type'        Keyword.Type
+' '           Text
+'T'           Name
+' '           Text
+'='           Operator
+' '           Text
+'byte'        Keyword.Type
+')'           Punctuation
+' '           Text
+'extends'     Keyword.Declaration
+' '           Text
+'Beer'        Name.Class
+' '           Text
+'#'           Punctuation
+'('           Punctuation
+'T'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'endclass'    Keyword.Declaration
+' '           Text
+':'           Punctuation
+' '           Text
+'Free'        Name.Class
+'\n'          Text

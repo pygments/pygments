@@ -1,7 +1,8 @@
-input: |
-  fun `wo bble`
-tokens: |
-  'fun'         Keyword
-  ' '           Text
-  '`wo bble`'   Name.Function
-  '\n'          Text
+---input---
+fun `wo bble`
+
+---tokens---
+'fun'         Keyword
+' '           Text
+'`wo bble`'   Name.Function
+'\n'          Text

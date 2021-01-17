@@ -1,6 +1,7 @@
-input: |
-  @NO;
-tokens: |
-  '@NO'         Literal.Number
-  ';'           Punctuation
-  '\n'          Text
+---input---
+@NO;
+
+---tokens---
+'@NO'         Literal.Number
+';'           Punctuation
+'\n'          Text

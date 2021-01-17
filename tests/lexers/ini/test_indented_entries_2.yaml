@@ -1,19 +1,20 @@
-input: |
-  [section]
-      key1 = value1
-      key2 = value2
-tokens: |
-  '[section]'   Keyword
-  '\n    '      Text
-  'key1'        Name.Attribute
-  ' '           Text
-  '='           Operator
-  ' '           Text
-  'value1'      Literal.String
-  '\n    '      Text
-  'key2'        Name.Attribute
-  ' '           Text
-  '='           Operator
-  ' '           Text
-  'value2'      Literal.String
-  '\n'          Text
+---input---
+[section]
+    key1 = value1
+    key2 = value2
+
+---tokens---
+'[section]'   Keyword
+'\n    '      Text
+'key1'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'value1'      Literal.String
+'\n    '      Text
+'key2'        Name.Attribute
+' '           Text
+'='           Operator
+' '           Text
+'value2'      Literal.String
+'\n'          Text

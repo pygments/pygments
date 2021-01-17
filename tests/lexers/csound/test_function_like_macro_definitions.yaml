@@ -1,43 +1,44 @@
-input: |
-  #define MACRO(ARG1#ARG2) #macro_body#
-  #define/**/
-  MACRO(ARG1'ARG2' ARG3)/**/
-  #\#macro
-  body\##
-tokens: |
-  '#define'     Comment.Preproc
-  ' '           Text
-  'MACRO'       Comment.Preproc
-  '('           Punctuation
-  'ARG1'        Comment.Preproc
-  '#'           Punctuation
-  'ARG2'        Comment.Preproc
-  ')'           Punctuation
-  ' '           Text
-  '#'           Punctuation
-  'macro_body'  Comment.Preproc
-  '#'           Punctuation
-  '\n'          Text
+---input---
+#define MACRO(ARG1#ARG2) #macro_body#
+#define/**/
+MACRO(ARG1'ARG2' ARG3)/**/
+#\#macro
+body\##
 
-  '#define'     Comment.Preproc
-  '/**/'        Comment.Multiline
-  '\n'          Text
+---tokens---
+'#define'     Comment.Preproc
+' '           Text
+'MACRO'       Comment.Preproc
+'('           Punctuation
+'ARG1'        Comment.Preproc
+'#'           Punctuation
+'ARG2'        Comment.Preproc
+')'           Punctuation
+' '           Text
+'#'           Punctuation
+'macro_body'  Comment.Preproc
+'#'           Punctuation
+'\n'          Text
 
-  'MACRO'       Comment.Preproc
-  '('           Punctuation
-  'ARG1'        Comment.Preproc
-  "'"           Punctuation
-  'ARG2'        Comment.Preproc
-  "'"           Punctuation
-  ' '           Text
-  'ARG3'        Comment.Preproc
-  ')'           Punctuation
-  '/**/'        Comment.Multiline
-  '\n'          Text
+'#define'     Comment.Preproc
+'/**/'        Comment.Multiline
+'\n'          Text
 
-  '#'           Punctuation
-  '\\#'         Comment.Preproc
-  'macro\nbody' Comment.Preproc
-  '\\#'         Comment.Preproc
-  '#'           Punctuation
-  '\n'          Text
+'MACRO'       Comment.Preproc
+'('           Punctuation
+'ARG1'        Comment.Preproc
+"'"           Punctuation
+'ARG2'        Comment.Preproc
+"'"           Punctuation
+' '           Text
+'ARG3'        Comment.Preproc
+')'           Punctuation
+'/**/'        Comment.Multiline
+'\n'          Text
+
+'#'           Punctuation
+'\\#'         Comment.Preproc
+'macro\nbody' Comment.Preproc
+'\\#'         Comment.Preproc
+'#'           Punctuation
+'\n'          Text

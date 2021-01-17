@@ -1,12 +1,13 @@
 # Test that multiple spaces with an operator doesn't get formatted to a string.
-input: |
-  x  > 100;
-tokens: |
-  'x'           Name
-  ' '           Text
-  ' '           Text
-  '>'           Operator
-  ' '           Text
-  '100'         Literal.Number.Integer
-  ';'           Punctuation
-  '\n'          Text
+---input---
+x  > 100;
+
+---tokens---
+'x'           Name
+' '           Text
+' '           Text
+'>'           Operator
+' '           Text
+'100'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text

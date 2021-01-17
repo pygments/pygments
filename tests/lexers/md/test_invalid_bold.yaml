@@ -1,30 +1,31 @@
-input: |
-  **no bold__
+---input---
+**no bold__
 
-  __no bold**
+__no bold**
 
-  *no bold*
+*no bold*
 
-  _no bold_
-tokens: |
-  '**no'        Text
-  ' '           Text
-  'bold__'      Text
-  '\n'          Text
+_no bold_
 
-  '\n'          Text
+---tokens---
+'**no'        Text
+' '           Text
+'bold__'      Text
+'\n'          Text
 
-  '__no'        Text
-  ' '           Text
-  'bold**'      Text
-  '\n'          Text
+'\n'          Text
 
-  '\n'          Text
+'__no'        Text
+' '           Text
+'bold**'      Text
+'\n'          Text
 
-  '*no bold*'   Generic.Emph
-  '\n'          Text
+'\n'          Text
 
-  '\n'          Text
+'*no bold*'   Generic.Emph
+'\n'          Text
 
-  '_no bold_'   Generic.Emph
-  '\n'          Text
+'\n'          Text
+
+'_no bold_'   Generic.Emph
+'\n'          Text

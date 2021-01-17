@@ -1,17 +1,18 @@
-input: |
-  ```
-  code
-  ```
-  * *foo*
-  * bar
-tokens: |
-  '```\ncode\n```\n' Literal.String.Backtick
-  '*'           Keyword
-  ' '           Text
-  '*foo*'       Generic.Emph
-  '\n'          Text
+---input---
+```
+code
+```
+* *foo*
+* bar
 
-  '*'           Keyword
-  ' '           Text
-  'bar'         Text
-  '\n'          Text
+---tokens---
+'```\ncode\n```\n' Literal.String.Backtick
+'*'           Keyword
+' '           Text
+'*foo*'       Generic.Emph
+'\n'          Text
+
+'*'           Keyword
+' '           Text
+'bar'         Text
+'\n'          Text

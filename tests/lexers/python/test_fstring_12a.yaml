@@ -1,15 +1,15 @@
-input: |-
-  f'''{x
-  +1}'''
-tokens: |
-  'f'           Literal.String.Affix
-  "'''"         Literal.String.Single
-  '{'           Literal.String.Interpol
-  'x'           Name
-  '\n'          Text
+---input---
+f'''{x
++1}'''
+---tokens---
+'f'           Literal.String.Affix
+"'''"         Literal.String.Single
+'{'           Literal.String.Interpol
+'x'           Name
+'\n'          Text
 
-  '+'           Operator
-  '1'           Literal.Number.Integer
-  '}'           Literal.String.Interpol
-  "'''"         Literal.String.Single
-  '\n'          Text
+'+'           Operator
+'1'           Literal.Number.Integer
+'}'           Literal.String.Interpol
+"'''"         Literal.String.Single
+'\n'          Text

@@ -1,44 +1,45 @@
 # Test that keywords on their own line are marked as keywords.
-input: |
-  if x > 100
-      disp('x > 100')
-  else
-      disp('x < 100')
-  end
-tokens: |
-  'if'          Keyword
-  ' '           Text
-  'x'           Name
-  ' '           Text
-  '>'           Operator
-  ' '           Text
-  '100'         Literal.Number.Integer
-  '\n'          Text
+---input---
+if x > 100
+    disp('x > 100')
+else
+    disp('x < 100')
+end
 
-  ' '           Text
-  ' '           Text
-  ' '           Text
-  ' '           Text
-  'disp'        Name.Builtin
-  '('           Punctuation
-  "'"           Literal.String
-  "x > 100'"    Literal.String
-  ')'           Punctuation
-  '\n'          Text
+---tokens---
+'if'          Keyword
+' '           Text
+'x'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'100'         Literal.Number.Integer
+'\n'          Text
 
-  'else'        Keyword
-  '\n'          Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'disp'        Name.Builtin
+'('           Punctuation
+"'"           Literal.String
+"x > 100'"    Literal.String
+')'           Punctuation
+'\n'          Text
 
-  ' '           Text
-  ' '           Text
-  ' '           Text
-  ' '           Text
-  'disp'        Name.Builtin
-  '('           Punctuation
-  "'"           Literal.String
-  "x < 100'"    Literal.String
-  ')'           Punctuation
-  '\n'          Text
+'else'        Keyword
+'\n'          Text
 
-  'end'         Keyword
-  '\n'          Text
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'disp'        Name.Builtin
+'('           Punctuation
+"'"           Literal.String
+"x < 100'"    Literal.String
+')'           Punctuation
+'\n'          Text
+
+'end'         Keyword
+'\n'          Text

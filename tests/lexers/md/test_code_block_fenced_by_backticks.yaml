@@ -1,13 +1,14 @@
-input: |
-  ```
-  code
-  ```
+---input---
+```
+code
+```
 
-  ```
-  multi
-  `line`
-  code
-  ```
-tokens: |
-  '```\ncode\n```\n' Literal.String.Backtick
-  '\n```\nmulti\n`line`\ncode\n```\n' Literal.String.Backtick
+```
+multi
+`line`
+code
+```
+
+---tokens---
+'```\ncode\n```\n' Literal.String.Backtick
+'\n```\nmulti\n`line`\ncode\n```\n' Literal.String.Backtick

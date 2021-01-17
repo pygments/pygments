@@ -1,55 +1,56 @@
-input: |
-  int main()
-  {
-      switch (0)
-      {
-          case 0:
-          default:
-              ;
-      }
-  }
-tokens: |
-  'int'         Keyword.Type
-  ' '           Text
-  'main'        Name.Function
-  '('           Punctuation
-  ')'           Punctuation
-  '\n'          Text
+---input---
+int main()
+{
+    switch (0)
+    {
+        case 0:
+        default:
+            ;
+    }
+}
 
-  '{'           Punctuation
-  '\n'          Text
+---tokens---
+'int'         Keyword.Type
+' '           Text
+'main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text
 
-  '    '        Text
-  'switch'      Keyword
-  ' '           Text
-  '('           Punctuation
-  '0'           Literal.Number.Integer
-  ')'           Punctuation
-  '\n'          Text
+'{'           Punctuation
+'\n'          Text
 
-  '    '        Text
-  '{'           Punctuation
-  '\n'          Text
+'    '        Text
+'switch'      Keyword
+' '           Text
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
 
-  '        '    Text
-  'case'        Keyword
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ':'           Operator
-  '\n'          Text
+'    '        Text
+'{'           Punctuation
+'\n'          Text
 
-  '        '    Text
-  'default'     Keyword
-  ':'           Operator
-  '\n'          Text
+'        '    Text
+'case'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+':'           Operator
+'\n'          Text
 
-  '            ' Text
-  ';'           Punctuation
-  '\n'          Text
+'        '    Text
+'default'     Keyword
+':'           Operator
+'\n'          Text
 
-  '    '        Text
-  '}'           Punctuation
-  '\n'          Text
+'            ' Text
+';'           Punctuation
+'\n'          Text
 
-  '}'           Punctuation
-  '\n'          Text
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

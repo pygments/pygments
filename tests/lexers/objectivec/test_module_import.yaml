@@ -1,8 +1,9 @@
-input: |
-  @import ModuleA;
-tokens: |
-  '@import'     Keyword
-  ' '           Text
-  'ModuleA'     Name
-  ';'           Punctuation
-  '\n'          Text
+---input---
+@import ModuleA;
+
+---tokens---
+'@import'     Keyword
+' '           Text
+'ModuleA'     Name
+';'           Punctuation
+'\n'          Text

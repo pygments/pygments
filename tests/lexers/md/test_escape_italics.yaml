@@ -1,22 +1,23 @@
-input: |
-  \*no italics\*
+---input---
+\*no italics\*
 
-  \_ no italics \_
-tokens: |
-  '\\*'         Text
-  'no'          Text
-  ' '           Text
-  'italics'     Text
-  '\\*'         Text
-  '\n'          Text
+\_ no italics \_
 
-  '\n'          Text
+---tokens---
+'\\*'         Text
+'no'          Text
+' '           Text
+'italics'     Text
+'\\*'         Text
+'\n'          Text
 
-  '\\_'         Text
-  ' '           Text
-  'no'          Text
-  ' '           Text
-  'italics'     Text
-  ' '           Text
-  '\\_'         Text
-  '\n'          Text
+'\n'          Text
+
+'\\_'         Text
+' '           Text
+'no'          Text
+' '           Text
+'italics'     Text
+' '           Text
+'\\_'         Text
+'\n'          Text

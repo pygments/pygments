@@ -1,51 +1,52 @@
-input: |
-  123 0123456789
-  0xabcdef0123456789 0XABCDEF
-  1e2
-  3e+4
-  5e-6
-  7E8
-  9E+0
-  1E-2
-  3.
-  4.56
-  .789
-tokens: |
-  '123'         Literal.Number.Integer
-  ' '           Text
-  '0123456789'  Literal.Number.Integer
-  '\n'          Text
+---input---
+123 0123456789
+0xabcdef0123456789 0XABCDEF
+1e2
+3e+4
+5e-6
+7E8
+9E+0
+1E-2
+3.
+4.56
+.789
 
-  '0x'          Keyword.Type
-  'abcdef0123456789' Literal.Number.Hex
-  ' '           Text
-  '0X'          Keyword.Type
-  'ABCDEF'      Literal.Number.Hex
-  '\n'          Text
+---tokens---
+'123'         Literal.Number.Integer
+' '           Text
+'0123456789'  Literal.Number.Integer
+'\n'          Text
 
-  '1e2'         Literal.Number.Float
-  '\n'          Text
+'0x'          Keyword.Type
+'abcdef0123456789' Literal.Number.Hex
+' '           Text
+'0X'          Keyword.Type
+'ABCDEF'      Literal.Number.Hex
+'\n'          Text
 
-  '3e+4'        Literal.Number.Float
-  '\n'          Text
+'1e2'         Literal.Number.Float
+'\n'          Text
 
-  '5e-6'        Literal.Number.Float
-  '\n'          Text
+'3e+4'        Literal.Number.Float
+'\n'          Text
 
-  '7E8'         Literal.Number.Float
-  '\n'          Text
+'5e-6'        Literal.Number.Float
+'\n'          Text
 
-  '9E+0'        Literal.Number.Float
-  '\n'          Text
+'7E8'         Literal.Number.Float
+'\n'          Text
 
-  '1E-2'        Literal.Number.Float
-  '\n'          Text
+'9E+0'        Literal.Number.Float
+'\n'          Text
 
-  '3.'          Literal.Number.Float
-  '\n'          Text
+'1E-2'        Literal.Number.Float
+'\n'          Text
 
-  '4.56'        Literal.Number.Float
-  '\n'          Text
+'3.'          Literal.Number.Float
+'\n'          Text
 
-  '.789'        Literal.Number.Float
-  '\n'          Text
+'4.56'        Literal.Number.Float
+'\n'          Text
+
+'.789'        Literal.Number.Float
+'\n'          Text

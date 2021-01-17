@@ -1,15 +1,16 @@
-input: |
-  /*
-   * comment
-   */
-  ; comment
-  // comment
-tokens: |
-  '/*\n * comment\n */' Comment.Multiline
-  '\n'          Text
+---input---
+/*
+ * comment
+ */
+; comment
+// comment
 
-  '; comment'   Comment.Single
-  '\n'          Text
+---tokens---
+'/*\n * comment\n */' Comment.Multiline
+'\n'          Text
 
-  '// comment'  Comment.Single
-  '\n'          Text
+'; comment'   Comment.Single
+'\n'          Text
+
+'// comment'  Comment.Single
+'\n'          Text

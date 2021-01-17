@@ -46,27 +46,10 @@ class LexerTestItem(pytest.Item):
         comment_lines = []
         current = None
 
-        with file.open(encoding='utf-8') as f:
-            for line in f:
-                line = line.rstrip('\n')
-                assert (
-                    line in ('input: |', 'input: |-', 'tokens: |') or line.startswith('#') or
-                    current is not None and (line.strip() == '' or line.startswith('  '))
-                )
-                if line.startswith('input'):
-                    current = input_lines
-                    if '-' not in line:
-                        input_newline = '\n'
-                elif line.startswith('tokens'):
-                    current = expected_lines
-                elif line.startswith('#'):
-                    comment_lines.append(line)
-                else:
-                    current.append(line[2:])
-
-        self.input = '\n'.join(input_lines).rstrip('\n') + input_newline
-        self.expected = ''.join(line + '\n' for line in expected_lines)
-        self.comment = ''.join(line + '\n' for line in comment_lines)
+        content = file.read_text('utf-8')
+        content, _, self.expected = content.partition('\n---tokens---\n')
+        self.comment, _, self.input = ('\n' + content).rpartition('\n---input---\n')
+        self.comment = self.comment.strip()
 
     @classmethod
     def _prettyprint_tokens(cls, tokens):
@@ -87,11 +70,9 @@ def pytest_runtest_teardown(item, nextitem):
     if item.config.getoption('--update-goldens') and isinstance(item, LexerTestItem):
         with item.file.open('w', encoding='utf-8') as f:
             f.write(item.comment)
-            if item.input.endswith('\n'):
-                f.write('input: |\n')
-                f.write(textwrap.indent(item.input, '  '))
-            else:
-                f.write('input: |-\n')
-                f.write(textwrap.indent(item.input, '  ') + '\n')
-            f.write('tokens: |\n')
-            f.write(textwrap.indent(item.actual, '  '))
+            if item.comment:
+                f.write('\n')
+            f.write('---input---\n')
+            f.write(item.input)
+            f.write('\n---tokens---\n')
+            f.write(item.actual)

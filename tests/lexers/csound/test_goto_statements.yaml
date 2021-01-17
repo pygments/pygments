@@ -1,175 +1,176 @@
-input: |
-  goto aLabel
-  igoto aLabel
-  kgoto aLabel
-  reinit aLabel
-  rigoto aLabel
-  tigoto aLabel
-  cggoto 1==0, aLabel
-  cigoto 1==0, aLabel
-  cingoto 1==0, aLabel
-  ckgoto 1==0, aLabel
-  cngoto 1==0, aLabel
-  cnkgoto 1==0, aLabel
-  timout 0, 0, aLabel
-  loop_ge 0, 0, 0, aLabel
-  loop_gt 0, 0, 0, aLabel
-  loop_le 0, 0, 0, aLabel
-  loop_lt 0, 0, 0, aLabel
-tokens: |
-  'goto'        Keyword
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+---input---
+goto aLabel
+igoto aLabel
+kgoto aLabel
+reinit aLabel
+rigoto aLabel
+tigoto aLabel
+cggoto 1==0, aLabel
+cigoto 1==0, aLabel
+cingoto 1==0, aLabel
+ckgoto 1==0, aLabel
+cngoto 1==0, aLabel
+cnkgoto 1==0, aLabel
+timout 0, 0, aLabel
+loop_ge 0, 0, 0, aLabel
+loop_gt 0, 0, 0, aLabel
+loop_le 0, 0, 0, aLabel
+loop_lt 0, 0, 0, aLabel
 
-  'igoto'       Keyword
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+---tokens---
+'goto'        Keyword
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'kgoto'       Keyword
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'igoto'       Keyword
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'reinit'      Keyword.Pseudo
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'kgoto'       Keyword
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'rigoto'      Keyword.Pseudo
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'reinit'      Keyword.Pseudo
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'tigoto'      Keyword.Pseudo
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'rigoto'      Keyword.Pseudo
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'cggoto'      Keyword.Pseudo
-  ' '           Text
-  '1'           Literal.Number.Integer
-  '=='          Operator
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'tigoto'      Keyword.Pseudo
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'cigoto'      Keyword.Pseudo
-  ' '           Text
-  '1'           Literal.Number.Integer
-  '=='          Operator
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'cggoto'      Keyword.Pseudo
+' '           Text
+'1'           Literal.Number.Integer
+'=='          Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'cingoto'     Keyword.Pseudo
-  ' '           Text
-  '1'           Literal.Number.Integer
-  '=='          Operator
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'cigoto'      Keyword.Pseudo
+' '           Text
+'1'           Literal.Number.Integer
+'=='          Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'ckgoto'      Keyword.Pseudo
-  ' '           Text
-  '1'           Literal.Number.Integer
-  '=='          Operator
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'cingoto'     Keyword.Pseudo
+' '           Text
+'1'           Literal.Number.Integer
+'=='          Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'cngoto'      Keyword.Pseudo
-  ' '           Text
-  '1'           Literal.Number.Integer
-  '=='          Operator
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'ckgoto'      Keyword.Pseudo
+' '           Text
+'1'           Literal.Number.Integer
+'=='          Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'cnkgoto'     Keyword.Pseudo
-  ' '           Text
-  '1'           Literal.Number.Integer
-  '=='          Operator
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'cngoto'      Keyword.Pseudo
+' '           Text
+'1'           Literal.Number.Integer
+'=='          Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'timout'      Keyword.Pseudo
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'cnkgoto'     Keyword.Pseudo
+' '           Text
+'1'           Literal.Number.Integer
+'=='          Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'loop_ge'     Keyword.Pseudo
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'timout'      Keyword.Pseudo
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'loop_gt'     Keyword.Pseudo
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'loop_ge'     Keyword.Pseudo
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'loop_le'     Keyword.Pseudo
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'loop_gt'     Keyword.Pseudo
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
 
-  'loop_lt'     Keyword.Pseudo
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  '0'           Literal.Number.Integer
-  ','           Punctuation
-  ' '           Text
-  'aLabel'      Name.Label
-  '\n'          Text
+'loop_le'     Keyword.Pseudo
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text
+
+'loop_lt'     Keyword.Pseudo
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'aLabel'      Name.Label
+'\n'          Text

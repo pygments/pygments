@@ -1,9 +1,10 @@
-input: |
-  {{
-  characters$MACRO.
-  }}
-tokens: |
-  '{{'          Literal.String
-  '\ncharacters$MACRO.\n' Literal.String
-  '}}'          Literal.String
-  '\n'          Text
+---input---
+{{
+characters$MACRO.
+}}
+
+---tokens---
+'{{'          Literal.String
+'\ncharacters$MACRO.\n' Literal.String
+'}}'          Literal.String
+'\n'          Text
