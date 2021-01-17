@@ -13,7 +13,7 @@ Version 2.8.0
 
 - Added `pygmentize -C` option to guess a lexer from content
 
-- Fix escapes in JavaScript backtick strings (#1679)
+- Fix escapes in JavaScript and TypeScript backtick strings (#1679, #1686)
 - Make guessing prefer Python 3 lexer
 - Do not guess MIME or SQL without reason
 
