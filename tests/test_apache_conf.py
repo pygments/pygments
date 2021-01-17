@@ -3,7 +3,7 @@
     Basic Apache Configuration Test
     ~~~~~~~~~~~~~~~~~--------------
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -99,3 +99,36 @@ def test_fix_lock_absolute_path(lexer):
             (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_normal_scoped_directive(lexer):
+    fragment = '<VirtualHost "test">\n</VirtualHost>'
+    tokens = [
+            (Token.Name.Tag, '<VirtualHost'),
+            (Token.Text, ' '),
+            (Token.Literal.String, '"test"'),
+            (Token.Name.Tag, '>'),
+            (Token.Text, '\n'),
+            (Token.Name.Tag, '</VirtualHost'),
+            (Token.Name.Tag, '>'),
+            (Token.Text, '\n')
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+def test_malformed_scoped_directive_closing_tag(lexer):
+    fragment = '<VirtualHost "test">\n</VirtualHost\n>'
+    tokens = [
+            (Token.Name.Tag, '<VirtualHost'),
+            (Token.Text, ' '),
+            (Token.Literal.String, '"test"'),
+            (Token.Name.Tag, '>'),
+            (Token.Text, '\n'),
+            (Token.Error, '<'),
+            (Token.Error, '/'),
+            (Token.Name.Builtin, 'VirtualHost'),
+            (Token.Text, ''),
+            (Token.Text, '\n'),
+            (Token.Error, '>'),
+            (Token.Text, '\n')
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+

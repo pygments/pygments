@@ -3,7 +3,7 @@
     Basic ColdfusionHtmlLexer Test
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -21,7 +21,6 @@ def lexer():
 def test_basic_comment(lexer):
     fragment = '<!--- cfcomment --->'
     expected = [
-        (Token.Text, ''),
         (Token.Comment.Multiline, '<!---'),
         (Token.Comment.Multiline, ' cfcomment '),
         (Token.Comment.Multiline, '--->'),
@@ -33,7 +32,6 @@ def test_basic_comment(lexer):
 def test_nested_comment(lexer):
     fragment = '<!--- nested <!--- cfcomment ---> --->'
     expected = [
-        (Token.Text, ''),
         (Token.Comment.Multiline, '<!---'),
         (Token.Comment.Multiline, ' nested '),
         (Token.Comment.Multiline, '<!---'),

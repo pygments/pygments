@@ -8,7 +8,7 @@
     the text where Error tokens are being generated, along
     with some context.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -24,7 +24,7 @@ if os.path.isdir(os.path.join(srcpath, 'pygments')):
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, LexerContext, \
     ProfilingRegexLexer, ProfilingRegexLexerMeta
 from pygments.lexers import get_lexer_by_name, find_lexer_class, \
-    find_lexer_class_for_filename
+    find_lexer_class_for_filename, guess_lexer
 from pygments.token import Error, Text, _TokenType
 from pygments.cmdline import _parse_options
 
@@ -96,8 +96,29 @@ class DebuggingRegexLexer(ExtendedRegexLexer):
 
 
 def main(fn, lexer=None, options={}):
+    if fn == '-':
+        text = sys.stdin.read()
+    else:
+        try:
+            with open(fn, 'rb') as fp:
+                text = fp.read().decode('utf-8')
+        except UnicodeError:
+            if decode_strategy == 'latin1':
+                print('Warning: non-UTF8 input, using latin1')
+                with open(fn, 'rb') as fp:
+                    text = fp.read().decode('latin1')
+            elif decode_strategy == 'utf8-ignore':
+                print('Warning: ignoring non-UTF8 bytes in input')
+                with open(fn, 'rb') as fp:
+                    text = fp.read().decode('utf-8', 'ignore')
+    text = text.strip('\n') + '\n'
+
     if lexer is not None:
         lxcls = get_lexer_by_name(lexer).__class__
+    elif guess:
+        lxcls = guess_lexer(text).__class__
+        print('Using lexer: %s (%s.%s)' % (lxcls.name, lxcls.__module__,
+                                           lxcls.__name__))
     else:
         lxcls = find_lexer_class_for_filename(os.path.basename(fn))
         if lxcls is None:
@@ -129,12 +150,6 @@ def main(fn, lexer=None, options={}):
 
     lx = lxcls(**options)
     lno = 1
-    if fn == '-':
-        text = sys.stdin.read()
-    else:
-        with open(fn, 'rb') as fp:
-            text = fp.read().decode('utf-8')
-    text = text.strip('\n') + '\n'
     tokens = []
     states = []
 
@@ -188,6 +203,9 @@ Selecting lexer and options:
 
     -l NAME         use lexer named NAME (default is to guess from
                     the given filenames)
+    -g              guess lexer from content
+    -u              if input is non-utf8, use "ignore" handler instead
+                    of using latin1 encoding
     -O OPTIONSTR    use lexer options parsed from OPTIONSTR
 
 Debugging lexing errors:
@@ -205,6 +223,7 @@ Profiling:
                     column 4, the time per call)
 ''')
 
+
 num = 10
 showall = False
 ignerror = False
@@ -212,10 +231,12 @@ lexer = None
 options = {}
 profile = False
 profsort = 4
+guess = False
+decode_strategy = 'latin1'
 
 if __name__ == '__main__':
     import getopt
-    opts, args = getopt.getopt(sys.argv[1:], 'n:l:aepO:s:h')
+    opts, args = getopt.getopt(sys.argv[1:], 'n:l:aepO:s:hgu')
     for opt, val in opts:
         if opt == '-n':
             num = int(val)
@@ -231,6 +252,10 @@ if __name__ == '__main__':
             profsort = int(val)
         elif opt == '-O':
             options = _parse_options([val])
+        elif opt == '-g':
+            guess = True
+        elif opt == '-u':
+            decode_strategy = 'utf8-ignore'
         elif opt == '-h':
             print_help()
             sys.exit(0)
