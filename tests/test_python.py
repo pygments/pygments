@@ -840,3 +840,51 @@ def test_fstring(lexer3):
             match = pattern.sub(lambda m: rep[m.group(0)], match)
             tokens[i] = (token, match)
         assert list(lexer3.get_tokens(fragment)) == tokens
+
+def test_raw_fstring(lexer3):
+    """
+    Tests that the lexer can parse raw f-strings
+    """
+    # Just raw
+    fragment = r'rf"m_\nu = x"'
+    tokens = [
+        (Token.Literal.String.Affix, 'rf'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Literal.String.Double, 'm_'),
+        (Token.Literal.String.Double, '\\'),
+        (Token.Literal.String.Double, 'nu = x'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Text, '\n')
+    ]
+    # Just f-string
+    fragment = r'f"m_\nu = {x}"'
+    tokens = [
+        (Token.Literal.String.Affix, 'f'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Literal.String.Double, 'm_'),
+        (Token.Literal.String.Escape, '\\n'),
+        (Token.Literal.String.Double, 'u = '),
+        (Token.Literal.String.Interpol, '{'),
+        (Token.Name, 'x'),
+        (Token.Literal.String.Interpol, '}'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Text, '\n'),
+    ]
+    # Raw behavior inside {{...}}
+    fragment = r'rf"m_{{\nu}} = {x}"'
+    tokens = [
+        (Token.Literal.String.Affix, 'rf'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Literal.String.Double, 'm_'),
+        (Token.Literal.String.Escape, '{{'),
+        (Token.Literal.String.Double, '\\'),
+        (Token.Literal.String.Double, 'nu'),
+        (Token.Literal.String.Escape, '}}'),
+        (Token.Literal.String.Double, ' = '),
+        (Token.Literal.String.Interpol, '{'),
+        (Token.Name, 'x'),
+        (Token.Literal.String.Interpol, '}'),
+        (Token.Literal.String.Double, '"'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer3.get_tokens(fragment)) == tokens
