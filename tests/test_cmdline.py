@@ -220,6 +220,13 @@ def test_N_opt():
     assert 'text' == o.strip()
 
 
+def test_C_opt():
+    o = check_success('-C', stdin='#!python3\n')
+    assert 'python' == o.strip()
+    o = check_success('-C', stdin='x')
+    assert 'text' == o.strip()
+
+
 def test_invalid_opts():
     for opts in [
         ('-X',),
