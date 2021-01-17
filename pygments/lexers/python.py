@@ -372,7 +372,8 @@ class PythonLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return shebang_matches(text, r'pythonw?(3(\.\d)?)?')
+        return shebang_matches(text, r'pythonw?(3(\.\d)?)?') or \
+            'import ' in text[:1000]
 
 
 Python3Lexer = PythonLexer
@@ -596,8 +597,7 @@ class Python2Lexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return shebang_matches(text, r'pythonw?2(\.\d)?') or \
-            'import ' in text[:1000]
+        return shebang_matches(text, r'pythonw?2(\.\d)?')
 
 
 class PythonConsoleLexer(Lexer):
@@ -1146,6 +1146,7 @@ class NumPyLexer(PythonLexer):
                 yield index, token, value
 
     def analyse_text(text):
+        ltext = text[:1000]
         return (shebang_matches(text, r'pythonw?(3(\.\d)?)?') or
-                'import ' in text[:1000]) \
-            and ('import numpy' in text or 'from numpy import' in text)
+                'import ' in ltext) \
+            and ('import numpy' in ltext or 'from numpy import' in ltext)
