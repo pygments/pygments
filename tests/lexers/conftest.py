@@ -39,12 +39,6 @@ class LexerTestItem(pytest.Item):
         self.file = file
         self.lexer = lexer
 
-        input_lines = []
-        input_newline = ''
-        expected_lines = []
-        comment_lines = []
-        current = None
-
         content = file.read_text('utf-8')
         content, _, self.expected = content.partition('\n---tokens---\n')
         if content.startswith('---input---\n'):
