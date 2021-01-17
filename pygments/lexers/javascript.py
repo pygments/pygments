@@ -100,8 +100,7 @@ class JavascriptLexer(RegexLexer):
         ],
         'interp': [
             (r'`', String.Backtick, '#pop'),
-            (r'\\\\', String.Backtick),
-            (r'\\`', String.Backtick),
+            (r'\\.', String.Backtick),
             (r'\$\{', String.Interpol, 'interp-inside'),
             (r'\$', String.Backtick),
             (r'[^`\\$]+', String.Backtick),
