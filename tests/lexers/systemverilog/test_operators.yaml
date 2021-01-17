@@ -1,6 +1,8 @@
 # See 1800-2017 Table 11-2: Operator Precedence and Associativity
 # Note that the duplicates (unary/binary) have been removed,
 # ie '+', '-', '&', '|', '^', '~^', '^~'
+# Note: This is a inconsistent mix of operator and punctuation
+# Note: Operators would ideally be represented as one token: ':' ':' -> '::', '~' '&' -> '~&'
 input: |
   () [] :: .
   + - ! ~ & ~& | ~| ^ ~^ ^~ ++ --
@@ -15,8 +17,6 @@ input: |
   -> <->
   = += -= *= /= %= &= ^= |= <<= >>= <<<= >>>= := :/ <=
   {} {{}}
-# Note: This is a inconsistent mix of operator and punctuation
-# Note: Operators would ideally be represented as one token: ':' ':' -> '::', '~' '&' -> '~&'
 tokens: |
   '('           Punctuation
   ')'           Punctuation

@@ -8,6 +8,6 @@ input: |
   `line`
   code
   ```
-tokens: |-
+tokens: |
   '```\ncode\n```\n' Literal.String.Backtick
   '\n```\nmulti\n`line`\ncode\n```\n' Literal.String.Backtick

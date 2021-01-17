@@ -2,8 +2,7 @@ input: |
   lock addq $0, /* comments */ (%rsp) /*
   // comments
   */ xorq %rax, %rax // comments
-
-tokens: |-
+tokens: |
   'lock'        Name.Attribute
   ' '           Text
   'addq'        Name.Function

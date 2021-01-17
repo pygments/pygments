@@ -55,7 +55,7 @@ Contribution checklist
         Your code sample
       ```
 
-      Then run ``pytest --update-goldens tests/test_lexers.py`` to auto-populate
+      Then run ``pytest --update-goldens tests/lexers`` to auto-populate
       the currently expected tokens. Check that they look good and add the file.
 
       Also run the same command whenever you need to update the test if the

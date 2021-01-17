@@ -2,9 +2,9 @@
 # - http://textx.github.io/Arpeggio/
 # - https://nim-lang.org/docs/pegs.html
 # - https://github.com/erikrose/parsimonious
+# can't handle parsimonious-style regex while ~ is a cut operator
 input: |
   ~"regex" i"insensitive" "multimod"ilx ("not modified")
-# can't handle parsimonious-style regex while ~ is a cut operator
 tokens: |
   '~'           Operator
   '"regex"'     Literal.String.Double
