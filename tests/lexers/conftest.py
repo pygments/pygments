@@ -16,7 +16,6 @@
     :license: BSD, see LICENSE for details.
 """
 from pathlib import Path
-import textwrap
 
 import pytest
 
@@ -48,7 +47,11 @@ class LexerTestItem(pytest.Item):
 
         content = file.read_text('utf-8')
         content, _, self.expected = content.partition('\n---tokens---\n')
-        self.comment, _, self.input = ('\n' + content).rpartition('\n---input---\n')
+        if content.startswith('---input---\n'):
+            content = '\n' + content
+        self.comment, _, self.input = content.rpartition('\n---input---\n')
+        if not self.input.endswith('\n'):
+            self.input += '\n'
         self.comment = self.comment.strip()
 
     @classmethod
@@ -71,7 +74,7 @@ def pytest_runtest_teardown(item, nextitem):
         with item.file.open('w', encoding='utf-8') as f:
             f.write(item.comment)
             if item.comment:
-                f.write('\n')
+                f.write('\n\n')
             f.write('---input---\n')
             f.write(item.input)
             f.write('\n---tokens---\n')

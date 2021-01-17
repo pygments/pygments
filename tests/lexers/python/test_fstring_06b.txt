@@ -1,6 +1,8 @@
 # SyntaxError: f-string expression part cannot include a backslash
+
 ---input---
 f"{\"quoted string\"}"
+
 ---tokens---
 'f'           Literal.String.Affix
 '"'           Literal.String.Double

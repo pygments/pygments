@@ -1,4 +1,5 @@
 # Test that unicode character, √, in an expression is recognized
+
 ---input---
 s = √((1/n) * sum(count .^ 2) - mu .^2)
 

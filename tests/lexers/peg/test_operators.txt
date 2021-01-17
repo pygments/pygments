@@ -1,6 +1,7 @@
 # see for example:
 # - https://github.com/gvanrossum/pegen
 # - https://nim-lang.org/docs/pegs.html
+
 ---input---
 rule = 'a' | 'b'
 rule: 'a' ~ 'b'

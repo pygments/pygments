@@ -1,5 +1,6 @@
 ---input---
 f'abc {a["x"]} def'
+
 ---tokens---
 'f'           Literal.String.Affix
 "'"           Literal.String.Single

@@ -1,5 +1,6 @@
 ---input---
 'a' 'b' f'{x}' '{c}' f'str<{y:^4}>' 'd' 'e'
+
 ---tokens---
 "'"           Literal.String.Single
 'a'           Literal.String.Single

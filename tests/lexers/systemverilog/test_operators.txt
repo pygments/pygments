@@ -3,6 +3,7 @@
 # ie '+', '-', '&', '|', '^', '~^', '^~'
 # Note: This is a inconsistent mix of operator and punctuation
 # Note: Operators would ideally be represented as one token: ':' ':' -> '::', '~' '&' -> '~&'
+
 ---input---
 () [] :: .
 + - ! ~ & ~& | ~| ^ ~^ ^~ ++ --
