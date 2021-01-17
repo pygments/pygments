@@ -11,6 +11,14 @@ Version 2.8.0
 -------------
 (not released yet)
 
+- Added `pygmentize -C` option to guess a lexer from content
+
+- Fix escapes in JavaScript and TypeScript backtick strings (#1679, #1686)
+- Make guessing prefer Python 3 lexer
+- Do not guess MIME or SQL without reason
+- Changed setuptools to use a declarative config through ``setup.cfg``.
+  Building Pygments now requires setuptools 39.2+.
+
 
 Version 2.7.4
 -------------
@@ -48,7 +56,6 @@ Version 2.7.4
 
 Thanks to Google's OSS-Fuzz project for finding many of these bugs.
 
-
 Version 2.7.3
 -------------
 (released December 6, 2020)
@@ -73,7 +80,7 @@ Version 2.7.3
 - Fixed duplicated Juttle language alias (#1604, #1606)
 - Added support for Kotlin scripts (#1587)
 - Removed CSS rule which forced margin to 0
-  
+
 
 Version 2.7.2
 -------------

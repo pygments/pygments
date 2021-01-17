@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     Command line test
     ~~~~~~~~~~~~~~~~~
@@ -217,6 +216,13 @@ def test_N_opt():
     o = check_success('-N', 'test.py')
     assert 'python' == o.strip()
     o = check_success('-N', 'test.unknown')
+    assert 'text' == o.strip()
+
+
+def test_C_opt():
+    o = check_success('-C', stdin='#!python3\n')
+    assert 'python' == o.strip()
+    o = check_success('-C', stdin='x')
     assert 'text' == o.strip()
 
 
