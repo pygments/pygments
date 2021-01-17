@@ -4,7 +4,7 @@
 
     Lexers for Lispy languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -118,7 +118,7 @@ class SchemeLexer(RegexLexer):
             # (r'(#e|#i|#b|#o|#d|#x)[\d.]+', Number),
 
             # strings, symbols and characters
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r"'" + valid_name, String.Symbol),
             (r"#\\([()/'\"._!§$%& ?=+-]|[a-zA-Z0-9]+)", String.Char),
 
@@ -402,7 +402,7 @@ class HyLexer(RegexLexer):
             (r'0[xX][a-fA-F0-9]+', Number.Hex),
 
             # strings, symbols and characters
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r"'" + valid_name, String.Symbol),
             (r"\\(.|[a-z]+)", String.Char),
             (r'^(\s*)([rRuU]{,2}"""(?:.|\n)*?""")', bygroups(Text, String.Doc)),
@@ -1489,7 +1489,7 @@ class NewLispLexer(RegexLexer):
             (r'\s+', Text),
 
             # strings, symbols and characters
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
 
             # braces
             (r'\{', String, "bracestring"),
@@ -2382,7 +2382,7 @@ class CPSALexer(SchemeLexer):
             # (r'(#e|#i|#b|#o|#d|#x)[\d.]+', Number),
 
             # strings, symbols and characters
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r"'" + valid_name, String.Symbol),
             (r"#\\([()/'\"._!§$%& ?=+-]|[a-zA-Z0-9]+)", String.Char),
 
@@ -2595,7 +2595,7 @@ class XtlangLexer(RegexLexer):
             (r'(#b|#o|#x)[\d.]+', Number),
 
             # strings
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
 
             # true/false constants
             (r'(#t|#f)', Name.Constant),
@@ -2671,7 +2671,7 @@ class FennelLexer(RegexLexer):
             (r'-?\d+\.\d+', Number.Float),
             (r'-?\d+', Number.Integer),
 
-            (r'"(\\\\|\\"|\\|[^"\\])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
 
             # these are technically strings, but it's worth visually
             # distinguishing them because their intent is different

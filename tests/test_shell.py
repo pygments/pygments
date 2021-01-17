@@ -2,14 +2,15 @@
     Basic Shell Tests
     ~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import pytest
 
 from pygments.token import Token
-from pygments.lexers import BashLexer, BashSessionLexer, MSDOSSessionLexer, PowerShellSessionLexer
+from pygments.lexers import BashLexer, BashSessionLexer, MSDOSSessionLexer, \
+    PowerShellSessionLexer
 
 
 @pytest.fixture(scope='module')
@@ -141,9 +142,7 @@ def test_end_of_line_nums(lexer_bash):
 def test_newline_in_echo(lexer_session):
     fragment = '$ echo \\\nhi\nhi\n'
     tokens = [
-        (Token.Text, ''),
-        (Token.Generic.Prompt, '$'),
-        (Token.Text, ' '),
+        (Token.Generic.Prompt, '$ '),
         (Token.Name.Builtin, 'echo'),
         (Token.Text, ' '),
         (Token.Literal.String.Escape, '\\\n'),
@@ -154,14 +153,35 @@ def test_newline_in_echo(lexer_session):
     assert list(lexer_session.get_tokens(fragment)) == tokens
 
 
+def test_newline_in_ls(lexer_session):
+    fragment = '$ ls \\\nhi\nhi\n'
+    tokens = [
+        (Token.Generic.Prompt, '$ '),
+        (Token.Text, 'ls'),
+        (Token.Text, ' '),
+        (Token.Literal.String.Escape, '\\\n'),
+        (Token.Text, 'hi'),
+        (Token.Text, '\n'),
+        (Token.Generic.Output, 'hi\n'),
+    ]
+    assert list(lexer_session.get_tokens(fragment)) == tokens
+
+
+def test_comment_after_prompt(lexer_session):
+    fragment = '$# comment'
+    tokens = [
+        (Token.Generic.Prompt, '$'),
+        (Token.Comment.Single, '# comment\n'),
+    ]
+    assert list(lexer_session.get_tokens(fragment)) == tokens
+
+
 def test_msdos_gt_only(lexer_msdos):
     fragment = '> py\nhi\n'
     tokens = [
-        (Token.Text, ''),
         (Token.Generic.Prompt, '>'),
         (Token.Text, ' '),
         (Token.Text, 'py'),
-        (Token.Text, ''),
         (Token.Text, '\n'),
         (Token.Generic.Output, 'hi\n'),
     ]
@@ -171,7 +191,6 @@ def test_msdos_gt_only(lexer_msdos):
 def test_powershell_session(lexer_powershell_session):
     fragment = 'PS C:\\> Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, ''),
         (Token.Generic.Prompt, 'PS C:\\> '),
         (Token.Name.Builtin, 'Get-ChildItem'),
         (Token.Text, '\n')
@@ -180,7 +199,6 @@ def test_powershell_session(lexer_powershell_session):
 
     fragment = 'PS> Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, ''),
         (Token.Generic.Prompt, 'PS> '),
         (Token.Name.Builtin, 'Get-ChildItem'),
         (Token.Text, '\n')
@@ -189,7 +207,6 @@ def test_powershell_session(lexer_powershell_session):
 
     fragment = 'PS > Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, ''),
         (Token.Generic.Prompt, 'PS > '),
         (Token.Name.Builtin, 'Get-ChildItem'),
         (Token.Text, '\n')
@@ -200,7 +217,6 @@ def test_powershell_session(lexer_powershell_session):
 def test_powershell_remoting_session(lexer_powershell_session):
     fragment = '[Long-NetBIOS-Hostname]: PS C:\\> Get-ChildItem\n'
     tokens = [
-        (Token.Name.Builtin, ''),
         (Token.Generic.Prompt, '[Long-NetBIOS-Hostname]: PS C:\\> '),
         (Token.Name.Builtin, 'Get-ChildItem'),
         (Token.Text, '\n')
@@ -211,13 +227,9 @@ def test_powershell_remoting_session(lexer_powershell_session):
 def test_virtualenv(lexer_session):
     fragment = '(env) [~/project]$ foo -h\n'
     tokens = [
-        (Token.Text, ''),
         (Token.Generic.Prompt.VirtualEnv, '(env)'),
-        (Token.Text, ''),
         (Token.Text, ' '),
-        (Token.Text, ''),
-        (Token.Generic.Prompt, '[~/project]$'),
-        (Token.Text, ' '),
+        (Token.Generic.Prompt, '[~/project]$ '),
         (Token.Text, 'foo'),
         (Token.Text, ' '),
         (Token.Text, '-h'),

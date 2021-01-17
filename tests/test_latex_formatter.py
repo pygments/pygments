@@ -2,7 +2,7 @@
     Pygments LaTeX formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -64,7 +64,7 @@ def test_embedded_lexer():
     >>> y
     |$1 + z^2$|""")
 
-    assert list(lexer.get_tokens(src)) == [(Token.Name, ''),
+    assert list(lexer.get_tokens(src)) == [
         (Token.Generic.Prompt, '>>> '),
         (Token.Name, 'x'),
         (Token.Text, ' '),
@@ -73,7 +73,6 @@ def test_embedded_lexer():
         (Token.Literal.Number.Integer, '1'),
         (Token.Text, '\n'),
         (Token.Generic.Prompt, '>>> '),
-        (Token.Text, ''),
         (Token.Name, 'y'),
         (Token.Text, ' '),
         (Token.Operator, '='),
@@ -84,16 +83,13 @@ def test_embedded_lexer():
         (Token.Punctuation, ','),
         (Token.Text, ' '),
         (Token.Escape, '$z^2$'),
-        (Token.Text, ''),
         (Token.Punctuation, ')'),
         (Token.Text, '  '),
         (Token.Comment.Single, '# these |pipes| are untouched'),  # note: not Token.Escape
         (Token.Text, '\n'),
         (Token.Generic.Prompt, '>>> '),
-        (Token.Text, ''),
         (Token.Name, 'y'),
         (Token.Text, '\n'),
         (Token.Escape, '$1 + z^2$'),
-        (Token.Text, ''),
         (Token.Generic.Output, '\n'),
     ]

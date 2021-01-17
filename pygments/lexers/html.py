@@ -4,7 +4,7 @@
 
     Lexers for HTML, XML and related markup.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -368,8 +368,8 @@ class HamlLexer(ExtendedRegexLexer):
             (r'\w+', Name.Variable, '#pop'),
             (r'@\w+', Name.Variable.Instance, '#pop'),
             (r'\$\w+', Name.Variable.Global, '#pop'),
-            (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
-            (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
+            (r"'(\\\\|\\[^\\]|[^'\\\n])*'", String, '#pop'),
+            (r'"(\\\\|\\[^\\]|[^"\\\n])*"', String, '#pop'),
         ],
 
         'html-comment-block': [
@@ -480,8 +480,8 @@ class ScamlLexer(ExtendedRegexLexer):
             (r'\w+', Name.Variable, '#pop'),
             (r'@\w+', Name.Variable.Instance, '#pop'),
             (r'\$\w+', Name.Variable.Global, '#pop'),
-            (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
-            (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
+            (r"'(\\\\|\\[^\\]|[^'\\\n])*'", String, '#pop'),
+            (r'"(\\\\|\\[^\\]|[^"\\\n])*"', String, '#pop'),
         ],
 
         'html-comment-block': [
@@ -589,8 +589,8 @@ class PugLexer(ExtendedRegexLexer):
             (r'\w+', Name.Variable, '#pop'),
             (r'@\w+', Name.Variable.Instance, '#pop'),
             (r'\$\w+', Name.Variable.Global, '#pop'),
-            (r"'(\\\\|\\'|[^'\n])*'", String, '#pop'),
-            (r'"(\\\\|\\"|[^"\n])*"', String, '#pop'),
+            (r"'(\\\\|\\[^\\]|[^'\\\n])*'", String, '#pop'),
+            (r'"(\\\\|\\[^\\]|[^"\\\n])*"', String, '#pop'),
         ],
 
         'html-comment-block': [

@@ -2,7 +2,7 @@
     Pygments Markdown lexer tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -245,6 +245,20 @@ def test_bulleted_list(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+    fragment = '```\ncode\n```\n* *foo*\n* bar'
+    tokens = [
+        (String.Backtick, '```\ncode\n```\n'),
+        (Keyword, '*'),
+        (Token.Text, ' '),
+        (Generic.Emph, '*foo*'),
+        (Token.Text, '\n'),
+        (Keyword, '*'),
+        (Token.Text, ' '),
+        (Token.Text, 'bar'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
 
 def test_numbered_list(lexer):
     fragment = '1. foo\n2. bar'
@@ -286,20 +300,19 @@ def test_invalid_code_block(lexer):
 
 def test_code_block_fenced_by_backticks(lexer):
     fragments = (
-        '```\ncode\n```',
-        '```\nmulti\n`line`\ncode\n```',
+        '```\ncode\n```\n',
+        '```\nmulti\n`line`\ncode\n```\n',
     )
     for fragment in fragments:
         tokens = [
             (String.Backtick, fragment),
-            (Token.Text, '\n'),
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_code_block_with_language(lexer):
     fragments = (
-        '```python\nimport this\n```',
+        '```python\nimport this\n```\n',
     )
     for fragment in fragments:
         tokens = [
@@ -310,32 +323,7 @@ def test_code_block_with_language(lexer):
             (Token.Text, ' '),
             (Token.Name.Namespace, 'this'),
             (Token.Text, '\n'),
-            (String.Backtick, '```'),
-            (Token.Text, '\n'),
-        ]
-        assert list(lexer.get_tokens(fragment)) == tokens
-
-
-def test_code_indented_with_spaces(lexer):
-    fragments = (
-        'sample:\n\n    code\n',
-    )
-    for fragment in fragments:
-        tokens = [
-            (Token.Text, 'sample:'),
-            (Token.Text, '\n\n'),
-            (String.Backtick, '    code\n'),
-        ]
-        assert list(lexer.get_tokens(fragment)) == tokens
-
-    fragments = (
-        'sample:\n\n\tcode\n',
-    )
-    for fragment in fragments:
-        tokens = [
-            (Token.Text, 'sample:'),
-            (Token.Text, '\n\n'),
-            (String.Backtick, '\tcode\n'),
+            (String.Backtick, '```\n'),
         ]
         assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -367,6 +355,58 @@ def test_inline_code(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+    fragment = '* `code`'
+    tokens = [
+        (Token.Keyword, '*'),
+        (Token.Text, ' '),
+        (String.Backtick, '`code`'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '```\ncode\n```\n* nocode\n* `code`'
+    tokens = [
+        (String.Backtick, '```\ncode\n```\n'),
+        (Token.Keyword, '*'),
+        (Token.Text, ' '),
+        (Token.Text, 'nocode'),
+        (Token.Text, '\n'),
+        (Token.Keyword, '*'),
+        (Token.Text, ' '),
+        (String.Backtick, '`code`'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '- `code`'
+    tokens = [
+        (Token.Keyword, '-'),
+        (Token.Text, ' '),
+        (String.Backtick, '`code`'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '1. `code`'
+    tokens = [
+        (Token.Keyword, '1.'),
+        (Token.Text, ' '),
+        (String.Backtick, '`code`'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = 'code (`in brackets`)'
+    tokens = [
+        (Token.Text, 'code'),
+        (Token.Text, ' '),
+        (Token.Text, '('),
+        (String.Backtick, '`in brackets`'),
+        (Token.Text, ')'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
 
 def test_invalid_bold(lexer):
     fragments = (
@@ -389,11 +429,29 @@ def test_bold_fenced_by_asterisk(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+    fragment = '(**bold**)'
+    tokens = [
+        (Token.Text, '('),
+        (Generic.Strong, '**bold**'),
+        (Token.Text, ')'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
 
 def test_bold_fenced_by_underscore(lexer):
     fragment = '__bold__'
     tokens = [
         (Generic.Strong, '__bold__'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '(__bold__)'
+    tokens = [
+        (Token.Text, '('),
+        (Generic.Strong, '__bold__'),
+        (Token.Text, ')'),
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
@@ -420,11 +478,29 @@ def test_italics_fenced_by_asterisk(lexer):
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
+    fragment = '(*italics*)'
+    tokens = [
+        (Token.Text, '('),
+        (Generic.Emph, '*italics*'),
+        (Token.Text, ')'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
 
 def test_italics_fenced_by_underscore(lexer):
     fragment = '_italics_'
     tokens = [
         (Generic.Emph, '_italics_'),
+        (Token.Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+    fragment = '(_italics_)'
+    tokens = [
+        (Token.Text, '('),
+        (Generic.Emph, '_italics_'),
+        (Token.Text, ')'),
         (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens

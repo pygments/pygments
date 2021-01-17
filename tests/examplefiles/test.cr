@@ -1954,17 +1954,11 @@ r = %r(regex with slash: /)
      world, \
      no newlines" # same as "hello world, no newlines"
 
-# Supports double quotes and nested parenthesis
-%(hello ("world")) # same as "hello (\"world\")"
-
-# Supports double quotes and nested brackets
-%[hello ["world"]] # same as "hello [\"world\"]"
-
-# Supports double quotes and nested curlies
-%{hello {"world"}} # same as "hello {\"world\"}"
-
-# Supports double quotes and nested angles
-%<hello <"world">> # same as "hello <\"world\">"
+%(hello ("world")) # => "hello (\"world\")"
+%[hello ["world"]] # => "hello [\"world\"]"
+%{hello {"world"}} # => "hello {\"world\"}"
+%<hello <"world">> # => "hello <\"world\">"
+%|hello "world"|   # => "hello \"world\""
 
 <<-XML
 <parent>

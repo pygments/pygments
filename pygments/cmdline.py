@@ -4,7 +4,7 @@
 
     Command line interface.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -231,7 +231,7 @@ def main_inner(popts, args, usage):
         return 0
 
     if opts.pop('-V', None) is not None:
-        print('Pygments version %s, (c) 2006-2020 by Georg Brandl.' % __version__)
+        print('Pygments version %s, (c) 2006-2021 by Georg Brandl.' % __version__)
         return 0
 
     # handle ``pygmentize -L``

@@ -34,7 +34,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Pygments'
-copyright = '2006-2020, Georg Brandl and Pygments contributors'
+copyright = '2006-2021, Georg Brandl and Pygments contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

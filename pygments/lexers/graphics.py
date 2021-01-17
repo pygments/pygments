@@ -4,7 +4,7 @@
 
     Lexers for computer graphics and plotting related languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -424,7 +424,7 @@ class AsymptoteLexer(RegexLexer):
         ],
         'statements': [
             # simple string (TeX friendly)
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # C style string (with character escapes)
             (r"'", String, 'string'),
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
@@ -774,7 +774,7 @@ class PovrayLexer(RegexLexer):
             (r'[0-9]+\.[0-9]*', Number.Float),
             (r'\.[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r'\s+', Text),
         ]
     }
