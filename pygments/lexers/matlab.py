@@ -97,6 +97,7 @@ class MatlabLexer(RegexLexer):
 
             (r'(?<![\w)\].])\'', String, 'string'),
             (r'[a-zA-Z_]\w*', Name),
+            (r'\s+', Whitespace),
             (r'.', Text),
         ],
         'root': [
@@ -105,8 +106,8 @@ class MatlabLexer(RegexLexer):
             (r'^!.*', String.Other),
             (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'%.*$', Comment),
-            (r'(\s*^\s*)(function)\b', bygroups(Text, Keyword), 'deffunc'),
-            (r'(\s*^\s*)(properties)\b', bygroups(Text, Keyword), 'defprops'),
+            (r'(\s*^\s*)(function)\b', bygroups(Whitespace, Keyword), 'deffunc'),
+            (r'(\s*^\s*)(properties)\b', bygroups(Whitespace, Keyword), 'defprops'),
 
             # from 'iskeyword' on version 9.4 (R2018a):
             # Check that there is no preceding dot, as keywords are valid field
@@ -117,7 +118,7 @@ class MatlabLexer(RegexLexer):
                     'persistent', 'return', 'spmd', 'switch',
                     'try', 'while'),
                    prefix=r'(?<!\.)(\s*)(', suffix=r')\b'),
-             bygroups(Text, Keyword)),
+             bygroups(Whitespace, Keyword)),
 
             ("(" + "|".join(elfun + specfun + elmat) + r')\b',  Name.Builtin),
 
@@ -145,7 +146,8 @@ class MatlabLexer(RegexLexer):
                       Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Whitespace), '#pop'),
             # function with no args
-            (r'(\s*)([a-zA-Z_]\w*)', bygroups(Text, Name.Function), '#pop'),
+            (r'(\s*)([a-zA-Z_]\w*)',
+             bygroups(Whitespace, Name.Function), '#pop'),
         ],
         'defprops': [
             (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
@@ -163,7 +165,7 @@ class MatlabLexer(RegexLexer):
             # equal sign or operator
             (r"=", Punctuation, '#pop'),
             (_operators, Operator, '#pop'),
-            (r"[ \t]+", Text),
+            (r"[ \t]+", Whitespace),
             ("'[^']*'", String),
             (r"[^';\s]+", String),
             (";", Punctuation, '#pop'),
@@ -652,7 +654,8 @@ class OctaveLexer(RegexLexer):
                       Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Whitespace), '#pop'),
             # function with no args
-            (r'(\s*)([a-zA-Z_]\w*)', bygroups(Text, Name.Function), '#pop'),
+            (r'(\s*)([a-zA-Z_]\w*)',
+             bygroups(Whitespace, Name.Function), '#pop'),
         ],
     }
 
