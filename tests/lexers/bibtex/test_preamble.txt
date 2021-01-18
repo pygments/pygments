@@ -1,0 +1,11 @@
+---input---
+@PREAMBLE{"% some LaTeX code here"}
+
+---tokens---
+'@PREAMBLE'   Name.Class
+'{'           Punctuation
+'"'           Literal.String
+'% some LaTeX code here' Literal.String
+'"'           Literal.String
+'}'           Punctuation
+'\n'          Text

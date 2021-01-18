@@ -1,0 +1,30 @@
+---input---
+{"foo": "bar", "foo2": [1, 2, 3], "\u0123": "\u0123"}
+
+---tokens---
+'{'           Punctuation
+'"foo"'       Name.Tag
+':'           Punctuation
+' '           Text
+'"bar"'       Literal.String.Double
+','           Punctuation
+' '           Text
+'"foo2"'      Name.Tag
+':'           Punctuation
+' '           Text
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+'],'          Punctuation
+' '           Text
+'"\\u0123"'   Name.Tag
+':'           Punctuation
+' '           Text
+'"\\u0123"'   Literal.String.Double
+'}'           Punctuation
+'\n'          Text

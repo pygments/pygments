@@ -1,0 +1,25 @@
+---input---
+f'My name is {name}, my age next year is {age+1}, my anniversary is {anniversary:%A, %B %d, %Y}.'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'My name is ' Literal.String.Single
+'{'           Literal.String.Interpol
+'name'        Name
+'}'           Literal.String.Interpol
+', my age next year is ' Literal.String.Single
+'{'           Literal.String.Interpol
+'age'         Name
+'+'           Operator
+'1'           Literal.Number.Integer
+'}'           Literal.String.Interpol
+', my anniversary is ' Literal.String.Single
+'{'           Literal.String.Interpol
+'anniversary' Name
+':'           Literal.String.Interpol
+'%A, %B %d, %Y' Literal.String.Single
+'}'           Literal.String.Interpol
+'.'           Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text

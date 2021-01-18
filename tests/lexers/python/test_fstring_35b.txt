@@ -1,0 +1,15 @@
+---input---
+f"*{n=:+<30}*"
+
+---tokens---
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'*'           Literal.String.Double
+'{'           Literal.String.Interpol
+'n'           Name
+'=:'          Literal.String.Interpol
+'+<30'        Literal.String.Double
+'}'           Literal.String.Interpol
+'*'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text

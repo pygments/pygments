@@ -1,0 +1,26 @@
+---input---
+x="$"
+y="$_"
+z="$abc"
+
+---tokens---
+'x'           Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$'           Text
+'"'           Literal.String.Double
+'\n'          Text
+
+'y'           Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$_'          Name.Variable
+'"'           Literal.String.Double
+'\n'          Text
+
+'z'           Name.Variable
+'='           Operator
+'"'           Literal.String.Double
+'$abc'        Name.Variable
+'"'           Literal.String.Double
+'\n'          Text

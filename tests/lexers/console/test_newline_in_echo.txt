@@ -1,0 +1,15 @@
+---input---
+$ echo \
+hi
+hi
+
+---tokens---
+'$ '          Generic.Prompt
+'echo'        Name.Builtin
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'hi'          Text
+'\n'          Text
+
+'hi\n'        Generic.Output

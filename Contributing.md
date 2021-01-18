@@ -38,7 +38,19 @@ Contribution checklist
   curious about ``compiled.py`` -- this file exists for backwards compatibility
   reasons.)
 * Use the standard importing convention: ``from token import Punctuation``
-* If you have a tricky case, you can use the ``testcase`` formatter to produce
-  an unit test quickly. Run 
-  ``python -m pygments -l lua -f testcase <<< "local a = 5"``. This will
-  produce a test case function skeleton.
+* For large test cases that assert on the tokens produced by a lexer, use tools:
+    * You can use the ``testcase`` formatter to produce a piece of code that
+      can be pasted into a unittest file:
+      ``python -m pygments -l lua -f testcase <<< "local a = 5"``
+    * But most large snippets should instead be put as a sample file under
+      ``tests/lexers/<lexer_alias>/*.txt``. These files are automatically
+      picked up as individual tests, asserting that the input produces the
+      expected tokens.
+
+      To add a new test, create a file with just your code snippet under a
+      subdirectory based on your lexer's main alias. Then run
+      ``pytest --update-goldens tests/lexers`` to auto-populate the currently
+      expected tokens. Check that they look good and check in the file.
+
+      Also run the same command whenever you need to update the test if the
+      actual produced tokens change (assuming the change is expected).

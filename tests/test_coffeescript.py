@@ -50,35 +50,3 @@ def test_coffee_slashes(lexer, golden):
         if '/' in s:
             is_regex = t is Token.String.Regex
             assert is_regex == slashes_are_regex_here, (t, s)
-
-
-def test_mixed_slashes(lexer):
-    fragment = 'a?/foo/:1/2;\n'
-    tokens = [
-        (Token.Name.Other, 'a'),
-        (Token.Operator, '?'),
-        (Token.Literal.String.Regex, '/foo/'),
-        (Token.Operator, ':'),
-        (Token.Literal.Number.Integer, '1'),
-        (Token.Operator, '/'),
-        (Token.Literal.Number.Integer, '2'),
-        (Token.Punctuation, ';'),
-        (Token.Text, '\n'),
-    ]
-    assert list(lexer.get_tokens(fragment)) == tokens
-
-
-def test_beware_infinite_loop(lexer):
-    # This demonstrates the case that "This isn't really guarding" comment
-    # refers to.
-    fragment = '/a/x;\n'
-    tokens = [
-        (Token.Text, ''),
-        (Token.Operator, '/'),
-        (Token.Name.Other, 'a'),
-        (Token.Operator, '/'),
-        (Token.Name.Other, 'x'),
-        (Token.Punctuation, ';'),
-        (Token.Text, '\n'),
-    ]
-    assert list(lexer.get_tokens(fragment)) == tokens

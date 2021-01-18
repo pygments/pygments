@@ -1,0 +1,13 @@
+# Test that one space before an equal sign is formatted correctly.
+
+---input---
+x = 100;
+
+---tokens---
+'x'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace

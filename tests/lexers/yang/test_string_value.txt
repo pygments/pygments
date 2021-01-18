@@ -1,0 +1,11 @@
+# String value `"5"` should be not explicitly highlighted
+
+---input---
+value "5";
+
+---tokens---
+'value'       Keyword
+' '           Text.Whitespace
+'"5"'         Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace

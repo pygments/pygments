@@ -1,0 +1,15 @@
+---input---
+$ ls \
+hi
+hi
+
+---tokens---
+'$ '          Generic.Prompt
+'ls'          Text
+' '           Text
+'\\\n'        Literal.String.Escape
+
+'hi'          Text
+'\n'          Text
+
+'hi\n'        Generic.Output

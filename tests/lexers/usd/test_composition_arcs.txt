@@ -1,0 +1,101 @@
+---input---
+def Xform "BottleMedical" (
+    kind = "prop"
+    payload = @./BottleMedical_payload.usd@</BottleMedical>
+    variants = {
+        string modelingVariant = "LiquidBottleLg"
+        string shadingComplexity = "full"
+    }
+    add variantSets = ["modelingVariant", "shadingComplexity"]
+)
+{
+    variantSet "modelingVariant" = {
+        "ALL_VARIANTS" {
+        }
+    }
+}
+
+---tokens---
+'def'         Keyword.Tokens
+' '           Text.Whitespace
+'Xform'       Text
+' '           Text.Whitespace
+'"BottleMedical"' Literal.String
+' '           Text.Whitespace
+'('           Punctuation
+'\n    '      Text.Whitespace
+'kind'        Name.Builtins
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"prop"'      Literal.String
+'\n    '      Text.Whitespace
+'payload'     Keyword.Tokens
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'@./BottleMedical_payload.usd@' Literal.String.Interpol
+'</BottleMedical>' Name.Namespace
+'\n    '      Text.Whitespace
+'variants'    Keyword.Tokens
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'modelingVariant' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"LiquidBottleLg"' Literal.String
+'\n        '  Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'shadingComplexity' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"full"'      Literal.String
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'add'         Keyword.Type
+' '           Text.Whitespace
+'variantSets' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'"modelingVariant"' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'"shadingComplexity"' Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'variantSet'  Keyword.Tokens
+' '           Text.Whitespace
+'"modelingVariant"' Literal.String
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'"ALL_VARIANTS"' Literal.String
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

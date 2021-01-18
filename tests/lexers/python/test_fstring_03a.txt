@@ -1,0 +1,14 @@
+---input---
+f'input={value:#06x}'
+
+---tokens---
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'input='      Literal.String.Single
+'{'           Literal.String.Interpol
+'value'       Name
+':'           Literal.String.Interpol
+'#06x'        Literal.String.Single
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text

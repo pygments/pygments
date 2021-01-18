@@ -1,0 +1,20 @@
+---input---
+message.append(f' [line {lineno:2d}]')
+
+---tokens---
+'message'     Name
+'.'           Operator
+'append'      Name
+'('           Punctuation
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+' [line '     Literal.String.Single
+'{'           Literal.String.Interpol
+'lineno'      Name
+':'           Literal.String.Interpol
+'2d'          Literal.String.Single
+'}'           Literal.String.Interpol
+']'           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text
