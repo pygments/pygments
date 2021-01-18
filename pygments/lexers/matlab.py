@@ -11,7 +11,7 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, default, words, \
-    do_insertions
+    do_insertions, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
@@ -75,6 +75,30 @@ class MatlabLexer(RegexLexer):
     _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\.\\|\./|/|\\'
 
     tokens = {
+        'expressions': [
+            # operators:
+            (_operators, Operator),
+
+            # numbers (must come before punctuation to handle `.5`; cannot use
+            # `\b` due to e.g. `5. + .5`).
+            (r'(?<!\w)((\d+\.\d*)|(\d*\.\d+))([eEf][+-]?\d+)?(?!\w)', Number.Float),
+            (r'\b\d+[eEf][+-]?[0-9]+\b', Number.Float),
+            (r'\b\d+\b', Number.Integer),
+
+            # punctuation:
+            (r'\[|\]|\(|\)|\{|\}|:|@|\.|,', Punctuation),
+            (r'=|:|;', Punctuation),
+
+            # quote can be transpose, instead of string:
+            # (not great, but handles common cases...)
+            (r'(?<=[\w)\].])\'+', Operator),
+
+            (r'"(""|[^"])*"', String),
+
+            (r'(?<![\w)\].])\'', String, 'string'),
+            (r'[a-zA-Z_]\w*', Name),
+            (r'.', Text),
+        ],
         'root': [
             # line starting with '!' is sent as a system command.  not sure what
             # label to use...
@@ -108,28 +132,7 @@ class MatlabLexer(RegexLexer):
             (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|(?:%s)\s+)' % _operators,
              bygroups(Text, Name, Text), 'commandargs'),
 
-            # operators:
-            (_operators, Operator),
-
-            # numbers (must come before punctuation to handle `.5`; cannot use
-            # `\b` due to e.g. `5. + .5`).
-            (r'(?<!\w)((\d+\.\d*)|(\d*\.\d+))([eEf][+-]?\d+)?(?!\w)', Number.Float),
-            (r'\b\d+[eEf][+-]?[0-9]+\b', Number.Float),
-            (r'\b\d+\b', Number.Integer),
-
-            # punctuation:
-            (r'\[|\]|\(|\)|\{|\}|:|@|\.|,', Punctuation),
-            (r'=|:|;', Punctuation),
-
-            # quote can be transpose, instead of string:
-            # (not great, but handles common cases...)
-            (r'(?<=[\w)\].])\'+', Operator),
-
-            (r'"(""|[^"])*"', String),
-
-            (r'(?<![\w)\].])\'', String, 'string'),
-            (r'[a-zA-Z_]\w*', Name),
-            (r'.', Text),
+            include('expressions')
         ],
         'blockcomment': [
             (r'^\s*%\}', Comment.Multiline, '#pop'),
@@ -148,8 +151,7 @@ class MatlabLexer(RegexLexer):
             (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'%.*$', Comment),
             (r'(?<!\.)end\b', Keyword, '#pop'),
-            (r'\w+', Name),
-            (r'\s+|.', Text)
+            include('expressions'),
         ],
         'string': [
             (r"[^']*'", String, '#pop'),
