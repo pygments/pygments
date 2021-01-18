@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.chapel
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Chapel language.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -88,8 +87,8 @@ class ChapelLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
 
             # strings
-            (r'"(\\\\|\\"|[^"])*"', String),
-            (r"'(\\\\|\\'|[^'])*'", String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
 
             # tokens
             (r'(=|\+=|-=|\*=|/=|\*\*=|%=|&=|\|=|\^=|&&=|\|\|=|<<=|>>=|'

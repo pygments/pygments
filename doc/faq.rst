@@ -128,7 +128,7 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
 * `patx.me <http://patx.me/paste>`_, a pastebin
 * `Fluidic <https://github.com/richsmith/fluidic>`_, an experiment in
   integrating shells with a GUI
-* `pygments.rb <https://github.com/tmm1/pygments.rb>`_, a pygments wrapper for Ruby
+* `pygments.rb <https://github.com/pygments/pygments.rb>`_, a pygments wrapper for Ruby
 * `Clygments <https://github.com/bfontaine/clygments>`_, a pygments wrapper for
   Clojure
 * `PHPygments <https://github.com/capynet/PHPygments>`_, a pygments wrapper for PHP

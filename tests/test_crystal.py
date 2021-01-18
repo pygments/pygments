@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
     Basic CrystalLexer Test
     ~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -104,6 +103,19 @@ def test_interpolation_nested_curly(lexer):
     assert list(lexer.get_tokens(fragment)) == tokens
 
 
+def test_escaped_interpolation(lexer):
+    fragment = '"\\#{a + b}"\n'
+    # i.e. no actual interpolation
+    tokens = [
+        (String.Double, '"'),
+        (String.Escape, '\\#'),
+        (String.Double, '{a + b}'),
+        (String.Double, '"'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
 def test_operator_methods(lexer):
     fragment = '([] of Int32).[]?(5)\n'
     tokens = [
@@ -113,7 +125,7 @@ def test_operator_methods(lexer):
         (Text, ' '),
         (Keyword, 'of'),
         (Text, ' '),
-        (Name.Builtin, 'Int32'),
+        (Name, 'Int32'),
         (Punctuation, ')'),
         (Operator, '.'),
         (Name.Operator, '[]?'),
@@ -155,11 +167,207 @@ def test_numbers(lexer):
         assert next(lexer.get_tokens(fragment + '\n'))[0] == Error
 
 
+def test_symbols(lexer):
+    for fragment in [':sym_bol', ':\u3042', ':question?']:
+        assert list(lexer.get_tokens(fragment + '\n')) == \
+            [(String.Symbol, fragment), (Text, '\n')]
+
+    fragment = ':"sym bol"\n'
+    tokens = [
+        (String.Symbol, ':"'),
+        (String.Symbol, 'sym bol'),
+        (String.Symbol, '"'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
 def test_chars(lexer):
     for fragment in ["'a'", "'я'", "'\\u{1234}'", "'\n'"]:
         assert list(lexer.get_tokens(fragment + '\n')) == \
             [(String.Char, fragment), (Text, '\n')]
     assert next(lexer.get_tokens("'abc'"))[0] == Error
+
+
+def test_string_escapes(lexer):
+    for body in ['\\n', '\\a', '\\xff', '\\u1234', '\\000', '\\u{0}', '\\u{10AfF9}']:
+        fragment = '"a' + body + 'z"\n'
+        assert list(lexer.get_tokens(fragment)) == [
+            (String.Double, '"'),
+            (String.Double, 'a'),
+            (String.Escape, body),
+            (String.Double, 'z'),
+            (String.Double, '"'),
+            (Text, '\n'),
+        ]
+
+
+def test_empty_percent_strings(lexer):
+    for body in ['%()', '%[]', '%{}', '%<>', '%||']:
+        fragment = '(' + body + ')\n'
+        assert list(lexer.get_tokens(fragment)) == [
+            (Punctuation, '('),
+            (String.Other, body[:-1]),
+            (String.Other, body[-1]),
+            (Punctuation, ')'),
+            (Text, '\n'),
+        ]
+
+
+def test_percent_strings(lexer):
+    fragment = (
+        '%(hello ("world"))\n'
+        '%[hello ["world"]]\n'
+        '%{hello "world"}\n'
+        '%<hello <"world">>\n'
+        '%|hello "world"|\n')
+    tokens = [
+        (String.Other, '%('),
+        (String.Other, 'hello '),
+        (String.Other, '('),
+        (String.Other, '"world"'),
+        (String.Other, ')'),
+        (String.Other, ')'),
+        (Text, '\n'),
+        (String.Other, '%['),
+        (String.Other, 'hello '),
+        (String.Other, '['),
+        (String.Other, '"world"'),
+        (String.Other, ']'),
+        (String.Other, ']'),
+        (Text, '\n'),
+        (String.Other, '%{'),
+        (String.Other, 'hello "world"'),
+        (String.Other, '}'),
+        (Text, '\n'),
+        (String.Other, '%<'),
+        (String.Other, 'hello '),
+        (String.Other, '<'),
+        (String.Other, '"world"'),
+        (String.Other, '>'),
+        (String.Other, '>'),
+        (Text, '\n'),
+        (String.Other, '%|'),
+        (String.Other, 'hello "world"'),
+        (String.Other, '|'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_special_percent_strings(lexer):
+    fragment = '%Q(hello \\n #{name})\n%q(hello \\n #{name})\n%w(foo\\nbar baz)\n'
+    tokens = [
+        (String.Other, '%Q('),
+        (String.Other, 'hello '),
+        (String.Escape, '\\n'),
+        (String.Other, ' '),
+        (String.Interpol, '#{'),
+        (Name, 'name'),
+        (String.Interpol, '}'),
+        (String.Other, ')'),
+        (Text, '\n'),
+        # The ones below have no interpolation.
+        (String.Other, '%q('),
+        (String.Other, 'hello '),
+        (String.Other, '\\'),
+        (String.Other, 'n '),
+        (String.Other, '#'),
+        (String.Other, '{name}'),
+        (String.Other, ')'),
+        (Text, '\n'),
+        (String.Other, '%w('),
+        (String.Other, 'foo'),
+        (String.Other, '\\'),
+        (String.Other, 'nbar baz'),
+        (String.Other, ')'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_pseudo_keywords(lexer):
+    fragment = (
+        'def f(x : T, line = __LINE__) forall T\n'
+        'if x.is_a?(String)\n'
+        'pp! x\n'
+        'end\n'
+        'end\n')
+    tokens = [
+        (Keyword, 'def'),
+        (Text, ' '),
+        (Name.Function, 'f'),
+        (Punctuation, '('),
+        (Name, 'x'),
+        (Text, ' '),
+        (Punctuation, ':'),
+        (Text, ' '),
+        (Name, 'T'),
+        (Punctuation, ','),
+        (Text, ' '),
+        (Name, 'line'),
+        (Text, ' '),
+        (Operator, '='),
+        (Text, ' '),
+        (Keyword.Pseudo, '__LINE__'),
+        (Punctuation, ')'),
+        (Text, ' '),
+        (Keyword.Pseudo, 'forall'),
+        (Text, ' '),
+        (Name, 'T'),
+        (Text, '\n'),
+        (Keyword, 'if'),
+        (Text, ' '),
+        (Name, 'x'),
+        (Keyword.Pseudo, '.is_a?'),
+        (Punctuation, '('),
+        (Name, 'String'),
+        (Punctuation, ')'),
+        (Text, '\n'),
+        (Name.Builtin.Pseudo, 'pp!'),
+        (Text, ' '),
+        (Name, 'x'),
+        (Text, '\n'),
+        (Keyword, 'end'),
+        (Text, '\n'),
+        (Keyword, 'end'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_pseudo_builtins(lexer):
+    fragment = 'record Cls do\ndef_equals s\nend\n'
+    tokens = [
+        (Name.Builtin.Pseudo, 'record'),
+        (Text, ' '),
+        (Name, 'Cls'),
+        (Text, ' '),
+        (Keyword, 'do'),
+        (Text, '\n'),
+        (Name.Builtin.Pseudo, 'def_equals'),
+        (Text, ' '),
+        (Name, 's'),
+        (Text, '\n'),
+        (Keyword, 'end'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_constant_and_module(lexer):
+    fragment = 'HTTP\nHTTP::Server.new\n'
+    tokens = [
+        (Name.Constant, 'HTTP'),
+        (Text, '\n'),
+        (Name, 'HTTP'),
+        (Operator, '::'),
+        (Name, 'Server'),
+        (Operator, '.'),
+        (Name, 'new'),
+        (Text, '\n'),
+    ]
+    assert list(lexer.get_tokens(fragment)) == tokens
 
 
 def test_macro(lexer):
@@ -179,12 +387,12 @@ def test_macro(lexer):
         (Text, ' '),
         (Punctuation, ':'),
         (Text, ' '),
-        (Keyword.Pseudo, 'self'),
+        (Keyword, 'self'),
         (Punctuation, ')'),
         (Text, ' '),
         (Punctuation, ':'),
         (Text, ' '),
-        (Name.Builtin, 'Int'),
+        (Name, 'Int'),
         (Text, '\n'),
         (String.Interpol, '{%'),
         (Keyword, 'for'),
@@ -276,7 +484,7 @@ def test_lib(lexer):
         (Text, ' '),
         (Punctuation, ':'),
         (Text, ' '),
-        (Name.Builtin, 'Void'),
+        (Name, 'Void'),
         (Operator, '*'),
         (Punctuation, ')'),
         (Text, ' '),
@@ -284,7 +492,7 @@ def test_lib(lexer):
         (Text, ' '),
         (Name, 'LibC'),
         (Operator, '::'),
-        (Name.Builtin, 'Int'),
+        (Name, 'Int'),
         (Text, '\n'),
         (Keyword, 'end'),
         (Text, '\n')
@@ -312,3 +520,21 @@ def test_escaped_bracestring(lexer):
         (Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+
+def test_annotation(lexer):
+    fragment = '@[FOO::Bar::Baz(opt: "xx")]\n'
+    tokens = [
+        (Operator, '@['),
+        (Name.Decorator, 'FOO::Bar::Baz'),
+        (Punctuation, '('),
+        (String.Symbol, 'opt'),
+        (Punctuation, ':'),
+        (Text, ' '),
+        (String.Double, '"'),
+        (String.Double, 'xx'),
+        (String.Double, '"'),
+        (Punctuation, ')'),
+        (Operator, ']'),
+        (Text, '\n'),
+    ]

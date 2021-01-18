@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.data
     ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for data file format.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -691,7 +690,7 @@ class JsonLdLexer(JsonLexer):
     }
 
     def get_tokens_unprocessed(self, text):
-        for start, token, value in super(JsonLdLexer, self).get_tokens_unprocessed(text):
+        for start, token, value in super().get_tokens_unprocessed(text):
             if token is Name.Tag and value in self.json_ld_keywords:
                 yield start, Name.Decorator, value
             else:

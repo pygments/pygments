@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
     Pygments SQL lexers tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -95,7 +94,6 @@ def test_can_analyze_text():
     tsql_lexer = TransactSqlLexer()
     code_to_expected_lexer_map = {
         'select `a`, `bc` from some': mysql_lexer,
-        'select a, bc from some': sql_lexer,
         'select [a], [bc] from some': tsql_lexer,
         '-- `a`, `bc`\nselect [a], [bc] from some': tsql_lexer,
         '-- `a`, `bc`\nselect [a], [bc] from some; go': tsql_lexer,

@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
     Command line test
     ~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -217,6 +216,13 @@ def test_N_opt():
     o = check_success('-N', 'test.py')
     assert 'python' == o.strip()
     o = check_success('-N', 'test.unknown')
+    assert 'text' == o.strip()
+
+
+def test_C_opt():
+    o = check_success('-C', stdin='#!python3\n')
+    assert 'python' == o.strip()
+    o = check_success('-C', stdin='x')
     assert 'text' == o.strip()
 
 

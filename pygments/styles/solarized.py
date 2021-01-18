@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.styles.solarized
     ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -8,7 +7,7 @@
     A Pygments style for the Solarized themes (licensed under MIT).
     See: https://github.com/altercation/solarized
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

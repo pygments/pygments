@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.matlab
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Matlab and related languages.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -137,7 +136,7 @@ class MatlabLexer(RegexLexer):
             (r'.', Comment.Multiline),
         ],
         'deffunc': [
-            (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
+            (r'(\s*)(?:(\S+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
              bygroups(Whitespace, Text, Whitespace, Punctuation,
                       Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Whitespace), '#pop'),
@@ -638,7 +637,7 @@ class OctaveLexer(RegexLexer):
             (r"[^']*'", String, '#pop'),
         ],
         'deffunc': [
-            (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
+            (r'(\s*)(?:(\S+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
              bygroups(Whitespace, Text, Whitespace, Punctuation,
                       Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Whitespace), '#pop'),
@@ -710,7 +709,7 @@ class ScilabLexer(RegexLexer):
             (r'.', String, '#pop'),
         ],
         'deffunc': [
-            (r'(\s*)(?:(.+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
+            (r'(\s*)(?:(\S+)(\s*)(=)(\s*))?(.+)(\()(.*)(\))(\s*)',
              bygroups(Whitespace, Text, Whitespace, Punctuation,
                       Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Whitespace), '#pop'),

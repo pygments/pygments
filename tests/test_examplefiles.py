@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
     Pygments tests with example files
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -27,17 +26,9 @@ STATS = {}
 
 TESTDIR = os.path.dirname(__file__)
 
-# Jython generates a StackOverflowError for repetitions of the form (a|b)+,
-# which are commonly used in string patterns, when matching more than about 1000
-# chars.  These tests do not complete.  See http://bugs.jython.org/issue1965
-BAD_FILES_FOR_JYTHON = ('Object.st', 'all.nit', 'genclass.clj',
-                        'ragel-cpp_rlscan')
-
 
 def get_example_files():
-    # TODO: move stats to a fixture
-    # global STATS
-    # STATS = {}
+    STATS.clear()
     outdir = os.path.join(TESTDIR, 'examplefiles', 'output')
     if STORE_OUTPUT and not os.path.isdir(outdir):
         os.makedirs(outdir)
@@ -53,27 +44,11 @@ def get_example_files():
         if extension and not absfn.endswith(extension):
             continue
 
-        print(absfn)
         yield fn
-
-    # N = 7
-    # stats = list(STATS.items())
-    # stats.sort(key=lambda x: x[1][1])
-    # print('\nExample files that took longest absolute time:')
-    # for fn, t in stats[-N:]:
-    #     print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
-    # print()
-    # stats.sort(key=lambda x: x[1][2])
-    # print('\nExample files that took longest relative time:')
-    # for fn, t in stats[-N:]:
-    #     print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
 
 
 @pytest.mark.parametrize('filename', get_example_files())
 def test_examplefile(filename):
-    if os.name == 'java' and filename in BAD_FILES_FOR_JYTHON:
-        pytest.skip('%s is a known bad file on Jython' % filename)
-
     absfn = os.path.join(TESTDIR, 'examplefiles', filename)
     with open(absfn, 'rb') as f:
         text = f.read()
@@ -116,8 +91,8 @@ def test_examplefile(filename):
             (lx, absfn, val, len(''.join(ntext)))
         tokens.append((type, val))
     t2 = time.time()
-    STATS[os.path.basename(absfn)] = (len(text),
-                                      1000 * (t2 - t1), 1000 * (t2 - t1) / len(text))
+    STATS[os.path.basename(absfn)] = \
+        (len(text), 1000 * (t2 - t1), 1000 * (t2 - t1) / len(text))
     if ''.join(ntext) != text:
         print('\n'.join(difflib.unified_diff(''.join(ntext).splitlines(),
                                              text.splitlines())))
@@ -140,3 +115,16 @@ def test_examplefile(filename):
             print('\n'.join(difflib.unified_diff(f1.splitlines(),
                                                  f2.splitlines())))
             assert False, absfn
+
+
+def teardown_module():
+    N = 7
+    stats = list(STATS.items())
+    stats.sort(key=lambda x: x[1][1])
+    print('\nExample files that took longest absolute time:')
+    for fn, t in stats[-N:]:
+        print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))
+    stats.sort(key=lambda x: x[1][2])
+    print('\nExample files that took longest relative time:')
+    for fn, t in stats[-N:]:
+        print('%-30s  %6d chars  %8.2f ms  %7.3f ms/char' % ((fn,) + t))

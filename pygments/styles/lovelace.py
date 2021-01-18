@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     pygments.styles.lovelace
     ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -9,7 +8,7 @@
     A desaturated, somewhat subdued style created for the Lovelace interactive
     learning environment.
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
     CoffeeScript tests
     ~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2020 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -54,17 +53,17 @@ def test_coffee_slashes(lexer, golden):
 
 
 def test_mixed_slashes(lexer):
-    fragment = u'a?/foo/:1/2;\n'
+    fragment = 'a?/foo/:1/2;\n'
     tokens = [
-        (Token.Name.Other, u'a'),
-        (Token.Operator, u'?'),
-        (Token.Literal.String.Regex, u'/foo/'),
-        (Token.Operator, u':'),
-        (Token.Literal.Number.Integer, u'1'),
-        (Token.Operator, u'/'),
-        (Token.Literal.Number.Integer, u'2'),
-        (Token.Punctuation, u';'),
-        (Token.Text, u'\n'),
+        (Token.Name.Other, 'a'),
+        (Token.Operator, '?'),
+        (Token.Literal.String.Regex, '/foo/'),
+        (Token.Operator, ':'),
+        (Token.Literal.Number.Integer, '1'),
+        (Token.Operator, '/'),
+        (Token.Literal.Number.Integer, '2'),
+        (Token.Punctuation, ';'),
+        (Token.Text, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
