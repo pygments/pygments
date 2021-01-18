@@ -9,38 +9,28 @@ end
 
 ---tokens---
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '100'         Literal.Number.Integer
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'disp'        Name.Builtin
 '('           Punctuation
 "'"           Literal.String
 "x > 100'"    Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'else'        Keyword
-'\n'          Text
-
-' '           Text
-' '           Text
-' '           Text
-' '           Text
+'\n    '      Text.Whitespace
 'disp'        Name.Builtin
 '('           Punctuation
 "'"           Literal.String
 "x < 100'"    Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace

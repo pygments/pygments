@@ -1,0 +1,105 @@
+---input---
+classdef Name < dynamicprops
+    properties
+        % i am a comment
+        name1
+        name2
+    end
+    properties (Constant = true, SetAccess = protected)
+        % i too am a comment
+        matrix = [0, 1, 2];
+        string = 'i am a string'
+    end
+    methods
+        % i am also a comment
+        function self = Name()
+            % i am a comment inside a constructor
+        end
+    end
+end
+
+---tokens---
+'classdef'    Keyword
+' '           Text.Whitespace
+'Name'        Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'dynamicprops' Keyword
+'\n    '      Text.Whitespace
+'properties'  Keyword
+'\n        '  Text.Whitespace
+'% i am a comment' Comment
+'\n        '  Text.Whitespace
+'name1'       Name
+'\n        '  Text.Whitespace
+'name2'       Name
+'\n    '      Text.Whitespace
+'end'         Keyword
+'\n    '      Text.Whitespace
+'properties'  Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Constant'    Name.Builtin
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'true'        Keyword
+','           Punctuation
+' '           Text.Whitespace
+'SetAccess'   Name.Builtin
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'protected'   Keyword
+')'           Punctuation
+'\n        '  Text.Whitespace
+'% i too am a comment' Comment
+'\n        '  Text.Whitespace
+'matrix'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'string'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+"i am a string'" Literal.String
+'\n    '      Text.Whitespace
+'end'         Keyword
+'\n    '      Text.Whitespace
+'methods'     Keyword
+'\n        '  Text.Whitespace
+'% i am also a comment' Comment
+'\n        '  Text.Whitespace
+'function'    Keyword
+' '           Text.Whitespace
+'self'        Text
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'Name'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n            ' Text.Whitespace
+'% i am a comment inside a constructor' Comment
+'\n        '  Text.Whitespace
+'end'         Keyword
+'\n    '      Text.Whitespace
+'end'         Keyword
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace

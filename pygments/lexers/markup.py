@@ -502,7 +502,7 @@ class MarkdownLexer(RegexLexer):
     .. versionadded:: 2.2
     """
     name = 'markdown'
-    aliases = ['md']
+    aliases = ['md', 'markdown']
     filenames = ['*.md', '*.markdown']
     mimetypes = ["text/x-markdown"]
     flags = re.MULTILINE
