@@ -50,7 +50,7 @@ class LexerTestItem(pytest.Item):
     def _prettyprint_tokens(cls, tokens):
         for tok, val in tokens:
             yield '{!r:<13} {}'.format(val, str(tok)[6:])
-            if val and val == '\n' * len(val):
+            if val.endswith('\n'):
                 yield ''
 
     def runtest(self):
