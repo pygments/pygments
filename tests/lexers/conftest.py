@@ -29,17 +29,15 @@ def pytest_collect_file(parent, path):
 
 class LexerTestFile(pytest.File):
     def collect(self):
-        lexer = Path(str(self.fspath)).parent.name
-        yield LexerTestItem.from_parent(self, name='test', file=self.fspath, lexer=lexer)
+        yield LexerTestItem.from_parent(self, name='test')
 
 
 class LexerTestItem(pytest.Item):
-    def __init__(self, name, parent, file, lexer):
+    def __init__(self, name, parent):
         super().__init__(name, parent)
-        self.file = file
-        self.lexer = lexer
+        self.lexer = Path(str(self.fspath)).parent.name
 
-        content = file.read_text('utf-8')
+        content = self.fspath.read_text('utf-8')
         content, _, self.expected = content.partition('\n---tokens---\n')
         if content.startswith('---input---\n'):
             content = '\n' + content
@@ -62,10 +60,26 @@ class LexerTestItem(pytest.Item):
         if not self.config.getoption('--update-goldens'):
             assert self.actual == self.expected
 
+    def _test_file_rel_path(self):
+        return Path(self.fspath).relative_to(Path(__file__).parent.parent.parent)
+
+    def repr_failure(self, excinfo):
+        if isinstance(excinfo.value, AssertionError):
+            message = (
+                'The tokens produced by the "{}" lexer differ from the '
+                'expected ones in the file "{}".\n'
+                'Run `pytest tests/lexers --update-goldens` to update it.'
+            ).format(self.lexer, self._test_file_rel_path())
+            diff = str(excinfo.value).split('\n', 1)[-1]
+            return message + '\n\n' + diff
+
+    def reportinfo(self):
+        return self.fspath, None, str(self._test_file_rel_path())
+
 
 def pytest_runtest_teardown(item, nextitem):
     if item.config.getoption('--update-goldens') and isinstance(item, LexerTestItem):
-        with item.file.open('w', encoding='utf-8') as f:
+        with item.fspath.open('w', encoding='utf-8') as f:
             f.write(item.comment)
             if item.comment:
                 f.write('\n\n')
