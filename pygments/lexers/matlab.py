@@ -11,13 +11,14 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, default, words, \
-    do_insertions
+    do_insertions, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
 from pygments.lexers import _scilab_builtins
 
 __all__ = ['MatlabLexer', 'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer']
+
 
 
 class MatlabLexer(RegexLexer):
@@ -75,38 +76,7 @@ class MatlabLexer(RegexLexer):
     _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\.\\|\./|/|\\'
 
     tokens = {
-        'root': [
-            # line starting with '!' is sent as a system command.  not sure what
-            # label to use...
-            (r'^!.*', String.Other),
-            (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
-            (r'%.*$', Comment),
-            (r'^\s*function\b', Keyword, 'deffunc'),
-
-            # from 'iskeyword' on version 9.4 (R2018a):
-            # Check that there is no preceding dot, as keywords are valid field
-            # names.
-            (words(('break', 'case', 'catch', 'classdef', 'continue', 'else',
-                    'elseif', 'end', 'for', 'function',
-                    'global', 'if', 'otherwise', 'parfor',
-                    'persistent', 'return', 'spmd', 'switch',
-                    'try', 'while'),
-                   prefix=r'(?<!\.)', suffix=r'\b'),
-             Keyword),
-
-            ("(" + "|".join(elfun + specfun + elmat) + r')\b',  Name.Builtin),
-
-            # line continuation with following comment:
-            (r'(\.\.\.)(.*)$', bygroups(Keyword, Comment)),
-
-            # command form:
-            # "How MATLAB Recognizes Command Syntax" specifies that an operator
-            # is recognized if it is either surrounded by spaces or by no
-            # spaces on both sides; only the former case matters for us.  (This
-            # allows distinguishing `cd ./foo` from `cd ./ foo`.)
-            (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|(?:%s)\s+)' % _operators,
-             bygroups(Text, Name, Text), 'commandargs'),
-
+        'expressions': [
             # operators:
             (_operators, Operator),
 
@@ -128,7 +98,47 @@ class MatlabLexer(RegexLexer):
 
             (r'(?<![\w)\].])\'', String, 'string'),
             (r'[a-zA-Z_]\w*', Name),
+            (r'\s+', Whitespace),
             (r'.', Text),
+        ],
+        'root': [
+            # line starting with '!' is sent as a system command.  not sure what
+            # label to use...
+            (r'^!.*', String.Other),
+            (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
+            (r'%.*$', Comment),
+            (r'(\s*^\s*)(function)\b', bygroups(Whitespace, Keyword), 'deffunc'),
+            (r'(\s*^\s*)(properties)(\s+)(\()',
+             bygroups(Whitespace, Keyword, Whitespace, Punctuation),
+             ('defprops', 'propattrs')),
+            (r'(\s*^\s*)(properties)\b',
+             bygroups(Whitespace, Keyword), 'defprops'),
+
+            # from 'iskeyword' on version 9.4 (R2018a):
+            # Check that there is no preceding dot, as keywords are valid field
+            # names.
+            (words(('break', 'case', 'catch', 'classdef', 'continue',
+                    'dynamicprops', 'else', 'elseif', 'end', 'for', 'function',
+                    'global', 'if', 'methods', 'otherwise', 'parfor',
+                    'persistent', 'return', 'spmd', 'switch',
+                    'try', 'while'),
+                   prefix=r'(?<!\.)(\s*)(', suffix=r')\b'),
+             bygroups(Whitespace, Keyword)),
+
+            ("(" + "|".join(elfun + specfun + elmat) + r')\b',  Name.Builtin),
+
+            # line continuation with following comment:
+            (r'(\.\.\.)(.*)$', bygroups(Keyword, Comment)),
+
+            # command form:
+            # "How MATLAB Recognizes Command Syntax" specifies that an operator
+            # is recognized if it is either surrounded by spaces or by no
+            # spaces on both sides; only the former case matters for us.  (This
+            # allows distinguishing `cd ./foo` from `cd ./ foo`.)
+            (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|(?:%s)\s+|\s)' % _operators,
+             bygroups(Whitespace, Name, Whitespace), 'commandargs'),
+
+            include('expressions')
         ],
         'blockcomment': [
             (r'^\s*%\}', Comment.Multiline, '#pop'),
@@ -141,7 +151,26 @@ class MatlabLexer(RegexLexer):
                       Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Whitespace), '#pop'),
             # function with no args
-            (r'(\s*)([a-zA-Z_]\w*)', bygroups(Text, Name.Function), '#pop'),
+            (r'(\s*)([a-zA-Z_]\w*)',
+             bygroups(Whitespace, Name.Function), '#pop'),
+        ],
+        'propattrs': [
+            (r'(\w+)(\s*)(=)(\s*)(\d+)',
+             bygroups(Name.Builtin, Whitespace, Punctuation, Whitespace,
+                      Number)),
+            (r'(\w+)(\s*)(=)(\s*)([a-zA-Z]\w*)',
+             bygroups(Name.Builtin, Whitespace, Punctuation, Whitespace,
+                      Keyword)),
+            (r',', Punctuation),
+            (r'\)', Punctuation, '#pop'),
+            (r'\s+', Whitespace),
+            (r'.', Text),
+        ],
+        'defprops': [
+            (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
+            (r'%.*$', Comment),
+            (r'(?<!\.)end\b', Keyword, '#pop'),
+            include('expressions'),
         ],
         'string': [
             (r"[^']*'", String, '#pop'),
@@ -153,7 +182,7 @@ class MatlabLexer(RegexLexer):
             # equal sign or operator
             (r"=", Punctuation, '#pop'),
             (_operators, Operator, '#pop'),
-            (r"[ \t]+", Text),
+            (r"[ \t]+", Whitespace),
             ("'[^']*'", String),
             (r"[^';\s]+", String),
             (";", Punctuation, '#pop'),
@@ -642,7 +671,8 @@ class OctaveLexer(RegexLexer):
                       Whitespace, Name.Function, Punctuation, Text,
                       Punctuation, Whitespace), '#pop'),
             # function with no args
-            (r'(\s*)([a-zA-Z_]\w*)', bygroups(Text, Name.Function), '#pop'),
+            (r'(\s*)([a-zA-Z_]\w*)',
+             bygroups(Whitespace, Name.Function), '#pop'),
         ],
     }
 

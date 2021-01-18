@@ -36,7 +36,7 @@ def test_single_line(lexer):
         (Token.Literal.Number.Integer, '101325'),
         (Token.Punctuation, ')'),
         (Token.Punctuation, ';'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -56,14 +56,14 @@ def test_line_continuation(lexer):
         (Token.Literal.Number.Integer, '300'),
         (Token.Punctuation, ','),
         (Token.Keyword, '...'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
         (Token.Literal.String, "'"),
         (Token.Literal.String, "P'"),
         (Token.Punctuation, ','),
         (Token.Literal.Number.Integer, '101325'),
         (Token.Punctuation, ')'),
         (Token.Punctuation, ';'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -73,37 +73,29 @@ def test_keywords_ended_by_newline(lexer):
     fragment = "if x > 100\n    disp('x > 100')\nelse\n    disp('x < 100')\nend\n"
     tokens = [
         (Token.Keyword, 'if'),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, ' '),
         (Token.Name, 'x'),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, ' '),
         (Token.Operator, '>'),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, ' '),
         (Token.Literal.Number.Integer, '100'),
-        (Token.Text, '\n'),
-        (Token.Text, ' '),
-        (Token.Text, ' '),
-        (Token.Text, ' '),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, '\n    '),
         (Token.Name.Builtin, 'disp'),
         (Token.Punctuation, '('),
         (Token.Literal.String, "'"),
         (Token.Literal.String, "x > 100'"),
         (Token.Punctuation, ')'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
         (Token.Keyword, 'else'),
-        (Token.Text, '\n'),
-        (Token.Text, ' '),
-        (Token.Text, ' '),
-        (Token.Text, ' '),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, '\n    '),
         (Token.Name.Builtin, 'disp'),
         (Token.Punctuation, '('),
         (Token.Literal.String, "'"),
         (Token.Literal.String, "x < 100'"),
         (Token.Punctuation, ')'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
         (Token.Keyword, 'end'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -123,14 +115,14 @@ def test_comment_after_continuation(lexer):
         (Token.Punctuation, ','),
         (Token.Keyword, '...'),
         (Token.Comment, ' a comment'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
         (Token.Literal.String, "'"),
         (Token.Literal.String, "P'"),
         (Token.Punctuation, ','),
         (Token.Literal.Number.Integer, '101325'),
         (Token.Punctuation, ')'),
         (Token.Punctuation, ';'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -142,13 +134,12 @@ def test_multiple_spaces_variable_assignment(lexer):
     fragment = 'x  = 100;\n'
     tokens = [
         (Token.Name, 'x'),
-        (Token.Text, ' '),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, '  '),
         (Token.Punctuation, '='),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, ' '),
         (Token.Literal.Number.Integer, '100'),
         (Token.Punctuation, ';'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -160,13 +151,12 @@ def test_operator_multiple_space(lexer):
     fragment = 'x  > 100;\n'
     tokens = [
         (Token.Name, 'x'),
-        (Token.Text, ' '),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, '  '),
         (Token.Operator, '>'),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, ' '),
         (Token.Literal.Number.Integer, '100'),
         (Token.Punctuation, ';'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -176,12 +166,12 @@ def test_one_space_assignment(lexer):
     fragment = 'x = 100;\n'
     tokens = [
         (Token.Name, 'x'),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, ' '),
         (Token.Punctuation, '='),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, ' '),
         (Token.Literal.Number.Integer, '100'),
         (Token.Punctuation, ';'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
 
@@ -195,8 +185,121 @@ def test_command_mode(lexer):
     fragment = 'help sin\n'
     tokens = [
         (Token.Name, 'help'),
-        (Token.Text, ' '),
+        (Token.Text.Whitespace, ' '),
         (Token.Literal.String, 'sin'),
-        (Token.Text, '\n'),
+        (Token.Text.Whitespace, '\n'),
     ]
     assert list(lexer.get_tokens(fragment)) == tokens
+
+
+
+MATLAB_SAMPLE_CLASS = """
+classdef Name < dynamicprops
+    properties
+        % i am a comment
+        name1
+        name2
+    end
+    properties (Constant = true, SetAccess = protected)
+        % i too am a comment
+        matrix = [0, 1, 2];
+        string = 'i am a string'
+    end
+    methods
+        % i am also a comment
+        function self = Name()
+            % i am a comment inside a constructor
+        end
+    end
+end
+""".strip()
+
+def test_classes_with_properties(lexer):
+    whitespace = Token.Text.Whitespace
+    tokens = [
+        (Token.Keyword, 'classdef'),
+        (whitespace, ' '),
+        (Token.Name, 'Name'),
+        (whitespace, ' '),
+        (Token.Operator, '<'),
+        (whitespace, ' '),
+        (Token.Keyword, 'dynamicprops'),
+        (whitespace, '\n    '),
+        (Token.Keyword, 'properties'),
+        (whitespace, '\n        '),
+        (Token.Comment, '% i am a comment'),
+        (whitespace, '\n        '),
+        (Token.Name, 'name1'),
+        (whitespace, '\n        '),
+        (Token.Name, 'name2'),
+        (whitespace, '\n    '),
+        (Token.Keyword, 'end'),
+        (whitespace, '\n    '),
+        (Token.Keyword, 'properties'),
+        (whitespace, ' '),
+        (Token.Punctuation, '('),
+        (Token.Name.Builtin, 'Constant'),
+        (whitespace, ' '),
+        (Token.Punctuation, '='),
+        (whitespace, ' '),
+        (Token.Keyword, 'true'),
+        (Token.Punctuation, ','),
+        (whitespace, ' '),
+        (Token.Name.Builtin, 'SetAccess'),
+        (whitespace, ' '),
+        (Token.Punctuation, '='),
+        (whitespace, ' '),
+        (Token.Keyword, 'protected'),
+        (Token.Punctuation, ')'),
+        (whitespace, "\n        "),
+        (Token.Comment, '% i too am a comment'),
+        (whitespace, '\n        '),
+        (Token.Name, 'matrix'),
+        (whitespace, ' '),
+        (Token.Punctuation, '='),
+        (whitespace, ' '),
+        (Token.Punctuation, '['),
+        (Token.Literal.Number.Integer, '0'),
+        (Token.Punctuation, ','),
+        (whitespace, ' '),
+        (Token.Literal.Number.Integer, '1'),
+        (Token.Punctuation, ','),
+        (whitespace, ' '),
+        (Token.Literal.Number.Integer, '2'),
+        (Token.Punctuation, ']'),
+        (Token.Punctuation, ';'),
+        (whitespace, '\n        '),
+        (Token.Name, 'string'),
+        (whitespace, ' '),
+        (Token.Punctuation, '='),
+        (whitespace, ' '),
+        (Token.Literal.String, "'"),
+        (Token.Literal.String, "i am a string'"),
+        (whitespace, '\n    '),
+        (Token.Keyword, 'end'),
+        (whitespace, '\n    '),
+        (Token.Keyword, 'methods'),
+        (whitespace, '\n        '),
+        (Token.Comment, '% i am also a comment'),
+        (whitespace, '\n        '),
+        (Token.Keyword, 'function'),
+        (whitespace, ' '),
+        (Token.Text, 'self'),
+        (whitespace, ' '),
+        (Token.Punctuation, '='),
+        (whitespace, ' '),
+        (Token.Name.Function, 'Name'),
+        (Token.Punctuation, '('),
+        (Token.Punctuation, ')'),
+        (whitespace, '\n            '),
+        (Token.Comment, '% i am a comment inside a constructor'),
+        (whitespace, '\n        '),
+        (Token.Keyword, 'end'),
+        (whitespace, '\n    '),
+        (Token.Keyword, 'end'),
+        (whitespace, '\n'),
+        (Token.Keyword, 'end'),
+        (whitespace, '\n'),
+    ]
+    assert list(lexer.get_tokens(MATLAB_SAMPLE_CLASS)) == tokens
+
