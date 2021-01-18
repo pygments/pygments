@@ -7,7 +7,7 @@
 """
 
 import pytest
-from pygments.token import Generic, Token, String, Keyword, Name
+from pygments.token import Generic, Token, String
 
 from pygments.lexers.markup import MarkdownLexer
 

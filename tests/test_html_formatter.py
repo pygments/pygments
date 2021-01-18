@@ -6,7 +6,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-import io
 import os
 import re
 import tempfile

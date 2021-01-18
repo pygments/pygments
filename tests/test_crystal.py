@@ -8,8 +8,7 @@
 
 import pytest
 
-from pygments.token import Text, Operator, Keyword, Name, String, Number, \
-    Punctuation, Error
+from pygments.token import Text, String, Number, Punctuation, Error
 from pygments.lexers import CrystalLexer
 
 

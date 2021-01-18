@@ -37,7 +37,7 @@ def test_guess_lexer_singularity():
 
 @pytest.mark.skip(reason="This is identified as MIME")
 def test_guess_lexer_matlab():
-    lx = lexers.guess_lexer(r'A \ B')
+    lx = guess_lexer(r'A \ B')
     assert lx.__class__.__name__ == 'OctaveLexer'
 
 

@@ -10,7 +10,7 @@ import time
 
 import pytest
 
-from pygments.token import Keyword, Name, Number, Punctuation, String, Text
+from pygments.token import String
 from pygments.lexers import JavaLexer
 
 

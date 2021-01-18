@@ -6,8 +6,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
 from pytest import raises
 
 from pygments import util, console
