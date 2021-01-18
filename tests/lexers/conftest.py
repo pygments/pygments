@@ -61,7 +61,7 @@ class LexerTestItem(pytest.Item):
             assert self.actual == self.expected
 
     def _test_file_rel_path(self):
-        return Path(self.fspath).relative_to(Path(__file__).parent.parent.parent)
+        return Path(str(self.fspath)).relative_to(Path(__file__).parent.parent.parent)
 
     def repr_failure(self, excinfo):
         if isinstance(excinfo.value, AssertionError):
