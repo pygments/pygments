@@ -200,6 +200,11 @@ classdef Name < dynamicprops
         name1
         name2
     end
+    properties (Constant = true, SetAccess = protected)
+        % i too am a comment
+        matrix = [0, 1, 2];
+        string = 'i am a string'
+    end
     methods
         % i am also a comment
         function self = Name()
@@ -227,6 +232,49 @@ def test_classes_with_properties(lexer):
         (Token.Name, 'name1'),
         (whitespace, '\n        '),
         (Token.Name, 'name2'),
+        (whitespace, '\n    '),
+        (Token.Keyword, 'end'),
+        (whitespace, '\n    '),
+        (Token.Keyword, 'properties'),
+        (whitespace, ' '),
+        (Token.Punctuation, '('),
+        (Token.Name.Builtin, 'Constant'),
+        (whitespace, ' '),
+        (Token.Punctuation, '='),
+        (whitespace, ' '),
+        (Token.Keyword, 'true'),
+        (Token.Punctuation, ','),
+        (whitespace, ' '),
+        (Token.Name.Builtin, 'SetAccess'),
+        (whitespace, ' '),
+        (Token.Punctuation, '='),
+        (whitespace, ' '),
+        (Token.Keyword, 'protected'),
+        (Token.Punctuation, ')'),
+        (whitespace, "\n        "),
+        (Token.Comment, '% i too am a comment'),
+        (whitespace, '\n        '),
+        (Token.Name, 'matrix'),
+        (whitespace, ' '),
+        (Token.Punctuation, '='),
+        (whitespace, ' '),
+        (Token.Punctuation, '['),
+        (Token.Literal.Number.Integer, '0'),
+        (Token.Punctuation, ','),
+        (whitespace, ' '),
+        (Token.Literal.Number.Integer, '1'),
+        (Token.Punctuation, ','),
+        (whitespace, ' '),
+        (Token.Literal.Number.Integer, '2'),
+        (Token.Punctuation, ']'),
+        (Token.Punctuation, ';'),
+        (whitespace, '\n        '),
+        (Token.Name, 'string'),
+        (whitespace, ' '),
+        (Token.Punctuation, '='),
+        (whitespace, ' '),
+        (Token.Literal.String, "'"),
+        (Token.Literal.String, "i am a string'"),
         (whitespace, '\n    '),
         (Token.Keyword, 'end'),
         (whitespace, '\n    '),

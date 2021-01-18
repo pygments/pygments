@@ -20,6 +20,7 @@ from pygments.lexers import _scilab_builtins
 __all__ = ['MatlabLexer', 'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer']
 
 
+
 class MatlabLexer(RegexLexer):
     """
     For Matlab source code.
@@ -107,7 +108,11 @@ class MatlabLexer(RegexLexer):
             (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'%.*$', Comment),
             (r'(\s*^\s*)(function)\b', bygroups(Whitespace, Keyword), 'deffunc'),
-            (r'(\s*^\s*)(properties)\b', bygroups(Whitespace, Keyword), 'defprops'),
+            (r'(\s*^\s*)(properties)(\s+)(\()',
+             bygroups(Whitespace, Keyword, Whitespace, Punctuation),
+             ('defprops', 'propattrs')),
+            (r'(\s*^\s*)(properties)\b',
+             bygroups(Whitespace, Keyword), 'defprops'),
 
             # from 'iskeyword' on version 9.4 (R2018a):
             # Check that there is no preceding dot, as keywords are valid field
@@ -148,6 +153,18 @@ class MatlabLexer(RegexLexer):
             # function with no args
             (r'(\s*)([a-zA-Z_]\w*)',
              bygroups(Whitespace, Name.Function), '#pop'),
+        ],
+        'propattrs': [
+            (r'(\w+)(\s*)(=)(\s*)(\d+)',
+             bygroups(Name.Builtin, Whitespace, Punctuation, Whitespace,
+                      Number)),
+            (r'(\w+)(\s*)(=)(\s*)([a-zA-Z]\w*)',
+             bygroups(Name.Builtin, Whitespace, Punctuation, Whitespace,
+                      Keyword)),
+            (r',', Punctuation),
+            (r'\)', Punctuation, '#pop'),
+            (r'\s+', Whitespace),
+            (r'.', Text),
         ],
         'defprops': [
             (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
