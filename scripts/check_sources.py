@@ -50,8 +50,6 @@ def check_syntax(fn, lines):
         return
     if '#!/' in lines[0]:
         lines = lines[1:]
-    if 'coding:' in lines[0]:
-        lines = lines[1:]
     try:
         compile('\n'.join(lines), fn, "exec")
     except SyntaxError as err:
@@ -77,38 +75,35 @@ def check_fileheader(fn, lines):
 
     llist = []
     docopen = False
-    for lno, l in enumerate(lines):
-        llist.append(l)
+    for lno, line in enumerate(lines):
+        llist.append(line)
         if lno == 0:
-            if l != '# -*- coding: utf-8 -*-':
-                yield 1, "missing coding declaration"
-        elif lno == 1:
-            if l != '"""' and l != 'r"""':
+            if line != '"""' and line != 'r"""':
                 yield 2, 'missing docstring begin (""")'
             else:
                 docopen = True
         elif docopen:
-            if l == '"""':
+            if line == '"""':
                 # end of docstring
-                if lno <= 4:
+                if lno <= 3:
                     yield lno+c, "missing module name in docstring"
                 break
 
-            if l != "" and l[:4] != '    ' and docopen:
+            if line != "" and line[:4] != '    ' and docopen:
                 yield lno+c, "missing correct docstring indentation"
 
-            if lno == 2:
+            if lno == 1:
                 # if not in package, don't check the module name
                 modname = fn[:-3].replace('/', '.').replace('.__init__', '')
                 while modname:
-                    if l.lower()[4:] == modname:
+                    if line.lower()[4:] == modname:
                         break
                     modname = '.'.join(modname.split('.')[1:])
                 else:
                     yield 3, "wrong module name in docstring heading"
-                modnamelen = len(l.strip())
-            elif lno == 3:
-                if l.strip() != modnamelen * "~":
+                modnamelen = len(line.strip())
+            elif lno == 2:
+                if line.strip() != modnamelen * "~":
                     yield 4, "wrong module name underline, should be ~~~...~"
 
     else:
@@ -153,12 +148,10 @@ def main(argv):
     num = 0
     out = io.StringIO()
 
-    # TODO: replace os.walk run with iteration over output of
-    #       `svn list -R`.
-
     for root, dirs, files in os.walk(path):
-        if '.hg' in dirs:
-            dirs.remove('.hg')
+        for excl in ['.tox', '.git', 'examplefiles']:
+            if excl in dirs:
+                dirs.remove(excl)
         if '-i' in opts and abspath(root) in opts['-i']:
             del dirs[:]
             continue
